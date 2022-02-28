@@ -1342,12 +1342,8 @@ ellipse(x: number, y: number, radiusX: number, radiusY: number, rotation: number
           .backgroundColor('#ffff00')
           .onReady(() =>{
             this.context.beginPath()
-            this.context.ellipse(200, 200, 50, 100, Math.PI * 0.25, Math.PI * 0.5, Math.PI, true)
+            this.context.ellipse(200, 200, 50, 100, Math.PI * 0.25, Math.PI * 0.5, Math.PI)
             this.context.stroke()
-          })
-        Button('back')
-          .onClick(() => {
-            router.back()
           })
       }
       .width('100%')
@@ -1355,7 +1351,7 @@ ellipse(x: number, y: number, radiusX: number, radiusY: number, rotation: number
     }
   }
   ```
-
+  
   ![zh-cn_image_0000001194192440](figures/zh-cn_image_0000001194192440.png)
 
 
@@ -1462,17 +1458,13 @@ clip(): void
             this.context.fillStyle = "rgb(255,0,0)"
             this.context.fillRect(0, 0, 150, 150)
           })
-        Button('back')
-          .onClick(() => {
-            router.back()
-          })
       }
       .width('100%')
       .height('100%')
     }
   }
   ```
-
+  
   ![zh-cn_image_0000001194032462](figures/zh-cn_image_0000001194032462.png)
 
 

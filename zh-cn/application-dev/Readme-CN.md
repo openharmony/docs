@@ -16,5 +16,6 @@
 - [数据管理](database/Readme-CN.md)
 - [USB服务](usb/Readme-CN.md)
 - [DFX](dfx/Readme-CN.md)
+- [WebGL](webgl/Readme-CN.md)
 - [开发参考](reference/Readme-CN.md)
 

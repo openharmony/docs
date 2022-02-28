@@ -1,4 +1,4 @@
-# Hap包签名工具开发指南
+# Hap包签名工具开发指导
 
 
 
@@ -13,10 +13,10 @@
 Hap包签名工具支持本地签名需求的开发，为OpenHarmony应用提供完整性保护和来源管控机制，该签名工具基于PKI公钥证书的机制实现，在进行开发前，开发者应了解以下基本概念：
 
  - 非对称密钥对
-  非对称密钥算法是数据签名/验签的基础，应用签名工具实现生成标准的非对称密钥对（ECC P384/256、RSA2048/3072/4096，用于证书的签发和验证、Profile文件的签名和验签、以及应用包的签名和验签，提供应用的完整性保护机制。
+    非对称密钥算法是数据签名/验签的基础，应用签名工具实现生成标准的非对称密钥对（ECC P384/256、RSA2048/3072/4096，用于证书的签发和验证、Profile文件的签名和验签、以及应用包的签名和验签，提供应用的完整性保护机制。
 
  - CSR
-  CSR（Certificate Signing Request）证书签发请求是生成证书的前提，他包括证书的公钥、证书主题和私钥签名，在申请证书之前，需要先基于密钥对生成CSR，然后提交给CA签发证书。
+    CSR（Certificate Signing Request）证书签发请求是生成证书的前提，他包括证书的公钥、证书主题和私钥签名，在申请证书之前，需要先基于密钥对生成CSR，然后提交给CA签发证书。
  - 证书
  OpenHarmony采用RFC5280标准构建X509证书信任体系。用于应用签名的OpenHarmony证书按层级可分为：根CA证书、子CA证书、三级实体证书，其中三级实体证书分为应用签名证书和profile签名证书。应用签名证书表示应用开发者的身份，可保证系统上安装的应用来源可追溯，profile签名证书实现对profile文件的签名进行验签，保证profile文件的完整性。
  - HAP包
@@ -33,13 +33,13 @@ hap包中的描述文件，该描述文件描述了已授权的证书权限和�
 ## 编译构建
 
  1. 该工具基于Gradle 7.1编译构建，请确认环境已安装配置Gradle环境，并且版本高于或等于7.1。
- 
+
     ```shell 
         gradle -v
     ```
   
  2. 下载代码，命令行打开文件目录至developtools_hapsigner/hapsigntool，执行命令进行编译打包。
- 
+
     ```shell    
         gradle build 
     ```
@@ -74,7 +74,7 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
 1.输出命令帮助信息
 
         -help     # 输出命令帮助信息（不输入参数默认输出命令帮助信息）
-        
+
 2.输出版本信息
 
         -version  # 输出版本信息
@@ -209,7 +209,7 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
            ├── -outFil       # 验证结果文件（包含验证结果和profile内容），json格式，可选项；如果不填，则直接输出到控制台
 
 11.hap应用包签名
-  
+
      sign-app : hap应用包签名 
           ├── -mode          # 签名模式，必填项，包括localSign，remoteSign，remoteResign
           ├── -keyAlias      # 密钥别名，必填项
@@ -247,9 +247,9 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
     子CA证书所在路径：developtools_hapsigner/autosign/result/subCA.cer；
     pfofile签名证书路径：developtools_hapsigner/autosign/result/OpenHarmonyProfileRelease.pem。
 
- 
+
 **<p id="生成应用签名证书密钥对">1.生成应用签名证书密钥对</p>**
- 
+
 调用密钥对生成接口，生成签名密钥并保存到密钥库。
 
 命令实例：
@@ -259,7 +259,7 @@ java -jar hap-sign-tool.jar generate-keypair -keyAlias "oh-app1-key-v1" -keyAlg 
   > ![icon-note.gif](../public_sys-resources/icon-note.gif) **说明：**请记录下**keyAlias、keyStorePwd**和**keyPwd**的值，在后续[生成应用签名证书](#生成应用签名证书)和[对Hap包进行签名](#对Hap包进行签名)操作会使用到。
 
 该命令的参数说明：
- 
+
       generate-keypair : 生成应用签名证书密钥对
           ├── -keyAlias         #用于生成应用签名证书的密钥别名，存于OpenHarmony.p12密钥库文件中，该参数必填
           ├── -keyAlg           #密钥算法，推荐使用ECC，该参数必填
@@ -267,7 +267,7 @@ java -jar hap-sign-tool.jar generate-keypair -keyAlias "oh-app1-key-v1" -keyAlg 
           ├── -keyStoreFile     #密钥库文件，推荐使用提供的OpenHarmony.p12密钥库文件，该参数必填
           ├── -keyStorePwd      #密钥库口令，OpenHarmony.p12口令默认为“123456”，必填项
           ├── -keyPwd           #密钥口令，可选项，该参数不填默认生成的密钥对无口令
-    
+
 
 
 **<p id="生成应用签名证书">2.生成应用签名证书</p>**
@@ -352,6 +352,7 @@ java -jar hap-sign-tool.jar sign-app -keyAlias "oh-app1-key-v1" -signAlg "SHA256
          ├── -keystorePwd      # 密钥库口令，与第一步的密钥库口令保持一致
 
  
+
 
 ## 常见问题
 

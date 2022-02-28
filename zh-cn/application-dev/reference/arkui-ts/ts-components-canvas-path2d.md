@@ -387,7 +387,7 @@ ellipse(x: number, y: number, radiusX: number, radiusY: number, rotation: number
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            this.path2Db.ellipse(200, 200, 50, 100, Math.PI * 0.25, Math.PI * 0.5, Math.PI, true)
+            this.path2Db.ellipse(200, 200, 50, 100, Math.PI * 0.25, Math.PI * 0.5, Math.PI)
             this.context.stroke(this.path2Db)
           })
       }

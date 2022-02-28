@@ -9,7 +9,7 @@ HUKS所管理的密钥可以由应用导入或者由应用调用HUKS接口生成
 ```js
 import huks from '@ohos.security.huks'
 ```
-## huks.HuksErrorCode
+## HuksErrorCode
 
 表示错误码的枚举。
 
@@ -84,7 +84,7 @@ import huks from '@ohos.security.huks'
 | HUKS_ERROR_UNKNOWN_ERROR | -1000 |表示未知错误。<br/>**系统能力**：SystemCapability.Security.Huks|
 
 
-## huks.HuksKeyPurpose
+## HuksKeyPurpose
 
 表示密钥（密钥对）用途。
 
@@ -100,7 +100,7 @@ import huks from '@ohos.security.huks'
 | HUKS_KEY_PURPOSE_MAC     | 128  | 表示密钥用于生成mac消息验证码。<br/>**系统能力**：SystemCapability.Security.Huks |
 | HUKS_KEY_PURPOSE_AGREE   | 256  | 表示密钥对用于进行密钥协商。<br/>**系统能力**：SystemCapability.Security.Huks |
 
-## huks.HuksKeyDigest
+## HuksKeyDigest
 
 表示摘要算法。
 
@@ -114,7 +114,7 @@ import huks from '@ohos.security.huks'
 | HUKS_DIGEST_SHA384  | 13  | 表示SHA384摘要算法。<br/>**系统能力**：SystemCapability.Security.Huks |
 | HUKS_DIGEST_SHA512 | 14  | 表示SHA512摘要算法。<br/>**系统能力**：SystemCapability.Security.Huks |
 
-## huks.HuksKeyPadding
+## HuksKeyPadding
 
 表示补齐算法。
 
@@ -127,7 +127,7 @@ import huks from '@ohos.security.huks'
 | HUKS_PADDING_PKCS5 | 4   | 表示使用PKCS5补齐算法。<br/>**系统能力**：SystemCapability.Security.Huks |
 | HUKS_PADDING_PKCS7 | 5   | 表示使用PKCS7补齐算法。<br/>**系统能力**：SystemCapability.Security.Huks |
 
-## huks.HuksCipherMode
+## HuksCipherMode
 
 表示加密模式。
 
@@ -140,7 +140,7 @@ import huks from '@ohos.security.huks'
 | HUKS_MODE_CCM | 31   | 表示使用CCM加密模式。<br/>**系统能力**：SystemCapability.Security.Huks |
 | HUKS_MODE_GCM | 32   | 表示使用GCM加密模式。<br/>**系统能力**：SystemCapability.Security.Huks |
 
-## huks.HuksKeySize
+## HuksKeySize
 
 表示密钥（密钥对）长度。
 
@@ -165,7 +165,7 @@ import huks from '@ohos.security.huks'
 | HUKS_DH_KEY_SIZE_3072        | 3072 | 表示使用DH算法的密钥对长度为3072bit。<br/>**系统能力**：SystemCapability.Security.Huks |
 | HUKS_DH_KEY_SIZE_4096        | 4096 | 表示使用DH算法的密钥对长度为4096bit。<br/>**系统能力**：SystemCapability.Security.Huks |
 
-## huks.HuksKeyAlg
+## HuksKeyAlg
 
 表示密钥使用的算法。
 
@@ -183,7 +183,7 @@ import huks from '@ohos.security.huks'
 | HUKS_ALG_ED25519 | 102  | 表示使用ED25519算法。<br/>**系统能力**：SystemCapability.Security.Huks |
 | HUKS_ALG_DH      | 103  | 表示使用DH算法。<br/>**系统能力**：SystemCapability.Security.Huks |
 
-## huks.HuksKeyGenerateType
+## HuksKeyGenerateType
 
 表示生成密钥的类型。
 
@@ -193,7 +193,7 @@ import huks from '@ohos.security.huks'
 | HUKS_KEY_GENERATE_TYPE_DERIVE  | 1    | 派生生成的密钥。<br/>**系统能力**：SystemCapability.Security.Huks |
 | HUKS_KEY_GENERATE_TYPE_AGREE   | 2    | 协商生成的密钥。<br/>**系统能力**：SystemCapability.Security.Huks |
 
-## huks.HuksKeyFlag
+## HuksKeyFlag
 
 表示密钥的产生方式。
 
@@ -204,7 +204,7 @@ import huks from '@ohos.security.huks'
 | HUKS_KEY_FLAG_AGREE_KEY    | 3    | 表示通过生成密钥协商接口生成的密钥。<br/>**系统能力**：SystemCapability.Security.Huks |
 | HUKS_KEY_FLAG_DERIVE_KEY   | 4    | 表示通过生成密钥派生接口生成的密钥。<br/>**系统能力**：SystemCapability.Security.Huks |
 
-## huks.HuksKeyStorageType
+## HuksKeyStorageType
 
 表示密钥存储方式。
 
@@ -213,14 +213,14 @@ import huks from '@ohos.security.huks'
 | HUKS_STORAGE_TEMP       | 0    | 表示通过本地直接管理密钥。<br/>**系统能力**：SystemCapability.Security.Huks |
 | HUKS_STORAGE_PERSISTENT | 1    | 表示通过HUKS service管理密钥。<br/>**系统能力**：SystemCapability.Security.Huks |
 
-## huks.HuksSendType
+## HuksSendType
 
 | 名称                 | 值   | 说明                                                         |
 | -------------------- | ---- | ------------------------------------------------------------ |
 | HUKS_SEND_TYPE_ASYNC | 0    | 表示异步发送TAG。<br/>**系统能力**：SystemCapability.Security.Huks |
 | HUKS_SEND_TYPE_SYNC  | 1    | 表示同步发送TAG。<br/>**系统能力**：SystemCapability.Security.Huks |
 
-## huks.HuksTagType
+## HuksTagType
 
 表示Tag的数据类型。
 
@@ -233,7 +233,7 @@ import huks from '@ohos.security.huks'
 | HUKS_TAG_TYPE_BOOL    | 4 << 28 | 表示该Tag的数据类型为boolean。<br/>**系统能力**：SystemCapability.Security.Huks |
 | HUKS_TAG_TYPE_BYTES   | 5 << 28 | 表示该Tag的数据类型为Uint8Array。<br/>**系统能力**：SystemCapability.Security.Huks |
 
-## huks.HuksTag
+## HuksTag
 
 表示调用参数的Tag。
 
@@ -318,9 +318,7 @@ import huks from '@ohos.security.huks'
 
 ## huks.generateKey
 
-目前有两种方式：
-
-- generateKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback<HuksResult>) : void
+generateKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void
 
 通过Callback方法生成密钥（密钥对）。
 
@@ -367,10 +365,9 @@ var options = {
 huks.generateKey(alias, options, function (err, data){}); 
 ```
 
+## huks.generateKey
 
-
-
-- generateKey(keyAlias: string, options: HuksOptions) : Promise<HuksResult>
+generateKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 
 通过Promise方法生成密钥（密钥对）。
 
@@ -424,9 +421,7 @@ var result = await huks.generateKey(alias, options);
 
 ## huks.deleteKey
 
-目前有两种方式：
-
-- deleteKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback<HuksResult>) : void
+deleteKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void
 
 针对Callback生成的密钥进行删除。
 
@@ -448,9 +443,9 @@ var emptyOptions = {
 huks.deleteKey(alias, emptyOptions, function (err, data) {});
 ```
 
+## huks.deleteKey
 
-
-- deleteKey(keyAlias: string, options: HuksOptions) : Promise<HuksResult>
+deleteKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 
 针对Promise生成的密钥进行删除。
 
@@ -506,9 +501,7 @@ var result = await huks.getSdkVersion(emptyOptions);
 
 ## huks.importKey
 
-目前有两种方式：
-
-- importKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback<HuksResult>) : void
+importKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void
 
 导入Callback方法生成的密钥对 。
 
@@ -518,7 +511,7 @@ var result = await huks.getSdkVersion(emptyOptions);
 | -------- | ------------------------ | ---- | ------------------------------------------------- |
 | keyAlias | string                   | 是   | 密钥别名，用于存放所需密钥。<br/>**系统能力**：SystemCapability.Security.Huks |
 | options  | [HuksOptions](#huksoptions) | 是   | 用于导入时所需TAG和需要导入的密钥。<br/>**系统能力**：SystemCapability.Security.Huks |
-| callback | AsyncCallback\<[HuksResult](huksresult)> | 是   | 返回HUKS_SUCCESS时表示接口使用成功，其他时为错误。<br/>**系统能力**：SystemCapability.Security.Huks |
+| callback | AsyncCallback\<[HuksResult](#huksresult)> | 是   | 返回HUKS_SUCCESS时表示接口使用成功，其他时为错误。<br/>**系统能力**：SystemCapability.Security.Huks |
 
 **示例：**
 
@@ -552,11 +545,11 @@ var options = {
 huks.importKey(keyAlias, options, function (err, data){});
 ```
 
+## huks.importKey
 
+importKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 
-- importKey(keyAlias: string, options: HuksOptions) : Promise<HuksResult>
-
-导入Promise方法生成的密钥对
+导入Promise方法生成的密钥对。
 
 **参数：**
 
@@ -605,19 +598,17 @@ var result = await huks.importKey(keyAlias, options);
 
 ## huks.exportKey
 
-目前有两种方式：
-
-- exportKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback<HuksResult>) : void
+exportKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void
 
 导出Callback方法生成的密钥对。
 
 **参数：**
 
-| 参数名   | 类型                                     | 必填 | 说明                                                         |
-| -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
-| keyAlias | string                                   | 是   | 密钥别名，应与所用密钥生成时使用的别名相同。<br/>**系统能力**：SystemCapability.Security.Huks |
-| options  | [HuksOptions](#huksoptions)              | 是   | 空对象（此处传空即可）。<br/>**系统能力**：SystemCapability.Security.Huks |
-| callback | AsyncCallback\<[HuksResult](huksresult)> | 是   | 返回HUKS_SUCCESS时表示接口使用成功，其他时为错误。outData：返回从密钥中导出的公钥。<br/>**系统能力**：SystemCapability.Security.Huks |
+| 参数名   | 类型                                      | 必填 | 说明                                                         |
+| -------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
+| keyAlias | string                                    | 是   | 密钥别名，应与所用密钥生成时使用的别名相同。<br/>**系统能力**：SystemCapability.Security.Huks |
+| options  | [HuksOptions](#huksoptions)               | 是   | 空对象（此处传空即可）。<br/>**系统能力**：SystemCapability.Security.Huks |
+| callback | AsyncCallback\<[HuksResult](#huksresult)> | 是   | 返回HUKS_SUCCESS时表示接口使用成功，其他时为错误。outData：返回从密钥中导出的公钥。<br/>**系统能力**：SystemCapability.Security.Huks |
 
 **示例：**
 
@@ -629,9 +620,9 @@ var emptyOptions = {
 huks.exportKey(keyAlias, emptyOptions, function (err, data){});
 ```
 
+## huks.exportKey
 
-
-- exportKey(keyAlias: string, options: HuksOptions) : Promise<HuksResult>
+exportKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 
 导出Promise方法生成的密钥对。
 
@@ -660,9 +651,7 @@ var result = await huks.exportKey(keyAlias, emptyOptions);
 
 ## huks.getKeyProperties
 
-目前有两种方式：
-
-- getKeyProperties(keyAlias: string, options: HuksOptions, callback: AsyncCallback<HuksResult>) : void
+getKeyProperties(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void
 
 获取Callback方法生成的密钥属性。
 
@@ -684,9 +673,9 @@ var emptyOptions = {
 huks.getKeyProperties(keyAlias, emptyOptions, function (err, data){});
 ```
 
+## huks.getKeyProperties
 
-
-- getKeyProperties(keyAlias: string, options: HuksOptions) : Promise<HuksResult>
+getKeyProperties(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 
 获取Promise方法生成的密钥属性。
 
@@ -715,9 +704,7 @@ var result = await huks.getKeyProperties(keyAlias, emptyOptions);
 
 ## huks.isKeyExist
 
-目前有两种方式：
-
-- isKeyExist(keyAlias: string, options: HuksOptions, callback: AsyncCallback<boolean>) : void
+isKeyExist(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<boolean>) : void
 
 判断Callback方法生成的密钥是否存在 。
 
@@ -727,7 +714,7 @@ var result = await huks.getKeyProperties(keyAlias, emptyOptions);
 | -------- | ---------------------- | ---- | ------------------------------------- |
 | keyAlias | string                 | 是   | 所需查找的密钥的别名。<br/>**系统能力**：SystemCapability.Security.Huks |
 | options  | [HuksOptions](#huksoptions) | 是   | 空对象（此处传空即可）。<br/>**系统能力**：SystemCapability.Security.Huks |
-| callback | AsyncCallback\<[boolean](#boolean)> | 是   | FALSE代表密钥不存在，TRUE代表密钥存在。<br/>**系统能力**：SystemCapability.Security.Huks |
+| callback | AsyncCallback\<boolean> | 是   | FALSE代表密钥不存在，TRUE代表密钥存在。<br/>**系统能力**：SystemCapability.Security.Huks |
 
 **示例：**
 
@@ -739,9 +726,9 @@ var emptyOptions = {
 huks.isKeyExist(keyAlias, emptyOptions, function (err, data){});
 ```
 
+## huks.isKeyExist
 
-
-- isKeyExist(keyAlias: string, options: HuksOptions) : Promise<boolean>
+isKeyExist(keyAlias: string, options: HuksOptions) : Promise\<boolean>
 
 判断Promise方法生成的密钥是否存在 。
 
@@ -754,9 +741,9 @@ huks.isKeyExist(keyAlias, emptyOptions, function (err, data){});
 
 **返回值：**
 
-| 类型                          | 说明                                                         |
-| ----------------------------- | ------------------------------------------------------------ |
-| Promise\<[boolean](#boolean)> | FALSE代表密钥不存在，TRUE代表密钥存在。<br/>**系统能力**：SystemCapability.Security.Huks |
+| 类型              | 说明                                                         |
+| ----------------- | ------------------------------------------------------------ |
+| Promise\<boolean> | FALSE代表密钥不存在，TRUE代表密钥存在。<br/>**系统能力**：SystemCapability.Security.Huks |
 
 **示例：**
 
@@ -771,10 +758,9 @@ var result = await huks.isKeyExist(keyAlias, emptyOptions);
 
 ## huks.init
 
-Init操作接口，目前有两种方式：
-- init(keyAlias: string, options: HuksOptions, callback: AsyncCallback<HuksHandle>) : void
+init(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksHandle>) : void
 
-使用callback回调异步返回结果 。
+init操作接口，使用callback回调异步返回结果 。
 
 **参数：**
 
@@ -782,7 +768,7 @@ Init操作接口，目前有两种方式：
 | -------- | ---------------------- | ---- | ------------------------------------- |
 | keyAlias | string                 | 是   | Init操作密钥的别名。<br/>**系统能力**：SystemCapability.Security.Huks |
 | options  | [HuksOptions](#huksoptions) | 是   | Init操作的参数集合。<br/>**系统能力**：SystemCapability.Security.Huks |
-| callback | AsyncCallback\<[HuksHandle](#HuksHandle)> | 是   | 将Init操作操作返回的handle添加到密钥管理系统的回调。<br/>**系统能力**：SystemCapability.Security.Huks |
+| callback | AsyncCallback\<[HuksHandle](#hukshandle)> | 是   | 将Init操作操作返回的handle添加到密钥管理系统的回调。<br/>**系统能力**：SystemCapability.Security.Huks |
 
 **示例：**
 
@@ -813,9 +799,11 @@ huks.init(alias, options, function(err, data) {
 })
 ```
 
-- init(keyAlias: string, options: HuksOptions) : Promise<HuksHandle>
+## huks.init
 
-使用Promise方式异步返回结果。
+init(keyAlias: string, options: HuksOptions) : Promise\<HuksHandle>
+
+init操作接口，使用Promise方式异步返回结果。
 
 **参数：**
 
@@ -823,7 +811,7 @@ huks.init(alias, options, function(err, data) {
 | -------- | ---------------------- | ---- | ------------------------------------- |
 | keyAlias | string                 | 是   | Init操作密钥的别名。<br/>**系统能力**：SystemCapability.Security.Huks |
 | options  | [HuksOptions](#huksoptions) | 是   | Init参数集合。<br/>**系统能力**：SystemCapability.Security.Huks |
-| promise | Promise\<[HuksHandle](#HuksHandle)> | 是   | 将Init操作返回的handle添加到密钥管理系统的回调。<br/>**系统能力**：SystemCapability.Security.Huks |
+| promise | Promise\<[HuksHandle](#hukshandle)> | 是   | 将Init操作返回的handle添加到密钥管理系统的回调。<br/>**系统能力**：SystemCapability.Security.Huks |
 
 **示例：**
 
@@ -863,10 +851,9 @@ huks.init(alias, options).then((data) => {
 
 ## huks.update
 
-update操作接口，目前有两种方式：
-- update(handle: number, token?: Uint8Array, options: HuksOptions, callback: AsyncCallback<HuksResult>) : void
+update(handle: number, token?: Uint8Array, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void
 
-使用callback回调异步返回结果 。
+update操作接口，使用callback回调异步返回结果 。
 
 **参数：**
 
@@ -875,7 +862,7 @@ update操作接口，目前有两种方式：
 | handle | number           | 是   | Update操作的handle。<br/>**系统能力**：SystemCapability.Security.Huks |
 | token | Uint8Array | 否 | Update操作的token。<br/>**系统能力**：SystemCapability.Security.Huks |
 | options  | [HuksOptions](#huksoptions) | 是   | Update的参数集合。<br/>**系统能力**：SystemCapability.Security.Huks |
-| callback | AsyncCallback\<[HksResult](#HksResult)> | 是 | 将Update操作的结果添加到密钥管理系统的回调。<br/>**系统能力**：SystemCapability.Security.Huks |
+| callback | AsyncCallback\<[HksResult](#hksresult)> | 是 | 将Update操作的结果添加到密钥管理系统的回调。<br/>**系统能力**：SystemCapability.Security.Huks |
 
 **示例：**
 
@@ -899,9 +886,11 @@ var options = {
 huks.update(handle, options, function (err, data){}); 
 ```
 
-- update(handle: number, token?: Uint8Array, options: HuksOptions) : Promis<HuksResult>
+## huks.update
 
-使用Promise方式异步返回结果。
+update(handle: number, token?: Uint8Array, options: HuksOptions) : Promis<HuksResult>
+
+update操作接口，使用Promise方式异步返回结果。
 
 **参数：**
 
@@ -910,7 +899,7 @@ huks.update(handle, options, function (err, data){});
 | handle | number           | 是   | Update操作的handle。<br/>**系统能力**：SystemCapability.Security.Huks |
 | token | Uint8Array | 否 | Update操作的token。<br/>**系统能力**：SystemCapability.Security.Huks |
 | options  | [HuksOptions](#huksoptions) | 是   | Update操作的参数集合。<br/>**系统能力**：SystemCapability.Security.Huks |
-| promise | Promise\<[HuksResult](#HuksResult)> | 是 | 将Update操作的结果添加到密钥管理系统的回调。<br/>**系统能力**：SystemCapability.Security.Huks |
+| promise | Promise\<[HuksResult](#huksresult)> | 是 | 将Update操作的结果添加到密钥管理系统的回调。<br/>**系统能力**：SystemCapability.Security.Huks |
 
 **示例：**
 
@@ -938,10 +927,9 @@ var result = huks.update(handle, options)
 
 ## huks.finish
 
-finish操作接口，目前有两种方式：
-- finish(handle: number, options: HuksOptions, callback: AsyncCallback<HuksResult>) : void
+finish(handle: number, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void
 
-使用callback回调异步返回结果 。
+finish操作接口，使用callback回调异步返回结果 。
 
 **参数：**
 
@@ -949,7 +937,7 @@ finish操作接口，目前有两种方式：
 | -------- | ---------------------- | ---- | ------------------------------------- |
 | handle | number           | 是   | Finish操作的handle。<br/>**系统能力**：SystemCapability.Security.Huks |
 | options  | [HuksOptions](#huksoptions) | 是   | Finish的参数集合。<br/>**系统能力**：SystemCapability.Security.Huks |
-| callback | AsyncCallback\<[HksResult](#HksResult)> | 是 | 将Finish操作的结果添加到密钥管理系统的回调。<br/>**系统能力**：SystemCapability.Security.Huks |
+| callback | AsyncCallback\<[HksResult](#hksresult)> | 是 | 将Finish操作的结果添加到密钥管理系统的回调。<br/>**系统能力**：SystemCapability.Security.Huks |
 
 **示例：**
 
@@ -973,9 +961,11 @@ var options = {
 huks.finish(handle, options, function (err, data){}); 
 ```
 
-- finish(handle: number, options: HuksOptions) : Promise<HuksResult>
+## huks.finish
 
-使用Promise方式异步返回结果。
+finish(handle: number, options: HuksOptions) : Promise\<HuksResult>
+
+finish操作接口，使用Promise方式异步返回结果。
 
 **参数：**
 
@@ -1012,10 +1002,9 @@ var result = huks.finish(handle, options)
 
 ## huks.abort
 
-abort操作接口，目前有两种方式：
-- abort(handle: number, options: HuksOptions, callback: AsyncCallback<HuksResult>) : void
+abort(handle: number, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void
 
-使用callback回调异步返回结果 。
+abort操作接口，使用callback回调异步返回结果 。
 
 **参数：**
 
@@ -1023,7 +1012,7 @@ abort操作接口，目前有两种方式：
 | -------- | ---------------------- | ---- | ------------------------------------- |
 | handle | number           | 是   | Abort操作的handle。<br/>**系统能力**：SystemCapability.Security.Huks |
 | options  | [HuksOptions](#huksoptions) | 是   | Abort操作的参数集合。<br/>**系统能力**：SystemCapability.Security.Huks |
-| callback | AsyncCallback\<[HksResult](#HksResult)> | 是 | 将Abort操作的结果添加到密钥管理系统的回调。<br/>**系统能力**：SystemCapability.Security.Huks |
+| callback | AsyncCallback\<[HksResult](#hksresult)> | 是 | 将Abort操作的结果添加到密钥管理系统的回调。<br/>**系统能力**：SystemCapability.Security.Huks |
 
 **示例：**
 
@@ -1047,9 +1036,11 @@ var options = {
 huks.abort(handle, options, function (err, data){}); 
 ```
 
-- abort(handle: number, options: HuksOptions) : Promise<HuksResult>;
+## huks.abort
 
-使用Promise方式异步返回结果。
+abort(handle: number, options: HuksOptions) : Promise\<HuksResult>;
+
+abort操作接口，使用Promise方式异步返回结果。
 
 **参数：**
 
@@ -1057,7 +1048,7 @@ huks.abort(handle, options, function (err, data){});
 | -------- | ---------------------- | ---- | ------------------------------------- |
 | handle | number           | 是   | Abort操作的handle。<br/>**系统能力**：SystemCapability.Security.Huks |
 | options  | [HuksOptions](#huksoptions) | 是   | Abort操作的参数集合。<br/>**系统能力**：SystemCapability.Security.Huks |
-| promise | Promise\<[HuksResult](#HuksResult)> | 是 | 将Abort操作的结果添加到密钥管理系统的回调。<br/>**系统能力**：SystemCapability.Security.Huks |
+| promise | Promise\<[HuksResult](#huksresult)> | 是 | 将Abort操作的结果添加到密钥管理系统的回调。<br/>**系统能力**：SystemCapability.Security.Huks |
 
 **示例：**
 
@@ -1083,33 +1074,27 @@ var options = {
 var result = huks.abort(handle, options);
 ```
 
-##  huks.HuksParam
+##  HuksParam
 
 调用接口使用的options中的properties数组中的param。
-
-**参数：**
 
 | 参数名 | 类型                                | 必填 | 说明                                                        |
 | ------ | ----------------------------------- | ---- | ----------------------------------------------------------- |
 | tag    | HuksTag                             | 是   | 标签<br/>**系统能力**：SystemCapability.Security.Huks       |
 | value  | boolean\|number\|bigint\|Uint8Array | 是   | 标签对应值<br/>**系统能力**：SystemCapability.Security.Huks |
 
-##  huks.HuksOptions
+##  HuksOptions
 
 调用接口使用的options。
 
-**参数：**
+| 参数名     | 类型              | 必填 | 说明                                                         |
+| ---------- | ----------------- | ---- | ------------------------------------------------------------ |
+| properties | Array\<HuksParam> | 否   | 属性,存HuksParam的数组。<br/>**系统能力**：SystemCapability.Security.Huks |
+| inData     | Uint8Array        | 否   | 输入数据。<br/>**系统能力**：SystemCapability.Security.Huks  |
 
-| 参数名     | 类型             | 必填 | 说明                                                         |
-| ---------- | ---------------- | ---- | ------------------------------------------------------------ |
-| properties | Array<HuksParam> | 否   | 属性,存HuksParam的数组。<br/>**系统能力**：SystemCapability.Security.Huks |
-| inData     | Uint8Array       | 否   | 输入数据。<br/>**系统能力**：SystemCapability.Security.Huks  |
-
-##  huks.HuksHandle
+##  HuksHandle
 
 huks Handle结构体。
-
-**参数：**
 
 | 参数名     | 类型             | 必填 | 说明     |
 | ---------- | ---------------- | ---- | -------- |
@@ -1118,16 +1103,14 @@ huks Handle结构体。
 | token | Uint8Array | 否 | 预留字段<br/>**系统能力**：SystemCapability.Security.Huks |
 
 
-##  huks.HuksResult
+##  HuksResult
 
 调用接口返回的result。
 
-**参数：**
-
-| 参数名     | 类型             | 必填 | 说明                                                      |
-| ---------- | ---------------- | ---- | --------------------------------------------------------- |
-| errorCode  | number           | 是   | 错误码<br/>**系统能力**：SystemCapability.Security.Huks   |
-| outData    | Uint8Array       | 否   | 输出数据<br/>**系统能力**：SystemCapability.Security.Huks |
-| properties | Array<HuksParam> | 否   | 属性<br/>**系统能力**：SystemCapability.Security.Huks     |
-| certChains | Array<string>    | 否   | 证书链<br/>**系统能力**：SystemCapability.Security.Huks   |
+| 参数名     | 类型              | 必填 | 说明                                                      |
+| ---------- | ----------------- | ---- | --------------------------------------------------------- |
+| errorCode  | number            | 是   | 错误码<br/>**系统能力**：SystemCapability.Security.Huks   |
+| outData    | Uint8Array        | 否   | 输出数据<br/>**系统能力**：SystemCapability.Security.Huks |
+| properties | Array\<HuksParam> | 否   | 属性<br/>**系统能力**：SystemCapability.Security.Huks     |
+| certChains | Array\<string>    | 否   | 证书链<br/>**系统能力**：SystemCapability.Security.Huks   |
 

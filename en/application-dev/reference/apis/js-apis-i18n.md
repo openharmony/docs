@@ -1,7 +1,6 @@
-#  Internationalization (i18n)<a name="EN-US_TOPIC_0000001222383529"></a>
+# Internationalization \(i18n\)<a name="EN-US_TOPIC_0000001222383529"></a>
 
-
->![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>![](public_sys-resources/icon-note.gif) **NOTE:** 
 >-   The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >-   This module contains enhanced i18n APIs, which are not defined in ECMA 402.
 
@@ -21,10 +20,9 @@ getDisplayLanguage\(language: string, locale: string, sentenceCase?: boolean\): 
 
 Obtains the localized script for the specified language.
 
-- Parameters
+-   Parameters
 
     <a name="table8262171319013"></a>
-
     <table><thead align="left"><tr id="row726281313010"><th class="cellrowborder" valign="top" width="14.92%" id="mcps1.1.5.1.1"><p id="p426217131016"><a name="p426217131016"></a><a name="p426217131016"></a>Name</p>
     </th>
     <th class="cellrowborder" valign="top" width="11.5%" id="mcps1.1.5.1.2"><p id="p42622131804"><a name="p42622131804"></a><a name="p42622131804"></a>Type</p>
@@ -85,8 +83,8 @@ Obtains the localized script for the specified language.
 -   Example
 
     ```
-    i18n.getDisplayLanguage("zh", "en-GB", true);
-    i18n.getDisplayLanguage("zh", "en-GB");
+    I18n.getDisplayLanguage("zh", "en-GB", true);
+    I18n.getDisplayLanguage("zh", "en-GB");
     ```
 
 
@@ -159,8 +157,8 @@ Obtains the localized script for the specified country.
 -   Example
 
     ```
-    i18n.getDisplayCountry("zh-CN", "en-GB", true);
-    i18n.getDisplayCountry("zh-CN", "en-GB");
+    I18n.getDisplayCountry("zh-CN", "en-GB", true);
+    I18n.getDisplayCountry("zh-CN", "en-GB");
     ```
 
 
@@ -242,7 +240,7 @@ Obtains the system language.
 -   Example
 
     ```
-    i18n.getSystemLanguage();
+    I18n.getSystemLanguage();
     ```
 
 
@@ -272,7 +270,7 @@ Obtains the system region.
 -   Example
 
     ```
-    i18n.getSystemRegion();
+    I18n.getSystemRegion();
     ```
 
 
@@ -302,7 +300,7 @@ Obtains the system locale.
 -   Example
 
     ```
-    i18n.getSystemLocale();
+    I18n.getSystemLocale();
     ```
 
 
@@ -366,7 +364,7 @@ Obtains a  **Calendar**  object.
 -   Example
 
     ```
-    i18n.getCalendar("zh-Hans", "gregory");
+    I18n.getCalendar("zh-Hans", "gregory");
     ```
 
 
@@ -532,7 +530,7 @@ Sets the year, month, day, hour, minute, and second for this  **Calendar**  obje
 -   Example
 
     ```
-    var calendar = i18n.getCalendar("zh-Hans");
+    var calendar = I18n.getCalendar("zh-Hans");
     calendar.setTime(2021, 10, 1, 8, 0, 0); // set time to 2021.10.1 08:00:00
     ```
 
@@ -571,7 +569,7 @@ Sets the time zone of this  **Calendar**  object.
 -   Example
 
     ```
-    var calendar = i18n.getCalendar("zh-Hans");
+    var calendar = I18n.getCalendar("zh-Hans");
     calendar.setTimeZone("Asia/Shanghai");
     ```
 
@@ -602,7 +600,7 @@ Obtains the time zone of this  **Calendar**  object.
 -   Example
 
     ```
-    var calendar = i18n.getCalendar("zh-Hans");
+    var calendar = I18n.getCalendar("zh-Hans");
     calendar.setTimeZone("Asia/Shanghai");
     calendar.getTimeZone(); // Asia/Shanghai"
     ```
@@ -674,7 +672,7 @@ Sets the start day of a week for this  **Calendar**  object.
 -   Example
 
     ```
-    var calendar = i18n.getCalendar("zh-Hans");
+    var calendar = I18n.getCalendar("zh-Hans");
     calendar.setFirstDayOfWeek(0);
     ```
 
@@ -705,7 +703,7 @@ Obtains the minimum number of days in the first week of a year.
 -   Example
 
     ```
-    var calendar = i18n.getCalendar("zh-Hans");
+    var calendar = I18n.getCalendar("zh-Hans");
     calendar.getMinimalDaysInFirstWeek();
     ```
 
@@ -800,7 +798,7 @@ Obtains the value of the specified field in the  **Calendar**  object.
 -   Example
 
     ```
-    var calendar = i18n.getCalendar("zh-Hans");
+    var calendar = I18n.getCalendar("zh-Hans");
     calendar.setTime(2021, 10, 1, 8, 0, 0); // set time to 2021.10.1 08:00:00
     calendar.get("hour_of_day"); // 8
     ```
@@ -857,7 +855,7 @@ Obtains the name of the  **Calendar**  object displayed for the specified locale
 -   Example
 
     ```
-    var calendar = i18n.getCalendar("en-US", "buddhist");
+    var calendar = I18n.getCalendar("en-US", "buddhist");
     calendar.getDisplayName("zh"); // Obtain the name of the Buddhist calendar in zh.
     ```
 
@@ -913,7 +911,7 @@ Checks whether the specified date in this  **Calendar**  object is a weekend.
 -   Example
 
     ```
-    var calendar = i18n.getCalendar("zh-Hans");
+    var calendar = I18n.getCalendar("zh-Hans");
     calendar.setTime(2021, 11, 11, 8, 0, 0); // Set the time to 2021.11.11 08:00:00.
     calendar.isWeekend(); // false
     var date = new Date(2011, 11, 6, 9, 0, 0);
@@ -966,7 +964,7 @@ Parameters
 -   Example
 
     ```
-    var phoneNumberFormat= new i18n.PhoneNumberFormat("CN", {"type": "E164"});
+    var phoneNumberFormat= new I18n.PhoneNumberFormat("CN", {"type": "E164"});
     ```
 
 
@@ -1022,7 +1020,7 @@ Checks whether the format of the specified phone number is valid.
 -   Example
 
     ```
-    var phonenumberfmt = new i18n.PhoneNumberFormat("CN");
+    var phonenumberfmt = new I18n.PhoneNumberFormat("CN");
     phonenumberfmt.isValidNumber("15812312312");
     ```
 
@@ -1079,7 +1077,7 @@ Formats a phone number.
 -   Example
 
     ```
-    var phonenumberfmt = new i18n.PhoneNumberFormat("CN");
+    var phonenumberfmt = new I18n.PhoneNumberFormat("CN");
     phonenumberfmt.format("15812312312");
     ```
 
@@ -1303,7 +1301,7 @@ Creates an  **IndexUtil**  object.
 -   Example
 
     ```
-    var indexUtil= i18n.getInstance("zh-CN");
+    var indexUtil= I18n.getInstance("zh-CN");
     ```
 
 
@@ -1444,7 +1442,7 @@ Obtains the index of a  **text**  object.
 
 isDigit\(char: string\): boolean
 
-Checks whether the input character string is comprised of digits.
+Checks whether the input character is a digit.
 
 -   Parameters
 
@@ -1500,7 +1498,7 @@ Checks whether the input character string is comprised of digits.
 
 isSpaceChar\(char: string\): boolean
 
-Checks whether the input character is comprised of space.
+Checks whether the input character is a space.
 
 -   Parameters
 
@@ -1556,7 +1554,7 @@ Checks whether the input character is comprised of space.
 
 isWhitespace\(char: string\): boolean
 
-Checks whether the input character is comprised of white space.
+Checks whether the input character is a white space.
 
 -   Parameters
 
@@ -1612,7 +1610,7 @@ Checks whether the input character is comprised of white space.
 
 isRTL\(char: string\): boolean
 
-Checks whether the input character string is of the right to left \(RTL\) language.
+Checks whether the input character is of the right to left \(RTL\) language.
 
 -   Parameters
 
@@ -1668,7 +1666,7 @@ Checks whether the input character string is of the right to left \(RTL\) langua
 
 isIdeograph\(char: string\): boolean
 
-Checks whether the input character string is comprised of ideographic characters.
+Checks whether the input character is an ideographic character.
 
 -   Parameters
 
@@ -1724,7 +1722,7 @@ Checks whether the input character string is comprised of ideographic characters
 
 isLetter\(char: string\): boolean
 
-Checks whether the input character string is comprised of letters.
+Checks whether the input character is a letter.
 
 -   Parameters
 
@@ -1780,7 +1778,7 @@ Checks whether the input character string is comprised of letters.
 
 isLowerCase\(char: string\): boolean
 
-Checks whether the input character is comprised of lowercase letters.
+Checks whether the input character is a lowercase letter.
 
 -   Parameters
 
@@ -1836,7 +1834,7 @@ Checks whether the input character is comprised of lowercase letters.
 
 isUpperCase\(char: string\): boolean
 
-Checks whether the input character is comprised of uppercase letters.
+Checks whether the input character is an uppercase letter.
 
 -   Parameters
 
@@ -1995,7 +1993,7 @@ Obtains a  [BreakIterator](#section1312302611613)  object for text segmentation.
 -   Example
 
     ```
-    i18n.getLineInstance("en");
+    I18n.getLineInstance("en");
     ```
 
 
@@ -2036,8 +2034,8 @@ Sets the text to be processed by the  [BreakIterator](#section1312302611613)  ob
 -   Example
 
     ```
-    iterator = I18n.getLineInstance("en");
-    iterator.setLineBreakText("Apple is my favorite fruit.");
+    var iterator = I18n.getLineInstance("en");
+    var iterator.setLineBreakText("Apple is my favorite fruit.");
     ```
 
 
@@ -2068,7 +2066,7 @@ Obtains the text being processed by the  [BreakIterator](#section1312302611613) 
 -   Example
 
     ```
-    iterator = I18n.getLineInstance("en");
+    var iterator = I18n.getLineInstance("en");
     iterator.setLineBreakText("Apple is my favorite fruit.");
     iterator.getLineBreakText(); // Apple is my favorite fruit.
     ```
@@ -2101,7 +2099,7 @@ Obtains the position of the  [BreakIterator](#section1312302611613)  object in t
 -   Example
 
     ```
-    iterator = I18n.getLineInstance("en");
+    var iterator = I18n.getLineInstance("en");
     iterator.setLineBreakText("Apple is my favorite fruit.");
     breakIter.current(); // 0
     ```
@@ -2167,7 +2165,7 @@ Puts the  [BreakIterator](#section1312302611613)  object to the last text bounda
 -   Example
 
     ```
-    iterator = I18n.getLineInstance("en");
+    var iterator = I18n.getLineInstance("en");
     iterator.setLineBreakText("Apple is my favorite fruit.");
     iterator.last(); // 27
     ```
@@ -2226,7 +2224,7 @@ Moves the  [BreakIterator](#section1312302611613)  object backward by the specif
 -   Example
 
     ```
-    iterator = I18n.getLineInstance("en");
+    var iterator = I18n.getLineInstance("en");
     iterator.setLineBreakText("Apple is my favorite fruit.");
     iterator.first(); // 0
     iterator.next(); // 6
@@ -2261,7 +2259,7 @@ Moves the  [BreakIterator](#section1312302611613)  object to the previous text b
 -   Example
 
     ```
-    iterator = I18n.getLineInstance("en");
+    var iterator = I18n.getLineInstance("en");
     iterator.setLineBreakText("Apple is my favorite fruit.");
     iterator.first(); // 0
     iterator.next(3); // 12
@@ -2322,7 +2320,7 @@ Moves the  [BreakIterator](#section1312302611613)  object to the text boundary a
 -   Example
 
     ```
-    iterator = I18n.getLineInstance("en");
+    var iterator = I18n.getLineInstance("en");
     iterator.setLineBreakText("Apple is my favorite fruit.");
     iterator.following(0); // 6
     iterator.following(100); // -1
@@ -2383,9 +2381,285 @@ Checks whether the position specified by the offset is a text boundary. If  **tr
 -   Example
 
     ```
-    iterator = I18n.getLineInstance("en");
+    var iterator = I18n.getLineInstance("en");
     iterator.setLineBreakText("Apple is my favorite fruit.");
     iterator.isBoundary(0); // true;
     iterator.isBoundary(5); // false;
+    ```
+
+
+## i18n.is24HourClock<sup>8+</sup><a name="section14478141717399"></a>
+
+is24HourClock\(\): boolean
+
+Checks whether the 24-hour clock is used.
+
+-   Return values
+
+    <a name="table34809176399"></a>
+    <table><thead align="left"><tr id="row2480161716398"><th class="cellrowborder" valign="top" width="20.05%" id="mcps1.1.3.1.1"><p id="p24806175395"><a name="p24806175395"></a><a name="p24806175395"></a>Type</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="79.95%" id="mcps1.1.3.1.2"><p id="p114805171395"><a name="p114805171395"></a><a name="p114805171395"></a>Description</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row1748019177398"><td class="cellrowborder" valign="top" width="20.05%" headers="mcps1.1.3.1.1 "><p id="p7480191783911"><a name="p7480191783911"></a><a name="p7480191783911"></a>boolean</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="79.95%" headers="mcps1.1.3.1.2 "><p id="p1748010175390"><a name="p1748010175390"></a><a name="p1748010175390"></a>The value <strong id="b19194155614566"><a name="b19194155614566"></a><a name="b19194155614566"></a>true</strong> indicates that the 24-hour clock is used, and value <strong id="b181941956185614"><a name="b181941956185614"></a><a name="b181941956185614"></a>false</strong> indicates the opposite.</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+
+-   Example
+
+    ```
+    var is24HourClock = i18n.is24HourClock();
+    ```
+
+
+## i18n.set24HourClock<sup>8+</sup><a name="section18641140104217"></a>
+
+set24HourClock\(option: boolean\): boolean
+
+Sets the 24-hour clock.
+
+-   Parameters
+
+    <a name="table198641540144216"></a>
+    <table><thead align="left"><tr id="row0865174084217"><th class="cellrowborder" valign="top" width="11.119698579847357%" id="mcps1.1.5.1.1"><p id="p108651840124215"><a name="p108651840124215"></a><a name="p108651840124215"></a>Name</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="22.905999420345864%" id="mcps1.1.5.1.2"><p id="p18865174084214"><a name="p18865174084214"></a><a name="p18865174084214"></a>Type</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="6.356873732006569%" id="mcps1.1.5.1.3"><p id="p1786594019422"><a name="p1786594019422"></a><a name="p1786594019422"></a>Mandatory</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="59.61742826780022%" id="mcps1.1.5.1.4"><p id="p17865840154213"><a name="p17865840154213"></a><a name="p17865840154213"></a>Description</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row18865114018426"><td class="cellrowborder" valign="top" width="11.119698579847357%" headers="mcps1.1.5.1.1 "><p id="p19865174012428"><a name="p19865174012428"></a><a name="p19865174012428"></a>option</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="22.905999420345864%" headers="mcps1.1.5.1.2 "><p id="p188651940124213"><a name="p188651940124213"></a><a name="p188651940124213"></a>boolean</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="6.356873732006569%" headers="mcps1.1.5.1.3 "><p id="p68653407422"><a name="p68653407422"></a><a name="p68653407422"></a>Yes</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="59.61742826780022%" headers="mcps1.1.5.1.4 "><p id="p148651140114219"><a name="p148651140114219"></a><a name="p148651140114219"></a>Whether to enable the 24-hour clock. The value <strong id="b689195563"><a name="b689195563"></a><a name="b689195563"></a>true</strong> means to enable the 24-hour clock, and value <strong id="b1589185866"><a name="b1589185866"></a><a name="b1589185866"></a>false</strong> means the opposite.</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   Return values
+
+    <a name="table6866154011420"></a>
+    <table><thead align="left"><tr id="row4866104074218"><th class="cellrowborder" valign="top" width="20.05%" id="mcps1.1.3.1.1"><p id="p1286684017426"><a name="p1286684017426"></a><a name="p1286684017426"></a>Type</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="79.95%" id="mcps1.1.3.1.2"><p id="p12866164013423"><a name="p12866164013423"></a><a name="p12866164013423"></a>Description</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row986614405427"><td class="cellrowborder" valign="top" width="20.05%" headers="mcps1.1.3.1.1 "><p id="p128661840164214"><a name="p128661840164214"></a><a name="p128661840164214"></a>boolean</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="79.95%" headers="mcps1.1.3.1.2 "><p id="p9866540184217"><a name="p9866540184217"></a><a name="p9866540184217"></a>The value <strong id="b15855131872"><a name="b15855131872"></a><a name="b15855131872"></a>true</strong> indicates that the 24-hour clock is enabled, and value <strong id="b178561317714"><a name="b178561317714"></a><a name="b178561317714"></a>false</strong> indicates the opposite.</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+
+-   Example
+
+    ```
+    // Set the system time to the 24-hour format.
+    var success = I18n.set24HourClock(true);
+    ```
+
+
+## i18n.addPreferredLanguage<sup>8+</sup><a name="section172652268110"></a>
+
+addPreferredLanguage\(language: string, index?: number\): boolean
+
+Adds a preferred language to the specified position on the preferred language list.
+
+-   Parameters
+
+    <a name="table142651326910"></a>
+    <table><thead align="left"><tr id="row132661426116"><th class="cellrowborder" valign="top" width="11.119698579847357%" id="mcps1.1.5.1.1"><p id="p1526611266117"><a name="p1526611266117"></a><a name="p1526611266117"></a>Name</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="22.905999420345864%" id="mcps1.1.5.1.2"><p id="p4266202615111"><a name="p4266202615111"></a><a name="p4266202615111"></a>Type</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="6.356873732006569%" id="mcps1.1.5.1.3"><p id="p1266142618120"><a name="p1266142618120"></a><a name="p1266142618120"></a>Mandatory</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="59.61742826780022%" id="mcps1.1.5.1.4"><p id="p192667261816"><a name="p192667261816"></a><a name="p192667261816"></a>Description</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row15266132613114"><td class="cellrowborder" valign="top" width="11.119698579847357%" headers="mcps1.1.5.1.1 "><p id="p72669268119"><a name="p72669268119"></a><a name="p72669268119"></a>language</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="22.905999420345864%" headers="mcps1.1.5.1.2 "><p id="p1326618261915"><a name="p1326618261915"></a><a name="p1326618261915"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="6.356873732006569%" headers="mcps1.1.5.1.3 "><p id="p52661126516"><a name="p52661126516"></a><a name="p52661126516"></a>Yes</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="59.61742826780022%" headers="mcps1.1.5.1.4 "><p id="p626616267116"><a name="p626616267116"></a><a name="p626616267116"></a>Preferred language to add.</p>
+    </td>
+    </tr>
+    <tr id="row1440202111317"><td class="cellrowborder" valign="top" width="11.119698579847357%" headers="mcps1.1.5.1.1 "><p id="p11403216314"><a name="p11403216314"></a><a name="p11403216314"></a>index</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="22.905999420345864%" headers="mcps1.1.5.1.2 "><p id="p94011213311"><a name="p94011213311"></a><a name="p94011213311"></a>number</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="6.356873732006569%" headers="mcps1.1.5.1.3 "><p id="p0401721335"><a name="p0401721335"></a><a name="p0401721335"></a>No</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="59.61742826780022%" headers="mcps1.1.5.1.4 "><p id="p14019219311"><a name="p14019219311"></a><a name="p14019219311"></a>Position to which the preferred language is added.</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   Return values
+
+    <a name="table13267152615111"></a>
+    <table><thead align="left"><tr id="row1826711261616"><th class="cellrowborder" valign="top" width="20.05%" id="mcps1.1.3.1.1"><p id="p14267182618116"><a name="p14267182618116"></a><a name="p14267182618116"></a>Type</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="79.95%" id="mcps1.1.3.1.2"><p id="p226720261312"><a name="p226720261312"></a><a name="p226720261312"></a>Description</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row142679261110"><td class="cellrowborder" valign="top" width="20.05%" headers="mcps1.1.3.1.1 "><p id="p1826710267120"><a name="p1826710267120"></a><a name="p1826710267120"></a>boolean</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="79.95%" headers="mcps1.1.3.1.2 "><p id="p1626712619118"><a name="p1626712619118"></a><a name="p1626712619118"></a>The value <strong id="b92874433115"><a name="b92874433115"></a><a name="b92874433115"></a>true</strong> indicates that the preferred language is added, and value <strong id="b1028774381119"><a name="b1028774381119"></a><a name="b1028774381119"></a>false</strong> indicates the opposite.</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+
+-   Example
+
+    ```
+    // Add zh-CN to the preferred language list.
+    var language = 'zh-CN';
+    var index = 0;
+    var success = i18n.addPreferredLanguage(langauge, index);
+    ```
+
+
+## i18n.removePreferredLanguage<sup>8+</sup><a name="section387225261020"></a>
+
+removePreferredLanguage\(index: number\): boolean
+
+Deletes a preferred language from the specified position on the preferred language list.
+
+-   Parameters
+
+    <a name="table087217521108"></a>
+    <table><thead align="left"><tr id="row148721152181010"><th class="cellrowborder" valign="top" width="11.119698579847357%" id="mcps1.1.5.1.1"><p id="p128721952181013"><a name="p128721952181013"></a><a name="p128721952181013"></a>Name</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="22.905999420345864%" id="mcps1.1.5.1.2"><p id="p19872135251011"><a name="p19872135251011"></a><a name="p19872135251011"></a>Type</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="6.356873732006569%" id="mcps1.1.5.1.3"><p id="p1787395281013"><a name="p1787395281013"></a><a name="p1787395281013"></a>Mandatory</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="59.61742826780022%" id="mcps1.1.5.1.4"><p id="p128733529105"><a name="p128733529105"></a><a name="p128733529105"></a>Description</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row1987305241015"><td class="cellrowborder" valign="top" width="11.119698579847357%" headers="mcps1.1.5.1.1 "><p id="p98731752141012"><a name="p98731752141012"></a><a name="p98731752141012"></a>index</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="22.905999420345864%" headers="mcps1.1.5.1.2 "><p id="p13873105218101"><a name="p13873105218101"></a><a name="p13873105218101"></a>number</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="6.356873732006569%" headers="mcps1.1.5.1.3 "><p id="p07471211151218"><a name="p07471211151218"></a><a name="p07471211151218"></a>Yes</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="59.61742826780022%" headers="mcps1.1.5.1.4 "><p id="p0873252171016"><a name="p0873252171016"></a><a name="p0873252171016"></a>Position of the preferred language to delete.</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+-   Return values
+
+    <a name="table187316520107"></a>
+    <table><thead align="left"><tr id="row1787425218101"><th class="cellrowborder" valign="top" width="20.05%" id="mcps1.1.3.1.1"><p id="p17874135261019"><a name="p17874135261019"></a><a name="p17874135261019"></a>Type</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="79.95%" id="mcps1.1.3.1.2"><p id="p19874175216103"><a name="p19874175216103"></a><a name="p19874175216103"></a>Description</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row1287405212100"><td class="cellrowborder" valign="top" width="20.05%" headers="mcps1.1.3.1.1 "><p id="p28744521105"><a name="p28744521105"></a><a name="p28744521105"></a>boolean</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="79.95%" headers="mcps1.1.3.1.2 "><p id="p1487495219109"><a name="p1487495219109"></a><a name="p1487495219109"></a>The value <strong id="b714042831817"><a name="b714042831817"></a><a name="b714042831817"></a>true</strong> indicates that the preferred language is deleted, and value <strong id="b9140182881818"><a name="b9140182881818"></a><a name="b9140182881818"></a>false</strong> indicates the opposite.</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+
+-   Example
+
+    ```
+    // Delete the first preferred language from the preferred language list.
+    var index = 0;
+    var success = i18n.removePreferredLanguage(index);
+    ```
+
+
+## i18n.getPreferredLanguageList<sup>8+</sup><a name="section1778693018146"></a>
+
+getPreferredLanguageList\(\): Array<string\>
+
+Obtains the preferred language list.
+
+-   Return values
+
+    <a name="table207875303146"></a>
+    <table><thead align="left"><tr id="row1778863061413"><th class="cellrowborder" valign="top" width="20.05%" id="mcps1.1.3.1.1"><p id="p5788133081419"><a name="p5788133081419"></a><a name="p5788133081419"></a>Type</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="79.95%" id="mcps1.1.3.1.2"><p id="p10788163012141"><a name="p10788163012141"></a><a name="p10788163012141"></a>Description</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row7788193014144"><td class="cellrowborder" valign="top" width="20.05%" headers="mcps1.1.3.1.1 "><p id="p978863011145"><a name="p978863011145"></a><a name="p978863011145"></a>Array&lt;string&gt;</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="79.95%" headers="mcps1.1.3.1.2 "><p id="p978843081410"><a name="p978843081410"></a><a name="p978843081410"></a>Preferred language list.</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+
+-   Example
+
+    ```
+    var preferredLanguageList = i18n.getPreferredLanguageList();
+    ```
+
+
+## i18n.getFirstPreferredLanguage<sup>8+</sup><a name="section13449512141812"></a>
+
+getFirstPreferredLanguage\(\): string
+
+Obtains the preferred language that best matches the HAP resource.
+
+-   Return values
+
+    <a name="table12451312111817"></a>
+    <table><thead align="left"><tr id="row345111214183"><th class="cellrowborder" valign="top" width="20.05%" id="mcps1.1.3.1.1"><p id="p0451101211816"><a name="p0451101211816"></a><a name="p0451101211816"></a>Type</p>
+    </th>
+    <th class="cellrowborder" valign="top" width="79.95%" id="mcps1.1.3.1.2"><p id="p04511912131814"><a name="p04511912131814"></a><a name="p04511912131814"></a>Description</p>
+    </th>
+    </tr>
+    </thead>
+    <tbody><tr id="row1245171251813"><td class="cellrowborder" valign="top" width="20.05%" headers="mcps1.1.3.1.1 "><p id="p11451312151815"><a name="p11451312151815"></a><a name="p11451312151815"></a>string</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="79.95%" headers="mcps1.1.3.1.2 "><p id="p54511512101816"><a name="p54511512101816"></a><a name="p54511512101816"></a>Preferred language that best matches the HAP resource.</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+
+-   Example
+
+    ```
+    var firstPreferredLangauge = i18n.getFirstPreferredLangauge();
     ```
 
