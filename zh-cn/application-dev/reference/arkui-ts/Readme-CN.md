@@ -70,6 +70,7 @@
         - [Toggle](ts-basic-components-toggle.md)
         - [Select](ts-basic-components-select.md)
         - [TextClock](ts-basic-components-textclock.md)
+        - [LoadingProgress](ts-basic-components-loadingprogress.md)
     - 容器组件
         - [AlphabetIndexer](ts-container-alphabet-indexer.md)
         - [Badge](ts-container-badge.md)
@@ -94,6 +95,8 @@
         - [Swiper](ts-container-swiper.md)
         - [Tabs](ts-container-tabs.md)
         - [TabContent](ts-container-tabcontent.md)
+        - [SideBarContainer](ts-container-sidebarcontainer.md)
+        - [Refresh](ts-container-refresh.md)
     - 媒体组件
         - [Video](ts-media-components-video.md)
         - [Web](ts-media-components-web.md)

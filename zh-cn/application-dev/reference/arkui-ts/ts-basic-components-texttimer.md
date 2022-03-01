@@ -68,7 +68,7 @@ struct TextTimerExample {
       TextTimer({controller: this.myTimerController})
         .format(this.format)
         .fontColor(Color.Black)
-        .fontSize(this.textSize)
+        .fontSize(50)
         .onTimer((utc: number, elapsedTime: number) => {
           console.info('textTimer notCountDown utc is：' + utc + ', elapsedTime: ' + elapsedTime)
         })

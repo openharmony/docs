@@ -88,7 +88,7 @@
 export default {
   onShow(){
     const el =this.$refs.canvas
-    var ctx = this.$element('drawImage').getContext('2d');
+    var ctx =el.getContext('2d');  
     var img = new Image();
     img.src = 'common/images/example.jpg';
     img.onload = function() {
