@@ -476,6 +476,7 @@ connectAbility(request: Want, options:ConnectOptions): number
 **示例：**
 
 ```javascript
+import rpc from '@ohos.rpc'
 import featureAbility from '@ohos.ability.featureAbility'
 function onConnectCallback(element, remote){
     console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
@@ -516,6 +517,7 @@ disconnectAbility(connection: number, callback:AsyncCallback\<void>): void
 **示例：**
 
 ```javascript
+import rpc from '@ohos.rpc'
 import featureAbility from '@ohos.ability.featureAbility'
 function onConnectCallback(element, remote){
     console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
@@ -564,6 +566,7 @@ disconnectAbility(connection: number): Promise\<void>
 **示例：**
 
 ```javascript
+import rpc from '@ohos.rpc'
 import featureAbility from '@ohos.ability.featureAbility'
 function onConnectCallback(element, remote){
     console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
