@@ -34,64 +34,7 @@ createAudioPlayer(): [AudioPlayer](#audioplayer)
 **示例：**
 
 ```js
-var audioPlayer = media.createAudioPlayer();
-```
-
-## media.createAudioPlayerAsync<sup>8+</sup>
-
-createAudioPlayerAsync(callback: AsyncCallback\<[AudioPlayer](#audioplayer)>): void
-
-异步方式创建音频播放实例。通过注册回调函数获取返回值。
-
-**参数：**
-
-| 参数名   | 类型                                       | 必填 | 说明                           |
-| -------- | ------------------------------------------ | ---- | ------------------------------ |
-| callback | AsyncCallback<[AudioPlayer](#audioplayer)> | 是   | 异步创建音频播放实例回调方法。 |
-
-**示例：**
-
-```js
-media.createAudioPlayerAsync((error, audio) => {
-   if (typeof(audio) != 'undefined') {
-       audioPlayer = audio;
-       console.info('audio createAudioPlayerAsync success');
-   } else {
-       console.info(`audio createAudioPlayerAsync fail, error:${error.message}`);
-   }
-});
-```
-
-## media.createAudioPlayerAsync<sup>8+</sup>
-
-createAudioPlayerAsync: Promise<[AudioPlayer](#audioplayer)>
-
-异步方式创建音频播放实例。通过Promise获取返回值。
-
-**返回值：**
-
-| 类型                                 | 说明                                |
-| ------------------------------------ | ----------------------------------- |
-| Promise<[AudioPlayer](#audioplayer)> | 异步创建音频播放实例Promise返回值。 |
-
-**示例：**
-
-```js
-function failureCallback(error) {
-    console.info(`audio failureCallback, error:${error.message}`);
-}
-function catchCallback(error) {
-    console.info(`audio catchCallback, error:${error.message}`);
-}
-
-await media.createAudioPlayerAsync.then((audio) => {
-    if (typeof(audio) != 'undefined') {
-       audioPlayer = audio;
-       console.info('audio createAudioPlayerAsync success');
-   } else {
-       console.info('audio createAudioPlayerAsync fail');
-   }
-}, failureCallback).catch(catchCallback);
+let audioPlayer = media.createAudioPlayer();
 ```
 
 ## media.createVideoPlayer<sup>8+</sup>
@@ -109,6 +52,8 @@ createVideoPlayer(callback: AsyncCallback\<[VideoPlayer](#videoplayer8)>): void
 **示例：**
 
 ```js
+let videoPlayer
+
 media.createVideoPlayer((error, video) => {
    if (typeof(video) != 'undefined') {
        videoPlayer = video;
@@ -134,6 +79,8 @@ createVideoPlayer: Promise<[VideoPlayer](#videoplayer8)>
 **示例：**
 
 ```js
+let videoPlayer
+
 function failureCallback(error) {
     console.info(`video failureCallback, error:${error.message}`);
 }
@@ -169,66 +116,9 @@ createAudioRecorder(): AudioRecorder
 let audiorecorder = media.createAudioRecorder(); 
 ```
 
-## media.createAudioRecorderAsync<sup>8+</sup>
+## media.createVideoRecorder<sup>8+</sup>
 
-createAudioRecorderAsync(callback: AsyncCallback\<[AudioRecorder](#audiorecorder)>): void
-
-异步方式创建音频录制实例。通过注册回调函数获取返回值。
-
-**参数：**
-
-| 参数名   | 类型                                           | 必填 | 说明                           |
-| -------- | ---------------------------------------------- | ---- | ------------------------------ |
-| callback | AsyncCallback<[AudioRecorder](#audiorecorder)> | 是   | 异步创建音频录制实例回调方法。 |
-
-**示例：**
-
-```js
-media.createAudioRecorderAsync((error, audio) => {
-   if (typeof(audio) != 'undefined') {
-       audioRecorder = audio;
-       console.info('audio createAudioRecorderAsync success');
-   } else {
-       console.info(`audio createAudioRecorderAsync fail, error:${error.message}`);
-   }
-});
-```
-
-## media.createAudioRecorderAsync<sup>8+</sup>
-
-createAudioRecorderAsync: Promise<[AudioRecorder](#audiorecorder)>
-
-异步方式创建音频录制实例。通过Promise获取返回值。
-
-**返回值：**
-
-| 类型                                     | 说明                                |
-| ---------------------------------------- | ----------------------------------- |
-| Promise<[AudioRecorder](#audiorecorder)> | 异步创建音频录制实例Promise返回值。 |
-
-**示例：**
-
-```js
-function failureCallback(error) {
-    console.info(`audio failureCallback, error:${error.message}`);
-}
-function catchCallback(error) {
-    console.info(`audio catchCallback, error:${error.message}`);
-}
-
-await media.createAudioRecorderAsync.then((audio) => {
-    if (typeof(audio) != 'undefined') {
-       audioRecorder = audio;
-       console.info('audio createAudioRecorderAsync success');
-   } else {
-       console.info('audio createAudioRecorderAsync fail');
-   }
-}, failureCallback).catch(catchCallback);
-```
-
-## media.createVideoRecorderAsync<sup>8+</sup>
-
-createVideoRecorderAsync(callback: AsyncCallback\<[VideoRecorder](#videorecorder8)>): void
+createVideoRecorder(callback: AsyncCallback\<[VideoRecorder](#videorecorder8)>): void
 
 异步方式创建视频录制实例。通过注册回调函数获取返回值。
 
@@ -241,19 +131,21 @@ createVideoRecorderAsync(callback: AsyncCallback\<[VideoRecorder](#videorecorder
 **示例：**
 
 ```js
-media.createVideoRecorderAsync((error, video) => {
+let videoRecorder
+
+media.createVideoRecorder((error, video) => {
    if (typeof(video) != 'undefined') {
        videoRecorder = video;
-       console.info('video createVideoRecorderAsync success');
+       console.info('video createVideoRecorder success');
    } else {
-       console.info(`video createVideoRecorderAsync fail, error:${error.message}`);
+       console.info(`video createVideoRecorder fail, error:${error.message}`);
    }
 });
 ```
 
-## media.createVideoRecorderAsync<sup>8+</sup>
+## media.createVideoRecorder<sup>8+</sup>
 
-createVideoRecorderAsync: Promise<[VideoRecorder](#videorecorder8)>
+createVideoRecorder: Promise<[VideoRecorder](#videorecorder8)>
 
 异步方式创建视频录制实例。通过Promise获取返回值。
 
@@ -266,6 +158,8 @@ createVideoRecorderAsync: Promise<[VideoRecorder](#videorecorder8)>
 **示例：**
 
 ```js
+let videoRecorder
+
 function failureCallback(error) {
     console.info(`video failureCallback, error:${error.message}`);
 }
@@ -273,12 +167,12 @@ function catchCallback(error) {
     console.info(`video catchCallback, error:${error.message}`);
 }
 
-await media.createVideoRecorderAsync.then((video) => {
+await media.createVideoRecorder.then((video) => {
     if (typeof(video) != 'undefined') {
        videoRecorder = video;
-       console.info('video createVideoRecorderAsync success');
+       console.info('video createVideoRecorder success');
    } else {
-       console.info('video createVideoRecorderAsync fail');
+       console.info('video createVideoRecorder fail');
    }
 }, failureCallback).catch(catchCallback);
 ```
@@ -1542,7 +1436,7 @@ audioPlayer.getTrackDescription((error, arrlist) => {
 
 ## AudioRecorder
 
-音频录制管理类，用于录制音频媒体。在调用AudioRecorder的方法前，需要先通过[createAudioRecorder()](#media.createaudiorecorder) 或[createAudioRecorderAsync()](#media.createaudiorecorderasync8)构建一个[AudioRecorder](#audiorecorder)实例。
+音频录制管理类，用于录制音频媒体。在调用AudioRecorder的方法前，需要先通过[createAudioRecorder()](#media.createaudiorecorder) 构建一个[AudioRecorder](#audiorecorder)实例。
 
 音频录制demo可参考：[音频录制开发指导](../../media/audio-recorder.md)
 
@@ -1785,7 +1679,7 @@ audioRecorder.prepare();  												// prepare不设置参数，触发'error'�
 
 ## VideoRecorder<sup>8+</sup>
 
-视频录制管理类，用于录制视频媒体。在调用VideoRecorder的方法前，需要先通过[createVideoRecorderAsync()](#media.createvideorecorderasync8)构建一个[VideoRecorder](#videorecorder8)实例。
+视频录制管理类，用于录制视频媒体。在调用VideoRecorder的方法前，需要先通过[createVideoRecorder()](#media.createvideorecorder8)构建一个[VideoRecorder](#videorecorder8)实例。
 
 视频录制demo可参考：[视频录制开发指导](../../media/video-recorder.md)
 
