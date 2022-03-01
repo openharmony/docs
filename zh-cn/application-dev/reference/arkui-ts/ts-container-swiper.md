@@ -42,6 +42,7 @@ Swiper(value:{controller?: SwiperController})
 | cachedCount<sup>8+</sup> | number | 1 | 设置预加载子组件个数。 | 
 | disableSwipe<sup>8+</sup> | boolean | false | 禁用组件滑动切换功能。 |
 | curve<sup>8+</sup> | [Curve](ts-animatorproperty.md#Curve枚举说明) \| Curves | Curve.Ease | 设置Swiper的动画曲线，默认为淡入淡出曲线，常用曲线参考[Curve枚举说明](ts-animatorproperty.md#Curve枚举说明)，也可以通过插值计算模块提供的接口创建自定义的Curves([插值曲线对象](ts-interpolation-calculation.md))。 |
+| indicatorStyle<sup>8+</sup>| {<br/>left?:&nbsp;Length,<br/>top?:&nbsp;Length,<br/>right?:&nbsp;Length,<br/>bottom?:&nbsp;Length,<br/>size?:&nbsp;Length,<br/>color?:&nbsp;Color,<br/>selectedColor?:&nbsp;Color<br/>} | - |设置indicator样式：<br/>-&nbsp;left:&nbsp;设置导航点距离Swiper组件左边的距离。<br/>-&nbsp;top:&nbsp;设置导航点距离Swiper组件顶部的距离。<br/>-&nbsp;right:&nbsp;设置导航点距离Swiper组件右边的距离。<br/>-&nbsp;bottom:&nbsp;设置导航点距离Swiper组件底部的距离。<br/>-&nbsp;size:&nbsp;设置导航点的直径。<br/>-&nbsp;color:&nbsp;设置导航点的颜色。<br/>-&nbsp;selectedColor:&nbsp;设置选中的导航点的颜色。 |
 
 
 ### SwiperController
