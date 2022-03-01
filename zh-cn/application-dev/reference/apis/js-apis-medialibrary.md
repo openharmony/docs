@@ -10,7 +10,6 @@ import medialibrary from '@ohos.multimedia.medialibrary';
 
 
 ## getMediaLibrary
----------------
 
 function getMediaLibrary(context: Context): MediaLibrary;
 
@@ -35,6 +34,8 @@ function getMediaLibrary(context: Context): MediaLibrary;
 **示例：**
 
 ```
+import featureAbility from '@ohos.ability.featureAbility';
+var context = featureAbility.getContext()
 var media = mediaLibrary.getMediaLibrary(context);
 ```
 
@@ -61,7 +62,7 @@ getFileAssets(options: MediaFetchOptions, callback: AsyncCallback&lt;FetchFileRe
 ```
 medialibrary.getFileAssets(fetchOp, (error, data) => {
         // do something
-        });
+});
 ```
 ## medialibrary.getFileAssets
 
@@ -168,7 +169,7 @@ createAsset(mediaType: MediaType, displayName: string, relativePath: string, cal
 ```
 medialibrary.createAsset(mediaType, displayName, rp, (createAssetErr, fileObj) => {
         // do something
-        });
+});
 ```
 
 ## medialibrary.createAsset
@@ -227,7 +228,7 @@ deleteAsset(uri: string, callback: AsyncCallback&lt;void&gt;): void;
 ```
 medialibrary.deleteAsset(fileAsset.uri, (deleteAssetErr, deleteRows) => {
             // do something
-            });
+});
 ```
 
 ## medialibrary.deleteAsset
@@ -338,7 +339,7 @@ getActivePeers(callback: AsyncCallback<Array&lt;PeerInfo&gt;>): void;
 ```
 medialibrary.getActivePeers((err, data) => {
     // do something    
-    });
+});
 ```
 
 ## medialibrary.getActivePeers
@@ -386,7 +387,7 @@ getAllPeers(callback: AsyncCallback<Array&lt;PeerInfo&gt;>): void;
 ```
 medialibrary.getAllPeers((err, data) => {
     // do something
-    });
+});
 ```
 
 ## medialibrary.getAllPeers
@@ -430,7 +431,7 @@ release(callback: AsyncCallback&lt;void&gt;): void;
 ```
 medialibrary.release((err, data) => {
     // do something
-    });
+});
 ```
 
 ## medialibrary.release
@@ -455,10 +456,6 @@ release(): Promise&lt;void&gt;;
 medialibrary.release()
 ```
 
-
-
-
-
 ## FileAsset.isDirectory
 
 isDirectory(callback: AsyncCallback&lt;boolean&gt;): void;
@@ -480,7 +477,7 @@ isDirectory(callback: AsyncCallback&lt;boolean&gt;): void;
 ```
 asset.isDirectory((err, isDirectory) => {
     // do something
-    });
+});
 ```
 
 ## FileAsset.isDirectory
@@ -555,8 +552,7 @@ commitModify(): Promise&lt;void&gt;;
 asset.commitModify(commitModifyCallBack);
 function commitModifyCallBack(err, commitModify) {
         // do something
-
-    }
+}
 ```
 
 ## FileAsset.open
@@ -581,7 +577,7 @@ open(mode: string, callback: AsyncCallback&lt;number&gt;): void;
 ```
 asset.open('Rw').then((openError, fd) => {
         // do something
-        }
+});
 ```
 
 ## FileAsset.open
@@ -611,7 +607,7 @@ open(mode: string): Promise&lt;number&gt;;
 ```
 asset.open('Rw').then((openError, fd) => {
         // do something
-        }
+});
 ```
 
 ## FileAsset.close
@@ -636,7 +632,7 @@ close(fd: number, callback: AsyncCallback&lt;void&gt;): void;
 ```
 fileAsset.close(fd).then((closeErr) => {
         // do something
-        }
+});
 ```
 
 ## FileAsset.close
@@ -666,7 +662,7 @@ close(fd: number): Promise&lt;void&gt;;
 ```
 fileAsset.close(fd).then((closeErr) => {
         // do something
-        }
+});
 ```
 
 ## FileAsset.getThumbnail
@@ -688,8 +684,9 @@ getThumbnail(callback: AsyncCallback&lt;image.PixelMap&gt;): void;
 **示例：**
 
 ```
-data1.getThumbnail(size, (err2, pixelmap) => {
+data1.getThumbnail(size, (err, pixelmap) => {
 	console.info('MediaLibraryTest : getThumbnail Successfull '+ pixelmap);
+});
 ```
 
 ## FileAsset.getThumbnail
@@ -712,8 +709,9 @@ getThumbnail(size: Size, callback: AsyncCallback&lt;image.PixelMap&gt;): void;
 **示例：**
 
 ```
-data1.getThumbnail(size, (err2, pixelmap) => {
+data1.getThumbnail(size, (err, pixelmap) => {
 	console.info('MediaLibraryTest : getThumbnail Successfull '+ pixelmap);
+});
 ```
 
 ## FileAsset.getThumbnail
@@ -741,8 +739,9 @@ getThumbnail(size?: Size): Promise&lt;image.PixelMap&gt;;
 **示例：**
 
 ```
-data1.getThumbnail(size, (err2, pixelmap) => {
+data1.getThumbnail(size, (err, pixelmap) => {
 	console.info('MediaLibraryTest : getThumbnail Successfull '+ pixelmap);
+});
 ```
 
 ## FileAsset.favorite
@@ -823,7 +822,7 @@ isFavorite(callback: AsyncCallback&lt;boolean&gt;): void;
 ```
 asset.favorite(true, (err) => {
         // do something
-        });
+});
 ```
 
 ## FileAsset.isFavorite
@@ -874,7 +873,7 @@ trash(isTrash: boolean, callback: AsyncCallback&lt;void&g;): void;
 ```
 asset.trash(true, (err) => {
         // do something
-        });
+});
 ```
 
 ## FileAsset.trash
@@ -930,7 +929,7 @@ isTrash(callback: AsyncCallback&lt;boolean&gt;): void;
 ```
 asset.isTrash((err, isTrash) => {
         // do something
-        });
+});
 ```
 
 ## FileAsset.isTrash
@@ -1156,8 +1155,6 @@ data.getLastObject((err, value) => {
 })
 ```
 
-
-
 ## FetchFileResult.getLastObject
 
 getLastObject(): Promise&lt;FileAsset&gt;;
@@ -1293,10 +1290,6 @@ getAllObject(): Promise&lt;Array&lt;FileAsset&gt;&gt;;
 var data = FetchFileResult.getAllObject();
 ```
 
-
-
-
-
 ## Album.commitModify
 
 commitModify(callback: AsyncCallback&lt;void&gt;): void;
@@ -1412,7 +1405,16 @@ album.getFileAssets(fileNoArgsfetchOp).then(function(albumFetchFileResult){
 });
 ```
 
+## PeerInfo
 
+对端设备信息。
+
+| 名称       | 类型       | 可读 | 可写 | 说明           |
+| ---------- | ---------- | ---- | ---- | -------------- |
+| deviceName | string     | 是   | 否   | 设备名称       |
+| networkId  | string     | 是   | 否   | 对端设备网络ID |
+| deviceType | DeviceType | 是   | 否   | 设备类型       |
+| isOnline   | boolean    | 是   | 否   | 是否在线       |
 
 FileAsset
 ---------
