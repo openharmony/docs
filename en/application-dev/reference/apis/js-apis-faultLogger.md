@@ -44,13 +44,15 @@ querySelfFaultLog(faultType: FaultType, callback: AsyncCallback&lt;Array&lt;Faul
 
 Obtains the fault information about the current process. This method uses a callback to return the fault information array obtained, which contains a maximum of 10 pieces of fault information.
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | faultType | [FaultType](#faulttype) | Yes| Fault type.|
-  | callback | AsyncCallbackArray&lt;Array&lt;[FaultLogInfo](#faultloginfo)&gt;&gt; | Yes| Callback used to return the fault information array. <br/>The value is the fault information array obtained. If the value is **undefined**, an exception occurs during the information retrieval. In this case, an error string will be returned.
+**Parameters**
 
-- Example
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| faultType | [FaultType](#faulttype) | Yes| Fault type.|
+| callback | AsyncCallbackArray&lt;Array&lt;[FaultLogInfo](#faultloginfo)&gt;&gt; | Yes| Callback used to return the fault information array. <br/>The value is the fault information array obtained. If the value is **undefined**, an exception occurs during the information retrieval. In this case, an error string will be returned.
+
+**Example**
+
 ```
 function queryFaultLogCallback(error, value) {
     if (error) {
@@ -80,17 +82,20 @@ querySelfFaultLog(faultType: FaultType) : Promise&lt;Array&lt;FaultLogInfo&gt;&g
 
 Obtains the fault information about the current process. This method uses a promise to return the fault information array obtained, which contains a maximum of 10 pieces of fault information.
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | faultType | [FaultType](#faulttype) | Yes| Fault type.|
+**Parameters**
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;Array&lt;[FaultLogInfo](#faultloginfo)&gt;&gt; | Promise used to return the fault information array. You can obtain the fault information instance in its **then()** method or use **await**. <br/>The value is the fault information array obtained. If the value is **undefined**, an exception occurs during the information retrieval.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| faultType | [FaultType](#faulttype) | Yes| Fault type.|
 
-- Example
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;Array&lt;[FaultLogInfo](#faultloginfo)&gt;&gt; | Promise used to return the fault information array. You can obtain the fault information instance in its **then()** method or use **await**. <br/>The value is the fault information array obtained. If the value is **undefined**, an exception occurs during the information retrieval.|
+
+**Example**
+
 ```
 let value = await faultLogger.querySelfFaultLog(faultlogger.FaultType.JS_CRASH);
 if (value) {
