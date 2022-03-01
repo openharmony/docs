@@ -1,6 +1,6 @@
 # webgl2
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) ** 说明：** 
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：** 
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
@@ -41,7 +41,7 @@ gl.clearColor(0.0, 0.0, 0.0, 1.0);
 
 ## Type
 
-  ** 表1**  Type
+  **表1**  Type
 
 | 名称 | 类型 | 说明 | 
 | -------- | -------- | -------- |
@@ -53,7 +53,7 @@ gl.clearColor(0.0, 0.0, 0.0, 1.0);
 
 ## Interface
 
-  ** 表2**  Interface
+  **表2**  Interface
 
 | 名称 | 说明 | 
 | -------- | -------- |
