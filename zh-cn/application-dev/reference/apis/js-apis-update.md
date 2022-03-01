@@ -25,6 +25,8 @@ getUpdater(upgradeFile: string, updateType?: UpdateTypes): Updater
 
 获取本地升级Updater。
 
+**系统能力**：SystemCapability.Updater.update_service
+
 **参数：**
 
 | 参数名      | 类型                        | 必填 | 说明     |
@@ -53,6 +55,8 @@ try {
 getUpdaterForOther(upgradeFile: string, device: string, updateType?: UpdateTypes): Updater
 
 获取升级对象给待升级设备。
+
+**系统能力**：SystemCapability.Updater.update_service
 
 **参数：**
 
@@ -83,6 +87,8 @@ try {
 getUpdaterFromOther(upgradeFile: string, device: string, updateType?: UpdateTypes): Updater
 
 获取其它设备为本设备升级的Updater。
+
+**系统能力**：SystemCapability.Updater.update_service
 
 **参数：**
 
@@ -116,6 +122,8 @@ getNewVersionInfo(callback: AsyncCallback\<NewVersionInfo>): void
 
 获取新版本信息，使用callback方式作为异步方法。
 
+**系统能力**：SystemCapability.Updater.update_service
+
 **参数：**
 
 | 参数名   | 类型                                             | 必填 | 说明               |
@@ -138,6 +146,8 @@ update.getNewVersionInfo(info => {
 getNewVersionInfo(): Promise\<NewVersionInfo>
 
 获取新版本信息，使用promise方式作为异步方法。
+
+**系统能力**：SystemCapability.Updater.update_service
 
 **返回值：**
 
@@ -163,6 +173,8 @@ checkNewVersion(callback: AsyncCallback\<NewVersionInfo>): void
 
 检查新版本，使用callback方式作为异步方法。
 
+**系统能力**：SystemCapability.Updater.update_service
+
 **参数：**
 
 | 参数名   | 类型                                              | 必填 | 说明               |
@@ -185,6 +197,8 @@ update.checkNewVersion(info => {
 checkNewVersion(): Promise\<NewVersionInfo>
 
 检查新版本，使用promise方式作为异步方法。
+
+**系统能力**：SystemCapability.Updater.update_service
 
 **返回值:**
 
@@ -210,6 +224,8 @@ verifyUpdatePackage(upgradeFile: string, certsFile: string): void
 
 升级前检查升级包是否有效。
 
+**系统能力**：SystemCapability.Updater.update_service
+
 **参数：**
 
 | 参数名      | 类型   | 必填 | 说明               |
@@ -231,6 +247,8 @@ update.verifyUpdatePackage("XXX", "XXX");
 rebootAndCleanUserData(): Promise\<number>
 
 重启设备并清除用户分区数据。
+
+**系统能力**：SystemCapability.Updater.update_service
 
 **返回值：**
 
@@ -254,6 +272,8 @@ rebootAndCleanUserData(callback: AsyncCallback\<number>): void
 
 重启设备并清除用户分区数据。
 
+**系统能力**：SystemCapability.Updater.update_service
+
 **参数：**
 
 | 参数名   | 类型     | 必填 | 说明                   |
@@ -273,6 +293,8 @@ update.rebootAndCleanUserData(result => {
 applyNewVersion(): Promise\<number>
 
 重启设备后安装升级包。
+
+**系统能力**：SystemCapability.Updater.update_service
 
 **返回值：**
 
@@ -296,6 +318,8 @@ applyNewVersion(callback: AsyncCallback\<number>): void
 
 重启设备后安装升级包。
 
+**系统能力**：SystemCapability.Updater.update_service
+
 **参数：**
 
 | 参数名   | 类型     | 必填 | 说明                   |
@@ -316,6 +340,8 @@ download(): void
 
 下载新版本，并监听下载进程。
 
+**系统能力**：SystemCapability.Updater.update_service
+
 **示例：**
 
 ```
@@ -333,6 +359,8 @@ updater.upgrade():void
 
 启动升级。
 
+**系统能力**：SystemCapability.Updater.update_service
+
 **示例：**
 
 ```
@@ -349,6 +377,8 @@ updater.upgrade();
 setUpdatePolicy(policy: UpdatePolicy, callback: AsyncCallback\<number>): void
 
 设置升级策略，使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Updater.update_service
 
 **参数：**
 
@@ -378,6 +408,8 @@ update.setUpdatePolicy(policy, result => {
 setUpdatePolicy(policy: UpdatePolicy): Promise\<number>
 
 设置升级策略，使用promise方式作为异步方法。
+
+**系统能力**：SystemCapability.Updater.update_service
 
 **参数：**
 
@@ -414,6 +446,8 @@ getUpdatePolicy(callback: AsyncCallback\<UpdatePolicy>): void
 
 获取升级策略信息，使用callback方式作为异步方法。
 
+**系统能力**：SystemCapability.Updater.update_service
+
 **参数：**
 
 | 参数名   | 类型                                          | 必填 | 说明                 |
@@ -436,6 +470,8 @@ update.getUpdatePolicy(policy => {
 getUpdatePolicy(): Promise\<UpdatePolicy>
 
 获取升级策略，通过promise方式作为异步方法。
+
+**系统能力**：SystemCapability.Updater.update_service
 
 **返回值：**
 
@@ -461,8 +497,8 @@ update.getUpdatePolicy().then(value => {
 
 | 参数名 | 说明     |
 | ------ | -------- |
-| OTA    | OTA升级  |
-| patch  | 补丁升级 |
+| OTA    | OTA升级  <br/>**系统能力**：SystemCapability.Updater.update_service|
+| patch  | 补丁升级 <br/>**系统能力**：SystemCapability.Updater.update_service|
 
 ## PackageTypes
 
@@ -470,13 +506,13 @@ update.getUpdatePolicy().then(value => {
 
 | 参数名               | 默认值 | 说明           |
 | -------------------- | ------ | -------------- |
-| PACKAGE_TYPE_NORMAL  | 1      | 通用升级包     |
-| PACKAGE_TYPE_BASE    | 2      | 基础升级包     |
-| PACKAGE_TYPE_CUST    | 3      | 定制升级包     |
-| PACKAGE_TYPE_PRELOAD | 4      | 预装升级包     |
-| PACKAGE_TYPE_COTA    | 5      | 参数配置升级包 |
-| PACKAGE_TYPE_VERSION | 6      | 版本升级包     |
-| PACKAGE_TYPE_PATCH   | 7      | 补丁包         |
+| PACKAGE_TYPE_NORMAL  | 1      | 通用升级包     <br/>**系统能力**：SystemCapability.Updater.update_service|
+| PACKAGE_TYPE_BASE    | 2      | 基础升级包     <br/>**系统能力**：SystemCapability.Updater.update_service|
+| PACKAGE_TYPE_CUST    | 3      | 定制升级包     <br/>**系统能力**：SystemCapability.Updater.update_service|
+| PACKAGE_TYPE_PRELOAD | 4      | 预装升级包     <br/>**系统能力**：SystemCapability.Updater.update_service|
+| PACKAGE_TYPE_COTA    | 5      | 参数配置升级包 <br/>**系统能力**：SystemCapability.Updater.update_service|
+| PACKAGE_TYPE_VERSION | 6      | 版本升级包     <br/>**系统能力**：SystemCapability.Updater.update_service|
+| PACKAGE_TYPE_PATCH   | 7      | 补丁包         <br/>**系统能力**：SystemCapability.Updater.update_service|
 
 ## InstallMode
 
@@ -484,9 +520,9 @@ update.getUpdatePolicy().then(value => {
 
 | 参数名              | 默认值 | 说明     |
 | ------------------- | ------ | -------- |
-| INSTALL_MODE_NORMAL | 0      | 正常升级 |
-| INSTALL_MODE_NIGHT  | 1      | 夜间升级 |
-| INSTALL_MODE_AUTO   | 2      | 自动升级 |
+| INSTALL_MODE_NORMAL | 0      | 正常升级 <br/>**系统能力**：SystemCapability.Updater.update_service|
+| INSTALL_MODE_NIGHT  | 1      | 夜间升级 <br/>**系统能力**：SystemCapability.Updater.update_service|
+| INSTALL_MODE_AUTO   | 2      | 自动升级 <br/>**系统能力**：SystemCapability.Updater.update_service|
 
 ## NewVersionStatus
 
@@ -494,10 +530,10 @@ update.getUpdatePolicy().then(value => {
 
 | 参数名              | 默认值 | 说明             |
 | ------------------- | ------ | ---------------- |
-| VERSION_STATUS_ERR  | -1     | 检测版本时出错   |
-| VERSION_STATUS_NEW  | 0      | 检测到新版本     |
-| VERSION_STATUS_NONE | 1      | 没有检测到新版本 |
-| VERSION_STATUS_BUSY | 2      | 检测版本时忙     |
+| VERSION_STATUS_ERR  | -1     | 检测版本时出错   <br/>**系统能力**：SystemCapability.Updater.update_service|
+| VERSION_STATUS_NEW  | 0      | 检测到新版本     <br/>**系统能力**：SystemCapability.Updater.update_service|
+| VERSION_STATUS_NONE | 1      | 没有检测到新版本 <br/>**系统能力**：SystemCapability.Updater.update_service|
+| VERSION_STATUS_BUSY | 2      | 检测版本时忙     <br/>**系统能力**：SystemCapability.Updater.update_service|
 
 ## UpdatePolicy
 
@@ -505,9 +541,9 @@ update.getUpdatePolicy().then(value => {
 
 | 名称                | 参数类型                    | 必填 | 说明           |
 | ------------------- | --------------------------- | ---- | -------------- |
-| autoDownload        | bool                        | 是   | 自动升级开关   |
-| installMode         | [InstallMode](#installmode) | 是   | 安装模式       |
-| autoUpgradeInterval | Array\<number>              | 是   | 自动升级时间段 |
+| autoDownload        | bool                        | 是   | 自动升级开关   <br/>**系统能力**：SystemCapability.Updater.update_service|
+| installMode         | [InstallMode](#installmode) | 是   | 安装模式       <br/>**系统能力**：SystemCapability.Updater.update_service|
+| autoUpgradeInterval | Array\<number>              | 是   | 自动升级时间段 <br/>**系统能力**：SystemCapability.Updater.update_service|
 
 ## NewVersionInfo
 
@@ -515,10 +551,10 @@ update.getUpdatePolicy().then(value => {
 
 | 名称            | 参数类型                                    | 必填 | 说明     |
 | --------------- | ------------------------------------------- | ---- | -------- |
-| status          | [NewVersionStatus](#newversionstatus)       | 是   | 升级状态 |
-| errMsg          | string                                      | 是   | 错误信息 |
-| checkResults    | Array<[CheckResult](#checkresult)>          | 是   | 检测结果 |
-| descriptionInfo | Array\<[DescriptionInfo](#descriptioninfo)> | 是   | 描述信息 |
+| status          | [NewVersionStatus](#newversionstatus)       | 是   | 升级状态 <br/>**系统能力**：SystemCapability.Updater.update_service|
+| errMsg          | string                                      | 是   | 错误信息 <br/>**系统能力**：SystemCapability.Updater.update_service|
+| checkResults    | Array<[CheckResult](#checkresult)>          | 是   | 检测结果 <br/>**系统能力**：SystemCapability.Updater.update_service|
+| descriptionInfo | Array\<[DescriptionInfo](#descriptioninfo)> | 是   | 描述信息 <br/>**系统能力**：SystemCapability.Updater.update_service|
 
 ## CheckResult
 
@@ -526,12 +562,12 @@ update.getUpdatePolicy().then(value => {
 
 | 名称          | 参数类型                      | 必填 | 说明         |
 | ------------- | ----------------------------- | ---- | ------------ |
-| versionName   | string                        | 是   | 版本名称     |
-| versionCode   | number                        | 是   | 版本编码     |
-| size          | number                        | 是   | 版本大小     |
-| verifyInfo    | string                        | 是   | 版本校验信息 |
-| packageType   | [PackageTypes](#packagetypes) | 是   | 版本类型     |
-| descriptionId | string                        | 是   | 版本描述信息 |
+| versionName   | string                        | 是   | 版本名称     <br/>**系统能力**：SystemCapability.Updater.update_service|
+| versionCode   | number                        | 是   | 版本编码     <br/>**系统能力**：SystemCapability.Updater.update_service|
+| size          | number                        | 是   | 版本大小     <br/>**系统能力**：SystemCapability.Updater.update_service|
+| verifyInfo    | string                        | 是   | 版本校验信息 <br/>**系统能力**：SystemCapability.Updater.update_service|
+| packageType   | [PackageTypes](#packagetypes) | 是   | 版本类型     <br/>**系统能力**：SystemCapability.Updater.update_service|
+| descriptionId | string                        | 是   | 版本描述信息 <br/>**系统能力**：SystemCapability.Updater.update_service|
 
 ## DescriptionInfo
 
@@ -539,5 +575,5 @@ update.getUpdatePolicy().then(value => {
 
 | 名称          | 参数类型 | 必填 | 说明              |
 | ------------- | -------- | ---- | ----------------- |
-| descriptionId | string   | 是   | 版本versionId信息 |
-| content       | string   | 是   | 版本changelog信息 |
+| descriptionId | string   | 是   | 版本versionId信息 <br/>**系统能力**：SystemCapability.Updater.update_service|
+| content       | string   | 是   | 版本changelog信息 <br/>**系统能力**：SystemCapability.Updater.update_service|
