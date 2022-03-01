@@ -217,3 +217,12 @@ promise.then(data => {
     console.log(`promise: data->${JSON.stringify(data)}`);
 });
 ```
+
+### GrantStatus
+
+表示授权状态的枚举。
+
+| 名称                          | 默认值                  | 描述                    |
+| ----------------------------- | ---------------------- | -----------------------  |
+| PERMISSION_DENIED             | -1                     | 表示未授权。             |
+| PERMISSION_GRANTED            | 0                      | 表示已授权。             |
