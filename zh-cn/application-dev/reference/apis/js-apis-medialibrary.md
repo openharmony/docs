@@ -15,7 +15,7 @@ function getMediaLibrary(context: Context): MediaLibrary;
 
 获取媒体库。
 
-**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE，ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -46,7 +46,7 @@ getFileAssets(options: MediaFetchOptions, callback: AsyncCallback&lt;FetchFileRe
 
 获取文件资源，使用callback方式返回异步结果。
 
-**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE，ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -70,7 +70,7 @@ getFileAssets(options: MediaFetchOptions): Promise&lt;FetchFileResult&gt;;
 
 获取文件资源，使用Promise方式返回结果。
 
-**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE，ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -102,7 +102,7 @@ on(type: 'deviceChange'|'albumChange'|'imageChange'|'audioChange'|'videoChange'|
 
 打开媒体文件变更和上线通知，使用callback方式返回异步结果。
 
-**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE，ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -126,7 +126,7 @@ off(type: 'deviceChange'|'albumChange'|'imageChange'|'audioChange'|'videoChange'
 
 关闭媒体文件变更和设备上线通知，使用callback方式返回异步结果。
 
-**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE，ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -151,7 +151,7 @@ createAsset(mediaType: MediaType, displayName: string, relativePath: string, cal
 
 创建媒体资源，使用callback方式返回结果。
 
-**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE，ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -178,7 +178,7 @@ createAsset(mediaType: MediaType, displayName: string, relativePath: string): Pr
 
 创建媒体资源，使用Promise方式返回结果。
 
-**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE，ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -212,7 +212,7 @@ deleteAsset(uri: string, callback: AsyncCallback&lt;void&gt;): void;
 
 删除媒体资源，使用callback方式返回结果。
 
-**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE，ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -237,7 +237,7 @@ deleteAsset(uri: string): Promise&lt;void&gt;;
 
 删除媒体资源，使用promise方式返回结果。
 
-**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE，ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -269,7 +269,7 @@ getAlbums(options: MediaFetchOptions, callback: AsyncCallback<Array&lt;Album&gt;
 
 获取实体相册，使用callback 方式返回结果。
 
-**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE，ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -292,7 +292,7 @@ getAlbums(options: MediaFetchOptions): Promise<Array&lt;Album&gt;>;
 
 获取实体相册，使用 promise 方式返回结果。
 
-**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE，ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -324,7 +324,7 @@ getActivePeers(callback: AsyncCallback<Array&lt;PeerInfo&gt;>): void;
 
 获取活动对端设备
 
-**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE，ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.DistributedCore
 
@@ -348,7 +348,7 @@ getActivePeers(): Promise<Array&lt;PeerInfo&gt;>;
 
 获取活动对端设备
 
-**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE，ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.DistributedCore
 
@@ -372,7 +372,7 @@ getAllPeers(callback: AsyncCallback<Array&lt;PeerInfo&gt;>): void;
 
 获取所有对端设备
 
-**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE，ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.DistributedCore
 
@@ -396,7 +396,7 @@ getAllPeers(): Promise<Array&lt;PeerInfo&gt;>;
 
 获取所有对端设备
 
-**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE，ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.DistributedCore
 
@@ -416,7 +416,7 @@ release(callback: AsyncCallback&lt;void&gt;): void;
 
 释放MediaLibrary实例
 
-**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE，ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -440,7 +440,7 @@ release(): Promise&lt;void&gt;;
 
 释放MediaLibrary实例
 
-**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE，ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -462,7 +462,7 @@ isDirectory(callback: AsyncCallback&lt;boolean&gt;): void;
 
 判断fileAsset是否为目录，使用callback方式返回异步结果。
 
-**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE，ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -486,7 +486,7 @@ isDirectory():Promise&lt;boolean&gt;;
 
 判断fileAsset是否为目录，使用Promise方式返回异步结果。
 
-**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE，ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -512,7 +512,7 @@ commitModify(callback: AsyncCallback&lt;void&gt;): void;
 
 修改文件的元数据，使用callback方式返回异步结果。
 
-**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE，ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -536,7 +536,7 @@ commitModify(): Promise&lt;void&gt;;
 
 修改文件的元数据，使用promise方式返回异步结果。
 
-**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE，ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -561,7 +561,7 @@ open(mode: string, callback: AsyncCallback&lt;number&gt;): void;
 
 打开当前文件，使用callback方式返回异步结果。
 
-**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE，ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -586,7 +586,7 @@ open(mode: string): Promise&lt;number&gt;;
 
 打开当前文件，使用promise方式返回异步结果。
 
-**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE，ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -616,7 +616,7 @@ close(fd: number, callback: AsyncCallback&lt;void&gt;): void;
 
 关闭当前文件，使用callback方式返回异步结果。
 
-**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE，ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -641,7 +641,7 @@ close(fd: number): Promise&lt;void&gt;;
 
 关闭当前文件，使用promise方式返回异步结果。
 
-**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE，ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -671,7 +671,7 @@ getThumbnail(callback: AsyncCallback&lt;image.PixelMap&gt;): void;
 
 获取文件的缩略图，使用callback方式返回异步结果。
 
-**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE，ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -695,7 +695,7 @@ getThumbnail(size: Size, callback: AsyncCallback&lt;image.PixelMap&gt;): void;
 
 获取文件的缩略图，传入缩略图尺寸，使用callback方式返回异步结果。
 
-**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE，ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -720,7 +720,7 @@ getThumbnail(size?: Size): Promise&lt;image.PixelMap&gt;;
 
 获取文件的缩略图，传入缩略图尺寸，使用promise方式返回异步结果。
 
-**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE，ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -750,7 +750,7 @@ favorite(isFavorite: boolean, callback: AsyncCallback&lt;void&gt;): void;
 
 将文件设置为收藏文件，使用callback方式返回异步结果。
 
-**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE，ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -775,7 +775,7 @@ favorite(isFavorite: boolean): Promise&lt;void&gt;;
 
 将文件设置为收藏文件，使用promise方式返回异步结果。
 
-**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE，ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -807,7 +807,7 @@ isFavorite(callback: AsyncCallback&lt;boolean&gt;): void;
 
 判断该文件是否为收藏文件，使用callback方式返回异步结果。
 
-**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE，ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -831,7 +831,7 @@ isFavorite():Promise&lt;boolean&gt;;
 
 判断该文件是否为收藏文件，使用promise方式返回异步结果。
 
-**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE，ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -857,7 +857,7 @@ trash(isTrash: boolean, callback: AsyncCallback&lt;void&g;): void;
 
 当文件被定位时，将文件放到垃圾文件夹，使用callback方式返回异步结果。
 
-**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE，ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -882,7 +882,7 @@ trash(isTrash: boolean,): Promise&lt;void&gt;;
 
 当文件被定位时，将文件放到垃圾文件夹，使用promise方式返回异步结果。
 
-**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE，ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -914,7 +914,7 @@ isTrash(callback: AsyncCallback&lt;boolean&gt;): void;
 
 当文件被定位，判断文件是否为垃圾文件，使用callback方式返回异步结果。
 
-**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE，ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -938,7 +938,7 @@ isTrash():Promise&lt;boolean&gt;;
 
 当文件被定位，设置文件为垃圾文件，使用promise方式返回异步结果。
 
-**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE，ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -968,7 +968,7 @@ getCount(): number;
 
 获取文件检索结果中的文件总数。
 
-**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE，ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -990,7 +990,7 @@ isAfterLast(): boolean;
 
 检查结果集是否指向最后一行。
 
-**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE，ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -1012,7 +1012,7 @@ close(): void;
 
 释放 FetchFileResult 实例并使其失效。无法调用其他方法。
 
-**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE，ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -1028,7 +1028,7 @@ getFirstObject(callback: AsyncCallback&lt;FileAsset&gt;): void;
 
 获取文件检索结果中的第一个文件资产。此方法使用回调返回FileAsset。
 
-**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE，ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -1056,7 +1056,7 @@ getFirstObject(): Promise&lt;FileAsset&gt;;
 
 获取文件检索结果中的第一个文件资产。此方法使用返回FileAsset。
 
-**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE，ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -1083,7 +1083,7 @@ queryResultSet_.getFirstObject().then(function(fileAsset){
 
 获取文件检索结果中的下一个文件资产。此方法使用callback形式返回结果。
 
-**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE，ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -1111,7 +1111,7 @@ data.getNextObject((err, value) => {
 
 获取文件检索结果中的下一个文件资产。此方法使用promise方式来异步返回FileAsset。
 
-**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE，ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -1133,7 +1133,7 @@ getLastObject(callback: AsyncCallback&lt;FileAsset&gt;): void;
 
 获取文件检索结果中的最后一个文件资产。此方法使用callback回调来返回FileAsset。
 
-**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE，ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -1161,7 +1161,7 @@ getLastObject(): Promise&lt;FileAsset&gt;;
 
 获取文件检索结果中的最后一个文件资产。此方法使用Promise方式来返回FileAsset。
 
-**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE，ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -1183,7 +1183,7 @@ getPositionObject(index: number, callback: AsyncCallback&lt;FileAsset&gt;): void
 
 获取文件检索结果中具有指定索引的文件资产。此方法使用回调来返回FileAsset。
 
-**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE，ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -1212,7 +1212,7 @@ getPositionObject(index: number): Promise&lt;FileAsset&gt;;
 
 获取文件检索结果中具有指定索引的文件资产。此方法使用Promise形式返回文件Asset。
 
-**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE，ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -1246,7 +1246,7 @@ getAllObject(callback: AsyncCallback&lt;Array&lt;FileAsset&gt;&gt;): void;
 
 获取文件检索结果中的所有文件资产。此方法使用Callback回调来返回FileAsset结果集。
 
-**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE，ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -1274,7 +1274,7 @@ getAllObject(): Promise&lt;Array&lt;FileAsset&gt;&gt;;
 
 获取文件检索结果中的所有文件资产。此方法使用Promise来返回FileAsset结果集。
 
-**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE，ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -1296,7 +1296,7 @@ commitModify(callback: AsyncCallback&lt;void&gt;): void;
 
 更新相册属性修改到数据库中。
 
-**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE，ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -1325,7 +1325,7 @@ commitModify(): Promise&lt;void&gt;;
 
 更新相册属性修改到数据库中。
 
-**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE，ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -1352,7 +1352,7 @@ getFileAssets(options: MediaFetchOptions, callback: AsyncCallback&lt;FetchFileRe
 
 按照检索条件获取相册中的文件。此方法使用Callback回调来返回文件结果集。
 
-**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE，ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -1379,7 +1379,7 @@ function getFileAssetsCallBack(err, fetchFileResult) {
 
 按照检索条件获取相册中的文件。此方法使用异步回调来返回文件结果集。
 
-**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.MEDIA_LOCATION，ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE，ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
