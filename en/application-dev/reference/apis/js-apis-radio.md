@@ -1,6 +1,6 @@
 # Radio
 
->**Note:**
+>**NOTE**
 >
 >The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
@@ -19,21 +19,21 @@ Obtains the radio access technologies (RATs) used by the CS and PS domains. This
 
 Before using this API, you must declare the **ohos.permission.GET\_NETWORK\_INFO** permission.
 
-- Parameters
+**Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
-  | slotId   | number                                                       | Yes| SIM card slot ID. The options are as follows: <br/> - **0**: slot 1<br/> - **1**: slot 2|
-  | callback | AsyncCallback\<{psRadioTech: [RadioTechnology](#RadioTechnology), csRadioTech:[RadioTechnology](#RadioTechnology)}\> | Yes| Callback used to return the result.|
+| Name| Type| Mandatory| Description|
+| -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
+| slotId   | number                                                       | Yes| Card slot ID. The options are as follows: <br/> - **0**: slot 1 <br/> - **1**: slot 2|
+| callback | AsyncCallback\<{psRadioTech: [RadioTechnology](#RadioTechnology), csRadioTech:[RadioTechnology](#RadioTechnology)}\> | Yes| Callback used to return the result.|
 
--   Example
+**Example**
 
-    ```
-    let slotId = 0;
-    radio.getRadioTech(slotId, (err, data) =>{ 
-        console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
-    });
-    ```
+```
+let slotId = 0;
+radio.getRadioTech(slotId, (err, data) =>{ 
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
 
 
 ## radio.getRadioTech<a name=radio.getRadioTech-promise></a>
@@ -44,52 +44,52 @@ Obtains the RAT used by the CS and PS domains. This function uses a promise to r
 
 Before using this API, you must declare the **ohos.permission.GET\_NETWORK\_INFO** permission.
 
-- Parameters
+**Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | ------ | ------ | ---- | -------------------------------------- |
-  | slotId | number | Yes| SIM card slot ID. The options are as follows: <br/> - **0**: slot 1<br/> - **1**: slot 2|
+| Name| Type| Mandatory| Description|
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | Yes| Card slot ID. The options are as follows: <br/> - **0**: slot 1 <br/> - **1**: slot 2|
 
-- Return values
+**Return value**
 
-  | Type| Description|
-  | ------------------------------------------------------------ | ----------------------------------------------- |
-  | Promise<{psRadioTech: [RadioTechnology](#RadioTechnology), csRadioTech: [RadioTechnology](#RadioTechnology)}> | Promise used to return the result.|
+| Type| Description|
+| ------------------------------------------------------------ | ----------------------------------------------- |
+| Promise<{psRadioTech: [RadioTechnology](#RadioTechnology), csRadioTech: [RadioTechnology](#RadioTechnology)}> | Promise used to return the result.|
 
--   Example
+**Example**
 
-    ```
-    let slotId = 0;
-    let promise = radio.getRadioTech(slotId);
-    promise.then(data => {
-        console.log(`getRadioTech success, data->${JSON.stringify(data)}`);
-    }).catch(err => {
-        console.log(`getRadioTech fail, err->${JSON.stringify(err)}`);
-    });
-    ```
+```
+let slotId = 0;
+let promise = radio.getRadioTech(slotId);
+promise.then(data => {
+    console.log(`getRadioTech success, data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`getRadioTech fail, err->${JSON.stringify(err)}`);
+});
+```
 
 
 ## radio.getNetworkState<a name=radio.getNetworkState-callback1></a>
 
 getNetworkState\(callback: AsyncCallback<NetworkState\>\): void
 
-Obtains the network status. This function uses an asynchronous callback to return the result.
+Obtains the network status of the SIM card in the specified slot. This function uses an asynchronous callback to return the result.
 
 Before using this API, you must declare the **ohos.permission.GET\_NETWORK\_INFO** permission.
 
-- Parameters
+**Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | ---------------------------------------------- | ---- | ---------- |
-  | callback | AsyncCallback\<[NetworkState](#NetworkState)\> | Yes| Callback used to return the result.|
+| Name| Type| Mandatory| Description|
+| -------- | ---------------------------------------------- | ---- | ---------- |
+| callback | AsyncCallback\<[NetworkState](#NetworkState)\> | Yes| Callback invoked to traverse the entries in the container.|
 
--   Example
+**Example**
 
-    ```
-    radio.getNetworkState((err, data) =>{
-        console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
-    });
-    ```
+```
+radio.getNetworkState((err, data) =>{
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
 
 
 ## radio.getNetworkState<a name=radio.getNetworkState-callback2></a>
@@ -100,21 +100,21 @@ Obtains the network status of the SIM card in the specified slot. This function 
 
 Before using this API, you must declare the **ohos.permission.GET\_NETWORK\_INFO** permission.
 
-- Parameters
+**Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | ---------------------------------------------- | ---- | -------------------------------------- |
-  | slotId   | number                                         | Yes| SIM card slot ID. The options are as follows: <br/> - **0**: slot 1<br/> - **1**: slot 2|
-  | callback | AsyncCallback\<[NetworkState](#NetworkState)\> | Yes| Callback used to return the result.|
+| Name| Type| Mandatory| Description|
+| -------- | ---------------------------------------------- | ---- | -------------------------------------- |
+| slotId   | number                                         | Yes| Card slot ID. The options are as follows: <br/> - **0**: slot 1 <br/> - **1**: slot 2|
+| callback | AsyncCallback\<[NetworkState](#NetworkState)\> | Yes| Callback used to return the result.|
 
--   Example
+**Example**
 
-    ```
-    let slotId = 0;
-    radio.getNetworkState(slotId, (err, data) => {
-        console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
-    });
-    ```
+```
+let slotId = 0;
+radio.getNetworkState(slotId, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
 
 
 ## radio.getNetworkState<a name=radio.getNetworkState-promise></a>
@@ -125,29 +125,29 @@ Obtains the network status of the SIM card in the specified slot. This function 
 
 Before using this API, you must declare the **ohos.permission.GET\_NETWORK\_INFO** permission.
 
-- Parameters
+**Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | ------ | ------ | ---- | -------------------------------------- |
-  | slotId | number | No| SIM card slot ID. The options are as follows: <br/> - **0**: slot 1<br/> - **1**: slot 2|
+| Name| Type| Mandatory| Description|
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | No| Card slot ID. The options are as follows: <br/> - **0**: slot 1 <br/> - **1**: slot 2|
 
-- Return values
+**Return value**
 
-  | Type| Description|
-  | ---------------------------------------- | --------------------------- |
-  | Promise\<[NetworkState](#NetworkState)\> | Promise used to return the result.|
+| Type| Description|
+| ---------------------------------------- | --------------------------- |
+| Promise\<[NetworkState](#NetworkState)\> | Promise used to return the result.|
 
--   Example
+**Example**
 
-    ```
-    let slotId = 0;
-    let promise = radio.getNetworkState(slotId);
-    promise.then(data => {
-        console.log(`getNetworkState success, promise: data->${JSON.stringify(data)}`);
-    }).catch(err => {
-        console.log(`getNetworkState fail, promise: err->${JSON.stringify(err)}`);
-    });
-    ```
+```
+let slotId = 0;
+let promise = radio.getNetworkState(slotId);
+promise.then(data => {
+    console.log(`getNetworkState success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`getNetworkState fail, promise: err->${JSON.stringify(err)}`);
+});
+```
 
 
 ## radio.getNetworkSelectionMode<a name=radio.getNetworkSelectionMode-callback></a>
@@ -156,21 +156,21 @@ getNetworkSelectionMode\(slotId: number, callback: AsyncCallback<NetworkSelectio
 
 Obtains the network selection mode of the SIM card in the specified slot. This function uses an asynchronous callback to return the result.
 
-- Parameters
+**Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
-  | slotId   | number                                                       | Yes| SIM card slot ID. The options are as follows: <br/> - **0**: slot 1<br/> - **1**: slot 2|
-  | callback | AsyncCallback\<[NetworkSelectionMode](#NetworkSelectionMode)\> | Yes| Callback used to return the result.|
+| Name| Type| Mandatory| Description|
+| -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
+| slotId   | number                                                       | Yes| Card slot ID. The options are as follows: <br/> - **0**: slot 1 <br/> - **1**: slot 2|
+| callback | AsyncCallback\<[NetworkSelectionMode](#NetworkSelectionMode)\> | Yes| Callback used to return the result.|
 
--   Example
+**Example**
 
-    ```
-    let slotId = 0;
-    radio.getNetworkSelectionMode(slotId, (err, data) => {
-        console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
-    });
-    ```
+```
+let slotId = 0;
+radio.getNetworkSelectionMode(slotId, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
 
 
 ## radio.getNetworkSelectionMode<a name=radio.getNetworkSelectionMode-promise></a>
@@ -179,29 +179,29 @@ getNetworkSelectionMode\(slotId: number\): Promise<NetworkSelectionMode\>
 
 Obtains the network selection mode of the SIM card in the specified slot. This function uses a promise to return the result.
 
-- Parameters
+**Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | ------ | ------ | ---- | -------------------------------------- |
-  | slotId | number | Yes| SIM card slot ID. The options are as follows: <br/> - **0**: slot 1<br/> - **1**: slot 2|
+| Name| Type| Mandatory| Description|
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | Yes| Card slot ID. The options are as follows: <br/> - **0**: slot 1 <br/> - **1**: slot 2|
 
-- Return values
+**Return value**
 
-  | Type| Description|
-  | -------------------------------------------------------- | ------------------------------- |
-  | Promise\<[NetworkSelectionMode](#NetworkSelectionMode)\> | Promise used to return the result.|
+| Type| Description|
+| -------------------------------------------------------- | ------------------------------- |
+| Promise\<[NetworkSelectionMode](#NetworkSelectionMode)\> | Promise used to return the result.|
 
--   Example
+**Example**
 
-    ```
-    let slotId = 0;
-    let promise = radio.getNetworkSelectionMode(slotId);
-    promise.then(data => {
-        console.log(`getNetworkSelectionMode success, promise: data->${JSON.stringify(data)}`);
-    }).catch(err => {
-        console.log(`getNetworkSelectionMode fail, promise: err->${JSON.stringify(err)}`);
-    });
-    ```
+```
+let slotId = 0;
+let promise = radio.getNetworkSelectionMode(slotId);
+promise.then(data => {
+    console.log(`getNetworkSelectionMode success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`getNetworkSelectionMode fail, promise: err->${JSON.stringify(err)}`);
+});
+```
 
 
 ## radio.getISOCountryCodeForNetwork<sup>7+</sup><a name=radio.getISOCountryCodeForNetwork-callback></a>
@@ -210,21 +210,21 @@ getISOCountryCodeForNetwork\(slotId: number, callback: AsyncCallback<string\>\):
 
 Obtains the ISO country code of the network with which the SIM card in the specified slot is registered. This function uses an asynchronous callback to return the result.
 
-- Parameters
+**Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | ----------------------- | ---- | ---------------------------------------- |
-  | slotId   | number                  | Yes| SIM card slot ID. The options are as follows: <br/> - **0**: slot 1<br/> - **1**: slot 2|
-  | callback | AsyncCallback\<string\> | Yes| Callback used to return the result, which is a country code, for example, **CN** (China).|
+| Name| Type| Mandatory| Description|
+| -------- | ----------------------- | ---- | ---------------------------------------- |
+| slotId   | number                  | Yes| Card slot ID. The options are as follows: <br/> - **0**: slot 1 <br/> - **1**: slot 2|
+| callback | AsyncCallback\<string\> | Yes| Callback used to return the result, which is a country code, for example, **CN** (China).|
 
--   Example
+**Example**
 
-    ```
-    let slotId = 0;
-    radio.getISOCountryCodeForNetwork(slotId, (err, data) => {
-        console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
-    });
-    ```
+```
+let slotId = 0;
+radio.getISOCountryCodeForNetwork(slotId, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
 
 
 ## radio.getISOCountryCodeForNetwork<sup>7+</sup><a name=radio.getISOCountryCodeForNetwork-promise></a>
@@ -233,29 +233,29 @@ getISOCountryCodeForNetwork\(slotId: number\): Promise<string\>
 
 Obtains the ISO country code of the network with which the SIM card in the specified slot is registered. This function uses a promise to return the result.
 
-- Parameters
+**Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | ------ | ------ | ---- | -------------------------------------- |
-  | slotId | number | Yes| SIM card slot ID. The options are as follows: <br/> - **0**: slot 1<br/> - **1**: slot 2|
+| Name| Type| Mandatory| Description|
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | Yes| Card slot ID. The options are as follows: <br/> - **0**: slot 1 <br/> - **1**: slot 2|
 
-- Return values
+**Return value**
 
-  | Type| Description|
-  | ----------------- | ------------------------------------------------------------ |
-  | Promise\<string\> | Promise used to return the result, which is an ISO country code, for example, **CN** (China).|
+| Type| Description|
+| ----------------- | ------------------------------------------------------------ |
+| Promise\<string\> | Promise used to return the result, which is an ISO country code, for example, **CN** (China).|
 
--   Example
+**Example**
 
-    ```
-    let slotId = 0;
-    let promise = radio.getISOCountryCodeForNetwork(slotId);
-    promise.then(data => {
-        console.log(`getISOCountryCodeForNetwork success, promise: data->${JSON.stringify(data)}`);
-    }).catch(err => {
-        console.log(`getISOCountryCodeForNetwork fail, promise: err->${JSON.stringify(err)}`);
-    });
-    ```
+```
+let slotId = 0;
+let promise = radio.getISOCountryCodeForNetwork(slotId);
+promise.then(data => {
+    console.log(`getISOCountryCodeForNetwork success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`getISOCountryCodeForNetwork fail, promise: err->${JSON.stringify(err)}`);
+});
+```
 
 
 ## radio.getSignalInformation<a name=radio.getSignalInformation-callback></a>
@@ -264,21 +264,21 @@ getSignalInformation\(slotId: number, callback: AsyncCallback<Array<SignalInform
 
 Obtains a list of signal strengths of the network with which the SIM card in the specified slot is registered. This function uses an asynchronous callback to return the result. 
 
-- Parameters
+**Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-  | slotId   | number                                                       | Yes| SIM card slot ID. The options are as follows: <br/> - **0**: slot 1<br/> - **1**: slot 2|
-  | callback | AsyncCallback\<Array\<[SignalInformation](#SignalInformation)\>\> | Yes| Callback used to return the result, which is a list of [SignalInformation](#SignalInformation) objects.|
+| Name| Type| Mandatory| Description|
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| slotId   | number                                                       | Yes| Card slot ID. The options are as follows: <br/> - **0**: slot 1<br/> - **1**: slot 2|
+| callback | AsyncCallback\<Array\<[SignalInformation](#SignalInformation)\>\> | Yes| Callback used to return the result, which is a list of [SignalInformation](#SignalInformation) objects.|
 
--   Example
+**Example**
 
-    ```
-    let slotId = 0;
-    radio.getSignalInformation(slotId, (err, data) => {
-       console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
-    });
-    ```
+```
+let slotId = 0;
+radio.getSignalInformation(slotId, (err, data) => {
+   console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
 
 
 ## radio.getSignalInformation<a name=radio.getSignalInformation-promise></a>
@@ -287,78 +287,78 @@ getSignalInformation\(slotId: number\): Promise<Array<SignalInformation\>\>
 
 Obtains a list of signal strengths of the network with which the SIM card in the specified slot is registered. This function uses a promise to return the result. 
 
-- Parameters
+**Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | ------ | ------ | ---- | -------------------------------------- |
-  | slotId | number | Yes| SIM card slot ID. The options are as follows: <br/> - **0**: slot 1<br/> - **1**: slot 2|
+| Name| Type| Mandatory| Description|
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | Yes| Card slot ID. The options are as follows: <br/> - **0**: slot 1 <br/> - **1**: slot 2|
 
-- Return values
+**Return value**
 
-  | Type| Description|
-  | ----------------------------------------------------------- | ------------------------------------------------------------ |
-  | Promise\<Array\<[SignalInformation](#SignalInformation)\>\> | Promise used to return the result, which is a list of [SignalInformation](#SignalInformation) objects.|
+| Type| Description|
+| ----------------------------------------------------------- | ------------------------------------------------------------ |
+| Promise\<Array\<[SignalInformation](#SignalInformation)\>\> | Promise used to return the result, which is a list of [SignalInformation](#SignalInformation) objects.|
 
--   Example
+**Example**
 
-    ```
-    let slotId = 0;
-    let promise = radio.getSignalInformation(slotId);
-    promise.then(data => {
-        console.log(`getSignalInformation success, promise: data->${JSON.stringify(data)}`);
-    }).catch(err => {
-        console.error(`getSignalInformation fail, promise: err->${JSON.stringify(err)}`);
-    });
-    ```
+```
+let slotId = 0;
+let promise = radio.getSignalInformation(slotId);
+promise.then(data => {
+    console.log(`getSignalInformation success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.error(`getSignalInformation fail, promise: err->${JSON.stringify(err)}`);
+});
+```
 
 
 ## radio.isRadioOn<sup>7+</sup><a name=radio.isRadioOn-callback></a>
 
 isRadioOn\(callback: AsyncCallback<boolean\>\): void
 
-Checks whether radio is turned on. This function uses an asynchronous callback to return the result.
+Checks whether the radio service is enabled. This function uses an asynchronous callback to return the result.
 
 Before using this API, you must declare the **ohos.permission.GET\_NETWORK\_INFO** permission.
 
-- Parameters
+**Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | ------------------------ | ---- | ------------------------------------------------------- |
-  | callback | AsyncCallback\<boolean\> | Yes| Callback used to return the result. <br/> - **true**: Radio is turned on.<br/> - **false**: Radio is turned off.|
+| Name| Type| Mandatory| Description|
+| -------- | ------------------------ | ---- | ------------------------------------------------------- |
+| callback | AsyncCallback\<boolean\> | Yes| Callback used to return the result. <br/> - **true**: The radio service is enabled.<br/> - **false**: The radio service is disabled.|
 
--   Example
+**Example**
 
-    ```
-    radio.isRadioOn((err, data) => {
-        console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
-    });
-    ```
+```
+radio.isRadioOn((err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
 
 
 ## radio.isRadioOn<sup>7+</sup><a name=radio.isRadioOn-promise></a>
 
 isRadioOn\(\): Promise<boolean\>
 
-Checks whether radio is turned on. This function uses a promise to return the result.
+Checks whether the radio service is enabled. This function uses a promise to return the result.
 
 Before using this API, you must declare the **ohos.permission.GET\_NETWORK\_INFO** permission.
 
-- Return values
+**Return value**
 
-  | Type| Description|
-  | ------------------ | ------------------------------------------------------------ |
-  | Promise\<boolean\> | Promise used to return the result. <br/> - **true**: Radio is turned on.<br/> - **false**: Radio is turned off.|
+| Type| Description|
+| ------------------ | ------------------------------------------------------------ |
+| Promise\<boolean\> | Promise used to return the result. <br/> - **true**: The radio service is enabled.<br/> - **false**: The radio service is disabled.|
 
--   Example
+**Example**
 
-    ```
-    let promise = radio.isRadioOn();
-    promise.then(data => {
-        console.log(`isRadioOn success, promise: data->${JSON.stringify(data)}`);
-    }).catch(err => {
-        console.error(`isRadioOn fail, promise: err->${JSON.stringify(err)}`);
-    });
-    ```
+```
+let promise = radio.isRadioOn();
+promise.then(data => {
+    console.log(`isRadioOn success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.error(`isRadioOn fail, promise: err->${JSON.stringify(err)}`);
+});
+```
 
 
 ## RadioTechnology<a name=RadioTechnology></a>
@@ -394,7 +394,7 @@ Defines the signal strength.
 
 ## NetworkType<a name=NetworkType></a>
 
-Enumerates network types.
+Network type.
 
 | Variable| Value| Description|
 | -------------------- | ---- | ------------------------------------------------------------ |
@@ -424,7 +424,7 @@ Defines the network registration status.
 
 ## RegState<a name=RegState></a>
 
-Enumerates network registration states.
+Defines the network registration status.
 
 | Variable| Value| Description|
 | ----------------------------- | ---- | -------------------------- |
