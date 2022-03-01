@@ -1,4 +1,4 @@
-# 媒体服务
+媒体服务
 
 媒体子系统为开发者提供一套简单且易于理解的接口，使得开发者能够方便接入系统并使用系统的媒体资源。
 
@@ -639,7 +639,19 @@ audioPlayer.on('error', (error) => {           //设置'error'事件回调
     console.info(`audio error called, errCode is ${error.code}`);
     console.info(`audio error called, errMessage is ${error.message}`);
 });
-audioPlayer.src = 'file:///data/data/ohos.xxx.xxx/files/test.mp4';  //设置src属性，并触发'dataLoad'事件回调
+
+// 用户选择视频设置fd(本地播放)
+let fdPath = 'fd://'
+let path = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp3';
+await fileIO.open(path).then(fdNumber) => {
+   fdPath = fdPath + '' + fdNumber;
+   console.info('open fd sucess fd is' + fdPath);
+}, (err) => {
+   console.info('open fd failed err is' + err);
+}),catch((err) => {
+   console.info('open fd failed err is' + err);
+});
+audioPlayer.src = fdPath;  //设置src属性，并触发'dataLoad'事件回调
 ```
 
 ### on('timeUpdate')
@@ -1555,7 +1567,7 @@ let audioRecorderConfig = {
     audioSampleRate : 22050,
     numberOfChannels : 2,
     format : media.AudioOutputFormat.AAC_ADTS,
-    uri : 'file://1',       // 文件需先由调用者创建，并给予适当的权限
+    uri : 'fd://1',       // 文件需先由调用者创建，并给予适当的权限
     location : { latitude : 30, longitude : 130},
 }
 audioRecorder.on('prepare', () => {    //设置'prepare'事件回调
@@ -1681,7 +1693,7 @@ let audioRecorderConfig = {
     audioSampleRate : 22050,
     numberOfChannels : 2,
     format : media.AudioOutputFormat.AAC_ADTS,
-    uri : 'file:///data/accounts/account_0/appdata/appdata/recorder/test.m4a',  // 文件需先由调用者创建，并给予适当的权限
+    uri : 'fd://xx',                                                            // 文件需先由调用者创建，并给予适当的权限
     location : { latitude : 30, longitude : 130},
 }
 audioRecorder.on('error', (error) => {             								// 设置'error'事件回调
@@ -1750,7 +1762,7 @@ audioRecorder.prepare();  												// prepare不设置参数，触发'error'�
 | numberOfChannels      | number                                  | 否   | 音频采集声道数，默认值为2。                                  |
 | format                | [AudioOutputFormat](#audiooutputformat) | 否   | 音量输出封装格式，默认设置为MPEG_4。                         |
 | location<sup>8+</sup> | [Location](#location8)                  | 否   | 音频采集的地理位置。                                         |
-| uri                   | string                                  | 是   | 视频输出URI：file://xx&nbsp;(fd&nbsp;number)<br/>![zh-cn_image_0000001164217678](figures/zh-cn_image_url.png) <br/>文件需要由调用者创建，并赋予适当的权限。 |
+| uri                   | string                                  | 是   | 视频输出URI：fd://xx&nbsp;(fd&nbsp;number)<br/>![zh-cn_image_0000001164217678](figures/zh-cn_image_url.png) <br/>文件需要由调用者创建，并赋予适当的权限。 |
 
 
 ## AudioEncoder
@@ -1816,7 +1828,7 @@ let videoConfig = {
     audioSourceType : 1,
     videoSourceType : 0,
     profile : videoProfile,
-    url : 'file://1',   // 文件需先由调用者创建，并给予适当的权限
+    url : 'fd://xx',   // 文件需先由调用者创建，并给予适当的权限
     orientationHint : 0,
     location : { latitude : 30, longitude : 130 },
 }
@@ -1885,7 +1897,7 @@ let videoConfig = {
     audioSourceType : 1,
     videoSourceType : 0,
     profile : videoProfile,
-    url : 'file://1',   // 文件需先由调用者创建，并给予适当的权限
+    url : 'fd://xx',   // 文件需先由调用者创建，并给予适当的权限
     orientationHint : 0,
     location : { latitude : 30, longitude : 130 },
 }
@@ -2340,7 +2352,7 @@ videoRecorder.on('error', (error) => {      							// 设置'error'事件回调
 | profile         | [VideoRecorderProfile](#videorecorderprofile<sup>8+</sup>) | 是   | 视频录制的profile。                                          |
 | orientationHint | number                                                     | 否   | 录制视频的旋转角度。                                         |
 | location        | [Location](#location8)                                     | 否   | 录制视频的地理位置。                                         |
-| url             | string                                                     | 是   | 视频输出URL：file://xx&nbsp;(fd&nbsp;number)<br/>![zh-cn_image_0000001164217678](figures/zh-cn_image_url.png) <br/>文件需要由调用者创建，并赋予适当的权限。 |
+| url             | string                                                     | 是   | 视频输出URL：fd://xx&nbsp;(fd&nbsp;number)<br/>![zh-cn_image_0000001164217678](figures/zh-cn_image_url.png) <br/>文件需要由调用者创建，并赋予适当的权限。 |
 
 ## AudioSourceType<sup>8+</sup>
 
