@@ -1,23 +1,30 @@
 ## 设备使用信息统计
 
-### 权限
+## 场景介绍
 
-ohos.permission.BUNDLE_ACTIVE_INFO
+设备使用信息统计，包括app usage/notification usage/system usage等使用统计。例如应用使用信息统计，用于保存和查询应用使用详情（app usage）、事件日志数据（event log）、应用分组（bundle group）情况。
+部件缓存的应用记录（使用历史统计和使用事件记录）会在事件上报后30分钟内刷新到数据库持久化保存。
+
+## 接口说明
+注册相关接口包导入：
+```js
+import stats from '@ohos.usagestatskit';
+```
 
 **表1** 设备使用信息统计主要接口
 
 | 接口名 | 描述 |
 | -------- | -------- |
-| function queryBundleActiveStates(begin:number, end:number, callback:AsyncCallback&lt;Array&lt;BundleActiveState&gt;&gt;):void | 通过指定起始和结束时间查询所有应用的事件集合 |
-| function queryBundleStateInfos(begin:number, end:number, callback:AsyncCallback&lt;BundleStateInfoResponse&gt;):void | 通过指定起始和结束时间查询应用使用时长统计信息 |
-| function queryCurrentBundleActiveStates(begin:number, end:number, callback:AsyncCallback&lt;Array&lt;BundleActiveState&gt;&gt;):void | 通过指定起始和结束时间查询当前应用的事件集合 |
-| function queryBundleStateInfoByInterval(byInterval:intervalType, begin:number, end:number, callback:AsyncCallback&lt;Array&lt;BundleStateInfo&gt;&gt;):void | 通过指定时间段间隔（天、周、月、年）查询应用使用时长统计信息 |
-| function queryAppUsagePriorityGroup(callback:AsyncCallback&lt;number&gt;):void | 查询（返回）当前调用者应用的使用优先级群组 |
-| function isIdleState(bundleName:string, callback:AsyncCallback&lt;boolean&gt;):void | 判断指定Bundle Name的应用当前是否是空闲状态 |
+| function queryBundleActiveStates(begin:number, end:number, callback:AsyncCallback&lt;Array&lt;BundleActiveState&gt;&gt;):void | 通过指定起始和结束时间查询所有应用的事件集合。 |
+| function queryBundleStateInfos(begin:number, end:number, callback:AsyncCallback&lt;BundleStateInfoResponse&gt;):void | 通过指定起始和结束时间查询应用使用时长统计信息。 |
+| function queryCurrentBundleActiveStates(begin:number, end:number, callback:AsyncCallback&lt;Array&lt;BundleActiveState&gt;&gt;):void | 通过指定起始和结束时间查询当前应用的事件集合。 |
+| function queryBundleStateInfoByInterval(byInterval:intervalType, begin:number, end:number, callback:AsyncCallback&lt;Array&lt;BundleStateInfo&gt;&gt;):void | 通过指定时间段间隔（天、周、月、年）查询应用使用时长统计信息。 |
+| function queryAppUsagePriorityGroup(callback:AsyncCallback&lt;number&gt;):void | 查询（返回）当前调用者应用的使用优先级群组。 |
+| function isIdleState(bundleName:string, callback:AsyncCallback&lt;boolean&gt;):void | 判断指定Bundle Name的应用当前是否是空闲状态。 |
 
 ## 开发步骤
 
-1. 在config.json文件中配置设备使用信息统计权限
+1. 在config.json文件中配置设备使用信息统计权限。
 
     ```json
     "module": {
@@ -31,7 +38,7 @@ ohos.permission.BUNDLE_ACTIVE_INFO
     }
     ```
 
-2. 通过指定起始和结束时间查询所有应用的事件集合
+2. 通过指定起始和结束时间查询所有应用的事件集合。
 
     ```js
     import stats from '@ohos.usagestatskit'
@@ -65,7 +72,7 @@ ohos.permission.BUNDLE_ACTIVE_INFO
     }, 500);
     ```
 
-3. 通过指定起始和结束时间查询应用使用时长统计信息
+3. 通过指定起始和结束时间查询应用使用时长统计信息。
 
     ```js
     import stats from '@ohos.usagestatskit'
@@ -101,7 +108,7 @@ ohos.permission.BUNDLE_ACTIVE_INFO
     }, 500);
     ```
 
-4. 通过指定起始和结束时间查询当前应用的事件集合
+4. 通过指定起始和结束时间查询当前应用的事件集合。
 
     ```js
     import stats from '@ohos.usagestatskit'
@@ -135,7 +142,7 @@ ohos.permission.BUNDLE_ACTIVE_INFO
     }, 500);
     ```
 
-5. 通过指定时间段间隔（天、周、月、年）查询应用使用时长统计信息
+5. 通过指定时间段间隔（天、周、月、年）查询应用使用时长统计信息。
 
     ```js
     import stats from '@ohos.usagestatskit'
@@ -169,7 +176,7 @@ ohos.permission.BUNDLE_ACTIVE_INFO
     }, 500);
     ```
 
-6. 查询（返回）当前调用者应用的使用优先级群组
+6. 查询（返回）当前调用者应用的使用优先级群组。
 
     ```js
     import stats from '@ohos.usagestatskit'
@@ -193,7 +200,7 @@ ohos.permission.BUNDLE_ACTIVE_INFO
     }, 500);
     ```
 
-7. 判断指定Bundle Name的应用当前是否是空闲状态
+7. 判断指定Bundle Name的应用当前是否是空闲状态。
 
     ```js
     import stats from '@ohos.usagestatskit'

@@ -11,11 +11,10 @@ import stats from '@ohos.usagestatskit'
 ```
 
 ## usagestatskit.isIdleState
+isIdleState(bundleName: string, callback: AsyncCallback<boolean>): void
+
 - **系统能力**：
 SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
-
-- **接口**：
-isIdleState(bundleName: string, callback: AsyncCallback<boolean>): void
 
 - **说明**：
 判断指定bundleName的应用当前是否是空闲状态，使用Callback形式返回。
@@ -41,11 +40,10 @@ isIdleState(bundleName: string, callback: AsyncCallback<boolean>): void
   ```
 
 ## usagestatskit.isIdleState
+isIdleState(bundleName: string): Promise<boolean>;
+
 - **系统能力**：
 SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
-
-- **接口**：
-isIdleState(bundleName: string): Promise<boolean>;
 
 - **说明**：
 判断指定bundleName的应用当前是否是空闲状态，使用Promise形式返回。
@@ -73,11 +71,10 @@ isIdleState(bundleName: string): Promise<boolean>;
   ```
 
 ## usagestatskit.queryAppUsagePriorityGroup
+queryAppUsagePriorityGroup(callback: AsyncCallback<number>): void
+
 - **系统能力**：
 SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
-
-- **接口**：
-queryAppUsagePriorityGroup(callback: AsyncCallback<number>): void
 
 - **说明**：
 查询（返回）当前调用者应用的使用优先级群组，使用Callback形式返回。
@@ -101,11 +98,10 @@ queryAppUsagePriorityGroup(callback: AsyncCallback<number>): void
   ```
 
 ## usagestatskit.queryAppUsagePriorityGroup
+queryAppUsagePriorityGroup(): Promise<number>
+
 - **系统能力**：
 SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
-
-- **接口**：
-queryAppUsagePriorityGroup(): Promise<number>
 
 - **说明**：
 查询（返回）当前调用者应用的使用优先级群组，使用Promise形式返回。
@@ -127,11 +123,10 @@ queryAppUsagePriorityGroup(): Promise<number>
   ```
 
 ## usagestatskit.queryBundleStateInfos
+queryBundleStateInfos(begin: number, end: number, callback: AsyncCallback<BundleActiveInfoResponse>): void
+
 - **系统能力**：
 SystemCapability.ResourceSchedule.UsageStatistics.App
-
-- **接口**：
-queryBundleStateInfos(begin: number, end: number, callback: AsyncCallback<BundleActiveInfoResponse>): void
 
 - **说明**：
 通过指定起始和结束时间查询应用使用时长统计信息，使用Callback形式返回。
@@ -163,11 +158,10 @@ queryBundleStateInfos(begin: number, end: number, callback: AsyncCallback<Bundle
   ```
 
 ## usagestatskit.queryBundleStateInfos
+queryBundleStateInfos(begin: number, end: number): Promise<BundleActiveInfoResponse>
+
 - **系统能力**：
 SystemCapability.ResourceSchedule.UsageStatistics.App
-
-- **接口**：
-queryBundleStateInfos(begin: number, end: number): Promise<BundleActiveInfoResponse>
 
 - **说明**：
 通过指定起始和结束时间查询应用使用时长统计信息，使用Promise形式返回。
@@ -202,11 +196,10 @@ queryBundleStateInfos(begin: number, end: number): Promise<BundleActiveInfoRespo
   ```
 
 ## usagestatskit.queryBundleStateInfoByInterval
+queryBundleStateInfoByInterval(byInterval: IntervalType, begin: number, end: number, callback: AsyncCallback<Array<BundleStateInfo>>): void
+
 - **系统能力**：
 SystemCapability.ResourceSchedule.UsageStatistics.App
-
-- **接口**：
-queryBundleStateInfoByInterval(byInterval: IntervalType, begin: number, end: number, callback: AsyncCallback<Array<BundleStateInfo>>): void
 
 - **说明**：
 通过指定时间段间隔（天、周、月、年）查询应用使用时长统计信息，使用Callback形式返回。
@@ -238,11 +231,10 @@ queryBundleStateInfoByInterval(byInterval: IntervalType, begin: number, end: num
   ```
 
 ## usagestatskit.queryBundleStateInfoByInterval
+queryBundleStateInfoByInterval(byInterval: IntervalType, begin: number, end: number): Promise<Array<BundleStateInfo>>
+
 - **系统能力**：
 SystemCapability.ResourceSchedule.UsageStatistics.App
-
-- **接口**：
-queryBundleStateInfoByInterval(byInterval: IntervalType, begin: number, end: number): Promise<Array<BundleStateInfo>>
 
 - **说明**：
 通过指定时间段间隔（天、周、月、年）查询应用使用时长统计信息，使用Promise形式返回。
@@ -277,11 +269,10 @@ queryBundleStateInfoByInterval(byInterval: IntervalType, begin: number, end: num
   ```
 
 ## usagestatskit.queryBundleActiveStates
+queryBundleActiveStates(begin: number, end: number, callback: AsyncCallback<Array<BundleActiveState>>): void
+
 - **系统能力**：
 SystemCapability.ResourceSchedule.UsageStatistics.App
-
-- **接口**：
-queryBundleActiveStates(begin: number, end: number, callback: AsyncCallback<Array<BundleActiveState>>): void
 
 - **说明**：
 通过指定起始和结束时间查询所有应用的事件集合，使用Callback形式返回。
@@ -312,11 +303,10 @@ queryBundleActiveStates(begin: number, end: number, callback: AsyncCallback<Arra
   ```
 
 ## usagestatskit.queryBundleActiveStates
+queryBundleActiveStates(begin: number, end: number): Promise<Array<BundleActiveState>>
+
 - **系统能力**：
 SystemCapability.ResourceSchedule.UsageStatistics.App
-
-- **接口**：
-queryBundleActiveStates(begin: number, end: number): Promise<Array<BundleActiveState>>
 
 - **说明**：
 通过指定起始和结束时间查询所有应用的事件集合，使用Promise形式返回。
@@ -350,11 +340,10 @@ queryBundleActiveStates(begin: number, end: number): Promise<Array<BundleActiveS
   ```
 
 ## usagestatskit.queryCurrentBundleActiveStates
+queryCurrentBundleActiveStates(begin: number, end: number, callback: AsyncCallback<Array<BundleActiveState>>): void
+
 - **系统能力**：
 SystemCapability.ResourceSchedule.UsageStatistics.App
-
-- **接口**：
-queryCurrentBundleActiveStates(begin: number, end: number, callback: AsyncCallback<Array<BundleActiveState>>): void
 
 - **说明**：
 通过指定起始和结束时间查询当前应用的事件集合，使用Callback形式返回。
@@ -385,11 +374,10 @@ queryCurrentBundleActiveStates(begin: number, end: number, callback: AsyncCallba
   ```
 
 ## usagestatskit.queryCurrentBundleActiveStates
+queryCurrentBundleActiveStates(begin: number, end: number): Promise<Array<BundleActiveState>>
+
 - **系统能力**：
 SystemCapability.ResourceSchedule.UsageStatistics.App
-
-- **接口**：
-queryCurrentBundleActiveStates(begin: number, end: number): Promise<Array<BundleActiveState>>
 
 - **说明**：
 通过指定起始和结束时间查询当前应用的事件集合，使用Promise形式返回。
