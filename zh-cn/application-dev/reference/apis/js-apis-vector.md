@@ -548,6 +548,7 @@ vector.trimToCurrentLength(2);
 ### toString
 
 toString(): string
+
 用","将Vector实例中的元素按顺序拼接成字符串。
 
 **返回值：**
@@ -570,6 +571,7 @@ vector.toSting();
 ### copyToArray
 
 copyToArray(array: Array&lt;T&gt;): void;
+
 将Vector实例中的元素按照下标复制到指定数组。
 
 **参数：**
@@ -593,6 +595,7 @@ vector.copyToArray(array);
 ### getFirstElement
 
 getFirstElement(): T
+
 获取实例中的第一个元素。
 
 **返回值：**
@@ -615,6 +618,7 @@ vector.getFirstElement();
 ### getLastElement
 
 getLastElement(): T
+
 获取Vector实例中的最后一个元素。
 
 **返回值：**
@@ -698,6 +702,7 @@ vector.getIndexFrom(4, 3);
 
 ### setLength
 setLength(newSize: number): void;
+
 设置Vector实例的元素个数。
 
 **参数：**

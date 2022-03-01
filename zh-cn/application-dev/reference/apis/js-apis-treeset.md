@@ -310,7 +310,7 @@ treeSet.clear();
 
 values(): IterableIterator&lt;T&gt;
 
-返回包含此映射中包含的键的新迭代器对象。
+返回包含此映射中包含的键值的新迭代器对象。
 
 **返回值：**
 
@@ -369,7 +369,7 @@ treeSet.forEach((value, key) => {
 
 entries(): IterableIterator<[T, T]>
 
-返回包含此映射中包含的键的新迭代器对象。
+返回包含此映射中包含的元素的新迭代器对象。
 
 **返回值：**
 
