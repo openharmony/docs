@@ -59,6 +59,7 @@
         - [ImageAnimator](ts-basic-components-imageanimator.md)
         - [Progress](ts-basic-components-progress.md)
         - [QRCode](ts-basic-components-qrcode.md)
+        - [Radio](ts-basic-components-radio.md)
         - [Rating](ts-basic-components-rating.md)
         - [Span](ts-basic-components-span.md)
         - [Slider](ts-basic-components-slider.md)
