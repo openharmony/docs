@@ -1,4 +1,4 @@
-# Development Guidelines on HiLog\_Lite<a name="EN-US_TOPIC_0000001185815838"></a>
+# HiLog\_Lite Development<a name="EN-US_TOPIC_0000001185815838"></a>
 
 ## Overview<a name="section775017517390"></a>
 
