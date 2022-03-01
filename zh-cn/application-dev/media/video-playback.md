@@ -30,9 +30,20 @@
 
 VideoPlayer支持的url媒体源输入类型可参考：[url属性说明](../reference/apis/js-apis-media.md#videoplayer_属性)
 
+Xcomponent创建方法可参考：[Xcomponent创建方法](#Xcomponent创建方法)
+
 ```js
+import media from '@ohos.multimedia.media'
+import fileIO from '@ohos.fileio'
+
 let videoPlayer = undefined; // 用于保存createVideoPlayer创建的对象
 let surfaceID = undefined; // 用于保存Xcomponent接口返回的surfaceID
+
+// 调用Xcomponent的接口用于获取surfaceID，并保存在surfaceID变量中，该接口由XComponent组件默认加载，非主动调用
+LoadXcomponent() {
+	surfaceID = this.$element('Xcomponent').getXComponentSurfaceId();
+    console.info('LoadXcomponent surfaceID is' + surfaceID);
+}
 
 // 函数调用发生错误时用于上报错误信息
 function failureCallback(error) {
@@ -67,10 +78,19 @@ await media.createVideoPlayer().then((video) => {
     }
 }, failureCallback).catch(catchCallback);
 
-// 用户选择视频设置url
-videoPlayer.url = 'file:///data/data/ohos.xxx.xxx/files/test.mp4';
+// 用户选择视频设置fd(本地播放)
+let fdPath = 'fd://'
+let path = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp4';
+await fileIO.open(path).then(fdNumber) => {
+   fdPath = fdPath + '' + fdNumber;
+   console.info('open fd sucess fd is' + fdPath);
+}, (err) => {
+   console.info('open fd failed err is' + err);
+}),catch((err) => {
+   console.info('open fd failed err is' + err);
+});
 
-// 该处需要调用Xcomponent的接口用于获取surfaceID，并保存在surfaceID变量中
+videoPlayer.url = fdPath;
 
 // 设置surfaceID用于显示视频画面
 await videoPlayer.setDisplaySurface(surfaceID).then(() => {
@@ -147,8 +167,17 @@ surfaceID = undefined;
 ### 正常播放场景
 
 ```js
+import media from '@ohos.multimedia.media'
+import fileIO from '@ohos.fileio'
+
 let videoPlayer = undefined; // 用于保存createVideoPlayer创建的对象
 let surfaceID = undefined; // 用于保存Xcomponent接口返回的surfaceID
+
+// 调用Xcomponent的接口用于获取surfaceID，并保存在surfaceID变量中，该接口由XComponent组件默认加载，非主动调用
+LoadXcomponent() {
+	surfaceID = this.$element('Xcomponent').getXComponentSurfaceId();
+    console.info('LoadXcomponent surfaceID is' + surfaceID);
+}
 
 // 函数调用发生错误时用于上报错误信息
 function failureCallback(error) {
@@ -191,10 +220,19 @@ await media.createVideoPlayer().then((video) => {
 // 设置事件回调
 SetCallBack(videoPlayer);
 
-// 用户选择视频设置url
-videoPlayer.url = 'file:///data/data/ohos.xxx.xxx/files/test.mp4';
+// 用户选择视频设置fd(本地播放)
+let fdPath = 'fd://'
+let path = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp4';
+await fileIO.open(path).then(fdNumber) => {
+   fdPath = fdPath + '' + fdNumber;
+   console.info('open fd sucess fd is' + fdPath);
+}, (err) => {
+   console.info('open fd failed err is' + err);
+}),catch((err) => {
+   console.info('open fd failed err is' + err);
+});
 
-// 该处需要调用Xcomponent的接口用于获取surfaceID，并保存在surfaceID变量中
+videoPlayer.url = fdPath;
 
 // 设置surfaceID用于显示视频画面
 await videoPlayer.setDisplaySurface(surfaceID).then(() => {
@@ -215,8 +253,17 @@ await videoPlayer.play().then(() => {
 ### 切视频场景
 
 ```js
+import media from '@ohos.multimedia.media'
+import fileIO from '@ohos.fileio'
+
 let videoPlayer = undefined; // 用于保存createVideoPlayer创建的对象
 let surfaceID = undefined; // 用于保存Xcomponent接口返回的surfaceID
+
+// 调用Xcomponent的接口用于获取surfaceID，并保存在surfaceID变量中，该接口由XComponent组件默认加载，非主动调用
+LoadXcomponent() {
+	surfaceID = this.$element('Xcomponent').getXComponentSurfaceId();
+    console.info('LoadXcomponent surfaceID is' + surfaceID);
+}
 
 // 函数调用发生错误时用于上报错误信息
 function failureCallback(error) {
@@ -259,10 +306,19 @@ await media.createVideoPlayer().then((video) => {
 // 设置事件回调
 SetCallBack(videoPlayer);
 
-// 用户选择视频设置url
-videoPlayer.url = 'file:///data/data/ohos.xxx.xxx/files/test.mp4';
+// 用户选择视频设置fd(本地播放)
+let fdPath = 'fd://'
+let path = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp4';
+await fileIO.open(path).then(fdNumber) => {
+   fdPath = fdPath + '' + fdNumber;
+   console.info('open fd sucess fd is' + fdPath);
+}, (err) => {
+   console.info('open fd failed err is' + err);
+}),catch((err) => {
+   console.info('open fd failed err is' + err);
+});
 
-// 该处需要调用Xcomponent的接口用于获取surfaceID，并保存在surfaceID变量中
+videoPlayer.url = fdPath;
 
 // 设置surfaceID用于显示视频画面
 await videoPlayer.setDisplaySurface(surfaceID).then(() => {
@@ -285,7 +341,19 @@ await videoPlayer.reset().then(() => {
     console.info('reset success');
 }, failureCallback).catch(catchCallback);
 
-videoPlayer.url = 'file:///data/data/ohos.xxx.xxx/files/next.mp4';
+// 用户选择视频设置fd(本地播放)
+let fdNextPath = 'fd://'
+let nextPath = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/02.mp4';
+await fileIO.open(nextPath).then(fdNumber) => {
+   fdNextPath = fdNextPath + '' + fdNumber;
+   console.info('open fd sucess fd is' + fdNextPath);
+}, (err) => {
+   console.info('open fd failed err is' + err);
+}),catch((err) => {
+   console.info('open fd failed err is' + err);
+});
+
+videoPlayer.url = fdNextPath;
 
 // 设置surfaceID用于显示视频画面
 await videoPlayer.setDisplaySurface(surfaceID).then(() => {
@@ -306,8 +374,17 @@ await videoPlayer.play().then(() => {
 ### 单个视频循环场景
 
 ```js
+import media from '@ohos.multimedia.media'
+import fileIO from '@ohos.fileio'
+
 let videoPlayer = undefined; // 用于保存createVideoPlayer创建的对象
 let surfaceID = undefined; // 用于保存Xcomponent接口返回的surfaceID
+
+// 调用Xcomponent的接口用于获取surfaceID，并保存在surfaceID变量中，该接口由XComponent组件默认加载，非主动调用
+LoadXcomponent() {
+	surfaceID = this.$element('Xcomponent').getXComponentSurfaceId();
+    console.info('LoadXcomponent surfaceID is' + surfaceID);
+}
 
 // 函数调用发生错误时用于上报错误信息
 function failureCallback(error) {
@@ -350,10 +427,19 @@ await media.createVideoPlayer().then((video) => {
 // 设置事件回调
 SetCallBack(videoPlayer);
 
-// 用户选择视频设置url
-videoPlayer.url = 'file:///data/data/ohos.xxx.xxx/files/test.mp4';
+// 用户选择视频设置fd(本地播放)
+let fdPath = 'fd://'
+let path = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp4';
+await fileIO.open(path).then(fdNumber) => {
+   fdPath = fdPath + '' + fdNumber;
+   console.info('open fd sucess fd is' + fdPath);
+}, (err) => {
+   console.info('open fd failed err is' + err);
+}),catch((err) => {
+   console.info('open fd failed err is' + err);
+});
 
-// 该处需要调用Xcomponent的接口用于获取surfaceID，并保存在surfaceID变量中
+videoPlayer.url = fdPath;
 
 // 设置surfaceID用于显示视频画面
 await videoPlayer.setDisplaySurface(surfaceID).then(() => {
@@ -372,4 +458,16 @@ videoPlayer.loop = true;
 await videoPlayer.play().then(() => {
     console.info('play success');
 }, failureCallback).catch(catchCallback);
+```
+
+### Xcomponent创建方法
+
+```js
+播放视频中获取surfaceID依赖了Xcomponent,需要创建一个和xxx.js同名的xxx.hml文件,xxx.hml里面需要添加如下代码：
+<xcomponent id = 'Xcomponent'
+	  if = "{{isFlush}}" // 刷新surfaceID，isFlush赋值false再赋值true为一次刷新，会主动再次加载LoadXcomponet获取新的surfaceID
+      type = 'surface'
+	  onload = 'LoadXcomponet' // 默认加载接口
+      style = "wodth:720px;height:480px;border-color:red;border-width:5px;"> // 设置窗口宽高等属性
+</xcomponent>
 ```
