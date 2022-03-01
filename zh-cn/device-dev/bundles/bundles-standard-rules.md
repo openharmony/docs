@@ -182,7 +182,7 @@ hpm install
 username@server MINGW64 /f/showcase/demo/demo
 $ hpm list
 +--demo@1.0.0
-| +--@huawei/media@1.0.2
+| +--@demo/media@1.0.2
 | +--@demo/sport_hi3518ev300_liteos_a@1.0.0
 | | +--@demo/app@4.0.1
 | | | +--@demo/build@4.0.1
