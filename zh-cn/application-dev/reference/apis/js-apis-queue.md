@@ -60,12 +60,13 @@ add(element: T): boolean
 
 ```
 let queue = new Queue();
-queue.add("a");
+let result = queue.add("a");
+let result1 = queue.add(1);
 queue.add(1);
 let b = [1, 2, 3];
 queue.add(b);
 let c = {name : "lala", age : "13"};
-queue.add(false);
+let result3 = queue.add(c);
 ```
 
 ### pop
@@ -89,7 +90,7 @@ queue.add(4);
 queue.add(5);
 queue.add(2);
 queue.add(4);
-queue.pop();
+let result = queue.pop();
 ```
 
 ### getFirst
@@ -112,11 +113,11 @@ queue.add(2);
 queue.add(4);
 queue.add(5);
 queue.add(2);
-queue.getFirst();
+let result = queue.getFirst();
 ```
 
 ### forEach
-forEach(callbackfn: (value: T, index?: number, queue?: Queue&lt;T&gt;) => void,
+forEach(callbackfn: (value: T, index?: number, Queue?: Queue&lt;T&gt;) => void,
 thisArg?: Object): void
 
 通过回调函数来遍历Queue实例对象上的元素以及元素对应的下标。
@@ -132,9 +133,9 @@ callbackfn的参数说明：
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | T | 是 | 当前遍历到的元素 |
-| index | number | 否 | 当前遍历到的下标值 |
-| queue | Queue&lt;T&gt; | 否 | 当前调用forEach方法的实例对象 |
+| value | T | 是 | 当前遍历到的元素。 |
+| index | number | 否 | 当前遍历到的下标值。 |
+| Queue | Queue&lt;T&gt; | 否 | 当前调用forEach方法的实例对象。 |
 
 **示例：**
 
@@ -161,7 +162,7 @@ queue.forEach((value, index) => {
 
 | 类型 | 说明 |
 | -------- | -------- |
-| IterableIterator&lt;T&gt; | 返回一个迭代器 |
+| IterableIterator&lt;T&gt; | 返回一个迭代器。 |
 
 **示例：**
 ```

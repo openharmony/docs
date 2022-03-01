@@ -53,7 +53,7 @@ isEmpty(): boolean
 
 ```
 const hashMap = new HashMap();
-hashMap.isEmpty();
+let result = hashMap.isEmpty();
 ```
 
 
@@ -79,9 +79,9 @@ hasKey(key: K): boolean
 
 ```
 let hashMap = new HashMap();
-hashMap.hasKey("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
+let result = hashMap.hasKey("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 hashMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-hashMap.hasKey("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
+let result1 = hashMap.hasKey("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 ```
 
 
@@ -107,9 +107,9 @@ hasValue(value: V): boolean
 
 ```
 let hashMap = new HashMap();
-hashMap.hasValue(123);
+let result = hashMap.hasValue(123);
 hashMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-hashMap.hasValue(123);
+let result1 = hashMap.hasValue(123);
 ```
 
 
@@ -137,7 +137,7 @@ get(key: K): V
 let hashMap = new HashMap();
 hashMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 hashMap.set("sdfs", 356);
-hashMap.get("sdfs");
+let result = hashMap.get("sdfs");
 ```
 
 
@@ -145,13 +145,13 @@ hashMap.get("sdfs");
 
 setAll(map: HashMap<K, V>): void
 
-将一个HashMap中的所有元素组添加到另一个hashmap中。
+将一个HashMap中的所有元素组添加到另一个hashMap中。
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| map | HashMap<K, V> | 是 | 被添加元素的hashmap。 |
+| map | HashMap<K, V> | 是 | 被添加元素的hashMap。 |
 
 **示例：**
 
@@ -181,13 +181,13 @@ set(key: K, value: V): Object
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Object | 返回添加后的hashmap。 |
+| Object | 返回添加后的hashMap。 |
 
 **示例：**
 
 ```
 let hashMap = new HashMap();
-hashMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
+let result = hashMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 ```
 
 
@@ -195,13 +195,13 @@ hashMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 
 remove(key: K): V
 
-删除指定的元素。
+删除指定key所对应元素。。
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| key | K | 是 | 依据key指定删除的元素。 |
+| key | K | 是 | 指定key。 |
 
 **返回值：**
 
@@ -215,7 +215,7 @@ remove(key: K): V
 let hashMap = new HashMap();
 hashMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 hashMap.set("sdfs", 356);
-hashMap.remove("sdfs");
+let result = hashMap.remove("sdfs");
 ```
 
 
@@ -239,7 +239,7 @@ hashMap.clear();
 
 keys(): IterableIterator&lt;K&gt;
 
-返回包含此映射中包含的键的新迭代器对象。
+返回包含此映射中包含的键名的新迭代器对象。
 
 **返回值：**
 
@@ -291,7 +291,7 @@ while(temp != undefined) {
 
 ### replace
 
-replace(key: K, value: V): boolean
+replace(key: K, newValue: V): boolean
 
 对HashMap中一组数据进行更新（替换）。
 
@@ -300,7 +300,7 @@ replace(key: K, value: V): boolean
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | key | K | 是 | 依据key指定替换的元素。 |
-| value | V | 是 | 成员数据的新值。 |
+| newValue | V | 是 | 替换成员数据的值。 |
 
 **返回值：**
 
@@ -313,13 +313,13 @@ replace(key: K, value: V): boolean
 ```
 let hashMap = new HashMap();
 hashMap.set("sdfs", 123);
-hashMap.replace("sdfs", 357);
+let result = hashMap.replace("sdfs", 357);
 ```
 
 
 ### forEach
 
-forEach(callbackfn: (value: V, key?: K, hashMap?: HashMap<K, V>) => void, thisArg?: Object): void
+forEach(callbackfn: (value: V, key?: K, map?: HashMap<K, V>) => void, thisArg?: Object): void
 
 通过回调函数来遍历HashMap实例对象上的元素以及元素对应的下标。
 
@@ -335,7 +335,7 @@ callbackfn的参数说明：
 | -------- | -------- | -------- | -------- |
 | value | V | 是 | 当前遍历到的元素键值对的值。 |
 | key | K | 是 | 当前遍历到的元素键值对的键。 |
-| hashMap | HashMap<K, V> | 否 | 当前调用forEach方法的实例对象。 |
+| map | HashMap<K, V> | 否 | 当前调用forEach方法的实例对象。 |
 
 **示例：**
 
@@ -353,7 +353,7 @@ hashMap.forEach((value, key) => {
 
 entries(): IterableIterator<[K, V]>
 
-返回包含此映射中包含的元素的新迭代器对象。
+返回包含此映射中包含的键值对的新迭代器对象。
 
 **返回值：**
 

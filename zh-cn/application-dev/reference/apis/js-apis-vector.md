@@ -48,24 +48,24 @@ add(element: T): boolean
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| element | T | 是 | 添加进去的元素 |
+| element | T | 是 | 添加进去的元素。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 插入成功返回true,失败返回false |
+| boolean | 插入成功返回true,失败返回false。 |
 
 **示例：**
 
 ```
 let vector = new Vector();
-vector.add("a");
-vector.add(1);
+let result = vector.add("a");
+let result1 = vector.add(1);
 let b = [1, 2, 3];
 vector.add(b);
 let c = {name : "lala", age : "13"};
-vector.add(false);
+let result3 = vector.add(c);
 ```
 
 ### insert
@@ -78,8 +78,8 @@ insert(element: T, index: number): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| element | T | 是 | 被插入的元素 |
-| index | number | 是 | 被插入的位置索引 |
+| element | T | 是 | 被插入的元素。 |
+| index | number | 是 | 被插入的位置索引。 |
 
 **示例：**
 
@@ -100,21 +100,21 @@ has(element: T): boolean
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| element | T | 是 | 指定的元素 |
+| element | T | 是 | 指定的元素。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 是否包含指定元素 |
+| boolean | 是否包含指定元素。 |
 
 **示例：**
 
 ```
 let vector = new Vector();
-vector.has("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
+let result = vector.has("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 vector.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-vector.has("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
+let result = vector.has("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 ```
 
 ### getIndexOf
@@ -127,13 +127,13 @@ getIndexOf(element: T): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| element | T | 是 | 指定的元素 |
+| element | T | 是 | 指定的元素。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 返回指定元素第一次出现时的下标值，查找失败返回-1 |
+| number | 返回指定元素第一次出现时的下标值，查找失败返回-1。 |
 
 **示例：**
 
@@ -146,7 +146,7 @@ vector.add(2);
 vector.add(1);
 vector.add(2);
 vector.add(4);
-vector.getIndexOf(2);
+let result = vector.getIndexOf(2);
 ```
 
 ### getLastIndexOf
@@ -178,7 +178,7 @@ vector.add(2);
 vector.add(1);
 vector.add(2);
 vector.add(4);
-vector.getLastIndexOf(2);
+let result = vector.getLastIndexOf(2);
 ```
 
 ### removeByIndex
@@ -208,7 +208,7 @@ vector.add(4);
 vector.add(5);
 vector.add(2);
 vector.add(4);
-vector.removeByIndex(2);
+let result = vector.removeByIndex(2);
 ```
 
 ### remove
@@ -237,7 +237,7 @@ vector.add(2);
 vector.add(4);
 vector.add(5);
 vector.add(4);
-vector.remove(2);
+let result = vector.remove(2);
 ```
 
 ### removeByRange
@@ -282,9 +282,9 @@ callbackfn的参数说明：
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | T | 是 | 当前遍历到的元素 |
-| index | number | 否 | 当前遍历到的下标值 |
-| vector | Vector&lt;T&gt; | 否 | 当前调用replaceAllElements方法的实例对象 |
+| value | T | 是 | 当前遍历到的元素。 |
+| index | number | 否 | 当前遍历到的下标值。 |
+| vector | Vector&lt;T&gt; | 否 | 当前调用replaceAllElements方法的实例对象。 |
 
 **示例：**
 
@@ -377,8 +377,8 @@ subVector(fromIndex: number, toIndex: number): Vector&lt;T&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| fromIndex | number | 是 | 起始下标 |
-| toIndex | number | 是 | 终止下标 |
+| fromIndex | number | 是 | 起始下标。 |
+| toIndex | number | 是 | 终止下标。 |
 
 **返回值：**
 
@@ -394,9 +394,9 @@ vector.add(2);
 vector.add(4);
 vector.add(5);
 vector.add(4);
-vector.subVector(2,4);
-vector.subVector(4,3);
-vector.subVector(2,6);
+let result = vector.subVector(2,4);
+let result1 = vector.subVector(4,3);
+let result2 = vector.subVector(2,6);
 
 ```
 
@@ -419,15 +419,13 @@ vector.clear();
 ### clone
 clone(): Vector&lt;T&gt;
 
-克隆一个与Vector相同的实例，并返回克隆后的实例。
-
-修改克隆后的实例并不会影响原实例。
+克隆一个与Vector相同的实例，并返回克隆后的实例。修改克隆后的实例并不会影响原实例。
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Vector&lt;T&gt; | 返回Vector对象实例 |
+| Vector&lt;T&gt; | 返回Vector对象实例。 |
 
 **示例：**
 
@@ -437,7 +435,7 @@ vector.add(2);
 vector.add(4);
 vector.add(5);
 vector.add(4);
-vector.clone();
+let result = vector.clone();
 ```
 
 ### getCapacity
@@ -459,7 +457,7 @@ vector.add(2);
 vector.add(4);
 vector.add(5);
 vector.add(4);
-vector.getCapacity();
+let result = vector.getCapacity();
 ```
 
 ### convertToArray
@@ -481,7 +479,7 @@ vector.add(2);
 vector.add(4);
 vector.add(5);
 vector.add(4);
-vector.convertToArray();
+let result = vector.convertToArray();
 ```
 
 ### isEmpty
@@ -503,7 +501,7 @@ vector.add(2);
 vector.add(4);
 vector.add(5);
 vector.add(4);
-vector.isEmpty();
+let result = vector.isEmpty();
 ```
 
 ### increaseCapacityTo
@@ -565,13 +563,12 @@ vector.add(2);
 vector.add(4);
 vector.add(5);
 vector.add(4);
-vector.toSting();
+let result = vector.toSting();
 ```
 
 ### copyToArray
 
-copyToArray(array: Array&lt;T&gt;): void;
-
+copyToArray(array: Array&lt;T&gt;): void
 将Vector实例中的元素按照下标复制到指定数组。
 
 **参数：**
@@ -589,7 +586,7 @@ vector.add(4);
 vector.add(5);
 vector.add(4);
 let array = ["a", "b", "c", "d", "e", "f"];
-vector.copyToArray(array);
+let result = vector.copyToArray(array);
 ```
 
 ### getFirstElement
@@ -612,7 +609,7 @@ vector.add(2);
 vector.add(4);
 vector.add(5);
 vector.add(4);
-vector.getFirstElement();
+let result = vector.getFirstElement();
 ```
 
 ### getLastElement
@@ -635,7 +632,7 @@ vector.add(2);
 vector.add(4);
 vector.add(5);
 vector.add(4);
-vector.getLastElement();
+let result = vector.getLastElement();
 ```
 
 ### getLastIndexFrom
@@ -666,12 +663,12 @@ vector.add(4);
 vector.add(5);
 vector.add(4);
 vector.add("a");
-vector.getLastIndexFrom(4,3);
+let result = vector.getLastIndexFrom(4,3);
 ```
 
 ### getIndexFrom
 
-getIndexFrom(element: T, index: number): number;
+getIndexFrom(element: T, index: number): number
 
 从指定索引向前搜索，返回该元素的下标索引。
 
@@ -697,11 +694,11 @@ vector.add(4);
 vector.add(5);
 vector.add(4);
 vector.add("a");
-vector.getIndexFrom(4, 3);
+let result = vector.getIndexFrom(4, 3);
 ```
 
 ### setLength
-setLength(newSize: number): void;
+setLength(newSize: number): void
 
 设置Vector实例的元素个数。
 
@@ -722,6 +719,59 @@ vector.add(4);
 vector.setLength(8);
 vector.setLength(2);
 ```
+
+### get
+get(index: number): T 
+根据下标值获取Vector实例中的元素。
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | index | number | 是 | 查找的下标值。 |
+
+**返回值：**
+
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | T | 返回获取到的元素。 |
+
+**示例：**
+
+  ```
+  let vector = new Vector();
+  vector.add(2);
+  vector.add(4);
+  vector.add(5);
+  vector.add(4);
+  let result = vector.get(2);
+  ```
+### set
+set(index: number, element: T): T
+替换指定下标对应的元素。
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | index | number | 是 | 指定下标。 |
+
+**返回值：**
+
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | T | 返回替换后的元素。 |
+
+**示例：**
+
+  ```
+  let vector = new Vector();
+  vector.add(2);
+  vector.add(4);
+  vector.add(5);
+  vector.add(4);
+  let result = vector.set(2, "A");
+  ```
 
 ### [Symbol.iterator]
 

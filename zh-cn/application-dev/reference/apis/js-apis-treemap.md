@@ -21,7 +21,7 @@ SystemCapability.Utils.Lang
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| length | number | 是 | 否 | TreeMap的元素个数 |
+| length | number | 是 | 否 | TreeMap的元素个数。 |
 
 
 ### constructor
@@ -59,7 +59,7 @@ isEmpty(): boolean;
 
 ```
 const treeMap = new TreeMap();
-treeMap.isEmpty();
+let result = treeMap.isEmpty();
 ```
 
 
@@ -73,21 +73,21 @@ hasKey(key: K): boolean;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| key | K | 是 | 指定元素 |
+| key | K | 是 | 指定key |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 包含指定元素返回true，否则返回false。 |
+| boolean | 包含指定key返回true，否则返回false。 |
 
 **示例：**
 
 ```
 let treeMap = new TreeMap();
-treeMap.hasKey("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
+let result = treeMap.hasKey("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 treeMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-treeMap.hasKey("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
+let result1 = treeMap.hasKey("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 ```
 
 
@@ -95,7 +95,7 @@ treeMap.hasKey("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 
 hasValue(value: V): boolean
 
-判断此容器中是否含有该指定value。
+判断此容器中是否含有该指定元素。
 
 **参数：**
 
@@ -113,9 +113,9 @@ hasValue(value: V): boolean
 
 ```
 let treeMap = new TreeMap();
-treeMap.hasValue(123);
+let result = treeMap.hasValue(123);
 treeMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-treeMap.hasValue(123);
+let result1 = treeMap.hasValue(123);
 ```
 
 
@@ -129,7 +129,7 @@ get(key: K): V
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| key | K | 是 | 查找的指定key。 |
+| key | K | 是 | 指定key。 |
 
 **返回值：**
 
@@ -143,7 +143,7 @@ get(key: K): V
 let treeMap = new TreeMap();
 treeMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 treeMap.set("sdfs", 356);
-treeMap.get("sdfs");
+let result = treeMap.get("sdfs");
 ```
 
 
@@ -151,13 +151,13 @@ treeMap.get("sdfs");
 
 getFirstKey(): K;
 
-获取容器中排序第一的数据。
+获取容器中排序第一的key。
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| K | 返回排序第一的数据。 |
+| K | 返回排序第一的key。 |
 
 **示例：**
 
@@ -173,13 +173,13 @@ let result = treeMap.getFirstKey();
 
 getLastKey(): K;
 
-获取容器中排序最后的数据。
+获取容器中排序最后的key。
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| K | 返回排序最后的数据 |
+| K | 返回排序最后的key |
 
 **示例：**
 
@@ -195,13 +195,13 @@ let result = treeMap.getLastKey();
 
 setAll(map: TreeMap<K, V>): void
 
-将一个treemap中的所有元素组添加到另一个treemap中。
+将一个treemap中的所有元素组添加到另一个treeMap中。
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| map | TreeMap<K, V> | 是 | 被添加元素的TreeMap。 |
+| map | TreeMap<K, V> | 是 | 被添加元素的treeMap。 |
 
 **示例：**
 
@@ -230,7 +230,7 @@ set(key: K, value: V): Object
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Object | 返回添加后的treemap |
+| Object | 返回添加后的treeMap |
 
 **示例：**
 
@@ -244,13 +244,13 @@ treeMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 
 remove(key: K): V;
 
-删除指定的元素。
+删除指定key对应的元素。
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| key | K | 是 | 依据key指定删除的元素。 |
+| key | K | 是 | 指定key。 |
 
 **返回值：**
 
@@ -268,9 +268,9 @@ treeMap.remove("sdfs");
 ```
 
 
-### getLowerByKey
+### getLowerKey
 
-getLowerByKey(key: K): K
+getLowerKey(key: K): K
 
 获取容器中比传入key排序靠前一位的key。
 
@@ -293,13 +293,13 @@ let treeMap = new TreeMap();
 treeMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 treeMap.set("sdfs", 356);
 treeMap.set("zdfgsd", 356);
-let result = treeMap.getLowerByKey("sdfs");
+let result = treeMap.getLowerKey("sdfs");
 ```
 
 
-### getHigherByKey
+### getHigherKey
 
-getHigherByKey(key: K): K
+getHigherKey(key: K): K
 
 获取容器中比传入key排序靠后一位的key。
 
@@ -322,12 +322,11 @@ let treeMap = new TreeMap();
 treeMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 treeMap.set("sdfs", 356);
 treeMap.set("zdfgsd", 356);
-let result = treeMap.getHigherByKey("sdfs");
+let result = treeMap.getHigherKey("sdfs");
 ```
 
-
 ### replace
-replace(key: K, value: V): boolean
+replace(key: K, newValue: V): boolean
 
 对TreeMap中一组数据进行更新（替换）。
 
@@ -335,21 +334,21 @@ replace(key: K, value: V): boolean
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| key | K | 是 | 依据key指定替换的元素。 |
-| value | V | 是 | 成员数据的新值。 |
+| key | K | 是 | 指定key。 |
+| newValue | V | 是 | 替换的元素。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 成功对已有数据进行替换返回true，否则返回false。 |
+| boolean | 对指定key对应的元素替换成功返回true，否则返回false。 |
 
 **示例：**
 
 ```
 let treeMap = new TreeMap();
 treeMap.set("sdfs", 123);
-treeMap.replace("sdfs", 357);
+let result = treeMap.replace("sdfs", 357);
 ```
 
 
@@ -425,7 +424,7 @@ while(temp != undefined) {
 
 ### forEach
 
-forEach(callbackfn: (value: V, key?: K, treeMap?: TreeMap<K, V>) => void, thisArg?: Object): void
+forEach(callbackfn: (value: V, key?: K, map?: TreeMap<K, V>) => void, thisArg?: Object): void
 
 通过回调函数来遍历实例对象上的元素以及元素对应的下标。
 
@@ -441,7 +440,7 @@ callbackfn的参数说明：
 | -------- | -------- | -------- | -------- |
 | value | V | 是 | 当前遍历到的元素键值对的值。 |
 | key | K | 是 | 当前遍历到的元素键值对的键。 |
-| treeMap | TreeMap<K, V> | 否 | 当前调用forEach方法的实例对象。 |
+| map | TreeMap<K, V> | 否 | 当前调用forEach方法的实例对象。 |
 
 **示例：**
 
@@ -459,7 +458,7 @@ treeMap.forEach((value, key) => {
 
 entries(): IterableIterator<[K, V]>
 
-返回包含此映射中包含的元素的新迭代器对象。
+返回包含此映射中包含的键值对的新迭代器对象。
 
 **返回值：**
 

@@ -53,12 +53,12 @@ isEmpty(): boolean
 
 ```
 const lightWeightSet = new LightWeightSet();
-lightWeightSet.isEmpty();
+let result = lightWeightSet.isEmpty();
 ```
 
 ### add
 
-add(value: T): boolean
+add(obj: T): boolean
 
 向此容器中添加数据。
 
@@ -66,7 +66,7 @@ add(value: T): boolean
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | T | 是 | 添加的成员数据。 |
+| obj | T | 是 | 添加的成员数据。 |
 
 **返回值：**
 
@@ -78,7 +78,7 @@ add(value: T): boolean
 
 ```
 let lightWeightSet = new LightWeightSet();
-lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
+let result = lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 ```
 
 
@@ -92,7 +92,7 @@ addAll(set: LightWeightSet&lt;T&gt;): boolean
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| set | LightWeightSet&lt;T&gt; | 是 | 提供添加元素的LightWeightSet。 |
+| set | LightWeightSet&lt;T&gt; | 是 | 提供添加元素的lightWeightSet。 |
 
 **示例：**
 
@@ -102,7 +102,7 @@ lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 lightWeightSet.add("sdfs");
 let set = new LightWeightSet();
 set.add("sfage");
-lightWeightSet.addAll(set);
+let result = lightWeightSet.addAll(set);
 ```
 
 
@@ -138,29 +138,29 @@ let result = lightWeightSet.hasAll(set);
 
 ### has
 
-has(value: T): boolean;
+has(key: T): boolean
 
-判断此容器中是否含有该指定value。
+判断此容器中是否含有该指定key。
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | T | 是 | 指定元素 |
+| value | T | 是 | 指定key |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 包含指定元素返回true，否则返回false。 |
+| boolean | 包含指定key返回true，否则返回false。 |
 
 **示例：**
 
 ```
 let lightWeightSet = new LightWeightSet();
-lightWeightSet.has(123);
+let result = lightWeightSet.has(123);
 lightWeightSet.add(123);
-lightWeightSet.has(123);
+let result = lightWeightSet.has(123);
 ```
 
 
@@ -195,7 +195,7 @@ let result = lightWeightSet.equal(obj);
 
 ### ensureCapacityTo
 
-ensureCapacityTo(minimumCapacity: number): void
+increaseCapacityTo(minimumCapacity: number): void
 
 将当前容器扩容至可以容纳指定数量元素。
 
@@ -229,7 +229,7 @@ getIndexOf(key: T): number
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 在LightWeightSet中指定数据的下标。 |
+| number | 在lightWeightSet中指定数据的下标。 |
 
 **示例：**
 
@@ -237,7 +237,7 @@ getIndexOf(key: T): number
 let lightWeightSet = new LightWeightSet();
 lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 lightWeightSet.add("sdfs");
-lightWeightSet.getIndexOf("sdfs");
+let result = lightWeightSet.getIndexOf("sdfs");
 ```
 
 
@@ -245,13 +245,13 @@ lightWeightSet.getIndexOf("sdfs");
 
 remove(key: T): T
 
-删除指定的元素。
+删除并返回指定key对应的元素。
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| key | T | 是 | 依据key指定删除的元素。 |
+| key | T | 是 | 指定key。 |
 
 **返回值：**
 
@@ -265,7 +265,7 @@ remove(key: T): T
 let lightWeightSet = new LightWeightSet();
 lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 lightWeightSet.add("sdfs");
-lightWeightSet.remove("sdfs");
+let result = lightWeightSet.remove("sdfs");
 ```
 
 
@@ -273,13 +273,13 @@ lightWeightSet.remove("sdfs");
 
 removeAt(index: number): boolean
 
-删除指定下标的元素。
+删除指定下标所对应的元素。
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| index | number | 是 | 指定想要删除元素下标。 |
+| index | number | 是 | 指定下标。 |
 
 **返回值：**
 
@@ -293,7 +293,7 @@ removeAt(index: number): boolean
 let lightWeightSet = new LightWeightSet();
 lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 lightWeightSet.add("sdfs");
-lightWeightSet.removeAt(1);
+let result = lightWeightSet.removeAt(1);
 ```
 
 
@@ -301,19 +301,19 @@ lightWeightSet.removeAt(1);
 
 getValueAt(index: number): T
 
-获取此容器中具体位置的元素。
+获取此容器中指定下标对应的元素。
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| index | number | 是 | 指定查询数据下标。 |
+| index | number | 是 | 指定下标。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| T | 返回指定位置中元素。 |
+| T | 返回指定下标对应的元素。 |
 
 **参数：**
 
@@ -321,7 +321,7 @@ getValueAt(index: number): T
 let lightWeightSet = new LightWeightSet();
 lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 lightWeightSet.add("sdfs");
-lightWeightSet.getValueAt(1);
+let result = lightWeightSet.getValueAt(1);
 ```
 
 
@@ -359,7 +359,7 @@ toString(): String
 let lightWeightSet = new LightWeightSet();
 lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 lightWeightSet.add("sdfs");
-lightWeightSet.toString();
+let result = lightWeightSet.toString();
 ```
 
 
@@ -381,7 +381,7 @@ toArray(): Array&lt;T&gt;
 let lightWeightSet = new LightWeightSet();
 lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 lightWeightSet.add("sdfs");
-lightWeightSet.toString();
+let result = lightWeightSet.toArray();
 ```
 
 
@@ -389,7 +389,7 @@ lightWeightSet.toString();
 
 values(): IterableIterator&lt;T&gt;
 
-返回包含此映射中包含的键的新迭代器对象。
+返回包含此映射中包含的键值的新迭代器对象。
 
 **返回值：**
 
@@ -414,7 +414,7 @@ while(index < lightWeightSet.length) {
 
 ### forEach
 
-forEach(callbackfn: (value: T, key?: T, lightWeightSet?: LightWeightSet&lt;T&gt;) => void, thisArg?: Object): void
+forEach(callbackfn: (value: T, key?: T, set?: LightWeightSet&lt;T&gt;) => void, thisArg?: Object): void
 
 通过回调函数来遍历LightWeightSet实例对象上的元素以及元素对应的下标。
 
@@ -430,7 +430,7 @@ callbackfn的参数说明：
 | -------- | -------- | -------- | -------- |
 | value | T | 是 | 当前遍历到的元素。 |
 | key | T | 否 | 当前遍历到的元素（和value相同）。 |
-| lightWeightSet | LightWeightSet&lt;T&gt; | 否 | 当前调用forEach方法的实例对象。 |
+| set | LightWeightSet&lt;T&gt; | 否 | 当前调用forEach方法的实例对象。 |
 
 **示例：**
 
@@ -448,7 +448,7 @@ lightWeightSet.forEach((value, key) => {
 
 entries(): IterableIterator<[T, T]>
 
-返回包含此映射中包含的键的新迭代器对象。
+返回包含此映射中包含的键值对的新迭代器对象。
 
 **返回值：**
 

@@ -27,7 +27,7 @@ SystemCapability.Utils.Lang
 
 ### constructor
 
-constructor(_head?: NodeObj&lt;T&gt;, _tail?: NodeObj&lt;T&gt;)
+constructor(head?: NodeObj&lt;T&gt;, tail?: NodeObj&lt;T&gt;)
 
 LinkedList的构造函数。
 
@@ -35,8 +35,8 @@ LinkedList的构造函数。
 
 | 参数名 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| _head | NodeObj&lt;T&gt; | 是 | 否 | 节点对象，含有element、next指向和prev指向。 |
-| _tail | NodeObj&lt;T&gt; | 是 | 否 | 节点对象，含有element、next指向和prev指向。 |
+| head | NodeObj&lt;T&gt; | 是 | 否 | 节点对象，含有element、next指向和prev指向。 |
+| tail | NodeObj&lt;T&gt; | 是 | 否 | 节点对象，含有element、next指向和prev指向。 |
 
 **示例：**
 
@@ -67,12 +67,12 @@ add(element: T): boolean
 
 ```
 let linkedList = new LinkedList();
-linkedList.add("a");
-linkedList.add(1);
+let result = linkedList.add("a");
+let result = linkedList.add(1);
 let b = [1, 2, 3];
 linkedList.add(b);
 let c = {name : "lala", age : "13"};
-linkedList.add(false);
+let result3 = linkedList.add(false);
 ```
 
 ### addFirst
@@ -101,7 +101,7 @@ linkedList.addFirst(false);
 
 ### insert
 
-insert(element: T, index: number): void
+insert(index: number, element: T): void
 
 在长度范围内任意插入指定元素。
 
@@ -116,9 +116,9 @@ insert(element: T, index: number): void
 
 ```
 let linkedList = new LinkedList();
-linkedList.insert("A", 0);
-linkedList.insert(0, 1);
-linkedList.insert(true, 2);
+linkedList.insert(0, "A");
+linkedList.insert(1, 0);
+linkedList.insert(2, true);
 ```
 
 ### has
@@ -143,9 +143,9 @@ has(element: T): boolean
 
 ```
 let linkedList = new LinkedList();
-linkedList.has("Ahfbrgrbgnutfodgorrogorg");
+let result1 = linkedList.has("Ahfbrgrbgnutfodgorrogorg");
 linkedList.add("Ahfbrgrbgnutfodgorrogorg");
-linkedList.has("Ahfbrgrbgnutfodgorrogorg");
+let result = linkedList.has("Ahfbrgrbgnutfodgorrogorg");
 ```
 
 ### get
@@ -177,7 +177,7 @@ linkedList.add(2);
 linkedList.add(1);
 linkedList.add(2);
 linkedList.add(4);
-linkedList.get(2);
+let result = linkedList.get(2);
 ```
 
 ### getLastIndexOf
@@ -209,7 +209,7 @@ linkedList.add(2);
 linkedList.add(1);
 linkedList.add(2);
 linkedList.add(4);
-linkedList.getLastIndexOf(2);
+let result = linkedList.getLastIndexOf(2);
 ```
 
 ### getIndexOf
@@ -241,7 +241,7 @@ linkedList.add(2);
 linkedList.add(1);
 linkedList.add(2);
 linkedList.add(4);
-linkedList.getIndexOf(2);
+let result = linkedList.getIndexOf(2);
 ```
 
 ### removeByIndex
@@ -271,7 +271,7 @@ linkedList.add(4);
 linkedList.add(5);
 linkedList.add(2);
 linkedList.add(4);
-linkedList.removeByIndex(2);
+let result = linkedList.removeByIndex(2);
 ```
 
 ### removeFirst
@@ -295,7 +295,7 @@ linkedList.add(4);
 linkedList.add(5);
 linkedList.add(2);
 linkedList.add(4);
-linkedList.removeFirst();
+let result = linkedList.removeFirst();
 ```
 
 ### removeLast
@@ -319,14 +319,14 @@ linkedList.add(4);
 linkedList.add(5);
 linkedList.add(2);
 linkedList.add(4);
-linkedList.removeLast();
+let result = linkedList.removeLast();
 ```
 
 ### remove
 
 remove(element: T): boolean
 
-删除指定的元素。
+删除查找到的第一个指定的元素。
 
 **参数：**
 
@@ -348,7 +348,7 @@ linkedList.add(2);
 linkedList.add(4);
 linkedList.add(5);
 linkedList.add(4);
-linkedList.remove(2);
+let result = linkedList.remove(2);
 ```
 
 ### removeFirstFound
@@ -377,7 +377,7 @@ linkedList.add(2);
 linkedList.add(4);
 linkedList.add(5);
 linkedList.add(4);
-linkedList.removeFirstFound(4);
+let result = linkedList.removeFirstFound(4);
 ```
 
 ### removeLastFound
@@ -406,7 +406,7 @@ linkedList.add(2);
 linkedList.add(4);
 linkedList.add(5);
 linkedList.add(4);
-linkedList.removeLastFound(4);
+let result = linkedList.removeLastFound(4);
 ```
 
 ### clone
@@ -430,11 +430,11 @@ linkedList.add(2);
 linkedList.add(4);
 linkedList.add(5);
 linkedList.add(4);
-linkedList.clone();
+let result = linkedList.clone();
 ```
 
 ### forEach
-forEach(callbackfn: (value: T, index?: number, linkedlist?: LinkedList&lt;T&gt;) => void,
+forEach(callbackfn: (value: T, index?: number, LinkedList?: LinkedList&lt;T&gt;) => void,
 thisArg?: Object): void
 
 通过回调函数来遍历LinkedList实例对象上的元素以及元素对应的下标。
@@ -452,7 +452,7 @@ callbackfn的参数说明：
 | -------- | -------- | -------- | -------- |
 | value | T | 是 | 当前遍历到的元素。 |
 | index | number | 否 | 当前遍历到的下标值。 |
-| linkedlist | LinkedList&lt;T&gt; | 否 | 当前调用forEach方法的实例对象。 |
+| LinkedList | LinkedList&lt;T&gt; | 否 | 当前调用forEach方法的实例对象。 |
 
 **示例：**
 
@@ -484,8 +484,7 @@ linkedList.clear();
 ```
 
 ### set
-set(index: number, element: T): void
-
+set(index: number, element: T): T
 将此LinkedList中指定位置的元素替换为指定元素。
 
 **参数：**
@@ -495,6 +494,12 @@ set(index: number, element: T): void
 | index | number | 是 | 查找的下标值。 |
 | element | T | 是 | 用来替换的元素。 |
 
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回替换后的元素。 |
+
 **示例：**
 
 ```
@@ -503,7 +508,7 @@ linkedList.add(2);
 linkedList.add(4);
 linkedList.add(5);
 linkedList.add(4);
-linkedList.set(2, "b");
+let result = linkedList.set(2, "b");
 ```
 
 ### convertToArray
@@ -524,7 +529,7 @@ linkedList.add(2);
 linkedList.add(4);
 linkedList.add(5);
 linkedList.add(4);
-linkedList.convertToArray();
+let result = linkedList.convertToArray();
 ```
 
 ### getFirst
@@ -547,7 +552,7 @@ linkedList.add(2);
 linkedList.add(4);
 linkedList.add(5);
 linkedList.add(4);
-linkedList.getFirst();
+let result = linkedList.getFirst();
 ```
 
 ### getLast
