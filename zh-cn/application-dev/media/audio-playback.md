@@ -203,7 +203,7 @@ audioPlayer.reset();
 let fdNextPath = 'fd://'
 let nextPath = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp3';
 await fileIO.open(nextPath).then(fdNumber) => {
-   fdNextPath = fdNextPath + " + fdNumber;
+   fdNextPath = fdNextPath + '' + fdNumber;
    console.info('open fd sucess fd is' + fdNextPath);
 }, (err) => {
    console.info('open fd failed err is' + err);
