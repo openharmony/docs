@@ -10,3 +10,7 @@
   
 - Hap包签名工具  
   - [Hap包签名工具开发指导](hapsigntool-guidelines.md)
+
+- 访问控制  
+  - [访问控制开发概述](accesstoken-overview.md)
+  - [访问控制开发指导](accesstoken-guidelines.md)
