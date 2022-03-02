@@ -290,8 +290,6 @@ createNetConnection(netSpecifier?: NetSpecifier, timeout?: number): NetConnectio
 
 获取一个netSpecifier指定的网络的句柄。
 
-**需要权限**：ohos.permission.GET_NETWORK_INFO
-
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
 **参数：**
