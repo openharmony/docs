@@ -55,15 +55,15 @@ add(element: T): boolean
 
 **示例：**
 
-```
-let arrayList = new ArrayList();
-arrayList.add("a");
-arrayList.add(1);
-let b = [1, 2, 3];
-arrayList.add(b);
-let c = {name: "lala", age: "13"};
-arrayList.add(false);
-```
+  ```
+  let arrayList = new ArrayList();
+  let result = arrayList.add("a");
+  let result1 = arrayList.add(1);
+  let b = [1, 2, 3];
+  let result2 = arrayList.add(b);
+  let c = {name: "lala", age: "13"};
+  let result3 = arrayList.add(false);
+  ```
 
 ### insert
 
@@ -109,9 +109,9 @@ has(element: T): boolean
 
 ```
 let arrayList = new ArrayList();
-arrayList.has("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
+let result = arrayList.has("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 arrayList.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-arrayList.has("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
+let result1 = arrayList.has("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 ```
 
 ### getIndexOf
@@ -143,7 +143,7 @@ arrayList.add(2);
 arrayList.add(1);
 arrayList.add(2);
 arrayList.add(4);
-arrayList.getIndexOf(2);
+let result = arrayList.getIndexOf(2);
 ```
 
 ### getLastIndexOf
@@ -175,7 +175,7 @@ arrayList.add(2);
 arrayList.add(1);
 arrayList.add(2);
 arrayList.add(4);
-arrayList.getLastIndexOf(2);
+let result = arrayList.getLastIndexOf(2);
 ```
 
 ### removeByIndex
@@ -205,7 +205,7 @@ arrayList.add(4);
 arrayList.add(5);
 arrayList.add(2);
 arrayList.add(4);
-arrayList.removeByIndex(2);
+let result = arrayList.removeByIndex(2);
 ```
 
 ### remove
@@ -234,7 +234,7 @@ arrayList.add(2);
 arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
-arrayList.remove(2);
+let result = arrayList.remove(2);
 ```
 
 ### removeByRange
@@ -264,7 +264,7 @@ arrayList.removeByRange(2, 6);
 ```
 
 ### replaceAllElements
-replaceAllElements(callbackfn: (value: T, index?: number, arraylist?: ArrayList&lt;T&gt;) => T,
+replaceAllElements(callbackfn: (value: T, index?: number, arrlist?: ArrayList&lt;T&gt;) => T,
 thisArg?: Object): void
 
 用户操作ArrayList中的元素，用操作后的元素替换原元素并返回操作后的元素。
@@ -280,9 +280,9 @@ callbackfn的参数说明：
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | T | 是 | 当前遍历到的元素 |
-| index | number | 否 | 当前遍历到的下标值 |
-| arraylist | ArrayList&lt;T&gt; | 否 | 当前调用replaceAllElements方法的实例对象 |
+| value | T | 是 | 当前遍历到的元素。 |
+| index | number | 否 | 当前遍历到的下标值。 |
+| arrlist | ArrayList&lt;T&gt; | 否 | 当前调用replaceAllElements方法的实例对象。 |
 
 **示例：**
 
@@ -301,7 +301,7 @@ arrayList.replaceAllElements((value, index) => {
 ```
 
 ### forEach
-forEach(callbackfn: (value: T, index?: number, arraylist?: ArrayList&lt;T&gt;) => void,
+forEach(callbackfn: (value: T, index?: number, arrlist?: ArrayList&lt;T&gt;) => void,
 thisArg?: Object): void
 
 通过回调函数来遍历ArrayList实例对象上的元素以及元素对应的下标。
@@ -319,7 +319,7 @@ callbackfn的参数说明：
 | -------- | -------- | -------- | -------- |
 | value | T | 是 | 当前遍历到的元素。 |
 | index | number | 否 | 当前遍历到的下标值。 |
-| arraylist | ArrayList&lt;T&gt; | 否 | 当前调用forEach方法的实例对象。 |
+| arrlist | ArrayList&lt;T&gt; | 否 | 当前调用forEach方法的实例对象。 |
 
 **示例：**
 
@@ -391,9 +391,9 @@ arrayList.add(2);
 arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
-arrayList.subArrayList(2, 4);
-arrayList.subArrayList(4, 3);
-arrayList.subArrayList(2, 6);
+let result1 = arrayList.subArrayList(2, 4);
+let result2 = arrayList.subArrayList(4, 3);
+let result3 = arrayList.subArrayList(2, 6);
 ```
 
 ### clear
@@ -415,7 +415,8 @@ arrayList.clear();
 ### clone
 clone(): ArrayList&lt;T&gt; 
 
-克隆一个与ArrayList一模一样的实例,并返回克隆后的实例，修改克隆后的实例并不会影响原实例。
+克隆一个与ArrayList相同的实例，并返回克隆后的实例。修改克隆后的实例并不会影响原实例。
+
 
 **返回值：**
 
@@ -431,7 +432,7 @@ arrayList.add(2);
 arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
-arrayList.clone();
+let result = arrayList.clone();
 ```
 
 ### getCapacity
@@ -453,7 +454,7 @@ arrayList.add(2);
 arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
-arrayList.getCapacity();
+let result = arrayList.getCapacity();
 ```
 
 ### convertToArray
@@ -475,7 +476,7 @@ arrayList.add(2);
 arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
-arrayList.convertToArray();
+let result = arrayList.convertToArray();
 ```
 
 ### isEmpty
@@ -497,7 +498,7 @@ arrayList.add(2);
 arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
-arrayList.isEmpty();
+let result = arrayList.isEmpty();
 ```
 
 ### increaseCapacityTo

@@ -59,7 +59,7 @@ isEmpty(): boolean
 
 ```
 const treeSet = new TreeSet();
-treeSet.isEmpty();
+let result = treeSet.isEmpty();
 ```
 
 
@@ -67,7 +67,7 @@ treeSet.isEmpty();
 
 has(value: T): boolean
 
-判断此容器中是否含有该指定value。
+判断此容器中是否含有该指定元素。
 
 **参数：**
 
@@ -87,7 +87,7 @@ has(value: T): boolean
 let treeSet = new TreeSet();
 treeSet.has(123);
 treeSet.add(123);
-treeSet.has(123);
+let result1 = treeSet.has(123);
 ```
 
 
@@ -156,13 +156,13 @@ add(value: T): boolean
 
 ```
 let treeSet = new TreeSet();
-treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
+let result = treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 ```
 
 
 ### remove
 
-remove(key: T): boolean
+remove(value: T): boolean;
 
 删除指定的元素。
 
@@ -170,7 +170,7 @@ remove(key: T): boolean
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| key | T | 是 | 指定的元素。 |
+| value | T | 是 | 指定的元素。 |
 
 **返回值：**
 
@@ -184,7 +184,7 @@ remove(key: T): boolean
 let treeSet = new TreeSet();
 treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 treeSet.add("sdfs");
-treeSet.remove("sdfs");
+let result = treeSet.remove("sdfs");
 ```
 
 
@@ -233,7 +233,7 @@ getHigherValue(key: T): T
 
 | 类型 | 说明 |
 | -------- | -------- |
-| T | 返回排序中传入元素后一位的数据 |
+| T | 返回排序中传入元素后一位的数据。 |
 
 **示例：**
 
@@ -278,7 +278,7 @@ popLast(): T
 
 | 类型 | 说明 |
 | -------- | -------- |
-| T | 返回删除的数据 |
+| T | 返回删除的数据。 |
 
 **返回值：**
 
@@ -335,7 +335,7 @@ while(temp != undefined) {
 
 ### forEach
 
-forEach(callbackfn: (value: T, key?: T, treeSet?: TreeSet&lt;T&gt;) => void, thisArg?: Object): void
+forEach(callbackfn: (value: T, key?: T, set?: TreeSet&lt;T&gt;) => void, thisArg?: Object): void
 
 通过回调函数来遍历实例对象上的元素以及元素对应的下标。
 
@@ -351,7 +351,7 @@ callbackfn的参数说明：
 | -------- | -------- | -------- | -------- |
 | value | T | 是 | 当前遍历到的元素。 |
 | key | T | 否 | 当前遍历到的元素（和value相同）。 |
-| treeSet | TreeSet&lt;T&gt; | 否 | 当前调用forEach方法的实例对象。 |
+| set | TreeSet&lt;T&gt; | 否 | 当前调用forEach方法的实例对象。 |
 
 **示例：**
 
@@ -369,7 +369,7 @@ treeSet.forEach((value, key) => {
 
 entries(): IterableIterator<[T, T]>
 
-返回包含此映射中包含的元素的新迭代器对象。
+返回包含此映射中包含的键值对的新迭代器对象。
 
 **返回值：**
 

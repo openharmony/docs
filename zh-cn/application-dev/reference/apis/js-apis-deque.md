@@ -104,9 +104,9 @@ has(element: T): boolean
 
 ```
 let deque = new Deque();
-deque.has("Ahfbrgrbgnutfodgorrogorg");
+let result = deque.has("Ahfbrgrbgnutfodgorrogorg");
 deque.insertFront("Ahfbrgrbgnutfodgorrogorg");
-deque.has("Ahfbrgrbgnutfodgorrogorg");
+let result1 = deque.has("Ahfbrgrbgnutfodgorrogorg");
 ```
 
 ### popFirst
@@ -130,7 +130,7 @@ deque.insertFront(4);
 deque.insertEnd(5);
 deque.insertFront(2);
 deque.insertFront(4);
-deque.popFirst();
+let result = deque.popFirst();
 ```
 
 ### popLast
@@ -155,6 +155,7 @@ deque.insertFront(5);
 deque.insertFront(2);
 deque.insertFront(4);
 deque.popLast();
+let result = deque.popLast();
 ```
 
 ### forEach
@@ -211,7 +212,7 @@ deque.insertEnd(2);
 deque.insertEnd(4);
 deque.insertFront(5);
 deque.insertFront(4);
-deque.getFirst();
+let result = deque.getFirst();
 ```
 
 ### getLast
@@ -234,7 +235,7 @@ deque.insertFront(2);
 deque.insertFront(4);
 deque.insertFront(5);
 deque.insertFront(4);
-deque.getLast();
+let result = deque.getLast();
 ```
 
 ### [Symbol.iterator]

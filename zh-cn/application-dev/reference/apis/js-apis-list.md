@@ -27,7 +27,7 @@ SystemCapability.Utils.Lang
 
 ### constructor
 
-constructor(_head?: NodeObj&lt;T&gt;)
+constructor(head?: NodeObj&lt;T&gt;)
 
 List的构造函数。
 
@@ -35,7 +35,7 @@ List的构造函数。
 
 | 参数名 | 类型 | 可读 | 说明 |
 | -------- | -------- | -------- | -------- |
-| _head | NodeObj&lt;T&gt; | 是 | 节点对象，含有element、next指向。 |
+| head | NodeObj&lt;T&gt; | 是 | 节点对象，含有element、next指向。 |
 
 **示例：**
 
@@ -66,12 +66,12 @@ add(element: T): boolean
 
 ```
 let list = new List;
-list.add("a");
-list.add(1);
+let result = list.add("a");
+let result1 = list.add(1);
 let b = [1, 2, 3];
 list.add(b);
 let c = {name : "lala", age : "13"};
-list.add(false);
+let result3 = list.add(false);
 ```
 
 ### insert
@@ -118,9 +118,9 @@ has(element: T): boolean
 
 ```
 let list = new List();
-list.has("Ahfbrgrbgnutfodgorrogorg");
+let result = list.has("Ahfbrgrbgnutfodgorrogorg");
 list.add("Ahfbrgrbgnutfodgorrogorg");
-list.has("Ahfbrgrbgnutfodgorrogorg");
+let result1 = list.has("Ahfbrgrbgnutfodgorrogorg");
 ```
 
 ### get
@@ -152,7 +152,7 @@ list.add(2);
 list.add(1);
 list.add(2);
 list.add(4);
-list.get(2);
+let result = list.get(2);
 ```
 
 ### getLastIndexOf
@@ -184,7 +184,7 @@ list.add(2);
 list.add(1);
 list.add(2);
 list.add(4);
-list.getLastIndexOf(2);
+let result = list.getLastIndexOf(2);
 ```
 
 ### getIndexOf
@@ -203,7 +203,7 @@ getIndexOf(element: T): number
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 返回第一次找到指定元素的下标，没有找到返回-1 |
+| number | 返回第一次找到指定元素的下标，没有找到返回-1。 |
 
 **示例：**
 
@@ -217,6 +217,7 @@ list.add(1);
 list.add(2);
 list.add(4);
 list.getIndexOf(2);
+let result = list.getIndexOf(2);
 ```
 
 ### equal
@@ -251,7 +252,7 @@ obj1.add(4);
 obj1.add(5);
 list.equal(obj1);
 let obj2 = {name : "lala", age : "13"};
-list.equal(obj2);
+let result = list.equal(obj2);
 ```
 
 ### removeByIndex
@@ -281,7 +282,7 @@ list.add(4);
 list.add(5);
 list.add(2);
 list.add(4);
-list.removeByIndex(2);
+let result = list.removeByIndex(2);
 ```
 
 ### remove
@@ -294,7 +295,7 @@ remove(element: T): boolean
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| element | T | 是 | 指定元素 |
+| element | T | 是 | 指定元素。 |
 
 **返回值：**
 
@@ -310,7 +311,7 @@ list.add(2);
 list.add(4);
 list.add(5);
 list.add(4);
-list.remove(2);
+let result = list.remove(2);
 ```
 
 ### replaceAllElements
@@ -332,7 +333,7 @@ callbackfn的参数说明：
 | -------- | -------- | -------- | -------- |
 | value | T | 是 | 当前遍历到的元素。 |
 | index | number | 否 | 当前遍历到的下标值。 |
-| list | List&lt;T&gt; | 否 | 当前调用replaceAllElements方法的实例对象 |
+| list | List&lt;T&gt; | 否 | 当前调用replaceAllElements方法的实例对象。 |
 
 **示例：**
 
@@ -351,7 +352,7 @@ list.replaceAllElements((value, index) => {
 ```
 
 ### forEach
-forEach(callbackfn: (value: T, index?: number, list?: List&lt;T&gt;) => void,
+forEach(callbackfn: (value: T, index?: number, List?: List&lt;T&gt;) => void,
 thisArg?: Object): void
 
 通过回调函数来遍历List实例对象上的元素以及元素对应的下标。
@@ -360,8 +361,8 @@ thisArg?: Object): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callbackfn | function | 是 | 回调函数 |
-| thisArg | Object | 否 | callbackfn被调用时用作this值 |
+| callbackfn | function | 是 | 回调函数。 |
+| thisArg | Object | 否 | callbackfn被调用时用作this值。 |
 
 callbackfn的参数说明：
 
@@ -369,7 +370,7 @@ callbackfn的参数说明：
 | -------- | -------- | -------- | -------- |
 | value | T | 是 | 当前遍历到的元素。 |
 | index | number | 否 | 当前遍历到的下标值。 |
-| list | List&lt;T&gt; | 否 | 当前调用forEach方法的实例对象 |
+| List | List&lt;T&gt; | 否 | 当前调用forEach方法的实例对象。 |
 
 **示例：**
 
@@ -431,7 +432,7 @@ getSubList(fromIndex: number, toIndex: number): List&lt;T&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| List&lt;T&gt; | 返回List对象实例 |
+| List&lt;T&gt; | 返回List对象实例。 |
 
 **示例：**
 
@@ -441,9 +442,9 @@ list.add(2);
 list.add(4);
 list.add(5);
 list.add(4);
-list.subList(2, 4);
-list.subList(4, 3);
-list.subList(2, 6);
+let result = list.subList(2, 4);
+let result1 = list.subList(4, 3);
+let result2 = list.subList(2, 6);
 ```
 
 ### clear
@@ -463,7 +464,7 @@ list.clear();
 ```
 
 ### set
-set(index: number, element: T): void
+set(index: number, element: T): T
 将此 List 中指定位置的元素替换为指定元素。
 
 **参数：**
@@ -472,6 +473,12 @@ set(index: number, element: T): void
 | -------- | -------- | -------- | -------- |
 | index | number | 是 | 查找的下标值。 |
 | element | T | 是 | 用来替换的元素。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回替换后的元素 |
 
 **示例：**
 
@@ -504,7 +511,7 @@ list.add(2);
 list.add(4);
 list.add(5);
 list.add(4);
-list.convertToArray();
+let result = list.convertToArray();
 ```
 
 ### isEmpty
@@ -526,7 +533,7 @@ list.add(2);
 list.add(4);
 list.add(5);
 list.add(4);
-list.isEmpty();
+let result = list.isEmpty();
 ```
 
 ### getFirst
@@ -549,7 +556,7 @@ list.add(2);
 list.add(4);
 list.add(5);
 list.add(4);
-list.getFirst();
+let result = list.getFirst();
 ```
 
 ### getLast
@@ -572,7 +579,7 @@ list.add(2);
 list.add(4);
 list.add(5);
 list.add(4);
-list.getLast();
+let result = list.getLast();
 ```
 
 ### [Symbol.iterator]
