@@ -1,129 +1,54 @@
-# span<a name="ZH-CN_TOPIC_0000001127284860"></a>
+# span
 
-作为<[text](js-components-basic-text.md)\>子组件提供文本修饰能力。
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 从API version 4开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-## 权限列表<a name="section11257113618419"></a>
+作为&lt;[text](../arkui-js/js-components-basic-text.md)&gt;子组件提供文本修饰能力。
+
+## 权限列表
 
 无
 
-## 子组件<a name="section9288143101012"></a>
 
-支持子组件<span\>。
+## 子组件
 
-## 属性<a name="section2907183951110"></a>
+支持子组件&lt;span&gt;。
 
-支持[通用属性](js-components-common-attributes.md)。
 
->![](../../public_sys-resources/icon-note.gif) **说明：** 
->不支持focusable和disabled属性。
+## 属性
 
-## 样式<a name="section5775351116"></a>
+支持[通用属性](../arkui-js/js-components-common-attributes.md)。
+
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 不支持focusable和disabled属性。
+
+
+## 样式
 
 仅支持如下样式：
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="21.21212121212121%" id="mcps1.1.6.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="15.8015801580158%" id="mcps1.1.6.1.2"><p>类型</p>
-</th>
-<th class="cellrowborder" valign="top" width="14.231423142314231%" id="mcps1.1.6.1.3"><p>默认值</p>
-</th>
-<th class="cellrowborder" valign="top" width="9.400940094009401%" id="mcps1.1.6.1.4"><p>必填</p>
-</th>
-<th class="cellrowborder" valign="top" width="39.35393539353936%" id="mcps1.1.6.1.5"><p>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="21.21212121212121%" headers="mcps1.1.6.1.1 "><p>color</p>
-</td>
-<td class="cellrowborder" valign="top" width="15.8015801580158%" headers="mcps1.1.6.1.2 "><p>&lt;color&gt;</p>
-</td>
-<td class="cellrowborder" valign="top" width="14.231423142314231%" headers="mcps1.1.6.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="9.400940094009401%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="39.35393539353936%" headers="mcps1.1.6.1.5 "><p>设置文本段落的文本颜色。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="21.21212121212121%" headers="mcps1.1.6.1.1 "><p>font-size</p>
-</td>
-<td class="cellrowborder" valign="top" width="15.8015801580158%" headers="mcps1.1.6.1.2 "><p>&lt;length&gt;</p>
-</td>
-<td class="cellrowborder" valign="top" width="14.231423142314231%" headers="mcps1.1.6.1.3 "><p>30px</p>
-</td>
-<td class="cellrowborder" valign="top" width="9.400940094009401%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="39.35393539353936%" headers="mcps1.1.6.1.5 "><p>设置文本段落的文本尺寸。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="21.21212121212121%" headers="mcps1.1.6.1.1 "><p>allow-scale</p>
-</td>
-<td class="cellrowborder" valign="top" width="15.8015801580158%" headers="mcps1.1.6.1.2 "><p>boolean</p>
-</td>
-<td class="cellrowborder" valign="top" width="14.231423142314231%" headers="mcps1.1.6.1.3 "><p>true</p>
-</td>
-<td class="cellrowborder" valign="top" width="9.400940094009401%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="39.35393539353936%" headers="mcps1.1.6.1.5 "><p>设置文本段落的文本尺寸是否跟随系统设置字体缩放尺寸进行放大缩小。</p>
-<div class="note"><span class="notetitle"> 说明： </span><div class="notebody"><p>如果在config描述文件中针对ability配置了fontSize的config-changes标签，则应用不会重启而直接生效。</p>
-</div></div>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="21.21212121212121%" headers="mcps1.1.6.1.1 "><p>font-style</p>
-</td>
-<td class="cellrowborder" valign="top" width="15.8015801580158%" headers="mcps1.1.6.1.2 "><p>string</p>
-</td>
-<td class="cellrowborder" valign="top" width="14.231423142314231%" headers="mcps1.1.6.1.3 "><p>normal</p>
-</td>
-<td class="cellrowborder" valign="top" width="9.400940094009401%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="39.35393539353936%" headers="mcps1.1.6.1.5 "><p>设置文本段落的字体样式，见<a href="js-components-basic-text.md#section5775351116">text组件font-style的样式属性</a>。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="21.21212121212121%" headers="mcps1.1.6.1.1 "><p>font-weight</p>
-</td>
-<td class="cellrowborder" valign="top" width="15.8015801580158%" headers="mcps1.1.6.1.2 "><p>number | string</p>
-</td>
-<td class="cellrowborder" valign="top" width="14.231423142314231%" headers="mcps1.1.6.1.3 "><p>normal</p>
-</td>
-<td class="cellrowborder" valign="top" width="9.400940094009401%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="39.35393539353936%" headers="mcps1.1.6.1.5 "><p>设置文本段落的字体粗细，见<a href="js-components-basic-text.md#section5775351116">text组件font-weight的样式属性</a>。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="21.21212121212121%" headers="mcps1.1.6.1.1 "><p>text-decoration</p>
-</td>
-<td class="cellrowborder" valign="top" width="15.8015801580158%" headers="mcps1.1.6.1.2 "><p>string</p>
-</td>
-<td class="cellrowborder" valign="top" width="14.231423142314231%" headers="mcps1.1.6.1.3 "><p>none</p>
-</td>
-<td class="cellrowborder" valign="top" width="9.400940094009401%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="39.35393539353936%" headers="mcps1.1.6.1.5 "><p>设置文本段落的文本修饰，见<a href="js-components-basic-text.md#section5775351116">text组件text-decoration样式属性</a>。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="21.21212121212121%" headers="mcps1.1.6.1.1 "><p>font-family</p>
-</td>
-<td class="cellrowborder" valign="top" width="15.8015801580158%" headers="mcps1.1.6.1.2 "><p>string</p>
-</td>
-<td class="cellrowborder" valign="top" width="14.231423142314231%" headers="mcps1.1.6.1.3 "><p>sans-serif</p>
-</td>
-<td class="cellrowborder" valign="top" width="9.400940094009401%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="39.35393539353936%" headers="mcps1.1.6.1.5 "><p>设置文本段落的字体列表，用逗号分隔，每个字体用字体名或者字体族名设置。列表中第一个系统中存在的或者通过<a href="js-components-common-customizing-font.md">自定义字体</a>指定的字体，会被选中作为文本的字体。</p>
-</td>
-</tr>
-</tbody>
-</table>
+| 名称 | 类型 | 默认值 | 必填 | 描述 |
+| -------- | -------- | -------- | -------- | -------- |
+| color | &lt;color&gt; | - | 否 | 设置文本段落的文本颜色。 |
+| font-size | &lt;length&gt; | 30px | 否 | 设置文本段落的文本尺寸。 |
+| allow-scale | boolean | true | 否 | 设置文本段落的文本尺寸是否跟随系统设置字体缩放尺寸进行放大缩小。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;如果在config描述文件中针对ability配置了fontSize的config-changes标签，则应用不会重启而直接生效。 |
+| font-style | string | normal | 否 | 设置文本段落的字体样式，见[text组件font-style的样式属性](../arkui-js/js-components-basic-text.md#样式)。 |
+| font-weight | number&nbsp;\|&nbsp;string | normal | 否 | 设置文本段落的字体粗细，见[text组件font-weight的样式属性](../arkui-js/js-components-basic-text.md#样式)。 |
+| text-decoration | string | none | 否 | 设置文本段落的文本修饰，见[text组件text-decoration样式属性](../arkui-js/js-components-basic-text.md#样式)。 |
+| font-family | string | sans-serif | 否 | 设置文本段落的字体列表，用逗号分隔，每个字体用字体名或者字体族名设置。列表中第一个系统中存在的或者通过[自定义字体](../arkui-js/js-components-common-customizing-font.md)指定的字体，会被选中作为文本的字体。 |
 
-## 事件<a name="section1319514265813"></a>
 
-仅支持[通用事件](js-components-common-events.md)中的click事件。
+## 事件
 
-## 方法<a name="section2291124515582"></a>
+仅支持[通用事件](../arkui-js/js-components-common-events.md)中的click事件。
+
+
+## 方法
 
 不支持。
 
-## 示例<a name="section1841815550582"></a>
+
+## 示例
 
 ```
 <!-- xxx.hml -->
@@ -153,5 +78,4 @@
 }
 ```
 
-![](figures/zh-cn_image_0000001152588626.png)
-
+![zh-cn_image_0000001152588626](figures/zh-cn_image_0000001152588626.png)

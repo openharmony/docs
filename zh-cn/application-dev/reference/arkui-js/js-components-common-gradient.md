@@ -1,120 +1,79 @@
-# 渐变样式<a name="ZH-CN_TOPIC_0000001127284866"></a>
+# 渐变样式
+
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 从API version 4开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 组件普遍支持的在style或css中设置的 可以平稳过渡两个或多个指定的颜色。
 
-开发框架支持线性渐变 \(linear-gradient\)和重复线性渐变 \(repeating-linear-gradient\)两种渐变效果。
 
-## 线性渐变/重复线性渐变<a name="s9fb0b2412d2843e4b06e05acc39dc394"></a>
+开发框架支持线性渐变 (linear-gradient)和重复线性渐变 (repeating-linear-gradient)两种渐变效果。
+
+
+## 线性渐变/重复线性渐变
 
 使用渐变样式，需要定义过渡方向和过渡颜色。
 
-### 过渡方向<a name="section10661986163"></a>
+
+### 过渡方向
 
 通过direction或者angle指定过渡方向。
+- direction：进行方向渐变。
 
--   direction：进行方向渐变。
--   angle：进行角度渐变。
+- angle：进行角度渐变。
 
 ```
 background: linear-gradient(direction/angle, color, color, ...);
 background: repeating-linear-gradient(direction/angle, color, color, ...);
 ```
 
-### 过渡颜色<a name="section7598115010167"></a>
 
-支持以下四种方式：\#ff0000、\#ffff0000、rgb\(255, 0, 0\)、rgba\(255, 0, 0, 1\)，需要指定至少两种颜色。
+### 过渡颜色
 
--   参数
+支持以下四种方式：\#ff0000、\#ffff0000、rgb(255, 0, 0)、rgba(255, 0, 0, 1)，需要指定至少两种颜色。
 
-    <table><thead align="left"><tr><th class="cellrowborder" valign="top" width="13.13131313131313%" id="mcps1.1.6.1.1"><p>名称</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="29.292929292929294%" id="mcps1.1.6.1.2"><p>类型</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="14.14141414141414%" id="mcps1.1.6.1.3"><p>默认值</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="9.09090909090909%" id="mcps1.1.6.1.4"><p>必填</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="34.34343434343434%" id="mcps1.1.6.1.5"><p>描述</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr><td class="cellrowborder" valign="top" width="13.13131313131313%" headers="mcps1.1.6.1.1 "><p>direction</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="29.292929292929294%" headers="mcps1.1.6.1.2 "><p>to &lt;side-or-corner&gt;  &lt;side-or-corner&gt; = [left | right] || [top | bottom]</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="14.14141414141414%" headers="mcps1.1.6.1.3 "><p>to bottom (由上到下渐变)</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="9.09090909090909%" headers="mcps1.1.6.1.4 "><p>否</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="34.34343434343434%" headers="mcps1.1.6.1.5 "><p>指定过渡方向，如：to left (从右向左渐变)  ；或者</p>
-    <p>to bottom right (从左上角到右下角)。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="13.13131313131313%" headers="mcps1.1.6.1.1 "><p>angle</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="29.292929292929294%" headers="mcps1.1.6.1.2 "><p>&lt;deg&gt;</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="14.14141414141414%" headers="mcps1.1.6.1.3 "><p>180deg</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="9.09090909090909%" headers="mcps1.1.6.1.4 "><p>否</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="34.34343434343434%" headers="mcps1.1.6.1.5 "><p>指定过渡方向，以元素几何中心为坐标原点，水平方向为X轴，angle指定了渐变线与Y轴的夹角(顺时针方向)。</p>
-    </td>
-    </tr>
-    <tr><td class="cellrowborder" valign="top" width="13.13131313131313%" headers="mcps1.1.6.1.1 "><p>color</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="29.292929292929294%" headers="mcps1.1.6.1.2 "><p>&lt;color&gt; [&lt;length&gt;|&lt;percentage&gt;]</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="14.14141414141414%" headers="mcps1.1.6.1.3 "><p>-</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="9.09090909090909%" headers="mcps1.1.6.1.4 "><p>是</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="34.34343434343434%" headers="mcps1.1.6.1.5 "><p>定义使用渐变样式区域内颜色的渐变效果。</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+- 参数
+  | 名称 | 类型 | 默认值 | 必填 | 描述 |
+  | -------- | -------- | -------- | -------- | -------- |
+  | direction | to&nbsp;&lt;side-or-corner&gt;&nbsp;&nbsp;&lt;side-or-corner&gt;&nbsp;=&nbsp;[left&nbsp;\|&nbsp;right]&nbsp;\|\|&nbsp;[top&nbsp;\|&nbsp;bottom] | to&nbsp;bottom&nbsp;(由上到下渐变) | 否 | 指定过渡方向，如：to&nbsp;left&nbsp;(从右向左渐变)&nbsp;&nbsp;；或者<br/>to&nbsp;bottom&nbsp;right&nbsp;(从左上角到右下角)。 |
+  | angle | &lt;deg&gt; | 180deg | 否 | 指定过渡方向，以元素几何中心为坐标原点，水平方向为X轴，angle指定了渐变线与Y轴的夹角(顺时针方向)。 |
+  | color | &lt;color&gt;&nbsp;[&lt;length&gt;\|&lt;percentage&gt;] | - | 是 | 定义使用渐变样式区域内颜色的渐变效果。 |
 
--   示例
+- 示例
+  1. 默认渐变方向为从上向下渐变
+  ```
+  #gradient {
+    height: 300px;
+    width: 600px;
+    /* 从顶部开始向底部由红色向绿色渐变 */
+    background: linear-gradient(red, #00ff00);
+  }
+  ```
 
-    1. 默认渐变方向为从上向下渐变
+  ![zh-cn_image_0000001190934502](figures/zh-cn_image_0000001190934502.png)
 
-    ```
-    #gradient {
-      height: 300px;
-      width: 600px;
-      /* 从顶部开始向底部由红色向绿色渐变 */
-      background: linear-gradient(red, #00ff00);
-    }
-    ```
+  2. 45度夹角渐变
 
-    ![](figures/111.png)
+  ```
+    /* 45度夹角，从红色渐变到绿色 */
+    background: linear-gradient(45deg, rgb(255,0,0),rgb(0, 255, 0));
+  ```
 
-    2. 45度夹角渐变
+  ![zh-cn_image_0000001189854534](figures/zh-cn_image_0000001189854534.png)
 
-    ```
-      /* 45度夹角，从红色渐变到绿色 */
-      background: linear-gradient(45deg, rgb(255,0,0),rgb(0, 255, 0));
-    ```
+  3. 设置方向从左向右渐变
 
-    ![](figures/222.png)
+  ```
+  /* 从左向右渐变，在距离左边90px和距离左边360px (600*0.6) 之间270px宽度形成渐变 */
+  background: linear-gradient(to right, rgb(255,0,0) 90px, rgb(0, 255, 0) 60%);
+  ```
 
-    3. 设置方向从左向右渐变
+  ![zh-cn_image_0000001236694521](figures/zh-cn_image_0000001236694521.png)
 
-    ```
-    /* 从左向右渐变，在距离左边90px和距离左边360px (600*0.6) 之间270px宽度形成渐变 */
-    background: linear-gradient(to right, rgb(255,0,0) 90px, rgb(0, 255, 0) 60%);
-    ```
+  4. 重复渐变
 
-    ![](figures/333.png)
+  ```
+  /* 从左向右重复渐变，重复渐变区域30px（60-30）透明度0.5 */
+  background: repeating-linear-gradient(to right, rgba(255, 255, 0, 1) 30px,rgba(0, 0, 255, .5) 60px);
+  ```
 
-    4. 重复渐变
-
-    ```
-    /* 从左向右重复渐变，重复渐变区域30px（60-30）透明度0.5 */
-    background: repeating-linear-gradient(to right, rgba(255, 255, 0, 1) 30px,rgba(0, 0, 255, .5) 60px);
-    ```
-
-    ![](figures/444.png)
-
-
+  ![zh-cn_image_0000001237134475](figures/zh-cn_image_0000001237134475.png)

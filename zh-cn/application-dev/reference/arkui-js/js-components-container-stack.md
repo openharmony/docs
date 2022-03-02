@@ -1,32 +1,40 @@
-# stack<a name="ZH-CN_TOPIC_0000001127125064"></a>
+# stack
+
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 从API version 4开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 堆叠容器，子组件按照顺序依次入栈，后一个子组件覆盖前一个子组件。
 
-## 权限列表<a name="section11257113618419"></a>
+## 权限列表
 
 无
 
-## 子组件<a name="s2936fc34a22b44aa8389d1ec3de8fa61"></a>
+
+## 子组件
 
 支持。
 
-## 属性<a name="s7207d4d586504fa3be62558273017fbe"></a>
 
-支持[通用属性](js-components-common-attributes.md)。
+## 属性
 
-## 样式<a name="section1774719169253"></a>
+支持[通用属性](../arkui-js/js-components-common-attributes.md)。
 
-支持[通用样式](js-components-common-styles.md)。
 
-## 事件<a name="section1948143416285"></a>
+## 样式
 
-支持[通用事件](js-components-common-events.md)。
+支持[通用样式](../arkui-js/js-components-common-styles.md)。
 
-## 方法<a name="section2279124532420"></a>
 
-支持[通用方法](js-components-common-methods.md)。
+## 事件
 
-## 示例<a name="section18137649112711"></a>
+支持[通用事件](../arkui-js/js-components-common-events.md)。
+
+## 方法
+
+支持[通用方法](../arkui-js/js-components-common-methods.md)。
+
+
+## 示例
 
 ```
 <!-- xxx.hml -->
@@ -68,5 +76,4 @@
 }
 ```
 
-![](figures/zh-cn_image_0000001127284958.png)
-
+![zh-cn_image_0000001127284958](figures/zh-cn_image_0000001127284958.png)

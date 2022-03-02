@@ -1,140 +1,65 @@
-# list-item-group<a name="ZH-CN_TOPIC_0000001127284878"></a>
+# list-item-group
 
-<[list](js-components-container-list.md)\>的子组件，用来展示分组，宽度默认充满list组件。
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 从API version 4开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
--   使用该组件时父元素list组件的样式columns必须为1，否则功能异常。
--   由于父元素list组件的align-items默认样式为stretch，该组件宽度默认充满list组件。设置父元素list组件的align-items样式为非stretch来生效自定义宽度。
+&lt;[list](../arkui-js/js-components-container-list.md)&gt;的子组件，用来展示分组，宽度默认充满list组件。
 
-## 权限列表<a name="section11257113618419"></a>
+
+- 使用该组件时父元素list组件的样式columns必须为1，否则功能异常。
+
+- 由于父元素list组件的align-items默认样式为stretch，该组件宽度默认充满list组件。设置父元素list组件的align-items样式为非stretch来生效自定义宽度。
+
+## 权限列表
 
 无
 
-## 子组件<a name="section9288143101012"></a>
 
-仅支持<[list-item](js-components-container-list-item.md)\>。
+## 子组件
 
-## 属性<a name="section2907183951110"></a>
+仅支持&lt;[list-item](../arkui-js/js-components-container-list-item.md)&gt;。
 
-除支持[通用属性](js-components-common-attributes.md)外，还支持如下属性：
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="23.119999999999997%" id="mcps1.1.6.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="14.32%" id="mcps1.1.6.1.2"><p>类型</p>
-</th>
-<th class="cellrowborder" valign="top" width="10.83%" id="mcps1.1.6.1.3"><p>默认值</p>
-</th>
-<th class="cellrowborder" valign="top" width="9.55%" id="mcps1.1.6.1.4"><p>必填</p>
-</th>
-<th class="cellrowborder" valign="top" width="42.18%" id="mcps1.1.6.1.5"><p>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p>type</p>
-</td>
-<td class="cellrowborder" valign="top" width="14.32%" headers="mcps1.1.6.1.2 "><p>string</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.83%" headers="mcps1.1.6.1.3 "><p>default</p>
-</td>
-<td class="cellrowborder" valign="top" width="9.55%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="42.18%" headers="mcps1.1.6.1.5 "><p>list-item-group类型，同一list支持多种type的list-item-group，相同type的list-item-group需要确保渲染后的视图布局也完全相同，当type固定时，使用show属性代替if属性，确保视图布局不变。</p>
-</td>
-</tr>
-</tbody>
-</table>
+## 属性
 
->![](../../public_sys-resources/icon-note.gif) **说明：** 
->-   通用属性中的id用来标识一个group。list中相关的函数的入参以及事件的信息皆以此标识一个唯一的group。
+除支持[通用属性](../arkui-js/js-components-common-attributes.md)外，还支持如下属性：
 
-## 样式<a name="section16337145611017"></a>
+| 名称 | 类型 | 默认值 | 必填 | 描述 |
+| -------- | -------- | -------- | -------- | -------- |
+| type | string | default | 否 | list-item-group类型，同一list支持多种type的list-item-group，相同type的list-item-group需要确保渲染后的视图布局也完全相同，当type固定时，使用show属性代替if属性，确保视图布局不变。 |
 
-除支持[通用样式](js-components-common-styles.md)外，还支持如下样式：
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>
+> - 通用属性中的id用来标识一个group。list中相关的函数的入参以及事件的信息皆以此标识一个唯一的group。
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="23.11768823117688%" id="mcps1.1.6.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="20.477952204779523%" id="mcps1.1.6.1.2"><p>类型</p>
-</th>
-<th class="cellrowborder" valign="top" width="8.869113088691131%" id="mcps1.1.6.1.3"><p>默认值</p>
-</th>
-<th class="cellrowborder" valign="top" width="7.519248075192481%" id="mcps1.1.6.1.4"><p>必填</p>
-</th>
-<th class="cellrowborder" valign="top" width="40.01599840015999%" id="mcps1.1.6.1.5"><p>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="23.11768823117688%" headers="mcps1.1.6.1.1 "><p>flex-direction</p>
-</td>
-<td class="cellrowborder" valign="top" width="20.477952204779523%" headers="mcps1.1.6.1.2 "><p>string</p>
-</td>
-<td class="cellrowborder" valign="top" width="8.869113088691131%" headers="mcps1.1.6.1.3 "><p>row</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.519248075192481%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="40.01599840015999%" headers="mcps1.1.6.1.5 "><p>flex容器主轴方向。可选项有：</p>
-<ul><li>column：垂直方向从上到下</li><li>row：水平方向从左到右</li></ul>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="23.11768823117688%" headers="mcps1.1.6.1.1 "><p>justify-content</p>
-</td>
-<td class="cellrowborder" valign="top" width="20.477952204779523%" headers="mcps1.1.6.1.2 "><p>string</p>
-</td>
-<td class="cellrowborder" valign="top" width="8.869113088691131%" headers="mcps1.1.6.1.3 "><p>flex-start</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.519248075192481%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="40.01599840015999%" headers="mcps1.1.6.1.5 "><p>flex容器当前行的主轴对齐格式。可选项有：</p>
-<ul><li>flex-start：项目位于容器的开头。</li><li>flex-end：项目位于容器的结尾。</li><li>center：项目位于容器的中心。</li><li>space-between：项目位于各行之间留有空白的容器内。</li><li>space-around：项目位于各行之前、之间、之后都留有空白的容器内。</li><li>space-evenly<sup><span>5+</span></sup>:  均匀排列每个元素，每个元素之间的间隔相等。</li></ul>
-</td>
-</tr>
-</tbody>
-</table>
 
-## 事件<a name="section1052914819116"></a>
+## 样式
 
-除支持[通用事件](js-components-common-events.md)外，还支持如下事件：
+除支持[通用样式](../arkui-js/js-components-common-styles.md)外，还支持如下样式：
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="24.852485248524854%" id="mcps1.1.4.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="24.21242124212421%" id="mcps1.1.4.1.2"><p>参数</p>
-</th>
-<th class="cellrowborder" valign="top" width="50.935093509350935%" id="mcps1.1.4.1.3"><p>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="24.852485248524854%" headers="mcps1.1.4.1.1 "><p>groupclick</p>
-</td>
-<td class="cellrowborder" valign="top" width="24.21242124212421%" headers="mcps1.1.4.1.2 "><p>{ groupid: string }</p>
-</td>
-<td class="cellrowborder" valign="top" width="50.935093509350935%" headers="mcps1.1.4.1.3 "><p>group点击事件。</p>
-<p>groupid：被点击的group的id。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="24.852485248524854%" headers="mcps1.1.4.1.1 "><p>groupcollapse</p>
-</td>
-<td class="cellrowborder" valign="top" width="24.21242124212421%" headers="mcps1.1.4.1.2 "><p>{ groupid: string }</p>
-</td>
-<td class="cellrowborder" valign="top" width="50.935093509350935%" headers="mcps1.1.4.1.3 "><p>group收拢事件。</p>
-<p>groupid：收拢的group的id。</p>
-<p>当不输入参数或者groupid为空时收拢所有分组。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="24.852485248524854%" headers="mcps1.1.4.1.1 "><p>groupexpand</p>
-</td>
-<td class="cellrowborder" valign="top" width="24.21242124212421%" headers="mcps1.1.4.1.2 "><p>{ groupid: string }</p>
-</td>
-<td class="cellrowborder" valign="top" width="50.935093509350935%" headers="mcps1.1.4.1.3 "><p>group展开事件。</p>
-<p>groupid：展开的group的id。</p>
-<p>当不输入参数或者groupid为空时展开所有分组。</p>
-</td>
-</tr>
-</tbody>
-</table>
+| 名称 | 类型 | 默认值 | 必填 | 描述 |
+| -------- | -------- | -------- | -------- | -------- |
+| flex-direction | string | row | 否 | flex容器主轴方向。可选项有：<br/>-&nbsp;column：垂直方向从上到下<br/>-&nbsp;row：水平方向从左到右 |
+| justify-content | string | flex-start | 否 | flex容器当前行的主轴对齐格式。可选项有：<br/>-&nbsp;flex-start：项目位于容器的开头。<br/>-&nbsp;flex-end：项目位于容器的结尾。<br/>-&nbsp;center：项目位于容器的中心。<br/>-&nbsp;space-between：项目位于各行之间留有空白的容器内。<br/>-&nbsp;space-around：项目位于各行之前、之间、之后都留有空白的容器内。<br/>-&nbsp;space-evenly<sup>5+</sup>:&nbsp;&nbsp;均匀排列每个元素，每个元素之间的间隔相等。 |
 
-## 方法<a name="section2279124532420"></a>
 
-支持[通用方法](js-components-common-methods.md)。
+## 事件
 
-## 示例<a name="section1159816598218"></a>
+除支持[通用事件](../arkui-js/js-components-common-events.md)外，还支持如下事件：
+
+| 名称 | 参数 | 描述 |
+| -------- | -------- | -------- |
+| groupclick | {&nbsp;groupid:&nbsp;string&nbsp;} | group点击事件。<br/>groupid：被点击的group的id。 |
+| groupcollapse | {&nbsp;groupid:&nbsp;string&nbsp;} | group收拢事件。<br/>groupid：收拢的group的id。<br/>当不输入参数或者groupid为空时收拢所有分组。 |
+| groupexpand | {&nbsp;groupid:&nbsp;string&nbsp;} | group展开事件。<br/>groupid：展开的group的id。<br/>当不输入参数或者groupid为空时展开所有分组。 |
+
+
+## 方法
+
+支持[通用方法](../arkui-js/js-components-common-methods.md)。
+
+
+## 示例
 
 ```
 <!-- xxx.hml -->
@@ -243,5 +168,4 @@ export default {
 }
 ```
 
-![](figures/list6.gif)
-
+![zh-cn_image_0000001127284978](figures/zh-cn_image_0000001127284978.gif)

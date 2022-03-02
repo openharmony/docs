@@ -1,294 +1,73 @@
-# image-animator<a name="ZH-CN_TOPIC_0000001173324625"></a>
+# image-animator
+
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 从API version 4开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 图片帧动画播放器。
 
-## 子组件<a name="section393521619565"></a>
+
+## 子组件
 
 不支持。
 
-## 属性<a name="section1342212415618"></a>
 
-除支持[通用属性](js-components-common-attributes.md)外，还支持如下属性：
+## 属性
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="23.119999999999997%" id="mcps1.1.6.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="23.119999999999997%" id="mcps1.1.6.1.2"><p>类型</p>
-</th>
-<th class="cellrowborder" valign="top" width="10.48%" id="mcps1.1.6.1.3"><p>默认值</p>
-</th>
-<th class="cellrowborder" valign="top" width="7.5200000000000005%" id="mcps1.1.6.1.4"><p>必填</p>
-</th>
-<th class="cellrowborder" valign="top" width="35.76%" id="mcps1.1.6.1.5"><p>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p>images</p>
-</td>
-<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p>Array&lt;ImageFrame&gt;</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p>是</p>
-</td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p>设置图片帧信息集合。每一帧的帧信息包含图片路径、图片大小和图片位置信息。目前支持以下图片格式：png、jpg。ImageFrame的详细说明请见<a href="#table67453165913">表1</a>。</p>
-<div class="note"><span class="notetitle"> 说明： </span><div class="notebody"><p>使用时需要使用数据绑定的方式，如images = {{images}}，js中声明相应变量：images: [{src: "/common/heart-rate01.png"}, {src: "/common/heart-rate02.png"}]。</p>
-<p>js中声明相应变量：images: [{src: "/common/heart-rate01.png", duration: "100"}, {src: "/common/heart-rate02.png", duration: "200"}]。支持配置每一帧图片的时长，单位毫秒。<sup><span>6+</span></sup></p>
-</div></div>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p>predecode<sup>6+</sup></p>
-</td>
-<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p>number</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p>0</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p>是否启用预解码，默认值为0，即不启用预解码，如该值设为2，则播放当前页时会提前加载后面两张图片至缓存以提升性能。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p>iteration</p>
-</td>
-<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p>number | string</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p>infinite</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p>设置帧动画播放次数。number表示固定次数，infinite枚举表示无限次数播放。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p>reverse</p>
-</td>
-<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p>boolean</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p>false</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p>设置播放顺序。false表示从第1张图片播放到最后1张图片； true表示从最后1张图片播放到第1张图片。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p>fixedsize</p>
-</td>
-<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p>boolean</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p>true</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p>设置图片大小是否固定为组件大小。 true表示图片大小与组件大小一致，此时设置图片的width 、height 、top 和left属性是无效的。false表示每一张图片的 width 、height 、top和left属性都要单独设置。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p>duration</p>
-</td>
-<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p>string</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p>是</p>
-</td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p>设置单次播放时长。单位支持[s(秒)|ms(毫秒)]，默认单位为ms。 duration为0时，不播放图片。 值改变只会在下一次循环开始时生效，当images中设置了单独的duration后，该属性设置无效。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p>fillmode<sup><span>5+</span></sup></p>
-</td>
-<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p>string</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p>forwards</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p>指定帧动画执行结束后的状态。可选项有：</p>
-<ul><li>none：恢复初始状态。</li><li>forwards：保持帧动画结束时的状态（在最后一个关键帧中定义）。</li></ul>
-</td>
-</tr>
-</tbody>
-</table>
+除支持[通用属性](../arkui-js/js-components-common-attributes.md)外，还支持如下属性：
 
-**表 1**  ImageFrame说明
+| 名称 | 类型 | 默认值 | 必填 | 描述 |
+| -------- | -------- | -------- | -------- | -------- |
+| images | Array&lt;ImageFrame&gt; | - | 是 | 设置图片帧信息集合。每一帧的帧信息包含图片路径、图片大小和图片位置信息。目前支持以下图片格式：png、jpg。ImageFrame的详细说明请见表 ImageFrame说明。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;使用时需要使用数据绑定的方式，如images&nbsp;=&nbsp;{{images}}，js中声明相应变量：images:&nbsp;[{src:&nbsp;"/common/heart-rate01.png"},&nbsp;{src:&nbsp;"/common/heart-rate02.png"}]。<br/>>&nbsp;<br/>>&nbsp;js中声明相应变量：images:&nbsp;[{src:&nbsp;"/common/heart-rate01.png",&nbsp;duration:&nbsp;"100"},&nbsp;{src:&nbsp;"/common/heart-rate02.png",&nbsp;duration:&nbsp;"200"}]。支持配置每一帧图片的时长，单位毫秒。<sup>6+</sup> |
+| predecode<sup>6+</sup> | number | 0 | 否 | 是否启用预解码，默认值为0，即不启用预解码，如该值设为2，则播放当前页时会提前加载后面两张图片至缓存以提升性能。 |
+| iteration | number&nbsp;\|&nbsp;string | infinite | 否 | 设置帧动画播放次数。number表示固定次数，infinite枚举表示无限次数播放。 |
+| reverse | boolean | false | 否 | 设置播放顺序。false表示从第1张图片播放到最后1张图片；&nbsp;true表示从最后1张图片播放到第1张图片。 |
+| fixedsize | boolean | true | 否 | 设置图片大小是否固定为组件大小。&nbsp;true表示图片大小与组件大小一致，此时设置图片的width&nbsp;、height&nbsp;、top&nbsp;和left属性是无效的。false表示每一张图片的&nbsp;width&nbsp;、height&nbsp;、top和left属性都要单独设置。 |
+| duration | string | - | 是 | 设置单次播放时长。单位支持[s(秒)\|ms(毫秒)]，默认单位为ms。&nbsp;duration为0时，不播放图片。&nbsp;值改变只会在下一次循环开始时生效，当images中设置了单独的duration后，该属性设置无效。 |
+| fillmode<sup>5+</sup> | string | forwards | 否 | 指定帧动画执行结束后的状态。可选项有：<br/>-&nbsp;none：恢复初始状态。<br/>-&nbsp;forwards：保持帧动画结束时的状态（在最后一个关键帧中定义）。 |
 
-<a name="table67453165913"></a>
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="11.330000000000002%" id="mcps1.2.6.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="9.860000000000001%" id="mcps1.2.6.1.2"><p>类型</p>
-</th>
-<th class="cellrowborder" valign="top" width="10.810000000000002%" id="mcps1.2.6.1.3"><p>默认值</p>
-</th>
-<th class="cellrowborder" valign="top" width="10.000000000000002%" id="mcps1.2.6.1.4"><p>必填</p>
-</th>
-<th class="cellrowborder" valign="top" width="58.00000000000001%" id="mcps1.2.6.1.5"><p>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="11.330000000000002%" headers="mcps1.2.6.1.1 "><p>src</p>
-</td>
-<td class="cellrowborder" valign="top" width="9.860000000000001%" headers="mcps1.2.6.1.2 "><p>&lt;uri&gt;</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.810000000000002%" headers="mcps1.2.6.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.000000000000002%" headers="mcps1.2.6.1.4 "><p>是</p>
-</td>
-<td class="cellrowborder" valign="top" width="58.00000000000001%" headers="mcps1.2.6.1.5 "><p>图片路径<span>，图片格式为svg，png和jpg</span>。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="11.330000000000002%" headers="mcps1.2.6.1.1 "><p>width</p>
-</td>
-<td class="cellrowborder" valign="top" width="9.860000000000001%" headers="mcps1.2.6.1.2 "><p>&lt;length&gt;</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.810000000000002%" headers="mcps1.2.6.1.3 "><p>0</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.000000000000002%" headers="mcps1.2.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="58.00000000000001%" headers="mcps1.2.6.1.5 "><p>图片宽度。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="11.330000000000002%" headers="mcps1.2.6.1.1 "><p>height</p>
-</td>
-<td class="cellrowborder" valign="top" width="9.860000000000001%" headers="mcps1.2.6.1.2 "><p>&lt;length&gt;</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.810000000000002%" headers="mcps1.2.6.1.3 "><p>0</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.000000000000002%" headers="mcps1.2.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="58.00000000000001%" headers="mcps1.2.6.1.5 "><p>图片高度。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="11.330000000000002%" headers="mcps1.2.6.1.1 "><p>top</p>
-</td>
-<td class="cellrowborder" valign="top" width="9.860000000000001%" headers="mcps1.2.6.1.2 "><p>&lt;length&gt;</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.810000000000002%" headers="mcps1.2.6.1.3 "><p>0</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.000000000000002%" headers="mcps1.2.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="58.00000000000001%" headers="mcps1.2.6.1.5 "><p>图片相对于组件左上角的纵向坐标。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="11.330000000000002%" headers="mcps1.2.6.1.1 "><p>left</p>
-</td>
-<td class="cellrowborder" valign="top" width="9.860000000000001%" headers="mcps1.2.6.1.2 "><p>&lt;length&gt;</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.810000000000002%" headers="mcps1.2.6.1.3 "><p>0</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.000000000000002%" headers="mcps1.2.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="58.00000000000001%" headers="mcps1.2.6.1.5 "><p>图片相对于组件左上角的横向坐标。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="11.330000000000002%" headers="mcps1.2.6.1.1 "><p>duration<sup>6+</sup></p>
-</td>
-<td class="cellrowborder" valign="top" width="9.860000000000001%" headers="mcps1.2.6.1.2 "><p>number</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.810000000000002%" headers="mcps1.2.6.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.000000000000002%" headers="mcps1.2.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="58.00000000000001%" headers="mcps1.2.6.1.5 "><p>每一帧图片的播放时长，单位毫秒。</p>
-</td>
-</tr>
-</tbody>
-</table>
+**表1** ImageFrame说明
 
-## 样式<a name="section1774719169253"></a>
+| 名称 | 类型 | 默认值 | 必填 | 描述 |
+| -------- | -------- | -------- | -------- | -------- |
+| src | &lt;uri&gt; | - | 是 | 图片路径，图片格式为svg，png和jpg。 |
+| width | &lt;length&gt; | 0 | 否 | 图片宽度。 |
+| height | &lt;length&gt; | 0 | 否 | 图片高度。 |
+| top | &lt;length&gt; | 0 | 否 | 图片相对于组件左上角的纵向坐标。 |
+| left | &lt;length&gt; | 0 | 否 | 图片相对于组件左上角的横向坐标。 |
+| duration<sup>6+</sup> | number | - | 否 | 每一帧图片的播放时长，单位毫秒。 |
 
-支持[通用样式](js-components-common-styles.md)。
 
-## 事件<a name="section17969351566"></a>
+## 样式
 
-除支持[通用事件](js-components-common-events.md)外，还支持如下事件：
+支持[通用样式](../arkui-js/js-components-common-styles.md)。
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="24.852485248524854%" id="mcps1.1.4.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="29.552955295529554%" id="mcps1.1.4.1.2"><p>参数</p>
-</th>
-<th class="cellrowborder" valign="top" width="45.5945594559456%" id="mcps1.1.4.1.3"><p>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="24.852485248524854%" headers="mcps1.1.4.1.1 "><p>start</p>
-</td>
-<td class="cellrowborder" valign="top" width="29.552955295529554%" headers="mcps1.1.4.1.2 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="45.5945594559456%" headers="mcps1.1.4.1.3 "><p>帧动画启动时触发。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="24.852485248524854%" headers="mcps1.1.4.1.1 "><p>pause</p>
-</td>
-<td class="cellrowborder" valign="top" width="29.552955295529554%" headers="mcps1.1.4.1.2 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="45.5945594559456%" headers="mcps1.1.4.1.3 "><p>帧动画暂停时触发。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="24.852485248524854%" headers="mcps1.1.4.1.1 "><p>stop</p>
-</td>
-<td class="cellrowborder" valign="top" width="29.552955295529554%" headers="mcps1.1.4.1.2 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="45.5945594559456%" headers="mcps1.1.4.1.3 "><p>帧动画结束时触发。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="24.852485248524854%" headers="mcps1.1.4.1.1 "><p>resume</p>
-</td>
-<td class="cellrowborder" valign="top" width="29.552955295529554%" headers="mcps1.1.4.1.2 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="45.5945594559456%" headers="mcps1.1.4.1.3 "><p>帧动画恢复时触发。</p>
-</td>
-</tr>
-</tbody>
-</table>
 
-## 方法<a name="section1428810433566"></a>
+## 事件
 
-支持[通用方法](js-components-common-methods.md)外，还支持如下方法：
+除支持[通用事件](../arkui-js/js-components-common-events.md)外，还支持如下事件：
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="10.89%" id="mcps1.1.4.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="10.9%" id="mcps1.1.4.1.2"><p>参数</p>
-</th>
-<th class="cellrowborder" valign="top" width="78.21000000000001%" id="mcps1.1.4.1.3"><p>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="10.89%" headers="mcps1.1.4.1.1 "><p>start</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.9%" headers="mcps1.1.4.1.2 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="78.21000000000001%" headers="mcps1.1.4.1.3 "><p>开始播放图片帧动画。再次调用，重新从第1帧开始播放。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="10.89%" headers="mcps1.1.4.1.1 "><p>pause</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.9%" headers="mcps1.1.4.1.2 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="78.21000000000001%" headers="mcps1.1.4.1.3 "><p>暂停播放图片帧动画。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="10.89%" headers="mcps1.1.4.1.1 "><p>stop</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.9%" headers="mcps1.1.4.1.2 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="78.21000000000001%" headers="mcps1.1.4.1.3 "><p>停止播放图片帧动画。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="10.89%" headers="mcps1.1.4.1.1 "><p>resume</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.9%" headers="mcps1.1.4.1.2 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="78.21000000000001%" headers="mcps1.1.4.1.3 "><p>继续播放图片帧。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="10.89%" headers="mcps1.1.4.1.1 "><p>getState</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.9%" headers="mcps1.1.4.1.2 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="78.21000000000001%" headers="mcps1.1.4.1.3 "><p>获取播放状态。可能值有：</p>
-<ul><li>playing：播放中</li><li>paused：已暂停</li><li>stopped：已停止。</li></ul>
-</td>
-</tr>
-</tbody>
-</table>
+| 名称 | 参数 | 描述 |
+| -------- | -------- | -------- |
+| start | - | 帧动画启动时触发。 |
+| pause | - | 帧动画暂停时触发。 |
+| stop | - | 帧动画结束时触发。 |
+| resume | - | 帧动画恢复时触发。 |
 
-## 示例<a name="section118221913375"></a>
+
+## 方法
+
+支持[通用方法](../arkui-js/js-components-common-methods.md)外，还支持如下方法：
+
+| 名称 | 参数 | 描述 |
+| -------- | -------- | -------- |
+| start | - | 开始播放图片帧动画。再次调用，重新从第1帧开始播放。 |
+| pause | - | 暂停播放图片帧动画。 |
+| stop | - | 停止播放图片帧动画。 |
+| resume | - | 继续播放图片帧。 |
+| getState | - | 获取播放状态。可能值有：<br/>-&nbsp;playing：播放中<br/>-&nbsp;paused：已暂停<br/>-&nbsp;stopped：已停止。 |
+
+
+## 示例
 
 ```
 <!-- xxx.hml -->
@@ -411,5 +190,4 @@ export default {
 };
 ```
 
-![](figures/image-animator.gif)
-
+![zh-cn_image_0000001127284946](figures/zh-cn_image_0000001127284946.gif)

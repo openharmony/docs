@@ -1,221 +1,68 @@
-# menu<a name="ZH-CN_TOPIC_0000001173164715"></a>
+# menu
+
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 从API version 4开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 提供菜单组件，作为临时性弹出窗口，用于展示用户可执行的操作。
 
-## 权限列表<a name="section11257113618419"></a>
+## 权限列表
 
 无
 
-## 子组件<a name="section9288143101012"></a>
 
-<[option](js-components-basic-option.md)\>子组件。
+## 子组件
 
-## 属性<a name="section2907183951110"></a>
+&lt;[option](../arkui-js/js-components-basic-option.md)&gt;子组件。
 
-除支持[通用属性](js-components-common-attributes.md)外，还支持如下属性：↵
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="23.119999999999997%" id="mcps1.1.6.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="23.119999999999997%" id="mcps1.1.6.1.2"><p>类型</p>
-</th>
-<th class="cellrowborder" valign="top" width="10.48%" id="mcps1.1.6.1.3"><p>默认值</p>
-</th>
-<th class="cellrowborder" valign="top" width="7.5200000000000005%" id="mcps1.1.6.1.4"><p>必填</p>
-</th>
-<th class="cellrowborder" valign="top" width="35.76%" id="mcps1.1.6.1.5"><p>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p>target</p>
-</td>
-<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p>string</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p>目标元素选择器。当使用目标元素选择器后，点击目标元素会自动弹出menu菜单。弹出菜单位置优先为目标元素右下角，当右边可视空间不足时会适当左移，当下方空间不足时会适当上移。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p>type</p>
-</td>
-<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p>string</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p>click</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p>目标元素触发弹窗的方式，可选值有：</p>
-<ul><li>click：点击弹窗。</li><li>longpress：长按弹窗。</li></ul>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p>title</p>
-</td>
-<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p>string</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p>菜单标题内容。</p>
-</td>
-</tr>
-</tbody>
-</table>
+## 属性
 
->![](../../public_sys-resources/icon-note.gif) **说明：** 
->不支持focusable、disabled属性。
+除支持[通用属性](../arkui-js/js-components-common-attributes.md)外，还支持如下属性：↵
 
-## 样式<a name="section1382826121311"></a>
+| 名称 | 类型 | 默认值 | 必填 | 描述 |
+| -------- | -------- | -------- | -------- | -------- |
+| target | string | - | 否 | 目标元素选择器。当使用目标元素选择器后，点击目标元素会自动弹出menu菜单。弹出菜单位置优先为目标元素右下角，当右边可视空间不足时会适当左移，当下方空间不足时会适当上移。 |
+| type | string | click | 否 | 目标元素触发弹窗的方式，可选值有：<br/>-&nbsp;click：点击弹窗。<br/>-&nbsp;longpress：长按弹窗。 |
+| title | string | - | 否 | 菜单标题内容。 |
+
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 不支持focusable、disabled属性。
+
+
+## 样式
 
 仅支持如下样式：
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="19.038096190380962%" id="mcps1.1.6.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="23.847615238476152%" id="mcps1.1.6.1.2"><p>类型</p>
-</th>
-<th class="cellrowborder" valign="top" width="12.118788121187881%" id="mcps1.1.6.1.3"><p>默认值</p>
-</th>
-<th class="cellrowborder" valign="top" width="8.269173082691731%" id="mcps1.1.6.1.4"><p>必填</p>
-</th>
-<th class="cellrowborder" valign="top" width="36.72632736726327%" id="mcps1.1.6.1.5"><p>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="19.038096190380962%" headers="mcps1.1.6.1.1 "><p>text-color</p>
-</td>
-<td class="cellrowborder" valign="top" width="23.847615238476152%" headers="mcps1.1.6.1.2 "><p>&lt;color&gt;</p>
-</td>
-<td class="cellrowborder" valign="top" width="12.118788121187881%" headers="mcps1.1.6.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="8.269173082691731%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="36.72632736726327%" headers="mcps1.1.6.1.5 "><p>设置菜单的文本颜色。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="19.038096190380962%" headers="mcps1.1.6.1.1 "><p>font-size</p>
-</td>
-<td class="cellrowborder" valign="top" width="23.847615238476152%" headers="mcps1.1.6.1.2 "><p>&lt;length&gt;</p>
-</td>
-<td class="cellrowborder" valign="top" width="12.118788121187881%" headers="mcps1.1.6.1.3 "><p>30px</p>
-</td>
-<td class="cellrowborder" valign="top" width="8.269173082691731%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="36.72632736726327%" headers="mcps1.1.6.1.5 "><p>设置菜单的文本尺寸。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="19.038096190380962%" headers="mcps1.1.6.1.1 "><p>allow-scale</p>
-</td>
-<td class="cellrowborder" valign="top" width="23.847615238476152%" headers="mcps1.1.6.1.2 "><p>boolean</p>
-</td>
-<td class="cellrowborder" valign="top" width="12.118788121187881%" headers="mcps1.1.6.1.3 "><p>true</p>
-</td>
-<td class="cellrowborder" valign="top" width="8.269173082691731%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="36.72632736726327%" headers="mcps1.1.6.1.5 "><p>设置菜单的文本尺寸是否跟随系统设置字体缩放尺寸进行放大缩小。</p>
-<div class="note"><span class="notetitle"> 说明： </span><div class="notebody"><p>如果在config描述文件中针对ability配置了fontSize的config-changes标签，则应用不会重启而直接生效。</p>
-</div></div>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="19.038096190380962%" headers="mcps1.1.6.1.1 "><p>letter-spacing</p>
-</td>
-<td class="cellrowborder" valign="top" width="23.847615238476152%" headers="mcps1.1.6.1.2 "><p>&lt;length&gt;</p>
-</td>
-<td class="cellrowborder" valign="top" width="12.118788121187881%" headers="mcps1.1.6.1.3 "><p>0</p>
-</td>
-<td class="cellrowborder" valign="top" width="8.269173082691731%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="36.72632736726327%" headers="mcps1.1.6.1.5 "><p>设置菜单的字符间距。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="19.038096190380962%" headers="mcps1.1.6.1.1 "><p>font-style</p>
-</td>
-<td class="cellrowborder" valign="top" width="23.847615238476152%" headers="mcps1.1.6.1.2 "><p>string</p>
-</td>
-<td class="cellrowborder" valign="top" width="12.118788121187881%" headers="mcps1.1.6.1.3 "><p>normal</p>
-</td>
-<td class="cellrowborder" valign="top" width="8.269173082691731%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="36.72632736726327%" headers="mcps1.1.6.1.5 "><p>设置菜单的字体样式。见<a href="js-components-basic-text.md#section5775351116">text组件font-style的样式属性</a>。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="19.038096190380962%" headers="mcps1.1.6.1.1 "><p>font-weight</p>
-</td>
-<td class="cellrowborder" valign="top" width="23.847615238476152%" headers="mcps1.1.6.1.2 "><p>number | string</p>
-</td>
-<td class="cellrowborder" valign="top" width="12.118788121187881%" headers="mcps1.1.6.1.3 "><p>normal</p>
-</td>
-<td class="cellrowborder" valign="top" width="8.269173082691731%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="36.72632736726327%" headers="mcps1.1.6.1.5 "><p>设置菜单的字体粗细。见<a href="js-components-basic-text.md#section5775351116">text组件font-weight的样式属性</a>。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="19.038096190380962%" headers="mcps1.1.6.1.1 "><p>font-family</p>
-</td>
-<td class="cellrowborder" valign="top" width="23.847615238476152%" headers="mcps1.1.6.1.2 "><p>string</p>
-</td>
-<td class="cellrowborder" valign="top" width="12.118788121187881%" headers="mcps1.1.6.1.3 "><p>sans-serif</p>
-</td>
-<td class="cellrowborder" valign="top" width="8.269173082691731%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="36.72632736726327%" headers="mcps1.1.6.1.5 "><p>设置菜单的字体列表，用逗号分隔，每个字体用字体名或者字体族名设置。列表中第一个系统中存在的或者通过<a href="js-components-common-customizing-font.md">自定义字体</a>指定的字体，会被选中作为文本的字体。</p>
-</td>
-</tr>
-</tbody>
-</table>
+| 名称 | 类型 | 默认值 | 必填 | 描述 |
+| -------- | -------- | -------- | -------- | -------- |
+| text-color | &lt;color&gt; | - | 否 | 设置菜单的文本颜色。 |
+| font-size | &lt;length&gt; | 30px | 否 | 设置菜单的文本尺寸。 |
+| allow-scale | boolean | true | 否 | 设置菜单的文本尺寸是否跟随系统设置字体缩放尺寸进行放大缩小。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;如果在config描述文件中针对ability配置了fontSize的config-changes标签，则应用不会重启而直接生效。 |
+| letter-spacing | &lt;length&gt; | 0 | 否 | 设置菜单的字符间距。 |
+| font-style | string | normal | 否 | 设置菜单的字体样式。见[text组件font-style的样式属性](../arkui-js/js-components-basic-text.md#样式)。 |
+| font-weight | number&nbsp;\|&nbsp;string | normal | 否 | 设置菜单的字体粗细。见[text组件font-weight的样式属性](../arkui-js/js-components-basic-text.md#样式)。 |
+| font-family | string | sans-serif | 否 | 设置菜单的字体列表，用逗号分隔，每个字体用字体名或者字体族名设置。列表中第一个系统中存在的或者通过[自定义字体](../arkui-js/js-components-common-customizing-font.md)指定的字体，会被选中作为文本的字体。 |
 
-## 事件<a name="section5624519222"></a>
+
+## 事件
 
 仅支持如下事件：
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="18.459999999999997%" id="mcps1.1.4.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="30.769999999999996%" id="mcps1.1.4.1.2"><p>参数</p>
-</th>
-<th class="cellrowborder" valign="top" width="50.77%" id="mcps1.1.4.1.3"><p>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="18.459999999999997%" headers="mcps1.1.4.1.1 "><p>selected</p>
-</td>
-<td class="cellrowborder" valign="top" width="30.769999999999996%" headers="mcps1.1.4.1.2 "><p>{ value:value }</p>
-</td>
-<td class="cellrowborder" valign="top" width="50.77%" headers="mcps1.1.4.1.3 "><p>菜单中某个值被点击选中时触发，返回的value值为option组件的value属性。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="18.459999999999997%" headers="mcps1.1.4.1.1 "><p>cancel</p>
-</td>
-<td class="cellrowborder" valign="top" width="30.769999999999996%" headers="mcps1.1.4.1.2 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="50.77%" headers="mcps1.1.4.1.3 "><p>用户取消。</p>
-</td>
-</tr>
-</tbody>
-</table>
+| 名称 | 参数 | 描述 |
+| -------- | -------- | -------- |
+| selected | {&nbsp;value:value&nbsp;} | 菜单中某个值被点击选中时触发，返回的value值为option组件的value属性。 |
+| cancel | - | 用户取消。 |
 
-## 方法<a name="section47669296127"></a>
+
+## 方法
 
 仅支持如下方法。
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="18.459999999999997%" id="mcps1.1.4.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="30.769999999999996%" id="mcps1.1.4.1.2"><p>参数</p>
-</th>
-<th class="cellrowborder" valign="top" width="50.77%" id="mcps1.1.4.1.3"><p>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="18.459999999999997%" headers="mcps1.1.4.1.1 "><p>show</p>
-</td>
-<td class="cellrowborder" valign="top" width="30.769999999999996%" headers="mcps1.1.4.1.2 "><p>{ x:x,  y:y }</p>
-</td>
-<td class="cellrowborder" valign="top" width="50.77%" headers="mcps1.1.4.1.3 "><p>显示menu菜单。(x, y)指定菜单弹窗位置。其中x表示距离可见区域左边沿的 X 轴坐标，不包含任何滚动偏移，y表示距离可见区域上边沿的 Y 轴坐标，不包含任何滚动偏移以及状态栏。菜单优先显示在弹窗位置右下角，当右边可视空间不足时会适当左移，当下方空间不足时会适当上移。</p>
-</td>
-</tr>
-</tbody>
-</table>
+| 名称 | 参数 | 描述 |
+| -------- | -------- | -------- |
+| show | {&nbsp;x:x,&nbsp;&nbsp;y:y&nbsp;} | 显示menu菜单。(x,&nbsp;y)指定菜单弹窗位置。其中x表示距离可见区域左边沿的&nbsp;X&nbsp;轴坐标，不包含任何滚动偏移，y表示距离可见区域上边沿的&nbsp;Y&nbsp;轴坐标，不包含任何滚动偏移以及状态栏。菜单优先显示在弹窗位置右下角，当右边可视空间不足时会适当左移，当下方空间不足时会适当上移。 |
 
-## 示例<a name="section54636714136"></a>
+## 示例
 
 ```
 <!-- xxx.hml -->
@@ -256,5 +103,4 @@ export default {
 }
 ```
 
-![](figures/menu13.gif)
-
+![zh-cn_image_0000001131795738](figures/zh-cn_image_0000001131795738.gif)

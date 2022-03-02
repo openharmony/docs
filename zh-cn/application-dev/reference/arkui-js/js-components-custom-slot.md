@@ -1,9 +1,10 @@
-# slot插槽<a name="ZH-CN_TOPIC_0000001127284840"></a>
+# slot插槽
 
->![](../../public_sys-resources/icon-note.gif) **说明：** 
->从API Version 7 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 从API Version 7 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-## 默认插槽<a name="section68133181214"></a>
+
+## 默认插槽
 
 自定义组件中通过slot标签来承载父组件中定义的内容，使用slot标签可以更加灵活的控制自定义组件的内容元素，使用方式如下：
 
@@ -16,7 +17,6 @@
 ```
 
 引用该自定义组件方式如下：
-
 ```
 <!-- xxx.hml --> 
  <element name='comp' src='../../common/component/comp.hml'></element>  
@@ -27,7 +27,8 @@
  </div>
 ```
 
-## 具名插槽<a name="section18337143291211"></a>
+
+## 具名插槽
 
 当自定义组件中需要使用多个插槽时，可通过对插槽命名的方式进行区分，当填充插槽内容时，通过声明插槽名称，将内容加到对应的插槽中。
 
@@ -41,7 +42,6 @@
 ```
 
 引用该自定义组件方式如下：
-
 ```
 <!-- xxx.hml --> 
  <element name='comp' src='../../common/component/comp.hml'></element>  
@@ -53,6 +53,5 @@
  </div>
 ```
 
->![](../../public_sys-resources/icon-note.gif) **说明：** 
->name 和 slot 属性不支持绑定动态数据。
-
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> name 和 slot 属性不支持绑定动态数据。

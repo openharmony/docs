@@ -1,4 +1,4 @@
-# reference/arkui-ts
+# 基于TS扩展的声明式开发范式
 
 - 组件
     - 通用

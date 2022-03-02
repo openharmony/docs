@@ -1,78 +1,53 @@
-# form<a name="ZH-CN_TOPIC_0000001127284848"></a>
+# form
+
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 从API version 6开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 表单容器，支持容器内input元素的内容提交和重置。
 
-## 权限列表<a name="section11257113618419"></a>
+
+## 权限列表
 
 无
 
-## 子组件<a name="section9288143101012"></a>
+
+## 子组件
 
 支持。
 
-## 属性<a name="section2907183951110"></a>
 
-支持[通用属性](js-components-common-attributes.md)。
+## 属性
 
-## 样式<a name="section10683162023215"></a>
+支持[通用属性](../arkui-js/js-components-common-attributes.md)。
 
-支持[组件通用样式](js-components-common-styles.md)。
 
-## 事件<a name="section77341431152917"></a>
+## 样式
 
-处支持[通用事件](js-components-common-events.md)外，还支持如下事件：
+支持[组件通用样式](../arkui-js/js-components-common-styles.md)。
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="22.7022702270227%" id="mcps1.1.4.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="16.881688168816883%" id="mcps1.1.4.1.2"><p>参数</p>
-</th>
-<th class="cellrowborder" valign="top" width="60.41604160416041%" id="mcps1.1.4.1.3"><p>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="22.7022702270227%" headers="mcps1.1.4.1.1 "><p>submit</p>
-</td>
-<td class="cellrowborder" valign="top" width="16.881688168816883%" headers="mcps1.1.4.1.2 "><p><a href="#table195257111418">FormResult</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="60.41604160416041%" headers="mcps1.1.4.1.3 "><p>点击提交按钮，进行表单提交时，触发该事件。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="22.7022702270227%" headers="mcps1.1.4.1.1 "><p>reset</p>
-</td>
-<td class="cellrowborder" valign="top" width="16.881688168816883%" headers="mcps1.1.4.1.2 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="60.41604160416041%" headers="mcps1.1.4.1.3 "><p>点击重置按钮后，触发该事件。</p>
-</td>
-</tr>
-</tbody>
-</table>
 
-**表 1**  FormResult
+## 事件
 
-<a name="table195257111418"></a>
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.2.4.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.2.4.1.2"><p>类型</p>
-</th>
-<th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.2.4.1.3"><p>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.1 "><p>value</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.2 "><p>Object</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.3 "><p>input元素的name和value的值。</p>
-</td>
-</tr>
-</tbody>
-</table>
+除支持[通用事件](../arkui-js/js-components-common-events.md)外，还支持如下事件：
 
-## 方法<a name="section2279124532420"></a>
+| 名称 | 参数 | 描述 |
+| -------- | -------- | -------- |
+| submit | FormResult | 点击提交按钮，进行表单提交时，触发该事件。 |
+| reset | - | 点击重置按钮后，触发该事件。 |
 
-支持[通用方法](js-components-common-methods.md)。
+**表1** FormResult
 
-## 示例<a name="section1241545010391"></a>
+| 名称 | 类型 | 描述 |
+| -------- | -------- | -------- |
+| value | Object | input元素的name和value的值。 |
+
+
+## 方法
+
+支持[通用方法](../arkui-js/js-components-common-methods.md)。
+
+
+## 示例
 
 ```
 <!-- xxx.hml -->
@@ -105,5 +80,4 @@ export default{
 }
 ```
 
-![](figures/001.gif)
-
+![zh-cn_image_0000001180658376](figures/zh-cn_image_0000001180658376.gif)

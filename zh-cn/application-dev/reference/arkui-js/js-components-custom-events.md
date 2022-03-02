@@ -1,6 +1,7 @@
-# 自定义事件<a name="ZH-CN_TOPIC_0000001127284896"></a>
+# 自定义事件
 
 子组件comp定义如下：
+
 
 ```
 <!-- comp.hml -->
@@ -9,6 +10,7 @@
    <text class="text-style" if="{{showObj}}">hello world</text> 
 </div>
 ```
+
 
 ```
 /* comp.css */
@@ -26,6 +28,7 @@
 }
 ```
 
+
 ```
 // comp.js
 export default { 
@@ -39,7 +42,9 @@ export default {
 }
 ```
 
+
 引入子组件的示例如下：
+
 
 ```
 <!-- xxx.hml --> 
@@ -48,6 +53,7 @@ export default {
   <comp @event-type1="textClicked"></comp>  
 </div>
 ```
+
 
 ```
 /* xxx.css */
@@ -59,10 +65,10 @@ export default {
 } 
 ```
 
+
 ```
 // xxx.js
 export default {    
   textClicked () {},  
 }
 ```
-

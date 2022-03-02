@@ -1,121 +1,63 @@
-# dialog<a name="ZH-CN_TOPIC_0000001173324657"></a>
+# dialog
+
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 从API version 4开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 自定义弹窗容器。
 
-## 权限列表<a name="section11257113618419"></a>
+## 权限列表
 
 无
 
-## 子组件<a name="section9288143101012"></a>
+
+## 子组件
 
 支持单个子组件。
 
-## 属性<a name="section2907183951110"></a>
 
-除支持[通用属性](js-components-common-attributes.md)外，支持如下属性：
+## 属性
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="19.598040195980403%" id="mcps1.1.6.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="11.178882111788822%" id="mcps1.1.6.1.2"><p>类型</p>
-</th>
-<th class="cellrowborder" valign="top" width="9.899010098990102%" id="mcps1.1.6.1.3"><p>默认值</p>
-</th>
-<th class="cellrowborder" valign="top" width="7.56924307569243%" id="mcps1.1.6.1.4"><p>必填</p>
-</th>
-<th class="cellrowborder" valign="top" width="51.754824517548236%" id="mcps1.1.6.1.5"><p>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="19.598040195980403%" headers="mcps1.1.6.1.1 "><p>dragable<sup><span>7+</span></sup></p>
-</td>
-<td class="cellrowborder" valign="top" width="11.178882111788822%" headers="mcps1.1.6.1.2 "><p>boolean</p>
-</td>
-<td class="cellrowborder" valign="top" width="9.899010098990102%" headers="mcps1.1.6.1.3 "><p>false</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.56924307569243%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="51.754824517548236%" headers="mcps1.1.6.1.5 "><p>设置对话框是否支持拖拽。</p>
-</td>
-</tr>
-</tbody>
-</table>
+除支持[通用属性](../arkui-js/js-components-common-attributes.md)外，支持如下属性：
 
->![](../../public_sys-resources/icon-note.gif) **说明：** 
->-   弹窗类组件不支持focusable、click-effect属性。
+| 名称 | 类型 | 默认值 | 必填 | 描述 |
+| -------- | -------- | -------- | -------- | -------- |
+| dragable<sup>7+</sup> | boolean | false | 否 | 设置对话框是否支持拖拽。 |
 
-## 样式<a name="section5775351116"></a>
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>
+> - 弹窗类组件不支持focusable、click-effect属性。
 
-仅支持[通用样式](js-components-common-styles.md)中的width、height、margin、margin-\[left|top|right|bottom\]、margin-\[start|end\]样式。
 
-## 事件<a name="section8562129182916"></a>
+## 样式
 
-不支持[通用事件](js-components-common-events.md)，仅支持如下事件：
+仅支持[通用样式](../arkui-js/js-components-common-styles.md)中的width、height、margin、margin-[left|top|right|bottom]、margin-[start|end]样式。
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="18.459999999999997%" id="mcps1.1.4.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="30.769999999999996%" id="mcps1.1.4.1.2"><p>参数</p>
-</th>
-<th class="cellrowborder" valign="top" width="50.77%" id="mcps1.1.4.1.3"><p>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="18.459999999999997%" headers="mcps1.1.4.1.1 "><p>cancel</p>
-</td>
-<td class="cellrowborder" valign="top" width="30.769999999999996%" headers="mcps1.1.4.1.2 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="50.77%" headers="mcps1.1.4.1.3 "><p>用户点击非dialog区域触发取消弹窗时触发的事件。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="18.459999999999997%" headers="mcps1.1.4.1.1 "><p>show<sup><span>7+</span></sup></p>
-</td>
-<td class="cellrowborder" valign="top" width="30.769999999999996%" headers="mcps1.1.4.1.2 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="50.77%" headers="mcps1.1.4.1.3 "><p>对话框弹出时触发该事件。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="18.459999999999997%" headers="mcps1.1.4.1.1 "><p>close<sup><span>7+</span></sup></p>
-</td>
-<td class="cellrowborder" valign="top" width="30.769999999999996%" headers="mcps1.1.4.1.2 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="50.77%" headers="mcps1.1.4.1.3 "><p>对话框关闭时触发该事件。</p>
-</td>
-</tr>
-</tbody>
-</table>
 
-## 方法<a name="section11753103216253"></a>
+## 事件
 
-不支持[通用方法](js-components-common-methods.md)，仅支持如下方法。
+不支持[通用事件](../arkui-js/js-components-common-events.md)，仅支持如下事件：
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="18.459999999999997%" id="mcps1.1.4.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="30.769999999999996%" id="mcps1.1.4.1.2"><p>参数</p>
-</th>
-<th class="cellrowborder" valign="top" width="50.77%" id="mcps1.1.4.1.3"><p>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="18.459999999999997%" headers="mcps1.1.4.1.1 "><p>show</p>
-</td>
-<td class="cellrowborder" valign="top" width="30.769999999999996%" headers="mcps1.1.4.1.2 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="50.77%" headers="mcps1.1.4.1.3 "><p>弹出对话框。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="18.459999999999997%" headers="mcps1.1.4.1.1 "><p>close</p>
-</td>
-<td class="cellrowborder" valign="top" width="30.769999999999996%" headers="mcps1.1.4.1.2 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="50.77%" headers="mcps1.1.4.1.3 "><p>关闭对话框。</p>
-</td>
-</tr>
-</tbody>
-</table>
+| 名称 | 参数 | 描述 |
+| -------- | -------- | -------- |
+| cancel | - | 用户点击非dialog区域触发取消弹窗时触发的事件。 |
+| show<sup>7+</sup> | - | 对话框弹出时触发该事件。 |
+| close<sup>7+</sup> | - | 对话框关闭时触发该事件。 |
 
->![](../../public_sys-resources/icon-note.gif) **说明：** 
->dialog属性、样式均不支持动态更新。
 
-## 示例<a name="section6663311114620"></a>
+## 方法
+
+不支持[通用方法](../arkui-js/js-components-common-methods.md)，仅支持如下方法。
+
+| 名称 | 参数 | 描述 |
+| -------- | -------- | -------- |
+| show | - | 弹出对话框。 |
+| close | - | 关闭对话框。 |
+
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> dialog属性、样式均不支持动态更新。
+
+
+## 示例
 
 ```
 <!-- xxx.hml -->
@@ -218,5 +160,4 @@ export default {
 }
 ```
 
-![](figures/4.gif)
-
+![zh-cn_image_0000001167846062](figures/zh-cn_image_0000001167846062.gif)

@@ -1,86 +1,45 @@
-# tabs<a name="ZH-CN_TOPIC_0000001173324585"></a>
+# tabs
+
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 从API version 4开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 tab页签容器。
 
-## 权限列表<a name="section11257113618419"></a>
+## 权限列表
 
 无
 
-## 子组件<a name="section9288143101012"></a>
 
-仅支持最多一个<[tab-bar](js-components-container-tab-bar.md)\>和最多一个<[tab-content](js-components-container-tab-content.md)\>。
+## 子组件
 
-## 属性<a name="section2907183951110"></a>
+仅支持最多一个&lt;[tab-bar](../arkui-js/js-components-container-tab-bar.md)&gt;和最多一个&lt;[tab-content](../arkui-js/js-components-container-tab-content.md)&gt;。
 
-除支持[通用属性](js-components-common-attributes.md)外，还支持如下属性：
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="23.119999999999997%" id="mcps1.1.6.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="23.119999999999997%" id="mcps1.1.6.1.2"><p>类型</p>
-</th>
-<th class="cellrowborder" valign="top" width="10.48%" id="mcps1.1.6.1.3"><p>默认值</p>
-</th>
-<th class="cellrowborder" valign="top" width="7.5200000000000005%" id="mcps1.1.6.1.4"><p>必填</p>
-</th>
-<th class="cellrowborder" valign="top" width="35.76%" id="mcps1.1.6.1.5"><p>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p>index</p>
-</td>
-<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p>number</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p>0</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p>当前处于激活态的tab索引。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p>vertical</p>
-</td>
-<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p>boolean</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p>false</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p>是否为纵向的tab，默认为false，可选值为：</p>
-<ul><li>false：tabbar和tabcontent上下排列。</li><li>true：tabbar和tabcontent左右排列。</li></ul>
-</td>
-</tr>
-</tbody>
-</table>
+## 属性
 
-## 样式<a name="section169548171376"></a>
+除支持[通用属性](../arkui-js/js-components-common-attributes.md)外，还支持如下属性：
 
-支持[通用样式](js-components-common-styles.md)。
+| 名称 | 类型 | 默认值 | 必填 | 描述 |
+| -------- | -------- | -------- | -------- | -------- |
+| index | number | 0 | 否 | 当前处于激活态的tab索引。 |
+| vertical | boolean | false | 否 | 是否为纵向的tab，默认为false，可选值为：<br/>-&nbsp;false：tabbar和tabcontent上下排列。<br/>-&nbsp;true：tabbar和tabcontent左右排列。 |
 
-## 事件<a name="section3892191911214"></a>
 
-除支持[通用事件](js-components-common-events.md)外，还支持如下事件：
+## 样式
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="24.852485248524854%" id="mcps1.1.4.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="29.552955295529554%" id="mcps1.1.4.1.2"><p>参数</p>
-</th>
-<th class="cellrowborder" valign="top" width="45.5945594559456%" id="mcps1.1.4.1.3"><p>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="24.852485248524854%" headers="mcps1.1.4.1.1 "><p>change</p>
-</td>
-<td class="cellrowborder" valign="top" width="29.552955295529554%" headers="mcps1.1.4.1.2 "><p>{ index: indexValue }</p>
-</td>
-<td class="cellrowborder" valign="top" width="45.5945594559456%" headers="mcps1.1.4.1.3 "><p>tab页签切换后触发。</p>
-<div class="note"><span class="notetitle"> 说明： </span><div class="notebody"><p>动态修改index值不会触发该回调。</p>
-</div></div>
-</td>
-</tr>
-</tbody>
-</table>
+支持[通用样式](../arkui-js/js-components-common-styles.md)。
 
-## 示例<a name="section14993155318710"></a>
+
+## 事件
+
+除支持[通用事件](../arkui-js/js-components-common-events.md)外，还支持如下事件：
+
+| 名称 | 参数 | 描述 |
+| -------- | -------- | -------- |
+| change | {&nbsp;index:&nbsp;indexValue&nbsp;} | tab页签切换后触发。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;动态修改index值不会触发该回调。 |
+
+
+## 示例
 
 ```
 <!-- xxx.hml -->
@@ -149,5 +108,4 @@ export default {
 }
 ```
 
-![](figures/tab.gif)
-
+![zh-cn_image_0000001127125116](figures/zh-cn_image_0000001127125116.gif)

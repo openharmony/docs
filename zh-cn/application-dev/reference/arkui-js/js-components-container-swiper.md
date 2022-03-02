@@ -1,318 +1,75 @@
-# swiper<a name="ZH-CN_TOPIC_0000001173164745"></a>
+# swiper
+
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 从API version 4开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 滑动容器，提供切换子组件显示的能力。
 
-## 权限列表<a name="section11257113618419"></a>
+## 权限列表
 
 无
 
-## 子组件<a name="section9288143101012"></a>
 
-支持除<list\>之外的子组件。
+## 子组件
 
-## 属性<a name="section2907183951110"></a>
+支持除&lt;list&gt;之外的子组件。
 
-除支持[通用属性](js-components-common-attributes.md)外，还支持如下属性：
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="23.119999999999997%" id="mcps1.1.6.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="23.119999999999997%" id="mcps1.1.6.1.2"><p>类型</p>
-</th>
-<th class="cellrowborder" valign="top" width="10.48%" id="mcps1.1.6.1.3"><p>默认值</p>
-</th>
-<th class="cellrowborder" valign="top" width="7.5200000000000005%" id="mcps1.1.6.1.4"><p>必填</p>
-</th>
-<th class="cellrowborder" valign="top" width="35.76%" id="mcps1.1.6.1.5"><p>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p>index</p>
-</td>
-<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p>number</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p>0</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p>当前在容器中显示的子组件的索引值。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p>autoplay</p>
-</td>
-<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p>boolean</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p>false</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p>子组件是否自动播放，自动播放状态下，导航点不可操作<sup><span>5+</span></sup>。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p>interval</p>
-</td>
-<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p>number</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p>3000</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p>使用自动播放时播放的时间间隔，单位为ms。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p>indicator</p>
-</td>
-<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p>boolean</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p>true</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p>是否启用导航点指示器，默认true。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p>digital<sup>5+</sup></p>
-</td>
-<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p>boolean</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p>false</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p>是否启用数字导航点，默认为false。</p>
-<div class="note"><span class="notetitle"> 说明： </span><div class="notebody"><p>必须设置indicator时才能生效数字导航点。</p>
-</div></div>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p>indicatordisabled<sup>5+</sup></p>
-</td>
-<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p>boolean</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p>false</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p>指示器是否禁止用户手势操作，设置为true时，指示器不会响应用户的点击拖拽。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p>loop</p>
-</td>
-<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p>boolean</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p>true</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p>是否开启循环滑动。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p>duration</p>
-</td>
-<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p>number</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p>子组件切换的动画时长。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p>vertical</p>
-</td>
-<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p>boolean</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p>false</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p>是否为纵向滑动，纵向滑动时采用纵向的指示器。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p>cachedsize<sup>7+</sup></p>
-</td>
-<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p>number</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p>-1</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p>swiper延迟加载时item最少缓存数量。-1表示全部缓存。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p>scrolleffect<sup>7+</sup></p>
-</td>
-<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p>string</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p>spring</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p>滑动效果。目前支持如下：</p>
-<ul><li>spring：弹性物理动效，滑动到边缘后可以根据初始速度或通过触摸事件继续滑动一段距离，松手后回弹。</li><li>fade：渐隐物理动效，滑动到边缘后展示一个波浪形的渐隐，根据速度和滑动距离的变化渐隐也会发送一定的变化</li><li>none：滑动到边缘后无效果。<div class="note"><span class="notetitle"> 说明： </span><div class="notebody"><p>该属性仅在loop属性为false时生效。</p>
-</div></div>
-</li></ul>
-</td>
-</tr>
-</tbody>
-</table>
+## 属性
 
-## 样式<a name="section08721578337"></a>
+除支持[通用属性](../arkui-js/js-components-common-attributes.md)外，还支持如下属性：
 
-除支持[通用样式](js-components-common-styles.md)外，还支持如下样式：
+| 名称 | 类型 | 默认值 | 必填 | 描述 |
+| -------- | -------- | -------- | -------- | -------- |
+| index | number | 0 | 否 | 当前在容器中显示的子组件的索引值。 |
+| autoplay | boolean | false | 否 | 子组件是否自动播放，自动播放状态下，导航点不可操作<sup>5+</sup>。 |
+| interval | number | 3000 | 否 | 使用自动播放时播放的时间间隔，单位为ms。 |
+| indicator | boolean | true | 否 | 是否启用导航点指示器，默认true。 |
+| digital<sup>5+</sup> | boolean | false | 否 | 是否启用数字导航点，默认为false。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;必须设置indicator时才能生效数字导航点。 |
+| indicatordisabled<sup>5+</sup> | boolean | false | 否 | 指示器是否禁止用户手势操作，设置为true时，指示器不会响应用户的点击拖拽。 |
+| loop | boolean | true | 否 | 是否开启循环滑动。 |
+| duration | number | - | 否 | 子组件切换的动画时长。 |
+| vertical | boolean | false | 否 | 是否为纵向滑动，纵向滑动时采用纵向的指示器。 |
+| cachedsize<sup>7+</sup> | number | -1 | 否 | swiper延迟加载时item最少缓存数量。-1表示全部缓存。 |
+| scrolleffect<sup>7+</sup> | string | spring | 否 | 滑动效果。目前支持如下：<br/>-&nbsp;spring：弹性物理动效，滑动到边缘后可以根据初始速度或通过触摸事件继续滑动一段距离，松手后回弹。<br/>-&nbsp;fade：渐隐物理动效，滑动到边缘后展示一个波浪形的渐隐，根据速度和滑动距离的变化渐隐也会发送一定的变化<br/>-&nbsp;none：滑动到边缘后无效果。<br/>&nbsp;&nbsp;>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>&nbsp;&nbsp;>&nbsp;该属性仅在loop属性为false时生效。 |
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="23.08769123087691%" id="mcps1.1.6.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="18.94810518948105%" id="mcps1.1.6.1.2"><p>类型</p>
-</th>
-<th class="cellrowborder" valign="top" width="10.428957104289571%" id="mcps1.1.6.1.3"><p>默认值</p>
-</th>
-<th class="cellrowborder" valign="top" width="7.519248075192481%" id="mcps1.1.6.1.4"><p>必填</p>
-</th>
-<th class="cellrowborder" valign="top" width="40.01599840015999%" id="mcps1.1.6.1.5"><p>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="23.08769123087691%" headers="mcps1.1.6.1.1 "><p>indicator-color</p>
-</td>
-<td class="cellrowborder" valign="top" width="18.94810518948105%" headers="mcps1.1.6.1.2 "><p>&lt;color&gt;</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.428957104289571%" headers="mcps1.1.6.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.519248075192481%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="40.01599840015999%" headers="mcps1.1.6.1.5 "><p>导航点指示器的填充颜色。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="23.08769123087691%" headers="mcps1.1.6.1.1 "><p>indicator-selected-color</p>
-</td>
-<td class="cellrowborder" valign="top" width="18.94810518948105%" headers="mcps1.1.6.1.2 "><p>&lt;color&gt;</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.428957104289571%" headers="mcps1.1.6.1.3 "><p>#ff007dff</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.519248075192481%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="40.01599840015999%" headers="mcps1.1.6.1.5 "><p>导航点指示器选中的颜色。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="23.08769123087691%" headers="mcps1.1.6.1.1 "><p>indicator-size</p>
-</td>
-<td class="cellrowborder" valign="top" width="18.94810518948105%" headers="mcps1.1.6.1.2 "><p>&lt;length&gt;</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.428957104289571%" headers="mcps1.1.6.1.3 "><p>4px</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.519248075192481%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="40.01599840015999%" headers="mcps1.1.6.1.5 "><p>导航点指示器的直径大小。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="23.08769123087691%" headers="mcps1.1.6.1.1 "><p>indicator-top|left|right|bottom</p>
-</td>
-<td class="cellrowborder" valign="top" width="18.94810518948105%" headers="mcps1.1.6.1.2 "><p>&lt;length&gt; | &lt;percentage&gt;</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.428957104289571%" headers="mcps1.1.6.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.519248075192481%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="40.01599840015999%" headers="mcps1.1.6.1.5 "><p>导航点指示器在swiper中的相对位置。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="23.08769123087691%" headers="mcps1.1.6.1.1 "><p>next-margin<sup><span>7+</span></sup></p>
-</td>
-<td class="cellrowborder" valign="top" width="18.94810518948105%" headers="mcps1.1.6.1.2 "><p>&lt;length&gt; | &lt;percentage&gt;</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.428957104289571%" headers="mcps1.1.6.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.519248075192481%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="40.01599840015999%" headers="mcps1.1.6.1.5 "><p>后边距，用于露出后一项的一小部分。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="23.08769123087691%" headers="mcps1.1.6.1.1 "><p>previous-margin<sup><span>7+</span></sup></p>
-</td>
-<td class="cellrowborder" valign="top" width="18.94810518948105%" headers="mcps1.1.6.1.2 "><p>&lt;length&gt; | &lt;percentage&gt;</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.428957104289571%" headers="mcps1.1.6.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.519248075192481%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="40.01599840015999%" headers="mcps1.1.6.1.5 "><p>前边距，用于露出前一项的一小部分。</p>
-</td>
-</tr>
-</tbody>
-</table>
 
-## 事件<a name="section5891352194417"></a>
+## 样式
 
-除支持[通用事件](js-components-common-events.md)外，还支持如下事件：
+除支持[通用样式](../arkui-js/js-components-common-styles.md)外，还支持如下样式：
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="24.852485248524854%" id="mcps1.1.4.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="29.452945294529453%" id="mcps1.1.4.1.2"><p>参数</p>
-</th>
-<th class="cellrowborder" valign="top" width="45.69456945694569%" id="mcps1.1.4.1.3"><p>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="24.852485248524854%" headers="mcps1.1.4.1.1 "><p>change</p>
-</td>
-<td class="cellrowborder" valign="top" width="29.452945294529453%" headers="mcps1.1.4.1.2 "><p>{ index: currentIndex }</p>
-</td>
-<td class="cellrowborder" valign="top" width="45.69456945694569%" headers="mcps1.1.4.1.3 "><p>当前显示的组件索引变化时触发该事件。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="24.852485248524854%" headers="mcps1.1.4.1.1 "><p>rotation</p>
-</td>
-<td class="cellrowborder" valign="top" width="29.452945294529453%" headers="mcps1.1.4.1.2 "><p>{ value: rotationValue }</p>
-</td>
-<td class="cellrowborder" valign="top" width="45.69456945694569%" headers="mcps1.1.4.1.3 "><p>智能穿戴表冠旋转事件触发时的回调。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="24.852485248524854%" headers="mcps1.1.4.1.1 "><p>animationfinish<sup>7+</sup></p>
-</td>
-<td class="cellrowborder" valign="top" width="29.452945294529453%" headers="mcps1.1.4.1.2 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="45.69456945694569%" headers="mcps1.1.4.1.3 "><p>动画结束时触发该事件。</p>
-</td>
-</tr>
-</tbody>
-</table>
+| 名称 | 类型 | 默认值 | 必填 | 描述 |
+| -------- | -------- | -------- | -------- | -------- |
+| indicator-color | &lt;color&gt; | - | 否 | 导航点指示器的填充颜色。 |
+| indicator-selected-color | &lt;color&gt; | \#ff007dff | 否 | 导航点指示器选中的颜色。 |
+| indicator-size | &lt;length&gt; | 4px | 否 | 导航点指示器的直径大小。 |
+| indicator-top\|left\|right\|bottom | &lt;length&gt;&nbsp;\|&nbsp;&lt;percentage&gt; | - | 否 | 导航点指示器在swiper中的相对位置。 |
+| next-margin<sup>7+</sup> | &lt;length&gt;&nbsp;\|&nbsp;&lt;percentage&gt; | - | 否 | 后边距，用于露出后一项的一小部分。 |
+| previous-margin<sup>7+</sup> | &lt;length&gt;&nbsp;\|&nbsp;&lt;percentage&gt; | - | 否 | 前边距，用于露出前一项的一小部分。 |
 
-## 方法<a name="section47669296127"></a>
 
-除支持[通用方法](js-components-common-methods.md)外，还支持如下方法：
+## 事件
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="19.439999999999998%" id="mcps1.1.4.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="30.56%" id="mcps1.1.4.1.2"><p>参数</p>
-</th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.1.4.1.3"><p>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="19.439999999999998%" headers="mcps1.1.4.1.1 "><p>swipeTo</p>
-</td>
-<td class="cellrowborder" valign="top" width="30.56%" headers="mcps1.1.4.1.2 "><p>{ index: number(指定位置) }</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.4.1.3 "><p>切换到index位置的子组件。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="19.439999999999998%" headers="mcps1.1.4.1.1 "><p>showNext</p>
-</td>
-<td class="cellrowborder" valign="top" width="30.56%" headers="mcps1.1.4.1.2 "><p>无</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.4.1.3 "><p>显示下一个子组件。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="19.439999999999998%" headers="mcps1.1.4.1.1 "><p>showPrevious</p>
-</td>
-<td class="cellrowborder" valign="top" width="30.56%" headers="mcps1.1.4.1.2 "><p>无</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.4.1.3 "><p>显示上一个子组件。</p>
-</td>
-</tr>
-</tbody>
-</table>
+除支持[通用事件](../arkui-js/js-components-common-events.md)外，还支持如下事件：
 
-## 示例<a name="section1933534232313"></a>
+| 名称 | 参数 | 描述 |
+| -------- | -------- | -------- |
+| change | {&nbsp;index:&nbsp;currentIndex&nbsp;} | 当前显示的组件索引变化时触发该事件。 |
+| rotation | {&nbsp;value:&nbsp;rotationValue&nbsp;} | 智能穿戴表冠旋转事件触发时的回调。 |
+| animationfinish<sup>7+</sup> | - | 动画结束时触发该事件。 |
+
+## 方法
+
+除支持[通用方法](../arkui-js/js-components-common-methods.md)外，还支持如下方法：
+
+| 名称 | 参数 | 描述 |
+| -------- | -------- | -------- |
+| swipeTo | {&nbsp;index:&nbsp;number(指定位置)&nbsp;} | 切换到index位置的子组件。 |
+| showNext | 无 | 显示下一个子组件。 |
+| showPrevious | 无 | 显示上一个子组件。 |
+
+
+## 示例
 
 ```
 <!-- xxx.hml -->
@@ -397,5 +154,6 @@ export default {
 }
 ```
 
-![](figures/4-0.gif)
+![zh-cn_image_0000001167823326](figures/zh-cn_image_0000001167823326.gif)
+
 
