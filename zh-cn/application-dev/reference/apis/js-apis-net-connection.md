@@ -1,4 +1,4 @@
-# 蜂窝数据
+# 网络
 
 > **说明：**
 >
@@ -6,7 +6,7 @@
 
 ## 导入模块
 
-```typescript
+```javascript
 import connection from '@ohos.net.connection'
 ```
 
@@ -73,7 +73,7 @@ hasDefaultNet(callback: AsyncCallback\<boolean>): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ----- | ----- | ---- | ----- |
-| callback | AsyncCallback\<boolean> | 是 | 回调函数 |
+| callback | AsyncCallback\<boolean> | 是 | 回调函数，有默认网络返回true。 |
 
 **示例：**
 
@@ -98,7 +98,7 @@ hasDefaultNet(): Promise\<boolean>
 
 | 类型 | 说明 |
 | ----- | ----- |
-| Promise\<boolean> | 以Promise形式返回 |
+| Promise\<boolean> | 以Promise形式返回，有默认网络返回true。 |
 
 **示例：**
 
@@ -329,7 +329,7 @@ let netConnection2 = connection.createNetConnection({
 
 网络连接的句柄
 
-### connection.NetConnection.on('netAvailable')
+### on('netAvailable')
 
 on(type: 'netAvailable', callback: Callback\<NetHandle>): void
 
@@ -354,7 +354,7 @@ connection.createNetConnection().on('netAvailable', function (data) {
 })
 ```
 
-### connection.NetConnection.on('netCapabilitiesChange')
+### on('netCapabilitiesChange')
 
 on(type: 'netCapabilitiesChange', callback: Callback<{ netHandle: NetHandle, netCap: NetCapabilities }>): void
 
@@ -379,7 +379,7 @@ connection.createNetConnection().on('netCapabilitiesChange', function (data) {
 })
 ```
 
-### connection.NetConnection.on('netConnectionPropertiesChange')
+### on('netConnectionPropertiesChange')
 
 on(type: 'netConnectionPropertiesChange', callback: Callback<{ netHandle: NetHandle, connectionProperties: ConnectionProperties }>): void
 
@@ -404,7 +404,7 @@ connection.createNetConnection().on('netConnectionPropertiesChange', function (d
 })
 ```
 
-### connection.NetConnection.on('netLost')
+### on('netLost')
 
 on(type: 'netLost', callback: Callback\<NetHandle>): void
 
@@ -429,7 +429,7 @@ connection.createNetConnection().on('netLost', function (data) {
 })
 ```
 
-### connection.NetConnection.on('netUnavailable')
+### on('netUnavailable')
 
 on(type: 'netUnavailable', callback: Callback\<void>): void
 
@@ -454,7 +454,7 @@ connection.createNetConnection().on('netUnavailable', function (data) {
 })
 ```
 
-### connection.NetConnection.register
+### register
 
 register(callback: AsyncCallback\<void>): void
 
@@ -478,7 +478,7 @@ connection.createNetConnection().register(function (error) {
 })
 ```
 
-### connection.NetConnection.unregister
+### unregister
 
 unregister(callback: AsyncCallback\<void>): void
 
@@ -510,7 +510,7 @@ connection.createNetConnection().unregister(function (error) {
 | ----- | ----- | ----- |
 | netId | number | 对应网络的编号 |
 
-### connection.NetHandle.getAddressesByName
+### getAddressesByName
 
 getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): void
 
@@ -538,7 +538,7 @@ connection.getDefaultNet().then(function (netHandle) {
 })
 ```
 
-### connection.NetHandle.getAddressesByName
+### getAddressesByName
 
 getAddressesByName(netHandle: NetHandle): Promise\<Array\<NetAddress>>
 
@@ -570,7 +570,7 @@ connection.getDefaultNet().then(function (netHandle) {
 })
 ```
 
-### connection.NetHandle.getAddressByName
+### getAddressByName
 
 getAddressByName(host: string, callback: AsyncCallback\<NetAddress>): void
 
@@ -598,7 +598,7 @@ connection.getDefaultNet().then(function (netHandle) {
 })
 ```
 
-### connection.NetHandle.getAddressByName
+### getAddressByName
 
 getAddressByName(netHandle: NetHandle): Promise\<NetAddress>
 
