@@ -8,7 +8,7 @@ SystemCapability.DistributedDataManager.RelationalStore.Core
 
 ## Usage<a name="section42211227142416"></a>
 
-The  **resultSet**  object is obtained by using  [**RdbStore.query\(\)**](js-apis-data-rdb.md#section6231155031814).
+The  **resultSet**  object is obtained by using  [**RdbStore.query\(\)**](js-apis-data-rdb.md#query).
 
 ```
 import dataRdb from '@ohos.data.rdb';
@@ -794,5 +794,4 @@ Closes the result set.
       resultSet = null
     })
     ```
-
 

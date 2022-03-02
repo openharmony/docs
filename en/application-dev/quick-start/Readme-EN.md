@@ -11,7 +11,4 @@
     -   [Configuring the OpenHarmony App Signature](configuring-openharmony-app-signature.md)
     -   [Installing and Running Your OpenHarmony App](installing-openharmony-app.md)
 -   [Directory Structure](package-structure.md)
--   [Getting Started](start.md)
-    -   [Preparations](start-overview.md)
-    -   [Getting Started with JavaScript](start-with-js.md)
 
