@@ -10,7 +10,3 @@
     - [配置OpenHarmony应用签名信息](configuring-openharmony-app-signature.md)
     - [安装运行OpenHarmony应用](installing-openharmony-app.md)
 - [包结构说明](package-structure.md)
-- 快速入门
-    - [开发准备](start-overview.md)
-    - [使用JS语言开发](start-with-js.md)
-    - [使用eTS语言开发](start-with-ets.md)
