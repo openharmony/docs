@@ -1,0 +1,103 @@
+# HiSysEvent Query<a name="EN-US_TOPIC_0000001231455461"></a>
+
+-   [Overview](#section279684125212)
+-   [Development Guidelines](#section315316761113)
+    -   [Available APIs](#section03869128521)
+    -   [Development Example](#section14286111855212)
+
+## Overview<a name="section279684125212"></a>
+
+HiSysEvent provides an API for you to query system events. You can query concerned events by specifying search criteria. For example, for a power consumption module, you can query required system events for analysis.
+
+## Development Guidelines<a name="section315316761113"></a>
+
+### Available APIs<a name="section03869128521"></a>
+
+**Table 1** HiSysEvent query API
+
+| API| Description|
+| -------- | --------- |
+| bool HiSysEventManager::QueryHiSysEvent(struct QueryArg&amp; queryArg, std::vector&lt;struct QueryRule&gt;&amp; queryRules, std::shared_ptr&lt;HiSysEventQueryCallBackBase&gt; queryCallBack) | Queries system events by specifying search criteria such as the time segment, event domain, and event name. <br><br>Input arguments:<ul><li>**queryArg**: event query parameter. </li><li>**queryRules**: event filtering rules. </li><li>**queryRules**: callback object for query results. </li></ul>Return value:<ul><li>**true**: The query is successful. </li><li>**false**: The query has failed.</li></ul> |
+
+
+**Table 2** Description of QueryArg
+
+| Attribute| Description|
+| -------- | --------- |
+| beginTime | Start time, in the **long long int** format.|
+| endTime | End time, in the **long long int** format.|
+| maxEvents | Maximum number of returned events, in the **int** format.|
+
+**Table 3** Description of QueryRule
+
+| Attribute| Description|
+| -------- | --------- |
+| ruleType | Rule type, in the **uint32_t** format. The default value is **0**.|
+| domain | Domain to which the event belongs, in the **string** format. By default, an empty string indicates that the domain is successfully matched.|
+| eventList | Event name list, in the std::vector&lt;std::string&gt; format. By default, an empty string indicates that the event names on the list are successfully matched.|
+
+**Table 4** Description of HiSysEventQueryCallBackBase
+
+| API| Description|
+| -------- | --------- |
+| void HiSysEventQueryCallBackBase::OnQuery(const ::std::vector&lt;std::string&gt;&amp; sysEvent, const ::std::vector&lt;int64_t&gt;&amp; seq) | Callback object for event query. <br><br>Input arguments:<ul><li>**sysEvent**: event set. </li><li>**seq**: event sequence set. </li></ul>Return value:<br>&emsp;&emsp;None.|
+| void HiSysEventQueryCallBackBase::OnComplete(int32_t reason, int32_t total) | Callback object for completion of event query. <br><br>Input arguments:<ul><li>**reason**: reason for completion of event query. The default value is **0**. </li><li>**total**: total number of events returned in this query. </li></ul>Return value:<br>&emsp;&emsp;None.|
+
+### Development Example<a name="section14286111855212"></a>
+
+C++
+
+1.  Develop the source code.
+
+    -   Import the corresponding header file:
+
+        hisysevent\_manager.h
+
+    -   Implement the callback API.
+
+        void HiSysEventQueryCallBackBase::OnQuery\(const ::std::vector<std::string\>& sysEvent, const ::std::vector<int64\_t\>& seq\)
+
+        void HiSysEventQueryCallBackBase::OnComplete\(int32\_t reason, int32\_t total\)
+
+    -   Invoke the query API in the corresponding service logic.
+
+        HiSysEventManager::QueryHiSysEvent\(struct QueryArg& queryArg, std::vector<struct QueryRule\>& queryRules, std::shared\_ptr<HiSysEventQueryCallBackBase\> queryCallBack\)
+
+
+    ```
+    // In this example, you'll query all system events.
+    #include "hisysevent_manager.h"
+    #include <iostream>
+    
+    namespace OHOS {
+    namespace HiviewDFX {
+    // Implement the query callback API.
+    void HiSysEventToolQuery::OnQuery(const ::std::vector<std::string>& sysEvent,
+        const ::std::vector<int64_t>& seq)
+    {
+        for_each(sysEvent.cbegin(), sysEvent.cend(), [](const std::string &tmp) {
+            std::cout << tmp << std::endl;
+        });
+    }
+    
+    void HiSysEventToolQuery::OnComplete(int32_t reason, int32_t total)
+    {
+        return;
+    }
+    } // namespace HiviewDFX
+    } // namespace OHOS
+    
+    // Invoke the query callback API to obtain system events.
+    auto queryCallBack = std::make_shared<HiSysEventToolQuery>();
+    struct QueryArg args(clientCmdArg.beginTime, clientCmdArg.endTime, clientCmdArg.maxEvents);
+    std::vector<struct QueryRule> mRules;
+    HiSysEventManager::QueryHiSysEvent(args, mRules, queryCallBack);
+    ```
+
+2.  Modify the **BUILD.gn** file.
+
+    In the **BUILD.gn** file, add the **libhisyseventmanager** library that depends on the **hisysevent\_native** component.
+
+    ```
+    external_deps = [ "hisysevent_native:libhisyseventmanager",  ]
+    ```
