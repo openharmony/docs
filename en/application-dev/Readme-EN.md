@@ -3,7 +3,6 @@
 -   [Application Development Overview](application-dev-guide.md)
 -   [DevEco Studio \(OpenHarmony\) User Guide](quick-start/deveco-studio-user-guide-for-openharmony.md)
 -   [Directory Structure](quick-start/package-structure.md)
--   [Getting Started](quick-start/start.md)
 -   [ArkUI](ui/ui-arkui.md)
     -   [JavaScript-based Web-like Development Paradigm](ui/ui-arkui-js.md)
 

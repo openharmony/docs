@@ -270,7 +270,7 @@ export default {
 }
 ```
 
-![](figures/卡片转场.gif)
+![](figures/01.gif)
 
 ## Page Transition Styles<a name="section0565021620"></a>
 
