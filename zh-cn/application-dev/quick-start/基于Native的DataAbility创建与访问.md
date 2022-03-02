@@ -1,10 +1,10 @@
 # 基于Native的Data Ability创建与访问
 
--   **[Data Ability基本概念](#section001)**  
+-   **[Data Ability基本概念](#Data Ability基本概念)**  
 
--   **[创建Data](#section002)**  
+-   **[创建Data](#创建Data)**  
 
--   **[访问Data](#section003)**  
+-   **[访问Data](#访问Data)**  
 
 ## Data Ability基本概念
 通过Ability派生出的DataAbility类（以下简称“Data”）,有助于应用管理其自身和其他应用存储数据的访问，并提供与其他应用共享数据的方法。Data既可用于同设备不同应用的数据共享，也支持跨设备不同应用的数据共享。
