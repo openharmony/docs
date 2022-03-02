@@ -55,7 +55,6 @@ kill [-l [_signo_] | _-s signo_ | _-signo_] _pid..._
       6     1    6         0 Pending   0x688000 0x137000    0x11bca0      0.0   media_server
       7     1    7         0 Pending   0x9d2000 0x103000     0xa1cdf      0.88  wms_server
       8     1    8         2 Pending   0x1f5000  0x48000     0x47dc2      0.2   mksh
-     10     5    5       101 Pending  0x11ec000 0x2f9000    0x206047      0.93  com.huawei.launcher
      12     1   12         0 Pending   0x4d4000 0x112000     0xe0882      0.0   deviceauth_service
      13     1   13         0 Pending   0x34f000  0xbd000     0x51799      0.0   sensor_service
      14     1   14         2 Pending   0x34e000  0xb3000     0x52184      0.0   ai_server
@@ -80,7 +79,6 @@ kill [-l [_signo_] | _-s signo_ | _-signo_] _pid..._
       6     1    6         0 Pending   0x688000 0x137000    0x11c1ba      0.0   media_server
       7     1    7         0 Pending   0x9d2000 0x103000     0xa21f9      0.89  wms_server
       8     1    8         2 Pending   0x1f5000  0x48000     0x482dc      0.2   mksh
-     10     5    5       101 Pending  0x11ec000 0x2f9000    0x206561      0.93  com.huawei.launcher
      12     1   12         0 Pending   0x4d4000 0x112000     0xe0d9c      0.0   deviceauth_service
      13     1   13         0 Pending   0x34f000  0xbd000     0x51cb3      0.0   sensor_service
      14     1   14         2 Pending   0x34e000  0xb3000     0x5269e      0.0   ai_server
