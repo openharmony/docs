@@ -19,9 +19,9 @@ import settings from '@ohos.settings';
 无
 
 
-## settings.getUri
+## settings.getUriSync
 
-getUri(name: string): string
+getUriSync(name: string): string
 
 获取数据项的URI。
 
@@ -38,13 +38,13 @@ getUri(name: string): string
 - 示例：
   ```
    // 获取数据项的URI
-   let urivar = settings.getUri('settings.screen.brightness');  
+   let urivar = settings.getUriSync('settings.screen.brightness');  
   ```
 
 
-## settings.getValue
+## settings.getValueSync
 
-getValue(dataAbilityHelper: DataAbilityHelper, name: string, defValue: string): string
+getValueSync(dataAbilityHelper: DataAbilityHelper, name: string, defValue: string): string
 
 获取数据项的值。
 
@@ -66,18 +66,18 @@ getValue(dataAbilityHelper: DataAbilityHelper, name: string, defValue: string): 
 
   //获取数据项亮度的值（该数据项在数据库中已存在）
   let brightness = 'settings.screen.brightness';
-  let uri = settings.getUri(brightness);
+  let uri = settings.getUriSync(brightness);
   let helper = featureAbility.acquireDataAbilityHelper(uri);
-  let value = settings.getValue(helper, brightness, '10');
+  let value = settings.getValueSync(helper, brightness, '10');
   ```
 
 
-## settings.setValue
+## settings.setValueSync
 
-setValue(dataAbilityHelper: DataAbilityHelper, name: string, value: string): boolean
+setValueSync(dataAbilityHelper: DataAbilityHelper, name: string, value: string): boolean
 
 设置数据项的值。
-如果数据库中已经存在该数据项，则setValue方法将更新该数据项的值；如果数据库中尚未存在该数据项，则setValue方法将向数据库中插入该数据项。
+如果数据库中已经存在该数据项，则setValueSync方法将更新该数据项的值；如果数据库中尚未存在该数据项，则setValueSync方法将向数据库中插入该数据项。
 
 使用此方法需获取ohos.permission.WRITE_SYSTEM_SETTING权限。
 
@@ -97,9 +97,9 @@ setValue(dataAbilityHelper: DataAbilityHelper, name: string, value: string): boo
   ```
   import featureAbility from '@ohos.featureAbility';
 
-  //更新数据项亮度的值（该数据项在数据库中已存在，故setValue方法将更新该数据项的值）
+  //更新数据项亮度的值（该数据项在数据库中已存在，故setValueSync方法将更新该数据项的值）
   let brightness = 'settings.screen.brightness';
-  let uri = settings.getUri(brightness);
+  let uri = settings.getUriSync(brightness);
   let helper = featureAbility.acquireDataAbilityHelper(uri);
-  let ret = settings.setValue(helper, brightness, '100');
+  let ret = settings.setValueSync(helper, brightness, '100');
   ```
