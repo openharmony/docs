@@ -1,6 +1,6 @@
 # Bundle开发指南
 
-- [开发规范](oem_bundle_standard_des.md)
+- [开发规范](bundles-standard-rules.md )
 - [开发指南](bundles-guide.md)
   - [概述](bundles-guide-overview.md)
   - [安装hpm命令行工具](bundles-guide-prepare.md)
