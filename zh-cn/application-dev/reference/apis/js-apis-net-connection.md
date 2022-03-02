@@ -65,8 +65,6 @@ hasDefaultNet(callback: AsyncCallback\<boolean>): void
 
 判断是否有默认网络，使用callback方式作为异步方法。
 
-**需要权限**：ohos.permission.GET_NETWORK_INFO
-
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
 **参数：**
@@ -89,8 +87,6 @@ connection.hasDefaultNet(function (error, has) {
 hasDefaultNet(): Promise\<boolean>
 
 判断是否有默认网络，使用Promise方式作为异步方法。
-
-**需要权限**：ohos.permission.GET_NETWORK_INFO
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -335,8 +331,6 @@ on(type: 'netAvailable', callback: Callback\<NetHandle>): void
 
 监听网络可用事件。
 
-**需要权限**：ohos.permission.GET_NETWORK_INFO
-
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
 **参数：**
@@ -359,8 +353,6 @@ connection.createNetConnection().on('netAvailable', function (data) {
 on(type: 'netCapabilitiesChange', callback: Callback<{ netHandle: NetHandle, netCap: NetCapabilities }>): void
 
 监听网络能力变化事件。
-
-**需要权限**：ohos.permission.GET_NETWORK_INFO
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -385,8 +377,6 @@ on(type: 'netConnectionPropertiesChange', callback: Callback<{ netHandle: NetHan
 
 监听网络连接信息变化事件。
 
-**需要权限**：ohos.permission.GET_NETWORK_INFO
-
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
 **参数：**
@@ -410,8 +400,6 @@ on(type: 'netLost', callback: Callback\<NetHandle>): void
 
 监听网络丢失事件。
 
-**需要权限**：ohos.permission.GET_NETWORK_INFO
-
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
 **参数：**
@@ -434,8 +422,6 @@ connection.createNetConnection().on('netLost', function (data) {
 on(type: 'netUnavailable', callback: Callback\<void>): void
 
 监听网络不可用事件。
-
-**需要权限**：ohos.permission.GET_NETWORK_INFO
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -484,8 +470,6 @@ unregister(callback: AsyncCallback\<void>): void
 
 注销网络的监听。
 
-**需要权限**：ohos.permission.GET_NETWORK_INFO
-
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
 **参数：**
@@ -516,8 +500,6 @@ getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): 
 
 使用对应网络将host解析成IP，返回所有IP，使用callback方式作为异步方法。
 
-**需要权限**：ohos.permission.GET_NETWORK_INFO
-
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
 **参数：**
@@ -543,8 +525,6 @@ connection.getDefaultNet().then(function (netHandle) {
 getAddressesByName(netHandle: NetHandle): Promise\<Array\<NetAddress>>
 
 使用对应网络将host解析成IP，返回所有IP，使用Promise方式作为异步方法。
-
-**需要权限**：ohos.permission.GET_NETWORK_INFO
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -576,8 +556,6 @@ getAddressByName(host: string, callback: AsyncCallback\<NetAddress>): void
 
 使用对应网络将host解析成IP，返回一个IP，使用callback方式作为异步方法。
 
-**需要权限**：ohos.permission.GET_NETWORK_INFO
-
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
 **参数：**
@@ -603,8 +581,6 @@ connection.getDefaultNet().then(function (netHandle) {
 getAddressByName(netHandle: NetHandle): Promise\<NetAddress>
 
 使用对应网络将host解析成IP，返回一个IP，使用Promise方式作为异步方法。
-
-**需要权限**：ohos.permission.GET_NETWORK_INFO
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
