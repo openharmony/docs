@@ -24,7 +24,7 @@ getDefaultNet(callback: AsyncCallback\<NetHandle>): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ----- | ----- | ---- | ----- |
-| callback | AsyncCallback\<[NetHandle](#NetHandle)> | 是 | 回调函数 |
+| callback | AsyncCallback\<[NetHandle](#nethandle)> | 是 | 回调函数 |
 
 **示例：**
 
@@ -49,7 +49,7 @@ getDefaultNet(): Promise\<NetHandle>
 
 | 类型 | 说明 |
 | ----- | ----- |
-| Promise\<[NetHandle](#NetHandle)> | 以Promise形式返回 |
+| Promise\<[NetHandle](#nethandle)> | 以Promise形式返回 |
 
 **示例：**
 
@@ -122,8 +122,8 @@ getConnectionProperties(netHandle: NetHandle, callback: AsyncCallback\<Connectio
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ----- | ----- | ---- | ----- |
-| netHandle |  [NetHandle](#NetHandle) | 是 | 对应网络 |
-| callback | AsyncCallback\<[ConnectionProperties](#ConnectionProperties)> | 是 | 回调函数 |
+| netHandle |  [NetHandle](#nethandle) | 是 | 对应网络 |
+| callback | AsyncCallback\<[ConnectionProperties](#connectionproperties)> | 是 | 回调函数 |
 
 **示例：**
 
@@ -150,13 +150,13 @@ getConnectionProperties(netHandle: NetHandle): Promise\<ConnectionProperties>
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ----- | ----- | ---- | ----- |
-| netHandle |  [NetHandle](#NetHandle) | 是 | 对应网络 |
+| netHandle |  [NetHandle](#nethandle) | 是 | 对应网络 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | ----- | ----- |
-| Promise\<[ConnectionProperties](#ConnectionProperties)> | 以Promise形式返回 |
+| Promise\<[ConnectionProperties](#connectionproperties)> | 以Promise形式返回 |
 
 **示例：**
 
@@ -182,8 +182,8 @@ getNetCapabilities(netHandle: NetHandle, callback: AsyncCallback\<NetCapabilitie
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ----- | ----- | ---- | ----- |
-| netHandle |  [NetHandle](#NetHandle) | 是 | 对应网络 |
-| callback | AsyncCallback\<[NetCapabilities](#NetCapabilities)> | 是 | 回调函数 |
+| netHandle |  [NetHandle](#nethandle) | 是 | 对应网络 |
+| callback | AsyncCallback\<[NetCapabilities](#netcapabilities)> | 是 | 回调函数 |
 
 **示例：**
 
@@ -210,13 +210,13 @@ getNetCapabilities(netHandle: NetHandle): Promise\<NetCapabilities>
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ----- | ----- | ---- | ----- |
-| netHandle |  [NetHandle](#NetHandle) | 是 | 对应网络 |
+| netHandle |  [NetHandle](#nethandle) | 是 | 对应网络 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | ----- | ----- |
-| Promise\<[NetCapabilities](#NetCapabilities)> | 以Promise形式返回 |
+| Promise\<[NetCapabilities](#netcapabilities)> | 以Promise形式返回 |
 
 **示例：**
 
@@ -243,7 +243,7 @@ getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): 
 | 参数名 | 类型 | 必填 | 说明 |
 | ----- | ----- | ---- | ----- |
 | host | string | 是 | 需要解析的域名 |
-| callback | AsyncCallback\<Array\<[NetAddress](#NetAddress)>> | 是 | 回调函数 |
+| callback | AsyncCallback\<Array\<[NetAddress](#netaddress)>> | 是 | 回调函数 |
 
 **示例：**
 
@@ -276,7 +276,7 @@ getAddressesByName(netHandle: NetHandle): Promise\<Array\<NetAddress>>
 
 | 类型 | 说明 |
 | ----- | ----- |
-| Promise\<Array\<[NetAddress](#NetAddress)>> | 以Promise形式返回 |
+| Promise\<Array\<[NetAddress](#netaddress)>> | 以Promise形式返回 |
 
 **示例：**
 
@@ -292,7 +292,7 @@ connection.getDefaultNet().then(function (netHandle) {
 
 createNetConnection(netSpecifier?: NetSpecifier, timeout?: number): NetConnection
 
-获取一个netSpecifier指定的网络的句柄
+获取一个netSpecifier指定的网络的句柄。
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO
 
@@ -302,14 +302,14 @@ createNetConnection(netSpecifier?: NetSpecifier, timeout?: number): NetConnectio
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ----- | ----- | ---- | ----- |
-| netSpecifier | [NetSpecifier](#NetSpecifier) | 否 | 关注的网络的各项特征，不指定则关注默认网络 |
-| timeout | number | 否 | 获取netSpecifier指定的网络时的超时时间，前提是netSpecifier存在 |
+| netSpecifier | [NetSpecifier](#netspecifier) | 否 | 指定网络的各项特征，不指定则关注默认网络。 |
+| timeout | number | 否 | 获取netSpecifier指定的网络时的超时时间，仅netSpecifier存在时生效。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | ----- | ----- |
-|[NetConnection](#NetConnection) | 所关注的网络的句柄 |
+|[NetConnection](#netconnection) | 所关注的网络的句柄 |
 
 **示例：**
 
@@ -325,7 +325,7 @@ let netConnection2 = connection.createNetConnection({
 })
 ```
 
-## connection.NetConnection<a name=NetConnection></a>
+## NetConnection
 
 网络连接的句柄
 
@@ -333,7 +333,7 @@ let netConnection2 = connection.createNetConnection({
 
 on(type: 'netAvailable', callback: Callback\<NetHandle>): void
 
-监听网络可用事件
+监听网络可用事件。
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO
 
@@ -344,7 +344,7 @@ on(type: 'netAvailable', callback: Callback\<NetHandle>): void
 | 参数名 | 类型 | 必填 | 说明 |
 | ----- | ----- | ---- | ----- |
 | type | string | 是 | 监听的事件，固定'netAvailable' |
-| callback | Callback\<[NetHandle](#NetHandle)>> | 是 | 回调函数 |
+| callback | Callback\<[NetHandle](#nethandle)>> | 是 | 回调函数 |
 
 **示例：**
 
@@ -358,7 +358,7 @@ connection.createNetConnection().on('netAvailable', function (data) {
 
 on(type: 'netCapabilitiesChange', callback: Callback<{ netHandle: NetHandle, netCap: NetCapabilities }>): void
 
-监听网络能力变化事件
+监听网络能力变化事件。
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO
 
@@ -369,7 +369,7 @@ on(type: 'netCapabilitiesChange', callback: Callback<{ netHandle: NetHandle, net
 | 参数名 | 类型 | 必填 | 说明 |
 | ----- | ----- | ---- | ----- |
 | type | string | 是 | 监听的事件，固定'netCapabilitiesChange' |
-| callback | Callback<{ netHandle: [NetHandle](#NetHandle), netCap: [NetCapabilities](#NetCapabilities) }> | 是 | 回调函数 |
+| callback | Callback<{ netHandle: [NetHandle](#nethandle), netCap: [NetCapabilities](#netcapabilities) }> | 是 | 回调函数 |
 
 **示例：**
 
@@ -383,7 +383,7 @@ connection.createNetConnection().on('netCapabilitiesChange', function (data) {
 
 on(type: 'netConnectionPropertiesChange', callback: Callback<{ netHandle: NetHandle, connectionProperties: ConnectionProperties }>): void
 
-监听网络连接信息变化事件
+监听网络连接信息变化事件。
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO
 
@@ -394,7 +394,7 @@ on(type: 'netConnectionPropertiesChange', callback: Callback<{ netHandle: NetHan
 | 参数名 | 类型 | 必填 | 说明 |
 | ----- | ----- | ---- | ----- |
 | type | string | 是 | 监听的事件，固定'netConnectionPropertiesChange' |
-| callback | Callback<{ netHandle: [NetHandle](#NetHandle), connectionProperties: [ConnectionProperties](#ConnectionProperties) }> | 是 | 回调函数 |
+| callback | Callback<{ netHandle: [NetHandle](#nethandle), connectionProperties: [ConnectionProperties](#connectionproperties) }> | 是 | 回调函数 |
 
 **示例：**
 
@@ -408,7 +408,7 @@ connection.createNetConnection().on('netConnectionPropertiesChange', function (d
 
 on(type: 'netLost', callback: Callback\<NetHandle>): void
 
-监听网络丢失事件
+监听网络丢失事件。
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO
 
@@ -419,7 +419,7 @@ on(type: 'netLost', callback: Callback\<NetHandle>): void
 | 参数名 | 类型 | 必填 | 说明 |
 | ----- | ----- | ---- | ----- |
 | type | string | 是 | 监听的事件，固定'netLost' |
-| callback | Callback\<[NetHandle](#NetHandle)>> | 是 | 回调函数 |
+| callback | Callback\<[NetHandle](#nethandle)>> | 是 | 回调函数 |
 
 **示例：**
 
@@ -433,7 +433,7 @@ connection.createNetConnection().on('netLost', function (data) {
 
 on(type: 'netUnavailable', callback: Callback\<void>): void
 
-监听网络不可用事件
+监听网络不可用事件。
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO
 
@@ -458,7 +458,7 @@ connection.createNetConnection().on('netUnavailable', function (data) {
 
 register(callback: AsyncCallback\<void>): void
 
-注册网络的监听
+注册网络的监听。
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO
 
@@ -482,7 +482,7 @@ connection.createNetConnection().register(function (error) {
 
 unregister(callback: AsyncCallback\<void>): void
 
-注销网络的监听
+注销网络的监听。
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO
 
@@ -502,7 +502,7 @@ connection.createNetConnection().unregister(function (error) {
 })
 ```
 
-## connection.NetHandle<a name=NetHandle></a>
+## NetHandle
 
 网络的句柄
 
@@ -525,7 +525,7 @@ getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): 
 | 参数名 | 类型 | 必填 | 说明 |
 | ----- | ----- | ---- | ----- |
 | host | string | 是 | 需要解析的域名 |
-| callback | AsyncCallback\<Array\<[NetAddress](#NetAddress)>> | 是 | 回调函数 |
+| callback | AsyncCallback\<Array\<[NetAddress](#netaddress)>> | 是 | 回调函数 |
 
 **示例：**
 
@@ -558,7 +558,7 @@ getAddressesByName(netHandle: NetHandle): Promise\<Array\<NetAddress>>
 
 | 类型 | 说明 |
 | ----- | ----- |
-| Promise\<Array\<[NetAddress](#NetAddress)>> | 以Promise形式返回 |
+| Promise\<Array\<[NetAddress](#netaddress)>> | 以Promise形式返回 |
 
 **示例：**
 
@@ -585,7 +585,7 @@ getAddressByName(host: string, callback: AsyncCallback\<NetAddress>): void
 | 参数名 | 类型 | 必填 | 说明 |
 | ----- | ----- | ---- | ----- |
 | host | string | 是 | 需要解析的域名 |
-| callback | AsyncCallback\<[NetAddress](#NetAddress)> | 是 | 回调函数 |
+| callback | AsyncCallback\<[NetAddress](#netaddress)> | 是 | 回调函数 |
 
 **示例：**
 
@@ -618,7 +618,7 @@ getAddressByName(netHandle: NetHandle): Promise\<NetAddress>
 
 | 类型 | 说明 |
 | ----- | ----- |
-| Promise\<[NetAddress](#NetAddress)> | 以Promise形式返回 |
+| Promise\<[NetAddress](#netaddress)> | 以Promise形式返回 |
 
 **示例：**
 
@@ -630,80 +630,80 @@ connection.getDefaultNet().then(function (netHandle) {
 })
 ```
 
-## connection.NetSpecifier<a name=NetSpecifier></a>
+## NetSpecifier
 
-网络的特征
+网络的特征。
 
 | 变量 | 类型 | 说明 |
 | ----- | ----- | ----- |
-| netCapabilities | [NetCapabilities](#NetCapabilities) | 网络的能力集 |
+| netCapabilities | [NetCapabilities](#netcapabilities) | 网络的能力集 |
 | bearerPrivateIdentifier | string | 网络标识符，WIFI网络的标识符是"wifi"，蜂窝网络的标识符是"slot0"(对应SIM卡1) |
 
-## connection.NetCapabilities<a name=NetCapabilities></a>
+## NetCapabilities
 
-网络的能力集
+网络的能力集。
 
 | 变量 | 类型 | 说明 |
 | ----- | ----- | ----- |
 | linkUpBandwidthKbps | number | 带宽上限 |
 | linkDownBandwidthKbps | number | 带宽下限 |
-| networkCap | Array<[NetCap](#NetCap)> | 网络具体能力 |
-| bearerTypes | Array<[NetBearType](#NetBearType)> | 网络类型 |
+| networkCap | Array<[NetCap](#netcap)> | 网络具体能力 |
+| bearerTypes | Array<[NetBearType](#netbearType)> | 网络类型 |
 
-## connection.NetCap<a name=NetCap></a>
+## NetCap
 
-网络具体能力
+网络具体能力。
 
 | 变量 | 值 | 说明 |
 | ------ | ----- | ----- |
 | NET_CAPABILITY_INTERNET | 12 | 联网能力 |
 | NET_CAPABILITY_VALIDATED | 16 | 网络可用 |
 
-## connection.NetBearType<a name=NetBearType></a>
+## NetBearType
 
-网络类型
+网络类型。
 
 | 变量 | 值 | 说明 |
 | ------ | ----- | ----- |
 | BEARER_CELLULAR | 0 | 蜂窝网络 |
 | BEARER_WIFI | 1 | WIFI网络 |
 
-## connection.ConnectionProperties<a name=ConnectionProperties></a>
+## ConnectionProperties
 
-网络连接信息
+网络连接信息。
 
 | 变量 | 类型 | 说明 |
 | ----- | ----- | ----- |
 | interfaceName | string | 网卡名称 |
 | domains | string | 所属域，默认"" |
-| linkAddresses | Array<[LinkAddress](#LinkAddress)> | 链路信息 |
-| routes | Array<[RouteInfo](#RouteInfo)> | 路由信息 |
+| linkAddresses | Array<[LinkAddress](#linkaddress)> | 链路信息 |
+| routes | Array<[RouteInfo](#routeinfo)> | 路由信息 |
 | mtu | number | 最大传输单元 |
 
-## connection.LinkAddress<a name=LinkAddress></a>
+## LinkAddress
 
-网络链路信息
+网络链路信息。
 
 | 变量 | 类型 | 说明 |
 | ----- | ----- | ----- |
-| address | [NetAddress](#NetAddress) | 链路地址 |
+| address | [NetAddress](#netaddress) | 链路地址 |
 | prefixLength | number | 地址前缀长度 |
 
-## connection.RouteInfo<a name=RouteInfo></a>
+## RouteInfo
 
-网络路由信息
+网络路由信息。
 
 | 变量 | 类型 | 说明 |
 | ----- | ----- | ----- |
 | interface | string | 网卡名称 |
-| destination | [LinkAddress](#LinkAddress) | 目的地址 |
-| gateway | [NetAddress](#NetAddress) | 网关地址 |
+| destination | [LinkAddress](#linkaddress) | 目的地址 |
+| gateway | [NetAddress](#netaddress) | 网关地址 |
 | hasGateway | boolean | 是否有网关 |
 | isDefaultRoute | boolean | 是否为默认路由 |
 
-## connection.NetAddress<a name=NetAddress></a>
+## NetAddress
 
-地址
+地址。
 
 | 变量 | 类型 | 说明 |
 | ----- | ----- | ----- |
