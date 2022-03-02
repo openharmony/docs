@@ -77,7 +77,7 @@ HiSysEvent提供了跨进程订阅机制，开发者可以通过注册订阅接�
         void OnServiceDied();
     };
 
-    #endif DEMO_LISTENER_H
+    #endif // DEMO_LISTENER_H
     ```
 
     增加DemoListener.cpp文件，在DemoListener类中根据实际需求自定义订阅回调接口的实现逻辑：

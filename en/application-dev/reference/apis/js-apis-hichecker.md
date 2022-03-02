@@ -22,7 +22,7 @@ Provides the constants of all rule types.
 | Name| Type| Description|
 | ---------------------------------- | -------- | ------------------------------------------------------ |
 | RULE_CAUTION_PRINT_LOG             | BigInt   | Alarm rule, which is programmed to print a log when an alarm is generated.|
-| RULE_CAUTION_TRIGGER_CRASH         | BigInt   | Alarm rule. When an alarm is generated, the application exits.|
+| RULE_CAUTION_TRIGGER_CRASH         | BigInt   | Alarm rule, which is programmed to force the application to exit when an alarm is generated.|
 | RULE_THREAD_CHECK_SLOW_PROCESS     | BigInt   | Caution rule, which is programmed to detect whether any time-consuming function is invoked.|
 | RULE_CHECK_SLOW_EVENT              | BigInt   | Caution rule, which is programmed to detect whether the event distribution or processing time has exceeded the specified time threshold.|
 | RULE_CHECK_ABILITY_CONNECTION_LEAK | BigInt   | Caution rule, which is programmed to detect whether ability leakage has occurred.|

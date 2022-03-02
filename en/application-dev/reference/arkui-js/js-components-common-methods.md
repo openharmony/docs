@@ -586,7 +586,7 @@ Obtains the size of the element and its position relative to the window.
 
 ## createIntersectionObserver<a name="section7425195215615"></a>
 
-createIntersectionObserver\(param?:  [ObserverParam](#table143341035121917)\):[Observer](#table4506633141711)
+createIntersectionObserver\(param?:  ObserverParam):Observer
 
 Gets notified of the visibility of an element on the current page.
 

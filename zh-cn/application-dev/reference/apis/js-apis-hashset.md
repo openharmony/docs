@@ -79,9 +79,9 @@ has(value: T): boolean
 
 ```
 let hashSet = new HashSet();
-hashSet.has("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
+let result = hashSet.has("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 hashSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-hashSet.has("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
+let result1 = hashSet.has("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 ```
 
 
@@ -107,7 +107,7 @@ add(value: T): boolean
 
 ```
 let hashSet = new HashSet();
-hashSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
+let result = hashSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 ```
 
 
@@ -135,7 +135,7 @@ remove(value: T): boolean
 let hashSet = new HashSet();
 hashSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 hashSet.add("sdfs");
-hashSet.remove("sdfs");
+let result = hashSet.remove("sdfs");
 ```
 
 
@@ -184,7 +184,7 @@ while(temp != undefined) {
 
 ### forEach
 
-forEach(callbackfn: (value: T, key?: T, hashSet?: HashSet&lt;T&gt;) => void, thisArg?: Object): void
+forEach(callbackfn: (value: T, key?: T, set?: HashSet&lt;T&gt;) => void, thisArg?: Object): void
 
 通过回调函数来遍历实例对象上的元素以及元素对应的下标。
 
@@ -200,7 +200,7 @@ callbackfn的参数说明：
 | -------- | -------- | -------- | -------- |
 | value | T | 是 | 当前遍历到的元素键值对的值。 |
 | key | T | 否 | 当前遍历到的元素键值对的值（和value相同）。 |
-| hashSet | HashSet&lt;T&gt; | 否 | 当前调用forEach方法的实例对象。 |
+| set | HashSet&lt;T&gt; | 否 | 当前调用forEach方法的实例对象。 |
 
 **示例：**
 
@@ -217,13 +217,13 @@ hashSet.forEach((value, key) => {
 ### entries
 entries(): IterableIterator<[T, T]>
 
-返回包含此映射中包含的元素的新迭代器对象。
+返回包含此映射中包含的键值对的新迭代器对象。
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| IterableIterator<[T, T]> | 返回一个迭代器 |
+| IterableIterator<[T, T]> | 返回一个迭代器。 |
 
 **示例：**
 

@@ -60,12 +60,12 @@ push(item: T): T
 
 ```
 let stack = new Stack();
-stack.push("a");
-stack.push(1);
+let result = stack.push("a");
+let result1 = stack.push(1);
 let b = [1, 2, 3];
 stack.push(b);
 let c = {name : "lala", age : "13"};
-stack.push(false);
+let result3 = stack.push(c);
 ```
 
 ### pop
@@ -89,7 +89,7 @@ stack.push(4);
 stack.push(5);
 stack.push(2);
 stack.push(4);
-stack.pop();
+let result = stack.pop();
 ```
 
 ### peek
@@ -112,7 +112,7 @@ stack.push(2);
 stack.push(4);
 stack.push(5);
 stack.push(2);
-stack.peek();
+let result = stack.peek();
 ```
 
 ### locate
@@ -141,7 +141,7 @@ stack.push(2);
 stack.push(4);
 stack.push(5);
 stack.push(2);
-stack.locate(2);
+let result = stack.locate(2);
 ```
 
 ### forEach
@@ -197,7 +197,7 @@ stack.push(2);
 stack.push(4);
 stack.push(5);
 stack.push(4);
-stack.isEmpty();
+let result = stack.isEmpty();
 ```
 
 ### [Symbol.iterator]

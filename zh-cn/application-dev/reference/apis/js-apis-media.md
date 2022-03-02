@@ -34,64 +34,7 @@ createAudioPlayer(): [AudioPlayer](#audioplayer)
 **示例：**
 
 ```js
-var audioPlayer = media.createAudioPlayer();
-```
-
-## media.createAudioPlayerAsync<sup>8+</sup>
-
-createAudioPlayerAsync(callback: AsyncCallback\<[AudioPlayer](#audioplayer)>): void
-
-异步方式创建音频播放实例。通过注册回调函数获取返回值。
-
-**参数：**
-
-| 参数名   | 类型                                       | 必填 | 说明                           |
-| -------- | ------------------------------------------ | ---- | ------------------------------ |
-| callback | AsyncCallback<[AudioPlayer](#audioplayer)> | 是   | 异步创建音频播放实例回调方法。 |
-
-**示例：**
-
-```js
-media.createAudioPlayerAsync((error, audio) => {
-   if (typeof(audio) != 'undefined') {
-       audioPlayer = audio;
-       console.info('audio createAudioPlayerAsync success');
-   } else {
-       console.info(`audio createAudioPlayerAsync fail, error:${error.message}`);
-   }
-});
-```
-
-## media.createAudioPlayerAsync<sup>8+</sup>
-
-createAudioPlayerAsync: Promise<[AudioPlayer](#audioplayer)>
-
-异步方式创建音频播放实例。通过Promise获取返回值。
-
-**返回值：**
-
-| 类型                                 | 说明                                |
-| ------------------------------------ | ----------------------------------- |
-| Promise<[AudioPlayer](#audioplayer)> | 异步创建音频播放实例Promise返回值。 |
-
-**示例：**
-
-```js
-function failureCallback(error) {
-    console.info(`audio failureCallback, error:${error.message}`);
-}
-function catchCallback(error) {
-    console.info(`audio catchCallback, error:${error.message}`);
-}
-
-await media.createAudioPlayerAsync.then((audio) => {
-    if (typeof(audio) != 'undefined') {
-       audioPlayer = audio;
-       console.info('audio createAudioPlayerAsync success');
-   } else {
-       console.info('audio createAudioPlayerAsync fail');
-   }
-}, failureCallback).catch(catchCallback);
+let audioPlayer = media.createAudioPlayer();
 ```
 
 ## media.createVideoPlayer<sup>8+</sup>
@@ -109,6 +52,8 @@ createVideoPlayer(callback: AsyncCallback\<[VideoPlayer](#videoplayer8)>): void
 **示例：**
 
 ```js
+let videoPlayer
+
 media.createVideoPlayer((error, video) => {
    if (typeof(video) != 'undefined') {
        videoPlayer = video;
@@ -134,6 +79,8 @@ createVideoPlayer: Promise<[VideoPlayer](#videoplayer8)>
 **示例：**
 
 ```js
+let videoPlayer
+
 function failureCallback(error) {
     console.info(`video failureCallback, error:${error.message}`);
 }
@@ -169,66 +116,9 @@ createAudioRecorder(): AudioRecorder
 let audiorecorder = media.createAudioRecorder(); 
 ```
 
-## media.createAudioRecorderAsync<sup>8+</sup>
+## media.createVideoRecorder<sup>8+</sup>
 
-createAudioRecorderAsync(callback: AsyncCallback\<[AudioRecorder](#audiorecorder)>): void
-
-异步方式创建音频录制实例。通过注册回调函数获取返回值。
-
-**参数：**
-
-| 参数名   | 类型                                           | 必填 | 说明                           |
-| -------- | ---------------------------------------------- | ---- | ------------------------------ |
-| callback | AsyncCallback<[AudioRecorder](#audiorecorder)> | 是   | 异步创建音频录制实例回调方法。 |
-
-**示例：**
-
-```js
-media.createAudioRecorderAsync((error, audio) => {
-   if (typeof(audio) != 'undefined') {
-       audioRecorder = audio;
-       console.info('audio createAudioRecorderAsync success');
-   } else {
-       console.info(`audio createAudioRecorderAsync fail, error:${error.message}`);
-   }
-});
-```
-
-## media.createAudioRecorderAsync<sup>8+</sup>
-
-createAudioRecorderAsync: Promise<[AudioRecorder](#audiorecorder)>
-
-异步方式创建音频录制实例。通过Promise获取返回值。
-
-**返回值：**
-
-| 类型                                     | 说明                                |
-| ---------------------------------------- | ----------------------------------- |
-| Promise<[AudioRecorder](#audiorecorder)> | 异步创建音频录制实例Promise返回值。 |
-
-**示例：**
-
-```js
-function failureCallback(error) {
-    console.info(`audio failureCallback, error:${error.message}`);
-}
-function catchCallback(error) {
-    console.info(`audio catchCallback, error:${error.message}`);
-}
-
-await media.createAudioRecorderAsync.then((audio) => {
-    if (typeof(audio) != 'undefined') {
-       audioRecorder = audio;
-       console.info('audio createAudioRecorderAsync success');
-   } else {
-       console.info('audio createAudioRecorderAsync fail');
-   }
-}, failureCallback).catch(catchCallback);
-```
-
-## media.createVideoRecorderAsync<sup>8+</sup>
-
-createVideoRecorderAsync(callback: AsyncCallback\<[VideoRecorder](#videorecorder8)>): void
+createVideoRecorder(callback: AsyncCallback\<[VideoRecorder](#videorecorder8)>): void
 
 异步方式创建视频录制实例。通过注册回调函数获取返回值。
 
@@ -241,19 +131,21 @@ createVideoRecorderAsync(callback: AsyncCallback\<[VideoRecorder](#videorecorder
 **示例：**
 
 ```js
-media.createVideoRecorderAsync((error, video) => {
+let videoRecorder
+
+media.createVideoRecorder((error, video) => {
    if (typeof(video) != 'undefined') {
        videoRecorder = video;
-       console.info('video createVideoRecorderAsync success');
+       console.info('video createVideoRecorder success');
    } else {
-       console.info(`video createVideoRecorderAsync fail, error:${error.message}`);
+       console.info(`video createVideoRecorder fail, error:${error.message}`);
    }
 });
 ```
 
-## media.createVideoRecorderAsync<sup>8+</sup>
+## media.createVideoRecorder<sup>8+</sup>
 
-createVideoRecorderAsync: Promise<[VideoRecorder](#videorecorder8)>
+createVideoRecorder: Promise<[VideoRecorder](#videorecorder8)>
 
 异步方式创建视频录制实例。通过Promise获取返回值。
 
@@ -266,6 +158,8 @@ createVideoRecorderAsync: Promise<[VideoRecorder](#videorecorder8)>
 **示例：**
 
 ```js
+let videoRecorder
+
 function failureCallback(error) {
     console.info(`video failureCallback, error:${error.message}`);
 }
@@ -273,12 +167,12 @@ function catchCallback(error) {
     console.info(`video catchCallback, error:${error.message}`);
 }
 
-await media.createVideoRecorderAsync.then((video) => {
+await media.createVideoRecorder.then((video) => {
     if (typeof(video) != 'undefined') {
        videoRecorder = video;
-       console.info('video createVideoRecorderAsync success');
+       console.info('video createVideoRecorder success');
    } else {
-       console.info('video createVideoRecorderAsync fail');
+       console.info('video createVideoRecorder fail');
    }
 }, failureCallback).catch(catchCallback);
 ```
@@ -362,7 +256,7 @@ Codec MIME类型枚举
 
 | 名称        | 类型                      | 可读 | 可写 | 说明                                                         |
 | ----------- | ------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| src         | string                    | 是   | 是   | 音频媒体URI，支持当前主流的音频格式(mp4、aac、mp3、ogg)。<br>**支持路径示例**：<br>1、本地绝对路径：file:///data/data/ohos.xxx.xxx/files/test.mp4<br>![zh-cn_image_0000001164217678](figures/zh-cn_image_0000001164217678.png)<br>2、http网络播放路径：开发中<br>3、hls网络播放路径：开发中<br>4、fd类型播放：开发中<br>**注意事项**：<br>媒体素材需至少赋予读权限后，才可正常播放 |
+| src         | string                    | 是   | 是   | 音频媒体URI，支持当前主流的音频格式(mp4、aac、mp3、ogg)。<br>**支持路径示例**：<br>1、fd类型播放：fd://xxx<br>![zh-cn_image_0000001164217678](figures/zh-cn_image_url.png)<br>2、http网络播放路径：开发中<br>3、hls网络播放路径：开发中<br>**注意事项**：<br>媒体素材需至少赋予读权限后，才可正常播放 |
 | loop        | boolean                   | 是   | 是   | 音频循环播放属性，设置为'true'表示循环播放。                 |
 | currentTime | number                    | 是   | 否   | 音频的当前播放位置。                                         |
 | duration    | number                    | 是   | 否   | 音频时长。                                                   |
@@ -639,7 +533,19 @@ audioPlayer.on('error', (error) => {           //设置'error'事件回调
     console.info(`audio error called, errCode is ${error.code}`);
     console.info(`audio error called, errMessage is ${error.message}`);
 });
-audioPlayer.src = 'file:///data/data/ohos.xxx.xxx/files/test.mp4';  //设置src属性，并触发'dataLoad'事件回调
+
+// 用户选择视频设置fd(本地播放)
+let fdPath = 'fd://'
+let path = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp3';
+await fileIO.open(path).then(fdNumber) => {
+   fdPath = fdPath + '' + fdNumber;
+   console.info('open fd sucess fd is' + fdPath);
+}, (err) => {
+   console.info('open fd failed err is' + err);
+}),catch((err) => {
+   console.info('open fd failed err is' + err);
+});
+audioPlayer.src = fdPath;  //设置src属性，并触发'dataLoad'事件回调
 ```
 
 ### on('timeUpdate')
@@ -714,7 +620,7 @@ audioPlayer.setVolume(3);  //设置volume为无效值，触发'error'事件
 
 | 名称        | 类型                               | 可读 | 可写 | 说明                                                         |
 | ----------- | ---------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| url         | string                             | 是   | 是   | 视频媒体URL，支持当前主流的视频格式(mp4、mpeg-ts、webm、mkv)。<br>**支持路径示例**：<br>1. 本地绝对路径：file:///data/data/ohos.xxx.xxx/files/test.mp4<br>![zh-cn_image_0000001164217678](figures/zh-cn_image_0000001164217678.png)<br>**注意事项**：<br>媒体素材需至少赋予读权限后，才可正常播放 |
+| url         | string                             | 是   | 是   | 视频媒体URL，支持当前主流的视频格式(mp4、mpeg-ts、webm、mkv)。<br>**支持路径示例**：<br>1. fd类型播放：fd://xxx<br>![zh-cn_image_0000001164217678](figures/zh-cn_image_url.png)<br>**注意事项**：<br>媒体素材需至少赋予读权限后，才可正常播放 |
 | loop        | boolean                            | 是   | 是   | 视频循环播放属性，设置为'true'表示循环播放。                 |
 | currentTime | number                             | 是   | 否   | 视频的当前播放位置。                                         |
 | duration    | number                             | 是   | 否   | 视频时长，返回-1表示直播模式                                 |
@@ -1530,7 +1436,7 @@ audioPlayer.getTrackDescription((error, arrlist) => {
 
 ## AudioRecorder
 
-音频录制管理类，用于录制音频媒体。在调用AudioRecorder的方法前，需要先通过[createAudioRecorder()](#media.createaudiorecorder) 或[createAudioRecorderAsync()](#media.createaudiorecorderasync8)构建一个[AudioRecorder](#audiorecorder)实例。
+音频录制管理类，用于录制音频媒体。在调用AudioRecorder的方法前，需要先通过[createAudioRecorder()](#media.createaudiorecorder) 构建一个[AudioRecorder](#audiorecorder)实例。
 
 音频录制demo可参考：[音频录制开发指导](../../media/audio-recorder.md)
 
@@ -1555,7 +1461,7 @@ let audioRecorderConfig = {
     audioSampleRate : 22050,
     numberOfChannels : 2,
     format : media.AudioOutputFormat.AAC_ADTS,
-    uri : 'file:///data/accounts/account_0/appdata/appdata/recorder/test.m4a',       // 文件需先由调用者创建，并给予适当的权限
+    uri : 'fd://1',       // 文件需先由调用者创建，并给予适当的权限
     location : { latitude : 30, longitude : 130},
 }
 audioRecorder.on('prepare', () => {    //设置'prepare'事件回调
@@ -1681,7 +1587,7 @@ let audioRecorderConfig = {
     audioSampleRate : 22050,
     numberOfChannels : 2,
     format : media.AudioOutputFormat.AAC_ADTS,
-    uri : 'file:///data/accounts/account_0/appdata/appdata/recorder/test.m4a',  // 文件需先由调用者创建，并给予适当的权限
+    uri : 'fd://xx',                                                            // 文件需先由调用者创建，并给予适当的权限
     location : { latitude : 30, longitude : 130},
 }
 audioRecorder.on('error', (error) => {             								// 设置'error'事件回调
@@ -1750,7 +1656,7 @@ audioRecorder.prepare();  												// prepare不设置参数，触发'error'�
 | numberOfChannels      | number                                  | 否   | 音频采集声道数，默认值为2。                                  |
 | format                | [AudioOutputFormat](#audiooutputformat) | 否   | 音量输出封装格式，默认设置为MPEG_4。                         |
 | location<sup>8+</sup> | [Location](#location8)                  | 否   | 音频采集的地理位置。                                         |
-| uri                   | string                                  | 是   | 音频输出URI。支持：<br/>1.&nbsp;文件的绝对路径：file:///data/data/ohos.xxx.xxx/cache/test.mp4![zh-cn_image_0000001164217678](figures/zh-cn_image_0000001164217678.png)<br/>2.&nbsp;文件的fd路径：file://1&nbsp;(fd&nbsp;number)<br/> 文件需要由调用者创建，并赋予适当的权限。 |
+| uri                   | string                                  | 是   | 视频输出URI：fd://xx&nbsp;(fd&nbsp;number)<br/>![zh-cn_image_0000001164217678](figures/zh-cn_image_url.png) <br/>文件需要由调用者创建，并赋予适当的权限。 |
 
 
 ## AudioEncoder
@@ -1780,7 +1686,7 @@ audioRecorder.prepare();  												// prepare不设置参数，触发'error'�
 
 ## VideoRecorder<sup>8+</sup>
 
-视频录制管理类，用于录制视频媒体。在调用VideoRecorder的方法前，需要先通过[createVideoRecorderAsync()](#media.createvideorecorderasync8)构建一个[VideoRecorder](#videorecorder8)实例。
+视频录制管理类，用于录制视频媒体。在调用VideoRecorder的方法前，需要先通过[createVideoRecorder()](#media.createvideorecorder8)构建一个[VideoRecorder](#videorecorder8)实例。
 
 视频录制demo可参考：[视频录制开发指导](../../media/video-recorder.md)
 
@@ -1823,7 +1729,7 @@ let videoConfig = {
     audioSourceType : 1,
     videoSourceType : 0,
     profile : videoProfile,
-    url : 'file:///data/accounts/account_0/appdata/appdata/recorder/test.mp4',   // 文件需先由调用者创建，并给予适当的权限
+    url : 'fd://xx',   // 文件需先由调用者创建，并给予适当的权限
     orientationHint : 0,
     location : { latitude : 30, longitude : 130 },
 }
@@ -1892,7 +1798,7 @@ let videoConfig = {
     audioSourceType : 1,
     videoSourceType : 0,
     profile : videoProfile,
-    url : 'file:///data/accounts/account_0/appdata/appdata/recorder/test.mp4',   // 文件需先由调用者创建，并给予适当的权限
+    url : 'fd://xx',   // 文件需先由调用者创建，并给予适当的权限
     orientationHint : 0,
     location : { latitude : 30, longitude : 130 },
 }
@@ -2347,7 +2253,7 @@ videoRecorder.on('error', (error) => {      							// 设置'error'事件回调
 | profile         | [VideoRecorderProfile](#videorecorderprofile<sup>8+</sup>) | 是   | 视频录制的profile。                                          |
 | orientationHint | number                                                     | 否   | 录制视频的旋转角度。                                         |
 | location        | [Location](#location8)                                     | 否   | 录制视频的地理位置。                                         |
-| uri             | string                                                     | 是   | 视频输出URI。支持：<br/>1.&nbsp;文件的绝对路径：file:///data/data/ohos.xxx.xxx/cache/test.mp4![zh-cn_image_0000001164217678](figures/zh-cn_image_0000001164217678.png)<br/>2.&nbsp;文件的fd路径：file://1&nbsp;(fd&nbsp;number)<br/> 文件需要由调用者创建，并赋予适当的权限。 |
+| url             | string                                                     | 是   | 视频输出URL：fd://xx&nbsp;(fd&nbsp;number)<br/>![zh-cn_image_0000001164217678](figures/zh-cn_image_url.png) <br/>文件需要由调用者创建，并赋予适当的权限。 |
 
 ## AudioSourceType<sup>8+</sup>
 

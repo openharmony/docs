@@ -19,9 +19,9 @@ import settings from '@ohos.settings';
 None
 
 
-## settings.getUri
+## settings.getUriSync
 
-getUri(name: string): string
+getUriSync(name: string): string
 
 Obtains the URI of a data item.
 
@@ -38,13 +38,13 @@ Obtains the URI of a data item.
 - Example
   ```
    // Obtain the URI of a data item.
-   let urivar = settings.getUri('settings.screen.brightness');  
+   let urivar = settings.getUriSync('settings.screen.brightness');  
   ```
 
 
-## settings.getValue
+## settings.getValueSync
 
-getValue(dataAbilityHelper: DataAbilityHelper, name: string, defValue: string): string
+getValueSync(dataAbilityHelper: DataAbilityHelper, name: string, defValue: string): string
 
 Obtains the value of a data item.
 
@@ -66,18 +66,18 @@ Obtains the value of a data item.
   
   // Obtain the value of 'settings.screen.brightness' (this data item already exists in the database).
   let brightness = 'settings.screen.brightness';
-  let uri = settings.getUri(brightness);
+  let uri = settings.getUriSync(brightness);
   let helper = featureAbility.acquireDataAbilityHelper(uri);
-  let value = settings.getValue(helper, brightness, '10');
+  let value = settings.getValueSync(helper, brightness, '10');
   ```
 
 
-## settings.setValue
+## settings.setValueSync
 
-setValue(dataAbilityHelper: DataAbilityHelper, name: string, value: string): boolean
+setValueSync(dataAbilityHelper: DataAbilityHelper, name: string, value: string): boolean
 
 Sets the value of a data item.
-If the specified data item exists in the database, the **setValue** method updates the value of the data item. If the data item does not exist in the database, the **setValue** method inserts the data item into the database.
+If the specified data item exists in the database, the **setValueSync** method updates the value of the data item. If the data item does not exist in the database, the **setValueSync** method inserts the data item into the database.
 
 To use this method, you must have the **ohos.permission.WRITE_SYSTEM_SETTING** permission.
 
@@ -97,10 +97,10 @@ To use this method, you must have the **ohos.permission.WRITE_SYSTEM_SETTING** p
   ```
   import featureAbility from '@ohos.featureAbility';
   
-  // Update the value of 'settings.screen.brightness'. (As this data item exists in the database, the setValue method
+  // Update the value of 'settings.screen.brightness'. (As this data item exists in the database, the setValueSync method
      will update the value of the data item.)
   let brightness = 'settings.screen.brightness';
-  let uri = settings.getUri(brightness);
+  let uri = settings.getUriSync(brightness);
   let helper = featureAbility.acquireDataAbilityHelper(uri);
-  let ret = settings.setValue(helper, brightness, '100');
+  let ret = settings.setValueSync(helper, brightness, '100');
   ```

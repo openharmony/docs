@@ -2111,7 +2111,7 @@ let deviceName = gattClient.getDeviceName().then((data) => {
 
 getRssiValue(callback: AsyncCallback&lt;number&gt;): void
 
-Obtains the received signal strength indication (RSSI) of the peer BLE device. This method uses an asynchronous callback to return the result. It can be used only after a connection is set up by calling [connect](#connect-boolean).
+Obtains the received signal strength indication (RSSI) of the peer BLE device. This method uses an asynchronous callback to return the result. It can be used only after a connection is set up by calling [connect](#connect).
 
 **Parameters:**
 
@@ -2140,7 +2140,7 @@ let rssi = gattClient.getRssiValue((err, data)=> {
 
 getRssiValue(): Promise&lt;number&gt;
 
-Obtains the RSSI of the peer BLE device. This method uses a promise to return the result. It can be used only after a connection is set up by calling [connect](#connect-boolean).
+Obtains the RSSI of the peer BLE device. This method uses a promise to return the result. It can be used only after a connection is set up by calling [connect](#connect).
 
 **Return values:**
 

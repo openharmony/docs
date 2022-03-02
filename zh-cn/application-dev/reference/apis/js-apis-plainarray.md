@@ -53,7 +53,7 @@ isEmpty(): boolean
 
 ```
 const plainArray = new PlainArray();
-plainArray.isEmpty();
+let result = plainArray.isEmpty();
 ```
 
 
@@ -67,13 +67,13 @@ has(key: number): boolean
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| key | number | 是 | 查询的元素。 |
+| key | number | 是 | 指定key。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 包含指定元素返回true，否则返回false。 |
+| boolean | 包含指定key返回true，否则返回false。 |
 
 **示例：**
 
@@ -81,7 +81,7 @@ has(key: number): boolean
 let plainArray = new PlainArray();
 plainArray.has(1);
 plainArray.add(1, "sddfhf");
-plainArray.has(1);
+let result1 = plainArray.has(1);
 ```
 
 
@@ -109,7 +109,7 @@ get(key: number): T
 let plainArray = new PlainArray();
 plainArray.add(1, "sddfhf");
 plainArray.add(2, "sffdfhf");
-plainArray.get(1);
+let result = plainArray.get(1);
 ```
 
 
@@ -123,13 +123,13 @@ getIndexOfKey(key: number): number;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| key | number | 是 | 被查找的元素。 |
+| key | number | 是 | 指定key。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 返回指定元素第一次出现时的下标值，查找失败返回-1。 |
+| number | 返回指定key第一次出现时的下标值，查找失败返回-1。 |
 
 **示例：**
 
@@ -137,7 +137,7 @@ getIndexOfKey(key: number): number;
 let plainArray = new PlainArray();
 plainArray.add(1, "sddfhf");
 plainArray.add(2, "sffdfhf");
-plainArray.getIndexOfKey("sdfs");
+let result = plainArray.getIndexOfKey("sdfs");
 ```
 
 
@@ -151,7 +151,7 @@ getIndexOfValue(value: T): number;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | T | 是 | 被查找的元素。 |
+| value | T | 是 | 指定元素。 |
 
 **返回值：**
 
@@ -165,7 +165,7 @@ getIndexOfValue(value: T): number;
 let plainArray = new PlainArray();
 plainArray.add(1, "sddfhf");
 plainArray.add(2, "sffdfhf");
-plainArray.getIndexOfValue("sddfhf");
+let result = plainArray.getIndexOfValue("sddfhf");
 ```
 
 
@@ -179,13 +179,13 @@ getKeyAt(index: number): number;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| index | number | 是 | 所查找的下标。 |
+| index | number | 是 | 指定下标。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 返回该下标对应的元素键值对中key值，失败返回undefined。 |
+| number | 返回该下标对应的元素键值对中key值，失败返回-1。 |
 
 **示例：**
 
@@ -193,17 +193,41 @@ getKeyAt(index: number): number;
 let plainArray = new PlainArray();
 plainArray.add(1, "sddfhf");
 plainArray.add(2, "sffdfhf");
-plainArray.getKeyAt(1);
+let result = plainArray.getKeyAt(1);
 ```
 
+### getValueAt
+
+getValueAt(index: number): T
+
+查找指定下标元素键值对中Value值，否则返回undefined。
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | index | number | 是 | 指定下标。 |
+
+**返回值：**
+
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | T | 返回该下标对应的元素键值对中key值，失败返回undefined。 |
+
+**示例：**
+
+  ```
+  let plainArray = new PlainArray();
+  plainArray.add(1, "sddfhf");
+  plainArray.add(2, "sffdfhf");
+  let result = plainArray.getKeyAt(1);
+  ```
 
 ### clone
 
 clone(): PlainArray&lt;T&gt;
 
-克隆一个实例，并返回克隆后的实例。
-
-修改克隆后的实例并不会影响原实例。
+克隆一个实例，并返回克隆后的实例。修改克隆后的实例并不会影响原实例。
 
 **返回值：**
 
@@ -223,7 +247,7 @@ let newPlainArray = plainArray.clone();
 
 ### add
 
-add(key: number, value: T): boolean
+add(key: number, value: T): void
 
 向容器中添加一组数据。
 
@@ -233,12 +257,6 @@ add(key: number, value: T): boolean
 | -------- | -------- | -------- | -------- |
 | key | number | 是 | 添加成员数据的键名。 |
 | value | T | 是 | 添加成员数据的值。 |
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| boolean | 成功添加返回true，否则返回false。 |
 
 **示例：**
 
@@ -252,13 +270,13 @@ plainArray.add(1, "sddfhf");
 
 remove(key: number): T
 
-删除指定的元素。
+删除指定key对应元素。
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| key | number | 是 | 根据key删除的指定元素。 |
+| key | number | 是 | 指定key。 |
 
 **返回值：**
 
@@ -273,14 +291,15 @@ let plainArray = new PlainArray();
 plainArray.add(1, "sddfhf");
 plainArray.add(2, "sffdfhf");
 plainArray.remove(2);
+let result = plainArray.remove(2);
 ```
 
 
 ### removeAt
 
-removeAt(index: number): boolean;
+removeAt(index: number): T
 
-删除指定下标的元素。
+删除指定下标对应的元素。
 
 **参数：**
 
@@ -292,7 +311,7 @@ removeAt(index: number): boolean;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 成功删除元素返回true，否则返回false。 |
+| T | 返回删除的元素。 |
 
 **示例：**
 
@@ -301,6 +320,7 @@ let plainArray = new PlainArray();
 plainArray.add(1, "sddfhf");
 plainArray.add(2, "sffdfhf");
 plainArray.removeAt(1);
+let result = plainArray.removeAt(1);
 ```
 
 
@@ -329,22 +349,22 @@ removeRangeFrom(index: number, size: number): number
 let plainArray = new PlainArray();
 plainArray.add(1, "sddfhf");
 plainArray.add(2, "sffdfhf");
-plainArray.removeAt(1, 3);
+let result = plainArray.removeRangeFrom(1, 3);
 ```
 
 
 ### setValueAt
 
-setValueAt(index: number, newValue: T): void
+setValueAt(index: number, value: T): void
 
-向容器中具体位置替换键值对中的值。
+替换容器中指定下标对应键值对中的键值。
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | index | number | 是 | 指定替换数据下标。 |
-| newValue | T | 是 | 替换键值对中的值。 |
+| value | T | 是 | 替换键值对中的值。 |
 
 **示例：**
 
@@ -374,7 +394,7 @@ toString(): String
 let plainArray = new PlainArray();
 plainArray.add(1, "sddfhf");
 plainArray.add(2, "sffdfhf");
-plainArray.toString();
+let result = plainArray.toString();
 ```
 
 
@@ -396,7 +416,7 @@ plainArray.clear();
 
 ### forEach
 
-forEach(callbackfn: (value: T, key?: number, plainArray?: PlainArray<number, T>) => void, thisArg?: Object): void
+forEach(callbackfn: (value: T, key?: number, PlainArray?: PlainArray<number, T>) => void, thisArg?: Object): void
 
 通过回调函数来遍历实例对象上的元素以及元素对应的下标。
 
