@@ -287,7 +287,7 @@
 <td class="cellrowborder" valign="top" width="13.66%" headers="mcps1.1.5.1.3 "><p><a href="#table154011838131719">ScrollOffset</a></p>
 </td>
 <td class="cellrowborder" valign="top" width="57.43000000000001%" headers="mcps1.1.5.1.4 "><p>获取元素内容的滚动偏移。</p>
-<div class="note"><span class="notetitle"> 说明： </span><div class="notebody"><ul><li>需要设置overflow样式为scroll。</li></ul>
+<div class="note"><span class="notetitle"> 说明： </span><div class="notebody"><ul><li>需要设置overflow样式为scroll，默认滚动方向与容器方向一致。</li></ul>
 </div></div>
 </td>
 </tr>
