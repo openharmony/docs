@@ -4,7 +4,7 @@
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
 ## 导入模块
@@ -23,12 +23,12 @@ import data_Preferences from '@ohos.data.preferences'
 
 ## data_Preferences.getPreferences
 
-### 系统能力
-SystemCapability.DistributedDataManager.Preferences.Core
-
 getPreferences(context: Context, name: string, callback: AsyncCallback&lt;Preferences&gt;): void
 
 读取指定文件，将数据加载到Preferences实例，用于数据操作，使用callback形式返回结果。
+
+### 系统能力###
+SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -55,12 +55,12 @@ getPreferences(context: Context, name: string, callback: AsyncCallback&lt;Prefer
 
 ## data_Preferences.getPreferences
 
-### 系统能力
-SystemCapability.DistributedDataManager.Preferences.Core
-
 getPreferences(context: Context, name: string): Promise&lt;Preferences&gt;
 
 读取指定文件，将数据加载到Preferences实例，用于数据操作，使用Promise方式作为异步方法。
+
+### 系统能力###
+SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -90,12 +90,12 @@ getPreferences(context: Context, name: string): Promise&lt;Preferences&gt;
 
 ## data_Preferences.deletePreferences
 
-### 系统能力
-SystemCapability.DistributedDataManager.Preferences.Core
-
 deletePreferences(context: Context, name: string, callback: AsyncCallback&lt;void&gt;)
 
 从内存中移除指定文件对应的Preferences单实例，并删除指定文件及其备份文件、损坏文件。删除指定文件时，应用不允许再使用该实例进行数据操作，否则会出现数据一致性问题，使用callback方式作为异步方法。
+
+### 系统能力###
+SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -120,12 +120,12 @@ deletePreferences(context: Context, name: string, callback: AsyncCallback&lt;voi
 
 ## data_Preferences.deletePreferences
 
-### 系统能力
-SystemCapability.DistributedDataManager.Preferences.Core
-
 deletePreferences(context: Context, name: string): Promise&lt;void&gt;
 
 从内存中移除指定文件对应的Preferences单实例，并删除指定文件及其备份文件、损坏文件。删除指定文件时，应用不允许再使用该实例进行数据操作，否则会出现数据一致性问题，使用promise方式作为异步方法。
+
+### 系统能力###
+SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -153,14 +153,14 @@ deletePreferences(context: Context, name: string): Promise&lt;void&gt;
 
 ## data_Preferences.removePreferencesFromCache
 
-### 系统能力
-SystemCapability.DistributedDataManager.Preferences.Core
-
 removePreferencesFromCache(context: Context, name: string, callback: AsyncCallback&lt;Preferences&gt;): void
 
 从内存中移除指定文件对应的Preferences单实例。移除Preferences单实例时，应用不允许再使用该实例进行数据操作，否则会出现数据一致性问题。
 
 此方法为异步方法。
+
+### 系统能力###
+SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -185,13 +185,14 @@ removePreferencesFromCache(context: Context, name: string, callback: AsyncCallba
 
 ## data_Preferences.removePreferencesFromCache
 
-### 系统能力 SystemCapability.DistributedDataManager.Preferences.Core
-
 removePreferencesFromCache(context: Context, name: string): Promise&lt;void&gt;
 
 从内存中移除指定文件对应的Preferences单实例。移除Preferences单实例时，应用不允许再使用该实例进行数据操作，否则会出现数据一致性问题。
 
 此方法为异步方法。
+
+### 系统能力###
+SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -224,13 +225,14 @@ removePreferencesFromCache(context: Context, name: string): Promise&lt;void&gt;
 
 ### get
 
-#### 系统能力 SystemCapability.DistributedDataManager.Preferences.Core
-
 get(key: string, defValue: ValueType, callback: AsyncCallback&lt;ValueType&gt;): void
 
 获取键对应的值，如果值为null或者非默认值类型，返回默认数据。
 
 此方法为异步方法。
+
+### 系统能力###
+SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -253,13 +255,14 @@ get(key: string, defValue: ValueType, callback: AsyncCallback&lt;ValueType&gt;):
 
 ### get
 
-#### 系统能力 SystemCapability.DistributedDataManager.Preferences.Core
-
 get(key: string, defValue: ValueType): Promise&lt;ValueType&gt;
 
 获取键对应的值，如果值为null或者非默认值类型，返默认数据。
 
 此方法为异步方法。
+
+### 系统能力###
+SystemCapability.DistributedDataManager.Preferences.Core
 
 - **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
@@ -285,13 +288,14 @@ get(key: string, defValue: ValueType): Promise&lt;ValueType&gt;
 
 ### put
 
-#### 系统能力 SystemCapability.DistributedDataManager.Preferences.Core
-
 put(key: string, value: ValueType, callback: AsyncCallback&lt;void&gt;): void
 
 首先获取指定文件对应的Preferences实例，然后借助Preferences API将数据写入Preferences实例，通过flush或者flushSync将Preferences实例持久化。
 
 此方法为异步方法。
+
+### 系统能力###
+SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -314,13 +318,14 @@ put(key: string, value: ValueType, callback: AsyncCallback&lt;void&gt;): void
 
 ### put
 
-#### 系统能力 SystemCapability.DistributedDataManager.Preferences.Core
-
 put(key: string, value: ValueType): Promise&lt;void&gt;
 
 首先获取指定文件对应的Preferences实例，然后借助Preferences API将数据写入Preferences实例，通过flush或者flushSync将Preferences实例持久化。
 
 此方法为异步方法。
+
+### 系统能力###
+SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -346,13 +351,14 @@ put(key: string, value: ValueType): Promise&lt;void&gt;
 
 ### has
 
-#### 系统能力 SystemCapability.DistributedDataManager.Preferences.Core
-
 has(key: string, callback: AsyncCallback&lt;boolean&gt;): boolean
 
 检查存储对象是否包含名为给定key的存储。
 
 此方法为异步方法。
+
+### 系统能力###
+SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -381,13 +387,14 @@ has(key: string, callback: AsyncCallback&lt;boolean&gt;): boolean
 
 ### has
 
-#### 系统能力 SystemCapability.DistributedDataManager.Preferences.Core
-
 has(key: string): Promise&lt;boolean&gt;
 
 检查存储对象是否包含名为给定key的存储。
 
 此方法为异步方法。
+
+### 系统能力###
+SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -414,13 +421,14 @@ has(key: string): Promise&lt;boolean&gt;
 
 ### delete
 
-#### 系统能力 SystemCapability.DistributedDataManager.Preferences.Core
-
 delete(key: string, callback: AsyncCallback&lt;void&gt;): void
 
 从存储对象中删除名为给定key的存储。
 
 此方法为异步方法。
+
+### 系统能力###
+SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -442,13 +450,14 @@ delete(key: string, callback: AsyncCallback&lt;void&gt;): void
 
 ### delete
 
-#### 系统能力 SystemCapability.DistributedDataManager.Preferences.Core
-
 delete(key: string): Promise&lt;void&gt;
 
 从存储对象删除名为给定key的存储。
 
 此方法为异步方法。
+
+### 系统能力###
+SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -473,13 +482,14 @@ delete(key: string): Promise&lt;void&gt;
 
 ### flush
 
-#### 系统能力 SystemCapability.DistributedDataManager.Preferences.Core
-
 flush(callback: AsyncCallback&lt;void&gt;): void
 
 将当前preferences对象中的修改保存到当前的preferences，并异步存储到文件中。
 
 此方法为异步方法。
+
+### 系统能力###
+SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -500,13 +510,14 @@ flush(callback: AsyncCallback&lt;void&gt;): void
 
 ### flush
 
-#### 系统能力 SystemCapability.DistributedDataManager.Preferences.Core
-
 flush(): Promise&lt;void&gt;
 
 将当前preferences对象中的修改保存到当前的preferences，并异步存储到文件中。
 
 此方法为异步方法。
+
+### 系统能力###
+SystemCapability.DistributedDataManager.Preferences.Core
 
 - 返回值：
   | 类型 | 说明 |
@@ -526,13 +537,14 @@ flush(): Promise&lt;void&gt;
 
 ### clear
 
-#### 系统能力 SystemCapability.DistributedDataManager.Preferences.Core
-
 clear(callback: AsyncCallback&lt;void&gt;): void
 
 清除此存储对象中的所有存储。
 
 此方法为异步方法。
+
+### 系统能力###
+SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -553,13 +565,14 @@ clear(callback: AsyncCallback&lt;void&gt;): void
 
 ### clear
 
-#### 系统能力 SystemCapability.DistributedDataManager.Preferences.Core
-
 clear(): Promise&lt;void&gt;
 
 清除此存储对象中的所有存储。
 
 此方法为异步方法。
+
+### 系统能力###
+SystemCapability.DistributedDataManager.Preferences.Core
 
 - 返回值：
   | 类型 | 说明 |
@@ -579,11 +592,12 @@ clear(): Promise&lt;void&gt;
 
 ### on('change')
 
-#### 系统能力 SystemCapability.DistributedDataManager.Preferences.Core
-
 on(type: 'change', callback: Callback&lt;{ key : string }&gt;): void
 
 订阅数据变更者类，订阅的key的值发生变更后，在执行flush方法后，callback方法会被回调。
+
+### 系统能力###
+SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 说明 |
@@ -604,11 +618,12 @@ on(type: 'change', callback: Callback&lt;{ key : string }&gt;): void
 
 ### off('change')
 
-#### 系统能力 SystemCapability.DistributedDataManager.Preferences.Core
-
 off(type: 'change', callback: Callback&lt;{ key : string }&gt;): void
 
 当不再进行订阅数据变更时，使用此接口取消订阅。
+
+### 系统能力###
+SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 说明 |
