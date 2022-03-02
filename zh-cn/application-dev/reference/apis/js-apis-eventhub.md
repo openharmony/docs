@@ -36,6 +36,10 @@ on(event: string, callback: Function): void;
 
 订阅指定事件。
 
+**系统能力:**
+
+SystemCapability.Ability.AbilityRuntime.Core
+
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
@@ -71,6 +75,10 @@ off(event: string, callback?: Function): void;
 
 取消订阅指定事件。当callback传值时，取消订阅指定的callback；未传值时，取消订阅该事件下所有callback。
 
+**系统能力:**
+
+SystemCapability.Ability.AbilityRuntime.Core
+
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
@@ -105,6 +113,10 @@ off(event: string, callback?: Function): void;
 emit(event: string, ...args: Object[]): void;
 
 触发指定事件。
+
+**系统能力:**
+
+SystemCapability.Ability.AbilityRuntime.Core
 
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 | 

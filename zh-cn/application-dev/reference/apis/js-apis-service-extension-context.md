@@ -16,6 +16,10 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 启动Ability。
 
 
+**系统能力:**
+
+SystemCapability.Ability.AbilityRuntime.Core
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
@@ -39,6 +43,10 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 startAbility(want: Want): Promise&lt;void&gt;;
 
 启动Ability。通过Promise返回结果。
+
+**系统能力:**
+
+SystemCapability.Ability.AbilityRuntime.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 | 
@@ -70,6 +78,10 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
 
 停止Ability自身。
 
+**系统能力:**
+
+SystemCapability.Ability.AbilityRuntime.Core
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
@@ -88,6 +100,10 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
 terminateSelf(): Promise&lt;void&gt;;
 
 停止自身。通过Promise返回结果。
+
+**系统能力:**
+
+SystemCapability.Ability.AbilityRuntime.Core
 
 - 返回值：
   | 类型 | 说明 | 
@@ -109,6 +125,10 @@ terminateSelf(): Promise&lt;void&gt;;
 connectAbility(want: Want, options: ConnectOptions): number;
 
 将一个Ability与服务类型的Ability绑定。
+
+**系统能力:**
+
+SystemCapability.Ability.AbilityRuntime.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 | 
@@ -142,6 +162,10 @@ disconnectAbility(connection: number, callback:AsyncCallback&lt;void&gt;): void;
 
 将一个Ability与绑定的服务类型的Ability解绑。
 
+**系统能力:**
+
+SystemCapability.Ability.AbilityRuntime.Core
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
@@ -162,6 +186,10 @@ disconnectAbility(connection: number): Promise&lt;void&gt;;
 
 将一个Ability与绑定的服务类型的Ability解绑。通过Promise返回结果。
 
+**系统能力:**
+
+SystemCapability.Ability.AbilityRuntime.Core
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
@@ -171,7 +199,7 @@ disconnectAbility(connection: number): Promise&lt;void&gt;;
   | 类型 | 说明 | 
   | -------- | -------- |
   | Promise&lt;void&gt; | 返回一个Promise，包含接口的结果。 | 
-
+ 
 - 示例：
   ```
   this.context.disconnectAbility(connection).then((data) => { // connection为connectAbility中的返回值
@@ -188,6 +216,6 @@ ConnectOptions数据结构。
 
 | 名称 | 说明 | 
 | -------- | -------- |
-| onConnect(elementName:ElementName,&nbsp;remote:IRemoteObject) | Ability成功连接一个服务类型Ability的回调接口。 | 
-| onDisconnect(elementName:ElementName) | 对端服务发生异常或者被杀死回调该接口。 | 
-| onFailed(code:&nbsp;number) | 连接失败时回调该接口。 | 
+| onConnect(elementName:ElementName,&nbsp;remote:IRemoteObject) | Ability成功连接一个服务类型Ability的回调接口。<br><b>系统能力：</b>SystemCapability.Ability.AbilityRuntime.Core | 
+| onDisconnect(elementName:ElementName) | 对端服务发生异常或者被杀死回调该接口。<br><b>系统能力：</b>SystemCapability.Ability.AbilityRuntime.Core | 
+| onFailed(code:&nbsp;number) | 连接失败时回调该接口。<br><b>系统能力：</b>SystemCapability.Ability.AbilityRuntime.Core | 

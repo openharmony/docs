@@ -32,6 +32,10 @@ onCreate(want: Want): void;
 
 Extension生命周期回调，在创建时回调，执行初始化业务逻辑操作。
 
+**系统能力:**
+
+SystemCapability.Ability.AbilityRuntime.Core
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
@@ -53,6 +57,10 @@ onDestroy(): void;
 
 Extension生命周期回调，在销毁时回调，执行资源清理等操作。
 
+**系统能力:**
+
+SystemCapability.Ability.AbilityRuntime.Core
+
 - 示例：
   ```
   class ServiceExt extends ServiceExtension {
@@ -68,6 +76,10 @@ Extension生命周期回调，在销毁时回调，执行资源清理等操作�
 onRequest(want: Want, startId: number): void;
 
 Extension生命周期回调，如果是startAbility拉起的服务，会在onCreate之后回调。每次拉起服务都会回调，startId会递增。
+
+**系统能力:**
+
+SystemCapability.Ability.AbilityRuntime.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 | 
@@ -90,6 +102,10 @@ Extension生命周期回调，如果是startAbility拉起的服务，会在onCre
 onConnect(want: Want): rpc.RemoteObject;
 
 Extension生命周期回调，如果是connectAbility拉起的服务，会在onCreate之后回调。返回一个RemoteObject对象，用于和客户端进行通信。
+
+**系统能力:**
+
+SystemCapability.Ability.AbilityRuntime.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 | 
@@ -125,6 +141,10 @@ Extension生命周期回调，如果是connectAbility拉起的服务，会在onC
 onDisconnect(want: Want): void;
 
 Extension的生命周期，断开服务连接时回调。
+
+**系统能力:**
+
+SystemCapability.Ability.AbilityRuntime.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 | 

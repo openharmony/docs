@@ -26,6 +26,10 @@ verifyUriPermission(uri: string, flag: wantConstant.Flags, accessTokenId: number
 
 检验某个应用是否对指定的uri有flag指定的权限。
 
+**系统能力:**
+
+SystemCapability.Ability.AbilityRuntime.Core
+
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
@@ -49,6 +53,10 @@ verifyUriPermission(uri: string, flag: wantConstant.Flags, accessTokenId: number
 verifyUriPermission(uri: string, flag: wantConstant.Flags, accessTokenId: number): Promise&lt;number&gt;
 
 检验某个应用是否对指定的uri有flag指定的权限。
+
+**系统能力:**
+
+SystemCapability.Ability.AbilityRuntime.Core
 
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 | 

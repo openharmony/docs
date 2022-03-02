@@ -57,6 +57,10 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
 启动Ability。
 
+**系统能力:**
+
+SystemCapability.Ability.AbilityRuntime.Core
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
@@ -81,6 +85,10 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void
 
 启动Ability。
+
+**系统能力:**
+
+SystemCapability.Ability.AbilityRuntime.Core
 
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 | 
@@ -111,6 +119,10 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 startAbility(want: Want, options: StartOptions): Promise&lt;void&gt;;
 
 启动Ability。通过Promise返回结果。
+
+**系统能力:**
+
+SystemCapability.Ability.AbilityRuntime.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 | 
@@ -148,6 +160,10 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 
 启动Ability并在结束的时候返回执行结果。
 
+**系统能力:**
+
+SystemCapability.Ability.AbilityRuntime.Core
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -171,6 +187,10 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback&lt;AbilityResult&gt;): void;
 
 启动Ability并在结束的时候返回执行结果。
+
+**系统能力:**
+
+SystemCapability.Ability.AbilityRuntime.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -200,6 +220,10 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 startAbilityForResult(want: Want, options: StartOptions): Promise&lt;AbilityResult&gt;;
 
 启动Ability并在结束的时候返回执行结果。
+
+**系统能力:**
+
+SystemCapability.Ability.AbilityRuntime.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 | 
@@ -232,6 +256,10 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
 
 停止Ability自身。
 
+**系统能力:**
+
+SystemCapability.Ability.AbilityRuntime.Core
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
@@ -250,6 +278,10 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
 terminateSelf(): Promise&lt;void&gt;;
 
 停止Ability自身。通过Promise返回结果。
+
+**系统能力:**
+
+SystemCapability.Ability.AbilityRuntime.Core
 
 - 返回值：
   | 类型 | 说明 | 
@@ -271,6 +303,10 @@ terminateSelf(): Promise&lt;void&gt;;
 terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;void&gt;): void;
 
 停止Ability，并返回给调用startAbilityForResult 接口调用方的相关信息。
+
+**系统能力:**
+
+SystemCapability.Ability.AbilityRuntime.Core
 
 - 参数
   | 参数名 | 类型 | 必填 | 说明 |
@@ -296,6 +332,10 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;voi
 terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;;
 
 停止Ability，并返回给调用startAbilityForResult 接口相关信息。
+
+**系统能力:**
+
+SystemCapability.Ability.AbilityRuntime.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -325,6 +365,10 @@ terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;;
 startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
 
 获取指定通用组件服务端的caller通信接口, 并且将指定通用组件服务端拉起并切换到后台。
+
+**系统能力:**
+
+SystemCapability.Ability.AbilityRuntime.Core
 
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 | 
@@ -364,6 +408,10 @@ requestPermissionsFromUser(permissions: Array&lt;string&gt;, requestCallback: As
 
 拉起弹窗请求用户授权。
 
+**系统能力:**
+
+SystemCapability.Ability.AbilityRuntime.Core
+
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
@@ -384,6 +432,10 @@ requestPermissionsFromUser(permissions: Array&lt;string&gt;, requestCallback: As
 requestPermissionsFromUser(permissions: Array&lt;string&gt;) : Promise&lt;PermissionRequestResult&gt;;
 
 拉起弹窗请求用户授权。通过Promise返回结果。
+
+**系统能力:**
+
+SystemCapability.Ability.AbilityRuntime.Core
 
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 | 
@@ -412,6 +464,10 @@ setMissionLabel(label: string, callback:AsyncCallback&lt;void&gt;): void;
 
 设置ability在任务中显示的名称。
 
+**系统能力:**
+
+SystemCapability.Ability.AbilityRuntime.Core
+
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
@@ -432,6 +488,10 @@ setMissionLabel(label: string, callback:AsyncCallback&lt;void&gt;): void;
 setMissionLabel(label: string, callback:AsyncCallback&lt;void&gt;): void;
 
 设置ability在任务中显示的名称。
+
+**系统能力:**
+
+SystemCapability.Ability.AbilityRuntime.Core
 
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 | 
