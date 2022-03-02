@@ -177,8 +177,8 @@ printf("UtilsDeleteValue delete ret = %d\n", ret);
         ```
         {
             "app": {
-                "bundleName": "com.huawei.launcher",
-                "vendor": "huawei",
+                "bundleName": "com.example.launcher",
+                "vendor": "example",
                 "version": {
                     "code": 1,
                     "name": "1.0"
@@ -201,7 +201,7 @@ printf("UtilsDeleteValue delete ret = %d\n", ret);
                 }
             },
             "module": {
-                "package": "com.huawei.launcher",
+                "package": "com.example.launcher",
                 "name": ".MyHarmonyAbilityPackage",
                 "deviceType": [
                     "phone", "tv","tablet", "pc","car","smartWatch","sportsWatch","smartCamera"
@@ -254,7 +254,7 @@ printf("UtilsDeleteValue delete ret = %d\n", ret);
 3.  通过串口向单板发送运行KV存储native应用的命令。
 
     ```
-    ./nfs/dev_tools/bin/aa start -p com.huawei.launcher -n ServiceAbility
+    ./nfs/dev_tools/bin/aa start -p com.example.launcher -n ServiceAbility
     ```
 
 
