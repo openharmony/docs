@@ -55,7 +55,7 @@ C++接口实例。
 
     -   实现对应的查询回调接口：
 
-        void HiSysEventQueryCallBack::OnQuery\(const ::std::vector<std::string\>& sysEvent, const ::std::vector<int64\_t\>& seq\)
+        void HiSysEventQueryCallBack::OnQuery\(const ::std::vector&lt;std::string&gt;& sysEvent, const ::std::vector<int64\_t\>& seq\)
 
         void HiSysEventQueryCallBack::OnComplete\(int32\_t reason, int32\_t total\)
 
