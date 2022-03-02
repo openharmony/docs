@@ -4,7 +4,7 @@
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 从API Version 8开始，该接口不再维护，推荐使用新接口 [@ohos.data.preferences](js-apis-data-preferences.md)
+> 从API Version 9开始，该接口不再维护，推荐使用新接口 [@ohos.data.preferences](js-apis-data-preferences.md)
 
 
 ## 导入模块
