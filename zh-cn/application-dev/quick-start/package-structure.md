@@ -355,7 +355,7 @@ metaData示例：
 | launchType       | 表示Ability的启动模式，支持“standard”、“singleMission”和“singleton”三种模式：<br />standard：表示该Ability可以有多实例。<br />“standard”模式适用于大多数应用场景。<br />singleMission：表示此Ability在每个任务栈中只能有一个实例。<br />singleton：表示该Ability在所有任务栈中仅可以有一个实例。例如，具有全局唯一性的呼叫来电界面即采用“singleton”模式。该标签仅适用于手机、平板、智慧屏、车机、智能穿戴。 | 字符串     | 可缺省，缺省值为“standard”。                             |
 | visible          | 表示Ability是否可以被其他应用调用。<br />true：可以被其他应用调用。<br />false：不能被其他应用调用。 | 布尔类型   | 可缺省，缺省值为“false”。                                |
 | permissions      | 表示其他应用的Ability调用此Ability时需要申请的权限。通常采用反向域名格式，取值可以是系统预定义的权限，也可以是开发者自定义的权限。 | 字符串数组 | 可缺省，缺省值为空。                                     |
-| skills           | 表示Ability能够接收的Intent的特征。                          | 对象数组   | 可缺省，缺省值为空。                                     |
+| skills           | 表示Ability能够接收的want的特征。                            | 对象数组   | 可缺省，缺省值为空。                                     |
 | deviceCapability | 表示Ability运行时要求设备具有的能力，采用字符串数组的格式表示。 | 字符串数组 | 可缺省，缺省值为空。                                     |
 | metaData         | 元数据，参考表13。                                           | 对象       | 可缺省，缺省值为空。                                     |
 | type             | 表示Ability的类型。取值范围如下：<br />page：表示基于Page模板开发的FA，用于提供与用户交互的能力。<br />service：表示基于Service模板开发的PA，用于提供后台运行任务的能力。<br />data：表示基于Data模板开发的PA，用于对外部提供统一的数据访问抽象。<br />CA：表示支持其他应用以窗口方式调起该Ability。 | 字符串     | 否                                                       |
@@ -451,9 +451,9 @@ abilities示例：
 
 | 属性名称 | 含义                                                         | 数据类型   | 是否可缺省           |
 | -------- | ------------------------------------------------------------ | ---------- | -------------------- |
-| actions  | 表示能够接收的Intent的action值，可以包含一个或多个action。取值通常为系统预定义的action值。 | 字符串数组 | 可缺省，缺省值为空。 |
-| entities | 表示能够接收的Intent的Ability的类别（如视频、桌面应用等），可以包含一个或多个entity。 | 字符串数组 | 可缺省，缺省值为空。 |
-| uris     | 表示能够接收的Intent的uri，可以包含一个或者多个uri。参考表20。 | 对象数组   | 可缺省，缺省值为空。 |
+| actions  | 表示能够接收的want的action值，可以包含一个或多个action。取值通常为系统预定义的action值。 | 字符串数组 | 可缺省，缺省值为空。 |
+| entities | 表示能够接收的want的Ability的类别（如视频、桌面应用等），可以包含一个或多个entity。 | 字符串数组 | 可缺省，缺省值为空。 |
+| uris     | 表示能够接收的want的uri，可以包含一个或者多个uri。参考表20。 | 对象数组   | 可缺省，缺省值为空。 |
 
 表20 uris对象的内部结构说明
 
