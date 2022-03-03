@@ -15,7 +15,7 @@ function getMediaLibrary(context: Context): MediaLibrary;
 
 获取媒体库。
 
-**需要权限**：ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+**需要权限**：无
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -46,7 +46,7 @@ getFileAssets(options: MediaFetchOptions, callback: AsyncCallback&lt;FetchFileRe
 
 获取文件资源，使用callback方式返回异步结果。
 
-**需要权限**：ohos.permission.MEDIA_READ
+**需要权限**：ohos.permission.READ_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -67,14 +67,13 @@ let imagesfetchOp = {
     selectionArgs: [imageType.toString()],
 };
 medialibrary.getFileAssets(imagesfetchOp, (error, fetchFileResult) => {
-         if (fetchFileResult != undefined) {
-            console.info('MediaLibraryTest : ASSET_CALLBACK fetchFileResult success');
-            fetchFileResult.getAllObject((err, fileAssetList) => {
-                if (fileAssetList != undefined) {
-                    fileAssetList.forEach(getAllObjectInfo);
-                    console.info('MediaLibraryTest : getAllObject :PASS');
-                }
-          });
+    if (fetchFileResult != undefined) {
+        console.info('MediaLibraryTest : ASSET_CALLBACK fetchFileResult success');
+        fetchFileResult.getAllObject((err, fileAssetList) => {
+            if (fileAssetList != undefined) {
+                fileAssetList.forEach(getAllObjectInfo);
+            }
+    });
 });
 ```
 ## medialibrary.getFileAssets
@@ -83,7 +82,7 @@ getFileAssets(options: MediaFetchOptions): Promise&lt;FetchFileResult&gt;;
 
 获取文件资源，使用Promise方式返回结果。
 
-**需要权限**：ohos.permission.MEDIA_READ
+**需要权限**：ohos.permission.READ_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -172,7 +171,7 @@ createAsset(mediaType: MediaType, displayName: string, relativePath: string, cal
 
 创建媒体资源，使用callback方式返回结果。
 
-**需要权限**：ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.READ_MEDIA，ohos.permission.MEDIA_WRITE
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -192,23 +191,20 @@ createAsset(mediaType: MediaType, displayName: string, relativePath: string, cal
 let mediaType = mediaLibrary.MediaType.IMAGE;
 let path = "Pictures/";
 medialibrary.createAsset(mediaType, “imageCallBack.jpg”, path, (err, albumFetchFileResult) => {
-        if (albumFetchFileResult != undefined) {
-                console.info('MediaLibraryTest : ALBUM_CALLBACK getFileAssets success');
-                albumFetchFileResult.getAllObject((err, fileAssetList) => {
-                    if (fileAssetList != undefined) {
-                        fileAssetList.forEach(getAllObjectInfo);
-                        console.info('MediaLibraryTest : ALBUM_CALLBACK getFileAssets 004_01 success');
-                    } else {
-                        console.info('MediaLibraryTest : ALBUM_CALLBACK getFileAssets 004_01 fail, message = ' + err);
-                        console.info('MediaLibraryTest : ALBUM_CALLBACK getFileAssets 004_01 getFileAssets :No data');
-                        
-                    }
-                });
+    if (albumFetchFileResult != undefined) {
+        console.info('MediaLibraryTest : ALBUM_CALLBACK getFileAssets success');
+        albumFetchFileResult.getAllObject((err, fileAssetList) => {
+            if (fileAssetList != undefined) {
+                fileAssetList.forEach(getAllObjectInfo);
             } else {
-                console.info('MediaLibraryTest : ALBUM_CALLBACK getFileAssets 004_01 fail, message = ' + err);
-                
+                console.info('getFileAssets fail, message = ' + err);
+                console.info('getFileAssets getFileAssets :No data');
             }
         });
+    } else {
+        console.info('getFileAssets failed, message = ' + err);
+    }
+});
 ```
 
 ## medialibrary.createAsset
@@ -217,7 +213,7 @@ createAsset(mediaType: MediaType, displayName: string, relativePath: string): Pr
 
 创建媒体资源，使用Promise方式返回结果。
 
-**需要权限**：ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.READ_MEDIA，ohos.permission.MEDIA_WRITE
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -254,7 +250,7 @@ deleteAsset(uri: string, callback: AsyncCallback&lt;void&gt;): void;
 
 删除媒体资源，使用callback方式返回结果。
 
-**需要权限**：ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.READ_MEDIA，ohos.permission.MEDIA_WRITE
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -279,7 +275,7 @@ deleteAsset(uri: string): Promise&lt;void&gt;;
 
 删除媒体资源，使用promise方式返回结果。
 
-**需要权限**：ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.READ_MEDIA，ohos.permission.MEDIA_WRITE
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -329,10 +325,9 @@ getPublicDirectory(type: DirectoryType, callback: AsyncCallback<string>): void;
 let DIR_CAMERA = mediaLibrary.DirectoryType.DIR_CAMERA;
 media.getPublicDirectory(DIR_CAMERA，(err, dicResult) => {
     if (dicResult == 'camera/') {
-        console.info('MediaLibraryTest : getPublicDirectory 001 passed');
+        console.info('MediaLibraryTest : getPublicDirectory passed');
     } else {
-        console.info('MediaLibraryTest : getPublicDirectory 001 failed');
-        
+        console.info('MediaLibraryTest : getPublicDirectory failed');
     }
 });
 ```
@@ -365,9 +360,9 @@ getPublicDirectory(type: DirectoryType): Promise<string>;
 let DIR_CAMERA = mediaLibrary.DirectoryType.DIR_CAMERA;
 const dicResult = await media.getPublicDirectory(DIR_CAMERA);
 if (dicResult == 'camera/') {
-    console.info('MediaLibraryTest : getPublicDirectory 001 passed');    
+    console.info('MediaLibraryTest : getPublicDirectory passed');
 } else {
-    console.info('MediaLibraryTest : getPublicDirectory 001 failed');
+    console.info('MediaLibraryTest : getPublicDirectory failed');
 }
 ```
 
@@ -377,7 +372,7 @@ getAlbums(options: MediaFetchOptions, callback: AsyncCallback<Array&lt;Album&gt;
 
 获取实体相册，使用callback 方式返回结果。
 
-**需要权限**：ohos.permission.MEDIA_READ
+**需要权限**：ohos.permission.READ_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -400,7 +395,7 @@ getAlbums(options: MediaFetchOptions): Promise<Array&lt;Album&gt;>;
 
 获取实体相册，使用 promise 方式返回结果。
 
-**需要权限**：ohos.permission.MEDIA_READ
+**需要权限**：ohos.permission.READ_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -432,7 +427,7 @@ getActivePeers(callback: AsyncCallback<Array&lt;PeerInfo&gt;>): void;
 
 获取活动注册设备
 
-**需要权限**：ohos.permission.MEDIA_READ
+**需要权限**：ohos.permission.READ_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.DistributedCore
 
@@ -456,7 +451,7 @@ getActivePeers(): Promise<Array&lt;PeerInfo&gt;>;
 
 获取活动注册设备
 
-**需要权限**：ohos.permission.MEDIA_READ
+**需要权限**：ohos.permission.READ_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.DistributedCore
 
@@ -480,7 +475,7 @@ getAllPeers(callback: AsyncCallback<Array&lt;PeerInfo&gt;>): void;
 
 获取所有注册设备
 
-**需要权限**：ohos.permission.MEDIA_READ
+**需要权限**：ohos.permission.READ_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.DistributedCore
 
@@ -504,7 +499,7 @@ getAllPeers(): Promise<Array&lt;PeerInfo&gt;>;
 
 获取所有注册设备
 
-**需要权限**：ohos.permission.MEDIA_READ
+**需要权限**：ohos.permission.READ_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.DistributedCore
 
@@ -570,7 +565,7 @@ isDirectory(callback: AsyncCallback&lt;boolean&gt;): void;
 
 判断fileAsset是否为目录，使用callback方式返回异步结果。
 
-**需要权限**：ohos.permission.MEDIA_READ
+**需要权限**：ohos.permission.READ_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -594,7 +589,7 @@ isDirectory():Promise&lt;boolean&gt;;
 
 判断fileAsset是否为目录，使用Promise方式返回异步结果。
 
-**需要权限**：ohos.permission.MEDIA_READ
+**需要权限**：ohos.permission.READ_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -620,7 +615,7 @@ commitModify(callback: AsyncCallback&lt;void&gt;): void;
 
 修改文件的元数据，使用callback方式返回异步结果。
 
-**需要权限**：ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.READ_MEDIA，ohos.permission.MEDIA_WRITE
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -634,16 +629,8 @@ commitModify(callback: AsyncCallback&lt;void&gt;): void;
 
 ```
 asset.title = ‘newtitle';
-asset.commitModify(commitModifyCallBack);
-function commitModifyCallBack(err, commitModify) {
-        if (commitModify != undefined) {
-            console.info('MediaLibraryTest : ASSET_CALLBACK commitModify success');
-            
-        } else {
-            console.info('MediaLibraryTest : ASSET_CALLBACK commitModify Unsuccessfull = ' + err);
-            
-        }
-
+asset.commitModify(() => {
+    console.info('commitModify success');
 }
 ```
 
@@ -653,7 +640,7 @@ commitModify(): Promise&lt;void&gt;;
 
 修改文件的元数据，使用promise方式返回异步结果。
 
-**需要权限**：ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.READ_MEDIA，ohos.permission.MEDIA_WRITE
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -676,7 +663,7 @@ open(mode: string, callback: AsyncCallback&lt;number&gt;): void;
 
 打开当前文件，使用callback方式返回异步结果。
 
-**需要权限**：ohos.permission.MEDIA_READ（'r'模式打开），ohos.permission.MEDIA_WRITE（‘w’模式打开）
+**需要权限**：ohos.permission.READ_MEDIA（'r'模式打开），ohos.permission.MEDIA_WRITE（‘w’模式打开）
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -708,7 +695,7 @@ open(mode: string): Promise&lt;number&gt;;
 
 打开当前文件，使用promise方式返回异步结果。
 
-**需要权限**：ohos.permission.MEDIA_READ（'r'模式打开），ohos.permission.MEDIA_WRITE（‘w’模式打开）
+**需要权限**：ohos.permission.READ_MEDIA（'r'模式打开），ohos.permission.MEDIA_WRITE（‘w’模式打开）
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -745,7 +732,7 @@ close(fd: number, callback: AsyncCallback&lt;void&gt;): void;
 
 关闭当前文件，使用callback方式返回异步结果。
 
-**需要权限**：ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.READ_MEDIA，ohos.permission.MEDIA_WRITE
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -760,13 +747,12 @@ close(fd: number, callback: AsyncCallback&lt;void&gt;): void;
 
 ```
 fileAsset.close(fd, (closeErr) => {
-        if (closeErr != undefined) {
-            console.info('MediaLibraryTest : close : FAIL ' + closeErr.message);
-            console.info('MediaLibraryTest : ASSET_CALLBACK : FAIL');
-        } else {
-            console.info("=======asset.close success====>");
-            
-        }
+    if (closeErr != undefined) {
+        console.info('MediaLibraryTest : close : FAIL ' + closeErr.message);
+        console.info('MediaLibraryTest : ASSET_CALLBACK : FAIL');
+    } else {
+        console.info("=======asset.close success====>");
+    }
 });
 ```
 
@@ -776,7 +762,7 @@ close(fd: number): Promise&lt;void&gt;;
 
 关闭当前文件，使用promise方式返回异步结果。
 
-**需要权限**：ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.READ_MEDIA，ohos.permission.MEDIA_WRITE
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -796,13 +782,13 @@ close(fd: number): Promise&lt;void&gt;;
 
 ```
 fileAsset.close(fd).then((closeErr) => {
-        if (closeErr != undefined) {
-            console.info('MediaLibraryTest : close : FAIL ' + closeErr.message);
-            console.info('MediaLibraryTest : ASSET_CALLBACK : FAIL');
-            
-        } else {
-            console.info("=======asset.close success====>");
-        }
+    if (closeErr != undefined) {
+        console.info('MediaLibraryTest : close : FAIL ' + closeErr.message);
+        console.info('MediaLibraryTest : ASSET_CALLBACK : FAIL');
+
+    } else {
+        console.info("=======asset.close success====>");
+    }
 });
 ```
 
@@ -812,7 +798,7 @@ getThumbnail(callback: AsyncCallback&lt;image.PixelMap&gt;): void;
 
 获取文件的缩略图，使用callback方式返回异步结果。
 
-**需要权限**：ohos.permission.MEDIA_READ
+**需要权限**：ohos.permission.READ_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -836,7 +822,7 @@ getThumbnail(size: Size, callback: AsyncCallback&lt;image.PixelMap&gt;): void;
 
 获取文件的缩略图，传入缩略图尺寸，使用callback方式返回异步结果。
 
-**需要权限**：ohos.permission.MEDIA_READ
+**需要权限**：ohos.permission.READ_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -861,7 +847,7 @@ getThumbnail(size?: Size): Promise&lt;image.PixelMap&gt;;
 
 获取文件的缩略图，传入缩略图尺寸，使用promise方式返回异步结果。
 
-**需要权限**：ohos.permission.MEDIA_READ
+**需要权限**：ohos.permission.READ_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -891,7 +877,7 @@ favorite(isFavorite: boolean, callback: AsyncCallback&lt;void&gt;): void;
 
 将文件设置为收藏文件，使用callback方式返回异步结果。
 
-**需要权限**：ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.READ_MEDIA，ohos.permission.MEDIA_WRITE
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -916,7 +902,7 @@ favorite(isFavorite: boolean): Promise&lt;void&gt;;
 
 将文件设置为收藏文件，使用promise方式返回异步结果。
 
-**需要权限**：ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.READ_MEDIA，ohos.permission.MEDIA_WRITE
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -948,7 +934,7 @@ isFavorite(callback: AsyncCallback&lt;boolean&gt;): void;
 
 判断该文件是否为收藏文件，使用callback方式返回异步结果。
 
-**需要权限**：ohos.permission.MEDIA_READ
+**需要权限**：ohos.permission.READ_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -976,7 +962,7 @@ isFavorite():Promise&lt;boolean&gt;;
 
 判断该文件是否为收藏文件，使用promise方式返回异步结果。
 
-**需要权限**：ohos.permission.MEDIA_READ
+**需要权限**：ohos.permission.READ_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -1004,7 +990,7 @@ trash(isTrash: boolean, callback: AsyncCallback&lt;void&g;): void;
 
 放入垃圾文件夹的文件不会被真正删除，可以通过isTrash = false参数恢复成正常文件。
 
-**需要权限**：ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.READ_MEDIA，ohos.permission.MEDIA_WRITE
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -1020,8 +1006,7 @@ trash(isTrash: boolean, callback: AsyncCallback&lt;void&g;): void;
 ```
 asset.trash(true, trashCallBack);
 function trashCallBack(err, trash) {
-        console.info('MediaLibraryTest : ASSET_CALLBACK ASSET_CALLBACK trash');
-        
+    console.info('MediaLibraryTest : ASSET_CALLBACK ASSET_CALLBACK trash');
 }
 ```
 
@@ -1033,7 +1018,7 @@ trash(isTrash: boolean,): Promise&lt;void&gt;;
 
 放入垃圾文件夹的文件不会被真正删除，可以通过isTrash = false参数恢复成正常文件。
 
-**需要权限**：ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.READ_MEDIA，ohos.permission.MEDIA_WRITE
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -1065,7 +1050,7 @@ isTrash(callback: AsyncCallback&lt;boolean&gt;): void;
 
 当文件被定位，判断文件是否为垃圾文件，使用callback方式返回异步结果。
 
-**需要权限**：ohos.permission.MEDIA_READ
+**需要权限**：ohos.permission.READ_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -1098,7 +1083,7 @@ isTrash():Promise&lt;boolean&gt;;
 
 当文件被定位，设置文件为垃圾文件，使用promise方式返回异步结果。
 
-**需要权限**：ohos.permission.MEDIA_READ
+**需要权限**：ohos.permission.READ_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -1265,7 +1250,7 @@ queryResultSet_.getFirstObject().then(function(fileAsset){
 
 获取文件检索结果中的下一个文件资产。此方法使用callback形式返回结果。
 
-**需要权限**：ohos.permission.MEDIA_READ
+**需要权限**：ohos.permission.READ_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -1293,7 +1278,7 @@ data.getNextObject((err, value) => {
 
 获取文件检索结果中的下一个文件资产。此方法使用promise方式来异步返回FileAsset。
 
-**需要权限**：ohos.permission.MEDIA_READ
+**需要权限**：ohos.permission.READ_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -1405,7 +1390,7 @@ getPositionObject(index: number): Promise&lt;FileAsset&gt;;
 
 获取文件检索结果中具有指定索引的文件资产。此方法使用Promise形式返回文件Asset。
 
-**需要权限**：ohos.permission.MEDIA_READ
+**需要权限**：ohos.permission.READ_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -1439,7 +1424,7 @@ getAllObject(callback: AsyncCallback&lt;Array&lt;FileAsset&gt;&gt;): void;
 
 获取文件检索结果中的所有文件资产。此方法使用Callback回调来返回FileAsset结果集。
 
-**需要权限**：ohos.permission.MEDIA_READ
+**需要权限**：ohos.permission.READ_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -1497,7 +1482,7 @@ commitModify(callback: AsyncCallback&lt;void&gt;): void;
 
 更新相册属性修改到数据库中。
 
-**需要权限**：ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.READ_MEDIA，ohos.permission.MEDIA_WRITE
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -1511,12 +1496,12 @@ commitModify(callback: AsyncCallback&lt;void&gt;): void;
 
 ```
 album.albumName = 'hello';
-album.commitModify((err, value) => {
+album.commitModify((err) => {
    if (err) {
 	   console.error('Failed ');
 	   return;
    }
-   console.log(value);
+   console.log('Modify successful.');
 })
 ```
 
@@ -1526,7 +1511,7 @@ commitModify(): Promise&lt;void&gt;;
 
 更新相册属性修改到数据库中。
 
-**需要权限**：ohos.permission.MEDIA_READ，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.READ_MEDIA，ohos.permission.MEDIA_WRITE
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -1553,7 +1538,7 @@ getFileAssets(options: MediaFetchOptions, callback: AsyncCallback&lt;FetchFileRe
 
 按照检索条件获取相册中的文件。此方法使用Callback回调来返回文件结果集。
 
-**需要权限**：ohos.permission.MEDIA_READ
+**需要权限**：ohos.permission.READ_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -1580,7 +1565,7 @@ function getFileAssetsCallBack(err, fetchFileResult) {
 
 按照检索条件获取相册中的文件。此方法使用异步回调来返回文件结果集。
 
-**需要权限**：ohos.permission.MEDIA_READ
+**需要权限**：ohos.permission.READ_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -1680,45 +1665,41 @@ FileKey
 
 枚举，文件关键信息。
 
-| 名称          | 默认值              | 可读 | 可写 | 描述                                                   |
-| ------------- | ------------------- | ---- | ---- | ------------------------------------------------------ |
-| ID            | file_id             | 是   | 否   | 文件编号                                               |
-| RELATIVE_PATH | relative_path       | 是   | 是   | 相对路径                                               |
-| DISPLAY_NAME  | display_name        | 是   | 是   | 显示名字                                               |
-| PARENT        | parent              | 是   | 否   | 父目录id                                               |
-| MIME_TYPE     | mime_type           | 是   | 否   | 文件扩展属性                                           |
-| MEDIA_TYPE    | media_type          | 是   | 否   | 媒体类型                                               |
-| SIZE          | size                | 是   | 否   | 文件大小                                               |
-| DATE_ADDED    | date_added          | 是   | 否   | 添加日期（添加文件时间到1970年1月1日的秒数值）         |
-| DATE_MODIFIED | date_modified       | 是   | 否   | 修改日期（修改文件时间到1970年1月1日的秒数值）         |
-| DATE_TAKEN    | date_taken          | 是   | 否   | 拍摄日期（文件拍照时间到1970年1月1日的秒数值）         |
-| TITLE         | title               | 是   | 是   | 文件标题                                               |
-| ARTIST        | artist              | 是   | 否   | 作者                                                   |
-| AUDIOALBUM    | audio_album         | 是   | 否   | 专辑                                                   |
-| DURATION      | duration            | 是   | 否   | 持续时间（单位：秒）                                   |
-| WIDTH         | width               | 是   | 否   | 图片宽度（单位：像素）                                 |
-| HEIGHT        | height              | 是   | 否   | 图片高度（单位：像素）                                 |
-| ORIENTATION   | orientation         | 是   | 否   | 图片显示方向（顺时针旋转角度，如0，90，180  单位：度） |
-| ALBUM_ID      | bucket_id           | 是   | 否   | 文件所归属的相册编号                                   |
-| ALBUM_NAME    | bucket_display_name | 是   | 否   | 文件所归属相册名称                                     |
+| 名称          | 默认值              | 描述                                                   |
+| ------------- | ------------------- |  ------------------------------------------------------ |
+| ID            | file_id             | 文件编号                                               |
+| RELATIVE_PATH | relative_path       |  相对路径                                               |
+| DISPLAY_NAME  | display_name        |  显示名字                                               |
+| PARENT        | parent              |  父目录id                                               |
+| MIME_TYPE     | mime_type           | 文件扩展属性                                           |
+| MEDIA_TYPE    | media_type          |  媒体类型                                               |
+| SIZE          | size                |  文件大小                                               |
+| DATE_ADDED    | date_added          | 添加日期（添加文件时间到1970年1月1日的秒数值）         |
+| DATE_MODIFIED | date_modified       | 修改日期（修改文件时间到1970年1月1日的秒数值）         |
+| DATE_TAKEN    | date_taken          | 拍摄日期（文件拍照时间到1970年1月1日的秒数值）         |
+| TITLE         | title               |  文件标题                                               |
+| ARTIST        | artist              |  作者                                                   |
+| AUDIOALBUM    | audio_album         | 专辑                                                   |
+| DURATION      | duration            |  持续时间（单位：秒）                                   |
+| WIDTH         | width               | 图片宽度（单位：像素）                                 |
+| HEIGHT        | height              |  图片高度（单位：像素）                                 |
+| ORIENTATION   | orientation         | 图片显示方向（顺时针旋转角度，如0，90，180  单位：度） |
+| ALBUM_ID      | bucket_id           | 文件所归属的相册编号                                   |
+| ALBUM_NAME    | bucket_display_name | 文件所归属相册名称                                     |
 
 DirectoryType
 -------------
 
 枚举，目录类型。
 
-| 名称                   | 默认值 | 描述               |
-| ---------------------- | ------ | ------------------ |
-| DIR_CAMERA             | 0      | 表示Camera文件路径 |
-| DIR_VIDEO              | 1      | 表示视频路径       |
-| DIR_IMAGE              | 2      | 表示图片路径       |
-| DIR_AUDIO              | 3      | 表示音频路径       |
-| DIR_AUDIO_RINGS        | 4      | 表示铃声音频路径   |
-| DIR_AUDIO_NOTICE       | 5      | 表示提示音频路径   |
-| DIR_AUDIO_CLOCK        | 6      | 表示时钟音频路径   |
-| DIR_DOCUMENTS          | 7      | 表示文档路径       |
-| DIR_DOWNLOAD           | 8      | 表示下载路径       |
-| DIR_DOWNLOAD_BLUETOOTH | 9      | 表示蓝牙下载路径   |
+| 名称          | 默认值 | 描述               |
+| ------------- | ------ | ------------------ |
+| DIR_CAMERA    | 0      | 表示Camera文件路径 |
+| DIR_VIDEO     | 1      | 表示视频路径       |
+| DIR_IMAGE     | 2      | 表示图片路径       |
+| DIR_AUDIO     | 3      | 表示音频路径       |
+| DIR_DOCUMENTS | 4      | 表示文档路径       |
+| DIR_DOWNLOAD  | 5      | 表示下载路径       |
 
 DeviceType 
 -----------
@@ -1739,14 +1720,14 @@ DeviceType
 
 检索条件。
 
-| 名称          | 类型          | 可读 | 可写 | 说明             |
-| ------------- | ------------- | ---- | ---- | ---------------- |
-| selections    | string        | 是   | 是   | 检索条件         |
-| selectionArgs | Array<string> | 是   | 是   | 检索条件的值     |
-| order         | string        | 是   | 是   | 检索结果排序方式 |
-| uri           | string        | 是   | 是   | 文件URI          |
-| networkId     | string        | 是   | 是   | 注册设备网络ID   |
-| extendArgs    | string        | 是   | 是   | 扩展的检索参数   |
+| 名称          | 类型          | 可读 | 可写 |  必填 |说明             |
+| ------------- | ------------- | ---- | ---- |  ---- |---------------- |
+| selections    | string        | 是   | 是   |是   | 检索条件         |
+| selectionArgs | Array<string> | 是   | 是   |是   | 检索条件的值     |
+| order         | string        | 是   | 是   | 否   |检索结果排序方式 |
+| uri           | string        | 是   | 是   | 否   |文件URI          |
+| networkId     | string        | 是   | 是   | 否   |注册设备网络ID   |
+| extendArgs    | string        | 是   | 是   | 否   |扩展的检索参数   |
 
 ## Size
 
