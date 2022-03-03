@@ -19,7 +19,7 @@ function getMediaLibrary(context: Context): MediaLibrary;
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
-**参数：** 
+**参数：**
 
 | 参数名  | 类型    | 必填 | 说明                 |
 | ------- | ------- | ---- | -------------------- |
@@ -44,7 +44,7 @@ var mediaLibrary = mediaLibrary.getMediaLibrary(context);
 ## medialibrary.getFileAssets
 
 
-getFileAssets(options: MediaFetchOptions, callback: AsyncCallback&lt;FetchFileResult&gt;): void;    
+getFileAssets(options: MediaFetchOptions, callback: AsyncCallback&lt;FetchFileResult&gt;): void;
 
 获取文件资源，使用callback方式返回异步结果。
 
@@ -137,7 +137,7 @@ on(type: 'deviceChange'|'albumChange'|'imageChange'|'audioChange'|'videoChange'|
 
 ```
 medialibrary.on('imageChange', () => {
-    // image file had changed, do something 
+    // image file had changed, do something
 })
 ```
 ## medialibrary.off
@@ -240,7 +240,7 @@ medialibrary.createAsset(mediaType, "image01.jpg", path).then (function (asset) 
 
 ## medialibrary.getPublicDirectory
 
-getPublicDirectory(type: DirectoryType, callback: AsyncCallback<string>): void;
+getPublicDirectory(type: DirectoryType, callback: AsyncCallback&lt;string&gt;): void;
 
 获取公共目录路径
 
@@ -271,7 +271,7 @@ media.getPublicDirectory(DIR_CAMERA，(err, dicResult) => {
 
 ## medialibrary.getPublicDirectory
 
-getPublicDirectory(type: DirectoryType): Promise<string>;
+getPublicDirectory(type: DirectoryType): Promise&lt;string&gt;;
 
 获取公共目录路径
 
@@ -297,7 +297,7 @@ getPublicDirectory(type: DirectoryType): Promise<string>;
 let DIR_CAMERA = mediaLibrary.DirectoryType.DIR_CAMERA;
 const dicResult = await media.getPublicDirectory(DIR_CAMERA);
 if (dicResult == 'camera/') {
-    console.info('MediaLibraryTest : getPublicDirectory');    
+    console.info('MediaLibraryTest : getPublicDirectory');
 } else {
     console.info('MediaLibraryTest : getPublicDirectory failed');
 }
@@ -518,7 +518,7 @@ const fetchFileResult = await media.getFileAssets(getImageOp);
 const asset = await fetchFileResult.getFirstObject();
 asset.title = ‘newtitle';
 asset.commitModify(() => {
-    console.info('commitModify success');   
+    console.info('commitModify success');
 }
 ```
 
@@ -1186,7 +1186,7 @@ for (var i = 1; i < fetchCount; i++) {
           console.info('MediaLibraryTest : isAfterLast:' + result);
           console.info('MediaLibraryTest : isAfterLast end');
           fetchFileResult.close();
-          
+
         }
 }
 ```
@@ -1814,7 +1814,7 @@ DirectoryType
 | DIR_DOCUMENTS | 4      | 表示文档路径       |
 | DIR_DOWNLOAD  | 5      | 表示下载路径       |
 
-DeviceType 
+DeviceType
 -----------
 
 枚举，设备类型。
@@ -1829,7 +1829,7 @@ DeviceType
 | TYPE_CAR     | 5      | 车载设备   |
 | TYPE_TV      | 6      | 电视设备   |
 
-## MediaFetchOptions  
+## MediaFetchOptions
 
 检索条件。
 
