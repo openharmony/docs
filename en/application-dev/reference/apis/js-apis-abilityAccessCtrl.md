@@ -217,3 +217,12 @@ promise.then(data => {
     console.log(`promise: data->${JSON.stringify(data)}`);
 });
 ```
+
+### GrantStatus
+
+Enumerates the permission grant states.
+
+| Name| Default Value| Description|
+| ----------------------------- | ---------------------- | -----------------------  |
+| PERMISSION_DENIED             | -1                     | Permission denied.|
+| PERMISSION_GRANTED            | 0                      | Permission granted.|
