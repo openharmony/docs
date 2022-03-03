@@ -27,7 +27,6 @@ Obtains the ID attached to the end of a given URI.
 **Example**
 
 ```js
-import dataUriUtils from '@ohos.ability.datauriutils'
 dataUriUtils.getIdSync("com.example.dataUriUtils/1221")
 ```
 
@@ -55,10 +54,9 @@ Attaches an ID to the end of a given URI.
 **Example**
 
 ```js
-import dataUriUtils from '@ohos.ability.datauriutils'
 var idint = 1122;
 dataUriUtils.attachId(
-    "com.example.dataUriUtils"
+    "com.example.dataUriUtils",
 	idint,
 )
 ```
@@ -85,7 +83,6 @@ Deletes the ID from the end of a given URI.
 **Example**
 
 ```js
-import dataUriUtils from '@ohos.ability.datauriutils'
 dataUriUtils.deleteId("com.example.dataUriUtils/1221")
 ```
 
@@ -112,10 +109,9 @@ Updates the ID in a given URI.
 **Example**
 
 ```js
-import dataUriUtils from '@ohos.ability.datauriutils'
 var idint = 1122;
 dataUriUtils.updateId(
-    "com.example.dataUriUtils"
-	idint,
+    "com.example.dataUriUtils",
+	idint
 )
 ```

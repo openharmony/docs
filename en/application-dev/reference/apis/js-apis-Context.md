@@ -63,8 +63,8 @@ If this method is called for the first time, a root directory is created.
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
 var context = featureAbility.getContext();
-context.getOrCreateLocalDir().then((void) => {
-	console.info("==========================>getOrCreateLocalDirCallback=======================>");
+context.getOrCreateLocalDir().then((data) => {
+    console.info("data=" + data);
 });
 ```
 
@@ -91,9 +91,9 @@ Verifies whether a specific PID and UID have the given permission. This method u
 import featureAbility from '@ohos.ability.featureAbility'
 import bundle from '@ohos.bundle'
 var context = featureAbility.getContext();
-var datainfo = await bundle.getBundleInfo('com.context.test',1);
-context.verifyPermission("com.example.permission",datainfo.uid)
-
+bundle.getBundleInfo('com.context.test', 1, (datainfo) =>{
+	context.verifyPermission("com.example.permission", datainfo.uid);
+});
 ```
 
 
@@ -146,8 +146,9 @@ Verifies whether a specific PID and UID have the given permission. This method u
 import featureAbility from '@ohos.ability.featureAbility'
 var context = featureAbility.getContext();
 var Permission = context.PermissionOptions(1,1);
-context.getOrCreateLocalDir('com.context.permission',Permission).then((void) => {
-	console.info("==========================>verifyPermissionCallback=======================>");
+context.verifyPermission('com.context.permission',Permission).then((data) => {
+    console.info("======================>verifyPermissionCallback====================>");
+    console.info("====>data====>" + JSON.stringify(data));
 });
 ```
 
@@ -172,13 +173,16 @@ Requests certain permissions from the system. This method uses a callback to ret
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
 var context = featureAbility.getContext();
-context.getOrCreateLocalDir(    
+context.requestPermissionsFromUser(
     ["com.example.permission1",
      "com.example.permission2",
      "com.example.permission3",
      "com.example.permission4",
      "com.example.permission5"],
-    1,
+    1,(err, data)=>{
+        console.info("====>requestdata====>" + JSON.stringify(data));
+        console.info("====>requesterrcode====>" + JSON.stringify(err.code));
+    }
 )
 ```
 
@@ -223,8 +227,9 @@ Obtains information about the current application. This method uses a promise to
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
 var context = featureAbility.getContext();
-context.getApplicationInfo().then((void) => {
-	console.info("==========================>getApplicationInfoCallback=======================>");
+context.getApplicationInfo().then((data) => {
+    console.info("=====================>getApplicationInfoCallback===================>");
+    console.info("====>data====>" + JSON.stringify(data));
 });
 ```
 
@@ -269,8 +274,9 @@ Obtains the bundle name of the current ability. This method uses a promise to re
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
 var context = featureAbility.getContext();
-context.getBundleName().then((void) => {
-	console.info("==========================>getBundleNameCallback=======================>");
+context.getBundleName().then((data) => {
+    console.info("=======================>getBundleNameCallback====================>");
+    console.info("====>data====>" + JSON.stringify(data));
 });
 ```
 
@@ -315,8 +321,9 @@ Obtains information about the current process, including the PID and process nam
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
 var context = featureAbility.getContext();
-context.getProcessInfo().then((void) => {
-	console.info("==========================>getProcessInfoCallback=======================>");
+context.getProcessInfo().then((data) => {
+    console.info("=======================>getProcessInfoCallback====================>");
+    console.info("====>data====>" + JSON.stringify(data));
 });
 ```
 
@@ -365,8 +372,9 @@ This method is available only to Page abilities.
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
 var context = featureAbility.getContext();
-context.getElementName().then((void) => {
-	console.info("==========================>getElementNameCallback=======================>");
+context.getElementName().then((data) => {
+    console.info("=======================>getElementNameCallback====================>");
+    console.info("====>data====>" + JSON.stringify(data));
 });
 ```
 
@@ -407,8 +415,9 @@ Obtains the name of the current process. This method uses a promise to return th
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
 var context = featureAbility.getContext();
-context.getProcessName().then((void) => {
-	console.info("==========================>getProcessNameCallback=======================>");
+context.getProcessName().then((data) => {
+    console.info("=======================>getProcessNameCallback====================>");
+    console.info("====>data====>" + JSON.stringify(data));
 });
 ```
 
@@ -453,8 +462,9 @@ Obtains the bundle name of the calling ability. This method uses a promise to re
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
 var context = featureAbility.getContext();
-context.getCallingBundle().then((void) => {
-	console.info("==========================>getCallingBundleCallback=======================>");
+context.getCallingBundle().then((data) => {
+    console.info("======================>getCallingBundleCallback====================>");
+    console.info("====>data====>" + JSON.stringify(data));
 });
 ```
 
