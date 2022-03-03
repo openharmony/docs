@@ -13,7 +13,7 @@ import medialibrary from '@ohos.multimedia.medialibrary';
 
 function getMediaLibrary(context: Context): MediaLibrary;
 
-获取媒体库。
+获取媒体库的实例，用于访问和修改用户的个人数据信息。
 
 **需要权限**：无
 
@@ -35,8 +35,10 @@ function getMediaLibrary(context: Context): MediaLibrary;
 
 ```
 import featureAbility from '@ohos.ability.featureAbility';
+import mediaLibrary from ‘ohos.multimedia.mediaLibrary';
+
 var context = featureAbility.getContext()
-var media = mediaLibrary.getMediaLibrary(context);
+var mediaLibrary = mediaLibrary.getMediaLibrary(context);
 ```
 
 ## medialibrary.getFileAssets
@@ -171,7 +173,7 @@ createAsset(mediaType: MediaType, displayName: string, relativePath: string, cal
 
 创建媒体资源，使用callback方式返回结果。
 
-**需要权限**：ohos.permission.READ_MEDIA，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.READ_MEDIA，ohos.permission.WRITE_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -190,19 +192,11 @@ createAsset(mediaType: MediaType, displayName: string, relativePath: string, cal
 // 使用Callback方式创建Image类型文件
 let mediaType = mediaLibrary.MediaType.IMAGE;
 let path = "Pictures/";
-medialibrary.createAsset(mediaType, “imageCallBack.jpg”, path, (err, albumFetchFileResult) => {
-    if (albumFetchFileResult != undefined) {
-        console.info('MediaLibraryTest : ALBUM_CALLBACK getFileAssets success');
-        albumFetchFileResult.getAllObject((err, fileAssetList) => {
-            if (fileAssetList != undefined) {
-                fileAssetList.forEach(getAllObjectInfo);
-            } else {
-                console.info('getFileAssets fail, message = ' + err);
-                console.info('getFileAssets getFileAssets :No data');
-            }
-        });
+medialibrary.createAsset(mediaType, “imageCallBack.jpg”, path, (err, fileAsset) => {
+    if (fileAsset != undefined) {
+        console.info('createAsset successfully, message = ' + err);
     } else {
-        console.info('getFileAssets failed, message = ' + err);
+        console.info('createAsset failed, message = ' + err);
     }
 });
 ```
@@ -213,7 +207,7 @@ createAsset(mediaType: MediaType, displayName: string, relativePath: string): Pr
 
 创建媒体资源，使用Promise方式返回结果。
 
-**需要权限**：ohos.permission.READ_MEDIA，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.READ_MEDIA，ohos.permission.WRITE_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -237,85 +231,10 @@ createAsset(mediaType: MediaType, displayName: string, relativePath: string): Pr
 // 使用Promise方式创建Image类型文件
 let mediaType = mediaLibrary.MediaType.IMAGE;
 let path = "Pictures/";
-medialibrary.createAsset(mediaType, "image01.jpg", path).then(function(asset){
+medialibrary.createAsset(mediaType, "image01.jpg", path).then (function (asset) {
     console.info("createAsset successfully:"+ JSON.stringify(asset));
 }).catch(function(err){
     console.info("createAsset failed with error:"+ err);
-});
-```
-
-## medialibrary.deleteAsset
-
-deleteAsset(uri: string, callback: AsyncCallback&lt;void&gt;): void;
-
-删除媒体资源，使用callback方式返回结果。
-
-**需要权限**：ohos.permission.READ_MEDIA，ohos.permission.MEDIA_WRITE
-
-**系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
-
-**参数：**
-
-| 参数名   | 类型                | 必填 | 说明                   |
-| -------- | ------------------- | ---- | ---------------------- |
-| uri      | string              | 是   | 文件uri             |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调返回空 |
-
-**示例：**
-
-```
-let imageType = mediaLibrary.MediaType.IMAGE;
-let getImageOp = {
-  selections: fileKeyObj.MEDIA_TYPE + '= ?',
-  selectionArgs: [imageType.toString()],
-  order: fileKeyObj.DATE_ADDED,
-  extendArgs: "LIMIT 0,10",
-};
-const fetchFileResult = await media.getFileAssets(getImageOp);
-const asset = await fetchFileResult.getFirstObject();
-medialibrary.deleteAsset(asset.uri, (deleteAssetErr, deleteRows) => {
-            // do something
-});
-```
-
-## medialibrary.deleteAsset
-
-deleteAsset(uri: string): Promise&lt;void&gt;;
-
-删除媒体资源，使用promise方式返回结果。
-
-**需要权限**：ohos.permission.READ_MEDIA，ohos.permission.MEDIA_WRITE
-
-**系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
-
-**参数：**
-
-| 参数名 | 类型   | 必填 | 说明    |
-| ------ | ------ | ---- | ------- |
-| uri    | string | 是   | 文件uri |
-
-**返回值：**
-
-| 类型          | 说明                                              |
-| ------------- | ------------------------------------------------- |
-| Promise&lt;void&gt; | Promise实例，用于异步获取结果。本调用将返回空值 |
-
-**示例：**
-
-```
-let imageType = mediaLibrary.MediaType.IMAGE;
-let getImageOp = {
-  selections: fileKeyObj.MEDIA_TYPE + '= ?',
-  selectionArgs: [imageType.toString()],
-  order: fileKeyObj.DATE_ADDED,
-  extendArgs: "LIMIT 0,10",
-};
-const fetchFileResult = await media.getFileAssets(getImageOp);
-const asset = await fetchFileResult.getFirstObject();
-medialibrary.deleteAsset(asset.uri).then(()=>{
-    console.info("deleteAsset successfully");
-}).catch(function(err){
-    console.info("deleteAsset failed with error:"+ err);
 });
 ```
 
@@ -457,103 +376,11 @@ medialibrary.getAlbums(AlbumNoArgsfetchOp).then(function(albumList){
 });
 ```
 
-## medialibrary.getActivePeers
-
-getActivePeers(callback: AsyncCallback<Array&lt;PeerInfo&gt;>): void;
-
-获取活动注册设备
-
-**需要权限**：ohos.permission.READ_MEDIA
-
-**系统能力**：SystemCapability.Multimedia.MediaLibrary.DistributedCore
-
-**参数：**
-
-| 参数名   | 类型                            | 必填 | 说明                   |
-| -------- | ------------------------------ | ---- | ---------------------- |
-| callback | AsyncCallback<Array<[PeerInfo](#PeerInfo)>> | 是   | 回调表示成功还是失败 |
-
-**示例：**
-
-```
-medialibrary.getActivePeers((err, data) => {
-    // do something    
-});
-```
-
-## medialibrary.getActivePeers
-
-getActivePeers(): Promise<Array&lt;PeerInfo&gt;>;
-
-获取活动注册设备
-
-**需要权限**：ohos.permission.READ_MEDIA
-
-**系统能力**：SystemCapability.Multimedia.MediaLibrary.DistributedCore
-
-**参数：**
-
-返回值：
-
-| 类型                                  | 说明                              |
-| ------------------------------------- | --------------------------------- |
-| Promise<Array<[PeerInfo](#PeerInfo)>> | Promise实例，用于获取异步返回结果 |
-
-**示例：**
-
-```
-peerInfoList = medialibrary.getActivePeers();
-```
-
-## medialibrary.getAllPeers
-
-getAllPeers(callback: AsyncCallback<Array&lt;PeerInfo&gt;>): void;
-
-获取所有注册设备
-
-**需要权限**：ohos.permission.READ_MEDIA
-
-**系统能力**：SystemCapability.Multimedia.MediaLibrary.DistributedCore
-
-**参数：**
-
-| 参数名   | 类型                            | 必填 | 说明                   |
-| -------- | ------------------------------ | ---- | ---------------------- |
-| callback | AsyncCallback<Array<[PeerInfo](#PeerInfo)>> | 是   | 回调表示成功还是失败 |
-
-**示例：**
-
-```
-medialibrary.getAllPeers((err, data) => {
-    // do something
-});
-```
-
-## medialibrary.getAllPeers
-
-getAllPeers(): Promise<Array&lt;PeerInfo&gt;>;
-
-获取所有注册设备
-
-**需要权限**：ohos.permission.READ_MEDIA
-
-**系统能力**：SystemCapability.Multimedia.MediaLibrary.DistributedCore
-
-**返回值：**
-
-| 类型                                  | 说明                              |
-| ------------------------------------- | --------------------------------- |
-| Promise<Array<[PeerInfo](#PeerInfo)>> | Promise实例，用于获取异步返回结果 |
-
-**示例：**
-
-peerInfoList = media.getAllPeers();
-
 ## medialibrary.release
 
 release(callback: AsyncCallback&lt;void&gt;): void;
 
-释放MediaLibrary实例
+释放MediaLibrary实例，当用户确认后续不再使用MediaLibrary实例中的方法后调用release方法释放MediaLibrary实例。
 
 **需要权限**：无
 
@@ -577,7 +404,7 @@ medialibrary.release((err, data) => {
 
 release(): Promise&lt;void&gt;;
 
-释放MediaLibrary实例 (补充说明)
+释放MediaLibrary实例，当用户确认后续不再使用MediaLibrary实例中的方法后调用release方法释放MediaLibrary实例。
 
 **需要权限**：无
 
@@ -669,7 +496,7 @@ commitModify(callback: AsyncCallback&lt;void&gt;): void;
 
 修改文件的元数据，使用callback方式返回异步结果。
 
-**需要权限**：ohos.permission.READ_MEDIA，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.READ_MEDIA，ohos.permission.WRITE_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -703,7 +530,7 @@ commitModify(): Promise&lt;void&gt;;
 
 修改文件的元数据，使用promise方式返回异步结果。
 
-**需要权限**：ohos.permission.READ_MEDIA，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.READ_MEDIA，ohos.permission.WRITE_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -735,7 +562,7 @@ open(mode: string, callback: AsyncCallback&lt;number&gt;): void;
 
 打开当前文件，使用callback方式返回异步结果。
 
-**需要权限**：ohos.permission.READ_MEDIA（'r'模式打开），ohos.permission.MEDIA_WRITE（‘w’模式打开）
+**需要权限**：ohos.permission.READ_MEDIA（'r'模式打开），ohos.permission.WRITE_MEDIA（‘w’模式打开）
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -767,7 +594,7 @@ open(mode: string): Promise&lt;number&gt;;
 
 打开当前文件，使用promise方式返回异步结果。
 
-**需要权限**：ohos.permission.READ_MEDIA（'r'模式打开），ohos.permission.MEDIA_WRITE（‘w’模式打开）
+**需要权限**：ohos.permission.READ_MEDIA（'r'模式打开），ohos.permission.WRITE_MEDIA（‘w’模式打开）
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -804,7 +631,7 @@ close(fd: number, callback: AsyncCallback&lt;void&gt;): void;
 
 关闭当前文件，使用callback方式返回异步结果。
 
-**需要权限**：ohos.permission.READ_MEDIA，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.READ_MEDIA，ohos.permission.WRITE_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -843,7 +670,7 @@ close(fd: number): Promise&lt;void&gt;;
 
 关闭当前文件，使用promise方式返回异步结果。
 
-**需要权限**：ohos.permission.READ_MEDIA，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.READ_MEDIA，ohos.permission.WRITE_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -994,7 +821,7 @@ favorite(isFavorite: boolean, callback: AsyncCallback&lt;void&gt;): void;
 
 将文件设置为收藏文件，使用callback方式返回异步结果。
 
-**需要权限**：ohos.permission.READ_MEDIA，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.READ_MEDIA，ohos.permission.WRITE_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -1028,7 +855,7 @@ favorite(isFavorite: boolean): Promise&lt;void&gt;;
 
 将文件设置为收藏文件，使用promise方式返回异步结果。
 
-**需要权限**：ohos.permission.READ_MEDIA，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.READ_MEDIA，ohos.permission.WRITE_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -1143,7 +970,7 @@ trash(isTrash: boolean, callback: AsyncCallback&lt;void&g;): void;
 
 放入垃圾文件夹的文件不会被真正删除，可以通过isTrash = false参数恢复成正常文件。
 
-**需要权限**：ohos.permission.READ_MEDIA，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.READ_MEDIA，ohos.permission.WRITE_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -1180,7 +1007,7 @@ trash(isTrash: boolean,): Promise&lt;void&gt;;
 
 放入垃圾文件夹的文件不会被真正删除，可以通过isTrash = false参数恢复成正常文件。
 
-**需要权限**：ohos.permission.READ_MEDIA，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.READ_MEDIA，ohos.permission.WRITE_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -1748,7 +1575,7 @@ commitModify(callback: AsyncCallback&lt;void&gt;): void;
 
 更新相册属性修改到数据库中。
 
-**需要权限**：ohos.permission.READ_MEDIA，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.READ_MEDIA，ohos.permission.WRITE_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -1783,7 +1610,7 @@ commitModify(): Promise&lt;void&gt;;
 
 更新相册属性修改到数据库中。
 
-**需要权限**：ohos.permission.READ_MEDIA，ohos.permission.MEDIA_WRITE
+**需要权限**：ohos.permission.READ_MEDIA，ohos.permission.WRITE_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
