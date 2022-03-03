@@ -264,7 +264,16 @@ deleteAsset(uri: string, callback: AsyncCallback&lt;void&gt;): void;
 **示例：**
 
 ```
-medialibrary.deleteAsset(fileAsset.uri, (deleteAssetErr, deleteRows) => {
+let imageType = mediaLibrary.MediaType.IMAGE;
+let getImageOp = {
+  selections: fileKeyObj.MEDIA_TYPE + '= ?',
+  selectionArgs: [imageType.toString()],
+  order: fileKeyObj.DATE_ADDED,
+  extendArgs: "LIMIT 0,10",
+};
+const fetchFileResult = await media.getFileAssets(getImageOp);
+const asset = await fetchFileResult.getFirstObject();
+medialibrary.deleteAsset(asset.uri, (deleteAssetErr, deleteRows) => {
             // do something
 });
 ```
@@ -294,6 +303,15 @@ deleteAsset(uri: string): Promise&lt;void&gt;;
 **示例：**
 
 ```
+let imageType = mediaLibrary.MediaType.IMAGE;
+let getImageOp = {
+  selections: fileKeyObj.MEDIA_TYPE + '= ?',
+  selectionArgs: [imageType.toString()],
+  order: fileKeyObj.DATE_ADDED,
+  extendArgs: "LIMIT 0,10",
+};
+const fetchFileResult = await media.getFileAssets(getImageOp);
+const asset = await fetchFileResult.getFirstObject();
 medialibrary.deleteAsset(asset.uri).then(()=>{
     console.info("deleteAsset successfully");
 }).catch(function(err){
@@ -360,7 +378,7 @@ getPublicDirectory(type: DirectoryType): Promise<string>;
 let DIR_CAMERA = mediaLibrary.DirectoryType.DIR_CAMERA;
 const dicResult = await media.getPublicDirectory(DIR_CAMERA);
 if (dicResult == 'camera/') {
-    console.info('MediaLibraryTest : getPublicDirectory passed');
+    console.info('MediaLibraryTest : getPublicDirectory passed');    
 } else {
     console.info('MediaLibraryTest : getPublicDirectory failed');
 }
@@ -386,7 +404,21 @@ getAlbums(options: MediaFetchOptions, callback: AsyncCallback<Array&lt;Album&gt;
 **示例：**
 
 ```
-medialibrary.getAlbums(AlbumNoArgsfetchOp, getAlbumsCallBack);
+let AlbumNoArgsfetchOp = {
+    selections: '',
+    selectionArgs: [],
+};
+medialibrary.AlbumNoArgsfetchOp, (err, albumList) => {
+    if (albumList != undefined) {
+        const album = albumList[0];
+        console.info('album.albumName = ' + album.albumName);
+        console.info('album.count = ' + album.count);
+        done();
+     } else {
+        console.info('getAlbum fail, message = ' + err);
+        done();
+     }
+});
 ```
 
 ## medialibrary.getAlbums
@@ -414,6 +446,10 @@ getAlbums(options: MediaFetchOptions): Promise<Array&lt;Album&gt;>;
 **示例：**
 
 ```
+let AlbumNoArgsfetchOp = {
+    selections: '',
+    selectionArgs: [],
+};
 medialibrary.getAlbums(AlbumNoArgsfetchOp).then(function(albumList){
     console.info("getAlbums successfully:"+ JSON.stringify(albumList));
 }).catch(function(err){
@@ -578,6 +614,15 @@ isDirectory(callback: AsyncCallback&lt;boolean&gt;): void;
 **示例：**
 
 ```
+let imageType = mediaLibrary.MediaType.IMAGE;
+let getImageOp = {
+  selections: fileKeyObj.MEDIA_TYPE + '= ?',
+  selectionArgs: [imageType.toString()],
+  order: fileKeyObj.DATE_ADDED,
+  extendArgs: "LIMIT 0,10",
+};
+const fetchFileResult = await media.getFileAssets(getImageOp);
+const asset = await fetchFileResult.getFirstObject();
 asset.isDirectory((err, isDirectory) => {
     // do something
 });
@@ -602,6 +647,15 @@ isDirectory():Promise&lt;boolean&gt;;
 **示例：**
 
 ```
+let imageType = mediaLibrary.MediaType.IMAGE;
+let getImageOp = {
+  selections: fileKeyObj.MEDIA_TYPE + '= ?',
+  selectionArgs: [imageType.toString()],
+  order: fileKeyObj.DATE_ADDED,
+  extendArgs: "LIMIT 0,10",
+};
+const fetchFileResult = await media.getFileAssets(getImageOp);
+const asset = await fetchFileResult.getFirstObject();
 asset.isDirectory().then(function(isDirectory){
     console.info("isDirectory result:"+ isDirectory);
 }).catch(function(err){
@@ -628,9 +682,18 @@ commitModify(callback: AsyncCallback&lt;void&gt;): void;
 **示例：**
 
 ```
+let imageType = mediaLibrary.MediaType.IMAGE;
+let getImageOp = {
+  selections: fileKeyObj.MEDIA_TYPE + '= ?',
+  selectionArgs: [imageType.toString()],
+  order: fileKeyObj.DATE_ADDED,
+  extendArgs: "LIMIT 0,10",
+};
+const fetchFileResult = await media.getFileAssets(getImageOp);
+const asset = await fetchFileResult.getFirstObject();
 asset.title = ‘newtitle';
 asset.commitModify(() => {
-    console.info('commitModify success');
+    console.info('commitModify success');   
 }
 ```
 
@@ -653,6 +716,15 @@ commitModify(): Promise&lt;void&gt;;
 **示例：**
 
 ```
+let imageType = mediaLibrary.MediaType.IMAGE;
+let getImageOp = {
+  selections: fileKeyObj.MEDIA_TYPE + '= ?',
+  selectionArgs: [imageType.toString()],
+  order: fileKeyObj.DATE_ADDED,
+  extendArgs: "LIMIT 0,10",
+};
+const fetchFileResult = await media.getFileAssets(getImageOp);
+const asset = await fetchFileResult.getFirstObject();
 asset.title = ‘newtitle';
 asset.commitModify();
 ```
@@ -746,7 +818,16 @@ close(fd: number, callback: AsyncCallback&lt;void&gt;): void;
 **示例：**
 
 ```
-fileAsset.close(fd, (closeErr) => {
+let imageType = mediaLibrary.MediaType.IMAGE;
+let getImageOp = {
+  selections: fileKeyObj.MEDIA_TYPE + '= ?',
+  selectionArgs: [imageType.toString()],
+  order: fileKeyObj.DATE_ADDED,
+  extendArgs: "LIMIT 0,10",
+};
+const fetchFileResult = await media.getFileAssets(getImageOp);
+const asset = await fetchFileResult.getFirstObject();
+asset.close(fd, (closeErr) => {
     if (closeErr != undefined) {
         console.info('MediaLibraryTest : close : FAIL ' + closeErr.message);
         console.info('MediaLibraryTest : ASSET_CALLBACK : FAIL');
@@ -781,7 +862,16 @@ close(fd: number): Promise&lt;void&gt;;
 **示例：**
 
 ```
-fileAsset.close(fd).then((closeErr) => {
+let imageType = mediaLibrary.MediaType.IMAGE;
+let getImageOp = {
+  selections: fileKeyObj.MEDIA_TYPE + '= ?',
+  selectionArgs: [imageType.toString()],
+  order: fileKeyObj.DATE_ADDED,
+  extendArgs: "LIMIT 0,10",
+};
+const fetchFileResult = await media.getFileAssets(getImageOp);
+const asset = await fetchFileResult.getFirstObject();
+asset.close(fd).then((closeErr) => {
     if (closeErr != undefined) {
         console.info('MediaLibraryTest : close : FAIL ' + closeErr.message);
         console.info('MediaLibraryTest : ASSET_CALLBACK : FAIL');
@@ -811,7 +901,16 @@ getThumbnail(callback: AsyncCallback&lt;image.PixelMap&gt;): void;
 **示例：**
 
 ```
-fileAsset.getThumbnail((err, pixelmap) => {
+let imageType = mediaLibrary.MediaType.IMAGE;
+let getImageOp = {
+  selections: fileKeyObj.MEDIA_TYPE + '= ?',
+  selectionArgs: [imageType.toString()],
+  order: fileKeyObj.DATE_ADDED,
+  extendArgs: "LIMIT 0,10",
+};
+const fetchFileResult = await media.getFileAssets(getImageOp);
+const asset = await fetchFileResult.getFirstObject();
+asset.getThumbnail((err, pixelmap) => {
 	console.info('MediaLibraryTest : getThumbnail Successfull '+ pixelmap);
 });
 ```
@@ -836,7 +935,16 @@ getThumbnail(size: Size, callback: AsyncCallback&lt;image.PixelMap&gt;): void;
 **示例：**
 
 ```
-fileAsset.getThumbnail(size, (err, pixelmap) => {
+let imageType = mediaLibrary.MediaType.IMAGE;
+let getImageOp = {
+  selections: fileKeyObj.MEDIA_TYPE + '= ?',
+  selectionArgs: [imageType.toString()],
+  order: fileKeyObj.DATE_ADDED,
+  extendArgs: "LIMIT 0,10",
+};
+const fetchFileResult = await media.getFileAssets(getImageOp);
+const asset = await fetchFileResult.getFirstObject();
+asset.getThumbnail(size, (err, pixelmap) => {
 	console.info('MediaLibraryTest : getThumbnail Successfull '+ pixelmap);
 });
 ```
@@ -866,7 +974,16 @@ getThumbnail(size?: Size): Promise&lt;image.PixelMap&gt;;
 **示例：**
 
 ```
-fileAsset.getThumbnail(size, (err, pixelmap) => {
+let imageType = mediaLibrary.MediaType.IMAGE;
+let getImageOp = {
+  selections: fileKeyObj.MEDIA_TYPE + '= ?',
+  selectionArgs: [imageType.toString()],
+  order: fileKeyObj.DATE_ADDED,
+  extendArgs: "LIMIT 0,10",
+};
+const fetchFileResult = await media.getFileAssets(getImageOp);
+const asset = await fetchFileResult.getFirstObject();
+asset.getThumbnail(size, (err, pixelmap) => {
 	console.info('MediaLibraryTest : getThumbnail Successfull '+ pixelmap);
 });
 ```
@@ -891,6 +1008,15 @@ favorite(isFavorite: boolean, callback: AsyncCallback&lt;void&gt;): void;
 **示例：**
 
 ```
+let imageType = mediaLibrary.MediaType.IMAGE;
+let getImageOp = {
+  selections: fileKeyObj.MEDIA_TYPE + '= ?',
+  selectionArgs: [imageType.toString()],
+  order: fileKeyObj.DATE_ADDED,
+  extendArgs: "LIMIT 0,10",
+};
+const fetchFileResult = await media.getFileAssets(getImageOp);
+const asset = await fetchFileResult.getFirstObject();
 asset.favorite(true,function(err){
     // do something
 });
@@ -921,6 +1047,15 @@ favorite(isFavorite: boolean): Promise&lt;void&gt;;
 **示例：**
 
 ```
+let imageType = mediaLibrary.MediaType.IMAGE;
+let getImageOp = {
+  selections: fileKeyObj.MEDIA_TYPE + '= ?',
+  selectionArgs: [imageType.toString()],
+  order: fileKeyObj.DATE_ADDED,
+  extendArgs: "LIMIT 0,10",
+};
+const fetchFileResult = await media.getFileAssets(getImageOp);
+const asset = await fetchFileResult.getFirstObject();
 asset.favorite(true).then(function() {
     console.info("favorite successfully");
 }).catch(function(err){
@@ -947,6 +1082,15 @@ isFavorite(callback: AsyncCallback&lt;boolean&gt;): void;
 **示例：**
 
 ```
+let imageType = mediaLibrary.MediaType.IMAGE;
+let getImageOp = {
+  selections: fileKeyObj.MEDIA_TYPE + '= ?',
+  selectionArgs: [imageType.toString()],
+  order: fileKeyObj.DATE_ADDED,
+  extendArgs: "LIMIT 0,10",
+};
+const fetchFileResult = await media.getFileAssets(getImageOp);
+const asset = await fetchFileResult.getFirstObject();
 asset.isFavorite((err, isFavorite) => {
     if (isFavorite) {
         console.info('FileAsset is favorite');
@@ -975,6 +1119,15 @@ isFavorite():Promise&lt;boolean&gt;;
 **示例：**
 
 ```
+let imageType = mediaLibrary.MediaType.IMAGE;
+let getImageOp = {
+  selections: fileKeyObj.MEDIA_TYPE + '= ?',
+  selectionArgs: [imageType.toString()],
+  order: fileKeyObj.DATE_ADDED,
+  extendArgs: "LIMIT 0,10",
+};
+const fetchFileResult = await media.getFileAssets(getImageOp);
+const asset = await fetchFileResult.getFirstObject();
 asset.isFavorite().then(function(isFavorite){
     console.info("isFavorite result:"+ isFavorite);
 }).catch(function(err){
@@ -1004,6 +1157,15 @@ trash(isTrash: boolean, callback: AsyncCallback&lt;void&g;): void;
 **示例：**
 
 ```
+let imageType = mediaLibrary.MediaType.IMAGE;
+let getImageOp = {
+  selections: fileKeyObj.MEDIA_TYPE + '= ?',
+  selectionArgs: [imageType.toString()],
+  order: fileKeyObj.DATE_ADDED,
+  extendArgs: "LIMIT 0,10",
+};
+const fetchFileResult = await media.getFileAssets(getImageOp);
+const asset = await fetchFileResult.getFirstObject();
 asset.trash(true, trashCallBack);
 function trashCallBack(err, trash) {
     console.info('MediaLibraryTest : ASSET_CALLBACK ASSET_CALLBACK trash');
@@ -1037,6 +1199,15 @@ trash(isTrash: boolean,): Promise&lt;void&gt;;
 **示例：**
 
 ```
+let imageType = mediaLibrary.MediaType.IMAGE;
+let getImageOp = {
+  selections: fileKeyObj.MEDIA_TYPE + '= ?',
+  selectionArgs: [imageType.toString()],
+  order: fileKeyObj.DATE_ADDED,
+  extendArgs: "LIMIT 0,10",
+};
+const fetchFileResult = await media.getFileAssets(getImageOp);
+const asset = await fetchFileResult.getFirstObject();
 asset.trash(true).then(function() {
     console.info("trash successfully");
 }).catch(function(err){
@@ -1063,6 +1234,15 @@ isTrash(callback: AsyncCallback&lt;boolean&gt;): void;
 **示例：**
 
 ```
+let imageType = mediaLibrary.MediaType.IMAGE;
+let getImageOp = {
+  selections: fileKeyObj.MEDIA_TYPE + '= ?',
+  selectionArgs: [imageType.toString()],
+  order: fileKeyObj.DATE_ADDED,
+  extendArgs: "LIMIT 0,10",
+};
+const fetchFileResult = await media.getFileAssets(getImageOp);
+const asset = await fetchFileResult.getFirstObject();
 asset.isTrash(isTrashCallBack);
 function isTrashCallBack(err, isTrash) {
         if (isTrash == true) {
@@ -1096,6 +1276,15 @@ isTrash():Promise&lt;boolean&gt;;
 **示例：**
 
 ```
+let imageType = mediaLibrary.MediaType.IMAGE;
+let getImageOp = {
+  selections: fileKeyObj.MEDIA_TYPE + '= ?',
+  selectionArgs: [imageType.toString()],
+  order: fileKeyObj.DATE_ADDED,
+  extendArgs: "LIMIT 0,10",
+};
+const fetchFileResult = await media.getFileAssets(getImageOp);
+const asset = await fetchFileResult.getFirstObject();
 asset.isTrash().then(function(isTrash){
     console.info("isTrash result:"+ isTrash);
 }).catch(function(err){
@@ -1155,7 +1344,14 @@ isAfterLast(): boolean;
 **示例**：
 
 ```
-let fetchFileResult = await media.getFileAssets(getFileCountTenOp);
+let imageType = mediaLibrary.MediaType.IMAGE;
+let getImageOp = {
+  selections: fileKeyObj.MEDIA_TYPE + '= ?',
+  selectionArgs: [imageType.toString()],
+  order: fileKeyObj.DATE_ADDED,
+  extendArgs: "LIMIT 0,10",
+};
+let fetchFileResult = await media.getFileAssets(getImageOp);
 const fetchCount = fetchFileResult.getCount();
 console.info('MediaLibraryTest : count:' + fetchCount);
 let fileAsset = await fetchFileResult.getFirstObject();
@@ -1185,7 +1381,14 @@ close(): void;
 **示例**：
 
 ```
-let fetchFileResult = await media.getFileAssets(getFileCountTenOp);
+let imageType = mediaLibrary.MediaType.IMAGE;
+let getImageOp = {
+  selections: fileKeyObj.MEDIA_TYPE + '= ?',
+  selectionArgs: [imageType.toString()],
+  order: fileKeyObj.DATE_ADDED,
+  extendArgs: "LIMIT 0,10",
+};
+let fetchFileResult = await media.getFileAssets(getImageOp);
 fetchFileResult.close();
 ```
 
@@ -1208,7 +1411,15 @@ getFirstObject(callback: AsyncCallback&lt;FileAsset&gt;): void;
 **示例**：
 
 ```
-data.getFirstObject((err, value) => {
+let imageType = mediaLibrary.MediaType.IMAGE;
+let getImageOp = {
+  selections: fileKeyObj.MEDIA_TYPE + '= ?',
+  selectionArgs: [imageType.toString()],
+  order: fileKeyObj.DATE_ADDED,
+  extendArgs: "LIMIT 0,10",
+};
+let fetchFileResult = await media.getFileAssets(getImageOp);
+fetchFileResult.getFirstObject((err, value) => {
    if (err) {
 	   console.error('Failed ');
 	   return;
@@ -1237,7 +1448,15 @@ getFirstObject(): Promise&lt;FileAsset&gt;;
 **示例**：
 
 ```
-queryResultSet_.getFirstObject().then(function(fileAsset){
+let imageType = mediaLibrary.MediaType.IMAGE;
+let getImageOp = {
+  selections: fileKeyObj.MEDIA_TYPE + '= ?',
+  selectionArgs: [imageType.toString()],
+  order: fileKeyObj.DATE_ADDED,
+  extendArgs: "LIMIT 0,10",
+};
+let fetchFileResult = await media.getFileAssets(getImageOp);
+fetchFileResult.getFirstObject().then(function(fileAsset){
     console.info("getFirstObject successfully:"+ JSON.stringify(fileAsset));
 }).catch(function(err){
     console.info("getFirstObject failed with error:"+ err);
@@ -1263,7 +1482,15 @@ queryResultSet_.getFirstObject().then(function(fileAsset){
 **示例**：
 
 ```
-data.getNextObject((err, value) => {
+let imageType = mediaLibrary.MediaType.IMAGE;
+let getImageOp = {
+  selections: fileKeyObj.MEDIA_TYPE + '= ?',
+  selectionArgs: [imageType.toString()],
+  order: fileKeyObj.DATE_ADDED,
+  extendArgs: "LIMIT 0,10",
+};
+let fetchFileResult = await media.getFileAssets(getImageOp);
+fetchFileResult.getNextObject((err, value) => {
    if (err) {
 	   console.error('Failed ');
 	   return;
@@ -1291,7 +1518,14 @@ data.getNextObject((err, value) => {
 **示例**：
 
 ```
-let fetchFileResult = await media.getFileAssets(getFileCountTenOp);
+let imageType = mediaLibrary.MediaType.IMAGE;
+let getImageOp = {
+  selections: fileKeyObj.MEDIA_TYPE + '= ?',
+  selectionArgs: [imageType.toString()],
+  order: fileKeyObj.DATE_ADDED,
+  extendArgs: "LIMIT 0,10",
+};
+let fetchFileResult = await media.getFileAssets(getImageOp);
 const fetchCount = fetchFileResult.getCount();
 console.info('MediaLibraryTest : count:' + fetchCount);
 fileAsset = await fetchFileResult.getNextObject();
@@ -1316,7 +1550,15 @@ getLastObject(callback: AsyncCallback&lt;FileAsset&gt;): void;
 **示例**：
 
 ```
-data.getLastObject((err, value) => {
+let imageType = mediaLibrary.MediaType.IMAGE;
+let getImageOp = {
+  selections: fileKeyObj.MEDIA_TYPE + '= ?',
+  selectionArgs: [imageType.toString()],
+  order: fileKeyObj.DATE_ADDED,
+  extendArgs: "LIMIT 0,10",
+};
+let fetchFileResult = await media.getFileAssets(getImageOp);
+fetchFileResult.getLastObject((err, value) => {
    if (err) {
 	   console.error('Failed ');
 	   return;
@@ -1375,7 +1617,15 @@ getPositionObject(index: number, callback: AsyncCallback&lt;FileAsset&gt;): void
 **示例**：
 
 ```
-data. getPositionObject(1，(err, value) => {
+let imageType = mediaLibrary.MediaType.IMAGE;
+let getImageOp = {
+  selections: fileKeyObj.MEDIA_TYPE + '= ?',
+  selectionArgs: [imageType.toString()],
+  order: fileKeyObj.DATE_ADDED,
+  extendArgs: "LIMIT 0,10",
+};
+let fetchFileResult = await media.getFileAssets(getImageOp);
+fetchFileResult.getPositionObject(1，(err, value) => {
    if (err) {
 	   console.error('Failed ');
 	   return;
@@ -1409,7 +1659,15 @@ getPositionObject(index: number): Promise&lt;FileAsset&gt;;
 **示例**：
 
 ```
-data.getPositionObject(1，(err, value) => {
+let imageType = mediaLibrary.MediaType.IMAGE;
+let getImageOp = {
+  selections: fileKeyObj.MEDIA_TYPE + '= ?',
+  selectionArgs: [imageType.toString()],
+  order: fileKeyObj.DATE_ADDED,
+  extendArgs: "LIMIT 0,10",
+};
+let fetchFileResult = await media.getFileAssets(getImageOp);
+fetchFileResult.getPositionObject(1，(err, value) => {
    if (err) {
 	   console.error('Failed ');
 	   return;
@@ -1437,7 +1695,15 @@ getAllObject(callback: AsyncCallback&lt;Array&lt;FileAsset&gt;&gt;): void;
 **示例**：
 
 ```
-data.getAllObject((err, value) => {
+let imageType = mediaLibrary.MediaType.IMAGE;
+let getImageOp = {
+  selections: fileKeyObj.MEDIA_TYPE + '= ?',
+  selectionArgs: [imageType.toString()],
+  order: fileKeyObj.DATE_ADDED,
+  extendArgs: "LIMIT 0,10",
+};
+let fetchFileResult = await media.getFileAssets(getImageOp);
+fetchFileResult.getAllObject((err, value) => {
    if (err) {
 	   console.error('Failed ');
 	   return;
@@ -1495,6 +1761,12 @@ commitModify(callback: AsyncCallback&lt;void&gt;): void;
 **示例**：
 
 ```
+let AlbumNoArgsfetchOp = {
+    selections: '',
+    selectionArgs: [],
+};
+const albumList = await media.getAlbums(AlbumNoArgsfetchOp);
+const album = albumList[0];
 album.albumName = 'hello';
 album.commitModify((err) => {
    if (err) {
@@ -1524,6 +1796,12 @@ commitModify(): Promise&lt;void&gt;;
 **示例**：
 
 ```
+let AlbumNoArgsfetchOp = {
+    selections: '',
+    selectionArgs: [],
+};
+const albumList = await media.getAlbums(AlbumNoArgsfetchOp);
+const album = albumList[0];
 album.albumName = 'hello';
 album.commitModify().then(function() {
     console.info("commitModify successfully");
@@ -1552,6 +1830,12 @@ getFileAssets(options: MediaFetchOptions, callback: AsyncCallback&lt;FetchFileRe
 **示例**：
 
 ```
+let AlbumNoArgsfetchOp = {
+    selections: '',
+    selectionArgs: [],
+};
+const albumList = await media.getAlbums(AlbumNoArgsfetchOp);
+const album = albumList[0];
 album.getFileAssets(fileNoArgsfetchOp, getFileAssetsCallBack);
 })
 function getFileAssetsCallBack(err, fetchFileResult) {
@@ -1584,6 +1868,12 @@ function getFileAssetsCallBack(err, fetchFileResult) {
 **示例**：
 
 ```
+let AlbumNoArgsfetchOp = {
+    selections: '',
+    selectionArgs: [],
+};
+const albumList = await media.getAlbums(AlbumNoArgsfetchOp);
+const album = albumList[0];
 album.getFileAssets(fileNoArgsfetchOp).then(function(albumFetchFileResult){
     console.info("getFileAssets successfully:"+ JSON.stringify(albumFetchFileResult));
 }).catch(function(err){
