@@ -10,17 +10,13 @@
 import resourceManager from '@ohos.resourceManager';
 ```
 
-
-## 权限
-
-无
-
-
 ## resourceManager.getResourceManager
 
 getResourceManager(callback: AsyncCallback&lt;ResourceManager&gt;): void
 
 获取当前应用的资源管理对象，使用callback形式返回ResourceManager对象。
+
+**系统能力**：SystemCapability.Global.ResourceManager
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -51,6 +47,8 @@ getResourceManager(bundleName: string, callback: AsyncCallback&lt;ResourceManage
 
 获取指定应用的资源管理对象，使用callback形式返回ResourceManager对象。
 
+**系统能力**：SystemCapability.Global.ResourceManager
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -69,6 +67,8 @@ getResourceManager(bundleName: string, callback: AsyncCallback&lt;ResourceManage
 getResourceManager(): Promise&lt;ResourceManager&gt;
 
 获取当前应用的资源管理对象，使用Promise形式返回ResourceManager对象。
+
+**系统能力**：SystemCapability.Global.ResourceManager
 
 - 返回值：
   | 类型 | 说明 |
@@ -97,6 +97,8 @@ getResourceManager(bundleName: string): Promise&lt;ResourceManager&gt;
 
 获取指定应用的资源管理对象，使用Promise形式返回ResourceManager对象。
 
+**系统能力**：SystemCapability.Global.ResourceManager
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -123,8 +125,8 @@ getResourceManager(bundleName: string): Promise&lt;ResourceManager&gt;
 
 | 名称 | 默认值 | 说明 |
 | -------- | -------- | -------- |
-| DIRECTION_VERTICAL | 0 | 竖屏 |
-| DIRECTION_HORIZONTAL | 1 | 横屏 |
+| DIRECTION_VERTICAL | 0 | 竖屏<br/>**系统能力**：SystemCapability.Global.ResourceManager |
+| DIRECTION_HORIZONTAL | 1 | 横屏<br/>**系统能力**：SystemCapability.Global.ResourceManager |
 
 
 ## DeviceType
@@ -133,12 +135,12 @@ getResourceManager(bundleName: string): Promise&lt;ResourceManager&gt;
 
 | 名称 | 默认值 | 说明 |
 | -------- | -------- | -------- |
-| DEVICE_TYPE_PHONE | 0x00 | 手机 |
-| DEVICE_TYPE_TABLET | 0x01 | 平板 |
-| DEVICE_TYPE_CAR | 0x02 | 汽车 |
-| DEVICE_TYPE_PC | 0x03 | 电脑 |
-| DEVICE_TYPE_TV | 0x04 | 电视 |
-| DEVICE_TYPE_WEARABLE | 0x06 | 穿戴 |
+| DEVICE_TYPE_PHONE | 0x00 | 手机<br/>**系统能力**：SystemCapability.Global.ResourceManager |
+| DEVICE_TYPE_TABLET | 0x01 | 平板<br/>**系统能力**：SystemCapability.Global.ResourceManager |
+| DEVICE_TYPE_CAR | 0x02 | 汽车<br/>**系统能力**：SystemCapability.Global.ResourceManager |
+| DEVICE_TYPE_PC | 0x03 | 电脑<br/>**系统能力**：SystemCapability.Global.ResourceManager |
+| DEVICE_TYPE_TV | 0x04 | 电视<br/>**系统能力**：SystemCapability.Global.ResourceManager |
+| DEVICE_TYPE_WEARABLE | 0x06 | 穿戴<br/>**系统能力**：SystemCapability.Global.ResourceManager |
 
 
 ## ScreenDensity
@@ -147,12 +149,12 @@ getResourceManager(bundleName: string): Promise&lt;ResourceManager&gt;
 
 | 名称 | 默认值 | 说明 |
 | -------- | -------- | -------- |
-| SCREEN_SDPI | 120 | 小规模的屏幕密度 |
-| SCREEN_MDPI | 160 | 中规模的屏幕密度 |
-| SCREEN_LDPI | 240 | 大规模的屏幕密度 |
-| SCREEN_XLDPI | 320 | 特大规模的屏幕密度 |
-| SCREEN_XXLDPI | 480 | 超大规模的屏幕密度 |
-| SCREEN_XXXLDPI | 640 | 超特大规模的屏幕密度 |
+| SCREEN_SDPI | 120 | 小规模的屏幕密度<br/>**系统能力**：SystemCapability.Global.ResourceManager |
+| SCREEN_MDPI | 160 | 中规模的屏幕密度<br/>**系统能力**：SystemCapability.Global.ResourceManager |
+| SCREEN_LDPI | 240 | 大规模的屏幕密度<br/>**系统能力**：SystemCapability.Global.ResourceManager |
+| SCREEN_XLDPI | 320 | 特大规模的屏幕密度<br/>**系统能力**：SystemCapability.Global.ResourceManager |
+| SCREEN_XXLDPI | 480 | 超大规模的屏幕密度<br/>**系统能力**：SystemCapability.Global.ResourceManager |
+| SCREEN_XXXLDPI | 640 | 超特大规模的屏幕密度<br/>**系统能力**：SystemCapability.Global.ResourceManager |
 
 
 ## Configuration
@@ -162,8 +164,8 @@ getResourceManager(bundleName: string): Promise&lt;ResourceManager&gt;
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| direction | [Direction](#direction) | 是 | 否 | 当前设备屏幕方向 |
-| locale | string | 是 | 否 | 当前系统语言 |
+| direction | [Direction](#direction) | 是 | 否 | 当前设备屏幕方向<br/>**系统能力**：SystemCapability.Global.ResourceManager |
+| locale | string | 是 | 否 | 当前系统语言<br/>**系统能力**：SystemCapability.Global.ResourceManager |
 
 
 ## DeviceCapability
@@ -173,8 +175,8 @@ getResourceManager(bundleName: string): Promise&lt;ResourceManager&gt;
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| screenDensity | [ScreenDensity](#screendensity) | 是 | 否 | 当前设备屏幕密度 |
-| deviceType | [DeviceType](#devicetype) | 是 | 否 | 当前设备类型 |
+| screenDensity | [ScreenDensity](#screendensity) | 是 | 否 | 当前设备屏幕密度<br/>**系统能力**：SystemCapability.Global.ResourceManager |
+| deviceType | [DeviceType](#devicetype) | 是 | 否 | 当前设备类型<br/>**系统能力**：SystemCapability.Global.ResourceManager |
 
 
 ## ResourceManager
@@ -192,6 +194,8 @@ getResourceManager(bundleName: string): Promise&lt;ResourceManager&gt;
 getString(resId: number, callback: AsyncCallback&lt;string&gt;): void
 
 用户获取指定资源ID对应的字符串，使用callback形式返回字符串。
+
+**系统能力**：SystemCapability.Global.ResourceManager
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -218,6 +222,8 @@ getString(resId: number, callback: AsyncCallback&lt;string&gt;): void
 getString(resId: number): Promise&lt;string&gt;
 
 用户获取指定资源ID对应的字符串，使用Promise形式返回字符串。
+
+**系统能力**：SystemCapability.Global.ResourceManager
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -247,6 +253,8 @@ getStringArray(resId: number, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;
 
 用户获取指定资源ID对应的字符串数组，使用callback形式返回字符串数组。
 
+**系统能力**：SystemCapability.Global.ResourceManager
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -272,6 +280,8 @@ getStringArray(resId: number, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;
 getStringArray(resId: number): Promise&lt;Array&lt;string&gt;&gt;
 
 用户获取指定资源ID对应的字符串数组，使用Promise形式返回字符串数组。
+
+**系统能力**：SystemCapability.Global.ResourceManager
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -301,6 +311,8 @@ getMedia(resId: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 用户获取指定资源ID对应的媒体文件内容，使用callback形式返回字节数组。
 
+**系统能力**：SystemCapability.Global.ResourceManager
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -326,6 +338,8 @@ getMedia(resId: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
 getMedia(resId: number): Promise&lt;Uint8Array&gt;
 
 用户获取指定资源ID对应的媒体文件内容，使用Promise形式返回字节数组。
+
+**系统能力**：SystemCapability.Global.ResourceManager
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -355,6 +369,8 @@ getMediaBase64(resId: number, callback: AsyncCallback&lt;string&gt;): void
 
 用户获取指定资源ID对应的图片资源Base64编码，使用callback形式返回字符串。
 
+**系统能力**：SystemCapability.Global.ResourceManager
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -380,6 +396,8 @@ getMediaBase64(resId: number, callback: AsyncCallback&lt;string&gt;): void
 getMediaBase64(resId: number): Promise&lt;string&gt;
 
 用户获取指定资源ID对应的图片资源Base64编码，使用Promise形式返回字符串。
+
+**系统能力**：SystemCapability.Global.ResourceManager
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -409,6 +427,8 @@ getConfiguration(callback: AsyncCallback&lt;Configuration&gt;): void
 
 用户获取设备的Configuration，使用callback形式返回Configuration对象。
 
+**系统能力**：SystemCapability.Global.ResourceManager
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -434,6 +454,8 @@ getConfiguration(): Promise&lt;Configuration&gt;
 
 用户获取设备的Configuration，使用Promise形式返回Configuration对象。
 
+**系统能力**：SystemCapability.Global.ResourceManager
+
 - 返回值：
   | 类型 | 说明 |
   | -------- | -------- |
@@ -456,6 +478,8 @@ getConfiguration(): Promise&lt;Configuration&gt;
 getDeviceCapability(callback: AsyncCallback&lt;DeviceCapability&gt;): void
 
 用户获取设备的DeviceCapability，使用callback形式返回DeviceCapability对象。
+
+**系统能力**：SystemCapability.Global.ResourceManager
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -482,6 +506,8 @@ getDeviceCapability(): Promise&lt;DeviceCapability&gt;
 
 用户获取设备的DeviceCapability，使用Promise形式返回DeviceCapability对象。
 
+**系统能力**：SystemCapability.Global.ResourceManager
+
 - 返回值：
   | 类型 | 说明 |
   | -------- | -------- |
@@ -504,6 +530,8 @@ getDeviceCapability(): Promise&lt;DeviceCapability&gt;
 getPluralString(resId: number, num: number, callback: AsyncCallback&lt;string&gt;): void
 
 根据指定数量获取指定ID字符串表示的单复数字符串，使用callback形式返回字符串。
+
+**系统能力**：SystemCapability.Global.ResourceManager
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -531,6 +559,8 @@ getPluralString(resId: number, num: number, callback: AsyncCallback&lt;string&gt
 getPluralString(resId: number, num: number): Promise&lt;string&gt;
 
 根据指定数量获取对指定ID字符串表示的单复数字符串，使用Promise形式返回字符串。
+
+**系统能力**：SystemCapability.Global.ResourceManager
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -560,6 +590,8 @@ getRawFile(path: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 用户获取指定路径对应的rawfile文件内容，使用callback形式返回字节数组。
 
+**系统能力**：SystemCapability.Global.ResourceManager
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -584,6 +616,8 @@ getRawFile(path: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 getRawFile(path: string): Promise&lt;Uint8Array&gt;
 
 用户获取指定路径对应的rawfile文件内容，使用Promise形式返回字节数组。
+
+**系统能力**：SystemCapability.Global.ResourceManager
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
