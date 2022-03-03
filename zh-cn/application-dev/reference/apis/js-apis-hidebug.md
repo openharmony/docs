@@ -107,7 +107,7 @@ getSharedDirty(): bigint
 
 - 示例：
   ```
-  let sharedDirty = hidebug.getSharedDirty());
+  let sharedDirty = hidebug.getSharedDirty();
   ```
 
 
