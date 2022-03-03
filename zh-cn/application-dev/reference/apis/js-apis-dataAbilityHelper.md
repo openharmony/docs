@@ -44,8 +44,6 @@ DAHelper.openFile(
 
 openFile(uri: string, mode: string): Promise\<number>
 
-在指定的远程路径中打开文件（promise形式）。
-
 **参数：**
 
 | 名称 | 类型   | 必填 | 描述                     |
@@ -272,7 +270,7 @@ normalizeUri(uri: string, callback: AsyncCallback\<string>): void
 | 名称     | 类型                   | 必填 | 描述                                                         |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | uri      | string                 | 是   | 指示要规范化的uri对象。                                      |
-| callback | AsyncCallback\<string> | 是   | 回调方法。如果数据功能支持uri规范化，则返回规范化uri对象；否则返回null。 |
+| callback | AsyncCallback\<string> | 是   | 回调方法。如果数据功能支持uri规范化或null，则返回规范化uri对象。 |
 
 **示例：**
 
@@ -303,7 +301,7 @@ normalizeUri(uri: string): Promise\<string>
 **返回值：**
 | 类型             | 说明                                                   |
 | ---------------- | ------------------------------------------------------ |
-| Promise\<string> | 如果数据功能支持uri规范化，则返回规范化uri对象；否则返回null。 |
+| Promise\<string> | 如果数据功能支持uri规范化或null，则返回规范化uri对象。 |
 
 **示例：**
 
@@ -700,7 +698,7 @@ update(uri: string, valuesBucket: rdb.ValuesBucket, predicates: dataAbility.Data
 **返回值：**
 | 类型             | 说明                                         |
 | ---------------- | -------------------------------------------- |
-| Promise\<number> | 返回更新的数据记录数。 |
+| Promise\<number> | 返回值为Promise对象，Promise中包含应用信息。 |
 
 **示例：**
 
