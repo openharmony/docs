@@ -1,6 +1,7 @@
 # Distributed Account Management<a name="EN-US_TOPIC_0000001160355878"></a>
 
->![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>![](../../public_sys-resources/icon-note.gif) **NOTE** 
+>
 >The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import<a name="s56d19203690d4782bfc74069abb6bd71"></a>
@@ -8,6 +9,12 @@
 ```
 import account_distributedAccount from '@ohos.account.distributedAccount';
 ```
+
+
+## System Capabilities
+
+SystemCapability.Account.OsAccount
+
 
 ## account\_distributedAccount.getDistributedAccountAbility<a name="section192192415554"></a>
 
@@ -297,4 +304,3 @@ Defines distributed OS account information.
 </tr>
 </tbody>
 </table>
-
