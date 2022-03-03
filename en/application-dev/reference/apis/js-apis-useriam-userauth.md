@@ -10,6 +10,10 @@
 import userIAM_userAuth from '@ohos.userIAM.userAuth';
 ```
 
+## System Capabilities
+
+SystemCapability.UserIAM.UserAuth
+
 ## Required Permissions<a name="section11257113618419"></a>
 
 ohos.permission.ACCESS\_BIOMETRIC
