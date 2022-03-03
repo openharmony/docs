@@ -137,7 +137,7 @@ on(type: 'deviceChange'|'albumChange'|'imageChange'|'audioChange'|'videoChange'|
 
 ```
 medialibrary.on('imageChange', () => {
-    this.sendNotify('image');
+    // image file had changed, do something 
 })
 ```
 ## medialibrary.off
@@ -163,7 +163,7 @@ off(type: 'deviceChange'|'albumChange'|'imageChange'|'audioChange'|'videoChange'
 
 ```
 medialibrary.off('imageChange', () => {
-    this.sendNotify('image');
+    // stop listening success
 })
 ```
 
@@ -183,7 +183,7 @@ createAsset(mediaType: MediaType, displayName: string, relativePath: string, cal
 | ------------ | -------------------------------------- | ---- | ------------------------------------------------------------ |
 | mediaType    | [MediaType](#MediaType)                | 是   | 媒体类型                                                     |
 | displayName  | string                                 | 是   | 展示文件名                                                   |
-| relativePath | string                                 | 是   | 相对路径，可以通过getPublicDirectory获取不同类型媒体文件的一层目录的relative path |
+| relativePath | string                                 | 是   | 相对公共目录路径，可以通过getPublicDirectory获取不同类型媒体文件的一层目录的relative path |
 | callback     | AsyncCallback<[FileAsset](#FileAsset)> | 是   | 异步获取媒体数据FileAsset之后的回调                          |
 
 **示例：**
@@ -262,7 +262,7 @@ getPublicDirectory(type: DirectoryType, callback: AsyncCallback<string>): void;
 let DIR_CAMERA = mediaLibrary.DirectoryType.DIR_CAMERA;
 media.getPublicDirectory(DIR_CAMERA，(err, dicResult) => {
     if (dicResult == 'camera/') {
-        console.info('MediaLibraryTest : getPublicDirectory passed');
+        console.info('MediaLibraryTest : getPublicDirectory');
     } else {
         console.info('MediaLibraryTest : getPublicDirectory failed');
     }
@@ -297,7 +297,7 @@ getPublicDirectory(type: DirectoryType): Promise<string>;
 let DIR_CAMERA = mediaLibrary.DirectoryType.DIR_CAMERA;
 const dicResult = await media.getPublicDirectory(DIR_CAMERA);
 if (dicResult == 'camera/') {
-    console.info('MediaLibraryTest : getPublicDirectory passed');    
+    console.info('MediaLibraryTest : getPublicDirectory');    
 } else {
     console.info('MediaLibraryTest : getPublicDirectory failed');
 }
@@ -327,17 +327,15 @@ let AlbumNoArgsfetchOp = {
     selections: '',
     selectionArgs: [],
 };
-medialibrary.AlbumNoArgsfetchOp, (err, albumList) => {
+medialibrary.getAlbums(AlbumNoArgsfetchOp, (err, albumList) => {
     if (albumList != undefined) {
         const album = albumList[0];
         console.info('album.albumName = ' + album.albumName);
         console.info('album.count = ' + album.count);
-        done();
      } else {
         console.info('getAlbum fail, message = ' + err);
-        done();
      }
-});
+})
 ```
 
 ## medialibrary.getAlbums
@@ -580,11 +578,11 @@ let mediaType = mediaLibrary.MediaType.IMAGE;
 let path = "Pictures/";
 asset = await media.createAsset(mediaType, "image00003.jpg", path);
 asset.open('rw', (openError, fd) => {
-        if(fd > 0){
-            asset.close(fd);
-        }else{
-            console.info('File Open Failed!' + openError);
-        }
+    if(fd > 0){
+        asset.close(fd);
+    }else{
+        console.info('File Open Failed!' + openError);
+    }
 });
 ```
 
@@ -617,11 +615,11 @@ let mediaType = mediaLibrary.MediaType.IMAGE;
 let path = "Pictures/";
 asset = await media.createAsset(mediaType, "image00003.jpg", path);
 asset.open('rw').then((openError, fd) => {
-        if(fd > 0){
-            asset.close(fd);
-        }else{
-            console.info('File Open Failed!' + openError);
-        }
+    if(fd > 0){
+        asset.close(fd);
+    }else{
+        console.info('File Open Failed!' + openError);
+    }
 });
 ```
 
@@ -1072,15 +1070,13 @@ const fetchFileResult = await media.getFileAssets(getImageOp);
 const asset = await fetchFileResult.getFirstObject();
 asset.isTrash(isTrashCallBack);
 function isTrashCallBack(err, isTrash) {
-        if (isTrash == true) {
-            console.info('MediaLibraryTest : ASSET_CALLBACK ASSET_CALLBACK isTrash = ' + isTrash);
-            asset.trash(true, trashCallBack);
-            
-        } else {
-            console.info('MediaLibraryTest : ASSET_CALLBACK isTrash Unsuccessfull = ' + err);
-            console.info('MediaLibraryTest : ASSET_CALLBACK isTrash : FAIL');
-            
-        }
+    if (isTrash == true) {
+        console.info('MediaLibraryTest : ASSET_CALLBACK ASSET_CALLBACK isTrash = ' + isTrash);
+        asset.trash(true, trashCallBack);
+    } else {
+        console.info('MediaLibraryTest : ASSET_CALLBACK isTrash Unsuccessfull = ' + err);
+        console.info('MediaLibraryTest : ASSET_CALLBACK isTrash : FAIL');
+    }
 }
 ```
 
@@ -1732,7 +1728,7 @@ FileAsset
 | mediaType    | MediaType | 是   | 否   | 媒体类型                                               |
 | displayName  | string    | 是   | 是   | 显示文件名                                             |
 | title        | string    | 是   | 是   | 文件标题                                               |
-| relativePath | string    | 是   | 是   | 相对路径                                               |
+| relativePath | string    | 是   | 是   | 相对公共目录路径                                               |
 | parent       | number    | 是   | 否   | 父目录id                                               |
 | size         | number    | 是   | 否   | 文件大小(单位：字节)                                   |
 | dateAdded    | number    | 是   | 否   | 添加日期（添加文件时间到1970年1月1日的秒数值）         |
@@ -1785,7 +1781,7 @@ FileKey
 | 名称          | 默认值              | 描述                                                   |
 | ------------- | ------------------- |  ------------------------------------------------------ |
 | ID            | file_id             | 文件编号                                               |
-| RELATIVE_PATH | relative_path       |  相对路径                                               |
+| RELATIVE_PATH | relative_path       |  相对公共目录路径                                               |
 | DISPLAY_NAME  | display_name        |  显示名字                                               |
 | PARENT        | parent              |  父目录id                                               |
 | MIME_TYPE     | mime_type           | 文件扩展属性                                           |
@@ -1840,7 +1836,7 @@ DeviceType
 | 名称          | 类型          | 可读 | 可写 |  必填 |说明             |
 | ------------- | ------------- | ---- | ---- |  ---- |---------------- |
 | selections    | string        | 是   | 是   |是   | 检索条件         |
-| selectionArgs | Array<string> | 是   | 是   |是   | 检索条件的值     |
+| selectionArgs | Array&lt;string&gt; | 是   | 是   |是   | 检索条件的值     |
 | order         | string        | 是   | 是   | 否   |检索结果排序方式 |
 | uri           | string        | 是   | 是   | 否   |文件URI          |
 | networkId     | string        | 是   | 是   | 否   |注册设备网络ID   |
