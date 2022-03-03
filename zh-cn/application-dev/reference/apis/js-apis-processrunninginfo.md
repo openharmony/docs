@@ -30,7 +30,7 @@ appManager.getProcessRunningInfos((error,data) => {
 
   | 名称 | 参数类型 | 可读 | 可写 | 说明 | 
 | -------- | -------- | -------- | -------- | -------- |
-| pid | number | 是 | 否 | 进程ID。 | 
-| uid | number | 是 | 否 | 用户ID。 | 
-| processName | string | 是 | 否 | 进程名称。 | 
-| bundleNames | Array&lt;string&gt; | 是 | 否 | 进程中所有运行的包名称。 | 
+| pid | number | 是 | 否 | 进程ID。<br><b>系统能力：</b>SystemCapability.Ability.AbilityRuntime.Core | 
+| uid | number | 是 | 否 | 用户ID。<br><b>系统能力：</b>SystemCapability.Ability.AbilityRuntime.Core | 
+| processName | string | 是 | 否 | 进程名称。<br><b>系统能力：</b>SystemCapability.Ability.AbilityRuntime.Core | 
+| bundleNames | Array&lt;string&gt; | 是 | 否 | 进程中所有运行的包名称。<br><b>系统能力：</b>SystemCapability.Ability.AbilityRuntime.Core | 

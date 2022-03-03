@@ -31,13 +31,13 @@ abilitymanager.getExtensionRunningInfos(upperLimit, (err,data) => {
 
   | 名称 | 参数类型 | 可读 | 可写 | 说明 | 
 | -------- | -------- | -------- | -------- | -------- |
-| extension | ElementName | 是 | 否 | Extension匹配信息。 | 
-| pid | number | 是 | 否 | 进程ID。 | 
-| uid | number | 是 | 否 | 用户ID。 | 
-| processName | string | 是 | 否 | 进程名称。 | 
-| startTime | number | 是 | 否 | Extension启动时间。 | 
-| clientPackage | Array&lt;String&gt; | 是 | 否 | 连接客户端包名。 | 
-| type | [bundle.ExtensionAbilityType](#bundle-extensionabilitytype) | 是 | 否 | Extension类型。 | 
+| extension | ElementName | 是 | 否 | Extension匹配信息。<br><b>系统能力：</b>SystemCapability.Ability.AbilityRuntime.Core | 
+| pid | number | 是 | 否 | 进程ID。<br><b>系统能力：</b>SystemCapability.Ability.AbilityRuntime.Core | 
+| uid | number | 是 | 否 | 用户ID。<br><b>系统能力：</b>SystemCapability.Ability.AbilityRuntime.Core | 
+| processName | string | 是 | 否 | 进程名称。<br><b>系统能力：</b>SystemCapability.Ability.AbilityRuntime.Core | 
+| startTime | number | 是 | 否 | Extension启动时间。<br><b>系统能力：</b>SystemCapability.Ability.AbilityRuntime.Core | 
+| clientPackage | Array&lt;String&gt; | 是 | 否 | 连接客户端包名。<br><b>系统能力：</b>SystemCapability.Ability.AbilityRuntime.Core | 
+| type | [bundle.ExtensionAbilityType](#bundle-extensionabilitytype) | 是 | 否 | Extension类型。<br><b>系统能力：</b>SystemCapability.Ability.AbilityRuntime.Core | 
 
 
 ## bundle.ExtensionAbilityType
@@ -46,13 +46,13 @@ Extension类型。
 
   | 名称 | 值 | 说明 | 
 | -------- | -------- | -------- |
-| FORM | 0 | 表示带有form类型的扩展信息。 | 
-| WORK_SCHEDULER | 1 | 表示带有work&nbsp;schedule类型的扩展信息。 | 
-| INPUT_METHOD | 2 | 表示用输入法类型的扩展信息。 | 
-| SERVICE | 3 | 表示带有service类型的扩展信息。 | 
-| ACCESSIBILITY | 4 | 表示具有可访问性类型的扩展信息。 | 
-| DATA_SHARE | 5 | 表示带有datashare类型的扩展信息。 | 
-| FILE_SHARE | 6 | 表示带有fileshare类型的扩展信息。 | 
-| STATIC_SUBSCRIBER | 7 | 表示带有静态订阅者类型的扩展信息。 | 
-| WALLPAPER | 8 | 表示带有wallpaper类型的扩展信息。 | 
-| UNSPECIFIED | 9 | 表示未指定类型信息。 | 
+| FORM | 0 | 表示带有form类型的扩展信息。<br><b>系统能力：</b>SystemCapability.BundleManager.BundleFramework | 
+| WORK_SCHEDULER | 1 | 表示带有work&nbsp;schedule类型的扩展信息。<br><b>系统能力：</b>SystemCapability.BundleManager.BundleFramework | 
+| INPUT_METHOD | 2 | 表示用输入法类型的扩展信息。<br><b>系统能力：</b>SystemCapability.BundleManager.BundleFramework | 
+| SERVICE | 3 | 表示带有service类型的扩展信息。<br><b>系统能力：</b>SystemCapability.BundleManager.BundleFramework | 
+| ACCESSIBILITY | 4 | 表示具有可访问性类型的扩展信息。<br><b>系统能力：</b>SystemCapability.BundleManager.BundleFramework | 
+| DATA_SHARE | 5 | 表示带有datashare类型的扩展信息。<br><b>系统能力：</b>SystemCapability.BundleManager.BundleFramework | 
+| FILE_SHARE | 6 | 表示带有fileshare类型的扩展信息。<br><b>系统能力：</b>SystemCapability.BundleManager.BundleFramework | 
+| STATIC_SUBSCRIBER | 7 | 表示带有静态订阅者类型的扩展信息。<br><b>系统能力：</b>SystemCapability.BundleManager.BundleFramework | 
+| WALLPAPER | 8 | 表示带有wallpaper类型的扩展信息。<br><b>系统能力：</b>SystemCapability.BundleManager.BundleFramework | 
+| UNSPECIFIED | 9 | 表示未指定类型信息。<br><b>系统能力：</b>SystemCapability.BundleManager.BundleFramework | 
