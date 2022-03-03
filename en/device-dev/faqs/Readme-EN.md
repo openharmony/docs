@@ -6,6 +6,6 @@
 -   [Burning](faqs-burning.md)
 -   [Kernel](faqs-kernel.md)
 -   [Porting](faqs-porting.md)
--   [Startup and Recovery](faqs-startup-and-recovery.md)
+-   [Startup](faqs-startup.md)
 -   [System Applications](faqs-system-applications.md)
 

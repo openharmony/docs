@@ -126,7 +126,7 @@
     -   [Custom Dialog box](ts-methods-custom-dialog-box.md)
     -   [Image Cache](ts-methods-image-cache.md)
     -   [Media Query](ts-methods-media-query.md)
-    -   [List Selection Dialog Box](ts-methods-custom-actionsheet.md)
+    -   [List Selection Dialog Box](ts-methods-action-sheet.md)
 
 -   [Appendix](ts-appendix.md)
     -   [Built-in Enums](ts-appendix-enums.md)

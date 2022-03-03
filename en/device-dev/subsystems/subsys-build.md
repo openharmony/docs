@@ -4,4 +4,6 @@
 
 -   **[Building Guidelines for Standard Systems](subsys-build-standard-large.md)**  
 
+-   **[Build System Coding Specifications and Best Practices](subsys-build-gn-coding-style-and-best-practice.md)**  
+
 

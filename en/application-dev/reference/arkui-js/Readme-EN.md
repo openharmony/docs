@@ -64,7 +64,7 @@
     -   [Media Components](js-components-media.md)
         -   [video](js-components-media-video.md)
 
-    -   [Canvas Components ](js-components-canvas.md)
+    -   [Canvas Components](js-components-canvas.md)
         -   [canvas](js-components-canvas-canvas.md)
         -   [CanvasRenderingContext2D](js-components-canvas-canvasrenderingcontext2d.md)
         -   [Image](js-components-canvas-image.md)

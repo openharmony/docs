@@ -5,28 +5,29 @@
     -   [ParticleAbility Module](js-apis-particleAbility.md)
     -   [DataAbilityHelper Module](js-apis-dataAbilityHelper.md)
     -   [DataUriUtils Module](js-apis-DataUriUtils.md)
+    -   [Bundle Module](js-apis-Bundle.md)
     -   [Context Module](js-apis-Context.md)
 - Event Notification
     -   [CommonEvent Module](js-apis-commonEvent.md)
     -   [Notification Module](js-apis-notification.md)
     -   [Reminder Agent](js-apis-reminderAgent.md)
--   Resource Management
+- Resource Management
     -   [Resource Manager](js-apis-resource-manager.md)
     -   [Internationalization \(intl\) ](js-apis-intl.md)
     -   [Internationalization \(i18n\) ](js-apis-i18n.md)
--   Media
+- Media
     -   [Audio Management](js-apis-audio.md)
     -   [Media](js-apis-media.md)
--   Security
+- Security
     - [User Authentication](js-apis-useriam-userauth.md)
     - [Access Control](js-apis-abilityAccessCtrl.md)
--   Data Management
-    -   [File Management](js-apis-fileio.md)
-    -   [Lightweight Storage](js-apis-data-storage.md)
+- Data Management
+    -   [Lightweight Storage (deprecated since 8)](js-apis-data-storage.md)
     -   [Distributed Data Management](js-apis-distributed-data.md)
     -   [Relational Database](js-apis-data-rdb.md)
     -   [Result Set](js-apis-data-resultset.md)
     -   [DataAbilityPredicates](js-apis-data-ability.md)
+    -   [Settings](js-apis-settings.md)
 - File Management
     - [File Management](js-apis-fileio.md)
     - [Statfs](js-apis-statfs.md)
@@ -42,10 +43,11 @@
     -   [SMS](js-apis-sms.md)
     -   [SIM Management](js-apis-sim.md)
     -   [Radio](js-apis-radio.md)
--   Network and Connectivity
+- Network and Connectivity
     -   [WLAN](js-apis-wifi.md)  
--   Device Management
-    -   [Sensors](js-apis-sensor.md)
+    -   [Bluetooth](js-apis-bluetooth.md)
+- Device Management
+    -   [Sensor](js-apis-sensor.md)
     -   [Vibrator](js-apis-vibrator.md)
     -   [Brightness](js-apis-brightness.md)
     -   [Battery Info](js-apis-battery-info.md)
@@ -58,7 +60,7 @@
     -   [Display](js-apis-display.md)
     -   [Update](js-apis-update.md) 
     -   [USB](js-apis-usb.md)
--   Basic Features
+- Basic Features
     -   [Application Context](js-apis-basic-features-app-context.md)
     -   [Console Logs](js-apis-basic-features-logs.md)
     -   [Page Routing](js-apis-basic-features-routes.md)
@@ -67,12 +69,17 @@
     -   [Timer](js-apis-basic-features-timer.md)
     -   [Setting the System Time](js-apis-system-time.md)
     -   [Animation](js-apis-basic-features-animator.md)
+    -   [WebGL](js-apis-webgl.md)
+    -   [WebGL2](js-apis-webgl2.md)
+- DFX
     -   [HiAppEvent](js-apis-hiappevent.md)
     -   [Performance Tracing](js-apis-hitracemeter.md)
     -   [Fault Logger](js-apis-faultLogger.md)
     -   [Distributed Call Chain Tracing](js-apis-hitracechain.md)
     -   [HiLog](js-apis-hilog.md)
--   Language Base Class Library
+    -   [HiChecker](js-apis-hichecker.md)
+    -   [HiDebug](js-apis-hidebug.md)
+- Language Base Class Library
     -   [Obtaining Process Information](js-apis-process.md)
     -   [URL String Parsing](js-apis-url.md)
     -   [URI String Parsing](js-apis-uri.md)

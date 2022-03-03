@@ -1,4 +1,4 @@
-# Startup and Recovery<a name="EN-US_TOPIC_0000001215449321"></a>
+# Startup<a name="EN-US_TOPIC_0000001215449321"></a>
 
 ## System startup interrupted due to "parse failed!" error<a name="section835662214302"></a>
 

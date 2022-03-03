@@ -10,4 +10,7 @@
 
 -   **[Audio](driver-peripherals-audio-des.md)**
 
+-   **[USB](driver-peripherals-usb-des.md)**  
+
+-   **[Camera](driver-peripherals-camera-des.md)**
 
