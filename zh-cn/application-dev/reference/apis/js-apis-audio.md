@@ -1,5 +1,8 @@
 # 音频管理
 
+>  **说明：**
+> 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+
 ## 导入模块
 
 ```
@@ -12,6 +15,8 @@ import audio from '@ohos.multimedia.audio';
 getAudioManager(): AudioManager
 
 获取音频管理器。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
 
 **返回值：**
 | 类型 | 说明 |
@@ -30,8 +35,8 @@ var audioManager = audio.getAudioManager();
 
 | 名称 | 默认值 | 描述 |
 | -------- | -------- | -------- |
-| RINGTONE | 2 | 表示铃声。 |
-| MEDIA | 3 | 表示媒体。 |
+| RINGTONE | 2 | 表示铃声。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Volume |
+| MEDIA | 3 | 表示媒体。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Volume |
 
 
 ## DeviceFlag
@@ -40,9 +45,9 @@ var audioManager = audio.getAudioManager();
 
 | 名称 | 默认值 | 描述 |
 | -------- | -------- | -------- |
-| OUTPUT_DEVICES_FLAG | 1 | 表示输出设备种类。 |
-| INPUT_DEVICES_FLAG | 2 | 表示输入设备种类。 |
-| ALL_DEVICES_FLAG | 3 | 表示所有设备种类。 |
+| OUTPUT_DEVICES_FLAG | 1 | 表示输出设备种类。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Device |
+| INPUT_DEVICES_FLAG | 2 | 表示输入设备种类。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Device |
+| ALL_DEVICES_FLAG | 3 | 表示所有设备种类。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Device |
 
 
 ## DeviceRole
@@ -51,42 +56,42 @@ var audioManager = audio.getAudioManager();
 
 | 名称 | 默认值 | 描述 |
 | -------- | -------- | -------- |
-| INPUT_DEVICE | 1 | 输入设备角色。 |
-| OUTPUT_DEVICE | 2 | 输出设备角色。 |
+| INPUT_DEVICE | 1 | 输入设备角色。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Device |
+| OUTPUT_DEVICE | 2 | 输出设备角色。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Device |
 
 
 ## DeviceType
 
 枚举，设备类型。
 
-| 名称           | 默认值 | 描述                                                    |
-| -------------- | ------ | ------------------------------------------------------- |
-| INVALID        | 0      | 无效设备。                                              |
-| EARPIECE       | 1      | 听筒。                                                  |
-| SPEAKER        | 2      | 扬声器。                                                |
-| WIRED_HEADSET  | 3      | 有线耳机。                                              |
-| BLUETOOTH_SCO  | 7      | 蓝牙设备SCO连接(Synchronous Connection Oriented)。      |
-| BLUETOOTH_A2DP | 8      | 蓝牙设备A2DP连接(Advanced Audio Distribution Profile)。 |
-| MIC            | 15     | 麦克风。                                                |
+| 名称           | 默认值 | 描述                                                         |
+| -------------- | ------ | ------------------------------------------------------------ |
+| INVALID        | 0      | 无效设备。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Device |
+| EARPIECE       | 1      | 听筒。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Device |
+| SPEAKER        | 2      | 扬声器。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Device |
+| WIRED_HEADSET  | 3      | 有线耳机。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Device |
+| BLUETOOTH_SCO  | 7      | 蓝牙设备SCO连接(Synchronous Connection Oriented)。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Device |
+| BLUETOOTH_A2DP | 8      | 蓝牙设备A2DP连接(Advanced Audio Distribution Profile)。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Device |
+| MIC            | 15     | 麦克风。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Device |
 
-## ActiveDeviceType<sup>7+</sup>
+## ActiveDeviceType
 
 枚举，活跃设备类型。
 
-| 名称          | 默认值 | 描述                                               |
-| ------------- | ------ | -------------------------------------------------- |
-| SPEAKER       | 2      | 扬声器。                                           |
-| BLUETOOTH_SCO | 7      | 蓝牙设备SCO连接(Synchronous Connection Oriented)。 |
+| 名称          | 默认值 | 描述                                                         |
+| ------------- | ------ | ------------------------------------------------------------ |
+| SPEAKER       | 2      | 扬声器。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Device |
+| BLUETOOTH_SCO | 7      | 蓝牙设备SCO连接(Synchronous Connection Oriented)。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Device |
 
-## AudioRingMode<sup>7+</sup><a name="audioringmode"></a>
+## AudioRingMode<a name="audioringmode"></a>
 
 枚举，铃声模式。
 
 | 名称 | 默认值 | 描述 |
 | -------- | -------- | -------- |
-| RINGER_MODE_SILENT | 0 | 静音模式 |
-| RINGER_MODE_VIBRATE | 1 | 震动模式 |
-| RINGER_MODE_NORMAL | 2 | 响铃模式 |
+| RINGER_MODE_SILENT | 0 | 静音模式。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Communication |
+| RINGER_MODE_VIBRATE | 1 | 震动模式。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Communication |
+| RINGER_MODE_NORMAL | 2 | 响铃模式。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Communication |
 
 
 ## AudioManager
@@ -98,6 +103,8 @@ var audioManager = audio.getAudioManager();
 setVolume(volumeType: AudioVolumeType, volume: number, callback: AsyncCallback&lt;void&gt;): void
 
 设置指定流的音量，使用callback方式返回异步结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
 
 **参数：**
 
@@ -125,6 +132,8 @@ audioManager.setVolume(audio.AudioVolumeType.MEDIA, 10, (err)=>{
 setVolume(volumeType: AudioVolumeType, volume: number): Promise&lt;void&gt;
 
 设置指定流的音量，使用promise方式返回异步结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
 
 **参数：**
 
@@ -154,6 +163,8 @@ getVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;): v
 
 获取指定流的音量，使用callback方式返回异步结果。
 
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -179,6 +190,8 @@ audioManager.getVolume(audio.AudioVolumeType.MEDIA, (err, value) => {
 getVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
 
 获取指定流的音量，使用promise方式返回异步结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
 
 **参数：**
 
@@ -207,6 +220,8 @@ getMinVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;)
 
 获取指定流的最小音量，使用callback方式返回异步结果。
 
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -232,6 +247,8 @@ audioManager.getMinVolume(audio.AudioVolumeType.MEDIA, (err, value) => {
 getMinVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
 
 获取指定流的最小音量，使用promise方式返回异步结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
 
 **参数：**
 
@@ -260,6 +277,8 @@ getMaxVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;)
 
 获取指定流的最大音量，使用callback方式返回异步结果。
 
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -286,6 +305,8 @@ getMaxVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
 
 获取指定流的最大音量，使用promise方式返回异步结果。
 
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -307,11 +328,13 @@ audioManager.getMaxVolume(audio.AudioVolumeType.MEDIA).then((data)=>
 )
 ```
 
-### mute<sup>7+</sup>
+### mute
 
 mute(volumeType: AudioVolumeType, mute: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 设置指定音量流静音，使用callback方式返回异步结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
 
 **参数：**
 
@@ -334,11 +357,13 @@ audioManager.mute(audio.AudioVolumeType.MEDIA, true, (err) => {
 })
 ```
 
-### mute<sup>7+</sup>
+### mute
 
 mute(volumeType: AudioVolumeType, mute: boolean): Promise&lt;void&gt;
 
 设置指定音量流静音，使用promise方式返回异步结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
 
 **参数：**
 
@@ -364,11 +389,13 @@ audioManager.mute(audio.AudioVolumeType.MEDIA, true).then(() =>
 ```
 
 
-### isMute<sup>7+</sup>
+### isMute
 
 isMute(volumeType: AudioVolumeType, callback: AsyncCallback&lt;boolean&gt;): void
 
 获取指定音量流是否被静音，使用callback方式返回异步结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
 
 **参数：**
 
@@ -391,11 +418,13 @@ audioManager.isMute(audio.AudioVolumeType.MEDIA, (err, value) => {
 ```
 
 
-### isMute<sup>7+</sup>
+### isMute
 
 isMute(volumeType: AudioVolumeType): Promise&lt;boolean&gt;
 
 获取指定音量流是否被静音，使用promise方式返回异步结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
 
 **参数：**
 
@@ -418,11 +447,13 @@ audioManager.isMute(audio.AudioVolumeType.MEDIA).then((value) =>
 )
 ```
 
-### isActive<sup>7+</sup>
+### isActive
 
 isActive(volumeType: AudioVolumeType, callback: AsyncCallback&lt;boolean&gt;): void
 
 获取指定音量流是否为活跃状态，使用callback方式返回异步结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
 
 **参数：**
 
@@ -444,11 +475,13 @@ audioManager.isActive(audio.AudioVolumeType.MEDIA, (err, value) => {
 })
 ```
 
-### isActive<sup>7+</sup>
+### isActive
 
 isActive(volumeType: AudioVolumeType): Promise&lt;boolean&gt;
 
 获取指定音量流是否为活跃状态，使用promise方式返回异步结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
 
 **参数：**
 
@@ -471,11 +504,13 @@ audioManager.isActive(audio.AudioVolumeType.MEDIA).then((value) =>
 )
 ```
 
-### setRingerMode<sup>7+</sup>
+### setRingerMode
 
 setRingerMode(mode: AudioRingMode, callback: AsyncCallback&lt;void&gt;): void
 
 设置铃声模式，使用callback方式返回异步结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Communication
 
 **参数：**
 
@@ -497,11 +532,13 @@ audioManager.setRingerMode(audio.AudioRingMode.RINGER_MODE_NORMAL, (err) => {
 })
 ```
 
-### setRingerMode<sup>7+</sup>
+### setRingerMode
 
 setRingerMode(mode: AudioRingMode): Promise&lt;void&gt;
 
 设置铃声模式，使用promise方式返回异步结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Communication
 
 **参数：**
 
@@ -525,11 +562,13 @@ audioManager.setRingerMode(audio.AudioRingMode.RINGER_MODE_NORMAL).then(() =>
 ```
 
 
-### getRingerMode<sup>7+</sup>
+### getRingerMode
 
 getRingerMode(callback: AsyncCallback&lt;AudioRingMode&gt;): void
 
 获取铃声模式，使用callback方式返回异步结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Communication
 
 **参数：**
 
@@ -551,11 +590,13 @@ audioManager.getRingerMode((err, value) => {
 ```
 
 
-### getRingerMode<sup>7+</sup>
+### getRingerMode
 
 getRingerMode(): Promise&lt;AudioRingMode&gt;
 
 获取铃声模式，使用promise方式返回异步结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Communication
 
 **返回值：**
 
@@ -572,11 +613,13 @@ audioManager.getRingerMode().then((value) =>
 )
 ```
 
-### setAudioParameter<sup>7+</sup>
+### setAudioParameter
 
 setAudioParameter(key: string, value: string, callback: AsyncCallback&lt;void&gt;): void
 
 音频参数设置，使用callback方式返回异步结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
 
 **参数：**
 
@@ -599,11 +642,13 @@ audioManager.setAudioParameter('PBits per sample', '8 bit', (err) => {
 })
 ```
 
-### setAudioParameter<sup>7+</sup>
+### setAudioParameter
 
 setAudioParameter(key: string, value: string): Promise&lt;void&gt;
 
 音频参数设置，使用promise方式返回异步结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
 
 **参数：**
 
@@ -627,11 +672,13 @@ audioManager.setAudioParameter('PBits per sample', '8 bit').then(() =>
 )
 ```
 
-### getAudioParameter<sup>7+</sup>
+### getAudioParameter
 
 getAudioParameter(key: string, callback: AsyncCallback&lt;string&gt;): void
 
 获取指定音频参数值，使用callback方式返回异步结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
 
 **参数：**
 
@@ -653,11 +700,13 @@ audioManager.getAudioParameter('PBits per sample', (err, value) => {
 })
 ```
 
-### getAudioParameter<sup>7+</sup>
+### getAudioParameter
 
 getAudioParameter(key: string): Promise&lt;string&gt;
 
 获取指定音频参数值，使用promise方式返回异步结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
 
 **参数：**
 
@@ -686,6 +735,8 @@ getDevices(deviceFlag: DeviceFlag, callback: AsyncCallback&lt;AudioDeviceDescrip
 
 获取音频设备列表，使用callback方式返回异步结果。
 
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -711,6 +762,8 @@ audioManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (err, value)=>{
 
 获取音频设备列表，使用promise方式返回异步结果。
 
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -732,11 +785,13 @@ audioManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data)=>
 )
 ```
 
-### setDeviceActive<sup>7+</sup>
+### setDeviceActive
 
 setDeviceActive(deviceType: DeviceType, active: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 设置设备激活状态，使用callback方式返回异步结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
 
 **参数：**
 
@@ -759,11 +814,13 @@ audioManager.setDeviceActive(audio.DeviceType.SPEAKER, true, (err)=> {
 })
 ```
 
-### setDeviceActive<sup>7+</sup>
+### setDeviceActive
 
 setDeviceActive(deviceType: DeviceType, active: boolean): Promise&lt;void&gt;
 
 设置设备激活状态，使用promise方式返回异步结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
 
 **参数：**
 
@@ -788,11 +845,13 @@ audioManager.setDeviceActive(audio.DeviceType.SPEAKER, true).then(()=>
 )
 ```
 
-### isDeviceActive<sup>7+</sup>
+### isDeviceActive
 
 isDeviceActive(deviceType: DeviceType, callback: AsyncCallback&lt;boolean&gt;): void
 
 获取指定设备的激活状态，使用callback方式返回异步结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
 
 **参数：**
 
@@ -815,11 +874,13 @@ audioManager.isDeviceActive(audio.DeviceType.SPEAKER, (err, value) => {
 ```
 
 
-### isDeviceActive<sup>7+</sup>
+### isDeviceActive
 
 isDeviceActive(deviceType: DeviceType): Promise&lt;boolean&gt;
 
 获取指定设备的激活状态，使用promise方式返回异步结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
 
 **参数：**
 
@@ -842,11 +903,13 @@ audioManager.isDeviceActive(audio.DeviceType.SPEAKER).then((value) =>
 )
 ```
 
-### setMicrophoneMute<sup>7+</sup>
+### setMicrophoneMute
 
 setMicrophoneMute(mute: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 设置麦克风静音状态，使用callback方式返回异步结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
 
 **参数：**
 
@@ -868,11 +931,13 @@ audioManager.setMicrophoneMute(true, (err) => {
 })
 ```
 
-### setMicrophoneMute<sup>7+</sup>
+### setMicrophoneMute
 
 setMicrophoneMute(mute: boolean): Promise&lt;void&gt;
 
 设置麦克风静音状态，使用promise方式返回异步结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
 
 **参数：**
 
@@ -895,11 +960,13 @@ audioManager.setMicrophoneMute(true).then(() =>
 )
 ```
 
-### isMicrophoneMute<sup>7+</sup>
+### isMicrophoneMute
 
 isMicrophoneMute(callback: AsyncCallback&lt;boolean&gt;): void
 
 获取麦克风静音状态，使用callback方式返回异步结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
 
 **参数：**
 
@@ -920,11 +987,13 @@ audioManager.isMicrophoneMute((err, value) => {
 })
 ```
 
-### isMicrophoneMute<sup>7+</sup>
+### isMicrophoneMute
 
 isMicrophoneMute(): Promise&lt;boolean&gt;
 
 获取麦克风静音状态，使用promise方式返回异步结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
 
 **返回值：**
 
@@ -949,12 +1018,12 @@ audioManager.isMicrophoneMute().then((value) =>
 
 | 名称 | 参数型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| deviceRole | [DeviceRole](#devicerole) | 是 | 否 | 设备角色。 |
-| deviceType | [DeviceType](#devicetype) | 是 | 否 | 设备类型。 |
+| deviceRole | [DeviceRole](#devicerole) | 是 | 否 | 设备角色。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Device |
+| deviceType | [DeviceType](#devicetype) | 是 | 否 | 设备类型。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Device |
 
 
 ## AudioDeviceDescriptors
 
 | 名称 | 描述 |
 | -------- | -------- |
-| 设备属性数组 | AudioDeviceDescriptor的数组，只读。 |
+| 设备属性数组 | AudioDeviceDescriptor的数组，只读。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Device |

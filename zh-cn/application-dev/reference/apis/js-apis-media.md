@@ -1,5 +1,8 @@
 # 媒体服务
 
+> **说明：**
+> 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+
 媒体子系统为开发者提供一套简单且易于理解的接口，使得开发者能够方便接入系统并使用系统的媒体资源。
 
 媒体子系统包含了音视频相关媒体业务，提供以下常用功能：
@@ -23,13 +26,13 @@ createAudioPlayer(): [AudioPlayer](#audioplayer)
 
 同步方式创建音频播放实例。
 
-
+**系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
 **返回值：**
 
 | 类型                        | 说明                                                         |
 | --------------------------- | ------------------------------------------------------------ |
-| [AudioPlayer](#audioplayer) | 返回AudioPlayer类实例，失败时返回null。可用于音频播放、暂停、停止等操作。<br/> **系统能力：** SystemCapability.Multimedia.Media.AudioPlayer |
+| [AudioPlayer](#audioplayer) | 返回AudioPlayer类实例，失败时返回null。可用于音频播放、暂停、停止等操作。 |
 
 **示例：**
 
@@ -43,11 +46,13 @@ createVideoPlayer(callback: AsyncCallback\<[VideoPlayer](#videoplayer8)>): void
 
 异步方式创建视频播放实例，通过注册回调函数获取返回值。
 
+**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
+
 **参数：**
 
-| 参数名   | 类型                                        | 必填 | 说明                                                         |
-| -------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback<[VideoPlayer](#videoplayer8)> | 是   | 异步创建视频播放实例回调方法。<br/>**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer |
+| 参数名   | 类型                                        | 必填 | 说明                           |
+| -------- | ------------------------------------------- | ---- | ------------------------------ |
+| callback | AsyncCallback<[VideoPlayer](#videoplayer8)> | 是   | 异步创建视频播放实例回调方法。 |
 
 **示例：**
 
@@ -70,11 +75,13 @@ createVideoPlayer: Promise<[VideoPlayer](#videoplayer8)>
 
 异步方式创建视频播放实例，通过Promise获取返回值。
 
+**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
+
 **返回值：**
 
-| 类型                                  | 说明                                                         |
-| ------------------------------------- | ------------------------------------------------------------ |
-| Promise<[VideoPlayer](#videoplayer8)> | 异步创建视频播放实例Promise返回值。<br/>**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer |
+| 类型                                  | 说明                                |
+| ------------------------------------- | ----------------------------------- |
+| Promise<[VideoPlayer](#videoplayer8)> | 异步创建视频播放实例Promise返回值。 |
 
 **示例：**
 
@@ -104,11 +111,13 @@ createAudioRecorder(): AudioRecorder
 
 创建音频录制的实例来控制音频的录制。
 
+**系统能力：** SystemCapability.Multimedia.Media.AudioRecorder
+
 **返回值:**
 
-| 类型                            | 说明                                                         |
-| ------------------------------- | ------------------------------------------------------------ |
-| [AudioRecorder](#audiorecorder) | 返回AudioRecorder类实例，失败时返回null。<br/>**系统能力：** SystemCapability.Multimedia.Media.AudioRecorder |
+| 类型                            | 说明                                      |
+| ------------------------------- | ----------------------------------------- |
+| [AudioRecorder](#audiorecorder) | 返回AudioRecorder类实例，失败时返回null。 |
 
 **示例：**
 
@@ -122,11 +131,13 @@ createVideoRecorder(callback: AsyncCallback\<[VideoRecorder](#videorecorder8)>):
 
 异步方式创建视频录制实例。通过注册回调函数获取返回值。
 
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
+
 **参数：**
 
-| 参数名   | 类型                                            | 必填 | 说明                                                         |
-| -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback<[VideoRecorder](#videorecorder8)> | 是   | 异步创建视频录制实例回调方法。<br/>**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder |
+| 参数名   | 类型                                            | 必填 | 说明                           |
+| -------- | ----------------------------------------------- | ---- | ------------------------------ |
+| callback | AsyncCallback<[VideoRecorder](#videorecorder8)> | 是   | 异步创建视频录制实例回调方法。 |
 
 **示例：**
 
@@ -149,11 +160,13 @@ createVideoRecorder: Promise<[VideoRecorder](#videorecorder8)>
 
 异步方式创建视频录制实例。通过Promise获取返回值。
 
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
+
 **返回值：**
 
-| 类型                                      | 说明                                                         |
-| ----------------------------------------- | ------------------------------------------------------------ |
-| Promise<[VideoRecorder](#videorecorder8)> | 异步创建视频录制实例Promise返回值。<br/>**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder |
+| 类型                                      | 说明                                |
+| ----------------------------------------- | ----------------------------------- |
+| Promise<[VideoRecorder](#videorecorder8)> | 异步创建视频录制实例Promise返回值。 |
 
 **示例：**
 
@@ -181,7 +194,7 @@ await media.createVideoRecorder.then((video) => {
 
 ## MediaErrorCode<sup>8+</sup>
 
-媒体服务错误类型枚举
+媒体服务错误类型枚举。
 
 | 名称                       | 值   | 说明                                                         |
 | -------------------------- | ---- | ------------------------------------------------------------ |
@@ -198,7 +211,7 @@ await media.createVideoRecorder.then((video) => {
 
 ## MediaType<sup>8+</sup>
 
-媒体类型枚举
+媒体类型枚举。
 
 | 名称           | 值   | 说明                                                         |
 | -------------- | ---- | ------------------------------------------------------------ |
@@ -207,7 +220,7 @@ await media.createVideoRecorder.then((video) => {
 
 ## CodecMimeType<sup>8+</sup>
 
-Codec MIME类型枚举
+Codec MIME类型枚举。
 
 | 名称         | 值                | 说明                                                         |
 | ------------ | ----------------- | ------------------------------------------------------------ |
@@ -218,7 +231,7 @@ Codec MIME类型枚举
 
 ## MediaDescriptionKey<sup>8+</sup>
 
-媒体信息描述枚举
+媒体信息描述枚举。
 
 | 名称                     | 值              | 说明                                                         |
 | ------------------------ | --------------- | ------------------------------------------------------------ |
@@ -235,7 +248,7 @@ Codec MIME类型枚举
 
 ## BufferingInfoType<sup>8+</sup>
 
-缓存事件类型枚举
+缓存事件类型枚举。
 
 | 名称              | 值   | 说明                                                         |
 | ----------------- | ---- | ------------------------------------------------------------ |
@@ -254,7 +267,7 @@ Codec MIME类型枚举
 
 | 名称        | 类型                      | 可读 | 可写 | 说明                                                         |
 | ----------- | ------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| src         | string                    | 是   | 是   | 音频媒体URI，支持当前主流的音频格式(mp4、aac、mp3、ogg)。<br>**支持路径示例**：<br>1、fd类型播放：fd://xxx<br>![zh-cn_image_0000001164217678](figures/zh-cn_image_url.png)<br>2、http网络播放路径：开发中<br>3、hls网络播放路径：开发中<br>**注意事项**：<br>媒体素材需至少赋予读权限后，才可正常播放。<br/>**系统能力：** SystemCapability.Multimedia.Media.AudioPlayer |
+| src         | string                    | 是   | 是   | 音频媒体URI，支持当前主流的音频格式(mp4、aac、mp3、ogg)。<br>**支持路径示例**：<br>1、fd类型播放：fd://xxx<br>![zh-cn_image_0000001164217678](figures/zh-cn_image_url.png)<br>2、http网络播放路径：开发中<br>3、hls网络播放路径：开发中<br>**注意事项**：<br>使用媒体素材需要获取读权限，否则无法正常播放。<br/>**系统能力：** SystemCapability.Multimedia.Media.AudioPlayer |
 | loop        | boolean                   | 是   | 是   | 音频循环播放属性，设置为'true'表示循环播放。<br/>**系统能力：** SystemCapability.Multimedia.Media.AudioPlayer |
 | currentTime | number                    | 是   | 否   | 音频的当前播放位置。<br/>**系统能力：** SystemCapability.Multimedia.Media.AudioPlayer |
 | duration    | number                    | 是   | 否   | 音频时长。<br/>**系统能力：** SystemCapability.Multimedia.Media.AudioPlayer |
@@ -640,17 +653,17 @@ audioPlayer.setVolume(3);  //设置volume为无效值，触发'error'事件
 
 视频播放demo可参考：[视频播放开发指导](../../media/video-playback.md)
 
-### 属性<a name=videoplayer_属性></a><sup>8+</sup>
+### 属性<a name=videoplayer_属性></a>
 
-| 名称        | 类型                               | 可读 | 可写 | 说明                                                         |
-| ----------- | ---------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| url         | string                             | 是   | 是   | 视频媒体URL，支持当前主流的视频格式(mp4、mpeg-ts、webm、mkv)。<br>**支持路径示例**：<br>1. fd类型播放：fd://xxx<br>![zh-cn_image_0000001164217678](figures/zh-cn_image_url.png)<br>**注意事项**：<br>媒体素材需至少赋予读权限后，才可正常播放。<br/>**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer |
-| loop        | boolean                            | 是   | 是   | 视频循环播放属性，设置为'true'表示循环播放。<br/>**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer |
-| currentTime | number                             | 是   | 否   | 视频的当前播放位置。<br/>**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer |
-| duration    | number                             | 是   | 否   | 视频时长，返回-1表示直播模式。<br/>**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer |
-| state       | [VideoPlayState](#videoplaystate8) | 是   | 否   | 视频播放的状态。<br/>**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer |
-| width       | number                             | 是   | 否   | 视频宽。<br/>**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer |
-| height      | number                             | 是   | 否   | 视频高。<br/>**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer |
+| 名称                     | 类型                               | 可读 | 可写 | 说明                                                         |
+| ------------------------ | ---------------------------------- | ---- | ---- | ------------------------------------------------------------ |
+| url<sup>8+</sup>         | string                             | 是   | 是   | 视频媒体URL，支持当前主流的视频格式(mp4、mpeg-ts、webm、mkv)。<br>**支持路径示例**：<br>1. fd类型播放：fd://xxx<br>![zh-cn_image_0000001164217678](figures/zh-cn_image_url.png)<br>**注意事项**：<br>使用媒体素材需要获取读权限，否则无法正常播放。<br/>**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer |
+| loop<sup>8+</sup>        | boolean                            | 是   | 是   | 视频循环播放属性，设置为'true'表示循环播放。<br/>**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer |
+| currentTime<sup>8+</sup> | number                             | 是   | 否   | 视频的当前播放位置。<br/>**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer |
+| duration<sup>8+</sup>    | number                             | 是   | 否   | 视频时长，返回-1表示直播模式。<br/>**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer |
+| state<sup>8+</sup>       | [VideoPlayState](#videoplaystate8) | 是   | 否   | 视频播放的状态。<br/>**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer |
+| width<sup>8+</sup>       | number                             | 是   | 否   | 视频宽。<br/>**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer |
+| height<sup>8+</sup>      | number                             | 是   | 否   | 视频高。<br/>**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer |
 
 ### setDisplaySurface<sup>8+</sup>
 
@@ -1485,7 +1498,7 @@ videoPlayer.setVolume(3);  //设置volume为无效值，触发'error'事件
 
 ### [key : string] : any
 
-通过key-value方式获取媒体信息
+通过key-value方式获取媒体信息。
 
 | 名称  | 类型   | 说明                                                         |
 | ----- | ------ | ------------------------------------------------------------ |
@@ -1763,11 +1776,11 @@ audioRecorder.prepare();  												// prepare不设置参数，触发'error'�
 
 | 名称    | 默认值 | 说明                                                         |
 | ------- | ------ | ------------------------------------------------------------ |
-| DEFAULT | 0      | Default audio encoding format is AMR_NB。本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。<br/>**系统能力：** SystemCapability.Multimedia.Media.AudioRecorder |
-| AMR_NB  | 1      | AMR-NB(Adaptive Multi Rate-Narrow Band Speech Codec) 编码格式。本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。<br/>**系统能力：** SystemCapability.Multimedia.Media.AudioRecorder |
-| AMR_WB  | 2      | AMR-WB(Adaptive Multi Rate-Wide Band Speech Codec) 编码格式。本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。<br/>**系统能力：** SystemCapability.Multimedia.Media.AudioRecorder |
+| DEFAULT | 0      | Default audio encoding format is AMR_NB。<br/>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。<br/>**系统能力：** SystemCapability.Multimedia.Media.AudioRecorder |
+| AMR_NB  | 1      | AMR-NB(Adaptive Multi Rate-Narrow Band Speech Codec) 编码格式。<br/>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。<br/>**系统能力：** SystemCapability.Multimedia.Media.AudioRecorder |
+| AMR_WB  | 2      | AMR-WB(Adaptive Multi Rate-Wide Band Speech Codec) 编码格式。<br/>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。<br/>**系统能力：** SystemCapability.Multimedia.Media.AudioRecorder |
 | AAC_LC  | 3      | AAC-LC（Advanced&nbsp;Audio&nbsp;Coding&nbsp;Low&nbsp;Complexity）编码格式。<br/>**系统能力：** SystemCapability.Multimedia.Media.AudioRecorder |
-| HE_AAC  | 4      | HE_AAC（High-Efficiency Advanced&nbsp;Audio&nbsp;Coding）编码格式。本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。<br/>**系统能力：** SystemCapability.Multimedia.Media.AudioRecorder |
+| HE_AAC  | 4      | HE_AAC（High-Efficiency Advanced&nbsp;Audio&nbsp;Coding）编码格式。<br/>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。<br/>**系统能力：** SystemCapability.Multimedia.Media.AudioRecorder |
 
 
 ## AudioOutputFormat
@@ -1776,10 +1789,10 @@ audioRecorder.prepare();  												// prepare不设置参数，触发'error'�
 
 | 名称     | 默认值 | 说明                                                         |
 | -------- | ------ | ------------------------------------------------------------ |
-| DEFAULT  | 0      | 默认封装格式为MPEG-4。本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。<br/>**系统能力：** SystemCapability.Multimedia.Media.AudioRecorder |
+| DEFAULT  | 0      | 默认封装格式为MPEG-4。<br/>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。<br/>**系统能力：** SystemCapability.Multimedia.Media.AudioRecorder |
 | MPEG_4   | 2      | 封装为MPEG-4格式。<br/>**系统能力：** SystemCapability.Multimedia.Media.AudioRecorder |
-| AMR_NB   | 3      | 封装为AMR_NB格式。本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。<br/>**系统能力：** SystemCapability.Multimedia.Media.AudioRecorder |
-| AMR_WB   | 4      | 封装为AMR_WB格式。本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。<br/>**系统能力：** SystemCapability.Multimedia.Media.AudioRecorder |
+| AMR_NB   | 3      | 封装为AMR_NB格式。<br/>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。<br/>**系统能力：** SystemCapability.Multimedia.Media.AudioRecorder |
+| AMR_WB   | 4      | 封装为AMR_WB格式。<br/>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。<br/>**系统能力：** SystemCapability.Multimedia.Media.AudioRecorder |
 | AAC_ADTS | 6      | 封装为ADTS（Audio&nbsp;Data&nbsp;Transport&nbsp;Stream）格式，是AAC音频的传输流格式。<br/>**系统能力：** SystemCapability.Multimedia.Media.AudioRecorder |
 
 ## VideoRecorder<sup>8+</sup>
@@ -1790,11 +1803,11 @@ audioRecorder.prepare();  												// prepare不设置参数，触发'error'�
 
 ### 属性
 
-| 名称  | 类型                                  | 可读 | 可写 | 说明             |
-| ----- | ------------------------------------- | ---- | ---- | ---------------- |
-| state | [VideoRecordState](#videorecordstate) | 是   | 否   | 视频录制的状态。 |
+| 名称               | 类型                                  | 可读 | 可写 | 说明             |
+| ------------------ | ------------------------------------- | ---- | ---- | ---------------- |
+| state<sup>8+</sup> | [VideoRecordState](#videorecordstate) | 是   | 否   | 视频录制的状态。 |
 
-### prepare<a name=videorecorder_prepare1></a>
+### prepare<sup>8+</sup><a name=videorecorder_prepare1></a>
 
 prepare(config: VideoRecorderConfig, callback: AsyncCallback\<void>): void;
 
@@ -1862,7 +1875,7 @@ media.createVideoRecorder((err, recorder) => {
 });
 ```
 
-### prepare<a name=videorecorder_prepare2></a>
+### prepare<sup>8+</sup><a name=videorecorder_prepare2></a>
 
 prepare(config: VideoRecorderConfig): Promise\<void>;
 
@@ -1933,7 +1946,7 @@ await videoRecorder.prepare(videoConfig).then(() => {
 });
 ```
 
-### getInputSurface
+### getInputSurface<sup>8+</sup>
 
 getInputSurface(callback: AsyncCallback\<string>): void;
 
@@ -1966,7 +1979,7 @@ videoRecorder.getInputSurface((err, surfaceId) => {
 });
 ```
 
-### getInputSurface
+### getInputSurface<sup>8+</sup>
 
 getInputSurface(): Promise\<string>;
 
@@ -1999,13 +2012,13 @@ await videoRecorder.getInputSurface().then((surfaceId) => {
 });
 ```
 
-### start<a name=videorecorder_start1></a>
+### start<sup>8+</sup><a name=videorecorder_start1></a>
 
 start(callback: AsyncCallback\<void>): void;
 
 异步方式开始视频录制。通过注册回调函数获取返回值。
 
-在[prepare()](#videorecorder_prepare1)和[getInputSurface()](#getinputsurface)后调用，需要依赖数据源先给surface传递数据。
+在[prepare()](#videorecorder_prepare1)和[getInputSurface()](#getinputsurface8)后调用，需要依赖数据源先给surface传递数据。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -2028,13 +2041,13 @@ videoRecorder.start((err) => {
 });
 ```
 
-### start<a name=videorecorder_start2></a>
+### start<sup>8+</sup><a name=videorecorder_start2></a>
 
 start(): Promise\<void>;
 
 异步方式开始视频录制。通过Promise获取返回值。
 
-在[prepare()](#videorecorder_prepare1)和[getInputSurface()](#getinputsurface)后调用，需要依赖数据源先给surface传递数据。
+在[prepare()](#videorecorder_prepare1)和[getInputSurface()](#getinputsurface8)后调用，需要依赖数据源先给surface传递数据。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -2057,7 +2070,7 @@ await videoRecorder.start().then(() => {
 });
 ```
 
-### pause<a name=videorecorder_pause1></a>
+### pause<sup>8+</sup><a name=videorecorder_pause1></a>
 
 pause(callback: AsyncCallback\<void>): void;
 
@@ -2086,7 +2099,7 @@ videoRecorder.pause((err) => {
 });
 ```
 
-### pause<a name=videorecorder_pause2></a>
+### pause<sup>8+</sup><a name=videorecorder_pause2></a>
 
 pause(): Promise\<void>;
 
@@ -2115,7 +2128,7 @@ await videoRecorder.pause().then(() => {
 });
 ```
 
-### resume<a name=videorecorder_resume1></a>
+### resume<sup>8+</sup><a name=videorecorder_resume1></a>
 
 resume(callback: AsyncCallback\<void>): void;
 
@@ -2142,7 +2155,7 @@ videoRecorder.resume((err) => {
 });
 ```
 
-### resume<a name=videorecorder_resume2></a>
+### resume<sup>8+</sup><a name=videorecorder_resume2></a>
 
 resume(): Promise\<void>;
 
@@ -2169,13 +2182,13 @@ await videoRecorder.resume().then(() => {
 });
 ```
 
-### stop<a name=videorecorder_stop1></a>
+### stop<sup>8+</sup><a name=videorecorder_stop1></a>
 
 stop(callback: AsyncCallback\<void>): void;
 
 异步方式停止视频录制。通过注册回调函数获取返回值。
 
-需要重新调用[prepare()](#videorecorder_prepare1)和[getInputSurface()](#getinputsurface)接口才能重新录制。
+需要重新调用[prepare()](#videorecorder_prepare1)和[getInputSurface()](#getinputsurface8)接口才能重新录制。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -2198,13 +2211,13 @@ videoRecorder.stop((err) => {
 });
 ```
 
-### stop<a name=videorecorder_stop2></a>
+### stop<sup>8+</sup><a name=videorecorder_stop2></a>
 
 stop(): Promise\<void>;
 
 异步方式停止视频录制。通过Promise获取返回值。
 
-需要重新调用[prepare()](#videorecorder_prepare1)和[getInputSurface()](#getinputsurface)接口才能重新录制。
+需要重新调用[prepare()](#videorecorder_prepare1)和[getInputSurface()](#getinputsurface8)接口才能重新录制。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -2227,7 +2240,7 @@ await videoRecorder.stop().then(() => {
 });
 ```
 
-### release<a name=videorecorder_release1></a>
+### release<sup>8+</sup><a name=videorecorder_release1></a>
 
 release(callback: AsyncCallback\<void>): void;
 
@@ -2254,7 +2267,7 @@ videoRecorder.release((err) => {
 });
 ```
 
-### release<a name=videorecorder_release2></a>
+### release<sup>8+</sup><a name=videorecorder_release2></a>
 
 release(): Promise\<void>;
 
@@ -2281,13 +2294,13 @@ await videoRecorder.release().then(() => {
 });
 ```
 
-### reset<a name=videorecorder_reset1></a>
+### reset<sup>8+</sup><a name=videorecorder_reset1></a>
 
 reset(callback: AsyncCallback\<void>): void;
 
 异步方式重置视频录制。通过注册回调函数获取返回值。
 
-需要重新调用[prepare()](#videorecorder_prepare1)和[getInputSurface()](#getinputsurface)接口才能重新录制。
+需要重新调用[prepare()](#videorecorder_prepare1)和[getInputSurface()](#getinputsurface8)接口才能重新录制。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -2310,13 +2323,13 @@ videoRecorder.reset((err) => {
 });
 ```
 
-### reset<a name=videorecorder_reset2></a>
+### reset<sup>8+</sup><a name=videorecorder_reset2></a>
 
 reset(): Promise\<void>;
 
 异步方式重置视频录制。通过Promise获取返回值。
 
-需要重新调用[prepare()](#videorecorder_prepare1)和[getInputSurface()](#getinputsurface)接口才能重新录制。
+需要重新调用[prepare()](#videorecorder_prepare1)和[getInputSurface()](#getinputsurface8)接口才能重新录制。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -2339,7 +2352,7 @@ await videoRecorder.reset().then(() => {
 });
 ```
 
-### on('error')
+### on('error')<sup>8+</sup>
 
 on(type: 'error', callback: ErrorCallback): void
 
@@ -2430,8 +2443,8 @@ videoRecorder.on('error', (error) => {      							// 设置'error'事件回调
 
 | 名称        | 值    | 说明                                                         |
 | ----------- | ----- | ------------------------------------------------------------ |
-| CFT_MPEG_4  | "mp4" | 视频的容器格式，MP4。<br/>**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder |
-| CFT_MPEG_4A | "m4a" | 音频的容器格式，M4A。<br/>**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder |
+| CFT_MPEG_4  | "mp4" | 视频的容器格式，MP4。<br/>**系统能力：** SystemCapability.Multimedia.Media.Core |
+| CFT_MPEG_4A | "m4a" | 音频的容器格式，M4A。<br/>**系统能力：** SystemCapability.Multimedia.Media.Core |
 
 ## Location<sup>8+</sup>
 
