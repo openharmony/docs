@@ -722,13 +722,13 @@
 
 ——>——>——>——>——> [KWS Configuration File](device-dev/subsystems/subsys-aiframework-demo-conf.md)
 
-——>——>——> [Sensors](device-dev/subsystems/subsys-sensor.md)
+——>——>——> [Sensor](device-dev/subsystems/subsys-sensor.md)
 
-——>——>——>——> [Sensors Overview](device-dev/subsystems/subsys-sensor-overview.md)
+——>——>——>——> [Sensor Overview](device-dev/subsystems/subsys-sensor-overview.md)
 
-——>——>——>——> [Sensors Usage Guidelines](device-dev/subsystems/subsys-sensor-guide.md)
+——>——>——>——> [Sensor Usage Guidelines](device-dev/subsystems/subsys-sensor-guide.md)
 
-——>——>——>——> [Sensors Usage Example](device-dev/subsystems/subsys-sensor-demo.md)
+——>——>——>——> [Sensor Usage Example](device-dev/subsystems/subsys-sensor-demo.md)
 
 ——>——>——> [Application Framework](device-dev/subsystems/subsys-application-framework.md)
 
