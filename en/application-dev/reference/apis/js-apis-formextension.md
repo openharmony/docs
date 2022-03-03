@@ -1,6 +1,6 @@
 # FormExtension
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **Note:**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 Provides **FormExtension** APIs.
@@ -42,14 +42,16 @@ Called to notify the widget provider that a **Form** instance (widget) has been 
 - Example
 
   ```
-  onCreate(want) {
-      console.log('FormExtension onCreate, want:' + want.abilityName);
-      let dataObj1 = {
-          temperature:"11c",
-          "time":"11:00"
-      };
-      let obj1 = formBindingData.createFormBindingData(dataObj1);
-      return obj1;
+  export default class MyFormExtension extends FormExtension {
+      onCreate(want) {
+          console.log('FormExtension onCreate, want:' + want.abilityName);
+          let dataObj1 = {
+              temperature:"11c",
+              "time":"11:00"
+          };
+          let obj1 = formBindingData.createFormBindingData(dataObj1);
+          return obj1;
+      }
   }
   ```
 
@@ -68,8 +70,10 @@ Called to notify the widget provider that a temporary widget has been converted 
 - Example
 
   ```
-  onCastToNormal(formId) {
-      console.log('FormExtension onCastToNormal, formId:' + formId);
+  export default class MyFormExtension extends FormExtension {
+      onCastToNormal(formId) {
+          console.log('FormExtension onCastToNormal, formId:' + formId);
+      }
   }
   ```
 
@@ -88,14 +92,16 @@ Called to notify the widget provider that a widget has been updated. After obtai
 - Example
 
   ```
-  onUpdate(formId) {
-      console.log('FormExtension onUpdate, formId:' + formId);
-      let obj2 = formBindingData.createFormBindingData({temperature:"22c", time:"22:00"});
-      this.context.updateForm(formId, obj2)
-          .then((data)=>{
-              console.log('FormExtension context updateForm, data:' + data);
-          }).catch((error) => {
-          console.error('Operation updateForm failed. Cause: ' + error);});
+  export default class MyFormExtension extends FormExtension {
+      onUpdate(formId) {
+          console.log('FormExtension onUpdate, formId:' + formId);
+          let obj2 = formBindingData.createFormBindingData({temperature:"22c", time:"22:00"});
+          this.context.updateForm(formId, obj2)
+              .then((data)=>{
+                  console.log('FormExtension context updateForm, data:' + data);
+              }).catch((error) => {
+              console.error('Operation updateForm failed. Cause: ' + error);});
+      }
   }
   ```
 
@@ -114,17 +120,19 @@ Called to notify the widget provider of the change of visibility.
 - Example
 
   ```
-  onVisibilityChange(newStatus) {
-      console.log('FormExtension onVisibilityChange, newStatus:' + newStatus);
-      let obj2 = formBindingData.createFormBindingData({temperature:"22c", time:"22:00"});
-
-      for (let key in newStatus) {
-          console.log('FormExtension onVisibilityChange, key:' + key + ", value=" + newStatus[key]);
-          this.context.updateForm(key, obj2)
-              .then((data)=>{
-                  console.log('FormExtension context updateForm, data:' + data);
-              }).catch((error) => {
-              console.error('Operation updateForm failed. Cause: ' + error);});
+  export default class MyFormExtension extends FormExtension {
+      onVisibilityChange(newStatus) {
+          console.log('FormExtension onVisibilityChange, newStatus:' + newStatus);
+          let obj2 = formBindingData.createFormBindingData({temperature:"22c", time:"22:00"});
+  
+          for (let key in newStatus) {
+              console.log('FormExtension onVisibilityChange, key:' + key + ", value=" + newStatus[key]);
+              this.context.updateForm(key, obj2)
+                  .then((data)=>{
+                      console.log('FormExtension context updateForm, data:' + data);
+                  }).catch((error) => {
+                  console.error('Operation updateForm failed. Cause: ' + error);});
+          }
       }
   }
   ```
@@ -145,8 +153,10 @@ Called to instruct the widget provider to receive and process the widget event.
 - Example
 
   ```
-  onEvent(formId, message) {
-      console.log('FormExtension onEvent, formId:' + formId + ", message:" + message);
+  export default class MyFormExtension extends FormExtension {
+      onEvent(formId, message) {
+          console.log('FormExtension onEvent, formId:' + formId + ", message:" + message);
+      }
   }
   ```
 
@@ -165,7 +175,9 @@ Called to notify the widget provider that a **Form** instance (widget) has been 
 - Example
 
   ```
-  onDestroy(formId) {
-      console.log('FormExtension onDestroy, formId:' + formId);
+  export default class MyFormExtension extends FormExtension {
+      onDestroy(formId) {
+          console.log('FormExtension onDestroy, formId:' + formId);
+      }
   }
   ```
