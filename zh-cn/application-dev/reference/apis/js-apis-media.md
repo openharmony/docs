@@ -1464,12 +1464,10 @@ videoPlayer.setVolume(3);  //设置volume为无效值，触发'error'事件
 
 视频播放的Seek模式枚举，可通过seek方法作为参数传递下去。
 
-| 名称              | 值   | 描述                                                         |
-| ----------------- | ---- | ------------------------------------------------------------ |
-| SEEK_NEXT_SYNC    | 0    | 表示跳转到指定时间点的下一个关键帧，建议向后快进的时候用这个枚举值。<br/>**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer |
-| SEEK_PREV_SYNC    | 1    | 表示跳转到指定时间点的上一个关键帧，建议向前快进的时候用这个枚举值。<br/>**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer |
-| SEEK_CLOSEST_SYNC | 2    | 表示跳转到指定时间点最近的关键帧。<br/>**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer |
-| SEEK_CLOSEST      | 3    | 表示精确跳转到指定时间点。<br/>**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer |
+| 名称           | 值   | 描述                                                         |
+| -------------- | ---- | ------------------------------------------------------------ |
+| SEEK_NEXT_SYNC | 0    | 表示跳转到指定时间点的下一个关键帧，建议向后快进的时候用这个枚举值。<br/>**系统能力：** SystemCapability.Multimedia.Media.Core |
+| SEEK_PREV_SYNC | 1    | 表示跳转到指定时间点的上一个关键帧，建议向前快进的时候用这个枚举值。<br/>**系统能力：** SystemCapability.Multimedia.Media.Core |
 
 ## PlaybackSpeed<sup>8+</sup>
 
