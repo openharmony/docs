@@ -19,7 +19,7 @@
     -   [Media](js-apis-media.md)
 -   Security
     - [User Authentication](js-apis-useriam-userauth.md)
-	- [Access Control](js-apis-abilityAccessCtrl.md)
+    - [Access Control](js-apis-abilityAccessCtrl.md)
 -   Data Management
     -   [File Management](js-apis-fileio.md)
     -   [Lightweight Storage](js-apis-data-storage.md)
@@ -27,8 +27,16 @@
     -   [Relational Database](js-apis-data-rdb.md)
     -   [Result Set](js-apis-data-resultset.md)
     -   [DataAbilityPredicates](js-apis-data-ability.md)
+- File Management
+    - [File Management](js-apis-fileio.md)
+    - [Statfs](js-apis-statfs.md)
+    - [Environment](js-apis-environment.md)
+    - [Public File Access and Management](js-apis-filemanager.md)
+    - [App Storage Statistics](js-apis-storage-statistics.md)
+    - [Volume Management](js-apis-volumemanager.md)
 -   Account Management
     -   [Distributed Account Management](js-apis-distributed-account.md)
+    -   [App Account Management](js-apis-appAccount.md)
 -   Telephony Service
     -   [Call](js-apis-call.md)
     -   [SMS](js-apis-sms.md)
@@ -38,7 +46,7 @@
     -   [WLAN](js-apis-wifi.md)  
 -   Device Management
     -   [Sensors](js-apis-sensor.md)
-    -   [Vibration](js-apis-vibrator.md)
+    -   [Vibrator](js-apis-vibrator.md)
     -   [Brightness](js-apis-brightness.md)
     -   [Battery Info](js-apis-battery-info.md)
     -   [Power Management](js-apis-power.md)
