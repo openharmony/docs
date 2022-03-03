@@ -7,3 +7,5 @@
 
 - **[Linux内核编译与构建指导](kernel-standard-build.md)**
 
+- **[内核增强特性](kernel-standard-enhanced-features.md)**
+
