@@ -1,9 +1,9 @@
-# Sensors<a name="EN-US_TOPIC_0000001111039534"></a>
+# Sensor<a name="EN-US_TOPIC_0000001111039534"></a>
 
--   **[Sensors Overview](subsys-sensor-overview.md)**  
+-   **[Sensor Overview](subsys-sensor-overview.md)**  
 
--   **[Sensors Usage Guidelines](subsys-sensor-guide.md)**  
+-   **[Sensor Usage Guidelines](subsys-sensor-guide.md)**  
 
--   **[Sensors Usage Example](subsys-sensor-demo.md)**  
+-   **[Sensor Usage Example](subsys-sensor-demo.md)**  
 
 

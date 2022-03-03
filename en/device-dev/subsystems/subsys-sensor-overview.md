@@ -1,4 +1,4 @@
-# Sensors Overview<a name="EN-US_TOPIC_0000001092893507"></a>
+# Sensor Overview<a name="EN-US_TOPIC_0000001092893507"></a>
 
 ## Introduction<a name="section667413271505"></a>
 

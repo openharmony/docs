@@ -1,4 +1,4 @@
-# DHiSysEvent Development<a name="EN-US_TOPIC_0000001195021448"></a>
+# HiSysEvent Development<a name="EN-US_TOPIC_0000001195021448"></a>
 
 -   **[HiSysEvent Logging Configuration](subsys-dfx-hisysevent-logging-config.md)**
 
