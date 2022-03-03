@@ -1,708 +1,166 @@
-# picker<a name="ZH-CN_TOPIC_0000001173324637"></a>
+# picker
+
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 从API version 4开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 滑动选择器组件，类型支持普通选择器、日期选择器、时间选择器、时间日期选择器和多列文本选择器。
 
-## 权限列表<a name="section11257113618419"></a>
+
+## 权限列表
 
 无
 
-## 子组件<a name="section9288143101012"></a>
+
+## 子组件
 
 不支持。
 
-## 属性<a name="section2907183951110"></a>
 
-除支持[通用属性](js-components-common-attributes.md)外，还支持如下属性：↵
+## 属性
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="23.119999999999997%" id="mcps1.1.6.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="23.119999999999997%" id="mcps1.1.6.1.2"><p>类型</p>
-</th>
-<th class="cellrowborder" valign="top" width="10.48%" id="mcps1.1.6.1.3"><p>默认值</p>
-</th>
-<th class="cellrowborder" valign="top" width="7.46%" id="mcps1.1.6.1.4"><p>必填</p>
-</th>
-<th class="cellrowborder" valign="top" width="35.82%" id="mcps1.1.6.1.5"><p>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p>type</p>
-</td>
-<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p>string</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.46%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="35.82%" headers="mcps1.1.6.1.5 "><p>该属性值不支持动态修改。可选择项有：</p>
-<ul><li>text：文本选择器。</li><li>date：日期选择器。</li><li>time：时间选择器。</li><li>datetime：日期时间选择器。</li><li>multi-text：多列文本选择器。</li></ul>
-</td>
-</tr>
-</tbody>
-</table>
+除支持[通用属性](../arkui-js/js-components-common-attributes.md)外，还支持如下属性：↵
 
-### 普通选择器<a name="section28061337142416"></a>
+| 名称 | 类型 | 默认值 | 必填 | 描述 |
+| -------- | -------- | -------- | -------- | -------- |
+| type | string | - | 否 | 该属性值不支持动态修改。可选择项有：<br/>-&nbsp;text：文本选择器。<br/>-&nbsp;date：日期选择器。<br/>-&nbsp;time：时间选择器。<br/>-&nbsp;datetime：日期时间选择器。<br/>-&nbsp;multi-text：多列文本选择器。 |
+
+
+### 普通选择器
 
 滑动选择器类型设置为text时表示普通选择器。
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="24.000000000000004%" id="mcps1.1.6.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="10.810000000000002%" id="mcps1.1.6.1.2"><p>类型</p>
-</th>
-<th class="cellrowborder" valign="top" width="8.63%" id="mcps1.1.6.1.3"><p>默认值</p>
-</th>
-<th class="cellrowborder" valign="top" width="7.850000000000001%" id="mcps1.1.6.1.4"><p>必填</p>
-</th>
-<th class="cellrowborder" valign="top" width="48.71%" id="mcps1.1.6.1.5"><p>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="24.000000000000004%" headers="mcps1.1.6.1.1 "><p>range</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.810000000000002%" headers="mcps1.1.6.1.2 "><p>Array</p>
-</td>
-<td class="cellrowborder" valign="top" width="8.63%" headers="mcps1.1.6.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.850000000000001%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="48.71%" headers="mcps1.1.6.1.5 "><p>设置普通选择器的取值范围，如["15", "20", "25"]。</p>
-<div class="note"><span class="notetitle"> 说明： </span><div class="notebody"><p>使用时需要使用数据绑定的方式，如range = {{data}}，js中声明相应变量：data：["15", "20", "25"]。</p>
-</div></div>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="24.000000000000004%" headers="mcps1.1.6.1.1 "><p>selected</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.810000000000002%" headers="mcps1.1.6.1.2 "><p>string</p>
-</td>
-<td class="cellrowborder" valign="top" width="8.63%" headers="mcps1.1.6.1.3 "><p>0</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.850000000000001%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="48.71%" headers="mcps1.1.6.1.5 "><p>设置普通选择器弹窗的默认取值，取值需要是 range 的索引值，该取值表示选择器弹窗界面的默认选择值。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="24.000000000000004%" headers="mcps1.1.6.1.1 "><p>value</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.810000000000002%" headers="mcps1.1.6.1.2 "><p>string</p>
-</td>
-<td class="cellrowborder" valign="top" width="8.63%" headers="mcps1.1.6.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.850000000000001%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="48.71%" headers="mcps1.1.6.1.5 "><p>设置普通选择器的值。</p>
-</td>
-</tr>
-</tbody>
-</table>
+| 名称 | 类型 | 默认值 | 必填 | 描述 |
+| -------- | -------- | -------- | -------- | -------- |
+| range | Array | - | 否 | 设置普通选择器的取值范围，如["15",&nbsp;"20",&nbsp;"25"]。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;使用时需要使用数据绑定的方式，如range&nbsp;=&nbsp;{{data}}，js中声明相应变量：data：["15",&nbsp;"20",&nbsp;"25"]。 |
+| selected | string | 0 | 否 | 设置普通选择器弹窗的默认取值，取值需要是&nbsp;range&nbsp;的索引值，该取值表示选择器弹窗界面的默认选择值。 |
+| value | string | - | 否 | 设置普通选择器的值。 |
 
-### 日期选择器<a name="section194021642517"></a>
+
+### 日期选择器
 
 滑动选择器类型设置为date时表示日期选择器。
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="24.000000000000004%" id="mcps1.1.6.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="10.810000000000002%" id="mcps1.1.6.1.2"><p>类型</p>
-</th>
-<th class="cellrowborder" valign="top" width="8.63%" id="mcps1.1.6.1.3"><p>默认值</p>
-</th>
-<th class="cellrowborder" valign="top" width="7.15%" id="mcps1.1.6.1.4"><p>必填</p>
-</th>
-<th class="cellrowborder" valign="top" width="49.410000000000004%" id="mcps1.1.6.1.5"><p>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="24.000000000000004%" headers="mcps1.1.6.1.1 "><p>start</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.810000000000002%" headers="mcps1.1.6.1.2 "><p>&lt;time&gt;</p>
-</td>
-<td class="cellrowborder" valign="top" width="8.63%" headers="mcps1.1.6.1.3 "><p>1970-1-1</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.15%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="49.410000000000004%" headers="mcps1.1.6.1.5 "><p>设置日期选择器的起始时间，格式为 YYYY-MM-DD。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="24.000000000000004%" headers="mcps1.1.6.1.1 "><p>end</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.810000000000002%" headers="mcps1.1.6.1.2 "><p>&lt;time&gt;</p>
-</td>
-<td class="cellrowborder" valign="top" width="8.63%" headers="mcps1.1.6.1.3 "><p>2100-12-31</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.15%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="49.410000000000004%" headers="mcps1.1.6.1.5 "><p>设置日期选择器的结束时间，格式为 YYYY-MM-DD。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="24.000000000000004%" headers="mcps1.1.6.1.1 "><p>selected</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.810000000000002%" headers="mcps1.1.6.1.2 "><p>string</p>
-</td>
-<td class="cellrowborder" valign="top" width="8.63%" headers="mcps1.1.6.1.3 "><p>当前日期</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.15%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="49.410000000000004%" headers="mcps1.1.6.1.5 "><p>设置日期选择器弹窗的默认取值，格式为 YYYY-MM-DD，该取值表示选择器弹窗界面的默认选择值。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="24.000000000000004%" headers="mcps1.1.6.1.1 "><p>value</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.810000000000002%" headers="mcps1.1.6.1.2 "><p>string</p>
-</td>
-<td class="cellrowborder" valign="top" width="8.63%" headers="mcps1.1.6.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.15%" headers="mcps1.1.6.1.4 "><p>是</p>
-</td>
-<td class="cellrowborder" valign="top" width="49.410000000000004%" headers="mcps1.1.6.1.5 "><p>设置日期选择器的值。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="24.000000000000004%" headers="mcps1.1.6.1.1 "><p>lunar<sup>5+</sup></p>
-</td>
-<td class="cellrowborder" valign="top" width="10.810000000000002%" headers="mcps1.1.6.1.2 "><p>boolean</p>
-</td>
-<td class="cellrowborder" valign="top" width="8.63%" headers="mcps1.1.6.1.3 "><p>false</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.15%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="49.410000000000004%" headers="mcps1.1.6.1.5 "><p>设置日期选择器弹窗界面是否为农历展示。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="24.000000000000004%" headers="mcps1.1.6.1.1 "><p>lunarswitch</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.810000000000002%" headers="mcps1.1.6.1.2 "><p>boolean</p>
-</td>
-<td class="cellrowborder" valign="top" width="8.63%" headers="mcps1.1.6.1.3 "><p>false</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.15%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="49.410000000000004%" headers="mcps1.1.6.1.5 "><p>设置日期选择器是否显示农历开关。当值为true时，显示农历开关，点击农历开关可切换公历和农历。当值为false时，不显示农历开关。</p>
-<div class="note"><span class="notetitle"> 说明： </span><div class="notebody"><p>仅手机和平板设备支持。 当lunarswitch=true且lunar=true时，开关按钮处于被选中状态。</p>
-</div></div>
-</td>
-</tr>
-</tbody>
-</table>
+| 名称 | 类型 | 默认值 | 必填 | 描述 |
+| -------- | -------- | -------- | -------- | -------- |
+| start | &lt;time&gt; | 1970-1-1 | 否 | 设置日期选择器的起始时间，格式为&nbsp;YYYY-MM-DD。 |
+| end | &lt;time&gt; | 2100-12-31 | 否 | 设置日期选择器的结束时间，格式为&nbsp;YYYY-MM-DD。 |
+| selected | string | 当前日期 | 否 | 设置日期选择器弹窗的默认取值，格式为&nbsp;YYYY-MM-DD，该取值表示选择器弹窗界面的默认选择值。 |
+| value | string | - | 是 | 设置日期选择器的值。 |
+| lunar<sup>5+</sup> | boolean | false | 否 | 设置日期选择器弹窗界面是否为农历展示。 |
+| lunarswitch | boolean | false | 否 | 设置日期选择器是否显示农历开关。当值为true时，显示农历开关，点击农历开关可切换公历和农历。当值为false时，不显示农历开关。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;仅手机和平板设备支持。&nbsp;当lunarswitch=true且lunar=true时，开关按钮处于被选中状态。 |
 
-### 时间选择器<a name="section14386134222510"></a>
+
+### 时间选择器
 
 滑动选择器类型设置为time时表示时间选择器。
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="24.000000000000004%" id="mcps1.1.6.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="10.810000000000002%" id="mcps1.1.6.1.2"><p>类型</p>
-</th>
-<th class="cellrowborder" valign="top" width="8.63%" id="mcps1.1.6.1.3"><p>默认值</p>
-</th>
-<th class="cellrowborder" valign="top" width="7.15%" id="mcps1.1.6.1.4"><p>必填</p>
-</th>
-<th class="cellrowborder" valign="top" width="49.410000000000004%" id="mcps1.1.6.1.5"><p>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="24.000000000000004%" headers="mcps1.1.6.1.1 "><p>containsecond</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.810000000000002%" headers="mcps1.1.6.1.2 "><p>boolean</p>
-</td>
-<td class="cellrowborder" valign="top" width="8.63%" headers="mcps1.1.6.1.3 "><p>false</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.15%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="49.410000000000004%" headers="mcps1.1.6.1.5 "><p>设置时间选择器是否包含秒。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="24.000000000000004%" headers="mcps1.1.6.1.1 "><p>selected</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.810000000000002%" headers="mcps1.1.6.1.2 "><p>string</p>
-</td>
-<td class="cellrowborder" valign="top" width="8.63%" headers="mcps1.1.6.1.3 "><p>当前时间</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.15%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="49.410000000000004%" headers="mcps1.1.6.1.5 "><p>设置时间选择器弹窗的默认取值，格式为 HH:mm；当包含秒时，格式为HH:mm:ss，</p>
-<p>该取值表示选择器弹窗界面的默认选择值。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="24.000000000000004%" headers="mcps1.1.6.1.1 "><p>value</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.810000000000002%" headers="mcps1.1.6.1.2 "><p>string</p>
-</td>
-<td class="cellrowborder" valign="top" width="8.63%" headers="mcps1.1.6.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.15%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="49.410000000000004%" headers="mcps1.1.6.1.5 "><p>设置时间选择器的值。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="24.000000000000004%" headers="mcps1.1.6.1.1 "><p>hours</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.810000000000002%" headers="mcps1.1.6.1.2 "><p>number</p>
-</td>
-<td class="cellrowborder" valign="top" width="8.63%" headers="mcps1.1.6.1.3 "><p>24<sup>1-4</sup></p>
-<p>-<sup><span>5+</span></sup></p>
-</td>
-<td class="cellrowborder" valign="top" width="7.15%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="49.410000000000004%" headers="mcps1.1.6.1.5 "><p>设置时间选择器采用的时间格式，可选值：</p>
-<ul><li>12：按照12小时制显示，用上午和下午进行区分；</li><li>24：按照24小时制显示。<div class="note"><span class="notetitle"> 说明： </span><div class="notebody"><p>默认值会依据系统当前所选地区和语言选择当地习惯的小时制(12小时制或24小时制)。<sup><span>5+</span></sup></p>
-</div></div>
-</li></ul>
-</td>
-</tr>
-</tbody>
-</table>
+| 名称 | 类型 | 默认值 | 必填 | 描述 |
+| -------- | -------- | -------- | -------- | -------- |
+| containsecond | boolean | false | 否 | 设置时间选择器是否包含秒。 |
+| selected | string | 当前时间 | 否 | 设置时间选择器弹窗的默认取值，格式为&nbsp;HH:mm；当包含秒时，格式为HH:mm:ss，<br/>该取值表示选择器弹窗界面的默认选择值。 |
+| value | string | - | 否 | 设置时间选择器的值。 |
+| hours | number | 24<sup>1-4</sup><br/>-<sup>5+</sup> | 否 | 设置时间选择器采用的时间格式，可选值：<br/>-&nbsp;12：按照12小时制显示，用上午和下午进行区分；<br/>-&nbsp;24：按照24小时制显示。<br/>&nbsp;&nbsp;>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>&nbsp;&nbsp;>&nbsp;默认值会依据系统当前所选地区和语言选择当地习惯的小时制(12小时制或24小时制)。<sup>5+</sup> |
 
-### 日期时间选择器<a name="section10180192513261"></a>
+
+### 日期时间选择器
 
 滑动选择器类型设置为datetime时表示日期时间选择器，日期的选择范围为本年的日月。
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="23.98%" id="mcps1.1.6.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="10.83%" id="mcps1.1.6.1.2"><p>类型</p>
-</th>
-<th class="cellrowborder" valign="top" width="8.63%" id="mcps1.1.6.1.3"><p>默认值</p>
-</th>
-<th class="cellrowborder" valign="top" width="7.1499999999999995%" id="mcps1.1.6.1.4"><p>必填</p>
-</th>
-<th class="cellrowborder" valign="top" width="49.41%" id="mcps1.1.6.1.5"><p>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="23.98%" headers="mcps1.1.6.1.1 "><p>selected</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.83%" headers="mcps1.1.6.1.2 "><p>string</p>
-</td>
-<td class="cellrowborder" valign="top" width="8.63%" headers="mcps1.1.6.1.3 "><p>当前日期时间</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.1499999999999995%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="49.41%" headers="mcps1.1.6.1.5 "><p>设置日期时间选择器弹窗的默认取值，有两种可选格式。</p>
-<ul><li>月日时分：MM-DD-HH-mm</li><li>年月日时分：YYYY-MM-DD-HH-mm</li></ul>
-<p>不设置年时，默认使用当前年，该取值表示选择器弹窗界面的默认选择值。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="23.98%" headers="mcps1.1.6.1.1 "><p>value</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.83%" headers="mcps1.1.6.1.2 "><p>string</p>
-</td>
-<td class="cellrowborder" valign="top" width="8.63%" headers="mcps1.1.6.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.1499999999999995%" headers="mcps1.1.6.1.4 "><p>是</p>
-</td>
-<td class="cellrowborder" valign="top" width="49.41%" headers="mcps1.1.6.1.5 "><p>设置日期时间选择器的值。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="23.98%" headers="mcps1.1.6.1.1 "><p>hours</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.83%" headers="mcps1.1.6.1.2 "><p>number</p>
-</td>
-<td class="cellrowborder" valign="top" width="8.63%" headers="mcps1.1.6.1.3 "><p>24<sup>1-4</sup></p>
-<p>-<sup><span>5+</span></sup></p>
-</td>
-<td class="cellrowborder" valign="top" width="7.1499999999999995%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="49.41%" headers="mcps1.1.6.1.5 "><p>设置日期时间选择器采用的时间格式，可选值：</p>
-<ul><li>12：按照12小时制显示，用上午和下午进行区分；</li><li>24：按照24小时制显示。<div class="note"><span class="notetitle"> 说明： </span><div class="notebody"><p>默认值会依据系统当前所选地区和语言选择当地习惯的小时制(12小时制或24小时制)。<sup><span>5+</span></sup></p>
-</div></div>
-</li></ul>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="23.98%" headers="mcps1.1.6.1.1 "><p>lunar<sup>5+</sup></p>
-</td>
-<td class="cellrowborder" valign="top" width="10.83%" headers="mcps1.1.6.1.2 "><p>boolean</p>
-</td>
-<td class="cellrowborder" valign="top" width="8.63%" headers="mcps1.1.6.1.3 "><p>false</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.1499999999999995%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="49.41%" headers="mcps1.1.6.1.5 "><p>设置日期时间选择器弹窗界面是否为农历展示。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="23.98%" headers="mcps1.1.6.1.1 "><p>lunarswitch</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.83%" headers="mcps1.1.6.1.2 "><p>boolean</p>
-</td>
-<td class="cellrowborder" valign="top" width="8.63%" headers="mcps1.1.6.1.3 "><p>false</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.1499999999999995%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="49.41%" headers="mcps1.1.6.1.5 "><p>设置日期选择器是否显示农历开关。当值为true时，显示农历开关，点击农历开关可切换公历和农历。当值为false时，不显示农历开关。</p>
-<div class="note"><span class="notetitle"> 说明： </span><div class="notebody"><p>仅手机和平板设备支持。 当lunarswitch=true且lunar=true时，开关按钮处于被选中状态。</p>
-</div></div>
-</td>
-</tr>
-</tbody>
-</table>
+| 名称 | 类型 | 默认值 | 必填 | 描述 |
+| -------- | -------- | -------- | -------- | -------- |
+| selected | string | 当前日期时间 | 否 | 设置日期时间选择器弹窗的默认取值，有两种可选格式。<br/>-&nbsp;月日时分：MM-DD-HH-mm<br/>-&nbsp;年月日时分：YYYY-MM-DD-HH-mm<br/>不设置年时，默认使用当前年，该取值表示选择器弹窗界面的默认选择值。 |
+| value | string | - | 是 | 设置日期时间选择器的值。 |
+| hours | number | 24<sup>1-4</sup><br/>-<sup>5+</sup> | 否 | 设置日期时间选择器采用的时间格式，可选值：<br/>-&nbsp;12：按照12小时制显示，用上午和下午进行区分；<br/>-&nbsp;24：按照24小时制显示。<br/>&nbsp;&nbsp;>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>&nbsp;&nbsp;>&nbsp;默认值会依据系统当前所选地区和语言选择当地习惯的小时制(12小时制或24小时制)。<sup>5+</sup> |
+| lunar<sup>5+</sup> | boolean | false | 否 | 设置日期时间选择器弹窗界面是否为农历展示。 |
+| lunarswitch | boolean | false | 否 | 设置日期选择器是否显示农历开关。当值为true时，显示农历开关，点击农历开关可切换公历和农历。当值为false时，不显示农历开关。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;仅手机和平板设备支持。&nbsp;当lunarswitch=true且lunar=true时，开关按钮处于被选中状态。 |
 
-### 多列文本选择器<a name="section18757165414262"></a>
+
+### 多列文本选择器
 
 滑动选择器类型设置为multi-text时表示多列文本选择器。
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="24.000000000000004%" id="mcps1.1.6.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="10.810000000000002%" id="mcps1.1.6.1.2"><p>类型</p>
-</th>
-<th class="cellrowborder" valign="top" width="8.63%" id="mcps1.1.6.1.3"><p>默认值</p>
-</th>
-<th class="cellrowborder" valign="top" width="7.15%" id="mcps1.1.6.1.4"><p>必填</p>
-</th>
-<th class="cellrowborder" valign="top" width="49.410000000000004%" id="mcps1.1.6.1.5"><p>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="24.000000000000004%" headers="mcps1.1.6.1.1 "><p>columns</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.810000000000002%" headers="mcps1.1.6.1.2 "><p>number</p>
-</td>
-<td class="cellrowborder" valign="top" width="8.63%" headers="mcps1.1.6.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.15%" headers="mcps1.1.6.1.4 "><p>是</p>
-</td>
-<td class="cellrowborder" valign="top" width="49.410000000000004%" headers="mcps1.1.6.1.5 "><p>设置多列文本选择器的列数。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="24.000000000000004%" headers="mcps1.1.6.1.1 "><p>range</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.810000000000002%" headers="mcps1.1.6.1.2 "><p>二维Array</p>
-</td>
-<td class="cellrowborder" valign="top" width="8.63%" headers="mcps1.1.6.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.15%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="49.410000000000004%" headers="mcps1.1.6.1.5 "><p>设置多列文本选择器的选择项，其中range 为二维数组。长度表示多少列，数组的每项表示每列的数据，如  [["a","b"], ["c","d"]]。</p>
-<div class="note"><span class="notetitle"> 说明： </span><div class="notebody"><p>使用时需要使用数据绑定的方式，如range = {{data}}，js中声明相应变量：data：[["a","b"], ["c","d"]]。</p>
-</div></div>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="24.000000000000004%" headers="mcps1.1.6.1.1 "><p>selected</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.810000000000002%" headers="mcps1.1.6.1.2 "><p>Array</p>
-</td>
-<td class="cellrowborder" valign="top" width="8.63%" headers="mcps1.1.6.1.3 "><p>[0,0,0,…]</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.15%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="49.410000000000004%" headers="mcps1.1.6.1.5 "><p>设置多列文本选择器弹窗的默认值，每一列被选中项对应的索引构成的数组，该取值表示选择器弹窗界面的默认选择值。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="24.000000000000004%" headers="mcps1.1.6.1.1 "><p>value</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.810000000000002%" headers="mcps1.1.6.1.2 "><p>Array</p>
-</td>
-<td class="cellrowborder" valign="top" width="8.63%" headers="mcps1.1.6.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.15%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="49.410000000000004%" headers="mcps1.1.6.1.5 "><p>设置多列文本选择器的值，每一列被选中项对应的值构成的数组。</p>
-</td>
-</tr>
-</tbody>
-</table>
+| 名称 | 类型 | 默认值 | 必填 | 描述 |
+| -------- | -------- | -------- | -------- | -------- |
+| columns | number | - | 是 | 设置多列文本选择器的列数。 |
+| range | 二维Array | - | 否 | 设置多列文本选择器的选择项，其中range&nbsp;为二维数组。长度表示多少列，数组的每项表示每列的数据，如&nbsp;&nbsp;[["a","b"],&nbsp;["c","d"]]。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;使用时需要使用数据绑定的方式，如range&nbsp;=&nbsp;{{data}}，js中声明相应变量：data：[["a","b"],&nbsp;["c","d"]]。 |
+| selected | Array | [0,0,0,…] | 否 | 设置多列文本选择器弹窗的默认值，每一列被选中项对应的索引构成的数组，该取值表示选择器弹窗界面的默认选择值。 |
+| value | Array | - | 否 | 设置多列文本选择器的值，每一列被选中项对应的值构成的数组。 |
 
-## 样式<a name="section1299175511712"></a>
 
-除支持[通用样式](js-components-common-styles.md)外，还支持如下样式：
+## 样式
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="14.318568143185681%" id="mcps1.1.6.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="11.528847115288471%" id="mcps1.1.6.1.2"><p>类型</p>
-</th>
-<th class="cellrowborder" valign="top" width="13.268673132686734%" id="mcps1.1.6.1.3"><p>默认值</p>
-</th>
-<th class="cellrowborder" valign="top" width="8.60913908609139%" id="mcps1.1.6.1.4"><p>必填</p>
-</th>
-<th class="cellrowborder" valign="top" width="52.274772522747725%" id="mcps1.1.6.1.5"><p>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="14.318568143185681%" headers="mcps1.1.6.1.1 "><p>text-color</p>
-</td>
-<td class="cellrowborder" valign="top" width="11.528847115288471%" headers="mcps1.1.6.1.2 "><p>&lt;color&gt;</p>
-</td>
-<td class="cellrowborder" valign="top" width="13.268673132686734%" headers="mcps1.1.6.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="8.60913908609139%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="52.274772522747725%" headers="mcps1.1.6.1.5 "><p>选择器的文本颜色。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="14.318568143185681%" headers="mcps1.1.6.1.1 "><p>font-size</p>
-</td>
-<td class="cellrowborder" valign="top" width="11.528847115288471%" headers="mcps1.1.6.1.2 "><p>&lt;length&gt;</p>
-</td>
-<td class="cellrowborder" valign="top" width="13.268673132686734%" headers="mcps1.1.6.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="8.60913908609139%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="52.274772522747725%" headers="mcps1.1.6.1.5 "><p>选择器的文本尺寸。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="14.318568143185681%" headers="mcps1.1.6.1.1 "><p>allow-scale</p>
-</td>
-<td class="cellrowborder" valign="top" width="11.528847115288471%" headers="mcps1.1.6.1.2 "><p>boolean</p>
-</td>
-<td class="cellrowborder" valign="top" width="13.268673132686734%" headers="mcps1.1.6.1.3 "><p>true</p>
-</td>
-<td class="cellrowborder" valign="top" width="8.60913908609139%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="52.274772522747725%" headers="mcps1.1.6.1.5 "><p>选择器的文本尺寸是否跟随系统设置字体缩放尺寸进行放大缩小。</p>
-<div class="note"><span class="notetitle"> 说明： </span><div class="notebody"><p>如果在config描述文件中针对ability配置了fontSize的config-changes标签，则应用不会重启而直接生效。</p>
-</div></div>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="14.318568143185681%" headers="mcps1.1.6.1.1 "><p>letter-spacing</p>
-</td>
-<td class="cellrowborder" valign="top" width="11.528847115288471%" headers="mcps1.1.6.1.2 "><p>&lt;length&gt;</p>
-</td>
-<td class="cellrowborder" valign="top" width="13.268673132686734%" headers="mcps1.1.6.1.3 "><p>0</p>
-</td>
-<td class="cellrowborder" valign="top" width="8.60913908609139%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="52.274772522747725%" headers="mcps1.1.6.1.5 "><p>选择器的字符间距。见<a href="js-components-basic-text.md#section5775351116">text组件的letter-spacing样式属性</a>。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="14.318568143185681%" headers="mcps1.1.6.1.1 "><p>text-decoration</p>
-</td>
-<td class="cellrowborder" valign="top" width="11.528847115288471%" headers="mcps1.1.6.1.2 "><p>string</p>
-</td>
-<td class="cellrowborder" valign="top" width="13.268673132686734%" headers="mcps1.1.6.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="8.60913908609139%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="52.274772522747725%" headers="mcps1.1.6.1.5 "><p>选择器的文本修饰。见<a href="js-components-basic-text.md#section5775351116">text组件的text-decoration样式属性</a>。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="14.318568143185681%" headers="mcps1.1.6.1.1 "><p>font-style</p>
-</td>
-<td class="cellrowborder" valign="top" width="11.528847115288471%" headers="mcps1.1.6.1.2 "><p>string</p>
-</td>
-<td class="cellrowborder" valign="top" width="13.268673132686734%" headers="mcps1.1.6.1.3 "><p>normal</p>
-</td>
-<td class="cellrowborder" valign="top" width="8.60913908609139%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="52.274772522747725%" headers="mcps1.1.6.1.5 "><p>选择器的字体样式。见<a href="js-components-basic-text.md#section5775351116">text组件的font-style样式属性</a>。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="14.318568143185681%" headers="mcps1.1.6.1.1 "><p>font-weight</p>
-</td>
-<td class="cellrowborder" valign="top" width="11.528847115288471%" headers="mcps1.1.6.1.2 "><p>number | string</p>
-</td>
-<td class="cellrowborder" valign="top" width="13.268673132686734%" headers="mcps1.1.6.1.3 "><p>normal</p>
-</td>
-<td class="cellrowborder" valign="top" width="8.60913908609139%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="52.274772522747725%" headers="mcps1.1.6.1.5 "><p>选择器的字体粗细。见<a href="js-components-basic-text.md#section5775351116">text组件的font-weight样式属性</a>。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="14.318568143185681%" headers="mcps1.1.6.1.1 "><p>font-family</p>
-</td>
-<td class="cellrowborder" valign="top" width="11.528847115288471%" headers="mcps1.1.6.1.2 "><p>string</p>
-</td>
-<td class="cellrowborder" valign="top" width="13.268673132686734%" headers="mcps1.1.6.1.3 "><p>sans-serif</p>
-</td>
-<td class="cellrowborder" valign="top" width="8.60913908609139%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="52.274772522747725%" headers="mcps1.1.6.1.5 "><p>选择器的字体列表，用逗号分隔，每个字体用字体名或者字体族名设置。列表中第一个系统中存在的或者通过<a href="js-components-common-customizing-font.md">自定义字体</a>指定的字体，会被选中作为文本的字体。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="14.318568143185681%" headers="mcps1.1.6.1.1 "><p>line-height</p>
-</td>
-<td class="cellrowborder" valign="top" width="11.528847115288471%" headers="mcps1.1.6.1.2 "><p>&lt;length&gt;</p>
-</td>
-<td class="cellrowborder" valign="top" width="13.268673132686734%" headers="mcps1.1.6.1.3 "><p>0px</p>
-</td>
-<td class="cellrowborder" valign="top" width="8.60913908609139%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="52.274772522747725%" headers="mcps1.1.6.1.5 "><p>选择器的文本行高。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="14.318568143185681%" headers="mcps1.1.6.1.1 "><p>column-height<sup>5+</sup></p>
-</td>
-<td class="cellrowborder" valign="top" width="11.528847115288471%" headers="mcps1.1.6.1.2 "><p>&lt;length&gt;</p>
-</td>
-<td class="cellrowborder" valign="top" width="13.268673132686734%" headers="mcps1.1.6.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="8.60913908609139%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="52.274772522747725%" headers="mcps1.1.6.1.5 "><p>选择器的选择项列表高度。</p>
-<div class="note"><span class="notetitle"> 说明： </span><div class="notebody"><p>仅手机和平板设备支持。</p>
-</div></div>
-</td>
-</tr>
-</tbody>
-</table>
+除支持[通用样式](../arkui-js/js-components-common-styles.md)外，还支持如下样式：
 
-## 事件<a name="section1724215114357"></a>
+| 名称 | 类型 | 默认值 | 必填 | 描述 |
+| -------- | -------- | -------- | -------- | -------- |
+| text-color | &lt;color&gt; | - | 否 | 选择器的文本颜色。 |
+| font-size | &lt;length&gt; | - | 否 | 选择器的文本尺寸。 |
+| allow-scale | boolean | true | 否 | 选择器的文本尺寸是否跟随系统设置字体缩放尺寸进行放大缩小。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;如果在config描述文件中针对ability配置了fontSize的config-changes标签，则应用不会重启而直接生效。 |
+| letter-spacing | &lt;length&gt; | 0 | 否 | 选择器的字符间距。见[text组件的letter-spacing样式属性](../arkui-js/js-components-basic-text.md#样式)。 |
+| text-decoration | string | - | 否 | 选择器的文本修饰。见[text组件的text-decoration样式属性](../arkui-js/js-components-basic-text.md#样式)。 |
+| font-style | string | normal | 否 | 选择器的字体样式。见[text组件的font-style样式属性](../arkui-js/js-components-basic-text.md#样式)。 |
+| font-weight | number&nbsp;\|&nbsp;string | normal | 否 | 选择器的字体粗细。见[text组件的font-weight样式属性](../arkui-js/js-components-basic-text.md#样式)。 |
+| font-family | string | sans-serif | 否 | 选择器的字体列表，用逗号分隔，每个字体用字体名或者字体族名设置。列表中第一个系统中存在的或者通过[自定义字体](../arkui-js/js-components-common-customizing-font.md)指定的字体，会被选中作为文本的字体。 |
+| line-height | &lt;length&gt; | 0px | 否 | 选择器的文本行高。 |
+| column-height<sup>5+</sup> | &lt;length&gt; | - | 否 | 选择器的选择项列表高度。 |
 
-除支持[通用事件](js-components-common-events.md)外，还支持如下事件：
 
-### 普通选择器<a name="section167201221192710"></a>
+## 事件
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="15.370000000000001%" id="mcps1.1.4.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="34.22%" id="mcps1.1.4.1.2"><p>参数</p>
-</th>
-<th class="cellrowborder" valign="top" width="50.41%" id="mcps1.1.4.1.3"><p>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="15.370000000000001%" headers="mcps1.1.4.1.1 "><p>change</p>
-</td>
-<td class="cellrowborder" valign="top" width="34.22%" headers="mcps1.1.4.1.2 "><p>{ newValue: newValue, newSelected: newSelected }</p>
-</td>
-<td class="cellrowborder" valign="top" width="50.41%" headers="mcps1.1.4.1.3 "><p>普通选择器选择值后点击弹窗中的确定按钮时触发该事件（newSelected为索引）。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="15.370000000000001%" headers="mcps1.1.4.1.1 "><p>cancel</p>
-</td>
-<td class="cellrowborder" valign="top" width="34.22%" headers="mcps1.1.4.1.2 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="50.41%" headers="mcps1.1.4.1.3 "><p>用户点击弹窗中的取消按钮时触发该事件。</p>
-</td>
-</tr>
-</tbody>
-</table>
+除支持[通用事件](../arkui-js/js-components-common-events.md)外，还支持如下事件：
 
-### 日期选择器<a name="section161113322714"></a>
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="15.370000000000001%" id="mcps1.1.4.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="34.18%" id="mcps1.1.4.1.2"><p>参数</p>
-</th>
-<th class="cellrowborder" valign="top" width="50.449999999999996%" id="mcps1.1.4.1.3"><p>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="15.370000000000001%" headers="mcps1.1.4.1.1 "><p>change</p>
-</td>
-<td class="cellrowborder" valign="top" width="34.18%" headers="mcps1.1.4.1.2 "><p>{ year: year, month: month, day: day }</p>
-</td>
-<td class="cellrowborder" valign="top" width="50.449999999999996%" headers="mcps1.1.4.1.3 "><p>日期选择器选择值后点击弹窗中的确认按钮时触发该事件。</p>
-<div class="note"><span class="notetitle"> 说明： </span><div class="notebody"><p>month值范围为： 0（1月）~11（12月）。<sup><span>5+</span></sup></p>
-</div></div>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="15.370000000000001%" headers="mcps1.1.4.1.1 "><p>cancel</p>
-</td>
-<td class="cellrowborder" valign="top" width="34.18%" headers="mcps1.1.4.1.2 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="50.449999999999996%" headers="mcps1.1.4.1.3 "><p>用户点击弹窗中的取消按钮时触发该事件。</p>
-</td>
-</tr>
-</tbody>
-</table>
+### 普通选择器
 
-### 日期时间选择器<a name="section15386114572710"></a>
+| 名称 | 参数 | 描述 |
+| -------- | -------- | -------- |
+| change | {&nbsp;newValue:&nbsp;newValue,&nbsp;newSelected:&nbsp;newSelected&nbsp;} | 普通选择器选择值后点击弹窗中的确定按钮时触发该事件（newSelected为索引）。 |
+| cancel | - | 用户点击弹窗中的取消按钮时触发该事件。 |
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="15.370000000000001%" id="mcps1.1.4.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="39.82%" id="mcps1.1.4.1.2"><p>参数</p>
-</th>
-<th class="cellrowborder" valign="top" width="44.81%" id="mcps1.1.4.1.3"><p>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="15.370000000000001%" headers="mcps1.1.4.1.1 "><p>change</p>
-</td>
-<td class="cellrowborder" valign="top" width="39.82%" headers="mcps1.1.4.1.2 "><p>{ year: year, month: month, day: day,  hour: hour, minute: minute}</p>
-</td>
-<td class="cellrowborder" valign="top" width="44.81%" headers="mcps1.1.4.1.3 "><p>日期时间选择器选择值后点击弹窗中的确认按钮时触发该事件。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="15.370000000000001%" headers="mcps1.1.4.1.1 "><p>cancel</p>
-</td>
-<td class="cellrowborder" valign="top" width="39.82%" headers="mcps1.1.4.1.2 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="44.81%" headers="mcps1.1.4.1.3 "><p>用户点击弹窗中的取消按钮时触发该事件。</p>
-</td>
-</tr>
-</tbody>
-</table>
 
-### 时间选择器<a name="section17835159152813"></a>
+### 日期选择器
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="15.370000000000001%" id="mcps1.1.4.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="34.22%" id="mcps1.1.4.1.2"><p>参数</p>
-</th>
-<th class="cellrowborder" valign="top" width="50.41%" id="mcps1.1.4.1.3"><p>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="15.370000000000001%" headers="mcps1.1.4.1.1 "><p>change</p>
-</td>
-<td class="cellrowborder" valign="top" width="34.22%" headers="mcps1.1.4.1.2 "><p>{ hour: hour, minute: minute, [second: second] }</p>
-</td>
-<td class="cellrowborder" valign="top" width="50.41%" headers="mcps1.1.4.1.3 "><p>时间选择器选择值后点击弹窗中的确认按钮时触发该事件，当使用时分秒时，还包含秒数据。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="15.370000000000001%" headers="mcps1.1.4.1.1 "><p>cancel</p>
-</td>
-<td class="cellrowborder" valign="top" width="34.22%" headers="mcps1.1.4.1.2 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="50.41%" headers="mcps1.1.4.1.3 "><p>用户点击弹窗中的取消按钮时触发该事件。</p>
-</td>
-</tr>
-</tbody>
-</table>
+| 名称 | 参数 | 描述 |
+| -------- | -------- | -------- |
+| change | {&nbsp;year:&nbsp;year,&nbsp;month:&nbsp;month,&nbsp;day:&nbsp;day&nbsp;} | 日期选择器选择值后点击弹窗中的确认按钮时触发该事件。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;month值范围为：&nbsp;0（1月）~11（12月）。<sup>5+</sup> |
+| cancel | - | 用户点击弹窗中的取消按钮时触发该事件。 |
 
-### 多列文本选择器<a name="section126981922162818"></a>
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="13.969999999999999%" id="mcps1.1.4.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="36.9%" id="mcps1.1.4.1.2"><p>参数</p>
-</th>
-<th class="cellrowborder" valign="top" width="49.13%" id="mcps1.1.4.1.3"><p>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="13.969999999999999%" headers="mcps1.1.4.1.1 "><p>change</p>
-</td>
-<td class="cellrowborder" valign="top" width="36.9%" headers="mcps1.1.4.1.2 "><p>{ newValue: [newValue1, newValue2, newValue3, …], newSelected:[newSelected1, newSelected2, newSelected3, …] }</p>
-</td>
-<td class="cellrowborder" valign="top" width="49.13%" headers="mcps1.1.4.1.3 "><p>多列文本选择器选择值后点击弹窗中的确认按钮时触发该事件，其中：</p>
-<ul><li>newValue：被选中项对应的值构成的数组。</li><li>newSelected：被选中项对应的索引构成的数组，两者的长度和range的长度一致。</li></ul>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="13.969999999999999%" headers="mcps1.1.4.1.1 "><p>columnchange</p>
-</td>
-<td class="cellrowborder" valign="top" width="36.9%" headers="mcps1.1.4.1.2 "><p>{ column: column, newValue: newValue, newSelected: newSelected }</p>
-</td>
-<td class="cellrowborder" valign="top" width="49.13%" headers="mcps1.1.4.1.3 "><p>多列文本选择器中某一列的值改变时触发该事件，其中：</p>
-<ul><li>column：第几列修改。</li><li>newValue：选中的值。</li><li>newSelected：选中值对应的索引。</li></ul>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="13.969999999999999%" headers="mcps1.1.4.1.1 "><p>cancel</p>
-</td>
-<td class="cellrowborder" valign="top" width="36.9%" headers="mcps1.1.4.1.2 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="49.13%" headers="mcps1.1.4.1.3 "><p>用户点击弹窗中的取消按钮时触发该事件。</p>
-</td>
-</tr>
-</tbody>
-</table>
+### 日期时间选择器
 
-## 方法<a name="section47669296127"></a>
+| 名称 | 参数 | 描述 |
+| -------- | -------- | -------- |
+| change | {&nbsp;year:&nbsp;year,&nbsp;month:&nbsp;month,&nbsp;day:&nbsp;day,&nbsp;&nbsp;hour:&nbsp;hour,&nbsp;minute:&nbsp;minute} | 日期时间选择器选择值后点击弹窗中的确认按钮时触发该事件。 |
+| cancel | - | 用户点击弹窗中的取消按钮时触发该事件。 |
 
-除支持[通用方法](js-components-common-methods.md)外，支持如下方法：
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="23%" id="mcps1.1.4.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="32%" id="mcps1.1.4.1.2"><p>参数</p>
-</th>
-<th class="cellrowborder" valign="top" width="45%" id="mcps1.1.4.1.3"><p>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="23%" headers="mcps1.1.4.1.1 "><p>show</p>
-</td>
-<td class="cellrowborder" valign="top" width="32%" headers="mcps1.1.4.1.2 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="45%" headers="mcps1.1.4.1.3 "><p>显示 picker。</p>
-</td>
-</tr>
-</tbody>
-</table>
+### 时间选择器
 
-## 示例<a name="section11956342165513"></a>
+| 名称 | 参数 | 描述 |
+| -------- | -------- | -------- |
+| change | {&nbsp;hour:&nbsp;hour,&nbsp;minute:&nbsp;minute,&nbsp;[second:&nbsp;second]&nbsp;} | 时间选择器选择值后点击弹窗中的确认按钮时触发该事件，当使用时分秒时，还包含秒数据。 |
+| cancel | - | 用户点击弹窗中的取消按钮时触发该事件。 |
+
+
+### 多列文本选择器
+
+| 名称 | 参数 | 描述 |
+| -------- | -------- | -------- |
+| change | {&nbsp;newValue:&nbsp;[newValue1,&nbsp;newValue2,&nbsp;newValue3,&nbsp;…],&nbsp;newSelected:[newSelected1,&nbsp;newSelected2,&nbsp;newSelected3,&nbsp;…]&nbsp;} | 多列文本选择器选择值后点击弹窗中的确认按钮时触发该事件，其中：<br/>-&nbsp;newValue：被选中项对应的值构成的数组。<br/>-&nbsp;newSelected：被选中项对应的索引构成的数组，两者的长度和range的长度一致。 |
+| columnchange | {&nbsp;column:&nbsp;column,&nbsp;newValue:&nbsp;newValue,&nbsp;newSelected:&nbsp;newSelected&nbsp;} | 多列文本选择器中某一列的值改变时触发该事件，其中：<br/>-&nbsp;column：第几列修改。<br/>-&nbsp;newValue：选中的值。<br/>-&nbsp;newSelected：选中值对应的索引。 |
+| cancel | - | 用户点击弹窗中的取消按钮时触发该事件。 |
+
+
+## 方法
+
+除支持[通用方法](../arkui-js/js-components-common-methods.md)外，支持如下方法：
+
+| 名称 | 参数 | 描述 |
+| -------- | -------- | -------- |
+| show | - | 显示&nbsp;picker。 |
+
+
+## 示例
 
 ```
 <!-- xxx.hml -->
@@ -829,5 +287,4 @@ export default {
 }
 ```
 
-![](figures/mmmm.gif)
-
+![zh-cn_image_0000001191939702](figures/zh-cn_image_0000001191939702.gif)

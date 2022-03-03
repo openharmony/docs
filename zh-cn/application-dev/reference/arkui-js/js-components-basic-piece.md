@@ -1,97 +1,49 @@
-# piece<a name="ZH-CN_TOPIC_0000001173164767"></a>
+# piece
+
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 从API version 5开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 一种块状的入口，可包含图片和文本。常用于展示收件人，例如：邮件收件人或信息收件人。
 
-## 子组件<a name="section9288143101012"></a>
+
+## 子组件
 
 无
 
-## 属性<a name="section2907183951110"></a>
 
-除支持[通用属性](js-components-common-attributes.md)外，还支持如下属性：
+## 属性
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="14.5014501450145%" id="mcps1.1.6.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="12.62126212621262%" id="mcps1.1.6.1.2"><p>类型</p>
-</th>
-<th class="cellrowborder" valign="top" width="8.03080308030803%" id="mcps1.1.6.1.3"><p>默认值</p>
-</th>
-<th class="cellrowborder" valign="top" width="6.64066406640664%" id="mcps1.1.6.1.4"><p>必填</p>
-</th>
-<th class="cellrowborder" valign="top" width="58.2058205820582%" id="mcps1.1.6.1.5"><p>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="14.5014501450145%" headers="mcps1.1.6.1.1 "><p>content</p>
-</td>
-<td class="cellrowborder" valign="top" width="12.62126212621262%" headers="mcps1.1.6.1.2 "><p>string</p>
-</td>
-<td class="cellrowborder" valign="top" width="8.03080308030803%" headers="mcps1.1.6.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="6.64066406640664%" headers="mcps1.1.6.1.4 "><p>是</p>
-</td>
-<td class="cellrowborder" valign="top" width="58.2058205820582%" headers="mcps1.1.6.1.5 "><p>操作块文本内容。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="14.5014501450145%" headers="mcps1.1.6.1.1 "><p>closable</p>
-</td>
-<td class="cellrowborder" valign="top" width="12.62126212621262%" headers="mcps1.1.6.1.2 "><p>boolean</p>
-</td>
-<td class="cellrowborder" valign="top" width="8.03080308030803%" headers="mcps1.1.6.1.3 "><p>false</p>
-</td>
-<td class="cellrowborder" valign="top" width="6.64066406640664%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="58.2058205820582%" headers="mcps1.1.6.1.5 "><p>设置当前操作块是否显示删除图标，当显示删除图标时，点击删除图标会触发close事件。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="14.5014501450145%" headers="mcps1.1.6.1.1 "><p>icon</p>
-</td>
-<td class="cellrowborder" valign="top" width="12.62126212621262%" headers="mcps1.1.6.1.2 "><p>string</p>
-</td>
-<td class="cellrowborder" valign="top" width="8.03080308030803%" headers="mcps1.1.6.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="6.64066406640664%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="58.2058205820582%" headers="mcps1.1.6.1.5 "><p>操作块删除图标的url，支持本地。</p>
-</td>
-</tr>
-</tbody>
-</table>
+除支持[通用属性](../arkui-js/js-components-common-attributes.md)外，还支持如下属性：
 
-## 样式<a name="section17756476592"></a>
+| 名称 | 类型 | 默认值 | 必填 | 描述 |
+| -------- | -------- | -------- | -------- | -------- |
+| content | string | - | 是 | 操作块文本内容。 |
+| closable | boolean | false | 否 | 设置当前操作块是否显示删除图标，当显示删除图标时，点击删除图标会触发close事件。 |
+| icon | string | - | 否 | 操作块删除图标的url，支持本地路径。 |
 
-支持[通用样式](js-components-common-styles.md)。
 
->![](../../public_sys-resources/icon-note.gif) **说明：** 
->文本和图片默认在整个piece组件中居中。
+## 样式
 
-## 事件<a name="section19137152119"></a>
+支持[通用样式](../arkui-js/js-components-common-styles.md)。
 
-除支持[通用事件](js-components-common-events.md)外，还支持如下事件：
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 文本和图片默认在整个piece组件中居中。
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="24.852485248524854%" id="mcps1.1.4.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="29.552955295529554%" id="mcps1.1.4.1.2"><p>参数</p>
-</th>
-<th class="cellrowborder" valign="top" width="45.5945594559456%" id="mcps1.1.4.1.3"><p>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="24.852485248524854%" headers="mcps1.1.4.1.1 "><p>close</p>
-</td>
-<td class="cellrowborder" valign="top" width="29.552955295529554%" headers="mcps1.1.4.1.2 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="45.5945594559456%" headers="mcps1.1.4.1.3 "><p>当piece组件点击删除图标触发，此时可以通过渲染属性if删除该组件。</p>
-</td>
-</tr>
-</tbody>
-</table>
 
-## 方法<a name="section2279124532420"></a>
+## 事件
 
-支持[通用方法](js-components-common-methods.md)。
+除支持[通用事件](../arkui-js/js-components-common-events.md)外，还支持如下事件：
 
-## 示例<a name="section118886119320"></a>
+| 名称 | 参数 | 描述 |
+| -------- | -------- | -------- |
+| close | - | 当piece组件点击删除图标触发，此时可以通过渲染属性if删除该组件。 |
+
+## 方法
+
+支持[通用方法](../arkui-js/js-components-common-methods.md)。
+
+
+## 示例
 
 ```
 <!-- xxx.hml-->
@@ -124,5 +76,4 @@ export default {
 }
 ```
 
-![](figures/11-1.gif)
-
+![zh-cn_image_0000001177428498](figures/zh-cn_image_0000001177428498.gif)

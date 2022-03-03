@@ -19,13 +19,13 @@
     - [音频管理](js-apis-audio.md)
     - [媒体服务](js-apis-media.md)
     - [图片处理](js-apis-image.md)
+    - [相机管理](js-apis-camera.md)
 - 安全
     - [用户认证](js-apis-useriam-userauth.md)
     - [访问控制](js-apis-abilityAccessCtrl.md)
     - [通用密钥库系统](js-apis-huks.md)
 - 数据管理
     - [轻量级存储](js-apis-data-preferences.md)
-    - [轻量级存储（废弃 since 8）](js-apis-data-storage.md)
     - [分布式数据管理](js-apis-distributed-data.md)
     - [关系型数据库](js-apis-data-rdb.md)
     - [结果集](js-apis-data-resultset.md)
@@ -49,7 +49,9 @@
     -   [网络搜索](js-apis-radio.md)
     -   [observer](js-apis-observer.md)
     -   [蜂窝数据](js-apis-telephony-data.md)
-- 网络与连接
+- 网络管理
+    - [网络连接管理](js-apis-net-connection.md)
+- 通信与连接
     -   [WLAN](js-apis-wifi.md)  
     -   [Bluetooth](js-apis-bluetooth.md)
 - 设备管理

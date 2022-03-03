@@ -1,6 +1,7 @@
-# 事件参数<a name="ZH-CN_TOPIC_0000001173164759"></a>
+# 事件参数
 
 子组件也可以通过绑定的事件向上传递参数，在自定义事件上添加传递参数的示例如下：
+
 
 ```
 <!-- comp.hml -->
@@ -9,6 +10,7 @@
    <text class="text-style" if="{{showObj}}">hello world</text> 
 </div>
 ```
+
 
 ```
 // comp.js
@@ -20,7 +22,9 @@ export default {
 }
 ```
 
+
 子组件向上传递参数text，父组件接收时通过e.detail来获取参数：
+
 
 ```
 <!-- xxx.hml -->
@@ -29,6 +33,7 @@ export default {
    <comp @event-type1="textClicked"></comp>  
 </div>
 ```
+
 
 ```
 // xxx.js
@@ -41,4 +46,3 @@ export default {
   },
 }
 ```
-

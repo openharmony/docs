@@ -1,6 +1,7 @@
-# Props<a name="ZH-CN_TOPIC_0000001173164675"></a>
+# Props
 
-自定义组件可以通过props声明属性，父组件通过设置属性向子组件传递参数，props支持类型包括：String，Number，Boolean，Array，Object，Function。camelCase \(驼峰命名法\) 的 prop 名，在外部父组件传递参数时需要使用 kebab-case \(短横线分隔命名\) 形式，即当属性compProp在父组件引用时需要转换为comp-prop。给自定义组件添加props，通过父组件向下传递参数的示例如下：
+自定义组件可以通过props声明属性，父组件通过设置属性向子组件传递参数，props支持类型包括：String，Number，Boolean，Array，Object，Function。camelCase (驼峰命名法) 的 prop 名，在外部父组件传递参数时需要使用 kebab-case (短横线分隔命名) 形式，即当属性compProp在父组件引用时需要转换为comp-prop。给自定义组件添加props，通过父组件向下传递参数的示例如下：
+
 
 ```
 <!-- comp.hml -->
@@ -9,12 +10,14 @@
 </div>
 ```
 
+
 ```
 // comp.js 
 export default { 
   props: ['compProp'],
 }
 ```
+
 
 ```
 <!-- xxx.hml -->
@@ -24,10 +27,12 @@ export default {
 </div>
 ```
 
->![](../../public_sys-resources/icon-note.gif) **说明：** 
->自定义属性命名时禁止以on、@、on:、grab: 等保留关键字为开头。
 
-## 添加默认值<a name="section448655843113"></a>
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 自定义属性命名时禁止以on、@、on:、grab: 等保留关键字为开头。
+
+
+## 添加默认值
 
 子组件可以通过固定值default设置默认值，当父组件没有设置该属性时，将使用其默认值。此情况下props属性必须为对象形式，不能用数组形式，示例如下：
 
@@ -59,7 +64,8 @@ export default {
 </div>
 ```
 
-## 数据单向性<a name="section9681151218247"></a>
+
+## 数据单向性
 
 父子组件之间数据的传递是单向的，只能从父组件传递给子组件，子组件不能直接修改父组件传递下来的值，可以将props传入的值用data接收后作为默认值，再对data的值进行修改。
 
@@ -78,7 +84,8 @@ export default {
 }
 ```
 
-## $watch 感知数据改变<a name="section205821113182114"></a>
+
+## $watch 感知数据改变
 
 如果需要观察组件中属性变化，可以通过$watch方法增加属性变化回调。使用方法如下：
 
@@ -95,7 +102,8 @@ export default {
 }
 ```
 
-## computed 计算属性<a name="section1088954011234"></a>
+
+## computed 计算属性
 
 自定义组件中经常需要在读取或设置某个属性时进行预先处理，提高开发效率，此种情况就需要使用computed字段。computed字段中可通过设置属性的getter和setter方法在属性读写的时候进行触发，使用方式如下：
 
@@ -130,4 +138,3 @@ export default {
 ```
 
 这里声明的第一个计算属性message默认只有getter函数，message的值会取决于objTitle的值的变化。getter函数只能读取不能改变设值，当需要赋值给计算属性的时候可以提供一个setter函数，如示例中的notice。
-

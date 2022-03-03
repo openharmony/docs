@@ -1,165 +1,49 @@
-# textPath<a name="ZH-CN_TOPIC_0000001127284818"></a>
+# textPath
 
 沿路径绘制文本。
 
->![](../../public_sys-resources/icon-note.gif) **说明：** 
->-   该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
->-   按指定的路径绘制文本，可嵌套子标签tspan分段。
->-   只支持被父元素标签text嵌套。
 
-## 权限列表<a name="section11257113618419"></a>
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> - 该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 
+> - 按指定的路径绘制文本，可嵌套子标签tspan分段。
+> 
+> - 只支持被父元素标签text嵌套。
+
+## 权限列表
 
 无
 
-## 子组件<a name="section9288143101012"></a>
+
+## 子组件
 
 tspan。
 
-## 属性<a name="section2907183951110"></a>
+
+## 属性
+
 
 支持以下表格中的属性。
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="23.119999999999997%" id="mcps1.1.6.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="23.119999999999997%" id="mcps1.1.6.1.2"><p>类型</p>
-</th>
-<th class="cellrowborder" valign="top" width="10.48%" id="mcps1.1.6.1.3"><p>默认值</p>
-</th>
-<th class="cellrowborder" valign="top" width="7.5200000000000005%" id="mcps1.1.6.1.4"><p>必填</p>
-</th>
-<th class="cellrowborder" valign="top" width="35.76%" id="mcps1.1.6.1.5"><p>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p>id</p>
-</td>
-<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p>string</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p>组件的唯一标识。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p>path</p>
-</td>
-<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p>string</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p>0</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p>是</p>
-</td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p>设置路径的形状。</p>
-<p>字母指令表示的意义如下：</p>
-<ul><li>M = moveto</li><li>L = lineto</li><li>H = horizontal lineto</li><li>V = vertical lineto</li><li>C = curveto</li><li>S = smooth curveto</li><li>Q = quadratic Belzier curve</li><li>T = smooth quadratic Belzier curveto</li><li>A = elliptical Arc</li><li>Z = closepath</li></ul>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p>startOffset</p>
-</td>
-<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p>&lt;length&gt;|&lt;percentage&gt;</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p>0</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p>设置文本沿path绘制的起始偏移。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p>font-size</p>
-</td>
-<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p>&lt;length&gt;</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p>30px</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p>设置文本的尺寸。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p>fill</p>
-</td>
-<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p>&lt;color&gt;</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p>black</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p>字体填充颜色</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p>by</p>
-</td>
-<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p>number</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p>相对被指定动画的属性偏移值，from默认为原属性值。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p>opacity</p>
-</td>
-<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p>number</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p>1</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p>元素的透明度，取值范围为0到1，1表示为不透明，0表示为完全透明。支持属性动画。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p>fill-opacity</p>
-</td>
-<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p>number</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p>1.0</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p>字体填充透明度</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p>stroke</p>
-</td>
-<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p>&lt;color&gt;</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p>black</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p>绘制字体边框并指定颜色</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p>stroke-width</p>
-</td>
-<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p>number</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p>1px</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p>字体边框宽度</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p>stroke-opacity</p>
-</td>
-<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p>number</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p>1.0</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p>字体边框透明度</p>
-</td>
-</tr>
-</tbody>
-</table>
 
-## 示例<a name="section360556124815"></a>
+| 名称 | 类型 | 默认值 | 必填 | 描述 |
+| -------- | -------- | -------- | -------- | -------- |
+| id | string | - | 否 | 组件的唯一标识。 |
+| path | string | 0 | 是 | 设置路径的形状。<br/>字母指令表示的意义如下：<br/>-&nbsp;M&nbsp;=&nbsp;moveto<br/>-&nbsp;L&nbsp;=&nbsp;lineto<br/>-&nbsp;H&nbsp;=&nbsp;horizontal&nbsp;lineto<br/>-&nbsp;V&nbsp;=&nbsp;vertical&nbsp;lineto<br/>-&nbsp;C&nbsp;=&nbsp;curveto<br/>-&nbsp;S&nbsp;=&nbsp;smooth&nbsp;curveto<br/>-&nbsp;Q&nbsp;=&nbsp;quadratic&nbsp;Belzier&nbsp;curve<br/>-&nbsp;T&nbsp;=&nbsp;smooth&nbsp;quadratic&nbsp;Belzier&nbsp;curveto<br/>-&nbsp;A&nbsp;=&nbsp;elliptical&nbsp;Arc<br/>-&nbsp;Z&nbsp;=&nbsp;closepath |
+| startOffset | &lt;length&gt;\|&lt;percentage&gt; | 0 | 否 | 设置文本沿path绘制的起始偏移。 |
+| font-size | &lt;length&gt; | 30px | 否 | 设置文本的尺寸。 |
+| fill | &lt;color&gt; | black | 否 | 字体填充颜色 |
+| by | number | - | 否 | 相对被指定动画的属性偏移值，from默认为原属性值。 |
+| opacity | number | 1 | 否 | 元素的透明度，取值范围为0到1，1表示为不透明，0表示为完全透明。支持属性动画。 |
+| fill-opacity | number | 1.0 | 否 | 字体填充透明度 |
+| stroke | &lt;color&gt; | black | 否 | 绘制字体边框并指定颜色 |
+| stroke-width | number | 1px | 否 | 字体边框宽度 |
+| stroke-opacity | number | 1.0 | 否 | 字体边框透明度 |
 
-textspan属性示例，textpath文本内容沿着属性path中的路径绘制文本，起点偏移20%的path长度。（绘制的元素<path\>曲线仅做参照）
+
+## 示例
+
+textspan属性示例，textpath文本内容沿着属性path中的路径绘制文本，起点偏移20%的path长度。（绘制的元素&lt;path&gt;曲线仅做参照）
 
 ```
 /* xxx.css */
@@ -186,7 +70,7 @@ textspan属性示例，textpath文本内容沿着属性path中的路径绘制文
 </div>
 ```
 
-![](figures/textPath-part1.png)
+![zh-cn_image_0000001173164775](figures/zh-cn_image_0000001173164775.png)
 
 textpath与tspan组合示例与效果图
 
@@ -206,7 +90,7 @@ textpath与tspan组合示例与效果图
 </div>
 ```
 
-![](figures/textPath-part2.png)
+![zh-cn_image_0000001173324691](figures/zh-cn_image_0000001173324691.png)
 
 ```
 <!-- xxx.hml -->
@@ -226,7 +110,7 @@ textpath与tspan组合示例与效果图
 </div>
 ```
 
-![](figures/textPath-part3.png)
+![zh-cn_image_0000001173324689](figures/zh-cn_image_0000001173324689.png)
 
 ```
 <!-- xxx.hml -->
@@ -247,7 +131,7 @@ textpath与tspan组合示例与效果图
 </div>
 ```
 
-![](figures/textPath-part4.png)
+![zh-cn_image_0000001127284930](figures/zh-cn_image_0000001127284930.png)
 
 startOffset属性动画，文本绘制时起点偏移从10%运动到40%，不绘制超出path长度范围的文本。
 
@@ -279,7 +163,7 @@ startOffset属性动画，文本绘制时起点偏移从10%运动到40%，不绘
 </div>
 ```
 
-![](figures/textpath-animate1.gif)
+![zh-cn_image_0000001127125118](figures/zh-cn_image_0000001127125118.gif)
 
 textpath与tspan组合属性动画与效果图
 
@@ -310,13 +194,13 @@ textpath与tspan组合属性动画与效果图
 </div>
 ```
 
-![](figures/textpath-animate2.gif)
+![zh-cn_image_0000001173324693](figures/zh-cn_image_0000001173324693.gif)
 
-\(1\) "tspan attribute x|rotate"  文本绘制起点偏移从50px运动到100px，顺时针旋转0度到360度。
+(1) "tspan attribute x|rotate"  文本绘制起点偏移从50px运动到100px，顺时针旋转0度到360度。
 
-\(2\) "tspan attribute dx|opacity" 在 "tspan static." 绘制结束后再开始绘制，向后偏移量从0%运动到30%，透明度从浅到深变化。
+(2) "tspan attribute dx|opacity" 在 "tspan static." 绘制结束后再开始绘制，向后偏移量从0%运动到30%，透明度从浅到深变化。
 
-\(3\) "tspan move" 在上一段tspan绘制完成后，向后偏移5%的距离进行绘制，呈现跟随前一段tspan运动的效果。
+(3) "tspan move" 在上一段tspan绘制完成后，向后偏移5%的距离进行绘制，呈现跟随前一段tspan运动的效果。
 
 textpath与tspan组合属性动画与效果图
 
@@ -346,15 +230,15 @@ textpath与tspan组合属性动画与效果图
 </div>
 ```
 
-![](figures/textpath-animate3.gif)
+![zh-cn_image_0000001173164779](figures/zh-cn_image_0000001173164779.gif)
 
-\(1\) "This is TextPath." 在path上无偏移绘制第一段文本内容，大小30px，颜色"\#D2691E"。
+(1) "This is TextPath." 在path上无偏移绘制第一段文本内容，大小30px，颜色"\#D2691E"。
 
-\(2\) "tspan attribute fill|fill-opacity"  相对上一段文本结束后偏移20px，颜色从蓝到红，透明度从浅到深。
+(2) "tspan attribute fill|fill-opacity"  相对上一段文本结束后偏移20px，颜色从蓝到红，透明度从浅到深。
 
-\(3\) "tspan attribute font-size" 绘制起点相对上一段结束后偏移20px，起点静止，字体大小从10px到50px，整体长度持续拉长。
+(3) "tspan attribute font-size" 绘制起点相对上一段结束后偏移20px，起点静止，字体大小从10px到50px，整体长度持续拉长。
 
-\(4\) "Single tspan" 在上一段的尾部做水平绘制，呈现跟随上一段运动的效果。
+(4) "Single tspan" 在上一段的尾部做水平绘制，呈现跟随上一段运动的效果。
 
 textpath与tspan组合属性动画与效果图
 
@@ -383,9 +267,8 @@ textpath与tspan组合属性动画与效果图
 </div>
 ```
 
-![](figures/textpath-animate4.gif)
+![zh-cn_image_0000001127284924](figures/zh-cn_image_0000001127284924.gif)
 
-\(1\) "tspan attribute stroke" 轮廓颜色从红色逐渐转变成绿色。
+(1) "tspan attribute stroke" 轮廓颜色从红色逐渐转变成绿色。
 
-\(2\) "tspan attribute stroke-width-opacity" 轮廓宽度从细1px转变粗5px，透明度从浅到深。
-
+(2) "tspan attribute stroke-width-opacity" 轮廓宽度从细1px转变粗5px，透明度从浅到深。

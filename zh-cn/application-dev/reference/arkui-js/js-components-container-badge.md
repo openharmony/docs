@@ -1,188 +1,66 @@
-# badge<a name="ZH-CN_TOPIC_0000001173324629"></a>
+# badge
+
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 从API version 5开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 应用中如果有需用户关注的新事件提醒，可以采用新事件标记来标识。
 
-## 权限列表<a name="section11257113618419"></a>
+
+## 权限列表
 
 无
 
-## 子组件<a name="section9288143101012"></a>
+
+## 子组件
 
 支持单个子组件。
 
->![](../../public_sys-resources/icon-note.gif) **说明：** 
->仅支持单子组件节点，如果使用多子组件节点，默认使用第一个子组件节点。
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 仅支持单子组件节点，如果使用多子组件节点，默认使用第一个子组件节点。
 
-## 属性<a name="section1355418214459"></a>
 
-除支持[通用属性](js-components-common-attributes.md)外，还支持如下属性：
+## 属性
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="23.119999999999997%" id="mcps1.1.6.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="12.61%" id="mcps1.1.6.1.2"><p>类型</p>
-</th>
-<th class="cellrowborder" valign="top" width="14.21%" id="mcps1.1.6.1.3"><p>默认值</p>
-</th>
-<th class="cellrowborder" valign="top" width="7.5200000000000005%" id="mcps1.1.6.1.4"><p>必填</p>
-</th>
-<th class="cellrowborder" valign="top" width="42.54%" id="mcps1.1.6.1.5"><p>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p>placement</p>
-</td>
-<td class="cellrowborder" valign="top" width="12.61%" headers="mcps1.1.6.1.2 "><p>string</p>
-</td>
-<td class="cellrowborder" valign="top" width="14.21%" headers="mcps1.1.6.1.3 "><p>rightTop</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="42.54%" headers="mcps1.1.6.1.5 "><p>事件提醒的数字标记或者圆点标记的位置，可选值为：</p>
-<ul><li>right：位于组件右边框。</li><li>rightTop：位于组件边框右上角。</li><li>left：位于组件左边框。</li></ul>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p>count</p>
-</td>
-<td class="cellrowborder" valign="top" width="12.61%" headers="mcps1.1.6.1.2 "><p>number</p>
-</td>
-<td class="cellrowborder" valign="top" width="14.21%" headers="mcps1.1.6.1.3 "><p>0</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="42.54%" headers="mcps1.1.6.1.5 "><p>设置提醒的消息数，默认为0。当设置相应的提醒消息数大于0时，消息提醒会变成数字标记类型，未设置消息数或者消息数不大于0时，消息提醒将采用圆点标记。</p>
-<div class="note"><span class="notetitle"> 说明： </span><div class="notebody"><p>当数字设置为大于maxcount时，将使用maxcount显示。</p>
-<p>count属性最大支持整数值为2147483647。</p>
-</div></div>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p>visible</p>
-</td>
-<td class="cellrowborder" valign="top" width="12.61%" headers="mcps1.1.6.1.2 "><p>boolean</p>
-</td>
-<td class="cellrowborder" valign="top" width="14.21%" headers="mcps1.1.6.1.3 "><p>false</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="42.54%" headers="mcps1.1.6.1.5 "><p>是否显示消息提醒，当收到新信息提醒时可以设置该属性为true，显示相应的消息提醒，如果需要使用数字标记类型，同时需要设置相应的count属性。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p>maxcount</p>
-</td>
-<td class="cellrowborder" valign="top" width="12.61%" headers="mcps1.1.6.1.2 "><p>number</p>
-</td>
-<td class="cellrowborder" valign="top" width="14.21%" headers="mcps1.1.6.1.3 "><p>99</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="42.54%" headers="mcps1.1.6.1.5 "><p>最大消息数限制，当收到新信息提醒大于该限制时，标识数字会进行省略，仅显示maxcount+。</p>
-<div class="note"><span class="notetitle"> 说明： </span><div class="notebody"><p>maxcount属性最大支持整数值为2147483647。</p>
-</div></div>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p>config</p>
-</td>
-<td class="cellrowborder" valign="top" width="12.61%" headers="mcps1.1.6.1.2 "><p><a href="../../nottoctopics/zh-cn_topic_0000001177114381.md#zh-cn_topic_0000001101866256_table525042221515">BadgeConfig</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="14.21%" headers="mcps1.1.6.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="42.54%" headers="mcps1.1.6.1.5 "><p>设置新事件标记相关配置属性。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p>label<sup><span>6+</span></sup></p>
-</td>
-<td class="cellrowborder" valign="top" width="12.61%" headers="mcps1.1.6.1.2 "><p>string</p>
-</td>
-<td class="cellrowborder" valign="top" width="14.21%" headers="mcps1.1.6.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="42.54%" headers="mcps1.1.6.1.5 "><p>设置新事件提醒的文本值。</p>
-<div class="note"><span class="notetitle"> 说明： </span><div class="notebody"><p>使用该属性时，count和maxcount属性不生效。</p>
-</div></div>
-</td>
-</tr>
-</tbody>
-</table>
+除支持[通用属性](../reference/arkui-js/js-components-common-attributes.md)外，还支持如下属性：
 
-**表 1**  BadgeConfig
+| 名称 | 类型 | 默认值 | 必填 | 描述 |
+| -------- | -------- | -------- | -------- | -------- |
+| placement | string | rightTop | 否 | 事件提醒的数字标记或者圆点标记的位置，可选值为：<br/>-&nbsp;right：位于组件右边框。<br/>-&nbsp;rightTop：位于组件边框右上角。<br/>-&nbsp;left：位于组件左边框。 |
+| count | number | 0 | 否 | 设置提醒的消息数，默认为0。当设置相应的提醒消息数大于0时，消息提醒会变成数字标记类型，未设置消息数或者消息数不大于0时，消息提醒将采用圆点标记。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;当数字设置为大于maxcount时，将使用maxcount显示。<br/>>&nbsp;count属性最大支持整数值为2147483647。 |
+| visible | boolean | false | 否 | 是否显示消息提醒，当收到新信息提醒时可以设置该属性为true，显示相应的消息提醒，如果需要使用数字标记类型，同时需要设置相应的count属性。 |
+| maxcount | number | 99 | 否 | 最大消息数限制，当收到新信息提醒大于该限制时，标识数字会进行省略，仅显示maxcount+。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;maxcount属性最大支持整数值为2147483647。 |
+| config | BadgeConfig | - | 否 | 设置新事件标记相关配置属性。 |
+| label<sup>6+</sup> | string | - | 否 | 设置新事件提醒的文本值。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;使用该属性时，count和maxcount属性不生效。 |
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="15.370000000000001%" id="mcps1.2.6.1.1"><p>名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="13.62%" id="mcps1.2.6.1.2"><p>类型</p>
-</th>
-<th class="cellrowborder" valign="top" width="12.46%" id="mcps1.2.6.1.3"><p>默认值</p>
-</th>
-<th class="cellrowborder" valign="top" width="7.22%" id="mcps1.2.6.1.4"><p>必填</p>
-</th>
-<th class="cellrowborder" valign="top" width="51.33%" id="mcps1.2.6.1.5"><p>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="15.370000000000001%" headers="mcps1.2.6.1.1 "><p>badgeColor</p>
-</td>
-<td class="cellrowborder" valign="top" width="13.62%" headers="mcps1.2.6.1.2 "><p>&lt;color&gt;</p>
-</td>
-<td class="cellrowborder" valign="top" width="12.46%" headers="mcps1.2.6.1.3 "><p>#fa2a2d</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.22%" headers="mcps1.2.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="51.33%" headers="mcps1.2.6.1.5 "><p>新事件标记背景色。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="15.370000000000001%" headers="mcps1.2.6.1.1 "><p>textColor</p>
-</td>
-<td class="cellrowborder" valign="top" width="13.62%" headers="mcps1.2.6.1.2 "><p>&lt;color&gt;</p>
-</td>
-<td class="cellrowborder" valign="top" width="12.46%" headers="mcps1.2.6.1.3 "><p>#ffffff</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.22%" headers="mcps1.2.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="51.33%" headers="mcps1.2.6.1.5 "><p>数字标记的数字文本颜色。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="15.370000000000001%" headers="mcps1.2.6.1.1 "><p>textSize</p>
-</td>
-<td class="cellrowborder" valign="top" width="13.62%" headers="mcps1.2.6.1.2 "><p>&lt;length&gt;</p>
-</td>
-<td class="cellrowborder" valign="top" width="12.46%" headers="mcps1.2.6.1.3 "><p>10px</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.22%" headers="mcps1.2.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="51.33%" headers="mcps1.2.6.1.5 "><p>数字标记的数字文本大小。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="15.370000000000001%" headers="mcps1.2.6.1.1 "><p>badgeSize</p>
-</td>
-<td class="cellrowborder" valign="top" width="13.62%" headers="mcps1.2.6.1.2 "><p>&lt;length&gt;</p>
-</td>
-<td class="cellrowborder" valign="top" width="12.46%" headers="mcps1.2.6.1.3 "><p>6px</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.22%" headers="mcps1.2.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="51.33%" headers="mcps1.2.6.1.5 "><p>圆点标记的默认大小</p>
-</td>
-</tr>
-</tbody>
-</table>
+**表1** BadgeConfig
 
-## 样式<a name="section5775351116"></a>
+| 名称 | 类型 | 默认值 | 必填 | 描述 |
+| -------- | -------- | -------- | -------- | -------- |
+| badgeColor | &lt;color&gt; | \#fa2a2d | 否 | 新事件标记背景色。 |
+| textColor | &lt;color&gt; | \#ffffff | 否 | 数字标记的数字文本颜色。 |
+| textSize | &lt;length&gt; | 10px | 否 | 数字标记的数字文本大小。 |
+| badgeSize | &lt;length&gt; | 6px | 否 | 圆点标记的默认大小 |
 
-支持[通用样式](js-components-common-styles.md)。
 
->![](../../public_sys-resources/icon-note.gif) **说明：** 
->badge组件的子组件大小不能超过badge组件本身的大小，否则子组件不会绘制。
+## 样式
 
-## 事件<a name="section43461940193518"></a>
+支持[通用样式](../arkui-js/js-components-common-styles.md)。
 
-支持[通用事件](js-components-common-events.md)。
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> badge组件的子组件大小不能超过badge组件本身的大小，否则子组件不会绘制。
 
-## 方法<a name="section2279124532420"></a>
 
-支持[通用方法](js-components-common-methods.md)。
+## 事件
 
-## 示例<a name="section3510104413431"></a>
+支持[通用事件](../arkui-js/js-components-common-events.md)。
+
+
+## 方法
+
+支持[通用方法](../arkui-js/js-components-common-methods.md)。
+
+
+## 示例
 
 ```
 <!-- xxx.hml -->
@@ -229,5 +107,4 @@ export default {
 }
 ```
 
-![](figures/捕获.png)
-
+![zh-cn_image_0000001177265268](figures/zh-cn_image_0000001177265268.png)

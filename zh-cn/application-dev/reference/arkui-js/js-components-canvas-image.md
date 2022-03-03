@@ -1,80 +1,23 @@
-# Image对象<a name="ZH-CN_TOPIC_0000001173164737"></a>
+# Image对象
+
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 从API version 4开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 图片对象。
 
-## 属性<a name="section1968021961113"></a>
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="21.8%" id="mcps1.1.6.1.1"><p>属性</p>
-</th>
-<th class="cellrowborder" valign="top" width="22.34%" id="mcps1.1.6.1.2"><p>类型</p>
-</th>
-<th class="cellrowborder" valign="top" width="7.9799999999999995%" id="mcps1.1.6.1.3"><p>默认值</p>
-</th>
-<th class="cellrowborder" valign="top" width="11.73%" id="mcps1.1.6.1.4"><p>必填</p>
-</th>
-<th class="cellrowborder" valign="top" width="36.15%" id="mcps1.1.6.1.5"><p>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="21.8%" headers="mcps1.1.6.1.1 "><p>src</p>
-</td>
-<td class="cellrowborder" valign="top" width="22.34%" headers="mcps1.1.6.1.2 "><p>string</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.9799999999999995%" headers="mcps1.1.6.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="11.73%" headers="mcps1.1.6.1.4 "><p>是</p>
-</td>
-<td class="cellrowborder" valign="top" width="36.15%" headers="mcps1.1.6.1.5 "><p>图片资源的路径。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="21.8%" headers="mcps1.1.6.1.1 "><p>width</p>
-</td>
-<td class="cellrowborder" valign="top" width="22.34%" headers="mcps1.1.6.1.2 "><p>&lt;length&gt;</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.9799999999999995%" headers="mcps1.1.6.1.3 "><p>0px</p>
-</td>
-<td class="cellrowborder" valign="top" width="11.73%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="36.15%" headers="mcps1.1.6.1.5 "><p>图片的宽度。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="21.8%" headers="mcps1.1.6.1.1 "><p>height</p>
-</td>
-<td class="cellrowborder" valign="top" width="22.34%" headers="mcps1.1.6.1.2 "><p>&lt;length&gt;</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.9799999999999995%" headers="mcps1.1.6.1.3 "><p>0px</p>
-</td>
-<td class="cellrowborder" valign="top" width="11.73%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="36.15%" headers="mcps1.1.6.1.5 "><p>图片的高度。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="21.8%" headers="mcps1.1.6.1.1 "><p>onload</p>
-</td>
-<td class="cellrowborder" valign="top" width="22.34%" headers="mcps1.1.6.1.2 "><p>Function</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.9799999999999995%" headers="mcps1.1.6.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="11.73%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="36.15%" headers="mcps1.1.6.1.5 "><p>图片加载成功后触发该事件，无参数。</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="21.8%" headers="mcps1.1.6.1.1 "><p>onerror</p>
-</td>
-<td class="cellrowborder" valign="top" width="22.34%" headers="mcps1.1.6.1.2 "><p>Function</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.9799999999999995%" headers="mcps1.1.6.1.3 "><p>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="11.73%" headers="mcps1.1.6.1.4 "><p>否</p>
-</td>
-<td class="cellrowborder" valign="top" width="36.15%" headers="mcps1.1.6.1.5 "><p>图片加载失败后触发该事件，无参数。</p>
-</td>
-</tr>
-</tbody>
-</table>
+## 属性
 
-## 示例<a name="section13457717134912"></a>
+| 属性 | 类型 | 默认值 | 必填 | 描述 |
+| -------- | -------- | -------- | -------- | -------- |
+| src | string | - | 是 | 图片资源的路径。 |
+| width | &lt;length&gt; | 0px | 否 | 图片的宽度。 |
+| height | &lt;length&gt; | 0px | 否 | 图片的高度。 |
+| onload | Function | - | 否 | 图片加载成功后触发该事件，无参数。 |
+| onerror | Function | - | 否 | 图片加载失败后触发该事件，无参数。 |
+
+
+## 示例
 
 ```
 <!-- xxx.hml -->
@@ -87,7 +30,7 @@
 //xxx.js
 export default {
   onShow(){
-    const el =this.$refs.canvas
+    const el =this.$refs.canvas;
     var ctx =el.getContext('2d');  
     var img = new Image();
     img.src = 'common/images/example.jpg';
@@ -102,5 +45,5 @@ export default {
 }
 ```
 
-![](figures/1-2.png)
 
+![zh-cn_image_0000001198530395](figures/zh-cn_image_0000001198530395.png)
