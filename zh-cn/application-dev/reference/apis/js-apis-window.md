@@ -147,7 +147,7 @@ create(id: string, type: WindowType, callback: AsyncCallback&lt;Window&gt;): voi
   ```
    window.create("first", window.WindowType.TYPE_APP, (err, data) => {
       windowClass = data;
-      if (err) {
+      if (err.code) {
           console.error('Failed to create the subWindow. Cause: ' + JSON.stringify(err));
           return;
       }
@@ -210,7 +210,7 @@ create(ctx: Context, id: string, type: WindowType, callback: AsyncCallback&lt;Wi
   ```
    window.create(this.context, "alertWindow", window.WindowType.TYPE_SYSTEM_ALERT, (err, data) => {
       windowClass = data;
-      if (err) {
+      if (err.code) {
           console.error('Failed to create the Window. Cause: ' + JSON.stringify(err));
           return;
       }
@@ -271,7 +271,7 @@ find(id: string, callback: AsyncCallback&lt;Window&gt;): void
 
   ```
    window.find("first", (err, data) => {
-     if (err) {
+     if (err.code) {
          console.error('Failed to find the Window. Cause: ' + JSON.stringify(err));
          return;
      }
@@ -329,7 +329,7 @@ getTopWindow(callback: AsyncCallback&lt;Window&gt;): void
 
   ```
   window.getTopWindow((err, data) => {
-      if (err) {
+      if (err.code) {
           console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
           return;
       }
@@ -382,7 +382,7 @@ getTopWindow(ctx: Context, callback: AsyncCallback&lt;Window&gt;): void
 
   ```
   window.getTopWindow(this.context, (err, data) => {
-      if (err) {
+      if (err.code) {
           console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
           return;
       }
@@ -490,7 +490,7 @@ hide (callback: AsyncCallback&lt;void&gt;): void
 
   ```
   windowClass.hide((err) => {
-      if (err) {
+      if (err.code) {
           console.error('Failed to hide the window. Cause: ' + JSON.stringify(err));
           return;
       }
@@ -541,7 +541,7 @@ show(callback: AsyncCallback&lt;void&gt;): void
 
   ```
   windowClass.show((err) => {
-      if (err) {
+      if (err.code) {
           console.error('Failed to show the window. Cause: ' + JSON.stringify(err));
           return;
       }
@@ -592,7 +592,7 @@ destroy(callback: AsyncCallback&lt;void&gt;): void
 
   ```
   windowClass.destroy((err) => {
-      if (err) {
+      if (err.code) {
           console.error('Failed to destroy the window. Cause:' + JSON.stringify(err));
           return;
       }
@@ -645,7 +645,7 @@ moveTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void
 
   ```
   windowClass.moveTo(300, 300, (err)=>{
-      if (err) {
+      if (err.code) {
           console.error('Failed to move the window. Cause:' + JSON.stringify(err));
           return;
       }
@@ -706,7 +706,7 @@ resetSize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): v
 
   ```
   windowClass.resetSize(500, 1000, (err) => {
-      if (err) {
+      if (err.code) {
           console.error('Failed to change the window size. Cause:' + JSON.stringify(err));
           return;
       }
@@ -766,7 +766,7 @@ setWindowType(type: WindowType, callback: AsyncCallback&lt;void&gt;): void
   ```
   var type = window.TYPE_APP;
   windowClass.setWindowType(type, (err) => {
-    if (err) {
+    if (err.code) {
         console.error('Failed to set the window type. Cause: ' + JSON.stringify(err));
         return;
     }
@@ -824,7 +824,7 @@ getProperties(callback: AsyncCallback&lt;WindowProperties&gt;): void
 
   ```
   windowClass.getProperties((err, data) => {
-      if (err) {
+      if (err.code) {
           console.error('Failed to obtain the window properties. Cause: ' + JSON.stringify(err));
           return;
       }
@@ -877,7 +877,7 @@ getAvoidArea(type: AvoidAreaType, callback: AsyncCallback&lt;AvoidArea&gt;): voi
   ```
   var type = window.AvoidAreaType.TYPE_SYSTEM;
   windowClass.getAvoidArea(type, (err, data) => {
-      if (err) {
+      if (err.code) {
           console.error('Failed to obtain the area. Cause:' + JSON.stringify(err));
           return;
       }
@@ -936,7 +936,7 @@ setFullScreen(isFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void
   ```
   var isFullScreen = true;
   windowClass.setFullScreen(isFullScreen, (err) => {
-      if (err) {
+      if (err.code) {
           console.error('Failed to enable the full-screen mode. Cause: ' + JSON.stringify(err));
           return;
       }
@@ -996,7 +996,7 @@ setLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&lt;void
   ```
   var isLayoutFullScreen= true;
   windowClass.setLayoutFullScreen(isLayoutFullScreen, (err) => {
-      if (err) {
+      if (err.code) {
           console.error('Failed to set the window layout to full-screen mode. Cause:' + JSON.stringify(err));
           return;
       }
@@ -1056,7 +1056,7 @@ setSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncCallbac
   ```
   var names = ["status", "navigation"];
   windowClass.setSystemBarEnable(names, (err) => {
-      if (err) {
+      if (err.code) {
           console.error('Failed to set the system bar to be visible. Cause:' + JSON.stringify(err));
           return;
       }
@@ -1125,7 +1125,7 @@ setSystemBarProperties(systemBarProperties: SystemBarProperties, callback: Async
       navigationBarContentColor:'#00ffff'
   };
   windowClass.setSystemBarProperties(SystemBarProperties, (err) => {
-      if (err) {
+      if (err.code) {
           console.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(err));
           return;
       }
@@ -1194,7 +1194,7 @@ loadContent(path: string, storage: ContentStorage, callback: AsyncCallback&lt;vo
 
   ```
   windowClass.loadContent("pages/page2/page2", (err) => {
-     if (err) {
+     if (err.code) {
            console.error('Failed to load the content. Cause:' + JSON.stringify(err));
            return;
      }
@@ -1252,7 +1252,7 @@ isShowing(callback: AsyncCallback&lt;boolean&gt;): void
 
   ```
   windowClass.isShowing((err) => {
-      if (err) {
+      if (err.code) {
           console.error('Failed to check whether the window is showing. Cause:' + JSON.stringify(err));
           return;
       }
@@ -1349,7 +1349,7 @@ isSupportWideGamut(callback: AsyncCallback&lt;boolean&gt;): void
 
   ```
   windowClass.isSupportWideGamut((err) => {
-      if (err) {
+      if (err.code) {
           console.error('Failed to check whether the window support WideGamut. Cause:' + JSON.stringify(err));
           return;
       }
@@ -1401,7 +1401,7 @@ setColorSpace(colorSpace:ColorSpace, callback: AsyncCallback&lt;void&gt;): void
 
   ```
   windowClass.setColorSpace(window.ColorSpace.WIDE_GAMUT, (err) => {
-      if (err) {
+      if (err.code) {
           console.error('Failed to set window colorspace. Cause:' + JSON.stringify(err));
           return;
       }
@@ -1458,7 +1458,7 @@ getColorSpace(callback: AsyncCallback&lt;ColorSpace&gt;): void
 
   ```
   windowClass.getColorSpace((err, data) => {
-      if (err) {
+      if (err.code) {
           console.error('Failed to get window color space. Cause:' + JSON.stringify(err));
           return;
       }
