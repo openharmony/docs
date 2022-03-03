@@ -1,4 +1,4 @@
-# Sensors Usage Guidelines<a name="EN-US_TOPIC_0000001077367158"></a>
+# Sensor Usage Guidelines<a name="EN-US_TOPIC_0000001077367158"></a>
 
 The following steps use the sensor whose  **sensorTypeId**  is  **0**  as an example. The guidelines for other sensor types are similar.
 
