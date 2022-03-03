@@ -1,6 +1,6 @@
 # ServiceExtension
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **Note:**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > The initial APIs of this module are supported since API 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -39,8 +39,10 @@ Called when an extension is created to initialize the service logic.
 
 - Example
   ```
-  onCreate(want) {
+  class ServiceExt extends ServiceExtension {
+    onCreate(want) {
       console.log('onCreate, want:' + want.abilityName);
+    }
   }
   ```
 
@@ -53,9 +55,10 @@ Called when this extension is destroyed to clear resources.
 
 - Example
   ```
-  onDestroy() {
+  class ServiceExt extends ServiceExtension {
+    onDestroy() {
       console.log('onDestroy');
-      destory();
+    }
   }
   ```
 
@@ -74,8 +77,10 @@ Called after **onCreate** is invoked when an ability is started by calling **sta
 
 - Example
   ```
-  onRequest(want: Want, startId: number) {
+  class ServiceExt extends ServiceExtension {
+    onRequest(want, startId) {
       console.log('onRequest, want:' + want.abilityName);
+    }
   }
   ```
 
@@ -106,10 +111,11 @@ Called after **onCreate** is invoked when an ability is started by calling **con
       onRemoteRequest(code, data, reply, option) {
       }
   }
-  ...
-  onConnect(want) {
+  class ServiceExt extends ServiceExtension {
+    onConnect(want) {
       console.log('onConnect , want:' + want.abilityName);
       return new StubTest("test");
+    }
   }
   ```
 
@@ -127,7 +133,9 @@ Called when the ability is disconnected.
 
 - Example
   ```
-  onDisconnect(want) {
+  class ServiceExt extends ServiceExtension {
+    onDisconnect(want) {
       console.log('onDisconnect, want:' + want.abilityName);
+    }
   }
   ```

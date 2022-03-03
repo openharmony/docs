@@ -1,6 +1,6 @@
 # DataAbilityHelper Module (JavaScript SDK APIs)
 
-#### Modules to Import
+## Modules to Import
 
 ```
 import featureAbility from '@ohos.ability.featureAbility'
@@ -8,26 +8,23 @@ import ohos_data_ability from '@ohos.data.dataability'
 import ohos_data_rdb from '@ohos.data.rdb'
 ```
 
-#### DataAbilityHelper.openFile(uri: string, mode: string, callback: AsyncCallback\<number>)
+## DataAbilityHelper
 
-- Functionality
+### openFile
 
-  Opens a file with a specified URI. This method uses a callback to return the result.
+openFile(uri: string, mode: string, callback: AsyncCallback\<number>): void
 
+Opens a file with a specified URI. This method uses a callback to return the result.
 
-* Parameters
+**Parameters**
 
-  | Name| Readable/Writable| Type| Mandatory| Description|
-  | -------- | -------- | -------------------- | ---- | ------------------------ |
-  | uri      | Read-only| string               | Yes| URI of the file to open.|
-  | mode     | Read-only| string               | Yes| Mode for opening the file. The value can be **rwt**.|
-  | callback | Read-only| AsyncCallback\<void> | Yes| Callback used to return the result.|
+| Name| Type| Mandatory| Description|
+| -------- | ---------------------- | ---- | ---------------------------------- |
+| uri      | string                 | Yes| URI of the file to open.|
+| mode     | string                 | Yes| Mode for opening the file. The value can be **rwt**.|
+| callback | AsyncCallback\<number> | Yes| Callback used to return the file descriptor.|
 
-* Return values
-
-  Returns a file descriptor.
-
-* Example
+**Example**
 
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility'
@@ -43,24 +40,25 @@ DAHelper.openFile(
 });
 ```
 
-#### DataAbilityHelper.openFile(uri: string, mode: string)
+### openFile
 
-- Functionality
+openFile(uri: string, mode: string): Promise\<number>
 
-  Opens a file with a specified URI. This method uses a promise to return the result.
+Opens a file with a specified URI. This method uses a promise to return the result.
 
-* Parameters
+**Parameters**
 
-  | Name| Readable/Writable| Type| Mandatory| Description|
-  | ---- | -------- | ------ | ---- | ------------------------ |
-  | uri  | Read-only| string | Yes| URI of the file to open.|
-  | mode | Read-only| string | Yes| Mode for opening the file. The value can be **rwt**.|
+| Name| Type| Mandatory| Description|
+| ---- | ------ | ---- | ------------------------ |
+| uri  | string | Yes| URI of the file to open.|
+| mode | string | Yes| Mode for opening the file. The value can be **rwt**.|
 
-* Return values
+**Return value**
+| Type| Description|
+| ---------------- | ---------------- |
+| Promise\<number> | Promise used to return the file descriptor.|
 
-  Returns a file descriptor.
-
-* Example
+**Example**
 
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility'
@@ -70,30 +68,26 @@ var DAHelper = featureAbility.acquireDataAbilityHelper(
 var mode = "rwt";
 DAHelper.openFile(
     "dataability:///com.example.DataAbility",
-    mode).then((void) => {
+    mode).then((data) => {
 		console.info("==========================>openFileCallback=======================>");
 });
 ```
 
-#### DataAbilityHelper.on(type: 'dataChange', uri: string, callback: AsyncCallback\<void>)
+### on('dataChange')
 
-- Functionality
+on(type: 'dataChange', uri: string, callback: AsyncCallback\<void>): void
 
-  Registers an observer to observe data specified by a given URI. This method uses a callback to return the result.
+Registers an observer to observe data specified by a given URI. This method uses a callback to return the result.
 
-- Parameters
+**Parameters**
 
-  | Name| Readable/Writable| Type| Mandatory| Description|
-  | -------- | -------- | -------------------- | ---- | ------------------------ |
-  | type     | Read-only| string               | Yes| Type of the event to observe. The value is **dataChange**.|
-  | uri      | Read-only| string               | Yes| URI of the data.|
-  | callback | Read-only| AsyncCallback\<void> | Yes| Callback invoked when the data is changed.|
+| Name| Type| Mandatory| Description|
+| -------- | -------------------- | ---- | ------------------------ |
+| type     | string               | Yes| Type of the event to observe. The value is **dataChange**.|
+| uri      | string               | Yes| URI of the data.|
+| callback | AsyncCallback\<void> | Yes| Callback invoked when the data is changed.|
 
-- Return value
-
-  void
-
-- Example
+**Example**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -110,25 +104,21 @@ helper.on(
 )
 ```
 
-#### DataAbilityHelper.off(type: 'dataChange', uri: string, callback?: AsyncCallback\<void>)
+### off('dataChange')
 
-- Functionality
+off(type: 'dataChange', uri: string, callback?: AsyncCallback\<void>): void
 
-  Unregisters the observer used to observe data specified by a given URI. This method uses a callback to return the result.
+Unregisters the observer used to observe data specified by a given URI. This method uses a callback to return the result.
 
-- Parameters
+**Parameters**
 
-  | Name| Readable/Writable| Type| Mandatory| Description|
-  | -------- | -------- | -------------------- | ---- | ------------------------ |
-  | type     | Read-only| string               | Yes| Type of the event to observe. The value is **dataChange**.|
-  | uri      | Read-only| string               | Yes| URI of the data.|
-  | callback | Read-only| AsyncCallback\<void> | No| Callback used to return the result.|
+| Name| Type| Mandatory| Description|
+| -------- | -------------------- | ---- | ------------------------ |
+| type     | string               | Yes| Type of the event to observe. The value is **dataChange**.|
+| uri      | string               | Yes| URI of the data.|
+| callback | AsyncCallback\<void> | No| Callback used to return the result.|
 
-- Return value
-
-  void
-
-- Example
+**Example**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -149,24 +139,20 @@ helper.off(
 )
 ```
 
-#### DataAbilityHelper.getType(uri: string, callback: AsyncCallback\<string>)
+### getType
 
-- Functionality
+getType(uri: string, callback: AsyncCallback\<string>): void
 
-  Obtains the MIME type of the data specified by a given URI. This method uses a callback to return the result.
+Obtains the MIME type of the data specified by a given URI. This method uses a callback to return the result.
 
-- Parameters
+**Parameters**
 
-  | Name| Readable/Writable| Type| Mandatory| Description|
-  | -------- | -------- | ---------------------- | ---- | ------------------------ |
-  | uri      | Read-only| string                 | Yes| URI of the data.|
-  | callback | Read-only| AsyncCallback\<string> | Yes| Callback used to return the result.|
+| Name| Type| Mandatory| Description|
+| -------- | ---------------------- | ---- | --------------------------------------------- |
+| uri      | string                 | Yes| URI of the data.|
+| callback | AsyncCallback\<string> | Yes| Callback used to return the MIME type.|
 
-- Return value
-
-  Returns the MIME type that matches the data specified by the URI.
-
-- Example
+**Example**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -180,23 +166,24 @@ DAHelper.getType(
 });
 ```
 
-#### DataAbilityHelper.getType(uri: string)
+### getType
 
-- Functionality
+getType(uri: string): Promise\<string>
 
-  Obtains the MIME type of the data specified by a given URI. This method uses a promise to return the result.
+Obtains the MIME type of the data specified by a given URI. This method uses a promise to return the result.
 
-- Parameters
+**Parameters**
 
-  | Name| Readable/Writable| Type| Mandatory| Description|
-  | ---- | -------- | ------ | ---- | ------------------------ |
-  | uri  | Read-only| string | Yes| URI of the data.|
+| Name| Type| Mandatory| Description|
+| ---- | ------ | ---- | ------------------------ |
+| uri  | string | Yes| URI of the data.|
 
-- Return value
+**Return value**
+| Type| Description|
+| ---------------- | ----------------------------------- |
+| Promise\<string> | Promise used to return the MIME type.|
 
-  Returns the MIME type that matches the data specified by the URI.
-
-- Example
+**Example**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -210,25 +197,21 @@ DAHelper.getType(
 });
 ```
 
-#### DataAbilityHelper.getFileTypes(uri: string, mimeTypeFilter: string, callback: AsyncCallback<Array\<string>>)
+### getFileTypes
 
-- Functionality
+getFileTypes(uri: string, mimeTypeFilter: string, callback: AsyncCallback<Array\<string>>): void
 
-  Obtains the supported MIME types of a specified file. This method uses a callback to return the result.
+Obtains the supported MIME types of a specified file. This method uses a callback to return the result.
 
-- Parameters
+**Parameters**
 
-  | Name| Readable/Writable| Type| Mandatory| Description|
-  | -------------- | -------- | ------------------------------ | ---- | ---------------------------- |
-  | uri            | Read-only| string                         | Yes| URI of the file.|
-  | mimeTypeFilter | Read-only| string                         | Yes| MIME type of the file.|
-  | callback       | Read-only| AsyncCallback\<Array\<string>> | Yes| Callback used to return the result.|
+| Name| Type| Mandatory| Description|
+| -------------- | ------------------------------ | ---- | ---------------------------------- |
+| uri            | string                         | Yes| URI of the file.|
+| mimeTypeFilter | string                         | Yes| MIME type of the file.|
+| callback       | AsyncCallback\<Array\<string>> | Yes| Callback used to return the supported MIME types.|
 
-- Return value
-
-  Returns a MIME type array.
-
-- Example
+**Example**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -243,24 +226,27 @@ DAHelper.getFileTypes(
 });
 ```
 
-#### DataAbilityHelper.getFileTypes(uri: string, mimeTypeFilter: string)
 
-- Functionality
 
-  Obtains the supported MIME types of a specified file. This method uses a promise to return the result.
+### getFileTypes
 
-- Parameters
+getFileTypes(uri: string, mimeTypeFilter: string): Promise\<Array\<string>>
 
-  | Name| Readable/Writable| Type| Mandatory| Description|
-  | -------------- | -------- | ------ | ---- | ---------------------------- |
-  | uri            | Read-only| string | Yes| URI of the file.|
-  | mimeTypeFilter | Read-only| string | Yes| MIME type of the file.|
+Obtains the supported MIME types of a specified file. This method uses a promise to return the result.
 
-- Return value
+**Parameters**
 
-  Returns a MIME type array.
+| Name| Type| Mandatory| Description|
+| -------------- | ------ | ---- | ---------------------------- |
+| uri            | string | Yes| URI of the file.|
+| mimeTypeFilter | string | Yes| MIME type of the file.|
 
-- Example
+**Return value**
+| Type| Description|
+| ------------------------ | ------------------------ |
+| Promise\<Array\<string>> | Promise used to return the supported MIME types.|
+
+**Example**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -275,24 +261,20 @@ DAHelper.getFileTypes(
 });
 ```
 
-#### DataAbilityHelper.normalizeUri(uri: string, callback: AsyncCallback\<string>)
+### normalizeUri
 
-- Functionality
+normalizeUri(uri: string, callback: AsyncCallback\<string>): void
 
-  Converts the URI that refers to a Data ability into a normalized URI. This method uses a callback to return the result.
+Converts the URI that refers to a Data ability into a normalized URI. This method uses a callback to return the result.
 
-- Parameters
+**Parameters**
 
-  | Name| Readable/Writable| Type| Mandatory| Description|
-  | -------- | -------- | ---------------------- | ---- | ----------------------- |
-  | uri      | Read-only| string                 | Yes| URI object to normalize.|
-  | callback | Read-only| AsyncCallback\<string> | Yes| Callback used to return the result.|
+| Name| Type| Mandatory| Description|
+| -------- | ---------------------- | ---- | ------------------------------------------------------------ |
+| uri      | string                 | Yes| URI object to normalize.|
+| callback | AsyncCallback\<string> | Yes| Callback used to return the normalized URI object if the Data ability supports URI normalization. If the Data ability does not support URI normalization, **null** is returned.|
 
-- Return value
-
-  Returns the normalized URI object if the Data ability supports URI normalization; returns **null** otherwise.
-
-- Example
+**Example**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -306,23 +288,24 @@ DAHelper.normalizeUri(
 });
 ```
 
-#### DataAbilityHelper.normalizeUri(uri: string)
+### normalizeUri
 
-- Functionality
+normalizeUri(uri: string): Promise\<string>
 
-  Converts the URI that refers to a Data ability into a normalized URI. This method uses a promise to return the result.
+Converts the URI that refers to a Data ability into a normalized URI. This method uses a promise to return the result.
 
-- Parameters
+**Parameters**
 
-  | Name| Readable/Writable| Type| Mandatory| Description|
-  | ---- | -------- | ------ | ---- | ----------------------- |
-  | uri  | Read-only| string | Yes| URI object to normalize.|
+| Name| Type| Mandatory| Description|
+| ---- | ------ | ---- | ----------------------- |
+| uri  | string | Yes| URI object to normalize.|
 
-- Return value
+**Return value**
+| Type| Description|
+| ---------------- | ------------------------------------------------------ |
+| Promise\<string> | Promise used to return the normalized URI object if the Data ability supports URI normalization. If the Data ability does not support URI normalization, **null** is returned.|
 
-  Returns the normalized URI object if the Data ability supports URI normalization; returns **null** otherwise.
-
-- Example
+**Example**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -336,24 +319,20 @@ DAHelper.normalizeUri(
 });
 ```
 
-#### DataAbilityHelper.denormalizeUri(uri: string, callback: AsyncCallback\<string>)
+### denormalizeUri
 
-- Functionality
+denormalizeUri(uri: string, callback: AsyncCallback\<string>): void
 
-  Converts a normalized URI generated by **DataAbilityHelper.normalizeUri(uri: string, callback: AsyncCallback\<string>)** to a denormalized one. This method uses a callback to return the result.
+Converts a normalized URI generated by **DataAbilityHelper.normalizeUri(uri: string, callback: AsyncCallback\<string>)** to a denormalized one. This method uses a callback to return the result.
 
-- Parameters
+**Parameters**
 
-  | Name| Readable/Writable| Type| Mandatory| Description|
-  | -------- | -------- | ---------------------- | ---- | ----------------------- |
-  | uri      | Read-only| string                 | Yes| URI object to denormalize.|
-  | callback | Read-only| AsyncCallback\<string> | Yes| Callback used to return the result.|
+| Name| Type| Mandatory| Description|
+| -------- | ---------------------- | ---- | --------------------------------------------------- |
+| uri      | string                 | Yes| URI object to normalize.|
+| callback | AsyncCallback\<string> | Yes| Callback used to return the denormalized URI object.|
 
-- Return value
-
-  Returns the denormalized URI object.
-
-- Example
+**Example**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -361,29 +340,32 @@ var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
 DAHelper.denormalizeUri(
-    "dataability:///com.example.DataAbility",,
+    "dataability:///com.example.DataAbility",
     (err, data) => {
 		console.info("==========================>Called=======================>");
 });
 ```
 
-#### DataAbilityHelper.denormalizeUri(uri: string)
 
-- Functionality
 
-  Converts a normalized URI generated by **DataAbilityHelper.normalizeUri(uri: string)** to a denormalized one. This method uses a promise to return the result.
+### denormalizeUri
 
-- Parameters
+denormalizeUri(uri: string): Promise\<string>
 
-  | Name| Readable/Writable| Type| Mandatory| Description|
-  | ---- | -------- | ------ | ---- | ----------------------- |
-  | uri  | Read-only| string | Yes| URI object to denormalize.|
+Converts a normalized URI generated by **DataAbilityHelper.normalizeUri(uri: string)** to a denormalized one. This method uses a promise to return the result.
 
-- Return value
+**Parameters**
 
-  Returns the denormalized URI object.
+| Name| Type| Mandatory| Description|
+| ---- | ------ | ---- | ----------------------- |
+| uri  | string | Yes| URI object to normalize.|
 
-- Example
+**Return value**
+| Type| Description|
+| ---------------- | ----------------------------------------- |
+| Promise\<string> | Promise used to return the denormalized URI object.|
+
+**Example**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -397,24 +379,20 @@ DAHelper.denormalizeUri(
 });
 ```
 
-#### DataAbilityHelper.notifyChange(uri: string, callback: AsyncCallback\<void>)
+### notifyChange
 
-- Functionality
+notifyChange(uri: string, callback: AsyncCallback\<void>): void
 
-  Notifies the registered observer of a change to the data specified by the URI. This method uses a callback to return the result.
+Notifies the registered observer of a change to the data specified by the URI. This method uses a callback to return the result.
 
-- Parameters
+**Parameters**
 
-  | Name| Readable/Writable| Type| Mandatory| Description|
-  | -------- | -------- | -------------------- | ---- | ------------------------ |
-  | uri      | Read-only| string               | Yes| URI of the data.|
-  | callback | Read-only| AsyncCallback\<void> | Yes| Callback used to return the result.|
+| Name| Type| Mandatory| Description|
+| -------- | -------------------- | ---- | ------------------------ |
+| uri      | string               | Yes| URI of the data.|
+| callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
 
-- Return value
-
-  void
-
-- Example
+**Example**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -422,29 +400,30 @@ var helper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
 helper.notifyChange(
-    "dataability:///com.example.DataAbility",,
+    "dataability:///com.example.DataAbility",
     (err) => {
 		console.info("==========================>Called=======================>");
 });
 ```
 
-#### DataAbilityHelper.notifyChange(uri: string)
+### notifyChange
 
-- Functionality
+notifyChange(uri: string): Promise\<void>
 
-  Notifies the registered observer of a change to the data specified by the URI. This method uses a promise to return the result.
+Notifies the registered observer of a change to the data specified by the URI. This method uses a promise to return the result.
 
-- Parameters
+**Parameters**
 
-  | Name| Readable/Writable| Type| Mandatory| Description|
-  | ---- | -------- | ------ | ---- | ------------------------ |
-  | uri  | Read-only| string | Yes| URI of the data.|
+| Name| Type| Mandatory| Description|
+| ---- | ------ | ---- | ------------------------ |
+| uri  | string | Yes| URI of the data.|
 
-- Return value
+**Return value**
+| Type| Description|
+| -------------- | --------------------- |
+| Promise\<void> | Promise used to return the result.|
 
-  void
-
-- Example
+**Example**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -453,30 +432,26 @@ var DAHelper = featureAbility.acquireDataAbilityHelper(
 );
 DAHelper.notifyChange(
     "dataability:///com.example.DataAbility",
-	).then((void) => {
+	).then(() => {
 		console.info("==========================>notifyChangeCallback=======================>");
 });
 ```
 
-#### DataAbilityHelper.insert(uri: string, valuesBucket: rdb.ValuesBucket, callback: AsyncCallback\<number>)
+### insert
 
-- Functionality
+insert(uri: string, valuesBucket: rdb.ValuesBucket, callback: AsyncCallback\<number>): void
 
-  Inserts a single data record into the database. This method uses a callback to return the result.
+Inserts a single data record into the database. This method uses a callback to return the result.
 
-- Parameters
+**Parameters**
 
-  | Name| Readable/Writable| Type| Mandatory| Description|
-  | ------------ | -------- | ---------------------- | ---- | ------------------------------------------------------ |
-  | uri          | Read-only| string                 | Yes| URI of the data to insert.|
-  | valuesBucket | Read-only| rdb.ValuesBucket       | Yes| Data record to insert. If this parameter is **null**, a blank row will be inserted.|
-  | callback     | Read-only| AsyncCallback\<number> | Yes| Callback used to return the result.|
+| Name| Type| Mandatory| Description|
+| ------------ | ---------------------- | ---- | ------------------------------------------------------ |
+| uri          | string                 | Yes| URI of the data to insert.|
+| valuesBucket | rdb.ValuesBucket       | Yes| Data record to insert. If this parameter is **null**, a blank row will be inserted.|
+| callback     | AsyncCallback\<number> | Yes| Callback used to return the index of the inserted data record.|
 
-- Return value
-
-  Returns the index of the inserted data record.
-
-- Example
+**Example**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -497,24 +472,25 @@ DAHelper.insert(
 });
 ```
 
-#### DataAbilityHelper.insert(uri: string, valuesBucket: rdb.ValuesBucket)
+### insert
 
-- Functionality
+insert(uri: string, valuesBucket: rdb.ValuesBucket): Promise\<number>
 
-  Inserts a single data record into the database. This method uses a promise to return the result.
+Inserts a single data record into the database. This method uses a promise to return the result.
 
-- Parameters
+**Parameters**
 
-  | Name| Readable/Writable| Type| Mandatory| Description|
-  | ------------ | -------- | ---------------- | ---- | ------------------------------------------------------ |
-  | uri          | Read-only| string           | Yes| URI of the data to insert.|
-  | valuesBucket | Read-only| rdb.ValuesBucket | Yes| Data record to insert. If this parameter is **null**, a blank row will be inserted.|
+| Name| Type| Mandatory| Description|
+| ------------ | ---------------- | ---- | ------------------------------------------------------ |
+| uri          | string           | Yes| URI of the data to insert.|
+| valuesBucket | rdb.ValuesBucket | Yes| Data record to insert. If this parameter is **null**, a blank row will be inserted.|
 
-- Return value
+**Return value**
+| Type| Description|
+| ---------------- | ------------------------ |
+| Promise\<number> | Promise used to return the index of the inserted data record.|
 
-  Returns the index of the inserted data record.
-
-- Example
+**Example**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -535,25 +511,21 @@ DAHelper.insert(
 });
 ```
 
-#### DataAbilityHelper.batchInsert(uri: string, valuesBuckets: Array<rdb.ValuesBucket>, callback: AsyncCallback\<number>)
+### batchInsert
 
-- Functionality
+batchInsert(uri: string, valuesBuckets: Array<rdb.ValuesBucket>, callback: AsyncCallback\<number>): void
 
-  Inserts multiple data records into the database. This method uses a callback to return the result.
+Inserts multiple data records into the database. This method uses a callback to return the result.
 
-- Parameters
+**Parameters**
 
-  | Name| Readable/Writable| Type| Mandatory| Description|
-  | ------------ | -------- | ----------------------- | ---- | ------------------------ |
-  | uri          | Read-only| string                  | Yes| URI of the data to insert.|
-  | valuesBucket | Read-only| Array<rdb.ValuesBucket> | Yes| Data records to insert.|
-  | callback     | Read-only| AsyncCallback\<number>  | Yes| Callback used to return the result.|
+| Name| Type| Mandatory| Description|
+| ------------ | ----------------------- | ---- | -------------------------------- |
+| uri          | string                  | Yes| URI of the data to insert.|
+| valuesBucket | Array<rdb.ValuesBucket> | Yes| Data records to insert.|
+| callback     | AsyncCallback\<number>  | Yes| Callback used to return the number of inserted data records.|
 
-- Return value
-
-  Returns the number of inserted data records.
-
-- Example
+**Example**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -571,24 +543,25 @@ DAHelper.batchInsert(
 });
 ```
 
-#### DataAbilityHelper.batchInsert(uri: string, valuesBuckets: Array<rdb.ValuesBucket>)
+### batchInsert
 
-- Functionality
+batchInsert(uri: string, valuesBuckets: Array<rdb.ValuesBucket>): Promise\<number>
 
-  Inserts multiple data records into the database. This method uses a promise to return the result.
+Inserts multiple data records into the database. This method uses a promise to return the result.
 
-- Parameters
+**Parameters**
 
-  | Name| Readable/Writable| Type| Mandatory| Description|
-  | ------------ | -------- | ----------------------- | ---- | ------------------------ |
-  | uri          | Read-only| string                  | Yes| URI of the data to insert.|
-  | valuesBucket | Read-only| Array<rdb.ValuesBucket> | Yes| Data records to insert.|
+| Name| Type| Mandatory| Description|
+| ------------ | ----------------------- | ---- | ------------------------ |
+| uri          | string                  | Yes| URI of the data to insert.|
+| valuesBucket | Array<rdb.ValuesBucket> | Yes| Data record to insert.|
 
-- Return value
+**Return value**
+| Type| Description|
+| ---------------- | ---------------------- |
+| Promise\<number> | Promise used to return the number of inserted data records.|
 
-  Returns the number of inserted data records.
-
-- Example
+**Example**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -606,25 +579,21 @@ DAHelper.batchInsert(
 });
 ```
 
-#### DataAbilityHelper.delete(uri: string, predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback\<number>)
+### delete
 
-- Functionality
+delete(uri: string, predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback\<number>): void
 
-  Deletes one or more data records from the database. This method uses a callback to return the result.
+Deletes one or more data records from the database. This method uses a callback to return the result.
 
-- Parameters
+**Parameters**
 
-  | Name| Readable/Writable| Type| Mandatory| Description|
-  | ------------ | -------- | --------------------------------- | ---- | ------------------------------------------------ |
-  | uri          | Read-only| string                            | Yes| URI of the data to delete.|
-  | valuesBucket | Read-only| dataAbility.DataAbilityPredicates | Yes| Filter criteria. You should define the processing logic when this parameter is **null**.|
-  | callback     | Read-only| AsyncCallback\<number>            | Yes| Callback used to return the result.|
+| Name| Type| Mandatory| Description|
+| ------------ | --------------------------------- | ---- | ------------------------------------------------ |
+| uri          | string                            | Yes| URI of the data to delete.|
+| valuesBucket | dataAbility.DataAbilityPredicates | Yes| Filter criteria. You should define the processing logic when this parameter is **null**.|
+| callback     | AsyncCallback\<number>            | Yes| Callback used to return the number of deleted data records.|
 
-- Return value
-
-  Returns the number of deleted data records.
-
-- Example
+**Example**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -641,24 +610,25 @@ DAHelper.delete(
 });
 ```
 
-#### DataAbilityHelper.delete(uri: string, predicates: dataAbility.DataAbilityPredicates)
+### delete
 
-- Functionality
+delete(uri: string, predicates: dataAbility.DataAbilityPredicates): Promise\<number>
 
-  Deletes one or more data records from the database. This method uses a promise to return the result.
+Deletes one or more data records from the database. This method uses a promise to return the result.
 
-- Parameters
+**Parameters**
 
-  | Name| Readable/Writable| Type| Mandatory| Description|
-  | ------------ | -------- | --------------------------------- | ---- | ------------------------------------------------ |
-  | uri          | Read-only| string                            | Yes| URI of the data to delete.|
-  | valuesBucket | Read-only| dataAbility.DataAbilityPredicates | Yes| Filter criteria. You should define the processing logic when this parameter is **null**.|
+| Name| Type| Mandatory| Description|
+| ------------ | --------------------------------- | ---- | ------------------------------------------------ |
+| uri          | string                            | Yes| URI of the data to delete.|
+| valuesBucket | dataAbility.DataAbilityPredicates | Yes| Filter criteria. You should define the processing logic when this parameter is **null**.|
 
-- Return value
+**Return value**
+| Type| Description|
+| ---------------- | ------------------------ |
+| Promise\<number> | Promise used to return the number of deleted data records.|
 
-  Returns the number of deleted data records.
-
-- Example
+**Example**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -674,26 +644,22 @@ DAHelper.delete(
 });
 ```
 
-#### DataAbilityHelper.update(uri: string, valuesBucket: rdb.ValuesBucket, predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback\<number>)
+### update
 
-- Functionality
+update(uri: string, valuesBucket: rdb.ValuesBucket, predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback\<number>): void
 
-  Updates data records in the database. This method uses a callback to return the result.
+Updates data records in the database. This method uses a callback to return the result.
 
-- Parameters
+**Parameters**
 
-  | Name| Readable/Writable| Type| Mandatory| Description|
-  | ------------ | -------- | --------------------------------- | ---- | ------------------------------------------------ |
-  | uri          | Read-only| string                            | Yes| URI of the data to update.|
-  | valuesBucket | Read-only| rdb.ValuesBucket                  | Yes| New values.|
-  | predicates   | Read-only| dataAbility.DataAbilityPredicates | Yes| Filter criteria. You should define the processing logic when this parameter is **null**.|
-  | callback     | Read-only| AsyncCallback\<number>            | Yes| Callback used to return the result.|
+| Name| Type| Mandatory| Description|
+| ------------ | --------------------------------- | ---- | ------------------------------------------------ |
+| uri          | string                            | Yes| URI of the data to update.|
+| valuesBucket | rdb.ValuesBucket                  | Yes| New values.|
+| predicates   | dataAbility.DataAbilityPredicates | Yes| Filter criteria. You should define the processing logic when this parameter is **null**.|
+| callback     | AsyncCallback\<number>            | Yes| Callback used to return the number of updated data records.|
 
-- Return value
-
-  Returns the number of updated data records.
-
-- Example
+**Example**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -717,25 +683,26 @@ DAHelper.update(
 });
 ```
 
-#### DataAbilityHelper.update(uri: string, valuesBucket: rdb.ValuesBucket, predicates: dataAbility.DataAbilityPredicates)
+### update
 
-- Functionality
+update(uri: string, valuesBucket: rdb.ValuesBucket, predicates: dataAbility.DataAbilityPredicates): Promise\<number>
 
-  Updates data records in the database. This method uses a promise to return the result.
+Updates data records in the database. This method uses a promise to return the result.
 
-- Parameters
+**Parameters**
 
-  | Name| Readable/Writable| Type| Mandatory| Description|
-  | ------------ | -------- | --------------------------------- | ---- | ------------------------------------------------ |
-  | uri          | Read-only| string                            | Yes| URI of the data to update.|
-  | valuesBucket | Read-only| rdb.ValuesBucket                  | Yes| New values.|
-  | predicates   | Read-only| dataAbility.DataAbilityPredicates | Yes| Filter criteria. You should define the processing logic when this parameter is **null**.|
+| Name| Type| Mandatory| Description|
+| ------------ | --------------------------------- | ---- | ------------------------------------------------ |
+| uri          | string                            | Yes| URI of the data to update.|
+| valuesBucket | rdb.ValuesBucket                  | Yes| New values.|
+| predicates   | dataAbility.DataAbilityPredicates | Yes| Filter criteria. You should define the processing logic when this parameter is **null**.|
 
-- Return value
+**Return value**
+| Type| Description|
+| ---------------- | -------------------------------------------- |
+| Promise\<number> | Promise used to return the number of updated data records.|
 
-  Returns the number of updated data records.
-
-- Example
+**Example**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -759,26 +726,22 @@ DAHelper.update(
 });
 ```
 
-#### DataAbilityHelper.query(uri: string, columns: Array\<string>, predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback\<ResultSet>)
+### query
 
-- Functionality
+query(uri: string, columns: Array\<string>, predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback\<ResultSet>): void
 
-  Queries data in the database. This method uses a callback to return the result.
+Queries data in the database. This method uses a callback to return the result.
 
-- Parameters
+**Parameters**
 
-  | Name| Readable/Writable| Type| Mandatory| Description|
-  | ---------- | -------- | --------------------------------- | ---- | ------------------------------------------------ |
-  | uri        | Read-only| string                            | Yes| URI of the data to query.|
-  | columns    | Read-only| rdb.ValuesBucket                  | Yes| Columns to query. If this parameter is **null**, all columns will be queried.|
-  | predicates | Read-only| dataAbility.DataAbilityPredicates | Yes| Filter criteria. You should define the processing logic when this parameter is **null**.|
-  | callback   | Read-only| AsyncCallback\<ResultSet>         | Yes| Callback used to return the result.|
+| Name| Type| Mandatory| Description|
+| ---------- | --------------------------------- | ---- | ------------------------------------------------ |
+| uri        | string                            | Yes| URI of the data to query.|
+| columns    | rdb.ValuesBucket                  | Yes| Columns to query. If this parameter is **null**, all columns will be queried.|
+| predicates | dataAbility.DataAbilityPredicates | Yes| Filter criteria. You should define the processing logic when this parameter is **null**.|
+| callback   | AsyncCallback\<ResultSet>         | Yes| Callback used to return the data queried.|
 
-- Return value
-
-  Returns the data queried.
-
-- Example
+**Example**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -786,7 +749,7 @@ import ohos_data_ability from '@ohos.data.dataability'
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
-var cars=new Array({"value1"}, {"value2"}, {"value3"}, {"value4"});
+var cars=new Array("value1", "value2", "value3", "value4");
 let da = new ohos_data_ability.DataAbilityPredicates()
 DAHelper.query(
     "dataability:///com.example.DataAbility",
@@ -799,25 +762,26 @@ DAHelper.query(
 
 
 
-#### DataAbilityHelper.query(uri: string, columns: Array\<string>, predicates: dataAbility.DataAbilityPredicates)
+### query
 
-- Functionality
+query(uri: string, columns: Array\<string>, predicates: dataAbility.DataAbilityPredicates): Promise\<ResultSet>
 
-  Queries data in the database. This method uses a promise to return the result.
+Queries data in the database. This method uses a promise to return the result.
 
-- Parameters
+**Parameters**
 
-  | Name| Readable/Writable| Type| Mandatory| Description|
-  | ---------- | -------- | --------------------------------- | ---- | ------------------------------------------------ |
-  | uri        | Readable and writable| string                            | Yes| URI of the data to query.|
-  | columns    | Readable and writable| rdb.ValuesBucket                  | Yes| Columns to query. If this parameter is **null**, all columns will be queried.|
-  | predicates | Readable and writable| dataAbility.DataAbilityPredicates | Yes| Filter criteria. You should define the processing logic when this parameter is **null**.|
+| Name| Type| Mandatory| Description|
+| ---------- | --------------------------------- | ---- | ------------------------------------------------ |
+| uri        | string                            | Yes| URI of the data to query.|
+| columns    | rdb.ValuesBucket                  | Yes| Columns to query. If this parameter is **null**, all columns will be queried.|
+| predicates | dataAbility.DataAbilityPredicates | Yes| Filter criteria. You should define the processing logic when this parameter is **null**.|
 
-- Return value
+**Return value**
+| Type| Description|
+| ------------------- | -------------- |
+| Promise\<ResultSet> | Promise used to return the data queried.|
 
-  Returns the data queried.
-
-- Example
+**Example**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -825,7 +789,7 @@ import ohos_data_ability from '@ohos.data.dataability'
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
-var cars=new Array({"value1"}, {"value2"}, {"value3"}, {"value4"});
+var cars=new Array("value1", "value2", "value3", "value4");
 let da = new ohos_data_ability.DataAbilityPredicates()
 DAHelper.query(
     "dataability:///com.example.DataAbility",

@@ -1,6 +1,6 @@
 # ServiceExtensionContext
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **Note:**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > The initial APIs of this module are supported since API 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -29,8 +29,8 @@ Starts an ability. This method uses a callback to return the result.
       "abilityName": "com.example.myapp.MyAbility"
   };
   this.context.startAbility(want, (err) => {
-      console.log('startAbility result:' + JSON.stringfy(err);
-  }  
+      console.log('startAbility result:' + JSON.stringfy(err));
+  });
   ```
 
 
@@ -58,7 +58,7 @@ Starts an ability. This method uses a promise to return the result.
   };
   this.context.startAbility(want).then((data) => {
       console.log('success:' + JSON.stringfy(data));
-  )).catch((error) => {
+  }).catch((error) => {
       console.log('failed:' + JSON.stringfy(error));
   });
   ```
@@ -78,8 +78,8 @@ Terminates this ability. This method uses a callback to return the result.
 - Example
   ```
   this.context.terminateSelf((err) => {
-      console.log('terminateSelf result:' + JSON.stringfy(err);
-  }
+      console.log('terminateSelf result:' + JSON.stringfy(err));
+  });
   ```
 
 
@@ -98,7 +98,7 @@ Terminates this ability. This method uses a promise to return the result.
   ```
   this.context.terminateSelf(want).then((data) => {
       console.log('success:' + JSON.stringfy(data));
-  )).catch((error) => {
+  }).catch((error) => {
       console.log('failed:' + JSON.stringfy(error));
   });
   ```
@@ -128,8 +128,8 @@ Connects this ability to a Service ability.
       "abilityName": "com.example.myapp.MyAbility"
   };
   let options = {
-      onConnect: function(elementName, proxy) {}
-      onDisConnect: function(elementName) {}
+      onConnect: function(elementName, proxy) {},
+      onDisConnect: function(elementName) {},
       onFailed: function(code) {}
   }
   let connection = this.context.connectAbility(want,options);
@@ -151,8 +151,8 @@ Disconnects this ability from the Service ability. This method uses a callback t
 - Example
   ```
   this.context.disconnectAbility(connection, (err) => { // connection is the return value of connectAbility.
-      console.log('terminateSelf result:' + JSON.stringfy(err);
-  }
+      console.log('terminateSelf result:' + JSON.stringfy(err));
+  });
   ```
 
 
@@ -176,7 +176,7 @@ Disconnects this ability from the Service ability. This method uses a promise to
   ```
   this.context.disconnectAbility(connection).then((data) => { // connection is the return value of connectAbility.
       console.log('success:' + JSON.stringfy(data));
-  )).catch((error) => {
+  }).catch((error) => {
       console.log('failed:' + JSON.stringfy(error));
   });
   ```
