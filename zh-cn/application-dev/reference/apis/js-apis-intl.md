@@ -34,6 +34,20 @@ import Intl from '@ohos.intl';
 
 ### constructor
 
+constructor()
+
+创建区域对象
+
+**系统能力**：SystemCapability.Global.I18n
+
+- 示例：
+  ```
+  var locale = new Intl.Locale();
+  ```
+
+
+### constructor
+
 constructor(locale: string, options?: options)
 
 创建区域对象
@@ -113,6 +127,20 @@ minimize(): Locale
 
 
 ## DateTimeFormat
+
+
+### constructor
+
+constructor()
+
+创建时间日期格式化对象。
+
+**系统能力**：SystemCapability.Global.I18n
+
+- 示例：
+  ```
+  var datefmt= new Intl.DateTimeFormat();
+  ```
 
 
 ### constructor
@@ -257,6 +285,20 @@ resolvedOptions(): DateTimeOptions
 
 
 ## NumberFormat
+
+
+### constructor
+
+constructor()
+
+创建数字格式化对象。
+
+**系统能力**：SystemCapability.Global.I18n
+
+- 示例：
+  ```
+  var numfmt = new Intl.NumberFormat();
+  ```
 
 
 ### constructor

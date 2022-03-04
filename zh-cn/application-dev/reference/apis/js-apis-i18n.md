@@ -111,6 +111,63 @@ getSystemLanguage(): string
   ```
 
 
+## i18n.setSystemLanguage
+
+setSystemLanguage(): boolean
+
+设置系统语言。
+
+**系统能力**：SystemCapability.Global.I18n
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | boolean | 返回true，表示系统语言设置成功；返回false，表示系统语言设置失败。 |
+
+- 示例：
+  ```
+  i18n.setSystemLanguage();
+  ```
+
+
+## i18n.getSystemLanguages
+
+getSystemLanguages(): Array<string>
+
+获取系统支持的语言列表。
+
+**系统能力**：SystemCapability.Global.I18n
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Array<string> | 系统支持的语言ID列表。 |
+
+- 示例：
+  ```
+  i18n.getSystemLanguages();
+  ```
+
+
+## i18n.getSystemCountries
+
+getSystemCountries(): Array<string>
+
+获取系统支持的区域列表。
+
+**系统能力**：SystemCapability.Global.I18n
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Array<string> | 系统支持的区域ID列表。 |
+
+- 示例：
+  ```
+  i18n.getSystemCountries();
+  ```
+
+
 ## i18n.getSystemRegion
 
 getSystemRegion(): string
@@ -130,6 +187,25 @@ getSystemRegion(): string
   ```
 
 
+## i18n.setSystemRegion
+
+setSystemRegion(): boolean
+
+设置系统区域。
+
+**系统能力**：SystemCapability.Global.I18n
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | boolean | 返回true，表示系统区域设置成功；返回false，表示系统区域设置失败。 |
+
+- 示例：
+  ```
+  i18n.setSystemRegion();
+  ```
+
+
 ## i18n.getSystemLocale
 
 getSystemLocale(): string
@@ -146,6 +222,55 @@ getSystemLocale(): string
 - 示例：
   ```
   i18n.getSystemLocale();
+  ```
+
+
+## i18n.setSystemLocale
+
+setSystemLocale(locale: string): boolean
+
+设置系统Locale。
+
+**系统能力**：SystemCapability.Global.I18n
+
+- 参数：
+  | 参数名 | 类型 | 说明 |
+  | -------- | -------- | -------- |
+  | locale | string | 指定区域ID，例如zh-CN。 |
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | boolean | 返回true，表示系统Locale设置成功；返回false，表示系统Locale设置失败。 |
+
+- 示例：
+  ```
+  i18n.setSystemLocale('zh-CN');
+  ```
+
+
+## i18n.isSuggested
+
+isSuggested(language: string, region?: string): boolean
+
+判断当前语言和区域是否匹配。
+
+**系统能力**：SystemCapability.Global.I18n
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | language | string | 是 | 合法的语言ID，例如zh。 |
+  | region | string | 否 | 合法的地区ID，例如CN |
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | boolean | 返回true，表示当前语言和地区匹配；返回false，表示当前语言和地区不匹配。 |
+
+- 示例：
+  ```
+  i18n.isSuggested('zh', 'CN');
   ```
 
 
