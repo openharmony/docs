@@ -9,9 +9,9 @@ The  **<Button\>**  component represents a component that can trigger actions.
 
 None
 
-## Child Component<a name="section13412913174619"></a>
+## Child Components<a name="section13412913174619"></a>
 
-This component can contain child components.
+This component can contain a single child component.
 
 ## APIs<a name="section124082310463"></a>
 
