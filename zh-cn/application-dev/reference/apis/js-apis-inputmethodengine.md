@@ -377,9 +377,9 @@ hideKeyboard(callback: AsyncCallback&lt;void&gt;): void
 
 - 参数：
 
-  | 参数名   | 类型                   | 必填 | 说明         |
-  | -------- | ---------------------- | ---- | ------------ |
-  | callback | AsyncCallback&lt;void> | 否   | 不需要的参数 |
+  | 参数名   | 类型                   | 必填 | 说明     |
+  | -------- | ---------------------- | ---- | -------- |
+  | callback | AsyncCallback&lt;void> | 否   | 回调函数 |
 
 - 示例
 
@@ -399,9 +399,9 @@ hideKeyboard(): Promise&lt;void&gt;
 
 - 返回值
 
-  | 类型                   | 说明         |
-  | ---------------------- | ------------ |
-  | AsyncCallback&lt;void> | 不需要的参数 |
+  | 类型                   | 说明     |
+  | ---------------------- | -------- |
+  | AsyncCallback&lt;void> | 回调函数 |
 
 - 示例
 
