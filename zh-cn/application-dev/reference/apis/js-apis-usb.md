@@ -11,7 +11,7 @@ import usb from "@ohos.usb";
 
 ## usb.getDevices
 
-usb.getDevices(): Array&lt;Readonly&lt;USBDevice&gt;&gt;
+getDevices(): Array&lt;Readonly&lt;USBDevice&gt;&gt;
 
 获取USB设备列表。
 
@@ -81,7 +81,7 @@ usb.getDevices(): Array&lt;Readonly&lt;USBDevice&gt;&gt;
 
 ## usb.connectDevice
 
-usb.connectDevice(device: USBDevice): Readonly&lt;USBDevicePipe&gt;
+connectDevice(device: USBDevice): Readonly&lt;USBDevicePipe&gt;
 
 打开USB设备。
 
@@ -108,7 +108,7 @@ usb.connectDevice(device: USBDevice): Readonly&lt;USBDevicePipe&gt;
 
 ## usb.hasRight
 
-usb.hasRight(deviceName: string): boolean
+hasRight(deviceName: string): boolean
 
 判断是否有权访问该设备。
 
@@ -134,7 +134,7 @@ usb.hasRight(deviceName: string): boolean
 
 ## usb.requestRight
 
-usb.requestRight(deviceName: string): Promise&lt;boolean&gt;
+requestRight(deviceName: string): Promise&lt;boolean&gt;
 
 请求软件包的临时权限以访问设备。
 
@@ -161,7 +161,7 @@ usb.requestRight(deviceName: string): Promise&lt;boolean&gt;
 
 ## usb.claimInterface
 
-usb.claimInterface(pipe: USBDevicePipe, iface: USBInterface, force?: boolean): number
+claimInterface(pipe: USBDevicePipe, iface: USBInterface, force?: boolean): number
 
 注册通信接口。
 
@@ -190,7 +190,7 @@ usb.claimInterface(pipe: USBDevicePipe, iface: USBInterface, force?: boolean): n
 
 ## usb.releaseInterface
 
-usb.releaseInterface(pipe: USBDevicePipe, iface: USBInterface): number
+releaseInterface(pipe: USBDevicePipe, iface: USBInterface): number
 
 释放注册过的通信接口。
 
@@ -218,7 +218,7 @@ usb.releaseInterface(pipe: USBDevicePipe, iface: USBInterface): number
 
 ## usb.setConfiguration
 
-usb.setConfiguration(pipe: USBDevicePipe, config: USBConfig): number
+setConfiguration(pipe: USBDevicePipe, config: USBConfig): number
 
 设置设备配置。
 
@@ -246,7 +246,7 @@ usb.setConfiguration(pipe: USBDevicePipe, config: USBConfig): number
 
 ## usb.setInterface
 
-usb.setInterface(pipe: USBDevicePipe, iface: USBInterface): number
+setInterface(pipe: USBDevicePipe, iface: USBInterface): number
 
 设置设备接口。
 
@@ -274,7 +274,7 @@ usb.setInterface(pipe: USBDevicePipe, iface: USBInterface): number
 
 ## usb.getRawDescriptor
 
-usb.getRawDescriptor(pipe: USBDevicePipe): Uint8Array
+getRawDescriptor(pipe: USBDevicePipe): Uint8Array
 
 获取原始的USB描述符。
 
@@ -300,7 +300,7 @@ usb.getRawDescriptor(pipe: USBDevicePipe): Uint8Array
 
 ## usb.getFileDescriptor
 
-usb.getFileDescriptor(pipe: USBDevicePipe): number
+getFileDescriptor(pipe: USBDevicePipe): number
 
 获取文件描述符。
 
@@ -326,7 +326,7 @@ usb.getFileDescriptor(pipe: USBDevicePipe): number
 
 ## usb.controlTransfer
 
-usb.controlTransfer(pipe: USBDevicePipe, contrlparam: USBControlParams, timeout?: number): Promise&lt;number&gt;
+controlTransfer(pipe: USBDevicePipe, contrlparam: USBControlParams, timeout?: number): Promise&lt;number&gt;
 
 控制传输。
 
@@ -356,7 +356,7 @@ usb.controlTransfer(pipe: USBDevicePipe, contrlparam: USBControlParams, timeout?
 
 ## usb.bulkTransfer
 
-usb.bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, timeout?: number): Promise&lt;number&gt;
+bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, timeout?: number): Promise&lt;number&gt;
 
 批量传输。
 
@@ -390,7 +390,7 @@ usb.bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array,
 
 ## usb.closePipe
 
-usb.closePipe(pipe: USBDevicePipe): number
+closePipe(pipe: USBDevicePipe): number
 
 关闭设备消息控制通道。
 
@@ -536,8 +536,8 @@ USB设备消息传输通道，用于确定设备。
 
 | 名称 | 默认值 | 说明 |
 | -------- | -------- | -------- |
-| USB_REQUEST_TYPE_STANDARD | 0 | 写数据，主设备往从设备。<br>**系统能力**: SystemCapability.USB.USBManager |
-| USB_REQUEST_TYPE_CLASS | 0x80 | 读数据，从设备往主设备。<br>**系统能力**: SystemCapability.USB.USBManager |
+| USB_REQUEST_DIR_TO_DEVICE | 0 | 写数据，主设备往从设备。<br>**系统能力**: SystemCapability.USB.USBManager |
+| USB_REQUEST_DIR_FROM_DEVICE | 0x80 | 读数据，从设备往主设备。<br>**系统能力**: SystemCapability.USB.USBManager |
 
 | 名称 | 默认值 | 说明 |
 | -------- | -------- | -------- |
