@@ -86,18 +86,18 @@ createHttp\(\): HttpRequest
 
 创建一个http，里面包括发起请求、中断请求、订阅/取消订阅HTTP Response Header 事件。每一个HttpRequest对象对应一个Http请求。如需发起多个Http请求，须为每个Http请求创建对应HttpRequest对象。
 
--   返回值
+**返回值：**
 
-    | 类型        | 说明                                                         |
-    | :---------- | :----------------------------------------------------------- |
-    | HttpRequest | 返回一个HttpRequest对象，里面包括request、destroy、on和off方法。 |
-    
--   示例
+| 类型        | 说明                                                         |
+| :---------- | :----------------------------------------------------------- |
+| HttpRequest | 返回一个HttpRequest对象，里面包括request、destroy、on和off方法。 |
 
-    ```
-    import http from '@ohos.net.http';
-    let httpRequest = http.createHttp();
-    ```
+**示例：**
+
+```
+import http from '@ohos.net.http';
+let httpRequest = http.createHttp();
+```
 
 
 ## HttpRequest<a name="section775213486457"></a>
@@ -110,29 +110,28 @@ request\(url: string, callback: AsyncCallback\<HttpResponse\>\):void
 
 根据URL地址，发起HTTP网络请求，使用callback方式作为异步方法。
 
-- 参数
+**参数：**
 
-  | 参数名   | 类型                                                    | 必填 | 说明                    |
-  | -------- | ------------------------------------------------------- | ---- | ----------------------- |
-  | url      | string                                                  | 是   | 发起网络请求的URL地址。 |
-  | callback | AsyncCallback\<[HttpResponse](#section12262183471518)\> | 是   | 回调函数。              |
+| 参数名   | 类型                                                    | 必填 | 说明                    |
+| -------- | ------------------------------------------------------- | ---- | ----------------------- |
+| url      | string                                                  | 是   | 发起网络请求的URL地址。 |
+| callback | AsyncCallback\<[HttpResponse](#section12262183471518)\> | 是   | 回调函数。              |
 
--   示例
+**示例：**
 
-    ```
-    let httpRequest = http.createHttp();
-    httpRequest.request("EXAMPLE_URL", (err, data) => {
-      if (!err) {
-        console.info('Result:' + data.result);
-        console.info('code:' + data.responseCode);
-        console.info('header:' + data.header);
-        console.info('cookies:' + data.cookies); // 8+
-      } else {
-        console.info('error:' + err.data);
-      }
-    });
-    ```
-
+```
+let httpRequest = http.createHttp();
+httpRequest.request("EXAMPLE_URL", (err, data) => {
+  if (!err) {
+    console.info('Result:' + data.result);
+    console.info('code:' + data.responseCode);
+    console.info('header:' + data.header);
+    console.info('cookies:' + data.cookies); // 8+
+  } else {
+    console.info('error:' + err.data);
+  }
+});
+```
 
 ### request<a name="section1361727114718"></a>
 
@@ -140,41 +139,41 @@ request\(url: string, options: HttpRequestOptions, callback: AsyncCallback<HttpR
 
 根据URL地址和相关配置项，发起HTTP网络请求，使用callback方式作为异步方法。
 
-- 参数
+**参数：**
 
-  | 参数名   | 类型                                                    | 必填 | 说明                                               |
-  | -------- | ------------------------------------------------------- | ---- | -------------------------------------------------- |
-  | url      | string                                                  | 是   | 发起网络请求的URL地址。                            |
-  | options  | HttpRequestOptions                                      | 是   | 参考[HttpRequestOptions](#section12262183471518)。 |
-  | callback | AsyncCallback\<[HttpResponse](#section12262183471518)\> | 是   | 回调函数。                                         |
+| 参数名   | 类型                                                    | 必填 | 说明                                               |
+| -------- | ------------------------------------------------------- | ---- | -------------------------------------------------- |
+| url      | string                                                  | 是   | 发起网络请求的URL地址。                            |
+| options  | HttpRequestOptions                                      | 是   | 参考[HttpRequestOptions](#section12262183471518)。 |
+| callback | AsyncCallback\<[HttpResponse](#section12262183471518)\> | 是   | 回调函数。                                         |
 
--   示例
+**示例：**
 
-    ```
-    let httpRequest= http.createHttp();
-    httpRequest.request("EXAMPLE_URL",
-    {
-      method: 'GET',
-      header: {
-        'Content-Type': 'application/json'
-      },
-      readTimeout: 60000,
-      connectTimeout: 60000
-    },(err, data) => {
-      if (!err) {
-        console.info('Result:' + data.result);
-        console.info('code:' + data.responseCode);
-        console.info('header:' + data.header);
-        console.info('cookies:' + data.cookies); // 8+
-        console.info('header['Content-Type']:' + data.header['Content-Type']);
-        console.info('header['Status-Line']:' + data.header['Status-Line']);
-        console.info('header.Date:' + data.header.Date);
-        console.info('header.Server:' + data.header.Server);
-      } else {
-        console.info('error:' + err.data);
-      }
-    });
-    ```
+```
+let httpRequest= http.createHttp();
+httpRequest.request("EXAMPLE_URL",
+{
+  method: 'GET',
+  header: {
+	'Content-Type': 'application/json'
+  },
+  readTimeout: 60000,
+  connectTimeout: 60000
+},(err, data) => {
+  if (!err) {
+	console.info('Result:' + data.result);
+	console.info('code:' + data.responseCode);
+	console.info('header:' + data.header);
+	console.info('cookies:' + data.cookies); // 8+
+	console.info('header['Content-Type']:' + data.header['Content-Type']);
+	console.info('header['Status-Line']:' + data.header['Status-Line']);
+	console.info('header.Date:' + data.header.Date);
+	console.info('header.Server:' + data.header.Server);
+  } else {
+	console.info('error:' + err.data);
+  }
+});
+```
 
 
 ### request<a name="section47538114482"></a>
@@ -183,46 +182,45 @@ request\(url: string, options? : HttpRequestOptions\): Promise<HttpResponse\>
 
 根据URL地址，发起HTTP网络请求，使用Promise方式作为异步方法。
 
-- 参数
+**参数：**
 
-  | 参数名  | 类型               | 必填 | 说明                                               |
-  | ------- | ------------------ | ---- | -------------------------------------------------- |
-  | url     | string             | 是   | 发起网络请求的URL地址。                            |
-  | options | HttpRequestOptions | 是   | 参考[HttpRequestOptions](#section12262183471518)。 |
+| 参数名  | 类型               | 必填 | 说明                                               |
+| ------- | ------------------ | ---- | -------------------------------------------------- |
+| url     | string             | 是   | 发起网络请求的URL地址。                            |
+| options | HttpRequestOptions | 是   | 参考[HttpRequestOptions](#section12262183471518)。 |
 
-- 返回值
+**返回值：**
 
-  | 类型                  | 说明                              |
-  | :-------------------- | :-------------------------------- |
-  | Promise<[HttpResponse](#section12262183471518)> | 以Promise形式返回发起请求的结果。 |
+| 类型                  | 说明                              |
+| :-------------------- | :-------------------------------- |
+| Promise<[HttpResponse](#section12262183471518)> | 以Promise形式返回发起请求的结果。 |
 
 
--   示例
+**示例：**
 
-    ```
-    let httpRequest= http.createHttp();
-    let promise = httpRequest.request("EXAMPLE_URL", {
-      method: "GET",
-      connectTimeout: 60000,
-      readTimeout: 60000,
-      header: {
-        'Content-Type': 'application/json'
-      }
-    });
-    promise.then((value) => {
-        console.info('Result:' + value.result);
-        console.info('code:' + value.responseCode);
-        console.info('header:' + value.header);
-        console.info('cookies:' + value.cookies); // 8+
-        console.info('header['Content-Type']:' + value.header['Content-Type']);
-        console.info('header['Status-Line']:' + value.header['Status-Line']);
-        console.info('header.Date:' + value.header.Date);
-        console.info('header.Server:' + value.header.Server);
-    }).catch((err) => {
-        console.error(`errCode:${err.code}, errMessage:${err.data}`);
-    });
-    ```
-
+```
+let httpRequest= http.createHttp();
+let promise = httpRequest.request("EXAMPLE_URL", {
+  method: "GET",
+  connectTimeout: 60000,
+  readTimeout: 60000,
+  header: {
+	'Content-Type': 'application/json'
+  }
+});
+promise.then((value) => {
+	console.info('Result:' + value.result);
+	console.info('code:' + value.responseCode);
+	console.info('header:' + value.header);
+	console.info('cookies:' + value.cookies); // 8+
+	console.info('header['Content-Type']:' + value.header['Content-Type']);
+	console.info('header['Status-Line']:' + value.header['Status-Line']);
+	console.info('header.Date:' + value.header.Date);
+	console.info('header.Server:' + value.header.Server);
+}).catch((err) => {
+	console.error(`errCode:${err.code}, errMessage:${err.data}`);
+});
+```
 
 ### destroy<a name="section613614500483"></a>
 
@@ -230,13 +228,12 @@ destroy\(\): void
 
 中断请求任务。
 
--   示例
+**示例：**
 
-    ```
-    let httpRequest= http.createHttp();
-    httpRequest.destroy();
-    ```
-
+```
+let httpRequest= http.createHttp();
+httpRequest.destroy();
+```
 
 ### on\('headerReceive'\)<a name="section617831813498"></a>
 
@@ -247,25 +244,25 @@ on\(type: 'headerReceive', callback: AsyncCallback<Object\>\):void
 >![](public_sys-resources/icon-note.gif) **说明：** 
 > 此接口已废弃，建议使用on\('headersReceive'\)替代。
 
-- 参数
+**参数：**
 
-  | 参数名   | 类型                    | 必填 | 说明                                  |
-  | -------- | ----------------------- | ---- | ------------------------------------- |
-  | type     | string                  | 是   | 订阅的事件类型，如：'headerReceive'。 |
-  | callback | AsyncCallback\<Object\> | 是   | 回调函数。                            |
+| 参数名   | 类型                    | 必填 | 说明                                  |
+| -------- | ----------------------- | ---- | ------------------------------------- |
+| type     | string                  | 是   | 订阅的事件类型，如：'headerReceive'。 |
+| callback | AsyncCallback\<Object\> | 是   | 回调函数。                            |
 
--   示例
+**示例：**
 
-    ```
-    let httpRequest= http.createHttp();
-    httpRequest.on('headerReceive', (err, data) => {
-      if (!err) {
-        console.info('header: ' + data.header);
-      } else {
-        console.info('error:' + err.data);
-      }
-    });
-    ```
+```
+let httpRequest= http.createHttp();
+httpRequest.on('headerReceive', (err, data) => {
+  if (!err) {
+	console.info('header: ' + data.header);
+  } else {
+	console.info('error:' + err.data);
+  }
+});
+```
 
 
 ### off\('headerReceive'\)<a name="section017612118508"></a>
@@ -280,26 +277,26 @@ off\(type: 'headerReceive', callback?: AsyncCallback<Object\>\):void
 >
 >2. 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
-- 参数
+**参数：**
 
-  | 参数名   | 类型                    | 必填 | 说明                                  |
-  | -------- | ----------------------- | ---- | ------------------------------------- |
-  | type     | string                  | 是   | 取消订阅的事件类型，'headerReceive'。 |
-  | callback | AsyncCallback\<Object\> | 否   | 回调函数。                            |
+| 参数名   | 类型                    | 必填 | 说明                                  |
+| -------- | ----------------------- | ---- | ------------------------------------- |
+| type     | string                  | 是   | 取消订阅的事件类型，'headerReceive'。 |
+| callback | AsyncCallback\<Object\> | 否   | 回调函数。                            |
 
--   示例
+**示例：**
 
-    ```
-    let httpRequest= http.createHttp();
-    httpRequest.on('headerReceive', (err, data) => {
-      if (!err) {
-        console.info('header: ' + data.header);
-      } else {
-        console.info('error:' + err.data);
-      }
-    });
-    httpRequest.off('headerReceive');
-    ```
+```
+let httpRequest= http.createHttp();
+httpRequest.on('headerReceive', (err, data) => {
+  if (!err) {
+	console.info('header: ' + data.header);
+  } else {
+	console.info('error:' + err.data);
+  }
+});
+httpRequest.off('headerReceive');
+```
 
 ### on\('headersReceive'\)<sup>8+</sup><a name="section6178318134982"></a>
 
@@ -307,21 +304,21 @@ on\(type: 'headersReceive', callback: Callback<Object\>\):void
 
 订阅HTTP Response Header 事件。
 
-- 参数
+**参数：**
 
-  | 参数名   | 类型               | 必填 | 说明                               |
-  | -------- | ------------------ | ---- | ---------------------------------- |
-  | type     | string             | 是   | 订阅的事件类型：'headersReceive'。 |
-  | callback | Callback\<Object\> | 是   | 回调函数。                         |
+| 参数名   | 类型               | 必填 | 说明                               |
+| -------- | ------------------ | ---- | ---------------------------------- |
+| type     | string             | 是   | 订阅的事件类型：'headersReceive'。 |
+| callback | Callback\<Object\> | 是   | 回调函数。                         |
 
--   示例
+**示例：**
 
-    ```
-    let httpRequest= http.createHttp();
-    httpRequest.on('headersReceive', (data) => {
-      console.info('header: ' + data.header);
-    });
-    ```
+```
+let httpRequest= http.createHttp();
+httpRequest.on('headersReceive', (data) => {
+  console.info('header: ' + data.header);
+});
+```
 
 
 ### off\('headersReceive'\)<sup>8+</sup><a name="section0176121185082"></a>
@@ -333,19 +330,19 @@ off\(type: 'headersReceive', callback?: Callback<Object\>\):void
 >![](public_sys-resources/icon-note.gif) **说明：** 
 >可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
-- 参数
+**参数：**
 
-  | 参数名   | 类型               | 必填 | 说明                                   |
-  | -------- | ------------------ | ---- | -------------------------------------- |
-  | type     | string             | 是   | 取消订阅的事件类型：'headersReceive'。 |
-  | callback | Callback\<Object\> | 否   | 回调函数。                             |
+| 参数名   | 类型               | 必填 | 说明                                   |
+| -------- | ------------------ | ---- | -------------------------------------- |
+| type     | string             | 是   | 取消订阅的事件类型：'headersReceive'。 |
+| callback | Callback\<Object\> | 否   | 回调函数。                             |
 
--   示例
+**示例：**
 
-    ```
-    let httpRequest= http.createHttp();
-    httpRequest.off('headersReceive');
-    ```
+```
+let httpRequest= http.createHttp();
+httpRequest.off('headersReceive');
+```
 
 ### once\('headersReceive'\)<sup>8+</sup><a name="section68221041134718"></a>
 
@@ -353,21 +350,21 @@ once\(type: "headersReceive", callback: Callback<Object\>\): void
 
 订阅HTTP Response Header 事件，但是只触发一次。一旦触发之后，订阅器就会被移除。使用callback方式作为异步方法。
 
-- 参数
+**参数：**
 
-  | 参数名   | 类型               | 必填 | 说明                               |
-  | -------- | ------------------ | ---- | ---------------------------------- |
-  | type     | string             | 是   | 订阅的事件类型：'headersReceive'。 |
-  | callback | Callback\<Object\> | 是   | 回调函数。                         |
+| 参数名   | 类型               | 必填 | 说明                               |
+| -------- | ------------------ | ---- | ---------------------------------- |
+| type     | string             | 是   | 订阅的事件类型：'headersReceive'。 |
+| callback | Callback\<Object\> | 是   | 回调函数。                         |
 
--   示例
+**示例：**
 
-    ```
-    let httpRequest= http.createHttp();
-    httpRequest.once('headersReceive', (data) => {
-      console.info('header: ' + data.header);
-    });
-    ```
+```
+let httpRequest= http.createHttp();
+httpRequest.once('headersReceive', (data) => {
+  console.info('header: ' + data.header);
+});
+```
 
 ## HttpRequestOptions<a name="section12262183471518"></a>
 
