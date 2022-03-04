@@ -399,9 +399,9 @@ hideKeyboard(): Promise&lt;void&gt;
 
 - 返回值
 
-  | 类型                   | 说明     |
-  | ---------------------- | -------- |
-  | AsyncCallback&lt;void> | 回调函数 |
+  | 类型             | 说明     |
+  | ---------------- | -------- |
+  | Promise&lt;void> | 回调函数 |
 
 - 示例
 
