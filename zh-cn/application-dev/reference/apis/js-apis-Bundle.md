@@ -490,66 +490,6 @@ bundle.queryAbilityByWant(want, bundleFlags, (err, data) => {
 })
 ```
 
-## bundle.getBundleArchiveInfo
-
-getBundleArchiveInfo(hapFilePath: string, bundleFlags: number): Promise\<BundleInfo>
-
-以异步方法从给定的HAP中获取BundleInfo，使用Promise形式返回结果。
-
-**参数：**
-
-| 名称        | 类型   | 必填 | 描述                                                         |
-| ----------- | ------ | ---- | ------------------------------------------------------------ |
-| hapFilePath | string | 是   | HAP文件路径                                                  |
-| bundleFlags | number | 是   | 用于指定返回的应用信息对象中包含信息的标记。默认值：0，取值范围：大于等于0。 |
-
-**返回值：**
-
-| 类型                 | 说明                                       |
-| -------------------- | ------------------------------------------ |
-| Promise\<BundleInfo> | 返回值为Promise对象，Promise中包含包信息。 |
-
-**示例：**
-
-```js
-let hapFilePath = "/data/test.hap";
-let bundleFlags = 1;
-bundle.getBundleArchiveInfo(hapFilePath, bundleFlags)
-.then((data) => {
-    console.info('Operation successful. Data: ' + JSON.stringify(data));
-}).catch((error) => {
-    console.error('Operation failed. Cause: ' + JSON.stringify(error));
-})
-```
-
-## bundle.getBundleArchiveInfo
-
-getBundleArchiveInfo(hapFilePath: string, bundleFlags: number, callback: AsyncCallback\<BundleInfo>): void
-
-以异步方法从给定的HAP中获取BundleInfo，使用callback形式返回结果。
-
-**参数：**
-
-| 名称        | 类型                      | 必填 | 描述                                                         |
-| ----------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| hapFilePath | string                    | 是   | HAP文件路径                                                  |
-| bundleFlags | number                    | 是   | 用于指定返回的应用信息对象中包含信息的标记。默认值：0，取值范围：大于等于0。 |
-| callback    | AsyncCallback<BundleInfo> | 是   | 程序启动作为入参的回调函数，返回包信息。                     |
-
-**示例：**
-
-```js
-let hapFilePath = "/data/test.hap";
-let bundleFlags = 1;
-bundle.getBundleArchiveInfo(hapFilePath, bundleFlags, (err, data) => {
-    if (err) {
-        console.error('Operation failed. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Operation successful. Data:' + JSON.stringify(data));
-})
-```
-
 ## bundle.getBundleInstaller
 
 getBundleInstaller(): Promise<BundleInstaller>
@@ -635,6 +575,10 @@ getLaunchWantForBundle(bundleName: string): Promise\<Want>
 
 以异步方法查询拉起指定应用的want对象，使用Promise形式返回结果。
 
+**需要权限：**
+
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
 **参数：**
 
 | 名称       | 类型   | 必填 | 描述     |
@@ -663,6 +607,10 @@ bundle.getLaunchWantForBundle(bundleName)
 getLaunchWantForBundle(bundleName: string, callback: AsyncCallback<Want>): void;
 
 以异步方法查询拉起指定应用的want对象，使用callback形式返回结果。
+
+**需要权限：**
+
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **参数：**
 
@@ -748,13 +696,14 @@ bundle.getNameForUid(uid, (err, data) => {
 | deviceId    | 只读     | string | 否   | 表示运行指定Ability的设备ID。                                |
 | bundleName  | 只读     | string | 是   | 表示包描述。如果在Want中同时指定了BundleName和AbilityName，则Want可以直接匹配到指定的Ability。 |
 | abilityName | 只读     | string | 是   | 表示待启动的Ability名称。如果在Want中同时指定了BundleName和AbilityName，则Want可以直接匹配到指定的Ability。 |
+| uri | 只读     | string | 否   | 资源标识符。 |
+| shortName | 只读     | string | 否   | ElementName的简名。 |
 
 ## InstallStatus
 
 | 名称          | 读写属性 | 类型             | 必填 | 描述                                                         |
 | ------------- | -------- | ---------------- | ---- | ------------------------------------------------------------ |
-| status        | 只读     | InstallErrorCode | 是   | 安装结果code<br/>SUCCESS = 0<br/>STATUS_INSTALL_FAILURE = 1<br/>STATUS_INSTALL_FAILURE_ABORTED = 2,<br/>STATUS_INSTALL_FAILURE_INVALID = 3<br/>STATUS_INSTALL_FAILURE_CONFLICT = 4<br/>STATUS_INSTALL_FAILURE_STORAGE = 5<br/>STATUS_INSTALL_FAILURE_INCOMPATIBLE = 6<br/>STATUS_INSTALL_FAILURE_DOWNLOAD_TIMEOUT = 0x0B<br/>STATUS_INSTALL_FAILURE_DOWNLOAD_FAILED = 0x0C<br/>STATUS_ABILITY_NOT_FOUND = 0x40<br/>STATUS_BMS_SERVICE_ERROR = 0x41 |
-| statusMessage | 只读     | string           | 是   | 安装结果Message                                              |
+| status        | 只读     | InstallErrorCode | 是   | 安装结果code<br/>SUCCESS = 0<br/>STATUS_INSTALL_FAILURE = 1<br/>STATUS_INSTALL_FAILURE_ABORTED = 2,<br/>STATUS_INSTALL_FAILURE_INVALID = 3<br/>STATUS_INSTALL_FAILURE_CONFLICT = 4<br/>STATUS_INSTALL_FAILURE_STORAGE = 5<br/>STATUS_INSTALL_FAILURE_INCOMPATIBLE = 6<br/>STATUS_UNINSTALL_FAILURE = 7<br>STATUS_UNINSTALL_FAILURE_BLOCKED = 8<br/>STATUS_UNINSTALL_FAILURE_ABORTED = 9<br/>STATUS_UNINSTALL_FAILURE_CONFLICT = 10<br/>STATUS_INSTALL_FAILURE_DOWNLOAD_TIMEOUT = 0x0B<br/>STATUS_INSTALL_FAILURE_DOWNLOAD_FAILED = 0x0C<br/>STATUS_RECOVER_FAILURE_INVALID = 0x0D<br/>STATUS_ABILITY_NOT_FOUND = 0x40<br/>STATUS_BMS_SERVICE_ERROR = 0x41<br/>STATUS_FAILED_NO_SPACE_LEFT = 0x42<br/>STATUS_GRANT_REQUEST_PERMISSIONS_FAILED = 0x43<br/>STATUS_INSTALL_PERMISSION_DENIED = 0x44<br/>STATUS_UNINSTALL_PERMISSION_DENIED = 0x45 |
 
 ## BundleFlag
 
@@ -773,6 +722,7 @@ bundle.getNameForUid(uid, (err, data) => {
 | GET_ABILITY_INFO_SYSTEMAPP_ONLY | 0x00000080 | 获取仅包括系统应用的ability信息 |
 | GET_ABILITY_INFO_WITH_DISABLE | 0x00000100 | 获取包括被禁用的ability信息 |
 | GET_APPLICATION_INFO_WITH_DISABLE | 0x00000200 | 获取包括被禁用的应用信息 |
+| GET_ALL_APPLICATION_INFO | 0xFFFF0000 | 获取应用所有的信息 |
 
 ## BundleOptions
 
@@ -785,7 +735,7 @@ bundle.getNameForUid(uid, (err, data) => {
 
 ## BundleInfo
 
-应用包的信息。
+应用包的信息
 
 | 名称               | 类型 | 可读 | 可写 | 说明 |
 | ------ | ------ | ------ | ------ | ------ |
@@ -815,7 +765,7 @@ bundle.getNameForUid(uid, (err, data) => {
 
 ## ApplicationInfo
 
-应用程序信息。
+应用程序信息
 
 | 名称               | 类型 | 可读 | 可写 | 说明 |
 | ------ | ------ | ------ | ------ | ------ |
@@ -843,7 +793,7 @@ bundle.getNameForUid(uid, (err, data) => {
 
 ## ModuleInfo
 
-应用程序的模块信息。
+应用程序的模块信息
 
 | 名称               | 类型 | 可读 | 可写 | 说明 |
 | ------ | ------ | ------ | ------ | ------ |
@@ -852,7 +802,7 @@ bundle.getNameForUid(uid, (err, data) => {
 
 ## CustomizeData
 
-自定义元数据。
+自定义元数据
 
 | 名称  | 类型   | 可读 | 可写 | 说明             |
 | ----- | ------ | ---- | ---- | ---------------- |
@@ -862,6 +812,8 @@ bundle.getNameForUid(uid, (err, data) => {
 
 
 ## HapModuleInfo
+
+Hap模块信息
 
 | 名称               | 类型 | 可读 | 可写 | 说明 |
 | ------ | ------ | ------ | ------ | ------ |
@@ -884,6 +836,8 @@ bundle.getNameForUid(uid, (err, data) => {
 
 ## ReqPermissionDetail
 
+应用运行时需向系统申请的权限集合的详细信息
+
 | 名称               | 类型 | 可读 | 可写 | 说明 |
 | ------ | ------ | ------ | ------ | ------ |
 | name      | string    | 是   | 是   | 需要使用的权限名称   |
@@ -892,6 +846,8 @@ bundle.getNameForUid(uid, (err, data) => {
 
 ## UsedScene
 
+描述权限使用的场景和时机
+
 | 名称               | 类型 | 可读 | 可写 | 说明 |
 | ------ | ------ | ------ | ------ | ------ |
 | abilities | Array<string> | 是   | 是   | 使用到该权限的Ability集合 |
@@ -899,6 +855,8 @@ bundle.getNameForUid(uid, (err, data) => {
 
 
 ## AbilityInfo
+
+Ability信息
 
 | 名称               | 类型 | 可读 | 可写 | 说明 |
 | ------ | ------ | ------ | ------ | ------ |
@@ -938,6 +896,8 @@ bundle.getNameForUid(uid, (err, data) => {
 
 ## AbilityType
 
+Ability类型
+
 | 名称    | 类型 | 说明                        |
 | ------- | ---- | --------------------------- |
 | UNKNOWN | 无   | 未知Ability类型             |
@@ -946,6 +906,8 @@ bundle.getNameForUid(uid, (err, data) => {
 | DATA    | 无   | Ability用于提供数据访问服务 |
 
 ## DisplayOrientation
+
+屏幕显示方向
 
 | 名称          | 类型 | 说明                     |
 | ------------- | ---- | ------------------------ |
@@ -956,7 +918,18 @@ bundle.getNameForUid(uid, (err, data) => {
 
 ## LaunchMode
 
+启动模式
+
 | 名称        | 类型 | 说明                |
 | ----------- | ---- | ------------------- |
 | UNSPECIFIED | 0    | Ability只有一个示例 |
 | STANDARD    | 1    | Ability有多个示例   |
+
+## AbilitySubType
+
+Ability的子类型
+
+| 名称        | 类型 | 说明                          |
+| ----------- | ---- | ----------------------------- |
+| UNSPECIFIED | 0    | 未定义Ability子类型           |
+| CA          | 1    | Ability子类型是带有 UI 的服务 |
