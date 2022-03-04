@@ -221,7 +221,7 @@ create(ctx: Context, id: string, type: WindowType, callback: AsyncCallback&lt;Wi
 
 ## window.create<sup>8+</sup>
 
-function create(ctx: Context, id: string, type: WindowType): Promise&lt;Window&gt;
+create(ctx: Context, id: string, type: WindowType): Promise&lt;Window&gt;
 
 当Context为[ServiceExtensionContext](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-service-extension-context.md)时，创建系统窗口，使用Promise方式作为异步方法。
 
@@ -500,7 +500,7 @@ hide (callback: AsyncCallback&lt;void&gt;): void
 
 ### hide<sup>7+</sup>
 
-hide(): Promise&lt;void&gt;;
+hide(): Promise&lt;void&gt;
 
 隐藏当前窗口，使用Promise方式作为异步方法。
 
@@ -1285,9 +1285,9 @@ isShowing(): Promise&lt;boolean&gt;
   });
   ```
 
-### on('windowSizeChange'|'systemAvoidAreaChange')
+### on('windowSizeChange')<sup>7+</sup>
 
-on(type: 'windowSizeChange'|'systemAvoidAreaChange', callback: Callback&lt;AvoidArea | Size&gt;): void
+on(type:  'windowSizeChange', callback: Callback&lt;Size&gt;): void
 
 开启监听。
 
@@ -1295,10 +1295,10 @@ on(type: 'windowSizeChange'|'systemAvoidAreaChange', callback: Callback&lt;Avoid
 
 - 参数
 
-  | 参数名   | 类型                                                         | 必填 | 说明                                                         |
-  | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-  | type     | string                                                       | 是   | 设置监听类型。<br/>-&nbsp;type为'windowSizeChange'<sup>7+</sup>时表示监听类型为窗口尺寸变化监听；<br/>-&nbsp;type为'systemAvoidAreaChange'<sup>7+</sup>时表示监听类型为系统窗口规避区变化监听。 |
-  | callback | Callback&lt;[AvoidArea](#avoidarea)&nbsp;\|&nbsp;[Size](#size)&gt; | 是   | 回调返回监听到的信息。                                       |
+  | 参数名   | 类型                          | 必填 | 说明                                                         |
+  | -------- | ----------------------------- | ---- | ------------------------------------------------------------ |
+  | type     | string                        | 是   | 设置监听类型。<br/>-&nbsp;type为'windowSizeChange'时表示监听类型为窗口尺寸变化监听； |
+  | callback | Callback&lt;[Size](#size)&gt; | 是   | 回调返回监听到的信息。                                       |
 
 - 示例
 
@@ -1309,9 +1309,9 @@ on(type: 'windowSizeChange'|'systemAvoidAreaChange', callback: Callback&lt;Avoid
   });
   ```
 
-### off('windowSizeChange'|'systemAvoidAreaChange')<sup>7+</sup>
+### off('windowSizeChange')<sup>7+</sup>
 
-off(type: 'windowSizeChange'|'systemAvoidAreaChange', callback?: Callback&lt;AvoidArea | Size &gt;): void
+off(type: 'windowSizeChange', callback?: Callback&lt;Size &gt;): void
 
 关闭监听。
 
@@ -1319,15 +1319,61 @@ off(type: 'windowSizeChange'|'systemAvoidAreaChange', callback?: Callback&lt;Avo
 
 - 参数
 
-  | 参数名   | 类型                                                         | 必填 | 说明                                                         |
-  | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-  | type     | string                                                       | 是   | 设置监听类型。<br/>-&nbsp;type为'windowSizeChange'<sup>7+</sup>时表示监听类型为窗口尺寸变化监听；<br/>-&nbsp;type为'systemAvoidAreaChange'<sup>7+</sup>时表示监听类型为系统窗口规避区变化监听。 |
-  | callback | Callback&lt;[AvoidArea](#avoidarea)&nbsp;\|&nbsp;[Size](#size)&gt; | 否   | 回调返回监听到的信息。                                       |
+  | 参数名   | 类型                          | 必填 | 说明                                                         |
+  | -------- | ----------------------------- | ---- | ------------------------------------------------------------ |
+  | type     | string                        | 是   | 设置监听类型。<br/>-&nbsp;type为'windowSizeChange'<sup>7+</sup>时表示监听类型为窗口尺寸变化监听； |
+  | callback | Callback&lt;[Size](#size)&gt; | 否   | 回调返回监听到的信息。                                       |
 
 - 示例
 
   ```
   var type = 'windowSizeChange';
+  windowClass.off(type);
+  ```
+
+### on('systemAvoidAreaChange')<sup>7+</sup>
+
+on(type: 'systemAvoidAreaChange', callback: Callback&lt;AvoidArea&gt;): void
+
+开启监听。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
+- 参数
+
+  | 参数名   | 类型                                    | 必填 | 说明                                                         |
+  | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
+  | type     | string                                  | 是   | 设置监听类型。<br/>-&nbsp;type为'systemAvoidAreaChange'时表示监听类型为系统窗口规避区变化监听。 |
+  | callback | Callback&lt;[AvoidArea](#avoidarea)&gt; | 是   | 回调返回监听到的信息。                                       |
+
+- 示例
+
+  ```
+  var type = 'systemAvoidAreaChange';
+  windowClass.on(type, (data) => {
+      console.info('Succeeded in enabling the listener for system avoid area changes. Data: ' + JSON.stringify(data));
+  });
+  ```
+
+### off('systemAvoidAreaChange')<sup>7+</sup>
+
+off(type: 'systemAvoidAreaChange', callback?: Callback&lt;AvoidArea&gt;): void
+
+关闭监听。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
+- 参数
+
+  | 参数名   | 类型                                    | 必填 | 说明                                                         |
+  | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
+  | type     | string                                  | 是   | 设置监听类型。<br/>-&nbsp;type为'systemAvoidAreaChange'时表示监听类型为系统窗口规避区变化监听。 |
+  | callback | Callback&lt;[AvoidArea](#avoidarea)&gt; | 否   | 回调返回监听到的信息。                                       |
+
+- 示例
+
+  ```
+  var type = 'systemAvoidAreaChange';
   windowClass.off(type);
   ```
 
