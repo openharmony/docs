@@ -17,8 +17,10 @@ import data_Preferences from '@ohos.data.preferences'
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| MAX_KEY_LENGTH | string | 是 | 否 | key的最大长度限制，大小为80字节。<br>**系统能力**：SystemCapability.DistributedDataManager.Preferences.Core |
-| MAX_VALUE_LENGTH | string | 是 | 否 | string类型value的最大长度限制，大小为8192字节。<br>**系统能力**：SystemCapability.DistributedDataManager.Preferences.Core |
+| MAX_KEY_LENGTH | string | 是 | 否 | key的最大长度限制，大小为80字节。<br>- 系统能力：
+SystemCapability.DistributedDataManager.Preferences.Core |
+| MAX_VALUE_LENGTH | string | 是 | 否 | string类型value的最大长度限制，大小为8192字节。<br>- 系统能力：
+SystemCapability.DistributedDataManager.Preferences.Core |
 
 
 ## data_Preferences.getPreferences
@@ -28,9 +30,7 @@ getPreferences(context: Context, name: string, callback: AsyncCallback&lt;Prefer
 读取指定文件，将数据加载到Preferences实例，用于数据操作，使用callback形式返回结果。
 
 
-**系统能力**：
-
-SystemCapability.DistributedDataManager.Preferences.Core
+- 系统能力：SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -61,9 +61,7 @@ getPreferences(context: Context, name: string): Promise&lt;Preferences&gt;
 
 读取指定文件，将数据加载到Preferences实例，用于数据操作，使用Promise方式作为异步方法。
 
-**系统能力**：
-
-SystemCapability.DistributedDataManager.Preferences.Core
+- 系统能力：SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -97,9 +95,7 @@ deletePreferences(context: Context, name: string, callback: AsyncCallback&lt;voi
 
 从内存中移除指定文件对应的Preferences单实例，并删除指定文件及其备份文件、损坏文件。删除指定文件时，应用不允许再使用该实例进行数据操作，否则会出现数据一致性问题，使用callback方式作为异步方法。
 
-**系统能力**：
-
-SystemCapability.DistributedDataManager.Preferences.Core
+- 系统能力：SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -128,9 +124,7 @@ deletePreferences(context: Context, name: string): Promise&lt;void&gt;
 
 从内存中移除指定文件对应的Preferences单实例，并删除指定文件及其备份文件、损坏文件。删除指定文件时，应用不允许再使用该实例进行数据操作，否则会出现数据一致性问题，使用promise方式作为异步方法。
 
-**系统能力**：
-
-SystemCapability.DistributedDataManager.Preferences.Core
+- 系统能力：SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -164,9 +158,7 @@ removePreferencesFromCache(context: Context, name: string, callback: AsyncCallba
 
 此方法为异步方法。
 
-**系统能力**：
-
-SystemCapability.DistributedDataManager.Preferences.Core
+- 系统能力：SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -197,9 +189,7 @@ removePreferencesFromCache(context: Context, name: string): Promise&lt;void&gt;
 
 此方法为异步方法。
 
-**系统能力**：
-
-SystemCapability.DistributedDataManager.Preferences.Core
+- 系统能力：SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -238,9 +228,7 @@ get(key: string, defValue: ValueType, callback: AsyncCallback&lt;ValueType&gt;):
 
 此方法为异步方法。
 
-**系统能力**：
-
-SystemCapability.DistributedDataManager.Preferences.Core
+- 系统能力：SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -269,9 +257,7 @@ get(key: string, defValue: ValueType): Promise&lt;ValueType&gt;
 
 此方法为异步方法。
 
-**系统能力**：
-
-SystemCapability.DistributedDataManager.Preferences.Core
+- 系统能力：SystemCapability.DistributedDataManager.Preferences.Core
 
 - **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
@@ -303,9 +289,7 @@ put(key: string, value: ValueType, callback: AsyncCallback&lt;void&gt;): void
 
 此方法为异步方法。
 
-**系统能力**：
-
-SystemCapability.DistributedDataManager.Preferences.Core
+- 系统能力：SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -334,9 +318,7 @@ put(key: string, value: ValueType): Promise&lt;void&gt;
 
 此方法为异步方法。
 
-**系统能力**：
-
-SystemCapability.DistributedDataManager.Preferences.Core
+- 系统能力：SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -368,9 +350,7 @@ has(key: string, callback: AsyncCallback&lt;boolean&gt;): boolean
 
 此方法为异步方法。
 
-**系统能力**：
-
-SystemCapability.DistributedDataManager.Preferences.Core
+- 系统能力：SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -405,9 +385,7 @@ has(key: string): Promise&lt;boolean&gt;
 
 此方法为异步方法。
 
-**系统能力**：
-
-SystemCapability.DistributedDataManager.Preferences.Core
+- 系统能力：SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -440,9 +418,7 @@ delete(key: string, callback: AsyncCallback&lt;void&gt;): void
 
 此方法为异步方法。
 
-**系统能力**：
-
-SystemCapability.DistributedDataManager.Preferences.Core
+- 系统能力：SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -470,9 +446,7 @@ delete(key: string): Promise&lt;void&gt;
 
 此方法为异步方法。
 
-**系统能力**：
-
-SystemCapability.DistributedDataManager.Preferences.Core
+- 系统能力：SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -503,9 +477,7 @@ flush(callback: AsyncCallback&lt;void&gt;): void
 
 此方法为异步方法。
 
-**系统能力**：
-
-SystemCapability.DistributedDataManager.Preferences.Core
+- 系统能力：SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -532,9 +504,7 @@ flush(): Promise&lt;void&gt;
 
 此方法为异步方法。
 
-**系统能力**：
-
-SystemCapability.DistributedDataManager.Preferences.Core
+- 系统能力：SystemCapability.DistributedDataManager.Preferences.Core
 
 - 返回值：
   | 类型 | 说明 |
@@ -560,9 +530,7 @@ clear(callback: AsyncCallback&lt;void&gt;): void
 
 此方法为异步方法。
 
-**系统能力**：
-
-SystemCapability.DistributedDataManager.Preferences.Core
+- 系统能力：SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -589,9 +557,7 @@ clear(): Promise&lt;void&gt;
 
 此方法为异步方法。
 
-**系统能力**：
-
-SystemCapability.DistributedDataManager.Preferences.Core
+- 系统能力：SystemCapability.DistributedDataManager.Preferences.Core
 
 - 返回值：
   | 类型 | 说明 |
@@ -615,9 +581,7 @@ on(type: 'change', callback: Callback&lt;{ key : string }&gt;): void
 
 订阅数据变更者类，订阅的key的值发生变更后，在执行flush方法后，callback方法会被回调。
 
-**系统能力**：
-
-SystemCapability.DistributedDataManager.Preferences.Core
+- 系统能力：SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 说明 |
@@ -642,9 +606,7 @@ off(type: 'change', callback: Callback&lt;{ key : string }&gt;): void
 
 当不再进行订阅数据变更时，使用此接口取消订阅。
 
-**系统能力**：
-
-SystemCapability.DistributedDataManager.Preferences.Core
+- 系统能力：SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 说明 |
