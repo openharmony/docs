@@ -34,16 +34,17 @@ ohos.permission.READ_USER_STORAGE
 > - 不支持横竖屏事件。
 
 ## 属性
-| 名称                | 参数类型      | 默认值            | 描述                                       |
-| ----------------- | --------- | -------------- | ---------------------------------------- |
-| domStorageAccess  | boolean   | false          | 设置是否开启DOM Storage API权限，默认未开启。           |
-| fileAccess        | boolean   | true           | 设置是否开启Web中通过FILE方式访问应用中的本地文件， 默认启用。      |
-| geolocationAccess | boolean   | true           | 设置是否允许访问地理位置， 默认允许访问。                    |
-| imageAccess       | boolean   | true           | 设置是否允许自动加载图片资源，默认允许。                     |
-| javaScriptAccess  | boolean   | true           | 设置是否允许执行JavaScript脚本，默认允许执行。             |
-| mixedMode         | MixedMode | MixedMode.None | 设置是否允许加载HTTP和HTTPS混合内容，默认不允许加载HTTP和HTTPS混合内容。 |
-| onlineImageAccess | boolean   | true           | 设置是否允许从网络加载图片资源（通过HTTP和HTTPS访问的资源），默认允许访问。 |
-| zoomAccess        | boolean   | true           | 设置是否支持使用屏幕控件或手势进行缩放，默认允许执行缩放。            |
+| 名称              | 参数类型                                                     | 默认值         | 描述                                                         |
+| ----------------- | ------------------------------------------------------------ | -------------- | ------------------------------------------------------------ |
+| domStorageAccess  | boolean                                                      | false          | 设置是否开启DOM Storage API权限，默认未开启。                |
+| fileAccess        | boolean                                                      | true           | 设置是否开启Web中通过FILE方式访问应用中的本地文件， 默认启用。 |
+| geolocationAccess | boolean                                                      | true           | 设置是否允许访问地理位置， 默认允许访问。                    |
+| imageAccess       | boolean                                                      | true           | 设置是否允许自动加载图片资源，默认允许。                     |
+| javaScriptAccess  | boolean                                                      | true           | 设置是否允许执行JavaScript脚本，默认允许执行。               |
+| mixedMode         | MixedMode                                                    | MixedMode.None | 设置是否允许加载HTTP和HTTPS混合内容，默认不允许加载HTTP和HTTPS混合内容。 |
+| onlineImageAccess | boolean                                                      | true           | 设置是否允许从网络加载图片资源（通过HTTP和HTTPS访问的资源），默认允许访问。 |
+| zoomAccess        | boolean                                                      | true           | 设置是否支持使用屏幕控件或手势进行缩放，默认允许执行缩放。   |
+| javaScriptProxy   | { <br> obj: object, <br/> name: string, <br/> methodList: Array<string>, <br/> controller: [WebController](#WebController)  <br>} | -              | 注入ArkUI对象到HTML中，并在HTML中调用该对象的方法，参数不支持更新。 <br> -obj: 参与注册的对象。 <br> -name: 注册对象的名称，与HTML中调用的对象名一致。<br> -methodList: 参与注册的方法。<br> -controller: 控制器。 |
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 >
