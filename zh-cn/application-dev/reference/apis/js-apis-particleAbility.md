@@ -16,6 +16,10 @@ startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<void>: v
 
 使用此方法启动指定的particleAbility（callback形式）。
 
+**系统能力:**
+
+SystemCapability.Ability.AbilityRuntime.FAModel
+
 **参数：**
 
 
@@ -53,8 +57,16 @@ particleAbility.startAbility(
 
 ## particleAbility.startAbility
 
+**系统能力:**
+
+SystemCapability.Ability.AbilityRuntime.FAModel
+
 startAbility(parameter: StartAbilityParameter): Promise\<number>
 使用此方法启动指定的particleAbility（Promise形式）。
+
+**系统能力:**
+
+SystemCapability.Ability.AbilityRuntime.FAModel
 
 **参数：**
 
@@ -99,6 +111,10 @@ terminateSelf(callback: AsyncCallback\<void>): void
 
 终止particleAbility（callback形式）。
 
+**系统能力:**
+
+SystemCapability.Ability.AbilityRuntime.FAModel
+
 **参数：**
 
 | 名称     | 类型                 | 必填 | 描述                 |
@@ -124,6 +140,10 @@ terminateSelf(): Promise\<void>
 
 终止particleAbility（Promise形式）。
 
+**系统能力:**
+
+SystemCapability.Ability.AbilityRuntime.FAModel
+
 **返回值：**
 | 类型           | 说明                      |
 | -------------- | ------------------------- |
@@ -145,6 +165,10 @@ particleAbility.terminateSelf().then((data) => {
 acquireDataAbilityHelper(uri: string): DataAbilityHelper
 
 获取dataAbilityHelper。
+
+**系统能力:**
+
+SystemCapability.Ability.AbilityRuntime.FAModel
 
 **参数：**
 
@@ -170,43 +194,43 @@ particleAbility.acquireDataAbilityHelper(uri)
 
 | 名称                | 读写属性 | 类型                  | 必填 | 描述                                                         |
 | ------------------- | -------- | --------------------- | ---- | ------------------------------------------------------------ |
-| want                | 只读     | [Want](#want) | 是   | 表示需要包含有关目标启动能力的信息。                         |
-| abilityStartSetting | 只读     | {[key: string]: any}  | 否   | 表示能力的特殊属性，当开发者启动能力时，该属性可以作为调用中的输入参数传递。 |
+| want                | 只读     | [Want](#want) | 是   | 表示需要包含有关目标启动能力的信息。<br><b>系统能力：</b>SystemCapability.Ability.AbilityRuntime.FAModel                          |
+| abilityStartSetting | 只读     | {[key: string]: any}  | 否   | 表示能力的特殊属性，当开发者启动能力时，该属性可以作为调用中的输入参数传递。<br><b>系统能力：</b>SystemCapability.Ability.AbilityRuntime.FAModel |
 
 ## Want
 
 | 名称        | 读写属性 | 类型                 | 必填 | 描述                                                         |
 | ----------- | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| deviceId    | 只读     | string               | 否   | 表示运行指定Ability的设备ID。                                |
-| bundleName  | 只读     | string               | 否   | 表示包描述。如果在Want中同时指定了BundleName和AbilityName，则Want可以直接匹配到指定的Ability。 |
-| abilityName | 只读     | string               | 否   | 表示待启动的Ability名称。如果在Want中同时指定了BundleName和AbilityName，则Want可以直接匹配到指定的Ability。 |
-| uri         | 只读     | string               | 否   | 表示Uri描述。如果在Want中指定了Uri，则Want将匹配指定的Uri信息，包括scheme, schemeSpecificPart, authority和path信息。 |
-| type        | 只读     | string               | 否   | 表示MIME type类型描述，比如："text/plain" 、 "image/*"等。   |
-| flags       | 只读     | number               | 否   | 表示处理Want的方式。默认传数字，具体参考：[flags说明](#flags说明)。 |
-| action      | 只读     | string               | 否   | 表示action选项描述。                                         |
-| parameters  | 只读     | {[key: string]: any} | 否   | 表示WantParams描述。                                         |
-| entities    | 只读     | Array\<string>       | 否   | 表示entities相关描述。                                       |
+| deviceId    | 只读     | string               | 否   | 表示运行指定Ability的设备ID。<br><b>系统能力：</b>SystemCapability.Ability.AbilityBase                                |
+| bundleName  | 只读     | string               | 否   | 表示包描述。如果在Want中同时指定了BundleName和AbilityName，则Want可以直接匹配到指定的Ability。<br><b>系统能力：</b>SystemCapability.Ability.AbilityBase |
+| abilityName | 只读     | string               | 否   | 表示待启动的Ability名称。如果在Want中同时指定了BundleName和AbilityName，则Want可以直接匹配到指定的Ability。<br><b>系统能力：</b>SystemCapability.Ability.AbilityBase |
+| uri         | 只读     | string               | 否   | 表示Uri描述。如果在Want中指定了Uri，则Want将匹配指定的Uri信息，包括scheme, schemeSpecificPart, authority和path信息。<br><b>系统能力：</b>SystemCapability.Ability.AbilityBase |
+| type        | 只读     | string               | 否   | 表示MIME type类型描述，比如："text/plain" 、 "image/*"等。<br><b>系统能力：</b>SystemCapability.Ability.AbilityBase   |
+| flags       | 只读     | number               | 否   | 表示处理Want的方式。默认传数字，具体参考：[flags说明](#flags说明)。<br><b>系统能力：</b>SystemCapability.Ability.AbilityBase |
+| action      | 只读     | string               | 否   | 表示action选项描述。<br><b>系统能力：</b>SystemCapability.Ability.AbilityBase                                         |
+| parameters  | 只读     | {[key: string]: any} | 否   | 表示WantParams描述。<br><b>系统能力：</b>SystemCapability.Ability.AbilityBase                                         |
+| entities    | 只读     | Array\<string>       | 否   | 表示entities相关描述。<br><b>系统能力：</b>SystemCapability.Ability.AbilityBase                                       |
 
 ## flags说明
 
 | 名称                                 | 参数       | 描述                                                         |
 | ------------------------------------ | ---------- | ------------------------------------------------------------ |
-| FLAG_AUTH_READ_URI_PERMISSION        | 0x00000001 | 指示对URI执行读取操作的授权                                  |
-| FLAG_AUTH_WRITE_URI_PERMISSION       | 0x00000002 | 指示对URI执行写入操作的授权                                  |
-| FLAG_ABILITY_FORWARD_RESULT          | 0x00000004 | 将结果返回给元能力                                           |
-| FLAG_ABILITY_CONTINUATION            | 0x00000008 | 确定是否可以将本地设备上的功能迁移到远程设备                 |
-| FLAG_NOT_OHOS_COMPONENT              | 0x00000010 | 指定组件是否属于OHOS                                         |
-| FLAG_ABILITY_FORM_ENABLED            | 0x00000020 | 指定是否启动某个能力                                         |
-| FLAG_AUTH_PERSISTABLE_URI_PERMISSION | 0x00000040 | 指示URI上可能持久化的授权                                    |
-| FLAG_AUTH_PREFIX_URI_PERMISSION      | 0x00000080 | 按照前缀匹配的方式验证URI权限                                         |
-| FLAG_ABILITYSLICE_MULTI_DEVICE       | 0x00000100 | 支持分布式调度系统中的多设备启动                             |
-| FLAG_START_FOREGROUND_ABILITY        | 0x00000200 | 指示无论主机应用程序是否已启动，都将启动使用服务模板的功能   |
-| FLAG_ABILITY_CONTINUATION_REVERSIBLE | 0x00000400 | 表示迁移是可拉回的。                                         |
-| FLAG_INSTALL_ON_DEMAND               | 0x00000800 | 如果未安装指定的功能，请安装该功能                           |
-| FLAG_INSTALL_WITH_BACKGROUND_MODE    | 0x80000000 | 如果未安装，使用后台模式安装该功能。                 |
-| FLAG_ABILITY_CLEAR_MISSION           | 0x00008000 | 指示清除其他任务的操作。可以为传递给**ohos.app.Context#startAbility**的**Want**设置此标志，并且必须与**flag_ABILITY_NEW_MISSION**一起使用 |
-| FLAG_ABILITY_NEW_MISSION             | 0x10000000 | 指示在历史任务堆栈上创建任务的操作。                         |
-| FLAG_ABILITY_MISSION_TOP             | 0x20000000 | 指示如果启动能力的现有实例已位于任务堆栈的顶部，则将重用该实例。否则，将创建一个新的能力实例。 |
+| FLAG_AUTH_READ_URI_PERMISSION        | 0x00000001 | 指示对URI执行读取操作的授权<br><b>系统能力：</b>SystemCapability.Ability.AbilityBase                                  |
+| FLAG_AUTH_WRITE_URI_PERMISSION       | 0x00000002 | 指示对URI执行写入操作的授权<br><b>系统能力：</b>SystemCapability.Ability.AbilityBase                                  |
+| FLAG_ABILITY_FORWARD_RESULT          | 0x00000004 | 将结果返回给元能力<br><b>系统能力：</b>SystemCapability.Ability.AbilityBase                                           |
+| FLAG_ABILITY_CONTINUATION            | 0x00000008 | 确定是否可以将本地设备上的功能迁移到远程设备<br><b>系统能力：</b>SystemCapability.Ability.AbilityBase                 |
+| FLAG_NOT_OHOS_COMPONENT              | 0x00000010 | 指定组件是否属于OHOS<br><b>系统能力：</b>SystemCapability.Ability.AbilityBase                                         |
+| FLAG_ABILITY_FORM_ENABLED            | 0x00000020 | 指定是否启动某个能力<br><b>系统能力：</b>SystemCapability.Ability.AbilityBase                                         |
+| FLAG_AUTH_PERSISTABLE_URI_PERMISSION | 0x00000040 | 指示URI上可能持久化的授权<br><b>系统能力：</b>SystemCapability.Ability.AbilityBase                                    |
+| FLAG_AUTH_PREFIX_URI_PERMISSION      | 0x00000080 | 按照前缀匹配的方式验证URI权限<br><b>系统能力：</b>SystemCapability.Ability.AbilityBase                                         |
+| FLAG_ABILITYSLICE_MULTI_DEVICE       | 0x00000100 | 支持分布式调度系统中的多设备启动<br><b>系统能力：</b>SystemCapability.Ability.AbilityBase                             |
+| FLAG_START_FOREGROUND_ABILITY        | 0x00000200 | 指示无论主机应用程序是否已启动，都将启动使用服务模板的功能<br><b>系统能力：</b>SystemCapability.Ability.AbilityBase   |
+| FLAG_ABILITY_CONTINUATION_REVERSIBLE | 0x00000400 | 表示迁移是可拉回的。<br><b>系统能力：</b>SystemCapability.Ability.AbilityBase                                         |
+| FLAG_INSTALL_ON_DEMAND               | 0x00000800 | 如果未安装指定的功能，请安装该功能 <br><b>系统能力：</b>SystemCapability.Ability.AbilityBase                          |
+| FLAG_INSTALL_WITH_BACKGROUND_MODE    | 0x80000000 | 如果未安装，使用后台模式安装该功能。<br><b>系统能力：</b>SystemCapability.Ability.AbilityBase                 |
+| FLAG_ABILITY_CLEAR_MISSION           | 0x00008000 | 指示清除其他任务的操作。可以为传递给{@link ohos.app.Context#startAbility}的{@code Want}设置此标志，并且必须与{@link flag_ABILITY_NEW_MISSION}一起使用<br><b>系统能力：</b>SystemCapability.Ability.AbilityBase |
+| FLAG_ABILITY_NEW_MISSION             | 0x10000000 | 指示在历史任务堆栈上创建任务的操作。<br><b>系统能力：</b>SystemCapability.Ability.AbilityBase                         |
+| FLAG_ABILITY_MISSION_TOP             | 0x20000000 | 指示如果启动能力的现有实例已位于任务堆栈的顶部，则将重用该实例。否则，将创建一个新的能力实例。<br><b>系统能力：</b>SystemCapability.Ability.AbilityBase |
 
 ## AbilityStartSetting
 
@@ -216,9 +240,9 @@ abilityStartSetting属性是一个定义为[key: string]: any的对象，key对�
 
 | 名称            | 参数            | 描述                       |
 | --------------- | --------------- | -------------------------- |
-| BOUNDS_KEY      | "abilityBounds" | 窗口显示大小属性的名称。   |
-| WINDOW_MODE_KEY | "windowMode"    | 窗口显示模式属性的名称。   |
-| DISPLAY_ID_KEY  | "displayId"     | 窗口显示设备ID属性的名称。 |
+| BOUNDS_KEY      | "abilityBounds" | 窗口显示大小属性的名称。<br><b>系统能力：</b>SystemCapability.Ability.AbilityRuntime.FAModel   |
+| WINDOW_MODE_KEY | "windowMode"    | 窗口显示模式属性的名称。<br><b>系统能力：</b>SystemCapability.Ability.AbilityRuntime.FAModel   |
+| DISPLAY_ID_KEY  | "displayId"     | 窗口显示设备ID属性的名称。<br><b>系统能力：</b>SystemCapability.Ability.AbilityRuntime.FAModel |
 
 ## AbilityWindowConfiguration
 
@@ -226,11 +250,11 @@ abilityStartSetting属性是一个定义为[key: string]: any的对象，key对�
 
 | 名称                        | 参数 | 描述       |
 | --------------------------- | ---- | ---------- |
-| WINDOW_MODE_UNDEFINED       | 0    | 未定义。   |
-| WINDOW_MODE_FULLSCREEN      | 1    | 全屏。     |
-| WINDOW_MODE_SPLIT_PRIMARY   | 100  | 分屏主屏。 |
-| WINDOW_MODE_SPLIT_SECONDARY | 101  | 分屏次屏。 |
-| WINDOW_MODE_FLOATING        | 102  | 悬浮窗。   |
+| WINDOW_MODE_UNDEFINED       | 0    | 未定义。<br><b>系统能力：</b>SystemCapability.Ability.AbilityRuntime.FAModel   |
+| WINDOW_MODE_FULLSCREEN      | 1    | 全屏。<br><b>系统能力：</b>SystemCapability.Ability.AbilityRuntime.FAModel     |
+| WINDOW_MODE_SPLIT_PRIMARY   | 100  | 分屏主屏。<br><b>系统能力：</b>SystemCapability.Ability.AbilityRuntime.FAModel |
+| WINDOW_MODE_SPLIT_SECONDARY | 101  | 分屏次屏。<br><b>系统能力：</b>SystemCapability.Ability.AbilityRuntime.FAModel |
+| WINDOW_MODE_FLOATING        | 102  | 悬浮窗。<br><b>系统能力：</b>SystemCapability.Ability.AbilityRuntime.FAModel   |
 
 
 ## particleAbility.startBackgroundRunning
@@ -238,6 +262,10 @@ abilityStartSetting属性是一个定义为[key: string]: any的对象，key对�
 startBackgroundRunning(id: number, request: NotificationRequest, callback: AsyncCallback&lt;void&gt;): void;
 
 向系统申请长时任务，使用callback形式返回结果。（此接口为api7接口，后续会被废弃，请使用新的api8接口）
+
+**系统能力:**
+
+SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
 - **参数**：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -294,6 +322,10 @@ wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
 ## particleAbility.startBackgroundRunning
 
 startBackgroundRunning(id: number, request: NotificationRequest): Promise&lt;void&gt;
+
+**系统能力:**
+
+SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
 向系统申请长时任务，使用promise形式返回结果。（此接口为api7接口，后续会被废弃，请使用新的api8接口）
 
@@ -355,6 +387,10 @@ cancelBackgroundRunning(callback: AsyncCallback&lt;void&gt;): void;
 
 向系统申请取消长时任务，使用callback形式返回结果。（此接口为api7接口，后续会被废弃，请使用新的api8接口）
 
+**系统能力:**
+
+SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
+
 - **参数**：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -381,6 +417,10 @@ particleAbility.cancelBackgroundRunning(callback);
 cancelBackgroundRunning(): Promise&lt;void&gt;;
 
 向系统申请取消长时任务，使用promise形式返回结果。（此接口为api7接口，后续会被废弃，请使用新的api8接口）
+
+**系统能力:**
+
+SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
 **返回值**
 | 类型           | 说明                      |
