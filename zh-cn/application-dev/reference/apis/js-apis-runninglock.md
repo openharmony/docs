@@ -2,6 +2,8 @@
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> 该模块主要提供Runninglock锁相关操作的接口，包括创建、查询、持锁、释放锁等操作。
 
 
 ## 导入模块
@@ -13,17 +15,17 @@ import runninglock from '@ohos.runningLock';
 
 ## 系统能力
 
-SystemCapability.PowerManager.PowerManager
+SystemCapability.PowerManager.PowerManager.Core
 
 
 ## RunningLockType
 
 RunningLock锁的类型。
 
-| 名称 | 默认值 | 描述 |
-| -------- | -------- | -------- |
-| BACKGROUND | 1 | 阻止系统休眠的锁。 |
-| PROXIMITY_SCREEN_CONTROL | 2 | 通过接近或者远离状态来控制亮灭屏的锁。 |
+| 名称                       | 默认值  | 描述                  |
+| ------------------------ | ---- | ------------------- |
+| BACKGROUND               | 1    | 阻止系统休眠的锁。           |
+| PROXIMITY_SCREEN_CONTROL | 2    | 通过接近或者远离状态来控制亮灭屏的锁。 |
 
 
 ## isRunningLockTypeSupported
@@ -34,10 +36,10 @@ isRunningLockTypeSupported(type: RunningLockType, callback: AsyncCallback&lt;boo
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| type | RunningLockType | 是 | 需要查询的锁的类型。 |
-| callback | AsyncCallback&lt;boolean&gt; | 是 | 指定的callback回调方法，用于获取返回值。<br/>callback返回值：支持返回true，不支持返回false。 |
+| 参数名      | 类型                           | 必填   | 说明                                       |
+| -------- | ---------------------------- | ---- | ---------------------------------------- |
+| type     | RunningLockType              | 是    | 需要查询的锁的类型。                               |
+| callback | AsyncCallback&lt;boolean&gt; | 是    | 指定的callback回调方法，用于获取返回值。<br/>callback返回值：支持返回true，不支持返回false。 |
 
 **示例：**
 
@@ -60,14 +62,14 @@ isRunningLockTypeSupported(type: RunningLockType): Promise&lt;boolean&gt;
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| type | RunningLockType | 是 | 需要查询的锁的类型。 |
+| 参数名  | 类型              | 必填   | 说明         |
+| ---- | --------------- | ---- | ---------- |
+| type | RunningLockType | 是    | 需要查询的锁的类型。 |
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
+| 类型                     | 说明                                       |
+| ---------------------- | ---------------------------------------- |
 | Promise&lt;boolean&gt; | Promise实例，用于异步获取返回值，支持返回true，不支持返回false。 |
 
 **示例：**
@@ -93,11 +95,11 @@ createRunningLock(name: string, type: RunningLockType, callback: AsyncCallback&l
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| name | string | 是 | 锁的名字。 |
-| type | RunningLockType | 是 | 要创建的锁的类型。 |
-| callback | AsyncCallback&lt;[RunningLock](#runninglock)&gt; | 是 | 指定的callback回调方法，用于获取返回的RunningLock锁对象。 |
+| 参数名      | 类型                                       | 必填   | 说明                                     |
+| -------- | ---------------------------------------- | ---- | -------------------------------------- |
+| name     | string                                   | 是    | 锁的名字。                                  |
+| type     | RunningLockType                          | 是    | 要创建的锁的类型。                              |
+| callback | AsyncCallback&lt;[RunningLock](#runninglock)&gt; | 是    | 指定的callback回调方法，用于获取返回的RunningLock锁对象。 |
 
 **示例：**
 
@@ -126,15 +128,15 @@ createRunningLock(name: string, type: RunningLockType): Promise&lt;RunningLock&g
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| name | string | 是 | 锁的名字。 |
-| type | RunningLockType | 是 | 要创建的锁的类型。 |
+| 参数名  | 类型              | 必填   | 说明        |
+| ---- | --------------- | ---- | --------- |
+| name | string          | 是    | 锁的名字。     |
+| type | RunningLockType | 是    | 要创建的锁的类型。 |
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
+| 类型                                       | 说明                                 |
+| ---------------------------------------- | ---------------------------------- |
 | Promise&lt;[RunningLock](#runninglock)&gt; | Promise实例，用于异步获取返回的RunningLock锁对象。 |
 
 **示例：**
@@ -163,9 +165,9 @@ lock(timeout: number): void
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| timeout | number | 否 | 锁定和持有RunningLock的时长。 |
+| 参数名     | 类型     | 必填   | 说明                   |
+| ------- | ------ | ---- | -------------------- |
+| timeout | number | 否    | 锁定和持有RunningLock的时长。 |
 
 **示例：**
 
@@ -208,8 +210,8 @@ isUsed(): boolean
 查询当前Runninglock是持有状态，还是释放状态。
 
 **返回值：**
-| 类型 | 说明 |
-| -------- | -------- |
+| 类型      | 说明                                    |
+| ------- | ------------------------------------- |
 | boolean | 当前RunningLock是持有状态返回true，释放状态返回false。 |
 
 **示例：**
