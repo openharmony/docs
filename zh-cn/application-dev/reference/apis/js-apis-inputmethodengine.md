@@ -146,7 +146,7 @@ on(type: 'keyboardShow'|'keyboardHide', callback: () => void): void;
   | 参数名   | 类型   | 必填 | 说明                                                         |
   | -------- | ------ | ---- | ------------------------------------------------------------ |
   | type     | string | 是   | 设置监听类型。<br/>-&nbsp;type为'keyboardShow'，表示订阅输入法显示。<br/>-&nbsp;type为'keyboardHide'，表示订阅输入法隐藏。 |
-  | callback | void   | 否   | 无回调函数。                                                 |
+  | callback | void   | 否   | 回调函数。                                                   |
 
 - 示例：
 
@@ -169,7 +169,7 @@ off(type: 'keyboardShow'|'keyboardHide', callback?: () => void): void;
   | 参数名   | 类型   | 必填 | 说明                                                         |
   | -------- | ------ | ---- | ------------------------------------------------------------ |
   | type     | string | 是   | 设置监听类型。<br/>-&nbsp;type为'keyboardShow'，表示订阅输入法显示。<br/>-&nbsp;type为'keyboardHide'，表示订阅输入法隐藏。 |
-  | callback | void   | 否   | 无回调函数。                                                 |
+  | callback | void   | 否   | 回调函数。                                                   |
 
 - 示例：
 
@@ -396,6 +396,12 @@ hideKeyboard(): Promise&lt;void&gt;
 隐藏输入法。
 
 **系统能力**： SystemCapability.MiscServices.InputMethod
+
+- 返回值
+
+  | 类型                   | 说明         |
+  | ---------------------- | ------------ |
+  | AsyncCallback&lt;void> | 不需要的参数 |
 
 - 示例
 
@@ -701,11 +707,11 @@ getEditorAttribute(callback: AsyncCallback&lt;EditorAttribute&gt;): void
    | ------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
    | callback | AsyncCallback&lt;[EditorAttribute](#EditorAttribute)&gt; | 是 |  编辑框属性值。                |
 
-  - 示例
-    ```
+- 示例
+  ```
     TextInputClient.getEditorAttribute((EditorAttribute)=>{
     });
-    ```
+  ```
 
 ### getEditorAttribute
 
