@@ -6,7 +6,7 @@ HCS is the source code that describes the configuration of the HDF using key-val
 
 HDF Configuration Generator \(HC-GEN\) is a tool for converting a configuration file into a file that can be read by the target software.
 
--   In a low-performance system on a chip \(SoC\), this tool can convert a configuration file into the source code of the configuration tree so that the driver can obtain the configuration by directly calling the C library code.
+-   In a low-performance system on a chip \(SoC\), this tool can convert a configuration file into the source code or macro definitions of the configuration tree so that the driver can obtain the configuration by calling the C library code or macro-based APIs.
 -   In a high-performance SoC, this tool can convert an HCS configuration file into the HDF Configuration Binary \(HCB\) file, allowing the driver to obtain the configuration through the APIs provided by the HDF.
 
 The following figure shows the typical application scenario of the HCB mode.
@@ -392,6 +392,7 @@ options:
   -a          hcb align with four bytes
   -b          output binary output, default enable
   -t          output config in C language source file style
+  -m          output config in macro source file style
   -i          output binary hex dump in C language source file style
   -p <prefix> prefix of generated symbol name
   -d          decompile hcb to hcs
@@ -410,6 +411,12 @@ Generate an HCB file.
 
 ```
 hc-gen -o [OutputHcbFileName] -b [SourceHcsFileName]
+```
+
+Generate a macro definition file.
+
+```
+hc-gen -o [OutputMacroFileName] -m [SourceHcsFileName]
 ```
 
 Compile an  **HCB**  file to an  **HCS**  file:
