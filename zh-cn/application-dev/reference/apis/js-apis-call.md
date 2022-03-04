@@ -102,6 +102,61 @@ promise.then(data => {
 });
 ```
 
+## call.makeCall<sup>7+</sup><a name=call.makeCall-callback></a>
+
+makeCall(phoneNumber: string, callback: AsyncCallback<void>): void
+
+跳转到拨号界面，并显示拨号的号码，使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Telephony.CallManager
+
+**参数：**
+
+| 参数        | 类型                      | 必填 | 说明                                       |
+| ----------- | ------------------------- | ---- | ------------------------------------------ |
+| phoneNumber | string                    | 是   | 电话号码。                                 |
+| callback    | AsyncCallback&lt;void&gt; | 是   | 以callback形式异步返回跳转拨号界面的结果。 |
+
+**示例：**
+
+```
+call.makeCall("138xxxxxxxx", err => { 
+    console.log(`makeCall callback: err->${JSON.stringify(err)}`); 
+});
+```
+
+
+## call.makeCall<sup>7+</sup><a name=call.makeCall-promise></a>
+
+makeCall(phoneNumber: string): Promise<void>
+
+跳转到拨号界面，并显示拨号的号码，使用Promise方式作为异步方法。
+
+**系统能力**：SystemCapability.Telephony.CallManager
+
+**参数：**
+
+| 参数        | 类型   | 必填 | 说明       |
+| ----------- | ------ | ---- | ---------- |
+| phoneNumber | string | 是   | 电话号码。 |
+
+**返回值：**
+
+| 类型                | 说明                              |
+| ------------------- | --------------------------------- |
+| Promise&lt;void&gt; | 以Promise形式异步返回拨号的结果。 |
+
+**示例：**
+
+```
+let promise = call.makeCall("138xxxxxxxx"); 
+promise.then(() => { 
+    console.log(`makeCall success`); 
+}).catch(err => { 
+    console.error(`makeCall fail, promise: err->${JSON.stringify(err)}`); 
+});
+```
+
 ## call.hasCall<a name=call.hasCall-callback></a>
 
 hasCall\(callback: AsyncCallback<boolean\>\): void
@@ -197,6 +252,25 @@ promise.then(data => {
 }).catch(err => {
     console.error(`getCallState fail, promise: err->${JSON.stringify(err)}`);
 });
+```
+
+## call.hasVoiceCapability<sup>7+</sup><a name=call.hasVoiceCapability></a>
+
+hasVoiceCapability(): boolean
+
+检查当前设备是否具备语音通话能力，该方法是同步方法。
+
+**系统能力**：SystemCapability.Telephony.CallManager
+
+**返回值：**
+
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| boolean | - true：设备具备语音通话能力<br/>- false：设备不具备语音通话能力 |
+
+```
+let result = call.hasVoiceCapability(); 
+console.log(`hasVoiceCapability: ${JSON.stringify(result)}`);
 ```
 
 ## call.isEmergencyPhoneNumber<sup>7+</sup><a name=call.isEmergencyPhoneNumber-callback1></a>
