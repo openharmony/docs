@@ -1,6 +1,5 @@
 # Socket连接<a name="ZH-CN_TOPIC_0000001181612734"></a>
 
--   [支持设备](#section11223131205610)
 -   [导入模块](#s56d19203690d4782bfc74069abb6bd71)
 -   [权限列表](#section11257113618419)
 -   [socket.constructUDPSocketInstance](#section375081875219)
@@ -129,10 +128,9 @@ bind\(address: NetAddress\): Promise<void\>
 
 -   参数
 
-      | 参数名   | 类型                               | 必填 | 说明                                                   |
-  | -------- | ---------------------------------- | ---- | ------------------------------------------------------ |
-  | address  | [NetAddress](#section159132241295) | 是   | 目标地址信息，参考[NetAddress](#section159132241295)。 |
-  | callback | AsyncCallback\<void\>              | 是   | 回调函数。                                             |
+  | 参数名  | 类型                               | 必填 | 说明                                                   |
+  | ------- | ---------------------------------- | ---- | ------------------------------------------------------ |
+  | address | [NetAddress](#section159132241295) | 是   | 目标地址信息，参考[NetAddress](#section159132241295)。 |
 
 
 - 返回值
@@ -199,7 +197,7 @@ send\(options: UDPSendOptions\): Promise<void\>
   | 参数名  | 类型                                     | 必填 | 说明                                                         |
   | ------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
   | options | [UDPSendOptions](#section13297558184010) | 是   | UDPSocket发送参数，参考[UDPSendOptions](#section13297558184010)。 |
-  
+
 - 返回值
 
   | 类型            | 说明                                           |
@@ -723,7 +721,6 @@ bind\(address NetAddress\): Promise<void\>
   | ------- | ---------------------------------- | ---- | ------------------------------------------------------ |
   | address | [NetAddress](#section159132241295) | 是   | 目标地址信息，参考[NetAddress](#section159132241295)。 |
 
-
 - 返回值
 
   | 类型            | 说明                                                     |
@@ -781,7 +778,6 @@ connect\(options: TCPConnectOptions\): Promise<void\>
   | 参数名  | 类型                                     | 必填 | 说明                                                         |
   | ------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
   | options | [TCPConnectOptions](#section13821005712) | 是   | TCPSocket连接的参数，参考[TCPConnectOptions](#section13821005712)。 |
-
 
 - 返回值
 
@@ -849,7 +845,7 @@ send\(options: TCPSendOptions\): Promise<void\>
 >![](public_sys-resources/icon-note.gif) **说明：** 
 >[connect](#section82761299586)方法调用成功后，才可调用此方法。
 
--   参数
+- 参数
 
   | 参数名  | 类型                                    | 必填 | 说明                                                         |
   | ------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
@@ -861,7 +857,7 @@ send\(options: TCPSendOptions\): Promise<void\>
   | :-------------- | :------------------------------------------------- |
   | Promise\<void\> | 以Promise形式返回通过TCPSocket连接发送数据的结果。 |
 
--   示例
+- 示例
 
     ```
     let tcp = socket.constructTCPSocketInstance();
@@ -1134,7 +1130,6 @@ setExtraOptions\(options: TCPExtraOptions\): Promise<void\>
   | ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
   | options | [TCPExtraOptions](#section13892555115718) | 是   | TCPSocket连接的其他属性，参考[TCPExtraOptions](#section13892555115718)。 |
 
-
 - 返回值
 
   | 类型            | 说明                                                 |
@@ -1202,14 +1197,14 @@ off\(type: 'message', callback?: Callback<\{message: ArrayBuffer, remoteInfo: So
 >![](public_sys-resources/icon-note.gif) **说明：** 
 >可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
--   参数
+- 参数
 
   | 参数名   | 类型                                                         | 必填 | 说明                                      |
   | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
   | type     | string                                                       | 是   | 订阅的事件类型。'message'：接收消息事件。 |
   | callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#section46021613174115)}> | 否   | 回调函数。                                |
 
--   示例
+- 示例
 
     ```
     let tcp = socket.constructTCPSocketInstance();
@@ -1237,7 +1232,7 @@ on\(type: 'connect' | 'close', callback: Callback<void\>\): void
   | callback | Callback\<void\> | 是   | 回调函数。                                                   |
 
 
--   示例
+- 示例
 
     ```
     let tcp = socket.constructTCPSocketInstance();
@@ -1266,7 +1261,7 @@ off\(type: 'connect' | 'close', callback: Callback<void\>\): void
   | type     | string           | 是   | 订阅的事件类型。<br />- 'connect'：连接事件。<br />- 'close'：关闭事件。 |
   | callback | Callback\<void\> | 否   | 回调函数。                                                   |
 
--   示例
+- 示例
 
     ```
     let tcp = socket.constructTCPSocketInstance();
@@ -1300,7 +1295,7 @@ on\(type: 'error', callback: ErrorCallback\): void
   | type     | string        | 是   | 订阅的事件类型。'error'：error事件。 |
   | callback | ErrorCallback | 是   | 回调函数。                           |
 
--   示例
+- 示例
 
     ```
     let tcp = socket.constructTCPSocketInstance();
@@ -1319,14 +1314,14 @@ off\(type: 'error', callback?: ErrorCallback\): void
 >![](public_sys-resources/icon-note.gif) **说明：** 
 >可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
--   参数
+- 参数
 
   | 参数名   | 类型          | 必填 | 说明                                 |
   | -------- | ------------- | ---- | ------------------------------------ |
   | type     | string        | 是   | 订阅的事件类型。'error'：error事件。 |
   | callback | ErrorCallback | 否   | 回调函数。                           |
 
--   示例
+- 示例
 
     ```
     let tcp = socket.constructTCPSocketInstance();
