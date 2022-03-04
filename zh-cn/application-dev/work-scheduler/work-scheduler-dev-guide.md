@@ -13,7 +13,7 @@ import workScheduler from '@ohos.workScheduler';
 
 回调相关接口包导入：
 ```js
-import WorkSchedulerExtension from '@ohos.WorkSchedulerExtension';
+import WorkSchedulerExtensionAbility from '@ohos.WorkSchedulerExtensionAbility';
 ```
 
 ### 延迟任务调度
@@ -60,14 +60,14 @@ function onWorkStop(work: WorkInfo): void; | 延迟调度任务结束回调
 
 **开发对应的Extension**
 
-    import WorkSchedulerExtension from '@ohos.WorkSchedulerExtension';
+    import WorkSchedulerExtensionAbility from '@ohos.WorkSchedulerExtensionAbility';
 
-    export default class MyWorkSchedulerExtension extends WorkSchedulerExtension {
+    export default class MyWorkSchedulerExtensionAbility extends WorkSchedulerExtensionAbility {
         onWorkStart(workInfo) {
-            console.log('MyWorkSchedulerExtension onWorkStart' + JSON.stringify(workInfo));
+            console.log('MyWorkSchedulerExtensionAbility onWorkStart' + JSON.stringify(workInfo));
         }
         onWorkStop(workInfo) {
-            console.log('MyWorkSchedulerExtension onWorkStop' + JSON.stringify(workInfo));
+            console.log('MyWorkSchedulerExtensionAbility onWorkStop' + JSON.stringify(workInfo));
         }
     }
 
