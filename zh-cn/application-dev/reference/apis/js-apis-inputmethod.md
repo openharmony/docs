@@ -68,7 +68,7 @@ getInputMethodSetting(): InputMethodSetting
 
 ## InputMethodController<a name="InputMethodController"></a>
 
-下列API示例中都需使用[getInputMethodController](#getInputMethodController)回调获取到InputMethodController实例，再通过此实例调用对应方法
+下列API示例中都需使用[getInputMethodController](#getInputMethodController)回调获取到InputMethodController实例，再通过此实例调用对应方法。
 
 ### stopInput
 
@@ -100,11 +100,11 @@ stopInput(): Promise&lt;boolean&gt;
 
 **系统能力**： SystemCapability.MiscServices.InputMethod
 
-- 参数
+- 返回值
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | callback | Promise&lt;boolean&gt; | 是 | 返回输入法隐藏是否成功。 |
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;boolean&gt; | 返回输入法隐藏是否成功。 |
 
 - 示例
 
@@ -114,11 +114,11 @@ stopInput(): Promise&lt;boolean&gt;
  console.info('stopInput isSuccess = ' + isSuccess);
 ```
 
-## InputMethodSetting<a name="InputMethodSetting"></a>
+## InputMethodSetting<sup>8+</sup><a name="InputMethodSetting"></a>
 
-下列API示例中都需使用[getInputMethodSetting](#getInputMethodSetting)回调获取到InputMethodSetting实例，再通过此实例调用对应方法
+下列API示例中都需使用[getInputMethodSetting](#getInputMethodSetting)回调获取到InputMethodSetting实例，再通过此实例调用对应方法。
 
-### listInputMethod<sup>8+</sup>
+### listInputMethod
 
 listInputMethod(callback: AsyncCallback&lt;Array&lt;InputMethodProperty&gt;&gt;): void
 
@@ -126,10 +126,10 @@ listInputMethod(callback: AsyncCallback&lt;Array&lt;InputMethodProperty&gt;&gt;)
 
 **系统能力**： SystemCapability.MiscServices.InputMethod
 
-- 返回值
-  | 类型                            | 说明                                                         |
-  | ------------------------------- | ------------------------------------------------------------ |
-  |  Array<[InputMethodProperty](#InputMethodProperty)>  |  返回已安装输入法列表。                |
+- 参数
+  | 参数名   | 类型                                               | 必填 | 说明                   |
+  | -------- | -------------------------------------------------- | ---- | ---------------------- |
+  | callback | Array<[InputMethodProperty](#InputMethodProperty)> | 是   | 返回已安装输入法列表。 |
 
 - 示例
   ```
@@ -139,7 +139,7 @@ listInputMethod(callback: AsyncCallback&lt;Array&lt;InputMethodProperty&gt;&gt;)
   });
   ```
 
-### listInputMethod<sup>8+</sup>
+### listInputMethod
 
 listInputMethod(): Promise&lt;Array&lt;InputMethodProperty&gt;&gt;
 
@@ -148,9 +148,9 @@ listInputMethod(): Promise&lt;Array&lt;InputMethodProperty&gt;&gt;
 **系统能力**： SystemCapability.MiscServices.InputMethod
 
 - 返回值
-  | 类型                            | 说明                                                         |
-  | ------------------------------- | ------------------------------------------------------------ |
-  |  Array<[InputMethodProperty](#InputMethodProperty)>  |  返回已安装输入法列表。                |
+  | 类型                                                        | 说明                   |
+  | ----------------------------------------------------------- | ---------------------- |
+  | Promise<Array<[InputMethodProperty](#InputMethodProperty)>> | 返回已安装输入法列表。 |
 
 - 示例
   ```
@@ -161,7 +161,7 @@ listInputMethod(): Promise&lt;Array&lt;InputMethodProperty&gt;&gt;
    }
   ```
 
-### displayOptionalInputMethod<sup>8+</sup>
+### displayOptionalInputMethod
 
 displayOptionalInputMethod(callback: AsyncCallback&lt;void&gt;): void
 
@@ -182,7 +182,7 @@ displayOptionalInputMethod(callback: AsyncCallback&lt;void&gt;): void
    });
   ```
 
-### displayOptionalInputMethod<sup>8+</sup>
+### displayOptionalInputMethod
 
   displayOptionalInputMethod(): Promise&lt;void&gt;
 
@@ -192,7 +192,7 @@ displayOptionalInputMethod(callback: AsyncCallback&lt;void&gt;): void
 
 - 返回值
 
-| 参数名 | 说明 |
+| 类型 | 说明 |
 | -------- | -------- |
 | Promise&lt;void&gt; | 回调函数。 |
 

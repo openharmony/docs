@@ -46,7 +46,7 @@ import inputMethodEngine from '@ohos.inputMethodEngine';
 
 getInputMethodEngine(): InputMethodEngine
 
-获取服务端实例[InputMethodEngine](#InputMethodEngine)。
+获取服务端实例。
 
 **系统能力**： SystemCapability.MiscServices.InputMethod
 
@@ -66,7 +66,7 @@ getInputMethodEngine(): InputMethodEngine
 
 createKeyboardDelegate(): KeyboardDelegate
 
-获取客户端监听实例[KeyboardDelegate](#KeyboardDelegate)。
+获取客户端监听实例。
 
 **系统能力**： SystemCapability.MiscServices.InputMethod
 
@@ -90,7 +90,7 @@ createKeyboardDelegate(): KeyboardDelegate
 
 on(type: 'inputStart', callback: (kbController: KeyboardController, textInputClient: TextInputClient) => void): void;
 
-订阅输入法绑定成功事件，使用callback输入法操作相关实例。
+订阅输入法绑定成功事件，使用callback回调返回输入法操作相关实例。
 
 **系统能力**： SystemCapability.MiscServices.InputMethod
 
@@ -99,7 +99,7 @@ on(type: 'inputStart', callback: (kbController: KeyboardController, textInputCli
 | 参数名   | 类型                            | 必填 | 说明                                                         |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                        | 是   | 设置监听类型。<br/>-type为‘inputStart’时表示订阅输入法绑定。 |
-| callback | [KeyboardController](#KeyboardController), [TextInputClient](#TextInputClient) | 是 | 回调返回监听到的信息。 |
+| callback | [KeyboardController](#KeyboardController), [TextInputClient](#TextInputClient) | 是 | 回调返回输入法操作相关实例。 |
 
 - 示例：
 
@@ -123,7 +123,7 @@ off(type: 'inputStart', callback?: (kbController: KeyboardController, textInputC
   | 参数名   | 类型                 | 必填 | 说明                     |
   | -------- | -------------------- | ---- | ------------------------ |
   | type | string                                                       | 是   | 设置监听类型。<br/>-type为‘inputStart’时表示订阅输入法绑定。 |
-  | callback | [KeyboardController](#KeyboardController), [TextInputClient](#TextInputClient) | 否 | 回调返回监听到的信息。 |
+  | callback | [KeyboardController](#KeyboardController), [TextInputClient](#TextInputClient) | 否 | 回调返回输入法操作相关实例。 |
 
 
 
@@ -146,7 +146,7 @@ on(type: 'keyboardShow'|'keyboardHide', callback: () => void): void;
   | 参数名   | 类型   | 必填 | 说明                                                         |
   | -------- | ------ | ---- | ------------------------------------------------------------ |
   | type     | string | 是   | 设置监听类型。<br/>-&nbsp;type为'keyboardShow'，表示订阅输入法显示。<br/>-&nbsp;type为'keyboardHide'，表示订阅输入法隐藏。 |
-  | callback | void   | 否   | 无返回值。                                                   |
+  | callback | void   | 否   | 无回调函数。                                                 |
 
 - 示例：
 
@@ -169,7 +169,7 @@ off(type: 'keyboardShow'|'keyboardHide', callback?: () => void): void;
   | 参数名   | 类型   | 必填 | 说明                                                         |
   | -------- | ------ | ---- | ------------------------------------------------------------ |
   | type     | string | 是   | 设置监听类型。<br/>-&nbsp;type为'keyboardShow'，表示订阅输入法显示。<br/>-&nbsp;type为'keyboardHide'，表示订阅输入法隐藏。 |
-  | callback | void   | 否   | 无返回值。                                                   |
+  | callback | void   | 否   | 无回调函数。                                                 |
 
 - 示例：
 
@@ -180,13 +180,13 @@ off(type: 'keyboardShow'|'keyboardHide', callback?: () => void): void;
 
 ## KeyboardDelegate<a name="KeyboardDelegate"></a>
 
-下列API示例中都需使用[createKeyboardDelegate](#createKeyboardDelegate)回调获取到TextInputClient实例，再通过此实例调用对应方法。
+下列API示例中都需使用[createKeyboardDelegate](#createKeyboardDelegate)回调获取到KeyboardDelegate实例，再通过此实例调用对应方法。
 
 ### on('keyDown'|'keyUp')
 
 on(type: 'keyDown'|'keyUp', callback: (event: KeyEvent) => boolean): void;
 
-订阅硬键盘事件，使用callback回调按键信息。
+订阅硬键盘事件，使用callback回调返回按键信息。
 
 **系统能力**： SystemCapability.MiscServices.InputMethod
 
@@ -220,7 +220,7 @@ off(type: 'keyDown'|'keyUp', callback?: (event: KeyEvent) => boolean): void;
   | 参数名   | 类型                  | 必填 | 说明                                                         |
   | -------- | --------------------- | ---- | ------------------------------------------------------------ |
   | type     | string                | 是   | 设置监听类型。<br/>-&nbsp;type为'keyDown'，表示订阅硬键盘按下。<br/>-&nbsp;type为'keyUp'，表示订阅硬键盘抬起。 |
-  | callback | [KeyEvent](#KeyEvent) | 否   | 回调返回监听到的信息。                                       |
+  | callback | [KeyEvent](#KeyEvent) | 否   | 回调返回按键信息。                                           |
 
 - 示例：
 
@@ -232,7 +232,7 @@ off(type: 'keyDown'|'keyUp', callback?: (event: KeyEvent) => boolean): void;
 
 on(type: 'cursorContextChange', callback: (x: number, y:number, height:number) => void): void;
 
-订阅光标变化事件，使用callback返回光标信息。
+订阅光标变化事件，使用callback回调返回光标信息。
 
   **系统能力**： SystemCapability.MiscServices.InputMethod
 
@@ -241,7 +241,7 @@ on(type: 'cursorContextChange', callback: (x: number, y:number, height:number) =
     | 参数名   | 类型   | 必填 | 说明                                                         |
     | -------- | ------ | ---- | ------------------------------------------------------------ |
     | type     | string | 是   | 光标变化事件。<br/>-type为’cursorContextChange‘时，表示光标变化。 |
-    | callback | number | 是   | 回调返回监听到的信息。                                       |
+    | callback | number | 是   | 回调返回光标信息。                                           |
 
 
 
@@ -266,7 +266,7 @@ off(type: 'cursorContextChange', callback?: (x: number, y:number, height:number)
     | 参数名   | 类型                 | 必填 | 说明                     |
     | -------- | -------------------- | ---- | ------------------------ |
     | type     | string       | 是   | 光标变化事件。<br/>-type为’cursorContextChange‘时，表示光标变化。 |
-    | callback | number | 否 | 回调返回监听到的信息。 |
+    | callback | number | 否 | 回调返回光标信息。 |
 
 
   - 示例：
@@ -278,7 +278,7 @@ off(type: 'cursorContextChange', callback?: (x: number, y:number, height:number)
 
 on(type: 'selectionChange', callback: (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => void): void;
 
-订阅文本选择变化事件，使用callback回调文本选择信息。
+订阅文本选择变化事件，使用callback回调返回文本选择信息。
 
 **系统能力**： SystemCapability.MiscServices.InputMethod
 
@@ -287,7 +287,7 @@ on(type: 'selectionChange', callback: (oldBegin: number, oldEnd: number, newBegi
     | 参数名   | 类型   | 必填 | 说明                                                         |
     | -------- | ------ | ---- | ------------------------------------------------------------ |
     | type     | string | 是   | 文本选择变化事件。<br/>-type为’selectionChange‘时，表示选择文本变化。 |
-    | callback | number | 是   | 回调返回监听到的信息。                                       |
+    | callback | number | 是   | 回调返回文本选择信息。                                       |
 
   - 示例：
   
@@ -310,7 +310,7 @@ off(type: 'selectionChange', callback?: (oldBegin: number, oldEnd: number, newBe
     | 参数名   | 类型                 | 必填 | 说明                     |
     | -------- | -------------------- | ---- | ------------------------ |
     | type     | string                  | 是   | 文本选择变化事件。<br/>-type为’selectionChange‘时，表示选择文本变化。 |
-    | callback | number | 否 | 回调返回监听到的信息。 |
+    | callback | number | 否 | 回调返回文本选择信息。 |
 
   - 示例：
 
@@ -323,7 +323,7 @@ off(type: 'selectionChange', callback?: (oldBegin: number, oldEnd: number, newBe
 
 on(type: 'textChange', callback: (text: string) => void): void;
 
-订阅文本变化事件，使用callback回调当前文本内容。
+订阅文本变化事件，使用callback回调返回当前文本内容。
 
 **系统能力**： SystemCapability.MiscServices.InputMethod
 
@@ -332,7 +332,7 @@ on(type: 'textChange', callback: (text: string) => void): void;
     | 参数名   | 类型                            | 必填 | 说明                                                         |
     | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
     | type     | string                  | 是   | 文本变化事件。<br/>-type为’textChange‘时，表示当前文本变化。 |
-    | callback | string | 是 | 回调返回监听到的信息。 |
+    | callback | string | 是 | 回调返回当前文本内容。 |
 
   - 示例：
 
@@ -355,15 +355,13 @@ off(type: 'textChange', callback?: (text: string) => void): void;
     | 参数名   | 类型                 | 必填 | 说明                     |
     | -------- | -------------------- | ---- | ------------------------ |
     | type     | string                  | 是   | 文本变化事件。<br/>-type为’textChange‘时，表示当前文本变化。 |
-    | callback | string | 否 | 回调返回监听到的信息。 |
+    | callback | string | 否 | 回调返回当前文本内容。 |
 
   - 示例：
 
     ```
     KeyboardDelegate.off('textChange');
     ```
-
-
 
 ## KeyboardController<a name="KeyboardController"></a>
 
@@ -376,6 +374,12 @@ hideKeyboard(callback: AsyncCallback&lt;void&gt;): void
 隐藏输入法。
 
 **系统能力**： SystemCapability.MiscServices.InputMethod
+
+- 参数：
+
+  | 参数名   | 类型                   | 必填 | 说明         |
+  | -------- | ---------------------- | ---- | ------------ |
+  | callback | AsyncCallback&lt;void> | 否   | 不需要的参数 |
 
 - 示例
 
@@ -421,7 +425,7 @@ getForward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
 - 示例
   ```
-   var text = TextInputClient.getForward(5,(text) =>{
+   TextInputClient.getForward(5,(text) =>{
      console.info("text = " + text);
    });
   ```
@@ -441,13 +445,10 @@ getForward(length:number): Promise&lt;string&gt;
   | length | number | 是 | 文本长度。 |
 
 - 返回值
-  ​     
   | 类型                            | 说明                                                         |
   | ------------------------------- | ------------------------------------------------------------ |
   | Promise&lt;string&gt; |  返回文本。                |
-  
-  ​        
-  
+
 - 示例
   ```
    var text = TextInputClient.getForward(5);
@@ -471,7 +472,7 @@ getBackward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
 - 示例
   ```
-   var text = TextInputClient.getBackward(5，(text)=>{
+   TextInputClient.getBackward(5，(text)=>{
      console.info("text = " + text);
   });
   ```
@@ -572,6 +573,7 @@ deleteBackward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 ### deleteBackward
 
 deleteBackward(length:number): Promise&lt;boolean&gt;
+
 删除光标后固定长度的文本。
 
 **系统能力**： SystemCapability.MiscServices.InputMethod
@@ -604,7 +606,7 @@ sendKeyFunction(action:number, callback: AsyncCallback&lt;boolean&gt;): void
 
     | 参数名 | 类型 | 必填 | 说明 |
     | -------- | -------- | -------- | -------- |
-    | length | number | 是 | 文本长度。 |
+    | action | number | 是 | 编辑框属性。 |
     | callback | AsyncCallback&lt;boolean&gt; | 是 | 操作成功与否。 |
 
   - 示例
@@ -625,7 +627,7 @@ sendKeyFunction(action:number): Promise&lt;boolean&gt;
 - 参数
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | length | number | 是 | 文本长度。 |
+  | action | number | 是 | 编辑框属性。 |
 
 - 返回值
   | 类型                            | 说明                                                         |
@@ -635,8 +637,8 @@ sendKeyFunction(action:number): Promise&lt;boolean&gt;
 - 示例
 
   ```
-    var isSuccess = TextInputClient.sendKeyFunction(inputMethod.ENTER_KEY_TYPE_NEXT);
-    console.info("isSuccess = " + isSuccess);
+  var isSuccess = TextInputClient.sendKeyFunction(inputMethod.ENTER_KEY_TYPE_NEXT);
+  console.info("isSuccess = " + isSuccess);
   ```
   
 ### insertText
@@ -664,6 +666,7 @@ insertText(text:string, callback: AsyncCallback&lt;boolean&gt;): void
 ### insertText
 
 insertText(text:string): Promise&lt;boolean&gt;
+
 插入文本。
 
 **系统能力**： SystemCapability.MiscServices.InputMethod
@@ -681,22 +684,22 @@ insertText(text:string): Promise&lt;boolean&gt;
 - 示例
 
   ```
-    var isSuccess = TextInputClient.insertText("test");
-    console.info("isSuccess = " + isSuccess);
+  var isSuccess = TextInputClient.insertText("test");
+  console.info("isSuccess = " + isSuccess);
   ```
   
 ### getEditorAttribute
 
 getEditorAttribute(callback: AsyncCallback&lt;EditorAttribute&gt;): void
 
-获取编辑框属性[EditorAttribute](#EditorAttribute)实例。
+获取编辑框属性值。
 
 **系统能力**： SystemCapability.MiscServices.InputMethod
 
 - 参数
    | 参数名                         | 类型                          | 必填                            | 说明                                                         |
    | ------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-   | callback | AsyncCallback&lt;EditorAttribute&gt; | 是 |  编辑框属性实例。                |
+   | callback | AsyncCallback&lt;[EditorAttribute](#EditorAttribute)&gt; | 是 |  编辑框属性值。                |
 
   - 示例
     ```
@@ -707,14 +710,15 @@ getEditorAttribute(callback: AsyncCallback&lt;EditorAttribute&gt;): void
 ### getEditorAttribute
 
 getEditorAttribute(): Promise&lt;EditorAttribute&gt;
-获取编辑框属性[EditorAttribute](#EditorAttribute)实例。
+
+获取编辑框属性值。
 
 **系统能力**： SystemCapability.MiscServices.InputMethod
 
 - 返回值
   | 类型                            | 说明                                                         |
   | ------------------------------- | ------------------------------------------------------------ |
-  | Promise&lt;EditorAttribute&gt; |  返回编辑框属性实例。           |
+  | Promise&lt;[EditorAttribute](#EditorAttribute)&gt; |  返回编辑框属性值。           |
 
 - 示例
    ```
@@ -727,15 +731,15 @@ getEditorAttribute(): Promise&lt;EditorAttribute&gt;
 
 | 名称         | 参数类型 | 可读 | 可写 | 说明                                                         |
 | ------------ | -------- | ---- | ---- | ------------------------------------------------------------ |
-| enterKeyType | number   | 是   | 否   | 功能键属性。<br/>**系统能力**： SystemCapability.MiscServices.InputMethod |
-| inputPattern | number   | 是   | 否   | 编辑框属性。<br/>**系统能力**： SystemCapability.MiscServices.InputMethod |
+| enterKeyType | number   | 是   | 否   | 编辑框的功能属性。<br/>**系统能力**： SystemCapability.MiscServices.InputMethod |
+| inputPattern | number   | 是   | 否   | 编辑框的文本属性。<br/>**系统能力**： SystemCapability.MiscServices.InputMethod |
 
 ## KeyEvent<a name="KeyEvent"></a>
 
-按键属性值
+按键属性值。
 
 | 名称      | 参数类型 | 可读 | 可写 | 说明                                                         |
 | --------- | -------- | ---- | ---- | ------------------------------------------------------------ |
-| keyCode   | number   | 是   | 否   | 键值。<br/>**系统能力**： SystemCapability.MiscServices.InputMethod |
-| keyAction | number   | 是   | 否   | 按键状态。<br/>**系统能力**： SystemCapability.MiscServices.InputMethod |
+| keyCode   | number   | 是   | 否   | 按键的键值。<br/>**系统能力**： SystemCapability.MiscServices.InputMethod |
+| keyAction | number   | 是   | 否   | 按键的状态。<br/>**系统能力**： SystemCapability.MiscServices.InputMethod |
 
