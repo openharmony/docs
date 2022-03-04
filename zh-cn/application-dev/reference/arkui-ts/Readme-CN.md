@@ -48,6 +48,7 @@
                 - [SwipeGesture](ts-basic-gestures-swipegesture.md)
             - [组合手势](ts-combined-gestures.md)
     - 基础组件
+        - [Web](ts-basic-components-web.md)
         - [Blank](ts-basic-components-blank.md)
         - [Button](ts-basic-components-button.md)
         - [Checkbox](ts-basic-components-checkbox.md)
@@ -100,7 +101,6 @@
         - [Refresh](ts-container-refresh.md)
     - 媒体组件
         - [Video](ts-media-components-video.md)
-        - [Web](ts-media-components-web.md)
     - 绘制组件
         - [Circle](ts-drawing-components-circle.md)
         - [Ellipse](ts-drawing-components-ellipse.md)
