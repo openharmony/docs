@@ -43,7 +43,7 @@ getPreferences(context: Context, name: string, callback: AsyncCallback&lt;Prefer
   ```
   import Ability from '@ohos.application.Ability'
   import data_Preferences from '@ohos.data.preferences'
-  var path = await this.context.getDataBaseDir()
+  var path = this.context.getDataBaseDir()
   data_Preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
       if (err) {
           console.info("Get the preferences failed, path: " + path + '/mystore')
@@ -78,7 +78,7 @@ getPreferences(context: Context, name: string): Promise&lt;Preferences&gt;
   ```
   import Ability from '@ohos.application.Ability'
   import data_Preferences from '@ohos.data.preferences'
-  var path = await this.context.getDataBaseDir()
+  var path = this.context.getDataBaseDir()
   let promise = data_Preferences.getPreferences(this.context, 'mystore')
   promise.then((preferences) => {
       preferences.putSync('startup', 'auto')
