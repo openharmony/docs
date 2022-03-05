@@ -1,4 +1,4 @@
-# Development Guidelines on IPC Authentication<a name="EN-US_TOPIC_0000001058671861"></a>
+# Development on IPC Authentication<a name="EN-US_TOPIC_0000001058671861"></a>
 
 ## When to Use<a name="section18502174174019"></a>
 

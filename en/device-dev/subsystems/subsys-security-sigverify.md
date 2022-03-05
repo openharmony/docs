@@ -1,4 +1,4 @@
-# Development Guidelines on Application Signature Verification<a name="EN-US_TOPIC_0000001058671627"></a>
+# Development on Application Signature Verification<a name="EN-US_TOPIC_0000001058671627"></a>
 
 ## When to Use<a name="section18502174174019"></a>
 
