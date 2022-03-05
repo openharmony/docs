@@ -1,6 +1,7 @@
 # Result Set<a name="EN-US_TOPIC_0000001159793150"></a>
 
->![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>![](../../public_sys-resources/icon-note.gif) **NOTE** 
+>
 >The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## System Capabilities
@@ -20,9 +21,6 @@ promise.then((resultSet) => {
     console.log("resultSet columnCount:" + resultSet.columnCount);
 ```
 
-## Required Permissions<a name="section11257113618419"></a>
-
-None
 
 ## ResultSet<a name="section12882825611"></a>
 

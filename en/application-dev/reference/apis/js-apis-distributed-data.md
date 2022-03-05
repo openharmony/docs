@@ -1,9 +1,11 @@
-# Distributed Data Management<a name="EN-US_TOPIC_0000001200444541"></a>
+# Distributed Data Management
 
->![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>![](../../public_sys-resources/icon-note.gif) **NOTE**
+>
 >The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
-## Modules to Import<a name="s56d19203690d4782bfc74069abb6bd71"></a>
+
+## Modules to Import
 
 ```
 import distributedData from '@ohos.data.distributedData';
@@ -12,45 +14,21 @@ import distributedData from '@ohos.data.distributedData';
 SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
 
-## distributedData.createKVManager<a name="section2771164881119"></a>
 
-createKVManager\(config: KVManagerConfig, callback: AsyncCallback<KVManager\>\): void
 
-Creates a  **KVManager**  object to manage key-value \(KV\) stores. This method uses an asynchronous callback to return the result.
+## distributedData.createKVManager
 
--   Parameters
+createKVManager(config: KVManagerConfig, callback: AsyncCallback&lt;KVManager&gt;): void
 
-    <a name="table69661135912"></a>
-    <table><thead align="left"><tr id="row149668318915"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p7966738914"><a name="p7966738914"></a><a name="p7966738914"></a>Name</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="28.349999999999998%" id="mcps1.1.5.1.2"><p id="p296713699"><a name="p296713699"></a><a name="p296713699"></a>Type</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="8.38%" id="mcps1.1.5.1.3"><p id="p196718315911"><a name="p196718315911"></a><a name="p196718315911"></a>Mandatory</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="48.449999999999996%" id="mcps1.1.5.1.4"><p id="p9967231197"><a name="p9967231197"></a><a name="p9967231197"></a>Description</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row99671533914"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1759964375212"><a name="p1759964375212"></a><a name="p1759964375212"></a>config</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="28.349999999999998%" headers="mcps1.1.5.1.2 "><p id="p1238416585528"><a name="p1238416585528"></a><a name="p1238416585528"></a><a href="#section15135528163015">KVManagerConfig</a></p>
-    </td>
-    <td class="cellrowborder" valign="top" width="8.38%" headers="mcps1.1.5.1.3 "><p id="p19671336916"><a name="p19671336916"></a><a name="p19671336916"></a>Yes</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="48.449999999999996%" headers="mcps1.1.5.1.4 "><p id="p69671631796"><a name="p69671631796"></a><a name="p69671631796"></a>Configuration of the <strong id="b11388175015566"><a name="b11388175015566"></a><a name="b11388175015566"></a>KVManager</strong> object, including the bundle name and user information of the caller.</p>
-    </td>
-    </tr>
-    <tr id="row18967831393"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p39671131590"><a name="p39671131590"></a><a name="p39671131590"></a>callback</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="28.349999999999998%" headers="mcps1.1.5.1.2 "><p id="p36441515115320"><a name="p36441515115320"></a><a name="p36441515115320"></a>AsyncCallback&lt;<a href="#section10510185414111">KVManager</a>&gt;</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="8.38%" headers="mcps1.1.5.1.3 "><p id="p149671932919"><a name="p149671932919"></a><a name="p149671932919"></a>Yes</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="48.449999999999996%" headers="mcps1.1.5.1.4 "><p id="p19675312911"><a name="p19675312911"></a><a name="p19675312911"></a>Callback invoked to return the <strong id="b181851636185411"><a name="b181851636185411"></a><a name="b181851636185411"></a>KVManager</strong> object created.</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+Creates a **KVManager** object to manage key-value (KV) stores. This method uses an asynchronous callback to return the result.
+
+- Parameters
+
+| Name| Type| Mandatory| Description|
+| ----- | ------ | ------ | ------ |
+| config | [KVManagerConfig](#kvmanagerconfig) | Yes| Configuration of the **KVManager** object, including the bundle name and user information of the caller.|
+| callback | AsyncCallback&lt;[KVManager](#kvmanager)&gt; | Yes| Callback invoked to return the **KVManager** object created.|
+
 
 -   Example
 
@@ -61,7 +39,7 @@ Creates a  **KVManager**  object to manage key-value \(KV\) stores. This method 
             bundleName : 'com.example.datamanagertest',
             userInfo : {
                 userId : '0',
-                userType : 0
+                userType : distributedData.UserType.SAME_USER_ID
             }
         }
         distributedData.createKVManager(kvManagerConfig, function (err, manager) {
@@ -77,54 +55,23 @@ Creates a  **KVManager**  object to manage key-value \(KV\) stores. This method 
     }
     ```
 
+## distributedData.createKVManager
 
-## distributedData.createKVManager<a name="section15751121117223"></a>
+createKVManager(config: KVManagerConfig): Promise&lt;KVManager&gt;
 
-createKVManager\(config: KVManagerConfig\): Promise<KVManager\>
-
-Creates a  **KVManager**  object to manage KV stores. This method uses a promise to return the result.
+Creates a **KVManager** object to manage KV stores. This method uses a promise to return the result.
 
 -   Parameters
 
-    <a name="table2751161162210"></a>
-    <table><thead align="left"><tr id="row9752311102214"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p147524114228"><a name="p147524114228"></a><a name="p147524114228"></a>Name</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="28.349999999999998%" id="mcps1.1.5.1.2"><p id="p87521111223"><a name="p87521111223"></a><a name="p87521111223"></a>Type</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="8.38%" id="mcps1.1.5.1.3"><p id="p7752181112223"><a name="p7752181112223"></a><a name="p7752181112223"></a>Mandatory</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="48.449999999999996%" id="mcps1.1.5.1.4"><p id="p14752141162212"><a name="p14752141162212"></a><a name="p14752141162212"></a>Description</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row127524118221"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p17531911202216"><a name="p17531911202216"></a><a name="p17531911202216"></a>config</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="28.349999999999998%" headers="mcps1.1.5.1.2 "><p id="p17534113223"><a name="p17534113223"></a><a name="p17534113223"></a><a href="#section15135528163015">KVManagerConfig</a></p>
-    </td>
-    <td class="cellrowborder" valign="top" width="8.38%" headers="mcps1.1.5.1.3 "><p id="p1175371142211"><a name="p1175371142211"></a><a name="p1175371142211"></a>Yes</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="48.449999999999996%" headers="mcps1.1.5.1.4 "><p id="p475315118226"><a name="p475315118226"></a><a name="p475315118226"></a>Configuration of the <strong id="b1212031114569"><a name="b1212031114569"></a><a name="b1212031114569"></a>KVManager</strong> object, including the bundle name and user information of the caller.</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+| Name| Type| Mandatory| Description|
+| ----- | ------ | ------ | ------ |
+| config |[KVManagerConfig](#kvmanager) | Yes| Configuration of the **KVManager** object, including the bundle name and user information of the caller.|
 
--   Return values
+-   Return value
 
-    <a name="table14773154913191"></a>
-    <table><thead align="left"><tr id="row877314991912"><th class="cellrowborder" valign="top" width="17.83%" id="mcps1.1.3.1.1"><p id="p1077313493199"><a name="p1077313493199"></a><a name="p1077313493199"></a>Type</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="82.17%" id="mcps1.1.3.1.2"><p id="p1677411498195"><a name="p1677411498195"></a><a name="p1677411498195"></a>Description</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row1977413496194"><td class="cellrowborder" valign="top" width="17.83%" headers="mcps1.1.3.1.1 "><p id="p67742498197"><a name="p67742498197"></a><a name="p67742498197"></a>Promise&lt;<a href="#section10510185414111">KVManager</a>&gt;</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="82.17%" headers="mcps1.1.3.1.2 "><p id="p4774164916199"><a name="p4774164916199"></a><a name="p4774164916199"></a>Promise used to return the <strong id="b1949172411578"><a name="b1949172411578"></a><a name="b1949172411578"></a>KVManager</strong> object created.</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;[KVManager](#kvmanager)&gt; | Promise used to return the **KVManager** object created.|
 
 -   Example
 
@@ -135,7 +82,7 @@ Creates a  **KVManager**  object to manage KV stores. This method uses a promise
             bundleName : 'com.example.datamanagertest',
             userInfo : {
                 userId : '0',
-                userType : 0
+                userType : distributedData.UserType.SAME_USER_ID
             }
         }
         distributedData.createKVManager(kvManagerConfig).then((manager) => {
@@ -150,167 +97,67 @@ Creates a  **KVManager**  object to manage KV stores. This method uses a promise
     ```
 
 
-## KVManagerConfig<a name="section15135528163015"></a>
+## KVManagerConfig
 
-Provides configuration of the  **KVManager**  object, including the bundle name and user information of the caller.
+Provides configuration of the **KVManager** object, including the bundle name and user information of the caller.
 
-<a name="table104081425154213"></a>
-<table><thead align="left"><tr id="row15409122514217"><th class="cellrowborder" valign="top" width="17.378262173782623%" id="mcps1.1.5.1.1"><p id="p1340952594210"><a name="p1340952594210"></a><a name="p1340952594210"></a>Name</p>
-</th>
-<th class="cellrowborder" valign="top" width="21.547845215478453%" id="mcps1.1.5.1.2"><p id="p15409525144213"><a name="p15409525144213"></a><a name="p15409525144213"></a>Type</p>
-</th>
-<th class="cellrowborder" valign="top" width="7.519248075192481%" id="mcps1.1.5.1.3"><p id="p104096254423"><a name="p104096254423"></a><a name="p104096254423"></a>Mandatory</p>
-</th>
-<th class="cellrowborder" valign="top" width="53.554644535546444%" id="mcps1.1.5.1.4"><p id="p840962515424"><a name="p840962515424"></a><a name="p840962515424"></a>Description</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row12409172544213"><td class="cellrowborder" valign="top" width="17.378262173782623%" headers="mcps1.1.5.1.1 "><p id="p184101525184212"><a name="p184101525184212"></a><a name="p184101525184212"></a>userInfo</p>
-</td>
-<td class="cellrowborder" valign="top" width="21.547845215478453%" headers="mcps1.1.5.1.2 "><p id="p7410152519420"><a name="p7410152519420"></a><a name="p7410152519420"></a><a href="#section859346103617">UserInfo</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="7.519248075192481%" headers="mcps1.1.5.1.3 "><p id="p9410825194216"><a name="p9410825194216"></a><a name="p9410825194216"></a>Yes</p>
-</td>
-<td class="cellrowborder" valign="top" width="53.554644535546444%" headers="mcps1.1.5.1.4 "><p id="p1559785083517"><a name="p1559785083517"></a><a name="p1559785083517"></a>User information.</p>
-</td>
-</tr>
-<tr id="row1841142594215"><td class="cellrowborder" valign="top" width="17.378262173782623%" headers="mcps1.1.5.1.1 "><p id="p44121225174218"><a name="p44121225174218"></a><a name="p44121225174218"></a>bundleName</p>
-</td>
-<td class="cellrowborder" valign="top" width="21.547845215478453%" headers="mcps1.1.5.1.2 "><p id="p1541314251427"><a name="p1541314251427"></a><a name="p1541314251427"></a>string</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.519248075192481%" headers="mcps1.1.5.1.3 "><p id="p141317253428"><a name="p141317253428"></a><a name="p141317253428"></a>Yes</p>
-</td>
-<td class="cellrowborder" valign="top" width="53.554644535546444%" headers="mcps1.1.5.1.4 "><p id="p74131525104217"><a name="p74131525104217"></a><a name="p74131525104217"></a>Bundle name.</p>
-</td>
-</tr>
-</tbody>
-</table>
+| Name| Type| Mandatory| Description|
+| ----- | ------ | ------ | ------ |
+| userInfo | [UserInfo](#userinfo) | Yes| User information.|
+| bundleName | string | Yes| Bundle name.|
 
-## UserInfo<a name="section859346103617"></a>
+
+
+## UserInfo
 
 Defines user information.
 
-<a name="table8594165366"></a>
-<table><thead align="left"><tr id="row15594068361"><th class="cellrowborder" valign="top" width="17.378262173782623%" id="mcps1.1.5.1.1"><p id="p1559411673614"><a name="p1559411673614"></a><a name="p1559411673614"></a>Name</p>
-</th>
-<th class="cellrowborder" valign="top" width="21.547845215478453%" id="mcps1.1.5.1.2"><p id="p12594962363"><a name="p12594962363"></a><a name="p12594962363"></a>Type</p>
-</th>
-<th class="cellrowborder" valign="top" width="7.519248075192481%" id="mcps1.1.5.1.3"><p id="p165942673620"><a name="p165942673620"></a><a name="p165942673620"></a>Mandatory</p>
-</th>
-<th class="cellrowborder" valign="top" width="53.554644535546444%" id="mcps1.1.5.1.4"><p id="p259412623613"><a name="p259412623613"></a><a name="p259412623613"></a>Description</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row25955663611"><td class="cellrowborder" valign="top" width="17.378262173782623%" headers="mcps1.1.5.1.1 "><p id="p13595867365"><a name="p13595867365"></a><a name="p13595867365"></a>userId</p>
-</td>
-<td class="cellrowborder" valign="top" width="21.547845215478453%" headers="mcps1.1.5.1.2 "><p id="p659506113610"><a name="p659506113610"></a><a name="p659506113610"></a>string</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.519248075192481%" headers="mcps1.1.5.1.3 "><p id="p1559517612362"><a name="p1559517612362"></a><a name="p1559517612362"></a>Yes</p>
-</td>
-<td class="cellrowborder" valign="top" width="53.554644535546444%" headers="mcps1.1.5.1.4 "><p id="p195951669362"><a name="p195951669362"></a><a name="p195951669362"></a>User ID.</p>
-</td>
-</tr>
-<tr id="row85951613360"><td class="cellrowborder" valign="top" width="17.378262173782623%" headers="mcps1.1.5.1.1 "><p id="p55951263361"><a name="p55951263361"></a><a name="p55951263361"></a>userType</p>
-</td>
-<td class="cellrowborder" valign="top" width="21.547845215478453%" headers="mcps1.1.5.1.2 "><p id="p1459511610365"><a name="p1459511610365"></a><a name="p1459511610365"></a><a href="#section156981915134813">UserType</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="7.519248075192481%" headers="mcps1.1.5.1.3 "><p id="p20595106123619"><a name="p20595106123619"></a><a name="p20595106123619"></a>Yes</p>
-</td>
-<td class="cellrowborder" valign="top" width="53.554644535546444%" headers="mcps1.1.5.1.4 "><p id="p359596143617"><a name="p359596143617"></a><a name="p359596143617"></a>User type.</p>
-</td>
-</tr>
-</tbody>
-</table>
+| Name| Type| Mandatory| Description|
+| ----- | ------ | ------ | ------ |
+| userId | string | Yes| User ID.|
+| userType | [UserType](#usertype) | Yes| User type.|
 
-## UserType<a name="section156981915134813"></a>
+
+## UserType
 
 Defines the user type.
 
-<a name="table6699101504818"></a>
-<table><thead align="left"><tr id="row15699315154810"><th class="cellrowborder" valign="top" width="27.900000000000002%" id="mcps1.1.4.1.1"><p id="p1369961514489"><a name="p1369961514489"></a><a name="p1369961514489"></a>Name</p>
-</th>
-<th class="cellrowborder" valign="top" width="12.43%" id="mcps1.1.4.1.2"><p id="p206991915184810"><a name="p206991915184810"></a><a name="p206991915184810"></a>Default Value</p>
-</th>
-<th class="cellrowborder" valign="top" width="59.67%" id="mcps1.1.4.1.3"><p id="p7700141594810"><a name="p7700141594810"></a><a name="p7700141594810"></a>Description</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row1270061514484"><td class="cellrowborder" valign="top" width="27.900000000000002%" headers="mcps1.1.4.1.1 "><p id="p870051512486"><a name="p870051512486"></a><a name="p870051512486"></a>SAME_USER_ID</p>
-</td>
-<td class="cellrowborder" valign="top" width="12.43%" headers="mcps1.1.4.1.2 "><p id="p970015156487"><a name="p970015156487"></a><a name="p970015156487"></a>0</p>
-</td>
-<td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p167001015104813"><a name="p167001015104813"></a><a name="p167001015104813"></a>User who logs in to different devices using the same account.</p>
-</td>
-</tr>
-</tbody>
-</table>
+| Name| Default Value| Description|
+| ----- | ------ | ------ |
+| SAME\_USER_ID| 0 | User who logs in to different devices using the same account.|
 
-## KVManager<a name="section10510185414111"></a>
 
-Creates a  **KVManager**  object to obtain KV store information. Before calling any method in  **KVManager**, you must use  **createKVManager**  to create a  **KVManager**  object.
+## KVManager
 
-### getKVStore<a name="section163838594447"></a>
+Creates a **KVManager** object to obtain KV store information. Before calling any method in **KVManager**, you must use **createKVManager** to create a **KVManager** object.
 
-getKVStore<T extends KVStore\>\(storeId: string, options: Options, callback: AsyncCallback<T\>\): void
+### getKVStore
+
+getKVStore<T extends KVStore>(storeId: string, options: Options, callback: AsyncCallback&lt;T&gt;): void
 
 Creates and obtains a KV store. This method uses an asynchronous callback to return the result.
 
--   Parameters
+- Parameters
 
-    <a name="table1815218719376"></a>
-    <table><thead align="left"><tr id="row1515237113720"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p171523743712"><a name="p171523743712"></a><a name="p171523743712"></a>Name</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="21.47%" id="mcps1.1.5.1.2"><p id="p161521716375"><a name="p161521716375"></a><a name="p161521716375"></a>Type</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="5.16%" id="mcps1.1.5.1.3"><p id="p215318763718"><a name="p215318763718"></a><a name="p215318763718"></a>Mandatory</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="58.550000000000004%" id="mcps1.1.5.1.4"><p id="p11531713374"><a name="p11531713374"></a><a name="p11531713374"></a>Description</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row4442165763919"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p9442757113913"><a name="p9442757113913"></a><a name="p9442757113913"></a>storeId</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="21.47%" headers="mcps1.1.5.1.2 "><p id="p124431057193915"><a name="p124431057193915"></a><a name="p124431057193915"></a>string</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="5.16%" headers="mcps1.1.5.1.3 "><p id="p1444311572398"><a name="p1444311572398"></a><a name="p1444311572398"></a>Yes</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="58.550000000000004%" headers="mcps1.1.5.1.4 "><p id="p244311575391"><a name="p244311575391"></a><a name="p244311575391"></a>Unique identifier of the KV store. The length cannot exceed <a href="#p1370641813465"><strong id="b48871052061"><a name="b48871052061"></a><a name="b48871052061"></a>MAX_STORE_ID_LENGTH</strong></a>.</p>
-    </td>
-    </tr>
-    <tr id="row815319713379"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p9153167113712"><a name="p9153167113712"></a><a name="p9153167113712"></a>options</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="21.47%" headers="mcps1.1.5.1.2 "><p id="p41531872379"><a name="p41531872379"></a><a name="p41531872379"></a><a href="#section20151177103716">Options</a></p>
-    </td>
-    <td class="cellrowborder" valign="top" width="5.16%" headers="mcps1.1.5.1.3 "><p id="p31534710378"><a name="p31534710378"></a><a name="p31534710378"></a>Yes</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="58.550000000000004%" headers="mcps1.1.5.1.4 "><p id="p1015318713717"><a name="p1015318713717"></a><a name="p1015318713717"></a>Configuration of the KV store.</p>
-    </td>
-    </tr>
-    <tr id="row11531713372"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p14153176376"><a name="p14153176376"></a><a name="p14153176376"></a>callback</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="21.47%" headers="mcps1.1.5.1.2 "><p id="p194274693318"><a name="p194274693318"></a><a name="p194274693318"></a>AsyncCallback&lt;T&gt;,</p>
-    <p id="p915487143715"><a name="p915487143715"></a><a name="p915487143715"></a>&lt;T extends KVStore&gt;</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="5.16%" headers="mcps1.1.5.1.3 "><p id="p4154272372"><a name="p4154272372"></a><a name="p4154272372"></a>Yes</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="58.550000000000004%" headers="mcps1.1.5.1.4 "><p id="p1015487153711"><a name="p1015487153711"></a><a name="p1015487153711"></a>Callback invoked to return the KV store created.</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+| Name| Type| Mandatory| Description|
+| ----- | ------ | ------ | ------ |
+| storeId | string | Yes| Unique identifier of the KV store. The length cannot exceed [MAX\_STORE\_ID\_LENGTH](#constants).|
+| options | [Options](#options) | Yes| Configuration of the KV store.|
+| callback | AsyncCallback&lt;T&gt;, &lt;T extends KVStore&gt;| Yes| Callback invoked to return the KV store created.|
 
 -   Example
 
     ```
     let kvStore;
+    let kvManager;
     try {
         const options = {
             createIfMissing : true,
             encrypt : false,
             backup : false,
             autoSync : true,
-            kvStoreType : 1,
-            securityLevel : 3,
+            kvStoreType : distributedData.KVStoreType.SINGLE_VERSION,
+            securityLevel : distributedData.SecurityLevel.S2,
         };
         kvManager.getKVStore('storeId', options, function (err, store) {
             if (err) {
@@ -326,371 +173,1809 @@ Creates and obtains a KV store. This method uses an asynchronous callback to ret
     ```
 
 
-### getKVStore<a name="section1614918420469"></a>
+### getKVStore
 
-getKVStore<T extends KVStore\>\(storeId: string, options: Options\): Promise<T\>
+getKVStore&lt;T extends KVStore&gt;(storeId: string, options: Options): Promise&lt;T&gt;
 
 Creates and obtains a KV store. This method uses a promise to return the result.
 
--   Parameters
+- Parameters
 
-    <a name="table12128750203"></a>
-    <table><thead align="left"><tr id="row131281159201"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p3129452205"><a name="p3129452205"></a><a name="p3129452205"></a>Name</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="17.44%" id="mcps1.1.5.1.2"><p id="p31291454205"><a name="p31291454205"></a><a name="p31291454205"></a>Type</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="6.4799999999999995%" id="mcps1.1.5.1.3"><p id="p191291515203"><a name="p191291515203"></a><a name="p191291515203"></a>Mandatory</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="61.260000000000005%" id="mcps1.1.5.1.4"><p id="p1613085202012"><a name="p1613085202012"></a><a name="p1613085202012"></a>Description</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row1613012514207"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1113012511203"><a name="p1113012511203"></a><a name="p1113012511203"></a>storeId</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="17.44%" headers="mcps1.1.5.1.2 "><p id="p3130858207"><a name="p3130858207"></a><a name="p3130858207"></a>string</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="6.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p8131145102014"><a name="p8131145102014"></a><a name="p8131145102014"></a>Yes</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p51317516204"><a name="p51317516204"></a><a name="p51317516204"></a>Unique identifier of the KV store. The length cannot exceed <a href="#p1370641813465"><strong id="b85861514141118"><a name="b85861514141118"></a><a name="b85861514141118"></a>MAX_STORE_ID_LENGTH</strong></a>.</p>
-    </td>
-    </tr>
-    <tr id="row151312522012"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p513119515209"><a name="p513119515209"></a><a name="p513119515209"></a>options</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="17.44%" headers="mcps1.1.5.1.2 "><p id="p91312514209"><a name="p91312514209"></a><a name="p91312514209"></a><a href="#section20151177103716">Options</a></p>
-    </td>
-    <td class="cellrowborder" valign="top" width="6.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p0132551205"><a name="p0132551205"></a><a name="p0132551205"></a>Yes</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1132105172011"><a name="p1132105172011"></a><a name="p1132105172011"></a>Configuration of the KV store.</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+| Name| Type| Mandatory| Description|
+| ------- | ---------------------- | ---- | -------------------- |
+| storeId  | string      | Yes| Unique identifier of the KV store. The length cannot exceed [MAX\_STORE\_ID\_LENGTH](#constants).|
+| options  | [Options](#options)   | Yes| Configuration of the KV store.|
 
--   Return values
 
-    <a name="table1527413113225"></a>
-    <table><thead align="left"><tr id="row827519116223"><th class="cellrowborder" valign="top" width="17.83%" id="mcps1.1.3.1.1"><p id="p827512192212"><a name="p827512192212"></a><a name="p827512192212"></a>Type</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="82.17%" id="mcps1.1.3.1.2"><p id="p127515142218"><a name="p127515142218"></a><a name="p127515142218"></a>Description</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row22758142211"><td class="cellrowborder" valign="top" width="17.83%" headers="mcps1.1.3.1.1 "><p id="p92758118220"><a name="p92758118220"></a><a name="p92758118220"></a>Promise&lt;T&gt;</p>
-    <p id="p383111612212"><a name="p383111612212"></a><a name="p383111612212"></a>&lt;T extends KVStore&gt;</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="82.17%" headers="mcps1.1.3.1.2 "><p id="p72751413225"><a name="p72751413225"></a><a name="p72751413225"></a>Promise used to return the KV store created.</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+-   Return value
+
+| Type| Description|
+| -------------------------------------- | ------------------------ |
+| Promise&lt;T&gt; &lt;T extends KVStore&gt; | Promise used to return the KV store created.|
+
+
+- Example
+
+  ```
+  let kvStore;
+  let kvManager;
+  try {
+      const options = {
+          createIfMissing : true,
+          encrypt : false,
+          backup : false,
+          autoSync : true,
+          kvStoreType : distributedData.KVStoreType.SINGLE_VERSION,
+          securityLevel : distributedData.SecurityLevel.S2,
+      };
+      kvManager.getKVStore('storeId', options).then((store) => {
+          console.log("getKVStore success");
+          kvStore = store;
+      }).catch((err) => {
+          console.log("getKVStore err: "  + JSON.stringify(err));
+      });
+  } catch (e) {
+      console.log("An unexpected error occurred. Error:" + e);
+  }
+  ```
+
+### closeKVStore<sup>8+</sup> ###
+
+closeKVStore(appId: string, storeId: string, kvStore: KVStore, callback: AsyncCallback&lt;void&gt;): void;
+
+Closes a KV store. This method uses an asynchronous callback to return the result.
+
+- Parameters
+
+
+| Name| Type| Mandatory| Description|
+| ------- | -----------------   | ---- | --------------------------- |
+| appId    | string              | Yes| Bundle name of the app used by the KV store.|
+| storeId  | string  | Yes| Unique identifier of the KV store to close. The length cannot exceed the value of [MAX\_STORE\_ID_LENGTH](#constants).|
+| kvStore  | [KVStore](#kvstore) | Yes| KV store to close.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the KV store is closed, **true** will be returned. Otherwise, **false** will be returned.|
+
 
 -   Example
 
     ```
     let kvStore;
+    let kvManager;
+    const options = {
+        createIfMissing : true,
+        encrypt : false,
+        backup : false,
+        autoSync : true,
+        kvStoreType : distributedData.KVStoreType.SINGLE_VERSION,
+        schema : '',
+        securityLevel : distributedData.SecurityLevel.S2,
+    }
     try {
-        const options = {
-            createIfMissing : true,
-            encrypt : false,
-            backup : false,
-            autoSync : true,
-            kvStoreType : 1,
-            securityLevel : 3,
-        };
-        kvManager.getKVStore('storeId', options).then((store) => {
-            console.log("getKVStore success");
+        kvManager.getKVStore('storeId', options, async function (err, store) {
+            console.log('getKVStore success');
             kvStore = store;
-        }).catch((err) => {
-            console.log("getKVStore err: "  + JSON.stringify(err));
+            await kvManager.closeKVStore('appId', 'storeId', kvStore, function (err, data) {
+                console.log('closeKVStore success');
+            });
         });
+    } catch (e) {
+        console.log('closeKVStore e ' + e);
+    }
+    ```
+
+### closeKVStore<sup>8+</sup> ###
+
+closeKVStore(appId: string, storeId: string, kvStore: KVStore): Promise&lt;void&gt;;
+
+Closes a KV store. This method uses a promise to return the result.
+
+- Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------  | ---- | ----------------------------- |
+| appId  | string  | Yes| Bundle name of the app used by the KV store.|
+| storeId | string | Yes| Unique identifier of the KV store to close. The length cannot exceed the value of [MAX\_STORE\_ID_LENGTH](#constants).|
+| kvStore | [KVStore](#kvstore)  | Yes| KV store to close.|
+
+- Return value
+
+| Type| Description|
+| ------------- | -------------- |
+| Promise<void> | Promise used to return the result. If the KV store is closed, **true** will be returned. Otherwise, **false** will be returned.|
+
+-   Example
+
+    ```
+    let kvManager;
+    let kvStore;
+    const options = {
+        createIfMissing : true,
+        encrypt : false,
+        backup : false,
+        autoSync : true,
+        kvStoreType : distributedData.KVStoreType.SINGLE_VERSION,
+        schema : '',
+        securityLevel : distributedData.SecurityLevel.S2,
+    }
+    try {
+        kvManager.getKVStore('storeId', options).then(async (store) => {
+            console.log('getKVStore success');
+            kvStore = store;
+            await kvManager.closeKVStore('appId', 'storeId', kvStore).then(() => {
+                console.log('closeKVStore success');
+            }).catch((err) => {
+                console.log('closeKVStore err ' + JSON.stringify(err));
+            });
+        }).catch((err) => {
+            console.log('CloseKVStore getKVStore err ' + JSON.stringify(err));
+        });
+    } catch (e) {
+        console.log('closeKVStore e ' + e);
+    }
+    ```
+
+
+### deleteKVStore<sup>8+</sup> ###
+
+deleteKVStore(appId: string, storeId: string, callback: AsyncCallback&lt;void&gt;): void;
+
+Deletes a KV store. This method uses an asynchronous callback to return the result.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------  | ----  | ----------------------- |
+| appId  | string  | Yes| Bundle name of the app used by the KV store.|
+| storeId | string | Yes| Unique identifier of the KV store to delete. The length cannot exceed the value of [MAX\_STORE\_ID_LENGTH](#constants).|
+| callback | AsyncCallback&lt;void&gt;  | Yes| Callback used to return the result. If the KV store is deleted, **true** will be returned. Otherwise, **false** will be returned.|
+
+
+-   Example
+
+    ```
+    let kvManager;
+    let kvStore;
+    const options = {
+        createIfMissing : true,
+        encrypt : false,
+        backup : false,
+        autoSync : true,
+        kvStoreType : distributedData.KVStoreType.SINGLE_VERSION,
+        schema : '',
+        securityLevel : distributedData.SecurityLevel.S2,
+    }
+    try {
+        kvManager.getKVStore('store', options, async function (err, store) {
+            console.log('getKVStore success');
+            kvStore = store;
+            await kvManager.deleteKVStore('appId', 'storeId', function (err, data) {
+                console.log('deleteKVStore success');
+            });
+        });
+    } catch (e) {
+        console.log('DeleteKVStore e ' + e);
+    }
+    ```
+
+### deleteKVStore<sup>8+</sup> ###
+
+deleteKVStore(appId: string, storeId: string): Promise&lt;void&gt;;
+
+Deletes a KV store. This method uses a promise to return the result.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------  | ----  | ----------------------- |
+| appId  | string  | Yes| Bundle name of the app used by the KV store.|
+| storeId | string | Yes| Unique identifier of the KV store to delete. The length cannot exceed the value of [MAX\_STORE\_ID_LENGTH](#constants).|
+
+
+-   Return value
+
+| Type| Description|
+| ------------- | -------------- |
+| Promise&lt;void&gt; | Promise used to return the result. If the KV store is deleted, **true** will be returned. Otherwise, **false** will be returned.|
+
+-   Example
+
+    ```
+    let kvManager;
+    let kvStore;
+    const options = {
+        createIfMissing : true,
+        encrypt : false,
+        backup : false,
+        autoSync : true,
+        kvStoreType : distributedData.KVStoreType.SINGLE_VERSION,
+        schema : '',
+        securityLevel : distributedData.SecurityLevel.S2,
+    }
+    try {
+        kvManager.getKVStore('storId', options).then(async (store) => {
+            console.log('getKVStore success');
+            kvStore = store;
+            await kvManager.deleteKVStore('appId', 'storeId').then(() => {
+                console.log('deleteKVStore success');
+            }).catch((err) => {
+                console.log('deleteKVStore err ' + JSON.stringify(err));
+            });
+        }).catch((err) => {
+            console.log('getKVStore err ' + JSON.stringify(err));
+        });
+    } catch (e) {
+        console.log('deleteKVStore e ' + e);
+    }
+    ```
+
+
+### getAllKVStoreId<sup>8+</sup> ###
+
+getAllKVStoreId(appId: string, callback: AsyncCallback&lt;string[]&gt;): void;
+
+Obtains the IDs of all the KV stores that are created using **getKvStore** and have not been deleted using **deleteKvStore**. This method uses an asynchronous callback to return the result.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------  | ----  | ----------------------- |
+| appId  | string  | Yes| Bundle name of the app used by the KV store.|
+| callback | AsyncCallback&lt;void&gt; | Yes|Callback used to return the KV store IDs obtained. |
+
+-   Example
+
+    ```
+    let kvManager;
+    try {
+        kvManager.getAllKVStoreId('appId', function (err, data) {
+            console.log('GetAllKVStoreId success');
+            console.log('GetAllKVStoreId size = ' + data.length);
+        });
+    } catch (e) {
+        console.log('GetAllKVStoreId e ' + e);
+    }
+    ```
+
+
+### getAllKVStoreId<sup>8+</sup> ###
+
+getAllKVStoreId(appId: string): Promise&lt;string[]&gt;;
+
+Obtains the IDs of all the KV stores that are created using **getKvStore** and have not been deleted using **deleteKvStore**. This method uses a promise to return the result.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------  | ----  | ----------------------- |
+| appId  | string  | Yes| Bundle name of the app used by the KV store.|
+
+
+-   Return value
+
+| Type| Description|
+| ------------- | -------------- |
+| Promise&lt;string[]&gt;| Promise used to return the KV store IDs obtained.|
+
+-   Example
+
+    ```
+    let kvManager;
+    try {
+        console.log('GetAllKVStoreId');
+        kvManager.getAllKVStoreId('apppId').then((data) => {
+            console.log('getAllKVStoreId success');
+            console.log('size = ' + data.length);
+        }).catch((err) => {
+            console.log('getAllKVStoreId err ' + JSON.stringify(err));
+        });
+    } catch(e) {
+        console.log('getAllKVStoreId e ' + e);
+    }
+    ```
+
+
+### on<sup>8+</sup> ###
+
+on(event: 'distributedDataServiceDie', deathCallback: Callback&lt;void&gt;): void;
+
+Subscribes to the **distributedDataServiceDie** events. This method uses a synchronous callback to return the result.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------  | ----  | ----------------------- |
+| event  | 'distributedDataServiceDie'  | Yes| Type of events to subscribe to. |
+| deathCallback  | Callback&lt;void&gt;  | Yes| Callback invoked when the distributed data service is dead.|
+
+
+
+-   Example
+
+    ```
+    let kvManager;
+    try {
+        
+        console.log('KVManagerOn');
+        const deathCallback = function () {
+            console.log('death callback call');
+        }
+        kvManager.on('distributedDataServiceDie', deathCallback);
     } catch (e) {
         console.log("An unexpected error occurred. Error:" + e);
     }
     ```
 
 
-## Options<a name="section20151177103716"></a>
+### off<sup>8+</sup> ###
 
-Provides KV store configuration.
+off(event: 'distributedDataServiceDie', deathCallback?: Callback&lt;void&gt;): void;
 
-<a name="table139428218117"></a>
-<table><thead align="left"><tr id="row8943821510"><th class="cellrowborder" valign="top" width="16.32%" id="mcps1.1.5.1.1"><p id="p139439212111"><a name="p139439212111"></a><a name="p139439212111"></a>Name</p>
-</th>
-<th class="cellrowborder" valign="top" width="20.61%" id="mcps1.1.5.1.2"><p id="p5943721919"><a name="p5943721919"></a><a name="p5943721919"></a>Type</p>
-</th>
-<th class="cellrowborder" valign="top" width="10.41%" id="mcps1.1.5.1.3"><p id="p189431218119"><a name="p189431218119"></a><a name="p189431218119"></a>Mandatory</p>
-</th>
-<th class="cellrowborder" valign="top" width="52.66%" id="mcps1.1.5.1.4"><p id="p11943142518"><a name="p11943142518"></a><a name="p11943142518"></a>Description</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row1794311214119"><td class="cellrowborder" valign="top" width="16.32%" headers="mcps1.1.5.1.1 "><p id="p15237173214282"><a name="p15237173214282"></a><a name="p15237173214282"></a>createIfMissing</p>
-</td>
-<td class="cellrowborder" valign="top" width="20.61%" headers="mcps1.1.5.1.2 "><p id="p794412718"><a name="p794412718"></a><a name="p794412718"></a>boolean</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.41%" headers="mcps1.1.5.1.3 "><p id="p79441213120"><a name="p79441213120"></a><a name="p79441213120"></a>No</p>
-</td>
-<td class="cellrowborder" valign="top" width="52.66%" headers="mcps1.1.5.1.4 "><p id="p2944424110"><a name="p2944424110"></a><a name="p2944424110"></a>Whether to create a KV store if no database file exists. By default, a KV store is created.</p>
-</td>
-</tr>
-<tr id="row5944129113"><td class="cellrowborder" valign="top" width="16.32%" headers="mcps1.1.5.1.1 "><p id="p8944929118"><a name="p8944929118"></a><a name="p8944929118"></a>encrypt</p>
-</td>
-<td class="cellrowborder" valign="top" width="20.61%" headers="mcps1.1.5.1.2 "><p id="p1294420220114"><a name="p1294420220114"></a><a name="p1294420220114"></a>boolean</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.41%" headers="mcps1.1.5.1.3 "><p id="p29447211119"><a name="p29447211119"></a><a name="p29447211119"></a>No</p>
-</td>
-<td class="cellrowborder" valign="top" width="52.66%" headers="mcps1.1.5.1.4 "><p id="p89451526118"><a name="p89451526118"></a><a name="p89451526118"></a>Whether to encrypt database files. By default, database files are not encrypted.</p>
-</td>
-</tr>
-<tr id="row109451529112"><td class="cellrowborder" valign="top" width="16.32%" headers="mcps1.1.5.1.1 "><p id="p199911462912"><a name="p199911462912"></a><a name="p199911462912"></a>backup</p>
-</td>
-<td class="cellrowborder" valign="top" width="20.61%" headers="mcps1.1.5.1.2 "><p id="p19455210120"><a name="p19455210120"></a><a name="p19455210120"></a>boolean</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.41%" headers="mcps1.1.5.1.3 "><p id="p89451721915"><a name="p89451721915"></a><a name="p89451721915"></a>No</p>
-</td>
-<td class="cellrowborder" valign="top" width="52.66%" headers="mcps1.1.5.1.4 "><p id="p139457210111"><a name="p139457210111"></a><a name="p139457210111"></a>Whether to back up database files. By default, database files are backed up. </p>
-</td>
-</tr>
-<tr id="row897612832918"><td class="cellrowborder" valign="top" width="16.32%" headers="mcps1.1.5.1.1 "><p id="p1977152810299"><a name="p1977152810299"></a><a name="p1977152810299"></a>autoSync</p>
-</td>
-<td class="cellrowborder" valign="top" width="20.61%" headers="mcps1.1.5.1.2 "><p id="p119771328102918"><a name="p119771328102918"></a><a name="p119771328102918"></a>boolean</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.41%" headers="mcps1.1.5.1.3 "><p id="p2977152892910"><a name="p2977152892910"></a><a name="p2977152892910"></a>No</p>
-</td>
-<td class="cellrowborder" valign="top" width="52.66%" headers="mcps1.1.5.1.4 "><p id="p997722815297"><a name="p997722815297"></a><a name="p997722815297"></a>Whether database files are automatically synchronized. By default, database files are not automatically synchronized.</p>
-</td>
-</tr>
-<tr id="row13783123212295"><td class="cellrowborder" valign="top" width="16.32%" headers="mcps1.1.5.1.1 "><p id="p107838327292"><a name="p107838327292"></a><a name="p107838327292"></a>kvStoreType</p>
-</td>
-<td class="cellrowborder" valign="top" width="20.61%" headers="mcps1.1.5.1.2 "><p id="p10783113292916"><a name="p10783113292916"></a><a name="p10783113292916"></a><a href="#section720518449379">KVStoreType</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="10.41%" headers="mcps1.1.5.1.3 "><p id="p5784432182914"><a name="p5784432182914"></a><a name="p5784432182914"></a>No</p>
-</td>
-<td class="cellrowborder" valign="top" width="52.66%" headers="mcps1.1.5.1.4 "><p id="p478417326295"><a name="p478417326295"></a><a name="p478417326295"></a>Type of the KV store to create. By default, a device KV store is created. The device KV store stores data for multiple devices that collaborate with each other.</p>
-</td>
-</tr>
-<tr id="row41583015306"><td class="cellrowborder" valign="top" width="16.32%" headers="mcps1.1.5.1.1 "><p id="p51583020305"><a name="p51583020305"></a><a name="p51583020305"></a>securityLevel</p>
-</td>
-<td class="cellrowborder" valign="top" width="20.61%" headers="mcps1.1.5.1.2 "><p id="p81596014308"><a name="p81596014308"></a><a name="p81596014308"></a><a href="#section205876465372">SecurityLevel</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="10.41%" headers="mcps1.1.5.1.3 "><p id="p181591400305"><a name="p181591400305"></a><a name="p181591400305"></a>No</p>
-</td>
-<td class="cellrowborder" valign="top" width="52.66%" headers="mcps1.1.5.1.4 "><p id="p121591808302"><a name="p121591808302"></a><a name="p121591808302"></a>Security level of the KV store. By default, the security level is not set.</p>
-</td>
-</tr>
-</tbody>
-</table>
-
-## KVStoreType<a name="section720518449379"></a>
-
-Defines the KV store types.
-
-<a name="table20205174420379"></a>
-<table><thead align="left"><tr id="row1620654416375"><th class="cellrowborder" valign="top" width="27.900000000000002%" id="mcps1.1.4.1.1"><p id="p820614447373"><a name="p820614447373"></a><a name="p820614447373"></a>Name</p>
-</th>
-<th class="cellrowborder" valign="top" width="12.43%" id="mcps1.1.4.1.2"><p id="p1520611449379"><a name="p1520611449379"></a><a name="p1520611449379"></a>Default Value</p>
-</th>
-<th class="cellrowborder" valign="top" width="59.67%" id="mcps1.1.4.1.3"><p id="p1820654413373"><a name="p1820654413373"></a><a name="p1820654413373"></a>Description</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row8206144420370"><td class="cellrowborder" valign="top" width="27.900000000000002%" headers="mcps1.1.4.1.1 "><p id="p1206744133718"><a name="p1206744133718"></a><a name="p1206744133718"></a>DEVICE_COLLABORATION</p>
-</td>
-<td class="cellrowborder" valign="top" width="12.43%" headers="mcps1.1.4.1.2 "><p id="p102065442377"><a name="p102065442377"></a><a name="p102065442377"></a>0</p>
-</td>
-<td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p720618443371"><a name="p720618443371"></a><a name="p720618443371"></a>Device KV store.</p>
-</td>
-</tr>
-<tr id="row4206104463714"><td class="cellrowborder" valign="top" width="27.900000000000002%" headers="mcps1.1.4.1.1 "><p id="p220604419371"><a name="p220604419371"></a><a name="p220604419371"></a>SINGLE_VERSION</p>
-</td>
-<td class="cellrowborder" valign="top" width="12.43%" headers="mcps1.1.4.1.2 "><p id="p320674473712"><a name="p320674473712"></a><a name="p320674473712"></a>1</p>
-</td>
-<td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p6822541173610"><a name="p6822541173610"></a><a name="p6822541173610"></a>Single KV store.</p>
-</td>
-</tr>
-<tr id="row5952210133711"><td class="cellrowborder" valign="top" width="27.900000000000002%" headers="mcps1.1.4.1.1 "><p id="p1895321017372"><a name="p1895321017372"></a><a name="p1895321017372"></a>MULTI_VERSION</p>
-</td>
-<td class="cellrowborder" valign="top" width="12.43%" headers="mcps1.1.4.1.2 "><p id="p395341016374"><a name="p395341016374"></a><a name="p395341016374"></a>2</p>
-</td>
-<td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p995381014377"><a name="p995381014377"></a><a name="p995381014377"></a>Multi-version KV store. This type is not supported currently.</p>
-</td>
-</tr>
-</tbody>
-</table>
-
-## SecurityLevel<a name="section205876465372"></a>
-
-Defines the KV store security levels.
-
-<a name="table1558710464373"></a>
-<table><thead align="left"><tr id="row35874465377"><th class="cellrowborder" valign="top" width="20.849999999999998%" id="mcps1.1.4.1.1"><p id="p2587346173718"><a name="p2587346173718"></a><a name="p2587346173718"></a>Name</p>
-</th>
-<th class="cellrowborder" valign="top" width="10.879999999999999%" id="mcps1.1.4.1.2"><p id="p105874461372"><a name="p105874461372"></a><a name="p105874461372"></a>Default Value</p>
-</th>
-<th class="cellrowborder" valign="top" width="68.27%" id="mcps1.1.4.1.3"><p id="p858804612376"><a name="p858804612376"></a><a name="p858804612376"></a>Description</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row195888462377"><td class="cellrowborder" valign="top" width="20.849999999999998%" headers="mcps1.1.4.1.1 "><p id="p85881846133712"><a name="p85881846133712"></a><a name="p85881846133712"></a>NO_LEVEL</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.879999999999999%" headers="mcps1.1.4.1.2 "><p id="p155881146183714"><a name="p155881146183714"></a><a name="p155881146183714"></a>0</p>
-</td>
-<td class="cellrowborder" valign="top" width="68.27%" headers="mcps1.1.4.1.3 "><p id="p058820464374"><a name="p058820464374"></a><a name="p058820464374"></a>No security level is set for the KV store.</p>
-</td>
-</tr>
-<tr id="row6588204620378"><td class="cellrowborder" valign="top" width="20.849999999999998%" headers="mcps1.1.4.1.1 "><p id="p958884623720"><a name="p958884623720"></a><a name="p958884623720"></a>S0</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.879999999999999%" headers="mcps1.1.4.1.2 "><p id="p75881146173720"><a name="p75881146173720"></a><a name="p75881146173720"></a>1</p>
-</td>
-<td class="cellrowborder" valign="top" width="68.27%" headers="mcps1.1.4.1.3 "><p id="p358834673718"><a name="p358834673718"></a><a name="p358834673718"></a>The KV store security level is public.</p>
-</td>
-</tr>
-<tr id="row858810465372"><td class="cellrowborder" valign="top" width="20.849999999999998%" headers="mcps1.1.4.1.1 "><p id="p25881146133714"><a name="p25881146133714"></a><a name="p25881146133714"></a>S1</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.879999999999999%" headers="mcps1.1.4.1.2 "><p id="p1958874612370"><a name="p1958874612370"></a><a name="p1958874612370"></a>2</p>
-</td>
-<td class="cellrowborder" valign="top" width="68.27%" headers="mcps1.1.4.1.3 "><p id="p205885469370"><a name="p205885469370"></a><a name="p205885469370"></a>The KV store security level is low. If data leakage occurs, minor impact will be caused on the database.</p>
-</td>
-</tr>
-<tr id="row93891331184019"><td class="cellrowborder" valign="top" width="20.849999999999998%" headers="mcps1.1.4.1.1 "><p id="p23904313405"><a name="p23904313405"></a><a name="p23904313405"></a>S2</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.879999999999999%" headers="mcps1.1.4.1.2 "><p id="p10390133119408"><a name="p10390133119408"></a><a name="p10390133119408"></a>3</p>
-</td>
-<td class="cellrowborder" valign="top" width="68.27%" headers="mcps1.1.4.1.3 "><p id="p8390153114014"><a name="p8390153114014"></a><a name="p8390153114014"></a>The KV store security level is medium. If data leakage occurs, moderate impact will be caused on the database.</p>
-</td>
-</tr>
-<tr id="row18665352407"><td class="cellrowborder" valign="top" width="20.849999999999998%" headers="mcps1.1.4.1.1 "><p id="p26613351409"><a name="p26613351409"></a><a name="p26613351409"></a>S3</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.879999999999999%" headers="mcps1.1.4.1.2 "><p id="p1066735114011"><a name="p1066735114011"></a><a name="p1066735114011"></a>5</p>
-</td>
-<td class="cellrowborder" valign="top" width="68.27%" headers="mcps1.1.4.1.3 "><p id="p9671535174014"><a name="p9671535174014"></a><a name="p9671535174014"></a>The KV store security level is high. If data leakage occurs, major impact will be caused on the database.</p>
-</td>
-</tr>
-<tr id="row2698955134015"><td class="cellrowborder" valign="top" width="20.849999999999998%" headers="mcps1.1.4.1.1 "><p id="p7699165512403"><a name="p7699165512403"></a><a name="p7699165512403"></a>S4</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.879999999999999%" headers="mcps1.1.4.1.2 "><p id="p869935594018"><a name="p869935594018"></a><a name="p869935594018"></a>6</p>
-</td>
-<td class="cellrowborder" valign="top" width="68.27%" headers="mcps1.1.4.1.3 "><p id="p06991755174017"><a name="p06991755174017"></a><a name="p06991755174017"></a>The KV store security level is critical. If data leakage occurs, severe impact will be caused on the database.</p>
-</td>
-</tr>
-</tbody>
-</table>
-
-## Constants<a name="section14196103954210"></a>
-
-Defines the KV store constants.
-
-<a name="table7197639134211"></a>
-<table><thead align="left"><tr id="row21971939104211"><th class="cellrowborder" valign="top" width="27.87%" id="mcps1.1.4.1.1"><p id="p1719718399424"><a name="p1719718399424"></a><a name="p1719718399424"></a>Name</p>
-</th>
-<th class="cellrowborder" valign="top" width="12.46%" id="mcps1.1.4.1.2"><p id="p11198539114210"><a name="p11198539114210"></a><a name="p11198539114210"></a>Default Value</p>
-</th>
-<th class="cellrowborder" valign="top" width="59.67%" id="mcps1.1.4.1.3"><p id="p919873920429"><a name="p919873920429"></a><a name="p919873920429"></a>Description</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row4198173934210"><td class="cellrowborder" valign="top" width="27.87%" headers="mcps1.1.4.1.1 "><p id="p10198639174218"><a name="p10198639174218"></a><a name="p10198639174218"></a>MAX_KEY_LENGTH</p>
-</td>
-<td class="cellrowborder" valign="top" width="12.46%" headers="mcps1.1.4.1.2 "><p id="p121990396425"><a name="p121990396425"></a><a name="p121990396425"></a>1024</p>
-</td>
-<td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p119918393420"><a name="p119918393420"></a><a name="p119918393420"></a>Maximum length (in bytes) of a key in the KV store.</p>
-</td>
-</tr>
-<tr id="row6252120194618"><td class="cellrowborder" valign="top" width="27.87%" headers="mcps1.1.4.1.1 "><p id="p9253605466"><a name="p9253605466"></a><a name="p9253605466"></a>MAX_VALUE_LENGTH</p>
-</td>
-<td class="cellrowborder" valign="top" width="12.46%" headers="mcps1.1.4.1.2 "><p id="p225313034612"><a name="p225313034612"></a><a name="p225313034612"></a>4194303</p>
-</td>
-<td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p0253170194618"><a name="p0253170194618"></a><a name="p0253170194618"></a>Maximum length (in bytes) of a value in the KV store.</p>
-</td>
-</tr>
-<tr id="row563462174610"><td class="cellrowborder" valign="top" width="27.87%" headers="mcps1.1.4.1.1 "><p id="p56351521184610"><a name="p56351521184610"></a><a name="p56351521184610"></a>MAX_KEY_LENGTH_DEVICE</p>
-</td>
-<td class="cellrowborder" valign="top" width="12.46%" headers="mcps1.1.4.1.2 "><p id="p1863502154618"><a name="p1863502154618"></a><a name="p1863502154618"></a>896</p>
-</td>
-<td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p1063542134612"><a name="p1063542134612"></a><a name="p1063542134612"></a>Maximum length of the device coordinate key.</p>
-</td>
-</tr>
-<tr id="row37051018134612"><td class="cellrowborder" valign="top" width="27.87%" headers="mcps1.1.4.1.1 "><p id="p1370641813465"><a name="p1370641813465"></a><a name="p1370641813465"></a>MAX_STORE_ID_LENGTH</p>
-</td>
-<td class="cellrowborder" valign="top" width="12.46%" headers="mcps1.1.4.1.2 "><p id="p5706718194613"><a name="p5706718194613"></a><a name="p5706718194613"></a>128</p>
-</td>
-<td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p199711939175015"><a name="p199711939175015"></a><a name="p199711939175015"></a>Maximum length (in bytes) of the KV store ID.</p>
-</td>
-</tr>
-<tr id="row470671512464"><td class="cellrowborder" valign="top" width="27.87%" headers="mcps1.1.4.1.1 "><p id="p107061115144612"><a name="p107061115144612"></a><a name="p107061115144612"></a>MAX_QUERY_LENGTH</p>
-</td>
-<td class="cellrowborder" valign="top" width="12.46%" headers="mcps1.1.4.1.2 "><p id="p3707171514610"><a name="p3707171514610"></a><a name="p3707171514610"></a>512000</p>
-</td>
-<td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p1670741514614"><a name="p1670741514614"></a><a name="p1670741514614"></a>Maximum query length.</p>
-</td>
-</tr>
-<tr id="row161151120464"><td class="cellrowborder" valign="top" width="27.87%" headers="mcps1.1.4.1.1 "><p id="p211681204618"><a name="p211681204618"></a><a name="p211681204618"></a>MAX_BATCH_SIZE</p>
-</td>
-<td class="cellrowborder" valign="top" width="12.46%" headers="mcps1.1.4.1.2 "><p id="p10116101212462"><a name="p10116101212462"></a><a name="p10116101212462"></a>128</p>
-</td>
-<td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p151161812174616"><a name="p151161812174616"></a><a name="p151161812174616"></a>Maximum size of a batch operation.</p>
-</td>
-</tr>
-</tbody>
-</table>
-
-## KVStore<a name="section12882825611"></a>
-
-Provides methods to manage data in a KV store, for example, adding or deleting data and subscribing to data changes or completion of data synchronization. Before calling any method in  **KVStore**, you must use  **getKVStore**  to create a  **KVStore**  object.
-
-### put<a name="section1942221513"></a>
-
-put\(key: string, value: Uint8Array | string | number | boolean, callback: AsyncCallback<void\>\): void
-
-Adds a key-value pair of the specified type to the KV store. This method uses an asynchronous callback to return the result.
+Unsubscribes from the **distributedDataServiceDie** events. This method uses a synchronous callback to return the result.
 
 -   Parameters
 
-    <a name="table174118324413"></a>
-    <table><thead align="left"><tr id="row164211354413"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p17426384419"><a name="p17426384419"></a><a name="p17426384419"></a>Name</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="17.44%" id="mcps1.1.5.1.2"><p id="p8421238446"><a name="p8421238446"></a><a name="p8421238446"></a>Type</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="6.4799999999999995%" id="mcps1.1.5.1.3"><p id="p1642103124416"><a name="p1642103124416"></a><a name="p1642103124416"></a>Mandatory</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="61.260000000000005%" id="mcps1.1.5.1.4"><p id="p154263204411"><a name="p154263204411"></a><a name="p154263204411"></a>Description</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row124314315442"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p54315374420"><a name="p54315374420"></a><a name="p54315374420"></a>key</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="17.44%" headers="mcps1.1.5.1.2 "><p id="p134303144416"><a name="p134303144416"></a><a name="p134303144416"></a>string</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="6.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p1643203134415"><a name="p1643203134415"></a><a name="p1643203134415"></a>Yes</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p285519208464"><a name="p285519208464"></a><a name="p285519208464"></a>Key of the key-value pair to add. It cannot be empty, and the length cannot exceed <a href="#p10198639174218"><strong id="b1626991819371"><a name="b1626991819371"></a><a name="b1626991819371"></a>MAX_KEY_LENGTH</strong></a>.</p>
-    </td>
-    </tr>
-    <tr id="row6433310449"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p64310318449"><a name="p64310318449"></a><a name="p64310318449"></a>value</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="17.44%" headers="mcps1.1.5.1.2 "><p id="p154363104410"><a name="p154363104410"></a><a name="p154363104410"></a>Uint8Array | string | number | boolean</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="6.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p14437311447"><a name="p14437311447"></a><a name="p14437311447"></a>Yes</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p208917378472"><a name="p208917378472"></a><a name="p208917378472"></a>Value of the key-value pair to add. The value type can be Uint8Array, number, string, or boolean.</p>
-    <p id="p08911379478"><a name="p08911379478"></a><a name="p08911379478"></a>A value of the <strong id="b381494385"><a name="b381494385"></a><a name="b381494385"></a>Uint8Array</strong> or <strong id="b03645323810"><a name="b03645323810"></a><a name="b03645323810"></a>string</strong> type cannot exceed <a href="#p9253605466"><strong id="b859802893917"><a name="b859802893917"></a><a name="b859802893917"></a>MAX_VALUE_LENGTH</strong></a>.</p>
-    </td>
-    </tr>
-    <tr id="row16388151513442"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p16389151524410"><a name="p16389151524410"></a><a name="p16389151524410"></a>callback</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="17.44%" headers="mcps1.1.5.1.2 "><p id="p1738911594418"><a name="p1738911594418"></a><a name="p1738911594418"></a>AsyncCallback&lt;void&gt;</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="6.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p13389101564417"><a name="p13389101564417"></a><a name="p13389101564417"></a>Yes</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p583654210476"><a name="p583654210476"></a><a name="p583654210476"></a>Callback invoked to return the result. </p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+| Name| Type| Mandatory| Description|
+| -----  | ------  | ----  | ----------------------- |
+| event  | 'distributedDataServiceDie'  | Yes| Type of events to unsubscribe from. |
+| deathCallback  | Callback&lt;void&gt;  | No| Callback used to return the **distributedDataServiceDie** events.|
+
 
 -   Example
 
     ```
+    let kvManager;
+    try {
+        console.log('KVManagerOff');
+        const deathCallback = function () {
+            console.log('death callback call');
+        }
+        kvManager.off('distributedDataServiceDie', deathCallback);
+    } catch (e) {
+        console.log("An unexpected error occurred. Error:" + e);
+    }
+    
+    ```
+
+## Options
+
+Provides KV store configuration.
+
+| Name| Type| Mandatory| Description|
+| -----  | ------  | ----  | ----------------------- |
+| createIfMissing  | boolean | No| Whether to create a KV store if no database file exists. By default, a KV store is created.|
+| encrypt  | boolean | No|Whether to encrypt database files. By default, database files are not encrypted.|
+| backup  | boolean | No|Whether to back up database files. By default, database files are backed up. |
+| autoSync  | boolean | No|Whether database files are automatically synchronized. By default, database files are not automatically synchronized.|
+| kvStoreType | [KVStoreType](#kvstoretype) | No|Type of the KV store to create. By default, a device KV store is created. The device KV store stores data for multiple devices that collaborate with each other.|
+| securityLevel | [SecurityLevel](#securitylevel) | No|Security level of the KV store. By default, the security level is not set.|
+
+
+## KVStoreType
+
+Defines the KV store types.
+
+| Name| Default Value| Description|
+| ---   | ----  | ----------------------- |
+| DEVICE_COLLABORATION  | 0 | Device KV store.|
+| SINGLE_VERSION  | 1 | Single KV store.|
+| MULTI_VERSION   | 2 | Multi-version KV store. This type is not supported currently.|
+
+
+
+## SecurityLevel
+
+Defines the KV store security levels.
+
+| Name| Default Value| Description|
+| ---   | ----  | ----------------------- |
+| NO_LEVEL  | 0 | No security level is set for the KV store.|
+| S0  | 1 | The KV store security level is public.|
+| S1  | 2 | The KV store security level is low. If data leakage occurs, minor impact will be caused on the database.|
+| S2  | 3 | The KV store security level is medium. If data leakage occurs, moderate impact will be caused on the database.|
+| S3  | 5 | The KV store security level is high. If data leakage occurs, major impact will be caused on the database.|
+| S4  | 6 | The KV store security level is critical. If data leakage occurs, severe impact will be caused on the database.|
+
+
+## Constants
+
+Defines the KV store constants.
+
+| Name| Default Value| Description|
+| ---   | ----  | ----------------------- |
+| MAX\_KEY_LENGTH| 1024 | Maximum length (in bytes) of a key in the KV store.|
+| MAX\_VALUE_LENGTH| 4194303 | Maximum length (in bytes) of a value in the KV store.|
+| MAX\_KEY\_LENGTH\_DEVICE| 896 | Maximum length of the device coordinate key.|
+| MAX\_STORE\_ID\_LENGTH| 128 | Maximum length (in bytes) of the KV store ID.|
+| MAX\_QUERY_LENGTH| 512000 | Maximum query length.|
+| MAX\_BATCH_SIZE| 128 | Maximum size of a batch operation.|
+
+## Schema<sup>8+</sup> ##
+
+Defines a database schema. When creating or opening a KV store, you can create **Schema** objects and put them into **Options**.
+
+### toJsonString<sup>8+</sup> ###
+
+toJsonString():string;
+
+Obtains the schema in JSON format.
+
+-   Return value
+
+| Type| Description|
+| ------------- | -------------- |
+| string |Schema in JSON format obtained.|
+
+-   Example
+
+    ```
+    import ddm from '@ohos.data.distributedData';
+    try {
+        let schema = new ddm.Schema();
+        const str = schema.toJsonString();
+        console.log("schema: " + str);
+    } catch (e) {
+       console.log("toJsonString " + e);
+    }
+    ```
+
+
+## FieldNode<sup>8+</sup> ##
+
+Defines a node of a **Schema** instance. It provides methods for defining values stored in the KV store.
+
+### appendChild<sup>8+</sup> ###
+
+appendChild(child: FieldNode): boolean;
+
+Adds a child node to this **FieldNode**.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------  | ----  | ----------------------- |
+| child  | [FieldNode](#FieldNode)  | Yes| Field node to add.|
+
+
+-   Return value
+
+| Type| Description|
+| ------------- | -------------- |
+| boolean |Returns **true** if the operation is successful; returns **false** otherwise.|
+
+-   Example
+
+    ```
+    import ddm from '@ohos.data.distributedData';
+    try {
+        let node = new ddm.FieldNode("root");
+        let child1 = new ddm.FieldNode("child1");
+        let child2 = new ddm.FieldNode("child2");
+        let child3 = new ddm.FieldNode("child3");
+        node.appendChild(child1);
+        node.appendChild(child2);
+        node.appendChild(child3);
+        console.log("appendNode " + node.toJson());
+        child1 = null;
+        child2 = null;
+        child3 = null;
+        node = null;
+    } catch (e) {
+        console.log("AppendChild " + e);
+    }
+    ```
+
+
+### toJson<sup>8+</sup> ###
+
+toJson(): string;
+
+Obtains the field name.
+
+-   Return value
+
+| Type| Description|
+| ------ | --------------    |
+| string |Field name obtained.|
+
+-   Example
+
+    ```
+	import ddm from '@ohos.data.distributedData';
+    try {
+        let node = new ddm.FieldNode("root");
+        let child = new ddm.FieldNode("child");
+        node.appendChild(child);
+        console.log("appendNode " + node.toJson());
+    } catch (e) {
+       console.log("ToJson " + e);
+    }
+    ```
+
+
+## KvStoreResultSet<sup>8+</sup> ##
+
+Provides methods to obtain the KV Store result set and query or move the data read position. Before calling **KvStoreResultSet**, you must create a **KvStore** instance using **KvStore**.
+
+### getCount<sup>8+</sup> ###
+
+getCount(): number;
+
+Obtains the number of rows in the result set.
+
+-   Return value
+
+| Type| Description|
+| ------ | --------------    |
+| number |Number of rows obtained.|
+
+-   Example
+
+    ```
+    let kvStore;
+    try {
+	    let resultSet;
+        kvStore.getResultSet('batch_test_string_key').then((result) => {
+            console.log('getResultSet success');
+            resultSet = result;
+        }).catch((err) => {
+            console.log('getResultSet fail ' + err);
+        });
+        const count = resultSet.getCount();
+        console.log("GetCount " + count);
+    } catch (e) {
+        console.log("GetCount fail " + e);
+    }
+    ```
+
+
+### getPosition<sup>8+</sup> ###
+
+getPosition(): number;
+
+Obtains the current data read position (position from which data is read) in the result set.
+
+-   Return value
+
+| Type| Description|
+| ------ | --------------    |
+| number |Current data read position obtained.|
+
+-   Example
+
+    ```
+    let kvStore;
+    try {
+	    let resultSet;
+        kvStore.getResultSet('batch_test_string_key').then((result) => {
+            console.log('getResultSet success');
+            resultSet = result;
+        }).catch((err) => {
+            console.log('getResultSet fail ' + err);
+        });
+        const positon = resultSet.getPosition();
+        console.log("getPosition " + positon);
+    } catch (e) {
+        console.log("GetPosition fail " + e);
+    }
+    ```
+
+
+### moveToFirst<sup>8+</sup> ###
+
+moveToFirst(): boolean;
+
+Moves the data read position to the first row.
+
+-   Return value
+
+| Type| Description|
+| ------  | --------------    |
+| boolean |Returns **true** if the operation is successful; returns **false** otherwise.|
+
+-   Example
+
+    ```
+    let kvStore;
+    try {
+	    let resultSet;
+        kvStore.getResultSet('batch_test_string_key').then((result) => {
+            console.log('getResultSet success');
+            resultSet = result;
+        }).catch((err) => {
+            console.log('getResultSet fail ' + err);
+        });
+        const moved = resultSet.moveToFirst();
+        console.log("moveToFirst " + moved);
+    } catch (e) {
+        console.log("MoveToFirst fail " + e);
+    }
+    ```
+
+
+### moveToLast<sup>8+</sup> ###
+
+moveToLast(): boolean;
+
+Moves the data read position to the last row.
+
+-   Return value
+
+| Type| Description|
+| ------  | --------------    |
+| boolean |Returns **true** if the operation is successful; returns **false** otherwise.|
+
+-   Example
+
+    ```
+    let kvStore;
+    try {
+	    let resultSet;
+        kvStore.getResultSet('batch_test_string_key').then((result) => {
+            console.log('getResultSet success');
+            resultSet = result;
+        }).catch((err) => {
+            console.log('getResultSet fail ' + err);
+        });
+        const moved = resultSet.moveToLast();
+        console.log("moveToLast " + moved);
+    } catch (e) {
+        console.log("moveToLast fail " + e);
+    }
+    ```
+
+
+### moveToNext<sup>8+</sup> ###
+
+moveToNext(): boolean;
+
+Moves the data read position to the next row.
+
+-   Return value
+
+| Type| Description|
+| ------  | --------------    |
+| boolean |Returns **true** if the operation is successful; returns **false** otherwise.|
+
+-   Example
+
+    ```
+    let kvStore;
+    try {
+	    let resultSet;
+        kvStore.getResultSet('batch_test_string_key').then((result) => {
+            console.log('getResultSet success');
+            resultSet = result;
+        }).catch((err) => {
+            console.log('getResultSet fail ' + err);
+        });
+        const moved = resultSet.moveToNext();
+        console.log("moveToNext " + moved);
+    } catch (e) {
+        console.log("moveToNext fail " + e);
+    }
+    ```
+
+
+### moveToPrevious<sup>8+</sup> ###
+
+moveToPrevious(): boolean;
+
+Moves the data read position to the previous row.
+
+-   Return value
+
+| Type| Description|
+| ------  | --------------    |
+| boolean |Returns **true** if the operation is successful; returns **false** otherwise.|
+
+-   Example
+
+    ```
+    let kvStore;
+    try {
+	    let resultSet;
+        kvStore.getResultSet('batch_test_string_key').then((result) => {
+            console.log('getResultSet success');
+            resultSet = result;
+        }).catch((err) => {
+            console.log('getResultSet fail ' + err);
+        });
+        const moved = resultSet.moveToPrevious();
+        console.log("moveToPrevious " + moved);
+    } catch (e) {
+        console.log("moveToPrevious fail " + e);
+    }
+    ```
+
+
+### move<sup>8+</sup> ###
+
+move(offset: number): boolean;
+
+Moves the data read position with the specified offset from the current position.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------  | ----  | ----------------------- |
+| offset  | number  | Yes| Offset to move the data read position. A negative value means to move backward, and a positive value means to move forward.|
+
+-   Return value
+
+| Type| Description|
+| ------  | --------------    |
+| boolean |Returns **true** if the operation is successful; returns **false** otherwise.|
+
+-   Example
+
+    ```
+    let kvStore;
+    try {
+	    let resultSet;
+        kvStore.getResultSet('batch_test_string_key').then((result) => {
+            console.log('getResultSet success');
+            resultSet = result;
+        }).catch((err) => {
+            console.log('getResultSet fail ' + err);
+        });
+        const moved = resultSet.move();
+        console.log("move " + moved);
+    } catch (e) {
+        console.log("move fail " + e);
+    }
+    ```
+
+
+### moveToPosition<sup>8+</sup> ###
+
+moveToPosition(position: number): boolean;
+
+Moves the data read position from 0 to an absolute position.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------  | ----  | ----------------------- |
+| position  | number  | Yes|Absolute position.|
+
+-   Return value
+
+| Type| Description|
+| ------  | --------------    |
+| boolean |Returns **true** if the operation is successful; returns **false** otherwise.|
+
+-   Example
+
+    ```
+    let kvStore;
+    try {
+	    let resultSet;
+        kvStore.getResultSet('batch_test_string_key').then((result) => {
+            console.log('getResultSet success');
+            resultSet = result;
+        }).catch((err) => {
+            console.log('getResultSet fail ' + err);
+        });
+        const moved = resultSet.moveToPosition();
+        console.log("moveToPosition " + moved);
+    } catch (e) {
+        console.log("moveToPosition fail " + e);
+    }
+    ```
+
+
+### isFirst<sup>8+</sup> ###
+
+isFirst(): boolean;
+
+Checks whether the data read position is the first row.
+
+-   Return value
+
+| Type| Description|
+| ------  | --------------    |
+| boolean |Returns **true** if the data read position is the first row; returns **false** otherwise.|
+
+-   Example
+
+    ```
+    let kvStore;
+    try {
+	    let resultSet;
+        kvStore.getResultSet('batch_test_string_key').then((result) => {
+            console.log('getResultSet success');
+            resultSet = result;
+        }).catch((err) => {
+            console.log('getResultSet fail ' + err);
+        });
+        const moved = resultSet.isFirst();
+        console.log("isFirst " + moved);
+    } catch (e) {
+        console.log("isFirst fail " + e);
+    }
+    ```
+
+
+### isLast<sup>8+</sup> ###
+
+isLast(): boolean;
+
+Checks whether the data read position is the last row.
+
+-   Return value
+
+| Type| Description|
+| ------  | --------------    |
+| boolean |Returns **true** if the data read position is the last row; returns **false** otherwise.|
+
+-   Example
+
+    ```
+    let kvStore;
+    try {
+	    let resultSet;
+        kvStore.getResultSet('batch_test_string_key').then((result) => {
+            console.log('getResultSet success');
+            resultSet = result;
+        }).catch((err) => {
+            console.log('getResultSet fail ' + err);
+        });
+        const moved = resultSet.isLast();
+        console.log("isLast " + moved);
+    } catch (e) {
+        console.log("isLast fail " + e);
+    }
+    ```
+
+
+### isBeforeFirst<sup>8+</sup> ###
+
+isBeforeFirst(): boolean;
+
+Checks whether the data read position is before the first row.
+
+-   Return value
+
+| Type| Description|
+| ------  | --------------    |
+| boolean |Returns **true** if the read position is before the first row; returns **false** otherwise.|
+
+-   Example
+
+    ```
+    let kvStore;
+    try {
+	    let resultSet;
+        kvStore.getResultSet('batch_test_string_key').then((result) => {
+            console.log('getResultSet success');
+            resultSet = result;
+        }).catch((err) => {
+            console.log('getResultSet fail ' + err);
+        });
+        const moved = resultSet.isBeforeFirst();
+        console.log("isBeforeFirst " + moved);
+    } catch (e) {
+        console.log("isBeforeFirst fail " + e);
+    }
+    ```
+
+
+### isAfterLast<sup>8+</sup> ###
+
+isAfterLast(): boolean;
+
+Checks whether the data read position is after the last row.
+
+-   Return value
+
+| Type| Description|
+| ------  | --------------    |
+| boolean |Returns **true** if the data read position is after the last row; returns **false** otherwise.|
+
+-   Example
+
+    ```
+    let kvStore;
+    try {
+	    let resultSet;
+        kvStore.getResultSet('batch_test_string_key').then((result) => {
+            console.log('getResultSet success');
+            resultSet = result;
+        }).catch((err) => {
+            console.log('getResultSet fail ' + err);
+        });
+        const moved = resultSet.isAfterLast();
+        console.log("isAfterLast " + moved);
+    } catch (e) {
+        console.log("isAfterLast fail " + e);
+    }
+    ```
+
+
+### getEntry<sup>8+</sup> ###
+
+getEntry(): Entry;
+
+Obtains KV pairs.
+
+-   Return value
+
+| Type| Description|
+| ------  | -------   |
+| Entry   |KV pairs obtained.|
+
+-   Example
+
+    ```
+    let kvStore;
+    try {
+	    let resultSet;
+        kvStore.getResultSet('batch_test_string_key').then((result) => {
+            console.log('getResultSet success');
+            resultSet = result;
+        }).catch((err) => {
+            console.log('getResultSet fail ' + err);
+        });
+        const moved = resultSet.moveToNext();
+        const entry  = resultSet.getEntry();
+        console.log("getEntry " + JSON.stringify(entry));
+    } catch (e) {
+        console.log("getEntry fail " + e);
+    }
+    ```
+
+
+## Query<sup>8+</sup> ##
+
+Provides methods to create a **Query** object, which defines different data query criteria.
+
+### reset<sup>8+</sup> ###
+
+reset(): Query;
+
+Resets the **Query** object that contains common query options.
+
+-   Return value
+
+| Type| Description|
+| ------  | -------   |
+| [Query](#querysup8sup) |**Query** object reset.|
+
+-   Example
+
+    ```
+    try {
+        let query = new distributedData.Query();
+        query.equalTo("key", "value");
+        console.log("query is " + query.getSqlLike());
+        query.reset();
+        console.log("query is " + query.getSqlLike());
+        query = null;
+    } catch (e) {
+        console.log("simply calls should be ok :" + e);
+    }
+    ```
+
+
+### equalTo<sup>8+</sup> ###
+
+equalTo(field: string, value: number|string|boolean): Query;
+
+Creates a **Query** object to match the specified field and value equal to the specified value.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------  | ----  | ----------------------- |
+| fieId  | string  | Yes|Field specified. It must start with $ and cannot contain ^.|
+| value  | number/string/boolean  | Yes| Value to match.|
+
+-   Return value
+
+| Type| Description|
+| ------  | -------   |
+| [Query](#querysup8sup) |**Query** object created.|
+
+-   Example
+
+    ```
+    try {
+        let query = new distributedData.Query();
+        query.equalTo("field", "value");
+        console.log("query is " + query.getSqlLike());
+        query = null;
+    } catch (e) {
+        console.log("dumplicated calls should be ok :" + e);
+    }
+    ```
+
+
+### notEqualTo<sup>8+</sup> ###
+
+notEqualTo(field: string, value: number|string|boolean): Query;
+
+Creates a **Query** object to match the specified field and value not equal to the specified value.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------  | ----  | ----------------------- |
+| fieId  | string  | Yes|Field specified. It must start with $ and cannot contain ^.|
+| value  | number/string/boolean  | Yes| Value specified.|
+
+-   Return value
+
+| Type| Description|
+| ------  | -------   |
+| [Query](#querysup8sup) |**Query** object created.|
+
+-   Example
+
+    ```
+    try {
+        let query = new distributedData.Query();
+        query.notEqualTo("field", "value");
+        console.log("query is " + query.getSqlLike());
+        query = null;
+    } catch (e) {
+        console.log("dumplicated calls should be ok :" + e);
+    }
+    ```
+
+
+### greaterThan<sup>8+</sup> ###
+
+greaterThan(field: string, value: number|string|boolean): Query;
+
+Creates a **Query** object to match the specified field and value greater than the specified value.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------  | ----  | ----------------------- |
+| fieId  | string  | Yes|Field specified. It must start with $ and cannot contain ^.|
+| value  | number/string/boolean  | Yes| Value specified.|
+
+-   Return value
+
+| Type| Description|
+| ------  | -------   |
+| [Query](#querysup8sup) |**Query** object created.|
+
+-   Example
+
+    ```
+    try {
+        let query = new distributedData.Query();
+        query.greaterThan("field", "value");
+        console.log("query is " + query.getSqlLike());
+        query = null;
+    } catch (e) {
+        console.log("dumplicated calls should be ok :" + e);
+    }
+    ```
+
+
+### lessThan<sup>8+</sup> ###
+
+lessThan(field: string, value: number|string): Query;
+
+Creates a **Query** object to match the specified field and value less than the specified value.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------  | ----  | ----------------------- |
+| fieId  | string  | Yes|Field specified. It must start with $ and cannot contain ^.|
+| value  | number/string/boolean  | Yes| Value to match.|
+
+-   Return value
+
+| Type| Description|
+| ------  | -------   |
+| [Query](#querysup8sup) |**Query** object created.|
+
+-   Example
+
+    ```
+    try {
+        let query = new distributedData.Query();
+        query.lessThan("field", "value");
+        console.log("query is " + query.getSqlLike());
+        query = null;
+    } catch (e) {
+        console.log("dumplicated calls should be ok :" + e);
+    }
+    ```
+
+
+### greaterThanOrEqualTo<sup>8+</sup> ###
+
+greaterThanOrEqualTo(field: string, value: number|string): Query;
+
+Creates a **Query** object to match the specified field and value greater than or equal to the specified value.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------  | ----  | ----------------------- |
+| fieId  | string  | Yes|Field specified. It must start with $ and cannot contain ^.|
+| value  | number/string/boolean  | Yes| Value specified.|
+
+-   Return value
+
+| Type| Description|
+| ------  | -------   |
+| [Query](#querysup8sup) |**Query** object created.|
+
+-   Example
+
+    ```
+    try {
+        let query = new distributedData.Query();
+        query.greaterThanOrEqualTo("field", "value");
+        console.log("query is " + query.getSqlLike());
+        query = null;
+    } catch (e) {
+        console.log("dumplicated calls should be ok :" + e);
+    }
+    ```
+
+
+### lessThanOrEqualTo<sup>8+</sup> ###
+
+lessThanOrEqualTo(field: string, value: number|string): Query;
+
+Creates a **Query** object to match the specified field and value less than or equal to the specified value.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------  | ----  | ----------------------- |
+| fieId  | string  | Yes|Field specified. It must start with $ and cannot contain ^.|
+| value  | number/string/boolean  | Yes| Value to match.|
+
+-   Return value
+
+| Type| Description|
+| ------  | -------   |
+| [Query](#querysup8sup) |**Query** object created.|
+
+-   Example
+
+    ```
+    try {
+        let query = new distributedData.Query();
+        query.lessThanOrEqualTo("field", "value");
+        console.log("query is " + query.getSqlLike());
+        query = null;
+    } catch (e) {
+        console.log("dumplicated calls should be ok :" + e);
+    }
+    ```
+
+
+### isNull<sup>8+</sup> ###
+
+isNull(field: string): Query;
+
+Creates a **Query** object to match the specified field whose value is **null**.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------  | ----  | ----------------------- |
+| fieId  | string  | Yes|Field specified. It must start with $ and cannot contain ^.|
+
+-   Return value
+
+| Type| Description|
+| ------  | -------   |
+| [Query](#querysup8sup) |**Query** object created.|
+
+-   Example
+
+    ```
+    try {
+        let query = new distributedData.Query();
+        query.isNull("field");
+        console.log("query is " + query.getSqlLike());
+        query = null;
+    } catch (e) {
+        console.log("dumplicated calls should be ok :" + e);
+    }
+    ```
+
+
+### inNumber<sup>8+</sup> ###
+
+inNumber(field: string, valueList: number[]): Query;
+
+Creates a **Query** object to match the specified field whose value is within the specified list of numbers.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------  | ----  | ----------------------- |
+| fieId  | string  | Yes|Field specified. It must start with $ and cannot contain ^.|
+| valueList  | number[]  | Yes| List of numbers.|
+
+-   Return value
+
+| Type| Description|
+| ------  | -------   |
+| [Query](#querysup8sup) |**Query** object created.|
+
+
+-   Example
+
+    ```
+    try {
+        let query = new distributedData.Query();
+        query.inNumber("field", [0, 1]);
+        console.log("query is " + query.getSqlLike());
+        query = null;
+    } catch (e) {
+        console.log("dumplicated calls should be ok :" + e);
+    }
+    ```
+
+
+### inString<sup>8+</sup> ###
+
+inString(field: string, valueList: string[]): Query;
+
+Creates a **Query** object to match the specified field whose value is within the specified list of strings.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------  | ----  | ----------------------- |
+| fieId  | string  | Yes|Field specified. It must start with $ and cannot contain ^.|
+| valueList  | string[]  | Yes| List of strings.|
+
+-   Return value
+
+| Type| Description|
+| ------  | -------   |
+| [Query](#querysup8sup) |**Query** object created.|
+
+-   Example
+
+    ```
+    try {
+        let query = new distributedData.Query();
+        query.inString("field", ['test1', 'test2']);
+        console.log("query is " + query.getSqlLike());
+        query = null;
+    } catch (e) {
+        console.log("dumplicated calls should be ok :" + e);
+    }
+    ```
+
+
+### notInNumber<sup>8+</sup> ###
+
+notInNumber(field: string, valueList: number[]): Query;
+
+Creates a **Query** object to match the specified field whose value is not within the specified list of numbers.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------  | ----  | ----------------------- |
+| fieId  | string  | Yes|Field specified. It must start with $ and cannot contain ^.|
+| valueList  | number[]  | Yes| List of numbers.|
+
+-   Return value
+
+| Type| Description|
+| ------  | -------   |
+| [Query](#querysup8sup) |**Query** object created.|
+
+-   Example
+
+    ```
+    try {
+        let query = new distributedData.Query();
+        query.notInNumber("field", [0, 1]);
+        console.log("query is " + query.getSqlLike());
+        query = null;
+    } catch (e) {
+        console.log("dumplicated calls should be ok :" + e);
+    }
+    ```
+
+
+### notInString<sup>8+</sup> ###
+
+notInString(field: string, valueList: string[]): Query;
+
+Creates a **Query** object to match the specified field whose value is not within the specified list of strings.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------  | ----  | ----------------------- |
+| fieId  | string  | Yes|Field specified. It must start with $ and cannot contain ^.|
+| valueList  | string[]  | Yes| List of strings.|
+
+-   Return value
+
+| Type| Description|
+| ------  | -------   |
+| [Query](#querysup8sup) |**Query** object created.|
+
+-   Example
+
+    ```
+    try {
+        let query = new distributedData.Query();
+        query.notInString("field", ['test1', 'test2']);
+        console.log("query is " + query.getSqlLike());
+        query = null;
+    } catch (e) {
+        console.log("dumplicated calls should be ok :" + e);
+    }
+    ```
+
+
+### like<sup>8+</sup> ###
+
+like(field: string, value: string): Query;
+
+Creates a **Query** object to match the specified field whose value is similar to the specified value.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------  | ----  | ----------------------- |
+| fieId  | string  | Yes|Field specified. It must start with $ and cannot contain ^.|
+| valueList  | string  | Yes| String specified.|
+
+-   Return value
+
+| Type| Description|
+| ------  | -------   |
+| [Query](#querysup8sup) |**Query** object created.|
+
+-   Example
+
+    ```
+    try {
+        let query = new distributedData.Query();
+        query.like("field", "value");
+        console.log("query is " + query.getSqlLike());
+        query = null;
+    } catch (e) {
+        console.log("dumplicated calls should be ok :" + e);
+    }
+    ```
+
+
+### unlike<sup>8+</sup> ###
+
+unlike(field: string, value: string): Query;
+
+Creates a **Query** object to match the specified field whose value is not similar to the specified value.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------  | ----  | ----------------------- |
+| fieId  | string  | Yes|Field specified. It must start with $ and cannot contain ^.|
+| valueList  | string  | Yes| String specified.|
+
+-   Return value
+
+| Type| Description|
+| ------  | -------   |
+| [Query](#querysup8sup) |**Query** object created.|
+
+-   Example
+
+    ```
+    try {
+        let query = new distributedData.Query();
+        query.unlike("field", "value");
+        console.log("query is " + query.getSqlLike());
+        query = null;
+    } catch (e) {
+        console.log("dumplicated calls should be ok :" + e);
+    }
+    ```
+
+
+### and<sup>8+</sup> ###
+
+and(): Query;
+
+Creates a **Query** object with the AND condition.
+
+-   Return value
+
+| Type| Description|
+| ------  | -------   |
+| [Query](#querysup8sup) |**Query** object created.|
+
+-   Example
+
+    ```
+    try {
+        let query = new distributedData.Query();
+        query.notEqualTo("field", "value1");
+        query.and();
+        query.notEqualTo("field", "value2");
+        console.log("query is " + query.getSqlLike());
+        query = null;
+    } catch (e) {
+        console.log("dumplicated calls should be ok :" + e);
+    }
+    ```
+
+
+### or<sup>8+</sup> ###
+
+or(): Query;
+
+Creates a **Query** object with the OR condition.
+
+-   Return value
+
+| Type| Description|
+| ------  | -------   |
+| [Query](#querysup8sup) |**Query** object created.|
+
+-   Example
+
+    ```
+    try {
+        let query = new distributedData.Query();
+        query.notEqualTo("field", "value1");
+        query.or();
+        query.notEqualTo("field", "value2");
+        console.log("query is " + query.getSqlLike());
+        query = null;
+    } catch (e) {
+        console.log("dumplicated calls should be ok :" + e);
+    }
+    ```
+
+
+### orderByAsc<sup>8+</sup> ###
+
+orderByAsc(field: string): Query;
+
+Creates a **Query** object to sort the query results in ascending order.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------  | ----  | ----------------------- |
+| fieId  | string  | Yes|Field specified. It must start with $ and cannot contain ^.|
+
+-   Return value
+
+| Type| Description|
+| ------  | -------   |
+| [Query](#querysup8sup) |**Query** object created.|
+
+-   Example
+
+    ```
+    try {
+        let query = new distributedData.Query();
+        query.notEqualTo("field", "value");
+        query.orderByAsc("field");
+        console.log("query is " + query.getSqlLike());
+        query = null;
+    } catch (e) {
+        console.log("dumplicated calls should be ok :" + e);
+    }
+    ```
+
+
+### orderByDesc<sup>8+</sup> ###
+
+orderByDesc(field: string): Query;
+
+Creates a **Query** object to sort the query results in descending order.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------  | ----  | ----------------------- |
+| fieId  | string  | Yes|Field specified. It must start with $ and cannot contain ^.|
+
+-   Return value
+
+| Type| Description|
+| ------  | -------   |
+| [Query](#querysup8sup) |**Query** object created.|
+
+
+-   Example
+
+    ```
+    try {
+        let query = new distributedData.Query();
+        query.notEqualTo("field", "value");
+        query.orderByDesc("field");
+        console.log("query is " + query.getSqlLike());
+        query = null;
+    } catch (e) {
+        console.log("dumplicated calls should be ok :" + e);
+    }
+    ```
+
+
+### limit<sup>8+</sup> ###
+
+limit(total: number, offset: number): Query;
+
+Creates a **Query** object to specify the number of results and where to start.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------  | ----  | ----------------------- |
+| total  | number  | Yes|Number of results.|
+| offset | number  | Yes|Start position.|
+
+-   Return value
+
+| Type| Description|
+| ------  | -------   |
+| [Query](#querysup8sup) |**Query** object created.|
+
+-   Example
+
+    ```
+    try {
+        let query = new distributedData.Query();
+        query.notEqualTo("field", "value");
+        query.limit("total", "offset");
+        console.log("query is " + query.getSqlLike());
+        query = null;
+    } catch (e) {
+        console.log("dumplicated calls should be ok :" + e);
+    }
+    ```
+
+
+### isNotNull<sup>8+</sup> ###
+
+isNotNull(field: string): Query;
+
+Creates a **Query** object with a specified field that is not null.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------  | ----  | ----------------------- |
+| fieId  | string  | Yes|Field specified.|
+
+-   Return value
+
+| Type| Description|
+| ------  | -------   |
+| [Query](#querysup8sup) |**Query** object created.|
+
+-   Example
+
+    ```
+    try {
+        let query = new distributedData.Query();
+        query.isNotNull("field");
+        console.log("query is " + query.getSqlLike());
+        query = null;
+    } catch (e) {
+        console.log("dumplicated calls should be ok :" + e);
+    }
+    ```
+
+
+### beginGroup<sup>8+</sup> ###
+
+beginGroup(): Query;
+
+Creates a **Query** object with a query condition group with a left parenthesis.
+
+-   Return value
+
+| Type| Description|
+| ------  | -------   |
+| [Query](#querysup8sup) |**Query** object created.|
+
+-   Example
+
+    ```
+    try {
+        let query = new distributedData.Query();
+        query.beginGroup();
+        query.isNotNull("field");
+        query.endGroup();
+        console.log("query is " + query.getSqlLike());
+        query = null;
+    } catch (e) {
+        console.log("dumplicated calls should be ok :" + e);
+    }
+    ```
+
+
+### endGroup<sup>8+</sup> ###
+
+endGroup(): Query;
+
+Creates a **Query** object with a query condition group with a right parenthesis.
+
+-   Return value
+
+| Type| Description|
+| ------  | -------   |
+| [Query](#querysup8sup) |**Query** object created.|
+
+-   Example
+
+    ```
+    try {
+        let query = new distributedData.Query();
+        query.beginGroup();
+        query.isNotNull("field");
+        query.endGroup();
+        console.log("query is " + query.getSqlLike());
+        query = null;
+    } catch (e) {
+        console.log("dumplicated calls should be ok :" + e);
+    }
+    ```
+
+
+### prefixKey<sup>8+</sup> ###
+
+prefixKey(prefix: string): Query;
+
+Creates a **Query** object with a specified key prefix.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------  | ----  | ----------------------- |
+| prefix | string  | Yes|Key prefix.|
+
+-   Return value
+
+| Type| Description|
+| ------  | -------   |
+| [Query](#querysup8sup) |**Query** object created.|
+
+-   Example
+
+    ```
+    try {
+        let query = new distributedData.Query();
+        query.prefixKey("$.name");
+        query.prefixKey("0");
+        console.log("query is " + query.getSqlLike());
+        query = null;
+    } catch (e) {
+        console.log("dumplicated calls should be ok :" + e);
+    }
+    ```
+
+
+### setSuggestIndex<sup>8+</sup> ###
+
+setSuggestIndex(index: string): Query;
+
+Creates a **Query** object with an index preferentially used for query.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------  | ----  | ----------------------- |
+| index  | string  | Yes|Index to be set.|
+
+-   Return value
+
+| Type| Description|
+| ------  | -------   |
+| [Query](#querysup8sup) |**Query** object created.|
+
+-   Example
+
+    ```
+    try {
+        let query = new distributedData.Query();
+        query.setSuggestIndex("$.name");
+        query.setSuggestIndex("0");
+        console.log("query is " + query.getSqlLike());
+        query = null;
+    } catch (e) {
+       console.log("dumplicated calls should be ok :" + e);
+    }
+    ```
+
+
+### deviceId<sup>8+</sup> ###
+
+deviceId(deviceId:string):Query;
+
+Creates a **Query** object with the device ID as the key prefix.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------  | ----  | ----------------------- |
+| deviceId | string  | Yes|Device ID.|
+
+
+-   Return value
+
+| Type| Description|
+| ------  | -------   |
+| [Query](#querysup8sup) |**Query** object created.|
+
+-   Example
+
+    ```
+    try {
+        let query = new distributedData.Query();
+        query.deviceId("deviceId");
+        console.log("query is " + query.getSqlLike());
+    } catch (e) {
+        console.log("should be ok on Method Chaining : " + e);
+    }
+    ```
+
+
+### getSqlLike<sup>8+</sup> ###
+
+getSqlLike():string;
+
+Obtains the query statement of this **Query** object.
+
+-   Return value
+
+| Type| Description|
+| ------  | -------   |
+| [Query](#querysup8sup) |**Query** object.|
+
+-   Example
+
+    ```
+    try {
+        let query = new distributedData.Query();
+        let sql1 = query.getSqlLike();
+        console.log("GetSqlLike sql=" + sql1);
+    } catch (e) {
+        console.log("dumplicated calls should be ok : " + e);
+    }
+    ```
+
+
+## KVStore
+
+Provides methods to manage data in a KV store, for example, adding or deleting data and subscribing to data changes or completion of data synchronization. Before calling any method in **KVStore**, you must use **getKVStore** to create a **KVStore** object.
+
+### put
+
+put(key: string, value: Uint8Array | string | number | boolean, callback: AsyncCallback&lt;void&gt;): void
+
+Adds a KV pair of the specified type to the KV store. This method uses an asynchronous callback to return the result.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------  | ----  | ----------------------- |
+| key    | string  | Yes|Key of the KV pair to add. It cannot be empty, and the length cannot exceed [MAX\_KEY\_LENGTH](#constants).|
+| value  | Uint8Array / string / number / boolean  | Yes|Value of the KV pair to add. The value type can be Uint8Array, number, string, or boolean. A value of the Uint8Array or string type cannot exceed [MAX\_VALUE\_LENGTH](#constants).|
+
+
+-   Example
+
+    ```
+    let kvStore;
     const KEY_TEST_STRING_ELEMENT = 'key_test_string';
     const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
     try {
@@ -707,68 +1992,30 @@ Adds a key-value pair of the specified type to the KV store. This method uses an
     ```
 
 
-### put<a name="section43065440019"></a>
+### put
 
-put\(key: string, value: Uint8Array | string | number | boolean\): Promise<void\>
+put(key: string, value: Uint8Array | string | number | boolean): Promise&lt;void&gt;
 
-Adds a key-value pair of the specified type to the KV store. This method uses a promise to return the result.
+Adds a KV pair of the specified type to the KV store. This method uses a promise to return the result.
 
 -   Parameters
 
-    <a name="table11608159175910"></a>
-    <table><thead align="left"><tr id="row46080919599"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p2609697598"><a name="p2609697598"></a><a name="p2609697598"></a>Name</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="17.44%" id="mcps1.1.5.1.2"><p id="p126094985911"><a name="p126094985911"></a><a name="p126094985911"></a>Type</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="6.4799999999999995%" id="mcps1.1.5.1.3"><p id="p146090912597"><a name="p146090912597"></a><a name="p146090912597"></a>Mandatory</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="61.260000000000005%" id="mcps1.1.5.1.4"><p id="p1660912919597"><a name="p1660912919597"></a><a name="p1660912919597"></a>Description</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row156091915910"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1260929175919"><a name="p1260929175919"></a><a name="p1260929175919"></a>key</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="17.44%" headers="mcps1.1.5.1.2 "><p id="p1460918913596"><a name="p1460918913596"></a><a name="p1460918913596"></a>string</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="6.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p461014916591"><a name="p461014916591"></a><a name="p461014916591"></a>Yes</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p156109985911"><a name="p156109985911"></a><a name="p156109985911"></a>Key of the key-value pair to add. It cannot be empty, and the length cannot exceed <a href="#p10198639174218"><strong id="b3250154624814"><a name="b3250154624814"></a><a name="b3250154624814"></a>MAX_KEY_LENGTH</strong></a>.</p>
-    </td>
-    </tr>
-    <tr id="row18610199195919"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p19610139175917"><a name="p19610139175917"></a><a name="p19610139175917"></a>value</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="17.44%" headers="mcps1.1.5.1.2 "><p id="p96111919595"><a name="p96111919595"></a><a name="p96111919595"></a>Uint8Array | string | number | boolean</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="6.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p66113916595"><a name="p66113916595"></a><a name="p66113916595"></a>Yes</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1861118925915"><a name="p1861118925915"></a><a name="p1861118925915"></a>Value of the key-value pair to add. The value type can be Uint8Array, number, string, or boolean.</p>
-    <p id="p1561149125919"><a name="p1561149125919"></a><a name="p1561149125919"></a>A value of the <strong id="b1787962095018"><a name="b1787962095018"></a><a name="b1787962095018"></a>Uint8Array</strong> or <strong id="b12879142016509"><a name="b12879142016509"></a><a name="b12879142016509"></a>string</strong> type cannot exceed <a href="#p9253605466"><strong id="b1787920204509"><a name="b1787920204509"></a><a name="b1787920204509"></a>MAX_VALUE_LENGTH</strong></a>.</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+| Name| Type| Mandatory| Description|
+| -----  | ------  | ----  | ----------------------- |
+| key    | string  | Yes|Key of the KV pair to add. It cannot be empty, and the length cannot exceed [MAX\_KEY\_LENGTH](#constants).|
+| value  | Uint8Array / string / number / boolean  | Yes|Value of the KV pair to add. The value type can be Uint8Array, number, string, or boolean. A value of the Uint8Array or string type cannot exceed [MAX\_VALUE\_LENGTH](#constants).|
 
--   Return values
+-   Return value
 
-    <a name="table59499217114"></a>
-    <table><thead align="left"><tr id="row5949322117"><th class="cellrowborder" valign="top" width="17.01%" id="mcps1.1.3.1.1"><p id="p129505214113"><a name="p129505214113"></a><a name="p129505214113"></a>Type</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="82.99%" id="mcps1.1.3.1.2"><p id="p395018214112"><a name="p395018214112"></a><a name="p395018214112"></a>Description</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row9950162310"><td class="cellrowborder" valign="top" width="17.01%" headers="mcps1.1.3.1.1 "><p id="p149501621616"><a name="p149501621616"></a><a name="p149501621616"></a>Promise&lt;void&gt;</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="82.99%" headers="mcps1.1.3.1.2 "><p id="p1695072011"><a name="p1695072011"></a><a name="p1695072011"></a>Promise used to return the result.</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+| Type| Description|
+| ------  | -------   |
+| Promise&lt;void&gt; |Promise used to return the result.|
 
 
 -   Example
 
     ```
+    let kvStore;
     const KEY_TEST_STRING_ELEMENT = 'key_test_string';
     const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
     try {
@@ -783,49 +2030,23 @@ Adds a key-value pair of the specified type to the KV store. This method uses a 
     ```
 
 
-### delete<a name="section15564125555713"></a>
+### delete
 
-delete\(key: string, callback: AsyncCallback<void\>\): void
+delete(key: string, callback: AsyncCallback&lt;void&gt;): void
 
 Deletes a KV pair from the KV store. This method uses an asynchronous callback to return the result.
 
 -   Parameters
 
-    <a name="table588435711415"></a>
-    <table><thead align="left"><tr id="row1688513572414"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p78857576420"><a name="p78857576420"></a><a name="p78857576420"></a>Name</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="21.529999999999998%" id="mcps1.1.5.1.2"><p id="p178851571417"><a name="p178851571417"></a><a name="p178851571417"></a>Type</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="6.58%" id="mcps1.1.5.1.3"><p id="p18885205710416"><a name="p18885205710416"></a><a name="p18885205710416"></a>Mandatory</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="57.07%" id="mcps1.1.5.1.4"><p id="p1688510571649"><a name="p1688510571649"></a><a name="p1688510571649"></a>Description</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row188855571749"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p14886457340"><a name="p14886457340"></a><a name="p14886457340"></a>key</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="21.529999999999998%" headers="mcps1.1.5.1.2 "><p id="p20886175717412"><a name="p20886175717412"></a><a name="p20886175717412"></a>string</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="6.58%" headers="mcps1.1.5.1.3 "><p id="p138866579416"><a name="p138866579416"></a><a name="p138866579416"></a>Yes</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="57.07%" headers="mcps1.1.5.1.4 "><p id="p18868572411"><a name="p18868572411"></a><a name="p18868572411"></a>Key of the KV pair to delete. It cannot be empty, and the length cannot exceed <a href="#p10198639174218"><strong id="b9731103974217"><a name="b9731103974217"></a><a name="b9731103974217"></a>MAX_KEY_LENGTH</strong></a>.</p>
-    </td>
-    </tr>
-    <tr id="row9887165719417"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p188717571048"><a name="p188717571048"></a><a name="p188717571048"></a>callback</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="21.529999999999998%" headers="mcps1.1.5.1.2 "><p id="p158871157242"><a name="p158871157242"></a><a name="p158871157242"></a>AsyncCallback&lt;void&gt;</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="6.58%" headers="mcps1.1.5.1.3 "><p id="p1588719571148"><a name="p1588719571148"></a><a name="p1588719571148"></a>Yes</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="57.07%" headers="mcps1.1.5.1.4 "><p id="p688714574414"><a name="p688714574414"></a><a name="p688714574414"></a>Callback invoked to return the result.</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+| Name| Type| Mandatory| Description|
+| -----  | ------  | ----  | ----------------------- |
+| key    | string  | Yes|Key of the KV pair to delete. It cannot be empty, and the length cannot exceed [MAX\_KEY\_LENGTH](#constants).|
+| callback  | AsyncCallback&lt;void&gt;  | Yes|Callback used to return the result.|
 
 -   Example
 
     ```
+    let kvStore;
     const KEY_TEST_STRING_ELEMENT = 'key_test_string';
     const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
     try {
@@ -849,57 +2070,28 @@ Deletes a KV pair from the KV store. This method uses an asynchronous callback t
     ```
 
 
-### delete<a name="section1298265189"></a>
+### delete
 
-delete\(key: string\): Promise<void\>
+delete(key: string): Promise&lt;void&gt;
 
 Deletes a KV pair from the KV store. This method uses a promise to return the result.
 
 -   Parameters
 
-    <a name="table4202936063"></a>
-    <table><thead align="left"><tr id="row6202536565"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p152029362618"><a name="p152029362618"></a><a name="p152029362618"></a>Name</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="17.44%" id="mcps1.1.5.1.2"><p id="p9203123619614"><a name="p9203123619614"></a><a name="p9203123619614"></a>Type</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="6.4799999999999995%" id="mcps1.1.5.1.3"><p id="p62039360614"><a name="p62039360614"></a><a name="p62039360614"></a>Mandatory</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="61.260000000000005%" id="mcps1.1.5.1.4"><p id="p62037369618"><a name="p62037369618"></a><a name="p62037369618"></a>Description</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row220323617610"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p120343619611"><a name="p120343619611"></a><a name="p120343619611"></a>key</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="17.44%" headers="mcps1.1.5.1.2 "><p id="p17203236167"><a name="p17203236167"></a><a name="p17203236167"></a>string</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="6.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p1420343611616"><a name="p1420343611616"></a><a name="p1420343611616"></a>Yes</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p120313364610"><a name="p120313364610"></a><a name="p120313364610"></a>Key of the KV pair to delete. It cannot be empty, and the length cannot exceed <a href="#p10198639174218"><strong id="b1232685705014"><a name="b1232685705014"></a><a name="b1232685705014"></a>MAX_KEY_LENGTH</strong></a>.</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+| Name| Type| Mandatory| Description|
+| -----  | ------  | ----  | ----------------------- |
+| key    | string  | Yes|Key of the KV pair to delete. It cannot be empty, and the length cannot exceed [MAX\_KEY\_LENGTH](#constants).|
 
--   Return values
+-   Return value
 
-    <a name="table898511515811"></a>
-    <table><thead align="left"><tr id="row1398616518817"><th class="cellrowborder" valign="top" width="17.01%" id="mcps1.1.3.1.1"><p id="p19860516812"><a name="p19860516812"></a><a name="p19860516812"></a>Type</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="82.99%" id="mcps1.1.3.1.2"><p id="p17986115489"><a name="p17986115489"></a><a name="p17986115489"></a>Description</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row898611514813"><td class="cellrowborder" valign="top" width="17.01%" headers="mcps1.1.3.1.1 "><p id="p39861451811"><a name="p39861451811"></a><a name="p39861451811"></a>Promise&lt;void&gt;</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="82.99%" headers="mcps1.1.3.1.2 "><p id="p69870519814"><a name="p69870519814"></a><a name="p69870519814"></a>Promise used to return the result.</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+| Type| Description|
+| ------  | -------   |
+| Promise&lt;void&gt; |Promise used to return the result.|
 
 -   Example
 
     ```
+    let kvStore;
     const KEY_TEST_STRING_ELEMENT = 'key_test_string';
     const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
     try {
@@ -919,391 +2111,686 @@ Deletes a KV pair from the KV store. This method uses a promise to return the re
     ```
 
 
-### on<a name="section9748071812"></a>
+### on
 
-on\(event: 'dataChange', type: SubscribeType, observer: Callback<ChangeNotification\>\): void
+on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;ChangeNotification&gt;): void
 
-Subscribes to data changes of the specified type. This method uses a synchronization callback to return the result.
+Subscribes to data changes of the specified type. This method uses a synchronous callback to return the result.
 
 -   Parameters
 
-    <a name="table074609186"></a>
-    <table><thead align="left"><tr id="row1274120111815"><th class="cellrowborder" valign="top" width="16.54%" id="mcps1.1.4.1.1"><p id="p18751803180"><a name="p18751803180"></a><a name="p18751803180"></a>Name</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="35.14%" id="mcps1.1.4.1.2"><p id="p13752021816"><a name="p13752021816"></a><a name="p13752021816"></a>Type</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="48.32%" id="mcps1.1.4.1.3"><p id="p17751081815"><a name="p17751081815"></a><a name="p17751081815"></a>Description</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row8751009186"><td class="cellrowborder" valign="top" width="16.54%" headers="mcps1.1.4.1.1 "><p id="p17752091815"><a name="p17752091815"></a><a name="p17752091815"></a>event</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="35.14%" headers="mcps1.1.4.1.2 "><p id="p1675120191811"><a name="p1675120191811"></a><a name="p1675120191811"></a>'dataChange'</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="48.32%" headers="mcps1.1.4.1.3 "><p id="p9755012181"><a name="p9755012181"></a><a name="p9755012181"></a>Type of the events.</p>
-    </td>
-    </tr>
-    <tr id="row5751709182"><td class="cellrowborder" valign="top" width="16.54%" headers="mcps1.1.4.1.1 "><p id="p17751602182"><a name="p17751602182"></a><a name="p17751602182"></a>type</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="35.14%" headers="mcps1.1.4.1.2 "><p id="p137613011189"><a name="p137613011189"></a><a name="p137613011189"></a><a href="#section099619567453">SubscribeType</a></p>
-    </td>
-    <td class="cellrowborder" valign="top" width="48.32%" headers="mcps1.1.4.1.3 "><p id="p117616061817"><a name="p117616061817"></a><a name="p117616061817"></a>Type of data changes.</p>
-    </td>
-    </tr>
-    <tr id="row476140141813"><td class="cellrowborder" valign="top" width="16.54%" headers="mcps1.1.4.1.1 "><p id="p16768011189"><a name="p16768011189"></a><a name="p16768011189"></a>observer</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="35.14%" headers="mcps1.1.4.1.2 "><p id="p107614014186"><a name="p107614014186"></a><a name="p107614014186"></a>Callback&lt;<a href="#section5607141204713">ChangeNotification</a>&gt;</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="48.32%" headers="mcps1.1.4.1.3 "><p id="p576180111819"><a name="p576180111819"></a><a name="p576180111819"></a>Callback invoked to return the result.</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+| Name| Type| Mandatory| Description|
+| -----  | ------  | ----  | ----------------------- |
+| event  |'dataChange'  | Yes|Type of the events.|
+| type  |[SubscribeType](#subscribetypea) | Yes|Type of data changes.|
+| observer |Callback&lt;[ChangeNotification](#changenotificationa)&gt; | Yes|Callback used to return the result.|
+
 
 -   Example
 
     ```
-    kvStore.on('dataChange', 2, function (data) {
+    let kvStore;
+    kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_LOCAL, function (data) {
         console.log("dataChange callback call data: " + JSON.stringify(data));
     });
     ```
 
 
-### on<a name="section06419235582"></a>
+### on
 
-on\(event: 'syncComplete', syncCallback: Callback<Array<\[string, number\]\>\>\): void
+on(event: 'syncComplete', syncCallback: Callback<Array&lt;[string, number]&gt;): void
 
-Subscribes to notifications of data synchronization completion. This method uses a synchronization callback to return the result.
+Subscribes to notifications of data synchronization completion. This method uses a synchronous callback to return the result.
 
 -   Parameters
 
-    <a name="table16642172313584"></a>
-    <table><thead align="left"><tr id="row1064292310587"><th class="cellrowborder" valign="top" width="16.54%" id="mcps1.1.4.1.1"><p id="p9642172345810"><a name="p9642172345810"></a><a name="p9642172345810"></a>Name</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="40.160000000000004%" id="mcps1.1.4.1.2"><p id="p1264242365813"><a name="p1264242365813"></a><a name="p1264242365813"></a>Type</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="43.3%" id="mcps1.1.4.1.3"><p id="p16426231582"><a name="p16426231582"></a><a name="p16426231582"></a>Description</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row196421223165820"><td class="cellrowborder" valign="top" width="16.54%" headers="mcps1.1.4.1.1 "><p id="p13944834181016"><a name="p13944834181016"></a><a name="p13944834181016"></a>event</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="40.160000000000004%" headers="mcps1.1.4.1.2 "><p id="p14715174110107"><a name="p14715174110107"></a><a name="p14715174110107"></a>'syncComplete'</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="43.3%" headers="mcps1.1.4.1.3 "><p id="p564282316586"><a name="p564282316586"></a><a name="p564282316586"></a>Type of the events.</p>
-    </td>
-    </tr>
-    <tr id="row629323499"><td class="cellrowborder" valign="top" width="16.54%" headers="mcps1.1.4.1.1 "><p id="p629393496"><a name="p629393496"></a><a name="p629393496"></a>syncCallback</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="40.160000000000004%" headers="mcps1.1.4.1.2 "><p id="p92931231917"><a name="p92931231917"></a><a name="p92931231917"></a>Callback&lt;Array&lt;[string, number]&gt;&gt;</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="43.3%" headers="mcps1.1.4.1.3 "><p id="p529433197"><a name="p529433197"></a><a name="p529433197"></a>Callback invoked to return the result.</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+| Name| Type| Mandatory| Description|
+| -----  | ------  | ----  | ----------------------- |
+| event  |'syncComplete' | Yes|Type of the events.|
+| syncCallback  |Callback&lt;Array&lt;[string, number]&gt; | Yes|Callback used to return the result.|
+
 
 -   Example
 
     ```
+    let kvStore;
     kvStore.on('syncComplete', function (data) {
         console.log("syncComplete callback call data: " + data);
     });
     ```
 
+### off<sup>8+</sup>
 
-## SubscribeType<a name="section099619567453"></a>
+off(event:'dataChange', observer?: Callback&lt;ChangeNotification&gt;): void;
+
+Unsubscribes from data change notifications. This method is a synchronous method.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------  | ----  | ----------------------- |
+| event  |'dataChange'  | Yes|Type of the events.|
+| observer |Callback&lt;[ChangeNotification](#changenotificationa)&gt; |No|Callback used to return the result.|
+
+-   Example
+
+    ```
+    let kvStore;
+    kvStore.on('dataChange', function (data) {
+        console.log("syncComplete callback call data: " + data);
+    });
+    kvStore.off('dataChange', function (data) {
+        console.log("syncComplete callback call data: " + data);
+    });
+    ```
+
+
+### putBatch<sup>8+</sup>
+
+putBatch(entries: Entry[], callback: AsyncCallback&lt;void&gt;): void;
+
+Inserts KV pairs in batches to the KV store. This method uses an asynchronous callback to return the result.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------  | ----  | ----------------------- |
+| entries  |[Entry](#entry)[] | Yes|KV pairs to insert in batches.|
+| callback |Asyncallback&lt;void&gt; |Yes|Callback used to return the result.|
+
+-   Example
+
+    ```
+    let kvStore;
+    try {
+        let entries = [];
+        for (var i = 0; i < 10; i++) {
+            var key = 'batch_test_string_key';
+            var entry = {
+                key : key + i,
+                value : {
+                    type : distributedData.ValueType.STRING,
+                    value : 'batch_test_string_value'
+                }
+            }
+            entries.push(entry);
+        }
+        console.log('entries: ' + JSON.stringify(entries));
+        kvStore.putBatch(entries, async function (err,data) {
+            console.log('putBatch success');
+            await kvStore.getEntries('batch_test_string_key', function (err,entrys) {
+                console.log('getEntries success');
+                console.log('entrys.length: ' + entrys.length);
+                console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
+            });
+        });
+    }catch(e) {
+        console.log('PutBatch e ' + e);
+    }
+    
+    ```
+
+
+### putBatch<sup>8+</sup>
+
+putBatch(entries: Entry[]): Promise&lt;void&gt;;
+
+Inserts KV pairs in batches to the KV store. This method uses a promise to return the result.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------  | ----  | ----------------------- |
+| entries  |[Entry](#entry)[] | Yes|KV pairs to insert in batches.|
+
+-   Return value
+
+| Type| Description|
+| ------  | -------   |
+| Promise&lt;void&gt; |Promise used to return the result.|
+
+-   Example
+
+    ```
+    let kvStore;
+    try {
+        let entries = [];
+        for (var i = 0; i < 10; i++) {
+            var key = 'batch_test_string_key';
+            var entry = {
+                key : key + i,
+                value : {
+                    type : distributedData.ValueType.STRING,
+                    value : 'batch_test_string_value'
+                }
+            }
+            entries.push(entry);
+        }
+        console.log('entries: ' + JSON.stringify(entries));
+        kvStore.putBatch(entries).then(async (err) => {
+            console.log('putBatch success');
+            await kvStore.getEntries('batch_test_string_key').then((entrys) => {
+                console.log('getEntries success');
+                console.log('PutBatch ' + JSON.stringify(entries));
+            }).catch((err) => {
+                console.log('getEntries fail ' + JSON.stringify(err));
+            });
+        }).catch((err) => {
+            console.log('putBatch fail ' + JSON.stringify(err));
+        });
+    }catch(e) {
+        console.log('PutBatch e ' + e);
+    }
+    ```
+
+
+### deleteBatch<sup>8+</sup>
+
+deleteBatch(keys: string[], callback: AsyncCallback&lt;void&gt;): void;
+
+Deletes KV pairs in batches from the KV store. This method uses an asynchronous callback to return the result.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------  | ----  | ----------------------- |
+| keys  |string[] | Yes|KV pairs to delete in batches.|
+| callback  |AsyncCallback&lt;void&gt; | Yes|Callback used to return the result.|
+
+-   Example
+
+    ```
+    let kvStore;
+    try {
+        let entries = [];
+        let keys = [];
+        for (var i = 0; i < 5; i++) {
+            var key = 'batch_test_string_key';
+            var entry = {
+                key : key + i,
+                value : {
+                    type : distributedData.ValueType.STRING,
+                    value : 'batch_test_string_value'
+                }
+            }
+            entries.push(entry);
+            keys.push(key + i);
+        }
+        console.log('entries: ' + JSON.stringify(entries));
+        kvStore.putBatch(entries, async function (err,data) {
+            console.log('putBatch success');
+            await kvStore.deleteBatch(keys, async function (err,data) {
+                console.log('deleteBatch success');
+            });
+        });
+    }catch(e) {
+        console.log('DeleteBatch e ' + e);
+    }
+    ```
+
+
+### deleteBatch<sup>8+</sup> ###
+
+deleteBatch(keys: string[]): Promise&lt;void&gt;;
+
+Deletes KV pairs in batches from the KV store. This method uses a promise to return the result.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------  | ----  | ----------------------- |
+| keys   |string[] | Yes|KV pairs to delete in batches.|
+
+-   Return value
+
+| Type| Description|
+| ------  | -------   |
+| Promise&lt;void&gt; |Promise used to return the result.|
+
+-   Example
+
+    ```
+    let kvStore;
+    try {
+        let entries = [];
+        let keys = [];
+        for (var i = 0; i < 5; i++) {
+            var key = 'batch_test_string_key';
+            var entry = {
+                key : key + i,
+                value : {
+                    type : distributedData.ValueType.STRING,
+                    value : 'batch_test_string_value'
+                }
+            }
+            entries.push(entry);
+            keys.push(key + i);
+        }
+        console.log('entries: ' + JSON.stringify(entries));
+        kvStore.putBatch(entries).then(async (err) => {
+            console.log('putBatch success');
+            await kvStore.deleteBatch(keys).then((err) => {
+                console.log('deleteBatch success');
+            }).catch((err) => {
+                console.log('deleteBatch fail ' + JSON.stringify(err));
+            });
+        }).catch((err) => {
+            console.log('putBatch fail ' + JSON.stringify(err));
+        });
+    }catch(e) {
+        console.log('DeleteBatch e ' + e);
+    }
+    ```
+
+
+### startTransaction<sup>8+</sup> ###
+
+startTransaction(callback: AsyncCallback&lt;void&gt;): void;
+
+Starts transactions in the KV store. This method uses an asynchronous callback to return the result.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------  | ----  | ----------------------- |
+| callback  |AsyncCallback&lt;void&gt; | Yes|Callback used to return the result.|
+
+-   Example
+
+    ```
+    let kvStore;
+    function putBatchString(len, prefix) {
+        let entries = [];
+        for (var i = 0; i < len; i++) {
+            var entry = {
+                key : prefix + i,
+                value : {
+                    type : distributedData.ValueType.STRING,
+                    value : 'batch_test_string_value'
+                }
+            }
+            entries.push(entry);
+        }
+        return entries;
+    }
+    try {
+        var count = 0;
+        kvStore.on('dataChange', 0, function (data) {
+            console.log('startTransaction 0' + data)
+            count++;
+        });
+        kvStore.startTransaction(async function (err,data) {
+            console.log('startTransaction success');
+            let entries = putBatchString(10, 'batch_test_string_key');
+            console.log('entries: ' + JSON.stringify(entries));
+            await kvStore.putBatch(entries, async function (err,data) {
+                console.log('putBatch success');
+            });
+        });
+    }catch(e) {
+        console.log('startTransaction e ' + e);
+    }
+    ```
+
+
+### startTransaction<sup>8+</sup> ###
+
+startTransaction(): Promise&lt;void&gt;;
+
+Starts transactions in the KV store. This method uses a promise to return the result.
+
+-   Return value
+
+| Type| Description|
+| ------  | -------   |
+| Promise&lt;void&gt; |Promise used to return the result.|
+
+-   Example
+
+    ```
+    let kvStore;
+    try {
+        var count = 0;
+        kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_ALL, function (data) {
+            console.log('startTransaction ' + JSON.stringify(data));
+            count++;
+        });
+        kvStore.startTransaction().then(async (err) => {
+            console.log('startTransaction success');
+        }).catch((err) => {
+            console.log('startTransaction fail ' + JSON.stringify(err));
+        });
+    }catch(e) {
+        console.log('startTransaction e ' + e);
+    }
+    ```
+
+
+### commit<sup>8+</sup> ###
+
+commit(callback: AsyncCallback&lt;void&gt;): void;
+
+Commits transactions in the KV store. This method uses an asynchronous callback to return the result.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------  | ----  | ----------------------- |
+| callback  |AsyncCallback&lt;void&gt; | Yes|Callback used to return the result.|
+
+-   Example
+
+    ```
+    let kvStore;
+    try {
+        kvStore.commit(function (err,data) {
+            if (err == undefined) {
+                console.log('commit success');
+            } else {
+                console.log('commit fail');
+            }
+        });
+    }catch(e) {
+        console.log('Commit e ' + e);
+    }
+    ```
+
+
+### commit<sup>8+</sup> ###
+
+commit(): Promise&lt;void&gt;;
+
+Commits transactions in the KV store. This method uses a promise to return the result.
+
+-   Return value
+
+| Type| Description|
+| ------  | -------   |
+| Promise&lt;void&gt; |Promise used to return the result.|
+
+-   Example
+
+    ```
+    let kvStore;
+    try {
+        kvStore.commit().then(async (err) => {
+            console.log('commit success');
+        }).catch((err) => {
+            console.log('commit fail ' + JSON.stringify(err));
+        });
+    }catch(e) {
+        console.log('Commit e ' + e);
+    }
+    ```
+
+
+### rollback<sup>8+</sup> ###
+
+rollback(callback: AsyncCallback&lt;void&gt;): void;
+
+Rolls back transactions in the KV store. This method uses an asynchronous callback to return the result.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------  | ----  | ----------------------- |
+| callback  |AsyncCallback&lt;void&gt; | Yes|Callback used to return the result.|
+
+-   Example
+
+    ```
+    let kvStore;
+    try {
+        kvStore.rollback(function (err,data) {
+            if (err == undefined) {
+                console.log('commit success');
+            } else {
+                console.log('commit fail');
+            }
+        });
+    }catch(e) {
+        console.log('Rollback e ' + e);
+    }
+    ```
+
+
+### rollback<sup>8+</sup> ###
+
+rollback(): Promise&lt;void&gt;;
+
+Rolls back transactions in the KV store. This method uses a promise to return the result.
+
+-   Return value
+
+| Type| Description|
+| ------  | -------   |
+| Promise&lt;void&gt; |Promise used to return the result.|
+
+-   Example
+
+    ```
+    let kvStore;
+    try {
+        kvStore.rollback().then(async (err) => {
+            console.log('rollback success');
+        }).catch((err) => {
+            console.log('rollback fail ' + JSON.stringify(err));
+        });
+    }catch(e) {
+        console.log('Rollback e ' + e);
+    }
+    ```
+
+
+### enableSync<sup>8+</sup> ###
+
+enableSync(enabled: boolean, callback: AsyncCallback&lt;void&gt;): void;
+
+Sets data synchronization, which can be enabled or disable. This method uses an asynchronous callback to return the result.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------  | ----  | ----------------------- |
+| enabled  |boolean | Yes|Whether to enable data synchronization. The value **true** means to enable data synchronization, and the value **false** means the opposite.|
+| callback  |AsyncCallback&lt;void&gt; | Yes|Callback used to return the result.|
+
+-   Example
+
+    ```
+    let kvStore;
+    try {
+        kvStore.enableSync(true, function (err,data) {
+            if (err == undefined) {
+                console.log('enableSync success');
+            } else {
+                console.log('enableSync fail');
+            }
+        });
+    }catch(e) {
+        console.log('EnableSync e ' + e);
+    }
+    ```
+
+
+### enableSync<sup>8+</sup> ###
+
+enableSync(enabled: boolean): Promise&lt;void&gt;;
+
+Sets data synchronization, which can be enabled or disable. This method uses a promise to return the result.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------  | ----  | ----------------------- |
+| enabled  |boolean | Yes|Whether to enable data synchronization. The value **true** means to enable data synchronization, and the value **false** means the opposite.|
+
+-   Return value
+
+| Type| Description|
+| ------  | -------   |
+| Promise&lt;void&gt; |Promise used to return the result.|
+
+-   Example
+
+    ```
+    let kvStore;
+    try {
+        kvStore.enableSync(true).then((err) => {
+            console.log('enableSync success');
+        }).catch((err) => {
+            console.log('enableSync fail ' + JSON.stringify(err));
+        });
+    }catch(e) {
+        console.log('EnableSync e ' + e);
+    }
+    ```
+
+
+### setSyncRange<sup>8+</sup> ###
+
+setSyncRange(localLabels: string[], remoteSupportLabels: string[], callback: AsyncCallback&lt;void&gt;): void;
+
+Sets the data synchronization range. This method uses an asynchronous callback to return the result.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------  | ----  | ----------------------- |
+| localLabels  |string[] | Yes|Synchronization label set for the local device.|
+| remoteSupportLabels  |string[] | Yes|Synchronization labels set for remote devices.|
+| callback  |AsyncCallback&lt;void&gt; | Yes|Callback used to return the result.|
+
+-   Example
+
+    ```
+    let kvStore;
+    try {
+        const localLabels = ['A', 'B'];
+        const remoteSupportLabels = ['C', 'D'];
+        kvStore.setSyncRange(localLabels, remoteSupportLabels, function (err,data) {
+            console.log('SetSyncRange put success');
+        });
+    }catch(e) {
+        console.log('SetSyncRange e ' + e);
+    }
+    ```
+
+
+### setSyncRange<sup>8+</sup> ###
+
+setSyncRange(localLabels: string[], remoteSupportLabels: string[]): Promise&lt;void&gt;;
+
+Sets the data synchronization range. This method uses a promise to return the result.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------  | ----  | ----------------------- |
+| localLabels  |string[] | Yes|Synchronization label set for the local device.|
+| remoteSupportLabels  |string[] | Yes|Synchronization labels set for remote devices.|
+
+
+-   Return value
+
+| Type| Description|
+| ------  | -------   |
+| Promise&lt;void&gt; |Promise used to return the result.|
+
+-   Example
+
+    ```
+    let kvStore;
+    try {
+        const localLabels = ['A', 'B'];
+        const remoteSupportLabels = ['C', 'D'];
+        kvStore.setSyncRange(localLabels, remoteSupportLabels).then((err) => {
+            console.log('setSyncRange success');
+        }).catch((err) => {
+            console.log('delete fail ' + err);
+        });
+    }catch(e) {
+        console.log('SetSyncRange e ' + e);
+    }
+    ```
+
+
+## SubscribeType
 
 Defines the subscription type.
 
-<a name="table20633101642315"></a>
-<table><thead align="left"><tr id="row663331618238"><th class="cellrowborder" valign="top" width="27.900000000000002%" id="mcps1.1.4.1.1"><p id="a3d0fc780cc904c1cbab7991251622f65"><a name="a3d0fc780cc904c1cbab7991251622f65"></a><a name="a3d0fc780cc904c1cbab7991251622f65"></a>Name</p>
-</th>
-<th class="cellrowborder" valign="top" width="12.43%" id="mcps1.1.4.1.2"><p id="aace9cae4ba0d4939bfa048460f61c3c7"><a name="aace9cae4ba0d4939bfa048460f61c3c7"></a><a name="aace9cae4ba0d4939bfa048460f61c3c7"></a>Default Value</p>
-</th>
-<th class="cellrowborder" valign="top" width="59.67%" id="mcps1.1.4.1.3"><p id="afec895de33f94e3c87ee7acc20190a17"><a name="afec895de33f94e3c87ee7acc20190a17"></a><a name="afec895de33f94e3c87ee7acc20190a17"></a>Description</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row188481425182510"><td class="cellrowborder" valign="top" width="27.900000000000002%" headers="mcps1.1.4.1.1 "><p id="p52851329122117"><a name="p52851329122117"></a><a name="p52851329122117"></a>SUBSCRIBE_TYPE_LOCAL</p>
-</td>
-<td class="cellrowborder" valign="top" width="12.43%" headers="mcps1.1.4.1.2 "><p id="p2282152962115"><a name="p2282152962115"></a><a name="p2282152962115"></a>0</p>
-</td>
-<td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p328012293211"><a name="p328012293211"></a><a name="p328012293211"></a>Local data changes.</p>
-</td>
-</tr>
-<tr id="row0461622112513"><td class="cellrowborder" valign="top" width="27.900000000000002%" headers="mcps1.1.4.1.1 "><p id="p12106173918219"><a name="p12106173918219"></a><a name="p12106173918219"></a>SUBSCRIBE_TYPE_REMOTE</p>
-</td>
-<td class="cellrowborder" valign="top" width="12.43%" headers="mcps1.1.4.1.2 "><p id="p1310553911218"><a name="p1310553911218"></a><a name="p1310553911218"></a>1</p>
-</td>
-<td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p15865395215"><a name="p15865395215"></a><a name="p15865395215"></a>Peer data changes.</p>
-</td>
-</tr>
-<tr id="row1424110293364"><td class="cellrowborder" valign="top" width="27.900000000000002%" headers="mcps1.1.4.1.1 "><p id="p8242729133612"><a name="p8242729133612"></a><a name="p8242729133612"></a>SUBSCRIBE_TYPE_ALL</p>
-</td>
-<td class="cellrowborder" valign="top" width="12.43%" headers="mcps1.1.4.1.2 "><p id="p1243629153617"><a name="p1243629153617"></a><a name="p1243629153617"></a>2</p>
-</td>
-<td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p202430293369"><a name="p202430293369"></a><a name="p202430293369"></a>Local and peer data changes.</p>
-</td>
-</tr>
-</tbody>
-</table>
+| Name| Default Value| Description|
+| -----  | ------   | ----------------------- |
+| SUBSCRIBE_TYPE_LOCAL  |0 |Local data changes.|
+| SUBSCRIBE_TYPE_REMOTE |1 |Peer data changes.|
+| SUBSCRIBE_TYPE_ALL  |2 |Local and peer data changes.|
 
-## ChangeNotification<a name="section5607141204713"></a>
+## ChangeNotification
 
 Defines the content of data change notifications, including inserted data, updated data, deleted data, and device ID.
 
-<a name="table78681657195717"></a>
-<table><thead align="left"><tr id="row138681857165718"><th class="cellrowborder" valign="top" width="15.870000000000001%" id="mcps1.1.6.1.1"><p id="p0868205785716"><a name="p0868205785716"></a><a name="p0868205785716"></a>Name</p>
-</th>
-<th class="cellrowborder" valign="top" width="27.029999999999998%" id="mcps1.1.6.1.2"><p id="p2086805735714"><a name="p2086805735714"></a><a name="p2086805735714"></a>Type</p>
-</th>
-<th class="cellrowborder" valign="top" width="7.85%" id="mcps1.1.6.1.3"><p id="p13869145775710"><a name="p13869145775710"></a><a name="p13869145775710"></a>Readable</p>
-</th>
-<th class="cellrowborder" valign="top" width="9.67%" id="mcps1.1.6.1.4"><p id="p1886919575575"><a name="p1886919575575"></a><a name="p1886919575575"></a>Writable</p>
-</th>
-<th class="cellrowborder" valign="top" width="39.58%" id="mcps1.1.6.1.5"><p id="p9869175715718"><a name="p9869175715718"></a><a name="p9869175715718"></a>Description</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row7869155795710"><td class="cellrowborder" valign="top" width="15.870000000000001%" headers="mcps1.1.6.1.1 "><p id="p81594559583"><a name="p81594559583"></a><a name="p81594559583"></a>insertEntries</p>
-</td>
-<td class="cellrowborder" valign="top" width="27.029999999999998%" headers="mcps1.1.6.1.2 "><p id="p3869457195712"><a name="p3869457195712"></a><a name="p3869457195712"></a><a href="#section15495151319483">Entry</a>[]</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.85%" headers="mcps1.1.6.1.3 "><p id="p6869115735719"><a name="p6869115735719"></a><a name="p6869115735719"></a>Yes</p>
-</td>
-<td class="cellrowborder" valign="top" width="9.67%" headers="mcps1.1.6.1.4 "><p id="p286925765713"><a name="p286925765713"></a><a name="p286925765713"></a>Yes</p>
-</td>
-<td class="cellrowborder" valign="top" width="39.58%" headers="mcps1.1.6.1.5 "><p id="p188701857135710"><a name="p188701857135710"></a><a name="p188701857135710"></a>Data inserted.</p>
-</td>
-</tr>
-<tr id="row787019578574"><td class="cellrowborder" valign="top" width="15.870000000000001%" headers="mcps1.1.6.1.1 "><p id="p1287045745715"><a name="p1287045745715"></a><a name="p1287045745715"></a>updateEntries</p>
-</td>
-<td class="cellrowborder" valign="top" width="27.029999999999998%" headers="mcps1.1.6.1.2 "><p id="p5212185939"><a name="p5212185939"></a><a name="p5212185939"></a><a href="#section15495151319483">Entry</a>[]</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.85%" headers="mcps1.1.6.1.3 "><p id="p1087045713577"><a name="p1087045713577"></a><a name="p1087045713577"></a>Yes</p>
-</td>
-<td class="cellrowborder" valign="top" width="9.67%" headers="mcps1.1.6.1.4 "><p id="p1487035713575"><a name="p1487035713575"></a><a name="p1487035713575"></a>Yes</p>
-</td>
-<td class="cellrowborder" valign="top" width="39.58%" headers="mcps1.1.6.1.5 "><p id="p3870145711570"><a name="p3870145711570"></a><a name="p3870145711570"></a>Data updated.</p>
-</td>
-</tr>
-<tr id="row18863111108"><td class="cellrowborder" valign="top" width="15.870000000000001%" headers="mcps1.1.6.1.1 "><p id="p18864111506"><a name="p18864111506"></a><a name="p18864111506"></a>deleteEntries</p>
-</td>
-<td class="cellrowborder" valign="top" width="27.029999999999998%" headers="mcps1.1.6.1.2 "><p id="p13119713317"><a name="p13119713317"></a><a name="p13119713317"></a><a href="#section15495151319483">Entry</a>[]</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.85%" headers="mcps1.1.6.1.3 "><p id="p48641111301"><a name="p48641111301"></a><a name="p48641111301"></a>Yes</p>
-</td>
-<td class="cellrowborder" valign="top" width="9.67%" headers="mcps1.1.6.1.4 "><p id="p1864617019"><a name="p1864617019"></a><a name="p1864617019"></a>Yes</p>
-</td>
-<td class="cellrowborder" valign="top" width="39.58%" headers="mcps1.1.6.1.5 "><p id="p2864414014"><a name="p2864414014"></a><a name="p2864414014"></a>Data deleted.</p>
-</td>
-</tr>
-<tr id="row79531857013"><td class="cellrowborder" valign="top" width="15.870000000000001%" headers="mcps1.1.6.1.1 "><p id="p0953151013"><a name="p0953151013"></a><a name="p0953151013"></a>deviceId</p>
-</td>
-<td class="cellrowborder" valign="top" width="27.029999999999998%" headers="mcps1.1.6.1.2 "><p id="p1953451208"><a name="p1953451208"></a><a name="p1953451208"></a>string</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.85%" headers="mcps1.1.6.1.3 "><p id="p169541959012"><a name="p169541959012"></a><a name="p169541959012"></a>Yes</p>
-</td>
-<td class="cellrowborder" valign="top" width="9.67%" headers="mcps1.1.6.1.4 "><p id="p295485903"><a name="p295485903"></a><a name="p295485903"></a>Yes</p>
-</td>
-<td class="cellrowborder" valign="top" width="39.58%" headers="mcps1.1.6.1.5 "><p id="p109541451017"><a name="p109541451017"></a><a name="p109541451017"></a>UUID of the device.</p>
-</td>
-</tr>
-</tbody>
-</table>
+| Name| Type|Readable|Writable| Description|
+| ----- | -------   | -----| ------|------------------------ |
+| insertEntries | [Entry](#entry)[]   | Yes|  Yes|Data inserted.|
+| updateEntries | [Entry](#entry)[]   | Yes|  Yes|Data updated.|
+| deleteEntries | [Entry](#entry)[]   | Yes|  Yes|Data deleted.|
+| deviceId | string   | Yes|  Yes|UUID of the device.|
 
-## Entry<a name="section15495151319483"></a>
+## Entry
 
-Defines the key-value pairs stored in the database.
+Defines the KV pairs stored in the database.
 
-<a name="table1678101205113"></a>
-<table><thead align="left"><tr id="row11678161175117"><th class="cellrowborder" valign="top" width="15.870000000000001%" id="mcps1.1.6.1.1"><p id="p106785111512"><a name="p106785111512"></a><a name="p106785111512"></a>Name</p>
-</th>
-<th class="cellrowborder" valign="top" width="27.029999999999998%" id="mcps1.1.6.1.2"><p id="p1567817115512"><a name="p1567817115512"></a><a name="p1567817115512"></a>Type</p>
-</th>
-<th class="cellrowborder" valign="top" width="7.85%" id="mcps1.1.6.1.3"><p id="p1678101125110"><a name="p1678101125110"></a><a name="p1678101125110"></a>Readable</p>
-</th>
-<th class="cellrowborder" valign="top" width="9.67%" id="mcps1.1.6.1.4"><p id="p1767831195117"><a name="p1767831195117"></a><a name="p1767831195117"></a>Writable</p>
-</th>
-<th class="cellrowborder" valign="top" width="39.58%" id="mcps1.1.6.1.5"><p id="p196786118515"><a name="p196786118515"></a><a name="p196786118515"></a>Description</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row1667919113510"><td class="cellrowborder" valign="top" width="15.870000000000001%" headers="mcps1.1.6.1.1 "><p id="p1632904315112"><a name="p1632904315112"></a><a name="p1632904315112"></a>key</p>
-</td>
-<td class="cellrowborder" valign="top" width="27.029999999999998%" headers="mcps1.1.6.1.2 "><p id="p7679111185111"><a name="p7679111185111"></a><a name="p7679111185111"></a>string</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.85%" headers="mcps1.1.6.1.3 "><p id="p136792135115"><a name="p136792135115"></a><a name="p136792135115"></a>Yes</p>
-</td>
-<td class="cellrowborder" valign="top" width="9.67%" headers="mcps1.1.6.1.4 "><p id="p186799120516"><a name="p186799120516"></a><a name="p186799120516"></a>Yes</p>
-</td>
-<td class="cellrowborder" valign="top" width="39.58%" headers="mcps1.1.6.1.5 "><p id="p26792013514"><a name="p26792013514"></a><a name="p26792013514"></a>Key of the key-value pair stored in the database.</p>
-</td>
-</tr>
-<tr id="row267931185113"><td class="cellrowborder" valign="top" width="15.870000000000001%" headers="mcps1.1.6.1.1 "><p id="p867951145114"><a name="p867951145114"></a><a name="p867951145114"></a>value</p>
-</td>
-<td class="cellrowborder" valign="top" width="27.029999999999998%" headers="mcps1.1.6.1.2 "><p id="p86791318519"><a name="p86791318519"></a><a name="p86791318519"></a><a href="#section12882825611">Value</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="7.85%" headers="mcps1.1.6.1.3 "><p id="p14679181175114"><a name="p14679181175114"></a><a name="p14679181175114"></a>Yes</p>
-</td>
-<td class="cellrowborder" valign="top" width="9.67%" headers="mcps1.1.6.1.4 "><p id="p16797195110"><a name="p16797195110"></a><a name="p16797195110"></a>Yes</p>
-</td>
-<td class="cellrowborder" valign="top" width="39.58%" headers="mcps1.1.6.1.5 "><p id="p166791011516"><a name="p166791011516"></a><a name="p166791011516"></a>Value of the key-value pair stored in the database.</p>
-</td>
-</tr>
-</tbody>
-</table>
+| Name| Type|Readable|Writable| Description|
+| ----- | -------   | -----| ------|------------------------ |
+| key | string   | Yes|  Yes|Key of the KV pair stored in the database.|
+| value | [Value](#value) | Yes|  Yes|Value of the KV pair stored in the database.|
 
-## Value<a name="section1351132114819"></a>
 
-Defines the value in a key-value pair.
+## Value
 
-<a name="table1459620431636"></a>
-<table><thead align="left"><tr id="row25971143435"><th class="cellrowborder" valign="top" width="15.870000000000003%" id="mcps1.1.6.1.1"><p id="p1559716434320"><a name="p1559716434320"></a><a name="p1559716434320"></a>Name</p>
-</th>
-<th class="cellrowborder" valign="top" width="27.030000000000005%" id="mcps1.1.6.1.2"><p id="p3597743539"><a name="p3597743539"></a><a name="p3597743539"></a>Type</p>
-</th>
-<th class="cellrowborder" valign="top" width="7.850000000000001%" id="mcps1.1.6.1.3"><p id="p15971343131"><a name="p15971343131"></a><a name="p15971343131"></a>Readable</p>
-</th>
-<th class="cellrowborder" valign="top" width="5.98%" id="mcps1.1.6.1.4"><p id="p1459715436311"><a name="p1459715436311"></a><a name="p1459715436311"></a>Writable</p>
-</th>
-<th class="cellrowborder" valign="top" width="43.27%" id="mcps1.1.6.1.5"><p id="p75975439316"><a name="p75975439316"></a><a name="p75975439316"></a>Description</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row95971943839"><td class="cellrowborder" valign="top" width="15.870000000000003%" headers="mcps1.1.6.1.1 "><p id="p85976431431"><a name="p85976431431"></a><a name="p85976431431"></a>type</p>
-</td>
-<td class="cellrowborder" valign="top" width="27.030000000000005%" headers="mcps1.1.6.1.2 "><p id="p1670245834819"><a name="p1670245834819"></a><a name="p1670245834819"></a><a href="#section1327437134818">ValueType</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="7.850000000000001%" headers="mcps1.1.6.1.3 "><p id="p1059711439317"><a name="p1059711439317"></a><a name="p1059711439317"></a>Yes</p>
-</td>
-<td class="cellrowborder" valign="top" width="5.98%" headers="mcps1.1.6.1.4 "><p id="p659715430317"><a name="p659715430317"></a><a name="p659715430317"></a>Yes</p>
-</td>
-<td class="cellrowborder" valign="top" width="43.27%" headers="mcps1.1.6.1.5 "><p id="p2059719436313"><a name="p2059719436313"></a><a name="p2059719436313"></a>Type of the value.</p>
-</td>
-</tr>
-<tr id="row185973435316"><td class="cellrowborder" valign="top" width="15.870000000000003%" headers="mcps1.1.6.1.1 "><p id="p1559710432310"><a name="p1559710432310"></a><a name="p1559710432310"></a>value</p>
-</td>
-<td class="cellrowborder" valign="top" width="27.030000000000005%" headers="mcps1.1.6.1.2 "><p id="p16597144318312"><a name="p16597144318312"></a><a name="p16597144318312"></a>Uint8Array | string | number | boolean</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.850000000000001%" headers="mcps1.1.6.1.3 "><p id="p12597194313317"><a name="p12597194313317"></a><a name="p12597194313317"></a>Yes</p>
-</td>
-<td class="cellrowborder" valign="top" width="5.98%" headers="mcps1.1.6.1.4 "><p id="p1259710431236"><a name="p1259710431236"></a><a name="p1259710431236"></a>Yes</p>
-</td>
-<td class="cellrowborder" valign="top" width="43.27%" headers="mcps1.1.6.1.5 "><p id="p10597843034"><a name="p10597843034"></a><a name="p10597843034"></a>Specific value. A value of the <strong id="b10610181614444"><a name="b10610181614444"></a><a name="b10610181614444"></a>Uint8Array</strong> or <strong id="b1361661614414"><a name="b1361661614414"></a><a name="b1361661614414"></a>string</strong> type cannot exceed <a href="#p9253605466"><strong id="b8616101634415"><a name="b8616101634415"></a><a name="b8616101634415"></a>MAX_VALUE_LENGTH</strong></a>.</p>
-</td>
-</tr>
-</tbody>
-</table>
+Defines the value in a KV pair.
 
-## ValueType<a name="section1327437134818"></a>
+| Name| Type|Readable|Writable| Description|
+| ----- | -------   | -----| ------|------------------------ |
+| type | [ValueType](#value)   | Yes|  Yes|Type of the value.|
+| value | Uint8Array / string / number / boolean| Yes|  Yes|Specific value.|
 
-Defines the types of the value in a key-value pair.
+## ValueType
+
+Defines the types of the value in a KV pair.
 
 It can be used only by internal applications.
 
-<a name="table1923665410559"></a>
-<table><thead align="left"><tr id="row2236185411552"><th class="cellrowborder" valign="top" width="27.900000000000002%" id="mcps1.1.4.1.1"><p id="p1723755417554"><a name="p1723755417554"></a><a name="p1723755417554"></a>Name</p>
-</th>
-<th class="cellrowborder" valign="top" width="12.43%" id="mcps1.1.4.1.2"><p id="p1523745410556"><a name="p1523745410556"></a><a name="p1523745410556"></a>Default Value</p>
-</th>
-<th class="cellrowborder" valign="top" width="59.67%" id="mcps1.1.4.1.3"><p id="p10237454125510"><a name="p10237454125510"></a><a name="p10237454125510"></a>Description</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row13237165420553"><td class="cellrowborder" valign="top" width="27.900000000000002%" headers="mcps1.1.4.1.1 "><p id="p623715475519"><a name="p623715475519"></a><a name="p623715475519"></a>STRING</p>
-</td>
-<td class="cellrowborder" valign="top" width="12.43%" headers="mcps1.1.4.1.2 "><p id="p12237125410557"><a name="p12237125410557"></a><a name="p12237125410557"></a>0</p>
-</td>
-<td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p3237175419556"><a name="p3237175419556"></a><a name="p3237175419556"></a>String.</p>
-</td>
-</tr>
-<tr id="row16237185419559"><td class="cellrowborder" valign="top" width="27.900000000000002%" headers="mcps1.1.4.1.1 "><p id="p202378547551"><a name="p202378547551"></a><a name="p202378547551"></a>INTEGER</p>
-</td>
-<td class="cellrowborder" valign="top" width="12.43%" headers="mcps1.1.4.1.2 "><p id="p11238175416559"><a name="p11238175416559"></a><a name="p11238175416559"></a>1</p>
-</td>
-<td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p2023820548551"><a name="p2023820548551"></a><a name="p2023820548551"></a>Integer.</p>
-</td>
-</tr>
-<tr id="row1123865425514"><td class="cellrowborder" valign="top" width="27.900000000000002%" headers="mcps1.1.4.1.1 "><p id="p122381554145510"><a name="p122381554145510"></a><a name="p122381554145510"></a>FLOAT</p>
-</td>
-<td class="cellrowborder" valign="top" width="12.43%" headers="mcps1.1.4.1.2 "><p id="p923819542558"><a name="p923819542558"></a><a name="p923819542558"></a>2</p>
-</td>
-<td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p17238454105516"><a name="p17238454105516"></a><a name="p17238454105516"></a>Float (single-precision floating point).</p>
-</td>
-</tr>
-<tr id="row068212344590"><td class="cellrowborder" valign="top" width="27.900000000000002%" headers="mcps1.1.4.1.1 "><p id="p66831534145911"><a name="p66831534145911"></a><a name="p66831534145911"></a>BYTE_ARRAY</p>
-</td>
-<td class="cellrowborder" valign="top" width="12.43%" headers="mcps1.1.4.1.2 "><p id="p1768343455917"><a name="p1768343455917"></a><a name="p1768343455917"></a>3</p>
-</td>
-<td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p1684173416596"><a name="p1684173416596"></a><a name="p1684173416596"></a>Byte array.</p>
-</td>
-</tr>
-<tr id="row28813815919"><td class="cellrowborder" valign="top" width="27.900000000000002%" headers="mcps1.1.4.1.1 "><p id="p1389123814598"><a name="p1389123814598"></a><a name="p1389123814598"></a>BOOLEAN</p>
-</td>
-<td class="cellrowborder" valign="top" width="12.43%" headers="mcps1.1.4.1.2 "><p id="p1089338195918"><a name="p1089338195918"></a><a name="p1089338195918"></a>4</p>
-</td>
-<td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p589538175910"><a name="p589538175910"></a><a name="p589538175910"></a>Boolean.</p>
-</td>
-</tr>
-<tr id="row59211240145919"><td class="cellrowborder" valign="top" width="27.900000000000002%" headers="mcps1.1.4.1.1 "><p id="p1921114013599"><a name="p1921114013599"></a><a name="p1921114013599"></a>DOUBLE</p>
-</td>
-<td class="cellrowborder" valign="top" width="12.43%" headers="mcps1.1.4.1.2 "><p id="p1921124018594"><a name="p1921124018594"></a><a name="p1921124018594"></a>5</p>
-</td>
-<td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p4921174085915"><a name="p4921174085915"></a><a name="p4921174085915"></a>Double (double-precision floating point).</p>
-</td>
-</tr>
-</tbody>
-</table>
+| Name| Default Value| Description|
+| -----  | ------   | ----------------------- |
+| STRING  |0 |String.|
+| INTEGER |1 |Integer.|
+| FLOAT   |2 |Float (single-precision floating point).|
+| BYTE_ARRAY   |3 |Byte array.|
+| BOOLEAN   |4 |Boolean.|
+| DOUBLE   |5 |Double (double-precision floating point).|
 
-## SingleKVStore<a name="section87965384295"></a>
+## SingleKVStore
 
-Provides methods to query and synchronize data in a single KV store. This class inherits from  **KVStore**. Before calling any method in  **SingleKVStore**, you must use  **getKVStore**  to create a  **KVStore**  object.
+Provides methods to query and synchronize data in a single KV store. This class inherits from **KVStore**. Before calling any method in **SingleKVStore**, you must use **getKVStore** to create a **SingleKVStore** object.
 
-### get<a name="section107972383294"></a>
+### get
 
-get\(key: string, callback: AsyncCallback<Uint8Array | string | boolean | number\>\): void
+get(key: string, callback: AsyncCallback&lt;Uint8Array | string | boolean | number&gt;): void
 
 Obtains the value of a specified key. This method uses an asynchronous callback to return the result.
 
 -   Parameters
 
-    <a name="table127971038192914"></a>
-    <table><thead align="left"><tr id="row1979813832919"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p197982388292"><a name="p197982388292"></a><a name="p197982388292"></a>Name</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="17.44%" id="mcps1.1.5.1.2"><p id="p147988381296"><a name="p147988381296"></a><a name="p147988381296"></a>Type</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="6.4799999999999995%" id="mcps1.1.5.1.3"><p id="p8798193818295"><a name="p8798193818295"></a><a name="p8798193818295"></a>Mandatory</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="61.260000000000005%" id="mcps1.1.5.1.4"><p id="p1579853822920"><a name="p1579853822920"></a><a name="p1579853822920"></a>Description</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row37981380296"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p12798183818294"><a name="p12798183818294"></a><a name="p12798183818294"></a>key</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="17.44%" headers="mcps1.1.5.1.2 "><p id="p1879813386295"><a name="p1879813386295"></a><a name="p1879813386295"></a>string</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="6.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p37994380299"><a name="p37994380299"></a><a name="p37994380299"></a>Yes</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1879913882919"><a name="p1879913882919"></a><a name="p1879913882919"></a>Key of the value to obtain. It cannot be empty, and the length cannot exceed <a href="#p10198639174218"><strong id="b14461311527"><a name="b14461311527"></a><a name="b14461311527"></a>MAX_KEY_LENGTH</strong></a>.</p>
-    </td>
-    </tr>
-    <tr id="row78002038172916"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1080073812920"><a name="p1080073812920"></a><a name="p1080073812920"></a>callback</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="17.44%" headers="mcps1.1.5.1.2 "><p id="p380043819290"><a name="p380043819290"></a><a name="p380043819290"></a>AsyncCallback&lt;Uint8Array | string | boolean | number&gt;</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="6.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p280093882916"><a name="p280093882916"></a><a name="p280093882916"></a>Yes</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1280033815294"><a name="p1280033815294"></a><a name="p1280033815294"></a>Callback invoked to return the value obtained. </p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+| Name| Type| Mandatory| Description|
+| -----  | ------  | ----  | ----------------------- |
+| key    |string   | Yes|Key of the value to obtain. It cannot be empty, and the length cannot exceed [MAX\_KEY\_LENGTH](#constants).|
+| callback  |AsyncCallback&lt;Uint8Array / string / boolean / number&gt;) | Yes|Callback invoked to return the value obtained.|
 
 -   Example
 
     ```
+    let kvStore;
     const KEY_TEST_STRING_ELEMENT = 'key_test_string';
     const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
     try {
@@ -1323,58 +2810,30 @@ Obtains the value of a specified key. This method uses an asynchronous callback 
     ```
 
 
-### get<a name="section1326485818382"></a>
+### get
 
-get\(key: string\): Promise<Uint8Array | string | boolean | number\>
+get(key: string): Promise&lt;Uint8Array | string | boolean | number&gt;
 
 Obtains the value of a specified key. This method uses a promise to return the result.
 
 -   Parameters
 
-    <a name="table5264458143812"></a>
-    <table><thead align="left"><tr id="row1226518580386"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p8265155813820"><a name="p8265155813820"></a><a name="p8265155813820"></a>Name</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="17.44%" id="mcps1.1.5.1.2"><p id="p1926655893820"><a name="p1926655893820"></a><a name="p1926655893820"></a>Type</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="6.4799999999999995%" id="mcps1.1.5.1.3"><p id="p162661758193810"><a name="p162661758193810"></a><a name="p162661758193810"></a>Mandatory</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="61.260000000000005%" id="mcps1.1.5.1.4"><p id="p19266155815388"><a name="p19266155815388"></a><a name="p19266155815388"></a>Description</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row1226655811388"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p6266125823812"><a name="p6266125823812"></a><a name="p6266125823812"></a>key</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="17.44%" headers="mcps1.1.5.1.2 "><p id="p1526605883820"><a name="p1526605883820"></a><a name="p1526605883820"></a>string</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="6.4799999999999995%" headers="mcps1.1.5.1.3 "><p id="p0267105820381"><a name="p0267105820381"></a><a name="p0267105820381"></a>Yes</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="61.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p192675585380"><a name="p192675585380"></a><a name="p192675585380"></a>Key of the value to obtain. It cannot be empty, and the length cannot exceed <a href="#p10198639174218"><strong id="b14381103720519"><a name="b14381103720519"></a><a name="b14381103720519"></a>MAX_KEY_LENGTH</strong></a>.</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+| Name| Type| Mandatory| Description|
+| -----  | ------  | ----  | ----------------------- |
+| key    |string   | Yes|Key of the value to obtain. It cannot be empty, and the length cannot exceed [MAX\_KEY\_LENGTH](#constants).|
 
--   Return values
 
-    <a name="table3268158153812"></a>
-    <table><thead align="left"><tr id="row2269195833813"><th class="cellrowborder" valign="top" width="33.44%" id="mcps1.1.3.1.1"><p id="p1626945818384"><a name="p1626945818384"></a><a name="p1626945818384"></a>Type</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="66.56%" id="mcps1.1.3.1.2"><p id="p12691758123818"><a name="p12691758123818"></a><a name="p12691758123818"></a>Description</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row726916586386"><td class="cellrowborder" valign="top" width="33.44%" headers="mcps1.1.3.1.1 "><p id="p162691058173812"><a name="p162691058173812"></a><a name="p162691058173812"></a>Promise&lt;Uint8Array | string | boolean | number&gt;</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="66.56%" headers="mcps1.1.3.1.2 "><p id="p8270175814388"><a name="p8270175814388"></a><a name="p8270175814388"></a>Promise used to return the result.</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+-   Return value
+
+| Type| Description|
+| ------  | -------   |
+|Promise&lt;Uint8Array / string / boolean / number&gt; |Promise used to return the result.|
 
 
 -   Example
 
     ```
+    let kvStore;
     const KEY_TEST_STRING_ELEMENT = 'key_test_string';
     const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
     try {
@@ -1393,97 +2852,2030 @@ Obtains the value of a specified key. This method uses a promise to return the r
     }
     ```
 
+### getEntries<sup>8+</sup> ###
 
-### sync<a name="section619117584517"></a>
+getEntries(keyPrefix: string, callback: AsyncCallback&lt;Entry[]&gt;): void;
 
-sync\(deviceIdList: string\[\], mode: SyncMode, allowedDelayMs?: number\): void
-
-Triggers synchronization of the KV store, which is in manual synchronization mode.
+Obtains all KV pairs that match the specified key prefix. This method uses an asynchronous callback to return the result.
 
 -   Parameters
 
-    <a name="table31921253453"></a>
-    <table><thead align="left"><tr id="row1519317519458"><th class="cellrowborder" valign="top" width="17.91%" id="mcps1.1.5.1.1"><p id="p719317510452"><a name="p719317510452"></a><a name="p719317510452"></a>Name</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="11.58%" id="mcps1.1.5.1.2"><p id="p12194957458"><a name="p12194957458"></a><a name="p12194957458"></a>Type</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="7.290000000000001%" id="mcps1.1.5.1.3"><p id="p46421923185813"><a name="p46421923185813"></a><a name="p46421923185813"></a>Mandatory</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="63.22%" id="mcps1.1.5.1.4"><p id="p101944512459"><a name="p101944512459"></a><a name="p101944512459"></a>Description</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row1519413534519"><td class="cellrowborder" valign="top" width="17.91%" headers="mcps1.1.5.1.1 "><p id="p176426239586"><a name="p176426239586"></a><a name="p176426239586"></a>deviceIdList</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="11.58%" headers="mcps1.1.5.1.2 "><p id="p11642192345813"><a name="p11642192345813"></a><a name="p11642192345813"></a>string[]</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="7.290000000000001%" headers="mcps1.1.5.1.3 "><p id="p196428238584"><a name="p196428238584"></a><a name="p196428238584"></a>Yes</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="63.22%" headers="mcps1.1.5.1.4 "><p id="p1619614544513"><a name="p1619614544513"></a><a name="p1619614544513"></a>List of IDs of the devices in the same networking environment to be synchronized.</p>
-    </td>
-    </tr>
-    <tr id="row15290171774817"><td class="cellrowborder" valign="top" width="17.91%" headers="mcps1.1.5.1.1 "><p id="p52919178483"><a name="p52919178483"></a><a name="p52919178483"></a>mode</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="11.58%" headers="mcps1.1.5.1.2 "><p id="p0291617134819"><a name="p0291617134819"></a><a name="p0291617134819"></a><a href="#section1226994713484">SyncMode</a></p>
-    </td>
-    <td class="cellrowborder" valign="top" width="7.290000000000001%" headers="mcps1.1.5.1.3 "><p id="p1829171719482"><a name="p1829171719482"></a><a name="p1829171719482"></a>Yes</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="63.22%" headers="mcps1.1.5.1.4 "><p id="p219412514334"><a name="p219412514334"></a><a name="p219412514334"></a>Synchronization mode.</p>
-    </td>
-    </tr>
-    <tr id="row7797191217527"><td class="cellrowborder" valign="top" width="17.91%" headers="mcps1.1.5.1.1 "><p id="p11797512195211"><a name="p11797512195211"></a><a name="p11797512195211"></a>allowedDelayMs</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="11.58%" headers="mcps1.1.5.1.2 "><p id="p15797181210529"><a name="p15797181210529"></a><a name="p15797181210529"></a>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="7.290000000000001%" headers="mcps1.1.5.1.3 "><p id="p10797712145215"><a name="p10797712145215"></a><a name="p10797712145215"></a>No</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="63.22%" headers="mcps1.1.5.1.4 "><p id="p20797912145218"><a name="p20797912145218"></a><a name="p20797912145218"></a>Allowed delay time, in ms.</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+| Name| Type| Mandatory| Description|
+| -----  | ------  | ----  | ----------------------- |
+| keyPrefix    |string   | Yes|Key prefix to match.|
+| callback    |AsyncCallback&lt;Entry[]&gt;   | Yes|Callback used to return the KV pairs obtained.|
 
 -   Example
 
     ```
-    kvStore.sync(deviceIds, 1, 1000);
+    let kvStore;
+    try {
+        let entries = [];
+        for (var i = 0; i < 10; i++) {
+            var key = 'batch_test_number_key';
+            var entry = {
+                key : key + i,
+                value : {
+                    type : distributedData.ValueType.INTEGER,
+                    value : 222
+                }
+            }
+            entries.push(entry);
+        }
+        kvStore.putBatch(entries, async function (err,data) {
+            console.log('putBatch success');
+            await kvStore.getEntries('batch_test_number_key', function (err,entrys) {
+                console.log('getEntries success');
+                console.log('entrys.length: ' + entrys.length);
+                console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
+            });
+        });
+    }catch(e) {
+        console.log('PutBatch e ' + e);
+    }
     ```
 
 
-## SyncMode<a name="section1226994713484"></a>
+### getEntries<sup>8+</sup> ###
+
+getEntries(keyPrefix: string): Promise&lt;Entry[]&gt;;
+
+Obtains all KV pairs that match the specified key prefix. This method uses a promise to return the result.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------  | ----  | ----------------------- |
+| keyPrefix    |string   | Yes|Key prefix to match.|
+
+-   Return value
+
+| Type| Description|
+| ------  | -------   |
+|Promise&lt;[Entry](#entry)[]&gt; |Promise used to return the result.|
+
+-   Example
+
+    ```
+    let kvStore;
+    try {
+        let entries = [];
+        for (var i = 0; i < 10; i++) {
+            var key = 'batch_test_string_key';
+            var entry = {
+                key : key + i,
+                value : {
+                    type : distributedData.ValueType.STRING,
+                    value : 'batch_test_string_value'
+                }
+            }
+            entries.push(entry);
+        }
+        console.log('entries: ' + entries);
+        kvStore.putBatch(entries).then(async (err) => {
+            console.log('putBatch success');
+            await kvStore.getEntries('batch_test_string_key').then((entrys) => {
+                console.log('getEntries success');
+                console.log('entrys.length: ' + entrys.length);
+                console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
+                console.log('entrys[0].value: ' + JSON.stringify(entrys[0].value));
+                console.log('entrys[0].value.value: ' + entrys[0].value.value);
+            }).catch((err) => {
+                console.log('getEntries fail ' + JSON.stringify(err));
+            });
+        }).catch((err) => {
+            console.log('putBatch fail ' + JSON.stringify(err));
+        });
+    }catch(e) {
+        console.log('PutBatch e ' + e);
+    }
+    ```
+
+
+### getEntries<sup>8+</sup> ###
+
+getEntries(query: Query, callback: AsyncCallback&lt;Entry[]&gt;): void;
+
+Obtains the KV pairs matching the specified **Query** object. This method uses an asynchronous callback to return the result.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------  | ----  | ----------------------- |
+| query  |[Query](#querysup8sup)   | Yes|**Query** object to match.|
+| callback  |AsyncCallback&lt;Entry[]&gt;   | Yes|Callback used to return the KV pairs obtained.|
+
+-   Example
+
+    ```
+    let kvStore;
+    try {
+        var arr = new Uint8Array([21,31]);
+        let entries = [];
+        for (var i = 0; i < 10; i++) {
+            var key = 'batch_test_bool_key';
+            var entry = {
+                key : key + i,
+                value : {
+                    type : distributedData.ValueType.BYTE_ARRAY,
+                    value : arr
+                }
+            }
+            entries.push(entry);
+        }
+        console.log('entries: ' + JSON.stringify(entries));
+        kvStore.putBatch(entries, async function (err,data) {
+            console.log('putBatch success');
+            const query = new distributedData.Query();
+            query.prefixKey("batch_test");
+            await kvStore.getEntries(query, function (err,entrys) {
+                console.log('getEntries success');
+                console.log('entrys.length: ' + entrys.length);
+                console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
+            });
+        });
+        console.log('GetEntries success');
+    }catch(e) {
+        console.log('GetEntries e ' + e);
+    }
+    ```
+
+
+### getEntries<sup>8+</sup> ###
+
+getEntries(query: Query): Promise&lt;Entry[]&gt;;
+
+Obtains the KV pairs matching the specified **Query** object. This method uses a promise to return the result.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------  | ----  | ----------------------- |
+| query  |[Query](#querysup8sup)   | Yes|**Query** object to match.|
+
+-   Return value
+
+| Type| Description|
+| ------  | -------   |
+|Promise&lt;[Entry](#entry)[]&gt; |Promise used to return the result.|
+
+-   Example
+
+    ```
+    try {
+        var arr = new Uint8Array([21,31]);
+        let entries = [];
+        for (var i = 0; i < 10; i++) {
+            var key = 'batch_test_bool_key';
+            var entry = {
+                key : key + i,
+                value : {
+                    type : distributedData.ValueType.BYTE_ARRAY,
+                    value : arr
+                }
+            }
+            entries.push(entry);
+        }
+        console.log('entries: ' + JSON.stringify(entries));
+        kvStore.putBatch(entries).then(async (err) => {
+            console.log('putBatch success');
+            const query = new distributedData.Query();
+            query.prefixKey("batch_test");
+            await kvStore.getEntries(query).then((entrys) => {
+                console.log('getEntries success');
+            }).catch((err) => {
+                console.log('getEntries fail ' + JSON.stringify(err));
+            });
+        }).catch((err) => {
+            console.log('GetEntries putBatch fail ' + JSON.stringify(err))
+        });
+        console.log('GetEntries success');
+    }catch(e) {
+        console.log('GetEntries e ' + e);
+    }
+    ```
+
+
+### getResultSet<sup>8+</sup> ###
+
+getResultSet(keyPrefix: string, callback: AsyncCallback&lt;KvStoreResultSet&gt;): void;
+
+Obtains the result set with the specified prefix from the single KV store. This method uses an asynchronous callback to return the result.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------  | ----  | ----------------------- |
+| keyPrefix  |string   | Yes|Key prefix to match.|
+| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultsetsup8sup)&gt;   | Yes|Callback used to return the result set obtained.|
+
+-   Example
+
+    ```
+    let kvStore;
+    try {
+        let resultSet;
+        let entries = [];
+        for (var i = 0; i < 10; i++) {
+            var key = 'batch_test_string_key';
+            var entry = {
+                key : key + i,
+                value : {
+                    type : distributedData.ValueType.STRING,
+                    value : 'batch_test_string_value'
+                }
+            }
+            entries.push(entry);
+        }
+        kvStore.putBatch(entries, async function (err, data) {
+            console.log('GetResultSet putBatch success');
+            await kvStore.getResultSet('batch_test_string_key', async function (err, result) {
+                console.log('GetResultSet getResultSet success');
+                resultSet = result;
+                kvStore.closeResultSet(resultSet, function (err, data) {
+                    console.log('GetResultSet closeResultSet success');
+                })
+            });
+        });
+    }catch(e) {
+        console.log('GetResultSet e ' + e);
+    }
+    ```
+
+
+### getResultSet<sup>8+</sup> ###
+
+getResultSet(keyPrefix: string): Promise&lt;KvStoreResultSet&gt;;
+
+Obtains the result set with the specified prefix from the single KV store. This method uses a promise to return the result.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------  | ----  | ----------------------- |
+| keyPrefix  |string   | Yes|Key prefix to match.|
+
+-   Return value
+
+| Type| Description|
+| ------  | -------   |
+|Promise&lt;[KvStoreResultSet](#kvstoreresultsetsup8sup)&gt; |Promise used to return the result.|
+
+-   Example
+
+    ```
+    let kvStore;
+    try {
+        let resultSet;
+        let entries = [];
+        for (var i = 0; i < 10; i++) {
+            var key = 'batch_test_string_key';
+            var entry = {
+                key : key + i,
+                value : {
+                    type : distributedData.ValueType.STRING,
+                    value : 'batch_test_string_value'
+                }
+            }
+            entries.push(entry);
+        }
+        kvStore.putBatch(entries).then(async (err) => {
+            console.log('putBatch success');
+        }).catch((err) => {
+            console.log('PutBatch putBatch fail ' + JSON.stringify(err));
+        });
+        kvStore.getResultSet('batch_test_string_key').then((result) => {
+            console.log('GetResult getResultSet success');
+            resultSet = result;
+        }).catch((err) => {
+            console.log('getResultSet fail ' + JSON.stringify(err));
+        });
+        kvStore.closeResultSet(resultSet).then((err) => {
+            console.log('GetResult closeResultSet success');
+        }).catch((err) => {
+            console.log('closeResultSet fail ' + JSON.stringify(err));
+        });
+    }catch(e) {
+        console.log('GetResult e ' + e);
+    }
+    ```
+
+
+### getResultSet<sup>8+</sup> ###
+
+getResultSet(query: Query, callback: AsyncCallback&lt;KvStoreResultSet&gt;): void;
+
+Obtains the **KvStoreResultSet** object that matches the specified **Query** object. This method uses an asynchronous callback to return the result.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------   | ----  | ----------------------- |
+| query  |Query    | Yes|**Query** object.|
+| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultsetsup8sup)&gt;   | Yes|Callback used to return the **KvStoreResultSet** object obtained.|
+
+-   Example
+
+    ```
+    let kvStore;
+    try {
+        let resultSet;
+        let entries = [];
+        for (var i = 0; i < 10; i++) {
+            var key = 'batch_test_string_key';
+            var entry = {
+                key : key + i,
+                value : {
+                    type : distributedData.ValueType.STRING,
+                    value : 'batch_test_string_value'
+                }
+            }
+            entries.push(entry);
+        }
+        kvStore.putBatch(entries, async function (err, data) {
+            console.log('putBatch success');
+            const query = new distributedData.Query();
+            query.prefixKey("batch_test");
+            await kvStore.getResultSet(query, async function (err, result) {
+                console.log('getResultSet success');
+                resultSet = result;
+            });
+        });
+    } catch(e) {
+        console.log('GetResultSet e ' + e);
+    }
+    ```
+
+
+### getResultSet<sup>8+</sup> ###
+
+getResultSet(query: Query): Promise&lt;KvStoreResultSet&gt;;
+
+Obtains the **KvStoreResultSet** object that matches the specified **Query** object. This method uses a promise to return the result.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------   | ----  | ----------------------- |
+| query  |[Query](#querysup8sup)    | Yes|**Query** object.|
+
+-   Return value
+
+| Type| Description|
+| ------  | -------   |
+|Promise&lt;[KvStoreResultSet](#kvstoreresultsetsup8sup)&gt; |Promise used to return the result.|
+
+-   Example
+
+    ```
+    let kvStore;
+    try {
+        let resultSet;
+        let entries = [];
+        for (var i = 0; i < 10; i++) {
+            var key = 'batch_test_string_key';
+            var entry = {
+                key : key + i,
+                value : {
+                    type : distributedData.ValueType.STRING,
+                    value : 'batch_test_string_value'
+                }
+            }
+            entries.push(entry);
+        }
+        kvStore.putBatch(entries).then(async (err) => {
+            console.log('putBatch success');
+        }).catch((err) => {
+            console.log('putBatch fail ' + JSON.stringify(err));
+        });
+        const query = new distributedData.Query();
+        query.prefixKey("batch_test");
+        kvStore.getResultSet(query).then((result) => {
+            console.log(' getResultSet success');
+            resultSet = result;
+        }).catch((err) => {
+            console.log('getResultSet fail ' + JSON.stringify(err));
+        });
+    }catch(e) {
+        console.log('GetResultSet e ' + e);
+    }
+    ```
+
+### closeResultSet<sup>8+</sup> ###
+
+closeResultSet(resultSet: KvStoreResultSet, callback: AsyncCallback&lt;void&gt;): void;
+
+Closes the **KvStoreResultSet** object obtained by **getResultSet**. This method uses an asynchronous callback to return the result.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------   | ----  | ----------------------- |
+| resultSet  |[KvStoreResultSet](#kvstoreresultsetsup8sup)   | Yes|**KvStoreResultSet** object to close.|
+| callback  |AsyncCallback&lt;void&gt;   | Yes|Callback used to return the **KvStoreResultSet** object obtained by **getResultSet**.|
+
+-   Example
+
+    ```
+    let kvStore;
+    try {
+        let resultSet = null;
+        kvStore.closeResultSet(resultSet, function (err, data) {
+            if (err == undefined) {
+                console.log('closeResultSet success');
+            } else {
+                console.log('closeResultSet fail');
+            }
+        });
+    }catch(e) {
+        console.log('CloseResultSet e ' + e);
+    }
+    ```
+
+
+### closeResultSet<sup>8+</sup> ###
+
+closeResultSet(resultSet: KvStoreResultSet): Promise&lt;void&gt;;
+
+Closes the **KvStoreResultSet** object obtained by **getResultSet**. This method uses a promise to return the result.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------   | ----  | ----------------------- |
+| resultSet  |[KvStoreResultSet](#kvstoreresultsetsup8sup)   | Yes|**KvStoreResultSet** object to close.|
+
+-   Return value
+
+| Type| Description|
+| ------  | -------   |
+|Promise&lt;void&gt; |Promise used to return the result.|
+
+-   Example
+
+    ```
+    let kvStore;
+    try {
+        let resultSet = null;
+        kvStore.closeResultSet(resultSet).then(() => {
+            console.log('closeResultSet success');
+        }).catch((err) => {
+            console.log('closeResultSet fail ' + JSON.stringify(err));
+        });
+    }catch(e) {
+        console.log('CloseResultSet e ' + e);
+    }
+    ```
+
+
+### getResultSize<sup>8+</sup> ###
+
+getResultSize(query: Query, callback: AsyncCallback&lt;number&gt;): void;
+
+Obtains the number of results matching the specified **Query** object. This method uses an asynchronous callback to return the result.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------   | ----  | ----------------------- |
+| query  |[Query](#querysup8sup)   | Yes|**Query** object.|
+| callback  |AsyncCallback&lt;number&gt;   | Yes|Callback used to return the number of results obtained.|
+
+-   Example
+
+    ```
+    let kvStore;
+    try {
+        let entries = [];
+        for (var i = 0; i < 10; i++) {
+            var key = 'batch_test_string_key';
+            var entry = {
+                key : key + i,
+                value : {
+                    type : distributedData.ValueType.STRING,
+                    value : 'batch_test_string_value'
+                }
+            }
+            entries.push(entry);
+        }
+        kvStore.putBatch(entries, async function (err, data) {
+            console.log('putBatch success');
+            const query = new distributedData.Query();
+            query.prefixKey("batch_test");
+            await kvStore.getResultSize(query, async function (err, resultSize) {
+                console.log('getResultSet success');
+            });
+        });
+    } catch(e) {
+        console.log('GetResultSize e ' + e);
+    }
+    ```
+
+
+### getResultSize<sup>8+</sup> ###
+
+getResultSize(query: Query): Promise&lt;number&gt;;
+
+Obtains the number of results matching the specified **Query** object. This method uses a promise to return the result.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------   | ----  | ----------------------- |
+| query  |[Query](#querysup8sup)   | Yes|**Query** object.|
+
+-   Return value
+
+| Type| Description|
+| ------  | -------   |
+|Promise&lt;number&gt; |Promise used to return the result.|
+
+-   Example
+
+    ```
+    let kvStore;
+    try {
+        let entries = [];
+        for (var i = 0; i < 10; i++) {
+            var key = 'batch_test_string_key';
+            var entry = {
+                key : key + i,
+                value : {
+                    type : distributedData.ValueType.STRING,
+                    value : 'batch_test_string_value'
+                }
+            }
+            entries.push(entry);
+        }
+        kvStore.putBatch(entries).then(async (err) => {
+            console.log('putBatch success');
+        }).catch((err) => {
+            console.log('putBatch fail ' + JSON.stringify(err));
+        });
+        const query = new distributedData.Query();
+        query.prefixKey("batch_test");
+        kvStore.getResultSize(query).then((resultSize) => {
+            console.log('getResultSet success');
+        }).catch((err) => {
+            console.log('getResultSet fail ' + JSON.stringify(err));
+        });
+    }catch(e) {
+        console.log('GetResultSize e ' + e);
+    }
+    ```
+
+
+### removeDeviceData<sup>8+</sup> ###
+
+removeDeviceData(deviceId: string, callback: AsyncCallback&lt;void&gt;): void;
+
+Deletes data of a device. This method uses an asynchronous callback to return the result.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------   | ----  | ----------------------- |
+| deviceId  |string   | Yes|Name of the target device.|
+| callback  |AsyncCallback&lt;void&gt;   | Yes|Callback used to return the result.|
+
+-   Example
+
+    ```
+    let kvStore;
+    const KEY_TEST_STRING_ELEMENT = 'key_test_string_2';
+    const VALUE_TEST_STRING_ELEMENT = 'value-string-002';
+    try {
+        kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, async function (err,data) {
+            console.log('put success');
+            const deviceid = 'no_exist_device_id';
+            await kvStore.removeDeviceData(deviceid, async function (err,data) {
+                if (err == undefined) {
+                    console.log('removeDeviceData success');
+                } else {
+                    console.log('removeDeviceData fail');
+                    await kvStore.get(KEY_TEST_STRING_ELEMENT, async function (err,data) {
+                        console.log('RemoveDeviceData get success');
+                    });
+                }
+            });
+        });
+    }catch(e) {
+        console.log('RemoveDeviceData e ' + e);
+    }
+    ```
+
+
+### removeDeviceData<sup>8+</sup> ###
+
+removeDeviceData(deviceId: string): Promise&lt;void&gt;;
+
+Deletes data of a device. This method uses a promise to return the result.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------   | ----  | ----------------------- |
+| deviceId  |string   | Yes|Name of the target device.|
+
+-   Return value
+
+| Type| Description|
+| ------  | -------   |
+|Promise&lt;void&gt; |Promise used to return the result.|
+
+-   Example
+
+    ```
+    let kvStore;
+    const KEY_TEST_STRING_ELEMENT = 'key_test_string_2';
+    const VALUE_TEST_STRING_ELEMENT = 'value-string-001';
+    try {
+        kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT).then((err) => {
+            console.log('removeDeviceData put success');
+        }).catch((err) => {
+            console.log('put fail ' + JSON.stringify(err));
+        });
+        const deviceid = 'no_exist_device_id';
+        kvStore.removeDeviceData(deviceid).then((err) => {
+            console.log('removeDeviceData success');
+        }).catch((err) => {
+            console.log('removeDeviceData fail ' + JSON.stringify(err));
+        });
+        kvStore.get(KEY_TEST_STRING_ELEMENT).then((data) => {
+            console.log('get success data:' + data);
+        }).catch((err) => {
+            console.log('RemoveDeviceData get fail ' + JSON.stringify(err));
+        });
+    }catch(e) {
+        console.log('RemoveDeviceData e ' + e);
+    }
+    ```
+
+
+### on<sup>8+</sup> ###
+
+on(event: 'syncComplete', syncCallback: Callback<Array&lt;[string, number]&gt;): void;
+
+Subscribes to the synchronization completion events. This method uses a synchronous callback to return the result.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------   | ----  | ----------------------- |
+| event  |'syncComplete'   | Yes|Event triggered when the synchronization is complete.|
+| syncCallback  |Callback<Array&lt;[string, number]&gt;   | Yes|Callback used to return the synchronization result.|
+
+-   Example
+
+    ```
+    let kvStore;
+    const KEY_TEST_FLOAT_ELEMENT = 'key_test_float';
+    const VALUE_TEST_FLOAT_ELEMENT = 321.12;
+    try {
+        kvStore.on('syncComplete', function (data) {
+            console.log('syncComplete ' + data)
+        });
+        kvStore.put(KEY_TEST_FLOAT_ELEMENT, VALUE_TEST_FLOAT_ELEMENT).then((data) => {
+            console.log('syncComplete put success');
+        }).catch((error) => {
+            console.log('syncComplete put fail ' + error);
+        });
+    }catch(e) {
+        console.log('syncComplete put e ' + e);
+    }
+    ```
+
+
+### off<sup>8+</sup> ###
+
+off(event: 'syncComplete', syncCallback?: Callback<Array&lt;[string, number]&gt;): void;
+
+Unsubscribes from the synchronization completion events. This method uses a synchronization callback to return the result.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------   | ----  | ----------------------- |
+| event  |'syncComplete'   | Yes|Event triggered when the synchronization is complete.|
+| syncCallback  |Callback<Array&lt;[string, number]&gt;   | No|Callback used to return the synchronization result.|
+
+
+-   Example
+
+    ```
+    let kvStore;
+    try {
+        const func = function (data) {
+            console.log('syncComplete ' + data)
+        };
+        kvStore.on('syncComplete', func);
+        kvStore.off('syncComplete', func);
+    }catch(e) {
+        console.log('syncComplete e ' + e);
+    }
+    ```
+
+
+### sync
+
+sync(deviceIdList: string[], mode: SyncMode, allowedDelayMs?: number): void
+
+Manually triggers KV store synchronization synchronously.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------   | ----  | ----------------------- |
+| deviceIdList  |string[]  | Yes|IDs of the devices in the same networking environment to be synchronized.|
+| mode  |[SyncMode](#syncmode)   | Yes|Data synchronization mode.|
+| allowedDelayMs  |number   | No|Allowed delay time, in ms.|
+
+-   Example
+
+    ```
+    let kvStore;
+    kvStore.sync('deviceIds', distributedData.SyncMode.PULL_ONLY, 1000);
+    ```
+
+### setSyncParam<sup>8+</sup> ###
+
+setSyncParam(defaultAllowedDelayMs: number, callback: AsyncCallback&lt;void&gt;): void;
+
+Sets the default delay of database synchronization. This method uses an asynchronous callback to return the result.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------   | ----  | ----------------------- |
+| defaultAllowedDelayMs  |number  | Yes|Default delay allowed for database synchronization, in ms.|
+| callback  |AsyncCallback&lt;void&gt;  | Yes|Callback used to return the result.|
+
+
+-   Example
+
+    ```
+    let kvStore;
+    try {
+        const defaultAllowedDelayMs = 500;
+        kvStore.setSyncParam(defaultAllowedDelayMs, function (err,data) {
+            console.log('SetSyncParam put success');
+        });
+    }catch(e) {
+        console.log('testSingleKvStoreSetSyncParam e ' + e);
+    }
+    ```
+
+
+### setSyncParam<sup>8+</sup> ###
+
+setSyncParam(defaultAllowedDelayMs: number): Promise&lt;void&gt;;
+
+Sets the default delay of database synchronization. This method uses a promise to return the result.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------   | ----  | ----------------------- |
+| defaultAllowedDelayMs  |number  | Yes|Default delay allowed for database synchronization, in ms.|
+
+
+-   Return value
+
+| Type| Description|
+| ------  | -------   |
+|Promise&lt;void&gt; |Promise used to return the result.|
+
+-   Example
+
+    ```
+    let kvStore;
+    try {
+        const defaultAllowedDelayMs = 500;
+        kvStore.setSyncParam(defaultAllowedDelayMs).then((err) => {
+            console.log('SetSyncParam put success');
+        }).catch((err) => {
+            console.log('SetSyncParam put fail ' + JSON.stringify(err));
+        });
+    }catch(e) {
+        console.log('SetSyncParam e ' + e);
+    }
+    ```
+
+
+### getSecurityLevel<sup>8+</sup> ###
+
+getSecurityLevel(callback: AsyncCallback&lt;SecurityLevel&gt;): void;
+
+Obtains the security level of a KV store. This method uses an asynchronous callback to return the result.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------   | ----  | ----------------------- |
+| callback  |AsyncCallback&lt;[SecurityLevel](#securitylevel)&gt;  | Yes|Callback used to return the result.|
+
+-   Example
+
+    ```
+    let kvStore;
+    try {
+        kvStore.getSecurityLevel(function (err,data) {
+            console.log('getSecurityLevel success');
+        });
+    }catch(e) {
+        console.log('GetSecurityLeve e ' + e);
+    }
+    ```
+
+
+### getSecurityLevel<sup>8+</sup> ###
+
+getSecurityLevel(): Promise&lt;SecurityLevel&gt;;
+
+Obtains the security level of a KV store. This method uses a promise to return the result.
+
+-   Return value
+
+| Type| Description|
+| ------  | -------   |
+|Promise&lt;[SecurityLevel](#securitylevel)&gt; |Promise used to return the result.|
+
+
+-   Example
+
+    ```
+    let kvStore;
+    try {
+        kvStore.getSecurityLevel().then((data) => {
+            console.log(' getSecurityLevel success');
+        }).catch((err) => {
+            console.log('getSecurityLevel fail ' + JSON.stringify(err));
+        });
+    }catch(e) {
+        console.log('GetSecurityLeve e ' + e);
+    }
+    ```
+
+
+## DeviceKVStore<sup>8+</sup> ##
+
+Provides methods to manage distributed data by device in the distributed system. This class inherits from **KvStore** and provides data query and synchronization methods. Before calling any method in **DeviceKVStore**, you must use **getKVStore** to create a **DeviceKVStore** object.
+
+### get<sup>8+</sup> ###
+
+get(deviceId: string, key: string, callback: AsyncCallback&lt;boolean|string|number|Uint8Array&gt;): void;
+
+Obtains the string value that matches the specified key for a device. This method uses an asynchronous callback to return the result.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------   | ----  | ----------------------- |
+| deviceId  |string  | Yes|ID of the target device.|
+| key       |string  | Yes|Key to match.|
+| callback  |AsyncCallback&lt;boolean/string/number/Uint8Array&gt;  | Yes|Callback used to return the value obtained.|
+
+
+-   Example
+
+    ```
+    let kvStore;
+    const KEY_TEST_STRING_ELEMENT = 'key_test_string_2';
+    const VALUE_TEST_STRING_ELEMENT = 'value-string-002';
+    try{
+        kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, async function (err,data) {
+            console.log('put success');
+            kvStore.get('localDeviceId', KEY_TEST_STRING_ELEMENT, function (err,data) {
+                console.log('get success');
+            });
+        })
+    }catch(e) {
+        console.log('get e' + e);
+    }
+    ```
+
+
+### get<sup>8+</sup> ###
+
+get(deviceId: string, key: string): Promise&lt;boolean|string|number|Uint8Array&gt;;
+
+Obtains the string value that matches the specified key for a device. This method uses a promise to return the result.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------   | ----  | ----------------------- |
+| deviceId  |string  | Yes|ID of the target device.|
+| key       |string  | Yes|Key to match.|
+
+-   Return value
+
+| Type| Description|
+| ------  | -------   |
+|Promise&lt;boolean/string/number/Uint8Array&gt; |Promise used to return the result.|
+
+-   Example
+
+    ```
+    let kvStore;
+    const KEY_TEST_STRING_ELEMENT = 'key_test_string_2';
+    const VALUE_TEST_STRING_ELEMENT = 'value-string-002';
+    try {
+        kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT).then(async (data) => {
+            console.log(' put success');
+            kvStore.get('localDeviceId', KEY_TEST_STRING_ELEMENT).then((data) => {
+                console.log('get success');
+            }).catch((err) => {
+                console.log('get fail ' + JSON.stringify(err));
+            });
+        }).catch((error) => {
+            console.log('put error' + error);
+        });
+    } catch (e) {
+        console.log('Get e ' + e);
+    }
+    ```
+
+
+### getEntries<sup>8+</sup> ###
+
+getEntries(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;Entry[]&gt;): void;
+
+Obtains all KV pairs that match the specified key prefix for a device. This method uses an asynchronous callback to return the result.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------   | ----  | ----------------------- |
+| deviceId  |string  | Yes|ID of the target device.|
+| keyPrefix |string  | Yes|Key prefix to match.|
+| callback  |AsyncCallback&lt;[Entry](#entry)[]&gt;  | Yes|Callback used to return the KV pairs obtained.|
+
+-   Example
+
+    ```
+    let kvStore;
+    try {
+        let entries = [];
+        for (var i = 0; i < 10; i++) {
+            var key = 'batch_test_string_key';
+            var entry = {
+                key : key + i,
+                value : {
+                    type : distributedData.ValueType.STRING,
+                    value : 'batch_test_string_value'
+                }
+            }
+            entries.push(entry);
+        }
+        console.log('entries: ' + entries);
+        kvStore.putBatch(entries, async function (err,data) {
+            console.log('putBatch success');
+            await kvStore.getEntries('localDeviceId', 'batch_test_string_key', function (err,entrys) {
+                console.log('getEntries success');
+                console.log('entrys.length: ' + entrys.length);
+                console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
+            });
+        });
+    }catch(e) {
+        console.log('PutBatch e ' + e);
+    }
+    ```
+
+
+### getEntries<sup>8+</sup> ###
+
+getEntries(deviceId: string, keyPrefix: string): Promise&lt;Entry[]&gt;;
+
+Obtains all KV pairs that match the specified key prefix for a device. This method uses a promise to return the result.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------   | ----  | ----------------------- |
+| deviceId  |string  | Yes|ID of the target device.|
+| keyPrefix |string  | Yes|Key prefix to match.|
+
+-   Return value
+
+| Type| Description|
+| ------  | -------   |
+|Promise&lt;[Entry](#entry)[]&gt; |Promise used to return the result.|
+
+-   Example
+
+    ```
+    let kvStore;
+    try {
+        let entries = [];
+        for (var i = 0; i < 10; i++) {
+            var key = 'batch_test_string_key';
+            var entry = {
+                key : key + i,
+                value : {
+                    type : distributedData.ValueType.STRING,
+                    value : 'batch_test_string_value'
+                }
+            }
+            entries.push(entry);
+        }
+        console.log('entries: ' + entries);
+        kvStore.putBatch(entries).then(async (err) => {
+            console.log('putBatch success');
+            await kvStore.getEntries('localDeviceId', 'batch_test_string_key').then((entrys) => {
+                console.log('getEntries success');
+                console.log('entrys.length: ' + entrys.length);
+                console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
+                console.log('entrys[0].value: ' + JSON.stringify(entrys[0].value));
+                console.log('entrys[0].value.value: ' + entrys[0].value.value);
+            }).catch((err) => {
+                console.log('getEntries fail ' + JSON.stringify(err));
+            });
+        }).catch((err) => {
+            console.log('putBatch fail ' + JSON.stringify(err));
+        });
+    }catch(e) {
+        console.log('PutBatch e ' + e);
+    }
+    ```
+
+
+### getEntries<sup>8+</sup> ###
+
+getEntries(query: Query, callback: AsyncCallback&lt;Entry[]&gt;): void;
+
+Obtains the KV pairs matching the specified **Query** object. This method uses an asynchronous callback to return the result.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------   | ----  | ----------------------- |
+| query  |[Query](#querysup8sup)  | Yes|**Query** object.|
+| callback |AsyncCallback&lt;[Entry](#entry)[]&gt;  | Yes|Callback used to return the KV pairs obtained.|
+
+-   Example
+
+    ```
+    let kvStore;
+    try {
+        var arr = new Uint8Array([21,31]);
+        let entries = [];
+        for (var i = 0; i < 10; i++) {
+            var key = 'batch_test_bool_key';
+            var entry = {
+                key : key + i,
+                value : {
+                    type : distributedData.ValueType.BYTE_ARRAY,
+                    value : arr
+                }
+            }
+            entries.push(entry);
+        }
+        console.log('entries: ' + JSON.stringify(entries));
+        kvStore.putBatch(entries, async function (err,data) {
+            console.log('putBatch success');
+            expect(err == undefined).assertTrue();
+            const query = new distributedData.Query();
+            query.prefixKey("batch_test");
+            query.deviceId('localDeviceId');
+            await kvStore.getEntries(query, function (err,entrys) {
+                console.log('getEntries success');
+                console.log('entrys.length: ' + entrys.length);
+                console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
+            });
+        });
+        console.log('GetEntries success');
+    }catch(e) {
+        console.log('GetEntries e ' + e);
+    }
+    ```
+
+
+### getEntries<sup>8+</sup> ###
+
+getEntries(query: Query): Promise&lt;Entry[]&gt;;
+
+Obtains the KV pairs matching the specified **Query** object. This method uses a promise to return the result.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------   | ----  | ----------------------- |
+| query  |[Query](#querysup8sup)  | Yes|**Query** object.|
+
+-   Return value
+
+| Type| Description|
+| ------  | -------   |
+|Promise&lt;[Entry](#entry)[]&gt; |Promise used to return the result.|
+
+-   Example
+
+    ```
+    let kvStore;
+    try {
+        var arr = new Uint8Array([21,31]);
+        let entries = [];
+        for (var i = 0; i < 10; i++) {
+            var key = 'batch_test_bool_key';
+            var entry = {
+                key : key + i,
+                value : {
+                    type : distributedData.ValueType.BYTE_ARRAY,
+                    value : arr
+                }
+            }
+            entries.push(entry);
+        }
+        console.log('entries: ' + JSON.stringify(entries));
+        kvStore.putBatch(entries).then(async (err) => {
+            console.log('putBatch success');
+            const query = new distributedData.Query();
+            query.prefixKey("batch_test");
+            await kvStore.getEntries(query).then((entrys) => {
+                console.log('getEntries success');
+            }).catch((err) => {
+                console.log('getEntries fail ' + JSON.stringify(err));
+            });
+        }).catch((err) => {
+            console.log('GetEntries putBatch fail ' + JSON.stringify(err))
+        });
+        console.log('GetEntries success');
+    }catch(e) {
+        console.log('GetEntries e ' + e);
+    }
+    ```
+
+
+### getEntries<sup>8+</sup> ###
+
+getEntries(deviceId: string, query: Query, callback: AsyncCallback&lt;Entry[]&gt;): void;
+
+Obtains the KV pairs matching the specified **Query** object for a device. This method uses an asynchronous callback to return the result.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------   | ----  | ----------------------- |
+| deviceId  |string  | Yes|ID of the target device.|
+| query  |[Query](#querysup8sup)  | Yes|**Query** object.|
+| callback |AsyncCallback&lt;[Entry](#entry)[]&gt;  | Yes|Callback used to return the KV pairs obtained.|
+
+-   Example
+
+    ```
+    let kvStore;
+    try {
+        var arr = new Uint8Array([21,31]);
+        let entries = [];
+        for (var i = 0; i < 10; i++) {
+            var key = 'batch_test_bool_key';
+            var entry = {
+                key : key + i,
+                value : {
+                    type : distributedData.ValueType.BYTE_ARRAY,
+                    value : arr
+                }
+            }
+            entries.push(entry);
+        }
+        console.log('entries: ' + JSON.stringify(entries));
+        kvStore.putBatch(entries, async function (err,data) {
+            console.log('putBatch success');
+            expect(err == undefined).assertTrue();
+            var query = new distributedData.Query();
+            query.deviceId('localDeviceId');
+            query.prefixKey("batch_test");
+            await kvStore.getEntries('localDeviceId', query, function (err,entrys) {
+                console.log('getEntries success');
+                console.log('entrys.length: ' + entrys.length);
+                console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
+            })
+        });
+        console.log('GetEntries success');
+    }catch(e) {
+        console.log('GetEntries e ' + e);
+    }
+    ```
+
+
+### getEntries<sup>8+</sup> ###
+
+getEntries(deviceId: string, query: Query): Promise&lt;Entry[]&gt;;
+
+Obtains the KV pairs matching the specified **Query** object for a device. This method uses a promise to return the result.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------   | ----  | ----------------------- |
+| deviceId  |string  | Yes|ID of the target device.|
+| query  |[Query](#querysup8sup)  | Yes|**Query** object.|
+
+-   Return value
+
+| Type| Description|
+| ------  | -------   |
+|Promise&lt;[Entry](#entry)[]&gt; |Promise used to return the result.|
+
+-   Example
+
+    ```
+    let kvStore;
+    try {
+        var arr = new Uint8Array([21,31]);
+        let entries = [];
+        for (var i = 0; i < 10; i++) {
+            var key = 'batch_test_bool_key';
+            var entry = {
+                key : key + i,
+                value : {
+                    type : distributedData.ValueType.BYTE_ARRAY,
+                    value : arr
+                }
+            }
+            entries.push(entry);
+        }
+        console.log('entries: ' + JSON.stringify(entries));
+        kvStore.putBatch(entries).then(async (err) => {
+            console.log('putBatch success');
+            var query = new distributedData.Query();
+            query.deviceId('localDeviceId');
+            query.prefixKey("batch_test");
+            await kvStore.getEntries('localDeviceId', query).then((entrys) => {
+                console.log('getEntries success');
+            }).catch((err) => {
+                console.log('getEntries fail ' + JSON.stringify(err));
+            });
+        }).catch((err) => {
+            console.log('putBatch fail ' + JSON.stringify(err));
+        });
+        console.log('GetEntries success');
+    }catch(e) {
+        console.log('GetEntries e ' + e);
+    }
+    ```
+
+
+### getResultSet<sup>8+</sup> ###
+
+getResultSet(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;KvStoreResultSet&gt;): void;
+
+Obtains the **KvStoreResultSet** object that matches the specified key prefix for a device. This method uses an asynchronous callback to return the result.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------   | ----  | ----------------------- |
+| deviceId  |string  | Yes|ID of the target device.|
+| keyPrefix |string  | Yes|Key prefix to match.|
+| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultsetsup8sup)[]&gt;  | Yes|Callback used to return the **KvStoreResultSet** object obtained.|
+
+-   Example
+
+    ```
+    let kvStore;
+    try {
+        let resultSet;
+        kvStore.getResultSet('localDeviceId', 'batch_test_string_key', async function (err, result) {
+            console.log('getResultSet success');
+            resultSet = result;
+            await kvStore.closeResultSet(resultSet, function (err, data) {
+                console.log('closeResultSet success');
+            })
+        });
+    }catch(e) {
+        console.log('GetResultSet e ' + e);
+    }
+    ```
+
+
+### getResultSet<sup>8+</sup> ###
+
+getResultSet(deviceId: string, keyPrefix: string): Promise&lt;KvStoreResultSet&gt;;
+
+Obtains the **KvStoreResultSet** object that matches the specified key prefix for a device. This method uses a promise to return the result.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------   | ----  | ----------------------- |
+| deviceId  |string  | Yes|ID of the target device.|
+| keyPrefix |string  | Yes|Key prefix to match.|
+
+-   Return value
+
+| Type| Description|
+| ------  | -------   |
+|Promise&lt;[KvStoreResultSet](#kvstoreresultsetsup8sup)[]&gt; |Promise used to return the result.|
+
+-   Example
+
+    ```
+    let kvStore;
+    try {
+        let resultSet;
+        kvStore.getResultSet('localDeviceId', 'batch_test_string_key').then((result) => {
+            console.log('getResultSet success');
+            resultSet = result;
+        }).catch((err) => {
+            console.log('getResultSet fail ' + JSON.stringify(err));
+        });
+        kvStore.closeResultSet(resultSet).then((err) => {
+            console.log('closeResultSet success');
+        }).catch((err) => {
+            console.log('closeResultSet fail ' + JSON.stringify(err));
+        });
+    }catch(e) {
+        console.log('GetResultSet e ' + e);
+    }
+    ```
+
+
+### getResultSet<sup>8+</sup> ###
+
+getResultSet(query: Query, callback: AsyncCallback&lt;KvStoreResultSet&gt;): void;
+
+Obtains the **KvStoreResultSet** object that matches the specified **Query** object. This method uses an asynchronous callback to return the result.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------   | ----  | ----------------------- |
+| query  |[Query](#querysup8sup)  | Yes|**Query** object.|
+| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultsetsup8sup)[]&gt;  | Yes|Callback used to return the **KvStoreResultSet** object obtained.|
+
+-   Example
+
+    ```
+    let kvStore;
+    try {
+        let resultSet;
+        let entries = [];
+        for (var i = 0; i < 10; i++) {
+            var key = 'batch_test_string_key';
+            var entry = {
+                key : key + i,
+                value : {
+                    type : distributedData.ValueType.STRING,
+                    value : 'batch_test_string_value'
+                }
+            }
+            entries.push(entry);
+        }
+        kvStore.putBatch(entries, async function (err, data) {
+            console.log('putBatch success');
+            const query = new distributedData.Query();
+            query.prefixKey("batch_test");
+            query.deviceId('localDeviceId');
+            await kvStore.getResultSet(query, async function (err, result) {
+                console.log('getResultSet success');
+                resultSet = result;
+                await kvStore.closeResultSet(resultSet, function (err, data) {
+                    console.log('closeResultSet success');
+                })
+            });
+        });
+    } catch(e) {
+        console.log('GetResultSet e ' + e);
+    }
+    ```
+
+
+### getResultSet<sup>8+</sup> ###
+
+getResultSet(query: Query): Promise&lt;KvStoreResultSet&gt;;
+
+Obtains the **KvStoreResultSet** object that matches the specified **Query** object. This method uses a promise to return the result.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------   | ----  | ----------------------- |
+| query  |[Query](#querysup8sup)  | Yes|**Query** object.|
+
+-   Return value
+
+| Type| Description|
+| ------  | -------   |
+|Promise&lt;[KvStoreResultSet](#kvstoreresultsetsup8sup)[]&gt; |Promise used to return the result.|
+
+-   Example
+
+    ```
+    let kvStore;
+    try {
+        let resultSet;
+        let entries = [];
+        for (var i = 0; i < 10; i++) {
+            var key = 'batch_test_string_key';
+            var entry = {
+                key : key + i,
+                value : {
+                    type : distributedData.ValueType.STRING,
+                    value : 'batch_test_string_value'
+                }
+            }
+            entries.push(entry);
+        }
+        kvStore.putBatch(entries).then(async (err) => {
+            console.log('putBatch success');
+        }).catch((err) => {
+            console.log('putBatch fail ' + err);
+        });
+        const query = new distributedData.Query();
+        query.deviceId('localDeviceId');
+        query.prefixKey("batch_test");
+        console.log("GetResultSet " + query.getSqlLike());
+        kvStore.getResultSet(query).then((result) => {
+            console.log('getResultSet success');
+            resultSet = result;
+        }).catch((err) => {
+            console.log('getResultSet fail ' + JSON.stringify(err));
+        });
+        kvStore.closeResultSet(resultSet).then((err) => {
+            console.log('closeResultSet success');
+        }).catch((err) => {
+            console.log('closeResultSet fail ' + JSON.stringify(err));
+        });
+    }catch(e) {
+        console.log('GetResultSet e ' + e);
+    }
+    ```
+
+
+### getResultSet<sup>8+</sup> ###
+
+getResultSet(deviceId: string, query: Query, callback: AsyncCallback&lt;KvStoreResultSet&gt;): void;
+
+Obtains the **KvStoreResultSet** object that matches the specified **Query** object for a device. This method uses an asynchronous callback to return the result.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------   | ----  | ----------------------- |
+| deviceId  |string  | Yes|ID of the target device.|
+| query  |[Query](#querysup8sup)  | Yes|**Query** object.|
+| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultsetsup8sup)[]&gt;  | Yes|Callback used to return the **KvStoreResultSet** object obtained.|
+
+-   Example
+
+    ```
+    let kvStore;
+    try {
+        let resultSet;
+        let entries = [];
+        for (var i = 0; i < 10; i++) {
+            var key = 'batch_test_string_key';
+            var entry = {
+                key : key + i,
+                value : {
+                    type : distributedData.ValueType.STRING,
+                    value : 'batch_test_string_value'
+                }
+            }
+            entries.push(entry);
+        }
+        kvStore.putBatch(entries, async function (err, data) {
+            console.log('putBatch success');
+            const query = new distributedData.Query();
+            query.prefixKey("batch_test");
+            await kvStore.getResultSet('localDeviceId', query, async function (err, result) {
+                console.log('getResultSet success');
+                resultSet = result;
+                await kvStore.closeResultSet(resultSet, function (err, data) {
+                    console.log('closeResultSet success');
+                })
+            });
+        });
+    } catch(e) {
+        console.log('GetResultSet e ' + e);
+    }
+    ```
+
+
+### getResultSet<sup>8+</sup> ###
+
+getResultSet(deviceId: string, query: Query): Promise&lt;KvStoreResultSet&gt;;
+
+Obtains the **KvStoreResultSet** object that matches the specified **Query** object for a device. This method uses a promise to return the result.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------   | ----  | ----------------------- |
+| deviceId  |string  | Yes|ID of the target device.|
+| query  |[Query](#querysup8sup)  | Yes|**Query** object.|
+
+-   Return value
+
+| Type| Description|
+| ------  | -------   |
+|Promise&lt;[KvStoreResultSet](#kvstoreresultsetsup8sup)[]&gt; |Promise used to return the result.|
+
+-   Example
+
+    ```
+    let kvStore;
+    try {
+        let resultSet;
+        let entries = [];
+        for (var i = 0; i < 10; i++) {
+            var key = 'batch_test_string_key';
+            var entry = {
+                key : key + i,
+                value : {
+                    type : distributedData.ValueType.STRING,
+                    value : 'batch_test_string_value'
+                }
+            }
+            entries.push(entry);
+        }
+        kvStore.putBatch(entries).then(async (err) => {
+            console.log('GetResultSet putBatch success');
+        }).catch((err) => {
+            console.log('PutBatch putBatch fail ' + JSON.stringify(err));
+        });
+        const query = new distributedData.Query();
+        query.prefixKey("batch_test");
+        kvStore.getResultSet('localDeviceId', query).then((result) => {
+            console.log('GetResultSet getResultSet success');
+            resultSet = result;
+        }).catch((err) => {
+            console.log('GetResultSet getResultSet fail ' + JSON.stringify(err));
+        });
+        query.deviceId('localDeviceId');
+        console.log("GetResultSet " + query.getSqlLike());
+        kvStore.closeResultSet(resultSet).then((err) => {
+            console.log('GetResultSet closeResultSet success');
+        }).catch((err) => {
+            console.log('GetResultSet closeResultSet fail ' + JSON.stringify(err));
+        });
+    
+    }catch(e) {
+        console.log('GetResultSet e ' + e);
+    }
+    ```
+
+
+### closeResultSet<sup>8+</sup> ###
+
+closeResultSet(resultSet: KvStoreResultSet, callback: AsyncCallback&lt;void&gt;): void;
+
+Closes the **KvStoreResultSet** object obtained by **getResultSet**. This method uses an asynchronous callback to return the result.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------   | ----  | ----------------------- |
+| resultSet  |[KvStoreResultSet](#getresultsetsup8sup)  | Yes|**KvStoreResultSet** object to close.|
+| callback   |AsyncCallback&lt;void&gt;                 | Yes|Callback used to return the result.|
+
+-   Example
+
+    ```
+    let kvStore;
+    try {
+        console.log('CloseResultSet success');
+        let resultSet = null;
+        kvStore.closeResultSet(resultSet, function (err, data) {
+            if (err == undefined) {
+                console.log('closeResultSet success');
+            } else {
+                console.log('closeResultSet fail');
+            }
+        });
+    }catch(e) {
+        console.log('CloseResultSet e ' + e);
+    }
+    ```
+
+
+### closeResultSet<sup>8+</sup> ###
+
+closeResultSet(resultSet: KvStoreResultSet): Promise&lt;void&gt;;
+
+Closes the **KvStoreResultSet** object obtained by **getResultSet**. This method uses a promise to return the result.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------   | ----  | ----------------------- |
+| resultSet  |[KvStoreResultSet](#getresultsetsup8sup)  | Yes|**KvStoreResultSet** object to close.|
+
+-   Return value
+
+| Type| Description|
+| ------  | -------   |
+|Promise&lt;void&gt; |Promise used to return the result.|
+
+-   Example
+
+    ```
+    let kvStore;
+    try {
+        console.log('CloseResultSet success');
+        let resultSet = null;
+        kvStore.closeResultSet(resultSet).then(() => {
+            console.log('closeResultSet success');
+        }).catch((err) => {
+            console.log('closeResultSet fail ' + JSON.stringify(err));
+        });
+    }catch(e) {
+        console.log('CloseResultSet e ' + e);
+    }
+    ```
+
+
+### getResultSize<sup>8+</sup> ###
+
+getResultSize(query: Query, callback: AsyncCallback&lt;number&gt;): void;
+
+Obtains the number of results that matches the specified **Query** object. This method uses an asynchronous callback to return the result.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------   | ----  | ----------------------- |
+| query     |[Query](#querysup8sup)       | Yes|**Query** object.|
+| callback  |AsyncCallback&lt;number&gt;  | Yes|Callback used to return the number of results obtained.|
+
+-   Example
+
+    ```
+    let kvStore;
+    try {
+        let entries = [];
+        for (var i = 0; i < 10; i++) {
+            var key = 'batch_test_string_key';
+            var entry = {
+                key : key + i,
+                value : {
+                    type : distributedData.ValueType.STRING,
+                    value : 'batch_test_string_value'
+                }
+            }
+            entries.push(entry);
+        }
+        kvStore.putBatch(entries, async function (err, data) {
+            console.log('putBatch success');
+            const query = new distributedData.Query();
+            query.prefixKey("batch_test");
+            query.deviceId('localDeviceId');
+            await kvStore.getResultSize(query, async function (err, resultSize) {
+                console.log('getResultSet success');
+            });
+        });
+    } catch(e) {
+        console.log('GetResultSize e ' + e);
+    }
+    ```
+
+
+### getResultSize<sup>8+</sup> ###
+
+getResultSize(query: Query): Promise&lt;number&gt;;
+
+Obtains the number of results that matches the specified **Query** object. This method uses a promise to return the result.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------   | ----  | ----------------------- |
+| query     |[Query](#querysup8sup)       | Yes|**Query** object.|
+
+-   Return value
+
+| Type| Description|
+| ------  | -------   |
+|Promise&lt;number&gt; |Promise used to return the result.|
+
+-   Example
+
+    ```
+    let kvStore;
+    try {
+        let entries = [];
+        for (var i = 0; i < 10; i++) {
+            var key = 'batch_test_string_key';
+            var entry = {
+                key : key + i,
+                value : {
+                    type : distributedData.ValueType.STRING,
+                    value : 'batch_test_string_value'
+                }
+            }
+            entries.push(entry);
+        }
+        kvStore.putBatch(entries).then(async (err) => {
+            console.log('putBatch success');
+        }).catch((err) => {
+            console.log('putBatch fail ' + JSON.stringify(err));
+        });
+        const query = new distributedData.Query();
+        query.prefixKey("batch_test");
+        query.deviceId('localDeviceId');
+        kvStore.getResultSize(query).then((resultSize) => {
+            console.log('getResultSet success');
+        }).catch((err) => {
+            console.log('getResultSet fail ' + JSON.stringify(err));
+        });
+    }catch(e) {
+        console.log('GetResultSize e ' + e);
+    }
+    ```
+
+
+### getResultSize<sup>8+</sup> ###
+
+getResultSize(deviceId: string, query: Query, callback: AsyncCallback&lt;number&gt;): void;
+
+Obtains the number of results that matches the specified **Query** object for a device. This method uses an asynchronous callback to return the result.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------   | ----  | ----------------------- |
+| deviceId  |string                       | Yes|ID of the target device.|
+| query     |[Query](#querysup8sup)       | Yes|**Query** object.|
+| callback  |AsyncCallback&lt;number&gt;  | Yes|Callback used to return the number of results obtained.|
+
+-   Example
+
+    ```
+    let kvStore;
+    try {
+        let entries = [];
+        for (var i = 0; i < 10; i++) {
+            var key = 'batch_test_string_key';
+            var entry = {
+                key : key + i,
+                value : {
+                    type : distributedData.ValueType.STRING,
+                    value : 'batch_test_string_value'
+                }
+            }
+            entries.push(entry);
+        }
+        kvStore.putBatch(entries, async function (err, data) {
+            console.log('putBatch success');
+            const query = new distributedData.Query();
+            query.prefixKey("batch_test");
+            await kvStore.getResultSize('localDeviceId', query, async function (err, resultSize) {
+                console.log('getResultSet success');
+            });
+        });
+    } catch(e) {
+        console.log('GetResultSize e ' + e);
+    }
+    ```
+
+
+### getResultSize<sup>8+</sup> ###
+
+getResultSize(deviceId: string, query: Query): Promise&lt;number&gt;;
+
+Obtains the number of results that matches the specified **Query** object for a device. This method uses a promise to return the result.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------   | ----  | ----------------------- |
+| deviceId  |string                       | Yes|ID of the target device.|
+| query     |[Query](#querysup8sup)       | Yes|**Query** object.|
+
+-   Return value
+
+| Type| Description|
+| ------  | -------   |
+|Promise&lt;number&gt; |Promise used to return the result.|
+
+-   Example
+
+    ```
+    let kvStore;
+    try {
+        let entries = [];
+        for (var i = 0; i < 10; i++) {
+            var key = 'batch_test_string_key';
+            var entry = {
+                key : key + i,
+                value : {
+                    type : distributedData.ValueType.STRING,
+                    value : 'batch_test_string_value'
+                }
+            }
+            entries.push(entry);
+        }
+        kvStore.putBatch(entries).then(async (err) => {
+            console.log('putBatch success');
+        }).catch((err) => {
+            console.log('putBatch fail ' + JSON.stringify(err));
+        });
+        var query = new distributedData.Query();
+        query.prefixKey("batch_test");
+        kvStore.getResultSize('localDeviceId', query).then((resultSize) => {
+            console.log('getResultSet success');
+        }).catch((err) => {
+            console.log('getResultSet fail ' + JSON.stringify(err));
+        });
+    }catch(e) {
+        console.log('GetResultSize e ' + e);
+    }
+    ```
+
+
+### removeDeviceData<sup>8+</sup> ###
+
+removeDeviceData(deviceId: string, callback: AsyncCallback&lt;void&gt;): void;
+
+Deletes data of a device from this KV store. This method uses an asynchronous callback to return the result.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------   | ----  | ----------------------- |
+| deviceId  |string                       | Yes|ID of the target device.|
+| callback  |AsyncCallback&lt;void&gt;    | Yes|Callback used to return the result.|
+
+-   Example
+
+    ```
+    let kvStore;
+    const KEY_TEST_STRING_ELEMENT = 'key_test_string';
+    const VALUE_TEST_STRING_ELEMENT = 'value-string-001';
+    try {
+        kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, async function (err,data) {
+            console.log('RemoveDeviceData  put success');
+            const deviceid = 'no_exist_device_id';
+            await kvStore.removeDeviceData(deviceid, async function (err,data) {
+                if (err == undefined) {
+                    console.log('removeDeviceData success');
+                } else {
+                    console.log('removeDeviceData fail');
+                    await kvStore.get('localDeviceId', KEY_TEST_STRING_ELEMENT, async function (err,data) {
+                        console.log('RemoveDeviceData get success');
+                    });
+                }
+            });
+        });
+    }catch(e) {
+        console.log('RemoveDeviceData e ' + e);
+    }
+    ```
+
+
+### removeDeviceData<sup>8+</sup> ###
+
+removeDeviceData(deviceId: string): Promise&lt;void&gt;;
+
+Deletes data of a device from this KV store. This method uses a promise to return the result.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------   | ----  | ----------------------- |
+| deviceId  |string  | Yes|ID of the target device.|
+
+-   Return value
+
+| Type| Description|
+| ------  | -------   |
+|Promise&lt;void&gt; |Promise used to return the result.|
+
+-   Example
+
+    ```
+    let kvStore;
+    const KEY_TEST_STRING_ELEMENT = 'key_test_string';
+    const VALUE_TEST_STRING_ELEMENT = 'value-string-001';
+    try {
+        kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT).then((err) => {
+            console.log('RemoveDeviceData put success');
+        }).catch((err) => {
+            console.log('RemoveDeviceData put fail ' + JSON.stringify(err));
+        });
+        const deviceid = 'no_exist_device_id';
+        kvStore.removeDeviceData(deviceid).then((err) => {
+            console.log('removeDeviceData success');
+        }).catch((err) => {
+            console.log('removeDeviceData fail ' + JSON.stringify(err));
+        });
+        kvStore.get('localDeviceId', KEY_TEST_STRING_ELEMENT).then((data) => {
+            console.log('RemoveDeviceData get success data:' + data);
+        }).catch((err) => {
+            console.log('RemoveDeviceData get fail ' + JSON.stringify(err));
+        });
+    }catch(e) {
+        console.log('RemoveDeviceData e ' + e);
+    }
+    ```
+
+
+### sync<sup>8+</sup> ###
+
+sync(deviceIdList: string[], mode: SyncMode, allowedDelayMs?: number): void;
+
+Manually triggers KV store synchronization synchronously.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------   | ----  | ----------------------- |
+| deviceIdList    |string[]               | Yes|IDs of the devices to be synchronized.|
+| mode            |[SyncMode](#syncmode)  | Yes|Synchronization mode, which can be **PUSH**, **PULL**, or **PUSH_PULL**.|
+| allowedDelayMs  |number                 | No|Allowed delay time, in ms.|
+
+
+-   Example
+
+    ```
+    let kvStore;
+    const KEY_TEST_SYNC_ELEMENT = 'key_test_sync';
+    const VALUE_TEST_SYNC_ELEMENT = 'value-string-001';
+    try {
+        kvStore.on('syncComplete', function (data) {
+            console.log('Sync dataChange');
+        });
+        kvStore.put(KEY_TEST_SYNC_ELEMENT + 'testSync101', VALUE_TEST_SYNC_ELEMENT, function (err,data) {
+            console.log('Sync put success');
+            const devices = ['deviceList'];
+            const mode = distributedData.SyncMode.PULL_ONLY;
+            kvStore.sync(devices, mode);
+        });
+    }catch(e) {
+        console.log('Sync e' + e);
+    }
+    ```
+
+### on<sup>8+</sup> ###
+
+on(event: 'syncComplete', syncCallback: Callback<Arrary&lt;<[string, number]&gt;): void;
+
+Subscribes to the synchronization completion events. This method uses a synchronous callback to return the result.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------   | ----  | ----------------------- |
+| event    |'syncComplete'      | Yes|Event triggered when the synchronization is complete.|
+| syncCallback            |Callback<Arrary&lt;<[string, number]&gt; | Yes|Callback used to return the synchronization result.|
+
+-   Example
+    ```
+    const KEY_TEST_FLOAT_ELEMENT = 'key_test_float';
+    const VALUE_TEST_FLOAT_ELEMENT = 321.12;
+    try {
+        kvStore.on('syncComplete', function (data) {
+            console.log('syncComplete ' + data)
+        });
+        kvStore.put(KEY_TEST_FLOAT_ELEMENT, VALUE_TEST_FLOAT_ELEMENT).then((data) => {
+            console.log('syncComplete put success');
+        }).catch((error) => {
+            console.log('syncComplete put fail ' + error);
+        });
+    }catch(e) {
+        console.log('syncComplete put e ' + e);
+    }
+    ```
+
+
+### off<sup>8+</sup> ###
+
+off(event: 'syncComplete', syncCallback?: Callback<Array&lt;[string, number]&gt;): void;
+
+Unsubscribes from the synchronization completion events. This method uses a synchronous callback to return the result.
+
+-   Parameters
+
+| Name| Type| Mandatory| Description|
+| -----  | ------   | ----  | ----------------------- |
+| event         |'syncComplete'                           | Yes|Event triggered when the synchronization is complete.|
+| syncCallback  |Callback<Arrary&lt;<[string, number]&gt; | No|Callback used to return the synchronization result.|
+
+
+-   Example
+
+    ```
+    let kvStore;
+    try {
+        const func = function (data) {
+            console.log('syncComplete ' + data)
+        };
+        kvStore.on('syncComplete', func);
+        kvStore.off('syncComplete', func);
+    }catch(e) {
+        console.log('syncComplete e ' + e);
+    }
+    ```
+
+
+## SyncMode
 
 Defines the synchronization mode.
 
-<a name="table8354105916513"></a>
-<table><thead align="left"><tr id="row1354105910516"><th class="cellrowborder" valign="top" width="27.900000000000002%" id="mcps1.1.4.1.1"><p id="p33541759165113"><a name="p33541759165113"></a><a name="p33541759165113"></a>Name</p>
-</th>
-<th class="cellrowborder" valign="top" width="12.43%" id="mcps1.1.4.1.2"><p id="p235418596518"><a name="p235418596518"></a><a name="p235418596518"></a>Default Value</p>
-</th>
-<th class="cellrowborder" valign="top" width="59.67%" id="mcps1.1.4.1.3"><p id="p183541159105112"><a name="p183541159105112"></a><a name="p183541159105112"></a>Description</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row7354175995119"><td class="cellrowborder" valign="top" width="27.900000000000002%" headers="mcps1.1.4.1.1 "><p id="p6355155955114"><a name="p6355155955114"></a><a name="p6355155955114"></a>PULL_ONLY</p>
-</td>
-<td class="cellrowborder" valign="top" width="12.43%" headers="mcps1.1.4.1.2 "><p id="p10355195935119"><a name="p10355195935119"></a><a name="p10355195935119"></a>0</p>
-</td>
-<td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p33554599512"><a name="p33554599512"></a><a name="p33554599512"></a>Pull data from the peer end to the local end only.</p>
-</td>
-</tr>
-<tr id="row1035565965119"><td class="cellrowborder" valign="top" width="27.900000000000002%" headers="mcps1.1.4.1.1 "><p id="p193147910536"><a name="p193147910536"></a><a name="p193147910536"></a>PUSH_ONLY</p>
-</td>
-<td class="cellrowborder" valign="top" width="12.43%" headers="mcps1.1.4.1.2 "><p id="p11355185965112"><a name="p11355185965112"></a><a name="p11355185965112"></a>1</p>
-</td>
-<td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p143551959205110"><a name="p143551959205110"></a><a name="p143551959205110"></a>Push data from the local end to the peer end only.</p>
-</td>
-</tr>
-<tr id="row935516595516"><td class="cellrowborder" valign="top" width="27.900000000000002%" headers="mcps1.1.4.1.1 "><p id="p482031615539"><a name="p482031615539"></a><a name="p482031615539"></a>PUSH_PULL</p>
-</td>
-<td class="cellrowborder" valign="top" width="12.43%" headers="mcps1.1.4.1.2 "><p id="p15355145995118"><a name="p15355145995118"></a><a name="p15355145995118"></a>2</p>
-</td>
-<td class="cellrowborder" valign="top" width="59.67%" headers="mcps1.1.4.1.3 "><p id="p83561598516"><a name="p83561598516"></a><a name="p83561598516"></a>Push data from the local end to the peer end and then pull data from the peer end to the local end.</p>
-</td>
-</tr>
-</tbody>
-</table>
-
+| Name| Default Value| Description|
+| -----      | ------    | ----------------------- |
+| PULL_ONLY  |0          |Pull data from the peer end to the local end only.|
+| PUSH_ONLY  |1          |Push data from the local end to the peer end only.|
+| PUSH_PULL  |2          |Push data from the local end to the peer end and then pull data from the peer end to the local end.|
