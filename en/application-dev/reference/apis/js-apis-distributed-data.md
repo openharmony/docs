@@ -1,6 +1,7 @@
 # Distributed Data Management
 
 >![](../../public_sys-resources/icon-note.gif) **NOTE**
+>
 >The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -61,17 +62,17 @@ createKVManager(config: KVManagerConfig): Promise&lt;KVManager&gt;
 Creates a **KVManager** object to manage KV stores. This method uses a promise to return the result.
 
 -   Parameters
-  
+
 | Name| Type| Mandatory| Description|
 | ----- | ------ | ------ | ------ |
 | config |[KVManagerConfig](#kvmanager) | Yes| Configuration of the **KVManager** object, including the bundle name and user information of the caller.|
-   
+
 -   Return value
 
 | Type| Description|
 | -------- | -------- |
 | Promise&lt;[KVManager](#kvmanager)&gt; | Promise used to return the **KVManager** object created.|
-    
+
 -   Example
 
     ```
@@ -363,7 +364,7 @@ deleteKVStore(appId: string, storeId: string): Promise&lt;void&gt;;
 Deletes a KV store. This method uses a promise to return the result.
 
 -   Parameters
-  
+
 | Name| Type| Mandatory| Description|
 | -----  | ------  | ----  | ----------------------- |
 | appId  | string  | Yes| Bundle name of the app that invokes the KV store.|
@@ -450,7 +451,7 @@ Obtains the IDs of all the KV stores that are created using **getKvStore** and h
 
 
 -   Return value
-  
+
 | Type| Description|
 | ------------- | -------------- |
 | Promise&lt;string[]&gt;| Promise used to return the KV store IDs obtained.|
@@ -517,7 +518,7 @@ Unsubscribes from the **distributedDataServiceDie** events. This method uses a s
 | -----  | ------  | ----  | ----------------------- |
 | event  | 'distributedDataServiceDie'  | Yes| Type of events to unsubscribe from. |
 | deathCallback  | Callback&lt;void&gt;  | No| Callback used to return the **distributedDataServiceDie** events.|
-    
+
 
 -   Example
 
@@ -633,7 +634,7 @@ Adds a child node to this **FieldNode**.
 | Name| Type| Mandatory| Description|
 | -----  | ------  | ----  | ----------------------- |
 | child  | [FieldNode](#FieldNode)  | Yes| Child node to add.|
- 
+
 
 -   Return value
 
