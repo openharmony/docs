@@ -1,11 +1,13 @@
 媒体库管理
 ==========
-
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 该组件从API Version 6开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+ 
  导入模块
 ---------
 
 ```
-import medialibrary from '@ohos.multimedia.medialibrary';
+import mediaLibrary from '@ohos.multimedia.medialibrary';
 ```
 
 
@@ -19,7 +21,7 @@ function getMediaLibrary(context: Context): MediaLibrary;
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
-**参数：**
+**参数：** 
 
 | 参数名  | 类型    | 必填 | 说明                 |
 | ------- | ------- | ---- | -------------------- |
@@ -29,19 +31,18 @@ function getMediaLibrary(context: Context): MediaLibrary;
 
 | 类型         | 说明   |
 | ------------ | :----- |
-| MediaLibrary | 媒体库实例 |
+| mediaLibrary | 媒体库实例 |
 
 **示例：**
 
 ```
 import featureAbility from '@ohos.ability.featureAbility';
-import mediaLibrary from '@ohos.multimedia.mediaLibrary';
 
 var context = featureAbility.getContext()
-var mediaLibrary = mediaLibrary.getMediaLibrary(context);
+var media = mediaLibrary.getMediaLibrary(context);
 ```
 
-## medialibrary.getFileAssets
+## mediaLibrary.getFileAssets<sup>8+</sup>
 
 
 getFileAssets(options: MediaFetchOptions, callback: AsyncCallback&lt;FetchFileResult&gt;): void;    
@@ -68,9 +69,9 @@ let imagesfetchOp = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
 };
-medialibrary.getFileAssets(imagesfetchOp, (error, fetchFileResult) => {
+mediaLibrary.getFileAssets(imagesfetchOp, (error, fetchFileResult) => {
     if (fetchFileResult != undefined) {
-        console.info('MediaLibraryTest : ASSET_CALLBACK fetchFileResult success');
+        console.info('mediaLibraryTest : ASSET_CALLBACK fetchFileResult success');
         fetchFileResult.getAllObject((err, fileAssetList) => {
             if (fileAssetList != undefined) {
                 fileAssetList.forEach(getAllObjectInfo);
@@ -79,7 +80,7 @@ medialibrary.getFileAssets(imagesfetchOp, (error, fetchFileResult) => {
     }
 });
 ```
-## medialibrary.getFileAssets
+## mediaLibrary.getFileAssets<sup>8+</sup>
 
 getFileAssets(options: MediaFetchOptions): Promise&lt;FetchFileResult&gt;;
 
@@ -110,14 +111,14 @@ let imagesfetchOp = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
 };
-medialibrary.getFileAssets(imagesfetchOp).then(function(fetchFileResult){
+mediaLibrary.getFileAssets(imagesfetchOp).then(function(fetchFileResult){
     console.info("getFileAssets successfully:"+ JSON.stringify(dir));
 }).catch(function(err){
     console.info("getFileAssets failed with error:"+ err);
 });
 ```
 
-## medialibrary.on
+## mediaLibrary.on<sup>8+</sup>
 
 on(type: 'deviceChange'|'albumChange'|'imageChange'|'audioChange'|'videoChange'|'fileChange'|'remoteFileChange', callback: Callback&lt;void&gt;): void;
 
@@ -131,17 +132,17 @@ on(type: 'deviceChange'|'albumChange'|'imageChange'|'audioChange'|'videoChange'|
 
 | 参数名   | 类型                | 必填 | 说明                   |
 | -------- | ---------------- | ---- | ------------------- |
-| type  | type   | 是   | 媒体类型 <br/>'deviceChange'：&nbsp;注册设备变更 <br/>'albumChange'：&nbsp;相册变更<br/>'imageChange'：&nbsp;图片文件变更<br/>’audioChange‘： &nbsp;音频文件变更<br/>‘videoChange’：  &nbsp;视频文件变更<br/>‘'fileChange'：     &nbsp;文件变更<br/>‘remoteFileChange’：&nbsp;注册设备上文件变更 |
+| type  | type   | 是   | 媒体类型 <br/>'deviceChange'：&nbsp;注册设备变更 <br/>'albumChange'：&nbsp;相册变更<br/>'imageChange'：&nbsp;图片文件变更<br/>'audioChange'： &nbsp;音频文件变更<br/>'videoChange'：  &nbsp;视频文件变更<br/>'fileChange'：     &nbsp;文件变更<br/>'remoteFileChange'：&nbsp;注册设备上文件变更 |
 | callback | callback&lt;void&gt; | 是   | 回调返回空 |
 
 **示例：**
 
 ```
-medialibrary.on('imageChange', () => {
+mediaLibrary.on('imageChange', () => {
     // image file had changed, do something
 })
 ```
-## medialibrary.off
+## mediaLibrary.off<sup>8+</sup>
 
 off(type: 'deviceChange'|'albumChange'|'imageChange'|'audioChange'|'videoChange'|'fileChange'|'remoteFileChange', callback?: Callback&lt;void&gt;): void;
 
@@ -157,24 +158,24 @@ off(type: 'deviceChange'|'albumChange'|'imageChange'|'audioChange'|'videoChange'
 
 | 参数名   | 类型                | 必填 | 说明                   |
 | -------- | ---------------- | ---- | ------------------- |
-| type  | type   | 是   | 媒体类型 <br/>'deviceChange'：&nbsp;注册设备变更 <br/>'albumChange'：&nbsp;相册变更<br/>'imageChange'：&nbsp;图片文件变更<br/>’audioChange‘： &nbsp;音频文件变更<br/>‘videoChange’：  &nbsp;视频文件变更<br/>‘'fileChange'：     &nbsp;文件变更<br/>‘remoteFileChange’：&nbsp;注册设备上文件变更         |
+| type  | type   | 是   | 媒体类型 <br/>'deviceChange'：&nbsp;注册设备变更 <br/>'albumChange'：&nbsp;相册变更<br/>'imageChange'：&nbsp;图片文件变更<br/>'audioChange'： &nbsp;音频文件变更<br/>'videoChange'：  &nbsp;视频文件变更<br/>'fileChange'：     &nbsp;文件变更<br/>'remoteFileChange'：&nbsp;注册设备上文件变更         |
 | callback | callback&lt;void&gt; | 否   | 回调返回空 |
 
 **示例：**
 
 ```
-medialibrary.off('imageChange', () => {
+mediaLibrary.off('imageChange', () => {
     // stop listening success
 })
 ```
 
-## medialibrary.createAsset
+## mediaLibrary.createAsset <sup>8+</sup>
 
 createAsset(mediaType: MediaType, displayName: string, relativePath: string, callback: AsyncCallback&lt;FileAsset&gt;): void;
 
 创建媒体资源，使用callback方式返回结果。
 
-**需要权限**：ohos.permission.READ_MEDIA，ohos.permission.WRITE_MEDIA
+**需要权限**：ohos.permission.READ_MEDIA, ohos.permission.WRITE_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -193,7 +194,7 @@ createAsset(mediaType: MediaType, displayName: string, relativePath: string, cal
 // 使用Callback方式创建Image类型文件
 let mediaType = mediaLibrary.MediaType.IMAGE;
 let path = "Pictures/";
-medialibrary.createAsset(mediaType, “imageCallBack.jpg”, path, (err, fileAsset) => {
+mediaLibrary.createAsset(mediaType, 'imageCallBack.jpg', path, (err, fileAsset) => {
     if (fileAsset != undefined) {
         console.info('createAsset successfully, message = ' + err);
     } else {
@@ -202,13 +203,13 @@ medialibrary.createAsset(mediaType, “imageCallBack.jpg”, path, (err, fileAss
 });
 ```
 
-## medialibrary.createAsset
+## mediaLibrary.createAsset<sup>8+</sup>
 
 createAsset(mediaType: MediaType, displayName: string, relativePath: string): Promise&lt;FileAsset&gt;;
 
 创建媒体资源，使用Promise方式返回结果。
 
-**需要权限**：ohos.permission.READ_MEDIA，ohos.permission.WRITE_MEDIA
+**需要权限**：ohos.permission.READ_MEDIA, ohos.permission.WRITE_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -232,14 +233,14 @@ createAsset(mediaType: MediaType, displayName: string, relativePath: string): Pr
 // 使用Promise方式创建Image类型文件
 let mediaType = mediaLibrary.MediaType.IMAGE;
 let path = "Pictures/";
-medialibrary.createAsset(mediaType, "image01.jpg", path).then (function (asset) {
+mediaLibrary.createAsset(mediaType, "image01.jpg", path).then (function (asset) {
     console.info("createAsset successfully:"+ JSON.stringify(asset));
 }).catch(function(err){
     console.info("createAsset failed with error:"+ err);
 });
 ```
 
-## medialibrary.getPublicDirectory
+## mediaLibrary.getPublicDirectory<sup>8+</sup>
 
 getPublicDirectory(type: DirectoryType, callback: AsyncCallback&lt;string&gt;): void;
 
@@ -261,16 +262,16 @@ getPublicDirectory(type: DirectoryType, callback: AsyncCallback&lt;string&gt;): 
 
 ```
 let DIR_CAMERA = mediaLibrary.DirectoryType.DIR_CAMERA;
-media.getPublicDirectory(DIR_CAMERA，(err, dicResult) => {
+media.getPublicDirectory(DIR_CAMERA, (err, dicResult) => {
     if (dicResult == 'camera/') {
-        console.info('MediaLibraryTest : getPublicDirectory');
+        console.info('mediaLibraryTest : getPublicDirectory passed');
     } else {
-        console.info('MediaLibraryTest : getPublicDirectory failed');
+        console.info('mediaLibraryTest : getPublicDirectory failed');
     }
 });
 ```
 
-## medialibrary.getPublicDirectory
+## mediaLibrary.getPublicDirectory<sup>8+</sup>
 
 getPublicDirectory(type: DirectoryType): Promise&lt;string&gt;;
 
@@ -306,7 +307,7 @@ async function (done) {
 }
 ```
 
-## medialibrary.getAlbums
+## mediaLibrary.getAlbums<sup>6+</sup>
 
 getAlbums(options: MediaFetchOptions, callback: AsyncCallback<Array&lt;Album&gt;>): void;
 
@@ -330,7 +331,7 @@ let AlbumNoArgsfetchOp = {
     selections: '',
     selectionArgs: [],
 };
-medialibrary.getAlbums(AlbumNoArgsfetchOp, (err, albumList) => {
+mediaLibrary.getAlbums(AlbumNoArgsfetchOp, (err, albumList) => {
     if (albumList != undefined) {
         const album = albumList[0];
         console.info('album.albumName = ' + album.albumName);
@@ -341,7 +342,7 @@ medialibrary.getAlbums(AlbumNoArgsfetchOp, (err, albumList) => {
 })
 ```
 
-## medialibrary.getAlbums
+## mediaLibrary.getAlbums<sup>6+</sup>
 
 getAlbums(options: MediaFetchOptions): Promise<Array&lt;Album&gt;>;
 
@@ -370,18 +371,18 @@ let AlbumNoArgsfetchOp = {
     selections: '',
     selectionArgs: [],
 };
-medialibrary.getAlbums(AlbumNoArgsfetchOp).then(function(albumList){
+mediaLibrary.getAlbums(AlbumNoArgsfetchOp).then(function(albumList){
     console.info("getAlbums successfully:"+ JSON.stringify(albumList));
 }).catch(function(err){
     console.info("getAlbums failed with error:"+ err);
 });
 ```
 
-## medialibrary.release
+## mediaLibrary.release<sup>8+</sup>
 
 release(callback: AsyncCallback&lt;void&gt;): void;
 
-释放MediaLibrary实例，当用户确认后续不再使用MediaLibrary实例中的方法后调用release方法释放MediaLibrary实例。
+释放mediaLibrary实例，当用户确认后续不再使用mediaLibrary实例中的方法后调用release方法释放mediaLibrary实例。
 
 **需要权限**：无
 
@@ -396,17 +397,17 @@ release(callback: AsyncCallback&lt;void&gt;): void;
 **示例：**
 
 ```
-var mediaLibrary = mediaLibrary.getMediaLibrary(context);
-mediaLibrary.release((err, data) => {
+var media = mediaLibrary.getMediaLibrary(context);
+media.release((err, data) => {
     // do something
 });
 ```
 
-## medialibrary.release
+## mediaLibrary.release<sup>8+</sup>
 
 release(): Promise&lt;void&gt;;
 
-释放MediaLibrary实例，当用户确认后续不再使用MediaLibrary实例中的方法后调用release方法释放MediaLibrary实例。
+释放mediaLibrary实例，当用户确认后续不再使用mediaLibrary实例中的方法后调用release方法释放mediaLibrary实例。
 
 **需要权限**：无
 
@@ -421,11 +422,11 @@ release(): Promise&lt;void&gt;;
 **示例：**
 
 ```
-var mediaLibrary = mediaLibrary.getMediaLibrary(context);
-mediaLibrary.release()
+var media = mediaLibrary.getMediaLibrary(context);
+media.release()
 ```
 
-## FileAsset.isDirectory
+## FileAsset.isDirectory<sup>8+</sup>
 
 isDirectory(callback: AsyncCallback&lt;boolean&gt;): void;
 
@@ -460,7 +461,7 @@ async function (done) {
 }
 ```
 
-## FileAsset.isDirectory
+## FileAsset.isDirectory<sup>8+</sup>
 
 isDirectory():Promise&lt;boolean&gt;;
 
@@ -497,13 +498,13 @@ async function (done) {
 }
 ```
 
-## FileAsset.commitModify
+## FileAsset.commitModify<sup>8+</sup>
 
 commitModify(callback: AsyncCallback&lt;void&gt;): void;
 
 修改文件的元数据，使用callback方式返回异步结果。
 
-**需要权限**：ohos.permission.READ_MEDIA，ohos.permission.WRITE_MEDIA
+**需要权限**：ohos.permission.READ_MEDIA, ohos.permission.WRITE_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -526,20 +527,20 @@ async function (done) {
     };
     const fetchFileResult = await media.getFileAssets(getImageOp);
     const asset = await fetchFileResult.getFirstObject();
-    asset.title = ‘newtitle';
+    asset.title = 'newtitle';
     asset.commitModify(() => {
         console.info('commitModify success');   
-    }
+    });
 }
 ```
 
-## FileAsset.commitModify
+## FileAsset.commitModify<sup>8+</sup>
 
 commitModify(): Promise&lt;void&gt;;
 
 修改文件的元数据，使用promise方式返回异步结果。
 
-**需要权限**：ohos.permission.READ_MEDIA，ohos.permission.WRITE_MEDIA
+**需要权限**：ohos.permission.READ_MEDIA, ohos.permission.WRITE_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -562,18 +563,18 @@ async function (done) {
     };
     const fetchFileResult = await media.getFileAssets(getImageOp);
     const asset = await fetchFileResult.getFirstObject();
-    asset.title = ‘newtitle';
+    asset.title = 'newtitle';
     asset.commitModify();
 }
 ```
 
-## FileAsset.open
+## FileAsset.open<sup>8+</sup>
 
 open(mode: string, callback: AsyncCallback&lt;number&gt;): void;
 
 打开当前文件，使用callback方式返回异步结果。
 
-**需要权限**：ohos.permission.READ_MEDIA（'r'模式打开），ohos.permission.WRITE_MEDIA（‘w’模式打开）
+**需要权限**：ohos.permission.READ_MEDIA（'r'模式打开），ohos.permission.WRITE_MEDIA（'w'模式打开）
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -601,13 +602,13 @@ async function (done) {
 }
 ```
 
-## FileAsset.open
+## FileAsset.open<sup>8+</sup>
 
 open(mode: string): Promise&lt;number&gt;;
 
 打开当前文件，使用promise方式返回异步结果。
 
-**需要权限**：ohos.permission.READ_MEDIA（'r'模式打开），ohos.permission.WRITE_MEDIA（‘w’模式打开）
+**需要权限**：ohos.permission.READ_MEDIA（'r'模式打开），ohos.permission.WRITE_MEDIA（'w'模式打开）
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -640,13 +641,13 @@ async function (done) {
 }
 ```
 
-## FileAsset.close
+## FileAsset.close<sup>8+</sup>
 
 close(fd: number, callback: AsyncCallback&lt;void&gt;): void;
 
 关闭当前文件，使用callback方式返回异步结果。
 
-**需要权限**：ohos.permission.READ_MEDIA，ohos.permission.WRITE_MEDIA
+**需要权限**：ohos.permission.READ_MEDIA, ohos.permission.WRITE_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -672,8 +673,8 @@ async function (done) {
     const asset = await fetchFileResult.getFirstObject();
     asset.close(fd, (closeErr) => {
         if (closeErr != undefined) {
-            console.info('MediaLibraryTest : close : FAIL ' + closeErr.message);
-            console.info('MediaLibraryTest : ASSET_CALLBACK : FAIL');
+            console.info('mediaLibraryTest : close : FAIL ' + closeErr.message);
+            console.info('mediaLibraryTest : ASSET_CALLBACK : FAIL');
         } else {
             console.info("=======asset.close success====>");
         }
@@ -681,13 +682,13 @@ async function (done) {
 }
 ```
 
-## FileAsset.close
+## FileAsset.close<sup>8+</sup>
 
 close(fd: number): Promise&lt;void&gt;;
 
 关闭当前文件，使用promise方式返回异步结果。
 
-**需要权限**：ohos.permission.READ_MEDIA，ohos.permission.WRITE_MEDIA
+**需要权限**：ohos.permission.READ_MEDIA, ohos.permission.WRITE_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -718,8 +719,8 @@ async function (done) {
     const asset = await fetchFileResult.getFirstObject();
     asset.close(fd).then((closeErr) => {
         if (closeErr != undefined) {
-            console.info('MediaLibraryTest : close : FAIL ' + closeErr.message);
-            console.info('MediaLibraryTest : ASSET_CALLBACK : FAIL');
+            console.info('mediaLibraryTest : close : FAIL ' + closeErr.message);
+            console.info('mediaLibraryTest : ASSET_CALLBACK : FAIL');
 
         } else {
             console.info("=======asset.close success====>");
@@ -728,7 +729,7 @@ async function (done) {
 }
 ```
 
-## FileAsset.getThumbnail
+## FileAsset.getThumbnail<sup>8+</sup>
 
 getThumbnail(callback: AsyncCallback&lt;image.PixelMap&gt;): void;
 
@@ -758,12 +759,12 @@ async function (done) {
     const fetchFileResult = await media.getFileAssets(getImageOp);
     const asset = await fetchFileResult.getFirstObject();
     asset.getThumbnail((err, pixelmap) => {
-        console.info('MediaLibraryTest : getThumbnail Successfull '+ pixelmap);
+        console.info('mediaLibraryTest : getThumbnail Successfull '+ pixelmap);
     });
 }
 ```
 
-## FileAsset.getThumbnail
+## FileAsset.getThumbnail<sup>8+</sup>
 
 getThumbnail(size: Size, callback: AsyncCallback&lt;image.PixelMap&gt;): void;
 
@@ -794,12 +795,12 @@ async function (done) {
     const fetchFileResult = await media.getFileAssets(getImageOp);
     const asset = await fetchFileResult.getFirstObject();
     asset.getThumbnail(size, (err, pixelmap) => {
-        console.info('MediaLibraryTest : getThumbnail Successfull '+ pixelmap);
+        console.info('mediaLibraryTest : getThumbnail Successfull '+ pixelmap);
     });
 }
 ```
 
-## FileAsset.getThumbnail
+## FileAsset.getThumbnail<sup>8+</sup>
 
 getThumbnail(size?: Size): Promise&lt;image.PixelMap&gt;;
 
@@ -835,18 +836,18 @@ async function (done) {
     const fetchFileResult = await media.getFileAssets(getImageOp);
     const asset = await fetchFileResult.getFirstObject();
     asset.getThumbnail(size, (err, pixelmap) => {
-        console.info('MediaLibraryTest : getThumbnail Successfull '+ pixelmap);
+        console.info('mediaLibraryTest : getThumbnail Successfull '+ pixelmap);
     });
 }
 ```
 
-## FileAsset.favorite
+## FileAsset.favorite<sup>8+</sup>
 
 favorite(isFavorite: boolean, callback: AsyncCallback&lt;void&gt;): void;
 
 将文件设置为收藏文件，使用callback方式返回异步结果。
 
-**需要权限**：ohos.permission.READ_MEDIA，ohos.permission.WRITE_MEDIA
+**需要权限**：ohos.permission.READ_MEDIA, ohos.permission.WRITE_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -876,13 +877,13 @@ async function (done) {
 }
 ```
 
-## FileAsset.favorite
+## FileAsset.favorite<sup>8+</sup>
 
 favorite(isFavorite: boolean): Promise&lt;void&gt;;
 
 将文件设置为收藏文件，使用promise方式返回异步结果。
 
-**需要权限**：ohos.permission.READ_MEDIA，ohos.permission.WRITE_MEDIA
+**需要权限**：ohos.permission.READ_MEDIA, ohos.permission.WRITE_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -919,7 +920,7 @@ async function (done) {
 }
 ```
 
-## FileAsset.isFavorite
+## FileAsset.isFavorite<sup>8+</sup>
 
 isFavorite(callback: AsyncCallback&lt;boolean&gt;): void;
 
@@ -958,7 +959,7 @@ async function (done) {
 }
 ```
 
-## FileAsset.isFavorite
+## FileAsset.isFavorite<sup>8+</sup>
 
 isFavorite():Promise&lt;boolean&gt;;
 
@@ -995,7 +996,7 @@ async function (done) {
 }
 ```
 
-## FileAsset.trash
+## FileAsset.trash<sup>8+</sup>
 
 trash(isTrash: boolean, callback: AsyncCallback&lt;void&g;): void;
 
@@ -1003,7 +1004,7 @@ trash(isTrash: boolean, callback: AsyncCallback&lt;void&g;): void;
 
 放入垃圾文件夹的文件不会被真正删除，可以通过isTrash = false参数恢复成正常文件。
 
-**需要权限**：ohos.permission.READ_MEDIA，ohos.permission.WRITE_MEDIA
+**需要权限**：ohos.permission.READ_MEDIA, ohos.permission.WRITE_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -1029,12 +1030,12 @@ async function (done) {
     const asset = await fetchFileResult.getFirstObject();
     asset.trash(true, trashCallBack);
     function trashCallBack(err, trash) {
-        console.info('MediaLibraryTest : ASSET_CALLBACK ASSET_CALLBACK trash');
+        console.info('mediaLibraryTest : ASSET_CALLBACK ASSET_CALLBACK trash');
     }
 }
 ```
 
-## FileAsset.trash
+## FileAsset.trash<sup>8+</sup>
 
 trash(isTrash: boolean,): Promise&lt;void&gt;;
 
@@ -1042,7 +1043,7 @@ trash(isTrash: boolean,): Promise&lt;void&gt;;
 
 放入垃圾文件夹的文件不会被真正删除，可以通过isTrash = false参数恢复成正常文件。
 
-**需要权限**：ohos.permission.READ_MEDIA，ohos.permission.WRITE_MEDIA
+**需要权限**：ohos.permission.READ_MEDIA, ohos.permission.WRITE_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -1079,7 +1080,7 @@ async function (done) {
 }
 ```
 
-## FileAsset.isTrash
+## FileAsset.isTrash<sup>8+</sup>
 
 isTrash(callback: AsyncCallback&lt;boolean&gt;): void;
 
@@ -1111,19 +1112,19 @@ async function (done) {
     asset.isTrash(isTrashCallBack);
     function isTrashCallBack(err, isTrash) {
             if (isTrash == true) {
-                console.info('MediaLibraryTest : ASSET_CALLBACK ASSET_CALLBACK isTrash = ' + isTrash);
+                console.info('mediaLibraryTest : ASSET_CALLBACK ASSET_CALLBACK isTrash = ' + isTrash);
                 asset.trash(true, trashCallBack);
 
             } else {
-                console.info('MediaLibraryTest : ASSET_CALLBACK isTrash Unsuccessfull = ' + err);
-                console.info('MediaLibraryTest : ASSET_CALLBACK isTrash : FAIL');
+                console.info('mediaLibraryTest : ASSET_CALLBACK isTrash Unsuccessfull = ' + err);
+                console.info('mediaLibraryTest : ASSET_CALLBACK isTrash : FAIL');
 
             }
     }
 }
 ```
 
-## FileAsset.isTrash
+## FileAsset.isTrash<sup>8+</sup>
 
 isTrash():Promise&lt;boolean&gt;;
 
@@ -1164,7 +1165,7 @@ async function (done) {
 
 文件检索结果集。
 
-## FetchFileResult.getCount
+## FetchFileResult.getCount<sup>8+</sup>
 
 getCount(): number;
 
@@ -1195,7 +1196,7 @@ async function (done) {
 }
 ```
 
-## FetchFileResult.isAfterLast
+## FetchFileResult.isAfterLast<sup>8+</sup>
 
 isAfterLast(): boolean;
 
@@ -1224,15 +1225,15 @@ async function (done) {
     };
     let fetchFileResult = await media.getFileAssets(getImageOp);
     const fetchCount = fetchFileResult.getCount();
-    console.info('MediaLibraryTest : count:' + fetchCount);
+    console.info('mediaLibraryTest : count:' + fetchCount);
     let fileAsset = await fetchFileResult.getFirstObject();
     for (var i = 1; i < fetchCount; i++) {
             fileAsset = await fetchFileResult.getNextObject();
             if(i == fetchCount - 1) {
-              console.info('MediaLibraryTest : isLast');
+              console.info('mediaLibraryTest : isLast');
               var result = fetchFileResult.isAfterLast();
-              console.info('MediaLibraryTest : isAfterLast:' + result);
-              console.info('MediaLibraryTest : isAfterLast end');
+              console.info('mediaLibraryTest : isAfterLast:' + result);
+              console.info('mediaLibraryTest : isAfterLast end');
               fetchFileResult.close();
 
             }
@@ -1240,7 +1241,7 @@ async function (done) {
 }
 ```
 
-## FetchFileResult.close
+## FetchFileResult.close<sup>8+</sup>
 
 close(): void;
 
@@ -1266,7 +1267,7 @@ async function (done) {
 }
 ```
 
-## FetchFileResult.getFirstObject
+## FetchFileResult.getFirstObject<sup>8+</sup>
 
 getFirstObject(callback: AsyncCallback&lt;FileAsset&gt;): void;
 
@@ -1304,7 +1305,7 @@ async function (done) {
 }
 ```
 
-## FetchFileResult.getFirstObject
+## FetchFileResult.getFirstObject<sup>8+</sup>
 
 getFirstObject(): Promise&lt;FileAsset&gt;;
 
@@ -1341,7 +1342,7 @@ async function (done) {
 }
 ```
 
-## FetchFileResult.getNextObject
+## FetchFileResult.getNextObject<sup>8+</sup>
 
  getNextObject(callback: AsyncCallback&lt;FileAsset&gt;): void;
 
@@ -1379,7 +1380,7 @@ async function (done) {
 }
 ```
 
-## FetchFileResult.getNextObject
+## FetchFileResult.getNextObject<sup>8+</sup>
 
  getNextObject(): Promise&lt;FileAsset&gt;;
 
@@ -1408,12 +1409,12 @@ async function (done) {
     };
     let fetchFileResult = await media.getFileAssets(getImageOp);
     const fetchCount = fetchFileResult.getCount();
-    console.info('MediaLibraryTest : count:' + fetchCount);
+    console.info('mediaLibraryTest : count:' + fetchCount);
     fileAsset = await fetchFileResult.getNextObject();
 }
 ```
 
-## FetchFileResult.getLastObject
+## FetchFileResult.getLastObject<sup>8+</sup>
 
 getLastObject(callback: AsyncCallback&lt;FileAsset&gt;): void;
 
@@ -1451,7 +1452,7 @@ async function (done) {
 }
 ```
 
-## FetchFileResult.getLastObject
+## FetchFileResult.getLastObject<sup>8+</sup>
 
 getLastObject(): Promise&lt;FileAsset&gt;;
 
@@ -1483,7 +1484,7 @@ async function (done) {
 }
 ```
 
-## FetchFileResult.getPositionObject
+## FetchFileResult.getPositionObject<sup>8+</sup>
 
 getPositionObject(index: number, callback: AsyncCallback&lt;FileAsset&gt;): void;
 
@@ -1512,7 +1513,7 @@ async function (done) {
       extendArgs: "LIMIT 0,10",
     };
     let fetchFileResult = await media.getFileAssets(getImageOp);
-    fetchFileResult.getPositionObject(1，(err, value) => {
+    fetchFileResult.getPositionObject(0, (err, value) => {
        if (err) {
            console.error('Failed ');
            return;
@@ -1522,7 +1523,7 @@ async function (done) {
 }
 ```
 
-## FetchFileResult.getPositionObject
+## FetchFileResult.getPositionObject<sup>8+</sup>
 
 getPositionObject(index: number): Promise&lt;FileAsset&gt;;
 
@@ -1556,7 +1557,7 @@ async function (done) {
       extendArgs: "LIMIT 0,10",
     };
     let fetchFileResult = await media.getFileAssets(getImageOp);
-    fetchFileResult.getPositionObject(1，(err, value) => {
+    fetchFileResult.getPositionObject(1, (err, value) => {
        if (err) {
            console.error('Failed ');
            return;
@@ -1566,7 +1567,7 @@ async function (done) {
 }
 ```
 
-## FetchFileResult.getAllObject
+## FetchFileResult.getAllObject<sup>8+</sup>
 
 getAllObject(callback: AsyncCallback&lt;Array&lt;FileAsset&gt;&gt;): void;
 
@@ -1604,7 +1605,7 @@ async function (done) {
 }
 ```
 
-## FetchFileResult.getAllObject
+## FetchFileResult.getAllObject<sup>8+</sup>
 
 getAllObject(): Promise&lt;Array&lt;FileAsset&gt;&gt;;
 
@@ -1636,13 +1637,13 @@ async function (done) {
 }
 ```
 
-## Album.commitModify
+## Album.commitModify<sup>8+</sup>
 
 commitModify(callback: AsyncCallback&lt;void&gt;): void;
 
 更新相册属性修改到数据库中。
 
-**需要权限**：ohos.permission.READ_MEDIA，ohos.permission.WRITE_MEDIA
+**需要权限**：ohos.permission.READ_MEDIA, ohos.permission.WRITE_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -1673,13 +1674,13 @@ async function (done) {
 }
 ```
 
-## Album.commitModify
+## Album.commitModify<sup>8+</sup>
 
 commitModify(): Promise&lt;void&gt;;
 
 更新相册属性修改到数据库中。
 
-**需要权限**：ohos.permission.READ_MEDIA，ohos.permission.WRITE_MEDIA
+**需要权限**：ohos.permission.READ_MEDIA, ohos.permission.WRITE_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -1708,7 +1709,7 @@ async function (done) {
 }
 ```
 
-## Album.getFileAssets
+## Album.getFileAssets<sup>8+</sup>
 
 getFileAssets(options: MediaFetchOptions, callback: AsyncCallback&lt;FetchFileResult&gt;): void;
 
@@ -1736,14 +1737,13 @@ async function (done) {
     const albumList = await media.getAlbums(AlbumNoArgsfetchOp);
     const album = albumList[0];
     album.getFileAssets(fileNoArgsfetchOp, getFileAssetsCallBack);
-    })
     function getFileAssetsCallBack(err, fetchFileResult) {
         // do something
     }
 }
 ```
 
-## Album.getFileAssets
+## Album.getFileAssets<sup>8+</sup>
 
  getFileAssets(options?: MediaFetchOptions): Promise&lt;FetchFileResult&gt;;
 
@@ -1783,7 +1783,7 @@ async function (done) {
 }
 ```
 
-## PeerInfo
+## PeerInfo<sup>8+</sup>
 
 注册设备信息。
 
@@ -1908,7 +1908,7 @@ DeviceType
 | TYPE_CAR     | 5      | 车载设备   |
 | TYPE_TV      | 6      | 电视设备   |
 
-## MediaFetchOptions
+## MediaFetchOptions<sup>8+</sup>
 
 检索条件。
 
@@ -1921,7 +1921,7 @@ DeviceType
 | networkId     | string        | 是   | 是   | 否   |注册设备网络ID   |
 | extendArgs    | string        | 是   | 是   | 否   |扩展的检索参数   |
 
-## Size
+## Size<sup>8+</sup>
 
 图片尺寸。
 
