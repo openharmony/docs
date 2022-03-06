@@ -1,7 +1,6 @@
 # Distributed Data Management
 
 >![](../../public_sys-resources/icon-note.gif) **NOTE**
->
 >The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -62,17 +61,17 @@ createKVManager(config: KVManagerConfig): Promise&lt;KVManager&gt;
 Creates a **KVManager** object to manage KV stores. This method uses a promise to return the result.
 
 -   Parameters
-
+  
 | Name| Type| Mandatory| Description|
 | ----- | ------ | ------ | ------ |
 | config |[KVManagerConfig](#kvmanager) | Yes| Configuration of the **KVManager** object, including the bundle name and user information of the caller.|
-
+   
 -   Return value
 
 | Type| Description|
 | -------- | -------- |
 | Promise&lt;[KVManager](#kvmanager)&gt; | Promise used to return the **KVManager** object created.|
-
+    
 -   Example
 
     ```
@@ -230,7 +229,7 @@ Closes a KV store. This method uses an asynchronous callback to return the resul
 
 | Name| Type| Mandatory| Description|
 | ------- | -----------------   | ---- | --------------------------- |
-| appId    | string              | Yes| Bundle name of the app used by the KV store.|
+| appId    | string              | Yes| Bundle name of the app that invokes the KV store.|
 | storeId  | string  | Yes| Unique identifier of the KV store to close. The length cannot exceed the value of [MAX\_STORE\_ID_LENGTH](#constants).|
 | kvStore  | [KVStore](#kvstore) | Yes| KV store to close.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the KV store is closed, **true** will be returned. Otherwise, **false** will be returned.|
@@ -273,7 +272,7 @@ Closes a KV store. This method uses a promise to return the result.
 
 | Name| Type| Mandatory| Description|
 | -----  | ------  | ---- | ----------------------------- |
-| appId  | string  | Yes| Bundle name of the app used by the KV store.|
+| appId  | string  | Yes| Bundle name of the app that invokes the KV store.|
 | storeId | string | Yes| Unique identifier of the KV store to close. The length cannot exceed the value of [MAX\_STORE\_ID_LENGTH](#constants).|
 | kvStore | [KVStore](#kvstore)  | Yes| KV store to close.|
 
@@ -325,7 +324,7 @@ Deletes a KV store. This method uses an asynchronous callback to return the resu
 
 | Name| Type| Mandatory| Description|
 | -----  | ------  | ----  | ----------------------- |
-| appId  | string  | Yes| Bundle name of the app used by the KV store.|
+| appId  | string  | Yes| Bundle name of the app that invokes the KV store.|
 | storeId | string | Yes| Unique identifier of the KV store to delete. The length cannot exceed the value of [MAX\_STORE\_ID_LENGTH](#constants).|
 | callback | AsyncCallback&lt;void&gt;  | Yes| Callback used to return the result. If the KV store is deleted, **true** will be returned. Otherwise, **false** will be returned.|
 
@@ -364,10 +363,10 @@ deleteKVStore(appId: string, storeId: string): Promise&lt;void&gt;;
 Deletes a KV store. This method uses a promise to return the result.
 
 -   Parameters
-
+  
 | Name| Type| Mandatory| Description|
 | -----  | ------  | ----  | ----------------------- |
-| appId  | string  | Yes| Bundle name of the app used by the KV store.|
+| appId  | string  | Yes| Bundle name of the app that invokes the KV store.|
 | storeId | string | Yes| Unique identifier of the KV store to delete. The length cannot exceed the value of [MAX\_STORE\_ID_LENGTH](#constants).|
 
 
@@ -419,7 +418,7 @@ Obtains the IDs of all the KV stores that are created using **getKvStore** and h
 
 | Name| Type| Mandatory| Description|
 | -----  | ------  | ----  | ----------------------- |
-| appId  | string  | Yes| Bundle name of the app used by the KV store.|
+| appId  | string  | Yes| Bundle name of the app that invokes the KV store.|
 | callback | AsyncCallback&lt;void&gt; | Yes|Callback used to return the KV store IDs obtained. |
 
 -   Example
@@ -447,11 +446,11 @@ Obtains the IDs of all the KV stores that are created using **getKvStore** and h
 
 | Name| Type| Mandatory| Description|
 | -----  | ------  | ----  | ----------------------- |
-| appId  | string  | Yes| Bundle name of the app used by the KV store.|
+| appId  | string  | Yes| Bundle name of the app that invokes the KV store.|
 
 
 -   Return value
-
+  
 | Type| Description|
 | ------------- | -------------- |
 | Promise&lt;string[]&gt;| Promise used to return the KV store IDs obtained.|
@@ -518,7 +517,7 @@ Unsubscribes from the **distributedDataServiceDie** events. This method uses a s
 | -----  | ------  | ----  | ----------------------- |
 | event  | 'distributedDataServiceDie'  | Yes| Type of events to unsubscribe from. |
 | deathCallback  | Callback&lt;void&gt;  | No| Callback used to return the **distributedDataServiceDie** events.|
-
+    
 
 -   Example
 
@@ -545,7 +544,7 @@ Provides KV store configuration.
 | createIfMissing  | boolean | No| Whether to create a KV store if no database file exists. By default, a KV store is created.|
 | encrypt  | boolean | No|Whether to encrypt database files. By default, database files are not encrypted.|
 | backup  | boolean | No|Whether to back up database files. By default, database files are backed up. |
-| autoSync  | boolean | No|Whether database files are automatically synchronized. By default, database files are not automatically synchronized.|
+| autoSync  | boolean | No|Whether to automatically synchronize database files. By default, database files are not automatically synchronized.|
 | kvStoreType | [KVStoreType](#kvstoretype) | No|Type of the KV store to create. By default, a device KV store is created. The device KV store stores data for multiple devices that collaborate with each other.|
 | securityLevel | [SecurityLevel](#securitylevel) | No|Security level of the KV store. By default, the security level is not set.|
 
@@ -585,7 +584,7 @@ Defines the KV store constants.
 | MAX\_KEY_LENGTH| 1024 | Maximum length (in bytes) of a key in the KV store.|
 | MAX\_VALUE_LENGTH| 4194303 | Maximum length (in bytes) of a value in the KV store.|
 | MAX\_KEY\_LENGTH\_DEVICE| 896 | Maximum length of the device coordinate key.|
-| MAX\_STORE\_ID\_LENGTH| 128 | Maximum length (in bytes) of the KV store ID.|
+| MAX\_STORE\_ID\_LENGTH| 128 | Maximum length (in bytes) of a KV store ID.|
 | MAX\_QUERY_LENGTH| 512000 | Maximum query length.|
 | MAX\_BATCH_SIZE| 128 | Maximum size of a batch operation.|
 
@@ -633,8 +632,8 @@ Adds a child node to this **FieldNode**.
 
 | Name| Type| Mandatory| Description|
 | -----  | ------  | ----  | ----------------------- |
-| child  | [FieldNode](#FieldNode)  | Yes| Field node to add.|
-
+| child  | [FieldNode](#FieldNode)  | Yes| Child node to add.|
+ 
 
 -   Return value
 
@@ -694,7 +693,7 @@ Obtains the field name.
 
 ## KvStoreResultSet<sup>8+</sup> ##
 
-Provides methods to obtain the KV Store result set and query or move the data read position. Before calling **KvStoreResultSet**, you must create a **KvStore** instance using **KvStore**.
+Provides methods to obtain the KV store result set and query or move the data read position. Before calling any method in **KvStoreResultSet**, you must use **KvStore** to create a **KvStore** instance.
 
 ### getCount<sup>8+</sup> ###
 
@@ -936,7 +935,7 @@ Moves the data read position from 0 to an absolute position.
 
 | Name| Type| Mandatory| Description|
 | -----  | ------  | ----  | ----------------------- |
-| position  | number  | Yes|Absolute position.|
+| position  | number  | Yes|Absolute position to move to.|
 
 -   Return value
 
@@ -1161,14 +1160,14 @@ Resets the **Query** object that contains common query options.
 
 equalTo(field: string, value: number|string|boolean): Query;
 
-Creates a **Query** object to match the specified field and value equal to the specified value.
+Creates a **Query** object to match the specified field whose value is equal to the specified value.
 
 -   Parameters
 
 | Name| Type| Mandatory| Description|
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes|Field specified. It must start with $ and cannot contain ^.|
-| value  | number/string/boolean  | Yes| Value to match.|
+| fieId  | string  | Yes|Field to match. It must start with $ and cannot contain ^.|
+| value  | number/string/boolean  | Yes| Value specified.|
 
 -   Return value
 
@@ -1194,13 +1193,13 @@ Creates a **Query** object to match the specified field and value equal to the s
 
 notEqualTo(field: string, value: number|string|boolean): Query;
 
-Creates a **Query** object to match the specified field and value not equal to the specified value.
+Creates a **Query** object to match the specified field whose value is not equal to the specified value.
 
 -   Parameters
 
 | Name| Type| Mandatory| Description|
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes|Field specified. It must start with $ and cannot contain ^.|
+| fieId  | string  | Yes|Field to match. It must start with $ and cannot contain ^.|
 | value  | number/string/boolean  | Yes| Value specified.|
 
 -   Return value
@@ -1227,13 +1226,13 @@ Creates a **Query** object to match the specified field and value not equal to t
 
 greaterThan(field: string, value: number|string|boolean): Query;
 
-Creates a **Query** object to match the specified field and value greater than the specified value.
+Creates a **Query** object to match the specified field whose value is greater than the specified value.
 
 -   Parameters
 
 | Name| Type| Mandatory| Description|
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes|Field specified. It must start with $ and cannot contain ^.|
+| fieId  | string  | Yes|Field to match. It must start with $ and cannot contain ^.|
 | value  | number/string/boolean  | Yes| Value specified.|
 
 -   Return value
@@ -1260,14 +1259,14 @@ Creates a **Query** object to match the specified field and value greater than t
 
 lessThan(field: string, value: number|string): Query;
 
-Creates a **Query** object to match the specified field and value less than the specified value.
+Creates a **Query** object to match the specified field whose value is less than the specified value.
 
 -   Parameters
 
 | Name| Type| Mandatory| Description|
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes|Field specified. It must start with $ and cannot contain ^.|
-| value  | number/string/boolean  | Yes| Value to match.|
+| fieId  | string  | Yes|Field to match. It must start with $ and cannot contain ^.|
+| value  | number/string/boolean  | Yes| Value specified.|
 
 -   Return value
 
@@ -1293,13 +1292,13 @@ Creates a **Query** object to match the specified field and value less than the 
 
 greaterThanOrEqualTo(field: string, value: number|string): Query;
 
-Creates a **Query** object to match the specified field and value greater than or equal to the specified value.
+Creates a **Query** object to match the specified field whose value is greater than or equal to the specified value.
 
 -   Parameters
 
 | Name| Type| Mandatory| Description|
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes|Field specified. It must start with $ and cannot contain ^.|
+| fieId  | string  | Yes|Field to match. It must start with $ and cannot contain ^.|
 | value  | number/string/boolean  | Yes| Value specified.|
 
 -   Return value
@@ -1326,14 +1325,14 @@ Creates a **Query** object to match the specified field and value greater than o
 
 lessThanOrEqualTo(field: string, value: number|string): Query;
 
-Creates a **Query** object to match the specified field and value less than or equal to the specified value.
+Creates a **Query** object to match the specified field whose value is less than or equal to the specified value.
 
 -   Parameters
 
 | Name| Type| Mandatory| Description|
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes|Field specified. It must start with $ and cannot contain ^.|
-| value  | number/string/boolean  | Yes| Value to match.|
+| fieId  | string  | Yes|Field to match. It must start with $ and cannot contain ^.|
+| value  | number/string/boolean  | Yes| Value specified.|
 
 -   Return value
 
@@ -1365,7 +1364,7 @@ Creates a **Query** object to match the specified field whose value is **null**.
 
 | Name| Type| Mandatory| Description|
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes|Field specified. It must start with $ and cannot contain ^.|
+| fieId  | string  | Yes|Field to match. It must start with $ and cannot contain ^.|
 
 -   Return value
 
@@ -1397,7 +1396,7 @@ Creates a **Query** object to match the specified field whose value is within th
 
 | Name| Type| Mandatory| Description|
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes|Field specified. It must start with $ and cannot contain ^.|
+| fieId  | string  | Yes|Field to match. It must start with $ and cannot contain ^.|
 | valueList  | number[]  | Yes| List of numbers.|
 
 -   Return value
@@ -1431,7 +1430,7 @@ Creates a **Query** object to match the specified field whose value is within th
 
 | Name| Type| Mandatory| Description|
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes|Field specified. It must start with $ and cannot contain ^.|
+| fieId  | string  | Yes|Field to match. It must start with $ and cannot contain ^.|
 | valueList  | string[]  | Yes| List of strings.|
 
 -   Return value
@@ -1464,7 +1463,7 @@ Creates a **Query** object to match the specified field whose value is not withi
 
 | Name| Type| Mandatory| Description|
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes|Field specified. It must start with $ and cannot contain ^.|
+| fieId  | string  | Yes|Field to match. It must start with $ and cannot contain ^.|
 | valueList  | number[]  | Yes| List of numbers.|
 
 -   Return value
@@ -1497,7 +1496,7 @@ Creates a **Query** object to match the specified field whose value is not withi
 
 | Name| Type| Mandatory| Description|
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes|Field specified. It must start with $ and cannot contain ^.|
+| fieId  | string  | Yes|Field to match. It must start with $ and cannot contain ^.|
 | valueList  | string[]  | Yes| List of strings.|
 
 -   Return value
@@ -1524,13 +1523,13 @@ Creates a **Query** object to match the specified field whose value is not withi
 
 like(field: string, value: string): Query;
 
-Creates a **Query** object to match the specified field whose value is similar to the specified value.
+Creates a **Query** object to match the specified field whose value is similar to the specified string.
 
 -   Parameters
 
 | Name| Type| Mandatory| Description|
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes|Field specified. It must start with $ and cannot contain ^.|
+| fieId  | string  | Yes|Field to match. It must start with $ and cannot contain ^.|
 | valueList  | string  | Yes| String specified.|
 
 -   Return value
@@ -1557,13 +1556,13 @@ Creates a **Query** object to match the specified field whose value is similar t
 
 unlike(field: string, value: string): Query;
 
-Creates a **Query** object to match the specified field whose value is not similar to the specified value.
+Creates a **Query** object to match the specified field whose value is not similar to the specified string.
 
 -   Parameters
 
 | Name| Type| Mandatory| Description|
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes|Field specified. It must start with $ and cannot contain ^.|
+| fieId  | string  | Yes|Field to match. It must start with $ and cannot contain ^.|
 | valueList  | string  | Yes| String specified.|
 
 -   Return value
@@ -1652,7 +1651,7 @@ Creates a **Query** object to sort the query results in ascending order.
 
 | Name| Type| Mandatory| Description|
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes|Field specified. It must start with $ and cannot contain ^.|
+| fieId  | string  | Yes|Field to match. It must start with $ and cannot contain ^.|
 
 -   Return value
 
@@ -1685,7 +1684,7 @@ Creates a **Query** object to sort the query results in descending order.
 
 | Name| Type| Mandatory| Description|
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes|Field specified. It must start with $ and cannot contain ^.|
+| fieId  | string  | Yes|Field to match. It must start with $ and cannot contain ^.|
 
 -   Return value
 
@@ -1719,8 +1718,8 @@ Creates a **Query** object to specify the number of results and where to start.
 
 | Name| Type| Mandatory| Description|
 | -----  | ------  | ----  | ----------------------- |
-| total  | number  | Yes|Number of results.|
-| offset | number  | Yes|Start position.|
+| total  | number  | Yes|Number of results to query.|
+| offset | number  | Yes|Start position for query.|
 
 -   Return value
 
@@ -1779,7 +1778,7 @@ Creates a **Query** object with a specified field that is not null.
 
 beginGroup(): Query;
 
-Creates a **Query** object with a query condition group with a left parenthesis.
+Creates a **Query** object for a query condition group with a left parenthesis.
 
 -   Return value
 
@@ -1807,7 +1806,7 @@ Creates a **Query** object with a query condition group with a left parenthesis.
 
 endGroup(): Query;
 
-Creates a **Query** object with a query condition group with a right parenthesis.
+Creates a **Query** object for a query condition group with a right parenthesis.
 
 -   Return value
 
@@ -1874,7 +1873,7 @@ Creates a **Query** object with an index preferentially used for query.
 
 | Name| Type| Mandatory| Description|
 | -----  | ------  | ----  | ----------------------- |
-| index  | string  | Yes|Index to be set.|
+| index  | string  | Yes|Index preferentially used for query.|
 
 -   Return value
 
@@ -1956,13 +1955,13 @@ Obtains the query statement of this **Query** object.
 
 ## KVStore
 
-Provides methods to manage data in a KV store, for example, adding or deleting data and subscribing to data changes or completion of data synchronization. Before calling any method in **KVStore**, you must use **getKVStore** to create a **KVStore** object.
+Provides methods to manage data in a KV store, for example, adding or deleting data and subscribing to data changes or completion of data synchronization. Before calling any method in **KVStore**, you must use **getKVStore** to obtain a **KVStore** object.
 
 ### put
 
 put(key: string, value: Uint8Array | string | number | boolean, callback: AsyncCallback&lt;void&gt;): void
 
-Adds a KV pair of the specified type to the KV store. This method uses an asynchronous callback to return the result.
+Adds a KV pair of the specified type to this KV store. This method uses an asynchronous callback to return the result.
 
 -   Parameters
 
@@ -1996,7 +1995,7 @@ Adds a KV pair of the specified type to the KV store. This method uses an asynch
 
 put(key: string, value: Uint8Array | string | number | boolean): Promise&lt;void&gt;
 
-Adds a KV pair of the specified type to the KV store. This method uses a promise to return the result.
+Adds a KV pair of the specified type to this KV store. This method uses a promise to return the result.
 
 -   Parameters
 
@@ -2034,7 +2033,7 @@ Adds a KV pair of the specified type to the KV store. This method uses a promise
 
 delete(key: string, callback: AsyncCallback&lt;void&gt;): void
 
-Deletes a KV pair from the KV store. This method uses an asynchronous callback to return the result.
+Deletes a KV pair from this KV store. This method uses an asynchronous callback to return the result.
 
 -   Parameters
 
@@ -2074,7 +2073,7 @@ Deletes a KV pair from the KV store. This method uses an asynchronous callback t
 
 delete(key: string): Promise&lt;void&gt;
 
-Deletes a KV pair from the KV store. This method uses a promise to return the result.
+Deletes a KV pair from this KV store. This method uses a promise to return the result.
 
 -   Parameters
 
@@ -2121,7 +2120,7 @@ Subscribes to data changes of the specified type. This method uses a synchronous
 
 | Name| Type| Mandatory| Description|
 | -----  | ------  | ----  | ----------------------- |
-| event  |'dataChange'  | Yes|Type of the events.|
+| event  |'dataChange'  | Yes|Type of the events to subscribe to.|
 | type  |[SubscribeType](#subscribetypea) | Yes|Type of data changes.|
 | observer |Callback&lt;[ChangeNotification](#changenotificationa)&gt; | Yes|Callback used to return the result.|
 
@@ -2140,13 +2139,13 @@ Subscribes to data changes of the specified type. This method uses a synchronous
 
 on(event: 'syncComplete', syncCallback: Callback<Array&lt;[string, number]&gt;): void
 
-Subscribes to notifications of data synchronization completion. This method uses a synchronous callback to return the result.
+Subscribes to data synchronization completion events. This method uses a synchronous callback to return the result.
 
 -   Parameters
 
 | Name| Type| Mandatory| Description|
 | -----  | ------  | ----  | ----------------------- |
-| event  |'syncComplete' | Yes|Type of the events.|
+| event  |'syncComplete' | Yes|Type of the events to subscribe to.|
 | syncCallback  |Callback&lt;Array&lt;[string, number]&gt; | Yes|Callback used to return the result.|
 
 
@@ -2163,13 +2162,13 @@ Subscribes to notifications of data synchronization completion. This method uses
 
 off(event:'dataChange', observer?: Callback&lt;ChangeNotification&gt;): void;
 
-Unsubscribes from data change notifications. This method is a synchronous method.
+Unsubscribes from data change events. This method uses a synchronouscallback to return the result.
 
 -   Parameters
 
 | Name| Type| Mandatory| Description|
 | -----  | ------  | ----  | ----------------------- |
-| event  |'dataChange'  | Yes|Type of the events.|
+| event  |'dataChange'  | Yes|Type of the events to unsubscribe from.|
 | observer |Callback&lt;[ChangeNotification](#changenotificationa)&gt; |No|Callback used to return the result.|
 
 -   Example
@@ -2189,7 +2188,7 @@ Unsubscribes from data change notifications. This method is a synchronous method
 
 putBatch(entries: Entry[], callback: AsyncCallback&lt;void&gt;): void;
 
-Inserts KV pairs in batches to the KV store. This method uses an asynchronous callback to return the result.
+Inserts KV pairs in batches to this KV store. This method uses an asynchronous callback to return the result.
 
 -   Parameters
 
@@ -2235,7 +2234,7 @@ Inserts KV pairs in batches to the KV store. This method uses an asynchronous ca
 
 putBatch(entries: Entry[]): Promise&lt;void&gt;;
 
-Inserts KV pairs in batches to the KV store. This method uses a promise to return the result.
+Inserts KV pairs in batches to this KV store. This method uses a promise to return the result.
 
 -   Parameters
 
@@ -2288,7 +2287,7 @@ Inserts KV pairs in batches to the KV store. This method uses a promise to retur
 
 deleteBatch(keys: string[], callback: AsyncCallback&lt;void&gt;): void;
 
-Deletes KV pairs in batches from the KV store. This method uses an asynchronous callback to return the result.
+Deletes KV pairs in batches from this KV store. This method uses an asynchronous callback to return the result.
 
 -   Parameters
 
@@ -2333,7 +2332,7 @@ Deletes KV pairs in batches from the KV store. This method uses an asynchronous 
 
 deleteBatch(keys: string[]): Promise&lt;void&gt;;
 
-Deletes KV pairs in batches from the KV store. This method uses a promise to return the result.
+Deletes KV pairs in batches from this KV store. This method uses a promise to return the result.
 
 -   Parameters
 
@@ -2387,7 +2386,7 @@ Deletes KV pairs in batches from the KV store. This method uses a promise to ret
 
 startTransaction(callback: AsyncCallback&lt;void&gt;): void;
 
-Starts transactions in the KV store. This method uses an asynchronous callback to return the result.
+Starts transactions in this KV store. This method uses an asynchronous callback to return the result.
 
 -   Parameters
 
@@ -2437,7 +2436,7 @@ Starts transactions in the KV store. This method uses an asynchronous callback t
 
 startTransaction(): Promise&lt;void&gt;;
 
-Starts transactions in the KV store. This method uses a promise to return the result.
+Starts transactions in this KV store. This method uses a promise to return the result.
 
 -   Return value
 
@@ -2470,7 +2469,7 @@ Starts transactions in the KV store. This method uses a promise to return the re
 
 commit(callback: AsyncCallback&lt;void&gt;): void;
 
-Commits transactions in the KV store. This method uses an asynchronous callback to return the result.
+Commits transactions in this KV store. This method uses an asynchronous callback to return the result.
 
 -   Parameters
 
@@ -2500,7 +2499,7 @@ Commits transactions in the KV store. This method uses an asynchronous callback 
 
 commit(): Promise&lt;void&gt;;
 
-Commits transactions in the KV store. This method uses a promise to return the result.
+Commits transactions in this KV store. This method uses a promise to return the result.
 
 -   Return value
 
@@ -2528,7 +2527,7 @@ Commits transactions in the KV store. This method uses a promise to return the r
 
 rollback(callback: AsyncCallback&lt;void&gt;): void;
 
-Rolls back transactions in the KV store. This method uses an asynchronous callback to return the result.
+Rolls back transactions in this KV store. This method uses an asynchronous callback to return the result.
 
 -   Parameters
 
@@ -2558,7 +2557,7 @@ Rolls back transactions in the KV store. This method uses an asynchronous callba
 
 rollback(): Promise&lt;void&gt;;
 
-Rolls back transactions in the KV store. This method uses a promise to return the result.
+Rolls back transactions in this KV store. This method uses a promise to return the result.
 
 -   Return value
 
@@ -2592,7 +2591,7 @@ Sets data synchronization, which can be enabled or disable. This method uses an 
 
 | Name| Type| Mandatory| Description|
 | -----  | ------  | ----  | ----------------------- |
-| enabled  |boolean | Yes|Whether to enable data synchronization. The value **true** means to enable data synchronization, and the value **false** means the opposite.|
+| enabled  |boolean | Yes|Whether to enable data synchronization. The value **true** means to enable data synchronization, and **false** means the opposite.|
 | callback  |AsyncCallback&lt;void&gt; | Yes|Callback used to return the result.|
 
 -   Example
@@ -2623,7 +2622,7 @@ Sets data synchronization, which can be enabled or disable. This method uses a p
 
 | Name| Type| Mandatory| Description|
 | -----  | ------  | ----  | ----------------------- |
-| enabled  |boolean | Yes|Whether to enable data synchronization. The value **true** means to enable data synchronization, and the value **false** means the opposite.|
+| enabled  |boolean | Yes|Whether to enable data synchronization. The value **true** means to enable data synchronization, and **false** means the opposite.|
 
 -   Return value
 
@@ -2657,7 +2656,7 @@ Sets the data synchronization range. This method uses an asynchronous callback t
 
 | Name| Type| Mandatory| Description|
 | -----  | ------  | ----  | ----------------------- |
-| localLabels  |string[] | Yes|Synchronization label set for the local device.|
+| localLabels  |string[] | Yes|Synchronization labels set for the local device.|
 | remoteSupportLabels  |string[] | Yes|Synchronization labels set for remote devices.|
 | callback  |AsyncCallback&lt;void&gt; | Yes|Callback used to return the result.|
 
@@ -2687,7 +2686,7 @@ Sets the data synchronization range. This method uses a promise to return the re
 
 | Name| Type| Mandatory| Description|
 | -----  | ------  | ----  | ----------------------- |
-| localLabels  |string[] | Yes|Synchronization label set for the local device.|
+| localLabels  |string[] | Yes|Synchronization labels set for the local device.|
 | remoteSupportLabels  |string[] | Yes|Synchronization labels set for remote devices.|
 
 
@@ -2722,8 +2721,8 @@ Defines the subscription type.
 | Name| Default Value| Description|
 | -----  | ------   | ----------------------- |
 | SUBSCRIBE_TYPE_LOCAL  |0 |Local data changes.|
-| SUBSCRIBE_TYPE_REMOTE |1 |Peer data changes.|
-| SUBSCRIBE_TYPE_ALL  |2 |Local and peer data changes.|
+| SUBSCRIBE_TYPE_REMOTE |1 |Remote data changes.|
+| SUBSCRIBE_TYPE_ALL  |2 |Local and remote data changes.|
 
 ## ChangeNotification
 
@@ -2738,12 +2737,12 @@ Defines the content of data change notifications, including inserted data, updat
 
 ## Entry
 
-Defines the KV pairs stored in the database.
+Defines the KV pairs stored in the KV store.
 
 | Name| Type|Readable|Writable| Description|
 | ----- | -------   | -----| ------|------------------------ |
-| key | string   | Yes|  Yes|Key of the KV pair stored in the database.|
-| value | [Value](#value) | Yes|  Yes|Value of the KV pair stored in the database.|
+| key | string   | Yes|  Yes|Key of the KV pair stored in the KV store.|
+| value | [Value](#value) | Yes|  Yes|Value of the KV pair stored in the KV store.|
 
 
 ## Value
@@ -2757,9 +2756,9 @@ Defines the value in a KV pair.
 
 ## ValueType
 
-Defines the types of the value in a KV pair.
+Enumerates the types of values in KV pairs.
 
-It can be used only by internal applications.
+These value types can be used only by internal applications.
 
 | Name| Default Value| Description|
 | -----  | ------   | ----------------------- |
@@ -2772,7 +2771,7 @@ It can be used only by internal applications.
 
 ## SingleKVStore
 
-Provides methods to query and synchronize data in a single KV store. This class inherits from **KVStore**. Before calling any method in **SingleKVStore**, you must use **getKVStore** to create a **SingleKVStore** object.
+Provides methods to query and synchronize data in a single KV store. This class inherits from **KVStore**. Before calling any method in **SingleKVStore**, you must use **getKVStore** to obtain a **SingleKVStore** object.
 
 ### get
 
@@ -2785,7 +2784,7 @@ Obtains the value of a specified key. This method uses an asynchronous callback 
 | Name| Type| Mandatory| Description|
 | -----  | ------  | ----  | ----------------------- |
 | key    |string   | Yes|Key of the value to obtain. It cannot be empty, and the length cannot exceed [MAX\_KEY\_LENGTH](#constants).|
-| callback  |AsyncCallback&lt;Uint8Array / string / boolean / number&gt;) | Yes|Callback invoked to return the value obtained.|
+| callback  |AsyncCallback&lt;Uint8Array / string / boolean / number&gt;) | Yes|Callback used to return the value obtained.|
 
 -   Example
 
@@ -2827,7 +2826,7 @@ Obtains the value of a specified key. This method uses a promise to return the r
 
 | Type| Description|
 | ------  | -------   |
-|Promise&lt;Uint8Array / string / boolean / number&gt; |Promise used to return the result.|
+|Promise&lt;Uint8Array / string / boolean / number&gt; |Promise used to return the value obtained.|
 
 
 -   Example
@@ -2856,7 +2855,7 @@ Obtains the value of a specified key. This method uses a promise to return the r
 
 getEntries(keyPrefix: string, callback: AsyncCallback&lt;Entry[]&gt;): void;
 
-Obtains all KV pairs that match the specified key prefix. This method uses an asynchronous callback to return the result.
+Obtains the KV pairs that match the specified key prefix. This method uses an asynchronous callback to return the result.
 
 -   Parameters
 
@@ -2900,7 +2899,7 @@ Obtains all KV pairs that match the specified key prefix. This method uses an as
 
 getEntries(keyPrefix: string): Promise&lt;Entry[]&gt;;
 
-Obtains all KV pairs that match the specified key prefix. This method uses a promise to return the result.
+Obtains the KV pairs that match the specified key prefix. This method uses a promise to return the result.
 
 -   Parameters
 
@@ -2912,7 +2911,7 @@ Obtains all KV pairs that match the specified key prefix. This method uses a pro
 
 | Type| Description|
 | ------  | -------   |
-|Promise&lt;[Entry](#entry)[]&gt; |Promise used to return the result.|
+|Promise&lt;[Entry](#entry)[]&gt; |Promise used to return the KV pairs obtained.|
 
 -   Example
 
@@ -2956,7 +2955,7 @@ Obtains all KV pairs that match the specified key prefix. This method uses a pro
 
 getEntries(query: Query, callback: AsyncCallback&lt;Entry[]&gt;): void;
 
-Obtains the KV pairs matching the specified **Query** object. This method uses an asynchronous callback to return the result.
+Obtains the KV pairs that match the specified **Query** object. This method uses an asynchronous callback to return the result.
 
 -   Parameters
 
@@ -3005,7 +3004,7 @@ Obtains the KV pairs matching the specified **Query** object. This method uses a
 
 getEntries(query: Query): Promise&lt;Entry[]&gt;;
 
-Obtains the KV pairs matching the specified **Query** object. This method uses a promise to return the result.
+Obtains the KV pairs that match the specified **Query** object. This method uses a promise to return the result.
 
 -   Parameters
 
@@ -3017,7 +3016,7 @@ Obtains the KV pairs matching the specified **Query** object. This method uses a
 
 | Type| Description|
 | ------  | -------   |
-|Promise&lt;[Entry](#entry)[]&gt; |Promise used to return the result.|
+|Promise&lt;[Entry](#entry)[]&gt; |Promise used to return the KV pairs obtained.|
 
 -   Example
 
@@ -3060,7 +3059,7 @@ Obtains the KV pairs matching the specified **Query** object. This method uses a
 
 getResultSet(keyPrefix: string, callback: AsyncCallback&lt;KvStoreResultSet&gt;): void;
 
-Obtains the result set with the specified prefix from the single KV store. This method uses an asynchronous callback to return the result.
+Obtains the result set with the specified key prefix from this single KV store. This method uses an asynchronous callback to return the result.
 
 -   Parameters
 
@@ -3107,7 +3106,7 @@ Obtains the result set with the specified prefix from the single KV store. This 
 
 getResultSet(keyPrefix: string): Promise&lt;KvStoreResultSet&gt;;
 
-Obtains the result set with the specified prefix from the single KV store. This method uses a promise to return the result.
+Obtains the result set with the specified key prefix from this single KV store. This method uses a promise to return the result.
 
 -   Parameters
 
@@ -3119,7 +3118,7 @@ Obtains the result set with the specified prefix from the single KV store. This 
 
 | Type| Description|
 | ------  | -------   |
-|Promise&lt;[KvStoreResultSet](#kvstoreresultsetsup8sup)&gt; |Promise used to return the result.|
+|Promise&lt;[KvStoreResultSet](#kvstoreresultsetsup8sup)&gt; |Promise used to return the result set obtained.|
 
 -   Example
 
@@ -3171,7 +3170,7 @@ Obtains the **KvStoreResultSet** object that matches the specified **Query** obj
 
 | Name| Type| Mandatory| Description|
 | -----  | ------   | ----  | ----------------------- |
-| query  |Query    | Yes|**Query** object.|
+| query  |Query    | Yes|**Query** object to match.|
 | callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultsetsup8sup)&gt;   | Yes|Callback used to return the **KvStoreResultSet** object obtained.|
 
 -   Example
@@ -3217,13 +3216,13 @@ Obtains the **KvStoreResultSet** object that matches the specified **Query** obj
 
 | Name| Type| Mandatory| Description|
 | -----  | ------   | ----  | ----------------------- |
-| query  |[Query](#querysup8sup)    | Yes|**Query** object.|
+| query  |[Query](#querysup8sup)    | Yes|**Query** object to match.|
 
 -   Return value
 
 | Type| Description|
 | ------  | -------   |
-|Promise&lt;[KvStoreResultSet](#kvstoreresultsetsup8sup)&gt; |Promise used to return the result.|
+|Promise&lt;[KvStoreResultSet](#kvstoreresultsetsup8sup)&gt; |Promise used to return the **KvStoreResultSet** object obtained.|
 
 -   Example
 
@@ -3272,7 +3271,7 @@ Closes the **KvStoreResultSet** object obtained by **getResultSet**. This method
 | Name| Type| Mandatory| Description|
 | -----  | ------   | ----  | ----------------------- |
 | resultSet  |[KvStoreResultSet](#kvstoreresultsetsup8sup)   | Yes|**KvStoreResultSet** object to close.|
-| callback  |AsyncCallback&lt;void&gt;   | Yes|Callback used to return the **KvStoreResultSet** object obtained by **getResultSet**.|
+| callback  |AsyncCallback&lt;void&gt;   | Yes|Callback used to return the execution result.|
 
 -   Example
 
@@ -3338,7 +3337,7 @@ Obtains the number of results matching the specified **Query** object. This meth
 
 | Name| Type| Mandatory| Description|
 | -----  | ------   | ----  | ----------------------- |
-| query  |[Query](#querysup8sup)   | Yes|**Query** object.|
+| query  |[Query](#querysup8sup)   | Yes|**Query** object to match.|
 | callback  |AsyncCallback&lt;number&gt;   | Yes|Callback used to return the number of results obtained.|
 
 -   Example
@@ -3382,13 +3381,13 @@ Obtains the number of results matching the specified **Query** object. This meth
 
 | Name| Type| Mandatory| Description|
 | -----  | ------   | ----  | ----------------------- |
-| query  |[Query](#querysup8sup)   | Yes|**Query** object.|
+| query  |[Query](#querysup8sup)   | Yes|**Query** object to match.|
 
 -   Return value
 
 | Type| Description|
 | ------  | -------   |
-|Promise&lt;number&gt; |Promise used to return the result.|
+|Promise&lt;number&gt; |Promise used to return the number of results obtained.|
 
 -   Example
 
@@ -3435,7 +3434,7 @@ Deletes data of a device. This method uses an asynchronous callback to return th
 
 | Name| Type| Mandatory| Description|
 | -----  | ------   | ----  | ----------------------- |
-| deviceId  |string   | Yes|Name of the target device.|
+| deviceId  |string   | Yes|ID of the target device.|
 | callback  |AsyncCallback&lt;void&gt;   | Yes|Callback used to return the result.|
 
 -   Example
@@ -3475,7 +3474,7 @@ Deletes data of a device. This method uses a promise to return the result.
 
 | Name| Type| Mandatory| Description|
 | -----  | ------   | ----  | ----------------------- |
-| deviceId  |string   | Yes|Name of the target device.|
+| deviceId  |string   | Yes|ID of the target device.|
 
 -   Return value
 
@@ -3586,9 +3585,9 @@ Manually triggers KV store synchronization synchronously.
 
 | Name| Type| Mandatory| Description|
 | -----  | ------   | ----  | ----------------------- |
-| deviceIdList  |string[]  | Yes|IDs of the devices in the same networking environment to be synchronized.|
+| deviceIdList  |string[]  | Yes|IDs of the devices to be synchronized. These devices must be in the same networking environment.|
 | mode  |[SyncMode](#syncmode)   | Yes|Data synchronization mode.|
-| allowedDelayMs  |number   | No|Allowed delay time, in ms.|
+| allowedDelayMs  |number   | No|Allowed synchronization delay time, in ms.|
 
 -   Example
 
@@ -3666,13 +3665,13 @@ Sets the default delay of database synchronization. This method uses a promise t
 
 getSecurityLevel(callback: AsyncCallback&lt;SecurityLevel&gt;): void;
 
-Obtains the security level of a KV store. This method uses an asynchronous callback to return the result.
+Obtains the security level of this KV store. This method uses an asynchronous callback to return the result.
 
 -   Parameters
 
 | Name| Type| Mandatory| Description|
 | -----  | ------   | ----  | ----------------------- |
-| callback  |AsyncCallback&lt;[SecurityLevel](#securitylevel)&gt;  | Yes|Callback used to return the result.|
+| callback  |AsyncCallback&lt;[SecurityLevel](#securitylevel)&gt;  | Yes|Callback used to return the security level obtained.|
 
 -   Example
 
@@ -3692,13 +3691,13 @@ Obtains the security level of a KV store. This method uses an asynchronous callb
 
 getSecurityLevel(): Promise&lt;SecurityLevel&gt;;
 
-Obtains the security level of a KV store. This method uses a promise to return the result.
+Obtains the security level of this KV store. This method uses a promise to return the result.
 
 -   Return value
 
 | Type| Description|
 | ------  | -------   |
-|Promise&lt;[SecurityLevel](#securitylevel)&gt; |Promise used to return the result.|
+|Promise&lt;[SecurityLevel](#securitylevel)&gt; |Promise used to return the security level obtained.|
 
 
 -   Example
@@ -3719,7 +3718,7 @@ Obtains the security level of a KV store. This method uses a promise to return t
 
 ## DeviceKVStore<sup>8+</sup> ##
 
-Provides methods to manage distributed data by device in the distributed system. This class inherits from **KvStore** and provides data query and synchronization methods. Before calling any method in **DeviceKVStore**, you must use **getKVStore** to create a **DeviceKVStore** object.
+Provides methods to manage distributed data by device in the distributed system. This class inherits from **KvStore** and provides data query and synchronization methods. Before calling any method in **DeviceKVStore**, you must use **getKVStore** to obtain a **DeviceKVStore** object.
 
 ### get<sup>8+</sup> ###
 
@@ -3772,7 +3771,7 @@ Obtains the string value that matches the specified key for a device. This metho
 
 | Type| Description|
 | ------  | -------   |
-|Promise&lt;boolean/string/number/Uint8Array&gt; |Promise used to return the result.|
+|Promise&lt;boolean/string/number/Uint8Array&gt; |Promise used to return the value obtained.|
 
 -   Example
 
@@ -3801,7 +3800,7 @@ Obtains the string value that matches the specified key for a device. This metho
 
 getEntries(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;Entry[]&gt;): void;
 
-Obtains all KV pairs that match the specified key prefix for a device. This method uses an asynchronous callback to return the result.
+Obtains the KV pairs that match the specified key prefix for a device. This method uses an asynchronous callback to return the result.
 
 -   Parameters
 
@@ -3847,7 +3846,7 @@ Obtains all KV pairs that match the specified key prefix for a device. This meth
 
 getEntries(deviceId: string, keyPrefix: string): Promise&lt;Entry[]&gt;;
 
-Obtains all KV pairs that match the specified key prefix for a device. This method uses a promise to return the result.
+Obtains the KV pairs that match the specified key prefix for a device. This method uses a promise to return the result.
 
 -   Parameters
 
@@ -3860,7 +3859,7 @@ Obtains all KV pairs that match the specified key prefix for a device. This meth
 
 | Type| Description|
 | ------  | -------   |
-|Promise&lt;[Entry](#entry)[]&gt; |Promise used to return the result.|
+|Promise&lt;[Entry](#entry)[]&gt; |Promise used to return the KV pairs obtained.|
 
 -   Example
 
@@ -3910,7 +3909,7 @@ Obtains the KV pairs matching the specified **Query** object. This method uses a
 
 | Name| Type| Mandatory| Description|
 | -----  | ------   | ----  | ----------------------- |
-| query  |[Query](#querysup8sup)  | Yes|**Query** object.|
+| query  |[Query](#querysup8sup)  | Yes|**Query** object to match.|
 | callback |AsyncCallback&lt;[Entry](#entry)[]&gt;  | Yes|Callback used to return the KV pairs obtained.|
 
 -   Example
@@ -3961,13 +3960,13 @@ Obtains the KV pairs matching the specified **Query** object. This method uses a
 
 | Name| Type| Mandatory| Description|
 | -----  | ------   | ----  | ----------------------- |
-| query  |[Query](#querysup8sup)  | Yes|**Query** object.|
+| query  |[Query](#querysup8sup)  | Yes|**Query** object to match.|
 
 -   Return value
 
 | Type| Description|
 | ------  | -------   |
-|Promise&lt;[Entry](#entry)[]&gt; |Promise used to return the result.|
+|Promise&lt;[Entry](#entry)[]&gt; |Promise used to return the KV pairs obtained.|
 
 -   Example
 
@@ -4018,7 +4017,7 @@ Obtains the KV pairs matching the specified **Query** object for a device. This 
 | Name| Type| Mandatory| Description|
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | Yes|ID of the target device.|
-| query  |[Query](#querysup8sup)  | Yes|**Query** object.|
+| query  |[Query](#querysup8sup)  | Yes|**Query** object to match.|
 | callback |AsyncCallback&lt;[Entry](#entry)[]&gt;  | Yes|Callback used to return the KV pairs obtained.|
 
 -   Example
@@ -4070,13 +4069,13 @@ Obtains the KV pairs matching the specified **Query** object for a device. This 
 | Name| Type| Mandatory| Description|
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | Yes|ID of the target device.|
-| query  |[Query](#querysup8sup)  | Yes|**Query** object.|
+| query  |[Query](#querysup8sup)  | Yes|**Query** object to match.|
 
 -   Return value
 
 | Type| Description|
 | ------  | -------   |
-|Promise&lt;[Entry](#entry)[]&gt; |Promise used to return the result.|
+|Promise&lt;[Entry](#entry)[]&gt; |Promise used to return the KV pairs obtained.|
 
 -   Example
 
@@ -4167,7 +4166,7 @@ Obtains the **KvStoreResultSet** object that matches the specified key prefix fo
 
 | Type| Description|
 | ------  | -------   |
-|Promise&lt;[KvStoreResultSet](#kvstoreresultsetsup8sup)[]&gt; |Promise used to return the result.|
+|Promise&lt;[KvStoreResultSet](#kvstoreresultsetsup8sup)[]&gt; |Promise used to return the **KvStoreResultSet** object obtained.|
 
 -   Example
 
@@ -4202,7 +4201,7 @@ Obtains the **KvStoreResultSet** object that matches the specified **Query** obj
 
 | Name| Type| Mandatory| Description|
 | -----  | ------   | ----  | ----------------------- |
-| query  |[Query](#querysup8sup)  | Yes|**Query** object.|
+| query  |[Query](#querysup8sup)  | Yes|**Query** object to match.|
 | callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultsetsup8sup)[]&gt;  | Yes|Callback used to return the **KvStoreResultSet** object obtained.|
 
 -   Example
@@ -4252,13 +4251,13 @@ Obtains the **KvStoreResultSet** object that matches the specified **Query** obj
 
 | Name| Type| Mandatory| Description|
 | -----  | ------   | ----  | ----------------------- |
-| query  |[Query](#querysup8sup)  | Yes|**Query** object.|
+| query  |[Query](#querysup8sup)  | Yes|**Query** object to match.|
 
 -   Return value
 
 | Type| Description|
 | ------  | -------   |
-|Promise&lt;[KvStoreResultSet](#kvstoreresultsetsup8sup)[]&gt; |Promise used to return the result.|
+|Promise&lt;[KvStoreResultSet](#kvstoreresultsetsup8sup)[]&gt; |Promise used to return the **KvStoreResultSet** object obtained.|
 
 -   Example
 
@@ -4315,7 +4314,7 @@ Obtains the **KvStoreResultSet** object that matches the specified **Query** obj
 | Name| Type| Mandatory| Description|
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | Yes|ID of the target device.|
-| query  |[Query](#querysup8sup)  | Yes|**Query** object.|
+| query  |[Query](#querysup8sup)  | Yes|**Query** object to match.|
 | callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultsetsup8sup)[]&gt;  | Yes|Callback used to return the **KvStoreResultSet** object obtained.|
 
 -   Example
@@ -4365,13 +4364,13 @@ Obtains the **KvStoreResultSet** object that matches the specified **Query** obj
 | Name| Type| Mandatory| Description|
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | Yes|ID of the target device.|
-| query  |[Query](#querysup8sup)  | Yes|**Query** object.|
+| query  |[Query](#querysup8sup)  | Yes|**Query** object to match.|
 
 -   Return value
 
 | Type| Description|
 | ------  | -------   |
-|Promise&lt;[KvStoreResultSet](#kvstoreresultsetsup8sup)[]&gt; |Promise used to return the result.|
+|Promise&lt;[KvStoreResultSet](#kvstoreresultsetsup8sup)[]&gt; |Promise used to return the **KvStoreResultSet** object obtained.|
 
 -   Example
 
@@ -4497,7 +4496,7 @@ Obtains the number of results that matches the specified **Query** object. This 
 
 | Name| Type| Mandatory| Description|
 | -----  | ------   | ----  | ----------------------- |
-| query     |[Query](#querysup8sup)       | Yes|**Query** object.|
+| query     |[Query](#querysup8sup)       | Yes|**Query** object to match.|
 | callback  |AsyncCallback&lt;number&gt;  | Yes|Callback used to return the number of results obtained.|
 
 -   Example
@@ -4542,13 +4541,13 @@ Obtains the number of results that matches the specified **Query** object. This 
 
 | Name| Type| Mandatory| Description|
 | -----  | ------   | ----  | ----------------------- |
-| query     |[Query](#querysup8sup)       | Yes|**Query** object.|
+| query     |[Query](#querysup8sup)       | Yes|**Query** object to match.|
 
 -   Return value
 
 | Type| Description|
 | ------  | -------   |
-|Promise&lt;number&gt; |Promise used to return the result.|
+|Promise&lt;number&gt; |Promise used to return the number of results obtained.|
 
 -   Example
 
@@ -4597,7 +4596,7 @@ Obtains the number of results that matches the specified **Query** object for a 
 | Name| Type| Mandatory| Description|
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string                       | Yes|ID of the target device.|
-| query     |[Query](#querysup8sup)       | Yes|**Query** object.|
+| query     |[Query](#querysup8sup)       | Yes|**Query** object to match.|
 | callback  |AsyncCallback&lt;number&gt;  | Yes|Callback used to return the number of results obtained.|
 
 -   Example
@@ -4642,13 +4641,13 @@ Obtains the number of results that matches the specified **Query** object for a 
 | Name| Type| Mandatory| Description|
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string                       | Yes|ID of the target device.|
-| query     |[Query](#querysup8sup)       | Yes|**Query** object.|
+| query     |[Query](#querysup8sup)       | Yes|**Query** object to match.|
 
 -   Return value
 
 | Type| Description|
 | ------  | -------   |
-|Promise&lt;number&gt; |Promise used to return the result.|
+|Promise&lt;number&gt; |Promise used to return the number of results obtained.|
 
 -   Example
 
@@ -4689,7 +4688,7 @@ Obtains the number of results that matches the specified **Query** object for a 
 
 removeDeviceData(deviceId: string, callback: AsyncCallback&lt;void&gt;): void;
 
-Deletes data of a device from this KV store. This method uses an asynchronous callback to return the result.
+Removes data of a device from this KV store. This method uses an asynchronous callback to return the result.
 
 -   Parameters
 
@@ -4729,7 +4728,7 @@ Deletes data of a device from this KV store. This method uses an asynchronous ca
 
 removeDeviceData(deviceId: string): Promise&lt;void&gt;;
 
-Deletes data of a device from this KV store. This method uses a promise to return the result.
+Removes data of a device from this KV store. This method uses a promise to return the result.
 
 -   Parameters
 
@@ -4783,8 +4782,8 @@ Manually triggers KV store synchronization synchronously.
 | Name| Type| Mandatory| Description|
 | -----  | ------   | ----  | ----------------------- |
 | deviceIdList    |string[]               | Yes|IDs of the devices to be synchronized.|
-| mode            |[SyncMode](#syncmode)  | Yes|Synchronization mode, which can be **PUSH**, **PULL**, or **PUSH_PULL**.|
-| allowedDelayMs  |number                 | No|Allowed delay time, in ms.|
+| mode            |[SyncMode](#syncmode)  | Yes|Data synchronization mode, which can be **PUSH**, **PULL**, or **PUSH_PULL**.|
+| allowedDelayMs  |number                 | No|Allowed synchronization delay time, in ms.|
 
 
 -   Example
