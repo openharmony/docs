@@ -276,7 +276,56 @@ promise.then(data => {
 ```
 
 
-## radio.getSignalInformation<a name=radio.getSignalInformation-callback></a>
+## radio.getPrimarySlotId<sup>7+</sup><a name=radio.getPrimarySlotId-callback></a>
+
+getPrimarySlotId\(callback: AsyncCallback\<number\>\): void
+
+获取主卡所在卡槽的索引号，使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback\<number\> | 是   | 回调函数 |
+
+**示例：**
+
+```
+radio.getPrimarySlotId((err, data) => {
+   console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## radio.getPrimarySlotId<sup>7+</sup><a name=radio.getPrimarySlotId-promise></a>
+
+getPrimarySlotId\(\): Promise\<number\>
+
+获取主卡所在卡槽的索引号，使用Promise方式作为异步方法。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**返回值：**
+
+| 类型                                                        | 说明                                                         |
+| ----------------------------------------------------------- | ------------------------------------------------------------ |
+| Promise\<number\> | 以Promise形式返回获取设备主卡所在卡槽的索引号的结果。 |
+
+**示例：**
+
+```
+let promise = radio.getPrimarySlotId();
+promise.then(data => {
+    console.log(`getPrimarySlotId success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.error(`getPrimarySlotId fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+
+## radio.getSignalInformation<sup>7+</sup><a name=radio.getSignalInformation-callback></a>
 
 getSignalInformation\(slotId: number, callback: AsyncCallback<Array<SignalInformation\>\>\): void
 
@@ -301,7 +350,7 @@ radio.getSignalInformation(slotId, (err, data) => {
 ```
 
 
-## radio.getSignalInformation<a name=radio.getSignalInformation-promise></a>
+## radio.getSignalInformation<sup>7+</sup><a name=radio.getSignalInformation-promise></a>
 
 getSignalInformation\(slotId: number\): Promise<Array<SignalInformation\>\>
 
@@ -331,6 +380,35 @@ promise.then(data => {
 }).catch(err => {
     console.error(`getSignalInformation fail, promise: err->${JSON.stringify(err)}`);
 });
+```
+
+
+## radio.isNrSupported<sup>8+</sup><a name=radio.isNrSupported.slot></a>
+
+isNrSupported\(slotId: number\): boolean
+
+判断当前设备是否支持5G\(NR\)。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+
+**返回值：**
+
+| 类型               | 说明                                                         |
+| ------------------ | ------------------------------------------------------------ |
+| boolean | - true：支持<br/>- false：不支持 |
+
+**示例：**
+
+```
+let slotId = 0;
+let result = radio.isNrSupported(slotId);
+console.log(result);
 ```
 
 
