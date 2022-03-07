@@ -296,7 +296,7 @@ getPublicDirectory(type: DirectoryType): Promise&lt;string&gt;;
 **示例：**
 
 ```
-async function (done) {
+async function example() {
     let DIR_CAMERA = mediaLibrary.DirectoryType.DIR_CAMERA;
     const dicResult = await media.getPublicDirectory(DIR_CAMERA);
     if (dicResult == 'camera/') {
@@ -445,7 +445,7 @@ isDirectory(callback: AsyncCallback&lt;boolean&gt;): void;
 **示例：**
 
 ```
-async function (done) {
+async function example() {
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -480,7 +480,7 @@ isDirectory():Promise&lt;boolean&gt;;
 **示例：**
 
 ```
-async function (done) {
+async function example() {
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -517,7 +517,7 @@ commitModify(callback: AsyncCallback&lt;void&gt;): void;
 **示例：**
 
 ```
-async function (done) {
+async function example() {
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -553,7 +553,7 @@ commitModify(): Promise&lt;void&gt;;
 **示例：**
 
 ```
-async function (done) {
+async function example() {
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -588,7 +588,7 @@ open(mode: string, callback: AsyncCallback&lt;number&gt;): void;
 **示例：**
 
 ```
-async function (done) {
+async function example() {
     let mediaType = mediaLibrary.MediaType.IMAGE;
     let path = "Pictures/";
     asset = await media.createAsset(mediaType, "image00003.jpg", path);
@@ -627,7 +627,7 @@ open(mode: string): Promise&lt;number&gt;;
 **示例：**
 
 ```
-async function (done) {
+async function example() {
     let mediaType = mediaLibrary.MediaType.IMAGE;
     let path = "Pictures/";
     asset = await media.createAsset(mediaType, "image00003.jpg", path);
@@ -661,7 +661,7 @@ close(fd: number, callback: AsyncCallback&lt;void&gt;): void;
 **示例：**
 
 ```
-async function (done) {
+async function example() {
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -707,7 +707,7 @@ close(fd: number): Promise&lt;void&gt;;
 **示例：**
 
 ```
-async function (done) {
+async function example() {
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -748,7 +748,7 @@ getThumbnail(callback: AsyncCallback&lt;image.PixelMap&gt;): void;
 **示例：**
 
 ```
-async function (done) {
+async function example() {
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -784,7 +784,7 @@ getThumbnail(size: Size, callback: AsyncCallback&lt;image.PixelMap&gt;): void;
 **示例：**
 
 ```
-async function (done) {
+async function example() {
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -825,7 +825,7 @@ getThumbnail(size?: Size): Promise&lt;image.PixelMap&gt;;
 **示例：**
 
 ```
-async function (done) {
+async function example() {
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -861,7 +861,7 @@ favorite(isFavorite: boolean, callback: AsyncCallback&lt;void&gt;): void;
 **示例：**
 
 ```
-async function (done) {
+async function example() {
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -902,7 +902,7 @@ favorite(isFavorite: boolean): Promise&lt;void&gt;;
 **示例：**
 
 ```
-async function (done) {
+async function example() {
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -939,7 +939,7 @@ isFavorite(callback: AsyncCallback&lt;boolean&gt;): void;
 **示例：**
 
 ```
-async function (done) {
+async function example() {
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -978,7 +978,7 @@ isFavorite():Promise&lt;boolean&gt;;
 **示例：**
 
 ```
-async function (done) {
+async function example() {
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1018,7 +1018,7 @@ trash(isTrash: boolean, callback: AsyncCallback&lt;void&g;): void;
 **示例：**
 
 ```
-async function (done) {
+async function example() {
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1062,7 +1062,7 @@ trash(isTrash: boolean,): Promise&lt;void&gt;;
 **示例：**
 
 ```
-async function (done) {
+async function example() {
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1099,7 +1099,7 @@ isTrash(callback: AsyncCallback&lt;boolean&gt;): void;
 **示例：**
 
 ```
-async function (done) {
+async function example() {
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1143,7 +1143,7 @@ isTrash():Promise&lt;boolean&gt;;
 **示例：**
 
 ```
-async function (done) {
+async function example() {
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1184,7 +1184,7 @@ getCount(): number;
 **示例**：
 
 ```
-async function (done) {
+async function example() {
     let getFileCountOneOp = {
         selections: fileKeyObj.MEDIA_TYPE + '= ?',
         selectionArgs: [fileType.toString()],
@@ -1215,7 +1215,7 @@ isAfterLast(): boolean;
 **示例**：
 
 ```
-async function (done) {
+async function example() {
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1254,7 +1254,7 @@ close(): void;
 **示例**：
 
 ```
-async function (done) {
+async function example() {
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1286,7 +1286,7 @@ getFirstObject(callback: AsyncCallback&lt;FileAsset&gt;): void;
 **示例**：
 
 ```
-async function (done) {
+async function example() {
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1325,7 +1325,7 @@ getFirstObject(): Promise&lt;FileAsset&gt;;
 **示例**：
 
 ```
-async function (done) {
+async function example() {
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1361,7 +1361,7 @@ async function (done) {
 **示例**：
 
 ```
-async function (done) {
+async function example() {
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1399,7 +1399,7 @@ async function (done) {
 **示例**：
 
 ```
-async function (done) {
+async function example() {
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1433,7 +1433,7 @@ getLastObject(callback: AsyncCallback&lt;FileAsset&gt;): void;
 **示例**：
 
 ```
-async function (done) {
+async function example() {
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1471,7 +1471,7 @@ getLastObject(): Promise&lt;FileAsset&gt;;
 **示例**：
 
 ```
-async function (done) {
+async function example() {
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1504,7 +1504,7 @@ getPositionObject(index: number, callback: AsyncCallback&lt;FileAsset&gt;): void
 **示例**：
 
 ```
-async function (done) {
+async function example() {
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1548,7 +1548,7 @@ getPositionObject(index: number): Promise&lt;FileAsset&gt;;
 **示例**：
 
 ```
-async function (done) {
+async function example() {
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1586,7 +1586,7 @@ getAllObject(callback: AsyncCallback&lt;Array&lt;FileAsset&gt;&gt;): void;
 **示例**：
 
 ```
-async function (done) {
+async function example() {
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1624,7 +1624,7 @@ getAllObject(): Promise&lt;Array&lt;FileAsset&gt;&gt;;
 **示例**：
 
 ```
-async function (done) {
+async function example() {
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1656,7 +1656,7 @@ commitModify(callback: AsyncCallback&lt;void&gt;): void;
 **示例**：
 
 ```
-async function (done) {
+async function example() {
     let AlbumNoArgsfetchOp = {
         selections: '',
         selectionArgs: [],
@@ -1693,7 +1693,7 @@ commitModify(): Promise&lt;void&gt;;
 **示例**：
 
 ```
-async function (done) {
+async function example() {
     let AlbumNoArgsfetchOp = {
         selections: '',
         selectionArgs: [],
@@ -1729,7 +1729,7 @@ getFileAssets(options: MediaFetchOptions, callback: AsyncCallback&lt;FetchFileRe
 **示例**：
 
 ```
-async function (done) {
+async function example() {
     let AlbumNoArgsfetchOp = {
         selections: '',
         selectionArgs: [],
@@ -1768,7 +1768,7 @@ async function (done) {
 **示例**：
 
 ```
-async function (done) {
+async function example() {
     let AlbumNoArgsfetchOp = {
         selections: '',
         selectionArgs: [],
