@@ -29,13 +29,13 @@ Select(options: Array<SelectOption>)
 | ----------------------- | --------------------------------------------------- | ------ | ----------------------------------------------- |
 | selected                | number                                              | -      | Index of the initial selected option in the drop-down list box. The index of the first option is **0**.|
 | value                   | string                                              | -      | Text of the drop-down button.|
-| font                    | [Font](../../ui/ts-types.md#Font)                   | -      | Text font of the drop-down button.|
+| font                    | [Font](../../ui/ts-types.md)                   | -      | Text font of the drop-down button.|
 | fontColor               | [ResourceColor](../../ui/ts-types.md#ResourceColor) | -      | Text color of the drop-down button.|
 | selectedOptionBgColor   | [ResourceColor](../../ui/ts-types.md#ResourceColor) | -      | Background color of the selected option in the drop-down list box.|
-| selectedOptionFont      | [Font](../../ui/ts-types.md#Font)                   | -      | Text font of the selected option in the drop-down list box.|
+| selectedOptionFont      | [Font](../../ui/ts-types.md)                   | -      | Text font of the selected option in the drop-down list box.|
 | selectedOptionFontColor | [ResourceColor](../../ui/ts-types.md#ResourceColor) | -      | Text color of the selected option in the drop-down list box.|
 | optionBgColor           | [ResourceColor](../../ui/ts-types.md#ResourceColor) | -      | Background color of an option in the drop-down list box.|
-| optionFont              | [Font](../../ui/ts-types.md#Font)                   | -      | Text font of an option in the drop-down list box.|
+| optionFont              | [Font](../../ui/ts-types.md)                   | -      | Text font of an option in the drop-down list box.|
 | optionFontColor         | [ResourceColor](../../ui/ts-types.md#ResourceColor) | -      | Text color of an option in the drop-down list box.|
 
 ## Events
