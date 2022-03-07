@@ -1,4 +1,4 @@
-# OpenHarmony 2.0 Canary \(2021-06-02\)<a name="EN-US_TOPIC_0000001102397706"></a>
+# OpenHarmony 2.0 Canary \(2021-06-01\)<a name="EN-US_TOPIC_0000001102397706"></a>
 
 ## Version Description<a name="section1677664815431"></a>
 
