@@ -77,7 +77,7 @@ struct SideBarContainerExample {
   @State current: number = 1
 
   build() {
-    SideBarContainer({ type: SideBarContainerType.Embed })
+    SideBarContainer(SideBarContainerType.Embed)
     {
       Column() {
         ForEach(this.arr, (item, index) => {
