@@ -111,62 +111,6 @@ promise.then(data => {
 ```
 
 
-## sim.hasOperatorPrivileges<a name=sim.hasOperatorPrivileges-callback></a>
-
-hasOperatorPrivileges\(slotId: number, callback: AsyncCallback<boolean\>\): void
-
-检查应用是否已经被赋予权限，使用callback方式作为异步方法。
-
-**需要权限**：ohos.permission.GET_TELEPHONY_STATE
-
-**参数：**
-
-| 参数名   | 类型                        | 必填 | 说明                                   |
-| -------- | --------------------------- | ---- | -------------------------------------- |
-| slotId   | number                      | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。                             |
-
-**示例：**
-
-```
-sim.hasOperatorPrivileges(0, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
-});
-```
-
-
-## sim.hasOperatorPrivileges<a name=sim.hasOperatorPrivileges-promise></a>
-
-hasOperatorPrivileges\(slotId: number\): Promise<string\>
-
-检查应用是否已经被赋予权限，使用Promise方式作为异步方法。
-
-**需要权限**：ohos.permission.GET_TELEPHONY_STATE
-
-**参数：**
-
-| 参数名 | 类型   | 必填 | 说明                                   |
-| ------ | ------ | ---- | -------------------------------------- |
-| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-
-**返回值：**
-
-| 类型                  | 说明                               |
-| --------------------- | ---------------------------------- |
-| Promise&lt;boolean&gt; | 以Promise形式返回指应用是否操作电话服务的权限，如果有返回true。 |
-
-**示例：**
-
-```
-let promise = sim.hasOperatorPrivileges(0);
-promise.then(data => {
-    console.log(`hasOperatorPrivileges success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
-    console.log(`hasOperatorPrivileges fail, promise: err->${JSON.stringify(err)}`);
-});
-```
-
-
 ## sim.getISOCountryCodeForSim<a name=sim.getISOCountryCodeForSim-callback></a>
 
 getISOCountryCodeForSim\(slotId: number, callback: AsyncCallback<string\>\): void
