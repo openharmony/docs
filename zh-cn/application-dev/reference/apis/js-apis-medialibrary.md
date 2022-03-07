@@ -2,7 +2,7 @@
 ==========
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 该组件从API Version 6开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
- 
+
  导入模块
 ---------
 
@@ -13,7 +13,7 @@ import mediaLibrary from '@ohos.multimedia.medialibrary';
 
 ## getMediaLibrary
 
-function getMediaLibrary(context: Context): MediaLibrary;
+function getMediaLibrary(context: Context): MediaLibrary
 
 获取媒体库的实例，用于访问和修改用户的个人数据信息。
 
@@ -31,7 +31,7 @@ function getMediaLibrary(context: Context): MediaLibrary;
 
 | 类型         | 说明   |
 | ------------ | :----- |
-| mediaLibrary | 媒体库实例 |
+| MediaLibrary | 媒体库实例 |
 
 **示例：**
 
@@ -41,11 +41,12 @@ import featureAbility from '@ohos.ability.featureAbility';
 var context = featureAbility.getContext()
 var media = mediaLibrary.getMediaLibrary(context);
 ```
+## MediaLibrary
 
-## mediaLibrary.getFileAssets<sup>8+</sup>
+### getFileAssets<sup>8+</sup>
 
 
-getFileAssets(options: MediaFetchOptions, callback: AsyncCallback&lt;FetchFileResult&gt;): void;    
+getFileAssets(options: MediaFetchOptions, callback: AsyncCallback&lt;FetchFileResult&gt;): void 
 
 获取文件资源，使用callback方式返回异步结果。
 
@@ -80,9 +81,9 @@ mediaLibrary.getFileAssets(imagesfetchOp, (error, fetchFileResult) => {
     }
 });
 ```
-## mediaLibrary.getFileAssets<sup>8+</sup>
+### getFileAssets<sup>8+</sup>
 
-getFileAssets(options: MediaFetchOptions): Promise&lt;FetchFileResult&gt;;
+getFileAssets(options: MediaFetchOptions): Promise&lt;FetchFileResult&gt;
 
 获取文件资源，使用Promise方式返回结果。
 
@@ -118,9 +119,9 @@ mediaLibrary.getFileAssets(imagesfetchOp).then(function(fetchFileResult){
 });
 ```
 
-## mediaLibrary.on<sup>8+</sup>
+### on<sup>8+</sup>
 
-on(type: 'deviceChange'|'albumChange'|'imageChange'|'audioChange'|'videoChange'|'fileChange'|'remoteFileChange', callback: Callback&lt;void&gt;): void;
+on(type: 'deviceChange'|'albumChange'|'imageChange'|'audioChange'|'videoChange'|'fileChange'|'remoteFileChange', callback: Callback&lt;void&gt;): void
 
 打开媒体媒体库变更通知，使用callback方式返回异步结果。
 
@@ -142,9 +143,9 @@ mediaLibrary.on('imageChange', () => {
     // image file had changed, do something
 })
 ```
-## mediaLibrary.off<sup>8+</sup>
+### off<sup>8+</sup>
 
-off(type: 'deviceChange'|'albumChange'|'imageChange'|'audioChange'|'videoChange'|'fileChange'|'remoteFileChange', callback?: Callback&lt;void&gt;): void;
+off(type: 'deviceChange'|'albumChange'|'imageChange'|'audioChange'|'videoChange'|'fileChange'|'remoteFileChange', callback?: Callback&lt;void&gt;): void
 
 关闭媒体媒体库变更通知，使用callback方式返回异步结果。
 
@@ -169,9 +170,9 @@ mediaLibrary.off('imageChange', () => {
 })
 ```
 
-## mediaLibrary.createAsset <sup>8+</sup>
+### createAsset <sup>8+</sup>
 
-createAsset(mediaType: MediaType, displayName: string, relativePath: string, callback: AsyncCallback&lt;FileAsset&gt;): void;
+createAsset(mediaType: MediaType, displayName: string, relativePath: string, callback: AsyncCallback&lt;FileAsset&gt;): void
 
 创建媒体资源，使用callback方式返回结果。
 
@@ -203,9 +204,9 @@ mediaLibrary.createAsset(mediaType, 'imageCallBack.jpg', path, (err, fileAsset) 
 });
 ```
 
-## mediaLibrary.createAsset<sup>8+</sup>
+### createAsset<sup>8+</sup>
 
-createAsset(mediaType: MediaType, displayName: string, relativePath: string): Promise&lt;FileAsset&gt;;
+createAsset(mediaType: MediaType, displayName: string, relativePath: string): Promise&lt;FileAsset&gt;
 
 创建媒体资源，使用Promise方式返回结果。
 
@@ -240,9 +241,9 @@ mediaLibrary.createAsset(mediaType, "image01.jpg", path).then (function (asset) 
 });
 ```
 
-## mediaLibrary.getPublicDirectory<sup>8+</sup>
+### getPublicDirectory<sup>8+</sup>
 
-getPublicDirectory(type: DirectoryType, callback: AsyncCallback&lt;string&gt;): void;
+getPublicDirectory(type: DirectoryType, callback: AsyncCallback&lt;string&gt;): void
 
 获取公共目录路径
 
@@ -271,9 +272,9 @@ media.getPublicDirectory(DIR_CAMERA, (err, dicResult) => {
 });
 ```
 
-## mediaLibrary.getPublicDirectory<sup>8+</sup>
+### getPublicDirectory<sup>8+</sup>
 
-getPublicDirectory(type: DirectoryType): Promise&lt;string&gt;;
+getPublicDirectory(type: DirectoryType): Promise&lt;string&gt;
 
 获取公共目录路径
 
@@ -307,9 +308,9 @@ async function example() {
 }
 ```
 
-## mediaLibrary.getAlbums<sup>6+</sup>
+### getAlbums<sup>6+</sup>
 
-getAlbums(options: MediaFetchOptions, callback: AsyncCallback<Array&lt;Album&gt;>): void;
+getAlbums(options: MediaFetchOptions, callback: AsyncCallback<Array&lt;Album&gt;>): void
 
 获取实体相册，使用callback 方式返回结果。
 
@@ -342,9 +343,9 @@ mediaLibrary.getAlbums(AlbumNoArgsfetchOp, (err, albumList) => {
 })
 ```
 
-## mediaLibrary.getAlbums<sup>6+</sup>
+### getAlbums<sup>6+</sup>
 
-getAlbums(options: MediaFetchOptions): Promise<Array&lt;Album&gt;>;
+getAlbums(options: MediaFetchOptions): Promise<Array&lt;Album&gt;>
 
 获取实体相册，使用 promise 方式返回结果。
 
@@ -378,9 +379,9 @@ mediaLibrary.getAlbums(AlbumNoArgsfetchOp).then(function(albumList){
 });
 ```
 
-## mediaLibrary.release<sup>8+</sup>
+### release<sup>8+</sup>
 
-release(callback: AsyncCallback&lt;void&gt;): void;
+release(callback: AsyncCallback&lt;void&gt;): void
 
 释放mediaLibrary实例，当用户确认后续不再使用mediaLibrary实例中的方法后调用release方法释放mediaLibrary实例。
 
@@ -403,9 +404,9 @@ media.release((err, data) => {
 });
 ```
 
-## mediaLibrary.release<sup>8+</sup>
+### release<sup>8+</sup>
 
-release(): Promise&lt;void&gt;;
+release(): Promise&lt;void&gt;
 
 释放mediaLibrary实例，当用户确认后续不再使用mediaLibrary实例中的方法后调用release方法释放mediaLibrary实例。
 
@@ -426,7 +427,38 @@ var media = mediaLibrary.getMediaLibrary(context);
 media.release()
 ```
 
-## FileAsset.isDirectory<sup>8+</sup>
+## FileAsset<sup>8+</sup>
+
+提供封装文件属性的方法。
+
+### **属性**
+
+| 名称         | 类型      | 可读 | 可写 | 说明                                                   |
+| ------------ | --------- | ---- | ---- | ------------------------------------------------------ |
+| id           | number    | 是   | 否   | 文件资源编号                                           |
+| uri          | string    | 是   | 否   | 文件资源uri（如：dataability:///media/image/2)         |
+| mimeType     | string    | 是   | 否   | 文件扩展属性                                           |
+| mediaType    | MediaType | 是   | 否   | 媒体类型                                               |
+| displayName  | string    | 是   | 是   | 显示文件名                                             |
+| title        | string    | 是   | 是   | 文件标题                                               |
+| relativePath | string    | 是   | 是   | 相对公共目录路径                                               |
+| parent       | number    | 是   | 否   | 父目录id                                               |
+| size         | number    | 是   | 否   | 文件大小(单位：字节)                                   |
+| dateAdded    | number    | 是   | 否   | 添加日期（添加文件时间到1970年1月1日的秒数值）         |
+| dateModified | number    | 是   | 否   | 修改日期（修改文件时间到1970年1月1日的秒数值）         |
+| dateTaken    | number    | 是   | 否   | 拍摄日期（文件拍照时间到1970年1月1日的秒数值）         |
+| artist       | string    | 是   | 否   | 作者                                                   |
+| audioAlbum   | string    | 是   | 否   | 专辑                                                   |
+| width        | number    | 是   | 否   | 图片宽度（单位：像素）                                 |
+| height       | number    | 是   | 否   | 图片高度（单位：像素）                                 |
+| orientation  | number    | 是   | 是   | 图片显示方向（顺时针旋转角度，如0，90，180  单位：度） |
+| duration     | number    | 是   | 否   | 持续时间（单位：秒）                                   |
+| albumId      | number    | 是   | 否   | 文件所归属的相册编号                                   |
+| albumUri     | string    | 是   | 否   | 文件所归属相册uri                                      |
+| albumName    | string    | 是   | 否   | 文件所归属相册名称                                     |
+
+
+### isDirectory<sup>8+</sup>
 
 isDirectory(callback: AsyncCallback&lt;boolean&gt;): void;
 
@@ -461,9 +493,9 @@ async function example() {
 }
 ```
 
-## FileAsset.isDirectory<sup>8+</sup>
+### isDirectory<sup>8+</sup>
 
-isDirectory():Promise&lt;boolean&gt;;
+isDirectory():Promise&lt;boolean&gt;
 
 判断fileAsset是否为目录，使用Promise方式返回异步结果。
 
@@ -498,9 +530,9 @@ async function example() {
 }
 ```
 
-## FileAsset.commitModify<sup>8+</sup>
+### commitModify<sup>8+</sup>
 
-commitModify(callback: AsyncCallback&lt;void&gt;): void;
+commitModify(callback: AsyncCallback&lt;void&gt;): void
 
 修改文件的元数据，使用callback方式返回异步结果。
 
@@ -534,9 +566,9 @@ async function example() {
 }
 ```
 
-## FileAsset.commitModify<sup>8+</sup>
+### commitModify<sup>8+</sup>
 
-commitModify(): Promise&lt;void&gt;;
+commitModify(): Promise&lt;void&gt;
 
 修改文件的元数据，使用promise方式返回异步结果。
 
@@ -568,9 +600,9 @@ async function example() {
 }
 ```
 
-## FileAsset.open<sup>8+</sup>
+### open<sup>8+</sup>
 
-open(mode: string, callback: AsyncCallback&lt;number&gt;): void;
+open(mode: string, callback: AsyncCallback&lt;number&gt;): void
 
 打开当前文件，使用callback方式返回异步结果。
 
@@ -602,9 +634,9 @@ async function example() {
 }
 ```
 
-## FileAsset.open<sup>8+</sup>
+### open<sup>8+</sup>
 
-open(mode: string): Promise&lt;number&gt;;
+open(mode: string): Promise&lt;number&gt;
 
 打开当前文件，使用promise方式返回异步结果。
 
@@ -641,9 +673,9 @@ async function example() {
 }
 ```
 
-## FileAsset.close<sup>8+</sup>
+### close<sup>8+</sup>
 
-close(fd: number, callback: AsyncCallback&lt;void&gt;): void;
+close(fd: number, callback: AsyncCallback&lt;void&gt;): void
 
 关闭当前文件，使用callback方式返回异步结果。
 
@@ -682,9 +714,9 @@ async function example() {
 }
 ```
 
-## FileAsset.close<sup>8+</sup>
+### close<sup>8+</sup>
 
-close(fd: number): Promise&lt;void&gt;;
+close(fd: number): Promise&lt;void&gt;
 
 关闭当前文件，使用promise方式返回异步结果。
 
@@ -729,9 +761,9 @@ async function example() {
 }
 ```
 
-## FileAsset.getThumbnail<sup>8+</sup>
+### getThumbnail<sup>8+</sup>
 
-getThumbnail(callback: AsyncCallback&lt;image.PixelMap&gt;): void;
+getThumbnail(callback: AsyncCallback&lt;image.PixelMap&gt;): void
 
 获取文件的缩略图，使用callback方式返回异步结果。
 
@@ -764,9 +796,9 @@ async function example() {
 }
 ```
 
-## FileAsset.getThumbnail<sup>8+</sup>
+### getThumbnail<sup>8+</sup>
 
-getThumbnail(size: Size, callback: AsyncCallback&lt;image.PixelMap&gt;): void;
+getThumbnail(size: Size, callback: AsyncCallback&lt;image.PixelMap&gt;): void
 
 获取文件的缩略图，传入缩略图尺寸，使用callback方式返回异步结果。
 
@@ -800,9 +832,9 @@ async function example() {
 }
 ```
 
-## FileAsset.getThumbnail<sup>8+</sup>
+### getThumbnail<sup>8+</sup>
 
-getThumbnail(size?: Size): Promise&lt;image.PixelMap&gt;;
+getThumbnail(size?: Size): Promise&lt;image.PixelMap&gt;
 
 获取文件的缩略图，传入缩略图尺寸，使用promise方式返回异步结果。
 
@@ -841,9 +873,9 @@ async function example() {
 }
 ```
 
-## FileAsset.favorite<sup>8+</sup>
+### favorite<sup>8+</sup>
 
-favorite(isFavorite: boolean, callback: AsyncCallback&lt;void&gt;): void;
+favorite(isFavorite: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 将文件设置为收藏文件，使用callback方式返回异步结果。
 
@@ -877,9 +909,9 @@ async function example() {
 }
 ```
 
-## FileAsset.favorite<sup>8+</sup>
+### favorite<sup>8+</sup>
 
-favorite(isFavorite: boolean): Promise&lt;void&gt;;
+favorite(isFavorite: boolean): Promise&lt;void&gt;
 
 将文件设置为收藏文件，使用promise方式返回异步结果。
 
@@ -920,9 +952,9 @@ async function example() {
 }
 ```
 
-## FileAsset.isFavorite<sup>8+</sup>
+### isFavorite<sup>8+</sup>
 
-isFavorite(callback: AsyncCallback&lt;boolean&gt;): void;
+isFavorite(callback: AsyncCallback&lt;boolean&gt;): void
 
 判断该文件是否为收藏文件，使用callback方式返回异步结果。
 
@@ -959,9 +991,9 @@ async function example() {
 }
 ```
 
-## FileAsset.isFavorite<sup>8+</sup>
+### isFavorite<sup>8+</sup>
 
-isFavorite():Promise&lt;boolean&gt;;
+isFavorite():Promise&lt;boolean&gt;
 
 判断该文件是否为收藏文件，使用promise方式返回异步结果。
 
@@ -996,9 +1028,9 @@ async function example() {
 }
 ```
 
-## FileAsset.trash<sup>8+</sup>
+### trash<sup>8+</sup>
 
-trash(isTrash: boolean, callback: AsyncCallback&lt;void&g;): void;
+trash(isTrash: boolean, callback: AsyncCallback&lt;void&g;): void
 
 当文件被定位时，将文件放到垃圾文件夹，使用callback方式返回异步结果。
 
@@ -1035,9 +1067,9 @@ async function example() {
 }
 ```
 
-## FileAsset.trash<sup>8+</sup>
+### trash<sup>8+</sup>
 
-trash(isTrash: boolean,): Promise&lt;void&gt;;
+trash(isTrash: boolean,): Promise&lt;void&gt;
 
 当文件被定位时，将文件放到垃圾文件夹，使用promise方式返回异步结果。
 
@@ -1080,9 +1112,9 @@ async function example() {
 }
 ```
 
-## FileAsset.isTrash<sup>8+</sup>
+### isTrash<sup>8+</sup>
 
-isTrash(callback: AsyncCallback&lt;boolean&gt;): void;
+isTrash(callback: AsyncCallback&lt;boolean&gt;): void
 
 当文件被定位，判断文件是否为垃圾文件，使用callback方式返回异步结果。
 
@@ -1124,9 +1156,9 @@ async function example() {
 }
 ```
 
-## FileAsset.isTrash<sup>8+</sup>
+### isTrash<sup>8+</sup>
 
-isTrash():Promise&lt;boolean&gt;;
+isTrash():Promise&lt;boolean&gt;
 
 当文件被定位，设置文件为垃圾文件，使用promise方式返回异步结果。
 
@@ -1161,13 +1193,13 @@ async function example() {
 }
 ```
 
-**FetchFileResult**
+## **FetchFileResult**<sup>8+</sup>
 
 文件检索结果集。
 
-## FetchFileResult.getCount<sup>8+</sup>
+### getCount<sup>8+</sup>
 
-getCount(): number;
+getCount(): number
 
 获取文件检索结果中的文件总数。
 
@@ -1196,9 +1228,9 @@ async function example() {
 }
 ```
 
-## FetchFileResult.isAfterLast<sup>8+</sup>
+### isAfterLast<sup>8+</sup>
 
-isAfterLast(): boolean;
+isAfterLast(): boolean
 
 检查结果集是否指向最后一行。
 
@@ -1241,9 +1273,9 @@ async function example() {
 }
 ```
 
-## FetchFileResult.close<sup>8+</sup>
+### close<sup>8+</sup>
 
-close(): void;
+close(): void
 
 释放 FetchFileResult 实例并使其失效。无法调用其他方法。
 
@@ -1267,9 +1299,9 @@ async function example() {
 }
 ```
 
-## FetchFileResult.getFirstObject<sup>8+</sup>
+### getFirstObject<sup>8+</sup>
 
-getFirstObject(callback: AsyncCallback&lt;FileAsset&gt;): void;
+getFirstObject(callback: AsyncCallback&lt;FileAsset&gt;): void
 
 获取文件检索结果中的第一个文件资产。此方法使用回调返回FileAsset。
 
@@ -1305,9 +1337,9 @@ async function example() {
 }
 ```
 
-## FetchFileResult.getFirstObject<sup>8+</sup>
+### getFirstObject<sup>8+</sup>
 
-getFirstObject(): Promise&lt;FileAsset&gt;;
+getFirstObject(): Promise&lt;FileAsset&gt;
 
 获取文件检索结果中的第一个文件资产。此方法使用返回FileAsset。
 
@@ -1342,9 +1374,9 @@ async function example() {
 }
 ```
 
-## FetchFileResult.getNextObject<sup>8+</sup>
+### getNextObject<sup>8+</sup>
 
- getNextObject(callback: AsyncCallback&lt;FileAsset&gt;): void;
+ getNextObject(callback: AsyncCallback&lt;FileAsset&gt;): void
 
 获取文件检索结果中的下一个文件资产。此方法使用callback形式返回结果。
 
@@ -1380,9 +1412,9 @@ async function example() {
 }
 ```
 
-## FetchFileResult.getNextObject<sup>8+</sup>
+### getNextObject<sup>8+</sup>
 
- getNextObject(): Promise&lt;FileAsset&gt;;
+ getNextObject(): Promise&lt;FileAsset&gt;
 
 获取文件检索结果中的下一个文件资产。此方法使用promise方式来异步返回FileAsset。
 
@@ -1414,9 +1446,9 @@ async function example() {
 }
 ```
 
-## FetchFileResult.getLastObject<sup>8+</sup>
+### getLastObject<sup>8+</sup>
 
-getLastObject(callback: AsyncCallback&lt;FileAsset&gt;): void;
+getLastObject(callback: AsyncCallback&lt;FileAsset&gt;): void
 
 获取文件检索结果中的最后一个文件资产。此方法使用callback回调来返回FileAsset。
 
@@ -1452,9 +1484,9 @@ async function example() {
 }
 ```
 
-## FetchFileResult.getLastObject<sup>8+</sup>
+### getLastObject<sup>8+</sup>
 
-getLastObject(): Promise&lt;FileAsset&gt;;
+getLastObject(): Promise&lt;FileAsset&gt;
 
 获取文件检索结果中的最后一个文件资产。此方法使用Promise方式来返回FileAsset。
 
@@ -1484,9 +1516,9 @@ async function example() {
 }
 ```
 
-## FetchFileResult.getPositionObject<sup>8+</sup>
+### getPositionObject<sup>8+</sup>
 
-getPositionObject(index: number, callback: AsyncCallback&lt;FileAsset&gt;): void;
+getPositionObject(index: number, callback: AsyncCallback&lt;FileAsset&gt;): void
 
 获取文件检索结果中具有指定索引的文件资产。此方法使用回调来返回FileAsset。
 
@@ -1523,9 +1555,9 @@ async function example() {
 }
 ```
 
-## FetchFileResult.getPositionObject<sup>8+</sup>
+### getPositionObject<sup>8+</sup>
 
-getPositionObject(index: number): Promise&lt;FileAsset&gt;;
+getPositionObject(index: number): Promise&lt;FileAsset&gt;
 
 获取文件检索结果中具有指定索引的文件资产。此方法使用Promise形式返回文件Asset。
 
@@ -1567,9 +1599,9 @@ async function example() {
 }
 ```
 
-## FetchFileResult.getAllObject<sup>8+</sup>
+### getAllObject<sup>8+</sup>
 
-getAllObject(callback: AsyncCallback&lt;Array&lt;FileAsset&gt;&gt;): void;
+getAllObject(callback: AsyncCallback&lt;Array&lt;FileAsset&gt;&gt;): void
 
 获取文件检索结果中的所有文件资产。此方法使用Callback回调来返回FileAsset结果集。
 
@@ -1605,9 +1637,9 @@ async function example() {
 }
 ```
 
-## FetchFileResult.getAllObject<sup>8+</sup>
+### getAllObject<sup>8+</sup>
 
-getAllObject(): Promise&lt;Array&lt;FileAsset&gt;&gt;;
+getAllObject(): Promise&lt;Array&lt;FileAsset&gt;&gt;
 
 获取文件检索结果中的所有文件资产。此方法使用Promise来返回FileAsset结果集。
 
@@ -1637,9 +1669,25 @@ async function example() {
 }
 ```
 
-## Album.commitModify<sup>8+</sup>
+## Album<sup>8+</sup>
 
-commitModify(callback: AsyncCallback&lt;void&gt;): void;
+实体相册
+
+### **属性**
+
+| 名称         | 参数型 | 可读 | 可写 | 说明           |
+| ------------ | ------ | ---- | ---- | -------------- |
+| albumId      | number | 是   | 否   | 相册编号       |
+| albumName    | string | 是   | 是   | 相册名称       |
+| albumUri     | string | 是   | 否   | 相册Uri        |
+| dateModified | number | 是   | 否   | 修改日期       |
+| count        | number | 是   | 否   | 相册中文件数量 |
+| relativePath | string | 是   | 否   | 相对路径       |
+| coverUri     | string | 是   | 否   | 封面文件Uri    |
+
+### commitModify<sup>8+</sup>
+
+commitModify(callback: AsyncCallback&lt;void&gt;): void
 
 更新相册属性修改到数据库中。
 
@@ -1674,9 +1722,9 @@ async function example() {
 }
 ```
 
-## Album.commitModify<sup>8+</sup>
+### commitModify<sup>8+</sup>
 
-commitModify(): Promise&lt;void&gt;;
+commitModify(): Promise&lt;void&gt;
 
 更新相册属性修改到数据库中。
 
@@ -1709,9 +1757,9 @@ async function example() {
 }
 ```
 
-## Album.getFileAssets<sup>8+</sup>
+### getFileAssets<sup>8+</sup>
 
-getFileAssets(options: MediaFetchOptions, callback: AsyncCallback&lt;FetchFileResult&gt;): void;
+getFileAssets(options: MediaFetchOptions, callback: AsyncCallback&lt;FetchFileResult&gt;): void
 
 按照检索条件获取相册中的文件。此方法使用Callback回调来返回文件结果集。
 
@@ -1743,9 +1791,9 @@ async function example() {
 }
 ```
 
-## Album.getFileAssets<sup>8+</sup>
+### getFileAssets<sup>8+</sup>
 
- getFileAssets(options?: MediaFetchOptions): Promise&lt;FetchFileResult&gt;;
+ getFileAssets(options?: MediaFetchOptions): Promise&lt;FetchFileResult&gt;
 
 按照检索条件获取相册中的文件。此方法使用异步回调来返回文件结果集。
 
@@ -1794,51 +1842,7 @@ async function example() {
 | deviceType | DeviceType | 是   | 否   | 设备类型       |
 | isOnline   | boolean    | 是   | 否   | 是否在线       |
 
-FileAsset
----------
 
-**属性：**
-
-| 名称         | 类型      | 可读 | 可写 | 说明                                                   |
-| ------------ | --------- | ---- | ---- | ------------------------------------------------------ |
-| id           | number    | 是   | 否   | 文件资源编号                                           |
-| uri          | string    | 是   | 否   | 文件资源uri（如：dataability:///media/image/2)         |
-| mimeType     | string    | 是   | 否   | 文件扩展属性                                           |
-| mediaType    | MediaType | 是   | 否   | 媒体类型                                               |
-| displayName  | string    | 是   | 是   | 显示文件名                                             |
-| title        | string    | 是   | 是   | 文件标题                                               |
-| relativePath | string    | 是   | 是   | 相对公共目录路径                                               |
-| parent       | number    | 是   | 否   | 父目录id                                               |
-| size         | number    | 是   | 否   | 文件大小(单位：字节)                                   |
-| dateAdded    | number    | 是   | 否   | 添加日期（添加文件时间到1970年1月1日的秒数值）         |
-| dateModified | number    | 是   | 否   | 修改日期（修改文件时间到1970年1月1日的秒数值）         |
-| dateTaken    | number    | 是   | 否   | 拍摄日期（文件拍照时间到1970年1月1日的秒数值）         |
-| artist       | string    | 是   | 否   | 作者                                                   |
-| audioAlbum   | string    | 是   | 否   | 专辑                                                   |
-| width        | number    | 是   | 否   | 图片宽度（单位：像素）                                 |
-| height       | number    | 是   | 否   | 图片高度（单位：像素）                                 |
-| orientation  | number    | 是   | 是   | 图片显示方向（顺时针旋转角度，如0，90，180  单位：度） |
-| duration     | number    | 是   | 否   | 持续时间（单位：秒）                                   |
-| albumId      | number    | 是   | 否   | 文件所归属的相册编号                                   |
-| albumUri     | string    | 是   | 否   | 文件所归属相册uri                                      |
-| albumName    | string    | 是   | 否   | 文件所归属相册名称                                     |
-
-Album
----------
-
-实体相册。
-
-**属性**
-
-| 名称         | 参数型 | 可读 | 可写 | 说明           |
-| ------------ | ------ | ---- | ---- | -------------- |
-| albumId      | number | 是   | 否   | 相册编号       |
-| albumName    | string | 是   | 是   | 相册名称       |
-| albumUri     | string | 是   | 否   | 相册Uri        |
-| dateModified | number | 是   | 否   | 修改日期       |
-| count        | number | 是   | 否   | 相册中文件数量 |
-| relativePath | string | 是   | 否   | 相对路径       |
-| coverUri     | string | 是   | 否   | 封面文件Uri    |
 
 MediaType
 ---------
