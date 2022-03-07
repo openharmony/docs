@@ -540,7 +540,7 @@ vector.add(2);
 vector.add(4);
 vector.add(5);
 vector.add(4);
-vector.trimToCurrentLength(2);
+vector.trimToCurrentLength();
 ```
 
 ### toString

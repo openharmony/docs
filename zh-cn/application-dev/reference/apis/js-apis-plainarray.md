@@ -117,7 +117,7 @@ let result = plainArray.get(1);
 
 getIndexOfKey(key: number): number;
 
-查找指定元素第一次出现的下标值，如果没有找到该元素返回-1。
+查找指定key第一次出现的下标值，如果没有找到该元素返回-1。
 
 **参数：**
 
