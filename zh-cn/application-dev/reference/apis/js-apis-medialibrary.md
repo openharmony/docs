@@ -12,7 +12,7 @@ import mediaLibrary from '@ohos.multimedia.medialibrary';
 
 ## mediaLibrary.getMediaLibrary
 
-function getMediaLibrary(context: Context): MediaLibrary
+getMediaLibrary(context: Context): MediaLibrary
 
 获取媒体库的实例，用于访问和修改用户的个人数据信息。
 
