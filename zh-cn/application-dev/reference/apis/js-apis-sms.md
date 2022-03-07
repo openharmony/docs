@@ -148,7 +148,7 @@ getDefaultSmsSlotId\(\): Promise<number\>
 **示例：**
 
 ```
-let promise = call.getDefaultSmsSlotId();
+let promise = sms.getDefaultSmsSlotId();
 promise.then(data => {
     console.log(`getDefaultSmsSlotId success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
@@ -233,6 +233,8 @@ getSmscAddr\(slotId: number, callback: AsyncCallback<string\>\): void
 
 **系统能力**：SystemCapability.Telephony.SmsMms
 
+**补充说明**：该接口为systemapi，仅供系统应用使用
+
 **参数：**
 
 | 参数名   | 类型                        | 必填 | 说明                                      |
@@ -260,6 +262,8 @@ getSmscAddr\(slotId: number\): Promise<string\>
 
 **系统能力**：SystemCapability.Telephony.SmsMms
 
+**补充说明**：该接口为systemapi，仅供系统应用使用
+
 **参数：**
 
 | 参数名 | 类型   | 必填 | 说明                                      |
@@ -284,6 +288,24 @@ promise.then(data => {
 });
 ```
 
+## sms.hasSmsCapability<sup>7+</sup><a name=sms.hasSmsCapability></a>
+
+hasSmsCapability(): boolean
+
+检查当前设备是否具备短信发送和接收能力，该方法是同步方法。
+
+**系统能力**：SystemCapability.Telephony.SmsMms
+
+**返回值：**
+
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| boolean | - true：设备具备短信发送和接收能力<br/>- false：设备不具备短信发送和接收能力 |
+
+```
+let result = sms.hasSmsCapability(); 
+console.log(`hasSmsCapability: ${JSON.stringify(result)}`);
+```
 
 ## ShortMessage<a name=ShortMessage></a>
 
@@ -293,10 +315,7 @@ promise.then(data => {
 
 | 变量                     | 类型                                    | 说明                                                         |
 | ------------------------ | --------------------------------------- | ------------------------------------------------------------ |
-| emailAddress             | string                                  | 电子邮件地址。                                               |
-| emailMessageBody         | string                                  | 电子邮件正文。                                               |
 | hasReplyPath             | boolean                                 | 收到的短信是否包含“TP-Reply-Path”，默认为false。<br/>“TP-Reply-Path”：移动电话根据发送SMS消息的短消息中心进行回复。 |
-| isEmailMessage           | boolean                                 | 收到的短信是否为电子邮件。                                   |
 | isReplaceMessage         | boolean                                 | 收到的短信是否为“替换短信”，默认为false。<br/>“替换短信”有关详细信息，参见 “3GPP TS 23.040 9.2.3.9”。 |
 | isSmsStatusReportMessage | boolean                                 | 当前消息是否为“短信状态报告”，默认为false。<br/>“短信状态报告”是一种特定格式的短信，被用来从Service Center到Mobile Station传送状态报告。 |
 | messageClass             | [ShortMessageClass](#ShortMessageClass) | 短信类型。                                                   |
@@ -305,7 +324,6 @@ promise.then(data => {
 | scAddress                | string                                  | 短消息服务中心（SMSC）地址。                                 |
 | scTimestamp              | number                                  | SMSC时间戳。                                                 |
 | status                   | number                                  | SMS-STATUS-REPORT消息中的短信状态指示短信服务中心（SMSC）发送的短信状态。 |
-| userRawData              | Array&lt;number&gt;                     | 除数据头外的用户数据。                                       |
 | visibleMessageBody       | string                                  | 短信正文。                                                   |
 | visibleRawAddress        | string                                  | 发送者地址。                                                 |
 
