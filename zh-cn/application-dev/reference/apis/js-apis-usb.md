@@ -538,10 +538,3 @@ USB设备消息传输通道，用于确定设备。
 | -------- | -------- | -------- |
 | USB_REQUEST_DIR_TO_DEVICE | 0 | 写数据，主设备往从设备。<br>**系统能力**: SystemCapability.USB.USBManager |
 | USB_REQUEST_DIR_FROM_DEVICE | 0x80 | 读数据，从设备往主设备。<br>**系统能力**: SystemCapability.USB.USBManager |
-
-| 名称 | 默认值 | 说明 |
-| -------- | -------- | -------- |
-| NONE | 0 | 无。<br>**系统能力**: SystemCapability.USB.USBManager |
-| ACM | 1 | 串口设备。<br>**系统能力**: SystemCapability.USB.USBManager |
-| ECM | 2 | 网口设备。<br>**系统能力**: SystemCapability.USB.USBManager |
-| HDC | 4 | HDC设备。<br>**系统能力**: SystemCapability.USB.USBManager |
