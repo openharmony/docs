@@ -1,5 +1,6 @@
 # 网络连接管理
 
+
 > **说明：**
 >
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -102,6 +103,50 @@ hasDefaultNet(): Promise\<boolean>
 connection.hasDefaultNet().then(function (has) {
     console.log(has)
 })
+```
+
+## connection.getAllNets
+
+getAllNets(callback: AsyncCallback&lt;Array&lt;NetHandle&gt;&gt;): void
+
+获取全部激活的数据网络列表，使用callback方式作为异步方法。
+
+需要ohos.permission.GET_NETWORK_INFO权限。
+
+**参数：**
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;Array&lt;[NetHandle](#nethandle)&gt;&gt; | 是 | 回调函数。 |
+
+**示例：**
+
+```
+connection.getAllNets(function (error, nets) {
+    console.log(JSON.stringify(error))
+    console.log(JSON.stringify(nets))
+});
+```
+
+
+## connection.getAllNets
+
+getAllNets(): Promise&lt;Array&lt;NetHandle&gt;&gt;
+
+获取全部激活的数据网络列表，使用promise方式作为异步方法。
+
+需要ohos.permission.GET_NETWORK_INFO权限。
+
+**返回值：**
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;Array&lt;[NetHandle](#nethandle)&gt;&gt; | 以Promise形式返回激活的数据网络列表。 |
+
+**示例：**
+
+```
+connection.getAllNets().then(function (nets) {
+    console.log(JSON.stringify(nets))
+});
 ```
 
 ## connection.getConnectionProperties
@@ -224,6 +269,113 @@ connection.getDefaultNet().then(function (netHandle) {
 })
 ```
 
+## connection.reportNetConnected
+
+reportNetConnected(netHandle: NetHandle, callback: AsyncCallback&lt;void&gt;): void
+
+报告网络状态已连接，使用callback方式作为异步方法。
+
+需要ohos.permission.GET_NETWORK_INFO 和 ohos.permission.INTERNET权限。
+
+**参数：**
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| netHandle | [NetHandle](#nethandle) | 是 | 数据网络的句柄，参考[NetHandle](#nethandle)。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
+
+**示例：**
+
+```
+connection.getDefaultNet().then(function (netHandle) {
+    connection.reportNetConnected(netHandle, function (error) {
+        console.log(JSON.stringify(error))
+    });
+});
+```
+
+
+## connection.reportNetConnected
+
+reportNetConnected(netHandle: NetHandle): Promise&lt;void&gt;
+
+报告网络状态已连接，使用promise方式作为异步方法。
+
+需要ohos.permission.GET_NETWORK_INFO 和 ohos.permission.INTERNET权限。
+
+**参数：**
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| netHandle | [NetHandle](#nethandle) | 是 | 数据网络的句柄，参考[NetHandle](#nethandle)。 |
+
+**返回值：**
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | 以Promise形式返回执行结果。 |
+
+**示例：**
+
+```
+connection.getDefaultNet().then(function (netHandle) {
+    connection.reportNetConnected(netHandle).then(function () {
+        console.log(`report success`)
+    });
+});
+```
+
+
+## connection.reportNetDisconnected
+
+reportNetDisconnected(netHandle: NetHandle, callback: AsyncCallback&lt;void&gt;): void
+
+报告网络状态已断开，使用callback方式作为异步方法。
+
+需要ohos.permission.GET_NETWORK_INFO 和 ohos.permission.INTERNET权限。
+
+**参数：**
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| netHandle | [NetHandle](#nethandle) | 是 | 数据网络的句柄，参考[NetHandle](#nethandle)。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
+
+**示例：**
+
+```
+connection.getDefaultNet().then(function (netHandle) {
+    connection.reportNetDisconnected(netHandle, function (error) {
+        console.log(JSON.stringify(error))
+    });
+});
+```
+
+
+## connection.reportNetDisconnected
+
+reportNetDisconnected(netHandle: NetHandle): Promise&lt;void&gt;
+
+报告网络状态已断开，使用promise方式作为异步方法。
+
+需要ohos.permission.GET_NETWORK_INFO 和 ohos.permission.INTERNET权限。
+
+**参数：**
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| netHandle | [NetHandle](#nethandle) | 是 | 数据网络的句柄，参考[NetHandle](#nethandle)。 |
+
+**返回值：**
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | 以Promise形式返回执行结果。 |
+
+**示例：**
+
+```
+connection.getDefaultNet().then(function (netHandle) {
+    connection.reportNetDisconnected(netHandle).then(function () {
+        console.log(`report success`)
+    });
+});
+```
+
 ## connection.getAddressesByName
 
 getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): void
@@ -243,18 +395,17 @@ getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): 
 
 **示例：**
 
-```javascript
-connection.getDefaultNet().then(function (netHandle) {
-    connection.getAddressesByName(netHandle, function (error, info) {
-        console.log(JSON.stringify(error))
-        console.log(JSON.stringify(info))
-    })
+```
+let host = "xxxx";
+connection.getAddressesByName(host, function (error, addresses) {
+    console.log(JSON.stringify(error))
+    console.log(JSON.stringify(addresses))
 })
 ```
 
 ## connection.getAddressesByName
 
-getAddressesByName(netHandle: NetHandle): Promise\<Array\<NetAddress>>
+getAddressesByName(host: string): Promise\<Array\<NetAddress>>
 
 使用默认网络解析主机名以获取所有IP地址，使用Promise方式作为异步方法。
 
@@ -276,11 +427,10 @@ getAddressesByName(netHandle: NetHandle): Promise\<Array\<NetAddress>>
 
 **示例：**
 
-```javascript
-connection.getDefaultNet().then(function (netHandle) {
-    connection.getAddressesByName(netHandle).then(function (info) {
-        console.log(JSON.stringify(info))
-    })
+```
+let host = "xxxx";
+connection.getAddressesByName(host).then(function (addresses) {
+    console.log(JSON.stringify(addresses))
 })
 ```
 
@@ -309,12 +459,12 @@ createNetConnection(netSpecifier?: NetSpecifier, timeout?: number): NetConnectio
 
 ```javascript
 // 关注默认网络
-let netConnection1 = connection.createNetConnection()
+let netConnection = connection.createNetConnection()
 
 // 关注蜂窝网络
-let netConnection2 = connection.createNetConnection({
+let netConnectionCellular = connection.createNetConnection({
     netCapabilities: {
-        networkCap: [0]
+        bearerTypes: [NetBearType.BEARER_CELLULAR]
     }
 })
 ```
@@ -327,7 +477,7 @@ let netConnection2 = connection.createNetConnection({
 
 on(type: 'netAvailable', callback: Callback\<NetHandle>): void
 
-监听网络可用事件。
+订阅网络可用事件。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -335,13 +485,13 @@ on(type: 'netAvailable', callback: Callback\<NetHandle>): void
 
 | 参数名   | 类型                               | 必填 | 说明                                                         |
 | -------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                             | 是   | 监听事件，固定为'netAvailable'。<br>netAvailable：数据网络可用事件。 |
+| type     | string                             | 是   | 订阅事件，固定为'netAvailable'。<br>netAvailable：数据网络可用事件。 |
 | callback | Callback\<[NetHandle](#nethandle)> | 是   | 回调函数。                                                   |
 
 **示例：**
 
 ```javascript
-connection.createNetConnection().on('netAvailable', function (data) {
+netConnection.on('netAvailable', function (data) {
     console.log(JSON.stringify(data))
 })
 ```
@@ -350,7 +500,7 @@ connection.createNetConnection().on('netAvailable', function (data) {
 
 on(type: 'netCapabilitiesChange', callback: Callback<{ netHandle: NetHandle, netCap: NetCapabilities }>): void
 
-监听网络能力变化事件。
+订阅网络能力变化事件。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -358,13 +508,13 @@ on(type: 'netCapabilitiesChange', callback: Callback<{ netHandle: NetHandle, net
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | 是   | 监听事件，固定为'netCapabilitiesChange'。<br/>netCapabilitiesChange：网络能力变化事件。 |
+| type     | string                                                       | 是   | 订阅事件，固定为'netCapabilitiesChange'。<br/>netCapabilitiesChange：网络能力变化事件。 |
 | callback | Callback<{ netHandle: [NetHandle](#nethandle), netCap: [NetCapabilities](#netcapabilities) }> | 是   | 回调函数。                                                   |
 
 **示例：**
 
 ```javascript
-connection.createNetConnection().on('netCapabilitiesChange', function (data) {
+netConnection.on('netCapabilitiesChange', function (data) {
     console.log(JSON.stringify(data))
 })
 ```
@@ -373,7 +523,7 @@ connection.createNetConnection().on('netCapabilitiesChange', function (data) {
 
 on(type: 'netConnectionPropertiesChange', callback: Callback<{ netHandle: NetHandle, connectionProperties: ConnectionProperties }>): void
 
-监听网络连接信息变化事件。
+订阅网络连接信息变化事件。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -381,13 +531,36 @@ on(type: 'netConnectionPropertiesChange', callback: Callback<{ netHandle: NetHan
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | 是   | 监听事件，固定为'netConnectionPropertiesChange'。<br/>netConnectionPropertiesChange：网络连接信息变化事件。 |
+| type     | string                                                       | 是   | 订阅事件，固定为'netConnectionPropertiesChange'。<br/>netConnectionPropertiesChange：网络连接信息变化事件。 |
 | callback | Callback<{ netHandle: [NetHandle](#nethandle), connectionProperties: [ConnectionProperties](#connectionproperties) }> | 是   | 回调函数。                                                   |
 
 **示例：**
 
 ```javascript
-connection.createNetConnection().on('netConnectionPropertiesChange', function (data) {
+netConnection.on('netConnectionPropertiesChange', function (data) {
+    console.log(JSON.stringify(data))
+})
+```
+
+### on('netBlockStatusChange')
+
+on(type: 'netBlockStatusChange', callback: Callback&lt;{ netHandle: NetHandle, blocked: boolean }&gt;): void
+
+订阅网络阻塞状态事件，使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 订阅事件，固定为'netBlockStatusChange'。<br/>netBlockStatusChange：网络阻塞状态事件。 |
+| callback | Callback&lt;{&nbsp;netHandle:&nbsp;[NetHandle](#nethandle),&nbsp;blocked:&nbsp;boolean&nbsp;}&gt; | 是   | 回调函数。                                                   |
+
+**示例：**
+
+```javascript
+netConnection.on('netBlockStatusChange', function (data) {
     console.log(JSON.stringify(data))
 })
 ```
@@ -396,7 +569,7 @@ connection.createNetConnection().on('netConnectionPropertiesChange', function (d
 
 on(type: 'netLost', callback: Callback\<NetHandle>): void
 
-监听网络丢失事件。
+订阅网络丢失事件。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -404,13 +577,14 @@ on(type: 'netLost', callback: Callback\<NetHandle>): void
 
 | 参数名   | 类型                               | 必填 | 说明                                                         |
 | -------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                             | 是   | 监听事件，固定为'netLost'。<br/>netLost：网络严重中断或正常断开事件。 |
+| type     | string                             | 是   | 订阅事件，固定为'netLost'。<br/>netLost：网络严重中断或正常断开事件。 |
 | callback | Callback\<[NetHandle](#nethandle)> | 是   | 回调函数。                                                   |
 
 **示例：**
 
 ```javascript
-connection.createNetConnection().on('netLost', function (data) {
+let netConnection1 = connection.createNetConnection()
+netConnection1.on('netLost', function (data) {
     console.log(JSON.stringify(data))
 })
 ```
@@ -419,7 +593,7 @@ connection.createNetConnection().on('netLost', function (data) {
 
 on(type: 'netUnavailable', callback: Callback\<void>): void
 
-监听网络不可用事件。
+订阅网络不可用事件。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -427,13 +601,13 @@ on(type: 'netUnavailable', callback: Callback\<void>): void
 
 | 参数名   | 类型            | 必填 | 说明                                                         |
 | -------- | --------------- | ---- | ------------------------------------------------------------ |
-| type     | string          | 是   | 监听事件，固定为'netUnavailable'。<br/>netUnavailable：网络不可用事件。 |
+| type     | string          | 是   | 订阅事件，固定为'netUnavailable'。<br/>netUnavailable：网络不可用事件。 |
 | callback | Callback\<void> | 是   | 回调函数。                                                   |
 
 **示例：**
 
 ```javascript
-connection.createNetConnection().on('netUnavailable', function (data) {
+netConnection.on('netUnavailable', function (data) {
     console.log(JSON.stringify(data))
 })
 ```
@@ -442,7 +616,7 @@ connection.createNetConnection().on('netUnavailable', function (data) {
 
 register(callback: AsyncCallback\<void>): void
 
-注册网络的监听。
+订阅指定网络状态变化的通知。
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO
 
@@ -457,7 +631,7 @@ register(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```javascript
-connection.createNetConnection().register(function (error) {
+netConnection.register(function (error) {
     console.log(JSON.stringify(error))
 })
 ```
@@ -466,7 +640,7 @@ connection.createNetConnection().register(function (error) {
 
 unregister(callback: AsyncCallback\<void>): void
 
-注销网络的监听。
+取消订阅默认网络状态变化的通知。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -479,7 +653,7 @@ unregister(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```javascript
-connection.createNetConnection().unregister(function (error) {
+netConnection.unregister(function (error) {
     console.log(JSON.stringify(error))
 })
 ```
@@ -495,6 +669,73 @@ connection.createNetConnection().unregister(function (error) {
 | 变量  | 类型   | 说明                      |
 | ----- | ------ | ------------------------- |
 | netId | number | 网络ID，必须大于等于100。 |
+
+### bindSocket
+
+bindSocket(socketParam: TCPSocket | UDPSocket, callback: AsyncCallback&lt;void&gt;): void
+
+将TCPSocket或UDPSocket绑定到当前网络，使用callback方式作为异步方法。
+
+**参数：**
+| 参数名      | 类型                      | 必填 | 说明             |
+| ----------- | ------------------------- | ---- | ---------------- |
+| socketParam | TCPSocket \| UDPSocket    | 是   | TCPSocket或UDPSocket对象。 |
+| callback    | AsyncCallback&lt;void&gt; | 是   | 回调函数。       |
+
+**示例：**
+
+```
+// 绑定TCPSocket
+connection.getDefaultNet().then(function (netHandle) {
+    let tcpSocket = socket.constructTCPSocketInstance()
+    netHandle.bindSocket(tcpSocket, (function (error) {
+        console.log(JSON.stringify(error))
+    }))
+})
+// 绑定UDPSocket
+connection.getDefaultNet().then(function (netHandle) {
+    let udpSocket = socket.constructUDPSocketInstance()
+    netHandle.bindSocket(udpSocket, (function (error) {
+        console.log(JSON.stringify(error))
+    }))
+})
+```
+
+
+### bindSocket
+
+bindSocket(socketParam: TCPSocket | UDPSocket): Promise&lt;void&gt;
+
+将TCPSocket或UDPSocket绑定到当前网络，使用promise方式作为异步方法。
+
+**参数：**
+| 参数名      | 类型                                                         | 必填 | 说明                                                         |
+| ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| socketParam | TCPSocket \| UDPSocket    | 是   | TCPSocket或UDPSocket对象。 |
+
+**返回值：**
+| 类型                | 说明                        |
+| ------------------- | --------------------------- |
+| Promise&lt;void&gt; | 以Promise形式返回执行结果。 |
+
+**示例：**
+
+```
+// 绑定TCPSocket
+connection.getDefaultNet().then(function (netHandle) {
+    let tcpSocket = socket.constructTCPSocketInstance()
+    netHandle.bindSocket(tcpSocket).then(function () {
+        console.log("bind socket success")
+    })
+})
+// 绑定UDPSocket
+connection.getDefaultNet().then(function (netHandle) {
+    let udpSocket = socket.constructUDPSocketInstance()
+    netHandle.bindSocket(udpSocket).then(function () {
+        console.log("bind socket success")
+    })
+})
+```
 
 ### getAddressesByName
 
@@ -515,9 +756,10 @@ getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): 
 
 ```javascript
 connection.getDefaultNet().then(function (netHandle) {
-    connection.getAddressesByName(netHandle, function (error, info) {
+    let host = "xxxx";
+    netHandle.getAddressesByName(host, function (error, addresses) {
         console.log(JSON.stringify(error))
-        console.log(JSON.stringify(info))
+        console.log(JSON.stringify(addresses))
     })
 })
 ```
@@ -546,8 +788,9 @@ getAddressesByName(netHandle: NetHandle): Promise\<Array\<NetAddress>>
 
 ```javascript
 connection.getDefaultNet().then(function (netHandle) {
-    connection.getAddressesByName(netHandle).then(function (info) {
-        console.log(JSON.stringify(info))
+    let host = "xxxx";
+    netHandle.getAddressesByName(host).then(function (addresses) {
+        console.log(JSON.stringify(addresses))
     })
 })
 ```
@@ -571,9 +814,10 @@ getAddressByName(host: string, callback: AsyncCallback\<NetAddress>): void
 
 ```javascript
 connection.getDefaultNet().then(function (netHandle) {
-    connection.getAddressByName(netHandle, function (error, info) {
+    let host = "xxxx";
+    netHandle.getAddressByName(host, function (error, address) {
         console.log(JSON.stringify(error))
-        console.log(JSON.stringify(info))
+        console.log(JSON.stringify(address))
     })
 })
 ```
@@ -602,8 +846,9 @@ getAddressByName(netHandle: NetHandle): Promise\<NetAddress>
 
 ```javascript
 connection.getDefaultNet().then(function (netHandle) {
-    connection.getAddressByName(netHandle).then(function (info) {
-        console.log(JSON.stringify(info))
+    let host = "xxxx";
+    netHandle.getAddressByName(host).then(function (address) {
+        console.log(JSON.stringify(address))
     })
 })
 ```
@@ -634,7 +879,10 @@ connection.getDefaultNet().then(function (netHandle) {
 
 | 变量                     | 值   | 说明                   |
 | ------------------------ | ---- | ---------------------- |
+| NET_CAPABILITY_MMS | 0 | 表示网络可以访问运营商的MMSC（Multimedia&nbsp;Message&nbsp;Service，多媒体短信服务）发送和接收彩信。 |
+| NET_CAPABILITY_NOT_METERED | 11 | 表示网络流量未被计费。 |
 | NET_CAPABILITY_INTERNET  | 12   | 网络可以访问Internet。 |
+| NET_CAPABILITY_NOT_VPN | 15 | 表示网络不使用VPN（Virtual&nbsp;Private&nbsp;Network，虚拟专用网络）。 |
 | NET_CAPABILITY_VALIDATED | 16   | 网络可用。             |
 
 ## NetBearType
@@ -645,6 +893,7 @@ connection.getDefaultNet().then(function (netHandle) {
 | --------------- | ---- | ----------- |
 | BEARER_CELLULAR | 0    | 蜂窝网络。  |
 | BEARER_WIFI     | 1    | Wi-Fi网络。 |
+| BEARER_ETHERNET | 3 | 以太网网络。 |
 
 ## ConnectionProperties
 
@@ -656,6 +905,7 @@ connection.getDefaultNet().then(function (netHandle) {
 | domains       | string                             | 所属域，默认""。 |
 | linkAddresses | Array<[LinkAddress](#linkaddress)> | 链路信息。       |
 | routes        | Array<[RouteInfo](#routeinfo)>     | 路由信息。       |
+| dnses | Array&lt;[NetAddress](#netaddress)&gt; | 网络地址，参考[NetAddress](#netaddress)。 |
 | mtu           | number                             | 最大传输单元。   |
 
 ## LinkAddress
