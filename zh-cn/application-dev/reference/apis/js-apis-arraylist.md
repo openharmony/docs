@@ -537,7 +537,7 @@ arrayList.add(2);
 arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
-arrayList.trimToCurrentLength(2);
+arrayList.trimToCurrentLength();
 ```
 
 ### [Symbol.iterator]

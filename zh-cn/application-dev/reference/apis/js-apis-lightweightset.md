@@ -193,7 +193,7 @@ let result = lightWeightSet.equal(obj);
 ```
 
 
-### ensureCapacityTo
+### increaseCapacityTo
 
 increaseCapacityTo(minimumCapacity: number): void
 
@@ -209,7 +209,7 @@ increaseCapacityTo(minimumCapacity: number): void
 
 ```
 let lightWeightSet = new LightWeightSet();
-lightWeightSet.ensureCapacityTo(10);
+lightWeightSet.increaseCapacityTo(10);
 ```
 
 
