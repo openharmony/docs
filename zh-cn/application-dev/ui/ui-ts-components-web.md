@@ -1,6 +1,6 @@
 # Web
 
-Web是提供网页显示能力的组件，具体用法请参考 [Web API](../reference/arkui-ts/ts-media-components-web.md)。
+Web是提供网页显示能力的组件，具体用法请参考 [Web API](../reference/arkui-ts/ts-basic-components-web.md)。
 
 ## 创建组件
 
@@ -68,7 +68,7 @@ struct WebComponent {
       Progress({value: this.progress, total: 100})
         .color('#0000ff')
         .visibility(this.hideProgress ? Visibility.None : Visibility.Visible)
-      Web({ src: 'https://example.com', controller: this.controller })
+      Web({ src: 'https://www.example.com', controller: this.controller })
         .fileAccess(this.fileAccess)
         .javaScriptAccess(true)
         .height(500)
@@ -89,7 +89,7 @@ struct WebComponent {
   }
 }
 ```
-在onPageEnd事件中添加runJavaScript方法。onPageEnd事件是网页退出时的回调，runJavaScript方法可以执行HTML中的JavaScript脚本。当页面退出时，触发onPageEnd事件，调用HTML文件中的test方法，在控制台打印信息。
+在onPageEnd事件中添加runJavaScript方法。onPageEnd事件是网页加载完成时的回调，runJavaScript方法可以执行HTML中的JavaScript脚本。当页面加载完成时，触发onPageEnd事件，调用HTML文件中的test方法，在控制台打印信息。
 
 ```
 // xxx.ets
@@ -109,7 +109,7 @@ struct WebComponent {
         .color('#0000ff')
         .visibility(this.hideProgress ? Visibility.None : Visibility.Visible)
       // 初始化Web组件，并绑定controller
-      Web({ src: 'https://gitee.com', controller: this.controller })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
         .fileAccess(this.fileAccess)
         .javaScriptAccess(true)
         .height(500)
@@ -124,7 +124,7 @@ struct WebComponent {
         })
         .onPageEnd(e => {
           // test()在index.html中定义
-          this.controller.runJavaScript('test()');
+          this.controller.runJavaScript({ script: 'test()' });
           console.info('url: ', e.url);
         })
       Text('End')
