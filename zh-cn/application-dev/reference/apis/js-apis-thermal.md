@@ -53,7 +53,7 @@ thermal.subscribeThermalLevel((lev) => {
 
 ## thermal.unsubscribeThermalLevel
 
-unsubscribeThermalLevel(callback?: AsyncCallback<void>): void
+unsubscribeThermalLevel(callback?: AsyncCallback\<void>): void
 
 取消订阅热档位变化时的回调提醒。
 
