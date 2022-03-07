@@ -14,7 +14,7 @@ import sim from '@ohos.telephony.sim';
 
 isSimActive\(slotId: number, callback: AsyncCallback<boolean\>\): void
 
-获取指定卡槽SIM卡的是否激活，使用callback方式作为异步方法。
+获取指定卡槽SIM卡是否激活，使用callback方式作为异步方法。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -38,7 +38,7 @@ sim.isSimActive(0, (err, data) => {
 
 isSimActive\(slotId: number\): Promise<string\>
 
-获取指定卡槽SIM卡的是否激活，使用Promise方式作为异步方法。
+获取指定卡槽SIM卡是否激活，使用Promise方式作为异步方法。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -52,7 +52,7 @@ isSimActive\(slotId: number\): Promise<string\>
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise&lt;boolean&gt; | 以Promise形式返回指定卡槽的是否激活，如果激活返回true。 |
+| Promise&lt;boolean&gt; | 以Promise形式返回指定卡槽是否激活，如果激活返回true。 |
 
 **示例：**
 
@@ -115,7 +115,7 @@ promise.then(data => {
 
 hasOperatorPrivileges\(slotId: number, callback: AsyncCallback<boolean\>\): void
 
-检查应用是否操作电话服务的权限，使用callback方式作为异步方法。
+检查应用是否已经被赋予权限，使用callback方式作为异步方法。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -139,7 +139,7 @@ sim.hasOperatorPrivileges(0, (err, data) => {
 
 hasOperatorPrivileges\(slotId: number\): Promise<string\>
 
-检查应用是否操作电话服务的权限，使用Promise方式作为异步方法。
+检查应用是否已经被赋予权限，使用Promise方式作为异步方法。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -434,7 +434,7 @@ promise.then(data => {
 
 hasSimCard\(slotId: number, callback: AsyncCallback<boolean\>\): void
 
-获取指定卡槽SIM卡的是否插卡，使用callback方式作为异步方法。
+获取指定卡槽SIM卡是否插卡，使用callback方式作为异步方法。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -458,7 +458,7 @@ sim.hasSimCard(0, (err, data) => {
 
 hasSimCard\(slotId: number\): Promise<string\>
 
-获取指定卡槽SIM卡的是否插卡，使用Promise方式作为异步方法。
+获取指定卡槽SIM卡是否插卡，使用Promise方式作为异步方法。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -472,7 +472,7 @@ hasSimCard\(slotId: number\): Promise<string\>
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise&lt;boolean&gt; | 以Promise形式返回指定卡槽的是否插卡，如果插卡返回true。 |
+| Promise&lt;boolean&gt; | 以Promise形式返回指定卡槽是否插卡，如果插卡返回true。 |
 
 **示例：**
 
