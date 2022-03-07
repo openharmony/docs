@@ -1,4 +1,4 @@
-# Development Guidelines on Application Permission Management<a name="EN-US_TOPIC_0000001058864249"></a>
+# Development on Application Permission Management<a name="EN-US_TOPIC_0000001058864249"></a>
 
 ## How Application Permission Management Works<a name="section193961322175011"></a>
 

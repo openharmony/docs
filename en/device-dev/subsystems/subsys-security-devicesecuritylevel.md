@@ -1,12 +1,12 @@
-# Development Guidelines on Device Security Level Management
+# Development on Device Security Level Management
 
 ## Overview
 
 ### DSLM
 
-The OpenHarmony distributed technology can converge resources of different devices and virtualize multiple devices into a Super Device. When different types of user data are hopped or processed in the Super Device, poor security capabilities of any device may threaten the security of the Super Device.
+The OpenHarmony distributed technology can converge resources from different devices to form a Super Device. Poor security capabilities of any device may threaten the security of the Super Device.
 
-The OpenHarmony Device Security Level Management (DSLM) module is introduced to manage the security levels of OpenHarmony devices. When different types of user data are hopped or processed in OpenHarmony distributed services, the DSLM APIs can be called to obtain the security levels of related devices for subsequent processing.
+The Device Security Level Management (DSLM) module is introduced to manage the security levels of OpenHarmony devices. When different types of user data are hopped or processed in OpenHarmony distributed services, the DSLM APIs can be called to obtain the security levels of related devices for subsequent processing.
 
 ### Basic Concepts
 
@@ -16,13 +16,13 @@ The OpenHarmony Device Security Level Management (DSLM) module is introduced to 
 
   The following figure shows the OpenHarmony security architecture.
 
-  ![OpenHarmony system security Architecture](figure/ohos_system_security_architecture.png)
+  ![OpenHarmony system security architecture](figure/ohos_system_security_architecture.png)
 
   The above figure shows the typical security architecture for a single device. The architecture may vary depending on the risk level as well as the software and hardware resources of the device. The security capabilities of OpenHarmony devices are classified into five levels from SL1 to SL5, based on an industry standard security classification model and actual OpenHarmony service scenarios and device types. In the OpenHarmony ecosystem, higher security levels include all the capabilities of lower security levels by default. The figure below shows the security levels of OpenHarmony devices.
 
   ![OpenHarmony device security levels](figure/ohos_device_security_level.png)
 
-  - SL1: SL1 is the lowest security level of OpenHarmony devices. Usually equipped with a lightweight operating system and low-end microprocessors, such devices implement simple services and do not need to process sensitive data. SL1 devices are required to support software integrity protection and eliminate common errors. Devices that cannot meet the requirements can only be controlled by OpenHarmony devices and cannot control OpenHarmony devices for more complex service collaboration.
+  - SL1: SL1 is the lowest security level of OpenHarmony devices. Usually equipped with a lightweight operating system and low-end microprocessors, such devices implement simple services and do not need to process sensitive data. SL1 devices are required to support software integrity protection and eliminate common errors. Devices that cannot meet the requirements of SL1 can only be controlled by OpenHarmony devices. They cannot control OpenHarmony devices for more complex service collaboration.
 
   - SL2: OpenHarmony devices of SL2 can label their own data and define access control rules to implement discretionary access control (DAC). These devices must have basic anti-penetration capabilities. Devices of this level support a lightweight, secure, and isolated environment for deploying a small number of necessary security services.
 
@@ -30,13 +30,13 @@ The OpenHarmony Device Security Level Management (DSLM) module is introduced to 
 
   - SL4: OpenHarmony devices of SL4 must have simplified trusted computing base (TCB) and come with anti-tampering capabilities. The implementation of SL4 should be concise and secure enough. Adequate authentication and arbitration are required for any access to critical elements. Devices of this level have considerable anti-penetration capabilities and can defend against most software attacks.
 
-  - SL5: SL5 indicates the highest security protection capabilities for OpenHarmony devices. The system core software modules must have passed formal verification. Key hardware modules, such as the RoT and cryptographic computing engine, must be able to defend against physical attacks and attacks simulated in labs. Devices at this level must have high-security units, such as dedicated security chips, to enhance the startup, storage, and running of the root of trust (RoT).
+  - SL5: SL5 indicates the highest security protection capabilities for OpenHarmony devices. The system core software modules must have passed formal verification. Key hardware modules, such as the RoT and cryptographic computing engine, must be able to defend against physical attacks and attacks simulated in labs. Devices at this level must have high-security units, such as dedicated security chips, to enhance the boot, storage, and running of the root of trust (RoT).
 
 - DSLM
 
-  DSLM is a module for OpenHarmony device security level management. It verifies and updates device security level information for OpenHarmony devices in collaboration. It also provides an interface for querying the security level of each device.
+  DSLM is a module to manage the security levels of OpenHarmony devices. It verifies and updates device security level information for OpenHarmony devices in collaboration. It also provides an interface for querying the security level of each device.
 
-### WOrking Principles
+### Working Principles
 
 The security level of each device in a Super Device provides the decision-making criteria for processing or hopping various user data. For example, the distributed file storage service does not allow sensitive data to be stored on devices with security level lower than SL3.
 
@@ -48,7 +48,7 @@ The default security level of OpenHarmony devices is SL1. Device manufacturers c
 
 ### When to Use
 
-When processing or hopping various user data, the subsystems can invoke the APIs provided by the DSLM module to obtain the security level information of related devices. Then, the subsystems determine the subsequent processing based on the security level and data to be processed.
+When processing or hopping various user data, a subsystem can invoke the APIs provided by the DSLM module to obtain the security level information of related devices. Then, the subsystems determine the subsequent processing based on the security level and data to be processed.
 
 ### Available APIs
 
@@ -68,7 +68,7 @@ All the APIs are native C interfaces for implementing underlying capabilities an
     external_deps += [ "device_security_level:dslm_sdk" ]
     ```
 
-2. Add the header files of the dependencies.
+2. Add the header files of dependencies.
 
     ```cpp
     #include "device_security_defines.h" // Header file for defining critical data structures.
@@ -78,7 +78,7 @@ All the APIs are native C interfaces for implementing underlying capabilities an
 3. Call APIs.
 
     ```cpp
-    // Obtain the unique device identifier (UDID).
+    // Obtain the unique device identifier (UDID) of the device of which the security level is to be queried.
     const DeviceIdentify *device = GetDestDeviceUdid();
     
     // Obtain the RequestOption.
@@ -103,10 +103,10 @@ All the APIs are native C interfaces for implementing underlying capabilities an
 
 ### Development Example
 
-A service with file sharing function needs to be developed. To prevent sensitive files from being shared unintentionally, the following judgments must be performed before any file is sent:
+A service with the file sharing function needs to be developed. To prevent sensitive files from being shared unintentionally, the following judgments must be performed before any file is sent:
 
-- If the security level of the destination device is SL3 or higher, send the file.
-- If the security level of the destination device is lower than SL3, deny the file transfer and display a dialog box to notify the user.
+- If the security level of the destination device is SL3 or higher, the service sends the file.
+- If the security level of the destination device is lower than SL3, the service denies the file transfer and display a dialog box to notify the user.
 
 **Example of synchronously obtaining the device security level**
 
@@ -181,13 +181,13 @@ void CheckDestDeviceSecurityLevelAsync(const DeviceIdentify *device, RequestOpti
 
 ### Device Security Level Credential
 
-To ensure its integrity and non-repudiation, the security level information must be encapsulated in a "device security level credential" (credential for short) file for transmission between devices. In addition to the security level information of the device, the credential may include device attributes, such as the device model and version. Moreover, the credential must be signed using the public key infrastructure (PKI) technology. Other basic security capabilities of OpenHarmony, such as [Device Authentication] (https://gitee.com/openharmony/security_deviceauth) and [HUKS](https://gitee.com/openharmony/security_huks), are used to ensure secure transmission of credentials.
+To ensure its integrity and non-repudiation, the security level information must be encapsulated in a "device security level credential" (credential for short) file for transmission between devices. In addition to the security level information of the device, the credential may include device attributes, such as the device model and version. Moreover, the credential must be signed using the public key infrastructure (PKI) technology. Other basic security capabilities of OpenHarmony, such as [Device Authentication](https://gitee.com/openharmony/security_deviceauth) and [HUKS](https://gitee.com/openharmony/security_huks), are used to ensure secure transmission of credentials.
 
 ### Default Implementation
 
-The DSLM module provides default implementation of security level information synchronization and verification. It is assumed that the security level of all OpenHarmony devices is SL1, and a loose verification scheme is used. For details, see the [source code] (https://gitee.com/openharmony/security_device_security_level/tree/master/oem_property/ohos).
+The DSLM module provides default implementation of security level information synchronization and verification. It is assumed that the security level of all OpenHarmony devices is SL1, and a loose verification scheme is used. For details, see the [source code](https://gitee.com/openharmony/security_device_security_level/tree/master/oem_property/ohos).
 
-You can change the device security level as required. For details about the OpenHarmony device security levels, see [Basic Concepts](#Basic_Concepts). You can also use more severe verification schemes, including but are not limited to using device-specific credential, periodically downloading updated credentials from a server and strictly authenticating the issuer and validity period of the credentials, and using Trusted Execution Environment (TEE) or even Secure Element (SE) for signing credential files.
+You can change the device security level as required. For details about the OpenHarmony device security levels, see [Basic Concepts](#Basic_Concepts). You can also use more severe verification schemes, including but are not limited to using device-specific credential, periodically downloading updated credentials from a server and strictly authenticating the issuer and validity period of the credentials, and using Trusted Execution Environment (TEE) or even Secure Element (SE) to sign credential files.
 
 ### Generating a Credential File
 
@@ -230,7 +230,7 @@ Construct the payload in a JSON string. The following is an example:
 }
 ```
 
-Encode the payload string to Base64 format obtain `<base64-payload>`.
+Encode the payload string to Base64 format to obtain `<base64-payload>`.
 
 ```undefined
 eyJ0eXBlIjogImRlYnVnIiwgIm1hbnVmYWN0dXJlIjogIm9ob3MiLCAiYnJhbmQiOiAicmszNTY4IiwgIm1vZGVsIjogInJrMzU2OCIsICJzb2Z0d2FyZVZlcnNpb24iOiAiMy4yLjIiLCAic2VjdXJpdHlMZXZlbCI6ICJTTDEiLCAic2lnblRpbWUiOiAiMjAyMjAyMDkxNTAyNTkiLCAidmVyc2lvbiI6ICIxLjAuMSJ9
@@ -285,12 +285,12 @@ MGUCMDb9xoiFzTWVkHDU3VWSVQ59gLyw4TchZ0+eQ3vUfQsLt3Hkg0r7a/PmhkNr3X/mTgIxAIywIRE6
 > ![notice](../public_sys-resources/icon-notice.gif)**NOTICE**
 >
 > This step must be performed in a secure and reliable environment, for example, a cryptographic machine that meets related security requirements, to ensure that the key used for signature is not disclosed.
-> The key pairs involved in this step do not need to be generated each time. Secure key pairs can be directly reused.
+> The key pairs involved in this step do not need to be generated each time. Secure key pairs can be reused.
 
 ##### 4.1 Generate level-3 signature verification information.
 
 1. Generate an ECDSA key pair `<ecc-l2-pk>` and `<ecc-l2-sk>` for a level-2 signature.
-2. Use `<ecc-l2-sk>` to sign `<ecc-l3-pk>` (generated in 3.2) to obtain `<ecc-l3-pk-signature>`.
+2. Use `<ecc-l2-sk>` to sign `<ecc-l3-pk>` (generated in step 3.2) to obtain `<ecc-l3-pk-signature>`.
 3. Combine `<ecc-l3-pk>` and `<ecc-l3-pk-signature>` into a JSON string. The following is an example:
 
 ``` json
@@ -303,7 +303,7 @@ MGUCMDb9xoiFzTWVkHDU3VWSVQ59gLyw4TchZ0+eQ3vUfQsLt3Hkg0r7a/PmhkNr3X/mTgIxAIywIRE6
 ##### 4.2 Generate level-2 signature verification information.
 
 1. Generate an ECDSA key pair `<ecc-root-pk>` and `<ecc-root-sk>` for a level-1 signature.
-2. Use `<ecc-root-sk>` to sign `<ecc-l2-pk>` (generated in 4.1) to obtain `<ecc-l2-pk-signature>`.
+2. Use `<ecc-root-sk>` to sign `<ecc-l2-pk>` (generated in step 4.1) to obtain `<ecc-l2-pk-signature>`.
 3. Combine `<ecc-l3-pk>` and `<ecc-l3-pk-signature>` into a JSON string. The following is an example:
 
 ``` json
@@ -315,7 +315,7 @@ MGUCMDb9xoiFzTWVkHDU3VWSVQ59gLyw4TchZ0+eQ3vUfQsLt3Hkg0r7a/PmhkNr3X/mTgIxAIywIRE6
 
 ##### 4.3 Generate root signature verification information.
 
-1. Use `<ecc-root-sk>` to sign the `<ecc-root-pk>` (generated in 4.2) to obtain `<ecc-root-pk-self-signature>` (a self-signature).
+1. Use `<ecc-root-sk>` to sign the `<ecc-root-pk>` (generated in step 4.2) to obtain `<ecc-root-pk-self-signature>` (a self-signature).
 2. Combine `<ecc-root-pk>` and `<ecc-root-pk-self-signature>` into a JSON string. The following is an example: 
 
 ``` json
@@ -468,13 +468,13 @@ You can use the tool as follows:
 
 ## FAQs
 
-- Q: How can I use the credential tool in a real production environment?
+- Q: How can I use the credential tool in a production environment?
 
-    A: The credential tool cannot be directly used in the production environment. It is used to demonstrate the format and generation process of credentials. In a real production environment, you are advised to generate credentials and save related keys in a cryptographic machine that meets related security requirements.
+    A: The credential tool cannot be directly used in the production environment. It is used to demonstrate the format and generation process of credentials. In the production environment, you are advised to generate credentials and save related keys in a cryptographic machine that meets related security requirements.
 
-- Q: How do I verify a credential in a real production environment?
+- Q: How do I verify a credential in a production environment?
 
-    A: You are advised to use a properly kept private key to sign the credential and use more severe signature verification process instead of the default verification process provided by the DSLM module. For example, allow only the credentials issued by trusted certification authority (CA), and bind the credential and device ID to enhance the security.
+    A: You are advised to use a properly kept private key to sign the credential and use more severe signature verification process instead of the default verification process provided by the DSLM module. For example, allow only the credentials issued by trusted certification authorities (CAs), and bind the credential and device ID to enhance the security.
 
 ## References
 
