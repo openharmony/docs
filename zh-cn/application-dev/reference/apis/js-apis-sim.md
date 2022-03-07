@@ -16,7 +16,7 @@ isSimActive\(slotId: number, callback: AsyncCallback<boolean\>\): void
 
 获取指定卡槽SIM卡的是否激活，使用callback方式作为异步方法。
 
-需要ohos.permission.GET\_TELEPHONY\_STATE权限，该权限为系统权限。
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
 **参数：**
 
@@ -40,7 +40,7 @@ isSimActive\(slotId: number\): Promise<string\>
 
 获取指定卡槽SIM卡的是否激活，使用Promise方式作为异步方法。
 
-需要ohos.permission.GET\_TELEPHONY\_STATE权限，该权限为系统权限。
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
 **参数：**
 
@@ -117,7 +117,7 @@ hasOperatorPrivileges\(slotId: number, callback: AsyncCallback<boolean\>\): void
 
 检查应用是否操作电话服务的权限，使用callback方式作为异步方法。
 
-需要ohos.permission.GET\_TELEPHONY\_STATE权限，该权限为系统权限。
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
 **参数：**
 
@@ -141,7 +141,7 @@ hasOperatorPrivileges\(slotId: number\): Promise<string\>
 
 检查应用是否操作电话服务的权限，使用Promise方式作为异步方法。
 
-需要ohos.permission.GET\_TELEPHONY\_STATE权限，该权限为系统权限。
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
 **参数：**
 
@@ -380,7 +380,7 @@ getCardType\(slotId: number, callback: AsyncCallback<CardType\>\): void
 
 获取指定卡槽SIM卡的卡类型，使用callback方式作为异步方法。
 
-需要ohos.permission.GET\_TELEPHONY\_STATE权限，该权限为系统权限。
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
 **参数：**
 
@@ -404,7 +404,7 @@ getCardType\(slotId: number\): Promise<CardType\>
 
 获取指定卡槽SIM卡的卡类型，使用Promise方式作为异步方法。
 
-需要ohos.permission.GET\_TELEPHONY\_STATE权限，该权限为系统权限。
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
 **参数：**
 
@@ -436,7 +436,7 @@ hasSimCard\(slotId: number, callback: AsyncCallback<boolean\>\): void
 
 获取指定卡槽SIM卡的是否插卡，使用callback方式作为异步方法。
 
-需要ohos.permission.GET\_TELEPHONY\_STATE权限，该权限为系统权限。
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
 **参数：**
 
@@ -460,7 +460,7 @@ hasSimCard\(slotId: number\): Promise<string\>
 
 获取指定卡槽SIM卡的是否插卡，使用Promise方式作为异步方法。
 
-需要ohos.permission.GET\_TELEPHONY\_STATE权限，该权限为系统权限。
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
 **参数：**
 
@@ -492,7 +492,7 @@ getMaxSimCount\(\): number
 
 获取卡槽数量。
 
-需要ohos.permission.GET\_TELEPHONY\_STATE权限，该权限为系统权限。
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
 **返回值：**
 
