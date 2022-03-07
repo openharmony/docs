@@ -113,7 +113,7 @@
 ## Modules to Import
 
 ```js
-import CommonEvent from '@ohos.commonevent';
+import CommonEvent from '@ohos.commonEvent';
 ```
 
 ## System Capabilities
@@ -179,6 +179,79 @@ function PublishCallBack(err) {
 }
 // Publish a common event.
 CommonEvent.publish("publish_event", options, PublishCallBack);
+```
+
+
+
+## CommonEvent.publishAsUser
+
+publishAsUser(event: string, userId: number, callback: AsyncCallback\<void>): void
+
+Publishes a common event to a specific user. This method uses a callback to return the result.
+
+**Parameters**
+
+| Name| Readable/Writable| Type| Mandatory| Description|
+| -------- | -------- | -------------------- | ---- | ---------------------------------- |
+| event    | Read-only| string               | Yes| Name of the common event to publish.|
+| userId   | Read-only| number               | Yes| User ID.|
+| callback | Read-only| AsyncCallback\<void> | Yes| Callback used to return the result.|
+
+**Example**
+
+```js
+// Callback for common event publication
+function PublishAsUserCallBack(err) {
+	if (err.code) {
+        console.info("publishAsUser failed " + JSON.stringify(err));
+    } else {
+        console.info("publishAsUser");
+    }
+}
+// Specify the user to whom the common event will be published.
+var userId = 100;
+// Publish a common event.
+CommonEvent.publish("publish_event", userId, PublishAsUserCallBack);
+```
+
+
+
+## CommonEvent.publishAsUser
+
+publishAsUser(event: string, userId: number, options: CommonEventPublishData, callback: AsyncCallback\<void>): void
+
+Publishes a common event with given attributes to a specific user. This method uses a callback to return the result.
+
+**Parameters**
+
+| Name| Readable/Writable| Type| Mandatory| Description|
+| -------- | -------- | ---------------------- | ---- | ---------------------- |
+| event    | Read-only| string                 | Yes| Name of the common event to publish.|
+| userId | Read-only| number | Yes| User ID.|
+| options  | Read-only| [CommonEventPublishData](#commoneventpublishdata) | Yes| Attributes of the common event to publish.|
+| callback | Read-only| AsyncCallback\<void>   | Yes| Callback used to return the result.|
+
+**Example**
+
+
+```js
+// Attributes of a common event.
+var options = {
+	code: 0;			 // Result code of the common event
+	data: "initial data";// Result data of the common event
+}
+// Callback for common event publication
+function PublishAsUserCallBack(err) {
+	if (err.code) {
+        console.info("publishAsUser failed " + JSON.stringify(err));
+    } else {
+        console.info("publishAsUser");
+    }
+}
+// Specify the user to whom the common event will be published.
+var userId = 100;
+// Publish a common event.
+CommonEvent.publish("publish_event", userId, options, PublishAsUserCallBack);
 ```
 
 
@@ -491,7 +564,7 @@ Sets the result code for this common event. This method uses a promise to return
 
 | Name| Type| Mandatory| Description|
 | ------ | ------ | ---- | ------------------ |
-| code   | number | Yes| Result code of the common event.|
+| code   | number | Yes| Callback used to return the result code.|
 
 **Example**
 
@@ -584,7 +657,7 @@ Sets the result data for this common event. This method uses a promise to return
 
 | Name| Type| Mandatory| Description|
 | ------ | ------ | ---- | -------------------- |
-| data   | string | Yes| Result data of the common event.|
+| data   | string | Yes| Callback used to return the result data.|
 
 **Example**
 
@@ -632,7 +705,7 @@ Sets the result code and result data for this common event. This method uses a p
 | Name| Type| Mandatory| Description|
 | ------ | ------ | ---- | -------------------- |
 | code   | number | Yes| Result code of the common event.|
-| data   | string | Yes| Result data of the common event.|
+| data   | string | Yes| Callback used to return the result data.|
 
 **Example**
 
