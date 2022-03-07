@@ -1,6 +1,6 @@
 #  Select
 
-> ![](public_sys-resources/icon-note.gif) ** NOTE** This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
+> ![](public_sys-resources/icon-note.gif) **NOTE** This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 The **<Select\>** component provides a drop-down list box that allows users to select among multiple options.
 
@@ -42,7 +42,7 @@ Select(options: Array<SelectOption>)
 
 | Name| Description|
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| onSelected(callback: (index: number, value?:string) => void)| Invoked when an option in the drop-down list box is selected.**index** indicates the index of the selected option.**value** indicates the value of the selected option.|
+| onSelected(callback: (index: number, value?:string) => void)| Invoked when an option in the drop-down list box is selected. **index** indicates the index of the selected option. **value** indicates the value of the selected option.|
 
 ##  Example
 

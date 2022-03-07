@@ -1,6 +1,6 @@
 # TextClock
 
-> ![](public_sys-resources/icon-note.gif) ** NOTE** This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
+> ![](public_sys-resources/icon-note.gif) **NOTE** This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 The **<TextClock\>** component displays the current system time in text format for different time zones. The time is accurate to seconds.
 
