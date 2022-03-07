@@ -20,7 +20,7 @@ SystemCapability.HiviewDFX.HiTrace
 
 startTrace(name: string, taskId: number): void
 
-Starts a trace taske.
+Starts a trace task.
 
 If multiple trace tasks with the same name need to be performed at the same time or a trace task needs to be performed multiple times concurrently, different task IDs must be specified in **startTrace**.
 
