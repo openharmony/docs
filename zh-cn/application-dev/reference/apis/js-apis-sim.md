@@ -10,11 +10,11 @@
 import sim from '@ohos.telephony.sim';
 ```
 
-## sim.getSimIccId<a name=sim.getSimIccId-callback></a>
+## sim.isSimActive<a name=sim.isSimActive-callback></a>
 
-getSimIccId\(slotId: number, callback: AsyncCallback<string\>\): void
+isSimActive\(slotId: number, callback: AsyncCallback<boolean\>\): void
 
-获取指定卡槽SIM卡的ICCID（Integrate Circuit Card Identity），使用callback方式作为异步方法。
+获取指定卡槽SIM卡的是否激活，使用callback方式作为异步方法。
 
 需要ohos.permission.GET\_TELEPHONY\_STATE权限，该权限为系统权限。
 
@@ -23,22 +23,22 @@ getSimIccId\(slotId: number, callback: AsyncCallback<string\>\): void
 | 参数名   | 类型                        | 必填 | 说明                                   |
 | -------- | --------------------------- | ---- | -------------------------------------- |
 | slotId   | number                      | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback&lt;string&gt; | 是   | 回调函数。                             |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。                             |
 
 **示例：**
 
 ```
-sim.getSimIccId(0, (err, data) => {
+sim.isSimActive(0, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
 
 
-## sim.getSimIccId<a name=sim.getSimIccId-promise></a>
+## sim.isSimActive<a name=sim.isSimActive-promise></a>
 
-getSimIccId\(slotId: number\): Promise<string\>
+isSimActive\(slotId: number\): Promise<string\>
 
-获取指定卡槽SIM卡的ICCID（Integrate Circuit Card Identity），使用Promise方式作为异步方法。
+获取指定卡槽SIM卡的是否激活，使用Promise方式作为异步方法。
 
 需要ohos.permission.GET\_TELEPHONY\_STATE权限，该权限为系统权限。
 
@@ -52,18 +52,19 @@ getSimIccId\(slotId: number\): Promise<string\>
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise&lt;string&gt; | 以Promise形式返回指定卡槽的ICCID。 |
+| Promise&lt;boolean&gt; | 以Promise形式返回指定卡槽的是否激活，如果激活返回true。 |
 
 **示例：**
 
 ```
-let promise = sim.getSimIccId(0);
+let promise = sim.isSimActive(0);
 promise.then(data => {
-    console.log(`getSimIccId success, promise: data->${JSON.stringify(data)}`);
+    console.log(`isSimActive success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getSimIccId fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`isSimActive fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
+
 
 ## sim.getDefaultVoiceSlotId<sup>7+</sup><a name= sim.getDefaultVoiceSlotId-callback></a>
 
@@ -108,6 +109,63 @@ promise.then(data => {
     console.log(`getDefaultVoiceSlotId fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
+
+
+## sim.hasOperatorPrivileges<a name=sim.hasOperatorPrivileges-callback></a>
+
+hasOperatorPrivileges\(slotId: number, callback: AsyncCallback<boolean\>\): void
+
+检查应用是否操作电话服务的权限，使用callback方式作为异步方法。
+
+需要ohos.permission.GET\_TELEPHONY\_STATE权限，该权限为系统权限。
+
+**参数：**
+
+| 参数名   | 类型                        | 必填 | 说明                                   |
+| -------- | --------------------------- | ---- | -------------------------------------- |
+| slotId   | number                      | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。                             |
+
+**示例：**
+
+```
+sim.hasOperatorPrivileges(0, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## sim.hasOperatorPrivileges<a name=sim.hasOperatorPrivileges-promise></a>
+
+hasOperatorPrivileges\(slotId: number\): Promise<string\>
+
+检查应用是否操作电话服务的权限，使用Promise方式作为异步方法。
+
+需要ohos.permission.GET\_TELEPHONY\_STATE权限，该权限为系统权限。
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+
+**返回值：**
+
+| 类型                  | 说明                               |
+| --------------------- | ---------------------------------- |
+| Promise&lt;boolean&gt; | 以Promise形式返回指应用是否操作电话服务的权限，如果有返回true。 |
+
+**示例：**
+
+```
+let promise = sim.hasOperatorPrivileges(0);
+promise.then(data => {
+    console.log(`hasOperatorPrivileges success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`hasOperatorPrivileges fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
 
 ## sim.getISOCountryCodeForSim<a name=sim.getISOCountryCodeForSim-callback></a>
 
@@ -316,11 +374,11 @@ promise.then(data => {
 });
 ```
 
-## sim.getSimGid1<a name=sim.getSimGid1-callback></a>
+## sim.getCardType<a name=sim.getCardType-callback></a>
 
-getSimGid1\(slotId: number, callback: AsyncCallback<string\>\): void
+getCardType\(slotId: number, callback: AsyncCallback<CardType\>\): void
 
-获取指定卡槽SIM卡的GID1\(Group Identifier Level 1\)，使用callback方式作为异步方法。
+获取指定卡槽SIM卡的卡类型，使用callback方式作为异步方法。
 
 需要ohos.permission.GET\_TELEPHONY\_STATE权限，该权限为系统权限。
 
@@ -329,22 +387,22 @@ getSimGid1\(slotId: number, callback: AsyncCallback<string\>\): void
 | 参数名   | 类型                    | 必填 | 说明                                   |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | slotId   | number                  | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback\<string\> | 是   | 回调函数。                             |
+| callback | AsyncCallback\<[CardType](#cardtype)\> | 是   | 回调函数。                             |
 
 **示例：**
 
 ```
-sim.getSimGid1(0, (err, data) => {
+sim.getCardType(0, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
 
 
-## sim.getSimGid1<a name=sim.getSimGid1-promise></a>
+## sim.getCardType<a name=sim.getCardType-promise></a>
 
-getSimGid1\(slotId: number\): Promise<string\>
+getCardType\(slotId: number\): Promise<CardType\>
 
-获取指定卡槽SIM卡的GID1\(Group Identifier Level 1\)，使用Promise方式作为异步方法。
+获取指定卡槽SIM卡的卡类型，使用Promise方式作为异步方法。
 
 需要ohos.permission.GET\_TELEPHONY\_STATE权限，该权限为系统权限。
 
@@ -358,17 +416,94 @@ getSimGid1\(slotId: number\): Promise<string\>
 
 | 类型              | 说明                                                         |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<string\> | 以Promise形式返回获取指定卡槽SIM卡的GID1(Group Identifier Level 1)。 |
+| Promise\<[CardType](#cardtype)\> | 以Promise形式返回指定卡槽SIM卡的卡类型。 |
 
 **示例：**
 
 ```
-let promise = sim.getSimGid1(0);
+let promise = sim.getCardType(0);
 promise.then(data => {
-    console.log(`getSimGid1 success, promise: data->${JSON.stringify(data)}`);
+    console.log(`getCardType success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getSimGid1 fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getCardType fail, promise: err->${JSON.stringify(err)}`);
 });
+```
+
+
+## sim.hasSimCard<a name=sim.hasSimCard-callback></a>
+
+hasSimCard\(slotId: number, callback: AsyncCallback<boolean\>\): void
+
+获取指定卡槽SIM卡的是否插卡，使用callback方式作为异步方法。
+
+需要ohos.permission.GET\_TELEPHONY\_STATE权限，该权限为系统权限。
+
+**参数：**
+
+| 参数名   | 类型                        | 必填 | 说明                                   |
+| -------- | --------------------------- | ---- | -------------------------------------- |
+| slotId   | number                      | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。                             |
+
+**示例：**
+
+```
+sim.hasSimCard(0, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## sim.hasSimCard<a name=sim.hasSimCard-promise></a>
+
+hasSimCard\(slotId: number\): Promise<string\>
+
+获取指定卡槽SIM卡的是否插卡，使用Promise方式作为异步方法。
+
+需要ohos.permission.GET\_TELEPHONY\_STATE权限，该权限为系统权限。
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+
+**返回值：**
+
+| 类型                  | 说明                               |
+| --------------------- | ---------------------------------- |
+| Promise&lt;boolean&gt; | 以Promise形式返回指定卡槽的是否插卡，如果插卡返回true。 |
+
+**示例：**
+
+```
+let promise = sim.hasSimCard(0);
+promise.then(data => {
+    console.log(`hasSimCard success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`hasSimCard fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+
+## sim.getMaxSimCount
+
+getMaxSimCount\(\): number
+
+获取卡槽数量。
+
+需要ohos.permission.GET\_TELEPHONY\_STATE权限，该权限为系统权限。
+
+**返回值：**
+
+| 类型              | 说明                                                         |
+| ----------------- | ------------------------------------------------------------ |
+| number | 卡槽数量。 |
+
+**示例：**
+
+```
+console.log(sim.getMaxSimCount())
 ```
 
 
@@ -384,3 +519,20 @@ SIM卡状态。
 | SIM_STATE_NOT_READY   | 表示SIM卡处于not ready状态，即SIM卡在位但无法正常工作。    |
 | SIM_STATE_READY       | 表示SIM卡处于ready状态，即SIM卡在位且工作正常。            |
 | SIM_STATE_LOADED      | 表示SIM卡处于loaded状态，即SIM卡在位且所有卡文件加载完毕。 |
+
+## CardType
+
+卡类型。
+
+| 变量  | 值 | 说明 |
+| ----- | ----- | ----- |
+UNKNOWN_CARD | -1 | 未知类型 |
+SINGLE_MODE_SIM_CARD | 10 | 单SIM卡 |
+SINGLE_MODE_USIM_CARD | 20 | 单USIM卡 |
+SINGLE_MODE_RUIM_CARD | 30 | 单RUIM卡 |
+DUAL_MODE_CG_CARD | 40 | 双卡模式C+G |
+CT_NATIONAL_ROAMING_CARD | 41 | 中国电信内部漫游卡 |
+CU_DUAL_MODE_CARD | 42 | 中国联通双模卡 |
+DUAL_MODE_TELECOM_LTE_CARD | 43 | 双模式电信LTE卡 |
+DUAL_MODE_UG_CARD | 50 | 双模式UG卡 |
+SINGLE_MODE_ISIM_CARD | 60 | 单一ISIM卡类型 |
