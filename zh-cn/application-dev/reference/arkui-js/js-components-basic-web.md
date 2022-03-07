@@ -21,7 +21,7 @@ web组件不跟随转场动画。一个页面仅支持一个web组件。
 
 
 ## 样式
-仅支持通用样式中的width<sup>8+</sup>、height<sup>8+</sup>、padding<sup>8+</sup>、margin<sup>8+</sup>、border<sup>8+</sup>。
+不支持通用样式设置。
 
 ## 事件
 仅支持如下事件：
