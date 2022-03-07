@@ -2,8 +2,8 @@
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
->
-> 该模块主要提供Runninglock锁相关操作的接口，包括创建、查询、持锁、释放锁等操作。
+
+该模块主要提供Runninglock锁相关操作的接口，包括创建、查询、持锁、释放锁等操作。
 
 
 ## 导入模块
@@ -91,7 +91,7 @@ createRunningLock(name: string, type: RunningLockType, callback: AsyncCallback&l
 
 创建RunningLock锁。
 
-需要权限：ohos.permission.RUNNING_LOCK
+**需要权限：**ohos.permission.RUNNING_LOCK
 
 **参数：**
 
@@ -124,7 +124,7 @@ createRunningLock(name: string, type: RunningLockType): Promise&lt;RunningLock&g
 
 创建Runninglock锁。
 
-需要权限：ohos.permission.RUNNING_LOCK
+**需要权限：**ohos.permission.RUNNING_LOCK
 
 **参数：**
 
@@ -161,7 +161,7 @@ runningLock.createRunningLock("running_lock_test", runningLock.RunningLockType.B
 
 lock(timeout: number): void
 
-锁定和持有RunningLock
+锁定和持有RunningLock。
 
 **参数：**
 
@@ -207,7 +207,7 @@ runningLock.createRunningLock("running_lock_test", runningLock.RunningLockType.B
 
 isUsed(): boolean
 
-查询当前Runninglock是持有状态，还是释放状态。
+查询当前Runninglock是持有状态还是释放状态。
 
 **返回值：**
 | 类型      | 说明                                    |

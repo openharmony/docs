@@ -2,8 +2,8 @@
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
->
-> 该模块主要提供重启、关机、查询屏幕状态等接口。
+
+该模块主要提供重启、关机、查询屏幕状态等接口。
 
 
 ## 导入模块
@@ -23,7 +23,9 @@ shutdownDevice(reason: string): void
 
 系统关机。
 
-需要权限：ohos.permission.SHUTDOWN
+**需要权限：**ohos.permission.SHUTDOWN
+
+**补充说明：**该接口为system api，仅供系统应用使用。
 
 **参数：**
 
@@ -45,7 +47,7 @@ rebootDevice(reason: string): void
 
 重启设备。
 
-需要权限：ohos.permission.REBOOT（重启权限）、ohos.permission.REBOOT_UPDATER（重启并进入updater模式的权限）
+**需要权限：**ohos.permission.REBOOT（重启权限）、ohos.permission.REBOOT_UPDATER（重启并进入updater模式的权限）
 
 **参数：**
 
