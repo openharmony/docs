@@ -2,58 +2,58 @@
 
 ## Length Type
 
-| Name| Type| Description| 
+| Name| Type| Description|
 | -------- | -------- | -------- |
-| Length | string&nbsp;\|&nbsp;number | Length unit. If the input is a number, use **vp**. If the input is a string, explicitly specify the unit, for example, **'10px'**, or specify the length in percentage, for example, **'100%'**.| 
+| Length | string&nbsp;\|&nbsp;number | Length unit. If the input is a number, use **vp**. If the input is a string, explicitly specify the unit, for example, **'10px'**, or specify the length in percentage, for example, **'100%'**.|
 
 
 ## Angle Type
 
-| Name| Type| Description| 
+| Name| Type| Description|
 | -------- | -------- | -------- |
-| Angle | string&nbsp;\|&nbsp;number | Angle unit. If the input is a number, use **deg**. If the input is a string, explicitly specify the unit, which can be either of the following: <br/>-&nbsp;deg, as in **'100deg'** <br/>-&nbsp;rad, as in **'3.14rad'** | 
+| Angle | string&nbsp;\|&nbsp;number | Angle unit. If the input is a number, use **deg**. If the input is a string, explicitly specify the unit, which can be either of the following: <br/>-&nbsp;deg, as in **'100deg'** <br/>-&nbsp;rad, as in **'3.14rad'** |
 
 
 ## Point Type
 
-| Name| Type| Description| 
+| Name| Type| Description|
 | -------- | -------- | -------- |
-| Point | [Length,&nbsp;Length] | Coordinates of a point. The first value is the x-axis coordinate, and the second value is the y-axis coordinate.| 
+| Point | [Length,&nbsp;Length] | Coordinates of a point. The first value is the x-axis coordinate, and the second value is the y-axis coordinate.|
 
 
 ## Color Type
 
 The **Color** used by the component attribute method is described as follows:
 
-| Name| Type| Description| 
+| Name| Type| Description|
 | -------- | -------- | -------- |
-| Color | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Color | Color information. If the input is a string, use **rgb** or **rgba** to specify the color. If the input is a number, use Hex format to specify the color. If the input is a **Color" enum, use a color value to specify the color. <br/>-&nbsp;'rgb(255,&nbsp;255,&nbsp;255)' <br/>-&nbsp;'rgba(255,&nbsp;255,&nbsp;255,&nbsp;1.0)' <br/>-&nbsp;Hex format: 0xrrggbb, 0xaarrggbb, '\#FFFFFF' <br/>-&nbsp;Enum: Color.Black, Color.White| 
+| Color | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Color | Color information. If the input is a string, use **rgb** or **rgba** to specify the color. If the input is a number, use Hex format to specify the color. If the input is a **Color" enum, use a color value to specify the color. <br/>-&nbsp;'rgb(255,&nbsp;255,&nbsp;255)' <br/>-&nbsp;'rgba(255,&nbsp;255,&nbsp;255,&nbsp;1.0)' <br/>-&nbsp;Hex format: 0xrrggbb, 0xaarrggbb, '\#FFFFFF' <br/>-&nbsp;Enum: Color.Black, Color.White|
 
 
 The supported **Color** enums are described as follows:
 
 
-| Color| Value| Illustration| 
+| Color| Value| Illustration|
 | -------- | -------- | -------- |
-| Black | 0x000000 | ![en-us_image_0000001219864153](figures/en-us_image_0000001219864153.png) | 
-| Blue | 0x0000ff | ![en-us_image_0000001174104404](figures/en-us_image_0000001174104404.png) | 
-| Brown | 0xa52a2a | ![en-us_image_0000001219744201](figures/en-us_image_0000001219744201.png) | 
-| Gray | 0x808080 | ![en-us_image_0000001174264376](figures/en-us_image_0000001174264376.png) | 
-| Green | 0x008000 | ![en-us_image_0000001174422914](figures/en-us_image_0000001174422914.png) | 
-| Orange | 0xffa500 | ![en-us_image_0000001219662661](figures/en-us_image_0000001219662661.png) | 
-| Pink | 0xffc0cb | ![en-us_image_0000001219662663](figures/en-us_image_0000001219662663.png) | 
-| Red | 0xff0000 | ![en-us_image_0000001219662665](figures/en-us_image_0000001219662665.png) | 
-| White | 0xffffff | ![en-us_image_0000001174582866](figures/en-us_image_0000001174582866.png) | 
-| Yellow | 0xffff00 | ![en-us_image_0000001174582864](figures/en-us_image_0000001174582864.png) | 
+| Black | 0x000000 | ![en-us_image_0000001219864153](figures/en-us_image_0000001219864153.png) |
+| Blue | 0x0000ff | ![en-us_image_0000001174104404](figures/en-us_image_0000001174104404.png) |
+| Brown | 0xa52a2a | ![en-us_image_0000001219744201](figures/en-us_image_0000001219744201.png) |
+| Gray | 0x808080 | ![en-us_image_0000001174264376](figures/en-us_image_0000001174264376.png) |
+| Green | 0x008000 | ![en-us_image_0000001174422914](figures/en-us_image_0000001174422914.png) |
+| Orange | 0xffa500 | ![en-us_image_0000001219662661](figures/en-us_image_0000001219662661.png) |
+| Pink | 0xffc0cb | ![en-us_image_0000001219662663](figures/en-us_image_0000001219662663.png) |
+| Red | 0xff0000 | ![en-us_image_0000001219662665](figures/en-us_image_0000001219662665.png) |
+| White | 0xffffff | ![en-us_image_0000001174582866](figures/en-us_image_0000001174582866.png) |
+| Yellow | 0xffff00 | ![en-us_image_0000001174582864](figures/en-us_image_0000001174582864.png) |
 
 
 ## ColorStop Type
 
 **ColorStop** is used to describe the progressive color stop.
 
-| Name| Type| Description| 
+| Name| Type| Description|
 | -------- | -------- | -------- |
-| ColorStop | [Color,&nbsp;number] | Type of the progressive color stop. The first parameter specifies the color value, and the second parameter specifies the ratio of 0 to 1.| 
+| ColorStop | [Color,&nbsp;number] | Type of the progressive color stop. The first parameter specifies the color value, and the second parameter specifies the ratio of 0 to 1.|
 
 
 ## Resource Type
@@ -72,23 +72,23 @@ You can use **$r** or **$rawfile** to create a **Resource** object. For details,
 - $rawfile('filename')
   **filename**: name of the file in **resources/rawfile** of the project.
 
-| Name| Type| Description| 
+| Name| Type| Description|
 | -------- | -------- | -------- |
-| Resource | {<br/>readonly&nbsp;id:&nbsp;[number];<br/>readonly&nbsp;type:&nbsp;[number];<br/>readonly&nbsp;params?:&nbsp;any[];<br/>} | **id**: resource ID. <br/>**type**: resource type (enumerated value). <br/>**params**: optional parameters. <br/>After a **Resource** object is created using **$r** or **$rawfile**, modifying attribute values of the object is prohibited.| 
+| Resource | {<br/>readonly&nbsp;id:&nbsp;[number];<br/>readonly&nbsp;type:&nbsp;[number];<br/>readonly&nbsp;params?:&nbsp;any[];<br/>} | **id**: resource ID. <br/>**type**: resource type (enumerated value). <br/>**params**: optional parameters. <br/>After a **Resource** object is created using **$r** or **$rawfile**, modifying attribute values of the object is prohibited.|
 
 
 ## ResourceStr<sup>8+</sup>
 
-| Name| Type| Description| 
+| Name| Type| Description|
 | -------- | -------- | -------- |
-| ResourceStr | string&nbsp;\|&nbsp;[Resource](#resource type)| Resource string.| 
+| ResourceStr | string&nbsp;\|&nbsp;[Resource](#ResourceType) | Resource string.|
 
 
 ## Resource Color<sup>8+</sup>
 
-| Name| Type| Description| 
+| Name| Type| Description|
 | -------- | -------- | -------- |
-| ResourceColor | Color&nbsp;\|&nbsp;number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](#resource type)| Resource color.| 
+| ResourceColor | Color&nbsp;\|&nbsp;number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](#ResourceType) | Resource color.|
 
 
 ## Custom Builder<sup>8+</sup>
