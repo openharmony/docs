@@ -18,7 +18,7 @@ SystemCapability.HiviewDFX.HiTrace
 
 ## hiTraceMeter.startTrace
 
-startTrace(name: string, taskId: number, expectedTime?: number): void
+startTrace(name: string, taskId: number): void
 
 标记一个预追踪耗时任务的开始，expectedTime是可选参数，标识该任务的期望耗时。
 
@@ -32,7 +32,6 @@ startTrace(name: string, taskId: number, expectedTime?: number): void
 | -------- | -------- | -------- | -------- |
 | name | string | 是 | 要追踪的任务名称 |
 | taskId | number | 是 | 任务id |
-| expectedTime | number | 否 | 期望的耗时时间，单位：ms |
 
 **示例：**
 
@@ -88,7 +87,7 @@ hiTraceMeter.finishTrace("myTestFunc", 1);
 
 ## hiTraceMeter.traceByValue
 
-traceByValue(name: string, value: number): void
+traceByValue(name: string, count: number): void
 
 用来标记一个预追踪的数值变量，该变量的数值会不断变化。
 
@@ -97,7 +96,7 @@ traceByValue(name: string, value: number): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | name | string | 是 | 要追踪的数值变量名称 |
-| value | number | 是 | 变量的值 |
+| count | number | 是 | 变量的值 |
 
 **示例：**
 ```

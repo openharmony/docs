@@ -58,7 +58,7 @@ Defines a **HiTraceId** object.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | chainId      | bigint | Yes| Call chain ID.|
-| spandId      | number | No| Span ID.|
+| spanId      | number | No| Span ID.|
 | parentSpanId | number | No| Parent span ID.|
 | flags        | number | No| Trace flag combination.|
 
