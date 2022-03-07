@@ -1,6 +1,7 @@
 # DataAbilityPredicates<a name="EN-US_TOPIC_0000001201117411"></a>
 
->![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>![](../../public_sys-resources/icon-note.gif) **NOTE** 
+>
 >The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import<a name="section68088407422"></a>
@@ -9,11 +10,8 @@
 import dataAbility from '@ohos.data.dataAbility'
 ```
 ## System Capabilities
-SystemCapability.DistributedDataManager.DataShare.Consumer
+SystemCapability.DistributedDataManager.DataShare.Core
 
-## Required Permissions<a name="section11257113618419"></a>
-
-None
 
 ## dataAbility.createRdbPredicates<a name="section039731125514"></a>
 
@@ -1696,5 +1694,4 @@ Sets the  **DataAbilityPredicates**  to match the field with data type  **Array<
     let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
     predicates.notIn("NAME", ["Lisa", "Rose"])
     ```
-
 

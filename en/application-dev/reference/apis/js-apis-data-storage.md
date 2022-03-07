@@ -2,7 +2,8 @@
 
 Lightweight storage provides applications with data processing capability and allows applications to perform lightweight data storage and query. Data is stored in key-value pairs. Keys are of the string type, and values can be of the numeric, string, or Boolean type.
 
->![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>![](../../public_sys-resources/icon-note.gif) **NOTE** 
+>
 >The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import<a name="s56d19203690d4782bfc74069abb6bd71"></a>
@@ -12,11 +13,8 @@ import dataStorage from '@ohos.data.storage'
 ```
 
 ## System Capabilities
-SystemCapability.DistributedDataManager.Preference.Core
+SystemCapability.DistributedDataManager.Preferences.Core
 
-## Required Permissions<a name="section11257113618419"></a>
-
-None
 
 ## Attributes<a name="section7299123218370"></a>
 
@@ -119,7 +117,7 @@ Reads a specified file and loads the data to the  **Storage**  instance for data
       storage.putSync('startup', 'auto')
       storage.flushSync()
   })()
-    ```
+  ```
 
 
 ## dataStorage.getStorage<a name="section192192415554"></a>
@@ -180,7 +178,7 @@ Reads a specified file and loads the data to the  **Storage**  instance for data
         storage.flushSync()
     })
   })()
-    ```
+  ```
 
 
 ## dataStorage.getStorage<a name="section761705115251"></a>
@@ -248,7 +246,7 @@ Reads a specified file and loads the data to the  **Storage**  instance for data
         console.info("Get the storage failed, path: " + path + '/mystore')
     })
   }()
-    ```
+  ```
 
 
 ## dataStorage.deleteStorageSync<a name="section1396463815379"></a>
@@ -1614,4 +1612,3 @@ Unsubscribes from data changes.
 </tr>
 </tbody>
 </table>
-
