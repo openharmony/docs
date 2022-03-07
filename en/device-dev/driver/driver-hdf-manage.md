@@ -330,8 +330,17 @@ This syntax indicates that the  **attribute**  value is a reference to  **node**
 node1 {
     attributes;
 }
-
 node2 {
+    attr_1 = &root.node1;
+}
+```
+Or
+
+```
+node2 {
+    node1 {
+        attributes;
+    }
     attr_1 = &node1;
 }
 ```
