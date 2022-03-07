@@ -48,6 +48,8 @@ DAHelper.openFile(
 
 openFile(uri: string, mode: string): Promise\<number>
 
+在指定的远程路径中打开文件（promise形式）。
+
 **系统能力:**
 
 SystemCapability.Ability.AbilityRuntime.FAModel
@@ -306,7 +308,7 @@ SystemCapability.Ability.AbilityRuntime.FAModel
 | 名称     | 类型                   | 必填 | 描述                                                         |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | uri      | string                 | 是   | 指示要规范化的uri对象。                                      |
-| callback | AsyncCallback\<string> | 是   | 回调方法。如果数据功能支持uri规范化或null，则返回规范化uri对象。 |
+| callback | AsyncCallback\<string> | 是   | 回调方法。如果数据功能支持uri规范化，则返回规范化uri对象；否则返回null。 |
 
 **示例：**
 
@@ -341,7 +343,7 @@ SystemCapability.Ability.AbilityRuntime.FAModel
 **返回值：**
 | 类型             | 说明                                                   |
 | ---------------- | ------------------------------------------------------ |
-| Promise\<string> | 如果数据功能支持uri规范化或null，则返回规范化uri对象。 |
+| Promise\<string> | 如果数据功能支持uri规范化，则返回规范化uri对象；否则返回null。 |
 
 **示例：**
 

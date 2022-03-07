@@ -14,7 +14,7 @@ import particleAbility from '@ohos.ability.particleAbility'
 
 startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<void>: void
 
-Starts a Service ability. This method uses a callback to return the result.
+Starts a particle ability. This method uses a callback to return the result.
 
 **Parameters**
 
@@ -28,6 +28,7 @@ Starts a Service ability. This method uses a callback to return the result.
 
 ```js
 import particleAbility from '@ohos.ability.particleAbility'
+import wantConstant from '@ohos.ability.wantConstant'
 particleAbility.startAbility(
 	{
         want:
@@ -35,7 +36,7 @@ particleAbility.startAbility(
             action: "action.system.home",
             entities: ["entity.system.home"],
             type: "MIMETYPE",
-            flags: FLAG_AUTH_READ_URI_PERMISSION;
+            flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
             deviceId: "",
             bundleName: "com.example.Data",
             abilityName: "com.example.Data.MainAbility",
@@ -53,7 +54,7 @@ particleAbility.startAbility(
 ## particleAbility.startAbility
 
 startAbility(parameter: StartAbilityParameter): Promise\<number>
-Starts a Service ability. This method uses a promise to return the result.
+Starts a particle ability. This method uses a promise to return the result.
 
 **Parameters**
 
@@ -70,6 +71,7 @@ Starts a Service ability. This method uses a promise to return the result.
 
 ```js
 import particleAbility from '@ohos.ability.particleAbility'
+import wantConstant from '@ohos.ability.wantConstant'
 particleAbility.startAbility(
 	{
         want:
@@ -77,14 +79,14 @@ particleAbility.startAbility(
             action: "action.system.home",
             entities: ["entity.system.home"],
             type: "MIMETYPE",
-            flags: FLAG_AUTH_READ_URI_PERMISSION;
+            flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
             deviceId: "",
             bundleName: "com.example.Data",
-            abilityName: "com.example.Data.MainAbility",
+            abilityName: "com.example. Data.MainAbility",
             uri:""
         },
     },
-).then((void) => {
+).then((data) => {
     console.info("particleAbility startAbility");
 });
 ```
@@ -95,7 +97,7 @@ particleAbility.startAbility(
 
 terminateSelf(callback: AsyncCallback\<void>): void
 
-Terminates this Service ability. This method uses a callback to return the result.
+Terminates this particle ability. This method uses a callback to return the result.
 
 **Parameters**
 
@@ -120,7 +122,7 @@ particleAbility.terminateSelf(
 
 terminateSelf(): Promise\<void>
 
-Terminates this Service ability. This method uses a promise to return the result.
+Terminates this particle ability. This method uses a promise to return the result.
 
 **Return value**
 | Type| Description|
@@ -131,7 +133,7 @@ Terminates this Service ability. This method uses a promise to return the result
 
 ```js
 import particleAbility from '@ohos.ability.particleAbility'
-particleAbility.terminateSelf().then((void) => {
+particleAbility.terminateSelf().then((data) => {
 	console.info("particleAbility terminateSelf");
 });
 ```
@@ -162,148 +164,6 @@ Obtains a **dataAbilityHelper** object.
 import particleAbility from '@ohos.ability.particleAbility'     
 var uri = "";
 particleAbility.acquireDataAbilityHelper(uri)
-```
-
-## particleAbility.connectAbility
-
-connectAbility(request: Want, options:ConnectOptions): number
-
-Connects this ability to a specific Service ability. This method uses a callback to return the result.
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| ------- | -------------- | ---- | -------------------------- |
-| request | [Want](#want)           | Yes| Service ability to connect.|
-| options | ConnectOptions | Yes| Callback used to return the result.|
-
-ConnectOptions
-
-| Name| Readable/Writable| Type| Mandatory| Description|
-| ------------ | -------- | -------- | ---- | ---------------------------------- |
-| onConnect    | Read-only| function | Yes| Callback invoked when the connection is set up.|
-| onDisconnect | Read-only| function | Yes| Callback invoked when the connection is interrupted.|
-| onFailed     | Read-only| function | Yes| Callback invoked when the connection fails.|
-
-**Return value**
-| Type| Description|
-| ------ | -------------------------- |
-| number | Unique identifier of the connection between the client and the service side.|
-
-**Example**
-
-```javascript
-import particleAbility from '@ohos.ability.particleAbility'
-function onConnectCallback(element, remote){
-    console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
-}
-function onDisconnectCallback(element){
-    console.log('ConnectAbility onDisconnect element.deviceId : ' + element.deviceId)
-}
-function onFailedCallback(code){
-    console.log('particleAbilityTest ConnectAbility onFailed errCode : ' + code)
-}
-var connId = particleAbility.connectAbility(
-    {
-        bundleName: "com.ix.ServiceAbility",
-        abilityName: "com.ix.ServiceAbility.ServiceAbilityA",
-    },
-    {
-        onConnect: onConnectCallback,
-        onDisconnect: onDisconnectCallback,
-        onFailed: onFailedCallback,
-    },
-);
-```
-
-## particleAbility.disconnectAbility
-
-disconnectAbility(connection: number, callback:AsyncCallback\<void>): void
-
-Disconnects this ability from a specific Service ability. This method uses a callback to return the result.
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| ---------- | ------------- | ---- | ------------------------------ |
-| connection | number        | Yes| ID of the Service ability to disconnect.|
-| callback   | AsyncCallback\<void> | Yes| Callback used to return the result.|
-
-**Example**
-
-```javascript
-import particleAbility from '@ohos.ability.particleAbility'
-function onConnectCallback(element, remote){
-    console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
-}
-function onDisconnectCallback(element){
-    console.log('ConnectAbility onDisconnect element.deviceId : ' + element.deviceId)
-}
-function onFailedCallback(code){
-    console.log('particleAbilityTest ConnectAbility onFailed errCode : ' + code)
-}
-var connId = particleAbility.connectAbility(
-    {
-        bundleName: "com.ix.ServiceAbility",
-        abilityName: "com.ix.ServiceAbility.ServiceAbilityA",
-    },
-    {
-        onConnect: onConnectCallback,
-        onDisconnect: onDisconnectCallback,
-        onFailed: onFailedCallback,
-    },
-);
-var result = particleAbility.disconnectAbility(connId,
-    (error,data) => {
-        console.log('particleAbilityTest DisConnectAbility result errCode : ' + error.code + " data: " + data)
-    },
-);
-```
-
-## particleAbility.disconnectAbility
-
-disconnectAbility(connection: number): Promise\<void>
-
-Disconnects this ability from a specific Service ability. This method uses a promise to return the result.
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| ---------- | ------ | ---- | ------------------------------ |
-| connection | number | Yes| ID of the Service ability to disconnect.|
-
-**Return value**
-| Type| Description|
-| -------------- | ------------------------- |
-| Promise\<void> | Promise used to return the result.|
-
-**Example**
-
-```javascript
-import particleAbility from '@ohos.ability.particleAbility'
-function onConnectCallback(element, remote){
-    console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
-}
-function onDisconnectCallback(element){
-    console.log('ConnectAbility onDisconnect element.deviceId : ' + element.deviceId)
-}
-function onFailedCallback(code){
-    console.log('particleAbilityTest ConnectAbility onFailed errCode : ' + code)
-}
-var connId = particleAbility.connectAbility(
-    {
-        bundleName: "com.ix.ServiceAbility",
-        abilityName: "com.ix.ServiceAbility.ServiceAbilityA",
-    },
-    {
-        onConnect: onConnectCallback,
-        onDisconnect: onDisconnectCallback,
-        onFailed: onFailedCallback,
-    },
-);
-var result = particleAbility.disconnectAbility(connId).then((void) => {
-	console.info("particleAbilityTest disconnectAbility");
-});
 ```
 
 ## StartAbilityParameter
@@ -371,3 +231,170 @@ Defines the window display modes of a Page ability, for example, **featureAbilit
 | WINDOW_MODE_SPLIT_PRIMARY   | 100  | The Page ability is displayed in the primary window when it is in split-screen mode.|
 | WINDOW_MODE_SPLIT_SECONDARY | 101  | The Page ability is displayed in the secondary window when it is in split-screen mode.|
 | WINDOW_MODE_FLOATING        | 102  | The Page ability is displayed in floating window mode.|
+
+
+## particleAbility.startBackgroundRunning
+
+startBackgroundRunning(id: number, request: NotificationRequest, callback: AsyncCallback&lt;void&gt;): void;
+
+Requests a continuous task from the system. This method uses an asynchronous callback to return the result. (This method is of API 7 and will be deprecated. Use the counterpart in API 8.)
+
+- **Parameters**
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | id | number | Yes| Notification ID of a continuous task.|
+  | request | NotificationRequest | Yes| Notification parameter, which is used to display information in the notification bar.|
+  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the execution result.|
+
+- **Example**
+```js
+import notification from '@ohos.notification';
+import particleAbility from '@ohos.ability.particleAbility';
+import wantAgent from '@ohos.wantAgent';
+
+function callback(err, data) {
+    if (err) {
+        console.error("Operation failed Cause: " + err);
+    } else {
+        console.info("Operation succeeded");
+    }
+}
+
+let wantAgentInfo = {
+    wants: [
+        {
+            bundleName: "com.example.myapplication",
+            abilityName: "com.example.myapplication.MainAbility"
+        }
+    ],
+    operationType: wantAgent.OperationType.START_ABILITY,
+    requestCode: 0,
+    wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESET_FLAG]
+};
+
+wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
+    let basicContent = {
+        title: "title",
+        text: "text"
+    };
+    let notificationContent = {
+        contentType: notification.ContentType.NOTIFICATION_CONTENT_TEXT,
+        normal: basicContent
+    };
+    let request = {
+        content: notificatonContent,
+        wantAgent: wantAgentObj
+    };
+    let id = 1;
+    particleAbility.startBackgroundRunning(id, request, callback);
+});
+
+```
+
+## particleAbility.startBackgroundRunning
+
+startBackgroundRunning(id: number, request: NotificationRequest): Promise&lt;void&gt;
+
+Requests a continuous task from the system. This method uses a promise to return the result. (This method is of API 7 and will be deprecated. Use the counterpart in API 8.)
+
+**Parameters**
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| id | number | Yes| Notification ID of a continuous task.|
+| request | NotificationRequest | Yes| Notification parameter, which is used to display information in the notification bar.|
+
+**Return value**
+| Type| Description|
+| -------------- | ------------------------- |
+| Promise\<void> | Promise used to return the result.|
+
+- **Example**
+```js
+import notification from '@ohos.notification';
+import particleAbility from '@ohos.ability.particleAbility';
+import wantAgent from '@ohos.wantAgent';
+
+let wantAgentInfo = {
+    wants: [
+        {
+            bundleName: "com.example.myapplication",
+            abilityName: "com.example.myapplication.MainAbility"
+        }
+    ],
+    operationType: wantAgent.OperationType.START_ABILITY,
+    requestCode: 0,
+    wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESET_FLAG]
+};
+
+wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
+    let basicContent = {
+        title: "title",
+        text: "text"
+    };
+    let notificationContent = {
+        contentType: notification.ContentType.NOTIFICATION_CONTENT_TEXT,
+        normal: basicContent
+    };
+    let request = {
+        content: notificatonContent,
+        wantAgent: wantAgentObj
+    };
+    let id = 1;
+    particleAbility.startBackgroundRunning(id, request).then(() => {
+        console.info("Operation succeeded");
+    }).catch((err) => {
+        console.error("Operation failed Cause: " + err);
+    });
+});
+
+```
+
+## particleAbility.cancelBackgroundRunning
+
+cancelBackgroundRunning(callback: AsyncCallback&lt;void&gt;): void;
+
+Requests to cancel a continuous task from the system. This method uses an asynchronous callback to return the result. (This method is of API 7 and will be deprecated. Use the counterpart in API 8.)
+
+- **Parameters**
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the execution result.|
+
+- **Example**
+```js
+import particleAbility from '@ohos.ability.particleAbility';
+
+function callback(err, data) {
+    if (err) {
+        console.error("Operation failed Cause: " + err);
+    } else {
+        console.info("Operation succeeded");
+    }
+}
+
+particleAbility.cancelBackgroundRunning(callback);
+
+```
+
+## particleAbility.cancelBackgroundRunning
+
+cancelBackgroundRunning(): Promise&lt;void&gt;;
+
+Requests to cancel a continuous task from the system. This method uses a promise to return the result. (This method is of API 7 and will be deprecated. Use the counterpart in API 8.)
+
+**Return value**
+| Type| Description|
+| -------------- | ------------------------- |
+| Promise\<void> | Promise used to return the result.|
+
+- **Example**
+```js
+import particleAbility from '@ohos.ability.particleAbility';
+
+particleAbility.cancelBackgroundRunning().then(() => {
+    console.info("Operation succeeded");
+}).catch((err) => {
+    console.error("Operation failed Cause: " + err);
+});
+
+```
