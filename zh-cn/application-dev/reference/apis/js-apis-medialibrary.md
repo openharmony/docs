@@ -10,7 +10,7 @@
 import mediaLibrary from '@ohos.multimedia.medialibrary';
 ```
 
-## getMediaLibrary
+## mediaLibrary.getMediaLibrary
 
 function getMediaLibrary(context: Context): MediaLibrary
 
@@ -28,7 +28,7 @@ function getMediaLibrary(context: Context): MediaLibrary
 
 | 类型         | 说明   |
 | ------------ | :----- |
-| [MediaLibrary](#MediaLibrary) | 媒体库实例 |
+| [MediaLibrary](#medialibrary) | 媒体库实例 |
 
 **示例：**
 
@@ -128,7 +128,7 @@ on(type: 'deviceChange'|'albumChange'|'imageChange'|'audioChange'|'videoChange'|
 
 | 参数名   | 类型                | 必填 | 说明                   |
 | -------- | ---------------- | ---- | ------------------- |
-| type  | type   | 是   | 媒体类型 <br/>'deviceChange'：&nbsp;注册设备变更 <br/>'albumChange'：&nbsp;相册变更<br/>'imageChange'：&nbsp;图片文件变更<br/>'audioChange'： &nbsp;音频文件变更<br/>'videoChange'：  &nbsp;视频文件变更<br/>'fileChange'：     &nbsp;文件变更<br/>'remoteFileChange'：&nbsp;注册设备上文件变更 |
+| type  | string   | 是   | 媒体类型 <br/>'deviceChange'：&nbsp;注册设备变更 <br/>'albumChange'：&nbsp;相册变更<br/>'imageChange'：&nbsp;图片文件变更<br/>'audioChange'： &nbsp;音频文件变更<br/>'videoChange'：  &nbsp;视频文件变更<br/>'fileChange'：     &nbsp;文件变更<br/>'remoteFileChange'：&nbsp;注册设备上文件变更 |
 | callback | callback&lt;void&gt; | 是   | 回调返回空 |
 
 **示例：**
@@ -175,7 +175,7 @@ createAsset(mediaType: MediaType, displayName: string, relativePath: string, cal
 
 | 参数名       | 类型                                    | 必填 | 说明                                                         |
 | ------------ | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| mediaType    | [MediaType](#MediaType)                 | 是   | 媒体类型                                                     |
+| mediaType    | [MediaType](#mediatype)                 | 是   | 媒体类型                                                     |
 | displayName  | string                                  | 是   | 展示文件名                                                   |
 | relativePath | string                                  | 是   | 相对公共目录路径，可以通过getPublicDirectory获取不同类型媒体文件的一层目录的relative path |
 | callback     | AsyncCallback<[FileAsset](#fileasset8)> | 是   | 异步获取媒体数据FileAsset之后的回调                          |
@@ -209,7 +209,7 @@ createAsset(mediaType: MediaType, displayName: string, relativePath: string): Pr
 
 | 参数名       | 类型                    | 必填 | 说明                                                         |
 | ------------ | ----------------------- | ---- | ------------------------------------------------------------ |
-| mediaType    | [MediaType](#MediaType) | 是   | 媒体类型                                                     |
+| mediaType    | [MediaType](#mediatype) | 是   | 媒体类型                                                     |
 | displayName  | string                  | 是   | 展示文件名                                                   |
 | relativePath | string                  | 是   | 相对路径，可以通过getPublicDirectory获取不同类型媒体文件的一层目录的relative path |
 
@@ -422,7 +422,7 @@ media.release()
 | id           | number                  | 是   | 否   | 文件资源编号                                           |
 | uri          | string                  | 是   | 否   | 文件资源uri（如：dataability:///media/image/2)         |
 | mimeType     | string                  | 是   | 否   | 文件扩展属性                                           |
-| mediaType    | [MediaType](#mediaType) | 是   | 否   | 媒体类型                                               |
+| mediaType    | [MediaType](#mediatype) | 是   | 否   | 媒体类型                                               |
 | displayName  | string                  | 是   | 是   | 显示文件名                                             |
 | title        | string                  | 是   | 是   | 文件标题                                               |
 | relativePath | string                  | 是   | 是   | 相对公共目录路径                                       |
