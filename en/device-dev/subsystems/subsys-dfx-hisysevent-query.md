@@ -17,7 +17,7 @@ HiSysEvent provides an API for you to query system events. You can query concern
 
 | API| Description|
 | -------- | --------- |
-| bool HiSysEventManager::QueryHiSysEvent(struct QueryArg&amp; queryArg, std::vector&lt;struct QueryRule&gt;&amp; queryRules, std::shared_ptr&lt;HiSysEventQueryCallBackBase&gt; queryCallBack) | Queries system events by specifying search criteria such as the time segment, event domain, and event name. <br><br>Input arguments:<ul><li>**queryArg**: event query parameter. </li><li>**queryRules**: event filtering rules. </li><li>**queryRules**: callback object for query results. </li></ul>Return value:<ul><li>**true**: The query is successful. </li><li>**false**: The query has failed.</li></ul> |
+| bool HiSysEventManager::QueryHiSysEvent(struct QueryArg&amp; queryArg, std::vector&lt;QueryRule&gt;&amp; queryRules, std::shared_ptr&lt;HiSysEventQueryCallBackBase&gt; queryCallBack) | Queries system events by specifying search criteria such as the time segment, event domain, and event name. <br><br>Input arguments:<ul><li>**queryArg**: event query parameter. </li><li>**queryRules**: event filtering rules. </li><li>**queryRules**: callback object for query results. </li></ul>Return value:<ul><li>**true**: The query is successful. </li><li>**false**: The query has failed.</li></ul> |
 
 
 **Table 2** Description of QueryArg
@@ -30,11 +30,9 @@ HiSysEvent provides an API for you to query system events. You can query concern
 
 **Table 3** Description of QueryRule
 
-| Attribute| Description|
+| API| Description|
 | -------- | --------- |
-| ruleType | Rule type, in the **uint32_t** format. The default value is **0**.|
-| domain | Domain to which the event belongs, in the **string** format. By default, an empty string indicates that the domain is successfully matched.|
-| eventList | Event name list, in the std::vector&lt;std::string&gt; format. By default, an empty string indicates that the event names on the list are successfully matched.|
+| QueryRule(const std::string& domain, const std::vector&lt;std::string&gt;& eventList) | Constructor used to create a **QueryRule** object based on domain and event name list.<br><br>Input arguments:<ul><li>domain：Domain to which the event belongs, in the **string** format. By default, an empty string indicates that the domain is successfully matched.</li><li>eventList：Event name list, in the std::vector&lt;std::string&gt; format. By default, an empty string indicates that the event names on the list are successfully matched.</li></ul> |
 
 **Table 4** Description of HiSysEventQueryCallBackBase
 
@@ -61,7 +59,7 @@ C++
 
     -   Invoke the query API in the corresponding service logic.
 
-        HiSysEventManager::QueryHiSysEvent\(struct QueryArg& queryArg, std::vector<struct QueryRule\>& queryRules, std::shared\_ptr<HiSysEventQueryCallBackBase\> queryCallBack\)
+        HiSysEventManager::QueryHiSysEvent\(struct QueryArg& queryArg, std::vector<QueryRule\>& queryRules, std::shared\_ptr<HiSysEventQueryCallBackBase\> queryCallBack\)
 
 
     ```
@@ -90,7 +88,7 @@ C++
     // Invoke the query callback API to obtain system events.
     auto queryCallBack = std::make_shared<HiSysEventToolQuery>();
     struct QueryArg args(clientCmdArg.beginTime, clientCmdArg.endTime, clientCmdArg.maxEvents);
-    std::vector<struct QueryRule> mRules;
+    std::vector<QueryRule> mRules;
     HiSysEventManager::QueryHiSysEvent(args, mRules, queryCallBack);
     ```
 

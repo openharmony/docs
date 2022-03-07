@@ -17,7 +17,7 @@ HiSysEvent提供了查询接口，支持开发者设置条件查询HiSysEvent事
 
 | 接口名称 | 描述  |
 | -------- | --------- |
-| bool HiSysEventManager::QueryHiSysEvent(struct QueryArg&amp; queryArg, std::vector&lt;struct QueryRule&gt;&amp; queryRules, std::shared_ptr&lt;HiSysEventQueryCallBack&gt; queryCallBack) | 接口功能：<br>&emsp;&emsp;支持设置查询时间段，事件领域，事件名称等，查询满足条件的HiSysEvent事件。<br><br>输入参数：<ul><li>queryArg：查询参数。</li><li>queryRules：事件过滤规则。</li><li>queryCallBack：查询接口回调对象。</li></ul>返回值：<ul><li>true：查询成功。</li><li>false：查询失败。</li></ul> |
+| bool HiSysEventManager::QueryHiSysEvent(struct QueryArg&amp; queryArg, std::vector&lt;QueryRule&gt;&amp; queryRules, std::shared_ptr&lt;HiSysEventQueryCallBack&gt; queryCallBack) | 接口功能：<br>&emsp;&emsp;支持设置查询时间段，事件领域，事件名称等，查询满足条件的HiSysEvent事件。<br><br>输入参数：<ul><li>queryArg：查询参数。</li><li>queryRules：事件过滤规则。</li><li>queryCallBack：查询接口回调对象。</li></ul>返回值：<ul><li>true：查询成功。</li><li>false：查询失败。</li></ul> |
 
 
 **表 2**  QueryArg查询参数对象
@@ -30,11 +30,9 @@ HiSysEvent提供了查询接口，支持开发者设置条件查询HiSysEvent事
 
 **表 3**  QueryRule查询规则对象
 
-| 属性名称 | 描述  |
+| 接口名称 | 描述  |
 | -------- | --------- |
-| ruleType | uint32_t类型，用来标识查询规则对象的规则类型，默认是0。 |
-| domain | string类型，用来标识查询规则对象的事件所属领域，如果传入的是空字符串，则默认事件领域字段匹配成功。 |
-| eventList | std::vector&lt;std::string&gt;类型，事件名称的列表，如果传入的是空字符串，则默认事件名称字段匹配成功。 |
+| QueryRule(const std::string& domain, const std::vector&lt;std::string&gt;& eventList) | 接口功能：查询规则构造函数，创建查询规则对象。<br><br>输入参数：<ul><li>domain：string类型，用来标识查询规则对象的事件所属领域，如果传入的是空字符串，则默认事件领域字段匹配成功。</li><li>eventList：std::vector&lt;std::string&gt;类型，事件名称的列表，如果传入的是空字符串，则默认事件名称字段匹配成功。</li></ul> |
 
 **表 4**  HiSysEventQueryCallBack查询回调对象
 
@@ -61,7 +59,7 @@ C++接口实例。
 
     -   在相应的业务逻辑里面调用查询接口：
 
-        HiSysEventManager::QueryHiSysEvent\(struct QueryArg& queryArg, std::vector<struct QueryRule\>& queryRules, std::shared\_ptr<HiSysEventQueryCallBack\> queryCallBack\)
+        HiSysEventManager::QueryHiSysEvent\(struct QueryArg& queryArg, std::vector<QueryRule\>& queryRules, std::shared\_ptr<HiSysEventQueryCallBack\> queryCallBack\)
 
 
     ```
@@ -90,7 +88,7 @@ C++接口实例。
     // 调用查询接口获取HiSysEvent事件
     auto queryCallBack = std::make_shared<HiSysEventToolQuery>();
     struct QueryArg args(clientCmdArg.beginTime, clientCmdArg.endTime, clientCmdArg.maxEvents);
-    std::vector<struct QueryRule> mRules;
+    std::vector<QueryRule> mRules;
     HiSysEventManager::QueryHiSysEvent(args, mRules, queryCallBack);
     ```
 
