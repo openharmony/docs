@@ -111,7 +111,9 @@ getAllNets(callback: AsyncCallback&lt;Array&lt;NetHandle&gt;&gt;): void
 
 获取全部激活的数据网络列表，使用callback方式作为异步方法。
 
-需要ohos.permission.GET_NETWORK_INFO权限。
+**需要权限**：ohos.permission.GET_NETWORK_INFO
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
 
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
@@ -134,7 +136,9 @@ getAllNets(): Promise&lt;Array&lt;NetHandle&gt;&gt;
 
 获取全部激活的数据网络列表，使用promise方式作为异步方法。
 
-需要ohos.permission.GET_NETWORK_INFO权限。
+**需要权限**：ohos.permission.GET_NETWORK_INFO
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
 
 **返回值：**
 | 类型 | 说明 |
@@ -275,7 +279,9 @@ reportNetConnected(netHandle: NetHandle, callback: AsyncCallback&lt;void&gt;): v
 
 报告网络状态已连接，使用callback方式作为异步方法。
 
-需要ohos.permission.GET_NETWORK_INFO 和 ohos.permission.INTERNET权限。
+**需要权限**：ohos.permission.GET_NETWORK_INFO 和 ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
 
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
@@ -300,7 +306,9 @@ reportNetConnected(netHandle: NetHandle): Promise&lt;void&gt;
 
 报告网络状态已连接，使用promise方式作为异步方法。
 
-需要ohos.permission.GET_NETWORK_INFO 和 ohos.permission.INTERNET权限。
+**需要权限**：ohos.permission.GET_NETWORK_INFO 和 ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
 
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
@@ -329,7 +337,9 @@ reportNetDisconnected(netHandle: NetHandle, callback: AsyncCallback&lt;void&gt;)
 
 报告网络状态已断开，使用callback方式作为异步方法。
 
-需要ohos.permission.GET_NETWORK_INFO 和 ohos.permission.INTERNET权限。
+**需要权限**：ohos.permission.GET_NETWORK_INFO 和 ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
 
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
@@ -354,7 +364,9 @@ reportNetDisconnected(netHandle: NetHandle): Promise&lt;void&gt;
 
 报告网络状态已断开，使用promise方式作为异步方法。
 
-需要ohos.permission.GET_NETWORK_INFO 和 ohos.permission.INTERNET权限。
+**需要权限**：ohos.permission.GET_NETWORK_INFO 和 ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
 
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
@@ -676,6 +688,8 @@ bindSocket(socketParam: TCPSocket | UDPSocket, callback: AsyncCallback&lt;void&g
 
 将TCPSocket或UDPSocket绑定到当前网络，使用callback方式作为异步方法。
 
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
 **参数：**
 | 参数名      | 类型                      | 必填 | 说明             |
 | ----------- | ------------------------- | ---- | ---------------- |
@@ -707,6 +721,8 @@ connection.getDefaultNet().then(function (netHandle) {
 bindSocket(socketParam: TCPSocket | UDPSocket): Promise&lt;void&gt;
 
 将TCPSocket或UDPSocket绑定到当前网络，使用promise方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
 
 **参数：**
 | 参数名      | 类型                                                         | 必填 | 说明                                                         |
