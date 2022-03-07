@@ -5,7 +5,7 @@
 >
 >当前暂时不支持WebSocket，预计在MR版本支持。
 
-使用WebSocket建立服务器与客户端的双向连接，需要先通过[createWebSocket](#webSocketcreatewebsocket)方法创建[WebSocket](#websocket)对象，然后通过[connect](#connect)方法连接到服务器。当连接成功后，客户端会收到[open](#onopen)事件的回调，之后客户端就可以通过[send](#send)方法与服务器进行通信。当服务器发信息给客户端时，客户端会收到[message](#onmessage)事件的回调。当客户端不要此连接时，可以通过调用[close](#close)方法主动断开连接，之后客户端会收到[close](#onclose)事件的回调。
+使用WebSocket建立服务器与客户端的双向连接，需要先通过[createWebSocket](#websocketcreatewebsocket)方法创建[WebSocket](#websocket)对象，然后通过[connect](#connect)方法连接到服务器。当连接成功后，客户端会收到[open](#onopen)事件的回调，之后客户端就可以通过[send](#send)方法与服务器进行通信。当服务器发信息给客户端时，客户端会收到[message](#onmessage)事件的回调。当客户端不要此连接时，可以通过调用[close](#close)方法主动断开连接，之后客户端会收到[close](#onclose)事件的回调。
 
 若在上述任一过程中发生错误，客户端会收到[error](#onerror)事件的回调。
 
