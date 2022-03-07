@@ -16,6 +16,8 @@ createMessage\(pdu: Array<number\>, specification: string, callback: AsyncCallba
 
 Creates an SMS message instance based on the protocol data unit (PDU) and the specified SMS protocol. This function uses an asynchronous callback to return the result.
 
+**System capability**: SystemCapability.Telephony.SmsMms
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
@@ -41,6 +43,8 @@ sms.createMessage(pdu, specification, (err, data) => {
 createMessage\(pdu: Array<number\>, specification: string\): Promise<ShortMessage\>
 
 Creates an SMS message instance based on the PDU and the specified SMS protocol. This function uses a promise to return the result.
+
+**System capability**: SystemCapability.Telephony.SmsMms
 
 **Parameters**
 
@@ -75,7 +79,9 @@ sendMessage(options: SendMessageOptions): void
 
 Sends an SMS message.
 
-Before using this API, you must declare the **ohos.permission.SEND_MESSAGES** permission.
+**Required permission**: ohos.permission.SEND_MESSAGES
+
+**System capability**: SystemCapability.Telephony.SmsMms
 
 **Parameters**
 
@@ -108,11 +114,13 @@ getDefaultSmsSlotId\(callback: AsyncCallback<number\>\): void
 
 Obtains the default slot of the SIM card used to send SMS messages. This function uses an asynchronous callback to return the result.
 
+**System capability**: SystemCapability.Telephony.SmsMms
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | --------------------------- | ---- | ---------------------------------------- |
-| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the result, <br/> - **0**: slot 1 <br/> - **1**: slot 2|
+| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the result. <br/> - **0**: slot 1 <br/> - **1**: slot 2|
 
 **Example**
 
@@ -128,6 +136,8 @@ sms.getDefaultSmsSlotId((err, data) => {
 getDefaultSmsSlotId\(\): Promise<number\>
 
 Obtains the default slot of the SIM card used to send SMS messages. This function uses a promise to return the result.
+
+**System capability**: SystemCapability.Telephony.SmsMms
 
 **Return value**
 
@@ -153,7 +163,9 @@ setSmscAddr\(slotId: number, smscAddr: string, callback: AsyncCallback<void\>\):
 
 Sets the short message service center (SMSC) address. This function uses an asynchronous callback to return the result.
 
-Before using this API, you must declare the **ohos.permission.SET\_TELEPHONY\_STATE** permission.
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE (a system permission)
+
+**System capability**: SystemCapability.Telephony.SmsMms
 
 **Parameters**
 
@@ -180,7 +192,9 @@ setSmscAddr\(slotId: number, smscAddr: string\): Promise<void\>
 
 Sets the SMSC address. This function uses a promise to return the result.
 
-Before using this API, you must declare the **ohos.permission.SET\_TELEPHONY\_STATE** permission.
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE (a system permission)
+
+**System capability**: SystemCapability.Telephony.SmsMms
 
 **Parameters**
 
@@ -215,7 +229,9 @@ getSmscAddr\(slotId: number, callback: AsyncCallback<string\>\): void
 
 Obtains the SMSC address. This function uses an asynchronous callback to return the result.
 
-Before using this API, you must declare the **ohos.permission.GET\_TELEPHONY\_STATE** permission.
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE (a system permission)
+
+**System capability**: SystemCapability.Telephony.SmsMms
 
 **Parameters**
 
@@ -240,7 +256,9 @@ getSmscAddr\(slotId: number\): Promise<string\>
 
 Obtains the SMSC address. This function uses a promise to return the result.
 
-Before using this API, you must declare the **ohos.permission.GET\_TELEPHONY\_STATE** permission.
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE (a system permission)
+
+**System capability**: SystemCapability.Telephony.SmsMms
 
 **Parameters**
 
@@ -271,6 +289,8 @@ promise.then(data => {
 
 Defines an SMS message instance.
 
+**System capability**: SystemCapability.Telephony.SmsMms
+
 | Variable| Type| Description|
 | ------------------------ | --------------------------------------- | ------------------------------------------------------------ |
 | emailAddress             | string                                  | Email address.|
@@ -295,12 +315,12 @@ Defines an SMS message instance.
 Enumerates SMS message types.
 
 | Variable| Value| Description|
-| ---------------- | ---- | ---------------------------------------- |
-| UNKNOWN          | 0    | Unknown type.|
-| INSTANT_MESSAGE  | 1    | Instant message, which is displayed immediately after being received.|
-| OPTIONAL_MESSAGE | 2    | Message stored in the device or SIM card.|
-| SIM_MESSAGE      | 3    | Message containing SIM card information, which is to be stored in the SIM card.|
-| FORWARD_MESSAGE  | 4    | Message to be forwarded to another device.|
+| ---------------- | ---- | ------------------------------------------------------------ |
+| UNKNOWN          | 0    | Unknown type. <br />**System capability**: SystemCapability.Telephony.SmsMms|
+| INSTANT_MESSAGE  | 1    | Instant message, which is displayed immediately after being received. <br />**System capability**: SystemCapability.Telephony.SmsMms|
+| OPTIONAL_MESSAGE | 2    | Message stored in the device or SIM card. <br />**System capability**: SystemCapability.Telephony.SmsMms|
+| SIM_MESSAGE      | 3    | Message containing SIM card information, which is to be stored in the SIM card. <br />**System capability**: SystemCapability.Telephony.SmsMms|
+| FORWARD_MESSAGE  | 4    | Message to be forwarded to another device. <br />**System capability**: SystemCapability.Telephony.SmsMms|
 
 
 ## SendMessageOptions<a name=SendMessageOptions></a>
@@ -309,11 +329,13 @@ Provides the options (including callbacks) for sending an SMS message.
 
 For example, you can specify the SMS message type by the optional parameter **content**.
 
+**System capability**: SystemCapability.Telephony.SmsMms
+
 | Name| Type| Mandatory| Description|
 | ---------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | slotId           | number                                                       | Yes| Slot ID of the SIM card used for sending SMS messages: <br/> - **0**: slot 1 <br/> - **1**: slot 2|
 | destinationHost  | string                                                       | Yes| Destination address of the SMS message.|
-| content          | string \| Array&lt;number&gt;                                | Yes| SMS message type. If the content is comprised of character strings, the SMS message is a text message. If the content is comprised of byte arrays, the SMS message is a data message.|
+| content          | string \| Array&lt;number&gt;                                | Yes| SMS message type. If the content is composed of character strings, the SMS message is a text message. If the content is composed of byte arrays, the SMS message is a data message.|
 | serviceCenter    | string                                                       | No| SMSC address. By default, the SMSC address in the SIM card is used.|
 | destinationPort  | number                                                       | No| Destination port of the SMS message. This parameter is mandatory only for a data message. Otherwise, it is optional.|
 | sendCallback     | AsyncCallback&lt;[ISendShortMessageCallback](#ISendShortMessageCallback)&gt; | No| Callback used to return the SMS message sending result. For details, see [ISendShortMessageCallback](#ISendShortMessageCallback).|
@@ -322,7 +344,9 @@ For example, you can specify the SMS message type by the optional parameter **co
 
 ## ISendShortMessageCallback<a name=ISendShortMessageCallback></a>
 
-Provides the callback for the SMS message delivery report. It consists of three parts: SMS message sending result, URI for storing the sent SMS message, and whether the SMS message is the last part of a long SMS message.
+Provides the callback for the SMS message sending result. It consists of three parts: SMS message sending result, URI for storing the sent SMS message, and whether the SMS message is the last part of a long SMS message.
+
+**System capability**: SystemCapability.Telephony.SmsMms
 
 | Name| Type| Mandatory| Description|
 | ---------- | ------------------------------- | ---- | ------------------------------------------------------------ |
@@ -333,7 +357,9 @@ Provides the callback for the SMS message delivery report. It consists of three 
 
 ## IDeliveryShortMessageCallback<a name=IDeliveryShortMessageCallback></a>
 
-Provides the callback for the SMS message delivery report. Return the SMS delivery report.
+Provides the callback for the SMS message sending result. Return the SMS delivery report.
+
+**System capability**: SystemCapability.Telephony.SmsMms
 
 | Name| Type| Mandatory| Description|
 | ------ | ------------------- | ---- | -------------- |
@@ -343,6 +369,8 @@ Provides the callback for the SMS message delivery report. Return the SMS delive
 ## SendSmsResult<a name=SendSmsResult></a>
 
 Enumerates SMS message sending results.
+
+**System capability**: SystemCapability.Telephony.SmsMms
 
 | Name| Value| Description|
 | ------------------------------------ | ---- | ------------------------------------------------------ |
