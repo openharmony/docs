@@ -58,7 +58,7 @@ SystemCapability.HiviewDFX.HiTrace
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | chainId      | bigint | 是 | 跟踪链标识。   |
-| spandId      | number | 否 | 分支标识。     |
+| spanId      | number | 否 | 分支标识。     |
 | parentSpanId | number | 否 | 父分支标识。   |
 | flags        | number | 否 | 跟踪标志组合。 |
 

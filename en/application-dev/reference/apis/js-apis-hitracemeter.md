@@ -18,9 +18,9 @@ SystemCapability.HiviewDFX.HiTrace
 
 ## hiTraceMeter.startTrace
 
-startTrace(name: string, taskId: number, expectedTime?: number): void
+startTrace(name: string, taskId: number): void
 
-Starts a trace task. **expectedTime** is an optional parameter, which specifies the expected duration of the trace.
+Starts a trace taske.
 
 If multiple trace tasks with the same name need to be performed at the same time or a trace task needs to be performed multiple times concurrently, different task IDs must be specified in **startTrace**.
 
@@ -32,13 +32,11 @@ If the trace tasks with the same name are not performed at the same time, the sa
 | -------- | -------- | -------- | -------- |
 | name | string | Yes| Name of the trace task to start.|
 | taskId | number | Yes| Task ID.|
-| expectedTime | number | No| Expected duration of the trace, in ms.|
 
 **Example**
 
 ```
 hiTraceMeter.startTrace("myTestFunc", 1);
-hiTraceMeter.startTrace("myTestFunc", 1, 5); // The expected duration of the trace task is 5 ms.
 ```
 
 
@@ -88,7 +86,7 @@ hiTraceMeter.finishTrace("myTestFunc", 1);
 
 ## hiTraceMeter.traceByValue
 
-traceByValue(name: string, value: number): void
+traceByValue(name: string, count: number): void
 
 Traces the value changes of a variable.
 
@@ -97,7 +95,7 @@ Traces the value changes of a variable.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | name | string | Yes| Name of the variable.|
-| value | number | Yes| Value of the variable.|
+| count | number | Yes| Value of the variable.|
 
 **Example**
 ```
