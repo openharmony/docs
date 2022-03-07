@@ -538,10 +538,3 @@ Enumerates request directions.
 | -------- | -------- | -------- |
 | USB\_REQUEST\_TYPE\_STANDARD | 0 | Request for writing data from the host to the device. <br>**System capability**: SystemCapability.USB.USBManager|
 | USB\_REQUEST\_TYPE\_CLASS | 0x80 | Request for reading data from the device to the host. <br>**System capability**: SystemCapability.USB.USBManager|
-
-| Name| Default Value| Description|
-| -------- | -------- | -------- |
-| NONE | 0 | None <br>**System capability**: SystemCapability.USB.USBManager|
-| ACM | 1 | Serial port device <br>**System capability**: SystemCapability.USB.USBManager|
-| ECM | 2 | Ethernet port device <br>**System capability**: SystemCapability.USB.USBManager|
-| HDC | 4 | HDC device <br>**System capability**: SystemCapability.USB.USBManager|
