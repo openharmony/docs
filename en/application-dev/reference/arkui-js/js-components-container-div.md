@@ -290,7 +290,7 @@ In addition to the methods in  [Universal Methods](js-components-common-methods.
 <td class="cellrowborder" valign="top" width="13.66%" headers="mcps1.1.5.1.3 "><p id="p2017514401045"><a name="p2017514401045"></a><a name="p2017514401045"></a><a href="#table154011838131719">ScrollOffset</a></p>
 </td>
 <td class="cellrowborder" valign="top" width="57.43000000000001%" headers="mcps1.1.5.1.4 "><p id="p0314958162512"><a name="p0314958162512"></a><a name="p0314958162512"></a>Obtains the scrolling offset of the element content.</p>
-<div class="note" id="note18321919610"><a name="note18321919610"></a><a name="note18321919610"></a><span class="notetitle"> NOTE: </span><div class="notebody"><a name="ul873964691316"></a><a name="ul873964691316"></a><ul id="ul873964691316"><li>To use this method, <strong id="b711552521"><a name="b711552521"></a><a name="b711552521"></a>overflow</strong> must be set to <strong id="b13595202212"><a name="b13595202212"></a><a name="b13595202212"></a>scroll</strong>.</li></ul>
+<div class="note" id="note18321919610"><a name="note18321919610"></a><a name="note18321919610"></a><span class="notetitle"> NOTE: </span><div class="notebody"><a name="ul873964691316"></a><a name="ul873964691316"></a><ul id="ul873964691316"><li>To use this method, <strong id="b711552521"><a name="b711552521"></a><a name="b711552521"></a>overflow</strong> must be set to <strong id="b13595202212"><a name="b13595202212"></a><a name="b13595202212"></a>scroll</strong>. By default, the scrolling direction is the same as the container layout direction.</li></ul>
 </div></div>
 </td>
 </tr>
@@ -307,6 +307,7 @@ In addition to the methods in  [Universal Methods](js-components-common-methods.
 </tr>
 </tbody>
 </table>
+
 
 **Table  1**  ScrollOffset<sup>6+</sup>
 
