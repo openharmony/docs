@@ -1,23 +1,4 @@
-# 数据请求<a name="ZH-CN_TOPIC_0000001171944450"></a>
-
--   [导入模块](#s56d19203690d4782bfc74069abb6bd71)
--   [权限列表](#section11257113618419)
--   [完整示例](#section119676440437)
--   [http.createHttp](#section375081875219)
--   [HttpRequest](#section775213486457)
-    -   [request](#section08941433184616)
-    -   [request](#section1361727114718)
-    -   [request](#section47538114482)
-    -   [destroy](#section613614500483)
-    -   [on\('headerReceive'\)](#section617831813498)
-    -   [off\('headerReceive'\)](#section017612118508)
-    -   [on\('headersReceive'\)<sup>8+</sup>](#section6178318134982)
-    -   [off\('headersReceive'\)<sup>8+</sup>](#section0176121185082)
-    -   [once\('headersReceive'\)<sup>8+</sup>](#section68221041134718)
--   [HttpRequestOptions](#section12262183471518)
--   [RequestMethod](#section63024410264)
--   [ResponseCode](#section769218832018)
--   [HttpResponse](#section15920192914312)
+# 数据请求
 
 >![](public_sys-resources/icon-note.gif) **说明：** 
 >
@@ -25,17 +6,13 @@
 >
 >本模块所有接口需要设备具有系统能力：SystemCapability.Communication.NetStack
 
-## 导入模块<a name="s56d19203690d4782bfc74069abb6bd71"></a>
+## 导入模块
 
 ```
 import http from '@ohos.net.http';
 ```
 
-## 权限列表<a name="section11257113618419"></a>
-
-ohos.permission.INTERNET
-
-## 完整示例<a name="section119676440437"></a>
+## 完整示例
 
 ```
 import http from '@ohos.net.http';
@@ -80,7 +57,7 @@ httpRequest.request(
 );
 ```
 
-## http.createHttp<a name="section375081875219"></a>
+## http.createHttp
 
 createHttp\(\): HttpRequest
 
@@ -100,22 +77,24 @@ let httpRequest = http.createHttp();
 ```
 
 
-## HttpRequest<a name="section775213486457"></a>
+## HttpRequest
 
-http请求任务。在调用HttpRequest的方法前，需要先通过[createHttp\(\)](#section375081875219)创建一个任务。
+http请求任务。在调用HttpRequest的方法前，需要先通过[createHttp\(\)](#httpcreatehttp)创建一个任务。
 
-### request<a name="section08941433184616"></a>
+### request
 
 request\(url: string, callback: AsyncCallback\<HttpResponse\>\):void
 
 根据URL地址，发起HTTP网络请求，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.INTERNET
 
 **参数：**
 
 | 参数名   | 类型                                                    | 必填 | 说明                    |
 | -------- | ------------------------------------------------------- | ---- | ----------------------- |
 | url      | string                                                  | 是   | 发起网络请求的URL地址。 |
-| callback | AsyncCallback\<[HttpResponse](#section12262183471518)\> | 是   | 回调函数。              |
+| callback | AsyncCallback\<[HttpResponse](#httpresponse)\> | 是   | 回调函数。              |
 
 **示例：**
 
@@ -133,19 +112,21 @@ httpRequest.request("EXAMPLE_URL", (err, data) => {
 });
 ```
 
-### request<a name="section1361727114718"></a>
+### request
 
 request\(url: string, options: HttpRequestOptions, callback: AsyncCallback<HttpResponse\>\):void
 
 根据URL地址和相关配置项，发起HTTP网络请求，使用callback方式作为异步方法。
 
+**需要权限**：ohos.permission.INTERNET
+
 **参数：**
 
-| 参数名   | 类型                                                    | 必填 | 说明                                               |
-| -------- | ------------------------------------------------------- | ---- | -------------------------------------------------- |
-| url      | string                                                  | 是   | 发起网络请求的URL地址。                            |
-| options  | HttpRequestOptions                                      | 是   | 参考[HttpRequestOptions](#section12262183471518)。 |
-| callback | AsyncCallback\<[HttpResponse](#section12262183471518)\> | 是   | 回调函数。                                         |
+| 参数名   | 类型                                           | 必填 | 说明                                            |
+| -------- | ---------------------------------------------- | ---- | ----------------------------------------------- |
+| url      | string                                         | 是   | 发起网络请求的URL地址。                         |
+| options  | HttpRequestOptions                             | 是   | 参考[HttpRequestOptions](#httprequestoptions)。 |
+| callback | AsyncCallback\<[HttpResponse](#httpresponse)\> | 是   | 回调函数。                                      |
 
 **示例：**
 
@@ -176,24 +157,26 @@ httpRequest.request("EXAMPLE_URL",
 ```
 
 
-### request<a name="section47538114482"></a>
+### request
 
 request\(url: string, options? : HttpRequestOptions\): Promise<HttpResponse\>
 
 根据URL地址，发起HTTP网络请求，使用Promise方式作为异步方法。
+
+**需要权限**：ohos.permission.INTERNET
 
 **参数：**
 
 | 参数名  | 类型               | 必填 | 说明                                               |
 | ------- | ------------------ | ---- | -------------------------------------------------- |
 | url     | string             | 是   | 发起网络请求的URL地址。                            |
-| options | HttpRequestOptions | 是   | 参考[HttpRequestOptions](#section12262183471518)。 |
+| options | HttpRequestOptions | 是   | 参考[HttpRequestOptions](#httprequestoptions)。 |
 
 **返回值：**
 
 | 类型                  | 说明                              |
 | :-------------------- | :-------------------------------- |
-| Promise<[HttpResponse](#section12262183471518)> | 以Promise形式返回发起请求的结果。 |
+| Promise<[HttpResponse](#httpresponse)> | 以Promise形式返回发起请求的结果。 |
 
 
 **示例：**
@@ -222,7 +205,7 @@ promise.then((value) => {
 });
 ```
 
-### destroy<a name="section613614500483"></a>
+### destroy
 
 destroy\(\): void
 
@@ -235,21 +218,21 @@ let httpRequest= http.createHttp();
 httpRequest.destroy();
 ```
 
-### on\('headerReceive'\)<a name="section617831813498"></a>
+### on\('headerReceive'\)
 
 on\(type: 'headerReceive', callback: AsyncCallback<Object\>\):void
 
 订阅HTTP Response Header 事件。
 
 >![](public_sys-resources/icon-note.gif) **说明：** 
-> 此接口已废弃，建议使用on\('headersReceive'\)替代。
+> 此接口已废弃，建议使用[on\('headersReceive'\)<sup>8+</sup>](#onheadersreceive8)替代。
 
 **参数：**
 
-| 参数名   | 类型                    | 必填 | 说明                                  |
-| -------- | ----------------------- | ---- | ------------------------------------- |
-| type     | string                  | 是   | 订阅的事件类型，如：'headerReceive'。 |
-| callback | AsyncCallback\<Object\> | 是   | 回调函数。                            |
+| 参数名   | 类型                    | 必填 | 说明                              |
+| -------- | ----------------------- | ---- | --------------------------------- |
+| type     | string                  | 是   | 订阅的事件类型，'headerReceive'。 |
+| callback | AsyncCallback\<Object\> | 是   | 回调函数。                        |
 
 **示例：**
 
@@ -265,7 +248,7 @@ httpRequest.on('headerReceive', (err, data) => {
 ```
 
 
-### off\('headerReceive'\)<a name="section017612118508"></a>
+### off\('headerReceive'\)
 
 off\(type: 'headerReceive', callback?: AsyncCallback<Object\>\):void
 
@@ -273,7 +256,7 @@ off\(type: 'headerReceive', callback?: AsyncCallback<Object\>\):void
 
 >![](public_sys-resources/icon-note.gif) **说明：** 
 >
->1. 此接口已废弃，建议使用off\('headersReceive'\)替代。
+>1. 此接口已废弃，建议使用[off\('headersReceive'\)<sup>8+</sup>](#offheadersreceive8)替代。
 >
 >2. 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
@@ -298,7 +281,7 @@ httpRequest.on('headerReceive', (err, data) => {
 httpRequest.off('headerReceive');
 ```
 
-### on\('headersReceive'\)<sup>8+</sup><a name="section6178318134982"></a>
+### on\('headersReceive'\)<sup>8+</sup>
 
 on\(type: 'headersReceive', callback: Callback<Object\>\):void
 
@@ -321,7 +304,7 @@ httpRequest.on('headersReceive', (data) => {
 ```
 
 
-### off\('headersReceive'\)<sup>8+</sup><a name="section0176121185082"></a>
+### off\('headersReceive'\)<sup>8+</sup>
 
 off\(type: 'headersReceive', callback?: Callback<Object\>\):void
 
@@ -344,7 +327,7 @@ let httpRequest= http.createHttp();
 httpRequest.off('headersReceive');
 ```
 
-### once\('headersReceive'\)<sup>8+</sup><a name="section68221041134718"></a>
+### once\('headersReceive'\)<sup>8+</sup>
 
 once\(type: "headersReceive", callback: Callback<Object\>\): void
 
@@ -366,27 +349,19 @@ httpRequest.once('headersReceive', (data) => {
 });
 ```
 
-## HttpRequestOptions<a name="section12262183471518"></a>
+## HttpRequestOptions
 
 发起请求可选参数的类型和取值范围。
 
 | 参数           | 类型                                 | 必填 | 说明                                                       |
 | -------------- | ------------------------------------ | ---- | ---------------------------------------------------------- |
-| method         | [RequestMethod](#section63024410264) | 否   | 请求方式。                                                 |
-| extraData      | string \| Object  \| ArrayBuffer8+   | 否   | 发送请求的额外数据。详见下方说明。                         |
+| method         | [RequestMethod](#requestmethod) | 否   | 请求方式。                                                 |
+| extraData      | string \| Object  \| ArrayBuffer<sup>8+</sup> | 否   | 发送请求的额外数据。<br />- 当HTTP请求为POST、PUT等方法时，此字段为HTTP请求的content。<br />- 当HTTP请求为GET、OPTIONS、DELETE、TRACE、CONNECT等方法时，此字段为HTTP请求的参数补充，参数内容会拼接到URL中进行发送。<sup>8+</sup><br />- 开发者传入string对象，开发者需要自行编码，将编码后的string传入。<sup>8+</sup> |
 | header         | Object                               | 否   | HTTP请求头字段。默认{'Content-Type': 'application/json'}。 |
 | readTimeout    | number                               | 否   | 读取超时时间。单位为毫秒（ms），默认为60000ms。            |
 | connectTimeout | number                               | 否   | 连接超时时间。单位为毫秒（ms），默认为60000ms。            |
 
-> ![](public_sys-resources/icon-note.gif) **说明：** 
->
-> 1. 当HTTP请求为POST、PUT等方法时，此字段为HTTP请求的content。
->
-> 2. 当HTTP请求为GET、OPTIONS、DELETE、TRACE、CONNECT等方法时，此字段为HTTP请求的参数补充，参数内容会拼接到URL中进行发送。8+
->
-> 3. 开发者传入string对象，开发者需要自行编码，将编码后的string传入。8+
-
-## RequestMethod<a name="section63024410264"></a>
+## RequestMethod
 
 HTTP 请求方法。
 
@@ -401,7 +376,7 @@ HTTP 请求方法。
 | TRACE               | HTTP 请求 TRACE。   |
 | CONNECT             | HTTP 请求 CONNECT。 |
 
-## ResponseCode<a name="section769218832018"></a>
+## ResponseCode
 
 发起请求返回的响应码。
 
@@ -443,21 +418,14 @@ HTTP 请求方法。
 | GATEWAY_TIMEOUT   | 504  | 充当网关或代理的服务器，未及时从远端服务器获取请求。         |
 | VERSION           | 505  | 服务器请求的HTTP协议的版本。                                 |
 
-## HttpResponse<a name="section15920192914312"></a>
+## HttpResponse
 
 request方法回调函数的返回值类型。
 
-| 参数名       | 类型                                           | 必填 | 说明                                                         |
-| ------------ | ---------------------------------------------- | ---- | ------------------------------------------------------------ |
-| result       | string \| Object \| ArrayBuffer8+              | 是   | Http请求根据响应头中Content-type类型返回对应的响应格式内容。详见下方说明。 |
-| responseCode | [ResponseCode](#section769218832018) \| number | 是   | 回调函数执行成功时，此字段为[ResponseCode](#section769218832018)。若执行失败，错误码将会从AsyncCallback中的err字段返回。错误码如下：<br />- 200：通用错误<br />- 202：参数错误<br />- 300：I/O错误 |
-| header       | Object                                         | 是   | 发起http请求返回来的响应头。当前返回的是JSON格式字符串，如需具体字段内容，需开发者自行解析。常见字段及解析方式如下：<br/>- Content-Type：header['Content-Type']；<br />- Status-Line：header['Status-Line']；<br />- Date：header.Date/header['Date']；<br />- Server：header.Server/header['Server']； |
-| cookies8+    | Array\<string\>                                | 是   | 服务器返回的 cookies。                                       |
+| 参数名               | 类型                                         | 必填 | 说明                                                         |
+| -------------------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
+| result               | string \| Object \| ArrayBuffer<sup>8+</sup> | 是   | Http请求根据响应头中Content-type类型返回对应的响应格式内容：<br />- application/json：返回JSON格式的字符串，如需Http响应具体内容，需开发者自行解析<br />- application/octet-stream：ArrayBuffer<br />- 其他：string |
+| responseCode         | [ResponseCode](#responsecode) \| number      | 是   | 回调函数执行成功时，此字段为[ResponseCode](#responsecode)。若执行失败，错误码将会从AsyncCallback中的err字段返回。错误码如下：<br />- 200：通用错误<br />- 202：参数错误<br />- 300：I/O错误 |
+| header               | Object                                       | 是   | 发起http请求返回来的响应头。当前返回的是JSON格式字符串，如需具体字段内容，需开发者自行解析。常见字段及解析方式如下：<br/>- Content-Type：header['Content-Type']；<br />- Status-Line：header['Status-Line']；<br />- Date：header.Date/header['Date']；<br />- Server：header.Server/header['Server']； |
+| cookies<sup>8+</sup> | Array\<string\>                              | 是   | 服务器返回的 cookies。                                       |
 
-> ![](public_sys-resources/icon-note.gif) **说明：** 
->
-> 根据响应头中Content-type类型的不同，返回的类型不同：
->
-> - application/json：返回JSON格式的字符串，如需Http响应具体内容，需开发者自行解析
-> - application/octet-stream：ArrayBuffer
-> - 其他：string
