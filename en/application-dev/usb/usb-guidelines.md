@@ -6,7 +6,7 @@ In Host mode, you can obtain the list of connected devices, enable or disable th
 
 ## APIs<a name="section912mcpsimp"></a>
 
-The OpenHarmony USB service provides the following functions: query of USB device list, bulk data transfer, control transfer, and access permission management.
+The USB service provides the following functions: query of USB device list, bulk data transfer, control transfer, and access permission management.
 
 The following table lists the USB APIs currently available. For details, see the  _API Reference_.
 

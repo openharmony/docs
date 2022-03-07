@@ -2,7 +2,7 @@
 
 ## Basic Concepts<a name="section433mcpsimp"></a>
 
-The USB service in OpenHarmony is an abstraction of underlying hardware-based USB devices. Your application can access the USB devices via the USB service. With the APIs provided by the USB service, you can obtain the list of connected USB devices, manage device access permissions, and perform data transfer or control transfer between the host and connected devices.
+The USB service is an abstraction of underlying hardware-based USB devices. Your application can access the USB devices via the USB service. With the APIs provided by the USB service, you can obtain the list of connected USB devices, manage device access permissions, and perform data transfer or control transfer between the host and connected devices.
 
 ## Working Principles<a name="section485mcpsimp"></a>
 
