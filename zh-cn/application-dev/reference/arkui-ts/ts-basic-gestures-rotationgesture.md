@@ -29,7 +29,7 @@ RotationGesture(options?: { fingers?: number, angle?: number })
 | onActionEnd((event?:&nbsp;RotationGestureEvent)&nbsp;=&gt;&nbsp;void) | Rotation手势识别成功，手指抬起后触发回调。 | 
 | onActionCancel(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | Rotation手势识别成功，接收到触摸取消事件触发回调。 | 
 
-- RotationGestureEvent对象说明<sup>8+</sup>
+- RotationGestureEvent<sup>8+</sup>对象说明
   | 属性名称 | 属性类型 | 描述 | 
   | -------- | -------- | -------- |
   | angle | number | 旋转角度。 | 
