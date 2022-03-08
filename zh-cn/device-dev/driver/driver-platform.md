@@ -14,6 +14,8 @@
 
 -   **[MIPI-DSI](driver-platform-mipidsi-des.md)**  
 
+-   **[PIN](driver-platform-pin-des.md)**  
+
 -   **[PWM](driver-platform-pwm-des.md)**  
 
 -   **[RTC](driver-platform-rtc-des.md)**  
