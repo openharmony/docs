@@ -72,6 +72,7 @@
         - [Select](ts-basic-components-select.md)
         - [TextClock](ts-basic-components-textclock.md)
         - [LoadingProgress](ts-basic-components-loadingprogress.md)
+        - [Web](ts-media-components-web.md)
     - 容器组件
         - [AlphabetIndexer](ts-container-alphabet-indexer.md)
         - [Badge](ts-container-badge.md)
@@ -100,7 +101,6 @@
         - [Refresh](ts-container-refresh.md)
     - 媒体组件
         - [Video](ts-media-components-video.md)
-        - [Web](ts-media-components-web.md)
     - 绘制组件
         - [Circle](ts-drawing-components-circle.md)
         - [Ellipse](ts-drawing-components-ellipse.md)
