@@ -29,7 +29,7 @@ PinchGesture(options?: { fingers?: number, distance?: number })
 | onActionEnd((event?:&nbsp;PinchGestureEvent)&nbsp;=&gt;&nbsp;void) | Pinch手势识别成功，手指抬起后触发回调。 | 
 | onActionCancel(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | Pinch手势识别成功，接收到触摸取消事件触发回调。 | 
 
-- PinchGestureEvent对象说明<sup>8+</sup>
+- PinchGestureEvent<sup>8+</sup>对象说明
   | 属性名称 | 属性类型 | 描述 | 
   | -------- | -------- | -------- |
   | scale | number | 缩放比例，用于PinchGesture手势触发场景。 | 
