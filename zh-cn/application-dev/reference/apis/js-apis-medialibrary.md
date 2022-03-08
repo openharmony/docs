@@ -92,13 +92,13 @@ getFileAssets(options: MediaFetchOptions): Promise&lt;FetchFileResult&gt;
 
 | 参数名  | 类型                                     | 必填 | 说明         |
 | ------- | ---------------------------------------- | ---- | ------------ |
-| options | [MediaFetchOptions](#mediafetchoptions8) | 是   | 媒体检索选项 |
+| options | [MediaFetchOptions](#mediafetchoptions8) | 是   | 文件检索选项 |
 
 **返回值**
 
 | 类型                          | 说明           |
 | ----------------------------- | -------------- |
-| [FetchFileResult](#fetchfileresult8) | 媒体数据结果集 |
+| [FetchFileResult](#fetchfileresult8) | 文件数据结果集 |
 
 **示例：**
 
@@ -177,7 +177,7 @@ createAsset(mediaType: MediaType, displayName: string, relativePath: string, cal
 | ------------ | --------------------------------------- | ---- | ------------------------------------------------------------ |
 | mediaType    | [MediaType](#mediatype)                 | 是   | 媒体类型                                                     |
 | displayName  | string                                  | 是   | 展示文件名                                                   |
-| relativePath | string                                  | 是   | 相对公共目录路径，可以通过getPublicDirectory获取不同类型媒体文件的一层目录的relative path |
+| relativePath | string                                  | 是   | 文件保存路径，可以通过[getPublicDirectory](#getpublicdirectory8)获取不同类型文件的保存路径 |
 | callback     | AsyncCallback<[FileAsset](#fileasset8)> | 是   | 异步获取媒体数据FileAsset之后的回调                          |
 
 **示例：**
@@ -185,8 +185,9 @@ createAsset(mediaType: MediaType, displayName: string, relativePath: string, cal
 ```
 // 使用Callback方式创建Image类型文件
 let mediaType = mediaLibrary.MediaType.IMAGE;
-let path = "Pictures/";
-mediaLibrary.createAsset(mediaType, 'imageCallBack.jpg', path, (err, fileAsset) => {
+let DIR_IMAGE = mediaLibrary.DirectoryType.DIR_IMAGE;
+const path = await media.getPublicDirectory(DIR_IMAGE);
+mediaLibrary.createAsset(mediaType, 'imageCallBack.jpg', path + 'myPicture/', (err, fileAsset) => {
     if (fileAsset != undefined) {
         console.info('createAsset successfully, message = ' + err);
     } else {
@@ -224,8 +225,9 @@ createAsset(mediaType: MediaType, displayName: string, relativePath: string): Pr
 ```
 // 使用Promise方式创建Image类型文件
 let mediaType = mediaLibrary.MediaType.IMAGE;
-let path = "Pictures/";
-mediaLibrary.createAsset(mediaType, "image01.jpg", path).then (function (asset) {
+let DIR_IMAGE = mediaLibrary.DirectoryType.DIR_IMAGE;
+const path = await media.getPublicDirectory(DIR_IMAGE);
+mediaLibrary.createAsset(mediaType, "image01.jpg", path + 'myPicture/').then (function (asset) {
     console.info("createAsset successfully:"+ JSON.stringify(asset));
 }).catch(function(err){
     console.info("createAsset failed with error:"+ err);
@@ -252,7 +254,7 @@ getPublicDirectory(type: DirectoryType, callback: AsyncCallback&lt;string&gt;): 
 ```
 let DIR_CAMERA = mediaLibrary.DirectoryType.DIR_CAMERA;
 media.getPublicDirectory(DIR_CAMERA, (err, dicResult) => {
-    if (dicResult == 'camera/') {
+    if (dicResult == 'Camera/') {
         console.info('mediaLibraryTest : getPublicDirectory passed');
     } else {
         console.info('mediaLibraryTest : getPublicDirectory failed');
@@ -286,7 +288,7 @@ getPublicDirectory(type: DirectoryType): Promise&lt;string&gt;
 async function example() {
     let DIR_CAMERA = mediaLibrary.DirectoryType.DIR_CAMERA;
     const dicResult = await media.getPublicDirectory(DIR_CAMERA);
-    if (dicResult == 'camera/') {
+    if (dicResult == 'Camera/') {
         console.info('MediaLibraryTest : getPublicDirectory');
     } else {
         console.info('MediaLibraryTest : getPublicDirectory failed');
@@ -298,7 +300,7 @@ async function example() {
 
 getAlbums(options: MediaFetchOptions, callback: AsyncCallback<Array&lt;Album&gt;>): void
 
-获取实体相册，使用callback 方式返回结果。
+获取相册列表，使用callback 方式返回结果。
 
 **需要权限**：ohos.permission.READ_MEDIA
 
@@ -308,7 +310,7 @@ getAlbums(options: MediaFetchOptions, callback: AsyncCallback<Array&lt;Album&gt;
 
 | 参数名   | 类型                                         | 必填 | 说明                        |
 | -------- | -------------------------------------------- | ---- | --------------------------- |
-| options  | [MediaFetchOptions](#mediafetchoptions8)     | 是   | 媒体文件获取条件            |
+| options  | [MediaFetchOptions](#mediafetchoptions8)     | 是   | 相册获取条件                |
 | callback | AsyncCallback&lt;Array<[Album](#album8)>&gt; | 是   | 异步获取Album列表之后的回调 |
 
 **示例：**
@@ -333,7 +335,7 @@ mediaLibrary.getAlbums(AlbumNoArgsfetchOp, (err, albumList) => {
 
 getAlbums(options: MediaFetchOptions): Promise<Array&lt;Album&gt;>
 
-获取实体相册，使用 promise 方式返回结果。
+获取相册列表，使用 promise 方式返回结果。
 
 **需要权限**：ohos.permission.READ_MEDIA
 
@@ -341,9 +343,9 @@ getAlbums(options: MediaFetchOptions): Promise<Array&lt;Album&gt;>
 
 **参数：**
 
-| 参数名  | 类型                                     | 必填 | 说明             |
-| ------- | ---------------------------------------- | ---- | ---------------- |
-| options | [MediaFetchOptions](#mediafetchoptions8) | 是   | 媒体文件获取条件 |
+| 参数名  | 类型                                     | 必填 | 说明         |
+| ------- | ---------------------------------------- | ---- | ------------ |
+| options | [MediaFetchOptions](#mediafetchoptions8) | 是   | 相册获取条件 |
 
 **返回值：**
 
@@ -384,7 +386,7 @@ release(callback: AsyncCallback&lt;void&gt;): void
 
 ```
 var media = mediaLibrary.getMediaLibrary(context);
-media.release((err, data) => {
+media.release((err) => {
     // do something
 });
 ```
@@ -423,7 +425,7 @@ media.release()
 | uri          | string                  | 是   | 否   | 文件资源uri（如：dataability:///media/image/2)         |
 | mimeType     | string                  | 是   | 否   | 文件扩展属性                                           |
 | mediaType    | [MediaType](#mediatype) | 是   | 否   | 媒体类型                                               |
-| displayName  | string                  | 是   | 是   | 显示文件名                                             |
+| displayName  | string                  | 是   | 是   | 显示文件名，包含后缀名                                 |
 | title        | string                  | 是   | 是   | 文件标题                                               |
 | relativePath | string                  | 是   | 是   | 相对公共目录路径                                       |
 | parent       | number                  | 是   | 否   | 父目录id                                               |
@@ -606,7 +608,8 @@ open(mode: string, callback: AsyncCallback&lt;number&gt;): void
 ```
 async function example() {
     let mediaType = mediaLibrary.MediaType.IMAGE;
-    let path = "Pictures/";
+    let DIR_IMAGE = mediaLibrary.DirectoryType.DIR_IMAGE;
+    const path = await media.getPublicDirectory(DIR_IMAGE);
     asset = await media.createAsset(mediaType, "image00003.jpg", path);
     asset.open('rw', (openError, fd) => {
             if(fd > 0){
@@ -645,7 +648,8 @@ open(mode: string): Promise&lt;number&gt;
 ```
 async function example() {
     let mediaType = mediaLibrary.MediaType.IMAGE;
-    let path = "Pictures/";
+    let DIR_IMAGE = mediaLibrary.DirectoryType.DIR_IMAGE;
+    const path = await media.getPublicDirectory(DIR_IMAGE);
     asset = await media.createAsset(mediaType, "image00003.jpg", path);
     asset.open('rw').then((openError, fd) => {
             if(fd > 0){
@@ -663,7 +667,7 @@ close(fd: number, callback: AsyncCallback&lt;void&gt;): void
 
 关闭当前文件，使用callback方式返回异步结果。
 
-**需要权限**：ohos.permission.READ_MEDIA, ohos.permission.WRITE_MEDIA
+**需要权限**：ohos.permission.READ_MEDIA（'r'模式打开），ohos.permission.WRITE_MEDIA（'w'模式打开）
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -704,7 +708,7 @@ close(fd: number): Promise&lt;void&gt;
 
 关闭当前文件，使用promise方式返回异步结果。
 
-**需要权限**：ohos.permission.READ_MEDIA, ohos.permission.WRITE_MEDIA
+**需要权限**：ohos.permission.READ_MEDIA（'r'模式打开），ohos.permission.WRITE_MEDIA（'w'模式打开）
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -1798,14 +1802,14 @@ async function example() {
 
 ## PeerInfo<sup>8+</sup>
 
-注册设备信息。
+注册设备的信息。
 
-| 名称       | 类型       | 可读 | 可写 | 说明           |
-| ---------- | ---------- | ---- | ---- | -------------- |
-| deviceName | string     | 是   | 否   | 注册设备名称   |
-| networkId  | string     | 是   | 否   | 注册设备网络ID |
-| deviceType | DeviceType | 是   | 否   | 设备类型       |
-| isOnline   | boolean    | 是   | 否   | 是否在线       |
+| 名称       | 类型       | 可读 | 可写 | 说明             |
+| ---------- | ---------- | ---- | ---- | ---------------- |
+| deviceName | string     | 是   | 否   | 注册设备的名称   |
+| networkId  | string     | 是   | 否   | 注册设备的网络ID |
+| deviceType | DeviceType | 是   | 否   | 设备类型         |
+| isOnline   | boolean    | 是   | 否   | 是否在线         |
 
 
 
