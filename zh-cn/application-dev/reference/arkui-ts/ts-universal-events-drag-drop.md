@@ -3,6 +3,7 @@
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
+## 事件
 
 | 名称 | 支持冒泡 | 功能描述 |
 | -------- | -------- | -------- |
@@ -12,21 +13,20 @@
 | onDragLeave(callback:&nbsp;(event:&nbsp;DragEvent,&nbsp;extraParams?:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 否 | 拖拽离开组件范围内时，触发回调。<br/>event：拖拽事件信息，包括拖拽点坐标。<br/>extraParams：拖拽事件额外信息，详见extraParam类型描述。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;当监听了onDrop事件时，此事件才有效。 |
 | onDrop(callback:&nbsp;(event:&nbsp;DragEvent,&nbsp;extraParams?:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 否 | 绑定此事件的组件可作为拖拽释放目标，当在本组件范围内停止拖拽行为时，触发回调。<br/>event：拖拽事件信息，包括拖拽点坐标。<br/>extraParams：拖拽事件额外信息，详见extraParam类型描述。 |
 
-
-- DragEvent对象说明
-  | 名称 | 返回值类型 | 功能描述 | 
-  | -------- | -------- | -------- |
-  | getX() | number | 当前拖拽点x轴坐标，单位为vp。 | 
-  | getY() | number | 当前拖拽点y轴坐标，单位为vp。 | 
-
 - extraParam说明
   用于返回组件在拖拽中需要用到的额外信息。
-
   extraParam是Json对象转换的string字符串，可以通过Json.parse转换的Json对象获取如下属性。
   | 属性名称 | 属性类型 | 描述 | 
   | -------- | -------- | -------- |
   | selectedIndex | number | 当拖拽事件设在父容器的子元素时，selectedIndex表示当前被拖拽子元素是父容器第selectedIndex个子元素，selectedIndex从0开始。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;仅在ListItem组件中生效。 | 
   | insertIndex | number | 当前拖拽元素在List组件中放下时，insertIndex表示被拖拽元素插入该组件的第insertIndex个位置，insertIndex从0开始。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;仅在List组件的拖拽事件中生效。 | 
+
+### DragEvent对象说明
+- 接口
+  | 名称 | 返回值类型 | 功能描述 | 
+  | -------- | -------- | -------- |
+  | getX() | number | 当前拖拽点x轴坐标，单位为vp。 | 
+  | getY() | number | 当前拖拽点y轴坐标，单位为vp。 | 
 
 
 ## 示例
