@@ -17,7 +17,7 @@ import update from '@ohos.update'
 
 None
 
-## Obtains an **Updater** object.
+## Obtaining an Updater Object
 
 ### update.getUpdater
 
