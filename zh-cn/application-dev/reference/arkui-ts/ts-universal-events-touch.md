@@ -16,7 +16,7 @@
 | onTouch(callback:&nbsp;(event?:&nbsp;TouchEvent)&nbsp;=&gt;&nbsp;void) | 是 | 触摸动作触发该方法调用，event参数见[TouchEvent](#touchevent对象说明)介绍。 
 
 
-## TouchEvent对象说明
+### TouchEvent对象说明
 
 - 属性
   | 属性名称 | 类型 | 描述 |
