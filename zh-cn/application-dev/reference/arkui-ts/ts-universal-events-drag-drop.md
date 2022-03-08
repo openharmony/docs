@@ -13,7 +13,7 @@
 | onDragLeave(callback:&nbsp;(event:&nbsp;DragEvent,&nbsp;extraParams?:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 否 | 拖拽离开组件范围内时，触发回调。<br/>event：拖拽事件信息，包括拖拽点坐标。<br/>extraParams：拖拽事件额外信息，详见extraParam类型描述。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;当监听了onDrop事件时，此事件才有效。 |
 | onDrop(callback:&nbsp;(event:&nbsp;DragEvent,&nbsp;extraParams?:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 否 | 绑定此事件的组件可作为拖拽释放目标，当在本组件范围内停止拖拽行为时，触发回调。<br/>event：拖拽事件信息，包括拖拽点坐标。<br/>extraParams：拖拽事件额外信息，详见extraParam类型描述。 |
 
-- extraParam说明
+- extraParam说明<br>
   用于返回组件在拖拽中需要用到的额外信息。
   extraParam是Json对象转换的string字符串，可以通过Json.parse转换的Json对象获取如下属性。
   | 属性名称 | 属性类型 | 描述 | 
