@@ -25,7 +25,7 @@ Video(value: VideoOption)
   | controller | [VideoController](#videocontroller) | 否 | - | 控制器。 |
 
 
-- PlaybackSpeed类型接口说明8+
+- PlaybackSpeed<sup>8+</sup>类型接口说明
   | 名称 | 描述 | 
   | -------- | -------- |
   | Speed_Forward_0_75_X | 0.75倍速播放。 | 
