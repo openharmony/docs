@@ -183,17 +183,19 @@ createAsset(mediaType: MediaType, displayName: string, relativePath: string, cal
 **示例：**
 
 ```
-// 使用Callback方式创建Image类型文件
-let mediaType = mediaLibrary.MediaType.IMAGE;
-let DIR_IMAGE = mediaLibrary.DirectoryType.DIR_IMAGE;
-const path = await media.getPublicDirectory(DIR_IMAGE);
-mediaLibrary.createAsset(mediaType, 'imageCallBack.jpg', path + 'myPicture/', (err, fileAsset) => {
-    if (fileAsset != undefined) {
-        console.info('createAsset successfully, message = ' + err);
-    } else {
-        console.info('createAsset failed, message = ' + err);
-    }
-});
+async function example() {
+    // 使用Callback方式创建Image类型文件
+    let mediaType = mediaLibrary.MediaType.IMAGE;
+    let DIR_IMAGE = mediaLibrary.DirectoryType.DIR_IMAGE;
+    const path = await media.getPublicDirectory(DIR_IMAGE);
+    mediaLibrary.createAsset(mediaType, 'imageCallBack.jpg', path + 'myPicture/', (err, fileAsset) => {
+        if (fileAsset != undefined) {
+            console.info('createAsset successfully, message = ' + err);
+        } else {
+            console.info('createAsset failed, message = ' + err);
+        }
+    });
+}
 ```
 
 ### createAsset<sup>8+</sup>
@@ -223,15 +225,17 @@ createAsset(mediaType: MediaType, displayName: string, relativePath: string): Pr
 **示例：**
 
 ```
-// 使用Promise方式创建Image类型文件
-let mediaType = mediaLibrary.MediaType.IMAGE;
-let DIR_IMAGE = mediaLibrary.DirectoryType.DIR_IMAGE;
-const path = await media.getPublicDirectory(DIR_IMAGE);
-mediaLibrary.createAsset(mediaType, "image01.jpg", path + 'myPicture/').then (function (asset) {
-    console.info("createAsset successfully:"+ JSON.stringify(asset));
-}).catch(function(err){
-    console.info("createAsset failed with error:"+ err);
-});
+async function example() {
+    // 使用Promise方式创建Image类型文件
+    let mediaType = mediaLibrary.MediaType.IMAGE;
+    let DIR_IMAGE = mediaLibrary.DirectoryType.DIR_IMAGE;
+    const path = await media.getPublicDirectory(DIR_IMAGE);
+    mediaLibrary.createAsset(mediaType, "image01.jpg", path + 'myPicture/').then (function (asset) {
+        console.info("createAsset successfully:"+ JSON.stringify(asset));
+    }).catch(function(err){
+        console.info("createAsset failed with error:"+ err);
+    });
+}
 ```
 
 ### getPublicDirectory<sup>8+</sup>
