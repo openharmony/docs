@@ -12,7 +12,7 @@ import mediaLibrary from '@ohos.multimedia.medialibrary';
 
 ## mediaLibrary.getMediaLibrary
 
-getMediaLibrary(context: Context): MediaLibrary
+function getMediaLibrary(context: Context): MediaLibrary
 
 获取媒体库的实例，用于访问和修改用户的个人数据信息。
 
@@ -466,8 +466,8 @@ async function example() {
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
       selectionArgs: [imageType.toString()],
-      order: fileKeyObj.DATE_ADDED,
-      extendArgs: "LIMIT 0,10",
+      order: fileKeyObj.DATE_ADDED + " DESC",
+      extendArgs: "",
     };
     const fetchFileResult = await media.getFileAssets(getImageOp);
     const asset = await fetchFileResult.getFirstObject();
@@ -501,8 +501,8 @@ async function example() {
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
       selectionArgs: [imageType.toString()],
-      order: fileKeyObj.DATE_ADDED,
-      extendArgs: "LIMIT 0,10",
+      order: fileKeyObj.DATE_ADDED + " DESC",
+      extendArgs: "",
     };
     const fetchFileResult = await media.getFileAssets(getImageOp);
     const asset = await fetchFileResult.getFirstObject();
@@ -538,8 +538,8 @@ async function example() {
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
       selectionArgs: [imageType.toString()],
-      order: fileKeyObj.DATE_ADDED,
-      extendArgs: "LIMIT 0,10",
+      order: fileKeyObj.DATE_ADDED + " DESC",
+      extendArgs: "",
     };
     const fetchFileResult = await media.getFileAssets(getImageOp);
     const asset = await fetchFileResult.getFirstObject();
@@ -574,8 +574,8 @@ async function example() {
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
       selectionArgs: [imageType.toString()],
-      order: fileKeyObj.DATE_ADDED,
-      extendArgs: "LIMIT 0,10",
+      order: fileKeyObj.DATE_ADDED + " DESC",
+      extendArgs: "",
     };
     const fetchFileResult = await media.getFileAssets(getImageOp);
     const asset = await fetchFileResult.getFirstObject();
@@ -682,8 +682,8 @@ async function example() {
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
       selectionArgs: [imageType.toString()],
-      order: fileKeyObj.DATE_ADDED,
-      extendArgs: "LIMIT 0,10",
+      order: fileKeyObj.DATE_ADDED + " DESC",
+      extendArgs: "",
     };
     const fetchFileResult = await media.getFileAssets(getImageOp);
     const asset = await fetchFileResult.getFirstObject();
@@ -728,8 +728,8 @@ async function example() {
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
       selectionArgs: [imageType.toString()],
-      order: fileKeyObj.DATE_ADDED,
-      extendArgs: "LIMIT 0,10",
+      order: fileKeyObj.DATE_ADDED + " DESC",
+      extendArgs: "",
     };
     const fetchFileResult = await media.getFileAssets(getImageOp);
     const asset = await fetchFileResult.getFirstObject();
@@ -769,8 +769,8 @@ async function example() {
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
       selectionArgs: [imageType.toString()],
-      order: fileKeyObj.DATE_ADDED,
-      extendArgs: "LIMIT 0,10",
+      order: fileKeyObj.DATE_ADDED + " DESC",
+      extendArgs: "",
     };
     const fetchFileResult = await media.getFileAssets(getImageOp);
     const asset = await fetchFileResult.getFirstObject();
@@ -805,8 +805,8 @@ async function example() {
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
       selectionArgs: [imageType.toString()],
-      order: fileKeyObj.DATE_ADDED,
-      extendArgs: "LIMIT 0,10",
+      order: fileKeyObj.DATE_ADDED + " DESC",
+      extendArgs: "",
     };
     const fetchFileResult = await media.getFileAssets(getImageOp);
     const asset = await fetchFileResult.getFirstObject();
@@ -846,8 +846,8 @@ async function example() {
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
       selectionArgs: [imageType.toString()],
-      order: fileKeyObj.DATE_ADDED,
-      extendArgs: "LIMIT 0,10",
+      order: fileKeyObj.DATE_ADDED + " DESC",
+      extendArgs: "",
     };
     const fetchFileResult = await media.getFileAssets(getImageOp);
     const asset = await fetchFileResult.getFirstObject();
@@ -882,8 +882,8 @@ async function example() {
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
       selectionArgs: [imageType.toString()],
-      order: fileKeyObj.DATE_ADDED,
-      extendArgs: "LIMIT 0,10",
+      order: fileKeyObj.DATE_ADDED + " DESC",
+      extendArgs: "",
     };
     const fetchFileResult = await media.getFileAssets(getImageOp);
     const asset = await fetchFileResult.getFirstObject();
@@ -923,8 +923,8 @@ async function example() {
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
       selectionArgs: [imageType.toString()],
-      order: fileKeyObj.DATE_ADDED,
-      extendArgs: "LIMIT 0,10",
+      order: fileKeyObj.DATE_ADDED + " DESC",
+      extendArgs: "",
     };
     const fetchFileResult = await media.getFileAssets(getImageOp);
     const asset = await fetchFileResult.getFirstObject();
@@ -960,8 +960,8 @@ async function example() {
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
       selectionArgs: [imageType.toString()],
-      order: fileKeyObj.DATE_ADDED,
-      extendArgs: "LIMIT 0,10",
+      order: fileKeyObj.DATE_ADDED + " DESC",
+      extendArgs: "",
     };
     const fetchFileResult = await media.getFileAssets(getImageOp);
     const asset = await fetchFileResult.getFirstObject();
@@ -999,8 +999,8 @@ async function example() {
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
       selectionArgs: [imageType.toString()],
-      order: fileKeyObj.DATE_ADDED,
-      extendArgs: "LIMIT 0,10",
+      order: fileKeyObj.DATE_ADDED + " DESC",
+      extendArgs: "",
     };
     const fetchFileResult = await media.getFileAssets(getImageOp);
     const asset = await fetchFileResult.getFirstObject();
@@ -1039,8 +1039,8 @@ async function example() {
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
       selectionArgs: [imageType.toString()],
-      order: fileKeyObj.DATE_ADDED,
-      extendArgs: "LIMIT 0,10",
+      order: fileKeyObj.DATE_ADDED + " DESC",
+      extendArgs: "",
     };
     const fetchFileResult = await media.getFileAssets(getImageOp);
     const asset = await fetchFileResult.getFirstObject();
@@ -1083,8 +1083,8 @@ async function example() {
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
       selectionArgs: [imageType.toString()],
-      order: fileKeyObj.DATE_ADDED,
-      extendArgs: "LIMIT 0,10",
+      order: fileKeyObj.DATE_ADDED + " DESC",
+      extendArgs: "",
     };
     const fetchFileResult = await media.getFileAssets(getImageOp);
     const asset = await fetchFileResult.getFirstObject();
@@ -1120,8 +1120,8 @@ async function example() {
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
       selectionArgs: [imageType.toString()],
-      order: fileKeyObj.DATE_ADDED,
-      extendArgs: "LIMIT 0,10",
+      order: fileKeyObj.DATE_ADDED + " DESC",
+      extendArgs: "",
     };
     const fetchFileResult = await media.getFileAssets(getImageOp);
     const asset = await fetchFileResult.getFirstObject();
@@ -1164,8 +1164,8 @@ async function example() {
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
       selectionArgs: [imageType.toString()],
-      order: fileKeyObj.DATE_ADDED,
-      extendArgs: "LIMIT 0,10",
+      order: fileKeyObj.DATE_ADDED + " DESC",
+      extendArgs: "",
     };
     const fetchFileResult = await media.getFileAssets(getImageOp);
     const asset = await fetchFileResult.getFirstObject();
@@ -1202,8 +1202,8 @@ async function example() {
     let getFileCountOneOp = {
         selections: fileKeyObj.MEDIA_TYPE + '= ?',
         selectionArgs: [fileType.toString()],
-        order: fileKeyObj.DATE_ADDED,
-        extendArgs: "LIMIT 0,1",
+        order: fileKeyObj.DATE_ADDED + " DESC",
+        extendArgs: "",
     };
     let fetchFileResult = await media.getFileAssets(getFileCountOneOp);
     const fetchCount = fetchFileResult.getCount();
@@ -1232,8 +1232,8 @@ async function example() {
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
       selectionArgs: [imageType.toString()],
-      order: fileKeyObj.DATE_ADDED,
-      extendArgs: "LIMIT 0,10",
+      order: fileKeyObj.DATE_ADDED + " DESC",
+      extendArgs: "",
     };
     let fetchFileResult = await media.getFileAssets(getImageOp);
     const fetchCount = fetchFileResult.getCount();
@@ -1269,8 +1269,8 @@ async function example() {
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
       selectionArgs: [imageType.toString()],
-      order: fileKeyObj.DATE_ADDED,
-      extendArgs: "LIMIT 0,10",
+      order: fileKeyObj.DATE_ADDED + " DESC",
+      extendArgs: "",
     };
     let fetchFileResult = await media.getFileAssets(getImageOp);
     fetchFileResult.close();
@@ -1299,8 +1299,8 @@ async function example() {
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
       selectionArgs: [imageType.toString()],
-      order: fileKeyObj.DATE_ADDED,
-      extendArgs: "LIMIT 0,10",
+      order: fileKeyObj.DATE_ADDED + " DESC",
+      extendArgs: "",
     };
     let fetchFileResult = await media.getFileAssets(getImageOp);
     fetchFileResult.getFirstObject((err, value) => {
@@ -1335,8 +1335,8 @@ async function example() {
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
       selectionArgs: [imageType.toString()],
-      order: fileKeyObj.DATE_ADDED,
-      extendArgs: "LIMIT 0,10",
+      order: fileKeyObj.DATE_ADDED + " DESC",
+      extendArgs: "",
     };
     let fetchFileResult = await media.getFileAssets(getImageOp);
     fetchFileResult.getFirstObject().then(function(fileAsset){
@@ -1371,8 +1371,8 @@ async function example() {
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
       selectionArgs: [imageType.toString()],
-      order: fileKeyObj.DATE_ADDED,
-      extendArgs: "LIMIT 0,10",
+      order: fileKeyObj.DATE_ADDED + " DESC",
+      extendArgs: "",
     };
     let fetchFileResult = await media.getFileAssets(getImageOp);
     fetchFileResult.getNextObject((err, value) => {
@@ -1409,8 +1409,8 @@ async function example() {
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
       selectionArgs: [imageType.toString()],
-      order: fileKeyObj.DATE_ADDED,
-      extendArgs: "LIMIT 0,10",
+      order: fileKeyObj.DATE_ADDED + " DESC",
+      extendArgs: "",
     };
     let fetchFileResult = await media.getFileAssets(getImageOp);
     const fetchCount = fetchFileResult.getCount();
@@ -1441,8 +1441,8 @@ async function example() {
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
       selectionArgs: [imageType.toString()],
-      order: fileKeyObj.DATE_ADDED,
-      extendArgs: "LIMIT 0,10",
+      order: fileKeyObj.DATE_ADDED + " DESC",
+      extendArgs: "",
     };
     let fetchFileResult = await media.getFileAssets(getImageOp);
     fetchFileResult.getLastObject((err, value) => {
@@ -1477,8 +1477,8 @@ async function example() {
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
       selectionArgs: [imageType.toString()],
-      order: fileKeyObj.DATE_ADDED,
-      extendArgs: "LIMIT 0,10",
+      order: fileKeyObj.DATE_ADDED + " DESC",
+      extendArgs: "",
     };
     let fetchFileResult = await media.getFileAssets(getImageOp);
     let lastObject = await fetchFileResult.getLastObject();
@@ -1508,8 +1508,8 @@ async function example() {
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
       selectionArgs: [imageType.toString()],
-      order: fileKeyObj.DATE_ADDED,
-      extendArgs: "LIMIT 0,10",
+      order: fileKeyObj.DATE_ADDED + " DESC",
+      extendArgs: "",
     };
     let fetchFileResult = await media.getFileAssets(getImageOp);
     fetchFileResult.getPositionObject(0, (err, value) => {
@@ -1552,8 +1552,8 @@ async function example() {
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
       selectionArgs: [imageType.toString()],
-      order: fileKeyObj.DATE_ADDED,
-      extendArgs: "LIMIT 0,10",
+      order: fileKeyObj.DATE_ADDED + " DESC",
+      extendArgs: "",
     };
     let fetchFileResult = await media.getFileAssets(getImageOp);
     fetchFileResult.getPositionObject(1, (err, value) => {
@@ -1590,8 +1590,8 @@ async function example() {
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
       selectionArgs: [imageType.toString()],
-      order: fileKeyObj.DATE_ADDED,
-      extendArgs: "LIMIT 0,10",
+      order: fileKeyObj.DATE_ADDED + " DESC",
+      extendArgs: "",
     };
     let fetchFileResult = await media.getFileAssets(getImageOp);
     fetchFileResult.getAllObject((err, value) => {
@@ -1626,8 +1626,8 @@ async function example() {
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
       selectionArgs: [imageType.toString()],
-      order: fileKeyObj.DATE_ADDED,
-      extendArgs: "LIMIT 0,10",
+      order: fileKeyObj.DATE_ADDED + " DESC",
+      extendArgs: "",
     };
     let fetchFileResult = await media.getFileAssets(getImageOp);
     var data = fetchFileResult.getAllObject();
@@ -1883,12 +1883,12 @@ DeviceType
 
 | 名称          | 类型          | 可读 | 可写 |  必填 |说明             |
 | ------------- | ------------- | ---- | ---- |  ---- |---------------- |
-| selections    | string        | 是   | 是   |是   | 检索条件         |
-| selectionArgs | Array&lt;string&gt; | 是   | 是   |是   | 检索条件的值     |
-| order         | string        | 是   | 是   | 否   |检索结果排序方式 |
+| selections    | string        | 是   | 是   |是   | 检索条件，使用[FileKey](#filekey)中的枚举值作为检索条件的列名。示例：<br />selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ? OR' +mediaLibrary.FileKey.MEDIA_TYPE + '= ?‘, |
+| selectionArgs | Array&lt;string&gt; | 是   | 是   |是   | 检索条件的值，对应selections中检索条件列的值。<br />示例：<br />selectionArgs: [mediaLibrary.MediaType.IMAGE.toString(), mediaLibrary.MediaType.VIDEO.toString()], |
+| order         | string        | 是   | 是   | 否   |检索结果排序方式，使用[FileKey](#filekey)中的枚举值作为检索结果排序的列，可以用升序或降序排列。示例：<br />升序排列：order: mediaLibrary.FileKey.DATE_ADDED + " AESC"<br />降序排列：order: mediaLibrary.FileKey.DATE_ADDED + " DESC" |
 | uri           | string        | 是   | 是   | 否   |文件URI          |
 | networkId     | string        | 是   | 是   | 否   |注册设备网络ID   |
-| extendArgs    | string        | 是   | 是   | 否   |扩展的检索参数   |
+| extendArgs    | string        | 是   | 是   | 否   |扩展的检索参数，目前没有扩展检索参数   |
 
 ## Size<sup>8+</sup>
 
