@@ -19,7 +19,7 @@
 | radialGradient | {<br/>center:&nbsp;Point,<br/>radius:&nbsp;Length,<br/>colors:&nbsp;Array&lt;[ColorStop](../../ui//ts-types.md#colorstop类型)&gt;<br/>repeating:&nbsp;boolean<br/>} | - | 径向渐变。<br/>center：径向渐变的中心点。<br/>radius：径向渐变的半径。<br/>colors:&nbsp;为渐变的颜色描述。<br/>repeating:&nbsp;为渐变的颜色重复着色。 |
 
 
-- GradientDirection枚举说明
+- GradientDirection枚举说明<br>
   GradientDirection用于描述渐变方向。
 
   | 名称 | 描述 | 
