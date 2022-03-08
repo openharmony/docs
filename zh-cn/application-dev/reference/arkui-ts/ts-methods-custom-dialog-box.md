@@ -37,21 +37,23 @@ CustomDialogController(value:{builder: CustomDialog, cancel?: () =&gt; void, aut
   | BottomEnd<sup>8+</sup> | 右下对齐。 |
 
 
-### CustomDialogController
+## CustomDialogController
 
-创建对象
+导入对象
 
 ```
 dialogController : CustomDialogController = new CustomDialogController(value:{builder: CustomDialog, cancel?: () => void, autoCancel?: boolean})
 ```
 
-open()
+### open()
+open(): void
 
 
 显示自定义弹窗内容，若已显示，则不生效。
 
 
-close()
+### close
+close(): void
 
 
 关闭显示的自定义弹窗，若已关闭，则不生效。
