@@ -39,7 +39,7 @@ CustomDialogController(value:{builder: CustomDialog, cancel?: () =&gt; void, aut
 
 ## CustomDialogController
 
-导入对象
+### 导入对象
 
 ```
 dialogController : CustomDialogController = new CustomDialogController(value:{builder: CustomDialog, cancel?: () => void, autoCancel?: boolean})
