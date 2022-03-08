@@ -535,7 +535,7 @@ SIM卡类型和状态。
 
 | 变量              | 类型                  | 说明                                                         |
 | ----------------- | --------------------- | ------------------------------------------------------------ |
-| type  | [CardType](js-apis-sim.md#CardType) | SIM卡类型，参考sim的[CardType](js-apis-sim.md#CardType)。<br/>**系统能力**：SystemCapability.Telephony.StateRegistry |
+| type  | [CardType](js-apis-sim.md#cardtype) | SIM卡类型，参考sim的[CardType](js-apis-sim.md#cardtype)。<br/>**系统能力**：SystemCapability.Telephony.StateRegistry |
 | state | [SimState](js-apis-sim.md#SimState) | SIM卡状态，参考sim的[SimState](js-apis-sim.md#SimState)。<br/>**系统能力**：SystemCapability.Telephony.StateRegistry |
 | reason<sup>8+</sup>       | [LockReason](#lockreason8) | SIM卡锁类型。<br/>**系统能力**：SystemCapability.Telephony.StateRegistry |
 
