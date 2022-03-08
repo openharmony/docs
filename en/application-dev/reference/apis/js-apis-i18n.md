@@ -847,7 +847,7 @@ Checks whether the input character is an uppercase letter.
 - Return value
   | Type| Description|
   | -------- | -------- |
-  | boolean | The value **true** indicates that the input character is an uppercase letter, and value **false** indicates the opposite.|
+  | boolean | The value true indicates that the input character is an uppercase letter, and value false indicates the opposite.|
 
 - Example
   ```
