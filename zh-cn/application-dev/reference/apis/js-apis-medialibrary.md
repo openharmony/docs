@@ -53,9 +53,9 @@ getFileAssets(options: MediaFetchOptions, callback: AsyncCallback&lt;FetchFileRe
 
 **参数：**
 
-| 参数名   | 类型                                         | 必填 | 说明                              |
-| -------- | -------------------------------------------- | ---- | --------------------------------- |
-| options  | [MediaFetchOptions](#mediafetchoptions8)     | 是   | 媒体获取选项                      |
+| 参数名   | 类型                                                | 必填 | 说明                              |
+| -------- | --------------------------------------------------- | ---- | --------------------------------- |
+| options  | [MediaFetchOptions](#mediafetchoptions8)            | 是   | 文件获取选项                      |
 | callback | AsyncCallback<[FetchFileResult](#fetchfileresult8)> | 是   | 异步获取FetchFileResult之后的回调 |
 
 **示例：**
