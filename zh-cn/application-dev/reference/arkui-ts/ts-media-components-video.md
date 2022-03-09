@@ -25,7 +25,7 @@ Video(value: VideoOption)
   | controller | [VideoController](#videocontroller) | 否 | - | 控制器。 |
 
 
-- PlaybackSpeed类型接口说明8+
+- PlaybackSpeed<sup>8+</sup>类型接口说明
   | 名称 | 描述 | 
   | -------- | -------- |
   | Speed_Forward_0_75_X | 0.75倍速播放。 | 
@@ -73,7 +73,7 @@ Video(value: VideoOption)
 | setCurrentTime(value:&nbsp;number) | 指定视频播放的进度位置。 |
 | setCurrentTime(value:&nbsp;number,&nbsp;seekMode:&nbsp;SeekMode | 指定视频播放的进度位置，并指定跳转模式。 |
 
-- SeekMode类型接口说明8+
+- SeekMode<sup>8+</sup>类型接口说明
   | 名称 | 描述 | 
   | -------- | -------- |
   | PreviousKeyframe | 跳转到前一个最近的关键帧。 | 

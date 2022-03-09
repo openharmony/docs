@@ -26,7 +26,7 @@
   | secondaryButton | {<br/>value:&nbsp;string,<br/>action:&nbsp;()&nbsp;=&gt;&nbsp;void<br/>} | 否 | - | 第二个按钮。<br/>value:&nbsp;弹窗里辅助按钮的文本。<br/>action:&nbsp;点击辅助按钮的回调函数。 | 
   | onStateChange | (isVisible:&nbsp;boolean)&nbsp;=&gt;&nbsp;void | 否 | - | 弹窗状态变化事件回调，参数isVisible为弹窗当前的显示状态。 | 
 
-- CustomPopupOption类型接口说明8+
+- CustomPopupOption<sup>8+</sup>类型接口说明
   | 名称 | 类型 | 必填 | 默认值 | 描述 |
   | -------- | -------- | -------- | -------- | -------- |
   | builder | ()&nbsp;=&gt;&nbsp;any | 是 | - | 提示气泡内容的构造器。 |
@@ -37,7 +37,7 @@
   | autoCancel | boolean | 否 | true | 页面有操作时，是否自动关闭气泡 |
   | onStateChange | (isVisible:&nbsp;boolean)&nbsp;=&gt;&nbsp;void | 否 | - | 弹窗状态变化事件回调，参数为弹窗当前的显示状态。 |
 
-- Placement枚举说明<sup>8+</sup>
+- Placement<sup>8+</sup>枚举说明
   | 名称 | 描述 | 
   | -------- | -------- |
   | Left | 气泡提示位于组件左侧。 | 

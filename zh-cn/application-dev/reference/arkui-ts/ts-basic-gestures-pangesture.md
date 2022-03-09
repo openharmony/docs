@@ -59,7 +59,7 @@ PanGestureOption(options?: { fingers?: number, direction?: PanDirection, distanc
 | onActionEnd(callback:&nbsp;(event?:&nbsp;PanGestureEvent)&nbsp;=&gt;&nbsp;void) | Pan手势识别成功，手指抬起后触发回调。 | 
 | onActionCancel(callback:&nbsp;()&nbsp;=&gt;&nbsp;void) | Pan手势识别成功，接收到触摸取消事件触发回调。 | 
 
-- PanGestureEvent对象说明<sup>8+</sup>
+- PanGestureEvent<sup>8+</sup>对象说明
   | 属性名称 | 属性类型 | 描述 | 
   | -------- | -------- | -------- |
   | offsetX | number | 手势事件偏移量，单位为vp。 | 

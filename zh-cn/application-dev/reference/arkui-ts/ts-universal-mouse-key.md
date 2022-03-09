@@ -17,7 +17,7 @@
 | onMouse(callback:&nbsp;(event?:&nbsp;MouseEvent)&nbsp;=&gt;&nbsp;void) | 是 | 当前组件被鼠标按键点击时或者鼠标在组件上移动时，触发该回调，event参数包含触发事件时的时间戳、鼠标按键、动作、点击触点在整个屏幕上的坐标和点击触点相对于当前组件的坐标。 |
 
 
-- MouseEvent对象说明
+### MouseEvent对象说明
   | 属性名称 | 属性类型 | 描述 |
   | -------- | -------- | -------- |
   | timestamp | number | 触发事件时的时间戳。 |

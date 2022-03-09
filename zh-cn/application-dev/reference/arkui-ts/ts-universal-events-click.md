@@ -15,7 +15,7 @@
 | -------- | -------- | -------- |
 | onClick(callback:&nbsp;(event?:&nbsp;ClickEvent)&nbsp;=&gt;&nbsp;void) | 否 | 点击动作触发该方法调用，event参数见ClickEvent介绍。 | 
 
-- ClickEvent对象说明
+### ClickEvent对象说明
   | 属性名称 | 类型 | 描述 |
   | -------- | -------- | -------- |
   | screenX | number | 点击点相对于设备屏幕左边沿的X坐标。 |
