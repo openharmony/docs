@@ -1,34 +1,42 @@
-# 相机管理
+# Camera<a name="EN-US_TOPIC_0000001149807881"></a>
 
-> **说明：**
-> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
-## 导入模块
+## Modules to Import
 
 ```
 import camera from '@ohos.multimedia.camera';
 ```
 
-## 权限
+## Required Permissions
 
+```
 ohos.permission.CAMERA
+```
+## getCameraManager(context: Context, callback: AsyncCallback<CameraManager\>): void;
 
-## camera.getCameraManager
+**System Capabilities:**
 
-getCameraManager(context: Context, callback: AsyncCallback<CameraManager\>): void
+SystemCapability.Multimedia.Camera.Core
 
-获取相机管理器实例，通过注册回调函数获取结果。
+**Description**
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+Gets a **CameraManager** instance. This method uses an asynchronous callback to return the result.
 
-**参数：**
+**Parameters**
 
-| 名称      | 类型                          | 必填       | 说明                                                 |
+| Name     | Type                          | Mandatory | Description                                         |
 |----------|-------------------------------|-----------|-----------------------------------------------------|
-| context  | Context                       | 是     | 应用上下文。 |
-| callback | AsyncCallback<[CameraManager](#cameramanager)\> | 是      | 回调函数，用于获取相机管理器实例。 |
+| context  | Context                       | Yes       | Application context                                 |
+| callback | AsyncCallback<CameraManager\> | Yes       | Callback used to return the CameraManager instance  |
 
-**示例：**
+
+**Return values**
+
+none
+
+**Example**
 
 ```
 camera.getCameraManager(context, (err, cameraManager) => {
@@ -40,27 +48,29 @@ camera.getCameraManager(context, (err, cameraManager) => {
 });
 ```
 
-## camera.getCameraManager
+## getCameraManager(context: Context): Promise<CameraManager\>;
 
-getCameraManager(context: Context): Promise<CameraManager\>
+**System Capabilities:**
 
-获取相机管理器实例，通过Promise获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Gets a **CameraManager** instance. This method uses a promise to return the result.
 
-| 名称      | 类型                  | 必填      | 说明                        |
+**Parameters**
+
+| Name     | Type                 | Mandatory | Description                |
 |----------|----------------------|-----------|----------------------------|
-| context  | Context              | 是      | 应用上下文。                 |
+| context  | Context              | Yes       | Application context        |
 
-**返回值：**
+**Return values**
 
-| 类型                     | 说明                                                   |
+| Type                    | Description                                            |
 |-------------------------|--------------------------------------------------------|
-| Promise<[CameraManager](#cameramanager)\> | 使用Promise的方式获取一个相机管理器实例。               |
+| Promise<CameraManager\> | Promise used to return the **CameraManager** instance  |
 
-**示例：**
+**Example**
 
 ```
 camera.getCameraManager(context).then((cameraManger) => {
@@ -68,83 +78,89 @@ camera.getCameraManager(context).then((cameraManger) => {
 })
 ```
 
-## CameraStatus
+## CameraStatus<a name="section_camera_status"></a>
 
-枚举，相机状态。
+Enumerates camera status types.
 
-| 名称                       | 默认值         | 说明               |
+| Name                      | Default Value | Description        |
 |---------------------------|---------------|--------------------|
-| CAMERA_STATUS_APPEAR      | 0             | 相机存在。<br/>**系统能力：**  SystemCapability.Multimedia.Camera.Core |
-| CAMERA_STATUS_DISAPPEAR   | 1             | 相机不存在。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
-| CAMERA_STATUS_AVAILABLE   | 2             | 相机就绪。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
-| CAMERA_STATUS_UNAVAILABLE | 3             | 相机未就绪。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
+| CAMERA_STATUS_APPEAR      | 0             | Camera appear<br/>System Capabilities: SystemCapability.Multimedia.Camera.Core      |
+| CAMERA_STATUS_DISAPPEAR   | 1             | Camera disappear <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core   |
+| CAMERA_STATUS_AVAILABLE   | 2             | Camera available<br/>System Capabilities: SystemCapability.Multimedia.Camera.Core   |
+| CAMERA_STATUS_UNAVAILABLE | 3             | Camera unavailable <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core|
 
 
-## CameraPosition
+## CameraPosition<a name="section_camera_position"></a>
 
-枚举，相机方向。
+Enumerates the camera positions.
 
-| 名称                         | 默认值         | 说明                  |
+| Name                        | Default value | Description           |
 |-----------------------------|---------------|-----------------------|
-| CAMERA_POSITION_UNSPECIFIED | 0             | 未指定方向相机。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
-| CAMERA_POSITION_BACK        | 1             | 后置相机。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
-| CAMERA_POSITION_FRONT       | 2             | 前置相机。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
+| CAMERA_POSITION_UNSPECIFIED | 0             | Unspecified position <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core |
+| CAMERA_POSITION_BACK        | 1             | Rear camera <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core          |
+| CAMERA_POSITION_FRONT       | 2             | Front camera <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core        |
 
-## CameraType
+## CameraType<a name="section_camera_type"></a>
 
-枚举，相机类型。
+Enumerates the camera types.
 
-| 名称                     | 默认值         | 说明                     |
+| Name                    | Default value | Description             |
 |-------------------------|---------------|-------------------------|
-| CAMERA_TYPE_UNSPECIFIED | 0             | 未指定相机类型。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
-| CAMERA_TYPE_WIDE_ANGLE  | 1             | 广角相机。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
-| CAMERA_TYPE_ULTRA_WIDE  | 2             | 超级广角相机。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
-| CAMERA_TYPE_TELEPHOTO   | 3             | 长焦相机。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
-| CAMERA_TYPE_TRUE_DEPTH  | 4             | 深度相机。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
+| CAMERA_TYPE_UNSPECIFIED | 0             | Unspecified camera type <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core |
+| CAMERA_TYPE_WIDE_ANGLE  | 1             | Wide camera <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core            |
+| CAMERA_TYPE_ULTRA_WIDE  | 2             | Ultra wide camera <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core       |
+| CAMERA_TYPE_TELEPHOTO   | 3             | Telephoto camera <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core       |
+| CAMERA_TYPE_TRUE_DEPTH  | 4             | True depth camera <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core      |
 
 
-## ConnectionType
+## ConnectionType<a name="section_ConnectionType"></a>
 
-枚举，相机连接类型。
+Enumerates camera connection types.
 
-| 名称                          | 默认值         | 说明                        |
+| Name                         | Default value | Description                |
 |------------------------------|---------------|----------------------------|
-| CAMERA_CONNECTION_BUILT_IN   | 0             | 内置相机。<br/>**系统能力：**  SystemCapability.Multimedia.Camera.Core |
-| CAMERA_CONNECTION_USB_PLUGIN | 1             | 外置USB相机。<br/>**系统能力：**  SystemCapability.Multimedia.Camera.Core |
-| CAMERA_CONNECTION_REMOTE     | 2             | 分布式相机。<br/>**系统能力：**  SystemCapability.Multimedia.Camera.Core |
+| CAMERA_CONNECTION_BUILT_IN   | 0             | Built-in camera <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core           |
+| CAMERA_CONNECTION_USB_PLUGIN | 1             | Camera connected using USB <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core |
+| CAMERA_CONNECTION_REMOTE     | 2             | Remote camera  <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core             |
 
 
-## CameraFormat
+## CameraFormat<a name="section_CameraFormat"></a>
 
-枚举，照片格式。
+Enumerates the camera formats.
 
-| 名称                        | 默认值         | 说明                 |
+| Name                       | Default value | Description         |
 |----------------------------|---------------|---------------------|
-| CAMERA_FORMAT_YCRCb_420_SP | 1003          | YCRCb格式。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
-| CAMERA_FORMAT_JPEG         | 2000          | JPEG格式。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
-| CAMERA_FORMAT_AVC          | 3000          | AVC格式。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
-| CAMERA_FORMAT_HEVC         | 3001          | HEVC格式。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
+| CAMERA_FORMAT_YCRCb_420_SP | 1003          | Camera YCRCb <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core       |
+| CAMERA_FORMAT_JPEG         | 2000          | Camera format jpeg <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core |
+| CAMERA_FORMAT_AVC          | 3000          | Camera format avc <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core  |
+| CAMERA_FORMAT_HEVC         | 3001          | Camera format hevc <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core  |
 
 
-## CameraManager
+## CameraManager<a name="section_CameraManager"></a>
 
-相机管理器类，使用前需要通过getCameraManager获取相机管理实例。
+Implements camera management, including getting supported cameras and creating **CameraInput** instances.
 
-### getCameras
+### getCameras(callback: AsyncCallback<Array<Camera\>\>): void;
 
-getCameras(callback: AsyncCallback<Array<Camera\>\>): void
+**System Capabilities:**
 
-异步获取设备支持的相机列表，通过注册回调函数获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Gets all cameras supported by the device. This method uses an asynchronous callback to return the array of supported cameras.
 
-| 名称      | 类型                            | 必填      | 说明                                                    |
+**Parameters**
+
+| Name     | Type                           | Mandatory | Description                                             |
 |----------|--------------------------------|-----------|---------------------------------------------------------|
-| callback | AsyncCallback<Array<[Camera](#camera)\>\> | 是      | 使用callback方式获取支持的相机列表。                        |
+| callback | AsyncCallback<Array<Camera\>\> | Yes       | Callback used to return the array of supported cameras. |
 
-**示例：**
+**Return values**
+
+none
+
+**Example**
 
 ```
 cameraManager.getCameras((err, cameras) => {
@@ -156,22 +172,28 @@ cameraManager.getCameras((err, cameras) => {
 })
 ```
 
-### getCameras
+### getCameras(): Promise<Array<Camera\>\>;
 
-getCameras(): Promise<Array<Camera\>\>
+**System Capabilities:**
 
-异步获取设备支持的相机列表，通过Promise获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**返回值：**
+Gets all cameras supported by the device. This method uses a promise to return the array of supported cameras.
 
-| 类型                    | 说明                                                   |
+**Parameters**
+
+none
+
+**Return values**
+
+| Type                   | Description                                            |
 |------------------------|--------------------------------------------------------|
-| Promise<Array<[Camera](#camera)\>\> | 使用promise获取支持相机列表。                         |
+| Promise<Array<Camera\>\> | Promise used to return an array of supported cameras |
 
 
-**示例：**
+**Example**
 
 ```
 cameraManager.getCameras().then((cameraArray) => {
@@ -179,22 +201,28 @@ cameraManager.getCameras().then((cameraArray) => {
 })
 ```
 
-### createCameraInput
+### createCameraInput(cameraId: string, callback: AsyncCallback<CameraInput\>): void;
 
-createCameraInput(cameraId: string, callback: AsyncCallback<CameraInput\>): void
+**System Capabilities:**
 
-使用相机ID异步创建CameraInput实例，通过注册回调函数获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Creates a **CameraInput** instance with the specified camera ID. This method uses an asynchronous callback to return the instance.
 
-| 名称      | 默认值                        | 必填      | 说明                                              |
+**Parameters**
+
+| Name     | Default value                | Mandatory | Description                                      |
 |----------|------------------------------|-----------|--------------------------------------------------|
-| cameraId | string                       | 是       | 指定相机ID。               |
-| callback | AsyncCallback<[CameraInput](#camerainput)\> | 是       | 回调函数，用于获取CameraInput实例。 |
+| cameraId | string                       | Yes       | Camera ID used to create the instance            |
+| callback | AsyncCallback<CameraInput\>  | Yes       | Callback used to return the CameraInput instance |
 
-**示例：**
+**Return values**
+
+none
+
+**Example**
 
 ```
 cameraManager.createCameraInput(cameraId, (err, cameraInput) => {
@@ -206,27 +234,29 @@ cameraManager.createCameraInput(cameraId, (err, cameraInput) => {
 })
 ```
 
-### createCameraInput
+### createCameraInput(cameraId: string): Promise<CameraInput\>;
 
-createCameraInput(cameraId: string): Promise<CameraInput\>
+**System Capabilities:**
 
-使用相机ID异步创建CameraInput实例，通过Promise获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Creates a **CameraInput** instance with the specified camera ID. This method uses a promise to return the instance.
 
-| 名称      | 默认值                       | 必填       | 说明                                     |
+**Parameters**
+
+| Name     | Default value               | Mandatory | Description                              |
 |----------|-----------------------------|-----------|------------------------------------------|
-| cameraId | string                      | 是       | 指定相机ID。            |
+| cameraId | string                      | Yes       | Camera ID used to create the instance    |
 
-**返回值：**
+**Return values**
 
-| 类型                     | 说明                                             |
+| Type                    | Description                                     |
 |-------------------------|-------------------------------------------------|
-| Promise<[CameraInput](#camerainput)\> | 使用Promise的方式获取CameraInput的实例。       |
+| Promise<CameraInput\>   | Promise used to return the CameraInput instance |
 
-**示例：**
+**Example**
 
 ```
 cameraManager.createCameraInput(cameraId).then((cameraInput) => {
@@ -234,23 +264,29 @@ cameraManager.createCameraInput(cameraId).then((cameraInput) => {
 })
 ```
 
-### createCameraInput
+### createCameraInput(position: CameraPosition, type: CameraType, callback: AsyncCallback<CameraInput\>): void;
 
-createCameraInput(position: CameraPosition, type: CameraType, callback: AsyncCallback<CameraInput\>): void
+**System Capabilities:**
 
-使用相机位置和相机类型异步创建CameraInput实例，通过注册回调函数获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Creates a **CameraInput** instance with the specified camera position and camera type. This method uses an asynchronous callback to return the instance.
 
-| 名称            | 类型                        | 必填      | 说明                                               |
+**Parameters**
+
+| Name           | Type                       | Mandatory | Description                                       |
 |----------------|----------------------------|-----------|---------------------------------------------------|
-| cameraPosition | [CameraPosition](#cameraposition) | 是       | 相机位置。                                          |
-| cameraType     | [CameraType](#cameratype) | 是       | 相机类型。                                           |
-| callback       | AsyncCallback<[CameraInput](#camerainput)\> | 是   | 回调函数，用于获取CameraInput实例。 |
+| cameraPosition | CameraPosition             | Yes       | Camera position                                   |
+| cameraType     | CameraType                 | Yes       | Camera type                                       |
+| callback       | AsyncCallback<CameraInput\> | Yes       | Callback used to return the CameraInput instance |
 
-**示例：**
+**Return values**
+
+none
+
+**Example**
 
 ```
 cameraManager.createCameraInput(cameraPosition, cameraType, (err, cameraInput) => {
@@ -262,28 +298,30 @@ cameraManager.createCameraInput(cameraPosition, cameraType, (err, cameraInput) =
 })
 ```
 
-### createCameraInput
+### createCameraInput(position: CameraPosition, type: CameraType): Promise<CameraInput\>;
 
-createCameraInput(position: CameraPosition, type: CameraType): Promise<CameraInput\>
+**System Capabilities:**
 
-使用相机位置和相机类型异步创建CameraInput实例，通过Promise获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Creates a **CameraInput** instance with the specified camera position and camera type. This method uses a promise to return the instance.
 
-| 名称            | 类型                        | 必填      | 说明                                    |
+**Parameters**
+
+| Name           | Type                       | Mandatory | Description                            |
 |----------------|----------------------------|-----------|----------------------------------------|
-| cameraPosition | [CameraPosition](#cameraposition) | 是   | 相机位置。 |
-| cameraType     | [CameraType](#cameratype)         | 是   | 相机类型。 |
+| cameraPosition | CameraPosition             | Yes       | Camera position                        |
+| cameraType     | CameraType                 | Yes       | Camera type                            |
 
-**返回值：**
+**Return values**
 
-| 类型                     | 说明                                             |
+| Type                    | Description                                     |
 |-------------------------|-------------------------------------------------|
-| Promise<[CameraInput](#camerainput)\> | 使用Promise的方式获取CameraInput的实例。 |
+| Promise<CameraInput\>   | Promise used to return the CameraInput instance |
 
-**示例：**
+**Example**
 
 ```
 cameraManager.createCameraInput(cameraPosition, cameraType).then((cameraInput) => {
@@ -291,22 +329,28 @@ cameraManager.createCameraInput(cameraPosition, cameraType).then((cameraInput) =
 })
 ```
 
-### on('cameraStatus')
+### on(type: 'cameraStatus', callback: Callback<CameraStatusInfo\>): void;
 
-on(type: 'cameraStatus', callback: AsyncCallback<CameraStatusInfo\>): void
+**System Capabilities:**
 
-监听相机的状态变化，通过注册回调函数获取相机的状态变化。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Listens for camera status changes. This method uses a callback to get camera status changes.
 
-| 名称      | 类型                    | 必填       | 说明                                                 |
+**Parameters**
+
+| Name     | Type                   | Mandatory | Description                                          |
 | :------- | :--------------------- | :-------- | :--------------------------------------------------- |
-| type     | string                 | 是       | 监听事件。                               |
-| callback | AsyncCallback<[CameraStatusInfo](#camerastatusinfo)\> | 是  | 回调函数，用于获取相机状态变化信息。 |
+| type     | string                 | Yes       | Name of the event to listen for.                         |
+| callback | Callback<CameraStatusInfo\> | Yes  | Callback used to get the camera status change. |
 
-**示例：**
+**Return value**
+
+None
+
+**Example**
 
 ```
 cameraManager.on('cameraStatus', (cameraStatusInfo) => {
@@ -315,18 +359,18 @@ cameraManager.on('cameraStatus', (cameraStatusInfo) => {
 })
 ```
 
-## Camera
+## Camera<a name="section_Camera"></a>
 
-相机实例。
+Camera class.
 
-| 名称            | 类型           | 只读 | 说明                    |
+**Fields**
+
+| Name           | Type           | Access   | Description            |
 |----------------|----------------|----------|------------------------|
-| cameraId       | string         | 是 | 相机ID。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core|
-| cameraPosition | [CameraPosition](#cameraposition) | 是 | 相机位置。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
-| cameraType     | [CameraType](#cameratype) | 是 | 相机类型。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
-| connectionType | [ConnectionType](#connectiontype) | 是 | 相机连接类型。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
-
-**示例：**
+| cameraId       | string         | readonly | Camera ID <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core             |
+| cameraPosition | cameraPosition | readonly | Camera position <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core       |
+| cameraType     | cameraType     | readonly | Camera type <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core           |
+| connectionType | connectionType | readonly | Camera connection type  <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core|
 
 ```
 var cameraManager = await camera.getCameraManager();
@@ -339,35 +383,41 @@ var cameraId = cameraObj.connectionType;
 
 ```
 
-## CameraStatusInfo
+## CameraStatusInfo<a name="section_Camera"></a>
 
-相机状态信息。
+CameraStatusInfo class.
 
-| 名称            | 类型            | 说明             |
+**Fields**
+
+| Name           | Type           | Description      |
 |----------------|----------------|------------------|
-| camera         | [Camera](#camera) | 相机信息。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
-| status         | [CameraStatus](#camerastatus) | 相机状态。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
+| camera         | Camera         | Camera object  <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core   |
+| status         | CameraStatus   | Camera status  <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core  |
 
 
-## CameraInput
+## CameraInput<a name="section_CameraInput"></a>
 
-相机输入类。在使用该类的方法前，需要先构建一个CameraInput实例。
+Implements a **CameraInput** instance.
 
-### getCameraId
+### getCameraId(callback: AsyncCallback<string\>\): void;
 
-getCameraId(callback: AsyncCallback<string\>\): void
+**System Capabilities:**
 
-异步获取该CameraInput实例的相机ID，通过注册回调函数获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Gets the camera ID based on which this **CameraInput** instance is created. This method uses an asynchronous callback to return the camera ID.
 
-| 名称      | 类型                    | 必填      | 说明                                   |
+**Parameters**
+
+| Name     | Type                   | Mandatory | Description                           |
 |----------|------------------------|-----------|---------------------------------------|
-| callback | AsyncCallback<string\> | 是       | 回调函数，用于获取相机ID。     |
+| callback | AsyncCallback<string\> | Yes       | Callback used to return the camera ID |
 
-**示例：**
+**Return values**
+
+none
 
 ```
 cameraInput.getCameraId((err, cameraId) => {
@@ -379,21 +429,27 @@ cameraInput.getCameraId((err, cameraId) => {
 })
 ```
 
-### getCameraId
+### getCameraId(): Promise<string\>;
 
-getCameraId(): Promise<string\>
+**System Capabilities:**
 
-异步获取该CameraInput实例的相机ID，通过Promise获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**返回值：**
+Gets the camera ID based on which this **CameraInput** instance is created. This method uses a promise to return the camera ID.
 
-| 类型                    | 说明                                  |
+**Parameters**
+
+none
+
+**Return values**
+
+| Type                   | Description                          |
 |------------------------|--------------------------------------|
-| Promise<string\>       | 使用Promise的方式获取相机ID。 |
+| Promise<string\>       | Promise used to return the camera ID |
 
-**示例：**
+**Example**
 
 ```
 cameraInput.getCameraId().then((cameraId) => {
@@ -401,22 +457,29 @@ cameraInput.getCameraId().then((cameraId) => {
 })
 ```
 
-### getSupportedSizes
+### getSupportedSizes\(format: CameraFormat, callback: AsyncCallback<Array<Size\>\>\): void;
 
-getSupportedSizes\(format: CameraFormat, callback: AsyncCallback<Array<Size\>\>\): void
+**System Capabilities:**
 
-根据指定格式，获取相机支持的分辨率，通过注册回调函数获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Gets supported sizes for a given format. This method uses an asynchronous callback to return the supported sizes.
 
-| 名称      | 类型                          | 必填      | 说明                                         |
+**Parameters**
+
+| Name     | Type                         | Mandatory | Description                                 |
 |----------|------------------------------|-----------|---------------------------------------------|
-| format   | [CameraFormat](#cameraformat) | 是       | 指定照片格式。    |
-| callback | AsyncCallback<Array<[Size](js-apis-image.md#Size)\>\> | 是       | 回调函数，用于获取相机支持分辨率。 |
+| format   | CameraFormat                 | Yes       | Camera format used to get supported sizes   |
+| callback | AsyncCallback<Array<Size\>\> | Yes       | Callback used to return the supported sizes |
 
-**示例：**
+
+**Return values**
+
+none
+
+**Example**
 
 ```
 cameraInput.getSupportedSizes(format, (err, sizes) => {
@@ -428,27 +491,29 @@ cameraInput.getSupportedSizes(format, (err, sizes) => {
 })
 ```
 
-### getSupportedSizes
+### getSupportedSizes\(format: CameraFormat\): Promise<Array<Size\>\>;
 
-getSupportedSizes\(format: CameraFormat\): Promise<Array<Size\>\>
+**System Capabilities:**
 
-根据指定格式，获取相机支持的分辨率，通过Promise获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Gets supported sizes for a given format. This method uses a promise to return the supported sizes.
 
-| 名称   | 类型                          | 必填 | 说明           |
-| ------ | ----------------------------- | ---- | -------------- |
-| format | [CameraFormat](#cameraformat) | 是   | 指定照片格式。 |
+**Parameters**
 
-**返回值：**
+| Name     | Type                       | Mandatory | Description                                   |
+|----------|----------------------------|-----------|-----------------------------------------------|
+| format   | CameraFormat               | Yes       | Camera format used to get the supported sizes |
 
-| 类型                    | 说明                                         |
+**Return values**
+
+| Type                   | Description                                 |
 |------------------------|---------------------------------------------|
-| Promise<Array<[Size](js-apis-image.md#Size)\>\> | 使用Promise的方式获取相机支持的分辨率。 |
+| Promise<Array<Size\>\> | Promise used to return the supported sizes. |
 
-**示例：**
+**Example**
 
 ```
 cameraInput.getSupportedSizes(format).then((sizes) => {
@@ -456,21 +521,28 @@ cameraInput.getSupportedSizes(format).then((sizes) => {
 })
 ```
 
-### getSupportedPreviewFormats
+### getSupportedPreviewFormats\(callback: AsyncCallback<Array<CameraFormat\>\>\): void;
 
-getSupportedPreviewFormats\(callback: AsyncCallback<Array<CameraFormat\>\>\): void
+**System Capabilities:**
 
-获取相机预览图片的支持格式，通过注册回调函数获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Gets supported formats for preview. This method uses an asynchronous callback to return the supported formats.
 
-| 名称     | 类型                                                  | 必填 | 说明                                   |
-| -------- | ----------------------------------------------------- | ---- | -------------------------------------- |
-| callback | AsyncCallback<Array<[CameraFormat](#cameraformat)\>\> | 是   | 回调函数，用于获取预览图片的支持格式。 |
+**Parameters**
 
-**示例：**
+| Name     | Type                                 | Mandatory | Description                                       |
+|----------|--------------------------------------|-----------|---------------------------------------------------|
+| callback | AsyncCallback<Array<CameraFormat\>\> | Yes       | Callback used to return the supported preview formats. |
+
+
+**Return values**
+
+none
+
+**Example**
 
 ```
 cameraInput.getSupportedPreviewFormats((err, previewFormats) => {
@@ -482,21 +554,27 @@ cameraInput.getSupportedPreviewFormats((err, previewFormats) => {
 })
 ```
 
-### getSupportedPreviewFormats
+### getSupportedPreviewFormats\(\): Promise<Array<CameraFormat\>\>;
 
-getSupportedPreviewFormats\(\): Promise<Array<CameraFormat\>\>
+**System Capabilities:**
 
-获取相机预览图片的支持格式，通过注册回调函数获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**返回值：**
+Gets supported formats for preview. This method uses a promise to return the supported formats.
 
-| 类型                            | 说明                                                   |
+**Parameters**
+
+none
+
+**Return values**
+
+| Type                           | Description                                           |
 |--------------------------------|-------------------------------------------------------|
-| Promise<Array<[CameraFormat](#cameraformat)\>\> | 使用Promise的方式获取预览图片的支持格式。 |
+| Promise<Array<CameraFormat\>\> | Promise used to return the supported preview formats  |
 
-**示例：**
+**Example**
 
 ```
 cameraInput.getSupportedPreviewFormats().then((previewFormats) => {
@@ -504,21 +582,27 @@ cameraInput.getSupportedPreviewFormats().then((previewFormats) => {
 })
 ```
 
-### getSupportedPhotoFormats
+### getSupportedPhotoFormats\(callback: AsyncCallback<Array<CameraFormat\>\>\): void;<a name="section189141826104616"></a>
 
-getSupportedPhotoFormats\(callback: AsyncCallback<Array<CameraFormat\>\>\): void
+**System Capabilities:**
 
-获取照片的支持格式，通过注册回调函数获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Gets supported formats for photographing. This method uses an asynchronous callback to return the supported formats.
 
-| 名称      | 类型                                  | 必填      | 说明                                             |
+**Parameters**
+
+| Name     | Type                                 | Mandatory | Description                                     |
 |----------|--------------------------------------|-----------|-------------------------------------------------|
-| callback | AsyncCallback<Array<[CameraFormat](#cameraformat)\>\> | 是       | 回调函数，用于获取支持的照片格式。 |
+| callback | AsyncCallback<Array<CameraFormat\>\> | Yes       | Callback used to return the supported photo formats. |
 
-**示例：**
+**Return values**
+
+none
+
+**Example**
 
 ```
 cameraInput.getSupportedPhotoFormats((err, photoFormats) => {
@@ -530,21 +614,27 @@ cameraInput.getSupportedPhotoFormats((err, photoFormats) => {
 })
 ```
 
-### getSupportedPhotoFormats
+### getSupportedPhotoFormats\(\): Promise<Array<CameraFormat\>\>;<a name="section189141826104616"></a>
 
-getSupportedPhotoFormats\(\): Promise<Array<CameraFormat\>\>
+**System Capabilities:**
 
-获取照片的支持格式，通过Promise获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**返回值：**
+Gets supported formats for photographing. This method uses a promise to return the supported formats.
 
-| 类型                            | 说明                                               |
+**Parameters**
+
+none
+
+**Return values**
+
+| Type                           | Description                                       |
 |--------------------------------|---------------------------------------------------|
-| Promise<Array<[CameraFormat](#cameraformat)\>\> | 使用Promise的方式获取支持的照片格式。                |
+| Promise<Array<CameraFormat\>\> | Promise used to return supported photo formats.   |
 
-**示例：**
+**Example**
 
 ```
 cameraInput.getSupportedPhotoFormats().then((photoFormats) => {
@@ -552,21 +642,27 @@ cameraInput.getSupportedPhotoFormats().then((photoFormats) => {
 })
 ```
 
-### getSupportedVideoFormats
+### getSupportedVideoFormats\(callback: AsyncCallback<Array<CameraFormat\>\>\): void;
 
-getSupportedVideoFormats\(callback: AsyncCallback<Array<CameraFormat\>\>\): void
+**System Capabilities:**
 
-获取录制视频的支持格式，通过注册回调函数获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Gets supported formats for video recording. This method uses an asynchronous callback to return the supported video formats.
 
-| 名称      | 类型                                 | 必填       | 说明                                             |
+**Parameters**
+
+| Name     | Type                                 | Mandatory | Description                                     |
 |----------|--------------------------------------|-----------|-------------------------------------------------|
-| callback | AsyncCallback<Array<[CameraFormat](#cameraformat)\>\> | 是       | 回调函数，用于获取支持的视频格式。 |
+| callback | AsyncCallback<Array<CameraFormat\>\> | Yes       | Callback used to return the supported video formats. |
 
-**示例：**
+**Return values**
+
+none
+
+**Example**
 
 ```
 cameraInput.getSupportedVideoFormats((err, videoFormats) => {
@@ -578,21 +674,27 @@ cameraInput.getSupportedVideoFormats((err, videoFormats) => {
 })
 ```
 
-### getSupportedVideoFormats
+### getSupportedVideoFormats\(\): Promise<Array<CameraFormat\>\>;
 
-getSupportedVideoFormats\(\): Promise<Array<CameraFormat\>\>
+**System Capabilities:**
 
-获取录制视频的支持格式，通过Promise获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**返回值：**
+Gets supported formats for video recording. This method uses a promise to return the supported video format.
 
-| 类型                            | 说明                                               |
+**Parameters**
+
+none
+
+**Return values**
+
+| Type                           | Description                                       |
 |--------------------------------|---------------------------------------------------|
-| Promise<Array<[CameraFormat](#cameraformat)\>\> | 使用Promise的方式获取支持的视频格式。         |
+| Promise<Array<CameraFormat\>\> | Promise used to return supported video formats.   |
 
-**示例：**
+**Example**
 
 ```
 cameraInput.getSupportedVideoFormats().then((videoFormats) => {
@@ -600,21 +702,27 @@ cameraInput.getSupportedVideoFormats().then((videoFormats) => {
 })
 ```
 
-### hasFlash
+### hasFlash(callback: AsyncCallback<boolean\>): void; <a name="sec_hasFlash"></a>
 
-hasFlash(callback: AsyncCallback<boolean\>): void
+**System Capabilities:**
 
-判断设备是否支持闪光灯，通过注册回调函数获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Checks whether the device has flash light. This method uses an asynchronous callback to return the result.
 
-| 名称     | 类型                     | 必填       | 说明                                                |
+**Parameters**
+
+| Name     | Type                    | Mandatory | Description                                        |
 |----------|-------------------------|-----------|----------------------------------------------------|
-| callback | AsyncCallback<boolean\> | 是       | 回调函数，返回true表示设备支持闪光灯。 |
+| callback | AsyncCallback<boolean\> | Yes       | Callback used to return the flash light support status |
 
-**示例：**
+**Return values**
+
+none
+
+**Example**
 
 ```
 cameraInput.hasFlash((err, status) => {
@@ -626,21 +734,27 @@ cameraInput.hasFlash((err, status) => {
 })
 ```
 
-### hasFlash
+### hasFlash(): Promise<boolean\>;
 
-hasFlash(): Promise<boolean\>
+**System Capabilities:**
 
-判断设备是否支持闪光灯，通过Promise获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**返回值：**
+Checks whether the device has flash light. This method uses a promise to return the result.
 
-| 类型                   | 说明                                                    |
+**Parameters**
+
+none
+
+**Return values**
+
+| Type                  | Description                                            |
 |-----------------------|--------------------------------------------------------|
-| Promise<boolean\>     | 使用Promise的方式获取结果，返回true表示设备支持闪光灯。 |
+| Promise<boolean\>     | Promise used to return the flash light support status  |
 
-**示例：**
+**Example**
 
 ```
 cameraInput.hasFlash().then((status) => {
@@ -648,22 +762,28 @@ cameraInput.hasFlash().then((status) => {
 })
 ```
 
-### isFlashModeSupported
+### isFlashModeSupported(flashMode: FlashMode, callback: AsyncCallback<boolean\>): void; <a name="sec_isFlashModeSupported"></a>
 
-isFlashModeSupported(flashMode: FlashMode, callback: AsyncCallback<boolean\>): void
+**System Capabilities:**
 
-判断设备是否支持指定闪光灯模式，通过注册回调函数获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Checks whether a specified flash mode is supported. This method uses an asynchronous callback to return the result.
 
-| 名称      | 类型                    | 必填        | 说明                                               |
+**Parameters**
+
+| Name      | Type                   | Mandatory | Description                                        |
 |-----------|------------------------|-----------|----------------------------------------------------|
-| flashMode | [FlashMode](#flashmode) | 是       | 指定闪光灯模式。 |
-| callback  | AsyncCallback<boolean\> | 是       | 回调函数，返回true表示支持该闪光灯模式。 |
+| flashMode | <a href="#sec_FlashMode">FlashMode</a>             | Yes       | Flash mode                                         |
+| callback  | AsyncCallback<boolean\> | Yes       | Callback used to return the device flash support status |
 
-**示例：**
+**Return values**
+
+none
+
+**Example**
 
 ```
 cameraInput.isFlashModeSupported(flashMode, (err, status) => {
@@ -675,27 +795,29 @@ cameraInput.isFlashModeSupported(flashMode, (err, status) => {
 })
 ```
 
-### isFlashModeSupported
+### isFlashModeSupported(flashMode: FlashMode): Promise<boolean\>;
 
-isFlashModeSupported(flashMode: FlashMode): Promise<boolean\>
+**System Capabilities:**
 
-判断设备是否支持指定闪光灯模式，通过Promise获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Checks whether a specified flash mode is supported. This method uses a promise to return the result.
 
-| 名称       | 类型                   | 必填       | 说明                                                |
+**Parameters**
+
+| Name      | Type                   | Mandatory | Description                                        |
 |-----------|------------------------|-----------|----------------------------------------------------|
-| flashMode | [FlashMode](#flashmode) | 是   | 指定闪光灯模式。 |
+| flashMode | <a href="#sec_FlashMode">FlashMode</a>             | Yes       | Flash mode                    |
 
-**返回值：**
+**Return values**
 
-| 类型                   | 说明                                               |
+| Type                  | Description                                       |
 |-----------------------|---------------------------------------------------|
-| Promise<boolean\>     | 使用Promise的方式获取结果，返回true表示设备支持该闪光灯模式。 |
+| Promise<boolean\>     | Promise used to return flash mode support status. |
 
-**示例：**
+**Example**
 
 ```
 cameraInput.isFlashModeSupported(flashMode).then((status) => {
@@ -703,27 +825,30 @@ cameraInput.isFlashModeSupported(flashMode).then((status) => {
 })
 ```
 
-### setFlashMode
+### setFlashMode(flashMode: FlashMode, callback: AsyncCallback<void\>): void;
 
-setFlashMode(flashMode: FlashMode, callback: AsyncCallback<void\>): void
+**System Capabilities:**
 
-设置闪光灯模式，通过注册回调函数获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-进行设置之前，需要先检查：
+**Description**
 
-1. 设备是否支持闪光灯，可使用方法[hasFlash](#hasflash)。
-2. 设备是否支持指定的闪光灯模式，可使用方法[isFlashModeSupported](#isflashmodesupported)。
+Sets flash mode. This method uses an asynchronous callback to return the result.
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+Note: Before setting the flash mode, check the support for the flash light (<a href="#sec_hasFlash">hasFlash</a> method) and flash mode support (<a href="#sec_isFlashModeSupported">isFlashModeSupported</a> method);
 
-**参数：**
+**Parameters**
 
-| 名称       | 类型                   | 必填       | 说明                                                |
+| Name      | Type                   | Mandatory | Description                                        |
 |-----------|------------------------|-----------|----------------------------------------------------|
-| flashMode | [FlashMode](#flashmode) | 是   | 指定闪光灯模式。         |
-| callback  | AsyncCallback<void\>   | 是       | 回调函数，用于获取结果。            |
+| flashMode | <a href="#sec_FlashMode">FlashMode</a>             | Yes       | Flash mode             |
+| callback  | AsyncCallback<void\> | Yes       | Callback used to return the result         |
 
-**示例：**
+**Return values**
+
+none
+
+**Example**
 
 ```
 cameraInput.setFlashMode(flashMode, (err) => {
@@ -735,32 +860,31 @@ cameraInput.setFlashMode(flashMode, (err) => {
 })
 ```
 
-### setFlashMode
+### setFlashMode(flashMode: FlashMode): Promise<void\>;
 
-setFlashMode(flashMode: FlashMode): Promise<void\>
+**System Capabilities:**
 
-设置闪光灯模式，通过Promise获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-进行设置之前，需要先检查：
+**Description**
 
-1. 设备是否支持闪光灯，可使用方法[hasFlash](#hasflash)。
-2. 设备是否支持指定的闪光灯模式，可使用方法[isFlashModeSupported](#isflashmodesupported)。
+Sets flash mode. This method uses a promise to return the result.
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+Note: Before setting the flash mode, check the support for the flash light (<a href="#sec_hasFlash">hasFlash</a> method) and flash mode support (<a href="#sec_isFlashModeSupported">isFlashModeSupported</a> method);
 
-**参数：**
+**Parameters**
 
-| 名称       | 类型                    | 必填      | 说明                                                |
+| Name      | Type                   | Mandatory | Description                                        |
 |-----------|------------------------|-----------|----------------------------------------------------|
-| flashMode | [FlashMode](#flashmode) | 是   | 指定闪光灯模式。 |
+| flashMode | <a href="#sec_FlashMode">FlashMode</a>             | Yes       | Flash mode                    |
 
-**返回值：**
+**Return values**
 
-| 类型                   | 说明                                    |
+| Type                  | Description                             |
 |-----------------------|-----------------------------------------|
-| Promise<void\>        | 使用Promise的方式获取结果。                |
+| Promise<void\>        | Promise used to return the result       |
 
-**示例：**
+**Example**
 
 ```
 cameraInput.setFlashMode(flashMode).then() => {
@@ -768,21 +892,27 @@ cameraInput.setFlashMode(flashMode).then() => {
 })
 ```
 
-### getFlashMode
+### getFlashMode(callback: AsyncCallback<FlashMode\>): void;
 
-getFlashMode(callback: AsyncCallback<FlashMode\>): void
+**System Capabilities:**
 
-获取当前设备的闪光灯模式，通过注册回调函数获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Gets current flash mode. This method uses an asynchronous callback to return the result.
 
-| 名称       | 类型                      | 必填       | 说明                                            |
+**Parameters**
+
+| Name      | Type                      | Mandatory | Description                                    |
 |-----------|---------------------------|-----------|------------------------------------------------|
-| callback  | AsyncCallback<[FlashMode](#flashmode)\> | 是       | 回调函数，用于获取当前设备的闪光灯模式。 |
+| callback  | AsyncCallback<FlashMode\> | Yes       | Callback used to return the current flash mode |
 
-**示例：**
+**Return values**
+
+none
+
+**Example**
 
 ```
 cameraInput.getFlashMode((err, flashMode) => {
@@ -794,21 +924,27 @@ cameraInput.getFlashMode((err, flashMode) => {
 })
 ```
 
-### getFlashMode
+### getFlashMode(): Promise<FlashMode\>;
 
-getFlashMode(): Promise<FlashMode\>
+**System Capabilities:**
 
-获取当前设备的闪光灯模式，通过Promise获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**返回值：**
+Gets current flash mode. This method uses a promise to return the result.
 
-| 类型                   | 说明                                              |
+**Parameters**
+
+none
+
+**Return values**
+
+| Type                  | Description                                       |
 |-----------------------|---------------------------------------------------|
-| Promise<[FlashMode](#flashmode)\> | 使用Promise的方式获取当前的闪光灯模式。                 |
+| Promise<FlashMode\>   | Promise used to return the flash mode             |
 
-**示例：**
+**Example**
 
 ```
 cameraInput.getFlashMode().then(flashMode) => {
@@ -816,22 +952,28 @@ cameraInput.getFlashMode().then(flashMode) => {
 })
 ```
 
-### isFocusModeSupported
+### isFocusModeSupported(afMode: FocusMode, callback: AsyncCallback<boolean\>): void; <a name="sec_isFocusModeSupported"></a>
 
-isFocusModeSupported(afMode: FocusMode, callback: AsyncCallback<boolean\>): void
+**System Capabilities:**
 
-判断设备是否支持指定的焦距模式，通过注册回调函数获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Checks whether a specified focus mode is supported. This method uses an asynchronous callback to return the result.
 
-| 名称       | 类型                    | 必填      | 说明                                                |
+**Parameters**
+
+| Name      | Type                   | Mandatory | Description                                        |
 |-----------|------------------------|-----------|----------------------------------------------------|
-| afMode    | [FocusMode](#focusmode) | 是       | 指定的焦距模式。                        |
-| callback  | AsyncCallback<boolean\> | 是       | 回调函数，返回true表示支持该焦距模式。 |
+| afMode    | <a href="#sec_FocusMode">FocusMode</a>  | Yes       | Focus mode                        |
+| callback  | AsyncCallback<boolean\> | Yes       | Callback used to return the device focus support status |
 
-**示例：**
+**Return values**
+
+none
+
+**Example**
 
 ```
 cameraInput.isFocusModeSupported(afMode, (err, status) => {
@@ -843,27 +985,29 @@ cameraInput.isFocusModeSupported(afMode, (err, status) => {
 })
 ```
 
-### isFocusModeSupported
+### isFocusModeSupported(afMode: FocusMode): Promise<boolean\>;
 
-isFocusModeSupported(afMode: FocusMode): Promise<boolean\>
+**System Capabilities:**
 
-判断设备是否支持指定的焦距模式，通过Promise获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Checks whether a specified focus mode is supported. This method uses a promise to return the result.
 
-| 名称       | 类型                                    | 必填      | 说明         |
+**Parameters**
+
+| Name      | Type                                   | Mandatory | Description |
 |-----------|----------------------------------------|-----------|-------------|
-| afMode    | [FocusMode](#focusmode) | 是   | 指定的焦距模式。 |
+| afMode    | <a href="#sec_FocusMode">FocusMode</a> | Yes       | Focus mode  |
 
-**返回值：**
+**Return values**
 
-| 类型                   | 说明                                               |
+| Type                  | Description                                       |
 |-----------------------|---------------------------------------------------|
-| Promise<boolean\>     | 使用Promise的方式获取结果，返回true表示设备支持该焦距模式。 |
+| Promise<boolean\>     | Promise used to return the focus mode support status. |
 
-**示例：**
+**Example**
 
 ```
 cameraInput.isFocusModeSupported(afMode).then((status) => {
@@ -871,24 +1015,30 @@ cameraInput.isFocusModeSupported(afMode).then((status) => {
 })
 ```
 
-### setFocusMode
+### setFocusMode(afMode: FocusMode, callback: AsyncCallback<void\>): void;
 
-setFocusMode(afMode: FocusMode, callback: AsyncCallback<void\>): void
+**System Capabilities:**
 
-设置焦距模式，通过注册回调函数获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-进行设置之前，需要先检查设备是否支持指定的焦距模式，可使用方法[isFocusModeSupported](#isfocusmodesupported)。
+**Description**
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+Sets focus mode. This method uses an asynchronous callback to return the result.
 
-**参数：**
+Note: Before setting the focus mode, check focus mode support (<a href="#sec_isFocusModeSupported">isFocusModeSupported</a> method);
 
-| 名称       | 类型                    | 必填      | 说明                                |
+**Parameters**
+
+| Name      | Type                   | Mandatory | Description                        |
 |-----------|------------------------|-----------|------------------------------------|
-| afMode    | [FocusMode](#focusmode) | 是   | 指定的焦距模式。         |
-| callback  | AsyncCallback<void\>   | 是       | 回调函数，用于获取结果。 |
+| afMode    | <a href="#sec_FocusMode">FocusMode</a> | Yes       | Focus mode         |
+| callback  | AsyncCallback<void\>   | Yes       | Callback used to return the result |
 
-**示例：**
+**Return values**
+
+none
+
+**Example**
 
 ```
 cameraInput.setFocusMode(afMode, (err) => {
@@ -900,29 +1050,31 @@ cameraInput.setFocusMode(afMode, (err) => {
 })
 ```
 
-### setFocusMode
+### setFocusMode(afMode: FocusMode): Promise<void\>;
 
-setFocusMode(afMode: FocusMode): Promise<void\>
+**System Capabilities:**
 
-设置焦距模式，通过Promise获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-进行设置之前，需要先检查设备是否支持指定的焦距模式，可使用方法[isFocusModeSupported](#isfocusmodesupported)。
+**Description**
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+Sets focus mode. This method uses a promise to return the result.
 
-**参数：**
+Note: Before setting the focus mode, check focus mode support (<a href="#sec_isFocusModeSupported">isFocusModeSupported</a> method);
 
-| 名称       | 类型                                     | 必填      | 说明         |
+**Parameters**
+
+| Name      | Type                                    | Mandatory | Description |
 |-----------|-----------------------------------------|-----------|-------------|
-| afMode    | [FocusMode](#focusmode) | 是   | 指定的焦距模式。 |
+| afMode    | <a href="#sec_FocusMode">FocusMode</a>  | Yes       | Focus mode  |
 
-**返回值：**
+**Return values**
 
-| 类型                   | 说明                                     |
+| Type                  | Description                             |
 |-----------------------|-----------------------------------------|
-| Promise<void\>        | 使用Promise的方式获取结果。 |
+| Promise<void\>        | Promise used to return the result       |
 
-**示例：**
+**Example**
 
 ```
 cameraInput.setFocusMode(afMode).then() => {
@@ -930,21 +1082,27 @@ cameraInput.setFocusMode(afMode).then() => {
 })
 ```
 
-### getFocusMode
+### getFocusMode(callback: AsyncCallback<FocusMode\>): void;
 
-getFocusMode(callback: AsyncCallback<FocusMode\>): void
+**System Capabilities:**
 
-获取当前设备的焦距模式，通过注册回调函数获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Gets the current focus mode. This method uses an asynchronous callback to return the result.
 
-| 名称       | 类型                       | 必填      | 说明                                            |
+**Parameters**
+
+| Name      | Type                      | Mandatory | Description                                    |
 |-----------|---------------------------|-----------|------------------------------------------------|
-| callback  | AsyncCallback<[FocusMode](#focusmode)\> | 是       | 回调函数，用于获取当前设备的焦距模式。 |
+| callback  | AsyncCallback<FocusMode\> | Yes       | Callback used to return the current focus mode |
 
-**示例：**
+**Return values**
+
+none
+
+**Example**
 
 ```
 cameraInput.getFocusMode((err, afMode) => {
@@ -956,21 +1114,27 @@ cameraInput.getFocusMode((err, afMode) => {
 })
 ```
 
-### getFocusMode
+### getFocusMode(): Promise<FocusMode\>;
 
-getFocusMode(): Promise<FocusMode\>
+**System Capabilities:**
 
-获取当前设备的焦距模式，通过Promise获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**返回值：**
+Gets the current focus mode. This method uses a promise to return the result.
 
-| 类型                | 说明                                  |
-| ------------------- | ------------------------------------- |
-| Promise<FocusMode\> | 使用Promise的方式获取当前的焦距模式。 |
+**Parameters**
 
-**示例：**
+none
+
+**Return values**
+
+| Type                  | Description                                       |
+|-----------------------|---------------------------------------------------|
+| Promise<FocusMode\>   | Promise used to return the focus mode             |
+
+**Example**
 
 ```
 cameraInput.getFocusMode().then(afMode) => {
@@ -978,21 +1142,28 @@ cameraInput.getFocusMode().then(afMode) => {
 })
 ```
 
-### getZoomRatioRange
+### getZoomRatioRange\(callback: AsyncCallback<Array<number\>\>\): void;
 
-getZoomRatioRange\(callback: AsyncCallback<Array<number\>\>\): void
+**System Capabilities:**
 
-获取可变焦距比范围，通过注册回调函数获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Gets the zoom ratios of all zoom values. This method uses an asynchronous callback to return the result.
 
-| 名称      | 类型                            | 必填      | 说明                                             |
+**Parameters**
+
+| Name     | Type                           | Mandatory | Description                                     |
 |----------|--------------------------------|-----------|-------------------------------------------------|
-| callback | AsyncCallback<Array<number\>\> | 是       | 回调函数，用于获取结果。       |
+| callback | AsyncCallback<Array<number\>\> | Yes       | Callback used to return the zoom ratio range |
 
-**示例：**
+
+**Return values**
+
+none
+
+**Example**
 
 ```
 cameraInput.getZoomRatioRange(err, zoomRatioRange) => {
@@ -1004,21 +1175,27 @@ cameraInput.getZoomRatioRange(err, zoomRatioRange) => {
 })
 ```
 
-### getZoomRatioRange
+### getZoomRatioRange\(\): Promise<Array<number\>\>;
 
-getZoomRatioRange\(\): Promise<Array<number\>\>
+**System Capabilities:**
 
-获取可变焦距比范围，通过Promise获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**返回值：**
+Gets the zoom ratios of all zoom values. This method uses a promise to return the result.
 
-| 类型                    | 说明                                         |
+**Parameters**
+
+none
+
+**Return values**
+
+| Type                   | Description                                 |
 |------------------------|---------------------------------------------|
-| Promise<Array<number\>\> | 使用Promise的方式获取当前的可变焦距比范围。 |
+| Promise<Array<number\>\> | Promise used to return the zoom ratio range |
 
-**示例：**
+**Example**
 
 ```
 cameraInput.getZoomRatioRange().then((zoomRatioRange) => {
@@ -1026,22 +1203,28 @@ cameraInput.getZoomRatioRange().then((zoomRatioRange) => {
 })
 ```
 
-### setZoomRatio
+### setZoomRatio(zoomRatio: number, callback: AsyncCallback<void\>): void;
 
-setZoomRatio(zoomRatio: number, callback: AsyncCallback<void\>): void
+**System Capabilities:**
 
-设置可变焦距比，通过注册回调函数获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Sets a zoom ratio. This method uses an asynchronous callback to return the result.
 
-| 名称      | 类型                     | 必填      | 说明                                |
+**Parameters**
+
+| Name      | Type                   | Mandatory | Description                        |
 |-----------|------------------------|-----------|------------------------------------|
-| zoomRatio | number                 | 是       | 可变焦距比。                      |
-| callback  | AsyncCallback<void\>   | 是       | 回调函数，用于获取结果。 |
+| zoomRatio | number                 | Yes       | Zoom ratio                         |
+| callback  | AsyncCallback<void\>   | Yes       | Callback used to return the result |
 
-**示例：**
+**Return values**
+
+none
+
+**Example**
 
 ```
 cameraInput.setZoomRatio(zoomRatio, (err) => {
@@ -1053,27 +1236,29 @@ cameraInput.setZoomRatio(zoomRatio, (err) => {
 })
 ```
 
-### setZoomRatio
+### setZoomRatio(zoomRatio: number): Promise<void\>;
 
-setZoomRatio(zoomRatio: number): Promise<void\>
+**System Capabilities:**
 
-设置可变焦距比，通过Promise获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Sets a zoom ratio. This method uses a promise to return the result.
 
-| 名称       | 类型     | 必填 | 说明 |
+**Parameters**
+
+| Name      | Type     | Mandatory | Description |
 |-----------|----------|-----------|-------------|
-| zoomRatio | number   | 是       | 可变焦距比。 |
+| zoomRatio | number   | Yes       | zoom ratio  |
 
-**返回值：**
+**Return values**
 
-| 类型                   | 说明                                    |
+| Type                  | Description                             |
 |-----------------------|-----------------------------------------|
-| Promise<void\>        | 使用Promise的方式获取结果。 |
+| Promise<void\>        | Promise used to return the result       |
 
-**示例：**
+**Example**
 
 ```
 cameraInput.setZoomRatio(zoomRatio).then() => {
@@ -1081,21 +1266,27 @@ cameraInput.setZoomRatio(zoomRatio).then() => {
 })
 ```
 
-### getZoomRatio
+### getZoomRatio(callback: AsyncCallback<number\>): void;
 
-getZoomRatio(callback: AsyncCallback<number\>): void
+**System Capabilities:**
 
-获取当前的可变焦距比，通过注册回调函数获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Gets current zoom ratio value. This method uses an asynchronous callback to return the result.
 
-| 名称       | 类型                       | 必填      | 说明                                                  |
+**Parameters**
+
+| Name      | Type                      | Mandatory | Description                                          |
 |-----------|---------------------------|-----------|------------------------------------------------------|
-| callback  | AsyncCallback<number\>    | 是       | 回调函数，用于获取结果。                   |
+| callback  | AsyncCallback<number\>    | Yes       | Callback used to return the current zoom ratio value |
 
-**示例：**
+**Return values**
+
+none
+
+**Example**
 
 ```
 cameraInput.getZoomRatio((err, zoomRatio) => {
@@ -1107,21 +1298,27 @@ cameraInput.getZoomRatio((err, zoomRatio) => {
 })
 ```
 
-### getZoomRatio
+### getZoomRatio(): Promise<number\>;
 
-getZoomRatio(): Promise<number\>
+**System Capabilities:**
 
-获取当前的可变焦距比，通过Promise获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**返回值：**
+Gets current zoom ratio value. This method uses a promise to return the result.
 
-| 类型             | 说明                        |
-| ---------------- | --------------------------- |
-| Promise<number\> | 使用Promise的方式获取结果。 |
+**Parameters**
 
-**示例：**
+none
+
+**Return values**
+
+| Type                  | Description                                       |
+|-----------------------|---------------------------------------------------|
+| Promise<number\>      | Promise used to return the zoom ratio vaule       |
+
+**Example**
 
 ```
 cameraInput.getZoomRatio().then(zoomRatio) => {
@@ -1129,24 +1326,30 @@ cameraInput.getZoomRatio().then(zoomRatio) => {
 })
 ```
 
-### release
+### release\(callback: AsyncCallback<void\>\): void;
 
-release\(callback: AsyncCallback<void\>\): void
+**System Capabilities:**
 
-释放相机实例，通过注册回调函数获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Releases this **CameraInput** instance. This method uses an asynchronous callback to return the result.
 
-| 名称     | 类型                 | 必填 | 说明                        |
+**Parameters**
+
+| Name     | Type                 | Mandatory | Description                        |
 |----------|----------------------|-----------|------------------------------------|
-| callback | AsyncCallback<void\> | 是       | 回调函数，用于获取结果。     |
+| callback | AsyncCallback<void\> | Yes       | Callback used to return the result |
 
-**示例：**
+**Return values**
+
+none
+
+**Example**
 
 ```
-camera.release((err) => {
+cameraInput.release((err) => {
     if (err) {
         console.error('Failed to release the CameraInput instance ${err.message}');
         return;
@@ -1155,21 +1358,27 @@ camera.release((err) => {
 });
 ```
 
-### release
+### release(): Promise<void\>;
 
-release(): Promise<void\>
+**System Capabilities:**
 
-释放相机实例，通过Promise获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**返回值：**
+Releases this **CameraInput** instance. This method uses a promise to return the result.
 
-| 类型           | 说明                                 |
+**Parameters**
+
+none
+
+**Return values**
+
+| Type           | Description                                 |
 |----------------|---------------------------------------------|
-| Promise<void\> | 使用Promise的方式获取结果。     |
+| Promise<void\> | Promise used to return the result |
 
-**示例：**
+**Example**
 
 ```
 cameraInput.release().then(() => {
@@ -1177,22 +1386,28 @@ cameraInput.release().then(() => {
 })
 ```
 
-### on('focusStateChange')
+### on(type: 'focusStateChange', callback: Callback<FocusState\>): void;
 
-on(type: 'focusStateChange', callback: AsyncCallback<FocusState\>): void
+**System Capabilities:**
 
-监听焦距的状态变化，通过注册回调函数获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Listens for focus state changes. This method uses a callback to get focus state changes.
 
-| 名称     | 类型                   | 必填 | 说明                                     |
+**Parameters**
+
+| Name     | Type                   | Mandatory | Description                                     |
 | :------- | :--------------------- | :-------- | :-----------------------------------------------|
-| type     | string                 | 是       | 监听事件，固定为'focusStateChange'，即焦距状态变化事件。 |
-| callback | AsyncCallback<[FocusState](#focusstate)\> | 是       | 回调函数，用于获取焦距状态。         |
+| type     | string                 | Yes       | Name of the event to listen for.                    |
+| callback | Callback<FocusState\>  | Yes       | Callback used to get the focus state change.    |
 
-**示例：**
+**Return value**
+
+None
+
+**Example**
 
 ```
 cameraInput.on('focusStateChange', (focusState) => {
@@ -1200,22 +1415,28 @@ cameraInput.on('focusStateChange', (focusState) => {
 })
 ```
 
-### on('error')
+### on(type: 'error', callback: Callback<CameraInputError\>): void;
 
-on('error', callback: ErrorCallback<CameraInputError\>): void
+**System Capabilities:**
 
-监听CameraInput的错误事件，通过注册回调函数获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Listens for **CameraInput** errors. This method uses a callback to get errors.
 
-| 名称     | 类型                   | 必填 | 说明                                     |
+**Parameters**
+
+| Name     | Type                   | Mandatory | Description                                     |
 | :------- | :--------------------- | :-------- | :-----------------------------------------------|
-| type     | string                 | 是       | 监听事件，固定为'error'。                 |
-| callback | ErrorCallback<CameraInputError\> | 是  | 回调函数，用于获取结果。 |
+| type     | string                 | Yes       | Name of the event to listen for.                    |
+| callback | Callback<CameraInputError\> | Yes  | Callback used to get the camera input errors.   |
 
-**示例：**
+**Return value**
+
+None
+
+**Example**
 
 ```
 cameraInput.on('error', (cameraInputError) => {
@@ -1223,58 +1444,54 @@ cameraInput.on('error', (cameraInputError) => {
 })
 ```
 
+## FlashMode <a name="sec_FlashMode"></a>
 
-## FlashMode
+Enumerates the flash modes.
 
-枚举，闪光灯模式。
-
-| 名称                    | 默认值         | 说明                   |
+| Name                   | Default value | Description            |
 |------------------------|---------------|------------------------|
-| FLASH_MODE_CLOSE       | 0             | 闪光灯关闭。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
-| FLASH_MODE_OPEN        | 1             | 闪光灯开启。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
-| FLASH_MODE_AUTO        | 2             | 自动闪光灯。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
-| FLASH_MODE_ALWAYS_OPEN | 3             | 闪光灯常亮。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
+| FLASH_MODE_CLOSE       | 0             | Flash mode close <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core      |
+| FLASH_MODE_OPEN        | 1             | Flash mode open  <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core      |
+| FLASH_MODE_AUTO        | 2             | Flash mode auto  <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core      |
+| FLASH_MODE_ALWAYS_OPEN | 3             | Flash mode always open <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core |
 
-## FocusMode
+## FocusMode <a name="sec_FocusMode"></a>
 
-枚举，焦距模式。
+Enumerates the focus modes.
 
-| 名称                        | 默认值         | 说明                        |
+| Name                       | Default value | Description                |
 |----------------------------|---------------|----------------------------|
-| FOCUS_MODE_MANUAL          | 0             | 手动变焦模式。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
-| FOCUS_MODE_CONTINUOUS_AUTO | 1             | 连续自动变焦模式。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
-| FOCUS_MODE_AUTO            | 2             | 自动变焦模式。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
-| FOCUS_MODE_LOCKED          | 3             | 定焦模式。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
+| FOCUS_MODE_MANUAL          | 0             | Focus mode manual <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core         |
+| FOCUS_MODE_CONTINUOUS_AUTO | 1             | Focus mode continuous auto <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core|
+| FOCUS_MODE_AUTO            | 2             | Focus mode auto <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core           |
+| FOCUS_MODE_LOCKED          | 3             | Focus mode locked  <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core        |
 
-## FocusState
 
-枚举，焦距状态。
+## createCaptureSession\(context: Context, callback: AsyncCallback<CaptureSession\>\): void;
 
-| 名称                  | 默认值 | 说明                                                         |
-| --------------------- | ------ | ------------------------------------------------------------ |
-| FOCUS_STATE_SCAN      | 0      | 扫描状态。<br/> 系统能力 : SystemCapability.Multimedia.Camera.Core |
-| FOCUS_STATE_FOCUSED   | 1      | 相机已对焦。<br/> 系统能力 : SystemCapability.Multimedia.Camera.Core |
-| FOCUS_STATE_UNFOCUSED | 2      | 相机未对焦。<br/> 系统能力 : SystemCapability.Multimedia.Camera.Core |
+**System Capabilities:**
 
-## camera.createCaptureSession
+SystemCapability.Multimedia.Camera.Core
 
-createCaptureSession\(context: Context, callback: AsyncCallback<CaptureSession\>\): void
+**Description**
 
-获取CaptureSession实例，通过注册回调函数获取结果。
+Creates a **CaptureSession** instance. This method uses an asynchronous callback to return the instance.
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Parameters**
 
-**参数：**
-
-| 名称      | 类型                            | 必填      | 说明                                                |
+| Name     | Type                           | Mandatory | Description                                         |
 |----------|--------------------------------|-----------|-----------------------------------------------------|
-| context  | Context                        | 是       | 应用上下文。                                         |
-| callback | AsyncCallback<[CaptureSession](#capturesession)\> | 是       | 回调函数，用于获取CaptureSession实例。 |
+| context  | Context                        | Yes       | Application context                                 |
+| callback | AsyncCallback<CaptureSession\> | Yes       | Callback used to return the CaptureSession instance |
 
-**示例：**
+**Return values**
+
+none
+
+**Example**
 
 ```
-camera.createCaptureSession(context), (err, captureSession) => {
+captureSession.createCaptureSession(context), (err, captureSession) => {
     if (err) {
         console.error('Failed to create the CaptureSession instance. ${err.message}');
         return;
@@ -1283,53 +1500,61 @@ camera.createCaptureSession(context), (err, captureSession) => {
 });
 ```
 
-## camera.createCaptureSession
+## createCaptureSession(context: Context\): Promise<CaptureSession\>;
 
-createCaptureSession(context: Context\): Promise<CaptureSession\>;
+**System Capabilities:**
 
-获取CaptureSession实例，通过Promise获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Creates a **CaptureSession** instance. This method uses a promise to return the instance.
 
-| 名称      | 类型                          | 必填       | 说明                                                |
+**Parameters**
+
+| Name     | Type                          | Mandatory | Description                                         |
 |----------|-------------------------------|-----------|-----------------------------------------------------|
-| context  | Context                       | 是       | 应用上下文。                              |
+| context  | Context                       | Yes       | Application context                                 |
 
-**返回值：**
+**Return values**
 
-| 类型                       | 说明                                              |
+| Type                      | Description                                       |
 |---------------------------|---------------------------------------------------|
-| Promise<[CaptureSession](#capturesession)\> | 使用Promise的方式获取CaptureSession实例。 |
+| Promise<CaptureSession\>  | Promise used to return the CaptureSession instance.   |
 
-**示例：**
+**Example**
 
 ```
-camera.createCaptureSession(context).then((captureSession) => {
+captureSession.createCaptureSession(context).then((captureSession) => {
     console.log('Promise returned with the CaptureSession instance');
 })
 ```
 
-## CaptureSession
+## CaptureSession<a name="sec_CaptureSession"></a>
 
-拍照会话类。
+Implements session capture.
 
-### beginConfig
+### beginConfig\(callback: AsyncCallback<void\>\): void;<a name="section84581011418"></a>
 
-beginConfig\(callback: AsyncCallback<void\>\): void
+**System Capabilities:**
 
-开始配置会话，通过注册回调函数获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Starts configuration for this CaptureSession instance. This method uses an asynchronous callback to return the result.
 
-| 名称      | 类型                  | 必填      | 说明                                          |
+**Parameters**
+
+| Name     | Type                 | Mandatory | Description                                  |
 |----------|----------------------|-----------|----------------------------------------------|
-| callback | AsyncCallback<void\> | 是       | 回调函数，用于获取结果。            |
+| callback | AsyncCallback<void\> | Yes       | Callback used to return the result |
 
-**示例：**
+**Return values**
+
+none
+
+**Example**
 
 ```
 captureSession.beginConfig((err) => {
@@ -1341,22 +1566,28 @@ captureSession.beginConfig((err) => {
 });
 ```
 
-### beginConfig
+### beginConfig\(\): Promise<void\>;
 
-beginConfig\(\): Promise<void\>
+**System Capabilities:**
 
-开始配置会话，通过Promise获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**返回值：**
+Starts configuration for this CaptureSession instance. This method uses a promise to return the result.
 
-| 类型           | 说明                                        |
+**Parameters**
+
+none
+
+**Return values**
+
+| Type          | Description                                 |
 |---------------|---------------------------------------------|
-| Promise<void\> | 使用Promise的方式获取结果。                   |
+| Promise<void\> | Promise used to return the result |
 
 
-**示例：**
+**Example**
 
 ```
 captureSession.beginConfig().then(() => {
@@ -1364,21 +1595,27 @@ captureSession.beginConfig().then(() => {
 })
 ```
 
-### commitConfig
+### commitConfig\(callback: AsyncCallback<void\>\): void;<a name="section84581011418"></a>
 
-commitConfig\(callback: AsyncCallback<void\>\): void
+**System Capabilities:**
 
-提交会话配置，通过注册回调函数获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Commits the configuration for this CaptureSession instance. This method uses an asynchronous callback to return the result.
 
-| 名称      | 类型                 | 必填      | 说明                                          |
+**Parameters**
+
+| Name     | Type                | Mandatory | Description                                  |
 |----------|---------------------|-----------|----------------------------------------------|
-| callback | AsyncCallback<void\> | 是       | 回调函数，用于获取结果。 |
+| callback | AsyncCallback<void\> | Yes       | Callback used to return the result |
 
-**示例：**
+**Return values**
+
+none
+
+**Example**
 
 ```
 captureSession.commitConfig((err) => {
@@ -1390,21 +1627,27 @@ captureSession.commitConfig((err) => {
 });
 ```
 
-### commitConfig
+### commitConfig\(\): Promise<void\>;<a name="section189141826104616"></a>
 
-commitConfig\(\): Promise<void\>
+**System Capabilities:**
 
-提交会话配置，通过Promise获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**返回值：**
+Commits the configuration for this CaptureSession instance. This method uses a promise to return the result.
 
-| 类型           | 说明                                         |
+**Parameters**
+
+none
+
+**Return values**
+
+| Type          | Description                                 |
 |---------------|---------------------------------------------|
-| Promise<void\> | 使用Promise的方式获取结果。    |
+| Promise<void\> | Promise used to return the result |
 
-**示例：**
+**Example**
 
 ```
 captureSession.commitConfig().then(() => {
@@ -1412,22 +1655,28 @@ captureSession.commitConfig().then(() => {
 })
 ```
 
-### addInput
+### addInput\(cameraInput: CameraInput, callback: AsyncCallback<void\>\): void;
 
-addInput\(cameraInput: CameraInput, callback: AsyncCallback<void\>\): void
+**System Capabilities:**
 
-在当前会话中，添加一个CameraInput实例，通过注册回调函数获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Add a CameraInput instance to this CaptureSession instance. This method uses an asynchronous callback to return the result.
 
-| 名称         | 类型                  | 必填      | 说明                                         |
+**Parameters**
+
+| Name        | Type                 | Mandatory | Description                                 |
 |-------------|----------------------|-----------|---------------------------------------------|
-| cameraInput | [CameraInput](#camerainput) | 是       | 需要添加的CameraInput实例。         |
-| callback    | AsyncCallback<void\> | 是       | 回调函数，用于获取结果。         |
+| cameraInput | CameraInput          | Yes       | CameraInput instance to add                 |
+| callback    | AsyncCallback<void\> | Yes       | Callback used to return the result          |
 
-**示例：**
+**Return values**
+
+none
+
+**Example**
 
 ```
 captureSession.addInput(cameraInput, (err) => {
@@ -1439,27 +1688,29 @@ captureSession.addInput(cameraInput, (err) => {
 });
 ```
 
-### addInput
+### addInput\(cameraInput: CameraInput\): Promise<void\>;<a name="section189141826104616"></a>
 
-addInput\(cameraInput: CameraInput\): Promise<void\>
+**System Capabilities:**
 
-在当前会话中，添加一个CameraInput实例，通过Promise获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Add a CameraInput instance to this CaptureSession instance. This method uses a promise to return the result.
 
-| 名称         | 类型                 | 必填      | 说明                           |
+**Parameters**
+
+| Name        | Type                | Mandatory | Description                   |
 |-------------|---------------------|-----------|-------------------------------|
-| cameraInput | [CameraInput](#camerainput) | 是   | 需要添加的CameraInput实例。 |
+| cameraInput | CameraInput         | Yes       | CameraInput instance to add   |
 
-**返回值：**
+**Return values**
 
-| 类型            | 说明                                |
+| Type           | Description                        |
 |----------------|------------------------------------|
-| Promise<void\> | 使用Promise的方式获取结果。 |
+| Promise<void\> | Promise used to return the result  |
 
-**示例：**
+**Example**
 
 ```
 captureSession.addInput(cameraInput).then(() => {
@@ -1467,22 +1718,28 @@ captureSession.addInput(cameraInput).then(() => {
 })
 ```
 
-### addOutput
+### addOutput\(previewOutput: PreviewOutput, callback: AsyncCallback<void\>\): void;<a name="section84581011418"></a>
 
-addOutput\(previewOutput: PreviewOutput, callback: AsyncCallback<void\>\): void
+**System Capabilities:**
 
-在当前会话中，添加一个PreviewOutput实例，通过注册回调函数获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Add a PreviewOutput instance to this CaptureSession instance. This method uses an asynchronous callback to return the result.
 
-| 名称           | 类型                 | 必填       | 说明                                 |
+**Parameters**
+
+| Name          | Type                 | Mandatory | Description                         |
 |---------------|----------------------|-----------|-------------------------------------|
-| previewOutput | [PreviewOutput](#previewoutput) | 是       | 需要添加的PreviewOutput实例。 |
-| callback      | AsyncCallback<void\> | 是       | 回调函数，用于获取结果。 |
+| previewOutput | PreviewOutput        | Yes       | PreviewOutput instance to add       |
+| callback      | AsyncCallback<void\> | Yes       | Callback used to return the result  |
 
-**示例：**
+**Return values**
+
+none
+
+**Example**
 
 ```
 captureSession.addOutput(previewOutput, (err) => {
@@ -1494,27 +1751,29 @@ captureSession.addOutput(previewOutput, (err) => {
 });
 ```
 
-### addOutput
+### addOutput\(previewOutput: PreviewOutput\): Promise<void\>;<a name="section189141826104616"></a>
 
-addOutput\(previewOutput: PreviewOutput\): Promise<void\>
+**System Capabilities:**
 
-在当前会话中，添加一个PreviewOutput实例，通过Promise获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Add a PreviewOutput instance to this CaptureSession instance. This method uses a promise to return the result.
 
-| 名称           | 类型                 | 必填      | 说明                            |
+**Parameters**
+
+| Name          | Type                | Mandatory | Description                    |
 |---------------|---------------------|-----------|--------------------------------|
-| previewOutput | [PreviewOutput](#previewoutput) | 是   | 需要添加的PreviewOutput实例。 |
+| previewOutput | PreviewOutput       | Yes       | PreviewOutput instance to add  |
 
-**返回值：**
+**Return values**
 
-| 类型            | 说明                               |
+| Type           | Description                       |
 |----------------|-----------------------------------|
-| Promise<void\> | 使用Promise的方式获取结果。 |
+| Promise<void\> | Promise used to return the result |
 
-**示例：**
+**Example**
 
 ```
 captureSession.addOutput(previewOutput).then(() => {
@@ -1522,22 +1781,28 @@ captureSession.addOutput(previewOutput).then(() => {
 })
 ```
 
-### addOutput
+### addOutput\(photoOutput: PhotoOutput, callback: AsyncCallback<void\>\): void;<a name="section84581011418"></a>
 
-addOutput\(photoOutput: PhotoOutput, callback: AsyncCallback<void\>\): void
+**System Capabilities:**
 
-在当前会话中，添加一个PhotoOutput实例，通过注册回调函数获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Add a PhotoOutput instance to this CaptureSession instance. This method uses an asynchronous callback to return the result.
 
-| 名称           | 类型                | 必填       | 说明                                 |
+**Parameters**
+
+| Name          | Type                | Mandatory | Description                         |
 |---------------|---------------------|-----------|-------------------------------------|
-| photoOutput   | [PhotoOutput](#photooutput) | 是       | 需要添加的PhotoOutput实例。 |
-| callback      | AsyncCallback<void\> | 是      | 回调函数，用于获取结果。 |
+| photoOutput   | PhotoOutput         | Yes       | PhotoOutput instance to add         |
+| callback      | AsyncCallback<void\> | Yes       | Callback used to return the result |
 
-**示例：**
+**Return values**
+
+none
+
+**Example**
 
 ```
 captureSession.addOutput(photoOutput, (err) => {
@@ -1549,27 +1814,29 @@ captureSession.addOutput(photoOutput, (err) => {
 });
 ```
 
-### addOutput
+### addOutput\(photoOutput: PhotoOutput\): Promise<void\>;<a name="section189141826104616"></a>
 
-addOutput\(photoOutput: PhotoOutput\): Promise<void\>
+**System Capabilities:**
 
-在当前会话中，添加一个PreviewOutput实例，通过Promise获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Add a PhotoOutput instance to this CaptureSession instance. This method uses a promise to return the result.
 
-| 名称           | 类型                 | 必填      | 说明                            |
+**Parameters**
+
+| Name          | Type                | Mandatory | Description                    |
 |---------------|---------------------|-----------|--------------------------------|
-| photoOutput   | [PhotoOutput](#photooutput) | 是   | 需要添加的PhotoOutput实例。 |
+| photoOutput   | PhotoOutput         | Yes       | PhotoOutput instance to add    |
 
-**返回值：**
+**Return values**
 
-| 类型           | 说明                              |
+| Type          | Description                       |
 |---------------|-----------------------------------|
-| Promise\<void> | 使用Promise的方式获取结果。 |
+| Promise<void> | Promise used to return the result |
 
-**示例：**
+**Example**
 
 ```
 captureSession.addOutput(photoOutput).then(() => {
@@ -1577,22 +1844,28 @@ captureSession.addOutput(photoOutput).then(() => {
 })
 ```
 
-### addOutput
+### addOutput\(videoOutput: VideoOutput, callback: AsyncCallback<void\>\): void;
 
-addOutput\(videoOutput: VideoOutput, callback: AsyncCallback<void\>\): void
+**System Capabilities:**
 
-在当前会话中，添加一个VideoOutput实例，通过注册回调函数获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Add a VideoOutput instance to this CaptureSession instance. This method uses an asynchronous callback to return the result.
 
-| 名称           | 类型                 | 必填      | 说明                                 |
+**Parameters**
+
+| Name          | Type                | Mandatory | Description                         |
 |---------------|---------------------|-----------|-------------------------------------|
-| videoOutput   | [VideoOutput](#videooutput) | 是       | 需要添加的VideoOutput实例。 |
-| callback    | AsyncCallback<void\>        | 是   | 回调函数，用于获取结果。    |
+| videoOutput   | VideoOutput         | Yes       | VideoOutput instance to add         |
+| callback      | AsyncCallback<void\> | Yes       | Callback used to return the result |
 
-**示例：**
+**Return values**
+
+none
+
+**Example**
 
 ```
 captureSession.addOutput(videoOutput, (err) => {
@@ -1604,27 +1877,29 @@ captureSession.addOutput(videoOutput, (err) => {
 });
 ```
 
-### addOutput
+### addOutput\(videoOutput: VideoOutput\): Promise<void\>;
 
-addOutput\(videoOutput: VideoOutput\): Promise<void\>
+**System Capabilities:**
 
-在当前会话中，添加一个VideoOutput实例，通过Promise获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Add a VideoOutput instance to this CaptureSession instance. This method uses a promise to return the result.
 
-| 名称        | 类型                        | 必填 | 说明                        |
-| ----------- | --------------------------- | ---- | --------------------------- |
-| videoOutput | [VideoOutput](#videooutput) | 是   | 需要添加的VideoOutput实例。 |
+**Parameters**
 
-**返回值：**
+| Name          | Type                | Mandatory | Description                    |
+|---------------|---------------------|-----------|--------------------------------|
+| videoOutput   | VideoOutput         | Yes       | VideoOutput instance to add    |
 
-| 类型           | 说明                        |
-| -------------- | --------------------------- |
-| Promise\<void> | 使用Promise的方式获取结果。 |
+**Return values**
 
-**示例：**
+| Type           | Description                       |
+|----------------|-----------------------------------|
+| Promise<void\> | Promise used to return the result |
+
+**Example**
 
 ```
 captureSession.addOutput(videoOutput).then(() => {
@@ -1632,22 +1907,29 @@ captureSession.addOutput(videoOutput).then(() => {
 })
 ```
 
-### removeInput
+### removeInput\(cameraInput: CameraInput, callback: AsyncCallback<void\>\): void;<a name="section84581011418"></a>
 
-removeInput\(cameraInput: CameraInput, callback: AsyncCallback<void\>\): void
+**System Capabilities:**
 
-在当前会话中，移除一个CameraInput实例，通过注册回调函数获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Removes a **CameraInput** instance from this **CaptureSession** instance. This method uses an asynchronous callback to return the result.
 
-| 名称         | 类型                  | 必填      | 说明                                |
+**Parameters**
+
+| Name        | Type                 | Mandatory | Description                        |
 |-------------|----------------------|-----------|------------------------------------|
-| cameraInput | [CameraInput](#camerainput) | 是   | 需要移除的CameraInput实例。 |
-| callback    | AsyncCallback<void\> | 是       | 回调函数，用于获取结果。 |
+| cameraInput | CameraInput          | Yes       | CameraInput instance to remove     |
+| callback    | AsyncCallback<void\> | Yes       | Callback used to return the result |
 
-**示例：**
+
+**Return values**
+
+none
+
+**Example**
 
 ```
 captureSession.removeInput(cameraInput, (err) => {
@@ -1659,27 +1941,29 @@ captureSession.removeInput(cameraInput, (err) => {
 });
 ```
 
-### removeInput
+### removeInput\(cameraInput: CameraInput\): Promise<void\>;<a name="section189141826104616"></a>
 
-removeInput\(cameraInput: CameraInput\): Promise<void\>
+**System Capabilities:**
 
-在当前会话中，移除一个CameraInput实例，通过Promise获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Removes a **CameraInput** instance from this **CaptureSession** instance. This method uses a promise to return the result.
 
-| 名称         | 类型                | 必填       | 说明                             |
+**Parameters**
+
+| Name        | Type                | Mandatory | Description                     |
 |-------------|---------------------|-----------|---------------------------------|
-| cameraInput | [CameraInput](#camerainput) | 是   | 需要移除的CameraInput实例。 |
+| cameraInput | CameraInput         | Yes       | CameraInput instance to remove  |
 
-**返回值：**
+**Return values**
 
-| 类型            | 说明                              |
+| Type           | Description                       |
 |----------------|-----------------------------------|
-| Promise\<void> | 使用Promise的方式获取结果。 |
+| Promise<void\> | Promise used to return the result |
 
-**示例：**
+**Example**
 
 ```
 captureSession.removeInput(cameraInput).then(() => {
@@ -1687,22 +1971,28 @@ captureSession.removeInput(cameraInput).then(() => {
 })
 ```
 
-### removeOutput
+### removeOutput\(previewOutput: PreviewOutput, callback: AsyncCallback<void\>\): void;<a name="section84581011418"></a>
 
-removeOutput\(previewOutput: PreviewOutput, callback: AsyncCallback<void\>\): void
+**System Capabilities:**
 
-在当前会话中，移除一个PreviewOutput实例，通过注册回调函数获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Removes a **PreviewOutput** instance from this **CaptureSession** instance. This method uses an asynchronous callback to return the result.
 
-| 名称           | 类型                 | 必填       | 说明                                |
+**Parameters**
+
+| Name          | Type                 | Mandatory | Description                        |
 |---------------|----------------------|-----------|------------------------------------|
-| previewOutput | [PreviewOutput](#previewoutput) | 是       | 需要移除的PreviewOutput实例。 |
-| callback      | AsyncCallback<void\> | 是       | 回调函数，用于获取结果。 |
+| previewOutput | PreviewOutput        | Yes       | PreviewOutput instance to remove   |
+| callback      | AsyncCallback<void\> | Yes       | Callback used to return the result |
 
-**示例：**
+**Return values**
+
+none
+
+**Example**
 
 ```
 captureSession.removeOutput(previewOutput, (err) => {
@@ -1714,29 +2004,31 @@ captureSession.removeOutput(previewOutput, (err) => {
 });
 ```
 
-### removeOutput
+### removeOutput(previewOutput: PreviewOutput): Promise<void\>;
 
-removeOutput(previewOutput: PreviewOutput): Promise<void\>
+**System Capabilities:**
 
-在当前会话中，移除一个PreviewOutput实例，通过Promise获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Removes a **PreviewOutput** instance from this **CaptureSession** instance. This method uses a promise to return the result.
 
-| 名称           | 类型                | 必填       | 说明                               |
+**Parameters**
+
+| Name          | Type                | Mandatory | Description                       |
 |---------------|---------------------|-----------|-----------------------------------|
-| previewOutput | [PreviewOutput](#previewoutput) | 是   | 需要移除的PreviewOutput实例。 |
+| previewOutput | PreviewOutput       | Yes       | PreviewOutput instance to remove  |
 
 
-**返回值：**
+**Return values**
 
-| 类型         | 说明                                 |
+| Type          | Description                                 |
 |---------------|---------------------------------------------|
-| Promise<void\> | 使用Promise的方式获取结果。 |
+| Promise<void\> | Promise used to return the result |
 
 
-**示例：**
+**Example**
 
 ```
 captureSession.removeOutput(previewOutput).then(() => {
@@ -1744,22 +2036,28 @@ captureSession.removeOutput(previewOutput).then(() => {
 })
 ```
 
-### removeOutput
+### removeOutput(photoOutput: PhotoOutput, callback: AsyncCallback<void\>): void;
 
-removeOutput(photoOutput: PhotoOutput, callback: AsyncCallback<void\>): void
+**System Capabilities:**
 
-在当前会话中，移除一个PhotoOutput实例，通过注册回调函数获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Removes a **PhotoOutput** instance from this **CaptureSession** instance. This method uses an asynchronous callback to return the result.
 
-| 名称           | 类型                 | 必填       | 说明                                |
+**Parameters**
+
+| Name          | Type                 | Mandatory | Description                        |
 |---------------|----------------------|-----------|------------------------------------|
-| photoOutput   | [PhotoOutput](#photooutput) | 是   | 需要添加的PhotoOutput实例。 |
-| callback      | AsyncCallback<void\> | 是       | 回调函数，用于获取结果。           |
+| photoOutput   | PhotoOutput          | Yes       | PhotoOutput instance to remove     |
+| callback      | AsyncCallback<void\> | Yes       | Callback used to return the result |
 
-**示例：**
+**Return values**
+
+none
+
+**Example**
 
 ```
 captureSession.removeOutput(photoOutput, (err) => {
@@ -1771,29 +2069,31 @@ captureSession.removeOutput(photoOutput, (err) => {
 });
 ```
 
-### removeOutput
+### removeOutput(photoOutput: PhotoOutput): Promise<void\>;
 
-removeOutput(photoOutput: PhotoOutput): Promise<void\>
+**System Capabilities:**
 
-在当前会话中，移除一个PhotoOutput实例，通过Promise获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Removes a **PhotoOutput** instance from this **CaptureSession** instance. This method uses a promise to return the result.
 
-| 名称           | 类型                 | 必填      | 说明                             |
+**Parameters**
+
+| Name          | Type                | Mandatory | Description                     |
 |---------------|---------------------|-----------|---------------------------------|
-| photoOutput   | [PhotoOutput](#photooutput) | 是   | 需要添加的PhotoOutput实例。 |
+| photoOutput   | PhotoOutput         | Yes       | PhotoOutput instance to remove  |
 
 
-**返回值：**
+**Return values**
 
-| 类型         | 说明                                  |
+| Type          | Description                        |
 |---------------|------------------------------------|
-| Promise<void\> | 使用Promise的方式获取结果。           |
+| Promise<void\> | Promise used to return the result |
 
 
-**示例：**
+**Example**
 
 ```
 captureSession.removeOutput(photoOutput).then(() => {
@@ -1801,22 +2101,28 @@ captureSession.removeOutput(photoOutput).then(() => {
 })
 ```
 
-### removeOutput
+### removeOutput(videoOutput: VideoOutput, callback: AsyncCallback<void\>): void;
 
-removeOutput(videoOutput: VideoOutput, callback: AsyncCallback<void\>): void
+**System Capabilities:**
 
-在当前会话中，移除一个VideoOutput实例，通过注册回调函数获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Removes a **VideoOutput** instance from this **CaptureSession** instance. This method uses an asynchronous callback to return the result.
 
-| 名称           | 类型                  | 必填      | 说明                                |
+**Parameters**
+
+| Name          | Type                 | Mandatory | Description                        |
 |---------------|----------------------|-----------|------------------------------------|
-| videoOutput   | [VideoOutput](#videooutput) | 是   | 需要添加的VideoOutput实例。 |
-| callback      | AsyncCallback<void\> | 是       | 回调函数，用于获取结果。           |
+| videoOutput   | VideoOutput          | Yes       | VideoOutput instance to remove     |
+| callback      | AsyncCallback<void\> | Yes       | Callback used to return the result |
 
-**示例：**
+**Return values**
+
+none
+
+**Example**
 
 ```
 captureSession.removeOutput(videoOutput, (err) => {
@@ -1828,29 +2134,31 @@ captureSession.removeOutput(videoOutput, (err) => {
 });
 ```
 
-### removeOutput
+### removeOutput(videoOutput: VideoOutput): Promise<void\>;
 
-removeOutput(videoOutput: VideoOutput): Promise<void\>
+**System Capabilities:**
 
-在当前会话中，移除一个VideoOutput实例，通过Promise获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Removes a **VideoOutput** instance from this **CaptureSession** instance. This method uses a promise to return the result.
 
-| 名称           | 类型                | 必填       | 说明                             |
+**Parameters**
+
+| Name          | Type                | Mandatory | Description                     |
 |---------------|---------------------|-----------|---------------------------------|
-| videoOutput   | [VideoOutput](#videooutput) | 是   | 需要添加的VideoOutput实例。 |
+| videoOutput   | VideoOutput         | Yes       | VideoOutput instance to remove  |
 
 
-**返回值：**
+**Return values**
 
-| 类型            | 说明                                         |
+| Type           | Description                                 |
 |----------------|---------------------------------------------|
-| Promise<void\> | 使用Promise的方式获取结果。                     |
+| Promise<void\> | Promise used to return the result |
 
 
-**示例：**
+**Example**
 
 ```
 captureSession.removeOutput(videoOutput).then(() => {
@@ -1858,21 +2166,27 @@ captureSession.removeOutput(videoOutput).then(() => {
 })
 ```
 
-### start
+### start\(callback: AsyncCallback<void\>\): void;
 
-start\(callback: AsyncCallback<void\>\): void
+**System Capabilities:**
 
-启动拍照会话，通过注册回调函数获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Starts this **CaptureSession** instance. This method uses an asynchronous callback to return the result.
 
-| 名称      | 类型                 | 必填       | 说明                                          |
+**Parameters**
+
+| Name     | Type                 | Mandatory | Description                                  |
 |----------|----------------------|-----------|----------------------------------------------|
-| callback | AsyncCallback<void\> | 是       | 回调函数，用于获取结果。                     |
+| callback | AsyncCallback<void\> | Yes       | Callback used to return the result |
 
-**示例：**
+**Return values**
+
+none
+
+**Example**
 
 ```
 captureSession.start((err) => {
@@ -1884,21 +2198,27 @@ captureSession.start((err) => {
 });
 ```
 
-### start
+### start\(\): Promise<void\>;<a name="section189141826104616"></a>
 
-start\(\): Promise<void\>
+**System Capabilities:**
 
-启动拍照会话，通过Promise获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**返回值：**
+Starts this **CaptureSession** instance. This method uses a promise to return the result.
 
-| 类型            | 说明                              |
+**Parameters**
+
+none
+
+**Return values**
+
+| Type           | Description                       |
 |----------------|-----------------------------------|
-| Promise<void\> | 使用Promise的方式获取结果。           |
+| Promise<void\> | Promise used to return the result |
 
-**示例：**
+**Example**
 
 ```
 captureSession.start().then(() => {
@@ -1906,22 +2226,28 @@ captureSession.start().then(() => {
 })
 ```
 
-### stop
+### stop\(callback: AsyncCallback<void\>\): void;<a name="section84581011418"></a>
 
-stop\(callback: AsyncCallback<void\>\): void
+**System Capabilities:**
 
-停止拍照会话，通过注册回调函数获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Stops this **CaptureSession** instance. This method uses an asynchronous callback to return the result.
+
+**Parameters**
 
 
-| 名称      | 类型                 | 必填       | 说明                                |
+| Name     | Type                 | Mandatory | Description                        |
 |----------|----------------------|-----------|------------------------------------|
-| callback | AsyncCallback<void\> | 是       | 回调函数，用于获取结果。           |
+| callback | AsyncCallback<void\> | Yes       | Callback used to return the result |
 
-**示例：**
+**Return values**
+
+none
+
+**Example**
 
 ```
 captureSession.stop((err) => {
@@ -1933,21 +2259,27 @@ captureSession.stop((err) => {
 });
 ```
 
-### stop
+### stop(): Promise<void\>;
 
-stop(): Promise<void\>
+**System Capabilities:**
 
-停止拍照会话，通过Promise获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**返回值：**
+Stops this **CaptureSession** instance. This method uses a promise to return the result.
 
-| 类型            | 说明                              |
+**Parameters**
+
+none
+
+**Return values**
+
+| Type           | Description                       |
 |----------------|-----------------------------------|
-| Promise<void\> | 使用Promise的方式获取结果。           |
+| Promise<void\> | Promise used to return the result |
 
-**示例：**
+**Example**
 
 ```
 captureSession.stop().then(() => {
@@ -1955,21 +2287,27 @@ captureSession.stop().then(() => {
 })
 ```
 
-### release
+### release\(callback: AsyncCallback<void\>\): void;<a name="section84581011418"></a>
 
-release\(callback: AsyncCallback<void\>\): void
+**System Capabilities:**
 
-释放CaptureSession实例，通过注册回调函数获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Releases this **CaptureSession** instance. This method uses an asynchronous callback to return the result.
 
-| 名称      | 类型                 | 必填       | 说明                                |
+**Parameters**
+
+| Name     | Type                 | Mandatory | Description                        |
 |----------|----------------------|-----------|------------------------------------|
-| callback | AsyncCallback<void\> | 是       | 回调函数，用于获取结果。           |
+| callback | AsyncCallback<void\> | Yes       | Callback used to return the result |
 
-**示例：**
+**Return values**
+
+none
+
+**Example**
 
 ```
 captureSession.release((err) => {
@@ -1981,21 +2319,27 @@ captureSession.release((err) => {
 });
 ```
 
-### release
+### release(): Promise<void\>;
 
-release(): Promise<void\>
+**System Capabilities:**
 
-释放CaptureSession实例，通过Promise获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**返回值：**
+Releases this **CaptureSession** instance. This method uses a promise to return the result.
 
-| 类型            | 说明                                         |
+**Parameters**
+
+none
+
+**Return values**
+
+| Type           | Description                                 |
 |----------------|---------------------------------------------|
-| Promise<void\> | 使用Promise的方式获取结果。                     |
+| Promise<void\> | Promise used to return the result |
 
-**示例：**
+**Example**
 
 ```
 captureSession.release().then(() => {
@@ -2003,22 +2347,28 @@ captureSession.release().then(() => {
 })
 ```
 
-### on('error')
+### on(type: 'error', callback: Callback<CaptureSessionError\>): void;
 
-on(type: 'error', callback: ErrorCallback<CaptureSessionError\>): void
+**System Capabilities:**
 
-监听拍照会话的错误事件，通过注册回调函数获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Listens for **CaptureSession** errors. This method uses a callback to get errors.
 
-| 名称     | 类型                   | 必填 | 说明                                     |
+**Parameters**
+
+| Name     | Type                   | Mandatory | Description                                     |
 | :------- | :--------------------- | :-------- | :-----------------------------------------------|
-| type     | string                 | 是       | 监听事件，固定为'error'。                   |
-| callback | ErrorCallback<CaptureSessionError\> | 是  | 回调函数，用于获取错误信息。 |
+| type     | string                 | Yes       | Name of the event to listen for.                    |
+| callback | Callback<CaptureSessionError\> | Yes  | Callback used to get the capture session errors. |
 
-**示例：**
+**Return value**
+
+None
+
+**Example**
 
 ```
 captureSession.on('error', (captureSessionError) => {
@@ -2026,22 +2376,28 @@ captureSession.on('error', (captureSessionError) => {
 })
 ```
 
-## camera.createPreviewOutput
+## createPreviewOutput(surfaceId: string, callback: AsyncCallback<PreviewOutput\>): void;
 
-createPreviewOutput(surfaceId: string, callback: AsyncCallback<PreviewOutput\>): void
+**System Capabilities:**
 
-获取PreviewOutput实例，通过注册回调函数获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Creates a **PreviewOutput** instance. This method uses an asynchronous callback to return the instance.
 
-| 名称        | 类型                          | 必填       | 说明                                                |
+**Parameters**
+
+| Name       | Type                          | Mandatory | Description                                        |
 |------------|-------------------------------|-----------|----------------------------------------------------|
-| surfaceId  | string                        | 是       | 从XComponent组件获取的Surface ID。                   |
-| callback   | AsyncCallback<[PreviewOutput](#previewoutput)\> | 是       | 回调函数，用于获取PreviewOutput实例。 |
+| surfaceId  | string                        | Yes       | Surface ID received from XComponent view           |
+| callback   | AsyncCallback<PreviewOutput\> | Yes       | Callback used to return the PreviewOutput instance |
 
-**示例：**
+**Return values**
+
+none
+
+**Example**
 
 ```
 camera.createPreviewOutput(surfaceId), (err, previewOutput) => {
@@ -2051,29 +2407,31 @@ camera.createPreviewOutput(surfaceId), (err, previewOutput) => {
     }
     console.log('Callback returned with previewOutput instance');
 });
-```
+``` 
 
-## camera.createPreviewOutput
+## createPreviewOutput(surfaceId: string): Promise<PreviewOutput>;
 
-createPreviewOutput(surfaceId: string): Promise\<PreviewOutput>
+**System Capabilities:**
 
-获取PreviewOutput实例，通过Promise获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Creates a **PreviewOutput** instance. This method uses a promise to return the instance.
 
-| 名称        | 类型             | 必填      | 说明                                                |
+**Parameters**
+
+| Name       | Type            | Mandatory | Description                                        |
 |------------|-----------------|-----------|----------------------------------------------------|
-| surfaceId  | string          | 是       | 从XComponent组件获取的Surface ID。                   |
+| surfaceId  | string          | Yes       | Surface ID received from XComponent view           |
 
-**返回值：**
+**Return values**
 
-| 类型                     | 说明                                               |
+| Type                    | Description                                       |
 |-------------------------|---------------------------------------------------|
-| Promise<[PreviewOutput](#previewoutput)\> | 使用Promise的方式获取结果。                           |
+| Promise<PreviewOutput\> | Promise used to return the PreviewOutput instance |
 
-**示例：**
+**Example**
 
 ```
 camera.createPreviewOutput(surfaceId).then((previewOutput) => {
@@ -2083,23 +2441,29 @@ camera.createPreviewOutput(surfaceId).then((previewOutput) => {
 
 ## PreviewOutput
 
-预览输出类。
+Implements preview output.
 
-### release
+### release(callback: AsyncCallback<void\>): void;
 
-release(callback: AsyncCallback<void\>): void
+**System Capabilities:**
 
-释放PreviewOutput实例，通过注册回调函数获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Releases this **PreviewOutput** instance. This method uses an asynchronous callback to return the result.
 
-| 名称      | 类型                 | 必填       | 说明                                          |
+**Parameters**
+
+| Name     | Type                 | Mandatory | Description                                  |
 |----------|----------------------|-----------|----------------------------------------------|
-| callback | AsyncCallback<void\> | 是       | 回调函数，用于获取结果。                     |
+| callback | AsyncCallback<void\> | Yes       | Callback used to return the result |
 
-**示例：**
+**Return values**
+
+none
+
+**Example**
 
 ```
 previewOutput.release((err) => {
@@ -2111,22 +2475,27 @@ previewOutput.release((err) => {
 });
 ```
 
-### release
+### release(): Promise<void\>;
 
-release(): Promise<void\>
+**System Capabilities:**
 
-释放PreviewOutput实例，通过Promise获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**返回值：**
+Releases this **PreviewOutput** instance. This method uses a promise to return the result.
 
-| 类型            | 说明                               |
+**Parameters**
+none
+
+**Return values**
+
+| Type           | Description                       |
 |----------------|-----------------------------------|
-| Promise<void\> | 使用Promise的方式获取结果。           |
+| Promise<void\> | Promise used to return the result |
 
 
-**示例：**
+**Example**
 
 ```
 previewOutput.release().then(() => {
@@ -2134,22 +2503,28 @@ previewOutput.release().then(() => {
 })
 ```
 
-### on('frameStart')
+### on(type: 'frameStart', callback: Callback<number\>): void;
 
-on(type: 'frameStart', callback: AsyncCallback<void\>): void
+**System Capabilities:**
 
-监听预览帧启动，通过注册回调函数获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Listens for preview frame start events. This method uses a callback to get the event information.
 
-| 名称      | 类型               | 必填      |  说明                               |
+**Parameters**
+
+| Name     | Type              | Mandatory | Description                        |
 | :------- | :---------------- | :-------- | :----------------------------------|
-| type     | string            | 是       | 监听事件，固定为'frameStart'，即帧启动事件。 |
-| callback | AsyncCallback<void\> | 是       | 回调函数，用于获取结果。           |
+| type     | string            | Yes       | Name of the event to listen for.   |
+| callback | Callback<void\>   | Yes       | Callback used to return the result |
 
-**示例：**
+**Return value**
+
+None
+
+**Example**
 
 ```
 previewOutput.on('frameStart', () => {
@@ -2157,22 +2532,28 @@ previewOutput.on('frameStart', () => {
 })
 ```
 
-### on('frameEnd')
+### on(type: 'frameEnd', callback: Callback<number\>): void;
 
-on(type: 'frameEnd', callback: AsyncCallback<void\>): void
+**System Capabilities:**
 
-监听预览帧结束，通过注册回调函数获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Listens for preview frame end event. This method uses a callback to get the event information.
 
-| 名称      | 类型               | 必填      | 说明                                |
+**Parameters**
+
+| Name     | Type              | Mandatory | Description                        |
 | :------- | :---------------- | :-------- | :----------------------------------|
-| type     | string            | 是       | 监听事件，固定为'frameEnd'，即帧结束事件。 |
-| callback | AsyncCallback<void\> | 是       | 回调函数，用于获取结果。           |
+| type     | string            | Yes       | Name of the event to listen for.   |
+| callback | Callback<void\>   | Yes       | Callback used to return the result |
 
-**示例：**
+**Return value**
+
+None
+
+**Example**
 
 ```
 previewOutput.on('frameEnd', () => {
@@ -2180,22 +2561,28 @@ previewOutput.on('frameEnd', () => {
 })
 ```
 
-### on('error')
+### on(type: 'error', callback: Callback<PreviewOutputError\>): void;
 
-on(type: 'error', callback: ErrorCallback<PreviewOutputError\>): void
+**System Capabilities:**
 
-监听预览输出的错误事件，通过注册回调函数获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Listens for **PreviewOutput** errors. This method uses a callback to get errors.
 
-| 名称      | 类型                    | 必填      | 说明                                             |
+**Parameters**
+
+| Name     | Type                   | Mandatory | Description                                     |
 | :------- | :--------------------- | :-------- | :-----------------------------------------------|
-| type     | string                 | 是       | 监听事件，固定为'error'。    |
-| callback | ErrorCallback<PreviewOutputError\> | 是  | 回调函数，用于获取错误信息。 |
+| type     | string                 | Yes       | Name of the event to listen for.                    |
+| callback | Callback<PreviewOutputError\> | Yes  | Callback used to get the preview output errors. |
 
-**示例：**
+**Return value**
+
+None
+
+**Example**
 
 ```
 previewOutput.on('error', (previewOutputError) => {
@@ -2203,22 +2590,28 @@ previewOutput.on('error', (previewOutputError) => {
 })
 ```
 
-## camera.createPhotoOutput
+## createPhotoOutput(surfaceId: string, callback: AsyncCallback<PhotoOutput\>): void;
 
-createPhotoOutput(surfaceId: string, callback: AsyncCallback<PhotoOutput\>): void
+**System Capabilities:**
 
-获取PhotoOutput实例，通过注册回调函数获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Creates a **PhotoOutput** instance. This method uses an asynchronous callback to return the instance.
 
-| 名称        | 类型                          | 必填       | 说明                                                |
+**Parameters**
+
+| Name       | Type                          | Mandatory | Description                                        |
 |------------|-------------------------------|-----------|----------------------------------------------------|
-| surfaceId  | string                        | 是       | 从ImageReceiver获取的Surface ID。                   |
-| callback   | AsyncCallback<[PhotoOutput](#photooutput)\> | 是       | 回调函数，用于获取PhotoOutput实例。              |
+| surfaceId  | string                        | Yes       | Surface ID received from ImageReceiver             |
+| callback   | AsyncCallback<PhotoOutput\>   | Yes       | Callback used to return the PhotoOutput instance   |
 
-**示例：**
+**Return values**
+
+none
+
+**Example**
 
 ```
 camera.createPhotoOutput(surfaceId), (err, photoOutput) => {
@@ -2228,29 +2621,31 @@ camera.createPhotoOutput(surfaceId), (err, photoOutput) => {
     }
     console.log('Callback returned with the PhotoOutput instance.');
 });
-```
+``` 
 
-## camera.createPhotoOutput
+## createPhotoOutput(surfaceId: string): Promise<PhotoOutput\>;
 
-createPhotoOutput(surfaceId: string): Promise<PhotoOutput\>
+**System Capabilities:**
 
-获取PhotoOutput实例，通过Promise获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Creates a **PhotoOutput** instance. This method uses a promise to return the PhotoOutput instance.
 
-| 名称        | 类型             | 必填      | 说明                                                |
+**Parameters**
+
+| Name       | Type            | Mandatory | Description                                        |
 |------------|-----------------|-----------|----------------------------------------------------|
-| surfaceId  | string          | 是       | 从ImageReceiver获取的Surface ID。                    |
+| surfaceId  | string          | Yes       | Surface ID received from ImageReceiver             |
 
-**返回值：**
+**Return values**
 
-| 类型                     | 说明                                             |
+| Type                    | Description                                      |
 |-------------------------|--------------------------------------------------|
-| Promise<[PhotoOutput](#photooutput)\> | 使用Promise的方式获取PhotoOutput实例。             |
+| Promise<PhotoOutput\>   | Promise used to return the PhotoOutput instance  |
 
-**示例：**
+**Example**
 
 ```
 camera.createPhotoOutput(surfaceId).then((photoOutput) => {
@@ -2259,55 +2654,71 @@ camera.createPhotoOutput(surfaceId).then((photoOutput) => {
 ```
 ## ImageRotation
 
-枚举，图片旋转角度。
+Enumerates the image rotation angles.
 
-| 名称          | 默认值         | 说明                                    |
+| Name         | Default Value | Description                            |
 |--------------|---------------|----------------------------------------|
-| ROTATION_0   | 0             | 图片旋转0度。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
-| ROTATION_90  | 90            | 图片旋转90度。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
-| ROTATION_180 | 180           | 图片旋转180度。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
-| ROTATION_270 | 270           | 图片旋转270度。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
+| ROTATION_0   | 0             | The capture image rotates 0 degrees <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core  |
+| ROTATION_90  | 90            | The capture image rotates 90 degrees <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core |
+| ROTATION_180 | 180           | The capture image rotates 180 degrees <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core |
+| ROTATION_270 | 270           | The capture image rotates 270 degrees <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core|
+
+
+## Location
+
+Defines the location of a captured image.
+
+| Name      | Type   | Access       | Description |
+|-----------|--------|--------------|-------------|
+| latitude  | number | read / write | Latitude <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core   |
+| longitude | number | read / write | Longitude <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core   |
 
 ## QualityLevel
 
-枚举，图片质量。
+Enumerates the image quality levels.
 
-| 名称                  | 默认值         | 说明                  |
+| Name                 | Default value | Description          |
 |----------------------|---------------|----------------------|
-| QUALITY_LEVEL_HIGH   | 0             | 图片质量高。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
-| QUALITY_LEVEL_MEDIUM | 1             | 图片质量中等。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
-| QUALITY_LEVEL_LOW    | 2             | 图片质量差。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
+| QUALITY_LEVEL_HIGH   | 0             | High image quality <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core  |
+| QUALITY_LEVEL_MEDIUM | 1             | Medium image quality <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core |
+| QUALITY_LEVEL_LOW    | 2             | Low image quality <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core   |
 
 
 ## PhotoCaptureSetting
 
-拍摄照片的设置。
+Defines the settings for image capture.
 
-| 名称      | 类型          | 必填       | 说明                 |
+| Name     | Type          | Mandatory | Description         |
 |----------|---------------|-----------|---------------------|
-| quality  | [QualityLevel](#qualitylevel) | 否 | 图片质量。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
-| rotation | [ImageRotation](#imagerotation) | 否 | 图片旋转角度。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
+| quality  | QualityLevel  | Optional  | Photo image quality <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core|
+| rotation | ImageRotation | Optional  | Photo rotation <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core     |
 
 
 ## PhotoOutput
 
-照片输出类。
+Implements photo output.
 
-### capture
+### capture(callback: AsyncCallback<void\>): void;
 
-capture(callback: AsyncCallback<void\>): void
+**System Capabilities:**
 
-拍照，通过注册回调函数获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Captures a photo. This method uses an asynchronous callback to return the result.
 
-| 名称      | 类型                 | 必填      | 说明                                          |
+**Parameters**
+
+| Name     | Type                | Mandatory | Description                                  |
 |----------|---------------------|-----------|----------------------------------------------|
-| callback | AsyncCallback<void\> | 是       | 回调函数，用于获取结果。                    |
+| callback | AsyncCallback<void\> | Yes       | Callback used to return the result |
 
-**示例：**
+**Return values**
+
+none
+
+**Example**
 
 ```
 photoOutput.capture((err) => {
@@ -2319,22 +2730,28 @@ photoOutput.capture((err) => {
 });
 ```
 
-### capture
+### capture(setting: PhotoCaptureSetting, callback: AsyncCallback<void\>): void;
 
-capture(setting: PhotoCaptureSetting, callback: AsyncCallback<void\>): void
+**System Capabilities:**
 
-根据拍照设置拍照，通过注册回调函数获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Captures a photo with the specified capture settings. This method uses an asynchronous callback to return the result.
 
-| 名称      | 类型                 | 必填       | 说明                                          |
+**Parameters**
+
+| Name     | Type                 | Mandatory | Description                                  |
 |----------|----------------------|-----------|----------------------------------------------|
-| setting  | [PhotoCaptureSetting](#photocapturesetting) | 是       | 拍照设置。                                     |
-| callback | AsyncCallback<void\> | 是       | 回调函数，用于获取结果。                     |
+| setting  | PhotoCaptureSetting  | Yes       | Photo capture settings                       |
+| callback | AsyncCallback<void\> | Yes       | Callback used to return the result |
 
-**示例：**
+**Return values**
+
+none
+
+**Example**
 
 ```
 photoOutput.capture(settings, (err) => {
@@ -2346,28 +2763,30 @@ photoOutput.capture(settings, (err) => {
 });
 ```
 
-### capture
+### capture(setting?: PhotoCaptureSetting): Promise<void\>;
 
-capture(setting?: PhotoCaptureSetting): Promise<void\>
+**System Capabilities:**
 
-根据拍照设置拍照，通过Promise获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Captures a photo with the specified capture settings. This method uses a promise to return the result.
 
-| 名称      | 类型                 | 必填      | 说明                                          |
+**Parameters**
+
+| Name     | Type                | Mandatory | Description                                  |
 |----------|---------------------|-----------|----------------------------------------------|
-| setting  | [PhotoCaptureSetting](#photocapturesetting) | 否   | 拍照设置。 |
+| setting  | PhotoCaptureSetting | No        | Photo capture settings                       |
 
-**返回值：**
+**Return values**
 
-| 类型            | 说明                                         |
+| Type           | Description                                 |
 |----------------|---------------------------------------------|
-| Promise<void\> | 使用Promise的方式获取结果。                     |
+| Promise<void\> | Promise used to return the result |
 
 
-**示例：**
+**Example**
 
 ```
 photoOutput.capture().then(() => {
@@ -2375,21 +2794,27 @@ photoOutput.capture().then(() => {
 })
 ```
 
-### release
+### release(callback: AsyncCallback<void\>): void;
 
-release(callback: AsyncCallback<void\>): void
+**System Capabilities:**
 
-释放PhotoOutput实例，通过注册回调函数获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Releases this **PhotoOutput** instance. This method uses an asynchronous callback to return the result.
 
-| 名称      | 类型                 | 必填       | 说明                                          |
+**Parameters**
+
+| Name     | Type                 | Mandatory | Description                                  |
 |----------|----------------------|-----------|----------------------------------------------|
-| callback | AsyncCallback<void\> | 是       | 回调函数，用于获取结果。                     |
+| callback | AsyncCallback<void\> | Yes       | Callback used to return the result |
 
-**示例：**
+**Return values**
+
+none
+
+**Example**
 
 ```
 photoOutput.release((err) => {
@@ -2401,22 +2826,27 @@ photoOutput.release((err) => {
 });
 ```
 
-### release
+### release(): Promise<void\>;
 
-release(): Promise<void\>
+**System Capabilities:**
 
-释放PhotoOutput实例，通过Promise获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**返回值：**
+Releases this **PhotoOutput** instance. This method uses a promise to return the result.
 
-| 类型            | 说明                                         |
+**Parameters**
+none
+
+**Return values**
+
+| Type           | Description                                 |
 |----------------|---------------------------------------------|
-| Promise<void\> | 使用Promise的方式获取结果。                     |
+| Promise<void\> | Promise used to return the result |
 
 
-**示例：**
+**Example**
 
 ```
 photoOutput.release().then(() => {
@@ -2424,22 +2854,28 @@ photoOutput.release().then(() => {
 })
 ```
 
-### on('captureStart')
+### on(type: 'captureStart', callback: Callback<number\>): void;
 
-on(type: 'captureStart', callback: AsyncCallback<number\>): void
+**System Capabilities:**
 
-监听拍照启动，通过注册回调函数获取Capture ID。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Listens for photo capture start events. This method uses a callback to get the event information.
 
-| 名称     | 类型                   | 必填 | 说明                                     |
+**Parameters**
+
+| Name     | Type                   | Mandatory | Description                                     |
 | :------- | :--------------------- | :-------- | :-----------------------------------------------|
-| type     | string                 | 是       | 监听事件，固定为'captureStart'，即拍照启动事件。 |
-| callback | AsyncCallback<number\> | 是       | 使用callback的方式获取Capture ID。                 |
+| type     | string                 | Yes       | Name of the event to listen for.                |
+| callback | Callback<number\>      | Yes       | Callback used to get the capture ID.            |
 
-**示例：**
+**Return value**
+
+None
+
+**Example**
 
 ```
 photoOutput.on('captureStart', (captureId) => {
@@ -2447,22 +2883,28 @@ photoOutput.on('captureStart', (captureId) => {
 })
 ```
 
-### on('frameShutter')
+### on(type: 'frameShutter', callback: Callback<FrameShutterInfo\>): void;
 
-on(type: 'frameShutter', callback: AsyncCallback<FrameShutterInfo\>): void
+**System Capabilities:**
 
-监听帧刷新，通过注册回调函数获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Listens for frame shutter events. This method uses a callback to get the event information.
 
-| 名称      | 类型                    | 必填      | 说明                                             |
+**Parameters**
+
+| Name     | Type                   | Mandatory | Description                                     |
 | :------- | :--------------------- | :-------- | :-----------------------------------------------|
-| type     | string                 | 是       | 监听事件，固定为'frameShutter'，即帧刷新事件。 |
-| callback | AsyncCallback<FrameShutterInfo\> | 是   | 回调函数，用于获取相关信息。                  |
+| type     | string                 | Yes       | Name of the event to listen for.                |
+| callback | Callback<FrameShutterInfo\> | Yes   | Callback used to get the frame shutter information.|
 
-**示例：**
+**Return value**
+
+None
+
+**Example**
 
 ```
 photoOutput.on('frameShutter', (frameShutterInfo) => {
@@ -2471,22 +2913,28 @@ photoOutput.on('frameShutter', (frameShutterInfo) => {
 })
 ```
 
-### on('captureEnd')
+### on(type: 'captureEnd', callback: Callback<CaptureEndInfo\>): void;
 
-on(type: 'captureEnd', callback: AsyncCallback<CaptureEndInfo\>): void
+**System Capabilities:**
 
-监听拍照停止，通过注册回调函数获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Listens for photo capture end events. This method uses a callback to get the event information.
 
-| 名称     | 类型                   | 必填 | 说明                                     |
-| :------- | :--------------------- | :-------- | :-----------------------------------------------|
-| type     | string                 | 是       | 监听事件，固定为'captureEnd'，即拍照停止事件。 |
-| callback | AsyncCallback<CaptureEndInfo\> | 是    | 回调函数，用于获取相关信息。   |
+**Parameters**
 
-**示例：**
+| Name     | Type                   | Mandatory | Description                                      |
+| :------- | :--------------------- | :-------- | :------------------------------------------------|
+| type     | string                 | Yes       | Name of the event to listen for.                 |
+| callback | Callback<CaptureEndInfo\> | Yes    | Callback used to get the capture end information |
+
+**Return value**
+
+None
+
+**Example**
 
 ```
 photoOutput.on('captureEnd', (captureEndInfo) => {
@@ -2495,22 +2943,28 @@ photoOutput.on('captureEnd', (captureEndInfo) => {
 })
 ```
 
-### on('error')
+### on(type: 'error', callback: Callback<PhotoOutputError\>): void;
 
-on(type: 'error', callback: ErrorCallback<PhotoOutputError\>): void
+**System Capabilities:**
 
-监听拍照的错误事件，通过注册回调函数获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Listens for **PhotoOutput** errors. This method uses a callback to get errors.
 
-| 名称     | 类型                   | 必填 | 说明                                     |
+**Parameters**
+
+| Name     | Type                   | Mandatory | Description                                     |
 | :------- | :--------------------- | :-------- | :-----------------------------------------------|
-| type     | string                 | 是       | 监听事件，固定为'error'。    |
-| callback | ErrorCallback<PhotoOutputError\> | 是  | 回调函数，用于获取错误信息。 |
+| type     | string                 | Yes       | Name of the event to listen for.                |
+| callback | Callback<PhotoOutputError\> | Yes  | Callback used to get the photo output errors.   |
 
-**示例：**
+**Return value**
+
+None
+
+**Example**
 
 ```
 photoOutput.on('error', (photoOutputError) => {
@@ -2518,22 +2972,28 @@ photoOutput.on('error', (photoOutputError) => {
 })
 ```
 
-## camera.createVideoOutput
+## createVideoOutput(surfaceId: string, callback: AsyncCallback<VideoOutput\>): void;
 
-createVideoOutput(surfaceId: string, callback: AsyncCallback<VideoOutput\>): void
+**System Capabilities:**
 
-获取VideoOutput实例，通过注册回调函数获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Creates a **VideoOutput** instance. This method uses an asynchronous callback to return the instance.
 
-| 名称        | 类型                           | 必填      | 说明                                                |
+**Parameters**
+
+| Name       | Type                          | Mandatory | Description                                        |
 |------------|-------------------------------|-----------|----------------------------------------------------|
-| surfaceId  | string                        | 是       | 从VideoRecorder获取的Surface ID。                   |
-| callback   | AsyncCallback<[VideoOutput](#videootput)\> | 是       | 回调函数，用于获取VideoOutput实例。    |
+| surfaceId  | string                        | Yes       | Surface ID received from VideoRecorder             |
+| callback   | AsyncCallback<VideoOutput\>   | Yes       | Callback used to return the VideoOutput instance   |
 
-**示例：**
+**Return values**
+
+none
+
+**Example**
 
 ```
 camera.createVideoOutput(surfaceId), (err, videoOutput) => {
@@ -2543,55 +3003,62 @@ camera.createVideoOutput(surfaceId), (err, videoOutput) => {
     }
     console.log('Callback returned with the VideoOutput instance');
 });
-```
+``` 
 
-## camera.createVideoOutput
+## createVideoOutput(surfaceId: string): Promise<VideoOutput\>;
 
-createVideoOutput(surfaceId: string): Promise<VideoOutput\>
+**System Capabilities:**
 
-获取VideoOutput实例，通过Promise获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Creates a **VideoOutput** instance. This method uses a promise to return the VideoOutput instance.
 
-| 名称        | 类型            | 必填       | 说明                                                |
+**Parameters**
+
+| Name       | Type            | Mandatory | Description                                        |
 |------------|-----------------|-----------|----------------------------------------------------|
-| surfaceId  | string          | 是       | 从VideoRecorder获取的Surface ID。                   |
+| surfaceId  | string          | Yes       | Surface ID received from VideoRecorder             |
 
-**返回值：**
+**Return values**
 
-| 类型                  | 说明                                   |
-| --------------------- | -------------------------------------- |
-| Promise<PhotoOutput\> | 使用Promise的方式获取VideoOutput实例。 |
+| Type                    | Description                                     |
+|-------------------------|-------------------------------------------------|
+| Promise<PhotoOutput\>   | Promise used to return the VideoOutput instance |
 
-**示例：**
+**Example**
 
 ```
 camera.createVideoOutput(surfaceId).then((videoOutput) => {
     console.log('Promise returned with the VideoOutput instance');
 })
 ```
-
 ## VideoOutput
 
-视频输出类。
+Implements video output.
 
-### start
+### start(callback: AsyncCallback<void\>): void;
 
-start(callback: AsyncCallback<void\>): void
+**System Capabilities:**
 
-开始拍摄视频，通过注册回调函数获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Starts the video output. This method uses an asynchronous callback to return the result.
 
-| 名称      | 类型                  | 必填      | 说明                                          |
+**Parameters**
+
+| Name     | Type                 | Mandatory | Description                                  |
 |----------|----------------------|-----------|----------------------------------------------|
-| callback | AsyncCallback<void\> | 是       | 回调函数，用于获取结果。                     |
+| callback | AsyncCallback<void\> | Yes       | Callback used to return the result |
 
-**示例：**
+**Return values**
+
+none
+
+**Example**
 
 ```
 videoOutput.start((err) => {
@@ -2603,22 +3070,27 @@ videoOutput.start((err) => {
 });
 ```
 
-### start
+### start(): Promise<void\>;
 
-start(): Promise<void\>
+**System Capabilities:**
 
-开始拍摄视频，通过Promise获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**返回值：**
+Starts the video output. This method uses a promise to return the result.
 
-| 类型            | 说明                                         |
+**Parameters**
+none
+
+**Return values**
+
+| Type           | Description                                 |
 |----------------|---------------------------------------------|
-| Promise<void\> | 使用Promise的方式获取结果。                     |
+| Promise<void\> | Promise used to return the result |
 
 
-**示例：**
+**Example**
 
 ```
 videoOutput.start().then(() => {
@@ -2626,21 +3098,27 @@ videoOutput.start().then(() => {
 })
 ```
 
-### stop
+### stop(callback: AsyncCallback<void\>): void;
 
-stop(callback: AsyncCallback<void\>): void
+**System Capabilities:**
 
-停止拍摄视频，通过注册回调函数获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Stops the video output. This method uses an asynchronous callback to return the result.
 
-| 名称      | 类型                 | 必填       | 说明                                          |
+**Parameters**
+
+| Name     | Type                 | Mandatory | Description                                  |
 |----------|----------------------|-----------|----------------------------------------------|
-| callback | AsyncCallback<void\> | 是       | 回调函数，用于获取结果。                     |
+| callback | AsyncCallback<void\> | Yes       | Callback used to return the result |
 
-**示例：**
+**Return values**
+
+none
+
+**Example**
 
 ```
 videoOutput.stop((err) => {
@@ -2652,21 +3130,26 @@ videoOutput.stop((err) => {
 });
 ```
 
-### stop
+### stop(): Promise<void\>;
 
-stop(): Promise<void\>
+**System Capabilities:**
 
-停止拍摄视频，通过Promise获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**返回值：**
+Stops the video output. This method uses a promise to return the result.
 
-| 类型            | 说明                                         |
+**Parameters**
+none
+
+**Return values**
+
+| Type           | Description                                 |
 |----------------|---------------------------------------------|
-| Promise<void\> | 使用Promise的方式获取结果。                     |
+| Promise<void\> | Promise used to return the result |
 
-**示例：**
+**Example**
 
 ```
 videoOutput.start().then(() => {
@@ -2674,21 +3157,27 @@ videoOutput.start().then(() => {
 })
 ```
 
-### release
+### release(callback: AsyncCallback<void\>): void;
 
-release(callback: AsyncCallback<void\>): void
+**System Capabilities:**
 
-释放VideoOutput实例，通过注册回调函数获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Releases this VideoOutput instance. This method uses an asynchronous callback to return the result.
 
-| 名称      | 类型                 | 必填       | 说明                                          |
+**Parameters**
+
+| Name     | Type                 | Mandatory | Description                                  |
 |----------|----------------------|-----------|----------------------------------------------|
-| callback | AsyncCallback<void\> | 是       | 回调函数，用于获取结果。                     |
+| callback | AsyncCallback<void\> | Yes       | Callback used to return the result |
 
-**示例：**
+**Return values**
+
+none
+
+**Example**
 
 ```
 videoOutput.release((err) => {
@@ -2700,22 +3189,28 @@ videoOutput.release((err) => {
 });
 ```
 
-### release
+### release(): Promise<void\>;
 
-release(): Promise<void\>
+**System Capabilities:**
 
-释放VideoOutput实例，通过Promise获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**返回值：**
+Releases this VideoOutput instance. This method uses a promise to return the result.
 
-| 类型            | 说明                                         |
+**Parameters**
+
+none
+
+**Return values**
+
+| Type           | Description                                 |
 |----------------|---------------------------------------------|
-| Promise<void\> | 使用Promise的方式获取结果。                     |
+| Promise<void\> | Promise used to return the result           |
 
 
-**示例：**
+**Example**
 
 ```
 videoOutput.release().then(() => {
@@ -2723,22 +3218,28 @@ videoOutput.release().then(() => {
 })
 ```
 
-### on('frameStart')
+### on(type: 'frameStart', callback: Callback<number\>): void;
 
-on(type: 'frameStart', callback: AsyncCallback<void\>): void
+**System Capabilities:**
 
-监听视频帧开启，通过注册回调函数获取结果。
+SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
+**Description**
 
-**参数：**
+Listens for video frame start events. This method uses a callback to get the event information.
 
-| 名称      | 类型               | 必填      | 说明                                |
+**Parameters**
+
+| Name     | Type              | Mandatory | Description                        |
 | :------- | :---------------- | :-------- | :----------------------------------|
-| type     | string            | 是       | 监听事件，固定为'frameStart'，即视频帧开启事件。 |
-| callback | AsyncCallback<void\> | 是       | 回调函数，用于获取结果。           |
+| type     | string            | Yes       | Name of the event to listen for.       |
+| callback | Callback<void\>   | Yes       | Callback used to return the result |
 
-**示例：**
+**Return value**
+
+None
+
+**Example**
 
 ```
 videoOutput.on('frameStart', () => {
@@ -2746,22 +3247,22 @@ videoOutput.on('frameStart', () => {
 })
 ```
 
-### on('frameEnd')
+### on(type: 'frameEnd', callback: Callback<number\>): void;
 
-on(type: 'frameEnd', callback: AsyncCallback<void\>): void
+Listens for video frame end events. This method uses a callback to get the event information.
 
-监听视频帧结束，通过注册回调函数获取结果。
+**Parameters**
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-**参数：**
-
-| 名称      | 类型               | 必填      | 说明                                |
+| Name     | Type              | Mandatory | Description                        |
 | :------- | :---------------- | :-------- | :----------------------------------|
-| type     | string            | 是       | 监听事件，固定为'frameEnd'，即视频帧结束事件。 |
-| callback | AsyncCallback<void\> | 是       | 回调函数，用于获取结果。           |
+| type     | string            | Yes       | Name of the event to listen for.   |
+| callback | Callback<void\>   | Yes       | Callback used to return the result |
 
-**示例：**
+**Return value**
+
+None
+
+**Example**
 
 ```
 videoOutput.on('frameEnd', () => {
@@ -2769,22 +3270,22 @@ videoOutput.on('frameEnd', () => {
 })
 ```
 
-### on('error')
+### on(type: 'error', callback: Callback<VideoOutputError\>): void;
 
-on(type: 'error', callback: ErrorCallback<VideoOutputError\>): void
+Listens for **VideoOutput** errors. This method uses a callback to get errors.
 
-监听视频输出的错误事件，通过注册回调函数获取结果。
+**Parameters**
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-**参数：**
-
-| 名称      | 类型                    | 必填      | 说明                                             |
+| Name     | Type                   | Mandatory | Description                                     |
 | :------- | :--------------------- | :-------- | :-----------------------------------------------|
-| type     | string                 | 是       | 监听事件，固定为'error'。                      |
-| callback | Callback<VideoOutputError\> | 是  | 回调函数，用于获取错误信息。 |
+| type     | string                 | Yes       | Name of the event to listen for.                |
+| callback | Callback<VideoOutputError\> | Yes  | Callback used to get the video output errors.   |
 
-**示例：**
+**Return value**
+
+None
+
+**Example**
 
 ```
 videoOutput.on('error', (VideoOutputError) => {
