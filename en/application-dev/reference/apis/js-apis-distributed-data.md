@@ -591,7 +591,7 @@ Defines the KV store constants.
 
 ## Schema<sup>8+</sup> ##
 
-Defines a database schema. When creating or opening a KV store, you can create **Schema** objects and put them into **Options**.
+Defines a database schema. When creating or opening a KV store, you can create a **Schema** object and put it into **Options**.
 
 ### toJsonString<sup>8+</sup> ###
 
@@ -1096,13 +1096,13 @@ Checks whether the data read position is after the last row.
 
 getEntry(): Entry;
 
-Obtains KV pairs.
+Obtains a KV pair.
 
 -   Return value
 
 | Type| Description|
 | ------  | -------   |
-| Entry   |KV pairs obtained.|
+| Entry   |KV pair obtained.|
 
 -   Example
 
@@ -2387,7 +2387,7 @@ Deletes KV pairs in batches from this KV store. This method uses a promise to re
 
 startTransaction(callback: AsyncCallback&lt;void&gt;): void;
 
-Starts transactions in this KV store. This method uses an asynchronous callback to return the result.
+Starts the transaction in this KV store. This method uses an asynchronous callback to return the result.
 
 -   Parameters
 
@@ -2437,7 +2437,7 @@ Starts transactions in this KV store. This method uses an asynchronous callback 
 
 startTransaction(): Promise&lt;void&gt;;
 
-Starts transactions in this KV store. This method uses a promise to return the result.
+Starts the transaction in this KV store. This method uses a promise to return the result.
 
 -   Return value
 
@@ -2470,7 +2470,7 @@ Starts transactions in this KV store. This method uses a promise to return the r
 
 commit(callback: AsyncCallback&lt;void&gt;): void;
 
-Commits transactions in this KV store. This method uses an asynchronous callback to return the result.
+Commits the transaction in this KV store. This method uses an asynchronous callback to return the result.
 
 -   Parameters
 
@@ -2500,7 +2500,7 @@ Commits transactions in this KV store. This method uses an asynchronous callback
 
 commit(): Promise&lt;void&gt;;
 
-Commits transactions in this KV store. This method uses a promise to return the result.
+Commits the transaction in this KV store. This method uses a promise to return the result.
 
 -   Return value
 
@@ -2528,7 +2528,7 @@ Commits transactions in this KV store. This method uses a promise to return the 
 
 rollback(callback: AsyncCallback&lt;void&gt;): void;
 
-Rolls back transactions in this KV store. This method uses an asynchronous callback to return the result.
+Rolls back the transaction in this KV store. This method uses an asynchronous callback to return the result.
 
 -   Parameters
 
@@ -2558,7 +2558,7 @@ Rolls back transactions in this KV store. This method uses an asynchronous callb
 
 rollback(): Promise&lt;void&gt;;
 
-Rolls back transactions in this KV store. This method uses a promise to return the result.
+Rolls back the transaction in this KV store. This method uses a promise to return the result.
 
 -   Return value
 
