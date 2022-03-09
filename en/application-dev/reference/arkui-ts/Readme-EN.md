@@ -88,11 +88,11 @@
         -   [Stack](ts-container-stack.md)
         -   [Swiper](ts-container-swiper.md)
         -   [Tabs](ts-container-tabs.md)
-    -   [TabContent](ts-container-tabcontent.md)
-        -   [Stepper](ts-container-stepper.md)
-        -   [StepperItem](ts-container-stepperitem.md)
-    
+        -   [TabContent](ts-container-tabcontent.md)
+        
+        -   [Refresh](ts-container-refresh.md)
     -   [Drawing Components](ts-drawing-components.md)
+        
         -   [Circle](ts-drawing-components-circle.md)
         -   [Ellipse](ts-drawing-components-ellipse.md)
         -   [Line](ts-drawing-components-line.md)
