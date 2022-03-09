@@ -68,7 +68,7 @@
                 - [Attribution Configuration](ts-attribution-configuration.md)
                 - [Event Configuration](ts-event-configuration.md)
                 - [Child Component Configuration](ts-child-component-configuration.md)
-        - Componentization
+            - Componentization
                 - [@Component](ts-component-based-component.md)
                 - [@Entry](ts-component-based-entry.md)
                 - [@Preview](ts-component-based-preview.md)
@@ -77,7 +77,7 @@
                 - [@CustomDialog](ts-component-based-customdialog.md)
         - About UI State Management
             - [Basic Concepts](ts-ui-state-mgmt-concepts.md)
-            -[Managing Component States
+            - Managing Component States
                 - [@State](ts-component-states-state.md)
                 - [@Prop](ts-component-states-prop.md)
                 - [@Link](ts-component-states-link.md)
