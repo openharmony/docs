@@ -83,6 +83,7 @@
     - [屏幕截图](js-apis-screenshot.md)
     - [输入法框架](js-apis-inputmethod.md)
     - [输入法服务](js-apis-inputmethodengine.md)
+    - [辅助功能](js-apis-accessibility.md)
 - DFX
     - [应用打点](js-apis-hiappevent.md)
     - [性能打点](js-apis-hitracemeter.md)
