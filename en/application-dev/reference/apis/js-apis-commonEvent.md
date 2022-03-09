@@ -169,9 +169,9 @@ Publishes a common event with given attributes. This method uses a callback to r
 ```js
 // Attributes of a common event.
 var options = {
-	code: 0;			 // Result code of the common event
-	data: "initial data";// Result data of the common event
-	isOrdered: true;	 // The common event is an ordered one.
+	code: 0,			 // Result code of the common event
+	data: "initial data",// Result data of the common event
+	isOrdered: true 	 // The common event is an ordered one.
 }
 // Callback for common event publication
 function PublishCallBack(err) {
