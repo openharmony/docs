@@ -62,10 +62,10 @@
         -   [Span](ts-basic-components-span.md)
         -   [Text](ts-basic-components-text.md)
         -   [TextArea](ts-basic-components-textarea.md)
--   [TextInput](ts-basic-components-textinput.md)
+        -   [TextInput](ts-basic-components-textinput.md)
         -   [Toggle](ts-basic-components-toggle.md)
         -   [TextClock](ts-basic-components-textclock.md)
-        
+    
     -   [Container Components](ts-components-container.md)
         -   [AlphabetIndexer](ts-container-alphabet-indexer.md)
         -   [Badge](ts-container-badge.md)
@@ -111,7 +111,6 @@
     -   [CanvasGradient](ts-components-canvas-canvasgradient.md)
         -   [ImageBitmap](ts-components-canvas-imagebitmap.md)
         -   [ImageData](ts-components-canvas-imagedata.md)
-    
 -   [Animation](ts-animation.md)
     -   [Attribute Animation](ts-animatorproperty.md)
     -   [Explicit Animation](ts-explicit-animation.md)
@@ -132,5 +131,6 @@
     -   [List Selection Dialog Box](ts-methods-action-sheet.md)
 
 -   [Appendix](ts-appendix.md)
+    
     -   [Built-in Enums](ts-appendix-enums.md)
 
