@@ -1450,7 +1450,7 @@ getAngleModify(currentRotationMatrix: Array&lt;number&gt;, preRotationMatrix: Ar
   | 参数名                | 类型                | 必填 | 说明               |
   | --------------------- | ------------------- | ---- | ------------------ |
   | currentRotationMatrix | Array&lt;number&gt; | 是   | 表示当前旋转矩阵。 |
-  | preRotationMatrix     | Array&lt;number&gt; | 是   | 表示当前旋转矩阵。 |
+  | preRotationMatrix     | Array&lt;number&gt; | 是   | 表示旋转矩阵。 |
 
 - 返回值
 

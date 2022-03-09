@@ -1,6 +1,6 @@
 # Sensor
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **Note:**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -1172,8 +1172,71 @@ Unsubscribes from sensor data changes.
       console.info("Succeeded in unsubscribing from acceleration sensor data.");
     }
   );
-  
   ```
+
+## sensor.transformCoordinateSystem
+
+transformCoordinateSystem(inRotationVector: Array&lt;number&gt;, coordinates: CoordinatesOptions, callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
+
+Rotates a rotation vector so that it can represent the coordinate system in different ways. This method uses a callback to return the result.
+
+- Parameters
+
+  | Name| Type| Mandatory| Description|
+  | ---------------- | ----------------------------------------- | ---- | ---------------------- |
+  | inRotationVector | Array&lt;number&gt;                       | Yes| Rotation vector to rotate.|
+  | coordinates      | [CoordinatesOptions](#coordinatesoptions) | Yes| Direction of the coordinate system.|
+  | callback         | AsyncCallback&lt;Array&lt;number&gt;&gt;  | Yes| Callback used to return the rotation vector after being rotated.|
+
+- Example
+
+  ```
+  sensor.transformCoordinateSystem([1, 0, 0, 0, 1, 0, 0, 0, 1], {'axisX':2, 'axisY':3}, function(err, data) {
+      if (err) {
+          console.error("Operation failed. Error code: " + err.code + ", message: " + err.message);
+          return;
+      }
+      console.info("Operation successed. Data obtained: " + data.x);
+      for (var i=0; i < data.length; i++) {
+          console.info("transformCoordinateSystem data[ " + i + "] = " + data[i]);
+      }
+   })
+  ```
+
+## sensor.transformCoordinateSystem
+
+transformCoordinateSystem(inRotationVector: Array&lt;number&gt;, coordinates: CoordinatesOptions): Promise&lt;Array&lt;number&gt;&gt;
+
+Rotates a rotation vector so that it can represent the coordinate system in different ways. This method uses a promise to return the result.
+
+- Parameters
+
+  | Name| Type| Mandatory| Description|
+  | ---------------- | ----------------------------------------- | ---- | ---------------- |
+  | inRotationVector | Array&lt;number&gt;                       | Yes| Rotation vector to rotate.|
+  | coordinates      | [CoordinatesOptions](#coordinatesoptions) | Yes| Direction of the coordinate system.|
+
+- Return value
+
+  | Type| Description|
+  | ---------------------------------- | ---------------------- |
+  | Promise&lt;Array&lt;number&gt;&gt; | Promise used to return the rotation vector after being converted.|
+
+- Example
+
+  ```
+  const promise = sensor.transformCoordinateSystem([1, 0, 0, 0, 1, 0, 0, 0, 1], {'axisX':2, 'axisY':3});
+      promise.then((data) => {
+          console.info("Operation successed.");
+          for (var i=0; i < data.length; i++) {
+              console.info("transformCoordinateSystem data[ " + i + "] = " + data[i]);
+          }
+      }).catch((err) => {
+             console.info("Operation failed");
+  })
+  ```
+
+  
 
 
 ## sensor.getGeomagneticField
@@ -1207,7 +1270,7 @@ Obtains the geomagnetic field of a geographic location. This method uses a callb
 
 getGeomagneticField(locationOptions: LocationOptions, timeMillis: number): Promise&lt;GeomagneticResponse&gt;
 
-Obtains the geomagnetic field of a geographic location. This method uses a callback to return the result.
+Obtains the geomagnetic field of a geographic location. This method uses a promise to return the result.
 
 - Parameters
   | Name| Type| Mandatory| Description|
@@ -1218,7 +1281,7 @@ Obtains the geomagnetic field of a geographic location. This method uses a callb
 - Return value
   | Type| Description|
   | -------- | -------- |
-  | Promise&lt;[GeomagneticResponse](#geomagneticresponse)&gt; | Callback used to return the geomagnetic field.|
+  | Promise&lt;[GeomagneticResponse](#geomagneticresponse)&gt; | Promise used to return the geomagnetic field.|
 
 - Example
   ```
@@ -1229,6 +1292,437 @@ Obtains the geomagnetic field of a geographic location. This method uses a callb
   		     ',levelIntensity: ' + data.levelIntensity + ',totalIntensity: ' + data.totalIntensity);
       }).catch((reason) => {
           console.info('Operation failed.');
+  })
+  ```
+
+## sensor.getAltitude
+
+getAltitude(seaPressure: number, currentPressure: number, callback: AsyncCallback&lt;number&gt;): void
+
+Obtains the altitude at which the device is located based on the sea-level atmospheric pressure and the current atmospheric pressure. This method uses a callback to return the result.
+
+- Parameters
+
+  | Name| Type| Mandatory| Description|
+  | --------------- | --------------------------- | ---- | ------------------------------------- |
+  | seaPressure     | number                      | Yes| Sea-level atmospheric pressure, in hPa.|
+  | currentPressure | number                      | Yes| Current atmospheric pressure at the altitude where the device is located, in hPa.|
+  | callback        | AsyncCallback&lt;number&gt; | Yes| Callback used to return the altitude, in meters.|
+
+- Example
+
+  ```
+  sensor.getAltitude(0, 200, function(err, data)  {
+      if (err) {
+          console.error(
+  "Operation failed. Error code: " + err.code + ", message: " + err.message);
+          return;
+      }
+          console.info("Successed to get getAltitude interface get data: " + data);
+  });
+  ```
+
+## sensor.getAltitude
+
+getAltitude(seaPressure: number, currentPressure: number): Promise&lt;number&gt;
+
+Obtains the altitude at which the device is located based on the sea-level atmospheric pressure and the current atmospheric pressure. This method uses a promise to return the result.
+
+- Parameters
+
+  | Name| Type| Mandatory| Description|
+  | --------------- | ------ | ---- | ------------------------------------- |
+  | seaPressure     | number | Yes| Sea-level atmospheric pressure, in hPa.|
+  | currentPressure | number | Yes| Atmospheric pressure at the altitude where the device is located, in hPa.|
+
+- Return value
+
+  | Type| Description|
+  | --------------------- | ------------------------------------ |
+  | Promise&lt;number&gt; | Promise used to return the altitude, in meters.|
+
+- Example
+
+  ```
+  const promise = sensor.getAltitude(0, 200);
+      promise.then((data) => {
+          console.info(' sensor_getAltitude_Promise success', data);
+      }).catch((err) => {
+          console.error("Operation failed");
+  })
+  ```
+
+
+## sensor.getGeomagneticDip
+
+getGeomagneticDip(inclinationMatrix: Array&lt;number&gt;, callback: AsyncCallback&lt;number&gt;): void
+
+Obtains the magnetic dip based on the inclination matrix. This method uses a callback to return the result.
+
+- Parameters
+
+  | Name| Type| Mandatory| Description|
+  | ----------------- | --------------------------- | ---- | ---------------------------- |
+  | inclinationMatrix | Array&lt;number&gt;         | Yes| Inclination matrix.|
+  | callback          | AsyncCallback&lt;number&gt; | Yes| Callback used to return the magnetic dip, in radians.|
+
+- Example
+
+  ```
+  sensor.getGeomagneticDip([1, 0, 0, 0, 1, 0, 0, 0, 1], function(err, data)  {
+      if (err) {
+          console.error(LABEL + 'SensorJsAPI--->Failed to register data, error code is: ' + err.code + ', message: ' + 
+                        err.message);
+          return;
+      }
+          console.info(Successed to get getGeomagneticDip interface get data: " + data);
+  })
+  ```
+
+## sensor.getGeomagneticDip
+
+getGeomagneticDip(inclinationMatrix: Array&lt;number&gt;): Promise&lt;number&gt;
+
+Obtains the magnetic dip based on the inclination matrix. This method uses a promise to return the result.
+
+- Parameters
+
+  | Name| Type| Mandatory| Description|
+  | ----------------- | ------------------- | ---- | -------------- |
+  | inclinationMatrix | Array&lt;number&gt; | Yes| Inclination matrix.|
+
+- Return value
+
+  | Type| Description|
+  | --------------------- | ---------------------------- |
+  | Promise&lt;number&gt; | Promise used to return the magnetic dip, in radians.|
+
+- Example
+
+  ```
+  const promise = sensor.getGeomagneticDip([1, 0, 0, 0, 1, 0, 0, 0, 1]);
+      promise.then((data) => {
+          console.info(' getGeomagneticDip_promise successed', data);
+      }).catch((err) => {
+           console.error("Operation failed");
+  })
+  ```
+
+## sensor. getAngleModify
+
+getAngleModify(currentRotationMatrix: Array&lt;number&gt;, preRotationMatrix: Array&lt;number&gt;, callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
+
+Obtains the angle change between two rotation matrices. This method uses a callback to return the result.
+
+- Parameters
+
+  | Name| Type| Mandatory| Description|
+  | --------------------- | ---------------------------------------- | ---- | --------------------------------- |
+  | currentRotationMatrix | Array&lt;number&gt;                      | Yes| Current rotation matrix.|
+  | preRotationMatrix     | Array&lt;number&gt;                      | Yes| The other rotation matrix.|
+  | callback              | AsyncCallback&lt;Array&lt;number&gt;&gt; | Yes| Callback used to return the angle change around the z, x, and y axes.|
+
+- Example
+
+  ```
+  sensor. getAngleModify([1,0,0,0,1,0,0,0,1], [1, 0, 0, 0, 0.87, -0.50, 0, 0.50, 0.87], function(err, data)  {
+      if (err) {
+          console.error(LABEL + 'Failed to register data, error code is: ' + err.code + ', message: ' + 
+                        err.message);
+          return;
+      }
+      console.info("SensorJsAPI--->Successed to get  getAngleModifiy interface get data: " + data.x);
+      for (var i=0; i < data.length; i++) {
+          console.info(LABEL + "data[" + i + "]: " + data[i]);
+      }
+  })
+  ```
+
+
+## sensor. getAngleModify
+
+getAngleModify(currentRotationMatrix: Array&lt;number&gt;, preRotationMatrix: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
+
+Obtains the angle change between two rotation matrices. This method uses a promise to return the result.
+
+- Parameters
+
+  | Name| Type| Mandatory| Description|
+  | --------------------- | ------------------- | ---- | ------------------ |
+  | currentRotationMatrix | Array&lt;number&gt; | Yes| Current rotation matrix.|
+  | preRotationMatrix     | Array&lt;number&gt; | Yes| The other rotation matrix.|
+
+- Return value
+
+  | Type| Description|
+  | ---------------------------------- | --------------------------------- |
+  | Promise&lt;Array&lt;number&gt;&gt; | Promise used to return the angle change around the z, x, and y axes.|
+
+- Example
+
+  ```
+  const promise = sensor.getAngleModify([1,0,0,0,1,0,0,0,1], [1,0,0,0,0.87,-0.50,0,0.50,0.87]);
+      promise.then((data) => {
+          console.info(LABEL + 'getAngleModifiy_promise success');
+          for (var i=0; i < data.length; i++) {
+              console.info(LABEL + "data[" + i + "]: " + data[i]);
+          }
+      }).catch((reason) => {
+          console.info(LABEL + "promise::catch", reason);
+  })
+  ```
+
+
+## sensor.createRotationMatrix
+
+createRotationMatrix(rotationVector: Array&lt;number&gt;, callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
+
+Converts a rotation vector into a rotation matrix. This method uses a callback to return the result.
+
+- Parameters
+
+  | Name| Type| Mandatory| Description|
+  | -------------- | ---------------------------------------- | ---- | -------------- |
+  | rotationVector | Array&lt;number&gt;                      | Yes| Rotation vector to convert.|
+  | callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | Yes| Callback used to return the rotation matrix.|
+
+- Example
+
+  ```
+  sensor.createRotationMatrix([0.20046076, 0.21907, 0.73978853, 0.60376877], function(err, data) {
+      if (err) {
+          console.error(LABEL + 'SensorJsAPI--->Failed to register data, error code is: ' + err.code + ', message: ' + 
+                        err.message);
+          return;
+      }
+      console.info("SensorJsAPI--->Successed to get createRotationMatrix interface get data: " + data.x);
+      for (var i=0; i < data.length; i++) {
+          console.info(LABEL + "data[" + i + "]: " + data[i]);
+      }
+  })
+  ```
+
+
+## sensor.createRotationMatrix
+
+createRotationMatrix(rotationVector: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
+
+Converts a rotation vector into a rotation matrix. This method uses a promise to return the result.
+
+- Parameters
+
+  | Name| Type| Mandatory| Description|
+  | -------------- | ------------------- | ---- | -------------- |
+  | rotationVector | Array&lt;number&gt; | Yes| Rotation vector to convert.|
+
+- Return value
+
+  | Type| Description|
+  | ---------------------------------- | -------------- |
+  | Promise&lt;Array&lt;number&gt;&gt; | Promise used to return the rotation matrix.|
+
+- Example
+
+  ```
+  const promise = sensor.createRotationMatrix([0.20046076, 0.21907, 0.73978853, 0.60376877]);
+      promise.then((data) => {
+          console.info(LABEL + 'createRotationMatrix_promise success');
+          for (var i=0; i < data.length; i++) {
+              console.info(LABEL + "data[" + i + "]: " + data[i]);
+          }
+      }).catch((reason) => {
+          console.info(LABEL + "promise::catch", reason);
+  })	
+  ```
+
+
+## sensor.createQuaternion
+
+createQuaternion(rotationVector: Array&lt;number&gt;, callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
+
+Converts a rotation vector into a quaternion. This method uses a callback to return the result.
+
+- Parameters
+
+  | Name| Type| Mandatory| Description|
+  | -------------- | ---------------------------------------- | ---- | -------------- |
+  | rotationVector | Array&lt;number&gt;                      | Yes| Rotation vector to convert.|
+  | callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | Yes| Callback used to return the quaternion.|
+
+- Example
+
+  ```
+  sensor.createQuaternion([0.20046076, 0.21907, 0.73978853, 0.60376877], function(err, data)  {
+      if (err) {
+          console.error(LABEL + 'SensorJsAPI--->Failed to register data, error code is: ' + err.code + ', message: ' + 
+                        err.message);
+          return;
+      }
+      console.info("SensorJsAPI--->Successed to get  createQuaternion interface get data: " + data.x);
+      for (var i=0; i < data.length; i++) {
+          console.info(LABEL + "data[" + i + "]: " + data[i]);
+      }
+  })
+  ```
+
+
+## sensor.createQuaternion
+
+createQuaternion(rotationVector: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
+
+Converts a rotation vector into a quaternion. This method uses a promise to return the result.
+
+- Parameters
+
+  | Name| Type| Mandatory| Description|
+  | -------------- | ------------------- | ---- | -------------- |
+  | rotationVector | Array&lt;number&gt; | Yes| Rotation vector to convert.|
+
+- Return value
+
+  | Type| Description|
+  | ---------------------------------- | ------------ |
+  | Promise&lt;Array&lt;number&gt;&gt; | Promise used to return the quaternion.|
+
+- Example
+
+  ```
+  const promise = sensor.createQuaternion([0.20046076, 0.21907, 0.73978853, 0.60376877]);
+      promise.then((data) => {
+          console.info('createQuaternion_promise successed');
+          for (var i=0; i < data.length; i++) {
+              console.info(LABEL + "data[" + i + "]: " + data[i]);
+          }
+      }).catch((err) => {
+          console.info('promise failed');
+  })
+  ```
+
+
+## sensor.getDirection
+
+getDirection(rotationMatrix: Array&lt;number&gt;, callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
+
+Obtains the device direction based on the rotation matrix. This method uses a callback to return the result.
+
+- Parameters
+
+  | Name| Type| Mandatory| Description|
+  | -------------- | ---------------------------------------- | ---- | --------------------------------- |
+  | rotationMatrix | Array&lt;number&gt;                      | Yes| Rotation matrix.|
+  | callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | Yes| Callback used to return the rotation angle around the z, x, and y axes.|
+
+- Example
+
+  ```
+  sensor.getDirection([1, 0, 0, 0, 1, 0, 0, 0, 1], function(err, data)  {
+      if (err) {
+          console.error(LABEL + 'SensorJsAPI--->Failed to register data, error code is: ' + err.code + ', message: ' +
+                        err.message);
+          return;
+      }
+      console.info(LABEL + "SensorJsAPI--->Successed to get getDirection interface get data: " + data.x);
+      for (var i = 1; i < data.length; i++) {
+          console.info(TAG +"sensor_getDirection_callback" + data[i]);
+      }
+  })
+  ```
+
+
+## sensor.getDirection
+
+getDirection(rotationMatrix: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
+
+Obtains the device direction based on the rotation matrix. This method uses a promise to return the result.
+
+- Parameters
+
+  | Name| Type| Mandatory| Description|
+  | -------------- | ------------------- | ---- | -------------- |
+  | rotationMatrix | Array&lt;number&gt; | Yes| Rotation matrix.|
+
+- Return value
+
+  | Type| Description|
+  | ---------------------------------- | --------------------------------- |
+  | Promise&lt;Array&lt;number&gt;&gt; | Promise used to return the rotation angle around the z, x, and y axes.|
+
+- Example
+
+  ```
+  const promise = sensor.getDirection([1, 0, 0, 0, 1, 0, 0, 0, 1]);
+      promise.then((data) => {
+          console.info(' sensor_getAltitude_Promise success', data.x);
+          for (var i = 1; i < data.length; i++) {
+              console.info(TAG +"sensor_getDirection_promise" + data[i]);
+          }
+      }).catch((err) => {
+          console.info('promise failed');
+  })
+  ```
+
+
+## sensor.createRotationMatrix
+
+createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&gt;, callback: AsyncCallback&lt;RotationMatrixResponse&gt;): void
+
+Creates a rotation matrix based on the gravity vector and geomagnetic vector. This method uses a callback to return the result.
+
+- Parameters
+
+  | Name| Type| Mandatory| Description|
+  | ----------- | ------------------------------------------------------------ | ---- | -------------- |
+  | gravity     | Array&lt;number&gt;                                          | Yes| Gravity vector.|
+  | geomagnetic | Array&lt;number&gt;                                          | Yes| Geomagnetic vector.|
+  | callback    | AsyncCallback&lt;[RotationMatrixResponse](#rotationmatrixresponse)&gt; | Yes| Callback used to return the rotation matrix.|
+
+- Example
+
+  ```
+  sensor.createRotationMatrix([-0.27775216, 0.5351276, 9.788099], [210.87253, -78.6096, -111.44444], function(err, data)  {
+      if (err) {
+          console.error(LABEL + 'SensorJsAPI--->Failed to register data, error code is: ' + err.code + ', message: ' +
+                        err.message);
+          return;
+      }
+      console.info("SensorJsAPI--->Successed to get createRotationMatrix interface get data: " + data.x);
+      for (var i=0; i < data.length; i++) {
+          console.info(LABEL + "data[" + i + "]: " + data[i])
+      }
+  })
+  ```
+
+
+## sensor.createRotationMatrix
+
+createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&gt;,): Promise&lt;RotationMatrixResponse&gt;
+
+Creates a rotation matrix based on the gravity vector and geomagnetic vector. This method uses a promise to return the result.
+
+- Parameters
+
+  | Name| Type| Mandatory| Description|
+  | ----------- | ------------------- | ---- | -------------- |
+  | gravity     | Array&lt;number&gt; | Yes| Gravity vector.|
+  | geomagnetic | Array&lt;number&gt; | Yes| Geomagnetic vector.|
+
+- Return value
+
+  | Type| Description|
+  | ------------------------------------------------------------ | -------------- |
+  | Promise&lt;[RotationMatrixResponse](#rotationmatrixresponse)&gt; | Promise used to return the rotation matrix.|
+
+- Example
+
+  ```
+  const promise = sensor.createRotationMatrix([-0.27775216, 0.5351276, 9.788099], [210.87253, -78.6096, -111.44444]);
+      promise.then((data) => {
+          console.info(LABEL + 'createRotationMatrix_promise successed');
+          for (var i=0; i < data.length; i++) {
+              console.info(LABEL + "data[" + i + "]: " + data[i]);
+          }
+      }).catch((err) => {
+          console.info(LABEL + 'promise failed');
   })
   ```
 
@@ -1518,6 +2012,25 @@ Describes the sensor data reporting frequency.
 | Name| Type| Description|
 | -------- | -------- | -------- |
 | interval | number | Frequency at which a sensor reports data. The default value is 200,000,000 ns.|
+
+## RotationMatrixResponse
+
+Describes the response for setting the rotation matrix.
+
+| Name| Type| Readable| Writable| Description|
+| ----------- | ------------------- | ---- | ---- | ---------- |
+| rotation    | Array&lt;number&gt; | Yes| Yes| Rotation matrix.|
+| inclination | Array&lt;number&gt; | Yes| Yes| Inclination matrix.|
+
+
+## CoordinatesOptions
+
+Describes the coordinate options.
+
+| Name| Type| Readable| Writable| Description|
+| ---- | -------- | ---- | ---- | ----------- |
+| x    | number   | Yes| Yes| X coordinate direction.|
+| y    | number   | Yes| Yes| Y coordinate direction.|
 
 
 ## GeomagneticResponse
