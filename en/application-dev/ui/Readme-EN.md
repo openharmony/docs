@@ -1,142 +1,111 @@
 # UI
 
--   [ ArkUI](ui-arkui.md)
-    -   [JavaScript-based Web-Like Development Paradigm](ui-arkui-js.md)
-        -   [Overview](ui-js-overview.md)
-        -   [Framework](js-framework.md)
-            -   [File Organization](js-framework-file.md)
-            -   ["js" Tag](js-framework-js-tag.md)
-            -   [app.js](js-framework-js-file.md)
-            -   [Syntax](js-framework-syntax.md)
-                -   [HML](js-framework-syntax-hml.md)
-                -   [CSS](js-framework-syntax-css.md)
-                -   [JavaScript](js-framework-syntax-js.md)
-
-            -   [Lifecycle](js-framework-lifecycle.md)
-            -   [Resource Limitations and Access](js-framework-resource-restriction.md)
-            -   [Multi-Language Capability](js-framework-multiple-languages.md)
-
-        -   [Building the UI](ui-js-building-ui.md)
-            -   [Component Overview](ui-js-building-ui-component.md)
-            -   [Building the Layout](ui-js-building-ui-layout.md)
-                -   [Layout Description](ui-js-building-ui-layout-intro.md)
-                -   [Adding Title and Paragraph Text](ui-js-building-ui-layout-text.md)
-                -   [Adding an Image](ui-js-building-ui-layout-image.md)
-                -   [Adding a Comment](ui-js-building-ui-layout-comment.md)
-                -   [Adding a Container](ui-js-building-ui-layout-external-container.md)
-
-            -   [Adding Interactions](ui-js-building-ui-interactions.md)
-            -   [Developing Animations](ui-js-building-ui-animation.md)
-            -   [Defining Events](ui-js-building-ui-event.md)
-            -   [Defining Page Routes](ui-js-building-ui-routes.md)
-
-        -   [Common Component Development Guidelines](ui-js-common-components.md)
-            -   [Text](ui-js-components-text.md)
-            -   [Input](ui-js-components-input.md)
-            -   [Button](ui-js-components-button.md)
-            -   [List](ui-js-components-list.md)
-            -   [Picker](ui-js-components-picker.md)
-            -   [Dialog](ui-js-components-dialog.md)
-            -   [Form](ui-js-components-form.md)
-            -   [Stepper](ui-js-components-stepper.md)
-            -   [Tabs](ui-js-component-tabs.md)
-            -   [Image](ui-js-components-images.md)
-
-        -   [Animation Development Guidelines](ui-js-animate.md)
-            -   [CSS Animation](ui-js-animate-css.md)
-                -   [Defining Attribute Style Animations](ui-js-animate-attribute-style.md)
-                -   [Defining Animations with the transform Attribute](ui-js-animate-transform.md)
-                -   [Defining Animations with the background-position Attribute](ui-js-animate-background-position-style.md)
-
-            -   [JS Animation](ui-js-animate-javascript.md)
-                -   [Component Animation](ui-js-animate-component.md)
-                -   [Interpolator Animation](ui-js-animate-interpolator.md)
-                    -   [Animation Effect](ui-js-animate-dynamic-effects.md)
-                    -   [Animation Frame](ui-js-animate-frame.md)
-
-        -   [Custom Components](ui-js-custom-components.md)
-
-    -   [TypeScript-based Declarative Development Paradigm](ui-arkui-ts.md)
-        -   [Overview](ui-ts-overview.md)
-        -   [Framework Overview](ts-framework.md)
-            -   [File Organization](ts-framework-file.md)
-                -   [Directory Structure](ts-framework-directory.md)
-                -   [Rules for Accessing Application Code Files](ts-framework-file-access-rules.md)
-
-            -   ["js" Tag](ts-framework-js-tag.md)
-            -   [Resource Access](ts-resource-access.md)
-                -   [Accessing Application Resources](ts-application-resource-access.md)
+- JavaScript-based Web-Like Development Paradigm
+    - [Overview](ui-js-overview.md)
+    - Framework
+        - [File Organization](js-framework-file.md)
+        - ["js" Tag](js-framework-js-tag.md)
+        - [app.js](js-framework-js-file.md)
+        - Syntax
+            - [HML](js-framework-syntax-hml.md)
+            - [CSS](js-framework-syntax-css.md)
+            - [JavaScript](js-framework-syntax-js.md)
+        - [Lifecycle](js-framework-lifecycle.md)
+        - [Resource Limitations and Access](js-framework-resource-restriction.md)
+        - [Multi-Language Capability](js-framework-multiple-languages.md)
+    - Building the UI
+        - [Component Overview](ui-js-building-ui-component.md)
+        - Building the Layout
+            - [Layout Description](ui-js-building-ui-layout-intro.md)
+            - [Adding Title and Paragraph Text](ui-js-building-ui-layout-text.md)
+            - [Adding an Image](ui-js-building-ui-layout-image.md)
+            - [Adding a Comment](ui-js-building-ui-layout-comment.md)
+            - [Adding a Container](ui-js-building-ui-layout-external-container.md)
+        - [Adding Interactions](ui-js-building-ui-interactions.md)
+        - [Developing Animations](ui-js-building-ui-animation.md)
+        - [Defining Events](ui-js-building-ui-event.md)
+        - [Defining Page Routes](ui-js-building-ui-routes.md)
+     - Common Component Development Guidelines
+        - [Text](ui-js-components-text.md)
+        - [Input](ui-js-components-input.md)
+        - [Button](ui-js-components-button.md)
+        - [List](ui-js-components-list.md)
+        - [Picker](ui-js-components-picker.md)
+        - [Dialog](ui-js-components-dialog.md)
+        - [Form](ui-js-components-form.md)
+        - [Stepper](ui-js-components-stepper.md)
+        - [Tabs](ui-js-component-tabs.md)
+        - [Image](ui-js-components-images.md)
+    - Animation Development Guidelines
+        - CSS Animation
+            - [Defining Attribute Style Animations](ui-js-animate-attribute-style.md)
+            - [Defining Animations with the transform Attribute](ui-js-animate-transform.md)
+            - [Defining Animations with the background-position Attribute](ui-js-animate-background-position-style.md)
+        - JS Animation
+            - [Component Animation](ui-js-animate-component.md)
+            - Interpolator Animation
+                 - [Animation Effect](ui-js-animate-dynamic-effects.md)
+                - [Animation Frame](ui-js-animate-frame.md)
+    - [Custom Components](ui-js-custom-components.md)
+- TypeScript-based Declarative Development Paradigm
+    - [Overview](ui-ts-overview.md)
+    - Framework Overview
+        - File Organization
+            - [Directory Structure](ts-framework-directory.md)
+            - [Rules for Accessing Application Code Files](ts-framework-file-access-rules.md)
+        - ["js" Tag](ts-framework-js-tag.md)
+        - Resource Access
                 -   [Media Resource Types](ts-media-resource-type.md)
-
-            -   [Pixel Units](ts-pixel-units.md)
-            -   [Types](ts-types.md)
-
-        -   [Declarative Syntax](ts-declarative-syntax.md)
-            -   [Overview](ts-syntax-intro.md)
-            -   [General UI Description Specifications](ts-general-ui-description-specifications.md)
-                -   [Basic Concepts](ts-general-ui-concepts.md)
-                -   [Declarative UI Description Specifications](ts-declarative-ui-description-specifications.md)
-                    -   [Parameterless Configuration](ts-parameterless-configuration.md)
-                    -   [Configuration with Mandatory Parameters](ts-configuration-with-mandatory-parameters.md)
-                    -   [Attribution Configuration](ts-attribution-configuration.md)
-                    -   [Event Configuration](ts-event-configuration.md)
-                    -   [Child Component Configuration](ts-child-component-configuration.md)
-
-                -   [Componentization](ts-component-based.md)
-                    -   [@Component](ts-component-based-component.md)
-                    -   [@Entry](ts-component-based-entry.md)
-                    -   [@Preview](ts-component-based-preview.md)
-                    -   [@Builder](ts-component-based-builder.md)
-                    -   [@Extend](ts-component-based-extend.md)
-                    -   [@CustomDialog](ts-component-based-customdialog.md)
-
-            -   [About UI State Management](ts-ui-state-management.md)
-                -   [Basic Concepts](ts-ui-state-mgmt-concepts.md)
-                -   [Managing Component States](ts-managing-component-states.md)
-                    -   [@State](ts-component-states-state.md)
-                    -   [@Prop](ts-component-states-prop.md)
-                    -   [@Link](ts-component-states-link.md)
-
-                -   [Managing Application States](ts-managing-application-states.md)
-                    -   [APIs](ts-managing-application-states-apis.md)
-                        -   [AppStorage](ts-application-states-appstorage.md)
-                        -   [PersistentStorage](ts-application-states-apis-persistentstorage.md)
-                        -   [Environment](ts-application-states-apis-environment.md)
-
-                    -   [Synchronization Between AppStorage and Components](ts-application-states-storagelink-storageprop.md)
-
-                -   [Managing Other States](ts-managing-other-states.md)
-                    -   [@observed and @objectLink](ts-other-states-observed-objectlink.md)
-                    -   [@Consume and @Provide](ts-other-states-consume-provide.md)
-                    -   [@Watch](ts-other-states-watch.md)
-
-            -   [About Rendering Control Syntax](ts-rending-control-syntax.md)
-                -   [if/else](ts-rending-control-syntax-if-else.md)
-                -   [ForEach](ts-rending-control-syntax-foreach.md)
-                -   [LazyForEach](ts-rending-control-syntax-lazyforeach.md)
-
-            -   [About @Component](ts-a-deep-dive-into-component.md)
-                -   [build Function](ts-function-build.md)
-                -   [Custom Component Initialization](ts-custom-component-initialization.md)
-                -   [Custom Component Lifecycle Callbacks](ts-custom-component-lifecycle-callbacks.md)
-                -   [Example: Component Creation and Re-Initialization](ts-component-creation-re-initialization.md)
-
-            -   [About Syntactic Sugar](ts-syntactic-sugar.md)
-                -   [@Decorator](ts-syntactic-sugar-decorator.md)
-                -   [Chain Call](ts-syntactic-sugar-chaining.md)
-                -   [struct](ts-syntactic-sugar-struct.md)
-                -   [Instantiating a struct Without the new Keyword](ts-instantiating-a-struct-without-new-keyword.md)
-                -   [Using a Separate Line for New Component](ts-using-a-separate-line-for-new-component.md)
-                -   [Restrictions on Using TypeScript for Generators](ts-restrictions-for-generators.md)
-
-        -   [Experiencing the Declarative UI](ui-ts-experiencing-declarative-ui.md)
-            -   [Creating a Declarative UI Project](ui-ts-creating-project.md)
-            -   [Getting to Know Components](ui-ts-components.md)
-            -   [Creating a Simple Page](ui-ts-creating-simple-page.md)
-
-        -   [Defining Page Layout and Connection](ui-ts-page-layout-connections.md)
-            -   [Building a Food Data Model](ui-ts-building-data-model.md)
-            -   [Building a Food Category List Layout](ui-ts-building-category-list-layout.md)
-            -   [Building a Food Category Grid Layout](ui-ts-building-category-grid-layout.md)
-            -   [Implementing Page Redirection and Data Transmission](ui-ts-page-redirection-data-transmission.md)
+        - [Pixel Units](ts-pixel-units.md)
+        - [Types](ts-types.md)
+    - Declarative Syntax
+        - [Overview](ts-syntax-intro.md)
+        - General UI Description Specifications
+            - [Basic Concepts](ts-general-ui-concepts.md)
+            - Declarative UI Description Specifications
+                - [Parameterless Configuration](ts-parameterless-configuration.md)
+                - [Configuration with Mandatory Parameters](ts-configuration-with-mandatory-parameters.md)
+                - [Attribution Configuration](ts-attribution-configuration.md)
+                - [Event Configuration](ts-event-configuration.md)
+                - [Child Component Configuration](ts-child-component-configuration.md)
+        - Componentization
+                - [@Component](ts-component-based-component.md)
+                - [@Entry](ts-component-based-entry.md)
+                - [@Preview](ts-component-based-preview.md)
+                - [@Builder](ts-component-based-builder.md)
+                - [@Extend](ts-component-based-extend.md)
+                - [@CustomDialog](ts-component-based-customdialog.md)
+        - About UI State Management
+            - [Basic Concepts](ts-ui-state-mgmt-concepts.md)
+            -[Managing Component States
+                - [@State](ts-component-states-state.md)
+                - [@Prop](ts-component-states-prop.md)
+                - [@Link](ts-component-states-link.md)
+            - Managing Application States
+                - [AppStorage](ts-application-states-appstorage.md)
+                - [PersistentStorage](ts-application-states-apis-persistentstorage.md)
+                - [Environment](ts-application-states-apis-environment.md)
+            - Managing Other States
+                - [@observed and @objectLink](ts-other-states-observed-objectlink.md)
+                - [@Consume and @Provide](ts-other-states-consume-provide.md)
+                - [@Watch](ts-other-states-watch.md)
+        - About Rendering Control Syntax
+            - [if/else](ts-rending-control-syntax-if-else.md)
+            - [ForEach](ts-rending-control-syntax-foreach.md)
+            - [LazyForEach](ts-rending-control-syntax-lazyforeach.md)
+        - About @Component
+            - [build Function](ts-function-build.md)
+            - [Custom Component Initialization](ts-custom-component-initialization.md)
+            - [Custom Component Lifecycle Callbacks](ts-custom-component-lifecycle-callbacks.md)
+            - [Example: Component Creation and Re-Initialization](ts-component-creation-re-initialization.md)
+        - [Syntactic Sugar](ts-syntactic-sugar.md)
+    - Experiencing the Declarative UI
+        - [Creating a Declarative UI Project](ui-ts-creating-project.md)
+        - [Getting to Know Components](ui-ts-components.md)
+        - [Creating a Simple Page](ui-ts-creating-simple-page.md)
+    - Defining Page Layout and Connection
+        - [Building a Food Data Model](ui-ts-building-data-model.md)
+        - [Building a Food Category List Layout](ui-ts-building-category-list-layout.md)
+        - [Building a Food Category Grid Layout](ui-ts-building-category-grid-layout.md)
+        - [Implementing Page Redirection and Data Transmission](ui-ts-page-redirection-data-transmission.md)
 
