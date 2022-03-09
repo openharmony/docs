@@ -17,7 +17,9 @@ dial\(phoneNumber: string, callback: AsyncCallback<boolean\>\): void
 
 Initiates a call. This function uses an asynchronous callback to return the execution result.
 
-Before using this API, you must declare the **ohos.permission.PLACE\_CALL** permission (a system permission).
+**Required permission**: ohos.permission.PLACE\_CALL (a system permission)
+
+**System capability**: SystemCapability.Telephony.CallManager
 
 **Parameters**
 
@@ -41,7 +43,9 @@ dial\(phoneNumber: string, options: DialOptions, callback: AsyncCallback<boolean
 
 Initiates a call. You can set call options as needed. This function uses an asynchronous callback to return the execution result.
 
-Before using this API, you must declare the **ohos.permission.PLACE\_CALL** permission (a system permission).
+**Required permission**: ohos.permission.PLACE\_CALL (a system permission)
+
+**System capability**: SystemCapability.Telephony.CallManager
 
 **Parameters**
 
@@ -68,7 +72,9 @@ dial\(phoneNumber: string, options?: DialOptions\): Promise<boolean\>
 
 Initiates a call. You can set call options as needed. This function uses a promise to return the execution result.
 
-Before using this API, you must declare the **ohos.permission.PLACE\_CALL** permission (a system permission).
+**Required permission**: ohos.permission.PLACE\_CALL (a system permission)
+
+**System capability**: SystemCapability.Telephony.CallManager
 
 **Parameters**
 
@@ -102,6 +108,8 @@ hasCall\(callback: AsyncCallback<boolean\>\): void
 
 Checks whether a call is in progress. This function uses an asynchronous callback to return the result.
 
+**System capability**: SystemCapability.Telephony.CallManager
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
@@ -122,6 +130,8 @@ call.hasCall((err, data) => {
 hasCall\(\): Promise<boolean\>
 
 Checks whether a call is in progress. This function uses a promise to return the result.
+
+**System capability**: SystemCapability.Telephony.CallManager
 
 **Return value**
 
@@ -147,6 +157,8 @@ getCallState\(callback: AsyncCallback<CallState\>\): void
 
 Obtains the call status. This function uses an asynchronous callback to return the result.
 
+**System capability**: SystemCapability.Telephony.CallManager
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
@@ -167,6 +179,8 @@ call.getCallState((err, data) => {
 getCallState\(\): Promise<CallState\>
 
 Obtains the call status. This function uses a promise to return the result.
+
+**System capability**: SystemCapability.Telephony.CallManager
 
 **Return value**
 
@@ -191,6 +205,8 @@ isEmergencyPhoneNumber\(phoneNumber: string, callback: AsyncCallback<boolean\>\)
 
 Checks whether the call number of the SIM card in the specified slot is an emergency number. This function uses an asynchronous callback to return the result.
 
+**System capability**: SystemCapability.Telephony.CallManager
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
@@ -212,6 +228,8 @@ call.isEmergencyPhoneNumber("138xxxxxxxx", (err, data) => {
 isEmergencyPhoneNumber\(phoneNumber: string, options: EmergencyNumberOptions, callback: AsyncCallback<boolean\>\): void
 
 Checks whether the call number of the SIM card in the specified slot is an emergency number. This function uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Telephony.CallManager
 
 **Parameters**
 
@@ -235,6 +253,8 @@ call.isEmergencyPhoneNumber("112", {slotId: 1}, (err, value) => {
 isEmergencyPhoneNumber\(phoneNumber: string, options?: EmergencyNumberOptions\): Promise<boolean\>
 
 Checks whether the call number of the SIM card in the specified slot is an emergency number. This function uses a promise to return the result.
+
+**System capability**: SystemCapability.Telephony.CallManager
 
 **Parameters**
 
@@ -266,6 +286,8 @@ formatPhoneNumber\(phoneNumber: string, callback: AsyncCallback<string\>\): void
 
 Formats a phone number based on the specified ISO country code. This function uses an asynchronous callback to return the result.
 
+**System capability**: SystemCapability.Telephony.CallManager
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
@@ -287,6 +309,8 @@ call.formatPhoneNumber("138xxxxxxxx", (err, data) => {
 formatPhoneNumber\(phoneNumber: string, options: NumberFormatOptions, callback: AsyncCallback<string\>\): void
 
 Formats a phone number based on specified formatting options. This function uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Telephony.CallManager
 
 **Parameters**
 
@@ -312,6 +336,8 @@ call.formatPhoneNumber("138xxxxxxxx",{
 formatPhoneNumber\(phoneNumber: string, options?: NumberFormatOptions\): Promise<string\>
 
 Formats a phone number based on specified formatting options. This function uses a promise to return the result.
+
+**System capability**: SystemCapability.Telephony.CallManager
 
 **Parameters**
 
@@ -349,6 +375,8 @@ The phone number must match the specified country code. For example, for a China
 
 All country codes are supported.
 
+**System capability**: SystemCapability.Telephony.CallManager
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
@@ -377,6 +405,8 @@ Converts a phone number into the E.164 format. This function uses a promise to r
 The phone number must match the specified country code. For example, for a China phone number, the country code must be **CN**. Otherwise, **null** will be returned.
 
 All country codes are supported.
+
+**System capability**: SystemCapability.Telephony.CallManager
 
 **Parameters**
 
@@ -407,30 +437,40 @@ promise.then(data => {
 ## DialOptions<a name=DialOptions></a>
 
 Provides an option for determining whether a call is a video call.
-| Parameter| Type| Mandatory| Description|
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+| Name| Type| Mandatory| Description|
 | ------ | ------- | ---- | ------------------------------------------------------------ |
 | extras | boolean | No| Indication of a video call. The options are as follows: <br/> - **true**: video call <br/> - **false**: voice call|
 
 ## CallState<a name=CallState></a>
 
 Enumerates call states.
+
 | Variable| Value| Description|
 | ------------------ | ---- | ------------------------------------------------------------ |
-| CALL_STATE_UNKNOWN | -1   | The call status fails to be obtained and is unknown.|
-| CALL_STATE_IDLE    | 0    | No call is in progress.|
-| CALL_STATE_RINGING | 1    | The call is in the ringing or waiting state.|
-| CALL_STATE_OFFHOOK | 2    | At least one call is in dialing, active, or on hold, and no new incoming call is ringing or waiting.|
+| CALL_STATE_UNKNOWN | -1   | The call status fails to be obtained and is unknown. <br />**System capability**: SystemCapability.Telephony.CallManager|
+| CALL_STATE_IDLE    | 0    | No call is in progress. <br />**System capability**: SystemCapability.Telephony.CallManager|
+| CALL_STATE_RINGING | 1    | The call is in the ringing or waiting state. <br />**System capability**: SystemCapability.Telephony.CallManager|
+| CALL_STATE_OFFHOOK | 2    | At least one call is in dialing, active, or on hold, and no new incoming call is ringing or waiting. <br />**System capability**: SystemCapability.Telephony.CallManager|
 
 ## EmergencyNumberOptions<sup>7+</sup><a name=EmergencyNumberOptions></a>
 
 Provides an option for determining whether a number is an emergency number for the SIM card in the specified slot.
-| Parameter| Type| Mandatory| Description|
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+| Name| Type| Mandatory| Description|
 | ------ | ------ | ---- | ------------------------------------------ |
 | slotId | number | No| SIM card slot ID.<br/> - **0**: slot 1 <br/> - **1**: slot 2|
 
 ## NumberFormatOptions<sup>7+</sup><a name=NumberFormatOptions></a>
 
 Provides an option for number formatting.
-| Parameter| Type| Mandatory| Description|
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+| Name| Type| Mandatory| Description|
 | ----------- | ------ | ---- | ---------------------------------------------------------- |
 | countryCode | string | No| Country code, for example, **CN** (China). All country codes are supported. The default value is **CN**.|
