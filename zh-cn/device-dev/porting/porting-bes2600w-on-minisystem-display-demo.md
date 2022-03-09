@@ -410,7 +410,6 @@ static int32_t FsDriverInit(struct HdfDeviceObject *object)
         fs[i].lfs_cfg.lookahead_size = 16;
         fs[i].lfs_cfg.block_cycles = 1000;
 
-        SetDefaultMountPath(i, fs[i].mount_point);
         int ret = mount(NULL, fs[i].mount_point, "littlefs", 0, &fs[i].lfs_cfg);
         HDF_LOGI("%s: mount fs on '%s' %s\n", __func__, fs[i].mount_point, (ret == 0) ? "succeed" : "failed");
     }
