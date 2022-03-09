@@ -16,10 +16,14 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 Starts an ability. This method uses a callback to return the result.
 
 
+**System capabilities**
+
+SystemCapability.Ability.AbilityRuntime.Core
+
 - Parameters
   | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
-  | want | [Want](js-apis-featureAbility.md#Want)| Yes| Information about the ability to start, such as the ability name and bundle name.| 
+  | want | [Want](js-apis-featureAbility.md#Want) | Yes| Information about the ability to start, such as the ability name and bundle name.| 
   | callback | AsyncCallback&lt;void&gt; | No| Callback used to return the result indicating whether the method is successfully called.| 
 
 - Example
@@ -40,10 +44,14 @@ startAbility(want: Want): Promise&lt;void&gt;;
 
 Starts an ability. This method uses a promise to return the result.
 
+**System capabilities**
+
+SystemCapability.Ability.AbilityRuntime.Core
+
 - Parameters
   | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
-  | want | [Want](js-apis-featureAbility.md#Want)| Yes| Information about the ability to start, such as the ability name and bundle name.| 
+  | want | [Want](js-apis-featureAbility.md#Want) | Yes| Information about the ability to start, such as the ability name and bundle name.| 
 
 - Return value
   | Type| Description| 
@@ -70,6 +78,10 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
 
 Terminates this ability. This method uses a callback to return the result.
 
+**System capabilities**
+
+SystemCapability.Ability.AbilityRuntime.Core
+
 - Parameters
   | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
@@ -88,6 +100,10 @@ Terminates this ability. This method uses a callback to return the result.
 terminateSelf(): Promise&lt;void&gt;;
 
 Terminates this ability. This method uses a promise to return the result.
+
+**System capabilities**
+
+SystemCapability.Ability.AbilityRuntime.Core
 
 - Return value
   | Type| Description| 
@@ -110,10 +126,14 @@ connectAbility(want: Want, options: ConnectOptions): number;
 
 Connects this ability to a Service ability.
 
+**System capabilities**
+
+SystemCapability.Ability.AbilityRuntime.Core
+
 - Parameters
   | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
-  | want | [Want](js-apis-featureAbility.md#Want)| Yes| Information about the ability to connect to, such as the ability name and bundle name.| 
+  | want | [Want](js-apis-featureAbility.md#Want) | Yes| Information about the ability to connect to, such as the ability name and bundle name.| 
   | options | [ConnectOptions](#connectoptions) | Yes| Callback used to return the information indicating that the connection is successful, interrupted, or failed.| 
 
 - Return value
@@ -142,6 +162,10 @@ disconnectAbility(connection: number, callback:AsyncCallback&lt;void&gt;): void;
 
 Disconnects this ability from the Service ability. This method uses a callback to return the result.
 
+**System capabilities**
+
+SystemCapability.Ability.AbilityRuntime.Core
+
 - Parameters
   | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
@@ -162,6 +186,10 @@ disconnectAbility(connection: number): Promise&lt;void&gt;;
 
 Disconnects this ability from the Service ability. This method uses a promise to return the result.
 
+**System capabilities**
+
+SystemCapability.Ability.AbilityRuntime.Core
+
 - Parameters
   | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
@@ -171,7 +199,7 @@ Disconnects this ability from the Service ability. This method uses a promise to
   | Type| Description| 
   | -------- | -------- |
   | Promise&lt;void&gt; | Promise used to return the result indicating whether the method is successfully called.| 
-
+ 
 - Example
   ```
   this.context.disconnectAbility(connection).then((data) => { // connection is the return value of connectAbility.
@@ -188,6 +216,6 @@ Defines the **ConnectOptions** data structure.
 
 | Name| Description| 
 | -------- | -------- |
-| onConnect(elementName:ElementName,&nbsp;remote:IRemoteObject) | Called when this ability is connected to a Service ability.| 
-| onDisconnect(elementName:ElementName) | Called when the peer service is abnormal or killed.| 
-| onFailed(code:&nbsp;number) | Called when the connection fails.| 
+| onConnect(elementName:ElementName,&nbsp;remote:IRemoteObject) | Called when this ability is connected to a Service ability.<br><b>System capabilities: </b>SystemCapability.Ability.AbilityRuntime.Core| 
+| onDisconnect(elementName:ElementName) | Called when the peer service is abnormal or killed.<br><b>System capabilities: </b>SystemCapability.Ability.AbilityRuntime.Core| 
+| onFailed(code:&nbsp;number) | Called when the connection fails.<br><b>System capabilities: </b>SystemCapability.Ability.AbilityRuntime.Core| 

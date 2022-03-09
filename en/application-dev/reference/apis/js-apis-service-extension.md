@@ -32,6 +32,10 @@ onCreate(want: Want): void;
 
 Called when an extension is created to initialize the service logic.
 
+**System capabilities**
+
+SystemCapability.Ability.AbilityRuntime.Core
+
 - Parameters
   | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
@@ -53,6 +57,10 @@ onDestroy(): void;
 
 Called when this extension is destroyed to clear resources.
 
+**System capabilities**
+
+SystemCapability.Ability.AbilityRuntime.Core
+
 - Example
   ```
   class ServiceExt extends ServiceExtension {
@@ -68,6 +76,10 @@ Called when this extension is destroyed to clear resources.
 onRequest(want: Want, startId: number): void;
 
 Called after **onCreate** is invoked when an ability is started by calling **startAbility**. The value of **startId** is incremented for each ability that is started.
+
+**System capabilities**
+
+SystemCapability.Ability.AbilityRuntime.Core
 
 - Parameters
   | Name| Type| Mandatory| Description| 
@@ -90,6 +102,10 @@ Called after **onCreate** is invoked when an ability is started by calling **sta
 onConnect(want: Want): rpc.RemoteObject;
 
 Called after **onCreate** is invoked when an ability is started by calling **connectAbility**. A **RemoteObject** object is returned for communication with the client.
+
+**System capabilities**
+
+SystemCapability.Ability.AbilityRuntime.Core
 
 - Parameters
   | Name| Type| Mandatory| Description| 
@@ -125,6 +141,10 @@ Called after **onCreate** is invoked when an ability is started by calling **con
 onDisconnect(want: Want): void;
 
 Called when the ability is disconnected.
+
+**System capabilities**
+
+SystemCapability.Ability.AbilityRuntime.Core
 
 - Parameters
   | Name| Type| Mandatory| Description| 

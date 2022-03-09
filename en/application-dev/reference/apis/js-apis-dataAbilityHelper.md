@@ -16,13 +16,17 @@ openFile(uri: string, mode: string, callback: AsyncCallback\<number>): void
 
 Opens a file with a specified URI. This method uses a callback to return the result.
 
+**System capabilities**
+
+SystemCapability.Ability.AbilityRuntime.FAModel
+
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name    | Type                  | Mandatory| Description                              |
 | -------- | ---------------------- | ---- | ---------------------------------- |
-| uri      | string                 | Yes| URI of the file to open.|
-| mode     | string                 | Yes| Mode for opening the file. The value can be **rwt**.|
-| callback | AsyncCallback\<number> | Yes| Callback used to return the file descriptor.|
+| uri      | string                 | Yes  | URI of the file to open.          |
+| mode     | string                 | Yes  | Mode for opening the file. The value can be **rwt**.           |
+| callback | AsyncCallback\<number> | Yes  | Callback used to return the file descriptor.|
 
 **Example**
 
@@ -46,15 +50,19 @@ openFile(uri: string, mode: string): Promise\<number>
 
 Opens a file with a specified URI. This method uses a promise to return the result.
 
+**System capabilities**
+
+SystemCapability.Ability.AbilityRuntime.FAModel
+
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name| Type  | Mandatory| Description                    |
 | ---- | ------ | ---- | ------------------------ |
-| uri  | string | Yes| URI of the file to open.|
-| mode | string | Yes| Mode for opening the file. The value can be **rwt**.|
+| uri  | string | Yes  | URI of the file to open.|
+| mode | string | Yes  | Mode for opening the file. The value can be **rwt**. |
 
 **Return value**
-| Type| Description|
+| Type            | Description            |
 | ---------------- | ---------------- |
 | Promise\<number> | Promise used to return the file descriptor.|
 
@@ -79,13 +87,17 @@ on(type: 'dataChange', uri: string, callback: AsyncCallback\<void>): void
 
 Registers an observer to observe data specified by a given URI. This method uses a callback to return the result.
 
+**System capabilities**
+
+SystemCapability.Ability.AbilityRuntime.FAModel
+
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name    | Type                | Mandatory| Description                    |
 | -------- | -------------------- | ---- | ------------------------ |
-| type     | string               | Yes| Type of the event to observe. The value is **dataChange**.|
-| uri      | string               | Yes| URI of the data.|
-| callback | AsyncCallback\<void> | Yes| Callback invoked when the data is changed.|
+| type     | string               | Yes  | Type of the event to observe. The value is **dataChange**.              |
+| uri      | string               | Yes  | URI of the data.|
+| callback | AsyncCallback\<void> | Yes  | Callback invoked when the data is changed.  |
 
 **Example**
 
@@ -110,13 +122,17 @@ off(type: 'dataChange', uri: string, callback?: AsyncCallback\<void>): void
 
 Unregisters the observer used to observe data specified by a given URI. This method uses a callback to return the result.
 
+**System capabilities**
+
+SystemCapability.Ability.AbilityRuntime.FAModel
+
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name    | Type                | Mandatory| Description                    |
 | -------- | -------------------- | ---- | ------------------------ |
-| type     | string               | Yes| Type of the event to observe. The value is **dataChange**.|
-| uri      | string               | Yes| URI of the data.|
-| callback | AsyncCallback\<void> | No| Callback used to return the result.|
+| type     | string               | Yes  | Type of the event to observe. The value is **dataChange**.              |
+| uri      | string               | Yes  | URI of the data.|
+| callback | AsyncCallback\<void> | No  | Callback used to return the result.      |
 
 **Example**
 
@@ -145,12 +161,16 @@ getType(uri: string, callback: AsyncCallback\<string>): void
 
 Obtains the MIME type of the data specified by a given URI. This method uses a callback to return the result.
 
+**System capabilities**
+
+SystemCapability.Ability.AbilityRuntime.FAModel
+
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name    | Type                  | Mandatory| Description                                         |
 | -------- | ---------------------- | ---- | --------------------------------------------- |
-| uri      | string                 | Yes| URI of the data.|
-| callback | AsyncCallback\<string> | Yes| Callback used to return the MIME type.|
+| uri      | string                 | Yes  | URI of the data.                     |
+| callback | AsyncCallback\<string> | Yes  | Callback used to return the MIME type.|
 
 **Example**
 
@@ -172,14 +192,18 @@ getType(uri: string): Promise\<string>
 
 Obtains the MIME type of the data specified by a given URI. This method uses a promise to return the result.
 
+**System capabilities**
+
+SystemCapability.Ability.AbilityRuntime.FAModel
+
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name| Type  | Mandatory| Description                    |
 | ---- | ------ | ---- | ------------------------ |
-| uri  | string | Yes| URI of the data.|
+| uri  | string | Yes  | URI of the data.|
 
 **Return value**
-| Type| Description|
+| Type            | Description                               |
 | ---------------- | ----------------------------------- |
 | Promise\<string> | Promise used to return the MIME type.|
 
@@ -203,13 +227,17 @@ getFileTypes(uri: string, mimeTypeFilter: string, callback: AsyncCallback<Array\
 
 Obtains the supported MIME types of a specified file. This method uses a callback to return the result.
 
+**System capabilities**
+
+SystemCapability.Ability.AbilityRuntime.FAModel
+
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name          | Type                          | Mandatory| Description                              |
 | -------------- | ------------------------------ | ---- | ---------------------------------- |
-| uri            | string                         | Yes| URI of the file.|
-| mimeTypeFilter | string                         | Yes| MIME type of the file.|
-| callback       | AsyncCallback\<Array\<string>> | Yes| Callback used to return the supported MIME types.|
+| uri            | string                         | Yes  | URI of the file.          |
+| mimeTypeFilter | string                         | Yes  | MIME type of the file.      |
+| callback       | AsyncCallback\<Array\<string>> | Yes  | Callback used to return the supported MIME types.|
 
 **Example**
 
@@ -234,15 +262,19 @@ getFileTypes(uri: string, mimeTypeFilter: string): Promise\<Array\<string>>
 
 Obtains the supported MIME types of a specified file. This method uses a promise to return the result.
 
+**System capabilities**
+
+SystemCapability.Ability.AbilityRuntime.FAModel
+
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name          | Type  | Mandatory| Description                        |
 | -------------- | ------ | ---- | ---------------------------- |
-| uri            | string | Yes| URI of the file.|
-| mimeTypeFilter | string | Yes| MIME type of the file.|
+| uri            | string | Yes  | URI of the file.    |
+| mimeTypeFilter | string | Yes  | MIME type of the file.|
 
 **Return value**
-| Type| Description|
+| Type                    | Description                    |
 | ------------------------ | ------------------------ |
 | Promise\<Array\<string>> | Promise used to return the supported MIME types.|
 
@@ -267,12 +299,16 @@ normalizeUri(uri: string, callback: AsyncCallback\<string>): void
 
 Converts the URI that refers to a Data ability into a normalized URI. This method uses a callback to return the result.
 
+**System capabilities**
+
+SystemCapability.Ability.AbilityRuntime.FAModel
+
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name    | Type                  | Mandatory| Description                                                        |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
-| uri      | string                 | Yes| URI object to normalize.|
-| callback | AsyncCallback\<string> | Yes| Callback used to return the normalized URI object if the Data ability supports URI normalization. If the Data ability does not support URI normalization, **null** is returned.|
+| uri      | string                 | Yes  | URI object to normalize.                                     |
+| callback | AsyncCallback\<string> | Yes  | Callback used to return the normalized URI object if the Data ability supports URI normalization. If the Data ability does not support URI normalization, **null** is returned.|
 
 **Example**
 
@@ -294,14 +330,18 @@ normalizeUri(uri: string): Promise\<string>
 
 Converts the URI that refers to a Data ability into a normalized URI. This method uses a promise to return the result.
 
+**System capabilities**
+
+SystemCapability.Ability.AbilityRuntime.FAModel
+
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name| Type  | Mandatory| Description                   |
 | ---- | ------ | ---- | ----------------------- |
-| uri  | string | Yes| URI object to normalize.|
+| uri  | string | Yes  | URI object to normalize.|
 
 **Return value**
-| Type| Description|
+| Type            | Description                                                  |
 | ---------------- | ------------------------------------------------------ |
 | Promise\<string> | Promise used to return the normalized URI object if the Data ability supports URI normalization. If the Data ability does not support URI normalization, **null** is returned.|
 
@@ -325,12 +365,16 @@ denormalizeUri(uri: string, callback: AsyncCallback\<string>): void
 
 Converts a normalized URI generated by **DataAbilityHelper.normalizeUri(uri: string, callback: AsyncCallback\<string>)** to a denormalized one. This method uses a callback to return the result.
 
+**System capabilities**
+
+SystemCapability.Ability.AbilityRuntime.FAModel
+
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name    | Type                  | Mandatory| Description                                               |
 | -------- | ---------------------- | ---- | --------------------------------------------------- |
-| uri      | string                 | Yes| URI object to normalize.|
-| callback | AsyncCallback\<string> | Yes| Callback used to return the denormalized URI object.|
+| uri      | string                 | Yes  | URI object to normalize.                            |
+| callback | AsyncCallback\<string> | Yes  | Callback used to return the denormalized URI object.|
 
 **Example**
 
@@ -354,14 +398,18 @@ denormalizeUri(uri: string): Promise\<string>
 
 Converts a normalized URI generated by **DataAbilityHelper.normalizeUri(uri: string)** to a denormalized one. This method uses a promise to return the result.
 
+**System capabilities**
+
+SystemCapability.Ability.AbilityRuntime.FAModel
+
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name| Type  | Mandatory| Description                   |
 | ---- | ------ | ---- | ----------------------- |
-| uri  | string | Yes| URI object to normalize.|
+| uri  | string | Yes  | URI object to normalize.|
 
 **Return value**
-| Type| Description|
+| Type            | Description                                     |
 | ---------------- | ----------------------------------------- |
 | Promise\<string> | Promise used to return the denormalized URI object.|
 
@@ -385,12 +433,16 @@ notifyChange(uri: string, callback: AsyncCallback\<void>): void
 
 Notifies the registered observer of a change to the data specified by the URI. This method uses a callback to return the result.
 
+**System capabilities**
+
+SystemCapability.Ability.AbilityRuntime.FAModel
+
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name    | Type                | Mandatory| Description                    |
 | -------- | -------------------- | ---- | ------------------------ |
-| uri      | string               | Yes| URI of the data.|
-| callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
+| uri      | string               | Yes  | URI of the data.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.              |
 
 **Example**
 
@@ -412,14 +464,18 @@ notifyChange(uri: string): Promise\<void>
 
 Notifies the registered observer of a change to the data specified by the URI. This method uses a promise to return the result.
 
+**System capabilities**
+
+SystemCapability.Ability.AbilityRuntime.FAModel
+
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name| Type  | Mandatory| Description                    |
 | ---- | ------ | ---- | ------------------------ |
-| uri  | string | Yes| URI of the data.|
+| uri  | string | Yes  | URI of the data.|
 
 **Return value**
-| Type| Description|
+| Type          | Description                 |
 | -------------- | --------------------- |
 | Promise\<void> | Promise used to return the result.|
 
@@ -443,13 +499,17 @@ insert(uri: string, valuesBucket: rdb.ValuesBucket, callback: AsyncCallback\<num
 
 Inserts a single data record into the database. This method uses a callback to return the result.
 
+**System capabilities**
+
+SystemCapability.Ability.AbilityRuntime.FAModel
+
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name        | Type                  | Mandatory| Description                                                  |
 | ------------ | ---------------------- | ---- | ------------------------------------------------------ |
-| uri          | string                 | Yes| URI of the data to insert.|
-| valuesBucket | rdb.ValuesBucket       | Yes| Data record to insert. If this parameter is **null**, a blank row will be inserted.|
-| callback     | AsyncCallback\<number> | Yes| Callback used to return the index of the inserted data record.|
+| uri          | string                 | Yes  | URI of the data to insert.                              |
+| valuesBucket | rdb.ValuesBucket       | Yes  | Data record to insert. If this parameter is **null**, a blank row will be inserted.|
+| callback     | AsyncCallback\<number> | Yes  | Callback used to return the index of the inserted data record.                    |
 
 **Example**
 
@@ -478,15 +538,19 @@ insert(uri: string, valuesBucket: rdb.ValuesBucket): Promise\<number>
 
 Inserts a single data record into the database. This method uses a promise to return the result.
 
+**System capabilities**
+
+SystemCapability.Ability.AbilityRuntime.FAModel
+
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name        | Type            | Mandatory| Description                                                  |
 | ------------ | ---------------- | ---- | ------------------------------------------------------ |
-| uri          | string           | Yes| URI of the data to insert.|
-| valuesBucket | rdb.ValuesBucket | Yes| Data record to insert. If this parameter is **null**, a blank row will be inserted.|
+| uri          | string           | Yes  | URI of the data to insert.                              |
+| valuesBucket | rdb.ValuesBucket | Yes  | Data record to insert. If this parameter is **null**, a blank row will be inserted.|
 
 **Return value**
-| Type| Description|
+| Type            | Description                    |
 | ---------------- | ------------------------ |
 | Promise\<number> | Promise used to return the index of the inserted data record.|
 
@@ -517,13 +581,17 @@ batchInsert(uri: string, valuesBuckets: Array<rdb.ValuesBucket>, callback: Async
 
 Inserts multiple data records into the database. This method uses a callback to return the result.
 
+**System capabilities**
+
+SystemCapability.Ability.AbilityRuntime.FAModel
+
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name        | Type                   | Mandatory| Description                            |
 | ------------ | ----------------------- | ---- | -------------------------------- |
-| uri          | string                  | Yes| URI of the data to insert.|
-| valuesBucket | Array<rdb.ValuesBucket> | Yes| Data records to insert.|
-| callback     | AsyncCallback\<number>  | Yes| Callback used to return the number of inserted data records.|
+| uri          | string                  | Yes  | URI of the data to insert.        |
+| valuesBucket | Array<rdb.ValuesBucket> | Yes  | Data records to insert.          |
+| callback     | AsyncCallback\<number>  | Yes  | Callback used to return the number of inserted data records.|
 
 **Example**
 
@@ -549,15 +617,19 @@ batchInsert(uri: string, valuesBuckets: Array<rdb.ValuesBucket>): Promise\<numbe
 
 Inserts multiple data records into the database. This method uses a promise to return the result.
 
+**System capabilities**
+
+SystemCapability.Ability.AbilityRuntime.FAModel
+
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name        | Type                   | Mandatory| Description                    |
 | ------------ | ----------------------- | ---- | ------------------------ |
-| uri          | string                  | Yes| URI of the data to insert.|
-| valuesBucket | Array<rdb.ValuesBucket> | Yes| Data record to insert.|
+| uri          | string                  | Yes  | URI of the data to insert.|
+| valuesBucket | Array<rdb.ValuesBucket> | Yes  | Data record to insert.  |
 
 **Return value**
-| Type| Description|
+| Type            | Description                  |
 | ---------------- | ---------------------- |
 | Promise\<number> | Promise used to return the number of inserted data records.|
 
@@ -585,13 +657,17 @@ delete(uri: string, predicates: dataAbility.DataAbilityPredicates, callback: Asy
 
 Deletes one or more data records from the database. This method uses a callback to return the result.
 
+**System capabilities**
+
+SystemCapability.Ability.AbilityRuntime.FAModel
+
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name        | Type                             | Mandatory| Description                                            |
 | ------------ | --------------------------------- | ---- | ------------------------------------------------ |
-| uri          | string                            | Yes| URI of the data to delete.|
-| valuesBucket | dataAbility.DataAbilityPredicates | Yes| Filter criteria. You should define the processing logic when this parameter is **null**.|
-| callback     | AsyncCallback\<number>            | Yes| Callback used to return the number of deleted data records.|
+| uri          | string                            | Yes  | URI of the data to delete.                        |
+| valuesBucket | dataAbility.DataAbilityPredicates | Yes  | Filter criteria. You should define the processing logic when this parameter is **null**.|
+| callback     | AsyncCallback\<number>            | Yes  | Callback used to return the number of deleted data records.              |
 
 **Example**
 
@@ -616,15 +692,19 @@ delete(uri: string, predicates: dataAbility.DataAbilityPredicates): Promise\<num
 
 Deletes one or more data records from the database. This method uses a promise to return the result.
 
+**System capabilities**
+
+SystemCapability.Ability.AbilityRuntime.FAModel
+
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name        | Type                             | Mandatory| Description                                            |
 | ------------ | --------------------------------- | ---- | ------------------------------------------------ |
-| uri          | string                            | Yes| URI of the data to delete.|
-| valuesBucket | dataAbility.DataAbilityPredicates | Yes| Filter criteria. You should define the processing logic when this parameter is **null**.|
+| uri          | string                            | Yes  | URI of the data to delete.                        |
+| valuesBucket | dataAbility.DataAbilityPredicates | Yes  | Filter criteria. You should define the processing logic when this parameter is **null**.|
 
 **Return value**
-| Type| Description|
+| Type            | Description                    |
 | ---------------- | ------------------------ |
 | Promise\<number> | Promise used to return the number of deleted data records.|
 
@@ -650,14 +730,18 @@ update(uri: string, valuesBucket: rdb.ValuesBucket, predicates: dataAbility.Data
 
 Updates data records in the database. This method uses a callback to return the result.
 
+**System capabilities**
+
+SystemCapability.Ability.AbilityRuntime.FAModel
+
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name        | Type                             | Mandatory| Description                                            |
 | ------------ | --------------------------------- | ---- | ------------------------------------------------ |
-| uri          | string                            | Yes| URI of the data to update.|
-| valuesBucket | rdb.ValuesBucket                  | Yes| New values.|
-| predicates   | dataAbility.DataAbilityPredicates | Yes| Filter criteria. You should define the processing logic when this parameter is **null**.|
-| callback     | AsyncCallback\<number>            | Yes| Callback used to return the number of updated data records.|
+| uri          | string                            | Yes  | URI of the data to update.                        |
+| valuesBucket | rdb.ValuesBucket                  | Yes  | New values.                              |
+| predicates   | dataAbility.DataAbilityPredicates | Yes  | Filter criteria. You should define the processing logic when this parameter is **null**.|
+| callback     | AsyncCallback\<number>            | Yes  | Callback used to return the number of updated data records.                |
 
 **Example**
 
@@ -689,16 +773,20 @@ update(uri: string, valuesBucket: rdb.ValuesBucket, predicates: dataAbility.Data
 
 Updates data records in the database. This method uses a promise to return the result.
 
+**System capabilities**
+
+SystemCapability.Ability.AbilityRuntime.FAModel
+
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name        | Type                             | Mandatory| Description                                            |
 | ------------ | --------------------------------- | ---- | ------------------------------------------------ |
-| uri          | string                            | Yes| URI of the data to update.|
-| valuesBucket | rdb.ValuesBucket                  | Yes| New values.|
-| predicates   | dataAbility.DataAbilityPredicates | Yes| Filter criteria. You should define the processing logic when this parameter is **null**.|
+| uri          | string                            | Yes  | URI of the data to update.                        |
+| valuesBucket | rdb.ValuesBucket                  | Yes  | New values.                              |
+| predicates   | dataAbility.DataAbilityPredicates | Yes  | Filter criteria. You should define the processing logic when this parameter is **null**.|
 
 **Return value**
-| Type| Description|
+| Type            | Description                                        |
 | ---------------- | -------------------------------------------- |
 | Promise\<number> | Promise used to return the number of updated data records.|
 
@@ -732,14 +820,18 @@ query(uri: string, columns: Array\<string>, predicates: dataAbility.DataAbilityP
 
 Queries data in the database. This method uses a callback to return the result.
 
+**System capabilities**
+
+SystemCapability.Ability.AbilityRuntime.FAModel
+
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name      | Type                             | Mandatory| Description                                            |
 | ---------- | --------------------------------- | ---- | ------------------------------------------------ |
-| uri        | string                            | Yes| URI of the data to query.|
-| columns    | rdb.ValuesBucket                  | Yes| Columns to query. If this parameter is **null**, all columns will be queried.|
-| predicates | dataAbility.DataAbilityPredicates | Yes| Filter criteria. You should define the processing logic when this parameter is **null**.|
-| callback   | AsyncCallback\<ResultSet>         | Yes| Callback used to return the data queried.|
+| uri        | string                            | Yes  | URI of the data to query.                        |
+| columns    | rdb.ValuesBucket                  | Yes  | Columns to query. If this parameter is **null**, all columns will be queried.  |
+| predicates | dataAbility.DataAbilityPredicates | Yes  | Filter criteria. You should define the processing logic when this parameter is **null**.|
+| callback   | AsyncCallback\<ResultSet>         | Yes  | Callback used to return the data queried.                        |
 
 **Example**
 
@@ -768,16 +860,20 @@ query(uri: string, columns: Array\<string>, predicates: dataAbility.DataAbilityP
 
 Queries data in the database. This method uses a promise to return the result.
 
+**System capabilities**
+
+SystemCapability.Ability.AbilityRuntime.FAModel
+
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name      | Type                             | Mandatory| Description                                            |
 | ---------- | --------------------------------- | ---- | ------------------------------------------------ |
-| uri        | string                            | Yes| URI of the data to query.|
-| columns    | rdb.ValuesBucket                  | Yes| Columns to query. If this parameter is **null**, all columns will be queried.|
-| predicates | dataAbility.DataAbilityPredicates | Yes| Filter criteria. You should define the processing logic when this parameter is **null**.|
+| uri        | string                            | Yes  | URI of the data to query.                        |
+| columns    | rdb.ValuesBucket                  | Yes  | Columns to query. If this parameter is **null**, all columns will be queried.  |
+| predicates | dataAbility.DataAbilityPredicates | Yes  | Filter criteria. You should define the processing logic when this parameter is **null**.|
 
 **Return value**
-| Type| Description|
+| Type               | Description          |
 | ------------------- | -------------- |
 | Promise\<ResultSet> | Promise used to return the data queried.|
 

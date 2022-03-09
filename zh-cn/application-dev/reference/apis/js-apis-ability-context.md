@@ -1,24 +1,5 @@
 # AbilityContext
 
-- [使用说明](#使用说明)
-- [属性](#属性)
-- [startAbility](#startAbility)
-- [startAbility](#startAbility)
-- [startAbility](#startAbility)
-- [startAbilityForResult](#startAbilityForResult)
-- [startAbilityForResult](#startAbilityForResult)
-- [startAbilityForResult](#startAbilityForResult)
-- [terminateSelf](#terminateSelf)
-- [terminateSelf](#terminateSelf)
-- [terminateSelfWithResult](#terminateSelfWithResult)
-- [terminateSelfWithResult](#terminateSelfWithResult)
-- [startAbilityByCall](#startAbilityByCall)
-- [requestPermissionsFromUser](#requestPermissionsFromUser)
-- [requestPermissionsFromUser](#requestPermissionsFromUser)
-- [setMissionLabel](#setMissionLabel)
-- [setMissionLabel](#setMissionLabel)
-
-
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
@@ -485,7 +466,7 @@ SystemCapability.Ability.AbilityRuntime.Core
 
 ## setMissionLabel
 
-setMissionLabel(label: string, callback:AsyncCallback&lt;void&gt;): void;
+setMissionLabel(label: string): Promise&lt;void&gt;
 
 设置ability在任务中显示的名称。
 
