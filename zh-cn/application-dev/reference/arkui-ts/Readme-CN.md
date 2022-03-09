@@ -138,5 +138,6 @@
         - [自定义弹窗](ts-methods-custom-dialog-box.md)
         - [日期时间选择弹窗](ts-methods-datepicker-dialog.md)
         - [文本选择弹窗](ts-methods-textpicker-dialog.md)
+    - [菜单](ts-methods-menu.md)
 - 附录
     - [文档中涉及到的内置枚举值](ts-appendix-enums.md)
