@@ -1,4 +1,4 @@
-# OpenHarmony 2.0 Canary \(2021-06-02\)<a name="EN-US_TOPIC_0000001102397706"></a>
+# OpenHarmony 2.0 Canary \(2021-06-01\)<a name="EN-US_TOPIC_0000001102397706"></a>
 
 ## Version Description<a name="section1677664815431"></a>
 
@@ -78,7 +78,7 @@ repo forall -c'git lfs pull'
 | Source&nbsp;Code | Version | Mirror | SHA-256&nbsp;Checksum | 
 | -------- | -------- | -------- | -------- |
 | Full&nbsp;code&nbsp;base | 2.0 | [Download](https://repo.huaweicloud.com/harmonyos/os/2.0/code-2.0-canary_20210601.tar.gz) | [Download](https://repo.huaweicloud.com/harmonyos/os/2.0/code-2.0-canary_20210601.tar.gz.sha256) | 
-| Release&nbsp;Notes | 2.0 | [Download](https://gitee.com/openharmony/docs/blob/master/en/release-notes/OpenHarmony-2-0-canary.md) | - | 
+| Release&nbsp;Notes | 2.0 | [Download](https://gitee.com/openharmony/docs/blob/master/en/release-notes/OpenHarmony-2-0-Canary.md) | - | 
 
 
 ## What's New<a name="section11256141314463"></a>
