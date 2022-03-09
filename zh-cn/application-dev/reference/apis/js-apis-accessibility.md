@@ -9,27 +9,23 @@
 import accessibility from '@ohos.accessibility';
 ```
 
-## 权限列表
-
-无
-
 ## AbilityState
 
 辅助应用状态类型。
 
-**系统能力**：SystemCapability.Barrierfree.Accessibility.Core
+**系统能力**：以下各项对应的系统能力均为 SystemCapability.Barrierfree.Accessibility.Core
 
 | 名称 | 描述 |
 | -------- | -------- |
-| enable | 无障碍服务已启用。 |
-| disable | 无障碍服务已禁用。 |
-| install | 无障碍服务已安装。 |
+| enable | 辅助应用已启用。 |
+| disable | 辅助应用已禁用。 |
+| install | 辅助应用已安装。 |
 
 ## AbilityType
 
 无障碍辅助应用类型。
 
-**系统能力**：SystemCapability.Barrierfree.Accessibility.Core
+**系统能力**：以下各项对应的系统能力均为 SystemCapability.Barrierfree.Accessibility.Core
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -43,7 +39,7 @@ import accessibility from '@ohos.accessibility';
 
 辅助应用信息。
 
-**系统能力**：SystemCapability.Barrierfree.Accessibility.Core
+**系统能力**：以下各项对应的系统能力均为 SystemCapability.Barrierfree.Accessibility.Core
 
 ### 属性
 
@@ -61,7 +57,7 @@ import accessibility from '@ohos.accessibility';
 
 应用所支持的目标动作。
 
-**系统能力**：SystemCapability.Barrierfree.Accessibility.Core
+**系统能力**：以下各项对应的系统能力均为 SystemCapability.Barrierfree.Accessibility.Core
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -86,7 +82,7 @@ import accessibility from '@ohos.accessibility';
 
 辅助应用能力类型。
 
-**系统能力**：SystemCapability.Barrierfree.Accessibility.Core
+**系统能力**：以下各项对应的系统能力均为 SystemCapability.Barrierfree.Accessibility.Core
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -100,7 +96,7 @@ import accessibility from '@ohos.accessibility';
 
 字幕字体边缘类型。
 
-**系统能力**：SystemCapability.Barrierfree.Accessibility.Hearing
+**系统能力**：以下各项对应的系统能力均为 SystemCapability.Barrierfree.Accessibility.Hearing
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -114,7 +110,7 @@ import accessibility from '@ohos.accessibility';
 
 字幕字体。
 
-**系统能力**：SystemCapability.Barrierfree.Accessibility.Hearing
+**系统能力**：以下各项对应的系统能力均为 SystemCapability.Barrierfree.Accessibility.Hearing
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -131,14 +127,14 @@ import accessibility from '@ohos.accessibility';
 
 字幕风格。
 
-**系统能力**：SystemCapability.Barrierfree.Accessibility.Hearing
+**系统能力**：以下各项对应的系统能力均为 SystemCapability.Barrierfree.Accessibility.Hearing
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| fontFamily | [CaptionsFontFamily](#captionsfontfamily) | 是 | 否 | 描述字幕字体。 |
+| fontFamily | [CaptionsFontFamily](#CaptionsFontFamily8) | 是 | 否 | 描述字幕字体。 |
 | fontScale | number | 是 | 否 | 描述字幕字体缩放系数。 |
 | fontColor | number \| string | 是 | 否 | 描述字幕字体颜色。 |
-| fontEdgeType | [CaptionsFontEdgeType](#captionsfontedgetype) | 是 | 否 | 描述字幕字体边缘。 |
+| fontEdgeType | [CaptionsFontEdgeType](#CaptionsFontEdgeType8) | 是 | 否 | 描述字幕字体边缘。 |
 | backgroundColor | number \| string | 是 | 否 | 描述字幕背景颜色。 |
 | windowColor | number \| string | 是 | 否 | 描述字幕窗口颜色。 |
 
@@ -150,12 +146,14 @@ import accessibility from '@ohos.accessibility';
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| enabled | boolean | 是 | 否 | 表示字幕风格。 |
-| style | [CaptionsStyle](#captionsstyle) | 是 | 否 | 表示是否启用字幕配置。 |
+| enabled | boolean | 是 | 否 | 表示是否启用字幕配置。 |
+| style | [CaptionsStyle](#CaptionsStyle8) | 是 | 否 | 表示字幕风格。 |
 
-## 方法
+### 方法
 
-### on
+下列 API 示例中都需要使用 [accessibility.CaptionsManager()](#accessibilitygetCaptionsManager8) 获取 captionsManager 实例，再通过此实例调用对应的方法。
+
+#### on('enableChange')
 
 on(type: 'enableChange', callback: Callback&lt;boolean&gt;): void;
 
@@ -167,18 +165,18 @@ on(type: 'enableChange', callback: Callback&lt;boolean&gt;): void;
 
   | 参数名 | 参数类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | type | 'enableChange' | 是 | 监听字幕配置启用状态。 |
+  | type | string | 是 | 监听字幕配置启用状态。 |
   | callback | Callback&lt;boolean&gt; | 是 | 回调函数，在启用状态变化时将状态通过此函数进行通知。 |
 
 - 示例
 
   ```typescript
-  captionsMgr.on('enableChange',(data) => { 
+  captionsManager.on('enableChange',(data) => {
       console.info('success data:subscribeStateObserver : ' + JSON.stringify(data))
   })
   ```
 
-### on
+#### on('styleChange')
 
 on(type: 'styleChange', callback: Callback&lt;CaptionsStyle&gt;): void;
 
@@ -190,20 +188,20 @@ on(type: 'styleChange', callback: Callback&lt;CaptionsStyle&gt;): void;
 
   | 参数名 | 参数类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | type | 'styleChange' | 是 | 监听字幕风格变化。 |
-  | callback | Callback&lt;CaptionsStyle&gt; | 是 | 回调函数，在字幕风格变化时通过此函数进行通知。 |
+  | type | string | 是 | 监听字幕风格变化。 |
+  | callback | Callback&lt;[CaptionsStyle](#CaptionsStyle8)&gt; | 是 | 回调函数，在字幕风格变化时通过此函数进行通知。 |
 
 - 示例
 
   ```typescript
-  captionsMgr.on('styleChange',(data) => { 
+  captionsManager.on('styleChange',(data) => {
       console.info('success data:subscribeStateObserver : ' + JSON.stringify(data))
   })
   ```
   
-### off
+#### off('enableChange')
 
-off(type: 'enableChange', callback: Callback&lt;boolean&gt;): void;
+off(type: 'enableChange', callback?: Callback&lt;boolean&gt;): void;
 
 移除字幕配置启用的监听函数。
 
@@ -213,16 +211,16 @@ off(type: 'enableChange', callback: Callback&lt;boolean&gt;): void;
 
   | 参数名 | 参数类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | type | 'enableChange' | 是 | 监听字幕配置启用状态。 |
+  | type | string | 是 | 监听字幕配置启用状态。 |
   | callback | Callback&lt;boolean&gt; | 否 | 回调函数，在启用状态变化时将状态通过此函数进行通知。 |
 
 - 示例
 
   ```typescript
-  captionsMgr.off('enableChange')
+  captionsManager.off('enableChange')
   ```
 
-### off
+#### off('styleChange')
 
 off(type: 'styleChange', callback?: Callback&lt;CaptionsStyle&gt;): void;
 
@@ -234,20 +232,20 @@ off(type: 'styleChange', callback?: Callback&lt;CaptionsStyle&gt;): void;
 
   | 参数名 | 参数类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | type | 'styleChange' | 是 | 字幕风格变化。 |
+  | type | string | 是 | 字幕风格变化。 |
   | callback | Callback&lt;CaptionsStyle&gt; | 否 | 回调函数，在字幕风格变化时通过此函数进行通知。 |
 
 - 示例
 
   ```typescript
-  captionsMgr.off('styleChange')
+  captionsManager.off('styleChange')
   ```
 
 ## EventInfo
 
 界面变更事件。
 
-**系统能力**：SystemCapability.Barrierfree.Accessibility.Core
+**系统能力**：以下各项对应的系统能力均为 SystemCapability.Barrierfree.Accessibility.Core
 
 ### 属性
 
@@ -272,7 +270,7 @@ off(type: 'styleChange', callback?: Callback&lt;CaptionsStyle&gt;): void;
 
 无障碍事件类型。
 
-**系统能力**：SystemCapability.Barrierfree.Accessibility.Core
+**系统能力**：以下各项对应的系统能力均为 SystemCapability.Barrierfree.Accessibility.Core
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -292,7 +290,7 @@ off(type: 'styleChange', callback?: Callback&lt;CaptionsStyle&gt;): void;
 
 文本无障碍导航移动粒度。
 
-**系统能力**：SystemCapability.Barrierfree.Accessibility.Core
+**系统能力**：以下各项对应的系统能力均为 SystemCapability.Barrierfree.Accessibility.Core
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -306,7 +304,7 @@ off(type: 'styleChange', callback?: Callback&lt;CaptionsStyle&gt;): void;
 
 窗口变化类型。
 
-**系统能力**：SystemCapability.Barrierfree.Accessibility.Core
+**系统能力**：以下各项对应的系统能力均为 SystemCapability.Barrierfree.Accessibility.Core
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -404,7 +402,7 @@ getAbilityLists(abilityType: AbilityType, stateType: AbilityState,callback: Asyn
   })
   ```
 
-## accessibility.getCaptionsManager
+## accessibility.getCaptionsManager<sup>8+</sup>
 
 getCaptionsManager(): CaptionsManager
 
@@ -412,15 +410,11 @@ getCaptionsManager(): CaptionsManager
 
 **系统能力**：SystemCapability.Barrierfree.Accessibility.Hearing
 
-- 参数：
-
-  无
-
 - 返回值：
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | CaptionsManager | 无障碍字幕配置管理。 |
+  | [CaptionsManager](#CaptionsManager8) | 无障碍字幕配置管理。 |
 
 - 示例
 
@@ -428,17 +422,19 @@ getCaptionsManager(): CaptionsManager
   captionsManager = accessibility.getCaptionsManager()
   ```
 
-## accessibility.on
+## accessibility.on('accessibilityStateChange' | 'touchGuideStateChange')
 
 on(type: 'accessibilityStateChange' | 'touchGuideStateChange', callback: Callback&lt;boolean&gt;): void
 
-启用变化监听。
+启用辅助应用和触摸浏览功能的状态变化监听。
+
+**系统能力**：以下各项对应的系统能力有所不同，详见下表。
 
 - 参数：
 
   | 参数名 | 参数类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | type | 'accessibilityStateChange'\|'touchGuideStateChange' | 是 | 监听的事件类型。<br/>-&nbsp;type 为'accessibilityStateChange'时表示监听类型为辅助功能启用状态变化监听；<br/>**系统能力**：SystemCapability.Barrierfree.Accessibility.Core<br/>-&nbsp;type 为'touchGuideStateChange'时表示监听类型为触摸浏览启用状态变化监听。<br/>**系统能力**：SystemCapability.Barrierfree.Accessibility.Vision |
+  | type | string | 是 | 监听的事件类型。<br/>-&nbsp;type 为'accessibilityStateChange'时表示监听类型为辅助功能启用状态变化监听；<br/>**系统能力**：SystemCapability.Barrierfree.Accessibility.Core<br/>-&nbsp;type 为'touchGuideStateChange'时表示监听类型为触摸浏览启用状态变化监听。<br/>**系统能力**：SystemCapability.Barrierfree.Accessibility.Vision |
   | callback | Callback&lt;boolean&gt; | 是 | 回调函数，在启用状态变化时将状态通过此函数进行通知。 |
 
 - 示例
@@ -449,19 +445,19 @@ on(type: 'accessibilityStateChange' | 'touchGuideStateChange', callback: Callbac
   })
   ```
 
-## accessibility.off
+## accessibility.off('accessibilityStateChange' | 'touchGuideStateChange')
 
 off(type: ‘accessibilityStateChange ’ | ‘touchGuideStateChange’, callback?: Callback&lt;boolean&gt;): void
 
-关闭变化监听。
+关闭辅助应用和触摸浏览功能的状态变化监听。
 
-**系统能力**：SystemCapability.Barrierfree.Accessibility.Core
+**系统能力**：以下各项对应的系统能力有所不同，详见下表。
 
 - 参数：
 
   | 参数名 | 参数类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | type |  'accessibilityStateChange'\|'touchGuideStateChange' | 否 | 监听的事件类型。<br/>-&nbsp;type 为'accessibilityStateChange'时表示监听类型为辅助功能启用状态变化监听；<br/>**系统能力**：SystemCapability.Barrierfree.Accessibility.Core<br/>-&nbsp;type 为'touchGuideStateChange'时表示监听类型为触摸浏览启用状态变化监听。<br/>**系统能力**：SystemCapability.Barrierfree.Accessibility.Vision |
+  | type |  string | 否 | 监听的事件类型。<br/>-&nbsp;type 为'accessibilityStateChange'时表示监听类型为辅助功能启用状态变化监听；<br/>**系统能力**：SystemCapability.Barrierfree.Accessibility.Core<br/>-&nbsp;type 为'touchGuideStateChange'时表示监听类型为触摸浏览启用状态变化监听。<br/>**系统能力**：SystemCapability.Barrierfree.Accessibility.Vision |
   | callback | Callback&lt;boolean&gt; | 否 | 要取消的监听回调函数。 |
 
 - 示例
@@ -479,10 +475,6 @@ isOpenAccessibility(): Promise&lt;boolean&gt;
 判断是否启用了辅助功能。
 
 **系统能力**：SystemCapability.Barrierfree.Accessibility.Core
-
-- 参数：
-
-  无
 
 - 返回值：
 
