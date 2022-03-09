@@ -1,13 +1,7 @@
 # AbilityStage
 
-- [导入模块](#导入模块)
-- [onCreate](#onCreate)
-- [onAcceptWant](#onAcceptWant)
-- [onConfigurationUpdated](#onConfigurationUpdated)
-
-
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 本模块首批接口从API 9开始支持。
+> 本模块首批接口从API 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
 AbilityStage是HAP包的运行时类。在HAP加载的时候，通知开发者，开发者可以在此进行该HAP的初始化（如资源预加载，线程创建等）。

@@ -1,15 +1,10 @@
 # appManager
 
-- [导入模块](#导入模块)
-- [isRunningInStabilityTest](#isRunningInStabilityTest)
-- [isRunningInStabilityTest](#isRunningInStabilityTest)
-
-
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 本模块首批接口从API 8开始支持。
+> 本模块首批接口从API 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
-App运行相关信息。
+App管理。
 
 
 ## 导入模块
@@ -24,7 +19,7 @@ import app from '@ohos.application.appManager';
 
 static isRunningInStabilityTest(callback: AsyncCallback&lt;boolean&gt;): void
 
-查询当前用户是否是一个稳定性测试。
+查询当前是否处于稳定性测试场景。
 
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 | 
@@ -35,7 +30,7 @@ static isRunningInStabilityTest(callback: AsyncCallback&lt;boolean&gt;): void
     
   ```
   import app from '@ohos.application.appManager';
-  app.isRunningInStabilityTest((err， flag) => {
+  app.isRunningInStabilityTest((err, flag) => {
       console.log('startAbility result:' + JSON.stringfy(err);
   }  
   ```

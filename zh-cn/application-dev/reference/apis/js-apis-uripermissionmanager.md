@@ -1,12 +1,7 @@
 # UriPermissionManager
 
-- [导入模块](#导入模块)
-- [verifyUriPermission](#verifyUriPermission)
-- [verifyUriPermission](#verifyUriPermission)
-
-
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 本模块首批接口从API 9开始支持。
+> 本模块首批接口从API 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
 Uri权限管理。
@@ -36,7 +31,7 @@ SystemCapability.Ability.AbilityRuntime.Core
   | uri | string | 是 | 指向文件的uri，例如fileshare:///com.samples.filesharetest.FileShare/person/10。 | 
   | flag | wantConstant.Flags | 是 | uri的读权限或写权限。 | 
   | accessTokenId | number | 是 | 每个应用的唯一标识ID，开发者通过包管理接口自行获取。 | 
-  | callback | AsyncCallback&lt;number&gt; | 是 | callback形式返回启动结果，返回0表示有权限，返回-1表示无权限。 | 
+  | callback | AsyncCallback&lt;number&gt; | 是 | callback形式返回检验结果，返回0表示有权限，返回-1表示无权限。 | 
 
 - 示例：
     

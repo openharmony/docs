@@ -1,29 +1,7 @@
 # Ability
 
-- [导入模块](#导入模块)
-- [属性](#属性)
-- [onCreate](#onCreate)
-- [onWindowStageCreate](#onWindowStageCreate)
-- [onWindowStageDestroy](#onWindowStageDestroy)
-- [onWindowStageRestore](#onWindowStageRestore)
-- [onDestroy](#onDestroy)
-- [onForeground](#onForeground)
-- [onBackground](#onBackground)
-- [onContinue](#onContinue)
-- [onNewWant](#onNewWant)
-- [onConfigurationUpdated](#onConfigurationUpdated)
-- [Caller](#Caller)
- - [call](#call)
- - [callWithResult](#callWithResult)
- - [release](#release)
- - [onRelease](#onRelease)
-- [Callee](#Callee)
- - [on](#on)
- - [off](#off)
-
-
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 从API Version 8 开始支持。
+> 从API Version 8 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
 Ability模块，提供对Ability生命周期、上下文环境等调用管理。
@@ -43,7 +21,7 @@ import Ability from '@ohos.application.Ability';
 | -------- | -------- | -------- | -------- | -------- |
 | context | [AbilityContext](js-apis-ability-context.md) | 是 | 否 | 上下文。 | 
 | launchWant | [Want](js-apis-featureAbility.md#Want类型说明) | 是 | 否 | Ability启动时的参数。 | 
-| lastRequestWant | [Want](js-apis-featureAbility.md#Want类型说明) | 是 | 否 | Ability最后请求时的参数。 | 
+| lastRequestWant | [Want](js-apis-featureAbility.md#Want类型说明) | 是 | 否 | 上一次请求Ability启动时的参数。 | 
 
 
 ## onCreate
