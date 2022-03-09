@@ -10,10 +10,6 @@
 import backgroundTaskManager from '@ohos.backgroundTaskManager';  
 ```
 
-## 系统能力
-SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
-SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
-
 ## 权限列表
 
 长时任务需要申请如下权限：
@@ -28,6 +24,8 @@ requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspen
 后台应用申请延迟挂起。
 
 延迟挂起时间一般情况下默认值为180000，低电量（依据系统低电量广播）时默认值为60000。
+
+**系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
 - **参数**：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -55,6 +53,8 @@ getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;):
 
 获取应用程序进入挂起状态前的剩余时间，使用callback形式返回。
 
+**系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
+
 - **参数**：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -79,6 +79,8 @@ getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;):
 getRemainingDelayTime(requestId: number): Promise&lt;number&gt;
 
 获取应用程序进入挂起状态前的剩余时间，使用Promise形式返回。
+
+**系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
 - **参数**：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -107,6 +109,8 @@ cancelSuspendDelay(requestId: number): void
 
 取消延迟挂起。
 
+**系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
+
 - **参数**：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -122,6 +126,8 @@ cancelSuspendDelay(requestId: number): void
 
 延迟挂起信息。
 
+**系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | requestId | number | 是 | 延迟挂起的请求ID。 |
@@ -129,16 +135,18 @@ cancelSuspendDelay(requestId: number): void
 
 ## backgroundTaskManager.startBackgroundRunning
 
-<sup>[8]</sup> startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent, callback: AsyncCallback&lt;void&gt;): void;
+startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent, callback: AsyncCallback&lt;void&gt;): void; <sup>8+</sup>
 
 向系统申请长时任务，使用callback形式返回结果。
+
+**系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
 - **参数**：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | context | Context | 是 | 应用运行的上下文 |
   | bgMode | BackgroundMode | 是 | 向系统申请的后台模式 |
-  | wantAgent | WantAgent | 是 | 通知参数，用于指定长时任务通知点击跳转的界面。使用方式参考：<sup>[8]</sup>  |
+  | wantAgent | [WantAgent](js-apis-notification.md#WantAgent接口) | 是 | 通知参数，用于指定长时任务通知点击后跳转的界面。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动长时任务的结果 |
 
 - **示例**：
@@ -176,16 +184,18 @@ wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
 
 ## backgroundTaskManager.startBackgroundRunning
 
-<sup>[8]</sup> startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent): Promise&lt;void&gt;
+startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent): Promise&lt;void&gt;; <sup>8+</sup>
 
 向系统申请长时任务，使用promise形式返回结果。
+
+**系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
 - **参数**：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | context | Context | 是 | 应用运行的上下文 |
   | bgMode | BackgroundMode | 是 | 向系统申请的后台模式 |
-  | wantAgent | WantAgent | 是 | 通知参数，用于指定长时任务通知点击跳转的界面 |
+  | wantAgent | [WantAgent](js-apis-notification.md#WantAgent接口) | 是 | 通知参数，用于指定长时任务通知点击跳转的界面 |
 
 - **返回值**
   | 类型           | 说明                      |
@@ -223,9 +233,11 @@ wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
 
 ## backgroundTaskManager.stopBackgroundRunning
 
-<sup>[8]</sup> stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): void;
+stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): void; <sup>8+</sup>
 
 向系统申请取消长时任务，使用callback形式返回结果。
+
+**系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
 - **参数**：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -252,9 +264,11 @@ backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext(), callbac
 
 ## backgroundTaskManager.stopBackgroundRunning
 
-<sup>[8]</sup> stopBackgroundRunning(context: Context): Promise&lt;void&gt;;
+stopBackgroundRunning(context: Context): Promise&lt;void&gt;; <sup>8+</sup>
 
 向系统申请取消长时任务，使用promise形式返回结果。
+
+**系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
 - **参数**：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -279,16 +293,16 @@ backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext()).then(()
 
 ```
 
-## <sup>[8]</sup> BackgroundMode
+## BackgroundMode <sup>8+</sup>
 
-| 参数名                  | 参数 | 描述 |
+| 参数名                  | 参数值 | 描述 |
 | ----------------------- | -------- | -------- |
-| DATA_TRANSFER           | 1 | 数据传输 |
-| AUDIO_PLAYBACK          | 2 | 音频播放 |
-| AUDIO_RECORDING         | 3 | 录音 |
-| LOCATION                | 4 | 定位导航 |
-| BLUETOOTH_INTERACTION   | 5 | 蓝牙相关 |
-| MULTI_DEVICE_CONNECTION | 6 | 多设备互联 |
-| WIFI_INTERACTION        | 7 | WLAN相关（系统保留） |
-| VOIP                    | 8 | 音视频通话（系统保留） |
-| TASK_KEEPING            | 9 | 计算任务（仅供PC使用） |
+| DATA_TRANSFER           | 1 | 数据传输<br/>**系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask |
+| AUDIO_PLAYBACK          | 2 | 音频播放<br/>**系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask |
+| AUDIO_RECORDING         | 3 | 录音<br/>**系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask |
+| LOCATION                | 4 | 定位导航<br/>**系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask |
+| BLUETOOTH_INTERACTION   | 5 | 蓝牙相关<br/>**系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask |
+| MULTI_DEVICE_CONNECTION | 6 | 多设备互联<br/>**系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask |
+| WIFI_INTERACTION        | 7 | WLAN相关（系统保留）<br/>**系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask |
+| VOIP                    | 8 | 音视频通话（系统保留）<br/>**系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask |
+| TASK_KEEPING            | 9 | 计算任务（仅供PC使用）<br/>**系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask |
