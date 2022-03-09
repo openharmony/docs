@@ -15,7 +15,7 @@
 | 名称 | 参数类型 | 默认值 | 描述 |
 | -------- | -------- | -------- | -------- |
 | bindMenu | Array<MenuItem&gt;&nbsp;\|&nbsp;[CustomBuilder](../../ui/ts-types.md)<sup>8+</sup> | - | 给组件绑定菜单，点击后弹出菜单。弹出菜单项支持文本和自定义两种功能。 |
-| bindContextMenu | content:&nbsp;[CustomBuilder](../../ui/ts-types.md)<sup>8+</sup><br>responseType:&nbsp;ResponseType<sup>8+</sup> | - | 给组件绑定菜单，触发方式为长按或者右键点击，弹出菜单项需要自定义。 |
+| bindContextMenu<sup>8+</sup> | content:&nbsp;[CustomBuilder](../../ui/ts-types.md)<br>responseType:&nbsp;ResponseType | - | 给组件绑定菜单，触发方式为长按或者右键点击，弹出菜单项需要自定义。 |
 
 
 - MenuItem
@@ -27,10 +27,12 @@
 - ResponseType<sup>8+</sup>
   | 参数值 | 描述 |
   | -------- | -------- |
-  | LongPress | 通过长按触发菜单弹出     |
-  | RightClick | 通过鼠标右键触发菜单弹出 |
+  | LongPress | 通过长按触发菜单弹出。    |
+  | RightClick | 通过鼠标右键触发菜单弹出。 |
 
 ## 示例
+
+#### 普通菜单
 
 ```
 @Entry
@@ -61,6 +63,8 @@ struct MenuExample {
 ```
 
 ![zh-cn_image_0000001174582862](figures/zh-cn_image_0000001174582862.gif)
+
+#### 自定义内容菜单
 
 ```
 import router from '@system.router';
@@ -110,10 +114,12 @@ struct MenuExample {
 
 ![zh-cn_image_0000001186807708](figures/zh-cn_image_0000001186807708.gif)
 
+#### 菜单(右键触发显示)
+
 ```
 @Entry
 @Component
-struct MenuExample {
+struct ContextMenuExample {
   @Builder MenuBuilder() {
     Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
       Text('Test menu item 1')
@@ -129,6 +135,7 @@ struct MenuExample {
         .textAlign(TextAlign.Center)
     }.width(100)
   }
+  
   build() {
     Column() {
       Text('rightclick for menu')
