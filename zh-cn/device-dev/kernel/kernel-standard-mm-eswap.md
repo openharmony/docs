@@ -53,7 +53,7 @@ ESwap(Enhanced Swap)提供了自定义新增存储分区作为内存交换分区
 	echo /dev/block/loop6 > /proc/sys/kernel/hyperhold/device
 	```
 
-	ESwap默认对换出数据使用软件加密，如果1中创建的ESwap设备支持inline加密，可以关闭ESwap的软件加密功能：
+	ESwap默认对换出数据使用软件加密，如果2中创建的ESwap设备支持inline加密，可以关闭ESwap的软件加密功能：
 
 	```Bash
 	// 需确认是否支持并开启硬加密，否则不要执行该操作。
