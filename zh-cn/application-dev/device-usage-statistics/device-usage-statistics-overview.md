@@ -20,5 +20,5 @@
 >6.  判断指定应用当前是否是空闲状态；
 
 ### 设备使用信息统计使用权限
-- 设备使用信息统计接口只对系统应用开放，三方应用不可调用。
-- 系统应用调用设备使用信息统计接口前，必须申请ohos.permission.BUNDLE_ACTIVE_INFO权限。
+- 设备使用信息统计的queryBundleActiveStates、queryBundleStateInfos、queryBundleStateInfoByInterval接口为系统api，调用前需要申请ohos.permission.BUNDLE_ACTIVE_INFO权限。
+- 设备使用信息统计的queryCurrentBundleActiveStates、queryAppUsagePriorityGroup、isIdleState接口为三方api，调用时不需要申请权限。
