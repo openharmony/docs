@@ -36,7 +36,7 @@ var objectParams = new URLSearchParams([ ['user1', 'abc1'], ['query2', 'first2']
 var objectParams1 = new URLSearchParams({"fod" : 1 , "bard" : 2});
 var objectParams2 = new URLSearchParams('?fod=1&bard=2');
 var urlObject = new URL('https://developer.mozilla.org/?fod=1&bard=2');
-var params = new URLSearchParams(urlObject .search);
+var params = new URLSearchParams(urlObject.search);
 ```
 
 
@@ -79,7 +79,7 @@ delete(name: string): void
 ```
 let urlObject = new URL('https://developer.exampleUrl/?fod=1&bard=2');
 let paramsobject = new URLSearchParams(urlObject.search.slice(1));
-paramsobject.delete('foo');
+paramsobject.delete('fod');
 ```
 
 
@@ -106,7 +106,7 @@ getAll(name: string): string[]
 ```
 let urlObject = new URL('https://developer.exampleUrl/?fod=1&bard=2'); 
 let paramsObject = new URLSearchParams(urlObject.search.slice(1)); 
-paramsObject.append('fod', 3); // Add a second value for the foo parameter.
+paramsObject.append('fod', 3); // Add a second value for the fod parameter.
 console.log(params.getAll('fod')) // Output ["1","3"].
 ```
 
