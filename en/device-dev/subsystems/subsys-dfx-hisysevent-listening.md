@@ -21,34 +21,34 @@ Before subscribing to system events, you need to configure HiSysEvent logging. F
 
 ### Available APIs<a name="section0342191810519"></a>
 
-**Table 1** EventListener APIs
+**Table 1** Description of EventListener APIs
 
-| API| Description|
+| Name| Description |
 | -------- | --------- |
-|bool HiSysEventManager::AddEventListener(std::shared_ptr&lt;HiSysEventSubscribeCallBackBase&gt; listener, std::vector&lt;ListenerRule&gt;&amp; rules)|Registers a listener for system events. You can listen for certain events by specifying rules. <br><br>Input arguments: <ul><li>**listener**: callback object for system events. </li><li>**rules**: rules for event listening. </li></ul>Return value:<ul><li>**0**: Repeated registration is successful. </li><li>**1**: Initial registration is successful. </li><li>Other values: Registration has failed.</li></ul>|
-|bool HiSysEventManager::RemoveListener(std::shared_ptr&lt;HiSysEventSubscribeCallBackBase&gt; listener)|Removes the listener for system events. <br><br>Input argument: <ul><li>**listener**: callback object for system events. </ul>Return value:<br>&emsp;&emsp;None.|
+|bool HiSysEventManager::AddEventListener(std::shared_ptr&lt;HiSysEventSubscribeCallBack&gt; listener, std::vector&lt;ListenerRule&gt;&amp; rules)|Registers a listener for system events. You can listen for certain events by specifying rules.<br><br>Input arguments: <ul><li>**listener**: callback object for system events. </li><li>**rules**: rules for event listening. </li></ul>Return value:<ul><li>**0**: Repeated registration is successful. </li><li>**1**: Initial registration is successful. </li><li>Other values: Registration has failed.</li></ul>|
+|bool HiSysEventManager::RemoveListener(std::shared_ptr&lt;HiSysEventSubscribeCallBack&gt; listener)|Removes the listener for system events.<br><br>Input arguments: <ul><li>**listener**: callback object for system events. </ul>Return value:<br>None.|
 
 **Table 2** Description of ListenerRule
 
-| API| Description|
+| API| Description |
 | -------- | --------- |
-|ListenerRule(const std::string&amp; tag, RuleType ruleType = RuleType::WHOLE_WORD)|Constructor used to create a **ListenerRule** object based on the event tag. <br><br>Input arguments:<ul><li>**tag**: indicates the event tag for the **ListenerRule** object. The value is a string of 1 to 16 characters, including uppercase letters, lowercase letters, and digits. </li><li>**ruleType**: indicates the type of the **ListenerRule** object. The value is an enum defined by **RuleType**.</li></ul>|
-|ListenerRule(const std::string&amp; domain, const std::string&amp; eventName, RuleType ruleType = RuleType::WHOLE_WORD)|Constructor used to create a **ListenerRule** object based on the event domain and event name. <br><br>Input arguments: <ul><li>**domain**: indicates the event domain for the **ListenerRule** object. The value is a string of 1 to 16 characters, including uppercase letters, digits, and underscores (&#95;). </li><li>**eventName**: indicates the event name for the **ListenerRule** object. The value is a string of 1 to 32 characters, including uppercase letters, digits, and underscores (&#95;). </li><li>**ruleType**: indicates the type of the **ListenerRule** object. The value is an enum defined by **RuleType**.</li></ul>|
-|ListenerRule(const std::string&amp; domain, const std::string& eventName, const std::string&amp; tag, RuleType ruleType = RuleType::WHOLE_WORD)|Constructor used to create a **ListenerRule** object based on the event domain, event name, and event tag. <br><br>Input arguments:<ul><li>**tag**: indicates the event tag for the **ListenerRule** object. The value is a string of 1 to 16 characters, including uppercase letters, lowercase letters, and digits. </li><li>**domain**: indicates the event domain for the **ListenerRule** object. The value is a string of 1 to 16 characters, including uppercase letters, digits, and underscores (&#95;). </li><li>**eventName**: indicates the event name for the **ListenerRule** object. The value is a string of 1 to 32 characters, including uppercase letters, digits, and underscores (&#95;). </li><li>**ruleType**: indicates the type of the **ListenerRule** object. The value is an enum defined by **RuleType**.</li></ul>|
+|ListenerRule(const std::string&amp; tag, RuleType ruleType = RuleType::WHOLE_WORD)|Constructor used to create a **ListenerRule** object based on the event tag.<br><br>Input arguments:<ul><li>**tag**: indicates the event tag for the **ListenerRule** object. The value is a string of 1 to 16 characters, including uppercase letters, lowercase letters, and digits. </li><li>**ruleType**: indicates the type of the **ListenerRule** object. The value is an enum defined by **RuleType**.</li></ul>|
+|ListenerRule(const std::string&amp; domain, const std::string&amp; eventName, RuleType ruleType = RuleType::WHOLE_WORD)|Constructor used to create a **ListenerRule** object based on the event domain and event name.<br><br>Input arguments: <ul><li>**domain**: indicates the event domain for the **ListenerRule** object. The value is a string of 1 to 16 characters, including uppercase letters, digits, and underscores (&#95;). </li><li>**eventName**: indicates the event name for the **ListenerRule** object. The value is a string of 1 to 32 characters, including uppercase letters, digits, and underscores (&#95;). </li><li>**ruleType**: indicates the type of the **ListenerRule** object. The value is an enum defined by **RuleType**.</li></ul>|
+|ListenerRule(const std::string&amp; domain, const std::string& eventName, const std::string&amp; tag, RuleType ruleType = RuleType::WHOLE_WORD)|Constructor used to create a **ListenerRule** object based on the event domain, event name, and event tag.<br><br>Input arguments:<ul><li>**tag**: indicates the event tag for the **ListenerRule** object. The value is a string of 1 to 16 characters, including uppercase letters, lowercase letters, and digits. </li><li>**domain**: indicates the event domain for the **ListenerRule** object. The value is a string of 1 to 16 characters, including uppercase letters, digits, and underscores (&#95;). </li><li>**eventName**: indicates the event name for the **ListenerRule** object. The value is a string of 1 to 32 characters, including uppercase letters, digits, and underscores (&#95;). </li><li>**ruleType**: indicates the type of the **ListenerRule** object. The value is an enum defined by **RuleType**.</li></ul>|
 
 **Table 3** Description of RuleType
 
-| Enum| Description|
+| Value      | Description         |
 | ------------ | ------------- |
-| WHOLE_WORD   | Whole word matching|
-| PREFIX       | Prefix matching|
-| REGULAR      | Regular expression matching|
+| WHOLE_WORD   | Whole word matching |
+| PREFIX       | Prefix matching |
+| REGULAR      | Regular expression matching |
 
-**Table 4** Description of HiSysEventSubscribeCallBackBase
+**Table 4** Description of HiSysEventSubscribeCallBack
 
-| API| Description|
+| API| Description |
 | -------- | --------- |
-|void HiSysEventSubscribeCallBackBase::OnHandle(const std::string&amp; domain, const std::string&amp; eventName, const int eventType, const std::string&amp; eventDetail)|Provides the callback of system events. <br><br>Input arguments: <ul><li>**domain**: indicates the domain to which the event belongs. </li><li>**eventName**: indicates the event name. </li><li>**eventType**: indicates the event type. </li><li>**eventDetail**: indicates the event information, in JSON format. </li></ul>Return value:<br>&emsp;&emsp;None.|
+|void HiSysEventSubscribeCallBack::OnHandle(const std::string&amp; domain, const std::string&amp; eventName, const int eventType, const std::string&amp; eventDetail)|Provides the callback of system events.<br><br>Input arguments: <ul><li>**domain**: indicates the domain to which the event belongs. </li><li>**eventName**: indicates the event name. </li><li>**eventType**: indicates the event type. </li><li>**eventDetail**: indicates the event information, in JSON format. </li></ul>Return value:<br>None.|
 
 ### Development Example<a name="section123181432175110"></a>
 
@@ -66,16 +66,16 @@ C++
 
     #include <string>
 
-    class DemoListener : public OHOS::HiviewDFX::HiSysEventSubscribeCallBackNative {
+    class DemoListener : public OHOS::HiviewDFX::HiSysEventSubscribeCallBack {
     public:
-        explicit DemoListener() : HiSysEventSubscribeCallBackNative() {}
+        explicit DemoListener() : HiSysEventSubscribeCallBack() {}
         void OnHandle(const std::string& domain, const std::string& eventName, const int eventType,
             const std::string& eventDetail);
         virtual ~DemoListener() {}
         void OnServiceDied();
     };
 
-    #endif DEMO_LISTENER_H
+    #endif // DEMO_LISTENER_H
     ```
 
     Create the **DemoListener.cpp** file, and add the implementation logic of the custom event callback API in the **DemoListener** class.
