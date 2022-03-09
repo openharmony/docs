@@ -6,7 +6,13 @@ You can use audio playback APIs to convert audio data into audible analog signal
 
 **Figure 1** Playback status
 
-![en-us_image_20220117](figures/en-us_image_20220117.jpg)
+![en-us_image_audio_state_machine](figures/en-us_image_audio_state_machine.png)
+
+
+
+**Figure 2** Layer 0 diagram of audio playback
+
+![en-us_image_audio_player](figures/en-us_image_audio_player.png)
 
 ## How to Develop
 
@@ -98,7 +104,7 @@ audioPlayer.stop();                              // Trigger the 'stop' event cal
 // 9. Reset the playback resources.
 audioPlayer.reset();                             // Trigger the 'reset' event callback, and reconfigure the src attribute to switch to the next song.
 // 10. Release the resource.
-audioPlayer.release();                           // Release the AudioPlayer resource.
+audioPlayer.release();                           // Release the AudioPlayer instance.
 audioPlayer = undefined;
 ```
 
