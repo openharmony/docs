@@ -151,7 +151,7 @@ import accessibility from '@ohos.accessibility';
 
 ### 方法
 
-下列 API 示例中都需要使用 [accessibility.CaptionsManager()](#accessibilitygetcaptionsmanager8) 获取 captionsManager 实例，再通过此实例调用对应的方法。
+下列 API 示例中都需要使用 [accessibility.getCaptionsManager()](#accessibilitygetcaptionsmanager8) 获取 captionsManager 实例，再通过此实例调用对应的方法。
 
 #### on('enableChange')
 
@@ -257,7 +257,7 @@ off(type: 'styleChange', callback?: Callback&lt;CaptionsStyle&gt;): void;
 | componentType | string | 是 | 是 | 事件源组件类型，如按钮、图表。 |
 | pageId | number | 是 | 是 | 事件源的页面 ID。 |
 | description | string | 是 | 是 | 事件描述。 |
-| triggerAction | [Action](#Action) | 是 | 是 | 触发事件的 Action。 |
+| triggerAction | [Action](#action) | 是 | 是 | 触发事件的 Action。 |
 | textMoveUnit | [TextMoveUnit](#textmoveunit) | 是 | 是 | 文本移动粒度。 |
 | contents | Array&lt;string&gt; | 是 | 是 | 内容列表。 |
 | lastContent | string | 是 | 是 | 最新内容。 |
@@ -347,20 +347,20 @@ getAbilityLists(abilityType: AbilityType, stateType: AbilityState): Promise&lt;A
   accessibility.getAbilityLists("spoken", "enable")
       .then((data) => {
           console.info('success data:getAbilityList1 : ' + JSON.stringify(data));
-      for (let item of data) {
-          console.info(item.id);
-          console.info(item.name);
-          console.info(item.description);
-          console.info(item.abilityTypes);
-          console.info(item.eventTypes);
-          console.info(item.capabilities);
-          console.info(item.packageName);
-          console.info(item.filterBundleNames);
-          console.info(item.bundleName);
-      }
-  }).catch((error) => {
-      console.error('failed to  getAbilityList1 because ' + JSON.stringify(error));
-  })
+          for (let item of data) {
+              console.info(item.id);
+              console.info(item.name);
+              console.info(item.description);
+              console.info(item.abilityTypes);
+              console.info(item.eventTypes);
+              console.info(item.capabilities);
+              console.info(item.packageName);
+              console.info(item.filterBundleNames);
+              console.info(item.bundleName);
+          }
+      }).catch((error) => {
+          console.error('failed to  getAbilityList1 because ' + JSON.stringify(error));
+      })
   ```
 
 ## accessibility.getAbilityLists
@@ -538,10 +538,10 @@ isOpenTouchGuide(): Promise&lt;boolean&gt;
   ```typescript
   accessibility.isOpenTouchGuide()
       .then((data) => {
-      console.info('success data:isOpenTouchGuide : ' + JSON.stringify(data))
-  }).catch((error) => {
-      console.error('failed to  isOpenTouchGuide because ' + JSON.stringify(error));
-  })
+          console.info('success data:isOpenTouchGuide : ' + JSON.stringify(data))
+      }).catch((error) => {
+          console.error('failed to  isOpenTouchGuide because ' + JSON.stringify(error));
+      })
   ```
 
 ## accessibility.isOpenTouchGuide
@@ -595,10 +595,10 @@ sendEvent(event: EventInfo): Promise&lt;void&gt;
   ```typescript
   accessibility.sendEvent(this.eventInfo)
       .then((data) => {
-      console.info('success data:sendEvent : ' + JSON.stringify(data))
-  }).catch((error) => {
-      console.error('failed to  sendEvent because ' + JSON.stringify(error));
-  })
+          console.info('success data:sendEvent : ' + JSON.stringify(data))
+      }).catch((error) => {
+          console.error('failed to  sendEvent because ' + JSON.stringify(error));
+      })
   ```
 
 ## accessibility.sendEvent
