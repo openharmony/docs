@@ -10,21 +10,16 @@
 import vibrator from '@ohos.vibrator';
 ```
 
-## 系统能力
-
-SystemCapability.Sensors.MiscDevice
-
-## 权限列表
-
-ohos.permission.VIBRATE
-
 
 ## vibrator.vibrate
 
 vibrate(duration: number): Promise&lt;void&gt;
 
-
 按照指定持续时间触发马达振动。
+
+**权限列表**：ohos.permission.VIBRATE
+
+**系统能力**：SystemCapability.Sensors.MiscDevice
 
 
 - 参数：
@@ -54,13 +49,17 @@ vibrate(duration: number, callback?: AsyncCallback&lt;void&gt;): void
 
 按照指定持续时间触发马达振动。
 
+**权限列表**：ohos.permission.VIBRATE
+
+**系统能力**：SystemCapability.Sensors.MiscDevice
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | duration | number | 是 | 指示马达振动的持续时间。 |
   | callback | AsyncCallback&lt;void&gt; | 否 | 马达执行振动的回调函数，指示触发振动是否成功。 |
 
-- 示例**：**
+- 示例：
   ```
   vibrator.vibrate(1000,function(error){
       if(error){
@@ -77,6 +76,10 @@ vibrate(duration: number, callback?: AsyncCallback&lt;void&gt;): void
 vibrate(effectId: EffectId): Promise&lt;void&gt;
 
 按照指定振动效果触发马达振动。
+
+**权限列表**：ohos.permission.VIBRATE
+
+**系统能力**：SystemCapability.Sensors.MiscDevice
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -104,6 +107,10 @@ vibrate(effectId: EffectId, callback?: AsyncCallback&lt;void&gt;): void
 
 按照指定振动效果触发马达振动。
 
+**权限列表**：ohos.permission.VIBRATE
+
+**系统能力**：SystemCapability.Sensors.MiscDevice
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -127,6 +134,10 @@ vibrate(effectId: EffectId, callback?: AsyncCallback&lt;void&gt;): void
 stop(stopMode: VibratorStopMode): Promise&lt;void&gt;
 
 按照要停止指定的振动模式来停止马达的振动。如果要停止的振动模式与触发马达振动时的模式不相同，则调用本接口会失败。
+
+**权限列表**：ohos.permission.VIBRATE
+
+**系统能力**：SystemCapability.Sensors.MiscDevice
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -154,6 +165,10 @@ stop(stopMode: VibratorStopMode, callback?: AsyncCallback&lt;void&gt;): void;
 
 按照要停止指定的振动模式来停止马达的振动。如果要停止的振动模式与触发马达振动时的模式不相同，则调用本接口会失败。
 
+**权限列表**：ohos.permission.VIBRATE
+
+**系统能力**：SystemCapability.Sensors.MiscDevice
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -176,6 +191,8 @@ stop(stopMode: VibratorStopMode, callback?: AsyncCallback&lt;void&gt;): void;
 
 表示马达振动效果的字符串。
 
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.MiscDevice
+
 | 名称 | 默认值 | 说明 |
 | -------- | -------- | -------- |
 | EFFECT_CLOCK_TIMER | "haptic.clock.timer" | 调整定时器时振动器的振动效果。 |
@@ -184,6 +201,8 @@ stop(stopMode: VibratorStopMode, callback?: AsyncCallback&lt;void&gt;): void;
 ## VibratorStopMode
 
 表示马达要停止指定的振动模式。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.MiscDevice
 
 | 名称 | 默认值 | 说明 |
 | -------- | -------- | -------- |
