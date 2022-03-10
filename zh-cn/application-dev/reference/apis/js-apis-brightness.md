@@ -12,17 +12,15 @@
 import brightness from '@ohos.brightness';
 ```
 
-## 系统能力
-
-SystemCapability.PowerManager.DisplayPowerManager
-
 ## brightness.setValue
 
 setValue(value: number)
 
 设置系统的屏幕亮度。
 
-**补充说明：**该接口为system api，仅供系统应用使用。
+**系统能力：** SystemCapability.PowerManager.DisplayPowerManager
+
+**补充说明：** 该接口为system api，仅供系统应用使用。
 
 **参数：**
 
@@ -33,6 +31,5 @@ setValue(value: number)
 **示例：**
 
 ```
-import brightness from '@ohos.brightness.d.ts';
 brightness.setValue(128);
 ```
