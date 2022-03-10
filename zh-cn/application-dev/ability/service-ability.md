@@ -29,19 +29,19 @@
    ```javascript
    export default {
        onStart(want) {
-           console.log('SerivceAbility onStart');
+           console.log('ServiceAbility onStart');
        },
        onCommand(want, restart, startId) {
-           console.log('SerivceAbility onCommand');
+           console.log('ServiceAbility onCommand');
        },
        onConnect(want) {
-           console.log('SerivceAbility OnConnect');
+           console.log('ServiceAbility OnConnect');
        },
        onDisconnect() {
-           console.log('SerivceAbility OnDisConnect');
+           console.log('ServiceAbility OnDisConnect');
        },
        onStop() {
-           console.log('SerivceAbility onStop');
+           console.log('ServiceAbility onStop');
        },
    }
    ```
@@ -168,17 +168,17 @@ export default {
         mMyStub = new MyStub("ServiceAbility-test");
     },
     onCommand(want, restart, startId) {
-        console.log('SerivceAbility onCommand');
+        console.log('ServiceAbility onCommand');
     },
     onConnect(want) {
-        console.log('SerivceAbility OnConnect');
+        console.log('ServiceAbility OnConnect');
         return mMyStub;
     },
     onDisconnect() {
-        console.log('SerivceAbility OnDisConnect');
+        console.log('ServiceAbility OnDisConnect');
     },
     onStop() {
-        console.log('SerivceAbility onStop');
+        console.log('ServiceAbility onStop');
     },
 }
 ```
@@ -250,17 +250,17 @@ export default {
         mMyStub = new MyStub("ServiceAbility-test");
     },
     onCommand(want, restart, startId) {
-        console.log('SerivceAbility onCommand');
+        console.log('ServiceAbility onCommand');
     },
     onConnect(want) {
-        console.log('SerivceAbility OnConnect');
+        console.log('ServiceAbility OnConnect');
         return mMyStub;
     },
     onDisconnect() {
-        console.log('SerivceAbility OnDisConnect');
+        console.log('ServiceAbility OnDisConnect');
     },
     onStop() {
-        console.log('SerivceAbility onStop');
+        console.log('ServiceAbility onStop');
     },
 }
 ```
