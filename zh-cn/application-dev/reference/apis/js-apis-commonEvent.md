@@ -116,17 +116,13 @@
 import CommonEvent from '@ohos.commonEvent';
 ```
 
-## 系统能力
-
-```js
-SystemCapability.Notification.CommonEvent
-```
-
 ## CommonEvent.publish
 
 publish(event: string, callback: AsyncCallback\<void>): void
 
 发布公共事件（callback形式）。
+
+**系统能力**：SystemCapability.Notification.CommonEvent
 
 **参数：**
 
@@ -140,11 +136,15 @@ publish(event: string, callback: AsyncCallback\<void>): void
 ```js
 //发布公共事件回调
 function PublishCallBack(err) {
-	console.info("==========================>PublishCallBack=======================>");
-    console.info("==========================>err:=======================>", err.code);
+	if (err.code) {
+        console.error("publish failed " + JSON.stringify(err));
+    } else {
+        console.info("publish");
+    }
 }
+
 //发布公共事件
-CommonEvent.publish("publish_event", PublishCallBack);
+CommonEvent.publish("event", PublishCallBack);
 ```
 
 
@@ -154,6 +154,8 @@ CommonEvent.publish("publish_event", PublishCallBack);
 publish(event: string, options: CommonEventPublishData, callback: AsyncCallback\<void>): void
 
 发布公共事件指定发布信息（callback形式）。
+
+**系统能力**：SystemCapability.Notification.CommonEvent
 
 **参数：**
 
@@ -173,12 +175,18 @@ var options = {
 	data: "initial data",//公共事件的初始数据
 	isOrdered: true	 //有序公共事件
 }
+
 //发布公共事件回调
 function PublishCallBack(err) {
-	console.info("==========================>PublishCallBack=======================>");
+	if (err.code) {
+        console.error("publish failed " + JSON.stringify(err));
+    } else {
+        console.info("publish");
+    }
 }
+
 //发布公共事件
-CommonEvent.publish("publish_event", options, PublishCallBack);
+CommonEvent.publish("event", options, PublishCallBack);
 ```
 
 
@@ -188,6 +196,8 @@ CommonEvent.publish("publish_event", options, PublishCallBack);
 publishAsUser(event: string, userId: number, callback: AsyncCallback\<void>): void
 
 向指定用户发布公共事件（callback形式）。
+
+**系统能力**：SystemCapability.Notification.CommonEvent
 
 **参数：**
 
@@ -203,15 +213,17 @@ publishAsUser(event: string, userId: number, callback: AsyncCallback\<void>): vo
 //发布公共事件回调
 function PublishAsUserCallBack(err) {
 	if (err.code) {
-        console.info("publishAsUser failed " + JSON.stringify(err));
+        console.error("publishAsUser failed " + JSON.stringify(err));
     } else {
         console.info("publishAsUser");
     }
 }
+
 //指定发送的用户
 var userId = 100;
+
 //发布公共事件
-CommonEvent.publish("publish_event", userId, PublishAsUserCallBack);
+CommonEvent.publishAsUser("event", userId, PublishAsUserCallBack);
 ```
 
 
@@ -221,6 +233,8 @@ CommonEvent.publish("publish_event", userId, PublishAsUserCallBack);
 publishAsUser(event: string, userId: number, options: CommonEventPublishData, callback: AsyncCallback\<void>): void
 
 向指定用户发布公共事件并指定发布信息（callback形式）。
+
+**系统能力**：SystemCapability.Notification.CommonEvent
 
 **参数：**
 
@@ -240,18 +254,21 @@ var options = {
 	code: 0;			 //公共事件的初始代码
 	data: "initial data";//公共事件的初始数据
 }
+
 //发布公共事件回调
 function PublishAsUserCallBack(err) {
 	if (err.code) {
-        console.info("publishAsUser failed " + JSON.stringify(err));
+        console.error("publishAsUser failed " + JSON.stringify(err));
     } else {
         console.info("publishAsUser");
     }
 }
+
 //指定发送的用户
 var userId = 100;
+
 //发布公共事件
-CommonEvent.publish("publish_event", userId, options, PublishAsUserCallBack);
+CommonEvent.publishAsUser("event", userId, options, PublishAsUserCallBack);
 ```
 
 
@@ -261,6 +278,8 @@ CommonEvent.publish("publish_event", userId, options, PublishAsUserCallBack);
 createSubscriber(subscribeInfo: CommonEventSubscribeInfo, callback: AsyncCallback\<CommonEventSubscriber>): void
 
 创建订阅者（callback形式）。
+
+**系统能力**：SystemCapability.Notification.CommonEvent
 
 **参数：**
 
@@ -274,15 +293,22 @@ createSubscriber(subscribeInfo: CommonEventSubscribeInfo, callback: AsyncCallbac
 
 ```js
 var subscriber; //用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+
 //订阅者信息
 var subscribeInfo = {
 	events: ["event"]
 };
+
 //创建订阅者回调
-function CreateSubscriberCallBack(err, data) {
-    console.info("==========================>CreateSubscriberCallBack=======================>");
-    subscriber = data;
+function CreateSubscriberCallBack(err, commonEventSubscriber) {
+    if (err.code) {
+        console.error("createSubscriber failed " + JSON.stringify(err));
+    } else {
+        console.info("createSubscriber");
+        subscriber = commonEventSubscriber;
+    }
 }
+
 //创建订阅者
 CommonEvent.createSubscriber(subscribeInfo, CreateSubscriberCallBack);
 ```
@@ -294,6 +320,8 @@ CommonEvent.createSubscriber(subscribeInfo, CreateSubscriberCallBack);
 createSubscriber(subscribeInfo: CommonEventSubscribeInfo): Promise\<CommonEventSubscriber>
 
 创建订阅者（Promise形式）。
+
+**系统能力**：SystemCapability.Notification.CommonEvent
 
 **参数：**
 
@@ -310,14 +338,18 @@ createSubscriber(subscribeInfo: CommonEventSubscribeInfo): Promise\<CommonEventS
 
 ```js
 var subscriber; //用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+
 //订阅者信息
 var subscribeInfo = {
 	events: ["event"]
 };
+
 //创建订阅者
-CommonEvent.createSubscriber(subscribeInfo).then((data) => {
-	console.info("==========================>createSubscriberPromise=======================>");
-    subscriber = data;
+CommonEvent.createSubscriber(subscribeInfo).then((commonEventSubscriber) => {
+    console.info("createSubscriber");
+    subscriber = commonEventSubscriber;
+}).catch((err) => {
+    console.error("createSubscriber failed " + JSON.stringify(err));
 });
 ```
 
@@ -328,6 +360,8 @@ CommonEvent.createSubscriber(subscribeInfo).then((data) => {
 subscribe(subscriber: CommonEventSubscriber, callback: AsyncCallback\<CommonEventData>): void
 
 订阅公共事件（callback形式）。
+
+**系统能力**：SystemCapability.Notification.CommonEvent
 
 **参数：**
 
@@ -342,21 +376,33 @@ subscribe(subscriber: CommonEventSubscriber, callback: AsyncCallback\<CommonEven
 
 ```js
 var subscriber; //用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+
 //订阅者信息
 var subscribeInfo = {
     events: ["event"]
 };
+
 //订阅公共事件回调
 function SubscribeCallBack(err, data) {
-    console.info("==========================>SubscribeCallBack=======================>");
+    if (err.code) {
+        console.error("subscribe failed " + JSON.stringify(err));
+    } else {
+        console.info("subscribe " + JSON.stringify(data));
+    }
 }
+
 //创建订阅者回调
-function CreateSubscriberCallBack(err, data) {
-    console.info("==========================>CreateSubscriberCallBack=======================>");
-    subscriber = data;
-    //订阅公共事件
-    CommonEvent.subscribe(subscriber, SubscribeCallBack);
+function CreateSubscriberCallBack(err, commonEventSubscriber) {
+    if (err.code) {
+        console.error("createSubscriber failed " + JSON.stringify(err));
+    } else {
+        console.info("createSubscriber");
+        subscriber = commonEventSubscriber;
+        //订阅公共事件
+        CommonEvent.subscribe(subscriber, SubscribeCallBack);
+    }
 }
+
 //创建订阅者
 CommonEvent.createSubscriber(subscribeInfo, CreateSubscriberCallBack);
 ```
@@ -365,6 +411,7 @@ CommonEvent.createSubscriber(subscribeInfo, CreateSubscriberCallBack);
 
 ```js
 var subscriber; //用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+
 //订阅者信息
 var subscribeInfo = {
     events: ["event"]
@@ -372,46 +419,71 @@ var subscribeInfo = {
 
 //设置有序公共事件的结果代码回调
 function SetCodeCallBack(err) {
-    console.info("==========================>SetCodeCallBack=======================>");
+    if (err.code) {
+        console.error("setCode failed " + JSON.stringify(err));
+    } else {
+        console.info("setCode");
+    }
 }
+
 //设置有序公共事件的结果数据回调
 function SetDataCallBack(err) {
-    console.info("==========================>SetDataCallBack=======================>");
+    if (err.code) {
+        console.error("setData failed " + JSON.stringify(err));
+    } else {
+        console.info("setData");
+    }
 }
+
 //完成本次有序公共事件处理回调
 function FinishCommonEventCallBack(err) {
-    console.info("==========================>FinishCommonEventCallBack=======================>");
+    if (err.code) {
+        console.error("finishCommonEvent failed " + JSON.stringify(err));
+    } else {
+        console.info("finishCommonEvent");
+    }
 }
+
 //订阅公共事件回调
 function SubscribeCallBack(err, data) {
-    console.info("==========================>SubscribeCallBack=======================>");
-    //设置有序公共事件的结果代码
-    subscriber.setCode(0, SetCodeCallBack);
-    //设置有序公共事件的结果数据
-    subscriber.setData("publish_data_changed", SetDataCallBack);
-    //完成本次有序公共事件处理
-    subscriber.finishCommonEvent(FinishCommonEventCallBack)
+    if (err.code) {
+        console.error("subscribe failed " + JSON.stringify(err));
+    } else {
+        console.info("subscribe " + JSON.stringify(data));
+        //设置有序公共事件的结果代码
+        subscriber.setCode(0, SetCodeCallBack);
+        //设置有序公共事件的结果数据
+        subscriber.setData("publish_data_changed", SetDataCallBack);
+        //完成本次有序公共事件处理
+        subscriber.finishCommonEvent(FinishCommonEventCallBack)
+    }
 }
 
 //创建订阅者回调
-function CreateSubscriberCallBack(err, data) {
-    console.info("==========================>CreateSubscriberCallBack=======================>");
-    subscriber = data;
-    //订阅公共事件
-    CommonEvent.subscribe(subscriber, SubscribeCallBack);
+function CreateSubscriberCallBack(err, commonEventSubscriber) {
+    if (err.code) {
+        console.error("createSubscriber failed " + JSON.stringify(err));
+    } else {
+        console.info("createSubscriber");
+        subscriber = commonEventSubscriber;
+        //订阅公共事件
+        CommonEvent.subscribe(subscriber, SubscribeCallBack);
+    }
 }
 
 //创建订阅者
 CommonEvent.createSubscriber(subscribeInfo, CreateSubscriberCallBack);
 ```
 
- 
+
 
 ## CommonEvent.unsubscribe
 
 unsubscribe(subscriber: CommonEventSubscriber, callback?: AsyncCallback\<void>): void
 
 取消订阅公共事件（callback形式）。
+
+**系统能力**：SystemCapability.Notification.CommonEvent
 
 **参数：**
 
@@ -424,61 +496,79 @@ unsubscribe(subscriber: CommonEventSubscriber, callback?: AsyncCallback\<void>):
 
 ```js
 var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+
 //订阅者信息
 var subscribeInfo = {
 	events: ["event"]
 };
+
 //订阅公共事件回调
 function SubscribeCallBack(err, data) {
-	console.info("==========================>SubscribeCallBack=======================>");
+    if (err.code) {
+        console.info("subscribe failed " + JSON.stringify(err));
+    } else {
+        console.info("subscribe " + JSON.stringify(data));
+    }
 }
+
 //创建订阅者回调
-function CreateSubscriberCallBack(err, data) {
-	console.info("==========================>CreateSubscriberCallBack=======================>");
-	subscriber = data;
-	//订阅公共事件
-	CommonEvent.subscribe(subscriber, SubscribeCallBack);
+function CreateSubscriberCallBack(err, commonEventSubscriber) {
+    if (err.code) {
+        console.info("createSubscriber failed " + JSON.stringify(err));
+    } else {
+        console.info("createSubscriber");
+        subscriber = commonEventSubscriber;
+        //订阅公共事件
+        CommonEvent.subscribe(subscriber, SubscribeCallBack);
+    }
 }
+
 //取消订阅公共事件回调
 function UnsubscribeCallBack(err) {
-	console.info("==========================>UnsubscribeCallBack=======================>");
+	if (err.code) {
+        console.info("unsubscribe failed " + JSON.stringify(err));
+    } else {
+        console.info("unsubscribe");
+    }
 }
+
 //创建订阅者
 CommonEvent.createSubscriber(subscribeInfo, CreateSubscriberCallBack);
+
 //取消订阅公共事件
 CommonEvent.unsubscribe(subscriber, UnsubscribeCallBack);
 ```
 
 ## CommonEventPublishData
 
-| 名称                  | 读写属性 | 类型                 | 必填 | 描述                         |
-| --------------------- | -------- | -------------------- | ---- | ---------------------------- |
-| bundleName            | 只读     | string               | 否   | 表示包名称                   |
-| code                  | 只读     | number               | 否   | 表示公共事件的结果代码       |
-| data                  | 只读     | string               | 否   | 表示公共事件的自定义结果数据 |
-| subscriberPermissions | 只读     | Array\<string>       | 否   | 表示订阅者的权限             |
-| isOrdered             | 只读     | boolean              | 否   | 表示是否是有序事件           |
-| parameters            | 只读     | {[key: string]: any} | 否   | 表示公共事件的附加信息       |
+| 名称                  | 读写属性 | 类型                 | 必填 | 描述                                                         |
+| --------------------- | -------- | -------------------- | ---- | ------------------------------------------------------------ |
+| bundleName            | 只读     | string               | 否   | 表示包名称<br/>**系统能力**：SystemCapability.Notification.CommonEvent |
+| code                  | 只读     | number               | 否   | 表示公共事件的结果代码<br/>**系统能力**：SystemCapability.Notification.CommonEvent |
+| data                  | 只读     | string               | 否   | 表示公共事件的自定义结果数据<br/>**系统能力**：SystemCapability.Notification.CommonEvent |
+| subscriberPermissions | 只读     | Array\<string>       | 否   | 表示订阅者的权限<br/>**系统能力**：SystemCapability.Notification.CommonEvent |
+| isOrdered             | 只读     | boolean              | 否   | 表示是否是有序事件<br/>**系统能力**：SystemCapability.Notification.CommonEvent |
+| parameters            | 只读     | {[key: string]: any} | 否   | 表示公共事件的附加信息<br/>**系统能力**：SystemCapability.Notification.CommonEvent |
 
 ## CommonEventSubscribeInfo
 
 | 名称                | 读写属性 | 类型           | 必填 | 描述                                                         |
 | ------------------- | -------- | -------------- | ---- | ------------------------------------------------------------ |
-| events              | 只读     | Array\<string> | 是   | 表示要发送的公共事件                                         |
-| publisherPermission | 只读     | string         | 否   | 表示发布者的权限                                             |
-| publisherDeviceId   | 只读     | string         | 否   | 表示设备ID，该值必须是同一ohos网络上的现有设备ID             |
-| userId              | 只读     | number         | 否   | 表示用户ID。此参数是可选的，默认值当前用户的ID。如果指定了此参数，则该值必须是系统中现有的用户ID。 |
-| priority            | 只读     | number         | 否   | 表示订阅者的优先级。值的范围是-100到1000                     |
+| events              | 只读     | Array\<string> | 是   | 表示要发送的公共事件<br/>**系统能力**：SystemCapability.Notification.CommonEvent |
+| publisherPermission | 只读     | string         | 否   | 表示发布者的权限<br/>**系统能力**：SystemCapability.Notification.CommonEvent |
+| publisherDeviceId   | 只读     | string         | 否   | 表示设备ID，该值必须是同一ohos网络上的现有设备ID<br/>**系统能力**：SystemCapability.Notification.CommonEvent |
+| userId              | 只读     | number         | 否   | 表示用户ID。此参数是可选的，默认值当前用户的ID。如果指定了此参数，则该值必须是系统中现有的用户ID。<br/>**系统能力**：SystemCapability.Notification.CommonEvent |
+| priority            | 只读     | number         | 否   | 表示订阅者的优先级。值的范围是-100到1000<br/>**系统能力**：SystemCapability.Notification.CommonEvent |
 
 ## CommonEventData
 
-| 名称       | 读写属性 | 类型                 | 必填 | 描述                                                   |
-| ---------- | -------- | -------------------- | ---- | ------------------------------------------------------ |
-| event      | 只读     | string               | 是   | 表示当前接收的公共事件名称                             |
-| bundleName | 只读     | string               | 否   | 表示包名称                                             |
-| code       | 只读     | number               | 否   | 表示公共事件的结果代码，用于传递int类型的数据          |
-| data       | 只读     | string               | 否   | 表示公共事件的自定义结果数据，用于传递string类型的数据 |
-| parameters | 只读     | {[key: string]: any} | 否   | 表示公共事件的附加信息                                 |
+| 名称       | 读写属性 | 类型                 | 必填 | 描述                                                         |
+| ---------- | -------- | -------------------- | ---- | ------------------------------------------------------------ |
+| event      | 只读     | string               | 是   | 表示当前接收的公共事件名称<br/>**系统能力**：SystemCapability.Notification.CommonEvent |
+| bundleName | 只读     | string               | 否   | 表示包名称<br/>**系统能力**：SystemCapability.Notification.CommonEvent |
+| code       | 只读     | number               | 否   | 表示公共事件的结果代码，用于传递int类型的数据<br/>**系统能力**：SystemCapability.Notification.CommonEvent |
+| data       | 只读     | string               | 否   | 表示公共事件的自定义结果数据，用于传递string类型的数据<br/>**系统能力**：SystemCapability.Notification.CommonEvent |
+| parameters | 只读     | {[key: string]: any} | 否   | 表示公共事件的附加信息<br/>**系统能力**：SystemCapability.Notification.CommonEvent |
 
 ## CommonEventSubscriber
 
@@ -487,6 +577,8 @@ CommonEvent.unsubscribe(subscriber, UnsubscribeCallBack);
 getCode(callback: AsyncCallback\<number>): void
 
 获取公共事件的结果代码（callback形式）。
+
+**系统能力**：SystemCapability.Notification.CommonEvent
 
 **参数：**
 
@@ -497,12 +589,16 @@ getCode(callback: AsyncCallback\<number>): void
 **示例：**
 
 ```js
-var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+var subscriber;	//创建成功的订阅者对象
+
 //设置有序公共事件的结果数据回调
-function getCodeCallback(err, data) {
-    console.info("==========================>getCodeCallback=======================>");
-    console.info("==========================>err:=======================>", err.code);
-    console.info("==========================>code:=======================>", data);
+getCode() {
+function getCodeCallback(err, Code) {
+    if (err.code) {
+        console.error("getCode failed " + JSON.stringify(err));
+    } else {
+        console.info("getCode " + JSON.stringify(Code));
+    }
 }
 subscriber.getCode(getCodeCallback);
 ```
@@ -513,6 +609,8 @@ getCode(): Promise\<number>
 
 获取公共事件的结果代码（Promise形式）。
 
+**系统能力**：SystemCapability.Notification.CommonEvent
+
 **返回值：**
 
 | 类型             | 说明                 |
@@ -522,10 +620,12 @@ getCode(): Promise\<number>
 **示例：**
 
 ```js
-var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
-subscriber.getCode().then((data) => {
-	console.info("==========================>getCodePromise=======================>");
-    console.info("==========================>code:=======================>", data);
+var subscriber;	//创建成功的订阅者对象
+
+subscriber.getCode().then((Code) => {
+    console.info("getCode " + JSON.stringify(Code));
+}).catch((err) => {
+    console.error("getCode failed " + JSON.stringify(err));
 });
 ```
 
@@ -534,6 +634,8 @@ subscriber.getCode().then((data) => {
 setCode(code: number, callback: AsyncCallback\<void>): void
 
 设置公共事件的结果代码（callback形式）。
+
+**系统能力**：SystemCapability.Notification.CommonEvent
 
 **参数：**
 
@@ -545,11 +647,15 @@ setCode(code: number, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+var subscriber;	//创建成功的订阅者对象
+
 //设置有序公共事件的结果数据回调
 function setCodeCallback(err) {
-    console.info("==========================>setCodeCallback=======================>");
-    console.info("==========================>err:=======================>", err.code);
+    if (err.code) {
+        console.error("setCode failed " + JSON.stringify(err));
+    } else {
+        console.info("setCode");
+    }
 }
 subscriber.setCode(1, setCodeCallback);
 ```
@@ -560,6 +666,8 @@ setCode(code: number): Promise\<void>
 
 设置公共事件的结果代码（Promise形式）。
 
+**系统能力**：SystemCapability.Notification.CommonEvent
+
 **参数：**
 
 | 参数名 | 类型   | 必填 | 描述               |
@@ -569,9 +677,12 @@ setCode(code: number): Promise\<void>
 **示例：**
 
 ```js
-var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+var subscriber;	//创建成功的订阅者对象
+
 subscriber.setCode(1).then(() => {
-	console.info("==========================>setCodePromise=======================>");
+    console.info("setCode");
+}).catch((err) => {
+    console.error("setCode failed " + JSON.stringify(err));
 });
 ```
 
@@ -580,6 +691,8 @@ subscriber.setCode(1).then(() => {
 getData(callback: AsyncCallback\<string>): void
 
 获取公共事件的结果数据（callback形式）。
+
+**系统能力**：SystemCapability.Notification.CommonEvent
 
 **参数：**
 
@@ -590,12 +703,15 @@ getData(callback: AsyncCallback\<string>): void
 **示例：**
 
 ```js
-var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+var subscriber;	//创建成功的订阅者对象
+
 //设置有序公共事件的结果数据回调
-function getDataCallback(err, data) {
-    console.info("==========================>getDataCallback=======================>");
-    console.info("==========================>err:=======================>", err.code);
-    console.info("==========================>data:=======================>", data);
+function getDataCallback(err, Data) {
+    if (err.code) {
+        console.error("getData failed " + JSON.stringify(err));
+    } else {
+        console.info("getData " + JSON.stringify(Data));
+    }
 }
 subscriber.getData(getDataCallback);
 ```
@@ -606,6 +722,8 @@ getData(): Promise\<string>
 
 获取公共事件的结果数据（Promise形式）。
 
+**系统能力**：SystemCapability.Notification.CommonEvent
+
 **返回值：**
 
 | 类型             | 说明               |
@@ -615,10 +733,12 @@ getData(): Promise\<string>
 **示例：**
 
 ```js
-var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
-subscriber.getData().then((data) => {
-	console.info("==========================>getDataPromise=======================>");
-    console.info("==========================>data:=======================>", data);
+var subscriber;	//创建成功的订阅者对象
+
+subscriber.getData().then((Data) => {
+    console.info("getData " + JSON.stringify(Data));
+}).catch((err) => {
+    console.error("getData failed " + JSON.stringify(err));
 });
 ```
 
@@ -627,6 +747,8 @@ subscriber.getData().then((data) => {
 setData(data: string, callback: AsyncCallback\<void>): void
 
 设置公共事件的结果数据（callback形式）。
+
+**系统能力**：SystemCapability.Notification.CommonEvent
 
 **参数：**
 
@@ -638,11 +760,15 @@ setData(data: string, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+var subscriber;	//创建成功的订阅者对象
+
 //设置有序公共事件的结果数据回调
 function setDataCallback(err) {
-    console.info("==========================>setDataCallback=======================>");
-    console.info("==========================>err:=======================>", err.code);
+    if (err.code) {
+        console.error("setData failed " + JSON.stringify(err));
+    } else {
+        console.info("setData");
+    }
 }
 subscriber.setData("publish_data_changed", setDataCallback);
 ```
@@ -653,6 +779,8 @@ setData(data: string): Promise\<void>
 
 设置公共事件的结果数据（Promise形式）。
 
+**系统能力**：SystemCapability.Notification.CommonEvent
+
 **参数：**
 
 | 参数名 | 类型   | 必填 | 描述                 |
@@ -662,9 +790,12 @@ setData(data: string): Promise\<void>
 **示例：**
 
 ```js
-var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+var subscriber;	//创建成功的订阅者对象
+
 subscriber.setData("publish_data_changed").then(() => {
-	console.info("==========================>setDataPromise=======================>");
+    console.info("setData");
+}).catch((err) => {
+    console.error("setData failed " + JSON.stringify(err));
 });
 ```
 
@@ -673,6 +804,8 @@ subscriber.setData("publish_data_changed").then(() => {
 setCodeAndData(code: number, data: string, callback:AsyncCallback\<void>): void
 
 设置公共事件的结果代码和结果数据（callback形式）。
+
+**系统能力**：SystemCapability.Notification.CommonEvent
 
 **参数：**
 
@@ -685,11 +818,15 @@ setCodeAndData(code: number, data: string, callback:AsyncCallback\<void>): void
 **示例：**
 
 ```js
-var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+var subscriber;	//创建成功的订阅者对象
+
 //设置有序公共事件的结果数据回调
 function setCodeDataCallback(err) {
-    console.info("==========================>setCodeDataCallback=======================>");
-    console.info("==========================>err:=======================>", err.code);
+    if (err.code) {
+        console.error("setCodeAndData failed " + JSON.stringify(err));
+    } else {
+        console.info("setCodeDataCallback");
+    }
 }
 subscriber.setCodeAndData(1, "publish_data_changed", setCodeDataCallback);
 ```
@@ -699,6 +836,8 @@ subscriber.setCodeAndData(1, "publish_data_changed", setCodeDataCallback);
 setCodeAndData(code: number, data: string): Promise\<void>
 
 设置公共事件的结果代码和结果数据（Promise形式）。
+
+**系统能力**：SystemCapability.Notification.CommonEvent
 
 **参数：**
 
@@ -710,9 +849,12 @@ setCodeAndData(code: number, data: string): Promise\<void>
 **示例：**
 
 ```js
-var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+var subscriber;	//创建成功的订阅者对象
+
 subscriber.setCodeAndData(1, "publish_data_changed").then(() => {
-	console.info("==========================>setCodeAndData=======================>");
+    console.info("setCodeAndData");
+}).catch((err) => {
+    console.info("setCodeAndData failed " + JSON.stringify(err));
 });
 ```
 
@@ -724,6 +866,8 @@ isOrderedCommonEvent(callback: AsyncCallback\<boolean>): void
 
 返回true代表是有序公共事件，false代表不是有序公共事件。
 
+**系统能力**：SystemCapability.Notification.CommonEvent
+
 **参数：**
 
 | 参数名   | 类型                    | 必填 | 描述                               |
@@ -733,12 +877,15 @@ isOrderedCommonEvent(callback: AsyncCallback\<boolean>): void
 **示例：**
 
 ```js
-var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+var subscriber;	//创建成功的订阅者对象
+
 //设置有序公共事件的结果数据回调
-function isOrderedCallback(err, data) {
-    console.info("==========================>isOrderedCallback=======================>");
-    console.info("==========================>err:=======================>", err.code);
-    console.info("==========================>isOrdered:=======================>", data);
+function isOrderedCallback(err, isOrdered) {
+    if (err.code) {
+        console.error("isOrderedCommonEvent failed " + JSON.stringify(err));
+    } else {
+        console.info("isOrdered " + JSON.stringify(isOrdered));
+    }
 }
 subscriber.isOrderedCommonEvent(isOrderedCallback);
 ```
@@ -751,6 +898,8 @@ isOrderedCommonEvent(): Promise\<boolean>
 
 返回true代表是有序公共事件，false代表不是有序公共事件。
 
+**系统能力**：SystemCapability.Notification.CommonEvent
+
 **返回值：**
 
 | 类型              | 说明                             |
@@ -760,9 +909,12 @@ isOrderedCommonEvent(): Promise\<boolean>
 **示例：**
 
 ```js
-var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
-subscriber.isOrderedCommonEvent().then((data) => {
-	console.info("==========================>isOrdered:=======================>", data);
+var subscriber;	//创建成功的订阅者对象
+
+subscriber.isOrderedCommonEvent().then((isOrdered) => {
+    console.info("isOrdered " + JSON.stringify(isOrdered));
+}).catch((err) => {
+    console.error("isOrdered failed " + JSON.stringify(err));
 });
 ```
 
@@ -771,6 +923,8 @@ subscriber.isOrderedCommonEvent().then((data) => {
 abortCommonEvent(callback: AsyncCallback\<void>): void
 
 取消当前的公共事件，仅对有序公共事件有效，取消后，公共事件不再向下一个订阅者传递（callback形式）。
+
+**系统能力**：SystemCapability.Notification.CommonEvent
 
 **参数：**
 
@@ -781,11 +935,15 @@ abortCommonEvent(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+var subscriber;	//创建成功的订阅者对象
+
 //设置有序公共事件的结果数据回调
 function abortCallback(err) {
-    console.info("==========================>abortCallback=======================>");
- 	console.info("==========================>err:=======================>", err.code);
+    if (err.code) {
+        console.error("abortCommonEvent failed " + JSON.stringify(err));
+    } else {
+        console.info("abortCommonEvent");
+    }
 }
 subscriber.abortCommonEvent(abortCallback);
 ```
@@ -796,12 +954,17 @@ abortCommonEvent(): Promise\<void>
 
 取消当前的公共事件，仅对有序公共事件有效，取消后，公共事件不再向下一个订阅者传递（Promise形式）。
 
+**系统能力**：SystemCapability.Notification.CommonEvent
+
 **示例：**
 
 ```js
-var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+var subscriber;	//创建成功的订阅者对象
+
 subscriber.abortCommonEvent().then(() => {
-	console.info("==========================>abortCommonEvent:=======================>");
+    console.info("abortCommonEvent");
+}).catch((err) => {
+    console.error("abortCommonEvent failed " + JSON.stringify(err));
 });
 ```
 
@@ -810,6 +973,8 @@ subscriber.abortCommonEvent().then(() => {
 clearAbortCommonEvent(callback: AsyncCallback\<void>): void
 
 清除当前公共事件的取消状态，仅对有序公共事件有效（callback形式）。
+
+**系统能力**：SystemCapability.Notification.CommonEvent
 
 **参数：**
 
@@ -820,11 +985,15 @@ clearAbortCommonEvent(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+var subscriber;	//创建成功的订阅者对象
+
 //设置有序公共事件的结果数据回调
 function clearAbortCallback(err) {
-    console.info("==========================>clearAbortCallback=======================>");
- 	console.info("==========================>err:=======================>", err.code);
+    if (err.code) {
+        console.error("clearAbortCommonEvent failed " + JSON.stringify(err));
+    } else {
+        console.info("clearAbortCommonEvent");
+    }
 }
 subscriber.clearAbortCommonEvent(clearAbortCallback);
 ```
@@ -835,12 +1004,17 @@ clearAbortCommonEvent(): Promise\<void>
 
 清除当前公共事件的取消状态，仅对有序公共事件有效（Promise形式）。
 
+**系统能力**：SystemCapability.Notification.CommonEvent
+
 **示例：**
 
 ```js
-var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+var subscriber;	//创建成功的订阅者对象
+
 subscriber.clearAbortCommonEvent().then(() => {
-	console.info("==========================>clearAbortCommonEvent:=======================>");
+    console.info("clearAbortCommonEvent");
+}).catch((err) => {
+    console.error("clearAbortCommonEvent failed " + JSON.stringify(err));
 });
 ```
 
@@ -849,6 +1023,8 @@ subscriber.clearAbortCommonEvent().then(() => {
 getAbortCommonEvent(callback: AsyncCallback\<boolean>): void
 
 获取当前有序公共事件是否取消的状态（callback形式）。
+
+**系统能力**：SystemCapability.Notification.CommonEvent
 
 **参数：**
 
@@ -859,12 +1035,15 @@ getAbortCommonEvent(callback: AsyncCallback\<boolean>): void
 **示例：**
 
 ```js
-var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+var subscriber;	//创建成功的订阅者对象
+
 //设置有序公共事件的结果数据回调
-function getAbortCallback(err, data) {
-    console.info("==========================>getAbortCallback=======================>");
- 	console.info("==========================>err:=======================>", err.code);
-    console.info("==========================>abort:=======================>", data);
+function getAbortCallback(err, AbortCommonEvent) {
+    if (err.code) {
+        console.error("getAbortCommonEvent failed " + JSON.stringify(err));
+    } else {
+        console.info("AbortCommonEvent " + AbortCommonEvent)
+    }
 }
 subscriber.getAbortCommonEvent(getAbortCallback);
 ```
@@ -875,6 +1054,8 @@ getAbortCommonEvent(): Promise\<void>
 
 获取当前有序公共事件是否取消的状态（Promise形式）。
 
+**系统能力**：SystemCapability.Notification.CommonEvent
+
 **返回值：**
 
 | 类型              | 说明                               |
@@ -884,10 +1065,12 @@ getAbortCommonEvent(): Promise\<void>
 **示例：**
 
 ```js
-var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
-subscriber.getAbortCommonEvent().then((data) => {
-	console.info("==========================>getAbortCommonEvent:=======================>");
-    console.info("==========================>abort:=======================>", data);
+var subscriber;	//创建成功的订阅者对象
+
+subscriber.getAbortCommonEvent().then((AbortCommonEvent) => {
+    console.info("AbortCommonEvent " + JSON.stringify(AbortCommonEvent));
+}).catch((err) => {
+    console.error("getAbortCommonEvent failed " + JSON.stringify(err));
 });
 ```
 
@@ -896,6 +1079,8 @@ subscriber.getAbortCommonEvent().then((data) => {
 getSubscribeInfo(callback: AsyncCallback\<CommonEventSubscribeInfo>): void
 
 获取订阅者的订阅信息（callback形式）。
+
+**系统能力**：SystemCapability.Notification.CommonEvent
 
 **参数：**
 
@@ -906,12 +1091,15 @@ getSubscribeInfo(callback: AsyncCallback\<CommonEventSubscribeInfo>): void
 **示例：**
 
 ```js
-var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+var subscriber;	//创建成功的订阅者对象
+
 //设置有序公共事件的结果数据回调
-function getSubscribeInfoCallback(err, data) {
-    console.info("==========================>getSubscribeInfoCallback=======================>");
- 	console.info("==========================>err:=======================>", err.code);
-    console.info("==========================>priority:=======================>", data.priority);
+function getSubscribeInfoCallback(err, SubscribeInfo) {
+    if (err.code) {
+        console.error("getSubscribeInfo failed " + JSON.stringify(err));
+    } else {
+        console.info("SubscribeInfo " + JSON.stringify(SubscribeInfo));
+    }
 }
 subscriber.getSubscribeInfo(getSubscribeInfoCallback);
 ```
@@ -922,6 +1110,8 @@ getSubscribeInfo(): Promise\<CommonEventSubscribeInfo>
 
 获取订阅者的订阅信息（Promise形式）。
 
+**系统能力**：SystemCapability.Notification.CommonEvent
+
 **返回值：**
 
 | 类型                                                         | 说明                   |
@@ -931,9 +1121,12 @@ getSubscribeInfo(): Promise\<CommonEventSubscribeInfo>
 **示例：**
 
 ```js
-var subscriber;	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
-subscriber.getSubscribeInfo().then((data) => {
-	console.info("==========================>getSubscribeInfo:=======================>");
-    console.info("==========================>priority:=======================>", data.priority);
+var subscriber;	//创建成功的订阅者对象
+
+subscriber.getSubscribeInfo().then((SubscribeInfo) => {
+    console.info("SubscribeInfo " + JSON.stringify(SubscribeInfo));
+}).catch((err) => {
+    console.error("getSubscribeInfo failed " + JSON.stringify(err));
 });
 ```
+
