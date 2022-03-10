@@ -45,13 +45,6 @@ The directory structure of the Globalization subsystem for the mini and small sy
 │   │   │   └── src         # Implementation code
 │   ├── interfaces          # APIs
 │   │   └── innerkits       # APIs for internal subsystems
-├── cust_lite               # Code repository for the Cust framework
-│   ├── frameworks          # Core code of the Cust framework
-│   │   ├── cust_lite       # Cust framework
-│   │   │   ├── src         # Implementation code
-│   │   │   └── test        # Test code
-│   ├── interfaces          # APIs
-│   │   └── innerkits       # APIs for internal subsystems
 ```
 
 The directory structure of the Globalization subsystem for the standard system is as follows:
@@ -77,8 +70,6 @@ The directory structure of the Globalization subsystem for the standard system i
 ## Repositories Involved<a name="section1371113476307"></a>
 
 **Globalization subsystem**
-
-global\_cust\_lite
 
 global\_i18n\_lite
 
