@@ -1,8 +1,8 @@
 # Audio Overview<a name="EN-US_TOPIC_0000001147055469"></a>
 
-OpenHarmony provides the audio module for your application to implement audio-related features, including audio playback and volume management.
+You can use APIs provided by the audio module to implement audio-related features, including audio playback and volume management.
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
+>![](../public_sys-resources/icon-note.gif) **NOTE** 
 >Due to permission issues, the above features are temporarily unavailable for the standard system.
 
 ## Basic Concepts<a name="section296512102281"></a>
