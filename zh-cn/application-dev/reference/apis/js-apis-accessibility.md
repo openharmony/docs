@@ -131,10 +131,10 @@ import accessibility from '@ohos.accessibility';
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| fontFamily | [CaptionsFontFamily](#CaptionsFontFamily8) | 是 | 否 | 描述字幕字体。 |
+| fontFamily | [CaptionsFontFamily](#captionsfontfamily8) | 是 | 否 | 描述字幕字体。 |
 | fontScale | number | 是 | 否 | 描述字幕字体缩放系数。 |
 | fontColor | number \| string | 是 | 否 | 描述字幕字体颜色。 |
-| fontEdgeType | [CaptionsFontEdgeType](#CaptionsFontEdgeType8) | 是 | 否 | 描述字幕字体边缘。 |
+| fontEdgeType | [CaptionsFontEdgeType](#captionsfontedgetype8) | 是 | 否 | 描述字幕字体边缘。 |
 | backgroundColor | number \| string | 是 | 否 | 描述字幕背景颜色。 |
 | windowColor | number \| string | 是 | 否 | 描述字幕窗口颜色。 |
 
@@ -147,11 +147,11 @@ import accessibility from '@ohos.accessibility';
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | enabled | boolean | 是 | 否 | 表示是否启用字幕配置。 |
-| style | [CaptionsStyle](#CaptionsStyle8) | 是 | 否 | 表示字幕风格。 |
+| style | [CaptionsStyle](#captionsstyle8) | 是 | 否 | 表示字幕风格。 |
 
 ### 方法
 
-下列 API 示例中都需要使用 [accessibility.CaptionsManager()](#accessibilitygetCaptionsManager8) 获取 captionsManager 实例，再通过此实例调用对应的方法。
+下列 API 示例中都需要使用 [accessibility.CaptionsManager()](#accessibilitygetcaptionsmanager8) 获取 captionsManager 实例，再通过此实例调用对应的方法。
 
 #### on('enableChange')
 
@@ -189,7 +189,7 @@ on(type: 'styleChange', callback: Callback&lt;CaptionsStyle&gt;): void;
   | 参数名 | 参数类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 监听字幕风格变化。 |
-  | callback | Callback&lt;[CaptionsStyle](#CaptionsStyle8)&gt; | 是 | 回调函数，在字幕风格变化时通过此函数进行通知。 |
+  | callback | Callback&lt;[CaptionsStyle](#captionsstyle8)&gt; | 是 | 回调函数，在字幕风格变化时通过此函数进行通知。 |
 
 - 示例
 
@@ -233,7 +233,7 @@ off(type: 'styleChange', callback?: Callback&lt;CaptionsStyle&gt;): void;
   | 参数名 | 参数类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 字幕风格变化。 |
-  | callback | Callback&lt;CaptionsStyle&gt; | 否 | 回调函数，在字幕风格变化时通过此函数进行通知。 |
+  | callback | Callback&lt;[CaptionsStyle](#captionsstyle8)&gt; | 否 | 回调函数，在字幕风格变化时通过此函数进行通知。 |
 
 - 示例
 
@@ -414,7 +414,7 @@ getCaptionsManager(): CaptionsManager
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | [CaptionsManager](#CaptionsManager8) | 无障碍字幕配置管理。 |
+  | [CaptionsManager](#captionsmanager8) | 无障碍字幕配置管理。 |
 
 - 示例
 
