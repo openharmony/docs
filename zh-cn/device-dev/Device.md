@@ -1,0 +1,59 @@
+# 设备开发
+
+- 了解OpenHarmony
+  - [了解OpenHarmony开源项目](../OpenHarmony-Overview_zh.md) 
+  - [了解OpenHarmony系统](../readme ) 
+  - [术语](glossary/glossary.md) 
+  - [版本说明](../release-notes/Readme.md) 
+- 快速开始
+  - [量和小型系统快速入门](quick-start/quickstart-lite.md) 	
+  - [标准系统快速入门](quick-start/quickstart-standard.md) 
+- 兼容性与安全	 
+  - [隐私与安全规范](security/Readme-CN.md)
+- 移植
+  - [轻量和小型系统三方库移植指导](porting/porting-thirdparty.md)
+  - [轻量系统芯片移植指导](porting/porting-minichip.md)
+  - [轻量系统芯片移植案例](porting/porting-minichip-cases.md)
+  - [小型系统芯片移植指导](porting/porting-smallchip.md)	 	
+- 子系统开发
+  - 内核 
+    - [轻量系统内核](kernel/kernel-mini.md)
+    - [小型系统内核](kernel/kernel-small.md)
+    - [标准系统内核](kernel/kernel-standard.md)
+  - [驱动](driver/Readme-CN.md) 	
+  - [编译构建](subsystems/subsys-build.md) 
+  - [分布式远程启动](subsystems/subsys-remote-start.md)
+  - [图形图像](subsystems/subsys-graphics.md)	
+  -  [媒体](subsystems/subsys-multimedia.md)	
+  -  [公共基础](subsystems/subsys-utils.md)	
+  -  [AI框架](subsystems/subsys-aiframework.md)	
+  - [数据管理](subsystems/subsys-data.md)
+  - [Sensor服务](subsystems/subsys-sensor.md)
+  - [USB服务](subsystems/subsys-usbservice.md)
+  - [用户程序框架](subsystems/subsys-application-framework.md)	
+  - [OTA升级](subsystems/subsys-ota-guide.md)
+  - [电话服务](subsystems/subsys-tel.md)
+  - [安全](subsystems/subsys-security.md)
+  - [启动恢复](subsystems/subsys-boot.md)	
+  - [DFX](subsystems/subsys-dfx.md)
+- 专题开发
+  - [HPM Bundle](bundles/Readme-CN.md) 	 	
+- 设备开发示例	 
+  -  [轻量和小型系统设备开发示例](guide/device-lite.md) 	
+  - [标准系统设备开发示例](guide/device-lite.md) 
+- 调测
+  -  [测试用例开发](subsystems/subsys-testguide-test.md)	
+  - [调测工具](subsystems/subsys-toolchain.md) 
+- XTS认证	
+  - [XTS认证](subsystems/subsys-xts-guide.md)	
+- 工具
+  - [Docker编译环境](get-code/gettools-acquire.md)
+  - [IDE集成开发环境](get-code/gettools-ide.md)
+
+- 示例教程	
+  - [示例代码](https://gitee.com/openharmony/app_samples/blob/master/README_zh.md ) 
+  - [Codelabs](https://gitee.com/openharmony/codelabs/blob/master/README.md)  
+- 参考
+  - [常见问题-设备开发](faqs/Readme-CN.md)
+- 贡献
+  - [参与贡献](../contribute/贡献文档.md) 
