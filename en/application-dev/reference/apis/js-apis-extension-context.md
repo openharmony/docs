@@ -11,4 +11,4 @@ Implements the extension context. This module is inherited from **Context**.
 
 | Name| Type| Readable| Writable| Description| 
 | -------- | -------- | -------- | -------- | -------- |
-| currentHapModuleInfo | HapModuleInfo | Yes| No| Information about the current HAP.| 
+| currentHapModuleInfo | HapModuleInfo | Yes| No| Information about the current HAP.<br><b>System capabilities: </b>SystemCapability.Ability.AbilityRuntime.Core| 
