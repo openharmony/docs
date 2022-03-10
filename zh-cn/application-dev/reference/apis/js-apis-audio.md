@@ -1,7 +1,12 @@
 # 音频管理
 
 >  **说明：**
-> 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>  本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+
+该模块提供以下音频相关的常用功能：
+
+- [AudioManager](#audiomanager)：音频管理。
+- [AudioRenderer](#audiorenderer8)：音频播放，用于播放PCM（Pulse Code Modulation）音频数据。
 
 ## 导入模块
 
@@ -10,7 +15,7 @@ import audio from '@ohos.multimedia.audio';
 ```
 
 
-## getAudioManager
+## audio.getAudioManager
 
 getAudioManager(): AudioManager
 
@@ -19,8 +24,8 @@ getAudioManager(): AudioManager
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
 **返回值：**
-| 类型 | 说明 |
-| -------- | -------- |
+| 类型                          | 说明         |
+| ----------------------------- | ------------ |
 | [AudioManager](#audiomanager) | 音频管理类。 |
 
 **示例：**
@@ -28,91 +33,356 @@ getAudioManager(): AudioManager
 var audioManager = audio.getAudioManager();
 ```
 
+## audio.createAudioRenderer<sup>8+</sup>
+
+createAudioRenderer(options: AudioRendererOptions): AudioRenderer
+
+获取音频播放器。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**参数**：
+
+| 参数名  | 类型                                           | 必填 | 说明        |
+| ------- | ---------------------------------------------- | ---- | ----------- |
+| options | [AudioRendererOptions](#audiorendereroptions8) | 是   | 配置播放器. |
+
+**返回值**：
+
+| 类型                             | 说明             |
+| -------------------------------- | ---------------- |
+| [AudioRenderer](#audiorenderer8) | 音频播放器对象。 |
+
+**示例：**
+
+```
+var audioStreamInfo = {
+    samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
+    channels: audio.AudioChannel.CHANNEL_1,
+    sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
+    encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
+}
+
+var audioRendererInfo = {
+    content: audio.ContentType.CONTENT_TYPE_SPEECH,
+    usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
+    rendererFlags: 1
+}
+
+var audioRendererOptions = {
+    streamInfo: audioStreamInfo,
+    rendererInfo: audioRendererInfo
+}
+
+let audioRenderer = await audio.createAudioRenderer(audioRendererOptions);
+```
 
 ## AudioVolumeType
 
 枚举，音频流类型。
 
-| 名称 | 默认值 | 描述 |
-| -------- | -------- | -------- |
-| RINGTONE | 2 | 表示铃声。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Volume |
-| MEDIA | 3 | 表示媒体。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Volume |
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Volume
+
+| 名称                         | 默认值 | 描述       |
+| ---------------------------- | ------ | ---------- |
+| VOICE_CALL<sup>8+</sup>      | 0      | 语音电话。 |
+| RINGTONE                     | 2      | 铃声。     |
+| MEDIA                        | 3      | 媒体。     |
+| VOICE_ASSISTANT<sup>8+</sup> | 9      | 语音助手。 |
 
 
 ## DeviceFlag
 
 枚举，可获取的设备种类。
 
-| 名称 | 默认值 | 描述 |
-| -------- | -------- | -------- |
-| OUTPUT_DEVICES_FLAG | 1 | 表示输出设备种类。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Device |
-| INPUT_DEVICES_FLAG | 2 | 表示输入设备种类。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Device |
-| ALL_DEVICES_FLAG | 3 | 表示所有设备种类。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Device |
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Device
+
+| 名称                | 默认值 | 描述       |
+| ------------------- | ------ | ---------- |
+| OUTPUT_DEVICES_FLAG | 1      | 输出设备。 |
+| INPUT_DEVICES_FLAG  | 2      | 输入设备。 |
+| ALL_DEVICES_FLAG    | 3      | 所有设备。 |
 
 
 ## DeviceRole
 
 枚举，设备角色。
 
-| 名称 | 默认值 | 描述 |
-| -------- | -------- | -------- |
-| INPUT_DEVICE | 1 | 输入设备角色。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Device |
-| OUTPUT_DEVICE | 2 | 输出设备角色。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Device |
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Device
+
+| 名称          | 默认值 | 描述           |
+| ------------- | ------ | -------------- |
+| INPUT_DEVICE  | 1      | 输入设备角色。 |
+| OUTPUT_DEVICE | 2      | 输出设备角色。 |
 
 
 ## DeviceType
 
 枚举，设备类型。
 
-| 名称           | 默认值 | 描述                                                         |
-| -------------- | ------ | ------------------------------------------------------------ |
-| INVALID        | 0      | 无效设备。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Device |
-| EARPIECE       | 1      | 听筒。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Device |
-| SPEAKER        | 2      | 扬声器。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Device |
-| WIRED_HEADSET  | 3      | 有线耳机。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Device |
-| BLUETOOTH_SCO  | 7      | 蓝牙设备SCO连接(Synchronous Connection Oriented)。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Device |
-| BLUETOOTH_A2DP | 8      | 蓝牙设备A2DP连接(Advanced Audio Distribution Profile)。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Device |
-| MIC            | 15     | 麦克风。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Device |
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Device
+
+| 名称           | 默认值 | 描述                                                      |
+| -------------- | ------ | --------------------------------------------------------- |
+| INVALID        | 0      | 无效设备。                                                |
+| EARPIECE       | 1      | 听筒。                                                    |
+| SPEAKER        | 2      | 扬声器。                                                  |
+| WIRED_HEADSET  | 3      | 有线耳机。                                                |
+| BLUETOOTH_SCO  | 7      | 蓝牙设备SCO（Synchronous Connection Oriented）连接。      |
+| BLUETOOTH_A2DP | 8      | 蓝牙设备A2DP（Advanced Audio Distribution Profile）连接。 |
+| MIC            | 15     | 麦克风。                                                  |
 
 ## ActiveDeviceType
 
 枚举，活跃设备类型。
 
-| 名称          | 默认值 | 描述                                                         |
-| ------------- | ------ | ------------------------------------------------------------ |
-| SPEAKER       | 2      | 扬声器。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Device |
-| BLUETOOTH_SCO | 7      | 蓝牙设备SCO连接(Synchronous Connection Oriented)。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Device |
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Device
 
-## AudioRingMode<a name="audioringmode"></a>
+| 名称          | 默认值 | 描述                                                 |
+| ------------- | ------ | ---------------------------------------------------- |
+| SPEAKER       | 2      | 扬声器。                                             |
+| BLUETOOTH_SCO | 7      | 蓝牙设备SCO（Synchronous Connection Oriented）连接。 |
+
+## AudioRingMode
 
 枚举，铃声模式。
 
-| 名称 | 默认值 | 描述 |
-| -------- | -------- | -------- |
-| RINGER_MODE_SILENT | 0 | 静音模式。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Communication |
-| RINGER_MODE_VIBRATE | 1 | 震动模式。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Communication |
-| RINGER_MODE_NORMAL | 2 | 响铃模式。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Communication |
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Communication
 
+| 名称                | 默认值 | 描述       |
+| ------------------- | ------ | ---------- |
+| RINGER_MODE_SILENT  | 0      | 静音模式。 |
+| RINGER_MODE_VIBRATE | 1      | 震动模式。 |
+| RINGER_MODE_NORMAL  | 2      | 响铃模式。 |
+
+## AudioSampleFormat<sup>8+</sup>
+
+枚举，音频采样格式。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Core
+
+| 名称                  | 默认值 | 描述                       |
+| --------------------- | ------ | -------------------------- |
+| SAMPLE_FORMAT_INVALID | -1     | 无效格式。                 |
+| SAMPLE_FORMAT_U8      | 0      | 无符号8位整数。            |
+| SAMPLE_FORMAT_S16LE   | 1      | 带符号的16位整数，小尾数。 |
+| SAMPLE_FORMAT_S24LE   | 2      | 带符号的24位整数，小尾数。 |
+| SAMPLE_FORMAT_S32LE   | 3      | 带符号的32位整数，小尾数。 |
+
+## AudioChannel<sup>8+</sup>
+
+枚举， 音频声道。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Core
+
+| 名称      | 默认值   | 描述     |
+| --------- | -------- | -------- |
+| CHANNEL_1 | 0x1 << 0 | 单声道。 |
+| CHANNEL_2 | 0x1 << 1 | 双声道。 |
+
+## AudioSamplingRate<sup>8+</sup>
+
+枚举，音频采样率。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Core
+
+| 名称              | 默认值 | 描述            |
+| ----------------- | ------ | --------------- |
+| SAMPLE_RATE_8000  | 8000   | 采样率为8000。  |
+| SAMPLE_RATE_11025 | 11025  | 采样率为11025。 |
+| SAMPLE_RATE_12000 | 12000  | 采样率为12000。 |
+| SAMPLE_RATE_16000 | 16000  | 采样率为16000。 |
+| SAMPLE_RATE_22050 | 22050  | 采样率为22050。 |
+| SAMPLE_RATE_24000 | 24000  | 采样率为24000。 |
+| SAMPLE_RATE_32000 | 32000  | 采样率为32000。 |
+| SAMPLE_RATE_44100 | 44100  | 采样率为44100。 |
+| SAMPLE_RATE_48000 | 48000  | 采样率为48000。 |
+| SAMPLE_RATE_64000 | 64000  | 采样率为64000。 |
+| SAMPLE_RATE_96000 | 96000  | 采样率为96000。 |
+
+## AudioEncodingType<sup>8+</sup>
+
+枚举，音频编码类型。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Core
+
+| 名称                  | 默认值 | 描述      |
+| --------------------- | ------ | --------- |
+| ENCODING_TYPE_INVALID | -1     | 无效。    |
+| ENCODING_TYPE_RAW     | 0      | PCM编码。 |
+
+## ContentType<sup>8+</sup>
+
+枚举，音频内容类型。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Core
+
+| 名称                      | 默认值 | 描述       |
+| ------------------------- | ------ | ---------- |
+| CONTENT_TYPE_UNKNOWN      | 0      | 未知类型。 |
+| CONTENT_TYPE_SPEECH       | 1      | 语音。     |
+| CONTENT_TYPE_MUSIC        | 2      | 音乐。     |
+| CONTENT_TYPE_MOVIE        | 3      | 电影。     |
+| CONTENT_TYPE_SONIFICATION | 4      | 加密类型。 |
+| CONTENT_TYPE_RINGTONE     | 5      | 铃声。     |
+
+## StreamUsage<sup>8+</sup>
+
+枚举，音频流使用类型。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Core
+
+| 名称                               | 默认值 | 描述       |
+| ---------------------------------- | ------ | ---------- |
+| STREAM_USAGE_UNKNOWN               | 0      | 未知类型。 |
+| STREAM_USAGE_MEDIA                 | 1      | 音频。     |
+| STREAM_USAGE_VOICE_COMMUNICATION   | 2      | 语音通信。 |
+| STREAM_USAGE_NOTIFICATION_RINGTONE | 3      | 通知铃声。 |
+
+## AudioState<sup>8+</sup>
+
+枚举，音频状态。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Core
+
+| 名称           | 默认值 | 描述             |
+| -------------- | ------ | ---------------- |
+| STATE_INVALID  | -1     | 无效状态。       |
+| STATE_NEW      | 0      | 创建新实例状态。 |
+| STATE_PREPARED | 1      | 准备状态。       |
+| STATE_RUNNING  | 2      | 可运行状态。     |
+| STATE_STOPPED  | 3      | 停止状态。       |
+| STATE_RELEASED | 4      | 释放状态。       |
+| STATE_PAUSED   | 5      | 暂停状态。       |
+
+## AudioRendererRate<sup>8+</sup>
+
+枚举，播放速度。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Renderer
+
+| 名称               | 默认值 | 描述       |
+| ------------------ | ------ | ---------- |
+| RENDER_RATE_NORMAL | 0      | 正常速度。 |
+| RENDER_RATE_DOUBLE | 1      | 2倍速。    |
+| RENDER_RATE_HALF   | 2      | 0.5倍数。  |
+
+## InterruptType<sup>8+</sup>
+
+枚举，中断类型。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Renderer
+
+| 名称                 | 默认值 | 描述                   |
+| -------------------- | ------ | ---------------------- |
+| INTERRUPT_TYPE_BEGIN | 1      | 音频播放中断事件开始。 |
+| INTERRUPT_TYPE_END   | 2      | 音频播放中断事件结束。 |
+
+## InterruptForceType<sup>8+</sup>
+
+枚举，强制打断类型。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Renderer
+
+| 名称            | 默认值 | 描述                                 |
+| --------------- | ------ | ------------------------------------ |
+| INTERRUPT_FORCE | 0      | 由系统进行操作，强制打断音频播放。   |
+| INTERRUPT_SHARE | 1      | 由应用进行操作，可以选择打断或忽略。 |
+
+## InterruptHint<sup>8+</sup>
+
+枚举，中断提示。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Renderer
+
+| 名称                  | 默认值 | 描述                                         |
+| --------------------- | ------ | -------------------------------------------- |
+| INTERRUPT_HINT_NONE   | 0      | 无提示。                                     |
+| INTERRUPT_HINT_RESUME | 1      | 提示音频恢复。                               |
+| INTERRUPT_HINT_PAUSE  | 2      | 提示音频暂停。                               |
+| INTERRUPT_HINT_STOP   | 3      | 提示音频停止。                               |
+| INTERRUPT_HINT_DUCK   | 4      | 提示音频躲避。（躲避：音量减弱，而不会停止） |
+| INTERRUPT_HINT_UNDUCK | 5      | 提示音量恢复。                               |
+
+## AudioStreamInfo<sup>8+</sup>
+
+音频流信息。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Core
+
+| 名称         | 类型                                     | 必填 | 说明               |
+| ------------ | ---------------------------------------- | ---- | ------------------ |
+| samplingRate | [AudioSamplingRate](#audiosamplingrate8) | 是   | 音频文件的采样率。 |
+| channels     | [AudioChannel](#audiochannel8)           | 是   | 音频文件的通道数。 |
+| sampleFormat | [AudioSampleFormat](#audiosampleformat8) | 是   | 音频采样格式。     |
+| encodingType | [AudioEncodingType](#audioencodingtype8) | 是   | 音频编码格式。     |
+
+## AudioRendererInfo<sup>8+</sup>
+
+音频播放器信息。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Core
+
+| 名称          | 类型                         | 必填 | 说明             |
+| ------------- | ---------------------------- | ---- | ---------------- |
+| contentType   | [ContentType](#contenttype8) | 是   | 媒体类型。       |
+| usage         | [StreamUsage](#streamusage8) | 是   | 音频流使用类型。 |
+| rendererFlags | number                       | 是   | 音频播放器标志。 |
+
+## AudioRendererOptions<sup>8+</sup>
+
+音频播放器选项信息。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Renderer
+
+| 名称         | 类型                                     | 必填 | 说明             |
+| ------------ | ---------------------------------------- | ---- | ---------------- |
+| streamInfo   | [AudioStreamInfo](#audiostreaminfo8)     | 是   | 表示音频流信息。 |
+| rendererInfo | [AudioRendererInfo](#audiorendererinfo8) | 是   | 表示播放器信息。 |
+
+## InterruptEvent<sup>8+</sup>
+
+播放中断时，应用接收的中断事件。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Renderer
+
+| 名称      | 类型                                       | 必填 | 说明                                 |
+| --------- | ------------------------------------------ | ---- | ------------------------------------ |
+| eventType | [InterruptType](#interrupttype8)           | 是   | 中断事件类型，开始或是结束。         |
+| forceType | [InterruptForceType](#interruptforcetype8) | 是   | 操作是由系统执行或是由应用程序执行。 |
+| hintType  | [InterruptHint](#interrupthint8)           | 是   | 中断提示。                           |
+
+## VolumeEvent<sup>8+</sup>
+
+音量改变时，应用接收的事件。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Volume
+
+| 名称       | 类型                                | 必填 | 说明                                                     |
+| ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
+| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。                                             |
+| volume     | number                              | 是   | 音量等级，可设置范围通过getMinVolume和getMaxVolume获取。 |
+| updateUi   | boolean                             | 是   | 在UI中显示音量变化。                                     |
 
 ## AudioManager
 
-管理音频音量和音频设备。
+管理音频音量和音频设备。在调用AudioManager的接口前，需要先通过[getAudioManager](#audiogetaudiomanager)创建实例。
 
 ### setVolume
 
 setVolume(volumeType: AudioVolumeType, volume: number, callback: AsyncCallback&lt;void&gt;): void
 
-设置指定流的音量，使用callback方式返回异步结果。
+设置指定流的音量，使用callback方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| volumeType | [AudioVolumeType](#audiovolumetype) | 是 | 音量流类型。 |
-| volume | number | 是 | 音量等级，可设置范围通过getMinVolume和getMaxVolume获取。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调表示成功还是失败。 |
+| 参数名     | 类型                                | 必填 | 说明                                                     |
+| ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
+| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。                                             |
+| volume     | number                              | 是   | 音量等级，可设置范围通过getMinVolume和getMaxVolume获取。 |
+| callback   | AsyncCallback&lt;void&gt;           | 是   | 回调表示成功还是失败。                                   |
 
 **示例：**
 
@@ -131,21 +401,21 @@ audioManager.setVolume(audio.AudioVolumeType.MEDIA, 10, (err)=>{
 
 setVolume(volumeType: AudioVolumeType, volume: number): Promise&lt;void&gt;
 
-设置指定流的音量，使用promise方式返回异步结果。
+设置指定流的音量，使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| volumeType | [AudioVolumeType](#audiovolumetype) | 是 | 音量流类型。 |
-| volume | number | 是 | 音量等级，可设置范围通过getMinVolume和getMaxVolume获取。 |
+| 参数名     | 类型                                | 必填 | 说明                                                     |
+| ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
+| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。                                             |
+| volume     | number                              | 是   | 音量等级，可设置范围通过getMinVolume和getMaxVolume获取。 |
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
+| 类型                | 说明                          |
+| ------------------- | ----------------------------- |
 | Promise&lt;void&gt; | Promise回调表示成功还是失败。 |
 
 **示例：**
@@ -161,16 +431,16 @@ audioManager.setVolume(audio.AudioVolumeType.MEDIA, 10).then(()=>
 
 getVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;): void
 
-获取指定流的音量，使用callback方式返回异步结果。
+获取指定流的音量，使用callback方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| volumeType | [AudioVolumeType](#audiovolumetype) | 是 | 音量流类型。 |
-| callback | AsyncCallback&lt;number&gt; | 是 | 回调返回音量大小。 |
+| 参数名     | 类型                                | 必填 | 说明               |
+| ---------- | ----------------------------------- | ---- | ------------------ |
+| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。       |
+| callback   | AsyncCallback&lt;number&gt;         | 是   | 回调返回音量大小。 |
 
 **示例：**
 
@@ -189,20 +459,20 @@ audioManager.getVolume(audio.AudioVolumeType.MEDIA, (err, value) => {
 
 getVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
 
-获取指定流的音量，使用promise方式返回异步结果。
+获取指定流的音量，使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| volumeType | [AudioVolumeType](#audiovolumetype) | 是 | 音量流类型。 |
+| 参数名     | 类型                                | 必填 | 说明         |
+| ---------- | ----------------------------------- | ---- | ------------ |
+| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。 |
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
+| 类型                  | 说明                      |
+| --------------------- | ------------------------- |
 | Promise&lt;number&gt; | Promise回调返回音量大小。 |
 
 **示例：**
@@ -218,16 +488,16 @@ audioManager.getVolume(audio.AudioVolumeType.MEDIA).then((value) =>
 
 getMinVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;): void
 
-获取指定流的最小音量，使用callback方式返回异步结果。
+获取指定流的最小音量，使用callback方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| volumeType | [AudioVolumeType](#audiovolumetype) | 是 | 音量流类型。 |
-| callback | AsyncCallback&lt;number&gt; | 是 | 回调返回最小音量。 |
+| 参数名     | 类型                                | 必填 | 说明               |
+| ---------- | ----------------------------------- | ---- | ------------------ |
+| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。       |
+| callback   | AsyncCallback&lt;number&gt;         | 是   | 回调返回最小音量。 |
 
 **示例：**
 
@@ -246,20 +516,20 @@ audioManager.getMinVolume(audio.AudioVolumeType.MEDIA, (err, value) => {
 
 getMinVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
 
-获取指定流的最小音量，使用promise方式返回异步结果。
+获取指定流的最小音量，使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| volumeType | [AudioVolumeType](#audiovolumetype) | 是 | 音量流类型。 |
+| 参数名     | 类型                                | 必填 | 说明         |
+| ---------- | ----------------------------------- | ---- | ------------ |
+| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。 |
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
+| 类型                  | 说明                      |
+| --------------------- | ------------------------- |
 | Promise&lt;number&gt; | Promise回调返回最小音量。 |
 
 **示例：**
@@ -275,16 +545,16 @@ audioManager.getMinVolume(audio.AudioVolumeType.MEDIA).then((value) =>
 
 getMaxVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;): void
 
-获取指定流的最大音量，使用callback方式返回异步结果。
+获取指定流的最大音量，使用callback方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| volumeType | [AudioVolumeType](#audiovolumetype) | 是 | 音量流类型。 |
-| callback | AsyncCallback&lt;number&gt; | 是 | 回调返回最大音量大小。 |
+| 参数名     | 类型                                | 必填 | 说明                   |
+| ---------- | ----------------------------------- | ---- | ---------------------- |
+| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。           |
+| callback   | AsyncCallback&lt;number&gt;         | 是   | 回调返回最大音量大小。 |
 
 **示例：**
 
@@ -303,20 +573,20 @@ audioManager.getMaxVolume(audio.AudioVolumeType.MEDIA, (err, value) => {
 
 getMaxVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
 
-获取指定流的最大音量，使用promise方式返回异步结果。
+获取指定流的最大音量，使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| volumeType | [AudioVolumeType](#audiovolumetype) | 是 | 音量流类型。 |
+| 参数名     | 类型                                | 必填 | 说明         |
+| ---------- | ----------------------------------- | ---- | ------------ |
+| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。 |
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
+| 类型                  | 说明                          |
+| --------------------- | ----------------------------- |
 | Promise&lt;number&gt; | Promise回调返回最大音量大小。 |
 
 **示例：**
@@ -332,17 +602,17 @@ audioManager.getMaxVolume(audio.AudioVolumeType.MEDIA).then((data)=>
 
 mute(volumeType: AudioVolumeType, mute: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置指定音量流静音，使用callback方式返回异步结果。
+设置指定音量流静音，使用callback方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| volumeType | [AudioVolumeType](#audiovolumetype) | 是 | 音量流类型。 |
-| mute | boolean | 是 | 静音状态，true为静音，false为非静音。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调表示成功还是失败。 |
+| 参数名     | 类型                                | 必填 | 说明                                  |
+| ---------- | ----------------------------------- | ---- | ------------------------------------- |
+| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。                          |
+| mute       | boolean                             | 是   | 静音状态，true为静音，false为非静音。 |
+| callback   | AsyncCallback&lt;void&gt;           | 是   | 回调表示成功还是失败。                |
 
 **示例：**
 
@@ -361,21 +631,21 @@ audioManager.mute(audio.AudioVolumeType.MEDIA, true, (err) => {
 
 mute(volumeType: AudioVolumeType, mute: boolean): Promise&lt;void&gt;
 
-设置指定音量流静音，使用promise方式返回异步结果。
+设置指定音量流静音，使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| volumeType | [AudioVolumeType](#audiovolumetype) | 是 | 音量流类型。 |
-| mute | boolean | 是 | 静音状态，true为静音，false为非静音。 |
+| 参数名     | 类型                                | 必填 | 说明                                  |
+| ---------- | ----------------------------------- | ---- | ------------------------------------- |
+| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。                          |
+| mute       | boolean                             | 是   | 静音状态，true为静音，false为非静音。 |
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
+| 类型                | 说明                          |
+| ------------------- | ----------------------------- |
 | Promise&lt;void&gt; | Promise回调表示成功还是失败。 |
 
 **示例：**
@@ -393,16 +663,16 @@ audioManager.mute(audio.AudioVolumeType.MEDIA, true).then(() =>
 
 isMute(volumeType: AudioVolumeType, callback: AsyncCallback&lt;boolean&gt;): void
 
-获取指定音量流是否被静音，使用callback方式返回异步结果。
+获取指定音量流是否被静音，使用callback方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| volumeType | [AudioVolumeType](#audiovolumetype) | 是 | 音量流类型。 |
-| callback | AsyncCallback&lt;boolean&gt; | 是 | 回调返回流静音状态，true为静音，false为非静音。 |
+| 参数名     | 类型                                | 必填 | 说明                                            |
+| ---------- | ----------------------------------- | ---- | ----------------------------------------------- |
+| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。                                    |
+| callback   | AsyncCallback&lt;boolean&gt;        | 是   | 回调返回流静音状态，true为静音，false为非静音。 |
 
 **示例：**
 
@@ -422,20 +692,20 @@ audioManager.isMute(audio.AudioVolumeType.MEDIA, (err, value) => {
 
 isMute(volumeType: AudioVolumeType): Promise&lt;boolean&gt;
 
-获取指定音量流是否被静音，使用promise方式返回异步结果。
+获取指定音量流是否被静音，使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| volumeType | [AudioVolumeType](#audiovolumetype) | 是 | 音量流类型。 |
+| 参数名     | 类型                                | 必填 | 说明         |
+| ---------- | ----------------------------------- | ---- | ------------ |
+| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。 |
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
+| 类型                   | 说明                                                   |
+| ---------------------- | ------------------------------------------------------ |
 | Promise&lt;boolean&gt; | Promise回调返回流静音状态，true为静音，false为非静音。 |
 
 **示例：**
@@ -451,16 +721,16 @@ audioManager.isMute(audio.AudioVolumeType.MEDIA).then((value) =>
 
 isActive(volumeType: AudioVolumeType, callback: AsyncCallback&lt;boolean&gt;): void
 
-获取指定音量流是否为活跃状态，使用callback方式返回异步结果。
+获取指定音量流是否为活跃状态，使用callback方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| volumeType | [AudioVolumeType](#audiovolumetype) | 是 | 音量流类型。 |
-| callback | AsyncCallback&lt;boolean&gt; | 是 | 回调返回流的活跃状态，true为活跃，false为不活跃。 |
+| 参数名     | 类型                                | 必填 | 说明                                              |
+| ---------- | ----------------------------------- | ---- | ------------------------------------------------- |
+| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。                                      |
+| callback   | AsyncCallback&lt;boolean&gt;        | 是   | 回调返回流的活跃状态，true为活跃，false为不活跃。 |
 
 **示例：**
 
@@ -479,20 +749,20 @@ audioManager.isActive(audio.AudioVolumeType.MEDIA, (err, value) => {
 
 isActive(volumeType: AudioVolumeType): Promise&lt;boolean&gt;
 
-获取指定音量流是否为活跃状态，使用promise方式返回异步结果。
+获取指定音量流是否为活跃状态，使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| volumeType | [AudioVolumeType](#audiovolumetype) | 是 | 音量流类型。 |
+| 参数名     | 类型                                | 必填 | 说明         |
+| ---------- | ----------------------------------- | ---- | ------------ |
+| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。 |
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
+| 类型                   | 说明                                                     |
+| ---------------------- | -------------------------------------------------------- |
 | Promise&lt;boolean&gt; | Promise回调返回流的活跃状态，true为活跃，false为不活跃。 |
 
 **示例：**
@@ -508,16 +778,16 @@ audioManager.isActive(audio.AudioVolumeType.MEDIA).then((value) =>
 
 setRingerMode(mode: AudioRingMode, callback: AsyncCallback&lt;void&gt;): void
 
-设置铃声模式，使用callback方式返回异步结果。
+设置铃声模式，使用callback方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Communication
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| mode | [AudioRingMode](#audioringmode) | 是 | 音频铃声模式。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调返回设置成功或失败。 |
+| 参数名   | 类型                            | 必填 | 说明                     |
+| -------- | ------------------------------- | ---- | ------------------------ |
+| mode     | [AudioRingMode](#audioringmode) | 是   | 音频铃声模式。           |
+| callback | AsyncCallback&lt;void&gt;       | 是   | 回调返回设置成功或失败。 |
 
 **示例：**
 
@@ -525,7 +795,7 @@ setRingerMode(mode: AudioRingMode, callback: AsyncCallback&lt;void&gt;): void
 var audioManager = audio.getAudioManager();
 audioManager.setRingerMode(audio.AudioRingMode.RINGER_MODE_NORMAL, (err) => {
    if (err) {
-       console.error('Failed to set the ringer mode.​ ${err.message}');
+       console.error('Failed to set the ringer mode. ${err.message}');
        return;
     }
     console.log('Callback invoked to indicate a successful setting of the ringer mode.');
@@ -536,20 +806,20 @@ audioManager.setRingerMode(audio.AudioRingMode.RINGER_MODE_NORMAL, (err) => {
 
 setRingerMode(mode: AudioRingMode): Promise&lt;void&gt;
 
-设置铃声模式，使用promise方式返回异步结果。
+设置铃声模式，使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Communication
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| mode | [AudioRingMode](#audioringmode) | 是 | 音频铃声模式。 |
+| 参数名 | 类型                            | 必填 | 说明           |
+| ------ | ------------------------------- | ---- | -------------- |
+| mode   | [AudioRingMode](#audioringmode) | 是   | 音频铃声模式。 |
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
+| 类型                | 说明                            |
+| ------------------- | ------------------------------- |
 | Promise&lt;void&gt; | Promise回调返回设置成功或失败。 |
 
 **示例：**
@@ -566,15 +836,15 @@ audioManager.setRingerMode(audio.AudioRingMode.RINGER_MODE_NORMAL).then(() =>
 
 getRingerMode(callback: AsyncCallback&lt;AudioRingMode&gt;): void
 
-获取铃声模式，使用callback方式返回异步结果。
+获取铃声模式，使用callback方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Communication
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;[AudioRingMode](#audioringmode)&gt; | 是 | 回调返回系统的铃声模式。 |
+| 参数名   | 类型                                                 | 必填 | 说明                     |
+| -------- | ---------------------------------------------------- | ---- | ------------------------ |
+| callback | AsyncCallback&lt;[AudioRingMode](#audioringmode)&gt; | 是   | 回调返回系统的铃声模式。 |
 
 **示例：**
 
@@ -582,7 +852,7 @@ getRingerMode(callback: AsyncCallback&lt;AudioRingMode&gt;): void
 var audioManager = audio.getAudioManager();
 audioManager.getRingerMode((err, value) => {
    if (err) {
-	   console.error('Failed to obtain the ringer mode.​ ${err.message}');
+	   console.error('Failed to obtain the ringer mode. ${err.message}');
 	   return;
    }
    console.log('Callback invoked to indicate that the ringer mode is obtained.' + value);
@@ -594,14 +864,14 @@ audioManager.getRingerMode((err, value) => {
 
 getRingerMode(): Promise&lt;AudioRingMode&gt;
 
-获取铃声模式，使用promise方式返回异步结果。
+获取铃声模式，使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Communication
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
+| 类型                                           | 说明                            |
+| ---------------------------------------------- | ------------------------------- |
 | Promise&lt;[AudioRingMode](#audioringmode)&gt; | Promise回调返回系统的铃声模式。 |
 
 **示例：**
@@ -617,17 +887,17 @@ audioManager.getRingerMode().then((value) =>
 
 setAudioParameter(key: string, value: string, callback: AsyncCallback&lt;void&gt;): void
 
-音频参数设置，使用callback方式返回异步结果。
+音频参数设置，使用callback方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| key | string | 是 | 被设置的音频参数的键。 |
-| value | string | 是 | 被设置的音频参数的值。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调返回设置成功或失败。 |
+| 参数名   | 类型                      | 必填 | 说明                     |
+| -------- | ------------------------- | ---- | ------------------------ |
+| key      | string                    | 是   | 被设置的音频参数的键。   |
+| value    | string                    | 是   | 被设置的音频参数的值。   |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调返回设置成功或失败。 |
 
 **示例：**
 
@@ -646,21 +916,21 @@ audioManager.setAudioParameter('PBits per sample', '8 bit', (err) => {
 
 setAudioParameter(key: string, value: string): Promise&lt;void&gt;
 
-音频参数设置，使用promise方式返回异步结果。
+音频参数设置，使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| key | string | 是 | 被设置的音频参数的键。 |
-| value | string | 是 | 被设置的音频参数的值。 |
+| 参数名 | 类型   | 必填 | 说明                   |
+| ------ | ------ | ---- | ---------------------- |
+| key    | string | 是   | 被设置的音频参数的键。 |
+| value  | string | 是   | 被设置的音频参数的值。 |
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
+| 类型                | 说明                            |
+| ------------------- | ------------------------------- |
 | Promise&lt;void&gt; | Promise回调返回设置成功或失败。 |
 
 **示例：**
@@ -676,16 +946,16 @@ audioManager.setAudioParameter('PBits per sample', '8 bit').then(() =>
 
 getAudioParameter(key: string, callback: AsyncCallback&lt;string&gt;): void
 
-获取指定音频参数值，使用callback方式返回异步结果。
+获取指定音频参数值，使用callback方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| key | string | 是 | 待获取的音频参数的键。 |
-| callback | AsyncCallback&lt;string&gt; | 是 | 回调返回获取的音频参数的值。 |
+| 参数名   | 类型                        | 必填 | 说明                         |
+| -------- | --------------------------- | ---- | ---------------------------- |
+| key      | string                      | 是   | 待获取的音频参数的键。       |
+| callback | AsyncCallback&lt;string&gt; | 是   | 回调返回获取的音频参数的值。 |
 
 **示例：**
 
@@ -704,20 +974,20 @@ audioManager.getAudioParameter('PBits per sample', (err, value) => {
 
 getAudioParameter(key: string): Promise&lt;string&gt;
 
-获取指定音频参数值，使用promise方式返回异步结果。
+获取指定音频参数值，使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| key | string | 是 | 待获取的音频参数的键。 |
+| 参数名 | 类型   | 必填 | 说明                   |
+| ------ | ------ | ---- | ---------------------- |
+| key    | string | 是   | 待获取的音频参数的键。 |
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
+| 类型                  | 说明                                |
+| --------------------- | ----------------------------------- |
 | Promise&lt;string&gt; | Promise回调返回获取的音频参数的值。 |
 
 **示例：**
@@ -733,16 +1003,16 @@ audioManager.getAudioParameter('PBits per sample').then((value) =>
 
 getDevices(deviceFlag: DeviceFlag, callback: AsyncCallback&lt;AudioDeviceDescriptors&gt;): void
 
-获取音频设备列表，使用callback方式返回异步结果。
+获取音频设备列表，使用callback方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| deviceFlag | [DeviceFlag](#deviceflag) | 是 | 设备类型的flag。 |
-| callback | AsyncCallback&lt;[AudioDeviceDescriptors](#audiodevicedescriptors)&gt; | 是 | 回调，返回设备列表。 |
+| 参数名     | 类型                                                         | 必填 | 说明                 |
+| ---------- | ------------------------------------------------------------ | ---- | -------------------- |
+| deviceFlag | [DeviceFlag](#deviceflag)                                    | 是   | 设备类型的flag。     |
+| callback   | AsyncCallback&lt;[AudioDeviceDescriptors](#audiodevicedescriptors)&gt; | 是   | 回调，返回设备列表。 |
 
 **示例：**
 ```
@@ -760,20 +1030,20 @@ audioManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (err, value)=>{
 
 (deviceFlag: DeviceFlag): Promise&lt;AudioDeviceDescriptors&gt;
 
-获取音频设备列表，使用promise方式返回异步结果。
+获取音频设备列表，使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| deviceFlag | [DeviceFlag](#deviceflag) | 是 | 设备类型的flag。 |
+| 参数名     | 类型                      | 必填 | 说明             |
+| ---------- | ------------------------- | ---- | ---------------- |
+| deviceFlag | [DeviceFlag](#deviceflag) | 是   | 设备类型的flag。 |
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
+| 类型                                                         | 说明                      |
+| ------------------------------------------------------------ | ------------------------- |
 | Promise&lt;[AudioDeviceDescriptors](#audiodevicedescriptors)&gt; | Promise回调返回设备列表。 |
 
 **示例：**
@@ -789,17 +1059,17 @@ audioManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data)=>
 
 setDeviceActive(deviceType: DeviceType, active: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置设备激活状态，使用callback方式返回异步结果。
+设置设备激活状态，使用callback方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| deviceType | [DeviceType](#devicetype) | 是 | 音频设备类型。 |
-| active | boolean | 是 | 设备激活状态。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调返回设置成功或失败。 |
+| 参数名     | 类型                      | 必填 | 说明                     |
+| ---------- | ------------------------- | ---- | ------------------------ |
+| deviceType | [DeviceType](#devicetype) | 是   | 音频设备类型。           |
+| active     | boolean                   | 是   | 设备激活状态。           |
+| callback   | AsyncCallback&lt;void&gt; | 是   | 回调返回设置成功或失败。 |
 
 **示例：**
 
@@ -818,21 +1088,21 @@ audioManager.setDeviceActive(audio.DeviceType.SPEAKER, true, (err)=> {
 
 setDeviceActive(deviceType: DeviceType, active: boolean): Promise&lt;void&gt;
 
-设置设备激活状态，使用promise方式返回异步结果。
+设置设备激活状态，使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| deviceType | [DeviceType](#devicetype) | 是 | 音频设备类型。 |
-| active | boolean | 是 | 设备激活状态。 |
+| 参数名     | 类型                      | 必填 | 说明           |
+| ---------- | ------------------------- | ---- | -------------- |
+| deviceType | [DeviceType](#devicetype) | 是   | 音频设备类型。 |
+| active     | boolean                   | 是   | 设备激活状态。 |
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
+| 类型                | 说明                            |
+| ------------------- | ------------------------------- |
 | Promise&lt;void&gt; | Promise回调返回设置成功或失败。 |
 
 **示例：**
@@ -849,16 +1119,16 @@ audioManager.setDeviceActive(audio.DeviceType.SPEAKER, true).then(()=>
 
 isDeviceActive(deviceType: DeviceType, callback: AsyncCallback&lt;boolean&gt;): void
 
-获取指定设备的激活状态，使用callback方式返回异步结果。
+获取指定设备的激活状态，使用callback方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| deviceType | [DeviceType](#devicetype) | 是 | 音频设备类型。 |
-| callback | AsyncCallback&lt;boolean&gt; | 是 | 回调返回设备的激活状态。 |
+| 参数名     | 类型                         | 必填 | 说明                     |
+| ---------- | ---------------------------- | ---- | ------------------------ |
+| deviceType | [DeviceType](#devicetype)    | 是   | 音频设备类型。           |
+| callback   | AsyncCallback&lt;boolean&gt; | 是   | 回调返回设备的激活状态。 |
 
 **示例：**
 
@@ -878,20 +1148,20 @@ audioManager.isDeviceActive(audio.DeviceType.SPEAKER, (err, value) => {
 
 isDeviceActive(deviceType: DeviceType): Promise&lt;boolean&gt;
 
-获取指定设备的激活状态，使用promise方式返回异步结果。
+获取指定设备的激活状态，使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| deviceType | [DeviceType](#devicetype) | 是 | 音频设备类型。 |
+| 参数名     | 类型                      | 必填 | 说明           |
+| ---------- | ------------------------- | ---- | -------------- |
+| deviceType | [DeviceType](#devicetype) | 是   | 音频设备类型。 |
 
 **返回值：**
 
-| Type | Description |
-| -------- | -------- |
+| Type                   | Description                     |
+| ---------------------- | ------------------------------- |
 | Promise&lt;boolean&gt; | Promise回调返回设备的激活状态。 |
 
 **示例：**
@@ -907,16 +1177,16 @@ audioManager.isDeviceActive(audio.DeviceType.SPEAKER).then((value) =>
 
 setMicrophoneMute(mute: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置麦克风静音状态，使用callback方式返回异步结果。
+设置麦克风静音状态，使用callback方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| mute | boolean | 是 | 待设置的静音状态，true为静音，false为非静音。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调返回设置成功或失败。 |
+| 参数名   | 类型                      | 必填 | 说明                                          |
+| -------- | ------------------------- | ---- | --------------------------------------------- |
+| mute     | boolean                   | 是   | 待设置的静音状态，true为静音，false为非静音。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调返回设置成功或失败。                      |
 
 **示例：**
 
@@ -935,20 +1205,20 @@ audioManager.setMicrophoneMute(true, (err) => {
 
 setMicrophoneMute(mute: boolean): Promise&lt;void&gt;
 
-设置麦克风静音状态，使用promise方式返回异步结果。
+设置麦克风静音状态，使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| mute | boolean | 是 | 待设置的静音状态，true为静音，false为非静音。 |
+| 参数名 | 类型    | 必填 | 说明                                          |
+| ------ | ------- | ---- | --------------------------------------------- |
+| mute   | boolean | 是   | 待设置的静音状态，true为静音，false为非静音。 |
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
+| 类型                | 说明                            |
+| ------------------- | ------------------------------- |
 | Promise&lt;void&gt; | Promise回调返回设置成功或失败。 |
 
 **示例：**
@@ -964,15 +1234,15 @@ audioManager.setMicrophoneMute(true).then(() =>
 
 isMicrophoneMute(callback: AsyncCallback&lt;boolean&gt;): void
 
-获取麦克风静音状态，使用callback方式返回异步结果。
+获取麦克风静音状态，使用callback方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;boolean&gt; | 是 | 回调返回系统麦克风静音状态，true为静音，false为非静音。 |
+| 参数名   | 类型                         | 必填 | 说明                                                    |
+| -------- | ---------------------------- | ---- | ------------------------------------------------------- |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调返回系统麦克风静音状态，true为静音，false为非静音。 |
 
 **示例：**
 
@@ -991,14 +1261,14 @@ audioManager.isMicrophoneMute((err, value) => {
 
 isMicrophoneMute(): Promise&lt;boolean&gt;
 
-获取麦克风静音状态，使用promise方式返回异步结果。
+获取麦克风静音状态，使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
+| 类型                   | 说明                                                         |
+| ---------------------- | ------------------------------------------------------------ |
 | Promise&lt;boolean&gt; | Promise回调返回系统麦克风静音状态，true为静音，false为非静音。 |
 
 **示例：**
@@ -1011,19 +1281,729 @@ audioManager.isMicrophoneMute().then((value) =>
 )
 ```
 
+### on('volumeChange')
+
+on(type: 'volumeChange', callback: Callback\<VolumeEvent>): void
+
+监听系统音量变化事件。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名   | 类型                                   | 必填 | 说明                                                         |
+| -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                 | 是   | 事件回调类型，支持的事件为：'volumeChange'（系统音量变化事件，检测到系统音量改变时，触发该事件）。 |
+| callback | Callback<[VolumeEvent](#volumeevent8)> | 是   | 回调方法。                                                   |
+
+**示例：**
+
+```
+audioManager.on('volumeChange', (volumeEvent) => {
+    console.log('VolumeType of stream: ' + volumeEvent.volumeType);
+    console.log('Volume level: ' + volumeEvent.volume);
+    console.log('Whether to updateUI: ' + volumeEvent.updateUi);
+})
+```
+
+### on('ringerModeChange')
+
+on(type: 'ringerModeChange', callback: Callback\<VolumeEvent>): void
+
+监听铃声模式变化事件。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Communication
+
+**参数：**
+
+| 参数名   | 类型                                      | 必填 | 说明                                                         |
+| -------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                    | 是   | 事件回调类型，支持的事件为：'ringerModeChange'（铃声模式变化事件，检测到铃声模式改变时，触发该事件）。 |
+| callback | Callback<[AudioRingMode](#audioringmode)> | 是   | 回调方法。                                                   |
 
 ## AudioDeviceDescriptor
 
 描述音频设备。
 
-| 名称 | 参数型 | 可读 | 可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| deviceRole | [DeviceRole](#devicerole) | 是 | 否 | 设备角色。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Device |
-| deviceType | [DeviceType](#devicetype) | 是 | 否 | 设备类型。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Device |
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Device
 
+| 名称       | 参数型                    | 可读 | 可写 | 说明       |
+| ---------- | ------------------------- | ---- | ---- | ---------- |
+| deviceRole | [DeviceRole](#devicerole) | 是   | 否   | 设备角色。 |
+| deviceType | [DeviceType](#devicetype) | 是   | 否   | 设备类型。 |
 
 ## AudioDeviceDescriptors
 
-| 名称 | 描述 |
-| -------- | -------- |
-| 设备属性数组 | AudioDeviceDescriptor的数组，只读。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Device |
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Device
+
+| 名称         | 描述                                |
+| ------------ | ----------------------------------- |
+| 设备属性数组 | AudioDeviceDescriptor的数组，只读。 |
+
+**示例：**
+
+```
+function deviceProp(audioDeviceDescriptor, index, array) {
+    deviceRoleValue = audioDeviceDescriptor.deviceRole;
+    deviceTypeValue = audioDeviceDescriptor.deviceType;
+}
+
+deviceRoleValue = null;
+deviceTypeValue = null;
+const promise = audioManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG);
+promise.then(async function (audioDeviceDescriptors) {
+    console.info('getDevices OUTPUT_DEVICES_FLAG');
+    audioDeviceDescriptors.forEach(deviceProp);
+    if (deviceTypeValue != null && deviceRoleValue != null){
+        console.info('OUTPUT_DEVICES_FLAG : Pass');
+            expect(true).assertTrue();
+    }
+    else{
+        console.error('OUTPUT_DEVICES_FLAG : fail');
+        expect(false).assertTrue();
+        }
+    });
+    await promise;
+    done();
+})
+```
+
+## AudioRenderer<sup>8+</sup>
+
+提供音频播放的相关接口。在调用AudioRenderer的接口前，需要先通过[createAudioRenderer](#audiocreateaudiorenderer8)创建实例。
+
+### 属性
+
+| 名称  | 类型                       | 可读 | 可写 | 说明               |
+| ----- | -------------------------- | ---- | ---- | ------------------ |
+| state | [AudioState](#audiostate8) | 是   | 否   | 当前播放器的状态。 |
+
+**示例：**
+
+```
+var state = audioRenderer.state;
+```
+
+### getRendererInfo<sup>8+</sup>
+
+getRendererInfo(callback: AsyncCallback<AudioRendererInfo\>): void
+
+获取当前被创建的音频播放器的信息，使用callback方式异步返回结果。
+
+**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名   | 类型                                                     | 必填 | 说明                       |
+| :------- | :------------------------------------------------------- | :--- | :------------------------- |
+| callback | AsyncCallback<[AudioRendererInfo](#audiorendererinfo8)\> | 是   | 回调返回音频播放器的信息。 |
+
+**示例：**
+
+```
+audioRenderer.getRendererInfo((err, rendererInfo)=>{
+    console.log('Renderer GetRendererInfo:');
+    console.log('Renderer content:' + rendererInfo.content);
+    console.log('Renderer usage:' + rendererInfo.usage);
+    console.log('Renderer flags:' + rendererInfo.rendererFlags);
+})
+```
+
+### getRendererInfo<sup>8+</sup>
+
+getRendererInfo(): Promise<AudioRendererInfo\>
+
+获取当前被创建的音频播放器的信息，使用Promise方式异步返回结果。
+
+**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+
+**返回值：**
+
+| 类型                                               | 说明                            |
+| -------------------------------------------------- | ------------------------------- |
+| Promise<[AudioRendererInfo](#audiorendererinfo8)\> | Promise用于返回音频播放器信息。 |
+
+**示例：**
+
+```
+let streamInfo = await audioRenderer.getStreamInfo();
+console.log('Renderer GetStreamInfo:');
+console.log('Renderer sampling rate:' + streamInfo.samplingRate);
+console.log('Renderer channel:' + streamInfo.AudioChannel);
+console.log('Renderer format:' + streamInfo.AudioSampleFormat);
+console.log('Renderer encoding type:' + streamInfo.AudioEncodingType);
+```
+
+### getStreamInfo<sup>8+</sup>
+
+getStreamInfo(callback: AsyncCallback<AudioStreamInfo\>): void
+
+获取音频流信息，使用callback方式异步返回结果。
+
+**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名   | 类型                                                 | 必填 | 说明                 |
+| :------- | :--------------------------------------------------- | :--- | :------------------- |
+| callback | AsyncCallback<[AudioStreamInfo](#audiostreaminfo8)\> | 是   | 回调返回音频流信息。 |
+
+**示例：**
+
+```
+audioRenderer.getStreamInfo((err, streamInfo)=>{
+    console.log('Renderer GetStreamInfo:');
+    console.log('Renderer sampling rate:' + streamInfo.samplingRate);
+    console.log('Renderer channel:' + streamInfo.AudioChannel);
+    console.log('Renderer format:' + streamInfo.AudioSampleFormat);
+    console.log('Renderer encoding type:' + streamInfo.AudioEncodingType);
+})
+```
+
+### getStreamInfo<sup>8+</sup>
+
+getStreamInfo(): Promise<AudioStreamInfo\>
+
+获取音频流信息，使用Promise方式异步返回结果。
+
+**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+
+**返回值：**
+
+| 类型                                           | 说明                   |
+| :--------------------------------------------- | :--------------------- |
+| Promise<[AudioStreamInfo](#audiostreaminfo8)\> | Promise返回音频流信息. |
+
+**示例：**
+
+```
+let streamInfo = await audioRenderer.getStreamInfo();
+console.log('Renderer GetStreamInfo:');
+console.log('Renderer sampling rate:' + streamInfo.samplingRate);
+console.log('Renderer channel:' + streamInfo.AudioChannel);
+console.log('Renderer format:' + streamInfo.AudioSampleFormat);
+console.log('Renderer encoding type:' + streamInfo.AudioEncodingType);
+```
+
+### start<sup>8+</sup>
+
+start(callback: AsyncCallback<void\>): void
+
+启动音频播放器。使用callback方式异步返回结果。
+
+**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明       |
+| -------- | -------------------- | ---- | ---------- |
+| callback | AsyncCallback\<void> | 是   | 回调函数。 |
+
+**示例：**
+
+```
+audioRenderer.start((err)=>{
+    if (err) {
+        console.error('Renderer start failed.');
+    } else {
+        console.info('Renderer start success.');
+    }
+})
+```
+
+### start<sup>8+</sup>
+
+start(): Promise<void\>
+
+启动音频播放器。使用Promise方式异步返回结果。
+
+**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+
+**返回值：**
+
+| 类型           | 说明                      |
+| -------------- | ------------------------- |
+| Promise\<void> | Promise方式异步返回结果。 |
+
+**示例：**
+
+```
+await audioRenderer.start();
+```
+
+### pause<sup>8+</sup>
+
+pause(callback: AsyncCallback\<void>): void
+
+暂停音频播放器。使用callback方式异步返回结果。
+
+**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明             |
+| -------- | -------------------- | ---- | ---------------- |
+| callback | AsyncCallback\<void> | 是   | 返回回调的结果。 |
+
+**示例：**
+
+```
+audioRenderer.pause((err)=>{
+    if (err) {
+        console.error('Renderer pause failed');
+    } else {
+        console.log('Renderer paused.');
+    }
+})
+```
+
+### pause<sup>8+</sup>
+
+pause(): Promise\<void>
+
+暂停音频播放器。使用Promise方式异步返回结果。
+
+**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+
+**返回值：**
+
+| 类型           | 说明                      |
+| -------------- | ------------------------- |
+| Promise\<void> | Promise方式异步返回结果。 |
+
+**示例：**
+
+```
+await audioRenderer.pause();
+```
+
+### drain<sup>8+</sup>
+
+drain(callback: AsyncCallback\<void>): void
+
+检查播放缓冲区是否已被耗尽。使用callback方式异步返回结果。
+
+**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明             |
+| -------- | -------------------- | ---- | ---------------- |
+| callback | AsyncCallback\<void> | 是   | 返回回调的结果。 |
+
+**示例：**
+
+```
+audioRenderer.drain((err)=>{
+    if (err) {
+        console.error('Renderer drain failed');
+    } else {
+        console.log('Renderer drained.');
+    }
+})
+```
+
+### drain<sup>8+</sup>
+
+drain(): Promise\<void>
+
+检查播放缓冲区是否已被耗尽。使用Promise方式异步返回结果。
+
+**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+
+**返回值：**
+
+| 类型           | 说明                      |
+| -------------- | ------------------------- |
+| Promise\<void> | Promise方式异步返回结果。 |
+
+**示例：**
+
+```
+await audioRenderer.drain();
+```
+
+### stop<sup>8+</sup>
+
+stop(callback: AsyncCallback\<void>): void
+
+停止播放。使用callback方式异步返回结果。
+
+**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明             |
+| -------- | -------------------- | ---- | ---------------- |
+| callback | AsyncCallback\<void> | 是   | 返回回调的结果。 |
+
+**示例：**
+
+```
+audioRenderer.stop((err)=>{
+    if (err) {
+        console.error('Renderer stop failed');
+    } else {
+        console.log('Renderer stopped.');
+    }
+})
+```
+
+### stop<sup>8+</sup>
+
+stop(): Promise\<void>
+
+停止播放。使用Promise方式异步返回结果。
+
+**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+
+**返回值：**
+
+| 类型           | 说明                      |
+| -------------- | ------------------------- |
+| Promise\<void> | Promise方式异步返回结果。 |
+
+**示例：**
+
+```
+await audioRenderer.stop();
+```
+
+### release<sup>8+</sup>
+
+release(callback: AsyncCallback\<void>): void
+
+释放音频播放器。使用callback方式异步返回结果。
+
+**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明             |
+| -------- | -------------------- | ---- | ---------------- |
+| callback | AsyncCallback\<void> | 是   | 返回回调的结果。 |
+
+**示例：**
+
+```
+audioRenderer.release((err)=>{
+    if (err) {
+        console.error('Renderer release failed');
+    } else {
+        console.log('Renderer released.');
+    }
+})
+```
+
+### release<sup>8+</sup>
+
+release(): Promise\<void>
+
+释放渲染器。使用Promise方式异步返回结果。
+
+**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+
+**返回值：**
+
+| 类型           | 说明                      |
+| -------------- | ------------------------- |
+| Promise\<void> | Promise方式异步返回结果。 |
+
+**示例：**
+
+```
+await audioRenderer.release();
+```
+
+### write<sup>8+</sup>
+
+write(buffer: ArrayBuffer, callback: AsyncCallback\<number>): void
+
+写入缓冲区。使用callback方式异步返回结果。
+
+**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明                                                |
+| -------- | ---------------------- | ---- | --------------------------------------------------- |
+| buffer   | ArrayBuffer            | 是   | 要写入缓冲区的数据。                                |
+| callback | AsyncCallback\<number> | 是   | 回调如果成功，返回写入的字节数，否则返回errorcode。 |
+
+**示例：**
+
+```
+let ss = fileio.createStreamSync(filePath, 'r');
+let buf = new ArrayBuffer(bufferSize);
+ss.readSync(buf);
+audioRenderer.write(buf, (err, writtenbytes)=>{
+    if (writtenbytes < 0) {
+	    console.error('write failed.');
+    } else {
+       console.log('Actual written bytes: ' + writtenbytes);
+    }
+})
+```
+
+### write<sup>8+</sup>
+
+write(buffer: ArrayBuffer): Promise\<number>
+
+写入缓冲区。使用Promise方式异步返回结果。
+
+**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+
+**返回值：**
+
+| 类型             | 说明                                                         |
+| ---------------- | ------------------------------------------------------------ |
+| Promise\<number> | Promise返回结果，如果成功，返回写入的字节数，否则返回errorcode。 |
+
+**示例：**
+
+```
+let ss = fileio.createStreamSync(filePath, 'r');
+let buf = new ArrayBuffer(bufferSize);
+ss.readSync(buf);
+let writtenbytes = await audioRenderer.write(buf);
+if (writtenbytes < 0) {
+	console.error('write failed.');
+} else {
+    console.log('Actual written bytes: ' + writtenbytes);
+}
+```
+
+### getAudioTime<sup>8+</sup>
+
+getAudioTime(callback: AsyncCallback\<number>): void
+
+获取时间戳。使用callback方式异步返回结果。
+
+**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明             |
+| -------- | ---------------------- | ---- | ---------------- |
+| callback | AsyncCallback\<number> | 是   | 回调返回时间戳。 |
+
+**示例：**
+
+```
+audioRenderer.getAudioTime((err, timestamp)=>{
+    console.log('Current timestamp: ' + timestamp);
+})
+```
+
+### getAudioTime<sup>8+</sup>
+
+getAudioTime(): Promise\<number>
+
+获取时间戳。使用Promise方式异步返回结果。
+
+**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+
+**返回值：**
+
+| 类型             | 描述                    |
+| ---------------- | ----------------------- |
+| Promise\<number> | Promise回调返回时间戳。 |
+
+**示例：**
+
+```
+let timestamp = await audioRenderer.getAudioTime();
+console.log('Current timestamp: ' + timestamp);
+```
+
+### getBufferSize<sup>8+</sup>
+
+getBufferSize(callback: AsyncCallback\<number>): void
+
+获取音频播放器的最小缓冲区大小。使用callback方式异步返回结果。
+
+**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明                 |
+| -------- | ---------------------- | ---- | -------------------- |
+| callback | AsyncCallback\<number> | 是   | 回调返回缓冲区大小。 |
+
+**示例：**
+
+```
+audioRenderer.getBufferSize((err, bufferSize)=>{
+    if (err) {
+        console.error('getBufferSize error');
+    }
+})
+let buf = new ArrayBuffer(bufferSize);
+ss.readSync(buf);
+```
+
+### getBufferSize<sup>8+</sup>
+
+getBufferSize(): Promise\<number>
+
+获取音频播放器的最小缓冲区大小。使用Promise方式异步返回结果。
+
+**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+
+**返回值：**
+
+| 类型             | 说明                        |
+| ---------------- | --------------------------- |
+| Promise\<number> | promise回调返回缓冲区大小。 |
+
+**示例：**
+
+```
+var bufferSize = await audioRenderer.getBufferSize();
+let buf = new ArrayBuffer(bufferSize);
+ss.readSync(buf);
+```
+
+### setRenderRate<sup>8+</sup>
+
+setRenderRate(rate: AudioRendererRate, callback: AsyncCallback\<void>): void
+
+设置音频播放速率。使用callback方式异步返回结果。
+
+**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名   | 类型                                     | 必填 | 说明                     |
+| -------- | ---------------------------------------- | ---- | ------------------------ |
+| rate     | [AudioRendererRate](#audiorendererrate8) | 是   | 播放的速率。             |
+| callback | AsyncCallback\<void>                     | 是   | 用于返回执行结果的回调。 |
+
+**示例：**
+
+```
+audioRenderer.setRenderRate(audio.AudioRendererRate.RENDER_RATE_NORMAL, (err)=> {
+    if (err) {
+	    console.error('Failed to set params');
+    } else {
+        console.log('Callback invoked to indicate a successful render rate setting.');
+    }
+})
+```
+
+### setRenderRate<sup>8+</sup>
+
+setRenderRate(rate: AudioRendererRate): Promise\<void>
+
+设置音频播放速率。使用Promise方式异步返回结果。
+
+**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名 | 类型                                     | 必填 | 说明         |
+| ------ | ---------------------------------------- | ---- | ------------ |
+| rate   | [AudioRendererRate](#audiorendererrate8) | 是   | 播放的速率。 |
+
+**返回值：**
+
+| 类型           | 说明                      |
+| -------------- | ------------------------- |
+| Promise\<void> | Promise用于返回执行结果。 |
+
+**示例：**
+
+```
+await audioRenderer.setRenderRate(audio.AudioRendererRate.RENDER_RATE_NORMAL);
+```
+
+### getRenderRate<sup>8+</sup>
+
+getRenderRate(callback: AsyncCallback\<AudioRendererRate>): void
+
+获取当前播放速率。使用callback方式异步返回结果。
+
+**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名   | 类型                                                    | 必填 | 说明               |
+| -------- | ------------------------------------------------------- | ---- | ------------------ |
+| callback | AsyncCallback<[AudioRendererRate](#audiorendererrate8)> | 是   | 回调返回播放速率。 |
+
+**示例：**
+
+```
+audioRenderer.getRenderRate((err, renderrate)=>{
+    console.log('getRenderRate: ' + renderrate);
+})
+```
+
+### getRenderRate<sup>8+</sup>
+
+getRenderRate(): Promise\<AudioRendererRate>
+
+获取当前播放速率。使用Promise方式异步返回结果。
+
+**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+
+**返回值：**
+
+| 类型                                              | 说明                      |
+| ------------------------------------------------- | ------------------------- |
+| Promise<[AudioRendererRate](#audiorendererrate8)> | Promise回调返回播放速率。 |
+
+**示例：**
+
+```
+let renderRate = await audioRenderer.getRenderRate();
+console.log('getRenderRate: ' + renderrate);
+```
+
+### on('interrupt')<sup>8+</sup>
+
+on(type: 'interrupt', callback: Callback\<InterruptEvent>): void
+
+监听音频中断事件。使用callback获取中断事件。
+
+**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名   | 类型                                         | 必填 | 说明                                                         |
+| -------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                       | 是   | 事件回调类型，支持的事件为：'interrupt'（中断事件被触发，音频播放被中断。） |
+| callback | Callback<[InterruptEvent](#interruptevent8)> | 是   | 被监听的中断事件的回调。                                     |
+
+**示例：**
+
+```
+audioRenderer.on('interrupt', (interruptEvent) => {
+    if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_FORCE) {
+        switch (interruptEvent.hintType) {
+            case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
+                console.log('Force paused. Stop writing');
+                isPlay = false;
+                break;
+            case audio.InterruptHint.INTERRUPT_HINT_STOP:
+                console.log('Force stopped. Stop writing');
+                isPlay = false;
+                break;
+        }
+    } else if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_SHARE) {
+         switch (interruptEvent.hintType) {
+            case audio.InterruptHint.INTERRUPT_HINT_RESUME:
+                console.log('Resume force paused renderer or ignore');
+                startRenderer();
+                break;
+            case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
+                console.log('Choose to pause or ignore');
+                pauseRenderer();
+                break;
+        }
+    }
+})
+```
+
+
+
