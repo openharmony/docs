@@ -13,118 +13,152 @@ import window from '@ohos.window';
 
 窗口类型。
 
-| 名称              | 默认值 | 说明                                                         |
-| ----------------- | ------ | ------------------------------------------------------------ |
-| TYPE_APP          | 0      | 表示应用子窗口。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
-| TYPE_SYSTEM_ALERT | 1      | 表示系统告警窗口。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+**系统能力**：以下各项对应的系统能力均为SystemCapability.WindowManager.WindowManager.Core。
+
+| 名称              | 默认值 | 说明               |
+| ----------------- | ------ | ------------------ |
+| TYPE_APP          | 0      | 表示应用子窗口。   |
+| TYPE_SYSTEM_ALERT | 1      | 表示系统告警窗口。 |
 
 ## AvoidAreaType<sup>7+</sup><a name="avoidareatype"></a>
 
 窗口内容需要规避区域的类型。
 
-| 名称        | 默认值 | 说明                                                         |
-| ----------- | ------ | ------------------------------------------------------------ |
-| TYPE_SYSTEM | 0      | 表示系统默认区域。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
-| TYPE_CUTOUT | 1      | 表示刘海屏区域。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+**系统能力**：以下各项对应的系统能力均为SystemCapability.WindowManager.WindowManager.Core。
+
+| 名称        | 默认值 | 说明               |
+| ----------- | ------ | ------------------ |
+| TYPE_SYSTEM | 0      | 表示系统默认区域。 |
+| TYPE_CUTOUT | 1      | 表示刘海屏区域。   |
 
 ## WindowMode<sup>7+</sup><a name="windowmode"></a>
 
 窗口模式。
 
-| 名称       | 默认值 | 说明                                                         |
-| ---------- | ------ | ------------------------------------------------------------ |
-| UNDEFINED  | 1      | 表示APP未定义窗口模式。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
-| FULLSCREEN | 2      | 表示APP全屏模式。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
-| PRIMARY    | 3      | 表示APP分屏多窗口主要模式。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
-| SECONDARY  | 4      | 表示APP分屏多窗口次要模式。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
-| FLOATING   | 5      | 表示APP自由悬浮形式窗口模式。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+此接口为系统接口，三方应用不支持调用。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.WindowManager.WindowManager.Core。
+
+| 名称       | 默认值 | 说明                          |
+| ---------- | ------ | ----------------------------- |
+| UNDEFINED  | 1      | 表示APP未定义窗口模式。       |
+| FULLSCREEN | 2      | 表示APP全屏模式。             |
+| PRIMARY    | 3      | 表示APP分屏多窗口主要模式。   |
+| SECONDARY  | 4      | 表示APP分屏多窗口次要模式。   |
+| FLOATING   | 5      | 表示APP自由悬浮形式窗口模式。 |
 
 ## SystemBarProperties<a name="systembarproperties"></a>
 
 状态栏导航栏的属性。
 
+**系统能力**：以下各项对应的系统能力均为SystemCapability.WindowManager.WindowManager.Core。
+
 | 名称                                   | 参数类型 | 可读 | 可写 | 说明                                                         |
 | -------------------------------------- | -------- | ---- | ---- | ------------------------------------------------------------ |
-| statusBarColor                         | string   | 是   | 是   | 状态栏背景颜色，为16进制RGB或ARGB颜色，例如"\#00FF00"或"\#FF00FF00"。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
-| isStatusBarLightIcon<sup>7+</sup>      | boolean  | 否   | 是   | 状态栏图标是否为高亮状态。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
-| statusBarContentColor<sup>8+</sup>     | string   | 否   | 是   | 状态栏文字颜色。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
-| navigationBarColor                     | string   | 是   | 是   | 导航栏背景颜色，为16进制RGB或ARGB颜色，例如"\#00FF00"或"\#FF00FF00"。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
-| isNavigationBarLightIcon<sup>7+</sup>  | boolean  | 否   | 否   | 导航栏图标是否为高亮状态。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
-| navigationBarContentColor<sup>8+</sup> | string   | 否   | 是   | 导航栏文字颜色。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+| statusBarColor                         | string   | 是   | 是   | 状态栏背景颜色，为16进制RGB或ARGB颜色，例如"\#00FF00"或"\#FF00FF00"。 |
+| isStatusBarLightIcon<sup>7+</sup>      | boolean  | 否   | 是   | 状态栏图标是否为高亮状态。                                   |
+| statusBarContentColor<sup>8+</sup>     | string   | 否   | 是   | 状态栏文字颜色。                                             |
+| navigationBarColor                     | string   | 是   | 是   | 导航栏背景颜色，为16进制RGB或ARGB颜色，例如"\#00FF00"或"\#FF00FF00"。 |
+| isNavigationBarLightIcon<sup>7+</sup>  | boolean  | 否   | 否   | 导航栏图标是否为高亮状态。                                   |
+| navigationBarContentColor<sup>8+</sup> | string   | 否   | 是   | 导航栏文字颜色。                                             |
 
 ## SystemBarRegionTint <sup>8+</sup><a name="systembartegiontint"></a>
 
 单个导航栏或状态栏回调信息。
 
+此接口为系统接口，三方应用不支持调用。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.WindowManager.WindowManager.Core。
+
 | 名称            | 参数类型                  | 可读 | 可写 | 说明                                                         |
 | --------------- | ------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| type            | [WindowType](#windowtype) | 是   | 是   | 当前属性改变的系统栏类型，仅支持类型为导航栏、状态栏的系统栏。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
-| isEnable        | boolean                   | 是   | 是   | 当前系统栏是否显示。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
-| region          | [Rect](#rect)             | 是   | 是   | 当前系统栏的位置及大小。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
-| backgroundColor | string                    | 是   | 是   | 系统栏背景颜色，为16进制RGB或ARGB颜色，例如"\#00FF00"或"\#FF00FF00"。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
-| contentColor    | string                    | 是   | 是   | 系统栏文字颜色。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+| type            | [WindowType](#windowtype) | 是   | 是   | 当前属性改变的系统栏类型，仅支持类型为导航栏、状态栏的系统栏。 |
+| isEnable        | boolean                   | 是   | 是   | 当前系统栏是否显示。                                         |
+| region          | [Rect](#rect)             | 是   | 是   | 当前系统栏的位置及大小。                                     |
+| backgroundColor | string                    | 是   | 是   | 系统栏背景颜色，为16进制RGB或ARGB颜色，例如"\#00FF00"或"\#FF00FF00"。 |
+| contentColor    | string                    | 是   | 是   | 系统栏文字颜色。                                             |
 
 ## SystemBarTintState <sup>8+</sup><a name="systembartintstate"></a>
 
 当前系统栏回调信息集合。
 
-| 名称       | 参数类型                                           | 可读 | 可写 | 说明                                                         |
-| ---------- | -------------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| displayId  | number                                             | 是   | 否   | 当前物理屏幕id。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
-| regionTint | Array<[SystemBarRegionTint](#systembartegiontint)> | 是   | 是   | 当前改变所有的系统栏信息。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+此接口为系统接口，三方应用不支持调用。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.WindowManager.WindowManager.Core。
+
+| 名称       | 参数类型                                           | 可读 | 可写 | 说明                       |
+| ---------- | -------------------------------------------------- | ---- | ---- | -------------------------- |
+| displayId  | number                                             | 是   | 否   | 当前物理屏幕id。           |
+| regionTint | Array<[SystemBarRegionTint](#systembartegiontint)> | 是   | 是   | 当前改变所有的系统栏信息。 |
 
 ## Rect<sup>7+</sup><a name="rect"></a>
 
 矩形。
 
-| 名称   | 参数类型 | 可读 | 可写 | 说明                                                         |
-| ------ | -------- | ---- | ---- | ------------------------------------------------------------ |
-| left   | number   | 是   | 是   | 矩形区域的左边界。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
-| top    | number   | 是   | 是   | 矩形区域的上边界。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
-| width  | number   | 是   | 是   | 矩形区域的宽度。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
-| height | number   | 是   | 是   | 矩形区域的高度。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+**系统能力**：以下各项对应的系统能力均为SystemCapability.WindowManager.WindowManager.Core。
+
+| 名称   | 参数类型 | 可读 | 可写 | 说明               |
+| ------ | -------- | ---- | ---- | ------------------ |
+| left   | number   | 是   | 是   | 矩形区域的左边界。 |
+| top    | number   | 是   | 是   | 矩形区域的上边界。 |
+| width  | number   | 是   | 是   | 矩形区域的宽度。   |
+| height | number   | 是   | 是   | 矩形区域的高度。   |
 
 ## AvoidArea<sup>7+</sup><a name="avoidarea"></a>
 
 表示窗口内容规避区域。
 
-| 名称       | 参数类型      | 可读 | 可写 | 说明                                                         |
-| ---------- | ------------- | ---- | ---- | ------------------------------------------------------------ |
-| leftRect   | [Rect](#rect) | 是   | 是   | 屏幕左侧的矩形区。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
-| topRect    | [Rect](#rect) | 是   | 是   | 屏幕顶部的矩形区。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
-| rightRect  | [Rect](#rect) | 是   | 是   | 屏幕右侧的矩形区。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
-| bottomRect | [Rect](#rect) | 是   | 是   | 屏幕底部的矩形区。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+**系统能力**：以下各项对应的系统能力均为SystemCapability.WindowManager.WindowManager.Core。
+
+| 名称       | 参数类型      | 可读 | 可写 | 说明               |
+| ---------- | ------------- | ---- | ---- | ------------------ |
+| leftRect   | [Rect](#rect) | 是   | 是   | 屏幕左侧的矩形区。 |
+| topRect    | [Rect](#rect) | 是   | 是   | 屏幕顶部的矩形区。 |
+| rightRect  | [Rect](#rect) | 是   | 是   | 屏幕右侧的矩形区。 |
+| bottomRect | [Rect](#rect) | 是   | 是   | 屏幕底部的矩形区。 |
 
 ## Size<sup>7+</sup><a name="size"></a>
 
 窗口大小。
 
-| 名称   | 参数类型 | 可读 | 可写 | 说明                                                         |
-| ------ | -------- | ---- | ---- | ------------------------------------------------------------ |
-| width  | number   | 是   | 是   | 窗口宽度。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
-| height | number   | 是   | 是   | 窗口高度。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+**系统能力**：以下各项对应的系统能力均为SystemCapability.WindowManager.WindowManager.Core。
+
+| 名称   | 参数类型 | 可读 | 可写 | 说明       |
+| ------ | -------- | ---- | ---- | ---------- |
+| width  | number   | 是   | 是   | 窗口宽度。 |
+| height | number   | 是   | 是   | 窗口高度。 |
 
 ## WindowProperties<a name="windowproperties"></a>
 
 窗口属性。
 
+**系统能力**：以下各项对应的系统能力均为SystemCapability.WindowManager.WindowManager.Core。
+
 | 名称                            | 参数类型                  | 可读 | 可写 | 说明                                                         |
 | ------------------------------- | ------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| windowRect<sup>7+</sup>         | [Rect](#rect)             | 是   | 是   | 窗口尺寸。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
-| type<sup>7+</sup>               | [WindowType](#windowtype) | 是   | 是   | 窗口类型。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
-| isFullScreen                    | boolean                   | 是   | 是   | 是否全屏，默认为false。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
-| isLayoutFullScreen<sup>7+</sup> | boolean                   | 是   | 是   | 窗口是否为沉浸式，默认为false。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
-| focusable<sup>7+</sup>          | boolean                   | 是   | 否   | 窗口是否可聚焦，默认为true。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
-| touchable<sup>7+</sup>          | boolean                   | 是   | 否   | 窗口是否可触摸，默认为true。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+| windowRect<sup>7+</sup>         | [Rect](#rect)             | 是   | 是   | 窗口尺寸。                                                   |
+| type<sup>7+</sup>               | [WindowType](#windowtype) | 是   | 是   | 窗口类型。                                                   |
+| isFullScreen                    | boolean                   | 是   | 是   | 是否全屏，默认为false。                                      |
+| isLayoutFullScreen<sup>7+</sup> | boolean                   | 是   | 是   | 窗口是否为沉浸式，默认为false。                              |
+| focusable<sup>7+</sup>          | boolean                   | 是   | 否   | 窗口是否可聚焦，默认为true。                                 |
+| touchable<sup>7+</sup>          | boolean                   | 是   | 否   | 窗口是否可触摸，默认为true。                                 |
+| brightness                      | number                    | 是   | 是   | 屏幕亮度， 取值范围为0~1，1表示最大亮度值。<br/>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
+| dimBehindValue<sup>7+</sup>     | number                    | 是   | 是   | 靠后窗口的暗度值，取值范围为0~1，1表示最暗。<br/>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
+| isKeepScreenOn                  | boolean                   | 是   | 是   | 屏幕是否常亮，默认为false。<br/>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
+| isPrivacyMode<sup>7+</sup>      | boolean                   | 是   | 是   | 隐私模式，默认为false。<br/>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
+| isRoundCorner<sup>7+</sup>      | boolean                   | 是   | 是   | 窗口是否为圆角。<br/>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
+| isTransparent<sup>7+</sup>      | boolean                   | 是   | 是   | 窗口是否透明。默认为false。<br/>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
 
 ## ColorSpace<sup>8+</sup><a name="colorspace"></a>
 
 色域模式。
 
-| 名称       | 默认值 | 说明                                                         |
-| ---------- | ------ | ------------------------------------------------------------ |
-| DEFAULT    | 0      | 默认色域模式。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
-| WIDE_GAMUT | 1      | 广色域模式。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+**系统能力**：以下各项对应的系统能力均为SystemCapability.WindowManager.WindowManager.Core。
+
+| 名称       | 默认值 | 说明           |
+| ---------- | ------ | -------------- |
+| DEFAULT    | 0      | 默认色域模式。 |
+| WIDE_GAMUT | 1      | 广色域模式。   |
 
 ## window.create<sup>7</sup><a name="window-create"></a>
 
@@ -145,12 +179,13 @@ create(id: string, type: WindowType, callback: AsyncCallback&lt;Window&gt;): voi
 - 示例
 
   ```
+   var windowClass = null;
    window.create("first", window.WindowType.TYPE_APP, (err, data) => {
-      windowClass = data;
       if (err.code) {
           console.error('Failed to create the subWindow. Cause: ' + JSON.stringify(err));
           return;
       }
+      windowClass = data;
       console.info('SubWindow created. Data: ' + JSON.stringify(data))
       windowClass.resetSize(500, 1000);
   });
@@ -180,8 +215,10 @@ create(id: string, type: WindowType): Promise&lt;Window&gt;
 - 示例
 
   ```
+   var windowClass = null;
    let promise = window.create("first", window.WindowType.TYPE_APP);
    promise.then((data)=> {
+   	windowClass = data;
       console.info('SubWindow created. Data: ' + JSON.stringify(data))
    }).catch((err)=>{
       console.error('Failed to create the subWindow. Cause: ' + JSON.stringify(err));
@@ -208,12 +245,13 @@ create(ctx: Context, id: string, type: WindowType, callback: AsyncCallback&lt;Wi
 - 示例
 
   ```
+   var windowClass = null;
    window.create(this.context, "alertWindow", window.WindowType.TYPE_SYSTEM_ALERT, (err, data) => {
-      windowClass = data;
       if (err.code) {
           console.error('Failed to create the Window. Cause: ' + JSON.stringify(err));
           return;
       }
+      windowClass = data;
       console.info('Window created. Data: ' + JSON.stringify(data))
       windowClass.resetSize(500, 1000);
   });
@@ -244,8 +282,10 @@ create(ctx: Context, id: string, type: WindowType): Promise&lt;Window&gt;
 - 示例
 
   ```
+   var windowClass = null;
    let promise = window.create(this.context, "alertWindow", window.WindowType.TYPE_SYSTEM_ALERT);
    promise.then((data)=> {
+   	windowClass = data;
       console.info('Window created. Data: ' + JSON.stringify(data))
    }).catch((err)=>{
       console.error('Failed to create the Window. Cause: ' + JSON.stringify(err));
@@ -270,13 +310,14 @@ find(id: string, callback: AsyncCallback&lt;Window&gt;): void
 - 示例
 
   ```
-   window.find("first", (err, data) => {
+   var windowClass = null;
+   window.find("alertWindow", (err, data) => {
      if (err.code) {
          console.error('Failed to find the Window. Cause: ' + JSON.stringify(err));
          return;
      }
-    console.info('window found. Data: ' + JSON.stringify(data))
-    windowClass = data;
+     windowClass = data;
+     console.info('window found. Data: ' + JSON.stringify(data))
   });
   ```
 
@@ -303,8 +344,10 @@ find(id: string): Promise&lt;Window&gt;
 - 示例
 
   ```
-   let promise = window.find("first");
+   var windowClass = null;
+   let promise = window.find("alertWindow");
    promise.then((data)=> {
+   	windowClass = data;
       console.info('window found. Data: ' + JSON.stringify(data))
    }).catch((err)=>{
       console.error('Failed to find the Window. Cause: ' + JSON.stringify(err));
@@ -328,13 +371,14 @@ getTopWindow(callback: AsyncCallback&lt;Window&gt;): void
 - 示例
 
   ```
+  var windowClass = null;
   window.getTopWindow((err, data) => {
       if (err.code) {
           console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
           return;
       }
-      console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
       windowClass = data;
+      console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
   });
   ```
 
@@ -355,8 +399,10 @@ getTopWindow(): Promise&lt;Window&gt;
 - 示例
 
   ```
+   var windowClass = null;
    let promise = window.getTopWindow();
    promise.then((data)=> {
+   	windowClass = data;
       console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data))
    }).catch((err)=>{
       console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
@@ -381,13 +427,14 @@ getTopWindow(ctx: Context, callback: AsyncCallback&lt;Window&gt;): void
 - 示例
 
   ```
+  var windowClass = null;
   window.getTopWindow(this.context, (err, data) => {
       if (err.code) {
           console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
           return;
       }
-      console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
       windowClass = data;
+      console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
   });
   ```
 
@@ -414,8 +461,10 @@ getTopWindow(ctx: Context): Promise&lt;Window&gt;
 - 示例
 
   ```
+   var windowClass = null;
    let promise = window.getTopWindow(this.context);
    promise.then((data)=> {
+   	windowClass = data;
       console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data))
    }).catch((err)=>{
       console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
@@ -427,6 +476,8 @@ getTopWindow(ctx: Context): Promise&lt;Window&gt;
 on(type: 'systemBarTintChange', callback: Callback&lt;SystemBarTintState&gt;): void
 
 注册状态栏、导航栏的监听函数。
+
+此接口为系统接口，三方应用不支持调用。
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
@@ -451,6 +502,8 @@ on(type: 'systemBarTintChange', callback: Callback&lt;SystemBarTintState&gt;): v
 off(type: 'systemBarTintChange', callback?: Callback&lt;SystemBarTintState &gt;): void
 
 关闭监听。
+
+此接口为系统接口，三方应用不支持调用。
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
@@ -478,6 +531,8 @@ hide (callback: AsyncCallback&lt;void&gt;): void
 
 隐藏当前窗口，使用callback方式作为异步方法。
 
+此接口为系统接口，三方应用不支持调用。
+
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
 - 参数
@@ -489,12 +544,12 @@ hide (callback: AsyncCallback&lt;void&gt;): void
 - 示例
 
   ```
-  windowClass.hide((err) => {
+  windowClass.hide((err, data) => {
       if (err.code) {
           console.error('Failed to hide the window. Cause: ' + JSON.stringify(err));
           return;
       }
-      console.info('window hidden.')
+      console.info('window hidden. data: ' + JSON.stringify(data))
   })
   ```
 
@@ -503,6 +558,8 @@ hide (callback: AsyncCallback&lt;void&gt;): void
 hide(): Promise&lt;void&gt;
 
 隐藏当前窗口，使用Promise方式作为异步方法。
+
+此接口为系统接口，三方应用不支持调用。
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
@@ -516,8 +573,8 @@ hide(): Promise&lt;void&gt;
 
   ```
    let promise = windowClass.hide();
-   promise.then(()=> {
-      console.info('window hidden.')
+   promise.then((data)=> {
+      console.info('window hidden. Data: ' + JSON.stringify(data))
    }).catch((err)=>{
       console.error('Failed to hide the window. Cause: ' + JSON.stringify(err));
    })
@@ -540,12 +597,12 @@ show(callback: AsyncCallback&lt;void&gt;): void
 - 示例
 
   ```
-  windowClass.show((err) => {
+  windowClass.show((err, data) => {
       if (err.code) {
           console.error('Failed to show the window. Cause: ' + JSON.stringify(err));
           return;
       }
-      console.info('Succeeded in showing the window.')
+      console.info('Succeeded in showing the window. Data: ' + JSON.stringify(data))
   })
   ```
 
@@ -567,8 +624,8 @@ show(): Promise&lt;void&gt;
 
   ```
    let promise = windowClass.show();
-   promise.then(()=> {
-      console.info('Succeeded in showing the window.')
+   promise.then((data)=> {
+      console.info('Succeeded in showing the window. Data: ' + JSON.stringify(data))
    }).catch((err)=>{
       console.error('Failed to show the window. Cause: ' + JSON.stringify(err));
    })
@@ -591,12 +648,12 @@ destroy(callback: AsyncCallback&lt;void&gt;): void
 - 示例
 
   ```
-  windowClass.destroy((err) => {
+  windowClass.destroy((err, data) => {
       if (err.code) {
           console.error('Failed to destroy the window. Cause:' + JSON.stringify(err));
           return;
       }
-      console.info('Succeeded in destroying the window.')
+      console.info('Succeeded in destroying the window. Data: ' + JSON.stringify(data))
   })
   ```
 
@@ -618,8 +675,8 @@ destroy(): Promise&lt;void&gt;
 
   ```
    let promise = windowClass.destroy();
-   promise.then(()=> {
-      console.info('Succeeded in destroying the window.')
+   promise.then((data)=> {
+      console.info('Succeeded in destroying the window. Data: ' + JSON.stringify(data))
    }).catch((err)=>{
       console.error('Failed to destroy the window. Cause: ' + JSON.stringify(err));
    })
@@ -644,12 +701,12 @@ moveTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void
 - 示例
 
   ```
-  windowClass.moveTo(300, 300, (err)=>{
+  windowClass.moveTo(300, 300, (err, data)=>{
       if (err.code) {
           console.error('Failed to move the window. Cause:' + JSON.stringify(err));
           return;
       }
-      console.info('Window moved.');
+      console.info('Window moved. Data: ' + JSON.stringify(data))
   
   });
   ```
@@ -679,8 +736,8 @@ moveTo(x: number, y: number): Promise&lt;void&gt;
 
   ```
    let promise = windowClass.moveTo(300, 300);
-   promise.then(()=> {
-      console.info('Window moved.')
+   promise.then((data)=> {
+      console.info('Window moved. Data: ' + JSON.stringify(data))
    }).catch((err)=>{
       console.error('Failed to move the window. Cause: ' + JSON.stringify(err));
    })
@@ -705,12 +762,12 @@ resetSize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): v
 - 示例
 
   ```
-  windowClass.resetSize(500, 1000, (err) => {
+  windowClass.resetSize(500, 1000, (err, data) => {
       if (err.code) {
           console.error('Failed to change the window size. Cause:' + JSON.stringify(err));
           return;
       }
-      console.info('Window size changed.');
+      console.info('Window size changed. Data: ' + JSON.stringify(data))
   });
   ```
 
@@ -739,8 +796,8 @@ resetSize(width: number, height: number): Promise&lt;void&gt;
 
   ```
    let promise = windowClass.resetSize(500, 1000);
-   promise.then(()=> {
-      console.info('Window size changed.')
+   promise.then((data)=> {
+      console.info('Window size changed. Data: ' + JSON.stringify(data))
    }).catch((err)=>{
       console.error('Failed to change the window size. Cause: ' + JSON.stringify(err));
    });
@@ -751,6 +808,8 @@ resetSize(width: number, height: number): Promise&lt;void&gt;
 setWindowType(type: WindowType, callback: AsyncCallback&lt;void&gt;): void
 
 设置窗口类型，使用callback方式作为异步方法。
+
+此接口为系统接口，三方应用不支持调用。
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
@@ -765,12 +824,12 @@ setWindowType(type: WindowType, callback: AsyncCallback&lt;void&gt;): void
 
   ```
   var type = window.TYPE_APP;
-  windowClass.setWindowType(type, (err) => {
+  windowClass.setWindowType(type, (err, data) => {
     if (err.code) {
         console.error('Failed to set the window type. Cause: ' + JSON.stringify(err));
         return;
     }
-    console.info('Succeeded in setting the window type.')
+    console.info('Succeeded in setting the window type. Data: ' + JSON.stringify(data))
   });
   ```
 
@@ -779,6 +838,8 @@ setWindowType(type: WindowType, callback: AsyncCallback&lt;void&gt;): void
 setWindowType(type: WindowType): Promise&lt;void&gt;
 
 设置窗口类型，使用Promise方式作为异步方法。
+
+此接口为系统接口，三方应用不支持调用。
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
@@ -799,8 +860,8 @@ setWindowType(type: WindowType): Promise&lt;void&gt;
   ```
    var type = window.TYPE_APP;
    let promise = windowClass.setWindowType(type);
-   promise.then(()=> {
-      console.info('Succeeded in setting the window type.')
+   promise.then((data)=> {
+      console.info('Succeeded in setting the window type. Data: ' + JSON.stringify(data))
    }).catch((err)=>{
       console.error('Failed to set the window type. Cause: ' + JSON.stringify(err));
    });
@@ -935,12 +996,12 @@ setFullScreen(isFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void
 
   ```
   var isFullScreen = true;
-  windowClass.setFullScreen(isFullScreen, (err) => {
+  windowClass.setFullScreen(isFullScreen, (err, data) => {
       if (err.code) {
           console.error('Failed to enable the full-screen mode. Cause: ' + JSON.stringify(err));
           return;
       }
-      console.info('Succeeded in enabling the full-screen mode.');
+      console.info('Succeeded in enabling the full-screen mode. Data: ' + JSON.stringify(data))
   });
   ```
 
@@ -969,8 +1030,8 @@ setFullScreen(isFullScreen: boolean): Promise&lt;void&gt;
   ```
   var isFullScreen = true;
   let promise = windowClass.setFullScreen(isFullScreen);
-  promise.then(()=> {
-      console.info('Succeeded in enabling the full-screen mode.'))
+  promise.then((data)=> {
+      console.info('Succeeded in enabling the full-screen mode. Data: ' + JSON.stringify(data))
   }).catch((err)=>{
       console.error('Failed to enable the full-screen mode. Cause: ' + JSON.stringify(err));
   });
@@ -995,12 +1056,12 @@ setLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&lt;void
 
   ```
   var isLayoutFullScreen= true;
-  windowClass.setLayoutFullScreen(isLayoutFullScreen, (err) => {
+  windowClass.setLayoutFullScreen(isLayoutFullScreen, (err, data) => {
       if (err.code) {
           console.error('Failed to set the window layout to full-screen mode. Cause:' + JSON.stringify(err));
           return;
       }
-      console.info('Succeeded in setting the window layout to full-screen mode.');
+      console.info('Succeeded in setting the window layout to full-screen mode. Data: ' + JSON.stringify(data))
   });
   ```
 
@@ -1029,8 +1090,8 @@ setLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt;
   ```
   var isLayoutFullScreen = true;
   let promise = windowClass.setLayoutFullScreen(isLayoutFullScreen);
-  promise.then(()=> {
-      console.info('Succeeded in setting the window layout to full-screen mode.'))
+  promise.then((data)=> {
+      console.info('Succeeded in setting the window layout to full-screen mode. Data: ' + JSON.stringify(data))
   }).catch((err)=>{
       console.error('Failed to set the window layout to full-screen mode. Cause:' + JSON.stringify(err));
   });
@@ -1055,12 +1116,12 @@ setSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncCallbac
 
   ```
   var names = ["status", "navigation"];
-  windowClass.setSystemBarEnable(names, (err) => {
+  windowClass.setSystemBarEnable(names, (err, data) => {
       if (err.code) {
           console.error('Failed to set the system bar to be visible. Cause:' + JSON.stringify(err));
           return;
       }
-      console.info('Succeeded in setting the system bar to be visible.');
+      console.info('Succeeded in setting the system bar to be visible. Data: ' + JSON.stringify(data))
   });
   ```
 
@@ -1089,8 +1150,8 @@ setSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void&gt;
   ```
   var names = ["status", "navigation"];
   let promise = windowClass.setSystemBarEnable(names);
-  promise.then(()=> {
-      console.info('Succeeded in setting the system bar to be visible.'))
+  promise.then((data)=> {
+      console.info('Succeeded in setting the system bar to be visible. Data: ' + JSON.stringify(data))
   }).catch((err)=>{
       console.error('Failed to set the system bar to be visible. Cause:' + JSON.stringify(err));
   });
@@ -1121,15 +1182,15 @@ setSystemBarProperties(systemBarProperties: SystemBarProperties, callback: Async
       isStatusBarLightIcon: true,
       isNavigationBarLightIcon:false,
       //以下两个属性从API Version8开始支持
-      statusBarContentColor:'#ffffff'
+      statusBarContentColor:'#ffffff',
       navigationBarContentColor:'#00ffff'
   };
-  windowClass.setSystemBarProperties(SystemBarProperties, (err) => {
+  windowClass.setSystemBarProperties(SystemBarProperties, (err, data) => {
       if (err.code) {
           console.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(err));
           return;
       }
-      console.info('Succeeded in setting the system bar properties.');
+      console.info('Succeeded in setting the system bar properties. Data: ' + JSON.stringify(data))
   });
   ```
 
@@ -1163,20 +1224,20 @@ setSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&lt;voi
       isStatusBarLightIcon: true,
       isNavigationBarLightIcon:false,
       //以下两个属性从API Version8开始支持
-      statusBarContentColor:'#ffffff'
+      statusBarContentColor:'#ffffff',
       navigationBarContentColor:'#00ffff'
   };
   let promise = windowClass.setSystemBarProperties(SystemBarProperties);
-  promise.then(()=> {
-      console.info('Succeeded in setting the system bar properties.'))
+  promise.then((data)=> {
+      console.info('Succeeded in setting the system bar properties. Data: ' + JSON.stringify(data))
   }).catch((err)=>{
       console.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(err));
   });
   ```
 
-### loadContent<sup>8+</sup>
+### loadContent<sup>7+</sup>
 
-loadContent(path: string, storage: ContentStorage, callback: AsyncCallback&lt;void&gt;): void
+loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 当前窗口加载具体页面内容，使用callback方式作为异步方法。
 
@@ -1187,24 +1248,23 @@ loadContent(path: string, storage: ContentStorage, callback: AsyncCallback&lt;vo
   | 参数名   | 类型                      | 必填 | 说明                 |
   | -------- | ------------------------- | ---- | -------------------- |
   | path     | string                    | 是   | 设置加载页面的路径。 |
-  | storage  | ContentStorage            | 否   | 当前应用内的数据。   |
   | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。           |
-
+  
 - 示例
 
   ```
-  windowClass.loadContent("pages/page2/page2", (err) => {
+  windowClass.loadContent("pages/page2/page2", (err, data) => {
      if (err.code) {
            console.error('Failed to load the content. Cause:' + JSON.stringify(err));
            return;
      }
-    console.info('Succeeded in loading the content.');
+    console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data))
   });
   ```
 
-### loadContent<sup>8+</sup>
+### loadContent<sup>7+</sup>
 
-loadContent(path: string, storage?: ContentStorage): Promise&lt;void&gt;
+loadContent(path: string): Promise&lt;void&gt;
 
 当前窗口加载具体页面内容，使用Promise方式作为异步方法。
 
@@ -1212,11 +1272,10 @@ loadContent(path: string, storage?: ContentStorage): Promise&lt;void&gt;
 
 - 参数
 
-  | 参数名  | 类型           | 必填 | 说明                 |
-  | ------- | -------------- | ---- | -------------------- |
-  | path    | string         | 是   | 设置加载页面的路径。 |
-  | storage | ContentStorage | 否   | 当前应用内的数据。   |
-
+  | 参数名 | 类型   | 必填 | 说明                 |
+  | ------ | ------ | ---- | -------------------- |
+  | path   | string | 是   | 设置加载页面的路径。 |
+  
 - 返回值
 
   | 类型                | 说明                                            |
@@ -1227,8 +1286,8 @@ loadContent(path: string, storage?: ContentStorage): Promise&lt;void&gt;
 
   ```
   let promise = windowClass.loadContent("pages/page2/page2");
-  promise.then(()=> {
-      console.info('Succeeded in loading the content.'))
+  promise.then((data)=> {
+      console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data))
   }).catch((err)=>{
       console.error('Failed to load the content. Cause: ' + JSON.stringify(err));
   });
@@ -1251,12 +1310,12 @@ isShowing(callback: AsyncCallback&lt;boolean&gt;): void
 - 示例
 
   ```
-  windowClass.isShowing((err) => {
+  windowClass.isShowing((err, data) => {
       if (err.code) {
           console.error('Failed to check whether the window is showing. Cause:' + JSON.stringify(err));
           return;
       }
-      console.info('Succeeded in checking whether the window is showing. Cause:')
+      console.info('Succeeded in checking whether the window is showing. Data: ' + JSON.stringify(data))
   });
   ```
 
@@ -1278,8 +1337,8 @@ isShowing(): Promise&lt;boolean&gt;
 
   ```
   let promise = windowClass.isShowing();
-  promise.then(()=> {
-      console.info('Succeeded in checking whether the window is showing.')
+  promise.then((data)=> {
+      console.info('Succeeded in checking whether the window is showing. Data: ' + JSON.stringify(data))
   }).catch((err)=>{
       console.error('Failed to check whether the window is showing. Cause: ' + JSON.stringify(err));
   });
@@ -1377,6 +1436,56 @@ off(type: 'systemAvoidAreaChange', callback?: Callback&lt;AvoidArea&gt;): void
   windowClass.off(type);
   ```
 
+### on('keyboardHeightChange')<sup>7+</sup>
+
+on(type: 'keyboardHeightChange', callback: Callback&lt;number&gt;): void
+
+开启键盘高度变化的监听。
+
+本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
+- 参数
+
+  | 参数名   | 类型                                    | 必填 | 说明                                                         |
+  | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
+  | type     | string                                  | 是   | 设置监听类型。<br/>-&nbsp;type为'keyboardHeightChange'时表示监听类型为键盘高度变化监听。 |
+  | callback | Callback&lt;[AvoidArea](#avoidarea)&gt; | 是   | 回调返回监听到的信息。                                       |
+
+- 示例
+
+  ```
+  var type = 'keyboardHeightChange';
+  windowClass.on(type, (data) => {
+      console.info('Succeeded in enabling the listener for keyboard height changes. Data: ' + JSON.stringify(data));
+  });
+  ```
+
+### off('keyboardHeightChange')<sup>7+</sup>
+
+off(type: 'keyboardHeightChange', callback?: Callback&lt;number&gt;): void
+
+关闭键盘高度变化的监听。
+
+本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
+- 参数
+
+  | 参数名   | 类型                   | 必填 | 说明                                                         |
+  | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
+  | type     | string                 | 是   | 设置监听类型。<br/>-&nbsp;type为'keyboardHeightChange'时表示监听类型为键盘高度变化监听。 |
+  | callback | Callback&lt;number&gt; | 否   | 回调返回监听到的信息。                                       |
+
+- 示例
+
+  ```
+  var type = 'keyboardHeightChange';
+  windowClass.off(type);
+  ```
+
 ### isSupportWideGamut<sup>8+</sup>
 
 isSupportWideGamut(callback: AsyncCallback&lt;boolean&gt;): void
@@ -1394,12 +1503,12 @@ isSupportWideGamut(callback: AsyncCallback&lt;boolean&gt;): void
 - 示例
 
   ```
-  windowClass.isSupportWideGamut((err) => {
+  windowClass.isSupportWideGamut((err, data) => {
       if (err.code) {
           console.error('Failed to check whether the window support WideGamut. Cause:' + JSON.stringify(err));
           return;
       }
-      console.info('Succeeded in checking whether the window support WideGamut.')
+      console.info('Succeeded in checking whether the window support WideGamut Data: ' + JSON.stringify(data))
   })
   ```
 
@@ -1421,8 +1530,8 @@ isSupportWideGamut(): Promise&lt;boolean&gt;
 
   ```
   let promise = windowClass.isSupportWideGamut();
-  promise.then(()=> {
-      console.info('Succeeded in checking whether the window support WideGamut.')
+  promise.then((data)=> {
+      console.info('Succeeded in checking whether the window support WideGamut. Data: ' + JSON.stringify(data))
   }).catch((err)=>{
       console.error('Failed to check whether the window support WideGamut. Cause: ' + JSON.stringify(err));
   });
@@ -1446,12 +1555,12 @@ setColorSpace(colorSpace:ColorSpace, callback: AsyncCallback&lt;void&gt;): void
 - 示例
 
   ```
-  windowClass.setColorSpace(window.ColorSpace.WIDE_GAMUT, (err) => {
+  windowClass.setColorSpace(window.ColorSpace.WIDE_GAMUT, (err, data) => {
       if (err.code) {
           console.error('Failed to set window colorspace. Cause:' + JSON.stringify(err));
           return;
       }
-      console.info('Succeeded in setting window colorspace.')
+      console.info('Succeeded in setting window colorspace. Data: ' + JSON.stringify(data))
   })
   ```
 
@@ -1479,8 +1588,8 @@ setColorSpace(colorSpace:ColorSpace): Promise&lt;void&gt;
 
   ```
   let promise = windowClass.isSupportWideGamut(window.ColorSpace.WIDE_GAMUT);
-  promise.then(()=> {
-      console.info('Succeeded in setting window colorspace.')
+  promise.then((data)=> {
+      console.info('Succeeded in setting window colorspace. Data: ' + JSON.stringify(data))
   }).catch((err)=>{
       console.error('Failed to set window colorspacet. Cause: ' + JSON.stringify(err));
   });
@@ -1537,3 +1646,514 @@ getColorSpace(): Promise&lt;ColorSpace&gt;
   });
   ```
 
+### setBackgroundColor
+
+setBackgroundColor(color: string, callback: AsyncCallback&lt;void&gt;): void
+
+设置窗口的背景色，使用callback方式作为异步方法。
+
+本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
+- 参数
+
+  | 参数名   | 类型                      | 必填 | 说明                                                         |
+  | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
+  | color    | string                    | 是   | 需要设置的背景色，为16进制颜色，例如"#00FF00"或"#FF00FF00"。 |
+  | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                                   |
+
+- 示例
+
+  ```
+  var color = '#00ff33';
+  windowClass.setBackgroundColor(color, (err, data) => {
+      if (err.code) {
+          console.error('Failed to set the background color. Cause: ' + JSON.stringify(err));
+          return;
+      }
+      console.info('Succeeded in setting the background color. Data: ' + JSON.stringify(data));
+  });
+  ```
+
+### setBackgroundColor
+
+setBackgroundColor(color: string): Promise&lt;void&gt;
+
+设置窗口的背景色，使用Promise方式作为异步方法。
+
+本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
+- 参数
+
+  | 参数名 | 类型   | 必填 | 说明                                                         |
+  | ------ | ------ | ---- | ------------------------------------------------------------ |
+  | color  | string | 是   | 需要设置的背景色，为16进制颜色，例如"#00FF00"或"#FF00FF00"。 |
+
+- 返回值
+
+  | 类型                | 说明                                            |
+  | ------------------- | ----------------------------------------------- |
+  | Promise&lt;void&gt; | 以Promise形式返回结果，返回当前函数执行的结果。 |
+
+- 示例
+
+  ```
+  var color = '#00ff33';
+  let promise = windowClass.setBackgroundColor(color);
+  promise.then((data)=> {
+      console.info('Succeeded in setting the background color. Data: ' + JSON.stringify(data))
+  }).catch((err)=>{
+      console.error('Failed to set the background color. Cause: ' + JSON.stringify(err));
+  });
+  ```
+
+### setBrightness
+
+setBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void
+
+设置屏幕亮度值，使用callback方式作为异步方法。
+
+本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
+- 参数
+
+  | 参数名     | 类型                      | 必填 | 说明                                 |
+  | ---------- | ------------------------- | ---- | ------------------------------------ |
+  | brightness | number                    | 是   | 屏幕亮度值，值为0-1之间。1表示最亮。 |
+  | callback   | AsyncCallback&lt;void&gt; | 是   | 回调函数。                           |
+
+- 示例
+
+  ```
+  var brightness = 1;
+  windowClass.setBrightness(brightness, (err, data) => {
+      if (err.code) {
+          console.error('Failed to set the brightness. Cause: ' + JSON.stringify(err));
+          return;
+      }
+      console.info('Succeeded in setting the brightness. Data: ' + JSON.stringify(data));
+  });
+  ```
+
+### setBrightness
+
+setBrightness(brightness: number): Promise&lt;void&gt;
+
+设置屏幕亮度值，使用Promise方式作为异步方法。
+
+本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
+- 参数
+
+  | 参数名     | 类型   | 必填 | 说明                                 |
+  | ---------- | ------ | ---- | ------------------------------------ |
+  | brightness | number | 是   | 屏幕亮度值，值为0-1之间。1表示最亮。 |
+
+- 返回值
+
+  | 类型                | 说明                                            |
+  | ------------------- | ----------------------------------------------- |
+  | Promise&lt;void&gt; | 以Promise形式返回结果，返回当前函数执行的结果。 |
+
+- 示例
+
+  ```
+  var brightness = 1;
+  let promise = windowClass.setBrightness(brightness);
+  promise.then((data)=> {
+      console.info('Succeeded in setting the brightness. Data: ' + JSON.stringify(data))
+  }).catch((err)=>{
+      console.error('Failed to set the brightness. Cause: ' + JSON.stringify(err));
+  });
+  ```
+
+### setDimBehind<sup>7+</sup>
+
+setDimBehind(dimBehindValue: number, callback: AsyncCallback&lt;void&gt;): void
+
+窗口叠加时，设备有子窗口的情况下设置靠后的窗口的暗度值，使用callback方式作为异步方法。
+
+本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
+- 参数
+
+  | 参数名         | 类型                      | 必填 | 说明                                               |
+  | -------------- | ------------------------- | ---- | -------------------------------------------------- |
+  | dimBehindValue | number                    | 是   | 表示靠后的窗口的暗度值，取值范围为0-1，1表示最暗。 |
+  | callback       | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                         |
+
+- 示例
+
+  ```
+  windowClass.setDimBehind(0.5, (err, data) => {
+      if (err.code) {
+          console.error('Failed to set the dimness. Cause: ' + JSON.stringify(err));
+          return;
+      }
+      console.info('Succeeded in setting the dimness. Data:' + JSON.stringify(data));
+  });
+  ```
+
+### setDimBehind<sup>7+</sup>
+
+setDimBehind(dimBehindValue: number): Promise&lt;void&gt;
+
+窗口叠加时，设备有子窗口的情况下设置靠后的窗口的暗度值，使用Promise方式作为异步方法。
+
+本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
+- 参数
+
+  | 参数名         | 类型   | 必填 | 说明                                               |
+  | -------------- | ------ | ---- | -------------------------------------------------- |
+  | dimBehindValue | number | 是   | 表示靠后的窗口的暗度值，取值范围为0-1，1表示最暗。 |
+
+- 返回值
+
+  | 类型                | 说明                                            |
+  | ------------------- | ----------------------------------------------- |
+  | Promise&lt;void&gt; | 以Promise形式返回结果，返回当前函数执行的结果。 |
+
+- 示例
+
+  ```
+  let promise = windowClass.setDimBehind(0.5);
+  promise.then((data)=> {
+      console.info('Succeeded in setting the dimness. Data: ' + JSON.stringify(data))
+  }).catch((err)=>{
+      console.error('Failed to set the dimness. Cause: ' + JSON.stringify(err));
+  });
+  ```
+
+### setFocusable<sup>7+</sup>
+
+setFocusable(isFocusable: boolean, callback: AsyncCallback&lt;void&gt;): void
+
+设置点击时是否支持切换焦点窗口，使用callback方式作为异步方法。
+
+本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
+- 参数
+
+  | 参数名      | 类型                      | 必填 | 说明                         |
+  | ----------- | ------------------------- | ---- | ---------------------------- |
+  | isFocusable | boolean                   | 是   | 点击时是否支持切换焦点窗口。 |
+  | callback    | AsyncCallback&lt;void&gt; | 是   | 回调函数。                   |
+
+- 示例
+
+  ```
+  var isFocusable= true;
+  windowClass.setFocusable(isFocusable, (err, data) => {
+      if (err.code) {
+          console.error('Failed to set the window to be focusable. Cause:' + JSON.stringify(err));
+          return;
+      }
+      console.info('Succeeded in setting the window to be focusable. Data: ' + JSON.stringify(data));
+  });
+  ```
+
+### setFocusable<sup>7+</sup>
+
+setFocusable(isFocusable: boolean): Promise&lt;void&gt;
+
+设置点击时是否支持切换焦点窗口，使用Promise方式作为异步方法。
+
+本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
+- 参数
+
+  | 参数名      | 类型    | 必填 | 说明                         |
+  | ----------- | ------- | ---- | ---------------------------- |
+  | isFocusable | boolean | 是   | 点击时是否支持切换焦点窗口。 |
+
+- 返回值
+
+  | 类型                | 说明                                            |
+  | ------------------- | ----------------------------------------------- |
+  | Promise&lt;void&gt; | 以Promise形式返回结果，返回当前函数执行的结果。 |
+
+- 示例
+
+  ```
+  var isFocusable= true;
+  let promise = windowClass.setFocusable(isFocusable);
+  promise.then((data)=> {
+      console.info('Succeeded in setting the window to be focusable. Data: ' + JSON.stringify(data))
+  }).catch((err)=>{
+      console.error('Failed to set the window to be focusable. Cause: ' + JSON.stringify(err));
+  });
+  ```
+
+### setKeepScreenOn
+
+setKeepScreenOn(isKeepScreenOn: boolean, callback: AsyncCallback&lt;void&gt;): void
+
+设置屏幕是否为常亮状态，使用callback方式作为异步方法。
+
+本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
+- 参数
+
+  | 参数名         | 类型                      | 必填 | 说明                     |
+  | -------------- | ------------------------- | ---- | ------------------------ |
+  | isKeepScreenOn | boolean                   | 是   | 是否设置为屏幕常亮状态。 |
+  | callback       | AsyncCallback&lt;void&gt; | 是   | 回调函数。               |
+
+- 示例
+
+  ```
+  var isKeepScreenOn = true;
+  windowClass.setKeepScreenOn(isKeepScreenOn, (err, data) => {
+      if (err.code) {
+          console.error('Failed to set the screen to be always on. Cause: ' + JSON.stringify(err));
+          return;
+      }
+      console.info('Succeeded in setting the screen to be always on. Data: ' + JSON.stringify(data));
+  });
+  ```
+
+### setKeepScreenOn
+
+setKeepScreenOn(isKeepScreenOn: boolean): Promise&lt;void&gt;
+
+设置屏幕是否为常亮状态，使用Promise方式作为异步方法。
+
+本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
+- 参数
+
+  | 参数名         | 类型    | 必填 | 说明                     |
+  | -------------- | ------- | ---- | ------------------------ |
+  | isKeepScreenOn | boolean | 是   | 是否设置为屏幕常亮状态。 |
+
+- 返回值
+
+  | 类型                | 说明                                            |
+  | ------------------- | ----------------------------------------------- |
+  | Promise&lt;void&gt; | 以Promise形式返回结果，返回当前函数执行的结果。 |
+
+- 示例
+
+  ```
+  var isKeepScreenOn= true;
+  let promise = windowClass.setKeepScreenOn(isKeepScreenOn);
+  promise.then((data)=> {
+      console.info('Succeeded in setting the screen to be always on. Data: ' + JSON.stringify(data))
+  }).catch((err)=>{
+      console.error('Failed to set the screen to be always on. Cause: ' + JSON.stringify(err));
+  });
+  ```
+
+### setOutsideTouchable<sup>7+</sup>
+
+setOutsideTouchable(touchable: boolean, callback: AsyncCallback&lt;void&gt;): void
+
+设置是否允许可点击子窗口以外的区域，使用callback方式作为异步方法。
+
+本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
+- 参数
+
+  | 参数名    | 类型                      | 必填 | 说明             |
+  | --------- | ------------------------- | ---- | ---------------- |
+  | touchable | boolean                   | 是   | 设置是否可点击。 |
+  | callback  | AsyncCallback&lt;void&gt; | 是   | 回调函数。       |
+
+- 示例
+
+  ```
+  windowClass.setOutsideTouchable(true, (err, data) => {
+      if (err.code) {
+          console.error('Failed to set the area to be touchable. Cause: ' + JSON.stringify(err));
+          return;
+      }
+      console.info('Succeeded in setting the area to be touchable. Data: ' + JSON.stringify(data))
+  })
+  ```
+
+### setOutsideTouchable<sup>7+</sup>
+
+setOutsideTouchable(touchable: boolean): Promise&lt;void&gt;
+
+设置是否允许可点击子窗口以外的区域，使用Promise方式作为异步方法。
+
+本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
+- 参数
+
+  | 参数名    | 类型    | 必填 | 说明             |
+  | --------- | ------- | ---- | ---------------- |
+  | touchable | boolean | 是   | 设置是否可点击。 |
+
+- 返回值
+
+  | 类型                | 说明                                            |
+  | ------------------- | ----------------------------------------------- |
+  | Promise&lt;void&gt; | 以Promise形式返回结果，返回当前函数执行的结果。 |
+
+- 示例
+
+  ```
+  let promise = windowClass.setOutsideTouchable(true);
+  promise.then((data)=> {
+      console.info('Succeeded in setting the area to be touchable. Data: ' + JSON.stringify(data))
+  }).catch((err)=>{
+      console.error('Failed to set the area to be touchable. Cause: ' + JSON.stringify(err));
+  });
+  ```
+
+### setPrivacyMode<sup>7+</sup>
+
+setPrivacyMode(isPrivacyMode: boolean, callback: AsyncCallback&lt;void&gt;): void
+
+设置窗口是否为隐私模式，使用callback方式作为异步方法。
+
+本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
+- 参数
+
+  | 参数名        | 类型                      | 必填 | 说明                 |
+  | ------------- | ------------------------- | ---- | -------------------- |
+  | isPrivacyMode | boolean                   | 是   | 窗口是否为隐私模式。 |
+  | callback      | AsyncCallback&lt;void&gt; | 是   | 回调函数。           |
+
+- 示例
+
+  ```
+  var isPrivacyMode = true;
+  windowClass.setPrivacyMode(isPrivacyMode, (err, data) => {
+      if (err.code) {
+          console.error('Failed to set the window to privacy mode. Cause:' + JSON.stringify(err));
+          return;
+      }
+      console.info('Succeeded in setting the window to privacy mode. Data:' + JSON.stringify(data));
+  
+  });
+  ```
+
+### setPrivacyMode<sup>7+</sup>
+
+setPrivacyMode(isPrivacyMode: boolean): Promise&lt;void&gt;
+
+设置窗口是否为隐私模式，使用Promise方式作为异步方法。
+
+本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
+- 参数
+
+  | 参数名        | 类型    | 必填 | 说明                 |
+  | ------------- | ------- | ---- | -------------------- |
+  | isPrivacyMode | boolean | 是   | 窗口是否为隐私模式。 |
+
+- 返回值
+
+  | 类型                | 说明                                            |
+  | ------------------- | ----------------------------------------------- |
+  | Promise&lt;void&gt; | 以Promise形式返回结果，返回当前函数执行的结果。 |
+
+- 示例
+
+  ```
+  var isPrivacyMode = true;
+  let promise = windowClass.setPrivacyMode(isPrivacyMode);
+  promise.then((data)=> {
+      console.info('Succeeded in setting the window to privacy mode. Data: ' + JSON.stringify(data))
+  }).catch((err)=>{
+      console.error('Failed to set the window to privacy mode. Cause: ' + JSON.stringify(err));
+  });
+  ```
+
+### setTouchable<sup>7+</sup>
+
+setTouchable(isTouchable: boolean, callback: AsyncCallback&lt;void&gt;): void
+
+设置窗口是否为可触状态，使用callback方式作为异步方法。
+
+本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
+- 参数
+
+  | 参数名      | 类型                      | 必填 | 说明                 |
+  | ----------- | ------------------------- | ---- | -------------------- |
+  | isTouchable | boolean                   | 是   | 窗口是否为可触状态。 |
+  | callback    | AsyncCallback&lt;void&gt; | 是   | 回调函数。           |
+
+- 示例
+
+  ```
+  var isTouchable = true;
+  windowClass.setTouchable(isTouchable, (err, data) => {
+      if (err.code) {
+          console.error('Failed to set the window to be touchable. Cause:' + JSON.stringify(err));
+          return;
+      }
+      console.info('Succeeded in setting the window to be touchable. Data:' + JSON.stringify(data));
+  
+  });
+  ```
+
+### setTouchable<sup>7+</sup>
+
+setTouchable(isTouchable: boolean): Promise&lt;void&gt;
+
+设置窗口是否为可触状态，使用Promise方式作为异步方法。
+
+本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
+- 参数
+
+  | 参数名      | 类型    | 必填 | 说明                 |
+  | ----------- | ------- | ---- | -------------------- |
+  | isTouchable | boolean | 是   | 窗口是否为可触状态。 |
+
+- 返回值
+
+  | 类型                | 说明                                            |
+  | ------------------- | ----------------------------------------------- |
+  | Promise&lt;void&gt; | 以Promise形式返回结果，返回当前函数执行的结果。 |
+
+- 示例
+
+  ```
+  var isTouchable = true;
+  let promise = windowClass.setTouchable(isTouchable);
+  promise.then((data)=> {
+      console.info('Succeeded in setting the window to be touchable. Data: ' + JSON.stringify(data))
+  }).catch((err)=>{
+      console.error('Failed to set the window to be touchable. Cause: ' + JSON.stringify(err));
+  });
+  ```
+
+### 
