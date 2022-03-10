@@ -151,7 +151,7 @@ on(type: sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback: AsyncCallback&lt;
 
 监听陀螺仪传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-**需要权限**：ohos.permission.GRYOSCOPE ，该权限为系统权限
+**需要权限**：ohos.permission.GYROSCOPE ，该权限为系统权限
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -184,7 +184,7 @@ on(type:sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED,callback:AsyncCa
 
 监听未校准陀螺仪传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-**需要权限**：ohos.permission.GRYOSCOPE ，该权限为系统权限
+**需要权限**：ohos.permission.GYROSCOPE ，该权限为系统权限
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -858,7 +858,7 @@ once(type:sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION,callback:AsyncCal
 
 监听计步检测传感器数据变化一次。
 
-**需要权限**：ohos.permission.ACTIVITY_MOTION, 该权为系统权限
+**需要权限**：ohos.permission.ACTIVITY_MOTION, 该权限为系统权限
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -887,7 +887,7 @@ once(type: sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER, callback: AsyncCallback&l
 
 监听计步器传感器数据变化一次。
 
-**需要权限**：ohos.permission.ACTIVITY_MOTION， 该权为系统权限
+**需要权限**：ohos.permission.ACTIVITY_MOTION， 该权限为系统权限
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
