@@ -387,7 +387,7 @@ removeOsAccount(localId: number, callback: AsyncCallback&lt;void&gt;): void
   var createIocalId;
   osAccountManager.createOsAccount("testAccountName", osaccount.OsAccountType.NORMAL, (err, osAccountInfo)=>{
     createIocalId = osAccountInfo.localId;
-  )};
+  });
   accountManager.removeOsAccount(createIocalId, (err)=>{
     console.log("removeOsAccount err:" + JSON.stringify(err));
   });
@@ -418,7 +418,7 @@ removeOsAccount(localId: number): Promise&lt;void&gt;
   var createIocalId;
   osAccountManager.createOsAccount("testAccountName", osaccount.OsAccountType.NORMAL, (err, osAccountInfo)=>{
     createIocalId = osAccountInfo.localId;
-  )};
+  });
   createIocalId = osAccount.localId;
   accountManager.removeOsAccount(createIocalId).then(() => {
     console.log('removeOsAccount Success');
