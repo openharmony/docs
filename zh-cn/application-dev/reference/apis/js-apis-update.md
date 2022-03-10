@@ -518,9 +518,9 @@ update.getUpdatePolicy().then(value => {
 
 ## InstallMode
 
-**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
-
 安装模式。
+
+**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
 
 | 参数名              | 默认值 | 说明     |
 | ------------------- | ------ | -------- |
@@ -530,9 +530,9 @@ update.getUpdatePolicy().then(value => {
 
 ## NewVersionStatus
 
-**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
-
 新版本检测状态。
+
+**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
 
 | 参数名              | 默认值 | 说明             |
 | ------------------- | ------ | ---------------- |
@@ -543,9 +543,9 @@ update.getUpdatePolicy().then(value => {
 
 ## UpdatePolicy
 
-**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
-
 升级策略。
+
+**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
 
 | 名称                | 参数类型                    | 必填 | 说明           |
 | ------------------- | --------------------------- | ---- | -------------- |
@@ -555,9 +555,9 @@ update.getUpdatePolicy().then(value => {
 
 ## NewVersionInfo
 
-**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
-
 新版本信息。
+
+**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
 
 | 名称            | 参数类型                                    | 必填 | 说明     |
 | --------------- | ------------------------------------------- | ---- | -------- |
@@ -568,9 +568,9 @@ update.getUpdatePolicy().then(value => {
 
 ## CheckResult
 
-**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
-
 检测结果。
+
+**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
 
 | 名称          | 参数类型                      | 必填 | 说明         |
 | ------------- | ----------------------------- | ---- | ------------ |
@@ -583,9 +583,9 @@ update.getUpdatePolicy().then(value => {
 
 ## DescriptionInfo
 
-**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
-
 版本描述信息。
+
+**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
 
 | 名称          | 参数类型 | 必填 | 说明              |
 | ------------- | -------- | ---- | ----------------- |
