@@ -1,4 +1,4 @@
-# CommonEvent开发指南
+# CommonEvent开发指导
 
 #### 基本概念
 
@@ -142,6 +142,9 @@ import CommonEvent from '@ohos.commonevent';
 		console.info("==========================>createSubscriberPromise=======================>");
 	  subscriber = data;
   });
+  
+  ```
+  
   ```
 
 
@@ -200,8 +203,9 @@ import CommonEvent from '@ohos.commonevent';
     }
     //创建订阅者
     CommonEvent.createSubscriber(subscribeInfo, CreateSubscriberCallBack);
-  ```
-
+    ```
+```
+  
     **有序事件：**
     
     ```js
@@ -244,7 +248,7 @@ import CommonEvent from '@ohos.commonevent';
     
     //创建订阅者
     CommonEvent.createSubscriber(subscribeInfo, CreateSubscriberCallBack);
-    ```
+  ```
 
 
 ​    

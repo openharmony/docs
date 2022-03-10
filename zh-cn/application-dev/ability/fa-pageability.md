@@ -1,4 +1,4 @@
-# PageAbility开发说明
+# PageAbility开发指导
 
 ## PageAbility介绍
 
