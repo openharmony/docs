@@ -23,7 +23,7 @@ import ServiceExtension from '@ohos.application.ServiceExtension';
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 | 
 | -------- | -------- | -------- | -------- | -------- |
-| context | [ServiceExtensionContext](js-apis-service-extension-context.md)  | 是 | 否 | ServiceExtension的上下文环境，继承自ExtensionContext。 | 
+| context | [ServiceExtensionContext](js-apis-service-extension-context.md)  | 是 | 否 | ServiceExtension的上下文环境，继承自ExtensionContext。 <br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core| 
 
 
 ## onCreate
@@ -32,17 +32,17 @@ onCreate(want: Want): void;
 
 Extension生命周期回调，在创建时回调，执行初始化业务逻辑操作。
 
-**系统能力:**
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-SystemCapability.Ability.AbilityRuntime.Core
+**参数：**
 
-- 参数：
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | want |  [Want](js-apis-featureAbility.md#Want类型说明) | 是 | 当前Extension相关的Want类型信息，包括ability名称、bundle名称等。 | 
 
-- 示例：
-  ```
+**示例：**
+
+  ```js
   class ServiceExt extends ServiceExtension {
     onCreate(want) {
       console.log('onCreate, want:' + want.abilityName);
@@ -57,12 +57,11 @@ onDestroy(): void;
 
 Extension生命周期回调，在销毁时回调，执行资源清理等操作。
 
-**系统能力:**
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-SystemCapability.Ability.AbilityRuntime.Core
+**示例：**
 
-- 示例：
-  ```
+  ```js
   class ServiceExt extends ServiceExtension {
     onDestroy() {
       console.log('onDestroy');
@@ -77,18 +76,18 @@ onRequest(want: Want, startId: number): void;
 
 Extension生命周期回调，如果是startAbility拉起的服务，会在onCreate之后回调。每次拉起服务都会回调，startId会递增。
 
-**系统能力:**
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-SystemCapability.Ability.AbilityRuntime.Core
+**参数：**
 
-- 参数：
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | want |  [Want](js-apis-featureAbility.md#Want类型说明) | 是 | 当前Extension相关的Want类型信息，包括ability名称、bundle名称等。 | 
   | startId | number | 是 | 返回拉起次数。首次拉起初始值返回1，多次之后自动递增。 | 
 
-- 示例：
-  ```
+**示例：**
+
+  ```js
   class ServiceExt extends ServiceExtension {
     onRequest(want, startId) {
       console.log('onRequest, want:' + want.abilityName);
@@ -103,22 +102,23 @@ onConnect(want: Want): rpc.RemoteObject;
 
 Extension生命周期回调，如果是connectAbility拉起的服务，会在onCreate之后回调。返回一个RemoteObject对象，用于和客户端进行通信。
 
-**系统能力:**
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-SystemCapability.Ability.AbilityRuntime.Core
+**参数：**
 
-- 参数：
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | want |  [Want](js-apis-featureAbility.md#Want类型说明)| 是 | 当前Extension相关的Want类型信息，包括ability名称、bundle名称等。 | 
 
-- 返回值：
+**返回值：**
+
   | 类型 | 说明 | 
   | -------- | -------- |
   | rpc.RemoteObject | 一个RemoteObject对象，用于和客户端进行通信。 | 
 
-- 示例：
-  ```
+**示例：**
+
+  ```js
   import rpc from '@ohos.rpc'
   class StubTest extends rpc.RemoteObject{
       constructor(des) {
@@ -142,17 +142,17 @@ onDisconnect(want: Want): void;
 
 Extension的生命周期，断开服务连接时回调。
 
-**系统能力:**
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-SystemCapability.Ability.AbilityRuntime.Core
+**参数：**
 
-- 参数：
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | want |[Want](js-apis-featureAbility.md#Want类型说明)| 是 | 当前Extension相关的Want类型信息，包括ability名称、bundle名称等。 | 
 
-- 示例：
-  ```
+**示例：**
+
+  ```js
   class ServiceExt extends ServiceExtension {
     onDisconnect(want) {
       console.log('onDisconnect, want:' + want.abilityName);

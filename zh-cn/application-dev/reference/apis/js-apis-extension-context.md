@@ -11,4 +11,4 @@ Extension的上下文环境，继承自Context。
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 | 
 | -------- | -------- | -------- | -------- | -------- |
-| currentHapModuleInfo | HapModuleInfo | 是 | 否 | 当前Hap包的信息。<br><b>系统能力：</b>SystemCapability.Ability.AbilityRuntime.Core | 
+| currentHapModuleInfo | HapModuleInfo | 是 | 否 | 当前Hap包的信息。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core  | 

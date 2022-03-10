@@ -19,7 +19,7 @@ import FormExtension from '@ohos.application.FormExtension';
 
 | 名称    | 参数类型                                                | 可读 | 可写 | 说明                                                |
 | ------- | ------------------------------------------------------- | ---- | ---- | --------------------------------------------------- |
-| context | [FormExtensionContext](js-apis-formextensioncontext.md) | 是   | 否   | FormExtension的上下文环境，继承自ExtensionContext。 |
+| context | [FormExtensionContext](js-apis-formextensioncontext.md) | 是   | 否   | FormExtension的上下文环境，继承自ExtensionContext。<br/>**系统能力**：SystemCapability.Ability.Form |
 
 ## onCreate
 
@@ -27,21 +27,23 @@ onCreate(want: Want): formBindingData.FormBindingData
 
 卡片提供方接收创建卡片的通知接口。
 
-- 参数：
+**系统能力**：SystemCapability.Ability.Form
+
+**参数：**
 
   | 参数名 | 类型                                   | 必填 | 说明                                                         |
   | ------ | -------------------------------------- | ---- | ------------------------------------------------------------ |
   | want   | [Want](js-apis-featureAbility.md#want) | 是   | 当前Extension相关的Want类型信息，包括卡片ID、卡片名称、卡片样式等。这些卡片信息必须作为持久数据进行管理，以便后续更新和删除卡片。 |
 
-- 返回值：
+**返回值：**
 
   | 类型                                                         | 说明                                                        |
   | ------------------------------------------------------------ | ----------------------------------------------------------- |
   | [formBindingData.FormBindingData](js-apis-formbindingdata.md#formbindingdata) | 一个formBindingData.FormBindingData对象，卡片要显示的数据。 |
 
-- 示例：
+**示例：**
 
-  ```
+  ```js
   export default class MyFormExtension extends FormExtension {
       onCreate(want) {
           console.log('FormExtension onCreate, want:' + want.abilityName);
@@ -55,19 +57,21 @@ onCreate(want: Want): formBindingData.FormBindingData
   }
   ```
 
-## onCastToNormal
+## FormExtension.onCastToNormal
 
 onCastToNormal(formId: string): void
 
 卡片提供方接收临时卡片转常态卡片的通知接口。
 
-- 参数：
+**系统能力**：SystemCapability.Ability.Form
+
+**参数：**
 
   | 参数名 | 类型   | 必填 | 说明                     |
   | ------ | ------ | ---- | ------------------------ |
   | formId | string | 是   | 请求转换为常态的卡片ID。 |
 
-- 示例：
+**示例：**
 
   ```
   export default class MyFormExtension extends FormExtension {
@@ -77,21 +81,23 @@ onCastToNormal(formId: string): void
   }
   ```
 
-## onUpdate
+## FormExtension.onUpdate
 
 onUpdate(formId: string): void
 
 卡片提供方接收更新卡片的通知接口。获取最新数据后调用[FormExtensionContext](js-apis-formextensioncontext.md)的updateForm接口刷新卡片数据。
 
-- 参数：
+**系统能力**：SystemCapability.Ability.Form
+
+**参数：**
 
   | 参数名 | 类型   | 必填 | 说明               |
   | ------ | ------ | ---- | ------------------ |
   | formId | string | 是   | 请求更新的卡片ID。 |
 
-- 示例：
+**示例：**
 
-  ```
+  ```js
   export default class MyFormExtension extends FormExtension {
       onUpdate(formId) {
           console.log('FormExtension onUpdate, formId:' + formId);
@@ -105,21 +111,23 @@ onUpdate(formId: string): void
   }
   ```
 
-## onVisibilityChange
+## FormExtension.onVisibilityChange
 
 onVisibilityChange(newStatus: { [key: string]: number }): void
 
 卡片提供方接收修改可见性的通知接口。
 
-- 参数：
+**系统能力**：SystemCapability.Ability.Form
+
+**参数：**
 
   | 参数名    | 类型                      | 必填 | 说明                         |
   | --------- | ------------------------- | ---- | ---------------------------- |
   | newStatus | { [key: string]: number } | 是   | 请求修改的卡片ID和可见状态。 |
 
-- 示例：
+**示例：**
 
-  ```
+  ```js
   export default class MyFormExtension extends FormExtension {
       onVisibilityChange(newStatus) {
           console.log('FormExtension onVisibilityChange, newStatus:' + newStatus);
@@ -137,22 +145,24 @@ onVisibilityChange(newStatus: { [key: string]: number }): void
   }
   ```
 
-## onEvent
+## FormExtension.onEvent
 
 onEvent(formId: string, message: string): void
 
 卡片提供方接收处理卡片事件的通知接口。
 
-- 参数：
+**系统能力**：SystemCapability.Ability.Form
+
+**参数：**
 
   | 参数名  | 类型   | 必填 | 说明                   |
   | ------- | ------ | ---- | ---------------------- |
   | formId  | string | 是   | 请求触发事件的卡片ID。 |
   | message | string | 是   | 事件消息。             |
 
-- 示例：
+**示例：**
 
-  ```
+  ```js
   export default class MyFormExtension extends FormExtension {
       onEvent(formId, message) {
           console.log('FormExtension onEvent, formId:' + formId + ", message:" + message);
@@ -160,21 +170,23 @@ onEvent(formId: string, message: string): void
   }
   ```
 
-## onDestroy
+## FormExtension.onDestroy
 
 onDestroy(formId: string): void
 
 卡片提供方接收销毁卡片的通知接口。
 
-- 参数：
+**系统能力**：SystemCapability.Ability.Form
+
+**参数：**
 
   | 参数名 | 类型   | 必填 | 说明               |
   | ------ | ------ | ---- | ------------------ |
   | formId | string | 是   | 请求销毁的卡片ID。 |
 
-- 示例：
+**示例：**
 
-  ```
+  ```js
   export default class MyFormExtension extends FormExtension {
       onDestroy(formId) {
           console.log('FormExtension onDestroy, formId:' + formId);

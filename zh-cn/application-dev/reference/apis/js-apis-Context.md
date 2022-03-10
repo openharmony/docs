@@ -15,9 +15,7 @@ var context = featureAbility.getContext();
 context.getOrCreateLocalDir()
 ```
 
-## Context
-
-### getOrCreateLocalDir
+## Context.getOrCreateLocalDir
 
 getOrCreateLocalDir(callback: AsyncCallback\<string>): void
 
@@ -25,12 +23,9 @@ getOrCreateLocalDir(callback: AsyncCallback\<string>): void
 
 如果是第一次调用，将创建目录。
 
-**系统能力:**
-
-SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
-
 
 | 名称     | 类型                   | 必填 | 描述                       |
 | -------- | ---------------------- | ---- | -------------------------- |
@@ -48,7 +43,7 @@ context.getOrCreateLocalDir((err, data)=>{
 
 
 
-### getOrCreateLocalDir
+## Context.getOrCreateLocalDir
 
 getOrCreateLocalDir(): Promise\<string>
 
@@ -56,9 +51,7 @@ getOrCreateLocalDir(): Promise\<string>
 
 如果是第一次调用，将创建目录。
 
-**系统能力:**
-
-SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **返回值：**
 
@@ -78,18 +71,15 @@ context.getOrCreateLocalDir().then((data) => {
 
 
 
-### verifyPermission
+## Context.verifyPermission
 
 verifyPermission(permission: string, options: PermissionOptions, callback: AsyncCallback\<number>): void
 
 验证系统中运行的特定pid和uid是否允许指定的权限（callback形式）。
 
-**系统能力:**
-
-SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
-
 
 | 名称       | 类型                                    | 必填 | 描述                                  |
 | ---------- | --------------------------------------- | ---- | ------------------------------------- |
@@ -110,14 +100,15 @@ bundle.getBundleInfo('com.context.test', 1, (datainfo) =>{
 
 
 
-### verifyPermission
+## Context.verifyPermission
 
 verifyPermission(permission: string, callback: AsyncCallback\<number>): void
 
 验证系统中运行的当前pid和uid是否具有指定的权限（callback形式）。
 
-**参数：**
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
+**参数：**
 
 | 名称       | 类型                   | 必填 | 描述                                  |
 | ---------- | ---------------------- | ---- | ------------------------------------- |
@@ -132,18 +123,15 @@ var context = featureAbility.getContext();
 context.verifyPermission("com.example.permission")
 ```
 
-### verifyPermission
+## Context.verifyPermission
 
 verifyPermission(permission: string, options?: PermissionOptions): Promise\<number>
 
 验证系统中运行的特定pid和uid是否具有指定的权限（Promise形式）。
 
-**系统能力:**
-
-SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
-
 
 | 名称       | 类型                                    | 必填 | 描述             |
 | ---------- | --------------------------------------- | ---- | ---------------- |
@@ -170,24 +158,22 @@ context.verifyPermission('com.context.permission',Permission).then((data) => {
 
 
 
-### requestPermissionsFromUser
+## Context.requestPermissionsFromUser
 
-requestPermissionsFromUser(permissions: Array\<string>, requestCode: number, resultCallback: AsyncCallback<[PermissionRequestResult](#permissionrequestresult)>)
+requestPermissionsFromUser(permissions: Array\<string>, requestCode: number, resultCallback: AsyncCallback<[PermissionRequestResult](#permissionrequestresult)>): void
 
 从系统请求某些权限（callback形式）。
 
-**系统能力:**
-
-SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
-
 
 | 名称           | 类型                                                         | 必填 | 描述                                            |
 | -------------- | ------------------------------------------------------------ | ---- | ----------------------------------------------- |
 | permissions    | Array\<string>                                               | 是   | 指示要请求的权限列表。此参数不能为null。        |
 | requestCode    | number                                                       | 是   | 指示要传递给PermissionRequestResult的请求代码。 |
 | resultCallback | AsyncCallback<[PermissionRequestResult](#permissionrequestresult)> | 是   | 返回授权结果信息。                              |
+
 **示例：**
 
 ```js
@@ -208,15 +194,13 @@ context.requestPermissionsFromUser(
 
 
 
-### getApplicationInfo
+## Context.getApplicationInfo
 
-getApplicationInfo(callback: AsyncCallback\<ApplicationInfo>)
+getApplicationInfo(callback: AsyncCallback\<ApplicationInfo>): void
 
 获取有关当前应用程序的信息（callback形式）。
 
-**系统能力:**
-
-SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -234,15 +218,13 @@ context.getApplicationInfo()
 
 
 
-### getApplicationInfo
+## Context.getApplicationInfo
 
 getApplicationInfo(): Promise\<ApplicationInfo>
 
 获取有关当前应用程序的信息（Promise形式）。
 
-**系统能力:**
-
-SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **返回值：**
 
@@ -263,15 +245,13 @@ context.getApplicationInfo().then((data) => {
 
 
 
-### getBundleName
+## Context.getBundleName
 
 getBundleName(callback: AsyncCallback\<string>): void
 
 获取当前ability的捆绑包名称（callback形式）。
 
-**系统能力:**
-
-SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -289,15 +269,13 @@ context.getBundleName()
 
 
 
-### getBundleName
+## Context.getBundleName
 
 getBundleName(): Promise\<string>
 
 获取当前ability的捆绑包名称（Promise形式）。
 
-**系统能力:**
-
-SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **返回值：**
 
@@ -318,15 +296,13 @@ context.getBundleName().then((data) => {
 
 
 
-### getProcessInfo
+## Context.getProcessInfo
 
-getProcessInfo(callback: AsyncCallback\<ProcessInfo>)
+getProcessInfo(callback: AsyncCallback\<ProcessInfo>): void
 
 获取有关当前进程的信息，包括进程ID和名称（callback形式）。
 
-**系统能力:**
-
-SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -344,15 +320,13 @@ context.getProcessInfo()
 
 
 
-### getProcessInfo
+## Context.getProcessInfo
 
 getProcessInfo(): Promise\<ProcessInfo>
 
 获取有关当前进程的信息，包括进程id和名称（Promise形式）。
 
-**系统能力:**
-
-SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **返回值：**
 
@@ -373,7 +347,7 @@ context.getProcessInfo().then((data) => {
 
 
 
-### getElementName
+## Context.getElementName
 
 getElementName(callback: AsyncCallback\<ElementName>): void
 
@@ -381,9 +355,7 @@ getElementName(callback: AsyncCallback\<ElementName>): void
 
 此方法仅适用于页面功能。
 
-**系统能力:**
-
-SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -401,7 +373,7 @@ context.getElementName()
 
 
 
-### getElementName
+## Context.getElementName
 
 getElementName(): Promise\<ElementName>
 
@@ -409,9 +381,7 @@ getElementName(): Promise\<ElementName>
 
 此方法仅适用于页面功能。
 
-**系统能力:**
-
-SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **返回值：**
 
@@ -430,15 +400,15 @@ context.getElementName().then((data) => {
 });
 ```
 
-### getProcessName
+## Context.getProcessName
 
 getProcessName(callback: AsyncCallback\<string>): void
 
 获取当前进程的名称（callback形式）。
 
-**系统能力:**
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-SystemCapability.Ability.AbilityRuntime.Core
+**参数：**
 
 | 名称     | 类型                   | 必填 | 描述                 |
 | -------- | ---------------------- | ---- | -------------------- |
@@ -454,15 +424,13 @@ context.getProcessName()
 
 
 
-### getProcessName
+## Context.getProcessName
 
 getProcessName(): Promise\<string>
 
 获取当前进程的名称（Promise形式）。
 
-**系统能力:**
-
-SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **返回值：**
 
@@ -483,15 +451,13 @@ context.getProcessName().then((data) => {
 
 
 
-### getCallingBundle
+## Context.getCallingBundle
 
 getCallingBundle(callback: AsyncCallback\<string>): void
 
 获取调用ability的包名称（callback形式）。
 
-**系统能力:**
-
-SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -509,15 +475,13 @@ context.getCallingBundle()
 
 
 
-### getCallingBundle
+## Context.getCallingBundle
 
 getCallingBundle(): Promise\<string>
 
 获取调用ability的包名称（Promise形式）。
 
-**系统能力:**
-
-SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **返回值：**
 
@@ -540,13 +504,13 @@ context.getCallingBundle().then((data) => {
 
 | 名称 | 读写属性 | 类型   | 必填 | 描述   |
 | ---- | -------- | ------ | ---- | ------ |
-| pid  | 只读     | number | 否   | 进程id<br><b>系统能力：</b>SystemCapability.Ability.AbilityRuntime.Core|
-| uid  | 只读     | number | 否   | 用户id<br><b>系统能力：</b>SystemCapability.Ability.AbilityRuntime.Core |
+| pid  | 只读     | number | 否   | 进程id。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core |
+| uid  | 只读     | number | 否   | 用户id。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core |
 
 ## PermissionRequestResult
 
 | 名称        | 读写属性 | 类型           | 必填 | 描述               |
 | ----------- | -------- | -------------- | ---- | ------------------ |
-| requestCode | 只读     | number         | 是   | 用户传入的请求代码<br><b>系统能力：</b>SystemCapability.Ability.AbilityRuntime.Core |
-| permissions | 只读     | Array\<string> | 是   | 用户传入的权限<br><b>系统能力：</b>SystemCapability.Ability.AbilityRuntime.Core     |
-| authResults | 只读     | Array\<number> | 是   | 求权限的结果<br><b>系统能力：</b>SystemCapability.Ability.AbilityRuntime.Core       |
+| requestCode | 只读     | number         | 是   | 用户传入的请求代码。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core |
+| permissions | 只读     | Array\<string> | 是   | 用户传入的权限。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core     |
+| authResults | 只读     | Array\<number> | 是   | 求权限的结果。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core      |

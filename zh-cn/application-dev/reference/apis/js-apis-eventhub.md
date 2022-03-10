@@ -20,7 +20,7 @@
 
 
   
-```
+```js
 import Ability from '@ohos.application.Ability'
 export default class MainAbility extends Ability {
     onForeground() {
@@ -30,25 +30,24 @@ export default class MainAbility extends Ability {
 ```
 
 
-## on
+## EventHub.on
 
 on(event: string, callback: Function): void;
 
 订阅指定事件。
 
-**系统能力:**
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-SystemCapability.Ability.AbilityRuntime.Core
+**参数：**
 
-- 参数：
-    | 参数名 | 类型 | 必填 | 说明 | 
+  | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | event | string | 是 | 事件名称。 | 
   | callback | Function | 是 | 事件回调，事件触发后运行。 | 
 
-- 示例：
+**示例：**
     
-  ```
+  ```js
   import Ability from '@ohos.application.Ability'
   
   export default class MainAbility extends Ability {
@@ -69,25 +68,24 @@ SystemCapability.Ability.AbilityRuntime.Core
   ```
 
 
-## off
+## EventHub.off
 
 off(event: string, callback?: Function): void;
 
 取消订阅指定事件。当callback传值时，取消订阅指定的callback；未传值时，取消订阅该事件下所有callback。
 
-**系统能力:**
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-SystemCapability.Ability.AbilityRuntime.Core
+**参数：**
 
-- 参数：
-    | 参数名 | 类型 | 必填 | 说明 | 
+  | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | event | string | 是 | 事件名称。 | 
   | callback | Function | 否 | 事件回调。如果不传callback，则取消订阅该事件下所有callback。 | 
 
-- 示例：
+**示例：**
     
-  ```
+  ```js
   import Ability from '@ohos.application.Ability'
   
   export default class MainAbility extends Ability {
@@ -108,25 +106,24 @@ SystemCapability.Ability.AbilityRuntime.Core
   ```
 
 
-## emit
+## EventHub.emit
 
 emit(event: string, ...args: Object[]): void;
 
 触发指定事件。
 
-**系统能力:**
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-SystemCapability.Ability.AbilityRuntime.Core
+**参数：**
 
-- 参数：
-    | 参数名 | 类型 | 必填 | 说明 | 
+  | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | event | string | 是 | 事件名称。 | 
   | ...args | Object[] | 是 | 可变参数，事件触发时，传递给回调函数的参数。 | 
 
-- 示例：
+**示例：**
     
-  ```
+  ```js
   import Ability from '@ohos.application.Ability'
   
   export default class MainAbility extends Ability {
