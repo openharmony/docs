@@ -79,6 +79,7 @@
     - [WebGL](js-apis-webgl.md)
     - [WebGL2](js-apis-webgl2.md)
     - [屏幕截图](js-apis-screenshot.md)
+    - [辅助功能](js-apis-accessibility.md)
 - DFX
     - [应用打点](js-apis-hiappevent.md)
     - [性能打点](js-apis-hitracemeter.md)
