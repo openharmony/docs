@@ -476,6 +476,8 @@ update.getUpdatePolicy().then(value => {
 
 升级包类型。
 
+**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+
 | 参数名               | 默认值 | 说明           |
 | -------------------- | ------ | -------------- |
 | PACKAGE_TYPE_NORMAL  | 1      | 通用升级包     |
@@ -488,6 +490,8 @@ update.getUpdatePolicy().then(value => {
 
 ## InstallMode
 
+**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+
 安装模式。
 
 | 参数名              | 默认值 | 说明     |
@@ -497,6 +501,8 @@ update.getUpdatePolicy().then(value => {
 | INSTALL_MODE_AUTO   | 2      | 自动升级 |
 
 ## NewVersionStatus
+
+**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
 
 新版本检测状态。
 
@@ -509,6 +515,8 @@ update.getUpdatePolicy().then(value => {
 
 ## UpdatePolicy
 
+**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+
 升级策略。
 
 | 名称                | 参数类型                    | 必填 | 说明           |
@@ -518,6 +526,8 @@ update.getUpdatePolicy().then(value => {
 | autoUpgradeInterval | Array\<number>              | 是   | 自动升级时间段 |
 
 ## NewVersionInfo
+
+**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
 
 新版本信息。
 
@@ -529,6 +539,8 @@ update.getUpdatePolicy().then(value => {
 | descriptionInfo | Array\<[DescriptionInfo](#descriptioninfo)> | 是   | 描述信息 |
 
 ## CheckResult
+
+**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
 
 检测结果。
 
@@ -542,6 +554,8 @@ update.getUpdatePolicy().then(value => {
 | descriptionId | string                        | 是   | 版本描述信息 |
 
 ## DescriptionInfo
+
+**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
 
 版本描述信息。
 
