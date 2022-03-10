@@ -13,16 +13,16 @@ HiSysEvent provides an API for you to query system events. You can query concern
 
 ### Available APIs<a name="section03869128521"></a>
 
-**Table 1** HiSysEvent query API
+**Table 1** Description of the HiSysEvent query API
 
-| API| Description|
+| Name| Description |
 | -------- | --------- |
-| bool HiSysEventManager::QueryHiSysEvent(struct QueryArg&amp; queryArg, std::vector&lt;QueryRule&gt;&amp; queryRules, std::shared_ptr&lt;HiSysEventQueryCallBackBase&gt; queryCallBack) | Queries system events by specifying search criteria such as the time segment, event domain, and event name. <br><br>Input arguments:<ul><li>**queryArg**: event query parameter. </li><li>**queryRules**: event filtering rules. </li><li>**queryCallBack**: callback object for query results. </li></ul>Return value:<ul><li>**true**: The query is successful. </li><li>**false**: The query has failed.</li></ul> |
+| bool HiSysEventManager::QueryHiSysEvent(struct QueryArg&amp; queryArg, std::vector&lt;QueryRule&gt;&amp; queryRules, std::shared_ptr&lt;HiSysEventQueryCallBack&gt; queryCallBack) | Queries system events by specifying search criteria such as the time segment, event domain, and event name.<br><br>Input arguments:<ul><li>**queryArg**: event query parameter. </li><li>**queryRules**: event filtering rules. </li><li>**queryRules**: callback object for query results. </li></ul>Return value:<ul><li>**true**: The query is successful. </li><li>**false**: The query has failed.</li></ul> |
 
 
 **Table 2** Description of QueryArg
 
-| Attribute| Description|
+| Attribute| Description |
 | -------- | --------- |
 | beginTime | Start time, in the **long long int** format.|
 | endTime | End time, in the **long long int** format.|
@@ -30,16 +30,16 @@ HiSysEvent provides an API for you to query system events. You can query concern
 
 **Table 3** Description of QueryRule
 
-| API| Description|
+| API| Description |
 | -------- | --------- |
-| QueryRule(const std::string& domain, const std::vector&lt;std::string&gt;& eventList) | Constructor used to create a **QueryRule** object based on domain and event name list.<br><br>Input arguments:<ul><li>**domain**：domain to which the event belongs, in the **string** format. By default, an empty string indicates that the domain is successfully matched.</li><li>**eventList**：event name list, in the std::vector&lt;std::string&gt; format. By default, an empty string indicates that the event names on the list are successfully matched.</li></ul> |
+| QueryRule(const std::string& domain, const std::vector&lt;std::string&gt;& eventList) | Constructor used to create a **QueryRule** object.<br><br>Input arguments:<ul><li>**domain: domain to which the event of the **QueryRule** object belongs, in the **string** format. By default, an empty string indicates that the domain is successfully matched. </li><li>**eventList**: event name list, in the **std::vector&lt;std::string&gt;** format. By default, an empty string indicates that the event names on the list are successfully matched.</li></ul> |
 
-**Table 4** Description of HiSysEventQueryCallBackBase
+**Table 4** Description of HiSysEventQueryCallBack
 
-| API| Description|
+| API| Description |
 | -------- | --------- |
-| void HiSysEventQueryCallBackBase::OnQuery(const ::std::vector&lt;std::string&gt;&amp; sysEvent, const ::std::vector&lt;int64_t&gt;&amp; seq) | Callback object for event query. <br><br>Input arguments:<ul><li>**sysEvent**: event set. </li><li>**seq**: event sequence set. </li></ul>Return value:<br>&emsp;&emsp;None.|
-| void HiSysEventQueryCallBackBase::OnComplete(int32_t reason, int32_t total) | Callback object for completion of event query. <br><br>Input arguments:<ul><li>**reason**: reason for completion of event query. The default value is **0**. </li><li>**total**: total number of events returned in this query. </li></ul>Return value:<br>&emsp;&emsp;None.|
+| void HiSysEventQueryCallBack::OnQuery(const ::std::vector&lt;std::string&gt;&amp; sysEvent, const ::std::vector&lt;int64_t&gt;&amp; seq) | Callback object for event query.<br><br>Input arguments:<ul><li>**sysEvent**: event set. </li><li>**seq**: event sequence set. </li></ul>Return value:<br>None.|
+| void HiSysEventQueryCallBack::OnComplete(int32_t reason, int32_t total) | Callback object for completion of event query.<br><br>Input arguments:<ul><li>**reason**: reason for completion of event query. The default value is **0**. </li><li>**total**: total number of events returned in this query. </li></ul>Return value:<br>None.|
 
 ### Development Example<a name="section14286111855212"></a>
 
@@ -53,13 +53,13 @@ C++
 
     -   Implement the callback API.
 
-        void HiSysEventQueryCallBackBase::OnQuery\(const ::std::vector<std::string\>& sysEvent, const ::std::vector<int64\_t\>& seq\)
+        void HiSysEventQueryCallBack::OnQuery\(const ::std::vector&lt;std::string&gt;& sysEvent, const ::std::vector<int64\_t\>& seq\)
 
-        void HiSysEventQueryCallBackBase::OnComplete\(int32\_t reason, int32\_t total\)
+        void HiSysEventQueryCallBack::OnComplete\(int32\_t reason, int32\_t total\)
 
     -   Invoke the query API in the corresponding service logic.
 
-        HiSysEventManager::QueryHiSysEvent\(struct QueryArg& queryArg, std::vector<QueryRule\>& queryRules, std::shared\_ptr<HiSysEventQueryCallBackBase\> queryCallBack\)
+        HiSysEventManager::QueryHiSysEvent\(struct QueryArg& queryArg, std::vector<QueryRule\>& queryRules, std::shared\_ptr<HiSysEventQueryCallBack\> queryCallBack\)
 
 
     ```
