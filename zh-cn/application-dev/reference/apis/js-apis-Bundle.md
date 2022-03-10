@@ -28,6 +28,10 @@ getApplicationInfo(bundleName: string, bundleFlags: number, userId: number): Pro
 
 ohos.permission.GET_BUNDLE_INFO_PRIVILEGED，ohos.permission.GET_BUNDLE_INFO
 
+**系统能力：**
+
+SystemCapability.BundleManager.BundleFramework
+
 **参数：**
 
 | 名称        | 类型   | 必填 | 描述                                                         |
@@ -68,13 +72,17 @@ getApplicationInfo(bundleName: string, bundleFlags: number, userId: number, call
 
 ohos.permission.GET_BUNDLE_INFO_PRIVILEGED，ohos.permission.GET_BUNDLE_INFO
 
+**系统能力：**
+
+SystemCapability.BundleManager.BundleFramework
+
 **参数：**
 
 | 名称        | 类型                            | 必填 | 描述                                                         |
 | ----------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | bundleName  | string                          | 是   | 要查询的应用程序包名称。                                     |
 | bundleFlags | number                          | 是   | 用于指定返回的应用信息对象中包含信息的标记。默认值：0，取值范围：大于等于0。 |
-| userId      | number                          | 是   | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。                     |
+| userId      | number                          | 否   | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。                     |
 | callback    | AsyncCallback\<ApplicationInfo> | 是   | 程序启动作为入参的回调函数，返回应用程序信息。               |
 
 **示例：**
@@ -103,6 +111,10 @@ getAllBundleInfo(bundleFlag: BundleFlag, userId?: number): Promise<Array\<Bundle
 **需要权限：**
 
 ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**系统能力：**
+
+SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
@@ -142,6 +154,10 @@ getAllBundleInfo(bundleFlag: BundleFlag, callback: AsyncCallback<Array\<BundleIn
 
 ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
+**系统能力：**
+
+SystemCapability.BundleManager.BundleFramework
+
 **参数：**
 
 | 名称       | 类型                              | 必填 | 描述                                                         |
@@ -172,6 +188,10 @@ getAllBundleInfo(bundleFlag: BundleFlag, userId: number, callback: AsyncCallback
 **需要权限：**
 
 ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**系统能力：**
+
+SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
@@ -206,6 +226,10 @@ getBundleInfo(bundleName: string, bundleFlags: number, options?: BundleOptions):
 **需要权限：**
 
 ohos.permission.GET_BUNDLE_INFO_PRIVILEGED，ohos.permission.GET_BUNDLE_INFO
+
+**系统能力：**
+
+SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
@@ -250,6 +274,10 @@ getBundleInfo(bundleName: string, bundleFlags: number, callback: AsyncCallback\<
 
 ohos.permission.GET_BUNDLE_INFO_PRIVILEGED，ohos.permission.GET_BUNDLE_INFO
 
+**系统能力：**
+
+SystemCapability.BundleManager.BundleFramework
+
 **参数：**
 
 | 名称        | 类型                       | 必填 | 描述                                                         |
@@ -282,6 +310,10 @@ getBundleInfo(bundleName: string, bundleFlags: number, options: BundleOptions, c
 **需要权限：**
 
 ohos.permission.GET_BUNDLE_INFO_PRIVILEGED，ohos.permission.GET_BUNDLE_INFO
+
+**系统能力：**
+
+SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
@@ -321,12 +353,16 @@ getAllApplicationInfo(bundleFlags: number, userId: number): Promise<Array\<Appli
 
 ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
+**系统能力：**
+
+SystemCapability.BundleManager.BundleFramework
+
 **参数：**
 
 | 名称        | 类型   | 必填 | 描述                                                   |
 | ----------- | ------ | ---- | ------------------------------------------------------ |
 | bundleFlags | number | 是   | 用于指定返回的应用信息对象中包含信息的标记。默认值：0，取值范围：大于等于0。 |
-| userId      | number | 是   | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。   |
+| userId      | number | 否   | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。   |
 
 **返回值：**
 
@@ -353,18 +389,22 @@ bundle.getAllApplicationInfo(bundleFlags, userId)
 
 getAllApplicationInfo(bundleFlags: number, userId: number, callback: AsyncCallback<Array\<ApplicationInfo>>): void
 
-获取指定用户下所有已安装的应用信息，通过回调函数获取返回值。
+获取指定用户下所有已安装的应用信息，使用callback形式返回结果。
 
 **需要权限：**
 
 ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**系统能力：**
+
+SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
 | 名称        | 类型                                   | 必填 | 描述                                                   |
 | ----------- | -------------------------------------- | ---- | ------------------------------------------------------ |
 | bundleFlags | number                                 | 是   | 用于指定返回的应用信息对象中包含信息的标记。默认值：0，取值范围：大于等于0。|
-| userId      | number                                 | 是   | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。    |
+| userId      | number                                 | 否   | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。    |
 | callback    | AsyncCallback<Array\<ApplicationInfo>> | 是   | 程序启动作为入参的回调函数，返回应用信息列表。         |
 
 **示例：**
@@ -392,6 +432,10 @@ queryAbilityByWant(want: Want, bundleFlags: number, userId?: number): Promise<Ar
 **需要权限：**
 
 ohos.permission.GET_BUNDLE_INFO_PRIVILEGED，ohos.permission.GET_BUNDLE_INFO
+
+**系统能力：**
+
+SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
@@ -500,6 +544,10 @@ getBundleInstaller(): Promise<BundleInstaller>
 
 ohos.permission.INSTALL_BUNDLE
 
+**系统能力：**
+
+SystemCapability.BundleManager.BundleFramework
+
 **返回值：**
 
 | 类型                     | 说明                                                |
@@ -538,6 +586,10 @@ getBundleInstaller(callback: AsyncCallback<BundleInstaller>): void;
 **需要权限：**
 
 ohos.permission.INSTALL_BUNDLE
+
+**系统能力：**
+
+SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
@@ -579,6 +631,10 @@ getLaunchWantForBundle(bundleName: string): Promise\<Want>
 
 ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
+**系统能力：**
+
+SystemCapability.BundleManager.BundleFramework
+
 **参数：**
 
 | 名称       | 类型   | 必填 | 描述     |
@@ -611,6 +667,10 @@ getLaunchWantForBundle(bundleName: string, callback: AsyncCallback<Want>): void;
 **需要权限：**
 
 ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**系统能力：**
+
+SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
@@ -731,7 +791,6 @@ bundle.getNameForUid(uid, (err, data) => {
 | 名称               | 类型 | 可读 | 可写 | 说明 |
 | ------ | ------ | ------ | ------ | ------ |
 | userId | number | 是 | 是 | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。 |
-| networkId | string | 是 | 是 | 网络Id，默认值：null。 |
 
 ## BundleInfo
 
@@ -746,7 +805,7 @@ bundle.getNameForUid(uid, (err, data) => {
 | installTime              | number                     | 是   | 否   | HAP包安装时间                              |
 | updateTime               | number                     | 是   | 否   | HAP包更新时间                              |
 | appInfo                  | ApplicationInfo        | 是   | 否   | 应用程序的配置信息                         |
-| abilityInfo              | Array<AbilityInfo>         | 是   | 否   | Ability的配置信息                          |
+| abilityInfos              | Array<AbilityInfo>         | 是   | 否   | Ability的配置信息                          |
 | reqPermissions           | Array<string>              | 是   | 否   | 应用运行时需向系统申请的权限集合           |
 | reqPermissionDetails     | Array<ReqPermissionDetail> | 是   | 否   | 应用运行时需向系统申请的权限集合的详细信息 |
 | vendor                   | string                     | 是   | 否   | 应用包的供应商                             |
@@ -755,7 +814,7 @@ bundle.getNameForUid(uid, (err, data) => {
 | compatibleVersion        | number                     | 是   | 否   | 运行应用包所需要最低的SDK版本号            |
 | targetVersion            | number                     | 是   | 否   | 运行应用包所需要最高SDK版本号              |
 | isCompressNativeLibs     | boolean                    | 是   | 否   | 是否压缩应用包的本地库，默认为true         |
-| hapModuleInfo            | Array<HapModuleInfo>       | 是   | 否   | 模块的配置信息                             |
+| hapModuleInfos            | Array<HapModuleInfo>       | 是   | 否   | 模块的配置信息                             |
 | entryModuleName          | string                     | 是   | 否   | Entry的模块名称                            |
 | cpuAbi                   | string                     | 是   | 否   | 应用包的cpuAbi信息                         |
 | isSilentInstallation     | string                     | 是   | 否   | 是否通过静默安装                           |
@@ -882,13 +941,7 @@ Ability信息
 | readPermission     | string                                                       | 是   | 否   | 读取Ability数据所需的权限                 |
 | writePermission    | string                                                       | 是   | 否   | 向Ability写数据所需的权限                 |
 | applicationInfo    | ApplicationInfo | 是   | 否   | 应用程序的配置信息                        |
-| formEntity         | number                                                       | 是   | 否   | 显示表单的位置                            |
-| minFormHeight      | number                                                       | 是   | 否   | Ability的最小高度                         |
-| defaultFormHeight  | number                                                       | 是   | 否   | Ability的默认高度                         |
-| minFormWidth       | number                                                       | 是   | 否   | Ability的最小宽度                         |
-| defaultFormWidth   | number                                                       | 是   | 否   | Ability的默认宽度                         |
 | uri                | string                                                       | 是   | 否   | 获取Ability的统一资源标识符（URI）        |
-| customizeData      | Map<string, Array<CustomizeData>> | 是   | 是   | Ability的自定义数据                       |
 | labelId            | number                                                       | 是   | 否   | Ability的标签id                           |
 | subType            | AbilitySubType | 是   | 否   | Ability中枚举使用的模板的子类型           |
 | metaData | Array<Metadata> | 是 | 否 | ability的自定义元信息 |
@@ -922,7 +975,7 @@ Ability类型
 
 | 名称        | 类型 | 说明                |
 | ----------- | ---- | ------------------- |
-| UNSPECIFIED | 0    | Ability只有一个示例 |
+| SINGLETON  | 0    | Ability只有一个示例 |
 | STANDARD    | 1    | Ability有多个示例   |
 
 ## AbilitySubType
