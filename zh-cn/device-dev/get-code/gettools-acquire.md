@@ -43,7 +43,7 @@ OpenHarmony为开发者提供了两种Docker环境，以帮助开发者快速完
 </td>
 <td class="cellrowborder" valign="top" width="35.8935893589359%" headers="mcps1.2.6.1.4 "><p id="p12667431305"><a name="p12667431305"></a><a name="p12667431305"></a>swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker</p>
 </td>
-<td class="cellrowborder" valign="top" width="15.69156915691569%" headers="mcps1.2.6.1.5 "><p id="p143320173017"><a name="p143320173017"></a><a name="p143320173017"></a>0.0.7</p>
+<td class="cellrowborder" valign="top" width="15.69156915691569%" headers="mcps1.2.6.1.5 "><p id="p143320173017"><a name="p143320173017"></a><a name="p143320173017"></a>1.0.0</p>
 </td>
 </tr>
 <tr id="row998612174129"><td class="cellrowborder" valign="top" headers="mcps1.2.6.1.1 "><p id="p1998617172126"><a name="p1998617172126"></a><a name="p1998617172126"></a>标准系统</p>
@@ -52,7 +52,7 @@ OpenHarmony为开发者提供了两种Docker环境，以帮助开发者快速完
 </td>
 <td class="cellrowborder" valign="top" headers="mcps1.2.6.1.3 "><p id="p552616549297"><a name="p552616549297"></a><a name="p552616549297"></a>swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.6.1.4 "><p id="p1633303300"><a name="p1633303300"></a><a name="p1633303300"></a>0.0.8</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.6.1.4 "><p id="p1633303300"><a name="p1633303300"></a><a name="p1633303300"></a>1.0.0</p>
 </td>
 </tr>
 <tr id="row5986201731214"><td class="cellrowborder" align="center" valign="top" width="15.831583158315832%" headers="mcps1.2.6.1.1 "><p id="p136981216143"><a name="p136981216143"></a><a name="p136981216143"></a>HPM Docker环境</p>
@@ -68,6 +68,7 @@ OpenHarmony为开发者提供了两种Docker环境，以帮助开发者快速完
 </tr>
 </tbody>
 </table>
+
 
 
 
@@ -95,7 +96,7 @@ OpenHarmony的Docker镜像托管在[HuaweiCloud SWR](https://console.huaweicloud
 1.  获取Docker镜像。
 
     ```
-    docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker:0.0.7
+    docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker:1.0.0
     ```
 
 2.  进入OpenHarmony代码根目录执行如下命令，从而进入Docker构建环境。
@@ -103,13 +104,13 @@ OpenHarmony的Docker镜像托管在[HuaweiCloud SWR](https://console.huaweicloud
     ubuntu下执行：
 
     ```
-    docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker:0.0.7
+    docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker:1.0.0
     ```
 
     windows下执行（假设源码目录为D:\\OpenHarmony）：
 
     ```
-    docker run -it -v D:\OpenHarmony:/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker:0.0.7
+    docker run -it -v D:\OpenHarmony:/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker:1.0.0
     ```
 
 
@@ -121,7 +122,6 @@ OpenHarmony的Docker镜像托管在[HuaweiCloud SWR](https://console.huaweicloud
 
 ```
 hb set
- .
 ```
 
 **图 1**  设置编译界面<a name="fig7947145854013"></a>  
@@ -150,13 +150,13 @@ hb set
 1.  获取Docker镜像。
 
     ```
-    docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.8
+    docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker:1.0.0
     ```
 
 2.  进入OpenHarmony代码根目录执行如下命令，从而进入Docker构建环境。
 
     ```
-    docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:0.0.8
+    docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker:1.0.0
     ```
 
 
