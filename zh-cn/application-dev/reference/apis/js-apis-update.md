@@ -114,13 +114,13 @@ try {
 
 ## Updater
 
-**系统能力**：以下各项对应能力均为：SystemCapability.Update.UpdateService
-
 ###  getNewVersionInfo
 
 getNewVersionInfo(callback: AsyncCallback\<NewVersionInfo>): void
 
 获取新版本信息，使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Update.UpdateService
 
 **参数：**
 
@@ -144,6 +144,8 @@ update.getNewVersionInfo(info => {
 getNewVersionInfo(): Promise\<NewVersionInfo>
 
 获取新版本信息，使用promise方式作为异步方法。
+
+**系统能力**：SystemCapability.Update.UpdateService
 
 **返回值：**
 
@@ -169,6 +171,8 @@ checkNewVersion(callback: AsyncCallback\<NewVersionInfo>): void
 
 检查新版本，使用callback方式作为异步方法。
 
+**系统能力**：SystemCapability.Update.UpdateService
+
 **参数：**
 
 | 参数名   | 类型                                              | 必填 | 说明               |
@@ -191,6 +195,8 @@ update.checkNewVersion(info => {
 checkNewVersion(): Promise\<NewVersionInfo>
 
 检查新版本，使用promise方式作为异步方法。
+
+**系统能力**：SystemCapability.Update.UpdateService
 
 **返回值:**
 
@@ -216,6 +222,8 @@ verifyUpdatePackage(upgradeFile: string, certsFile: string): void
 
 升级前检查升级包是否有效。
 
+**系统能力**：SystemCapability.Update.UpdateService
+
 **参数：**
 
 | 参数名      | 类型   | 必填 | 说明               |
@@ -237,6 +245,8 @@ update.verifyUpdatePackage("XXX", "XXX");
 rebootAndCleanUserData(): Promise\<number>
 
 重启设备并清除用户分区数据。
+
+**系统能力**：SystemCapability.Update.UpdateService
 
 **返回值：**
 
@@ -260,6 +270,8 @@ rebootAndCleanUserData(callback: AsyncCallback\<number>): void
 
 重启设备并清除用户分区数据。
 
+**系统能力**：SystemCapability.Update.UpdateService
+
 **参数：**
 
 | 参数名   | 类型     | 必填 | 说明                   |
@@ -279,6 +291,8 @@ update.rebootAndCleanUserData(result => {
 applyNewVersion(): Promise\<number>
 
 重启设备后安装升级包。
+
+**系统能力**：SystemCapability.Update.UpdateService
 
 **返回值：**
 
@@ -302,6 +316,8 @@ applyNewVersion(callback: AsyncCallback\<number>): void
 
 重启设备后安装升级包。
 
+**系统能力**：SystemCapability.Update.UpdateService
+
 **参数：**
 
 | 参数名   | 类型     | 必填 | 说明                   |
@@ -322,6 +338,8 @@ download(): void
 
 下载新版本，并监听下载进程。
 
+**系统能力**：SystemCapability.Update.UpdateService
+
 **示例：**
 
 ```
@@ -339,6 +357,8 @@ updater.upgrade():void
 
 启动升级。
 
+**系统能力**：SystemCapability.Update.UpdateService
+
 **示例：**
 
 ```
@@ -355,6 +375,8 @@ updater.upgrade();
 setUpdatePolicy(policy: UpdatePolicy, callback: AsyncCallback\<number>): void
 
 设置升级策略，使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Update.UpdateService
 
 **参数：**
 
@@ -384,6 +406,8 @@ update.setUpdatePolicy(policy, result => {
 setUpdatePolicy(policy: UpdatePolicy): Promise\<number>
 
 设置升级策略，使用promise方式作为异步方法。
+
+**系统能力**：SystemCapability.Update.UpdateService
 
 **参数：**
 
@@ -420,6 +444,8 @@ getUpdatePolicy(callback: AsyncCallback\<UpdatePolicy>): void
 
 获取升级策略信息，使用callback方式作为异步方法。
 
+**系统能力**：SystemCapability.Update.UpdateService
+
 **参数：**
 
 | 参数名   | 类型                                          | 必填 | 说明                 |
@@ -442,6 +468,8 @@ update.getUpdatePolicy(policy => {
 getUpdatePolicy(): Promise\<UpdatePolicy>
 
 获取升级策略，通过promise方式作为异步方法。
+
+**系统能力**：SystemCapability.Update.UpdateService
 
 **返回值：**
 
