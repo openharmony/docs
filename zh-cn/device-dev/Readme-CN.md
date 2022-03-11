@@ -6,7 +6,7 @@
   - [术语](glossary/glossary.md) 
   - [版本说明](../release-notes/Readme.md) 
 - 快速开始
-  - [量和小型系统快速入门](quick-start/quickstart-lite.md) 	
+  - [轻量和小型系统快速入门](quick-start/quickstart-lite.md) 	
   - [标准系统快速入门](quick-start/quickstart-standard.md) 
 - 兼容性与安全	 
   - [隐私与安全规范](security/Readme-CN.md)
