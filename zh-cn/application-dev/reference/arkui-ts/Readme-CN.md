@@ -97,7 +97,6 @@
         - [Swiper](ts-container-swiper.md)
         - [Tabs](ts-container-tabs.md)
         - [TabContent](ts-container-tabcontent.md)
-        - [SideBarContainer](ts-container-sidebarcontainer.md)
         - [Refresh](ts-container-refresh.md)
     - 媒体组件
         - [Video](ts-media-components-video.md)

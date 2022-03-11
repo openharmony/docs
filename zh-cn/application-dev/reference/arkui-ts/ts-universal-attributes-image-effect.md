@@ -34,7 +34,7 @@
 @Component
 struct ImageEffectsExample {
   build() {
-    Column({space：10}) {
+    Column({space: 10}) {
       // 对字体进行模糊
       Text('font blur').fontSize(15).fontColor(0xCCCCCC).width('90%')
       Text('text').blur(3).width('90%').height(40)
