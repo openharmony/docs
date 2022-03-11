@@ -10,27 +10,16 @@
 import sensor from '@ohos.sensor';
 ```
 
-## 系统能力
-
-SystemCapability.Sensors.Sensor
-
-## 权限列表
-
-计步器：ohos.permission.ACTIVITY_MOTION
-
-心率：ohos.permission.READ_HEALTH_DATA
-
-加速度：ohos.permission.ACCELEROMETER
-
-陀螺仪：ohos.permission.GYROSCOPE
-
 
 ## sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER)
 
 on(type:  sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: AsyncCallback&lt;AccelerometerResponse&gt;,options?: Options): void
 
-
 监听加速度传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
+
+**需要权限**：ohos.permission.ACCELEROMETER ，该权限为系统权限
+
+**系统能力**：SystemCapability.Sensors.Sensor
 
 
 - 参数：
@@ -62,6 +51,10 @@ on(type:sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:AsyncCallb
 
 监听线性加速度传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
+**需要权限**：ohos.permission.ACCELEROMETER ，该权限为系统权限
+
+**系统能力**：SystemCapability.Sensors.Sensor
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -90,6 +83,10 @@ on(type:sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:AsyncCallb
 on(type:sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,callback:AsyncCallback&lt;AccelerometerUncalibratedResponse&gt;, options?: Options): void
 
 监听未校准加速度计传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
+
+**需要权限**：ohos.permission.ACCELEROMETER ，该权限为系统权限
+
+**系统能力**：SystemCapability.Sensors.Sensor
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -123,6 +120,8 @@ on(type: sensor.SensorType.SENSOR_TYPE_ID_GRAVITY, callback: AsyncCallback&lt;Gr
 
 监听重力传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
+**系统能力**：SystemCapability.Sensors.Sensor
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -152,6 +151,10 @@ on(type: sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback: AsyncCallback&lt;
 
 监听陀螺仪传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
+**需要权限**：ohos.permission.GYROSCOPE ，该权限为系统权限
+
+**系统能力**：SystemCapability.Sensors.Sensor
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -180,6 +183,10 @@ on(type: sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback: AsyncCallback&lt;
 on(type:sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED,callback:AsyncCallback&lt;GyroscopeUncalibratedResponse&gt;, options?: Options): void
 
 监听未校准陀螺仪传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
+
+**需要权限**：ohos.permission.GYROSCOPE ，该权限为系统权限
+
+**系统能力**：SystemCapability.Sensors.Sensor
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -213,6 +220,8 @@ on(type: sensor.SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, callback: AsyncCal
 
 监听大幅动作传感器数据变化。如果多次调用该接口，仅最后一次调用生效。
 
+**系统能力**：SystemCapability.Sensors.Sensor
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -236,15 +245,19 @@ on(type: sensor.SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, callback: AsyncCal
 
 ## sensor.on(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION)
 
-on(type: sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, callback: AsyncCallback&lt;PedometerDetectResponse&gt;, options?: Options): void
+on(type: sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, callback: AsyncCallback&lt;PedometerDetectionResponse&gt;, options?: Options): void
 
 监听计步检测传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
+
+**需要权限**：ohos.permission.ACTIVITY_MOTION
+
+**系统能力**：SystemCapability.Sensors.Sensor
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | [SensorType](#sensortype) | 是 | 要订阅的计步检测传感器类型为SENSOR_TYPE_ID_PEDOMETER_DETECTION。 |
-  | callback | AsyncCallback&lt;[PedometerDetectResponse](#pedometerdetectresponse)&gt; | 是 | 注册计步检测传感器的回调函数，上报的数据类型为PedometerDetectResponse。 |
+  | callback | AsyncCallback&lt;[PedometerDetectionResponse](#pedometerdetectionresponse)&gt; | 是 | 注册计步检测传感器的回调函数，上报的数据类型为PedometerDetectionResponse。 |
   | options | [Options](#options) | 否 | 可选参数列表，设置上报频率，默认值为200000000ns。 |
 
 - 示例：
@@ -266,6 +279,10 @@ on(type: sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, callback: AsyncCa
 on(type: sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER, callback: AsyncCallback&lt;PedometerResponse&gt;, options?: Options): void
 
 监听计步传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
+
+**需要权限**：ohos.permission.ACTIVITY_MOTION 
+
+**系统能力**：SystemCapability.Sensors.Sensor
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -294,6 +311,8 @@ on(type:sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE,callback:AsyncCallb
 
 监听环境温度传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
+**系统能力**：SystemCapability.Sensors.Sensor
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -320,6 +339,8 @@ on(type:sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE,callback:AsyncCallb
 on(type: sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback: AsyncCallback&lt;MagneticFieldResponse&gt;,options?: Options): void
 
 监听磁场传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
+
+**系统能力**：SystemCapability.Sensors.Sensor
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -349,6 +370,8 @@ on(type: sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback: AsyncCallbac
 on(type:sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED,callback:AsyncCallback&lt;MagneticFieldUncalibratedResponse&gt;, options: Options): void
 
 监听未校准磁场传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
+
+**系统能力**：SystemCapability.Sensors.Sensor
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -382,6 +405,8 @@ on(type:sensor.SensorType.SENSOR_TYPE_ID_PROXIMITY, callback: AsyncCallback&lt;P
 
 监听接近光传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
+**系统能力**：SystemCapability.Sensors.Sensor
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -408,6 +433,8 @@ on(type:sensor.SensorType.SENSOR_TYPE_ID_PROXIMITY, callback: AsyncCallback&lt;P
 on(type: sensor.SensorType.SENSOR_TYPE_ID_HUMIDITY, callback: AsyncCallback&lt;HumidityResponse&gt;,options?: Options): void
 
 监听湿度传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
+
+**系统能力**：SystemCapability.Sensors.Sensor
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -436,6 +463,8 @@ on(type:sensor.SensorType.SENSOR_TYPE_ID_BAROMETER, callback: AsyncCallback&lt;B
 
 监听气压计传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
+**系统能力**：SystemCapability.Sensors.Sensor
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -462,6 +491,8 @@ on(type:sensor.SensorType.SENSOR_TYPE_ID_BAROMETER, callback: AsyncCallback&lt;B
 on(type: sensor.SensorType.SENSOR_TYPE_ID_HALL, callback: AsyncCallback&lt;HallResponse&gt;, options?: Options): void
 
 监听霍尔传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
+
+**系统能力**：SystemCapability.Sensors.Sensor
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -490,6 +521,8 @@ on(type:sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback: AsyncCallback&
 
 监听环境光传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
+**系统能力**：SystemCapability.Sensors.Sensor
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -516,6 +549,8 @@ on(type:sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback: AsyncCallback&
 on(type: sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION, callback: AsyncCallback&lt;OrientationResponse&gt;, options?: Options): void
 
 监听方向传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
+
+**系统能力**：SystemCapability.Sensors.Sensor
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -546,6 +581,8 @@ on(type:sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR,callback:AsyncCallback&
 
 监听旋转矢量传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
+**系统能力**：SystemCapability.Sensors.Sensor
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -575,6 +612,8 @@ on(type: sensor.SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback: AsyncCallbac
 
 监听佩戴检测传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
+**系统能力**：SystemCapability.Sensors.Sensor
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -601,6 +640,10 @@ on(type: sensor.SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback: AsyncCallbac
 once(type: sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: AsyncCallback&lt;AccelerometerResponse&gt;): void
 
 监听加速度传感器的数据变化一次。
+
+**需要权限**：ohos.permission.ACCELEROMETER ，该权限为系统权限
+
+**系统能力**：SystemCapability.Sensors.Sensor
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -629,6 +672,10 @@ once(type:sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:AsyncCal
 
 监听线性加速度传感器数据变化一次。
 
+**需要权限**：ohos.permission.ACCELEROMETER ，该权限为系统权限
+
+**系统能力**：SystemCapability.Sensors.Sensor
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -655,6 +702,10 @@ once(type:sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:AsyncCal
 once(type:sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,callback:AsyncCallback&lt;AccelerometerUncalibratedResponse&gt;): void
 
 监听未校准加速度传感器的数据变化一次。
+
+**需要权限**：ohos.permission.ACCELEROMETER ，该权限为系统权限
+
+**系统能力**：SystemCapability.Sensors.Sensor
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -686,6 +737,8 @@ once(type:sensor.SensorType.SENSOR_TYPE_ID_GRAVITY, callback: AsyncCallback&lt;G
 
 监听重力传感器的数据变化一次。
 
+**系统能力**：SystemCapability.Sensors.Sensor
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -713,6 +766,10 @@ once(type: sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback: AsyncCallback&l
 
 监听陀螺仪传感器的数据变化一次。
 
+**需要权限**：ohos.permission.GYROSCOPE ，该权限为系统权限
+
+**系统能力**：SystemCapability.Sensors.Sensor
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -739,6 +796,10 @@ once(type: sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback: AsyncCallback&l
 once(type:sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED,callback:AsyncCallback&lt;GyroscopeUncalibratedResponse&gt;): void
 
 监听未校准陀螺仪传感器的数据变化一次。
+
+**需要权限**：ohos.permission.GYROSCOPE ，该权限为系统权限
+
+**系统能力**：SystemCapability.Sensors.Sensor
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -770,6 +831,8 @@ once(type: sensor.SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION,callback:AsyncCal
 
 监听有效运动传感器的数据变化一次。
 
+**系统能力**：SystemCapability.Sensors.Sensor
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -791,15 +854,19 @@ once(type: sensor.SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION,callback:AsyncCal
 
 ## sensor.once(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION)
 
-once(type:sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION,callback:AsyncCallback&lt;PedometerDetectResponse&gt;): void
+once(type:sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION,callback:AsyncCallback&lt;PedometerDetectionResponse&gt;): void
 
 监听计步检测传感器数据变化一次。
+
+**需要权限**：ohos.permission.ACTIVITY_MOTION
+
+**系统能力**：SystemCapability.Sensors.Sensor
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | [SensorType](#sensortype) | 是 | 计步检测传感器类型为SENSOR_TYPE_ID_PEDOMETER_DETECTION。 |
-  | callback | AsyncCallback&lt;[PedometerDetectResponse](#pedometerdetectresponse)&gt; | 是 | 注册一次计步检测传感器的回调函数，上报的数据类型为PedometerDetectResponse。 |
+  | callback | AsyncCallback&lt;[PedometerDetectionResponse](#pedometerdetectionresponse)&gt; | 是 | 注册一次计步检测传感器的回调函数，上报的数据类型为PedometerDetectionResponse。 |
 
 - 示例：
   ```
@@ -819,6 +886,10 @@ once(type:sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION,callback:AsyncCal
 once(type: sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER, callback: AsyncCallback&lt;PedometerResponse&gt;): void
 
 监听计步器传感器数据变化一次。
+
+**需要权限**：ohos.permission.ACTIVITY_MOTION
+
+**系统能力**：SystemCapability.Sensors.Sensor
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -845,6 +916,8 @@ once(type:sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE,callback:AsyncCal
 
 监听环境温度传感器数据变化一次。
 
+**系统能力**：SystemCapability.Sensors.Sensor
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -869,6 +942,8 @@ once(type:sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE,callback:AsyncCal
 once(type: sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback: AsyncCallback&lt;MagneticFieldResponse&gt;): void
 
 监听磁场传感器数据变化一次。
+
+**系统能力**：SystemCapability.Sensors.Sensor
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -896,6 +971,8 @@ once(type: sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback: AsyncCallb
 once(type:sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED,callback:AsyncCallback&lt;MagneticFieldUncalibratedResponse&gt;): void
 
 监听未校准磁场传感器数据变化一次。
+
+**系统能力**：SystemCapability.Sensors.Sensor
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -927,6 +1004,8 @@ once(type: sensor.SensorType.SENSOR_TYPE_ID_PROXIMITY, callback: AsyncCallback&l
 
 监听接近光传感器数据变化一次。
 
+**系统能力**：SystemCapability.Sensors.Sensor
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -951,6 +1030,8 @@ once(type: sensor.SensorType.SENSOR_TYPE_ID_PROXIMITY, callback: AsyncCallback&l
 once(type: sensor.SensorType.SENSOR_TYPE_ID_HUMIDITY, callback: AsyncCallback&lt;HumidityResponse&gt;): void
 
 监听湿度传感器数据变化一次。
+
+**系统能力**：SystemCapability.Sensors.Sensor
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -977,6 +1058,8 @@ once(type: sensor.SensorType.SENSOR_TYPE_ID_BAROMETER, callback: AsyncCallback&l
 
 监听气压计传感器数据变化一次。
 
+**系统能力**：SystemCapability.Sensors.Sensor
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -1001,6 +1084,8 @@ once(type: sensor.SensorType.SENSOR_TYPE_ID_BAROMETER, callback: AsyncCallback&l
 once(type: sensor.SensorType.SENSOR_TYPE_ID_HALL, callback:   AsyncCallback&lt;HallResponse&gt;): void
 
 监听霍尔传感器数据变化一次。
+
+**系统能力**：SystemCapability.Sensors.Sensor
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -1027,6 +1112,8 @@ once(type: sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback: AsyncCallba
 
 监听环境光传感器数据变化一次。
 
+**系统能力**：SystemCapability.Sensors.Sensor
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -1051,6 +1138,8 @@ once(type: sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback: AsyncCallba
 once(type: sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION, callback: AsyncCallback&lt;OrientationResponse&gt;): void
 
 监听方向传感器数据变化一次。
+
+**系统能力**：SystemCapability.Sensors.Sensor
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -1079,6 +1168,8 @@ once(type: sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback: AsyncCall
 
 监听旋转矢量传感器数据变化一次。
 
+**系统能力**：SystemCapability.Sensors.Sensor
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -1106,6 +1197,10 @@ once(type: sensor.SensorType.SENSOR_TYPE_ID_HEART_RATE, callback: AsyncCallback&
 
 监听心率传感器数据变化一次。
 
+**需要权限**：ohos.permission.READ_HEALTH_DATA 
+
+**系统能力**：SystemCapability.Sensors.Sensor
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -1130,6 +1225,8 @@ once(type: sensor.SensorType.SENSOR_TYPE_ID_HEART_RATE, callback: AsyncCallback&
 once(type: sensor.SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback: AsyncCallback&lt;WearDetectionResponse&gt;): void
 
 监听佩戴检测传感器数据变化一次。
+
+**系统能力**：SystemCapability.Sensors.Sensor
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -1156,6 +1253,8 @@ off(type: SensorType, callback?: AsyncCallback&lt;void&gt;): void
 
 取消订阅传感器数据。
 
+**系统能力**：SystemCapability.Sensors.Sensor
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -1179,6 +1278,8 @@ off(type: SensorType, callback?: AsyncCallback&lt;void&gt;): void
 transformCoordinateSystem(inRotationVector: Array&lt;number&gt;, coordinates: CoordinatesOptions, callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
 旋转提供的旋转矩阵，使其可以以不同的方式表示坐标系。
+
+**系统能力**：SystemCapability.Sensors.Sensor
 
 - 参数
 
@@ -1208,6 +1309,8 @@ transformCoordinateSystem(inRotationVector: Array&lt;number&gt;, coordinates: Co
 transformCoordinateSystem(inRotationVector: Array&lt;number&gt;, coordinates: CoordinatesOptions): Promise&lt;Array&lt;number&gt;&gt;
 
 旋转提供的旋转矩阵，使其可以以不同的方式表示坐标系。
+
+**系统能力**：SystemCapability.Sensors.Sensor
 
 - 参数
 
@@ -1245,6 +1348,8 @@ getGeomagneticField(locationOptions: LocationOptions, timeMillis: number, callba
 
 获取地球上特定位置的地磁场。
 
+**系统能力**：SystemCapability.Sensors.Sensor
+
 - 参数
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -1271,6 +1376,8 @@ getGeomagneticField(locationOptions: LocationOptions, timeMillis: number, callba
 getGeomagneticField(locationOptions: LocationOptions, timeMillis: number): Promise&lt;GeomagneticResponse&gt;
 
 获取地球上特定位置的地磁场。
+
+**系统能力**：SystemCapability.Sensors.Sensor
 
 - 参数
   | 参数名 | 类型 | 必填 | 说明 |
@@ -1301,6 +1408,8 @@ getAltitude(seaPressure: number, currentPressure: number, callback: AsyncCallbac
 
 根据气压值获取设备所在的海拔高度。
 
+**系统能力**：SystemCapability.Sensors.Sensor
+
 - 参数
 
   | 参数名          | 类型                        | 必填 | 说明                                  |
@@ -1327,6 +1436,8 @@ getAltitude(seaPressure: number, currentPressure: number, callback: AsyncCallbac
 getAltitude(seaPressure: number, currentPressure: number): Promise&lt;number&gt;
 
 根据气压值获取设备所在的海拔高度。
+
+**系统能力**：SystemCapability.Sensors.Sensor
 
 - 参数
 
@@ -1359,6 +1470,8 @@ getGeomagneticDip(inclinationMatrix: Array&lt;number&gt;, callback: AsyncCallbac
 
 根据倾斜矩阵计算地磁倾斜角。
 
+**系统能力**：SystemCapability.Sensors.Sensor
+
 - 参数
 
   | 参数名            | 类型                        | 必填 | 说明                         |
@@ -1384,6 +1497,8 @@ getGeomagneticDip(inclinationMatrix: Array&lt;number&gt;, callback: AsyncCallbac
 getGeomagneticDip(inclinationMatrix: Array&lt;number&gt;): Promise&lt;number&gt;
 
 根据倾斜矩阵计算地磁倾斜角。
+
+**系统能力**：SystemCapability.Sensors.Sensor
 
 - 参数
 
@@ -1413,6 +1528,8 @@ getGeomagneticDip(inclinationMatrix: Array&lt;number&gt;): Promise&lt;number&gt;
 getAngleModify(currentRotationMatrix: Array&lt;number&gt;, preRotationMatrix: Array&lt;number&gt;，callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
 获取两个旋转矩阵之间的角度变化。
+
+**系统能力**：SystemCapability.Sensors.Sensor
 
 - 参数
 
@@ -1444,6 +1561,8 @@ getAngleModify(currentRotationMatrix: Array&lt;number&gt;, preRotationMatrix: Ar
 getAngleModify(currentRotationMatrix: Array&lt;number&gt;, preRotationMatrix: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
 
 获取两个旋转矩阵之间的角度变化。
+
+**系统能力**：SystemCapability.Sensors.Sensor
 
 - 参数
 
@@ -1479,6 +1598,8 @@ createRotationMatrix(rotationVector: Array&lt;number&gt;, callback: AsyncCallbac
 
 将旋转矢量转换为旋转矩阵。
 
+**系统能力**：SystemCapability.Sensors.Sensor
+
 - 参数
 
   | 参数名         | 类型                                     | 必填 | 说明           |
@@ -1508,6 +1629,8 @@ createRotationMatrix(rotationVector: Array&lt;number&gt;, callback: AsyncCallbac
 createRotationMatrix(rotationVector: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
 
 将旋转矢量转换为旋转矩阵。
+
+**系统能力**：SystemCapability.Sensors.Sensor
 
 - 参数
 
@@ -1542,6 +1665,8 @@ createQuaternion(rotationVector: Array&lt;number&gt;, callback: AsyncCallback&lt
 
 将旋转矢量转换为四元数。
 
+**系统能力**：SystemCapability.Sensors.Sensor
+
 - 参数
 
   | 参数名         | 类型                                     | 必填 | 说明           |
@@ -1571,6 +1696,8 @@ createQuaternion(rotationVector: Array&lt;number&gt;, callback: AsyncCallback&lt
 createQuaternion(rotationVector: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
 
 将旋转矢量转换为四元数。
+
+**系统能力**：SystemCapability.Sensors.Sensor
 
 - 参数
 
@@ -1605,6 +1732,8 @@ getDirection(rotationMatrix: Array&lt;number&gt;, callback: AsyncCallback&lt;Arr
 
 根据旋转矩阵计算设备的方向。
 
+**系统能力**：SystemCapability.Sensors.Sensor
+
 - 参数
 
   | 参数名         | 类型                                     | 必填 | 说明                              |
@@ -1634,6 +1763,8 @@ getDirection(rotationMatrix: Array&lt;number&gt;, callback: AsyncCallback&lt;Arr
 getDirection(rotationMatrix: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
 
 根据旋转矩阵计算设备的方向。
+
+**系统能力**：SystemCapability.Sensors.Sensor
 
 - 参数
 
@@ -1668,6 +1799,8 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
 
 根据重力矢量和地磁矢量计算旋转矩阵。
 
+**系统能力**：SystemCapability.Sensors.Sensor
+
 - 参数
 
   | 参数名      | 类型                                                         | 必填 | 说明           |
@@ -1698,6 +1831,8 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
 createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&gt;,): Promise&lt;RotationMatrixResponse&gt;
 
 根据重力矢量和地磁矢量计算旋转矩阵。
+
+**系统能力**：SystemCapability.Sensors.Sensor
 
 - 参数
 
@@ -1731,6 +1866,8 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
 
 表示要订阅或取消订阅的传感器类型。
 
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+
 
 | 名称 | 默认值 | 说明 |
 | -------- | -------- | -------- |
@@ -1761,6 +1898,8 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
 
 传感器数据的时间戳。
 
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | timestamp | number | 是 | 是 | 传感器数据上报的时间戳。 |
@@ -1769,6 +1908,8 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
 ## AccelerometerResponse
 
 加速度传感器数据，继承于[Response](#response)。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
@@ -1782,6 +1923,8 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
 
 线性加速度传感器数据，继承于[Response](#response)。
 
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -1793,6 +1936,8 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
 ## AccelerometerUncalibratedResponse
 
 未校准加速度计传感器数据，继承于[Response](#response)。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
@@ -1809,6 +1954,8 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
 
 重力传感器数据，继承于[Response](#response)。
 
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -1820,6 +1967,8 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
 ## OrientationResponse
 
 方向传感器数据，继承于[Response](#response)。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
@@ -1833,6 +1982,8 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
 
 旋转矢量传感器数据，继承于[Response](#response)。
 
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -1845,6 +1996,8 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
 
 陀螺仪传感器数据，继承于[Response](#response)。
 
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -1856,6 +2009,8 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
 ## GyroscopeUncalibratedResponse
 
 未校准陀螺仪传感器数据，继承于[Response](#response)。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
@@ -1872,6 +2027,8 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
 
 有效运动传感器数据，继承于[Response](#response)。
 
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -1881,6 +2038,8 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
 ## ProximityResponse
 
 接近光传感器数据，继承于[Response](#response)。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
@@ -1892,6 +2051,8 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
 
 环境光传感器数据，继承于[Response](#response)。
 
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -1902,6 +2063,8 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
 
 霍尔传感器数据，继承于[Response](#response)。
 
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -1911,6 +2074,8 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
 ## MagneticFieldResponse
 
 磁场传感器数据，继承于[Response](#response)。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
@@ -1923,6 +2088,8 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
 ## MagneticFieldUncalibratedResponse
 
 未校准磁场传感器数据，继承于[Response](#response)。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
@@ -1939,6 +2106,8 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
 
 计步传感器数据，继承于[Response](#response)。
 
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -1949,15 +2118,19 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
 
 湿度传感器数据，继承于[Response](#response)。
 
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | humidity | number | 是 | 是 | 湿度值。测量环境的相对湿度，以百分比&nbsp;(%)&nbsp;表示。 |
 
 
-## PedometerDetectResponse
+## PedometerDetectionResponse
 
 计步检测传感器数据，继承于[Response](#response)。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
@@ -1969,6 +2142,8 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
 
 温度传感器数据，继承于[Response](#response)。
 
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -1978,6 +2153,8 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
 ## BarometerResponse
 
 气压计传感器数据，继承于[Response](#response)。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
@@ -1989,6 +2166,8 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
 
 心率传感器数据，继承于[Response](#response)。
 
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -1998,6 +2177,8 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
 ## WearDetectionResponse
 
 佩戴检测传感器数据，继承于[Response](#response)。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
@@ -2009,13 +2190,17 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
 
 设置传感器上报频率。
 
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+
 | 名称 | 参数类型 | 说明 |
 | -------- | -------- | -------- |
 | interval | number | 表示传感器的上报频率，默认值为200000000ns。 |
 
 ## RotationMatrixResponse
 
-设置旋转矩阵响应对象
+设置旋转矩阵响应对象。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 | 名称        | 参数类型            | 可读 | 可写 | 说明       |
 | ----------- | ------------------- | ---- | ---- | ---------- |
@@ -2025,7 +2210,9 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
 
 ## CoordinatesOptions
 
-设置坐标选项对象
+设置坐标选项对象。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明        |
 | ---- | -------- | ---- | ---- | ----------- |
@@ -2037,6 +2224,8 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
 
 设置地磁响应对象，继承于[Response](#response)。
 
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | x | number | 是 | 是 | 地磁场的北分量。 |
@@ -2047,8 +2236,11 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
 | levelIntensity | number | 是 | 是 | 地磁场的水平强度。 |
 | totalIntensity | number | 是 | 是 | 地磁场的总强度。 |
 
-
 ## LocationOptions
+
+指示地理位置。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
