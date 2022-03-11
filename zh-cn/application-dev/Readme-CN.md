@@ -1,20 +1,34 @@
 # 应用开发
 
 - [应用开发导读](application-dev-guide.md)
-- [DevEco Studio（OpenHarmony）使用指南](quick-start/deveco-studio-user-guide-for-openharmony.md)
-- [包结构说明](quick-start/package-structure.md)
-- [Ability框架](ability/Readme-CN.md)
-- 方舟开发框架（ArkUI）
-    -  [基于JS扩展的类Web开发范式](ui/ui-arkui-js.md)
-    -  [基于TS扩展的声明式开发范式](ui/ui-arkui-ts.md)
-- [后台代理提醒](background-agent-scheduled-reminder/Readme-CN.md)
-- [后台任务管理](background-task-management/Readme-CN.md)
-- [媒体](media/Readme-CN.md)
-- [安全](security/Readme-CN.md)
-- [网络与连接](connectivity/Readme-CN.md)
-- [数据管理](database/Readme-CN.md)
-- [USB服务](usb/Readme-CN.md)
-- [DFX](dfx/Readme-CN.md)
-- [WebGL](webgl/Readme-CN.md)
-- [开发参考](reference/Readme-CN.md)
-
+- 了解OpenHarmony
+    - [了解OpenHarmony开源项目](../OpenHarmony-Overview_zh.md)
+    - [了解OpenHarmony系统](../readme)
+    - [术语](../device-dev/glossary/glossary.md)
+    - [版本说明](../release-notes/Readme.md)
+- 快速开始
+    - [应用开发快速入门](quick-start/Readme-CN.md)
+    - [应用开发包结构说明](quick-start/package-structure.md)
+- 开发
+    - [Ability开发](ability/Readme-CN.md)
+    - [UI开发](ui/Readme-CN.md)
+    - 基础功能开发
+       - [后台代理提醒](background-agent-scheduled-reminder/Readme-CN.md)
+       - [后台任务管理](background-task-management/Readme-CN.md)
+       - [媒体](media/Readme-CN.md)
+       - [安全](security/Readme-CN.md)
+       - [网络与连接](connectivity/Readme-CN.md)
+       - [数据管理](database/Readme-CN.md)
+       - [USB服务](usb/Readme-CN.md)
+       - [DFX](dfx/Readme-CN.md)
+- 工具
+    - [DevEco Studio（OpenHarmony）使用指南](quick-start/deveco-studio-user-guide-for-openharmony.md)
+- 示例教程
+    - [示例代码](https://gitee.com/openharmony/app_samples/blob/master/README_zh.md)
+    - [Codelabs](https://gitee.com/openharmony/codelabs/blob/master/README.md)
+- API参考 
+    - [组件参考（基于JS扩展的类Web开发范式）](reference/arkui-js/Readme-CN.md)
+    - [组件参考（基于TS扩展的声明式开发范式）](reference/arkui-ts/Readme-CN.md)
+    - [接口参考](reference/apis/Readme-CN.md)
+- 贡献
+    - [参与贡献](../contribute/贡献文档.md)
