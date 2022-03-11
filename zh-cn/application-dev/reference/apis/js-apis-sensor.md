@@ -249,7 +249,7 @@ on(type: sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, callback: AsyncCa
 
 监听计步检测传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-**需要权限**：ohos.permission.ACTIVITY_MOTION ，该权限为系统权限
+**需要权限**：ohos.permission.ACTIVITY_MOTION
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -280,7 +280,7 @@ on(type: sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER, callback: AsyncCallback&lt;
 
 监听计步传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-**需要权限**：ohos.permission.ACTIVITY_MOTION ，该权限为系统权限
+**需要权限**：ohos.permission.ACTIVITY_MOTION 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -858,7 +858,7 @@ once(type:sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION,callback:AsyncCal
 
 监听计步检测传感器数据变化一次。
 
-**需要权限**：ohos.permission.ACTIVITY_MOTION, 该权限为系统权限
+**需要权限**：ohos.permission.ACTIVITY_MOTION
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -887,7 +887,7 @@ once(type: sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER, callback: AsyncCallback&l
 
 监听计步器传感器数据变化一次。
 
-**需要权限**：ohos.permission.ACTIVITY_MOTION， 该权限为系统权限
+**需要权限**：ohos.permission.ACTIVITY_MOTION
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -1197,7 +1197,7 @@ once(type: sensor.SensorType.SENSOR_TYPE_ID_HEART_RATE, callback: AsyncCallback&
 
 监听心率传感器数据变化一次。
 
-**需要权限**：ohos.permission.HEART_RATE ，该权限为系统权限
+**需要权限**：ohos.permission.READ_HEALTH_DATA 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
