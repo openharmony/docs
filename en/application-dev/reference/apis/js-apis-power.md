@@ -97,7 +97,7 @@ Checks the screen status of the current device.
 **Return Value**
 | Type                    | Description                                     |
 | ---------------------- | --------------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to asynchronously obtain the return value. <br/>Return value: The value **true** indicates that the screen is on, and the value **false** indicates the opposite.|
+| Promise&lt;boolean&gt; | Promise used to obtain the return value. <br/>Return value: The value **true** indicates that the screen is on, and the value **false** indicates the opposite.|
 
 **Example**
 

@@ -21,7 +21,7 @@ Enumerates the types of **RunningLock** objects.
 
 | Name                      | Default Value  | Description                 |
 | ------------------------ | ---- | ------------------- |
-| BACKGROUND               | 1    | Defines a **RunningLock** object.          |
+| BACKGROUND               | 1    | A lock that prevents the system from hibernating when the screen is off.|
 | PROXIMITY_SCREEN_CONTROL | 2    | A lock that determines whether to turn on or off the screen based on the distance away from the screen.|
 
 
