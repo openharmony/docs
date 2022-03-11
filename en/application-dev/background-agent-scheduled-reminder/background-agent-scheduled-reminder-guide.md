@@ -350,11 +350,12 @@ You can set your application to call the  **ReminderRequest**  class to create s
 
 **ReminderRequestCalendar**  extends  **ReminderRequest**  and defines a reminder for a calendar event.
 
-The earliest reminder time must be later than the current time.
+For the application to run properly, if both **repeatMonths** and **repeatDays** are not specified, the earliest reminder time must be later than the current time.  
 
 **Table  8**  ReminderRequestCalendar instance
 
 <a name="table19307315135210"></a>
+
 <table><thead align="left"><tr id="row113131315175216"><th class="cellrowborder" valign="top" width="25%" id="mcps1.2.5.1.1"><p id="p656917217528"><a name="p656917217528"></a><a name="p656917217528"></a>Name</p>
 </th>
 <th class="cellrowborder" valign="top" width="17.48%" id="mcps1.2.5.1.2"><p id="p1356913214522"><a name="p1356913214522"></a><a name="p1356913214522"></a>Type</p>
@@ -371,7 +372,7 @@ The earliest reminder time must be later than the current time.
 </td>
 <td class="cellrowborder" valign="top" width="7.22%" headers="mcps1.2.5.1.3 "><p id="p4314201510524"><a name="p4314201510524"></a><a name="p4314201510524"></a>Yes</p>
 </td>
-<td class="cellrowborder" valign="top" width="50.3%" headers="mcps1.2.5.1.4 "><p id="p1031461511522"><a name="p1031461511522"></a><a name="p1031461511522"></a>Reminder time.</p>
+<td class="cellrowborder" valign="top" width="50.3%" headers="mcps1.2.5.1.4 "><p id="p1031461511522"><a name="p1031461511522"></a><a name="p1031461511522"></a>Reminder time, accurate to the minute.</p>
 </td>
 </tr>
 <tr id="row631461520524"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.1 "><p id="p1431419151526"><a name="p1431419151526"></a><a name="p1431419151526"></a>repeatMonths</p>
@@ -380,7 +381,7 @@ The earliest reminder time must be later than the current time.
 </td>
 <td class="cellrowborder" valign="top" width="7.22%" headers="mcps1.2.5.1.3 "><p id="p1031461595220"><a name="p1031461595220"></a><a name="p1031461595220"></a>No</p>
 </td>
-<td class="cellrowborder" valign="top" width="50.3%" headers="mcps1.2.5.1.4 "><p id="p2031411555218"><a name="p2031411555218"></a><a name="p2031411555218"></a>Months in which the reminder repeats.</p>
+<td class="cellrowborder" valign="top" width="50.3%" headers="mcps1.2.5.1.4 "><p id="p2031411555218"><a name="p2031411555218"></a><a name="p2031411555218"></a>Months in which the reminder repeats. The value range is 1 to 12.</p>
 </td>
 </tr>
 <tr id="row731481513526"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.1 "><p id="p031471515525"><a name="p031471515525"></a><a name="p031471515525"></a>repeatDays</p>
@@ -389,7 +390,7 @@ The earliest reminder time must be later than the current time.
 </td>
 <td class="cellrowborder" valign="top" width="7.22%" headers="mcps1.2.5.1.3 "><p id="p93141115135214"><a name="p93141115135214"></a><a name="p93141115135214"></a>No</p>
 </td>
-<td class="cellrowborder" valign="top" width="50.3%" headers="mcps1.2.5.1.4 "><p id="p18314141515212"><a name="p18314141515212"></a><a name="p18314141515212"></a>Date on which the reminder repeats.</p>
+<td class="cellrowborder" valign="top" width="50.3%" headers="mcps1.2.5.1.4 "><p id="p18314141515212"><a name="p18314141515212"></a><a name="p18314141515212"></a>Date on which the reminder repeats. The value range is 1 to 31.</p>
 </td>
 </tr>
 </tbody>
@@ -416,7 +417,7 @@ The earliest reminder time must be later than the current time.
 </td>
 <td class="cellrowborder" valign="top" width="7.31%" headers="mcps1.2.5.1.3 "><p id="p17770141618445"><a name="p17770141618445"></a><a name="p17770141618445"></a>Yes</p>
 </td>
-<td class="cellrowborder" valign="top" width="49.86%" headers="mcps1.2.5.1.4 "><p id="p1770161618444"><a name="p1770161618444"></a><a name="p1770161618444"></a>Hour portion of the reminder time.</p>
+<td class="cellrowborder" valign="top" width="49.86%" headers="mcps1.2.5.1.4 "><p id="p1770161618444"><a name="p1770161618444"></a><a name="p1770161618444"></a>Hour portion of the reminder time. The value range is 0 to 23.</p>
 </td>
 </tr>
 <tr id="row1177019161448"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.1 "><p id="p77705169442"><a name="p77705169442"></a><a name="p77705169442"></a>minute</p>
@@ -425,7 +426,7 @@ The earliest reminder time must be later than the current time.
 </td>
 <td class="cellrowborder" valign="top" width="7.31%" headers="mcps1.2.5.1.3 "><p id="p1477018169442"><a name="p1477018169442"></a><a name="p1477018169442"></a>Yes</p>
 </td>
-<td class="cellrowborder" valign="top" width="49.86%" headers="mcps1.2.5.1.4 "><p id="p17703161445"><a name="p17703161445"></a><a name="p17703161445"></a>Minute portion of the reminder time.</p>
+<td class="cellrowborder" valign="top" width="49.86%" headers="mcps1.2.5.1.4 "><p id="p17703161445"><a name="p17703161445"></a><a name="p17703161445"></a>Minute portion of the reminder time. The value range is 0 to 59.</p>
 </td>
 </tr>
 <tr id="row16770416194410"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.1 "><p id="p157706167440"><a name="p157706167440"></a><a name="p157706167440"></a>daysOfWeek</p>
@@ -434,7 +435,7 @@ The earliest reminder time must be later than the current time.
 </td>
 <td class="cellrowborder" valign="top" width="7.31%" headers="mcps1.2.5.1.3 "><p id="p19770616134413"><a name="p19770616134413"></a><a name="p19770616134413"></a>No</p>
 </td>
-<td class="cellrowborder" valign="top" width="49.86%" headers="mcps1.2.5.1.4 "><p id="p16101423134917"><a name="p16101423134917"></a><a name="p16101423134917"></a>Days of a week when the reminder repeats.</p>
+<td class="cellrowborder" valign="top" width="49.86%" headers="mcps1.2.5.1.4 "><p id="p16101423134917"><a name="p16101423134917"></a><a name="p16101423134917"></a>Days of a week when the reminder repeats. The value range is 1 to 7.</p>
 </td>
 </tr>
 </tbody>
@@ -611,8 +612,8 @@ calendar: {
         minute: 14,
         second: 30
     },
-    repeatMonths: [0],
-    repeatDays: [0],
+    repeatMonths: [1],
+    repeatDays: [1],
     actionButton: [
         {
             title: "close",
