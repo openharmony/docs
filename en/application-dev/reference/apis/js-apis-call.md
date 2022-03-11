@@ -23,10 +23,10 @@ Initiates a call. This function uses an asynchronous callback to return the exec
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name       | Type                        | Mandatory| Description                                             |
 | ----------- | ---------------------------- | ---- | ------------------------------------------------- |
-| phoneNumber | string                       | Yes| Phone number.|
-| callback    | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result.<br/> - **true**: success <br/> - **false**: failure|
+| phoneNumber | string                       | Yes  | Phone number.                                       |
+| callback    | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result.<br>- **true**: success<br>- **false**: failure|
 
 **Example**
 
@@ -49,11 +49,11 @@ Initiates a call. You can set call options as needed. This function uses an asyn
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name       | Type                        | Mandatory| Description                                             |
 | ----------- | ---------------------------- | ---- | ------------------------------------------------- |
-| phoneNumber | string                       | Yes| Phone number.|
-| options     | DialOptions                  | Yes| Call options. For details, see [DialOptions](#DialOptions).|
-| callback    | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result.<br/> - **true**: success <br/> - **false**: failure|
+| phoneNumber | string                       | Yes  | Phone number.                                       |
+| options     | DialOptions                  | Yes  | Call options. For details, see [DialOptions](#DialOptions).      |
+| callback    | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result.<br>- **true**: success<br>- **false**: failure|
 
 **Example**
 
@@ -78,14 +78,14 @@ Initiates a call. You can set call options as needed. This function uses a promi
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name       | Type       | Mandatory| Description                                       |
 | ----------- | ----------- | ---- | ------------------------------------------- |
-| phoneNumber | string      | Yes| Phone number.|
-| options     | DialOptions | Yes| Call options. For details, see [DialOptions](#DialOptions).|
+| phoneNumber | string      | Yes  | Phone number.                                 |
+| options     | DialOptions | Yes  | Call options. For details, see [DialOptions](#DialOptions).|
 
-**Return value**
+**Return Value**
 
-| Type| Description|
+| Type                  | Description                             |
 | ---------------------- | --------------------------------- |
 | Promise&lt;boolean&gt; | Promise used to return the result.|
 
@@ -102,6 +102,61 @@ promise.then(data => {
 });
 ```
 
+## call.makeCall<sup>7+</sup><a name=call.makeCall-callback></a>
+
+makeCall(phoneNumber: string, callback: AsyncCallback<void>): void
+
+Launches the call screen and displays the dialed number. This method uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+**Parameters**
+
+| Name       | Type                     | Mandatory| Description                                      |
+| ----------- | ------------------------- | ---- | ------------------------------------------ |
+| phoneNumber | string                    | Yes  | Phone number.                                |
+| callback    | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
+
+**Example**
+
+```
+call.makeCall("138xxxxxxxx", err => { 
+    console.log(`makeCall callback: err->${JSON.stringify(err)}`); 
+});
+```
+
+
+## call.makeCall<sup>7+</sup><a name=call.makeCall-promise></a>
+
+makeCall(phoneNumber: string): Promise<void>
+
+Launches the call screen and displays the dialed number. This method uses a promise to return the result.
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+**Parameters**
+
+| Name       | Type  | Mandatory| Description      |
+| ----------- | ------ | ---- | ---------- |
+| phoneNumber | string | Yes  | Phone number.|
+
+**Return Value**
+
+| Type               | Description                             |
+| ------------------- | --------------------------------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Example**
+
+```
+let promise = call.makeCall("138xxxxxxxx"); 
+promise.then(() => { 
+    console.log(`makeCall success`); 
+}).catch(err => { 
+    console.error(`makeCall fail, promise: err->${JSON.stringify(err)}`); 
+});
+```
+
 ## call.hasCall<a name=call.hasCall-callback></a>
 
 hasCall\(callback: AsyncCallback<boolean\>\): void
@@ -112,9 +167,9 @@ Checks whether a call is in progress. This function uses an asynchronous callbac
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name    | Type                        | Mandatory| Description                                                        |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result: <br/> - **true**: A call is in progress. <br/> - **false**: No call is in progress. |
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result.<br>- **true**: A call is in progress.<br>- **false**: No call is in progress.|
 
 **Example**
 
@@ -133,9 +188,9 @@ Checks whether a call is in progress. This function uses a promise to return the
 
 **System capability**: SystemCapability.Telephony.CallManager
 
-**Return value**
+**Return Value**
 
-| Type| Description|
+| Type                  | Description                                   |
 | ---------------------- | --------------------------------------- |
 | Promise&lt;boolean&gt; | Promise used to return the result.|
 
@@ -161,9 +216,9 @@ Obtains the call status. This function uses an asynchronous callback to return t
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name    | Type                                        | Mandatory| Description                                |
 | -------- | -------------------------------------------- | ---- | ------------------------------------ |
-| callback | AsyncCallback&lt;[CallState](#CallState)&gt; | Yes| Callback used to return the result.|
+| callback | AsyncCallback&lt;[CallState](#CallState)&gt; | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -182,9 +237,9 @@ Obtains the call status. This function uses a promise to return the result.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
-**Return value**
+**Return Value**
 
-| Type| Description|
+| Type                                  | Description                                     |
 | -------------------------------------- | ----------------------------------------- |
 | Promise&lt;[CallState](#CallState)&gt; | Promise used to return the result.|
 
@@ -199,6 +254,25 @@ promise.then(data => {
 });
 ```
 
+## call.hasVoiceCapability<sup>7+</sup><a name=call.hasVoiceCapability></a>
+
+hasVoiceCapability(): boolean
+
+Checks whether a device supports voice calls. This function works in synchronous mode.
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+**Return Value**
+
+| Type   | Description                                                        |
+| ------- | ------------------------------------------------------------ |
+| boolean | - **true**: The device supports voice calls.<br>- **false**: The device does not support voice calls.|
+
+```
+let result = call.hasVoiceCapability(); 
+console.log(`hasVoiceCapability: ${JSON.stringify(result)}`);
+```
+
 ## call.isEmergencyPhoneNumber<sup>7+</sup><a name=call.isEmergencyPhoneNumber-callback1></a>
 
 isEmergencyPhoneNumber\(phoneNumber: string, callback: AsyncCallback<boolean\>\): void
@@ -209,10 +283,10 @@ Checks whether the call number of the SIM card in the specified slot is an emerg
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name       | Type                        | Mandatory| Description                                                        |
 | ----------- | ---------------------------- | ---- | ------------------------------------------------------------ |
-| phoneNumber | string                       | Yes| Phone number.|
-| callback    | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result.<br/> - **true**: The called number is an emergency number. <br/> - **false**: The called number is not an emergency number.|
+| phoneNumber | string                       | Yes  | Phone number.                                                  |
+| callback    | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result.<br>- **true**: The called number is an emergency number.<br>- **false**: The called number is not an emergency number.|
 
 **Example**
 
@@ -233,11 +307,11 @@ Checks whether the call number of the SIM card in the specified slot is an emerg
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name       | Type                        | Mandatory| Description                                                        |
 | ----------- | ---------------------------- | ---- | ------------------------------------------------------------ |
-| phoneNumber | string                       | Yes| Phone number.|
-| options     | EmergencyNumberOptions       | Yes| Emergency number options defined in [EmergencyNumberOptions](#EmergencyNumberOptions).|
-| callback    | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result.<br/> - **true**: The called number is an emergency number. <br/> - **false**: The called number is not an emergency number.|
+| phoneNumber | string                       | Yes  | Phone number.                                                  |
+| options     | EmergencyNumberOptions       | Yes  | Emergency number options defined in [EmergencyNumberOptions](#EmergencyNumberOptions).|
+| callback    | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result.<br>- **true**: The called number is an emergency number.<br>- **false**: The called number is not an emergency number.|
 
 **Example**
 
@@ -258,14 +332,14 @@ Checks whether the call number of the SIM card in the specified slot is an emerg
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name       | Type                  | Mandatory| Description                                                        |
 | ----------- | ---------------------- | ---- | ------------------------------------------------------------ |
-| phoneNumber | string                 | Yes| Phone number.|
-| options     | EmergencyNumberOptions | Yes| Emergency number options defined in [EmergencyNumberOptions](#EmergencyNumberOptions).|
+| phoneNumber | string                 | Yes  | Phone number.                                                  |
+| options     | EmergencyNumberOptions | Yes  | Emergency number options defined in [EmergencyNumberOptions](#EmergencyNumberOptions).|
 
-**Return value**
+**Return Value**
 
-| Type| Description|
+| Type                  | Description                                               |
 | ---------------------- | --------------------------------------------------- |
 | Promise&lt;boolean&gt; | Promise used to return the result.|
 
@@ -290,10 +364,10 @@ Formats a phone number based on the specified ISO country code. This function us
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name       | Type                       | Mandatory| Description                                |
 | ----------- | --------------------------- | ---- | ------------------------------------ |
-| phoneNumber | string                      | Yes| Phone number.|
-| callback    | AsyncCallback&lt;string&gt; | Yes| Callback used to return the result.|
+| phoneNumber | string                      | Yes  | Phone number.                          |
+| callback    | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -314,11 +388,11 @@ Formats a phone number based on specified formatting options. This function uses
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name       | Type                       | Mandatory| Description                                                        |
 | ----------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| phoneNumber | string                      | Yes| Phone number.|
-| options     | NumberFormatOptions         | Yes| Number formatting options defined in [NumberFormatOptions](#NumberFormatOptions).|
-| callback    | AsyncCallback&lt;string&gt; | Yes| Callback used to return the result.|
+| phoneNumber | string                      | Yes  | Phone number.                                                  |
+| options     | NumberFormatOptions         | Yes  | Number formatting options defined in [NumberFormatOptions](#NumberFormatOptions).|
+| callback    | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result.                        |
 
 **Example**
 
@@ -341,14 +415,14 @@ Formats a phone number based on specified formatting options. This function uses
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name       | Type               | Mandatory| Description                                                        |
 | ----------- | ------------------- | ---- | ------------------------------------------------------------ |
-| phoneNumber | string              | Yes| Phone number.|
-| options     | NumberFormatOptions | Yes| Number formatting options defined in [NumberFormatOptions](#NumberFormatOptions).|
+| phoneNumber | string              | Yes  | Phone number.                                                  |
+| options     | NumberFormatOptions | Yes  | Number formatting options defined in [NumberFormatOptions](#NumberFormatOptions).|
 
-**Return value**
+**Return Value**
 
-| Type| Description|
+| Type                 | Description                                       |
 | --------------------- | ------------------------------------------- |
 | Promise&lt;string&gt; | Promise used to return the result.|
 
@@ -379,11 +453,11 @@ All country codes are supported.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name       | Type                       | Mandatory| Description                                                 |
 | ----------- | --------------------------- | ---- | ----------------------------------------------------- |
-| phoneNumber | string                      | Yes| Phone number.|
-| countryCode | string                      | Yes| Country code, for example, **CN** (China). All country codes are supported.|
-| callback    | AsyncCallback&lt;string&gt; | Yes| Callback used to return the result.|
+| phoneNumber | string                      | Yes  | Phone number.                                           |
+| countryCode | string                      | Yes  | Country code, for example, **CN** (China). All country codes are supported.             |
+| callback    | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -410,14 +484,14 @@ All country codes are supported.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name       | Type  | Mandatory| Description                                    |
 | ----------- | ------ | ---- | ---------------------------------------- |
-| phoneNumber | string | Yes| Phone number.|
-| countryCode | string | Yes| Country code, for example, **CN** (China). All country codes are supported.|
+| phoneNumber | string | Yes  | Phone number.                              |
+| countryCode | string | Yes  | Country code, for example, **CN** (China). All country codes are supported.|
 
-**Return value**
+**Return Value**
 
-| Type| Description|
+| Type                 | Description                                                        |
 | --------------------- | ------------------------------------------------------------ |
 | Promise&lt;string&gt; | Promise used to return the result.|
 
@@ -440,20 +514,20 @@ Provides an option for determining whether a call is a video call.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
-| Name| Type| Mandatory| Description|
+| Parameter  | Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| extras | boolean | No| Indication of a video call. The options are as follows: <br/> - **true**: video call <br/> - **false**: voice call|
+| extras | boolean | No  | Indication of a video call. <br>- **true**: video call<br>- **false** (default): voice call|
 
 ## CallState<a name=CallState></a>
 
 Enumerates call states.
 
-| Variable| Value| Description|
+| Variable              | Value  | Description                                                        |
 | ------------------ | ---- | ------------------------------------------------------------ |
-| CALL_STATE_UNKNOWN | -1   | The call status fails to be obtained and is unknown. <br />**System capability**: SystemCapability.Telephony.CallManager|
-| CALL_STATE_IDLE    | 0    | No call is in progress. <br />**System capability**: SystemCapability.Telephony.CallManager|
-| CALL_STATE_RINGING | 1    | The call is in the ringing or waiting state. <br />**System capability**: SystemCapability.Telephony.CallManager|
-| CALL_STATE_OFFHOOK | 2    | At least one call is in dialing, active, or on hold, and no new incoming call is ringing or waiting. <br />**System capability**: SystemCapability.Telephony.CallManager|
+| CALL_STATE_UNKNOWN | -1   | The call status fails to be obtained and is unknown.<br>**System capability**: SystemCapability.Telephony.CallManager|
+| CALL_STATE_IDLE    | 0    | No call is in progress.<br>**System capability**: SystemCapability.Telephony.CallManager|
+| CALL_STATE_RINGING | 1    | The call is in the ringing or waiting state.<br>**System capability**: SystemCapability.Telephony.CallManager|
+| CALL_STATE_OFFHOOK | 2    | At least one call is in dialing, active, or on hold, and no new incoming call is ringing or waiting.<br>**System capability**: SystemCapability.Telephony.CallManager|
 
 ## EmergencyNumberOptions<sup>7+</sup><a name=EmergencyNumberOptions></a>
 
@@ -461,9 +535,9 @@ Provides an option for determining whether a number is an emergency number for t
 
 **System capability**: SystemCapability.Telephony.CallManager
 
-| Name| Type| Mandatory| Description|
+| Parameter  | Type  | Mandatory| Description                                      |
 | ------ | ------ | ---- | ------------------------------------------ |
-| slotId | number | No| SIM card slot ID.<br/> - **0**: slot 1 <br/> - **1**: slot 2|
+| slotId | number | No  | Card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
 
 ## NumberFormatOptions<sup>7+</sup><a name=NumberFormatOptions></a>
 
@@ -471,6 +545,6 @@ Provides an option for number formatting.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
-| Name| Type| Mandatory| Description|
+| Parameter       | Type  | Mandatory| Description                                                      |
 | ----------- | ------ | ---- | ---------------------------------------------------------- |
-| countryCode | string | No| Country code, for example, **CN** (China). All country codes are supported. The default value is **CN**.|
+| countryCode | string | No  | Country code, for example, **CN** (China). All country codes are supported. The default value is **CN**.|

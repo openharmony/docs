@@ -20,11 +20,11 @@ Creates an SMS message instance based on the protocol data unit (PDU) and the sp
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name       | Type                                              | Mandatory| Description                                                        |
 | ------------- | -------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| pdu           | Array&lt;number&gt;                                | Yes| PDU, which is obtained from the received SMS message.|
-| specification | string                                             | Yes| SMS protocol type. The options are as follows: <br/> - **3gpp**: GSM/UMTS/LTE SMS<br/> - **3gpp2**: CDMA SMS|
-| callback      | AsyncCallback&lt;[ShortMessage](#ShortMessage)&gt; | Yes| Callback used to return the result.|
+| pdu           | Array&lt;number&gt;                                | Yes  | PDU, which is obtained from the received SMS message.                          |
+| specification | string                                             | Yes  | SMS protocol type. <br>- **3gpp**: GSM/UMTS/LTE SMS<br>- **3gpp2**: CDMA SMS|
+| callback      | AsyncCallback&lt;[ShortMessage](#ShortMessage)&gt; | Yes  | Callback used to return the result.                                                  |
 
 **Example**
 
@@ -48,14 +48,14 @@ Creates an SMS message instance based on the PDU and the specified SMS protocol.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name       | Type               | Mandatory| Description                                                        |
 | ------------- | ------------------- | ---- | ------------------------------------------------------------ |
-| pdu           | Array&lt;number&gt; | Yes| PDU, which is obtained from the received SMS message.|
-| specification | string              | Yes| SMS protocol type. The options are as follows: <br/> - **3gpp**: GSM/UMTS/LTE SMS<br/> - **3gpp2**: CDMA SMS|
+| pdu           | Array&lt;number&gt; | Yes  | PDU, which is obtained from the received SMS message.                          |
+| specification | string              | Yes  | SMS protocol type. <br>- **3gpp**: GSM/UMTS/LTE SMS<br>- **3gpp2**: CDMA SMS|
 
-**Return value**
+**Return Value**
 
-| Type| Description|
+| Type                                        | Description                             |
 | -------------------------------------------- | --------------------------------- |
 | Promise&lt;[ShortMessage](#ShortMessage)&gt; | Promise used to return the result.|
 
@@ -85,9 +85,9 @@ Sends an SMS message.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type                                     | Mandatory| Description                                                        |
 | ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [SendMessageOptions](#SendMessageOptions) | Yes| Options (including the callback) for sending an SMS message. For details, see [SendMessageOptions](#SendMessageOptions).|
+| options | [SendMessageOptions](#SendMessageOptions) | Yes  | Options (including the callback) for sending an SMS message. For details, see [SendMessageOptions](#SendMessageOptions).|
 
 **Example**
 
@@ -118,9 +118,9 @@ Obtains the default slot of the SIM card used to send SMS messages. This functio
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name  | Type                       | Mandatory| Description                                    |
 | -------- | --------------------------- | ---- | ---------------------------------------- |
-| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the result. <br/> - **0**: slot 1 <br/> - **1**: slot 2|
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the result.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 
 **Example**
 
@@ -139,16 +139,16 @@ Obtains the default slot of the SIM card used to send SMS messages. This functio
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
-**Return value**
+**Return Value**
 
-| Type| Description|
+| Type           | Description                                                        |
 | --------------- | ------------------------------------------------------------ |
-| Promise<number> | Promise used to return the result.<br/> - **0**: slot 1<br/> - **1**: slot 2|
+| Promise<number> | Promise used to return the result.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 
 **Example**
 
 ```
-let promise = call.getDefaultSmsSlotId();
+let promise = sms.getDefaultSmsSlotId();
 promise.then(data => {
     console.log(`getDefaultSmsSlotId success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
@@ -169,11 +169,11 @@ Sets the short message service center (SMSC) address. This function uses an asyn
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name  | Type                     | Mandatory| Description                                     |
 | -------- | ------------------------- | ---- | ----------------------------------------- |
-| slotId   | number                    | Yes| SIM card slot ID: <br/> - **0**: slot 1<br/> - **1**: slot 2|
-| smscAddr | string                    | Yes| SMSC address. |
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+| slotId   | number                    | Yes  | SIM card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
+| smscAddr | string                    | Yes  | SMSC address.                        |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                               |
 
 **Example**
 
@@ -198,14 +198,14 @@ Sets the SMSC address. This function uses a promise to return the result.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name  | Type  | Mandatory| Description                                     |
 | -------- | ------ | ---- | ----------------------------------------- |
-| slotId   | number | Yes| SIM card slot ID: <br/> - **0**: slot 1<br/> - **1**: slot 2|
-| smscAddr | string | Yes| SMSC address. |
+| slotId   | number | Yes  | SIM card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
+| smscAddr | string | Yes  | SMSC address.                        |
 
-**Return value**
+**Return Value**
 
-| Type| Description|
+| Type               | Description                           |
 | ------------------- | ------------------------------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
 
@@ -233,12 +233,14 @@ Obtains the SMSC address. This function uses an asynchronous callback to return 
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
+**Note:** This is a system API and it is used only for system applications.
+
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name  | Type                       | Mandatory| Description                                     |
 | -------- | --------------------------- | ---- | ----------------------------------------- |
-| slotId   | number                      | Yes| SIM card slot ID: <br/> - **0**: slot 1<br/> - **1**: slot 2|
-| callback | AsyncCallback&lt;string&gt; | Yes| Callback used to return the result.|
+| slotId   | number                      | Yes  | SIM card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
+| callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result.                               |
 
 **Example**
 
@@ -260,15 +262,17 @@ Obtains the SMSC address. This function uses a promise to return the result.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
+**Note:** This is a system API and it is used only for system applications.
+
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name| Type  | Mandatory| Description                                     |
 | ------ | ------ | ---- | ----------------------------------------- |
-| slotId | number | Yes| SIM card slot ID: <br/> - **0**: slot 1<br/> - **1**: slot 2|
+| slotId | number | Yes  | SIM card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
 
-**Return value**
+**Return Value**
 
-| Type| Description|
+| Type                 | Description                                         |
 | --------------------- | --------------------------------------------- |
 | Promise&lt;string&gt; | Promise used to return the result.|
 
@@ -284,6 +288,24 @@ promise.then(data => {
 });
 ```
 
+## sms.hasSmsCapability<sup>7+</sup><a name=sms.hasSmsCapability></a>
+
+hasSmsCapability(): boolean
+
+Checks whether the current device can send and receive SMS messages. This function works in synchronous mode.
+
+**System capability**: SystemCapability.Telephony.SmsMms
+
+**Return Value**
+
+| Type   | Description                                                        |
+| ------- | ------------------------------------------------------------ |
+| boolean | - **true**: The device can send and receive SMS messages.<br>- **false**: The device cannot send or receive SMS messages.|
+
+```
+let result = sms.hasSmsCapability(); 
+console.log(`hasSmsCapability: ${JSON.stringify(result)}`);
+```
 
 ## ShortMessage<a name=ShortMessage></a>
 
@@ -291,36 +313,32 @@ Defines an SMS message instance.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
-| Variable| Type| Description|
+| Variable                    | Type                                   | Description                                                        |
 | ------------------------ | --------------------------------------- | ------------------------------------------------------------ |
-| emailAddress             | string                                  | Email address.|
-| emailMessageBody         | string                                  | Email body.|
-| hasReplyPath             | boolean                                 | Whether the received SMS contains **TP-Reply-Path**. The default value is **false**. <br/>**TP-Reply-Path**: the path in which the mobile phone can reply to the SMS message through the originating SMSC.|
-| isEmailMessage           | boolean                                 | Whether the received SMS message is an email.|
-| isReplaceMessage         | boolean                                 | Whether the received SMS message is a **replace short message**. The default value is **false**. <br/>For details, see section 9.2.3.9 in **3GPP TS 23.040**.|
-| isSmsStatusReportMessage | boolean                                 | Whether the received SMS message is an SMS delivery status report. The default value is **false**. <br/>SMS delivery status report: a message sent from the SMSC to show the current status of the SMS message you delivered.|
-| messageClass             | [ShortMessageClass](#ShortMessageClass) | SMS message type.|
-| pdu                      | Array&lt;number&gt;                     | PDU in the SMS message.|
-| protocolId               | number                                  | ID of the protocol used for sending SMS messages.|
-| scAddress                | string                                  | Address of the short message service center (SMSC).|
-| scTimestamp              | number                                  | SMSC timestamp.|
+| hasReplyPath             | boolean                                 | Whether the received SMS contains **TP-Reply-Path**. The default value is **false**.<br>**TP-Reply-Path**: the path in which the mobile phone can reply to the SMS message through the originating SMSC.|
+| isReplaceMessage         | boolean                                 | Whether the received SMS message is a **replace short message**. The default value is **false**.<br>For details, see section 9.2.3.9 in **3GPP TS 23.040**.|
+| isSmsStatusReportMessage | boolean                                 | Whether the received SMS message is an SMS delivery status report. The default value is **false**.<br>**SMS-Status-Report**: a message sent from the SMSC to the mobile station to show the SMS message delivery status.|
+| messageClass             | [ShortMessageClass](#ShortMessageClass) | SMS message type.                                                  |
+| pdu                      | Array&lt;number&gt;                     | PDU in the SMS message.                           |
+| protocolId               | number                                  | ID of the protocol used for sending SMS messages.                                  |
+| scAddress                | string                                  | Address of the short message service center (SMSC).                                |
+| scTimestamp              | number                                  | SMSC timestamp.                                                |
 | status                   | number                                  | SMS message status sent by the SMSC in the **SMS-STATUS-REPORT** message.|
-| userRawData              | Array&lt;number&gt;                     | User data except the data header.|
-| visibleMessageBody       | string                                  | SMS message body.|
-| visibleRawAddress        | string                                  | Sender address.|
+| visibleMessageBody       | string                                  | SMS message body.                                                  |
+| visibleRawAddress        | string                                  | Sender address.                                                |
 
 
 ## ShortMessageClass<a name=ShortMessageClass></a>
 
 Enumerates SMS message types.
 
-| Variable| Value| Description|
+| Variable            | Value  | Description                                                        |
 | ---------------- | ---- | ------------------------------------------------------------ |
-| UNKNOWN          | 0    | Unknown type. <br />**System capability**: SystemCapability.Telephony.SmsMms|
-| INSTANT_MESSAGE  | 1    | Instant message, which is displayed immediately after being received. <br />**System capability**: SystemCapability.Telephony.SmsMms|
-| OPTIONAL_MESSAGE | 2    | Message stored in the device or SIM card. <br />**System capability**: SystemCapability.Telephony.SmsMms|
-| SIM_MESSAGE      | 3    | Message containing SIM card information, which is to be stored in the SIM card. <br />**System capability**: SystemCapability.Telephony.SmsMms|
-| FORWARD_MESSAGE  | 4    | Message to be forwarded to another device. <br />**System capability**: SystemCapability.Telephony.SmsMms|
+| UNKNOWN          | 0    | Unknown type.<br>**System capability**: SystemCapability.Telephony.SmsMms|
+| INSTANT_MESSAGE  | 1    | Instant message, which is displayed immediately after being received.<br>**System capability**: SystemCapability.Telephony.SmsMms|
+| OPTIONAL_MESSAGE | 2    | Message stored in the device or SIM card.<br>**System capability**: SystemCapability.Telephony.SmsMms|
+| SIM_MESSAGE      | 3    | Message containing SIM card information, which is to be stored in the SIM card.<br>**System capability**: SystemCapability.Telephony.SmsMms|
+| FORWARD_MESSAGE  | 4    | Message to be forwarded to another device.<br>**System capability**: SystemCapability.Telephony.SmsMms|
 
 
 ## SendMessageOptions<a name=SendMessageOptions></a>
@@ -331,15 +349,15 @@ For example, you can specify the SMS message type by the optional parameter **co
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
-| Name| Type| Mandatory| Description|
+| Parameter          | Type                                                        | Mandatory| Description                                                        |
 | ---------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| slotId           | number                                                       | Yes| Slot ID of the SIM card used for sending SMS messages: <br/> - **0**: slot 1 <br/> - **1**: slot 2|
-| destinationHost  | string                                                       | Yes| Destination address of the SMS message.|
-| content          | string \| Array&lt;number&gt;                                | Yes| SMS message type. If the content is composed of character strings, the SMS message is a text message. If the content is composed of byte arrays, the SMS message is a data message.|
-| serviceCenter    | string                                                       | No| SMSC address. By default, the SMSC address in the SIM card is used.|
-| destinationPort  | number                                                       | No| Destination port of the SMS message. This parameter is mandatory only for a data message. Otherwise, it is optional.|
-| sendCallback     | AsyncCallback&lt;[ISendShortMessageCallback](#ISendShortMessageCallback)&gt; | No| Callback used to return the SMS message sending result. For details, see [ISendShortMessageCallback](#ISendShortMessageCallback).|
-| deliveryCallback | AsyncCallback&lt;[IDeliveryShortMessageCallback](#IDeliveryShortMessageCallback)&gt; | No| Callback used to return the SMS message delivery report. For details, see [IDeliveryShortMessageCallback](#IDeliveryShortMessageCallback).|
+| slotId           | number                                                       | Yes  | Slot ID of the SIM card used for sending SMS messages. <br>- **0**: card slot 1<br>- **1**: card slot 2     |
+| destinationHost  | string                                                       | Yes  | Destination address of the SMS message.                                            |
+| content          | string \| Array&lt;number&gt;                                | Yes  | SMS message type. If the content is composed of character strings, the SMS message is a text message. If the content is composed of byte arrays, the SMS message is a data message.|
+| serviceCenter    | string                                                       | No  | SMSC address. By default, the SMSC address in the SIM card is used.               |
+| destinationPort  | number                                                       | No  | Destination port of the SMS message. This parameter is mandatory only for a data message. Otherwise, it is optional.  |
+| sendCallback     | AsyncCallback&lt;[ISendShortMessageCallback](#ISendShortMessageCallback)&gt; | No  | Callback used to return the SMS message sending result. For details, see [ISendShortMessageCallback](#ISendShortMessageCallback).|
+| deliveryCallback | AsyncCallback&lt;[IDeliveryShortMessageCallback](#IDeliveryShortMessageCallback)&gt; | No  | Callback used to return the SMS message delivery report. For details, see [IDeliveryShortMessageCallback](#IDeliveryShortMessageCallback).|
 
 
 ## ISendShortMessageCallback<a name=ISendShortMessageCallback></a>
@@ -348,11 +366,11 @@ Provides the callback for the SMS message sending result. It consists of three p
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
-| Name| Type| Mandatory| Description|
+| Parameter    | Type                           | Mandatory| Description                                                        |
 | ---------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| isLastPart | boolean                         | No| Whether this SMS message is the last part of a long SMS message. The value **true** indicates that this SMS message is the last part of a long SMS message, and value **false** indicates the opposite. The default value is **false**.|
-| result     | [SendSmsResult](#SendSmsResult) | Yes| SMS message sending result.|
-| url        | string                          | Yes| URI for storing sent SMS messages.|
+| isLastPart | boolean                         | No  | Whether this SMS message is the last part of a long SMS message. The value **true** indicates that this SMS message is the last part of a long SMS message, and value **false** indicates the opposite. The default value is **false**.|
+| result     | [SendSmsResult](#SendSmsResult) | Yes  | SMS message sending result.                                              |
+| url        | string                          | Yes  | URI for storing sent SMS messages.                                         |
 
 
 ## IDeliveryShortMessageCallback<a name=IDeliveryShortMessageCallback></a>
@@ -361,9 +379,9 @@ Provides the callback for the SMS message sending result. Return the SMS deliver
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
-| Name| Type| Mandatory| Description|
+| Parameter| Type               | Mandatory| Description          |
 | ------ | ------------------- | ---- | -------------- |
-| pdu    | Array&lt;number&gt; | Yes| SMS message delivery report.|
+| pdu    | Array&lt;number&gt; | Yes  | SMS message delivery report.|
 
 
 ## SendSmsResult<a name=SendSmsResult></a>
@@ -372,9 +390,9 @@ Enumerates SMS message sending results.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
-| Name| Value| Description|
+| Parameter                              | Value  | Description                                                  |
 | ------------------------------------ | ---- | ------------------------------------------------------ |
-| SEND_SMS_SUCCESS                     | 0    | SMS message sent successfully.|
-| SEND_SMS_FAILURE_UNKNOWN             | 1    | Failed to send the SMS message due to unknown reasons.|
-| SEND_SMS_FAILURE_RADIO_OFF           | 2    | Failed to send the SMS message because the modem is shut down.|
+| SEND_SMS_SUCCESS                     | 0    | SMS message sent successfully.                                        |
+| SEND_SMS_FAILURE_UNKNOWN             | 1    | Failed to send the SMS message due to unknown reasons.                              |
+| SEND_SMS_FAILURE_RADIO_OFF           | 2    | Failed to send the SMS message because the modem is shut down.                  |
 | SEND_SMS_FAILURE_SERVICE_UNAVAILABLE | 3    | Failed to send the SMS message because the network is unavailable or SMS message sending or receiving is not supported.|
