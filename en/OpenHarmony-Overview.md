@@ -27,14 +27,14 @@ The system service layer provides a complete set of capabilities essential for O
 
 -   Enhanced software service subsystem set: Provides OpenHarmony with differentiated enhanced software services, including those dedicated to smart TVs, wearables, IoT devices, and more.
 
--   Hardware service subsystem set: Provides OpenHarmony with hardware services, including location, biometric recognition, as well as those dedicated to wearables and IoT devices.
+-   Hardware service subsystem set: Provides OpenHarmony with hardware services, including location, IAM, as well as those dedicated to wearables and IoT devices.
 
 
 The basic software service, enhanced software service, and hardware service subsystem sets can be modified by the subsystems, and each subsystem can be modified by various functions, depending on the deployment scenario for a particular device form.
 
 **Framework layer**
 
-This layer provides with what you need to develop OpenHarmony apps: application framework and ability framework, specific to multiple languages \(like C, C++, and JS\), JS UI framework, as well as multi-language APIs for hardware and software services. The APIs designed for different OpenHarmony devices can be modified based on various system components.
+This layer provides with what you need to develop OpenHarmony apps: application framework and ability framework, specific to multiple languages \(like C, C++, and JS\), ArkUI framework, as well as multi-language APIs for hardware and software services. The APIs designed for different OpenHarmony devices can be modified based on various system components.
 
 **Application layer**
 
