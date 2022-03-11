@@ -68,7 +68,7 @@ add(element: T): boolean
 ```
 let linkedList = new LinkedList();
 let result = linkedList.add("a");
-let result = linkedList.add(1);
+let result1 = linkedList.add(1);
 let b = [1, 2, 3];
 linkedList.add(b);
 let c = {name : "lala", age : "13"};
