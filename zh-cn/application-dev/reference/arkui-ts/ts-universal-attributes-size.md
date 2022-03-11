@@ -29,7 +29,6 @@
 @Entry
 @Component
 struct SizeExample {
-  @StateitemWidth : number = 0  @StateitemHeight : number = 0
   build() {
     Column({ space: 10 }) {
       Text('margin and padding:').fontSize(12).fontColor(0xCCCCCC).width('90%')
@@ -55,10 +54,8 @@ struct SizeExample {
         Text('no layoutWeight')
           .size({ width: '30%', height: 110 }).backgroundColor(0xD2B48C).textAlign(TextAlign.Center)
       }.size({ width: '90%', height: 140 }).backgroundColor(0xAFEEEE)
-      List() {          ListItem() {              Image('/resources/rawfile/seaman.png')                  .alt('/resources/rawfile/seaman2.png')                  .objectFit(ImageFit.Fill)                  .padding('100vp')                  .margin('40vp')                  .opacity(0.5)                  .measure('image_1') // 获取id=image_1的Image组件尺寸信息          }          .onMeasure((Array<MeasureRuler> ruler) => { // 在布局之前回调，返回已测量的子组件尺寸信息              console.log(ruler[0].id, ruler[0].screenX, ruler[0].screenY, ruler[0].offsetX, ruler[0].offsetY, ruler[0].width, ruler[0].height)              this.itemWidth = ruler[0].width          this.itemHeight = ruler[0].height        })          .width(this.itemWidth)          .height(this.itemHeight)      }
     }.width('100%').margin({ top: 5 })
-  }
-}
+  }}
 ```
 
 ![zh-cn_image_0000001174264384](figures/zh-cn_image_0000001174264384.gif)
