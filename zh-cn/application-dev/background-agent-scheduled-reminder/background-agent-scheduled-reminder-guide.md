@@ -93,7 +93,7 @@ interface ReminderRequestCalendar extends ReminderRequest: 日历类提醒实例
 
 | 参数名 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
-| dateTime | LocalDataTime | 是 | 设置目标时间(精确到分钟级别) |
+| dateTime | LocalDateTime | 是 | 设置目标时间(精确到分钟级别) |
 | repeatMonths | Array&lt;number&gt; | 否 | 设置重复提醒的月份，范围从 1 到 12 |
 | repeatDays | Array&lt;number&gt; | 否 | 设置重复提醒的日期，范围从 1 到 31 |
 
