@@ -2,11 +2,11 @@
 
 -   [功能说明](#section56901555916)
       - [init启动引导的配置文件](#section56901555917)
-      - [init服务启动控制(仅L2以上提供)](#section56901555918)
-      - [init服务并行控制(仅L2以上提供)](#section56901555919)
-      - [init 按需启动(仅L2以上提供)](#section56901555920)
+      - [init服务启动控制(仅标准系统以上提供)](#section56901555918)
+      - [init服务并行控制(仅标准系统以上提供)](#section56901555919)
+      - [init 按需启动(仅标准系统以上提供)](#section56901555920)
       - [init 进程启动&回收能力增强](#section56901555921)
-      - [init FD代持(仅L2以上提供)](#section56901555922)
+      - [init FD代持(仅标准系统以上提供)](#section56901555922)
       - [init job](#section56901555923)
 -   [开发指导](#section56901555924)
 -   [开发实例](#section56901555925)
@@ -27,7 +27,7 @@
 
   各模块需要添加关键服务时，也可以添加模块对应的cfg文件，编译时拷贝文件到/system/etc/init目录下，init进程会解析改cfg文件，并启动对应的服务。
 
-- init服务启动控制(仅L2以上提供)<a name="section56901555918"></a>
+- init服务启动控制(仅标准系统以上提供)<a name="section56901555918"></a>
 
   init会根据用户的服务配置，把服务分成三类，在不同的阶段进行启动。
 
@@ -35,7 +35,7 @@
   - “normal”类型：默认配置，对应系统中的普通服务，这类服务在init命令执行完成后启动。
   - "condition"类型：对应有特殊要求的服务，可以直接通过start xxx 命令执行启动，一般在条件job或者在init的某个阶段使用命令启动。
 
-- init服务并行控制(仅L2以上提供)<a name="section56901555919"></a>
+- init服务并行控制(仅标准系统以上提供)<a name="section56901555919"></a>
 
   init提供服务并行处理能力，启动服务在不同的阶段执行job的能力。
 
@@ -43,7 +43,7 @@
   - “on-stop”：在服务停止时执行。
   - "on-restart"：在服务重启时执行。
 
-- init 按需启动(仅L2以上提供)<a name="section56901555920"></a>
+- init 按需启动(仅标准系统以上提供)<a name="section56901555920"></a>
 
   由init管理的服务支持按需启动，按需启动的服务不会在系统启动过程中主动被拉起，而是当某些事件发生时才会被init按需拉起，触发服务启动的事件可能是被init监听的相关socket有消息上报、samgr收到客户端的请求需要拉起SA服务等情况。
 
@@ -67,16 +67,16 @@
 
   - init提供修改*.cfg配置文件， 为服务进程提供cpu绑核功能
   - init提供修改*.cfg配置文件， 为服务进程提供优先级设置
-  - init提供修改*.cfg配置文件， 为服务提供设置AccessToken, 为系统服务进程设置其分布式Capability能力（仅L2以上提供）。
+  - init提供修改*.cfg配置文件， 为服务提供设置AccessToken, 为系统服务进程设置其分布式Capability能力（仅标准系统以上提供）。
   - init提供修改*.cfg配置文件， 为服务提供抑制机制。
 
-- init FD代持(仅L2以上提供)<a name="section56901555922"></a>
+- init FD代持(仅标准系统以上提供)<a name="section56901555922"></a>
 
   FD代持是按需启动的一个辅助扩展机制，按需启动进程可以保持退出前的fd状态句柄不丢失。按需启动进程退出前可将fd发送给init代持，再次启动后再从init获取fd。
 
   init提供了相关接口供服务调用，服务进程退出前调用接口将fd通过支持IPC通信的socket发送给init代持，待该服务重新启动时，init将持有的该服务相关的fd句柄通过同样的方式返回给服务。
 
-- init job<a name="section569015559213"></a>
+- init job<a name="section56901555923"></a>
 
   init提供job能力，一个job就是一组命令的集合。job可以在init.cfg中配置，也可以在模块的自定义cfg中配置。init解析程序会把相同名字job的命令合并到一个job中。同一名字的job只能保证init.cfg中的命令优先执行，其他cfg间的命令执行顺序不保证。
 
@@ -84,7 +84,7 @@
 
   - 自定义job：用户自定义的job，这类job按照一定的规则进行触发。
     - job：用户任意定义，可以通过trigger命令执行。
-    - 控制job(仅L2以上提供)：按条件触发处理的能力。在job中可以设置触发条件，当对应的属性值满足设置的条件时，就会触发job执行。触发条件支持&&和||操作，可以根据不同的属性就行组合。
+    - 控制job(仅标准系统以上提供)：按条件触发处理的能力。在job中可以设置触发条件，当对应的属性值满足设置的条件时，就会触发job执行。触发条件支持&&和||操作，可以根据不同的属性就行组合。
 
 ## 开发指导<a name="section56901555924"></a>
 
@@ -292,7 +292,7 @@
     </tr>
     <tr id="row1689310618179"><td class="cellrowborder" valign="top" width="16.64%" headers="mcps1.2.3.1.1 "><p id="p108931367177"><a name="p108931367177"></a><a name="p108931367177"></a>critical</p>
     </td>
-    <td class="cellrowborder" valign="top" width="83.36%" headers="mcps1.2.3.1.2 "><p id="p489313618173"><a name="p489313618173"></a><a name="p489313618173"></a>critical服务启动失败后， 需要M秒内重新拉起， 拉起失败N次后， 直接重启系统， N默认为4， M默认20。（仅L2以上提供 "critical" : [0, 2, 10]; 类型为int型数组)<a name="section56901555917"></a><a name="section56901555917"></a></p>
+    <td class="cellrowborder" valign="top" width="83.36%" headers="mcps1.2.3.1.2 "><p id="p489313618173"><a name="p489313618173"></a><a name="p489313618173"></a>critical服务启动失败后， 需要M秒内重新拉起， 拉起失败N次后， 直接重启系统， N默认为4， M默认20。（仅标准系统以上提供 "critical" : [0, 2, 10]; 类型为int型数组)<a name="section56901555917"></a><a name="section56901555917"></a></p>
     <p id="p8572182712811"><a name="p8572182712811"></a><a name="p8572182712811"></a>0：不使能；</p>
     <p id="p11861032111517"><a name="p11861032111517"></a><a name="p11861032111517"></a>1：使能。</p>
     </td>
@@ -306,23 +306,23 @@
     </tr>
     <tr id="row1689310618179"><td class="cellrowborder" valign="top" width="16.64%" headers="mcps1.2.3.1.1 "><p id="p108931367177"><a name="p108931367177"></a><a name="p108931367177"></a>d-caps</p>
     </td>
-    <td class="cellrowborder" valign="top" width="83.36%" headers="mcps1.2.3.1.2 "><p id="p489313618173"><a name="p489313618173"></a><a name="p489313618173"></a>分布式能力 (仅L2以上提供)<a name="section56901555917"></a><a name="section56901555917"></a></p>
+    <td class="cellrowborder" valign="top" width="83.36%" headers="mcps1.2.3.1.2 "><p id="p489313618173"><a name="p489313618173"></a><a name="p489313618173"></a>分布式能力 (仅标准系统以上提供)<a name="section56901555917"></a><a name="section56901555917"></a></p>
     </td>
     </tr>
     </tr>
     <tr id="row1689310618179"><td class="cellrowborder" valign="top" width="16.64%" headers="mcps1.2.3.1.1 "><p id="p108931367177"><a name="p108931367177"></a><a name="p108931367177"></a>apl</p>
     </td>
-    <td class="cellrowborder" valign="top" width="83.36%" headers="mcps1.2.3.1.2 "><p id="p489313618173"><a name="p489313618173"></a><a name="p489313618173"></a>能力特权级别：system_core, normal, system_basic。 默认system_core (仅L2以上提供)<a name="section56901555917"></a><a name="section56901555917"></a></p>
+    <td class="cellrowborder" valign="top" width="83.36%" headers="mcps1.2.3.1.2 "><p id="p489313618173"><a name="p489313618173"></a><a name="p489313618173"></a>能力特权级别：system_core, normal, system_basic。 默认system_core (仅标准系统以上提供)<a name="section56901555917"></a><a name="section56901555917"></a></p>
     </td>
     </tr>
     <tr id="row1689310618179"><td class="cellrowborder" valign="top" width="16.64%" headers="mcps1.2.3.1.1 "><p id="p108931367177"><a name="p108931367177"></a><a name="p108931367177"></a>start-mode</p>
     </td>
-    <td class="cellrowborder" valign="top" width="83.36%" headers="mcps1.2.3.1.2 "><p id="p489313618173"><a name="p489313618173"></a><a name="p489313618173"></a>服务的启动模式，具体描述：init服务启动控制(仅L2以上提供)<a name="section56901555917"></a><a name="section56901555917"></a></p>
+    <td class="cellrowborder" valign="top" width="83.36%" headers="mcps1.2.3.1.2 "><p id="p489313618173"><a name="p489313618173"></a><a name="p489313618173"></a>服务的启动模式，具体描述：init服务启动控制(仅标准系统以上提供)<a name="section56901555917"></a><a name="section56901555917"></a></p>
     </td>
     </tr>
     <tr id="row1689310618179"><td class="cellrowborder" valign="top" width="16.64%" headers="mcps1.2.3.1.1 "><p id="p108931367177"><a name="p108931367177"></a><a name="p108931367177"></a>jobs</p>
     </td>
-    <td class="cellrowborder" valign="top" width="83.36%" headers="mcps1.2.3.1.2 "><p id="p489313618173"><a name="p489313618173"></a><a name="p489313618173"></a>当前服务在不同阶段可以执行的job。具体说明可以看：init服务并行控制(仅L2以上提供)<a name="section56901555917"></a></p>
+    <td class="cellrowborder" valign="top" width="83.36%" headers="mcps1.2.3.1.2 "><p id="p489313618173"><a name="p489313618173"></a><a name="p489313618173"></a>当前服务在不同阶段可以执行的job。具体说明可以看：init服务并行控制(仅标准系统以上提供)<a name="section56901555917"></a></p>
     </td>
     </tr>
     </tbody>
