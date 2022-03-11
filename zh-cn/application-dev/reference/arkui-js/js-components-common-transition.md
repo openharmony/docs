@@ -48,8 +48,10 @@ PageA跳转到PageB，跳转的共享元素为image， shareid为“shareImage�
 <div>
   <list>
     <list-item type="description">
-      <image src="item.jpg" shareid="shareImage" onclick="jump" class="shared-transition-style"></image>
-      <text onclick="jump">Click on picture to Jump to ths details</text>
+      <div>
+        <image src="item.jpg" shareid="shareImage" onclick="jump" class="shared-transition-style"></image>
+        <text onclick="jump">Click on picture to Jump to ths details</text>
+      </div>
     </list-item>
   </list>
 </div>

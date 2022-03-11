@@ -16,6 +16,8 @@
 >
 > 0.6 - 文档标题为一级标题；namespace下的属性字段、function、class、interface、enum、type为二级标题；class下的属性、function为三级标题。
 >
+> **版本说明**
+>
 > 0.7 - **对已有模块的新增接口标记起始版本：使用\<sup>标签，标记对应的版本号。**
 > 	示例：API 6已有的模块，在API 7新增了一个属性字段，则在属性后加标记，即newAttribute<sup>7+</sup>。
 > 	如果新增了一个方法，则在方法标题后增加标记，即 sim.getSimIccId<sup>7+</sup>，interface、class、枚举等同理。
@@ -25,7 +27,24 @@
 >
 > > 从API Version 7 开始废弃，建议使用[newMethod](#newMethod)替代。
 >
-> 0.9 - **权限和syscap**：与代码保持一致，下沉到各个方法、枚举、属性字段中。
+> 0.9 - **MR版本才能实现的空接口**，在接口的描述说明中，添加：
+> 本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
+>
+> **权限、syscap、系统API**
+>
+> 0.10 - **权限**：与代码保持一致，下沉到各个方法、枚举、属性字段中。采用格式：
+>      （所有应用可申请）**需要权限：** ohos.permission.xxxx   
+>      （仅系统应用可申请）**需要权限：** ohos.permission.xxxx，仅系统应用可用。
+>
+> 0.11 - **syscap**：
+>   每个function需要进行描述：**系统能力**：SystemCapability.xxx.xxx
+>   每个表格（属性、枚举、常量、变量）可统一进行说明，分两种情况：
+>   每个表格下系统能力无差异的：
+>   以下各项对应的系统能力均为SystemCapability.xxx.xxx。
+>   有差异的：
+>   以下各项对应的系统能力有所不同，详见下表。
+>
+> 0.12 - **系统API**：系统API需要增加描述：此接口为系统接口，三方应用不支持调用。
 > 下面进入具体每个API的写作。
 
 ***
@@ -78,11 +97,15 @@ import call from '@ohos.telephony.call';
 > 4.3 - 对于可读属性：如果取值为有特殊含义的有限值，需要进行枚举。
 >
 > 4.4 - 对于可写属性：如果仅支持固定字段，需要进行说明。
+>
+> 4.5 - 如果各项系统能力有差异，描述改为：以下各项对应的系统能力有所不同，详见下表。然后在各项里进行描述。参考[枚举的说明](#枚举)
 
-| 名称             | 类型                                      | 可读 | 可写 | 说明                                                         |
-| ---------------- | ----------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| pluggedType      | [BatteryPluggedType](#BatteryPluggedType) | 是   | 否   | 表示当前设备连接的充电器类型。<br/>**系统能力**：SystemCapability.xxx.xxx（必选） |
-| isBatteryPresent | boolean                                   | 是   | 否   | 表示当前设备是否支持电池或者电池是否在位。<br/>**系统能力**：SystemCapability.xxx.xxx（必选） |
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.xxx.xxx。（必选）
+
+| 名称             | 类型                                      | 可读 | 可写 | 说明                                       |
+| ---------------- | ----------------------------------------- | ---- | ---- | ------------------------------------------ |
+| pluggedType      | [BatteryPluggedType](#BatteryPluggedType) | 是   | 否   | 表示当前设备连接的充电器类型。             |
+| isBatteryPresent | boolean                                   | 是   | 否   | 表示当前设备是否支持电池或者电池是否在位。 |
 
 ## 枚举
 
@@ -93,6 +116,8 @@ import call from '@ohos.telephony.call';
 > 5.2 - 二级标题名为实际枚举名，比方说 BatteryHealthState 。
 
 在此处给出该枚举类型的简要描述。如：表示连接的充电器类型的枚举。
+
+**系统能力：** 以下各项对应的系统能力有所不同，详见下表。（必选）
 
 | 名称 | 值   | 说明                                                         |
 | ---- | ---- | ------------------------------------------------------------ |
@@ -105,15 +130,11 @@ import call from '@ohos.telephony.call';
 > 6.1 - 可选，如果没有可删除。如果有多个方法，请分多个二级内容描述，并使用“##”自行新建二级标题。
 >
 > 6.2 - 二级标题名为方法名，采用导入类.方法名，如果是订阅方法，需要在方法名加上对应的订阅事件。
->
 > 	示例： sim.getSimIccId
-> 	
 > 	订阅方法：sim.on('exampleEvent')
 >
 > 6.3 - **方法具体调用形式**：和d.ts保持一致，需要包括参数类型、参数名、返回值类型。
->
 > 	示例：getNetworkState(slotId: number, callback: AsyncCallback\<NetworkState>): void
-> 	
 > 	注意：尖括号<>可能会被识别为标签，导致界面显示失效，可增加一个\，以保证界面正常显示，如“\\<>”或使用转义字符\&lt; \&gt; 。
 >
 > 6.4.1  - **方法描述**：对方法实现的功能进行描述，包括其使用的前提条件（*如：在xx方法调用后才能调用、需要确保网络已连接……*）、使用之后的影响（*如：调用该接口后再进行xx将不起效*）、**权限限制**、**系统能力**等。
@@ -165,7 +186,6 @@ import call from '@ohos.telephony.call';
 > 7.2 - 二级标题名为class、interface的名称。
 >
 > 7.3 - 如果该API中，既有属性，又有方法，需要先进行属性的写作，并使用“###”三级标题。
->
 > 	如果该API中，只有属性，那么不需要新建三级标题，直接使用表格陈列属性，具体示例参考[CustomType](#CustomType)。
 
 类描述/interface描述。如果有使用限制，需要在这个地方说明。比方说，是否有前提条件，是否需要通过什么方法先构造一个实例。 
@@ -181,11 +201,8 @@ import call from '@ohos.telephony.call';
 > *写作说明*
 >
 > 7.4 - 标题名为方法名，使用三级标题，**没有前缀**。如果是订阅方法，需要在方法名加上对应的订阅事件。
->
 > 	示例： getSimIccId
-> 	
 > 	订阅方法：on('exampleEvent')
->
 > 其余要求请参考[方法](#方法)中的说明。
 
 在此处给出方法的具体调用形式。说明请参考6.3。
@@ -225,8 +242,9 @@ import call from '@ohos.telephony.call';
 ## CustomType
 
 仅有k-v键值对的自定义类型示例。
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.xxx.xxx。（必选）
 
 | 名称         | 类型                | 可读 | 可写 | 说明                                                         |
 | ------------ | ------------------- | ---- | ---- | ------------------------------------------------------------ |
-| parameterUrl | string              | 是   | 是   | 媒体输出URI。支持：<br/>1. 协议类型为“internal”的相对路径，示例如下：<br/>临时目录：internal://cache/test.mp4<br/><br/>2. 文件的绝对路径，示例如下：<br/>file:///data/data/ohos.xxx.xxx/files/test.mp4<br/>**系统能力**：SystemCapability.xxx.xxx（必选） |
-| parameterOne | [CustomEnum](#枚举) | 是   | 是   | 属性描述，要求与参数说明类似。<br/>**系统能力**：SystemCapability.xxx.xxx（必选） |
+| parameterUrl | string              | 是   | 是   | 媒体输出URI。支持：<br/>1. 协议类型为“internal”的相对路径，示例如下：<br/>临时目录：internal://cache/test.mp4<br/><br/>2. 文件的绝对路径，示例如下：<br/>file:///data/data/ohos.xxx.xxx/files/test.mp4<br/> |
+| parameterOne | [CustomEnum](#枚举) | 是   | 是   | 属性描述，要求与参数说明类似。                               |

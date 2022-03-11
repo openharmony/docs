@@ -107,7 +107,7 @@ Obtains the size of the shared dirty memory of this process.
 
 - **Example**
   ```
-  let sharedDirty = hidebug.getSharedDirty());
+  let sharedDirty = hidebug.getSharedDirty();
   ```
 
 
