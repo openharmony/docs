@@ -25,12 +25,12 @@
   | target<sup>8+</sup> | EventTarget | 被点击元素对象。 |
   | timestamp | number | 事件时间戳。 |
 
-- EventTarget对象说明<sup>8+</sup>
+- EventTarget<sup>8+</sup>对象说明
   | 名称 | 参数类型 | 描述 |
   | -------- | -------- | -------- |
   | area | Area | 目标元素的区域信息。 |
 
-- Area对象说明<sup>8+</sup>
+- Area<sup>8+</sup>对象说明
   | 属性名称 | 类型 | 描述 |
   | -------- | -------- | -------- |
   | width | number | 目标元素的宽度，单位为vp。 |
@@ -38,7 +38,7 @@
   | pos | Position | 目标元素左上角相对父元素左上角的位置。 |
   | globalPos | Position | 目标元素左上角相对页面左上角的位置。 |
 
-- Position对象说明<sup>8+</sup>
+- Position<sup>8+</sup>对象说明
   | 属性名称 | 参数类型 | 描述 | 
   | -------- | -------- | -------- |
   | x | number | x轴坐标，单位为vp。 | 
