@@ -3,41 +3,42 @@
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
+The Running Lock module provides APIs for creating, querying, holding, and releasing running locks.
+
 
 ## Modules to Import
 
 ```
-import runninglock from '@ohos.runningLock';
+import runningLock from '@ohos.runningLock';
 ```
-
-
-## System Capabilities
-
-SystemCapability.PowerManager.PowerManager
 
 
 ## RunningLockType
 
 Enumerates the types of **RunningLock** objects.
 
-| Name| Default Value| Description|
-| -------- | -------- | -------- |
-| BACKGROUND | 1 | Defines a **RunningLock** object.|
-| PROXIMITY_SCREEN_CONTROL | 2 | A lock that determines whether to turn on or off the screen based on the distance away from the screen.|
+**System capability:** SystemCapability.PowerManager.PowerManager.Core
+
+| Name                      | Default Value  | Description                 |
+| ------------------------ | ---- | ------------------- |
+| BACKGROUND               | 1    | Defines a **RunningLock** object.          |
+| PROXIMITY_SCREEN_CONTROL | 2    | A lock that determines whether to turn on or off the screen based on the distance away from the screen.|
 
 
 ## isRunningLockTypeSupported
 
 isRunningLockTypeSupported(type: RunningLockType, callback: AsyncCallback&lt;boolean&gt;): void
 
-Checks whether a specified type of RunningLock is supported. This function uses an asynchronous callback to return the result.
+Checks whether a specified type of **RunningLock** is supported. This function uses an asynchronous callback to return the result.
+
+**System capability:** SystemCapability.PowerManager.PowerManager.Core
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| type | RunningLockType | Yes| Type of the **RunningLock** object.|
-| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to obtain the return value. <br/>The value **true** indicates that the specified type of **RunningLock** is supported, and value **false** indicates the opposite.|
+| Name     | Type                          | Mandatory  | Description                                      |
+| -------- | ---------------------------- | ---- | ---------------------------------------- |
+| type     | RunningLockType              | Yes   | Type of the **RunningLock** object.                              |
+| callback | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to obtain the return value.<br>Return value: The value **true** indicates that the specified type of **RunningLock** is supported, and the value **false** indicates the opposite.|
 
 **Example**
 
@@ -58,17 +59,19 @@ isRunningLockTypeSupported(type: RunningLockType): Promise&lt;boolean&gt;
 
 Checks whether a specified type of **RunningLock** is supported. This function uses an asynchronous callback to return the result.
 
+**System capability:** SystemCapability.PowerManager.PowerManager.Core
+
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| type | RunningLockType | Yes| Type of the **RunningLock** object.|
+| Name | Type             | Mandatory  | Description        |
+| ---- | --------------- | ---- | ---------- |
+| type | RunningLockType | Yes   | Type of the **RunningLock** object.|
 
-**Return value**
+**Return Value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;boolean&gt; | Promise used to asynchronously obtain the return value. The value **true** indicates that the specified type of **RunningLock** is supported, and value **false** indicates the opposite.|
+| Type                    | Description                                      |
+| ---------------------- | ---------------------------------------- |
+| Promise&lt;boolean&gt; | Promise used to asynchronously obtain the return value.<br/>Return value: The value **true** indicates that the specified type of **RunningLock** is supported, and the value **false** indicates the opposite.|
 
 **Example**
 
@@ -89,15 +92,17 @@ createRunningLock(name: string, type: RunningLockType, callback: AsyncCallback&l
 
 Creates a **RunningLock** object.
 
-Before using this API, you must declare the **ohos.permission.RUNNING_LOCK** permission.
+**System capability:** SystemCapability.PowerManager.PowerManager.Core
+
+**Required permission:** ohos.permission.RUNNING_LOCK
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| name | string | Yes| Name of the **RunningLock** object.|
-| type | RunningLockType | Yes| Type of the **RunningLock** object to be created.|
-| callback | AsyncCallback&lt;[RunningLock](#runninglock)&gt; | Yes| Callback used to obtain the return value.|
+| Name     | Type                                      | Mandatory  | Description                                    |
+| -------- | ---------------------------------------- | ---- | -------------------------------------- |
+| name     | string                                   | Yes   | Name of the **RunningLock** object.                                 |
+| type     | RunningLockType                          | Yes   | Type of the **RunningLock** object to be created.                             |
+| callback | AsyncCallback&lt;[RunningLock](#runninglock)&gt; | Yes   | Callback used to obtain the return value.|
 
 **Example**
 
@@ -122,19 +127,21 @@ createRunningLock(name: string, type: RunningLockType): Promise&lt;RunningLock&g
 
 Creates a **RunningLock** object.
 
-Before using this API, you must declare the **ohos.permission.RUNNING_LOCK** permission.
+**System capability:** SystemCapability.PowerManager.PowerManager.Core
+
+**Required permission:** ohos.permission.RUNNING_LOCK
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| name | string | Yes| Name of the **RunningLock** object.|
-| type | RunningLockType | Yes| Type of the **RunningLock** object to be created.|
+| Name | Type             | Mandatory  | Description       |
+| ---- | --------------- | ---- | --------- |
+| name | string          | Yes   | Name of the **RunningLock** object.    |
+| type | RunningLockType | Yes   | Type of the **RunningLock** object to be created.|
 
-**Return value**
+**Return Value**
 
-| Type| Description|
-| -------- | -------- |
+| Type                                      | Description                                |
+| ---------------------------------------- | ---------------------------------- |
 | Promise&lt;[RunningLock](#runninglock)&gt; | Promise used to asynchronously obtain the returned **RunningLock** object.|
 
 **Example**
@@ -161,11 +168,13 @@ lock(timeout: number): void
 
 Locks and holds a **RunningLock** object.
 
+**System capability:** SystemCapability.PowerManager.PowerManager.Core
+
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| timeout | number | No| Duration for locking and holding the **RunningLock** object.|
+| Name    | Type    | Mandatory  | Description                  |
+| ------- | ------ | ---- | -------------------- |
+| timeout | number | No   | Duration for locking and holding the **RunningLock** object.|
 
 **Example**
 
@@ -187,6 +196,8 @@ unlock(): void
 
 Releases a **Runninglock** object.
 
+**System capability:** SystemCapability.PowerManager.PowerManager.Core
+
 **Example**
 
 ```
@@ -207,9 +218,11 @@ isUsed(): boolean
 
 Checks the status of the **Runninglock** object.
 
-**Return value**
-| Type| Description|
-| -------- | -------- |
+**System capability:** SystemCapability.PowerManager.PowerManager.Core
+
+**Return Value**
+| Type     | Description                                   |
+| ------- | ------------------------------------- |
 | boolean | Returns **true** if the **Runninglock** object is held; returns **false** if the **Runninglock** object is released.|
 
 **Example**
