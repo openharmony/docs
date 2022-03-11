@@ -355,7 +355,7 @@ For example, you can specify the SMS message type by the optional parameter **co
 | destinationHost  | string                                                       | Yes  | Destination address of the SMS message.                                            |
 | content          | string \| Array&lt;number&gt;                                | Yes  | SMS message type. If the content is composed of character strings, the SMS message is a text message. If the content is composed of byte arrays, the SMS message is a data message.|
 | serviceCenter    | string                                                       | No  | SMSC address. By default, the SMSC address in the SIM card is used.               |
-| destinationPort  | number                                                       | No  | Destination port of the SMS message. This parameter is mandatory only for a data message. Otherwise, it is optional.  |
+| destinationPort  | number                                                       | No  | Destination port of the SMS message. This field is mandatory only for a data message. Otherwise, it is optional.  |
 | sendCallback     | AsyncCallback&lt;[ISendShortMessageCallback](#ISendShortMessageCallback)&gt; | No  | Callback used to return the SMS message sending result. For details, see [ISendShortMessageCallback](#ISendShortMessageCallback).|
 | deliveryCallback | AsyncCallback&lt;[IDeliveryShortMessageCallback](#IDeliveryShortMessageCallback)&gt; | No  | Callback used to return the SMS message delivery report. For details, see [IDeliveryShortMessageCallback](#IDeliveryShortMessageCallback).|
 
