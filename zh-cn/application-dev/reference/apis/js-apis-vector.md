@@ -114,8 +114,8 @@ has(element: T): boolean
 let vector = new Vector();
 let result = vector.has("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 vector.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-let result = vector.has("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-```
+let result1 = vector.has("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
+``` 
 
 ### getIndexOf
 
