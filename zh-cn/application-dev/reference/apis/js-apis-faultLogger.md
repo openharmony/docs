@@ -73,7 +73,7 @@ function queryFaultLogCallback(error, value) {
         }
     }
 }
-faultLogger.querySelfFaultLog(faultlogger.FaultType.JS_CRASH, queryFaultLogCallback);
+faultLogger.querySelfFaultLog(faultLogger.FaultType.JS_CRASH, queryFaultLogCallback);
 ```
 
 ## faultLogger.querySelfFaultLog
@@ -97,20 +97,22 @@ querySelfFaultLog(faultType: FaultType) : Promise&lt;Array&lt;FaultLogInfo&gt;&g
 **示例：**
 
 ```
-let value = await faultLogger.querySelfFaultLog(faultlogger.FaultType.JS_CRASH);
-if (value) {
-    console.info("value length is " + value.length);
-    let len = value.length;
-    for (let i = 0; i < len; i++) {
-        console.info("log: " + i);
-        console.info("Log pid: " + value[i].pid);
-        console.info("Log uid: " + value[i].uid);
-        console.info("Log type: " + value[i].type);
-        console.info("Log ts: " + value[i].ts);
-        console.info("Log reason: " + value[i].reason);
-        console.info("Log module: " + value[i].module);
-        console.info("Log summary: " + value[i].summary);
-        console.info("Log text: " + value[i].fullLog);
+async function getLog() {
+    let value = await faultLogger.querySelfFaultLog(faultLogger.FaultType.JS_CRASH);
+    if (value) {
+        console.info("value length is " + value.length);
+	let len = value.length;
+	for (let i = 0; i < len; i++) {
+	    console.info("log: " + i);
+	    console.info("Log pid: " + value[i].pid);
+	    console.info("Log uid: " + value[i].uid);
+	    console.info("Log type: " + value[i].type);
+	    console.info("Log ts: " + value[i].ts);
+	    console.info("Log reason: " + value[i].reason);
+	    console.info("Log module: " + value[i].module);
+	    console.info("Log summary: " + value[i].summary);
+	    console.info("Log text: " + value[i].fullLog);
+	}
     }
 }
 ```

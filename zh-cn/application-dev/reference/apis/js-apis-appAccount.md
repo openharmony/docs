@@ -1366,15 +1366,17 @@ getAuthenticatorCallback(sessionId: string, callback: AsyncCallback&lt;Authentic
   ```
   const appAccountManager = account_appAccount.createAppAccountManager();
   featureAbility.getWant((err, want) => {
-    var sessionId = want.parameters[Constants.KEY_SESSION_ID];
+    var sessionId = want.parameters[account_appAccount.Constants.KEY_SESSION_ID];
     appAccountManager.getAuthenticatorCallback(sessionId, (err, callback) => {
-        if (err.code != ResultCode.SUCCESS) {
+        if (err.code != account_appAccount.ResultCode.SUCCESS) {
             console.log("getAuthenticatorCallback err: "  + JSON.stringify(err));
             return;
         }
-        var result = {Constants.KEY_NAME: "LiSi", Constants.KEY_OWNER: "com.example.ohos.accountjsdemo",
-                      Constants.KEY_AUTH_TYPE: "readAge", Constants.KEY_TOKEN: "xxxxxx"};
-        callback.OnResult(ResultCode.SUCCESS, result);
+        var result = {[account_appAccount.Constants.KEY_NAME]: "LiSi",
+                      [account_appAccount.Constants.KEY_OWNER]: "com.example.ohos.accountjsdemo",
+                      [account_appAccount.Constants.KEY_AUTH_TYPE]: "readAge",
+                      [account_appAccount.Constants.KEY_TOKEN]: "xxxxxx"};
+        callback.OnResult(account_appAccount.ResultCode.SUCCESS, result);
     });
   });
   ```
@@ -1402,11 +1404,13 @@ getAuthenticatorCallback(sessionId: string): Promise&lt;AuthenticatorCallback&gt
   ```
   const appAccountManager = account_appAccount.createAppAccountManager();
   featureAbility.getWant().then((want) => {
-      var sessionId = want.parameters[Constants.KEY_SESSION_ID];
+      var sessionId = want.parameters[account_appAccount.Constants.KEY_SESSION_ID];
       appAccountManager.getAuthenticatorCallback(sessionId).then((callback) => {
-          var result = {Constants.KEY_NAME: "LiSi", Constants.KEY_OWNER: "com.example.ohos.accountjsdemo",
-                        Constants.KEY_AUTH_TYPE: "readAge", Constants.KEY_TOKEN: "xxxxxx"};
-          callback.OnResult(ResultCode.SUCCESS, result);
+          var result = {[account_appAccount.Constants.KEY_NAME]: "LiSi",
+                        [account_appAccount.Constants.KEY_OWNER]: "com.example.ohos.accountjsdemo",
+                        [account_appAccount.Constants.KEY_AUTH_TYPE]: "readAge",
+                        [account_appAccount.Constants.KEY_TOKEN]: "xxxxxx"};
+          callback.OnResult(account_appAccount.ResultCode.SUCCESS, result);
       }).catch((err) => {
           console.log("getAuthenticatorCallback err: "  + JSON.stringify(err));
       });
@@ -1561,9 +1565,11 @@ onResult: (code: number, result: {[key: string]: any}) =&gt; void;
   const appAccountManager = account_appAccount.createAppAccountManager();
   var sessionId = "1234";
   appAccountManager.getAuthenticatorCallback(sessionId).then((callback) => {
-      var result = {Constants.KEY_NAME: "LiSi", Constants.KEY_OWNER: "com.example.ohos.accountjsdemo",
-                    Constants.KEY_AUTH_TYPE: "readAge", Constants.KEY_TOKEN: "xxxxxx"};
-      callback.OnResult(ResultCode.SUCCESS, result);
+      var result = {[account_appAccount.Constants.KEY_NAME]: "LiSi",
+                    [account_appAccount.Constants.KEY_OWNER]: "com.example.ohos.accountjsdemo",
+                    [account_appAccount.Constants.KEY_AUTH_TYPE]: "readAge",
+                    [account_appAccount.Constants.KEY_TOKEN]: "xxxxxx"};
+      callback.OnResult(account_appAccount.ResultCode.SUCCESS, result);
   }).catch((err) => {
       console.log("getAuthenticatorCallback err: "  + JSON.stringify(err));
   });
@@ -1592,8 +1598,10 @@ onRequestRedirected: (request: Want) =&gt; void;
       }
 
       authenticate(name, authType, callerBundleName, options, callback) {
-          var result = {Constants.KEY_NAME: name, Constants.KEY_AUTH_TYPE: authType, Constants.KEY_TOKEN: "xxxxxx"};
-          callback.onResult(ResultCode.SUCCESS, result);
+          var result = {[account_appAccount.Constants.KEY_NAME]: name,
+                        [account_appAccount.Constants.KEY_AUTH_TYPE]: authType,
+                        [account_appAccount.Constants.KEY_TOKEN]: "xxxxxx"};
+          callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
       }
   }
   ```
@@ -1643,8 +1651,10 @@ authenticate(name: string, authType: string, callerBundleName: string, options: 
       }
 
       authenticate(name, authType, callerBundleName, options, callback) {
-          var result = {Constants.KEY_NAME: name, Constants.KEY_AUTH_TYPE: authType, Constants.KEY_TOKEN: "xxxxxx"};
-          callback.onResult(ResultCode.SUCCESS, result);
+          var result = {[account_appAccount.Constants.KEY_NAME]: name,
+                        [account_appAccount.Constants.KEY_AUTH_TYPE]: authType,
+                        [account_appAccount.Constants.KEY_TOKEN]: "xxxxxx"};
+          callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
       }
   }
 

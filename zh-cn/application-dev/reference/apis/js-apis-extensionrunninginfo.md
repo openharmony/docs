@@ -1,12 +1,7 @@
 # ExtensionRunningInfo
 
-- [使用说明](#使用说明)
- - [属性](#属性)
-- [bundle.ExtensionAbilityType](#bundleExtensionAbilityType)
-
-
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 本模块首批接口从API 8开始支持。
+> 本模块首批接口从API 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
 Extension运行相关信息。
@@ -36,7 +31,7 @@ abilitymanager.getExtensionRunningInfos(upperLimit, (err,data) => {
 | uid | number | 是 | 否 | 用户ID。<br><b>系统能力：</b>SystemCapability.Ability.AbilityRuntime.Core | 
 | processName | string | 是 | 否 | 进程名称。<br><b>系统能力：</b>SystemCapability.Ability.AbilityRuntime.Core | 
 | startTime | number | 是 | 否 | Extension启动时间。<br><b>系统能力：</b>SystemCapability.Ability.AbilityRuntime.Core | 
-| clientPackage | Array&lt;String&gt; | 是 | 否 | 连接客户端包名。<br><b>系统能力：</b>SystemCapability.Ability.AbilityRuntime.Core | 
+| clientPackage | Array&lt;String&gt; | 是 | 否 | 表示当期进程下的所有包名。<br><b>系统能力：</b>SystemCapability.Ability.AbilityRuntime.Core | 
 | type | [bundle.ExtensionAbilityType](#bundle-extensionabilitytype) | 是 | 否 | Extension类型。<br><b>系统能力：</b>SystemCapability.Ability.AbilityRuntime.Core | 
 
 
@@ -47,7 +42,7 @@ Extension类型。
   | 名称 | 值 | 说明 | 
 | -------- | -------- | -------- |
 | FORM | 0 | 表示带有form类型的扩展信息。<br><b>系统能力：</b>SystemCapability.BundleManager.BundleFramework | 
-| WORK_SCHEDULER | 1 | 表示带有work&nbsp;schedule类型的扩展信息。<br><b>系统能力：</b>SystemCapability.BundleManager.BundleFramework | 
+| WORK_SCHEDULER | 1 | 表示带有work&nbsp;scheduler类型的扩展信息。<br><b>系统能力：</b>SystemCapability.BundleManager.BundleFramework | 
 | INPUT_METHOD | 2 | 表示用输入法类型的扩展信息。<br><b>系统能力：</b>SystemCapability.BundleManager.BundleFramework | 
 | SERVICE | 3 | 表示带有service类型的扩展信息。<br><b>系统能力：</b>SystemCapability.BundleManager.BundleFramework | 
 | ACCESSIBILITY | 4 | 表示具有可访问性类型的扩展信息。<br><b>系统能力：</b>SystemCapability.BundleManager.BundleFramework | 

@@ -1,12 +1,7 @@
 # AbilityRunningInfo
 
-- [使用说明](#使用说明)
-- [属性](#属性)
-- [abilityManager.AbilityState](#abilityManagerAbilityState)
-
-
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 本模块首批接口从API 8开始支持。
+> 本模块首批接口从API 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
 Ability运行相关信息。

@@ -33,7 +33,7 @@ Span(content: string)
 
 | 名称 | 参数类型 | 默认值 | 描述 |
 | -------- | -------- | -------- | -------- |
-| decoration | {<br/>type:&nbsp;[TextDecorationType](ts-appendix-enums.md#textdecorationtype枚举说明),<br/>color?:&nbsp;Color<br/>} | {<br/>type:&nbsp;TextDecorationType.None<br/>} | 设置文本装饰线样式及其颜色。 |
+| decoration | {<br/>type:&nbsp;[TextDecorationType](ts-appendix-enums.md#textdecorationtype枚举说明),<br/>color?:&nbsp;Color<br/>} | {<br/>type:&nbsp;TextDecorationType.None<br/>color：Color.Black<br/>} | 设置文本装饰线样式及其颜色。 |
 | textCase | [TextCase](ts-appendix-enums.md#textcase枚举说明) | Normal | 设置文本大小写。 |
 
 

@@ -42,7 +42,7 @@ Checkbox( name?: string,  group?: string )
 ## 示例
 
 ```
-@Entry‘
+@Entry
 @Component
 struct CheckboxExample {
 

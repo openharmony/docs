@@ -4,7 +4,7 @@
 ## 导入模块
 
 ```js
-import filemanager from 'ohos.filemanager';
+import filemanager from '@ohos.fileManager';
 ```
 
 ## 系统能力
@@ -71,7 +71,7 @@ filemanager.getRoot((err, fileInfo) => {
 
 listFile(path : string, type : string, options? : {dev? : DevInfo, offset? : number, count? : number}) : Promise&lt;FileInfo[]&gt;
 
-以异步方法获取获取第二层相册，文件信息。使用promise形式返回结果。
+以异步方法获取第二层相册，文件信息。使用promise形式返回结果。
 
 - 参数
   | 参数名 | 类型 | 必填 | 说明 |
@@ -106,8 +106,7 @@ filemanager.listFile(media_path, "file")
             console.log(JSON.Stringify(fileInfo))
         }
     }
-})
-.catch((err) => {
+}).catch((err) => {
     console.log(err)
 })
 ```
@@ -115,7 +114,7 @@ filemanager.listFile(media_path, "file")
 
 listFile(path : string, type : string, options? : {dev? : DevInfo, offset? : number, count? : number}, callback : AsyncCallback&lt;FileInfo[]&gt;) : void
 
-以异步方法获取获取第二层相册，文件信息。使用callback形式返回结果。
+以异步方法获取第二层相册，文件信息。使用callback形式返回结果。
 
 - 参数
 

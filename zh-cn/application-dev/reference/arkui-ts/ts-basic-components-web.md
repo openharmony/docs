@@ -61,15 +61,32 @@ ohos.permission.READ_USER_STORAGE
 
 通用事件仅支持onFocus。
 
-| 名称                                       | 功能描述                                     |
-| ---------------------------------------- | ---------------------------------------- |
+| 名称                                                         | 功能描述                                                     |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
 | onDownloadStart(callback: (event?: { url: string, userAgent: string, contentDisposition: string, mimetype: string, contentLength: number }) => void) | <p>下载开始时触发该回调。<br />url：Web引擎返回的下载URL。<br />userAgent：Web引擎返回的用户代理名称。<br />contentDisposition：Web引擎返回的响应头。<br />mimetype：Web引擎返回的mimetype信息。<br />contentLength：Web引擎返回的内容长度。</p> |
-| onGeolocationHide(callback: () => void)  | <p>调用onGeolocationShow时发出的地理位置权限请求被取消后触发该回调。</p> |
+| onGeolocationHide(callback: () => void)                      | <p>调用onGeolocationShow时发出的地理位置权限请求被取消后触发该回调。</p> |
 | onGeolocationShow(callback: (event?: { origin: string, geolocation: JsGeolocation }) => void) | <p>应用尝试使用地理位置时触发该回调，并向用户请求权限。<br/>origin：尝试获取地理位置的Web内容的来源。<br/>geolocation：用于请求地理位置权限。</p> |
-| onPageBegin(callback: (event?: { url: string }) => void) | <p>网页加载时触发该回调。<br/>url：Web引擎返回的URL。</p>  |
-| onPageEnd(callback: (event?: { url: string }) => void) | <p>网页加载结束时触发该回调。<br/>url：Web引擎返回的URL。</p> |
+| onPageBegin(callback: (event?: { url: string }) => void)     | <p>网页加载时触发该回调。<br/>url：Web引擎返回的URL。</p>    |
+| onPageEnd(callback: (event?: { url: string }) => void)       | <p>网页加载结束时触发该回调。<br/>url：Web引擎返回的URL。</p> |
 | onProgressChange(callback: (event?: { newProgress: number }) => void) | <p>网页加载进度变化时触发该回调。<br/>newProgress：加载进度，取值范围为0到100的整数。</p> |
-| onTitleReceive(callback: (event?: { title: string }) => void) | <p>网页主页面标题更改时触发该回调。<br/>title：标题内容。</p>  |
+| onTitleReceive(callback: (event?: { title: string }) => void) | <p>网页主页面标题更改时触发该回调。<br/>title：标题内容。</p> |
+| onErrorReceive(callback: (event?: { request: WebResourceRequest, error: WebResourceError }) => void) | <p>网页加载错误时触发该回调。<br/>request：网页的请求信息。<br/>error：网页的错误信息 。</p> |
+| onHttpErrorReceive(callback: (event?: { request: WebResourceRequest, response: WebResourceResponse }) => void) | <p>网页加载出现网络错误时触发该回调。<br/>request：网页的请求信息。<br/>response：网页的响应信息</p> |
+| onConsole(callback: (event?: { message: ConsoleMessage }) => boolean) | <p>向主应用报告JavaScript控制台消息时触发该回调。<br/>message：触发的控制台信息。</p> |
+| onAlert(callback: (event?: { url: string; message: string; result: JsResult }) => boolean) | <p>网页触发alert()告警弹窗时触发。<br />url：Web引擎返回的下载URL。<br />message：Web引擎返回的信息。<br />JsResult：Web引擎返回的弹窗确认或弹窗取消功能对象。</p> |
+| onBeforeUnload(callback: (event?: { url: string; message: string; result: JsResult }) => boolean) | <p>网页重新加载或关闭时触发。<br />url：Web引擎返回的下载URL。<br />message：Web引擎返回的信息。<br />JsResult：Web引擎返回的弹窗确认或弹窗取消功能对象。</p> |
+| onConfirm(callback: (event?: { url: string; message: string; result: JsResult }) => boolean) | <p>即将离开当前页面（刷新或关闭）时触发。<br />url：Web引擎返回的下载URL。<br />message：Web引擎返回的信息。<br />JsResult：Web引擎返回的弹窗确认或弹窗取消功能对象。</p> |
+
+### JsResult  对象说明
+
+Web引擎返回的弹窗确认或弹窗取消功能对象。
+
+- 接口
+
+  | 接口名称              | 功能描述          |
+  | --------------------- | ----------------- |
+  | handleCancel(): void  | <p>取消弹窗。</p> |
+  | handleConfirm(): void | <p>确认弹窗。</p> |
 
 ### JsGeolocation 对象说明
 
@@ -77,9 +94,64 @@ ohos.permission.READ_USER_STORAGE
 
 - 接口
 
-  | 接口名称                                     | 功能描述                                     |
-  | ---------------------------------------- | ---------------------------------------- |
+  | 接口名称                                                     | 功能描述                                                     |
+  | ------------------------------------------------------------ | ------------------------------------------------------------ |
   | invoke(origin: string, allow: boolean, retain: boolean): void | <p>通知系统用户是否批准该应用使用地理位置权限。<br/>origin：尝试获取地理位置的Web内容的来源。<br/>allow：用户是否批准该应用使用地理位置权限。true: 允许访问，false: 不允许访问。<br/>retain：是否允许将地理位置权限状态保存到系统中。true: 允许，false: 不允许。</p> |
+
+### WebResourceRequest对象说明
+
+- 接口
+
+  | 接口名称                          | 功能描述                             |
+  | --------------------------------- | ------------------------------------ |
+  | getRequestUrl(): string           | 获取请求的url信息。                  |
+  | isRequestGesture(): boolean       | 获取请求是否与手势关联。             |
+  | isMainFrame(): boolean            | 获取请求是否时为了获取主窗口的信息。 |
+  | isRedirect(): boolean             | 获取请求是否重定向。                 |
+  | getRequestHeader(): Array<Header> | 获取请求头信息。                     |
+
+### WebResourceError对象说明
+
+- 接口
+
+  | 接口名称               | 功能描述                 |
+  | ---------------------- | ------------------------ |
+  | getErrorInfo(): string | 获取加载资源的错误信息。 |
+  | getErrorCode(): number | 获取加载资源的错误码。   |
+
+### WebResourceResponse对象说明
+
+- 接口
+
+  | 接口名称                           | 功能描述               |
+  | ---------------------------------- | ---------------------- |
+  | getResponseData(): string          | 获取响应数据。         |
+  | getResponseEncoding(): string      | 获取响应的编码。       |
+  | getResponseMimeType(): string      | 获取响应的MIME类型。   |
+  | getResponseCode(): number          | 获取响应的状态码。     |
+  | getReasonMessage(): string         | 获取响应的状态码描述。 |
+  | getResponseHeader(): Array<Header> | 获取响应头信息。       |
+
+### ConsoleMessage对象说明
+
+- 接口
+
+  | 接口名称                        | 功能描述                       |
+  | ------------------------------- | ------------------------------ |
+  | getMessage(): string            | 获取ConsoleMessage的日志信息。 |
+  | getSourceId(): string           | 获取ConsoleMessage的源的Id。   |
+  | getLineNumber(): number         | 获取ConsoleMessage的行数。     |
+  | getMessageLevel(): MessageLevel | 获取ConsoleMessage的信息级别。 |
+
+- MessageLevel枚举说明
+
+  | 名称  | 描述       |
+  | ----- | :--------- |
+  | Debug | 调试级别。 |
+  | Error | 错误级别。 |
+  | Info  | 消息级别。 |
+  | Log   | 日志级别。 |
+  | Warn  | 警告级别。 |
 
 ## WebController
 

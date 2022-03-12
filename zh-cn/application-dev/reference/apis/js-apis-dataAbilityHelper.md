@@ -752,7 +752,7 @@ update(uri: string, valuesBucket: rdb.ValuesBucket, predicates: dataAbility.Data
 
 | 类型             | 说明                                         |
 | ---------------- | -------------------------------------------- |
-| Promise\<number> | 返回值为Promise对象，Promise中包含应用信息。 |
+| Promise\<number> | Promise中包含更新的数据记录数。 。 |
 
 **示例：**
 

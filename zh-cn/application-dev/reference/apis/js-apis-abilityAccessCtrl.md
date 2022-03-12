@@ -9,14 +9,14 @@
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
 ```
 
-## 系统能力
-SystemCapability.Security.AccessToken
-
 ## abilityAccessCtrl.createAtManager
 
 createAtManager(): AtManager
 
 访问控制管理：获取访问控制模块对象。
+
+**系统能力：** SystemCapability.Security.AccessToken
+
 
 **返回值：**
 
@@ -40,6 +40,8 @@ verifyAccessToken(tokenID: number, permissionName: string): Promise&lt;GrantStat
 
 校验应用是否授予权限，使用Promise方式异步返回结果。
 
+**系统能力：** SystemCapability.Security.AccessToken
+
 **参数：**
 
 | 参数名   | 类型                 | 必填 | 说明                                       |
@@ -56,7 +58,7 @@ verifyAccessToken(tokenID: number, permissionName: string): Promise&lt;GrantStat
 **示例：**
 
 ```
-const AtManager = abilityAccessCtrl.createAtManager();
+var AtManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0;
 let promise = AtManager.verifyAccessToken(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS");
 promise.then(data => {
@@ -70,7 +72,9 @@ grantUserGrantedPermission(tokenID: number, permissionName: string, permissionFl
 
 授予应用user grant权限，使用Promise方式异步返回结果。
 
-需要权限：ohos.permission.GRANT_SENSITIVE_PERMISSIONS。
+**需要权限：** ohos.permission.GRANT_SENSITIVE_PERMISSIONS
+
+**系统能力：** SystemCapability.Security.AccessToken
 
 **参数：**
 
@@ -89,7 +93,7 @@ grantUserGrantedPermission(tokenID: number, permissionName: string, permissionFl
 **示例：**
 
 ```
-const AtManager = abilityAccessCtrl.createAtManager();
+var AtManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0;
 let promise = AtManager.grantUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS");
 promise.then(data => {
@@ -105,7 +109,9 @@ grantUserGrantedPermission(tokenID: number, permissionName: string, permissionFl
 
 授予应用user grant权限，使用callback回调异步返回结果。
 
-需要权限：ohos.permission.GRANT_SENSITIVE_PERMISSIONS。
+**需要权限：** ohos.permission.GRANT_SENSITIVE_PERMISSIONS
+
+**系统能力：** SystemCapability.Security.AccessToken
 
 **参数：**
 
@@ -119,7 +125,7 @@ grantUserGrantedPermission(tokenID: number, permissionName: string, permissionFl
 **示例：**
 
 ```
-const AtManager = abilityAccessCtrl.createAtManager();
+var AtManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0;
 let permissionFlag = 1;
 AtManager.grantUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS",permissionFlag, data => {
@@ -133,7 +139,9 @@ revokeUserGrantedPermission(tokenID: number, permissionName: string, permissionF
 
 撤销应用user grant权限，使用Promise方式异步返回结果。
 
-需要权限：ohos.permission.REVOKE_SENSITIVE_PERMISSIONS。
+**需要权限：** ohos.permission.REVOKE_SENSITIVE_PERMISSIONS
+
+**系统能力：** SystemCapability.Security.AccessToken
 
 **参数：**
 
@@ -152,7 +160,7 @@ revokeUserGrantedPermission(tokenID: number, permissionName: string, permissionF
 **示例：**
 
 ```
-const AtManager = abilityAccessCtrl.createAtManager();
+var AtManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0;
 let permissionFlag = 1;
 let promise = AtManager.revokeUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS", permissionFlag);
@@ -167,7 +175,9 @@ revokeUserGrantedPermission(tokenID: number, permissionName: string, permissionF
 
 撤销应用user grant权限，使用callback回调异步返回结果。
 
-需要权限：ohos.permission.REVOKE_SENSITIVE_PERMISSIONS。
+**需要权限：** ohos.permission.REVOKE_SENSITIVE_PERMISSIONS
+
+**系统能力：** SystemCapability.Security.AccessToken
 
 **参数：**
 
@@ -181,7 +191,7 @@ revokeUserGrantedPermission(tokenID: number, permissionName: string, permissionF
 **示例：**
 
 ```
-const AtManager = abilityAccessCtrl.createAtManager();
+var AtManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0;
 AtManager.revokeUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS",permissionFlag, data => {
     console.log(`callback: data->${JSON.stringify(data)}`);
@@ -193,6 +203,8 @@ AtManager.revokeUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_
 getPermissionFlags(tokenID: number, permissionName: string): Promise&lt;number&gt;
 
 获取指定应用的指定权限的flag，使用Promise方式异步返回结果。
+
+**系统能力：** SystemCapability.Security.AccessToken
 
 **参数：**
 
@@ -210,7 +222,7 @@ getPermissionFlags(tokenID: number, permissionName: string): Promise&lt;number&g
 **示例：**
 
 ```
-const AtManager = abilityAccessCtrl.createAtManager();
+var AtManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0;
 let promise = AtManager.getPermissionFlags(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS");
 promise.then(data => {
@@ -221,6 +233,8 @@ promise.then(data => {
 ### GrantStatus
 
 表示授权状态的枚举。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Security.AccessToken
 
 | 名称                          | 默认值                  | 描述                    |
 | ----------------------------- | ---------------------- | -----------------------  |

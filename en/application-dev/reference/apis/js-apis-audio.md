@@ -1,6 +1,7 @@
 # Audio
 
-This module provides the following functions: audio management, audio rendering and system sound management.
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import<a name="s56d19203690d4782bfc74069abb6bd71"></a>
 
@@ -284,8 +285,18 @@ Enumerates audio device types.
 </tbody>
 </table>
 
+## ActiveDeviceType
 
-## AudioRingMode<sup>7+</sup><a name="section14948916131018"></a>
+Enumerates the active device types.
+
+| Name          | Default Value | Default Value                                                         |
+| ------------- | ------ | ------------------------------------------------------------ |
+| SPEAKER       | 2      | Speaker.<br/>**System capabilities:** SystemCapability.Multimedia.Audio.Device |
+| BLUETOOTH_SCO | 7      | Bluetooth device using the SCO link.<br/>**System capabilities:** SystemCapability.Multimedia.Audio.Device |
+
+
+
+## AudioRingMode
 
 Enumerates ringer modes.
 
@@ -1028,7 +1039,7 @@ audioManager.getMaxVolume(audio.AudioVolumeType.MEDIA).then((data)=>
 
 ## audioManager.mute
 
-mute\(volumeType: AudioVolumeType, mute: boolean, callback: AsyncCallback<void\>\): void<sup>7+</sup><a name="section13516136134613"></a>
+mute\(volumeType: AudioVolumeType, mute: boolean, callback: AsyncCallback<void\>\): void
 
 Mutes a stream. This method uses an asynchronous callback to return the result.
 
@@ -1096,7 +1107,7 @@ audioManager.mute(audio.AudioVolumeType.MEDIA, true, (err) => {
 
 ## audioManager.mute
 
-mute\(volumeType: AudioVolumeType, mute: boolean\): Promise<void\><sup>7+</sup><a name="section7519036144616"></a>
+mute\(volumeType: AudioVolumeType, mute: boolean\): Promise<void\>
 
 Mutes a stream. This method uses a promise to return the result.
 
@@ -1164,7 +1175,7 @@ audioManager.mute(audio.AudioVolumeType.MEDIA, true).then(() =>
 
 ## audioManager.isMute
 
-isMute\(volumeType: AudioVolumeType, callback: AsyncCallback<boolean\>\): void<sup>7+</sup><a name="section10684183819585"></a>
+isMute\(volumeType: AudioVolumeType, callback: AsyncCallback<boolean\>\): void
 
 Checks whether a stream is muted. This method uses an asynchronous callback to return the query result.
 
@@ -1223,7 +1234,7 @@ audioManager.isMute(audio.AudioVolumeType.MEDIA, (err, value) => {
 
 ## audioManager.isMute
 
-isMute\(volumeType: AudioVolumeType\): Promise<boolean\><sup>7+</sup><a name="section6920211145610"></a>
+isMute\(volumeType: AudioVolumeType\): Promise<boolean\>
 
 Checks whether a stream is muted. This method uses a promise to return the result.
 
@@ -1282,7 +1293,7 @@ audioManager.isMute(audio.AudioVolumeType.MEDIA).then((value) =>
 
 ## audioManager.isActive
 
-isActive\(volumeType: AudioVolumeType, callback: AsyncCallback<boolean\>\): void<sup>7+</sup><a name="section380012544121"></a>
+isActive\(volumeType: AudioVolumeType, callback: AsyncCallback<boolean\>\)
 
 Checks whether a stream is active. This method uses an asynchronous callback to return the query result.
 
@@ -1341,7 +1352,7 @@ audioManager.isActive(audio.AudioVolumeType.MEDIA, (err, value) => {
 
 ## audioManager.isActive
 
-isActive\(volumeType: AudioVolumeType\): Promise<boolean\><sup>7+</sup><a name="section1880315481216"></a>
+isActive\(volumeType: AudioVolumeType\): Promise<boolean\>
 
 Checks whether a stream is active. This method uses a promise to return the query result.
 
@@ -1400,7 +1411,7 @@ audioManager.isActive(audio.AudioVolumeType.MEDIA).then((value) =>
 
 ## audioManager.setRingerMode
 
-setRingerMode\(mode: AudioRingMode, callback: AsyncCallback<void\>\): void<sup>7+</sup><a name="section18572131483613"></a>
+setRingerMode\(mode: AudioRingMode, callback: AsyncCallback<void\>\): void
 
 Sets the ringer mode. This method uses an asynchronous callback to return the result.
 
@@ -1459,7 +1470,7 @@ audioManager.setRingerMode(audio.AudioRingMode.RINGER_MODE_NORMAL, (err) => {
 
 ## audioManager.setRingerMode
 
-setRingerMode\(mode: AudioRingMode\): Promise<void\><sup>7+</sup><a name="section55741914143615"></a>
+setRingerMode\(mode: AudioRingMode\): Promise<void\>
 
 Sets the ringer mode. This method uses a promise to return the result.
 
@@ -1518,7 +1529,7 @@ audioManager.setRingerMode(audio.AudioRingMode.RINGER_MODE_NORMAL).then(() =>
 
 ## audioManager.getRingerMode
 
-getRingerMode\(callback: AsyncCallback<AudioRingMode\>\): void<sup>7+</sup><a name="section149044108162"></a>
+getRingerMode\(callback: AsyncCallback<AudioRingMode\>\): void
 
 Obtains the ringer mode. This method uses an asynchronous callback to return the query result.
 
@@ -1568,7 +1579,7 @@ audioManager.getRingerMode((err, value) => {
 
 ## audioManager.getRingerMode
 
-getRingerMode\(\): Promise<AudioRingMode\><sup>7+</sup><a name="section13908210101620"></a>
+getRingerMode\(\): Promise<AudioRingMode\>
 
 Obtains the ringer mode. This method uses a promise to return the query result.
 
@@ -1606,7 +1617,7 @@ audioManager.getRingerMode().then((value) =>
 
 ## audioManager.setAudioParameter
 
-setAudioParameter\(key: string, value: string, callback: AsyncCallback<void\>\): void<sup>7+</sup><a name="section1691957174818"></a>
+setAudioParameter\(key: string, value: string, callback: AsyncCallback<void\>\): void
 
 Sets an audio parameter. This method uses an asynchronous callback to return the result.
 
@@ -1674,7 +1685,7 @@ audioManager.setAudioParameter('PBits per sample', '8 bit', (err) => {
 
 ## audioManager.setAudioParameter
 
-setAudioParameter\(key: string, value: string\): Promise<void\><sup>7+</sup><a name="section18121057174820"></a>
+setAudioParameter\(key: string, value: string\): Promise<void\>
 
 Sets an audio parameter. This method uses a promise to return the result.
 
@@ -1742,7 +1753,7 @@ audioManager.setAudioParameter('PBits per sample', '8 bit').then(() =>
 
 ## audioManager.getAudioParameter
 
-getAudioParameter\(key: string, callback: AsyncCallback<string\>\): void<sup>7+</sup><a name="section1415145714812"></a>
+getAudioParameter\(key: string, callback: AsyncCallback<string\>\)
 
 Obtains the value of an audio parameter. This method uses an asynchronous callback to return the query result.
 
@@ -1801,7 +1812,7 @@ audioManager.getAudioParameter('PBits per sample', (err, value) => {
 
 ## audioManager.getAudioParameter
 
-getAudioParameter\(key: string\): Promise<string\><sup>7+</sup><a name="section3185577485"></a>
+getAudioParameter\(key: string\): Promise<string\>
 
 Obtains the value of an audio parameter. This method uses a promise to return the query result.
 
@@ -1979,7 +1990,7 @@ audioManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data)=>
 
 ## audioManager.setDeviceActive
 
-setDeviceActive\(deviceType: DeviceType, active: boolean, callback: AsyncCallback<void\>\): void<sup>7+</sup><a name="section103558400222"></a>
+setDeviceActive\(deviceType: DeviceType, active: boolean, callback: AsyncCallback<void\>\): void
 
 Sets a device to the active state. This method uses an asynchronous callback to return the result.
 
@@ -2048,7 +2059,7 @@ audioManager.setDeviceActive(audio.DeviceType.SPEAKER, true, (err)=> {
 
 ## audioManager.setDeviceActive
 
-setDeviceActive\(deviceType: DeviceType, active: boolean\): Promise<void\><sup>7+</sup><a name="section1235914401228"></a>
+setDeviceActive\(deviceType: DeviceType, active: boolean\): Promise<void\>
 
 Sets a device to the active state. This method uses a promise to return the result.
 
@@ -2116,7 +2127,7 @@ audioManager.setDeviceActive(audio.DeviceType.SPEAKER, true).then(()=>
 
 ## audioManager.isDeviceActive
 
-isDeviceActive\(deviceType: DeviceType, callback: AsyncCallback<boolean\>\): void<sup>7+</sup><a name="section12363240122219"></a>
+isDeviceActive\(deviceType: DeviceType, callback: AsyncCallback<boolean\>\): void
 
 Checks whether a device is active. This method uses an asynchronous callback to return the query result.
 
@@ -2175,7 +2186,7 @@ audioManager.isDeviceActive(audio.DeviceType.SPEAKER, (err, value) => {
 
 ## audioManager.isDeviceActive
 
-isDeviceActive\(deviceType: DeviceType\): Promise<boolean\><sup>7+</sup><a name="section18366184012213"></a>
+isDeviceActive\(deviceType: DeviceType\): Promise<boolean\>
 
 Checks whether a device is active. This method uses a promise to return the query result.
 
@@ -2234,7 +2245,7 @@ audioManager.isDeviceActive(audio.DeviceType.SPEAKER).then((value) =>
 
 ## audioManager.setMicrophoneMute
 
-setMicrophoneMute\(mute: boolean, callback: AsyncCallback<void\>\): void<sup>7+</sup><a name="section14703163618122"></a>
+setMicrophoneMute\(mute: boolean, callback: AsyncCallback<void\>\): void
 
 Mutes or unmutes the microphone. This method uses an asynchronous callback to return the result.
 
@@ -2293,7 +2304,7 @@ audioManager.setMicrophoneMute(true, (err) => {
 
 ## audioManager.setMicrophoneMute
 
-setMicrophoneMute\(mute: boolean\): Promise<void\><sup>7+</sup><a name="section56287111791"></a>
+setMicrophoneMute\(mute: boolean\): Promise<void\>
 
 Mutes or unmutes the microphone. This method uses a promise to return the result.
 
@@ -2352,7 +2363,7 @@ audioManager.setMicrophoneMute(true).then(() =>
 
 ## audioManager.isMicrophoneMute
 
-isMicrophoneMute\(callback: AsyncCallback<boolean\>\): void<sup>7+</sup><a name="section6632141119912"></a>
+isMicrophoneMute\(callback: AsyncCallback<boolean\>\): void
 
 Checks whether the microphone is muted. This method uses an asynchronous callback to return the query result.
 
@@ -2402,7 +2413,7 @@ audioManager.isMicrophoneMute((err, value) => {
 
 ## audioManager.isMicrophoneMute
 
-isMicrophoneMute\(\): Promise<boolean\><sup>7+</sup><a name="section196363111918"></a>
+isMicrophoneMute\(\): Promise<boolean\>
 
 Checks whether the microphone is muted. This method uses a promise to return the query result.
 
@@ -4121,3 +4132,20 @@ None
 ```
 await ringtonePlayer.release();
 ```
+
+
+## AudioDeviceDescriptor
+
+Describes an audio device.
+
+| Name | Type | Readable | Writable | Description |
+| -------- | -------- | -------- | -------- | -------- |
+| deviceRole | [DeviceRole](#devicerole) | Yes | No | Device role.<br/>**System capabilities:** SystemCapability.Multimedia.Audio.Device |
+| deviceType | [DeviceType](#devicetype) | Yes | No | Device type.<br/>**System capabilities:** SystemCapability.Multimedia.Audio.Device |
+
+
+## AudioDeviceDescriptors
+
+| Name | Description |
+| -------- | -------- |
+| AudioDeviceDescriptors | Array of **AudioDeviceDescriptor** objects. It is read-only.<br/>**System capabilities:** SystemCapability.Multimedia.Audio.Device |

@@ -73,7 +73,6 @@ OHOS:/$ top
     6     1    6         0 Pending   0x688000 0x137000    0x11c1ba      0.0   media_server
     7     1    7         0 Pending   0x9d2000 0x103000     0xa21f9      0.87  wms_server
     8     1    8         2 Pending   0x1f5000  0x48000     0x462dc      0.0   mksh
-    9     5    5       101 Pending  0x11ea000 0x2f9000    0x204561      0.94  com.huawei.launcher
    11     1   11         0 Pending   0x4d4000 0x112000     0xe0d9c      0.0   deviceauth_service
    12     1   12         0 Pending   0x34f000  0xbd000     0x51cb3      0.0   sensor_service
    13     1   13         2 Pending   0x34e000  0xb3000     0x5269e      0.0   ai_server

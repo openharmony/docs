@@ -16,7 +16,7 @@
 | onKeyEvent(event:&nbsp;(event?:&nbsp;KeyEvent)&nbsp;=&gt;&nbsp;void) | 是 | 按键动作触发该方法调用，event参数见[KeyEvent](#keyevent对象说明)介绍。 | 
 
 
-## KeyEvent对象说明
+### KeyEvent对象说明
 
 - 属性
   | 属性名称 | 类型 | 描述 |

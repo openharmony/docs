@@ -95,13 +95,13 @@ let result1 = treeMap.hasKey("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 
 hasValue(value: V): boolean
 
-判断此容器中是否含有该指定元素。
+判断此容器中是否含有该指定value。
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | V | 是 | 指定元素。 |
+| value | V | 是 | 指定value。 |
 
 **返回值：**
 

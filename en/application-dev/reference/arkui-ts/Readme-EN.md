@@ -52,17 +52,20 @@
         -   [Gauge](ts-basic-components-gauge.md)
         -   [Image](ts-basic-components-image.md)
         -   [ImageAnimator](ts-basic-components-imageanimator.md)
+        -   [LoadingProgress](ts-basic-components-loadingprogress.md)
         -   [Marquee](ts-basic-components-marquee.md)
         -   [Progress](ts-basic-components-progress.md)
         -   [QRCode](ts-basic-components-qrcode.md)
         -   [Rating](ts-basic-components-rating.md)
-        -   [Span](ts-basic-components-span.md)
+        -   [Select](ts-basic-components-select.md)
         -   [Slider](ts-basic-components-slider.md)
+        -   [Span](ts-basic-components-span.md)
         -   [Text](ts-basic-components-text.md)
         -   [TextArea](ts-basic-components-textarea.md)
         -   [TextInput](ts-basic-components-textinput.md)
         -   [Toggle](ts-basic-components-toggle.md)
-
+        -   [TextClock](ts-basic-components-textclock.md)
+    
     -   [Container Components](ts-components-container.md)
         -   [AlphabetIndexer](ts-container-alphabet-indexer.md)
         -   [Badge](ts-container-badge.md)
@@ -86,29 +89,28 @@
         -   [Swiper](ts-container-swiper.md)
         -   [Tabs](ts-container-tabs.md)
         -   [TabContent](ts-container-tabcontent.md)
-        -   [Stepper](ts-container-stepper.md)
-        -   [StepperItem](ts-container-stepperitem.md)
-
+        
+        -   [Refresh](ts-container-refresh.md)
     -   [Drawing Components](ts-drawing-components.md)
+        
         -   [Circle](ts-drawing-components-circle.md)
         -   [Ellipse](ts-drawing-components-ellipse.md)
         -   [Line](ts-drawing-components-line.md)
         -   [Polyline](ts-drawing-components-polyline.md)
         -   [Polygon](ts-drawing-components-polygon.md)
-        -   [Path](ts-drawing-components-path.md)
+    -   [Path](ts-drawing-components-path.md)
         -   [Rect](ts-drawing-components-rect.md)
         -   [Shape](ts-drawing-components-shape.md)
-
+    
     -   [Canvas Components](ts-components-canvas.md)
         -   [Canvas](ts-components-canvas-canvas.md)
         -   [CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md)
         -   [OffscreenCanvasRenderingConxt2D](ts-offscreencanvasrenderingcontext2d.md)
         -   [Lottie](ts-components-canvas-lottie.md)
         -   [Path2D](ts-components-canvas-path2d.md)
-        -   [CanvasGradient](ts-components-canvas-canvasgradient.md)
+    -   [CanvasGradient](ts-components-canvas-canvasgradient.md)
         -   [ImageBitmap](ts-components-canvas-imagebitmap.md)
         -   [ImageData](ts-components-canvas-imagedata.md)
-
 -   [Animation](ts-animation.md)
     -   [Attribute Animation](ts-animatorproperty.md)
     -   [Explicit Animation](ts-explicit-animation.md)
@@ -129,5 +131,6 @@
     -   [List Selection Dialog Box](ts-methods-action-sheet.md)
 
 -   [Appendix](ts-appendix.md)
+    
     -   [Built-in Enums](ts-appendix-enums.md)
 

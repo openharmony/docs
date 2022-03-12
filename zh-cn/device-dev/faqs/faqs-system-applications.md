@@ -43,7 +43,7 @@ LiteOS-A内核\(Hi3516、Hi3518平台\)直接调用KV存储提供的接口，各
 显示调用KV存储的UtilsSetEnv接口，设置数据存储路径。
 
 ```
-UtilsSetEnv("/storage/com.huawei.kv");
+UtilsSetEnv("/storage/com.example.kv");
 ```
 
 ## 视觉应用常见问题<a name="section787718474161"></a>

@@ -8,7 +8,7 @@
 ## 接口说明
 注册相关接口包导入：
 ```js
-import stats from '@ohos.usagestatskit';
+import stats from '@ohos.bundleState';
 ```
 
 **表1** 设备使用信息统计主要接口
@@ -38,188 +38,170 @@ import stats from '@ohos.usagestatskit';
     }
     ```
 
-2. 通过指定起始和结束时间查询所有应用的事件集合。
+2. 通过指定起始和结束时间查询所有应用的事件集合，config.json中需要配置权限：ohos.permission.BUNDLE_ACTIVE_INFO。
 
     ```js
-    import stats from '@ohos.usagestatskit'
+    import stats from '@ohos.bundleState'
 
     // 异步方法promise方式
     stats.queryBundleActiveStates(0, 20000000000000).then( res => {
-        console.log('queryBundleActiveStates promise succeeded, data number: ' + res.length);
+        console.log('BUNDLE_ACTIVE queryBundleActiveStates promise success.');
         for (let i = 0; i < res.length; i++) {
-            console.log("queryBundleActiveStates, promise bundleName = " + res[i].bundleName)
-            console.log("queryBundleActiveStates, promise stateType = " + res[i].stateType)
-            console.log("queryBundleActiveStates, promise stateOccurredTime = " + res[i].stateOccurredTime)
+            console.log('BUNDLE_ACTIVE queryBundleActiveStates promise number : ' + (i + 1));
+            console.log('BUNDLE_ACTIVE queryBundleActiveStates promise result ' + JSON.stringify(res[i]));
         }
     }).catch( err => {
-        console.log('queryBundleActiveStates promise failed, because: ' + err.data);
+        console.log('BUNDLE_ACTIVE queryBundleActiveStates promise failed, because: ' + err.code);
     });
 
     // 异步方法callback方式
-    setTimeout(()=>{
-        stats.queryBundleActiveStates(0, 20000000000000, (err, res) => {
-            console.log('queryBundleActiveStates callback succeeded, data number: ' + res.length);
-            if(err.data == 0) {
-                for (let i = 0; i < res.length; i++) {
-                    console.log("queryBundleActiveStates, callback bundleName = " + res[i].bundleName)
-                    console.log("queryBundleActiveStates, callback stateType = " + res[i].stateType)
-                    console.log("queryBundleActiveStates, callback stateOccurredTime = " + res[i].stateOccurredTime)
-                }
-            } else {
-                console.log('queryBundleActiveStates callback failed, because: ' + err.data);
+    stats.queryBundleActiveStates(0, 20000000000000, (err, res) => {
+        if(err.code == 0) {
+            console.log('BUNDLE_ACTIVE queryBundleActiveStates callback success.');
+            for (let i = 0; i < res.length; i++) {
+                console.log('BUNDLE_ACTIVE queryBundleActiveStates callback number : ' + (i + 1));
+                console.log('BUNDLE_ACTIVE queryBundleActiveStates callback result ' + JSON.stringify(res[i]));
             }
-        })
-    }, 500);
+        } else {
+            console.log('BUNDLE_ACTIVE queryBundleActiveStates callback failed, because: ' + err.code);
+        }
+    });
     ```
 
-3. 通过指定起始和结束时间查询应用使用时长统计信息。
+3. 通过指定起始和结束时间查询应用使用时长统计信息，config.json中需要配置权限：ohos.permission.BUNDLE_ACTIVE_INFO。
 
     ```js
-    import stats from '@ohos.usagestatskit'
+    import stats from '@ohos.bundleState'
 
     // 异步方法promise方式
     stats.queryBundleStateInfos(0, 20000000000000).then( res => {
-        console.log('queryBundleStateInfos promise succeeded, data number: ' + res.length);
+        console.log('BUNDLE_ACTIVE queryBundleStateInfos promise success.');
+        let i = 1;
         for(let key in res){
-            console.log("queryBundleStateInfos promise key = " + key)
-            console.log("queryBundleStateInfos promise bundleName = " + res[key].bundleName)
-            console.log("queryBundleStateInfos promise abilityPrevAccessTime = " + res[key].abilityPrevAccessTime)
-            console.log("queryBundleStateInfos promise abilityInFgTotalTime = " + res[key].abilityInFgTotalTime)
+            console.log('BUNDLE_ACTIVE queryBundleStateInfos promise number : ' + i);
+            console.log('BUNDLE_ACTIVE queryBundleStateInfos promise result ' + JSON.stringify(res[key]));
+            i++;
         }
     }).catch( err => {
-        console.log('queryBundleStateInfos promise failed, because: ' + err.data);
+        console.log('BUNDLE_ACTIVE queryBundleStateInfos promise failed, because: ' + err.code);
     });
 
     // 异步方法callback方式
-    setTimeout(()=>{
-        stats.queryBundleStateInfos(0, 20000000000000,(err, res) => {
-            console.log('queryBundleStateInfos callback succeeded, data number: ' + res.length);
-            if(err.data == 0) {
-                for(let key in res){
-                    console.log("queryBundleStateInfos callback key = " + key)
-                    console.log("queryBundleStateInfos callback bundleName = " + res[key].bundleName)
-                    console.log("queryBundleStateInfos callback abilityPrevAccessTime = " + res[key].abilityPrevAccessTime)
-                    console.log("queryBundleStateInfos callback abilityInFgTotalTime = " + res[key].abilityInFgTotalTime)
-                }
-            } else {
-                console.log('queryBundleStateInfos callback failed, because: ' + err.data);
+    stats.queryBundleStateInfos(0, 20000000000000, (err, res) => {
+        if(err.code == 0) {
+            console.log('BUNDLE_ACTIVE queryBundleStateInfos callback success.');
+            let i = 1;
+            for(let key in res){
+                console.log('BUNDLE_ACTIVE queryBundleStateInfos callback number : ' + i);
+                console.log('BUNDLE_ACTIVE queryBundleStateInfos callback result ' + JSON.stringify(res[key]));
+                i++;
             }
-        })
-    }, 500);
+        } else {
+            console.log('BUNDLE_ACTIVE queryBundleStateInfos callback failed, because: ' + err.code);
+        }
+    });
     ```
 
-4. 通过指定起始和结束时间查询当前应用的事件集合。
+4. 通过指定起始和结束时间查询当前应用的事件集合，config.json中不需要配置权限。
 
     ```js
-    import stats from '@ohos.usagestatskit'
+    import stats from '@ohos.bundleState'
 
     // 异步方法promise方式
     stats.queryCurrentBundleActiveStates(0, 20000000000000).then( res => {
-        console.log('queryCurrentBundleActiveStates promise succeeded, data number: ' + res.length);
+        console.log('BUNDLE_ACTIVE queryCurrentBundleActiveStates promise success.');
         for (let i = 0; i < res.length; i++) {
-            console.log("queryCurrentBundleActiveStates, promise bundleName = " + res[i].bundleName)
-            console.log("queryCurrentBundleActiveStates, promise stateType = " + res[i].stateType)
-            console.log("queryCurrentBundleActiveStates, promise stateOccurredTime = " + res[i].stateOccurredTime)
+            console.log('BUNDLE_ACTIVE queryCurrentBundleActiveStates promise number : ' + (i + 1));
+            console.log('BUNDLE_ACTIVE queryCurrentBundleActiveStates promise result ' + JSON.stringify(res[i]));
         }
     }).catch( err => {
-        console.log('queryCurrentBundleActiveStates promise failed, because: ' + err.data);
+        console.log('BUNDLE_ACTIVE queryCurrentBundleActiveStates promise failed, because: ' + err.code);
     });
 
     // 异步方法callback方式
-    setTimeout(()=>{
-        stats.queryCurrentBundleActiveStates(0, 20000000000000,(err, res) => {
-            console.log('queryCurrentBundleActiveStates callback succeeded, data number: ' + res.length);
-            if(err.data == 0) {
-                for (let i = 0; i < res.length; i++) {
-                    console.log("queryCurrentBundleActiveStates, callback bundleName = " + res[i].bundleName)
-                    console.log("queryCurrentBundleActiveStates, callback stateType = " + res[i].stateType)
-                    console.log("queryCurrentBundleActiveStates, callback stateOccurredTime = " + res[i].stateOccurredTime)
-                }
-            } else {
-                console.log('queryCurrentBundleActiveStates callback failed, because: ' + err.data);
-            }
-        })
-    }, 500);
+    stats.queryCurrentBundleActiveStates(0, 20000000000000, (err, res) => {
+        if(err.code == 0) {
+            console.log('BUNDLE_ACTIVE queryCurrentBundleActiveStates callback success.');
+            for (let i = 0; i < res.length; i++) {
+                console.log('BUNDLE_ACTIVE queryCurrentBundleActiveStates callback number : ' + (i + 1));
+                console.log('BUNDLE_ACTIVE queryCurrentBundleActiveStates callback result ' + JSON.stringify(res[i]));
+             }
+        } else {
+            console.log('BUNDLE_ACTIVE queryCurrentBundleActiveStates callback failed, because: ' + err.code);
+        }
+    });
     ```
 
-5. 通过指定时间段间隔（天、周、月、年）查询应用使用时长统计信息。
+5. 通过指定时间段间隔（天、周、月、年）查询应用使用时长统计信息，config.json中需要配置权限：ohos.permission.BUNDLE_ACTIVE_INFO。
 
     ```js
-    import stats from '@ohos.usagestatskit'
+    import stats from '@ohos.bundleState'
 
     // 异步方法promise方式
     stats.queryBundleStateInfoByInterval(0, 0, 20000000000000).then( res => {
-        console.log('queryBundleStateInfoByInterval promise succeeded, data number: ' + res.length);
+        console.log('BUNDLE_ACTIVE queryBundleStateInfoByInterval promise success.');
         for (let i = 0; i < res.length; i++) {
-            console.log("queryBundleStateInfoByInterval, promise bundleName = " + res[i].bundleName)
-            console.log("queryBundleStateInfoByInterval, promise abilityPrevAccessTime = " + res[i].abilityPrevAccessTime)
-            console.log("queryBundleStateInfoByInterval, promise abilityInFgTotalTime = " + res[i].abilityInFgTotalTime)
+            console.log('BUNDLE_ACTIVE queryBundleStateInfoByInterval promise number : ' + (i + 1));
+            console.log('BUNDLE_ACTIVE queryBundleStateInfoByInterval promise result ' + JSON.stringify(res[i]));
         }
     }).catch( err => {
-        console.log('queryBundleStateInfoByiInterval promise failed, because: ' + err.data);
+        console.log('BUNDLE_ACTIVE queryBundleStateInfoByInterval promise failed, because: ' + err.code);
     });
 
     // 异步方法callback方式
-    setTimeout(()=>{
-        stats.queryBundleStateInfoByInterval(0, 0, 20000000000000,(err, res) => {
-            console.log('queryBundleStateInfoByInterval callback succeeded, data number: ' + res.length);
-            if(err.data == 0) {
-                for (let i = 0; i < res.length; i++) {
-                    console.log("queryBundleStateInfoByInterval, callback bundleName = " + res[i].bundleName)
-                    console.log("queryBundleStateInfoByInterval, callback abilityPrevAccessTime = " + res[i].abilityPrevAccessTime)
-                    console.log("queryBundleStateInfoByInterval, callback abilityInFgTotalTime = " + res[i].abilityInFgTotalTime)
-                }
-            } else {
-                console.log('queryBundleStateInfoByInterval callback failed, because: ' + err.data);
+    stats.queryBundleStateInfoByInterval(0, 0, 20000000000000, (err, res) => {
+        if(err.code == 0) {
+            console.log('BUNDLE_ACTIVE queryBundleStateInfoByInterval callback success.');
+            for (let i = 0; i < res.length; i++) {
+                console.log('BUNDLE_ACTIVE queryBundleStateInfoByInterval callback number : ' + (i + 1));
+                console.log('BUNDLE_ACTIVE queryBundleStateInfoByInterval callback result ' + JSON.stringify(res[i]));
             }
-        })
-    }, 500);
+        } else {
+            console.log('BUNDLE_ACTIVE queryBundleStateInfoByInterval callback failed, because: ' + err.code);
+        }
+    });
     ```
 
-6. 查询（返回）当前调用者应用的使用优先级群组。
+6. 查询（返回）当前调用者应用的使用优先级群组，config.json中不需要配置权限。
 
     ```js
-    import stats from '@ohos.usagestatskit'
+    import stats from '@ohos.bundleState'
 
     // 异步方法promise方式
     stats.queryAppUsagePriorityGroup().then( res => {
-        console.log('queryAppUsagePriorityGroup promise succeeded. result: ' + JSON.stringify(res));
+        console.log('BUNDLE_ACTIVE queryAppUsagePriorityGroup promise succeeded. result: ' + JSON.stringify(res));
     }).catch( err => {
-        console.log('queryAppUsagePriorityGroup promise failed, because: ' + err.data);
+        console.log('BUNDLE_ACTIVE queryAppUsagePriorityGroup promise failed. because: ' + err.code);
     });
 
     // 异步方法callback方式
-    setTimeout(()=>{
-        stats.queryAppUsagePriorityGroup((err, res) => {
-            if(err.data === 0) {
-                console.log('queryAppUsagePriorityGroup callback succeeded. result: ' + JSON.stringify(res));
-            } else {
-                console.log('queryAppUsagePriorityGroup callback failed, because: ' + err.data);
-            }
-        })
-    }, 500);
+    stats.queryAppUsagePriorityGroup((err, res) => {
+        if(err.code === 0) {
+            console.log('BUNDLE_ACTIVE queryAppUsagePriorityGroup callback succeeded. result: ' + JSON.stringify(res));
+        } else {
+            console.log('BUNDLE_ACTIVE queryAppUsagePriorityGroup callback failed. because: ' + err.code);
+        }
+    });
     ```
 
-7. 判断指定Bundle Name的应用当前是否是空闲状态。
+7. 判断指定Bundle Name的应用当前是否是空闲状态，config.json中不需要配置权限。
 
     ```js
-    import stats from '@ohos.usagestatskit'
+    import stats from '@ohos.bundleState'
 
     // 异步方法promise方式
     stats.isIdleState("com.ohos.camera").then( res => {
-        console.log('isIdleState promise succeeded. result: ' + JSON.stringify(res));
+        console.log('BUNDLE_ACTIVE isIdleState promise succeeded, result: ' + JSON.stringify(res));
     }).catch( err => {
-        console.log('isIdleState promise failed, because: ' + err.data);
+        console.log('BUNDLE_ACTIVE isIdleState promise failed, because: ' + err.code);
     });
 
     // 异步方法callback方式
-    setTimeout(()=>{
-        stats.isIdleState("com.ohos.camera", (err, res) => {
-            if(err.data === 0) {
-                console.log('isIdleState callback succeeded. result: ' + JSON.stringify(res));
-            } else {
-                console.log('isIdleState callback failed, because: ' + err.data);
-            }
-        })
-    }, 500);
+    stats.isIdleState("com.ohos.camera", (err, res) => {
+        if(err.code === 0) {
+            console.log('BUNDLE_ACTIVE isIdleState callback succeeded, result: ' + JSON.stringify(res));
+        } else {
+            console.log('BUNDLE_ACTIVE isIdleState callback failed, because: ' + err.code);
+        }
+    });
     ```

@@ -117,7 +117,7 @@ let result = plainArray.get(1);
 
 getIndexOfKey(key: number): number;
 
-查找指定key第一次出现的下标值，如果没有找到该元素返回-1。
+查找指定key第一次出现的下标值，如果没有找到该key返回-1。
 
 **参数：**
 
@@ -145,19 +145,19 @@ let result = plainArray.getIndexOfKey("sdfs");
 
 getIndexOfValue(value: T): number;
 
-查找指定元素第一次出现的下标值，如果没有找到该元素返回-1。
+查找指定value元素第一次出现的下标值，如果没有找到该value元素返回-1。
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | T | 是 | 指定元素。 |
+| value | T | 是 | 指定value元素。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 返回指定元素第一次出现时的下标值，查找失败返回-1。 |
+| number | 返回指定value元素第一次出现时的下标值，查找失败返回-1。 |
 
 **示例：**
 

@@ -1577,7 +1577,7 @@ transform方法对应一个变换矩阵，想对一个图形进行变化的时�
   @Component
   struct Transform {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: RenderingContext = new RenderingContext(this.settings)
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
   
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -1926,9 +1926,9 @@ createLinearGradient(x0: number, y0: number, x1: number, y1: number): void
           .backgroundColor('#ffff00')
           .onReady(() =>{
             var grad = this.context.createLinearGradient(50,0, 300,100)
-            this.grad.addColorStop(0.0, 'red')
-            this.grad.addColorStop(0.5, 'white')
-            this.grad.addColorStop(1.0, 'green')
+            grad.addColorStop(0.0, 'red')
+            grad.addColorStop(0.5, 'white')
+            grad.addColorStop(1.0, 'green')
             this.context.fillStyle = grad
             this.context.fillRect(0, 0, 500, 500)
           })
@@ -1974,9 +1974,9 @@ createRadialGradient(x0: number, y0: number, r0: number, x1: number, y1: number,
           .backgroundColor('#ffff00')
           .onReady(() =>{
             var grad = this.context.createRadialGradient(200,200,50, 200,200,200)
-            this.grad.addColorStop(0.0, 'red')
-            this.grad.addColorStop(0.5, 'white')
-            this.grad.addColorStop(1.0, 'green')
+            grad.addColorStop(0.0, 'red')
+            grad.addColorStop(0.5, 'white')
+            grad.addColorStop(1.0, 'green')
             this.context.fillStyle = grad
             this.context.fillRect(0, 0, 500, 500)
           })

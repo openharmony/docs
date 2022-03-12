@@ -9,18 +9,15 @@
 ## 导入模块
 
 ```
-import runninglock from '@ohos.runningLock';
+import runningLock from '@ohos.runningLock';
 ```
-
-
-## 系统能力
-
-SystemCapability.PowerManager.PowerManager.Core
 
 
 ## RunningLockType
 
 RunningLock锁的类型。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.PowerManager.PowerManager.Core
 
 | 名称                       | 默认值  | 描述                  |
 | ------------------------ | ---- | ------------------- |
@@ -33,6 +30,8 @@ RunningLock锁的类型。
 isRunningLockTypeSupported(type: RunningLockType, callback: AsyncCallback&lt;boolean&gt;): void
 
 查询系统是否支持该类型的锁。
+
+**系统能力：** SystemCapability.PowerManager.PowerManager.Core
 
 **参数：**
 
@@ -59,6 +58,8 @@ runningLock.isRunningLockTypeSupported(runningLock.RunningLockType.BACKGROUND, (
 isRunningLockTypeSupported(type: RunningLockType): Promise&lt;boolean&gt;
 
 查询系统是否支持该类型的锁。
+
+**系统能力：** SystemCapability.PowerManager.PowerManager.Core
 
 **参数：**
 
@@ -91,7 +92,9 @@ createRunningLock(name: string, type: RunningLockType, callback: AsyncCallback&l
 
 创建RunningLock锁。
 
-**需要权限：**ohos.permission.RUNNING_LOCK
+**系统能力：** SystemCapability.PowerManager.PowerManager.Core
+
+**需要权限：** ohos.permission.RUNNING_LOCK
 
 **参数：**
 
@@ -124,7 +127,9 @@ createRunningLock(name: string, type: RunningLockType): Promise&lt;RunningLock&g
 
 创建Runninglock锁。
 
-**需要权限：**ohos.permission.RUNNING_LOCK
+**系统能力：** SystemCapability.PowerManager.PowerManager.Core
+
+**需要权限：** ohos.permission.RUNNING_LOCK
 
 **参数：**
 
@@ -163,6 +168,8 @@ lock(timeout: number): void
 
 锁定和持有RunningLock。
 
+**系统能力：** SystemCapability.PowerManager.PowerManager.Core
+
 **参数：**
 
 | 参数名     | 类型     | 必填   | 说明                   |
@@ -189,6 +196,8 @@ unlock(): void
 
 释放Runninglock锁。
 
+**系统能力：** SystemCapability.PowerManager.PowerManager.Core
+
 **示例：**
 
 ```
@@ -208,6 +217,8 @@ runningLock.createRunningLock("running_lock_test", runningLock.RunningLockType.B
 isUsed(): boolean
 
 查询当前Runninglock是持有状态还是释放状态。
+
+**系统能力：** SystemCapability.PowerManager.PowerManager.Core
 
 **返回值：**
 | 类型      | 说明                                    |

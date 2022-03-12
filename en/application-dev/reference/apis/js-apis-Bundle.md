@@ -12,7 +12,11 @@ SystemCapability.BundleManager.BundleFramework
 
 ## Required Permissions
 
-None
+|  Required Permissions| Permission Level| Description|
+|-------| --------- | ---- |
+| ohos.permission.GET_BUNDLE_INFO | normal | Permission to query information about the current application.|
+| ohos.permission.GET\_BUNDLE\_INFO\_PRIVILEGED| system_basic | Permission to query information about all applications.|
+| ohos.permission.INSTALL_BUNDLE | system_core | Permission to install or uninstall applications.|
 
 ## bundle.getApplicationInfo
 
@@ -20,62 +24,35 @@ getApplicationInfo(bundleName: string, bundleFlags: number, userId: number): Pro
 
 Obtains the application information of the specified user based on a given bundle name in asynchronous mode. This method uses a promise to return the result.
 
-**Permission required**
+**Required permissions**
 
 ohos.permission.GET\_BUNDLE\_INFO\_PRIVILEGED or ohos.permission.GET\_BUNDLE\_INFO
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name       | Type  | Mandatory| Description                                                        |
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
-| bundleName  | string | Yes| Bundle name of the application.|
-| bundleFlags | number | Yes| Type of information that will be returned. The default value is **0**. The value must be greater than or equal to 0.|
-| userId      | number | Yes| User ID.|
+| bundleName  | string | Yes  | Bundle name of the application.                                    |
+| bundleFlags | number | Yes  | Type of information that will be returned. The default value is **0**. The value must be greater than or equal to 0.|
+| userId      | number | Yes  | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.                    |
 
 **Return value**
 
-| Type| Description|
+| Type     | Description|
 | ----------- | -------- |
 | Promise\<ApplicationInfo> | Promise used to return the application information.|
 
 **Example**
 
 ```js
-bundle.getApplicationInfo('com.example.myapplicationInstall', 8, 0).then((data) => {
-  console.info("name: for begin");
-  console.info("name:" + data.name);
-  console.info("bundleName:" + data.bundleName);
-  console.info("description:" + data.description);
-  console.info("descriptionId:" + data.descriptionId);
-  console.info("iconPath:" + data.iconPath);
-  console.info("iconId:" + data.iconId);
-  console.info("label:" + data.label);
-  console.info("labelId:" + data.labelId);
-  console.info("deviceId:" + data.deviceId);
-  console.info("signatureKey:" + data.signatureKey);
-  console.info("process:" + data.process);
-  console.info("isSystemApp:" + data.isSystemApp);
-  console.info("isLauncherApp:" + data.isLauncherApp);
-  console.info("supportedModes:" + data.supportedModes);
-
-  console.info('getApplicationInfo permissions length [' + data.permissions.length + ']');
-  for (var j = 0; j < data.permissions.length; j++) {
-      console.info("permissions[" + j + "]:" + data.permissions[j]);
-  }
-  console.info('getApplicationInfo moduleSourceDirs length [' + data.moduleSourceDirs.length + ']');
-  for (var j = 0; j < data.moduleSourceDirs.length; j++) {
-      console.info("moduleSourceDirs[" + j + "]:" + data.moduleSourceDirs[j]);
-  }
-  console.info('getApplicationInfo moduleInfos length [' + data.moduleInfos.length + ']');
-  for (var j = 0; j < data.moduleInfos.length; j++) {
-      console.info("moduleInfos[" + j + "]moduleName:" + data.moduleInfos[j].moduleName);
-      console.info("moduleInfos[" + j + "]moduleSourceDir:" + data.moduleInfos[j].moduleSourceDir);
-  }
-  console.info("entryDir:" + data.entryDir);
-  console.info("codePath:" + data.codePath);
-  console.info("dataDir:" + data.dataDir);
-  console.info("dataBaseDir:" + data.dataBaseDir);
-  console.info("cacheDir:" + data.cacheDir);
+let bundleName = "com.example.myapplication";
+let bundleFlags = 0;
+let userId = 100;
+bundle.getApplicationInfo(bundleName, bundleFlags, userId)
+.then((data) => {
+    console.info('Operation successful. Data: ' + JSON.stringify(data));
+}).catch((error) => {
+    console.error('Operation failed. Cause: ' + JSON.stringify(error));
 })
 ```
 
@@ -87,152 +64,69 @@ getApplicationInfo(bundleName: string, bundleFlags: number, userId: number, call
 
 Obtains the application information of the specified user based on a given bundle name in asynchronous mode. This method uses a callback to return the result.
 
-**Permission required**
+**Required permissions**
 
 ohos.permission.GET\_BUNDLE\_INFO\_PRIVILEGED or ohos.permission.GET\_BUNDLE\_INFO
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name       | Type                           | Mandatory| Description                                                        |
 | ----------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| bundleName  | string                          | Yes| Bundle name of the application.|
-| bundleFlags | number                          | Yes| Type of information that will be returned. The default value is **0**. The value must be greater than or equal to 0.|
-| userId      | number                          | Yes| User ID.|
-| callback    | AsyncCallback\<ApplicationInfo> | Yes| Callback used to return the application information.|
+| bundleName  | string                          | Yes  | Bundle name of the application.                                    |
+| bundleFlags | number                          | Yes  | Type of information that will be returned. The default value is **0**. The value must be greater than or equal to 0.|
+| userId      | number                          | Yes  | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.                    |
+| callback    | AsyncCallback\<ApplicationInfo> | Yes  | Callback used to return the application information.              |
 
 **Example**
 
 ```js
-bundle.getApplicationInfo('com.example.myapplicationInstall', 8, 0, OnReceiveEvent);
-
-function OnReceiveEvent(err, data) {
-    console.info("name: for begin");
-    console.info("name:" + data.name);
-    console.info("bundleName:" + data.bundleName);
-    console.info("description:" + data.description);
-    console.info("descriptionId:" + data.descriptionId);
-    console.info("iconPath:" + data.iconPath);
-    console.info("iconId:" + data.iconId);
-    console.info("label:" + data.label);
-    console.info("labelId:" + data.labelId);
-    console.info("deviceId:" + data.deviceId);
-    console.info("signatureKey:" + data.signatureKey);
-    console.info("process:" + data.process);
-    console.info("isSystemApp:" + data.isSystemApp);
-    console.info("isLauncherApp:" + data.isLauncherApp);
-    console.info("supportedModes:" + data.supportedModes);
-
-    console.info('getApplicationInfo permissions length [' + data.permissions.length + ']');
-    for (var j = 0; j < data.permissions.length; j++) {
-        console.info("permissions[" + j + "]:" + data.permissions[j]);
+let bundleName = "com.example.myapplication";
+let bundleFlags = 0;
+let userId = 100;
+bundle.getApplicationInfo(bundleName, bundleFlags, userId, (err, data) => {
+    if (err) {
+        console.error('Operation failed. Cause: ' + JSON.stringify(err));
+        return;
     }
-    console.info('getApplicationInfo moduleSourceDirs length [' + data.moduleSourceDirs.length + ']');
-    for (var j = 0; j < data.moduleSourceDirs.length; j++) {
-        console.info("moduleSourceDirs[" + j + "]:" + data.moduleSourceDirs[j]);
-    }
-    console.info('getApplicationInfo moduleInfos length [' + data.moduleInfos.length + ']');
-    for (var j = 0; j < data.moduleInfos.length; j++) {
-        console.info("moduleInfos[" + j + "]moduleName:" + data.moduleInfos[j].moduleName);
-        console.info("moduleInfos[" + j + "]moduleSourceDir:" + data.moduleInfos[j].moduleSourceDir);
-    }
-    console.info("entryDir:" + data.entryDir);
-    console.info("codePath:" + data.codePath);
-    console.info("dataDir:" + data.dataDir);
-    console.info("dataBaseDir:" + data.dataBaseDir);
-    console.info("cacheDir:" + data.cacheDir);
-}
+    console.info('Operation successful. Data:' + JSON.stringify(data));
+ })
 ```
 
 
 
 ## bundle.getAllBundleInfo
 
-getAllBundleInfo(bundleFlag: BundleFlag): Promise<Array\<BundleInfo>>
+getAllBundleInfo(bundleFlag: BundleFlag, userId?: number): Promise<Array\<BundleInfo>>
 
 Obtains the information of all available bundles in the system in asynchronous mode. This method uses a promise to return the result.
 
-**Permission required**
+**Required permissions**
 
 ohos.permission.GET\_BUNDLE\_INFO\_PRIVILEGED
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name      | Type      | Mandatory| Description                                                       |
 | ---------- | ---------- | ---- | ----------------------------------------------------------- |
-| bundleFlag | BundleFlag | Yes| Type of information that will be returned.<br/>**0**: The default bundle information will be returned.<br/>**1**: The bundle information containing the ability information will be returned.|
+| bundleFlag | BundleFlag | Yes  | Type of information that will be returned. The default value is **0**. The value must be greater than or equal to 0.|
+| userId     | number     | No  | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0. |
 
 **Return value**
 
-| Type| Description|
+| Type                       | Description                               |
 | --------------------------- | ----------------------------------- |
 | Promise<Array\<BundleInfo>> | Promise used to return the information of all available bundles.|
 
 **Example**
 
 ```js
-bundle.getAllBundleInfo(0).then((data) => {
-    for (var i = 0; i < data.length; i++) {
-        console.info("index[" + i + "].name: for begin");
-        console.info("index[" + i + "].name:" + data[i].name);
-        console.info("index[" + i + "].label:" + data[i].label);
-        console.info("index[" + i + "].description:" + data[i].description);
-        console.info("index[" + i + "].vendor:" + data[i].vendor);
-        console.info("index[" + i + "].versionCode:" + data[i].versionCode);
-        console.info("index[" + i + "].versionName:" + data[i].versionName);
-        console.info("index[" + i + "].jointUserId:" + data[i].jointUserId);
-        console.info("index[" + i + "].minSdkVersion:" + data[i].minSdkVersion);
-        console.info("index[" + i + "].maxSdkVersion:" + data[i].maxSdkVersion);
-        console.info("index[" + i + "].mainEntry:" + data[i].mainEntry);
-        console.info("index[" + i + "].cpuAbi:" + data[i].cpuAbi);
-        console.info("index[" + i + "].appId:" + data[i].appId);
-        console.info("index[" + i + "].compatibleVersion:" + data[i].compatibleVersion);
-        console.info("index[" + i + "].targetVersion:" + data[i].targetVersion);
-        console.info("index[" + i + "].releaseType:" + data[i].releaseType);
-        console.info("index[" + i + "].uid:" + data[i].uid);
-        console.info("index[" + i + "].gid:" + data[i].gid);
-        console.info("index[" + i + "].seInfo:" + data[i].seInfo);
-        console.info("index[" + i + "].entryModuleName:" + data[i].entryModuleName);
-        console.info("index[" + i + "].isKeepAlive:" + data[i].isKeepAlive);
-        console.info("index[" + i + "].isNativeApp:" + data[i].isNativeApp);
-        console.info("index[" + i + "].installTime:" + data[i].installTime);
-        console.info("index[" + i + "].updateTime:" + data[i].updateTime);
-        console.info("index[" + i + "].appInfo.name:" + data[i].applicationInfo.name);
-        console.info("index[" + i + "].appInfo.bundleName:" + data[i].applicationInfo.bundleName);
-        console.info('getAllBundleInfo reqPermissions length [' + data[i].reqPermissions.length + ']');
-        for (var j = 0; j < data[i].reqPermissions.length; j++) {
-            console.info("index[" + i + "]reqPermissions[" + j + "]:" + data[i].reqPermissions[j]);
-        }
-        console.info('getAllBundleInfo defPermissions length [' + data[i].defPermissions.length + ']');
-        for (var j = 0; j < data[i].defPermissions.length; j++) {
-            console.info("index[" + i + "]defPermissions[" + j + "]:" + data[i].defPermissions[j]);
-        }
-
-        console.info('getAllBundleInfo hapModuleNames length [' + data[i].hapModuleNames.length + ']');
-        for (var j = 0; j < data[i].hapModuleNames.length; j++) {
-            console.info("index[" + i + "]hapModuleNames[" + j + "]:" + data[i].hapModuleNames[j]);
-        }
-        console.info('getAllBundleInfo moduleNames length [' + data[i].moduleNames.length + ']');
-        for (var j = 0; j < data[i].moduleNames.length; j++) {
-            console.info("index[" + i + "]moduleNames[" + j + "]:" + data[i].moduleNames[j]);
-        }
-        console.info('getAllBundleInfo modulePublicDirs length [' + data[i].modulePublicDirs.length + ']');
-        for (var j = 0; j < data[i].modulePublicDirs.length; j++) {
-            console.info("index[" + i + "]modulePublicDirs[" + j + "]:" + data[i].modulePublicDirs[j]);
-        }
-        console.info('getAllBundleInfo moduleDirs length [' + data[i].moduleDirs.length + ']');
-        for (var j = 0; j < data[i].moduleDirs.length; j++) {
-            console.info("index[" + i + "]moduleDirs[" + j + "]:" + data[i].moduleDirs[j]);
-        }
-        console.info('getAllBundleInfo moduleResPaths length [' + data[i].moduleResPaths.length + ']');
-        for (var j = 0; j < data[i].moduleResPaths.length; j++) {
-            console.info("index[" + i + "]moduleResPaths[" + j + "]:" + data[i].moduleResPaths[j]);
-        }
-        console.info('getAllBundleInfo abilityInfo length [' + data[i].abilityInfos.length + ']');
-        for (var j = 0; j < data[i].abilityInfos.length; j++) {
-            console.info("index[" + i + "]abilityInfos[" + j + "]name:" + data[i].abilityInfos[j].name);
-            console.info("index[" + i + "]abilityInfos[" + j + "]package:" + data[i].abilityInfos[j].package);
-        }
-    }
+let bundleFlag = 0;
+let userId = 100;
+bundle.getAllBundleInfo(bundleFlag, userId)
+.then((data) => {
+    console.info('Operation successful. Data: ' + JSON.stringify(data));
+}).catch((error) => {
+    console.error('Operation failed. Cause: ' + JSON.stringify(error));
 })
 ```
 
@@ -244,177 +138,103 @@ getAllBundleInfo(bundleFlag: BundleFlag, callback: AsyncCallback<Array\<BundleIn
 
 Obtains the information of all available bundles in the system in asynchronous mode. This method uses a callback to return the result.
 
-**Permission required**
+**Required permissions**
 
 ohos.permission.GET\_BUNDLE\_INFO\_PRIVILEGED
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name      | Type                             | Mandatory| Description                                                        |
 | ---------- | --------------------------------- | ---- | ------------------------------------------------------------ |
-| bundleFlag | BundleFlag                        | Yes| Type of information that will be returned.<br/>**0**: The default bundle information will be returned.<br/>**1**: The bundle information containing the ability information will be returned.|
-| callback   | AsyncCallback<Array\<BundleInfo>> | Yes| Callback used to return the information of all available bundles.|
+| bundleFlag | BundleFlag                        | Yes  | Type of information that will be returned. The default value is **0**. The value must be greater than or equal to 0.|
+| callback   | AsyncCallback<Array\<BundleInfo>> | Yes  | Callback used to return the information of all available bundles.      |
 
 **Example**
 
 ```js
-bundle.getAllBundleInfo(0, OnReceiveEvent);
-
-function OnReceiveEvent(err, data) {
-    console.info('xxx getAllBundleInfo data length [' + data.length + ']');
-    for (var i = 0; i < data.length; i++) {
-        console.info("index[" + i + "].name: for begin");
-        console.info("index[" + i + "].name:" + data[i].name);
-        console.info("index[" + i + "].label:" + data[i].label);
-        console.info("index[" + i + "].description:" + data[i].description);
-        console.info("index[" + i + "].vendor:" + data[i].vendor);
-        console.info("index[" + i + "].versionCode:" + data[i].versionCode);
-        console.info("index[" + i + "].versionName:" + data[i].versionName);
-        console.info("index[" + i + "].jointUserId:" + data[i].jointUserId);
-        console.info("index[" + i + "].minSdkVersion:" + data[i].minSdkVersion);
-        console.info("index[" + i + "].maxSdkVersion:" + data[i].maxSdkVersion);
-        console.info("index[" + i + "].mainEntry:" + data[i].mainEntry);
-        console.info("index[" + i + "].cpuAbi:" + data[i].cpuAbi);
-        console.info("index[" + i + "].appId:" + data[i].appId);
-        console.info("index[" + i + "].compatibleVersion:" + data[i].compatibleVersion);
-        console.info("index[" + i + "].targetVersion:" + data[i].targetVersion);
-        console.info("index[" + i + "].releaseType:" + data[i].releaseType);
-        console.info("index[" + i + "].uid:" + data[i].uid);
-        console.info("index[" + i + "].gid:" + data[i].gid);
-        console.info("index[" + i + "].seInfo:" + data[i].seInfo);
-        console.info("index[" + i + "].entryModuleName:" + data[i].entryModuleName);
-        console.info("index[" + i + "].isKeepAlive:" + data[i].isKeepAlive);
-        console.info("index[" + i + "].isNativeApp:" + data[i].isNativeApp);
-        console.info("index[" + i + "].installTime:" + data[i].installTime);
-        console.info("index[" + i + "].updateTime:" + data[i].updateTime);
-        console.info("index[" + i + "].appInfo.name:" + data[i].applicationInfo.name);
-        console.info("index[" + i + "].appInfo.bundleName:" + data[i].applicationInfo.bundleName);
-        console.info('getAllBundleInfo reqPermissions length [' + data[i].reqPermissions.length + ']');
-        for (var j = 0; j < data[i].reqPermissions.length; j++) {
-            console.info("index[" + i + "]reqPermissions[" + j + "]:" + data[i].reqPermissions[j]);
-        }
-        console.info('getAllBundleInfo defPermissions length [' + data[i].defPermissions.length + ']');
-        for (var j = 0; j < data[i].defPermissions.length; j++) {
-            console.info("index[" + i + "]defPermissions[" + j + "]:" + data[i].defPermissions[j]);
-        }
-
-        console.info('getAllBundleInfo hapModuleNames length [' + data[i].hapModuleNames.length + ']');
-        for (var j = 0; j < data[i].hapModuleNames.length; j++) {
-            console.info("index[" + i + "]hapModuleNames[" + j + "]:" + data[i].hapModuleNames[j]);
-        }
-        console.info('getAllBundleInfo moduleNames length [' + data[i].moduleNames.length + ']');
-        for (var j = 0; j < data[i].moduleNames.length; j++) {
-            console.info("index[" + i + "]moduleNames[" + j + "]:" + data[i].moduleNames[j]);
-        }
-        console.info('getAllBundleInfo modulePublicDirs length [' + data[i].modulePublicDirs.length + ']');
-        for (var j = 0; j < data[i].modulePublicDirs.length; j++) {
-            console.info("index[" + i + "]modulePublicDirs[" + j + "]:" + data[i].modulePublicDirs[j]);
-        }
-        console.info('getAllBundleInfo moduleDirs length [' + data[i].moduleDirs.length + ']');
-        for (var j = 0; j < data[i].moduleDirs.length; j++) {
-            console.info("index[" + i + "]moduleDirs[" + j + "]:" + data[i].moduleDirs[j]);
-        }
-        console.info('getAllBundleInfo moduleResPaths length [' + data[i].moduleResPaths.length + ']');
-        for (var j = 0; j < data[i].moduleResPaths.length; j++) {
-            console.info("index[" + i + "]moduleResPaths[" + j + "]:" + data[i].moduleResPaths[j]);
-        }
-        console.info('getAllBundleInfo abilityInfo length [' + data[i].abilityInfos.length + ']');
-        for (var j = 0; j < data[i].abilityInfos.length; j++) {
-            console.info("index[" + i + "]abilityInfos[" + j + "]name:" + data[i].abilityInfos[j].name);
-            console.info("index[" + i + "]abilityInfos[" + j + "]package:" + data[i].abilityInfos[j].package);
-        }
+let bundleFlag = 0;
+bundle.getAllBundleInfo(bundleFlag, (err, data) => {
+    if (err) {
+        console.error('Operation failed. Cause: ' + JSON.stringify(err));
+        return;
     }
-}
+    console.info('Operation successful. Data:' + JSON.stringify(data));
+ })
+```
+
+
+## bundle.getAllBundleInfo
+
+getAllBundleInfo(bundleFlag: BundleFlag, userId: number, callback: AsyncCallback<Array\<BundleInfo>>): void
+
+Obtains the information of all available bundles in the system in asynchronous mode. This method uses a callback to return the result.
+
+**Required permissions**
+
+ohos.permission.GET\_BUNDLE\_INFO\_PRIVILEGED
+
+**Parameters**
+
+| Name      | Type                             | Mandatory| Description                                                        |
+| ---------- | --------------------------------- | ---- | ------------------------------------------------------------ |
+| bundleFlag | BundleFlag                        | Yes  | Type of information that will be returned. The default value is **0**. The value must be greater than or equal to 0.|
+| userId     | number                            | Yes  | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0. |
+| callback   | AsyncCallback<Array\<BundleInfo>> | Yes  | Callback used to return the information of all available bundles.      |
+
+**Example**
+
+```js
+let bundleFlag = 0;
+let userId = 100;
+bundle.getAllBundleInfo(bundleFlag, userId, (err, data) => {
+    if (err) {
+        console.error('Operation failed. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Operation successful. Data:' + JSON.stringify(data));
+ })
 ```
 
 
 
 ## bundle.getBundleInfo
 
-getBundleInfo(bundleName: string, bundleFlags: number): Promise\<BundleInfo>
+getBundleInfo(bundleName: string, bundleFlags: number, options?: BundleOptions): Promise\<BundleInfo>
 
 Obtains the bundle information based on a given bundle name in asynchronous mode. This method uses a promise to return the result.
 
-**Permission required**
+**Required permissions**
 
 ohos.permission.GET\_BUNDLE\_INFO\_PRIVILEGED or ohos.permission.GET\_BUNDLE\_INFO
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name       | Type  | Mandatory| Description                                                        |
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
-| bundleName  | string | Yes| Bundle name.|
-| bundleFlags | number | Yes| Type of information that will be returned.<br/>**0**: The default bundle information will be returned.<br/>**1**: The bundle information containing the ability information will be returned.|
+| bundleName  | string | Yes  | Bundle name.                                                        |
+| bundleFlags | number | Yes  | Type of information that will be returned. The default value is **0**. The value must be greater than or equal to 0.|
+| options     | BundleOptions              | No  | Includes **userId** and **networkId**.                                   |
 
 **Return value**
 
-| Type| Description|
+| Type                | Description                                      |
 | -------------------- | ------------------------------------------ |
 | Promise\<BundleInfo> | Promise used to return the bundle information.|
 
 **Example**
 
 ```js
-bundle.getBundleInfo('com.example.myapplicationInstall', 1).then((data) => {
-    console.info("name:" + data.name);
-    console.info("label:" + data.label);
-    console.info("description:" + data.description);
-    console.info("vendor:" + data.vendor);
-    console.info("versionCode:" + data.versionCode);
-    console.info("versionName:" + data.versionName);
-    console.info("jointUserId:" + data.jointUserId);
-    console.info("minSdkVersion:" + data.minSdkVersion);
-    console.info("maxSdkVersion:" + data.maxSdkVersion);
-    console.info("mainEntry:" + data.mainEntry);
-    console.info("cpuAbi:" + data.cpuAbi);
-    console.info("appId:" + data.appId);
-    console.info("compatibleVersion:" + data.compatibleVersion);
-    console.info("targetVersion:" + data.targetVersion);
-    console.info("releaseType:" + data.releaseType);
-    console.info("uid:" + data.uid);
-    console.info("gid:" + data.gid);
-    console.info("seInfo:" + data.seInfo);
-    console.info("entryModuleName:" + data.entryModuleName);
-    console.info("isKeepAlive:" + data.isKeepAlive);
-    console.info("isNativeApp:" + data.isNativeApp);
-    console.info("installTime:" + data.installTime);
-    console.info("updateTime:" + data.updateTime);
-    console.info("appInfo.name:" + data.applicationInfo.name);
-    console.info("appInfo.bundleName:" + data.applicationInfo.bundleName);
-    console.info('getBundleInfo reqPermissions length [' + data.reqPermissions.length + ']');
-    for (var j = 0; j < data.reqPermissions.length; j++) {
-        console.info("reqPermissions[" + j + "]:" + data.reqPermissions[j]);
-    }
-    console.info('getBundleInfo defPermissions length [' + data.defPermissions.length + ']');
-    for (var j = 0; j < data.defPermissions.length; j++) {
-        console.info("defPermissions[" + j + "]:" + data.defPermissions[j]);
-    }
-
-    console.info('getBundleInfo hapModuleNames length [' + data.hapModuleNames.length + ']');
-    for (var j = 0; j < data.hapModuleNames.length; j++) {
-        console.info("hapModuleNames[" + j + "]:" + data.hapModuleNames[j]);
-    }
-    console.info('getBundleInfo moduleNames length [' + data.moduleNames.length + ']');
-    for (var j = 0; j < data.moduleNames.length; j++) {
-        console.info("moduleNames[" + j + "]:" + data.moduleNames[j]);
-    }
-    console.info('getBundleInfo modulePublicDirs length [' + data.modulePublicDirs.length + ']');
-    for (var j = 0; j < data.modulePublicDirs.length; j++) {
-        console.info("modulePublicDirs[" + j + "]:" + data.modulePublicDirs[j]);
-    }
-    console.info('getBundleInfo moduleDirs length [' + data.moduleDirs.length + ']');
-    for (var j = 0; j < data.moduleDirs.length; j++) {
-        console.info("moduleDirs[" + j + "]:" + data.moduleDirs[j]);
-    }
-    console.info('getBundleInfo moduleResPaths length [' + data.moduleResPaths.length + ']');
-    for (var j = 0; j < data.moduleResPaths.length; j++) {
-        console.info("moduleResPaths[" + j + "]:" + data.moduleResPaths[j]);
-    }
-    console.info('getBundleInfo abilityInfo length [' + data.abilityInfos.length + ']');
-    for (var j = 0; j < data.abilityInfos.length; j++) {
-        console.info("abilityInfos[" + j + "]name:" + data.abilityInfos[j].name);
-        console.info("abilityInfos[" + j + "]package:" + data.abilityInfos[j].package);
-    }
+let bundleName = "com.example.myapplication";
+let bundleFlags = 1;
+let options = {
+  "userId" : 100,
+  "networkId" : null
+};
+bundle.getBundleInfo(bundleName, bundleFlags, options)
+.then((data) => {
+    console.info('Operation successful. Data: ' + JSON.stringify(data));
+}).catch((error) => {
+    console.error('Operation failed. Cause: ' + JSON.stringify(error));
 })
 ```
 
@@ -426,86 +246,69 @@ getBundleInfo(bundleName: string, bundleFlags: number, callback: AsyncCallback\<
 
 Obtains the bundle information based on a given bundle name in asynchronous mode. This method uses a callback to return the result.
 
-**Permission required**
+**Required permissions**
 
 ohos.permission.GET\_BUNDLE\_INFO\_PRIVILEGED or ohos.permission.GET\_BUNDLE\_INFO
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name       | Type                      | Mandatory| Description                                                        |
 | ----------- | -------------------------- | ---- | ------------------------------------------------------------ |
-| bundleName  | string                     | Yes| Bundle name.|
-| bundleFlags | number                     | Yes| Type of information that will be returned.<br/>**0**: The default bundle information will be returned.<br/>**1**: The bundle information containing the ability information will be returned.|
-| callback    | AsyncCallback\<BundleInfo> | Yes| Callback used to return the bundle information.|
+| bundleName  | string                     | Yes  | Bundle name.                                                        |
+| bundleFlags | number                     | Yes  | Type of information that will be returned. The default value is **0**. The value must be greater than or equal to 0.|
+| callback    | AsyncCallback\<BundleInfo> | Yes  | Callback used to return the bundle information.                    |
 
 **Example**
 
 ```js
-bundle.getBundleInfo('com.example.myapplicationInstall', 1, OnReceiveEvent);
-
-function OnReceiveEvent(err, data) {
-    console.info("name:" + data.name);
-    console.info("label:" + data.label);
-    console.info("description:" + data.description);
-    console.info("vendor:" + data.vendor);
-    console.info("versionCode:" + data.versionCode);
-    console.info("versionName:" + data.versionName);
-    console.info("jointUserId:" + data.jointUserId);
-    console.info("minSdkVersion:" + data.minSdkVersion);
-    console.info("maxSdkVersion:" + data.maxSdkVersion);
-    console.info("mainEntry:" + data.mainEntry);
-    console.info("cpuAbi:" + data.cpuAbi);
-    console.info("appId:" + data.appId);
-    console.info("compatibleVersion:" + data.compatibleVersion);
-    console.info("targetVersion:" + data.targetVersion);
-    console.info("releaseType:" + data.releaseType);
-    console.info("uid:" + data.uid);
-    console.info("gid:" + data.gid);
-    console.info("seInfo:" + data.seInfo);
-    console.info("entryModuleName:" + data.entryModuleName);
-    console.info("isKeepAlive:" + data.isKeepAlive);
-    console.info("isNativeApp:" + data.isNativeApp);
-    console.info("installTime:" + data.installTime);
-    console.info("updateTime:" + data.updateTime);
-    console.info("appInfo.name:" + data.applicationInfo.name);
-    console.info("appInfo.bundleName:" + data.applicationInfo.bundleName);
-    console.info('getBundleInfo reqPermissions length [' + data.reqPermissions.length + ']');
-    for (var j = 0; j < data.reqPermissions.length; j++) {
-        console.info("reqPermissions[" + j + "]:" + data.reqPermissions[j]);
+let bundleName = "com.example.myapplication";
+let bundleFlags = 1;
+bundle.getBundleInfo(bundleName, bundleFlags, (err, data) => {
+    if (err) {
+        console.error('Operation failed. Cause: ' + JSON.stringify(err));
+        return;
     }
-    console.info('getBundleInfo defPermissions length [' + data.defPermissions.length + ']');
-    for (var j = 0; j < data.defPermissions.length; j++) {
-        console.info("defPermissions[" + j + "]:" + data.defPermissions[j]);
-    }
-
-    console.info('getBundleInfo hapModuleNames length [' + data.hapModuleNames.length + ']');
-    for (var j = 0; j < data.hapModuleNames.length; j++) {
-        console.info("hapModuleNames[" + j + "]:" + data.hapModuleNames[j]);
-    }
-    console.info('getBundleInfo moduleNames length [' + data.moduleNames.length + ']');
-    for (var j = 0; j < data.moduleNames.length; j++) {
-        console.info("moduleNames[" + j + "]:" + data.moduleNames[j]);
-    }
-    console.info('getBundleInfo modulePublicDirs length [' + data.modulePublicDirs.length + ']');
-    for (var j = 0; j < data.modulePublicDirs.length; j++) {
-        console.info("modulePublicDirs[" + j + "]:" + data.modulePublicDirs[j]);
-    }
-    console.info('getBundleInfo moduleDirs length [' + data.moduleDirs.length + ']');
-    for (var j = 0; j < data.moduleDirs.length; j++) {
-        console.info("moduleDirs[" + j + "]:" + data.moduleDirs[j]);
-    }
-    console.info('getBundleInfo moduleResPaths length [' + data.moduleResPaths.length + ']');
-    for (var j = 0; j < data.moduleResPaths.length; j++) {
-        console.info("moduleResPaths[" + j + "]:" + data.moduleResPaths[j]);
-    }
-    console.info('getBundleInfo abilityInfo length [' + data.abilityInfos.length + ']');
-    for (var j = 0; j < data.abilityInfos.length; j++) {
-        console.info("abilityInfos[" + j + "]name:" + data.abilityInfos[j].name);
-        console.info("abilityInfos[" + j + "]package:" + data.abilityInfos[j].package);
-    }
-}
+    console.info('Operation successful. Data:' + JSON.stringify(data));
+})
 ```
 
+
+## bundle.getBundleInfo
+
+getBundleInfo(bundleName: string, bundleFlags: number, options: BundleOptions, callback: AsyncCallback\<BundleInfo>): void
+
+Obtains the bundle information based on a given bundle name in asynchronous mode. This method uses a callback to return the result.
+
+**Required permissions**
+
+ohos.permission.GET\_BUNDLE\_INFO\_PRIVILEGED or ohos.permission.GET\_BUNDLE\_INFO
+
+**Parameters**
+
+| Name       | Type                      | Mandatory| Description                                                        |
+| ----------- | -------------------------- | ---- | ------------------------------------------------------------ |
+| bundleName  | string                     | Yes  | Bundle name.                                                        |
+| bundleFlags | number                     | Yes  | Type of information that will be returned. The default value is **0**. The value must be greater than or equal to 0.|
+| options     | BundleOptions              | Yes  | Includes **userId** and **networkId**.                                   |
+| callback    | AsyncCallback\<BundleInfo> | Yes  | Callback used to return the bundle information.                    |
+
+**Example**
+
+```js
+let bundleName = "com.example.myapplication";
+let bundleFlags = 1;
+let options = {
+  "userId" : 100,
+  "networkId" : null
+};
+bundle.getBundleInfo(bundleName, bundleFlags, options, (err, data) => {
+    if (err) {
+        console.error('Operation failed. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Operation successful. Data:' + JSON.stringify(data));
+})
+```
 
 
 ## bundle.getAllApplicationInfo
@@ -514,64 +317,33 @@ getAllApplicationInfo(bundleFlags: number, userId: number): Promise<Array\<Appli
 
 Obtains the information about all applications of the specified user. This method uses a promise to return the result.
 
-**Permission required**
+**Required permissions**
 
-ohos.permission.GET\_BUNDLE\_INFO\_PRIVILEGED or ohos.permission.GET\_BUNDLE\_INFO
+ohos.permission.GET\_BUNDLE\_INFO\_PRIVILEGED
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name       | Type  | Mandatory| Description                                                  |
 | ----------- | ------ | ---- | ------------------------------------------------------ |
-| bundleFlags | number | Yes| Type of information that will be returned.<br/>**0**: The default application information will be returned. <br/>**8**: The application information containing the permission information will be returned.|
-| userId      | number | Yes| User ID.|
+| bundleFlags | number | Yes  | Type of information that will be returned. The default value is **0**. The value must be greater than or equal to 0.|
+| userId      | number | Yes  | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.  |
 
 **Return value**
 
-| Type| Description|
+| Type                            | Description                                            |
 | -------------------------------- | ------------------------------------------------ |
 | Promise<Array\<ApplicationInfo>> | Promise used to return the application information.|
 
 **Example**
 
 ```js
-bundle.getAllApplicationInfo(8, 0).then((data) => {
-    console.info('xxx getAllApplicationInfo data length [' + data.length + ']');
-    for (var i = 0; i < data.length; i++) {
-        console.info("index[" + i + "].name: for begin");
-        console.info("index[" + i + "].name:" + data[i].name);
-        console.info("index[" + i + "].bundleName:" + data[i].bundleName);
-        console.info("index[" + i + "].description:" + data[i].description);
-        console.info("index[" + i + "].descriptionId:" + data[i].descriptionId);
-        console.info("index[" + i + "].iconPath:" + data[i].iconPath);
-        console.info("index[" + i + "].iconId:" + data[i].iconId);
-        console.info("index[" + i + "].label:" + data[i].label);
-        console.info("index[" + i + "].labelId:" + data[i].labelId);
-        console.info("index[" + i + "].deviceId:" + data[i].deviceId);
-        console.info("index[" + i + "].signatureKey:" + data[i].signatureKey);
-        console.info("index[" + i + "].process:" + data[i].process);
-        console.info("index[" + i + "].isSystemApp:" + data[i].isSystemApp);
-        console.info("index[" + i + "].isLauncherApp:" + data[i].isLauncherApp);
-        console.info("index[" + i + "].supportedModes:" + data[i].supportedModes);
-
-        console.info('getAllApplicationInfo Async permissions length [' + data[i].permissions.length + ']');
-        for (var j = 0; j < data[i].permissions.length; j++) {
-            console.info("index[" + i + "]permissions[" + j + "]:" + data[i].permissions[j]);
-        }
-        console.info('getAllApplicationInfo Async moduleSourceDirs length [' + data[i].moduleSourceDirs.length + ']');
-        for (var j = 0; j < data[i].moduleSourceDirs.length; j++) {
-            console.info("index[" + i + "]moduleSourceDirs[" + j + "]:" + data[i].moduleSourceDirs[j]);
-        }
-        console.info('getAllApplicationInfo Async moduleInfos length [' + data[i].moduleInfos.length + ']');
-        for (var j = 0; j < data[i].moduleInfos.length; j++) {
-            console.info("index[" + i + "]moduleInfos[" + j + "]moduleName:" + data[i].moduleInfos[j].moduleName);
-            console.info("index[" + i + "]moduleInfos[" + j + "]moduleSourceDir:" + data[i].moduleInfos[j].moduleSourceDir);
-        }
-        console.info("index[" + i + "].entryDir:" + data[i].entryDir);
-        console.info("index[" + i + "].codePath:" + data[i].codePath);
-        console.info("index[" + i + "].dataDir:" + data[i].dataDir);
-        console.info("index[" + i + "].dataBaseDir:" + data[i].dataBaseDir);
-        console.info("index[" + i + "].cacheDir:" + data[i].cacheDir);
-    }
+let bundleFlags = 8;
+let userId = 100;
+bundle.getAllApplicationInfo(bundleFlags, userId)
+.then((data) => {
+    console.info('Operation successful. Data: ' + JSON.stringify(data));
+}).catch((error) => {
+    console.error('Operation failed. Cause: ' + JSON.stringify(error));
 })
 ```
 
@@ -583,62 +355,30 @@ getAllApplicationInfo(bundleFlags: number, userId: number, callback: AsyncCallba
 
 Obtains the information about all installed applications of the specified user. This method uses a callback to return the result.
 
-**Permission required**
+**Required permissions**
 
-ohos.permission.GET\_BUNDLE\_INFO\_PRIVILEGED or ohos.permission.GET\_BUNDLE\_INFO
+ohos.permission.GET\_BUNDLE\_INFO\_PRIVILEGED
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name       | Type                                  | Mandatory| Description                                                  |
 | ----------- | -------------------------------------- | ---- | ------------------------------------------------------ |
-| bundleFlags | number                                 | Yes| Type of information that will be returned.<br/>**0**: The default application information will be returned. <br/>**8**: The application information containing the permission information will be returned.|
-| userId      | number                                 | Yes| User ID.|
-| callback    | AsyncCallback<Array\<ApplicationInfo>> | Yes| Callback used to return the application information.|
+| bundleFlags | number                                 | Yes  | Type of information that will be returned. The default value is **0**. The value must be greater than or equal to 0.|
+| userId      | number                                 | Yes  | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.   |
+| callback    | AsyncCallback<Array\<ApplicationInfo>> | Yes  | Callback used to return the application information.        |
 
 **Example**
 
 ```js
-bundle.getAllApplicationInfo(8, 0, OnReceiveEvent);
-
-function OnReceiveEvent(err, data) {
-    console.info('xxx getAllApplicationInfo data length [' + data.length + ']');
-    for (var i = 0; i < data.length; i++) {
-        console.info("index[" + i + "].name: for begin");
-        console.info("index[" + i + "].name:" + data[i].name);
-        console.info("index[" + i + "].bundleName:" + data[i].bundleName);
-        console.info("index[" + i + "].description:" + data[i].description);
-        console.info("index[" + i + "].descriptionId:" + data[i].descriptionId);
-        console.info("index[" + i + "].iconPath:" + data[i].iconPath);
-        console.info("index[" + i + "].iconId:" + data[i].iconId);
-        console.info("index[" + i + "].label:" + data[i].label);
-        console.info("index[" + i + "].labelId:" + data[i].labelId);
-        console.info("index[" + i + "].deviceId:" + data[i].deviceId);
-        console.info("index[" + i + "].signatureKey:" + data[i].signatureKey);
-        console.info("index[" + i + "].process:" + data[i].process);
-        console.info("index[" + i + "].isSystemApp:" + data[i].isSystemApp);
-        console.info("index[" + i + "].isLauncherApp:" + data[i].isLauncherApp);
-        console.info("index[" + i + "].supportedModes:" + data[i].supportedModes);
-
-        console.info('getAllApplicationInfo Async permissions length [' + data[i].permissions.length + ']');
-        for (var j = 0; j < data[i].permissions.length; j++) {
-            console.info("index[" + i + "]permissions[" + j + "]:" + data[i].permissions[j]);
-        }
-        console.info('getAllApplicationInfo Async moduleSourceDirs length [' + data[i].moduleSourceDirs.length + ']');
-        for (var j = 0; j < data[i].moduleSourceDirs.length; j++) {
-            console.info("index[" + i + "]moduleSourceDirs[" + j + "]:" + data[i].moduleSourceDirs[j]);
-        }
-        console.info('getAllApplicationInfo Async moduleInfos length [' + data[i].moduleInfos.length + ']');
-        for (var j = 0; j < data[i].moduleInfos.length; j++) {
-            console.info("index[" + i + "]moduleInfos[" + j + "]moduleName:" + data[i].moduleInfos[j].moduleName);
-            console.info("index[" + i + "]moduleInfos[" + j + "]moduleSourceDir:" + data[i].moduleInfos[j].moduleSourceDir);
-        }
-        console.info("index[" + i + "].entryDir:" + data[i].entryDir);
-        console.info("index[" + i + "].codePath:" + data[i].codePath);
-        console.info("index[" + i + "].dataDir:" + data[i].dataDir);
-        console.info("index[" + i + "].dataBaseDir:" + data[i].dataBaseDir);
-        console.info("index[" + i + "].cacheDir:" + data[i].cacheDir);
+let bundleFlags = 8;
+let userId = 100;
+bundle.getAllApplicationInfo(bundleFlags, userId, (err, data) => {
+    if (err) {
+        console.error('Operation failed. Cause: ' + JSON.stringify(err));
+        return;
     }
-}
+    console.info('Operation successful. Data:' + JSON.stringify(data));
+})
 ```
 
 
@@ -649,101 +389,38 @@ queryAbilityByWant(want: Want, bundleFlags: number, userId?: number): Promise<Ar
 
 Obtains the ability information of the specified user based on a given want. This method uses a promise to return the result.
 
-**Permission required**
+**Required permissions**
 
 ohos.permission.GET\_BUNDLE\_INFO\_PRIVILEGED or ohos.permission.GET\_BUNDLE\_INFO
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name       | Type  | Mandatory| Description                                                        |
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
-| want        | Want   | Yes| Want that contains the bundle name.|
-| bundleFlags | number | Yes| Type of information that will be returned.<br/>**0**: The default ability information will be returned.<br/>**2**: The ability information containing the permission information will be returned.<br/>**4**: The ability information containing the application information will be returned.|
-| userId      | number | No| User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.|
+| want        | Want   | Yes  | Want that contains the bundle name.                          |
+| bundleFlags | number | Yes  | Ability information to be returned. The default value is **0**. The value must be greater than or equal to 0.|
+| userId      | number | No  | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.         |
 
 **Return value**
 
-| Type| Description|
+| Type                        | Description                        |
 | ---------------------------- | ---------------------------- |
 | Promise\<Array\<AbilityInfo>>| Promise used to return the ability information.|
 
 **Example**
 
 ```js
-bundle.queryAbilityByWant({
-    want: {
-        action: "action.system.home",
-        entities: ["entity.system.home"],
-        elementName: {
-            deviceId: "0",
-            bundleName: "com.example.myapplicationInstall",
-            abilityName: "com.example.myapplication.MainAbility",
-        },
-    }
-},  1, 0,
-}).then((data) => {
-    console.info("name:" + data.name);
-    console.info("label:" + data.label);
-    console.info("description:" + data.description);
-    console.info("iconPath:" + data.iconPath);
-    console.info("visible:" + data.visible);
-    console.info("kind:" + data.kind);
-    console.info("uri:" + data.uri);
-    console.info("process:" + data.process);
-    console.info("package:" + data.package);
-    console.info("bundleName:" + data.bundleName);
-    console.info("moduleName:" + data.moduleName);
-    console.info("applicationName:" + data.applicationName);
-    console.info("deviceId:" + data.deviceId);
-    console.info("codePath:" + data.codePath);
-    console.info("resourcePath:" + data.resourcePath);
-    console.info("libPath:" + data.libPath);
-
-    console.info('queryAbilityInfo permissions length [' + data.permissions.length + ']');
-    for (var j = 0; j < data.permissions.length; j++) {
-        console.info("permissions[" + j + "]:" + data.permissions[j]);
-    }
-    console.info('queryAbilityInfo deviceTypes length [' + data.deviceTypes.length + ']');
-    for (var j = 0; j < data.deviceTypes.length; j++) {
-        console.info("deviceTypes[" + j + "]:" + data.deviceTypes[j]);
-    }
-    console.info('queryAbilityInfo deviceCapabilities length [' + data.deviceCapabilities.length + ']');
-    for (var j = 0; j < data.deviceCapabilities.length; j++) {
-        console.info("deviceCapabilities[" + j + "]:" + data.deviceCapabilities[j]);
-    }
-    console.info("appInfo.name:" + data.applicationInfo.name);
-    console.info("appInfo.bundleName:" + data.applicationInfo.bundleName);
-    // ability type: 0:UNKNOWN, 1:PAGE, 2:SERVICE, 3:DATA
-    console.info("type:" + data.type);
-    // orientation: 0:UNSPECIFIED, 1:LANDSCAPE, 2:PORTRAIT, 3:FOLLOWRECENT,
-    console.info("orientation:" + data.orientation);
-    // launchMode: 0:SINGLETON, 1:SINGLETOP, 2:STANDARD
-    console.info("launchMode:" + data.launchMode);
-
-    // the enum of AbilityType
-    console.info("AbilityType:" + bundle.AbilityType.UNKNOWN);
-    console.info("AbilityType:" + bundle.AbilityType.PAGE);
-    console.info("AbilityType:" + bundle.AbilityType.SERVICE);
-    console.info("AbilityType:" + bundle.AbilityType.DATA);
-    if (data.type == bundle.AbilityType.PAGE) {
-        console.info("this AbilityType is PAGE");
-    }
-    // the enum of DisplayOrientation
-    console.info("DisplayOrientation:" + bundle.DisplayOrientation.UNSPECIFIED);
-    console.info("DisplayOrientation:" + bundle.DisplayOrientation.LANDSCAPE);
-    console.info("DisplayOrientation:" + bundle.DisplayOrientation.PORTRAIT);
-    console.info("DisplayOrientation:" + bundle.DisplayOrientation.FOLLOWRECENT);
-    if (data.orientation == bundle.DisplayOrientation.UNSPECIFIED) {
-        console.info("this DisplayOrientation is UNSPECIFIED");
-    }
-    // the enum of LaunchMode
-    console.info("LaunchMode:" + bundle.LaunchMode.SINGLETON);
-    console.info("LaunchMode:" + bundle.LaunchMode.SINGLETOP);
-    console.info("LaunchMode:" + bundle.LaunchMode.STANDARD);
-    if (data.launchMode == bundle.LaunchMode.STANDARD) {
-        console.info("this LaunchMode is STANDARD");
-    }
-
+let bundleFlags = 0;
+let userId = 100;
+let want = {
+    bundleName : "com.example.myapplication",
+    abilityName : "com.example.myapplication.MainAbility"
+};
+bundle.queryAbilityByWant(want, bundleFlags, userId)
+.then((data) => {
+    console.info('Operation successful. Data: ' + JSON.stringify(data));
+}).catch((error) => {
+    console.error('Operation failed. Cause: ' + JSON.stringify(error));
 })
 ```
 
@@ -757,93 +434,29 @@ Obtains the ability information of the specified user based on a given want. Thi
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name       | Type                              | Mandatory| Description                                                        |
 | ----------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
-| want        | Want                               | Yes| Want that contains the bundle name.|
-| bundleFlags | number                             | Yes| Type of information that will be returned.<br/>**0**: The default ability information will be returned.<br/>**2**: The ability information containing the permission information will be returned.<br/>**4**: The ability information containing the application information will be returned.|
-| userId      | number                             | Yes| User ID.|
-| callback    | AsyncCallback<Array\<AbilityInfo>> | Yes| Callback used to return the ability information.|
+| want        | Want                               | Yes  | Want that contains the bundle name.                      |
+| bundleFlags | number                             | Yes  | Ability information to be returned. The default value is **0**. The value must be greater than or equal to 0.|
+| userId      | number                             | Yes  | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.         |
+| callback    | AsyncCallback<Array\<AbilityInfo>> | Yes  | Callback used to return the ability information.               |
 
 **Example**
 
 ```js
-bundle.queryAbilityByWant(
-    {
-        want: {
-            action: "action.system.home",
-            entities: ["entity.system.home"],
-            elementName: {
-                deviceId: "0",
-                bundleName: "com.example.myapplicationInstall",
-                abilityName: "com.example.myapplication.MainAbility",
-            },
-        }
-    }, 1, 0,
-    }, OnReceiveEvent);
-
-function OnReceiveEvent(err, data) {
-    console.info("name:" + data.name);
-    console.info("label:" + data.label);
-    console.info("description:" + data.description);
-    console.info("iconPath:" + data.iconPath);
-    console.info("visible:" + data.visible);
-    console.info("kind:" + data.kind);
-    console.info("uri:" + data.uri);
-    console.info("process:" + data.process);
-    console.info("package:" + data.package);
-    console.info("bundleName:" + data.bundleName);
-    console.info("moduleName:" + data.moduleName);
-    console.info("applicationName:" + data.applicationName);
-    console.info("deviceId:" + data.deviceId);
-    console.info("codePath:" + data.codePath);
-    console.info("resourcePath:" + data.resourcePath);
-    console.info("libPath:" + data.libPath);
-
-    console.info('queryAbilityInfo permissions length [' + data.permissions.length + ']');
-    for (var j = 0; j < data.permissions.length; j++) {
-        console.info("permissions[" + j + "]:" + data.permissions[j]);
+let bundleFlags = 0;
+let userId = 100;
+let want = {
+    bundleName : "com.example.myapplication",
+    abilityName : "com.example.myapplication.MainAbility"
+};
+bundle.queryAbilityByWant(want, bundleFlags, userId, (err, data) => {
+    if (err) {
+        console.error('Operation failed. Cause: ' + JSON.stringify(err));
+        return;
     }
-    console.info('queryAbilityInfo deviceTypes length [' + data.deviceTypes.length + ']');
-    for (var j = 0; j < data.deviceTypes.length; j++) {
-        console.info("deviceTypes[" + j + "]:" + data.deviceTypes[j]);
-    }
-    console.info('queryAbilityInfo deviceCapabilities length [' + data.deviceCapabilities.length + ']');
-    for (var j = 0; j < data.deviceCapabilities.length; j++) {
-        console.info("deviceCapabilities[" + j + "]:" + data.deviceCapabilities[j]);
-    }
-    console.info("appInfo.name:" + data.applicationInfo.name);
-    console.info("appInfo.bundleName:" + data.applicationInfo.bundleName);
-    // ability type: 0:UNKNOWN, 1:PAGE, 2:SERVICE, 3:DATA
-    console.info("type:" + data.type);
-    // orientation: 0:UNSPECIFIED, 1:LANDSCAPE, 2:PORTRAIT, 3:FOLLOWRECENT,
-    console.info("orientation:" + data.orientation);
-    // launchMode: 0:SINGLETON, 1:SINGLETOP, 2:STANDARD
-    console.info("launchMode:" + data.launchMode);
-
-    // the enum of AbilityType
-    console.info("AbilityType:" + bundle.AbilityType.UNKNOWN);
-    console.info("AbilityType:" + bundle.AbilityType.PAGE);
-    console.info("AbilityType:" + bundle.AbilityType.SERVICE);
-    console.info("AbilityType:" + bundle.AbilityType.DATA);
-    if (data.type == bundle.AbilityType.PAGE) {
-        console.info("this AbilityType is PAGE");
-    }
-    // the enum of DisplayOrientation
-    console.info("DisplayOrientation:" + bundle.DisplayOrientation.UNSPECIFIED);
-    console.info("DisplayOrientation:" + bundle.DisplayOrientation.LANDSCAPE);
-    console.info("DisplayOrientation:" + bundle.DisplayOrientation.PORTRAIT);
-    console.info("DisplayOrientation:" + bundle.DisplayOrientation.FOLLOWRECENT);
-    if (data.orientation == bundle.DisplayOrientation.UNSPECIFIED) {
-        console.info("this DisplayOrientation is UNSPECIFIED");
-    }
-    // the enum of LaunchMode
-    console.info("LaunchMode:" + bundle.LaunchMode.SINGLETON);
-    console.info("LaunchMode:" + bundle.LaunchMode.SINGLETOP);
-    console.info("LaunchMode:" + bundle.LaunchMode.STANDARD);
-    if (data.launchMode == bundle.LaunchMode.STANDARD) {
-        console.info("this LaunchMode is STANDARD");
-    }
-}
+    console.info('Operation successful. Data:' + JSON.stringify(data));
+})
 ```
 
 ## bundle.queryAbilityByWant
@@ -854,257 +467,27 @@ Obtains the ability information based on a given want. This method uses an async
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name       | Type                              | Mandatory| Description                                                        |
 | ----------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
-| want        | Want                               | Yes| Want that contains the bundle name.|
-| bundleFlags | number                             | Yes| Type of information that will be returned.<br/>**0**: The default ability information will be returned.<br/>**2**: The ability information containing the permission information will be returned.<br/>**4**: The ability information containing the application information will be returned.|
-| callback    | AsyncCallback<Array\<AbilityInfo>> | Yes| Callback used to return the ability information.|
+| want        | Want                               | Yes  | Want that contains the bundle name.                      |
+| bundleFlags | number                             | Yes  | Ability information to be returned. The default value is **0**. The value must be greater than or equal to 0.|
+| callback    | AsyncCallback<Array\<AbilityInfo>> | Yes  | Callback used to return the ability information.               |
 
 **Example**
 
 ```js
-bundle.queryAbilityByWant(
-    {
-        want: {
-            action: "action.system.home",
-            entities: ["entity.system.home"],
-            elementName: {
-                deviceId: "0",
-                bundleName: "com.example.myapplicationInstall",
-                abilityName: "com.example.myapplication.MainAbility",
-            },
-        }
-    }, 1,
-    }, OnReceiveEvent);
-
-function OnReceiveEvent(err, data) {
-    console.info("name:" + data.name);
-    console.info("label:" + data.label);
-    console.info("description:" + data.description);
-    console.info("iconPath:" + data.iconPath);
-    console.info("visible:" + data.visible);
-    console.info("kind:" + data.kind);
-    console.info("uri:" + data.uri);
-    console.info("process:" + data.process);
-    console.info("package:" + data.package);
-    console.info("bundleName:" + data.bundleName);
-    console.info("moduleName:" + data.moduleName);
-    console.info("applicationName:" + data.applicationName);
-    console.info("deviceId:" + data.deviceId);
-    console.info("codePath:" + data.codePath);
-    console.info("resourcePath:" + data.resourcePath);
-    console.info("libPath:" + data.libPath);
-
-    console.info('queryAbilityInfo permissions length [' + data.permissions.length + ']');
-    for (var j = 0; j < data.permissions.length; j++) {
-        console.info("permissions[" + j + "]:" + data.permissions[j]);
+let bundleFlags = 0;
+let want = {
+    bundleName : "com.example.myapplication",
+    abilityName : "com.example.myapplication.MainAbility"
+};
+bundle.queryAbilityByWant(want, bundleFlags, (err, data) => {
+    if (err) {
+        console.error('Operation failed. Cause: ' + JSON.stringify(err));
+        return;
     }
-    console.info('queryAbilityInfo deviceTypes length [' + data.deviceTypes.length + ']');
-    for (var j = 0; j < data.deviceTypes.length; j++) {
-        console.info("deviceTypes[" + j + "]:" + data.deviceTypes[j]);
-    }
-    console.info('queryAbilityInfo deviceCapabilities length [' + data.deviceCapabilities.length + ']');
-    for (var j = 0; j < data.deviceCapabilities.length; j++) {
-        console.info("deviceCapabilities[" + j + "]:" + data.deviceCapabilities[j]);
-    }
-    console.info("appInfo.name:" + data.applicationInfo.name);
-    console.info("appInfo.bundleName:" + data.applicationInfo.bundleName);
-    // ability type: 0:UNKNOWN, 1:PAGE, 2:SERVICE, 3:DATA
-    console.info("type:" + data.type);
-    // orientation: 0:UNSPECIFIED, 1:LANDSCAPE, 2:PORTRAIT, 3:FOLLOWRECENT,
-    console.info("orientation:" + data.orientation);
-    // launchMode: 0:SINGLETON, 1:SINGLETOP, 2:STANDARD
-    console.info("launchMode:" + data.launchMode);
-
-    // the enum of AbilityType
-    console.info("AbilityType:" + bundle.AbilityType.UNKNOWN);
-    console.info("AbilityType:" + bundle.AbilityType.PAGE);
-    console.info("AbilityType:" + bundle.AbilityType.SERVICE);
-    console.info("AbilityType:" + bundle.AbilityType.DATA);
-    if (data.type == bundle.AbilityType.PAGE) {
-        console.info("this AbilityType is PAGE");
-    }
-    // the enum of DisplayOrientation
-    console.info("DisplayOrientation:" + bundle.DisplayOrientation.UNSPECIFIED);
-    console.info("DisplayOrientation:" + bundle.DisplayOrientation.LANDSCAPE);
-    console.info("DisplayOrientation:" + bundle.DisplayOrientation.PORTRAIT);
-    console.info("DisplayOrientation:" + bundle.DisplayOrientation.FOLLOWRECENT);
-    if (data.orientation == bundle.DisplayOrientation.UNSPECIFIED) {
-        console.info("this DisplayOrientation is UNSPECIFIED");
-    }
-    // the enum of LaunchMode
-    console.info("LaunchMode:" + bundle.LaunchMode.SINGLETON);
-    console.info("LaunchMode:" + bundle.LaunchMode.SINGLETOP);
-    console.info("LaunchMode:" + bundle.LaunchMode.STANDARD);
-    if (data.launchMode == bundle.LaunchMode.STANDARD) {
-        console.info("this LaunchMode is STANDARD");
-    }
-}
-```
-
-## bundle.getBundleArchiveInfo
-
-getBundleArchiveInfo(hapFilePath: string, bundleFlags: number): Promise\<BundleInfo>
-
-Obtains the bundle information from a given HAP file in asynchronous mode. This method uses a promise to return the result.
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| ----------- | ------ | ---- | ------------------------------------------------------------ |
-| hapFilePath | string | Yes| Path of the HAP file.|
-| bundleFlags | number | Yes| Type of information that will be returned.<br/>**0**: The default bundle information will be returned.<br/>**1**: The bundle information containing the ability information will be returned.|
-
-**Return value**
-
-| Type| Description|
-| -------------------- | ------------------------------------------ |
-| Promise\<BundleInfo> | Promise used to return the bundle information.|
-
-**Example**
-
-```js
-bundle.getBundleArchiveInfo('/data/test.hap', 1).then((data) => {
-    console.info("name:" + data.name);
-    console.info("label:" + data.label);
-    console.info("description:" + data.description);
-    console.info("vendor:" + data.vendor);
-    console.info("versionCode:" + data.versionCode);
-    console.info("versionName:" + data.versionName);
-    console.info("jointUserId:" + data.jointUserId);
-    console.info("minSdkVersion:" + data.minSdkVersion);
-    console.info("maxSdkVersion:" + data.maxSdkVersion);
-    console.info("mainEntry:" + data.mainEntry);
-    console.info("cpuAbi:" + data.cpuAbi);
-    console.info("appId:" + data.appId);
-    console.info("compatibleVersion:" + data.compatibleVersion);
-    console.info("targetVersion:" + data.targetVersion);
-    console.info("releaseType:" + data.releaseType);
-    console.info("uid:" + data.uid);
-    console.info("gid:" + data.gid);
-    console.info("seInfo:" + data.seInfo);
-    console.info("entryModuleName:" + data.entryModuleName);
-    console.info("isKeepAlive:" + data.isKeepAlive);
-    console.info("isNativeApp:" + data.isNativeApp);
-    console.info("installTime:" + data.installTime);
-    console.info("updateTime:" + data.updateTime);
-    console.info("appInfo.name:" + data.applicationInfo.name);
-    console.info("appInfo.bundleName:" + data.applicationInfo.bundleName);
-    console.info('getBundleArchiveInfo reqPermissions length [' + data.reqPermissions.length + ']');
-    for (var j = 0; j < data.reqPermissions.length; j++) {
-        console.info("reqPermissions[" + j + "]:" + data.reqPermissions[j]);
-    }
-    console.info('getBundleArchiveInfo defPermissions length [' + data.defPermissions.length + ']');
-    for (var j = 0; j < data.defPermissions.length; j++) {
-        console.info("defPermissions[" + j + "]:" + data.defPermissions[j]);
-    }
-    console.info('getBundleArchiveInfo hapModuleNames length [' + data.hapModuleNames.length + ']');
-    for (var j = 0; j < data.hapModuleNames.length; j++) {
-        console.info("hapModuleNames[" + j + "]:" + data.hapModuleNames[j]);
-    }
-    console.info('getBundleArchiveInfo moduleNames length [' + data.moduleNames.length + ']');
-    for (var j = 0; j < data.moduleNames.length; j++) {
-        console.info("moduleNames[" + j + "]:" + data.moduleNames[j]);
-    }
-    console.info('getBundleArchiveInfo modulePublicDirs length [' + data.modulePublicDirs.length + ']');
-    for (var j = 0; j < data.modulePublicDirs.length; j++) {
-        console.info("modulePublicDirs[" + j + "]:" + data.modulePublicDirs[j]);
-    }
-    console.info('getBundleArchiveInfo moduleDirs length [' + data.moduleDirs.length + ']');
-    for (var j = 0; j < data.moduleDirs.length; j++) {
-        console.info("moduleDirs[" + j + "]:" + data.moduleDirs[j]);
-    }
-    console.info('getBundleArchiveInfo moduleResPaths length [' + data.moduleResPaths.length + ']');
-    for (var j = 0; j < data.moduleResPaths.length; j++) {
-        console.info("moduleResPaths[" + j + "]:" + data.moduleResPaths[j]);
-    }
-    console.info('getBundleArchiveInfo abilityInfo length [' + data.abilityInfos.length + ']');
-    for (var j = 0; j < data.abilityInfos.length; j++) {
-        console.info("abilityInfos[" + j + "]name:" + data.abilityInfos[j].name);
-        console.info("abilityInfos[" + j + "]package:" + data.abilityInfos[j].package);
-    }
+    console.info('Operation successful. Data:' + JSON.stringify(data));
 })
-```
-
-## bundle.getBundleArchiveInfo
-
-getBundleArchiveInfo(hapFilePath: string, bundleFlags: number, callback: AsyncCallback\<BundleInfo>): void
-
-Obtains the bundle information from a given HAP file in asynchronous mode. This method uses a callback to return the result.
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| ----------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| hapFilePath | string                    | Yes| Path of the HAP file.|
-| bundleFlags | number                    | Yes| Type of information that will be returned.<br/>**0**: The default bundle information will be returned.<br/>**1**: The bundle information containing the ability information will be returned.|
-| callback    | AsyncCallback<BundleInfo> | Yes| Callback used to return the bundle information.|
-
-**Example**
-
-```js
-bundle.getBundleArchiveInfo('/data/test.hap', 1, OnReceiveEvent);
-
-function OnReceiveEvent(err, data) {
-    console.info("name:" + data.name);
-    console.info("label:" + data.label);
-    console.info("description:" + data.description);
-    console.info("vendor:" + data.vendor);
-    console.info("versionCode:" + data.versionCode);
-    console.info("versionName:" + data.versionName);
-    console.info("jointUserId:" + data.jointUserId);
-    console.info("minSdkVersion:" + data.minSdkVersion);
-    console.info("maxSdkVersion:" + data.maxSdkVersion);
-    console.info("mainEntry:" + data.mainEntry);
-    console.info("cpuAbi:" + data.cpuAbi);
-    console.info("appId:" + data.appId);
-    console.info("compatibleVersion:" + data.compatibleVersion);
-    console.info("targetVersion:" + data.targetVersion);
-    console.info("releaseType:" + data.releaseType);
-    console.info("uid:" + data.uid);
-    console.info("gid:" + data.gid);
-    console.info("seInfo:" + data.seInfo);
-    console.info("entryModuleName:" + data.entryModuleName);
-    console.info("isKeepAlive:" + data.isKeepAlive);
-    console.info("isNativeApp:" + data.isNativeApp);
-    console.info("installTime:" + data.installTime);
-    console.info("updateTime:" + data.updateTime);
-    console.info("appInfo.name:" + data.applicationInfo.name);
-    console.info("appInfo.bundleName:" + data.applicationInfo.bundleName);
-    console.info('getBundleArchiveInfo reqPermissions length [' + data.reqPermissions.length + ']');
-    for (var j = 0; j < data.reqPermissions.length; j++) {
-        console.info("reqPermissions[" + j + "]:" + data.reqPermissions[j]);
-    }
-    console.info('getBundleArchiveInfo defPermissions length [' + data.defPermissions.length + ']');
-    for (var j = 0; j < data.defPermissions.length; j++) {
-        console.info("defPermissions[" + j + "]:" + data.defPermissions[j]);
-    }
-    console.info('getBundleArchiveInfo hapModuleNames length [' + data.hapModuleNames.length + ']');
-    for (var j = 0; j < data.hapModuleNames.length; j++) {
-        console.info("hapModuleNames[" + j + "]:" + data.hapModuleNames[j]);
-    }
-    console.info('getBundleArchiveInfo moduleNames length [' + data.moduleNames.length + ']');
-    for (var j = 0; j < data.moduleNames.length; j++) {
-        console.info("moduleNames[" + j + "]:" + data.moduleNames[j]);
-    }
-    console.info('getBundleArchiveInfo modulePublicDirs length [' + data.modulePublicDirs.length + ']');
-    for (var j = 0; j < data.modulePublicDirs.length; j++) {
-        console.info("modulePublicDirs[" + j + "]:" + data.modulePublicDirs[j]);
-    }
-    console.info('getBundleArchiveInfo moduleDirs length [' + data.moduleDirs.length + ']');
-    for (var j = 0; j < data.moduleDirs.length; j++) {
-        console.info("moduleDirs[" + j + "]:" + data.moduleDirs[j]);
-    }
-    console.info('getBundleArchiveInfo moduleResPaths length [' + data.moduleResPaths.length + ']');
-    for (var j = 0; j < data.moduleResPaths.length; j++) {
-        console.info("moduleResPaths[" + j + "]:" + data.moduleResPaths[j]);
-    }
-    console.info('getBundleArchiveInfo abilityInfo length [' + data.abilityInfos.length + ']');
-    for (var j = 0; j < data.abilityInfos.length; j++) {
-        console.info("abilityInfos[" + j + "]name:" + data.abilityInfos[j].name);
-        console.info("abilityInfos[" + j + "]package:" + data.abilityInfos[j].package);
-    }
-}
 ```
 
 ## bundle.getBundleInstaller
@@ -1113,29 +496,36 @@ getBundleInstaller(): Promise<BundleInstaller>
 
 Obtains the bundle installer in asynchronous mode. This method uses a promise to return the result.
 
+**Required permissions**
+
+ohos.permission.INSTALL_BUNDLE
+
 **Return value**
 
-| Type| Description|
+| Type                    | Description                                               |
 | ------------------------ | --------------------------------------------------- |
 | Promise<BundleInstaller> | Promise used to return the bundle installer.|
 
 **Example**
 
 ```js
-bundle.getBundleInstaller().then((data) => {
-    data.install(['/data/test.hap'], {
-        param: {
-      		userId: 0,
-      		installFlag: 1,
-      		isKeepData: false
-        }
-    }, OnReceiveinstallEvent);
-
-    function OnReceiveinstallEvent(err, data) {
-        console.info("name: for begin");
-        console.info("install result code:" + data.status);
-        console.info("install result msg:" + data.statusMessage);
-    }
+let bundleFilePaths = ['/data/test.hap'];
+let param = {
+    userId : 100,
+    installFlag : 1,
+    isKeepData : false
+};
+bundle.getBundleInstaller()
+.then((installerObject) => {
+    console.info('Operation successful. ');
+    installerObject.install(bundleFilePaths, param)
+    .then((data) => {
+        console.info('Operation successful. Data:' + JSON.stringify(data));
+    }).catch((error) => {
+        console.error('Operation failed. Cause: ' + JSON.stringify(error));
+    })
+}).catch((error) => {
+    console.error('Operation failed. Cause: ' + JSON.stringify(error));
 })
 ```
 
@@ -1145,141 +535,401 @@ getBundleInstaller(callback: AsyncCallback<BundleInstaller>): void;
 
 Obtains the bundle installer in asynchronous mode. This method uses a callback to return the result.
 
+**Required permissions**
+
+ohos.permission.INSTALL_BUNDLE
+
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name    | Type                          | Mandatory| Description                                             |
 | -------- | ------------------------------ | ---- | ------------------------------------------------- |
-| callback | AsyncCallback<BundleInstaller> | Yes| Callback used to return the bundle installer.|
+| callback | AsyncCallback<BundleInstaller> | Yes  | Callback used to return the bundle installer.|
 
 **Example**
 
 ```js
-bundle.getBundleInstaller((err, data)=>{
-  data.uninstall('com.example.myapplication', {
-      userId: 0,
-      installFlag: 1,
-      isKeepData: false
-    }, OnReceiveinstallEvent);
-
-  function OnReceiveinstallEvent(err, data) {
-    console.info("name: for begin");
-    console.info("uninstall result code:" + data.status);
-    console.info("uninstall result msg:" + data.statusMessage);
-  }
+let bundleFilePaths = ['/data/test.hap'];
+let param = {
+    userId : 100,
+    installFlag : 1,
+    isKeepData : false
+};
+bundle.getBundleInstaller((err, installerObject) => {
+    if (err) {
+        console.error('Operation failed. Cause: ' + JSON.stringify(err));
+    }
+    console.info('Operation successful. Data:' + JSON.stringify(installerObject));
+    installerObject.install(bundleFilePaths, param, (err, data) => {
+        if (err) {
+            console.error('Operation failed. Cause: ' + JSON.stringify(err));
+        }
+        console.info('Operation successful. Data:' + JSON.stringify(data));
+    })
 })
 ```
 
-## bundle.getAllShortcutInfo
 
-getAllShortcutInfo(bundleName: string): Promise<Array<ShortcutInfo>>
+## bundle.getLaunchWantForBundle
 
-Obtains the shortcut information of the specified bundle in asynchronous mode. This method uses a promise to return the result.
+getLaunchWantForBundle(bundleName: string): Promise\<Want>
+
+Obtains the **Want** object that launches the specified application in asynchronous mode. This method uses a promise to return the result.
+
+**Required permissions**
+
+ohos.permission.GET\_BUNDLE\_INFO\_PRIVILEGED
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name      | Type  | Mandatory| Description    |
 | ---------- | ------ | ---- | -------- |
-| bundleName | string | Yes| Bundle name.|
+| bundleName | string | Yes  | Bundle name of the application.|
 
 **Return value**
-| Type| Description|
-| ----------------------------- | ---------------------------------------------------- |
-| Promise\<Array<ShortcutInfo>> | Promise used to return the shortcut information.|
-
-**Example**
-
-```js
-bundle.getAllShortcutInfo('com.example.third1').then((data) => {
-    console.log("getAllShortcutInfo data:" + data);
-});
-```
-
-
-
-## bundle.getAllShortcutInfo
-
-getAllShortcutInfo(bundleName: string, callback: AsyncCallback<Array\<ShortcutInfo>>): void
-
-Obtains the shortcut information of the specified bundle in asynchronous mode. This method uses a callback to return the result.
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| ---------- | ------------------------------------ | ---- | -------------------------------------------------- |
-| bundleName | string                               | Yes| Bundle name.|
-| callback   | AsyncCallback<<Array\<ShortcutInfo>> | Yes| Callback used to return the shortcut information.|
-
-**Example**
-
-```js
-bundle.getAllShortcutInfo('com.example.third1', OnReceiveEvent);
-
-function OnReceiveEvent(err, data) {
-   console.log("getAllShortcutInfo data:" + data);
-}
-```
-
-## bundle.checkPermission
-
-checkPermission(bundleName: string, permission: string): Promise\<GrantStatus>
-
-Checks whether a bundle has the specified permission in asynchronous mode. This method uses a promise to return the result.
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| ---------- | ------ | ---- | -------- |
-| bundleName | string | Yes| Bundle name.|
-| permission | string | Yes| Permission name.|
-
-**Return value**
-| Type| Description|
+| Type                 | Description                                                        |
 | --------------------- | ------------------------------------------------------------ |
-| Promise\<GrantStatus> | Promise used to return the verification result. <br/>**-1**: The bundle does not have the specified permission.<br/>**0**: The bundle has the specified permission.|
+| Promise\<Want> | Promise used to return the **Want** object.|
 
 **Example**
 
 ```js
-bundle.checkPermission('com.example.actsbmscheckpermissiontest', 'com.permission.CAMERA').then((data) => {
-    console.log("checkPermission data:" + data);
-});
+let bundleName = "com.example.myapplication";
+bundle.getLaunchWantForBundle(bundleName)
+.then((data) => {
+    console.info('Operation successful. Data: ' + JSON.stringify(data));
+}).catch((error) => {
+    console.error('Operation failed. Cause: ' + JSON.stringify(error));
+})
 ```
 
-## bundle.checkPermission
+## bundle.getLaunchWantForBundle
 
-checkPermission(bundleName: string, permission: string, callback: AsyncCallback\<GrantStatus>): void
+getLaunchWantForBundle(bundleName: string, callback: AsyncCallback<Want>): void;
 
-Checks whether a bundle has the specified permission in asynchronous mode. This method uses a callback to return the result.
+Obtains the **Want** object that launches the specified application in asynchronous mode. This method uses a callback to return the result.
+
+**Required permissions**
+
+ohos.permission.GET\_BUNDLE\_INFO\_PRIVILEGED
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| ---------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| bundleName | string                      | Yes| Bundle name.|
-| permission | string                      | Yes| Permission name.|
-| callback   | AsyncCallback\<GrantStatus> | Yes| Callback used to return the verification result. <br/>**-1**: The bundle does not have the specified permission.<br/>**0**: The bundle has the specified permission.|
+| Name      | Type  | Mandatory| Description    |
+| ---------- | ------ | ---- | -------- |
+| bundleName | string | Yes  | Bundle name of the application.|
+| callback   | AsyncCallback\<Want> | Yes  | Callback used to return the **Want** object.|
 
 **Example**
 
 ```js
-bundle.checkPermission('com.example.actsbmscheckpermissiontest', 'com.permission.CAMERA', OnReceiveEvent);
-
-function OnReceiveEvent(err, data) {
-   console.log("checkPermission data:" + data);
-}
+let bundleName = "com.example.myapplication";
+bundle.getLaunchWantForBundle(bundleName, (err, data) => {
+    if (err) {
+        console.error('Operation failed. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Operation successful. Data:' + JSON.stringify(data));
+})
 ```
+
+
+## bundle.getNameForUid
+
+getNameForUid(uid: number): Promise\<string>
+
+Obtains the bundle name based on a UID in asynchronous mode. This method uses a promise to return the result.
+
+**Parameters**
+
+| Name      | Type  | Mandatory| Description    |
+| ---------- | ------ | ---- | -------- |
+| uid | number | Yes  | UID based on which the bundle name is to obtain.|
+
+**Return value**
+| Type                 | Description                                                        |
+| --------------------- | ------------------------------------------------------------ |
+| Promise\<string> | Promise used to return the bundle name.|
+
+**Example**
+
+```js
+let uid = 20010005;
+bundle.getNameForUid(uid)
+.then((data) => {
+    console.info('Operation successful. Data: ' + JSON.stringify(data));
+}).catch((error) => {
+    console.error('Operation failed. Cause: ' + JSON.stringify(error));
+})
+```
+
+## bundle.getNameForUid
+
+getNameForUid(uid: number, callback: AsyncCallback<string>): void;
+
+Obtains the bundle name based on a UID in asynchronous mode. This method uses a callback to return the result.
+
+**Parameters**
+
+| Name      | Type  | Mandatory| Description    |
+| ---------- | ------ | ---- | -------- |
+| uid | number | Yes  | UID based on which the bundle name is to obtain.|
+| callback   | AsyncCallback\<string> | Yes  | Callback used to return the bundle name.|
+
+**Example**
+
+```js
+let uid = 20010005;
+bundle.getNameForUid(uid, (err, data) => {
+    if (err) {
+        console.error('Operation failed. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Operation successful. Data:' + JSON.stringify(data));
+})
+```
+
 
 ## ElementName
 
-| Name| Readable/Writable| Type| Mandatory| Description|
+| Name       | Readable/Writable| Type  | Mandatory| Description                                                        |
 | ----------- | -------- | ------ | ---- | ------------------------------------------------------------ |
-| deviceId    | Read-only| string | No| ID of the device that runs the ability.|
-| bundleName  | Read-only| string | Yes| Bundle name of the ability. If both **bundleName** and **abilityName** are specified in a **Want**, the **Want** can directly match the specified ability.|
-| abilityName | Read-only| string | Yes| Name of the ability. If both **bundleName** and **abilityName** are specified in a **Want**, the **Want** can directly match the specified ability.|
+| deviceId    | Read-only    | string | No  | ID of the device that runs the ability.                               |
+| bundleName  | Read-only    | string | Yes  | Bundle name of the ability. If both **bundleName** and **abilityName** are specified in a **Want**, the **Want** can directly match the specified ability.|
+| abilityName | Read-only    | string | Yes  | Name of the ability. If both **bundleName** and **abilityName** are specified in a **Want**, the **Want** can directly match the specified ability.|
+| uri | Read-only    | string | No  | Resource ID.|
+| shortName | Read-only    | string | No  | Short name of the **ElementName**.|
 
 ## InstallStatus
 
-| Name| Readable/Writable| Type| Mandatory| Description|
+| Name         | Readable/Writable| Type            | Mandatory| Description                                                        |
 | ------------- | -------- | ---------------- | ---- | ------------------------------------------------------------ |
-| status        | Read-only| InstallErrorCode | Yes| Installation result code.<br/>SUCCESS = 0<br/>STATUS_INSTALL_FAILURE = 1<br/>STATUS_INSTALL_FAILURE_ABORTED = 2<br/>STATUS_INSTALL_FAILURE_INVALID = 3<br/>STATUS_INSTALL_FAILURE_CONFLICT = 4<br/>STATUS_INSTALL_FAILURE_STORAGE = 5<br/>STATUS_INSTALL_FAILURE_INCOMPATIBLE = 6<br/>STATUS_INSTALL_FAILURE_DOWNLOAD_TIMEOUT = 0x0B<br/>STATUS_INSTALL_FAILURE_DOWNLOAD_FAILED = 0x0C<br/>STATUS_ABILITY_NOT_FOUND = 0x40<br/>STATUS_BMS_SERVICE_ERROR = 0x41 |
-| statusMessage | Read-only| string           | Yes| Message indicating the installation result.|
+| status        | Read-only    | InstallErrorCode | Yes  | Installation result code.<br>SUCCESS = 0<br>STATUS_INSTALL_FAILURE = 1<br>STATUS_INSTALL_FAILURE_ABORTED = 2,<br>STATUS_INSTALL_FAILURE_INVALID = 3<br>STATUS_INSTALL_FAILURE_CONFLICT = 4<br>STATUS_INSTALL_FAILURE_STORAGE = 5<br>STATUS_INSTALL_FAILURE_INCOMPATIBLE = 6<br>STATUS_UNINSTALL_FAILURE = 7<br>STATUS_UNINSTALL_FAILURE_BLOCKED = 8<br>STATUS_UNINSTALL_FAILURE_ABORTED = 9<br>STATUS_UNINSTALL_FAILURE_CONFLICT = 10<br>STATUS_INSTALL_FAILURE_DOWNLOAD_TIMEOUT = 0x0B<br>STATUS_INSTALL_FAILURE_DOWNLOAD_FAILED = 0x0C<br>STATUS_RECOVER_FAILURE_INVALID = 0x0D<br>STATUS_ABILITY_NOT_FOUND = 0x40<br>STATUS_BMS_SERVICE_ERROR = 0x41<br>STATUS_FAILED_NO_SPACE_LEFT = 0x42<br>STATUS_GRANT_REQUEST_PERMISSIONS_FAILED = 0x43<br>STATUS_INSTALL_PERMISSION_DENIED = 0x44<br>STATUS_UNINSTALL_PERMISSION_DENIED = 0x45 |
+
+## BundleFlag
+
+Enumerates the bundle flags.
+
+| Name              | Default Value| Description  |
+| ------ | ------ | ------ |
+| GET_BUNDLE_DEFAULT | 0x00000000 | Obtains the default application information.|
+| GET_BUNDLE_WITH_ABILITIES | 0x00000001 | Obtains the bundle information with the ability information.|
+| GET_ABILITY_INFO_WITH_PERMISSION | 0x00000002 | Obtains the ability information with the permission information.|
+| GET_ABILITY_INFO_WITH_APPLICATION | 0x00000004 | Obtains the ability information with the application information.|
+| GET_APPLICATION_INFO_WITH_PERMISSION | 0x00000008 | Obtains the application information with the permission information.|
+| GET_BUNDLE_WITH_REQUESTED_PERMISSION | 0x00000010 | Obtains the bundle information with the information about the required permissions.|
+| GET_ABILITY_INFO_WITH_METADATA | 0x00000020 | Obtains the ability metadata information.|
+| GET_APPLICATION_INFO_WITH_METADATA | 0x00000040 | Obtains the application metadata information.|
+| GET_ABILITY_INFO_SYSTEMAPP_ONLY | 0x00000080 | Obtains only the ability information with information about system applications.|
+| GET_ABILITY_INFO_WITH_DISABLE | 0x00000100 | Obtains information about disabled abilities.|
+| GET_APPLICATION_INFO_WITH_DISABLE | 0x00000200 | Obtains information about disabled applications.|
+| GET_ALL_APPLICATION_INFO | 0xFFFF0000 | Obtains all application information.|
+
+## BundleOptions
+
+Describes the bundle options.
+
+| Name              | Type| Readable| Writable| Description|
+| ------ | ------ | ------ | ------ | ------ |
+| userId | number | Yes| Yes| User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.|
+| networkId | string | Yes| Yes| Network ID. The default value is **null**.|
+
+## BundleInfo
+
+Describes the application bundle information.
+
+| Name              | Type| Readable| Writable| Description|
+| ------ | ------ | ------ | ------ | ------ |
+| name                     | string                     | Yes  | No  | Bundle name.                              |
+| type                     | string                     | Yes  | No  | Bundle type.                                |
+| appId                    | string                     | Yes  | No  | ID of the application to which the bundle belongs.                      |
+| uid                      | number                     | Yes  | No  | UID of the application to which the bundle belongs.                     |
+| installTime              | number                     | Yes  | No  | Time when the HAP file is installed.                             |
+| updateTime               | number                     | Yes  | No  | Time when the HAP file is updated.                             |
+| appInfo                  | ApplicationInfo        | Yes  | No  | Application configuration information.                        |
+| abilityInfo              | Array<AbilityInfo>         | Yes  | No  | Ability configuration information.                         |
+| reqPermissions           | Array<string>              | Yes  | No  | Array of the permissions to request from the system.          |
+| reqPermissionDetails     | Array<ReqPermissionDetail> | Yes  | No  | Detailed information of the permissions to request from the system.|
+| vendor                   | string                     | Yes  | No  | Vendor of the bundle.                            |
+| versionCode              | number                     | Yes  | No  | Version number of the bundle.                            |
+| versionName              | string                     | Yes  | No  | Version description of the bundle.                  |
+| compatibleVersion        | number                     | Yes  | No  | Earliest SDK version required for running the bundle.           |
+| targetVersion            | number                     | Yes  | No  | Latest SDK version required for running the bundle.             |
+| isCompressNativeLibs     | boolean                    | Yes  | No  | Whether to compress the native library of the bundle. The default value is **true**.        |
+| hapModuleInfo            | Array<HapModuleInfo>       | Yes  | No  | Module configuration information.                            |
+| entryModuleName          | string                     | Yes  | No  | Name of the entry module.                           |
+| cpuAbi                   | string                     | Yes  | No  | cpuAbi information of the bundle.                        |
+| isSilentInstallation     | string                     | Yes  | No  | Whether to install the bundle in silent mode.                          |
+| minCompatibleVersionCode | number                     | Yes  | No  | Earliest version compatible with the bundle in the distributed scenario.        |
+| entryInstallationFree | boolean | Yes| No| Whether installation-free is supported for the entry.|
+| reqPermissionStates | Array<number> | Yes| No| Permission grant state.|
+
+## ApplicationInfo
+
+Describes the application information.
+
+| Name              | Type| Readable| Writable| Description|
+| ------ | ------ | ------ | ------ | ------ |
+| name             | string        | Yes  | No  | Application name.                            |
+| description      | string        | Yes  | No  | Application description.                            |
+| descriptionId    | number        | Yes  | No  | Application description ID.                          |
+| systemApp        | boolean       | Yes  | No  | Whether the application is a system application. The default value is **false**.       |
+| enabled          | boolean       | Yes  | No  | Whether the application is enabled. The default value is **true**.      |
+| label            | string        | Yes  | No  | Application label.                            |
+| labelId          | string        | Yes  | No  | Application label ID.                          |
+| icon             | string        | Yes  | No  | Application icon.                            |
+| iconId           | string        | Yes  | No  | Application icon ID.                          |
+| process          | string        | Yes  | No  | Process in which this application runs. If this parameter is not set, the bundle name is used by default.|
+| supportedModes   | number        | Yes  | No  | Running modes supported by the application.                    |
+| moduleSourceDirs | Array<string> | Yes  | No  | Relative paths for storing application resources.              |
+| permissions      | Array<string> | Yes  | No  | Permissions required for accessing the application.                    |
+| moduleInfos | Array<ModuleInfo> | Yes  | No  | Application module information.                        |
+| entryDir         | string        | Yes  | No  | Path for storing application files.                    |
+| customizeData    | Map<string, Array<CustomizeData>> | Yes  | Yes  | Custom data of the application.                      |
+| codePath | string | Yes| No| Installation directory of the application.|
+| metaData | Map<string, Array<CustomizeData>> | Yes| No| Custom metadata of the application.|
+| removable | boolean | Yes| No| Whether the application is removable.|
+| accessTokenId | number | Yes| No| Access token ID of the application.|
+| uid | number | Yes| No| UID of the application.|
+
+## ModuleInfo
+
+Describes the application module information.
+
+| Name              | Type| Readable| Writable| Description|
+| ------ | ------ | ------ | ------ | ------ |
+| moduleName      | string | Yes  | No  | Module name.|
+| moduleSourceDir | string | Yes  | No  | Installation directory.|
+
+## CustomizeData
+
+Describes the custom metadata.
+
+| Name | Type  | Readable| Writable| Description            |
+| ----- | ------ | ---- | ---- | ---------------- |
+| name  | string | Yes  | Yes  | Custom metadata name.|
+| value | string | Yes  | Yes  | Custom metadata value.  |
+| extra | string | Yes  | Yes  | Custom resources.      |
+
+
+## HapModuleInfo
+
+Describes the HAP module information.
+
+| Name              | Type| Readable| Writable| Description|
+| ------ | ------ | ------ | ------ | ------ |
+| name             | string        | Yes  | No  | Module name.          |
+| description      | string        | Yes  | No  | Module description.      |
+| descriptionId    | number        | Yes  | No  | Module description ID.        |
+| icon             | string        | Yes  | No  | Module icon.          |
+| label            | string        | Yes  | No  | Module label.          |
+| labelId          | number        | Yes  | No  | Module label ID.        |
+| iconId           | number        | Yes  | No  | Module icon ID.        |
+| backgroundImg    | string        | Yes  | No  | Module background image.      |
+| supportedModes   | number        | Yes  | No  | Modes supported by the module.    |
+| reqCapabilities  | Array<string> | Yes  | No  | Capabilities required for module running.|
+| deviceTypes      | Array<string> | Yes  | No  | An array of supported device types.|
+| abilityInfo      | Array<AbilityInfo> | Yes  | No  | Ability information.       |
+| moduleName       | string        | Yes  | No  | Module name.            |
+| mainAbilityName  | string        | Yes  | No  | Name of the entry ability.   |
+| installationFree | boolean       | Yes  | No  | Whether installation-free is supported.    |
+| mainElementName | string | Yes| No| Information about the entry ability.|
+
+## ReqPermissionDetail
+
+Describes the detailed information of the permissions to request from the system.
+
+| Name              | Type| Readable| Writable| Description|
+| ------ | ------ | ------ | ------ | ------ |
+| name      | string    | Yes  | Yes  | Name of the permission to request.  |
+| reason    | string    | Yes  | Yes  | Reason for requesting the permission.  |
+| usedScene | UsedScene | Yes| Yes| Application scenario and timing for using the permission.|
+
+## UsedScene
+
+Describes the application scenario and timing for using the permission.
+
+| Name              | Type| Readable| Writable| Description|
+| ------ | ------ | ------ | ------ | ------ |
+| abilities | Array<string> | Yes  | Yes  | Abilities that use the permission.|
+| when      | string        | Yes  | Yes  | Time when the permission is used.         |
+
+
+## AbilityInfo
+
+Describes ability information.
+
+| Name              | Type| Readable| Writable| Description|
+| ------ | ------ | ------ | ------ | ------ |
+| bundleName         | string                                                       | Yes  | No  | Application bundle name.                                 |
+| name               | string                                                       | Yes  | No  | Ability name.                              |
+| label              | string                                                       | Yes  | No  | Ability name visible to users.                  |
+| description        | string                                                       | Yes  | No  | Ability description.                            |
+| icon               | string                                                       | Yes  | No  | Index of the ability icon resource file.                |
+| descriptionId      | number                                                       | Yes  | No  | Ability description ID.                          |
+| iconId             | number                                                       | Yes  | No  | Ability icon ID.                          |
+| moduleName         | string                                                       | Yes  | No  | Name of the HAP file to which the ability belongs.                 |
+| process            | string                                                       | Yes  | No  | Process in which this ability runs. If this parameter is not set, the bundle name is used by default.|
+| targetAbility      | string                                                       | Yes  | No  | Target ability that this ability alias points to.             |
+| backgroundModes    | number                                                       | Yes  | No  | Background service mode of the ability.                       |
+| isVisible          | boolean                                                      | Yes  | No  | Whether the ability can be called by other applications.        |
+| formEnabled        | boolean                                                      | Yes  | No  | Whether the ability provides the service widget capability.              |
+| type               | AbilityType | Yes  | No  | Ability type.                              |
+| orientation        | DisplayOrientation | Yes  | No  | Ability display orientation.                        |
+| launchMode         | LaunchMode | Yes  | No  | Ability launch mode.                        |
+| permissions        | Array<string>                                                | Yes  | No  | Permissions required for other applications to call the ability.|
+| deviceTypes        | Array<string>                                                | Yes  | No  | Device types supported by the ability.                    |
+| deviceCapabilities | Array<string>                                                | Yes  | No  | Device capabilities required for the ability.                    |
+| readPermission     | string                                                       | Yes  | No  | Permission required for reading the ability data.                |
+| writePermission    | string                                                       | Yes  | No  | Permission required for writing data to the ability.                |
+| applicationInfo    | ApplicationInfo | Yes  | No  | Application configuration information.                       |
+| formEntity         | number                                                       | Yes  | No  | Area where the ability form can be displayed.                           |
+| minFormHeight      | number                                                       | Yes  | No  | Minimum height of the ability form.                        |
+| defaultFormHeight  | number                                                       | Yes  | No  | Default height of the ability form.                        |
+| minFormWidth       | number                                                       | Yes  | No  | Minimum width of the ability form.                        |
+| defaultFormWidth   | number                                                       | Yes  | No  | Default width of the ability form.                        |
+| uri                | string                                                       | Yes  | No  | URI of the ability.       |
+| customizeData      | Map<string, Array<CustomizeData>> | Yes  | Yes  | Custom data of the ability.                      |
+| labelId            | number                                                       | Yes  | No  | Ability label ID.                          |
+| subType            | AbilitySubType | Yes  | No  | Subtype of the template that can be used by the ability.          |
+| metaData | Array<Metadata> | Yes| No| Custom metadata of the ability.|
+| enabled | boolean | Yes| No| Whether the ability is enabled.|
+
+## AbilityType
+
+Describes the ability type.
+
+| Name   | Type| Description                       |
+| ------- | ---- | --------------------------- |
+| UNKNOWN | None  | Unknown ability type.            |
+| PAGE    | None  | Ability that has a UI.        |
+| SERVICE | None  | Ability that does not have a UI.          |
+| DATA    | None  | Ability that is used to provide data access services.|
+
+## DisplayOrientation
+
+Describes the display orientation.
+
+| Name         | Type| Description                    |
+| ------------- | ---- | ------------------------ |
+| UNSPECIFIED   | None  | The system automatically determines the display orientation.        |
+| LANDSCAPE     | None  | Landscape orientation.          |
+| PORTRAIT      | None  | Portrait orientation.          |
+| FOLLOW_RECENT | None  | The page ability orientation is the same as that of the nearest ability in the stack.|
+
+## LaunchMode
+
+Describes the launch mode.
+
+| Name       | Type| Description               |
+| ----------- | ---- | ------------------- |
+| UNSPECIFIED | 0    | The ability has only one instance.|
+| STANDARD    | 1    | The ability can have multiple instances.  |
+
+## AbilitySubType
+
+Describes the ability subtype.
+
+| Name       | Type| Description                         |
+| ----------- | ---- | ----------------------------- |
+| UNSPECIFIED | 0    | Undefined ability subtype.          |
+| CA          | 1    | Ability that has a UI.|

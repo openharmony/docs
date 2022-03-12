@@ -87,15 +87,15 @@ interface ReminderRequest: 需要发布的提醒实例的信息
 
 interface ReminderRequestCalendar extends ReminderRequest: 日历类提醒实例。
 
-第一次指定的目标时间必须大于当前时间。
+如果没有指定重复的月或天，那么第一次指定的目标时间必须大于当前时间，否则应用将异常退出。
 
 **表8** ReminderRequestCalendar
 
 | 参数名 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
-| dateTime | LocalDataTime | 是 | 设置目标时间 |
-| repeatMonths | Array&lt;number&gt; | 否 | 设置重复提醒的月份 |
-| repeatDays | Array&lt;number&gt; | 否 | 设置重复提醒的日期 |
+| dateTime | LocalDateTime | 是 | 设置目标时间(精确到分钟级别) |
+| repeatMonths | Array&lt;number&gt; | 否 | 设置重复提醒的月份，范围从 1 到 12 |
+| repeatDays | Array&lt;number&gt; | 否 | 设置重复提醒的日期，范围从 1 到 31 |
 
 interface ReminderRequestAlarm extends ReminderRequest: 闹钟类提醒实例。
 
@@ -103,9 +103,9 @@ interface ReminderRequestAlarm extends ReminderRequest: 闹钟类提醒实例。
 
 | 参数名 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
-| hour | number | 是 | 设置目标时间（小时） |
-| minute | number | 是 | 设置目标时间（分钟） |
-| daysOfWeek | Array&lt;number&gt; | 否 | 设置每个星期哪一天重复提醒 |
+| hour | number | 是 | 设置目标时间（小时），范围从 0 到 23 |
+| minute | number | 是 | 设置目标时间（分钟），范围从 0 到 59 |
+| daysOfWeek | Array&lt;number&gt; | 否 | 设置每个星期哪一天重复提醒，范围从 1 到 7 |
 
 interface ReminderRequestTimer extends ReminderRequest：倒计时提醒实例
 
@@ -196,8 +196,8 @@ calendar: {
         minute: 14,
         second: 30
     },
-    repeatMonths: [0],
-    repeatDays: [0],
+    repeatMonths: [1],
+    repeatDays: [1],
     actionButton: [
         {
             title: "close",

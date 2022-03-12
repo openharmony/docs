@@ -17,6 +17,7 @@
 ## 示例
 
 ```
+@Entry
 @Component
 struct CountDownTimerComponent {
     @State countDownFrom: number = 10

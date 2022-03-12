@@ -13,7 +13,7 @@ import backgroundTaskManager from '@ohos.backgroundTaskManager';
 
 ## 短时任务
 
-**表1** backgroundTaskManager主要接口
+**表1** 短时任务主要接口
 
 | 接口名 | 描述 |
 | -------- | -------- |
@@ -106,7 +106,7 @@ ohos.permission.KEEP_BACKGROUND_RUNNING
 | function stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): void;<br/>function stopBackgroundRunning(context: Context): Promise&lt;void&gt;; | 停止后台长时任务的运行 |
 
 
-其中，wantAgent的信息详见（[WantAgent](#zh-cn/application-dev/reference/apis/js-apis-notification.md#WantAgent接口)）
+其中，wantAgent的信息详见（[WantAgent](../reference/apis/js-apis-notification.md#WantAgent接口)
 
 
 **表4** 后台模式类型

@@ -1,10 +1,16 @@
+### 1.0.0 (2022/03/09)
+
+Combine the docker build environment of Mini-System Devices (reference memory ≥ 128 KB), Small-System Devices (reference memory ≥ 1 MB) and Standard-System Devices (reference memory ≥ 128 MB).
+
+
+
 ### 0.0.7 (2022/02/16)
 
 Added the installation of doxygen.
 
 
 
-### 0.0.6(2022/02/10)
+### 0.0.6 (2022/02/10)
 
 1\. Updated hb.
 
