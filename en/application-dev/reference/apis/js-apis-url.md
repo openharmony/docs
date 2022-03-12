@@ -27,7 +27,7 @@ Creates a **URLSearchParams** instance.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| init | string[][]&nbsp;\|&nbsp;Record&lt;string,&nbsp;string&gt;&nbsp;\|&nbsp;string&nbsp;\|&nbsp;URLSearchParams | No| Input parameter objects, which include the following: <br/>-&nbsp;**string[][]**: two-dimensional string array<br/>-&nbsp;**Record&lt;string,&nbsp;string&gt;**: list of objects<br/>-&nbsp;**string**: string<br/>-&nbsp;**URLSearchParams**: object|
+| init | string[][]&nbsp;\|&nbsp;Record&lt;string,&nbsp;string&gt;&nbsp;\|&nbsp;string&nbsp;\|&nbsp;URLSearchParams | No| Input parameter objects, which include the following:<br>- **string[][]**: two-dimensional string array<br>- **Record&lt;string,&nbsp;string&gt;**: list of objects<br>- **string**: string<br>- **URLSearchParams**: object|
 
 **Example**
 
@@ -36,7 +36,7 @@ var objectParams = new URLSearchParams([ ['user1', 'abc1'], ['query2', 'first2']
 var objectParams1 = new URLSearchParams({"fod" : 1 , "bard" : 2});
 var objectParams2 = new URLSearchParams('?fod=1&bard=2');
 var urlObject = new URL('https://developer.mozilla.org/?fod=1&bard=2');
-var params = new URLSearchParams(urlObject .search);
+var params = new URLSearchParams(urlObject.search);
 ```
 
 
@@ -79,7 +79,7 @@ Deletes key-value pairs of the specified key.
 ```
 let urlObject = new URL('https://developer.exampleUrl/?fod=1&bard=2');
 let paramsobject = new URLSearchParams(urlObject.search.slice(1));
-paramsobject.delete('foo');
+paramsobject.delete('fod');
 ```
 
 
@@ -106,7 +106,7 @@ Obtains all the key-value pairs based on the specified key.
 ```
 let urlObject = new URL('https://developer.exampleUrl/?fod=1&bard=2'); 
 let paramsObject = new URLSearchParams(urlObject.search.slice(1)); 
-paramsObject.append('fod', 3); // Add a second value for the foo parameter.
+paramsObject.append('fod', 3); // Add a second value for the fod parameter.
 console.log(params.getAll('fod')) // Output ["1","3"].
 ```
 
@@ -121,7 +121,7 @@ Obtains an ES6 iterator. Each item of the iterator is a JavaScript array, and th
 
 | Type| Description|
 | -------- | -------- |
-| IterableIterator&lt;[string,&nbsp;string]&gt; | An ES6 iterator.|
+| IterableIterator&lt;[string,&nbsp;string]&gt; | ES6 iterator.|
 
 **Example**
 
@@ -382,7 +382,7 @@ Creates a URL.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | url | string | Yes| Input object.|
-| base | string&nbsp;\|&nbsp;URL | No| Input parameter, which can be any of the following: <br/>-&nbsp;**string**: string<br/>-&nbsp;**URL**: string or object|
+| base | string&nbsp;\|&nbsp;URL | No| Input parameter, which can be any of the following:<br>- **string**: string<br>- **URL**: string or object|
 
 **Example**
 
