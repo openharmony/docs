@@ -49,52 +49,24 @@ The following table describes APIs available for the OpenHarmony LiteOS-M interr
 
 **Table  1**  APIs of the interrupt module
 
-<a name="table12470505188"></a>
-<table><thead align="left"><tr id="row16470160111812"><th class="cellrowborder" valign="top" width="12.85128512851285%" id="mcps1.2.4.1.1"><p id="p164707031814"><a name="p164707031814"></a><a name="p164707031814"></a>Function</p>
-</th>
-<th class="cellrowborder" valign="top" width="29.8029802980298%" id="mcps1.2.4.1.2"><p id="p15470190151816"><a name="p15470190151816"></a><a name="p15470190151816"></a>API</p>
-</th>
-<th class="cellrowborder" valign="top" width="57.34573457345735%" id="mcps1.2.4.1.3"><p id="p194701609186"><a name="p194701609186"></a><a name="p194701609186"></a>Description</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row14701707188"><td class="cellrowborder" rowspan="2" valign="top" width="12.85128512851285%" headers="mcps1.2.4.1.1 "><p id="p54707061819"><a name="p54707061819"></a><a name="p54707061819"></a>Creating or deleting interrupts</p>
-</td>
-<td class="cellrowborder" valign="top" width="29.8029802980298%" headers="mcps1.2.4.1.2 "><p id="p5470603184"><a name="p5470603184"></a><a name="p5470603184"></a>HalHwiCreate</p>
-</td>
-<td class="cellrowborder" valign="top" width="57.34573457345735%" headers="mcps1.2.4.1.3 "><p id="p74706011818"><a name="p74706011818"></a><a name="p74706011818"></a>Creates an interrupt and registers the interrupt ID, interrupt triggering mode, interrupt priority, and interrupt handler. When an interrupt is triggered, the interrupt handler will be called.</p>
-</td>
-</tr>
-<tr id="row154703013184"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p84702002181"><a name="p84702002181"></a><a name="p84702002181"></a>HalHwiDelete</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p114700091815"><a name="p114700091815"></a><a name="p114700091815"></a>Deletes an interrupt based on the specified interrupt ID.</p>
-</td>
-</tr>
-<tr id="row15470506188"><td class="cellrowborder" rowspan="3" valign="top" width="12.85128512851285%" headers="mcps1.2.4.1.1 "><p id="p147010001812"><a name="p147010001812"></a><a name="p147010001812"></a>Enabling or disabling interrupts</p>
-</td>
-<td class="cellrowborder" valign="top" width="29.8029802980298%" headers="mcps1.2.4.1.2 "><p id="p184701906185"><a name="p184701906185"></a><a name="p184701906185"></a>LOS_IntUnLock</p>
-</td>
-<td class="cellrowborder" valign="top" width="57.34573457345735%" headers="mcps1.2.4.1.3 "><p id="p1847018014188"><a name="p1847018014188"></a><a name="p1847018014188"></a>Enables the CPU to respond to all interrupt requests.</p>
-</td>
-</tr>
-<tr id="row2470902182"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p04711408181"><a name="p04711408181"></a><a name="p04711408181"></a>LOS_IntLock</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p194719071819"><a name="p194719071819"></a><a name="p194719071819"></a>Disables the CPU from responding to interrupt requests.</p>
-</td>
-</tr>
-<tr id="row447117051814"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p1047112011188"><a name="p1047112011188"></a><a name="p1047112011188"></a>LOS_IntRestore</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p1947100121811"><a name="p1947100121811"></a><a name="p1947100121811"></a>Restores the interrupt status before the <strong id="b160497829844357"><a name="b160497829844357"></a><a name="b160497829844357"></a>LOS_IntLock</strong> and <strong id="b123452092644357"><a name="b123452092644357"></a><a name="b123452092644357"></a>LOS_IntUnLock</strong> operations are performed.</p>
-</td>
-</tr>
-</tbody>
-</table>
+| Category| API| Description|
+| -------- | -------- | -------- |
+| Creating or deleting an interrupt| LOS_HwiCreate | Creates an interrupt and registers the interrupt ID, triggering mode, priority, and interrupt handler. When an interrupt is triggered, the interrupt handler will be called.|
+|  | LOS_HwiDelete | Deletes an interrupt based on the specified interrupt ID.|
+| Locking or unlocking interrupts| LOS_IntUnLock | Enables the CPU to respond to all interrupt requests.|
+|  | LOS_IntLock | Disables the CPU from responding to interrupt requests.|
+|  | LOS_IntRestore | Restores the interrupt status before the **LOS_IntLock** and **LOS_IntUnLock** operations are performed.|
+| Enabling or disabling an interrupt| LOS_HwiDisable | Disables the CPU from responding to the specified interrupt by setting the register.|
+|  | LOS_HwiEnable | Enables the CPU to respond to the specified interrupt by setting the register.|
+| Setting the interrupt priority| LOS_HwiSetPriority | Sets the interrupt priority.|
+| Triggering an interrupt| LOS_HwiTrigger | Triggers an interrupt (simulate an external interrupt by writing the related register of the interrupt controller).|
+| Clearing interrupt register status| LOS_HwiClear | Clears the status bit of the interrupt register corresponding to the interrupt ID. The implementation of this API depends on the interrupt controller version. It is optional.|
 
 ## How to Develop<a name="section11841123033618"></a>
 
-1.  Create an interrupt by calling  **HalHwiCreate**.
-2.  Call  **TestHwiTrigger**  to trigger the specified interrupt. \(This API is defined in the test suite. It simulates an external interrupt by writing the related register of the interrupt controller. Skip this step for common peripheral devices.\)
-3.  Call  **HalHwiDelete**  to delete the specified interrupt. Use this API based on actual requirements.
+1. Call **LOS_HwiCreate** to create an interrupt.
+2. Call **LOS_HwiTrigger** to trigger the interrupt.
+3. Call **LOS_HwiDelete** to delete the specified interrupt. Use this API based on actual requirements.
 
 >![](../public_sys-resources/icon-note.gif) **NOTE:** 
 >-   Configure the maximum number of interrupts supported and the number of configurable interrupt priorities based on the specific hardware.
@@ -131,9 +103,9 @@ static UINT32 Example_Interrupt(VOID)
     HwiIrqParam irqParam;
     (void)memset_s(&irqParam, sizeof(HwiIrqParam), 0, sizeof(HwiIrqParam));
     irqParam.pDevId = 0;
-  
+
     /* Create an interrupt. */
-     ret = LOS_HwiCreate(HWI_NUM_TEST, hwiPrio, mode, (HWI_PROC_FUNC)HwiUsrIrq, &irqParam);
+    ret = LOS_HwiCreate(HWI_NUM_TEST, hwiPrio, mode, (HWI_PROC_FUNC)HwiUsrIrq, &irqParam);
     if(ret == LOS_OK){
         printf("Hwi create success!\n");
     } else {
@@ -141,11 +113,17 @@ static UINT32 Example_Interrupt(VOID)
         return LOS_NOK;
     }
 
-    /* Delay 50 ticks. When a hardware interrupt occurs, the HwiUsrIrq function will be called. */
-    LOS_TaskDelay(50);
+    /* Trigger the interrupt. */
+    ret = LOS_HwiTrigger(HWI_NUM_TEST);
+    if(ret == LOS_OK){
+        printf("Hwi trigger success!\n");
+    } else {
+        printf("Hwi trigger failed!\n");
+        return LOS_NOK;
+    }
 
-    /* Delete an interrupt. */
-    ret = HalHwiDelete(HWI_NUM_TEST);    
+    /* Delete the interrupt. */
+    ret = LOS_HwiDelete(HWI_NUM_TEST);    
     if(ret == LOS_OK){
         printf("Hwi delete success!\n");
     } else {
@@ -164,4 +142,3 @@ The development is successful if the return result is as follows:
 Hwi create success!
 Hwi delete success!
 ```
-
