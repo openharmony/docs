@@ -21,12 +21,13 @@
        - [数据管理](database/Readme-CN.md)
        - [USB服务](usb/Readme-CN.md)
        - [DFX](dfx/Readme-CN.md)
+       - [窗口管理](windowmanager/Readme-CN.md)
 - 工具
     - [DevEco Studio（OpenHarmony）使用指南](quick-start/deveco-studio-user-guide-for-openharmony.md)
 - 示例教程
     - [示例代码](https://gitee.com/openharmony/app_samples/blob/master/README_zh.md)
     - [Codelabs](https://gitee.com/openharmony/codelabs/blob/master/README.md)
-- API参考 
+- API参考
     - [组件参考（基于JS扩展的类Web开发范式）](reference/arkui-js/Readme-CN.md)
     - [组件参考（基于TS扩展的声明式开发范式）](reference/arkui-ts/Readme-CN.md)
     - [接口参考](reference/apis/Readme-CN.md)
