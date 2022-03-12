@@ -19,14 +19,14 @@ SystemCapability.HiviewDFX.HiTrace
 
 | 名称 | 默认值 | 说明 |
 | -------- | -------- | -------- |
-| DEFAULT           | 0      | 缺省标志       |
-| INCLUDE_ASYNC     | 1      | 异步调用标志   |
-| DONOT_CREATE_SPAN | 1 << 1 | 无分支标志     |
-| TP_INFO           | 1 << 2 | 埋点标志       |
-| NO_BE_INFO        | 1 << 3 | 无起始结束标志 |
-| DISABLE_LOG       | 1 << 4 | 日志关联标志   |
-| FAILURE_TRIGGER   | 1 << 5 | 故障触发标志   |
-| D2D_TP_INFO       | 1 << 6 | 设备间埋点标志 |
+| DEFAULT           | 0      | 缺省标志。       |
+| INCLUDE_ASYNC     | 1      | 异步调用标志。启动跟踪时，缺省只跟踪同步调用。设置该标志，同时跟踪同步、异步调用。   |
+| DONOT_CREATE_SPAN | 1 << 1 | 无分支标志。启动跟踪时，在同步、异步调用时缺省自动创建分支信息。设置该标志，指示不创建分支。     |
+| TP_INFO           | 1 << 2 | 埋点标志。启动跟踪式时，缺省不进行埋点。调试场景下设置该标志，在同步、异步调用的收发侧自动埋点，输出埋点信息和时间戳。收发埋点按照client、server分为[client send（CS）、server receive（SR）、server send（SS）、client receive（CR）](#hitracetracepointtype)四类信息。一次同步调用输出CS/SR/SS/CR，一次异步调用输出CS/SR/SS三个埋点信息。       |
+| NO_BE_INFO        | 1 << 3 | 无起始结束标志。启动跟踪时，缺省打印启动及结束跟踪信息。设置该标志，指示不打印启动及结束跟踪信息。 |
+| DISABLE_LOG       | 1 << 4 | 日志关联标志。设置该标志，指示隐藏日志中的跟踪信息。  |
+| FAILURE_TRIGGER   | 1 << 5 | 故障触发标志。预置标志，暂时没有作用。  |
+| D2D_TP_INFO       | 1 << 6 | 设备间埋点标志。TP_INFO的一个子集，设置该标志，只进行设备间的调用埋点。 |
 
 ## HiTraceTracepointType
 
@@ -34,11 +34,11 @@ SystemCapability.HiviewDFX.HiTrace
 
 | 名称 | 默认值 | 说明 |
 | -------- | -------- | -------- |
-| CS       | 0 | 客户端发送类型  |
-| CR       | 1 | 客户端接收类型  |
-| SS       | 2 | 服务端发送类型  |
-| SR       | 3 | 服务端接收类型  |
-| GENERAL  | 4 | 常规类型        |
+| CS       | 0 | 客户端发送类型，标识client侧的发送埋点。        |
+| CR       | 1 | 客户端接收类型，标识client侧的接收埋点。        |
+| SS       | 2 | 服务端发送类型，标识server侧的发送埋点。        |
+| SR       | 3 | 服务端接收类型，标识server侧的接收埋点。        |
+| GENERAL  | 4 | 一般类型，标识CS、CR、SS、SR四种场景之外的埋点。|
 
 ## HiTraceCommunicationMode
 
@@ -46,7 +46,7 @@ SystemCapability.HiviewDFX.HiTrace
 
 | 名称 | 默认值 | 说明 |
 | -------- | -------- | -------- |
-| DEFAULT  | 0 | 缺省方式        |
+| DEFAULT  | 0 | 缺省通信类型    |
 | THREAD   | 1 | 线程间通信类型  |
 | PROCESS  | 2 | 进程间通信类型  |
 | DEVICE   | 3 | 设备间通信类型  |
