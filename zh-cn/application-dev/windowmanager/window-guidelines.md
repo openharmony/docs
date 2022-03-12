@@ -105,5 +105,5 @@ import window from '@ohos.window';
 })
 ```
 
-完整[示例工程](https://gitee.com/openharmony/windowmanager/tree/master/AppDemo/immersive)。
+完整[示例工程](https://gitee.com/openharmony/windowmanager/tree/master/AppDemo/window/immersive)。
 
