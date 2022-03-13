@@ -181,3 +181,6 @@
         - [内核增强特性](kernel-standard-enhanced-features.md)
             - [内存管理](kernel-standard-mm.md)
                 - [Enhanced SWAP特性介绍](kernel-standard-mm-eswap.md)
+            - [任务调度](kernel-standard-sched.md)
+                - [关联线程组调度](kernel-standard-sched-rtg.md)
+                - [CPU轻量级隔离](kernel-standard-sched-cpuisolation.md)
