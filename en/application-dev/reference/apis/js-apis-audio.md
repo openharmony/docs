@@ -15,6 +15,8 @@ None
 
 ## audioManager
 
+### audio.getAudioManager
+
 getAudioManager\(\): AudioManager<a name="section84581011418"></a>
 
 Obtains an **AudioManager**  instance.
@@ -44,25 +46,75 @@ Obtains an **AudioManager**  instance.
 var audioManager = audio.getAudioManager();
 ```
 
-
 ## audioRenderer
 
-createAudioRenderer(options: AudioRendererOptions): AudioRenderer<a name="createaudioRenderer"></a>
+### audio.createAudioRenderer
 
-Obtains an  **AudioRenderer**  instance.
+createAudioRenderer(options: AudioRendererOptions, callback: AsyncCallback<AudioRenderer>): void<a name="createaudioRenderer-callback"></a>
+
+Obtains an **AudioRenderer** instance. This method uses an asynchronous callback to return the renderer instance.
 
 **System capabilities**: SystemCapability.Multimedia.Audio.Renderer
 
 **Parameters**
-| Name       | Type                 | Mandatory | Description             |
-| :--------- | :------------------- | :-------- | :---------------------- |
-| options    | AudioRendererOptions | Yes       | Renderer configurations |
+| Name       | Type                         | Mandatory | Description                                          |
+| :--------- | :--------------------------- | :-------- | :--------------------------------------------------- |
+| options    | AudioRendererOptions         | Yes       | Renderer configurations.                             |
+| callback   | AsyncCallback<AudioRenderer> | Yes       | Callback used to return the audio renderer instance. |
 
 **Return value**
 
-| Type          | Description           |
-| ------------- | --------------------- |
-| AudioRenderer | AudioRenderer object. |
+None
+
+**Example**
+
+```
+var audioStreamInfo = {
+    samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
+    channels: audio.AudioChannel.CHANNEL_1,
+    sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
+    encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
+}
+
+var audioRendererInfo = {
+    content: audio.ContentType.CONTENT_TYPE_SPEECH,
+    usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
+    rendererFlags: 1
+}
+
+var audioRendererOptions = {
+    streamInfo: audioStreamInfo,
+    rendererInfo: audioRendererInfo
+}
+
+audio.createAudioRenderer(audioRendererOptions,(err, data) => {
+    if (err) {
+        console.error(`AudioRender Created : Error: ${err.message}`);
+    }
+    else {
+        console.info('AudioRender Created : Success : SUCCESS');
+        audioRenderer = data;
+    }
+});
+```
+### audio.createAudioRenderer
+
+createAudioRenderer(options: AudioRendererOptions): Promise<AudioRenderer><a name="createaudioRenderer-promise"></a>
+
+Obtains an **AudioRenderer** instance. This method uses a promise to return the renderer instance.
+
+**System capabilities**: SystemCapability.Multimedia.Audio.Renderer
+
+**Parameters**
+| Name       | Type                         | Mandatory | Description                                          |
+| :--------- | :--------------------------- | :-------- | :--------------------------------------------------- |
+| options    | AudioRendererOptions         | Yes       | Renderer configurations.                             |
+
+**Return value**
+
+| Type                   | Description                                         |
+| ---------------------- | --------------------------------------------------- |
+| Promise<AudioRenderer> | Promise used to return the audio renderer instance. |
 
 **Example**
 
@@ -88,29 +140,98 @@ var audioRendererOptions = {
 let audioRenderer = await audio.createAudioRenderer(audioRendererOptions);
 ```
 
+## audioCapturer
 
-## systemSoundManager
+### audio.createAudioCapturer
 
-getSystemSoundManager(): SystemSoundManager<a name="getsystemsoundmanager"></a>
+createAudioCapturer(options: AudioCapturerOptions, callback: AsyncCallback<AudioCapturer>): void<a name="createaudioCapturer-callback"></a>
 
-Obtains a  **SystemSoundManager**  instance.
+Obtains an **AudioCapturer** instance. This method uses an asynchronous callback to return the capturer instance.
+
+**System capabilities**: SystemCapability.Multimedia.Audio.Capturer
 
 **Parameters**
-
-None
+| Name       | Type                         | Mandatory | Description                                          |
+| :--------- | :--------------------------- | :-------- | :--------------------------------------------------- |
+| options    | AudioCapturerOptions         | Yes       | Capturer configurations.                             |
+| callback   | AsyncCallback<AudioCapturer> | Yes       | Callback used to return the audio capturer instance. |
 
 **Return value**
 
-| Type               | Description                |
-| ------------------ | -------------------------- |
-| SystemSoundManager | SystemSoundManager object. |
+None
 
 **Example**
 
 ```
-const systemSoundManager = audio.getSystemSoundManager();
+var audioStreamInfo = {
+    samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
+    channels: audio.AudioChannel.CHANNEL_2,
+    sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
+    encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
+}
+
+var audioCapturerInfo = {
+    source: audio.SourceType.SOURCE_TYPE_MIC,
+    capturerFlags: 1
+}
+
+var audioCapturerOptions = {
+    streamInfo: audioStreamInfo,
+    capturerInfo: audioCapturerInfo
+}
+
+audio.createAudioCapturer(audioCapturerOptions,(err, data) => {
+    if (err) {
+        console.error(`AudioCapturer Created : Error: ${err.message}`);
+    }
+    else {
+        console.info('AudioCapturer Created : Success : SUCCESS');
+        audioCapturer = data;
+    }
+});
 ```
 
+### audio.createAudioCapturer
+
+createAudioCapturer(options: AudioCapturerOptions): Promise<AudioCapturer><a name="createaudiocapturer-promise"></a>
+
+Obtains an **AudioCapturer** instance. This method uses a promise to return the capturer instance.
+
+**System capabilities**: SystemCapability.Multimedia.Audio.Capturer
+
+**Parameters**
+| Name       | Type                         | Mandatory | Description                                          |
+| :--------- | :--------------------------- | :-------- | :--------------------------------------------------- |
+| options    | AudioCapturerOptions         | Yes       | Capturer configurations.                             |
+
+**Return value**
+
+| Type                   | Description                                         |
+| ---------------------- | --------------------------------------------------- |
+| Promise<AudioCapturer> | Promise used to return the audio capturer instance. |
+
+**Example**
+
+```
+var audioStreamInfo = {
+    samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
+    channels: audio.AudioChannel.CHANNEL_2,
+    sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
+    encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
+}
+
+var audioCapturerInfo = {
+    source: audio.SourceType.SOURCE_TYPE_MIC,
+    capturerFlags: 1
+}
+
+var audioCapturerOptions = {
+    streamInfo: AudioStreamInfo,
+    capturerInfo: AudioCapturerInfo
+}
+
+let audioCapturer = await audio.createAudioCapturer(audioCapturerOptions);
+```
 
 ## AudioVolumeType<a name="section92261857172218"></a>
 
@@ -465,15 +586,6 @@ Enumerates the interrupt hints.
 | INTERRUPT_HINT_DUCK   | 4             | Ducked the playback. <br/> System capabilities: SystemCapability.Multimedia.Audio.Renderer        |
 | INTERRUPT_HINT_UNDUCK | 5             | Unducked the playback. <br/> System capabilities: SystemCapability.Multimedia.Audio.Renderer      |
 
-
-## RingtoneType<sup>8+</sup><a name="ringtonetype"></a>
-Enumerates the ringtone types.
-
-| Name                   | Default Value | Description     |
-| :--------------------- | :------------ | :-------------- |
-| RINGTONE_TYPE_DEFAULT  | 0             | Default type.   |
-| RINGTONE_TYPE_MULTISIM | 1             | Multi-SIM type. |
-
 ## AudioStreamInfo<sup>8+</sup><a name="audiorstreaminfo"></a>
 Describes audio stream information.
 
@@ -540,18 +652,6 @@ Describes the volume event received by the app when the volume is changed.
 | volume     | number          | Yes       | Volume level.                            |
 | updateUi   | boolean         | Yes       | Whether to show the volume change in UI. |
 
-
-## RingtoneOptions<sup>8+</sup><a name="ringtoneoptions"></a>
-Describes ringtone options.
-
-**Parameters**
-
-| Name   | Type    | Mandatory | Description      |
-| :----- | :------ | :-------- | :--------------- |
-| volume | number  | Yes       | Ringtone volume. |
-| loop   | boolean | Yes       | Loop value.      |
-
-
 ## DeviceChangeAction
 Describes the device change type and device information.
 
@@ -605,7 +705,6 @@ Enumerates audio scenes.
 | AUDIO_SCENE_RINGING    | 1             | Ringing audio scene. <br/> System capabilities: SystemCapability.Multimedia.Audio.Communication    |
 | AUDIO_SCENE_PHONE_CALL | 2             | Phone call audio scene. <br/> System capabilities: SystemCapability.Multimedia.Audio.Communication |
 | AUDIO_SCENE_VOICE_CHAT | 3             | Voice chat audio scene. <br/> System capabilities: SystemCapability.Multimedia.Audio.Communication |
-
 
 # AudioManager<a name="section8265143814015"></a>
 
@@ -673,11 +772,11 @@ None
 ```
 audioManager.setVolume(audio.AudioVolumeType.MEDIA, 10, (err)=>{
    if (err) {
-	   console.error('Failed to set the volume. ${err.message}');
-	   return;
+       console.error('Failed to set the volume. ${err.message}');
+       return;
    }
    console.log('Callback invoked to indicate a successful volume setting.');
-})
+});
 ```
 ## audioManager.setVolume
 
@@ -797,11 +896,11 @@ None
 ```
 audioManager.getVolume(audio.AudioVolumeType.MEDIA, (err, value) => {
    if (err) {
-	   console.error('Failed to obtain the volume. ${err.message}');
-	   return;
+       console.error('Failed to obtain the volume. ${err.message}');
+       return;
    }
    console.log('Callback invoked to indicate that the volume is obtained.');
-})
+});
 ```
 
 
@@ -916,10 +1015,10 @@ None
 audioManager.getMinVolume(audio.AudioVolumeType.MEDIA, (err, value) => {
     if (err) {
         console.error('Failed to obtain the minimum volume. ${err.message}');
-	return;
+    return;
     }
     console.log('Callback invoked to indicate that the minimum volume is obtained.' + value);
-})
+});
 ```
 
 
@@ -1037,7 +1136,7 @@ audioManager.getMaxVolume(audio.AudioVolumeType.MEDIA, (err, value) => {
         return;
     }
     console.log('Callback invoked to indicate that the maximum volume is obtained.' + value);
-})
+});
 ```
 
 
@@ -1160,10 +1259,10 @@ None
 audioManager.mute(audio.AudioVolumeType.MEDIA, true, (err) => {
     if (err) {
         console.error('Failed to mute the stream. ${err.message}');
-	return;
+    return;
     }
     console.log('Callback invoked to indicate that the stream is muted.');
-})
+});
 ```
 
 
@@ -1286,11 +1385,11 @@ None
 ```
 audioManager.isMute(audio.AudioVolumeType.MEDIA, (err, value) => {
    if (err) {
-	   console.error('Failed to obtain the mute status. ${err.message}');
-	   return;
+       console.error('Failed to obtain the mute status. ${err.message}');
+       return;
    }
    console.log('Callback invoked to indicate that the mute status of the stream is obtained.' + value);
-})
+});
 ```
 
 
@@ -1405,10 +1504,10 @@ None
 audioManager.isActive(audio.AudioVolumeType.MEDIA, (err, value) => {
     if (err) {
         console.error('Failed to obtain the active status of the stream. ${err.message}');
-	return;
+    return;
     }
     console.log('Callback invoked to indicate that the active status of the stream is obtained.' + value);
-})
+});
 ```
 
 
@@ -1526,7 +1625,7 @@ audioManager.setRingerMode(audio.AudioRingMode.RINGER_MODE_NORMAL, (err) => {
        return;
     }
     console.log('Callback invoked to indicate a successful setting of the ringer mode.');
-})
+});
 ```
 
 
@@ -1631,11 +1730,11 @@ None
 ```
 audioManager.getRingerMode((err, value) => {
    if (err) {
-	   console.error('Failed to obtain the ringer mode.​ ${err.message}');
-	   return;
+       console.error('Failed to obtain the ringer mode.​ ${err.message}');
+       return;
    }
    console.log('Callback invoked to indicate that the ringer mode is obtained.' + value);
-})
+});
 ```
 
 
@@ -1738,10 +1837,10 @@ None
 audioManager.setAudioParameter('PBits per sample', '8 bit', (err) => {
     if (err) {
         console.error('Failed to set the audio parameter. ${err.message}');
-	return;
+    return;
     }
     console.log('Callback invoked to indicate a successful setting of the audio parameter.');
-})
+});
 ```
 
 
@@ -1865,10 +1964,10 @@ None
 audioManager.getAudioParameter('PBits per sample', (err, value) => {
     if (err) {
         console.error('Failed to obtain the value of the audio parameter. ${err.message}');
-	return;
+    return;
     }
     console.log('Callback invoked to indicate that the value of the audio parameter is obtained.' + value);
-})
+});
 ```
 
 
@@ -1925,9 +2024,9 @@ Obtains the value of an audio parameter. This method uses a promise to return th
 **Example**
 
 ```
-audioManager.getAudioParameter('PBits per sample').then((value) =>
+audioManager.getAudioParameter('PBits per sample').then((value) => {
     console.log('Promise returned to indicate that the value of the audio parameter is obtained.' + value);
-)
+});
 ```
 
 
@@ -1982,11 +2081,11 @@ None
 ```
 audioManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (err, value)=>{
    if (err) {
-	   console.error('Failed to obtain the device list. ${err.message}');
-	   return;
+       console.error('Failed to obtain the device list. ${err.message}');
+       return;
    }
    console.log('Callback invoked to indicate that the device list is obtained.');
-})
+});
 ```
 
 
@@ -2044,9 +2143,9 @@ Obtains the audio devices with a specific flag. This method uses a promise to re
 **Example**
 
 ```
-audioManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data)=>
+audioManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data)=> {
     console.log('Promise returned to indicate that the device list is obtained.');
-)
+});
 ```
 
 
@@ -2111,10 +2210,10 @@ None
 audioManager.setDeviceActive(audio.DeviceType.SPEAKER, true, (err)=> {
     if (err) {
         console.error('Failed to set the active status of the device. ${err.message}');
-	return;
+    return;
     }
     console.log('Callback invoked to indicate that the device is set to the active status.');
-})
+});
 ```
 
 
@@ -2181,9 +2280,9 @@ Sets a device to the active state. This method uses a promise to return the resu
 **Example**
 
 ```
-audioManager.setDeviceActive(audio.DeviceType.SPEAKER, true).then(()=>
+audioManager.setDeviceActive(audio.DeviceType.SPEAKER, true).then(()=> {
     console.log('Promise returned to indicate that the device is set to the active status.');
-)
+});
 ```
 
 
@@ -2239,10 +2338,10 @@ None
 audioManager.isDeviceActive(audio.DeviceType.SPEAKER, (err, value) => {
     if (err) {
         console.error('Failed to obtain the active status of the device. ${err.message}');
-	return;
+    return;
     }
     console.log('Callback invoked to indicate that the active status of the device is obtained.');
-})
+});
 ```
 
 
@@ -2299,9 +2398,9 @@ Checks whether a device is active. This method uses a promise to return the quer
 **Example**
 
 ```
-audioManager.isDeviceActive(audio.DeviceType.SPEAKER).then((value) =>
+audioManager.isDeviceActive(audio.DeviceType.SPEAKER).then((value) => {
     console.log('Promise returned to indicate that the active status of the device is obtained.' + value);
-)
+});
 ```
 
 
@@ -2360,7 +2459,7 @@ audioManager.setMicrophoneMute(true, (err) => {
         return;
     }
     console.log('Callback invoked to indicate that the microphone is muted.');
-})
+});
 ```
 
 
@@ -2417,9 +2516,9 @@ Mutes or unmutes the microphone. This method uses a promise to return the result
 **Example**
 
 ```
-audioManager.setMicrophoneMute(true).then(() =>
+audioManager.setMicrophoneMute(true).then(() => {
     console.log('Promise returned to indicate that the microphone is muted.');
-)
+});
 ```
 
 
@@ -2469,7 +2568,7 @@ audioManager.isMicrophoneMute((err, value) => {
         return;
     }
     console.log('Callback invoked to indicate that the mute status of the microphone is obtained.' + value);
-})
+});
 ```
 
 
@@ -2505,9 +2604,9 @@ None
 **Example**
 
 ```
-audioManager.isMicrophoneMute().then((value) =>
+audioManager.isMicrophoneMute().then((value) => {
     console.log('Promise returned to indicate that the mute status of the microphone is obtained.', + value);
-)
+});
 ```
 
 
@@ -2537,7 +2636,7 @@ audioManager.on('volumeChange', (volumeEvent) => {
     console.log('VolumeType of stream: ' + volumeEvent.volumeType);
     console.log('Volume level: ' + volumeEvent.volume);
     console.log('Whether to updateUI: ' + volumeEvent.updateUi);
-})
+});
 ```
 
 
@@ -2565,7 +2664,7 @@ None
 ```
 audioManager.on('ringerModeChange', (ringerMode) => {
     console.log('Updated ringermode: ' + ringerMode);
-})
+});
 ```
 
 ## audioManager.on
@@ -2595,7 +2694,7 @@ audioManager.on('deviceChange', (deviceChanged) => {
     console.info("device descriptor size : " + deviceChanged.deviceDescriptors.length);
     console.info("device change descriptor : " + deviceChanged.deviceDescriptors[0].deviceRole);
     console.info("device change descriptor : " + deviceChanged.deviceDescriptors[0].deviceType);
-})
+});
 ```
 
 ## audioManager.setAudioScene
@@ -2627,7 +2726,7 @@ audioManager.setAudioScene(audio.AudioScene.AUDIO_SCENE_PHONE_CALL, (err) => {
        return;
     }
     console.log('Callback invoked to indicate a successful setting of the audio scene mode.');
-})
+});
 ```
 
 
@@ -2692,7 +2791,7 @@ audioManager.getAudioScene((err, value) => {
        return;
    }
    console.log('Callback invoked to indicate that the audio scene mode is obtained.' + value);
-})
+});
 ```
 
 
@@ -2722,7 +2821,7 @@ audioManager.getAudioScene().then((value) => {
     console.log('Promise returned to indicate that the audio scene mode is obtained.' + value);
 }).catch ((err) => {
     console.log('Failed to obtain the audio scene mode');
-})
+});
 ```
 
 # AudioDeviceDescriptor<a name="section164657411927"></a>
@@ -2781,7 +2880,7 @@ promise.then(async function (audioDeviceDescriptors) {
     });
     await promise;
     done();
-})
+});
 ```
 # AudioRenderer<a name="audiorenderer"></a>
 Provides audio playback APIs.
@@ -2832,7 +2931,7 @@ audioRenderer.getRendererInfo((err, rendererInfo)=>{
     console.log('Renderer content:' + rendererInfo.content);
     console.log('Renderer usage:' + rendererInfo.usage);
     console.log('Renderer flags:' + rendererInfo.rendererFlags);
-})
+});
 ```
 
 
@@ -2891,7 +2990,7 @@ audioRenderer.getStreamInfo((err, streamInfo)=>{
     console.log('Renderer channel:' + streamInfo.channels);
     console.log('Renderer format:' + streamInfo.sampleFormat);
     console.log('Renderer encoding type:' + streamInfo.encodingType);
-})
+});
 ```
 
 ## audioRenderer.getStreamInfo
@@ -2951,7 +3050,7 @@ audioRenderer.start((err)=>{
     } else {
         console.info('Renderer start success.');
     }
-})
+});
 ```
 
 
@@ -3008,7 +3107,7 @@ audioRenderer.pause((err)=>{
     } else {
         console.log('Renderer paused.');
     }
-})
+});
 ```
 
 
@@ -3067,7 +3166,7 @@ audioRenderer.drain((err)=>{
     } else {
         console.log('Renderer drained.');
     }
-})
+});
 ```
 
 
@@ -3124,7 +3223,7 @@ audioRenderer.stop((err)=>{
     } else {
         console.log('Renderer stopped.');
     }
-})
+});
 ```
 
 
@@ -3181,7 +3280,7 @@ audioRenderer.release((err)=>{
     } else {
         console.log('Renderer released.');
     }
-})
+});
 ```
 
 
@@ -3240,11 +3339,11 @@ let buf = new ArrayBuffer(bufferSize);
 ss.readSync(buf);
 audioRenderer.write(buf, (err, writtenbytes)=>{
     if (writtenbytes < 0) {
-	    console.error('write failed.');
+        console.error('write failed.');
     } else {
        console.log('Actual written bytes: ' + writtenbytes);
     }
-})
+});
 ```
 
 
@@ -3274,7 +3373,7 @@ let buf = new ArrayBuffer(bufferSize);
 ss.readSync(buf);
 let writtenbytes = await audioRenderer.write(buf);
 if (writtenbytes < 0) {
-	console.error('write failed.');
+    console.error('write failed.');
 } else {
     console.log('Actual written bytes: ' + writtenbytes);
 }
@@ -3306,7 +3405,7 @@ None
 ```
 audioRenderer.getAudioTime((err, timestamp)=>{
     console.log('Current timestamp: ' + timestamp);
-})
+});
 ```
 
 
@@ -3362,7 +3461,7 @@ audioRenderer.getBufferSize((err, bufferSize)=>{
     if (err) {
         console.error('getBufferSize error');
     }
-})
+});
 let buf = new ArrayBuffer(bufferSize);
 ss.readSync(buf);
 ```
@@ -3419,11 +3518,11 @@ None
 ```
 audioRenderer.setRenderRate(audio.AudioRendererRate.RENDER_RATE_NORMAL, (err)=> {
     if (err) {
-	    console.error('Failed to set params');
+        console.error('Failed to set params');
     } else {
         console.log('Callback invoked to indicate a successful render rate setting.');
     }
-})
+});
 ```
 
 
@@ -3476,7 +3575,7 @@ None
 ```
 audioRenderer.getRenderRate((err, renderrate)=>{
     console.log('getRenderRate: ' + renderrate);
-})
+});
 ```
 
 
@@ -3551,9 +3650,8 @@ audioRenderer.on('interrupt', (interruptEvent) => {
                 break;
         }
     }
-})
+});
 ```
-
 
 ## audioRenderer.on
 
@@ -3664,803 +3762,6 @@ None
 audioRenderer.off('periodReach')
 ```
 
-## SystemSoundManager<a name="systemsoundmanager"></a>
-
-
-## systemSoundManager.setSystemRingtoneUri
-
-setSystemRingtoneUri(context: Context, uri: string, type: RingtoneType, callback: AsyncCallback<void\>): void<sup>8+</sup><a name="setsystemringtoneuri-asynccallback"></a>
-
-Sets the system ringtone URI. This method uses an asynchronous callback to return the result.
-
-**Parameters**
-
-| Name     | Type                 | Mandatory | Description                         |
-| :------- | :------------------- | :-------- | :---------------------------------- |
-| context  | Context              | Yes       | Current application context.        |
-| uri      | string               | Yes       | Ringtone URI to be set.             |
-| type     | RingtoneType         | Yes       | Ringtone type to be set.            |
-| callback | AsyncCallback<void\> | Yes       | Callback used to return the result. |
-|          |                      |           |                                     |
-
-**Return value**
-
-None
-
-**Example**
-
-```
-systemSoundManager.setSystemRingtoneUri(null, '/data/media/Ringtonetone.wav',
-    audio.RingtoneType.RINGTONE_TYPE_DEFAULT, (err)=> {
-    if (err) {
-	    console.error('Failed to setSystemRingtoneUri');
-    } else {
-        console.log('Callback invoked to indicate a successful system ringtone URI setting.');
-    }
-})
-```
-
-
-## systemSoundManager.setSystemRingtoneUri
-
-setSystemRingtoneUri(context: Context, uri: string, type: RingtoneType): Promise<void\><sup>8+</sup><a name="setsystemringtoneuri-promise"></a>
-
-Sets the system ringtone URI. This method uses a promise to return the result.
-
-**Parameters**
-
-| Name    | Type         | Mandatory | Description                  |
-| :------ | :----------- | :-------- | :--------------------------- |
-| context | Context      | Yes       | Current application context. |
-| uri     | string       | Yes       | Ringtone URI to be set.      |
-| type    | RingtoneType | Yes       | Ringtone type to be set.     |
-|         |              |           |                              |
-
-**Return value**
-
-| Type           | Description                        |
-| :------------- | :--------------------------------- |
-| Promise<void\> | Promise used to return the result. |
-
-**Example**
-
-```
-await systemSoundManager.setSystemRingtoneUri(null, '/data/media/Ringtone.wav', audio.RingtoneType.RINGTONE_TYPE_DEFAULT);
-```
-
-
-## systemSoundManager.getSystemRingtoneUri
-
-getSystemRingtoneUri(context: Context, type: RingtoneType, callback: AsyncCallback<string\>): void<sup>8+</sup><a name="getsystemringtoneuri-asynccallback"></a>
-
-Obtains the system ringtone URI. This method uses an asynchronous callback to return the result.
-
-**Parameters**
-
-| Name     | Type                   | Mandatory | Description                         |
-| :------- | :--------------------- | :-------- | :---------------------------------- |
-| context  | Context                | Yes       | Current application context.        |
-| type     | RingtoneType           | Yes       | Ringtone type to be obtained.       |
-| callback | AsyncCallback<string\> | Yes       | Callback used to return the result. |
-|          |                        |           |                                     |
-
-**Return value**
-
-None
-
-**Example**
-
-```
-systemSoundManager.getSystemRingtoneUri(null, audio.RingtoneType.RINGTONE_TYPE_DEFAULT, (err, ringtoneUri)=>{
-    if (err) {
-        console.err('getSystemRingtoneUri failed');
-    } else {
-        console.log('getSystemRingtoneUri success: ' + ringtoneUri);
-    }
-})
-```
-
-
-## systemSoundManager.getSystemRingtoneUri
-
-getSystemRingtoneUri(context: Context, type: RingtoneType): Promise<string\><a name="getsystemringtoneuri-promise"><sup>8+</sup></a>
-
-Obtains the system ringtone URI. This method uses a promise to return the result.
-
-**Parameters**
-
-None
-
-**Return value**
-
-| Type             | Description                       |
-| :--------------- | :-------------------------------- |
-| Promise<string\> | Promise used to the ringtone URI. |
-
-**Example**
-
-```
-let ringtoneUri = await systemSoundManager.getSystemRingtoneUri(null, audio.RingtoneType.RINGTONE_TYPE_DEFAULT);
-if (ringtoneUri == '/data/media/Believer60s.wav') {
-    console.log('getSystemRingtoneUri success: ' + uri);
-} else {
-    console.log('getSystemRingtoneUri fail: ' + uri);
-}
-```
-
-
-## systemSoundManager.getSystemRingtonePlayer
-
-getSystemRingtonePlayer(context: Context, type: RingtoneType, callback: AsyncCallback<RingtonePlayer\>): void<sup>8+</sup><a name="getsystemringtoneplayer-asynccallback"></a>
-
-Obtains the ringtone player. This method uses an asynchronous callback to return the result.
-
-**Parameters**
-
-| Name     | Type                            | Mandatory | Description                               |
-| :------- | :------------------------------ | :-------- | :---------------------------------------- |
-| context  | Context                         | Yes       | Current application context.              |
-| type     | RingtoneType                    | Yes       | Ringtone type to be obtained.             |
-| callback | AsyncCallback<RingtonePlayer\>) | Yes       | Ringtone player maintained in the system. |
-|          |                                 |           |                                           |
-
-**Return value**
-
-None
-
-**Example**
-
-```
-systemSoundManager.getSystemRingtonePlayer(null, audio.RingtoneType.RINGTONE_TYPE_DEFAULT, (err, ringtonePlayer)=>{
-    if (err) {
-        console.err('getSystemRingtonePlayer failed');
-    } else {
-        console.log('getSystemRingtonePlayer success: ');
-    }
-})
-```
-
-
-## systemSoundManager.getSystemRingtonePlayer
-
-getSystemRingtonePlayer(context: Context, type: RingtoneType): Promise<RingtonePlayer\><a name="getsystemringtoneplayer-promise"><sup>8+</sup></a>
-
-Obtains the ringtone player. This method uses a promise to return the result.
-
-**Parameters**
-
-None
-
-**Return value**
-
-| Type                     | Description                              |
-| :----------------------- | :--------------------------------------- |
-| Promise<RingtonePlayer\> | Promise used return the ringtone player. |
-
-**Example**
-
-```
-let ringtonePlayer = await systemSoundManager.getSystemRingtoneUri(null, audio.RingtoneType.RINGTONE_TYPE_DEFAULT);
-```
-
-
-## systemSoundManager.setSystemNotificationUri
-
-setSystemNotificationUri(context: Context, uri: string, callback: AsyncCallback<void\>): void<sup>8+</sup><a name="setsystemnotificationuri-asynccallback"></a>
-
-Sets the system notification URI. This method uses an asynchronous callback to return the result.
-
-**Parameters**
-
-| Name     | Type                 | Mandatory | Description                         |
-| :------- | :------------------- | :-------- | :---------------------------------- |
-| context  | Context              | Yes       | Current application context.        |
-| uri      | string               | Yes       | System notification URI to be set.  |
-| callback | AsyncCallback<void\> | Yes       | Callback used to return the result. |
-|          |                      |           |                                     |
-
-**Return value**
-
-None
-
-**Example**
-
-```
-systemSoundManager.setSystemNotificationUri(null, '/data/media/Notification.wav'), (err)=> {
-    if (err) {
-	    console.error('Failed to setSystemNotificationUri');
-    } else {
-        console.log('Callback invoked to indicate a successful system notification URI setting.');
-    }
-})
-```
-
-
-## systemSoundManager.setSystemNotificationUri
-
-setSystemNotificationUri(context: Context, uri: string): Promise<void\><sup>8+</sup><a name="setsystemnotificationuri-promise"></a>
-
-Sets the system notification URI. This method uses a promise to return the result.
-
-**Parameters**
-
-| Name    | Type    | Mandatory | Description                        |
-| :------ | :------ | :-------- | :--------------------------------- |
-| context | Context | Yes       | Current application context.       |
-| uri     | string  | Yes       | System notification URI to be set. |
-|         |         |           |                                    |
-
-**Return value**
-
-| Type           | Description                        |
-| :------------- | :--------------------------------- |
-| Promise<void\> | Promise used to return the result. |
-
-**Example**
-
-```
-await systemSoundManager.setSystemNotificationUri(null, '/data/media/Notification.wav');
-```
-
-
-## systemSoundManager.getSystemNotificationUri
-
-getSystemNotificationUri(context: Context, callback: AsyncCallback<string\>): void<sup>8+</sup><a name="getsystemnotificationuri-asynccallback"></a>
-
-Obtains the system notification URI. This method uses an asynchronous callback to return the result.
-
-**Parameters**
-
-| Name     | Type                   | Mandatory | Description                                          |
-| :------- | :--------------------- | :-------- | :--------------------------------------------------- |
-| context  | Context                | Yes       | Current application context.                         |
-| callback | AsyncCallback<string\> | Yes       | Callback used to return the system notification URI. |
-|          |                        |           |                                                      |
-
-**Return value**
-
-None
-
-**Example**
-
-```
-systemSoundManager.getSystemNotificationUri(null, (err, notificationUri)=>{
-    if (err) {
-        console.err('getSystemNotificationUri failed');
-    } else {
-        console.log('getSystemNotificationUri success: ' + notificationUri);
-    }
-})
-```
-
-
-## systemSoundManager.getSystemNotificationUri
-
-getSystemNotificationUri(context: Context): Promise<string\><a name="getsystemnotificationuri-promise"><sup>8+</sup></a>
-
-Obtains the system notification URI. This method uses a promise to return the result.
-
-**Parameters**
-
-None
-
-**Return value**
-
-| Type             | Description                                         |
-| :--------------- | :-------------------------------------------------- |
-| Promise<string\> | Promise used to return the system notification URI. |
-
-**Example**
-
-```
-let notificationUri = await systemSoundManager.getSystemNotificationUri(null);
-console.log('getSystemNotificationUri : ' + uri);
-```
-
-
-## systemSoundManager.setSystemAlarmUri
-
-setSystemAlarmUri(context: Context, uri: string, callback: AsyncCallback<void\>): void<sup>8+</sup><a name="setsystemalarmuri-asynccallback"></a>
-
-Sets the system alarm URI. This method uses an asynchronous callback to return the result.
-
-**Parameters**
-
-| Name     | Type                 | Mandatory | Description                         |
-| :------- | :------------------- | :-------- | :---------------------------------- |
-| context  | Context              | Yes       | Current application context.        |
-| uri      | string               | Yes       | System alarm URI to be set.         |
-| callback | AsyncCallback<void\> | Yes       | Callback used to return the result. |
-|          |                      |           |                                     |
-
-**Return value**
-
-None
-
-**Example**
-
-```
-systemSoundManager.setSystemAlarmUri(null, '/data/media/Alarm.wav'), (err)=> {
-    if (err) {
-	    console.error('Failed to setSystemAlarmUri');
-    } else {
-        console.log('Callback invoked to indicate a successful system alarm URI setting.');
-    }
-})
-```
-
-
-## systemSoundManager.setSystemAlarmUri
-
-setSystemAlarmUri(context: Context, uri: string): Promise<void\><sup>8+</sup><a name="setsystemalarmuri-promise"></a>
-
-Sets the system alarm URI. This method uses a promise to return the result.
-
-**Parameters**
-
-| Name    | Type    | Mandatory | Description                  |
-| :------ | :------ | :-------- | :--------------------------- |
-| context | Context | Yes       | Current application context. |
-| uri     | string  | Yes       | System alarm URI to be set.  |
-|         |         |           |                              |
-
-**Return value**
-
-| Type           | Description                        |
-| :------------- | :--------------------------------- |
-| Promise<void\> | Promise used to return the result. |
-
-**Example**
-
-```
-await systemSoundManager.setSystemAlarmUri(null, '/data/media/Alarm.wav');
-```
-
-
-## systemSoundManager.getSystemAlarmUri
-
-getSystemAlarmUri(context: Context, callback: AsyncCallback<string>): void<sup>8+</sup><a name="getsystemalarmuri-asynccallback"></a>
-
-Obtains the system alarm URI. This method uses an asynchronous callback to return the result.
-
-**Parameters**
-
-| Name     | Type                   | Mandatory | Description                                   |
-| :------- | :--------------------- | :-------- | :-------------------------------------------- |
-| context  | Context                | Yes       | Current application context.                  |
-| callback | AsyncCallback<string\> | Yes       | Callback used to return the system alarm URI. |
-|          |                        |           |                                               |
-
-**Return value**
-
-None
-
-**Example**
-
-```
-systemSoundManager.getSystemAlarmUri(null, (err, alarmUri)=>{
-    if (err) {
-        console.err('getSystemAlarmUri failed');
-    } else {
-        console.log('getSystemAlarmUri success: ' + alarmUri);
-    }
-})
-```
-
-
-## systemSoundManager.getSystemAlarmUri
-
-getSystemAlarmUri(context: Context): Promise<string\><a name="getsystemalarmuri-promise"><sup>8+</sup></a>
-
-Obtains the system alarm URI. This method uses a promise to return the result.
-
-**Parameters**
-
-None
-
-**Return value**
-
-| Type             | Description                                  |
-| :--------------- | :------------------------------------------- |
-| Promise<string\> | Promise used to return the system alarm URI. |
-
-**Example**
-
-```
-let alarmUri = await systemSoundManager.getSystemAlarmUri(null);
-console.log('getSystemAlarmUri success: ' + alarmUri);
-```
-
-
-# RingtonePlayer<a name="ringtoneplayer"></a>
-
-## ringtonePlayer.state
-
-readonly state: AudioState <sup>8+</sup><a name="ringtoneplayerstate-getter"></a>
-
-Defines the current ringtone player state.
-
-| Name  | Type       | Readable | Writable | Description            |
-| :---- | :--------- | :------- | :------- | :--------------------- |
-| state | AudioState | Yes      | No       | Ringtone player state. |
-
-**Example**
-
-```
-systemSoundManager.getSystemRingtonePlayer(null, audio.RingtoneType.RINGTONE_TYPE_DEFAULT, (err, ringtonePlayer)=>{
-    if (err) {
-        console.err('getSystemRingtonePlayer failed');
-        return;
-    } else {
-        console.log('getSystemRingtonePlayer success');
-    }
-});
-
-var state = ringtonePlayer.state;
-```
-
-
-## ringtonePlayer.getTitle
-
-getTitle(callback: AsyncCallback<string\>): void<sup>8+</sup><a name="gettitle-asynccallback"></a>
-
-Obtains the title of the ringtone. This method uses an asynchronous callback to return the result.
-
-**Parameters**
-| Name     | Type                   | Mandatory | Description                                        |
-| :------- | :--------------------- | :-------- | :------------------------------------------------- |
-| callback | AsyncCallback<string\> | Yes       | Callback used to return the title of the ringtone. |
-|          |                        |           |                                                    |
-
-**Return value**
-
-None
-
-**Example**
-
-```
-systemSoundManager.getSystemRingtonePlayer(null, audio.RingtoneType.RINGTONE_TYPE_DEFAULT, (err, ringtonePlayer)=>{
-    if (err) {
-        console.err('getSystemRingtonePlayer failed');
-        return;
-    } else {
-        console.log('getSystemRingtonePlayer success');
-    }
-});
-
-ringtonePlayer.getTitle((err, title)=>{
-    if (err) {
-        console.err('getTitle failed');
-    } else {
-        console.log('getTitle success: ' + title);
-    }
-})
-```
-
-
-## ringtonePlayer.getTitle
-
-getTitle(): Promise<string\><a name="gettitle-promise"><sup>8+</sup></a>
-
-Obtains the title of the ringtone. This method uses a promise to return the result.
-
-**Parameters**
-
-None
-
-**Return value**
-
-| Type             | Description                                       |
-| :--------------- | :------------------------------------------------ |
-| Promise<string\> | Promise used to return the title of the ringtone. |
-
-**Example**
-
-```
-let ringtonePlayer = await systemSoundManager.getSystemRingtoneUri(null, audio.RingtoneType.RINGTONE_TYPE_DEFAULT);
-let title = await ringtonePlayer.getTitle();
-```
-
-
-## ringtonePlayer.getAudioRendererInfo
-
-getAudioRendererInfo(callback: AsyncCallback<AudioRendererInfo\>): void<sup>8+</sup><a name="getaudiorendererinfo-asynccallback"></a>
-
-Obtains the audio renderer information. This method uses an asynchronous callback to return the result.
-
-**Parameters**
-
-| Name     | Type                              | Mandatory | Description                                             |
-| :------- | :-------------------------------- | :-------- | :------------------------------------------------------ |
-| callback | AsyncCallback<AudioRendererInfo\> | Yes       | Callback used to return the audio renderer information. |
-|          |                                   |           |                                                         |
-
-**Return value**
-
-None
-
-**Example**
-
-```
-systemSoundManager.getSystemRingtonePlayer(null, audio.RingtoneType.RINGTONE_TYPE_DEFAULT, (err, ringtonePlayer)=>{
-    if (err) {
-        console.err('getSystemRingtonePlayer failed');
-        return;
-    } else {
-        console.log('getSystemRingtonePlayer success: ');
-    }
-});
-
-ringtonePlayer.getAudioRendererInfo((err, rendererInfo)=>{
-    if (err) {
-        console.err('getAudioRendererInfo failed');
-    } else {
-        console.log('getAudioRendererInfo success');
-    }
-});
-```
-
-
-## ringtonePlayer.getAudioRendererInfo
-
-getAudioRendererInfo(): Promise<AudioRendererInfo\><a name="gettitle-promise"><sup>8+</sup></a>
-
-Obtains the audio renderer information. This method uses a promise to return the result.
-
-**Parameters**
-
-None
-
-**Return value**
-
-| Type                        | Description                                            |
-| :-------------------------- | :----------------------------------------------------- |
-| Promise<AudioRendererInfo\> | Promise used to return the audio renderer information. |
-
-**Example**
-
-```
-let ringtonePlayer = await systemSoundManager.getSystemRingtoneUri(null, audio.RingtoneType.RINGTONE_TYPE_DEFAULT);
-let rendererInfo = await ringtonePlayer.getAudioRendererInfo();
-```
-
-
-## ringtonePlayer.configure
-
-configure(options: RingtoneOptions, callback: AsyncCallback<void>): void<sup>8+</sup><a name="configure-asynccallback"></a>
-
-Configures ringtone options. This method uses an asynchronous callback to return the result.
-
-**Parameters**
-
-| Name     | Type                 | Mandatory | Description                         |
-| :------- | :------------------- | :-------- | :---------------------------------- |
-| options  | RingtoneOptions      | Yes       | Ringtone options.                   |
-| callback | AsyncCallback<void\> | Yes       | Callback used to return the result. |
-|          |                      |           |                                     |
-
-**Return value**
-
-None
-
-**Example**
-
-```
-systemSoundManager.getSystemRingtonePlayer(null, audio.RingtoneType.RINGTONE_TYPE_DEFAULT, (err, ringtonePlayer)=>{
-    if (err) {
-        console.err('getSystemRingtonePlayer failed');
-        return;
-    } else {
-        console.log('getSystemRingtonePlayer success: ');
-    }
-});
-
-let ringtoneOptions = {
-    volume: 1,
-    loop: false
-};
-
-ringtonePlayer.configure(ringtoneOptions, (err)=> {
-    if (err) {
-	    console.error('Failed to configure ringtone options');
-    } else {
-        console.log('Callback invoked to indicate a successful ringtone options configuration.');
-    }
-})
-```
-
-
-## ringtonePlayer.configure
-
-configure(options: RingtoneOptions): Promise<void\><sup>8+</sup><a name="configure-promise"></a>
-
-Configures ringtone options. This method uses a promise to return the result.
-
-**Parameters**
-
-| Name    | Type            | Mandatory | Description       |
-| :------ | :-------------- | :-------- | :---------------- |
-| options | RingtoneOptions | Yes       | Ringtone options. |
-|         |                 |           |                   |
-
-**Return value**
-
-| Type           | Description                        |
-| :------------- | :--------------------------------- |
-| Promise<void\> | Promise used to return the result. |
-
-**Example**
-
-```
-let ringtonePlayer = await systemSoundManager.getSystemRingtoneUri(null, audio.RingtoneType.RINGTONE_TYPE_DEFAULT);
-let ringtoneOptions = {
-    volume: 1,
-    loop: false
-};
-
-await ringtonePlayer.configure(ringtoneOptions);
-```
-
-
-## ringtonePlayer.start
-
-start(callback: AsyncCallback<void\>): void<sup>8+</sup><a name="startringtoneplayer-asynccallback"></a>
-
-Starts playing ringtone. This method uses a callback to return the result.
-
-**Parameters**
-
-| Name     | Type                 | Mandatory | Description                         |
-| :------- | :------------------- | :-------- | :---------------------------------- |
-| callback | AsyncCallback<void\> | Yes       | Callback used to return the result. |
-|          |                      |           |                                     |
-
-**Return value**
-
-None
-
-**Example**
-
-```
-ringtonePlayer.start((err)=> {
-    if (err) {
-	    console.error('Failed to start playing ringtone');
-    } else {
-        console.log('Ringtone start playing successfully.');
-    }
-})
-```
-
-
-## ringtonePlayer.start
-
-start(): Promise<void\><sup>8+</sup><a name="startringtoneplayer-promise"></a>
-
-Starts playing ringtone. This method uses a promise to return the result.
-
-**Parameters**
-
-None
-
-**Return value**
-
-| Type           | Description                        |
-| :------------- | :--------------------------------- |
-| Promise<void\> | Promise used to return the result. |
-
-**Example**
-
-```
-await ringtonePlayer.start();
-```
-
-
-## ringtonePlayer.stop
-
-stop(callback: AsyncCallback<void\>): void<sup>8+</sup><a name="stopringtoneplayer-asynccallback"></a>
-
-Stops playing ringtone. This method uses a callback to return the result.
-
-**Parameters**
-
-| Name     | Type                 | Mandatory | Description                         |
-| :------- | :------------------- | :-------- | :---------------------------------- |
-| callback | AsyncCallback<void\> | Yes       | Callback used to return the result. |
-|          |                      |           |                                     |
-
-**Return value**
-
-None
-
-**Example**
-
-```
-ringtonePlayer.stop((err)=> {
-    if (err) {
-	    console.error('Failed to stop playing ringtone');
-    } else {
-        console.log('Ringtone stop playing successfully.');
-    }
-})
-```
-
-
-## ringtonePlayer.stop
-
-stop(): Promise<void\><sup>8+</sup><a name="stopringtoneplayer-promise"></a>
-
-Stops playing ringtone. This method uses a promise to return the result.
-
-**Parameters**
-
-None
-
-**Return value**
-
-| Type           | Description                        |
-| :------------- | :--------------------------------- |
-| Promise<void\> | Promise used to return the result. |
-
-**Example**
-
-```
-await ringtonePlayer.stop();
-```
-
-
-## ringtonePlayer.release
-
-release(callback: AsyncCallback<void\>): void<sup>8+</sup><a name="releaseringtoneplayer-asynccallback"></a>
-
-Releases ringtone player resources. This method uses a callback to return the result.
-
-**Parameters**
-
-| Name     | Type                 | Mandatory | Description                         |
-| :------- | :------------------- | :-------- | :---------------------------------- |
-| callback | AsyncCallback<void\> | Yes       | Callback used to return the result. |
-|          |                      |           |                                     |
-
-**Return value**
-
-None
-
-**Example**
-
-```
-ringtonePlayer.release((err)=> {
-    if (err) {
-	    console.error('Failed to release ringtone player resource');
-    } else {
-        console.log('Release ringtone player resource successfully.');
-    }
-})
-```
-
-
-## ringtonePlayer.release
-
-release(): Promise<void\><sup>8+</sup><a name="releaseringtoneplayer-promise"></a>
-
-Releases ringtone player resource. This method uses a promise to return the result.
-
-**Parameters**
-
-None
-
-**Return value**
-
-| Type           | Description                        |
-| :------------- | :--------------------------------- |
-| Promise<void\> | Promise used to return the result. |
-
-**Example**
-
-```
-await ringtonePlayer.release();
-```
-
-
 ## AudioDeviceDescriptor
 
 Describes an audio device.
@@ -4523,13 +3824,13 @@ None
 ```
 audioCapturer.getCapturerInfo((err, capturerInfo)=>{
     if (err) {
-	    console.error('Failed to get capture info');
+        console.error('Failed to get capture info');
     } else {
         console.log('Capturer getCapturerInfo:');
         console.log('Capturer source:' + capturerInfo.source);
         console.log('Capturer flags:' + capturerInfo.capturerFlags);
     }
-})
+});
 ```
 
 
@@ -4595,7 +3896,7 @@ audioCapturer.start((err)=>{
         console.log('Capturer format:' + streamInfo.sampleFormat);
         console.log('Capturer encoding type:' + streamInfo.encodingType);
     }
-})
+});
 ```
 
 ## audioCapturer.getStreamInfo
@@ -4658,7 +3959,7 @@ audioCapturer.start((err)=>{
     } else {
         console.info('Capturer start success.');
     }
-})
+});
 ```
 
 
@@ -4718,7 +4019,7 @@ audioCapturer.stop((err)=>{
     } else {
         console.log('Capturer stopped.');
     }
-})
+});
 ```
 
 
@@ -4779,7 +4080,7 @@ audioCapturer.release((err)=>{
     } else {
         console.log('capturer released.');
     }
-})
+});
 ```
 
 
@@ -4901,7 +4202,7 @@ None
 ```
 audioCapturer.getAudioTime((err, timestamp)=>{
     console.log('Current timestamp: ' + timestamp);
-})
+});
 ```
 
 
