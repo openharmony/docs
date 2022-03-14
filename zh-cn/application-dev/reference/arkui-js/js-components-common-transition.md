@@ -376,4 +376,4 @@ Page1有一个不透明盒子，点击盒子会跳转到Page2，当点击Page2�
    }
    ```
    
-   ![transition](figures\transition.gif)
+   ![transition](figures/transition.gif)
