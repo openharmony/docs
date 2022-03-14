@@ -422,9 +422,9 @@ setVolume(volumeType: AudioVolumeType, volume: number): Promise&lt;void&gt;
 
 ```
 var audioManager = audio.getAudioManager();
-audioManager.setVolume(audio.AudioVolumeType.MEDIA, 10).then(()=>
+audioManager.setVolume(audio.AudioVolumeType.MEDIA, 10).then(() => {
     console.log('Promise returned to indicate a successful volume setting.');
-)
+})
 ```
 
 ### getVolume
@@ -479,9 +479,9 @@ getVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
 
 ```
 var audioManager = audio.getAudioManager();
-audioManager.getVolume(audio.AudioVolumeType.MEDIA).then((value) =>
+audioManager.getVolume(audio.AudioVolumeType.MEDIA).then((value) => {
     console.log('Promise returned to indicate that the volume is obtained.' + value);
-)
+})
 ```
 
 ### getMinVolume
@@ -536,9 +536,9 @@ getMinVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
 
 ```
 var audioManager = audio.getAudioManager();
-audioManager.getMinVolume(audio.AudioVolumeType.MEDIA).then((value) =>
+audioManager.getMinVolume(audio.AudioVolumeType.MEDIA).then((value) => {
     console.log('Promised returned to indicate that the minimum  volume is obtained.' + value);
-)
+})
 ```
 
 ### getMaxVolume
@@ -593,9 +593,9 @@ getMaxVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
 
 ```
 var audioManager = audio.getAudioManager();
-audioManager.getMaxVolume(audio.AudioVolumeType.MEDIA).then((data)=>
+audioManager.getMaxVolume(audio.AudioVolumeType.MEDIA).then((data) => {
     console.log('Promised returned to indicate that the maximum volume is obtained.');
-)
+})
 ```
 
 ### mute
@@ -653,9 +653,9 @@ mute(volumeType: AudioVolumeType, mute: boolean): Promise&lt;void&gt;
 
 ```
 var audioManager = audio.getAudioManager();
-audioManager.mute(audio.AudioVolumeType.MEDIA, true).then(() =>
+audioManager.mute(audio.AudioVolumeType.MEDIA, true).then(() => {
     console.log('Promise returned to indicate that the stream is muted.');
-)
+})
 ```
 
 
@@ -712,9 +712,9 @@ isMute(volumeType: AudioVolumeType): Promise&lt;boolean&gt;
 
 ```
 var audioManager = audio.getAudioManager();
-audioManager.isMute(audio.AudioVolumeType.MEDIA).then((value) =>
+audioManager.isMute(audio.AudioVolumeType.MEDIA).then((value) => {
     console.log('Promise returned to indicate that the mute status of the stream is obtained.' + value);
-)
+})
 ```
 
 ### isActive
@@ -769,9 +769,9 @@ isActive(volumeType: AudioVolumeType): Promise&lt;boolean&gt;
 
 ```
 var audioManager = audio.getAudioManager();
-audioManager.isActive(audio.AudioVolumeType.MEDIA).then((value) =>
+audioManager.isActive(audio.AudioVolumeType.MEDIA).then((value) => {
     console.log('Promise returned to indicate that the active status of the stream is obtained.' + value);
-)
+})
 ```
 
 ### setRingerMode
@@ -826,9 +826,9 @@ setRingerMode(mode: AudioRingMode): Promise&lt;void&gt;
 
 ```
 var audioManager = audio.getAudioManager();
-audioManager.setRingerMode(audio.AudioRingMode.RINGER_MODE_NORMAL).then(() =>
+audioManager.setRingerMode(audio.AudioRingMode.RINGER_MODE_NORMAL).then(() => {
     console.log('Promise returned to indicate a successful setting of the ringer mode.');
-)
+})
 ```
 
 
@@ -878,9 +878,9 @@ getRingerMode(): Promise&lt;AudioRingMode&gt;
 
 ```
 var audioManager = audio.getAudioManager();
-audioManager.getRingerMode().then((value) =>
+audioManager.getRingerMode().then((value) => {
     console.log('Promise returned to indicate that the ringer mode is obtained.' + value);
-)
+})
 ```
 
 ### setAudioParameter
@@ -937,9 +937,9 @@ setAudioParameter(key: string, value: string): Promise&lt;void&gt;
 
 ```
 var audioManager = audio.getAudioManager();
-audioManager.setAudioParameter('PBits per sample', '8 bit').then(() =>
+audioManager.setAudioParameter('PBits per sample', '8 bit').then(() => {
     console.log('Promise returned to indicate a successful setting of the audio parameter.');
-)
+})
 ```
 
 ### getAudioParameter
@@ -994,9 +994,9 @@ getAudioParameter(key: string): Promise&lt;string&gt;
 
 ```
 var audioManager = audio.getAudioManager();
-audioManager.getAudioParameter('PBits per sample').then((value) =>
+audioManager.getAudioParameter('PBits per sample').then((value) => {
     console.log('Promise returned to indicate that the value of the audio parameter is obtained.' + value);
-)
+})
 ```
 
 ### getDevices
@@ -1017,7 +1017,7 @@ getDevices(deviceFlag: DeviceFlag, callback: AsyncCallback&lt;AudioDeviceDescrip
 **示例：**
 ```
 var audioManager = audio.getAudioManager();
-audioManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (err, value)=>{
+audioManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (err, value) => {
    if (err) {
 	   console.error('Failed to obtain the device list. ${err.message}');
 	   return;
@@ -1050,9 +1050,9 @@ getDevices(deviceFlag: DeviceFlag): Promise&lt;AudioDeviceDescriptors&gt;
 
 ```
 var audioManager = audio.getAudioManager();
-audioManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data)=>
+audioManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data) => {
     console.log('Promise returned to indicate that the device list is obtained.');
-)
+})
 ```
 
 ### setDeviceActive
@@ -1075,7 +1075,7 @@ setDeviceActive(deviceType: ActiveDeviceType, active: boolean, callback: AsyncCa
 
 ```
 var audioManager = audio.getAudioManager();
-audioManager.setDeviceActive(audio.DeviceType.SPEAKER, true, (err)=> {
+audioManager.setDeviceActive(audio.DeviceType.SPEAKER, true, (err) => {
     if (err) {
         console.error('Failed to set the active status of the device. ${err.message}');
 	return;
@@ -1110,9 +1110,9 @@ setDeviceActive(deviceType: ActiveDeviceType, active: boolean): Promise&lt;void&
 
 ```
 var audioManager = audio.getAudioManager();
-audioManager.setDeviceActive(audio.DeviceType.SPEAKER, true).then(()=>
+audioManager.setDeviceActive(audio.DeviceType.SPEAKER, true).then(() => {
     console.log('Promise returned to indicate that the device is set to the active status.');
-)
+})
 ```
 
 ### isDeviceActive
@@ -1168,9 +1168,9 @@ isDeviceActive(deviceType: ActiveDeviceType): Promise&lt;boolean&gt;
 
 ```
 var audioManager = audio.getAudioManager();
-audioManager.isDeviceActive(audio.DeviceType.SPEAKER).then((value) =>
+audioManager.isDeviceActive(audio.DeviceType.SPEAKER).then((value) => {
     console.log('Promise returned to indicate that the active status of the device is obtained.' + value);
-)
+})
 ```
 
 ### setMicrophoneMute
@@ -1225,9 +1225,9 @@ setMicrophoneMute(mute: boolean): Promise&lt;void&gt;
 
 ```
 var audioManager = audio.getAudioManager();
-audioManager.setMicrophoneMute(true).then(() =>
+audioManager.setMicrophoneMute(true).then(() => {
     console.log('Promise returned to indicate that the microphone is muted.');
-)
+})
 ```
 
 ### isMicrophoneMute
@@ -1276,9 +1276,9 @@ isMicrophoneMute(): Promise&lt;boolean&gt;
 
 ```
 var audioManager = audio.getAudioManager();
-audioManager.isMicrophoneMute().then((value) =>
+audioManager.isMicrophoneMute().then((value) => {
     console.log('Promise returned to indicate that the mute status of the microphone is obtained.', + value);
-)
+})
 ```
 
 ### on('volumeChange')
