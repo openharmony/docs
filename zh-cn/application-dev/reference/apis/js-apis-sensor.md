@@ -11,9 +11,9 @@ import sensor from '@ohos.sensor';
 ```
 
 
-## sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER)
+## sensor.on(SensorType.SENSOR_TYPE_ID_ACCELEROMETER)
 
-on(type:  sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: Callback&lt;AccelerometerResponse&gt;,options?: Options): void
+on(type:  SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: Callback&lt;AccelerometerResponse&gt;,options?: Options): void
 
 监听加速度传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
@@ -41,9 +41,9 @@ on(type:  sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: Callback&lt;
   ```
 
 
-## sensor.on(sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION)
+## sensor.on(SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION)
 
-on(type:sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:Callback&lt;LinearAccelerometerResponse&gt;, options?: Options): void
+on(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:Callback&lt;LinearAccelerometerResponse&gt;, options?: Options): void
 
 监听线性加速度传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
@@ -70,9 +70,9 @@ on(type:sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:Callback&l
   ```
 
 
-## sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED)
+## sensor.on(SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED)
 
-on(type:sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,callback: Callback&lt;AccelerometerUncalibratedResponse&gt;, options?: Options): void
+on(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,callback: Callback&lt;AccelerometerUncalibratedResponse&gt;, options?: Options): void
 
 监听未校准加速度计传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
@@ -102,9 +102,9 @@ on(type:sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,callback: Ca
   ```
 
 
-## sensor.on(sensor.SensorType.SENSOR_TYPE_ID_GRAVITY)
+## sensor.on(SensorType.SENSOR_TYPE_ID_GRAVITY)
 
-on(type: sensor.SensorType.SENSOR_TYPE_ID_GRAVITY, callback: Callback&lt;GravityResponse&gt;,options?: Options): void
+on(type: SensorType.SENSOR_TYPE_ID_GRAVITY, callback: Callback&lt;GravityResponse&gt;,options?: Options): void
 
 监听重力传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
@@ -129,9 +129,9 @@ on(type: sensor.SensorType.SENSOR_TYPE_ID_GRAVITY, callback: Callback&lt;Gravity
   ```
 
 
-## sensor.on(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE)
+## sensor.on(SensorType.SENSOR_TYPE_ID_GYROSCOPE)
 
-on(type: sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback: Callback&lt;GyroscopeResponse&gt;, options?: Options): void
+on(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback: Callback&lt;GyroscopeResponse&gt;, options?: Options): void
 
 监听陀螺仪传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
@@ -158,9 +158,9 @@ on(type: sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback: Callback&lt;Gyros
   ```
 
 
-## sensor.on(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED)
+## sensor.on(SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED)
 
-on(type:sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED,callback:Callback&lt;GyroscopeUncalibratedResponse&gt;, options?: Options): void
+on(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED,callback:Callback&lt;GyroscopeUncalibratedResponse&gt;, options?: Options): void
 
 监听未校准陀螺仪传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
@@ -190,9 +190,9 @@ on(type:sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED,callback:Callbac
   ```
 
 
-## sensor.on(sensor.SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION)
+## sensor.on(SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION)
 
-on(type: sensor.SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, callback: Callback&lt;SignificantMotionResponse&gt;, options?: Options): void
+on(type: SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, callback: Callback&lt;SignificantMotionResponse&gt;, options?: Options): void
 
 监听大幅动作传感器数据变化。如果多次调用该接口，仅最后一次调用生效。
 
@@ -215,9 +215,9 @@ on(type: sensor.SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, callback: Callback
   ```
 
 
-## sensor.on(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION)
+## sensor.on(SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION)
 
-on(type: sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, callback: Callback&lt;PedometerDetectionResponse&gt;, options?: Options): void
+on(type: SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, callback: Callback&lt;PedometerDetectionResponse&gt;, options?: Options): void
 
 监听计步检测传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
@@ -242,9 +242,9 @@ on(type: sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, callback: Callbac
   ```
 
 
-## sensor.on(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER)
+## sensor.on(SensorType.SENSOR_TYPE_ID_PEDOMETER)
 
-on(type: sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER, callback: Callback&lt;PedometerResponse&gt;, options?: Options): void
+on(type: SensorType.SENSOR_TYPE_ID_PEDOMETER, callback: Callback&lt;PedometerResponse&gt;, options?: Options): void
 
 监听计步传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
@@ -269,9 +269,9 @@ on(type: sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER, callback: Callback&lt;Pedom
   ```
 
 
-## sensor.on(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE)
+## sensor.on(SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE)
 
-on(type:sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE,callback:Callback&lt;AmbientTemperatureResponse&gt;,  options?: Options): void
+on(type:SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE,callback:Callback&lt;AmbientTemperatureResponse&gt;,  options?: Options): void
 
 监听环境温度传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
@@ -294,9 +294,9 @@ on(type:sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE,callback:Callback&l
   ```
 
 
-## sensor.on(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD)
+## sensor.on(SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD)
 
-on(type: sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback: Callback&lt;MagneticFieldResponse&gt;,options?: Options): void
+on(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback: Callback&lt;MagneticFieldResponse&gt;,options?: Options): void
 
 监听磁场传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
@@ -321,9 +321,9 @@ on(type: sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback: Callback&lt;
   ```
 
 
-## sensor.on(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED)
+## sensor.on(SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED)
 
-on(type:sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED,callback: Callback&lt;MagneticFieldUncalibratedResponse&gt;, options: Options): void
+on(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED,callback: Callback&lt;MagneticFieldUncalibratedResponse&gt;, options: Options): void
 
 监听未校准磁场传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
@@ -351,9 +351,9 @@ on(type:sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED,callback: C
   ```
 
 
-## sensor.on(sensor.SensorType.SENSOR_TYPE_ID_PROXIMITY)
+## sensor.on(SensorType.SENSOR_TYPE_ID_PROXIMITY)
 
-on(type:sensor.SensorType.SENSOR_TYPE_ID_PROXIMITY, callback: Callback&lt;ProximityResponse&gt;,options?: Options): void
+on(type: SensorType.SENSOR_TYPE_ID_PROXIMITY, callback: Callback&lt;ProximityResponse&gt;,options?: Options): void
 
 监听接近光传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
@@ -376,9 +376,9 @@ on(type:sensor.SensorType.SENSOR_TYPE_ID_PROXIMITY, callback: Callback&lt;Proxim
   ```
 
 
-## sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HUMIDITY)
+## sensor.on(SensorType.SENSOR_TYPE_ID_HUMIDITY)
 
-on(type: sensor.SensorType.SENSOR_TYPE_ID_HUMIDITY, callback: Callback&lt;HumidityResponse&gt;,options?: Options): void
+on(type: SensorType.SENSOR_TYPE_ID_HUMIDITY, callback: Callback&lt;HumidityResponse&gt;,options?: Options): void
 
 监听湿度传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
@@ -401,9 +401,9 @@ on(type: sensor.SensorType.SENSOR_TYPE_ID_HUMIDITY, callback: Callback&lt;Humidi
   ```
 
 
-## sensor.on(sensor.SensorType.SENSOR_TYPE_ID_BAROMETER)
+## sensor.on(SensorType.SENSOR_TYPE_ID_BAROMETER)
 
-on(type:sensor.SensorType.SENSOR_TYPE_ID_BAROMETER, callback: Callback&lt;BarometerResponse&gt;,options?: Options): void
+on(type: SensorType.SENSOR_TYPE_ID_BAROMETER, callback: Callback&lt;BarometerResponse&gt;,options?: Options): void
 
 监听气压计传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
@@ -426,9 +426,9 @@ on(type:sensor.SensorType.SENSOR_TYPE_ID_BAROMETER, callback: Callback&lt;Barome
   ```
 
 
-## sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HALL)
+## sensor.on(SensorType.SENSOR_TYPE_ID_HALL)
 
-on(type: sensor.SensorType.SENSOR_TYPE_ID_HALL, callback: Callback&lt;HallResponse&gt;, options?: Options): void
+on(type: SensorType.SENSOR_TYPE_ID_HALL, callback: Callback&lt;HallResponse&gt;, options?: Options): void
 
 监听霍尔传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
@@ -451,9 +451,9 @@ on(type: sensor.SensorType.SENSOR_TYPE_ID_HALL, callback: Callback&lt;HallRespon
   ```
 
 
-## sensor.on(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT)
+## sensor.on(SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT)
 
-on(type:sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback: Callback&lt;LightResponse&gt;, options?: Options): void
+on(type: SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback: Callback&lt;LightResponse&gt;, options?: Options): void
 
 监听环境光传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
@@ -476,9 +476,9 @@ on(type:sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback: Callback&lt;Li
   ```
 
 
-## sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION)
+## sensor.on(SensorType.SENSOR_TYPE_ID_ORIENTATION)
 
-on(type: sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION, callback: Callback&lt;OrientationResponse&gt;, options?: Options): void
+on(type: SensorType.SENSOR_TYPE_ID_ORIENTATION, callback: Callback&lt;OrientationResponse&gt;, options?: Options): void
 
 监听方向传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
@@ -502,9 +502,9 @@ on(type: sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION, callback: Callback&lt;Ori
   );
   ```
 
-## sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HEART_RATE)
+## sensor.on(SensorType.SENSOR_TYPE_ID_HEART_RATE)
 
-on(type: sensor.SensorType.SENSOR_TYPE_ID_HEART_RATE, callback: Callback&lt;HeartRateResponse&gt;, options?: Options): void
+on(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback: Callback&lt;HeartRateResponse&gt;, options?: Options): void
 
 监听心率传感器数据变化一次。
 
@@ -529,9 +529,9 @@ sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HEART_RATE,function(data){
 );
 ```
 
-## sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR)
+## sensor.on(SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR)
 
-on(type:sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR,callback: Callback&lt;RotationVectorResponse&gt;,options?: Options): void
+on(type: SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR,callback: Callback&lt;RotationVectorResponse&gt;,options?: Options): void
 
 监听旋转矢量传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
@@ -557,9 +557,9 @@ on(type:sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR,callback: Callback&lt;R
   ```
 
 
-## sensor.on(sensor.SensorType.SENSOR_TYPE_ID_WEAR_DETECTION)
+## sensor.on(SensorType.SENSOR_TYPE_ID_WEAR_DETECTION)
 
-on(type: sensor.SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback: Callback&lt;WearDetectionResponse&gt;,options?: Options): void
+on(type: SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback: Callback&lt;WearDetectionResponse&gt;,options?: Options): void
 
 监听佩戴检测传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
@@ -582,9 +582,9 @@ on(type: sensor.SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback: Callback&lt;
   ```
 
 
-## sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER)
+## sensor.once(SensorType.SENSOR_TYPE_ID_ACCELEROMETER)
 
-once(type: sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: Callback&lt;AccelerometerResponse&gt;): void
+once(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: Callback&lt;AccelerometerResponse&gt;): void
 
 监听加速度传感器的数据变化一次。
 
@@ -609,9 +609,9 @@ once(type: sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: Callback&lt
   ```
 
 
-## sensor.once(sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION)
+## sensor.once(SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION)
 
-once(type:sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:Callback&lt;LinearAccelerometerResponse&gt;): void
+once(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:Callback&lt;LinearAccelerometerResponse&gt;): void
 
 监听线性加速度传感器数据变化一次。
 
@@ -636,9 +636,9 @@ once(type:sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:Callback
   ```
 
 
-## sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED)
+## sensor.once(SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED)
 
-once(type:sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,callback: Callback&lt;AccelerometerUncalibratedResponse&gt;): void
+once(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,callback: Callback&lt;AccelerometerUncalibratedResponse&gt;): void
 
 监听未校准加速度传感器的数据变化一次。
 
@@ -666,9 +666,9 @@ once(type:sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,callback: 
   ```
 
 
-## sensor.once(sensor.SensorType.SENSOR_TYPE_ID_GRAVITY)
+## sensor.once(SensorType.SENSOR_TYPE_ID_GRAVITY)
 
-once(type:sensor.SensorType.SENSOR_TYPE_ID_GRAVITY, callback: Callback&lt;GravityResponse&gt;): void
+once(type: SensorType.SENSOR_TYPE_ID_GRAVITY, callback: Callback&lt;GravityResponse&gt;): void
 
 监听重力传感器的数据变化一次。
 
@@ -691,9 +691,9 @@ once(type:sensor.SensorType.SENSOR_TYPE_ID_GRAVITY, callback: Callback&lt;Gravit
   ```
 
 
-## sensor.once(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE)
+## sensor.once(SensorType.SENSOR_TYPE_ID_GYROSCOPE)
 
-once(type: sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback: Callback&lt;GyroscopeResponse&gt;): void
+once(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback: Callback&lt;GyroscopeResponse&gt;): void
 
 监听陀螺仪传感器的数据变化一次。
 
@@ -718,9 +718,9 @@ once(type: sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback: Callback&lt;Gyr
   ```
 
 
-## sensor.once(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED)
+## sensor.once(SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED)
 
-once(type:sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED,callback: Callback&lt;GyroscopeUncalibratedResponse&gt;): void
+once(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED,callback: Callback&lt;GyroscopeUncalibratedResponse&gt;): void
 
 监听未校准陀螺仪传感器的数据变化一次。
 
@@ -748,9 +748,9 @@ once(type:sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED,callback: Call
   ```
 
 
-## sensor.once(sensor.SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION)
+## sensor.once(SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION)
 
-once(type: sensor.SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION,callback: Callback&lt;SignificantMotionResponse&gt;): void
+once(type: SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION,callback: Callback&lt;SignificantMotionResponse&gt;): void
 
 监听有效运动传感器的数据变化一次。
 
@@ -771,9 +771,9 @@ once(type: sensor.SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION,callback: Callbac
   ```
 
 
-## sensor.once(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION)
+## sensor.once(SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION)
 
-once(type:sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION,callback: Callback&lt;PedometerDetectionResponse&gt;): void
+once(type: SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION,callback: Callback&lt;PedometerDetectionResponse&gt;): void
 
 监听计步检测传感器数据变化一次。
 
@@ -796,9 +796,9 @@ once(type:sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION,callback: Callbac
   ```
 
 
-## sensor.once(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER)
+## sensor.once(SensorType.SENSOR_TYPE_ID_PEDOMETER)
 
-once(type: sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER, callback: Callback&lt;PedometerResponse&gt;): void
+once(type: SensorType.SENSOR_TYPE_ID_PEDOMETER, callback: Callback&lt;PedometerResponse&gt;): void
 
 监听计步器传感器数据变化一次。
 
@@ -821,9 +821,9 @@ once(type: sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER, callback: Callback&lt;Ped
   ```
 
 
-## sensor.once(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE)
+## sensor.once(SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE)
 
-once(type:sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE,callback: Callback&lt;AmbientTemperatureResponse&gt;): void
+once(type: SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE,callback: Callback&lt;AmbientTemperatureResponse&gt;): void
 
 监听环境温度传感器数据变化一次。
 
@@ -844,9 +844,9 @@ once(type:sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE,callback: Callbac
   ```
 
 
-## sensor.once(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD)
+## sensor.once(SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD)
 
-once(type: sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback: Callback&lt;MagneticFieldResponse&gt;): void
+once(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback: Callback&lt;MagneticFieldResponse&gt;): void
 
 监听磁场传感器数据变化一次。
 
@@ -869,9 +869,9 @@ once(type: sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback: Callback&l
   ```
 
 
-## sensor.once(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED)
+## sensor.once(SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED)
 
-once(type:sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED,callback: Callback&lt;MagneticFieldUncalibratedResponse&gt;): void
+once(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED,callback: Callback&lt;MagneticFieldUncalibratedResponse&gt;): void
 
 监听未校准磁场传感器数据变化一次。
 
@@ -897,9 +897,9 @@ once(type:sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED,callback:
   ```
 
 
-## sensor.once(sensor.SensorType.SENSOR_TYPE_ID_PROXIMITY)
+## sensor.once(SensorType.SENSOR_TYPE_ID_PROXIMITY)
 
-once(type: sensor.SensorType.SENSOR_TYPE_ID_PROXIMITY, callback: Callback&lt;ProximityResponse&gt;): void
+once(type: SensorType.SENSOR_TYPE_ID_PROXIMITY, callback: Callback&lt;ProximityResponse&gt;): void
 
 监听接近光传感器数据变化一次。
 
@@ -924,9 +924,9 @@ once(type: sensor.SensorType.SENSOR_TYPE_ID_PROXIMITY, callback: Callback&lt;Pro
   ```
 
 
-## sensor.once(sensor.SensorType.SENSOR_TYPE_ID_HUMIDITY)
+## sensor.once(SensorType.SENSOR_TYPE_ID_HUMIDITY)
 
-once(type: sensor.SensorType.SENSOR_TYPE_ID_HUMIDITY, callback: Callback&lt;HumidityResponse&gt;): void
+once(type: SensorType.SENSOR_TYPE_ID_HUMIDITY, callback: Callback&lt;HumidityResponse&gt;): void
 
 监听湿度传感器数据变化一次。
 
@@ -947,9 +947,9 @@ once(type: sensor.SensorType.SENSOR_TYPE_ID_HUMIDITY, callback: Callback&lt;Humi
   ```
 
 
-## sensor.once(sensor.SensorType.SENSOR_TYPE_ID_BAROMETER)
+## sensor.once(SensorType.SENSOR_TYPE_ID_BAROMETER)
 
-once(type: sensor.SensorType.SENSOR_TYPE_ID_BAROMETER, callback: Callback&lt;BarometerResponse&gt;): void
+once(type: SensorType.SENSOR_TYPE_ID_BAROMETER, callback: Callback&lt;BarometerResponse&gt;): void
 
 监听气压计传感器数据变化一次。
 
@@ -970,9 +970,9 @@ once(type: sensor.SensorType.SENSOR_TYPE_ID_BAROMETER, callback: Callback&lt;Bar
   ```
 
 
-## sensor.once(sensor.SensorType.SENSOR_TYPE_ID_HALL)
+## sensor.once(SensorType.SENSOR_TYPE_ID_HALL)
 
-once(type: sensor.SensorType.SENSOR_TYPE_ID_HALL, callback: Callback&lt;HallResponse&gt;): void
+once(type: SensorType.SENSOR_TYPE_ID_HALL, callback: Callback&lt;HallResponse&gt;): void
 
 监听霍尔传感器数据变化一次。
 
@@ -993,9 +993,9 @@ once(type: sensor.SensorType.SENSOR_TYPE_ID_HALL, callback: Callback&lt;HallResp
   ```
 
 
-## sensor.once(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT)
+## sensor.once(SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT)
 
-once(type: sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback: Callback&lt;LightResponse&gt;): void
+once(type: SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback: Callback&lt;LightResponse&gt;): void
 
 监听环境光传感器数据变化一次。
 
@@ -1016,9 +1016,9 @@ once(type: sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback: Callback&lt
   ```
 
 
-## sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION)
+## sensor.once(SensorType.SENSOR_TYPE_ID_ORIENTATION)
 
-once(type: sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION, callback: Callback&lt;OrientationResponse&gt;): void
+once(type: SensorType.SENSOR_TYPE_ID_ORIENTATION, callback: Callback&lt;OrientationResponse&gt;): void
 
 监听方向传感器数据变化一次。
 
@@ -1041,9 +1041,9 @@ once(type: sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION, callback: Callback&lt;O
   ```
 
 
-## sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR)
+## sensor.once(SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR)
 
-once(type: sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback: Callback&lt;RotationVectorResponse&gt;): void
+once(type: SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback: Callback&lt;RotationVectorResponse&gt;): void
 
 监听旋转矢量传感器数据变化一次。
 
@@ -1067,9 +1067,9 @@ once(type: sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback: Callback&
   ```
 
 
-## sensor.once(sensor.SensorType.SENSOR_TYPE_ID_HEART_RATE)
+## sensor.once(SensorType.SENSOR_TYPE_ID_HEART_RATE)
 
-once(type: sensor.SensorType.SENSOR_TYPE_ID_HEART_RATE, callback: Callback&lt;HeartRateResponse&gt;): void
+once(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback: Callback&lt;HeartRateResponse&gt;): void
 
 监听心率传感器数据变化一次。
 
@@ -1092,9 +1092,9 @@ once(type: sensor.SensorType.SENSOR_TYPE_ID_HEART_RATE, callback: Callback&lt;He
   ```
 
 
-## sensor.once(sensor.SensorType.SENSOR_TYPE_ID_WEAR_DETECTION)
+## sensor.once(SensorType.SENSOR_TYPE_ID_WEAR_DETECTION)
 
-once(type: sensor.SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback: Callback&lt;WearDetectionResponse&gt;): void
+once(type: SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback: Callback&lt;WearDetectionResponse&gt;): void
 
 监听佩戴检测传感器数据变化一次。
 
@@ -1114,9 +1114,9 @@ once(type: sensor.SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback: Callback&l
   );
   ```
 
-## sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER)
+## sensor.off(SensorType.SENSOR_TYPE_ID_ACCELEROMETER)
 
-off(type: sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback?: Callback&lt;AccelerometerResponse&gt;): void
+off(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback?: Callback&lt;AccelerometerResponse&gt;): void
 
 取消订阅传感器数据。
 
@@ -1142,9 +1142,9 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback);
 ```
 
-## sensor.off(sensor. SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED)
+## sensor.off(SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED)
 
-off(type: sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED, callback?: Callback&lt;AccelerometerUncalibratedResponse&gt;): void
+off(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED, callback?: Callback&lt;AccelerometerUncalibratedResponse&gt;): void
 
 取消订阅传感器数据。
 
@@ -1173,9 +1173,9 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED, callback);
 ```
 
-## sensor.off(sensor. SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT)
+## sensor.off(SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT)
 
-off(type: sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback?: Callback&lt;LightResponse&gt;): void
+off(type: SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback?: Callback&lt;LightResponse&gt;): void
 
 取消订阅传感器数据。
 
@@ -1197,9 +1197,9 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback);
 ```
 
-## sensor.off(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE)
+## sensor.off(SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE)
 
-off(type: sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE, callback?: Callback&lt;AmbientTemperatureResponse&gt;): void
+off(type: SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE, callback?: Callback&lt;AmbientTemperatureResponse&gt;): void
 
 取消订阅传感器数据。
 
@@ -1221,9 +1221,9 @@ function callback(data) {
 sensor.off( sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE, callback);
 ```
 
-## sensor.off(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE)
+## sensor.off(SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE)
 
-off(type: sensor.SensorType.SENSOR_TYPE_ID_BAROMETER, callback?: Callback&lt;BarometerResponse&gt;): void
+off(type: SensorType.SENSOR_TYPE_ID_BAROMETER, callback?: Callback&lt;BarometerResponse&gt;): void
 
 取消订阅传感器数据。
 
@@ -1245,9 +1245,9 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_BAROMETER, callback);
 ```
 
-## sensor.off(sensor.SensorType.SENSOR_TYPE_ID_GRAVITY)
+## sensor.off(SensorType.SENSOR_TYPE_ID_GRAVITY)
 
-off(type: sensor.SensorType.SENSOR_TYPE_ID_GRAVITY, callback?: Callback&lt;GravityResponse&gt;): void
+off(type: SensorType.SENSOR_TYPE_ID_GRAVITY, callback?: Callback&lt;GravityResponse&gt;): void
 
 取消订阅传感器数据。
 
@@ -1271,9 +1271,9 @@ function callback(data) {
 sensor.off( sensor.SensorType.SENSOR_TYPE_ID_GRAVITY, callback);
 ```
 
-## sensor.off(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE)
+## sensor.off(SensorType.SENSOR_TYPE_ID_GYROSCOPE)
 
-off(type: sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback?: Callback&lt;GyroscopeResponse&gt;): void
+off(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback?: Callback&lt;GyroscopeResponse&gt;): void
 
 取消订阅传感器数据。
 
@@ -1299,9 +1299,9 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback);
 ```
 
-## sensor.off(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED)
+## sensor.off(SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED)
 
-off(type: sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED, callback?: Callback&lt;GyroscopeResponse&gt;): void
+off(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED, callback?: Callback&lt;GyroscopeResponse&gt;): void
 
 取消订阅传感器数据。
 
@@ -1327,9 +1327,9 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED, callback);
 ```
 
-## sensor.off(sensor.SensorType.SENSOR_TYPE_ID_HALL)
+## sensor.off(SensorType.SENSOR_TYPE_ID_HALL)
 
-off(type: sensor.SensorType.SENSOR_TYPE_ID_HALL, callback?: Callback&lt;HallResponse&gt;): void
+off(type: SensorType.SENSOR_TYPE_ID_HALL, callback?: Callback&lt;HallResponse&gt;): void
 
 取消订阅传感器数据。
 
@@ -1351,9 +1351,9 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_HALL, callback);
 ```
 
-## sensor.off(sensor.SensorType.SENSOR_TYPE_ID_HEART_RATE)
+## sensor.off(SensorType.SENSOR_TYPE_ID_HEART_RATE)
 
-off(type: sensor.SensorType.SENSOR_TYPE_ID_HEART_RATE, callback?: Callback&lt;HeartRateResponse&gt;): void
+off(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback?: Callback&lt;HeartRateResponse&gt;): void
 
 取消订阅传感器数据。
 
@@ -1377,9 +1377,9 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_HEART_RATE, callback);
 ```
 
-## sensor.off(sensor.SensorType.SENSOR_TYPE_ID_HUMIDITY)
+## sensor.off(SensorType.SENSOR_TYPE_ID_HUMIDITY)
 
-off(type: sensor.SensorType.SENSOR_TYPE_ID_HUMIDITY, callback?: Callback&lt;HumidityResponse&gt;): void
+off(type: SensorType.SENSOR_TYPE_ID_HUMIDITY, callback?: Callback&lt;HumidityResponse&gt;): void
 
 取消订阅传感器数据。
 
@@ -1403,9 +1403,9 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_HUMIDITY, callback);
 ```
 
-## sensor.off(sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION)
+## sensor.off(SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION)
 
-off(type: sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION, callback?: Callback&lt;LinearAccelerometerResponse&gt;): void
+off(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION, callback?: Callback&lt;LinearAccelerometerResponse&gt;): void
 
 取消订阅传感器数据。
 
@@ -1431,9 +1431,9 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION, callback);
 ```
 
-## sensor.off(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD)
+## sensor.off(SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD)
 
- off(type: sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback?: Callback&lt;MagneticFieldResponse&gt;): void
+ off(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback?: Callback&lt;MagneticFieldResponse&gt;): void
 
 取消订阅传感器数据。
 
@@ -1459,9 +1459,9 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback);
 ```
 
-## sensor.off(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED)
+## sensor.off(SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED)
 
- off(type: sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED, callback?: Callback&lt;MagneticFieldUncalibratedResponse&gt;): void
+ off(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED, callback?: Callback&lt;MagneticFieldUncalibratedResponse&gt;): void
 
 取消订阅传感器数据。
 
@@ -1488,9 +1488,9 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED, callback);
 ```
 
-## sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION)
+## sensor.off(SensorType.SENSOR_TYPE_ID_ORIENTATION)
 
- off(type: sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION, callback?: Callback&lt;OrientationResponse&gt;): void
+ off(type: SensorType.SENSOR_TYPE_ID_ORIENTATION, callback?: Callback&lt;OrientationResponse&gt;): void
 
 取消订阅传感器数据。
 
@@ -1514,9 +1514,9 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION, callback);
 ```
 
-## sensor.off(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER)
+## sensor.off(SensorType.SENSOR_TYPE_ID_PEDOMETER)
 
-off(type: sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER, callback?: Callback&lt;PedometerResponse&gt;): void
+off(type: SensorType.SENSOR_TYPE_ID_PEDOMETER, callback?: Callback&lt;PedometerResponse&gt;): void
 
 取消订阅传感器数据。
 
@@ -1538,9 +1538,9 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER, callback);
 ```
 
-## sensor.off(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION)
+## sensor.off(SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION)
 
-off(type: sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, callback?: Callback&lt;PedometerDetectionResponse&gt;): void
+off(type: SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, callback?: Callback&lt;PedometerDetectionResponse&gt;): void
 
 取消订阅传感器数据。
 
@@ -1564,9 +1564,9 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, callback);
 ```
 
-## sensor.off(sensor.SensorType.SENSOR_TYPE_ID_PROXIMITY)
+## sensor.off(SensorType.SENSOR_TYPE_ID_PROXIMITY)
 
-off(type: sensor.SensorType.SENSOR_TYPE_ID_PROXIMITY, callback?: Callback&lt;ProximityResponse&gt;): void
+off(type: SensorType.SENSOR_TYPE_ID_PROXIMITY, callback?: Callback&lt;ProximityResponse&gt;): void
 
 取消订阅传感器数据。
 
@@ -1588,9 +1588,9 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_PROXIMITY, callback);
 ```
 
-## sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR)
+## sensor.off(SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR)
 
-off(type: sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback?: Callback&lt;RotationVectorResponse&gt;): void
+off(type: SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback?: Callback&lt;RotationVectorResponse&gt;): void
 
 取消订阅传感器数据。
 
@@ -1615,9 +1615,9 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback);
 ```
 
-## sensor.off(sensor.SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION)
+## sensor.off(SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION)
 
-off(type: sensor.SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, callback?: Callback&lt;SignificantMotionResponse&gt;): void
+off(type: SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, callback?: Callback&lt;SignificantMotionResponse&gt;): void
 
 取消订阅传感器数据。
 
@@ -1639,9 +1639,9 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, callback);
 ```
 
-## sensor.off(sensor.SensorType.SENSOR_TYPE_ID_WEAR_DETECTION)
+## sensor.off(SensorType.SENSOR_TYPE_ID_WEAR_DETECTION)
 
-off(type: sensor.SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback?: Callback&lt;WearDetectionResponse&gt;): void
+off(type: SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback?: Callback&lt;WearDetectionResponse&gt;): void
 
 取消订阅传感器数据。
 
