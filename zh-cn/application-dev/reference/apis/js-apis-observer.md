@@ -11,22 +11,22 @@
 import observer from '@ohos.telephony.observer'
 ```
 
-## observer.on('networkStateChange')<a name=observer.on.networkStateChange-callback></a>
+## observer.on('networkStateChange')
 
 on\(type: \'networkStateChange\', callback: Callback<NetworkState\>\): void;
 
 订阅网络状态变化事件，使用callback方式作为异步方法。
 
-**需要权限**：ohos.permission.GET_NETWORK_INFO。
+**需要权限**：ohos.permission.GET_NETWORK_INFO
 
 **系统能力**：SystemCapability.Telephony.StateRegistry
 
 **参数：**
 
-| 参数名   | 类型                                      | 必填 | 说明                              |
-| -------- | ----------------------------------------- | ---- | --------------------------------- |
-| type     | string                                    | 是   | 网络状态变化事件                  |
-| callback | Callback\<[NetworkState](js-apis-radio.md#NetworkState)\> | 是   | 回调函数。参考radio的[NetworkState](js-apis-radio.md#NetworkState) |
+| 参数名   | 类型                                                      | 必填 | 说明                                                         |
+| -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                    | 是   | 网络状态变化事件                                             |
+| callback | Callback\<[NetworkState](js-apis-radio.md#networkstate)\> | 是   | 回调函数。参考radio的[NetworkState](js-apis-radio.md#networkstate) |
 
 **示例：**
 
@@ -37,13 +37,13 @@ observer.on('networkStateChange', data =>{
 ```
 
 
-## observer.on('networkStateChange')<a name=observer.on.networkStateChange.options-callback></a>
+## observer.on('networkStateChange')
 
 on\(type: \'networkStateChange\', options: { slotId: number }, callback: Callback<NetworkState\>\): void;
 
 订阅指定卡槽位的网络状态变化事件，使用callback方式作为异步方法。
 
-**需要权限**：ohos.permission.GET_NETWORK_INFO。
+**需要权限**：ohos.permission.GET_NETWORK_INFO
 
 **系统能力**：SystemCapability.Telephony.StateRegistry
 
@@ -53,7 +53,7 @@ on\(type: \'networkStateChange\', options: { slotId: number }, callback: Callbac
 | ------ | ------ | ---- | -------------------------------------- |
 | type     | string                                    | 是   | 网络状态变化事件                  |
 | slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | Callback\<[NetworkState](js-apis-radio.md#NetworkState)\> | 是   | 回调函数。参考radio的[NetworkState](js-apis-radio.md#NetworkState) |
+| callback | Callback\<[NetworkState](js-apis-radio.md#networkstate)\> | 是   | 回调函数。参考radio的[NetworkState](js-apis-radio.md#networkstate) |
 
 **示例：**
 
@@ -64,13 +64,13 @@ observer.on('networkStateChange', {slotId: 0}, data =>{
 ```
 
 
-## observer.off('networkStateChange')<a name=observer.off.networkStateChange-callback></a>
+## observer.off('networkStateChange')
 
 off\(type: \'networkStateChange\', callback?: Callback<NetworkState\>\): void;
 
 取消订阅网络状态变化事件，使用callback方式作为异步方法。
 
-**需要权限**：ohos.permission.GET_NETWORK_INFO。
+**需要权限**：ohos.permission.GET_NETWORK_INFO
 
 >**说明：**
 >
@@ -80,10 +80,10 @@ off\(type: \'networkStateChange\', callback?: Callback<NetworkState\>\): void;
 
 **参数：**
 
-| 参数名   | 类型                     | 必填 | 说明                              |
-| -------- | ------------------------ | ---- | --------------------------------- |
-| type     | string                   | 是   | 网络状态变化事件                  |
-| callback | Callback\<[NetworkState](js-apis-radio.md#NetworkState)\> | 否   | 回调函数。参考radio的[NetworkState](js-apis-radio.md#NetworkState) |
+| 参数名   | 类型                                                      | 必填 | 说明                                                         |
+| -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                    | 是   | 网络状态变化事件                                             |
+| callback | Callback\<[NetworkState](js-apis-radio.md#networkstate)\> | 否   | 回调函数。参考radio的[NetworkState](js-apis-radio.md#networkstate) |
 
 **示例：**
 
@@ -97,7 +97,7 @@ observer.off('networkStateChange', callback);
 observer.off('networkStateChange');
 ```
 
-## observer.on('signalInfoChange')<a name=observer.on.signalInfoChange-callback></a>
+## observer.on('signalInfoChange')
 
 on\(type: \'signalInfoChange\', callback: Callback<Array<SignalInformation\>\>): void;
 
@@ -110,7 +110,7 @@ on\(type: \'signalInfoChange\', callback: Callback<Array<SignalInformation\>\>):
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 信号状态变化事件                                             |
-| callback | Callback<Array<[SignalInformation](js-apis-radio.md#SignalInformation)\>\> | 是   | 回调函数。参考radio的[SignalInformation](js-apis-radio.md#SignalInformation) |
+| callback | Callback<Array<[SignalInformation](js-apis-radio.md#signalinformation)\>\> | 是   | 回调函数。参考radio的[SignalInformation](js-apis-radio.md#signalinformation) |
 
 **示例：**
 
@@ -121,7 +121,7 @@ observer.on('signalInfoChange', data =>{
 ```
 
 
-## observer.on('signalInfoChange')<a name=observer.on.signalInfoChange.options-callback></a>
+## observer.on('signalInfoChange')
 
 on\(type: \'signalInfoChange\', options: { slotId: number }, callback: Callback<Array<SignalInformation\>\>): void;
 
@@ -135,7 +135,7 @@ on\(type: \'signalInfoChange\', options: { slotId: number }, callback: Callback<
 | ------ | ------ | ---- | -------------------------------------- |
 | type     | string                                    | 是   | 信号状态变化事件                |
 | slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | Callback<Array<[SignalInformation](js-apis-radio.md#SignalInformation)\>\> | 是   | 回调函数。参考radio的[SignalInformation](js-apis-radio.md#SignalInformation) |
+| callback | Callback<Array<[SignalInformation](js-apis-radio.md#signalinformation)\>\> | 是   | 回调函数。参考radio的[SignalInformation](js-apis-radio.md#signalinformation) |
 
 **示例：**
 
@@ -146,7 +146,7 @@ observer.on('signalInfoChange', {slotId: 0}, data =>{
 ```
 
 
-## observer.off('signalInfoChange')<a name=observer.off.signalInfoChange-callback></a>
+## observer.off('signalInfoChange')
 
 off\(type: \'signalInfoChange\', callback?: Callback<Array<SignalInformation\>\>): void;
 
@@ -163,7 +163,7 @@ off\(type: \'signalInfoChange\', callback?: Callback<Array<SignalInformation\>\>
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 信号状态变化事件                                             |
-| callback | Callback<Array<[SignalInformation](js-apis-radio.md#SignalInformation)\>\> | 否   | 回调函数。参考radio的[SignalInformation](js-apis-radio.md#SignalInformation) |
+| callback | Callback<Array<[SignalInformation](js-apis-radio.md#signalinformation)\>\> | 否   | 回调函数。参考radio的[SignalInformation](js-apis-radio.md#signalinformation) |
 
 **示例：**
 
@@ -178,9 +178,9 @@ observer.off('signalInfoChange');
 ```
 
 
-## observer.on('callStateChange')<a name=observer.on.callStateChange-callback></a>
+## observer.on('callStateChange')
 
-on(type: 'callStateChange', callback: Callback\<{ state: [CallState](js-apis-call.md#CallState), number: string }\>): void;
+on(type: 'callStateChange', callback: Callback\<{ state: CallState, number: string }\>): void;
 
 订阅通话状态变化事件，使用callback方式作为异步方法。
 
@@ -193,7 +193,7 @@ on(type: 'callStateChange', callback: Callback\<{ state: [CallState](js-apis-cal
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 通话状态变化事件                                             |
-| callback | Callback\<{ state: [CallState](js-apis-call.md#CallState), number: string }\> | 是   | 回调函数，参考call的[CallState](js-apis-call.md#CallState)<br />number：电话号码 |
+| callback | Callback\<{ state: [CallState](js-apis-call.md#callstate), number: string }\> | 是   | 回调函数，参考call的[CallState](js-apis-call.md#callstate)<br />number：电话号码 |
 
 **示例：**
 
@@ -204,9 +204,9 @@ observer.on('callStateChange', value =>{
 ```
 
 
-## observer.on('callStateChange')<a name=observer.on.callStateChange.options-callback></a>
+## observer.on('callStateChange')
 
-on(type: 'callStateChange', options: { slotId: number }, callback: Callback<{ state: [CallState](js-apis-call.md#CallState), number: string }>): void;
+on(type: 'callStateChange', options: { slotId: number }, callback: Callback<{ state:CallState, number: string }>): void;
 
 订阅通话状态变化事件，使用callback方式作为异步方法。
 
@@ -220,7 +220,7 @@ on(type: 'callStateChange', options: { slotId: number }, callback: Callback<{ st
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 通话状态变化事件                                             |
 | slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                       |
-| callback | Callback\<{ state: [CallState](js-apis-call.md#CallState), number: string }\> | 是   | 回调函数，参考call的[CallState](js-apis-call.md#CallState)<br />number：电话号码 |
+| callback | Callback\<{ state: [CallState](js-apis-call.md#callstate), number: string }\> | 是   | 回调函数，参考call的[CallState](js-apis-call.md#callstate)<br />number：电话号码 |
 
 **示例：**
 
@@ -231,9 +231,9 @@ observer.on('callStateChange', {slotId: 0}, value =>{
 ```
 
 
-## observer.off('callStateChange')<a name=observer.off.callStateChange-callback></a>
+## observer.off('callStateChange')
 
-off(type: 'callStateChange', callback?: Callback<{ state: [CallState](js-apis-call.md#CallState), number: string }>): void;
+off(type: 'callStateChange', callback?: Callback<{ state: CallState, number: string }>): void;
 
 取消订阅通话状态变化事件，使用callback方式作为异步方法。
 
@@ -250,7 +250,7 @@ off(type: 'callStateChange', callback?: Callback<{ state: [CallState](js-apis-ca
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 通话状态变化事件                                             |
-| callback | Callback\<{ state: [CallState](js-apis-call.md#CallState), number: string }\> | 否   | 回调函数，参考call的[CallState](js-apis-call.md#CallState)<br />number：电话号码 |
+| callback | Callback\<{ state: [CallState](js-apis-call.md#callstate), number: string }\> | 否   | 回调函数，参考call的[CallState](js-apis-call.md#callstate)<br />number：电话号码 |
 
 **示例：**
 
@@ -265,9 +265,9 @@ observer.off('callStateChange');
 ```
 
 
-## observer.on('cellularDataConnectionStateChange')<sup>7+</sup><a name=observer.on.cellularDataConnectionStateChange-callback></a>
+## observer.on('cellularDataConnectionStateChange')<sup>7+</sup>
 
-on\(type: 'cellularDataConnectionStateChange', callback: Callback\<{ state: DataConnectState, network: RadioTechnology }\>\): void;
+on\(type: 'cellularDataConnectionStateChange', callback: Callback\<{ state: DataConnectState, network: RatType}\>\): void;
 
 订阅蜂窝数据链路连接状态，使用callback方式作为异步方法。
 
@@ -278,7 +278,7 @@ on\(type: 'cellularDataConnectionStateChange', callback: Callback\<{ state: Data
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 蜂窝数据链路连接状态事件                                     |
-| callback | Callback\<{ state: [DataConnectState](js-apis-telephony-data.md#DataConnectState), network: [RadioTechnology](js-apis-radio.md#RadioTechnology) }\> | 是   | 回调函数，参考data的[DataConnectState](js-apis-telephony-data.md#DataConnectState)，radio的[RadioTechnology](js-apis-radio.md#RadioTechnology)。 |
+| callback | Callback\<{ state: [DataConnectState](js-apis-telephony-data.md#dataconnectState), network: [RatType](js-apis-radio.md#radiotechnology) }\> | 是   | 回调函数，参考data的[DataConnectState](js-apis-telephony-data.md#dataconnectstate)，radio的[RadioTechnology](js-apis-radio.md#radiotechnology)。 |
 
 **示例：**
 
@@ -289,9 +289,9 @@ observer.on('cellularDataConnectionStateChange', value =>{
 ```
 
 
-## observer.on('cellularDataConnectionStateChange')<sup>7+</sup><a name=observer.on.cellularDataConnectionStateChange.options-callback></a>
+## observer.on('cellularDataConnectionStateChange')<sup>7+</sup>
 
-on\(type: 'cellularDataConnectionStateChange', options: { slotId: number }, callback: Callback\<{ state: DataConnectState, network: RadioTechnology }\>\): void;
+on\(type: 'cellularDataConnectionStateChange', options: { slotId: number }, callback: Callback\<{ state: DataConnectState, network: RatType }\>\): void;
 
 订阅指定卡槽位的蜂窝数据链路连接状态，使用callback方式作为异步方法。
 
@@ -303,7 +303,7 @@ on\(type: 'cellularDataConnectionStateChange', options: { slotId: number }, call
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 蜂窝数据链路连接状态事件                                     |
 | slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                       |
-| callback | Callback\<{ state: [DataConnectState](js-apis-telephony-data.md#DataConnectState), network: [RadioTechnology](js-apis-radio.md#RadioTechnology) }\> | 是   | 回调函数，参考data的[DataConnectState](js-apis-telephony-data.md#DataConnectState)，radio的[RadioTechnology](js-apis-radio.md#RadioTechnology)。 |
+| callback | Callback\<{ state: [DataConnectState](js-apis-telephony-data.md#dataconnectState), network: [RatType](js-apis-radio.md#radiotechnology) }\> | 是   | 回调函数，参考data的[DataConnectState](js-apis-telephony-data.md#dataconnectstate)，radio的[RadioTechnology](js-apis-radio.md#radiotechnology)。 |
 
 **示例：**
 
@@ -314,9 +314,9 @@ observer.on('cellularDataConnectionStateChange', {slotId: 0}, value =>{
 ```
 
 
-## observer.off('cellularDataConnectionStateChange')<sup>7+</sup><a name=observer.off.cellularDataConnectionStateChange-callback></a>
+## observer.off('cellularDataConnectionStateChange')<sup>7+</sup>
 
-off\(type: 'cellularDataConnectionStateChange',  callback?: Callback\<{ state: DataConnectState, network: RadioTechnology }\>\): void;
+off\(type: 'cellularDataConnectionStateChange',  callback?: Callback\<{ state: DataConnectState, network: RatType}\>\): void;
 
 移除订阅蜂窝数据链路连接状态，使用callback方式作为异步方法。
 
@@ -331,7 +331,7 @@ off\(type: 'cellularDataConnectionStateChange',  callback?: Callback\<{ state: D
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 蜂窝数据链路连接状态事件                                     |
-| callback | Callback\<{ state: [DataConnectState](js-apis-telephony-data.md#DataConnectState), network: [RadioTechnology](js-apis-radio.md#RadioTechnology) }\> | 否   | 回调函数，参考data的[DataConnectState](js-apis-telephony-data.md#DataConnectState)，radio的[RadioTechnology](js-apis-radio.md#RadioTechnology)。 |
+| callback | Callback\<{ state: [DataConnectState](js-apis-telephony-data.md#dataconnectState), network: [RatType](js-apis-radio.md#radiotechnology) }\> | 否   | 回调函数，参考data的[DataConnectState](js-apis-telephony-data.md#dataconnectstate)，radio的[RadioTechnology](js-apis-radio.md#radiotechnology)。 |
 
 **示例：**
 
@@ -346,7 +346,7 @@ observer.off('cellularDataConnectionStateChange');
 ```
 
 
-## observer.on('cellularDataFlowChange')<sup>7+</sup><a name=observer.on.cellularDataFlowChange-callback></a>
+## observer.on('cellularDataFlowChange')<sup>7+</sup>
 
 on\(type: 'cellularDataFlowChange', callback: Callback\<DataFlowType\>\): void;
 
@@ -358,8 +358,8 @@ on\(type: 'cellularDataFlowChange', callback: Callback\<DataFlowType\>\): void;
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | 是   | 蜂窝数据业务的上下行数据流状态状态事件                                     |
-| callback | Callback\<[DataFlowType](js-apis-telephony-data.md#DataFlowType)\> | 是   | 回调函数，参考data的[DataFlowType](js-apis-telephony-data.md#DataFlowType)。 |
+| type     | string                                                       | 是   | 蜂窝数据业务的上下行数据流状态状态事件                       |
+| callback | Callback\<[DataFlowType](js-apis-telephony-data.md#dataflowtype)\> | 是   | 回调函数，参考data的[DataFlowType](js-apis-telephony-data.md#dataflowtype)。 |
 
 **示例：**
 
@@ -370,7 +370,7 @@ observer.on('cellularDataFlowChange', data =>{
 ```
 
 
-## observer.on('cellularDataFlowChange')<sup>7+</sup><a name=observer.on.cellularDataFlowChange.options-callback></a>
+## observer.on('cellularDataFlowChange')<sup>7+</sup>
 
 on\(type: 'cellularDataFlowChange', options: { slotId: number },  callback: Callback\<DataFlowType\>\): void;
 
@@ -382,9 +382,9 @@ on\(type: 'cellularDataFlowChange', options: { slotId: number },  callback: Call
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | 是   | 蜂窝数据业务的上下行数据流状态事件                                     |
+| type     | string                                                       | 是   | 蜂窝数据业务的上下行数据流状态事件                           |
 | slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                       |
-| callback | Callback\<[DataFlowType](js-apis-telephony-data.md#DataFlowType)\> | 是   | 回调函数，参考data的[DataFlowType](js-apis-telephony-data.md#DataFlowType)。 |
+| callback | Callback\<[DataFlowType](js-apis-telephony-data.md#dataflowtype)\> | 是   | 回调函数，参考data的[DataFlowType](js-apis-telephony-data.md#dataflowtype)。 |
 
 **示例：**
 
@@ -395,7 +395,7 @@ observer.on('cellularDataFlowChange', {slotId: 0}, data =>{
 ```
 
 
-## observer.off('cellularDataFlowChange')<sup>7+</sup><a name=observer.off.cellularDataFlowChange-callback></a>
+## observer.off('cellularDataFlowChange')<sup>7+</sup>
 
 off\(type: 'cellularDataFlowChange', callback?: Callback\<DataFlowType\>\): void;
 
@@ -411,8 +411,8 @@ off\(type: 'cellularDataFlowChange', callback?: Callback\<DataFlowType\>\): void
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | 是   | 蜂窝数据业务的上下行数据流状态事件                                             |
-| callback | Callback\<[DataFlowType](js-apis-telephony-data.md#DataFlowType)\> | 否   | 回调函数，参考data的[DataFlowType](js-apis-telephony-data.md#DataFlowType)。 |
+| type     | string                                                       | 是   | 蜂窝数据业务的上下行数据流状态事件                           |
+| callback | Callback\<[DataFlowType](js-apis-telephony-data.md#dataflowtype)\> | 否   | 回调函数，参考data的[DataFlowType](js-apis-telephony-data.md#dataflowtype)。 |
 
 **示例：**
 
@@ -427,7 +427,7 @@ observer.off('cellularDataFlowChange');
 ```
 
 
-## observer.on('simStateChange')<sup>7+</sup><a name=observer.on.simStateChange-callback></a>
+## observer.on('simStateChange')<sup>7+</sup>
 
 on\(type: 'simStateChange', callback: Callback\<SimStateData\>\): void;
 
@@ -451,7 +451,7 @@ observer.on('simStateChange', data =>{
 ```
 
 
-## observer.on('simStateChange')<sup>7+</sup><a name=observer.on.simStateChange.options-callback></a>
+## observer.on('simStateChange')<sup>7+</sup>
 
 on\(type: 'simStateChange', options: { slotId: number }, callback: Callback\<SimStateData\>\): void;
 
@@ -476,7 +476,7 @@ observer.on('simStateChange', {slotId: 0}, data =>{
 ```
 
 
-## observer.off('simStateChange')<sup>7+</sup><a name=observer.off.simStateChange-callback></a>
+## observer.off('simStateChange')<sup>7+</sup>
 
 off\(type: 'simStateChange', callback?: Callback\<SimStateData\>\): void;
 
@@ -512,30 +512,34 @@ observer.off('simStateChange');
 
 SIM卡锁类型。
 
-| 变量        | 值   | 说明                                                         |
-| ----------- | ---- | ------------------------------------------------------------ |
-| SIM_NONE    | 0    | 无锁。<br/>**系统能力**：SystemCapability.Telephony.StateRegistry |
-| SIM_PIN     | 1    | PIN锁。<br/>**系统能力**：SystemCapability.Telephony.StateRegistry |
-| SIM_PUK     | 2    | PUK锁。<br/>**系统能力**：SystemCapability.Telephony.StateRegistry |
-| SIM_PN_PIN  | 3    | 网络PIN锁。<br/>**系统能力**：SystemCapability.Telephony.StateRegistry |
-| SIM_PN_PUK  | 4    | 网络PUK锁。<br/>**系统能力**：SystemCapability.Telephony.StateRegistry |
-| SIM_PU_PIN  | 5    | 子网PIN锁。<br/>**系统能力**：SystemCapability.Telephony.StateRegistry |
-| SIM_PU_PUK  | 6    | 子网PUK锁。<br/>**系统能力**：SystemCapability.Telephony.StateRegistry |
-| SIM_PP_PIN  | 7    | 服务提供商PIN锁。<br/>**系统能力**：SystemCapability.Telephony.StateRegistry |
-| SIM_PP_PUK  | 8    | 服务提供商PUK锁。<br/>**系统能力**：SystemCapability.Telephony.StateRegistry |
-| SIM_PC_PIN  | 9    | 组织PIN锁。<br/>**系统能力**：SystemCapability.Telephony.StateRegistry |
-| SIM_PC_PUK  | 10   | 组织PUK锁。<br/>**系统能力**：SystemCapability.Telephony.StateRegistry |
-| SIM_SIM_PIN | 11   | SIM PIN锁。<br/>**系统能力**：SystemCapability.Telephony.StateRegistry |
-| SIM_SIM_PUK | 12   | SIM PUK锁。<br/>**系统能力**：SystemCapability.Telephony.StateRegistry |
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.StateRegistry。
+
+| 名称        | 值   | 说明              |
+| ----------- | ---- | ----------------- |
+| SIM_NONE    | 0    | 无锁。            |
+| SIM_PIN     | 1    | PIN锁。           |
+| SIM_PUK     | 2    | PUK锁。           |
+| SIM_PN_PIN  | 3    | 网络PIN锁。       |
+| SIM_PN_PUK  | 4    | 网络PUK锁。       |
+| SIM_PU_PIN  | 5    | 子网PIN锁。       |
+| SIM_PU_PUK  | 6    | 子网PUK锁。       |
+| SIM_PP_PIN  | 7    | 服务提供商PIN锁。 |
+| SIM_PP_PUK  | 8    | 服务提供商PUK锁。 |
+| SIM_PC_PIN  | 9    | 组织PIN锁。       |
+| SIM_PC_PUK  | 10   | 组织PUK锁。       |
+| SIM_SIM_PIN | 11   | SIM PIN锁。       |
+| SIM_SIM_PUK | 12   | SIM PUK锁。       |
 
 
 ## SimStateData<sup>7+</sup>
 
 SIM卡类型和状态。
 
-| 变量              | 类型                  | 说明                                                         |
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.StateRegistry。
+
+| 名称            | 类型                  | 说明                                                         |
 | ----------------- | --------------------- | ------------------------------------------------------------ |
-| type  | [CardType](js-apis-sim.md#cardtype) | SIM卡类型，参考sim的[CardType](js-apis-sim.md#cardtype)。<br/>**系统能力**：SystemCapability.Telephony.StateRegistry |
-| state | [SimState](js-apis-sim.md#SimState) | SIM卡状态，参考sim的[SimState](js-apis-sim.md#SimState)。<br/>**系统能力**：SystemCapability.Telephony.StateRegistry |
-| reason<sup>8+</sup>       | [LockReason](#lockreason8) | SIM卡锁类型。<br/>**系统能力**：SystemCapability.Telephony.StateRegistry |
+| type  | [CardType](js-apis-sim.md#cardtype) | SIM卡类型，参考sim的[CardType](js-apis-sim.md#cardtype)。 |
+| state | [SimState](js-apis-sim.md#simstate) | SIM卡状态，参考sim的[SimState](js-apis-sim.md#simstate)。 |
+| reason<sup>8+</sup>       | [LockReason](#lockreason8) | SIM卡锁类型。 |
 

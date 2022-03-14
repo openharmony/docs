@@ -51,6 +51,9 @@
     -   [蜂窝数据](js-apis-telephony-data.md)
 - 网络管理
     - [网络连接管理](js-apis-net-connection.md)
+    - [Socket连接](js-apis-socket.md)
+    - [WebSocket连接](js-apis-webSocket.md)
+    - [数据请求](js-apis-http.md)
 - 通信与连接
     -   [WLAN](js-apis-wifi.md)  
     -   [Bluetooth](js-apis-bluetooth.md)

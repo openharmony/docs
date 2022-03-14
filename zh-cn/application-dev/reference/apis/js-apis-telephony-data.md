@@ -10,7 +10,7 @@
 import data from '@ohos.telephony.data';
 ```
 
-## data.getDefaultCellularDataSlotId<a name=data.getDefaultCellularDataSlotId-callback></a>
+## data.getDefaultCellularDataSlotId
 
 getDefaultCellularDataSlotId(callback: AsyncCallback\<number\>): void 
 
@@ -34,7 +34,7 @@ data.getDefaultCellularDataSlotId((err, data) => {
 });
 ```
 
-## data.getDefaultCellularDataSlotId<a name=data.getDefaultCellularDataSlotId-promise></a>
+## data.getDefaultCellularDataSlotId
 
 getDefaultCellularDataSlotId(): Promise\<number\> 
 
@@ -61,7 +61,7 @@ promise.then((data) => {
 });
 ```
 
-## data.getCellularDataFlowType<a name=data.getCellularDataFlowType-callback></a>
+## data.getCellularDataFlowType
 
 getCellularDataFlowType(callback: AsyncCallback\<DataFlowType\>): void
 
@@ -73,7 +73,7 @@ getCellularDataFlowType(callback: AsyncCallback\<DataFlowType\>): void
 
 | 参数名   | 类型                                           | 必填 | 说明       |
 | -------- | ---------------------------------------------- | ---- | ---------- |
-| callback | AsyncCallback\<[DataFlowType](#DataFlowType)\> | 是   | 回调函数。 |
+| callback | AsyncCallback\<[DataFlowType](#dataflowtype)\> | 是   | 回调函数。 |
 
 **示例：**
 
@@ -83,7 +83,7 @@ data.getCellularDataFlowType((err, data) => {
 });
 ```
 
-## data.getCellularDataFlowType<a name=data.getCellularDataFlowType-promise></a>
+## data.getCellularDataFlowType
 
 getCellularDataFlowType(): Promise\<DataFlowType\>
 
@@ -95,7 +95,7 @@ getCellularDataFlowType(): Promise\<DataFlowType\>
 
 | 类型                                     | 说明                                            |
 | ---------------------------------------- | ----------------------------------------------- |
-| Promise\<[DataFlowType](#DataFlowType)\> | 以Promise形式返回获取蜂窝数据业务的上下行状态。 |
+| Promise\<[DataFlowType](#dataflowtype)\> | 以Promise形式返回获取蜂窝数据业务的上下行状态。 |
 
 **示例：**
 
@@ -108,7 +108,7 @@ promise.then((data) => {
 });
 ```
 
-## data.getCellularDataState<a name=data.getCellularDataState-callback></a>
+## data.getCellularDataState
 
 getCellularDataState(callback: AsyncCallback\<DataConnectState\>): void
 
@@ -120,7 +120,7 @@ getCellularDataState(callback: AsyncCallback\<DataConnectState\>): void
 
 | 参数名   | 类型                                                   | 必填 | 说明       |
 | -------- | ------------------------------------------------------ | ---- | ---------- |
-| callback | AsyncCallback\<[DataConnectState](#DataConnectState)\> | 是   | 回调函数。 |
+| callback | AsyncCallback\<[DataConnectState](#dataconnectstate)\> | 是   | 回调函数。 |
 
 **示例：**
 
@@ -130,7 +130,7 @@ data.getCellularDataState((err, data) => {
 });
 ```
 
-## data.getCellularDataState<a name=data.getCellularDataState-promise></a>
+## data.getCellularDataState
 
 getCellularDataState(): Promise\<DataConnectState\>
 
@@ -142,7 +142,7 @@ getCellularDataState(): Promise\<DataConnectState\>
 
 | 类型                                             | 说明                                  |
 | ------------------------------------------------ | ------------------------------------- |
-| Promise\<[DataConnectState](#DataConnectState)\> | 以Promise形式返回获取PS域的连接状态。 |
+| Promise\<[DataConnectState](#dataconnectstate)\> | 以Promise形式返回获取PS域的连接状态。 |
 
 **示例：**
 
@@ -155,7 +155,7 @@ promise.then((data) => {
 });
 ```
 
-## data.isCellularDataEnabled<a name=data.isCellularDataEnabled-callback></a>
+## data.isCellularDataEnabled
 
 isCellularDataEnabled(callback: AsyncCallback\<boolean\>): void
 
@@ -179,7 +179,7 @@ data.isCellularDataEnabled((err, data) => {
 });
 ```
 
-## data.isCellularDataEnabled<a name=data.isCellularDataEnabled-promise></a>
+## data.isCellularDataEnabled
 
 isCellularDataEnabled(): Promise\<boolean\>
 
@@ -206,7 +206,7 @@ promise.then((data) => {
 });
 ```
 
-## data.isCellularDataRoamingEnabled<a name=data.isCellularDataRoamingEnabled-callback></a>
+## data.isCellularDataRoamingEnabled
 
 isCellularDataRoamingEnabled(slotId: number, callback: AsyncCallback\<boolean\>): void
 
@@ -231,7 +231,7 @@ data.isCellularDataRoamingEnabled(0,(err, data) => {
 });
 ```
 
-## data.isCellularDataRoamingEnabled<a name=data.isCellularDataRoamingEnabled-promise></a>
+## data.isCellularDataRoamingEnabled
 
 isCellularDataRoamingEnabled(slotId: number): Promise\<boolean\>
 
@@ -264,26 +264,30 @@ promise.then((data) => {
 });
 ```
 
-## DataFlowType<a name=DataFlowType></a>
+## DataFlowType
 
- 描述蜂窝数据流类型。 
+描述蜂窝数据流类型。 
 
-| 参数名 | 值                     | 说明                                                         |
-| ------ | ---------------------- | ------------------------------------------------------------ |
-| 0      | DATA_FLOW_TYPE_NONE    | 表示没有上行或下行数据。<br />**系统能力**：SystemCapability.Telephony.CellularData |
-| 1      | DATA_FLOW_TYPE_DOWN    | 表示只有下行数据。<br />**系统能力**：SystemCapability.Telephony.CellularData |
-| 2      | DATA_FLOW_TYPE_UP      | 表示只有上行数据。<br />**系统能力**：SystemCapability.Telephony.CellularData |
-| 3      | DATA_FLOW_TYPE_UP_DOWN | 表示有上下行数据。<br />**系统能力**：SystemCapability.Telephony.CellularData |
-| 4      | DATA_FLOW_TYPE_DORMANT | 表示没有上下行数据，底层链路处于休眠状态。<br />**系统能力**：SystemCapability.Telephony.CellularData |
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CellularData。
 
-## DataConnectState<a name=DataConnectState></a>
+| 参数名                 | 值   | 说明                                       |
+| ---------------------- | ---- | ------------------------------------------ |
+| DATA_FLOW_TYPE_NONE    | 0    | 表示没有上行或下行数据。                   |
+| DATA_FLOW_TYPE_DOWN    | 1    | 表示只有下行数据。                         |
+| DATA_FLOW_TYPE_UP      | 2    | 表示只有上行数据。                         |
+| DATA_FLOW_TYPE_UP_DOWN | 3    | 表示有上下行数据。                         |
+| DATA_FLOW_TYPE_DORMANT | 4    | 表示没有上下行数据，底层链路处于休眠状态。 |
 
- 描述蜂窝数据链路连接状态。 
+## DataConnectState
 
-| 参数名 | 值                      | 说明                                                         |
-| ------ | ----------------------- | ------------------------------------------------------------ |
-| -1     | DATA_STATE_UNKNOWN      | 表示蜂窝数据链路未知。<br />**系统能力**：SystemCapability.Telephony.CellularData |
-| 0      | DATA_STATE_DISCONNECTED | 表示蜂窝数据链路断开。<br />**系统能力**：SystemCapability.Telephony.CellularData |
-| 1      | DATA_STATE_CONNECTING   | 表示正在连接蜂窝数据链路。<br />**系统能力**：SystemCapability.Telephony.CellularData |
-| 2      | DATA_STATE_CONNECTED    | 表示蜂窝数据链路已连接。<br />**系统能力**：SystemCapability.Telephony.CellularData |
-| 3      | DATA_STATE_SUSPENDED    | 表示蜂窝数据链路被挂起。<br />**系统能力**：SystemCapability.Telephony.CellularData |
+描述蜂窝数据链路连接状态。 
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CellularData。
+
+| 参数名                  | 值   | 说明                       |
+| ----------------------- | ---- | -------------------------- |
+| DATA_STATE_UNKNOWN      | -1   | 表示蜂窝数据链路未知。     |
+| DATA_STATE_DISCONNECTED | 0    | 表示蜂窝数据链路断开。     |
+| DATA_STATE_CONNECTING   | 1    | 表示正在连接蜂窝数据链路。 |
+| DATA_STATE_CONNECTED    | 2    | 表示蜂窝数据链路已连接。   |
+| DATA_STATE_SUSPENDED    | 3    | 表示蜂窝数据链路被挂起。   |

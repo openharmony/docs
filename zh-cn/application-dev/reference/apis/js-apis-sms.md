@@ -10,7 +10,7 @@
 import sms from '@ohos.telephony.sms';
 ```
 
-## sms.createMessage<a name=sms.createMessage-callback></a>
+## sms.createMessage
 
 createMessage\(pdu: Array<number\>, specification: string, callback: AsyncCallback<ShortMessage\>\): void
 
@@ -24,7 +24,7 @@ createMessage\(pdu: Array<number\>, specification: string, callback: AsyncCallba
 | ------------- | -------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | pdu           | Array&lt;number&gt;                                | 是   | 协议数据单元，从收到的信息中获取。                           |
 | specification | string                                             | 是   | 短信协议类型。<br/>- 3gpp表示GSM/UMTS/LTE SMS<br/>- 3gpp2表示CDMA SMS |
-| callback      | AsyncCallback&lt;[ShortMessage](#ShortMessage)&gt; | 是   | 回调函数。                                                   |
+| callback      | AsyncCallback&lt;[ShortMessage](#shortmessage)&gt; | 是   | 回调函数。                                                   |
 
 **示例：**
 
@@ -38,7 +38,7 @@ sms.createMessage(pdu, specification, (err, data) => {
 ```
 
 
-## sms.createMessage<a name=sms.createMessage-promise></a>
+## sms.createMessage
 
 createMessage\(pdu: Array<number\>, specification: string\): Promise<ShortMessage\>
 
@@ -57,7 +57,7 @@ createMessage\(pdu: Array<number\>, specification: string\): Promise<ShortMessag
 
 | 类型                                         | 说明                              |
 | -------------------------------------------- | --------------------------------- |
-| Promise&lt;[ShortMessage](#ShortMessage)&gt; | 以Promise形式返回创建的短信实例。 |
+| Promise&lt;[ShortMessage](#shortmessage)&gt; | 以Promise形式返回创建的短信实例。 |
 
 **示例：**
 
@@ -87,7 +87,7 @@ sendMessage(options: SendMessageOptions): void
 
 | 参数名  | 类型                                      | 必填 | 说明                                                         |
 | ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [SendMessageOptions](#SendMessageOptions) | 是   | 发送短信的参数和回调，参考[SendMessageOptions](#SendMessageOptions)。 |
+| options | [SendMessageOptions](#sendmessageoptions) | 是   | 发送短信的参数和回调，参考[SendMessageOptions](#sendmessageoptions)。 |
 
 **示例：**
 
@@ -108,7 +108,7 @@ sms.sendMessage(options);
 ```
 
 
-## sms.getDefaultSmsSlotId<sup>7+</sup><a name=sms.getDefaultSmsSlotId-callback></a>
+## sms.getDefaultSmsSlotId<sup>7+</sup>
 
 getDefaultSmsSlotId\(callback: AsyncCallback<number\>\): void
 
@@ -131,7 +131,7 @@ sms.getDefaultSmsSlotId((err, data) => {
 ```
 
 
-## sms.getDefaultSmsSlotId<sup>7+</sup><a name=sms.getDefaultSmsSlotId-promise></a>
+## sms.getDefaultSmsSlotId<sup>7+</sup>
 
 getDefaultSmsSlotId\(\): Promise<number\>
 
@@ -157,7 +157,7 @@ promise.then(data => {
 ```
 
 
-## sms.setSmscAddr<sup>7+</sup><a name=sms.setSmscAddr-callback></a>
+## sms.setSmscAddr<sup>7+</sup>
 
 setSmscAddr\(slotId: number, smscAddr: string, callback: AsyncCallback<void\>\): void
 
@@ -166,6 +166,8 @@ setSmscAddr\(slotId: number, smscAddr: string, callback: AsyncCallback<void\>\):
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE，该权限为系统权限
 
 **系统能力**：SystemCapability.Telephony.SmsMms
+
+**系统API**：该接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -186,7 +188,7 @@ sms.setSmscAddr(slotId, smscAddr, (err,data) => {
 ```
 
 
-## sms.setSmscAddr<sup>7+</sup><a name=sms.setSmscAddr-promise></a>
+## sms.setSmscAddr<sup>7+</sup>
 
 setSmscAddr\(slotId: number, smscAddr: string\): Promise<void\>
 
@@ -195,6 +197,8 @@ setSmscAddr\(slotId: number, smscAddr: string\): Promise<void\>
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE，该权限为系统权限
 
 **系统能力**：SystemCapability.Telephony.SmsMms
+
+**系统API**：该接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -223,7 +227,7 @@ promise.then(data => {
 ```
 
 
-## sms.getSmscAddr<sup>7+</sup><a name=sms.getSmscAddr-callback></a>
+## sms.getSmscAddr<sup>7+</sup>
 
 getSmscAddr\(slotId: number, callback: AsyncCallback<string\>\): void
 
@@ -233,7 +237,7 @@ getSmscAddr\(slotId: number, callback: AsyncCallback<string\>\): void
 
 **系统能力**：SystemCapability.Telephony.SmsMms
 
-**补充说明**：该接口为systemapi，仅供系统应用使用
+**系统API**：该接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -252,7 +256,7 @@ sms.getSmscAddr(slotId, (err, data) => {
 ```
 
 
-## sms.getSmscAddr<sup>7+</sup><a name=sms.getSmscAddr-promise></a>
+## sms.getSmscAddr<sup>7+</sup>
 
 getSmscAddr\(slotId: number\): Promise<string\>
 
@@ -262,7 +266,7 @@ getSmscAddr\(slotId: number\): Promise<string\>
 
 **系统能力**：SystemCapability.Telephony.SmsMms
 
-**补充说明**：该接口为systemapi，仅供系统应用使用
+**系统API**：该接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -288,7 +292,7 @@ promise.then(data => {
 });
 ```
 
-## sms.hasSmsCapability<sup>7+</sup><a name=sms.hasSmsCapability></a>
+## sms.hasSmsCapability<sup>7+</sup>
 
 hasSmsCapability(): boolean
 
@@ -307,18 +311,18 @@ let result = sms.hasSmsCapability();
 console.log(`hasSmsCapability: ${JSON.stringify(result)}`);
 ```
 
-## ShortMessage<a name=ShortMessage></a>
+## ShortMessage
 
 短信实例。
 
-**系统能力**：SystemCapability.Telephony.SmsMms
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
 
-| 变量                     | 类型                                    | 说明                                                         |
+| 参数名                   | 类型                                    | 说明                                                         |
 | ------------------------ | --------------------------------------- | ------------------------------------------------------------ |
 | hasReplyPath             | boolean                                 | 收到的短信是否包含“TP-Reply-Path”，默认为false。<br/>“TP-Reply-Path”：移动电话根据发送SMS消息的短消息中心进行回复。 |
 | isReplaceMessage         | boolean                                 | 收到的短信是否为“替换短信”，默认为false。<br/>“替换短信”有关详细信息，参见 “3GPP TS 23.040 9.2.3.9”。 |
 | isSmsStatusReportMessage | boolean                                 | 当前消息是否为“短信状态报告”，默认为false。<br/>“短信状态报告”是一种特定格式的短信，被用来从Service Center到Mobile Station传送状态报告。 |
-| messageClass             | [ShortMessageClass](#ShortMessageClass) | 短信类型。                                                   |
+| messageClass             | [ShortMessageClass](#shortmessageclass) | 短信类型。                                                   |
 | pdu                      | Array&lt;number&gt;                     | SMS消息中的协议数据单元 （PDU）。                            |
 | protocolId               | number                                  | 发送短信时使用的协议标识。                                   |
 | scAddress                | string                                  | 短消息服务中心（SMSC）地址。                                 |
@@ -328,26 +332,26 @@ console.log(`hasSmsCapability: ${JSON.stringify(result)}`);
 | visibleRawAddress        | string                                  | 发送者地址。                                                 |
 
 
-## ShortMessageClass<a name=ShortMessageClass></a>
+## ShortMessageClass
 
 短信类型。
 
-| 变量             | 值   | 说明                                                         |
-| ---------------- | ---- | ------------------------------------------------------------ |
-| UNKNOWN          | 0    | 未知类型。<br />**系统能力**：SystemCapability.Telephony.SmsMms |
-| INSTANT_MESSAGE  | 1    | 即时消息，收到后立即显示。<br />**系统能力**：SystemCapability.Telephony.SmsMms |
-| OPTIONAL_MESSAGE | 2    | 存储在设备或SIM卡上的短信。<br />**系统能力**：SystemCapability.Telephony.SmsMms |
-| SIM_MESSAGE      | 3    | 包含SIM卡信息的短信，需要存储在SIM卡中。<br />**系统能力**：SystemCapability.Telephony.SmsMms |
-| FORWARD_MESSAGE  | 4    | 要转发到另一台设备的短信。<br />**系统能力**：SystemCapability.Telephony.SmsMms |
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
+
+| 名称             | 值   | 说明                                     |
+| ---------------- | ---- | ---------------------------------------- |
+| UNKNOWN          | 0    | 未知类型。                               |
+| INSTANT_MESSAGE  | 1    | 即时消息，收到后立即显示。               |
+| OPTIONAL_MESSAGE | 2    | 存储在设备或SIM卡上的短信。              |
+| SIM_MESSAGE      | 3    | 包含SIM卡信息的短信，需要存储在SIM卡中。 |
+| FORWARD_MESSAGE  | 4    | 要转发到另一台设备的短信。               |
 
 
-## SendMessageOptions<a name=SendMessageOptions></a>
+## SendMessageOptions
 
-发送短信的参数和回调。
+发送短信的参数和回调。根据SendMessageOptions中的可选参数content的值判断短信类型。
 
-根据SendMessageOptions中的可选参数content的值判断短信类型。
-
-**系统能力**：SystemCapability.Telephony.SmsMms
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
 
 | 参数名           | 类型                                                         | 必填 | 说明                                                         |
 | ---------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
@@ -356,41 +360,41 @@ console.log(`hasSmsCapability: ${JSON.stringify(result)}`);
 | content          | string \| Array&lt;number&gt;                                | 是   | 如果内容是字符串，则这是一条文本短信。如果内容是字节数组，则这是一条数据短信。 |
 | serviceCenter    | string                                                       | 否   | 短信中心地址。默认使用SIM卡中的短信中心地址。                |
 | destinationPort  | number                                                       | 否   | 如果发送数据消息，destinationPort 是必需的。否则是可选的。   |
-| sendCallback     | AsyncCallback&lt;[ISendShortMessageCallback](#ISendShortMessageCallback)&gt; | 否   | 短信发送结果回调，返回短信发送的结果，参考[ISendShortMessageCallback](#ISendShortMessageCallback)。 |
-| deliveryCallback | AsyncCallback&lt;[IDeliveryShortMessageCallback](#IDeliveryShortMessageCallback)&gt; | 否   | 短信送达结果回调，返回短信递送报告，参考[IDeliveryShortMessageCallback](#IDeliveryShortMessageCallback)。 |
+| sendCallback     | AsyncCallback&lt;[ISendShortMessageCallback](#isendshortmessagecallback)&gt; | 否   | 短信发送结果回调，返回短信发送的结果，参考[ISendShortMessageCallback](#isendshortmessagecallback)。 |
+| deliveryCallback | AsyncCallback&lt;[IDeliveryShortMessageCallback](#ideliveryshortmessagecallback)&gt; | 否   | 短信送达结果回调，返回短信递送报告，参考[IDeliveryShortMessageCallback](#ideliveryshortmessagecallback)。 |
 
 
-## ISendShortMessageCallback<a name=ISendShortMessageCallback></a>
+## ISendShortMessageCallback
 
 回调实例。返回短信发送结果、存储已发送短信的URI和是否为长短信的最后一部分。
 
-**系统能力**：SystemCapability.Telephony.SmsMms
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
 
 | 参数名     | 类型                            | 必填 | 说明                                                         |
 | ---------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | isLastPart | boolean                         | 否   | 指定这是否是长短信的最后一部分。true表示这是长短信的最后一部分，false表示不是。默认为false。 |
-| result     | [SendSmsResult](#SendSmsResult) | 是   | 短信发送结果。                                               |
+| result     | [SendSmsResult](#sendsmsresult) | 是   | 短信发送结果。                                               |
 | url        | string                          | 是   | 存储发送短信的URI。                                          |
 
 
-## IDeliveryShortMessageCallback<a name=IDeliveryShortMessageCallback></a>
+## IDeliveryShortMessageCallback
 
 回调实例。返回短信送达报告。
 
-**系统能力**：SystemCapability.Telephony.SmsMms
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
 
 | 参数名 | 类型                | 必填 | 说明           |
 | ------ | ------------------- | ---- | -------------- |
 | pdu    | Array&lt;number&gt; | 是   | 短信送达报告。 |
 
 
-## SendSmsResult<a name=SendSmsResult></a>
+## SendSmsResult
 
 短信发送结果。
 
-**系统能力**：SystemCapability.Telephony.SmsMms
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
 
-| 参数名                               | 值   | 说明                                                   |
+| 名称                                 | 值   | 说明                                                   |
 | ------------------------------------ | ---- | ------------------------------------------------------ |
 | SEND_SMS_SUCCESS                     | 0    | 发送短信成功。                                         |
 | SEND_SMS_FAILURE_UNKNOWN             | 1    | 发送短信失败，原因未知。                               |

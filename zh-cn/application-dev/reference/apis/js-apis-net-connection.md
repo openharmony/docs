@@ -676,11 +676,13 @@ netConnection.unregister(function (error) {
 
 在调用NetHandle的方法之前，需要先获取NetHandle对象。
 
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
 ### 属性
 
-| 变量  | 类型   | 说明                      |
-| ----- | ------ | ------------------------- |
-| netId | number | 网络ID，必须大于等于100。 |
+| 参数名 | 类型   | 说明                      |
+| ------ | ------ | ------------------------- |
+| netId  | number | 网络ID，必须大于等于100。 |
 
 ### bindSocket
 
@@ -782,7 +784,7 @@ connection.getDefaultNet().then(function (netHandle) {
 
 ### getAddressesByName
 
-getAddressesByName(netHandle: NetHandle): Promise\<Array\<NetAddress>>
+getAddressesByName(host: string): Promise\<Array\<NetAddress>>
 
 使用对应网络解析主机名以获取所有IP地址，使用Promise方式作为异步方法。
 
@@ -840,7 +842,7 @@ connection.getDefaultNet().then(function (netHandle) {
 
 ### getAddressByName
 
-getAddressByName(netHandle: NetHandle): Promise\<NetAddress>
+getAddressByName(host: string): Promise\<NetAddress>
 
 使用对应网络解析主机名以获取第一个IP地址，使用Promise方式作为异步方法。
 
@@ -873,7 +875,9 @@ connection.getDefaultNet().then(function (netHandle) {
 
 提供承载数据网络能力的实例。
 
-| 变量                    | 类型                                | 说明                                                         |
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetManager.Core。
+
+| 参数名                  | 类型                                | 说明                                                         |
 | ----------------------- | ----------------------------------- | ------------------------------------------------------------ |
 | netCapabilities         | [NetCapabilities](#netcapabilities) | 存储数据网络的传输能力和承载类型。                           |
 | bearerPrivateIdentifier | string                              | 网络标识符，WIFI网络的标识符是"wifi"，蜂窝网络的标识符是"slot0"（对应SIM卡1）。 |
@@ -882,7 +886,9 @@ connection.getDefaultNet().then(function (netHandle) {
 
 网络的能力集。
 
-| 变量                  | 类型                               | 说明                     |
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetManager.Core。
+
+| 参数名                | 类型                               | 说明                     |
 | --------------------- | ---------------------------------- | ------------------------ |
 | linkUpBandwidthKbps   | number                             | 上行（设备到网络）带宽。 |
 | linkDownBandwidthKbps | number                             | 下行（网络到设备）带宽。 |
@@ -893,7 +899,9 @@ connection.getDefaultNet().then(function (netHandle) {
 
 网络具体能力。
 
-| 变量                     | 值   | 说明                   |
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetManager.Core。
+
+| 参数名                  | 值   | 说明                   |
 | ------------------------ | ---- | ---------------------- |
 | NET_CAPABILITY_MMS | 0 | 表示网络可以访问运营商的MMSC（Multimedia&nbsp;Message&nbsp;Service，多媒体短信服务）发送和接收彩信。 |
 | NET_CAPABILITY_NOT_METERED | 11 | 表示网络流量未被计费。 |
@@ -905,7 +913,9 @@ connection.getDefaultNet().then(function (netHandle) {
 
 网络类型。
 
-| 变量            | 值   | 说明        |
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetManager.Core。
+
+| 名称         | 值   | 说明        |
 | --------------- | ---- | ----------- |
 | BEARER_CELLULAR | 0    | 蜂窝网络。  |
 | BEARER_WIFI     | 1    | Wi-Fi网络。 |
@@ -915,7 +925,9 @@ connection.getDefaultNet().then(function (netHandle) {
 
 网络连接信息。
 
-| 变量          | 类型                               | 说明             |
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetManager.Core。
+
+| 参数名       | 类型                               | 说明             |
 | ------------- | ---------------------------------- | ---------------- |
 | interfaceName | string                             | 网卡名称。       |
 | domains       | string                             | 所属域，默认""。 |
@@ -928,7 +940,9 @@ connection.getDefaultNet().then(function (netHandle) {
 
 网络链路信息。
 
-| 变量         | 类型                      | 说明                 |
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetManager.Core。
+
+| 参数名       | 类型                      | 说明                 |
 | ------------ | ------------------------- | -------------------- |
 | address      | [NetAddress](#netaddress) | 链路地址。           |
 | prefixLength | number                    | 链路地址前缀的长度。 |
@@ -937,7 +951,9 @@ connection.getDefaultNet().then(function (netHandle) {
 
 网络路由信息。
 
-| 变量           | 类型                        | 说明             |
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetManager.Core。
+
+| 参数名         | 类型                        | 说明             |
 | -------------- | --------------------------- | ---------------- |
 | interface      | string                      | 网卡名称。       |
 | destination    | [LinkAddress](#linkaddress) | 目的地址。       |
@@ -949,7 +965,9 @@ connection.getDefaultNet().then(function (netHandle) {
 
 网络地址。
 
-| 变量    | 类型   | 说明                           |
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetManager.Core。
+
+| 参数名  | 类型   | 说明                           |
 | ------- | ------ | ------------------------------ |
 | address | string | 地址。                         |
 | family  | number | IPv4 = 1，IPv6 = 2，默认IPv4。 |

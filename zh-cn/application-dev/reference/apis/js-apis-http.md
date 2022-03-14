@@ -4,7 +4,6 @@
 >
 >本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
->本模块所有接口需要设备具有系统能力：SystemCapability.Communication.NetStack
 
 ## 导入模块
 
@@ -63,6 +62,8 @@ createHttp\(\): HttpRequest
 
 创建一个http，里面包括发起请求、中断请求、订阅/取消订阅HTTP Response Header 事件。每一个HttpRequest对象对应一个Http请求。如需发起多个Http请求，须为每个Http请求创建对应HttpRequest对象。
 
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetStack。
+
 **返回值：**
 
 | 类型        | 说明                                                         |
@@ -89,6 +90,8 @@ request\(url: string, callback: AsyncCallback\<HttpResponse\>\):void
 
 **需要权限**：ohos.permission.INTERNET
 
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetStack。
+
 **参数：**
 
 | 参数名   | 类型                                                    | 必填 | 说明                    |
@@ -99,7 +102,6 @@ request\(url: string, callback: AsyncCallback\<HttpResponse\>\):void
 **示例：**
 
 ```
-let httpRequest = http.createHttp();
 httpRequest.request("EXAMPLE_URL", (err, data) => {
   if (!err) {
     console.info('Result:' + data.result);
@@ -120,6 +122,8 @@ request\(url: string, options: HttpRequestOptions, callback: AsyncCallback<HttpR
 
 **需要权限**：ohos.permission.INTERNET
 
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetStack。
+
 **参数：**
 
 | 参数名   | 类型                                           | 必填 | 说明                                            |
@@ -131,7 +135,6 @@ request\(url: string, options: HttpRequestOptions, callback: AsyncCallback<HttpR
 **示例：**
 
 ```
-let httpRequest= http.createHttp();
 httpRequest.request("EXAMPLE_URL",
 {
   method: 'GET',
@@ -165,6 +168,8 @@ request\(url: string, options? : HttpRequestOptions\): Promise<HttpResponse\>
 
 **需要权限**：ohos.permission.INTERNET
 
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetStack。
+
 **参数：**
 
 | 参数名  | 类型               | 必填 | 说明                                               |
@@ -182,7 +187,6 @@ request\(url: string, options? : HttpRequestOptions\): Promise<HttpResponse\>
 **示例：**
 
 ```
-let httpRequest= http.createHttp();
 let promise = httpRequest.request("EXAMPLE_URL", {
   method: "GET",
   connectTimeout: 60000,
@@ -211,21 +215,24 @@ destroy\(\): void
 
 中断请求任务。
 
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetStack。
+
 **示例：**
 
 ```
-let httpRequest= http.createHttp();
 httpRequest.destroy();
 ```
 
 ### on\('headerReceive'\)
 
-on\(type: 'headerReceive', callback: AsyncCallback<Object\>\):void
+on\(type: 'headerReceive', callback: AsyncCallback<Object\>\): void
 
 订阅HTTP Response Header 事件。
 
 >![](public_sys-resources/icon-note.gif) **说明：** 
 > 此接口已废弃，建议使用[on\('headersReceive'\)<sup>8+</sup>](#onheadersreceive8)替代。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetStack。
 
 **参数：**
 
@@ -237,7 +244,6 @@ on\(type: 'headerReceive', callback: AsyncCallback<Object\>\):void
 **示例：**
 
 ```
-let httpRequest= http.createHttp();
 httpRequest.on('headerReceive', (err, data) => {
   if (!err) {
 	console.info('header: ' + data.header);
@@ -250,7 +256,7 @@ httpRequest.on('headerReceive', (err, data) => {
 
 ### off\('headerReceive'\)
 
-off\(type: 'headerReceive', callback?: AsyncCallback<Object\>\):void
+off\(type: 'headerReceive', callback?: AsyncCallback<Object\>\): void
 
 取消订阅HTTP Response Header 事件。
 
@@ -259,6 +265,8 @@ off\(type: 'headerReceive', callback?: AsyncCallback<Object\>\):void
 >1. 此接口已废弃，建议使用[off\('headersReceive'\)<sup>8+</sup>](#offheadersreceive8)替代。
 >
 >2. 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetStack。
 
 **参数：**
 
@@ -270,7 +278,6 @@ off\(type: 'headerReceive', callback?: AsyncCallback<Object\>\):void
 **示例：**
 
 ```
-let httpRequest= http.createHttp();
 httpRequest.on('headerReceive', (err, data) => {
   if (!err) {
 	console.info('header: ' + data.header);
@@ -283,9 +290,11 @@ httpRequest.off('headerReceive');
 
 ### on\('headersReceive'\)<sup>8+</sup>
 
-on\(type: 'headersReceive', callback: Callback<Object\>\):void
+on\(type: 'headersReceive', callback: Callback<Object\>\): void
 
 订阅HTTP Response Header 事件。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetStack。
 
 **参数：**
 
@@ -297,7 +306,6 @@ on\(type: 'headersReceive', callback: Callback<Object\>\):void
 **示例：**
 
 ```
-let httpRequest= http.createHttp();
 httpRequest.on('headersReceive', (data) => {
   console.info('header: ' + data.header);
 });
@@ -306,12 +314,14 @@ httpRequest.on('headersReceive', (data) => {
 
 ### off\('headersReceive'\)<sup>8+</sup>
 
-off\(type: 'headersReceive', callback?: Callback<Object\>\):void
+off\(type: 'headersReceive', callback?: Callback<Object\>\): void
 
 取消订阅HTTP Response Header 事件。
 
 >![](public_sys-resources/icon-note.gif) **说明：** 
 >可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetStack。
 
 **参数：**
 
@@ -323,15 +333,16 @@ off\(type: 'headersReceive', callback?: Callback<Object\>\):void
 **示例：**
 
 ```
-let httpRequest= http.createHttp();
 httpRequest.off('headersReceive');
 ```
 
 ### once\('headersReceive'\)<sup>8+</sup>
 
-once\(type: "headersReceive", callback: Callback<Object\>\): void
+once\(type: 'headersReceive', callback: Callback<Object\>\): void
 
 订阅HTTP Response Header 事件，但是只触发一次。一旦触发之后，订阅器就会被移除。使用callback方式作为异步方法。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetStack。
 
 **参数：**
 
@@ -343,7 +354,6 @@ once\(type: "headersReceive", callback: Callback<Object\>\): void
 **示例：**
 
 ```
-let httpRequest= http.createHttp();
 httpRequest.once('headersReceive', (data) => {
   console.info('header: ' + data.header);
 });
@@ -353,7 +363,9 @@ httpRequest.once('headersReceive', (data) => {
 
 发起请求可选参数的类型和取值范围。
 
-| 参数           | 类型                                 | 必填 | 说明                                                       |
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetStack。
+
+| 参数名          | 类型                                 | 必填 | 说明                                                       |
 | -------------- | ------------------------------------ | ---- | ---------------------------------------------------------- |
 | method         | [RequestMethod](#requestmethod) | 否   | 请求方式。                                                 |
 | extraData      | string \| Object  \| ArrayBuffer<sup>8+</sup> | 否   | 发送请求的额外数据。<br />- 当HTTP请求为POST、PUT等方法时，此字段为HTTP请求的content。<br />- 当HTTP请求为GET、OPTIONS、DELETE、TRACE、CONNECT等方法时，此字段为HTTP请求的参数补充，参数内容会拼接到URL中进行发送。<sup>8+</sup><br />- 开发者传入string对象，开发者需要自行编码，将编码后的string传入。<sup>8+</sup> |
@@ -365,22 +377,26 @@ httpRequest.once('headersReceive', (data) => {
 
 HTTP 请求方法。
 
-| **method 的合法值** | 说明                |
-| :------------------ | :------------------ |
-| OPTIONS             | HTTP 请求 OPTIONS。 |
-| GET                 | HTTP 请求 GET。     |
-| HEAD                | HTTP 请求 HEAD。    |
-| POST                | HTTP 请求 POST。    |
-| PUT                 | HTTP 请求 PUT。     |
-| DELETE              | HTTP 请求 DELETE。  |
-| TRACE               | HTTP 请求 TRACE。   |
-| CONNECT             | HTTP 请求 CONNECT。 |
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetStack。
+
+| 名称    | 值      | 说明                |
+| :------ | ------- | :------------------ |
+| OPTIONS | OPTIONS | HTTP 请求 OPTIONS。 |
+| GET     | GET     | HTTP 请求 GET。     |
+| HEAD    | HEAD    | HTTP 请求 HEAD。    |
+| POST    | POST    | HTTP 请求 POST。    |
+| PUT     | PUT     | HTTP 请求 PUT。     |
+| DELETE  | DELETE  | HTTP 请求 DELETE。  |
+| TRACE   | TRACE   | HTTP 请求 TRACE。   |
+| CONNECT | CONNECT | HTTP 请求 CONNECT。 |
 
 ## ResponseCode
 
 发起请求返回的响应码。
 
-| 变量              | 值   | 说明                                                         |
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetStack。
+
+| 名称              | 值   | 说明                                                         |
 | ----------------- | ---- | ------------------------------------------------------------ |
 | OK                | 200  | 请求成功。一般用于GET与POST请求。                            |
 | CREATED           | 201  | 已创建。成功请求并创建了新的资源。                           |
@@ -421,6 +437,8 @@ HTTP 请求方法。
 ## HttpResponse
 
 request方法回调函数的返回值类型。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetStack。
 
 | 参数名               | 类型                                         | 必填 | 说明                                                         |
 | -------------------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
