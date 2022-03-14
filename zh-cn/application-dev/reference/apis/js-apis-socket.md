@@ -17,7 +17,7 @@ constructUDPSocketInstance\(\): UDPSocket
 
 创建一个UDPSocket对象。
 
-**系统能力：**SystemCapability.Communication.NetStack
+**系统能力**：SystemCapability.Communication.NetStack
 
 **返回值：**
 
@@ -45,7 +45,7 @@ bind\(address: NetAddress, callback: AsyncCallback<void\>\): void
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力：**SystemCapability.Communication.NetStack
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
@@ -76,7 +76,7 @@ bind\(address: NetAddress\): Promise<void\>
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力：**SystemCapability.Communication.NetStack
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
@@ -112,7 +112,7 @@ send\(options: UDPSendOptions, callback: AsyncCallback<void\>\): void
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力：**SystemCapability.Communication.NetStack
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
@@ -150,7 +150,7 @@ send\(options: UDPSendOptions\): Promise<void\>
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力：**SystemCapability.Communication.NetStack
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
@@ -192,7 +192,7 @@ close\(callback: AsyncCallback<void\>\): void
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力：**SystemCapability.Communication.NetStack
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
@@ -222,7 +222,7 @@ close\(\): Promise<void\>
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力：**SystemCapability.Communication.NetStack
+**系统能力**：SystemCapability.Communication.NetStack
 
 **返回值：**
 
@@ -254,7 +254,7 @@ getState\(callback: AsyncCallback<SocketStateBase\>\): void
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力：**SystemCapability.Communication.NetStack
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
@@ -294,7 +294,7 @@ getState\(\): Promise<SocketStateBase\>
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力：**SystemCapability.Communication.NetStack
+**系统能力**：SystemCapability.Communication.NetStack
 
 **返回值：**
 
@@ -333,7 +333,7 @@ setExtraOptions\(options: UDPExtraOptions, callback: AsyncCallback<void\>\): voi
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力：**SystemCapability.Communication.NetStack
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
@@ -381,7 +381,7 @@ setExtraOptions\(options: UDPExtraOptions\): Promise<void\>
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力：**SystemCapability.Communication.NetStack
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
@@ -426,7 +426,7 @@ on\(type: 'message', callback: Callback<\{message: ArrayBuffer, remoteInfo: Sock
 
 订阅UDPSocket连接的接收消息事件。使用callback方式作为异步方法。
 
-**系统能力：**SystemCapability.Communication.NetStack
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
@@ -454,7 +454,7 @@ off\(type: 'message', callback?: Callback<\{message: ArrayBuffer, remoteInfo: So
 >![](public_sys-resources/icon-note.gif) **说明：** 
 >可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
-**系统能力：**SystemCapability.Communication.NetStack
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
@@ -483,7 +483,7 @@ on\(type: 'listening' | 'close', callback: Callback<void\>\): void
 
 订阅UDPSocket连接的数据包消息事件或关闭事件。使用callback方式作为异步方法。
 
-**系统能力：**SystemCapability.Communication.NetStack
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
@@ -514,7 +514,7 @@ off\(type: 'listening' | 'close', callback?: Callback<void\>\): void
 >![](public_sys-resources/icon-note.gif) **说明：** 
 >可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
-**系统能力：**SystemCapability.Communication.NetStack
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
@@ -550,7 +550,7 @@ on\(type: 'error', callback: ErrorCallback\): void
 
 订阅UDPSocket连接的error事件。使用callback方式作为异步方法。
 
-**系统能力：**SystemCapability.Communication.NetStack
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
@@ -579,7 +579,7 @@ off\(type: 'error', callback?: ErrorCallback\): void
 >![](public_sys-resources/icon-note.gif) **说明：** 
 >可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
-**系统能力：**SystemCapability.Communication.NetStack
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
@@ -670,7 +670,7 @@ constructTCPSocketInstance\(\): TCPSocket
 
 创建一个TCPSocket对象。
 
-**系统能力：**SystemCapability.Communication.NetStack
+**系统能力**：SystemCapability.Communication.NetStack
 
 **返回值：**
 
@@ -697,7 +697,7 @@ bind\(address: NetAddress, callback: AsyncCallback<void\>\): void
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力：**SystemCapability.Communication.NetStack
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
@@ -729,7 +729,7 @@ bind\(address: NetAddress\): Promise<void\>
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力：**SystemCapability.Communication.NetStack
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
@@ -764,7 +764,7 @@ connect\(options: TCPConnectOptions, callback: AsyncCallback<void\>\): void
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力：**SystemCapability.Communication.NetStack
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
@@ -795,7 +795,7 @@ connect\(options: TCPConnectOptions\): Promise<void\>
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力：**SystemCapability.Communication.NetStack
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
@@ -833,7 +833,7 @@ send\(options: TCPSendOptions, callback: AsyncCallback<void\>\): void
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力：**SystemCapability.Communication.NetStack
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
@@ -875,7 +875,7 @@ send\(options: TCPSendOptions\): Promise<void\>
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力：**SystemCapability.Communication.NetStack
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
@@ -918,7 +918,7 @@ close\(callback: AsyncCallback<void\>\): void
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力：**SystemCapability.Communication.NetStack
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
@@ -949,7 +949,7 @@ close\(\): Promise<void\>
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力：**SystemCapability.Communication.NetStack
+**系统能力**：SystemCapability.Communication.NetStack
 
 **返回值：**
 
@@ -981,7 +981,7 @@ getRemoteAddress\(callback: AsyncCallback<NetAddress\>\): void
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力：**SystemCapability.Communication.NetStack
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
@@ -1020,7 +1020,7 @@ getRemoteAddress\(\): Promise<NetAddress\>
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力：**SystemCapability.Communication.NetStack
+**系统能力**：SystemCapability.Communication.NetStack
 
 **返回值：**
 
@@ -1058,7 +1058,7 @@ getState\(callback: AsyncCallback<SocketStateBase\>\): void
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力：**SystemCapability.Communication.NetStack
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
@@ -1098,7 +1098,7 @@ getState\(\): Promise<SocketStateBase\>
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力：**SystemCapability.Communication.NetStack
+**系统能力**：SystemCapability.Communication.NetStack
 
 **返回值：**
 
@@ -1137,7 +1137,7 @@ setExtraOptions\(options: TCPExtraOptions, callback: AsyncCallback<void\>\): voi
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力：**SystemCapability.Communication.NetStack
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
@@ -1186,7 +1186,7 @@ setExtraOptions\(options: TCPExtraOptions\): Promise<void\>
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力：**SystemCapability.Communication.NetStack
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
@@ -1235,7 +1235,7 @@ on\(type: 'message', callback: Callback<\{message: ArrayBuffer, remoteInfo: Sock
 
 订阅TCPSocket连接的接收消息事件。使用callback方式作为异步方法。
 
-**系统能力：**SystemCapability.Communication.NetStack
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
@@ -1263,7 +1263,7 @@ off\(type: 'message', callback?: Callback<\{message: ArrayBuffer, remoteInfo: So
 >![](public_sys-resources/icon-note.gif) **说明：** 
 >可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
-**系统能力：**SystemCapability.Communication.NetStack
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
@@ -1292,7 +1292,7 @@ on\(type: 'connect' | 'close', callback: Callback<void\>\): void
 
 订阅TCPSocket的连接事件或关闭事件。使用callback方式作为异步方法。
 
-**系统能力：**SystemCapability.Communication.NetStack
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
@@ -1324,7 +1324,7 @@ off\(type: 'connect' | 'close', callback?: Callback<void\>\): void
 >![](public_sys-resources/icon-note.gif) **说明：** 
 >可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
-**系统能力：**SystemCapability.Communication.NetStack
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
@@ -1360,7 +1360,7 @@ on\(type: 'error', callback: ErrorCallback\): void
 
 订阅TCPSocket连接的error事件。使用callback方式作为异步方法。
 
-**系统能力：**SystemCapability.Communication.NetStack
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
@@ -1388,7 +1388,7 @@ off\(type: 'error', callback?: ErrorCallback\): void
 >![](public_sys-resources/icon-note.gif) **说明：** 
 >可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
-**系统能力：**SystemCapability.Communication.NetStack
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
