@@ -43,7 +43,7 @@ DatePicker(value:{start?: Date, end?: Date, selected?: Date, type?: DatePickerTy
 | 名称 | 参数类型 | 默认值 | 描述 | 
 | -------- | -------- | -------- | -------- |
 | lunar | boolean | false | 日期是否显示农历。<br/>-&nbsp;true：展示农历。<br/>-&nbsp;false：不展示农历。 | 
-| useMilitaryTime | boolean | false | 展示时间是否为24小时制。 | 
+| useMilitaryTime | boolean | false | 展示时间是否为24小时制，不支持动态修改。 | 
 
 
 ## 事件
