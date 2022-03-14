@@ -2531,7 +2531,7 @@ createVideoOutput(surfaceId: string, callback: AsyncCallback<VideoOutput\>): voi
 | 名称        | 类型                           | 必填      | 说明                                                |
 |------------|-------------------------------|-----------|----------------------------------------------------|
 | surfaceId  | string                        | 是       | 从VideoRecorder获取的Surface ID。                   |
-| callback   | AsyncCallback<[VideoOutput](#videootput)\> | 是       | 回调函数，用于获取VideoOutput实例。    |
+| callback   | AsyncCallback<[VideoOutput](#videooutput)\> | 是       | 回调函数，用于获取VideoOutput实例。    |
 
 **示例：**
 

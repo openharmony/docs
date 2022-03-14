@@ -13,7 +13,7 @@ Extension运行相关信息。
 通过abilityManager中方法获取。
 
 
-  
+
 ```
 import abilitymanager from '@ohos.application.abilityManager';
 abilitymanager.getExtensionRunningInfos(upperLimit, (err,data) => { 
@@ -24,15 +24,15 @@ abilitymanager.getExtensionRunningInfos(upperLimit, (err,data) => {
 
 ### 属性
 
-  | 名称 | 参数类型 | 可读 | 可写 | 说明 | 
+| 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| extension | ElementName | 是 | 否 | Extension匹配信息。<br><b>系统能力：</b>SystemCapability.Ability.AbilityRuntime.Core | 
-| pid | number | 是 | 否 | 进程ID。<br><b>系统能力：</b>SystemCapability.Ability.AbilityRuntime.Core | 
-| uid | number | 是 | 否 | 用户ID。<br><b>系统能力：</b>SystemCapability.Ability.AbilityRuntime.Core | 
-| processName | string | 是 | 否 | 进程名称。<br><b>系统能力：</b>SystemCapability.Ability.AbilityRuntime.Core | 
-| startTime | number | 是 | 否 | Extension启动时间。<br><b>系统能力：</b>SystemCapability.Ability.AbilityRuntime.Core | 
-| clientPackage | Array&lt;String&gt; | 是 | 否 | 表示当期进程下的所有包名。<br><b>系统能力：</b>SystemCapability.Ability.AbilityRuntime.Core | 
-| type | [bundle.ExtensionAbilityType](#bundle-extensionabilitytype) | 是 | 否 | Extension类型。<br><b>系统能力：</b>SystemCapability.Ability.AbilityRuntime.Core | 
+| extension | ElementName | 是 | 否 | Extension匹配信息。<br><b>系统能力：</b>SystemCapability.Ability.AbilityRuntime.Core |
+| pid | number | 是 | 否 | 进程ID。<br><b>系统能力：</b>SystemCapability.Ability.AbilityRuntime.Core |
+| uid | number | 是 | 否 | 用户ID。<br><b>系统能力：</b>SystemCapability.Ability.AbilityRuntime.Core |
+| processName | string | 是 | 否 | 进程名称。<br><b>系统能力：</b>SystemCapability.Ability.AbilityRuntime.Core |
+| startTime | number | 是 | 否 | Extension启动时间。<br><b>系统能力：</b>SystemCapability.Ability.AbilityRuntime.Core |
+| clientPackage | Array&lt;String&gt; | 是 | 否 | 表示当期进程下的所有包名。<br><b>系统能力：</b>SystemCapability.Ability.AbilityRuntime.Core |
+| type | [bundle.ExtensionAbilityType](#bundleextensionabilitytype) | 是 | 否 | Extension类型。<br><b>系统能力：</b>SystemCapability.Ability.AbilityRuntime.Core |
 
 
 ## bundle.ExtensionAbilityType

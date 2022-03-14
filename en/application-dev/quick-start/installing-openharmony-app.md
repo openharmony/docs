@@ -31,4 +31,3 @@ You can install your OpenHarmony app in either of the following methods:
 
     For details about how to use hdc and the command format, see  [hdc\_std Usage Guidelines](https://gitee.com/openharmony/docs/blob/master/en/device-dev/subsystems/oem_subsys_toolchain_hdc_guide.md).
 
-

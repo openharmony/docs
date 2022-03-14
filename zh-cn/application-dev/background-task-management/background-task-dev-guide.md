@@ -36,12 +36,12 @@ import backgroundTaskManager from '@ohos.backgroundTaskManager';
 
     ```js
     import backgroundTaskManager from '@ohos.backgroundTaskManager';
-
+    
     let myReason = 'test requestSuspendDelay';
     let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
         console.info("Request suspension delay will time out.");
     });
-
+    
     var id = delayInfo.requestId;console.info("requestId is: " + id);
     ```
 
@@ -106,10 +106,10 @@ ohos.permission.KEEP_BACKGROUND_RUNNING
 | function stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): void;<br/>function stopBackgroundRunning(context: Context): Promise&lt;void&gt;; | 停止后台长时任务的运行 |
 
 
-其中，wantAgent的信息详见（[WantAgent](../reference/apis/js-apis-notification.md#WantAgent接口)
-
+其中，wantAgent的信息详见（[WantAgent](../reference/apis/js-apis-notification.md#WantAgent接口)）
 
 **表4** 后台模式类型
+
 | 参数名 | id值 | 描述 |
 | -------- | -------- | -------- |
 | DATA_TRANSFER           | 1 | 数据传输 |
@@ -174,13 +174,13 @@ ohos.permission.KEEP_BACKGROUND_RUNNING
     ```js
     import backgroundTaskManager from '@ohos.backgroundTaskManager';
     import featureAbility from '@ohos.ability.featureAbility';
-
+    
     backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext()).then(() => {
         console.info("Operation succeeded");
     }).catch((err) => {
         console.error("Operation failed Cause: " + err);
     });
-
+    
     ```
 
 ## 开发实例

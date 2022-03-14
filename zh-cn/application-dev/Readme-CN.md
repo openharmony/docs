@@ -13,15 +13,17 @@
     - [Ability开发](ability/Readme-CN.md)
     - [UI开发](ui/Readme-CN.md)
     - 基础功能开发
-       - [后台代理提醒](background-agent-scheduled-reminder/Readme-CN.md)
-       - [后台任务管理](background-task-management/Readme-CN.md)
+       - [窗口管理](windowmanager/Readme-CN.md)
+       - [WebGL](webgl/Readme-CN.md)
        - [媒体](media/Readme-CN.md)
        - [安全](security/Readme-CN.md)
        - [网络与连接](connectivity/Readme-CN.md)
        - [数据管理](database/Readme-CN.md)
-       - [USB服务](usb/Readme-CN.md)
+       - [后台代理提醒](background-agent-scheduled-reminder/Readme-CN.md)
+       - [后台任务管理](background-task-management/Readme-CN.md)
+       - [设备管理](device/Readme-CN.md)
+       - [设备使用信息统计](device-usage-statistics/Readme-CN.md)
        - [DFX](dfx/Readme-CN.md)
-       - [窗口管理](windowmanager/Readme-CN.md)
 - 工具
     - [DevEco Studio（OpenHarmony）使用指南](quick-start/deveco-studio-user-guide-for-openharmony.md)
 - 示例教程

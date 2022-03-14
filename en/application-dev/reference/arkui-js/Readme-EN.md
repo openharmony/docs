@@ -7,7 +7,7 @@
         -   [Universal Events](js-components-common-events.md)
         -   [Universal Methods](js-components-common-methods.md)
         -   [Animation Styles](js-components-common-animation.md)
-        -   [Gradient Styles](reference/arkui-js/js-components-common-gradient.md)
+        -   [Gradient Styles](js-components-common-gradient.md)
         -   [Transition Styles](js-components-common-transition.md)
         -   [Media Query](js-components-common-mediaquery.md)
         -   [Custom Font Styles](js-components-common-customizing-font.md)

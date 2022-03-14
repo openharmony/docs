@@ -61,17 +61,17 @@ createKVManager(config: KVManagerConfig): Promise&lt;KVManager&gt;
 创建一个KVManager对象实例，用于管理数据库对象，并通过Promise方式返回，此方法为异步方法。
 
 -   参数：
-  
+
 | 参数名 | 参数类型 | 必填 | 说明 |
 | ----- | ------ | ------ | ------ |
 | config |[KVManagerConfig](#kvmanager) | 是  | 提供KVManager实例的配置信息，包括调用方的包名和用户信息。 |
-   
+
 -   返回值：
 
 | 类型 | 说明 |
 | -------- | -------- |
 | Promise&lt;[KVManager](#kvmanager)&gt; | 指定的Promise回调方法，返回创建的KVManager对象实例。 |
-    
+
 -   示例：
 
     ```
@@ -363,7 +363,7 @@ deleteKVStore(appId: string, storeId: string): Promise&lt;void&gt;;
 通过storeId的值删除指定的kvStore数据库，并通过Promise方式返回，此方法为异步方法。
 
 -   参数：
-  
+
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | appId  | string  | 是   | 所调用数据库方的包名。     |
@@ -450,7 +450,7 @@ getAllKVStoreId(appId: string): Promise&lt;string[]&gt;;
 
 
 -   返回值：
-  
+
 | 类型          | 说明            |
 | ------------- | -------------- |
 | Promise&lt;string[]&gt;| Promise实例，返回所有创建的 KvStore 数据库的 storeId。 |
@@ -517,7 +517,7 @@ off(event: 'distributedDataServiceDie', deathCallback?: Callback&lt;void&gt;): v
 | -----  | ------  | ----  | ----------------------- |
 | event  | 'distributedDataServiceDie'  | 是    | 服务状态改变时触发的事件名。     |
 | deathCallback  | Callback&lt;void&gt;  | 否    | 回调函数，取消设备状态改变时获取通知。    |
-    
+
 
 -   示例
 
@@ -633,7 +633,7 @@ appendChild(child: FieldNode): boolean;
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | child  | [FieldNode](#FieldNode)  | 是    | 要附加的域节点。   |
- 
+
 
 -   返回值：
 
@@ -1138,7 +1138,7 @@ reset(): Query;
 
 | 类型    | 说明       |
 | ------  | -------   |
-| [Query](#querysup8sup) |返回重置的 Query 对象。|
+| [Query](#query8) |返回重置的 Query 对象。|
 
 -   示例
 
@@ -1173,7 +1173,7 @@ equalTo(field: string, value: number|string|boolean): Query;
 
 | 类型    | 说明       |
 | ------  | -------   |
-| [Query](#querysup8sup) |返回重置的 Query 对象。|
+| [Query](#query8) |返回重置的 Query 对象。|
 
 -   示例
 
@@ -1206,7 +1206,7 @@ notEqualTo(field: string, value: number|string|boolean): Query;
 
 | 类型    | 说明       |
 | ------  | -------   |
-| [Query](#querysup8sup) |返回重置的 Query 对象。|
+| [Query](#query8) |返回重置的 Query 对象。|
 
 -   示例
 
@@ -1239,7 +1239,7 @@ greaterThan(field: string, value: number|string|boolean): Query;
 
 | 类型    | 说明       |
 | ------  | -------   |
-| [Query](#querysup8sup) |返回查询对象。|
+| [Query](#query8) |返回查询对象。|
 
 -   示例
 
@@ -1272,7 +1272,7 @@ lessThan(field: string, value: number|string): Query;
 
 | 类型    | 说明       |
 | ------  | -------   |
-| [Query](#querysup8sup) |返回查询对象。|
+| [Query](#query8) |返回查询对象。|
 
 -   示例
 
@@ -1305,7 +1305,7 @@ greaterThanOrEqualTo(field: string, value: number|string): Query;
 
 | 类型    | 说明       |
 | ------  | -------   |
-| [Query](#querysup8sup) |返回查询对象。|
+| [Query](#query8) |返回查询对象。|
 
 -   示例
 
@@ -1338,7 +1338,7 @@ lessThanOrEqualTo(field: string, value: number|string): Query;
 
 | 类型    | 说明       |
 | ------  | -------   |
-| [Query](#querysup8sup) |返回查询对象。|
+| [Query](#query8) |返回查询对象。|
 
 -   示例
 
@@ -1370,7 +1370,7 @@ isNull(field: string): Query;
 
 | 类型    | 说明       |
 | ------  | -------   |
-| [Query](#querysup8sup) |返回查询对象。|
+| [Query](#query8) |返回查询对象。|
 
 -   示例
 
@@ -1403,7 +1403,7 @@ inNumber(field: string, valueList: number[]): Query;
 
 | 类型    | 说明       |
 | ------  | -------   |
-| [Query](#querysup8sup) |返回查询对象。|
+| [Query](#query8) |返回查询对象。|
 
 
 -   示例
@@ -1437,7 +1437,7 @@ inString(field: string, valueList: string[]): Query;
 
 | 类型    | 说明       |
 | ------  | -------   |
-| [Query](#querysup8sup) |返回查询对象。|
+| [Query](#query8) |返回查询对象。|
 
 -   示例
 
@@ -1470,7 +1470,7 @@ notInNumber(field: string, valueList: number[]): Query;
 
 | 类型    | 说明       |
 | ------  | -------   |
-| [Query](#querysup8sup) |返回查询对象。|
+| [Query](#query8) |返回查询对象。|
 
 -   示例
 
@@ -1503,7 +1503,7 @@ notInString(field: string, valueList: string[]): Query;
 
 | 类型    | 说明       |
 | ------  | -------   |
-| [Query](#querysup8sup) |返回查询对象。|
+| [Query](#query8) |返回查询对象。|
 
 -   示例
 
@@ -1536,7 +1536,7 @@ like(field: string, value: string): Query;
 
 | 类型    | 说明       |
 | ------  | -------   |
-| [Query](#querysup8sup) |返回查询对象。|
+| [Query](#query8) |返回查询对象。|
 
 -   示例
 
@@ -1569,7 +1569,7 @@ unlike(field: string, value: string): Query;
 
 | 类型    | 说明       |
 | ------  | -------   |
-| [Query](#querysup8sup) |返回查询对象。|
+| [Query](#query8) |返回查询对象。|
 
 -   示例
 
@@ -1595,7 +1595,7 @@ and(): Query;
 
 | 类型    | 说明       |
 | ------  | -------   |
-| [Query](#querysup8sup) |返回查询对象。|
+| [Query](#query8) |返回查询对象。|
 
 -   示例
 
@@ -1623,7 +1623,7 @@ or(): Query;
 
 | 类型    | 说明       |
 | ------  | -------   |
-| [Query](#querysup8sup) |返回查询对象。|
+| [Query](#query8) |返回查询对象。|
 
 -   示例
 
@@ -1657,7 +1657,7 @@ orderByAsc(field: string): Query;
 
 | 类型    | 说明       |
 | ------  | -------   |
-| [Query](#querysup8sup) |返回查询对象。|
+| [Query](#query8) |返回查询对象。|
 
 -   示例
 
@@ -1690,7 +1690,7 @@ orderByDesc(field: string): Query;
 
 | 类型    | 说明       |
 | ------  | -------   |
-| [Query](#querysup8sup) |返回查询对象。|
+| [Query](#query8) |返回查询对象。|
 
 
 -   示例
@@ -1725,7 +1725,7 @@ limit(total: number, offset: number): Query;
 
 | 类型    | 说明       |
 | ------  | -------   |
-| [Query](#querysup8sup) |返回查询对象。|
+| [Query](#query8) |返回查询对象。|
 
 -   示例
 
@@ -1758,7 +1758,7 @@ isNotNull(field: string): Query;
 
 | 类型    | 说明       |
 | ------  | -------   |
-| [Query](#querysup8sup) |返回查询对象。|
+| [Query](#query8) |返回查询对象。|
 
 -   示例
 
@@ -1784,7 +1784,7 @@ beginGroup(): Query;
 
 | 类型    | 说明       |
 | ------  | -------   |
-| [Query](#querysup8sup) |返回查询对象。|
+| [Query](#query8) |返回查询对象。|
 
 -   示例
 
@@ -1812,7 +1812,7 @@ endGroup(): Query;
 
 | 类型    | 说明       |
 | ------  | -------   |
-| [Query](#querysup8sup) |返回查询对象。|
+| [Query](#query8) |返回查询对象。|
 
 -   示例
 
@@ -1846,7 +1846,7 @@ prefixKey(prefix: string): Query;
 
 | 类型    | 说明       |
 | ------  | -------   |
-| [Query](#querysup8sup) |返回查询对象。|
+| [Query](#query8) |返回查询对象。|
 
 -   示例
 
@@ -1879,7 +1879,7 @@ setSuggestIndex(index: string): Query;
 
 | 类型    | 说明       |
 | ------  | -------   |
-| [Query](#querysup8sup) |返回查询对象。|
+| [Query](#query8) |返回查询对象。|
 
 -   示例
 
@@ -1913,7 +1913,7 @@ deviceId(deviceId:string):Query;
 
 | 类型    | 说明       |
 | ------  | -------   |
-| [Query](#querysup8sup) |返回查询对象。|
+| [Query](#query8) |返回查询对象。|
 
 -   示例
 
@@ -1938,7 +1938,7 @@ getSqlLike():string;
 
 | 类型    | 说明       |
 | ------  | -------   |
-| [Query](#querysup8sup) |返回查询对象。|
+| [Query](#query8) |返回查询对象。|
 
 -   示例
 
@@ -2121,8 +2121,8 @@ on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;ChangeNotific
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | event  |'dataChange'  | 是    |回调函数名称。       |
-| type  |[SubscribeType](#subscribetypea) | 是    |表示订阅的类型。     |
-| observer |Callback&lt;[ChangeNotification](#changenotificationa)&gt; | 是    |回调函数。 |
+| type  |[SubscribeType](#subscribetype) | 是    |表示订阅的类型。     |
+| observer |Callback&lt;[ChangeNotification](#changenotification)&gt; | 是    |回调函数。 |
 
 
 -   示例
@@ -2169,7 +2169,7 @@ off(event:'dataChange', observer?: Callback&lt;ChangeNotification&gt;): void;
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | event  |'dataChange'  | 是    |回调函数名称。       |
-| observer |Callback&lt;[ChangeNotification](#changenotificationa)&gt; |否    |回调函数。 |
+| observer |Callback&lt;[ChangeNotification](#changenotification)&gt; |否    |回调函数。 |
 
 -   示例
 
@@ -2961,7 +2961,7 @@ getEntries(query: Query, callback: AsyncCallback&lt;Entry[]&gt;): void;
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| query  |[Query](#querysup8sup)   | 是    |表示要匹配的键前缀。  |
+| query  |[Query](#query8)   | 是    |表示要匹配的键前缀。  |
 | callback  |AsyncCallback&lt;Entry[]&gt;   | 是    |回调函数，获取指定前缀的键值对列表。  |
 
 -   示例
@@ -3010,7 +3010,7 @@ getEntries(query: Query): Promise&lt;Entry[]&gt;;
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| query  |[Query](#querysup8sup)   | 是    |表示查询对象。  |
+| query  |[Query](#query8)   | 是    |表示查询对象。  |
 
 -   返回值：
 
@@ -3066,7 +3066,7 @@ getResultSet(keyPrefix: string, callback: AsyncCallback&lt;KvStoreResultSet&gt;)
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | keyPrefix  |string   | 是    |表示要匹配的键前缀。 |
-| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultsetsup8sup)&gt;   | 是    |表示要匹配的键前缀。 |
+| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)&gt;   | 是    |表示要匹配的键前缀。 |
 
 -   示例
 
@@ -3118,7 +3118,7 @@ getResultSet(keyPrefix: string): Promise&lt;KvStoreResultSet&gt;;
 
 | 类型    | 说明       |
 | ------  | -------   |
-|Promise&lt;[KvStoreResultSet](#kvstoreresultsetsup8sup)&gt; |Promise实例，用于获取异步返回结果。|
+|Promise&lt;[KvStoreResultSet](#kvstoreresultset8)&gt; |Promise实例，用于获取异步返回结果。|
 
 -   示例
 
@@ -3171,7 +3171,7 @@ getResultSet(query: Query, callback: AsyncCallback&lt;KvStoreResultSet&gt;): voi
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | query  |Query    | 是    |表示查询对象。             |
-| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultsetsup8sup)&gt;   | 是    |回调函数，获取与指定 Query 对象匹配的 KvStoreResultSet 对象。 |
+| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)&gt;   | 是    |回调函数，获取与指定 Query 对象匹配的 KvStoreResultSet 对象。 |
 
 -   示例
 
@@ -3216,13 +3216,13 @@ getResultSet(query: Query): Promise&lt;KvStoreResultSet&gt;;
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
-| query  |[Query](#querysup8sup)    | 是    |表示查询对象。             |
+| query  |[Query](#query8)    | 是    |表示查询对象。             |
 
 -   返回值：
 
 | 类型    | 说明       |
 | ------  | -------   |
-|Promise&lt;[KvStoreResultSet](#kvstoreresultsetsup8sup)&gt; |Promise实例，用于获取异步返回结果。|
+|Promise&lt;[KvStoreResultSet](#kvstoreresultset8)&gt; |Promise实例，用于获取异步返回结果。|
 
 -   示例
 
@@ -3270,7 +3270,7 @@ closeResultSet(resultSet: KvStoreResultSet, callback: AsyncCallback&lt;void&gt;)
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
-| resultSet  |[KvStoreResultSet](#kvstoreresultsetsup8sup)   | 是    |表示要关闭的 KvStoreResultSet 对象。             |
+| resultSet  |[KvStoreResultSet](#kvstoreresultset8)   | 是    |表示要关闭的 KvStoreResultSet 对象。             |
 | callback  |AsyncCallback&lt;void&gt;   | 是    |回调函数，获取由 getResultSet 返回的 KvStoreResultSet 对象。             |
 
 -   示例
@@ -3302,7 +3302,7 @@ closeResultSet(resultSet: KvStoreResultSet): Promise&lt;void&gt;;
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
-| resultSet  |[KvStoreResultSet](#kvstoreresultsetsup8sup)   | 是    |表示要关闭的 KvStoreResultSet 对象。             |
+| resultSet  |[KvStoreResultSet](#kvstoreresultset8)   | 是    |表示要关闭的 KvStoreResultSet 对象。             |
 
 -   返回值：
 
@@ -3337,7 +3337,7 @@ getResultSize(query: Query, callback: AsyncCallback&lt;number&gt;): void;
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
-| query  |[Query](#querysup8sup)   | 是    |表示查询对象。         |
+| query  |[Query](#query8)   | 是    |表示查询对象。         |
 | callback  |AsyncCallback&lt;number&gt;   | 是    |回调函数，获取与指定 Query 对象匹配的结果数。         |
 
 -   示例
@@ -3381,7 +3381,7 @@ getResultSize(query: Query): Promise&lt;number&gt;;
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
-| query  |[Query](#querysup8sup)   | 是    |表示查询对象。         |
+| query  |[Query](#query8)   | 是    |表示查询对象。         |
 
 -   返回值：
 
@@ -3909,7 +3909,7 @@ getEntries(query: Query, callback: AsyncCallback&lt;Entry[]&gt;): void;
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
-| query  |[Query](#querysup8sup)  | 是    |表示查询对象。    |
+| query  |[Query](#query8)  | 是    |表示查询对象。    |
 | callback |AsyncCallback&lt;[Entry](#entry)[]&gt;  | 是    |回调函数，返回与指定 Query 对象匹配的键值对列表。    |
 
 -   示例
@@ -3960,7 +3960,7 @@ getEntries(query: Query): Promise&lt;Entry[]&gt;;
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
-| query  |[Query](#querysup8sup)  | 是    |表示查询对象。    |
+| query  |[Query](#query8)  | 是    |表示查询对象。    |
 
 -   返回值：
 
@@ -4017,7 +4017,7 @@ getEntries(deviceId: string, query: Query, callback: AsyncCallback&lt;Entry[]&gt
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | 是    |键值对所属的设备ID。    |
-| query  |[Query](#querysup8sup)  | 是    |表示查询对象。    |
+| query  |[Query](#query8)  | 是    |表示查询对象。    |
 | callback |AsyncCallback&lt;[Entry](#entry)[]&gt;  | 是    |回调函数，返回与指定 Query 对象匹配的键值对列表。    |
 
 -   示例
@@ -4069,7 +4069,7 @@ getEntries(deviceId: string, query: Query): Promise&lt;Entry[]&gt;;
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | 是    |键值对所属的设备ID。    |
-| query  |[Query](#querysup8sup)  | 是    |表示查询对象。    |
+| query  |[Query](#query8)  | 是    |表示查询对象。    |
 
 -   返回值：
 
@@ -4128,7 +4128,7 @@ getResultSet(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;KvS
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | 是    |标识要查询其数据的设备。    |
 | keyPrefix |string  | 是    |表示要匹配的键前缀。    |
-| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultsetsup8sup)[]&gt;  | 是  |回调函数，返回 KvStoreResultSet 对象。    |
+| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)[]&gt;  | 是  |回调函数，返回 KvStoreResultSet 对象。    |
 
 -   示例
 
@@ -4166,7 +4166,7 @@ getResultSet(deviceId: string, keyPrefix: string): Promise&lt;KvStoreResultSet&g
 
 | 类型    | 说明       |
 | ------  | -------   |
-|Promise&lt;[KvStoreResultSet](#kvstoreresultsetsup8sup)[]&gt; |Promise实例，用于获取异步返回结果。|
+|Promise&lt;[KvStoreResultSet](#kvstoreresultset8)[]&gt; |Promise实例，用于获取异步返回结果。|
 
 -   示例
 
@@ -4201,8 +4201,8 @@ getResultSet(query: Query, callback: AsyncCallback&lt;KvStoreResultSet&gt;): voi
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
-| query  |[Query](#querysup8sup)  | 是    |表示查询对象。    |
-| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultsetsup8sup)[]&gt;  | 是  |回调函数，返回与指定 Query 对象匹配的 KvStoreResultSet 对象。    |
+| query  |[Query](#query8)  | 是    |表示查询对象。    |
+| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)[]&gt;  | 是  |回调函数，返回与指定 Query 对象匹配的 KvStoreResultSet 对象。    |
 
 -   示例
 
@@ -4251,13 +4251,13 @@ getResultSet(query: Query): Promise&lt;KvStoreResultSet&gt;;
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
-| query  |[Query](#querysup8sup)  | 是    |表示查询对象。    |
+| query  |[Query](#query8)  | 是    |表示查询对象。    |
 
 -   返回值：
 
 | 类型    | 说明       |
 | ------  | -------   |
-|Promise&lt;[KvStoreResultSet](#kvstoreresultsetsup8sup)[]&gt; |Promise实例，用于获取异步返回结果。|
+|Promise&lt;[KvStoreResultSet](#kvstoreresultset8)[]&gt; |Promise实例，用于获取异步返回结果。|
 
 -   示例
 
@@ -4314,8 +4314,8 @@ getResultSet(deviceId: string, query: Query, callback: AsyncCallback&lt;KvStoreR
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | 是    |KvStoreResultSet对象所属的设备ID。    |
-| query  |[Query](#querysup8sup)  | 是    |表示查询对象。    |
-| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultsetsup8sup)[]&gt;  | 是  |回调函数，返回与指定 Query 对象匹配的 KvStoreResultSet 对象。    |
+| query  |[Query](#query8)  | 是    |表示查询对象。    |
+| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)[]&gt;  | 是  |回调函数，返回与指定 Query 对象匹配的 KvStoreResultSet 对象。    |
 
 -   示例
 
@@ -4364,13 +4364,13 @@ getResultSet(deviceId: string, query: Query): Promise&lt;KvStoreResultSet&gt;;
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | 是    |KvStoreResultSet对象所属的设备ID。    |
-| query  |[Query](#querysup8sup)  | 是    |表示查询对象。    |
+| query  |[Query](#query8)  | 是    |表示查询对象。    |
 
 -   返回值：
 
 | 类型    | 说明       |
 | ------  | -------   |
-|Promise&lt;[KvStoreResultSet](#kvstoreresultsetsup8sup)[]&gt; |Promise实例，用于获取异步返回结果。|
+|Promise&lt;[KvStoreResultSet](#kvstoreresultset8)[]&gt; |Promise实例，用于获取异步返回结果。|
 
 -   示例
 
@@ -4427,7 +4427,7 @@ closeResultSet(resultSet: KvStoreResultSet, callback: AsyncCallback&lt;void&gt;)
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
-| resultSet  |[KvStoreResultSet](#getresultsetsup8sup)  | 是    |指示要关闭的 KvStoreResultSet 对象。   |
+| resultSet  |[KvStoreResultSet](#getresultset8)  | 是    |指示要关闭的 KvStoreResultSet 对象。   |
 | callback   |AsyncCallback&lt;void&gt;                 | 是    |回调函数。    |
 
 -   示例
@@ -4460,7 +4460,7 @@ closeResultSet(resultSet: KvStoreResultSet): Promise&lt;void&gt;;
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
-| resultSet  |[KvStoreResultSet](#getresultsetsup8sup)  | 是    |指示要关闭的 KvStoreResultSet 对象。   |
+| resultSet  |[KvStoreResultSet](#getresultset8)  | 是    |指示要关闭的 KvStoreResultSet 对象。   |
 
 -   返回值：
 
@@ -4496,7 +4496,7 @@ getResultSize(query: Query, callback: AsyncCallback&lt;number&gt;): void;
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
-| query     |[Query](#querysup8sup)       | 是    |表示查询对象。    |
+| query     |[Query](#query8)       | 是    |表示查询对象。    |
 | callback  |AsyncCallback&lt;number&gt;  | 是    |回调函数，返回与指定 Query 对象匹配的结果数。    |
 
 -   示例
@@ -4541,7 +4541,7 @@ getResultSize(query: Query): Promise&lt;number&gt;;
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
-| query     |[Query](#querysup8sup)       | 是    |表示查询对象。    |
+| query     |[Query](#query8)       | 是    |表示查询对象。    |
 
 -   返回值：
 
@@ -4596,7 +4596,7 @@ getResultSize(deviceId: string, query: Query, callback: AsyncCallback&lt;number&
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string                       | 是    |KvStoreResultSet对象所属的设备ID。    |
-| query     |[Query](#querysup8sup)       | 是    |表示查询对象。    |
+| query     |[Query](#query8)       | 是    |表示查询对象。    |
 | callback  |AsyncCallback&lt;number&gt;  | 是    |回调函数，返回与指定 Query 对象匹配的结果数。    |
 
 -   示例
@@ -4641,7 +4641,7 @@ getResultSize(deviceId: string, query: Query): Promise&lt;number&gt;;
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string                       | 是    |KvStoreResultSet对象所属的设备ID。    |
-| query     |[Query](#querysup8sup)       | 是    |表示查询对象。    |
+| query     |[Query](#query8)       | 是    |表示查询对象。    |
 
 -   返回值：
 

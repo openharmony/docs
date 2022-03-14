@@ -13,7 +13,7 @@ Ability运行相关信息。
 通过abilityManager中getAbilityRunningInfos方法获取。
 
 
-  
+
 ```js
 import abilitymanager from '@ohos.application.abilityManager';
 abilitymanager.getAbilityRunningInfos((err,data) => { 
@@ -23,14 +23,14 @@ abilitymanager.getAbilityRunningInfos((err,data) => {
 
 ## 属性
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 | 
+| 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| ability | ElementName | 是 | 否 | Ability匹配信息。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core  | 
-| pid | number | 是 | 否 | 进程ID。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core  | 
-| uid | number | 是 | 否 | 用户ID。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core  | 
-| processName | string | 是 | 否 | 进程名称。 <br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core | 
-| startTime | number | 是 | 否 | Ability启动时间。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core  | 
-| abilityState | [abilityManager.AbilityState](#abilitymanager-abilitystate) | 是 | 否 | Ability状态。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core  | 
+| ability | ElementName | 是 | 否 | Ability匹配信息。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core  |
+| pid | number | 是 | 否 | 进程ID。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core  |
+| uid | number | 是 | 否 | 用户ID。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core  |
+| processName | string | 是 | 否 | 进程名称。 <br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core |
+| startTime | number | 是 | 否 | Ability启动时间。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core  |
+| abilityState | [abilityManager.AbilityState](#abilitymanagerabilitystate) | 是 | 否 | Ability状态。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core  |
 
 
 ## abilityManager.AbilityState
