@@ -1,4 +1,4 @@
-# AbilityDelegatorRegistry
+# AbilityDelegator
 
 > **说明**
 >
@@ -7,81 +7,14 @@
 ## 导入模块
 
 ```js
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
-```
-
-
-
-## AbilityLifecycleState
-
-Ability生命周期状态
-
-| 名称          | 值   | 说明                                                         |
-| ------------- | ---- | ------------------------------------------------------------ |
-| UNINITIALIZED | 0    | 表示无效状态。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core |
-| CREATE        | 1    | 表示Ability处于已创建状态。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core |
-| FOREGROUND    | 2    | 表示Ability处于前台状态。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core |
-| BACKGROUND    | 3    | 表示Ability处于后台状态。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core |
-| DESTROY       | 4    | 表示Ability处于已销毁状态。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core |
-
-
-
-## AbilityDelegatorRegistry.getAbilityDelegator
-
-getAbilityDelegator(): AbilityDelegator
-
-获取应用程序的AbilityDelegator对象
-
-**系统能力：**SystemCapability.Ability.AbilityRuntime.Core
-
-**参数：**-
-
-**返回值：**
-
-| 类型                                  | 说明                                                         |
-| ------------------------------------- | ------------------------------------------------------------ |
-| [AbilityDelegator](#AbilityDelegator) | [AbilityDelegator](#AbilityDelegator)对象。可有用来调度测试框架相关功能。 |
-
-**示例：**
-
-```js
-var abilityDelegator;
-
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-```
-
-
-
-## AbilityDelegatorRegistry.getArguments
-
-getArguments(): AbilityDelegatorArgs
-
-获取单元测试参数AbilityDelegatorArgs对象
-
-**系统能力：**SystemCapability.Ability.AbilityRuntime.Core
-
-**参数：**-
-
-**返回值：**
-
-| 类型                                          | 说明                                                         |
-| --------------------------------------------- | ------------------------------------------------------------ |
-| [AbilityDelegatorArgs](#AbilityDelegatorArgs) | [AbilityDelegatorArgs](#AbilityDelegatorArgs)对象。可以用来获取测试参数。 |
-
-**示例：**
-
-```js
-var args = AbilityDelegatorRegistry.getArguments();
-console.info("=========>getArguments==========>bundleName:" + args.bundleName);
-console.info("=========>getArguments==========>testCaseNames:" + args.testCaseNames);
-console.info("=========>getArguments==========>testRunnerClassName:" + args.testRunnerClassName);
+import { AbilityDelegator } from './application/abilityDelegator'
 ```
 
 
 
 ## AbilityDelegator
 
-### addAbilityMonitor
+### addAbilityMonitor<sup>9+</sup>
 
 addAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<void>): void
 
@@ -91,10 +24,10 @@ addAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<void>): void
 
 **参数：**
 
-| 参数名   | 类型                              | 必填说明 | 说明                                  |
-| -------- | --------------------------------- | -------- | ------------------------------------- |
-| monitor  | [AbilityMonitor](#AbilityMonitor) | 是       | [AbilityMonitor](#AbilityMonitor)实例 |
-| callback | AsyncCallback\<void>              | 是       | 表示指定的回调方法                    |
+| 参数名   | 类型                                                         | 必填说明 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
+| monitor  | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor) | 是       | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor)实例 |
+| callback | AsyncCallback\<void>                                         | 是       | 表示指定的回调方法                                           |
 
 **示例：**
 
@@ -118,7 +51,7 @@ abilityDelegator.addAbilityMonitor(monitor, (err) => {
 
 
 
-### addAbilityMonitor
+### addAbilityMonitor<sup>9+</sup>
 
 addAbilityMonitor(monitor: AbilityMonitor): Promise\<void>
 
@@ -128,9 +61,9 @@ addAbilityMonitor(monitor: AbilityMonitor): Promise\<void>
 
 **参数：**
 
-| 参数名  | 类型                              | 必填 | 说明                                  |
-| ------- | --------------------------------- | ---- | ------------------------------------- |
-| monitor | [AbilityMonitor](#AbilityMonitor) | 是   | [AbilityMonitor](#AbilityMonitor)实例 |
+| 参数名  | 类型                                                         | 必填 | 说明                                                         |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| monitor | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor) | 是   | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor)实例 |
 
 **返回值：**
 
@@ -160,7 +93,7 @@ abilityDelegator.addAbilityMonitor(monitor).then((void) => {
 
 
 
-### removeAbilityMonitor
+### removeAbilityMonitor<sup>9+</sup>
 
 removeAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<void>): void
 
@@ -170,10 +103,10 @@ removeAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<void>): v
 
 **参数：**
 
-| 参数名   | 类型                              | 必填 | 说明                                  |
-| -------- | --------------------------------- | ---- | ------------------------------------- |
-| monitor  | [AbilityMonitor](#AbilityMonitor) | 是   | [AbilityMonitor](#AbilityMonitor)实例 |
-| callback | AsyncCallback\<void>              | 是   | 表示指定的回调方法                    |
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| monitor  | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor) | 是   | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor)实例 |
+| callback | AsyncCallback\<void>                                         | 是   | 表示指定的回调方法                                           |
 
 **示例：**
 
@@ -197,7 +130,7 @@ abilityDelegator.removeAbilityMonitor(monitor, (err) => {
 
 
 
-### removeAbilityMonitor
+### removeAbilityMonitor<sup>9+</sup>
 
 removeAbilityMonitor(monitor: AbilityMonitor): Promise\<void>
 
@@ -207,9 +140,9 @@ removeAbilityMonitor(monitor: AbilityMonitor): Promise\<void>
 
 **参数：**
 
-| 名称    | 类型                              | 必填 | 说明                                  |
-| ------- | --------------------------------- | ---- | ------------------------------------- |
-| monitor | [AbilityMonitor](#AbilityMonitor) | 是   | [AbilityMonitor](#AbilityMonitor)实例 |
+| 名称    | 类型                                                         | 必填 | 说明                                                         |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| monitor | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor) | 是   | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor)实例 |
 
 **返回值：**
 
@@ -239,7 +172,7 @@ abilityDelegator.removeAbilityMonitor(monitor).then((void) => {
 
 
 
-### waitAbilityMonitor
+### waitAbilityMonitor<sup>9+</sup>
 
 waitAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<Ability>): void
 
@@ -249,10 +182,10 @@ waitAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<Ability>): 
 
 **参数：**
 
-| 参数名   | 类型                              | 必填 | 说明                                  |
-| -------- | --------------------------------- | ---- | ------------------------------------- |
-| monitor  | [AbilityMonitor](#AbilityMonitor) | 是   | [AbilityMonitor](#AbilityMonitor)实例 |
-| callback | AsyncCallback\<Ability>           | 是   | 表示指定的回调方法                    |
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| monitor  | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor) | 是   | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor)实例 |
+| callback | AsyncCallback\<Ability>                                      | 是   | 表示指定的回调方法                                           |
 
 **示例：**
 
@@ -276,7 +209,7 @@ abilityDelegator.waitAbilityMonitor(monitor, (err, data) => {
 
 
 
-### waitAbilityMonitor
+### waitAbilityMonitor<sup>9+</sup>
 
 waitAbilityMonitor(monitor: AbilityMonitor, timeout: number, callback: AsyncCallback\<Ability>): void
 
@@ -286,11 +219,11 @@ waitAbilityMonitor(monitor: AbilityMonitor, timeout: number, callback: AsyncCall
 
 **参数：**
 
-| 参数名   | 类型                              | 必填 | 说明                                  |
-| -------- | --------------------------------- | ---- | ------------------------------------- |
-| monitor  | [AbilityMonitor](#AbilityMonitor) | 是   | [AbilityMonitor](#AbilityMonitor)实例 |
-| timeout  | number                            | 是   | 最大等待时间，单位毫秒                |
-| callback | AsyncCallback\<Ability>           | 是   | 表示指定的回调方法                    |
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| monitor  | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor) | 是   | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor)实例 |
+| timeout  | number                                                       | 是   | 最大等待时间，单位毫秒                                       |
+| callback | AsyncCallback\<Ability>                                      | 是   | 表示指定的回调方法                                           |
 
 **示例：**
 
@@ -315,7 +248,7 @@ abilityDelegator.waitAbilityMonitor(monitor, timeout, (err, data) => {
 
 
 
-### waitAbilityMonitor
+### waitAbilityMonitor<sup>9+</sup>
 
 waitAbilityMonitor(monitor: AbilityMonitor, timeout?: number): Promise\<Ability>
 
@@ -325,10 +258,10 @@ waitAbilityMonitor(monitor: AbilityMonitor, timeout?: number): Promise\<Ability>
 
 **参数：**
 
-| 参数名  | 类型                              | 必填 | 说明                                  |
-| ------- | --------------------------------- | ---- | ------------------------------------- |
-| monitor | [AbilityMonitor](#AbilityMonitor) | 是   | [AbilityMonitor](#AbilityMonitor)实例 |
-| timeout | number                            | 否   | 最大等待时间，单位毫秒                |
+| 参数名  | 类型                                                         | 必填 | 说明                                                         |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| monitor | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor) | 是   | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor)实例 |
+| timeout | number                                                       | 否   | 最大等待时间，单位毫秒                                       |
 
 **返回值：**
 
@@ -358,7 +291,7 @@ abilityDelegator.waitAbilityMonitor(monitor).then((data) => {
 
 
 
-### getAppContext
+### getAppContext<sup>9+</sup>
 
 getAppContext(): Context
 
@@ -383,7 +316,7 @@ var context = abilityDelegator.getAppContext();
 
 
 
-### getAbilityState
+### getAbilityState<sup>9+</sup>
 
 getAbilityState(ability: Ability): number
 
@@ -401,7 +334,7 @@ getAbilityState(ability: Ability): number
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
-| number | 指定ability的生命周期状态。状态枚举值使用[AbilityLifecycleState](#AbilityLifecycleState)。 |
+| number | 指定ability的生命周期状态。状态枚举值使用[AbilityLifecycleState](js-apis-abilityDelegatorRegistry.md#AbilityLifecycleState)。 |
 
 **示例：**
 
@@ -420,7 +353,7 @@ abilityDelegator.getCurrentTopAbility((err, data) => {
 
 
 
-### getCurrentTopAbility
+### getCurrentTopAbility<sup>9+</sup>
 
 getCurrentTopAbility(callback: AsyncCallback\<Ability>): void
 
@@ -449,7 +382,7 @@ abilityDelegator.getCurrentTopAbility((err, data) => {
 
 
 
-### getCurrentTopAbility
+### getCurrentTopAbility<sup>9+</sup>
 
 getCurrentTopAbility(): Promise\<Ability>
 
@@ -547,7 +480,7 @@ abilityDelegator.startAbility(want).then((data) => {
 
 
 
-### doAbilityForeground
+### doAbilityForeground<sup>9+</sup>
 
 doAbilityForeground(ability: Ability, callback: AsyncCallback\<boolean>): void
 
@@ -580,7 +513,7 @@ abilityDelegator.getCurrentTopAbility((err, data) => {
 
 
 
-### doAbilityForeground
+### doAbilityForeground<sup>9+</sup>
 
 doAbilityForeground(ability: Ability): Promise\<boolean>
 
@@ -618,7 +551,7 @@ abilityDelegator.getCurrentTopAbility((err, data) => {
 
 
 
-### doAbilityBackground
+### doAbilityBackground<sup>9+</sup>
 
 doAbilityBackground(ability: Ability, callback: AsyncCallback\<boolean>): void
 
@@ -651,7 +584,7 @@ abilityDelegator.getCurrentTopAbility((err, data) => {
 
 
 
-### doAbilityBackground
+### doAbilityBackground<sup>9+</sup>
 
 doAbilityBackground(ability: Ability): Promise\<boolean>
 
@@ -762,10 +695,10 @@ executeShellCommand(cmd: string, callback: AsyncCallback\<ShellCmdResult>): void
 
 **参数：**
 
-| 参数名   | 类型                                              | 必填 | 说明               |
-| -------- | ------------------------------------------------- | ---- | ------------------ |
-| cmd      | string                                            | 是   | shell命令字符串    |
-| callback | AsyncCallback\<[ShellCmdResult](#ShellCmdResult)> | 是   | 表示指定的回调方法 |
+| 参数名   | 类型                                                         | 必填 | 说明               |
+| -------- | ------------------------------------------------------------ | ---- | ------------------ |
+| cmd      | string                                                       | 是   | shell命令字符串    |
+| callback | AsyncCallback\<[ShellCmdResult](js-apis-application-shellCmdResult.md#ShellCmdResult)> | 是   | 表示指定的回调方法 |
 
 **示例：**
 
@@ -791,11 +724,11 @@ executeShellCommand(cmd: string, timeoutSecs: number, callback: AsyncCallback\<S
 
 **参数：**
 
-| 参数名      | 类型                                              | 必填 | 说明               |
-| ----------- | ------------------------------------------------- | ---- | ------------------ |
-| cmd         | string                                            | 是   | shell命令字符串    |
-| timeoutSecs | number                                            | 是   | 设定时间，单位秒   |
-| callback    | AsyncCallback\<[ShellCmdResult](#ShellCmdResult)> | 是   | 表示指定的回调方法 |
+| 参数名      | 类型                                                         | 必填 | 说明               |
+| ----------- | ------------------------------------------------------------ | ---- | ------------------ |
+| cmd         | string                                                       | 是   | shell命令字符串    |
+| timeoutSecs | number                                                       | 是   | 设定时间，单位秒   |
+| callback    | AsyncCallback\<[ShellCmdResult](js-apis-application-shellCmdResult.md#ShellCmdResult)> | 是   | 表示指定的回调方法 |
 
 **示例：**
 
@@ -829,9 +762,9 @@ executeShellCommand(cmd: string, timeoutSecs: number): Promise\<ShellCmdResult>
 
 **返回值：**
 
-| 类型                                        | 说明                                                         |
-| ------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<[ShellCmdResult](#ShellCmdResult)> | 以Promise形式返回Shell命令执行结果[ShellCmdResult](#ShellCmdResult)对象。 |
+| 类型                                                         | 说明                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Promise\<[ShellCmdResult](js-apis-application-shellCmdResult.md#ShellCmdResult)> | 以Promise形式返回Shell命令执行结果[ShellCmdResult](js-apis-application-shellCmdResult.md#ShellCmdResult)对象。 |
 
 **示例：**
 
@@ -845,44 +778,3 @@ abilityDelegator.executeShellCommand(cmd, timeout).then((data) => {
 	console.info("==========================>executeShellCommand Promise=======================>");
 });
 ```
-
-
-
-## AbilityDelegatorArgs
-
-测试参数信息
-
-| 名称                | 类型                   | 可读 | 可写 | 说明                                                         |
-| ------------------- | ---------------------- | ---- | ---- | ------------------------------------------------------------ |
-| bundleName          | string                 | 是   | 是   | 当前被测试应用的包名<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core |
-| parameters          | {[key:string]: string} | 是   | 是   | 当前启动单元测试的参数<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core |
-| testCaseNames       | string                 | 是   | 是   | 测试用例名称<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core |
-| testRunnerClassName | string                 | 是   | 是   | 执行测试用例的测试执行器的名称<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core |
-
-
-
-## AbilityMonitor
-
-Ability监听器
-
-| 名称                 | 类型     | 可读 | 可写 | 说明                                                         |
-| -------------------- | -------- | ---- | ---- | ------------------------------------------------------------ |
-| abilityName          | string   | 是   | 是   | 当前AbilityMonitor绑定的ability名称<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core |
-| onAbilityCreate      | function | 是   | 是   | ability被启动初始化时的回调函数<br/>不设置该属性则不能收到该生命周期回调<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core |
-| onAbilityForeground  | function | 是   | 是   | ability状态变成前台时的回调函数<br/>不设置该属性则不能收到该生命周期回调<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core |
-| onAbilityBackground  | function | 是   | 是   | ability状态变成后台时的回调函数<br/>不设置该属性则不能收到该生命周期回调<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core |
-| onAbilityDestroy     | function | 是   | 是   | ability被销毁前的回调函数<br/>不设置该属性则不能收到该生命周期回调<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core |
-| onWindowStageCreate  | function | 是   | 是   | window stage被创建时的回调函数<br/>不设置该属性则不能收到该生命周期回调<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core |
-| onWindowStageRestore | function | 是   | 是   | window stage被重载时的回调函数<br/>不设置该属性则不能收到该生命周期回调<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core |
-| onWindowStageDestroy | function | 是   | 是   | window stage被销毁前的回调函数<br/>不设置该属性则不能收到该生命周期回调<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core |
-
-
-
-## ShellCmdResult
-
-Shell命令执行结果
-
-| 名称      | 类型   | 可读 | 可写 | 说明                                                         |
-| --------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| stdResult | string | 是   | 是   | 标准输出内容<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core |
-| exitCode  | number | 是   | 是   | 结果码<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core |
