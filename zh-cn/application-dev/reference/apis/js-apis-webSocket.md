@@ -3,7 +3,7 @@
 >![](public_sys-resources/icon-note.gif) **说明：** 
 >本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
->当前暂时不支持WebSocket，预计在MR版本支持。
+>本接口在Openharmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
 
 使用WebSocket建立服务器与客户端的双向连接，需要先通过[createWebSocket](#websocketcreatewebsocket)方法创建[WebSocket](#websocket)对象，然后通过[connect](#connect)方法连接到服务器。当连接成功后，客户端会收到[open](#onopen)事件的回调，之后客户端就可以通过[send](#send)方法与服务器进行通信。当服务器发信息给客户端时，客户端会收到[message](#onmessage)事件的回调。当客户端不要此连接时，可以通过调用[close](#close)方法主动断开连接，之后客户端会收到[close](#onclose)事件的回调。
 
@@ -68,7 +68,7 @@ createWebSocket\(\): WebSocket
 
 创建一个WebSocket，里面包括建立连接、关闭连接、发送数据和订阅/取消订阅WebSocket连接的打开事件、接收到服务器消息事件、关闭事件和错误事件。
 
-**系统能力：**SystemCapability.Communication.NetStack
+**系统能力**：SystemCapability.Communication.NetStack
 
 **返回值：**
 
@@ -95,7 +95,7 @@ connect\(url: string, callback: AsyncCallback<boolean\>\): void
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力：**SystemCapability.Communication.NetStack
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
@@ -128,7 +128,7 @@ connect\(url: string, options: WebSocketRequestOptions, callback: AsyncCallback<
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力：**SystemCapability.Communication.NetStack
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
@@ -167,7 +167,7 @@ connect\(url: string, options?: WebSocketRequestOptions\): Promise<boolean\>
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力：**SystemCapability.Communication.NetStack
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
@@ -204,7 +204,7 @@ send\(data: string | ArrayBuffer, callback: AsyncCallback<boolean\>\): void
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力：**SystemCapability.Communication.NetStack
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
@@ -238,7 +238,7 @@ send\(data: string | ArrayBuffer\): Promise<boolean\>
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力：**SystemCapability.Communication.NetStack
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
@@ -276,7 +276,7 @@ close\(callback: AsyncCallback<boolean\>\): void
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力：**SystemCapability.Communication.NetStack
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
@@ -307,7 +307,7 @@ close\(options: WebSocketCloseOptions, callback: AsyncCallback<boolean\>\): void
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力：**SystemCapability.Communication.NetStack
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
@@ -342,7 +342,7 @@ close\(options?: WebSocketCloseOptions\): Promise<boolean\>
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力：**SystemCapability.Communication.NetStack
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
@@ -379,7 +379,7 @@ on\(type: 'open', callback: AsyncCallback<Object\>\): void
 
 订阅WebSocket的打开事件，使用callback方式作为异步方法。
 
-**系统能力：**SystemCapability.Communication.NetStack
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
@@ -408,7 +408,7 @@ off\(type: 'open', callback?: AsyncCallback<Object\>\): void
 >![](public_sys-resources/icon-note.gif) **说明：** 
 >可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
-**系统能力：**SystemCapability.Communication.NetStack
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
@@ -439,7 +439,7 @@ on\(type: 'message', callback: AsyncCallback<string | ArrayBuffer\>\): void
 >![](public_sys-resources/icon-note.gif) **说明：** 
 >AsyncCallback中的数据可以是字符串\(API 6\)或ArrayBuffer\(API 8\)。
 
-**系统能力：**SystemCapability.Communication.NetStack
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
@@ -469,7 +469,7 @@ off\(type: 'message', callback?: AsyncCallback<string | ArrayBuffer\>\): void
 >AsyncCallback中的数据可以是字符串\(API 6\)或ArrayBuffer\(API 8\)。
 >可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
-**系统能力：**SystemCapability.Communication.NetStack
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
@@ -492,7 +492,7 @@ on\(type: 'close', callback: AsyncCallback<\{ code: number, reason: string \}\>\
 
 订阅WebSocket的关闭事件，使用callback方式作为异步方法。
 
-**系统能力：**SystemCapability.Communication.NetStack
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
@@ -520,7 +520,7 @@ off\(type: 'close', callback?: AsyncCallback<\{ code: number, reason: string \}\
 >![](public_sys-resources/icon-note.gif) **说明：** 
 >可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
-**系统能力：**SystemCapability.Communication.NetStack
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
@@ -544,7 +544,7 @@ on\(type: 'error', callback: ErrorCallback\): void
 
 订阅WebSocket的Error事件，使用callback方式作为异步方法。
 
-**系统能力：**SystemCapability.Communication.NetStack
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
@@ -573,7 +573,7 @@ off\(type: 'error', callback?: ErrorCallback\): void
 >![](public_sys-resources/icon-note.gif) **说明：** 
 >可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
-**系统能力：**SystemCapability.Communication.NetStack
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 

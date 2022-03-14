@@ -17,7 +17,7 @@ isSimActive\(slotId: number, callback: AsyncCallback<boolean\>\): void
 
 获取指定卡槽SIM卡是否激活，使用callback方式作为异步方法。
 
-**系统能力：**SystemCapability.Communication.CoreService
+**系统能力**：SystemCapability.Communication.CoreService
 
 **参数：**
 
@@ -41,7 +41,7 @@ isSimActive\(slotId: number\): Promise<boolean\>
 
 获取指定卡槽SIM卡是否激活，使用Promise方式作为异步方法。
 
-**系统能力：**SystemCapability.Communication.CoreService
+**系统能力**：SystemCapability.Communication.CoreService
 
 **参数：**
 
@@ -73,7 +73,7 @@ getDefaultVoiceSlotId\(callback: AsyncCallback<number\>\): void
 
 获取默认语音业务的卡槽ID，使用callback方式作为异步方法。
 
-**系统能力：**SystemCapability.Communication.CoreService
+**系统能力**：SystemCapability.Communication.CoreService
 
 **参数：**
 
@@ -96,7 +96,7 @@ getDefaultVoiceSlotId\(\): Promise<number\>
 
 获取默认语音业务的卡槽ID，使用Promise方式作为异步方法。
 
-**系统能力：**SystemCapability.Communication.CoreService
+**系统能力**：SystemCapability.Communication.CoreService
 
 **返回值：**
 
@@ -121,7 +121,7 @@ hasOperatorPrivileges(slotId: number, callback: AsyncCallback\<boolean\>): void
 
 检查应用（调用者）是否已被授予运营商权限，使用callback方式作为异步方法。
 
-**系统能力：**SystemCapability.Communication.CoreService
+**系统能力**：SystemCapability.Communication.CoreService
 
 **参数：**
 
@@ -144,7 +144,7 @@ hasOperatorPrivileges(slotId: number): Promise<boolean>
 
 检查应用（调用者）是否已被授予运营商权限，使用Promise方式作为异步方法。
 
-**系统能力：**SystemCapability.Communication.CoreService
+**系统能力**：SystemCapability.Communication.CoreService
 
 **参数：**
 
@@ -175,7 +175,7 @@ getISOCountryCodeForSim\(slotId: number, callback: AsyncCallback<string\>\): voi
 
 获取指定卡槽SIM卡的ISO国家码，使用callback方式作为异步方法。
 
-**系统能力：**SystemCapability.Communication.CoreService
+**系统能力**：SystemCapability.Communication.CoreService
 
 **参数：**
 
@@ -199,7 +199,7 @@ getISOCountryCodeForSim\(slotId: number\): Promise<string\>
 
 获取指定卡槽SIM卡的ISO国家码，使用Promise方式作为异步方法。
 
-**系统能力：**SystemCapability.Communication.CoreService
+**系统能力**：SystemCapability.Communication.CoreService
 
 **参数：**
 
@@ -231,7 +231,7 @@ getSimOperatorNumeric\(slotId: number, callback: AsyncCallback<string\>\): void
 
 获取指定卡槽SIM卡的归属PLMN（Public Land Mobile Network）号，使用callback方式作为异步方法。
 
-**系统能力：**SystemCapability.Communication.CoreService
+**系统能力**：SystemCapability.Communication.CoreService
 
 **参数：**
 
@@ -255,7 +255,7 @@ getSimOperatorNumeric\(slotId: number\): Promise<string\>
 
 获取指定卡槽SIM卡的归属PLMN（Public Land Mobile Network）号，使用Promise方式作为异步方法。
 
-**系统能力：**SystemCapability.Communication.CoreService
+**系统能力**：SystemCapability.Communication.CoreService
 
 **参数：**
 
@@ -287,7 +287,7 @@ getSimSpn\(slotId: number, callback: AsyncCallback<string\>\): void
 
 获取指定卡槽SIM卡的服务提供商名称（Service Provider Name，SPN），使用callback方式作为异步方法。
 
-**系统能力：**SystemCapability.Communication.CoreService
+**系统能力**：SystemCapability.Communication.CoreService
 
 **参数：**
 
@@ -311,7 +311,7 @@ getSimSpn\(slotId: number\): Promise<string\>
 
 获取指定卡槽SIM卡的服务提供商名称（Service Provider Name，SPN），使用Promise方式作为异步方法。
 
-**系统能力：**SystemCapability.Communication.CoreService
+**系统能力**：SystemCapability.Communication.CoreService
 
 **参数：**
 
@@ -343,7 +343,7 @@ getSimState\(slotId: number, callback: AsyncCallback<SimState\>\): void
 
 获取指定卡槽的SIM卡状态，使用callback方式作为异步方法。
 
-**系统能力：**SystemCapability.Communication.CoreService
+**系统能力**：SystemCapability.Communication.CoreService
 
 **参数：**
 
@@ -367,7 +367,7 @@ getSimState\(slotId: number\): Promise<SimState\>
 
 获取指定卡槽的SIM卡状态，使用Promise方式作为异步方法。
 
-**系统能力：**SystemCapability.Communication.CoreService
+**系统能力**：SystemCapability.Communication.CoreService
 
 **参数：**
 
@@ -398,7 +398,7 @@ getCardType\(slotId: number, callback: AsyncCallback<CardType\>\): void
 
 获取指定卡槽SIM卡的卡类型，使用callback方式作为异步方法。
 
-**系统能力：**SystemCapability.Communication.CoreService
+**系统能力**：SystemCapability.Communication.CoreService
 
 **参数：**
 
@@ -422,7 +422,7 @@ getCardType\(slotId: number\): Promise<CardType\>
 
 获取指定卡槽SIM卡的卡类型，使用Promise方式作为异步方法。
 
-**系统能力：**SystemCapability.Communication.CoreService
+**系统能力**：SystemCapability.Communication.CoreService
 
 **参数：**
 
@@ -454,7 +454,7 @@ hasSimCard\(slotId: number, callback: AsyncCallback<boolean\>\): void
 
 获取指定卡槽SIM卡是否插卡，使用callback方式作为异步方法。
 
-**系统能力：**SystemCapability.Communication.CoreService
+**系统能力**：SystemCapability.Communication.CoreService
 
 **参数：**
 
@@ -478,7 +478,7 @@ hasSimCard\(slotId: number\): Promise<boolean\>
 
 获取指定卡槽SIM卡是否插卡，使用Promise方式作为异步方法。
 
-**系统能力：**SystemCapability.Communication.CoreService
+**系统能力**：SystemCapability.Communication.CoreService
 
 **参数：**
 
@@ -510,7 +510,7 @@ getMaxSimCount\(\): number
 
 获取卡槽数量。
 
-**系统能力：**SystemCapability.Communication.CoreService
+**系统能力**：SystemCapability.Communication.CoreService
 
 **返回值：**
 
