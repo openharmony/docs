@@ -114,4 +114,5 @@
     - [非线性容器TreeSet](js-apis-treeset.md)
     - [非线性容器LightWeightMap](js-apis-lightweightmap.md)
     - [非线性容器LightWeightSet](js-apis-lightweightset.md)
-
+- 定制管理
+    - [配置策略](js-apis-config-policy.md)
