@@ -62,7 +62,7 @@ createHttp\(\): HttpRequest
 
 创建一个http，里面包括发起请求、中断请求、订阅/取消订阅HTTP Response Header 事件。每一个HttpRequest对象对应一个Http请求。如需发起多个Http请求，须为每个Http请求创建对应HttpRequest对象。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetStack。
+**系统能力**：SystemCapability.Communication.NetStack
 
 **返回值：**
 
@@ -90,7 +90,7 @@ request\(url: string, callback: AsyncCallback\<HttpResponse\>\):void
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetStack。
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
@@ -122,7 +122,7 @@ request\(url: string, options: HttpRequestOptions, callback: AsyncCallback<HttpR
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetStack。
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
@@ -168,7 +168,7 @@ request\(url: string, options? : HttpRequestOptions\): Promise<HttpResponse\>
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetStack。
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
@@ -215,7 +215,7 @@ destroy\(\): void
 
 中断请求任务。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetStack。
+**系统能力**：SystemCapability.Communication.NetStack
 
 **示例：**
 
@@ -232,7 +232,7 @@ on\(type: 'headerReceive', callback: AsyncCallback<Object\>\): void
 >![](public_sys-resources/icon-note.gif) **说明：** 
 > 此接口已废弃，建议使用[on\('headersReceive'\)<sup>8+</sup>](#onheadersreceive8)替代。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetStack。
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
@@ -266,7 +266,7 @@ off\(type: 'headerReceive', callback?: AsyncCallback<Object\>\): void
 >
 >2. 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetStack。
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
@@ -294,7 +294,7 @@ on\(type: 'headersReceive', callback: Callback<Object\>\): void
 
 订阅HTTP Response Header 事件。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetStack。
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
@@ -321,7 +321,7 @@ off\(type: 'headersReceive', callback?: Callback<Object\>\): void
 >![](public_sys-resources/icon-note.gif) **说明：** 
 >可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetStack。
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
@@ -342,7 +342,7 @@ once\(type: 'headersReceive', callback: Callback<Object\>\): void
 
 订阅HTTP Response Header 事件，但是只触发一次。一旦触发之后，订阅器就会被移除。使用callback方式作为异步方法。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetStack。
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 

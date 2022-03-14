@@ -270,7 +270,7 @@ promise.then((data) => {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CellularData。
 
-| 参数名                 | 值   | 说明                                       |
+| 名称                   | 值   | 说明                                       |
 | ---------------------- | ---- | ------------------------------------------ |
 | DATA_FLOW_TYPE_NONE    | 0    | 表示没有上行或下行数据。                   |
 | DATA_FLOW_TYPE_DOWN    | 1    | 表示只有下行数据。                         |
@@ -284,7 +284,7 @@ promise.then((data) => {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CellularData。
 
-| 参数名                  | 值   | 说明                       |
+| 名称                    | 值   | 说明                       |
 | ----------------------- | ---- | -------------------------- |
 | DATA_STATE_UNKNOWN      | -1   | 表示蜂窝数据链路未知。     |
 | DATA_STATE_DISCONNECTED | 0    | 表示蜂窝数据链路断开。     |
