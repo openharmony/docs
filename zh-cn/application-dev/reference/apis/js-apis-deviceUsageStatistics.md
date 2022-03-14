@@ -111,7 +111,8 @@ queryAppUsagePriorityGroup(): Promise&lt;number&gt;<br>
 
 ## bundleState.queryBundleStateInfos
 queryBundleStateInfos(begin: number, end: number, callback: AsyncCallback&lt;BundleActiveInfoResponse&gt;): void<br>
-通过指定起始和结束时间查询应用使用时长统计信息，使用Callback形式返回。
+通过指定起始和结束时间查询应用使用时长统计信息，使用Callback形式返回。<br>
+**需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
 
@@ -122,8 +123,6 @@ queryBundleStateInfos(begin: number, end: number, callback: AsyncCallback&lt;Bun
   | begin | number | 是 | 起始时间。|
   | end | number | 是 | 结束时间。|
   | callback | AsyncCallback&lt;BundleActiveInfoResponse&gt; | 是 | 指定的callback回调方法。返回指定起始和结束时间内应用使用时长统计信息。|
-
-**权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
 **示例**：
 
@@ -145,7 +144,8 @@ queryBundleStateInfos(begin: number, end: number, callback: AsyncCallback&lt;Bun
 
 ## bundleState.queryBundleStateInfos
 queryBundleStateInfos(begin: number, end: number): Promise&lt;BundleActiveInfoResponse&gt;<br>
-通过指定起始和结束时间查询应用使用时长统计信息，使用Promise形式返回。
+通过指定起始和结束时间查询应用使用时长统计信息，使用Promise形式返回。<br>
+**需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
 
@@ -161,8 +161,6 @@ queryBundleStateInfos(begin: number, end: number): Promise&lt;BundleActiveInfoRe
   | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;BundleActiveInfoResponse&gt; | 指定的Promise回调方法。返回指定起始和结束时间内应用使用时长统计信息。|
-
-**权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
 **示例**：
 
@@ -182,7 +180,8 @@ queryBundleStateInfos(begin: number, end: number): Promise&lt;BundleActiveInfoRe
 
 ## bundleState.queryBundleStateInfoByInterval
 queryBundleStateInfoByInterval(byInterval: IntervalType, begin: number, end: number, callback: AsyncCallback&lt;Array&lt;BundleStateInfo&gt;&gt;): void<br>
-通过指定时间段间隔（天、周、月、年）查询应用使用时长统计信息，使用Callback形式返回。
+通过指定时间段间隔（天、周、月、年）查询应用使用时长统计信息，使用Callback形式返回。<br>
+**需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
 
@@ -194,8 +193,6 @@ queryBundleStateInfoByInterval(byInterval: IntervalType, begin: number, end: num
   | begin | number | 是 | 起始时间。|
   | end | number | 是 | 结束时间。|
   | callback | AsyncCallback&lt;Array&lt;BundleStateInfo&gt;&gt; | 是 | 指定的callback回调方法。返回指定时间段间隔（天、周、月、年）查询应用使用时长统计信息。|
-
-**权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
 **示例**：
 
@@ -215,7 +212,8 @@ queryBundleStateInfoByInterval(byInterval: IntervalType, begin: number, end: num
 
 ## bundleState.queryBundleStateInfoByInterval
 queryBundleStateInfoByInterval(byInterval: IntervalType, begin: number, end: number): Promise&lt;Array&lt;BundleStateInfo&gt;&gt;<br>
-通过指定时间段间隔（天、周、月、年）查询应用使用时长统计信息，使用Promise形式返回。
+通过指定时间段间隔（天、周、月、年）查询应用使用时长统计信息，使用Promise形式返回。<br>
+**需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
 
@@ -233,8 +231,6 @@ queryBundleStateInfoByInterval(byInterval: IntervalType, begin: number, end: num
   | -------- | -------- |
   | Promise&lt;Array&lt;BundleStateInfo&gt;&gt; | 指定的Promise回调方法。返回指定时间段间隔（天、周、月、年）查询应用使用时长统计信息。|
 
-**权限**：ohos.permission.BUNDLE_ACTIVE_INFO
-
 **示例**：
 
   ```
@@ -251,7 +247,8 @@ queryBundleStateInfoByInterval(byInterval: IntervalType, begin: number, end: num
 
 ## bundleState.queryBundleActiveStates
 queryBundleActiveStates(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;BundleActiveState&gt;&gt;): void<br>
-通过指定起始和结束时间查询所有应用的事件集合，使用Callback形式返回。
+通过指定起始和结束时间查询所有应用的事件集合，使用Callback形式返回。<br>
+**需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
 
@@ -262,8 +259,6 @@ queryBundleActiveStates(begin: number, end: number, callback: AsyncCallback&lt;A
   | begin | number | 是 | 起始时间。|
   | end | number | 是 | 结束时间。|
   | callback | AsyncCallback&lt;Array&lt;BundleActiveState&gt;&gt; | 是 | 指定的callback回调方法。返回指定起始和结束时间查询所有应用的事件集合。|
-
-**权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
 **示例**：
 
@@ -283,7 +278,8 @@ queryBundleActiveStates(begin: number, end: number, callback: AsyncCallback&lt;A
 
 ## bundleState.queryBundleActiveStates
 queryBundleActiveStates(begin: number, end: number): Promise&lt;Array&lt;BundleActiveState&gt;&gt;<br>
-通过指定起始和结束时间查询所有应用的事件集合，使用Promise形式返回。
+通过指定起始和结束时间查询所有应用的事件集合，使用Promise形式返回。<br>
+**需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
 
@@ -299,8 +295,6 @@ queryBundleActiveStates(begin: number, end: number): Promise&lt;Array&lt;BundleA
   | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;Array&lt;BundleActiveState&gt;&gt; | 指定的Promise回调方法。返回指定起始和结束时间查询所有应用的事件集合。|
-
-**权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
 **示例**：
 
