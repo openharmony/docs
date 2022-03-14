@@ -1,19 +1,19 @@
 # init启动引导组件<a name="ZH-CN_TOPIC_0000001062722441"></a>
 
--   [功能说明](#section56901555916)
-      - [init启动引导的配置文件](#section56901555917)
-      - [init服务启动控制(仅标准系统以上提供)](#section56901555918)
-      - [init服务并行控制(仅标准系统以上提供)](#section56901555919)
-      - [init 按需启动(仅标准系统以上提供)](#section56901555920)
-      - [init 进程启动&回收能力增强](#section56901555921)
-      - [init FD代持(仅标准系统以上提供)](#section56901555922)
-      - [init job](#section56901555923)
--   [开发指导](#section56901555924)
--   [开发实例](#section56901555925)
--   [常见问题](#section56901555926)
-      -  [服务不存在](#section56901555927)
-      -  [请求其他服务代持fd，init有报错](#section56901555928)
-      -  [服务没有配置ondemand 选项](#section56901555929)
+-   [功能说明]()
+      - [init启动引导的配置文件]()
+      - [init服务启动控制(仅标准系统以上提供)]()
+      - [init服务并行控制(仅标准系统以上提供)]()
+      - [init 按需启动(仅标准系统以上提供)]()
+      - [init 进程启动&回收能力增强]()
+      - [init FD代持(仅标准系统以上提供)]()
+      - [init job]()
+-   [开发指导]()
+-   [开发实例]()
+-   [常见问题]()
+      -  [服务不存在]()
+      -  [请求其他服务代持fd，init有报错]()
+      -  [服务没有配置ondemand 选项]()
 
 ## 功能说明<a name="section56901555916">
 
@@ -35,6 +35,30 @@
   - “normal”类型：默认配置，对应系统中的普通服务，这类服务在init命令执行完成后启动。
   - "condition"类型：对应有特殊要求的服务，可以直接通过start xxx 命令执行启动，一般在条件job或者在init的某个阶段使用命令启动。
 
+```
+服务间或服务与命令之间存在依赖关系，需要通过"condition"描述服务，例如：
+    "services" : [{
+        "name" : "service1",
+        "path" : ["/bin/process1", "param1", "param2"],
+        "uid" : 1,
+        "gid" : 1,
+        "once" : 0,
+        "importance" : 1,
+        "caps" : [0, 1, 2, 5],
+        "start-mode" : "condition",
+        "cpucore" : [0],
+        "critical" : [0, 5, 10],
+        "apl" : "normal",
+        "d-caps" : ["OHOS_DMS"]
+        "jobs" : {
+            "on-boot" : "boot",
+            "on-start" : "services:service1_start",
+            "on-stop" : "services:service1_stop",
+            "on-restart" : "services:service1_restart"
+       }
+    },
+
+```
 - init服务并行控制(仅标准系统以上提供)<a name="section56901555919"></a>
 
   init提供服务并行处理能力，启动服务在不同的阶段执行job的能力。
@@ -50,23 +74,23 @@
   "ondemand" 属性是按需启动的服务的标志，一个服务配置了该属性值为true的时候，服务不再需要配置start命令来拉起，而是被监听的相应事件发生时才会被拉起。
 
   - SA进程按需启动
-    1. 应用请求SA句柄时samgr需识别SA所属进程是否可动态拉起
-    2. 如需拉起，则需阻塞请求，等init拉起SA进程并注册SA后再返回所请求的SA句柄
+    1. 应用请求SA句柄时samgr需识别SA所属进程是否可动态拉起。
+    2. 如需拉起，则需阻塞请求，等init拉起SA进程并注册SA后再返回所请求的SA句柄。
 
   - socket进程按需启动
-    1. init在pre-fork阶段为socket类进程创建好socket，init中监听创建好的socket上的网络事件
-    2. socket上有报文事件后，init拉起socket进程进行报文处理，init进程取消socket数据的监听，由socket进程处理
-    3. socket进程无报文处理后，可以自动退出，退出后init回收该子进程并重新监听socket网络数据
+    1. init在pre-fork阶段为socket类进程创建好socket，init中监听创建好的socket上的网络事件。
+    2. socket上有报文事件后，init拉起socket进程进行报文处理，init进程取消socket数据的监听，由socket进程处理。
+    3. socket进程无报文处理后，可以自动退出，退出后init回收该子进程并重新监听socket网络数据。
 
   - 热插拔服务进程按需启动
-    1. ueventd的监听到热插拔事件后，可触发系统参数变化，业务进程可根据系统参数的变化进行热插拔事件按需启动处理。
+    <br> &emsp; 进程可根据系统参数的变化进行热插拔事件按需启动处理。
 
 - init 进程启动&回收能力增强 <a name="section56901555921"></a>
 
   进程启动时，支持在配置文件中配置服务进程的绑核、优先级、MAC信息以及AccessToken信息。
 
-  - init提供修改*.cfg配置文件， 为服务进程提供cpu绑核功能
-  - init提供修改*.cfg配置文件， 为服务进程提供优先级设置
+  - init提供修改*.cfg配置文件， 为服务进程提供cpu绑核功能。
+  - init提供修改*.cfg配置文件， 为服务进程提供优先级设置。
   - init提供修改*.cfg配置文件， 为服务提供设置AccessToken, 为系统服务进程设置其分布式Capability能力（仅标准系统以上提供）。
   - init提供修改*.cfg配置文件， 为服务提供抑制机制。
 
@@ -97,24 +121,24 @@
       -   “post-init”阶段：系统服务启动完后还需要执行的操作。
 
 ```
-"jobs" : [{
-        "name" : "pre-init",
-        "cmds" : [
-            "mkdir /testdir",
-            "chmod 0700 /testdir",
-            "chown 99 99 /testdir",
-            "mount vfat /dev/mmcblk0p0 /testdir2 noexec nosuid" // mount命令，格式为：mount 文件系统类型 source target flags data
-        ]
-        }, {
-            "name" : "init",
+    "jobs" : [{
+            "name" : "pre-init",
             "cmds" : [
-                "start service1",
-                ]
+                "mkdir /testdir",
+                "chmod 0700 /testdir",
+                "chown 99 99 /testdir",
+                "mount vfat /dev/mmcblk0p0 /testdir2 noexec nosuid" // mount命令，格式为：mount 文件系统类型 source target flags data
+            ]
             }, {
-                 "name" : "post-init",
-                 "cmds" : []
-            }
-        ]
+                "name" : "init",
+                "cmds" : [
+                    "start service1",
+                    ]
+                }, {
+                    "name" : "post-init",
+                    "cmds" : []
+                }
+            ]
 ```
 
 **表 1**  执行job介绍 <a name="table1801509284"></a>
@@ -281,7 +305,7 @@
     </tr>
     <tr id="row386110321155"><td class="cellrowborder" valign="top" width="16.64%" headers="mcps1.2.3.1.1 "><p id="p14861113212156"><a name="p14861113212156"></a><a name="p14861113212156"></a>importance</p>
     </td>
-    <td class="cellrowborder" valign="top" width="83.36%" headers="mcps1.2.3.1.2 "><p id="p166448210816"><a name="p166448210816"></a><a name="p166448210816"></a>当前服务进程优先级， 取值范围[19, -20]</p>
+    <td class="cellrowborder" valign="top" width="83.36%" headers="mcps1.2.3.1.2 "><p id="p166448210816"><a name="p166448210816"></a><a name="p166448210816"></a>标准系统中：<br> 服务进程优先级， 取值范围[-20， 19]; <br> 小型系统中：<br>0 : 非重要进程 <br> 1 : 重要进程</p>
     </td>
     </tr>
     <tr id="row1689310618179"><td class="cellrowborder" valign="top" width="16.64%" headers="mcps1.2.3.1.1 "><p id="p108931367177"><a name="p108931367177"></a><a name="p108931367177"></a>caps</p>
@@ -292,7 +316,7 @@
     </tr>
     <tr id="row1689310618179"><td class="cellrowborder" valign="top" width="16.64%" headers="mcps1.2.3.1.1 "><p id="p108931367177"><a name="p108931367177"></a><a name="p108931367177"></a>critical</p>
     </td>
-    <td class="cellrowborder" valign="top" width="83.36%" headers="mcps1.2.3.1.2 "><p id="p489313618173"><a name="p489313618173"></a><a name="p489313618173"></a>critical服务启动失败后， 需要M秒内重新拉起， 拉起失败N次后， 直接重启系统， N默认为4， M默认20。（仅标准系统以上提供 "critical" : [0, 2, 10]; 类型为int型数组)<a name="section56901555917"></a><a name="section56901555917"></a></p>
+    <td class="cellrowborder" valign="top" width="83.36%" headers="mcps1.2.3.1.2 "><p id="p489313618173"><a name="p489313618173"></a><a name="p489313618173"></a>critical服务启动失败后， 需要M秒内重新拉起， 拉起失败N次后， 直接重启系统， N默认为4， M默认20。（仅标准系统以上提供 "critical" : [0, 2, 10]; 类型为int型数组)。<a name="section56901555917"></a><a name="section56901555917"></a></p>
     <p id="p8572182712811"><a name="p8572182712811"></a><a name="p8572182712811"></a>0：不使能；</p>
     <p id="p11861032111517"><a name="p11861032111517"></a><a name="p11861032111517"></a>1：使能。</p>
     </td>
@@ -300,29 +324,29 @@
     </tr>
     <tr id="row1689310618179"><td class="cellrowborder" valign="top" width="16.64%" headers="mcps1.2.3.1.1 "><p id="p108931367177"><a name="p108931367177"></a><a name="p108931367177"></a>cpucore</p>
     </td>
-    <td class="cellrowborder" valign="top" width="83.36%" headers="mcps1.2.3.1.2 "><p id="p489313618173"><a name="p489313618173"></a><a name="p489313618173"></a>服务需要的绑定的cpu核心数， 类型为int型数组<a name="section56901555917"></a><a name="section56901555917"></a></p>
+    <td class="cellrowborder" valign="top" width="83.36%" headers="mcps1.2.3.1.2 "><p id="p489313618173"><a name="p489313618173"></a><a name="p489313618173"></a>服务需要的绑定的cpu核心数， 类型为int型数组。<a name="section56901555917"></a><a name="section56901555917"></a></p>
     </td>
     </tr>
     </tr>
     <tr id="row1689310618179"><td class="cellrowborder" valign="top" width="16.64%" headers="mcps1.2.3.1.1 "><p id="p108931367177"><a name="p108931367177"></a><a name="p108931367177"></a>d-caps</p>
     </td>
-    <td class="cellrowborder" valign="top" width="83.36%" headers="mcps1.2.3.1.2 "><p id="p489313618173"><a name="p489313618173"></a><a name="p489313618173"></a>分布式能力 (仅标准系统以上提供)<a name="section56901555917"></a><a name="section56901555917"></a></p>
+    <td class="cellrowborder" valign="top" width="83.36%" headers="mcps1.2.3.1.2 "><p id="p489313618173"><a name="p489313618173"></a><a name="p489313618173"></a>分布式能力 (仅标准系统以上提供)。<a name="section56901555917"></a><a name="section56901555917"></a></p>
     </td>
     </tr>
     </tr>
     <tr id="row1689310618179"><td class="cellrowborder" valign="top" width="16.64%" headers="mcps1.2.3.1.1 "><p id="p108931367177"><a name="p108931367177"></a><a name="p108931367177"></a>apl</p>
     </td>
-    <td class="cellrowborder" valign="top" width="83.36%" headers="mcps1.2.3.1.2 "><p id="p489313618173"><a name="p489313618173"></a><a name="p489313618173"></a>能力特权级别：system_core, normal, system_basic。 默认system_core (仅标准系统以上提供)<a name="section56901555917"></a><a name="section56901555917"></a></p>
+    <td class="cellrowborder" valign="top" width="83.36%" headers="mcps1.2.3.1.2 "><p id="p489313618173"><a name="p489313618173"></a><a name="p489313618173"></a>能力特权级别：system_core, normal, system_basic。 默认system_core (仅标准系统以上提供)。<a name="section56901555917"></a><a name="section56901555917"></a></p>
     </td>
     </tr>
     <tr id="row1689310618179"><td class="cellrowborder" valign="top" width="16.64%" headers="mcps1.2.3.1.1 "><p id="p108931367177"><a name="p108931367177"></a><a name="p108931367177"></a>start-mode</p>
     </td>
-    <td class="cellrowborder" valign="top" width="83.36%" headers="mcps1.2.3.1.2 "><p id="p489313618173"><a name="p489313618173"></a><a name="p489313618173"></a>服务的启动模式，具体描述：init服务启动控制(仅标准系统以上提供)<a name="section56901555917"></a><a name="section56901555917"></a></p>
+    <td class="cellrowborder" valign="top" width="83.36%" headers="mcps1.2.3.1.2 "><p id="p489313618173"><a name="p489313618173"></a><a name="p489313618173"></a>服务的启动模式，具体描述：init服务启动控制(仅标准系统以上提供)。<a name="section56901555917"></a><a name="section56901555917"></a></p>
     </td>
     </tr>
     <tr id="row1689310618179"><td class="cellrowborder" valign="top" width="16.64%" headers="mcps1.2.3.1.1 "><p id="p108931367177"><a name="p108931367177"></a><a name="p108931367177"></a>jobs</p>
     </td>
-    <td class="cellrowborder" valign="top" width="83.36%" headers="mcps1.2.3.1.2 "><p id="p489313618173"><a name="p489313618173"></a><a name="p489313618173"></a>当前服务在不同阶段可以执行的job。具体说明可以看：init服务并行控制(仅标准系统以上提供)<a name="section56901555917"></a></p>
+    <td class="cellrowborder" valign="top" width="83.36%" headers="mcps1.2.3.1.2 "><p id="p489313618173"><a name="p489313618173"></a><a name="p489313618173"></a>当前服务在不同阶段可以执行的job。具体说明可以看：init服务并行控制(仅标准系统以上提供)。<a name="section56901555917"></a></p>
     </td>
     </tr>
     </tbody>
@@ -391,28 +415,36 @@
 
 ### 服务不存在<a name="section56901555927"></a>
 
--   **现象描述**
+  &emsp; **现象描述** <br>
+    &emsp;&emsp; 内核Log打印 "Failed get servName"。
 
-    内核Log打印 "Failed get servName"
+  &emsp; **原因分析** <br>
+     &emsp; &emsp; kernel log 的输出，都是由init 打印。在init 中查找对应的代码位置。发现是服务不存在。
 
--   **解决方法**
-    1. 确认服务是否在cfg中正确配置
-    2. 服务的cfg文件是否正常加载
-    3. cfg文件格式是否正确
+   &emsp; **解决方法** <br>
+   &emsp;  &emsp; 1. 确认服务是否在cfg中正确配置。 <br>
+   &emsp;  &emsp; 2. 服务的cfg文件是否正常加载。 <br>
+   &emsp;  &emsp; 3. cfg文件格式是否正确。
 
 ### 请求其他服务代持fd，init有报错<a name="section56901555928"></a>
 
--   **现象描述**
+&emsp;  **现象描述**
 
-    内核Log打印 "Service \' xxx \'(pid = xxx) is not valid or request with unexpected process(pid = xxx)"
+   &emsp;  &emsp; 内核Log打印 "Service \' xxx \'(pid = xxx) is not valid or request with unexpected process(pid = xxx)"。
 
--   **解决方法**
-    只支持代持本服务的fd， 不允许让其他服务代持fd
+  &emsp; **原因分析** <br>
+     &emsp; &emsp; kernel log 的输出，都是由init 打印。在init 中查找对应的代码位置。发现是其他服务代持fd。
+
+  &emsp; **解决方法** <br>
+    &emsp; &emsp; 只支持代持本服务的fd， 不允许让其他服务代持fd。
 
 ### 服务没有配置ondemand 选项<a name="section56901555929"></a>
 
--   **现象描述**
-     内核Log打印 "service : %s had started already"
+  &emsp; **现象描述** <br>
+     &emsp; &emsp; 内核Log打印 "service : %s had started already"。
 
--   **解决方法**
-     服务对应的.cfg文件正确配置如： "ondemand" : true
+  &emsp; **原因分析** <br>
+     &emsp; &emsp; kernel log 的输出，都是由init 打印。在init 中查找对应的代码位置。发现是服务没有配置ondemand。
+
+  &emsp; **解决方法** <br>
+     &emsp; &emsp; 服务对应的.cfg文件正确配置如： "ondemand" : true。
