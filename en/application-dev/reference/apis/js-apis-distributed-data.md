@@ -1139,7 +1139,7 @@ Resets the **Query** object that contains common query options.
 
 | Type| Description|
 | ------  | -------   |
-| [Query](#querysup8sup) |**Query** object reset.|
+| [Query](#query8) |**Query** object reset.|
 
 -   Example
 
@@ -1174,7 +1174,7 @@ Creates a **Query** object to match the specified field whose value is equal to 
 
 | Type| Description|
 | ------  | -------   |
-| [Query](#querysup8sup) |**Query** object created.|
+| [Query](#query8) |**Query** object created.|
 
 -   Example
 
@@ -1207,7 +1207,7 @@ Creates a **Query** object to match the specified field whose value is not equal
 
 | Type| Description|
 | ------  | -------   |
-| [Query](#querysup8sup) |**Query** object created.|
+| [Query](#query8) |**Query** object created.|
 
 -   Example
 
@@ -1240,7 +1240,7 @@ Creates a **Query** object to match the specified field whose value is greater t
 
 | Type| Description|
 | ------  | -------   |
-| [Query](#querysup8sup) |**Query** object created.|
+| [Query](#query8) |**Query** object created.|
 
 -   Example
 
@@ -1273,7 +1273,7 @@ Creates a **Query** object to match the specified field whose value is less than
 
 | Type| Description|
 | ------  | -------   |
-| [Query](#querysup8sup) |**Query** object created.|
+| [Query](#query8) |**Query** object created.|
 
 -   Example
 
@@ -1306,7 +1306,7 @@ Creates a **Query** object to match the specified field whose value is greater t
 
 | Type| Description|
 | ------  | -------   |
-| [Query](#querysup8sup) |**Query** object created.|
+| [Query](#query8) |**Query** object created.|
 
 -   Example
 
@@ -1339,7 +1339,7 @@ Creates a **Query** object to match the specified field whose value is less than
 
 | Type| Description|
 | ------  | -------   |
-| [Query](#querysup8sup) |**Query** object created.|
+| [Query](#query8) |**Query** object created.|
 
 -   Example
 
@@ -1371,7 +1371,7 @@ Creates a **Query** object to match the specified field whose value is **null**.
 
 | Type| Description|
 | ------  | -------   |
-| [Query](#querysup8sup) |**Query** object created.|
+| [Query](#query8) |**Query** object created.|
 
 -   Example
 
@@ -1404,7 +1404,7 @@ Creates a **Query** object to match the specified field whose value is within th
 
 | Type| Description|
 | ------  | -------   |
-| [Query](#querysup8sup) |**Query** object created.|
+| [Query](#query8) |**Query** object created.|
 
 
 -   Example
@@ -1438,7 +1438,7 @@ Creates a **Query** object to match the specified field whose value is within th
 
 | Type| Description|
 | ------  | -------   |
-| [Query](#querysup8sup) |**Query** object created.|
+| [Query](#query8) |**Query** object created.|
 
 -   Example
 
@@ -1471,7 +1471,7 @@ Creates a **Query** object to match the specified field whose value is not withi
 
 | Type| Description|
 | ------  | -------   |
-| [Query](#querysup8sup) |**Query** object created.|
+| [Query](#query8) |**Query** object created.|
 
 -   Example
 
@@ -1504,7 +1504,7 @@ Creates a **Query** object to match the specified field whose value is not withi
 
 | Type| Description|
 | ------  | -------   |
-| [Query](#querysup8sup) |**Query** object created.|
+| [Query](#query8) |**Query** object created.|
 
 -   Example
 
@@ -1537,7 +1537,7 @@ Creates a **Query** object to match the specified field whose value is similar t
 
 | Type| Description|
 | ------  | -------   |
-| [Query](#querysup8sup) |**Query** object created.|
+| [Query](#query8) |**Query** object created.|
 
 -   Example
 
@@ -1570,7 +1570,7 @@ Creates a **Query** object to match the specified field whose value is not simil
 
 | Type| Description|
 | ------  | -------   |
-| [Query](#querysup8sup) |**Query** object created.|
+| [Query](#query8) |**Query** object created.|
 
 -   Example
 
@@ -1596,7 +1596,7 @@ Creates a **Query** object with the AND condition.
 
 | Type| Description|
 | ------  | -------   |
-| [Query](#querysup8sup) |**Query** object created.|
+| [Query](#query8) |**Query** object created.|
 
 -   Example
 
@@ -1624,7 +1624,7 @@ Creates a **Query** object with the OR condition.
 
 | Type| Description|
 | ------  | -------   |
-| [Query](#querysup8sup) |**Query** object created.|
+| [Query](#query8) |**Query** object created.|
 
 -   Example
 
@@ -1658,7 +1658,7 @@ Creates a **Query** object to sort the query results in ascending order.
 
 | Type| Description|
 | ------  | -------   |
-| [Query](#querysup8sup) |**Query** object created.|
+| [Query](#query8) |**Query** object created.|
 
 -   Example
 
@@ -1691,7 +1691,7 @@ Creates a **Query** object to sort the query results in descending order.
 
 | Type| Description|
 | ------  | -------   |
-| [Query](#querysup8sup) |**Query** object created.|
+| [Query](#query8) |**Query** object created.|
 
 
 -   Example
@@ -1726,7 +1726,7 @@ Creates a **Query** object to specify the number of results and where to start.
 
 | Type| Description|
 | ------  | -------   |
-| [Query](#querysup8sup) |**Query** object created.|
+| [Query](#query8) |**Query** object created.|
 
 -   Example
 
@@ -1759,7 +1759,7 @@ Creates a **Query** object with a specified field that is not null.
 
 | Type| Description|
 | ------  | -------   |
-| [Query](#querysup8sup) |**Query** object created.|
+| [Query](#query8) |**Query** object created.|
 
 -   Example
 
@@ -1785,7 +1785,7 @@ Creates a **Query** object for a query condition group with a left parenthesis.
 
 | Type| Description|
 | ------  | -------   |
-| [Query](#querysup8sup) |**Query** object created.|
+| [Query](#query8) |**Query** object created.|
 
 -   Example
 
@@ -1813,7 +1813,7 @@ Creates a **Query** object for a query condition group with a right parenthesis.
 
 | Type| Description|
 | ------  | -------   |
-| [Query](#querysup8sup) |**Query** object created.|
+| [Query](#query8) |**Query** object created.|
 
 -   Example
 
@@ -1847,7 +1847,7 @@ Creates a **Query** object with a specified key prefix.
 
 | Type| Description|
 | ------  | -------   |
-| [Query](#querysup8sup) |**Query** object created.|
+| [Query](#query8) |**Query** object created.|
 
 -   Example
 
@@ -1880,7 +1880,7 @@ Creates a **Query** object with an index preferentially used for query.
 
 | Type| Description|
 | ------  | -------   |
-| [Query](#querysup8sup) |**Query** object created.|
+| [Query](#query8) |**Query** object created.|
 
 -   Example
 
@@ -1914,7 +1914,7 @@ Creates a **Query** object with the device ID as the key prefix.
 
 | Type| Description|
 | ------  | -------   |
-| [Query](#querysup8sup) |**Query** object created.|
+| [Query](#query8) |**Query** object created.|
 
 -   Example
 
@@ -1939,7 +1939,7 @@ Obtains the query statement of this **Query** object.
 
 | Type| Description|
 | ------  | -------   |
-| [Query](#querysup8sup) |**Query** object.|
+| [Query](#query8) |**Query** object.|
 
 -   Example
 
@@ -2122,8 +2122,8 @@ Subscribes to data changes of the specified type. This method uses a synchronous
 | Name| Type| Mandatory| Description|
 | -----  | ------  | ----  | ----------------------- |
 | event  |'dataChange'  | Yes|Type of the events to subscribe to.|
-| type  |[SubscribeType](#subscribetypea) | Yes|Type of data changes.|
-| observer |Callback&lt;[ChangeNotification](#changenotificationa)&gt; | Yes|Callback used to return the result.|
+| type  |[SubscribeType](#subscribetype) | Yes|Type of data changes.|
+| observer |Callback&lt;[ChangeNotification](#changenotification)&gt; | Yes|Callback used to return the result.|
 
 
 -   Example
@@ -2170,7 +2170,7 @@ Unsubscribes from data change events. This method uses a synchronouscallback to 
 | Name| Type| Mandatory| Description|
 | -----  | ------  | ----  | ----------------------- |
 | event  |'dataChange'  | Yes|Type of the events to unsubscribe from.|
-| observer |Callback&lt;[ChangeNotification](#changenotificationa)&gt; |No|Callback used to return the result.|
+| observer |Callback&lt;[ChangeNotification](#changenotification)&gt; |No|Callback used to return the result.|
 
 -   Example
 
@@ -2962,7 +2962,7 @@ Obtains the KV pairs that match the specified **Query** object. This method uses
 
 | Name| Type| Mandatory| Description|
 | -----  | ------  | ----  | ----------------------- |
-| query  |[Query](#querysup8sup)   | Yes|**Query** object to match.|
+| query  |[Query](#query8)   | Yes|**Query** object to match.|
 | callback  |AsyncCallback&lt;Entry[]&gt;   | Yes|Callback used to return the KV pairs obtained.|
 
 -   Example
@@ -3011,7 +3011,7 @@ Obtains the KV pairs that match the specified **Query** object. This method uses
 
 | Name| Type| Mandatory| Description|
 | -----  | ------  | ----  | ----------------------- |
-| query  |[Query](#querysup8sup)   | Yes|**Query** object to match.|
+| query  |[Query](#query8)   | Yes|**Query** object to match.|
 
 -   Return value
 
@@ -3067,7 +3067,7 @@ Obtains the result set with the specified key prefix from this single KV store. 
 | Name| Type| Mandatory| Description|
 | -----  | ------  | ----  | ----------------------- |
 | keyPrefix  |string   | Yes|Key prefix to match.|
-| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultsetsup8sup)&gt;   | Yes|Callback used to return the result set obtained.|
+| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)&gt;   | Yes|Callback used to return the result set obtained.|
 
 -   Example
 
@@ -3119,7 +3119,7 @@ Obtains the result set with the specified key prefix from this single KV store. 
 
 | Type| Description|
 | ------  | -------   |
-|Promise&lt;[KvStoreResultSet](#kvstoreresultsetsup8sup)&gt; |Promise used to return the result set obtained.|
+|Promise&lt;[KvStoreResultSet](#kvstoreresultset8)&gt; |Promise used to return the result set obtained.|
 
 -   Example
 
@@ -3172,7 +3172,7 @@ Obtains the **KvStoreResultSet** object that matches the specified **Query** obj
 | Name| Type| Mandatory| Description|
 | -----  | ------   | ----  | ----------------------- |
 | query  |Query    | Yes|**Query** object to match.|
-| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultsetsup8sup)&gt;   | Yes|Callback used to return the **KvStoreResultSet** object obtained.|
+| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)&gt;   | Yes|Callback used to return the **KvStoreResultSet** object obtained.|
 
 -   Example
 
@@ -3217,13 +3217,13 @@ Obtains the **KvStoreResultSet** object that matches the specified **Query** obj
 
 | Name| Type| Mandatory| Description|
 | -----  | ------   | ----  | ----------------------- |
-| query  |[Query](#querysup8sup)    | Yes|**Query** object to match.|
+| query  |[Query](#query8)    | Yes|**Query** object to match.|
 
 -   Return value
 
 | Type| Description|
 | ------  | -------   |
-|Promise&lt;[KvStoreResultSet](#kvstoreresultsetsup8sup)&gt; |Promise used to return the **KvStoreResultSet** object obtained.|
+|Promise&lt;[KvStoreResultSet](#kvstoreresultset8)&gt; |Promise used to return the **KvStoreResultSet** object obtained.|
 
 -   Example
 
@@ -3271,7 +3271,7 @@ Closes the **KvStoreResultSet** object obtained by **getResultSet**. This method
 
 | Name| Type| Mandatory| Description|
 | -----  | ------   | ----  | ----------------------- |
-| resultSet  |[KvStoreResultSet](#kvstoreresultsetsup8sup)   | Yes|**KvStoreResultSet** object to close.|
+| resultSet  |[KvStoreResultSet](#kvstoreresultset8)   | Yes|**KvStoreResultSet** object to close.|
 | callback  |AsyncCallback&lt;void&gt;   | Yes|Callback used to return the execution result.|
 
 -   Example
@@ -3303,7 +3303,7 @@ Closes the **KvStoreResultSet** object obtained by **getResultSet**. This method
 
 | Name| Type| Mandatory| Description|
 | -----  | ------   | ----  | ----------------------- |
-| resultSet  |[KvStoreResultSet](#kvstoreresultsetsup8sup)   | Yes|**KvStoreResultSet** object to close.|
+| resultSet  |[KvStoreResultSet](#kvstoreresultset8)   | Yes|**KvStoreResultSet** object to close.|
 
 -   Return value
 
@@ -3338,7 +3338,7 @@ Obtains the number of results matching the specified **Query** object. This meth
 
 | Name| Type| Mandatory| Description|
 | -----  | ------   | ----  | ----------------------- |
-| query  |[Query](#querysup8sup)   | Yes|**Query** object to match.|
+| query  |[Query](#query8)   | Yes|**Query** object to match.|
 | callback  |AsyncCallback&lt;number&gt;   | Yes|Callback used to return the number of results obtained.|
 
 -   Example
@@ -3382,7 +3382,7 @@ Obtains the number of results matching the specified **Query** object. This meth
 
 | Name| Type| Mandatory| Description|
 | -----  | ------   | ----  | ----------------------- |
-| query  |[Query](#querysup8sup)   | Yes|**Query** object to match.|
+| query  |[Query](#query8)   | Yes|**Query** object to match.|
 
 -   Return value
 
@@ -3910,7 +3910,7 @@ Obtains the KV pairs matching the specified **Query** object. This method uses a
 
 | Name| Type| Mandatory| Description|
 | -----  | ------   | ----  | ----------------------- |
-| query  |[Query](#querysup8sup)  | Yes|**Query** object to match.|
+| query  |[Query](#query8)  | Yes|**Query** object to match.|
 | callback |AsyncCallback&lt;[Entry](#entry)[]&gt;  | Yes|Callback used to return the KV pairs obtained.|
 
 -   Example
@@ -3961,7 +3961,7 @@ Obtains the KV pairs matching the specified **Query** object. This method uses a
 
 | Name| Type| Mandatory| Description|
 | -----  | ------   | ----  | ----------------------- |
-| query  |[Query](#querysup8sup)  | Yes|**Query** object to match.|
+| query  |[Query](#query8)  | Yes|**Query** object to match.|
 
 -   Return value
 
@@ -4018,7 +4018,7 @@ Obtains the KV pairs matching the specified **Query** object for a device. This 
 | Name| Type| Mandatory| Description|
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | Yes|ID of the target device.|
-| query  |[Query](#querysup8sup)  | Yes|**Query** object to match.|
+| query  |[Query](#query8)  | Yes|**Query** object to match.|
 | callback |AsyncCallback&lt;[Entry](#entry)[]&gt;  | Yes|Callback used to return the KV pairs obtained.|
 
 -   Example
@@ -4070,7 +4070,7 @@ Obtains the KV pairs matching the specified **Query** object for a device. This 
 | Name| Type| Mandatory| Description|
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | Yes|ID of the target device.|
-| query  |[Query](#querysup8sup)  | Yes|**Query** object to match.|
+| query  |[Query](#query8)  | Yes|**Query** object to match.|
 
 -   Return value
 
@@ -4129,7 +4129,7 @@ Obtains the **KvStoreResultSet** object that matches the specified key prefix fo
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | Yes|ID of the target device.|
 | keyPrefix |string  | Yes|Key prefix to match.|
-| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultsetsup8sup)[]&gt;  | Yes|Callback used to return the **KvStoreResultSet** object obtained.|
+| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)[]&gt;  | Yes|Callback used to return the **KvStoreResultSet** object obtained.|
 
 -   Example
 
@@ -4167,7 +4167,7 @@ Obtains the **KvStoreResultSet** object that matches the specified key prefix fo
 
 | Type| Description|
 | ------  | -------   |
-|Promise&lt;[KvStoreResultSet](#kvstoreresultsetsup8sup)[]&gt; |Promise used to return the **KvStoreResultSet** object obtained.|
+|Promise&lt;[KvStoreResultSet](#kvstoreresultset8)[]&gt; |Promise used to return the **KvStoreResultSet** object obtained.|
 
 -   Example
 
@@ -4202,8 +4202,8 @@ Obtains the **KvStoreResultSet** object that matches the specified **Query** obj
 
 | Name| Type| Mandatory| Description|
 | -----  | ------   | ----  | ----------------------- |
-| query  |[Query](#querysup8sup)  | Yes|**Query** object to match.|
-| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultsetsup8sup)[]&gt;  | Yes|Callback used to return the **KvStoreResultSet** object obtained.|
+| query  |[Query](#query8)  | Yes|**Query** object to match.|
+| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)[]&gt;  | Yes|Callback used to return the **KvStoreResultSet** object obtained.|
 
 -   Example
 
@@ -4252,13 +4252,13 @@ Obtains the **KvStoreResultSet** object that matches the specified **Query** obj
 
 | Name| Type| Mandatory| Description|
 | -----  | ------   | ----  | ----------------------- |
-| query  |[Query](#querysup8sup)  | Yes|**Query** object to match.|
+| query  |[Query](#query8)  | Yes|**Query** object to match.|
 
 -   Return value
 
 | Type| Description|
 | ------  | -------   |
-|Promise&lt;[KvStoreResultSet](#kvstoreresultsetsup8sup)[]&gt; |Promise used to return the **KvStoreResultSet** object obtained.|
+|Promise&lt;[KvStoreResultSet](#kvstoreresultset8)[]&gt; |Promise used to return the **KvStoreResultSet** object obtained.|
 
 -   Example
 
@@ -4315,8 +4315,8 @@ Obtains the **KvStoreResultSet** object that matches the specified **Query** obj
 | Name| Type| Mandatory| Description|
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | Yes|ID of the target device.|
-| query  |[Query](#querysup8sup)  | Yes|**Query** object to match.|
-| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultsetsup8sup)[]&gt;  | Yes|Callback used to return the **KvStoreResultSet** object obtained.|
+| query  |[Query](#query8)  | Yes|**Query** object to match.|
+| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)[]&gt;  | Yes|Callback used to return the **KvStoreResultSet** object obtained.|
 
 -   Example
 
@@ -4365,13 +4365,13 @@ Obtains the **KvStoreResultSet** object that matches the specified **Query** obj
 | Name| Type| Mandatory| Description|
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | Yes|ID of the target device.|
-| query  |[Query](#querysup8sup)  | Yes|**Query** object to match.|
+| query  |[Query](#query8)  | Yes|**Query** object to match.|
 
 -   Return value
 
 | Type| Description|
 | ------  | -------   |
-|Promise&lt;[KvStoreResultSet](#kvstoreresultsetsup8sup)[]&gt; |Promise used to return the **KvStoreResultSet** object obtained.|
+|Promise&lt;[KvStoreResultSet](#kvstoreresultset8)[]&gt; |Promise used to return the **KvStoreResultSet** object obtained.|
 
 -   Example
 
@@ -4428,7 +4428,7 @@ Closes the **KvStoreResultSet** object obtained by **getResultSet**. This method
 
 | Name| Type| Mandatory| Description|
 | -----  | ------   | ----  | ----------------------- |
-| resultSet  |[KvStoreResultSet](#getresultsetsup8sup)  | Yes|**KvStoreResultSet** object to close.|
+| resultSet  |[KvStoreResultSet](#getresultset8)  | Yes|**KvStoreResultSet** object to close.|
 | callback   |AsyncCallback&lt;void&gt;                 | Yes|Callback used to return the result.|
 
 -   Example
@@ -4461,7 +4461,7 @@ Closes the **KvStoreResultSet** object obtained by **getResultSet**. This method
 
 | Name| Type| Mandatory| Description|
 | -----  | ------   | ----  | ----------------------- |
-| resultSet  |[KvStoreResultSet](#getresultsetsup8sup)  | Yes|**KvStoreResultSet** object to close.|
+| resultSet  |[KvStoreResultSet](#getresultset8)  | Yes|**KvStoreResultSet** object to close.|
 
 -   Return value
 
@@ -4497,7 +4497,7 @@ Obtains the number of results that matches the specified **Query** object. This 
 
 | Name| Type| Mandatory| Description|
 | -----  | ------   | ----  | ----------------------- |
-| query     |[Query](#querysup8sup)       | Yes|**Query** object to match.|
+| query     |[Query](#query8)       | Yes|**Query** object to match.|
 | callback  |AsyncCallback&lt;number&gt;  | Yes|Callback used to return the number of results obtained.|
 
 -   Example
@@ -4542,7 +4542,7 @@ Obtains the number of results that matches the specified **Query** object. This 
 
 | Name| Type| Mandatory| Description|
 | -----  | ------   | ----  | ----------------------- |
-| query     |[Query](#querysup8sup)       | Yes|**Query** object to match.|
+| query     |[Query](#query8)       | Yes|**Query** object to match.|
 
 -   Return value
 
@@ -4597,7 +4597,7 @@ Obtains the number of results that matches the specified **Query** object for a 
 | Name| Type| Mandatory| Description|
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string                       | Yes|ID of the target device.|
-| query     |[Query](#querysup8sup)       | Yes|**Query** object to match.|
+| query     |[Query](#query8)       | Yes|**Query** object to match.|
 | callback  |AsyncCallback&lt;number&gt;  | Yes|Callback used to return the number of results obtained.|
 
 -   Example
@@ -4642,7 +4642,7 @@ Obtains the number of results that matches the specified **Query** object for a 
 | Name| Type| Mandatory| Description|
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string                       | Yes|ID of the target device.|
-| query     |[Query](#querysup8sup)       | Yes|**Query** object to match.|
+| query     |[Query](#query8)       | Yes|**Query** object to match.|
 
 -   Return value
 

@@ -57,6 +57,7 @@
 - 通信与连接
     -   [WLAN](js-apis-wifi.md)  
     -   [Bluetooth](js-apis-bluetooth.md)
+    -   [RPC通信](js-apis-rpc.md)
 - 设备管理
     - [传感器](js-apis-sensor.md)
     - [振动](js-apis-vibrator.md)
@@ -72,6 +73,7 @@
     - [显示设备属性](js-apis-display.md)
     - [升级](js-apis-update.md) 
     - [USB管理](js-apis-usb.md)
+    - [位置服务](js-apis-geolocation.md)
 - 基本功能
     - [应用上下文](js-apis-basic-features-app-context.md)
     - [日志打印](js-apis-basic-features-logs.md)

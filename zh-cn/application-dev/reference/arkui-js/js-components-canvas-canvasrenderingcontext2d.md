@@ -57,7 +57,7 @@
 | [shadowColor](#shadowcolor) | &lt;color&gt; | - | 设置绘制阴影时的阴影颜色。 |
 | [shadowOffsetX](#shadowoffsetx) | number | - | 设置绘制阴影时和原有对象的水平偏移值。 |
 | [shadowOffsetY](#shadowoffsety) | number | - | 设置绘制阴影时和原有对象的垂直偏移值。 |
-| [imageSmoothingEnabled](#imagesmoothingenabled6-)<sup>6+</sup> | boolean | true | 用于设置绘制图片时是否进行图像平滑度调整，true为启用，false为不启用。 |
+| [imageSmoothingEnabled](#imagesmoothingenabled6)<sup>6+</sup> | boolean | true | 用于设置绘制图片时是否进行图像平滑度调整，true为启用，false为不启用。 |
 
 
 ### fillStyle

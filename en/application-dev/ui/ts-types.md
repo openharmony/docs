@@ -81,14 +81,14 @@ You can use **$r** or **$rawfile** to create a **Resource** object. For details,
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| ResourceStr | string&nbsp;\|&nbsp;[Resource](#ResourceType) | Resource string.|
+| ResourceStr | string&nbsp;\|&nbsp;[Resource](#resourcetype) | Resource string.|
 
 
 ## Resource Color<sup>8+</sup>
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| ResourceColor | Color&nbsp;\|&nbsp;number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](#ResourceType) | Resource color.|
+| ResourceColor | Color&nbsp;\|&nbsp;number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](#resourcetype) | Resource color.|
 
 
 ## Custom Builder<sup>8+</sup>

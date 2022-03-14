@@ -259,7 +259,7 @@ Codec MIME类型枚举。
 
 ## AudioPlayer
 
-音频播放管理类，用于管理和播放音频媒体。在调用AudioPlayer的方法前，需要先通过[createAudioPlayer()](#media.createaudioplayer)构建一个[AudioPlayer](#audioplayer)实例。
+音频播放管理类，用于管理和播放音频媒体。在调用AudioPlayer的方法前，需要先通过[createAudioPlayer()](#mediacreateaudioplayer)构建一个[AudioPlayer](#audioplayer)实例。
 
 音频播放demo可参考：[音频播放开发指导](../../media/audio-playback.md)
 

@@ -48,6 +48,7 @@
 - Network and Connectivity
     -   [WLAN](js-apis-wifi.md)  
     -   [Bluetooth](js-apis-bluetooth.md)
+    -   [RPC](js-apis-rpc.md)
 - Device Management
     -   [Sensor](js-apis-sensor.md)
     -   [Vibrator](js-apis-vibrator.md)
@@ -63,6 +64,7 @@
     -   [Display](js-apis-display.md)
     -   [Update](js-apis-update.md) 
     -   [USB](js-apis-usb.md)
+    -   [Location](js-apis-geolocation.md)
 - Basic Features
     -   [Application Context](js-apis-basic-features-app-context.md)
     -   [Console Logs](js-apis-basic-features-logs.md)
