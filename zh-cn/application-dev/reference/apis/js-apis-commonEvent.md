@@ -251,8 +251,8 @@ publishAsUser(event: string, userId: number, options: CommonEventPublishData, ca
 ```js
 //公共事件相关信息
 var options = {
-	code: 0;			 //公共事件的初始代码
-	data: "initial data";//公共事件的初始数据
+	code: 0,			 //公共事件的初始代码
+	data: "initial data",//公共事件的初始数据
 }
 
 //发布公共事件回调
@@ -541,34 +541,40 @@ CommonEvent.unsubscribe(subscriber, UnsubscribeCallBack);
 
 ## CommonEventPublishData
 
-| 名称                  | 读写属性 | 类型                 | 必填 | 描述                                                         |
-| --------------------- | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| bundleName            | 只读     | string               | 否   | 表示包名称<br/>**系统能力**：SystemCapability.Notification.CommonEvent |
-| code                  | 只读     | number               | 否   | 表示公共事件的结果代码<br/>**系统能力**：SystemCapability.Notification.CommonEvent |
-| data                  | 只读     | string               | 否   | 表示公共事件的自定义结果数据<br/>**系统能力**：SystemCapability.Notification.CommonEvent |
-| subscriberPermissions | 只读     | Array\<string>       | 否   | 表示订阅者的权限<br/>**系统能力**：SystemCapability.Notification.CommonEvent |
-| isOrdered             | 只读     | boolean              | 否   | 表示是否是有序事件<br/>**系统能力**：SystemCapability.Notification.CommonEvent |
-| parameters            | 只读     | {[key: string]: any} | 否   | 表示公共事件的附加信息<br/>**系统能力**：SystemCapability.Notification.CommonEvent |
+**系统能力：**以下各项对应的系统能力均为SystemCapability.Notification.CommonEvent
+
+| 名称                  | 读写属性 | 类型                 | 必填 | 描述                         |
+| --------------------- | -------- | -------------------- | ---- | ---------------------------- |
+| bundleName            | 只读     | string               | 否   | 表示包名称                   |
+| code                  | 只读     | number               | 否   | 表示公共事件的结果代码       |
+| data                  | 只读     | string               | 否   | 表示公共事件的自定义结果数据 |
+| subscriberPermissions | 只读     | Array\<string>       | 否   | 表示订阅者的权限             |
+| isOrdered             | 只读     | boolean              | 否   | 表示是否是有序事件           |
+| parameters            | 只读     | {[key: string]: any} | 否   | 表示公共事件的附加信息       |
 
 ## CommonEventSubscribeInfo
 
+**系统能力：**以下各项对应的系统能力均为SystemCapability.Notification.CommonEvent
+
 | 名称                | 读写属性 | 类型           | 必填 | 描述                                                         |
 | ------------------- | -------- | -------------- | ---- | ------------------------------------------------------------ |
-| events              | 只读     | Array\<string> | 是   | 表示要发送的公共事件<br/>**系统能力**：SystemCapability.Notification.CommonEvent |
-| publisherPermission | 只读     | string         | 否   | 表示发布者的权限<br/>**系统能力**：SystemCapability.Notification.CommonEvent |
-| publisherDeviceId   | 只读     | string         | 否   | 表示设备ID，该值必须是同一ohos网络上的现有设备ID<br/>**系统能力**：SystemCapability.Notification.CommonEvent |
-| userId              | 只读     | number         | 否   | 表示用户ID。此参数是可选的，默认值当前用户的ID。如果指定了此参数，则该值必须是系统中现有的用户ID。<br/>**系统能力**：SystemCapability.Notification.CommonEvent |
-| priority            | 只读     | number         | 否   | 表示订阅者的优先级。值的范围是-100到1000<br/>**系统能力**：SystemCapability.Notification.CommonEvent |
+| events              | 只读     | Array\<string> | 是   | 表示要发送的公共事件                                         |
+| publisherPermission | 只读     | string         | 否   | 表示发布者的权限                                             |
+| publisherDeviceId   | 只读     | string         | 否   | 表示设备ID，该值必须是同一ohos网络上的现有设备ID             |
+| userId              | 只读     | number         | 否   | 表示用户ID。此参数是可选的，默认值当前用户的ID。如果指定了此参数，则该值必须是系统中现有的用户ID。 |
+| priority            | 只读     | number         | 否   | 表示订阅者的优先级。值的范围是-100到1000                     |
 
 ## CommonEventData
 
-| 名称       | 读写属性 | 类型                 | 必填 | 描述                                                         |
-| ---------- | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| event      | 只读     | string               | 是   | 表示当前接收的公共事件名称<br/>**系统能力**：SystemCapability.Notification.CommonEvent |
-| bundleName | 只读     | string               | 否   | 表示包名称<br/>**系统能力**：SystemCapability.Notification.CommonEvent |
-| code       | 只读     | number               | 否   | 表示公共事件的结果代码，用于传递int类型的数据<br/>**系统能力**：SystemCapability.Notification.CommonEvent |
-| data       | 只读     | string               | 否   | 表示公共事件的自定义结果数据，用于传递string类型的数据<br/>**系统能力**：SystemCapability.Notification.CommonEvent |
-| parameters | 只读     | {[key: string]: any} | 否   | 表示公共事件的附加信息<br/>**系统能力**：SystemCapability.Notification.CommonEvent |
+**系统能力：**以下各项对应的系统能力均为SystemCapability.Notification.CommonEvent
+
+| 名称       | 读写属性 | 类型                 | 必填 | 描述                                                    |
+| ---------- | -------- | -------------------- | ---- | ------------------------------------------------------- |
+| event      | 只读     | string               | 是   | 表示当前接收的公共事件名称                              |
+| bundleName | 只读     | string               | 否   | 表示包名称                                              |
+| code       | 只读     | number               | 否   | 表示公共事件的结果代码，用于传递int类型的数据           |
+| data       | 只读     | string               | 否   | 表示公共事件的自定义结果数据，用于传递string类型的数据< |
+| parameters | 只读     | {[key: string]: any} | 否   | 表示公共事件的附加信息                                  |
 
 ## CommonEventSubscriber
 
