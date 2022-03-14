@@ -14,7 +14,7 @@ AbilityStage的上下文环境，继承自[Context](js-apis-application-context.
 
 
   
-```
+```js
 import AbilityStage from '@ohos.application.AbilityStage';
 class MyAbilityStage extends AbilityStage {
     onCreate() {
@@ -26,7 +26,7 @@ class MyAbilityStage extends AbilityStage {
 
 ## 属性
 
-  | 名称 | 参数类型 | 可读 | 可写 | 说明 | 
+| 名称 | 参数类型 | 可读 | 可写 | 说明 | 
 | -------- | -------- | -------- | -------- | -------- |
-| currentHapModuleInfo | HapModuleInfo | 是 | 否 | AbilityStage对应的ModuleInfo对象。 | 
-| config | [Configuration](js-apis-configuration.md) | 是 | 否 | 环境变化对象。 | 
+| currentHapModuleInfo | HapModuleInfo | 是 | 否 | AbilityStage对应的ModuleInfo对象。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core | 
+| config | [Configuration](js-apis-configuration.md) | 是 | 否 | 环境变化对象。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core | 

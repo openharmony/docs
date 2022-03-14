@@ -8,17 +8,13 @@ import ohos_data_ability from '@ohos.data.dataability'
 import ohos_data_rdb from '@ohos.data.rdb'
 ```
 
-## DataAbilityHelper
-
-### openFile
+## DataAbilityHelper.openFile
 
 openFile(uri: string, mode: string, callback: AsyncCallback\<number>): void
 
 在指定的远程路径中打开文件（callback形式）。
 
-**系统能力:**
-
-SystemCapability.Ability.AbilityRuntime.FAModel
+**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
 **参数：**
 
@@ -44,15 +40,13 @@ DAHelper.openFile(
 });
 ```
 
-### openFile
+## DataAbilityHelper.openFile
 
 openFile(uri: string, mode: string): Promise\<number>
 
 在指定的远程路径中打开文件（promise形式）。
 
-**系统能力:**
-
-SystemCapability.Ability.AbilityRuntime.FAModel
+**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
 **参数：**
 
@@ -62,6 +56,7 @@ SystemCapability.Ability.AbilityRuntime.FAModel
 | mode | string | 是   | 指示文件打开模式‘rwt’。  |
 
 **返回值：**
+
 | 类型             | 说明             |
 | ---------------- | ---------------- |
 | Promise\<number> | 返回文件描述符。 |
@@ -81,15 +76,13 @@ DAHelper.openFile(
 });
 ```
 
-### on('dataChange')
+## DataAbilityHelper.on
 
 on(type: 'dataChange', uri: string, callback: AsyncCallback\<void>): void
 
 注册观察者以观察给定uri指定的数据callback通知。
 
-**系统能力:**
-
-SystemCapability.Ability.AbilityRuntime.FAModel
+**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
 **参数：**
 
@@ -116,15 +109,13 @@ helper.on(
 )
 ```
 
-### off('dataChange')
+## DataAbilityHelper.off
 
 off(type: 'dataChange', uri: string, callback?: AsyncCallback\<void>): void
 
 注消观察者以停止观察给定uri指定的数据callback通知。
 
-**系统能力:**
-
-SystemCapability.Ability.AbilityRuntime.FAModel
+**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
 **参数：**
 
@@ -155,15 +146,13 @@ helper.off(
 )
 ```
 
-### getType
+## DataAbilityHelper.getType
 
 getType(uri: string, callback: AsyncCallback\<string>): void
 
 获取给定URI指定数据的MIME类型（callback形式）。
 
-**系统能力:**
-
-SystemCapability.Ability.AbilityRuntime.FAModel
+**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
 **参数：**
 
@@ -186,15 +175,13 @@ DAHelper.getType(
 });
 ```
 
-### getType
+## DataAbilityHelper.getType
 
 getType(uri: string): Promise\<string>
 
 获取给定URI指定数据的MIME类型（Promise形式）。
 
-**系统能力:**
-
-SystemCapability.Ability.AbilityRuntime.FAModel
+**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
 **参数：**
 
@@ -203,6 +190,7 @@ SystemCapability.Ability.AbilityRuntime.FAModel
 | uri  | string | 是   | 指示要操作的数据的路径。 |
 
 **返回值：**
+
 | 类型             | 说明                                |
 | ---------------- | ----------------------------------- |
 | Promise\<string> | 返回与uri指定的数据匹配的MIME类型。 |
@@ -221,15 +209,13 @@ DAHelper.getType(
 });
 ```
 
-### getFileTypes
+## DataAbilityHelper.getFileTypes
 
 getFileTypes(uri: string, mimeTypeFilter: string, callback: AsyncCallback<Array\<string>>): void
 
 获取支持的文件的MIME类型（callback形式）。
 
-**系统能力:**
-
-SystemCapability.Ability.AbilityRuntime.FAModel
+**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
 **参数：**
 
@@ -256,15 +242,13 @@ DAHelper.getFileTypes(
 
 
 
-### getFileTypes
+## DataAbilityHelper.getFileTypes
 
 getFileTypes(uri: string, mimeTypeFilter: string): Promise\<Array\<string>>
 
 获取支持的文件的MIME类型（Promise形式）。
 
-**系统能力:**
-
-SystemCapability.Ability.AbilityRuntime.FAModel
+**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
 **参数：**
 
@@ -274,6 +258,7 @@ SystemCapability.Ability.AbilityRuntime.FAModel
 | mimeTypeFilter | string | 是   | 指示要获取的文件的MIME类型。 |
 
 **返回值：**
+
 | 类型                     | 说明                     |
 | ------------------------ | ------------------------ |
 | Promise\<Array\<string>> | 返回匹配的MIME类型数组。 |
@@ -293,15 +278,13 @@ DAHelper.getFileTypes(
 });
 ```
 
-### normalizeUri
+## DataAbilityHelper.normalizeUri
 
 normalizeUri(uri: string, callback: AsyncCallback\<string>): void
 
 将引用数据功能的给定uri转换为规范化uri（callback形式）。
 
-**系统能力:**
-
-SystemCapability.Ability.AbilityRuntime.FAModel
+**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
 **参数：**
 
@@ -324,15 +307,13 @@ DAHelper.normalizeUri(
 });
 ```
 
-### normalizeUri
+## DataAbilityHelper.normalizeUri
 
 normalizeUri(uri: string): Promise\<string>
 
 将引用数据功能的给定uri转换为规范化uri（Promise形式）。
 
-**系统能力:**
-
-SystemCapability.Ability.AbilityRuntime.FAModel
+**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
 **参数：**
 
@@ -341,6 +322,7 @@ SystemCapability.Ability.AbilityRuntime.FAModel
 | uri  | string | 是   | 指示要规范化的uri对象。 |
 
 **返回值：**
+
 | 类型             | 说明                                                   |
 | ---------------- | ------------------------------------------------------ |
 | Promise\<string> | 如果数据功能支持uri规范化，则返回规范化uri对象；否则返回null。 |
@@ -359,15 +341,13 @@ DAHelper.normalizeUri(
 });
 ```
 
-### denormalizeUri
+## DataAbilityHelper.denormalizeUri
 
 denormalizeUri(uri: string, callback: AsyncCallback\<string>): void
 
 将由normalizeUri（uri）生成的给定规范化uri转换为非规范化uri（callback形式）。
 
-**系统能力:**
-
-SystemCapability.Ability.AbilityRuntime.FAModel
+**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
 **参数：**
 
@@ -392,15 +372,13 @@ DAHelper.denormalizeUri(
 
 
 
-### denormalizeUri
+## DataAbilityHelper.denormalizeUri
 
 denormalizeUri(uri: string): Promise\<string>
 
 将由normalizeUri（uri）生成的给定规范化uri转换为非规范化uri（Promise形式）。
 
-**系统能力:**
-
-SystemCapability.Ability.AbilityRuntime.FAModel
+**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
 **参数：**
 
@@ -409,6 +387,7 @@ SystemCapability.Ability.AbilityRuntime.FAModel
 | uri  | string | 是   | 指示要规范化的uri对象。 |
 
 **返回值：**
+
 | 类型             | 说明                                      |
 | ---------------- | ----------------------------------------- |
 | Promise\<string> | 如果反规范化成功，则返回反规范化uri对象。 |
@@ -427,15 +406,13 @@ DAHelper.denormalizeUri(
 });
 ```
 
-### notifyChange
+## DataAbilityHelper.notifyChange
 
 notifyChange(uri: string, callback: AsyncCallback\<void>): void
 
 通知已注册的观察者uri指定的数据资源的更改（callback形式）。
 
-**系统能力:**
-
-SystemCapability.Ability.AbilityRuntime.FAModel
+**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
 **参数：**
 
@@ -458,15 +435,13 @@ helper.notifyChange(
 });
 ```
 
-### notifyChange
+## DataAbilityHelper.notifyChange
 
 notifyChange(uri: string): Promise\<void>
 
 通知已注册的观察者uri指定的数据资源的更改（Promise形式）。
 
-**系统能力:**
-
-SystemCapability.Ability.AbilityRuntime.FAModel
+**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
 **参数：**
 
@@ -475,6 +450,7 @@ SystemCapability.Ability.AbilityRuntime.FAModel
 | uri  | string | 是   | 指示要操作的数据的路径。 |
 
 **返回值：**
+
 | 类型           | 说明                  |
 | -------------- | --------------------- |
 | Promise\<void> | 返回值为Promise对象。 |
@@ -493,15 +469,13 @@ DAHelper.notifyChange(
 });
 ```
 
-### insert
+## DataAbilityHelper.insert
 
 insert(uri: string, valuesBucket: rdb.ValuesBucket, callback: AsyncCallback\<number>): void
 
 将单个数据记录插入数据库（callback形式）。
 
-**系统能力:**
-
-SystemCapability.Ability.AbilityRuntime.FAModel
+**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
 **参数：**
 
@@ -532,15 +506,13 @@ DAHelper.insert(
 });
 ```
 
-### insert
+## DataAbilityHelper.insert
 
 insert(uri: string, valuesBucket: rdb.ValuesBucket): Promise\<number>
 
 将单个数据记录插入数据库（Promise形式）。
 
-**系统能力:**
-
-SystemCapability.Ability.AbilityRuntime.FAModel
+**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
 **参数：**
 
@@ -550,6 +522,7 @@ SystemCapability.Ability.AbilityRuntime.FAModel
 | valuesBucket | rdb.ValuesBucket | 是   | 指示要插入的数据记录。如果此参数为空，将插入一个空行。 |
 
 **返回值：**
+
 | 类型             | 说明                     |
 | ---------------- | ------------------------ |
 | Promise\<number> | 返回插入数据记录的索引。 |
@@ -575,15 +548,13 @@ DAHelper.insert(
 });
 ```
 
-### batchInsert
+## DataAbilityHelper.batchInsert
 
 batchInsert(uri: string, valuesBuckets: Array<rdb.ValuesBucket>, callback: AsyncCallback\<number>): void
 
 插入数据库（callback形式）。
 
-**系统能力:**
-
-SystemCapability.Ability.AbilityRuntime.FAModel
+**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
 **参数：**
 
@@ -611,15 +582,13 @@ DAHelper.batchInsert(
 });
 ```
 
-### batchInsert
+## DataAbilityHelper.batchInsert
 
 batchInsert(uri: string, valuesBuckets: Array<rdb.ValuesBucket>): Promise\<number>
 
 将多个数据记录插入数据库（Promise形式）。
 
-**系统能力:**
-
-SystemCapability.Ability.AbilityRuntime.FAModel
+**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
 **参数：**
 
@@ -629,6 +598,7 @@ SystemCapability.Ability.AbilityRuntime.FAModel
 | valuesBucket | Array<rdb.ValuesBucket> | 是   | 指示要插入的数据记录。   |
 
 **返回值：**
+
 | 类型             | 说明                   |
 | ---------------- | ---------------------- |
 | Promise\<number> | 返回插入的数据记录数。 |
@@ -651,15 +621,13 @@ DAHelper.batchInsert(
 });
 ```
 
-### delete
+## DataAbilityHelper.delete
 
 delete(uri: string, predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback\<number>): void
 
 从数据库中删除一个或多个数据记录（callback形式）。
 
-**系统能力:**
-
-SystemCapability.Ability.AbilityRuntime.FAModel
+**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
 **参数：**
 
@@ -686,15 +654,13 @@ DAHelper.delete(
 });
 ```
 
-### delete
+## DataAbilityHelper.delete
 
 delete(uri: string, predicates: dataAbility.DataAbilityPredicates): Promise\<number>
 
 从数据库中删除一个或多个数据记录（Promise形式）。
 
-**系统能力:**
-
-SystemCapability.Ability.AbilityRuntime.FAModel
+**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
 **参数：**
 
@@ -704,6 +670,7 @@ SystemCapability.Ability.AbilityRuntime.FAModel
 | valuesBucket | dataAbility.DataAbilityPredicates | 是   | 指示筛选条件。当此参数为null时，应定义处理逻辑。 |
 
 **返回值：**
+
 | 类型             | 说明                     |
 | ---------------- | ------------------------ |
 | Promise\<number> | 返回已删除的数据记录数。 |
@@ -724,15 +691,13 @@ DAHelper.delete(
 });
 ```
 
-### update
+## DataAbilityHelper.update
 
 update(uri: string, valuesBucket: rdb.ValuesBucket, predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback\<number>): void
 
 更新数据库中的数据记录（callback形式）。
 
-**系统能力:**
-
-SystemCapability.Ability.AbilityRuntime.FAModel
+**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
 **参数：**
 
@@ -767,15 +732,13 @@ DAHelper.update(
 });
 ```
 
-### update
+## DataAbilityHelper.update
 
 update(uri: string, valuesBucket: rdb.ValuesBucket, predicates: dataAbility.DataAbilityPredicates): Promise\<number>
 
 更新数据库中的数据记录（Promise形式）。
 
-**系统能力:**
-
-SystemCapability.Ability.AbilityRuntime.FAModel
+**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
 **参数：**
 
@@ -786,6 +749,7 @@ SystemCapability.Ability.AbilityRuntime.FAModel
 | predicates   | dataAbility.DataAbilityPredicates | 是   | 指示筛选条件。当此参数为null时，应定义处理逻辑。 |
 
 **返回值：**
+
 | 类型             | 说明                                         |
 | ---------------- | -------------------------------------------- |
 | Promise\<number> | Promise中包含更新的数据记录数。 。 |
@@ -814,15 +778,13 @@ DAHelper.update(
 });
 ```
 
-### query
+## DataAbilityHelper.query
 
 query(uri: string, columns: Array\<string>, predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback\<ResultSet>): void
 
 查询数据库中的数据（callback形式）。
 
-**系统能力:**
-
-SystemCapability.Ability.AbilityRuntime.FAModel
+**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
 **参数：**
 
@@ -854,15 +816,13 @@ DAHelper.query(
 
 
 
-### query
+## DataAbilityHelper.query
 
 query(uri: string, columns: Array\<string>, predicates: dataAbility.DataAbilityPredicates): Promise\<ResultSet>
 
 查询数据库中的数据（Promise形式）。
 
-**系统能力:**
-
-SystemCapability.Ability.AbilityRuntime.FAModel
+**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
 **参数：**
 
@@ -873,6 +833,7 @@ SystemCapability.Ability.AbilityRuntime.FAModel
 | predicates | dataAbility.DataAbilityPredicates | 是   | 指示筛选条件。当此参数为null时，应定义处理逻辑。 |
 
 **返回值：**
+
 | 类型                | 说明           |
 | ------------------- | -------------- |
 | Promise\<ResultSet> | 返回查询结果。 |

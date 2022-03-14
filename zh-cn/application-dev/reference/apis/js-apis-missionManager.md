@@ -16,25 +16,29 @@ import missionManager from '@ohos.application.missionManager'
 ```
 
 
-## registerMissionListener
+## missionManager.registerMissionListener
 
 function registerMissionListener(listener: MissionListener): number;
 
 注册系统任务状态监听。
 
-- 参数：
-    | 参数名 | 类型 | 必填 | 说明 |
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | listener | MissionListener | 是 | 系统任务监听方法。 |
 
-- 返回值：
-    | 类型 | 说明 |
+**返回值：**
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | number | 监听方法的index值，由系统创建，在注册系统任务状态监听时分配，和监听方法一一对应&nbsp;。 |
 
-- 示例：
+**示例：**
 
-  ```
+  ```js
   var listener =  {
   	onMissionCreated: this.onMissionCreatedCallback,
   	onMissionDestroyed: this.onMissionDestroyedCallback,
@@ -47,21 +51,24 @@ function registerMissionListener(listener: MissionListener): number;
   ```
 
 
-## unregisterMissionListener
+## missionManager.unregisterMissionListener
 
 function unregisterMissionListener(listenerId: number, callback: AsyncCallback&lt;void&gt;): void;
 
 取消任务状态监听。
 
-- 参数：
-    | 参数名 | 类型 | 必填 | 说明 |
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | listenerId | number | 是 | 系统任务状态监听方法的index值，和监听方法一一对应，由registerMissionListener方法返回。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | 执行结果回调函数。 |
 
-- 示例：
+**示例：**
 
-  ```
+  ```js
   var listener =  {
     onMissionCreated: this.onMissionCreatedCallback,
     onMissionDestroyed: this.onMissionDestroyedCallback,
@@ -77,20 +84,23 @@ function unregisterMissionListener(listenerId: number, callback: AsyncCallback&l
   ```
 
 
-## unregisterMissionListener
+## missionManager.unregisterMissionListener
 
 function unregisterMissionListener(listenerId: number): Promise&lt;void&gt;;
 
 取消任务状态监听，以promise方式返回执行结果。
 
-- 参数：
-    | 参数名 | 类型 | 必填 | 说明 |
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | listenerId | number | 是 | 系统任务状态监听方法的index值，和监听方法一一对应，由registerMissionListener方法返回。 |
 
-- 示例：
+**示例：**
 
-  ```
+  ```js
   var listener =  {
       onMissionCreated: this.onMissionCreatedCallback,
       onMissionDestroyed: this.onMissionDestroyedCallback,
@@ -106,22 +116,25 @@ function unregisterMissionListener(listenerId: number): Promise&lt;void&gt;;
   ```
 
 
-## getMissionInfo
+## missionManager.getMissionInfo
 
 function getMissionInfo(deviceId: string, missionId: number, callback: AsyncCallback&lt;MissionInfo&gt;): void;
 
 获取任务信息，以异步回调的方式返回任务信息。
 
-- 参数：
-    | 参数名 | 类型 | 必填 | 说明 |
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | deviceId | string | 是 | 设备ID，本机默认为空字符串。 |
   | missionId | number | 是 | 任务ID。 |
   | callback | AsyncCallback&lt;MissionInfo&gt; | 是 | 执行结果回调函数，返回任务信息。 |
 
-- 示例：
+**示例：**
 
-  ```
+  ```js
   import missionManager from '@ohos.application.missionManager'
 
   missionManager.getMissionInfo("", allMissions[0].missionId, (error, mission) => {
@@ -136,26 +149,30 @@ function getMissionInfo(deviceId: string, missionId: number, callback: AsyncCall
   ```
 
 
-## getMissionInfo
+## missionManager.getMissionInfo
 
 function getMissionInfo(deviceId: string, missionId: number): Promise&lt;MissionInfo&gt;;
 
 获取任务信息，以promise方式返回任务信息。
 
-- 参数：
-    | 参数名 | 类型 | 必填 | 说明 |
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | deviceId | string | 是 | 设备ID，本机默认为空字符串。 |
   | missionId | number | 是 | 任务ID。 |
 
-- 返回值：
-    | 类型 | 说明 |
+**返回值：**
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | [MissionInfo](js-apis-application-MissionInfo.md) | 任务信息。 |
 
-- 示例：
+**示例：**
 
-  ```
+  ```js
   import missionManager from '@ohos.application.missionManager'
 
   var mission = await missionManager.getMissionInfo("", id).catch(function (err){
@@ -164,22 +181,25 @@ function getMissionInfo(deviceId: string, missionId: number): Promise&lt;Mission
   ```
 
 
-## getMissionInfos
+## missionManager.getMissionInfos
 
 function getMissionInfos(deviceId: string, numMax: number, callback: AsyncCallback&lt;Array&lt;MissionInfo&gt;&gt;): void;
 
 获取所有任务信息，以回调函数的方式返回任务信息数组。
 
-- 参数：
-    | 参数名 | 类型 | 必填 | 说明 |
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | deviceId | string | 是 | 设备ID，本机默认为空字符串。 |
   | numMax | number | 是 | 任务信息数量上限。 |
   | callback | AsyncCallback&lt;Array&lt;[MissionInfo](js-apis-application-MissionInfo.md)&gt;&gt; | 是 | 执行结果回调函数，返回任务信息数组。 |
 
-- 示例：
+**示例：**
 
-  ```
+  ```js
   import missionManager from '@ohos.application.missionManager'
 
   missionManager.getMissionInfos("", 10, (error, missions) => {
@@ -190,26 +210,30 @@ function getMissionInfos(deviceId: string, numMax: number, callback: AsyncCallba
   ```
 
 
-## getMissionInfos
+## missionManager.getMissionInfos
 
 function getMissionInfos(deviceId: string, numMax: number): Promise&lt;Array&lt;MissionInfo&gt;&gt;;
 
 获取所有任务信息，以promise的方式返回任务信息数组。
 
-- 参数：
-    | 参数名 | 类型 | 必填 | 说明 |
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | deviceId | string | 是 | 设备ID，本机默认为空字符串。 |
   | numMax | number | 是 | 任务信息数量上限。 |
 
-- 返回值：
-    | 类型 | 说明 |
+**返回值：**
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | Array&lt;MissionInfo&gt; | 任务信息数组。 |
 
-- 示例：
+**示例：**
 
-  ```
+  ```js
   import missionManager from '@ohos.application.missionManager'
 
   var allMissions = await missionManager.getMissionInfos("", 10).catch(function (err){
@@ -218,22 +242,25 @@ function getMissionInfos(deviceId: string, numMax: number): Promise&lt;Array&lt;
   ```
 
 
-## getMissionSnapShot
+## missionManager.getMissionSnapShot
 
 function getMissionSnapShot(deviceId: string, missionId: number, callback: AsyncCallback&lt;MissionSnapshot&gt;): void;
 
 获取任务快照，以回调函数的方式返回快照内容。
 
-- 参数：
-    | 参数名 | 类型 | 必填 | 说明 |
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | deviceId | string | 是 | 设备ID，本机默认为空字符串。 |
   | missionId | number | 是 | 任务ID。 |
   | callback | AsyncCallback&lt;[MissionSnapshot](js-apis-application-MissionSnapshot.md)&gt; | 是 | 执行结果回调函数，返回任务快照信息。 |
 
-- 示例：
+**示例：**
 
-  ```
+  ```js
   import missionManager from '@ohos.application.missionManager'
 
   missionManager.getMissionInfos("", 10, (error, missions) => {
@@ -250,26 +277,30 @@ function getMissionSnapShot(deviceId: string, missionId: number, callback: Async
   ```
 
 
-## getMissionSnapShot
+## missionManager.getMissionSnapShot
 
 function getMissionSnapShot(deviceId: string, missionId: number): Promise&lt;MissionSnapshot&gt;;
 
 获取任务快照，以promise的方式返回快照内容。
 
-- 参数：
-    | 参数名 | 类型 | 必填 | 说明 |
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | deviceId | string | 是 | 设备ID，本机默认为空字符串。 |
   | missionId | number | 是 | 任务ID。 |
 
-- 返回值：
-    | 类型 | 说明 |
+**返回值：**
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | MissionSnapshot | 任务快照信息。 |
 
-- 示例：
+**示例：**
 
-  ```
+  ```js
   import missionManager from '@ohos.application.missionManager'
 
   var allMissions = await missionManager.getMissionInfos("", 10).catch(function (err){
@@ -284,21 +315,24 @@ function getMissionSnapShot(deviceId: string, missionId: number): Promise&lt;Mis
   ```
 
 
-## lockMission
+## missionManager.lockMission
 
 function lockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void;
 
 锁定指定任务id的任务，以回调函数的方式返回。
 
-- 参数：
-    | 参数名 | 类型 | 必填 | 说明 |
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | missionId | number | 是 | 任务ID。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | 执行结果回调函数。 |
 
-- 示例：
+**示例：**
 
-  ```
+  ```js
   import missionManager from '@ohos.application.missionManager'
 
   missionManager.getMissionInfos("", 10, (error, missions) => {
@@ -314,20 +348,23 @@ function lockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): vo
   ```
 
 
-## lockMission
+## missionManager.lockMission
 
 function lockMission(missionId: number): Promise&lt;void&gt;;
 
 锁定指定任务id的任务，以promise方式返回。
 
-- 参数：
-    | 参数名 | 类型 | 必填 | 说明 |
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | missionId | number | 是 | 任务ID。 |
 
-- 示例：
+**示例：**
 
-  ```
+  ```js
   import missionManager from '@ohos.application.missionManager'
 
   var allMissions = await missionManager.getMissionInfos("", 10).catch(function (err){
@@ -343,20 +380,23 @@ function lockMission(missionId: number): Promise&lt;void&gt;;
   ```
 
 
-## unlockMission
+## missionManager.unlockMission
 
 function unlockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void;
 
 解锁指定任务id的任务，以回调函数的方式返回。
 
-- 参数：
-    | 参数名 | 类型 | 必填 | 说明 |
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | missionId | number | 是 | 任务ID。 |
 
-- 示例：
+**示例：**
 
-  ```
+  ```js
   import missionManager from '@ohos.application.missionManager'
 
   missionManager.getMissionInfos("", 10, (error, missions) => {
@@ -372,20 +412,23 @@ function unlockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): 
   ```
 
 
-## unlockMission
+## missionManager.unlockMission
 
 function unlockMission(missionId: number): Promise&lt;void&gt;;
 
 解锁指定任务id的任务，以promise的方式返回。
 
-- 参数：
-    | 参数名 | 类型 | 必填 | 说明 |
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | missionId | number | 是 | 任务ID。 |
 
-- 示例：
+**示例：**
 
-  ```
+  ```js
   import missionManager from '@ohos.application.missionManager'
 
   var allMissions = await missionManager.getMissionInfos("", 10).catch(function (err){
@@ -404,21 +447,24 @@ function unlockMission(missionId: number): Promise&lt;void&gt;;
   ```
 
 
-## clearMission
+## missionManager.clearMission
 
 function clearMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void;
 
 清理指定任务id的任务，无论该任务是否被锁定，以回调函数的方式返回。
 
-- 参数：
-    | 参数名 | 类型 | 必填 | 说明 |
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | missionId | number | 是 | 任务ID。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | 执行结果回调函数。 |
 
-- 示例：
+**示例：**
 
-  ```
+  ```js
   import missionManager from '@ohos.application.missionManager'
 
   missionManager.getMissionInfos("", 10, (error, missions) => {
@@ -434,20 +480,23 @@ function clearMission(missionId: number, callback: AsyncCallback&lt;void&gt;): v
   ```
 
 
-## clearMission
+## missionManager.clearMission
 
 function clearMission(missionId: number): Promise&lt;void&gt;;
 
 清理指定任务id的任务，无论该任务是否被锁定，以promise的方式返回。
 
-- 参数：
-    | 参数名 | 类型 | 必填 | 说明 |
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | missionId | number | 是 | 任务ID。 |
 
-- 示例：
+**示例：**
 
-  ```
+  ```js
   import missionManager from '@ohos.application.missionManager'
 
   var allMissions = await missionManager.getMissionInfos("", 10).catch(function (err){
@@ -463,15 +512,17 @@ function clearMission(missionId: number): Promise&lt;void&gt;;
   ```
 
 
-## clearAllMissions
+## missionManager.clearAllMissions
 
 function clearAllMissions(callback: AsyncCallback&lt;void&gt;): void;
 
 清理所有未锁定的任务，以回调函数的方式返回。
 
-- 示例：
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-  ```
+**示例：**
+
+  ```js
   import missionManager from '@ohos.application.missionManager'
 
   missionManager.clearAllMissions().then(() => {
@@ -480,15 +531,17 @@ function clearAllMissions(callback: AsyncCallback&lt;void&gt;): void;
   ```
 
 
-## clearAllMissions
+## missionManager.clearAllMissions
 
 function clearAllMissions(): Promise&lt;void&gt;;
 
 清理所有未锁定的任务，以promise的方式返回。
 
-- 示例：
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-  ```
+**示例：**
+
+  ```js
   import missionManager from '@ohos.application.missionManager'
   await missionManager.clearAllMissions().catch(function (err){
     console.log(err);
@@ -496,21 +549,24 @@ function clearAllMissions(): Promise&lt;void&gt;;
   ```
 
 
-## moveMissionToFront
+## missionManager.moveMissionToFront
 
 function moveMissionToFront(missionId: number, callback: AsyncCallback&lt;void&gt;): void;
 
 把指定任务id的任务切到前台，以回调函数的方式返回。
 
-- 参数：
-    | 参数名 | 类型 | 必填 | 说明 |
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | missionId | number | 是 | 任务ID。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | 执行结果回调函数。 |
 
-- 示例：
+**示例：**
 
-  ```
+  ```js
   import missionManager from '@ohos.application.missionManager'
 
   missionManager.getMissionInfos("", 10, (error, missions) => {
@@ -526,22 +582,25 @@ function moveMissionToFront(missionId: number, callback: AsyncCallback&lt;void&g
   ```
 
 
-## moveMissionToFront
+## missionManager.moveMissionToFront
 
 function moveMissionToFront(missionId: number, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void;
 
 把指定任务id的任务切到前台，同时指定任务切换到前台时的启动参数，例如窗口模式、设备ID等，以回调函数的方式返回。
 
-- 参数：
-    | 参数名 | 类型 | 必填 | 说明 |
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | missionId | number | 是 | 任务ID。 |
   | options | StartOptions | 是 | 启动参数选项，用于指定任务切到前台时的窗口模式，设备ID等。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | 执行结果回调函数。 |
 
-- 示例：
+**示例：**
 
-  ```
+  ```js
   import missionManager from '@ohos.application.missionManager'
 
   missionManager.getMissionInfos("", 10, (error, missions) => {
@@ -557,21 +616,24 @@ function moveMissionToFront(missionId: number, options: StartOptions, callback: 
   ```
 
 
-## moveMissionToFront
+## missionManager.moveMissionToFront
 
 function moveMissionToFront(missionId: number, options?: StartOptions): Promise&lt;void&gt;;
 
 把指定任务id的任务切到前台，以promise的方式返回。
 
-- 参数：
-    | 参数名 | 类型 | 必填 | 说明 |
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | missionId | number | 是 | 任务ID。 |
   | options | StartOptions | 否 | 启动参数选项，用于指定任务切到前台时的窗口模式，设备ID等。 |
 
-- 示例：
+**示例：**
 
-  ```
+  ```js
   import missionManager from '@ohos.application.missionManager'
 
   var allMissions = await missionManager.getMissionInfos("", 10).catch(function (err){

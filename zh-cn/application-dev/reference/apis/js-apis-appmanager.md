@@ -10,50 +10,56 @@ App管理。
 ## 导入模块
 
   
-```
+```js
 import app from '@ohos.application.appManager';
 ```
 
 
-## isRunningInStabilityTest
+## appManager.isRunningInStabilityTest
 
 static isRunningInStabilityTest(callback: AsyncCallback&lt;boolean&gt;): void
 
 查询当前是否处于稳定性测试场景。
 
-- 参数：
-    | 参数名 | 类型 | 必填 | 说明 | 
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;boolean&gt; | 否 | 返回当前是否处于稳定性测试场景。 | 
 
-- 示例：
+**示例：**
     
-  ```
+  ```js
   import app from '@ohos.application.appManager';
   app.isRunningInStabilityTest((err, flag) => {
-      console.log('startAbility result:' + JSON.stringfy(err);
-  }  
+      console.log('startAbility result:' + JSON.stringfy(err));
+  })  
   ```
 
 
-## isRunningInStabilityTest
+## appManager.isRunningInStabilityTest
 
 static isRunningInStabilityTest(): Promise&lt;boolean&gt;
 
 查询当前是否处于稳定性测试场景。
 
-- 返回值：
-    | 类型 | 说明 | 
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**返回值：**
+
+  | 类型 | 说明 | 
   | -------- | -------- |
   | Promise&lt;boolean&gt; | 返回当前是否处于稳定性测试场景。 | 
 
-- 示例：
+**示例：**
     
-  ```
+  ```js
   import app from '@ohos.application.appManager';
   app.isRunningInStabilityTest().then((flag) => {
       console.log('success:' + JSON.stringfy(flag));
-  )).catch((error) => {
+  }).catch((error) => {
       console.log('failed:' + JSON.stringfy(error));
   });
   ```
