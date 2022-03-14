@@ -693,10 +693,7 @@ unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: string,
   ```
 
 
-## IndexUtil<sup>8+</sup>
-
-
-### getInstance<sup>8+</sup>
+## getInstance<sup>8+</sup>
 
 getInstance(): IndexUtil
 
@@ -718,6 +715,9 @@ getInstance(): IndexUtil
   ```
   var indexUtil= i18n.IndexUtil.getInstance("zh-CN");
   ```
+
+
+## IndexUtil<sup>8+</sup>
 
 
 ### getIndexList<sup>8+</sup>
@@ -1313,9 +1313,9 @@ addPreferredLanguage(language: string, index?: number): boolean
   ```
 
 
-## i18n.removeDisplayLanguage<sup>8+</sup>
+## i18n.removePreferredLanguage<sup>8+</sup>
 
-removeDisplayLanguage(index: number): boolean
+removePreferredLanguage(index: number): boolean
 
 删除系统偏好语言列表中指定位置的偏好语言。
 
@@ -1362,14 +1362,14 @@ getPreferredLanguageList(): Array<string>
 
 getFirstPreferredLanguage(): string
 
-获取与Hap资源最佳匹配的偏好语言。
+获取偏好语言列表中的第一个偏好语言。
 
 **系统能力**：SystemCapability.Global.I18n
 
 - 返回值：
   | 类型 | 说明 |
   | -------- | -------- |
-  | string | Hap资源最佳匹配的偏好语言。 |
+  | string | 偏好语言列表中的第一个语言。 |
 
 - 示例：
   ```
