@@ -65,7 +65,7 @@ export default {
                 } catch (e) {
                     console.info("auth onResult error = " + e);
                 }
-            }
+            },
 
             onAcquireInfo: (module, acquire, extraInfo) => {
                 try {
@@ -323,9 +323,9 @@ auth(challenge: Uint8Array, authType: UserAuthType, authTrustLevel: AuthTrustLev
 
 - 返回值：
 
-  | 类型       | 说明                        |
-  | ---------- | --------------------------- |
-  | Uint8Array | ContextId，取消认证的入参。 |
+  | 类型       | 说明                                                         |
+  | ---------- | ------------------------------------------------------------ |
+  | Uint8Array | ContextId，作为取消认证[cancelAuth](#cancelAuth)接口的入参。 |
 
 - 示例：
 
@@ -420,7 +420,7 @@ onResult: (result : number, extraInfo : AuthResult) => void;
           } catch (e) {
               console.info("auth onResult error = " + e);
           }
-      }
+      },
 
       onAcquireInfo: (module, acquire, extraInfo) => {
           try {
@@ -467,7 +467,7 @@ onAcquireInfo ?: (module : number, acquire : number, extraInfo : any) => void;
           } catch (e) {
               console.info("auth onResult error = " + e);
           }
-      }
+      },
 
       onAcquireInfo: (module, acquire, extraInfo) => {
           try {
