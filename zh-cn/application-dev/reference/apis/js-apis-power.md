@@ -71,7 +71,7 @@ isScreenOn(callback: AsyncCallback&lt;boolean&gt;): void
 
 **参数：**
 
-| 类型       | 类型                           | 必填   | 说明                                       |
+| 参数名    | 类型                           | 必填   | 说明                                       |
 | -------- | ---------------------------- | ---- | ---------------------------------------- |
 | callback | AsyncCallback&lt;boolean&gt; | 是    | 指定的callback回调方法，用于获取返回值。<br/>callback返回值：亮屏返回true，灭屏返回false。 |
 
