@@ -1022,7 +1022,7 @@ async function example() {
 
 ### trash<sup>8+</sup>
 
-trash(isTrash: boolean, callback: AsyncCallback&lt;void&g;): void
+trash(isTrash: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 当文件被定位时，将文件放到垃圾文件夹，使用callback方式返回异步结果。
 
@@ -1061,7 +1061,7 @@ async function example() {
 
 ### trash<sup>8+</sup>
 
-trash(isTrash: boolean,): Promise&lt;void&gt;
+trash(isTrash: boolean): Promise&lt;void&gt;
 
 当文件被定位时，将文件放到垃圾文件夹，使用promise方式返回异步结果。
 
