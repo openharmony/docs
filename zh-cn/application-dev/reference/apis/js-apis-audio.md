@@ -1028,7 +1028,7 @@ audioManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (err, value)=>{
 
 ### getDevices
 
-(deviceFlag: DeviceFlag): Promise&lt;AudioDeviceDescriptors&gt;
+getDevices(deviceFlag: DeviceFlag): Promise&lt;AudioDeviceDescriptors&gt;
 
 获取音频设备列表，使用Promise方式异步返回结果。
 
@@ -1057,7 +1057,7 @@ audioManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data)=>
 
 ### setDeviceActive
 
-setDeviceActive(deviceType: DeviceType, active: boolean, callback: AsyncCallback&lt;void&gt;): void
+setDeviceActive(deviceType: ActiveDeviceType, active: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 设置设备激活状态，使用callback方式异步返回结果。
 
@@ -1067,7 +1067,7 @@ setDeviceActive(deviceType: DeviceType, active: boolean, callback: AsyncCallback
 
 | 参数名     | 类型                      | 必填 | 说明                     |
 | ---------- | ------------------------- | ---- | ------------------------ |
-| deviceType | [DeviceType](#devicetype) | 是   | 音频设备类型。           |
+| deviceType | [ActiveDeviceType](#activedevicetype) | 是   | 活跃音频设备类型。           |
 | active     | boolean                   | 是   | 设备激活状态。           |
 | callback   | AsyncCallback&lt;void&gt; | 是   | 回调返回设置成功或失败。 |
 
@@ -1086,7 +1086,7 @@ audioManager.setDeviceActive(audio.DeviceType.SPEAKER, true, (err)=> {
 
 ### setDeviceActive
 
-setDeviceActive(deviceType: DeviceType, active: boolean): Promise&lt;void&gt;
+setDeviceActive(deviceType: ActiveDeviceType, active: boolean): Promise&lt;void&gt;
 
 设置设备激活状态，使用Promise方式异步返回结果。
 
@@ -1096,7 +1096,7 @@ setDeviceActive(deviceType: DeviceType, active: boolean): Promise&lt;void&gt;
 
 | 参数名     | 类型                      | 必填 | 说明           |
 | ---------- | ------------------------- | ---- | -------------- |
-| deviceType | [DeviceType](#devicetype) | 是   | 音频设备类型。 |
+| deviceType | [ActiveDeviceType](#activedevicetype) | 是   | 活跃音频设备类型。 |
 | active     | boolean                   | 是   | 设备激活状态。 |
 
 **返回值：**
@@ -1117,7 +1117,7 @@ audioManager.setDeviceActive(audio.DeviceType.SPEAKER, true).then(()=>
 
 ### isDeviceActive
 
-isDeviceActive(deviceType: DeviceType, callback: AsyncCallback&lt;boolean&gt;): void
+isDeviceActive(deviceType: ActiveDeviceType, callback: AsyncCallback&lt;boolean&gt;): void
 
 获取指定设备的激活状态，使用callback方式异步返回结果。
 
@@ -1127,7 +1127,7 @@ isDeviceActive(deviceType: DeviceType, callback: AsyncCallback&lt;boolean&gt;): 
 
 | 参数名     | 类型                         | 必填 | 说明                     |
 | ---------- | ---------------------------- | ---- | ------------------------ |
-| deviceType | [DeviceType](#devicetype)    | 是   | 音频设备类型。           |
+| deviceType | [ActiveDeviceType](#activedevicetype)    | 是   | 活跃音频设备类型。 |
 | callback   | AsyncCallback&lt;boolean&gt; | 是   | 回调返回设备的激活状态。 |
 
 **示例：**
@@ -1146,7 +1146,7 @@ audioManager.isDeviceActive(audio.DeviceType.SPEAKER, (err, value) => {
 
 ### isDeviceActive
 
-isDeviceActive(deviceType: DeviceType): Promise&lt;boolean&gt;
+isDeviceActive(deviceType: ActiveDeviceType): Promise&lt;boolean&gt;
 
 获取指定设备的激活状态，使用Promise方式异步返回结果。
 
@@ -1156,7 +1156,7 @@ isDeviceActive(deviceType: DeviceType): Promise&lt;boolean&gt;
 
 | 参数名     | 类型                      | 必填 | 说明           |
 | ---------- | ------------------------- | ---- | -------------- |
-| deviceType | [DeviceType](#devicetype) | 是   | 音频设备类型。 |
+| deviceType | [ActiveDeviceType](#activedevicetype) | 是   | 活跃音频设备类型。 |
 
 **返回值：**
 
@@ -1308,7 +1308,7 @@ audioManager.on('volumeChange', (volumeEvent) => {
 
 ### on('ringerModeChange')
 
-on(type: 'ringerModeChange', callback: Callback\<VolumeEvent>): void
+on(type: 'ringerModeChange', callback: Callback\<AudioRingMode>): void
 
 监听铃声模式变化事件。
 
