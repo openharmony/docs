@@ -88,7 +88,7 @@ createKeyboardDelegate(): KeyboardDelegate
 
 ### on('inputStart')<a name="inputStart"></a>
 
-on(type: 'inputStart', callback: (kbController: KeyboardController, textInputClient: TextInputClient) => void): void;
+on(type: 'inputStart', callback: (kbController: KeyboardController, textInputClient: TextInputClient) => void): void
 
 订阅输入法绑定成功事件，使用callback回调返回输入法操作相关实例。
 
@@ -112,7 +112,7 @@ on(type: 'inputStart', callback: (kbController: KeyboardController, textInputCli
 
 ### off('inputStart')
 
-off(type: 'inputStart', callback?: (kbController: KeyboardController, textInputClient: TextInputClient) => void): void;
+off(type: 'inputStart', callback?: (kbController: KeyboardController, textInputClient: TextInputClient) => void): void
 
 取消订阅输入法绑定成功事件。
 
@@ -135,7 +135,7 @@ off(type: 'inputStart', callback?: (kbController: KeyboardController, textInputC
 
 ### on('keyboardShow'|'keyboardHide')
 
-on(type: 'keyboardShow'|'keyboardHide', callback: () => void): void;
+on(type: 'keyboardShow'|'keyboardHide', callback: () => void): void
 
 订阅输入法事件。
 
@@ -158,7 +158,7 @@ on(type: 'keyboardShow'|'keyboardHide', callback: () => void): void;
 
 ### off('keyboardShow'|'keyboardHide')
 
-off(type: 'keyboardShow'|'keyboardHide', callback?: () => void): void;
+off(type: 'keyboardShow'|'keyboardHide', callback?: () => void): void
 
 取消订阅输入法事件。
 
@@ -184,7 +184,7 @@ off(type: 'keyboardShow'|'keyboardHide', callback?: () => void): void;
 
 ### on('keyDown'|'keyUp')
 
-on(type: 'keyDown'|'keyUp', callback: (event: KeyEvent) => boolean): void;
+on(type: 'keyDown'|'keyUp', callback: (event: KeyEvent) => boolean): void
 
 订阅硬键盘事件，使用callback回调返回按键信息。
 
@@ -209,7 +209,7 @@ on(type: 'keyDown'|'keyUp', callback: (event: KeyEvent) => boolean): void;
 
 ### off('keyDown'|'keyUp')
 
-off(type: 'keyDown'|'keyUp', callback?: (event: KeyEvent) => boolean): void;
+off(type: 'keyDown'|'keyUp', callback?: (event: KeyEvent) => boolean): void
 
 取消订阅硬键盘事件。
 
@@ -230,7 +230,7 @@ off(type: 'keyDown'|'keyUp', callback?: (event: KeyEvent) => boolean): void;
 
 ### on('cursorContextChange')
 
-on(type: 'cursorContextChange', callback: (x: number, y:number, height:number) => void): void;
+on(type: 'cursorContextChange', callback: (x: number, y:number, height:number) => void): void
 
 订阅光标变化事件，使用callback回调返回光标信息。
 
@@ -255,7 +255,7 @@ on(type: 'cursorContextChange', callback: (x: number, y:number, height:number) =
 
 ### off('cursorContextChange')
 
-off(type: 'cursorContextChange', callback?: (x: number, y:number, height:number) => void): void;
+off(type: 'cursorContextChange', callback?: (x: number, y:number, height:number) => void): void
 
 取消订阅光标变化事件。
 
@@ -276,7 +276,7 @@ off(type: 'cursorContextChange', callback?: (x: number, y:number, height:number)
     ```
 ### on('selectionChange')
 
-on(type: 'selectionChange', callback: (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => void): void;
+on(type: 'selectionChange', callback: (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => void): void
 
 订阅文本选择变化事件，使用callback回调返回文本选择信息。
 
@@ -299,7 +299,7 @@ on(type: 'selectionChange', callback: (oldBegin: number, oldEnd: number, newBegi
 
 ### off('selectionChange')
 
-off(type: 'selectionChange', callback?: (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => void): void;
+off(type: 'selectionChange', callback?: (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => void): void
 
 取消订阅文本选择变化事件。
 
@@ -321,7 +321,7 @@ off(type: 'selectionChange', callback?: (oldBegin: number, oldEnd: number, newBe
 
 ### on('textChange')
 
-on(type: 'textChange', callback: (text: string) => void): void;
+on(type: 'textChange', callback: (text: string) => void): void
 
 订阅文本变化事件，使用callback回调返回当前文本内容。
 
@@ -344,7 +344,7 @@ on(type: 'textChange', callback: (text: string) => void): void;
 
 ### off('textChange')
 
-off(type: 'textChange', callback?: (text: string) => void): void;
+off(type: 'textChange', callback?: (text: string) => void): void
 
 取消订阅文本变化事件。
 
@@ -478,7 +478,7 @@ getBackward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
 - 示例
   ```
-   TextInputClient.getBackward(5，(text)=>{
+   TextInputClient.getBackward(5,(text)=>{
      console.info("text = " + text);
   });
   ```
@@ -525,7 +525,7 @@ deleteForward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 - 示例
   ```
-  TextInputClient.deleteForward(5，(isSuccess)=>{
+  TextInputClient.deleteForward(5,(isSuccess)=>{
     console.info("isSuccess = " + isSuccess);
   });
   ```
@@ -571,7 +571,7 @@ deleteBackward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
   - 示例
     ```
-     TextInputClient.deleteBackward(5， (isSuccess)=>{
+     TextInputClient.deleteBackward(5, (isSuccess)=>{
      console.info("isSuccess = " + isSuccess);
     });
     ```
@@ -617,7 +617,7 @@ sendKeyFunction(action:number, callback: AsyncCallback&lt;boolean&gt;): void
 
   - 示例
     ```
-     TextInputClient.sendKeyFunction(inputMethod.ENTER_KEY_TYPE_NEXT，(isSuccess)=>{
+     TextInputClient.sendKeyFunction(inputMethod.ENTER_KEY_TYPE_NEXT,(isSuccess)=>{
       console.info("isSuccess = " + isSuccess);
     });
     ```
@@ -664,7 +664,7 @@ insertText(text:string, callback: AsyncCallback&lt;boolean&gt;): void
 
 - 示例
     ```
-    TextInputClient.insertText("test"， (isSuccess)=>{
+    TextInputClient.insertText("test", (isSuccess)=>{
       console.info("isSuccess = " + isSuccess);
     });
     ```
