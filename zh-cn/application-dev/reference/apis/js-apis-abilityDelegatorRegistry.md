@@ -72,7 +72,7 @@ getArguments(): AbilityDelegatorArgs
 
 ```js
 var args = AbilityDelegatorRegistry.getArguments();
-console.info("=========>getArguments==========>bundleName:" + args.bundleName);
-console.info("=========>getArguments==========>testCaseNames:" + args.testCaseNames);
-console.info("=========>getArguments==========>testRunnerClassName:" + args.testRunnerClassName);
+console.info("getArguments bundleName:" + args.bundleName);
+console.info("getArguments testCaseNames:" + args.testCaseNames);
+console.info("getArguments testRunnerClassName:" + args.testRunnerClassName);
 ```
