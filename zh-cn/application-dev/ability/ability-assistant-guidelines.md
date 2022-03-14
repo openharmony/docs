@@ -43,7 +43,7 @@ Ability assistant（Ability助手，简称为aa）是实现应用、原子化服
   使用方法：
 
   ```
-aa start [-d <device-id>] -a <ability-name> -b <bundle-name> [-D]
+  aa start [-d <device-id>] -a <ability-name> -b <bundle-name> [-D]
   ```
   
 - **stop-service**
@@ -64,7 +64,7 @@ aa start [-d <device-id>] -a <ability-name> -b <bundle-name> [-D]
   使用方法：
 
   ```
-aa stop-service [-d <device-id>] -a <ability-name> -b <bundle-name>
+  aa stop-service [-d <device-id>] -a <ability-name> -b <bundle-name>
   ```
   
 - **dump**
