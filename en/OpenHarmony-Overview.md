@@ -8,7 +8,7 @@ OpenHarmony is an open-source project incubated and operated by the OpenAtom Fou
 
 OpenHarmony is designed with a layered architecture, which from bottom to top, consists of the kernel layer, system service layer, framework layer, and application layer. System functions are expanded by levels, from system to subsystem, and further to module. In a multi-device deployment scenario, unnecessary modules can be excluded from the system as required. The following figure shows the technical architecture of OpenHarmony.
 
-![](https://gitee.com/openharmony/docs/raw/master/en/figures/1.png)
+![](figures/1.png)
 
 **Kernel Layer**
 
@@ -27,14 +27,14 @@ The system service layer provides a complete set of capabilities essential for O
 
 -   Enhanced software service subsystem set: Provides OpenHarmony with differentiated enhanced software services, including those dedicated to smart TVs, wearables, IoT devices, and more.
 
--   Hardware service subsystem set: Provides OpenHarmony with hardware services, including location, biometric recognition, as well as those dedicated to wearables and IoT devices.
+-   Hardware service subsystem set: Provides OpenHarmony with hardware services, including location, IAM, as well as those dedicated to wearables and IoT devices.
 
 
 The basic software service, enhanced software service, and hardware service subsystem sets can be modified by the subsystems, and each subsystem can be modified by various functions, depending on the deployment scenario for a particular device form.
 
 **Framework layer**
 
-This layer provides with what you need to develop OpenHarmony apps: application framework and ability framework, specific to multiple languages \(like C, C++, and JS\), JS UI framework, as well as multi-language APIs for hardware and software services. The APIs designed for different OpenHarmony devices can be modified based on various system components.
+This layer provides with what you need to develop OpenHarmony apps: application framework and ability framework, specific to multiple languages \(like C, C++, and JS\), ArkUI framework, as well as multi-language APIs for hardware and software services. The APIs designed for different OpenHarmony devices can be modified based on various system components.
 
 **Application layer**
 
