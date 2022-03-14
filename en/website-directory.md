@@ -1310,6 +1310,10 @@
 
 ——>——>——>——>——> [Radio](application-dev/reference/apis/js-apis-radio.md)
 
+——>——>——>——>——> [observer](application-dev/reference/apis/js-apis-observer.md)
+
+——>——>——>——>——> [Cellular Data](application-dev/reference/apis/js-apis-telephony-data.md)
+
 ——>——>——>——> Network and Connectivity
 
 ——>——>——>——>——> [WLAN](application-dev/reference/apis/js-apis-wifi.md)  
@@ -1327,6 +1331,8 @@
 ——>——>——>——>——> [Battery Info](application-dev/reference/apis/js-apis-battery-info.md)
 
 ——>——>——>——>——> [Power Management](application-dev/reference/apis/js-apis-power.md)
+
+——>——>——>——>——> [Thermal Management](application-dev/reference/apis/js-apis-thermal.md)
 
 ——>——>——>——>——> [Running Lock](application-dev/reference/apis/js-apis-runninglock.md)
 
@@ -1366,6 +1372,8 @@
 
 ——>——>——>——>——> [WebGL2](application-dev/reference/apis/js-apis-webgl2.md)
 
+——>——>——>——>——> [Screenshot](application-dev/reference/apis/js-apis-screenshot.md)
+
 ——>——>——>——> DFX
 
 ——>——>——>——>——> [HiAppEvent](application-dev/reference/apis/js-apis-hiappevent.md)
@@ -1397,6 +1405,34 @@
 ——>——>——>——>——> [XML-to-JavaScript Conversion](application-dev/reference/apis/js-apis-convertxml.md)
 
 ——>——>——>——>——> [Worker Startup](application-dev/reference/apis/js-apis-worker.md)
+
+——>——>——>——>——> [Linear Container ArrayList](application-dev/reference/apis/js-apis-arraylist.md)
+
+——>——>——>——>——> [Linear Container Deque](application-dev/reference/apis/js-apis-deque.md)
+
+——>——>——>——>——> [Linear Container List](application-dev/reference/apis/js-apis-list.md)
+
+——>——>——>——>——> [Linear Container LinkedList](application-dev/reference/apis/js-apis-linkedlist.md)
+
+——>——>——>——>——> [Linear Container Queue](application-dev/reference/apis/js-apis-queue.md)
+
+——>——>——>——>——> [Linear Container Stack](application-dev/reference/apis/js-apis-stack.md)
+
+——>——>——>——>——> [Linear Container Vector](application-dev/reference/apis/js-apis-vector.md)
+
+——>——>——>——>——> [Nonlinear Container HashSet](application-dev/reference/apis/js-apis-hashset.md)
+
+——>——>——>——>——> [Nonlinear Container HashMap](application-dev/reference/apis/js-apis-hashmap.md)
+
+——>——>——>——>——> [Nonlinear Container PlainArray](application-dev/reference/apis/js-apis-plainarray.md)
+
+——>——>——>——>——> [Nonlinear Container TreeMap](application-dev/reference/apis/js-apis-treemap.md)
+
+——>——>——>——>——> [Nonlinear Container TreeSet](application-dev/reference/apis/js-apis-treeset.md)
+
+——>——>——>——>——> [Nonlinear Container LightWeightMap](application-dev/reference/apis/js-apis-lightweightmap.md)
+
+——>——>——>——>——> [Nonlinear Container LightWeightSet](application-dev/reference/apis/js-apis-lightweightset.md)
 
 ——>——>——> ArkUI Component References
 
@@ -1791,6 +1827,14 @@
 ——>——>——>——>——>——>——>[Canvas](application-dev/reference/arkui-ts/ts-components-canvas-canvas.md)
 
 ——>——>——>——>——>——>——>[Lottie](application-dev/reference/arkui-ts/ts-components-canvas-lottie.md)
+
+——>——>——>——>——>——>——>[Path2D](application-dev/reference/arkui-ts/ts-components-canvas-path2d.md)
+
+——>——>——>——>——>——>——>[CanvasGradient](application-dev/reference/arkui-ts/ts-components-canvas-canvasgradient.md)
+
+——>——>——>——>——>——>——>[ImageBitmap](application-dev/reference/arkui-ts/ts-components-canvas-imagebitmap.md)
+
+——>——>——>——>——>——>——>[ImageData](application-dev/reference/arkui-ts/ts-components-canvas-imagedata.md)
 
 ——>——>——>——>——> Animation
 
