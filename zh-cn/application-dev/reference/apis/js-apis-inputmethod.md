@@ -134,8 +134,10 @@ listInputMethod(callback: AsyncCallback&lt;Array&lt;InputMethodProperty&gt;&gt;)
 - 示例
   ```
    InputMethodSetting.listInputMethod((properties)=>{
-     var property = properties[i];
-     console.info(property.packageName + "/" + property.methodId）;
+     for (var i = 0;i < properties.length; i++) {
+       var property = properties[i];
+       console.info(property.packageName + "/" + property.methodId);
+     }
   });
   ```
 
@@ -157,7 +159,7 @@ listInputMethod(): Promise&lt;Array&lt;InputMethodProperty&gt;&gt;
    var properties = InputMethodSetting.listInputMethod();
    for (var i = 0;i < properties.length; i++) {
      var property = properties[i];
-     console.info(property.packageName + "/" + property.methodId）;
+     console.info(property.packageName + "/" + property.methodId);
    }
   ```
 
