@@ -2,7 +2,7 @@
 
 - 了解OpenHarmony
   - [了解OpenHarmony开源项目](../OpenHarmony-Overview_zh.md) 
-  - [了解OpenHarmony系统](../readme.md ) 
+  - [了解OpenHarmony系统](../readme.md) 
   - [术语](glossary/glossary.md) 
   - [版本说明](../release-notes/Readme.md) 
 - 快速开始
@@ -51,7 +51,7 @@
   - [IDE集成开发环境](get-code/gettools-ide.md)
 
 - 示例教程	
-  - [示例代码](https://gitee.com/openharmony/app_samples/blob/master/README_zh.md ) 
+  - [示例代码](https://gitee.com/openharmony/app_samples/blob/master/README_zh.md) 
   - [Codelabs](https://gitee.com/openharmony/codelabs/blob/master/README.md)  
 - 参考
   - [常见问题-设备开发](faqs/Readme-CN.md)
