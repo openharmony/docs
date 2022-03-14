@@ -11,25 +11,19 @@ import bundleState from '@ohos.bundleState'
 ```
 
 ## bundleState.isIdleState
-isIdleState(bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void
-
-- **系统能力**：
-SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
-
-- **说明**：
+isIdleState(bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void<br>
 判断指定bundleName的应用当前是否是空闲状态，使用Callback形式返回。
 
-- **参数**：
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
+
+**参数**：
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | bundleName | string | 是 | 应用的bundleName。|
   | callback | AsyncCallback&lt;boolean&gt; | 是 | 指定的callback回调方法。如果指定的bundleName有效，则返回指定bundleName的应用当前是否是空闲状态；否则返回null。 |
 
-- **权限**：
-无权限
-
-- **示例**：
+**示例**：
 
   ```
     bundleState.isIdleState("com.ohos.camera", (err, res) => {
@@ -42,30 +36,24 @@ SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
   ```
 
 ## bundleState.isIdleState
-isIdleState(bundleName: string): Promise&lt;boolean&gt;
-
-- **系统能力**：
-SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
-
-- **说明**：
+isIdleState(bundleName: string): Promise&lt;boolean&gt;<br>
 判断指定bundleName的应用当前是否是空闲状态，使用Promise形式返回。
 
-- **参数**：
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
+
+**参数**：
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | bundleName | string | 是 | 应用的bundleName。|
 
-- **返回值**：
+**返回值**：
 
   | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;boolean&gt; | 指定的Promise回调方法。如果指定的bundleName有效，则返回指定bundleName的应用当前是否是空闲状态；否则返回null。 |
 
-- **权限**：
-无权限
-
-- **示例**：
+**示例**：
 
   ```
     bundleState.isIdleState("com.ohos.camera").then( res => {
@@ -76,24 +64,18 @@ SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
   ```
 
 ## bundleState.queryAppUsagePriorityGroup
-queryAppUsagePriorityGroup(callback: AsyncCallback&lt;number&gt;): void
-
-- **系统能力**：
-SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
-
-- **说明**：
+queryAppUsagePriorityGroup(callback: AsyncCallback&lt;number&gt;): void<br>
 查询（返回）当前调用者应用的使用优先级群组，使用Callback形式返回。
 
-- **参数**：
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
+
+**参数**：
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;number&gt; | 是 | 指定的callback回调方法。返回当前调用者应用的使用优先级群组。|
 
-- **权限**：
-无权限
-
-- **示例**：
+**示例**：
 
   ```
     bundleState.queryAppUsagePriorityGroup((err, res) => {
@@ -106,24 +88,18 @@ SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
   ```
 
 ## bundleState.queryAppUsagePriorityGroup
-queryAppUsagePriorityGroup(): Promise&lt;number&gt;
-
-- **系统能力**：
-SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
-
-- **说明**：
+queryAppUsagePriorityGroup(): Promise&lt;number&gt;<br>
 查询（返回）当前调用者应用的使用优先级群组，使用Promise形式返回。
 
-- **返回值**：
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
+
+**返回值**：
 
   | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;number&gt; | 指定的Promise回调方法。查询（返回）当前调用者应用的使用优先级群组。|
 
-- **权限**：
-无权限
-
-- **示例**：
+**示例**：
 
   ```
     bundleState.queryAppUsagePriorityGroup().then( res => {
@@ -134,15 +110,12 @@ SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
   ```
 
 ## bundleState.queryBundleStateInfos
-queryBundleStateInfos(begin: number, end: number, callback: AsyncCallback&lt;BundleActiveInfoResponse&gt;): void
-
-- **系统能力**：
-SystemCapability.ResourceSchedule.UsageStatistics.App
-
-- **说明**：
+queryBundleStateInfos(begin: number, end: number, callback: AsyncCallback&lt;BundleActiveInfoResponse&gt;): void<br>
 通过指定起始和结束时间查询应用使用时长统计信息，使用Callback形式返回。
 
-- **参数**：
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**参数**：
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -150,10 +123,9 @@ SystemCapability.ResourceSchedule.UsageStatistics.App
   | end | number | 是 | 结束时间。|
   | callback | AsyncCallback&lt;BundleActiveInfoResponse&gt; | 是 | 指定的callback回调方法。返回指定起始和结束时间内应用使用时长统计信息。|
 
-- **权限**：
-ohos.permission.BUNDLE_ACTIVE_INFO
+**权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
-- **示例**：
+**示例**：
 
   ```
     bundleState.queryBundleStateInfos(0, 20000000000000, (err, res) => {
@@ -172,31 +144,27 @@ ohos.permission.BUNDLE_ACTIVE_INFO
   ```
 
 ## bundleState.queryBundleStateInfos
-queryBundleStateInfos(begin: number, end: number): Promise&lt;BundleActiveInfoResponse&gt;
-
-- **系统能力**：
-SystemCapability.ResourceSchedule.UsageStatistics.App
-
-- **说明**：
+queryBundleStateInfos(begin: number, end: number): Promise&lt;BundleActiveInfoResponse&gt;<br>
 通过指定起始和结束时间查询应用使用时长统计信息，使用Promise形式返回。
 
-- **参数**：
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**参数**：
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | begin | number | 是 | 起始时间。|
   | end | number | 是 | 结束时间。|
 
-- **返回值**：
+**返回值**：
 
   | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;BundleActiveInfoResponse&gt; | 指定的Promise回调方法。返回指定起始和结束时间内应用使用时长统计信息。|
 
-- **权限**：
-ohos.permission.BUNDLE_ACTIVE_INFO
+**权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
-- **示例**：
+**示例**：
 
   ```
     bundleState.queryBundleStateInfos(0, 20000000000000).then( res => {
@@ -213,15 +181,12 @@ ohos.permission.BUNDLE_ACTIVE_INFO
   ```
 
 ## bundleState.queryBundleStateInfoByInterval
-queryBundleStateInfoByInterval(byInterval: IntervalType, begin: number, end: number, callback: AsyncCallback&lt;Array&lt;BundleStateInfo&gt;&gt;): void
-
-- **系统能力**：
-SystemCapability.ResourceSchedule.UsageStatistics.App
-
-- **说明**：
+queryBundleStateInfoByInterval(byInterval: IntervalType, begin: number, end: number, callback: AsyncCallback&lt;Array&lt;BundleStateInfo&gt;&gt;): void<br>
 通过指定时间段间隔（天、周、月、年）查询应用使用时长统计信息，使用Callback形式返回。
 
-- **参数**：
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**参数**：
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -230,10 +195,9 @@ SystemCapability.ResourceSchedule.UsageStatistics.App
   | end | number | 是 | 结束时间。|
   | callback | AsyncCallback&lt;Array&lt;BundleStateInfo&gt;&gt; | 是 | 指定的callback回调方法。返回指定时间段间隔（天、周、月、年）查询应用使用时长统计信息。|
 
-- **权限**：
-ohos.permission.BUNDLE_ACTIVE_INFO
+**权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
-- **示例**：
+**示例**：
 
   ```
     bundleState.queryBundleStateInfoByInterval(0, 0, 20000000000000, (err, res) => {
@@ -250,15 +214,12 @@ ohos.permission.BUNDLE_ACTIVE_INFO
   ```
 
 ## bundleState.queryBundleStateInfoByInterval
-queryBundleStateInfoByInterval(byInterval: IntervalType, begin: number, end: number): Promise&lt;Array&lt;BundleStateInfo&gt;&gt;
-
-- **系统能力**：
-SystemCapability.ResourceSchedule.UsageStatistics.App
-
-- **说明**：
+queryBundleStateInfoByInterval(byInterval: IntervalType, begin: number, end: number): Promise&lt;Array&lt;BundleStateInfo&gt;&gt;<br>
 通过指定时间段间隔（天、周、月、年）查询应用使用时长统计信息，使用Promise形式返回。
 
-- **参数**：
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**参数**：
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -266,16 +227,15 @@ SystemCapability.ResourceSchedule.UsageStatistics.App
   | begin | number | 是 | 起始时间。|
   | end | number | 是 | 结束时间。|
 
-- **返回值**：
+**返回值**：
 
   | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;Array&lt;BundleStateInfo&gt;&gt; | 指定的Promise回调方法。返回指定时间段间隔（天、周、月、年）查询应用使用时长统计信息。|
 
-- **权限**：
-ohos.permission.BUNDLE_ACTIVE_INFO
+**权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
-- **示例**：
+**示例**：
 
   ```
     bundleState.queryBundleStateInfoByInterval(0, 0, 20000000000000).then( res => {
@@ -290,15 +250,12 @@ ohos.permission.BUNDLE_ACTIVE_INFO
   ```
 
 ## bundleState.queryBundleActiveStates
-queryBundleActiveStates(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;BundleActiveState&gt;&gt;): void
-
-- **系统能力**：
-SystemCapability.ResourceSchedule.UsageStatistics.App
-
-- **说明**：
+queryBundleActiveStates(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;BundleActiveState&gt;&gt;): void<br>
 通过指定起始和结束时间查询所有应用的事件集合，使用Callback形式返回。
 
-- **参数**：
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**参数**：
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -306,10 +263,9 @@ SystemCapability.ResourceSchedule.UsageStatistics.App
   | end | number | 是 | 结束时间。|
   | callback | AsyncCallback&lt;Array&lt;BundleActiveState&gt;&gt; | 是 | 指定的callback回调方法。返回指定起始和结束时间查询所有应用的事件集合。|
 
-- **权限**：
-ohos.permission.BUNDLE_ACTIVE_INFO
+**权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
-- **示例**：
+**示例**：
 
   ```
     bundleState.queryBundleActiveStates(0, 20000000000000, (err, res) => {
@@ -326,31 +282,27 @@ ohos.permission.BUNDLE_ACTIVE_INFO
   ```
 
 ## bundleState.queryBundleActiveStates
-queryBundleActiveStates(begin: number, end: number): Promise&lt;Array&lt;BundleActiveState&gt;&gt;
-
-- **系统能力**：
-SystemCapability.ResourceSchedule.UsageStatistics.App
-
-- **说明**：
+queryBundleActiveStates(begin: number, end: number): Promise&lt;Array&lt;BundleActiveState&gt;&gt;<br>
 通过指定起始和结束时间查询所有应用的事件集合，使用Promise形式返回。
 
-- **参数**：
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**参数**：
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | begin | number | 是 | 起始时间。|
   | end | number | 是 | 结束时间。|
 
-- **返回值**：
+**返回值**：
 
   | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;Array&lt;BundleActiveState&gt;&gt; | 指定的Promise回调方法。返回指定起始和结束时间查询所有应用的事件集合。|
 
-- **权限**：
-ohos.permission.BUNDLE_ACTIVE_INFO
+**权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
-- **示例**：
+**示例**：
 
   ```
     bundleState.queryBundleActiveStates(0, 20000000000000).then( res => {
@@ -365,15 +317,12 @@ ohos.permission.BUNDLE_ACTIVE_INFO
   ```
 
 ## bundleState.queryCurrentBundleActiveStates
-queryCurrentBundleActiveStates(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;BundleActiveState&gt;&gt;): void
-
-- **系统能力**：
-SystemCapability.ResourceSchedule.UsageStatistics.App
-
-- **说明**：
+queryCurrentBundleActiveStates(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;BundleActiveState&gt;&gt;): void<br>
 通过指定起始和结束时间查询当前应用的事件集合，使用Callback形式返回。
 
-- **参数**：
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**参数**：
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -381,10 +330,7 @@ SystemCapability.ResourceSchedule.UsageStatistics.App
   | end | number | 是 | 结束时间。|
   | callback | AsyncCallback&lt;Array&lt;BundleActiveState&gt;&gt; | 是 | 指定的callback回调方法。返回指定起始和结束时间查询当前应用的事件集合。|
 
-- **权限**：
-无权限
-
-- **示例**：
+**示例**：
 
   ```
     bundleState.queryCurrentBundleActiveStates(0, 20000000000000, (err, res) => {
@@ -401,31 +347,25 @@ SystemCapability.ResourceSchedule.UsageStatistics.App
   ```
 
 ## bundleState.queryCurrentBundleActiveStates
-queryCurrentBundleActiveStates(begin: number, end: number): Promise&lt;Array&lt;BundleActiveState&gt;&gt;
-
-- **系统能力**：
-SystemCapability.ResourceSchedule.UsageStatistics.App
-
-- **说明**：
+queryCurrentBundleActiveStates(begin: number, end: number): Promise&lt;Array&lt;BundleActiveState&gt;&gt;<br>
 通过指定起始和结束时间查询当前应用的事件集合，使用Promise形式返回。
 
-- **参数**：
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**参数**：
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | begin | number | 是 | 起始时间。|
   | end | number | 是 | 结束时间。|
 
-- **返回值**：
+**返回值**：
 
   | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;Array&lt;BundleActiveState&gt;&gt; | 指定的Promise回调方法。返回指定起始和结束时间查询当前应用的事件集合。|
 
-- **权限**：
-无权限
-
-- **示例**：
+**示例**：
 
   ```
     bundleState.queryCurrentBundleActiveStates(0, 20000000000000).then( res => {
@@ -442,9 +382,8 @@ SystemCapability.ResourceSchedule.UsageStatistics.App
 ## BundleStateInfo
 提供应用使用时长的具体信息。
 
-**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
-
 ### 属性
+**系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.UsageStatistics.App
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -461,13 +400,21 @@ SystemCapability.ResourceSchedule.UsageStatistics.App
 
 ### merge
 merge(toMerge: BundleStateInfo): void
+合并相同包名的应用使用信息。<br>
+本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
 
-合并相同包名的应用使用信息，本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**参数**：
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | toMerge | BundleStateInfo | 是 | 相同包名的应用使用统计信息。|
 
 ## BundleActiveState
 提供应用事件的具体信息。
 
-**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
+**系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.UsageStatistics.App
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -490,7 +437,7 @@ merge(toMerge: BundleStateInfo): void
 ## bundleState.IntervalType
 提供应用使用时长的查询类型。
 
-**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
+**系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.UsageStatistics.App
 
 |名称    |默认值    |说明|
 | -------- | -------- | -------- |
