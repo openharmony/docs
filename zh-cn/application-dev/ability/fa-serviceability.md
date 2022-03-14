@@ -1,4 +1,4 @@
-# ServiceAbility开发说明
+# ServiceAbility开发指导
 
 ## 创建Service<a name="section17436202895812"></a>
 
