@@ -11,7 +11,7 @@
 import call from '@ohos.telephony.call';
 ```
 
-## call.dial<a name=call.dial-callback1></a>
+## call.dial
 
 dial\(phoneNumber: string, callback: AsyncCallback<boolean\>\): void
 
@@ -23,7 +23,7 @@ dial\(phoneNumber: string, callback: AsyncCallback<boolean\>\): void
 
 **参数：**
 
-| 参数        | 类型                         | 必填 | 说明                                              |
+| 参数名      | 类型                         | 必填 | 说明                                              |
 | ----------- | ---------------------------- | ---- | ------------------------------------------------- |
 | phoneNumber | string                       | 是   | 电话号码。                                        |
 | callback    | AsyncCallback&lt;boolean&gt; | 是   | 回调函数：<br/>- true：成功。<br/>- false：失败。 |
@@ -37,7 +37,7 @@ call.dial("138xxxxxxxx", (err, data) => {
 ```
 
 
-## call.dial<a name=call.dial-callback2></a>
+## call.dial
 
 dial\(phoneNumber: string, options: DialOptions, callback: AsyncCallback<boolean\>\): void
 
@@ -49,10 +49,10 @@ dial\(phoneNumber: string, options: DialOptions, callback: AsyncCallback<boolean
 
 **参数：**
 
-| 参数        | 类型                         | 必填 | 说明                                              |
+| 参数名      | 类型                         | 必填 | 说明                                              |
 | ----------- | ---------------------------- | ---- | ------------------------------------------------- |
 | phoneNumber | string                       | 是   | 电话号码。                                        |
-| options     | DialOptions                  | 是   | 通话参数，参考[DialOptions](#DialOptions)。       |
+| options     | DialOptions                  | 是   | 通话参数，参考[DialOptions](#dialoptions)。       |
 | callback    | AsyncCallback&lt;boolean&gt; | 是   | 回调函数：<br/>- true：成功。<br/>- false：失败。 |
 
 **示例：**
@@ -66,7 +66,7 @@ call.dial("138xxxxxxxx", {
 ```
 
 
-## call.dial<a name=call.dial-promise></a>
+## call.dial
 
 dial\(phoneNumber: string, options?: DialOptions\): Promise<boolean\>
 
@@ -78,10 +78,10 @@ dial\(phoneNumber: string, options?: DialOptions\): Promise<boolean\>
 
 **参数：**
 
-| 参数        | 类型        | 必填 | 说明                                        |
+| 参数名      | 类型        | 必填 | 说明                                        |
 | ----------- | ----------- | ---- | ------------------------------------------- |
 | phoneNumber | string      | 是   | 电话号码。                                  |
-| options     | DialOptions | 是   | 通话参数，参考[DialOptions](#DialOptions)。 |
+| options     | DialOptions | 是   | 通话参数，参考[DialOptions](#dialoptions)。 |
 
 **返回值：**
 
@@ -102,17 +102,19 @@ promise.then(data => {
 });
 ```
 
-## call.makeCall<sup>7+</sup><a name=call.makeCall-callback></a>
+## call.makeCall<sup>7+</sup>
 
-makeCall(phoneNumber: string, callback: AsyncCallback<void>): void
+makeCall(phoneNumber: string, callback: AsyncCallback\<void\>): void
 
 跳转到拨号界面，并显示拨号的号码，使用callback方式作为异步方法。
 
-**系统能力**：SystemCapability.Telephony.CallManager
+本接口在Openharmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
+
+**系统能力**：SystemCapability.Applications.Contacts
 
 **参数：**
 
-| 参数        | 类型                      | 必填 | 说明                                       |
+| 参数名      | 类型                      | 必填 | 说明                                       |
 | ----------- | ------------------------- | ---- | ------------------------------------------ |
 | phoneNumber | string                    | 是   | 电话号码。                                 |
 | callback    | AsyncCallback&lt;void&gt; | 是   | 以callback形式异步返回跳转拨号界面的结果。 |
@@ -126,17 +128,19 @@ call.makeCall("138xxxxxxxx", err => {
 ```
 
 
-## call.makeCall<sup>7+</sup><a name=call.makeCall-promise></a>
+## call.makeCall<sup>7+</sup>
 
-makeCall(phoneNumber: string): Promise<void>
+makeCall(phoneNumber: string): Promise\<void\>
 
 跳转到拨号界面，并显示拨号的号码，使用Promise方式作为异步方法。
 
-**系统能力**：SystemCapability.Telephony.CallManager
+本接口在Openharmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
+
+**系统能力**：SystemCapability.Applications.Contacts
 
 **参数：**
 
-| 参数        | 类型   | 必填 | 说明       |
+| 参数名      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
 | phoneNumber | string | 是   | 电话号码。 |
 
@@ -157,7 +161,7 @@ promise.then(() => {
 });
 ```
 
-## call.hasCall<a name=call.hasCall-callback></a>
+## call.hasCall
 
 hasCall\(callback: AsyncCallback<boolean\>\): void
 
@@ -167,7 +171,7 @@ hasCall\(callback: AsyncCallback<boolean\>\): void
 
 **参数：**
 
-| 参数     | 类型                         | 必填 | 说明                                                         |
+| 参数名   | 类型                         | 必填 | 说明                                                         |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------------ |
 | callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数：<br/>- true：当前存在通话。<br/>- false：当前不存在通话。 |
 
@@ -180,7 +184,7 @@ call.hasCall((err, data) => {
 ```
 
 
-## call.hasCall<a name=call.hasCall-promise></a>
+## call.hasCall
 
 hasCall\(\): Promise<boolean\>
 
@@ -206,7 +210,7 @@ promise.then(data => {
 ```
 
 
-## call.getCallState<a name=call.getCallState-callback></a>
+## call.getCallState
 
 getCallState\(callback: AsyncCallback<CallState\>\): void
 
@@ -216,9 +220,9 @@ getCallState\(callback: AsyncCallback<CallState\>\): void
 
 **参数：**
 
-| 参数     | 类型                                         | 必填 | 说明                                 |
+| 参数名   | 类型                                         | 必填 | 说明                                 |
 | -------- | -------------------------------------------- | ---- | ------------------------------------ |
-| callback | AsyncCallback&lt;[CallState](#CallState)&gt; | 是   | 回调函数：异步返回获取到的通话状态。 |
+| callback | AsyncCallback&lt;[CallState](#callstate)&gt; | 是   | 回调函数：异步返回获取到的通话状态。 |
 
 **示例：**
 
@@ -229,7 +233,7 @@ call.getCallState((err, data) => {
 ```
 
 
-## call.getCallState<a name="call.getCallState-promise"></a>
+## call.getCallState
 
 getCallState\(\): Promise<CallState\>
 
@@ -241,7 +245,7 @@ getCallState\(\): Promise<CallState\>
 
 | 类型                                   | 说明                                      |
 | -------------------------------------- | ----------------------------------------- |
-| Promise&lt;[CallState](#CallState)&gt; | 以Promise形式异步返回获取通话状态的结果。 |
+| Promise&lt;[CallState](#callstate)&gt; | 以Promise形式异步返回获取通话状态的结果。 |
 
 **示例：**
 
@@ -254,7 +258,7 @@ promise.then(data => {
 });
 ```
 
-## call.hasVoiceCapability<sup>7+</sup><a name=call.hasVoiceCapability></a>
+## call.hasVoiceCapability<sup>7+</sup>
 
 hasVoiceCapability(): boolean
 
@@ -273,7 +277,7 @@ let result = call.hasVoiceCapability();
 console.log(`hasVoiceCapability: ${JSON.stringify(result)}`);
 ```
 
-## call.isEmergencyPhoneNumber<sup>7+</sup><a name=call.isEmergencyPhoneNumber-callback1></a>
+## call.isEmergencyPhoneNumber<sup>7+</sup>
 
 isEmergencyPhoneNumber\(phoneNumber: string, callback: AsyncCallback<boolean\>\): void
 
@@ -283,7 +287,7 @@ isEmergencyPhoneNumber\(phoneNumber: string, callback: AsyncCallback<boolean\>\)
 
 **参数：**
 
-| 参数        | 类型                         | 必填 | 说明                                                         |
+| 参数名      | 类型                         | 必填 | 说明                                                         |
 | ----------- | ---------------------------- | ---- | ------------------------------------------------------------ |
 | phoneNumber | string                       | 是   | 电话号码。                                                   |
 | callback    | AsyncCallback&lt;boolean&gt; | 是   | 回调函数，返回判断是否是紧急电话号码的结果：<br/>- true：是紧急电话号码。<br/>- false：不是紧急电话号码。 |
@@ -297,7 +301,7 @@ call.isEmergencyPhoneNumber("138xxxxxxxx", (err, data) => {
 ```
 
 
-## call.isEmergencyPhoneNumber<sup>7+</sup><a name=call.isEmergencyPhoneNumber-callback2></a>
+## call.isEmergencyPhoneNumber<sup>7+</sup>
 
 isEmergencyPhoneNumber\(phoneNumber: string, options: EmergencyNumberOptions, callback: AsyncCallback<boolean\>\): void
 
@@ -307,10 +311,10 @@ isEmergencyPhoneNumber\(phoneNumber: string, options: EmergencyNumberOptions, ca
 
 **参数：**
 
-| 参数        | 类型                         | 必填 | 说明                                                         |
+| 参数名      | 类型                         | 必填 | 说明                                                         |
 | ----------- | ---------------------------- | ---- | ------------------------------------------------------------ |
 | phoneNumber | string                       | 是   | 电话号码。                                                   |
-| options     | EmergencyNumberOptions       | 是   | 手机参数，参考[EmergencyNumberOptions](#EmergencyNumberOptions)。 |
+| options     | EmergencyNumberOptions       | 是   | 手机参数，参考[EmergencyNumberOptions](#emergencynumberoptions7)。 |
 | callback    | AsyncCallback&lt;boolean&gt; | 是   | 回调函数，返回判断是否是紧急电话号码的结果：<br/>- true：是紧急电话号码。<br/>- false：不是紧急电话号码。 |
 
 **示例：**
@@ -322,7 +326,7 @@ call.isEmergencyPhoneNumber("112", {slotId: 1}, (err, value) => {
 ```
 
 
-## call.isEmergencyPhoneNumber<sup>7+</sup><a name=call.isEmergencyPhoneNumber-promise></a>
+## call.isEmergencyPhoneNumber<sup>7+</sup>
 
 isEmergencyPhoneNumber\(phoneNumber: string, options?: EmergencyNumberOptions\): Promise<boolean\>
 
@@ -332,10 +336,10 @@ isEmergencyPhoneNumber\(phoneNumber: string, options?: EmergencyNumberOptions\):
 
 **参数：**
 
-| 参数        | 类型                   | 必填 | 说明                                                         |
+| 参数名      | 类型                   | 必填 | 说明                                                         |
 | ----------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | phoneNumber | string                 | 是   | 电话号码。                                                   |
-| options     | EmergencyNumberOptions | 是   | 手机参数，参考[EmergencyNumberOptions](#EmergencyNumberOptions)。 |
+| options     | EmergencyNumberOptions | 是   | 手机参数，参考[EmergencyNumberOptions](#emergencynumberoptions7)。 |
 
 **返回值：**
 
@@ -354,7 +358,7 @@ promise.then(data => {
 });
 ```
 
-## call.formatPhoneNumber<sup>7+</sup><a name=call.formatPhoneNumber-callback1></a>
+## call.formatPhoneNumber<sup>7+</sup>
 
 formatPhoneNumber\(phoneNumber: string, callback: AsyncCallback<string\>\): void
 
@@ -364,7 +368,7 @@ formatPhoneNumber\(phoneNumber: string, callback: AsyncCallback<string\>\): void
 
 **参数：**
 
-| 参数        | 类型                        | 必填 | 说明                                 |
+| 参数名      | 类型                        | 必填 | 说明                                 |
 | ----------- | --------------------------- | ---- | ------------------------------------ |
 | phoneNumber | string                      | 是   | 电话号码。                           |
 | callback    | AsyncCallback&lt;string&gt; | 是   | 回调函数，返回格式化电话号码的结果。 |
@@ -378,7 +382,7 @@ call.formatPhoneNumber("138xxxxxxxx", (err, data) => {
 ```
 
 
-## call.formatPhoneNumber<sup>7+</sup><a name=call.formatPhoneNumber-callback2></a>
+## call.formatPhoneNumber<sup>7+</sup>
 
 formatPhoneNumber\(phoneNumber: string, options: NumberFormatOptions, callback: AsyncCallback<string\>\): void
 
@@ -388,10 +392,10 @@ formatPhoneNumber\(phoneNumber: string, options: NumberFormatOptions, callback: 
 
 **参数：**
 
-| 参数        | 类型                        | 必填 | 说明                                                         |
+| 参数名      | 类型                        | 必填 | 说明                                                         |
 | ----------- | --------------------------- | ---- | ------------------------------------------------------------ |
 | phoneNumber | string                      | 是   | 电话号码。                                                   |
-| options     | NumberFormatOptions         | 是   | 格式化参数，参考[NumberFormatOptions](#NumberFormatOptions)。 |
+| options     | NumberFormatOptions         | 是   | 格式化参数，参考[NumberFormatOptions](#numberformatoptions7)。 |
 | callback    | AsyncCallback&lt;string&gt; | 是   | 回调函数，返回格式化电话号码的结果。                         |
 
 **示例：**
@@ -405,7 +409,7 @@ call.formatPhoneNumber("138xxxxxxxx",{
 ```
 
 
-## call.formatPhoneNumber<sup>7+</sup><a name=call.formatPhoneNumber-promise></a>
+## call.formatPhoneNumber<sup>7+</sup>
 
 formatPhoneNumber\(phoneNumber: string, options?: NumberFormatOptions\): Promise<string\>
 
@@ -415,10 +419,10 @@ formatPhoneNumber\(phoneNumber: string, options?: NumberFormatOptions\): Promise
 
 **参数：**
 
-| 参数        | 类型                | 必填 | 说明                                                         |
+| 参数名      | 类型                | 必填 | 说明                                                         |
 | ----------- | ------------------- | ---- | ------------------------------------------------------------ |
 | phoneNumber | string              | 是   | 电话号码。                                                   |
-| options     | NumberFormatOptions | 是   | 格式化参数，参考[NumberFormatOptions](#NumberFormatOptions)。 |
+| options     | NumberFormatOptions | 是   | 格式化参数，参考[NumberFormatOptions](#numberformatoptions7)。 |
 
 **返回值：**
 
@@ -439,7 +443,7 @@ promise.then(data => {
 });
 ```
 
-## call.formatPhoneNumberToE164<sup>7+</sup><a name=call.formatPhoneNumberToE164-callback></a>
+## call.formatPhoneNumberToE164<sup>7+</sup>
 
 formatPhoneNumberToE164\(phoneNumber: string, countryCode: string, callback: AsyncCallback<string\>\): void
 
@@ -453,7 +457,7 @@ formatPhoneNumberToE164\(phoneNumber: string, countryCode: string, callback: Asy
 
 **参数：**
 
-| 参数        | 类型                        | 必填 | 说明                                                  |
+| 参数名      | 类型                        | 必填 | 说明                                                  |
 | ----------- | --------------------------- | ---- | ----------------------------------------------------- |
 | phoneNumber | string                      | 是   | 电话号码。                                            |
 | countryCode | string                      | 是   | 国家码，支持所有国家码，如：中国（CN）。              |
@@ -470,7 +474,7 @@ call.formatPhoneNumberToE164("138xxxxxxxx",{
 ```
 
 
-## call.formatPhoneNumberToE164<sup>7+</sup><a name=call.formatPhoneNumberToE164-promise></a>
+## call.formatPhoneNumberToE164<sup>7+</sup>
 
 formatPhoneNumberToE164\(phoneNumber: string, countryCode: string\): Promise<string\>
 
@@ -484,7 +488,7 @@ formatPhoneNumberToE164\(phoneNumber: string, countryCode: string\): Promise<str
 
 **参数：**
 
-| 参数        | 类型   | 必填 | 说明                                     |
+| 参数名      | 类型   | 必填 | 说明                                     |
 | ----------- | ------ | ---- | ---------------------------------------- |
 | phoneNumber | string | 是   | 电话号码。                               |
 | countryCode | string | 是   | 国家码，支持所有国家码，如：中国（CN）。 |
@@ -508,43 +512,45 @@ promise.then(data => {
 });
 ```
 
-## DialOptions<a name=DialOptions></a>
+## DialOptions
 
 拨打电话的可选参数。
 
-**系统能力**：SystemCapability.Telephony.CallManager
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
-| 参数   | 类型    | 必填 | 说明                                                         |
+| 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
 | extras | boolean | 否   | 根据extras的值判断是否为视频通话，默认为语音通话。<br/>- true：视频通话。<br/>- fasle：语音通话。 |
 
-## CallState<a name=CallState></a>
+## CallState
 
 通话状态码。
 
-| 变量               | 值   | 说明                                                         |
-| ------------------ | ---- | ------------------------------------------------------------ |
-| CALL_STATE_UNKNOWN | -1   | 无效状态，当获取呼叫状态失败时返回。<br />**系统能力**：SystemCapability.Telephony.CallManager |
-| CALL_STATE_IDLE    | 0    | 表示没有正在进行的呼叫。<br />**系统能力**：SystemCapability.Telephony.CallManager |
-| CALL_STATE_RINGING | 1    | 表示来电正在振铃或等待。<br />**系统能力**：SystemCapability.Telephony.CallManager |
-| CALL_STATE_OFFHOOK | 2    | 表示至少有一个呼叫处于拨号、通话中或呼叫保持状态，并且没有新的来电振铃或等待。<br />**系统能力**：SystemCapability.Telephony.CallManager |
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
-## EmergencyNumberOptions<sup>7+</sup><a name=EmergencyNumberOptions></a>
+| 名称               | 值   | 说明                                                         |
+| ------------------ | ---- | ------------------------------------------------------------ |
+| CALL_STATE_UNKNOWN | -1   | 无效状态，当获取呼叫状态失败时返回。                         |
+| CALL_STATE_IDLE    | 0    | 表示没有正在进行的呼叫。                                     |
+| CALL_STATE_RINGING | 1    | 表示来电正在振铃或等待。                                     |
+| CALL_STATE_OFFHOOK | 2    | 表示至少有一个呼叫处于拨号、通话中或呼叫保持状态，并且没有新的来电振铃或等待。 |
+
+## EmergencyNumberOptions<sup>7+</sup>
 
 判断是否是紧急电话号码的可选参数。
 
-**系统能力**：SystemCapability.Telephony.CallManager
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
-| 参数   | 类型   | 必填 | 说明                                       |
+| 参数名 | 类型   | 必填 | 说明                                       |
 | ------ | ------ | ---- | ------------------------------------------ |
 | slotId | number | 否   | 卡槽ID：<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 
-## NumberFormatOptions<sup>7+</sup><a name=NumberFormatOptions></a>
+## NumberFormatOptions<sup>7+</sup>
 
 格式化号码的可选参数。
 
-**系统能力**：SystemCapability.Telephony.CallManager
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
-| 参数        | 类型   | 必填 | 说明                                                       |
+| 参数名      | 类型   | 必填 | 说明                                                       |
 | ----------- | ------ | ---- | ---------------------------------------------------------- |
 | countryCode | string | 否   | 国家码，支持所有国家的国家码，如：中国（CN）。默认为：CN。 |

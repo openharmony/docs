@@ -3,6 +3,7 @@
 >**说明：** 
 >
 >本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
 
 ## 导入模块
 
@@ -10,13 +11,13 @@
 import sim from '@ohos.telephony.sim';
 ```
 
-## sim.isSimActive<a name=sim.isSimActive-callback></a>
+## sim.isSimActive<sup>7+</sup>
 
 isSimActive\(slotId: number, callback: AsyncCallback<boolean\>\): void
 
 获取指定卡槽SIM卡是否激活，使用callback方式作为异步方法。
 
-**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+**系统能力**：SystemCapability.Communication.CoreService
 
 **参数：**
 
@@ -34,13 +35,13 @@ sim.isSimActive(0, (err, data) => {
 ```
 
 
-## sim.isSimActive<a name=sim.isSimActive-promise></a>
+## sim.isSimActive<sup>7+</sup>
 
-isSimActive\(slotId: number\): Promise<string\>
+isSimActive\(slotId: number\): Promise<boolean\>
 
 获取指定卡槽SIM卡是否激活，使用Promise方式作为异步方法。
 
-**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+**系统能力**：SystemCapability.Communication.CoreService
 
 **参数：**
 
@@ -66,11 +67,13 @@ promise.then(data => {
 ```
 
 
-## sim.getDefaultVoiceSlotId<sup>7+</sup><a name= sim.getDefaultVoiceSlotId-callback></a>
+## sim.getDefaultVoiceSlotId<sup>7+</sup>
 
 getDefaultVoiceSlotId\(callback: AsyncCallback<number\>\): void
 
 获取默认语音业务的卡槽ID，使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.CoreService
 
 **参数：**
 
@@ -87,11 +90,13 @@ sim.getDefaultVoiceSlotId((err, data) => {
 ```
 
 
-## sim.getDefaultVoiceSlotId<sup>7+</sup><a name=sim.getDefaultVoiceSlotId-promise></a>
+## sim.getDefaultVoiceSlotId<sup>7+</sup>
 
 getDefaultVoiceSlotId\(\): Promise<number\>
 
 获取默认语音业务的卡槽ID，使用Promise方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.CoreService
 
 **返回值：**
 
@@ -110,12 +115,67 @@ promise.then(data => {
 });
 ```
 
+## sim.hasOperatorPrivileges<sup>7+</sup>
 
-## sim.getISOCountryCodeForSim<a name=sim.getISOCountryCodeForSim-callback></a>
+hasOperatorPrivileges(slotId: number, callback: AsyncCallback\<boolean\>): void
+
+检查应用（调用者）是否已被授予运营商权限，使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.CoreService
+
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明                                     |
+| -------- | ------------------------ | ---- | ---------------------------------------- |
+| slotId   | number                   | 是   | 卡槽ID。<br />- 0：卡槽1<br />- 1：卡槽2 |
+| callback | AsyncCallback\<boolean\> | 是   | 回调函数。                               |
+
+**示例：**
+
+```
+sim.hasOperatorPrivileges(0, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+## sim.hasOperatorPrivileges<sup>7+</sup>
+
+hasOperatorPrivileges(slotId: number): Promise<boolean>
+
+检查应用（调用者）是否已被授予运营商权限，使用Promise方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.CoreService
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                     |
+| ------ | ------ | ---- | ---------------------------------------- |
+| slotId | number | 是   | 卡槽ID。<br />- 0：卡槽1<br />- 1：卡槽2 |
+
+**返回值：**
+
+| 类型               | 说明                                                        |
+| :----------------- | :---------------------------------------------------------- |
+| Promise\<boolean\> | 以Promise形式返回检查应用（调用者）是否已被授予运营商权限。 |
+
+**示例：**
+
+```
+let promise = sim.hasOperatorPrivileges(0);
+promise.then(data => {
+    console.log(`hasOperatorPrivileges success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`hasOperatorPrivileges fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## sim.getISOCountryCodeForSim
 
 getISOCountryCodeForSim\(slotId: number, callback: AsyncCallback<string\>\): void
 
 获取指定卡槽SIM卡的ISO国家码，使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.CoreService
 
 **参数：**
 
@@ -133,11 +193,13 @@ sim.getISOCountryCodeForSim(0, (err, data) => {
 ```
 
 
-## sim.getISOCountryCodeForSim<a name=sim.getISOCountryCodeForSim-promise></a>
+## sim.getISOCountryCodeForSim
 
 getISOCountryCodeForSim\(slotId: number\): Promise<string\>
 
 获取指定卡槽SIM卡的ISO国家码，使用Promise方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.CoreService
 
 **参数：**
 
@@ -163,11 +225,13 @@ promise.then(data => {
 ```
 
 
-## sim.getSimOperatorNumeric<a name=sim.getSimOperatorNumeric-callback></a>
+## sim.getSimOperatorNumeric
 
 getSimOperatorNumeric\(slotId: number, callback: AsyncCallback<string\>\): void
 
 获取指定卡槽SIM卡的归属PLMN（Public Land Mobile Network）号，使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.CoreService
 
 **参数：**
 
@@ -185,11 +249,13 @@ sim.getSimOperatorNumeric(0, (err, data) => {
 ```
 
 
-## sim.getSimOperatorNumeric<a name=sim.getSimOperatorNumeric-promise></a>
+## sim.getSimOperatorNumeric
 
 getSimOperatorNumeric\(slotId: number\): Promise<string\>
 
 获取指定卡槽SIM卡的归属PLMN（Public Land Mobile Network）号，使用Promise方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.CoreService
 
 **参数：**
 
@@ -215,11 +281,13 @@ promise.then(data => {
 ```
 
 
-## sim.getSimSpn<a name=sim.getSimSpn-callback></a>
+## sim.getSimSpn
 
 getSimSpn\(slotId: number, callback: AsyncCallback<string\>\): void
 
 获取指定卡槽SIM卡的服务提供商名称（Service Provider Name，SPN），使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.CoreService
 
 **参数：**
 
@@ -237,11 +305,13 @@ sim.getSimSpn(0, (err, data) => {
 ```
 
 
-## sim.getSimSpn<a name=sim.getSimSpn-promise></a>
+## sim.getSimSpn
 
 getSimSpn\(slotId: number\): Promise<string\>
 
 获取指定卡槽SIM卡的服务提供商名称（Service Provider Name，SPN），使用Promise方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.CoreService
 
 **参数：**
 
@@ -267,18 +337,20 @@ promise.then(data => {
 ```
 
 
-## sim.getSimState<a name=sim.getSimState-callback></a>
+## sim.getSimState
 
 getSimState\(slotId: number, callback: AsyncCallback<SimState\>\): void
 
 获取指定卡槽的SIM卡状态，使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.CoreService
 
 **参数：**
 
 | 参数名   | 类型                                   | 必填 | 说明                                   |
 | -------- | -------------------------------------- | ---- | -------------------------------------- |
 | slotId   | number                                 | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback\<[SimState](#SimState)\> | 是   | 回调函数。参考[SimState](#SimState)。  |
+| callback | AsyncCallback\<[SimState](#simState)\> | 是   | 回调函数。参考[SimState](#simState)。  |
 
 **示例：**
 
@@ -289,11 +361,13 @@ sim.getSimState(0, (err, data) => {
 ```
 
 
-## sim.getSimState<a name=sim.getSimState-promise></a>
+## sim.getSimState
 
 getSimState\(slotId: number\): Promise<SimState\>
 
 获取指定卡槽的SIM卡状态，使用Promise方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.CoreService
 
 **参数：**
 
@@ -305,7 +379,7 @@ getSimState\(slotId: number\): Promise<SimState\>
 
 | 类型                             | 说明                                       |
 | -------------------------------- | ------------------------------------------ |
-| Promise\<[SimState](#SimState)\> | 以Promise形式返回获取指定卡槽的SIM卡状态。 |
+| Promise\<[SimState](#simState)\> | 以Promise形式返回获取指定卡槽的SIM卡状态。 |
 
 **示例：**
 
@@ -318,20 +392,20 @@ promise.then(data => {
 });
 ```
 
-## sim.getCardType<a name=sim.getCardType-callback></a>
+## sim.getCardType<sup>7+</sup>
 
 getCardType\(slotId: number, callback: AsyncCallback<CardType\>\): void
 
 获取指定卡槽SIM卡的卡类型，使用callback方式作为异步方法。
 
-**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+**系统能力**：SystemCapability.Communication.CoreService
 
 **参数：**
 
 | 参数名   | 类型                    | 必填 | 说明                                   |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | slotId   | number                  | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback\<[CardType](#cardtype)\> | 是   | 回调函数。                             |
+| callback | AsyncCallback\<[CardType](#cardtype7)\> | 是   | 回调函数。                             |
 
 **示例：**
 
@@ -342,13 +416,13 @@ sim.getCardType(0, (err, data) => {
 ```
 
 
-## sim.getCardType<a name=sim.getCardType-promise></a>
+## sim.getCardType<sup>7+</sup>
 
 getCardType\(slotId: number\): Promise<CardType\>
 
 获取指定卡槽SIM卡的卡类型，使用Promise方式作为异步方法。
 
-**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+**系统能力**：SystemCapability.Communication.CoreService
 
 **参数：**
 
@@ -360,7 +434,7 @@ getCardType\(slotId: number\): Promise<CardType\>
 
 | 类型              | 说明                                                         |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<[CardType](#cardtype)\> | 以Promise形式返回指定卡槽SIM卡的卡类型。 |
+| Promise\<[CardType](#cardtype7)\> | 以Promise形式返回指定卡槽SIM卡的卡类型。 |
 
 **示例：**
 
@@ -374,13 +448,13 @@ promise.then(data => {
 ```
 
 
-## sim.hasSimCard<a name=sim.hasSimCard-callback></a>
+## sim.hasSimCard<sup>7+</sup>
 
 hasSimCard\(slotId: number, callback: AsyncCallback<boolean\>\): void
 
 获取指定卡槽SIM卡是否插卡，使用callback方式作为异步方法。
 
-**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+**系统能力**：SystemCapability.Communication.CoreService
 
 **参数：**
 
@@ -398,13 +472,13 @@ sim.hasSimCard(0, (err, data) => {
 ```
 
 
-## sim.hasSimCard<a name=sim.hasSimCard-promise></a>
+## sim.hasSimCard<sup>7+</sup>
 
-hasSimCard\(slotId: number\): Promise<string\>
+hasSimCard\(slotId: number\): Promise<boolean\>
 
 获取指定卡槽SIM卡是否插卡，使用Promise方式作为异步方法。
 
-**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+**系统能力**：SystemCapability.Communication.CoreService
 
 **参数：**
 
@@ -430,13 +504,13 @@ promise.then(data => {
 ```
 
 
-## sim.getMaxSimCount
+## sim.getMaxSimCount<sup>7+</sup>
 
 getMaxSimCount\(\): number
 
 获取卡槽数量。
 
-**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+**系统能力**：SystemCapability.Communication.CoreService
 
 **返回值：**
 
@@ -451,32 +525,36 @@ console.log(sim.getMaxSimCount())
 ```
 
 
-## SimState<a name=SimState></a>
+## SimState
 
 SIM卡状态。
 
-| 变量                  | 说明                                                       |
-| --------------------- | ---------------------------------------------------------- |
-| SIM_STATE_UNKNOWN     | SIM卡状态未知，即无法获取准确的状态。                      |
-| SIM_STATE_NOT_PRESENT | 表示SIM卡处于not present状态，即卡槽中没有插入SIM卡。      |
-| SIM_STATE_LOCKED      | 表示SIM卡处于locked状态，即SIM卡被PIN、PUK或网络锁锁定。   |
-| SIM_STATE_NOT_READY   | 表示SIM卡处于not ready状态，即SIM卡在位但无法正常工作。    |
-| SIM_STATE_READY       | 表示SIM卡处于ready状态，即SIM卡在位且工作正常。            |
-| SIM_STATE_LOADED      | 表示SIM卡处于loaded状态，即SIM卡在位且所有卡文件加载完毕。 |
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
 
-## CardType
+| 名称                  | 值   | 说明                                                       |
+| --------------------- | ---- | ---------------------------------------------------------- |
+| SIM_STATE_UNKNOWN     | 0    | SIM卡状态未知，即无法获取准确的状态。                      |
+| SIM_STATE_NOT_PRESENT | 1    | 表示SIM卡处于not present状态，即卡槽中没有插入SIM卡。      |
+| SIM_STATE_LOCKED      | 2    | 表示SIM卡处于locked状态，即SIM卡被PIN、PUK或网络锁锁定。   |
+| SIM_STATE_NOT_READY   | 3    | 表示SIM卡处于not ready状态，即SIM卡在位但无法正常工作。    |
+| SIM_STATE_READY       | 4    | 表示SIM卡处于ready状态，即SIM卡在位且工作正常。            |
+| SIM_STATE_LOADED      | 5    | 表示SIM卡处于loaded状态，即SIM卡在位且所有卡文件加载完毕。 |
+
+## CardType<sup>7+</sup>
 
 卡类型。
 
-| 变量  | 值 | 说明 |
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+
+| 名称 | 值 | 说明 |
 | ----- | ----- | ----- |
-UNKNOWN_CARD | -1 | 未知类型 |
-SINGLE_MODE_SIM_CARD | 10 | 单SIM卡 |
-SINGLE_MODE_USIM_CARD | 20 | 单USIM卡 |
-SINGLE_MODE_RUIM_CARD | 30 | 单RUIM卡 |
-DUAL_MODE_CG_CARD | 40 | 双卡模式C+G |
-CT_NATIONAL_ROAMING_CARD | 41 | 中国电信内部漫游卡 |
-CU_DUAL_MODE_CARD | 42 | 中国联通双模卡 |
-DUAL_MODE_TELECOM_LTE_CARD | 43 | 双模式电信LTE卡 |
-DUAL_MODE_UG_CARD | 50 | 双模式UG卡 |
-SINGLE_MODE_ISIM_CARD | 60 | 单一ISIM卡类型 |
+|UNKNOWN_CARD | -1 | 未知类型 |
+|SINGLE_MODE_SIM_CARD | 10 | 单SIM卡 |
+|SINGLE_MODE_USIM_CARD | 20 | 单USIM卡 |
+|SINGLE_MODE_RUIM_CARD | 30 | 单RUIM卡 |
+|DUAL_MODE_CG_CARD | 40 | 双卡模式C+G |
+|CT_NATIONAL_ROAMING_CARD | 41 | 中国电信内部漫游卡 |
+|CU_DUAL_MODE_CARD | 42 | 中国联通双模卡 |
+|DUAL_MODE_TELECOM_LTE_CARD | 43 | 双模式电信LTE卡 |
+|DUAL_MODE_UG_CARD | 50 | 双模式UG卡 |
+|SINGLE_MODE_ISIM_CARD | 60 | 单一ISIM卡类型 |
