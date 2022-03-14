@@ -2360,9 +2360,9 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| x | number | 是 | 是 | 设备围绕x轴的旋转角度，单位 : rad。 |
-| y | number | 是 | 是 | 设备围绕y轴的旋转角度，单位 : rad。 |
-| z | number | 是 | 是 | 设备围绕z轴的旋转角度，单位 : rad。 |
+| alpha | number | 是 | 是 | 设备围绕 Z 轴旋转一定角度，单位 : rad。 |
+| beta | number | 是 | 是 | 设备围绕 X轴旋转一定角度，单位 : rad。 |
+| gamma | number | 是 | 是 | 设备围绕 Y轴旋转一定角度，单位 : rad。 |
 
 
 ## RotationVectorResponse
@@ -2377,6 +2377,7 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
 | x | number | 是 | 是 | 旋转矢量x轴分量。 |
 | y | number | 是 | 是 | 旋转矢量y轴分量。 |
 | z | number | 是 | 是 | 旋转矢量z轴分量。 |
+| w | number | 是 | 是 | 标量。 |
 
 
 ## GyroscopeResponse
