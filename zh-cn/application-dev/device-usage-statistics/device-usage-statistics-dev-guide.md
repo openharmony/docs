@@ -15,12 +15,12 @@ import stats from '@ohos.bundleState';
 
 | 接口名 | 描述 |
 | -------- | -------- |
-| function queryBundleActiveStates(begin:number, end:number, callback:AsyncCallback&lt;Array&lt;BundleActiveState&gt;&gt;):void | 通过指定起始和结束时间查询所有应用的事件集合。 |
-| function queryBundleStateInfos(begin:number, end:number, callback:AsyncCallback&lt;BundleStateInfoResponse&gt;):void | 通过指定起始和结束时间查询应用使用时长统计信息。 |
-| function queryCurrentBundleActiveStates(begin:number, end:number, callback:AsyncCallback&lt;Array&lt;BundleActiveState&gt;&gt;):void | 通过指定起始和结束时间查询当前应用的事件集合。 |
-| function queryBundleStateInfoByInterval(byInterval:intervalType, begin:number, end:number, callback:AsyncCallback&lt;Array&lt;BundleStateInfo&gt;&gt;):void | 通过指定时间段间隔（天、周、月、年）查询应用使用时长统计信息。 |
-| function queryAppUsagePriorityGroup(callback:AsyncCallback&lt;number&gt;):void | 查询（返回）当前调用者应用的使用优先级群组。 |
-| function isIdleState(bundleName:string, callback:AsyncCallback&lt;boolean&gt;):void | 判断指定Bundle Name的应用当前是否是空闲状态。 |
+| function queryBundleActiveStates(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;BundleActiveState&gt;&gt;): void | 通过指定起始和结束时间查询所有应用的事件集合。 |
+| function queryBundleStateInfos(begin: number, end: number, callback: AsyncCallback&lt;BundleActiveInfoResponse&gt;): void | 通过指定起始和结束时间查询应用使用时长统计信息。 |
+| function queryCurrentBundleActiveStates(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;BundleActiveState&gt;&gt;): void | 通过指定起始和结束时间查询当前应用的事件集合。 |
+| function queryBundleStateInfoByInterval(byInterval: IntervalType, begin: number, end: number, callback: AsyncCallback&lt;Array&lt;BundleStateInfo&gt;&gt;): void | 通过指定时间段间隔（天、周、月、年）查询应用使用时长统计信息。 |
+| function queryAppUsagePriorityGroup(callback: AsyncCallback&lt;number&gt;): void | 查询（返回）当前调用者应用的使用优先级群组。 |
+| function isIdleState(bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void | 判断指定Bundle Name的应用当前是否是空闲状态。 |
 
 ## 开发步骤
 
