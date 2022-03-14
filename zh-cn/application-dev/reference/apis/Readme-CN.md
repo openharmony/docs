@@ -119,3 +119,4 @@
     - [非线性容器LightWeightSet](js-apis-lightweightset.md)
 - 定制管理
     - [配置策略](js-apis-config-policy.md)
+    - [企业设备管理](js-apis-enterprise-device-manager.md)
