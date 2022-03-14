@@ -191,12 +191,13 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
 - **参数**：
+  
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | context | Context | 是 | 应用运行的上下文 |
   | bgMode | BackgroundMode | 是 | 向系统申请的后台模式 |
-  | wantAgent | [WantAgent](js-apis-notification.md#WantAgent接口) | 是 | 通知参数，用于指定长时任务通知点击跳转的界面 |
-
+| wantAgent | [WantAgent](js-apis-notification.md#WantAgent接口) | 是 | 通知参数，用于指定长时任务通知点击跳转的界面 |
+  
 - **返回值**
   | 类型           | 说明                      |
   | -------------- | ------------------------- |
@@ -295,14 +296,16 @@ backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext()).then(()
 
 ## BackgroundMode <sup>8+</sup>
 
+**系统能力:** 以下各项对应的系统能力均为SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
+
 | 参数名                  | 参数值 | 描述 |
 | ----------------------- | -------- | -------- |
-| DATA_TRANSFER           | 1 | 数据传输<br/>**系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask |
-| AUDIO_PLAYBACK          | 2 | 音频播放<br/>**系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask |
-| AUDIO_RECORDING         | 3 | 录音<br/>**系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask |
-| LOCATION                | 4 | 定位导航<br/>**系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask |
-| BLUETOOTH_INTERACTION   | 5 | 蓝牙相关<br/>**系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask |
-| MULTI_DEVICE_CONNECTION | 6 | 多设备互联<br/>**系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask |
-| WIFI_INTERACTION        | 7 | WLAN相关（系统保留）<br/>**系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask |
-| VOIP                    | 8 | 音视频通话（系统保留）<br/>**系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask |
-| TASK_KEEPING            | 9 | 计算任务（仅供PC使用）<br/>**系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask |
+| DATA_TRANSFER           | 1 | 数据传输 |
+| AUDIO_PLAYBACK          | 2 | 音频播放 |
+| AUDIO_RECORDING         | 3 | 录音 |
+| LOCATION                | 4 | 定位导航 |
+| BLUETOOTH_INTERACTION   | 5 | 蓝牙相关 |
+| MULTI_DEVICE_CONNECTION | 6 | 多设备互联 |
+| WIFI_INTERACTION        | 7 | WLAN相关（系统保留） |
+| VOIP                    | 8 | 音视频通话（系统保留） |
+| TASK_KEEPING            | 9 | 计算任务（仅供PC使用） |

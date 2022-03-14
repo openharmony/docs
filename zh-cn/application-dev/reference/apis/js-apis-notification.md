@@ -475,7 +475,7 @@ getSlots()
 | 类型                                                        | 说明                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
 | Promise\<Array\<NotificationSlot\>\> | 以Promise形式返回获取此应用程序的所有通知通道的结果。 |
-  
+
 **示例：**
 
 ```js
@@ -1999,15 +1999,17 @@ Notification.show(options);
 
 ## NotificationSubscriber
 
+**系统能力：**以下各项对应的系统能力均为SystemCapability.Notification.Notification
+
 | 名称                                                         | 可读 | 可写 | 类型     | 必填 | 描述                       |
 | ------------------------------------------------------------ | ---- | --- | -------- | ---- | -------------------------- |
-| onConsume?:(data: [SubscribeCallbackData](#subscribecallbackdata)) | 是 | 否 | function | 否   | 接收通知回调函数。<br/>**系统能力**：SystemCapability.Notification.Notification           |
-| onCancel?:(data: [SubscribeCallbackData](#subscribecallbackdata)) | 是 | 否 | function | 否   | 删除通知回调函数。<br/>**系统能力**：SystemCapability.Notification.Notification           |
-| onUpdate?:(data: [NotificationSortingMap](#notificationsortingmap)) | 是 | 否 | function | 否   | 更新通知排序回调函数。<br/>**系统能力**：SystemCapability.Notification.Notification       |
-| onConnect?:()                                                | 是 | 否 | function | 否   | 注册订阅回调函数。<br/>**系统能力**：SystemCapability.Notification.Notification           |
-| onDisconnect?:()                                             | 是 | 否 | function | 否   | 取消订阅回调函数。<br/>**系统能力**：SystemCapability.Notification.Notification           |
-| onDestroy?:()                                                | 是 | 否 | function | 否   | 服务失联回调函数。<br/>**系统能力**：SystemCapability.Notification.Notification           |
-| onDoNotDisturbDateChange?:(mode: Notification.[DoNotDisturbDate](#donotdisturbdate)) | 是 | 否 | function | 否   | 免打扰时间选项变更回调函数。<br/>**系统能力**：SystemCapability.Notification.Notification |
+| onConsume?:(data: [SubscribeCallbackData](#subscribecallbackdata)) | 是 | 否 | function | 否   | 接收通知回调函数。           |
+| onCancel?:(data: [SubscribeCallbackData](#subscribecallbackdata)) | 是 | 否 | function | 否   | 删除通知回调函数。           |
+| onUpdate?:(data: [NotificationSortingMap](#notificationsortingmap)) | 是 | 否 | function | 否   | 更新通知排序回调函数。       |
+| onConnect?:()                                                | 是 | 否 | function | 否   | 注册订阅回调函数。           |
+| onDisconnect?:()                                             | 是 | 否 | function | 否   | 取消订阅回调函数。           |
+| onDestroy?:()                                                | 是 | 否 | function | 否   | 服务失联回调函数。           |
+| onDoNotDisturbDateChange?:(mode: Notification.[DoNotDisturbDate](#donotdisturbdate)) | 是 | 否 | function | 否   | 免打扰时间选项变更回调函数。 |
 
 ### onEnabledNotificationChanged
 
@@ -2055,248 +2057,285 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 ## SubscribeCallbackData
 
+**系统能力：**以下各项对应的系统能力均为SystemCapability.Notification.Notification
+
 | 名称            | 可读 | 可写 | 类型                                              | 必填 | 描述     |
 | --------------- | ---- | --- | ------------------------------------------------- | ---- | -------- |
-| request         | 是  | 否  | [NotificationRequest](#notificationrequest)       | 是   | 通知内容。<br/>**系统能力**：SystemCapability.Notification.Notification |
-| sortingMap      | 是  | 否  | [NotificationSortingMap](#notificationsortingmap) | 否   | 排序信息。<br/>**系统能力**：SystemCapability.Notification.Notification |
-| reason          | 是  | 否  | number                                            | 否   | 删除原因。<br/>**系统能力**：SystemCapability.Notification.Notification |
-| sound           | 是  | 否  | string                                            | 否   | 通知声音。<br/>**系统能力**：SystemCapability.Notification.Notification |
-| vibrationValues | 是  | 否  | Array\<number\>                                   | 否   | 通知震动。<br/>**系统能力**：SystemCapability.Notification.Notification |
-
-。<br/>**系统能力**：SystemCapability.Notification.Notification
+| request         | 是  | 否  | [NotificationRequest](#notificationrequest)       | 是   | 通知内容。 |
+| sortingMap      | 是  | 否  | [NotificationSortingMap](#notificationsortingmap) | 否   | 排序信息。 |
+| reason          | 是  | 否  | number                                            | 否   | 删除原因。 |
+| sound           | 是  | 否  | string                                            | 否   | 通知声音。 |
+| vibrationValues | 是  | 否  | Array\<number\>                                   | 否   | 通知震动。 |
 
 ## NotificationSortingMap
 
+**系统能力：**以下各项对应的系统能力均为SystemCapability.Notification.Notification
+
 | 名称           | 可读 | 可写 | 类型                                                         | 必填 | 描述             |
 | -------------- | ---- | --- | ------------------------------------------------------------ | ---- | ---------------- |
-| sortings       | 是  | 否  | {[key: string]: [NotificationSorting](#notificationsorting)} | 是   | 通知排序信息数组。<br/>**系统能力**：SystemCapability.Notification.Notification |
-| sortedHashCode | 是  | 否  | Array\<string\>                                              | 是   | 通知唯一标识数组。<br/>**系统能力**：SystemCapability.Notification.Notification |
+| sortings       | 是  | 否  | {[key: string]: [NotificationSorting](#notificationsorting)} | 是   | 通知排序信息数组。 |
+| sortedHashCode | 是  | 否  | Array\<string\>                                              | 是   | 通知唯一标识数组。 |
 
 
 
 ## NotificationSorting
 
+**系统能力：**以下各项对应的系统能力均为SystemCapability.Notification.Notification
+
 | 名称     | 可读 | 可写 | 类型                                  | 必填 | 描述         |
 | -------- | ---- | --- | ------------------------------------- | ---- | ------------ |
-| slot     | 是  | 否  | [NotificationSlot](#notificationslot) | 是   | 通知通道内容。<br/>**系统能力**：SystemCapability.Notification.Notification |
-| hashCode | 是  | 否  | string                                | 是   | 通知唯一标识。<br/>**系统能力**：SystemCapability.Notification.Notification |
-| ranking  | 是  | 否  | number                                | 是   | 通知排序序号。<br/>**系统能力**：SystemCapability.Notification.Notification |
+| slot     | 是  | 否  | [NotificationSlot](#notificationslot) | 是   | 通知通道内容。 |
+| hashCode | 是  | 否  | string                                | 是   | 通知唯一标识。 |
+| ranking  | 是  | 否  | number                                | 是   | 通知排序序号。 |
 
 
 
 ## DoNotDisturbDate
 
+**系统能力：**以下各项对应的系统能力均为SystemCapability.Notification.Notification
+
 | 名称  | 可读 | 可写 | 类型                                  | 描述                     |
 | ----- | ---- | --- | ------------------------------------- | ------------------------ |
-| type  | 是  | 否  | [DoNotDisturbType](#donotdisturbtype) | 指定免打扰设置的时间类型。<br/>**系统能力**：SystemCapability.Notification.Notification |
-| begin | 是  | 否  | Date                                  | 指定免打扰设置的起点时间。<br/>**系统能力**：SystemCapability.Notification.Notification |
-| end   | 是  | 否  | Date                                  | 指定免打扰设置的终点时间。<br/>**系统能力**：SystemCapability.Notification.Notification |
+| type  | 是  | 否  | [DoNotDisturbType](#donotdisturbtype) | 指定免打扰设置的时间类型。 |
+| begin | 是  | 否  | Date                                  | 指定免打扰设置的起点时间。 |
+| end   | 是  | 否  | Date                                  | 指定免打扰设置的终点时间。 |
 
 
 
 ## DoNotDisturbType
 
+**系统能力：**以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
-| 名称         | 值               | 说明                                     |
-| ------------ | ---------------- | ---------------------------------------- |
-| TYPE_NONE    | DoNotDisturbType | 非通知勿扰类型。<br/>**系统能力**：SystemCapability.Notification.Notification                           |
-| TYPE_ONCE    | DoNotDisturbType | 以设置时间段(只看小时和分钟)一次执行勿扰。<br/>**系统能力**：SystemCapability.Notification.Notification |
-| TYPE_DAILY   | DoNotDisturbType | 以设置时间段(只看小时和分钟)每天执行勿扰。<br/>**系统能力**：SystemCapability.Notification.Notification |
-| TYPE_CLEARLY | DoNotDisturbType | 以设置时间段(明确年月日时分)执行勿扰。<br/>**系统能力**：SystemCapability.Notification.Notification     |
+
+| 名称         | 值               | 说明                                       |
+| ------------ | ---------------- | ------------------------------------------ |
+| TYPE_NONE    | DoNotDisturbType | 非通知勿扰类型。                           |
+| TYPE_ONCE    | DoNotDisturbType | 以设置时间段(只看小时和分钟)一次执行勿扰。 |
+| TYPE_DAILY   | DoNotDisturbType | 以设置时间段(只看小时和分钟)每天执行勿扰。 |
+| TYPE_CLEARLY | DoNotDisturbType | 以设置时间段(明确年月日时分)执行勿扰。     |
 
 
 
 ## EnabledNotificationCallbackData
 
+**系统能力：**以下各项对应的系统能力均为SystemCapability.Notification.Notification
+
 | 名称   | 可读 | 可写 | 类型    | 必填 | 描述             |
 | ------ | ---- | --- | ------- | ---- | ---------------- |
-| bundle | 是  | 否  | string  | 否   | 应用的包名。<br/>**系统能力**：SystemCapability.Notification.Notification       |
-| uid    | 是  | 否  | number  | 否   | 应用的uid。<br/>**系统能力**：SystemCapability.Notification.Notification        |
-| enable | 是  | 否  | boolean | 否   | 应用通知使能状态。<br/>**系统能力**：SystemCapability.Notification.Notification |
+| bundle | 是  | 否  | string  | 否   | 应用的包名。       |
+| uid    | 是  | 否  | number  | 否   | 应用的uid。        |
+| enable | 是  | 否  | boolean | 否   | 应用通知使能状态。 |
 
 
 
 ## NotificationRequest
 
+**系统能力：**以下各项对应的系统能力均为SystemCapability.Notification.Notification
+
 | 名称                  | 可读 | 可写 | 类型                                          | 必填 | 描述                       |
 | --------------------- | ---- | --- | --------------------------------------------- | ---- | -------------------------- |
-| content               | 是  | 是  | [NotificationContent](#notificationcontent)   | 是   | 通知内容。<br/>**系统能力**：SystemCapability.Notification.Notification                   |
-| id                    | 是  | 是  | number                                        | 否   | 通知ID。<br/>**系统能力**：SystemCapability.Notification.Notification                     |
-| slotType              | 是  | 是  | [SlotType](#slottype)                                      | 否   | 通道类型。<br/>**系统能力**：SystemCapability.Notification.Notification                   |
-| isOngoing             | 是  | 是  | boolean                                       | 否   | 是否进行时通知。<br/>**系统能力**：SystemCapability.Notification.Notification             |
-| isUnremovable         | 是  | 是  | boolean                                       | 否   | 是否可移除。<br/>**系统能力**：SystemCapability.Notification.Notification                 |
-| deliveryTime          | 是  | 是  | number                                        | 否   | 通知发送时间。<br/>**系统能力**：SystemCapability.Notification.Notification               |
-| tapDismissed          | 是  | 是  | boolean                                       | 否   | 通知是否自动清除。<br/>**系统能力**：SystemCapability.Notification.Notification           |
-| autoDeletedTime       | 是  | 是  | number                                        | 否   | 自动清除的时间。<br/>**系统能力**：SystemCapability.Notification.Notification             |
-| wantAgent             | 是  | 是  | WantAgent                                     | 否   | 点击跳转的WantAgent。<br/>**系统能力**：SystemCapability.Notification.Notification        |
-| extraInfo             | 是  | 是  | {[key: string]: any}                          | 否   | 扩展参数。<br/>**系统能力**：SystemCapability.Notification.Notification                   |
-| color                 | 是  | 是  | number                                        | 否   | 通知背景颜色。<br/>**系统能力**：SystemCapability.Notification.Notification               |
-| colorEnabled          | 是  | 是  | boolean                                       | 否   | 通知背景颜色是否使能。<br/>**系统能力**：SystemCapability.Notification.Notification       |
-| isAlertOnce           | 是  | 是  | boolean                                       | 否   | 设置是否仅有一次此通知警报。<br/>**系统能力**：SystemCapability.Notification.Notification |
-| isStopwatch           | 是  | 是  | boolean                                       | 否   | 是否显示已用时间。<br/>**系统能力**：SystemCapability.Notification.Notification           |
-| isCountDown           | 是  | 是  | boolean                                       | 否   | 是否显示倒计时时间。<br/>**系统能力**：SystemCapability.Notification.Notification         |
-| isFloatingIcon        | 是  | 是  | boolean                                       | 否   | 是否显示状态栏图标。<br/>**系统能力**：SystemCapability.Notification.Notification         |
-| label                 | 是  | 是  | string                                        | 否   | 通知标签。<br/>**系统能力**：SystemCapability.Notification.Notification                   |
-| badgeIconStyle        | 是  | 是  | number                                        | 否   | 通知角标类型。<br/>**系统能力**：SystemCapability.Notification.Notification               |
-| showDeliveryTime      | 是  | 是  | boolean                                       | 否   | 是否显示分发时间。<br/>**系统能力**：SystemCapability.Notification.Notification           |
-| actionButtons         | 是  | 是  | Array\<[NotificationActionButton](#notificationactionbutton)\>             | 否   | 通知按钮，最多两个按钮。<br/>**系统能力**：SystemCapability.Notification.Notification     |
-| smallIcon             | 是  | 是  | PixelMap                                      | 否   | 通知小图标。<br/>**系统能力**：SystemCapability.Notification.Notification                 |
-| largeIcon             | 是  | 是  | PixelMap                                      | 否   | 通知大图标。<br/>**系统能力**：SystemCapability.Notification.Notification                 |
-| creatorBundleName     | 是  | 否  | string                                        | 否   | 创建通知的包名。<br/>**系统能力**：SystemCapability.Notification.Notification             |
-| creatorUid            | 是  | 否  | number                                        | 否   | 创建通知的UID。<br/>**系统能力**：SystemCapability.Notification.Notification              |
-| creatorPid            | 是  | 否  | number                                        | 否   | 创建通知的PID。<br/>**系统能力**：SystemCapability.Notification.Notification              |
-| hashCode              | 是  | 否  | string                                        | 否   | 通知唯一标识。<br/>**系统能力**：SystemCapability.Notification.Notification               |
-| classification        | 是  | 是  | string                                        | 否   | 通知分类。<br/>**系统能力**：SystemCapability.Notification.Notification                   |
-| groupName             | 是  | 是  | string                                        | 否   | 组通知名称。<br/>**系统能力**：SystemCapability.Notification.Notification                 |
-| template<sup>8+</sup> | 是  | 是  | [NotificationTemplate](#notificationtemplate) | 否   | 通知模板。<br/>**系统能力**：SystemCapability.Notification.Notification                   |
+| content               | 是  | 是  | [NotificationContent](#notificationcontent)   | 是   | 通知内容。                   |
+| id                    | 是  | 是  | number                                        | 否   | 通知ID。                     |
+| slotType              | 是  | 是  | [SlotType](#slottype)                                      | 否   | 通道类型。                   |
+| isOngoing             | 是  | 是  | boolean                                       | 否   | 是否进行时通知。             |
+| isUnremovable         | 是  | 是  | boolean                                       | 否   | 是否可移除。                 |
+| deliveryTime          | 是  | 是  | number                                        | 否   | 通知发送时间。               |
+| tapDismissed          | 是  | 是  | boolean                                       | 否   | 通知是否自动清除。           |
+| autoDeletedTime       | 是  | 是  | number                                        | 否   | 自动清除的时间。             |
+| wantAgent             | 是  | 是  | WantAgent                                     | 否   | 点击跳转的WantAgent。        |
+| extraInfo             | 是  | 是  | {[key: string]: any}                          | 否   | 扩展参数。                   |
+| color                 | 是  | 是  | number                                        | 否   | 通知背景颜色。               |
+| colorEnabled          | 是  | 是  | boolean                                       | 否   | 通知背景颜色是否使能。       |
+| isAlertOnce           | 是  | 是  | boolean                                       | 否   | 设置是否仅有一次此通知警报。 |
+| isStopwatch           | 是  | 是  | boolean                                       | 否   | 是否显示已用时间。           |
+| isCountDown           | 是  | 是  | boolean                                       | 否   | 是否显示倒计时时间。         |
+| isFloatingIcon        | 是  | 是  | boolean                                       | 否   | 是否显示状态栏图标。         |
+| label                 | 是  | 是  | string                                        | 否   | 通知标签。                   |
+| badgeIconStyle        | 是  | 是  | number                                        | 否   | 通知角标类型。               |
+| showDeliveryTime      | 是  | 是  | boolean                                       | 否   | 是否显示分发时间。           |
+| actionButtons         | 是  | 是  | Array\<[NotificationActionButton](#notificationactionbutton)\>             | 否   | 通知按钮，最多两个按钮。     |
+| smallIcon             | 是  | 是  | PixelMap                                      | 否   | 通知小图标。                 |
+| largeIcon             | 是  | 是  | PixelMap                                      | 否   | 通知大图标。                 |
+| creatorBundleName     | 是  | 否  | string                                        | 否   | 创建通知的包名。             |
+| creatorUid            | 是  | 否  | number                                        | 否   | 创建通知的UID。              |
+| creatorPid            | 是  | 否  | number                                        | 否   | 创建通知的PID。              |
+| hashCode              | 是  | 否  | string                                        | 否   | 通知唯一标识。               |
+| classification        | 是  | 是  | string                                        | 否   | 通知分类。                   |
+| groupName             | 是  | 是  | string                                        | 否   | 组通知名称。                 |
+| template<sup>8+</sup> | 是  | 是  | [NotificationTemplate](#notificationtemplate) | 否   | 通知模板。                   |
 
 
 
 ## NotificationSlot
 
+**系统能力：**以下各项对应的系统能力均为SystemCapability.Notification.Notification
+
 | 名称                 | 可读 | 可写 | 类型                  | 必填 | 描述                                       |
 | -------------------- | ---- | --- | --------------------- | ---- | ------------------------------------------ |
-| type                 | 是  | 是  | [SlotType](#slottype) | 是   | 通道类型。<br/>**系统能力**：SystemCapability.Notification.Notification                                   |
-| level                | 是  | 是  | number                | 否   | 通知级别，不设置则根据通知渠道类型有默认值。<br/>**系统能力**：SystemCapability.Notification.Notification |
-| desc                 | 是  | 是  | string                | 否   | 通知渠道描述信息。<br/>**系统能力**：SystemCapability.Notification.Notification                           |
-| badgeFlag            | 是  | 是  | boolean               | 否   | 是否显示角标。<br/>**系统能力**：SystemCapability.Notification.Notification                               |
-| bypassDnd            | 是  | 是  | boolean               | 否   | 置是否在系统中绕过免打扰模式。<br/>**系统能力**：SystemCapability.Notification.Notification               |
-| lockscreenVisibility | 是  | 是  | boolean               | 否   | 在锁定屏幕上显示通知的模式。<br/>**系统能力**：SystemCapability.Notification.Notification                 |
-| vibrationEnabled     | 是  | 是  | boolean               | 否   | 是否可振动。<br/>**系统能力**：SystemCapability.Notification.Notification                                 |
-| sound                | 是  | 是  | string                | 否   | 通知提示音。<br/>**系统能力**：SystemCapability.Notification.Notification                                 |
-| lightEnabled         | 是  | 是  | boolean               | 否   | 是否闪灯。<br/>**系统能力**：SystemCapability.Notification.Notification                                   |
-| lightColor           | 是  | 是  | number                | 否   | 通知灯颜色。<br/>**系统能力**：SystemCapability.Notification.Notification                                 |
-| vibrationValues      | 是  | 是  | Array\<number\>       | 否   | 通知振动样式。<br/>**系统能力**：SystemCapability.Notification.Notification                               |
-
+| type                 | 是  | 是  | [SlotType](#slottype) | 是   | 通道类型。                                   |
+| level                | 是  | 是  | number                | 否   | 通知级别，不设置则根据通知渠道类型有默认值。 |
+| desc                 | 是  | 是  | string                | 否   | 通知渠道描述信息。                           |
+| badgeFlag            | 是  | 是  | boolean               | 否   | 是否显示角标。                               |
+| bypassDnd            | 是  | 是  | boolean               | 否   | 置是否在系统中绕过免打扰模式。               |
+| lockscreenVisibility | 是  | 是  | boolean               | 否   | 在锁定屏幕上显示通知的模式。                 |
+| vibrationEnabled     | 是  | 是  | boolean               | 否   | 是否可振动。                                 |
+| sound                | 是  | 是  | string                | 否   | 通知提示音。                                 |
+| lightEnabled         | 是  | 是  | boolean               | 否   | 是否闪灯。                                   |
+| lightColor           | 是  | 是  | number                | 否   | 通知灯颜色。                                 |
+| vibrationValues      | 是  | 是  | Array\<number\>       | 否   | 通知振动样式。                               |
 
 ## NotificationContent
 
+**系统能力：**以下各项对应的系统能力均为SystemCapability.Notification.Notification
+
 | 名称        | 可读 | 可写 | 类型                                                         | 必填 | 描述               |
 | ----------- | ---- | --- | ------------------------------------------------------------ | ---- | ------------------ |
-| contentType | 是  | 是  | [ContentType](#contenttype)                                  | 是   | 通知内容类型。<br/>**系统能力**：SystemCapability.Notification.Notification       |
-| normal      | 是  | 是  | [NotificationBasicContent](#notificationbasiccontent)        | 否   | 基本类型通知内容。<br/>**系统能力**：SystemCapability.Notification.Notification   |
-| longText    | 是  | 是  | [NotificationLongTextContent](#notificationlongtextcontent)  | 否   | 长文本类型通知内容。<br/>**系统能力**：SystemCapability.Notification.Notification |
-| multiLine   | 是  | 是  | [NotificationMultiLineContent](#notificationmultilinecontent) | 否   | 多行类型通知内容。<br/>**系统能力**：SystemCapability.Notification.Notification   |
-| picture     | 是  | 是  | [NotificationPictureContent](#notificationpicturecontent)    | 否   | 图片类型通知内容。<br/>**系统能力**：SystemCapability.Notification.Notification   |
+| contentType | 是  | 是  | [ContentType](#contenttype)                                  | 是   | 通知内容类型。       |
+| normal      | 是  | 是  | [NotificationBasicContent](#notificationbasiccontent)        | 否   | 基本类型通知内容。   |
+| longText    | 是  | 是  | [NotificationLongTextContent](#notificationlongtextcontent)  | 否   | 长文本类型通知内容。 |
+| multiLine   | 是  | 是  | [NotificationMultiLineContent](#notificationmultilinecontent) | 否   | 多行类型通知内容。   |
+| picture     | 是  | 是  | [NotificationPictureContent](#notificationpicturecontent)    | 否   | 图片类型通知内容。   |
 
 
 
 ## ContentType
 
-| 名称                              | 值          | 说明             |
-| --------------------------------- | ----------- | ---------------- |
-| NOTIFICATION_CONTENT_BASIC_TEXT   | ContentType | 普通类型通知。<br/>**系统能力**：SystemCapability.Notification.Notification     |
-| NOTIFICATION_CONTENT_LONG_TEXT    | ContentType | 长文本类型通知。<br/>**系统能力**：SystemCapability.Notification.Notification   |
-| NOTIFICATION_CONTENT_PICTURE      | ContentType | 图片类型通知。<br/>**系统能力**：SystemCapability.Notification.Notification     |
-| NOTIFICATION_CONTENT_CONVERSATION | ContentType | 社交类型通知。<br/>**系统能力**：SystemCapability.Notification.Notification     |
-| NOTIFICATION_CONTENT_MULTILINE    | ContentType | 多行文本类型通知。<br/>**系统能力**：SystemCapability.Notification.Notification |
+**系统能力：**以下各项对应的系统能力均为SystemCapability.Notification.Notification
+
+| 名称                              | 值          | 说明               |
+| --------------------------------- | ----------- | ------------------ |
+| NOTIFICATION_CONTENT_BASIC_TEXT   | ContentType | 普通类型通知。     |
+| NOTIFICATION_CONTENT_LONG_TEXT    | ContentType | 长文本类型通知。   |
+| NOTIFICATION_CONTENT_PICTURE      | ContentType | 图片类型通知。     |
+| NOTIFICATION_CONTENT_CONVERSATION | ContentType | 社交类型通知。     |
+| NOTIFICATION_CONTENT_MULTILINE    | ContentType | 多行文本类型通知。 |
 
 
 
 ## NotificationBasicContent
 
-| 名称           | 可读 | 可写 | 类型   | 必填 | 描述                             |
-| -------------- | ---- |--- | ------ | ---- | -------------------------------- |
-| title          | 是  | 是  | string | 是   | 通知标题。<br/>**系统能力**：SystemCapability.Notification.Notification                         |
-| text           | 是  | 是  | string | 是   | 通知内容。<br/>**系统能力**：SystemCapability.Notification.Notification                         |
-| additionalText | 是  | 是  | string | 是   | 通知次要内容，是对通知内容的补充。<br/>**系统能力**：SystemCapability.Notification.Notification |
+**系统能力：**以下各项对应的系统能力均为SystemCapability.Notification.Notification
+
+| 名称           | 可读 | 可写 | 类型   | 必填 | 描述                               |
+| -------------- | ---- | ---- | ------ | ---- | ---------------------------------- |
+| title          | 是   | 是   | string | 是   | 通知标题。                         |
+| text           | 是   | 是   | string | 是   | 通知内容。                         |
+| additionalText | 是   | 是   | string | 是   | 通知次要内容，是对通知内容的补充。 |
 
 
 
 ## NotificationLongTextContent
 
+**系统能力：**以下各项对应的系统能力均为SystemCapability.Notification.Notification
+
 | 名称           | 可读 | 可写 | 类型   | 必填 | 描述                             |
 | -------------- | ---- | --- | ------ | ---- | -------------------------------- |
-| title          | 是  | 是  | string | 是   | 通知标题。<br/>**系统能力**：SystemCapability.Notification.Notification                         |
-| text           | 是  | 是  | string | 是   | 通知内容。<br/>**系统能力**：SystemCapability.Notification.Notification                         |
-| additionalText | 是  | 是  | string | 是   | 通知次要内容，是对通知内容的补充。<br/>**系统能力**：SystemCapability.Notification.Notification |
-| longText       | 是  | 是  | string | 是   | 通知的长文本。<br/>**系统能力**：SystemCapability.Notification.Notification                     |
-| briefText      | 是  | 是  | string | 是   | 通知概要内容，是对通知内容的总结。<br/>**系统能力**：SystemCapability.Notification.Notification |
-| expandedTitle  | 是  | 是  | string | 是   | 通知展开时的标题。<br/>**系统能力**：SystemCapability.Notification.Notification                 |
+| title          | 是  | 是  | string | 是   | 通知标题。                         |
+| text           | 是  | 是  | string | 是   | 通知内容。                         |
+| additionalText | 是  | 是  | string | 是   | 通知次要内容，是对通知内容的补充。 |
+| longText       | 是  | 是  | string | 是   | 通知的长文本。                     |
+| briefText      | 是  | 是  | string | 是   | 通知概要内容，是对通知内容的总结。 |
+| expandedTitle  | 是  | 是  | string | 是   | 通知展开时的标题。                 |
 
 
 
 ## NotificationMultiLineContent
 
+**系统能力：**以下各项对应的系统能力均为SystemCapability.Notification.Notification
+
 | 名称           | 可读 | 可写 | 类型            | 必填 | 描述                             |
 | -------------- | --- | --- | --------------- | ---- | -------------------------------- |
-| title          | 是  | 是  | string          | 是   | 通知标题。<br/>**系统能力**：SystemCapability.Notification.Notification                         |
-| text           | 是  | 是  | string          | 是   | 通知内容。<br/>**系统能力**：SystemCapability.Notification.Notification                         |
-| additionalText | 是  | 是  | string          | 是   | 通知次要内容，是对通知内容的补充。<br/>**系统能力**：SystemCapability.Notification.Notification |
-| briefText      | 是  | 是  | string          | 是   | 通知概要内容，是对通知内容的总结。<br/>**系统能力**：SystemCapability.Notification.Notification |
-| longTitle      | 是  | 是  | string          | 是   | 通知展开时的标题。<br/>**系统能力**：SystemCapability.Notification.Notification                 |
-| lines          | 是  | 是  | Array\<String\> | 是   | 通知的多行文本。<br/>**系统能力**：SystemCapability.Notification.Notification                   |
+| title          | 是  | 是  | string          | 是   | 通知标题。                         |
+| text           | 是  | 是  | string          | 是   | 通知内容。                         |
+| additionalText | 是  | 是  | string          | 是   | 通知次要内容，是对通知内容的补充。 |
+| briefText      | 是  | 是  | string          | 是   | 通知概要内容，是对通知内容的总结。 |
+| longTitle      | 是  | 是  | string          | 是   | 通知展开时的标题。                 |
+| lines          | 是  | 是  | Array\<String\> | 是   | 通知的多行文本。                   |
 
 
 
 ## NotificationPictureContent
 
+**系统能力：**以下各项对应的系统能力均为SystemCapability.Notification.Notification
+
 | 名称           | 可读 | 可写 | 类型           | 必填 | 描述                             |
 | -------------- | ---- | --- | -------------- | ---- | -------------------------------- |
-| title          | 是  | 是  | string         | 是   | 通知标题。<br/>**系统能力**：SystemCapability.Notification.Notification                         |
-| text           | 是  | 是  | string         | 是   | 通知内容。<br/>**系统能力**：SystemCapability.Notification.Notification                         |
-| additionalText | 是  | 是  | string         | 是   | 通知次要内容，是对通知内容的补充。<br/>**系统能力**：SystemCapability.Notification.Notification |
-| briefText      | 是  | 是  | string         | 是   | 通知概要内容，是对通知内容的总结。<br/>**系统能力**：SystemCapability.Notification.Notification |
-| expandedTitle  | 是  | 是  | string         | 是   | 通知展开时的标题。<br/>**系统能力**：SystemCapability.Notification.Notification                 |
-| picture        | 是  | 是  | image.PixelMap | 是   | 通知的图片内容。<br/>**系统能力**：SystemCapability.Notification.Notification                   |
+| title          | 是  | 是  | string         | 是   | 通知标题。                         |
+| text           | 是  | 是  | string         | 是   | 通知内容。                         |
+| additionalText | 是  | 是  | string         | 是   | 通知次要内容，是对通知内容的补充。 |
+| briefText      | 是  | 是  | string         | 是   | 通知概要内容，是对通知内容的总结。 |
+| expandedTitle  | 是  | 是  | string         | 是   | 通知展开时的标题。                 |
+| picture        | 是  | 是  | image.PixelMap | 是   | 通知的图片内容。                   |
 
 
 
 ## BundleOption
 
+**系统能力：**以下各项对应的系统能力均为SystemCapability.Notification.Notification
+
 | 名称   | 可读 | 可写 | 类型   | 必填 | 描述   |
 | ------ | ---- | --- | ------ | ---- | ------ |
-| bundle | 是  | 是  | string | 是   | 包名。<br/>**系统能力**：SystemCapability.Notification.Notification   |
-| uid    | 是  | 是  | number | 否   | 用户id。<br/>**系统能力**：SystemCapability.Notification.Notification |
+| bundle | 是  | 是  | string | 是   | 包名。   |
+| uid    | 是  | 是  | number | 否   | 用户id。 |
 
 
 
 ## NotificationKey
 
+**系统能力：**以下各项对应的系统能力均为SystemCapability.Notification.Notification
+
 | 名称  | 可读 | 可写 | 类型   | 必填 | 描述     |
 | ----- | ---- | --- | ------ | ---- | -------- |
-| id    | 是  | 是  | number | 是   | 通知ID。<br/>**系统能力**：SystemCapability.Notification.Notification   |
-| label | 是  | 是  | string | 否   | 通知标签。<br/>**系统能力**：SystemCapability.Notification.Notification |
+| id    | 是  | 是  | number | 是   | 通知ID。   |
+| label | 是  | 是  | string | 否   | 通知标签。< |
 
 
 
 ## SlotType
 
-| 名称                 | 值       | 说明     |
-| -------------------- | -------- | -------- |
-| SOCIAL_COMMUNICATION | SlotType | 社交类型。<br/>**系统能力**：SystemCapability.Notification.Notification |
-| SERVICE_INFORMATION  | SlotType | 服务类型。<br/>**系统能力**：SystemCapability.Notification.Notification |
-| CONTENT_INFORMATION  | SlotType | 内容类型。<br/>**系统能力**：SystemCapability.Notification.Notification |
-| OTHER_TYPES          | SlotType | 其他类型。<br/>**系统能力**：SystemCapability.Notification.Notification |
+**系统能力：**以下各项对应的系统能力均为SystemCapability.Notification.Notification
+
+| 名称                 | 值       | 说明       |
+| -------------------- | -------- | ---------- |
+| SOCIAL_COMMUNICATION | SlotType | 社交类型。 |
+| SERVICE_INFORMATION  | SlotType | 服务类型。 |
+| CONTENT_INFORMATION  | SlotType | 内容类型。 |
+| OTHER_TYPES          | SlotType | 其他类型。 |
 
 
 
 ## NotificationActionButton
 
+**系统能力：**以下各项对应的系统能力均为SystemCapability.Notification.Notification
+
 | 名称      | 可读 | 可写 | 类型                                            | 必填 | 描述                      |
 | --------- | --- | ---- | ----------------------------------------------- | ---- | ------------------------- |
-| title     | 是  | 是  | string                                          | 是   | 按钮标题。<br/>**系统能力**：SystemCapability.Notification.Notification                  |
-| wantAgent | 是  | 是  | WantAgent                                       | 是   | 点击按钮时触发的WantAgent。<br/>**系统能力**：SystemCapability.Notification.Notification |
-| extras    | 是  | 是  | Array\<String\>                                 | 否   | 按钮扩展信息。<br/>**系统能力**：SystemCapability.Notification.Notification              |
-| icon      | 是  | 是  | image.PixelMap                                  | 否   | 按钮图标。<br/>**系统能力**：SystemCapability.Notification.Notification                  |
-| userInput | 是  | 是  | [NotificationUserInput](#notificationuserinput) | 否   | 用户输入对象实例。<br/>**系统能力**：SystemCapability.Notification.Notification          |
+| title     | 是  | 是  | string                                          | 是   | 按钮标题。                  |
+| wantAgent | 是  | 是  | WantAgent                                       | 是   | 点击按钮时触发的WantAgent。 |
+| extras    | 是  | 是  | Array\<String\>                                 | 否   | 按钮扩展信息。              |
+| icon      | 是  | 是  | image.PixelMap                                  | 否   | 按钮图标。                  |
+| userInput | 是  | 是  | [NotificationUserInput](#notificationuserinput) | 否   | 用户输入对象实例。          |
 
 
 
 ## NotificationUserInput
 
+**系统能力：**SystemCapability.Notification.Notification
+
 | 名称     | 可读 | 可写 | 类型   | 必填 | 描述                          |
 | -------- | --- | ---- | ------ | ---- | ----------------------------- |
-| inputKey | 是  | 是  | string | 是   | 用户输入时用于标识此输入的key。<br/>**系统能力**：SystemCapability.Notification.Notification |
+| inputKey | 是  | 是  | string | 是   | 用户输入时用于标识此输入的key。 |
 
 
 
 ## NotificationSubscribeInfo
 
+**系统能力：**以下各项对应的系统能力均为SystemCapability.Notification.Notification
+
 | 名称        | 可读 | 可写 | 类型            | 必填 | 描述                            |
 | ----------- | --- | ---- | --------------- | ---- | ------------------------------- |
-| bundleNames | 是  | 是  | Array\<string\> | 否   | 指定订阅哪些包名的APP发来的通知。<br/>**系统能力**：SystemCapability.Notification.Notification |
-| userId      | 是  | 是  | number          | 否   | 指定订阅哪个用户下发来的通知。<br/>**系统能力**：SystemCapability.Notification.Notification    |
+| bundleNames | 是  | 是  | Array\<string\> | 否   | 指定订阅哪些包名的APP发来的通知。 |
+| userId      | 是  | 是  | number          | 否   | 指定订阅哪个用户下发来的通知。    |
 
 
 
@@ -2304,30 +2343,36 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 模板信息
 
-| 名称 | 参数类型               | 可读 | 可写 | 说明     |
-| ---- | ---------------------- | ---- | ---- | -------- |
-| name | string                 | 是   | 是   | 模板名称。<br/>**系统能力**：SystemCapability.Notification.Notification |
-| data | {[key:string]: Object} | 是   | 是   | 模板数据。<br/>**系统能力**：SystemCapability.Notification.Notification |
+**系统能力：**以下各项对应的系统能力均为SystemCapability.Notification.Notification
+
+| 名称 | 参数类型               | 可读 | 可写 | 说明       |
+| ---- | ---------------------- | ---- | ---- | ---------- |
+| name | string                 | 是   | 是   | 模板名称。 |
+| data | {[key:string]: Object} | 是   | 是   | 模板数据。 |
 
 
 
 ## ActionResult
 
+**系统能力：**以下各项对应的系统能力均为SystemCapability.Notification.Notification
+
 | 名称         | 参数类型    | 可读 | 可写  | 说明     |
 | ------------ | ---------- | ---- | ---- | -------- |
-| bundleName   | string     | 是   | 是   | 点击通知后重定向应用的包名。<br/>**系统能力**：SystemCapability.Notification.Notification |
-| abilityName  | string     | 是   | 是   | 点击通知后重定向应用的的Ability名称。<br/>**系统能力**：SystemCapability.Notification.Notification |
-| uri          | string     | 是   | 是   | 要重定向到的页面的Uri。<br/>**系统能力**：SystemCapability.Notification.Notification |
+| bundleName   | string     | 是   | 是   | 点击通知后重定向应用的包名。 |
+| abilityName  | string     | 是   | 是   | 点击通知后重定向应用的的Ability名称。 |
+| uri          | string     | 是   | 是   | 要重定向到的页面的Uri。 |
 
 
 
 ## ShowNotificationOptions
 
+**系统能力：**以下各项对应的系统能力均为SystemCapability.Notification.Notification
+
 | 名称         | 参数类型       | 可读 | 可写  | 说明     |
 | ------------ | ----------    | ---- | ---- | -------- |
-| contentTitle | string        | 是   | 是   | 通知的标题。<br/>**系统能力**：SystemCapability.Notification.Notification |
-| contentText  | string        | 是   | 是   | 通知的内容。<br/>**系统能力**：SystemCapability.Notification.Notification |
-| clickAction  | ActionResult  | 是   | 是   | 点击通知后触发的动作。<br/>**系统能力**：SystemCapability.Notification.Notification |
+| contentTitle | string        | 是   | 是   | 通知的标题。 |
+| contentText  | string        | 是   | 是   | 通知的内容。 |
+| clickAction  | ActionResult  | 是   | 是   | 点击通知后触发的动作。 |
 
 
 
@@ -3244,45 +3289,53 @@ WantAgent.equal(wantAgent1, wantAgent2).then((data) => {
 
 ## WantAgentInfo
 
+**系统能力：**以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+
 | 名称           | 可读 | 可写 | 类型                            | 必填 | 描述                   |
 | -------------- | --- | ---- | ------------------------------- | ---- | ---------------------- |
-| wants          | 是  | 是  | Array\<Want\>                   | 是   | 将被执行的动作列表。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core     |
-| operationType  | 是  | 是  | wantAgent.OperationType         | 是   | 动作类型。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core               |
-| requestCode    | 是  | 是  | number                          | 是   | 使用者定义的一个私有值。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core |
-| wantAgentFlags | 是  | 是  | Array<wantAgent.WantAgentFlags> | 否   | 动作执行属性。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core           |
-| extraInfo      | 是  | 是  | {[key: string]: any}            | 否   | 额外数据。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core               |
+| wants          | 是  | 是  | Array\<Want\>                   | 是   | 将被执行的动作列表。     |
+| operationType  | 是  | 是  | wantAgent.OperationType         | 是   | 动作类型。               |
+| requestCode    | 是  | 是  | number                          | 是   | 使用者定义的一个私有值。 |
+| wantAgentFlags | 是  | 是  | Array<wantAgent.WantAgentFlags> | 否   | 动作执行属性。           |
+| extraInfo      | 是  | 是  | {[key: string]: any}            | 否   | 额外数据。               |
 
 
 
 ## WantAgentFlags
 
+**系统能力：**以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+
 | 名称                | 值             | 说明                                                         |
 | ------------------- | -------------- | ------------------------------------------------------------ |
-| ONE_TIME_FLAG       | WantAgentFlags | WantAgent仅能使用一次。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core                                        |
-| NO_BUILD_FLAG       | WantAgentFlags | 如果描述WantAgent对象不存在，则不创建它，直接返回null。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core        |
-| CANCEL_PRESENT_FLAG | WantAgentFlags | 在生成一个新的WantAgent对象前取消已存在的一个WantAgent对象。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core   |
-| UPDATE_PRESENT_FLAG | WantAgentFlags | 使用新的WantAgent的额外数据替换已存在的WantAgent中的额外数据。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core |
-| CONSTANT_FLAG       | WantAgentFlags | WantAgent是不可变的。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core                                          |
+| ONE_TIME_FLAG       | WantAgentFlags | WantAgent仅能使用一次。                                      |
+| NO_BUILD_FLAG       | WantAgentFlags | 如果描述WantAgent对象不存在，则不创建它，直接返回null。      |
+| CANCEL_PRESENT_FLAG | WantAgentFlags | 在生成一个新的WantAgent对象前取消已存在的一个WantAgent对象。 |
+| UPDATE_PRESENT_FLAG | WantAgentFlags | 使用新的WantAgent的额外数据替换已存在的WantAgent中的额外数据。 |
+| CONSTANT_FLAG       | WantAgentFlags | WantAgent是不可变的。                                        |
 
 
 
 ## OperationType
 
-| 名称              | 值            | 说明                    |
-| ----------------- | ------------- | ----------------------- |
-| UNKNOWN_TYPE      | OperationType | 不识别的类型。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core            |
-| START_ABILITY     | OperationType | 开启一个有页面的Ability。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core |
-| START_ABILITIES   | OperationType | 开启多个有页面的Ability。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core |
-| START_SERVICE     | OperationType | 开启一个无页面的ability。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core |
-| SEND_COMMON_EVENT | OperationType | 发送一个公共事件。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core        |
+**系统能力：**以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+
+| 名称              | 值            | 说明                      |
+| ----------------- | ------------- | ------------------------- |
+| UNKNOWN_TYPE      | OperationType | 不识别的类型。            |
+| START_ABILITY     | OperationType | 开启一个有页面的Ability。 |
+| START_ABILITIES   | OperationType | 开启多个有页面的Ability。 |
+| START_SERVICE     | OperationType | 开启一个无页面的ability。 |
+| SEND_COMMON_EVENT | OperationType | 发送一个公共事件。        |
 
 
 
 ## TriggerInfo
 
+**系统能力：**以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+
 | 名称       | 可读 | 可写 | 类型                 | 必填 | 描述        |
 | ---------- | --- | ---- | -------------------- | ---- | ----------- |
-| code       | 是  | 是  | number               | 是   | result code。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core |
-| want       | 是  | 是  | Want                 | 否   | Want。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core        |
-| permission | 是  | 是  | string               | 否   | 权限定义。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core    |
-| extraInfo  | 是  | 是  | {[key: string]: any} | 否   | 额外数据。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core    |
+| code       | 是  | 是  | number               | 是   | result code。 |
+| want       | 是  | 是  | Want                 | 否   | Want。        |
+| permission | 是  | 是  | string               | 否   | 权限定义。    |
+| extraInfo  | 是  | 是  | {[key: string]: any} | 否   | 额外数据。    |

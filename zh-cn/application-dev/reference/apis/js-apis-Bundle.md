@@ -476,6 +476,10 @@ queryAbilityByWant(want: Want, bundleFlags: number, userId: number, callback: As
 
 以异步方法根据给定的意图获取Ability信息，使用callback形式返回结果。
 
+**系统能力：**
+
+SystemCapability.BundleManager.BundleFramework
+
 **参数：**
 
 | 名称        | 类型                               | 必填 | 描述                                                         |
@@ -508,6 +512,10 @@ bundle.queryAbilityByWant(want, bundleFlags, userId, (err, data) => {
 queryAbilityByWant(want: Want, bundleFlags: number, callback: AsyncCallback<Array<AbilityInfo>>): void
 
 以异步方法根据给定的意图获取Ability信息，使用callback形式返回结果。
+
+**系统能力：**
+
+SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
@@ -699,6 +707,10 @@ getNameForUid(uid: number): Promise\<string>
 
 以异步方法通过uid获取对应的包名，使用Promise形式返回结果。
 
+**系统能力：**
+
+SystemCapability.BundleManager.BundleFramework
+
 **参数：**
 
 | 名称       | 类型   | 必填 | 描述     |
@@ -728,6 +740,10 @@ getNameForUid(uid: number, callback: AsyncCallback<string>): void;
 
 以异步方法通过uid获取对应的包名，使用callback形式返回结果。
 
+**系统能力：**
+
+SystemCapability.BundleManager.BundleFramework
+
 **参数：**
 
 | 名称       | 类型   | 必填 | 描述     |
@@ -748,8 +764,9 @@ bundle.getNameForUid(uid, (err, data) => {
 })
 ```
 
-
 ## ElementName
+
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
 | 名称        | 读写属性 | 类型   | 必填 | 描述                                                         |
 | ----------- | -------- | ------ | ---- | ------------------------------------------------------------ |
@@ -761,6 +778,8 @@ bundle.getNameForUid(uid, (err, data) => {
 
 ## InstallStatus
 
+ **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
+
 | 名称          | 读写属性 | 类型             | 必填 | 描述                                                         |
 | ------------- | -------- | ---------------- | ---- | ------------------------------------------------------------ |
 | status        | 只读     | InstallErrorCode | 是   | 安装结果code<br/>SUCCESS = 0<br/>STATUS_INSTALL_FAILURE = 1<br/>STATUS_INSTALL_FAILURE_ABORTED = 2,<br/>STATUS_INSTALL_FAILURE_INVALID = 3<br/>STATUS_INSTALL_FAILURE_CONFLICT = 4<br/>STATUS_INSTALL_FAILURE_STORAGE = 5<br/>STATUS_INSTALL_FAILURE_INCOMPATIBLE = 6<br/>STATUS_UNINSTALL_FAILURE = 7<br>STATUS_UNINSTALL_FAILURE_BLOCKED = 8<br/>STATUS_UNINSTALL_FAILURE_ABORTED = 9<br/>STATUS_UNINSTALL_FAILURE_CONFLICT = 10<br/>STATUS_INSTALL_FAILURE_DOWNLOAD_TIMEOUT = 0x0B<br/>STATUS_INSTALL_FAILURE_DOWNLOAD_FAILED = 0x0C<br/>STATUS_RECOVER_FAILURE_INVALID = 0x0D<br/>STATUS_ABILITY_NOT_FOUND = 0x40<br/>STATUS_BMS_SERVICE_ERROR = 0x41<br/>STATUS_FAILED_NO_SPACE_LEFT = 0x42<br/>STATUS_GRANT_REQUEST_PERMISSIONS_FAILED = 0x43<br/>STATUS_INSTALL_PERMISSION_DENIED = 0x44<br/>STATUS_UNINSTALL_PERMISSION_DENIED = 0x45 |
@@ -768,6 +787,8 @@ bundle.getNameForUid(uid, (err, data) => {
 ## BundleFlag
 
 包的标志
+
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
 | 名称               | 默认值 | 说明   |
 | ------ | ------ | ------ |
@@ -788,6 +809,8 @@ bundle.getNameForUid(uid, (err, data) => {
 
 包的选项
 
+ **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
+
 | 名称               | 类型 | 可读 | 可写 | 说明 |
 | ------ | ------ | ------ | ------ | ------ |
 | userId | number | 是 | 是 | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。 |
@@ -795,6 +818,8 @@ bundle.getNameForUid(uid, (err, data) => {
 ## BundleInfo
 
 应用包的信息
+
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
 | 名称               | 类型 | 可读 | 可写 | 说明 |
 | ------ | ------ | ------ | ------ | ------ |
@@ -826,6 +851,8 @@ bundle.getNameForUid(uid, (err, data) => {
 
 应用程序信息
 
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
+
 | 名称               | 类型 | 可读 | 可写 | 说明 |
 | ------ | ------ | ------ | ------ | ------ |
 | name             | string        | 是   | 否   | 应用程序的名称                             |
@@ -854,6 +881,8 @@ bundle.getNameForUid(uid, (err, data) => {
 
 应用程序的模块信息
 
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
+
 | 名称               | 类型 | 可读 | 可写 | 说明 |
 | ------ | ------ | ------ | ------ | ------ |
 | moduleName      | string | 是   | 否   | 模块名称 |
@@ -862,6 +891,8 @@ bundle.getNameForUid(uid, (err, data) => {
 ## CustomizeData
 
 自定义元数据
+
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
 | 名称  | 类型   | 可读 | 可写 | 说明             |
 | ----- | ------ | ---- | ---- | ---------------- |
@@ -873,6 +904,8 @@ bundle.getNameForUid(uid, (err, data) => {
 ## HapModuleInfo
 
 Hap模块信息
+
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
 | 名称               | 类型 | 可读 | 可写 | 说明 |
 | ------ | ------ | ------ | ------ | ------ |
@@ -897,6 +930,8 @@ Hap模块信息
 
 应用运行时需向系统申请的权限集合的详细信息
 
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
+
 | 名称               | 类型 | 可读 | 可写 | 说明 |
 | ------ | ------ | ------ | ------ | ------ |
 | name      | string    | 是   | 是   | 需要使用的权限名称   |
@@ -907,6 +942,8 @@ Hap模块信息
 
 描述权限使用的场景和时机
 
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
+
 | 名称               | 类型 | 可读 | 可写 | 说明 |
 | ------ | ------ | ------ | ------ | ------ |
 | abilities | Array<string> | 是   | 是   | 使用到该权限的Ability集合 |
@@ -916,6 +953,8 @@ Hap模块信息
 ## AbilityInfo
 
 Ability信息
+
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
 | 名称               | 类型 | 可读 | 可写 | 说明 |
 | ------ | ------ | ------ | ------ | ------ |
@@ -951,6 +990,8 @@ Ability信息
 
 Ability类型
 
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
+
 | 名称    | 类型 | 说明                        |
 | ------- | ---- | --------------------------- |
 | UNKNOWN | 无   | 未知Ability类型             |
@@ -961,6 +1002,8 @@ Ability类型
 ## DisplayOrientation
 
 屏幕显示方向
+
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
 | 名称          | 类型 | 说明                     |
 | ------------- | ---- | ------------------------ |
@@ -973,6 +1016,8 @@ Ability类型
 
 启动模式
 
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
+
 | 名称        | 类型 | 说明                |
 | ----------- | ---- | ------------------- |
 | SINGLETON  | 0    | Ability只有一个示例 |
@@ -981,6 +1026,8 @@ Ability类型
 ## AbilitySubType
 
 Ability的子类型
+
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
 | 名称        | 类型 | 说明                          |
 | ----------- | ---- | ----------------------------- |
