@@ -655,13 +655,13 @@ async function example() {
     let DIR_IMAGE = mediaLibrary.DirectoryType.DIR_IMAGE;
     const path = await media.getPublicDirectory(DIR_IMAGE);
     asset = await media.createAsset(mediaType, "image00003.jpg", path);
-    asset.open('rw').then((openError, fd) => {
-            if(fd > 0){
-                asset.close(fd);
-            }else{
-                console.info('File Open Failed!' + openError);
-            }
-    });
+    asset.open('rw')
+        .then((fd) => {
+            console.info('File fd!' + fd);
+        })
+        .catch((err) => {
+            console.info('File err!' + err);
+        });
 }
 ```
 
