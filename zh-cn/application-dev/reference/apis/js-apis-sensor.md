@@ -494,9 +494,9 @@ on(type: sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION, callback: Callback&lt;Ori
 - 示例：
   ```
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION,function(data){
-      console.info('X-coordinate component: ' + data.x);
-      console.info('Y-coordinate component: ' + data.y);
-      console.info('Z-coordinate component: ' + data.z);
+      console.info('The device rotates at an angle around the X axis: ' + data.beta);
+      console.info('The device rotates at an angle around the Y axis: ' + data.gamma);
+      console.info('The device rotates at an angle around the Z axis: ' + data.alpha);
   },
       {interval: 10000000}
   );
@@ -550,6 +550,7 @@ on(type:sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR,callback: Callback&lt;R
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
       console.info('Z-coordinate component: ' + data.z);
+      console.info('Scalar quantity: ' + data.w);
   },
       {interval: 10000000}
   );
@@ -1032,9 +1033,9 @@ once(type: sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION, callback: Callback&lt;O
 - 示例：
   ```
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION, function(data) {
-      console.info('X-coordinate component: ' + data.x);
-      console.info('Y-coordinate component: ' + data.y);
-      console.info('Z-coordinate component: ' + data.z);
+      console.info('The device rotates at an angle around the X axis: ' + data.beta);
+      console.info('The device rotates at an angle around the Y axis: ' + data.gamma);
+      console.info('The device rotates at an angle around the Z axis: ' + data.alpha);
     }
   );
   ```
@@ -1060,6 +1061,7 @@ once(type: sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback: Callback&
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
       console.info('Z-coordinate component: ' + data.z);
+      console.info('Scalar quantity: ' + data.w);
     }
   );
   ```
@@ -1505,9 +1507,9 @@ sensor.off(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED, callbac
 
 ```
 function callback(data) {
-    console.info('X-coordinate component: ' + data.x);
-    console.info('Y-coordinate component: ' + data.y);
-    console.info('Z-coordinate component: ' + data.z);
+    console.info('The device rotates at an angle around the X axis: ' + data.beta);
+    console.info('The device rotates at an angle around the Y axis: ' + data.gamma);
+    console.info('The device rotates at an angle around the Z axis: ' + data.alpha);
 }
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION, callback);
 ```
@@ -1608,6 +1610,7 @@ function callback(data) {
     console.info('X-coordinate component: ' + data.x);
     console.info('Y-coordinate component: ' + data.y);
     console.info('Z-coordinate component: ' + data.z);
+    console.info('Scalar quantity: ' + data.w);
 }
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback);
 ```
