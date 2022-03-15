@@ -383,7 +383,7 @@ cancelAuth(contextID : Uint8Array) : number;
   }
   ```
 
-## IUserAuthCallback <sup>8+</sup>
+## IUserAuthCallback<sup>8+</sup>
 
 认证过程中回调结果的对象。
 
@@ -552,7 +552,7 @@ onAcquireInfo ?: (module : number, acquire : number, extraInfo : any) => void;
 | FACE | 2 | 人脸认证。 |
 | FINGERPRINT | 4      | 指纹认证。 |
 
-##   AuthTrustLevel <sup>8+</sup>
+## AuthTrustLevel<sup>8+</sup>
 
 表示认证结果的信任等级枚举。
 
