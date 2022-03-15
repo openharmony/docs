@@ -40,7 +40,7 @@ WebGL的全称为Web Graphic Library(网页图形库)，主要用于交互式渲
 
 - Native API完成前端JavaScript与C++代码交互。
 
-- QuickJS与V8为图形框架，为WebGL模块提供绘制对象Surface。
+- JavaScript engine为图形框架，为WebGL模块提供绘制对象Surface。
 
 - WebGL模块对外暴露OpenGL ES的GPU绘制接口。
 
