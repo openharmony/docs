@@ -10,7 +10,7 @@ Ability assistant（Ability助手，简称为aa）是实现应用、原子化服
 
 - **help**
 
-  用于显示 aa 相关的帮助信息。
+  用于显示aa相关的帮助信息。
 
   **返回值：**
 
