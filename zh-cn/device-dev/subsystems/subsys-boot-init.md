@@ -1,58 +1,135 @@
 # init启动引导组件<a name="ZH-CN_TOPIC_0000001062722441"></a>
 
--   [init启动引导的配置文件](#section56901555917)
--   [开发指导](#section15371931131117)
--   [开发实例](#section173413113565)
+## 功能说明<a name="section56901555916">
 
-init启动引导组件负责在系统启动阶段启动关键服务进程。 若用户需要新增随开机自启动的系统服务，可将新增服务加入配置文件init.cfg中。
+  init启动引导组件负责在系统启动阶段启动关键服务进程。 若用户需要新增随开机自启动的系统服务，可添加新的配置文件xxx.cfg，系统会自动分析对应的cfg文件，并按照cfg文件启动对应的服务。
 
-## init启动引导的配置文件<a name="section56901555917"></a>
+- init启动引导的配置文件<a name="section56901555917"></a>
 
-init启动引导组件配置文件包含了所有需要由init进程启动的系统关键服务的服务名、可执行文件路径、权限和其他信息，该文件位于代码仓库“vendor/huawei/camera/init\_configs/“目录，烧写单板后可在“/etc/“目录下找到，文件名称为init.cfg，采用json格式，文件大小目前限制在100KB以内。
+   init启动引导组件配置文件包含了所有需要由init进程启动的系统关键服务的服务名、可执行文件路径、权限和其他信息，烧写单板后可在“/etc/“目录下找到，文件名称为init.cfg，采用json格式，文件大小目前限制在100KB以内。
 
-init进程启动后读取/etc/init.cfg，然后解析其json格式内容，并根据解析结果依次加载系统服务。
+  init进程启动后读取/etc/init.cfg，然后解析其json格式内容，并根据解析结果依次加载系统服务。
 
-## 开发指导<a name="section15371931131117"></a>
+  各模块需要添加关键服务时，也可以添加模块对应的cfg文件，编译时拷贝文件到/system/etc/init目录下，init进程会解析改cfg文件，并启动对应的服务。
 
-1.  配置jobs数组。
+- init服务启动控制(仅标准系统以上提供)<a name="section56901555918"></a>
 
-    init启动引导组件将系统启动分为三个阶段：
+  init会根据用户的服务配置，把服务分成三类，在不同的阶段进行启动。
 
-    -   “pre-init”阶段：启动系统服务之前需要先执行的操作，例如挂载文件系统、创建文件夹、修改权限等。
-    -   “init”阶段：系统服务启动阶段。
-    -   “post-init”阶段：系统服务启动完后还需要执行的操作。
+  - “boot”类型：对应系统中需要优先启动的服务，这类服务在init完成init阶段后启动。
+  - “normal”类型：默认配置，对应系统中的普通服务，这类服务在init命令执行完成后启动。
+  - "condition"类型：对应有特殊要求的服务，可以直接通过start xxx 命令执行启动，一般在条件job或者在init的某个阶段使用命令启动。
 
-    上述每个阶段用一个job表示，一个job对应一个命令集合，init通过依次执行每个job中的命令来完成系统初始化。job执行顺序：先执行“pre-init”，再执行“init”，最后执行“post-init”。
+  服务间或服务与命令之间存在依赖关系，需要通过"condition"描述服务，例如：
+  ```
+    "services" : [{
+        "name" : "service1",
+        "path" : ["/bin/process1", "param1", "param2"],
+        "uid" : 1,
+        "gid" : 1,
+        "once" : 0,
+        "importance" : 1,
+        "caps" : [0, 1, 2, 5],
+        "start-mode" : "condition",
+        "cpucore" : [0],
+        "critical" : [0, 5, 10],
+        "apl" : "normal",
+        "d-caps" : ["OHOS_DMS"]
+        "jobs" : {
+            "on-boot" : "boot",
+            "on-start" : "services:service1_start",
+            "on-stop" : "services:service1_stop",
+            "on-restart" : "services:service1_restart"
+       }
+    },
 
-    ```
-        "jobs" : [{
-                "name" : "pre-init",      
-                "cmds" : [                               
-                    "mkdir /testdir",      
-                    "chmod 0700 /testdir", 
-                    "chown 99 99 /testdir",
-                    "mkdir /testdir2",
-                    "mount vfat /dev/mmcblk0p0 /testdir2 noexec nosuid" // mount命令，格式为：mount 文件系统类型 source target flags data
-                 ]
+  ```
+- init服务并行控制(仅标准系统以上提供)<a name="section56901555919"></a>
+
+  init提供服务并行处理能力，启动服务在不同的阶段执行job的能力。
+
+  - “on-start”：在服务进程被fock后执行，不同服务的on-start job可以并行执行（在服务的子进程中执行，只对改进程产生影响）。
+  - “on-stop”：在服务停止时执行。
+  - "on-restart"：在服务重启时执行。
+
+- init 按需启动(仅标准系统以上提供)<a name="section56901555920"></a>
+
+  由init管理的服务支持按需启动，按需启动的服务不会在系统启动过程中主动被拉起，而是当某些事件发生时才会被init按需拉起，触发服务启动的事件可能是被init监听的相关socket有消息上报、samgr收到客户端的请求需要拉起SA服务等情况。
+
+  "ondemand" 属性是按需启动的服务的标志，一个服务配置了该属性值为true的时候，服务不再需要配置start命令来拉起，而是被监听的相应事件发生时才会被拉起。
+
+  - SA进程按需启动
+    1. 应用请求SA句柄时samgr需识别SA所属进程是否可动态拉起。
+    2. 如需拉起，则需阻塞请求，等init拉起SA进程并注册SA后再返回所请求的SA句柄。
+
+  - socket进程按需启动
+    1. init在pre-fork阶段为socket类进程创建好socket，init中监听创建好的socket上的网络事件。
+    2. socket上有报文事件后，init拉起socket进程进行报文处理，init进程取消socket数据的监听，由socket进程处理。
+    3. socket进程无报文处理后，可以自动退出，退出后init回收该子进程并重新监听socket网络数据。
+
+  - 热插拔服务进程按需启动
+    <br> &emsp; 进程可根据系统参数的变化进行热插拔事件按需启动处理。
+
+- init 进程启动&回收能力增强 <a name="section56901555921"></a>
+
+  进程启动时，支持在配置文件中配置服务进程的绑核、优先级、MAC信息以及AccessToken信息。
+
+  - init提供修改*.cfg配置文件， 为服务进程提供cpu绑核功能。
+  - init提供修改*.cfg配置文件， 为服务进程提供优先级设置。
+  - init提供修改*.cfg配置文件， 为服务提供设置AccessToken, 为系统服务进程设置其分布式Capability能力（仅标准系统以上提供）。
+  - init提供修改*.cfg配置文件， 为服务提供抑制机制。
+
+- init FD代持(仅标准系统以上提供)<a name="section56901555922"></a>
+
+  FD代持是按需启动的一个辅助扩展机制，按需启动进程可以保持退出前的fd状态句柄不丢失。按需启动进程退出前可将fd发送给init代持，再次启动后再从init获取fd。
+
+  init提供了相关接口供服务调用，服务进程退出前调用接口将fd通过支持IPC通信的socket发送给init代持，待该服务重新启动时，init将持有的该服务相关的fd句柄通过同样的方式返回给服务。
+
+- init job<a name="section56901555923"></a>
+
+  init提供job能力，一个job就是一组命令的集合。job可以在init.cfg中配置，也可以在模块的自定义cfg中配置。init解析程序会把相同名字job的命令合并到一个job中。同一名字的job只能保证init.cfg中的命令优先执行，其他cfg间的命令执行顺序不保证。
+
+  - 普通job：一般是init启动的固定阶段，如“pre-init“，”init“，”post-init“等，这类job在init启动的固定阶段执行。
+
+  - 自定义job：用户自定义的job，这类job按照一定的规则进行触发。
+    - job：用户任意定义，可以通过trigger命令执行。
+    - 控制job(仅标准系统以上提供)：按条件触发处理的能力。在job中可以设置触发条件，当对应的属性值满足设置的条件时，就会触发job执行。触发条件支持&&和||操作，可以根据不同的属性就行组合。
+
+## 开发指导<a name="section56901555924"></a>
+
+  1. 配置jobs数组。
+
+      init启动引导组件将系统启动分为三个阶段：
+
+      -   “pre-init”阶段：启动系统服务之前需要先执行的操作，例如挂载文件系统、创建文件夹、修改权限等。
+      -   “init”阶段：系统服务启动阶段。
+      -   “post-init”阶段：系统服务启动完后还需要执行的操作。
+
+  ```
+    "jobs" : [{
+            "name" : "pre-init",
+            "cmds" : [
+                "mkdir /testdir",
+                "chmod 0700 /testdir",
+                "chown 99 99 /testdir",
+                "mount vfat /dev/mmcblk0p0 /testdir2 noexec nosuid" // mount命令，格式为：mount 文件系统类型 source target flags data
+            ]
             }, {
-                "name" : "init",          
+                "name" : "init",
                 "cmds" : [
-                    "start service1",     
-                    "start service2"      
-                 ]
-            }, {
-                 "name" : "post-init",  
-                 "cmds" : []
-            }
-        ],
-    ```
+                    "start service1",
+                    ]
+                }, {
+                    "name" : "post-init",
+                    "cmds" : []
+                }
+            ]
+  ```
 
-    **表 1**  执行job介绍
-
-    <a name="table1801509284"></a>
-    <table><thead align="left"><tr id="row680703289"><th class="cellrowborder" valign="top" width="13.4%" id="mcps1.2.3.1.1"><p id="p11805012282"><a name="p11805012282"></a><a name="p11805012282"></a>job名</p>
+**表 1**  执行job介绍 <a name="table1801509284"></a>
+<table><thead align="left"><tr id="row680703289"><th class="cellrowborder" valign="top" width="13.4%" id="mcps1.2.3.1.1"><p id="p11805012282"><a name="p11805012282"></a><a name="p11805012282"></a>job名</p>
     </th>
-    <th class="cellrowborder" valign="top" width="86.6%" id="mcps1.2.3.1.2"><p id="p2811605289"><a name="p2811605289"></a><a name="p2811605289"></a>说明</p>
+<th class="cellrowborder" valign="top" width="86.6%" id="mcps1.2.3.1.2"><p id="p2811605289"><a name="p2811605289"></a><a name="p2811605289"></a>说明</p>
     </th>
     </tr>
     </thead>
@@ -68,20 +145,16 @@ init进程启动后读取/etc/init.cfg，然后解析其json格式内容，并�
     </tr>
     <tr id="row181100162813"><td class="cellrowborder" valign="top" width="13.4%" headers="mcps1.2.3.1.1 "><p id="p3811804281"><a name="p3811804281"></a><a name="p3811804281"></a>post-init</p>
     </td>
-    <td class="cellrowborder" valign="top" width="86.6%" headers="mcps1.2.3.1.2 "><p id="p18116016285"><a name="p18116016285"></a><a name="p18116016285"></a>最后被执行的job，如果开发者的进程在启动完成之后需要有一些处理（如驱动初始化后再挂载设备），可以把这类操作放到该job执行。</p>
+    <td class="cellrowborder" valign="top" width="86.6%" headers="mcps1.2.3.1.2 "><p id="p18116016285"><a name="p18116016285"></a><a name="p18116016285"></a>最后被执行的job，如果开发者的进程在启动完成之后需要有一些处理（如驱动初始化后再挂载设备），可以把这类操作放到该job执行。单个job最多支持30条命令（当前仅支持start/mkdir/chmod/chown/mount/loadcfg），命令名称和后面的参数（参数长度≤128字节）之间有且只能有一个空格。</p>
     </td>
     </tr>
     </tbody>
     </table>
 
-    单个job最多支持30条命令（当前仅支持start/mkdir/chmod/chown/mount/loadcfg），命令名称和后面的参数（参数长度≤128字节）之间有且只能有一个空格。
-
-    **表 2**  命令集说明
-
-    <a name="table122681439144112"></a>
-    <table><thead align="left"><tr id="row826873984116"><th class="cellrowborder" valign="top" width="10.15%" id="mcps1.2.4.1.1"><p id="p826833919412"><a name="p826833919412"></a><a name="p826833919412"></a>命令</p>
+**表 2**  命令集说明 <a name="table122681439144112"></a>
+<table><thead align="left"><tr id="row826873984116"><th class="cellrowborder" valign="top" width="10.15%" id="mcps1.2.4.1.1"><p id="p826833919412"><a name="p826833919412"></a><a name="p826833919412"></a>命令</p>
     </th>
-    <th class="cellrowborder" valign="top" width="51.83%" id="mcps1.2.4.1.2"><p id="p3381142134118"><a name="p3381142134118"></a><a name="p3381142134118"></a>命令格式和示例</p>
+<th class="cellrowborder" valign="top" width="51.83%" id="mcps1.2.4.1.2"><p id="p3381142134118"><a name="p3381142134118"></a><a name="p3381142134118"></a>命令格式和示例</p>
     </th>
     <th class="cellrowborder" valign="top" width="38.019999999999996%" id="mcps1.2.4.1.3"><p id="p1268539154110"><a name="p1268539154110"></a><a name="p1268539154110"></a>说明</p>
     </th>
@@ -142,33 +215,46 @@ init进程启动后读取/etc/init.cfg，然后解析其json格式内容，并�
     </tbody>
     </table>
 
-2.  配置services数组，service集合（数组形式），包含了init进程需要启动的所有系统服务（最多支持100个）。
+  2.  配置services数组，service集合（数组形式），包含了init进程需要启动的所有系统服务（最多支持100个）。
 
-    ```
-        "services" : [{                         
-                "name" : "service1",            
-                "path" : ["/bin/process1", "param1", "param2"],  
-                "uid" : 1,                      
-                "gid" : 1,                      
-                "once" : 0,                     
-                "importance" : 1,                                                                    
-                "caps" : [0, 1, 2, 5]           
-        }, {
-                "name" : "service2",            
-                "path" : "/bin/process2",
-                "uid" : 2,
-                "gid" : 2,
-                "once" : 1,
-                "importance" : 0,
-                "caps" : [ ]
-            }
-        ]
-    ```
+```
+    "services" : [{
+        "name" : "service1",
+        "path" : ["/bin/process1", "param1", "param2"],
+        "uid" : 1,
+        "gid" : 1,
+        "once" : 0,
+        "importance" : 1,
+        "caps" : [0, 1, 2, 5],
+        "start-mode" : "condition",
+        "cpucore" : [0],
+        "critical" : [0, 5, 10],
+        "apl" : "normal",
+        "d-caps" : ["OHOS_DMS"]
+        "jobs" : {
+            "on-boot" : "boot",
+            "on-start" : "services:service1_start",
+            "on-stop" : "services:service1_stop",
+            "on-restart" : "services:service1_restart"
+       }
+    }, {
+        "name" : "service2",
+        "path" : "/bin/process2",
+        "uid" : 2,
+        "gid" : 2,
+        "once" : 1,
+        "importance" : 0,
+        "caps" : [ ]，
+        "cpucore" : 0,
+        "critical" : [ ],
+        "apl" : "normal",
+        "d-caps" : [ ]
+    }]
+```
 
-    **表 3**  service字段说明
+**表 3**  service字段说明<a name="table14737791471"></a>
 
-    <a name="table14737791471"></a>
-    <table><thead align="left"><tr id="row273839577"><th class="cellrowborder" valign="top" width="16.64%" id="mcps1.2.3.1.1"><p id="p107382095711"><a name="p107382095711"></a><a name="p107382095711"></a>字段名</p>
+<table><thead align="left"><tr id="row273839577"><th class="cellrowborder" valign="top" width="16.64%" id="mcps1.2.3.1.1"><p id="p107382095711"><a name="p107382095711"></a><a name="p107382095711"></a>字段名</p>
     </th>
     <th class="cellrowborder" valign="top" width="83.36%" id="mcps1.2.3.1.2"><p id="p17738189277"><a name="p17738189277"></a><a name="p17738189277"></a>说明</p>
     </th>
@@ -204,9 +290,7 @@ init进程启动后读取/etc/init.cfg，然后解析其json格式内容，并�
     </tr>
     <tr id="row386110321155"><td class="cellrowborder" valign="top" width="16.64%" headers="mcps1.2.3.1.1 "><p id="p14861113212156"><a name="p14861113212156"></a><a name="p14861113212156"></a>importance</p>
     </td>
-    <td class="cellrowborder" valign="top" width="83.36%" headers="mcps1.2.3.1.2 "><p id="p166448210816"><a name="p166448210816"></a><a name="p166448210816"></a>当前服务进程是否为关键系统进程：</p>
-    <p id="p8572182712811"><a name="p8572182712811"></a><a name="p8572182712811"></a>0：非关键系统进程，当该进程退出时，init不会将系统复位重启；</p>
-    <p id="p11861032111516"><a name="p11861032111516"></a><a name="p11861032111516"></a>1：关键系统进程，当该进程退出时，init将系统复位重启。</p>
+    <td class="cellrowborder" valign="top" width="83.36%" headers="mcps1.2.3.1.2 "><p id="p166448210816"><a name="p166448210816"></a><a name="p166448210816"></a>标准系统中：<br> 服务进程优先级， 取值范围[-20， 19]; <br> 小型系统中：<br>0 : 非重要进程 <br> 1 : 重要进程</p>
     </td>
     </tr>
     <tr id="row1689310618179"><td class="cellrowborder" valign="top" width="16.64%" headers="mcps1.2.3.1.1 "><p id="p108931367177"><a name="p108931367177"></a><a name="p108931367177"></a>caps</p>
@@ -214,13 +298,57 @@ init进程启动后读取/etc/init.cfg，然后解析其json格式内容，并�
     <td class="cellrowborder" valign="top" width="83.36%" headers="mcps1.2.3.1.2 "><p id="p489313618173"><a name="p489313618173"></a><a name="p489313618173"></a>当前服务所需的capability值，根据安全子系统已支持的capability，评估所需的capability，遵循最小权限原则配置（当前最多可配置100个值）。</p>
     </td>
     </tr>
+    </tr>
+    <tr id="row1689310618179"><td class="cellrowborder" valign="top" width="16.64%" headers="mcps1.2.3.1.1 "><p id="p108931367177"><a name="p108931367177"></a><a name="p108931367177"></a>critical</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="83.36%" headers="mcps1.2.3.1.2 "><p id="p489313618173"><a name="p489313618173"></a><a name="p489313618173"></a>critical服务启动失败后， 需要M秒内重新拉起， 拉起失败N次后， 直接重启系统， N默认为4， M默认20。（仅标准系统以上提供 "critical" : [0, 2, 10]; 类型为int型数组)。<a name="section56901555917"></a><a name="section56901555917"></a></p>
+    <p id="p8572182712811"><a name="p8572182712811"></a><a name="p8572182712811"></a>0：不使能；</p>
+    <p id="p11861032111517"><a name="p11861032111517"></a><a name="p11861032111517"></a>1：使能。</p>
+    </td>
+    </tr>
+    </tr>
+    <tr id="row1689310618179"><td class="cellrowborder" valign="top" width="16.64%" headers="mcps1.2.3.1.1 "><p id="p108931367177"><a name="p108931367177"></a><a name="p108931367177"></a>cpucore</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="83.36%" headers="mcps1.2.3.1.2 "><p id="p489313618173"><a name="p489313618173"></a><a name="p489313618173"></a>服务需要的绑定的cpu核心数， 类型为int型数组。<a name="section56901555917"></a><a name="section56901555917"></a></p>
+    </td>
+    </tr>
+    </tr>
+    <tr id="row1689310618179"><td class="cellrowborder" valign="top" width="16.64%" headers="mcps1.2.3.1.1 "><p id="p108931367177"><a name="p108931367177"></a><a name="p108931367177"></a>d-caps</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="83.36%" headers="mcps1.2.3.1.2 "><p id="p489313618173"><a name="p489313618173"></a><a name="p489313618173"></a>分布式能力 (仅标准系统以上提供)。<a name="section56901555917"></a><a name="section56901555917"></a></p>
+    </td>
+    </tr>
+    </tr>
+    <tr id="row1689310618179"><td class="cellrowborder" valign="top" width="16.64%" headers="mcps1.2.3.1.1 "><p id="p108931367177"><a name="p108931367177"></a><a name="p108931367177"></a>apl</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="83.36%" headers="mcps1.2.3.1.2 "><p id="p489313618173"><a name="p489313618173"></a><a name="p489313618173"></a>能力特权级别：system_core, normal, system_basic。 默认system_core (仅标准系统以上提供)。<a name="section56901555917"></a><a name="section56901555917"></a></p>
+    </td>
+    </tr>
+    <tr id="row1689310618179"><td class="cellrowborder" valign="top" width="16.64%" headers="mcps1.2.3.1.1 "><p id="p108931367177"><a name="p108931367177"></a><a name="p108931367177"></a>start-mode</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="83.36%" headers="mcps1.2.3.1.2 "><p id="p489313618173"><a name="p489313618173"></a><a name="p489313618173"></a>服务的启动模式，具体描述：init服务启动控制(仅标准系统以上提供)。<a name="section56901555917"></a><a name="section56901555917"></a></p>
+    </td>
+    </tr>
+    <tr id="row1689310618179"><td class="cellrowborder" valign="top" width="16.64%" headers="mcps1.2.3.1.1 "><p id="p108931367177"><a name="p108931367177"></a><a name="p108931367177"></a>jobs</p>
+    </td>
+    <td class="cellrowborder" valign="top" width="83.36%" headers="mcps1.2.3.1.2 "><p id="p489313618173"><a name="p489313618173"></a><a name="p489313618173"></a>当前服务在不同阶段可以执行的job。具体说明可以看：init服务并行控制(仅标准系统以上提供)。<a name="section56901555917"></a></p>
+    </td>
+    </tr>
     </tbody>
     </table>
 
+  **表 4**  接口介绍
 
-## 开发实例<a name="section173413113565"></a>
+  | 函数名     | 函数解释 |参数解释  |
+  | :----------  |  :----------  |:--------|
+  | int *ServiceGetFd(const char *serviceName, size_t *outfdCount) | 获取init代持的fd | 返回值：成功返回fd数组指针，失败返回NULL。备注：需手动释放<br>参数：<br> serviceName: 服务名<br>outfdCount: 返回的fd数组长度 |
+  | int ServiceSaveFd(const char *serviceName, int *fds, int fdCount) | 请求init代持fd | 返回值：成功返回0，失败返回-1 <br> 参数：<br> serviceName: 服务名 <br> fds: 需要init代持的fd数组指针<br>fdCount: fd数组长度
+  | int ServiceControlWithExtra(const char *serviceName, int action, const char *extArgv[], int extArgc) | 配置服务参数 | 返回值：成功返回0，失败返回-1 <br> 参数: <br> serviceName: 服务名 <br> action: 服务行为（"start", "stop", "restart"） <br> extArgv: 参数数组 <br> extArgc: 参数个数
+  | int ServiceControl(const char *serviceName, int action)  | 控制服务行为 | 返回值：成功返回0，失败返回-1 <br> 参数：<br> serviceName: 服务名 <br> action: 服务行为（"start"， "stop", "restart")
 
-init启动引导程序，此处以要新增一个名为MySystemApp的系统服务为例进行说明，使用如下配置：
+## 开发实例<a name="section56901555925"></a>
+
+  init启动引导程序，此处以要新增一个名为MySystemApp的系统服务为例进行说明，使用如下配置：
 
 ```
 {
@@ -248,7 +376,15 @@ init启动引导程序，此处以要新增一个名为MySystemApp的系统服�
         "gid" : 20,         //  MySystemApp系统服务的gid是20
         "once" : 0,         //  MySystemApp系统服务的非一次性进程，即如果MySystemApp系统服务因任何原因退出，init进程需要将其重新拉起
         "importance" : 0,    //  MySystemApp系统服务不是关键系统进程，即如果MySystemApp系统服务因任何原因退出，init进程无需重启单板
-        "caps" : []           //  MySystemApp系统服务不需要任何capability权限（即MySystemApp系统服务不涉及与capability相关的操作）
+        "caps" : [],           //  MySystemApp系统服务不需要任何capability权限（即MySystemApp系统服务不涉及与capability相关的操作）
+        "start-mode" : "condition",
+        "critical": [1, 2, 10],   //MySystemApp系统服务的critical配置，需传入三个参数， 分别为使能：1， 执行次数：2， 执行时间：10
+        "jobs" : {
+            "on-boot" : "boot",
+            "on-start" : "services:MySystemApp_start",
+            "on-stop" : "services:MySystemApp_stop",
+            "on-restart" : "services:MySystemApp_restart"
+        }
      }
      ]
 }
@@ -260,3 +396,40 @@ init启动引导程序，此处以要新增一个名为MySystemApp的系统服�
 2.  使用kill命令将上述新增的MySystemApp进程杀死，观察该进程是否会被重新拉起（此处应该为重新拉起）。
 3.  使用kill命令将上述新增的MySystemApp进程杀死，观察是否会导致单板重启（此处应该为不重启）。
 
+## 常见问题<a name="section56901555926"></a>
+
+### 服务不存在<a name="section56901555927"></a>
+
+  &emsp; **现象描述** <br>
+    &emsp;&emsp; 内核Log打印 "Failed get servName"。
+
+  &emsp; **原因分析** <br>
+     &emsp; &emsp; kernel log 的输出，都是由init 打印。在init 中查找对应的代码位置。发现是服务不存在。
+
+   &emsp; **解决方法** <br>
+   &emsp;  &emsp; 1. 确认服务是否在cfg中正确配置。 <br>
+   &emsp;  &emsp; 2. 服务的cfg文件是否正常加载。 <br>
+   &emsp;  &emsp; 3. cfg文件格式是否正确。
+
+### 请求其他服务代持fd，init有报错<a name="section56901555928"></a>
+
+&emsp;  **现象描述**
+
+   &emsp;  &emsp; 内核Log打印 "Service \' xxx \'(pid = xxx) is not valid or request with unexpected process(pid = xxx)"。
+
+  &emsp; **原因分析** <br>
+     &emsp; &emsp; kernel log 的输出，都是由init 打印。在init 中查找对应的代码位置。发现是其他服务代持fd。
+
+  &emsp; **解决方法** <br>
+    &emsp; &emsp; 只支持代持本服务的fd， 不允许让其他服务代持fd。
+
+### 服务没有配置ondemand 选项<a name="section56901555929"></a>
+
+  &emsp; **现象描述** <br>
+     &emsp; &emsp; 内核Log打印 "service : %s had started already"。
+
+  &emsp; **原因分析** <br>
+     &emsp; &emsp; kernel log 的输出，都是由init 打印。在init 中查找对应的代码位置。发现是服务没有配置ondemand。
+
+  &emsp; **解决方法** <br>
+     &emsp; &emsp; 服务对应的.cfg文件正确配置如： "ondemand" : true。
