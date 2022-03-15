@@ -47,7 +47,7 @@ The HiSysEvent tool is a command line tool preconfigured in the **/system/bin** 
     | -t&nbsp;        | Event tag used to filter subscribed real-time system events.|
     | -c&nbsp;        | Matching rule for event tags. The options can be **WHOLE_WORD**, **PREFIX**, or **REGULAR**.|
 
-    Example commands:
+    Example:
 
     ```
     # hisysevent -r -t "TAG" -c PREFIX
@@ -74,7 +74,7 @@ The HiSysEvent tool is a command line tool preconfigured in the **/system/bin** 
     | -n       | Event name used to filter subscribed real-time system events.|
     | -c       | Matching rule for event domains and event names. The options can be **WHOLE_WORD**, **PREFIX**, or **REGULAR**.|
 
-    Example commands:
+    Example:
 
     ```
     # hisysevent -r -o "DOMAINA" -n "EVENTNAMEA"
@@ -118,7 +118,7 @@ The HiSysEvent tool is a command line tool preconfigured in the **/system/bin** 
     | -s       | Start time for querying historical system events. Only system events generated after the start time are returned.|
     | -e       | End time for querying historical system events. Only system events generated before the end time are returned.|
 
-    Example commands:
+    Example:
 
     ```
     # hisysevent -l -s 20207388633 -e 20207389000
@@ -140,7 +140,7 @@ The HiSysEvent tool is a command line tool preconfigured in the **/system/bin** 
     | -------- | --------- |
     | -m       | Maximum number of historical system events that can be queried. The value ranges from **0** to **1000**. The number of returned system events is not more than the value of this parameter.|
 
-    Example commands:
+    Example:
 
     ```
     # hisysevent -l -s 20207388633 -e 20207389000 -m 3
