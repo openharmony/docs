@@ -136,7 +136,8 @@ After the init process starts, it reads the **/etc/init.cfg** file, parses the c
     <td class="cellrowborder" valign="top" width="51.83%" headers="mcps1.2.4.1.2 "><p id="p1969364211116"><a name="p1969364211116"></a><a name="p1969364211116"></a>loadcfg filePath</p>
     <p id="p1858112368211"><a name="p1858112368211"></a><a name="p1858112368211"></a>Example: loadcfg /patch/fstab.cfg</p>
     </td>
-    <td class="cellrowborder" valign="top" width="38.019999999999996%" headers="mcps1.2.4.1.3 "><p id="p13986141320510"><a name="p13986141320510"></a><a name="p13986141320510"></a>Loads other <strong>.cfg</strong> files. The maximum size of the target file (only /patch/fstab.cfg supported currently) is 50 KB. Each line in the /patch/fstab.cfg file is a command. The command types and formats must comply with their respective requirements mentioned in this table. A maximum of 20 commands are allowed.</p>
+    <td class="cellrowborder" valign="top" width="38.019999999999996%" headers="mcps1.2.4.1.3 "><p id="p13986141320510"><a name="p13986141320510"></a><a name="p13986141320510"></a>Loads other <strong>.cfg</strong> files. The maximum size of the target file (only 
+<strong>/patch/fstab.cfg</strong> supported currently) is 50 KB. Each line in the <strong>/patch/fstab.cfg</strong> file is a command. The command types and formats must comply with their respective requirements mentioned in this table. A maximum of 20 commands are allowed.</p>
     </td>
     </tr>
     </tbody>
