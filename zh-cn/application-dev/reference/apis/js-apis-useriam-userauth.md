@@ -6,7 +6,7 @@
 
 ## 导入模块
 
-```
+```js
 import userIAM_userAuth from '@ohos.userIAM.userAuth';
 ```
 
@@ -18,38 +18,71 @@ SystemCapability.UserIAM.UserAuth
 
 ohos.permission.ACCESS_BIOMETRIC
 
-
 ## 完整示例
 
-```
+```js
+// API version 6
 import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
 export default {
     startAuth() {
         console.info("start auth");
-        let tipCallback = (tip)=>{
-            console.info("receive tip: errorCode(" + tip.errorCode + ") code(" + tip.tipCode + ") event(" +
-                tip.tipEvent + ") info(" + tip.tipInfo + ")");
-            // 此处添加提示信息显示逻辑
-        };
         let auth = userIAM_userAuth.getAuthenticator();
-        auth.on("tip", tipCallback);
         auth.execute("FACE_ONLY", "S2").then((code)=>{
-            auth.off("tip", tipCallback);
             console.info("auth success");
             // 此处添加认证成功逻辑
         }).catch((code)=>{
-            auth.off("tip", tipCallback);
             console.error("auth fail, code = " + code);
             // 此处添加认证失败逻辑
+        });
+    }
+}
+
+// API version 8
+import userIAM_userAuth from '@ohos.userIAM.userAuth';
+
+export default {
+    let auth = new userIAM_userAuth.UserAuth();
+
+    getVersion() {
+        console.info("start get version");
+        let version = auth.getVersion();
+        console.info("auth version = " + version);
+    },
+
+    startAuth() {
+        console.info("start auth");
+        auth.auth(null, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1, {
+            onResult: (result, extraInfo) => {
+                try {
+                    console.info("auth onResult result = " + result);
+                    console.info("auth onResult extraInfo = " + JSON.stringify(extraInfo));
+                    if (result == SUCCESS) {
+                        // 此处添加认证成功逻辑
+                    }  else {
+                        // 此处添加认证失败逻辑
+                    }
+                } catch (e) {
+                    console.info("auth onResult error = " + e);
+                }
+            },
+
+            onAcquireInfo: (module, acquire, extraInfo) => {
+                try {
+                    console.info("auth onAcquireInfo module = " + module);
+                    console.info("auth onAcquireInfo acquire = " + acquire);
+                    console.info("auth onAcquireInfo extraInfo = " + JSON.stringify(extraInfo));
+                } catch (e) {
+                    console.info("auth onAcquireInfo error = " + e);
+                }
+            }
         });
     },
 
     checkAuthSupport() {
         console.info("start check auth support");
-        let auth = userIAM_userAuth.getAuthenticator();
-        let checkCode = auth.checkAvailability("FACE_ONLY", "S2");
-        if (checkCode == userIAM_userAuth.CheckAvailabilityResult.SUPPORTED) {
+        let checkCode = auth.getAvailableStatus(userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1);
+        if (checkCode == userIAM_userAuth.ResultCode.SUCCESS) {
             console.info("check auth support success");
             // 此处添加支持指定类型认证的逻辑
         } else {
@@ -60,8 +93,17 @@ export default {
 
     cancelAuth() {
         console.info("start cancel auth");
-        let auth = userIAM_userAuth.getAuthenticator();
-        let cancelCode = auth.cancel();
+        // contextId通过auth接口获取
+        let contextId = auth.auth(null, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1, {
+            onResult: (result, extraInfo) => {
+                console.info("auth onResult result = " + result);
+            }
+
+            onAcquireInfo: (module, acquire, extraInfo) => {
+                console.info("auth onAcquireInfo module = " + module);
+            }
+        });
+        let cancelCode = auth.cancel(contextId);
         if (cancelCode == userIAM_userAuth.Result.SUCCESS) {
             console.info("cancel auth success");
         } else {
@@ -71,14 +113,14 @@ export default {
 }
 ```
 
-
-## userIAM_userAuth.getAuthenticator
+## userIAM_userAuth.getAuthenticator<sup>(deprecated)</sup>
 
 getAuthenticator(): Authenticator
 
-获取Authenticator对象，用于执行用户身份认证。<sup>6+</sup>
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 从 API Version 8 开始废弃，建议使用[constructor](#constructor)替代。
 
-获取Authenticator对象，用于检测设备身份认证能力、执行和取消用户身份认证，获取认证过程中的提示信息。<sup>7+</sup>
+获取Authenticator对象，用于执行用户身份认证。<sup>6+</sup>
 
 - 返回值：
   | 类型 | 说明 |
@@ -86,19 +128,24 @@ getAuthenticator(): Authenticator
   | [Authenticator](#authenticator) | 认证器对象。 |
 
 - 示例：
-  ```
+  ```js
   let authenticator = userIAM_userAuth.getAuthenticator();
   ```
 
+## Authenticator<sup>(deprecated)</sup>
 
-## Authenticator
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 从 API Version 8 开始废弃，建议使用[UserAuth](#UserAuth)替代。
 
 认证器对象。
 
 
-### execute
+### execute<sup>(deprecated)</sup>
 
 execute(type: string, level: string, callback: AsyncCallback&lt;number&gt;): void
+
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 从 API Version 8 开始废弃，建议使用[auth](#auth)替代。
 
 执行用户认证，使用callback方式作为异步方法。
 
@@ -116,7 +163,7 @@ execute(type: string, level: string, callback: AsyncCallback&lt;number&gt;): voi
   | number | 表示认证结果，参见[AuthenticationResult](#authenticationresult)。 |
 
 - 示例：
-  ```
+  ```js
   authenticator.execute("FACE_ONLY", "S2", (code)=>{
       if (code == userIAM_userAuth.AuthenticationResult.SUCCESS) {
           console.info("auth success");
@@ -127,9 +174,12 @@ execute(type: string, level: string, callback: AsyncCallback&lt;number&gt;): voi
   ```
 
 
-### execute
+### execute<sup>(deprecated)</sup>
 
 execute(type:string, level:string): Promise&lt;number&gt;
+
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 从 API Version 8 开始废弃，建议使用[auth](#auth)替代。
 
 执行用户认证，使用promise方式作为异步方法。
 
@@ -145,121 +195,19 @@ execute(type:string, level:string): Promise&lt;number&gt;
   | Promise&lt;number&gt; | 返回携带一个number的Promise。number&nbsp;为认证结果，参见[AuthenticationResult](#authenticationresult)。 |
 
 - 示例
-  ```
+  ```js
   let authenticator = userIAM_userAuth.getAuthenticator();
   authenticator.execute("FACE_ONLY", "S2").then((code)=>{
-      authenticator.off("tip", tipCallback);
       console.info("auth success");
   }).catch((code)=>{
-      authenticator.off("tip", tipCallback);
       console.error("auth fail, code = " + code);
   });
   ```
 
+## AuthenticationResult<sup>(deprecated)</sup>
 
-### cancel<sup>7+</sup>
-
-cancel(): number
-
-取消当前的认证流程。
-
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | number | 返回取消当前认证的结果，参见[Result](#result7)。 |
-
-- 示例：
-  ```
-  let authenticator = userIAM_userAuth.getAuthenticator();
-  let cancelCode = authenticator.cancel();
-  if (cancelCode == userIAM_userAuth.Result.SUCCESS) {
-      console.info("cancel auth success");
-  } else {
-      console.error("cancel auth fail");
-  }
-  ```
-
-
-### checkAvailability<sup>7+</sup>
-
-checkAvailability(type: AuthType, level: SecureLevel): number
-
-根据指定的认证类型、安全等级，检测当前设备是否支持相应的认证能力。
-
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 认证类型，当前只支持FACE_ONLY。<br/>ALL为预留参数，当前版本暂不支持ALL类型的认证。 |
-  | level | string | 是 | 安全级别，对应认证的安全级别，有效值为S1（最低）、S2、S3、S4（最高）。<br/>具备3D人脸识别能力的设备支持S3及以下安全级别的认证。<br/>具备2D人脸识别能力的设备支持S2及以下安全级别的认证。 |
-
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | number | 返回检测当前设备认证能力的结果，参见[CheckAvailabilityResult](#checkavailabilityresult7)。 |
-
-- 示例：
-  ```
-  let authenticator = userIAM_userAuth.getAuthenticator();
-  let checkCode = authenticator.checkAvailability("FACE_ONLY", "S2");
-  if (checkCode == userIAM_userAuth.CheckAvailabilityResult.SUPPORTED) {
-      console.info("check auth support success");
-  } else {
-      console.error("check auth support fail, code = " + checkCode);
-  }
-  ```
-
-
-### on<sup>7+</sup>
-
-on(type: "tip", callback: Callback&lt;Tip&gt;) : void;
-
-订阅指定类型的事件。
-
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 事件类型，当前只支持"tip"。在认证服务发送提示信息给调用者时，会触发此事件。 |
-  | callback | Callback&lt;Tip&gt; | 是 | 事件发生时的回调，当前只支持以Tip为参数的回调函数。 |
-
-- 示例：
-  ```
-  let authenticator = userIAM_userAuth.getAuthenticator();
-  let tipCallback = (tip)=>{
-      console.info("receive tip: errorCode(" + tip.errorCode + ") code(" + tip.tipCode +") event(" +
-          tip.tipEvent + ") info(" + tip.tipInfo + ")");
-  };
-  authenticator.on("tip", tipCallback);
-  ```
-
-
-### off<sup>7+</sup>
-
-off(type: "tip", callback?: Callback&lt;Tip&gt;) : void;
-
-取消订阅指定类型的事件。
-
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 事件类型，当前只支持"tip"。 |
-  | callback | Callback&lt;Tip&gt; | 否 | 取消订阅的回调函数，当前只支持以Tip为参数的回调函数。如未指定此参数，同事件类型的所有回调都会被取消。 |
-
-- 示例：
-  ```
-  let authenticator = userIAM_userAuth.getAuthenticator();
-  let tipCallback = (tip)=>{
-      console.info("receive tip: errorCode(" + tip.errorCode + ") code(" + tip.tipCode + ") event(" +
-          tip.tipEvent + ") info(" + tip.tipInfo + ")");
-  };
-  // 取消订阅指定回调
-  authenticator.off("tip", tipCallback);
-  
-  // 取消订阅所有回调
-  authenticator.off("tip");
-  ```
-
-
-## AuthenticationResult
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 从 API Version 8 开始废弃，建议使用[ResultCode](#ResultCode)替代。
 
 表示认证结果的枚举。
 
@@ -277,71 +225,340 @@ off(type: "tip", callback?: Callback&lt;Tip&gt;) : void;
 | NOT_ENROLLED | 8 | 未录入认证凭据。 |
 | GENERAL_ERROR | 100 | 其他错误。 |
 
+## UserAuth<sup>8+</sup>
 
-## Tip<sup>7+</sup>
+认证器的对象。
 
-表示认证过程中提示信息的对象。
+### constructor<sup>8+</sup>
 
-| 名称 | 参数类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| errorCode | number | 是 | 是否成功获取到提示信息，参考[Result](#result7)。 |
-| tipEvent | number | 是 | 认证提示事件,&nbsp;参考[TipEvent](#tipevent7)。当前只支持RESULT、ACQUIRE。 |
-| tipCode | number | 是 | 认证提示的事件提示码。<br/>-&nbsp;当tipEvent为RESULT时，含义为认证结果，参考[AuthenticationResult](#authenticationresult)。<br/>-&nbsp;当tipEvent为ACQUIRE时，含义为提示信息，参考[TipCode](#tipcode7)。 |
-| tipInfo | string | 是 | 认证提示的事件提示码的描述信息。 |
+constructor();
+
+表示获取的认证器对象。
+
+- 返回值：
+
+  | 类型     | 说明                 |
+  | -------- | -------------------- |
+  | UserAuth | UserAuth认证器对象。 |
+
+- 示例：
+
+  ```js
+  import userIAM_userAuth from '@ohos.userIAM.userAuth';
+
+  let auth = new userIAM_userAuth.UserAuth();
+  ```
+
+### getVersion<sup>8+</sup>
+
+getVersion() : number;
+
+表示获取的认证器版本信息。
+
+- 返回值：
+
+  | 类型   | 说明                   |
+  | ------ | ---------------------- |
+  | number | 获取的认证器版本信息。 |
+
+- 示例：
+
+  ```js
+  import userIAM_userAuth from '@ohos.userIAM.userAuth';
+
+  let auth = new userIAM_userAuth.UserAuth();
+  let version = auth.getVersion();
+  console.info("auth version = " + version);
+  ```
+
+### getAvailableStatus<sup>8+</sup>
+
+getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel) : number;
+
+表示检查指定的认证等级的认证能力是否可用。
+
+- 参数：
+
+  | 参数名         | 类型           | 必填 | 说明                                                         |
+  | -------------- | -------------- | ---- | ------------------------------------------------------------ |
+  | authType       | UserAuthType   | 是   | 认证类型，当前只支持FACE，参见[UserAuthType](#UserAuthType)。 |
+  | authTrustLevel | AuthTrustLevel | 是   | 认证结果的信任等级。参见[AuthTrustLevel](#AuthTrustLevel)。  |
+
+- 返回值：
+
+  | 类型   | 说明                                                         |
+  | ------ | ------------------------------------------------------------ |
+  | number | 获取指定的认证等级的认证能力是否可用的检查结果，返回值参见[ResultCode](#ResultCode)。 |
+
+- 示例：
+
+  ```js
+  import userIAM_userAuth from '@ohos.userIAM.userAuth';
+
+  let auth = new userIAM_userAuth.UserAuth();
+  let checkCode = auth.getAvailableStatus(userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1);
+  if (checkCode == userIAM_userAuth.ResultCode.SUCCESS) {
+      console.info("check auth support success");
+      // 此处添加支持指定类型认证的逻辑
+  } else {
+      console.error("check auth support fail, code = " + checkCode);
+      // 此处添加不支持指定类型认证的逻辑
+  }
+  ```
+
+### auth<sup>8+</sup>
+
+auth(challenge: Uint8Array, authType: UserAuthType, authTrustLevel: AuthTrustLevel, callback: IUserAuthCallback): Uint8Array;
+
+表示执行用户认证，使用callback方式作为异步方法。
+
+- 参数：
+
+  | 参数名         | 类型              | 必填 | 说明                                                         |
+  | -------------- | ----------------- | ---- | ------------------------------------------------------------ |
+  | challenge      | Uint8Array        | 是   | 挑战值，可以填null。                                         |
+  | authType       | UserAuthType      | 是   | 认证类型，当前支持FACE，参见[UserAuthType](#UserAuthType)。  |
+  | authTrustLevel | AuthTrustLevel    | 是   | 信任等级，对应认证的信任等级级别，参见[AuthTrustLevel](#AuthTrustLevel)。 |
+  | callback       | IUserAuthCallback | 是   | 回调函数，参见[IUserAuthCallback](#IUserAuthCallback)。      |
+
+- 返回值：
+
+  | 类型       | 说明                                                         |
+  | ---------- | ------------------------------------------------------------ |
+  | Uint8Array | ContextId，作为取消认证[cancelAuth](#cancelAuth)接口的入参。 |
+
+- 示例：
+
+  ```js
+  import userIAM_userAuth from '@ohos.userIAM.userAuth';
+
+  let auth = new userIAM_userAuth.UserAuth();
+  auth.auth(null, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1, {
+      onResult: (result, extraInfo) => {
+          try {
+              console.info("auth onResult result = " + result);
+              console.info("auth onResult extraInfo = " + JSON.stringify(extraInfo));
+              if (result == userIAM_userAuth.ResultCode.SUCCESS) {
+                  // 此处添加认证成功逻辑
+              } else {
+                  // 此处添加认证失败逻辑
+              }
+          } catch (e) {
+              console.info("auth onResult error = " + e);
+          }
+      }
+  });
+  ```
+
+### cancelAuth<sup>8+</sup>
+
+cancelAuth(contextID : Uint8Array) : number;
+
+表示通过contextID取消本次认证操作。
+
+- 参数：
+
+  | 参数名    | 类型       | 必填 | 说明                                      |
+  | --------- | ---------- | ---- | ----------------------------------------- |
+  | contextID | Uint8Array | 是   | 上下文ID信息，通过[auth](#auth)接口获得。 |
+
+- 返回值：
+
+  | 类型   | 说明                     |
+  | ------ | ------------------------ |
+  | number | 取消本次认证操作的结果。 |
+
+- 示例：
+
+  ```js
+  import userIAM_userAuth from '@ohos.userIAM.userAuth';
+
+  // contextId可通过auth接口获取，此处直接定义
+  let contextId = new Uint8Array([0, 1, 2, 3, 4, 5, 6, 7]);
+  let cancelCode = auth.cancel(contextId);
+  if (cancelCode == userIAM_userAuth.ResultCode.SUCCESS) {
+      console.info("cancel auth success");
+  } else {
+      console.error("cancel auth fail");
+  }
+  ```
+
+## IUserAuthCallback<sup>8+</sup>
+
+认证过程中回调结果的对象。
+
+### onResult<sup>8+</sup>
+
+onResult: (result : number, extraInfo : AuthResult) => void;
+
+表示在认证操作中，获取认证结果。
+
+- 参数：
+
+  | 参数名    | 类型       | 必填 | 说明                                                         |
+  | --------- | ---------- | ---- | ------------------------------------------------------------ |
+  | result    | number     | 是   | 认证结果，参见[ResultCode](#ResultCode)。                    |
+  | extraInfo | AuthResult | 是   | 扩展信息，不同情况下的具体信息，参见[AuthResult](#AuthResult)，<br/>如果身份验证通过，则在extrainfo中返回用户认证令牌，<br/>如果身份验证失败，则在extrainfo中返回剩余的用户认证次数，<br/>如果身份验证执行器被锁定，则在extrainfo中返回冻结时间。 |
 
 
-## Result<sup>7+</sup>
+- 示例
+
+  ```js
+  import userIAM_userAuth from '@ohos.userIAM.userAuth';
+
+  let auth = new userIAM_userAuth.UserAuth();
+  auth.auth(null, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1, {
+      onResult: (result, extraInfo) => {
+          try {
+              console.info("auth onResult result = " + result);
+              console.info("auth onResult extraInfo = " + JSON.stringify(extraInfo));
+              if (result == SUCCESS) {
+                  // 此处添加认证成功逻辑
+              }  else {
+                  // 此处添加认证失败逻辑
+              }
+          } catch (e) {
+              console.info("auth onResult error = " + e);
+          }
+      },
+
+      onAcquireInfo: (module, acquire, extraInfo) => {
+          try {
+              console.info("auth onAcquireInfo module = " + module);
+              console.info("auth onAcquireInfo acquire = " + acquire);
+              console.info("auth onAcquireInfo extraInfo = " + JSON.stringify(extraInfo));
+          } catch (e) {
+              console.info("auth onAcquireInfo error = " + e);
+          }
+      }
+  });
+  ```
+
+### onAcquireInfo<sup>8+</sup>
+
+onAcquireInfo ?: (module : number, acquire : number, extraInfo : any) => void;
+
+表示在认证过程中，获取提示码信息，非必须实现。
+
+- 参数：
+
+  | 参数名    | 类型   | 必填 | 说明                           |
+  | --------- | ------ | ---- | ------------------------------ |
+  | module    | number | 是   | 认证执行器的类型。             |
+  | acquire   | number | 是   | 认证执行器认证过程的交互信息。 |
+  | extraInfo | any    | 是   | 预留字段。                     |
+
+- 示例
+
+  ```js
+  import userIAM_userAuth from '@ohos.userIAM.userAuth';
+
+  let auth = new userIAM_userAuth.UserAuth();
+  auth.auth(null, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1, {
+      onResult: (result, extraInfo) => {
+          try {
+              console.info("auth onResult result = " + result);
+              console.info("auth onResult extraInfo = " + JSON.stringify(extraInfo));
+              if (result == SUCCESS) {
+                  // 此处添加认证成功逻辑
+              }  else {
+                  // 此处添加认证失败逻辑
+              }
+          } catch (e) {
+              console.info("auth onResult error = " + e);
+          }
+      },
+
+      onAcquireInfo: (module, acquire, extraInfo) => {
+          try {
+              console.info("auth onAcquireInfo module = " + module);
+              console.info("auth onAcquireInfo acquire = " + acquire);
+              console.info("auth onAcquireInfo extraInfo = " + JSON.stringify(extraInfo));
+          } catch (e) {
+              console.info("auth onAcquireInfo error = " + e);
+          }
+      }
+  });
+  ```
+
+## AuthResult<sup>8+</sup>
+
+表示认证结果的对象。
+
+| 名称         | 参数类型   | 必填 | 说明                 |
+| ------------ | ---------- | ---- | -------------------- |
+| token        | Uint8Array | 否   | 身份认证令牌。       |
+| remainTimes  | number     | 否   | 剩余的认证操作次数。 |
+| freezingTime | number     | 否   | 认证操作的冻结时间。 |
+
+## ResultCode<sup>8+</sup>
 
 表示执行结果的枚举。
 
 | 名称 | 默认值 | 描述 |
 | -------- | -------- | -------- |
 | SUCCESS | 0 | 执行成功。 |
-| FAILED | 1 | 执行失败。 |
+| FAIL | 1 | 执行失败。 |
+| GENERAL_ERROR | 2 | 操作通用错误。 |
+| CANCELED | 3 | 操作取消。 |
+| TIMEOUT | 4 | 操作超时。 |
+| TYPE_NOT_SUPPORT | 5 | 不支持的认证类型。 |
+| TRUST_LEVEL_NOT_SUPPORT | 6 | 不支持的认证等级。 |
+| BUSY | 7 | 忙碌状态。 |
+| INVALID_PARAMETERS | 8 | 无效参数。 |
+| LOCKED | 9 | 认证器已锁定。       |
+| NOT_ENROLLED | 10 | 用户未录入认证信息。 |
 
 
-## CheckAvailabilityResult<sup>7+</sup>
+## FaceTips<sup>8+</sup>
 
-表示检测设备认证能力结果的枚举。
+表示人脸认证过程中提示码的枚举。
+
+| 名称                          | 默认值 | 描述                                 |
+| ----------------------------- | ------ | ------------------------------------ |
+| FACE_AUTH_TIP_TOO_BRIGHT      | 1      | 光线太强，获取的图像太亮。           |
+| FACE_AUTH_TIP_TOO_DARK        | 2      | 光线太暗，获取的图像太暗。           |
+| FACE_AUTH_TIP_TOO_CLOSE       | 3      | 人脸距离设备过近。                   |
+| FACE_AUTH_TIP_TOO_FAR         | 4      | 人脸距离设备过远。                   |
+| FACE_AUTH_TIP_TOO_HIGH        | 5      | 设备太高，仅获取到人脸上部。         |
+| FACE_AUTH_TIP_TOO_LOW         | 6      | 设备太低，仅获取到人脸下部。         |
+| FACE_AUTH_TIP_TOO_RIGHT       | 7      | 设备太靠右，仅获取到人脸右部。       |
+| FACE_AUTH_TIP_TOO_LEFT        | 8      | 设备太靠左，仅获取到人脸左部。       |
+| FACE_AUTH_TIP_TOO_MUCH_MOTION | 9      | 在图像采集过程中，用户人脸移动太快。 |
+| FACE_AUTH_TIP_POOR_GAZE       | 10     | 没有正视摄像头。                     |
+| FACE_AUTH_TIP_NOT_DETECTED    | 11     | 没有检测到人脸信息。                 |
+
+
+## FingerprintTips<sup>8+</sup>
+
+表示指纹认证过程中提示码的枚举。
 
 | 名称 | 默认值 | 描述 |
 | -------- | -------- | -------- |
-| SUPPORTED | 0 | 设备支持指定的认证类型和认证安全等级。 |
-| AUTH_TYPE_NOT_SUPPORT | 1 | 设备不支持指定的认证类型。 |
-| SECURE_LEVEL_NOT_SUPPORT | 2 | 设备不支持指定的认证安全等级。 |
-| DISTRIBUTED_AUTH_NOT_SUPPORT | 3 | 设备不支持分布式认证。 |
-| NOT_ENROLLED | 4 | 设备中认证凭据未录入。 |
-| PARAM_NUM_ERROR | 5 | 参数个数错误。 |
+| FINGERPRINT_AUTH_TIP_GOOD | 0 | 获取的指纹图像良好。 |
+| FINGERPRINT_AUTH_TIP_DIRTY | 1      | 由于传感器上可疑或检测到的污垢，指纹图像噪音过大。 |
+| FINGERPRINT_AUTH_TIP_INSUFFICIENT | 2 | 由于检测到的情况，指纹图像噪声太大，无法处理。 |
+| FINGERPRINT_AUTH_TIP_PARTIAL | 3 | 仅检测到部分指纹图像。 |
+| FINGERPRINT_AUTH_TIP_TOO_FAST | 4 | 快速移动，指纹图像不完整。 |
+| FINGERPRINT_AUTH_TIP_TOO_SLOW | 5 | 缺少运动，指纹图像无法读取。 |
 
 
-## TipEvent<sup>7+</sup>
+## UserAuthType<sup>8+</sup>
 
-表示认证过程中提示事件的枚举。
-
-| 名称 | 默认值 | 描述 |
-| -------- | -------- | -------- |
-| RESULT | 1 | 录入或认证结果。 |
-| CANCEL | 2 | 录入或认证取消。 |
-| ACQUIRE | 3 | 录入或认证过程中提示。 |
-| BUSY | 4 | 录入或认证功能被占用。 |
-| OUT_OF_MEM | 5 | 内存不足。 |
-| FACE_ID | 6 | 人脸认证凭据索引号。 |
-
-
-## TipCode<sup>7+</sup>
-
-表示认证过程中提示码的枚举。
+表示身份认证的凭据类型枚举。
 
 | 名称 | 默认值 | 描述 |
 | -------- | -------- | -------- |
-| FACE_AUTH_TIP_TOO_BRIGHT | 1 | 光线太强，获取的图像太亮。 |
-| FACE_AUTH_TIP_TOO_DARK | 2 | 光线太暗，获取的图像太暗。 |
-| FACE_AUTH_TIP_TOO_CLOSE | 3 | 人脸距离设备过近。 |
-| FACE_AUTH_TIP_TOO_FAR | 4 | 人脸距离设备过远。 |
-| FACE_AUTH_TIP_TOO_HIGH | 5 | 设备太高，仅获取到人脸上部。 |
-| FACE_AUTH_TIP_TOO_LOW | 6 | 设备太低，仅获取到人脸下部。 |
-| FACE_AUTH_TIP_TOO_RIGHT | 7 | 设备太靠右，仅获取到人脸右部。 |
-| FACE_AUTH_TIP_TOO_LEFT | 8 | 设备太靠左，仅获取到人脸左部。 |
-| FACE_AUTH_TIP_TOO_MUCH_MOTION | 9 | 在图像采集过程中，用户人脸移动太快。 |
-| FACE_AUTH_TIP_POOR_GAZE | 10 | 没有正视摄像头。 |
-| FACE_AUTH_TIP_NOT_DETECTED | 11 | 没有检测到人脸信息。 |
+| FACE | 2 | 人脸认证。 |
+| FINGERPRINT | 4      | 指纹认证。 |
+
+## AuthTrustLevel<sup>8+</sup>
+
+表示认证结果的信任等级枚举。
+
+| 名称 | 默认值 | 描述                      |
+| ---- | ------ | ------------------------- |
+| ATL1 | 10000  | 认证结果的信任等级级别1。 |
+| ATL2 | 20000  | 认证结果的信任等级级别2。 |
+| ATL3 | 30000  | 认证结果的信任等级级别3。 |
+| ATL4 | 40000  | 认证结果的信任等级级别4。 |
