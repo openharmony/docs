@@ -290,9 +290,10 @@ call(method: string, data: rpc.Sequenceable): Promise&lt;void&gt;;
   ```js
   import Ability from '@ohos.application.Ability';
   class MyMessageAble{ // 自定义的Sequenceable数据结构
-      num: 0
-      str: ''
-      constructor() {}
+      constructor(name, str) {
+        this.name = name;
+        this.str = str;
+      }
       marshalling(messageParcel) {
           messageParcel.writeInt(this.num);
           messageParcel.writeString(this.str);
@@ -310,19 +311,25 @@ call(method: string, data: rpc.Sequenceable): Promise&lt;void&gt;;
   var caller;
   export default class MainAbility extends Ability {
       onWindowStageCreate(windowStage) {
-          caller = await this.context.startAbilityByCall({
-              bundleName: "com.example.myservice",
-              abilityName: "com.example.myservice.MainAbility",
-              deviceId: ""
-          });
-          let msg = new MyMessageAble(1, "world"); // 参考Sequenceable数据定义
-          caller.call(method, msg)
-          .then(() => {
-              console.log('Caller call() called');
-          }).catch((e) => {
-              console.log('Caller call() catch error ' + e);
-          });
+        this.context.startAbilityByCall({
+            bundleName: "com.example.myservice",
+            abilityName: "com.example.myservice.MainAbility",
+            deviceId: ""
+        }).then((obj) => {
+            caller = obj;
+            let msg = new MyMessageAble(1, "world"); // 参考Sequenceable数据定义
+            caller.call(method, msg)
+                .then(() => {
+                    console.log('Caller call() called');
+                }).catch((e) => {
+                console.log('Caller call() catch error ' + e);
+            });
+            console.log('Caller GetCaller Get ' + caller);
+        }).catch((e) => {
+            console.log('Caller GetCaller error ' + e);
+        });
       }
+      
   }
   ```
 
@@ -353,8 +360,10 @@ callWithResult(method: string, data: rpc.Sequenceable): Promise&lt;rpc.MessagePa
   ```js
   import Ability from '@ohos.application.Ability';
   class MyMessageAble{
-      num: 0
-      str: ''
+      constructor(name, str) {
+        this.name = name;
+        this.str = str;
+      }
       constructor() {}
       marshalling(messageParcel) {
           messageParcel.writeInt(this.num);
@@ -373,20 +382,26 @@ callWithResult(method: string, data: rpc.Sequenceable): Promise&lt;rpc.MessagePa
   var caller;
   export default class MainAbility extends Ability {
       onWindowStageCreate(windowStage) {
-          caller = await this.context.startAbilityByCall({
-              bundleName: "com.example.myservice",
-              abilityName: "com.example.myservice.MainAbility",
-              deviceId: ""
-           });
-          let msg = new MyMessageAble(1, "world");
-          caller.callWithResult(method, msg)
-          .then((data) => {
-              console.log('Caller call() called');
-              let retmsg = new MyMessageAble(0, "");
-              data.readSequenceable(retmsg);
-          }).catch((e) => {
-              console.log('Caller call() catch error ' + e);
-          });
+      onWindowStageCreate(windowStage) {
+        this.context.startAbilityByCall({
+            bundleName: "com.example.myservice",
+            abilityName: "com.example.myservice.MainAbility",
+            deviceId: ""
+        }).then((obj) => {
+            caller = obj;
+            let msg = new MyMessageAble(1, "world");
+            caller.callWithResult(method, msg)
+                .then((data) => {
+                    console.log('Caller callWithResult() called');
+                    let retmsg = new MyMessageAble(0, "");
+                    data.readSequenceable(retmsg);
+                }).catch((e) => {
+                console.log('Caller callWithResult() catch error ' + e);
+            });
+            console.log('Caller GetCaller Get ' + caller);
+        }).catch((e) => {
+            console.log('Caller GetCaller error ' + e);
+        });
       }
   }
   ```
@@ -407,16 +422,21 @@ release(): void;
   var caller;
   export default class MainAbility extends Ability {
       onWindowStageCreate(windowStage) {
-          caller = await this.context.startAbilityByCall({
-                  bundleName: "com.example.myservice",
-                  abilityName: "com.example.myservice.MainAbility",
-                  deviceId: ""
-              });
-          try {
-              caller.release();
-          } catch (e) {
-              console.log('Caller Release error ' + e);
-          }
+        this.context.startAbilityByCall({
+            bundleName: "com.example.myservice",
+            abilityName: "com.example.myservice.MainAbility",
+            deviceId: ""
+        }).then((obj) => {
+            caller = obj;
+            try {
+                caller.release();
+            } catch (e) {
+                console.log('Caller Release error ' + e);
+            }
+            console.log('Caller GetCaller Get ' + caller);
+        }).catch((e) => {
+            console.log('Caller GetCaller error ' + e);
+        });
       }
   }
   ```
@@ -443,18 +463,23 @@ onRelease(callback: function): void;
   var caller;
   export default class MainAbility extends Ability {
       onWindowStageCreate(windowStage) {
-          caller = await this.context.startAbilityByCall({
-              bundleName: "com.example.myservice",
-              abilityName: "com.example.myservice.MainAbility",
-              deviceId: ""
-          });
-          try {
-              caller.onRelease((str) => {
-                  console.log(' Caller OnRelease CallBack is called ' + str);
-              });
-          } catch (e) {
-              console.log('Caller Release error ' + e);
-          }
+        this.context.startAbilityByCall({
+            bundleName: "com.example.myservice",
+            abilityName: "com.example.myservice.MainAbility",
+            deviceId: ""
+        }).then((obj) => {
+            caller = obj;
+            try {
+                caller.onRelease((str) => {
+                    console.log(' Caller OnRelease CallBack is called ' + str);
+                });
+            } catch (e) {
+                console.log('Caller Release error ' + e);
+            }
+            console.log('Caller GetCaller Get ' + caller);
+        }).catch((e) => {
+            console.log('Caller GetCaller error ' + e);
+        });
       }
   }
   ```
@@ -485,9 +510,10 @@ on(method: string, callback: function): void;
   ```js
   import Ability from '@ohos.application.Ability';
   class MyMessageAble{
-      num: 0
-      str: ''
-      constructor() {}
+      constructor(name, str) {
+        this.name = name;
+        this.str = str;
+      }
       marshalling(messageParcel) {
           messageParcel.writeInt(this.num);
           messageParcel.writeString(this.str);

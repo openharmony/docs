@@ -25,11 +25,13 @@ import ConfigurationConstant from '@ohos.application.ConfigurationConstant';
 ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT。
 ```
 
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase
+
 | 名称 | 值 | 说明 | 
 | -------- | -------- | -------- |
-| COLOR_MODE_NOT_SET | -1 | 未设置颜色模式。<br/>**系统能力**：SystemCapability.Ability.AbilityBase | 
-| COLOR_MODE_DARK | 0 | 深色模式。<br/>**系统能力**：SystemCapability.Ability.AbilityBase | 
-| COLOR_MODE_LIGHT | 1 | 浅色模式。 <br/>**系统能力**：SystemCapability.Ability.AbilityBase| 
+| COLOR_MODE_NOT_SET | -1 | 未设置颜色模式。 | 
+| COLOR_MODE_DARK | 0 | 深色模式。 | 
+| COLOR_MODE_LIGHT | 1 | 浅色模式。 | 
 
 
 ## ConfigurationConstant.Direction
@@ -42,11 +44,13 @@ ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT。
 ConfigurationConstant.Direction.DIRECTION_VERTICAL。
 ```
 
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase
+
 | 名称 | 值 | 说明 | 
 | -------- | -------- | -------- |
-| DIRECTION_NOT_SET | -1 | 未设置方向。 <br/>**系统能力**：SystemCapability.Ability.AbilityBase| 
-| DIRECTION_VERTICAL | 0 | 垂直方向。 <br/>**系统能力**：SystemCapability.Ability.AbilityBase| 
-| DIRECTION_HORIZONTAL | 1 | 水平方向。 <br/>**系统能力**：SystemCapability.Ability.AbilityBase| 
+| DIRECTION_NOT_SET | -1 | 未设置方向。 | 
+| DIRECTION_VERTICAL | 0 | 垂直方向。 | 
+| DIRECTION_HORIZONTAL | 1 | 水平方向。 | 
 
 
 ## ConfigurationConstant.ScreenDensity
@@ -59,12 +63,14 @@ ConfigurationConstant.Direction.DIRECTION_VERTICAL。
 ConfigurationConstant.ScreenDensity.SCREEN_DENSITY_NOT_SET。
 ```
 
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase
+
 | 名称 | 值 | 说明 | 
 | -------- | -------- | -------- |
-| SCREEN_DENSITY_NOT_SET | 0 | 未设置屏幕分辨率。<br/>**系统能力**：SystemCapability.Ability.AbilityBase | 
-| SCREEN_DENSITY_SDPI | 120 | 屏幕分辨率为"sdpi"。<br/>**系统能力**：SystemCapability.Ability.AbilityBase | 
-| SCREEN_DENSITY_MDPI | 160 | 屏幕分辨率为"mdpi"。 <br/>**系统能力**：SystemCapability.Ability.AbilityBase| 
-| SCREEN_DENSITY_LDPI | 240 | 屏幕分辨率为"ldpi"。 <br/>**系统能力**：SystemCapability.Ability.AbilityBase| 
-| SCREEN_DENSITY_XLDPI | 320 | 屏幕分辨率为"xldpi"。 <br/>**系统能力**：SystemCapability.Ability.AbilityBase| 
-| SCREEN_DENSITY_XXLDPI | 480 | 屏幕分辨率为"xxldpi"。 <br/>**系统能力**：SystemCapability.Ability.AbilityBase| 
-| SCREEN_DENSITY_XXXLDPI | 640 | 屏幕分辨率为"xxxldpi"。 <br/>**系统能力**：SystemCapability.Ability.AbilityBase| 
+| SCREEN_DENSITY_NOT_SET | 0 | 未设置屏幕分辨率。 | 
+| SCREEN_DENSITY_SDPI | 120 | 屏幕分辨率为"sdpi"。 | 
+| SCREEN_DENSITY_MDPI | 160 | 屏幕分辨率为"mdpi"。 | 
+| SCREEN_DENSITY_LDPI | 240 | 屏幕分辨率为"ldpi"。 | 
+| SCREEN_DENSITY_XLDPI | 320 | 屏幕分辨率为"xldpi"。 | 
+| SCREEN_DENSITY_XXLDPI | 480 | 屏幕分辨率为"xxldpi"。 | 
+| SCREEN_DENSITY_XXXLDPI | 640 | 屏幕分辨率为"xxxldpi"。 | 

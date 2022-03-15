@@ -24,9 +24,11 @@ appManager.getProcessRunningInfos((error,data) => {
 
 ## 属性
 
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+
   | 名称 | 参数类型 | 可读 | 可写 | 说明 | 
 | -------- | -------- | -------- | -------- | -------- |
-| pid | number | 是 | 否 | 进程ID。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core | 
-| uid | number | 是 | 否 | 用户ID。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core | 
-| processName | string | 是 | 否 | 进程名称。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core | 
-| bundleNames | Array&lt;string&gt; | 是 | 否 | 进程中所有运行的包名称。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core | 
+| pid | number | 是 | 否 | 进程ID。 | 
+| uid | number | 是 | 否 | 用户ID。 | 
+| processName | string | 是 | 否 | 进程名称。 | 
+| bundleNames | Array&lt;string&gt; | 是 | 否 | 进程中所有运行的包名称。 | 
