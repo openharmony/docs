@@ -23,7 +23,7 @@ Checks whether the SIM card in the specified slot is activated. This function us
 
 | Name  | Type                       | Mandatory| Description                                  |
 | -------- | --------------------------- | ---- | -------------------------------------- |
-| slotId   | number                      | Yes  | Card slot ID. The options are as follows:<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| slotId   | number                      | Yes  | Card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
 | callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result.                            |
 
 **Example**
@@ -47,7 +47,7 @@ Checks whether the SIM card in the specified slot is activated. This function us
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| slotId | number | Yes  | Card slot ID. The options are as follows:<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| slotId | number | Yes  | Card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
 
 **Return Value**
 
@@ -127,7 +127,7 @@ Checks whether the application (caller) has been granted the operator permission
 
 | Name  | Type                    | Mandatory| Description                                    |
 | -------- | ------------------------ | ---- | ---------------------------------------- |
-| slotId   | number                   | Yes  | Card slot ID. The options are as follows:<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| slotId   | number                   | Yes  | Card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
 | callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.                              |
 
 **Example**
@@ -150,7 +150,7 @@ Checks whether the application (caller) has been granted the operator permission
 
 | Name| Type  | Mandatory| Description                                    |
 | ------ | ------ | ---- | ---------------------------------------- |
-| slotId | number | Yes  | Card slot ID. The options are as follows:<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| slotId | number | Yes  | Card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
 
 **Return Value**
 
@@ -181,7 +181,7 @@ Obtains the ISO country code of the SIM card in the specified slot. This functio
 
 | Name  | Type                   | Mandatory| Description                                    |
 | -------- | ----------------------- | ---- | ---------------------------------------- |
-| slotId   | number                  | Yes  | Card slot ID. The options are as follows:<br>- **0**: card slot 1<br>- **1**: card slot 2  |
+| slotId   | number                  | Yes  | Card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2  |
 | callback | AsyncCallback\<string\> | Yes  | Callback used to return the result, which is a country code, for example, **CN** (China).|
 
 **Example**
@@ -205,7 +205,7 @@ Obtains the ISO country code of the SIM card in the specified slot. This functio
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| slotId | number | Yes  | Card slot ID. The options are as follows:<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| slotId | number | Yes  | Card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
 
 **Return Value**
 
@@ -237,7 +237,7 @@ Obtains the public land mobile network (PLMN) ID of the SIM card in the specifie
 
 | Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| slotId   | number                  | Yes  | Card slot ID. The options are as follows:<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| slotId   | number                  | Yes  | Card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
 | callback | AsyncCallback\<string\> | Yes  | Callback used to return the result.                            |
 
 **Example**
@@ -261,7 +261,7 @@ Obtains the PLMN ID of the SIM card in the specified slot. This function uses a 
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| slotId | number | Yes  | Card slot ID. The options are as follows:<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| slotId | number | Yes  | Card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
 
 **Return Value**
 
@@ -293,7 +293,7 @@ Obtains the service provider name (SPN) of the SIM card in the specified slot. T
 
 | Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| slotId   | number                  | Yes  | Card slot ID. The options are as follows:<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| slotId   | number                  | Yes  | Card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
 | callback | AsyncCallback\<string\> | Yes  | Callback used to return the result.                            |
 
 **Example**
@@ -317,7 +317,7 @@ Obtains the SPN of the SIM card in the specified slot. This function uses a prom
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| slotId | number | Yes  | Card slot ID. The options are as follows:<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| slotId | number | Yes  | Card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
 
 **Return Value**
 
@@ -349,7 +349,7 @@ Obtains the status of the SIM card in the specified slot. This function uses an 
 
 | Name  | Type                                  | Mandatory| Description                                  |
 | -------- | -------------------------------------- | ---- | -------------------------------------- |
-| slotId   | number                                 | Yes  | Card slot ID. The options are as follows:<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| slotId   | number                                 | Yes  | Card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
 | callback | AsyncCallback\<[SimState](#simState)\> | Yes  | Callback used to return the result. For details, see [SimState](#simState). |
 
 **Example**
@@ -373,7 +373,7 @@ Obtains the status of the SIM card in the specified slot. This function uses a p
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| slotId | number | Yes  | Card slot ID. The options are as follows:<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| slotId | number | Yes  | Card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
 
 **Return Value**
 
@@ -404,7 +404,7 @@ Obtains the type of the SIM card in the specified slot. This function uses an as
 
 | Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| slotId   | number                  | Yes  | Card slot ID. The options are as follows:<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| slotId   | number                  | Yes  | Card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
 | callback | AsyncCallback\<[CardType](#cardtype7)\> | Yes  | Callback used to return the result.                            |
 
 **Example**
@@ -428,7 +428,7 @@ Obtains the type of the SIM card in the specified slot. This function uses a pro
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| slotId | number | Yes  | Card slot ID. The options are as follows:<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| slotId | number | Yes  | Card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
 
 **Return Value**
 
@@ -460,7 +460,7 @@ Checks whether the SIM card in the specified slot is installed. This function us
 
 | Name  | Type                       | Mandatory| Description                                  |
 | -------- | --------------------------- | ---- | -------------------------------------- |
-| slotId   | number                      | Yes  | Card slot ID. The options are as follows:<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| slotId   | number                      | Yes  | Card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
 | callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result.                            |
 
 **Example**
@@ -484,7 +484,7 @@ Checks whether the SIM card in the specified slot is installed. This function us
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| slotId | number | Yes  | Card slot ID. The options are as follows:<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| slotId | number | Yes  | Card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
 
 **Return Value**
 
