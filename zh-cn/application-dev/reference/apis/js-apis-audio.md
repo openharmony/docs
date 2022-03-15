@@ -122,15 +122,17 @@ let audioRenderer = await audio.createAudioRenderer(audioRendererOptions);
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Device
 
-| 名称           | 默认值 | 描述                                                      |
+| 名称           | 默认值 | 描述                                                       |
 | -------------- | ------ | --------------------------------------------------------- |
-| INVALID        | 0      | 无效设备。                                                |
-| EARPIECE       | 1      | 听筒。                                                    |
-| SPEAKER        | 2      | 扬声器。                                                  |
-| WIRED_HEADSET  | 3      | 有线耳机。                                                |
-| BLUETOOTH_SCO  | 7      | 蓝牙设备SCO（Synchronous Connection Oriented）连接。      |
-| BLUETOOTH_A2DP | 8      | 蓝牙设备A2DP（Advanced Audio Distribution Profile）连接。 |
-| MIC            | 15     | 麦克风。                                                  |
+| INVALID        | 0      | 无效设备。                                                 |
+| EARPIECE       | 1      | 听筒。                                                     |
+| SPEAKER        | 2      | 扬声器。                                                   |
+| WIRED_HEADSET  | 3      | 有线耳机，带麦克风。                                        |
+| WIRED_HEADPHONE| 4      | 有线耳机，无麦克风。                                        |
+| BLUETOOTH_SCO  | 7      | 蓝牙设备SCO（Synchronous Connection Oriented）连接。        |
+| BLUETOOTH_A2DP | 8      | 蓝牙设备A2DP（Advanced Audio Distribution Profile）连接。   |
+| MIC            | 15     | 麦克风。                                                   |
+| USB_HEADSET    | 22     | USB耳机，带麦克风。                                         |
 
 ## ActiveDeviceType
 
@@ -304,6 +306,19 @@ let audioRenderer = await audio.createAudioRenderer(audioRendererOptions);
 | INTERRUPT_HINT_DUCK   | 4      | 提示音频躲避。（躲避：音量减弱，而不会停止） |
 | INTERRUPT_HINT_UNDUCK | 5      | 提示音量恢复。                               |
 
+## InterruptActionType
+
+枚举，中断事件返回类型。
+
+本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Renderer
+
+| 名称                  | 默认值 | 描述                                         |
+| --------------------- | ------ | -------------------------------------------- |
+| TYPE_ACTIVATED | 0    | 表示触发焦点事件。 |
+| TYPE_INTERRUPT | 1    | 表示音频打断事件。 |
+
 ## AudioStreamInfo<sup>8+</sup>
 
 音频流信息。
@@ -351,6 +366,35 @@ let audioRenderer = await audio.createAudioRenderer(audioRendererOptions);
 | eventType | [InterruptType](#interrupttype8)           | 是   | 中断事件类型，开始或是结束。         |
 | forceType | [InterruptForceType](#interruptforcetype8) | 是   | 操作是由系统执行或是由应用程序执行。 |
 | hintType  | [InterruptHint](#interrupthint8)           | 是   | 中断提示。                           |
+
+## AudioInterrupt
+
+音频监听事件传入的参数。
+
+本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Renderer
+
+| 名称      | 类型                                       | 必填 | 说明                                 |
+| --------- | ------------------------------------------ | ---- | ------------------------------------ |
+| streamUsage | [StreamUsage](#streamusage8)           | 是   | 音频流使用类型。         |
+| contentType | [ContentType](#contenttype8) | 是   | 音频打断媒体类型。 |
+| pauseWhenDucked  | boolean           | 是   | 音频打断时是否可以暂停音频播放（true表示音频播放可以在音频打断期间暂停，false表示相反）。                           |
+
+## InterruptAction
+
+音频打断/获取焦点事件的回调方法。
+
+本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Renderer
+
+| 名称      | 类型                                       | 必填 | 说明                                 |
+| --------- | ------------------------------------------ | ---- | ------------------------------------ |
+| actionType | [InterruptActionType](#interruptactiontype) | 是   | 事件返回类型。TYPE_ACTIVATED为焦点触发事件，TYPE_INTERRUPT为音频打断事件。         |
+| type  | [InterruptType](#interrupttype8) | 否   | 打断事件类型。 |
+| hint  | [InterruptHint](interrupthint8) | 否   | 打断事件提示。 |
+| activated | boolean | 否   | 获得/释放焦点。true表示焦点获取/释放成功，false表示焦点获得/释放失败。 |
 
 ## VolumeEvent<sup>8+</sup>
 
@@ -1320,6 +1364,78 @@ on(type: 'ringerModeChange', callback: Callback\<AudioRingMode>): void
 | -------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                    | 是   | 事件回调类型，支持的事件为：'ringerModeChange'（铃声模式变化事件，检测到铃声模式改变时，触发该事件）。 |
 | callback | Callback<[AudioRingMode](#audioringmode)> | 是   | 回调方法。                                                   |
+
+### on('interrupt')
+
+on(type: 'interrupt', interrupt: AudioInterrupt, callback: Callback\<InterruptAction>): void
+
+请求焦点并开始监听音频打断事件（当应用程序的音频被另一个播放事件中断，回调通知此应用程序）
+
+本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名   | 类型                                   | 必填 | 说明                                                         |
+| -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
+| type      | string                         | 是   | 音频打断事件回调类型，支持的事件为：'interrupt'（多应用之间第二个应用会打断第一个应用，触发该事件）。 |
+| interrupt | AudioInterrupt                 | 是   | 音频打断事件类型的参数。 |
+| callback  | Callback<[InterruptAction](#interruptaction)> | 是   | 音频打断事件回调方法。 |
+
+**示例：**
+
+```
+var interAudioInterrupt = {
+    streamUsage:2,
+    contentType:0,
+    pauseWhenDucked:true
+};
+this.audioManager.on('interrupt', interAudioInterrupt, (InterruptAction) => {
+    if (InterruptAction.actionType === 0) {
+        console.log("An event to gain the audio focus starts.");
+        console.log("Focus gain event:" + JSON.stringify(InterruptAction));
+    }
+    if (InterruptAction.actionType === 1) {
+        console.log("An audio interruption event starts.");
+        console.log("Audio interruption event:" + JSON.stringify(InterruptAction));
+    }
+});
+```
+
+### off('interrupt')
+
+off(type: 'interrupt', interrupt: AudioInterrupt, callback?: Callback\<InterruptAction>): void
+
+取消监听音频打断事件（删除监听事件，取消打断）
+
+本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名   | 类型                                   | 必填 | 说明                                                         |
+| -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
+| type      | string                         | 是   | 音频打断事件回调类型，支持的事件为：'interrupt'（多应用之间第二个应用会打断第一个应用，触发该事件）。 |
+| interrupt | AudioInterrupt                 | 是   | 音频打断事件类型的参数。 |
+| callback  | Callback<[InterruptAction](#interruptaction)> | 否   | 音频打断事件回调方法。 |
+
+**示例：**
+
+```
+var interAudioInterrupt = {
+    streamUsage:2,
+    contentType:0,
+    pauseWhenDucked:true
+};
+this.audioManager.off('interrupt', interAudioInterrupt, (InterruptAction) => {
+    if (InterruptAction.actionType === 0) {
+        console.log("An event to release the audio focus starts.");
+        console.log("Focus release event:" + JSON.stringify(InterruptAction));
+    }
+});
+```
 
 ## AudioDeviceDescriptor
 
