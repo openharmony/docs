@@ -18,11 +18,11 @@ Ability生命周期状态
 
 | 名称          | 值   | 说明                                                         |
 | ------------- | ---- | ------------------------------------------------------------ |
-| UNINITIALIZED | 0    | 表示无效状态。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core |
-| CREATE        | 1    | 表示Ability处于已创建状态。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core |
-| FOREGROUND    | 2    | 表示Ability处于前台状态。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core |
-| BACKGROUND    | 3    | 表示Ability处于后台状态。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core |
-| DESTROY       | 4    | 表示Ability处于已销毁状态。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core |
+| UNINITIALIZED | 0    | 表示无效状态。<br/>**系统能力** ：SystemCapability.Ability.AbilityRuntime.Core |
+| CREATE        | 1    | 表示Ability处于已创建状态。<br/>**系统能力** ：SystemCapability.Ability.AbilityRuntime.Core |
+| FOREGROUND    | 2    | 表示Ability处于前台状态。<br/>**系统能力** ：SystemCapability.Ability.AbilityRuntime.Core |
+| BACKGROUND    | 3    | 表示Ability处于后台状态。<br/>**系统能力** ：SystemCapability.Ability.AbilityRuntime.Core |
+| DESTROY       | 4    | 表示Ability处于已销毁状态。<br/>**系统能力** ：SystemCapability.Ability.AbilityRuntime.Core |
 
 
 
@@ -32,9 +32,7 @@ getAbilityDelegator(): AbilityDelegator
 
 获取应用程序的AbilityDelegator对象
 
-**系统能力：**SystemCapability.Ability.AbilityRuntime.Core
-
-**参数：**-
+**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
 **返回值：**
 
@@ -58,9 +56,7 @@ getArguments(): AbilityDelegatorArgs
 
 获取单元测试参数AbilityDelegatorArgs对象
 
-**系统能力：**SystemCapability.Ability.AbilityRuntime.Core
-
-**参数：**-
+**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
 **返回值：**
 

@@ -18,5 +18,5 @@ Shell命令执行结果
 
 | 名称      | 类型   | 可读 | 可写 | 说明                                                         |
 | --------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| stdResult | string | 是   | 是   | 标准输出内容<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core |
-| exitCode  | number | 是   | 是   | 结果码<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core |
+| stdResult | string | 是   | 是   | 标准输出内容<br/>**系统能力：** SystemCapability.Ability.AbilityRuntime.Core |
+| exitCode  | number | 是   | 是   | 结果码<br/>**系统能力：** SystemCapability.Ability.AbilityRuntime.Core |

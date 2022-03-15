@@ -57,7 +57,7 @@ addAbilityMonitor(monitor: AbilityMonitor): Promise\<void>
 
 添加AbilityMonitor实例（promise形式）
 
-**系统能力：**SystemCapability.Ability.AbilityRuntime.Core
+**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -99,7 +99,7 @@ removeAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<void>): v
 
 删除已经添加的AbilityMonitor实例（callback形式）
 
-**系统能力：**SystemCapability.Ability.AbilityRuntime.Core
+**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -136,7 +136,7 @@ removeAbilityMonitor(monitor: AbilityMonitor): Promise\<void>
 
 删除已经添加的AbilityMonitor实例（promise形式）
 
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -178,7 +178,7 @@ waitAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<Ability>): 
 
 等待与AbilityMonitor实例匹配的ability到达OnCreate生命周期，并返回ability实例（callback形式）
 
-**系统能力：**SystemCapability.Ability.AbilityRuntime.Core
+**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -215,7 +215,7 @@ waitAbilityMonitor(monitor: AbilityMonitor, timeout: number, callback: AsyncCall
 
 设置等待时间，等待与AbilityMonitor实例匹配的ability到达OnCreate生命周期，并返回ability实例（callback形式）
 
-**系统能力：**SystemCapability.Ability.AbilityRuntime.Core
+**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -254,7 +254,7 @@ waitAbilityMonitor(monitor: AbilityMonitor, timeout?: number): Promise\<Ability>
 
 等待与AbilityMonitor实例匹配的ability到达OnCreate生命周期，并返回ability实例（promise形式）
 
-**系统能力：**SystemCapability.Ability.AbilityRuntime.Core
+**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -297,7 +297,7 @@ getAppContext(): Context
 
 获取应用Context
 
-**系统能力：**SystemCapability.Ability.AbilityRuntime.Core
+**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
 **返回值：**
 
@@ -322,7 +322,7 @@ getAbilityState(ability: Ability): number
 
 获取指定ability的生命周期状态
 
-**系统能力：**SystemCapability.Ability.AbilityRuntime.Core
+**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -359,7 +359,7 @@ getCurrentTopAbility(callback: AsyncCallback\<Ability>): void
 
 获取当前应用顶部ability（callback形式）
 
-**系统能力：**SystemCapability.Ability.AbilityRuntime.Core
+**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -388,7 +388,7 @@ getCurrentTopAbility(): Promise\<Ability>
 
 获取当前应用顶部ability（promise形式）
 
-**系统能力：**SystemCapability.Ability.AbilityRuntime.Core
+**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
 **返回值：**
 
@@ -417,7 +417,7 @@ startAbility(want: Want, callback: AsyncCallback\<void>): void
 
 启动指定ability（callback形式）
 
-**系统能力：**SystemCapability.Ability.AbilityRuntime.Core
+**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -449,7 +449,7 @@ startAbility(want: Want): Promise\<void>
 
 启动指定ability（promise形式）
 
-**系统能力：**SystemCapability.Ability.AbilityRuntime.Core
+**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -486,7 +486,7 @@ doAbilityForeground(ability: Ability, callback: AsyncCallback\<boolean>): void
 
 调度指定ability生命周期状态到Foreground状态（callback形式）
 
-**系统能力：**SystemCapability.Ability.AbilityRuntime.Core
+**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -519,7 +519,7 @@ doAbilityForeground(ability: Ability): Promise\<boolean>
 
 调度指定ability生命周期状态到Foreground状态（promise形式）
 
-**系统能力：**SystemCapability.Ability.AbilityRuntime.Core
+**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -557,7 +557,7 @@ doAbilityBackground(ability: Ability, callback: AsyncCallback\<boolean>): void
 
 调度指定ability生命周期状态到Background状态（callback形式）
 
-**系统能力：**SystemCapability.Ability.AbilityRuntime.Core
+**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -590,7 +590,7 @@ doAbilityBackground(ability: Ability): Promise\<boolean>
 
 调度指定ability生命周期状态到Background状态（promise形式）
 
-**系统能力：**SystemCapability.Ability.AbilityRuntime.Core
+**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -628,7 +628,7 @@ print(msg: string, callback: AsyncCallback\<void>): void
 
 打印日志信息到单元测试终端控制台（callback形式）
 
-**系统能力：**SystemCapability.Ability.AbilityRuntime.Core
+**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -657,7 +657,7 @@ print(msg: string): Promise\<void>
 
 打印日志信息到单元测试终端控制台（promise形式）
 
-**系统能力：**SystemCapability.Ability.AbilityRuntime.Core
+**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -691,7 +691,7 @@ executeShellCommand(cmd: string, callback: AsyncCallback\<ShellCmdResult>): void
 
 执行指定的shell命令（callback形式）
 
-**系统能力：**SystemCapability.Ability.AbilityRuntime.Core
+**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -720,7 +720,7 @@ executeShellCommand(cmd: string, timeoutSecs: number, callback: AsyncCallback\<S
 
 执行指定的shell命令（callback形式）
 
-**系统能力：**SystemCapability.Ability.AbilityRuntime.Core
+**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -751,7 +751,7 @@ executeShellCommand(cmd: string, timeoutSecs: number): Promise\<ShellCmdResult>
 
 执行指定的shell命令（promise形式）
 
-**系统能力：**SystemCapability.Ability.AbilityRuntime.Core
+**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 

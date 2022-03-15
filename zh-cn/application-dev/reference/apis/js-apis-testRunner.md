@@ -18,7 +18,7 @@ onPrepare(): void
 
 为运行测试用例准备单元测试环境
 
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
 **示例：**
 
@@ -38,7 +38,7 @@ onRun(): void
 
 运行测试用例
 
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
 **示例：**
 
