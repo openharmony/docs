@@ -122,7 +122,7 @@ queryBundleStateInfos(begin: number, end: number, callback: AsyncCallback&lt;Bun
   | -------- | -------- | -------- | -------- |
   | begin | number | 是 | 起始时间。|
   | end | number | 是 | 结束时间。|
-  | callback | AsyncCallback&lt;BundleActiveInfoResponse&gt; | 是 | 指定的callback回调方法。返回指定起始和结束时间内应用使用时长统计信息。|
+  | callback | AsyncCallback&lt;[BundleActiveInfoResponse](#bundleactiveinforesponse)&gt; | 是 | 指定的callback回调方法。返回指定起始和结束时间内应用使用时长统计信息。|
 
 **示例**：
 
@@ -160,7 +160,7 @@ queryBundleStateInfos(begin: number, end: number): Promise&lt;BundleActiveInfoRe
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;BundleActiveInfoResponse&gt; | 指定的Promise回调方法。返回指定起始和结束时间内应用使用时长统计信息。|
+  | Promise&lt;[BundleActiveInfoResponse](#bundleactiveinforesponse)&gt; | 指定的Promise回调方法。返回指定起始和结束时间内应用使用时长统计信息。|
 
 **示例**：
 
@@ -189,10 +189,10 @@ queryBundleStateInfoByInterval(byInterval: IntervalType, begin: number, end: num
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | byInterval | IntervalType | 是 | 查询类型。|
+  | byInterval | [IntervalType](#intervaltype) | 是 | 查询类型。|
   | begin | number | 是 | 起始时间。|
   | end | number | 是 | 结束时间。|
-  | callback | AsyncCallback&lt;Array&lt;BundleStateInfo&gt;&gt; | 是 | 指定的callback回调方法。返回指定时间段间隔（天、周、月、年）查询应用使用时长统计信息。|
+  | callback | AsyncCallback&lt;Array&lt;[BundleStateInfo](#bundlestateinfo)&gt;&gt; | 是 | 指定的callback回调方法。返回指定时间段间隔（天、周、月、年）查询应用使用时长统计信息。|
 
 **示例**：
 
@@ -221,7 +221,7 @@ queryBundleStateInfoByInterval(byInterval: IntervalType, begin: number, end: num
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | byInterval | IntervalType | 是 | 查询类型。|
+  | byInterval | [IntervalType](#intervaltype) | 是 | 查询类型。|
   | begin | number | 是 | 起始时间。|
   | end | number | 是 | 结束时间。|
 
@@ -229,7 +229,7 @@ queryBundleStateInfoByInterval(byInterval: IntervalType, begin: number, end: num
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;Array&lt;BundleStateInfo&gt;&gt; | 指定的Promise回调方法。返回指定时间段间隔（天、周、月、年）查询应用使用时长统计信息。|
+  | Promise&lt;Array&lt;[BundleStateInfo](#bundlestateinfo)&gt;&gt; | 指定的Promise回调方法。返回指定时间段间隔（天、周、月、年）查询应用使用时长统计信息。|
 
 **示例**：
 
@@ -258,7 +258,7 @@ queryBundleActiveStates(begin: number, end: number, callback: AsyncCallback&lt;A
   | -------- | -------- | -------- | -------- |
   | begin | number | 是 | 起始时间。|
   | end | number | 是 | 结束时间。|
-  | callback | AsyncCallback&lt;Array&lt;BundleActiveState&gt;&gt; | 是 | 指定的callback回调方法。返回指定起始和结束时间查询所有应用的事件集合。|
+  | callback | AsyncCallback&lt;Array&lt;[BundleActiveState](#bundleactivestate)&gt;&gt; | 是 | 指定的callback回调方法。返回指定起始和结束时间查询所有应用的事件集合。|
 
 **示例**：
 
@@ -294,7 +294,7 @@ queryBundleActiveStates(begin: number, end: number): Promise&lt;Array&lt;BundleA
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;Array&lt;BundleActiveState&gt;&gt; | 指定的Promise回调方法。返回指定起始和结束时间查询所有应用的事件集合。|
+  | Promise&lt;Array&lt;[BundleActiveState](#bundleactivestate)&gt;&gt; | 指定的Promise回调方法。返回指定起始和结束时间查询所有应用的事件集合。|
 
 **示例**：
 
@@ -322,7 +322,7 @@ queryCurrentBundleActiveStates(begin: number, end: number, callback: AsyncCallba
   | -------- | -------- | -------- | -------- |
   | begin | number | 是 | 起始时间。|
   | end | number | 是 | 结束时间。|
-  | callback | AsyncCallback&lt;Array&lt;BundleActiveState&gt;&gt; | 是 | 指定的callback回调方法。返回指定起始和结束时间查询当前应用的事件集合。|
+  | callback | AsyncCallback&lt;Array&lt;[BundleActiveState](#bundleactivestate)&gt;&gt; | 是 | 指定的callback回调方法。返回指定起始和结束时间查询当前应用的事件集合。|
 
 **示例**：
 
@@ -357,7 +357,7 @@ queryCurrentBundleActiveStates(begin: number, end: number): Promise&lt;Array&lt;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;Array&lt;BundleActiveState&gt;&gt; | 指定的Promise回调方法。返回指定起始和结束时间查询当前应用的事件集合。|
+  | Promise&lt;Array&lt;[BundleActiveState](#bundleactivestate)&gt;&gt; | 指定的Promise回调方法。返回指定起始和结束时间查询当前应用的事件集合。|
 
 **示例**：
 
@@ -403,7 +403,7 @@ merge(toMerge: BundleStateInfo): void
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | toMerge | BundleStateInfo | 是 | 相同包名的应用使用统计信息。|
+  | toMerge | [BundleStateInfo](#bundlestateinfo) | 是 | 相同包名的应用使用统计信息。|
 
 ## BundleActiveState
 提供应用事件的具体信息。
@@ -426,9 +426,9 @@ merge(toMerge: BundleStateInfo): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| [key: string]: BundleStateInfo | BundleStateInfo | 是 | 不同应用的使用时长统计信息。|
+| [key: string]: BundleStateInfo | [BundleStateInfo](#bundlestateinfo) | 是 | 不同应用的使用时长统计信息。|
 
-## bundleState.IntervalType
+## IntervalType
 提供应用使用时长的查询类型。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.UsageStatistics.App
