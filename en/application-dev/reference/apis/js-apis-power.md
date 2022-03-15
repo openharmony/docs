@@ -1,7 +1,9 @@
-# Power Management
+# Power Manager
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+
+The Power Manager module provides APIs for rebooting and shutting down the system, as well as querying the screen status.
 
 
 ## Modules to Import
@@ -12,7 +14,7 @@ import power from '@ohos.power';
 
 ## System Capabilities
 
-SystemCapability.PowerManager.PowerManager
+SystemCapability.PowerManager.PowerManager.Core
 
 
 ## power.shutdownDevice
@@ -21,13 +23,15 @@ shutdownDevice(reason: string): void
 
 Shuts down the system.
 
-Before using this API, you must declare the **ohos.permission.SHUTDOWN** permission.
+**Required permission:** ohos.permission.SHUTDOWN
+
+**Note:** This is a system API and it is used only for system applications.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| reason | string | Yes| Reason for system shutdown.|
+| Name   | Type    | Mandatory  | Description   |
+| ------ | ------ | ---- | ----- |
+| reason | string | Yes   | Reason for system shutdown.|
 
 **Example**
 
@@ -43,13 +47,13 @@ rebootDevice(reason: string): void
 
 Restarts the device.
 
-Before using this API, you must declare the **ohos.permission.REBOOT** permission (to reboot) or the **ohos.permission.REBOOT_RECOVERY** permission (to reboot and enter the recovery mode)
+**Required permission:** ohos.permission.REBOOT (to reboot) or ohos.permission.REBOOT_UPDATER (to reboot and enter the updater mode)
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| reason | string | Yes| Reason for system reboot.|
+| Name   | Type    | Mandatory  | Description   |
+| ------ | ------ | ---- | ----- |
+| reason | string | Yes   | Reason for system reboot.|
 
 **Example**
 
@@ -67,9 +71,9 @@ Checks the screen status of the current device.
 
 **Parameters**
 
-| Type| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to obtain the return value. <br/>The value **true** indicates that the screen is on, and value **false** indicates the opposite.|
+| Type      | Type                          | Mandatory  | Description                                      |
+| -------- | ---------------------------- | ---- | ---------------------------------------- |
+| callback | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to obtain the return value.<br>Return value: The value **true** indicates that the screen is on, and the value **false** indicates the opposite.|
 
 **Example**
 
@@ -90,10 +94,10 @@ isScreenOn(): Promise&lt;boolean&gt;
 
 Checks the screen status of the current device.
 
-**Return value**
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;boolean&gt; | Promise used to asynchronously obtain the return value. <br/>The value **true** indicates that the screen is on, and value **false** indicates the opposite.|
+**Return Value**
+| Type                    | Description                                     |
+| ---------------------- | --------------------------------------- |
+| Promise&lt;boolean&gt; | Promise used to obtain the return value. <br/>Return value: The value **true** indicates that the screen is on, and the value **false** indicates the opposite.|
 
 **Example**
 
