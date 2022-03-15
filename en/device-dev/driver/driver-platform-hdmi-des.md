@@ -2,20 +2,23 @@
 
 ## Overview<a name="section1"></a>
 
--   The High-Definition Multimedia Interface (HDMI) is an audio/video transmission protocol released by Hitachi, Panasonic, Philips, Silicon Image, Sony, Thomson, Toshiba.
--   The HDMI works in master/slave mode and usually has a source and a sink.
--   The HDMI APIs provide a set of common functions for HDMI transmission, including:
+High-Definition Multimedia Interface (HDMI) is an audio/video transmission protocol released by Hitachi, Panasonic, Philips, Silicon Image, Sony, Thomson, and Toshiba.
 
-    - Opening and closing an HDMI controller.
-    - Starting and stopping HDMI transmission.
-    - Setting audio, video, and High Dynamic Range (HDR) attributes, color depth, and AV mute.
-    - Reading the raw Extended Display Identification Data (EDID) from a sink.
-    - Registering and unregistering a callback for HDMI hot plug detect.
--   [Figure 1](#fig1) shows the HDMI physical connection.
+HDMI works in master/slave mode and usually has a source and a sink.
 
-     **Figure 1** HDMI physical connection<a name="fig1"></a>
-	 
-     ![](figures/HDMI_physical_connection.png "HDMI_physical_connection")
+The HDMI APIs provide a set of common functions for HDMI transmission, including:
+
+- Opening and closing an HDMI controller
+- Starting and stopping HDMI transmission
+- Setting audio, video, and High Dynamic Range (HDR) attributes, color depth, and AV mute
+- Reading the raw Extended Display Identification Data (EDID) from a sink
+- Registering and unregistering a callback for HDMI hot plug detect (HPD) 
+
+[Figure 1](#fig1) shows the HDMI physical connection.
+
+ **Figure 1** HDMI physical connection<a name="fig1"></a>
+
+ ![](figures/HDMI_physical_connection.png "HDMI_physical_connection")
 
 ## Available APIs<a name="section2"></a>
 
@@ -94,16 +97,16 @@
 <td class="cellrowborder" valign="top" width="53.339999999999996%">Reads the raw EDID from a sink.</p>
 </td>
 </tr>
-<tr><td class="cellrowborder" bgcolor="#ffffff" rowspan="2" valign="top" width="18.63%"><p>Registering or unregistering a callback for HDMI hot plug detect</p>
+<tr><td class="cellrowborder" bgcolor="#ffffff" rowspan="2" valign="top" width="18.63%"><p>Registering or unregistering a callback for HDMI HPD</p>
 </td>
 <td class="cellrowborder" valign="top" width="28.03%"><p>HdmiRegisterHpdCallbackFunc</p>
 </td>
-<td class="cellrowborder" valign="top" width="53.339999999999996%">Registers a callback for HDMI hot plug detect.</p>
+<td class="cellrowborder" valign="top" width="53.339999999999996%">Registers a callback for HDMI HPD.</p>
 </td>
 </tr>
 <tr><td class="cellrowborder" valign="top"><p>HdmiUnregisterHpdCallbackFunc</p>
 </td>
-<td class="cellrowborder" valign="top"><p>Unregisters the callback for HDMI hot plug detect.</p>
+<td class="cellrowborder" valign="top"><p>Unregisters the callback for HDMI HPD.</p>
 </td>
 </tr>
 </tbody>
@@ -121,7 +124,7 @@
 
 ### Opening an HDMI Controller<a name="section5"></a>
 
-Before HDMI communication, call **HdmiOpen** to enable an HDMI controller.
+Before HDMI communication, call **HdmiOpen** to open an HDMI controller.
 
 ```c
 DevHandle HdmiOpen(int16_t number);
@@ -173,7 +176,7 @@ if (hdmiHandle == NULL) {
 }
 ```
 
-### Registering a Callback for Hot Plug Detect<a name="section6"></a>
+### Registering a Callback for HPD<a name="section6"></a>
 
 ```c
 int32_t HdmiRegisterHpdCallbackFunc(DevHandle handle, struct HdmiHpdCallbackInfo *callback);
@@ -196,7 +199,7 @@ int32_t HdmiRegisterHpdCallbackFunc(DevHandle handle, struct HdmiHpdCallbackInfo
 </tr>
 <tr><td class="cellrowborder" valign="top" width="50%"><p>callback</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%"><p>Callback invoked to return the hot plug detect result.</p>
+<td class="cellrowborder" valign="top" width="50%"><p>Pointer to the callback to be invoked to return the HPD result.</p>
 </td>
 </tr>
 <tr><td class="cellrowborder" valign="top" width="50%"><p><strong>Return Value</strong></p>
@@ -217,10 +220,10 @@ int32_t HdmiRegisterHpdCallbackFunc(DevHandle handle, struct HdmiHpdCallbackInfo
 </tbody>
 </table>
 
-The following is an example of registering a callback for hot plug detect:
+The following is an example of registering a callback for HPD:
 
 ```c
-/* Definition of the callback for hot plug detect */
+/* Definition of the callback for HPD */
 static void HdmiHpdHandle(void *data, bool hpd)
 {
     if (data == NULL) {
@@ -237,7 +240,7 @@ static void HdmiHpdHandle(void *data, bool hpd)
     }
 }
 
-    /* Example of registering a callback for hot plug detect */
+    /* Example of registering a callback for HPD */
     struct HdmiHpdCallbackInfo info = {0};
     info.data = handle;
     info.callbackFunc = HdmiHpdHandle;
@@ -247,7 +250,7 @@ static void HdmiHpdHandle(void *data, bool hpd)
     }
 ```
 
-### Reading the EDID<a name="section7"></a>
+### Reading the RAW EDID<a name="section7"></a>
 
 ```c
 int32_t HdmiReadSinkEdid(DevHandle handle, uint8_t *buffer, uint32_t len);
@@ -270,7 +273,7 @@ int32_t HdmiReadSinkEdid(DevHandle handle, uint8_t *buffer, uint32_t len);
 </tr>
 <tr><td class="cellrowborder" valign="top" width="50%"><p>buffer</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%"><p>Data buffer.</p>
+<td class="cellrowborder" valign="top" width="50%"><p>Pointer to the data buffer.</p>
 </td>
 </tr>
 <tr><td class="cellrowborder" valign="top" width="50%"><p>len</p>
@@ -296,7 +299,7 @@ int32_t HdmiReadSinkEdid(DevHandle handle, uint8_t *buffer, uint32_t len);
 </tbody>
 </table>
 
-The following is an example of reading the raw EDID data from a sink:
+The following is an example of reading the raw EDID from a sink:
 
 ```c
 int32_t len;
@@ -333,7 +336,7 @@ int32_t HdmiSetAudioAttribute(DevHandle handle, struct HdmiAudioAttr *attr);
 </tr>
 <tr><td class="cellrowborder" valign="top" width="50%"><p>attr</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%"><p> Audio attributes.</p>
+<td class="cellrowborder" valign="top" width="50%"><p>Pointer to the audio attributes.</p>
 </td>
 </tr>
 <tr><td class="cellrowborder" valign="top" width="50%"><p><strong>Return Value</strong></p>
@@ -394,7 +397,7 @@ int32_t HdmiSetVideoAttribute(DevHandle handle, struct HdmiVideoAttr *attr);
 </tr>
 <tr><td class="cellrowborder" valign="top" width="50%"><p>attr</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%"><p>Video attributes.</p>
+<td class="cellrowborder" valign="top" width="50%"><p>Pointer to the video attributes.</p>
 </td>
 </tr>
 <tr><td class="cellrowborder" valign="top" width="50%"><p><strong>Return Value</strong></p>
@@ -454,7 +457,7 @@ int32_t HdmiSetHdrAttribute(DevHandle handle, struct HdmiHdrAttr *attr);
 </tr>
 <tr><td class="cellrowborder" valign="top" width="50%"><p>attr</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%"><p>HDR attributes.</p>
+<td class="cellrowborder" valign="top" width="50%"><p>Pointer to the HDR attributes.</p>
 </td>
 </tr>
 <tr><td class="cellrowborder" valign="top" width="50%"><p><strong>Return Value</strong></p>
@@ -627,7 +630,7 @@ int32_t HdmiDeepColorGet(DevHandle handle, enum HdmiDeepColor *color);
 </tr>
 <tr><td class="cellrowborder" valign="top" width="50%"><p>color</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%"><p>Color depth.</p>
+<td class="cellrowborder" valign="top" width="50%"><p>Pointer to the color depth.</p>
 </td>
 </tr>
 <tr><td class="cellrowborder" valign="top" width="50%"><p><strong>Return Value</strong></p>
@@ -760,7 +763,7 @@ if (ret != 0) {
 }
 ```
 
-### Unregistering the Callback for Hot Plug Detect<a name="section12"></a>
+### Unregistering the Callback for HPD<a name="section12"></a>
 
 ```c
 int32_t HdmiUnregisterHpdCallbackFunc(DevHandle handle);
@@ -799,7 +802,7 @@ int32_t HdmiUnregisterHpdCallbackFunc(DevHandle handle);
 </tbody>
 </table>
 
-The following is an example of unregistering the callback for hot plug detect:
+The following is an example of unregistering the callback for HPD:
 
 ```c
 int32_t ret;
@@ -856,7 +859,7 @@ The sample code is as follows:
 ```c
 #include "hdmi_if.h"          /* Header file for HDMI standard APIs */
 #include "hdf_log.h"         /* Header file for log APIs */
-##include "osal_time.h"       /* Header file for delay and sleep APIs */
+#include "osal_time.h"       /* Header file for delay and sleep APIs */
 
 /* Callback for hog plug detect */
 static void HdmiHpdHandle(void *data, bool hpd)

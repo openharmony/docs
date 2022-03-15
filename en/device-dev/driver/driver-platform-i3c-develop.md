@@ -4,30 +4,14 @@
 
 The Improved Inter-Integrated Circuit (I3C) is a simple and cost-efficient bidirectional 2-wire synchronous serial bus protocol developed by the Mobile Industry Processor Interface (MIPI) Alliance. In the Hardware Driver Foundation (HDF), the I3C module uses the unified service mode for API adaptation. In this mode, a device service is used as the I3C manager to handle external access requests in a unified manner, which is reflected in the configuration file. The unified service mode applies to the scenario where there are many device objects of the same type, for example, when the I3C has more than 10 controllers. If the independent service mode is used, more device nodes need to be configured and memory resources will be consumed by services.
 
+**Figure 1** Unified service mode<a name="fig1"></a>
+
 ![image1](figures/unified-service-mode.png)
 
-## How to Develop<a name="2"></a>
 
-The I3C module adaptation involves the following steps:
+## Available APIs<a name="2"></a>
 
-1. Instantiate the driver entry.
-    - Instantiate the **HdfDriverEntry** structure.
-    - Call **HDF_INIT** to register the **HdfDriverEntry** instance with the HDF.
-
-2. Configure attribute files.
-   
-    - Add the **deviceNode** information to the **device_info.hcs** file.
-    - (Optional) Add the **i3c_config.hcs** file.
-  
-3. **Instantiate the I3C controller object.**
-   
-    - Initialize **I3cCntlr**.
-    - Instantiate **I3cMethod** in **I3cCntlr**. For details, see the following description of **I3cMethod**.
-  
-4. Register an interrupt handler.
-    Registers an interrupt handler for the controller to implement the device hot-join and in-band interrupt (IBI) features.
-
-    I3cMethod:
+**I3cMethod**:
     ```c
     struct I3cMethod {
         int32_t (*sendCccCmd)(struct I3cCntlr *cntlr, struct I3cCccCmd *ccc);
@@ -40,29 +24,52 @@ The I3C module adaptation involves the following steps:
     };
     ```
 
-    **Table 1** Callbacks for the members in the I3cMethod structure
-
-    |Callback|Input Parameter|Output Parameter|Return Value|Description|
+    **Table 1** APIs for the members in the I3cMethod structure
+    
+    |Method|Input Parameter|Output Parameter|Return Value|Description|
     |-|-|-|-|-|
-    |sendCccCmd|**cntlr**: structure pointer to an I3C controller at the core layer. <br> **ccc**: pointer to the input common command code (CCC) structure.|**ccc**: pointer to the output CCC structure.|HDF_STATUS|Sends a CCC.|
-    |Transfer  |**cntlr**: structure pointer to an I3C controller at the core layer. <br>**msgs**: structure pointer to user messages. <br>**count**: number of messages, which is of the int16_t type.|**msgs**: structure pointer to user messages.|HDF_STATUS|Transfers user messages in I3C mode.|
-    |i2cTransfer |**cntlr**: structure pointer to an I3C controller at the core layer. <br>**msgs**: structure pointer to user messages. <br>**count**: number of messages, which is of the int16_t type.|**msgs**: structure pointer to user messages.|HDF_STATUS|Transfers user messages in I2C mode.|
-    |setConfig|**cntlr**: structure pointer to an I3C controller at the core layer. <br>**config**: controller configuration parameters.|–|HDF_STATUS|Configures an I3C controller.|
-    |getConfig|**cntlr**: structure pointer to an I3C controller at the core layer.|**config**: controller configuration parameters.|HDF_STATUS|Obtains the configuration of an I3C controller.|
+    |sendCccCmd|**cntlr**: structure pointer to an I3C controller at the core layer. <br/>**ccc**: pointer to the input common command code (CCC) structure.|**ccc**: pointer to the output CCC structure.|HDF_STATUS|Sends a CCC.|
+    |Transfer  |**cntlr**: structure pointer to an I3C controller at the core layer. <br/>**msgs**: structure pointer to user messages. <br/>**count**: number of messages, which is of the int16_t type.|**msgs**: structure pointer to user messages.|HDF_STATUS|Transfers user messages in I3C mode.|
+    |i2cTransfer |**cntlr**: structure pointer to an I3C controller at the core layer. <br/>**msgs**: structure pointer to user messages. <br>**count**: number of messages, which is of the int16_t type.|**msgs**: structure pointer to user messages.|HDF_STATUS|Transfers user messages in I2C mode.|
+    |setConfig|**cntlr**: structure pointer to an I3C controller at the core layer. <br/>**config**: pointer to controller configuration parameters.|–|HDF_STATUS|Sets an I3C controller.|
+    |getConfig|**cntlr**: structure pointer to an I3C controller at the core layer.|**config**: pointer to controller configuration parameters.|HDF_STATUS|Obtains the configuration of an I3C controller.|
     |requestIbi|**device**: structure pointer to an I3C device at the core layer.|–|HDF_STATUS|Requests an IBI for an I3C device.|
     |freeIbi|**device**: structure pointer to an I3C device at the core layer.|–|HDF_STATUS|Releases the IBI for an I3C device.|
 
-## Development Example<a name="3"></a>
+## How to Develop<a name="3"></a>
 
-1. Instantiate the driver entry. The driver entry must be a global variable of the **HdfDriverEntry** type (defined in **hdf_device_desc.h**), and the value of **moduleName** must be the same as that in **device_info.hcs**. In the HDF, the start address of each **HdfDriverEntry** object of all loaded drivers are collected to form a segment address space similar to an array for the upper layer to invoke.
+The I3C module adaptation involves the following steps:
+
+1. Instantiate the driver entry.
+    - Instantiate the **HdfDriverEntry** structure.
+    - Call **HDF_INIT** to register the **HdfDriverEntry** instance with the HDF.
+
+2. Configure attribute files.
+   
+    - Add the **deviceNode** information to the **device_info.hcs** file.
+    - (Optional) Add the **i3c_config.hcs** file.
+  
+3. Instantiate the I3C controller object.
+   
+    - Initialize **I3cCntlr**.
+    - Instantiate **I3cMethod** in **I3cCntlr**. For details, see [Available APIs](#Available_apis).
+  
+4. Register an interrupt handler.
+    Register an interrupt handler for the controller to implement the device hot-join and in-band interrupt (IBI) features.
+
+  
+
+## Development Example<a name="4"></a>
+
+1. Instantiate the driver entry. The driver entry must be a global variable of the **HdfDriverEntry** type (defined in **hdf\_device\_desc.h**), and the value of **moduleName** must be the same as that in **device\_info.hcs**. In the HDF, the start address of each **HdfDriverEntry** object of all loaded drivers are collected to form a segment address space similar to an array for the upper layer to invoke.
 
     Generally, the HDF calls the **Bind** function and then the **Init** function to load a driver. If **Init** fails to be called, the HDF calls **Release** to release driver resources and exit.
 
-    I3C driver entry reference
+    I3C driver entry reference:
 
-    > The I3C module may be connected with multiple controllers. Therefore, in the HDF, a manager object is created for the I3C, and a manager service is published to handle external access requests in a unified manner. Before a controller is opened, the manager service is obtained first. Then, the manager service locates the target controller based on the specified parameters.
+    > The I3C module may be connected with multiple controllers. Therefore, in the HDF, a manager object is created for the I3C, and a manager service is published to handle external access requests in a unified manner. Before a controller is opened, the manager service needs to be obtained first. Then, the manager service locates the target controller based on the specified parameters.
     >
-    > The core layer implements the driver of the I3C manager service. **Vendors do not need to care about the implementation. When **Init()** is implemented, the **I3cCntlrAdd()** function at the core layer needs to be called to implement related features.**
+    > The core layer implements the driver of the I3C manager service. Vendors do not need to care about the implementation. However, during the implementation of **Init()**, the **I3cCntlrAdd()** function at the core layer needs to be called to implement related features.
 
     ```c
     static struct HdfDriverEntry g_virtualI3cDriverEntry = {
@@ -83,18 +90,18 @@ The I3C module adaptation involves the following steps:
     HDF_INIT(g_i3cManagerEntry);
     ```
 
-2. Add **deviceNode** to the **device_info.hcs** file, and configure the device attributes in the **i3c_config.hcs** file. The **deviceNode** information is related to registration of the driver entry. The device attribute values are closely related to the driver implementation and the default values or restriction ranges of the **I3cCntlr** members at the core layer.
+2. Add **deviceNode** to the **device\_info.hcs** file, and configure the device attributes in the **i3c\_config.hcs** file. The **deviceNode** information is related to registration of the driver entry. The device attribute values are closely related to the driver implementation and the default values or restriction ranges of the **I3cCntlr** members at the core layer.
 
-    In the unified service mode, the first device node in the **device_info** file must be the I3C manager. The I3C manager parameters must be set as follows:
+    In the unified service mode, the first device node in the **device\_info** file must be the I3C manager. The I3C manager parameters must be set as follows:
     
     |Member|Value|
     |-|-|
     |moduleName |HDF_PLATFORM_I3C_MANAGER|
-    |serviceName|- (reserved)|
+    |serviceName|Reserved|
     |policy|0|
-    |cntlrMatchAttr| - (reserved)|
+    |cntlrMatchAttr| Reserved |
     
-    Configure I3C controller information from the second node. This node specifies a type of I3C controllers rather than a specific I3C controller. In this example, there is only one I3C controller. If there are multiple I3C controllers, you need to add the **deviceNode** information to the **device_info** file and add the corresponding device attributes to the **i3c_config** file.
+    Configure I3C controller information from the second node. This node specifies a type of I3C controllers rather than a specific I3C controller. In this example, there is only one I3C controller. If there are multiple I3C controllers, you need to add the **deviceNode** information to the **device\_info** file and add the corresponding device attributes to the **i3c\_config** file.
 
     - **device_info.hcs** configuration reference
 
@@ -120,14 +127,14 @@ The I3C module adaptation involves the following steps:
         }
         ```
 
-    - i3c_config.hcs configuration reference
+    - **i3c_config.hcs** configuration reference
 
         ```c
         root {
             platform {
                 i3c_config {
                     match_attr = "virtual_i3c"; // (Mandatory) The value must be the same as that of deviceMatchAttr in device_info.hcs.
-                    template i3c_controller {    // Template configuration. In the template, you can configure the common parameters shared by service nodes.
+                    template i3c_controller {    // Template configuration. In the template, you can configure the common parameters shared by device nodes.
                         busId = 0;               // (Mandatory) I3C bus number.
                         busMode = 0x0;          // Bus mode. Which can be 0x0 (pure), 0x1 (mixed-fast), 0x2 (mixed-limited), or 0x3 (mixed-slow).
                         regBasePhy = 0x120b0000; // (Mandatory) Physical base address.
@@ -147,17 +154,17 @@ The I3C module adaptation involves the following steps:
         }
         ```
 
-3. Initialize the **I3cCntlr** object at the core layer, including initializing the vendor custom structure (transferring parameters and data) and instantiating **I3cMethod** (used to call the underlying functions of the driver) in **I3cCntlr**.
+3. Initialize the **I3cCntlr** object at the core layer, including initializing the custom structure (passing parameters and data) and instantiating **I3cMethod** (used to call the underlying functions of the driver) in **I3cCntlr**.
 
     The **HdfDriverEntry** member functions (**Bind**, **Init**, and **Release**) must be implemented in this step.
 
     - Custom structure reference
       
-        > To the driver, the custom structure carries parameters and data. The values in the **i3c_config.hcs** file are read by the HDF, and the structure members are initialized through **DeviceResourceIface**. Some important values, such as the device number and bus number, are also passed to the **I3cCntlr** object at the core layer.
+        > The custom structure holds parameters and data for the driver. The HDF reads the values in the **i3c_config.hcs** file and initializes the structure members through **DeviceResourceIface**. Some important values, such as the device number and bus number, are also passed to the **I3cCntlr** object at the core layer.
     
         ```c
         struct VirtualI3cCntlr {
-            struct AdcDevice device;// (Mandatory) Control object at the core layer. For details, see the following description of **I3cCntlr**.
+            struct AdcDevice device;// (Mandatory) Control object at the core layer. For details, see the following description of I3cCntlr.
             volatile unsigned char *regBase;// (Mandatory) Register base address.
             uint32_t regBasePhy; // (Mandatory) Physical base address of the register.
             uint32_t regSize;        // (Mandatory) Bit width of the register.
@@ -169,7 +176,7 @@ The I3C module adaptation involves the following steps:
             uint32_t i2cFmRate;
             uint32_t i2cFmPlusRate;
         };
-
+        
         /* I3cCntlr is the controller structure at the core layer. Its members are assigned with values by using the Init function.
         struct I3cCntlr {
             OsalSpinlock lock;
@@ -184,19 +191,19 @@ The I3C module adaptation involves the following steps:
         };
         ```
 
-        > **(Important)** The following shows instantiation of the **I3cCntlr** member callback structure **I3cMethod**. This example does not provide the instantiation of the **I3cLockMethod** callback structure. For details, see the I2C driver development. Other members are initialized in the **Init** function.
+        > **(Important)** This example does not provide the instantiation of the **I3cLockMethod** callback structure in **I3cCntlr**. For details, see the I2C driver development. Other members are initialized in the **Init** function.
 
     
-    - **Init function**
+    - **Init** function
     
-        > **Input parameter**:
-        >  **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs configuration file information.
+        > Input parameter:
+        >  **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs configuration.
         > 
-        > **Return value**
-        > **HDF_STATUS** (The following table lists some states. For more details, see **HDF_STATUS** definition in the **/drivers/framework/include/utils/hdf_base.h file**.)
+        > Return value:
+        > **HDF_STATUS** (The following table lists some states. For more details, see **HDF\_STATUS** definition in the **/drivers/framework/include/utils/hdf\_base.h file**.)
         
-        |State (Value)|Description|
-        |:-|:-:|
+        |State|Description|
+        |:-|:--|
         |HDF_ERR_INVALID_OBJECT|Invalid controller object.|
         |HDF_ERR_INVALID_PARAM |Invalid parameter.|
         |HDF_ERR_MALLOC_FAIL   |Failed to allocate memory.|
@@ -204,8 +211,8 @@ The I3C module adaptation involves the following steps:
         |HDF_SUCCESS           |Transmission successful.|
         |HDF_FAILURE           |Transmission failed.|
     
-        > **Function description:**
-        > Initializes the custom structure object and **I3cCntlr**, and calls the **I3cCntlrAdd** function to add the i3C controller to the core layer.
+        > Function description:
+        > Initializes the custom structure object and **I3cCntlr**, and calls the **I3cCntlrAdd** function to add the I3C controller to the core layer.
 
         ```c
         static int32_t VirtualI3cParseAndInit(struct HdfDeviceObject *device, const struct DeviceResourceNode *node)
@@ -238,7 +245,7 @@ The I3C module adaptation involves the following steps:
             virtual->cntlr.busId = virtual->busId;     // (Mandatory) Initialize I3cCntlr.
             virtual->cntlr.ops = &g_method;           // (Mandatory) Connect to the I3cMethod instance. 
             (void)OsalSpinInit(&virtual->spin);
-            ret = I3cCntlrAdd(&virtual->cntlr);        // (Mandatory) Call this function to add the controller to the core layer. If a success signal is returned, the driver is completely connected to the core layer of the platform.
+            ret = I3cCntlrAdd(&virtual->cntlr);        // (Mandatory) Call this function to add the controller to the core layer. If a success signal is returned, the driver is completely connected to the core layer.
             if (ret != HDF_SUCCESS) {
                 HDF_LOGE("%s: add i3c controller failed! ret = %d", __func__, ret);
                 (void)OsalSpinDestroy(&virtual->spin);
@@ -276,16 +283,16 @@ The I3C module adaptation involves the following steps:
         }
         ```
 
-    - **Release function**
+    - **Release** function
 
-        > **Input parameter**:
-        > **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs configuration file information.
+        > Input parameter:
+        > **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs configuration.
         > 
-        > **Return value**
+        > Return value:
         > None.
         > 
-        > **Function description:**
-        > Releases the memory and deletes the controller. This function assigns a value to the **Release** API in the driver entry structure. When the HDF fails to call the **Init** function to initialize the driver, the **Release** function can be called to release driver resources. All forcible conversion operations for obtaining the corresponding object can be successful only when the **Init** function has the corresponding value assignment operations.
+        > Function description:
+        > Releases the memory and deletes the controller. This function assigns a value to the **Release** function in the driver entry structure. If the HDF fails to call the **Init** function to initialize the driver, the **Release** function can be called to release driver resources. All forced conversion operations for obtaining the corresponding object can be successful only when the **Init** function has the corresponding value assignment operations.
     
         ```c
         static void VirtualI3cRemoveByNode(const struct DeviceResourceNode *node)
@@ -313,7 +320,7 @@ The I3C module adaptation involves the following steps:
             if (cntlr != NULL && cntlr->priv == node) {
                 I3cCntlrPut(cntlr);
                 I3cCntlrRemove(cntlr);                    // (Mandatory) Remove the I3cCntlr object from the manager driver.
-                virtual = (struct VirtualI3cCntlr *)cntlr; // (Mandatory) Obtain the custom object through a forcible conversion and perform the release operation.
+                virtual = (struct VirtualI3cCntlr *)cntlr; // (Mandatory) Obtain the custom object through a forced conversion and perform the release operation.
                 (void)OsalSpinDestroy(&virtual->spin);
                 OsalMemFree(virtual);
             }
@@ -323,9 +330,9 @@ The I3C module adaptation involves the following steps:
         static void VirtualI3cRelease(struct HdfDeviceObject *device)
         {
             const struct DeviceResourceNode *childNode = NULL;
-
+        
             HDF_LOGI("%s: enter", __func__);
-
+        
             if (device == NULL || device->property == NULL) {
                 HDF_LOGE("%s: device or property is NULL", __func__);
                 return;
@@ -374,14 +381,14 @@ The I3C module adaptation involves the following steps:
         struct I3cDevice *device = NULL;
         uint16_t ibiAddr;
         char *testStr = "Hello I3C!";
-
+    
         (void)irq;
         if (data == NULL) {
             HDF_LOGW("%s: data is NULL!", __func__);
             return HDF_ERR_INVALID_PARAM;
         }
         virtual = (struct VirtualI3cCntlr *)data;
-        /* (Mandatory) Obtain the address where the interrupt is generated. Use the CHECK_RESERVED_ADDR macro to determine whether the address is the reserved address of the I3C. */
+        /* (Mandatory) Obtain the address where the interrupt is generated. Use the CHECK_RESERVED_ADDR macro to determine whether the address is a reserved address of the I3C. */
         ibiAddr = VirtualI3cGetIbiAddr();
         if (CHECK_RESERVED_ADDR(ibiAddr) == I3C_ADDR_RESERVED) {
             HDF_LOGD("%s: Calling VirtualI3cResAddrWorker...", __func__);
@@ -400,7 +407,7 @@ The I3C module adaptation involves the following steps:
             /* Invoke the IBI callback based on the I3C device that generates the IBI. */
             return I3cCntlrIbiCallback(device);
         }
-
+    
         return HDF_SUCCESS;
     }
     ```
