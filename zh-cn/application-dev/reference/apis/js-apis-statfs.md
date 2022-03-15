@@ -77,7 +77,7 @@ getFreeBytes(path:string, callback:AsyncCallback&lt;number&gt;): void
 
 ## statfs.getTotalBytes
 
-getTotalBytes.(path:string):Promise&lt;number&gt;
+getTotalBytes(path: string): Promise&lt;number&gt;
 
 异步方法获取指定文件系统总字节数，以Promise形式返回结果。
 
@@ -106,7 +106,7 @@ getTotalBytes.(path:string):Promise&lt;number&gt;
 
 ## statfs.getTotalBytes
 
-getTotalBytes(path:string, callback:AsyncCallback&lt;number&gt;): void
+getTotalBytes(path: string, callback: AsyncCallback&lt;number&gt;): void
 
 异步方法获取指定文件系统总字节数，使用callback形式返回结果。
 

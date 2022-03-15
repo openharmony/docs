@@ -207,7 +207,7 @@ access(path: string, mode?: number): Promise&lt;void&gt;
 
 ## fileio.access
 
-access(path: String, mode?: number, callback: AsyncCallback&lt;void&gt;): void
+access(path: string, mode: number, callback: AsyncCallback&lt;void&gt;): void
 
 以异步方法检查当前进程是否可访问某文件，使用callback形式返回结果。
 
@@ -384,7 +384,7 @@ copyFile(src:string | number, dest:string | number, mode?:number):Promise&lt;voi
 
 ## fileio.copyFile
 
-copyFile(src:string | number, dest:string | number, mode?: number, callback: AsyncCallbak&lt;void&gt;): void
+copyFile(src: string | number, dest: string | number, mode: number, callback: AsyncCallback&lt;void&gt;): void
 
 以异步方法复制文件，使用callback形式返回结果。
 
@@ -406,7 +406,7 @@ copyFile(src:string | number, dest:string | number, mode?: number, callback: Asy
 
 ## fileio.copyFileSync
 
-fileio.copyFileSync(src:string | number, dest:string | number, mode?:number): void
+copyFileSync(src: string | number, dest: string | number, mode?: number): void
 
 以同步方法复制文件。
 
@@ -453,7 +453,7 @@ mkdir(path:string, mode?: number): Promise&lt;void&gt;
 
 ## fileio.mkdir
 
-mkdir(path:string, mode?:number, callback:AsyncCallbak&lt;void&gt;): void
+mkdir(path: string, mode: number, callback: AsyncCallback&lt;void&gt;): void
 
 以异步方法创建目录，使用callback形式返回结果。
 
@@ -476,7 +476,7 @@ mkdir(path:string, mode?:number, callback:AsyncCallbak&lt;void&gt;): void
 
 ## fileio.mkdirSync
 
-fileio.mkdirSync(path: string, mode?: number): void
+mkdirSync(path: string, mode?: number): void
 
 以同步方法创建目录。
 
@@ -568,7 +568,11 @@ openSync(path:string, flags?:number, mode?:number): number
 
 ## fileio.read
 
-read(fd: number, buffer: ArrayBuffer, options?: Object): Promise&lt;Readout&gt;
+read(fd: number, buffer: ArrayBuffer, options?: {
+    offset?: number;
+    length?: number;
+    position?: number;
+}): Promise&lt;ReadOut&gt;
 
 以异步方法从文件读取数据，使用promise形式返回结果。
 
@@ -582,7 +586,7 @@ read(fd: number, buffer: ArrayBuffer, options?: Object): Promise&lt;Readout&gt;
 - 返回值：
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;[Readout](#readout)&gt; | 读取的结果。 |
+  | Promise&lt;[ReadOut](#readout)&gt; | 读取的结果。 |
 
 - 示例：
   ```js
@@ -598,7 +602,11 @@ read(fd: number, buffer: ArrayBuffer, options?: Object): Promise&lt;Readout&gt;
 
 ## fileio.read
 
-read(fd: number, buffer: ArrayBuffer, options?: Object, callback: AsyncCallback&lt;Readout&gt;): void
+read(fd: number, buffer: ArrayBuffer, options: {
+    offset?: number;
+    length?: number;
+    position?: number;
+}, callback: AsyncCallback&lt;ReadOut&gt;): void
 
 以异步方法从文件读取数据，使用callback形式返回结果。
 
@@ -608,7 +616,7 @@ read(fd: number, buffer: ArrayBuffer, options?: Object, callback: AsyncCallback&
   | fd | number | 是 | 待读取文件的文件描述符。 |
   | buffer | ArrayBuffer | 是 | 用于保存读取到的文件数据的缓冲区。 |
   | options | Object | 否 | 支持如下选项：<br/>-&nbsp;offset，number类型，表示将数据读取到缓冲区的位置，即相对于缓冲区首地址的偏移。可选，默认为0。<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;position，number类型，表示期望读取文件的位置。可选，默认从当前位置开始读。 |
-  | callback | AsyncCallback&lt;[Readout](#readout)&gt; | 是 | 异步读取数据之后的回调。 |
+  | callback | AsyncCallback&lt;[ReadOut](#readout)&gt; | 是 | 异步读取数据之后的回调。 |
 
 - 示例：
   ```js
@@ -624,7 +632,11 @@ read(fd: number, buffer: ArrayBuffer, options?: Object, callback: AsyncCallback&
 
 ## fileio.readSync
 
-readSync(fd: number, buffer: ArrayBuffer, options?: Object): number
+readSync(fd: number, buffer: ArrayBuffer, options?: {
+    offset?: number;
+    length?: number;
+    position?: number;
+}): number
 
 以同步方法从文件读取数据。
 
@@ -696,7 +708,7 @@ rmdir(path: string, callback:AsyncCallback&lt;void&gt;): void
 
 ## fileio.rmdirSync
 
-rmdirSync(path:string)
+rmdirSync(path: string): void
 
 以同步方法删除目录。
 
@@ -778,7 +790,12 @@ unlinkSync(path: string): void
 
 ## fileio.write
 
-write(fd: number, buffer: ArrayBuffer | string, options?: Object): Promise&lt;number&gt;
+write(fd: number, buffer: ArrayBuffer | string, options?: {
+    offset?: number;
+    length?: number;
+    position?: number;
+    encoding?: string;
+}): Promise&lt;number&gt;
 
 以异步方法将数据写入文件，使用promise形式返回结果。
 
@@ -807,7 +824,12 @@ write(fd: number, buffer: ArrayBuffer | string, options?: Object): Promise&lt;nu
 
 ## fileio.write
 
-write(fd:number, buffer:ArrayBuffer | string,options?:Object, callback:AsyncCallback&lt;number&gt;): void
+write(fd: number, buffer: ArrayBuffer | string, options: {
+    offset?: number;
+    length?: number;
+    position?: number;
+    encoding?: string;
+}, callback: AsyncCallback&lt;number&gt;): void
 
 以异步方法将数据写入文件，使用callback形式返回结果。
 
@@ -832,7 +854,12 @@ write(fd:number, buffer:ArrayBuffer | string,options?:Object, callback:AsyncCall
 
 ## fileio.writeSync
 
-writeSync(fd: number, buffer: ArrayBuffer | string, options?:Object): number
+writeSync(fd: number, buffer: ArrayBuffer | string, options?: {
+    offset?: number;
+    length?: number;
+    position?: number;
+    encoding?: string;
+}): number
 
 以同步方法将数据写入文件。
 
@@ -884,7 +911,7 @@ hash(path: string, algorithm: string): Promise&lt;string&gt;
 
 ## fileio.hash
 
-hash(psth:string, algorithm:string, callback:AsyncCallback&lt;string&gt;): void
+hash(path: string, algorithm: string, callback: AsyncCallback&lt;string&gt;): void
 
 以异步方法计算文件的哈希值，使用callback形式返回结果。
 
@@ -1043,7 +1070,7 @@ fstatSync(fd: number): Stat
 
 ## fileio.ftruncate<sup>7+</sup>
 
-ftruncate(fd: number, len: number): Promise&lt;void&gt;
+ftruncate(fd: number, len?: number): Promise&lt;void&gt;
 
 以异步方法基于文件描述符截断文件，使用promise形式返回结果。
 
@@ -1110,7 +1137,7 @@ ftruncateSync(fd: number, len?: number): void
 
 ## fileio.truncate<sup>7+</sup>
 
-truncate(path: string, len: number): Promise&lt;void&gt;
+truncate(path: string, len?: number): Promise&lt;void&gt;
 
 以异步方法基于文件路径截断文件，使用promise形式返回结果。
 
@@ -1158,7 +1185,7 @@ truncate(path: string, len: number, callback:AsyncCallback&lt;void&gt;): void
 
 ## fileio.truncateSync<sup>7+</sup>
 
-truncateSync(fpath: string, len?: number): void
+truncateSync(path: string, len?: number): void
 
 以同步方法基于文件路径截断文件。
 
@@ -1176,7 +1203,11 @@ truncateSync(fpath: string, len?: number): void
 
 ## fileio.readText<sup>7+</sup>
 
-readText(filePath: string, options?:Object): Promise&lt;string&gt;
+readText(filePath: string, options?: {
+    position?: number;
+    length?: number;
+    encoding?: string;
+}): Promise&lt;string&gt;
 
 以异步方法基于文本方式读取文件（即直接读取文件的文本内容），使用promise形式返回结果。
 
@@ -1203,7 +1234,11 @@ readText(filePath: string, options?:Object): Promise&lt;string&gt;
 
 ## fileio.readText<sup>7+</sup>
 
-readText(filePath: string, options?:Object, callback:AsyncCallback&lt;string&gt;): void
+readText(filePath: string, options: {
+    position?: number;
+    length?: number;
+    encoding?: string;
+}, callback: AsyncCallback&lt;string&gt;): void
 
 以异步方法基于文本方式读取文件（即直接读取文件的文本内容），使用callback形式返回结果。
 
@@ -1224,7 +1259,11 @@ readText(filePath: string, options?:Object, callback:AsyncCallback&lt;string&gt;
 
 ## fileio.readTextSync<sup>7+</sup>
 
-readTextSync(filePath: string, options?:Object): string
+readTextSync(filePath: string, options?: {
+    position?: number;
+    length?: number;
+    encoding?: string;
+}): string
 
 以同步方法基于文本方式读取文件（即直接读取文件的文本内容）。
 
@@ -1315,7 +1354,11 @@ lstatSync(path:string): Stat
 
 ## fileio.read<sup>7+</sup>
 
-read(buffer: ArrayBuffer, options?: Object): Promise&lt;Readout&gt;
+read(buffer: ArrayBuffer, options?: {
+    position?: number;
+    offset?: number;
+    length?: number;
+}): Promise&lt;ReadOut&gt;
 
 以异步方法从文件读取数据，使用promise形式返回结果。
 
@@ -1328,7 +1371,7 @@ read(buffer: ArrayBuffer, options?: Object): Promise&lt;Readout&gt;
 - 返回值：
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;[Readout](#readout)&gt; | 读取的结果。 |
+  | Promise&lt;[ReadOut](#readout)&gt; | 读取的结果。 |
 
 - 示例：
   ```js
@@ -1342,7 +1385,11 @@ read(buffer: ArrayBuffer, options?: Object): Promise&lt;Readout&gt;
 
 ## fileio.read<sup>7+</sup>
 
-read(buffer: ArrayBuffer, options?: Object, callback: AsyncCallback&lt;Readout&gt;): void
+read(buffer: ArrayBuffer, options: {
+    position?: number;
+    offset?: number;
+    length?: number;
+}, callback: AsyncCallback&lt;ReadOut&gt;): void
 
 异步方法从文件读取数据，使用callback形式返回结果。
 
@@ -1351,7 +1398,7 @@ read(buffer: ArrayBuffer, options?: Object, callback: AsyncCallback&lt;Readout&g
   | -------- | -------- | -------- | -------- |
   | buffer | ArrayBuffer | 是 | 用于保存读取到的文件数据的缓冲区。 |
   | options | Object | 否 | 支持如下选项：<br/>-&nbsp;offset，number类型，表示将数据读取到缓冲区的位置，即相对于缓冲区首地址的偏移。可选，默认为0。<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认缓冲区长度减去偏移长度。 |
-  | callback | AsyncCallback&lt;[Readout](#readout)&gt; | 是 | 异步从文件读取数据之后的回调。 |
+  | callback | AsyncCallback&lt;[ReadOut](#readout)&gt; | 是 | 异步从文件读取数据之后的回调。 |
 
 - 示例
   ```js
@@ -1811,7 +1858,7 @@ fchmod(fd: number, mode: number, callback: AsyncCallback&lt;void&gt;): void
 
 ## fileio.fchmodSync<sup>7+</sup>
 
-fchmodSync(existingPath: string, newPath: string): void
+fchmodSync(fd: number, mode: number): void
 
 以同步方法基于文件描述符改变文件权限。
 
@@ -2299,7 +2346,7 @@ Watcher是文件变化监听的实例，调用Watcher.stop()方法（同步或�
 
 ### stop<sup>7+</sup>
 
-stop(): void
+stop(): Promise&lt;void&gt;
 
 以异步方法关闭watcher监听，使用promise形式返回结果。
 
@@ -2311,7 +2358,7 @@ stop(): void
 
 ### stop<sup>7+</sup>
 
-stop(callback: AsyncCallback): void
+stop(callback: AsyncCallback&lt;void&gt;): void
 
 以异步方法关闭watcher监听，使用callback形式返回结果。
 
@@ -2375,7 +2422,7 @@ close(callback: AsyncCallback&lt;void&gt;): void
   ```
 
 
-### closeSync<sup>7+</sup>
+### closeSync
 
 closeSync(): void
 
@@ -2445,7 +2492,12 @@ flushSync(): void
 
 ### write<sup>7+</sup>
 
-write(buffer: ArrayBuffer | string, options?: Object): Promise&lt;number&gt;
+write(buffer: ArrayBuffer | string, options?: {
+    offset?: number;
+    length?: number;
+    position?: number;
+    encoding?: string;
+}): Promise&lt;number&gt;
 
 以异步方法将数据写入流文件，使用promise形式返回结果。
 
@@ -2473,7 +2525,12 @@ write(buffer: ArrayBuffer | string, options?: Object): Promise&lt;number&gt;
 
 ### write<sup>7+</sup>
 
-write(buffer:ArrayBuffer | string,options?:Object, callback:AsyncCallback&lt;number&gt;): void
+write(buffer: ArrayBuffer | string, options: {
+    offset?: number;
+    length?: number;
+    position?: number;
+    encoding?: string;
+}, callback: AsyncCallback&lt;number&gt;): void
 
 以异步方法将数据写入流文件，使用callback形式返回结果。
 
@@ -2498,7 +2555,12 @@ write(buffer:ArrayBuffer | string,options?:Object, callback:AsyncCallback&lt;num
 
 ### writeSync<sup>7+</sup>
 
-writeSync(buffer: ArrayBuffer | string, options?:Object): number
+writeSync(buffer: ArrayBuffer | string, options?: {
+    offset?: number;
+    length?: number;
+    position?: number;
+    encoding?: string;
+}): number
 
 以同步方法将数据写入流文件。
 
@@ -2522,7 +2584,11 @@ writeSync(buffer: ArrayBuffer | string, options?:Object): number
 
 ### read<sup>7+</sup>
 
-read(buffer: ArrayBuffer, options?: Object): Promise&lt;Readout&gt;
+read(buffer: ArrayBuffer, options?: {
+    position?: number;
+    offset?: number;
+    length?: number;
+}): Promise&lt;ReadOut&gt;
 
 以异步方法从流文件读取数据，使用promise形式返回结果。
 
@@ -2535,7 +2601,7 @@ read(buffer: ArrayBuffer, options?: Object): Promise&lt;Readout&gt;
 - 返回值：
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;[Readout](#readout)&gt; | 读取的结果。 |
+  | Promise&lt;[ReadOut](#readout)&gt; | 读取的结果。 |
 
 - 示例：
   ```js
@@ -2550,7 +2616,11 @@ read(buffer: ArrayBuffer, options?: Object): Promise&lt;Readout&gt;
 
 ### read<sup>7+</sup>
 
-read(buffer: ArrayBuffer, options?: Object, callback: AsyncCallback&lt;Readout&gt;): void
+read(buffer: ArrayBuffer, options: {
+    position?: number;
+    offset?: number;
+    length?: number;
+}, callback: AsyncCallback&lt;ReadOut&gt;): void
 
 以异步方法从流文件读取数据，使用callback形式返回结果。
 
@@ -2559,7 +2629,7 @@ read(buffer: ArrayBuffer, options?: Object, callback: AsyncCallback&lt;Readout&g
   | -------- | -------- | -------- | -------- |
   | buffer | ArrayBuffer | 是 | 用于读取文件的缓冲区。 |
   | options | Object | 否 | 支持如下选项：<br/>-&nbsp;offset，number类型，表示将数据读取到缓冲区的位置，即相对于缓冲区首地址的偏移。可选，默认为0。<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;position，number类型，表示期望读取文件的位置。可选，默认从当前位置开始读。 |
-  | callback | AsyncCallback&lt;[Readout](#readout)&gt; | 是 | 异步从流文件读取数据之后的回调。 |
+  | callback | AsyncCallback&lt;[ReadOut](#readout)&gt; | 是 | 异步从流文件读取数据之后的回调。 |
 
 - 示例：
   ```js
@@ -2574,7 +2644,11 @@ read(buffer: ArrayBuffer, options?: Object, callback: AsyncCallback&lt;Readout&g
 
 ### readSync<sup>7+</sup>
 
-readSync(buffer: ArrayBuffer, options?: Object): number
+readSync(buffer: ArrayBuffer, options?: {
+    position?: number;
+    offset?: number;
+    length?: number;
+}): number
 
 以同步方法从流文件读取数据。
 

@@ -124,7 +124,7 @@ getFreeSizeOfVolume(volumeUuid: string, callback:AsyncCallback&lt;number&gt;):vo
 
 ## storagestatistics.getBundleStats<sup>9+</sup>
 
-getBundleStats(packageName:String, ): Promise&lt;BundleStats&gt;
+getBundleStats(packageName: string): Promise&lt;BundleStats&gt;
 
 异步获取应用存储状态，以promise方式返回。
 
@@ -153,7 +153,7 @@ getBundleStats(packageName:String, ): Promise&lt;BundleStats&gt;
 
 ## storagestatistics.getBundleStats<sup>9+</sup>
 
-getBundleStats(callback:AsyncCallback&lt;BundleStats&gt;):void
+getBundleStats(packageName: string,  callback: AsyncCallback&lt;BundleStats&gt;): void
 
 异步获取应用存储状态，以callback方式返回。
 
@@ -161,6 +161,7 @@ getBundleStats(callback:AsyncCallback&lt;BundleStats&gt;):void
 
   | 参数名   | 类型                                                      | 必填 | 说明                                 |
   | -------- | --------------------------------------------------------- | ---- | ------------------------------------ |
+  | packageName | string | 是   | 应用包名 |
   | callback | callback:AsyncCallback&lt;[Bundlestats](#bundlestats)&gt; | 是   | 获取指定卷上的应用存储状态之后的回调 |
   
 - 示例
@@ -173,12 +174,12 @@ getBundleStats(callback:AsyncCallback&lt;BundleStats&gt;):void
   });
   ```
 
-## BundleStats
+## BundleStats<sup>9+</sup>
 
 ### 属性
 
 | 名称      | 类型   | 说明           |
 | --------- | ------ | -------------- |
-| appSize   | number | app数据大小    |
-| cacheSize | number | 缓存数据大小   |
-| dataSize  | number | 应用总数据大小 |
+| appSize<sup>9+</sup>   | number | app数据大小    |
+| cacheSize<sup>9+</sup> | number | 缓存数据大小   |
+| dataSize<sup>9+</sup>  | number | 应用总数据大小 |
