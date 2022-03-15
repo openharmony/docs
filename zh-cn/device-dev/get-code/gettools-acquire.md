@@ -1,18 +1,5 @@
 # Docker编译环境<a name="ZH-CN_TOPIC_0000001055701144"></a>
 
--   [Docker环境介绍](#section107932281315)
--   [环境准备](#section7337134183512)
--   [独立Docker环境](#section2858536103611)
-    -   [搭建Docker环境-轻量系统类设备（参考内存≥128KB）和小型系统类设备（参考内存≥1MB）](#section319412277287)
-    -   [编译源码-轻量系统类设备（参考内存≥128KB）和小型系统类设备（参考内存≥1MB）](#section631485163615)
-    -   [搭建Docker环境-标准系统类设备（参考内存≥128MB）](#section13585262391)
-    -   [编译源码-标准系统类设备（参考内存≥128MB）](#section193711513406)
-
--   [基于HPM的Docker环境](#section485713518337)
-    -   [搭建Docker环境](#section3295842510)
-    -   [获取及编译源码](#section69141039143518)
-
-
 ## Docker环境介绍<a name="section107932281315"></a>
 
 OpenHarmony为开发者提供了两种Docker环境，以帮助开发者快速完成复杂的开发环境准备工作。两种Docker环境及适用场景如下：
@@ -178,7 +165,7 @@ hb set
 
 ## 基于HPM的Docker环境<a name="section485713518337"></a>
 
-docker\_dist是一个[HPM](https://hpm.harmonyos.com/)系统中的模板组件，能够帮助用户快速初始化HPM工程，利用docker镜像来快速编译OpenHarmony发行版，在很大程度上简化了编译前的环境配置。开发者在配置好Ubuntu和[hpm-cli](../bundles/bundles-guide-prepare.md)开发环境后，可以通过以下步骤来使用我们提供的Docker环境。
+docker\_dist是一个[HPM](https://hpm.harmonyos.com/)系统中的模板组件，能够帮助用户快速初始化HPM工程，利用docker镜像来快速编译OpenHarmony发行版，在很大程度上简化了编译前的环境配置。开发者在配置好Ubuntu和[hpm-cli](../bundles/hpm-part-development.md)开发环境后，可以通过以下步骤来使用我们提供的Docker环境。
 
 ### 搭建Docker环境<a name="section3295842510"></a>
 
