@@ -39,6 +39,7 @@ Part是一个用于表示OpenHarmony分发单元的术语。大致分为两大�
 
 - 编译脚本文件
 
+
   **图1** 部件Part和发行版Part的关系
   ![zh-cn_image_0000001195369804](figures/zh-cn_image_0000001195369804.png)
 
@@ -55,13 +56,16 @@ HPM是连接消费方和提供方的一个开放的协作平台，全称是OpenH
 
 通过HPM完成提供方和消费方的需求匹配。
 
+
   **图2** HPM功能介绍
   ![zh-cn_image_0000001240409717](figures/zh-cn_image_0000001240409717.png)
 
 **HPM主要分为两部分：**
 
 - **客户端的命令行工具：hpm-cli（发布在[@ohos/hpm-cli](https://www.npmjs.com/package/@ohos/hpm-cli)）**
+
   hpm-cli是一个跨平台包管理器命令行工具，包含一系列的命令（创建、编译、安装、打包、运行、发布等），开发者使用这些命令完成HPM Part的生命周期管理。
 
 - **服务器端的资源仓库：[DevEco Marketplace](https://repo.harmonyos.com)**
+
   [DevEco Marketplace](https://repo.harmonyos.com)提供了Part的注册、存储和分类检索等功能，每一个Part都有一个页面显示它的自述文件、依赖关系、历史版本、变更记录、许可协议、下载量、源码仓库地址等信息，开发者可以向资源仓库中发布Part，参与OpenHarmony生态的建设。
