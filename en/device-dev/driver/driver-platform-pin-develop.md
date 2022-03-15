@@ -204,7 +204,7 @@ The following uses **pin_hi35xx.c** as an example to present the content to be p
      };
      ```
      
-   - Init function
+   - **Init** function
    
      Input parameters:
    
@@ -287,7 +287,7 @@ The following uses **pin_hi35xx.c** as an example to present the content to be p
         }
 
    
-   - Release function
+   - **Release** function
 
         Input parameters:
 
