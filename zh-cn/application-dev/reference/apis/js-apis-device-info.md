@@ -1,18 +1,17 @@
 # 设备信息
 
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+
 ## 导入模块
 
 ```
 import deviceInfo from '@ohos.deviceInfo'
 ```
 
-
-## 系统能力
-
-SystemCapability.Startup.SysInfo
-
-
 ## 属性
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Startup.SysInfo。
 
 | 名称 | 参数类型 | 可读 | 可写 | 描述 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -45,3 +44,4 @@ SystemCapability.Startup.SysInfo
 | buildHost | string | 是 | 否 | 构建主机。 |
 | buildTime | string | 是 | 否 | 构建时间。 |
 | buildRootHash | string | 是 | 否 | 构建版本Hash。 |
+| udid<sup>7+</sup> | string | 是 | 否 | 设备Udid。 |
