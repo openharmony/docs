@@ -299,7 +299,7 @@ addNotificationSlot(slot: NotificationSlot, callback: AsyncCallback&lt;void&gt;)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| slot | [ERROR:Invalid&nbsp;link:zh-cn_topic_0000001158696346.xml#xref1954171018915,link:zh-cn_topic_0000001180018813.xml#section1382174172015](zh-cn_topic_0000001180018813.xml#section1382174172015) | 是 | notification&nbsp;slot实例。 |
+| slot | [NotificationSlot](js-apis-notification.md#notificationslot) | 是 | notification&nbsp;slot实例。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 异步回调。 |
 
 - 示例
@@ -332,7 +332,7 @@ addNotificationSlot(slot: NotificationSlot): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| slot | [ERROR:Invalid&nbsp;link:zh-cn_topic_0000001158696346.xml#xref2049924012917,link:zh-cn_topic_0000001180018813.xml#section1382174172015](zh-cn_topic_0000001180018813.xml#section1382174172015) | 是 | notification&nbsp;slot实例。 |
+| slot | [NotificationSlot](js-apis-notification.md#notificationslot) | 是 | notification&nbsp;slot实例。 |
 
 - 返回值
 
@@ -370,7 +370,7 @@ removeNotificationSlot(slotType: notification.SlotType, callback: AsyncCallback&
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| slotType | [ERROR:Invalid&nbsp;link:zh-cn_topic_0000001158696346.xml#xref11228182975217,link:zh-cn_topic_0000001180018813.xml#section072355105110](zh-cn_topic_0000001180018813.xml#section072355105110) | 是 | 目标notification&nbsp;slot的类型。 |
+| slotType | [notification.SlotType](js-apis-notification.md#slottype) | 是 | 目标notification&nbsp;slot的类型。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 异步回调。 |
 
 - 示例
@@ -399,7 +399,7 @@ removeNotificationSlot(slotType: notification.SlotType): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| slotType | [ERROR:Invalid&nbsp;link:zh-cn_topic_0000001158696346.xml#xref1120863519109,link:zh-cn_topic_0000001180018813.xml#section072355105110](zh-cn_topic_0000001180018813.xml#section072355105110) | 是 | 目标notification&nbsp;slot的类型。 |
+| slotType | [notification.SlotType](js-apis-notification.md#slottype) | 是 | 目标notification&nbsp;slot的类型。 |
 
 - 返回值
 
@@ -500,7 +500,7 @@ export default {
 | expiredContent | string | 否 | 指明提醒过期后需要显示的内容。 |
 | snoozeContent | string | 否 | 指明延迟提醒时需要显示的内容。 |
 | notificationId | number | 否 | 指明提醒使用的通知的id号，相同id号的提醒会覆盖。 |
-| slotType | [ERROR:Invalid&nbsp;link:zh-cn_topic_0000001158696346.xml#xref39047351518,link:zh-cn_topic_0000001180018813.xml#section072355105110](zh-cn_topic_0000001180018813.xml#section072355105110) | 否 | 指明提醒的slot类型。 |
+| slotType | [notification.SlotType](js-apis-notification.md#slottype) | 否 | 指明提醒的slot类型。 |
 
 
 ## ReminderRequestCalendar
