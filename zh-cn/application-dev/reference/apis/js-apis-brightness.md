@@ -18,9 +18,9 @@ setValue(value: number)
 
 设置系统的屏幕亮度。
 
-**系统能力：** SystemCapability.PowerManager.DisplayPowerManager
+此接口为系统接口，三方应用不支持调用。
 
-**补充说明：** 该接口为system api，仅供系统应用使用。
+**系统能力：** SystemCapability.PowerManager.DisplayPowerManager
 
 **参数：**
 
