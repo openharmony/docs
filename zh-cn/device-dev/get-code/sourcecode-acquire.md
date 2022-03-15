@@ -1,21 +1,5 @@
 # 获取源码<a name="ZH-CN_TOPIC_0000001150448437"></a>
 
--   [OpenHarmony介绍](#section6370143622110)
--   [获取源码概述](#section12763342204)
--   [获取方式1：从码云仓库获取](#section537312010229)
-    -   [适用场景](#section10881513459)
-    -   [前提条件](#section102871547153314)
-    -   [操作步骤](#section429012478331)
-
--   [获取方式2：从DevEco Marketplace获取](#section463013147412)
-    -   [适用场景](#section26661067443)
-    -   [前提条件](#section17544943123315)
-    -   [操作步骤](#section954619433333)
-
--   [获取方式3：从镜像站点获取](#section1186691118430)
--   [获取方式4：从github镜像仓库获取\(每天UTC时间23点同步\)](#section23448418360)
--   [源码目录简介](#section1072115612811)
-
 ## OpenHarmony介绍<a name="section6370143622110"></a>
 
 OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及运营的开源项目，目标是面向全场景、全连接、全智能时代，搭建一个智能终端设备操作系统的框架和平台，促进万物互联产业的繁荣发展。
@@ -24,7 +8,7 @@ OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及�
 
 ## 获取源码概述<a name="section12763342204"></a>
 
-本文档将介绍如何获取OpenHarmony源码并说明OpenHarmony的源码目录结构。OpenHarmony的代码以[组件](../bundles/oem_bundle_standard_des.md)的形式开放，开发者可以通过如下其中一种方式获取：
+OpenHarmony当前为开发者提供了以下4种获取源码的方式，开发者可根据业务诉求选用合适的方式获取源码：
 
 -   **获取方式1**：从码云代码仓库获取。通过repo或git工具从代码仓库中下载，此方式可获取最新代码。
 -   **获取方式2**：通过[DevEco Marketplace](https://repo.harmonyos.com/#/cn/home)网站获取。访问[DevEco Marketplace](https://repo.harmonyos.com/#/cn/home)网站，查找满足需求的开源发行版，直接下载（或者定制后下载），再通过hpm-cli命令工具将所需的组件及工具链下载、安装到本地。
