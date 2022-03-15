@@ -113,12 +113,12 @@ export default {
 }
 ```
 
-## userIAM_userAuth.getAuthenticator
+## userIAM_userAuth.getAuthenticator<sup>(deprecated)</sup>
 
 getAuthenticator(): Authenticator
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 从 API Version 8 开始废弃。
+> 从 API Version 8 开始废弃，建议使用[constructor](#constructor)替代。
 
 获取Authenticator对象，用于执行用户身份认证。<sup>6+</sup>
 
@@ -132,20 +132,20 @@ getAuthenticator(): Authenticator
   let authenticator = userIAM_userAuth.getAuthenticator();
   ```
 
-## Authenticator
+## Authenticator<sup>(deprecated)</sup>
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 从 API Version 8 开始废弃。
+> 从 API Version 8 开始废弃，建议使用[UserAuth](#UserAuth)替代。
 
 认证器对象。
 
 
-### execute
+### execute<sup>(deprecated)</sup>
 
 execute(type: string, level: string, callback: AsyncCallback&lt;number&gt;): void
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 从 API Version 8 开始废弃。
+> 从 API Version 8 开始废弃，建议使用[auth](#auth)替代。
 
 执行用户认证，使用callback方式作为异步方法。
 
@@ -174,12 +174,12 @@ execute(type: string, level: string, callback: AsyncCallback&lt;number&gt;): voi
   ```
 
 
-### execute
+### execute<sup>(deprecated)</sup>
 
 execute(type:string, level:string): Promise&lt;number&gt;
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 从 API Version 8 开始废弃。
+> 从 API Version 8 开始废弃，建议使用[auth](#auth)替代。
 
 执行用户认证，使用promise方式作为异步方法。
 
@@ -204,10 +204,10 @@ execute(type:string, level:string): Promise&lt;number&gt;
   });
   ```
 
-## AuthenticationResult
+## AuthenticationResult<sup>(deprecated)</sup>
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 从 API Version 8 开始废弃。
+> 从 API Version 8 开始废弃，建议使用[ResultCode](#ResultCode)替代。
 
 表示认证结果的枚举。
 
