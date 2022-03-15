@@ -1,6 +1,4 @@
-# Hap包签名工具用户指导
-
-
+# Hap包签名工具指导
 
 ## 概述
 
@@ -67,15 +65,10 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
 
 按照有无应用签名证书可分为以下两种场景：
 
-1.无应用签名证书场景：
-
-- 开发者使用该工具对Hap包签名时，需按照签名步骤从第一步生成应用签名证书密钥对依次完成应用签名证书生成、profile文件签名、应用签名流程。
-
-2.有应用签名证书场景：
-
-- 开发者可直接从签名步骤第三步对profile文件进行签名开始开发 ,使用应用签名证书和包含对应密钥的本地密钥库文件对应用进行签名。
-
-
+1. 无应用签名证书场景：
+开发者使用该工具对Hap包签名时，需按照签名步骤从第一步生成应用签名证书密钥对依次完成应用签名证书生成、profile文件签名、应用签名流程。
+2. 有应用签名证书场景：
+开发者可直接从签名步骤第三步对profile文件进行签名开始开发 ,使用应用签名证书和包含对应密钥的本地密钥库文件对应用进行签名。
 
 ### 说明
 
@@ -251,7 +244,7 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
 > **注意事项：** <br/>
  1.步骤一中的密钥对算法推荐使用ECC，出于安全性考虑，应用签名暂不使用RSA算法;<br/>
  2.建议将待签名hap包、profile文件、密钥库文件OpenHarmony.p12、根CA证书、子CA证书、签名工具放在同一个目录下，方便操作;<br/>
- 3.OpenHarmony密钥库文件所在路径：developtools_hapsigner/autosign/result/OpenHarmony.p12；根CA证书所在路径：developtools_hapsigner/autosign/result/rootCA.cer；子CA证书所在路径：developtools_hapsigner/autosign/result/subCA.cer；pfofile签名证书路径：developtools_hapsigner/autosign/result/OpenHarmonyProfileRelease.pem。
+ 3.OpenHarmony密钥库文件所在路径：developtools_hapsigner/autosign/result/OpenHarmony.p12；<br/>根CA证书所在路径：developtools_hapsigner/autosign/result/rootCA.cer；<br/>子CA证书所在路径：developtools_hapsigner/autosign/result/subCA.cer；<br/>pfofile签名证书路径：developtools_hapsigner/autosign/result/OpenHarmonyProfileRelease.pem。
 
 
 **1.生成应用签名证书密钥对**
@@ -358,8 +351,6 @@ java -jar hap-sign-tool.jar sign-app -keyAlias "oh-app1-key-v1" -signAlg "SHA256
          ├── -keystorePwd      # 密钥库口令，与第一步的密钥库口令保持一致
 
  
-
-
 
 ## 常见问题
 
