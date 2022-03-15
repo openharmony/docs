@@ -11,13 +11,11 @@ import hichecker from '@ohos.hichecker';
 ```
 
 
-## 系统能力
-
-SystemCapability.HiviewDFX.HiChecker
-
-## 规则常量
+## 常量
 
 提供了所有规则类型的常量。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.HiviewDFX.HiChecker。
 
 | 名称                               | 参数类型 | 说明                                                   |
 | ---------------------------------- | -------- | ------------------------------------------------------ |
@@ -33,6 +31,8 @@ SystemCapability.HiviewDFX.HiChecker
 addRule(rule: BigInt): void
 
 添加一条或多条规则到系统，系统根据添加的规则进行检测或反馈。
+
+**系统能力：** SystemCapability.HiviewDFX.HiChecker
 
 **参数：**
 
@@ -57,6 +57,8 @@ removeRule(rule: BigInt): void
 
 删除一条或多条规则，删除的规则后续将不再生效。
 
+**系统能力：** SystemCapability.HiviewDFX.HiChecker
+
 **参数：**
 
 | 参数名 | 类型   | 必填 | 说明             |
@@ -80,6 +82,8 @@ getRule(): BigInt
 
 获取当前线程规则、进程规则、告警规则的合集。
 
+**系统能力：** SystemCapability.HiviewDFX.HiChecker
+
 **返回值：**
 
 | 类型   | 说明                   |
@@ -101,6 +105,8 @@ hichecker.getRule();   // return 1n;
 contains(rule: BigInt): boolean
 
 当前已添加的规则集中是否包含了某一个特定的规则，如果传入的规则级别为线程级别，则仅在当前线程中进行查询。
+
+**系统能力：** SystemCapability.HiviewDFX.HiChecker
 
 **参数：**
 
