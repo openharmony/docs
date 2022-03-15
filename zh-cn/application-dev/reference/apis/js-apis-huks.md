@@ -952,7 +952,7 @@ huks.update(handle, options, function (err, data){});
 
 ## huks.update
 
-update(handle: number, token?: Uint8Array, options: HuksOptions) : Promise<HuksResult>
+update(handle: number, token?: Uint8Array, options: HuksOptions) : Promise\<HuksResult>
 
 update操作接口，使用Promise方式异步返回结果。
 
@@ -1005,7 +1005,7 @@ finish操作接口，使用Callback回调异步返回结果 。
 | -------- | ---------------------- | ---- | ------------------------------------- |
 | handle | number           | 是   | Finish操作的handle。 |
 | options  | [HuksOptions](#huksoptions) | 是   | Finish的参数集合。 |
-| callback | AsyncCallback\<[HksResult](#hksresult)> | 是 | 将Finish操作的结果添加到密钥管理系统的回调。 |
+| callback | AsyncCallback\<[HuksResult](#huksresult)> | 是 | 将Finish操作的结果添加到密钥管理系统的回调。 |
 
 **示例：**
 
@@ -1084,7 +1084,7 @@ abort操作接口，使用Callback回调异步返回结果 。
 | -------- | ---------------------- | ---- | ------------------------------------- |
 | handle | number           | 是   | Abort操作的handle。 |
 | options  | [HuksOptions](#huksoptions) | 是   | Abort操作的参数集合。 |
-| callback | AsyncCallback\<[HksResult](#hksresult)> | 是 | 将Abort操作的结果添加到密钥管理系统的回调。 |
+| callback | AsyncCallback\<[HuksResult](#huksresult)> | 是 | 将Abort操作的结果添加到密钥管理系统的回调。 |
 
 **示例：**
 
