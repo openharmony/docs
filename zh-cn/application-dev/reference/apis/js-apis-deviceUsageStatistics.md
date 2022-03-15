@@ -110,7 +110,7 @@ queryAppUsagePriorityGroup(): Promise&lt;number&gt;<br>
   ```
 
 ## bundleState.queryBundleStateInfos
-queryBundleStateInfos(begin: number, end: number, callback: AsyncCallback&lt;[BundleActiveInfoResponse](#bundleactiveinforesponse)&gt;): void<br>
+queryBundleStateInfos(begin: number, end: number, callback: AsyncCallback&lt;BundleActiveInfoResponse&gt;): void<br>
 通过指定起始和结束时间查询应用使用时长统计信息，使用Callback形式返回。<br>
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -143,7 +143,7 @@ queryBundleStateInfos(begin: number, end: number, callback: AsyncCallback&lt;[Bu
   ```
 
 ## bundleState.queryBundleStateInfos
-queryBundleStateInfos(begin: number, end: number): Promise&lt;[BundleActiveInfoResponse](#bundleactiveinforesponse)&gt;<br>
+queryBundleStateInfos(begin: number, end: number): Promise&lt;BundleActiveInfoResponse&gt;<br>
 通过指定起始和结束时间查询应用使用时长统计信息，使用Promise形式返回。<br>
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -179,7 +179,7 @@ queryBundleStateInfos(begin: number, end: number): Promise&lt;[BundleActiveInfoR
   ```
 
 ## bundleState.queryBundleStateInfoByInterval
-queryBundleStateInfoByInterval(byInterval: [IntervalType](#intervaltype), begin: number, end: number, callback: AsyncCallback&lt;Array&lt;[BundleStateInfo](#bundlestateinfo)&gt;&gt;): void<br>
+queryBundleStateInfoByInterval(byInterval: IntervalType, begin: number, end: number, callback: AsyncCallback&lt;Array&lt;BundleStateInfo&gt;&gt;): void<br>
 通过指定时间段间隔（天、周、月、年）查询应用使用时长统计信息，使用Callback形式返回。<br>
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -211,7 +211,7 @@ queryBundleStateInfoByInterval(byInterval: [IntervalType](#intervaltype), begin:
   ```
 
 ## bundleState.queryBundleStateInfoByInterval
-queryBundleStateInfoByInterval(byInterval: [IntervalType](#intervaltype), begin: number, end: number): Promise&lt;Array&lt;[BundleStateInfo](#bundlestateinfo)&gt;&gt;<br>
+queryBundleStateInfoByInterval(byInterval: IntervalType, begin: number, end: number): Promise&lt;Array&lt;BundleStateInfo&gt;&gt;<br>
 通过指定时间段间隔（天、周、月、年）查询应用使用时长统计信息，使用Promise形式返回。<br>
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -246,7 +246,7 @@ queryBundleStateInfoByInterval(byInterval: [IntervalType](#intervaltype), begin:
   ```
 
 ## bundleState.queryBundleActiveStates
-queryBundleActiveStates(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;[BundleActiveState](#bundleactivestate)&gt;&gt;): void<br>
+queryBundleActiveStates(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;BundleActiveState&gt;&gt;): void<br>
 通过指定起始和结束时间查询所有应用的事件集合，使用Callback形式返回。<br>
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -277,7 +277,7 @@ queryBundleActiveStates(begin: number, end: number, callback: AsyncCallback&lt;A
   ```
 
 ## bundleState.queryBundleActiveStates
-queryBundleActiveStates(begin: number, end: number): Promise&lt;Array&lt;[BundleActiveState](#bundleactivestate)&gt;&gt;<br>
+queryBundleActiveStates(begin: number, end: number): Promise&lt;Array&lt;BundleActiveState&gt;&gt;<br>
 通过指定起始和结束时间查询所有应用的事件集合，使用Promise形式返回。<br>
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -311,7 +311,7 @@ queryBundleActiveStates(begin: number, end: number): Promise&lt;Array&lt;[Bundle
   ```
 
 ## bundleState.queryCurrentBundleActiveStates
-queryCurrentBundleActiveStates(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;[BundleActiveState](#bundleactivestate)&gt;&gt;): void<br>
+queryCurrentBundleActiveStates(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;BundleActiveState&gt;&gt;): void<br>
 通过指定起始和结束时间查询当前应用的事件集合，使用Callback形式返回。
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
@@ -341,7 +341,7 @@ queryCurrentBundleActiveStates(begin: number, end: number, callback: AsyncCallba
   ```
 
 ## bundleState.queryCurrentBundleActiveStates
-queryCurrentBundleActiveStates(begin: number, end: number): Promise&lt;Array&lt;[BundleActiveState](#bundleactivestate)&gt;&gt;<br>
+queryCurrentBundleActiveStates(begin: number, end: number): Promise&lt;Array&lt;BundleActiveState&gt;&gt;<br>
 通过指定起始和结束时间查询当前应用的事件集合，使用Promise形式返回。
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
@@ -426,7 +426,7 @@ merge(toMerge: [BundleStateInfo](#bundlestateinfo)): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| [key: string]: [BundleStateInfo](#bundlestateinfo) | [BundleStateInfo](#bundlestateinfo) | 是 | 不同应用的使用时长统计信息。|
+| [key: string]: BundleStateInfo | [BundleStateInfo](#bundlestateinfo) | 是 | 不同应用的使用时长统计信息。|
 
 ## IntervalType
 提供应用使用时长的查询类型。
