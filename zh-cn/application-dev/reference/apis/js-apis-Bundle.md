@@ -20,7 +20,7 @@ SystemCapability.BundleManager.BundleFramework
 
 ## bundle.getApplicationInfo
 
-getApplicationInfo(bundleName: string, bundleFlags: number, userId: number): Promise\<ApplicationInfo>
+getApplicationInfo(bundleName: string, bundleFlags: number, userId?: number): Promise\<ApplicationInfo>
 
 以异步方法根据给定的包名获取ApplicationInfo，使用Promise形式返回结果。
 
@@ -38,7 +38,7 @@ SystemCapability.BundleManager.BundleFramework
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
 | bundleName  | string | 是   | 要查询的应用程序包名称。                                     |
 | bundleFlags | number | 是   | 用于指定返回的应用信息对象中包含信息的标记。默认值：0，取值范围：大于等于0。 |
-| userId      | number | 是   | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。                     |
+| userId      | number | 否   | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。                     |
 
 **返回值：**
 
@@ -82,7 +82,7 @@ SystemCapability.BundleManager.BundleFramework
 | ----------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | bundleName  | string                          | 是   | 要查询的应用程序包名称。                                     |
 | bundleFlags | number                          | 是   | 用于指定返回的应用信息对象中包含信息的标记。默认值：0，取值范围：大于等于0。 |
-| userId      | number                          | 否   | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。                     |
+| userId      | number                          | 是   | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。                     |
 | callback    | AsyncCallback\<ApplicationInfo> | 是   | 程序启动作为入参的回调函数，返回应用程序信息。               |
 
 **示例：**
@@ -100,6 +100,42 @@ bundle.getApplicationInfo(bundleName, bundleFlags, userId, (err, data) => {
  })
 ```
 
+
+## bundle.getApplicationInfo
+
+getApplicationInfo(bundleName: string, bundleFlags: number, callback: AsyncCallback\<ApplicationInfo>): void
+
+以异步方法根据给定的包名获取ApplicationInfo，使用callback形式返回结果。
+
+**需要权限：**
+
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED，ohos.permission.GET_BUNDLE_INFO
+
+**系统能力：**
+
+SystemCapability.BundleManager.BundleFramework
+
+**参数：**
+
+| 名称        | 类型                            | 必填 | 描述                                                         |
+| ----------- | ------------------------------- | ---- | ------------------------------------------------------------ |
+| bundleName  | string                          | 是   | 要查询的应用程序包名称。                                     |
+| bundleFlags | number                          | 是   | 用于指定返回的应用信息对象中包含信息的标记。默认值：0，取值范围：大于等于0。 |
+| callback    | AsyncCallback\<ApplicationInfo> | 是   | 程序启动作为入参的回调函数，返回应用程序信息。               |
+
+**示例：**
+
+```js
+let bundleName = "com.example.myapplication";
+let bundleFlags = 0;
+bundle.getApplicationInfo(bundleName, bundleFlags, (err, data) => {
+    if (err) {
+        console.error('Operation failed. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Operation successful. Data:' + JSON.stringify(data));
+ })
+```
 
 
 ## bundle.getAllBundleInfo
@@ -237,7 +273,7 @@ SystemCapability.BundleManager.BundleFramework
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
 | bundleName  | string | 是   | 包名                                                         |
 | bundleFlags | number | 是   | 用于指定返回的应用信息对象中包含信息的标记。默认值：0，取值范围：大于等于0。 |
-| options     | BundleOptions              | 否   | 包含userid和networkid。                                    |
+| options     | BundleOptions              | 否   | 包含userid。                                    |
 
 **返回值：**
 
@@ -251,8 +287,7 @@ SystemCapability.BundleManager.BundleFramework
 let bundleName = "com.example.myapplication";
 let bundleFlags = 1;
 let options = {
-  "userId" : 100,
-  "networkId" : null
+  "userId" : 100
 };
 bundle.getBundleInfo(bundleName, bundleFlags, options)
 .then((data) => {
@@ -321,7 +356,7 @@ SystemCapability.BundleManager.BundleFramework
 | ----------- | -------------------------- | ---- | ------------------------------------------------------------ |
 | bundleName  | string                     | 是   | 包名                                                         |
 | bundleFlags | number                     | 是   | 用于指定返回的应用信息对象中包含信息的标记。默认值：0，取值范围：大于等于0。 |
-| options     | BundleOptions              | 是   | 包含userid和networkid。                                    |
+| options     | BundleOptions              | 是   | 包含userid。                                    |
 | callback    | AsyncCallback\<BundleInfo> | 是   | 程序启动作为入参的回调函数，返回包信息。                     |
 
 **示例：**
@@ -330,8 +365,7 @@ SystemCapability.BundleManager.BundleFramework
 let bundleName = "com.example.myapplication";
 let bundleFlags = 1;
 let options = {
-  "userId" : 100,
-  "networkId" : null
+  "userId" : 100
 };
 bundle.getBundleInfo(bundleName, bundleFlags, options, (err, data) => {
     if (err) {
@@ -345,7 +379,7 @@ bundle.getBundleInfo(bundleName, bundleFlags, options, (err, data) => {
 
 ## bundle.getAllApplicationInfo
 
-getAllApplicationInfo(bundleFlags: number, userId: number): Promise<Array\<ApplicationInfo>>
+getAllApplicationInfo(bundleFlags: number, userId?: number): Promise<Array\<ApplicationInfo>>
 
 获取指定用户下所有已安装的应用信息，通过Promise获取返回值。
 
@@ -420,6 +454,42 @@ bundle.getAllApplicationInfo(bundleFlags, userId, (err, data) => {
     console.info('Operation successful. Data:' + JSON.stringify(data));
 })
 ```
+
+
+## bundle.getAllApplicationInfo
+
+function getAllApplicationInfo(bundleFlags: number, callback: AsyncCallback<Array<ApplicationInfo>>) : void;
+
+获取指定用户下所有已安装的应用信息，使用callback形式返回结果。
+
+**需要权限：**
+
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**系统能力：**
+
+SystemCapability.BundleManager.BundleFramework
+
+**参数：**
+
+| 名称        | 类型                                   | 必填 | 描述                                                   |
+| ----------- | -------------------------------------- | ---- | ------------------------------------------------------ |
+| bundleFlags | number                                 | 是   | 用于指定返回的应用信息对象中包含信息的标记。默认值：0，取值范围：大于等于0。|
+| callback    | AsyncCallback<Array\<ApplicationInfo>> | 是   | 程序启动作为入参的回调函数，返回应用信息列表。         |
+
+**示例：**
+
+```js
+let bundleFlags = 8;
+bundle.getAllApplicationInfo(bundleFlags, (err, data) => {
+    if (err) {
+        console.error('Operation failed. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Operation successful. Data:' + JSON.stringify(data));
+})
+```
+
 
 
 
@@ -763,6 +833,67 @@ bundle.getNameForUid(uid, (err, data) => {
     console.info('Operation successful. Data:' + JSON.stringify(data));
 })
 ```
+
+
+## bundle.getAbilityIcon
+
+function getAbilityIcon(bundleName: string, abilityName: string): Promise<image.PixelMap>;
+
+以异步方法通过bundleName和abilityName获取对应Icon的PixelMap，使用Promise形式返回结果。
+
+**参数：**
+
+| 名称       | 类型   | 必填 | 描述     |
+| ---------- | ------ | ---- | -------- |
+| bundleName | string | 是   | 要查询的bundleName。 |
+| abilityName | string | 是   | 要查询的abilityName。 |
+
+**返回值：**
+| 类型                  | 说明                                                         |
+| --------------------- | ------------------------------------------------------------ |
+| Promise\<image.PixelMap> | 返回值为PixelMap。 |
+
+**示例：**
+
+```js
+let bundleName = com.example.myapplication;
+let abilityName = com.example.myapplication.MainAbility;
+bundle.getAbilityIcon(bundleName, abilityName)
+.then((data) => {
+    console.info('Operation successful. Data: ' + JSON.stringify(data));
+}).catch((error) => {
+    console.error('Operation failed. Cause: ' + JSON.stringify(error));
+})
+```
+
+## bundle.getAbilityIcon
+
+function getAbilityIcon(bundleName: string, abilityName: string, callback: AsyncCallback<image.PixelMap>): void;
+
+以异步方法通过bundleName和abilityName获取对应的PixelMap，使用callback形式返回结果。
+
+**参数：**
+
+| 名称       | 类型   | 必填 | 描述     |
+| ---------- | ------ | ---- | -------- |
+| bundleName | string | 是   | 要查询的bundleName。 |
+| abilityName | string | 是   | 要查询的abilityName。 |
+| callback   | AsyncCallback\<image.PixelMap> | 是   | 程序启动作为入参的回调函数，返回指定PixelMap。 |
+
+**示例：**
+
+```js
+let bundleName = com.example.myapplication;
+let abilityName = com.example.myapplication.MainAbility;
+bundle.getAbilityIcon(bundleName, abilityName, (err, data) => {
+    if (err) {
+        console.error('Operation failed. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Operation successful. Data:' + JSON.stringify(data));
+})
+```
+
 
 ## ElementName
 
