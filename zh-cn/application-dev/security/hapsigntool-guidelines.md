@@ -1,4 +1,4 @@
-# Hap包签名工具开发指导
+# Hap包签名工具用户指导
 
 
 
@@ -12,20 +12,29 @@
 
 Hap包签名工具支持本地签名需求的开发，为OpenHarmony应用提供完整性保护和来源管控机制，该签名工具基于PKI公钥证书的机制实现，在进行开发前，开发者应了解以下基本概念：
 
- - 非对称密钥对
-    非对称密钥算法是数据签名/验签的基础，应用签名工具实现生成标准的非对称密钥对（ECC P384/256、RSA2048/3072/4096，用于证书的签发和验证、Profile文件的签名和验签、以及应用包的签名和验签，提供应用的完整性保护机制。
+ - 非对称密钥对：
 
- - CSR
+    非对称密钥算法是数据签名/验签的基础，应用签名工具实现了标准的非对称密钥对生成功能（支持的密钥对类型包括ECC P384/256、RSA2048/3072/4096）
+
+ - CSR：
+
     CSR（Certificate Signing Request）证书签发请求是生成证书的前提，他包括证书的公钥、证书主题和私钥签名，在申请证书之前，需要先基于密钥对生成CSR，然后提交给CA签发证书。
- - 证书
- OpenHarmony采用RFC5280标准构建X509证书信任体系。用于应用签名的OpenHarmony证书按层级可分为：根CA证书、子CA证书、三级实体证书，其中三级实体证书分为应用签名证书和profile签名证书。应用签名证书表示应用开发者的身份，可保证系统上安装的应用来源可追溯，profile签名证书实现对profile文件的签名进行验签，保证profile文件的完整性。
- - HAP包
-HAP（OpenHarmony Ability Package）是Ability的部署包，OpenHarmony应用代码围绕Ability组件展开，它是由一个或者多个Ability组成。
- - profile文件
-hap包中的描述文件，该描述文件描述了已授权的证书权限和设备ID信息等信息。
+ - 证书：
+
+    OpenHarmony采用RFC5280标准构建X509证书信任体系。用于应用签名的OpenHarmony证书按层级可分为：根CA证书、子CA证书、三级实体证书，其中三级实体证书分为应用签名证书和profile签名证书。应用签名证书表示应用开发者的身份，可保证系统上安装的应用来源可追溯，profile签名证书实现对profile文件的签名进行验签，保证profile文件的完整性。
+
+ - HAP包：
+
+    HAP（OpenHarmony Ability Package）是Ability的部署包，OpenHarmony应用代码围绕Ability组件展开，它是由一个或者多个Ability组成。
+
+ - profile文件：
+
+    hap包中的描述文件，该描述文件描述了已授权的证书权限和设备ID信息等信息。
+
 ### 约束与限制
 
  - Hap包签名工具基于Java语言开发，需要Java8以上Java环境运行。
+
  - 一键签名等脚本文件基于Python语言开发，使用需配置环境python3.5及以上。
 
 
@@ -50,7 +59,7 @@ hap包中的描述文件，该描述文件描述了已授权的证书权限和�
     
  3. 编译后得到二进制文件，目录为: ./hap_sign_tool/build/libs/hap-sign-tool.jar。
 
-## 开发指导
+## 用户指导
 
 ### 场景介绍
 
@@ -58,13 +67,13 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
 
 按照有无应用签名证书可分为以下两种场景：
 
-<p id = "无应用签名证书场景">1.无应用签名证书场景：</p>
+1.无应用签名证书场景：
 
-- 开发者使用该工具对Hap包签名时，需按照开发步骤从[第一步](#生成应用签名证书密钥对)依次完成应用签名证书生成、profile文件签名、应用签名流程。
+- 开发者使用该工具对Hap包签名时，需按照签名步骤从第一步生成应用签名证书密钥对依次完成应用签名证书生成、profile文件签名、应用签名流程。
 
-<p id = "有应用签名证书场景">2.有应用签名证书场景：</p>
+2.有应用签名证书场景：
 
-- 开发者可直接从开发步骤[第三步](#对profile文件进行签名)开始开发 ,使用应用签名证书和包含对应密钥的本地密钥库文件对应用进行签名。
+- 开发者可直接从签名步骤第三步对profile文件进行签名开始开发 ,使用应用签名证书和包含对应密钥的本地密钥库文件对应用进行签名。
 
 
 
@@ -196,7 +205,7 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
           ├── -keyAlias        # 密钥别名，必填项
           ├── -keyPwd          # 密钥口令，可选项
           ├── -profileCertFile # Profile签名证书（证书链，顺序为三级-二级-根），必填项
-          ├── -inFile          # 输入的原始Provision Profile文件，必填项
+          ├── -inFile          # 输入原始的模板Profile文件，文件为json格式，所在目录为developtools_hapsigner/autosign/UnsgnedReleasedProfileTemplate.json，必填项
           ├── -signAlg         # 签名算法，必填项，包括SHA256withECDSA / SHA384withECDSA
           ├── -keystoreFile    # 密钥库文件，localSign模式时为必填项，JKS或P12格式
           ├── -keystorePwd     # 密钥库口令，可选项
@@ -230,25 +239,22 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
          ├── -inFile          # 已签名的应用包文件，hap格式或bin格式，必填项
          ├── -outCertchain    # 签名的证书链文件，必填项
          ├── -outProfile      # 应用包中的profile文件，必填项
-### 开发步骤
-对hap包签名的完整开发步骤为：
+### 签名步骤
+对hap包签名的完整步骤为：
 
-- [生成应用签名证书密钥对](#生成应用签名证书密钥对)
-- [生成应用签名证书](#生成应用签名证书)
-- [对profile文件进行签名](#对profile文件进行签名)
-- [对Hap包进行签名](#对Hap包进行签名)
-
-
-> **注意事项：**
- 1.步骤一中的密钥对算法推荐使用ECC，出于安全性考虑，应用签名暂不使用RSA算法
- 2.建议将待签名hap包、profile文件、密钥库文件OpenHarmony.p12、根CA证书、子CA证书、签名工具放在同一个目录下，方便操作。
- 3. OpenHarmony密钥库文件所在路径：developtools_hapsigner/autosign/result/OpenHarmony.p12；
-    根CA证书所在路径：developtools_hapsigner/autosign/result/rootCA.cer；
-    子CA证书所在路径：developtools_hapsigner/autosign/result/subCA.cer；
-    pfofile签名证书路径：developtools_hapsigner/autosign/result/OpenHarmonyProfileRelease.pem。
+- 生成应用签名证书密钥对
+- 生成应用签名证书
+- 对profile文件进行签名
+- 对Hap包进行签名
 
 
-**<p id="生成应用签名证书密钥对">1.生成应用签名证书密钥对</p>**
+> **注意事项：** <br/>
+ 1.步骤一中的密钥对算法推荐使用ECC，出于安全性考虑，应用签名暂不使用RSA算法;<br/>
+ 2.建议将待签名hap包、profile文件、密钥库文件OpenHarmony.p12、根CA证书、子CA证书、签名工具放在同一个目录下，方便操作;<br/>
+ 3.OpenHarmony密钥库文件所在路径：developtools_hapsigner/autosign/result/OpenHarmony.p12；根CA证书所在路径：developtools_hapsigner/autosign/result/rootCA.cer；子CA证书所在路径：developtools_hapsigner/autosign/result/subCA.cer；pfofile签名证书路径：developtools_hapsigner/autosign/result/OpenHarmonyProfileRelease.pem。
+
+
+**1.生成应用签名证书密钥对**
 
 调用密钥对生成接口，生成签名密钥并保存到密钥库。
 
@@ -256,7 +262,7 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
 ```shell
 java -jar hap-sign-tool.jar generate-keypair -keyAlias "oh-app1-key-v1" -keyAlg "ECC"  -keySize "NIST-P-256" -keystoreFile "OpenHarmony.p12" -keyPwd "123456" -keystorePwd "123456"
 ```
-  > ![icon-note.gif](../public_sys-resources/icon-note.gif) **说明：**请记录下**keyAlias、keyStorePwd**和**keyPwd**的值，在后续[生成应用签名证书](#生成应用签名证书)和[对Hap包进行签名](#对Hap包进行签名)操作会使用到。
+  > ![icon-note.gif](../public_sys-resources/icon-note.gif) **说明：**请记录下**keyAlias、keyStorePwd**和**keyPwd**的值，在后续生成应用签名证书和对Hap包进行签名操作会使用到。
 
 该命令的参数说明：
 
@@ -270,7 +276,7 @@ java -jar hap-sign-tool.jar generate-keypair -keyAlias "oh-app1-key-v1" -keyAlg 
 
 
 
-**<p id="生成应用签名证书">2.生成应用签名证书</p>**
+**2.生成应用签名证书**
 
 调用应用签名证书生成接口，使用本地二级CA证书签发应用签名证书。
 
@@ -298,7 +304,7 @@ java -jar hap-sign-tool.jar generate-app-cert -keyAlias "oh-app1-key-v1" -signAl
          ├── -validity         # 证书有效期，可选项，默认为3650天
   <br/>
 
-**<p id="对profile文件进行签名">3.对profile文件进行签名</p>**
+**3.对profile文件进行签名**
 
 调用Profile文件签名接口，使用Profile签名密钥对Profile文件进行签名。
 
@@ -314,14 +320,14 @@ java -jar hap-sign-tool.jar  sign-profile -keyAlias "openharmony application pro
          ├── -signAlg          # 签名算法，包括 SHA256withECDSA / SHA384withECDSA，该参数必填
          ├── -mode             # 签名模式，目前仅支持localSign，该参数必填
          ├── -profileCertFile  # Profile签名证书，指定已提供的profile证书文件，该参数必填且不可修改
-         ├── -inFile           # 输入原始的Provision Profile文件，该参数必填
+         ├── -inFile           # 输入原始的模板Profile文件，文件为json格式，所在目录为developtools_hapsigner/autosign/UnsgnedReleasedProfileTemplate.json，该参数必填
          ├── -keystoreFile     # 密钥库文件，指定使用提供的OpenHarmony.p12密钥库文件，该参数必填且不可修改
          ├── -outFile          # 输出签名后的Provision Profile文件，p7b格式，该参数必填
          ├── -keyPwd           # 密钥口令，OpenHarmony.p12中的口令默认“123456”
          ├── -keystorePwd      # 密钥库口令，OpenHarmony.p12口令默认为“123456”
  <br/>
 
-**<p id="对Hap包进行签名">4.对Hap包进行签名</p>**
+**4.对Hap包进行签名**
 
 调用Hap包签名接口，使用应用签名密钥为Hap包签名。
 
@@ -330,12 +336,12 @@ java -jar hap-sign-tool.jar  sign-profile -keyAlias "openharmony application pro
 java -jar hap-sign-tool.jar sign-app -keyAlias "oh-app1-key-v1" -signAlg "SHA256withECDSA" -mode "localSign" -appCertFile "app1.pem" -profileFile "app1-profile.p7b" -inFile "app1-unsigned.zip" -keystoreFile "OpenHarmony.p12" -outFile "app1-signed.hap" -keyPwd "123456" -keystorePwd "123456"
 ```
 
- > ![icon-note.gif](../public_sys-resources/icon-note.gif) **说明**：以下参数说明默认为[无应用签名证书场景](#无应用签名证书场景)，当开发场景为[有应用签名证书场景](#有应用签名证书场景)时，下列参数需要修改：
--keyAlias：密钥别名，填写已有应用签名证书对应的密钥别名，参数必填
--appCertFile：应用签名证书，填写已有的应用签名证书，参数必填
--keystoreFile：密钥库文件，填写已有应用签名证书对应的密钥库文件，参数必填
--keyPwd：密钥口令，填写密钥库文件中对应密钥的口令
--keystorePwd：密钥库口令，填写密钥库文件的密钥口令
+ > ![icon-note.gif](../public_sys-resources/icon-note.gif) **说明**：以下参数说明默认为无应用签名证书场景，当开发场景为有应用签名证书场景时，下列参数需要修改：<br/>
+-keyAlias：密钥别名，填写已有应用签名证书对应的密钥别名，参数必填；<br/>
+-appCertFile：应用签名证书，填写已有的应用签名证书，参数必填；<br/>
+-keystoreFile：密钥库文件，填写已有应用签名证书对应的密钥库文件，参数必填；<br/>
+-keyPwd：密钥口令，填写密钥库文件中对应密钥的口令；<br/>
+-keystorePwd：密钥库口令，填写密钥库文件的密钥口令。<br/>
 
 该命令的参数说明：
 
@@ -357,43 +363,61 @@ java -jar hap-sign-tool.jar sign-app -keyAlias "oh-app1-key-v1" -signAlg "SHA256
 
 ## 常见问题
 
-**1.执行[生成应用签名证书](#生成应用签名证书)命令时，控制台打印结果，无文件输出**
+**1.执行第二步生成应用签名证书命令时，控制台打印结果，无文件输出**
 
- **现象描述**
+ - **现象描述**
+
    生成证书时，只在控制台打印证书内容，无对应文件输出。   
 
- **可能原因**
-  outFile参数中路径不正确 和 '-outFile'中的'-'非英文格式。
+ - **可能原因**
 
- **解决办法**
-检查并修正outFile参数为正确路径，'-outFile'中的'-'为英文格式
+   outFile参数中路径不正确 和 '-outFile'中的'-'非英文格式。
 
-**2.执行第三步[对profile文件进行签名](#对profile文件进行签名)时，提示签名失败**
+ - **解决办法**
 
-**现象描述**
+   检查并修正outFile参数为正确路径，'-outFile'中的'-'为英文格式
+
+**2.执行第三步对profile文件进行签名时，提示签名失败**
+
+- **现象描述**
+
   现象分为以下几种：
-  1.执行命令后提示 "SIGN_ERROR, code: 107. Details: Failed to verify signature: Wrong key usage".
-  2.执行命令后提示 "NOT_SUPPORT_ERROR, code: 105. Details: Profile cert 'result\profile1.pem' must a cert chain".
-  3.执行命令后提示 "VERIFY_ERROR, code: 108. Details: Failed to verify signature: unable to find valid certification path to requested target"
 
- **可能原因**
-- 对应现象描述的可能原因：
-  1.profile签名证书（三级证书）证书链顺序不正确。
-  2.profile签名证书（三级证书）不是证书链。
-  3.证书主题顺序不正确 或者 生成应用签名证书时“-issuerKeyAlias”参数填写错误
+  (1).执行命令后提示 "SIGN_ERROR, code: 107. Details: Failed to verify signature: Wrong key usage".
 
-**解决办法**
-  1.检查并修正证书链顺序，只能正序或反序，不可乱序。
-  2.检查签名时的三级证书是否为证书链。
-  3.检查证书主题顺序是否正确，顺序须为C、O、OU、CN。
+  (2).执行命令后提示 "NOT_SUPPORT_ERROR, code: 105. Details: Profile cert 'result\profile1.pem' must a cert chain".
 
-**3.[对Hap包进行签名](#对Hap包进行签名)时提示签名错误**
+  (3).执行命令后提示 "VERIFY_ERROR, code: 108. Details: Failed to verify signature: unable to find valid certification path to requested target"
 
- **现象描述**
+
+- **可能原因**
+
+  对应现象描述的可能原因：
+
+  (1).profile签名证书（三级证书）证书链顺序不正确。
+
+  (2).profile签名证书（三级证书）不是证书链。
+
+  (3).证书主题顺序不正确 或者 生成应用签名证书时“-issuerKeyAlias”参数填写错误
+
+- **解决办法**
+
+  (1).检查并修正证书链顺序，只能正序或反序，不可乱序。
+
+  (2).检查签名时的三级证书是否为证书链。
+
+  (3).检查证书主题顺序是否正确，顺序须为C、O、OU、CN。
+
+**3.对Hap包进行签名时提示签名错误**
+
+ - **现象描述**
+
    执行命令后提示：NOT_SUPPORT_ERROR, code: 105. Details: SignAlg params is incorrect, signature algorithms include SHA256withECDSA,SHA384withECDSA
 
- **可能原因**
- 签名算法不支持，signAlg参数填写错误
+ - **可能原因**
 
- **解决办法**
- 三级证书密钥对推荐使用ECC生成，hap签名算法修改为ECC对应的SHA256withECDSA,SHA384withECDSA
+   签名算法不支持，signAlg参数填写错误
+
+ - **解决办法**
+
+   三级证书密钥对推荐使用ECC生成，hap签名算法修改为ECC对应的SHA256withECDSA,SHA384withECDSA
