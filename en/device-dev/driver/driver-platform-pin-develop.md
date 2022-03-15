@@ -256,6 +256,7 @@ The following uses **pin_hi35xx.c** as an example to present the content to be p
      </table>
 
       Function description:
+	  
       Initializes the custom structure and **PinCntlr** members, and connects to the pin controller by calling the **PinCntlrAdd** function at the core layer.
 
         ```c
