@@ -20,8 +20,8 @@
   - “normal”类型：默认配置，对应系统中的普通服务，这类服务在init命令执行完成后启动。
   - "condition"类型：对应有特殊要求的服务，可以直接通过start xxx 命令执行启动，一般在条件job或者在init的某个阶段使用命令启动。
 
-```
-服务间或服务与命令之间存在依赖关系，需要通过"condition"描述服务，例如：
+  服务间或服务与命令之间存在依赖关系，需要通过"condition"描述服务，例如：
+  ```
     "services" : [{
         "name" : "service1",
         "path" : ["/bin/process1", "param1", "param2"],
@@ -43,7 +43,7 @@
        }
     },
 
-```
+  ```
 - init服务并行控制(仅标准系统以上提供)<a name="section56901555919"></a>
 
   init提供服务并行处理能力，启动服务在不同的阶段执行job的能力。
@@ -99,13 +99,13 @@
 
   1. 配置jobs数组。
 
-      init启动引导组件将系统启动分为三个阶段，这三个阶段：
+      init启动引导组件将系统启动分为三个阶段：
 
       -   “pre-init”阶段：启动系统服务之前需要先执行的操作，例如挂载文件系统、创建文件夹、修改权限等。
       -   “init”阶段：系统服务启动阶段。
       -   “post-init”阶段：系统服务启动完后还需要执行的操作。
 
-```
+  ```
     "jobs" : [{
             "name" : "pre-init",
             "cmds" : [
@@ -124,7 +124,7 @@
                     "cmds" : []
                 }
             ]
-```
+  ```
 
 **表 1**  执行job介绍 <a name="table1801509284"></a>
 <table><thead align="left"><tr id="row680703289"><th class="cellrowborder" valign="top" width="13.4%" id="mcps1.2.3.1.1"><p id="p11805012282"><a name="p11805012282"></a><a name="p11805012282"></a>job名</p>
