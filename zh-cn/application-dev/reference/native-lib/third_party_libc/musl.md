@@ -37,7 +37,7 @@ C标准函数库是在C语言程序设计中，所有符合标准的头文件的
 
 **<font size=5>musl</font>**
 
-[NDK中没有导出的符号列表](musl-peculiar-symbol.md)
+[native api中没有导出的符号列表](musl-peculiar-symbol.md)
 
 ## 标准C++库
 
@@ -66,7 +66,6 @@ C++11、C++14标准已完全支持，C++17和C++20标准正在完善。
 
 
 [Zlib](https://zlib.net/)是基于C/C++语言实现的一个通用的数据压缩库。
-
 
 
 
