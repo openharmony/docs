@@ -1,5 +1,9 @@
 # 系统属性
 
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> - 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 此接口为系统接口，三方应用不支持调用。
+
 ## 导入模块
 
 ```
@@ -7,16 +11,13 @@ import parameter from '@ohos.systemParameter'
 ```
 
 
-## 权限列表
-
-无
-
-
 ## parameter.getSync
 
 getSync(key: string, def?: string)
 
 获取系统属性Key对应的值。
+
+**系统能力：** SystemCapability.Startup.SysInfo
 
 **参数：**
 
@@ -49,6 +50,8 @@ get(key: string, callback: AsyncCallback&lt;string&gt;)
 
 获取系统属性Key对应的值。
 
+**系统能力：** SystemCapability.Startup.SysInfo
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -77,6 +80,8 @@ try {
 get(key: string, def: string, callback: AsyncCallback&lt;string&gt;)
 
 获取系统属性Key对应的值。
+
+**系统能力：** SystemCapability.Startup.SysInfo
 
 **参数：**
 
@@ -108,6 +113,8 @@ try {
 get(key: string, def?: string)
 
 获取系统属性Key对应的值。
+
+**系统能力：** SystemCapability.Startup.SysInfo
 
 **参数：**
 
@@ -144,6 +151,8 @@ setSync(key: string, value: string)
 
 设置系统属性Key对应的值。
 
+**系统能力：** SystemCapability.Startup.SysInfo
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -167,6 +176,8 @@ try {
 set(key: string, value: string, callback: AsyncCallback&lt;void&gt;)
 
 设置系统属性Key对应的值。
+
+**系统能力：** SystemCapability.Startup.SysInfo
 
 **参数：**
 
@@ -197,6 +208,8 @@ try {
 set(key: string, def?: string)
 
 设置系统属性Key对应的值。
+
+**系统能力：** SystemCapability.Startup.SysInfo
 
 **参数：**
 
