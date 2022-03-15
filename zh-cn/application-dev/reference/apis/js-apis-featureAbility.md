@@ -494,19 +494,23 @@ connectAbility(request: Want, options:ConnectOptions): number
 
 **Want类型说明：**
 
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase
+
 | 名称         | 读写属性  | 类型     | 必填 | 描述                                                              |
 | ------------ | -------- | -------- | ---- | ----------------------------------                               |
-| deviceId     | 只读     | string   | 否   | 表示被连接的ServiceAbility的设备id，缺省表示连接本地的ServiceAbility。<br/>**系统能力**：SystemCapability.Ability.AbilityBase |
-| bundleName   | 只读     | string   | 是   | 表示被连接的ServiceAbility的包名。<br/>**系统能力**：SystemCapability.Ability.AbilityBase                                   |
-| abilityName  | 只读     | string   | 是   | 表示被连接的ServiceAbility的类名。<br/>**系统能力**：SystemCapability.Ability.AbilityBase                                   |
+| deviceId     | 只读     | string   | 否   | 表示被连接的ServiceAbility的设备id，缺省表示连接本地的ServiceAbility。 |
+| bundleName   | 只读     | string   | 是   | 表示被连接的ServiceAbility的包名。                                   |
+| abilityName  | 只读     | string   | 是   | 表示被连接的ServiceAbility的类名。                                   |
 
 **ConnectOptions类型说明：**
 
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+
 | 名称         | 读写属性 | 类型     | 必填 | 描述                               |
 | ------------ | -------- | -------- | ---- | ---------------------------------- |
-| onConnect    | 只读     | function | 是   | 连接成功时的回调函数。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core               |
-| onDisconnect | 只读     | function | 是   | 连接失败时的回调函数。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core               |
-| onFailed     | 只读     | function | 是   | ConnectAbility调用失败时的回调函数。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core |
+| onConnect    | 只读     | function | 是   | 连接成功时的回调函数。               |
+| onDisconnect | 只读     | function | 是   | 连接失败时的回调函数。               |
+| onFailed     | 只读     | function | 是   | ConnectAbility调用失败时的回调函数。 |
 
 **返回值：**
 
@@ -634,55 +638,66 @@ var connId = featureAbility.connectAbility(
         onFailed: onFailedCallback,
     },
 );
-var result = await featureAbility.disconnectAbility(connId);
+
+featureAbility.disconnectAbility(connId).then((error,data)=>{
+    console.log('featureAbilityTest result errCode : ' + error.code + " data: " + data);
+});
 ```
 
 ## AbilityResult
 
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase
+
 | 名称       | 读写属性 | 类型                  | 必填 | 描述                                                         |
 | ---------- | -------- | --------------------- | ---- | ------------------------------------------------------------ |
-| resultCode | 只读     | number                | 是   | 指示销毁该能力后返回的结果代码。您可以定义结果代码来识别错误（暂不支持）。<br/>**系统能力**：SystemCapability.Ability.AbilityBase |
-| want       | 只读     | [Want](#want) | 否   | 指示销毁该能力后返回的数据。您可以定义返回的数据。此参数可以为null。<br/>**系统能力**：SystemCapability.Ability.AbilityBase  |
+| resultCode | 只读     | number                | 是   | 指示销毁该能力后返回的结果代码。您可以定义结果代码来识别错误（暂不支持）。 |
+| want       | 只读     | [Want](#want) | 否   | 指示销毁该能力后返回的数据。您可以定义返回的数据。此参数可以为null。  |
 
 ## StartAbilityParameter
 
+**系统能力**：以下各项对应的系统能力均为SystemCapability.AbilityRuntime.FAModel 
+
 | 名称                | 读写属性 | 类型                 | 必填 | 描述                                                         |
 | ------------------- | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| want                | 只读     | [Want](#want)        | 是   | 表示需要包含有关目标启动能力的信息。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel                       |
-| abilityStartSetting | 只读     | {[key: string]: any} | 否   | 表示能力的特殊属性，当开发者启动能力时，该属性可以作为调用中的输入参数传递。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel |
+| want                | 只读     | [Want](#want)        | 是   | 表示需要包含有关目标启动能力的信息。                       |
+| abilityStartSetting | 只读     | {[key: string]: any} | 否   | 表示能力的特殊属性，当开发者启动能力时，该属性可以作为调用中的输入参数传递。 |
 
 ## Want
 
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase
+
 | 名称        | 读写属性 | 类型                 | 必填 | 描述                                                         |
 | ----------- | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| deviceId    | 只读     | string               | 否   | 表示运行指定Ability的设备ID。<br/>**系统能力**：SystemCapability.Ability.AbilityBase                                |
-| bundleName  | 只读     | string               | 否   | 表示包描述。如果在Want中同时指定了BundleName和AbilityName，则Want可以直接匹配到指定的Ability。<br/>**系统能力**：SystemCapability.Ability.AbilityBase |
-| abilityName | 只读     | string               | 否   | 表示待启动的Ability名称。如果在Want中同时指定了BundleName和AbilityName，则Want可以直接匹配到指定的Ability。<br/>**系统能力**：SystemCapability.Ability.AbilityBase |
-| uri         | 只读     | string               | 否   | 表示Uri描述。如果在Want中指定了Uri，则Want将匹配指定的Uri信息，包括scheme, schemeSpecificPart, authority和path信息。<br/>**系统能力**：SystemCapability.Ability.AbilityBase |
-| type        | 只读     | string               | 否   | 表示MIME type类型描述，比如："text/plain" 、 "image/*"等。<br/>**系统能力**：SystemCapability.Ability.AbilityBase   |
-| flags       | 只读     | number               | 否   | 表示处理Want的方式。默认传数字，具体参考：[flags说明](#flags说明)。<br/>**系统能力**：SystemCapability.Ability.AbilityBase |
-| action      | 只读     | string               | 否   | 表示action选项描述。<br/>**系统能力**：SystemCapability.Ability.AbilityBase                           |
-| parameters  | 只读     | {[key: string]: any} | 否   | 表示WantParams描述。<br/>**系统能力**：SystemCapability.Ability.AbilityBase                                       |
-| entities    | 只读     | Array\<string>       | 否   | 表示entities相关描述。<br/>**系统能力**：SystemCapability.Ability.AbilityBase                                    |
+| deviceId    | 只读     | string               | 否   | 表示运行指定Ability的设备ID。                                |
+| bundleName  | 只读     | string               | 否   | 表示包描述。如果在Want中同时指定了BundleName和AbilityName，则Want可以直接匹配到指定的Ability。 |
+| abilityName | 只读     | string               | 否   | 表示待启动的Ability名称。如果在Want中同时指定了BundleName和AbilityName，则Want可以直接匹配到指定的Ability。 |
+| uri         | 只读     | string               | 否   | 表示Uri描述。如果在Want中指定了Uri，则Want将匹配指定的Uri信息，包括scheme, schemeSpecificPart, authority和path信息。 |
+| type        | 只读     | string               | 否   | 表示MIME type类型描述，比如："text/plain" 、 "image/*"等。   |
+| flags       | 只读     | number               | 否   | 表示处理Want的方式。默认传数字，具体参考：[flags说明](#flags说明)。 |
+| action      | 只读     | string               | 否   | 表示action选项描述。                           |
+| parameters  | 只读     | {[key: string]: any} | 否   | 表示WantParams描述。                                       |
+| entities    | 只读     | Array\<string>       | 否   | 表示entities相关描述。                                    |
 
 ## flags说明
 
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase
+
 | 名称                                 | 参数       | 描述                                                         |
 | ------------------------------------ | ---------- | ------------------------------------------------------------ |
-| FLAG_AUTH_READ_URI_PERMISSION        | 0x00000001 | 指示对URI执行读取操作的授权。<br/>**系统能力**：SystemCapability.Ability.AbilityBase                                  |
-| FLAG_AUTH_WRITE_URI_PERMISSION       | 0x00000002 | 指示对URI执行写入操作的授权。<br/>**系统能力**：SystemCapability.Ability.AbilityBase                                 |
-| FLAG_ABILITY_FORWARD_RESULT          | 0x00000004 | 将结果返回给元能力。<br/>**系统能力**：SystemCapability.Ability.AbilityBase                                           |
-| FLAG_ABILITY_CONTINUATION            | 0x00000008 | 确定是否可以将本地设备上的功能迁移到远程设备。<br/>**系统能力**：SystemCapability.Ability.AbilityBase                |
-| FLAG_NOT_OHOS_COMPONENT              | 0x00000010 | 指定组件是否属于OHOS。<br/>**系统能力**：SystemCapability.Ability.AbilityBase                                         |
-| FLAG_ABILITY_FORM_ENABLED            | 0x00000020 | 指定是否启动某个能力。<br/>**系统能力**：SystemCapability.Ability.AbilityBase                                         |
-| FLAG_AUTH_PERSISTABLE_URI_PERMISSION | 0x00000040 | 指示URI上可能持久化的授权。<br/>**系统能力**：SystemCapability.Ability.AbilityBase                                    |
-| FLAG_AUTH_PREFIX_URI_PERMISSION      | 0x00000080 | 按照前缀匹配的方式验证URI权限。<br/>**系统能力**：SystemCapability.Ability.AbilityBase                                           |
-| FLAG_ABILITYSLICE_MULTI_DEVICE       | 0x00000100 | 支持分布式调度系统中的多设备启动。<<br/>**系统能力**：SystemCapability.Ability.AbilityBase                             |
-| FLAG_START_FOREGROUND_ABILITY        | 0x00000200 | 指示无论主机应用程序是否已启动，都将启动使用服务模板的功能。<br/>**系统能力**：SystemCapability.Ability.AbilityBase   |
-| FLAG_ABILITY_CONTINUATION_REVERSIBLE | 0x00000400 | 表示迁移是可拉回的。<br/>**系统能力**：SystemCapability.Ability.AbilityBase                                        |
-| FLAG_INSTALL_ON_DEMAND               | 0x00000800 | 如果未安装指定的功能，请安装该功能。 <br/>**系统能力**：SystemCapability.Ability.AbilityBase                          |
-| FLAG_INSTALL_WITH_BACKGROUND_MODE    | 0x80000000 | 如果未安装，使用后台模式安装该功能。<br/>**系统能力**：SystemCapability.Ability.AbilityBase                         |
-| FLAG_ABILITY_CLEAR_MISSION           | 0x00008000 | 指示清除其他任务的操作。可以为传递给**ohos.app.Context#startAbility**的**Want**设置此标志，并且必须与**flag_ABILITY_NEW_MISSION**一起使用。<br/>**系统能力**：SystemCapability.Ability.AbilityBase |
-| FLAG_ABILITY_NEW_MISSION             | 0x10000000 | 指示在历史任务堆栈上创建任务的操作。<br/>**系统能力**：SystemCapability.Ability.AbilityBase                         |
-| FLAG_ABILITY_MISSION_TOP             | 0x20000000 | 指示如果启动能力的现有实例已位于任务堆栈的顶部，则将重用该实例。否则，将创建一个新的能力实例。<br/>**系统能力**：SystemCapability.Ability.AbilityBase |
+| FLAG_AUTH_READ_URI_PERMISSION        | 0x00000001 | 指示对URI执行读取操作的授权。                                  |
+| FLAG_AUTH_WRITE_URI_PERMISSION       | 0x00000002 | 指示对URI执行写入操作的授权。                                 |
+| FLAG_ABILITY_FORWARD_RESULT          | 0x00000004 | 将结果返回给元能力。                                           |
+| FLAG_ABILITY_CONTINUATION            | 0x00000008 | 确定是否可以将本地设备上的功能迁移到远程设备。                |
+| FLAG_NOT_OHOS_COMPONENT              | 0x00000010 | 指定组件是否属于OHOS。                                         |
+| FLAG_ABILITY_FORM_ENABLED            | 0x00000020 | 指定是否启动某个能力。                                         |
+| FLAG_AUTH_PERSISTABLE_URI_PERMISSION | 0x00000040 | 指示URI上可能持久化的授权。                                    |
+| FLAG_AUTH_PREFIX_URI_PERMISSION      | 0x00000080 | 按照前缀匹配的方式验证URI权限。                                           |
+| FLAG_ABILITYSLICE_MULTI_DEVICE       | 0x00000100 | 支持分布式调度系统中的多设备启动。<                             |
+| FLAG_START_FOREGROUND_ABILITY        | 0x00000200 | 指示无论主机应用程序是否已启动，都将启动使用服务模板的功能。   |
+| FLAG_ABILITY_CONTINUATION_REVERSIBLE | 0x00000400 | 表示迁移是可拉回的。                                        |
+| FLAG_INSTALL_ON_DEMAND               | 0x00000800 | 如果未安装指定的功能，请安装该功能。                           |
+| FLAG_INSTALL_WITH_BACKGROUND_MODE    | 0x80000000 | 如果未安装，使用后台模式安装该功能。                         |
+| FLAG_ABILITY_CLEAR_MISSION           | 0x00008000 | 指示清除其他任务的操作。可以为传递给**ohos.app.Context#startAbility**的**Want**设置此标志，并且必须与**flag_ABILITY_NEW_MISSION**一起使用。 |
+| FLAG_ABILITY_NEW_MISSION             | 0x10000000 | 指示在历史任务堆栈上创建任务的操作。                         |
+| FLAG_ABILITY_MISSION_TOP             | 0x20000000 | 指示如果启动能力的现有实例已位于任务堆栈的顶部，则将重用该实例。否则，将创建一个新的能力实例。 |
 

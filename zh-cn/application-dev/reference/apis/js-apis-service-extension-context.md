@@ -214,8 +214,10 @@ disconnectAbility(connection: number): Promise&lt;void&gt;;
 
 ConnectOptions数据结构。
 
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+
 | 名称 | 说明 | 
 | -------- | -------- |
-| onConnect(elementName:ElementName,&nbsp;remote:IRemoteObject) | Ability成功连接一个服务类型Ability的回调接口。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core | 
-| onDisconnect(elementName:ElementName) | 对端服务发生异常或者被杀死回调该接口。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core | 
-| onFailed(code:&nbsp;number) | 连接失败时回调该接口。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core | 
+| onConnect(elementName:ElementName,&nbsp;remote:IRemoteObject) | Ability成功连接一个服务类型Ability的回调接口。 | 
+| onDisconnect(elementName:ElementName) | 对端服务发生异常或者被杀死回调该接口。 | 
+| onFailed(code:&nbsp;number) | 连接失败时回调该接口。 | 

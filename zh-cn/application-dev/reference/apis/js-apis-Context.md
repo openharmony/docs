@@ -502,15 +502,19 @@ context.getCallingBundle().then((data) => {
 
 ## PermissionOptions
 
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
 | 名称 | 读写属性 | 类型   | 必填 | 描述   |
 | ---- | -------- | ------ | ---- | ------ |
-| pid  | 只读     | number | 否   | 进程id。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core |
-| uid  | 只读     | number | 否   | 用户id。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core |
+| pid  | 只读     | number | 否   | 进程id。 |
+| uid  | 只读     | number | 否   | 用户id。 |
 
 ## PermissionRequestResult
 
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
 | 名称        | 读写属性 | 类型           | 必填 | 描述               |
 | ----------- | -------- | -------------- | ---- | ------------------ |
-| requestCode | 只读     | number         | 是   | 用户传入的请求代码。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core |
-| permissions | 只读     | Array\<string> | 是   | 用户传入的权限。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core     |
-| authResults | 只读     | Array\<number> | 是   | 求权限的结果。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core      |
+| requestCode | 只读     | number         | 是   | 用户传入的请求代码。 |
+| permissions | 只读     | Array\<string> | 是   | 用户传入的权限。     |
+| authResults | 只读     | Array\<number> | 是   | 求权限的结果。      |
