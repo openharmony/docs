@@ -485,6 +485,7 @@ linkedList.clear();
 
 ### set
 set(index: number, element: T): T
+
 将此LinkedList中指定位置的元素替换为指定元素。
 
 **参数：**
