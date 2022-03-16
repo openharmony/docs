@@ -44,6 +44,8 @@ createFormBindingData(obj?: Object | string): FormBindingData
 
 ## formBindingData.FormBindingData
 
+data: Object
+
 FormBindingData相关描述。
 
 **系统能力**：SystemCapability.Ability.Form

@@ -48,9 +48,9 @@ ConfigurationConstant.Direction.DIRECTION_VERTICAL。
 
 | 名称 | 值 | 说明 | 
 | -------- | -------- | -------- |
-| DIRECTION_NOT_SET | -1 | 未设置方向。 | 
-| DIRECTION_VERTICAL | 0 | 垂直方向。 | 
-| DIRECTION_HORIZONTAL | 1 | 水平方向。 | 
+| DIRECTION_NOT_SET<sup>9+</sup> | -1 | 未设置方向。 | 
+| DIRECTION_VERTICAL<sup>9+</sup> | 0 | 垂直方向。 | 
+| DIRECTION_HORIZONTAL<sup>9+</sup> | 1 | 水平方向。 | 
 
 
 ## ConfigurationConstant.ScreenDensity
@@ -67,10 +67,10 @@ ConfigurationConstant.ScreenDensity.SCREEN_DENSITY_NOT_SET。
 
 | 名称 | 值 | 说明 | 
 | -------- | -------- | -------- |
-| SCREEN_DENSITY_NOT_SET | 0 | 未设置屏幕分辨率。 | 
-| SCREEN_DENSITY_SDPI | 120 | 屏幕分辨率为"sdpi"。 | 
-| SCREEN_DENSITY_MDPI | 160 | 屏幕分辨率为"mdpi"。 | 
-| SCREEN_DENSITY_LDPI | 240 | 屏幕分辨率为"ldpi"。 | 
-| SCREEN_DENSITY_XLDPI | 320 | 屏幕分辨率为"xldpi"。 | 
-| SCREEN_DENSITY_XXLDPI | 480 | 屏幕分辨率为"xxldpi"。 | 
-| SCREEN_DENSITY_XXXLDPI | 640 | 屏幕分辨率为"xxxldpi"。 | 
+| SCREEN_DENSITY_NOT_SET<sup>9+</sup> | 0 | 未设置屏幕分辨率。 | 
+| SCREEN_DENSITY_SDPI<sup>9+</sup> | 120 | 屏幕分辨率为"sdpi"。 | 
+| SCREEN_DENSITY_MDPI<sup>9+</sup> | 160 | 屏幕分辨率为"mdpi"。 | 
+| SCREEN_DENSITY_LDPI<sup>9+</sup> | 240 | 屏幕分辨率为"ldpi"。 | 
+| SCREEN_DENSITY_XLDPI<sup>9+</sup> | 320 | 屏幕分辨率为"xldpi"。 | 
+| SCREEN_DENSITY_XXLDPI<sup>9+</sup> | 480 | 屏幕分辨率为"xxldpi"。 | 
+| SCREEN_DENSITY_XXXLDPI<sup>9+</sup> | 640 | 屏幕分辨率为"xxxldpi"。 | 
