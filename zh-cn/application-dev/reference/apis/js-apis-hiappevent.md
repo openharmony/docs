@@ -11,16 +11,13 @@ import hiAppEvent from '@ohos.hiAppEvent';
 ```
 
 
-## 系统能力
-
-SystemCapability.HiviewDFX.HiAppEvent
-
-
 ## hiAppEvent.write
 
 write(eventName: string, eventType: EventType, keyValues: object, callback: AsyncCallback&lt;void&gt;): void
 
 应用事件打点方法，将事件写入到当天的事件文件中，可接收类型为Json对象的事件参数，使用callback方式作为异步回调。
+
+**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
 **参数：**
 
@@ -52,6 +49,8 @@ hiAppEvent.write("test_event", hiAppEvent.EventType.FAULT, {"int_data":100, "str
 write(eventName: string, eventType: EventType, keyValues: object): Promise&lt;void&gt;
 
 应用事件打点方法，将事件写入到当天的事件文件中，可接收类型为Json对象的事件参数，使用promise方式作为异步回调。
+
+**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
 **参数：**
 
@@ -87,6 +86,8 @@ configure(config: ConfigOption): boolean
 
 应用事件打点配置方法，可用于配置打点开关、文件目录存储限额大小等功能。
 
+**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -117,6 +118,8 @@ hiAppEvent.configure({
 
 此接口提供了应用打点的配置选项。
 
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.HiviewDFX.HiAppEvent。
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | disable | boolean | 否 | 应用打点功能开关。配置值为true表示关闭打点功能，false表示不关闭打点功能。 |
@@ -126,6 +129,8 @@ hiAppEvent.configure({
 ## EventType
 
 事件类型枚举。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.HiviewDFX.HiAppEvent。
 
 | 名称 | 默认值 | 说明 |
 | -------- | -------- | -------- |
@@ -139,6 +144,8 @@ hiAppEvent.configure({
 
 此接口提供了所有预定义事件的事件名称常量。
 
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.HiviewDFX.HiAppEvent。
+
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | USER_LOGIN | string | 是 | 否 | 用户登录事件。 |
@@ -149,6 +156,8 @@ hiAppEvent.configure({
 ## Param
 
 此接口提供了所有预定义参数的参数名称常量。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.HiviewDFX.HiAppEvent。
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
