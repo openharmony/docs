@@ -265,7 +265,7 @@ Image\(value: \{uri: string | PixelMap\}\)
 @Entry
 @Component
 struct ImageExample1 {
-  private on: string = 'www.example.com/'
+  private on: string = 'www.example.com'
   @State src: string = this.on
 
   build() {
