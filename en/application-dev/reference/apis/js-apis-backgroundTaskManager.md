@@ -191,12 +191,13 @@ Requests a continuous task from the system. This API uses a promise to return th
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
 - **Parameters**
+  
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | context | Context | Yes| Application context.|
   | bgMode | BackgroundMode | Yes| Background mode requested.|
-  | wantAgent | [WantAgent](js-apis-notification.md#WantAgent)| Yes| Notification parameter, which is used to specify the target page when a continuous task notification is clicked.|
-
+| wantAgent | [WantAgent](js-apis-notification.md#WantAgent)| Yes| Notification parameter, which is used to specify the target page when a continuous task notification is clicked.|
+  
 - **Return value**
   | Type          | Description                     |
   | -------------- | ------------------------- |
@@ -295,14 +296,16 @@ backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext()).then(()
 
 ## BackgroundMode<sup>8+</sup>
 
+**System capability:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
+
 | Name                 | Value| Description|
 | ----------------------- | -------- | -------- |
-| DATA_TRANSFER           | 1 | Data transfer.<br>**System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask|
-| AUDIO_PLAYBACK          | 2 | Audio playback.<br>**System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask|
-| AUDIO_RECORDING         | 3 | Audio recording.<br>**System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask|
-| LOCATION                | 4 | Positioning and navigation.<br>**System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask|
-| BLUETOOTH_INTERACTION   | 5 | Bluetooth-related task.<br>**System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask|
-| MULTI_DEVICE_CONNECTION | 6 | Multi-device connection.<br>**System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask|
-| WIFI_INTERACTION        | 7 | WLAN-related (reserved).<br>**System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask|
-| VOIP                    | 8 | Voice and video call (reserved).<br>**System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask|
-| TASK_KEEPING            | 9 | Computing task (for PC only).<br>**System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask|
+| DATA_TRANSFER           | 1 | Data transfer.|
+| AUDIO_PLAYBACK          | 2 | Audio playback.|
+| AUDIO_RECORDING         | 3 | Audio recording.|
+| LOCATION                | 4 | Positioning and navigation.|
+| BLUETOOTH_INTERACTION   | 5 | Bluetooth-related task.|
+| MULTI_DEVICE_CONNECTION | 6 | Multi-device connection.|
+| WIFI_INTERACTION        | 7 | WLAN-related (reserved).|
+| VOIP                    | 8 | Voice and video call (reserved).|
+| TASK_KEEPING            | 9 | Computing task (for PC only).|
