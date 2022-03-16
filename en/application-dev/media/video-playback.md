@@ -28,9 +28,22 @@ For details about the APIs used for video playback, see [js-apis-media.md](../re
 
 The full video playback process includes creating an instance, setting the URL, setting the surface ID, preparing for video playback, playing video, pausing playback, obtaining track information, seeking to a playback position, setting the volume, setting the playback speed, stopping playback, resetting the playback configuration, and releasing resources.
 
+For details about the **url** media source input types supported by **VideoPlayer**, see the [url attribute](../reference/apis/js-apis-media.md#videoplayer_Attributes).
+
+For details about how to create an Xcomponent, see [Xcomponent Creation](#Xcomponent).
+
 ```js
+import media from '@ohos.multimedia.media'
+import fileIO from '@ohos.fileio'
+
 let videoPlayer = undefined; // Used to store instances created by calling the createVideoPlayer method.
 let surfaceID = undefined; // Used to save the surface ID returned by the Xcomponent interface.
+
+// The LoadXcomponent() method is used to obtain the surface ID and save it to the **surfaceID** variable. This method is automatically called when the Xcomponent is loaded.
+LoadXcomponent() {
+	surfaceID = this.$element('Xcomponent').getXComponentSurfaceId();
+    console.info('LoadXcomponent surfaceID is' + surfaceID);
+}
 
 // Report an error in the case of a function invocation failure.
 function failureCallback(error) {
@@ -65,10 +78,19 @@ await media.createVideoPlayer().then((video) => {
     }
 }, failureCallback).catch(catchCallback);
 
-// Set the URL of the video file selected by the user.
-videoPlayer.url = 'file:///data/data/ohos.xxx.xxx/files/test.mp4';
+// Set the FD (local playback) of the video file selected by the user.
+let fdPath = 'fd://'
+let path = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp4';
+await fileIO.open(path).then(fdNumber) => {
+   fdPath = fdPath + '' + fdNumber;
+   console.info('open fd sucess fd is' + fdPath);
+}, (err) => {
+   console.info('open fd failed err is' + err);
+}),catch((err) => {
+   console.info('open fd failed err is' + err);
+});
 
-// Call the Xcomponent interface to obtain the surface ID and save it to the surfaceID variable.
+videoPlayer.url = fdPath;
 
 // Set the surface ID to display the video image.
 await videoPlayer.setDisplaySurface(surfaceID).then(() => {
@@ -145,8 +167,17 @@ surfaceID = undefined;
 ### Normal Playback Scenario
 
 ```js
+import media from '@ohos.multimedia.media'
+import fileIO from '@ohos.fileio'
+
 let videoPlayer = undefined; // Used to store instances created by calling the createVideoPlayer method.
 let surfaceID = undefined; // Used to save the surface ID returned by the Xcomponent interface.
+
+// The LoadXcomponent() method is used to obtain the surface ID and save it to the **surfaceID** variable. This method is automatically called when the Xcomponent is loaded.
+LoadXcomponent() {
+	surfaceID = this.$element('Xcomponent').getXComponentSurfaceId();
+    console.info('LoadXcomponent surfaceID is' + surfaceID);
+}
 
 // Report an error in the case of a function invocation failure.
 function failureCallback(error) {
@@ -189,10 +220,19 @@ await media.createVideoPlayer().then((video) => {
 // Set the event callbacks.
 SetCallBack(videoPlayer);
 
-// Set the URL of the video file selected by the user.
-videoPlayer.url = 'file:///data/data/ohos.xxx.xxx/files/test.mp4';
+// Set the FD (local playback) of the video file selected by the user.
+let fdPath = 'fd://'
+let path = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp4';
+await fileIO.open(path).then(fdNumber) => {
+   fdPath = fdPath + '' + fdNumber;
+   console.info('open fd sucess fd is' + fdPath);
+}, (err) => {
+   console.info('open fd failed err is' + err);
+}),catch((err) => {
+   console.info('open fd failed err is' + err);
+});
 
-// Call the Xcomponent interface to obtain the surface ID and save it to the surfaceID variable.
+videoPlayer.url = fdPath;
 
 // Set the surface ID to display the video image.
 await videoPlayer.setDisplaySurface(surfaceID).then(() => {
@@ -213,8 +253,17 @@ await videoPlayer.play().then(() => {
 ### Switching to the Next Video Clip
 
 ```js
+import media from '@ohos.multimedia.media'
+import fileIO from '@ohos.fileio'
+
 let videoPlayer = undefined; // Used to store instances created by calling the createVideoPlayer method.
 let surfaceID = undefined; // Used to save the surface ID returned by the Xcomponent interface.
+
+// The LoadXcomponent() method is used to obtain the surface ID and save it to the **surfaceID** variable. This method is automatically called when the Xcomponent is loaded.
+LoadXcomponent() {
+	surfaceID = this.$element('Xcomponent').getXComponentSurfaceId();
+    console.info('LoadXcomponent surfaceID is' + surfaceID);
+}
 
 // Report an error in the case of a function invocation failure.
 function failureCallback(error) {
@@ -257,10 +306,19 @@ await media.createVideoPlayer().then((video) => {
 // Set the event callbacks.
 SetCallBack(videoPlayer);
 
-// Set the URL of the video file selected by the user.
-videoPlayer.url = 'file:///data/data/ohos.xxx.xxx/files/test.mp4';
+// Set the FD (local playback) of the video file selected by the user.
+let fdPath = 'fd://'
+let path = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp4';
+await fileIO.open(path).then(fdNumber) => {
+   fdPath = fdPath + '' + fdNumber;
+   console.info('open fd sucess fd is' + fdPath);
+}, (err) => {
+   console.info('open fd failed err is' + err);
+}),catch((err) => {
+   console.info('open fd failed err is' + err);
+});
 
-// Call the Xcomponent interface to obtain the surface ID and save it to the surfaceID variable.
+videoPlayer.url = fdPath;
 
 // Set the surface ID to display the video image.
 await videoPlayer.setDisplaySurface(surfaceID).then(() => {
@@ -283,7 +341,19 @@ await videoPlayer.reset().then(() => {
     console.info('reset success');
 }, failureCallback).catch(catchCallback);
 
-videoPlayer.url = 'file:///data/data/ohos.xxx.xxx/files/next.mp4';
+// Set the FD (local playback) of the video file selected by the user.
+let fdNextPath = 'fd://'
+let nextPath = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/02.mp4';
+await fileIO.open(nextPath).then(fdNumber) => {
+   fdNextPath = fdNextPath + '' + fdNumber;
+   console.info('open fd sucess fd is' + fdNextPath);
+}, (err) => {
+   console.info('open fd failed err is' + err);
+}),catch((err) => {
+   console.info('open fd failed err is' + err);
+});
+
+videoPlayer.url = fdNextPath;
 
 // Set the surface ID to display the video image.
 await videoPlayer.setDisplaySurface(surfaceID).then(() => {
@@ -304,8 +374,17 @@ await videoPlayer.play().then(() => {
 ### Looping a Video Clip
 
 ```js
+import media from '@ohos.multimedia.media'
+import fileIO from '@ohos.fileio'
+
 let videoPlayer = undefined; // Used to store instances created by calling the createVideoPlayer method.
 let surfaceID = undefined; // Used to save the surface ID returned by the Xcomponent interface.
+
+// The LoadXcomponent() method is used to obtain the surface ID and save it to the **surfaceID** variable. This method is automatically called when the Xcomponent is loaded.
+LoadXcomponent() {
+	surfaceID = this.$element('Xcomponent').getXComponentSurfaceId();
+    console.info('LoadXcomponent surfaceID is' + surfaceID);
+}
 
 // Report an error in the case of a function invocation failure.
 function failureCallback(error) {
@@ -348,10 +427,19 @@ await media.createVideoPlayer().then((video) => {
 // Set the event callbacks.
 SetCallBack(videoPlayer);
 
-// Set the URL of the video file selected by the user.
-videoPlayer.url = 'file:///data/data/ohos.xxx.xxx/files/test.mp4';
+// Set the FD (local playback) of the video file selected by the user.
+let fdPath = 'fd://'
+let path = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp4';
+await fileIO.open(path).then(fdNumber) => {
+   fdPath = fdPath + '' + fdNumber;
+   console.info('open fd sucess fd is' + fdPath);
+}, (err) => {
+   console.info('open fd failed err is' + err);
+}),catch((err) => {
+   console.info('open fd failed err is' + err);
+});
 
-// Call the Xcomponent interface to obtain the surface ID and save it to the surfaceID variable.
+videoPlayer.url = fdPath;
 
 // Set the surface ID to display the video image.
 await videoPlayer.setDisplaySurface(surfaceID).then(() => {
@@ -370,4 +458,16 @@ videoPlayer.loop = true;
 await videoPlayer.play().then(() => {
     console.info('play success');
 }, failureCallback).catch(catchCallback);
+```
+
+### Xcomponent Creation
+
+```js
+The Xcomponent is used to obtain the surface ID during video playback. You need to create an xxx.hml file and add the following code to the xxx.hml file, where xxx is the same as that in the xxx.js file:
+<xcomponent id = 'Xcomponent'
+	  if = "{{isFlush}}" // Refresh the surface ID. To enable automatic loading of the Xcomponent and obtain the new surface ID, assign **false** to **isFlush** and then assign **true** to **isFlush**.
+      type = 'surface'
+	  onload = 'LoadXcomponent' // Default interface for loading the Xcomponent.
+      style = "width:720px;height:480px;border-color:red;border-width:5px;"> // Set the window width, height, and other attributes.
+</xcomponent>
 ```
