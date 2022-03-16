@@ -16,6 +16,8 @@
 >
 > 0.6 - Use the document title as the level-1 heading. Use the attributes, functions, classes, interfaces, enums, and types under the namespace as level-2 headings. Use the attributes and functions under classes as level-3 headings.
 >
+> **Version Description**
+>
 > 0.7 - **When introducing an API to an existing module, use the \<sup> tag to mark its earliest version.**
 > 	Example: For an existing module of API 6, if an attribute is added in API 7, suffix the \<sup> tag to the name of the new attribute, for example, **newAttribute<sup>7+</sup>**.
 > 	If a method is added, suffix the \<sup> tag to the method name, for example, **sim.getSimIccId<sup>7+</sup>**. The processing of new interfaces, classes, and enums is similar.
@@ -25,7 +27,24 @@
 >
 > > Discarded. This change is effective since API version 7. You are advised to use [newMethod](#newMethod) instead.
 >
-> 0.9 - **Required permissions and system capabilities**: Keep consistent with the code implementation. Provide them at the level of methods, enumerations, and attributes.
+> 0.9 - For **empty APIs that will be implemented only in the MR version**, add the following information to the interface description:
+> This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.
+>
+> **Required Permissions, System Capabilities, and System APIs**
+>
+> 0.10 - **Required permissions**: Maintain consistency with the code implementation. State the required permissions at the level of methods, enumerations, and attributes. Format:
+>      (Permissions that can be requested by all applications) **Required permissions**: ohos.permission.xxxx  
+>      (Permissions that can be requested only by system applications) **Required permissions**: ohos.permission.xxxx (available only to system applications)
+>
+> 0.11 - **System capabilities**:
+>   Add the following information for each function: **System capability**: SystemCapability.xxx.xxx
+>   There are two cases for the information about system capabilities added to each table (attributes, enums, constants, and variables).
+>   Add the following description if all the items in a table require the same system capabilities:
+>   SystemCapability.xxx.xxx
+>   Add the following description if the items in a table require different system capabilities:
+>   The items in the table below require different system capabilities. For details, see the table.
+>
+> 0.12 - **System APIs**: Add the following description for system APIs: This is a system API and cannot be called by third-party applications.
 > The following describes the instructions for writing a specific API.
 
 ***
@@ -78,11 +97,15 @@ import call from '@ohos.telephony.call';
 > 4.3 - For a readable attribute, if it has a limited number of values with special meanings, enumerate the values.
 >
 > 4.4 - For a writable attribute, if only fixed fields are supported, describe them.
+>
+> 4.5 - If the items in the table require different system capabilities, add the following description: The items in the table below require different system capabilities. For details, see the table. Then, describe the system capabilities for each item. See [Enumeration](#Enumeration).
 
-| Name| Type| Readable| Writable| Description|
-| ---------------- | ----------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| pluggedType      | [BatteryPluggedType](#BatteryPluggedType) | Yes| No| Charger type of the current device. <br/>**System capabilities**: SystemCapability.xxx.xxx (mandatory)|
-| isBatteryPresent | boolean                                   | Yes| No| Whether the battery is supported or present. <br/>**System capabilities**: SystemCapability.xxx.xxx (mandatory)|
+**System capability**: SystemCapability.xxx.xxx (Mandatory)
+
+| Name            | Type                                     | Readable| Writable| Description                                      |
+| ---------------- | ----------------------------------------- | ---- | ---- | ------------------------------------------ |
+| pluggedType      | [BatteryPluggedType](#BatteryPluggedType) | Yes  | No  | Charger type of the current device.            |
+| isBatteryPresent | boolean                                   | Yes  | No  | Whether the battery is supported or present.|
 
 ## Enums
 
@@ -94,9 +117,11 @@ import call from '@ohos.telephony.call';
 
 Provide a brief description of the enum type. Example: Enumerates charger types.
 
-| Name| Value| Description|
+**System capability**: The items in the table below require different system capabilities. For details, see the table. (Mandatory)
+
+| Name| Value  | Description                                                        |
 | ---- | ---- | ------------------------------------------------------------ |
-| NONE | 1    | Unknown type. <br>**System capabilities**: SystemCapability.xxx.xxx (mandatory)|
+| NONE | 1    | Unknown type.<br>**System capability**: SystemCapability.xxx.xxx (mandatory)|
 
 ## Methods
 
@@ -105,15 +130,11 @@ Provide a brief description of the enum type. Example: Enumerates charger types.
 > 6.1 - Optional. Delete this heading if there is no method. If there are multiple methods, describe them in separate level-2 headings. To create a level-2 heading, use two number signs (#).
 >
 > 6.2 - Use the actual method name, in the format of ClassName.methodName, as the level-2 heading. For a subscription method, add the subscription event to the method name.
->
 > 	Example of a common method: sim.getSimIccId
-> 	
 > 	Example of a subscription method: sim.on('exampleEvent')
 >
 > 6.3 - **Method calling mode**: The description must be the same as that in the .d.ts file. The description must include the parameter type, parameter name, and return value type.
->
 > 	Example: getNetworkState(slotId: number, callback: AsyncCallback\<NetworkState>): void
-> 	
 > 	Note: The angle bracket (<>) may be identified as a label and not displayed. To ensure normal display, you can either add a backslash (\\) (in the format of "\\<>") or use escape characters \&lt; and \&gt;.
 >
 > 6.4.1 - **Method description**: Describe the features implemented by the method and include the prerequisites for using the method, the impact of the method, and the permissions and system capabilities required to use the method. (*Example of prerequisites: This method can be called only after the xx method is called; you must ensure that the connection to the Internet is normal. Example of impact: xx does not take effect after this method is called.*)
@@ -126,25 +147,25 @@ Provide the method name in the following format: (**static** if it is a static m
 
 Describe the method. For details, see 6.4.1 and 6.4.2.
 
-**Required permission**: ohos.permission.xxx (Delete this part if no permission is involved. If a system permission is required, specify it.)
+**Required permissions**: ohos.permission.xxx (Delete this part if no permission is involved. If a system permission is required, specify it.)
 
-**System capabilities**: SystemCapability.xxx.xxx (mandatory)
+**System capability**: SystemCapability.xxx.xxx (mandatory)
 
-**Parameters: ** (Optional. Delete this heading if there is no parameter.)
+**Parameters** (Optional. Delete this heading if there is no parameter.)
 
-| Name| Type| Mandatory| Description|
+| Name      | Type                                         | Mandatory| Description                                                        |
 | ------------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| parameterOne | number \| string \| [CustomType](#CustomType) | Yes| Describe the parameter. Provide the value range and recommended value. If there is a fixed format, provide a format example, especially for the URI. <br>Provide a link for any custom parameter type.|
-| callback     | Callback\<Array<[CustomType](#CustomType)>>   | No| Describe the parameter. For an optional parameter, describe the consequences if it is not specified. <br>Example: If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
+| parameterOne | number \| string \| [CustomType](#CustomType) | Yes  | Describe the parameter. Provide the value range and recommended value. If there is a fixed format, provide a format example, especially for the URI.<br>Provide a link for each custom parameter type.|
+| callback     | Callback\<Array<[CustomType](#CustomType)>>   | No  | Describe the parameter. For an optional parameter, describe the consequences if it is not specified.<br>Example: If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
 
-**Return value**: (Optional. Delete this heading if there is no return value.)
+**Return value** (Optional. Delete this heading if there is no return value.)
 
-| Type| Description|
+| Type                                      | Description                                        |
 | ------------------------------------------ | -------------------------------------------- |
 | string                                     | Describe the return value, for example, what can be done after the return value is obtained.|
-| Promise\<Array<[CustomType](#CustomType)>> | Describe the return value, for example, what is obtained through the **Promise** instance.|
+| Promise\<Array<[CustomType](#CustomType)>> | Describe the return value, for example, what is obtained through the **Promise** instance.         |
 
-**Example:**
+**Example**
 
 ```js
 // This part is mandatory.
@@ -165,7 +186,6 @@ Describe the method. For details, see 6.4.1 and 6.4.2.
 > 7.2 - Use the actual class or interface name as the level-2 heading.
 >
 > 7.3 - If the class or interface contains both attributes and methods, write the attributes above the methods. Write their actual names in separate level-3 headings.
->
 > 	If the class of interface contains only attributes, you do not need to create a level-3 heading. Instead, use a table to display the attributes. For details, see [CustomType](#CustomType).
 
 Describe the class or interface. If there are usage restrictions, describe them as well, for example, whether there is a prerequisite and whether an instance needs to be created by using any method.
@@ -181,36 +201,33 @@ Describe the class or interface. If there are usage restrictions, describe them 
 > *Writing Instructions*
 >
 > 7.4 - Use the actual method name as the level-3 heading. **Do not add a prefix**. For a subscription method, add the corresponding subscription event to the method name.
->
 > 	Example of a common method: getSimIccId
-> 	
 > 	Example of a subscription method: on('exampleEvent')
->
 > The other instructions are the same as those stipulated in [Methods](#Methods).
 
 Describe the method calling mode. For details, see 6.3.
 
 Describe the method. For details, see 6.4.1 and 6.4.2.
 
-**Required permission**: ohos.permission.xxx (Delete this part if no permission is involved. If a system permission is required, specify it.)
+**Required permissions**: ohos.permission.xxx (Delete this part if no permission is involved. If a system permission is required, specify it.)
 
-**System capabilities**: SystemCapability.xxx.xxx (mandatory)
+**System capability**: SystemCapability.xxx.xxx (mandatory)
 
-**Parameters: ** (Optional. Delete this heading if there is no parameter.)
+**Parameters** (Optional. Delete this heading if there is no parameter.)
 
-| Name| Type| Mandatory| Description|
+| Name      | Type                                         | Mandatory| Description                                                        |
 | ------------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| parameterOne | number \| string \| [CustomType](#CustomType) | Yes| Describe the parameter. Provide the value range and recommended value. If there is a fixed format, provide a format example, especially for the URI. <br>Provide a link for any custom parameter type.|
-| callback     | Callback\<Array<[CustomType](#CustomType)>>   | No| Describe the parameter. For an optional parameter, describe the consequences if it is not specified. <br>Example: If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
+| parameterOne | number \| string \| [CustomType](#CustomType) | Yes  | Describe the parameter. Provide the value range and recommended value. If there is a fixed format, provide a format example, especially for the URI.<br>Provide a link for each custom parameter type.|
+| callback     | Callback\<Array<[CustomType](#CustomType)>>   | No  | Describe the parameter. For an optional parameter, describe the consequences if it is not specified.<br>Example: If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
 
-**Return value**: (Optional. Delete this heading if there is no return value.)
+**Return value** (Optional. Delete this heading if there is no return value.)
 
-| Type| Description|
+| Type                                      | Description                                        |
 | ------------------------------------------ | -------------------------------------------- |
 | string                                     | Describe the return value, for example, what can be done after the return value is obtained.|
-| Promise\<Array<[CustomType](#CustomType)>> | Describe the return value, for example, what is obtained through the **Promise** instance.|
+| Promise\<Array<[CustomType](#CustomType)>> | Describe the return value, for example, what is obtained through the **Promise** instance.         |
 
-**Example:**
+**Example**
 
 ```js
 // This part is mandatory.
@@ -225,8 +242,9 @@ Describe the method. For details, see 6.4.1 and 6.4.2.
 ## CustomType
 
 The following is an example of the custom type of a key-value pair.
+**System capability**: SystemCapability.xxx.xxx (Mandatory)
 
-| Name| Type| Readable| Writable| Description|
+| Name        | Type               | Readable| Writable| Description                                                        |
 | ------------ | ------------------- | ---- | ---- | ------------------------------------------------------------ |
-| parameterUrl | string              | Yes| Yes| Media output URI. The following types of URIs are supported: <br/> 1. Relative path whose protocol type is **internal**. Example: <br/>Temporary directory: internal://cache/test.mp4<br/><br/>2. Absolute path. Example:<br/>file:///data/data/ohos.xxx.xxx/files/test.mp4<br/>**System capabilities**: SystemCapability.xxx.xxx (mandatory)|
-| parameterOne | [CustomEnum](#Enumeration)| Yes| Yes| Describe the attributes. The requirements are similar to those for the parameter description. <br/>**System capabilities**: SystemCapability.xxx.xxx (mandatory)|
+| parameterUrl | string              | Yes  | Yes  | Media output URI. The following types of URIs are supported:<br>1. Relative path whose protocol type is internal. Examples:<br>Temporary directory: internal://cache/test.mp4<br><br>2. Absolute path. Examples:<br>file:///data/data/ohos.xxx.xxx/files/test.mp4<br> |
+| parameterOne | [CustomEnum](#Enumeration)| Yes  | Yes  | Describe the attributes. The requirements are similar to those for the parameter description.                              |
