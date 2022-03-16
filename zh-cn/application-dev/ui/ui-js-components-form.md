@@ -177,7 +177,7 @@ import prompt from '@system.prompt';
 export default {
   formSubmit() {
     prompt.showToast({
-      message: 'Submited.'
+      message: 'Submitted.'
     })
   },
   formReset() {
