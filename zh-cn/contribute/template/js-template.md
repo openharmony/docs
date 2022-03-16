@@ -25,7 +25,7 @@
 > 0.8 - **废弃内容**：不能直接在文档上删去，在废弃内容后面加上标标注deprecated，并使用“>”引用语法建议使用的替代方式，加上对应的链接。
 > 	示例：abandonmentMethod<sup>(deprecated) </sup>
 >
-> > 从API Version 7 开始废弃，建议使用[newMethod](#newMethod)替代。
+> > 从API Version 7 开始不再维护，建议使用[newMethod](#newMethod)替代。
 >
 > 0.9 - **MR版本才能实现的空接口**，在接口的描述说明中，添加：
 > 本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
