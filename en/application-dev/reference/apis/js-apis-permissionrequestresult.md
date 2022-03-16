@@ -1,0 +1,15 @@
+# PermissionRequestResult
+
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> The initial APIs of this module are supported since API 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+
+
+Provides the permission request result.
+
+
+## Attributes
+
+  | Name| Type| Readable| Writable| Description| 
+| -------- | -------- | -------- | -------- | -------- |
+| permissions | Array&lt;string&gt; | Yes| No| Permissions requested. <br><b>System capabilities: </b>SystemCapability.Ability.AbilityRuntime.Core| 
+| authResults | Array&lt;number&gt; | Yes| No| Whether the requested permissions are granted or denied. The value **0** means that the requests permissions are granted, and **-1** means the opposite. <br><b>System capabilities: </b>SystemCapability.Ability.AbilityRuntime.Core| 
