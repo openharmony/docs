@@ -15,7 +15,7 @@ import workScheduler from '@ohos.workScheduler'
 SystemCapability.ResourceSchedule.WorkScheduler
 
 - **接口**：
-workScheduler.startWork(work: [WorkInfo](#workScheduler.WorkInfo)): boolean
+workScheduler.startWork(work: [WorkInfo](#workscheduler.workinfo)): boolean
 
 - **说明**：
 通知WorkSchedulerService将工作添加到执行队列。
@@ -24,7 +24,7 @@ workScheduler.startWork(work: [WorkInfo](#workScheduler.WorkInfo)): boolean
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | work | [WorkInfo](#workScheduler.WorkInfo) | 是 | 指示要添加到执行队列的工作。 |
+  | work | [WorkInfo](#workscheduler.workinfo) | 是 | 指示要添加到执行队列的工作。 |
 
 - **返回值**：
 
