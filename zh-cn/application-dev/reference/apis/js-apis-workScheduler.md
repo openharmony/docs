@@ -332,7 +332,7 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 ## StorageRequest
 触发工作的存储状态。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.WorkScheduler
+**系统能力**：下各项对应的系统能力均为SystemCapability.ResourceSchedule.WorkScheduler
 
   |名称    |默认值    |说明|
   | -------- | -------- | -------- |
