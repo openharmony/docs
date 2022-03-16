@@ -102,9 +102,9 @@
 
 ## 启动恢复<a name="section83501764443"></a>
 
--   [系统启动过程中打印“parse failed!”错误后停止启动](faqs-startup-and-recovery.md#section835662214302)
--   [系统启动过程未结束就自动重启，如此反复持续](faqs-startup-and-recovery.md#section3857921143117)
--   [参数正确的情况下调用SetParameter/GetParameter返回失败](faqs-startup-and-recovery.md#section548818116328)
+-   [系统启动过程中打印“parse failed!”错误后停止启动](faqs-startup.md#section835662214302)
+-   [系统启动过程未结束就自动重启，如此反复持续](faqs-startup.md#section3857921143117)
+-   [参数正确的情况下调用SetParameter/GetParameter返回失败](faqs-startup.md#section548818116328)
 
 ## 系统服务<a name="section19567132114455"></a>
 
