@@ -500,6 +500,397 @@ context.getCallingBundle().then((data) => {
 });
 ```
 
+## Context.getCacheDir
+
+getCacheDir(callback: AsyncCallback\<string>): void
+
+获取该应用程序的内部存储目录（callback形式）。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 名称     | 类型                   | 必填 | 描述                      |
+| -------- | ---------------------- | ---- | ------------------------- |
+| callback | AsyncCallback\<string> | 是   | 返回该应用程序的内部存储目录。|
+
+**示例：**
+
+```js
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getCacheDir();
+context.getCacheDir((err, data) => {
+    if (err) {
+        console.error('Operation failed. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Operation successful. Data:' + JSON.stringify(data));
+});
+```
+
+## Context.getCacheDir
+
+getCacheDir(): Promise\<string>
+
+获取该应用程序的内部存储目录（Promise形式）。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**返回值：**
+
+| 类型            | 说明                      |
+| --------------- | ------------------------- |
+| Promise\<string> | 获取该应用程序的内部存储目录 |
+
+**示例：**
+
+```js
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getContext();
+context.getCacheDir().then((data) => {
+    console.info("======================>getCacheDirPromsie====================>");
+    console.info("====>data====>" + JSON.stringify(data));
+});
+```
+
+## Context.getFilesDir
+
+getFilesDir(callback: AsyncCallback\<string>): void
+
+获取内部存储器上此应用程序的文件目录（callback形式）。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 名称     | 类型                   | 必填 | 描述                      |
+| -------- | ---------------------- | ---- | ------------------------- |
+| callback | AsyncCallback\<string> | 是   | 返回内部存储器上此应用程序的文件目录。|
+
+**示例：**
+
+```js
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getFilesDir();
+context.getFilesDir((err, data) => {
+    if (err) {
+        console.error('Operation failed. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Operation successful. Data:' + JSON.stringify(data));
+});
+```
+
+## Context.getFilesDir
+
+getFilesDir(): Promise\<string>
+
+获取内部存储器上此应用程序的文件目录（Promise形式）。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**返回值：**
+
+| 类型            | 说明                      |
+| --------------- | ------------------------- |
+| Promise\<string> | 返回内部存储器上此应用程序的文件目录。 |
+
+**示例：**
+
+```js
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getContext();
+context.getFilesDir().then((data) => {
+    console.info("======================>getFilesDirPromsie====================>");
+    console.info("====>data====>" + JSON.stringify(data));
+});
+```
+
+## Context.getOrCreateDistributedDir
+
+getOrCreateDistributedDir(callback: AsyncCallback\<string>): void
+
+获取Ability或应用的分布式文件路径。
+
+如果分布式文件路径不存在，系统将创建一个路径并返回创建的路径（callback形式）。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 名称     | 类型                   | 必填 | 描述                      |
+| -------- | ---------------------- | ---- | ------------------------- |
+| callback | AsyncCallback\<string> | 是   | 回调函数，可以在回调函数中处理接口返回值，返回Ability或应用的分布式文件路径。如果分布式文件路径不存在，系统将创建一个路径并返回创建的路径。|
+
+**示例：**
+
+```js
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getContext();
+context.getOrCreateDistributedDir((err, data) => {
+    if (err) {
+        console.error('Operation failed. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Operation successful. Data:' + JSON.stringify(data));
+});
+```
+
+## Context.getOrCreateDistributedDir
+
+getOrCreateDistributedDir(): Promise\<string>
+
+获取Ability或应用的分布式文件路径。
+
+如果分布式文件路径不存在，系统将创建一个路径并返回创建的路径（Promise形式）。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**返回值：**
+
+| 类型            | 说明                      |
+| --------------- | ------------------------- |
+| Promise\<string> | Ability或应用的分布式文件路径。如果是第一次调用，则将创建目录。 |
+
+**示例：**
+
+```js
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getContext();
+context.getOrCreateDistributedDir().then((data) => {
+    console.info("====>data====>" + JSON.stringify(data));
+});
+```
+
+## Context.getAppType
+
+getAppType(callback: AsyncCallback\<string>): void
+
+获取此应用的类型（callback形式）。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 名称     | 类型                   | 必填 | 描述                      |
+| -------- | ---------------------- | ---- | ------------------------- |
+| callback | AsyncCallback\<string> | 是   | 回调函数，可以在回调函数中处理接口返回值，返回此应用程序的类型。|
+
+**示例：**
+
+```js
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getContext();
+context.getAppType((err, data) => {
+    if (err) {
+        console.error('Operation failed. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Operation successful. Data:' + JSON.stringify(data));
+});
+```
+
+## Context.getAppType
+
+getAppType(): Promise\<string>
+
+获取此应用的类型（Promise形式）。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**返回值：**
+
+| 类型            | 说明                      |
+| --------------- | ------------------------- |
+| Promise\<string> | Promise形式返回此应用的类型。 |
+
+**示例：**
+
+```js
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getContext();
+context.getAppType().then((data) => {
+    console.info("====>data====>" + JSON.stringify(data));
+});
+```
+
+## Context.getHapModuleInfo
+
+getHapModuleInfo(callback: AsyncCallback\<HapModuleInfo>): void
+
+获取应用的ModuleInfo对象（callback形式）。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 名称     | 类型                   | 必填 | 描述                      |
+| -------- | ---------------------- | ---- | ------------------------- |
+| callback | AsyncCallback\<[HapModuleInfo](#hapmoduleinfo)> | 是   | 回调函数，可以在回调函数中处理接口返回值，返回应用的ModuleInfo对象。|
+
+**示例：**
+
+```js
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getContext();
+context.getHapModuleInfo((err, data) => {
+    if (err) {
+        console.error('Operation failed. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Operation successful. Data:' + JSON.stringify(data));
+});
+```
+
+## Context.getHapModuleInfo
+
+getHapModuleInfo(): Promise\<HapModuleInfo>
+
+获取应用的ModuleInfo对象（Promise形式）。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**返回值：**
+
+| 类型            | 说明                      |
+| --------------- | ------------------------- |
+| Promise\<[HapModuleInfo](#hapmoduleinfo)> | Promise形式返回应用的ModuleInfo对象。 |
+
+**示例：**
+
+```js
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getContext();
+context.getHapModuleInfo().then((data) => {
+    console.info("====>data====>" + JSON.stringify(data));
+});
+```
+
+## Context.getAppVersionInfo
+
+getAppVersionInfo(callback: AsyncCallback\<HapModuleInfo>): void
+
+获取应用的版本信息（callback形式）。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 名称     | 类型                   | 必填 | 描述                      |
+| -------- | ---------------------- | ---- | ------------------------- |
+| callback | AsyncCallback\<[AppVersionInfo](#appversioninfo)> | 是   | 回调函数，可以在回调函数中处理接口返回值，返回应用版本信息。|
+
+**示例：**
+
+```js
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getContext();
+context.getAppVersionInfo((err, data) => {
+    if (err) {
+        console.error('Operation failed. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Operation successful. Data:' + JSON.stringify(data));
+});
+```
+
+## Context.getAppVersionInfo
+
+getAppVersionInfo(): Promise\<AppVersionInfo>
+
+获取应用的版本信息（Promise形式）。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**返回值：**
+
+| 类型            | 说明                      |
+| --------------- | ------------------------- |
+| Promise\<[AppVersionInfo](#appversioninfo)> | 返回应用版本信息。 |
+
+**示例：**
+
+```js
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getContext();
+context.getAppVersionInfo().then((data) => {
+    console.info("====>data====>" + JSON.stringify(data));
+});
+```
+
+## Context.getAbilityInfo
+
+getAbilityInfo(callback: AsyncCallback\<AbilityInfo>): void
+
+查询当前归属Ability详细信息（callback形式）。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 名称     | 类型                   | 必填 | 描述                      |
+| -------- | ---------------------- | ---- | ------------------------- |
+| callback | AsyncCallback\<[AbilityInfo](#abilityInfo)> | 是   |回调函数，可以在回调函数中处理接口返回值，返回当前归属Ability详细信息。|
+
+**示例：**
+
+```js
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getContext();
+context.getAbilityInfo((err, data) => {
+    if (err) {
+        console.error('Operation failed. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Operation successful. Data:' + JSON.stringify(data));
+});
+```
+
+## Context.getAbilityInfo
+
+getAbilityInfo(): Promise\<AbilityInfo>
+
+查询当前归属Ability详细信息（Promise形式）。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**返回值：**
+
+| 类型            | 说明                      |
+| --------------- | ------------------------- |
+| Promise\<[AbilityInfo](#abilityInfo)> | 返回当前归属Ability详细信息。 |
+
+**示例：**
+
+```js
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getContext();
+context.getAbilityInfo().then((data) => {
+    console.info("====>data====>" + JSON.stringify(data));
+});
+```
+
+## Context.getApplicationContext
+
+getApplicationContext(): Context
+
+获取应用上下文信息。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**返回值：**
+
+| 参数            | 类型      | 说明                      |
+| --------------- | ------------------------- |------    |
+| Context |  Context |返回应用版本信息。 |
+
+**示例：**
+
+```js
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getContext().getApplicationContext();
+```
+
 ## PermissionOptions
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
@@ -518,3 +909,34 @@ context.getCallingBundle().then((data) => {
 | requestCode | 只读     | number         | 是   | 用户传入的请求代码。 |
 | permissions | 只读     | Array\<string> | 是   | 用户传入的权限。     |
 | authResults | 只读     | Array\<number> | 是   | 求权限的结果。      |
+
+## HapModuleInfo
+
+Hap模块信息
+
+| 名称               | 类型 | 可读 | 可写 | 说明 |
+| ------ | ------ | ------ | ------ | ------ |
+| name             | string        | 是   | 否   | 模块名称           |
+| description      | string        | 是   | 否   | 模块描述信息       |
+| descriptionId    | number        | 是   | 否   | 描述信息ID         |
+| icon             | string        | 是   | 否   | 模块图标           |
+| label            | string        | 是   | 否   | 模块标签           |
+| labelId          | number        | 是   | 否   | 模块标签ID         |
+| iconId           | number        | 是   | 否   | 模块图标ID         |
+| backgroundImg    | string        | 是   | 否   | 模块背景图片       |
+| supportedModes   | number        | 是   | 否   | 模块支持的模式     |
+| reqCapabilities  | Array<string> | 是   | 否   | 模块运行需要的能力 |
+| deviceTypes      | Array<string> | 是   | 否   | 支持运行的设备类型 |
+| abilityInfo      | Array<AbilityInfo> | 是   | 否   | Ability信息        |
+| moduleName       | string        | 是   | 否   | 模块名             |
+| mainAbilityName  | string        | 是   | 否   | 入口Ability名称    |
+| installationFree | boolean       | 是   | 否   | 是否支持免安装     |
+| mainElementName | string | 是 | 否 | 入口ability信息 |
+
+## AppVersionInfo
+
+| 名称             | 类型 | 可读    | 可写   | 说明 |
+| ------          | ------ | ------| ------ | ------    |
+| appName         | string | 是    | 否     | 模块名称      |
+| versionCode     | number | 是    | 否     | 模块描述信息   |
+| versionName     | string | 是    | 否     | 描述信息ID     |

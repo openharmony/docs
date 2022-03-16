@@ -451,3 +451,117 @@ particleAbility.cancelBackgroundRunning().then(() => {
 });
 
 ```
+
+## particleAbility.connectAbility
+
+connectAbility(request: Want, options: ConnectOptions): number;
+
+将一个ability与服务类型的Ability绑定。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
+
+ **参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | request | Want | 是 | 服务类型Ability的want信息。 |
+  | options | [ConnectOptions](#connectoptions) | 是 | 客户端的回调对象。如果为空，抛出异常。 |
+
+ **示例**：
+
+```js
+import particleAbility from '@ohos.ability.particleAbility';
+
+let request = {
+    "bundleName":"xxx.xxx.xxx",
+    "abilityName":"xxx",
+}
+let options = {
+    onConnect:function (elementName, proxy) {},
+    onDisconnect:function (elementName) {},
+    onFailed:function () {}
+}
+let connection= particleAbility.connectAbility(request, options);
+
+```
+
+## particleAbility.disconnectAbility
+
+disconnectAbility(connection: number): Promise<void>;
+
+将一个Ability与绑定的服务类型的Ability解绑，使用Promise形式返回。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
+
+ **参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | connection | number | 是 | [particleAbility.connectAbility](#particleAbiltiy.connectAbility)接口的返回值。 |
+
+**返回值：**
+
+| 类型           | 说明                      |
+| -------------- | ------------------------- |
+| Promise\<void> | Promise形式返回接口调用结果。 |
+
+ **示例**：
+
+```js
+import particleAbility from '@ohos.ability.particleAbility';
+
+particleAbility.disconnectAbility(connection).then((data) => {
+    console.info('Operation succeeded: ' + data);
+}).catch((error) => {
+    console.error('Operation failed. Cause: ' + error);
+})
+
+```
+
+## particleAbility.disconnectAbility
+
+disconnectAbility(connection: number, callback:AsyncCallback<void>): void
+
+将一个Ability与绑定的服务类型的Ability解绑，使用callback形式返回。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
+
+ **参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | connection | number | 是 | [particleAbility.connectAbility](#particleAbility.connectAbility)接口的返回值。 |
+  | callback | AsyncCallback<void> | 是 | callback形式返回接口调用结果。|
+
+ **示例**：
+
+```js
+import particleAbility from '@ohos.ability.particleAbility';
+
+particleAbility.disconnectAbility(connection, (error, data) => {
+    if (error) {
+        console.error('Operation failed. Cause: ' + error);
+        return;
+    }
+    console.info('Operation succeeded: ' + data);
+});
+
+```
+
+## ConnectOptions
+
+ConnectOptions数据结构。
+
+| 名称      | 说明 | 
+| -------- | -------- |
+| onConnect(elementName: ElementName, remote: IRemoteObject) | Ability成功连接一个服务类型Ability的回调接口。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core | 
+| onDisconnect(elementName:ElementName) | 对端服务发生异常或者被杀死回调该接口。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core | 
+| onFailed(code:&nbsp;number) | 连接失败时回调该接口。code属于[ErrorCode](#errorcode)。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core | 
+
+## ErrorCode
+
+使用时通过particleAbility.ErrorCode获取，示例：particleAbility.ErrorCode.NO_ERROR。
+
+| 名称      | 值     | 说明 | 
+| -------- | ------ |-------- |
+| INVALID_PARAMETER | -1 |  非法参数。 |
