@@ -54,6 +54,7 @@
     - [Socket连接](js-apis-socket.md)
     - [WebSocket连接](js-apis-webSocket.md)
     - [数据请求](js-apis-http.md)
+    - [上传下载](js-apis-request.md)
 - 通信与连接
     -   [WLAN](js-apis-wifi.md)  
     -   [Bluetooth](js-apis-bluetooth.md)
@@ -81,7 +82,10 @@
     - [弹窗](js-apis-basic-features-pop-up.md)
     - [应用配置](js-apis-basic-features-configuration.md)
     - [定时器](js-apis-basic-features-timer.md)
+    - [锁屏管理](js-apis-screen-lock.md)
     - [设置系统时间](js-apis-system-time.md)
+    - [壁纸](js-apis-wallpaper.md)
+    - [剪贴板](js-apis-pasteboard.md)
     - [动画](js-apis-basic-features-animator.md)
     - [WebGL](js-apis-webgl.md)
     - [WebGL2](js-apis-webgl2.md)

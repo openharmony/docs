@@ -1,14 +1,9 @@
 # 应用开发
 
 - [应用开发导读](application-dev-guide.md)
-
 - 了解OpenHarmony
     - [了解OpenHarmony开源项目](../OpenHarmony-Overview_zh.md)
-    
-    - [了解OpenHarmony系统](../readme)
-    
     - [术语](../device-dev/glossary/glossary.md)
-    
     - [版本说明](../release-notes/Readme.md)
     
       - OpenHarmony 3.x Releases
@@ -30,7 +25,6 @@
         -   [OpenHarmony 1.1.1 LTS (2021-06-22)](../release-notes/OpenHarmony-1-1-1-LTS.md)
         -   [OpenHarmony 1.1.0 LTS (2021-04-01)](../release-notes/OpenHarmony-1-1-0-LTS.md)
         -   [OpenHarmony 1.0 (2020-09-10)](../release-notes/OpenHarmony-1-0.md)
-    
 - 快速开始
     - [应用开发快速入门](quick-start/Readme-CN.md)
       - DevEco Studio（OpenHarmony）使用指南
@@ -43,7 +37,6 @@
           - [配置OpenHarmony应用签名信息](quick-start/configuring-openharmony-app-signature.md)
           - [安装运行OpenHarmony应用](quick-start/installing-openharmony-app.md)
     - [应用开发包结构说明](quick-start/quick-start/package-structure.md)
-    
 - 开发
     - [Ability开发](ability/Readme-CN.md)
       - [Ability框架概述](ability/ability-brief.md)
@@ -262,7 +255,6 @@
          - 分布式跟踪
            - [分布式跟踪概述](dfx/hitracechain-overview.md)
            - [分布式跟踪开发指导](dfx/hitracechain-guidelines.md)
-    
 - 工具
     - [DevEco Studio（OpenHarmony）使用指南](quick-start/deveco-studio-user-guide-for-openharmony.md)
       - [概述](quick-start/deveco-studio-overview.md)
@@ -271,12 +263,10 @@
       - [创建OpenHarmony工程](quick-start/create-openharmony-project.md)
       - [配置OpenHarmony应用签名信息](quick-start/configuring-openharmony-app-signature.md)
       - [安装运行OpenHarmony应用](quick-start/installing-openharmony-app.md)
-    
 - 示例教程
     - [示例代码](https://gitee.com/openharmony/app_samples/blob/master/README_zh.md)
       
     - [Codelabs](https://gitee.com/openharmony/codelabs/blob/master/README.md)
-    
 - API参考
     - [组件参考（基于JS扩展的类Web开发范式）](reference/arkui-js/Readme-CN.md)
       - 组件
@@ -644,7 +634,6 @@
       - 定制管理
           - [配置策略](reference/apis/js-apis-config-policy.md)
           - [企业设备管理](reference/apis/js-apis-enterprise-device-manager.md)
-    
 - 贡献
   
     - [参与贡献](../contribute/贡献文档.md)
