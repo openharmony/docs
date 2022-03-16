@@ -27,19 +27,19 @@ Page模板（以下简称“Page”）是FA唯一支持的模板，用于提供�
 
 **PageAbility类型Ability生命周期回调如下图所示：**
 
-![PageAbility-Lifecycel-Callbacks](figures/page-ability-lifecycle-callbacks.png)
+![fa-pageAbility-lifecycle](figures/fa-pageAbility-lifecycle.png)
 
   
 
 ## 启动本地PageAbility
 
- 导入模块
+ * 导入模块
 
 ```
 import featureAbility from '@ohos.ability.featureAbility'
 ```
 ```
- FeatureAbility.startAbility(parameter: StartAbilityParameter, callback: AsyncCallback<number>)
+ featureAbility.startAbility(parameter: StartAbilityParameter, callback: AsyncCallback<number>)
 ```
 
 * 接口说明
@@ -50,61 +50,75 @@ import featureAbility from '@ohos.ability.featureAbility'
 
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility'
-featureAbility.startAbility(
-        {
-        want:
-        {
-            action: "",
-            entities: [""],
-            type: "",
-            options: {
-                // indicates the grant to perform read operations on the URI
-                authReadUriPermission: true,
-                // indicates the grant to perform write operations on the URI
-                authWriteUriPermission: true,
-                // support forward intent result to origin ability
-                abilityForwardResult: true,
-                // used for marking the ability start-up is triggered by continuation
-                abilityContinuation: true,
-                // specifies whether a component does not belong to ohos
-                notOhosComponent: true,
-                // specifies whether an ability is started
-                abilityFormEnabled: true,
-                // indicates the grant for possible persisting on the URI.
-                authPersistableUriPermission: true,
-                // indicates the grant for possible persisting on the URI.
-                authPrefixUriPermission: true,
-                // support distributed scheduling system start up multiple devices
-                abilitySliceMultiDevice: true,
-                // indicates that an ability using the service template is started regardless of whether the
-                // host application has been started.
-                startForegroundAbility: true,
-                // install the specified ability if it's not installed.
-                installOnDemand: true,
-                // return result to origin ability slice
-                abilitySliceForwardResult: true,
-                // install the specified ability with background mode if it's not installed.
-                installWithBackgroundMode: true
-            },
-            deviceId: "",
-            bundleName: "com.example.startability",
-            abilityName: "com.example.startability.MainAbility",
-            uri: ""
-        },
+featureAbility.startAbility({
+  want:
+  {
+    action: "",
+    entities: [""],
+    type: "",
+    options: {
+      // indicates the grant to perform read operations on the URI
+      authReadUriPermission: true,
+      // indicates the grant to perform write operations on the URI
+      authWriteUriPermission: true,
+      // support forward intent result to origin ability
+      abilityForwardResult: true,
+      // used for marking the ability start-up is triggered by continuation
+      abilityContinuation: true,
+      // specifies whether a component does not belong to ohos
+      notOhosComponent: true,
+      // specifies whether an ability is started
+      abilityFormEnabled: true,
+      // indicates the grant for possible persisting on the URI.
+      authPersistableUriPermission: true,
+      // indicates the grant for possible persisting on the URI.
+      authPrefixUriPermission: true,
+      // support distributed scheduling system start up multiple devices
+      abilitySliceMultiDevice: true,
+      // indicates that an ability using the service template is started regardless of whether the
+      // host application has been started.
+      startForegroundAbility: true,
+      // install the specified ability if it's not installed.
+      installOnDemand: true,
+      // return result to origin ability slice
+      abilitySliceForwardResult: true,
+      // install the specified ability with background mode if it's not installed.
+      installWithBackgroundMode: true
     },
-  );
-)
+    deviceId: "",
+    bundleName: "com.example.startability",
+    abilityName: "com.example.startability.MainAbility",
+    uri: ""
+  },
+},
+);
+```
+want参数也可以使用parameters参数，使用key-value的方式输入。
+* 示例
+```javascript
+import featureAbility from '@ohos.ability.featureAbility'
+featureAbility.startAbility({
+    want:
+    {
+        bundleName: "com.example.startability",
+        uri: "",
+        parameters: {
+            abilityName: "com.example.startability.MainAbility"
+        }
+    },
+},
+);
 ```
 ## 启动远程PageAbility
 
- 导入模块
+* 导入模块
 
 ```
 import featureAbility from '@ohos.ability.featureAbility'
 ```
 
 ```
-FeatureAbility.startAbility(parameter: StartAbilityParameter)
+featureAbility.startAbility(parameter: StartAbilityParameter)
 ```
 * 接口说明
 
@@ -114,14 +128,13 @@ FeatureAbility.startAbility(parameter: StartAbilityParameter)
 * 示例
 
 ```javascript
-        var promise = await ability.startAbility(
-            {
-                want:
-                {
-                    deviceId: this.deviceId,
-                    bundleName: "com.example.test",
-                    abilityName: "com.example.test.MainAbility",
-                },
-            }
-        );
+var promise = await featureAbility.startAbility({
+    want:
+    {
+        deviceId: this.deviceId,
+        bundleName: "com.example.test",
+        abilityName: "com.example.test.MainAbility",
+    },
+}
+);
 ```
