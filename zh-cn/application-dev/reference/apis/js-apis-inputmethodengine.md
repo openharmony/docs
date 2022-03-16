@@ -13,7 +13,7 @@ import inputMethodEngine from '@ohos.inputMethodEngine';
 
 常量值。
 
-**系统能力：**以下各项对应的系统能力均为SystemCapability.MiscServices.InputMethodFramework
+**系统能力**：以下各项对应的系统能力均为SystemCapability.MiscServices.InputMethodFramework
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -737,7 +737,7 @@ getEditorAttribute(): Promise&lt;EditorAttribute&gt;
 
 编辑框属性值。
 
-**系统能力：**以下各项对应的系统能力均为SystemCapability.MiscServices.InputMethodFramework
+**系统能力**：以下各项对应的系统能力均为SystemCapability.MiscServices.InputMethodFramework
 
 | 名称         | 参数类型 | 可读 | 可写 | 说明               |
 | ------------ | -------- | ---- | ---- | ------------------ |
@@ -748,7 +748,7 @@ getEditorAttribute(): Promise&lt;EditorAttribute&gt;
 
 按键属性值。
 
-**系统能力：**以下各项对应的系统能力均为SystemCapability.MiscServices.InputMethodFramework
+**系统能力**：以下各项对应的系统能力均为SystemCapability.MiscServices.InputMethodFramework
 
 | 名称      | 参数类型 | 可读 | 可写 | 说明         |
 | --------- | -------- | ---- | ---- | ------------ |

@@ -14,7 +14,7 @@ import inputMethod from '@ohos.inputMethod';
 
 常量值。
 
-**系统能力：**以下各项对应的系统能力均为SystemCapability.MiscServices.InputMethodFramework
+**系统能力**：以下各项对应的系统能力均为SystemCapability.MiscServices.InputMethodFramework
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -25,7 +25,7 @@ import inputMethod from '@ohos.inputMethod';
 
 输入法应用属性。
 
-**系统能力：**以下各项对应的系统能力均为SystemCapability.MiscServices.InputMethodFramework
+**系统能力**：以下各项对应的系统能力均为SystemCapability.MiscServices.InputMethodFramework
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
