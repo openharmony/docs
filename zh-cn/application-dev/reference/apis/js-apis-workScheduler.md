@@ -275,7 +275,7 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 ## WorkInfo
 提供工作的具体信息。
 
-**系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
+**系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.WorkScheduler
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -295,7 +295,7 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 ## NetworkType
 触发工作的网络类型。
 
-**系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
+**系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.WorkScheduler
 
   |名称    |默认值    |说明|
   | -------- | -------- | -------- |
@@ -309,7 +309,7 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 ## ChargingType
 触发工作的充电类型。
 
-**系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
+**系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.WorkScheduler
 
   |名称    |默认值    |说明|
   | -------- | -------- | -------- |
@@ -321,7 +321,7 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 ## BatteryStatus
 触发工作的电池状态。
 
-**系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
+**系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.WorkScheduler
 
   |名称    |默认值    |说明|
   | -------- | -------- | -------- |
@@ -332,7 +332,7 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 ## StorageRequest
 触发工作的存储状态。
 
-**系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
+**系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.WorkScheduler
 
   |名称    |默认值    |说明|
   | -------- | -------- | -------- |
