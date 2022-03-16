@@ -14,19 +14,23 @@ import inputMethod from '@ohos.inputMethod';
 
 常量值。
 
+**系统能力：**以下各项对应的系统能力均为SystemCapability.MiscServices.InputMethodFramework
+
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| MAX_TYPE_NUM | number | 是 | 否 | 可支持的最大输入法个数。<br/>**系统能力**： SystemCapability.MiscServices.InputMethodFramework |
+| MAX_TYPE_NUM | number | 是 | 否 | 可支持的最大输入法个数。 |
 
 
 ## InputMethodProperty<sup>8+</sup><a name="InputMethodProperty"></a>
 
 输入法应用属性。
 
+**系统能力：**以下各项对应的系统能力均为SystemCapability.MiscServices.InputMethodFramework
+
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| packageName | string | 是 | 否 | 包名。<br/>**系统能力**： SystemCapability.MiscServices.InputMethodFramework |
-| methodId | string | 是 | 否 | Ability名。<br/>**系统能力**： SystemCapability.MiscServices.InputMethodFramework |
+| packageName | string | 是 | 否 | 包名。 |
+| methodId | string | 是 | 否 | Ability名。 |
 
 ## inputMethod.getInputMethodController<a name="getInputMethodController"></a>
 

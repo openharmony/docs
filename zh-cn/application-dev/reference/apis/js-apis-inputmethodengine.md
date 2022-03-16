@@ -13,34 +13,36 @@ import inputMethodEngine from '@ohos.inputMethodEngine';
 
 常量值。
 
+**系统能力：**以下各项对应的系统能力均为SystemCapability.MiscServices.InputMethodFramework
+
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| ENTER_KEY_TYPE_UNSPECIFIED | number | 是 | 否 | 无功能键。<br/>**系统能力**： SystemCapability.MiscServices.InputMethodFramework |
-| ENTER_KEY_TYPE_GO | number | 是 | 否 | “前往”功能键。<br/>**系统能力**： SystemCapability.MiscServices.InputMethodFramework |
-| ENTER_KEY_TYPE_SEARCH | number | 是 | 否 | “搜索”功能键。<br/>**系统能力**： SystemCapability.MiscServices.InputMethodFramework |
-| ENTER_KEY_TYPE_SEND | number | 是 | 否 | “发送”功能键。<br/>**系统能力**： SystemCapability.MiscServices.InputMethodFramework |
-| ENTER_KEY_TYPE_NEXT | number | 是 | 否 | “下一个”功能键。<br/>**系统能力**： SystemCapability.MiscServices.InputMethodFramework |
-| ENTER_KEY_TYPE_DONE | number | 是 | 否 | “回车”功能键。<br/>**系统能力**： SystemCapability.MiscServices.InputMethodFramework |
-| ENTER_KEY_TYPE_PREVIOUS | number | 是 | 否 | “前一个”功能键。<br/>**系统能力**： SystemCapability.MiscServices.InputMethodFramework |
-| PATTERN_NULL | number | 是 | 否 | 无特殊性编辑框。<br/>**系统能力**： SystemCapability.MiscServices.InputMethodFramework |
-| PATTERN_TEXT | number | 是 | 否 | 文本编辑框。<br/>**系统能力**： SystemCapability.MiscServices.InputMethodFramework |
-| PATTERN_NUMBER | number | 是 | 否 | 数字编辑框。<br/>**系统能力**： SystemCapability.MiscServices.InputMethodFramework |
-| PATTERN_PHONE | number | 是 | 否 | 电话编辑框。<br/>**系统能力**： SystemCapability.MiscServices.InputMethodFramework |
-| PATTERN_DATETIME | number | 是 | 否 | 日期编辑框。<br/>**系统能力**： SystemCapability.MiscServices.InputMethodFramework |
-| PATTERN_EMAIL | number | 是 | 否 | 邮件编辑框。<br/>**系统能力**： SystemCapability.MiscServices.InputMethodFramework |
-| PATTERN_URI | number | 是 | 否 | 超链接编辑框。<br/>**系统能力**： SystemCapability.MiscServices.InputMethodFramework |
-| PATTERN_PASSWORD | number | 是 | 否 | 密码编辑框。<br/>**系统能力**： SystemCapability.MiscServices.InputMethodFramework |
-| OPTION_ASCII | number | 是 | 否 | 允许输入ASCII值。<br/>**系统能力**： SystemCapability.MiscServices.InputMethodFramework |
-| OPTION_NONE | number | 是 | 否 | 不指定编辑框输入属性。<br/>**系统能力**： SystemCapability.MiscServices.InputMethodFramework |
-| OPTION_AUTO_CAP_CHARACTERS | number | 是 | 否 | 允许输入字符。<br/>**系统能力**： SystemCapability.MiscServices.InputMethodFramework |
-| OPTION_AUTO_CAP_SENTENCES | number | 是 | 否 | 允许输入句子。<br/>**系统能力**： SystemCapability.MiscServices.InputMethodFramework |
-| OPTION_AUTO_WORDS | number | 是 | 否 | 允许输入单词。<br/>**系统能力**： SystemCapability.MiscServices.InputMethodFramework |
-| OPTION_MULTI_LINE | number | 是 | 否 | 允许输入多行。<br/>**系统能力**： SystemCapability.MiscServices.InputMethodFramework |
-| OPTION_NO_FULLSCREEN | number | 是 | 否 | 半屏样式。<br/>**系统能力**： SystemCapability.MiscServices.InputMethodFramework |
-| FLAG_SELECTING | number | 是 | 否 | 编辑框处于选择状态。<br/>**系统能力**： SystemCapability.MiscServices.InputMethodFramework |
-| FLAG_SINGLE_LINE | number | 是 | 否 | 编辑框为单行。<br/>**系统能力**： SystemCapability.MiscServices.InputMethodFramework |
-| DISPLAY_MODE_PART | number | 是 | 否 | 编辑框显示为半屏。<br/>**系统能力**： SystemCapability.MiscServices.InputMethodFramework |
-| DISPLAY_MODE_FULL | number | 是 | 否 | 编辑框显示为全屏。<br/>**系统能力**： SystemCapability.MiscServices.InputMethodFramework |
+| ENTER_KEY_TYPE_UNSPECIFIED | number | 是 | 否 | 无功能键。 |
+| ENTER_KEY_TYPE_GO | number | 是 | 否 | “前往”功能键。 |
+| ENTER_KEY_TYPE_SEARCH | number | 是 | 否 | “搜索”功能键。 |
+| ENTER_KEY_TYPE_SEND | number | 是 | 否 | “发送”功能键。 |
+| ENTER_KEY_TYPE_NEXT | number | 是 | 否 | “下一个”功能键。 |
+| ENTER_KEY_TYPE_DONE | number | 是 | 否 | “回车”功能键。 |
+| ENTER_KEY_TYPE_PREVIOUS | number | 是 | 否 | “前一个”功能键。 |
+| PATTERN_NULL | number | 是 | 否 | 无特殊性编辑框。 |
+| PATTERN_TEXT | number | 是 | 否 | 文本编辑框。 |
+| PATTERN_NUMBER | number | 是 | 否 | 数字编辑框。 |
+| PATTERN_PHONE | number | 是 | 否 | 电话编辑框。 |
+| PATTERN_DATETIME | number | 是 | 否 | 日期编辑框。 |
+| PATTERN_EMAIL | number | 是 | 否 | 邮件编辑框。 |
+| PATTERN_URI | number | 是 | 否 | 超链接编辑框。 |
+| PATTERN_PASSWORD | number | 是 | 否 | 密码编辑框。 |
+| OPTION_ASCII | number | 是 | 否 | 允许输入ASCII值。 |
+| OPTION_NONE | number | 是 | 否 | 不指定编辑框输入属性。 |
+| OPTION_AUTO_CAP_CHARACTERS | number | 是 | 否 | 允许输入字符。 |
+| OPTION_AUTO_CAP_SENTENCES | number | 是 | 否 | 允许输入句子。 |
+| OPTION_AUTO_WORDS | number | 是 | 否 | 允许输入单词。 |
+| OPTION_MULTI_LINE | number | 是 | 否 | 允许输入多行。 |
+| OPTION_NO_FULLSCREEN | number | 是 | 否 | 半屏样式。 |
+| FLAG_SELECTING | number | 是 | 否 | 编辑框处于选择状态。 |
+| FLAG_SINGLE_LINE | number | 是 | 否 | 编辑框为单行。 |
+| DISPLAY_MODE_PART | number | 是 | 否 | 编辑框显示为半屏。 |
+| DISPLAY_MODE_FULL | number | 是 | 否 | 编辑框显示为全屏。 |
 
 ## inputMethodEngine.getInputMethodEngine<a name="getInputMethodEngine"></a>
 
@@ -735,17 +737,21 @@ getEditorAttribute(): Promise&lt;EditorAttribute&gt;
 
 编辑框属性值。
 
-| 名称         | 参数类型 | 可读 | 可写 | 说明                                                         |
-| ------------ | -------- | ---- | ---- | ------------------------------------------------------------ |
-| enterKeyType | number   | 是   | 否   | 编辑框的功能属性。<br/>**系统能力**： SystemCapability.MiscServices.InputMethodFramework |
-| inputPattern | number   | 是   | 否   | 编辑框的文本属性。<br/>**系统能力**： SystemCapability.MiscServices.InputMethodFramework |
+**系统能力：**以下各项对应的系统能力均为SystemCapability.MiscServices.InputMethodFramework
+
+| 名称         | 参数类型 | 可读 | 可写 | 说明               |
+| ------------ | -------- | ---- | ---- | ------------------ |
+| enterKeyType | number   | 是   | 否   | 编辑框的功能属性。 |
+| inputPattern | number   | 是   | 否   | 编辑框的文本属性。 |
 
 ## KeyEvent<a name="KeyEvent"></a>
 
 按键属性值。
 
-| 名称      | 参数类型 | 可读 | 可写 | 说明                                                         |
-| --------- | -------- | ---- | ---- | ------------------------------------------------------------ |
-| keyCode   | number   | 是   | 否   | 按键的键值。<br/>**系统能力**： SystemCapability.MiscServices.InputMethodFramework |
-| keyAction | number   | 是   | 否   | 按键的状态。<br/>**系统能力**： SystemCapability.MiscServices.InputMethodFramework |
+**系统能力：**以下各项对应的系统能力均为SystemCapability.MiscServices.InputMethodFramework
+
+| 名称      | 参数类型 | 可读 | 可写 | 说明         |
+| --------- | -------- | ---- | ---- | ------------ |
+| keyCode   | number   | 是   | 否   | 按键的键值。 |
+| keyAction | number   | 是   | 否   | 按键的状态。 |
 
