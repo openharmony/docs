@@ -179,6 +179,18 @@ getResourceManager(bundleName: string): Promise&lt;ResourceManager&gt;
 | deviceType | [DeviceType](#devicetype) | 是 | 否 | 当前设备类型<br/>**系统能力**：SystemCapability.Global.ResourceManager |
 
 
+## RawFileDescriptor<sup>8+</sup>
+
+表示rawfile的descriptor信息。
+<br/><b>系统能力：</b> 以下各项对应的系统能力均为SystemCapability.Global.ResourceManager
+
+| 名称 | 类型 | 说明 |
+| -------- | -------- | -------- |
+| fd | number | rawfile的descriptor |
+| offset | number | rawfile的起始偏移量 |
+| length | number | rawfile的文件长度 |
+
+
 ## ResourceManager
 
 提供访问应用资源的能力。
@@ -636,6 +648,139 @@ getRawFile(path: string): Promise&lt;Uint8Array&gt;
           console.log(value);
       }).catch(error => {
           console.log("getrawfile promise " + error);
+      });
+  });
+  ```
+
+### getRawFileDescriptor<sup>8+</sup>
+
+getRawFileDescriptor(path: string, callback: AsyncCallback&lt;RawFileDescriptor&gt;): void
+
+用户获取指定路径对应的rawfile文件的descriptor，使用callback形式返回。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | path | string | 是 | rawfile文件路径 |
+  | callback | AsyncCallback&lt;[RawFileDescriptor](#RawFileDescriptor<sup>8+</sup>)&gt; | 是 | 异步回调，用于返回获取的rawfile文件的descriptor |
+
+- 示例：
+  ```
+  resourceManager.getResourceManager((error, mgr) => {
+      mgr.getRawFileDescriptor("test.xml", (error, value) => {
+          if (error != null) {
+              console.log(value);
+          } else {
+              let fd = value.fd;
+              let offset = value.offset;
+              let length = value.length;
+          }
+      });
+  });
+  ```
+
+### getRawFileDescriptor<sup>8+</sup>
+
+getRawFileDescriptor(path: string): Promise&lt;RawFileDescriptor&gt;
+
+用户获取指定路径对应的rawfile文件的descriptor，使用Promise形式返回。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | path | string | 是 | rawfile文件路径 |
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;[RawFileDescriptor](#RawFileDescriptor<sup>8+</sup>)&gt; | rawfile文件descriptor |
+
+- 示例：
+  ```
+  resourceManager.getResourceManager((error, mgr) => {
+      mgr.getRawFileDescriptor("test.xml").then(value => {
+          let fd = value.fd;
+          let offset = value.offset;
+          let length = value.length;
+      }).catch(error => {
+          console.log("getRawFileDescriptor promise " + error);
+      });
+  });
+  ```
+
+### closeRawFileDescriptor<sup>8+</sup>
+
+closeRawFileDescriptor(path: string, callback: AsyncCallback&lt;void&gt;): void
+
+用户关闭指定路径打开的rawfile文件的descriptor，使用callback形式返回。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | path | string | 是 | rawfile文件路径 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 异步回调 |
+
+- 示例：
+  ```
+  resourceManager.getResourceManager((error, mgr) => {
+      mgr.closeRawFileDescriptor("test.xml", (error, value) => {
+          if (error != null) {
+              console.log(value);
+          }
+      });
+  });
+  ```
+
+### closeRawFileDescriptor<sup>8+</sup>
+
+closeRawFileDescriptor(path: string): Promise&lt;void&gt;
+
+用户关闭指定路径打开的rawfile文件的descriptor，使用Promise形式返回。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | path | string | 是 | rawfile文件路径 |
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;void&gt; | 无返回值 |
+
+- 示例：
+  ```
+  resourceManager.getResourceManager((error, mgr) => {
+      mgr.closeRawFileDescriptor("test.xml").then(value => {
+          console.log(value);
+      }).catch(error => {
+          console.log("closeRawFileDescriptor promise " + error);
+      });
+  });
+  ```
+
+### release
+
+release();
+
+用户释放创建的resourceManager。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+- 示例：
+  ```
+  resourceManager.getResourceManager((error, mgr) => {
+      mgr.release((error, value) => {
+          if (error != null) {
+              console.log(value);
+          }
       });
   });
   ```
