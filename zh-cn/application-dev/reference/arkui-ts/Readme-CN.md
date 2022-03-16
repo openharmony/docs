@@ -73,6 +73,7 @@
         - [Toggle](ts-basic-components-toggle.md)
         - [TextClock](ts-basic-components-textclock.md)
         - [Web](ts-basic-components-web.md)
+        - [Xcomponent](ts-basic-components-xcomponent.md)
     - 容器组件
         - [AlphabetIndexer](ts-container-alphabet-indexer.md)
         - [Badge](ts-container-badge.md)
