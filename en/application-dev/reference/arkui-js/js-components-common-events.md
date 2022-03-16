@@ -165,7 +165,7 @@ Different from private events, universal events can be bound to most components.
 </td>
 <td class="cellrowborder" valign="top" width="20.242024202420243%" headers="mcps1.1.5.1.2 "><p id="p94331834504"><a name="p94331834504"></a><a name="p94331834504"></a><a href="#table95551461358">DragEvent</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="45.34453445344535%" headers="mcps1.1.5.1.3 "><p id="p143310312509"><a name="p143310312509"></a><a name="p143310312509"></a>Tiggered when dragging is ended.</p>
+<td class="cellrowborder" valign="top" width="45.34453445344535%" headers="mcps1.1.5.1.3 "><p id="p143310312509"><a name="p143310312509"></a><a name="p143310312509"></a>Triggered when dragging is ended.</p>
 </td>
 <td class="cellrowborder" valign="top" width="19.451945194519453%" headers="mcps1.1.5.1.4 "><p id="p194331833500"><a name="p194331833500"></a><a name="p194331833500"></a>No</p>
 </td>

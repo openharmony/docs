@@ -3,10 +3,10 @@
 ## 装饰器
 
 
-装饰器**@Decorator**不仅可以装饰类或结构体，还可以装饰类的属性。多个装饰器可以叠加到目标元素，定义在同一行上或者在多行上，推荐定义在多行上。
+装饰器@Decorator不仅可以装饰类或结构体，还可以装饰类的属性。多个装饰器可以叠加到目标元素，定义在同一行上或者在多行上，推荐定义在多行上。
 
 
-如下示例为**@Component**和**@State**的使用，被**@Component**装饰的元素具备了组件化的含义，使用**@State**装饰的变量具备了状态数据的含义。
+如下示例为@Component和@State的使用，被 @Component装饰的元素具备了组件化的含义，使用@State装饰的变量具备了状态数据的含义。
 
 
 ```
@@ -129,7 +129,7 @@ build() {
     let a: number = 1 // invalid: variable declaration not allowed
     Column() {
         Text('Hello ${this.myName.toUpperCase()}') // ok.
-        ForEach(this.arr.reverse(), ..., ...) // invalid: Array.reverse modifies the @State array varible in place
+        ForEach(this.arr.reverse(), ..., ...) // invalid: Array.reverse modifies the @State array variable in place
     }
     buildSpecial()  // invalid: no function calls
     Text(this.calcTextValue()) // this function call is ok.

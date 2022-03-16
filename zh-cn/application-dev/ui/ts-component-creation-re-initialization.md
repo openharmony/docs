@@ -61,7 +61,7 @@ struct ParentComp {
                 Image('stopwatch.png')
                 TimerComponent({counter: 0, changePerSec: +1, showInColor: Color.Black })
             }
-            Button(this.isCountDown ? 'Swtich to Stopwatch' : 'Switch to Count Down')
+            Button(this.isCountDown ? 'Switch to Stopwatch' : 'Switch to Count Down')
                 .onClick(() => {this.isCountDown = !this.isCountDown})
         }
     }
