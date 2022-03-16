@@ -510,7 +510,7 @@ observer.off('simStateChange');
 
 ## LockReason<sup>8+</sup>
 
-SIM card lock type.
+Enumerates SIM card lock types.
 
 **System capability**: SystemCapability.Telephony.StateRegistry
 

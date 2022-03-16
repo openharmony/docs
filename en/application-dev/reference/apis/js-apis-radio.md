@@ -25,7 +25,7 @@ Obtains the radio access technology (RAT) used by the CS and PS domains. This AP
 
 | Name  | Type                                                        | Mandatory| Description                                  |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
-| slotId   | number                                                       | Yes  | Card slot ID. The options are as follows:<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| slotId   | number                                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | callback | AsyncCallback\<{psRadioTech: [RadioTechnology](#radiotechnology), csRadioTech:[RadioTechnology](#radiotechnology)}\> | Yes  | Callback used to return the result.                            |
 
 **Example**
@@ -52,7 +52,7 @@ Obtains the RAT used by the CS and PS domains. This API uses a promise to return
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| slotId | number | Yes  | Card slot ID. The options are as follows:<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 
 **Return value**
 
@@ -112,7 +112,7 @@ Obtains the network status. This API uses an asynchronous callback to return the
 
 | Name  | Type                                          | Mandatory| Description                                  |
 | -------- | ---------------------------------------------- | ---- | -------------------------------------- |
-| slotId   | number                                         | Yes  | Card slot ID. The options are as follows:<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| slotId   | number                                         | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | callback | AsyncCallback\<[NetworkState](#networkstate)\> | Yes  | Callback used to return the result.                            |
 
 **Example**
@@ -139,7 +139,7 @@ Obtains the network status of the SIM card in the specified slot. This API uses 
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| slotId | number | No  | Card slot ID. The options are as follows:<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| slotId | number | No  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 
 **Return value**
 
@@ -172,7 +172,7 @@ Obtains the network selection mode of the SIM card in the specified slot. This A
 
 | Name  | Type                                                        | Mandatory| Description                                  |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
-| slotId   | number                                                       | Yes  | Card slot ID. The options are as follows:<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| slotId   | number                                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | callback | AsyncCallback\<[NetworkSelectionMode](#networkselectionMode)\> | Yes  | Callback used to return the result.                            |
 
 **Example**
@@ -197,7 +197,7 @@ Obtains the network selection mode of the SIM card in the specified slot. This A
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| slotId | number | Yes  | Card slot ID. The options are as follows:<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 
 **Return value**
 
@@ -230,7 +230,7 @@ Obtains the ISO country code of the network with which the SIM card in the speci
 
 | Name  | Type                   | Mandatory| Description                                    |
 | -------- | ----------------------- | ---- | ---------------------------------------- |
-| slotId   | number                  | Yes  | Card slot ID. The options are as follows:<br>- **0**: card slot 1<br>- **1**: card slot 2  |
+| slotId   | number                  | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2  |
 | callback | AsyncCallback\<string\> | Yes  | Callback used to return the result. which is a country code, for example, **CN** (China).|
 
 **Example**
@@ -255,7 +255,7 @@ Obtains the ISO country code of the network with which the SIM card in the speci
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| slotId | number | Yes  | Card slot ID. The options are as follows:<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 
 **Return value**
 
@@ -337,7 +337,7 @@ Obtains a list of signal strengths of the network with which the SIM card in the
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| slotId   | number                                                       | Yes  | Card slot ID. The options are as follows:<br>- **0**: card slot 1<br>- **1**: card slot 2                      |
+| slotId   | number                                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2                      |
 | callback | AsyncCallback\<Array\<[SignalInformation](#signalinformation)\>\> | Yes  | Callback used to return the result, which is a list of [SignalInformation](#signalinformation) objects.|
 
 **Example**
@@ -362,7 +362,7 @@ Obtains a list of signal strengths of the network with which the SIM card in the
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| slotId | number | Yes  | Card slot ID. The options are as follows:<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 
 **Return value**
 
@@ -395,7 +395,7 @@ Checks whether the current device supports 5G \(NR\).
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| slotId | number | Yes  | Card slot ID. The options are as follows:<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 
 **Return value**
 
@@ -451,7 +451,7 @@ Checks whether the radio service is enabled on the SIM card in the specified slo
 
 | Name  | Type                    | Mandatory| Description                                                   |
 | -------- | ------------------------ | ---- | ------------------------------------------------------- |
-| slotId   | number                   | Yes  | Card slot ID. The options are as follows:<br>- **0**: card slot 1<br>- **1**: card slot 2                 |
+| slotId   | number                   | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2                 |
 | callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.<br>- **true**: The radio service is enabled.<br>- **false**: The radio service is disabled.|
 
 **Example**
@@ -478,7 +478,7 @@ Checks whether the radio service is enabled. This API uses a promise to return t
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| slotId | number | No  | Card slot ID. The options are as follows:<br>- **0**: card slot 1<br>- **1**: card slot 2<br>If the slot ID is not specified, this API is defaulted to check whether the radio service is enabled on the primary SIM card.|
+| slotId | number | No  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2<br>If the slot ID is not specified, this API is defaulted to check whether the radio service is enabled on the primary SIM card.|
 
 **Return value**
 
@@ -511,7 +511,7 @@ Obtains the carrier name. This API uses an asynchronous callback to return the r
 
 | Name  | Type                   | Mandatory| Description                                      |
 | -------- | ----------------------- | ---- | ------------------------------------------ |
-| slotId   | number                  | Yes  | Card slot ID. The options are as follows:<br>- **0**: card slot 1<br>- **1**: card slot 2    |
+| slotId   | number                  | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2    |
 | callback | AsyncCallback\<string\> | Yes  | Callback used to return the result, which is the carrier name, for example, China Mobile.|
 
 **Example**
@@ -536,7 +536,7 @@ Obtains the carrier name. This API uses a promise to return the result.
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| slotId | number | Yes  | Card slot ID. The options are as follows:<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 
 **Return value**
 
