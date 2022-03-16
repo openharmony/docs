@@ -17,9 +17,7 @@ getStorageDataDir():Promise&lt;string&gt;
 
 异步方法获取内存存储根目录，以promise形式返回结果。
 
-- 系统能力：
-
-  SystemCapability.FileManagement.File.Environment
+**系统能力**：SystemCapability.FileManagement.File.Environment
 
 - 返回值：
 
@@ -43,9 +41,7 @@ getStorageDataDir(callback:AsyncCallback&lt;string&gt;):void
 
 异步方法获取内存存储根目录，以callback形式返回结果。
 
-- 系统能力：
-
-  SystemCapability.FileManagement.File.Environment
+**系统能力**：SystemCapability.FileManagement.File.Environment
 
 - 参数：
 
@@ -67,9 +63,7 @@ getUserDataDir():Promise&lt;string&gt;
 
 异步方法获取公共文件根目录，以promise形式返回结果。
 
-- 系统能力：
-
-  SystemCapability.FileManagement.File.Environment
+**系统能力**：SystemCapability.FileManagement.File.Environment
 
 - 返回值：
 
@@ -93,9 +87,7 @@ getUserDataDir(callback:AsyncCallback&lt;string&gt;): void
 
 异步方法获取公共文件根目录，以callback形式返回结果。
 
-- 系统能力：
-
-  SystemCapability.FileManagement.File.Environment
+**系统能力**：SystemCapability.FileManagement.File.Environment
 
 - 参数：
 

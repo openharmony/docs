@@ -11,15 +11,13 @@
 import volumemanager from "@ohos.volumeManager";
 ```
 
-## 系统能力
-
-SystemCapability.FileManagement.StorageService.Volume
-
 ## volumemanager.getAllVolumes
 
 getAllVolumes(): Promise&lt;Array&lt;Volume&gt;&gt;
 
 异步获取当前所有可获得的卷信息，以promise方式返回。
+
+**系统能力**：SystemCapability.FileManagement.StorageService.Volume
 
 - 返回值
 
@@ -40,6 +38,8 @@ getAllVolumes(): Promise&lt;Array&lt;Volume&gt;&gt;
 getAllVolumes(callback: AsyncCallback&lt;Array&lt;Volume&gt;&gt;): void
 
 异步获取当前所有可获得的卷信息，以callback方式返回。
+
+**系统能力**：SystemCapability.FileManagement.StorageService.Volume
 
 - 参数
 
@@ -62,6 +62,8 @@ getAllVolumes(callback: AsyncCallback&lt;Array&lt;Volume&gt;&gt;): void
 mount(volumeId: string): Promise&lt;boolean&gt;
 
 异步挂载指定卷，以promise方式返回。
+
+**系统能力**：SystemCapability.FileManagement.StorageService.Volume
 
 - 参数
 
@@ -90,6 +92,8 @@ mount(volumeId: string, callback:AsyncCallback&lt;boolean&gt;):void
 
 异步获取指定卷的可用空间大小，以callback方式返回。
 
+**系统能力**：SystemCapability.FileManagement.StorageService.Volume
+
 - 参数
 
   | 参数名   | 类型                                  | 必填 | 说明                 |
@@ -111,6 +115,8 @@ mount(volumeId: string, callback:AsyncCallback&lt;boolean&gt;):void
 unmount(volumeId: string): Promise&lt;boolean&gt;
 
 异步卸载指定卷，以promise方式返回。
+
+**系统能力**：SystemCapability.FileManagement.StorageService.Volume
 
 - 参数
 
@@ -139,6 +145,8 @@ unmount(volumeId: string, callback:AsyncCallback&lt;boolean&gt;):void
 
 异步卸载指定卷，以callback方式返回。
 
+**系统能力**：SystemCapability.FileManagement.StorageService.Volume
+
 - 参数
 
   | 参数名   | 类型                                  | 必填 | 说明                 |
@@ -156,6 +164,8 @@ unmount(volumeId: string, callback:AsyncCallback&lt;boolean&gt;):void
   ```
 
 ## Volume<sup>9+</sup>
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.FileManagement.StorageService.Volume。
 
 ### 属性
 
