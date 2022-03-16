@@ -6,18 +6,18 @@ AudioRenderer提供了渲染音频文件和控制播放的接口，开发者可�
 同时，AudioRenderer支持音频中断的功能。<br/>
 **音频中断：** 当优先级较高的音频流需要播放时，AudioRenderer会中断优先级较低的流。例如，当用户在收听音乐时有来电，则优先级较低音乐播放将被暂停，具体可参考[开发步骤](#开发步骤）。
 
-## 状态检查：
+## 状态检查
 
 您还应该记住，AudioRenderer 是基于状态的。  
 也就是说，AudioRenderer 有一个内部状态，在调用播放控制 API 时必须始终检查它，因为某些操作仅在音频播放器处于给定状态时才可接受。  
 如果您在不正确的状态下执行操作，系统可能会抛出错误/异常或生成其他未定义的行为。
 
-## **异步操作：**
+## 异步操作
 
 大多数AudioRenderer调用都是异步的。因此，UI线程不会被阻塞。<br/>对于每个API，框架都提供callback函数和promise函数。   
 在本例中，为了简单起见，使用了promise函数。[**js api audio.md**](../reference/apis/js-apis-audio.md)为callback和promise提供参考。
 
-## 使用步骤
+## 开发步骤
 
 1. 使用createAudioRenderer()创建一个AudioRenderer实例。
    在audioCapturerOptions中设置相关参数。该实例可用于音频渲染、控制和获取采集状态，以及注册通知回调。
@@ -92,8 +92,8 @@ AudioRenderer提供了渲染音频文件和控制播放的接口，开发者可�
                }
            }
        });
-   ```
-   
+```
+
 3. 调用start()方法来启动/恢复播放任务。   
    启动完成后，渲染器状态将变更为STATE_RUNNING，然后应用可以开始读取缓冲区。
 

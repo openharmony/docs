@@ -1,6 +1,6 @@
 # AudioCapturer音频采集开发指南
 
-# **场景介绍**
+## 场景介绍
 
 AudioCapturer提供了用于获取原始音频文件的方法。开发者可以通过本指导了解应用如何通过AudioCapturer采集音频。
 
