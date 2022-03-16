@@ -40,7 +40,7 @@ The WebGLProgram is a JavaScript object responsible for associating the shader w
 
 - Native APIs complete the interaction between JavaScript and C++ code.
 
-- QuickJS and V8 are graphics frameworks that provide the **Surface** object for the WebGL module.
+- JavaScript engine is a graphics framework that provides the **Surface** object for the WebGL module.
 
 - The WebGL module exposes the GPU drawing APIs of OpenGL ES.
 
