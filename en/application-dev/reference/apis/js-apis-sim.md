@@ -3,6 +3,7 @@
 >**NOTE**
 >
 >The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
 
 ## Modules to Import
 
@@ -10,72 +11,75 @@
 import sim from '@ohos.telephony.sim';
 ```
 
-## sim.getSimIccId<a name=sim.getSimIccId-callback></a>
+## sim.isSimActive<sup>7+</sup>
 
-getSimIccId\(slotId: number, callback: AsyncCallback<string\>\): void
+isSimActive\(slotId: number, callback: AsyncCallback<boolean\>\): void
 
-Obtains the integrated circuit card identity  (ICCID) of the SIM card in the specified slot. This function uses an asynchronous callback to return the result.
+Checks whether the SIM card in the specified slot is activated. This function uses an asynchronous callback to return the result.
 
-Before using this API, you must declare the **ohos.permission.GET\_TELEPHONY\_STATE** permission.
+**System capability**: SystemCapability.Communication.CoreService
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name  | Type                       | Mandatory| Description                                  |
 | -------- | --------------------------- | ---- | -------------------------------------- |
-| slotId   | number                      | Yes| Card slot ID. The options are as follows: <br/> - **0**: slot 1 <br/> - **1**: slot 2|
-| callback | AsyncCallback&lt;string&gt; | Yes| Callback used to return the result.|
+| slotId   | number                      | Yes  | Card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result.                            |
 
 **Example**
 
 ```
-sim.getSimIccId(0, (err, data) => {
+sim.isSimActive(0, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
 
 
-## sim.getSimIccId<a name=sim.getSimIccId-promise></a>
+## sim.isSimActive<sup>7+</sup>
 
-getSimIccId\(slotId: number\): Promise<string\>
+isSimActive\(slotId: number\): Promise<boolean\>
 
-Obtains the ICCID of the SIM card in the specified slot. This function uses a promise to return the result.
+Checks whether the SIM card in the specified slot is activated. This function uses a promise to return the result.
 
-Before using this API, you must declare the **ohos.permission.GET\_TELEPHONY\_STATE** permission.
+**System capability**: SystemCapability.Communication.CoreService
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| slotId | number | Yes| Card slot ID. The options are as follows: <br/> - **0**: slot 1 <br/> - **1**: slot 2|
+| slotId | number | Yes  | Card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
 
-**Return value**
+**Return Value**
 
-| Type| Description|
+| Type                 | Description                              |
 | --------------------- | ---------------------------------- |
-| Promise&lt;string&gt; | Promise used to return the result.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the SIM card in the specified slot is activated, and the value **false** indicates the opposite.|
 
 **Example**
 
 ```
-let promise = sim.getSimIccId(0);
+let promise = sim.isSimActive(0);
 promise.then(data => {
-    console.log(`getSimIccId success, promise: data->${JSON.stringify(data)}`);
+    console.log(`isSimActive success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getSimIccId fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`isSimActive fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
-## sim.getDefaultVoiceSlotId<sup>7+</sup><a name= sim.getDefaultVoiceSlotId-callback></a>
+
+## sim.getDefaultVoiceSlotId<sup>7+</sup>
 
 getDefaultVoiceSlotId\(callback: AsyncCallback<number\>\): void
 
 Obtains the default slot ID of the SIM card that provides voice services. This function uses an asynchronous callback to return the result.
 
+**System capability**: SystemCapability.Communication.CoreService
+
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name  | Type                       | Mandatory| Description      |
 | -------- | --------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to traverse the entries in the container.|
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -86,15 +90,17 @@ sim.getDefaultVoiceSlotId((err, data) => {
 ```
 
 
-## sim.getDefaultVoiceSlotId<sup>7+</sup><a name=sim.getDefaultVoiceSlotId-promise></a>
+## sim.getDefaultVoiceSlotId<sup>7+</sup>
 
 getDefaultVoiceSlotId\(\): Promise<number\>
 
 Obtains the default slot ID of the SIM card that provides voice services. This function uses a promise to return the result.
 
-**Return value**
+**System capability**: SystemCapability.Communication.CoreService
 
-| Type| Description|
+**Return Value**
+
+| Type             | Description                                   |
 | ----------------- | --------------------------------------- |
 | Promise\<number\> | Promise used to return the result.|
 
@@ -109,18 +115,74 @@ promise.then(data => {
 });
 ```
 
-## sim.getISOCountryCodeForSim<a name=sim.getISOCountryCodeForSim-callback></a>
+## sim.hasOperatorPrivileges<sup>7+</sup>
+
+hasOperatorPrivileges(slotId: number, callback: AsyncCallback\<boolean\>): void
+
+Checks whether the application (caller) has been granted the operator permission. This function uses an asynchronous callback to return the result. 
+
+**System capability**: SystemCapability.Communication.CoreService
+
+**Parameters**
+
+| Name  | Type                    | Mandatory| Description                                    |
+| -------- | ------------------------ | ---- | ---------------------------------------- |
+| slotId   | number                   | Yes  | Card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
+| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.                              |
+
+**Example**
+
+```
+sim.hasOperatorPrivileges(0, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+## sim.hasOperatorPrivileges<sup>7+</sup>
+
+hasOperatorPrivileges(slotId: number): Promise<boolean>
+
+Checks whether the application (caller) has been granted the operator permission. This function uses a promise to return the result. 
+
+**System capability**: SystemCapability.Communication.CoreService
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                    |
+| ------ | ------ | ---- | ---------------------------------------- |
+| slotId | number | Yes  | Card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
+
+**Return Value**
+
+| Type              | Description                                                       |
+| :----------------- | :---------------------------------------------------------- |
+| Promise\<boolean\> | Promise used to return the result. The value **true** indicates that the application (caller) has been granted the operator permission, and the value **false** indicates the opposite.|
+
+**Example**
+
+```
+let promise = sim.hasOperatorPrivileges(0);
+promise.then(data => {
+    console.log(`hasOperatorPrivileges success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`hasOperatorPrivileges fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## sim.getISOCountryCodeForSim
 
 getISOCountryCodeForSim\(slotId: number, callback: AsyncCallback<string\>\): void
 
 Obtains the ISO country code of the SIM card in the specified slot. This function uses an asynchronous callback to return the result.
 
+**System capability**: SystemCapability.Communication.CoreService
+
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name  | Type                   | Mandatory| Description                                    |
 | -------- | ----------------------- | ---- | ---------------------------------------- |
-| slotId   | number                  | Yes| Card slot ID. The options are as follows: <br/> - **0**: slot 1 <br/> - **1**: slot 2|
-| callback | AsyncCallback\<string\> | Yes| Callback used to return the result, which is a country code, for example, **CN** (China).|
+| slotId   | number                  | Yes  | Card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2  |
+| callback | AsyncCallback\<string\> | Yes  | Callback used to return the result, which is a country code, for example, **CN** (China).|
 
 **Example**
 
@@ -131,21 +193,23 @@ sim.getISOCountryCodeForSim(0, (err, data) => {
 ```
 
 
-## sim.getISOCountryCodeForSim<a name=sim.getISOCountryCodeForSim-promise></a>
+## sim.getISOCountryCodeForSim
 
 getISOCountryCodeForSim\(slotId: number\): Promise<string\>
 
 Obtains the ISO country code of the SIM card in the specified slot. This function uses a promise to return the result.
 
+**System capability**: SystemCapability.Communication.CoreService
+
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| slotId | number | Yes| Card slot ID. The options are as follows: <br/> - **0**: slot 1 <br/> - **1**: slot 2|
+| slotId | number | Yes  | Card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
 
-**Return value**
+**Return Value**
 
-| Type| Description|
+| Type             | Description                                                        |
 | ----------------- | ------------------------------------------------------------ |
 | Promise\<string\> | Promise used to return the result, which is a country code, for example, **CN** (China).|
 
@@ -161,18 +225,20 @@ promise.then(data => {
 ```
 
 
-## sim.getSimOperatorNumeric<a name=sim.getSimOperatorNumeric-callback></a>
+## sim.getSimOperatorNumeric
 
 getSimOperatorNumeric\(slotId: number, callback: AsyncCallback<string\>\): void
 
 Obtains the public land mobile network (PLMN) ID of the SIM card in the specified slot. This function uses an asynchronous callback to return the result.
 
+**System capability**: SystemCapability.Communication.CoreService
+
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| slotId   | number                  | Yes| Card slot ID. The options are as follows: <br/> - **0**: slot 1 <br/> - **1**: slot 2|
-| callback | AsyncCallback\<string\> | Yes| Callback used to return the result.|
+| slotId   | number                  | Yes  | Card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
+| callback | AsyncCallback\<string\> | Yes  | Callback used to return the result.                            |
 
 **Example**
 
@@ -183,21 +249,23 @@ sim.getSimOperatorNumeric(0, (err, data) => {
 ```
 
 
-## sim.getSimOperatorNumeric<a name=sim.getSimOperatorNumeric-promise></a>
+## sim.getSimOperatorNumeric
 
 getSimOperatorNumeric\(slotId: number\): Promise<string\>
 
 Obtains the PLMN ID of the SIM card in the specified slot. This function uses a promise to return the result.
 
+**System capability**: SystemCapability.Communication.CoreService
+
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| slotId | number | Yes| Card slot ID. The options are as follows: <br/> - **0**: slot 1 <br/> - **1**: slot 2|
+| slotId | number | Yes  | Card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
 
-**Return value**
+**Return Value**
 
-| Type| Description|
+| Type             | Description                                            |
 | ----------------- | ------------------------------------------------ |
 | Promise\<string\> | Promise used to return the result.|
 
@@ -213,18 +281,20 @@ promise.then(data => {
 ```
 
 
-## sim.getSimSpn<a name=sim.getSimSpn-callback></a>
+## sim.getSimSpn
 
 getSimSpn\(slotId: number, callback: AsyncCallback<string\>\): void
 
 Obtains the service provider name (SPN) of the SIM card in the specified slot. This function uses an asynchronous callback to return the result. 
 
+**System capability**: SystemCapability.Communication.CoreService
+
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| slotId   | number                  | Yes| Card slot ID. The options are as follows: <br/> - **0**: slot 1 <br/> - **1**: slot 2|
-| callback | AsyncCallback\<string\> | Yes| Callback used to return the result.|
+| slotId   | number                  | Yes  | Card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
+| callback | AsyncCallback\<string\> | Yes  | Callback used to return the result.                            |
 
 **Example**
 
@@ -235,21 +305,23 @@ sim.getSimSpn(0, (err, data) => {
 ```
 
 
-## sim.getSimSpn<a name=sim.getSimSpn-promise></a>
+## sim.getSimSpn
 
 getSimSpn\(slotId: number\): Promise<string\>
 
 Obtains the SPN of the SIM card in the specified slot. This function uses a promise to return the result. 
 
+**System capability**: SystemCapability.Communication.CoreService
+
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| slotId | number | Yes| Card slot ID. The options are as follows: <br/> - **0**: slot 1 <br/> - **1**: slot 2|
+| slotId | number | Yes  | Card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
 
-**Return value**
+**Return Value**
 
-| Type| Description|
+| Type             | Description                                     |
 | ----------------- | ----------------------------------------- |
 | Promise\<string\> | Promise used to return the result.|
 
@@ -265,18 +337,20 @@ promise.then(data => {
 ```
 
 
-## sim.getSimState<a name=sim.getSimState-callback></a>
+## sim.getSimState
 
 getSimState\(slotId: number, callback: AsyncCallback<SimState\>\): void
 
 Obtains the status of the SIM card in the specified slot. This function uses an asynchronous callback to return the result.
 
+**System capability**: SystemCapability.Communication.CoreService
+
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name  | Type                                  | Mandatory| Description                                  |
 | -------- | -------------------------------------- | ---- | -------------------------------------- |
-| slotId   | number                                 | Yes| Card slot ID. The options are as follows: <br/> - **0**: slot 1 <br/> - **1**: slot 2|
-| callback | AsyncCallback\<[SimState](#SimState)\> | Yes| Callback used to return the result, For details, see [SimState](#SimState).|
+| slotId   | number                                 | Yes  | Card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
+| callback | AsyncCallback\<[SimState](#simState)\> | Yes  | Callback used to return the result. For details, see [SimState](#simState). |
 
 **Example**
 
@@ -287,23 +361,25 @@ sim.getSimState(0, (err, data) => {
 ```
 
 
-## sim.getSimState<a name=sim.getSimState-promise></a>
+## sim.getSimState
 
 getSimState\(slotId: number\): Promise<SimState\>
 
 Obtains the status of the SIM card in the specified slot. This function uses a promise to return the result.
 
+**System capability**: SystemCapability.Communication.CoreService
+
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| slotId | number | Yes| Card slot ID. The options are as follows: <br/> - **0**: slot 1 <br/> - **1**: slot 2|
+| slotId | number | Yes  | Card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
 
-**Return value**
+**Return Value**
 
-| Type| Description|
+| Type                            | Description                                      |
 | -------------------------------- | ------------------------------------------ |
-| Promise\<[SimState](#SimState)\> | Promise used to return the result.|
+| Promise\<[SimState](#simState)\> | Promise used to return the result.|
 
 **Example**
 
@@ -316,71 +392,169 @@ promise.then(data => {
 });
 ```
 
-## sim.getSimGid1<a name=sim.getSimGid1-callback></a>
+## sim.getCardType<sup>7+</sup>
 
-getSimGid1\(slotId: number, callback: AsyncCallback<string\>\): void
+getCardType\(slotId: number, callback: AsyncCallback<CardType\>\): void
 
-Obtains the group identifier level 1 (GID1) of the SIM card in the specified slot. This function uses an asynchronous callback to return the result.
+Obtains the type of the SIM card in the specified slot. This function uses an asynchronous callback to return the result.
 
-Before using this API, you must declare the **ohos.permission.GET\_TELEPHONY\_STATE** permission.
+**System capability**: SystemCapability.Communication.CoreService
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| slotId   | number                  | Yes| Card slot ID. The options are as follows: <br/> - **0**: slot 1 <br/> - **1**: slot 2|
-| callback | AsyncCallback\<string\> | Yes| Callback used to return the result.|
+| slotId   | number                  | Yes  | Card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
+| callback | AsyncCallback\<[CardType](#cardtype7)\> | Yes  | Callback used to return the result.                            |
 
 **Example**
 
 ```
-sim.getSimGid1(0, (err, data) => {
+sim.getCardType(0, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
 
 
-## sim.getSimGid1<a name=sim.getSimGid1-promise></a>
+## sim.getCardType<sup>7+</sup>
 
-getSimGid1\(slotId: number\): Promise<string\>
+getCardType\(slotId: number\): Promise<CardType\>
 
-Obtains the GID1 of the SIM card in the specified slot. This function uses a promise to return the result.
+Obtains the type of the SIM card in the specified slot. This function uses a promise to return the result.
 
-Before using this API, you must declare the **ohos.permission.GET\_TELEPHONY\_STATE** permission.
+**System capability**: SystemCapability.Communication.CoreService
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| slotId | number | Yes| Card slot ID. The options are as follows: <br/> - **0**: slot 1 <br/> - **1**: slot 2|
+| slotId | number | Yes  | Card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
 
-**Return value**
+**Return Value**
 
-| Type| Description|
+| Type             | Description                                                        |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<string\> | Promise used to return the result.|
+| Promise\<[CardType](#cardtype7)\> | Promise used to return the result.|
 
 **Example**
 
 ```
-let promise = sim.getSimGid1(0);
+let promise = sim.getCardType(0);
 promise.then(data => {
-    console.log(`getSimGid1 success, promise: data->${JSON.stringify(data)}`);
+    console.log(`getCardType success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getSimGid1 fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getCardType fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
 
-## SimState<a name=SimState></a>
+## sim.hasSimCard<sup>7+</sup>
+
+hasSimCard\(slotId: number, callback: AsyncCallback<boolean\>\): void
+
+Checks whether the SIM card in the specified slot is installed. This function uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Communication.CoreService
+
+**Parameters**
+
+| Name  | Type                       | Mandatory| Description                                  |
+| -------- | --------------------------- | ---- | -------------------------------------- |
+| slotId   | number                      | Yes  | Card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result.                            |
+
+**Example**
+
+```
+sim.hasSimCard(0, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## sim.hasSimCard<sup>7+</sup>
+
+hasSimCard\(slotId: number\): Promise<boolean\>
+
+Checks whether the SIM card in the specified slot is installed. This function uses a promise to return the result.
+
+**System capability**: SystemCapability.Communication.CoreService
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                  |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | Yes  | Card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
+
+**Return Value**
+
+| Type                 | Description                              |
+| --------------------- | ---------------------------------- |
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the SIM card in the specified slot is installed, and the value **false** indicates the opposite.|
+
+**Example**
+
+```
+let promise = sim.hasSimCard(0);
+promise.then(data => {
+    console.log(`hasSimCard success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`hasSimCard fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+
+## sim.getMaxSimCount<sup>7+</sup>
+
+getMaxSimCount\(\): number
+
+Obtains the number of card slots.
+
+**System capability**: SystemCapability.Communication.CoreService
+
+**Return Value**
+
+| Type             | Description                                                        |
+| ----------------- | ------------------------------------------------------------ |
+| number | Number of card slots.|
+
+**Example**
+
+```
+console.log(sim.getMaxSimCount())
+```
+
+
+## SimState
 
 Enumerates SIM card states.
 
-| Variable| Description|
-| --------------------- | ---------------------------------------------------------- |
-| SIM_STATE_UNKNOWN     | The SIM card is in **unknown** state; that is, the SIM card status cannot be obtained.|
-| SIM_STATE_NOT_PRESENT | The SIM card is in **not present** state; that is, no SIM card is inserted into the slot.|
-| SIM_STATE_LOCKED      | The SIM card is in **locked** state; that is, the SIM card is locked by the personal identification number (PIN), PIN unblocking key (PUK), or network.|
-| SIM_STATE_NOT_READY   | The SIM card is in **not ready** state; that is, the SIM card is present but cannot work properly.|
-| SIM_STATE_READY       | The SIM card is in **ready** state; that is, the SIM card is present and is working properly.|
-| SIM_STATE_LOADED      | The SIM card is in **loaded** state; that is, the SIM card is present and all its files have been loaded.|
+**System capability**: SystemCapability.Telephony.CoreService
+
+| Name                 | Value  | Description                                                      |
+| --------------------- | ---- | ---------------------------------------------------------- |
+| SIM_STATE_UNKNOWN     | 0    | The SIM card is in **unknown** state; that is, the SIM card status cannot be obtained.                     |
+| SIM_STATE_NOT_PRESENT | 1    | The SIM card is in **not present** state; that is, no SIM card is inserted into the slot.     |
+| SIM_STATE_LOCKED      | 2    | The SIM card is in **locked** state; that is, the SIM card is locked by the personal identification number (PIN), PIN unblocking key (PUK), or network.  |
+| SIM_STATE_NOT_READY   | 3    | The SIM card is in **not ready** state; that is, the SIM card is present but cannot work properly.   |
+| SIM_STATE_READY       | 4    | The SIM card is in **ready** state; that is, the SIM card is present and is working properly.           |
+| SIM_STATE_LOADED      | 5    | The SIM card is in **loaded** state; that is, the SIM card is present and all its files have been loaded.|
+
+## CardType<sup>7+</sup>
+
+Enumerates card types.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+| Name| Value| Description|
+| ----- | ----- | ----- |
+|UNKNOWN_CARD | -1 | Unknown|
+|SINGLE_MODE_SIM_CARD | 10 | Single-card (SIM)|
+|SINGLE_MODE_USIM_CARD | 20 | Single-card (USIM)|
+|SINGLE_MODE_RUIM_CARD | 30 | Single-card (RUIM)|
+|DUAL_MODE_CG_CARD | 40 | Dual-card (CDMA+GSM)|
+|CT_NATIONAL_ROAMING_CARD | 41 | China Telecom internal roaming card|
+|CU_DUAL_MODE_CARD | 42 | China Unicom dual-mode card|
+|DUAL_MODE_TELECOM_LTE_CARD | 43 | China Telecom dual-mode LTE card|
+|DUAL_MODE_UG_CARD | 50 | Dual-mode card (UMTS+GSM)|
+|SINGLE_MODE_ISIM_CARD | 60 | Single-card (ISIM)|
