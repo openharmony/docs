@@ -856,3 +856,77 @@ DAHelper.query(
 		console.info("==========================>queryCallback=======================>");
 });
 ```
+
+## DataAbilityHelper.call
+
+call(uri: string, method: string, arg: string, extras: PacMap): Promise<PacMap>
+
+调用DataAbility的扩展接口，使用Promise方式作为异步方法。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
+
+**参数：**
+
+| 名称       | 类型                              | 必填 | 描述                                             |
+| ---------- | --------------------------------- | ---- | ------------------------------------------------ |
+| uri        | string                 | 是   | 指定待处理的DataAbility。例："dataability:///com.example.xxx.xxxx"           |
+| method    | string                  | 是   | 被调用的方法名。   |
+| arg      | string                   | 是   |需传入的参数。      |
+| extras   | [PacMap](#pacmap)        | 是   | 键值对参数。       |
+
+**返回值：**
+
+| 类型 | 说明 |
+|------ | ------- |
+|Promise<[PacMap](#pacmap)> | 调用的返回值。 |
+
+**示例：**
+
+```js
+import featureAbility from '@ohos.ability.featureAbility';
+
+let dataAbilityHelper = featureAbility.acquireDataAbilityHelper("dataability:///com.example.jsapidemo.UserDataAbility");
+dataAbilityHelper.call("dataability:///com.example.jsapidemo.UserDataAbility", "method", "arg", {"key1":"value1"}).then((data) => {
+    console.info('Operation succeeded: ' + data);
+}).catch((error) => {
+    console.error('Operation failed. Cause: ' + error);
+});
+```
+
+## DataAbilityHelper.call
+
+call(uri: string, method: string, arg: string, extras: PacMap, callback: AsyncCallback<PacMap>): void
+
+调用DataAbility的扩展接口，使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
+
+**参数：**
+
+| 名称       | 类型                              | 必填 | 描述                                             |
+| ---------- | --------------------------------- | ---- | ------------------------------------------------ |
+| uri        | string                 | 是   | 指定待处理的DataAbility。例："dataability:///com.example.xxx.xxxx"           |
+| method    | string                  | 是   | 被调用的方法名。   |
+| arg      | string                   | 是   |需传入的参数。      |
+| extras   | [PacMap](#pacmap)        | 是   | 键值对参数。       |
+| callback | AsyncCallback<[PacMap](#pacmap)> | 是 | 返回值。     |
+
+**示例：**
+
+```js
+import featureAbility from '@ohos.ability.featureAbility';
+
+let dataAbilityHelper = featureAbility.acquireDataAbilityHelper("dataability:///com.example.jsapidemo.UserDataAbility");
+dataAbilityHelper.call("dataability:///com.example.jsapidemo.UserDataAbility", "method", "arg", {"key1":"value1"}, (err, data) => {
+    if (err) {
+        console.error('Operation failed. Cause: ' + err);
+        return;
+    }
+    console.info('Operation succeeded: ' + data);
+});
+```
+## PacMap
+
+| 名称 | 参数类型 | 必填 | 说明 |
+| ------ | ------ | ------ | ------ |
+| [key: string] | number \| string \| boolean \| Array\<string \| number \| boolean\> \| null | 是 | 数据存储在键值对中。 |

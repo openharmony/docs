@@ -490,8 +490,309 @@ bundle.getAllApplicationInfo(bundleFlags, (err, data) => {
 })
 ```
 
+``## bundle.getAbilityInfo
 
+getAbilityInfo(bundleName: string, abilityName: string): Promise\<AbilityInfo>
 
+以异步方法根据给定的意图获取Ability信息，使用Promise形式返回结果。
+
+**需要权限：**
+
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED，ohos.permission.GET_BUNDLE_INFO
+
+**系统能力：**
+
+SystemCapability.BundleManager.BundleFramework
+
+**参数：**
+
+| 名称        | 类型   | 必填 | 描述                                                       |
+| ----------- | ------ | ---- | -------------------------------------------------------- |
+| bundleName  | string  | 是   | 要查询的应用程序包名称。  |
+| abilityName | string  |  是  | 表示待查询的Ability名称。 |
+
+**返回值：**
+
+| 类型                         | 说明                         |
+| ---------------------------- | ---------------------------- |
+| Promise\<AbilityInfo> | Promise形式返回Ability信息。 |
+
+**示例：**
+
+```js
+let bundleName = "com.example.myapplication";
+let abilityName = "com.example.myapplication.MainAbility";
+bundle.getAbilityInfo(bundleName, abilityName)
+.then((data) => {
+    console.info('Operation successful. Data: ' + JSON.stringify(data));
+}).catch((error) => {
+    console.error('Operation failed. Cause: ' + JSON.stringify(error));
+})
+```
+
+## bundle.getAbilityInfo
+
+getAbilityInfo(bundleName: string, abilityName: string): callback :
+AsyncCallback\<AbilityInfo>: void
+
+以异步方法根据给定的意图获取Ability信息，使用callback形式返回结果。
+
+**需要权限：**
+
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED，ohos.permission.GET_BUNDLE_INFO
+
+**系统能力：**
+
+SystemCapability.BundleManager.BundleFramework
+
+**参数：**
+
+| 名称        | 类型   | 必填 | 描述                                                        |
+| ----------- | ------ | ---- | --------------------------------------------------------- |
+| bundleName  | string  | 是   | 要查询的应用程序包名称。  |
+| abilityName | string  |  是  | 表示待查询的Ability名称。 |
+| callback    | AsyncCallback\<AbilityInfo> | 是 | 程序启动作为入参的回调函数，返回Ability信息。|
+
+**示例：**
+
+```js
+let bundleName = "com.example.myapplication";
+let abilityName = "com.example.myapplication.MainAbility";
+bundle.getAbilityInfo(bundleName, abilityName, (err, data) => {
+    if (err) {
+        console.error('Operation failed. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Operation successful. Data:' + JSON.stringify(data));
+})
+```
+
+## bundle.getAbilityLabel
+
+getAbilityLabel(bundleName: string, abilityName: string): Promise\<string>
+
+以异步方法根据给定的意图获取应用名称，使用Promise形式返回结果。
+
+**需要权限：**
+
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED，ohos.permission.GET_BUNDLE_INFO
+
+**系统能力：**
+
+SystemCapability.BundleManager.BundleFramework
+
+**参数：**
+
+| 名称        | 类型   | 必填 | 描述                                                       |
+| ----------- | ------ | ---- | -------------------------------------------------------- |
+| bundleName  | string  | 是   | 要查询的应用程序包名称。  |
+| abilityName | string  |  是  | 表示待查询的Ability名称。 |
+
+**返回值：**
+
+| 类型                         | 说明                         |
+| ---------------------------- | ---------------------------- |
+| Promise\<string> | Promise形式返回应用名称信息。 |
+
+**示例：**
+
+```js
+let bundleName = "com.example.myapplication";
+let abilityName = "com.example.myapplication.MainAbility";
+bundle.getAbilityLabel(bundleName, abilityName)
+.then((data) => {
+    console.info('Operation successful. Data: ' + JSON.stringify(data));
+}).catch((error) => {
+    console.error('Operation failed. Cause: ' + JSON.stringify(error));
+})
+```
+
+## bundle.getAbilityLabel
+
+getAbilityLabel(bundleName: string, abilityName: string, callback : AsyncCallback\<string>): void
+
+以异步方法根据给定的意图获取应用名称，使用callback形式返回结果。
+
+**需要权限：**
+
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED，ohos.permission.GET_BUNDLE_INFO
+
+**系统能力：**
+
+SystemCapability.BundleManager.BundleFramework
+
+**参数：**
+
+| 名称        | 类型   | 必填 | 描述                                                        |
+| ----------- | ------ | ---- | --------------------------------------------------------- |
+| bundleName  | string  | 是   | 要查询的应用程序包名称。  |
+| abilityName | string  |  是  | 表示待查询的Ability名称。 |
+| callback | AsyncCallback\<string> | 是 | 返回应用名称信息。|
+
+**示例：**
+
+```js
+let bundleName = "com.example.myapplication";
+let abilityName = "com.example.myapplication.MainAbility";
+bundle.getAbilityLabel(bundleName, abilityName, (err, data) => {
+    if (err) {
+        console.error('Operation failed. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Operation successful. Data:' + JSON.stringify(data));
+})
+```
+
+## bundle.isAbilityEnabled
+
+isAbilityEnabled(info: AbilityInfo): Promise\<boolean>
+
+以异步方法根据给定的意图查询ability是否已经启用，使用Promise形式返回结果。
+
+**需要权限：**
+
+无
+
+**系统能力：**
+
+SystemCapability.BundleManager.BundleFramework
+
+**参数：**
+
+| 名称        | 类型   | 必填 | 描述                      |
+| ----------- | ------ | ---- | ------------             |
+| info       | AbilityInfo  | 是   | Ability的配置信息    |
+
+**返回值：**
+
+| 类型                         | 说明                     |
+| ---------------------------- | ------------------------|
+| Promise\<boolean> | Promise形式返回boolean代表是否启用。 |
+
+**示例：**
+
+```js
+let Info = {
+    bundleName : "com.example.myapplication",
+    name : "com.example.myapplication.MainAbility"
+};
+bundle.isAbilityEnabled(Info)
+.then((data) => {
+    console.info('Operation successful. Data: ' + JSON.stringify(data));
+}).catch((error) => {
+    console.error('Operation failed. Cause: ' + JSON.stringify(error));
+})
+```
+
+## bundle.isAbilityEnabled
+
+isAbilityEnabled(info : AbilityInfo, callback : AsyncCallback\<boolean>): void
+
+以异步方法根据给定的意图查询ability是否已经启用，使用callback形式返回结果。
+
+**需要权限：**
+
+无
+
+**系统能力：**
+
+SystemCapability.BundleManager.BundleFramework
+
+**参数：**
+
+| 名称        | 类型   | 必填 | 描述                                                        |
+| ----------- | ------ | ---- | --------------------------------------------------------- |
+| info  | AbilityInfo  | 是   | Ability的配置信息         |
+| callback |  AsyncCallback\<boolean> | 是 | 返回boolean代表是否启用 |
+
+**示例：**
+
+```js
+let Info = {
+    bundleName : "com.example.myapplication",
+    name : "com.example.myapplication.MainAbility"
+};
+bundle.isAbilityEnabled(Info, (err, data) => {
+    if (err) {
+        console.error('Operation failed. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Operation successful. Data:' + JSON.stringify(data));
+})
+```
+
+## bundle.isApplicationEnabled
+
+isApplicationEnabled(bundleName: string): Promise\<boolean>
+
+以异步方法根据给定的意图查询指定应用程序是否已经启用，使用Promise形式返回结果。
+
+**需要权限：**
+
+无
+
+**系统能力：**
+
+SystemCapability.BundleManager.BundleFramework
+
+**参数：**
+
+| 名称        | 类型   | 必填 | 描述                                                       |
+| ----------- | ------ | ---- | -------------------------------------------------------- |
+| bundleName  | string | 是   | 要查询的应用程序包名称。   |
+
+**返回值：**
+
+| 类型                         | 说明                     |
+| ---------------------------- | ------------------------|
+| Promise\<boolean> | Promise形式返回boolean代表是否启用。 |
+
+**示例：**
+
+```js
+let bundleName : "com.example.myapplication";
+bundle. 
+
+.then((data) => {
+    console.info('Operation successful. Data: ' + JSON.stringify(data));
+}).catch((error) => {
+    console.error('Operation failed. Cause: ' + JSON.stringify(error));
+})
+```
+
+## bundle.isApplicationEnabled
+
+isApplicationEnabled(bundleName: string, callback : AsyncCallback\<boolean>): void
+
+以异步方法根据给定的意图查询指定应用程序是否已经启用，使用callback形式返回结果。
+
+**需要权限：**
+
+无
+
+**系统能力：**
+
+SystemCapability.BundleManager.BundleFramework
+
+**参数：**
+
+| 名称        | 类型   | 必填 | 描述                                                        |
+| ----------- | ------ | ---- | --------------------------------------------------------- |
+| bundleName  | string | 是   | 要查询的应用程序包名称。   |
+| callback |  AsyncCallback\<boolean> | 是 | 返回boolean代表是否启用 |
+
+**示例：**
+
+```js
+let bundleName : "com.example.myapplication";
+bundle.isApplicationEnabled(bundleName, (err, data) => {
+    if (err) {
+        console.error('Operation failed. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Operation successful. Data:' + JSON.stringify(data));
+})
+```
 
 ## bundle.queryAbilityByWant
 
