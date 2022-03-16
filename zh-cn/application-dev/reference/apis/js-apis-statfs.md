@@ -21,15 +21,13 @@ import statfs from '@ohos.statfs';
 let path = dir + "xxx.txt";
 ```
 
-## 系统能力
-
-SystemCapability.FileManagement.File.FileIO
-
 ## statfs.getFreeBytes
 
 getFreeBytes(path:string):Promise&lt;number&gt;
 
 异步方法获取指定文件系统空闲字节数，以Promise形式返回结果。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 参数：
 
@@ -60,6 +58,8 @@ getFreeBytes(path:string, callback:AsyncCallback&lt;number&gt;): void
 
 异步方法获取指定文件系统空闲字节数，使用callback形式返回结果。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 参数：
 
   | 参数名   | 类型                        | 必填 | 说明                         |
@@ -80,6 +80,8 @@ getFreeBytes(path:string, callback:AsyncCallback&lt;number&gt;): void
 getTotalBytes(path: string): Promise&lt;number&gt;
 
 异步方法获取指定文件系统总字节数，以Promise形式返回结果。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 参数：
 
@@ -109,6 +111,8 @@ getTotalBytes(path: string): Promise&lt;number&gt;
 getTotalBytes(path: string, callback: AsyncCallback&lt;number&gt;): void
 
 异步方法获取指定文件系统总字节数，使用callback形式返回结果。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 参数：
 

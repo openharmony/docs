@@ -42,6 +42,8 @@ stat(path: string): Promise&lt;Stat&gt;
 
 以异步方法获取文件信息，使用promise形式返回结果。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -68,6 +70,8 @@ stat(path:string, callback:AsyncCallback&lt;Stat&gt;): void
 
 以异步方法获取文件信息，使用callback形式返回结果。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -87,6 +91,8 @@ stat(path:string, callback:AsyncCallback&lt;Stat&gt;): void
 statSync(path:string): Stat
 
 以同步方法获取文件的信息。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -111,6 +117,8 @@ statSync(path:string): Stat
 opendir(path: string): Promise&lt;Dir&gt;
 
 以异步方法打开文件目录，使用promise形式返回结果。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -138,6 +146,8 @@ opendir(path: string, callback: AsyncCallback&lt;Dir&gt;): void
 
 以异步方法打开文件目录，使用callback形式返回结果。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -158,6 +168,8 @@ opendir(path: string, callback: AsyncCallback&lt;Dir&gt;): void
 opendirSync(path: string): Dir
 
 以同步方法打开文件目录。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 
 - 参数：
@@ -183,6 +195,8 @@ opendirSync(path: string): Dir
 access(path: string, mode?: number): Promise&lt;void&gt;
 
 以异步方法检查当前进程是否可访问某文件，使用promise形式返回结果。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 参数：.
   | 参数名 | 类型 | 必填 | 说明 |
@@ -211,6 +225,8 @@ access(path: string, mode: number, callback: AsyncCallback&lt;void&gt;): void
 
 以异步方法检查当前进程是否可访问某文件，使用callback形式返回结果。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -232,6 +248,7 @@ accessSync(path: string, mode?: number): void
 
 以同步方法检查当前进程是否可访问某文件。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -254,6 +271,8 @@ accessSync(path: string, mode?: number): void
 close(fd: number):Promise&lt;void&gt;
 
 以异步方法关闭文件，使用promise形式返回结果。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -282,6 +301,8 @@ close(fd: number, callback:AsyncCallback&lt;void&gt;): void
 
 以异步方法关闭文件，使用callback形式返回结果。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -303,6 +324,8 @@ closeSync(fd: number): void
 
 以同步方法关闭文件。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -319,6 +342,8 @@ closeSync(fd: number): void
 close(): Promise&lt;void&gt;
 
 以异步方法关闭文件流，使用promise形式返回结果。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 返回值：
   | 类型 | 说明 |
@@ -341,6 +366,8 @@ close(callback: AsyncCallback&lt;void&gt;): void
 
 以异步方法关闭文件流，使用callback形式返回结果。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -359,6 +386,8 @@ close(callback: AsyncCallback&lt;void&gt;): void
 copyFile(src:string | number, dest:string | number, mode?:number):Promise&lt;void&gt;
 
 以异步方法复制文件，使用promise形式返回结果。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -388,6 +417,8 @@ copyFile(src: string | number, dest: string | number, mode: number, callback: As
 
 以异步方法复制文件，使用callback形式返回结果。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -410,6 +441,8 @@ copyFileSync(src: string | number, dest: string | number, mode?: number): void
 
 以同步方法复制文件。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -429,6 +462,7 @@ mkdir(path:string, mode?: number): Promise&lt;void&gt;
 
 以异步方法创建目录，使用promise形式返回结果。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -457,6 +491,8 @@ mkdir(path: string, mode: number, callback: AsyncCallback&lt;void&gt;): void
 
 以异步方法创建目录，使用callback形式返回结果。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -480,6 +516,8 @@ mkdirSync(path: string, mode?: number): void
 
 以同步方法创建目录。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -497,6 +535,8 @@ mkdirSync(path: string, mode?: number): void
 open(path: string, flags?: number, mode?: number): Promise&lt;number&gt;
 
 以异步的方法打开文件，使用promise形式返回结果。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -526,6 +566,8 @@ open(path: string, flags: number, mode: number, callback: AsyncCallback&lt;numbe
 
 以异步的方法打开文件，使用callback形式返回结果。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -547,6 +589,8 @@ open(path: string, flags: number, mode: number, callback: AsyncCallback&lt;numbe
 openSync(path:string, flags?:number, mode?:number): number
 
 以同步方法打开文件。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -575,6 +619,8 @@ read(fd: number, buffer: ArrayBuffer, options?: {
 }): Promise&lt;ReadOut&gt;
 
 以异步方法从文件读取数据，使用promise形式返回结果。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -610,6 +656,8 @@ read(fd: number, buffer: ArrayBuffer, options: {
 
 以异步方法从文件读取数据，使用callback形式返回结果。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -640,6 +688,8 @@ readSync(fd: number, buffer: ArrayBuffer, options?: {
 
 以同步方法从文件读取数据。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -665,6 +715,8 @@ readSync(fd: number, buffer: ArrayBuffer, options?: {
 rmdir(path: string): Promise&lt;void&gt;
 
 以异步方法删除目录，使用promise形式返回结果。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -692,6 +744,8 @@ rmdir(path: string, callback:AsyncCallback&lt;void&gt;): void
 
 以异步方法删除目录，使用callback形式返回结果。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -712,6 +766,8 @@ rmdirSync(path: string): void
 
 以同步方法删除目录。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -728,6 +784,8 @@ rmdirSync(path: string): void
 unlink(path:string): Promise&lt;void&gt;
 
 以异步方法删除文件，使用promise形式返回结果。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -755,6 +813,8 @@ unlink(path:string, callback:AsyncCallback&lt;void&gt;): void
 
 以异步方法删除文件，使用callback形式返回结果。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -777,6 +837,8 @@ unlinkSync(path: string): void
 
 以同步方法删除文件。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -798,6 +860,8 @@ write(fd: number, buffer: ArrayBuffer | string, options?: {
 }): Promise&lt;number&gt;
 
 以异步方法将数据写入文件，使用promise形式返回结果。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -833,6 +897,8 @@ write(fd: number, buffer: ArrayBuffer | string, options: {
 
 以异步方法将数据写入文件，使用callback形式返回结果。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -863,6 +929,8 @@ writeSync(fd: number, buffer: ArrayBuffer | string, options?: {
 
 以同步方法将数据写入文件。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -887,6 +955,8 @@ writeSync(fd: number, buffer: ArrayBuffer | string, options?: {
 hash(path: string, algorithm: string): Promise&lt;string&gt;
 
 以异步方法计算文件的哈希值，使用promise形式返回结果。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -915,6 +985,8 @@ hash(path: string, algorithm: string, callback: AsyncCallback&lt;string&gt;): vo
 
 以异步方法计算文件的哈希值，使用callback形式返回结果。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -937,6 +1009,8 @@ hash(path: string, algorithm: string, callback: AsyncCallback&lt;string&gt;): vo
 chmod(path: string, mode: number):Promise&lt;void&gt;
 
 以异步方法基于文件路径改变文件权限，使用promise形式返回结果。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -965,6 +1039,8 @@ chmod(path: string, mode: number, callback: AsyncCallback&lt;void&gt;): void
 
 以异步方法基于文件路径改变文件权限，使用callback形式返回结果。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -986,6 +1062,8 @@ chmodSync(path: string, mode: number): void
 
 以同步方法基于文件路径改变文件权限。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -1003,6 +1081,8 @@ chmodSync(path: string, mode: number): void
 fstat(fd: number): Promise&lt;Stat&gt;
 
 以异步方法基于文件描述符获取文件状态信息，使用promise形式返回结果。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -1030,6 +1110,8 @@ fstat(fd: number, callback: AsyncCallback&lt;Stat&gt;): void
 
 以异步方法基于文件描述符获取文件状态信息，使用callback形式返回结果。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -1050,6 +1132,8 @@ fstat(fd: number, callback: AsyncCallback&lt;Stat&gt;): void
 fstatSync(fd: number): Stat
 
 以同步方法基于文件描述符获取文件状态信息。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -1073,6 +1157,8 @@ fstatSync(fd: number): Stat
 ftruncate(fd: number, len?: number): Promise&lt;void&gt;
 
 以异步方法基于文件描述符截断文件，使用promise形式返回结果。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -1102,6 +1188,8 @@ ftruncate(fd: number, len: number, callback:AsyncCallback&lt;void&gt;): void
 
 以异步方法基于文件描述符截断文件，使用callback形式返回结果。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -1123,6 +1211,8 @@ ftruncateSync(fd: number, len?: number): void
 
 以同步方法基于文件描述符截断文件。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -1140,6 +1230,8 @@ ftruncateSync(fd: number, len?: number): void
 truncate(path: string, len?: number): Promise&lt;void&gt;
 
 以异步方法基于文件路径截断文件，使用promise形式返回结果。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -1168,6 +1260,8 @@ truncate(path: string, len: number, callback:AsyncCallback&lt;void&gt;): void
 
 以异步方法基于文件路径截断文件，使用callback形式返回结果。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -1188,6 +1282,8 @@ truncate(path: string, len: number, callback:AsyncCallback&lt;void&gt;): void
 truncateSync(path: string, len?: number): void
 
 以同步方法基于文件路径截断文件。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -1210,6 +1306,8 @@ readText(filePath: string, options?: {
 }): Promise&lt;string&gt;
 
 以异步方法基于文本方式读取文件（即直接读取文件的文本内容），使用promise形式返回结果。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -1242,6 +1340,8 @@ readText(filePath: string, options: {
 
 以异步方法基于文本方式读取文件（即直接读取文件的文本内容），使用callback形式返回结果。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -1267,6 +1367,8 @@ readTextSync(filePath: string, options?: {
 
 以同步方法基于文本方式读取文件（即直接读取文件的文本内容）。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -1289,6 +1391,8 @@ readTextSync(filePath: string, options?: {
 lstat(path: string): Promise&lt;Stat&gt;
 
 以异步方法获取链接状态信息，使用promise形式返回结果。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -1316,6 +1420,8 @@ lstat(path:string, callback:AsyncCallback&lt;Stat&gt;): void
 
 以异步方法获取链接状态信息，使用callback形式返回结果。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -1335,6 +1441,8 @@ lstat(path:string, callback:AsyncCallback&lt;Stat&gt;): void
 lstatSync(path:string): Stat
 
 以同步方法获取链接状态信息。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -1361,6 +1469,8 @@ read(buffer: ArrayBuffer, options?: {
 }): Promise&lt;ReadOut&gt;
 
 以异步方法从文件读取数据，使用promise形式返回结果。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -1393,6 +1503,8 @@ read(buffer: ArrayBuffer, options: {
 
 异步方法从文件读取数据，使用callback形式返回结果。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -1416,6 +1528,8 @@ read(buffer: ArrayBuffer, options: {
 rename(oldPath: string, newPath: string): Promise&lt;void&gt;
 
 以异步方法重命名文件，使用promise形式返回结果。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -1444,6 +1558,8 @@ rename(oldPath: string, newPath: string, callback: AsyncCallback&lt;void&gt;): v
 
 以异步方法重命名文件，使用callback形式返回结果。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -1464,6 +1580,8 @@ renameSync(oldPath: string, newPath: string): void
 
 以同步方法重命名文件。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -1481,6 +1599,8 @@ renameSync(oldPath: string, newPath: string): void
 fsync(fd: number): Promise&lt;void&gt;
 
 以异步方法同步文件数据，使用promise形式返回结果。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -1508,6 +1628,8 @@ fsync(fd: number, callback: AsyncCallback&lt;void&gt;): void
 
 以异步方法同步文件数据，使用callback形式返回结果。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -1528,6 +1650,8 @@ fsyncSync(fd: number): void
 
 以同步方法同步文件数据。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -1544,6 +1668,8 @@ fsyncSync(fd: number): void
 fdatasync(fd: number): Promise&lt;void&gt;
 
 以异步方法实现文件内容数据同步，使用promise形式返回结果。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -1571,6 +1697,8 @@ fdatasync(fd: number, callback:AsyncCallback&lt;void&gt;): void
 
 以异步方法实现文件内容数据同步，使用callback形式返回结果。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -1591,6 +1719,8 @@ fdatasyncSync(fd: number): void
 
 以同步方法实现文件内容数据同步。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -1607,6 +1737,8 @@ fdatasyncSync(fd: number): void
 symlink(target: string, srcPath: string): Promise&lt;void&gt;
 
 以异步方法基于文件路径创建符号链接，使用promise形式返回结果。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -1635,6 +1767,8 @@ symlink(target: string, srcPath: string, callback: AsyncCallback&lt;void&gt;): v
 
 以异步方法基于文件路径创建符号链接，使用callback形式返回结果。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -1656,6 +1790,8 @@ symlinkSync(target: string, srcPath: string): void
 
 以同步的方法基于文件路径创建符号链接。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -1673,6 +1809,8 @@ symlinkSync(target: string, srcPath: string): void
 chown(path: string, uid: number, gid: number): Promise&lt;void&gt;
 
 以异步的方法基于文件路径改变文件所有者，使用promise形式返回结果。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -1703,6 +1841,8 @@ chown(path: string, uid: number, gid: number, callback: AsyncCallback&lt;void&gt
 
 以异步的方法基于文件路径改变文件所有者，使用callback形式返回结果。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -1726,6 +1866,8 @@ chownSync(path: string, uid: number, gid: number): void
 
 以同步的方法基于文件路径改变文件所有者。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -1745,6 +1887,8 @@ chownSync(path: string, uid: number, gid: number): void
 mkdtemp(prefix: string): Promise&lt;string&gt;
 
 以异步的方法创建临时目录，使用promise形式返回结果。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -1772,6 +1916,8 @@ mkdtemp(prefix: string, callback: AsyncCallback&lt;string&gt;): void
 
 以异步的方法创建临时目录，使用callback形式返回结果。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -1791,6 +1937,8 @@ mkdtemp(prefix: string, callback: AsyncCallback&lt;string&gt;): void
 mkdtempSync(prefix: string): string
 
 以同步的方法创建临时目录。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -1813,6 +1961,8 @@ mkdtempSync(prefix: string): string
 fchmod(fd: number, mode: number): Promise&lt;void&gt;
 
 以异步方法基于文件描述符改变文件权限，使用promise形式返回结果。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -1841,6 +1991,8 @@ fchmod(fd: number, mode: number, callback: AsyncCallback&lt;void&gt;): void
 
 以异步方法基于文件描述符改变文件权限，使用callback形式返回结果。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -1862,6 +2014,8 @@ fchmodSync(fd: number, mode: number): void
 
 以同步方法基于文件描述符改变文件权限。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -1879,6 +2033,8 @@ fchmodSync(fd: number, mode: number): void
 createStream(path: string, mode: string): Promise&lt;Stream&gt;
 
 以异步方法基于文件路径打开文件流，使用promise形式返回结果。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -1907,6 +2063,8 @@ createStream(path: string, mode: string, callback: AsyncCallback&lt;Stream&gt;):
 
 以异步方法基于文件路径打开文件流，使用callback形式返回结果。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -1927,6 +2085,8 @@ createStream(path: string, mode: string, callback: AsyncCallback&lt;Stream&gt;):
 createStreamSync(path: string, mode: string): Stream
 
 以同步方法基于文件路径打开文件流。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -1950,6 +2110,8 @@ createStreamSync(path: string, mode: string): Stream
 fdopenStream(fd: number, mode: string): Promise&lt;Stream&gt;
 
 以异步方法基于文件描述符打开文件流，使用promise形式返回结果。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -1978,6 +2140,8 @@ fdopenStream(fd: number, mode: string, callback: AsyncCallback&lt;Stream&gt;): v
 
 以异步方法基于文件描述符打开文件流，使用callback形式返回结果。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -1998,6 +2162,8 @@ fdopenStream(fd: number, mode: string, callback: AsyncCallback&lt;Stream&gt;): v
 fdopenStreamSync(fd: number, mode: string): Stream
 
 以同步方法基于文件描述符打开文件流。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -2021,6 +2187,8 @@ fdopenStreamSync(fd: number, mode: string): Stream
 fchown(fd: number, uid: number, gid: number): Promise&lt;void&gt;
 
 以异步方法基于文件描述符改变文件所有者，使用promise形式返回结果。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -2051,6 +2219,8 @@ fchown(fd: number, uid: number, gid: number, callback: AsyncCallback&lt;void&gt;
 
 以异步方法基于文件描述符改变文件所有者，使用callback形式返回结果。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -2074,6 +2244,8 @@ fchownSync(fd: number, uid: number, gid: number): void
 
 以同步方法基于文件描述符改变文件所有者。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -2093,6 +2265,8 @@ fchownSync(fd: number, uid: number, gid: number): void
 lchown(path: string, uid: number, gid: number): Promise&lt;void&gt;
 
 以异步方法基于文件路径改变文件所有者，更改符号链接本身的所有者，而不是符号链接所指向的实际文件，使用promise形式返回结果。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -2123,6 +2297,8 @@ lchown(path: string, uid: number, gid: number, callback: AsyncCallback&lt;void&g
 
 以异步方法基于文件路径改变文件所有者，更改符号链接本身的所有者，而不是更改符号链接所指向的实际文件，使用callback形式返回结果。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -2146,6 +2322,8 @@ lchownSync(path: string, uid: number, gid: number): void
 
 以同步方法基于文件路径改变文件所有者，更改符号链接本身的所有者，而不是更改符号链接所指向的实际文件。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -2165,6 +2343,8 @@ lchownSync(path: string, uid: number, gid: number): void
 createWatcher(filename: string, events: number, callback: AsyncCallback&lt;number&gt;): Watcher
 
 以异步方法监听文件或者目录的变化，使用callback形式返回结果。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -2190,6 +2370,8 @@ createWatcher(filename: string, events: number, callback: AsyncCallback&lt;numbe
 
 仅用于read方法，获取文件的读取结果。
 
+**系统能力**：以下各项对应的系统能力均为SystemCapability.FileManagement.File.FileIO。
+
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | bytesRead | number | 是 | 是 | 实际读取长度。 |
@@ -2201,6 +2383,7 @@ createWatcher(filename: string, events: number, callback: AsyncCallback&lt;numbe
 
 文件具体信息，在调用Stat的方法前，需要先通过[stat()](#fileiostat)方法（同步或异步）来构建一个Stat实例。
 
+**系统能力**：以下各项对应的系统能力均为SystemCapability.FileManagement.File.FileIO。
 
 ### 属性
 
@@ -2226,6 +2409,8 @@ isBlockDevice(): boolean
 
 用于判断当前目录项是否是块特殊文件。一个块特殊文件只能以块为粒度进行访问，且访问的时候带缓存。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 返回值：
   | 类型 | 说明 |
   | -------- | -------- |
@@ -2242,6 +2427,8 @@ isBlockDevice(): boolean
 isCharacterDevice(): boolean
 
 用于判断当前目录项是否是字符特殊文件。一个字符特殊设备可进行随机访问，且访问的时候不带缓存。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 返回值：
   | 类型 | 说明 |
@@ -2260,6 +2447,8 @@ isDirectory(): boolean
 
 用于判断当前目录项是否是目录。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 返回值：
   | 类型 | 说明 |
   | -------- | -------- |
@@ -2276,6 +2465,8 @@ isDirectory(): boolean
 isFIFO(): boolean
 
 用于判断当前目录项是否是命名管道（有时也称为FIFO）。命名管道通常用于进程间通信。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 返回值：
   | 类型 | 说明 |
@@ -2294,6 +2485,8 @@ isFile(): boolean
 
 用于判断当前目录项是否是普通文件。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 返回值：
   | 类型 | 说明 |
   | -------- | -------- |
@@ -2311,6 +2504,8 @@ isSocket(): boolean
 
 用于判断当前目录项是否是套接字。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 返回值：
   | 类型 | 说明 |
   | -------- | -------- |
@@ -2327,6 +2522,8 @@ isSocket(): boolean
 isSymbolicLink(): boolean
 
 用于判断当前目录项是否是符号链接。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 返回值：
   | 类型 | 说明 |
@@ -2350,6 +2547,8 @@ stop(): Promise&lt;void&gt;
 
 以异步方法关闭watcher监听，使用promise形式返回结果。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 示例：
   ```js
   fileio.stop();
@@ -2361,6 +2560,8 @@ stop(): Promise&lt;void&gt;
 stop(callback: AsyncCallback&lt;void&gt;): void
 
 以异步方法关闭watcher监听，使用callback形式返回结果。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -2386,6 +2587,8 @@ close(): Promise&lt;void&gt;
 
 异步关闭文件流，使用promise形式返回结果。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 返回值：
   | 类型 | 说明 |
   | -------- | -------- |
@@ -2408,6 +2611,8 @@ close(callback: AsyncCallback&lt;void&gt;): void
 
 异步关闭文件流，使用callback形式返回结果。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -2428,6 +2633,8 @@ closeSync(): void
 
 同步关闭文件流。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 示例：
   ```js
   let ss= fileio.createStreamSync(path);
@@ -2440,6 +2647,8 @@ closeSync(): void
 flush(): Promise&lt;void&gt;
 
 异步刷新文件流，使用promise形式返回结果。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 返回值：
   | 类型 | 说明 |
@@ -2463,6 +2672,8 @@ flush(callback: AsyncCallback&lt;void&gt;): void
 
 异步刷新文件流，使用callback形式返回结果。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -2483,6 +2694,8 @@ flushSync(): void
 
 同步刷新文件流。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 示例：
   ```js
   let ss= fileio.createStreamSync(path);
@@ -2500,6 +2713,8 @@ write(buffer: ArrayBuffer | string, options?: {
 }): Promise&lt;number&gt;
 
 以异步方法将数据写入流文件，使用promise形式返回结果。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -2534,6 +2749,8 @@ write(buffer: ArrayBuffer | string, options: {
 
 以异步方法将数据写入流文件，使用callback形式返回结果。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -2564,6 +2781,8 @@ writeSync(buffer: ArrayBuffer | string, options?: {
 
 以同步方法将数据写入流文件。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -2591,6 +2810,8 @@ read(buffer: ArrayBuffer, options?: {
 }): Promise&lt;ReadOut&gt;
 
 以异步方法从流文件读取数据，使用promise形式返回结果。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -2624,6 +2845,8 @@ read(buffer: ArrayBuffer, options: {
 
 以异步方法从流文件读取数据，使用callback形式返回结果。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -2651,6 +2874,8 @@ readSync(buffer: ArrayBuffer, options?: {
 }): number
 
 以同步方法从流文件读取数据。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -2681,6 +2906,8 @@ read(): Promise&lt;Dirent&gt;
 
 异步读取下一个目录项，使用promise形式返回结果。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 返回值：
   | 类型 | 说明 |
   | -------- | -------- |
@@ -2702,6 +2929,8 @@ read(): Promise&lt;Dirent&gt;
 read(callback: AsyncCallback&lt;Dirent&gt;): void
 
 异步读取下一个目录项，使用callback形式返回结果。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -2726,6 +2955,8 @@ readSync(): Dirent
 
 同步读取下一个目录项。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 返回值：
   | 类型 | 说明 |
   | -------- | -------- |
@@ -2744,6 +2975,8 @@ closeSync(): void
 
 用于关闭目录。目录被关闭后，Dir中持有的文件描述将被释放，后续将无法从Dir中读取目录项。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 示例：
   ```js
   let dir = fileio.opendirSync(dpath);
@@ -2755,6 +2988,7 @@ closeSync(): void
 
 在调用Dirent的方法前，需要先通过[dir.read()](#read)方法（同步或异步）来构建一个Dirent实例。
 
+**系统能力**：以下各项对应的系统能力均为SystemCapability.FileManagement.File.FileIO。
 
 ### 属性
 
@@ -2768,6 +3002,8 @@ closeSync(): void
 isBlockDevice(): boolean
 
 用于判断当前目录项是否是块特殊文件。一个块特殊文件只能以块为粒度进行访问，且访问的时候带缓存。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 返回值：
   | 类型 | 说明 |
@@ -2787,6 +3023,8 @@ isCharacterDevice(): boolean
 
 用于判断当前目录项是否是字符特殊设备。一个字符特殊设备可进行随机访问，且访问的时候不带缓存。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 返回值：
   | 类型 | 说明 |
   | -------- | -------- |
@@ -2804,6 +3042,8 @@ isCharacterDevice(): boolean
 isDirectory(): boolean
 
 用于判断当前目录项是否是目录。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 返回值：
   | 类型 | 说明 |
@@ -2823,6 +3063,8 @@ isFIFO(): boolean
 
 用于判断当前目录项是否是命名管道（有时也称为FIFO）。命名管道通常用于进程间通信。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 返回值：
   | 类型 | 说明 |
   | -------- | -------- |
@@ -2840,6 +3082,8 @@ isFIFO(): boolean
 isFile(): boolean
 
 用于判断当前目录项是否是普通文件。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 返回值：
   | 类型 | 说明 |
@@ -2859,6 +3103,8 @@ isSocket(): boolean
 
 用于判断当前目录项是否是套接字。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 - 返回值：
   | 类型 | 说明 |
   | -------- | -------- |
@@ -2876,6 +3122,8 @@ isSocket(): boolean
 isSymbolicLink(): boolean
 
 用于判断当前目录项是否是符号链接。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 返回值：
   | 类型 | 说明 |

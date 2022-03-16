@@ -11,15 +11,13 @@
 import storagestatistics from "@ohos.storageStatistics";
 ```
 
-## 系统能力
-
-SystemCapability.FileManagement.StorageService.SpatialStatistics
-
 ## storagestatistics.getTotalSizeOfVolume
 
 getTotalSizeOfVolume(volumeUuid: string): Promise&lt;number&gt;
 
 异步获取指定卷的总空间大小，以promise方式返回。
+
+**系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
 
 - 参数
 
@@ -50,6 +48,8 @@ getTotalSizeOfVolume(volumeUuid: string, callback:AsyncCallback&lt;number&gt;):v
 
 异步获取指定卷的总空间大小，以callback方式返回。
 
+**系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
+
 - 参数
 
   | 参数名     | 类型                                 | 必填 | 说明                       |
@@ -74,6 +74,8 @@ getTotalSizeOfVolume(volumeUuid: string, callback:AsyncCallback&lt;number&gt;):v
 getFreeSizeOfVolume(volumeUuid: string): Promise&lt;number&gt;
 
 异步获取指定卷的可用空间大小，以promise方式返回。
+
+**系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
 
 - 参数
 
@@ -105,6 +107,8 @@ getFreeSizeOfVolume(volumeUuid: string, callback:AsyncCallback&lt;number&gt;):vo
 
 异步获取指定卷的可用空间大小，以callback方式返回。
 
+**系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
+
 - 参数
 
   | 参数名     | 类型                                 | 必填 | 说明                         |
@@ -127,6 +131,8 @@ getFreeSizeOfVolume(volumeUuid: string, callback:AsyncCallback&lt;number&gt;):vo
 getBundleStats(packageName: string): Promise&lt;BundleStats&gt;
 
 异步获取应用存储状态，以promise方式返回。
+
+**系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
 
 - 参数
 
@@ -157,6 +163,8 @@ getBundleStats(packageName: string,  callback: AsyncCallback&lt;BundleStats&gt;)
 
 异步获取应用存储状态，以callback方式返回。
 
+**系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
+
 - 参数
 
   | 参数名   | 类型                                                      | 必填 | 说明                                 |
@@ -175,6 +183,8 @@ getBundleStats(packageName: string,  callback: AsyncCallback&lt;BundleStats&gt;)
   ```
 
 ## BundleStats<sup>9+</sup>
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.FileManagement.StorageService.SpatialStatistics。
 
 ### 属性
 

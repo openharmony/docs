@@ -9,15 +9,13 @@
 import filemanager from '@ohos.fileManager';
 ```
 
-## 系统能力
-
-SystemCapability.FileManagement.FileManagerService
-
 ## filemanager.getRoot
 
 getRoot(options? : {dev? : DevInfo}) : Promise&lt;FileInfo[]&gt;
 
 以异步方法获取第一层相册，目录信息。使用promise形式返回结果。
+
+**系统能力**：SystemCapability.FileManagement.FileManagerService
 
 - 参数
   | 参数名 | 类型 | 必填 | 说明 |
@@ -50,6 +48,8 @@ getRoot(options? : {dev? : DevInfo}, callback : AsyncCallback&lt;FileInfo[]&gt;)
 
 以异步方法获取第一层相册，目录信息。使用callback形式返回结果。
 
+**系统能力**：SystemCapability.FileManagement.FileManagerService
+
 - 参数
 
   | 参数名   | 类型                      | 必填 | 说明                          |
@@ -74,6 +74,8 @@ filemanager.getRoot((err, fileInfo) => {
 listFile(path : string, type : string, options? : {dev? : DevInfo, offset? : number, count? : number}) : Promise&lt;FileInfo[]&gt;
 
 以异步方法获取第二层相册，文件信息。使用promise形式返回结果。
+
+**系统能力**：SystemCapability.FileManagement.FileManagerService
 
 - 参数
   | 参数名 | 类型 | 必填 | 说明 |
@@ -118,6 +120,8 @@ listFile(path : string, type : string, options? : {dev? : DevInfo, offset? : num
 
 以异步方法获取第二层相册，文件信息。使用callback形式返回结果。
 
+**系统能力**：SystemCapability.FileManagement.FileManagerService
+
 - 参数
 
   | 参数名   | 类型                      | 必填 | 说明                                                         |
@@ -153,6 +157,8 @@ filemanager.listFile(media_path, "file", (err, fileInfo) => {
 filemanager.createFile(path : string, filename : string, options? : {dev? : DevInfo})  :   promise&lt;string&gt;
 
 以异步方法创建文件到指定路径，返回文件uri。使用promise形式返回结果。
+
+**系统能力**：SystemCapability.FileManagement.FileManagerService
 
 - 参数
   | 参数名 | 类型 | 必填 | 说明 |
@@ -194,6 +200,8 @@ createFile(path : string, filename: string, options? : {dev? : DevInfo}, callbac
 
 以异步方法创建文件到指定路径，返回文件uri。使用callback形式返回结果。
 
+**系统能力**：SystemCapability.FileManagement.FileManagerService
+
 - 参数
 
   | 参数名   | 类型                      | 必填 | 说明                          |
@@ -226,6 +234,8 @@ filemanager.createFile(media_path, name, (err, uri) => {
 ## FileInfo
 文件信息类型，通过getRoot, listFile等接口返回的类型。
 
+**系统能力**：以下各项对应的系统能力均为SystemCapability.FileManagement.FileManagerService。
+
 ### 属性
 
 | 参数名 | 类型 | 可读 | 可写 | 说明 |
@@ -239,6 +249,8 @@ filemanager.createFile(media_path, name, (err, uri) => {
 
 ## DevInfo
 设备类型，配置接口访问的设备类型。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.FileManagement.FileManagerService。
 
 ### 属性
 
