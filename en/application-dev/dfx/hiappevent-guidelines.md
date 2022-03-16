@@ -1,4 +1,4 @@
-# Development Guidelines on Application Event Logging
+# Development of Application Event Logging
 
 ## When to Use
 
