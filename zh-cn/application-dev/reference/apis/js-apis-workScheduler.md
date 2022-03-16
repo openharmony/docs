@@ -15,7 +15,7 @@ import workScheduler from '@ohos.workScheduler'
 SystemCapability.ResourceSchedule.WorkScheduler
 
 - **接口**：
-workScheduler.startWork(work: [WorkInfo](#workscheduler.workinfo)): boolean
+workScheduler.startWork(work: [WorkInfo](#workinfo)): boolean
 
 - **说明**：
 通知WorkSchedulerService将工作添加到执行队列。
@@ -301,7 +301,7 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
     })
   ```
 
-## workScheduler.WorkInfo
+## WorkInfo
 - **系统能力**：
 SystemCapability.ResourceSchedule.WorkScheduler
 
