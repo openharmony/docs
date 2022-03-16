@@ -8,9 +8,14 @@ The development framework provides comprehensive application state management ca
 
 ## State Variable Decorators<a name="section13236174803615"></a>
 
--   **@State**: grants a component the state attribute. Each time the  **@State**  decorated variable changes, the component re-renders and updates the UI.
--   **@Link**: allows a component to depend on some state attributes of its parent component. Each time the data in one component is updated, the state of the other component is updated, and the parent and child components are rendered again.
--   **@Prop**: works in a way similar to that of  **@Link**. The only difference is that the changes made by a child component are not synchronized to the parent component.
+- **@State**: grants a component the state attribute. Each time the  **@State**  decorated variable changes, the component re-renders and updates the UI.
+
+- **@Link**: allows a component to depend on some state attributes of its parent component. Each time the data in one component is updated, the state of the other component is updated, and the parent and child components are rendered again.
+
+- **@Prop**: works in a way similar to that of  **@Link**. The only difference is that the changes made by a child component are not synchronized to the parent component.
+
+  > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+  > The state variable name cannot be **id**, for example, **@Prop id:number**.  
 
 ## Application State Data<a name="section16386143212559"></a>
 
