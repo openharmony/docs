@@ -22,15 +22,15 @@
 
 **图 1**  Light驱动模型图
 
-![Light驱动模型图](figures/Light%E9%A9%B1%E5%8A%A8%E6%A8%A1%E5%9E%8B%E5%9B%BE.png)
+![Light驱动模型图](figures/Light驱动模型图.png)
 
 ### 运作机制
 
-通过介绍Light驱动模型的加载以及运行流程，对模型内部关键组件以及关联组件之间的关系进行了划分，整体加载流程如[图2](#Lihgt驱动运行图)所示：
+通过介绍Light驱动模型的加载以及运行流程，对模型内部关键组件以及关联组件之间的关系进行了划分，整体加载流程如[图2](#Light驱动运行图)所示：
 
 **图 2**  Light驱动运行图
 
-![Light驱动运行图](figures/Light%E9%A9%B1%E5%8A%A8%E8%BF%90%E8%A1%8C%E5%9B%BE.png)
+![Light驱动运行图](figures/Light驱动运行图.png)
 
 Light驱动模型以标准系统Hi3516DV300为例，介绍整个驱动加载及运行流程：
 
