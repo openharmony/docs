@@ -12,24 +12,22 @@ import hidebug from '@ohos.hidebug';
 ```
 
 
-## 系统能力
-SystemCapability.HiviewDFX.HiProfiler.HiDebug
-
-
 ## hidebug.getNativeHeapSize
 
 getNativeHeapSize(): bigint
 
 获取native heap内存的总大小。
 
+**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-- **返回值**：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | bigint | 返回native heap内存总大小。 |
+**返回值：**
+
+| 类型   | 说明                        |
+| ------ | --------------------------- |
+| bigint | 返回native heap内存总大小。 |
 
 
-- 示例：
+**示例：**
   ```
   let nativeHeapSize = hidebug.getNativeHeapSize();
   ```
@@ -41,14 +39,16 @@ getNativeHeapAllocatedSize(): bigint
 
 获取native heap内存的已分配内存大小。
 
-
-- **返回值**：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | bigint | 返回native heap内存的已分配内存。 |
+**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 
-- 示例：
+**返回值：**
+| 类型   | 说明                              |
+| ------ | --------------------------------- |
+| bigint | 返回native heap内存的已分配内存。 |
+
+
+**示例：**
   ```
   let nativeHeapAllocatedSize = hidebug.getNativeHeapAllocatedSize();
   ```
@@ -60,14 +60,16 @@ getNativeHeapFreeSize(): bigint
 
 获取native heap内存的空闲内存大小。
 
-
-- **返回值**：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | bigint | 返回native heap内存的空闲内存。 |
+**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 
-- 示例：
+**返回值：**
+| 类型   | 说明                            |
+| ------ | ------------------------------- |
+| bigint | 返回native heap内存的空闲内存。 |
+
+
+**示例：**
   ```
   let nativeHeapFreeSize = hidebug.getNativeHeapFreeSize();
   ```
@@ -79,14 +81,16 @@ getPss(): bigint
 
 获取应用进程PSS内存大小。
 
-
-- **返回值**：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | bigint | 返回应用进程PSS内存大小。 |
+**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 
-- 示例：
+**返回值：**
+| 类型   | 说明                      |
+| ------ | ------------------------- |
+| bigint | 返回应用进程PSS内存大小。 |
+
+
+**示例：**
   ```
   let pss = hidebug.getPss();
   ```
@@ -98,14 +102,16 @@ getSharedDirty(): bigint
 
 获取进程的共享脏内存大小。
 
-
-- **返回值**：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | bigint | 返回进程的共享脏内存大小。 |
+**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 
-- 示例：
+**返回值：**
+| 类型   | 说明                       |
+| ------ | -------------------------- |
+| bigint | 返回进程的共享脏内存大小。 |
+
+
+**示例：**
   ```
   let sharedDirty = hidebug.getSharedDirty();
   ```
@@ -117,13 +123,15 @@ startProfiling(filename : string) : void
 
 启动虚拟机Profiling方法跟踪，`startProfiling()`方法的调用需要与`stopProfiling()`方法的调用一一对应，先开启后关闭，严禁使用`start->start->stop`，`start->stop->stop`，`start->start->stop->stop`等顺序的调用方式。
 
-* **参数**：
+**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**参数：**
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | filename | string | 是   | 用户自定义的profiling文件名，根据传入的`filename`，将在应用的`files`目录生成`filename.json`文件。 |
 
-* **示例**：
+**示例：**
 
 ```js
 hidebug.startProfiling("cpuprofiler-20220216");
@@ -141,7 +149,9 @@ stopProfiling() : void
 
 停止虚拟机Profiling方法跟踪，`stopProfiling()`方法的调用需要与`startProfiling()`方法的调用一一对应，先开启后关闭，严禁使用`start->start->stop`，`start->stop->stop`，`start->start->stop->stop`等顺序的调用方式。
 
-* **示例**：
+**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**示例：**
 
 ```js
 hidebug.startProfiling("cpuprofiler-20220216");
@@ -157,15 +167,16 @@ dumpHeapData(filename : string) : void
 
 虚拟机堆导出。
 
-* **参数**：
+**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**参数：**
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | filename | string | 是   | 用户自定义的虚拟机堆文件名，根据传入的`filename`，将在应用的`files`目录生成`filename.heapsnapshot`文件。 |
 
-* **示例**：
+**示例：**
 
 ```js
 hidebug.dumpHeapData("heap-20220216");
 ```
-
