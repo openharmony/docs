@@ -1,5 +1,9 @@
 # Notification模块
 
+>**说明：**
+>
+>本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+
 ## 导入模块
 
 ```js
@@ -74,6 +78,82 @@ Notification.publish(notificationRequest).then(() => {
 
 ```
 
+## Notification.publish<sup>8+</sup>
+
+publish(request: NotificationRequest, userId: number, callback: AsyncCallback<void>): void
+
+发布通知（callback形式）。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**参数：**
+
+| 名称     | 可读 | 可写 | 类型                                        | 必填 | 描述                                        |
+| -------- | ---- | ---- | ----------------------------------------- | ---- | ------------------------------------------- |
+| request  | 是   | 否   |[NotificationRequest](#notificationrequest) | 是   | 设置要发布通知内容的NotificationRequest对象。 |
+| userId   | 是   | 否   |number                                      | 是   | 接收通知用户的Id。                           |
+| callback | 是   | 否   |AsyncCallback\<void\>                       | 是   | 被指定的回调方法。                           |
+
+**示例：**
+
+```js
+//publish回调
+function publishCallback(err) {
+	console.info("==========================>publishCallback=======================>");
+}
+// 接收通知的用户ID
+var userId = 1
+//通知Request对象
+var notificationRequest = {
+    id: 1,
+    content: {
+        contentType: Notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+        normal: {
+            title: "test_title",
+            text: "test_text",
+            additionalText: "test_additionalText"
+        }
+    }
+}
+Notification.publish(notificationRequest, userId, publishCallback);
+```
+
+## Notification.publish<sup>8+</sup>
+
+publish(request: NotificationRequest, userId: number): Promise<void>
+
+发布通知（Promise形式）。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**参数：**
+
+| 名称     | 可读 | 可写 | 类型                                        | 必填 | 描述                                        |
+| -------- | ---- | ---- | ----------------------------------------- | ---- | ------------------------------------------- |
+| request  | 是   | 否   |[NotificationRequest](#notificationrequest) | 是   | 设置要发布通知内容的NotificationRequest对象。 |
+| userId   | 是   | 否   |number                                      | 是   | 接收通知用户的Id。                           |
+
+**示例：**
+
+```js
+var notificationRequest = {
+    notificationId: 1,
+    content: {
+        contentType: Notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+        normal: {
+            title: "test_title",
+            text: "test_text",
+            additionalText: "test_additionalText"
+        }
+    }
+}
+
+var userId = 1
+
+Notification.publish(notificationRequest, userId).then(() => {
+	console.info("==========================>publishCallback=======================>");
+});
+```
 
 
 ## Notification.cancel
@@ -464,7 +544,7 @@ Notification.getSlots(getSlotsCallback)
 
 ## Notification.getSlots
 
-getSlots()
+getSlots(): Promise<Array<NotificationSlot>>
 
 获取此应用程序的所有通知通道（Promise形式)。
 
@@ -1422,6 +1502,58 @@ Notification.removeAll().then(() => {
 });
 ```
 
+## Notification.removeAll<sup>8+</sup>
+
+removeAll(userId: number, callback: AsyncCallback<void>): void
+
+删除所有通知（callback形式)。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**参数：**
+
+| 名称   | 可读 | 可写 | 类型         | 必填 | 描述       |
+| ------ | ---- | --- | ------------ | ---- | ---------- |
+| userId | 是   | 否  | number | 是   | 接收通知用户的Id。 |
+| callback | 是   | 否  | AsyncCallback\<void\> | 是   | 删除所有通知回调函数。 |
+
+**示例：**
+
+```js
+function removeAllCallback(err) {
+	console.info("==========================>removeAllCallback=======================>");
+}
+
+var userId = 1
+
+Notification.removeAll(userId, removeAllCallback);
+```
+
+## Notification.removeAll<sup>8+</sup>
+
+removeAll(userId: number): Promise<void>
+
+删除所有通知（Promise形式)。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**参数：**
+
+| 名称   | 可读 | 可写 | 类型         | 必填 | 描述       |
+| ------ | ---- | --- | ------------ | ---- | ---------- |
+| userId | 是   | 否  | number | 是   | 接收通知用户的Id。 |
+
+**示例：**
+
+```js
+function removeAllCallback(err) {
+	console.info("==========================>removeAllCallback=======================>");
+}
+
+var userId = 1
+
+Notification.removeAll(userId, removeAllCallback);
+```
 
 
 ## Notification.getAllActiveNotifications
@@ -1574,7 +1706,7 @@ Notification.getActiveNotifications().then((data) => {
 
 
 
-## Notification.cancelGroup
+## Notification.cancelGroup<sup>8+</sup>
 
 cancelGroup(groupName: string, callback: AsyncCallback\<void\>): void
 
@@ -1603,7 +1735,7 @@ Notification.cancelGroup(groupName, cancelGroupCallback);
 
 
 
-## Notification.cancelGroup
+## Notification.cancelGroup<sup>8+</sup>
 
 cancelGroup(groupName: string): Promise\<void\>
 
@@ -1628,7 +1760,7 @@ Notification.cancelGroup(groupName).then(() => {
 
 
 
-## Notification.removeGroupByBundle
+## Notification.removeGroupByBundle<sup>8+</sup>
 
 removeGroupByBundle(bundle: BundleOption, groupName: string, callback: AsyncCallback\<void\>): void
 
@@ -1659,7 +1791,7 @@ Notification.removeGroupByBundle(bundleOption, groupName, removeGroupByBundleCal
 
 
 
-## Notification.removeGroupByBundle
+## Notification.removeGroupByBundle<sup>8+</sup>
 
 removeGroupByBundle(bundle: BundleOption, groupName: string): Promise\<void\>
 
@@ -1686,7 +1818,7 @@ Notification.removeGroupByBundle(bundleOption, groupName).then(() => {
 
 
 
-## Notification.setDoNotDisturbDate
+## Notification.setDoNotDisturbDate<sup>8+</sup>
 
 setDoNotDisturbDate(date: DoNotDisturbDate, callback: AsyncCallback\<void\>): void
 
@@ -1719,7 +1851,7 @@ Notification.setDoNotDisturbDate(doNotDisturbDate, setDoNotDisturbDateCallback);
 
 
 
-## Notification.setDoNotDisturbDate
+## Notification.setDoNotDisturbDate<sup>8+</sup>
 
 setDoNotDisturbDate(date: DoNotDisturbDate): Promise\<void\>
 
@@ -1747,8 +1879,75 @@ Notification.setDoNotDisturbDate(doNotDisturbDate).then(() => {
 ```
 
 
+## Notification.setDoNotDisturbDate<sup>8+</sup>
 
-## Notification.getDoNotDisturbDate
+setDoNotDisturbDate(date: DoNotDisturbDate, userId: number, callback: AsyncCallback\<void\>): void
+
+指定用户设置免打扰时间（Callback形式)。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**参数：**
+
+| 名称     | 可读 | 可写 | 类型                  | 必填 | 描述                   |
+| -------- | ---- | --- | --------------------- | ---- | ---------------------- |
+| date     | 是   | 否  | DoNotDisturbDate      | 是   | 免打扰时间选项。         |
+| userId   | 是   | 否  | number                | 是   | 设置免打扰事件的用户ID。 |
+| callback | 是   | 否  | AsyncCallback\<void\> | 是   | 设置免打扰时间回调函数。 |
+
+**示例：**
+
+```js
+function setDoNotDisturbDateCallback(err) {
+   console.info("==========================>setDoNotDisturbDateCallback=======================>");
+}
+
+var doNotDisturbDate = {
+    type: Notification.DoNotDisturbType.TYPE_ONCE,
+    begin: new Date(),
+    end: new Date(2021, 11, 15, 18, 0)
+}
+
+var userId = 1
+
+Notification.setDoNotDisturbDate(doNotDisturbDate, userId, setDoNotDisturbDateCallback);
+```
+
+
+
+## Notification.setDoNotDisturbDate<sup>8+</sup>
+
+setDoNotDisturbDate(date: DoNotDisturbDate, userId: number): Promise\<void\>
+
+指定用户设置免打扰时间接口（Promise形式)。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**参数：**
+
+| 名称   | 可读 | 可写 | 类型             | 必填 | 描述           |
+| ------ | ---- | --- | ---------------- | ---- | -------------- |
+| date   | 是   | 否  | DoNotDisturbDate | 是   | 免打扰时间选项。 |
+| userId | 是   | 否  | number           | 是   | 设置免打扰事件的用户ID。 |
+
+**示例：**
+
+```js
+var doNotDisturbDate = {
+    type: Notification.DoNotDisturbType.TYPE_ONCE,
+    begin: new Date(),
+    end: new Date(2021, 11, 15, 18, 0)
+}
+
+var userId = 1
+
+Notification.setDoNotDisturbDate(doNotDisturbDate, userId).then(() => {
+	console.info("==========================>setDoNotDisturbDatePromise=======================>");
+});
+```
+
+
+## Notification.getDoNotDisturbDate<sup>8+</sup>
 
 getDoNotDisturbDate(callback: AsyncCallback\<DoNotDisturbDate\>): void
 
@@ -1774,7 +1973,7 @@ Notification.getDoNotDisturbDate(getDoNotDisturbDateCallback);
 
 
 
-## Notification.getDoNotDisturbDate
+## Notification.getDoNotDisturbDate<sup>8+</sup>
 
 getDoNotDisturbDate(): Promise\<DoNotDisturbDate\>
 
@@ -1797,8 +1996,67 @@ Notification.getDoNotDisturbDate().then((data) => {
 ```
 
 
+## Notification.getDoNotDisturbDate<sup>8+</sup>
 
-## Notification.supportDoNotDisturbMode
+getDoNotDisturbDate(userId: number, callback: AsyncCallback\<DoNotDisturbDate\>): void
+
+指定用户查询免打扰时间接口（Callback形式)。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**参数：**
+
+| 名称     | 可读 | 可写 | 类型                              | 必填 | 描述                   |
+| -------- | ---- | --- | --------------------------------- | ---- | ---------------------- |
+| callback | 是   | 否  | AsyncCallback\<DoNotDisturbDate\> | 是   | 查询免打扰时间回调函数。 |
+| userId   | 是   | 否  | number                            | 是   | 设置免打扰事件的用户ID。 |
+
+**示例：**
+
+```js
+function getDoNotDisturbDateCallback(err,data) {
+   console.info("==========================>getDoNotDisturbDateCallback=======================>");
+}
+
+var userId = 1
+
+Notification.getDoNotDisturbDate(userId, getDoNotDisturbDateCallback);
+```
+
+
+
+## Notification.getDoNotDisturbDate<sup>8+</sup>
+
+getDoNotDisturbDate(userId: number): Promise\<DoNotDisturbDate\>
+
+指定用户查询免打扰时间接口（Promise形式)。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**参数：**
+
+| 名称     | 可读 | 可写 | 类型                              | 必填 | 描述                   |
+| -------- | ---- | --- | --------------------------------- | ---- | ---------------------- |
+| userId   | 是   | 否  | number                            | 是   | 设置免打扰事件的用户ID。 |
+
+**返回值：**
+
+| 类型                                                        | 说明                                                         |
+| ----------------------------------------------------------- | ------------------------------------------------------------ |
+| Promise\<DoNotDisturbDate\> | 以Promise形式返回获取查询免打扰时间接口。 |
+
+**示例：**
+
+```js
+var userId = 1
+
+Notification.getDoNotDisturbDate(userId).then((data) => {
+	console.info("==========================>getDoNotDisturbDatePromise=======================>");
+});
+```
+
+
+## Notification.supportDoNotDisturbMode<sup>8+</sup>
 
 supportDoNotDisturbMode(callback: AsyncCallback\<boolean\>): void
 
@@ -1824,7 +2082,7 @@ Notification.supportDoNotDisturbMode(supportDoNotDisturbModeCallback);
 
 
 
-## Notification.supportDoNotDisturbMode
+## Notification.supportDoNotDisturbMode<sup>8+</sup>
 
 supportDoNotDisturbMode(): Promise\<boolean\>
 
@@ -1848,7 +2106,7 @@ Notification.supportDoNotDisturbMode().then((data) => {
 
 
 
-## Notification.isSupportTemplate
+## Notification.isSupportTemplate<sup>8+</sup>
 
 isSupportTemplate(templateName: string, callback: AsyncCallback\<boolean\>): void
 
@@ -1876,7 +2134,7 @@ Notification.isSupportTemplate(templateName, isSupportTemplateCallback);
 
 
 
-## Notification.isSupportTemplate
+## Notification.isSupportTemplate<sup>8+</sup>
 
 isSupportTemplate(templateName: string): Promise\<boolean\>
 
@@ -1908,9 +2166,9 @@ Notification.isSupportTemplate(templateName).then((data) => {
 
 
 
-## Notification.requestEnabledNotification
+## Notification.requestEnableNotification<sup>8+</sup>
 
-requestEnabledNotification(callback: AsyncCallback\<boolean\>): void
+requestEnabledNotification(callback: AsyncCallback\<void\>): void
 
 应用请求通知使能。
 
@@ -1920,17 +2178,13 @@ requestEnabledNotification(callback: AsyncCallback\<boolean\>): void
 
 | 参数名   | 类型                     | 必填 | 说明                       |
 | -------- | ------------------------ | ---- | -------------------------- |
-| callback | AsyncCallback\<boolean\> | 是   | 查询模板是否存在的回调函数。 |
+| callback | AsyncCallback\<void\> | 是   | 应用请求通知使能的回调函数。 |
 
 **示例：**
 
 ```javascript
-function requestEnabledNotificationCallback(err) {
-    if (err.code) {
-        console.info("isNotificationEnabledSelf failed " + JSON.stringify(err));
-    } else {
-        console.info("isNotificationEnabledSelf");
-    }
+function requestEnabledNotificationCallback() {
+    console.log('------------- requestEnabledNotification --------------');
 };
 
 Notification.requestEnabledNotification(requestEnabledNotificationCallback);
@@ -1938,11 +2192,110 @@ Notification.requestEnabledNotification(requestEnabledNotificationCallback);
 
 
 
-## Notification.requestEnabledNotification
+## Notification.requestEnableNotification<sup>8+</sup>
 
-requestEnabledNotification(callback: AsyncCallback\<void\>): void
+requestEnabledNotification(): Promise<void>
 
 应用请求通知使能。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**示例：**
+
+```javascript
+Notification.requestEnableNotification()
+    .then(() => {
+        console.info("requestEnableNotification ");
+	});
+```
+
+
+## Notification.enableDistributed<sup>8+</sup>
+
+enableDistributed(enable: boolean, callback: AsyncCallback\<void\>): void
+
+设置设备是否支持分布式通知。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明                       |
+| -------- | ------------------------ | ---- | -------------------------- |
+| enable   | boolean                  | 是   | 是否支持。<br/>true 支持。<br/>false 不支持。|
+| callback | AsyncCallback\<void\> | 是   | 设置设备是否支持分布式通知的回调函数。 |
+
+**示例：**
+
+```javascript
+function enabledNotificationCallback() {
+    console.log('----------- enableDistributed ------------');
+};
+
+var enable = true
+
+Notification.enableDistributed(enable, enabledNotificationCallback);
+```
+
+
+
+## Notification.enableDistributed<sup>8+</sup>
+
+enableDistributed(enable: boolean): Promise<void>
+
+设置设备是否支持分布式通知。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明                       |
+| -------- | ------------------------ | ---- | -------------------------- |
+| enable   | boolean                  | 是   | 是否支持。<br/>true 支持。<br/>false 不支持。|
+
+**示例：**
+
+```javascript
+var enable = true
+
+Notification.enableDistributed(enable)
+    .then(() => {
+        console.log('-------- enableDistributed ----------');
+    });
+```
+
+
+## Notification.isDistributedEnabled<sup>8+</sup>
+
+isDistributedEnabled(callback: AsyncCallback<boolean>): void
+
+获取设备是否支持分布式通知。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明                       |
+| -------- | ------------------------ | ---- | -------------------------- |
+| callback | AsyncCallback\<boolean\> | 是   | 设备是否支持分布式通知的回调函数。 |
+
+**示例：**
+
+```javascript
+function isDistributedEnabledCallback() {
+    console.log('----------- isDistributedEnabled ------------');
+};
+
+Notification.enableDistributed(isDistributedEnabledCallback);
+```
+
+
+
+## Notification.isDistributedEnabled<sup>8+</sup>
+
+isDistributedEnabled(): Promise<boolean>
+
+获取设备是否支持分布式通知。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1950,20 +2303,195 @@ requestEnabledNotification(callback: AsyncCallback\<void\>): void
 
 | 类型               | 说明            |
 | ------------------ | --------------- |
-| Promise\<boolean\> | Promise方式返回应用请求通知使能。 |
+| Promise\<boolean\> | Promise方式返回设备是否支持分布式通知的结果。<br/>true 支持。<br/>false 不支持。 |
 
 **示例：**
 
 ```javascript
-Notification.isNotificationEnabledSelf()
-    .then(() => {
-        console.info("requestEnabledNotification ");
-	})
-	.catch((err) => {
-        console.info("requestEnabledNotification failed " + JSON.stringify(err));
-	});
+Notification.isDistributedEnabled()
+    .then((data) => {
+        console.log('-------- isDistributedEnabled ----------');
+    });
 ```
 
+
+## Notification.enableDistributedByBundle<sup>8+</sup>
+
+enableDistributedByBundle(bundle: BundleOption, enable: boolean, callback: AsyncCallback<void>): void
+
+根据应用的包设置应用程序是否支持分布式通知。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明                       |
+| -------- | ------------------------ | ---- | -------------------------- |
+| bundle   | BundleOption             | 是   | 应用的包。                     |
+| enable   | boolean                  | 是   | 是否支持。                       |
+| callback | AsyncCallback\<void\> | 是   | 应用程序是否支持分布式通知的回调函数。 |
+
+**示例：**
+
+```javascript
+function enableDistributedByBundleCallback() {
+    console.log('----------- enableDistributedByBundle ------------');
+};
+
+var bundle = {
+    bundle: "bundleName1",
+}
+
+var enable = true
+
+Notification.enableDistributedByBundle(bundle, enable, enableDistributedByBundleCallback);
+```
+
+
+
+## Notification.enableDistributedByBundle<sup>8+</sup>
+
+根据bundleenableDistributedByBundle(bundle: BundleOption, enable: boolean): Promise<void>
+
+根据应用的包设置应用程序是否支持分布式通知。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明                       |
+| -------- | ------------------------ | ---- | -------------------------- |
+| bundle   | BundleOption             | 是   | 应用的包。                |
+| enable   | boolean                  | 是   | 是否支持。                  |
+
+**示例：**
+
+```javascript
+var bundle = {
+    bundle: "bundleName1",
+}
+
+var enable = true
+
+Notification.enableDistributedByBundle(bundle, enable)
+    .then(() => {
+        console.log('-------- enableDistributedByBundle ----------');
+    });
+```
+
+## Notification.isDistributedEnabledByBundle<sup>8+</sup>
+
+isDistributedEnabledByBundle(bundle: BundleOption, callback: AsyncCallback<boolean>): void
+
+根据应用的包获取应用程序是否支持分布式通知。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明                       |
+| -------- | ------------------------ | ---- | -------------------------- |
+| bundle   | BundleOption             | 是   | 应用的包。                     |
+| callback | AsyncCallback\<boolean\> | 是   | 应用程序是否支持分布式通知的回调函数。 |
+
+**示例：**
+
+```javascript
+function isDistributedEnabledByBundleCallback(data) {
+    console.log('----------- isDistributedEnabledByBundle ------------', data);
+};
+
+var bundle = {
+    bundle: "bundleName1",
+}
+
+Notification.enableDistributedByBundle(bundle, isDistributedEnabledByBundleCallback);
+```
+
+
+
+## Notification.isDistributedEnabledByBundle<sup>8+</sup>
+
+isDistributedEnabledByBundle(bundle: BundleOption): Promise<boolean>
+
+根据应用的包获取应用程序是否支持分布式通知。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明                       |
+| -------- | ------------------------ | ---- | -------------------------- |
+| bundle   | BundleOption             | 是   | 应用的包。                |
+
+**返回值：**
+
+| 类型               | 说明            |
+| ------------------ | --------------- |
+| Promise\<boolean\> | Promise方式返回应用程序是否支持分布式通知的结果。<br/>true 支持。<br/>false 不支持。 |
+
+**示例：**
+
+```javascript
+var bundle = {
+    bundle: "bundleName1",
+}
+
+Notification.isDistributedEnabledByBundle(bundle)
+    .then((data) => {
+        console.log('-------- isDistributedEnabledByBundle ----------', data);
+    });
+```
+
+
+## Notification.getDeviceRemindType<sup>8+</sup>
+
+getDeviceRemindType(callback: AsyncCallback<DeviceRemindType>): void
+
+获取通知的提醒方式。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**参数：**
+
+| 参数名   | 类型                               | 必填 | 说明                       |
+| -------- | --------------------------------- | ---- | -------------------------- |
+| callback | AsyncCallback\<DeviceRemindType\> | 是   | 获取通知的提醒方式的回调函数。 |
+
+**示例：**
+
+```javascript
+function getDeviceRemindTypeCallback(data) {
+    console.log('----------- getDeviceRemindType ------------', data);
+};
+
+Notification.getDeviceRemindType(getDeviceRemindTypeCallback);
+```
+
+
+
+## Notification.getDeviceRemindType<sup>8+</sup>
+
+getDeviceRemindType(): Promise<DeviceRemindType>
+
+获取通知的提醒方式。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**返回值：**
+
+| 类型               | 说明            |
+| ------------------ | --------------- |
+| Promise\<DeviceRemindType\> | Promise方式返回通知的提醒方式的结果。 |
+
+**示例：**
+
+```javascript
+Notification.getDeviceRemindType()
+    .then((data) => {
+        console.log('-------- getDeviceRemindType ----------', data);
+    });
+```
 
 ## Notification.show
 
@@ -1998,18 +2526,252 @@ Notification.show(options);
 
 
 ## NotificationSubscriber
+### onConsume
 
-**系统能力：**以下各项对应的系统能力均为SystemCapability.Notification.Notification
+onConsume?:(data: [SubscribeCallbackData](#subscribecallbackdata))
 
-| 名称                                                         | 可读 | 可写 | 类型     | 必填 | 描述                       |
-| ------------------------------------------------------------ | ---- | --- | -------- | ---- | -------------------------- |
-| onConsume?:(data: [SubscribeCallbackData](#subscribecallbackdata)) | 是 | 否 | function | 否   | 接收通知回调函数。           |
-| onCancel?:(data: [SubscribeCallbackData](#subscribecallbackdata)) | 是 | 否 | function | 否   | 删除通知回调函数。           |
-| onUpdate?:(data: [NotificationSortingMap](#notificationsortingmap)) | 是 | 否 | function | 否   | 更新通知排序回调函数。       |
-| onConnect?:()                                                | 是 | 否 | function | 否   | 注册订阅回调函数。           |
-| onDisconnect?:()                                             | 是 | 否 | function | 否   | 取消订阅回调函数。           |
-| onDestroy?:()                                                | 是 | 否 | function | 否   | 服务失联回调函数。           |
-| onDoNotDisturbDateChange?:(mode: Notification.[DoNotDisturbDate](#donotdisturbdate)) | 是 | 否 | function | 否   | 免打扰时间选项变更回调函数。 |
+接收通知回调函数。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------------ | ------------------------ | ---- | -------------------------- |
+| data | AsyncCallback\<[SubscribeCallbackData](#subscribecallbackdata)\> | 是 | 回调返回接收到的通知信息。 |
+
+**示例：**
+
+```javascript
+function subscribeCallback(err) {
+    if (err.code) {
+        console.info("subscribe failed " + JSON.stringify(err));
+    } else {
+        console.info("subscribeCallback");
+    }
+};
+
+function onConsumeCallback(data) {
+    console.info('===> onConsume in test');
+    let req = data.request;
+    console.info('===> onConsume callback req.id:' + req.id);
+    let wantAgent = data.wantAgent;
+    wantAgent .getWant(wantAgent)
+        .then((data1) => {
+            console.log('===> getWant success want:' + JSON.stringfy(data1));
+        })
+        .catch((err) => {
+            console.error('===> getWant failed because' + JSON.stringfy(err));
+        });
+    console.info('===> onConsume callback req.wantAgent:' + JSON.stringfy(req.wantAgent));
+};
+
+var subscriber = {
+    onConsume: onConsumeCallback
+};
+
+Notification.subscribe(subscriber, subscribeCallback);
+```
+
+### onCancel
+
+onCancel?:(data: [SubscribeCallbackData](#subscribecallbackdata))
+
+删除通知回调函数。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------------ | ------------------------ | ---- | -------------------------- |
+| data | AsyncCallback\<[SubscribeCallbackData](#subscribecallbackdata)\> | 是 | 回调返回接收到的通知信息。 |
+
+**示例：**
+
+```javascript
+function subscribeCallback(err) {
+    if (err.code) {
+        console.info("subscribe failed " + JSON.stringify(err));
+    } else {
+        console.info("subscribeCallback");
+    }
+};
+
+function onCancelCallback(data) {
+    console.info('===> onCancel in test');
+    let req = data.request;
+    console.info('===> onCancel callback req.id:' + req.id);
+}
+
+var subscriber = {
+    onCancel: onCancelCallback
+};
+
+Notification.subscribe(subscriber, subscribeCallback);
+```
+
+### onUpdate
+
+onUpdate?:(data: [NotificationSortingMap](#notificationsortingmap))
+
+更新通知排序回调函数。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------------ | ------------------------ | ---- | -------------------------- |
+| data | [NotificationSortingMap](#notificationsortingmap) | 是 |  |
+
+**示例：**
+
+```javascript
+function subscribeCallback(err) {
+    if (err.code) {
+        console.info("subscribe failed " + JSON.stringify(err));
+    } else {
+        console.info("subscribeCallback");
+    }
+};
+
+function onUpdateCallback() {
+    console.info('===> onUpdate in test');
+}
+
+var subscriber = {
+    onUpdate: onUpdateCallback
+};
+
+Notification.subscribe(subscriber, subscribeCallback);
+```
+
+### onConnect
+
+onConnect?:void
+
+注册订阅回调函数。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**示例：**
+
+```javascript
+function subscribeCallback(err) {
+    if (err.code) {
+        console.info("subscribe failed " + JSON.stringify(err));
+    } else {
+        console.info("subscribeCallback");
+    }
+};
+
+function onConnectCallback() {
+    console.info('===> onConnect in test');
+}
+
+var subscriber = {
+    onConnect: onConnectCallback
+};
+
+Notification.subscribe(subscriber, subscribeCallback);
+```
+
+### onDisconnect
+
+onDisconnect?:void
+
+取消订阅回调函数。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**示例：**
+
+```javascript
+function subscribeCallback(err) {
+    if (err.code) {
+        console.info("subscribe failed " + JSON.stringify(err));
+    } else {
+        console.info("subscribeCallback");
+    }
+};
+
+function onDisconnectCallback() {
+    console.info('===> onDisconnect in test');
+}
+
+var subscriber = {
+    onDisconnect: onDisconnectCallback
+};
+
+Notification.subscribe(subscriber, subscribeCallback);
+```
+
+### onDestroy
+
+onDestroy?:void
+
+服务失联回调函数。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**示例：**
+
+```javascript
+function subscribeCallback(err) {
+    if (err.code) {
+        console.info("subscribe failed " + JSON.stringify(err));
+    } else {
+        console.info("subscribeCallback");
+    }
+};
+
+function onDestroyCallback() {
+    console.info('===> onDestroy in test');
+}
+
+var subscriber = {
+    onDestroy: onDestroyCallback
+};
+
+Notification.subscribe(subscriber, subscribeCallback);
+```
+
+### onDoNotDisturbDateChange
+
+onDoNotDisturbDateChange?:(mode: Notification.[DoNotDisturbDate](#donotdisturbdate))
+
+免打扰时间选项变更回调函数。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------------ | ------------------------ | ---- | -------------------------- |
+| mode | Notification.[DoNotDisturbDate](#donotdisturbdate) | 是 | 回调返回免打扰时间选项变更。 |
+
+**示例：**
+```javascript
+function subscribeCallback(err) {
+    if (err.code) {
+        console.info("subscribe failed " + JSON.stringify(err));
+    } else {
+        console.info("subscribeCallback");
+    }
+};
+
+function onDoNotDisturbDateChangeCallback() {
+    console.info('===> onDoNotDisturbDateChange in test');
+}
+
+var subscriber = {
+    onDoNotDisturbDateChange: onDoNotDisturbDateChangeCallback
+};
+
+Notification.subscribe(subscriber, subscribeCallback);
+```
+
 
 ### onEnabledNotificationChanged
 
@@ -2057,7 +2819,7 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 ## SubscribeCallbackData
 
-**系统能力：**以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
 | 名称            | 可读 | 可写 | 类型                                              | 必填 | 描述     |
 | --------------- | ---- | --- | ------------------------------------------------- | ---- | -------- |
@@ -2069,7 +2831,7 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 ## NotificationSortingMap
 
-**系统能力：**以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
 | 名称           | 可读 | 可写 | 类型                                                         | 必填 | 描述             |
 | -------------- | ---- | --- | ------------------------------------------------------------ | ---- | ---------------- |
@@ -2080,7 +2842,7 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 ## NotificationSorting
 
-**系统能力：**以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
 | 名称     | 可读 | 可写 | 类型                                  | 必填 | 描述         |
 | -------- | ---- | --- | ------------------------------------- | ---- | ------------ |
@@ -2092,7 +2854,7 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 ## DoNotDisturbDate
 
-**系统能力：**以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
 | 名称  | 可读 | 可写 | 类型                                  | 描述                     |
 | ----- | ---- | --- | ------------------------------------- | ------------------------ |
@@ -2102,9 +2864,9 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 
 
-## DoNotDisturbType
+## DoNotDisturbType<sup>8+</sup>
 
-**系统能力：**以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
 
 | 名称         | 值               | 说明                                       |
@@ -2118,7 +2880,7 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 ## EnabledNotificationCallbackData
 
-**系统能力：**以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
 | 名称   | 可读 | 可写 | 类型    | 必填 | 描述             |
 | ------ | ---- | --- | ------- | ---- | ---------------- |
@@ -2130,7 +2892,7 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 ## NotificationRequest
 
-**系统能力：**以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
 | 名称                  | 可读 | 可写 | 类型                                          | 必填 | 描述                       |
 | --------------------- | ---- | --- | --------------------------------------------- | ---- | -------------------------- |
@@ -2168,7 +2930,7 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 ## NotificationSlot
 
-**系统能力：**以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
 | 名称                 | 可读 | 可写 | 类型                  | 必填 | 描述                                       |
 | -------------------- | ---- | --- | --------------------- | ---- | ------------------------------------------ |
@@ -2186,7 +2948,7 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 ## NotificationContent
 
-**系统能力：**以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
 | 名称        | 可读 | 可写 | 类型                                                         | 必填 | 描述               |
 | ----------- | ---- | --- | ------------------------------------------------------------ | ---- | ------------------ |
@@ -2200,7 +2962,7 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 ## ContentType
 
-**系统能力：**以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
 | 名称                              | 值          | 说明               |
 | --------------------------------- | ----------- | ------------------ |
@@ -2214,7 +2976,7 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 ## NotificationBasicContent
 
-**系统能力：**以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
 | 名称           | 可读 | 可写 | 类型   | 必填 | 描述                               |
 | -------------- | ---- | ---- | ------ | ---- | ---------------------------------- |
@@ -2226,7 +2988,7 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 ## NotificationLongTextContent
 
-**系统能力：**以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
 | 名称           | 可读 | 可写 | 类型   | 必填 | 描述                             |
 | -------------- | ---- | --- | ------ | ---- | -------------------------------- |
@@ -2241,7 +3003,7 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 ## NotificationMultiLineContent
 
-**系统能力：**以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
 | 名称           | 可读 | 可写 | 类型            | 必填 | 描述                             |
 | -------------- | --- | --- | --------------- | ---- | -------------------------------- |
@@ -2256,7 +3018,7 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 ## NotificationPictureContent
 
-**系统能力：**以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
 | 名称           | 可读 | 可写 | 类型           | 必填 | 描述                             |
 | -------------- | ---- | --- | -------------- | ---- | -------------------------------- |
@@ -2271,7 +3033,7 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 ## BundleOption
 
-**系统能力：**以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
 | 名称   | 可读 | 可写 | 类型   | 必填 | 描述   |
 | ------ | ---- | --- | ------ | ---- | ------ |
@@ -2282,7 +3044,7 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 ## NotificationKey
 
-**系统能力：**以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
 | 名称  | 可读 | 可写 | 类型   | 必填 | 描述     |
 | ----- | ---- | --- | ------ | ---- | -------- |
@@ -2293,10 +3055,11 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 ## SlotType
 
-**系统能力：**以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
 | 名称                 | 值       | 说明       |
 | -------------------- | -------- | ---------- |
+| UNKNOWN_TYPE         | SlotType | 未知类型。 |
 | SOCIAL_COMMUNICATION | SlotType | 社交类型。 |
 | SERVICE_INFORMATION  | SlotType | 服务类型。 |
 | CONTENT_INFORMATION  | SlotType | 内容类型。 |
@@ -2306,21 +3069,20 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 ## NotificationActionButton
 
-**系统能力：**以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
 | 名称      | 可读 | 可写 | 类型                                            | 必填 | 描述                      |
 | --------- | --- | ---- | ----------------------------------------------- | ---- | ------------------------- |
 | title     | 是  | 是  | string                                          | 是   | 按钮标题。                  |
 | wantAgent | 是  | 是  | WantAgent                                       | 是   | 点击按钮时触发的WantAgent。 |
 | extras    | 是  | 是  | Array\<String\>                                 | 否   | 按钮扩展信息。              |
-| icon      | 是  | 是  | image.PixelMap                                  | 否   | 按钮图标。                  |
 | userInput | 是  | 是  | [NotificationUserInput](#notificationuserinput) | 否   | 用户输入对象实例。          |
 
 
 
 ## NotificationUserInput
 
-**系统能力：**SystemCapability.Notification.Notification
+**系统能力**：SystemCapability.Notification.Notification
 
 | 名称     | 可读 | 可写 | 类型   | 必填 | 描述                          |
 | -------- | --- | ---- | ------ | ---- | ----------------------------- |
@@ -2330,7 +3092,7 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 ## NotificationSubscribeInfo
 
-**系统能力：**以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
 | 名称        | 可读 | 可写 | 类型            | 必填 | 描述                            |
 | ----------- | --- | ---- | --------------- | ---- | ------------------------------- |
@@ -2343,7 +3105,7 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 模板信息
 
-**系统能力：**以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
 | 名称 | 参数类型               | 可读 | 可写 | 说明       |
 | ---- | ---------------------- | ---- | ---- | ---------- |
@@ -2354,7 +3116,7 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 ## ActionResult
 
-**系统能力：**以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
 | 名称         | 参数类型    | 可读 | 可写  | 说明     |
 | ------------ | ---------- | ---- | ---- | -------- |
@@ -2366,976 +3128,10 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 ## ShowNotificationOptions
 
-**系统能力：**以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
 | 名称         | 参数类型       | 可读 | 可写  | 说明     |
 | ------------ | ----------    | ---- | ---- | -------- |
 | contentTitle | string        | 是   | 是   | 通知的标题。 |
 | contentText  | string        | 是   | 是   | 通知的内容。 |
 | clickAction  | ActionResult  | 是   | 是   | 点击通知后触发的动作。 |
-
-
-
-## WantAgent接口
-
-## 导入模块
-
-```js
-import WantAgent from '@ohos.wantAgent';
-```
-
-
-
-## WantAgent.getWantAgent
-
-getWantAgent(info: WantAgentInfo, callback: AsyncCallback\<WantAgent\>): void
-
-创建WantAgent（callback形式）。
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**参数：**
-
-| 名称     | 可读 | 可写  | 类型                       | 必填 | 描述                    |
-| -------- | --- | ---- | -------------------------- | ---- | ----------------------- |
-| info     | 是   | 否   | WantAgentInfo              | 是   | WantAgent信息。           |
-| callback | 是   | 否   | AsyncCallback\<WantAgent\> | 是   | 创建WantAgent的回调方法。 |
-
-**示例：**
-
-```js
-import WantAgent from '@ohos.wantAgent';
-import { OperationType, WantAgentFlags } from '@ohos.wantagent';
-
-//getWantAgent回调
-function getWantAgentCallback(err, data) {
-	console.info("==========================>getWantAgentCallback=======================>");
-}
-//WantAgentInfo对象
-var wantAgentInfo = {
-    wants: [
-        {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
-            parameters:
-            {
-                mykey0: 2222,
-                mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
-                mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
-                mykey6: true,
-            }
-        }
-    ],
-    operationType: OperationType.START_ABILITIES,
-    requestCode: 0,
-    wantAgentFlags:[WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
-
-WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
-```
-
-
-
-## WantAgent.getWantAgent
-
-getWantAgent(info: WantAgentInfo): Promise\<WantAgent\>
-
-创建WantAgent（Promise形式）。
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**参数：**
-
-| 名称 | 可读 | 可写  | 类型          | 必填 | 描述          |
-| ---- | --- | ---- | ------------- | ---- | ------------- |
-| info | 是   | 否   | WantAgentInfo | 是   | WantAgent信息。 |
-
-**返回值：**
-
-| 类型                                                        | 说明                                                         |
-| ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<WantAgent\> | 以Promise形式返回WantAgent。 |
-
-**示例：**
-
-```js
-import WantAgent from '@ohos.wantAgent';
-import { OperationType, WantAgentFlags } from '@ohos.wantagent';
-
-//WantAgentInfo对象
-var wantAgentInfo = {
-    wants: [
-        {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
-            parameters:
-            {
-                mykey0: 2222,
-                mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
-                mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
-                mykey6: true,
-            }
-        }
-    ],
-    operationType: OperationType.START_ABILITIES,
-    requestCode: 0,
-    wantAgentFlags:[WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
-
-WantAgent.getWantAgent(wantAgentInfo).then((data) => {
-	console.info("==========================>getWantAgentCallback=======================>");
-});
-```
-
-
-
-## WantAgent.getBundleName
-
-getBundleName(agent: WantAgent, callback: AsyncCallback\<string\>): void
-
-获取WantAgent实例的包名（callback形式）。
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**参数：**
-
-| 名称     | 可读 | 可写  | 类型                    | 必填 | 描述                              |
-| -------- | --- | ---- | ----------------------- | ---- | --------------------------------- |
-| agent    | 是   | 否   | WantAgent               | 是   | WantAgent对象。                     |
-| callback | 是   | 否   | AsyncCallback\<string\> | 是   | 获取WantAgent实例的包名的回调方法。 |
-
-**示例：**
-
-```js
-import WantAgent from '@ohos.wantAgent';
-import { OperationType, WantAgentFlags } from '@ohos.wantagent';
-
-//wantAgent对象
-var wantAgent;
-
-//getWantAgent回调
-function getWantAgentCallback(err, data) {
-	console.info("==========================>getWantAgentCallback=======================>");
-    if (err.code == 0) {
-    	wantAgent = data;
-    } else {
-        console.info('----getWantAgent failed!----');
-    }
-}
-//WantAgentInfo对象
-var wantAgentInfo = {
-    wants: [
-        {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
-            parameters:
-            {
-                mykey0: 2222,
-                mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
-                mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
-                mykey6: true,
-            }
-        }
-    ],
-    operationType: OperationType.START_ABILITIES,
-    requestCode: 0,
-    wantAgentFlags:[WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
-
-WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
-
-//getBundleName回调
-function getBundleNameCallback(err, data) {
-	console.info("==========================>getBundleNameCallback=======================>");
-}
-WantAgent.getBundleName(wantAgent, getBundleNameCallback)
-```
-
-
-
-## WantAgent.getBundleName
-
-getBundleName(agent: WantAgent): Promise\<string\>
-
-获取WantAgent实例的包名（Promise形式）。
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**参数：**
-
-| 名称  | 可读 | 可写 | 类型      | 必填 | 描述          |
-| ----- | --- | ---- | --------- | ---- | ------------- |
-| agent | 是   | 否  | WantAgent | 是   | WantAgent对象。 |
-
-**返回值：**
-
-| 类型                                                        | 说明                                                         |
-| ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<string\> | 以Promise形式返回获取WantAgent实例的包名。 |
-
-**示例：**
-
-```js
-import WantAgent from '@ohos.wantAgent';
-import { OperationType, WantAgentFlags } from '@ohos.wantagent';
-
-//wantAgent对象
-var wantAgent;
-
-//WantAgentInfo对象
-var wantAgentInfo = {
-    wants: [
-        {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
-            parameters:
-            {
-                mykey0: 2222,
-                mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
-                mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
-                mykey6: true,
-            }
-        }
-    ],
-    operationType: OperationType.START_ABILITIES,
-    requestCode: 0,
-    wantAgentFlags:[WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
-
-WantAgent.getWantAgent(wantAgentInfo).then((data) => {
-	console.info("==========================>getWantAgentCallback=======================>");
-    wantAgent = data;
-});
-
-WantAgent.getBundleName(wantAgent).then((data) => {
-	console.info("==========================>getBundleNameCallback=======================>");
-});
-```
-
-
-
-## WantAgent.getUid
-
-getUid(agent: WantAgent, callback: AsyncCallback\<number\>): void
-
-获取WantAgent实例的用户ID（callback形式）。
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**参数：**
-
-| 名称     | 可读 | 可写 | 类型                    | 必填 | 描述                                |
-| -------- | --- | ---- | ----------------------- | ---- | ----------------------------------- |
-| agent    | 是   | 否  | WantAgent               | 是   | WantAgent对象。                       |
-| callback | 是   | 否  | AsyncCallback\<number\> | 是   | 获取WantAgent实例的用户ID的回调方法。 |
-
-**示例：**
-
-```js
-import WantAgent from '@ohos.wantAgent';
-import { OperationType, WantAgentFlags } from '@ohos.wantagent';
-
-//wantAgent对象
-var wantAgent;
-
-//getWantAgent回调
-function getWantAgentCallback(err, data) {
-	console.info("==========================>getWantAgentCallback=======================>");
-    if (err.code == 0) {
-    	wantAgent = data;
-    } else {
-        console.info('----getWantAgent failed!----');
-    }
-}
-//WantAgentInfo对象
-var wantAgentInfo = {
-    wants: [
-        {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
-            parameters:
-            {
-                mykey0: 2222,
-                mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
-                mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
-                mykey6: true,
-            }
-        }
-    ],
-    operationType: OperationType.START_ABILITIES,
-    requestCode: 0,
-    wantAgentFlags:[WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
-
-WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
-
-//getUid回调
-function getUidCallback(err, data) {
-	console.info("==========================>getUidCallback=======================>");
-}
-WantAgent.getUid(wantAgent, getUidCallback)
-```
-
-
-
-## WantAgent.getUid
-
-getUid(agent: WantAgent): Promise\<number\>
-
-获取WantAgent实例的用户ID（Promise形式）。
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**参数：**
-
-| 名称  | 可读 | 可写 | 类型      | 必填 | 描述          |
-| ----- | --- | ---- | --------- | ---- | ------------- |
-| agent | 是   | 否  | WantAgent | 是   | WantAgent对象。 |
-
-**返回值：**
-
-| 类型                                                        | 说明                                                         |
-| ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<number\> | 以Promise形式返回获取WantAgent实例的用户ID。 |
-
-**示例：**
-
-```js
-import WantAgent from '@ohos.wantAgent';
-import { OperationType, WantAgentFlags } from '@ohos.wantagent';
-
-//wantAgent对象
-var wantAgent;
-
-//WantAgentInfo对象
-var wantAgentInfo = {
-    wants: [
-        {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
-            parameters:
-            {
-                mykey0: 2222,
-                mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
-                mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
-                mykey6: true,
-            }
-        }
-    ],
-    operationType: OperationType.START_ABILITIES,
-    requestCode: 0,
-    wantAgentFlags:[WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
-
-WantAgent.getWantAgent(wantAgentInfo).then((data) => {
-	console.info("==========================>getWantAgentCallback=======================>");
-    wantAgent = data;
-});
-
-WantAgent.getUid(wantAgent).then((data) => {
-	console.info("==========================>getUidCallback=======================>");
-});
-```
-
-
-
-## WantAgent.getWant
-
-getWant(agent: WantAgent, callback: AsyncCallback\<Want\>): void
-
-获取WantAgent对象的want（callback形式）。
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**参数：**
-
-| 名称     | 可读 | 可写 | 类型                  | 必填 | 描述                            |
-| -------- | --- | ---- | --------------------- | ---- | ------------------------------- |
-| agent    | 是   | 否  | WantAgent             | 是   | WantAgent对象。                   |
-| callback | 是   | 否  | AsyncCallback\<Want\> | 是   | 获取WantAgent对象want的回调方法。 |
-
-**示例：**
-
-```js
-import WantAgent from '@ohos.wantAgent';
-import { OperationType, WantAgentFlags } from '@ohos.wantagent';
-
-//wantAgent对象
-var wantAgent;
-
-//getWantAgent回调
-function getWantAgentCallback(err, data) {
-	console.info("==========================>getWantAgentCallback=======================>");
-    if (err.code == 0) {
-    	wantAgent = data;
-    } else {
-        console.info('----getWantAgent failed!----');
-    }
-}
-//WantAgentInfo对象
-var wantAgentInfo = {
-    wants: [
-        {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
-            parameters:
-            {
-                mykey0: 2222,
-                mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
-                mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
-                mykey6: true,
-            }
-        }
-    ],
-    operationType: OperationType.START_ABILITIES,
-    requestCode: 0,
-    wantAgentFlags:[WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
-
-WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
-
-//getWant回调
-function getWantCallback(err, data) {
-	console.info("==========================>getWantCallback=======================>");
-}
-WantAgent.getWant(wantAgent, getWantCallback)
-```
-
-
-
-## WantAgent.getWant
-
-getWant(agent: WantAgent): Promise\<Want\>
-
-获取WantAgent对象的want（Promise形式）。
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**参数：**
-
-| 名称  | 可读 | 可写 | 类型      | 必填 | 描述          |
-| ----- | --- | ---- | --------- | ---- | ------------- |
-| agent | 是   | 否  | WantAgent | 是   | WantAgent对象。 |
-
-**返回值：**
-
-| 类型                                                        | 说明                                                         |
-| ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<Want\> | 以Promise形式返回获取WantAgent对象的want。 |
-
-**示例：**
-
-```js
-import WantAgent from '@ohos.wantAgent';
-import { OperationType, WantAgentFlags } from '@ohos.wantagent';
-
-//wantAgent对象
-var wantAgent;
-
-//WantAgentInfo对象
-var wantAgentInfo = {
-    wants: [
-        {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
-            parameters:
-            {
-                mykey0: 2222,
-                mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
-                mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
-                mykey6: true,
-            }
-        }
-    ],
-    operationType: OperationType.START_ABILITIES,
-    requestCode: 0,
-    wantAgentFlags:[WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
-
-WantAgent.getWantAgent(wantAgentInfo).then((data) => {
-	console.info("==========================>getWantAgentCallback=======================>");
-    wantAgent = data;
-});
-
-WantAgent.getWant(wantAgent).then((data) => {
-	console.info("==========================>getWantCallback=======================>");
-});
-```
-
-
-
-## WantAgent.cancel
-
-cancel(agent: WantAgent, callback: AsyncCallback\<void\>): void
-
-取消WantAgent实例（callback形式）。
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**参数：**
-
-| 名称     | 可读 | 可写 | 类型                  | 必填 | 描述                        |
-| -------- | --- | ---- | --------------------- | ---- | --------------------------- |
-| agent    | 是   | 否  | WantAgent             | 是   | WantAgent对象。               |
-| callback | 是   | 否  | AsyncCallback\<void\> | 是   | 取消WantAgent实例的回调方法。 |
-
-**示例：**
-
-```js
-import WantAgent from '@ohos.wantAgent';
-import { OperationType, WantAgentFlags } from '@ohos.wantagent';
-
-//wantAgent对象
-var wantAgent;
-
-//getWantAgent回调
-function getWantAgentCallback(err, data) {
-	console.info("==========================>getWantAgentCallback=======================>");
-    if (err.code == 0) {
-    	wantAgent = data;
-    } else {
-        console.info('----getWantAgent failed!----');
-    }
-}
-//WantAgentInfo对象
-var wantAgentInfo = {
-    wants: [
-        {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
-            parameters:
-            {
-                mykey0: 2222,
-                mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
-                mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
-                mykey6: true,
-            }
-        }
-    ],
-    operationType: OperationType.START_ABILITIES,
-    requestCode: 0,
-    wantAgentFlags:[WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
-
-WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
-
-//cancel回调
-function cancelCallback(err, data) {
-	console.info("==========================>cancelCallback=======================>");
-}
-WantAgent.cancel(wantAgent, cancelCallback)
-```
-
-
-
-## WantAgent.cancel
-
-cancel(agent: WantAgent): Promise\<void\>
-
-取消WantAgent实例（Promise形式）。
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**参数：**
-
-| 名称  | 可读 | 可写 | 类型      | 必填 | 描述          |
-| ----- | --- | ---- | --------- | ---- | ------------- |
-| agent | 是   | 否  | WantAgent | 是   | WantAgent对象。 |
-
-**示例：**
-
-```js
-import WantAgent from '@ohos.wantAgent';
-import { OperationType, WantAgentFlags } from '@ohos.wantagent';
-
-//wantAgent对象
-var wantAgent;
-
-//WantAgentInfo对象
-var wantAgentInfo = {
-    wants: [
-        {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
-            parameters:
-            {
-                mykey0: 2222,
-                mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
-                mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
-                mykey6: true,
-            }
-        }
-    ],
-    operationType: OperationType.START_ABILITIES,
-    requestCode: 0,
-    wantAgentFlags:[WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
-
-WantAgent.getWantAgent(wantAgentInfo).then((data) => {
-	console.info("==========================>getWantAgentCallback=======================>");
-    wantAgent = data;
-});
-
-WantAgent.cancel(wantAgent).then((data) => {
-	console.info("==========================>cancelCallback=======================>");
-});
-```
-
-
-
-## WantAgent.trigger
-
-trigger(agent: WantAgent, triggerInfo: TriggerInfo, callback?: Callback\<CompleteData\>): void
-
-主动激发WantAgent实例（callback形式）。
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**参数：**
-
-| 名称        | 可读 | 可写 | 类型                          | 必填 | 描述                            |
-| ----------- | --- | ---- | ----------------------------- | ---- | ------------------------------- |
-| agent       | 是   | 否  | WantAgent                     | 是   | WantAgent对象。                   |
-| triggerInfo | 是   | 否  | TriggerInfo                   | 是   | TriggerInfo对象。                 |
-| callback    | 是   | 否  | AsyncCallback\<CompleteData\> | 是   | 主动激发WantAgent实例的回调方法。 |
-
-**示例：**
-
-```js
-import WantAgent from '@ohos.wantAgent';
-import { OperationType, WantAgentFlags } from '@ohos.wantagent';
-
-//wantAgent对象
-var wantAgent;
-
-//getWantAgent回调
-function getWantAgentCallback(err, data) {
-	console.info("==========================>getWantAgentCallback=======================>");
-    if (err.code == 0) {
-    	wantAgent = data;
-    } else {
-        console.info('----getWantAgent failed!----');
-    }
-}
-//WantAgentInfo对象
-var wantAgentInfo = {
-    wants: [
-        {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
-            parameters:
-            {
-                mykey0: 2222,
-                mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
-                mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
-                mykey6: true,
-            }
-        }
-    ],
-    operationType: OperationType.START_ABILITIES,
-    requestCode: 0,
-    wantAgentFlags:[WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
-
-WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
-
-//trigger回调
-function triggerCallback(err, data) {
-	console.info("==========================>triggerCallback=======================>");
-}
-
-var triggerInfo = {
-    code:0
-}
-WantAgent.trigger(wantAgent, triggerInfo, triggerCallback)
-```
-
-
-
-## WantAgent.equal
-
-equal(agent: WantAgent, otherAgent: WantAgent, callback: AsyncCallback\<boolean\>): void
-
-判断两个WantAgent实例是否相等（callback形式）。
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**参数：**
-
-| 名称       | 可读 | 可写 | 类型                     | 必填 | 描述                                    |
-| ---------- | --- | ---- | ------------------------ | ---- | --------------------------------------- |
-| agent      | 是   | 否  | WantAgent                | 是   | WantAgent对象。                           |
-| otherAgent | 是   | 否  | WantAgent                | 是   | WantAgent对象。                           |
-| callback   | 是   | 否  | AsyncCallback\<boolean\> | 是   | 判断两个WantAgent实例是否相等的回调方法。 |
-
-**示例：**
-
-```js
-import WantAgent from '@ohos.wantAgent';
-import { OperationType, WantAgentFlags } from '@ohos.wantagent';
-
-//wantAgent对象
-var wantAgent1;
-var wantAgent2;
-
-//getWantAgent回调
-function getWantAgentCallback(err, data) {
-	console.info("==========================>getWantAgentCallback=======================>");
-    if (err.code == 0) {
-    	wantAgent1 = data;
-        wantAgent2 = data;
-    } else {
-        console.info('----getWantAgent failed!----');
-    }
-}
-//WantAgentInfo对象
-var wantAgentInfo = {
-    wants: [
-        {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
-            parameters:
-            {
-                mykey0: 2222,
-                mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
-                mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
-                mykey6: true,
-            }
-        }
-    ],
-    operationType: OperationType.START_ABILITIES,
-    requestCode: 0,
-    wantAgentFlags:[WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
-
-WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
-
-//equal回调
-function equalCallback(err, data) {
-	console.info("==========================>equalCallback=======================>");
-}
-WantAgent.equal(wantAgent1, wantAgent2, equalCallback)
-```
-
-
-
-## WantAgent.equal
-
-equal(agent: WantAgent, otherAgent: WantAgent): Promise\<boolean\>
-
-判断两个WantAgent实例是否相等（Promise形式）。
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**参数：**
-
-| 名称       | 可读 | 可写 | 类型      | 必填 | 描述          |
-| ---------- | --- | ---- | --------- | ---- | ------------- |
-| agent      | 是   | 否  | WantAgent | 是   | WantAgent对象。 |
-| otherAgent | 是   | 否  | WantAgent | 是   | WantAgent对象。 |
-
-**返回值：**
-
-| 类型                                                        | 说明                                                         |
-| ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<boolean\> | 以Promise形式返回获取判断两个WantAgent实例是否相等的结果。 |
-
-**示例：**
-
-```js
-import WantAgent from '@ohos.wantAgent';
-import { OperationType, WantAgentFlags } from '@ohos.wantagent';
-
-//wantAgent对象
-var wantAgent1;
-var wantAgent2;
-
-//WantAgentInfo对象
-var wantAgentInfo = {
-    wants: [
-        {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
-            parameters:
-            {
-                mykey0: 2222,
-                mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
-                mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
-                mykey6: true,
-            }
-        }
-    ],
-    operationType: OperationType.START_ABILITIES,
-    requestCode: 0,
-    wantAgentFlags:[WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
-
-WantAgent.getWantAgent(wantAgentInfo).then((data) => {
-	console.info("==========================>getWantAgentCallback=======================>");
-    wantAgent1 = data;
-    wantAgent2 = data;
-});
-
-WantAgent.equal(wantAgent1, wantAgent2).then((data) => {
-	console.info("==========================>equalCallback=======================>");
-});
-```
-
-
-
-## WantAgentInfo
-
-**系统能力：**以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
-
-| 名称           | 可读 | 可写 | 类型                            | 必填 | 描述                   |
-| -------------- | --- | ---- | ------------------------------- | ---- | ---------------------- |
-| wants          | 是  | 是  | Array\<Want\>                   | 是   | 将被执行的动作列表。     |
-| operationType  | 是  | 是  | wantAgent.OperationType         | 是   | 动作类型。               |
-| requestCode    | 是  | 是  | number                          | 是   | 使用者定义的一个私有值。 |
-| wantAgentFlags | 是  | 是  | Array<wantAgent.WantAgentFlags> | 否   | 动作执行属性。           |
-| extraInfo      | 是  | 是  | {[key: string]: any}            | 否   | 额外数据。               |
-
-
-
-## WantAgentFlags
-
-**系统能力：**以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
-
-| 名称                | 值             | 说明                                                         |
-| ------------------- | -------------- | ------------------------------------------------------------ |
-| ONE_TIME_FLAG       | WantAgentFlags | WantAgent仅能使用一次。                                      |
-| NO_BUILD_FLAG       | WantAgentFlags | 如果描述WantAgent对象不存在，则不创建它，直接返回null。      |
-| CANCEL_PRESENT_FLAG | WantAgentFlags | 在生成一个新的WantAgent对象前取消已存在的一个WantAgent对象。 |
-| UPDATE_PRESENT_FLAG | WantAgentFlags | 使用新的WantAgent的额外数据替换已存在的WantAgent中的额外数据。 |
-| CONSTANT_FLAG       | WantAgentFlags | WantAgent是不可变的。                                        |
-
-
-
-## OperationType
-
-**系统能力：**以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
-
-| 名称              | 值            | 说明                      |
-| ----------------- | ------------- | ------------------------- |
-| UNKNOWN_TYPE      | OperationType | 不识别的类型。            |
-| START_ABILITY     | OperationType | 开启一个有页面的Ability。 |
-| START_ABILITIES   | OperationType | 开启多个有页面的Ability。 |
-| START_SERVICE     | OperationType | 开启一个无页面的ability。 |
-| SEND_COMMON_EVENT | OperationType | 发送一个公共事件。        |
-
-
-
-## TriggerInfo
-
-**系统能力：**以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
-
-| 名称       | 可读 | 可写 | 类型                 | 必填 | 描述        |
-| ---------- | --- | ---- | -------------------- | ---- | ----------- |
-| code       | 是  | 是  | number               | 是   | result code。 |
-| want       | 是  | 是  | Want                 | 否   | Want。        |
-| permission | 是  | 是  | string               | 否   | 权限定义。    |
-| extraInfo  | 是  | 是  | {[key: string]: any} | 否   | 额外数据。    |
