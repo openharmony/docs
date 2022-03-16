@@ -462,8 +462,10 @@ await videoPlayer.play().then(() => {
 
 ### Xcomponent创建方法
 
-```js
 播放视频中获取surfaceID依赖了Xcomponent,需要创建一个和xxx.js同名的xxx.hml文件,xxx.hml里面需要添加如下代码：
+
+```js
+
 <xcomponent id = 'Xcomponent'
 	  if = "{{isFlush}}" // 刷新surfaceID，isFlush赋值false再赋值true为一次刷新，会主动再次加载LoadXcomponet获取新的surfaceID
       type = 'surface'
