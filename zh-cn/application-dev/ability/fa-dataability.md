@@ -1,13 +1,123 @@
 # DataAbility开发指导
 
 ## Data Ability基本概念
-通过Ability派生出的DataAbility类（以下简称“Data”）,有助于应用管理其自身和其他应用存储数据的访问，并提供与其他应用共享数据的方法。Data既可用于同设备不同应用的数据共享，也支持跨设备不同应用的数据共享。
+基于Data模板的Ability（以下简称“Data”）,有助于应用管理其自身和其他应用存储数据的访问，并提供与其他应用共享数据的方法。Data既可用于同设备不同应用的数据共享，也支持跨设备不同应用的数据共享。
+
+Data提供方可以自定义数据的增、删、改、查，以及文件打开等功能，并对外提供这些接口。
 
 ## 创建Data
 ### 1. Data子系统实现
-1. 基于Native的Data子系统,需要继承Ability类,成为Ability的派生类来实现功能
-2. 需要实现父类中Insert,Query,Update,Delete接口的业务内容.保证能够满足数据库存储业务的基本需求.BatchInsert与ExecuteBatch接口已经在系统中实现遍历逻辑,依赖Insert,Query,Update,Delete接口逻辑,来实现数据的批量处理.
-3. 使用REGISTER_AA宏将Data的类名注册到系统服务中
+1. 需要实现Data中Insert,Query,Update,Delete接口的业务内容.保证能够满足数据库存储业务的基本需求.BatchInsert与ExecuteBatch接口已经在系统中实现遍历逻辑,依赖Insert,Query,Update,Delete接口逻辑,来实现数据的批量处理.
+2. Data中相关生命周期说明如下：
+
+   - onInitialized
+
+     在Ability初始化调用，通过此回调方法执行rdb等初始化操作。
+
+   - update
+
+     更新数据库中的数据。
+
+   - query
+
+     查询数据库中的数据。
+
+   - delete
+
+     删除一条或多条数据。
+
+   - normalizeUri
+
+     对uri进行规范化。一个规范化的uri可以支持跨设备使用、持久化、备份和还原等，当上下文改变时仍然可以引用到相同的数据项。
+
+   - batchInsert
+
+     向数据库中插入多条数据。
+
+   - denormalizeUri
+
+     将一个由normalizeUri生产的规范化uri转换成非规范化的uri。
+
+   - insert
+
+     向数据中插入一条数据。
+
+   - openFile
+
+     打开一个文件。
+
+   - getFileTypes
+
+     获取文件的MIME类型。
+
+   - getType
+
+     获取uri指定数据相匹配的MIME类型。
+
+   - executeBatch
+   
+     批量操作数据库中的数据。
+
+   - call
+
+     自定义方法。
+ 
+
+   创建Data的代码示例如下：
+
+   ```javascript
+    import dataAbility from '@ohos.data.dataability'
+    import dataRdb from '@ohos.data.rdb'
+    
+    const TABLE_NAME = 'book'
+    const STORE_CONFIG = { name: 'book.db', encryptKey: new Uint8Array([]) }
+    const SQL_CREATE_TABLE = 'CREATE TABLE IF NOT EXISTS book(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, age INTEGER, introduction TEXT NOT NULL)'
+    let rdbStore =  undefined
+    
+    export default {
+        onInitialized(abilityInfo) {
+            console.info('DataAbility onInitialized, abilityInfo:' + abilityInfo.bundleName)
+            dataRdb.getRdbStore(STORE_CONFIG, 1, (err, store) => {
+                console.info('DataAbility getRdbStore callback')
+                store.executeSql(SQL_CREATE_TABLE, [])
+                rdbStore = store
+            });
+        },
+        insert(uri, valueBucket, callback) {
+            console.info('DataAbility insert start')
+            rdbStore.insert(TABLE_NAME, valueBucket, callback)
+        },
+        batchInsert(uri, valueBuckets, callback) {
+            console.info('DataAbility batch insert start')
+            for (let i = 0;i < valueBuckets.length; i++) {
+                console.info('DataAbility batch insert i=' + i)
+                if (i < valueBuckets.length - 1) {
+                    rdbStore.insert(TABLE_NAME, valueBuckets[i], (num: number) => {
+                        console.info('DataAbility batch insert ret=' + num)
+                    })
+                } else {
+                    rdbStore.insert(TABLE_NAME, valueBuckets[i], callback)
+                }
+            }
+        },
+        query(uri, columns, predicates, callback) {
+            console.info('DataAbility query start')
+            let rdbPredicates = dataAbility.createRdbPredicates(TABLE_NAME, predicates)
+            rdbStore.query(rdbPredicates, columns, callback)
+        },
+        update(uri, valueBucket, predicates, callback) {
+            console.info('DataAbilityupdate start')
+            let rdbPredicates = dataAbility.createRdbPredicates(TABLE_NAME, predicates)
+            rdbStore.update(valueBucket, rdbPredicates, callback)
+        },
+        delete(uri, predicates, callback) {
+            console.info('DataAbilitydelete start')
+            let rdbPredicates = dataAbility.createRdbPredicates(TABLE_NAME, predicates)
+            rdbStore.delete(rdbPredicates, callback)
+        }
+    };
+
+   ```
 
 
 ### 2. 子系统配置
@@ -17,22 +127,20 @@
 | "name"        | Ability名子,对应Ability派生的Data类名                        |
 | "type"        | Ability类型,Data对应的Ability类型未"data"                    |
 | "uri"         | 通信使用的URI                                                |
-| "srcLanguage" | Data实现语言,c++实现的Data填写c++, js实现的Data填写js        |
 | "visible"     | 对其他应用是否可见, 设置为true时, Data才能与其他应用进行通信传输数据 |
 
 **config.json配置样例**
 
 ```json
 "abilities":[{
+    "srcPath": "DataAbility",
     "name": ".DataAbility",
-    "icon": "$media:snowball",
-    "label": "Data Firs Ability",
-    "launchType": "standard",
-    "orientation": "unspecified",
+    "icon": "$media:icon",
+    "srcLanguage": "ets",
+    "description": "$string:description_dataability",
     "type": "data",
-    "uri": "dataability://com.ix.DataAbility",
-    "srcLanguage": "c++",
-    "visible": true
+    "visible": true,
+    "uri": "dataability://ohos.samples.etsdataability.DataAbility"    
 }]
 ```
 
@@ -184,3 +292,14 @@ var dataexecuteBatch = await DAHelper.executeBatch(
 );
 ```
 
+## 开发实例
+
+针对dataAbility开发，有以下示例工程可供参考：
+
+- [eTSDataAbility](https://gitee.com/openharmony/app_samples/tree/master/ability/eTSDataAbility)
+
+本示例eTSDataAbility中：
+
+在DataAbility目录中的data.ts文件创建一个Data实例。
+
+在MainAbility目录中封装了访问Data的流程。

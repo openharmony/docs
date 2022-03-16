@@ -1,5 +1,8 @@
 # ServiceAbility开发指导
 
+## Service Ability基本概念
+基于Service模板的Ability（以下简称“Service”）主要用于后台运行任务（如执行音乐播放、文件下载等），但不提供用户交互界面。Service可由其他应用或Ability启动，即使用户切换到其他应用，Service仍将在后台继续运行。
+
 ## 创建Service<a name="section17436202895812"></a>
 
 1. Service也是一种Ability，Ability为Service提供了以下生命周期方法，开发者可以重写这些方法，来添加其他Ability请求与Service Ability交互时的处理方法。
@@ -264,3 +267,15 @@ export default {
     },
 }
 ```
+
+## 开发实例
+
+针对serviceAbility开发，有以下示例工程可供参考：
+
+- [eTSServiceAbility](https://gitee.com/openharmony/app_samples/tree/master/ability/eTSServiceAbility)
+
+本示例eTSServiceAbility中：
+
+在ServiceAbility目录中的service.ts文件创建一个本地Service。
+
+在MainAbility目录中封装了启动、连接本地Services的流程。
