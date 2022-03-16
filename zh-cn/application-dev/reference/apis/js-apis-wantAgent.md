@@ -1,0 +1,979 @@
+# WantAgent模块
+
+>**说明：**
+>
+>本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+
+## 导入模块
+
+```js
+import WantAgent from '@ohos.wantAgent';
+```
+
+## WantAgent.getWantAgent
+
+getWantAgent(info: WantAgentInfo, callback: AsyncCallback\<WantAgent\>): void
+
+创建WantAgent（callback形式）。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 名称     | 可读 | 可写  | 类型                       | 必填 | 描述                    |
+| -------- | --- | ---- | -------------------------- | ---- | ----------------------- |
+| info     | 是   | 否   | WantAgentInfo              | 是   | WantAgent信息。           |
+| callback | 是   | 否   | AsyncCallback\<WantAgent\> | 是   | 创建WantAgent的回调方法。 |
+
+**示例：**
+
+```js
+import WantAgent from '@ohos.wantAgent';
+import { OperationType, WantAgentFlags } from '@ohos.wantagent';
+
+//getWantAgent回调
+function getWantAgentCallback(err, data) {
+	console.info("==========================>getWantAgentCallback=======================>");
+}
+//WantAgentInfo对象
+var wantAgentInfo = {
+    wants: [
+        {
+            deviceId: "deviceId",
+            bundleName: "com.neu.setResultOnAbilityResultTest1",
+            abilityName: "com.example.test.MainAbility",
+            action: "action1",
+            entities: ["entity1"],
+            type: "MIMETYPE",
+            uri: "key={true,true,false}",
+            parameters:
+            {
+                mykey0: 2222,
+                mykey1: [1, 2, 3],
+                mykey2: "[1, 2, 3]",
+                mykey3: "ssssssssssssssssssssssssss",
+                mykey4: [false, true, false],
+                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey6: true,
+            }
+        }
+    ],
+    operationType: OperationType.START_ABILITIES,
+    requestCode: 0,
+    wantAgentFlags:[WantAgentFlags.UPDATE_PRESENT_FLAG]
+}
+
+WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
+```
+
+
+
+## WantAgent.getWantAgent
+
+getWantAgent(info: WantAgentInfo): Promise\<WantAgent\>
+
+创建WantAgent（Promise形式）。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 名称 | 可读 | 可写  | 类型          | 必填 | 描述          |
+| ---- | --- | ---- | ------------- | ---- | ------------- |
+| info | 是   | 否   | WantAgentInfo | 是   | WantAgent信息。 |
+
+**返回值：**
+
+| 类型                                                        | 说明                                                         |
+| ----------------------------------------------------------- | ------------------------------------------------------------ |
+| Promise\<WantAgent\> | 以Promise形式返回WantAgent。 |
+
+**示例：**
+
+```js
+import WantAgent from '@ohos.wantAgent';
+import { OperationType, WantAgentFlags } from '@ohos.wantagent';
+
+//WantAgentInfo对象
+var wantAgentInfo = {
+    wants: [
+        {
+            deviceId: "deviceId",
+            bundleName: "com.neu.setResultOnAbilityResultTest1",
+            abilityName: "com.example.test.MainAbility",
+            action: "action1",
+            entities: ["entity1"],
+            type: "MIMETYPE",
+            uri: "key={true,true,false}",
+            parameters:
+            {
+                mykey0: 2222,
+                mykey1: [1, 2, 3],
+                mykey2: "[1, 2, 3]",
+                mykey3: "ssssssssssssssssssssssssss",
+                mykey4: [false, true, false],
+                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey6: true,
+            }
+        }
+    ],
+    operationType: OperationType.START_ABILITIES,
+    requestCode: 0,
+    wantAgentFlags:[WantAgentFlags.UPDATE_PRESENT_FLAG]
+}
+
+WantAgent.getWantAgent(wantAgentInfo).then((data) => {
+	console.info("==========================>getWantAgentCallback=======================>");
+});
+```
+
+
+
+## WantAgent.getBundleName
+
+getBundleName(agent: WantAgent, callback: AsyncCallback\<string\>): void
+
+获取WantAgent实例的包名（callback形式）。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 名称     | 可读 | 可写  | 类型                    | 必填 | 描述                              |
+| -------- | --- | ---- | ----------------------- | ---- | --------------------------------- |
+| agent    | 是   | 否   | WantAgent               | 是   | WantAgent对象。                     |
+| callback | 是   | 否   | AsyncCallback\<string\> | 是   | 获取WantAgent实例的包名的回调方法。 |
+
+**示例：**
+
+```js
+import WantAgent from '@ohos.wantAgent';
+import { OperationType, WantAgentFlags } from '@ohos.wantagent';
+
+//wantAgent对象
+var wantAgent;
+
+//getWantAgent回调
+function getWantAgentCallback(err, data) {
+	console.info("==========================>getWantAgentCallback=======================>");
+    if (err.code == 0) {
+    	wantAgent = data;
+    } else {
+        console.info('----getWantAgent failed!----');
+    }
+}
+//WantAgentInfo对象
+var wantAgentInfo = {
+    wants: [
+        {
+            deviceId: "deviceId",
+            bundleName: "com.neu.setResultOnAbilityResultTest1",
+            abilityName: "com.example.test.MainAbility",
+            action: "action1",
+            entities: ["entity1"],
+            type: "MIMETYPE",
+            uri: "key={true,true,false}",
+            parameters:
+            {
+                mykey0: 2222,
+                mykey1: [1, 2, 3],
+                mykey2: "[1, 2, 3]",
+                mykey3: "ssssssssssssssssssssssssss",
+                mykey4: [false, true, false],
+                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey6: true,
+            }
+        }
+    ],
+    operationType: OperationType.START_ABILITIES,
+    requestCode: 0,
+    wantAgentFlags:[WantAgentFlags.UPDATE_PRESENT_FLAG]
+}
+
+WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
+
+//getBundleName回调
+function getBundleNameCallback(err, data) {
+	console.info("==========================>getBundleNameCallback=======================>");
+}
+WantAgent.getBundleName(wantAgent, getBundleNameCallback)
+```
+
+
+
+## WantAgent.getBundleName
+
+getBundleName(agent: WantAgent): Promise\<string\>
+
+获取WantAgent实例的包名（Promise形式）。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 名称  | 可读 | 可写 | 类型      | 必填 | 描述          |
+| ----- | --- | ---- | --------- | ---- | ------------- |
+| agent | 是   | 否  | WantAgent | 是   | WantAgent对象。 |
+
+**返回值：**
+
+| 类型                                                        | 说明                                                         |
+| ----------------------------------------------------------- | ------------------------------------------------------------ |
+| Promise\<string\> | 以Promise形式返回获取WantAgent实例的包名。 |
+
+**示例：**
+
+```js
+import WantAgent from '@ohos.wantAgent';
+import { OperationType, WantAgentFlags } from '@ohos.wantagent';
+
+//wantAgent对象
+var wantAgent;
+
+//WantAgentInfo对象
+var wantAgentInfo = {
+    wants: [
+        {
+            deviceId: "deviceId",
+            bundleName: "com.neu.setResultOnAbilityResultTest1",
+            abilityName: "com.example.test.MainAbility",
+            action: "action1",
+            entities: ["entity1"],
+            type: "MIMETYPE",
+            uri: "key={true,true,false}",
+            parameters:
+            {
+                mykey0: 2222,
+                mykey1: [1, 2, 3],
+                mykey2: "[1, 2, 3]",
+                mykey3: "ssssssssssssssssssssssssss",
+                mykey4: [false, true, false],
+                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey6: true,
+            }
+        }
+    ],
+    operationType: OperationType.START_ABILITIES,
+    requestCode: 0,
+    wantAgentFlags:[WantAgentFlags.UPDATE_PRESENT_FLAG]
+}
+
+WantAgent.getWantAgent(wantAgentInfo).then((data) => {
+	console.info("==========================>getWantAgentCallback=======================>");
+    wantAgent = data;
+});
+
+WantAgent.getBundleName(wantAgent).then((data) => {
+	console.info("==========================>getBundleNameCallback=======================>");
+});
+```
+
+
+
+## WantAgent.getUid
+
+getUid(agent: WantAgent, callback: AsyncCallback\<number\>): void
+
+获取WantAgent实例的用户ID（callback形式）。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 名称     | 可读 | 可写 | 类型                    | 必填 | 描述                                |
+| -------- | --- | ---- | ----------------------- | ---- | ----------------------------------- |
+| agent    | 是   | 否  | WantAgent               | 是   | WantAgent对象。                       |
+| callback | 是   | 否  | AsyncCallback\<number\> | 是   | 获取WantAgent实例的用户ID的回调方法。 |
+
+**示例：**
+
+```js
+import WantAgent from '@ohos.wantAgent';
+import { OperationType, WantAgentFlags } from '@ohos.wantagent';
+
+//wantAgent对象
+var wantAgent;
+
+//getWantAgent回调
+function getWantAgentCallback(err, data) {
+	console.info("==========================>getWantAgentCallback=======================>");
+    if (err.code == 0) {
+    	wantAgent = data;
+    } else {
+        console.info('----getWantAgent failed!----');
+    }
+}
+//WantAgentInfo对象
+var wantAgentInfo = {
+    wants: [
+        {
+            deviceId: "deviceId",
+            bundleName: "com.neu.setResultOnAbilityResultTest1",
+            abilityName: "com.example.test.MainAbility",
+            action: "action1",
+            entities: ["entity1"],
+            type: "MIMETYPE",
+            uri: "key={true,true,false}",
+            parameters:
+            {
+                mykey0: 2222,
+                mykey1: [1, 2, 3],
+                mykey2: "[1, 2, 3]",
+                mykey3: "ssssssssssssssssssssssssss",
+                mykey4: [false, true, false],
+                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey6: true,
+            }
+        }
+    ],
+    operationType: OperationType.START_ABILITIES,
+    requestCode: 0,
+    wantAgentFlags:[WantAgentFlags.UPDATE_PRESENT_FLAG]
+}
+
+WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
+
+//getUid回调
+function getUidCallback(err, data) {
+	console.info("==========================>getUidCallback=======================>");
+}
+WantAgent.getUid(wantAgent, getUidCallback)
+```
+
+
+
+## WantAgent.getUid
+
+getUid(agent: WantAgent): Promise\<number\>
+
+获取WantAgent实例的用户ID（Promise形式）。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 名称  | 可读 | 可写 | 类型      | 必填 | 描述          |
+| ----- | --- | ---- | --------- | ---- | ------------- |
+| agent | 是   | 否  | WantAgent | 是   | WantAgent对象。 |
+
+**返回值：**
+
+| 类型                                                        | 说明                                                         |
+| ----------------------------------------------------------- | ------------------------------------------------------------ |
+| Promise\<number\> | 以Promise形式返回获取WantAgent实例的用户ID。 |
+
+**示例：**
+
+```js
+import WantAgent from '@ohos.wantAgent';
+import { OperationType, WantAgentFlags } from '@ohos.wantagent';
+
+//wantAgent对象
+var wantAgent;
+
+//WantAgentInfo对象
+var wantAgentInfo = {
+    wants: [
+        {
+            deviceId: "deviceId",
+            bundleName: "com.neu.setResultOnAbilityResultTest1",
+            abilityName: "com.example.test.MainAbility",
+            action: "action1",
+            entities: ["entity1"],
+            type: "MIMETYPE",
+            uri: "key={true,true,false}",
+            parameters:
+            {
+                mykey0: 2222,
+                mykey1: [1, 2, 3],
+                mykey2: "[1, 2, 3]",
+                mykey3: "ssssssssssssssssssssssssss",
+                mykey4: [false, true, false],
+                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey6: true,
+            }
+        }
+    ],
+    operationType: OperationType.START_ABILITIES,
+    requestCode: 0,
+    wantAgentFlags:[WantAgentFlags.UPDATE_PRESENT_FLAG]
+}
+
+WantAgent.getWantAgent(wantAgentInfo).then((data) => {
+	console.info("==========================>getWantAgentCallback=======================>");
+    wantAgent = data;
+});
+
+WantAgent.getUid(wantAgent).then((data) => {
+	console.info("==========================>getUidCallback=======================>");
+});
+```
+
+
+
+## WantAgent.getWant
+
+getWant(agent: WantAgent, callback: AsyncCallback\<Want\>): void
+
+获取WantAgent对象的want（callback形式）。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 名称     | 可读 | 可写 | 类型                  | 必填 | 描述                            |
+| -------- | --- | ---- | --------------------- | ---- | ------------------------------- |
+| agent    | 是   | 否  | WantAgent             | 是   | WantAgent对象。                   |
+| callback | 是   | 否  | AsyncCallback\<Want\> | 是   | 获取WantAgent对象want的回调方法。 |
+
+**示例：**
+
+```js
+import WantAgent from '@ohos.wantAgent';
+import { OperationType, WantAgentFlags } from '@ohos.wantagent';
+
+//wantAgent对象
+var wantAgent;
+
+//getWantAgent回调
+function getWantAgentCallback(err, data) {
+	console.info("==========================>getWantAgentCallback=======================>");
+    if (err.code == 0) {
+    	wantAgent = data;
+    } else {
+        console.info('----getWantAgent failed!----');
+    }
+}
+//WantAgentInfo对象
+var wantAgentInfo = {
+    wants: [
+        {
+            deviceId: "deviceId",
+            bundleName: "com.neu.setResultOnAbilityResultTest1",
+            abilityName: "com.example.test.MainAbility",
+            action: "action1",
+            entities: ["entity1"],
+            type: "MIMETYPE",
+            uri: "key={true,true,false}",
+            parameters:
+            {
+                mykey0: 2222,
+                mykey1: [1, 2, 3],
+                mykey2: "[1, 2, 3]",
+                mykey3: "ssssssssssssssssssssssssss",
+                mykey4: [false, true, false],
+                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey6: true,
+            }
+        }
+    ],
+    operationType: OperationType.START_ABILITIES,
+    requestCode: 0,
+    wantAgentFlags:[WantAgentFlags.UPDATE_PRESENT_FLAG]
+}
+
+WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
+
+//getWant回调
+function getWantCallback(err, data) {
+	console.info("==========================>getWantCallback=======================>");
+}
+WantAgent.getWant(wantAgent, getWantCallback)
+```
+
+
+
+## WantAgent.getWant
+
+getWant(agent: WantAgent): Promise\<Want\>
+
+获取WantAgent对象的want（Promise形式）。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 名称  | 可读 | 可写 | 类型      | 必填 | 描述          |
+| ----- | --- | ---- | --------- | ---- | ------------- |
+| agent | 是   | 否  | WantAgent | 是   | WantAgent对象。 |
+
+**返回值：**
+
+| 类型                                                        | 说明                                                         |
+| ----------------------------------------------------------- | ------------------------------------------------------------ |
+| Promise\<Want\> | 以Promise形式返回获取WantAgent对象的want。 |
+
+**示例：**
+
+```js
+import WantAgent from '@ohos.wantAgent';
+import { OperationType, WantAgentFlags } from '@ohos.wantagent';
+
+//wantAgent对象
+var wantAgent;
+
+//WantAgentInfo对象
+var wantAgentInfo = {
+    wants: [
+        {
+            deviceId: "deviceId",
+            bundleName: "com.neu.setResultOnAbilityResultTest1",
+            abilityName: "com.example.test.MainAbility",
+            action: "action1",
+            entities: ["entity1"],
+            type: "MIMETYPE",
+            uri: "key={true,true,false}",
+            parameters:
+            {
+                mykey0: 2222,
+                mykey1: [1, 2, 3],
+                mykey2: "[1, 2, 3]",
+                mykey3: "ssssssssssssssssssssssssss",
+                mykey4: [false, true, false],
+                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey6: true,
+            }
+        }
+    ],
+    operationType: OperationType.START_ABILITIES,
+    requestCode: 0,
+    wantAgentFlags:[WantAgentFlags.UPDATE_PRESENT_FLAG]
+}
+
+WantAgent.getWantAgent(wantAgentInfo).then((data) => {
+	console.info("==========================>getWantAgentCallback=======================>");
+    wantAgent = data;
+});
+
+WantAgent.getWant(wantAgent).then((data) => {
+	console.info("==========================>getWantCallback=======================>");
+});
+```
+
+
+
+## WantAgent.cancel
+
+cancel(agent: WantAgent, callback: AsyncCallback\<void\>): void
+
+取消WantAgent实例（callback形式）。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 名称     | 可读 | 可写 | 类型                  | 必填 | 描述                        |
+| -------- | --- | ---- | --------------------- | ---- | --------------------------- |
+| agent    | 是   | 否  | WantAgent             | 是   | WantAgent对象。               |
+| callback | 是   | 否  | AsyncCallback\<void\> | 是   | 取消WantAgent实例的回调方法。 |
+
+**示例：**
+
+```js
+import WantAgent from '@ohos.wantAgent';
+import { OperationType, WantAgentFlags } from '@ohos.wantagent';
+
+//wantAgent对象
+var wantAgent;
+
+//getWantAgent回调
+function getWantAgentCallback(err, data) {
+	console.info("==========================>getWantAgentCallback=======================>");
+    if (err.code == 0) {
+    	wantAgent = data;
+    } else {
+        console.info('----getWantAgent failed!----');
+    }
+}
+//WantAgentInfo对象
+var wantAgentInfo = {
+    wants: [
+        {
+            deviceId: "deviceId",
+            bundleName: "com.neu.setResultOnAbilityResultTest1",
+            abilityName: "com.example.test.MainAbility",
+            action: "action1",
+            entities: ["entity1"],
+            type: "MIMETYPE",
+            uri: "key={true,true,false}",
+            parameters:
+            {
+                mykey0: 2222,
+                mykey1: [1, 2, 3],
+                mykey2: "[1, 2, 3]",
+                mykey3: "ssssssssssssssssssssssssss",
+                mykey4: [false, true, false],
+                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey6: true,
+            }
+        }
+    ],
+    operationType: OperationType.START_ABILITIES,
+    requestCode: 0,
+    wantAgentFlags:[WantAgentFlags.UPDATE_PRESENT_FLAG]
+}
+
+WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
+
+//cancel回调
+function cancelCallback(err, data) {
+	console.info("==========================>cancelCallback=======================>");
+}
+WantAgent.cancel(wantAgent, cancelCallback)
+```
+
+
+
+## WantAgent.cancel
+
+cancel(agent: WantAgent): Promise\<void\>
+
+取消WantAgent实例（Promise形式）。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 名称  | 可读 | 可写 | 类型      | 必填 | 描述          |
+| ----- | --- | ---- | --------- | ---- | ------------- |
+| agent | 是   | 否  | WantAgent | 是   | WantAgent对象。 |
+
+**示例：**
+
+```js
+import WantAgent from '@ohos.wantAgent';
+import { OperationType, WantAgentFlags } from '@ohos.wantagent';
+
+//wantAgent对象
+var wantAgent;
+
+//WantAgentInfo对象
+var wantAgentInfo = {
+    wants: [
+        {
+            deviceId: "deviceId",
+            bundleName: "com.neu.setResultOnAbilityResultTest1",
+            abilityName: "com.example.test.MainAbility",
+            action: "action1",
+            entities: ["entity1"],
+            type: "MIMETYPE",
+            uri: "key={true,true,false}",
+            parameters:
+            {
+                mykey0: 2222,
+                mykey1: [1, 2, 3],
+                mykey2: "[1, 2, 3]",
+                mykey3: "ssssssssssssssssssssssssss",
+                mykey4: [false, true, false],
+                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey6: true,
+            }
+        }
+    ],
+    operationType: OperationType.START_ABILITIES,
+    requestCode: 0,
+    wantAgentFlags:[WantAgentFlags.UPDATE_PRESENT_FLAG]
+}
+
+WantAgent.getWantAgent(wantAgentInfo).then((data) => {
+	console.info("==========================>getWantAgentCallback=======================>");
+    wantAgent = data;
+});
+
+WantAgent.cancel(wantAgent).then((data) => {
+	console.info("==========================>cancelCallback=======================>");
+});
+```
+
+
+
+## WantAgent.trigger
+
+trigger(agent: WantAgent, triggerInfo: TriggerInfo, callback?: Callback\<CompleteData\>): void
+
+主动激发WantAgent实例（callback形式）。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 名称        | 可读 | 可写 | 类型                          | 必填 | 描述                            |
+| ----------- | --- | ---- | ----------------------------- | ---- | ------------------------------- |
+| agent       | 是   | 否  | WantAgent                     | 是   | WantAgent对象。                   |
+| triggerInfo | 是   | 否  | TriggerInfo                   | 是   | TriggerInfo对象。                 |
+| callback    | 是   | 否  | AsyncCallback\<CompleteData\> | 是   | 主动激发WantAgent实例的回调方法。 |
+
+**示例：**
+
+```js
+import WantAgent from '@ohos.wantAgent';
+import { OperationType, WantAgentFlags } from '@ohos.wantagent';
+
+//wantAgent对象
+var wantAgent;
+
+//getWantAgent回调
+function getWantAgentCallback(err, data) {
+	console.info("==========================>getWantAgentCallback=======================>");
+    if (err.code == 0) {
+    	wantAgent = data;
+    } else {
+        console.info('----getWantAgent failed!----');
+    }
+}
+//WantAgentInfo对象
+var wantAgentInfo = {
+    wants: [
+        {
+            deviceId: "deviceId",
+            bundleName: "com.neu.setResultOnAbilityResultTest1",
+            abilityName: "com.example.test.MainAbility",
+            action: "action1",
+            entities: ["entity1"],
+            type: "MIMETYPE",
+            uri: "key={true,true,false}",
+            parameters:
+            {
+                mykey0: 2222,
+                mykey1: [1, 2, 3],
+                mykey2: "[1, 2, 3]",
+                mykey3: "ssssssssssssssssssssssssss",
+                mykey4: [false, true, false],
+                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey6: true,
+            }
+        }
+    ],
+    operationType: OperationType.START_ABILITIES,
+    requestCode: 0,
+    wantAgentFlags:[WantAgentFlags.UPDATE_PRESENT_FLAG]
+}
+
+WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
+
+//trigger回调
+function triggerCallback(err, data) {
+	console.info("==========================>triggerCallback=======================>");
+}
+
+var triggerInfo = {
+    code:0
+}
+WantAgent.trigger(wantAgent, triggerInfo, triggerCallback)
+```
+
+
+
+## WantAgent.equal
+
+equal(agent: WantAgent, otherAgent: WantAgent, callback: AsyncCallback\<boolean\>): void
+
+判断两个WantAgent实例是否相等（callback形式）。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 名称       | 可读 | 可写 | 类型                     | 必填 | 描述                                    |
+| ---------- | --- | ---- | ------------------------ | ---- | --------------------------------------- |
+| agent      | 是   | 否  | WantAgent                | 是   | WantAgent对象。                           |
+| otherAgent | 是   | 否  | WantAgent                | 是   | WantAgent对象。                           |
+| callback   | 是   | 否  | AsyncCallback\<boolean\> | 是   | 判断两个WantAgent实例是否相等的回调方法。 |
+
+**示例：**
+
+```js
+import WantAgent from '@ohos.wantAgent';
+import { OperationType, WantAgentFlags } from '@ohos.wantagent';
+
+//wantAgent对象
+var wantAgent1;
+var wantAgent2;
+
+//getWantAgent回调
+function getWantAgentCallback(err, data) {
+	console.info("==========================>getWantAgentCallback=======================>");
+    if (err.code == 0) {
+    	wantAgent1 = data;
+        wantAgent2 = data;
+    } else {
+        console.info('----getWantAgent failed!----');
+    }
+}
+//WantAgentInfo对象
+var wantAgentInfo = {
+    wants: [
+        {
+            deviceId: "deviceId",
+            bundleName: "com.neu.setResultOnAbilityResultTest1",
+            abilityName: "com.example.test.MainAbility",
+            action: "action1",
+            entities: ["entity1"],
+            type: "MIMETYPE",
+            uri: "key={true,true,false}",
+            parameters:
+            {
+                mykey0: 2222,
+                mykey1: [1, 2, 3],
+                mykey2: "[1, 2, 3]",
+                mykey3: "ssssssssssssssssssssssssss",
+                mykey4: [false, true, false],
+                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey6: true,
+            }
+        }
+    ],
+    operationType: OperationType.START_ABILITIES,
+    requestCode: 0,
+    wantAgentFlags:[WantAgentFlags.UPDATE_PRESENT_FLAG]
+}
+
+WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
+
+//equal回调
+function equalCallback(err, data) {
+	console.info("==========================>equalCallback=======================>");
+}
+WantAgent.equal(wantAgent1, wantAgent2, equalCallback)
+```
+
+
+
+## WantAgent.equal
+
+equal(agent: WantAgent, otherAgent: WantAgent): Promise\<boolean\>
+
+判断两个WantAgent实例是否相等（Promise形式）。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 名称       | 可读 | 可写 | 类型      | 必填 | 描述          |
+| ---------- | --- | ---- | --------- | ---- | ------------- |
+| agent      | 是   | 否  | WantAgent | 是   | WantAgent对象。 |
+| otherAgent | 是   | 否  | WantAgent | 是   | WantAgent对象。 |
+
+**返回值：**
+
+| 类型                                                        | 说明                                                         |
+| ----------------------------------------------------------- | ------------------------------------------------------------ |
+| Promise\<boolean\> | 以Promise形式返回获取判断两个WantAgent实例是否相等的结果。 |
+
+**示例：**
+
+```js
+import WantAgent from '@ohos.wantAgent';
+import { OperationType, WantAgentFlags } from '@ohos.wantagent';
+
+//wantAgent对象
+var wantAgent1;
+var wantAgent2;
+
+//WantAgentInfo对象
+var wantAgentInfo = {
+    wants: [
+        {
+            deviceId: "deviceId",
+            bundleName: "com.neu.setResultOnAbilityResultTest1",
+            abilityName: "com.example.test.MainAbility",
+            action: "action1",
+            entities: ["entity1"],
+            type: "MIMETYPE",
+            uri: "key={true,true,false}",
+            parameters:
+            {
+                mykey0: 2222,
+                mykey1: [1, 2, 3],
+                mykey2: "[1, 2, 3]",
+                mykey3: "ssssssssssssssssssssssssss",
+                mykey4: [false, true, false],
+                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey6: true,
+            }
+        }
+    ],
+    operationType: OperationType.START_ABILITIES,
+    requestCode: 0,
+    wantAgentFlags:[WantAgentFlags.UPDATE_PRESENT_FLAG]
+}
+
+WantAgent.getWantAgent(wantAgentInfo).then((data) => {
+	console.info("==========================>getWantAgentCallback=======================>");
+    wantAgent1 = data;
+    wantAgent2 = data;
+});
+
+WantAgent.equal(wantAgent1, wantAgent2).then((data) => {
+	console.info("==========================>equalCallback=======================>");
+});
+```
+
+
+
+## WantAgentInfo
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+
+| 名称           | 可读 | 可写 | 类型                            | 必填 | 描述                   |
+| -------------- | --- | ---- | ------------------------------- | ---- | ---------------------- |
+| wants          | 是  | 是  | Array\<Want\>                   | 是   | 将被执行的动作列表。     |
+| operationType  | 是  | 是  | wantAgent.OperationType         | 是   | 动作类型。               |
+| requestCode    | 是  | 是  | number                          | 是   | 使用者定义的一个私有值。 |
+| wantAgentFlags | 是  | 是  | Array<wantAgent.WantAgentFlags> | 否   | 动作执行属性。           |
+| extraInfo      | 是  | 是  | {[key: string]: any}            | 否   | 额外数据。               |
+
+
+
+## WantAgentFlags
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+
+| 名称                | 值             | 说明                                                         |
+| ------------------- | -------------- | ------------------------------------------------------------ |
+| ONE_TIME_FLAG       | WantAgentFlags | WantAgent仅能使用一次。                                      |
+| NO_BUILD_FLAG       | WantAgentFlags | 如果描述WantAgent对象不存在，则不创建它，直接返回null。      |
+| CANCEL_PRESENT_FLAG | WantAgentFlags | 在生成一个新的WantAgent对象前取消已存在的一个WantAgent对象。 |
+| UPDATE_PRESENT_FLAG | WantAgentFlags | 使用新的WantAgent的额外数据替换已存在的WantAgent中的额外数据。 |
+| CONSTANT_FLAG       | WantAgentFlags | WantAgent是不可变的。                                        |
+
+
+
+## OperationType
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+
+| 名称              | 值            | 说明                      |
+| ----------------- | ------------- | ------------------------- |
+| UNKNOWN_TYPE      | OperationType | 不识别的类型。            |
+| START_ABILITY     | OperationType | 开启一个有页面的Ability。 |
+| START_ABILITIES   | OperationType | 开启多个有页面的Ability。 |
+| START_SERVICE     | OperationType | 开启一个无页面的ability。 |
+| SEND_COMMON_EVENT | OperationType | 发送一个公共事件。        |
+
+
+
+## CompleteData 
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+
+| 名称           | 可读 | 可写 | 类型                           | 必填 | 描述                    |
+| -------------- | --- | ---- | ------------------------------ | ---- | ---------------------- |
+| info           | 是  | 是  | WantAgent                       | 是   | 触发的wantAgent。       |
+| want           | 是  | 是  | Want                            | 是   | 存在的被触发的want。     |
+| finalCode      | 是  | 是  | number                          | 是   | 触发wantAgent的请求代码。|
+| finalData      | 是  | 是  | string                          | 否   | 公共事件收集的最终数据。  |
+| extraInfo      | 是  | 是  | {[key: string]: any}            | 否   | 额外数据。               |
+
+
+
+## TriggerInfo
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+
+| 名称       | 可读 | 可写 | 类型                 | 必填 | 描述        |
+| ---------- | --- | ---- | -------------------- | ---- | ----------- |
+| code       | 是  | 是  | number               | 是   | result code。 |
+| want       | 是  | 是  | Want                 | 否   | Want。        |
+| permission | 是  | 是  | string               | 否   | 权限定义。    |
+| extraInfo  | 是  | 是  | {[key: string]: any} | 否   | 额外数据。    |
