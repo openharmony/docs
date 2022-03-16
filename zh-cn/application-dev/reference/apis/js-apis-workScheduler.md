@@ -15,7 +15,7 @@ import workScheduler from '@ohos.workScheduler'
 SystemCapability.ResourceSchedule.WorkScheduler
 
 - **接口**：
-workScheduler.startWork(work: [WorkInfo](#workscheduler.workinfo)): boolean
+workScheduler.startWork(work: [WorkInfo](#workinfo)): boolean
 
 - **说明**：
 通知WorkSchedulerService将工作添加到执行队列。
@@ -24,7 +24,7 @@ workScheduler.startWork(work: [WorkInfo](#workscheduler.workinfo)): boolean
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | work | [WorkInfo](#workscheduler.workinfo) | 是 | 指示要添加到执行队列的工作。 |
+  | work | [WorkInfo](#workinfo) | 是 | 指示要添加到执行队列的工作。 |
 
 - **返回值**：
 
@@ -53,7 +53,7 @@ workScheduler.startWork(work: [WorkInfo](#workscheduler.workinfo)): boolean
 SystemCapability.ResourceSchedule.WorkScheduler
 
 - **接口**：
-stopWork(work: [WorkInfo](#workScheduler.WorkInfo), needCancel?: boolean): boolean
+stopWork(work: [WorkInfo](#workinfo), needCancel?: boolean): boolean
 
 - **说明**：
 通知WorkSchedulerService停止指定工作。
@@ -62,7 +62,7 @@ stopWork(work: [WorkInfo](#workScheduler.WorkInfo), needCancel?: boolean): boole
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | work | [WorkInfo](#workScheduler.WorkInfo) | 是 | 指示要停止的工作。 |
+  | work | [WorkInfo](#workinfo) | 是 | 指示要停止的工作。 |
   |needCancel|boolean|    是|    是否需要取消的工作。|
 
 - **返回值**：
@@ -92,7 +92,7 @@ stopWork(work: [WorkInfo](#workScheduler.WorkInfo), needCancel?: boolean): boole
 SystemCapability.ResourceSchedule.WorkScheduler
 
 - **接口**：
-getWorkStatus(workId: number, callback : AsyncCallback\<[WorkInfo](#workScheduler.WorkInfo)>): void
+getWorkStatus(workId: number, callback : AsyncCallback\<[WorkInfo](#workinfo)>): void
 
 - **说明**：
 获取工作的最新状态，使用Callback形式返回。
@@ -102,7 +102,7 @@ getWorkStatus(workId: number, callback : AsyncCallback\<[WorkInfo](#workSchedule
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | workId | number | 是 | work的id。 |
-  |callback|AsyncCallback\<[WorkInfo](#workScheduler.WorkInfo)>|    是|    指定的callback回调方法。如果指定的工作Id有效，则返回从WorkSchedulerService获取的有效工作状态；否则返回null。|
+  |callback|AsyncCallback\<[WorkInfo](#workinfo)>|    是|    指定的callback回调方法。如果指定的工作Id有效，则返回从WorkSchedulerService获取的有效工作状态；否则返回null。|
 
 
 - **示例**：
@@ -124,7 +124,7 @@ getWorkStatus(workId: number, callback : AsyncCallback\<[WorkInfo](#workSchedule
 SystemCapability.ResourceSchedule.WorkScheduler
 
 - **接口**：
-getWorkStatus(workID: number): Promise\<[WorkInfo](#workScheduler.WorkInfo)>
+getWorkStatus(workID: number): Promise\<[WorkInfo](#workinfo)>
 
 - **说明**：
 获取工作的最新状态，使用Promise形式返回。
@@ -139,7 +139,7 @@ getWorkStatus(workID: number): Promise\<[WorkInfo](#workScheduler.WorkInfo)>
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise\<[WorkInfo](#workScheduler.WorkInfo)> | 指定的Promise回调方法。如果指定的工作ID有效，则返回从WorkSchedulerService获取的有效工作状态；否则返回null。 |
+  | Promise\<[WorkInfo](#workinfo)> | 指定的Promise回调方法。如果指定的工作ID有效，则返回从WorkSchedulerService获取的有效工作状态；否则返回null。 |
 
 - **示例**：
 
@@ -158,7 +158,7 @@ getWorkStatus(workID: number): Promise\<[WorkInfo](#workScheduler.WorkInfo)>
 SystemCapability.ResourceSchedule.WorkScheduler
 
 - **接口**：
-obtainAllWorks(callback : AsyncCallback\<void>): Array\<[WorkInfo](#workScheduler.WorkInfo)>
+obtainAllWorks(callback : AsyncCallback\<void>): Array\<[WorkInfo](#workinfo)>
 
 - **说明**：
 获取与当前应用程序关联的所有工作，使用Callback形式返回。
@@ -174,7 +174,7 @@ obtainAllWorks(callback : AsyncCallback\<void>): Array\<[WorkInfo](#workSchedule
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Array\<[WorkInfo](#workScheduler.WorkInfo)> | 返回与应用程序关联的所有工作。 |
+  | Array\<[WorkInfo](#workinfo)> | 返回与应用程序关联的所有工作。 |
 
 - **示例**：
 
@@ -193,7 +193,7 @@ obtainAllWorks(callback : AsyncCallback\<void>): Array\<[WorkInfo](#workSchedule
 SystemCapability.ResourceSchedule.WorkScheduler
 
 - **接口**：
-obtainAllWorks(): Promise<Array\<[WorkInfo](#workScheduler.WorkInfo)>>
+obtainAllWorks(): Promise<Array\<[WorkInfo](#workinfo)>>
 
 - **说明**：
 获取与当前应用程序关联的所有工作，使用Promise形式返回。
@@ -202,7 +202,7 @@ obtainAllWorks(): Promise<Array\<[WorkInfo](#workScheduler.WorkInfo)>>
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise<Array\<[WorkInfo](#workScheduler.WorkInfo)>> |    指定的Promise回调方法。返回与应用程序关联的所有工作。|
+  | Promise<Array\<[WorkInfo](#workinfo)>> |    指定的Promise回调方法。返回与应用程序关联的所有工作。|
 
 - **示例**：
 
@@ -301,7 +301,7 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
     })
   ```
 
-## workScheduler.WorkInfo
+## WorkInfo
 - **系统能力**：
 SystemCapability.ResourceSchedule.WorkScheduler
 
@@ -312,17 +312,17 @@ SystemCapability.ResourceSchedule.WorkScheduler
 |workId    |number    |是    |当前工作的ID。|
 |bundleName    |string    |是|    延迟任务包名。|
 |abilityName | string| 是| 延迟任务回调通知的组件名（必填）|
-|networkType | [NetworkType](#workScheduler.NetworkType) | 否| 网络条件 |
+|networkType | [NetworkType](#networktype) | 否| 网络条件 |
 |isCharging | bool| 否|是否充电 |
-|chargerType | [ChargingType](#workScheduler.ChargingType) | 否|充电类型 |
+|chargerType | [ChargingType](#chargingtype) | 否|充电类型 |
 |batteryLevel | number| 否|电量|
-|batteryStatus| [BatteryStatus](#workScheduler.BatteryStatus) | 否|电池状态|
-|storageRequest|[StorageRequest](#workScheduler.StorageRequest)| 否|存储状态|
+|batteryStatus| [BatteryStatus](#batterystatus) | 否|电池状态|
+|storageRequest|[StorageRequest](#storagerequest)| 否|存储状态|
 |isRepeat|boolean|否|是否循环任务|
 |repeatCycleTime |number|否|循环间隔|
 |repeatCount    |number|否|循环次数|
 
-## workScheduler.NetworkType
+## NetworkType
 - **系统能力**：
 SystemCapability.ResourceSchedule.WorkScheduler
 
@@ -337,7 +337,7 @@ SystemCapability.ResourceSchedule.WorkScheduler
   |NETWORK_TYPE_WIFI_P2P    |4    |表示这个触发条件是Wifi P2P网络连接。|
   |NETWORK_TYPE_ETHERNET    |5    |表示这个触发条件是有线网络连接。|
 
-## workScheduler.ChargingType
+## ChargingType
 - **系统能力**：
 SystemCapability.ResourceSchedule.WorkScheduler
 
@@ -350,7 +350,7 @@ SystemCapability.ResourceSchedule.WorkScheduler
   |CHARGING_PLUGGED_USB    |2    |表示这个触发条件是USB充连接。|
   |CHARGING_PLUGGED_WIRELESS    |3|    表示这个触发条件是无线充电器连接。|
 
-## workScheduler.BatteryStatus
+## BatteryStatus
 - **系统能力**：
 SystemCapability.ResourceSchedule.WorkScheduler
 
@@ -362,7 +362,7 @@ SystemCapability.ResourceSchedule.WorkScheduler
   |BATTERY_STATUS_OKAY    |1|    表示这个触发条件是从低电恢复到正常电量。|
   |BATTERY_STATUS_LOW_OR_OKAY    |2    |表示这个触发条件是从低电恢复到正常电量或者低电告警。|
 
-## workScheduler.StorageRequest
+## StorageRequest
 - **系统能力**：
 SystemCapability.ResourceSchedule.WorkScheduler
 
