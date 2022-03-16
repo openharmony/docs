@@ -81,14 +81,14 @@
 
 | 名称 | 类型定义 | 描述 | 
 | -------- | -------- | -------- |
-| ResourceStr | string&nbsp;\|&nbsp;[Resource](#resource类型) | 用于描述资源字符串的类型。 | 
+| ResourceStr | string&nbsp;\|&nbsp;Resource| 用于描述资源字符串的类型。 | 
 
 
 ## ResourceColor类型<sup>8+</sup>
 
 | 名称 | 类型定义 | 描述 | 
 | -------- | -------- | -------- |
-| ResourceColor | Color&nbsp;\|&nbsp;number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](#resource类型) | 用于描述资源颜色类型。 | 
+| ResourceColor | Color&nbsp;\|&nbsp;number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;Resource | 用于描述资源颜色类型。 | 
 
 
 ## CustomBuilder类型<sup>8+</sup>
