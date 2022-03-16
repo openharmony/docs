@@ -21,62 +21,58 @@ ohos.permission.READ_USER_STORAGE
 
     表1 options参数说明
 
-    | 参数名        | 参数类型          | 必填   | 默认值  | 参数描述    |
-    | ---------- | ------------- | ---- | ---- | ------- |
-    | src        | string        | 是    | -    | 网页资源地址。 |
-    | controller | WebController | 否    | -    | 控制器。    |
+    | 参数名     | 参数类型                        | 必填 | 默认值 | 参数描述       |
+    | ---------- | ------------------------------- | ---- | ------ | -------------- |
+    | src        | string                          | 是   | -      | 网页资源地址。 |
+    | controller | [WebController](#WebController) | 否   | -      | 控制器。       |
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif)**说明：**
 >
 > - 不支持转场动画；
-> - 不支持音视频播放；
-> - 不支持横竖屏事件;
-> - 不支持预览。
+> - 不支持多实例；
+> - 仅支持本地音视频播放。
 
 ## 属性
-| 名称                | 参数类型                                     | 默认值            | 描述                                       |
-| ----------------- | ---------------------------------------- | -------------- | ---------------------------------------- |
-| domStorageAccess  | boolean                                  | false          | 设置是否开启文档对象模型存储接口（DOM Storage API）权限，默认未开启。 |
-| fileAccess        | boolean                                  | true           | 设置是否开启Web中通过本地文件传输（FILE）协议方式访问应用中的本地文件， 默认启用。 |
-| geolocationAccess | boolean                                  | true           | 设置是否允许访问地理位置， 默认允许访问。                    |
-| imageAccess       | boolean                                  | true           | 设置是否允许自动加载图片资源，默认允许。                     |
-| javaScriptProxy   | { <br> obj: object, <br/> name: string, <br/> methodList: Array\<string\>, <br/> controller: WebController <br>} | -              | 注入JavaScript对象到超文本标记语言（HTML）中，并在HTML中调用该对象的方法，参数不支持更新。 <br> obj: 参与注册的对象。 <br> name: 注册对象的名称，与HTML中调用的对象名一致。<br> methodList: 参与注册的方法。<br> controller: 控制器。 |
-| javaScriptAccess  | boolean                                  | true           | 设置是否允许执行JavaScript脚本，默认允许执行。             |
-| mixedMode         | MixedMode                                | MixedMode.None | 设置是否允许加载超文本传输协议（HTTP）和超文本传输安全协议（HTTPS）混合内容，默认不允许加载HTTP和HTTPS混合内容。 |
-| onlineImageAccess | boolean                                  | true           | 设置是否允许从网络加载图片资源（通过HTTP和HTTPS访问的资源），默认允许访问。 |
-| zoomAccess        | boolean                                  | true           | 设置是否支持使用屏幕控件或手势进行缩放，默认允许执行缩放。            |
+| 名称              | 参数类型                                                     | 默认值         | 描述                                                         |
+| ----------------- | ------------------------------------------------------------ | -------------- | ------------------------------------------------------------ |
+| domStorageAccess  | boolean                                                      | false          | 设置是否开启文档对象模型存储接口（DOM Storage API）权限，默认未开启。 |
+| fileAccess        | boolean                                                      | true           | 设置是否开启通过$rawfile(filepath/filename)访问应用中rawfile路径的文件， 默认启用。 |
+| imageAccess       | boolean                                                      | true           | 设置是否允许自动加载图片资源，默认允许。                     |
+| javaScriptProxy   | { <br>  object: object, <br/> name: string, <br/> methodList: Array\<string\>, <br/> controller: WebController <br>} | -              | 注入JavaScript对象到window对象中，并在window对象中调用该对象及其方法。所有参数不支持更新。 <br/> object: 参与注册的对象。只能声明方法，不能声明属性 <br/> name: 参与注册对象的名称，与JS中调用的对象名一致。<br/> methodList: 参与注册的对象中的方法列表。<br/> controller: 控制器。 |
+| javaScriptAccess  | boolean                                                      | true           | 设置是否允许执行JavaScript脚本，默认允许执行。               |
+| mixedMode         | [MixedMode](#MixedMode)                                      | MixedMode.None | 设置是否允许加载超文本传输协议（HTTP）和超文本传输安全协议（HTTPS）混合内容，默认不允许加载HTTP和HTTPS混合内容。 |
+| onlineImageAccess | boolean                                                      | true           | 设置是否允许从网络加载图片资源（通过HTTP和HTTPS访问的资源），默认允许访问。 |
+| zoomAccess        | boolean                                                      | true           | 设置是否支持手势进行缩放，默认允许执行缩放。                 |
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 >
 > 通用属性仅支持[width](ts-universal-attributes-size.md#属性)、[height](ts-universal-attributes-size.md#属性)、[padding](ts-universal-attributes-size.md#属性)、[margin](ts-universal-attributes-size.md#属性)、[border](ts-universal-attributes-border.md#属性)。
-- MixedMode枚举说明
+- <span id="MixedMode">MixedMode枚举说明</span>
 
-  | 名称         | 描述                                       |
-  | ---------- | ---------------------------------------- |
-  | All        | 允许加载HTTP和HTTPS混合内容。                      |
+  | 名称       | 描述                                                         |
+  | ---------- | ------------------------------------------------------------ |
+  | All        | 允许加载HTTP和HTTPS混合内容。                                |
   | Compatible | 混合内容兼容性模式，一些不安全的内容可能被安全来源加载，其他类型的内容将被阻止。 |
-  | None       | 不允许加载HTTP和HTTPS混合内容。                     |
+  | None       | HTTP和HTTPS混合内容，不加载HTTP的资源。                      |
 
 ## 事件
 
 通用事件仅支持[onFocus](ts-universal-focus-event.md#事件)。
 
-| 名称                                       | 功能描述                                     |
-| ---------------------------------------- | ---------------------------------------- |
-| onAlert(callback: (event?: { url: string; message: string; result: JsResult }) => boolean) | <p>网页触发alert()告警弹窗时触发。<br />url：Web组件返回的下载URL。<br />message：Web组件返回的信息。<br />JsResult：Web组件返回的弹窗确认或弹窗取消功能对象。</p> |
+| 名称                                                         | 功能描述                                                     |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| onAlert(callback: (event?: { url: string; message: string; result: JsResult }) => boolean) | <p>网页触发alert()告警弹窗时触发。<br />url：当前显示的对话框所在的网页。<br />message：对话框中显示的信息。<br />JsResult：根据用户的操作确认或取消对话框。</p> |
 | onBeforeUnload(callback: (event?: { url: string; message: string; result: JsResult }) => boolean) | <p>即将离开当前页面（刷新或关闭）时触发。<br />url：Web组件返回的下载URL。<br />message：Web组件返回的信息。<br />JsResult：Web组件返回的弹窗确认或弹窗取消功能对象。</p> |
 | onConfirm(callback: (event?: { url: string; message: string; result: JsResult }) => boolean) | <p>网页触发confirm()确认弹窗时触发。<br />url：Web组件返回的下载URL。<br />message：Web组件返回的信息。<br />JsResult：Web组件返回的弹窗确认或弹窗取消功能对象。</p> |
 | onConsole(callback: (event?: { message: ConsoleMessage }) => boolean) | <p>向主应用报告JavaScript控制台消息时触发该回调。<br/>message：触发的控制台信息。</p> |
 | onDownloadStart(callback: (event?: { url: string, userAgent: string, contentDisposition: string, mimetype: string, contentLength: number }) => void) | <p>下载开始时触发该回调。<br />url：Web组件返回的下载URL。<br />userAgent：Web组件返回的用户代理名称。<br />contentDisposition：Web组件返回的响应头。<br />mimetype：Web组件返回的媒体类型（MIME）信息。<br />contentLength：Web组件返回的内容长度。</p> |
 | onErrorReceive(callback: (event?: { request: WebResourceRequest, error: WebResourceError }) => void) | <p>网页加载错误时触发该回调。<br/>request：网页的请求信息。<br/>error：网页的错误信息 。</p> |
-| onGeolocationHide(callback: () => void)  | <p>调用onGeolocationShow时发出的地理位置权限请求被取消后触发该回调。</p> |
-| onGeolocationShow(callback: (event?: { origin: string, geolocation: JsGeolocation }) => void) | <p>应用尝试使用地理位置时触发该回调，并向用户请求权限。<br/>origin：尝试获取地理位置的Web内容的来源。<br/>geolocation：用于请求地理位置权限。</p> |
 | onHttpErrorReceive(callback: (event?: { request: WebResourceRequest, response: WebResourceResponse }) => void) | <p>网页加载出现网络错误时触发该回调。<br/>request：网页的请求信息。<br/>response：网页的响应信息</p> |
-| onPageBegin(callback: (event?: { url: string }) => void) | <p>网页加载时触发该回调。<br/>url：Web组件返回的URL。</p>  |
-| onPageEnd(callback: (event?: { url: string }) => void) | <p>网页加载结束时触发该回调。<br/>url：Web组件返回的URL。</p> |
+| onPageBegin(callback: (event?: { url: string }) => void)     | <p>网页加载时触发该回调。<br/>url：Web组件返回的URL。</p>    |
+| onPageEnd(callback: (event?: { url: string }) => void)       | <p>网页加载结束时触发该回调。<br/>url：Web组件返回的URL。</p> |
 | onProgressChange(callback: (event?: { newProgress: number }) => void) | <p>网页加载进度变化时触发该回调。<br/>newProgress：加载进度，取值范围为0到100的整数。</p> |
-| onTitleReceive(callback: (event?: { title: string }) => void) | <p>网页主页面标题更改时触发该回调。<br/>title：标题内容。</p>  |
+| onTitleReceive(callback: (event?: { title: string }) => void) | <p>网页主页面标题更改时触发该回调。<br/>title：标题内容。</p> |
 
 ### ConsoleMessage对象说明
 
@@ -98,16 +94,6 @@ ohos.permission.READ_USER_STORAGE
   | Info  | 消息级别。 |
   | Log   | 日志级别。 |
   | Warn  | 警告级别。 |
-
-### JsGeolocation 对象说明
-
-用于请求地理位置权限。
-
-- 接口
-
-  | 接口名称                                     | 功能描述                                     |
-  | ---------------------------------------- | ---------------------------------------- |
-  | invoke(origin: string, allow: boolean, retain: boolean): void | <p>通知系统用户是否批准该应用使用地理位置权限。<br/>origin：尝试获取地理位置的Web内容的来源。<br/>allow：用户是否批准该应用使用地理位置权限。true: 允许访问，false: 不允许访问。<br/>retain：是否允许将地理位置权限状态保存到系统中。true: 允许，false: 不允许。</p> |
 
 ### JsResult  对象说明
 
