@@ -2,7 +2,7 @@
 
 
 
-创建工程之前，首先需要安装DevEco Studio，[下载安装教程](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/tools_overview-0000001053582387)。
+创建工程之前，首先需要安装DevEco Studio。
 
 
 1. 打开DevEco Studio，点击Create Project。如果已有一个工程，则点击File &gt; New &gt; New project。
