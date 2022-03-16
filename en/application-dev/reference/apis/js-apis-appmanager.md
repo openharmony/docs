@@ -19,7 +19,7 @@ import app from '@ohos.application.appManager';
 
 static isRunningInStabilityTest(callback: AsyncCallback&lt;boolean&gt;): void
 
-Checks whether this application is undergoing a stability test. This method uses a callback to return the result.
+Checks whether this application is undergoing a stability test. This API uses a callback to return the result.
 
 - Parameters
     | Name| Type| Mandatory| Description| 

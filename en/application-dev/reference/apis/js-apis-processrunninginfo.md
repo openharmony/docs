@@ -26,7 +26,7 @@ appManager.getProcessRunningInfos((error,data) => {
 
   | Name| Type| Readable| Writable| Description| 
 | -------- | -------- | -------- | -------- | -------- |
-| pid | number | Yes| No| Process ID. <br><b>System capabilities: </b>SystemCapability.Ability.AbilityRuntime.Core| 
-| uid | number | Yes| No| User ID. <br><b>System capabilities: </b>SystemCapability.Ability.AbilityRuntime.Core| 
-| processName | string | Yes| No| Process name. <br><b>System capabilities: </b>SystemCapability.Ability.AbilityRuntime.Core| 
-| bundleNames | Array&lt;string&gt; | Yes| No| Names of all bundles running in the process. <br><b>System capabilities: </b>SystemCapability.Ability.AbilityRuntime.Core| 
+| pid | number | Yes| No| Process ID. <br><b>System capability</b>: SystemCapability.Ability.AbilityRuntime.Core| 
+| uid | number | Yes| No| User ID. <br><b>System capability</b>: SystemCapability.Ability.AbilityRuntime.Core| 
+| processName | string | Yes| No| Process name. <br><b>System capability</b>: SystemCapability.Ability.AbilityRuntime.Core| 
+| bundleNames | Array&lt;string&gt; | Yes| No| Names of all bundles running in the process. <br><b>System capability</b>: SystemCapability.Ability.AbilityRuntime.Core| 

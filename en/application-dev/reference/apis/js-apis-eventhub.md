@@ -30,7 +30,7 @@ on(event: string, callback: Function): void;
 
 Subscribes to an event.
 
-**System capabilities**:
+**System capability**:
 
 SystemCapability.Ability.AbilityRuntime.Core
 
@@ -69,7 +69,7 @@ off(event: string, callback?: Function): void;
 
 Unsubscribes from an event. If **callback** is specified, this method unsubscribes from the specified callback. If **callback** is not specified, this method unsubscribes from all callbacks in the event.
 
-**System capabilities**:
+**System capability**:
 
 SystemCapability.Ability.AbilityRuntime.Core
 
@@ -108,7 +108,7 @@ emit(event: string, ...args: Object[]): void;
 
 Triggers an event.
 
-**System capabilities**:
+**System capability**:
 
 SystemCapability.Ability.AbilityRuntime.Core
 

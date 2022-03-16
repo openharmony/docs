@@ -19,9 +19,9 @@ import UriPermissionManager from '@@ohos.application.UriPermissionManager';
 
 verifyUriPermission(uri: string, flag: wantConstant.Flags, accessTokenId: number, callback: AsyncCallback&lt;number&gt;): void
 
-Checks whether an application has the permission specified by **flag** for an URI. This method uses a callback to return the result.
+Checks whether an application has the permission specified by **flag** for an URI. This API uses a callback to return the result.
 
-**System capabilities**:
+**System capability**:
 
 SystemCapability.Ability.AbilityRuntime.Core
 
@@ -47,9 +47,9 @@ SystemCapability.Ability.AbilityRuntime.Core
 
 verifyUriPermission(uri: string, flag: wantConstant.Flags, accessTokenId: number): Promise&lt;number&gt;
 
-Checks whether an application has the permission specified by **flag** for an URI. This method uses a promise to return the result.
+Checks whether an application has the permission specified by **flag** for an URI. This API uses a promise to return the result.
 
-**System capabilities**:
+**System capability**:
 
 SystemCapability.Ability.AbilityRuntime.Core
 
