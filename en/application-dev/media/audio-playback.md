@@ -25,6 +25,9 @@ The full audio playback process includes creating an instance, setting the URI, 
 For details about the **src** media source input types supported by **AudioPlayer**, see the [src attribute](../reference/apis/js-apis-media.md#audioplayer_Attributes).
 
 ```js
+import media from '@ohos.multimedia.media'
+import fileIO from '@ohos.fileio'
+
 function SetCallBack(audioPlayer) {
     audioPlayer.on('dataLoad', () => {              // Set the 'dataLoad' event callback, which is triggered when the src attribute is set successfully.
         console.info('audio set source success');
@@ -80,7 +83,18 @@ function printfDescription(obj) {
 let audioPlayer = media.createAudioPlayer();
 SetCallBack(audioPlayer);                          // Set the event callbacks.
 // 2. Set the URI of the audio file.
-audioPlayer.src = 'file:///data/data/ohos.xxx.xxx/files/test.mp3';  // Set the src attribute and trigger the 'dataLoad' event callback.
+let fdPath = 'fd://'
+let path = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp3';
+await fileIO.open(path).then(fdNumber) => {
+   fdPath = fdPath + '' + fdNumber;
+   console.info('open fd sucess fd is' + fdPath);
+}, (err) => {
+   console.info('open fd failed err is' + err);
+}),catch((err) => {
+   console.info('open fd failed err is' + err);
+});
+
+audioPlayer.src = fdPath;                         // Set the src attribute and trigger the 'dataLoad' event callback.
 // 3. Play the audio.
 audioPlayer.play();                               // The play() method can be invoked only after the 'dataLoad' event callback is complete. The 'play' event callback is triggered.
 // 4. Seek to the playback position.
@@ -111,6 +125,9 @@ audioPlayer = undefined;
 ### Normal Playback Scenario
 
 ```js
+import media from '@ohos.multimedia.media'
+import fileIO from '@ohos.fileio'
+
 function SetCallBack(audioPlayer) {
     audioPlayer.on('dataLoad', () => {              // Set the 'dataLoad' event callback, which is triggered when the src attribute is set successfully.
         console.info('audio set source success');
@@ -128,13 +145,27 @@ function SetCallBack(audioPlayer) {
 
 let audioPlayer = media.createAudioPlayer();       // Create an AudioPlayer instance.
 SetCallBack(audioPlayer);                          // Set the event callbacks.
-/* Set the URI of the audio file selected by the user. */
-audioPlayer.src = 'file:///data/data/ohos.xxx.xxx/files/test.mp3';  // Set the src attribute and trigger the 'dataLoad' event callback.
+/* Set the FD (local playback) of the audio file selected by the user. */
+let fdPath = 'fd://'
+let path = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp3';
+await fileIO.open(path).then(fdNumber) => {
+   fdPath = fdPath + '' + fdNumber;
+   console.info('open fd sucess fd is' + fdPath);
+}, (err) => {
+   console.info('open fd failed err is' + err);
+}),catch((err) => {
+   console.info('open fd failed err is' + err);
+});
+
+audioPlayer.src = fdPath;                           // Set the src attribute and trigger the 'dataLoad' event callback.
 ```
 
 ### Switching to the Next Song
 
 ```js
+import media from '@ohos.multimedia.media'
+import fileIO from '@ohos.fileio'
+
 function SetCallBack(audioPlayer) {
     audioPlayer.on('dataLoad', () => {              // Set the 'dataLoad' event callback, which is triggered when the src attribute is set successfully.
         console.info('audio set source success');
@@ -152,16 +183,42 @@ function SetCallBack(audioPlayer) {
 
 let audioPlayer = media.createAudioPlayer();       // Create an AudioPlayer instance.
 SetCallBack(audioPlayer);                          // Set the event callbacks.
-/* Set the URI of the audio file selected by the user. */
-audioPlayer.src = 'file:///data/data/ohos.xxx.xxx/files/test.mp3';  // Set the src attribute and trigger the 'dataLoad' event callback.
+/* Set the FD (local playback) of the audio file selected by the user. */
+let fdPath = 'fd://'
+let path = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp3';
+await fileIO.open(path).then(fdNumber) => {
+   fdPath = fdPath + '' + fdNumber;
+   console.info('open fd sucess fd is' + fdPath);
+}, (err) => {
+   console.info('open fd failed err is' + err);
+}),catch((err) => {
+   console.info('open fd failed err is' + err);
+});
+
+audioPlayer.src = fdPath;                           // Set the src attribute and trigger the 'dataLoad' event callback.
 /* Send the instruction to switch to the next song after a period of time. */
 audioPlayer.reset();
-audioPlayer.src = 'file:///data/data/ohos.xxx.xxx/files/next.mp3';
+
+/* Set the FD (local playback) of the audio file selected by the user. */
+let fdNextPath = 'fd://'
+let nextPath = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp3';
+await fileIO.open(nextPath).then(fdNumber) => {
+   fdNextPath = fdNextPath + '' + fdNumber;
+   console.info('open fd sucess fd is' + fdNextPath);
+}, (err) => {
+   console.info('open fd failed err is' + err);
+}),catch((err) => {
+   console.info('open fd failed err is' + err);
+});
+audioPlayer.src = fdNextPath;
 ```
 
 ### Looping a Song
 
 ```js
+import media from '@ohos.multimedia.media'
+import fileIO from '@ohos.fileio'
+
 function SetCallBack(audioPlayer) {
     audioPlayer.on('dataLoad', () => {              // Set the 'dataLoad' event callback, which is triggered when the src attribute is set successfully.
         console.info('audio set source success');
@@ -179,7 +236,19 @@ function SetCallBack(audioPlayer) {
 
 let audioPlayer = media.createAudioPlayer();       // Create an AudioPlayer instance.
 SetCallBack(audioPlayer);                          // Set the event callbacks.
-/* Set the URI of the audio file selected by the user. */
-audioPlayer.src = 'file:///data/data/ohos.xxx.xxx/files/test.mp3';  // Set the src attribute and trigger the 'dataLoad' event callback.
-audioPlayer.loop = true;                           // Set the loop playback attribute.
+
+/* Set the FD (local playback) of the audio file selected by the user. */
+let fdPath = 'fd://'
+let path = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp3';
+await fileIO.open(path).then(fdNumber) => {
+   fdPath = fdPath + '' + fdNumber;
+   console.info('open fd sucess fd is' + fdPath);
+}, (err) => {
+   console.info('open fd failed err is' + err);
+}),catch((err) => {
+   console.info('open fd failed err is' + err);
+});
+
+audioPlayer.src = fdPath;                           // Set the src attribute and trigger the 'dataLoad' event callback.
+audioPlayer.loop = true;                            // Set the loop playback attribute.
 ```
