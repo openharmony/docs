@@ -144,7 +144,7 @@
 
 ### 使用流程<a name="section2.1_MIPI_CSIDes"></a>
 
-使用MIPI-CSI的一般流程如[图2](#fig99821771782)所示。
+使用MIPI-CSI的一般流程如[图2](#fig2_MIPI_CSIDes)所示。
 
 **图 2**  MIPI-CSI使用流程图<a name="fig2_MIPI_CSIDes"></a>  
 
