@@ -70,6 +70,7 @@
         - [TextInput](ts-basic-components-textinput.md)
         - [TextPicker](ts-basic-components-textpicker.md)
         - [TextTimer](ts-basic-components-texttimer.md)
+        - [TimePicker](ts-basic-components-timepicker.md)
         - [Toggle](ts-basic-components-toggle.md)
         - [TextClock](ts-basic-components-textclock.md)
         - [Web](ts-basic-components-web.md)
@@ -135,7 +136,8 @@
         - [警告弹窗](ts-methods-alert-dialog-box.md)
         - [列表选择弹窗](ts-methods-action-sheet.md)
         - [自定义弹窗](ts-methods-custom-dialog-box.md)
-        - [日期时间选择弹窗](ts-methods-datepicker-dialog.md)
+        - [日期选择弹窗](ts-methods-datepicker-dialog.md)
+        - [时间选择弹窗](ts-methods-timepicker-dialog.md)
         - [文本选择弹窗](ts-methods-textpicker-dialog.md)
     - [菜单](ts-methods-menu.md)
 - 附录
