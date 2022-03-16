@@ -2,9 +2,8 @@
 
 ## Introduction
 
-The Window Manager subsystem provides basic capabilities of window and display management. It is the basis for UI display.
-
-The following figure shows the architecture of the Window Manager subsystem.
+The Window Manager subsystem provides basic capabilities of window and display management. It is the basis for UI display. The following figure shows the architecture of the Window Manager subsystem.
+**Figure 1** Architecture of the Window Manager subsystem
 
 ![WindowManager-subsystem-architecture](./figures/WindowManager.png)
 
