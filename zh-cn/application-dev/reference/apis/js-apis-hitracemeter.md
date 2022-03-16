@@ -11,11 +11,6 @@ import hiTraceMeter from '@ohos.hiTraceMeter';
 ```
 
 
-## 系统能力
-
-SystemCapability.HiviewDFX.HiTrace
-
-
 ## hiTraceMeter.startTrace
 
 startTrace(name: string, taskId: number): void
@@ -25,6 +20,8 @@ startTrace(name: string, taskId: number): void
 如果有多个相同name的任务需要追踪或者对同一个任务要追踪多次，并且任务同时被执行，则每次调用startTrace的taskId不相同。
 
 如果具有相同name的任务是串行执行的，则taskId可以相同。具体示例可参考[hiTraceMeter.finishTrace](#hitracemeterfinishtrace)中的示例。
+
+**系统能力：** SystemCapability.HiviewDFX.HiTrace
 
 **参数：**
 
@@ -48,6 +45,8 @@ finishTrace(name: string, taskId: number): void
 标记一个预追踪耗时任务的结束。
 
 finishTrace的name和taskId必须与流程开始的[startTrace](#hitracemeterstarttrace)对应参数值一致。
+
+**系统能力：** SystemCapability.HiviewDFX.HiTrace
 
 **参数：**
 
@@ -90,6 +89,8 @@ hiTraceMeter.finishTrace("myTestFunc", 1);
 traceByValue(name: string, count: number): void
 
 用来标记一个预追踪的数值变量，该变量的数值会不断变化。
+
+**系统能力：** SystemCapability.HiviewDFX.HiTrace
 
 **参数：**
 

@@ -8,13 +8,12 @@
 import faultLogger from '@ohos.faultLogger'
 ```
 
-## 系统能力
-
-SystemCapability.HiviewDFX.Hiview.FaultLogger
 
 ## FaultType
 
 故障类型枚举。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.HiviewDFX.Hiview.FaultLogger。
 
 | 名称 | 默认值 | 说明 |
 | -------- | -------- | -------- |
@@ -26,6 +25,8 @@ SystemCapability.HiviewDFX.Hiview.FaultLogger
 ## FaultLogInfo
 
 故障信息数据结构，获取到的故障信息的数据结构。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.HiviewDFX.Hiview.FaultLogger。
 
 | 名称 | 参数类型 | 说明 |
 | -------- | -------- | -------- |
@@ -43,6 +44,8 @@ SystemCapability.HiviewDFX.Hiview.FaultLogger
 querySelfFaultLog(faultType: FaultType, callback: AsyncCallback&lt;Array&lt;FaultLogInfo&gt;&gt;) : void
 
 获取当前进程故障信息，该方法通过回调方式获取故障信息数组，故障信息数组内最多上报10份故障信息。
+
+**系统能力：** SystemCapability.HiviewDFX.Hiview.FaultLogger
 
 **参数：**
 
@@ -78,9 +81,11 @@ faultLogger.querySelfFaultLog(faultLogger.FaultType.JS_CRASH, queryFaultLogCallb
 
 ## faultLogger.querySelfFaultLog
 
-querySelfFaultLog(faultType: FaultType) : Promise&lt;Array&lt;FaultLogInfo&gt;&gt;;
+querySelfFaultLog(faultType: FaultType) : Promise&lt;Array&lt;FaultLogInfo&gt;&gt;
 
 获取当前进程故障信息，该方法通过Promise方式返回故障信息数组，故障信息数组内最多上报10份故障信息。
+
+**系统能力：** SystemCapability.HiviewDFX.Hiview.FaultLogger
 
 **参数：**
 

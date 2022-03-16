@@ -9,13 +9,12 @@
 import hiTraceChain from '@ohos.hiTraceChain';
 ```
 
-## 系统能力
-
-SystemCapability.HiviewDFX.HiTrace
 
 ## HiTraceFlag
 
 跟踪标志组合类型枚举。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.HiviewDFX.HiTrace。
 
 | 名称 | 默认值 | 说明 |
 | -------- | -------- | -------- |
@@ -32,6 +31,8 @@ SystemCapability.HiviewDFX.HiTrace
 
 跟踪埋点类型枚举。
 
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.HiviewDFX.HiTrace。
+
 | 名称 | 默认值 | 说明 |
 | -------- | -------- | -------- |
 | CS       | 0 | 客户端发送类型，标识client侧的发送埋点。        |
@@ -44,6 +45,8 @@ SystemCapability.HiviewDFX.HiTrace
 
 跟踪通信类型枚举。
 
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.HiviewDFX.HiTrace。
+
 | 名称 | 默认值 | 说明 |
 | -------- | -------- | -------- |
 | DEFAULT  | 0 | 缺省通信类型    |
@@ -54,6 +57,8 @@ SystemCapability.HiviewDFX.HiTrace
 ## HiTraceId
 
 此接口为HiTraceId对象接口。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.HiviewDFX.HiTrace。
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -67,6 +72,8 @@ SystemCapability.HiviewDFX.HiTrace
 begin(name: string, flags: number = HiTraceFlag.DEFAULT): HiTraceId
 
 开始跟踪，同步接口。
+
+**系统能力：** SystemCapability.HiviewDFX.HiTrace
 
 **参数：**
 
@@ -93,6 +100,8 @@ end(id: HiTraceId): void
 
 结束跟踪，同步接口。
 
+**系统能力：** SystemCapability.HiviewDFX.HiTrace
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -112,6 +121,8 @@ hiTraceChain.end(asyncTraceId);
 getId(): HiTraceId
 
 获取跟踪标识，同步接口。
+
+**系统能力：** SystemCapability.HiviewDFX.HiTrace
 
 **返回值：**
 
@@ -133,6 +144,8 @@ setId(id: HiTraceId): void
 
 设置跟踪标识，同步接口。
 
+**系统能力：** SystemCapability.HiviewDFX.HiTrace
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -153,6 +166,8 @@ clearId(): void
 
 清除跟踪标识，同步接口。
 
+**系统能力：** SystemCapability.HiviewDFX.HiTrace
+
 **示例：**
 
 ```
@@ -166,6 +181,8 @@ hiTraceChain.clearId();
 createSpan(): HiTraceId
 
 创建跟踪分支，同步接口。
+
+**系统能力：** SystemCapability.HiviewDFX.HiTrace
 
 **返回值：**
 
@@ -186,6 +203,8 @@ let spanTraceId = hiTraceChain.createSpan();
 tracepoint(mode: HiTraceCommunicationMode, type: HiTraceTracepointType, id: HiTraceId, msg?: string): void
 
 信息埋点，同步接口。
+
+**系统能力：** SystemCapability.HiviewDFX.HiTrace
 
 **参数：**
 
@@ -209,6 +228,8 @@ hiTraceChain.tracepoint(hiTraceChain.HiTraceCommunicationMode.THREAD, hiTraceCha
 isValid(id: HiTraceId): boolean
 
 判断HiTraceId对象是否有效，同步接口。
+
+**系统能力：** SystemCapability.HiviewDFX.HiTrace
 
 **参数：**
 
@@ -234,6 +255,8 @@ let traceIdIsvalid = hiTraceChain.isValid(traceId);
 isFlagEnabled(id: HiTraceId, flag: HiTraceFlag): boolean
 
 判断HiTraceId对象中指定的跟踪标志是否已置位，同步接口。
+
+**系统能力：** SystemCapability.HiviewDFX.HiTrace
 
 **参数：**
 
@@ -261,6 +284,8 @@ let enabledDoNotCreateSpanFlag = hiTraceChain.isFlagEnabled(asyncTraceId, hiTrac
 enableFlag(id: HiTraceId, flag: HiTraceFlag): void
 
 置位HiTraceId对象中指定的跟踪标志，同步接口。
+
+**系统能力：** SystemCapability.HiviewDFX.HiTrace
 
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
