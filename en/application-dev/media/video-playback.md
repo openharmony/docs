@@ -28,7 +28,7 @@ For details about the APIs used for video playback, see [js-apis-media.md](../re
 
 The full video playback process includes creating an instance, setting the URL, setting the surface ID, preparing for video playback, playing video, pausing playback, obtaining track information, seeking to a playback position, setting the volume, setting the playback speed, stopping playback, resetting the playback configuration, and releasing resources.
 
-For details about the **url** media source input types supported by **VideoPlayer**, see the [url attribute](../reference/apis/js-apis-media.md#videoplayer_Attributes).
+For details about the **url** media source input types supported by **VideoPlayer**, see the [url attribute](../reference/apis/js-apis-media.md#videoplayer_attributes).
 
 For details about how to create an Xcomponent, see [Xcomponent Creation](#Xcomponent).
 
