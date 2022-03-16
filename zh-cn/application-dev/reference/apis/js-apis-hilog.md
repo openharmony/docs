@@ -10,15 +10,14 @@
 import hilog from '@ohos.hilog';
 ```
 
-## 系统能力
-
-SystemCapability.HiviewDFX.HiLog
 
 ## hilog.debug
 
 debug(domain: number, tag: string, format: string, ...args: any[]) : void
 
 debug日志输出，打印debug级别日志。
+
+**系统能力：** SystemCapability.HiviewDFX.HiLog
 
 **参数：**
 
@@ -41,11 +40,13 @@ hilog.debug(0xFF00, "testTag", "%d: %{private}s World %{public}f", 1, "hello", 3
 09-08 12:49:35.941  1547  2452 D FF00/testTag: 1: hello World 3.0
 ```
 
-## **hilog.info**
+## hilog.info
 
 info(domain: number, tag: string, format: string, ...args: any[]) : void
 
 info日志输出，打印info级别日志。
+
+**系统能力：** SystemCapability.HiviewDFX.HiLog
 
 **参数：**
 
@@ -74,6 +75,8 @@ warn(domain: number, tag: string, format: string, ...args: any[]) : void
 
 warn日志输出，打印warn级别日志。
 
+**系统能力：** SystemCapability.HiviewDFX.HiLog
+
 **参数：**
 
 | 参数名 | 类型           | 必填 | 说明                                                         |
@@ -100,6 +103,8 @@ hilog.warn(0xFF00, "testTag", "%d: %{private}s World %{public}f", 1, "hello", 3.
 error(domain: number, tag: string, format: string, ...args: any[]) : void
 
 error日志输出，打印error级别日志。
+
+**系统能力：** SystemCapability.HiviewDFX.HiLog
 
 **参数：**
 
@@ -128,6 +133,8 @@ fatal(domain: number, tag: string, format: string, ...args: any[]) : void
 
 fatal日志输出，打印fatal级别日志。
 
+**系统能力：** SystemCapability.HiviewDFX.HiLog
+
 **参数：**
 
 | 参数名 | 类型           | 必填 | 说明                                                         |
@@ -155,6 +162,8 @@ isLoggable(domain: number, tag: string, level: LogLevel) : boolean
 
 检查一个domain、tag和日志级别是否被禁止打印日志。
 
+**系统能力：** SystemCapability.HiviewDFX.HiLog
+
 **参数：**
 
 | 参数名 | 类型                  | 必填 | 说明                                       |
@@ -172,6 +181,8 @@ hilog.isLoggable(0xFF00, "testTag", hilog.DEBUG);
 ## LogLevel
 
 用于表示事件类型。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.HiviewDFX.HiLog。
 
 | 名称  | 默认值 | 说明        |
 | ----- | ------ | ----------- |
