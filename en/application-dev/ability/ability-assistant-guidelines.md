@@ -28,13 +28,13 @@ The ability assistant is pre-installed in the device environment. You can direct
 
   Starts an ability.
 
-  | Name| Description|
+  | Name     | Description              |
   | --------- | ---------------------- |
-  | -h/--help | Help information.|
-  | -d        | Device ID. This parameter is optional.|
+  | -h/--help | Help information.            |
+  | -d        | Device ID. This parameter is optional.   |
   | -a        | Ability name. This parameter is mandatory.|
-  | -b        | Bundle name. This parameter is mandatory.|
-  | -D        | Debugging mode. This parameter is optional.|
+  | -b        | Bundle name. This parameter is mandatory. |
+  | -D        | Debugging mode. This parameter is optional.    |
 
   **Return value**
 
@@ -43,19 +43,19 @@ The ability assistant is pre-installed in the device environment. You can direct
   **Method**
 
   ```
-aa start [-d <device-id>] -a <ability-name> -b <bundle-name> [-D]
+  aa start [-d <device-id>] -a <ability-name> -b <bundle-name> [-D]
   ```
   
 - **stop-service**
 
   Stops a Service ability.
 
-  | Name| Description|
+  | Name     | Description                |
   | --------- | ------------------------ |
-  | -h/--help | Help information.|
-  | -d        | Device ID. This parameter is optional.|
+  | -h/--help | Help information.              |
+  | -d        | Device ID. This parameter is optional.   |
   | -a        | Ability name. This parameter is mandatory.|
-  | -b        | Bundle name. This parameter is mandatory.|
+  | -b        | Bundle name. This parameter is mandatory. |
 
   **Return value**
 
@@ -64,23 +64,23 @@ aa start [-d <device-id>] -a <ability-name> -b <bundle-name> [-D]
   **Method**
 
   ```
-aa stop-service [-d <device-id>] -a <ability-name> -b <bundle-name>
+  aa stop-service [-d <device-id>] -a <ability-name> -b <bundle-name>
   ```
   
 - **dump**
 
   Prints ability related information.
 
-  | Name| Description|
+  | Name                  | Description                              |
   | ---------------------- | -------------------------------------- |
-  | -h/--help              | Help information.|
-  | -a/--all               | Ability information in all missions.|
-  | -s/--stack \<number>   | Ability information in a specified mission stack.|
-  | -m/--mission \<number> | Ability information in a specified mission.|
+  | -h/--help              | Help information.                            |
+  | -a/--all               | Ability information in all missions.          |
+  | -s/--stack \<number>   | Ability information in a specified mission stack.    |
+  | -m/--mission \<number> | Ability information in a specified mission.          |
   | -l/--stack-list        | Mission list in each mission stack.|
-  | -u/--ui                | System UI ability information.|
-  | -e/--serv              | Service ability information.|
-  | -d/--data              | Data ability information.|
+  | -u/--ui                | System UI ability information.               |
+  | -e/--serv              | Service ability information.                 |
+  | -d/--data              | Data ability information.                    |
 
   **Method**
 
