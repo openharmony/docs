@@ -11,301 +11,271 @@ import workScheduler from '@ohos.workScheduler'
 ```
 
 ## workScheduler.startWork
-- **系统能力**：
-SystemCapability.ResourceSchedule.WorkScheduler
+startWork(work: WorkInfo): boolean
 
-- **接口**：
-workScheduler.startWork(work: [WorkInfo](#workinfo)): boolean
-
-- **说明**：
 通知WorkSchedulerService将工作添加到执行队列。
 
-- **参数**：
+**系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | work | [WorkInfo](#workinfo) | 是 | 指示要添加到执行队列的工作。 |
+**参数**：
 
-- **返回值**：
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| work | [WorkInfo](#workinfo) | 是 | 指示要添加到执行队列的工作。 |
 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | boolean | 如果工作成功添加到执行队列，则返回true，否则返回false。 |
+**返回值**：
 
-- **示例**：
+| 类型 | 说明 |
+| -------- | -------- |
+| boolean | 如果工作成功添加到执行队列，则返回true，否则返回false。 |
 
-  ```
-    let workInfo = {
-        workId: 1,
-        batteryLevel:50,
-        batteryStatus:workScheduler.BatteryStatus.BATTERY_STATUS_LOW,
-        isRepeat: false,
-        isPersisted: true,
-        bundleName: "com.example.myapplication",
-        abilityName: "MyExtension"
-    }
-    var res = workScheduler.startWork(workInfo);
-    console.info("workschedulerLog res:" + res);
-  ```
+**示例**：
+
+```
+  let workInfo = {
+      workId: 1,
+      batteryLevel:50,
+      batteryStatus:workScheduler.BatteryStatus.BATTERY_STATUS_LOW,
+      isRepeat: false,
+      isPersisted: true,
+      bundleName: "com.example.myapplication",
+      abilityName: "MyExtension"
+  }
+  var res = workScheduler.startWork(workInfo);
+  console.info("workschedulerLog res:" + res);
+```
 
 ## workScheduler.stopWork
-- **系统能力**：
-SystemCapability.ResourceSchedule.WorkScheduler
+stopWork(work: WorkInfo, needCancel?: boolean): boolean
 
-- **接口**：
-stopWork(work: [WorkInfo](#workinfo), needCancel?: boolean): boolean
-
-- **说明**：
 通知WorkSchedulerService停止指定工作。
 
-- **参数**：
+**系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | work | [WorkInfo](#workinfo) | 是 | 指示要停止的工作。 |
-  |needCancel|boolean|    是|    是否需要取消的工作。|
+**参数**：
 
-- **返回值**：
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| work | [WorkInfo](#workinfo) | 是 | 指示要停止的工作。 |
+|needCancel|boolean|    是|    是否需要取消的工作。|
 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | boolean | 如果成功，则返回true，否则返回false。 |
+**返回值**：
 
-- **示例**：
+| 类型 | 说明 |
+| -------- | -------- |
+| boolean | 如果成功，则返回true，否则返回false。 |
 
-  ```
-    let workInfo = {
-        workId: 1,
-        batteryLevel:50,
-        batteryStatus:workScheduler.BatteryStatus.BATTERY_STATUS_LOW,
-        isRepeat: false,
-        isPersisted: true,
-        bundleName: "com.example.myapplication",
-        abilityName: "MyExtension"
-       }
-    var res = workScheduler.stopWork(workInfo, false);
-    console.info("workschedulerLog res:" + res);
-  ```
+**示例**：
+
+```
+  let workInfo = {
+      workId: 1,
+      batteryLevel:50,
+      batteryStatus:workScheduler.BatteryStatus.BATTERY_STATUS_LOW,
+      isRepeat: false,
+      isPersisted: true,
+      bundleName: "com.example.myapplication",
+      abilityName: "MyExtension"
+     }
+  var res = workScheduler.stopWork(workInfo, false);
+  console.info("workschedulerLog res:" + res);
+```
 
 ## workScheduler.getWorkStatus
-- **系统能力**：
-SystemCapability.ResourceSchedule.WorkScheduler
+getWorkStatus(workId: number, callback : AsyncCallback\<WorkInfo>): void
 
-- **接口**：
-getWorkStatus(workId: number, callback : AsyncCallback\<[WorkInfo](#workinfo)>): void
-
-- **说明**：
 获取工作的最新状态，使用Callback形式返回。
 
-- **参数**：
+**系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | workId | number | 是 | work的id。 |
-  |callback|AsyncCallback\<[WorkInfo](#workinfo)>|    是|    指定的callback回调方法。如果指定的工作Id有效，则返回从WorkSchedulerService获取的有效工作状态；否则返回null。|
+**参数**：
 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| workId | number | 是 | work的id。 |
+|callback|AsyncCallback\<[WorkInfo](#workinfo)>|    是|    指定的callback回调方法。如果指定的工作Id有效，则返回从WorkSchedulerService获取的有效工作状态；否则返回null。|
 
-- **示例**：
+**示例**：
 
-  ```
-    workScheduler.getWorkStatus(50, (err, res) => {
-      if (err) {
-        console.info('workschedulerLog getWorkStatus failed, because:' + err.data);
-      } else {
-        for (let item in res) {
-          console.info('workschedulerLog getWorkStatus success,' + item + ' is:' + res[item]);
-        }
-      }
-    });
-  ```
-
-## workScheduler.getWorkStatus
-- **系统能力**：
-SystemCapability.ResourceSchedule.WorkScheduler
-
-- **接口**：
-getWorkStatus(workID: number): Promise\<[WorkInfo](#workinfo)>
-
-- **说明**：
-获取工作的最新状态，使用Promise形式返回。
-
-- **参数**：
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | workId | number | 是 | work的id。 |
-
-- **返回值**：
-
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | Promise\<[WorkInfo](#workinfo)> | 指定的Promise回调方法。如果指定的工作ID有效，则返回从WorkSchedulerService获取的有效工作状态；否则返回null。 |
-
-- **示例**：
-
-  ```
-    workScheduler.getWorkStatus(50).then((res) => {
+```
+  workScheduler.getWorkStatus(50, (err, res) => {
+    if (err) {
+      console.info('workschedulerLog getWorkStatus failed, because:' + err.data);
+    } else {
       for (let item in res) {
         console.info('workschedulerLog getWorkStatus success,' + item + ' is:' + res[item]);
       }
-    }).catch((err) => {
-      console.info('workschedulerLog getWorkStatus failed, because:' + err.data);
-    })
-  ```
+    }
+  });
+```
+
+## workScheduler.getWorkStatus
+getWorkStatus(workID: number): Promise\<WorkInfo>
+
+获取工作的最新状态，使用Promise形式返回。
+
+**系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
+
+**参数**：
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| workId | number | 是 | work的id。 |
+
+**返回值**：
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise\<[WorkInfo](#workinfo)> | 指定的Promise回调方法。如果指定的工作ID有效，则返回从WorkSchedulerService获取的有效工作状态；否则返回null。 |
+
+**示例**：
+
+```
+  workScheduler.getWorkStatus(50).then((res) => {
+    for (let item in res) {
+      console.info('workschedulerLog getWorkStatus success,' + item + ' is:' + res[item]);
+    }
+  }).catch((err) => {
+    console.info('workschedulerLog getWorkStatus failed, because:' + err.data);
+  })
+```
 
 ## workScheduler.obtainAllWorks
-- **系统能力**：
-SystemCapability.ResourceSchedule.WorkScheduler
+obtainAllWorks(callback : AsyncCallback\<void>): Array\<WorkInfo>
 
-- **接口**：
-obtainAllWorks(callback : AsyncCallback\<void>): Array\<[WorkInfo](#workinfo)>
-
-- **说明**：
 获取与当前应用程序关联的所有工作，使用Callback形式返回。
 
-- **参数**：
+**系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  |callback|AsyncCallback\<void>|    是|    指定的callback回调方法。返回与应用程序关联的所有工作。|
+**参数**：
 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+|callback|AsyncCallback\<void>|    是|    指定的callback回调方法。返回与应用程序关联的所有工作。|
 
-- **返回值**：
+**返回值**：
 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | Array\<[WorkInfo](#workinfo)> | 返回与应用程序关联的所有工作。 |
+| 类型 | 说明 |
+| -------- | -------- |
+| Array\<[WorkInfo](#workinfo)> | 返回与应用程序关联的所有工作。 |
 
-- **示例**：
+**示例**：
 
-  ```
-    workScheduler.obtainAllWorks((err, res) =>{
-      if (err) {
-        console.info('workschedulerLog obtainAllWorks failed, because:' + err.data);
-      } else {
-        console.info('workschedulerLog obtainAllWorks success, data is:' + JSON.stringify(res));
-      }
-    });
-  ```
+```
+  workScheduler.obtainAllWorks((err, res) =>{
+    if (err) {
+      console.info('workschedulerLog obtainAllWorks failed, because:' + err.data);
+    } else {
+      console.info('workschedulerLog obtainAllWorks success, data is:' + JSON.stringify(res));
+    }
+  });
+```
 
 ## workScheduler.obtainAllWorks
-- **系统能力**：
-SystemCapability.ResourceSchedule.WorkScheduler
+obtainAllWorks(): Promise<Array\<WorkInfo>>
 
-- **接口**：
-obtainAllWorks(): Promise<Array\<[WorkInfo](#workinfo)>>
-
-- **说明**：
 获取与当前应用程序关联的所有工作，使用Promise形式返回。
 
-- **返回值**：
+**系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | Promise<Array\<[WorkInfo](#workinfo)>> |    指定的Promise回调方法。返回与应用程序关联的所有工作。|
+**返回值**：
 
-- **示例**：
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise<Array\<[WorkInfo](#workinfo)>> |    指定的Promise回调方法。返回与应用程序关联的所有工作。|
 
-  ```
-    workScheduler.obtainAllWorks().then((res) => {
-      console.info('workschedulerLog obtainAllWorks success, data is:' + JSON.stringify(res));
-    }).catch((err) => {
-      console.info('workschedulerLog obtainAllWorks failed, because:' + err.data);
-    })
-  ```
+**示例**：
+
+```
+  workScheduler.obtainAllWorks().then((res) => {
+    console.info('workschedulerLog obtainAllWorks success, data is:' + JSON.stringify(res));
+  }).catch((err) => {
+    console.info('workschedulerLog obtainAllWorks failed, because:' + err.data);
+  })
+```
 
 ## workScheduler.stopAndClearWorks
-- **系统能力**：
-SystemCapability.ResourceSchedule.WorkScheduler
-
-- **接口**：
 stopAndClearWorks(): boolean
 
-- **说明**：
 停止和取消与当前应用程序关联的所有工作。
 
-- **示例**：
+**系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
 
-  ```
-    let res = workScheduler.stopAndClearWorks();
-    console.info("workschedulerLog res:" + res);
-  ```
+**示例**：
+
+```
+  let res = workScheduler.stopAndClearWorks();
+  console.info("workschedulerLog res:" + res);
+```
 
 ## workScheduler.isLastWorkTimeOut
-- **系统能力**：
-SystemCapability.ResourceSchedule.WorkScheduler
-
-- **接口**：
 isLastWorkTimeOut(workId: number, callback : AsyncCallback\<void>): boolean
 
-- **说明**：
 检查指定工作的最后一次执行是否为超时操作，使用Callback形式返回。
 
-- **参数**：
+**系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | workId | number | 是 | work的id。 |
-  |callback|AsyncCallback\<void>|    是|    指定的callback回调方法。如果指定工作的最后一次执行是超时操作，则返回true；否则返回false。|
+**参数**：
 
-- **返回值**：
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| workId | number | 是 | work的id。 |
+|callback|AsyncCallback\<void>|    是|    指定的callback回调方法。如果指定工作的最后一次执行是超时操作，则返回true；否则返回false。|
 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | boolean | 指定的callback回调方法。如果指定工作的最后一次执行是超时操作，则返回true；否则返回false。 |
+**返回值**：
 
-- **示例**：
+| 类型 | 说明 |
+| -------- | -------- |
+| boolean | 指定的callback回调方法。如果指定工作的最后一次执行是超时操作，则返回true；否则返回false。 |
 
-  ```
-    workScheduler.isLastWorkTimeOut(500, (err, res) =>{
-      if (err) {
-        console.info('workschedulerLog isLastWorkTimeOut failed, because:' + err.data);
-      } else {
-        console.info('workschedulerLog isLastWorkTimeOut success, data is:' + res);
-      }
-    });
-  ```
+**示例**：
+
+```
+  workScheduler.isLastWorkTimeOut(500, (err, res) =>{
+    if (err) {
+      console.info('workschedulerLog isLastWorkTimeOut failed, because:' + err.data);
+    } else {
+      console.info('workschedulerLog isLastWorkTimeOut success, data is:' + res);
+    }
+  });
+```
 
 ## workScheduler.isLastWorkTimeOut
-- **系统能力**：
-SystemCapability.ResourceSchedule.WorkScheduler
-
-- **接口**：
 isLastWorkTimeOut(workId: number): Promise\<boolean>
 
-- **说明**：
 检查指定工作的最后一次执行是否为超时操作，使用Promise形式返回。
 
-- **参数**：
+**系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | workId | number | 是 | work的id。 |
+**参数**：
 
-- **返回值**：
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| workId | number | 是 | work的id。 |
 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | Promise\<boolean> | 指定的Promise回调方法。如果指定工作的最后一次执行是超时操作，则返回true；否则返回false。|
+**返回值**：
 
-- **示例**：
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise\<boolean> | 指定的Promise回调方法。如果指定工作的最后一次执行是超时操作，则返回true；否则返回false。|
 
-  ```
-    workScheduler.isLastWorkTimeOut(500)
-      .then(res => {
-        console.info('workschedulerLog isLastWorkTimeOut success, data is:' + res);
-      })
-      .catch(err =>  {
-        console.info('workschedulerLog isLastWorkTimeOut failed, because:' + err.data);
-      });
+**示例**：
+
+```
+  workScheduler.isLastWorkTimeOut(500)
+    .then(res => {
+      console.info('workschedulerLog isLastWorkTimeOut success, data is:' + res);
     })
-  ```
+    .catch(err =>  {
+      console.info('workschedulerLog isLastWorkTimeOut failed, because:' + err.data);
+    });
+  })
+```
 
 ## WorkInfo
-- **系统能力**：
-SystemCapability.ResourceSchedule.WorkScheduler
-
 提供工作的具体信息。
+
+**系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -323,10 +293,9 @@ SystemCapability.ResourceSchedule.WorkScheduler
 |repeatCount    |number|否|循环次数|
 
 ## NetworkType
-- **系统能力**：
-SystemCapability.ResourceSchedule.WorkScheduler
-
 触发工作的网络类型。
+
+**系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
 
   |名称    |默认值    |说明|
   | -------- | -------- | -------- |
@@ -338,10 +307,9 @@ SystemCapability.ResourceSchedule.WorkScheduler
   |NETWORK_TYPE_ETHERNET    |5    |表示这个触发条件是有线网络连接。|
 
 ## ChargingType
-- **系统能力**：
-SystemCapability.ResourceSchedule.WorkScheduler
-
 触发工作的充电类型。
+
+**系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
 
   |名称    |默认值    |说明|
   | -------- | -------- | -------- |
@@ -351,10 +319,9 @@ SystemCapability.ResourceSchedule.WorkScheduler
   |CHARGING_PLUGGED_WIRELESS    |3|    表示这个触发条件是无线充电器连接。|
 
 ## BatteryStatus
-- **系统能力**：
-SystemCapability.ResourceSchedule.WorkScheduler
-
 触发工作的电池状态。
+
+**系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
 
   |名称    |默认值    |说明|
   | -------- | -------- | -------- |
@@ -363,10 +330,9 @@ SystemCapability.ResourceSchedule.WorkScheduler
   |BATTERY_STATUS_LOW_OR_OKAY    |2    |表示这个触发条件是从低电恢复到正常电量或者低电告警。|
 
 ## StorageRequest
-- **系统能力**：
-SystemCapability.ResourceSchedule.WorkScheduler
-
 触发工作的存储状态。
+
+**系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
 
   |名称    |默认值    |说明|
   | -------- | -------- | -------- |
