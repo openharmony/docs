@@ -1,5 +1,8 @@
 # FeatureAbility模块(JS端SDK接口)
 
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+
 ## 使用限制
 
 FeatureAbility模块的接口只能在Page类型的Ability调用
@@ -87,7 +90,7 @@ featureAbility.startAbility(
 });
 ```
 
-## featureAbility.acquireDataAbilityHelper
+## featureAbility.acquireDataAbilityHelper<sup>7+</sup>
 
 acquireDataAbilityHelper(uri: string): DataAbilityHelper
 
@@ -116,7 +119,7 @@ featureAbility.acquireDataAbilityHelper(
 )
 ```
 
-## featureAbility.startAbilityForResult
+## featureAbility.startAbilityForResult<sup>7+</sup>
 
 startAbilityForResult(parameter: StartAbilityParameter, callback: AsyncCallback\<AbilityResult>): void
 
@@ -153,7 +156,7 @@ featureAbility.startAbilityForResult(
 )
 ```
 
-## featureAbility.startAbilityForResult
+## featureAbility.startAbilityForResult<sup>7+</sup>
 
 startAbilityForResult(parameter: StartAbilityParameter): Promise\<AbilityResult>
 
@@ -209,7 +212,7 @@ featureAbility.startAbilityForResult(
 });
 ```
 
-## featureAbility.terminateSelfWithResult
+## featureAbility.terminateSelfWithResult<sup>7+</sup>
 
 terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback\<void>): void
 
@@ -257,7 +260,7 @@ featureAbility.terminateSelfWithResult(
 );
 ```
 
-## featureAbility.terminateSelfWithResult
+## featureAbility.terminateSelfWithResult<sup>7+</sup>
 
 terminateSelfWithResult(parameter: AbilityResult): Promise\<void>
 
@@ -314,7 +317,7 @@ featureAbility.terminateSelfWithResult(
 
 
 
-## featureAbility.hasWindowFocus
+## featureAbility.hasWindowFocus<sup>7+<sup>
 
 hasWindowFocus(callback: AsyncCallback\<boolean>): void
 
@@ -337,7 +340,7 @@ featureAbility.hasWindowFocus()
 
 
 
-## featureAbility.hasWindowFocus
+## featureAbility.hasWindowFocus<sup>7+<sup>
 
 hasWindowFocus(): Promise\<boolean>
 
@@ -432,7 +435,7 @@ context.getBundleName()
 
 
 
-## featureAbility.terminateSelf
+## featureAbility.terminateSelf<sup>7+</sup>
 
 terminateSelf(callback: AsyncCallback\<void>): void
 
@@ -455,7 +458,7 @@ featureAbility.terminateSelf()
 
 
 
-## featureAbility.terminateSelf
+## featureAbility.terminateSelf<sup>7+</sup>
 
 terminateSelf(): Promise\<void>
 
@@ -477,7 +480,7 @@ featureAbility.terminateSelf().then((data) => {		    console.info("=============
 });
 ```
 
-## featureAbility.connectAbility
+## featureAbility.connectAbility<sup>7+</sup>
 
 connectAbility(request: Want, options:ConnectOptions): number
 
@@ -546,7 +549,7 @@ var connId = featureAbility.connectAbility(
 );
 ```
 
-## featureAbility.disconnectAbility
+## featureAbility.disconnectAbility<sup>7+</sup>
 
 disconnectAbility(connection: number, callback:AsyncCallback\<void>): void
 
@@ -593,7 +596,7 @@ var result = featureAbility.disconnectAbility(connId,
 );
 ```
 
-## featureAbility.disconnectAbility
+## featureAbility.disconnectAbility<sup>7+</sup>
 
 disconnectAbility(connection: number): Promise\<void>
 
@@ -644,14 +647,124 @@ featureAbility.disconnectAbility(connId).then((error,data)=>{
 });
 ```
 
+
+## featureAbility.getWindow<sup>7+</sup>
+
+getWindow(callback: AsyncCallback\<window.Window>): void
+
+获取当前技能对应的窗口（callback形式）。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
+
+**参数：**
+
+| 名称     | 类型                    | 必填 | 描述                                                         |
+| -------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback\<window.Window> | 是   | 返回与当前能力对应的窗口。 |
+
+**示例：**
+
+```javascript
+GetWindow(){
+        featureAbility.getWindow()
+    }
+```
+
+## featureAbility.getWindow<sup>7+</sup>
+
+getWindow(): Promise\<window.Window>;
+
+获取当前技能对应的窗口（Promise形式）。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
+
+**返回值：**
+
+| 类型              | 说明                                                       |
+| ----------------- | ---------------------------------------------------------- |
+| Promise\<window.Window> | 返回与当前能力对应的窗口。 |
+
+**示例：**
+
+```javascript
+GetWindowPromise(){
+        featureAbility.getWindow().then((data) => {
+            console.info("=============getWindowPromise========== " + JSON.stringify(data));
+        });
+    }
+```
+
+
+## AbilityWindowConfiguration
+
+使用时通过featureAbility.AbilityWindowConfiguration获取。
+
+**示例：**
+
+```
+featureAbility.AbilityWindowConfiguration.WINDOW_MODE_UNDEFINED。 
+```
+
+| 名称                        | 参数 | 描述       |
+| --------------------------- | ---- | ---------- |
+| WINDOW_MODE_UNDEFINED<sup>7+</sup>       | 0    | 未定义。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel   |
+| WINDOW_MODE_FULLSCREEN<sup>7+</sup>      | 1    | 全屏。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel     |
+| WINDOW_MODE_SPLIT_PRIMARY<sup>7+</sup>   | 100  | 分屏主屏。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel |
+| WINDOW_MODE_SPLIT_SECONDARY<sup>7+</sup> | 101  | 分屏次屏。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel |
+| WINDOW_MODE_FLOATING<sup>7+</sup>        | 102  | 悬浮窗。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel   |
+
+
+## AbilityStartSetting
+
+abilityStartSetting属性是一个定义为[key: string]: any的对象，key对应设定类型为：AbilityStartSetting枚举类型，value对应设定类型为：AbilityWindowConfiguration枚举类型。
+
+使用时通过featureAbility.AbilityStartSetting获取。
+
+**示例：**
+
+```
+featureAbility.AbilityStartSetting.BOUNDS_KEY。 
+```
+
+| 名称            | 参数            | 描述                       |
+| --------------- | --------------- | -------------------------- |
+| BOUNDS_KEY<sup>7+</sup>       | "abilityBounds" | 窗口显示大小属性的名称。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel   |
+| WINDOW_MODE_KEY<sup>7+</sup>  | "windowMode"    | 窗口显示模式属性的名称。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel   |
+| DISPLAY_ID_KEY<sup>7+</sup>   | "displayId"     | 窗口显示设备ID属性的名称。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel |
+
+## ErrorCode
+
+获取错误代码。
+
+| 变量                          | 值   | 说明                                                         |
+| ----------------------------- | ---- | ------------------------------------------------------------ |
+| NO_ERROR<sup>7+</sup>           | 0    | 没有错误。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel |
+| INVALID_PARAMETER<sup>7+</sup>          | -1    | 无效的参数。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel |
+| ABILITY_NOT_FOUND<sup>7+</sup>  | -2    | 找不到能力。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel |
+| PERMISSION_DENY<sup>7+</sup>            | -3    | 拒绝许可。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel |
+
+
+## DataAbilityOperationType
+
+指示数据的操作类型。
+
+| 变量                          | 值   | 说明                                                         |
+| ----------------------------- | ---- | ------------------------------------------------------------ |
+| TYPE_INSERT<sup>7+</sup>           | 1   | 插入类型。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel |
+| TYPE_UPDATE<sup>7+</sup>          | 2  | 修改类型。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel |
+| TYPE_DELETE<sup>7+</sup>  | 3    | 删除类型。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel |
+| TYPE_ASSERT<sup>7+</sup>            | 4    | 声明类型。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel |
+
+
+
 ## AbilityResult
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase
 
 | 名称       | 读写属性 | 类型                  | 必填 | 描述                                                         |
 | ---------- | -------- | --------------------- | ---- | ------------------------------------------------------------ |
-| resultCode | 只读     | number                | 是   | 指示销毁该能力后返回的结果代码。您可以定义结果代码来识别错误（暂不支持）。 |
-| want       | 只读     | [Want](#want) | 否   | 指示销毁该能力后返回的数据。您可以定义返回的数据。此参数可以为null。  |
+| resultCode<sup>7+</sup> | 只读     | number                | 是   | 指示销毁该能力后返回的结果代码。您可以定义结果代码来识别错误（暂不支持）。 |
+| want<sup>7+</sup>       | 只读     | [Want](#want) | 否   | 指示销毁该能力后返回的数据。您可以定义返回的数据。此参数可以为null。  |
 
 ## StartAbilityParameter
 
@@ -662,21 +775,22 @@ featureAbility.disconnectAbility(connId).then((error,data)=>{
 | want                | 只读     | [Want](#want)        | 是   | 表示需要包含有关目标启动能力的信息。                       |
 | abilityStartSetting | 只读     | {[key: string]: any} | 否   | 表示能力的特殊属性，当开发者启动能力时，该属性可以作为调用中的输入参数传递。 |
 
+
 ## Want
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase
 
 | 名称        | 读写属性 | 类型                 | 必填 | 描述                                                         |
 | ----------- | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| deviceId    | 只读     | string               | 否   | 表示运行指定Ability的设备ID。                                |
-| bundleName  | 只读     | string               | 否   | 表示包描述。如果在Want中同时指定了BundleName和AbilityName，则Want可以直接匹配到指定的Ability。 |
-| abilityName | 只读     | string               | 否   | 表示待启动的Ability名称。如果在Want中同时指定了BundleName和AbilityName，则Want可以直接匹配到指定的Ability。 |
-| uri         | 只读     | string               | 否   | 表示Uri描述。如果在Want中指定了Uri，则Want将匹配指定的Uri信息，包括scheme, schemeSpecificPart, authority和path信息。 |
-| type        | 只读     | string               | 否   | 表示MIME type类型描述，比如："text/plain" 、 "image/*"等。   |
-| flags       | 只读     | number               | 否   | 表示处理Want的方式。默认传数字，具体参考：[flags说明](#flags说明)。 |
-| action      | 只读     | string               | 否   | 表示action选项描述。                           |
-| parameters  | 只读     | {[key: string]: any} | 否   | 表示WantParams描述。                                       |
-| entities    | 只读     | Array\<string>       | 否   | 表示entities相关描述。                                    |
+| deviceId<sup>8+</sup>     | 只读     | string               | 否   | 表示运行指定Ability的设备ID。                                |
+| bundleName<sup>8+</sup>   | 只读     | string               | 否   | 表示包描述。如果在Want中同时指定了BundleName和AbilityName，则Want可以直接匹配到指定的Ability。 |
+| abilityName<sup>8+</sup>  | 只读     | string               | 否   | 表示待启动的Ability名称。如果在Want中同时指定了BundleName和AbilityName，则Want可以直接匹配到指定的Ability。 |
+| uri<sup>8+</sup>          | 只读     | string               | 否   | 表示Uri描述。如果在Want中指定了Uri，则Want将匹配指定的Uri信息，包括scheme, schemeSpecificPart, authority和path信息。 |
+| type<sup>8+</sup>         | 只读     | string               | 否   | 表示MIME type类型描述，比如："text/plain" 、 "image/*"等。   |
+| flags<sup>8+</sup>        | 只读     | number               | 否   | 表示处理Want的方式。默认传数字，具体参考：[flags说明](#flags说明)。 |
+| action<sup>8+</sup>       | 只读     | string               | 否   | 表示action选项描述。                           |
+| parameters<sup>8+</sup>   | 只读     | {[key: string]: any} | 否   | 表示WantParams描述。                                       |
+| entities<sup>8+</sup>     | 只读     | Array\<string>       | 否   | 表示entities相关描述。                                    |
 
 ## flags说明
 

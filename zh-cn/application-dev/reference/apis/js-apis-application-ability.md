@@ -1,7 +1,7 @@
 # Ability
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 从API Version 8 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 从API Version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
 Ability模块，提供对Ability生命周期、上下文环境等调用管理。
@@ -13,7 +13,6 @@ Ability模块，提供对Ability生命周期、上下文环境等调用管理。
 ```
 import Ability from '@ohos.application.Ability';
 ```
-
 
 ## 属性
 
@@ -570,3 +569,19 @@ off(method: string): void;
   }
   ```
 
+## OnReleaseCallBack
+
+(msg: string): void;
+
+| 名称 | 参数类型 | 可读 | 可写 | 说明 | 
+| -------- | -------- | -------- | -------- | -------- |
+| (msg: string) | function | 是 | 否 | 调用者注册的侦听器函数接口的原型。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore | 
+ 
+
+ ## CaleeCallBack
+
+(indata: rpc.MessageParcel): rpc.Sequenceable;
+
+| 名称 | 参数类型 | 可读 | 可写 | 说明 | 
+| -------- | -------- | -------- | -------- | -------- |
+| (indata: rpc.MessageParcel) | rpc.Sequenceable | 是 | 否 | 被调用方注册的消息侦听器函数接口的原型。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore | 
