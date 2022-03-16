@@ -113,11 +113,16 @@ getSystemLanguage(): string
 
 ## i18n.setSystemLanguage
 
-setSystemLanguage(): boolean
+setSystemLanguage(language: string): boolean
 
 设置系统语言。
 
 **系统能力**：SystemCapability.Global.I18n
+
+- 参数：
+  | 参数名 | 类型 | 说明 |
+  | -------- | -------- | -------- |
+  | language | string | 语言ID。 |
 
 - 返回值：
   | 类型 | 说明 |
@@ -126,7 +131,7 @@ setSystemLanguage(): boolean
 
 - 示例：
   ```
-  i18n.setSystemLanguage();
+  i18n.setSystemLanguage('zh');
   ```
 
 
@@ -151,11 +156,16 @@ getSystemLanguages(): Array<string>
 
 ## i18n.getSystemCountries
 
-getSystemCountries(): Array<string>
+getSystemCountries(language: string): Array<string>
 
-获取系统支持的区域列表。
+获取针对输入语言系统支持的区域列表。
 
 **系统能力**：SystemCapability.Global.I18n
+
+- 参数：
+  | 参数名 | 类型 | 说明 |
+  | -------- | -------- | -------- |
+  | language | string | 语言ID。 |
 
 - 返回值：
   | 类型 | 说明 |
@@ -164,7 +174,7 @@ getSystemCountries(): Array<string>
 
 - 示例：
   ```
-  i18n.getSystemCountries();
+  i18n.getSystemCountries('zh');
   ```
 
 
@@ -189,11 +199,16 @@ getSystemRegion(): string
 
 ## i18n.setSystemRegion
 
-setSystemRegion(): boolean
+setSystemRegion(region: string): boolean
 
 设置系统区域。
 
 **系统能力**：SystemCapability.Global.I18n
+
+- 参数：
+  | 参数名 | 类型 | 说明 |
+  | -------- | -------- | -------- |
+  | region | string | 地区ID。 |
 
 - 返回值：
   | 类型 | 说明 |
@@ -645,21 +660,23 @@ format(number: string): string
 
 表示电话号码格式化对象可设置的属性。
 
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Global.I18n
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| type | string | 是 | 是 | 表示对电话号码格式化的类型，取值范围："E164",&nbsp;"INTERNATIONAL",&nbsp;"NATIONAL",&nbsp;"RFC3966"。<br/>**系统能力**：SystemCapability.Global.I18n |
+| type | string | 是 | 是 | 表示对电话号码格式化的类型，取值范围："E164",&nbsp;"INTERNATIONAL",&nbsp;"NATIONAL",&nbsp;"RFC3966"。 |
 
 
 ## UnitInfo<sup>8+</sup>
 
 度量衡单位信息。
 
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Global.I18n
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | unit | string | 是 | 是 | 单位的名称，如："meter",&nbsp;"inch",&nbsp;"cup"等。 |
-| measureSystem | string | 是 | 是 | 单位的度量体系，取值包括："SI",&nbsp;"US",&nbsp;"UK"。<br/>**系统能力**：SystemCapability.Global.I18n |
+| measureSystem | string | 是 | 是 | 单位的度量体系，取值包括："SI",&nbsp;"US",&nbsp;"UK"。 |
 
 
 ## Util<sup>8+</sup>
@@ -695,7 +712,7 @@ unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: string,
 
 ## getInstance<sup>8+</sup>
 
-getInstance(): IndexUtil
+getInstance(locale?:string): IndexUtil
 
 创建并返回IndexUtil对象。
 
@@ -742,7 +759,7 @@ getIndexList(): Array&lt;string&gt;
 
 ### addLocale<sup>8+</sup>
 
-addLocale(locale: string)
+addLocale(locale: string): void
 
 将新的locale对应的索引加入当前索引列表。
 
@@ -1374,4 +1391,117 @@ getFirstPreferredLanguage(): string
 - 示例：
   ```
   var firstPreferredLanguage = i18n.getFirstPreferredLanguage();
+  ```
+
+
+## i18n.getTimeZone<sup>8+</sup>
+
+getTimeZone(zoneID?: string): TimeZone
+
+获取时区ID对应的时区对象。
+
+**系统能力**：SystemCapability.Global.I18n
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | zondID | string | 否 | 时区ID。 |
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | TimeZone | 时区ID对应的时区对象。 |
+
+- 示例：
+  ```
+  var timezone = i18n.getTimeZone();
+  ```
+
+
+## RelativeTimeFormat<sup>8+</sup>
+
+
+### getID<sup>8+</sup>
+
+getID(): string
+
+获取时区对象的ID。
+
+**系统能力**：SystemCapability.Global.I18n
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | string | 时区对象对应的时区ID。 |
+
+- 示例：
+  ```
+  var timezone = i18n.getTimeZone();
+  timezone.getID();
+  ```
+
+
+### getDisplayName<sup>8+</sup>
+
+getDisplayName(locale?: string, isDST?: boolean): string
+
+获取时区对象在指定区域的表示。
+
+**系统能力**：SystemCapability.Global.I18n
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | locale | string | 否 | 区域ID。 |
+  | isDST | boolean | 否 | 表示获取时区对象的表示时是否考虑夏令时。 |
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | string | 时区对象在指定区域的表示。 |
+
+- 示例：
+  ```
+  var timezone = i18n.getTimeZone();
+  timezone.getDisplayName("zh-CN", false);
+  ```
+
+
+### getRawOffset<sup>8+</sup>
+
+getRawOffset(): number
+
+获取时区对象表示的时区与UTC时区的偏差。
+
+**系统能力**：SystemCapability.Global.I18n
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | number | 时区对象表示的时区与UTC时区的偏差。 |
+
+- 示例：
+  ```
+  var timezone = i18n.getTimeZone();
+  timezone.getRawOffset();
+  ```
+
+
+### getOffset<sup>8+</sup>
+
+getOffset(date?: number): number
+
+获取某一时刻时区对象表示的时区与UTC时区的偏差。
+
+**系统能力**：SystemCapability.Global.I18n
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | number | 某一时刻时区对象表示的时区与UTC时区的偏差。 |
+
+- 示例：
+  ```
+  var timezone = i18n.getTimeZone();
+  timezone.getOffset(1234567890);
   ```
