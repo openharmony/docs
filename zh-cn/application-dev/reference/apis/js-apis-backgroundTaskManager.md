@@ -116,7 +116,7 @@ cancelSuspendDelay(requestId: number): void
   ```
 
 
-## backgroundTaskManager.startBackgroundRunning <sup>8+</sup>
+## backgroundTaskManager.startBackgroundRunning<sup>8+</sup>
 
 startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent, callback: AsyncCallback&lt;void&gt;): void
 
@@ -167,7 +167,7 @@ wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
 
 ```
 
-## backgroundTaskManager.startBackgroundRunning <sup>8+</sup>
+## backgroundTaskManager.startBackgroundRunning<sup>8+</sup>
 
 startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent): Promise&lt;void&gt;
 
@@ -219,7 +219,7 @@ wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
 
 ```
 
-## backgroundTaskManager.stopBackgroundRunning <sup>8+</sup>
+## backgroundTaskManager.stopBackgroundRunning<sup>8+</sup>
 
 stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): void
 
@@ -252,7 +252,7 @@ backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext(), callbac
 
 ```
 
-## backgroundTaskManager.stopBackgroundRunning <sup>8+</sup>
+## backgroundTaskManager.stopBackgroundRunning<sup>8+</sup>
 
 stopBackgroundRunning(context: Context): Promise&lt;void&gt;
 
