@@ -13,13 +13,8 @@
     -   [Audio Recording Development](audio-recorder.md) 
 
     -   [Audio Recorder Development Using AudioCapturer](audio-capturer)  
-
 - Video
 
   - [Video Playback Development](video-playback.md)
 
   - [Video Recording Development](video-recorder.md)
-
-- Sound
-
-  - [SoundManager Development](sound-manager.md)
