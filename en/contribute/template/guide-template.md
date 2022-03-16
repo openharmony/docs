@@ -26,7 +26,7 @@
 
 - *A: answer. Describe the solution.*
 
-*The table below describes the writing requirements. After finishing the writing, check your content against these requirements one by one.*   
+*The table below describes the writing requirements. After finishing the writing, check your content against these requirements one by one.*  
 
 | Requirement| Satisfied or Not|
 | -------- | -------- |
@@ -66,7 +66,8 @@ The **AudioRenderer** class provides open audio playback capabilities. For detai
 
 ***[Writing Requirements]***
 
- *Mandatory. Describe the overall process to help developers quickly complete the task. The table below describes the writing requirements. After finishing the writing, check your content against these requirements one by one.*   
+ *Mandatory. Describe the overall process to help developers quickly complete the task. The table below describes the writing requirements. After finishing the writing, check your content against these requirements one by one.*  
+
 | Requirement| Satisfied or Not|
 | -------- | -------- |
 | **Writing a Development Procedure**|  |
@@ -96,7 +97,7 @@ The **AudioRenderer** class provides open audio playback capabilities. For detai
       AudioStreamInfo audioStreamInfo = new AudioStreamInfo.Builder().sampleRate(44100)// 44.1 kHz    .audioStreamFlag(AudioStreamInfo.AudioStreamFlag.AUDIO_STREAM_FLAG_MAY_DUCK)// Set audio ducking.    .encodingFormat(AudioStreamInfo.EncodingFormat.ENCODING_PCM_16BIT)//16-bit PCM    .channelMask(AudioStreamInfo.ChannelMask.CHANNEL_OUT_STEREO)// Set the dual output channel.    .streamUsage(AudioStreamInfo.StreamUsage.STREAM_USAGE_MEDIA)// Set the stream to be used for media.    .build();
       ```
 
-2. Build the playback parameter structure via **AudioRendererInfo** for the audio stream created in Step 1, and use **AudioRendererInfo.Builder** to create an #lt;ph class="- topic/ph " id="ph96666347177" status="new"/#gt;instance. The following example uses the default parameter values of the **AudioRendererInfo.Builder** instance. You need to set the playback parameters based on the audio playback specification.
+2. Build the playback parameter structure via **AudioRendererInfo** for the audio stream created in Step 1, and use **AudioRendererInfo.Builder** to create an instance. The following example uses the default parameter values of the **AudioRendererInfo.Builder** instance. You need to set the playback parameters based on the audio playback specification.
    ```
    AudioRendererInfo audioRendererInfo = new AudioRendererInfo.Builder().audioStreamInfo(audioStreamInfo)    .audioStreamOutputFlag(AudioRendererInfo.AudioStreamOutputFlag.AUDIO_STREAM_OUTPUT_FLAG_NONE)    .bufferSizeInBytes(0)    .distributedDeviceId("")    .isOffload(false)    .sessionID(AudioRendererInfo.SESSION_ID_UNSPECIFIED)    .build();
    ```
@@ -106,7 +107,7 @@ The **AudioRenderer** class provides open audio playback capabilities. For detai
       AudioRendererInfo audioRendererInfo = new AudioRendererInfo.Builder().audioStreamInfo(audioStreamInfo)    .audioStreamOutputFlag(AudioRendererInfo.AudioStreamOutputFlag.AUDIO_STREAM_OUTPUT_FLAG_DIRECT_PCM)// Set direct PCM output    .bufferSizeInBytes(100)    .distributedDeviceId("E54***5E8")// Use distributed device E54***5E8 for playback.   .isOffload(false)//  Value false indicates that the audio stream is transmitted to the buffer on a segment-by-segment basis for several times and then played. Value true indicates that the audio stream is transmitted to the HAL layer at a time.    .build();
       ```
 
-3. Specify the playback mode based on the audio stream to be played. The playback modes differ only in the data writing process.
+3. Specify the playback mode based on the audio stream to be played. The playback modes differ only in the data writing process. Create an **AudioRenderer** instance using a constructor that fits your need.
    ....
 
 4. After the playback task is complete, call the **release()** method on the **AudioRenderer** instance to release resources.
@@ -116,9 +117,20 @@ The **AudioRenderer** class provides open audio playback capabilities. For detai
 
 ***[Writing Requirements]***
 
-*Optional. After the development is complete, perform commissioning and verification to ensure that the operation is successful. The operation procedure requirements are the same as those in **Development Guidelines**. Other specific writing requirements are as follows. After finishing the writing, check your content against these requirements one by one.*   
+*Optional. After the development is complete, perform commissioning and verification to ensure that the operation is successful. The operation procedure requirements are the same as those in **Development Guidelines**. Other specific writing requirements are as follows. After finishing the writing, check your content against these requirements one by one.*  
 
 | Requirement| Satisfied or Not|
 | -------- | -------- |
 | Describe the final service commissioning process. The operation result of each step should be verified after the corresponding development task is complete.|  |
 | Specify the criteria for development success.|  |
+
+## Development Example
+***[Writing Requirements]***
+
+*Provide a complete sample, briefly describe the principle and implementation of the sample, and provide a link to the source code repository.*  
+
+The following sample is provided to help you better understand how to xx:
+
+- xxx (A link to the source code repository)
+
+ This sample xxx.
