@@ -16,7 +16,7 @@ import inputMethod from '@ohos.inputMethod';
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| MAX_TYPE_NUM | number | 是 | 否 | 可支持的最大输入法个数。<br/>**系统能力**： SystemCapability.MiscServices.InputMethod |
+| MAX_TYPE_NUM | number | 是 | 否 | 可支持的最大输入法个数。<br/>**系统能力**： SystemCapability.MiscServices.InputMethodFramework |
 
 
 ## InputMethodProperty<sup>8+</sup><a name="InputMethodProperty"></a>
@@ -25,8 +25,8 @@ import inputMethod from '@ohos.inputMethod';
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| packageName | string | 是 | 否 | 包名。<br/>**系统能力**： SystemCapability.MiscServices.InputMethod |
-| methodId | string | 是 | 否 | Ability名。<br/>**系统能力**： SystemCapability.MiscServices.InputMethod |
+| packageName | string | 是 | 否 | 包名。<br/>**系统能力**： SystemCapability.MiscServices.InputMethodFramework |
+| methodId | string | 是 | 否 | Ability名。<br/>**系统能力**： SystemCapability.MiscServices.InputMethodFramework |
 
 ## inputMethod.getInputMethodController<a name="getInputMethodController"></a>
 
@@ -34,7 +34,7 @@ getInputMethodController(): InputMethodController
 
 获取客户端实例[InputMethodController](#InputMethodController)。
 
-**系统能力**：SystemCapability.MiscServices.InputMethod
+**系统能力**：SystemCapability.MiscServices.InputMethodFramework
 
 - 返回值
 
@@ -52,7 +52,7 @@ getInputMethodSetting(): InputMethodSetting
 
 获取客户端设置实例[InputMethodSetting](#InputMethodSetting)。
 
-**系统能力**： SystemCapability.MiscServices.InputMethod
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 - 返回值
 
@@ -76,7 +76,7 @@ stopInput(callback: AsyncCallback&lt;boolean&gt;): void
 
 隐藏输入法。
 
-**系统能力**：SystemCapability.MiscServices.InputMethod
+**系统能力**：SystemCapability.MiscServices.InputMethodFramework
 
 - 参数
 
@@ -98,7 +98,7 @@ stopInput(): Promise&lt;boolean&gt;
 
 隐藏输入法。
 
-**系统能力**： SystemCapability.MiscServices.InputMethod
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 - 返回值
 
@@ -124,7 +124,7 @@ listInputMethod(callback: AsyncCallback&lt;Array&lt;InputMethodProperty&gt;&gt;)
 
 查询已安装的输入法列表。
 
-**系统能力**： SystemCapability.MiscServices.InputMethod
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 - 参数
   | 参数名   | 类型                                               | 必填 | 说明                   |
@@ -147,7 +147,7 @@ listInputMethod(): Promise&lt;Array&lt;InputMethodProperty&gt;&gt;
 
 查询已安装的输入法列表。
 
-**系统能力**： SystemCapability.MiscServices.InputMethod
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 - 返回值
   | 类型                                                        | 说明                   |
@@ -169,7 +169,7 @@ displayOptionalInputMethod(callback: AsyncCallback&lt;void&gt;): void
 
 显示输入法选择对话框。
 
-**系统能力**： SystemCapability.MiscServices.InputMethod
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 - 参数
 
@@ -190,7 +190,7 @@ displayOptionalInputMethod(callback: AsyncCallback&lt;void&gt;): void
 
   显示输入法选择对话框。
 
-  **系统能力**： SystemCapability.MiscServices.InputMethod
+  **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 - 返回值
 

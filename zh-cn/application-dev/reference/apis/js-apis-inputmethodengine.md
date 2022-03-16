@@ -15,32 +15,32 @@ import inputMethodEngine from '@ohos.inputMethodEngine';
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| ENTER_KEY_TYPE_UNSPECIFIED | number | 是 | 否 | 无功能键。<br/>**系统能力**： SystemCapability.MiscServices.InputMethod |
-| ENTER_KEY_TYPE_GO | number | 是 | 否 | “前往”功能键。<br/>**系统能力**： SystemCapability.MiscServices.InputMethod |
-| ENTER_KEY_TYPE_SEARCH | number | 是 | 否 | “搜索”功能键。<br/>**系统能力**： SystemCapability.MiscServices.InputMethod |
-| ENTER_KEY_TYPE_SEND | number | 是 | 否 | “发送”功能键。<br/>**系统能力**： SystemCapability.MiscServices.InputMethod |
-| ENTER_KEY_TYPE_NEXT | number | 是 | 否 | “下一个”功能键。<br/>**系统能力**： SystemCapability.MiscServices.InputMethod |
-| ENTER_KEY_TYPE_DONE | number | 是 | 否 | “回车”功能键。<br/>**系统能力**： SystemCapability.MiscServices.InputMethod |
-| ENTER_KEY_TYPE_PREVIOUS | number | 是 | 否 | “前一个”功能键。<br/>**系统能力**： SystemCapability.MiscServices.InputMethod |
-| PATTERN_NULL | number | 是 | 否 | 无特殊性编辑框。<br/>**系统能力**： SystemCapability.MiscServices.InputMethod |
-| PATTERN_TEXT | number | 是 | 否 | 文本编辑框。<br/>**系统能力**： SystemCapability.MiscServices.InputMethod |
-| PATTERN_NUMBER | number | 是 | 否 | 数字编辑框。<br/>**系统能力**： SystemCapability.MiscServices.InputMethod |
-| PATTERN_PHONE | number | 是 | 否 | 电话编辑框。<br/>**系统能力**： SystemCapability.MiscServices.InputMethod |
-| PATTERN_DATETIME | number | 是 | 否 | 日期编辑框。<br/>**系统能力**： SystemCapability.MiscServices.InputMethod |
-| PATTERN_EMAIL | number | 是 | 否 | 邮件编辑框。<br/>**系统能力**： SystemCapability.MiscServices.InputMethod |
-| PATTERN_URI | number | 是 | 否 | 超链接编辑框。<br/>**系统能力**： SystemCapability.MiscServices.InputMethod |
-| PATTERN_PASSWORD | number | 是 | 否 | 密码编辑框。<br/>**系统能力**： SystemCapability.MiscServices.InputMethod |
-| OPTION_ASCII | number | 是 | 否 | 允许输入ASCII值。<br/>**系统能力**： SystemCapability.MiscServices.InputMethod |
-| OPTION_NONE | number | 是 | 否 | 不指定编辑框输入属性。<br/>**系统能力**： SystemCapability.MiscServices.InputMethod |
-| OPTION_AUTO_CAP_CHARACTERS | number | 是 | 否 | 允许输入字符。<br/>**系统能力**： SystemCapability.MiscServices.InputMethod |
-| OPTION_AUTO_CAP_SENTENCES | number | 是 | 否 | 允许输入句子。<br/>**系统能力**： SystemCapability.MiscServices.InputMethod |
-| OPTION_AUTO_WORDS | number | 是 | 否 | 允许输入单词。<br/>**系统能力**： SystemCapability.MiscServices.InputMethod |
-| OPTION_MULTI_LINE | number | 是 | 否 | 允许输入多行。<br/>**系统能力**： SystemCapability.MiscServices.InputMethod |
-| OPTION_NO_FULLSCREEN | number | 是 | 否 | 半屏样式。<br/>**系统能力**： SystemCapability.MiscServices.InputMethod |
-| FLAG_SELECTING | number | 是 | 否 | 编辑框处于选择状态。<br/>**系统能力**： SystemCapability.MiscServices.InputMethod |
-| FLAG_SINGLE_LINE | number | 是 | 否 | 编辑框为单行。<br/>**系统能力**： SystemCapability.MiscServices.InputMethod |
-| DISPLAY_MODE_PART | number | 是 | 否 | 编辑框显示为半屏。<br/>**系统能力**： SystemCapability.MiscServices.InputMethod |
-| DISPLAY_MODE_FULL | number | 是 | 否 | 编辑框显示为全屏。<br/>**系统能力**： SystemCapability.MiscServices.InputMethod |
+| ENTER_KEY_TYPE_UNSPECIFIED | number | 是 | 否 | 无功能键。<br/>**系统能力**： SystemCapability.MiscServices.InputMethodFramework |
+| ENTER_KEY_TYPE_GO | number | 是 | 否 | “前往”功能键。<br/>**系统能力**： SystemCapability.MiscServices.InputMethodFramework |
+| ENTER_KEY_TYPE_SEARCH | number | 是 | 否 | “搜索”功能键。<br/>**系统能力**： SystemCapability.MiscServices.InputMethodFramework |
+| ENTER_KEY_TYPE_SEND | number | 是 | 否 | “发送”功能键。<br/>**系统能力**： SystemCapability.MiscServices.InputMethodFramework |
+| ENTER_KEY_TYPE_NEXT | number | 是 | 否 | “下一个”功能键。<br/>**系统能力**： SystemCapability.MiscServices.InputMethodFramework |
+| ENTER_KEY_TYPE_DONE | number | 是 | 否 | “回车”功能键。<br/>**系统能力**： SystemCapability.MiscServices.InputMethodFramework |
+| ENTER_KEY_TYPE_PREVIOUS | number | 是 | 否 | “前一个”功能键。<br/>**系统能力**： SystemCapability.MiscServices.InputMethodFramework |
+| PATTERN_NULL | number | 是 | 否 | 无特殊性编辑框。<br/>**系统能力**： SystemCapability.MiscServices.InputMethodFramework |
+| PATTERN_TEXT | number | 是 | 否 | 文本编辑框。<br/>**系统能力**： SystemCapability.MiscServices.InputMethodFramework |
+| PATTERN_NUMBER | number | 是 | 否 | 数字编辑框。<br/>**系统能力**： SystemCapability.MiscServices.InputMethodFramework |
+| PATTERN_PHONE | number | 是 | 否 | 电话编辑框。<br/>**系统能力**： SystemCapability.MiscServices.InputMethodFramework |
+| PATTERN_DATETIME | number | 是 | 否 | 日期编辑框。<br/>**系统能力**： SystemCapability.MiscServices.InputMethodFramework |
+| PATTERN_EMAIL | number | 是 | 否 | 邮件编辑框。<br/>**系统能力**： SystemCapability.MiscServices.InputMethodFramework |
+| PATTERN_URI | number | 是 | 否 | 超链接编辑框。<br/>**系统能力**： SystemCapability.MiscServices.InputMethodFramework |
+| PATTERN_PASSWORD | number | 是 | 否 | 密码编辑框。<br/>**系统能力**： SystemCapability.MiscServices.InputMethodFramework |
+| OPTION_ASCII | number | 是 | 否 | 允许输入ASCII值。<br/>**系统能力**： SystemCapability.MiscServices.InputMethodFramework |
+| OPTION_NONE | number | 是 | 否 | 不指定编辑框输入属性。<br/>**系统能力**： SystemCapability.MiscServices.InputMethodFramework |
+| OPTION_AUTO_CAP_CHARACTERS | number | 是 | 否 | 允许输入字符。<br/>**系统能力**： SystemCapability.MiscServices.InputMethodFramework |
+| OPTION_AUTO_CAP_SENTENCES | number | 是 | 否 | 允许输入句子。<br/>**系统能力**： SystemCapability.MiscServices.InputMethodFramework |
+| OPTION_AUTO_WORDS | number | 是 | 否 | 允许输入单词。<br/>**系统能力**： SystemCapability.MiscServices.InputMethodFramework |
+| OPTION_MULTI_LINE | number | 是 | 否 | 允许输入多行。<br/>**系统能力**： SystemCapability.MiscServices.InputMethodFramework |
+| OPTION_NO_FULLSCREEN | number | 是 | 否 | 半屏样式。<br/>**系统能力**： SystemCapability.MiscServices.InputMethodFramework |
+| FLAG_SELECTING | number | 是 | 否 | 编辑框处于选择状态。<br/>**系统能力**： SystemCapability.MiscServices.InputMethodFramework |
+| FLAG_SINGLE_LINE | number | 是 | 否 | 编辑框为单行。<br/>**系统能力**： SystemCapability.MiscServices.InputMethodFramework |
+| DISPLAY_MODE_PART | number | 是 | 否 | 编辑框显示为半屏。<br/>**系统能力**： SystemCapability.MiscServices.InputMethodFramework |
+| DISPLAY_MODE_FULL | number | 是 | 否 | 编辑框显示为全屏。<br/>**系统能力**： SystemCapability.MiscServices.InputMethodFramework |
 
 ## inputMethodEngine.getInputMethodEngine<a name="getInputMethodEngine"></a>
 
@@ -48,7 +48,7 @@ getInputMethodEngine(): InputMethodEngine
 
 获取服务端实例。
 
-**系统能力**： SystemCapability.MiscServices.InputMethod
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 - 返回值
 
@@ -68,7 +68,7 @@ createKeyboardDelegate(): KeyboardDelegate
 
 获取客户端监听实例。
 
-**系统能力**： SystemCapability.MiscServices.InputMethod
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 - 返回值
 
@@ -92,7 +92,7 @@ on(type: 'inputStart', callback: (kbController: KeyboardController, textInputCli
 
 订阅输入法绑定成功事件，使用callback回调返回输入法操作相关实例。
 
-**系统能力**： SystemCapability.MiscServices.InputMethod
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 - 参数：
 
@@ -116,7 +116,7 @@ off(type: 'inputStart', callback?: (kbController: KeyboardController, textInputC
 
 取消订阅输入法绑定成功事件。
 
-**系统能力**： SystemCapability.MiscServices.InputMethod
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 - 参数：
 
@@ -139,7 +139,7 @@ on(type: 'keyboardShow'|'keyboardHide', callback: () => void): void
 
 订阅输入法事件。
 
-**系统能力**： SystemCapability.MiscServices.InputMethod
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 - 参数：
 
@@ -162,7 +162,7 @@ off(type: 'keyboardShow'|'keyboardHide', callback?: () => void): void
 
 取消订阅输入法事件。
 
-**系统能力**： SystemCapability.MiscServices.InputMethod
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 - 参数：
 
@@ -188,7 +188,7 @@ on(type: 'keyDown'|'keyUp', callback: (event: KeyEvent) => boolean): void
 
 订阅硬键盘事件，使用callback回调返回按键信息。
 
-**系统能力**： SystemCapability.MiscServices.InputMethod
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 - 参数：
 
@@ -213,7 +213,7 @@ off(type: 'keyDown'|'keyUp', callback?: (event: KeyEvent) => boolean): void
 
 取消订阅硬键盘事件。
 
-**系统能力**： SystemCapability.MiscServices.InputMethod
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 - 参数：
 
@@ -234,7 +234,7 @@ on(type: 'cursorContextChange', callback: (x: number, y:number, height:number) =
 
 订阅光标变化事件，使用callback回调返回光标信息。
 
-  **系统能力**： SystemCapability.MiscServices.InputMethod
+  **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
   - 参数：
 
@@ -259,7 +259,7 @@ off(type: 'cursorContextChange', callback?: (x: number, y:number, height:number)
 
 取消订阅光标变化事件。
 
-**系统能力**： SystemCapability.MiscServices.InputMethod
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
   - 参数：
 
@@ -280,7 +280,7 @@ on(type: 'selectionChange', callback: (oldBegin: number, oldEnd: number, newBegi
 
 订阅文本选择变化事件，使用callback回调返回文本选择信息。
 
-**系统能力**： SystemCapability.MiscServices.InputMethod
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
   - 参数：
 
@@ -303,7 +303,7 @@ off(type: 'selectionChange', callback?: (oldBegin: number, oldEnd: number, newBe
 
 取消订阅文本选择变化事件。
 
-**系统能力**： SystemCapability.MiscServices.InputMethod
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
   - 参数：
 
@@ -325,7 +325,7 @@ on(type: 'textChange', callback: (text: string) => void): void
 
 订阅文本变化事件，使用callback回调返回当前文本内容。
 
-**系统能力**： SystemCapability.MiscServices.InputMethod
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
   - 参数：
 
@@ -348,7 +348,7 @@ off(type: 'textChange', callback?: (text: string) => void): void
 
 取消订阅文本变化事件。
 
-**系统能力**： SystemCapability.MiscServices.InputMethod
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
   - 参数：
 
@@ -373,7 +373,7 @@ hideKeyboard(callback: AsyncCallback&lt;void&gt;): void
 
 隐藏输入法。
 
-**系统能力**： SystemCapability.MiscServices.InputMethod
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 - 参数：
 
@@ -395,7 +395,7 @@ hideKeyboard(): Promise&lt;void&gt;
 
 隐藏输入法。
 
-**系统能力**： SystemCapability.MiscServices.InputMethod
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 - 返回值
 
@@ -420,7 +420,7 @@ getForward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
 获取光标前固定长度的文本。
 
-**系统能力**： SystemCapability.MiscServices.InputMethod
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 - 参数
 
@@ -442,7 +442,7 @@ getForward(length:number): Promise&lt;string&gt;
 
 获取光标前固定长度的文本。
 
-**系统能力**： SystemCapability.MiscServices.InputMethod
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 - 参数
 
@@ -467,7 +467,7 @@ getBackward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
 获取光标后固定长度的文本。
 
-**系统能力**： SystemCapability.MiscServices.InputMethod
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 - 参数
 
@@ -489,7 +489,7 @@ getBackward(length:number): Promise&lt;string&gt;
 
 获取光标后固定长度的文本。
 
-**系统能力**： SystemCapability.MiscServices.InputMethod
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 - 参数
 
@@ -514,7 +514,7 @@ deleteForward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 删除光标前固定长度的文本。
 
-**系统能力**： SystemCapability.MiscServices.InputMethod
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 - 参数
 
@@ -535,7 +535,7 @@ deleteForward(length:number): Promise&lt;boolean&gt;
 
 删除光标前固定长度的文本。
 
-**系统能力**： SystemCapability.MiscServices.InputMethod
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 - 参数
   
@@ -560,7 +560,7 @@ deleteBackward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 删除光标后固定长度的文本。
 
-**系统能力**： SystemCapability.MiscServices.InputMethod
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
   - 参数
 
@@ -582,7 +582,7 @@ deleteBackward(length:number): Promise&lt;boolean&gt;
 
 删除光标后固定长度的文本。
 
-**系统能力**： SystemCapability.MiscServices.InputMethod
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 - 参数
   | 参数名 | 类型 | 必填 | 说明 |
@@ -606,7 +606,7 @@ sendKeyFunction(action:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 发送功能键。
 
-**系统能力**： SystemCapability.MiscServices.InputMethod
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
   - 参数
 
@@ -628,7 +628,7 @@ sendKeyFunction(action:number): Promise&lt;boolean&gt;
 
 发送功能键。
 
-**系统能力**： SystemCapability.MiscServices.InputMethod
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 - 参数
   | 参数名 | 类型 | 必填 | 说明 |
@@ -653,7 +653,7 @@ insertText(text:string, callback: AsyncCallback&lt;boolean&gt;): void
 
 插入文本。
 
-**系统能力**： SystemCapability.MiscServices.InputMethod
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 - 参数
 
@@ -675,7 +675,7 @@ insertText(text:string): Promise&lt;boolean&gt;
 
 插入文本。
 
-**系统能力**： SystemCapability.MiscServices.InputMethod
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 - 参数
   | 参数名 | 类型 | 必填 | 说明 |
@@ -700,7 +700,7 @@ getEditorAttribute(callback: AsyncCallback&lt;EditorAttribute&gt;): void
 
 获取编辑框属性值。
 
-**系统能力**： SystemCapability.MiscServices.InputMethod
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 - 参数
    | 参数名                         | 类型                          | 必填                            | 说明                                                         |
@@ -719,7 +719,7 @@ getEditorAttribute(): Promise&lt;EditorAttribute&gt;
 
 获取编辑框属性值。
 
-**系统能力**： SystemCapability.MiscServices.InputMethod
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 - 返回值
   | 类型                            | 说明                                                         |
@@ -737,8 +737,8 @@ getEditorAttribute(): Promise&lt;EditorAttribute&gt;
 
 | 名称         | 参数类型 | 可读 | 可写 | 说明                                                         |
 | ------------ | -------- | ---- | ---- | ------------------------------------------------------------ |
-| enterKeyType | number   | 是   | 否   | 编辑框的功能属性。<br/>**系统能力**： SystemCapability.MiscServices.InputMethod |
-| inputPattern | number   | 是   | 否   | 编辑框的文本属性。<br/>**系统能力**： SystemCapability.MiscServices.InputMethod |
+| enterKeyType | number   | 是   | 否   | 编辑框的功能属性。<br/>**系统能力**： SystemCapability.MiscServices.InputMethodFramework |
+| inputPattern | number   | 是   | 否   | 编辑框的文本属性。<br/>**系统能力**： SystemCapability.MiscServices.InputMethodFramework |
 
 ## KeyEvent<a name="KeyEvent"></a>
 
@@ -746,6 +746,6 @@ getEditorAttribute(): Promise&lt;EditorAttribute&gt;
 
 | 名称      | 参数类型 | 可读 | 可写 | 说明                                                         |
 | --------- | -------- | ---- | ---- | ------------------------------------------------------------ |
-| keyCode   | number   | 是   | 否   | 按键的键值。<br/>**系统能力**： SystemCapability.MiscServices.InputMethod |
-| keyAction | number   | 是   | 否   | 按键的状态。<br/>**系统能力**： SystemCapability.MiscServices.InputMethod |
+| keyCode   | number   | 是   | 否   | 按键的键值。<br/>**系统能力**： SystemCapability.MiscServices.InputMethodFramework |
+| keyAction | number   | 是   | 否   | 按键的状态。<br/>**系统能力**： SystemCapability.MiscServices.InputMethodFramework |
 
