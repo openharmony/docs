@@ -18,15 +18,15 @@
 Sensor驱动模型屏蔽硬件器件差异，为上层Sensor服务系统提供稳定的Sensor基础能力接口，包括Sensor列表查询、Sensor启停、Sensor订阅及取消订阅，Sensor参数配置等功能；Sensor设备驱动的开发是基于HDF驱动框架基础上，结合操作系统适配层（OSAL）和平台驱动接口（比如I2C/SPI/UART总线等平台资源）能力，屏蔽不同操作系统和平台总线资源差异，实现Sensor驱动“一次开发，多系统部署”的目标。Sensor驱动模型如[图1](#fig10451455446)所示：<a name="section3634112111"></a>
 
 **图 1**  Sensor驱动模型图<a name="fig10451455446"></a>  
-![Sensor驱动模型图](figures/Sensor%E9%A9%B1%E5%8A%A8%E6%A8%A1%E5%9E%8B%E5%9B%BE.png)
+![Sensor驱动模型图](figures/Sensor驱动模型图.png)
 
 ### 运作机制
 
-通过介绍Sensor驱动模型的加载以及运行流程，对模型内部关键组件以及关联组件之间的关系进行了划分，整体加载流程如[图2](#Sensor驱动模型图)所示：
+通过介绍Sensor驱动模型的加载以及运行流程，对模型内部关键组件以及关联组件之间的关系进行了划分，整体加载流程如[图2](#Sensor驱动运行图)所示：
 
 **图 2** Sensor驱动运行图
 
-![Sensor驱动运行图](figures/Sensor%E9%A9%B1%E5%8A%A8%E8%BF%90%E8%A1%8C%E5%9B%BE.png)
+![Sensor驱动运行图](figures/Sensor驱动运行图.png)
 
 Sensor驱动模型以标准系统Hi3516DV300产品中的加速度传感器驱动为例，介绍整个驱动加载及运行流程：
 

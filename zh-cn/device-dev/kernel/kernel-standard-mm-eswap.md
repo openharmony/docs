@@ -132,7 +132,7 @@ ESwap提供了一些接口用于控制换入换出策略以及记录当前状态
 | -------- | -------- | -------- |
 | 控制接口 | [avail_buffers](#avail_buffers) | 设置buffer区间 |
 |         | [zswapd_single_memcg_param](#zswapd_single_memcg_param) | 设置当前memcg相关配置 |
-|         | [zswapd_wm_ratio](#zswapd_wm_ratio) | 设置zram换出水线 |
+|         | [zram_wm_ratio](#zram_wm_ratio) | 设置zram换出水线 |
 | 状态接口 | [zswapd_pressure_show](#zswapd_pressure_show) | 记录当前buffer以及refault |
 |          | [stat](#stat) | 检测ESwap实时情况 |
 |          | [zswapd_vmstat_show](#zswapd_vmstat_show) | 记录zswapd运行过程中各种事件 |
