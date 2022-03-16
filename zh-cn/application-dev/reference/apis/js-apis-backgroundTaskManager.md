@@ -10,12 +10,6 @@
 import backgroundTaskManager from '@ohos.backgroundTaskManager';  
 ```
 
-## 权限列表
-
-长时任务需要申请如下权限：
-
-ohos.permission.KEEP_BACKGROUND_RUNNING
-
 
 ## backgroundTaskManager.requestSuspendDelay
 
@@ -27,19 +21,19 @@ requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspen
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
-- **参数**：
+**参数**：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | reason | string | 是 | 延迟挂起申请的原因。 |
   | callback | Callback&lt;void&gt; | 是 | 延迟即将超时的回调函数，一般在超时前6秒通过此回调通知应用。 |
 
-- **返回值**：
+**返回值**：
   | 类型 | 说明 |
   | -------- | -------- |
   | [DelaySuspendInfo](#delaysuspendinfo) | 返回延迟挂起信息。 |
 
-- **示例**：
-  ```
+**示例**：
+  ```js
   let myReason = 'test requestSuspendDelay';
   let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
       console.info("Request suspension delay will time out.");
@@ -55,14 +49,14 @@ getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;):
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
-- **参数**：
+**参数**：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | requestId | number | 是 | 延迟挂起的请求ID。 |
   | callback | AsyncCallback&lt;number&gt; | 是 | 指定的callback回调方法。用于返回应用程序进入挂起状态之前的剩余时间，以毫秒为单位。 |
 
-- **示例**：
-  ```
+**示例**：
+  ```js
   let id = 1;
   backgroundTaskManager.getRemainingDelayTime(id, (err, res) => {
       if(err.data === 0) {
@@ -82,18 +76,18 @@ getRemainingDelayTime(requestId: number): Promise&lt;number&gt;
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
-- **参数**：
+**参数**：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | requestId | number | 是 | 延迟挂起的请求ID。 |
 
-- **返回值**：
+**返回值**：
   | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;number&gt; | 指定的Promise回调方法。返回应用程序进入挂起状态之前的剩余时间，以毫秒为单位。 |
 
-- **示例**：
-  ```
+**示例**：
+  ```js
   let id = 1;
   backgroundTaskManager.getRemainingDelayTime(id).then( res => {
       console.log('promise => Operation succeeded. Data: ' + JSON.stringify(res));
@@ -111,45 +105,36 @@ cancelSuspendDelay(requestId: number): void
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
-- **参数**：
+**参数**：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | requestId | number | 是 | 延迟挂起的请求ID。 |
 
-- **示例**：
-  ```
+**示例**：
+  ```js
   backgroundTaskManager.cancelSuspendDelay(id);
   ```
 
 
-#### DelaySuspendInfo
+## backgroundTaskManager.startBackgroundRunning<sup>8+</sup>
 
-延迟挂起信息。
-
-**系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| requestId | number | 是 | 延迟挂起的请求ID。 |
-| actualDelayTime | number | 是 | 应用的实际挂起延迟时间，以毫秒为单位。<br/>一般情况下默认值为180000，低电量（依据系统低电量广播）时默认值为60000。 |
-
-## backgroundTaskManager.startBackgroundRunning
-
-startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent, callback: AsyncCallback&lt;void&gt;): void; <sup>8+</sup>
+startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent, callback: AsyncCallback&lt;void&gt;): void
 
 向系统申请长时任务，使用callback形式返回结果。
 
+**需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
+
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
-- **参数**：
+**参数**：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | context | Context | 是 | 应用运行的上下文 |
-  | bgMode | BackgroundMode | 是 | 向系统申请的后台模式 |
+  | context | [Context](js-apis-Context.md) | 是 | 应用运行的上下文 |
+  | bgMode | [BackgroundMode](#BackgroundMode<sup>8+</sup>) | 是 | 向系统申请的后台模式 |
   | wantAgent | [WantAgent](js-apis-notification.md#WantAgent接口) | 是 | 通知参数，用于指定长时任务通知点击后跳转的界面。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动长时任务的结果 |
 
-- **示例**：
+**示例**：
 ```js
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -182,28 +167,30 @@ wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
 
 ```
 
-## backgroundTaskManager.startBackgroundRunning
+## backgroundTaskManager.startBackgroundRunning<sup>8+</sup>
 
-startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent): Promise&lt;void&gt;; <sup>8+</sup>
+startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent): Promise&lt;void&gt;
 
 向系统申请长时任务，使用promise形式返回结果。
 
+**需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
+
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
-- **参数**：
+**参数**：
   
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | context | Context | 是 | 应用运行的上下文 |
-  | bgMode | BackgroundMode | 是 | 向系统申请的后台模式 |
-| wantAgent | [WantAgent](js-apis-notification.md#WantAgent接口) | 是 | 通知参数，用于指定长时任务通知点击跳转的界面 |
+  | context | [Context](js-apis-Context.md) | 是 | 应用运行的上下文 |
+  | bgMode | [BackgroundMode](#BackgroundMode<sup>8+</sup>) | 是 | 向系统申请的后台模式 |
+  | wantAgent | [WantAgent](js-apis-notification.md#WantAgent接口) | 是 | 通知参数，用于指定长时任务通知点击跳转的界面 |
   
-- **返回值**
+**返回值**
   | 类型           | 说明                      |
   | -------------- | ------------------------- |
   | Promise\<void> | 使用Promise形式返回结果。 |
 
-- **示例**：
+**示例**：
 ```js
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -232,21 +219,23 @@ wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
 
 ```
 
-## backgroundTaskManager.stopBackgroundRunning
+## backgroundTaskManager.stopBackgroundRunning<sup>8+</sup>
 
-stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): void; <sup>8+</sup>
+stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): void
 
 向系统申请取消长时任务，使用callback形式返回结果。
 
+**需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
+
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
-- **参数**：
+**参数**：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | context | Context | 是 | 应用运行的上下文 |
+  | context | [Context](js-apis-Context.md) | 是 | 应用运行的上下文 |
   | callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动长时任务的结果 |
 
-- **示例**：
+**示例**：
 ```js
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -263,25 +252,27 @@ backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext(), callbac
 
 ```
 
-## backgroundTaskManager.stopBackgroundRunning
+## backgroundTaskManager.stopBackgroundRunning<sup>8+</sup>
 
-stopBackgroundRunning(context: Context): Promise&lt;void&gt;; <sup>8+</sup>
+stopBackgroundRunning(context: Context): Promise&lt;void&gt;
 
 向系统申请取消长时任务，使用promise形式返回结果。
 
+**需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
+
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
-- **参数**：
+**参数**：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | context | Context | 是 | 应用运行的上下文 |
+  | context | [Context](js-apis-Context.md) | 是 | 应用运行的上下文 |
 
-- **返回值**
+**返回值**
   | 类型           | 说明                      |
   | -------------- | ------------------------- |
   | Promise\<void> | 使用Promise形式返回结果。 |
 
-- **示例**：
+**示例**：
 ```js
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -294,7 +285,19 @@ backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext()).then(()
 
 ```
 
-## BackgroundMode <sup>8+</sup>
+## DelaySuspendInfo
+
+延迟挂起信息。
+
+**系统能力:** 以下各项对应的系统能力均为SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| requestId | number | 是 | 延迟挂起的请求ID。 |
+| actualDelayTime | number | 是 | 应用的实际挂起延迟时间，以毫秒为单位。<br/>一般情况下默认值为180000，低电量（依据系统低电量广播）时默认值为60000。 |
+
+
+## BackgroundMode<sup>8+</sup>
 
 **系统能力:** 以下各项对应的系统能力均为SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
