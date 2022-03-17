@@ -26,11 +26,11 @@ This function has the following advantages:
 
 1. Obtain the source code.
 
-   For details, see [Source Code Acquisition](https://gitee.com/openharmony/docs/blob/master/en/device-dev/get-code/sourcecode-acquire.md).
+   For details, see [Obtaining Source Code](https://gitee.com/openharmony/docs/blob/master/en/device-dev/get-code/sourcecode-acquire.md).
 
 2. Set up the environment.
 
-   The Kconfiglib required for environment configuration has been embedded in the OpenHarmony hb tool. For details about how to install the hb tool, see [hb Installation Guide](https://gitee.com/openharmony/docs/blob/master/en/device-dev/quick-start/quickstart-lite-package-environment.md).
+   The Kconfiglib required for environment configuration has been embedded in the OpenHarmony hb tool.
 
 3. Open the Kconfig configuration interface.
 
