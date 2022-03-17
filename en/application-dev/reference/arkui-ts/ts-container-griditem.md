@@ -1,85 +1,50 @@
-# GridItem<a name="EN-US_TOPIC_0000001237715083"></a>
+# GridItem
 
->![](../../public_sys-resources/icon-note.gif) **NOTE:** 
->This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
-The  **<GridItem\>**  component provides a single item in a grid.
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
-## Required Permissions<a name="section14336424193517"></a>
+
+The **&lt;GridItem&gt;** component provides a single item in a grid.
+
+
+## Required Permissions
 
 None
 
-## Child Component<a name="section12191193463511"></a>
+
+## Child Component
 
 This component can contain child components.
 
-## APIs<a name="section158081656113510"></a>
 
-GridItem\(\)
+## APIs
 
-## Attributes<a name="section4907201336"></a>
+GridItem()
 
-<a name="table1689mcpsimp"></a>
-<table><thead align="left"><tr id="row1696mcpsimp"><th class="cellrowborder" valign="top" width="19.09%" id="mcps1.1.5.1.1"><p id="p1698mcpsimp"><a name="p1698mcpsimp"></a><a name="p1698mcpsimp"></a>Name</p>
-</th>
-<th class="cellrowborder" valign="top" width="11.600000000000001%" id="mcps1.1.5.1.2"><p id="p1700mcpsimp"><a name="p1700mcpsimp"></a><a name="p1700mcpsimp"></a>Type</p>
-</th>
-<th class="cellrowborder" valign="top" width="7.920000000000001%" id="mcps1.1.5.1.3"><p id="p1702mcpsimp"><a name="p1702mcpsimp"></a><a name="p1702mcpsimp"></a>Default Value</p>
-</th>
-<th class="cellrowborder" valign="top" width="61.39%" id="mcps1.1.5.1.4"><p id="p1704mcpsimp"><a name="p1704mcpsimp"></a><a name="p1704mcpsimp"></a>Description</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row1705mcpsimp"><td class="cellrowborder" valign="top" width="19.09%" headers="mcps1.1.5.1.1 "><p id="p1707mcpsimp"><a name="p1707mcpsimp"></a><a name="p1707mcpsimp"></a>rowStart</p>
-</td>
-<td class="cellrowborder" valign="top" width="11.600000000000001%" headers="mcps1.1.5.1.2 "><p id="p1709mcpsimp"><a name="p1709mcpsimp"></a><a name="p1709mcpsimp"></a>number</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.920000000000001%" headers="mcps1.1.5.1.3 "><p id="p1711mcpsimp"><a name="p1711mcpsimp"></a><a name="p1711mcpsimp"></a>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="61.39%" headers="mcps1.1.5.1.4 "><p id="p1713mcpsimp"><a name="p1713mcpsimp"></a><a name="p1713mcpsimp"></a>Start row number of the component.</p>
-</td>
-</tr>
-<tr id="row1714mcpsimp"><td class="cellrowborder" valign="top" width="19.09%" headers="mcps1.1.5.1.1 "><p id="p1716mcpsimp"><a name="p1716mcpsimp"></a><a name="p1716mcpsimp"></a>rowEnd</p>
-</td>
-<td class="cellrowborder" valign="top" width="11.600000000000001%" headers="mcps1.1.5.1.2 "><p id="p1718mcpsimp"><a name="p1718mcpsimp"></a><a name="p1718mcpsimp"></a>number</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.920000000000001%" headers="mcps1.1.5.1.3 "><p id="p1720mcpsimp"><a name="p1720mcpsimp"></a><a name="p1720mcpsimp"></a>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="61.39%" headers="mcps1.1.5.1.4 "><p id="p1722mcpsimp"><a name="p1722mcpsimp"></a><a name="p1722mcpsimp"></a>End row number of the component.</p>
-</td>
-</tr>
-<tr id="row1723mcpsimp"><td class="cellrowborder" valign="top" width="19.09%" headers="mcps1.1.5.1.1 "><p id="p1725mcpsimp"><a name="p1725mcpsimp"></a><a name="p1725mcpsimp"></a>columnStart</p>
-</td>
-<td class="cellrowborder" valign="top" width="11.600000000000001%" headers="mcps1.1.5.1.2 "><p id="p1727mcpsimp"><a name="p1727mcpsimp"></a><a name="p1727mcpsimp"></a>number</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.920000000000001%" headers="mcps1.1.5.1.3 "><p id="p1729mcpsimp"><a name="p1729mcpsimp"></a><a name="p1729mcpsimp"></a>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="61.39%" headers="mcps1.1.5.1.4 "><p id="p1731mcpsimp"><a name="p1731mcpsimp"></a><a name="p1731mcpsimp"></a>Start column number of the component.</p>
-</td>
-</tr>
-<tr id="row1732mcpsimp"><td class="cellrowborder" valign="top" width="19.09%" headers="mcps1.1.5.1.1 "><p id="p1734mcpsimp"><a name="p1734mcpsimp"></a><a name="p1734mcpsimp"></a>columnEnd</p>
-</td>
-<td class="cellrowborder" valign="top" width="11.600000000000001%" headers="mcps1.1.5.1.2 "><p id="p1736mcpsimp"><a name="p1736mcpsimp"></a><a name="p1736mcpsimp"></a>number</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.920000000000001%" headers="mcps1.1.5.1.3 "><p id="p1738mcpsimp"><a name="p1738mcpsimp"></a><a name="p1738mcpsimp"></a>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="61.39%" headers="mcps1.1.5.1.4 "><p id="p1740mcpsimp"><a name="p1740mcpsimp"></a><a name="p1740mcpsimp"></a>End column number of the component.</p>
-</td>
-</tr>
-<tr id="row186131448193510"><td class="cellrowborder" valign="top" width="19.09%" headers="mcps1.1.5.1.1 "><p id="p206131748153520"><a name="p206131748153520"></a><a name="p206131748153520"></a>forceRebuild</p>
-</td>
-<td class="cellrowborder" valign="top" width="11.600000000000001%" headers="mcps1.1.5.1.2 "><p id="p1661314883516"><a name="p1661314883516"></a><a name="p1661314883516"></a>boolean</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.920000000000001%" headers="mcps1.1.5.1.3 "><p id="p1161314833520"><a name="p1161314833520"></a><a name="p1161314833520"></a>false</p>
-</td>
-<td class="cellrowborder" valign="top" width="61.39%" headers="mcps1.1.5.1.4 "><p id="p1961317489352"><a name="p1961317489352"></a><a name="p1961317489352"></a>Whether to re-create this node when the component is being built.</p>
-</td>
-</tr>
-</tbody>
-</table>
 
-## Example<a name="section8900105010439"></a>
+## Attributes
 
+  | Name | Type | Default&nbsp;Value | Description | 
+| -------- | -------- | -------- | -------- |
+| rowStart | number | - | Start&nbsp;row&nbsp;number&nbsp;of&nbsp;the&nbsp;component. | 
+| rowEnd | number | - | End&nbsp;row&nbsp;number&nbsp;of&nbsp;the&nbsp;component. | 
+| columnStart | number | - | Start&nbsp;column&nbsp;number&nbsp;of&nbsp;the&nbsp;component. | 
+| columnEnd | number | - | End&nbsp;column&nbsp;number&nbsp;of&nbsp;the&nbsp;component. | 
+| forceRebuild | boolean | false | Whether&nbsp;to&nbsp;re-create&nbsp;this&nbsp;node&nbsp;when&nbsp;the&nbsp;component&nbsp;is&nbsp;being&nbsp;built. | 
+| selectable<sup>8+</sup> | boolean | true | Whether&nbsp;the&nbsp;current&nbsp;**&lt;GridItem&gt;**&nbsp;is&nbsp;selectable&nbsp;by&nbsp;the&nbsp;mouse.<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**NOTE：**<br/>>&nbsp;This&nbsp;attribute&nbsp;takes&nbsp;effect&nbsp;only&nbsp;when&nbsp;mouse&nbsp;frame&nbsp;selection&nbsp;is&nbsp;enabled&nbsp;for&nbsp;the&nbsp;parent&nbsp;**&lt;Grid&gt;**&nbsp;container. | 
+
+
+## Events
+
+  | Name | Description | 
+| -------- | -------- |
+| onSelect(callback:&nbsp;(isSelected:&nbsp;boolean)&nbsp;=&gt;&nbsp;any)<sup>8+</sup> | Triggered&nbsp;when&nbsp;the&nbsp;selected&nbsp;state&nbsp;of&nbsp;the&nbsp;**&lt;GridItem&gt;**&nbsp;changes.<br/>**isSelected**:&nbsp;Returns&nbsp;**true**&nbsp;if&nbsp;the&nbsp;**&lt;GridItem&gt;**&nbsp;is&nbsp;selected&nbsp;by&nbsp;the&nbsp;mouse;&nbsp;returns&nbsp;**false**&nbsp;otherwise. | 
+
+
+## Example
+
+  
 ```
 @Entry
 @Component
@@ -117,5 +82,4 @@ struct GridItemExample {
 }
 ```
 
-![](figures/griditem.gif)
-
+![en-us_image_0000001256858433](figures/en-us_image_0000001256858433.gif)

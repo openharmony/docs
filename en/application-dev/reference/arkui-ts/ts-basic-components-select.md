@@ -20,8 +20,8 @@ Select(options: Array<SelectOption>)
 
   | Name| Type| Mandatory| Default Value| Description|
   | ------ | ----------------------------------------------- | ---- | ------ | -------------- |
-  | value  | [ResourceStr](../../ui/ts-types.md#ResourceStr) | Yes| -      | Value of an option in the drop-down list box.|
-  | icon   | [ResourceStr](../../ui/ts-types.md#ResourceStr) | No| -      | Icon of an option in the drop-down list box.|
+  | value  | [ResourceStr](../../ui/ts-types.md#resourcestr) | Yes| -      | Value of an option in the drop-down list box.|
+  | icon   | [ResourceStr](../../ui/ts-types.md#resourcestr) | No| -      | Icon of an option in the drop-down list box.|
 
 ## Attributes
 
@@ -30,13 +30,13 @@ Select(options: Array<SelectOption>)
 | selected                | number                                              | -      | Index of the initial selected option in the drop-down list box. The index of the first option is **0**.|
 | value                   | string                                              | -      | Text of the drop-down button.|
 | font                    | [Font](../../ui/ts-types.md)                   | -      | Text font of the drop-down button.|
-| fontColor               | [ResourceColor](../../ui/ts-types.md#ResourceColor) | -      | Text color of the drop-down button.|
-| selectedOptionBgColor   | [ResourceColor](../../ui/ts-types.md#ResourceColor) | -      | Background color of the selected option in the drop-down list box.|
+| fontColor               | [ResourceColor](../../ui/ts-types.md#resourcecolor) | -      | Text color of the drop-down button.|
+| selectedOptionBgColor   | [ResourceColor](../../ui/ts-types.md#resourcecolor) | -      | Background color of the selected option in the drop-down list box.|
 | selectedOptionFont      | [Font](../../ui/ts-types.md)                   | -      | Text font of the selected option in the drop-down list box.|
-| selectedOptionFontColor | [ResourceColor](../../ui/ts-types.md#ResourceColor) | -      | Text color of the selected option in the drop-down list box.|
-| optionBgColor           | [ResourceColor](../../ui/ts-types.md#ResourceColor) | -      | Background color of an option in the drop-down list box.|
+| selectedOptionFontColor | [ResourceColor](../../ui/ts-types.md#resourcecolor) | -      | Text color of the selected option in the drop-down list box.|
+| optionBgColor           | [ResourceColor](../../ui/ts-types.md#resourcecolor) | -      | Background color of an option in the drop-down list box.|
 | optionFont              | [Font](../../ui/ts-types.md)                   | -      | Text font of an option in the drop-down list box.|
-| optionFontColor         | [ResourceColor](../../ui/ts-types.md#ResourceColor) | -      | Text color of an option in the drop-down list box.|
+| optionFontColor         | [ResourceColor](../../ui/ts-types.md#resourcecolor) | -      | Text color of an option in the drop-down list box.|
 
 ## Events
 

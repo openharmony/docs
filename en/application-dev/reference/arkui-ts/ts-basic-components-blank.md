@@ -1,82 +1,46 @@
-# Blank<a name="EN-US_TOPIC_0000001192915120"></a>
+# Blank
 
->![](../../public_sys-resources/icon-note.gif) **NOTE:** 
->This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
-The  **<Blank\>**  component supports automatic filling of the empty part of the container along the main axis. This component is valid only when the parent component is  **<Row\>**  or  **<Column\>**.
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
-## Required Permissions<a name="section781125411508"></a>
+
+The **&lt;Blank&gt;** component supports automatic filling of the empty part of the container along the main axis. This component is valid only when the parent component is **&lt;Row&gt;** or **&lt;Column&gt;**.
+
+
+## Required Permissions
 
 None
 
-## Child Components<a name="section171053164519"></a>
+
+## Child Components
 
 None
 
-## APIs<a name="section314622835214"></a>
 
-Blank\(min?:  Length\)
+## APIs
 
--   Parameters
+Blank(min?:  Length)
 
-    <a name="table51331156183410"></a>
-    <table><thead align="left"><tr id="row111341565346"><th class="cellrowborder" valign="top" width="16.11%" id="mcps1.1.6.1.1"><p id="p6134195615345"><a name="p6134195615345"></a><a name="p6134195615345"></a>Name</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="15.959999999999999%" id="mcps1.1.6.1.2"><p id="p1113435614341"><a name="p1113435614341"></a><a name="p1113435614341"></a>Type</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="11.04%" id="mcps1.1.6.1.3"><p id="p213410561340"><a name="p213410561340"></a><a name="p213410561340"></a>Mandatory</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="8.83%" id="mcps1.1.6.1.4"><p id="p71341656103410"><a name="p71341656103410"></a><a name="p71341656103410"></a>Default Value</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="48.06%" id="mcps1.1.6.1.5"><p id="p1913475613348"><a name="p1913475613348"></a><a name="p1913475613348"></a>Description</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row1513415615348"><td class="cellrowborder" valign="top" width="16.11%" headers="mcps1.1.6.1.1 "><p id="p19134165610345"><a name="p19134165610345"></a><a name="p19134165610345"></a>min</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="15.959999999999999%" headers="mcps1.1.6.1.2 "><p id="p16134135612342"><a name="p16134135612342"></a><a name="p16134135612342"></a>Length</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="11.04%" headers="mcps1.1.6.1.3 "><p id="p1313417561349"><a name="p1313417561349"></a><a name="p1313417561349"></a>No</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="8.83%" headers="mcps1.1.6.1.4 "><p id="p81354564345"><a name="p81354564345"></a><a name="p81354564345"></a>0</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="48.06%" headers="mcps1.1.6.1.5 "><p id="p15135856173410"><a name="p15135856173410"></a><a name="p15135856173410"></a>Minimum size of the <strong id="b1394223116342"><a name="b1394223116342"></a><a name="b1394223116342"></a>&lt;Blank&gt;</strong> component in the container along the main axis.</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+- Parameters
+    | Name | Type | Mandatory | Default&nbsp;Value | Description | 
+  | -------- | -------- | -------- | -------- | -------- |
+  | min | Length | No | 0 | Minimum&nbsp;size&nbsp;of&nbsp;the&nbsp;**&lt;Blank&gt;**&nbsp;component&nbsp;in&nbsp;the&nbsp;container&nbsp;along&nbsp;the&nbsp;main&nbsp;axis. | 
 
 
-## Attributes<a name="section135766153337"></a>
+## Attributes
 
-<a name="table1088mcpsimp"></a>
-<table><thead align="left"><tr id="row1095mcpsimp"><th class="cellrowborder" valign="top" width="13.389999999999999%" id="mcps1.1.5.1.1"><p id="p1097mcpsimp"><a name="p1097mcpsimp"></a><a name="p1097mcpsimp"></a>Name</p>
-</th>
-<th class="cellrowborder" valign="top" width="14.430000000000001%" id="mcps1.1.5.1.2"><p id="p1099mcpsimp"><a name="p1099mcpsimp"></a><a name="p1099mcpsimp"></a>Type</p>
-</th>
-<th class="cellrowborder" valign="top" width="22.36%" id="mcps1.1.5.1.3"><p id="p1101mcpsimp"><a name="p1101mcpsimp"></a><a name="p1101mcpsimp"></a>Default Value</p>
-</th>
-<th class="cellrowborder" valign="top" width="49.82%" id="mcps1.1.5.1.4"><p id="p1103mcpsimp"><a name="p1103mcpsimp"></a><a name="p1103mcpsimp"></a>Description</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row1104mcpsimp"><td class="cellrowborder" valign="top" width="13.389999999999999%" headers="mcps1.1.5.1.1 "><p id="p1106mcpsimp"><a name="p1106mcpsimp"></a><a name="p1106mcpsimp"></a>color</p>
-</td>
-<td class="cellrowborder" valign="top" width="14.430000000000001%" headers="mcps1.1.5.1.2 "><p id="p0229681416"><a name="p0229681416"></a><a name="p0229681416"></a>Color</p>
-</td>
-<td class="cellrowborder" valign="top" width="22.36%" headers="mcps1.1.5.1.3 "><p id="p1110mcpsimp"><a name="p1110mcpsimp"></a><a name="p1110mcpsimp"></a>0x00000000</p>
-</td>
-<td class="cellrowborder" valign="top" width="49.82%" headers="mcps1.1.5.1.4 "><p id="p1112mcpsimp"><a name="p1112mcpsimp"></a><a name="p1112mcpsimp"></a>Color to fill the blank.</p>
-</td>
-</tr>
-</tbody>
-</table>
+  | Name | Type | Default&nbsp;Value | Description | 
+| -------- | -------- | -------- | -------- |
+| color | Color | 0x00000000 | Color&nbsp;to&nbsp;fill&nbsp;the&nbsp;blank. | 
 
->![](../../public_sys-resources/icon-note.gif) **NOTE:** 
->-   Universal attribute methods are not supported.
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> - Universal attribute methods are not supported.
 
-## Example<a name="section18551123820541"></a>
 
+## Example
+
+  
 ```
 @Entry
 @Component
@@ -95,9 +59,8 @@ struct BlankExample {
 
 Portrait mode
 
-![](figures/blank1.gif)
+![en-us_image_0000001256858407](figures/en-us_image_0000001256858407.gif)
 
 Landscape mode
 
-![](figures/blank2.gif)
-
+![en-us_image_0000001212378418](figures/en-us_image_0000001212378418.gif)

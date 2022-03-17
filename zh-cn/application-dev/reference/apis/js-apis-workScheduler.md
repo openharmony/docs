@@ -269,6 +269,7 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
     .catch(err =>  {
       console.info('workschedulerLog isLastWorkTimeOut failed, because:' + err.data);
     });
+  })
 ```
 
 ## WorkInfo

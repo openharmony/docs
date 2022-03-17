@@ -86,9 +86,9 @@ createWantData(want:Want): PasteData
 **系统能力**: SystemCapability.Miscservices.Pasteboard
 
 - 参数
-    | 参数名 | 类型 | 必填 | 说明 | 
+    | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | want | [ERROR:Invalid&nbsp;link:zh-cn_topic_0000001153972080.xml#xref16101652152415,link:zh-cn_topic_0000001153498376.xml#section249133711278](zh-cn_topic_0000001153498376.xml#section249133711278) | 是 | 待保存的Want内容。 | 
+  | want | [Want](js-apis-featureAbility.md#want) | 是 | 待保存的Want内容。 |
 
 - 返回值
     | 类型 | 说明 | 
@@ -191,9 +191,9 @@ createWantRecord(want:Want): PasteDataRecord
 **系统能力**: SystemCapability.Miscservices.Pasteboard
 
 - 参数
-    | 参数名 | 类型 | 必填 | 说明 | 
+    | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | want | [ERROR:Invalid&nbsp;link:zh-cn_topic_0000001153972080.xml#xref1929278214,link:zh-cn_topic_0000001153498376.xml#section249133711278](zh-cn_topic_0000001153498376.xml#section249133711278) | 是 | Want类型数据。 | 
+  | want | [Want](js-apis-featureAbility.md#want) | 是 | Want类型数据。 |
 
 - 返回值
     | 类型 | 说明 |
@@ -263,7 +263,7 @@ createUriRecord(uri:string): PasteDataRecord
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | htmlText<sup>7+</sup> | string | 是 | 否 | HTML文本内容。 |
-| want<sup>7+</sup> | [ERROR:Invalid&nbsp;link:zh-cn_topic_0000001153972080.xml#xref97376211378,link:zh-cn_topic_0000001153498376.xml#section249133711278](zh-cn_topic_0000001153498376.xml#section249133711278) | 是 | 否 | Want文本内容。 |
+| want<sup>7+</sup> | [Want](js-apis-featureAbility.md#want) | 是 | 否 | Want文本内容。 |
 | mimeType<sup>7+</sup> | string | 是 | 否 | 数据类型。 |
 | plainText<sup>7+</sup> | string | 是 | 否 | 文本内容。 |
 | uri<sup>7+</sup> | string | 是 | 否 | URI内容。 |
@@ -388,9 +388,9 @@ getPrimaryWant(): Want
 **系统能力**: SystemCapability.Miscservices.Pasteboard
 
 - 返回值
-    | 类型 | 说明 | 
+    | 类型 | 说明 |
   | -------- | -------- |
-  | [ERROR:Invalid&nbsp;link:zh-cn_topic_0000001153972080.xml#xref731715497254,link:zh-cn_topic_0000001153498376.xml#section249133711278](zh-cn_topic_0000001153498376.xml#section249133711278) | Want对象内容。 | 
+  | [Want](js-apis-featureAbility.md#want) | Want对象内容。 |
 
 - 示例
   
@@ -474,7 +474,7 @@ addHtmlRecord(htmlText: string): void
 
 ### addWantRecord<sup>7+</sup>
 
-addWantRecord(want: [ERROR:Invalid link:zh-cn_topic_0000001153972080.xml#xref13369155013717,link:zh-cn_topic_0000001153498376.xml#section249133711278](zh-cn_topic_0000001153498376.xml#section249133711278)): void
+addWantRecord(want: Want): void
 
 向当前剪贴板内容中添加一条Want条目，并将MIMETYPE_TEXT_INTENT添加到[PasteDataProperty](#pastedataproperty7)的mimeTypes中。入参均不能为空，否则添加失败。
 
@@ -483,9 +483,9 @@ addWantRecord(want: [ERROR:Invalid link:zh-cn_topic_0000001153972080.xml#xref133
 **系统能力**: SystemCapability.Miscservices.Pasteboard
 
 - 参数
-    | 参数名 | 类型 | 必填 | 说明 | 
+    | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | want | [ERROR:Invalid&nbsp;link:zh-cn_topic_0000001153972080.xml#xref179262227253,link:zh-cn_topic_0000001153498376.xml#section249133711278](zh-cn_topic_0000001153498376.xml#section249133711278) | 是 | Want对象内容。 | 
+  | want | [Want](js-apis-featureAbility.md#want) | 是 | Want对象内容。 |
 
 - 示例
   

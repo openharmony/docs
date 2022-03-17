@@ -1,4 +1,4 @@
-# 位置服务(新)
+# 位置服务
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
@@ -7,7 +7,7 @@
 
 ## 导入模块
 
-  
+
 ```
 import geolocation from '@ohos.geolocation';
 ```
@@ -34,7 +34,7 @@ on(type: 'locationChange', request: LocationRequest, callback: Callback&lt;Locat
   | callback | Callback&lt;[Location](#location)&gt; | 是 | 接收位置变化状态变化监听。 | 
 
 - 示例：
-    
+  
   ```
   var requestInfo = {'priority': 0x203, 'scenario': 0x300, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
   var locationChange = (location) => {
@@ -57,7 +57,7 @@ off(type: 'locationChange', callback?: Callback&lt;Location&gt;) : void
   | callback | Callback&lt;[Location](#location)&gt; | 否 | 接收位置变化状态变化监听。 | 
 
 - 示例：
-    
+  
   ```
   var requestInfo = {'priority': 0x203, 'scenario': 0x300, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
   var locationChange = (location) => {
@@ -81,7 +81,7 @@ on(type: 'locationServiceState', callback: Callback&lt;boolean&gt;) : void
   | callback | Callback&lt;boolean&gt; | 是 | 接收位置服务状态变化监听。 | 
 
 - 示例：
-    
+  
   ```
   var locationServiceState = (state) => {
       console.log('locationServiceState: ' + state);
@@ -103,7 +103,7 @@ off(type: 'locationServiceState', callback?: Callback&lt;boolean&gt;) : void;
   | callback | Callback&lt;boolean&gt; | 否 | 接收位置服务状态变化监听。 | 
 
 - 示例：
-    
+  
   ```
   var locationServiceState = (state) => {
       console.log('locationServiceState: state: ' + state);
@@ -127,7 +127,7 @@ on(type: 'cachedGnssLocationsReporting', request: CachedGnssLocationsRequest, ca
   | callback | Callback&lt;boolean&gt; | 是 | 接收GNSS缓存位置上报。 | 
 
 - 示例：
-    
+  
   ```
   var cachedLocationsCb = (locations) => {
       console.log('cachedGnssLocationsReporting: locations: ' + locations);
@@ -150,7 +150,7 @@ off(type: 'cachedGnssLocationsReporting', callback?: Callback&lt;Array&lt;Locati
   | callback | Callback&lt;boolean&gt; | 否 | 接收GNSS缓存位置上报。 | 
 
 - 示例：
-    
+  
   ```
   var cachedLocationsCb = (locations) => {
       console.log('cachedGnssLocationsReporting: locations: ' + locations);
@@ -174,7 +174,7 @@ on(type: 'gnssStatusChange', callback: Callback&lt;SatelliteStatusInfo&gt;) : vo
   | callback | Callback&lt;SatelliteStatusInfo&gt; | 是 | 接收GNSS卫星状态信息上报。 | 
 
 - 示例：
-    
+  
   ```
   var gnssStatusCb = (satelliteStatusInfo) => {
       console.log('gnssStatusChange: ' + satelliteStatusInfo);
@@ -196,7 +196,7 @@ off(type: 'gnssStatusChange', callback?: Callback&lt;SatelliteStatusInfo&gt;) : 
   | callback | Callback&lt;SatelliteStatusInfo&gt; | 否 | 接收GNSS卫星状态信息上报。 | 
 
 - 示例：
-    
+  
   ```
   var gnssStatusCb = (satelliteStatusInfo) => {
       console.log('gnssStatusChange: ' + satelliteStatusInfo);
@@ -219,7 +219,7 @@ on(type: 'nmeaMessageChange', callback: Callback&lt;string&gt;) : void;
   | callback | Callback&lt;string&gt; | 是 | 接收GNSS&nbsp;NMEA信息上报。 | 
 
 - 示例：
-    
+  
   ```
   var nmeaCb = (str) => {
       console.log('nmeaMessageChange: ' + str);
@@ -241,7 +241,7 @@ off(type: 'nmeaMessageChange', callback?: Callback&lt;string&gt;) : void;
   | callback | Callback&lt;string&gt; | 否 | 接收GNSS&nbsp;NMEA信息上报。 | 
 
 - 示例：
-    
+  
   ```
   var nmeaCb = (str) => {
       console.log('nmeaMessageChange: ' + str);
@@ -265,7 +265,7 @@ on(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent) : void;
   | want | WantAgent | 是 | 用于接收地理围栏事件上报（进出围栏）。 | 
 
 - 示例：
-    
+  
   ```
   import WantAgent from '@ohos.wantAgent';
   import { OperationType, WantAgentFlags } from '@ohos.wantagent';
@@ -327,7 +327,7 @@ off(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent) : void
   | want | WantAgent | 是 | 用于接收地理围栏事件上报（进出围栏）。 | 
 
 - 示例：
-    
+  
   ```
   import WantAgent from '@ohos.wantAgent';
   import { OperationType, WantAgentFlags } from '@ohos.wantagent';
@@ -391,7 +391,7 @@ getCurrentLocation(request: CurrentLocationRequest, callback: AsyncCallback&lt;L
   | callback | AsyncCallback&lt;[Location](#location)&gt; | 是 | 用来接收位置信息的回调。 | 
 
 - 示例：
-    
+  
   ```
   var requestInfo = {'priority': 0x203, 'scenario': 0x300,'maxAccuracy': 0};
   var locationChange = (err, location) => {
@@ -421,7 +421,7 @@ getCurrentLocation(request?: CurrentLocationRequest) : Promise&lt;Location&gt;
   | Promise&lt;[Location](#location)&gt; | 返回位置信息。 | 
 
 - 示例：
-    
+  
   ```
   var requestInfo = {'priority': 0x203, 'scenario': 0x300,'maxAccuracy': 0};
   locationEventListener.getCurrentLocation(requestInfo).then((result) => {
@@ -442,7 +442,7 @@ getLastLocation(callback: AsyncCallback&lt;Location&gt;) : void
   | callback | AsyncCallback&lt;[Location](#location)&gt; | 是 | 用来接收上次位置的回调。 | 
 
 - 示例：
-    
+  
   ```
   geolocation.getLastLocation((err, data) => {
       console.log('getLastLocation: ' + err + " data: " + JSON.stringify(data));
@@ -462,7 +462,7 @@ getLastLocation() : Promise&lt;Location&gt;
   | Promise&lt;[Location](#location)&gt; | 返回上次位置信息。 | 
 
 - 示例：
-    
+  
   ```
   geolocation.getLastLocation().then((result) => {
       console.log('getLastLocation: result: ' + JSON.stringify(result));
@@ -484,7 +484,7 @@ isLocationEnabled(callback: AsyncCallback&lt;boolean&gt;) : void
   | callback | AsyncCallback&lt;boolean&gt; | 是 | 用来接收位置服务状态的回调。 | 
 
 - 示例：
-    
+  
   ```
   geolocation.isLocationEnabled((err, data) => {
       console.log('isLocationEnabled: ' + err + " data: " + data);
@@ -504,7 +504,7 @@ isLocationEnabled() : Promise&lt;boolean&gt;
   | Promise&lt;boolean&gt; | 返回位置服务是否可用的状态。 | 
 
 - 示例：
-    
+  
   ```
   geolocation.isLocationEnabled().then((result) => {
       console.log('promise, isLocationEnabled: ' + result);
@@ -526,7 +526,7 @@ requestEnableLocation(callback: AsyncCallback&lt;boolean&gt;) : void
   | callback | AsyncCallback&lt;boolean&gt; | 是 | 用来接收位置服务状态的回调。 | 
 
 - 示例：
-    
+  
   ```
   geolocation.requestEnableLocation((err, data) => {
       console.log('requestEnableLocation: ' + err + " data: " + data);
@@ -546,7 +546,7 @@ requestEnableLocation() : Promise&lt;boolean&gt;
   | Promise&lt;boolean&gt; | 返回位置服务是否可用。 | 
 
 - 示例：
-    
+  
   ```
   geolocation.requestEnableLocation().then((result) => {
       console.log('promise, requestEnableLocation: ' + result);
@@ -566,7 +566,7 @@ isGeoServiceAvailable(callback: AsyncCallback&lt;boolean&gt;) : void
   | callback | AsyncCallback&lt;boolean&gt; | 是 | 用来接收地理编码服务状态的回调。 | 
 
 - 示例：
-    
+  
   ```
   geolocation.isGeoServiceAvailable((err, data) => {
       console.log('isGeoServiceAvailable: ' + err + " data: " + data);
@@ -586,7 +586,7 @@ isGeoServiceAvailable() : Promise&lt;boolean&gt;
   | Promise&lt;boolean&gt; | 返回地理编码服务是否可用的状态。 | 
 
 - 示例：
-    
+  
   ```
   geolocation.isGeoServiceAvailable().then((result) => {
       console.log('promise, isGeoServiceAvailable: ' + result);
@@ -608,7 +608,7 @@ getAddressesFromLocation(request: ReverseGeoCodeRequest, callback: AsyncCallback
   | callback | AsyncCallback&lt;Array&lt;[GeoAddress](#geoaddress)&gt;&gt; | 是 | 设置接收逆地理编码请求的回调参数。 | 
 
 - 示例：
-    
+  
   ```
   var reverseGeocodeRequest = {"latitude": 31.12, "longitude": 121.11, "maxItems": 1};
   geolocation.getAddressesFromLocation(reverseGeocodeRequest, (err, data) => {
@@ -634,7 +634,7 @@ getAddressesFromLocation(request: ReverseGeoCodeRequest) : Promise&lt;Array&lt;G
   | Promise&lt;Array&lt;[GeoAddress](#geoaddress)&gt;&gt; | 返回地理描述信息。 | 
 
 - 示例：
-    
+  
   ```
   var reverseGeocodeRequest = {"latitude": 31.12, "longitude": 121.11, "maxItems": 1};
   geolocation.getAddressesFromLocation(reverseGeocodeRequest).then((data) => {
@@ -656,7 +656,7 @@ getAddressesFromLocationName(request: GeoCodeRequest, callback: AsyncCallback&lt
   | callback | AsyncCallback&lt;Array&lt;[GeoAddress](#geoaddress)&gt;&gt; | 是 | 设置接收地理编码请求的回调参数。 | 
 
 - 示例：
-    
+  
   ```
   var geocodeRequest = {"description": "上海市浦东新区xx路xx号", "maxItems": 1};
   geolocation.getAddressesFromLocationName(geocodeRequest, (err, data) => {
@@ -682,7 +682,7 @@ getAddressesFromLocationName(request: GeoCodeRequest) : Promise&lt;Array&lt;GeoA
   | Promise&lt;Array&lt;[GeoAddress](#geoaddress)&gt;&gt; | 设置接收地理编码请求的回调参数。 | 
 
 - 示例：
-    
+  
   ```
   var geocodeRequest = {"description": "上海市浦东新区xx路xx号", "maxItems": 1};
   geolocation.getAddressesFromLocationName(geocodeRequest).then((result) => {
@@ -704,7 +704,7 @@ getCachedGnssLocationsSize(callback: AsyncCallback&lt;number&gt;) : void;
   | callback | AsyncCallback&lt;number&gt; | 是 | 用来接收GNSS芯片缓存位置个数的回调。 | 
 
 - 示例：
-    
+  
   ```
   geolocation.getCachedGnssLocationsSize((err, size) => {
       console.log('getCachedGnssLocationsSize: err:' + err + " size: " + size);
@@ -724,7 +724,7 @@ getCachedGnssLocationsSize() : Promise&lt;number&gt;;
   | Promise&lt;number&gt; | 返回GNSS缓存位置的个数。 | 
 
 - 示例：
-    
+  
   ```
   geolocation.getCachedGnssLocationsSize().then((result) => {
       console.log('promise, getCachedGnssLocationsSize: ' + result);
@@ -744,7 +744,7 @@ flushCachedGnssLocations(callback: AsyncCallback&lt;boolean&gt;) : void;
   | callback | AsyncCallback&lt;boolean&gt; | 是 | 用来接收清空GNSS芯片缓存位置操作的结果。 | 
 
 - 示例：
-    
+  
   ```
   geolocation.flushCachedGnssLocations((err, result) => {
       console.log('flushCachedGnssLocations: err:' + err + " result: " + result);
@@ -764,7 +764,7 @@ flushCachedGnssLocations() : Promise&lt;boolean&gt;;
   | Promise&lt;boolean&gt; | 清空所有GNSS缓存位置是否成功。 | 
 
 - 示例：
-    
+  
   ```
   geolocation.flushCachedGnssLocations().then((result) => {
       console.log('promise, flushCachedGnssLocations: ' + result);
@@ -785,7 +785,7 @@ sendCommand(command: LocationCommand, callback: AsyncCallback&lt;boolean&gt;) : 
   | callback | AsyncCallback&lt;boolean&gt; | 是 | 用来接收命令发送的结果。 | 
 
 - 示例：
-    
+  
   ```
   var requestInfo = {'scenario': 0x301, 'command': "command_1"};
   geolocation.sendCommand(requestInfo, (err, result) => {
@@ -811,7 +811,7 @@ sendCommand(command: LocationCommand) : Promise&lt;boolean&gt;;
   | Promise&lt;boolean&gt; | 表示命令发送成功或失败。 | 
 
 - 示例：
-    
+  
   ```
   var requestInfo = {'scenario': 0x301, 'command': "command_1"};
   geolocation.sendCommand(requestInfo).then((result) => {
@@ -833,7 +833,7 @@ isLocationPrivacyConfirmed(type : LocationPrivacyType, callback: AsyncCallback&l
   | callback | AsyncCallback&lt;boolean&gt; | 是 | 表示用户是否同意定位服务隐私申明。 | 
 
 - 示例：
-    
+  
   ```
   geolocation.isLocationPrivacyConfirmed(1, (err, result) => {
       console.log('isLocationPrivacyConfirmed: err:' + err + " result: " + result);
@@ -858,7 +858,7 @@ isLocationPrivacyConfirmed(type : LocationPrivacyType,) : Promise&lt;boolean&gt;
   | Promise&lt;boolean&gt; | 表示用户是否同意定位服务隐私申明。 | 
 
 - 示例：
-    
+  
   ```
   geolocation.isLocationPrivacyConfirmed(1).then((result) => {
       console.log('promise, isLocationPrivacyConfirmed: ' + result);
@@ -880,7 +880,7 @@ setLocationPrivacyConfirmStatus(type : LocationPrivacyType, isConfirmed: boolean
   | callback | AsyncCallback&lt;boolean&gt; | 是 | 表示操作是否成功。 | 
 
 - 示例：
-    
+  
   ```
   geolocation.setLocationPrivacyConfirmStatus(1, true, (err, result) => {
       console.log('isLocationPrivacyConfirmed: err:' + err + " result: " + result);
@@ -906,7 +906,7 @@ setLocationPrivacyConfirmStatus(type : LocationPrivacyType, isConfirmed : boolea
   | Promise&lt;boolean&gt; | 表示操作是否成功。 | 
 
 - 示例：
-    
+  
   ```
   geolocation.setLocationPrivacyConfirmStatus(1, true).then((result) => {
       console.log('promise, setLocationPrivacyConfirmStatus: ' + result);

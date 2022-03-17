@@ -1,117 +1,37 @@
-# Location<a name="EN-US_TOPIC_0000001193075116"></a>
+# Location
 
->![](../../public_sys-resources/icon-note.gif) **NOTE:** 
->This attribute is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
-## Required Permissions<a name="section781125411508"></a>
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> This attribute is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+
+
+## Required Permissions
 
 None
 
-## Attributes<a name="section8832145623"></a>
 
-<a name="table2377mcpsimp"></a>
-<table><thead align="left"><tr id="row2385mcpsimp"><th class="cellrowborder" valign="top" width="17.341734173417343%" id="mcps1.1.5.1.1"><p id="p2387mcpsimp"><a name="p2387mcpsimp"></a><a name="p2387mcpsimp"></a>Name</p>
-</th>
-<th class="cellrowborder" valign="top" width="28.672867286728675%" id="mcps1.1.5.1.2"><p id="p2389mcpsimp"><a name="p2389mcpsimp"></a><a name="p2389mcpsimp"></a>Type</p>
-</th>
-<th class="cellrowborder" valign="top" width="14.35143514351435%" id="mcps1.1.5.1.3"><p id="p2391mcpsimp"><a name="p2391mcpsimp"></a><a name="p2391mcpsimp"></a>Default Value</p>
-</th>
-<th class="cellrowborder" valign="top" width="39.63396339633963%" id="mcps1.1.5.1.4"><p id="p2395mcpsimp"><a name="p2395mcpsimp"></a><a name="p2395mcpsimp"></a>Description</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row2396mcpsimp"><td class="cellrowborder" valign="top" width="17.341734173417343%" headers="mcps1.1.5.1.1 "><p id="p2398mcpsimp"><a name="p2398mcpsimp"></a><a name="p2398mcpsimp"></a>align</p>
-</td>
-<td class="cellrowborder" valign="top" width="28.672867286728675%" headers="mcps1.1.5.1.2 "><p id="p2400mcpsimp"><a name="p2400mcpsimp"></a><a name="p2400mcpsimp"></a><a href="ts-appendix-enums.md#section1145418513159">Alignment</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="14.35143514351435%" headers="mcps1.1.5.1.3 "><p id="p2402mcpsimp"><a name="p2402mcpsimp"></a><a name="p2402mcpsimp"></a>Center</p>
-</td>
-<td class="cellrowborder" valign="top" width="39.63396339633963%" headers="mcps1.1.5.1.4 "><p id="p3491422033"><a name="p3491422033"></a><a name="p3491422033"></a>Alignment of the component content. This attribute is valid only when the values of <strong id="b0492753916"><a name="b0492753916"></a><a name="b0492753916"></a>width</strong> and <strong id="b2748593390"><a name="b2748593390"></a><a name="b2748593390"></a>height</strong> are greater than the size of the component content.</p>
-</td>
-</tr>
-<tr id="row2407mcpsimp"><td class="cellrowborder" valign="top" width="17.341734173417343%" headers="mcps1.1.5.1.1 "><p id="p2409mcpsimp"><a name="p2409mcpsimp"></a><a name="p2409mcpsimp"></a>direction</p>
-</td>
-<td class="cellrowborder" valign="top" width="28.672867286728675%" headers="mcps1.1.5.1.2 "><p id="p2411mcpsimp"><a name="p2411mcpsimp"></a><a name="p2411mcpsimp"></a><a href="#li12312485585">Direction</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="14.35143514351435%" headers="mcps1.1.5.1.3 "><p id="p2413mcpsimp"><a name="p2413mcpsimp"></a><a name="p2413mcpsimp"></a>Auto</p>
-</td>
-<td class="cellrowborder" valign="top" width="39.63396339633963%" headers="mcps1.1.5.1.4 "><p id="p1980615130316"><a name="p1980615130316"></a><a name="p1980615130316"></a>Horizontal layout of the component. For details about the options, see <a href="#li12312485585">Direction enums</a>.</p>
-</td>
-</tr>
-<tr id="row2418mcpsimp"><td class="cellrowborder" valign="top" width="17.341734173417343%" headers="mcps1.1.5.1.1 "><p id="p2420mcpsimp"><a name="p2420mcpsimp"></a><a name="p2420mcpsimp"></a>position</p>
-</td>
-<td class="cellrowborder" valign="top" width="28.672867286728675%" headers="mcps1.1.5.1.2 "><p id="p16757125154718"><a name="p16757125154718"></a><a name="p16757125154718"></a>{</p>
-<p id="p183016439471"><a name="p183016439471"></a><a name="p183016439471"></a>x: Length,</p>
-<p id="p764913452474"><a name="p764913452474"></a><a name="p764913452474"></a>y: Length</p>
-<p id="p2422mcpsimp"><a name="p2422mcpsimp"></a><a name="p2422mcpsimp"></a>}</p>
-</td>
-<td class="cellrowborder" valign="top" width="14.35143514351435%" headers="mcps1.1.5.1.3 "><p id="p2424mcpsimp"><a name="p2424mcpsimp"></a><a name="p2424mcpsimp"></a>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="39.63396339633963%" headers="mcps1.1.5.1.4 "><p id="p2428mcpsimp"><a name="p2428mcpsimp"></a><a name="p2428mcpsimp"></a>Offset of the component anchor point relative to the top start edge of the parent component. The offset is expressed using absolute values. When laying out components, this attribute does not affect the layout of the parent component. It only adjusts the component position during drawing.</p>
-</td>
-</tr>
-<tr id="row1147212479269"><td class="cellrowborder" valign="top" width="17.341734173417343%" headers="mcps1.1.5.1.1 "><p id="p16472184713266"><a name="p16472184713266"></a><a name="p16472184713266"></a>markAnchor</p>
-</td>
-<td class="cellrowborder" valign="top" width="28.672867286728675%" headers="mcps1.1.5.1.2 "><p id="p123675110476"><a name="p123675110476"></a><a name="p123675110476"></a>{</p>
-<p id="p1896253114716"><a name="p1896253114716"></a><a name="p1896253114716"></a>x: Length,</p>
-<p id="p46656558470"><a name="p46656558470"></a><a name="p46656558470"></a>y: Length</p>
-<p id="p106108613276"><a name="p106108613276"></a><a name="p106108613276"></a>}</p>
-</td>
-<td class="cellrowborder" valign="top" width="14.35143514351435%" headers="mcps1.1.5.1.3 "><p id="p12862191814214"><a name="p12862191814214"></a><a name="p12862191814214"></a>{</p>
-<p id="p98521729"><a name="p98521729"></a><a name="p98521729"></a>x: 0,</p>
-<p id="p88483417217"><a name="p88483417217"></a><a name="p88483417217"></a>y: 0</p>
-<p id="p1646264492820"><a name="p1646264492820"></a><a name="p1646264492820"></a>}</p>
-</td>
-<td class="cellrowborder" valign="top" width="39.63396339633963%" headers="mcps1.1.5.1.4 "><p id="p44721347162616"><a name="p44721347162616"></a><a name="p44721347162616"></a>Anchor point of the component for positioning. The top start edge of the component is used as the reference point for offset.</p>
-</td>
-</tr>
-<tr id="row2429mcpsimp"><td class="cellrowborder" valign="top" width="17.341734173417343%" headers="mcps1.1.5.1.1 "><p id="p2431mcpsimp"><a name="p2431mcpsimp"></a><a name="p2431mcpsimp"></a>offset</p>
-</td>
-<td class="cellrowborder" valign="top" width="28.672867286728675%" headers="mcps1.1.5.1.2 "><p id="p1925713118484"><a name="p1925713118484"></a><a name="p1925713118484"></a>{</p>
-<p id="p14734111364812"><a name="p14734111364812"></a><a name="p14734111364812"></a>x: Length,</p>
-<p id="p834931664818"><a name="p834931664818"></a><a name="p834931664818"></a>y: Length</p>
-<p id="p2433mcpsimp"><a name="p2433mcpsimp"></a><a name="p2433mcpsimp"></a>}</p>
-</td>
-<td class="cellrowborder" valign="top" width="14.35143514351435%" headers="mcps1.1.5.1.3 "><p id="p12906114817217"><a name="p12906114817217"></a><a name="p12906114817217"></a>{</p>
-<p id="p116940501223"><a name="p116940501223"></a><a name="p116940501223"></a>x: 0,</p>
-<p id="p196153523"><a name="p196153523"></a><a name="p196153523"></a>y: 0</p>
-<p id="p2435mcpsimp"><a name="p2435mcpsimp"></a><a name="p2435mcpsimp"></a>}</p>
-</td>
-<td class="cellrowborder" valign="top" width="39.63396339633963%" headers="mcps1.1.5.1.4 "><p id="p2439mcpsimp"><a name="p2439mcpsimp"></a><a name="p2439mcpsimp"></a>Coordinate offset of the relative layout. This attribute does not affect the layout of the parent component. It only adjusts the component position during drawing.</p>
-</td>
-</tr>
-</tbody>
-</table>
-
--   <a name="li12312485585"></a>Direction enums
-
-    <a name="table197411342193817"></a>
-    <table><thead align="left"><tr id="row374111426387"><th class="cellrowborder" valign="top" width="25.2%" id="mcps1.1.3.1.1"><p id="p15741134223813"><a name="p15741134223813"></a><a name="p15741134223813"></a>Name</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="74.8%" id="mcps1.1.3.1.2"><p id="p474164215383"><a name="p474164215383"></a><a name="p474164215383"></a>Description</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row1774194233815"><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p id="p1674111428389"><a name="p1674111428389"></a><a name="p1674111428389"></a>Ltr</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p id="p18741134243810"><a name="p18741134243810"></a><a name="p18741134243810"></a>Components are arranged from left to right.</p>
-    </td>
-    </tr>
-    <tr id="row1741442113814"><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p id="p87418424388"><a name="p87418424388"></a><a name="p87418424388"></a>Rtl</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p id="p6741104213389"><a name="p6741104213389"></a><a name="p6741104213389"></a>Components are arranged from right to left.</p>
-    </td>
-    </tr>
-    <tr id="row12741542203810"><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p id="p12742342103816"><a name="p12742342103816"></a><a name="p12742342103816"></a>Auto</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p id="p157426425387"><a name="p157426425387"></a><a name="p157426425387"></a>The default layout direction is used.</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+## Attributes
 
 
-## Example<a name="section12073184715"></a>
+| Name | Type | Default&nbsp;Value | Description |
+| -------- | -------- | -------- | -------- |
+| align | [Alignment](ts-appendix-enums.md#alignment-enums) | Center | Alignment&nbsp;of&nbsp;the&nbsp;component&nbsp;content.&nbsp;This&nbsp;attribute&nbsp;is&nbsp;valid&nbsp;only&nbsp;when&nbsp;the&nbsp;values&nbsp;of&nbsp;**width**&nbsp;and&nbsp;**height**&nbsp;are&nbsp;greater&nbsp;than&nbsp;the&nbsp;size&nbsp;of&nbsp;the&nbsp;component&nbsp;content. |
+| direction | Direction | Auto | Horizontal&nbsp;layout&nbsp;of&nbsp;the&nbsp;component.&nbsp;For&nbsp;details&nbsp;about&nbsp;the&nbsp;options,&nbsp;see&nbsp;**Direction**&nbsp;enums. |
+| position | {<br/>x:&nbsp;Length,<br/>y:&nbsp;Length<br/>} | - | Offset&nbsp;of&nbsp;the&nbsp;component&nbsp;anchor&nbsp;point&nbsp;relative&nbsp;to&nbsp;the&nbsp;top&nbsp;start&nbsp;edge&nbsp;of&nbsp;the&nbsp;parent&nbsp;component.&nbsp;The&nbsp;offset&nbsp;is&nbsp;expressed&nbsp;using&nbsp;absolute&nbsp;values.&nbsp;When&nbsp;laying&nbsp;out&nbsp;components,&nbsp;this&nbsp;attribute&nbsp;does&nbsp;not&nbsp;affect&nbsp;the&nbsp;layout&nbsp;of&nbsp;the&nbsp;parent&nbsp;component.&nbsp;It&nbsp;only&nbsp;adjusts&nbsp;the&nbsp;component&nbsp;position&nbsp;during&nbsp;drawing. |
+| markAnchor | {<br/>x:&nbsp;Length,<br/>y:&nbsp;Length<br/>} | {<br/>x:&nbsp;0,<br/>y:&nbsp;0<br/>} | Anchor&nbsp;point&nbsp;of&nbsp;the&nbsp;component&nbsp;for&nbsp;positioning.&nbsp;The&nbsp;top&nbsp;start&nbsp;edge&nbsp;of&nbsp;the&nbsp;component&nbsp;is&nbsp;used&nbsp;as&nbsp;the&nbsp;reference&nbsp;point&nbsp;for&nbsp;offset. |
+| offset | {<br/>x:&nbsp;Length,<br/>y:&nbsp;Length<br/>} | {<br/>x:&nbsp;0,<br/>y:&nbsp;0<br/>} | Coordinate&nbsp;offset&nbsp;of&nbsp;the&nbsp;relative&nbsp;layout.&nbsp;This&nbsp;attribute&nbsp;does&nbsp;not&nbsp;affect&nbsp;the&nbsp;layout&nbsp;of&nbsp;the&nbsp;parent&nbsp;component.&nbsp;It&nbsp;only&nbsp;adjusts&nbsp;the&nbsp;component&nbsp;position&nbsp;during&nbsp;drawing. |
+
+
+- Direction enums
+    | Name | Description | 
+  | -------- | -------- |
+  | Ltr | Components&nbsp;are&nbsp;arranged&nbsp;from&nbsp;left&nbsp;to&nbsp;right. | 
+  | Rtl | Components&nbsp;are&nbsp;arranged&nbsp;from&nbsp;right&nbsp;to&nbsp;left. | 
+  | Auto | The&nbsp;default&nbsp;layout&nbsp;direction&nbsp;is&nbsp;used. | 
+
+
+## Example
+
 
 ```
 @Entry
@@ -144,7 +64,8 @@ struct PositionExample {
 }
 ```
 
-![](figures/position.gif)
+![en-us_image_0000001212218456](figures/en-us_image_0000001212218456.gif)
+
 
 ```
 @Entry
@@ -197,5 +118,4 @@ struct PositionExample2 {
 }
 ```
 
-![](figures/position2.gif)
-
+![en-us_image_0000001256858409](figures/en-us_image_0000001256858409.gif)

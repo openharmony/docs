@@ -6,7 +6,7 @@
 
 ## 导入模块
 
-  
+
 ```
 import wallpaper from '@ohos.wallpaper';
 ```
@@ -39,7 +39,7 @@ getColors(wallpaperType: WallpaperType, callback: AsyncCallback&lt;Array&lt;Rgba
   | callback | AsyncCallback&lt;Array&lt;[RgbaColor](#rgbacolor)&gt;&gt; | 是 | 回调函数，返回壁纸的主要颜色信息。 | 
 
 - 示例：
-    
+  
   ```
   wallpaper.getColors(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error, data) => {
       if (error) {
@@ -70,7 +70,7 @@ getColors(wallpaperType: WallpaperType): Promise&lt;Array&lt;RgbaColor&gt;&gt;
   | Promise&lt;Array&lt;[RgbaColor](#rgbacolor)&gt;&gt; | 返回壁纸的主要颜色信息。 | 
 
 - 示例：
-    
+  
   ```
   wallpaper.getColors(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data) => {
       console.log(`success to getColors.`);
@@ -95,7 +95,7 @@ getId(wallpaperType: WallpaperType, callback: AsyncCallback&lt;number&gt;): void
   | callback | AsyncCallback&lt;number&gt; | 是 | 回调函数，返回壁纸的ID。如果配置了指定类型的壁纸就返回一个大于等于0的数，否则返回-1。取值范围是-1~2^31-1。 | 
 
 - 示例：
-    
+  
   ```
   wallpaper.getId(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error, data) => {
       if (error) {
@@ -127,7 +127,7 @@ getId(wallpaperType: WallpaperType): Promise&lt;number&gt;
   | Promise&lt;number&gt; | 壁纸的ID。如果配置了这种壁纸类型的壁纸就返回一个大于等于0的数，否则返回-1。取值范围是-1~2^31-1。 | 
 
 - 示例：
-    
+  
   ```
   wallpaper.getId(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data) => {
       console.log(`success to getId: ` + JSON.stringify(data));
@@ -151,7 +151,7 @@ getMinHeight(callback: AsyncCallback&lt;number&gt;): void
   | callback | AsyncCallback&lt;number&gt; | 是 | 回调函数，返回壁纸的最小高度值，单位是像素。如果返回值等于0，说明没有设置壁纸，调用者应该使用默认显示的高度值代替。 | 
 
 - 示例：
-    
+  
   ```
   wallpaper.getMinHeight((error, data) => {
       if (error) {
@@ -178,7 +178,7 @@ getMinHeight(): Promise&lt;number&gt;
   | Promise&lt;number&gt; | 返回壁纸的最小高度值，单位是像素。如果返回值等于0，说明没有设置壁纸，调用者应该使用默认显示的高度值代替。 | 
 
 - 示例：
-    
+  
   ```
   wallpaper.getMinHeight().then((data) => {
       console.log(`success to getMinHeight: ` + JSON.stringify(data));
@@ -203,7 +203,7 @@ getMinWidth(callback: AsyncCallback&lt;number&gt;): void
   | callback | AsyncCallback&lt;number&gt; | 是 | 回调函数，壁纸的最小宽度值，单位是像素。如果返回值等于0，说明没有设置壁纸，调用者应该使用默认显示的宽度值代替。 | 
 
 - 示例：
-    
+  
   ```
   wallpaper.getMinWidth((error, data) => {
       if (error) {
@@ -229,7 +229,7 @@ getMinWidth(): Promise&lt;number&gt;
   | Promise&lt;number&gt; | 壁纸的最小宽度值，单位是像素。如果返回值等于0，说明没有设置壁纸，调用者应该使用默认显示的宽度值代替。 | 
 
 - 示例：
-    
+  
   ```
   wallpaper.getMinWidth().then((data) => {
       console.log(`success to getMinWidth: ` + JSON.stringify(data));
@@ -253,7 +253,7 @@ isChangePermitted(callback: AsyncCallback&lt;boolean&gt;): void
   | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数，返回是否允许应用改变当前用户的壁纸。如果允许返回true，否则返回false。 | 
 
 - 示例：
-    
+  
   ```
   wallpaper.isChangePermitted((error, data) => {
       if (error) {
@@ -279,7 +279,7 @@ isChangePermitted(): Promise&lt;boolean&gt;
   | Promise&lt;boolean&gt; | 返回是否允许应用改变当前用户的壁纸。如果允许返回true，否则返回false。 | 
 
 - 示例：
-    
+  
   ```
   wallpaper.isChangePermitted().then((data) => {
       console.log(`success to isChangePermitted: ` + JSON.stringify(data));
@@ -303,7 +303,7 @@ isOperationAllowed(callback: AsyncCallback&lt;boolean&gt;): void
   | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数，返回是否允许用户设置壁纸。如果允许返回true，否则返回false。 | 
 
 - 示例：
-    
+  
   ```
   wallpaper.isOperationAllowed((error, data) => {
       if (error) {
@@ -329,7 +329,7 @@ isOperationAllowed(): Promise&lt;boolean&gt;
   | Promise&lt;boolean&gt; | 异步回调函数，返回是否允许用户设置壁纸。如果允许返回true，否则返回false。 | 
 
 - 示例：
-    
+  
   ```
   wallpaper.isOperationAllowed().then((data) => {
       console.log(`success to isOperationAllowed: ` + JSON.stringify(data));
@@ -356,7 +356,7 @@ reset(wallpaperType: WallpaperType, callback: AsyncCallback&lt;void&gt;): void
   | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，调用成功则返回是否移除成功的结果，调用失败则返回error信息。 | 
 
 - 示例：
-    
+  
   ```
   wallpaper.reset((error, data) => {
       if (error) {
@@ -389,7 +389,7 @@ reset(wallpaperType: WallpaperType): Promise&lt;void&gt;
   | Promise&lt;void&gt; | 调用成功则返回是否移除成功的结果，调用失败则返回error信息。 | 
 
 - 示例：
-    
+  
   ```
   wallpaper.reset(wallpaper.WALLPAPER_SYSTEM).then((data) => {
       console.log(`success to reset.`);
@@ -410,14 +410,14 @@ setWallpaper(uriOrPixelMap: string | image.PixelMap, wallpaperType: WallpaperTyp
 **系统能力**: SystemCapability.Miscservices.Wallpaper
 
 - 参数：
-    | 参数名 | 类型 | 必填 | 说明 | 
+    | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | uriOrPixelMap | string&nbsp;\|&nbsp;[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001154665636.xml#xref134981523104113,link:zh-cn_topic_0000001122977382.xml#section160331714124](zh-cn_topic_0000001122977382.xml#section160331714124) | 是 | JPEG或PNG文件的Uri路径，或者PNG格式文件的位图。 | 
-  | wallpaperType | [WallpaperType](#wallpapertype) | 是 | 壁纸类型。 | 
-  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，调用成功则返回是返回设置的结果，调用失败则返回error信息。 | 
+  | uriOrPixelMap | string&nbsp;\|[PixelMap](js-apis-image.md#pixelmap7) |  | JPEG或PNG文件的Uri路径，或者PNG格式文件的位图。 |
+  | wallpaperType | [WallpaperType](#wallpapertype) | 是 | 壁纸类型。 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，调用成功则返回是返回设置的结果，调用失败则返回error信息。 |
 
 - 示例：
-    
+  
   ```
   // uriOrPixelMap类型为string
   let wallpaperPath = "/data/data/ohos.acts.aafwk.plrdtest.form/files/Cup_ic.jpg";
@@ -463,10 +463,10 @@ setWallpaper(uriOrPixelMap: string | image.PixelMap, wallpaperType: WallpaperTyp
 **系统能力**: SystemCapability.Miscservices.Wallpaper
 
 - 参数：
-    | 参数名 | 类型 | 必填 | 说明 | 
+    | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | uriOrPixelMap | string&nbsp;\|&nbsp;[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001154665636.xml#xref2071734616,link:zh-cn_topic_0000001122977382.xml#section160331714124](zh-cn_topic_0000001122977382.xml#section160331714124) | 是 | JPEG或PNG文件的Uri路径，或者PNG格式文件的位图。 | 
-  | wallpaperType | [WallpaperType](#wallpapertype) | 是 | 壁纸类型。 | 
+  | uriOrPixelMap | string&nbsp;\|[PixelMap](js-apis-image.md#pixelmap7) | 是 | JPEG或PNG文件的Uri路径，或者PNG格式文件的位图。 |
+  | wallpaperType | [WallpaperType](#wallpapertype) | 是 | 壁纸类型。 |
 
 - 返回值：
     | 类型 | 说明 | 
@@ -474,7 +474,7 @@ setWallpaper(uriOrPixelMap: string | image.PixelMap, wallpaperType: WallpaperTyp
   | Promise&lt;void&gt; | 调用成功则返回是返回设置的结果，调用失败则返回error信息。 | 
 
 - 示例：
-    
+  
   ```
   // uriOrPixelMap类型为string
   let wallpaperPath = "/data/data/ohos.acts.aafwk.plrdtest.form/files/Cup_ic.jpg";
@@ -514,13 +514,13 @@ on(type: 'colorChange', callback: (colors: Array&lt;RgbaColor&gt;, wallpaperType
 **系统能力**: SystemCapability.Miscservices.Wallpaper
 
 - 参数：
-    | 参数名 | 类型 | 必填 | 说明 | 
+    | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 取值为'colorChange'，表示壁纸颜色变化结果上报事件。 | 
-  | callback | function | 是 | 壁纸颜色变化触发该回调方法，返回壁纸类型和壁纸的主要颜色信息。<br/>-&nbsp;colors<br/>&nbsp;&nbsp;壁纸的主要颜色信息，其类型见[RgbaColor](#rgbacolor)。<br/>-&nbsp;wallpaperType<br/>&nbsp;&nbsp;壁纸类型。 | 
+  | type | string | 是 | 取值为'colorChange'，表示壁纸颜色变化结果上报事件。 |
+  | callback | function | 是 | 壁纸颜色变化触发该回调方法，返回壁纸类型和壁纸的主要颜色信息。<br/>-&nbsp;colors<br/>&nbsp;&nbsp;壁纸的主要颜色信息，其类型见[RgbaColor](#rgbacolor)。<br/>-&nbsp;wallpaperType<br/>&nbsp;&nbsp;壁纸类型。 |
 
 - 示例:
-    
+  
   ```
   let listener = (colors, wallpaperType) => {
       console.log(`wallpaper color changed.`);
@@ -544,7 +544,7 @@ off(type: 'colorChange', callback?: (colors: Array&lt;RgbaColor&gt;, wallpaperTy
   | callback | function | 否 | &nbsp;&nbsp;表示取消壁纸颜色变化结果上报，不填写该参数则取消订阅该type对应的所有回调。<br/>-&nbsp;colors<br/>&nbsp;&nbsp;壁纸的主要颜色信息，其类型见[RgbaColor](#rgbacolor)。<br/>-&nbsp;wallpaperType<br/>&nbsp;&nbsp;壁纸类型。 | 
 
 - 示例:
-    
+  
   ```
   let listener = (colors, wallpaperType) => {
       console.log(`wallpaper color changed.`);
