@@ -79,8 +79,8 @@ FAQs are used to help developers solve problems frequently encountered during de
 ## Startup and Recovery<a name="section83501764443"></a>
 
 -   [System startup interrupted due to "parse failed!" error](faqs-startup.md#section835662214302)
--   [System automatically restarted again and again](faqs-startup-and-recovery.md#section3857921143117)
--   [Failed to call the SetParameter or GetParameter API with correct parameter values](faqs-startup-and-recovery.md#section548818116328)
+-   [System automatically restarted again and again](faqs-startup.md#section3857921143117)
+-   [Failed to call the SetParameter or GetParameter API with correct parameter values](faqs-startup.md#section548818116328)
 
 ## System Services<a name="section19567132114455"></a>
 
