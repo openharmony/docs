@@ -490,7 +490,7 @@ bundle.getAllApplicationInfo(bundleFlags, (err, data) => {
 })
 ```
 
-``## bundle.getAbilityInfo
+## bundle.getAbilityInfo
 
 getAbilityInfo(bundleName: string, abilityName: string): Promise\<AbilityInfo>
 
