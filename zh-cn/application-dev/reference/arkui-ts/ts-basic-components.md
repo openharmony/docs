@@ -39,3 +39,4 @@
 - **[Select](ts-basic-components-select.md)**
 - **[TextClock](ts-basic-components-textClock.md)**
 
+- **[Xcomponent](ts-basic-components-xcomponent.md)**
