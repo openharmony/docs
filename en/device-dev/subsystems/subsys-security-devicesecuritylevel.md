@@ -42,7 +42,7 @@ The security level of each device in a Super Device provides the decision-making
 
 ### Constraints
 
-The default security level of OpenHarmony devices is SL1. Device manufacturers can customize a higher security level based on service requirements. For details, see [Customizing Device Security Levels](#Customizing_Device_Security_Levels).
+The default security level of OpenHarmony devices is SL1. Device manufacturers can customize a higher security level based on service requirements. For details, see [Customizing Device Security Levels](#customizingdevicesecuritylevels).
 
 ## Development Guidelines
 
