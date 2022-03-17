@@ -168,7 +168,7 @@ publish(event: string, callback: AsyncCallback\<void>): void
 
 发布公共事件（callback形式）。
 
-**系统能力**：SystemCapability.Notification.CommonEvent
+**系统能力：** SystemCapability.Notification.CommonEvent
 
 **参数：**
 
@@ -201,7 +201,7 @@ publish(event: string, options: CommonEventPublishData, callback: AsyncCallback\
 
 发布公共事件指定发布信息（callback形式）。
 
-**系统能力**：SystemCapability.Notification.CommonEvent
+**系统能力：** SystemCapability.Notification.CommonEvent
 
 **参数：**
 
@@ -243,7 +243,7 @@ publishAsUser(event: string, userId: number, callback: AsyncCallback\<void>): vo
 
 向指定用户发布公共事件（callback形式）。
 
-**系统能力**：SystemCapability.Notification.CommonEvent
+**系统能力：** SystemCapability.Notification.CommonEvent
 
 **参数：**
 
@@ -280,7 +280,7 @@ publishAsUser(event: string, userId: number, options: CommonEventPublishData, ca
 
 向指定用户发布公共事件并指定发布信息（callback形式）。
 
-**系统能力**：SystemCapability.Notification.CommonEvent
+**系统能力：** SystemCapability.Notification.CommonEvent
 
 **参数：**
 
@@ -325,7 +325,7 @@ createSubscriber(subscribeInfo: CommonEventSubscribeInfo, callback: AsyncCallbac
 
 创建订阅者（callback形式）。
 
-**系统能力**：SystemCapability.Notification.CommonEvent
+**系统能力：** SystemCapability.Notification.CommonEvent
 
 **参数：**
 
@@ -367,7 +367,7 @@ createSubscriber(subscribeInfo: CommonEventSubscribeInfo): Promise\<CommonEventS
 
 创建订阅者（Promise形式）。
 
-**系统能力**：SystemCapability.Notification.CommonEvent
+**系统能力：** SystemCapability.Notification.CommonEvent
 
 **参数：**
 
@@ -407,7 +407,7 @@ subscribe(subscriber: CommonEventSubscriber, callback: AsyncCallback\<CommonEven
 
 订阅公共事件（callback形式）。
 
-**系统能力**：SystemCapability.Notification.CommonEvent
+**系统能力：** SystemCapability.Notification.CommonEvent
 
 **参数：**
 
@@ -418,8 +418,6 @@ subscribe(subscriber: CommonEventSubscriber, callback: AsyncCallback\<CommonEven
 
 **示例：**
 
-无序事件：
-
 ```js
 var subscriber; //用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
 
@@ -453,75 +451,7 @@ function CreateSubscriberCallBack(err, commonEventSubscriber) {
 CommonEvent.createSubscriber(subscribeInfo, CreateSubscriberCallBack);
 ```
 
- 有序事件：
-
-```js
-var subscriber; //用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
-
-//订阅者信息
-var subscribeInfo = {
-    events: ["event"]
-};
-
-//设置有序公共事件的结果代码回调
-function SetCodeCallBack(err) {
-    if (err.code) {
-        console.error("setCode failed " + JSON.stringify(err));
-    } else {
-        console.info("setCode");
-    }
-}
-
-//设置有序公共事件的结果数据回调
-function SetDataCallBack(err) {
-    if (err.code) {
-        console.error("setData failed " + JSON.stringify(err));
-    } else {
-        console.info("setData");
-    }
-}
-
-//完成本次有序公共事件处理回调
-function FinishCommonEventCallBack(err) {
-    if (err.code) {
-        console.error("finishCommonEvent failed " + JSON.stringify(err));
-    } else {
-        console.info("finishCommonEvent");
-    }
-}
-
-//订阅公共事件回调
-function SubscribeCallBack(err, data) {
-    if (err.code) {
-        console.error("subscribe failed " + JSON.stringify(err));
-    } else {
-        console.info("subscribe " + JSON.stringify(data));
-        //设置有序公共事件的结果代码
-        subscriber.setCode(0, SetCodeCallBack);
-        //设置有序公共事件的结果数据
-        subscriber.setData("publish_data_changed", SetDataCallBack);
-        //完成本次有序公共事件处理
-        subscriber.finishCommonEvent(FinishCommonEventCallBack)
-    }
-}
-
-//创建订阅者回调
-function CreateSubscriberCallBack(err, commonEventSubscriber) {
-    if (err.code) {
-        console.error("createSubscriber failed " + JSON.stringify(err));
-    } else {
-        console.info("createSubscriber");
-        subscriber = commonEventSubscriber;
-        //订阅公共事件
-        CommonEvent.subscribe(subscriber, SubscribeCallBack);
-    }
-}
-
-//创建订阅者
-CommonEvent.createSubscriber(subscribeInfo, CreateSubscriberCallBack);
-```
-
-
+ 
 
 ## CommonEvent.unsubscribe
 
@@ -529,7 +459,7 @@ unsubscribe(subscriber: CommonEventSubscriber, callback?: AsyncCallback\<void>):
 
 取消订阅公共事件（callback形式）。
 
-**系统能力**：SystemCapability.Notification.CommonEvent
+**系统能力：** SystemCapability.Notification.CommonEvent
 
 **参数：**
 
@@ -587,7 +517,7 @@ CommonEvent.unsubscribe(subscriber, UnsubscribeCallBack);
 
 ## CommonEventPublishData
 
-**系统能力：**以下各项对应的系统能力均为SystemCapability.Notification.CommonEvent
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Notification.CommonEvent
 
 | 名称                  | 读写属性 | 类型                 | 必填 | 描述                         |
 | --------------------- | -------- | -------------------- | ---- | ---------------------------- |
@@ -600,7 +530,7 @@ CommonEvent.unsubscribe(subscriber, UnsubscribeCallBack);
 
 ## CommonEventSubscribeInfo
 
-**系统能力：**以下各项对应的系统能力均为SystemCapability.Notification.CommonEvent
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Notification.CommonEvent
 
 | 名称                | 读写属性 | 类型           | 必填 | 描述                                                         |
 | ------------------- | -------- | -------------- | ---- | ------------------------------------------------------------ |
@@ -612,7 +542,7 @@ CommonEvent.unsubscribe(subscriber, UnsubscribeCallBack);
 
 ## CommonEventData
 
-**系统能力：**以下各项对应的系统能力均为SystemCapability.Notification.CommonEvent
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Notification.CommonEvent
 
 | 名称       | 读写属性 | 类型                 | 必填 | 描述                                                    |
 | ---------- | -------- | -------------------- | ---- | ------------------------------------------------------- |
@@ -630,7 +560,7 @@ getCode(callback: AsyncCallback\<number>): void
 
 获取公共事件的结果代码（callback形式）。
 
-**系统能力**：SystemCapability.Notification.CommonEvent
+**系统能力：** SystemCapability.Notification.CommonEvent
 
 **参数：**
 
@@ -661,7 +591,7 @@ getCode(): Promise\<number>
 
 获取公共事件的结果代码（Promise形式）。
 
-**系统能力**：SystemCapability.Notification.CommonEvent
+**系统能力：** SystemCapability.Notification.CommonEvent
 
 **返回值：**
 
@@ -687,7 +617,7 @@ setCode(code: number, callback: AsyncCallback\<void>): void
 
 设置公共事件的结果代码（callback形式）。
 
-**系统能力**：SystemCapability.Notification.CommonEvent
+**系统能力：** SystemCapability.Notification.CommonEvent
 
 **参数：**
 
@@ -718,7 +648,7 @@ setCode(code: number): Promise\<void>
 
 设置公共事件的结果代码（Promise形式）。
 
-**系统能力**：SystemCapability.Notification.CommonEvent
+**系统能力：** SystemCapability.Notification.CommonEvent
 
 **参数：**
 
@@ -744,7 +674,7 @@ getData(callback: AsyncCallback\<string>): void
 
 获取公共事件的结果数据（callback形式）。
 
-**系统能力**：SystemCapability.Notification.CommonEvent
+**系统能力：** SystemCapability.Notification.CommonEvent
 
 **参数：**
 
@@ -774,7 +704,7 @@ getData(): Promise\<string>
 
 获取公共事件的结果数据（Promise形式）。
 
-**系统能力**：SystemCapability.Notification.CommonEvent
+**系统能力：** SystemCapability.Notification.CommonEvent
 
 **返回值：**
 
@@ -800,7 +730,7 @@ setData(data: string, callback: AsyncCallback\<void>): void
 
 设置公共事件的结果数据（callback形式）。
 
-**系统能力**：SystemCapability.Notification.CommonEvent
+**系统能力：** SystemCapability.Notification.CommonEvent
 
 **参数：**
 
@@ -831,7 +761,7 @@ setData(data: string): Promise\<void>
 
 设置公共事件的结果数据（Promise形式）。
 
-**系统能力**：SystemCapability.Notification.CommonEvent
+**系统能力：** SystemCapability.Notification.CommonEvent
 
 **参数：**
 
@@ -857,7 +787,7 @@ setCodeAndData(code: number, data: string, callback:AsyncCallback\<void>): void
 
 设置公共事件的结果代码和结果数据（callback形式）。
 
-**系统能力**：SystemCapability.Notification.CommonEvent
+**系统能力：** SystemCapability.Notification.CommonEvent
 
 **参数：**
 
@@ -889,7 +819,7 @@ setCodeAndData(code: number, data: string): Promise\<void>
 
 设置公共事件的结果代码和结果数据（Promise形式）。
 
-**系统能力**：SystemCapability.Notification.CommonEvent
+**系统能力：** SystemCapability.Notification.CommonEvent
 
 **参数：**
 
@@ -918,7 +848,7 @@ isOrderedCommonEvent(callback: AsyncCallback\<boolean>): void
 
 返回true代表是有序公共事件，false代表不是有序公共事件。
 
-**系统能力**：SystemCapability.Notification.CommonEvent
+**系统能力：** SystemCapability.Notification.CommonEvent
 
 **参数：**
 
@@ -950,7 +880,7 @@ isOrderedCommonEvent(): Promise\<boolean>
 
 返回true代表是有序公共事件，false代表不是有序公共事件。
 
-**系统能力**：SystemCapability.Notification.CommonEvent
+**系统能力：** SystemCapability.Notification.CommonEvent
 
 **返回值：**
 
@@ -976,7 +906,7 @@ abortCommonEvent(callback: AsyncCallback\<void>): void
 
 取消当前的公共事件，仅对有序公共事件有效，取消后，公共事件不再向下一个订阅者传递（callback形式）。
 
-**系统能力**：SystemCapability.Notification.CommonEvent
+**系统能力：** SystemCapability.Notification.CommonEvent
 
 **参数：**
 
@@ -1006,7 +936,7 @@ abortCommonEvent(): Promise\<void>
 
 取消当前的公共事件，仅对有序公共事件有效，取消后，公共事件不再向下一个订阅者传递（Promise形式）。
 
-**系统能力**：SystemCapability.Notification.CommonEvent
+**系统能力：** SystemCapability.Notification.CommonEvent
 
 **示例：**
 
@@ -1026,7 +956,7 @@ clearAbortCommonEvent(callback: AsyncCallback\<void>): void
 
 清除当前公共事件的取消状态，仅对有序公共事件有效（callback形式）。
 
-**系统能力**：SystemCapability.Notification.CommonEvent
+**系统能力：** SystemCapability.Notification.CommonEvent
 
 **参数：**
 
@@ -1056,7 +986,7 @@ clearAbortCommonEvent(): Promise\<void>
 
 清除当前公共事件的取消状态，仅对有序公共事件有效（Promise形式）。
 
-**系统能力**：SystemCapability.Notification.CommonEvent
+**系统能力：** SystemCapability.Notification.CommonEvent
 
 **示例：**
 
@@ -1076,7 +1006,7 @@ getAbortCommonEvent(callback: AsyncCallback\<boolean>): void
 
 获取当前有序公共事件是否取消的状态（callback形式）。
 
-**系统能力**：SystemCapability.Notification.CommonEvent
+**系统能力：** SystemCapability.Notification.CommonEvent
 
 **参数：**
 
@@ -1106,7 +1036,7 @@ getAbortCommonEvent(): Promise\<void>
 
 获取当前有序公共事件是否取消的状态（Promise形式）。
 
-**系统能力**：SystemCapability.Notification.CommonEvent
+**系统能力：** SystemCapability.Notification.CommonEvent
 
 **返回值：**
 
@@ -1132,7 +1062,7 @@ getSubscribeInfo(callback: AsyncCallback\<CommonEventSubscribeInfo>): void
 
 获取订阅者的订阅信息（callback形式）。
 
-**系统能力**：SystemCapability.Notification.CommonEvent
+**系统能力：** SystemCapability.Notification.CommonEvent
 
 **参数：**
 
@@ -1162,7 +1092,7 @@ getSubscribeInfo(): Promise\<CommonEventSubscribeInfo>
 
 获取订阅者的订阅信息（Promise形式）。
 
-**系统能力**：SystemCapability.Notification.CommonEvent
+**系统能力：** SystemCapability.Notification.CommonEvent
 
 **返回值：**
 
