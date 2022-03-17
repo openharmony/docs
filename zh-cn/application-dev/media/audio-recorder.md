@@ -1,194 +1,134 @@
-# Audio Recording Development
+# 音频录制开发指导
 
-## When to Use
+## 场景介绍
 
-During audio recording, audio signals are captured, encoded, and saved to files. You can specify parameters such as the sampling rate, number of audio channels, encoding format, encapsulation format, and file path for audio recording.
+音频录制的主要工作是捕获音频信号，完成音频编码并保存到文件中，帮助开发者轻松实现音频录制功能。它允许调用者指定音频录制的采样率、声道数、编码格式、封装格式、文件路径等参数。
 
-**Figure 1** Audio recording state transition
+**图1** 音频录制状态机
 
-![en-us_image_audio_recorder_state_machine](figures/en-us_image_audio_recorder_state_machine.png)
+![zh-ch_image_audio_recorder_state_machine](figures/zh-ch_image_audio_recorder_state_machine.png)
 
 
 
-**Figure 2** Layer 0 diagram of audio recording
+**图2** 音频录制零层图
 
-![en-us_image_audio_recorder_zero](figures/en-us_image_audio_recorder_zero.png)
+![zh-ch_image_audio_recorder_zero](figures/zh-ch_image_audio_recorder_zero.png)
 
-## How to Develop
+## 开发步骤
 
-For details about the APIs used for audio recording, see [js-apis-media.md](../reference/apis/js-apis-media.md).
+详细API含义可参考：[js-apis-media.md](../reference/apis/js-apis-media.md)
 
-### Full-Process Scenario
+### 全流程场景
 
-The full audio recording process includes creating an instance, setting recording parameters, starting, pausing, resuming, and stopping recording, and releasing resources.
+包含流程：创建实例，设置录制参数，录制音频，暂停录制，恢复录制，停止录制，释放资源等流程。
 
 ```js
-import media from '@ohos.multimedia.media'
-import mediaLibrary from '@ohos.multimedia.mediaLibrary'
-
-let testFdNumber;
-
 function SetCallBack(audioRecorder) {
-    audioRecorder.on('prepare', () => {              								// Set the 'prepare' event callback.
+    audioRecorder.on('prepare', () => {              								// 设置'prepare'事件回调
         console.log('prepare success');    
-        // The recording page is ready. You can click the Record button to start recording.
+        // 录制界面可切换至已准备好，可点击录制按钮进行录制
     });
-    audioRecorder.on('start', () => {    		     								// Set the 'start' event callback.
+    audioRecorder.on('start', () => {    		     								// 设置'start'事件回调
     	console.log('audio recorder start success');
-        // The Record button is changed to the pausable state.
+        // 将录制按钮切换至可暂停状态
     });
-    audioRecorder.on('pause', () => {    		     								// Set the 'pause' event callback.
+    audioRecorder.on('pause', () => {    		     								// 设置'pause'事件回调
         console.log('audio recorder pause success');
-        // The Record button is changed to the recordable state.
+        // 将录制按钮切换至可录制状态
     });
-    audioRecorder.on('resume', () => {    		     								// Set the 'resume' event callback.
+    audioRecorder.on('resume', () => {    		     								// 设置'resume'事件回调
         console.log('audio recorder resume success');
-        // The Record button is changed to the pausable state.
+        // 将录制按钮切换至可暂停状态
     });
-    audioRecorder.on('stop', () => {    		     								// Set the 'stop' event callback.
+    audioRecorder.on('stop', () => {    		     								// 设置'stop'事件回调
         console.log('audio recorder stop success');
     });
-    audioRecorder.on('release', () => {    		     								// Set the 'release' event callback.
+    audioRecorder.on('release', () => {    		     								// 设置'release'事件回调
         console.log('audio recorder release success');
     });
-    audioRecorder.on('reset', () => {    		     								// Set the 'reset' event callback.
+    audioRecorder.on('reset', () => {    		     								// 设置'reset'事件回调
         console.log('audio recorder reset success');
-        // You need to reset the recording parameters for another recording.
+        // 需要重新设置录制参数才能再次录制
     });
-    audioRecorder.on('error', (error) => {             								// Set the 'error' event callback.
+    audioRecorder.on('error', (error) => {             								// 设置'error'事件回调
         console.info(`audio error called, errName is ${error.name}`);
         console.info(`audio error called, errCode is ${error.code}`);
         console.info(`audio error called, errMessage is ${error.message}`);
     });
 }
 
-// pathName indicates the passed recording file name, for example, 01.mp3. The generated file address is /storage/media/100/local/files/Movies/01.mp3.
-// To use the media library, declare the following permissions: ohos.permission.MEDIA_LOCATION, ohos.permission.WRITE_MEDIA, and ohos.permission.READ_MEDIA.
-async function getFd(pathName) {
-    let displayName = pathName;
-    const mediaTest = mediaLibrary.getMediaLibrary();
-    let fileKeyObj = mediaLibrary.FileKey;
-    let mediaType = mediaLibrary.MediaType.VIDEO;
-    let publicPath = await mediaTest.getPublicDirectory(mediaLibrary.DirectoryType.DIR_VIDEO);
-    let dataUri = await mediaTest.createAsset(mediaType, displayName, publicPath);
-    if (dataUri != undefined) {
-        let args = dataUri.id.toString();
-        let fetchOp = {
-            selections : fileKeyObj.ID + "=?",
-            selectionArgs : [args],
-        }
-        let fetchFileResult = await mediaTest.getFileAssets(fetchOp);
-        let fileAsset = await fetchFileResult.getAllObject();
-        let fdNumber = await fileAsset[0].open('Rw');
-        fdNumber = "fd://" + fdNumber.toString();
-        testFdNumber = fdNumber;
-    }
-}
-
-await getFd('01.mp3');
-
-// 1. Create an AudioRecorder instance.
+// 1.创建实例
 let audioRecorder = media.createAudioRecorder();    
-// 2. Set the callbacks.
+// 2.设置回调
 SetCallBack(audioRecorder);    
-// 3. Set the recording parameters.
+// 3.设置录制参数
 let audioRecorderConfig = {
     audioEncoder : media.AudioEncoder.AAC_LC ,
     audioEncodeBitRate : 22050,
     audioSampleRate : 22050,
     numberOfChannels : 2,
     format : media.AudioOutputFormat.AAC_ADTS,
-    uri : testFdNumber,                             // testFdNumber is generated by getFd.
+    uri : 'file:///data/accounts/account_0/appdata/appdata/recorder/test.m4a',       // 文件需先由调用者创建，并给予适当的权限
     location : { latitude : 30, longitude : 130},
 }																					
 audioRecorder.prepare(audioRecorderConfig);
-// 4. Start recording.
-audioRecorder.start();                            	// The start method can be called to trigger the 'start' event callback only after the 'prepare' event callback is complete.
-// 5. Pause recording.
-audioRecorder.pause();                             	// The pause method can be called to trigger the 'pause' event callback only after the 'start' event callback is complete.
-// 6. Resume recording.
-audioRecorder.resume();                             // The resume method can be called to trigger the 'resume' event callback only after the 'pause' event callback is complete.
-// 7. Stop recording.
-audioRecorder.stop();                             	// The stop method can be called to trigger the 'stop' event callback only after the 'start' or 'resume' event callback is complete.
-// 8. Reset recording.
-audioRecorder.reset();                              // The prepare method can be called for another recording only after the 'reset' event callback is complete.
-// 9. Release resources.
-audioRecorder.release();                           	// The AudioRecorder resource is destroyed.
+// 4.开始录制
+audioRecorder.start();                            	// 需等待'prepare'事件回调完成后，才可调用start进行录制，触发'start'事件回调
+// 5.暂停录制
+audioRecorder.pause();                             	// 需等待'start'事件回调完成后，才可调用pause进行暂停，触发'pause'事件回调
+// 6.恢复录制
+audioRecorder.resume();                             // 需等待'pause'事件回调完成后，才可调用resume进行录制，触发'resume'事件回调
+// 7.停止录制
+audioRecorder.stop();                             	// 需等待'start'或'resume'事件回调完成后，才可调用stop进行暂停，触发'stop'事件回调
+// 8.重置录制
+audioRecorder.reset();                              // 触发'reset'事件回调后，重新进行prepare，才可重新录制
+// 9.释放资源
+audioRecorder.release();                           	// audioRecorder资源被销毁
 audioRecorder = undefined;
 ```
 
-### Normal Recording Scenario
+### 正常录制场景
 
-Unlike the full-process scenario, the normal recording scenario does not include the process of pausing and resuming recording.
+与全流程场景不同，不包括暂停录制，恢复录制的过程。
 
 ```js
-import media from '@ohos.multimedia.media'
-import mediaLibrary from '@ohos.multimedia.mediaLibrary'
-
-let testFdNumber;
-
 function SetCallBack(audioPlayer) {
-    audioRecorder.on('prepare', () => {              								// Set the 'prepare' event callback.
+    audioRecorder.on('prepare', () => {              								// 设置'prepare'事件回调
         console.log('prepare success');    
-        // The recording page is ready. You can click the Record button to start recording.
+        // 录制界面可切换至已准备好，可点击录制按钮进行录制
     });
-    audioRecorder.on('start', () => {    		     								// Set the 'start' event callback.
+    audioRecorder.on('start', () => {    		     								// 设置'start'事件回调
     	console.log('audio recorder start success');
-        // The Record button is changed to the pausable state.
+        // 将录制按钮切换至可暂停状态
     });  
-    audioRecorder.on('stop', () => {    		     								// Set the 'stop' event callback.
+    audioRecorder.on('stop', () => {    		     								// 设置'stop'事件回调
         console.log('audio recorder stop success');
     });    
-    audioRecorder.on('release', () => {    		     								// Set the 'release' event callback.
+    audioRecorder.on('release', () => {    		     								// 设置'release'事件回调
         console.log('audio recorder release success');
     });    
 }
-
-// pathName indicates the passed recording file name, for example, 01.mp3. The generated file address is /storage/media/100/local/files/Movies/01.mp3.
-// To use the media library, declare the following permissions: ohos.permission.MEDIA_LOCATION, ohos.permission.WRITE_MEDIA, and ohos.permission.READ_MEDIA.
-async function getFd(pathName) {
-    let displayName = pathName;
-    const mediaTest = mediaLibrary.getMediaLibrary();
-    let fileKeyObj = mediaLibrary.FileKey;
-    let mediaType = mediaLibrary.MediaType.VIDEO;
-    let publicPath = await mediaTest.getPublicDirectory(mediaLibrary.DirectoryType.DIR_VIDEO);
-    let dataUri = await mediaTest.createAsset(mediaType, displayName, publicPath);
-    if (dataUri != undefined) {
-        let args = dataUri.id.toString();
-        let fetchOp = {
-            selections : fileKeyObj.ID + "=?",
-            selectionArgs : [args],
-        }
-        let fetchFileResult = await mediaTest.getFileAssets(fetchOp);
-        let fileAsset = await fetchFileResult.getAllObject();
-        let fdNumber = await fileAsset[0].open('Rw');
-        fdNumber = "fd://" + fdNumber.toString();
-        testFdNumber = fdNumber;
-    }
-}
-
-await getFd('01.mp3');
-
-// 1. Create an AudioRecorder instance.
+// 1.创建实例
 let audioRecorder = media.createAudioRecorder();   
-// 2. Set the callbacks.
+// 2.设置回调
 SetCallBack(audioRecorder);       
-// 3. Set the recording parameters.
+// 3.设置录制参数
 let audioRecorderConfig = {
     audioEncoder : media.AudioEncoder.AAC_LC ,
     audioEncodeBitRate : 22050,
     audioSampleRate : 22050,
     numberOfChannels : 2,
     format : media.AudioOutputFormat.AAC_ADTS,
-    uri : testFdNumber,                             // testFdNumber is generated by getFd.
+    uri : 'file:///data/accounts/account_0/appdata/appdata/recorder/test.m4a',      // 文件需先由调用者创建，并给予适当的权限
     location : { latitude : 30, longitude : 130},
 }
 audioRecorder.prepare(audioRecorderConfig)
-// 4. Start recording.
-audioRecorder.start();                            	// The start method can be called to trigger the 'start' event callback only after the 'prepare' event callback is complete.
-// 5. Stop recording.
-audioRecorder.stop();                             	// The stop method can be called to trigger the 'stop' event callback only after the 'start' or 'resume' event callback is complete.
-// 6. Release resources.
-audioRecorder.release();                           	// The AudioRecorder resource is destroyed.
+// 4.开始录制
+audioRecorder.start();                            	// 需等待'prepare'事件回调完成后，才可调用start进行录制，触发'start'事件回调
+// 5.停止录制
+audioRecorder.stop();                             	// 需等待'start'或'resume'事件回调完成后，才可调用stop进行暂停，触发'stop'事件回调
+// 6.释放资源
+audioRecorder.release();                           	// audioRecorder资源被销毁
 audioRecorder = undefined;
 ```
+
