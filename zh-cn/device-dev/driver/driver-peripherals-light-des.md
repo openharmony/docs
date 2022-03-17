@@ -30,7 +30,7 @@
 
 **图 2**  Light驱动运行图
 
-![Light驱动运行图](figures/Light驱动运行图.png)
+![Light驱动运行图](figures/Light%E9%A9%B1%E5%8A%A8%E8%BF%90%E8%A1%8C%E5%9B%BE.png)
 
 Light驱动模型以标准系统Hi3516DV300为例，介绍整个驱动加载及运行流程：
 
