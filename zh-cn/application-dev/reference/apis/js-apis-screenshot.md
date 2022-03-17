@@ -17,7 +17,7 @@ import screenshot from '@ohos.screenshot';
 | ---------- | ------------- | ---- | ------------------------------------------------------------ |
 | screenRect | [Rect](#Rect) | 否   | 表示截取图像的区域，不传值默认为全屏。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
 | imageSize  | [Size](#Size) | 否   | 表示截取图像的大小，不传值默认为全屏。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
-| rotation   | number        | 否   | 表示截取图像的旋转角度，取值可为0、90、180、270，默认值为0。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+| rotation   | number        | 否   | 表示截取图像的旋转角度，当前仅支持输入值为0，默认值为0。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
 
 
 ## Rect
