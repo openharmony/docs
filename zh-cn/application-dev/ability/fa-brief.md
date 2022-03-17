@@ -12,10 +12,11 @@
 **pageAbility生命周期回调如下图所示：**
 
 ![fa-pageAbility-lifecycle](figures/fa-pageAbility-lifecycle.png)
+
 开发者可以在 app.js/app.ets 中重写生命周期函数，在对应的生命周期函数内处理应用相应逻辑。
 
 
 ## 进程线程模型
-应用独享独立进程，Ability独享独立线程，应用进程在Ability第一次启动时创建，并为启动的Ability创建线程，应启动后再启动应用内其他Ability，会创建相应的线程。每个Ability独享一个JSRuntime，因此Ability之间是隔离的。
+应用独享独立进程，Ability独享独立线程，应用进程在Ability第一次启动时创建，并为启动的Ability创建线程，应用启动后再启动应用内其他Ability，会为每一个Ability创建相应的线程。每个Ability绑定一个独立的JSRuntime实例，因此Ability之间是隔离的。
 
 ![fa-threading-nodel](figures/fa-threading-model.png)
