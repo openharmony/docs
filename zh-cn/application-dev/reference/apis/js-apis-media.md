@@ -71,7 +71,7 @@ media.createVideoPlayer((error, video) => {
 
 ## media.createVideoPlayer<sup>8+</sup>
 
-createVideoPlayer: Promise<[VideoPlayer](#videoplayer8)>
+createVideoPlayer(): Promise<[VideoPlayer](#videoplayer8)>
 
 异步方式创建视频播放实例，通过Promise获取返回值。
 
@@ -156,7 +156,7 @@ media.createVideoRecorder((error, video) => {
 
 ## media.createVideoRecorder<sup>8+</sup>
 
-createVideoRecorder: Promise<[VideoRecorder](#videorecorder8)>
+createVideoRecorder(): Promise<[VideoRecorder](#videorecorder8)>
 
 异步方式创建视频录制实例。通过Promise获取返回值。
 
@@ -279,11 +279,11 @@ Codec MIME类型枚举。
 
 | 名称        | 类型                      | 可读 | 可写 | 说明                                                         |
 | ----------- | ------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| src         | string                    | 是   | 是   | 音频媒体URI，支持当前主流的音频格式(mp4、aac、mp3、ogg)。<br>**支持路径示例**：<br>1、fd类型播放：fd://xxx<br>![zh-cn_image_0000001164217678](figures/zh-cn_image_url.png)<br>2、http网络播放路径：开发中<br>3、hls网络播放路径：开发中<br>**注意事项**：<br>使用媒体素材需要获取读权限，否则无法正常播放。<br/>**系统能力：** SystemCapability.Multimedia.Media.AudioPlayer |
-| loop        | boolean                   | 是   | 是   | 音频循环播放属性，设置为'true'表示循环播放。<br/>**系统能力：** SystemCapability.Multimedia.Media.AudioPlayer |
-| currentTime | number                    | 是   | 否   | 音频的当前播放位置。<br/>**系统能力：** SystemCapability.Multimedia.Media.AudioPlayer |
-| duration    | number                    | 是   | 否   | 音频时长。<br/>**系统能力：** SystemCapability.Multimedia.Media.AudioPlayer |
-| state       | [AudioState](#audiostate) | 是   | 否   | 音频播放的状态。<br/>**系统能力：** SystemCapability.Multimedia.Media.AudioPlayer |
+| src         | string                    | 是   | 是   | 音频媒体URI，支持当前主流的音频格式(mp4、aac、mp3、ogg)。<br>**支持路径示例**：<br>1. fd类型播放：fd://xxx<br>![zh-cn_image_0000001164217678](figures/zh-cn_image_url.png)<br>2. http网络播放路径：开发中<br>3. hls网络播放路径：开发中<br>**注意事项**：<br>使用媒体素材需要获取读权限，否则无法正常播放。 |
+| loop        | boolean                   | 是   | 是   | 音频循环播放属性，设置为'true'表示循环播放。                 |
+| currentTime | number                    | 是   | 否   | 音频的当前播放位置。                                         |
+| duration    | number                    | 是   | 否   | 音频时长。                                                   |
+| state       | [AudioState](#audiostate) | 是   | 否   | 音频播放的状态。                                             |
 
 ### play<a name=audioplayer_play></a>
 
@@ -1223,7 +1223,7 @@ await videoPlayer.release().then() => {
 
 ### getTrackDescription<sup>8+</sup>
 
-getTrackDescription(callback: AsyncCallback<Array<[MediaDescription](#mediadescription8>>)>>): void
+getTrackDescription(callback: AsyncCallback<Array<[MediaDescription](#mediadescription8)>>): void
 
 通过回调方式获取视频轨道信息。
 
@@ -1259,7 +1259,7 @@ videoPlayer.getTrackDescription((error, arrlist) => {
 
 ### getTrackDescription<sup>8+</sup>
 
-getTrackDescription(): Promise<Array<[MediaDescription](#mediadescription8>>)>>
+getTrackDescription(): Promise<Array<[MediaDescription](#mediadescription8)>>
 
 通过Promise方式获取视频轨道信息。
 
@@ -1267,9 +1267,9 @@ getTrackDescription(): Promise<Array<[MediaDescription](#mediadescription8>>)>>
 
 **返回值：**
 
-| 类型                                                     | 说明                            |
-| -------------------------------------------------------- | ------------------------------- |
-| Promise<Array<[MediaDescription](#mediadescription8>>)>> | 获取视频轨道信息Promise返回值。 |
+| 类型                                                   | 说明                            |
+| ------------------------------------------------------ | ------------------------------- |
+| Promise<Array<[MediaDescription](#mediadescription8)>> | 获取视频轨道信息Promise返回值。 |
 
 **示例：**
 
@@ -1518,7 +1518,7 @@ videoPlayer.setVolume(3);  //设置volume为无效值，触发'error'事件
 
 ## MediaDescription<sup>8+</sup>
 
-### [key : string] : any
+### [key : string] : Object
 
 通过key-value方式获取媒体信息。
 
