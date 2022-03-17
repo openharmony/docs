@@ -107,6 +107,8 @@ export default {
 }
 ```
 
+
+
 ## userIAM_userAuth.getAuthenticator<sup>(deprecated)</sup>
 
 getAuthenticator(): Authenticator
