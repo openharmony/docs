@@ -263,7 +263,8 @@ struct SdioDeviceOps {
 </tbody>
 </table>
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
+>![](../public_sys-resources/icon-note.gif) **NOTE** 
+
 >CommonInfo includes the following information:
 >-   **maxBlockNum**: specifies the maximum number of blocks in a request.
 >-   **maxBlockSize**: specifies the maximum number of bytes in a block.
@@ -279,7 +280,7 @@ The SDIO module adaptation involves the following steps:
 
 1.  Instantiate the driver entry.
     -   Instantiate the  **HdfDriverEntry**  structure.
-    -   Call  **HDF\_INIT**  to register the  **HdfDriverEntry**  instance with the HDF framework.
+    -   Call  **HDF\_INIT**  to register the  **HdfDriverEntry**  instance with the HDF.
 
 2.  Configure attribute files.
     -   Add the  **deviceNode**  information to the  **device\_info.hcs**  file.
@@ -289,8 +290,9 @@ The SDIO module adaptation involves the following steps:
     -   Initialize  **SdioDevice**.
     -   Instantiate  **SdioDeviceOps**  in the  **SdioDevice**  object.
 
-        >![](../public_sys-resources/icon-note.gif) **NOTE:** 
-        >For details, see  [SdioDeviceOps](#section482911395315)  and  [Table 1](#table878215448417).
+        >![](../public_sys-resources/icon-note.gif) **NOTE** 
+
+        >For details, see [Available APIs](#availableapis).
 
 
 4.  Debug the driver.
@@ -301,7 +303,7 @@ The SDIO module adaptation involves the following steps:
 
 The following uses  **sdio\_adapter.c**  as an example to present the contents that need to be provided by the vendor to implement device functions.
 
-1.  Instantiate the driver entry. The driver entry must be a global variable of the  **HdfDriverEntry**  type \(defined in  **hdf\_device\_desc.h**\), and the value of  **moduleName**  must be the same as that in  **device\_info.hcs**. In the HDF framework, the start address of each  **HdfDriverEntry**  object of all loaded drivers is collected to form a segment address space similar to an array for the upper layer to invoke.
+1.  Instantiate the driver entry. The driver entry must be a global variable of the  **HdfDriverEntry**  type \(defined in  **hdf\_device\_desc.h**\), and the value of  **moduleName**  must be the same as that in  **device\_info.hcs**. In the HDF, the start address of each  **HdfDriverEntry**  object of all loaded drivers is collected to form a segment address space similar to an array for the upper layer to invoke.
 
     Generally, HDF calls the  **Bind**  function and then the  **Init**  function to load a driver. If  **Init**  fails to be called, HDF calls  **Release**  to release driver resources and exit.
 
@@ -315,7 +317,7 @@ The following uses  **sdio\_adapter.c**  as an example to present the contents t
             .Release = Hi35xxLinuxSdioRelease// See the Release function.
            .moduleName = "HDF_PLATFORM_SDIO",// (Mandatory) The value must be the same as that of moduleName in the .hcs file.
         };
-        // Call HDF_INIT to register the driver entry with the HDF framework.
+        // Call HDF_INIT to register the driver entry with the HDF.
         HDF_INIT(g_sdioDriverEntry);
         ```
 
@@ -542,7 +544,7 @@ The following uses  **sdio\_adapter.c**  as an example to present the contents t
 
         Function description:
 
-        Releases the memory and deletes the controller. This function assigns a value to the  **Release**  API in the driver entry structure. When the HDF framework fails to call the  **Init**  function to initialize the driver, the  **Release**  function can be called to release driver resources. All forced conversion operations for obtaining the corresponding object can be successful only when the  **Bind**  function has the corresponding value assignment operations.
+        Releases the memory and deletes the controller. This function assigns a value to the  **Release**  API in the driver entry structure. When the HDF fails to call the  **Init**  function to initialize the driver, the  **Release**  function can be called to release driver resources. All forced conversion operations for obtaining the corresponding object can be successful only when the  **Bind**  function has the corresponding value assignment operations.
 
 
     ```
