@@ -65,6 +65,7 @@ The regulator module adaptation involves the following steps:
    - Instantiate **RegulatorMethod**.
    
         >![](../public_sys-resources/icon-note.gif) **NOTE**
+
         >For details, see [Available APIs](#section2_REGULATORDevelop).
    
 4. Debug the driver.
