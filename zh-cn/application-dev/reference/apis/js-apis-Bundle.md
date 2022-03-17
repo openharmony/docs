@@ -1542,7 +1542,7 @@ Ability信息
 | labelId            | number                                                       | 是   | 否   | Ability的标签id                           |
 | subType            | AbilitySubType | 是   | 否   | Ability中枚举使用的模板的子类型           |
 | metaData | Array<CustomizeData> | 是 | 否 | ability的自定义信息 |
-| metaData | Array<Metadata> | 是 | 否 | ability的自定义元信息 |
+| metaData | Array<Metadata> | 是 | 否 | ability的元信息 |
 | enabled | boolean | 是 | 否 | ability是否可用 |
 
 ## AbilityType
