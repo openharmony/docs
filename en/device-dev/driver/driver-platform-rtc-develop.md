@@ -195,6 +195,7 @@ The RTC module adaptation involves the following steps:
     -   Instantiate  **RtcMethod**  in the  **RtcHost**  object.
 
         >![](../public_sys-resources/icon-note.gif) **NOTE** 
+
         >For details, see [Available APIs](#availableapis).
 
 
