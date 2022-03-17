@@ -20,7 +20,7 @@
 Sensor驱动模型屏蔽硬件器件差异，为上层Sensor服务系统提供稳定的Sensor基础能力接口，包括Sensor列表查询、Sensor启停、Sensor订阅及取消订阅，Sensor参数配置等功能；Sensor设备驱动的开发是基于HDF驱动框架基础上，结合操作系统适配层（OSAL）和平台驱动接口（比如I2C/SPI/UART总线等平台资源）能力，屏蔽不同操作系统和平台总线资源差异，实现Sensor驱动“一次开发，多系统部署”的目标。Sensor驱动模型如[图1](#fig10451455446)所示：<a name="section3634112111"></a>
 
 **图 1**  Sensor驱动模型图<a name="fig10451455446"></a>  
-![Sensor驱动模型图](figures/Sensor驱动模型图.png)
+![Sensor驱动模型图](figures/Sensor%E9%A9%B1%E5%8A%A8%E6%A8%A1%E5%9E%8B%E5%9B%BE.png)
 
 ### 基本概念
 
@@ -36,7 +36,7 @@ Sensor驱动模型屏蔽硬件器件差异，为上层Sensor服务系统提供�
 
 **图 2** Sensor驱动运行图
 
-![Sensor驱动运行图](figures/Sensor驱动运行图.png)
+![Sensor驱动运行图](figures/Sensor%E9%A9%B1%E5%8A%A8%E8%BF%90%E8%A1%8C%E5%9B%BE.png)
 
 Sensor驱动模型以标准系统Hi3516DV300产品中的加速度传感器驱动为例，介绍整个驱动加载及运行流程：
 
@@ -121,14 +121,14 @@ Sensor驱动模型对外开放的API接口能力的具体实现参考[表1](#tab
 </tr>
 <tr id="row939914814478"><td class="cellrowborder" rowspan="2" valign="top" width="8.260000000000002%" headers="mcps1.2.4.1.1 "><p id="p1039815743211"><a name="p1039815743211"></a><a name="p1039815743211"></a>数据订阅操作</p>
 </td>
-<td class="cellrowborder" valign="top" width="45.4%" headers="mcps1.2.4.1.2 "><p id="p11530101054411"><a name="p11530101054411"></a><a name="p11530101054411"></a>int32_t <strong id="b0569161217334"><a name="b0569161217334"></a><a name="b0569161217334"></a>Register</strong>(sensorId, RecordDataCallback cb);</p>
+<td class="cellrowborder" valign="top" width="45.4%" headers="mcps1.2.4.1.2 "><p id="p11530101054411"><a name="p11530101054411"></a><a name="p11530101054411"></a>int32_t <strong id="b0569161217334"><a name="b0569161217334"></a><a name="b0569161217334"></a>Register</strong>(int32_t groupId, RecordDataCallback cb);</p>
 </td>
-<td class="cellrowborder" valign="top" width="46.339999999999996%" headers="mcps1.2.4.1.3 "><p id="p892633118493"><a name="p892633118493"></a><a name="p892633118493"></a>订阅者根据不同sensorId注册传感器数据回调函数，系统会将获取到的传感器数据上报给订阅者。</p>
+<td class="cellrowborder" valign="top" width="46.339999999999996%" headers="mcps1.2.4.1.3 "><p id="p892633118493"><a name="p892633118493"></a><a name="p892633118493"></a>订阅者根据不同groupId注册传感器数据回调函数，系统会将获取到的传感器数据上报给订阅者。</p>
 </td>
 </tr>
-<tr id="row10716713314"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p196491214133110"><a name="p196491214133110"></a><a name="p196491214133110"></a>int32_t <strong id="b13758151483317"><a name="b13758151483317"></a><a name="b13758151483317"></a>Unregister</strong>(sensorId, RecordDataCallback cb)</p>
+<tr id="row10716713314"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p196491214133110"><a name="p196491214133110"></a><a name="p196491214133110"></a>int32_t <strong id="b13758151483317"><a name="b13758151483317"></a><a name="b13758151483317"></a>Unregister</strong>(int32_t groupId, RecordDataCallback cb)</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p5817133119"><a name="p5817133119"></a><a name="p5817133119"></a>订阅者根据sensorId和回调函数注销对应订阅者的传感器数据回调函数。</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p5817133119"><a name="p5817133119"></a><a name="p5817133119"></a>订阅者根据groupId和回调函数注销对应订阅者的传感器数据回调函数。</p>
 </td>
 </tr>
 </tbody>

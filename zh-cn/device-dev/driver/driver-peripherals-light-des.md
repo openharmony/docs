@@ -22,7 +22,7 @@
 
 **图 1**  Light驱动模型图
 
-![Light驱动模型图](figures/Light驱动模型图.png)
+![Light驱动模型图](figures/Light%E9%A9%B1%E5%8A%A8%E6%A8%A1%E5%9E%8B%E5%9B%BE.png)
 
 ### 运作机制
 
