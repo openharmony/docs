@@ -53,8 +53,9 @@ In the HDF, the HDMI module uses the independent service mode for API adaptation
     };
     ```
 
-    **Table 1** APIs for the members in the HdmiCntlrOps structure
+    
 
+**Table 1** APIs for the members in the HdmiCntlrOps structure
    | Method| Input Parameter| Output Parameter| Return Value| Description|
    | ------------------------ | ------------------------------------------------------------ | -------------------------------------- | ------------------ | -------------------------------------------------- |
    | hardWareInit             | **cntlr**: structure pointer to an HDMI controller at the core layer.| –| –| Initializes HDMI hardware.|
