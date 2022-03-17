@@ -92,7 +92,7 @@ audioRecorder = undefined;
 与全流程场景不同，不包括暂停录制，恢复录制的过程。
 
 ```js
-function SetCallBack(audioPlayer) {
+function SetCallBack(audioRecorder) {
     audioRecorder.on('prepare', () => {              								// 设置'prepare'事件回调
         console.log('prepare success');    
         // 录制界面可切换至已准备好，可点击录制按钮进行录制
