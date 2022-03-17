@@ -174,6 +174,6 @@ unmount(volumeId: string, callback:AsyncCallback&lt;boolean&gt;):void
 | id<sup>9+</sup>          | number  | 卷id                 |
 | uuid<sup>9+</sup>        | string  | 卷uuid               |
 | description<sup>9+</sup> | string  | 卷相关描述           |
-| removeAble<sup>9+</sup>  | boolean | 是否为可移动存储设备 |
+| removAble<sup>9+</sup>  | boolean | 是否为可移动存储设备 |
 | state<sup>9+</sup>       | int     | 当前卷状态           |
 | path<sup>9+</sup>        | string  | 卷的挂载地址         |
