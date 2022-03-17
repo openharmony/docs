@@ -79,8 +79,9 @@ The PWM module adaptation involves the following steps:
     -   Initialize  **PwmDev**.
     -   Instantiate  **PwmMethod**  in the  **PwmDev**  object.
 
-        >![](../public_sys-resources/icon-note.gif) **NOTE:** 
-        >For details, see  [PwmMethod](#section14560119104318)  and  [Table 1](#table11173154124311).
+        >![](../public_sys-resources/icon-note.gif) **NOTE** 
+
+        >For details, see [Available APIs](#availableapis).
 
 
 4.  Debug the driver.
