@@ -22,7 +22,7 @@
     - [Development Guidelines on Media Playback](subsys-multimedia-video-play-guide.md)
     - [Development Guidelines on Media Recording](subsys-multimedia-video-record-guide.md)
 - [Utils](subsys-utils.md)
-  - [Utils Overview](subsys_utils_overview.md)
+  - [Utils Overview](subsys-utils-overview.md)
   - [Utils Development Guidelines](subsys_utils_guide.md)
   - [Utils FAQ](subsys_utils_faqs.md)
 - [AI Framework](subsys-aiframework.md)
