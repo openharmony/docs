@@ -187,7 +187,7 @@ To ensure its integrity and non-repudiation, the security level information must
 
 The DSLM module provides default implementation of security level information synchronization and verification. It is assumed that the security level of all OpenHarmony devices is SL1, and a loose verification scheme is used. For details, see the [source code](https://gitee.com/openharmony/security_device_security_level/tree/master/oem_property/ohos).
 
-You can change the device security level as required. For details about the OpenHarmony device security levels, see [Basic Concepts](#Basic_Concepts). You can also use more severe verification schemes, including but are not limited to using device-specific credential, periodically downloading updated credentials from a server and strictly authenticating the issuer and validity period of the credentials, and using Trusted Execution Environment (TEE) or even Secure Element (SE) to sign credential files.
+You can change the device security level as required. For details about the OpenHarmony device security levels, see [Basic Concepts](#basicconcepts). You can also use more severe verification schemes, including but are not limited to using device-specific credential, periodically downloading updated credentials from a server and strictly authenticating the issuer and validity period of the credentials, and using Trusted Execution Environment (TEE) or even Secure Element (SE) to sign credential files.
 
 ### Generating a Credential File
 
