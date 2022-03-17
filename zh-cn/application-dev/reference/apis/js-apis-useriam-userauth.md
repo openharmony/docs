@@ -114,7 +114,7 @@ getAuthenticator(): Authenticator
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 从 API Version 8 开始废弃，建议使用[constructor](#constructor8)替代。
 
-获取Authenticator对象，用于执行用户身份认证。<sup>6+</sup>
+获取Authenticator对象，用于执行用户身份认证。
 
 **需要权限**：ohos.permission.ACCESS_BIOMETRIC
 
