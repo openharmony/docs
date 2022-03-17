@@ -1,48 +1,27 @@
-# Shape Clipping<a name="EN-US_TOPIC_0000001237555111"></a>
+# Shape Clipping
 
->![](../../public_sys-resources/icon-note.gif) **NOTE:** 
->This attribute is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
-## Required Permissions<a name="section781125411508"></a>
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> This attribute is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+
+
+## Required Permissions
 
 None
 
-## Attributes<a name="section6820191711316"></a>
 
-<a name="table146051414275"></a>
-<table><thead align="left"><tr id="row668017152712"><th class="cellrowborder" valign="top" width="14.19%" id="mcps1.1.5.1.1"><p id="p668014113277"><a name="p668014113277"></a><a name="p668014113277"></a>Name</p>
-</th>
-<th class="cellrowborder" valign="top" width="19.52%" id="mcps1.1.5.1.2"><p id="p1568031172711"><a name="p1568031172711"></a><a name="p1568031172711"></a>Type</p>
-</th>
-<th class="cellrowborder" valign="top" width="15.07%" id="mcps1.1.5.1.3"><p id="p1068081122712"><a name="p1068081122712"></a><a name="p1068081122712"></a>Default Value</p>
-</th>
-<th class="cellrowborder" valign="top" width="51.22%" id="mcps1.1.5.1.4"><p id="p186806116274"><a name="p186806116274"></a><a name="p186806116274"></a>Description</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row1068015110273"><td class="cellrowborder" valign="top" width="14.19%" headers="mcps1.1.5.1.1 "><p id="p156804114277"><a name="p156804114277"></a><a name="p156804114277"></a>clip</p>
-</td>
-<td class="cellrowborder" valign="top" width="19.52%" headers="mcps1.1.5.1.2 "><p id="p1668071182718"><a name="p1668071182718"></a><a name="p1668071182718"></a>Shape | boolean</p>
-</td>
-<td class="cellrowborder" valign="top" width="15.07%" headers="mcps1.1.5.1.3 "><p id="p368017172715"><a name="p368017172715"></a><a name="p368017172715"></a>false</p>
-</td>
-<td class="cellrowborder" valign="top" width="51.22%" headers="mcps1.1.5.1.4 "><p id="p10680151172719"><a name="p10680151172719"></a><a name="p10680151172719"></a>Specifies a clip mode. The value <strong id="b163820313918"><a name="b163820313918"></a><a name="b163820313918"></a>Shape</strong> indicates that the current component is cropped based on the specified shape. The value <strong id="b68195717910"><a name="b68195717910"></a><a name="b68195717910"></a>boolean</strong> specifies whether to clip the component based on the edge outline.</p>
-</td>
-</tr>
-<tr id="row2068091122714"><td class="cellrowborder" valign="top" width="14.19%" headers="mcps1.1.5.1.1 "><p id="p12680817272"><a name="p12680817272"></a><a name="p12680817272"></a>mask</p>
-</td>
-<td class="cellrowborder" valign="top" width="19.52%" headers="mcps1.1.5.1.2 "><p id="p668010119272"><a name="p668010119272"></a><a name="p668010119272"></a>Shape</p>
-</td>
-<td class="cellrowborder" valign="top" width="15.07%" headers="mcps1.1.5.1.3 "><p id="p196818116273"><a name="p196818116273"></a><a name="p196818116273"></a>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="51.22%" headers="mcps1.1.5.1.4 "><p id="p168115111272"><a name="p168115111272"></a><a name="p168115111272"></a>Adds a mask of the specified shape to the current component.</p>
-</td>
-</tr>
-</tbody>
-</table>
+## Attributes
 
-## Example<a name="section1794417203411"></a>
 
+  | Name | Type | Default&nbsp;Value | Description | 
+| -------- | -------- | -------- | -------- |
+| clip | Shape&nbsp;\|&nbsp;boolean | false | Specifies&nbsp;a&nbsp;clip&nbsp;mode.&nbsp;The&nbsp;value&nbsp;**Shape**&nbsp;indicates&nbsp;that&nbsp;the&nbsp;current&nbsp;component&nbsp;is&nbsp;cropped&nbsp;based&nbsp;on&nbsp;the&nbsp;specified&nbsp;shape.&nbsp;The&nbsp;value&nbsp;**boolean**&nbsp;specifies&nbsp;whether&nbsp;to&nbsp;clip&nbsp;the&nbsp;component&nbsp;based&nbsp;on&nbsp;the&nbsp;edge&nbsp;outline. | 
+| mask | Shape | - | Adds&nbsp;a&nbsp;mask&nbsp;of&nbsp;the&nbsp;specified&nbsp;shape&nbsp;to&nbsp;the&nbsp;current&nbsp;component. | 
+
+
+## Example
+
+  
 ```
 @Entry
 @Component
@@ -78,5 +57,4 @@ struct ClipAndMaskExample {
 }
 ```
 
-![](figures/clip.png)
-
+![en-us_image_0000001212218452](figures/en-us_image_0000001212218452.png)

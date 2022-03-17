@@ -1,49 +1,26 @@
-# Layout Constraints<a name="EN-US_TOPIC_0000001192915124"></a>
+# Layout Constraints
 
->![](../../public_sys-resources/icon-note.gif) **NOTE:** 
->This attribute is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
-## Required Permissions<a name="section781125411508"></a>
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> This attribute is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+
+
+## Required Permissions
 
 None
 
-## Attributes<a name="section6820191711316"></a>
 
-<a name="table2938mcpsimp"></a>
-<table><thead align="left"><tr id="row2946mcpsimp"><th class="cellrowborder" valign="top" width="19.781978197819782%" id="mcps1.1.5.1.1"><p id="p2948mcpsimp"><a name="p2948mcpsimp"></a><a name="p2948mcpsimp"></a>Name</p>
-</th>
-<th class="cellrowborder" valign="top" width="15.38153815381538%" id="mcps1.1.5.1.2"><p id="p2950mcpsimp"><a name="p2950mcpsimp"></a><a name="p2950mcpsimp"></a>Type</p>
-</th>
-<th class="cellrowborder" valign="top" width="8.720872087208722%" id="mcps1.1.5.1.3"><p id="p2952mcpsimp"><a name="p2952mcpsimp"></a><a name="p2952mcpsimp"></a>Default Value</p>
-</th>
-<th class="cellrowborder" valign="top" width="56.11561156115612%" id="mcps1.1.5.1.4"><p id="p2956mcpsimp"><a name="p2956mcpsimp"></a><a name="p2956mcpsimp"></a>Description</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row2968mcpsimp"><td class="cellrowborder" valign="top" width="19.781978197819782%" headers="mcps1.1.5.1.1 "><p id="p2970mcpsimp"><a name="p2970mcpsimp"></a><a name="p2970mcpsimp"></a>aspectRatio</p>
-</td>
-<td class="cellrowborder" valign="top" width="15.38153815381538%" headers="mcps1.1.5.1.2 "><p id="p2972mcpsimp"><a name="p2972mcpsimp"></a><a name="p2972mcpsimp"></a>number</p>
-</td>
-<td class="cellrowborder" valign="top" width="8.720872087208722%" headers="mcps1.1.5.1.3 "><p id="p2974mcpsimp"><a name="p2974mcpsimp"></a><a name="p2974mcpsimp"></a>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="56.11561156115612%" headers="mcps1.1.5.1.4 "><p id="p2978mcpsimp"><a name="p2978mcpsimp"></a><a name="p2978mcpsimp"></a>Specifies an aspect ratio for the current component.</p>
-</td>
-</tr>
-<tr id="row2979mcpsimp"><td class="cellrowborder" valign="top" width="19.781978197819782%" headers="mcps1.1.5.1.1 "><p id="p2981mcpsimp"><a name="p2981mcpsimp"></a><a name="p2981mcpsimp"></a>displayPriority</p>
-</td>
-<td class="cellrowborder" valign="top" width="15.38153815381538%" headers="mcps1.1.5.1.2 "><p id="p2983mcpsimp"><a name="p2983mcpsimp"></a><a name="p2983mcpsimp"></a>number</p>
-</td>
-<td class="cellrowborder" valign="top" width="8.720872087208722%" headers="mcps1.1.5.1.3 "><p id="p2985mcpsimp"><a name="p2985mcpsimp"></a><a name="p2985mcpsimp"></a>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="56.11561156115612%" headers="mcps1.1.5.1.4 "><p id="p76035219317"><a name="p76035219317"></a><a name="p76035219317"></a>Sets a display priority for the current component in the layout container. When the space of the parent container is insufficient, the component with a lower priority is hidden.</p>
-<div class="note" id="note5552927146"><a name="note5552927146"></a><a name="note5552927146"></a><span class="notetitle"> NOTE: </span><div class="notebody"><p id="p86651195410"><a name="p86651195410"></a><a name="p86651195410"></a>This parameter is valid only for the Row/Column/Flex (single-row) container component.</p>
-</div></div>
-</td>
-</tr>
-</tbody>
-</table>
+## Attributes
 
-## Example<a name="section12073184715"></a>
+
+  | Name | Type | Default&nbsp;Value | Description | 
+| -------- | -------- | -------- | -------- |
+| aspectRatio | number | - | Specifies&nbsp;an&nbsp;aspect&nbsp;ratio&nbsp;for&nbsp;the&nbsp;current&nbsp;component. | 
+| displayPriority | number | - | Sets&nbsp;a&nbsp;display&nbsp;priority&nbsp;for&nbsp;the&nbsp;current&nbsp;component&nbsp;in&nbsp;the&nbsp;layout&nbsp;container.&nbsp;When&nbsp;the&nbsp;space&nbsp;of&nbsp;the&nbsp;parent&nbsp;container&nbsp;is&nbsp;insufficient,&nbsp;the&nbsp;component&nbsp;with&nbsp;a&nbsp;lower&nbsp;priority&nbsp;is&nbsp;hidden.<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**NOTE：**<br/>>&nbsp;This&nbsp;parameter&nbsp;is&nbsp;valid&nbsp;only&nbsp;for&nbsp;the&nbsp;Row/Column/Flex&nbsp;(single-row)&nbsp;container&nbsp;component. | 
+
+
+## Example
+
 
 ```
 @Entry
@@ -93,11 +70,12 @@ struct AspectRatioExample {
 }
 ```
 
-**Figure  1**  Portrait display<a name="fig113193013010"></a>  
-![](figures/portrait-display.gif "portrait-display")
+  **Figure1** Portrait display
+  ![en-us_image_0000001256978379](figures/en-us_image_0000001256978379.gif)
 
-**Figure  2**  Landscape display<a name="fig1245012267316"></a>  
-![](figures/landscape-display.gif "landscape-display")
+  **Figure2** Landscape display
+  ![en-us_image_0000001212218476](figures/en-us_image_0000001212218476.gif)
+
 
 ```
 class ContainerInfo {
@@ -150,5 +128,4 @@ struct DisplayPriorityExample {
 
 ```
 
-![](figures/displaypriorityexample.gif)
-
+![en-us_image_0000001212058504](figures/en-us_image_0000001212058504.gif)

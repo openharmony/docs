@@ -1,20 +1,20 @@
-# Media
+# 媒体服务
 
-> **NOTE**
-> The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> **说明：**
+> 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-The multimedia subsystem provides a set of simple and easy-to-use APIs for you to access the system and use media resources.
+媒体子系统为开发者提供一套简单且易于理解的接口，使得开发者能够方便接入系统并使用系统的媒体资源。
 
-This subsystem offers various media services covering audio and video, which provide the following capabilities:
+媒体子系统包含了音视频相关媒体业务，提供以下常用功能：
 
-- Audio playback ([AudioPlayer](#audioplayer))
-- Video playback ([VideoPlayer](#videoplayer8))
-- Audio recording ([AudioRecorder](#audiorecorder))
-- Video recording ([VideoRecorder](#VideoRecorder<sup>8+</sup>))
+- 音频播放（[AudioPlayer](#audioplayer)）
+- 视频播放（[VideoPlayer](#videoplayer8)）
+- 音频录制（[AudioRecorder](#audiorecorder)）
+- 视频录制（[VideoRecorder](#VideoRecorder<sup>8+</sup>)）
 
-The following capabilities will be provided in later versions: data source audio/video playback, audio/video encoding and decoding, container encapsulation and decapsulation, and media capability query.
+后续将提供以下功能：DataSource音视频播放、音视频编解码、容器封装解封装、媒体能力查询等功能。
 
-## Modules to Import
+## 导入模块
 
 ```js
 import media from '@ohos.multimedia.media';
@@ -24,17 +24,17 @@ import media from '@ohos.multimedia.media';
 
 createAudioPlayer(): [AudioPlayer](#audioplayer)
 
-Creates an **AudioPlayer** instance in synchronous mode.
+同步方式创建音频播放实例。
 
-**System capability**: SystemCapability.Multimedia.Media.AudioPlayer
+**系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
-**Return value**
+**返回值：**
 
-| Type                       | Description                                                        |
+| 类型                        | 说明                                                         |
 | --------------------------- | ------------------------------------------------------------ |
-| [AudioPlayer](#audioplayer) | Returns the **AudioPlayer** instance if the operation is successful; returns **null** otherwise. After the instance is created, you can start, pause, or stop audio playback.|
+| [AudioPlayer](#audioplayer) | 返回AudioPlayer类实例，失败时返回null。可用于音频播放、暂停、停止等操作。 |
 
-**Example**
+**示例：**
 
 ```js
 let audioPlayer = media.createAudioPlayer();
@@ -44,17 +44,17 @@ let audioPlayer = media.createAudioPlayer();
 
 createVideoPlayer(callback: AsyncCallback\<[VideoPlayer](#videoplayer8)>): void
 
-Creates a **VideoPlayer** instance in asynchronous mode. This API uses a callback to return the result.
+异步方式创建视频播放实例，通过注册回调函数获取返回值。
 
-**System capability**: SystemCapability.Multimedia.Media.VideoPlayer
+**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
-**Parameters**
+**参数：**
 
-| Name  | Type                                       | Mandatory| Description                          |
+| 参数名   | 类型                                        | 必填 | 说明                           |
 | -------- | ------------------------------------------- | ---- | ------------------------------ |
-| callback | AsyncCallback<[VideoPlayer](#videoplayer8)> | Yes  | Callback used to return the **VideoPlayer** instance created.|
+| callback | AsyncCallback<[VideoPlayer](#videoplayer8)> | 是   | 异步创建视频播放实例回调方法。 |
 
-**Example**
+**示例：**
 
 ```js
 let videoPlayer
@@ -71,19 +71,19 @@ media.createVideoPlayer((error, video) => {
 
 ## media.createVideoPlayer<sup>8+</sup>
 
-createVideoPlayer: Promise<[VideoPlayer](#videoplayer8)>
+createVideoPlayer(): Promise<[VideoPlayer](#videoplayer8)>
 
-Creates a **VideoPlayer** instance in asynchronous mode. This API uses a promise to return the result.
+异步方式创建视频播放实例，通过Promise获取返回值。
 
-**System capability**: SystemCapability.Multimedia.Media.VideoPlayer
+**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
-**Return value**
+**返回值：**
 
-| Type                                 | Description                               |
+| 类型                                  | 说明                                |
 | ------------------------------------- | ----------------------------------- |
-| Promise<[VideoPlayer](#videoplayer8)> | Promise used to return the **VideoPlayer** instance created.|
+| Promise<[VideoPlayer](#videoplayer8)> | 异步创建视频播放实例Promise返回值。 |
 
-**Example**
+**示例：**
 
 ```js
 let videoPlayer
@@ -109,17 +109,17 @@ await media.createVideoPlayer.then((video) => {
 
 createAudioRecorder(): AudioRecorder
 
-Creates an **AudioRecorder** instance to control audio recording.
+创建音频录制的实例来控制音频的录制。
 
-**System capability**: SystemCapability.Multimedia.Media.AudioRecorder
+**系统能力：** SystemCapability.Multimedia.Media.AudioRecorder
 
-**Return value**
+**返回值:**
 
-| Type                           | Description                                     |
+| 类型                            | 说明                                      |
 | ------------------------------- | ----------------------------------------- |
-| [AudioRecorder](#audiorecorder) | Returns the **AudioRecorder** instance if the operation is successful; returns **null** otherwise.|
+| [AudioRecorder](#audiorecorder) | 返回AudioRecorder类实例，失败时返回null。 |
 
-**Example**
+**示例：**
 
 ```js
 let audiorecorder = media.createAudioRecorder(); 
@@ -129,17 +129,17 @@ let audiorecorder = media.createAudioRecorder();
 
 createVideoRecorder(callback: AsyncCallback\<[VideoRecorder](#videorecorder8)>): void
 
-Creates a **VideoRecorder** instance in asynchronous mode. This API uses a callback to return the result.
+异步方式创建视频录制实例。通过注册回调函数获取返回值。
 
-**System capability**: SystemCapability.Multimedia.Media.VideoRecorder
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
-**Parameters**
+**参数：**
 
-| Name  | Type                                           | Mandatory| Description                          |
+| 参数名   | 类型                                            | 必填 | 说明                           |
 | -------- | ----------------------------------------------- | ---- | ------------------------------ |
-| callback | AsyncCallback<[VideoRecorder](#videorecorder8)> | Yes  | Callback used to return the **VideoRecorder** instance created.|
+| callback | AsyncCallback<[VideoRecorder](#videorecorder8)> | 是   | 异步创建视频录制实例回调方法。 |
 
-**Example**
+**示例：**
 
 ```js
 let videoRecorder
@@ -156,19 +156,19 @@ media.createVideoRecorder((error, video) => {
 
 ## media.createVideoRecorder<sup>8+</sup>
 
-createVideoRecorder: Promise<[VideoRecorder](#videorecorder8)>
+createVideoRecorder(): Promise<[VideoRecorder](#videorecorder8)>
 
-Creates a **VideoRecorder** instance in asynchronous mode. This API uses a promise to return the result.
+异步方式创建视频录制实例。通过Promise获取返回值。
 
-**System capability**: SystemCapability.Multimedia.Media.VideoRecorder
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
-**Return value**
+**返回值：**
 
-| Type                                     | Description                               |
+| 类型                                      | 说明                                |
 | ----------------------------------------- | ----------------------------------- |
-| Promise<[VideoRecorder](#videorecorder8)> | Promise used to return the **VideoRecorder** instance created.|
+| Promise<[VideoRecorder](#videorecorder8)> | 异步创建视频录制实例Promise返回值。 |
 
-**Example**
+**示例：**
 
 ```js
 let videoRecorder
@@ -194,97 +194,109 @@ await media.createVideoRecorder.then((video) => {
 
 ## MediaErrorCode<sup>8+</sup>
 
-Enumerates the media error codes.
+媒体服务错误类型枚举。
 
-| Name                      | Value  | Description                                                        |
-| -------------------------- | ---- | ------------------------------------------------------------ |
-| MSERR_OK                   | 0    | The operation is successful.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
-| MSERR_NO_MEMORY            | 1    | Failed to allocate memory. The system may have no available memory.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
-| MSERR_OPERATION_NOT_PERMIT | 2    | No permission to perform this operation.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
-| MSERR_INVALID_VAL          | 3    | Invalid input parameter.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
-| MSERR_IO                   | 4    | An I/O error occurs.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
-| MSERR_TIMEOUT              | 5    | The operation times out.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
-| MSERR_UNKNOWN              | 6    | An unknown error occurs.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
-| MSERR_SERVICE_DIED         | 7    | Invalid server.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
-| MSERR_INVALID_STATE        | 8    | The operation is not allowed in the current state.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
-| MSERR_UNSUPPORTED          | 9    | The operation is not supported in the current version.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
+**系统能力：** 以下各项对应的系统能力均为 SystemCapability.Multimedia.Media.Core。
+
+| 名称                       | 值   | 说明                                   |
+| -------------------------- | ---- | -------------------------------------- |
+| MSERR_OK                   | 0    | 表示操作成功。                         |
+| MSERR_NO_MEMORY            | 1    | 表示申请内存失败，系统可能无可用内存。 |
+| MSERR_OPERATION_NOT_PERMIT | 2    | 表示无权限执行此操作。                 |
+| MSERR_INVALID_VAL          | 3    | 表示传入入参无效。                     |
+| MSERR_IO                   | 4    | 表示发生IO错误。                       |
+| MSERR_TIMEOUT              | 5    | 表示操作超时。                         |
+| MSERR_UNKNOWN              | 6    | 表示未知错误。                         |
+| MSERR_SERVICE_DIED         | 7    | 表示服务端失效。                       |
+| MSERR_INVALID_STATE        | 8    | 表示在当前状态下，不允许执行此操作。   |
+| MSERR_UNSUPPORTED          | 9    | 表示在当前版本下，不支持此操作。       |
 
 ## MediaType<sup>8+</sup>
 
-Enumerates the media types.
+媒体类型枚举。
 
-| Name          | Value  | Description                                                        |
-| -------------- | ---- | ------------------------------------------------------------ |
-| MEDIA_TYPE_AUD | 0    | Media.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
-| MEDIA_TYPE_VID | 1    | Video.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
+**系统能力：** 以下各项对应的系统能力均为 SystemCapability.Multimedia.Media.Core。
+
+| 名称           | 值   | 说明       |
+| -------------- | ---- | ---------- |
+| MEDIA_TYPE_AUD | 0    | 表示音频。 |
+| MEDIA_TYPE_VID | 1    | 表示视频。 |
 
 ## CodecMimeType<sup>8+</sup>
 
-Enumerates the codec MIME types.
+Codec MIME类型枚举。
 
-| Name        | Value               | Description                                                        |
-| ------------ | ----------------- | ------------------------------------------------------------ |
-| VIDEO_MPEG4  | "video/mp4v-es"  | Video in MPEG-4 format.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
-| AUDIO_AAC    | "audio/mp4a-latm" | Audio in MP4A-LATM format.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
-| AUDIO_VORBIS | "audio/vorbis"    | Audio in Vorbis format.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
-| AUDIO_FLAC   | "audio/flac"      | Audio in FLAC format.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
+**系统能力：** 以下各项对应的系统能力均为 SystemCapability.Multimedia.Media.Core。
+
+| 名称         | 值                | 说明                     |
+| ------------ | ----------------- | ------------------------ |
+| VIDEO_MPEG4  | ”video/mp4v-es“   | 表示视频/mpeg4类型。     |
+| AUDIO_AAC    | "audio/mp4a-latm" | 表示音频/mp4a-latm类型。 |
+| AUDIO_VORBIS | "audio/vorbis"    | 表示音频/vorbis类型。    |
+| AUDIO_FLAC   | "audio/flac"      | 表示音频/flac类型。      |
 
 ## MediaDescriptionKey<sup>8+</sup>
 
-Enumerates the media description keys.
+媒体信息描述枚举。
 
-| Name                    | Value             | Description                                                        |
+**系统能力：** 以下各项对应的系统能力均为 SystemCapability.Multimedia.Media.Core。
+
+| 名称                     | 值              | 说明                                                         |
 | ------------------------ | --------------- | ------------------------------------------------------------ |
-| MD_KEY_TRACK_INDEX       | "track_index"   | Track index, which is a number.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
-| MD_KEY_TRACK_TYPE        | "track_type"    | Track type, which is a number. For details, see [MediaType](#mediatype8).<br>**System capability**: SystemCapability.Multimedia.Media.Core|
-| MD_KEY_CODEC_MIME        | "codec_mime"    | Codec MIME type, which is a string.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
-| MD_KEY_DURATION          | "duration"      | Media duration, which is a number, in units of ms.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
-| MD_KEY_BITRATE           | "bitrate"       | Bit rate, which is a number, in units of bit/s.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
-| MD_KEY_WIDTH             | "width"         | Video width, which is a number, in units of pixel.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
-| MD_KEY_HEIGHT            | "height"        | Video height, which is a number, in units of pixel.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
-| MD_KEY_FRAME_RATE        | "frame_rate"    | Video frame rate, which is a number, in units of 100 fps.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
-| MD_KEY_AUD_CHANNEL_COUNT | "channel_count" | Number of audio channels, which is a number.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
-| MD_KEY_AUD_SAMPLE_RATE   | "sample_rate"   | Sampling rate, which is a number, in units of Hz.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
+| MD_KEY_TRACK_INDEX       | "track_index"   | 表示轨道序号，其对应键值类型为number。                       |
+| MD_KEY_TRACK_TYPE        | "track_type"    | 表示轨道类型，其对应键值类型为number，参考[MediaType](#mediatype8)。 |
+| MD_KEY_CODEC_MIME        | "codec_mime"    | 表示codec_mime类型，其对应键值类型为string。                 |
+| MD_KEY_DURATION          | "duration"      | 表示媒体时长，其对应键值类型为number，单位为ms。             |
+| MD_KEY_BITRATE           | "bitrate"       | 表示比特率，其对应键值类型为number，单位为bps。              |
+| MD_KEY_WIDTH             | "width"         | 表示视频宽度，其对应键值类型为number，单位为像素。           |
+| MD_KEY_HEIGHT            | "height"        | 表示视频高度，其对应键值类型为number，单位为像素。           |
+| MD_KEY_FRAME_RATE        | "frame_rate"    | 表示视频帧率，其对应键值类型为number，单位为100fps。         |
+| MD_KEY_AUD_CHANNEL_COUNT | "channel_count" | 表示声道数，其对应键值类型为number。                         |
+| MD_KEY_AUD_SAMPLE_RATE   | "sample_rate"   | 表示采样率，其对应键值类型为number，单位为HZ。               |
 
 ## BufferingInfoType<sup>8+</sup>
 
-Enumerates the buffering event types.
+缓存事件类型枚举。
 
-| Name             | Value  | Description                                                        |
-| ----------------- | ---- | ------------------------------------------------------------ |
-| BUFFERING_START   | 1    | Buffering starts.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
-| BUFFERING_END     | 2    | Buffering ends.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
-| BUFFERING_PERCENT | 3    | Buffering progress, in percent.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
-| CACHED_DURATION   | 4    | Cache duration, in milliseconds.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
+**系统能力：** 以下各项对应的系统能力均为 SystemCapability.Multimedia.Media.Core。
+
+| 名称              | 值   | 说明                       |
+| ----------------- | ---- | -------------------------- |
+| BUFFERING_START   | 1    | 表示开始缓存。             |
+| BUFFERING_END     | 2    | 表示结束缓存。             |
+| BUFFERING_PERCENT | 3    | 表示缓存百分比。           |
+| CACHED_DURATION   | 4    | 表示缓存时长，单位为毫秒。 |
 
 ## AudioPlayer
 
-Provides methods to manage and play audio. Before calling a method of **AudioPlayer**, you must use [createAudioPlayer()](#mediacreateaudioplayer) to create an **AudioPlayer** instance.
+音频播放管理类，用于管理和播放音频媒体。在调用AudioPlayer的方法前，需要先通过[createAudioPlayer()](#mediacreateaudioplayer)构建一个[AudioPlayer](#audioplayer)实例。
 
-For details about the audio playback demo, see [Audio Playback Development](../../media/audio-playback.md).
+音频播放demo可参考：[音频播放开发指导](../../media/audio-playback.md)
 
-### Attributes<a name=audioplayer_Attributes></a>
+### 属性<a name=audioplayer_属性></a>
 
-| Name       | Type                     | Readable| Writable| Description                                                        |
+**系统能力：** 以下各项对应的系统能力均为 SystemCapability.Multimedia.Media.AudioPlayer。
+
+| 名称        | 类型                      | 可读 | 可写 | 说明                                                         |
 | ----------- | ------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| src         | string                    | Yes  | Yes  | Audio media URI. The mainstream audio formats (MP4, AAC, MP3, and OGG) are supported.<br>**Example of supported URIs**:<br>1. FD playback: fd://xxx<br>![en-us_image_0000001164217678](figures/en-us_image_url.png)<br>2. HTTP network playback path (under development)<br>3. HLS network playback path (under development)<br>**Note**:<br>To use media materials, you must declare the read permission. Otherwise, the media materials cannot be played properly.<br>**System capability**: SystemCapability.Multimedia.Media.AudioPlayer|
-| loop        | boolean                   | Yes  | Yes  | Whether to loop audio playback. The value **true** means to loop audio playback, and **false** means the opposite.<br>**System capability**: SystemCapability.Multimedia.Media.AudioPlayer|
-| currentTime | number                    | Yes  | No  | Current audio playback position.<br>**System capability**: SystemCapability.Multimedia.Media.AudioPlayer|
-| duration    | number                    | Yes  | No  | Audio duration.<br>**System capability**: SystemCapability.Multimedia.Media.AudioPlayer|
-| state       | [AudioState](#audiostate) | Yes  | No  | Audio playback state.<br>**System capability**: SystemCapability.Multimedia.Media.AudioPlayer|
+| src         | string                    | 是   | 是   | 音频媒体URI，支持当前主流的音频格式(mp4、aac、mp3、ogg)。<br>**支持路径示例**：<br>1. fd类型播放：fd://xxx<br>![zh-cn_image_0000001164217678](figures/zh-cn_image_url.png)<br>2. http网络播放路径：开发中<br>3. hls网络播放路径：开发中<br>**注意事项**：<br>使用媒体素材需要获取读权限，否则无法正常播放。 |
+| loop        | boolean                   | 是   | 是   | 音频循环播放属性，设置为'true'表示循环播放。                 |
+| currentTime | number                    | 是   | 否   | 音频的当前播放位置。                                         |
+| duration    | number                    | 是   | 否   | 音频时长。                                                   |
+| state       | [AudioState](#audiostate) | 是   | 否   | 音频播放的状态。                                             |
 
 ### play<a name=audioplayer_play></a>
 
 play(): void
 
-Starts to play audio resources. This method can be called only after the [dataLoad](#on('play' | 'pause' | 'stop' | 'reset' | 'dataLoad' | 'finish' | 'volumeChange')) event is triggered.
+开始播放音频资源，需在[dataLoad](#on('play' | 'pause' | 'stop' | 'reset' | 'dataload' | 'finish' | 'volumechange'))事件成功触发后，才能调用play方法。
 
-**System capability**: SystemCapability.Multimedia.Media.AudioPlayer
+**系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
-**Example**
+**示例：**
 
 ```js
-audioPlayer.on('play', () => {    // Set the 'play' event callback.
+audioPlayer.on('play', () => {    //设置'play'事件回调
     console.log('audio play success');
 });
 audioPlayer.play();
@@ -294,14 +306,14 @@ audioPlayer.play();
 
 pause(): void
 
-Pauses audio playback.
+暂停播放音频资源。
 
-**System capability**: SystemCapability.Multimedia.Media.AudioPlayer
+**系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
-**Example**
+**示例：**
 
 ```js
-audioPlayer.on('pause', () => {    // Set the 'pause' event callback.
+audioPlayer.on('pause', () => {    //设置'pause'事件回调
     console.log('audio pause success');
 });
 audioPlayer.pause();
@@ -311,14 +323,14 @@ audioPlayer.pause();
 
 stop(): void
 
-Stops audio playback.
+停止播放音频资源。
 
-**System capability**: SystemCapability.Multimedia.Media.AudioPlayer
+**系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
-**Example**
+**示例：**
 
 ```js
-audioPlayer.on('stop', () => {    // Set the 'stop' event callback.
+audioPlayer.on('stop', () => {    //设置'stop'事件回调
     console.log('audio stop success');
 });
 audioPlayer.stop();
@@ -328,14 +340,14 @@ audioPlayer.stop();
 
 reset(): void
 
-Switches the audio resource to be played.
+切换播放音频资源。
 
-**System capability**: SystemCapability.Multimedia.Media.AudioPlayer
+**系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
-**Example**
+**示例：**
 
 ```js
-audioPlayer.on('reset', () => {    // Set the 'reset' event callback.
+audioPlayer.on('reset', () => {    //设置'reset'事件回调
     console.log('audio reset success');
 });
 audioPlayer.reset();
@@ -345,61 +357,61 @@ audioPlayer.reset();
 
 seek(timeMs: number): void
 
-Seeks to the specified playback position.
+跳转到指定播放位置。
 
-**System capability**: SystemCapability.Multimedia.Media.AudioPlayer
+**系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
-**Parameters**
+**参数：**
 
-| Name| Type  | Mandatory| Description                          |
+| 参数名 | 类型   | 必填 | 说明                           |
 | ------ | ------ | ---- | ------------------------------ |
-| timeMs | number | Yes  | Position to seek to, in milliseconds.|
+| timeMs | number | 是   | 指定的跳转时间节点，单位毫秒。 |
 
-**Example**
+**示例：**
 
 ```js
-audioPlayer.on('timeUpdate', (seekDoneTime) => {    // Set the 'timeUpdate' event callback.
+audioPlayer.on('timeUpdate', (seekDoneTime) => {    //设置'timeUpdate'事件回调
     if (typeof (seekDoneTime) == 'undefined') {
         console.info('audio seek fail');
         return;
     }
     console.log('audio seek success. seekDoneTime: ' + seekDoneTime);
 });
-audioPlayer.seek(30000); // Seek to 30000 ms.
+audioPlayer.seek(30000);    //seek到30000ms的位置
 ```
 
 ### setVolume<a name=audioplayer_setvolume></a>
 
 setVolume(vol: number): void
 
-Sets the volume.
+设置音量。
 
-**System capability**: SystemCapability.Multimedia.Media.AudioPlayer
+**系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
-**Parameters**
+**参数：**
 
-| Name| Type  | Mandatory| Description                                                        |
+| 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| vol    | number | Yes  | Relative volume. The value ranges from 0.00 to 1.00. The value **1** indicates the maximum volume (100%).|
+| vol    | number | 是   | 指定的相对音量大小，取值范围为[0.00-1.00]，1表示最大音量，即100%。 |
 
-**Example**
+**示例：**
 
 ```js
-audioPlayer.on('volumeChange', () => {    // Set the 'volumeChange' event callback.
+audioPlayer.on('volumeChange', () => {    //设置'volumeChange'事件回调
     console.log('audio volumeChange success');
 });
-audioPlayer.setVolume(1);    // Set the volume to 100%.
+audioPlayer.setVolume(1);    //设置音量到100%
 ```
 
 ### release<a name=audioplayer_release></a>
 
 release(): void
 
-Releases the audio playback resource.
+释放音频资源。
 
-**System capability**: SystemCapability.Multimedia.Media.AudioPlayer
+**系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
-**Example**
+**示例：**
 
 ```js
 audioPlayer.release();
@@ -410,17 +422,17 @@ audioPlayer = undefined;
 
 getTrackDescription(callback: AsyncCallback<Array<[MediaDescription](#mediadescription8)>>): void
 
-Obtains the audio track information. This API uses a callback to return the result.
+通过回调方式获取音频轨道信息。
 
-**System capability**: SystemCapability.Multimedia.Media.AudioPlayer
+**系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
-**Parameters**
+**参数：**
 
-| Name  | Type                                                        | Mandatory| Description                      |
+| 参数名   | 类型                                                         | 必填 | 说明                       |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------- |
-| callback | AsyncCallback<Array<[MediaDescription](#mediadescription8)>> | Yes  | Callback used to return the audio track information obtained.|
+| callback | AsyncCallback<Array<[MediaDescription](#mediadescription8)>> | 是   | 获取音频轨道信息回调方法。 |
 
-**Example**
+**示例：**
 
 ```js
 function printfDescription(obj) {
@@ -446,17 +458,17 @@ audioPlayer.getTrackDescription((error, arrlist) => {
 
 getTrackDescription(): Promise<Array<[MediaDescription](#mediadescription8)>>
 
-Obtains the audio track information. This API uses a promise to return the result.
+通过Promise方式获取音频轨道信息。
 
-**System capability**: SystemCapability.Multimedia.Media.AudioPlayer
+**系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
-**Return value**
+**返回值：**
 
-| Type                                                  | Description                           |
+| 类型                                                   | 说明                            |
 | ------------------------------------------------------ | ------------------------------- |
-| Promise<Array<[MediaDescription](#mediadescription8)>> | Promise used to return the audio track information obtained.|
+| Promise<Array<[MediaDescription](#mediadescription8)>> | 获取音频轨道信息Promise返回值。 |
 
-**Example**
+**示例：**
 
 ```js
 function printfDescription(obj) {
@@ -489,18 +501,18 @@ for (let i = 0; i < arrayDescription.length; i++) {
 
 on(type: 'bufferingUpdate', callback: (infoType: [BufferingInfoType](#bufferinginfotype8), value: number) => void): void
 
-Subscribes to the audio buffering update event.
+开始订阅音频缓存更新事件。
 
-**System capability**: SystemCapability.Multimedia.Media.AudioPlayer
+**系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
-**Parameters**
+**参数：**
 
-| Name  | Type                                                        | Mandatory| Description                                                        |
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Type of the event to subscribe to, which is 'bufferingUpdate' in this example.       |
-| callback | (infoType: [BufferingInfoType](#bufferinginfotype8), value: number) => void | Yes  | Callback invoked when the event is triggered.<br>When [BufferingInfoType](#bufferinginfotype8) is set to **BUFFERING_PERCENT** or **CACHED_DURATION**, **value** is valid. Otherwise, **value** is fixed at **0**.|
+| type     | string                                                       | 是   | 音频缓存事件回调类型，支持的事件：'bufferingUpdate'。        |
+| callback | (infoType: [BufferingInfoType](#bufferinginfotype8), value: number) => void | 是   | 音频缓存事件回调方法。<br>[BufferingInfoType](#bufferinginfotype8)为BUFFERING_PERCENT或CACHED_DURATION时，value值有效，否则固定为0。 |
 
-**Example**
+**示例：**
 
 ```js
 audioPlayer.on('bufferingUpdate', (infoType, value) => {
@@ -513,61 +525,61 @@ audioPlayer.on('bufferingUpdate', (infoType, value) => {
 
 on(type: 'play' | 'pause' | 'stop' | 'reset' | 'dataLoad' | 'finish' | 'volumeChange', callback: () => void): void
 
-Subscribes to the audio playback events.
+开始订阅音频播放事件。
 
-**System capability**: SystemCapability.Multimedia.Media.AudioPlayer
+**系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
-**Parameters**
+**参数：**
 
-| Name  | Type      | Mandatory| Description                                                        |
+| 参数名   | 类型       | 必填 | 说明                                                         |
 | -------- | ---------- | ---- | ------------------------------------------------------------ |
-| type     | string     | Yes  | Type of the event to subscribe to. The following events are supported: 'play' \| 'pause' \| 'stop' \| 'reset' \| 'dataLoad' \| 'finish' \| 'volumeChange'<br>- The 'play' event is triggered when the [play()](#play) method is called and audio playback starts.<br>- The 'pause' event is triggered when the [pause()](#pause) method is called and audio playback is paused.<br>- The 'stop' event is triggered when the [stop()](#stop) method is called and audio playback stops.<br>- The 'reset' event is triggered when the [reset()](#reset7) method is called and audio playback is reset.<br>- The 'dataLoad' event is triggered when the audio data is loaded, that is, when the **src** attribute is configured.<br>- The 'finish' event is triggered when the audio playback is finished.<br>- The 'volumeChange' event is triggered when the [setVolume()](#setvolume) method is called and the playback volume is changed.|
-| callback | () => void | Yes  | Callback invoked when the event is triggered.                                          |
+| type     | string     | 是   | 播放事件回调类型，支持的事件包括：'play' \| 'pause' \| 'stop' \| 'reset' \| 'dataLoad' \| 'finish' \| 'volumeChange'。<br>- 'play'：完成[play()](#play)调用，音频开始播放，触发该事件。<br>- 'pause'：完成[pause()](#pause)调用，音频暂停播放，触发该事件。<br>- 'stop'：完成[stop()](#stop)调用，音频停止播放，触发该事件。<br>- 'reset'：完成[reset()](#reset7)调用，播放器重置，触发该事件。<br>- 'dataLoad'：完成音频数据加载后触发该事件，即src属性设置完成后触发该事件。<br>- 'finish'：完成音频播放后触发该事件。<br>- 'volumeChange'：完成[setVolume()](#setvolume)调用，播放音量改变后触发该事件。 |
+| callback | () => void | 是   | 播放事件回调方法。                                           |
 
-**Example**
+**示例：**
 
 ```js
-let audioPlayer = media.createAudioPlayer();  // Create an AudioPlayer instance.
-audioPlayer.on('dataLoad', () => {            // Set the 'dataLoad' event callback, which is triggered when the src attribute is set successfully.
+let audioPlayer = media.createAudioPlayer();  //创建一个音频播放实例
+audioPlayer.on('dataLoad', () => {            //设置'dataLoad'事件回调，src属性设置成功后，触发此回调
 	console.info('audio set source success');
-    audioPlayer.play();                       // Start the playback and trigger the 'play' event callback.
+    audioPlayer.play();                       //开始播放，并触发'play'事件回调
 });
-audioPlayer.on('play', () => {                // Set the 'play' event callback.
+audioPlayer.on('play', () => {                //设置'play'事件回调
 	console.info('audio play success');
-    audioPlayer.seek(30000);                  // Call the seek() method and trigger the 'timeUpdate' event callback.
+    audioPlayer.seek(30000);                  //调用seek方法，并触发'timeUpdate'事件回调
 });
-audioPlayer.on('pause', () => {               // Set the 'pause' event callback.
+audioPlayer.on('pause', () => {               //设置'pause'事件回调
 	console.info('audio pause success');
-    audioPlayer.stop();                       // Stop the playback and trigger the 'stop' event callback.
+    audioPlayer.stop();                       //停止播放，并触发'stop'事件回调
 });
-audioPlayer.on('reset', () => {               // Set the 'reset' event callback.
+audioPlayer.on('reset', () => {               //设置'reset'事件回调
 	console.info('audio reset success');
-    audioPlayer.release();                    // Release the AudioPlayer instance.
+    audioPlayer.release();                    //释放播放实例资源
     audioPlayer = undefined;
 });
-audioPlayer.on('timeUpdate', (seekDoneTime) => {  // Set the 'timeUpdate' event callback.
+audioPlayer.on('timeUpdate', (seekDoneTime) => {  //设置'timeUpdate'事件回调
 	if (typeof(seekDoneTime) == "undefined") {
         console.info('audio seek fail');
         return;
     }
     console.info('audio seek success, and seek time is ' + seekDoneTime);
-    audioPlayer.setVolume(0.5);                // Set the volume to 50% and trigger the 'volumeChange' event callback.
+    audioPlayer.setVolume(0.5);                //设置音量为50%，并触发'volumeChange'事件回调
 });
-audioPlayer.on('volumeChange', () => {         // Set the 'volumeChange' event callback.
+audioPlayer.on('volumeChange', () => {         //设置'volumeChange'事件回调
 	console.info('audio volumeChange success');
-    audioPlayer.pause();                       // Pause the playback and trigger the 'pause' event callback.
+    audioPlayer.pause();                       //暂停播放，并触发'pause'事件回调
 });
-audioPlayer.on('finish', () => {               // Set the 'finish' event callback.
+audioPlayer.on('finish', () => {               //设置'finish'事件回调
 	console.info('audio play finish');
-    audioPlayer.stop();                        // Stop the playback and trigger the 'stop' event callback.
+    audioPlayer.stop();                        //停止播放，并触发'stop'事件回调
 });
-audioPlayer.on('error', (error) => {           // Set the 'error' event callback.
+audioPlayer.on('error', (error) => {           //设置'error'事件回调
 	console.info(`audio error called, errName is ${error.name}`);
     console.info(`audio error called, errCode is ${error.code}`);
     console.info(`audio error called, errMessage is ${error.message}`);
 });
 
-// Set the FD (local playback) of the video file selected by the user.
+// 用户选择视频设置fd(本地播放)
 let fdPath = 'fd://'
 let path = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp3';
 await fileIO.open(path).then(fdNumber) => {
@@ -578,109 +590,113 @@ await fileIO.open(path).then(fdNumber) => {
 }),catch((err) => {
    console.info('open fd failed err is' + err);
 });
-audioPlayer.src = fdPath;  // Set the src attribute and trigger the 'dataLoad' event callback.
+audioPlayer.src = fdPath;  //设置src属性，并触发'dataLoad'事件回调
 ```
 
 ### on('timeUpdate')
 
 on(type: 'timeUpdate', callback: Callback\<number>): void
 
-Subscribes to the 'timeUpdate' event.
+开始订阅音频播放[seek()](#seek)时间更新事件。
 
-**System capability**: SystemCapability.Multimedia.Media.AudioPlayer
+**系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
-**Parameters**
+**参数：**
 
-| Name  | Type             | Mandatory| Description                                                        |
+| 参数名   | 类型              | 必填 | 说明                                                         |
 | -------- | ----------------- | ---- | ------------------------------------------------------------ |
-| type     | string            | Yes  | Type of the event to subscribe to, which is 'timeUpdate' in this method.<br>The 'timeUpdate' event is triggered when the [seek()](#seek) method is called.|
-| callback | Callback\<number> | Yes  | Callback invoked when the event is triggered. The input parameter of the callback is the time when the seek operation is successful.            |
+| type     | string            | 是   | 播放事件回调类型，支持的事件包括：'timeUpdate'。<br>- 'timeUpdate'：[seek()](#seek)调用完成，触发该事件。 |
+| callback | Callback\<number> | 是   | 播放事件回调方法。回调方法入参为成功seek的时间。             |
 
-**Example**
+**示例：**
 
 ```js
-audioPlayer.on('timeUpdate', (seekDoneTime) => {    // Set the 'timeUpdate' event callback.
+audioPlayer.on('timeUpdate', (seekDoneTime) => {    //设置'timeUpdate'事件回调
     if (typeof (seekDoneTime) == 'undefined') {
         console.info('audio seek fail');
         return;
     }
     console.log('audio seek success. seekDoneTime: ' + seekDoneTime);
 });
-audioPlayer.seek(30000); // Seek to 30000 ms.
+audioPlayer.seek(30000);    //seek到30000ms的位置
 ```
 
 ### on('error')
 
 on(type: 'error', callback: ErrorCallback): void
 
-Subscribes to the audio playback error event.
+开始订阅音频播放错误事件。
 
-**System capability**: SystemCapability.Multimedia.Media.AudioPlayer
+**系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
-**Parameters**
+**参数：**
 
-| Name  | Type         | Mandatory| Description                                                        |
+| 参数名   | 类型          | 必填 | 说明                                                         |
 | -------- | ------------- | ---- | ------------------------------------------------------------ |
-| type     | string        | Yes  | Type of the event to subscribe to, which is 'error' in this method.<br>The 'error' event is triggered when an error occurs during audio playback.|
-| callback | ErrorCallback | Yes  | Callback invoked when the event is triggered.                                      |
+| type     | string        | 是   | 播放错误事件回调类型，支持的事件包括：'error'。<br>- 'error'：音频播放中发生错误，触发该事件。 |
+| callback | ErrorCallback | 是   | 播放错误事件回调方法。                                       |
 
-**Example**
+**示例：**
 
 ```js
-audioPlayer.on('error', (error) => {      // Set the error event callback.
-	console.info(`audio error called, errName is ${error.name}`);      // Print the error name.
-    console.info(`audio error called, errCode is ${error.code}`);      // Print the error code.
-    console.info(`audio error called, errMessage is ${error.message}`);// Print the detailed description of the error type.
+audioPlayer.on('error', (error) => {      //设置'error'事件回调
+	console.info(`audio error called, errName is ${error.name}`);      //打印错误类型名称
+    console.info(`audio error called, errCode is ${error.code}`);      //打印错误码
+    console.info(`audio error called, errMessage is ${error.message}`);//打印错误类型详细描述
 });
-audioPlayer.setVolume(3); // Set volume to an invalid value to trigger the 'error' event.
+audioPlayer.setVolume(3);  //设置volume为无效值，触发'error'事件
 ```
 
 ## AudioState
 
-Enumerates the audio playback states. You can obtain the state through the **state** attribute.
+音频播放的状态机。可通过state属性获取当前状态。
 
-| Name              | Type  | Description                                                        |
-| ------------------ | ------ | ------------------------------------------------------------ |
-| idle               | string | The audio player is idle.<br>**System capability**: SystemCapability.Multimedia.Media.AudioPlayer|
-| playing            | string | Audio playback is in progress.<br>**System capability**: SystemCapability.Multimedia.Media.AudioPlayer|
-| paused             | string | Audio playback is paused.<br>**System capability**: SystemCapability.Multimedia.Media.AudioPlayer|
-| stopped            | string | Audio playback is stopped.<br>**System capability**: SystemCapability.Multimedia.Media.AudioPlayer|
-| error<sup>8+</sup> | string | Audio playback is in the error state.<br>**System capability**: SystemCapability.Multimedia.Media.AudioPlayer|
+**系统能力：** 以下各项对应的系统能力均为 SystemCapability.Multimedia.Media.AudioPlayer。
+
+| 名称               | 类型   | 描述           |
+| ------------------ | ------ | -------------- |
+| idle               | string | 音频播放空闲。 |
+| playing            | string | 音频正在播放。 |
+| paused             | string | 音频暂停播放。 |
+| stopped            | string | 音频播放停止。 |
+| error<sup>8+</sup> | string | 错误状态。     |
 
 ## VideoPlayer<sup>8+</sup>
 
-Provides methods to manage and play video. Before calling a method of the **VideoPlayer** class, you must call [createVideoPlayer()](#media.createvideoplayer8) to create a [VideoPlayer](#videoplayer8) instance.
+视频播放管理类，用于管理和播放视频媒体。在调用VideoPlayer的方法前，需要先通过[createVideoPlayer()](#media.createvideoplayer8)构建一个[VideoPlayer](#videoplayer8)实例。
 
-For details about the video playback demo, see [Video Playback Development](../../media/video-playback.md).
+视频播放demo可参考：[视频播放开发指导](../../media/video-playback.md)
 
-### Attributes<a name=videoplayer_attributes></a>
+### 属性<a name=videoplayer_属性></a>
 
-| Name                    | Type                              | Readable| Writable| Description                                                        |
+**系统能力：** 以下各项对应的系统能力均为 SystemCapability.Multimedia.Media.VideoPlayer。
+
+| 名称                     | 类型                               | 可读 | 可写 | 说明                                                         |
 | ------------------------ | ---------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| url<sup>8+</sup>         | string                             | Yes  | Yes  | Video media URL. The mainstream video formats (MPEG-4, MPEG-TS, WebM, and MKV) are supported.<br>**Example of supported URIs**:<br>1. FD playback: fd://xxx<br>![en-us_image_0000001164217678](figures/en-us_image_url.png)<br>**Note**:<br>To use media materials, you must declare the read permission. Otherwise, the media materials cannot be played properly.<br>**System capability**: SystemCapability.Multimedia.Media.VideoPlayer|
-| loop<sup>8+</sup>        | boolean                            | Yes  | Yes  | Whether to loop video playback. The value **true** means to loop video playback, and **false** means the opposite.<br>**System capability**: SystemCapability.Multimedia.Media.VideoPlayer|
-| currentTime<sup>8+</sup> | number                             | Yes  | No  | Current video playback position.<br>**System capability**: SystemCapability.Multimedia.Media.VideoPlayer|
-| duration<sup>8+</sup>    | number                             | Yes  | No  | Video duration. The value **-1** indicates the live streaming mode.<br>**System capability**: SystemCapability.Multimedia.Media.VideoPlayer|
-| state<sup>8+</sup>       | [VideoPlayState](#videoplaystate8) | Yes  | No  | Video playback state.<br>**System capability**: SystemCapability.Multimedia.Media.VideoPlayer|
-| width<sup>8+</sup>       | number                             | Yes  | No  | Video width.<br>**System capability**: SystemCapability.Multimedia.Media.VideoPlayer|
-| height<sup>8+</sup>      | number                             | Yes  | No  | Video height.<br>**System capability**: SystemCapability.Multimedia.Media.VideoPlayer|
+| url<sup>8+</sup>         | string                             | 是   | 是   | 视频媒体URL，支持当前主流的视频格式(mp4、mpeg-ts、webm、mkv)。<br>**支持路径示例**：<br>1. fd类型播放：fd://xxx<br>![zh-cn_image_0000001164217678](figures/zh-cn_image_url.png)<br>**注意事项**：<br>使用媒体素材需要获取读权限，否则无法正常播放。 |
+| loop<sup>8+</sup>        | boolean                            | 是   | 是   | 视频循环播放属性，设置为'true'表示循环播放。                 |
+| currentTime<sup>8+</sup> | number                             | 是   | 否   | 视频的当前播放位置。                                         |
+| duration<sup>8+</sup>    | number                             | 是   | 否   | 视频时长，返回-1表示直播模式。                               |
+| state<sup>8+</sup>       | [VideoPlayState](#videoplaystate8) | 是   | 否   | 视频播放的状态。                                             |
+| width<sup>8+</sup>       | number                             | 是   | 否   | 视频宽。                                                     |
+| height<sup>8+</sup>      | number                             | 是   | 否   | 视频高。                                                     |
 
 ### setDisplaySurface<sup>8+</sup>
 
 setDisplaySurface(surfaceId: string, callback: AsyncCallback\<void>): void
 
-Sets **SurfaceId**. This API uses a callback to return the result.
+通过回调方式设置SurfaceId。
 
-**System capability**: SystemCapability.Multimedia.Media.VideoPlayer
+**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
-**Parameters**
+**参数：**
 
-| Name   | Type    | Mandatory| Description                     |
+| 参数名    | 类型     | 必填 | 说明                      |
 | --------- | -------- | ---- | ------------------------- |
-| surfaceId | string   | Yes  | Surface ID to set.                |
-| callback  | function | Yes  | Callback used to set **SurfaceId**.|
+| surfaceId | string   | 是   | SurfaceId                 |
+| callback  | function | 是   | 设置SurfaceId的回调方法。 |
 
-**Example**
+**示例：**
 
 ```js
 videoPlayer.setDisplaySurface(surfaceId, (err) => {
@@ -696,23 +712,23 @@ videoPlayer.setDisplaySurface(surfaceId, (err) => {
 
 setDisplaySurface(surfaceId: string): Promise\<void>
 
-Sets **SurfaceId**. This API uses a promise to return the result.
+通过Promise方式设置SurfaceId。
 
-**System capability**: SystemCapability.Multimedia.Media.VideoPlayer
+**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
-**Parameters**
+**参数：**
 
-| Name   | Type  | Mandatory| Description     |
+| 参数名    | 类型   | 必填 | 说明      |
 | --------- | ------ | ---- | --------- |
-| surfaceId | string | Yes  | Surface ID to set.|
+| surfaceId | string | 是   | SurfaceId |
 
-**Return value**
+**返回值：**
 
-| Type         | Description                          |
+| 类型          | 说明                           |
 | ------------- | ------------------------------ |
-| Promise<void> | Promise used to set **SurfaceId**.|
+| Promise<void> | 设置SurfaceId的Promise返回值。 |
 
-**Example**
+**示例：**
 
 ```js
 function failureCallback(error) {
@@ -730,17 +746,17 @@ await videoPlayer.setDisplaySurface(surfaceId).then(() => {
 
 prepare(callback: AsyncCallback\<void>): void
 
-Prepares for video playback. This API uses a callback to return the result.
+通过回调方式准备播放视频。
 
-**System capability**: SystemCapability.Multimedia.Media.VideoPlayer
+**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
-**Parameters**
+**参数：**
 
-| Name  | Type    | Mandatory| Description                    |
+| 参数名   | 类型     | 必填 | 说明                     |
 | -------- | -------- | ---- | ------------------------ |
-| callback | function | Yes  | Callback used to return the result.|
+| callback | function | 是   | 准备播放视频的回调方法。 |
 
-**Example**
+**示例：**
 
 ```js
 videoPlayer.prepare((err) => {
@@ -756,17 +772,17 @@ videoPlayer.prepare((err) => {
 
 prepare(): Promise\<void>
 
-Prepares for video playback. This API uses a promise to return the result.
+通过Promise方式准备播放视频。
 
-**System capability**: SystemCapability.Multimedia.Media.VideoPlayer
+**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
-**Return value**
+**返回值：**
 
-| Type          | Description                         |
+| 类型           | 说明                          |
 | -------------- | ----------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | 准备播放视频的Promise返回值。 |
 
-**Example**
+**示例：**
 
 ```js
 function failureCallback(error) {
@@ -784,17 +800,17 @@ await videoPlayer.prepare().then(() => {
 
 play(callback: AsyncCallback\<void>): void;
 
-Starts to play video resources. This API uses a callback to return the result.
+通过回调方式开始播放视频。
 
-**System capability**: SystemCapability.Multimedia.Media.VideoPlayer
+**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
-**Parameters**
+**参数：**
 
-| Name  | Type    | Mandatory| Description                    |
+| 参数名   | 类型     | 必填 | 说明                     |
 | -------- | -------- | ---- | ------------------------ |
-| callback | function | Yes  | Callback used to return the result.|
+| callback | function | 是   | 开始播放视频的回调方法。 |
 
-**Example**
+**示例：**
 
 ```js
 videoPlayer.play((err) => {
@@ -810,17 +826,17 @@ videoPlayer.play((err) => {
 
 play(): Promise\<void>;
 
-Starts to play video resources. This API uses a promise to return the result.
+通过Promise方式开始播放视频。
 
-**System capability**: SystemCapability.Multimedia.Media.VideoPlayer
+**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
-**Return value**
+**返回值：**
 
-| Type          | Description                         |
+| 类型           | 说明                          |
 | -------------- | ----------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | 开始播放视频的Promise返回值。 |
 
-**Example**
+**示例：**
 
 ```js
 function failureCallback(error) {
@@ -838,17 +854,17 @@ await videoPlayer.play().then(() => {
 
 pause(callback: AsyncCallback\<void>): void
 
-Pauses video playback. This API uses a callback to return the result.
+通过回调方式暂停播放视频。
 
-**System capability**: SystemCapability.Multimedia.Media.VideoPlayer
+**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
-**Parameters**
+**参数：**
 
-| Name  | Type    | Mandatory| Description                    |
+| 参数名   | 类型     | 必填 | 说明                     |
 | -------- | -------- | ---- | ------------------------ |
-| callback | function | Yes  | Callback used to return the result.|
+| callback | function | 是   | 暂停播放视频的回调方法。 |
 
-**Example**
+**示例：**
 
 ```js
 videoPlayer.pause((err) => {
@@ -864,17 +880,17 @@ videoPlayer.pause((err) => {
 
 pause(): Promise\<void>
 
-Pauses video playback. This API uses a promise to return the result.
+通过Promise方式暂停播放视频。
 
-**System capability**: SystemCapability.Multimedia.Media.VideoPlayer
+**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
-**Return value**
+**返回值：**
 
-| Type          | Description                         |
+| 类型           | 说明                          |
 | -------------- | ----------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | 暂停播放视频的Promise返回值。 |
 
-**Example**
+**示例：**
 
 ```js
 function failureCallback(error) {
@@ -892,17 +908,17 @@ await videoPlayer.pause().then(() => {
 
 stop(callback: AsyncCallback\<void>): void
 
-Stops video playback. This API uses a callback to return the result.
+通过回调方式停止播放视频。
 
-**System capability**: SystemCapability.Multimedia.Media.VideoPlayer
+**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
-**Parameters**
+**参数：**
 
-| Name  | Type    | Mandatory| Description                    |
+| 参数名   | 类型     | 必填 | 说明                     |
 | -------- | -------- | ---- | ------------------------ |
-| callback | function | Yes  | Callback used to return the result.|
+| callback | function | 是   | 停止播放视频的回调方法。 |
 
-**Example**
+**示例：**
 
 ```js
 videoPlayer.stop((err) => {
@@ -918,17 +934,17 @@ videoPlayer.stop((err) => {
 
 stop(): Promise\<void>
 
-Stops video playback. This API uses a promise to return the result.
+通过Promise方式停止播放视频。
 
-**System capability**: SystemCapability.Multimedia.Media.VideoPlayer
+**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
-**Return value**
+**返回值：**
 
-| Type          | Description                         |
+| 类型           | 说明                          |
 | -------------- | ----------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | 停止播放视频的Promise返回值。 |
 
-**Example**
+**示例：**
 
 ```js
 function failureCallback(error) {
@@ -946,17 +962,17 @@ await videoPlayer.stop().then(() => {
 
 reset(callback: AsyncCallback\<void>): void
 
-Switches the video resource to be played. This API uses a callback to return the result.
+通过回调方式切换播放视频。
 
-**System capability**: SystemCapability.Multimedia.Media.VideoPlayer
+**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
-**Parameters**
+**参数：**
 
-| Name  | Type    | Mandatory| Description                    |
+| 参数名   | 类型     | 必填 | 说明                     |
 | -------- | -------- | ---- | ------------------------ |
-| callback | function | Yes  | Callback used to return the result.|
+| callback | function | 是   | 切换播放视频的回调方法。 |
 
-**Example**
+**示例：**
 
 ```js
 videoPlayer.reset((err) => {
@@ -972,17 +988,17 @@ videoPlayer.reset((err) => {
 
 reset(): Promise\<void>
 
-Switches the video resource to be played. This API uses a promise to return the result.
+通过Promise方式切换播放视频。
 
-**System capability**: SystemCapability.Multimedia.Media.VideoPlayer
+**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
-**Return value**
+**返回值：**
 
-| Type          | Description                         |
+| 类型           | 说明                          |
 | -------------- | ----------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | 切换播放视频的Promise返回值。 |
 
-**Example**
+**示例：**
 
 ```js
 function failureCallback(error) {
@@ -1000,18 +1016,18 @@ await videoPlayer.reset().then(() => {
 
 seek(timeMs: number, callback: AsyncCallback\<number>): void
 
-Seeks to the specified playback position. The next key frame at the specified position is played. This API uses a callback to return the result.
+通过回调方式跳转到指定播放位置，默认跳转到指定时间点的下一个关键帧。
 
-**System capability**: SystemCapability.Multimedia.Media.VideoPlayer
+**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
-**Parameters**
+**参数：**
 
-| Name  | Type    | Mandatory| Description                          |
+| 参数名   | 类型     | 必填 | 说明                           |
 | -------- | -------- | ---- | ------------------------------ |
-| timeMs   | number   | Yes  | Position to seek to, in milliseconds.|
-| callback | function | Yes  | Callback used to return the result.|
+| timeMs   | number   | 是   | 指定的跳转时间节点，单位毫秒。 |
+| callback | function | 是   | 跳转到指定播放位置的回调方法。 |
 
-**Example**
+**示例：**
 
 ```js
 videoPlayer.seek((seekTime, err) => {
@@ -1027,19 +1043,19 @@ videoPlayer.seek((seekTime, err) => {
 
 seek(timeMs: number, mode:SeekMode, callback: AsyncCallback\<number>): void
 
-Seeks to the specified playback position. This API uses a callback to return the result.
+通过回调方式跳转到指定播放位置。
 
-**System capability**: SystemCapability.Multimedia.Media.VideoPlayer
+**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
-**Parameters**
+**参数：**
 
-| Name  | Type    | Mandatory| Description                                    |
+| 参数名   | 类型     | 必填 | 说明                                     |
 | -------- | -------- | ---- | ---------------------------------------- |
-| timeMs   | number   | Yes  | Position to seek to, in milliseconds.          |
-| mode     | SeekMode | Yes  | Seek mode. For details, see [SeekMode](#seekmode8).|
-| callback | function | Yes  | Callback used to return the result.          |
+| timeMs   | number   | 是   | 指定的跳转时间节点，单位毫秒。           |
+| mode     | SeekMode | 是   | 跳转模式，具体见[SeekMode](#seekmode8)。 |
+| callback | function | 是   | 跳转到指定播放位置的回调方法。           |
 
-**Example**
+**示例：**
 
 ```js
 videoPlayer.seek((seekTime, seekMode, err) => {
@@ -1055,24 +1071,24 @@ videoPlayer.seek((seekTime, seekMode, err) => {
 
 seek(timeMs: number, mode?:SeekMode): Promise\<number>
 
-Seeks to the specified playback position. If **mode** is not specified, the next key frame at the specified position is played. This API uses a promise to return the result.
+通过Promise方式跳转到指定播放位置，如果没有设置mode则跳转到指定时间点的下一个关键帧。
 
-**System capability**: SystemCapability.Multimedia.Media.VideoPlayer
+**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
-**Parameters**
+**参数：**
 
-| Name| Type    | Mandatory| Description                                  |
+| 参数名 | 类型     | 必填 | 说明                                   |
 | ------ | -------- | ---- | -------------------------------------- |
-| timeMs | number   | Yes  | Position to seek to, in milliseconds.        |
-| mode   | SeekMode | No  | Seek mode. For details, see [SeekMode](#seekmode8).|
+| timeMs | number   | 是   | 指定的跳转时间节点，单位毫秒。         |
+| mode   | SeekMode | 否   | 跳转模式，具体见[SeekMode](#seekmode8) |
 
-**Return value**
+**返回值：**
 
-| Type          | Description                               |
+| 类型           | 说明                                |
 | -------------- | ----------------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | 跳转到指定播放位置的Promise返回值。 |
 
-**Example**
+**示例：**
 
 ```js
 function failureCallback(error) {
@@ -1081,7 +1097,7 @@ function failureCallback(error) {
 function catchCallback(error) {
     console.info(`video catchCallback, error:${error.message}`);
 }
-await videoPlayer.seek(seekTime).then((seekDoneTime) => { // seekDoneTime indicates the position after the seek operation is complete.
+await videoPlayer.seek(seekTime).then((seekDoneTime) => { // seekDoneTime表示seek完成后的时间点
     console.info('seek success');
 }, failureCallback).catch(catchCallback);
 
@@ -1094,18 +1110,18 @@ await videoPlayer.seek(seekTime, seekMode).then((seekDoneTime) => {
 
 setVolume(vol: number, callback: AsyncCallback\<void>): void
 
-Sets the volume. This API uses a callback to return the result.
+通过回调方式设置音量。
 
-**System capability**: SystemCapability.Multimedia.Media.VideoPlayer
+**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
-**Parameters**
+**参数：**
 
-| Name  | Type    | Mandatory| Description                                                        |
+| 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
-| vol      | number   | Yes  | Relative volume. The value ranges from 0.00 to 1.00. The value **1** indicates the maximum volume (100%).|
-| callback | function | Yes  | Callback used to return the result.                                        |
+| vol      | number   | 是   | 指定的相对音量大小，取值范围为[0.00-1.00]，1表示最大音量，即100%。 |
+| callback | function | 是   | 设置音量的回调方法。                                         |
 
-**Example**
+**示例：**
 
 ```js
 videoPlayer.setVolume((vol, err) => {
@@ -1121,23 +1137,23 @@ videoPlayer.setVolume((vol, err) => {
 
 setVolume(vol: number): Promise\<void>
 
-Sets the volume. This API uses a promise to return the result.
+通过Promise方式设置音量。
 
-**System capability**: SystemCapability.Multimedia.Media.VideoPlayer
+**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
-**Parameters**
+**参数：**
 
-| Name| Type  | Mandatory| Description                                                        |
+| 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| vol    | number | Yes  | Relative volume. The value ranges from 0.00 to 1.00. The value **1** indicates the maximum volume (100%).|
+| vol    | number | 是   | 指定的相对音量大小，取值范围为[0.00-1.00]，1表示最大音量，即100%。 |
 
-**Return value**
+**返回值：**
 
-| Type          | Description                     |
+| 类型           | 说明                      |
 | -------------- | ------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | 设置音量的Promise返回值。 |
 
-**Example**
+**示例：**
 
 ```js
 function failureCallback(error) {
@@ -1155,17 +1171,17 @@ await videoPlayer.setVolume(vol).then() => {
 
 release(callback: AsyncCallback\<void>): void
 
-Releases the video playback resource. This API uses a callback to return the result.
+通过回调方式释放视频资源。
 
-**System capability**: SystemCapability.Multimedia.Media.VideoPlayer
+**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
-**Parameters**
+**参数：**
 
-| Name  | Type    | Mandatory| Description                    |
+| 参数名   | 类型     | 必填 | 说明                     |
 | -------- | -------- | ---- | ------------------------ |
-| callback | function | Yes  | Callback used to return the result.|
+| callback | function | 是   | 释放视频资源的回调方法。 |
 
-**Example**
+**示例：**
 
 ```js
 videoPlayer.release((err) => {
@@ -1181,17 +1197,17 @@ videoPlayer.release((err) => {
 
 release(): Promise\<void>
 
-Releases the video playback resource. This API uses a promise to return the result.
+通过Promise方式释放视频资源。
 
-**System capability**: SystemCapability.Multimedia.Media.VideoPlayer
+**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
-**Return value**
+**返回值：**
 
-| Type          | Description                         |
+| 类型           | 说明                          |
 | -------------- | ----------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | 释放视频资源的Promise返回值。 |
 
-**Example**
+**示例：**
 
 ```js
 function failureCallback(error) {
@@ -1207,19 +1223,19 @@ await videoPlayer.release().then() => {
 
 ### getTrackDescription<sup>8+</sup>
 
-getTrackDescription(callback: AsyncCallback<Array<[MediaDescription](#mediadescription8>>)>>): void
+getTrackDescription(callback: AsyncCallback<Array<[MediaDescription](#mediadescription8)>>): void
 
-Obtains the video track information. This API uses a callback to return the result.
+通过回调方式获取视频轨道信息。
 
-**System capability**: SystemCapability.Multimedia.Media.VideoPlayer
+**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
-**Parameters**
+**参数：**
 
-| Name  | Type    | Mandatory| Description                      |
+| 参数名   | 类型     | 必填 | 说明                       |
 | -------- | -------- | ---- | -------------------------- |
-| callback | function | Yes  | Callback used to return the video track information obtained.|
+| callback | function | 是   | 获取视频轨道信息回调方法。 |
 
-**Example**
+**示例：**
 
 ```js
 function printfDescription(obj) {
@@ -1243,19 +1259,19 @@ videoPlayer.getTrackDescription((error, arrlist) => {
 
 ### getTrackDescription<sup>8+</sup>
 
-getTrackDescription(): Promise<Array<[MediaDescription](#mediadescription8>>)>>
+getTrackDescription(): Promise<Array<[MediaDescription](#mediadescription8)>>
 
-Obtains the video track information. This API uses a promise to return the result.
+通过Promise方式获取视频轨道信息。
 
-**System capability**: SystemCapability.Multimedia.Media.VideoPlayer
+**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
-**Return value**
+**返回值：**
 
-| Type                                                    | Description                           |
-| -------------------------------------------------------- | ------------------------------- |
-| Promise<Array<[MediaDescription](#mediadescription8>>)>> | Promise used to return the video track information obtained.|
+| 类型                                                   | 说明                            |
+| ------------------------------------------------------ | ------------------------------- |
+| Promise<Array<[MediaDescription](#mediadescription8)>> | 获取视频轨道信息Promise返回值。 |
 
-**Example**
+**示例：**
 
 ```js
 function printfDescription(obj) {
@@ -1289,18 +1305,18 @@ for (let i = 0; i < arrayDescription.length; i++) {
 
 setSpeed(speed:number, callback: AsyncCallback\<number>): void
 
-Sets the video playback speed. This API uses a callback to return the result.
+通过回调方式设置播放速度。
 
-**System capability**: SystemCapability.Multimedia.Media.VideoPlayer
+**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
-**Parameters**
+**参数：**
 
-| Name  | Type    | Mandatory| Description                                                      |
+| 参数名   | 类型     | 必填 | 说明                                                       |
 | -------- | -------- | ---- | ---------------------------------------------------------- |
-| speed    | number   | Yes  | Video playback speed. For details, see [PlaybackSpeed](#playbackspeed8).|
-| callback | function | Yes  | Callback used to return the result.                                  |
+| speed    | number   | 是   | 指定播放视频速度，具体见[PlaybackSpeed](#playbackspeed8)。 |
+| callback | function | 是   | 设置播放速度的回调方法。                                   |
 
-**Example**
+**示例：**
 
 ```js
 videoPlayer.setSpeed((speed:number, err) => {
@@ -1316,17 +1332,17 @@ videoPlayer.setSpeed((speed:number, err) => {
 
 setSpeed(speed:number): Promise\<number>
 
-Sets the video playback speed. This API uses a promise to return the result.
+通过Promise方式设置播放速度。
 
-**System capability**: SystemCapability.Multimedia.Media.VideoPlayer
+**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
-**Parameters**
+**参数：**
 
-| Name| Type  | Mandatory| Description                                                      |
+| 参数名 | 类型   | 必填 | 说明                                                       |
 | ------ | ------ | ---- | ---------------------------------------------------------- |
-| speed  | number | Yes  | Video playback speed. For details, see [PlaybackSpeed](#playbackspeed8).|
+| speed  | number | 是   | 指定播放视频速度，具体见[PlaybackSpeed](#playbackspeed8)。 |
 
-**Example**
+**示例：**
 
 ```js
 function failureCallback(error) {
@@ -1344,18 +1360,18 @@ await videoPlayer.setSpeed(speed).then() => {
 
 on(type: 'playbackCompleted', callback: Callback\<void>): void
 
-Subscribes to the video playback completion event.
+开始监听视频播放完成事件。
 
-**System capability**: SystemCapability.Multimedia.Media.VideoPlayer
+**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
-**Parameters**
+**参数：**
 
-| Name  | Type    | Mandatory| Description                                                       |
+| 参数名   | 类型     | 必填 | 说明                                                        |
 | -------- | -------- | ---- | ----------------------------------------------------------- |
-| type     | string   | Yes  | Type of the event to subscribe to, which is 'playbackCompleted' in this example.|
-| callback | function | Yes  | Callback invoked when the event is triggered.                                 |
+| type     | string   | 是   | 视频播放完成事件回调类型，支持的事件：'playbackCompleted'。 |
+| callback | function | 是   | 视频播放完成事件回调方法。                                  |
 
-**Example**
+**示例：**
 
 ```js
 videoPlayer.on('playbackCompleted', () => {
@@ -1367,18 +1383,18 @@ videoPlayer.on('playbackCompleted', () => {
 
 on(type: 'bufferingUpdate', callback: (infoType: BufferingInfoType, value: number) => void): void
 
-Subscribes to the video buffering update event.
+开始监听视频缓存更新事件。
 
-**System capability**: SystemCapability.Multimedia.Media.VideoPlayer
+**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
-**Parameters**
+**参数：**
 
-| Name  | Type    | Mandatory| Description                                                        |
+| 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
-| type     | string   | Yes  | Type of the event to subscribe to, which is 'bufferingUpdate' in this example.       |
-| callback | function | Yes  | Callback invoked when the event is triggered.<br>When [BufferingInfoType](#bufferinginfotype8) is set to **BUFFERING_PERCENT** or **CACHED_DURATION**, **value** is valid. Otherwise, **value** is fixed at **0**.|
+| type     | string   | 是   | 视频缓存事件回调类型，支持的事件：'bufferingUpdate'。        |
+| callback | function | 是   | 视频缓存事件回调方法。<br>[BufferingInfoType](#bufferinginfotype8)为BUFFERING_PERCENT或CACHED_DURATION时，value值有效，否则固定为0。 |
 
-**Example**
+**示例：**
 
 ```js
 videoPlayer.on('bufferingUpdate', (infoType, value) => {
@@ -1391,18 +1407,18 @@ videoPlayer.on('bufferingUpdate', (infoType, value) => {
 
 on(type: 'startRenderFrame', callback: Callback\<void>): void
 
-Subscribes to the frame rendering start event.
+开始监听视频播放首帧送显上报事件。
 
-**System capability**: SystemCapability.Multimedia.Media.VideoPlayer
+**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
-**Parameters**
+**参数：**
 
-| Name  | Type    | Mandatory| Description                                                        |
+| 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
-| type     | string   | Yes  | Type of the event to subscribe to, which is 'startRenderFrame' in this example.|
-| callback | function | Yes  | Callback invoked when the event is triggered.                          |
+| type     | string   | 是   | 视频播放首帧送显上报事件回调类型，支持的事件：'startRenderFrame'。 |
+| callback | function | 是   | 视频播放首帧送显上报事件回调方法。                           |
 
-**Example**
+**示例：**
 
 ```js
 videoPlayer.on('startRenderFrame', () => {
@@ -1414,18 +1430,18 @@ videoPlayer.on('startRenderFrame', () => {
 
 on(type: 'videoSizeChanged', callback: (width: number, height: number) => void): void
 
-Subscribes to the video width and height change event.
+开始监听视频播放宽高变化事件。
 
-**System capability**: SystemCapability.Multimedia.Media.VideoPlayer
+**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
-**Parameters**
+**参数：**
 
-| Name  | Type    | Mandatory| Description                                                        |
+| 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
-| type     | string   | Yes  | Type of the event to subscribe to, which is 'videoSizeChanged' in this example.|
-| callback | function | Yes  | Callback invoked when the event is triggered. **width** indicates the video width, and **height** indicates the video height.   |
+| type     | string   | 是   | 视频播放宽高变化事件回调类型，支持的事件：'videoSizeChanged'。 |
+| callback | function | 是   | 视频播放宽高变化事件回调方法，width表示宽，height表示高。    |
 
-**Example**
+**示例：**
 
 ```js
 videoPlayer.on('videoSizeChanged', (width, height) => {
@@ -1438,74 +1454,82 @@ videoPlayer.on('videoSizeChanged', (width, height) => {
 
 on(type: 'error', callback: ErrorCallback): void
 
-Subscribes to the video playback error event.
+开始监听视频播放错误事件。
 
-**System capability**: SystemCapability.Multimedia.Media.VideoPlayer
+**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
-**Parameters**
+**参数：**
 
-| Name  | Type    | Mandatory| Description                                                        |
+| 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
-| type     | string   | Yes  | Type of the event to subscribe to, which is 'error' in this method.<br>The 'error' event is triggered when an error occurs during video playback.|
-| callback | function | Yes  | Callback invoked when the event is triggered.                                      |
+| type     | string   | 是   | 播放错误事件回调类型，支持的事件包括：'error'。<br>- 'error'：视频播放中发生错误，触发该事件。 |
+| callback | function | 是   | 播放错误事件回调方法。                                       |
 
-**Example**
+**示例：**
 
 ```js
-videoPlayer.on('error', (error) => {      // Set the 'error' event callback.
-	console.info(`video error called, errName is ${error.name}`);      // Print the error name.
-    console.info(`video error called, errCode is ${error.code}`);      // Print the error code.
-    console.info(`video error called, errMessage is ${error.message}`);// Print the detailed description of the error type.
+videoPlayer.on('error', (error) => {      // 设置'error'事件回调
+	console.info(`video error called, errName is ${error.name}`);      // 打印错误类型名称
+    console.info(`video error called, errCode is ${error.code}`);      // 打印错误码
+    console.info(`video error called, errMessage is ${error.message}`);// 打印错误类型详细描述
 });
-videoPlayer.setVolume(3);  // Set volume to an invalid value to trigger the 'error' event.
+videoPlayer.setVolume(3);  //设置volume为无效值，触发'error'事件
 ```
 
 ## VideoPlayState<sup>8+</sup>
 
-Enumerates the video playback states. You can obtain the state through the **state** attribute.
+视频播放的状态机，可通过state属性获取当前状态。
 
-| Name    | Type  | Description                                                        |
-| -------- | ------ | ------------------------------------------------------------ |
-| idle     | string | The video player is idle.<br>**System capability**: SystemCapability.Multimedia.Media.VideoPlayer|
-| prepared | string | Video playback is being prepared.<br>**System capability**: SystemCapability.Multimedia.Media.VideoPlayer|
-| playing  | string | Video playback is in progress.<br>**System capability**: SystemCapability.Multimedia.Media.VideoPlayer|
-| paused   | string | Video playback is paused.<br>**System capability**: SystemCapability.Multimedia.Media.VideoPlayer|
-| stopped  | string | Video playback is stopped.<br>**System capability**: SystemCapability.Multimedia.Media.VideoPlayer|
-| error    | string | Video playback is in the error state.<br>**System capability**: SystemCapability.Multimedia.Media.VideoPlayer|
+**系统能力：** 以下各项对应的系统能力均为 SystemCapability.Multimedia.Media.VideoPlayer。
+
+| 名称     | 类型   | 描述           |
+| -------- | ------ | -------------- |
+| idle     | string | 视频播放空闲。 |
+| prepared | string | 视频播放准备。 |
+| playing  | string | 视频正在播放。 |
+| paused   | string | 视频暂停播放。 |
+| stopped  | string | 视频播放停止。 |
+| error    | string | 错误状态。     |
 
 ## SeekMode<sup>8+</sup>
 
-Enumerates the video playback seek modes, which can be passed in the **seek** method.
+视频播放的Seek模式枚举，可通过seek方法作为参数传递下去。
 
-| Name          | Value  | Description                                                        |
+**系统能力：** 以下各项对应的系统能力均为 SystemCapability.Multimedia.Media.Core。
+
+| 名称           | 值   | 描述                                                         |
 | -------------- | ---- | ------------------------------------------------------------ |
-| SEEK_NEXT_SYNC | 0    | Seeks to the next key frame at the specified position. You are advised to use this value for the rewind operation.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
-| SEEK_PREV_SYNC | 1    | Seeks to the previous key frame at the specified position. You are advised to use this value for the fast-forward operation.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
+| SEEK_NEXT_SYNC | 0    | 表示跳转到指定时间点的下一个关键帧，建议向后快进的时候用这个枚举值。 |
+| SEEK_PREV_SYNC | 1    | 表示跳转到指定时间点的上一个关键帧，建议向前快进的时候用这个枚举值。 |
 
 ## PlaybackSpeed<sup>8+</sup>
 
-Enumerates the video playback speeds, which can be passed in the **setSpeed** method.
+视频播放的倍速枚举，可通过setSpeed方法作为参数传递下去。
 
-| Name                | Value  | Description                                                        |
-| -------------------- | ---- | ------------------------------------------------------------ |
-| SPEED_FORWARD_0_75_X | 0    | Plays the video at 0.75 times the normal speed.<br>**System capability**: SystemCapability.Multimedia.Media.VideoPlayer|
-| SPEED_FORWARD_1_00_X | 1    | Plays the video at the normal speed.<br>**System capability**: SystemCapability.Multimedia.Media.VideoPlayer|
-| SPEED_FORWARD_1_25_X | 2    | Plays the video at 1.25 times the normal speed.<br>**System capability**: SystemCapability.Multimedia.Media.VideoPlayer|
-| SPEED_FORWARD_1_75_X | 3    | Plays the video at 1.75 times the normal speed.<br>**System capability**: SystemCapability.Multimedia.Media.VideoPlayer|
-| SPEED_FORWARD_2_00_X | 4    | Plays the video at 2.00 times the normal speed.<br>**System capability**: SystemCapability.Multimedia.Media.VideoPlayer|
+**系统能力：** 以下各项对应的系统能力均为 SystemCapability.Multimedia.Media.VideoPlayer。
+
+| 名称                 | 值   | 描述                           |
+| -------------------- | ---- | ------------------------------ |
+| SPEED_FORWARD_0_75_X | 0    | 表示视频播放正常播速的0.75倍。 |
+| SPEED_FORWARD_1_00_X | 1    | 表示视频播放正常播速。         |
+| SPEED_FORWARD_1_25_X | 2    | 表示视频播放正常播速的1.25倍。 |
+| SPEED_FORWARD_1_75_X | 3    | 表示视频播放正常播速的1.75倍。 |
+| SPEED_FORWARD_2_00_X | 4    | 表示视频播放正常播速的2.00倍。 |
 
 ## MediaDescription<sup>8+</sup>
 
-### [key : string] : any
+### [key : string] : Object
 
-Defines media information in key-value mode.
+通过key-value方式获取媒体信息。
 
-| Name | Type  | Description                                                        |
+**系统能力：** 以下各项对应的系统能力均为 SystemCapability.Multimedia.Media.Core。
+
+| 名称  | 类型   | 说明                                                         |
 | ----- | ------ | ------------------------------------------------------------ |
-| key   | string | Key of the media information. For details about the keys, see [MediaDescriptionKey](#mediadescriptionkey8).<br>**System capability**: SystemCapability.Multimedia.Media.Core|
-| value | any    | Value of the key. For details about the values, see [MediaDescriptionKey](#mediadescriptionkey8).<br>**System capability**: SystemCapability.Multimedia.Media.Core|
+| key   | string | 通过key值获取对应的value。key值具体可见[MediaDescriptionKey](#mediadescriptionkey8)。 |
+| value | any    | 对应key值得value。其类型可为任意类型，具体key对应value的类型可参考[MediaDescriptionKey](#mediadescriptionkey8)的描述信息。 |
 
-**Example**
+**示例：**
 
 ```js
 function printfItemDescription(obj, key) {
@@ -1517,7 +1541,7 @@ function printfItemDescription(obj, key) {
 audioPlayer.getTrackDescription((error, arrlist) => {
     if (typeof (arrlist) != 'undefined') {
         for (let i = 0; i < arrlist.length; i++) {
-            printfItemDescription(arrlist[i], MD_KEY_TRACK_TYPE);  // Print the MD_KEY_TRACK_TYPE value of each track.
+            printfItemDescription(arrlist[i], MD_KEY_TRACK_TYPE);  //打印出每条轨道MD_KEY_TRACK_TYPE的值
         }
     } else {
         console.log(`audio getTrackDescription fail, error:${error.message}`);
@@ -1527,27 +1551,27 @@ audioPlayer.getTrackDescription((error, arrlist) => {
 
 ## AudioRecorder
 
-Implements audio recording. Before calling a method of the **AudioRecorder** class, you must call [createAudioRecorder()](#media.createaudiorecorder) to create an [AudioRecorder](#audiorecorder) instance.
+音频录制管理类，用于录制音频媒体。在调用AudioRecorder的方法前，需要先通过[createAudioRecorder()](#media.createaudiorecorder) 构建一个[AudioRecorder](#audiorecorder)实例。
 
-For details about the audio recording demo, see [Audio Recording Development](../../media/audio-recorder.md).
+音频录制demo可参考：[音频录制开发指导](../../media/audio-recorder.md)
 
 ### prepare<a name=audiorecorder_prepare></a>
 
 prepare(config: AudioRecorderConfig): void
 
-Prepares for recording.
+录音准备。
 
-**Required permissions:** ohos.permission.MICROPHONE
+**需要权限：** ohos.permission.MICROPHONE
 
-**System capability**: SystemCapability.Multimedia.Media.AudioRecorder
+**系统能力：** SystemCapability.Multimedia.Media.AudioRecorder
 
-**Parameters**
+**参数：**
 
-| Name| Type                                       | Mandatory| Description                                                        |
+| 参数名 | 类型                                        | 必填 | 说明                                                         |
 | ------ | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| config | [AudioRecorderConfig](#audiorecorderconfig) | Yes  | Audio recording parameters, including the audio output URI, [encoding format](#audioencoder), sampling rate, number of audio channels, and [output format](#audiooutputformat).|
+| config | [AudioRecorderConfig](#audiorecorderconfig) | 是   | 配置录音的相关参数，包括音频输出URI、[编码格式](#audioencoder)、采样率、声道数、[输出格式](#audiooutputformat)等。 |
 
-**Example**
+**示例：**
 
 ```js
 let audioRecorderConfig = {
@@ -1556,10 +1580,10 @@ let audioRecorderConfig = {
     audioSampleRate : 22050,
     numberOfChannels : 2,
     format : media.AudioOutputFormat.AAC_ADTS,
-    uri : 'fd://1',       // The file must be created by the caller and granted with proper permissions.
+    uri : 'fd://1',       // 文件需先由调用者创建，并给予适当的权限
     location : { latitude : 30, longitude : 130},
 }
-audioRecorder.on('prepare', () => {    // Set the 'prepare' event callback.
+audioRecorder.on('prepare', () => {    //设置'prepare'事件回调
     console.log('prepare success');
 });
 audioRecorder.prepare(audioRecorderConfig);
@@ -1570,14 +1594,14 @@ audioRecorder.prepare(audioRecorderConfig);
 
 start(): void
 
-Starts audio recording. This method can be called only after the [prepare](#audiorecorder_on) event is triggered.
+开始录制，需在[prepare](#audiorecorder_on)事件成功触发后，才能调用start方法。
 
-**System capability**: SystemCapability.Multimedia.Media.AudioRecorder
+**系统能力：** SystemCapability.Multimedia.Media.AudioRecorder
 
-**Example**
+**示例：**
 
 ```js
-audioRecorder.on('start', () => {    // Set the 'start' event callback.
+audioRecorder.on('start', () => {    //设置'start'事件回调
     console.log('audio recorder start success');
 });
 audioRecorder.start();
@@ -1587,14 +1611,14 @@ audioRecorder.start();
 
 pause():void
 
-Pauses audio recording. This method can be called only after the [start](#audiorecorder_on) event is triggered.
+暂停录制，需要在[start](#audiorecorder_on)事件成功触发后，才能调用pause方法。
 
-**System capability**: SystemCapability.Multimedia.Media.AudioRecorder
+**系统能力：** SystemCapability.Multimedia.Media.AudioRecorder
 
-**Example**
+**示例：**
 
 ```js
-audioRecorder.on('pause', () => {    // Set the 'pause' event callback.
+audioRecorder.on('pause', () => {    //设置'pause'事件回调
     console.log('audio recorder pause success');
 });
 audioRecorder.pause();
@@ -1604,14 +1628,14 @@ audioRecorder.pause();
 
 resume():void
 
-Resumes audio recording. This method can be called only after the [pause](#audiorecorder_on) event is triggered.
+暂停录制，需要在[pause](#audiorecorder_on)事件成功触发后，才能调用resume方法。
 
-**System capability**: SystemCapability.Multimedia.Media.AudioRecorder
+**系统能力：** SystemCapability.Multimedia.Media.AudioRecorder
 
-**Example**
+**示例：**
 
 ```js
-audioRecorder.on('resume', () => { // Set the 'resume' event callback.
+audioRecorder.on('resume', () => {    //设置'resume'事件回调
     console.log('audio recorder resume success');
 });
 audioRecorder.resume();
@@ -1621,14 +1645,14 @@ audioRecorder.resume();
 
 stop(): void
 
-Stops audio recording.
+停止录音。
 
-**System capability**: SystemCapability.Multimedia.Media.AudioRecorder
+**系统能力：** SystemCapability.Multimedia.Media.AudioRecorder
 
-**Example**
+**示例：**
 
 ```js
-audioRecorder.on('stop', () => {    // Set the 'stop' event callback.
+audioRecorder.on('stop', () => {    //设置'stop'事件回调
     console.log('audio recorder stop success');
 });
 audioRecorder.stop();
@@ -1638,14 +1662,14 @@ audioRecorder.stop();
 
 release(): void
 
-Releases the audio recording resource.
+释放录音资源。
 
-**System capability**: SystemCapability.Multimedia.Media.AudioRecorder
+**系统能力：** SystemCapability.Multimedia.Media.AudioRecorder
 
-**Example**
+**示例：**
 
 ```js
-audioRecorder.on('release', () => {    // Set the 'release' event callback.
+audioRecorder.on('release', () => {    //设置'release'事件回调
     console.log('audio recorder release success');
 });
 audioRecorder.release();
@@ -1656,16 +1680,16 @@ audioRecorder = undefined;
 
 reset(): void
 
-Resets audio recording.
+重置录音。
 
-Before resetting audio recording, you must call [stop()](#audiorecorder_stop) to stop recording. After audio recording is reset, you must call [prepare()](#audiorecorder_prepare) to set the recording parameters for another recording.
+进行重置录音之前，需要先调用[stop()](#audiorecorder_stop)停止录音。重置录音之后，需要调用[prepare()](#audiorecorder_prepare)设置录音参数项，才能再次进行录音。
 
-**System capability**: SystemCapability.Multimedia.Media.AudioRecorder
+**系统能力：** SystemCapability.Multimedia.Media.AudioRecorder
 
-**Example**
+**示例：**
 
 ```js
-audioRecorder.on('reset', () => {    // Set the 'reset' event callback.
+audioRecorder.on('reset', () => {    //设置'reset'事件回调
     console.log('audio recorder reset success');
 });
 audioRecorder.reset();
@@ -1675,156 +1699,162 @@ audioRecorder.reset();
 
 on(type: 'prepare' | 'start' | 'pause' | 'resume' | 'stop' | 'release' | 'reset', callback: () => void): void
 
-Subscribes to the audio recording events.
+开始订阅音频录制事件。
 
-**System capability**: SystemCapability.Multimedia.Media.AudioRecorder
+**系统能力：** SystemCapability.Multimedia.Media.AudioRecorder
 
-**Parameters**
+**参数：**
 
-| Name  | Type    | Mandatory| Description                                                        |
+| 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
-| type     | string   | Yes  | Type of the event to subscribe to. The following events are supported: 'prepare'\|'start'\|  'pause' \| 'resume' \|'stop'\|'release'\|'reset'<br>- The 'prepare' event is triggered when the [prepare](#audiorecorder_prepare) method is called and the audio recording parameters are set.<br>- The 'start' event is triggered when the [start](#audiorecorder_start) method is called and audio recording starts.<br>- The 'pause' event is triggered when the [pause](#audiorecorder_pause) method is called and audio recording is paused.<br>- The 'resume' event is triggered when the [resume](#audiorecorder_resume) method is called and audio recording is resumed.<br>- The 'stop' event is triggered when the [stop](#audiorecorder_stop) method is called and audio recording stops.<br>- The 'release' event is triggered when the [release](#audiorecorder_release) method is called and the recording resource is released.<br>- The 'reset' event is triggered when the [reset](#audiorecorder_reset) method is called and audio recording is reset.|
-| callback | ()=>void | Yes  | Callback invoked when the event is triggered.                                          |
+| type     | string   | 是   | 录制事件回调类型，支持的事件包括：'prepare'&nbsp;\|&nbsp;'start'&nbsp;\|  'pause' \| ’resume‘ \|&nbsp;'stop'&nbsp;\|&nbsp;'release'&nbsp;\|&nbsp;'reset'。<br/>-&nbsp;'prepare'&nbsp;：完成[prepare](#audiorecorder_prepare)调用，音频录制参数设置完成，触发该事件。<br/>-&nbsp;'start'&nbsp;：完成[start](#audiorecorder_start)调用，音频录制开始，触发该事件。<br/>-&nbsp;'pause': 完成[pause](#audiorecorder_pause)调用，音频暂停录制，触发该事件。<br/>-&nbsp;'resume': 完成[resume](#audiorecorder_resume)调用，音频恢复录制，触发该事件。<br/>-&nbsp;'stop'&nbsp;：完成[stop](#audiorecorder_stop)调用，音频停止录制，触发该事件。<br/>-&nbsp;'release'&nbsp;：完成[release](#audiorecorder_release)调用，音频释放录制资源，触发该事件。<br/>-&nbsp;'reset'：完成[reset](#audiorecorder_reset)调用，音频重置为初始状态，触发该事件。 |
+| callback | ()=>void | 是   | 录制事件回调方法。                                           |
 
-**Example**
+**示例：**
 
 ```js
-let audiorecorder = media.createAudioRecorder();  								// Create an AudioRecorder instance.
+let audiorecorder = media.createAudioRecorder();  								// 创建一个音频录制实例
 let audioRecorderConfig = {
     audioEncoder : media.AudioEncoder.AAC_LC, ,
     audioEncodeBitRate : 22050,
     audioSampleRate : 22050,
     numberOfChannels : 2,
     format : media.AudioOutputFormat.AAC_ADTS,
-    uri : 'fd://xx',                                                            // The file must be created by the caller and granted with proper permissions.
+    uri : 'fd://xx',                                                            // 文件需先由调用者创建，并给予适当的权限
     location : { latitude : 30, longitude : 130},
 }
-audioRecorder.on('error', (error) => {             								// Set the 'error' event callback.
+audioRecorder.on('error', (error) => {             								// 设置'error'事件回调
 	console.info(`audio error called, errName is ${error.name}`);
     console.info(`audio error called, errCode is ${error.code}`);
     console.info(`audio error called, errMessage is ${error.message}`);
 });
-audioRecorder.on('prepare', () => {              								// Set the 'prepare' event callback.
+audioRecorder.on('prepare', () => {              								// 设置'prepare'事件回调
     console.log('prepare success');
-    audioRecorder.start();                       								// Start recording and trigger the 'start' event callback.
+    audioRecorder.start();                       								// 开始录制，并触发'start'事件回调
 });
-audioRecorder.on('start', () => {    		     								// Set the 'start' event callback.
+audioRecorder.on('start', () => {    		     								// 设置'start'事件回调
     console.log('audio recorder start success');
 });
-audioRecorder.on('pause', () => {    		     								// Set the 'pause' event callback.
+audioRecorder.on('pause', () => {    		     								// 设置'pause'事件回调
     console.log('audio recorder pause success');
 });
-audioRecorder.on('resume', () => {    		     								// Set the 'resume' event callback.
+audioRecorder.on('resume', () => {    		     								// 设置'resume'事件回调
     console.log('audio recorder resume success');
 });
-audioRecorder.on('stop', () => {    		     								// Set the 'stop' event callback.
+audioRecorder.on('stop', () => {    		     								// 设置'stop'事件回调
     console.log('audio recorder stop success');
 });
-audioRecorder.on('release', () => {    		     								// Set the 'release' event callback.
+audioRecorder.on('release', () => {    		     								// 设置'release'事件回调
     console.log('audio recorder release success');
 });
-audioRecorder.on('reset', () => {    		     								// Set the 'reset' event callback.
+audioRecorder.on('reset', () => {    		     								// 设置'reset'事件回调
     console.log('audio recorder reset success');
 });
-audioRecorder.prepare(audioRecorderConfig)       								// Set recording parameters and trigger the 'prepare' event callback.
+audioRecorder.prepare(audioRecorderConfig)       								// 设置录制参数 ，并触发'prepare'事件回调
 ```
 
 ### on('error')
 
 on(type: 'error', callback: ErrorCallback): void
 
-Subscribes to the audio recording error event.
+开始订阅音频录制错误事件。
 
-**System capability**: SystemCapability.Multimedia.Media.AudioRecorder
+**系统能力：** SystemCapability.Multimedia.Media.AudioRecorder
 
-**Parameters**
+**参数：**
 
-| Name  | Type         | Mandatory| Description                                                        |
+| 参数名   | 类型          | 必填 | 说明                                                         |
 | -------- | ------------- | ---- | ------------------------------------------------------------ |
-| type     | string        | Yes  | Type of the event to subscribe to, which is 'error' in this method.<br>The 'error' event is triggered when an error occurs during audio recording.|
-| callback | ErrorCallback | Yes  | Callback invoked when the event is triggered.                                      |
+| type     | string        | 是   | 录制错误事件回调类型'error'。<br/>-&nbsp;'error'：音频录制过程中发生错误，触发该事件。 |
+| callback | ErrorCallback | 是   | 录制错误事件回调方法。                                       |
 
-**Example**
+**示例：**
 
 ```js
-audioRecorder.on('error', (error) => {      							// Set the 'error' event callback.
-	console.info(`audio error called, errName is ${error.name}`);       // Print the error name.
-    console.info(`audio error called, errCode is ${error.code}`);       // Print the error code.
-    console.info(`audio error called, errMessage is ${error.message}`); // Print the detailed description of the error type.
+audioRecorder.on('error', (error) => {      							// 设置'error'事件回调
+	console.info(`audio error called, errName is ${error.name}`);       // 打印错误类型名称
+    console.info(`audio error called, errCode is ${error.code}`);       // 打印错误码
+    console.info(`audio error called, errMessage is ${error.message}`); // 打印错误类型详细描述
 });
-audioRecorder.prepare();  												// Do no set any parameter in prepare and trigger the 'error' event callback.
+audioRecorder.prepare();  												// prepare不设置参数，触发'error'事件
 ```
 
 ## AudioRecorderConfig
 
-Describes audio recording configurations.
+表示音频的录音配置。
 
-| Name                 | Type                               | Mandatory| Description                                                        |
+**系统能力：** 以下各项对应的系统能力均为 SystemCapability.Multimedia.Media.AudioRecorder。
+
+| 名称                  | 参数类型                                | 必填 | 说明                                                         |
 | --------------------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| audioEncoder          | [AudioEncoder](#audioencoder)           | No  | Audio encoding format. The default value is **AAC_LC**.<br>**System capability**: SystemCapability.Multimedia.Media.AudioRecorder|
-| audioEncodeBitRate    | number                                  | No  | Audio encoding bit rate. The default value is **48000**.<br>**System capability**: SystemCapability.Multimedia.Media.AudioRecorder|
-| audioSampleRate       | number                                  | No  | Audio sampling rate. The default value is **48000**.<br>**System capability**: SystemCapability.Multimedia.Media.AudioRecorder|
-| numberOfChannels      | number                                  | No  | Number of audio channels. The default value is **2**.<br>**System capability**: SystemCapability.Multimedia.Media.AudioRecorder|
-| format                | [AudioOutputFormat](#audiooutputformat) | No  | Audio output format. The default value is **MPEG_4**.<br>**System capability**: SystemCapability.Multimedia.Media.AudioRecorder|
-| location<sup>8+</sup> | [Location](#location8)                  | No  | Geographical location of the recorded audio.<br>**System capability**: SystemCapability.Multimedia.Media.AudioRecorder|
-| uri                   | string                                  | Yes  | Audio output URI. Supported: fd://xx&nbsp;(fd&nbsp;number)<br>![en-us_image_0000001164217678](figures/en-us_image_url.png) <br>The file must be created by the caller and granted with proper permissions.<br>**System capability**: SystemCapability.Multimedia.Media.AudioRecorder|
+| audioEncoder          | [AudioEncoder](#audioencoder)           | 否   | 音频编码格式，默认设置为AAC_LC。                             |
+| audioEncodeBitRate    | number                                  | 否   | 音频编码比特率，默认值为48000。                              |
+| audioSampleRate       | number                                  | 否   | 音频采集采样率，默认值为48000。                              |
+| numberOfChannels      | number                                  | 否   | 音频采集声道数，默认值为2。                                  |
+| format                | [AudioOutputFormat](#audiooutputformat) | 否   | 音量输出封装格式，默认设置为MPEG_4。                         |
+| location<sup>8+</sup> | [Location](#location8)                  | 否   | 音频采集的地理位置。                                         |
+| uri                   | string                                  | 是   | 视频输出URI：fd://xx&nbsp;(fd&nbsp;number)<br/>![zh-cn_image_0000001164217678](figures/zh-cn_image_url.png) <br/>文件需要由调用者创建，并赋予适当的权限。 |
 
 
 ## AudioEncoder
 
-Enumerates the audio encoding formats.
+表示音频编码格式的枚举。
 
-| Name   | Default Value| Description                                                        |
+**系统能力：** 以下各项对应的系统能力均为 SystemCapability.Multimedia.Media.AudioRecorder。
+
+| 名称    | 默认值 | 说明                                                         |
 | ------- | ------ | ------------------------------------------------------------ |
-| DEFAULT | 0      | Default audio encoding format, which is Adaptive Multi Rate-Narrow Band Speech Codec (AMR-NB).<br>This API is merely defined in OpenHarmony 3.1 Release and cannot be used currently. It can be used in OpenHarmony 3.1 MR.<br>**System capability**: SystemCapability.Multimedia.Media.AudioRecorder|
-| AMR_NB  | 1      | AMR-NB.<br>This API is merely defined in OpenHarmony 3.1 Release and cannot be used currently. It can be used in OpenHarmony 3.1 MR.<br>**System capability**: SystemCapability.Multimedia.Media.AudioRecorder|
-| AMR_WB  | 2      | Adaptive Multi Rate-Wide Band Speech Codec (AMR-WB).<br>This API is merely defined in OpenHarmony 3.1 Release and cannot be used currently. It can be used in OpenHarmony 3.1 MR.<br>**System capability**: SystemCapability.Multimedia.Media.AudioRecorder|
-| AAC_LC  | 3      | Advanced Audio Coding Low Complexity (AAC-LC).<br>**System capability**: SystemCapability.Multimedia.Media.AudioRecorder|
-| HE_AAC  | 4      | High-Efficiency Advanced&nbsp;Audio&nbsp;Coding (HE_AAC).<br>This API is merely defined in OpenHarmony 3.1 Release and cannot be used currently. It can be used in OpenHarmony 3.1 MR.<br>**System capability**: SystemCapability.Multimedia.Media.AudioRecorder|
+| DEFAULT | 0      | Default audio encoding format is AMR_NB。<br/>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
+| AMR_NB  | 1      | AMR-NB(Adaptive Multi Rate-Narrow Band Speech Codec) 编码格式。<br/>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
+| AMR_WB  | 2      | AMR-WB(Adaptive Multi Rate-Wide Band Speech Codec) 编码格式。<br/>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
+| AAC_LC  | 3      | AAC-LC（Advanced&nbsp;Audio&nbsp;Coding&nbsp;Low&nbsp;Complexity）编码格式。 |
+| HE_AAC  | 4      | HE_AAC（High-Efficiency Advanced&nbsp;Audio&nbsp;Coding）编码格式。<br/>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
 
 
 ## AudioOutputFormat
 
-Enumerates the audio output formats.
+表示音频封装格式的枚举。
 
-| Name    | Default Value| Description                                                        |
+**系统能力：** 以下各项对应的系统能力均为 SystemCapability.Multimedia.Media.AudioRecorder。
+
+| 名称     | 默认值 | 说明                                                         |
 | -------- | ------ | ------------------------------------------------------------ |
-| DEFAULT  | 0      | Default encapsulation format, which is MPEG-4.<br>This API is merely defined in OpenHarmony 3.1 Release and cannot be used currently. It can be used in OpenHarmony 3.1 MR.<br>**System capability**: SystemCapability.Multimedia.Media.AudioRecorder|
-| MPEG_4   | 2      | MPEG-4.<br>**System capability**: SystemCapability.Multimedia.Media.AudioRecorder|
-| AMR_NB   | 3      | AMR_NB.<br>This API is merely defined in OpenHarmony 3.1 Release and cannot be used currently. It can be used in OpenHarmony 3.1 MR.<br>**System capability**: SystemCapability.Multimedia.Media.AudioRecorder|
-| AMR_WB   | 4      | AMR_WB.<br>This API is merely defined in OpenHarmony 3.1 Release and cannot be used currently. It can be used in OpenHarmony 3.1 MR.<br>**System capability**: SystemCapability.Multimedia.Media.AudioRecorder|
-| AAC_ADTS | 6      | Audio Data Transport Stream (ADTS), which is a transport stream format of AAC-based audio.<br>**System capability**: SystemCapability.Multimedia.Media.AudioRecorder|
+| DEFAULT  | 0      | 默认封装格式为MPEG-4。<br/>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
+| MPEG_4   | 2      | 封装为MPEG-4格式。                                           |
+| AMR_NB   | 3      | 封装为AMR_NB格式。<br/>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
+| AMR_WB   | 4      | 封装为AMR_WB格式。<br/>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
+| AAC_ADTS | 6      | 封装为ADTS（Audio&nbsp;Data&nbsp;Transport&nbsp;Stream）格式，是AAC音频的传输流格式。 |
 
 ## VideoRecorder<sup>8+</sup>
 
-Implements video recording. Before calling a method of the **VideoRecorder** class, you must call [createVideoRecorder()](#media.createvideorecorder8) to create a [VideoRecorder](#videorecorder8) instance.
+视频录制管理类，用于录制视频媒体。在调用VideoRecorder的方法前，需要先通过[createVideoRecorder()](#media.createvideorecorder8)构建一个[VideoRecorder](#videorecorder8)实例。
 
-For details about the video recording demo, see [Video Recording Development](../../media/video-recorder.md).
+视频录制demo可参考：[视频录制开发指导](../../media/video-recorder.md)
 
-### Attributes
+### 属性
 
-| Name              | Type                                 | Readable| Writable| Description            |
+| 名称               | 类型                                  | 可读 | 可写 | 说明             |
 | ------------------ | ------------------------------------- | ---- | ---- | ---------------- |
-| state<sup>8+</sup> | [VideoRecordState](#videorecordstate) | Yes  | No  | Video recording state.|
+| state<sup>8+</sup> | [VideoRecordState](#videorecordstate) | 是   | 否   | 视频录制的状态。 |
 
 ### prepare<sup>8+</sup><a name=videorecorder_prepare1></a>
 
 prepare(config: VideoRecorderConfig, callback: AsyncCallback\<void>): void;
 
-Sets video recording parameters in asynchronous mode. This API uses a callback to return the result.
+异步方式进行视频录制的参数设置。通过注册回调函数获取返回值。
 
-**Required permissions:** ohos.permission.MICROPHONE ohos.permission.CAMERA
+**需要权限：** ohos.permission.MICROPHONE ohos.permission.CAMERA
 
-**System capability**: SystemCapability.Multimedia.Media.VideoRecorder
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
-**Parameters**
+**参数：**
 
-| Name  | Type                                       | Mandatory| Description                               |
+| 参数名   | 类型                                        | 必填 | 说明                                |
 | -------- | ------------------------------------------- | ---- | ----------------------------------- |
-| config   | [VideoRecorderConfig](#videorecorderconfig) | Yes  | Video recording parameters to set.           |
-| callback | AsyncCallback\<void>                        | Yes  | Callback used to return the result.|
+| config   | [VideoRecorderConfig](#videorecorderconfig) | 是   | 配置视频录制的相关参数。            |
+| callback | AsyncCallback\<void>                        | 是   | 异步视频录制prepare方法的回调方法。 |
 
-**Example**
+**示例：**
 
 ```js
 let videoProfile = {
@@ -1844,7 +1874,7 @@ let videoConfig = {
     audioSourceType : 1,
     videoSourceType : 0,
     profile : videoProfile,
-    url : 'fd://xx',   // The file must be created by the caller and granted with proper permissions.
+    url : 'fd://xx',   // 文件需先由调用者创建，并给予适当的权限
     orientationHint : 0,
     location : { latitude : 30, longitude : 130 },
 }
@@ -1868,7 +1898,7 @@ media.createVideoRecorder((err, recorder) => {
     if (typeof (err) == 'undefined' && typeof (recorder) != 'undefined') {
         videoRecorder = recorder;
         console.info('createVideoRecorder success');
-        eventEmitter.emit('prepare');                                        // Trigger the 'prepare' event.
+        eventEmitter.emit('prepare');                                        // prepare事件触发
     } else {
         console.info('createVideoRecorder failed and error is ' + err.message);
     }
@@ -1879,25 +1909,25 @@ media.createVideoRecorder((err, recorder) => {
 
 prepare(config: VideoRecorderConfig): Promise\<void>;
 
-Sets video recording parameters in asynchronous mode. This API uses a promise to return the result.
+异步方式进行视频录制的参数设置。通过Promise获取返回值。
 
-**Required permissions:** ohos.permission.MICROPHONE ohos.permission.CAMERA
+**需要权限：** ohos.permission.MICROPHONE ohos.permission.CAMERA
 
-**System capability**: SystemCapability.Multimedia.Media.VideoRecorder
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
-**Parameters**
+**参数：**
 
-| Name| Type                                       | Mandatory| Description                    |
+| 参数名 | 类型                                        | 必填 | 说明                     |
 | ------ | ------------------------------------------- | ---- | ------------------------ |
-| config | [VideoRecorderConfig](#videorecorderconfig) | Yes  | Video recording parameters to set.|
+| config | [VideoRecorderConfig](#videorecorderconfig) | 是   | 配置视频录制的相关参数。 |
 
-**Return value**
+**返回值：**
 
-| Type          | Description                                    |
+| 类型           | 说明                                     |
 | -------------- | ---------------------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | 异步视频录制prepare方法的Promise返回值。 |
 
-**Example**
+**示例：**
 
 ```js
 let videoProfile = {
@@ -1917,7 +1947,7 @@ let videoConfig = {
     audioSourceType : 1,
     videoSourceType : 0,
     profile : videoProfile,
-    url : 'fd://xx',   // The file must be created by the caller and granted with proper permissions.
+    url : 'fd://xx',   // 文件需先由调用者创建，并给予适当的权限
     orientationHint : 0,
     location : { latitude : 30, longitude : 130 },
 }
@@ -1950,25 +1980,25 @@ await videoRecorder.prepare(videoConfig).then(() => {
 
 getInputSurface(callback: AsyncCallback\<string>): void;
 
-Obtains the surface required for recording in asynchronous mode. This surface is provided for the caller. The caller obtains the **surfaceBuffer** from this surface and fills in the corresponding data.
+异步方式获得录制需要的surface。此surface提供给调用者，调用者从此surface中获取surfaceBuffer，填入相应的数据。
 
-Note that the video data must carry the timestamp (in ns) and buffer size, and the start time of the timestamp is based on the system startup time.
+应当注意，填入的视频数据需要携带时间戳（单位ns），buffersize。时间戳的起始时间请以系统启动时间为基准。
 
-This method can be called only after [prepare()](#videorecorder_prepare1) is called.
+只能在[prepare()](#videorecorder_prepare1)接口调用后调用。
 
-**System capability**: SystemCapability.Multimedia.Media.VideoRecorder
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
-**Parameters**
+**参数：**
 
-| Name  | Type                  | Mandatory| Description                       |
+| 参数名   | 类型                   | 必填 | 说明                        |
 | -------- | ---------------------- | ---- | --------------------------- |
-| callback | AsyncCallback\<string> | Yes  | Callback used to obtain the result.|
+| callback | AsyncCallback\<string> | 是   | 异步获得surface的回调方法。 |
 
-**Example**
+**示例：**
 
 ```js
 // asyncallback
-let surfaceID = null;   											// Surface ID passed to the external system.
+let surfaceID = null;   											// 传递给外界的surfaceID
 videoRecorder.getInputSurface((err, surfaceId) => {
     if (typeof (err) == 'undefined') {
         console.info('getInputSurface success');
@@ -1983,25 +2013,25 @@ videoRecorder.getInputSurface((err, surfaceId) => {
 
 getInputSurface(): Promise\<string>;
 
- Obtains the surface required for recording in asynchronous mode. This surface is provided for the caller. The caller obtains the **surfaceBuffer** from this surface and fills in the corresponding data.
+ 异步方式获得录制需要的surface。此surface提供给调用者，调用者从此surface中获取surfaceBuffer，填入相应的数据。
 
-Note that the video data must carry the timestamp (in ns) and buffer size, and the start time of the timestamp is based on the system startup time.
+应当注意，填入的视频数据需要携带时间戳（单位ns），buffersize。时间戳的起始时间请以系统启动时间为基准。
 
-This method can be called only after [prepare()](#videorecorder_prepare1) is called.
+只能在[prepare()](#videorecorder_prepare1)接口调用后调用。
 
-**System capability**: SystemCapability.Multimedia.Media.VideoRecorder
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
-**Return value**
+**返回值：**
 
-| Type            | Description                            |
+| 类型             | 说明                             |
 | ---------------- | -------------------------------- |
-| Promise\<string> | Promise used to return the result.|
+| Promise\<string> | 异步获得surface的Promise返回值。 |
 
-**Example**
+**示例：**
 
 ```js
 // promise
-let surfaceID = null;   											// Surface ID passed to the external system.
+let surfaceID = null;   											// 传递给外界的surfaceID
 await videoRecorder.getInputSurface().then((surfaceId) => {
     console.info('getInputSurface success');
     surfaceID = surfaceId;
@@ -2016,19 +2046,19 @@ await videoRecorder.getInputSurface().then((surfaceId) => {
 
 start(callback: AsyncCallback\<void>): void;
 
-Starts video recording in asynchronous mode. This API uses a callback to return the result.
+异步方式开始视频录制。通过注册回调函数获取返回值。
 
-This method can be called only after [prepare()](#videorecorder_prepare1) and [getInputSurface()](#getinputsurface8) are called, because the data source must pass data to the surface first.
+在[prepare()](#videorecorder_prepare1)和[getInputSurface()](#getinputsurface8)后调用，需要依赖数据源先给surface传递数据。
 
-**System capability**: SystemCapability.Multimedia.Media.VideoRecorder
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
-**Parameters**
+**参数：**
 
-| Name  | Type                | Mandatory| Description                        |
+| 参数名   | 类型                 | 必填 | 说明                         |
 | -------- | -------------------- | ---- | ---------------------------- |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void> | 是   | 异步开始视频录制的回调方法。 |
 
-**Example**
+**示例：**
 
 ```js
 // asyncallback
@@ -2045,19 +2075,19 @@ videoRecorder.start((err) => {
 
 start(): Promise\<void>;
 
-Starts video recording in asynchronous mode. This API uses a promise to return the result.
+异步方式开始视频录制。通过Promise获取返回值。
 
-This method can be called only after [prepare()](#videorecorder_prepare1) and [getInputSurface()](#getinputsurface8) are called, because the data source must pass data to the surface first.
+在[prepare()](#videorecorder_prepare1)和[getInputSurface()](#getinputsurface8)后调用，需要依赖数据源先给surface传递数据。
 
-**System capability**: SystemCapability.Multimedia.Media.VideoRecorder
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
-**Return value**
+**返回值：**
 
-| Type          | Description                                 |
+| 类型           | 说明                                  |
 | -------------- | ------------------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | 异步开始视频录制方法的Promise返回值。 |
 
-**Example**
+**示例：**
 
 ```js
 // promise
@@ -2074,19 +2104,19 @@ await videoRecorder.start().then(() => {
 
 pause(callback: AsyncCallback\<void>): void;
 
-Pauses video recording in asynchronous mode. This API uses a callback to return the result.
+异步方式暂停视频录制。通过注册回调函数获取返回值。
 
-This method can be called only after [start()](#videorecorder_start1) is called. You can resume recording by calling [resume()](#videorecorder_resume1).
+在[start()](#videorecorder_start1)后调用。可以通过调用[resume()](#videorecorder_resume1)接口来恢复录制。
 
-**System capability**: SystemCapability.Multimedia.Media.VideoRecorder
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
-**Parameters**
+**参数：**
 
-| Name  | Type                | Mandatory| Description                        |
+| 参数名   | 类型                 | 必填 | 说明                         |
 | -------- | -------------------- | ---- | ---------------------------- |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void> | 是   | 异步暂停视频录制的回调方法。 |
 
-**Example**
+**示例：**
 
 ```js
 // asyncallback
@@ -2103,19 +2133,19 @@ videoRecorder.pause((err) => {
 
 pause(): Promise\<void>;
 
-Pauses video recording in asynchronous mode. This API uses a promise to return the result.
+异步方式暂停视频录制。通过Promise获取返回值。
 
-This method can be called only after [start()](#videorecorder_start1) is called. You can resume recording by calling [resume()](#videorecorder_resume1).
+在[start()](#videorecorder_start1)后调用。可以通过调用[resume()](#videorecorder_resume1)接口来恢复录制。
 
-**System capability**: SystemCapability.Multimedia.Media.VideoRecorder
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
-**Return value**
+**返回值：**
 
-| Type          | Description                                 |
+| 类型           | 说明                                  |
 | -------------- | ------------------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | 异步暂停视频录制方法的Promise返回值。 |
 
-**Example**
+**示例：**
 
 ```js
 // promise
@@ -2132,17 +2162,17 @@ await videoRecorder.pause().then(() => {
 
 resume(callback: AsyncCallback\<void>): void;
 
-Resumes video recording in asynchronous mode. This API uses a callback to return the result.
+异步方式恢复视频录制。通过注册回调函数获取返回值。
 
-**System capability**: SystemCapability.Multimedia.Media.VideoRecorder
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
-**Parameters**
+**参数：**
 
-| Name  | Type                | Mandatory| Description                        |
+| 参数名   | 类型                 | 必填 | 说明                         |
 | -------- | -------------------- | ---- | ---------------------------- |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void> | 是   | 异步恢复视频录制的回调方法。 |
 
-**Example**
+**示例：**
 
 ```js
 // asyncallback
@@ -2159,17 +2189,17 @@ videoRecorder.resume((err) => {
 
 resume(): Promise\<void>;
 
-Resumes video recording in asynchronous mode. This API uses a promise to return the result.
+异步方式恢复视频录制。通过Promise获取返回值。
 
-**System capability**: SystemCapability.Multimedia.Media.VideoRecorder
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
-**Return value**
+**返回值：**
 
-| Type          | Description                                 |
+| 类型           | 说明                                  |
 | -------------- | ------------------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | 异步恢复视频录制方法的Promise返回值。 |
 
-**Example**
+**示例：**
 
 ```js
 // promise
@@ -2186,19 +2216,19 @@ await videoRecorder.resume().then(() => {
 
 stop(callback: AsyncCallback\<void>): void;
 
-Stops video recording in asynchronous mode. This API uses a callback to return the result.
+异步方式停止视频录制。通过注册回调函数获取返回值。
 
-To start another recording, you must call [prepare()](#videorecorder_prepare1) and [getInputSurface()](#getinputsurface8) again.
+需要重新调用[prepare()](#videorecorder_prepare1)和[getInputSurface()](#getinputsurface8)接口才能重新录制。
 
-**System capability**: SystemCapability.Multimedia.Media.VideoRecorder
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
-**Parameters**
+**参数：**
 
-| Name  | Type                | Mandatory| Description                        |
+| 参数名   | 类型                 | 必填 | 说明                         |
 | -------- | -------------------- | ---- | ---------------------------- |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void> | 是   | 异步停止视频录制的回调方法。 |
 
-**Example**
+**示例：**
 
 ```js
 // asyncallback
@@ -2215,19 +2245,19 @@ videoRecorder.stop((err) => {
 
 stop(): Promise\<void>;
 
-Stops video recording in asynchronous mode. This API uses a promise to return the result.
+异步方式停止视频录制。通过Promise获取返回值。
 
-To start another recording, you must call [prepare()](#videorecorder_prepare1) and [getInputSurface()](#getinputsurface8) again.
+需要重新调用[prepare()](#videorecorder_prepare1)和[getInputSurface()](#getinputsurface8)接口才能重新录制。
 
-**System capability**: SystemCapability.Multimedia.Media.VideoRecorder
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
-**Return value**
+**返回值：**
 
-| Type          | Description                                 |
+| 类型           | 说明                                  |
 | -------------- | ------------------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | 异步停止视频录制方法的Promise返回值。 |
 
-**Example**
+**示例：**
 
 ```js
 // promise
@@ -2244,17 +2274,17 @@ await videoRecorder.stop().then(() => {
 
 release(callback: AsyncCallback\<void>): void;
 
-Releases the video recording resource in asynchronous mode. This API uses a callback to return the result.
+异步方式释放视频录制资源。通过注册回调函数获取返回值。
 
-**System capability**: SystemCapability.Multimedia.Media.VideoRecorder
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
-**Parameters**
+**参数：**
 
-| Name  | Type                | Mandatory| Description                            |
+| 参数名   | 类型                 | 必填 | 说明                             |
 | -------- | -------------------- | ---- | -------------------------------- |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void> | 是   | 异步释放视频录制资源的回调方法。 |
 
-**Example**
+**示例：**
 
 ```js
 // asyncallback
@@ -2271,17 +2301,17 @@ videoRecorder.release((err) => {
 
 release(): Promise\<void>;
 
-Releases the video recording resource in asynchronous mode. This API uses a promise to return the result.
+异步方式释放视频录制资源。通过Promise获取返回值。
 
-**System capability**: SystemCapability.Multimedia.Media.VideoRecorder
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
-**Return value**
+**返回值：**
 
-| Type          | Description                                     |
+| 类型           | 说明                                      |
 | -------------- | ----------------------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | 异步释放视频录制资源方法的Promise返回值。 |
 
-**Example**
+**示例：**
 
 ```js
 // promise
@@ -2298,19 +2328,19 @@ await videoRecorder.release().then(() => {
 
 reset(callback: AsyncCallback\<void>): void;
 
-Resets video recording in asynchronous mode. This API uses a callback to return the result.
+异步方式重置视频录制。通过注册回调函数获取返回值。
 
-To start another recording, you must call [prepare()](#videorecorder_prepare1) and [getInputSurface()](#getinputsurface8) again.
+需要重新调用[prepare()](#videorecorder_prepare1)和[getInputSurface()](#getinputsurface8)接口才能重新录制。
 
-**System capability**: SystemCapability.Multimedia.Media.VideoRecorder
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
-**Parameters**
+**参数：**
 
-| Name  | Type                | Mandatory| Description                        |
+| 参数名   | 类型                 | 必填 | 说明                         |
 | -------- | -------------------- | ---- | ---------------------------- |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void> | 是   | 异步重置视频录制的回调方法。 |
 
-**Example**
+**示例：**
 
 ```js
 // asyncallback
@@ -2327,19 +2357,19 @@ videoRecorder.reset((err) => {
 
 reset(): Promise\<void>;
 
-Resets video recording in asynchronous mode. This API uses a promise to return the result.
+异步方式重置视频录制。通过Promise获取返回值。
 
-To start another recording, you must call [prepare()](#videorecorder_prepare1) and [getInputSurface()](#getinputsurface8) again.
+需要重新调用[prepare()](#videorecorder_prepare1)和[getInputSurface()](#getinputsurface8)接口才能重新录制。
 
-**System capability**: SystemCapability.Multimedia.Media.VideoRecorder
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
-**Return value**
+**返回值：**
 
-| Type          | Description                                 |
+| 类型           | 说明                                  |
 | -------------- | ------------------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | 异步重置视频录制方法的Promise返回值。 |
 
-**Example**
+**示例：**
 
 ```js
 // promise
@@ -2356,101 +2386,115 @@ await videoRecorder.reset().then(() => {
 
 on(type: 'error', callback: ErrorCallback): void
 
-Subscribes to the video recording error event.
+开始订阅视频录制错误事件。
 
-**System capability**: SystemCapability.Multimedia.Media.VideoRecorder
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
-**Parameters**
+**参数：**
 
-| Name  | Type         | Mandatory| Description                                                        |
+| 参数名   | 类型          | 必填 | 说明                                                         |
 | -------- | ------------- | ---- | ------------------------------------------------------------ |
-| type     | string        | Yes  | Type of the event to subscribe to, which is 'error' in this method.<br>The 'error' event is triggered when an error occurs during video recording.|
-| callback | ErrorCallback | Yes  | Callback invoked when the event is triggered.                                      |
+| type     | string        | 是   | 录制错误事件回调类型'error'。<br/>-&nbsp;'error'：音频录制过程中发生错误，触发该事件。 |
+| callback | ErrorCallback | 是   | 录制错误事件回调方法。                                       |
 
-**Example**
+**示例：**
 
 ```js
-videoRecorder.on('error', (error) => {      							// Set the 'error' event callback.
-	console.info(`audio error called, errName is ${error.name}`);       // Print the error name.
-    console.info(`audio error called, errCode is ${error.code}`);       // Print the error code.
-    console.info(`audio error called, errMessage is ${error.message}`); // Print the detailed description of the error type.
+videoRecorder.on('error', (error) => {      							// 设置'error'事件回调
+	console.info(`audio error called, errName is ${error.name}`);       // 打印错误类型名称
+    console.info(`audio error called, errCode is ${error.code}`);       // 打印错误码
+    console.info(`audio error called, errMessage is ${error.message}`); // 打印错误类型详细描述
 });
-// This event is reported when an error occurs during the retrieval of videoRecordState.
+// 当获取videoRecordState接口出错时通过此订阅事件上报
 ```
 
 ## VideoRecordState<sup>8+</sup>
 
-Enumerates the video recording states. You can obtain the state through the **state** attribute.
+视频录制的状态机。可通过state属性获取当前状态。
 
-| Name    | Type  | Description                                                        |
-| -------- | ------ | ------------------------------------------------------------ |
-| idle     | string | The video recorder is idle.<br>**System capability**: SystemCapability.Multimedia.Media.VideoRecorder|
-| prepared | string | The video recording parameters are set.<br>**System capability**: SystemCapability.Multimedia.Media.VideoRecorder|
-| playing  | string | Video recording is in progress.<br>**System capability**: SystemCapability.Multimedia.Media.VideoRecorder|
-| paused   | string | Video recording is paused.<br>**System capability**: SystemCapability.Multimedia.Media.VideoRecorder|
-| stopped  | string | Video recording is stopped.<br>**System capability**: SystemCapability.Multimedia.Media.VideoRecorder|
-| error    | string | Video recording is in the error state.<br>**System capability**: SystemCapability.Multimedia.Media.VideoRecorder|
+**系统能力：** 以下各项对应的系统能力均为 SystemCapability.Multimedia.Media.VideoRecorder。
+
+| 名称     | 类型   | 描述                   |
+| -------- | ------ | ---------------------- |
+| idle     | string | 视频录制空闲。         |
+| prepared | string | 视频录制参数设置完成。 |
+| playing  | string | 视频正在录制。         |
+| paused   | string | 视频暂停录制。         |
+| stopped  | string | 视频录制停止。         |
+| error    | string | 错误状态。             |
 
 ## VideoRecorderConfig<sup>8+</sup>
 
-Describes the video recording parameters.
+表示视频录制的参数设置。
 
-| Name           | Type                                                  | Mandatory| Description                                                        |
+**系统能力：** 以下各项对应的系统能力均为 SystemCapability.Multimedia.Media.VideoRecorder。
+
+| 名称            | 参数类型                                                   | 必填 | 说明                                                         |
 | --------------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| audioSourceType | [AudioSourceType](#audiosourcetype<sup>8+</sup>)           | Yes  | Type of the audio source for video recording.<br>**System capability**: SystemCapability.Multimedia.Media.VideoRecorder|
-| videoSourceType | [VideoSourceType](#videosourcetype<sup>8+</sup>)           | Yes  | Type of the video source for video recording.<br>**System capability**: SystemCapability.Multimedia.Media.VideoRecorder|
-| profile         | [VideoRecorderProfile](#videorecorderprofile<sup>8+</sup>) | Yes  | Video recording profile.<br>**System capability**: SystemCapability.Multimedia.Media.VideoRecorder|
-| orientationHint | number                                                     | No  | Rotation angle of the recorded video.<br>**System capability**: SystemCapability.Multimedia.Media.VideoRecorder|
-| location        | [Location](#location8)                                     | No  | Geographical location of the recorded video.<br>**System capability**: SystemCapability.Multimedia.Media.VideoRecorder|
-| url             | string                                                     | Yes  | Video output URL. Supported: fd://xx&nbsp;(fd&nbsp;number)<br>![en-us_image_0000001164217678](figures/en-us_image_url.png) <br>The file must be created by the caller and granted with proper permissions.<br>**System capability**: SystemCapability.Multimedia.Media.VideoRecorder|
+| audioSourceType | [AudioSourceType](#audiosourcetype<sup>8+</sup>)           | 是   | 视频录制的音频源类型。                                       |
+| videoSourceType | [VideoSourceType](#videosourcetype<sup>8+</sup>)           | 是   | 视频录制的视频源类型。                                       |
+| profile         | [VideoRecorderProfile](#videorecorderprofile<sup>8+</sup>) | 是   | 视频录制的profile。                                          |
+| orientationHint | number                                                     | 否   | 录制视频的旋转角度。                                         |
+| location        | [Location](#location8)                                     | 否   | 录制视频的地理位置。                                         |
+| url             | string                                                     | 是   | 视频输出URL：fd://xx&nbsp;(fd&nbsp;number)<br/>![zh-cn_image_0000001164217678](figures/zh-cn_image_url.png) <br/>文件需要由调用者创建，并赋予适当的权限。 |
 
 ## AudioSourceType<sup>8+</sup>
 
-Enumerates the audio source types for video recording.
+表示视频录制中音频源类型的枚举。
 
-| Name                     | Value  | Description                                                        |
-| ------------------------- | ---- | ------------------------------------------------------------ |
-| AUDIO_SOURCE_TYPE_DEFAULT | 0    | Default audio input source.<br>**System capability**: SystemCapability.Multimedia.Media.VideoRecorder|
-| AUDIO_SOURCE_TYPE_MIC     | 1    | Mic audio input source.<br>**System capability**: SystemCapability.Multimedia.Media.VideoRecorder|
+**系统能力：** 以下各项对应的系统能力均为 SystemCapability.Multimedia.Media.VideoRecorder。
+
+| 名称                      | 值   | 说明                   |
+| ------------------------- | ---- | ---------------------- |
+| AUDIO_SOURCE_TYPE_DEFAULT | 0    | 默认的音频输入源类型。 |
+| AUDIO_SOURCE_TYPE_MIC     | 1    | 表示MIC的音频输入源。  |
 
 ## VideoSourceType<sup>8+</sup>
 
-Enumerates the video source types for video recording.
+表示视频录制中视频源类型的枚举。
 
-| Name                         | Value  | Description                                                        |
-| ----------------------------- | ---- | ------------------------------------------------------------ |
-| VIDEO_SOURCE_TYPE_SURFACE_YUV | 0    | The input surface carries raw data.<br>**System capability**: SystemCapability.Multimedia.Media.VideoRecorder|
-| VIDEO_SOURCE_TYPE_SURFACE_ES  | 1    | The input surface carries ES data.<br>**System capability**: SystemCapability.Multimedia.Media.VideoRecorder|
+**系统能力：** 以下各项对应的系统能力均为 SystemCapability.Multimedia.Media.VideoRecorder。
+
+| 名称                          | 值   | 说明                            |
+| ----------------------------- | ---- | ------------------------------- |
+| VIDEO_SOURCE_TYPE_SURFACE_YUV | 0    | 输入surface中携带的是raw data。 |
+| VIDEO_SOURCE_TYPE_SURFACE_ES  | 1    | 输入surface中携带的是ES data。  |
 
 ## VideoRecorderProfile<sup>8+</sup>
 
-Describes the video recording profile.
+视频录制的配置文件。
 
-| Name            | Type                                    | Mandatory| Description                                                        |
-| ---------------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| audioBitrate     | number                                       | Yes  | Audio encoding bit rate.<br>**System capability**: SystemCapability.Multimedia.Media.VideoRecorder|
-| audioChannels    | number                                       | Yes  | Number of audio channels.<br>**System capability**: SystemCapability.Multimedia.Media.VideoRecorder|
-| audioCodec       | [CodecMimeType](#CodecMimeType8)             | Yes  | Audio encoding format.<br>**System capability**: SystemCapability.Multimedia.Media.VideoRecorder|
-| audioSampleRate  | number                                       | Yes  | Audio sampling rate.<br>**System capability**: SystemCapability.Multimedia.Media.VideoRecorder|
-| fileFormat       | [ContainerFormatType](#containerformattype8) | Yes  | Container format of a file.<br>**System capability**: SystemCapability.Multimedia.Media.VideoRecorder|
-| videoCodec       | [CodecMimeType](#CodecMimeType8)             | Yes  | Video encoding format.<br>**System capability**: SystemCapability.Multimedia.Media.VideoRecorder|
-| videoFrameWidth  | number                                       | Yes  | Width of the recorded video frame.<br>**System capability**: SystemCapability.Multimedia.Media.VideoRecorder|
-| videoFrameHeight | number                                       | Yes  | Height of the recorded video frame.<br>**System capability**: SystemCapability.Multimedia.Media.VideoRecorder|
+**系统能力：** 以下各项对应的系统能力均为 SystemCapability.Multimedia.Media.VideoRecorder。
+
+| 名称             | 参数类型                                     | 必填 | 说明             |
+| ---------------- | -------------------------------------------- | ---- | ---------------- |
+| audioBitrate     | number                                       | 是   | 音频编码比特率。 |
+| audioChannels    | number                                       | 是   | 音频采集声道数。 |
+| audioCodec       | [CodecMimeType](#CodecMimeType8)             | 是   | 音频编码格式。   |
+| audioSampleRate  | number                                       | 是   | 音频采样率。     |
+| fileFormat       | [ContainerFormatType](#containerformattype8) | 是   | 文件的容器格式。 |
+| videoCodec       | [CodecMimeType](#CodecMimeType8)             | 是   | 视频编码格式。   |
+| videoFrameWidth  | number                                       | 是   | 录制视频帧的宽。 |
+| videoFrameHeight | number                                       | 是   | 录制视频帧的高。 |
 
 ## ContainerFormatType<sup>8+</sup>
 
-Enumerates the container format types (CFTs).
+表示容器格式类型的枚举，缩写为CFT。
 
-| Name       | Value   | Description                                                        |
-| ----------- | ----- | ------------------------------------------------------------ |
-| CFT_MPEG_4  | "mp4" | Video container format MP4.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
-| CFT_MPEG_4A | "m4a" | Audio container format M4A.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
+**系统能力：** 以下各项对应的系统能力均为 SystemCapability.Multimedia.Media.Core。
+
+| 名称        | 值    | 说明                  |
+| ----------- | ----- | --------------------- |
+| CFT_MPEG_4  | "mp4" | 视频的容器格式，MP4。 |
+| CFT_MPEG_4A | "m4a" | 音频的容器格式，M4A。 |
 
 ## Location<sup>8+</sup>
 
-Describes the geographical location of the recorded video.
+视频录制的地理位置。
 
-| Name     | Type| Mandatory| Description                                                        |
-| --------- | -------- | ---- | ------------------------------------------------------------ |
-| latitude  | number   | Yes  | Latitude of the geographical location.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
-| longitude | number   | Yes  | Longitude of the geographical location.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
+**系统能力：** 以下各项对应的系统能力均为 SystemCapability.Multimedia.Media.Core。
+
+| 名称      | 参数类型 | 必填 | 说明             |
+| --------- | -------- | ---- | ---------------- |
+| latitude  | number   | 是   | 地理位置的纬度。 |
+| longitude | number   | 是   | 地理位置的经度。 |

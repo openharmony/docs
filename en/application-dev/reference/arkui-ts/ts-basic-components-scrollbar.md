@@ -1,0 +1,96 @@
+# ScrollBar
+
+
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
+
+
+The **&lt;ScrollBar&gt;** is used together with scrollable components, such as **&lt;List&gt;**, **&lt;Grid&gt;**, and **&lt;Scroll&gt;**.
+
+
+## Required Permissions
+
+None
+
+
+## Child Components
+
+This component can contain a single child component.
+
+
+## APIs
+
+ScrollBar(value: ScrollBarOption)
+
+- ScrollBarOption parameters
+    | Name | Type | Mandatory | Default&nbsp;Value | Description |
+  | -------- | -------- | -------- | -------- | -------- |
+  | scroller | [Scroller](ts-container-scroll.md#scroller) | Yes | - | Scroller,&nbsp;which&nbsp;can&nbsp;be&nbsp;bound&nbsp;to&nbsp;and&nbsp;control&nbsp;scrollable&nbsp;components. |
+  | direction | ScrollBarDirection | No | ScrollBarDirection.Vertical | Scrollbar&nbsp;direction&nbsp;in&nbsp;which&nbsp;scrollable&nbsp;components&nbsp;scroll. |
+  | state | BarState | No | BarState.Auto | Scrollbar&nbsp;state. |
+
+  > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+  > The **&lt;ScrollBar&gt;** component defines the behavior style of the scrollable area, and its subnodes define the behavior style of the scrollbar.
+  > 
+  > This component is bound to a scrollable component through **scroller**, and can be used to scroll the scrollable component only when their directions are the same. The **&lt;ScrollBar&gt;** component can be bound to only one scrollable component, and vice versa.
+
+- ScrollBarDirection enums
+    | Name | Description | 
+  | -------- | -------- |
+  | Vertical | Vertical&nbsp;scrollbar. | 
+  | Horizontal | Horizontal&nbsp;scrollbar. | 
+
+- BarState enums
+    | Name | Description | 
+  | -------- | -------- |
+  | On | Always&nbsp;display. | 
+  | Off | Hide. | 
+  | Auto | Display&nbsp;on&nbsp;demand&nbsp;(displays&nbsp;when&nbsp;the&nbsp;screen&nbsp;is&nbsp;touched&nbsp;and&nbsp;disappears&nbsp;after&nbsp;2s&nbsp;of&nbsp;inactivity). | 
+
+
+## Example
+
+
+```
+@Entry
+@Component
+struct ScrollBarExample {
+  private scroller: Scroller = new Scroller()
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+  build() {
+    Column() {
+      Stack({ alignContent: Alignment.End }) {
+        Scroll(this.scroller) {
+          Flex({ direction: FlexDirection.Column }) {
+            ForEach(this.arr, (item) => {
+              Row() {
+                Text(item.toString())
+                  .width('90%')
+                  .height(100)
+                  .backgroundColor('#3366CC')
+                  .borderRadius(15)
+                  .fontSize(16)
+                  .textAlign(TextAlign.Center)
+                  .margin({ top: 5 })
+              }
+            }, item => item)
+          }.margin({ left: 52 })
+        }
+        .scrollBar(BarState.Off)
+        .scrollable(ScrollDirection.Vertical)
+        ScrollBar({ scroller: this.scroller, direction: ScrollBarDirection.Vertical,state: BarState.Auto }) {
+          Text()
+            .width(30)
+            .height(100)
+            .borderRadius(10)
+            .backgroundColor('#C0C0C0')
+        }.width(30).backgroundColor('#ededed')
+      }
+    }
+  }
+}
+```
+
+
+![en-us_image_0000001256978369](figures/en-us_image_0000001256978369.gif)

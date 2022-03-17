@@ -1432,7 +1432,7 @@ lstat(path:string, callback:AsyncCallback&lt;Stat&gt;): void
   ```js
   fileio.lstat(path, function (err, stat) {
       // do something
-  });
+  ));
   ```
 
 
@@ -1827,7 +1827,7 @@ chown(path: string, uid: number, gid: number): Promise&lt;void&gt;
 - 示例：
   ```js
   let stat = fileio.statSync(path);
-  fileio.chown(path, stat.uid, stat.gid).then(function(){
+  fileio.chown(path, stat.uid, stat.gid)).then(function(){
       console.info("chown successfully");
   }).catch(function(err){
       console.info("chown failed with error:"+ err);
@@ -2127,7 +2127,7 @@ fdopenStream(fd: number, mode: string): Promise&lt;Stream&gt;
 - 示例：
   ```js
   fileio.fdopenStream(fd, mode).then(function(stream){
-      console.info("openStream successfully");
+      console.info("openStream successfully"+);
   }).catch(function(err){
       console.info("openStream failed with error:"+ err);
   });

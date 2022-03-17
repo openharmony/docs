@@ -1,145 +1,99 @@
-# Progress<a name="EN-US_TOPIC_0000001193075086"></a>
+# Progress
 
->![](../../public_sys-resources/icon-note.gif) **NOTE:** 
->This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
-The  **<Progress\>**  component is used to provide a progress bar that displays the progress of content loading or an operation.
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
-## Required Permissions<a name="section781125411508"></a>
+
+The **&lt;Progress&gt;** component is used to provide a progress bar that displays the progress of content loading or an operation.
+
+
+## Required Permissions
 
 None
 
-## Child Components<a name="section53281531154915"></a>
+
+## Child Components
 
 None
 
-## APIs<a name="section1989913519718"></a>
 
-Progress\(value: \{value: number, total?: number, style?: ProgressStyle\}\)
+## APIs
 
-Creates a progress bar with a specified progress value.
+Progress(value: {value: number, total?: number, style?: ProgressStyle})
 
--   Parameters
+Creates a progress bar.
 
-    <a name="table11384430418"></a>
-    <table><thead align="left"><tr id="row103841930216"><th class="cellrowborder" valign="top" width="16.11%" id="mcps1.1.6.1.1"><p id="p038517301118"><a name="p038517301118"></a><a name="p038517301118"></a>Name</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="16.3%" id="mcps1.1.6.1.2"><p id="p17385530915"><a name="p17385530915"></a><a name="p17385530915"></a>Type</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="10.71%" id="mcps1.1.6.1.3"><p id="p03857305117"><a name="p03857305117"></a><a name="p03857305117"></a>Mandatory</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="16.869999999999997%" id="mcps1.1.6.1.4"><p id="p93855306110"><a name="p93855306110"></a><a name="p93855306110"></a>Default Value</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="40.01%" id="mcps1.1.6.1.5"><p id="p103852301819"><a name="p103852301819"></a><a name="p103852301819"></a>Description</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row103858301018"><td class="cellrowborder" valign="top" width="16.11%" headers="mcps1.1.6.1.1 "><p id="p23851230613"><a name="p23851230613"></a><a name="p23851230613"></a>value</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="16.3%" headers="mcps1.1.6.1.2 "><p id="p1738512301610"><a name="p1738512301610"></a><a name="p1738512301610"></a>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="10.71%" headers="mcps1.1.6.1.3 "><p id="p113851302115"><a name="p113851302115"></a><a name="p113851302115"></a>Yes</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="16.869999999999997%" headers="mcps1.1.6.1.4 "><p id="p5385163016119"><a name="p5385163016119"></a><a name="p5385163016119"></a>-</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="40.01%" headers="mcps1.1.6.1.5 "><p id="p73857301211"><a name="p73857301211"></a><a name="p73857301211"></a>Current progress.</p>
-    </td>
-    </tr>
-    <tr id="row538517301316"><td class="cellrowborder" valign="top" width="16.11%" headers="mcps1.1.6.1.1 "><p id="p638510301813"><a name="p638510301813"></a><a name="p638510301813"></a>total</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="16.3%" headers="mcps1.1.6.1.2 "><p id="p838511307111"><a name="p838511307111"></a><a name="p838511307111"></a>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="10.71%" headers="mcps1.1.6.1.3 "><p id="p1338517309117"><a name="p1338517309117"></a><a name="p1338517309117"></a>No</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="16.869999999999997%" headers="mcps1.1.6.1.4 "><p id="p238583011119"><a name="p238583011119"></a><a name="p238583011119"></a>100</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="40.01%" headers="mcps1.1.6.1.5 "><p id="p13853301411"><a name="p13853301411"></a><a name="p13853301411"></a>Total progress.</p>
-    </td>
-    </tr>
-    <tr id="row1838563011114"><td class="cellrowborder" valign="top" width="16.11%" headers="mcps1.1.6.1.1 "><p id="p43853301117"><a name="p43853301117"></a><a name="p43853301117"></a>style</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="16.3%" headers="mcps1.1.6.1.2 "><p id="p43851130511"><a name="p43851130511"></a><a name="p43851130511"></a><a href="#table12144170154116">ProgressStyle</a></p>
-    </td>
-    <td class="cellrowborder" valign="top" width="10.71%" headers="mcps1.1.6.1.3 "><p id="p113851630312"><a name="p113851630312"></a><a name="p113851630312"></a>No</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="16.869999999999997%" headers="mcps1.1.6.1.4 "><p id="p17385183010110"><a name="p17385183010110"></a><a name="p17385183010110"></a>Linear</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="40.01%" headers="mcps1.1.6.1.5 "><p id="p15385430418"><a name="p15385430418"></a><a name="p15385430418"></a>Style of the progress bar.</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+- Parameters
+    | Name | Type | Mandatory | Default&nbsp;Value | Description | 
+  | -------- | -------- | -------- | -------- | -------- |
+  | value | number | Yes | - | Current&nbsp;progress. | 
+  | total | number | No | 100 | Total&nbsp;progress. | 
+  | style | ProgressStyle | No | ProgressStyle.Linear | Style&nbsp;of&nbsp;the&nbsp;progress&nbsp;bar. | 
 
 
--   ProgressStyle enums
-
-    <a name="table12144170154116"></a>
-    <table><thead align="left"><tr id="row1314430184118"><th class="cellrowborder" valign="top" width="24.69%" id="mcps1.1.3.1.1"><p id="p1614414014416"><a name="p1614414014416"></a><a name="p1614414014416"></a>Name</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="75.31%" id="mcps1.1.3.1.2"><p id="p1314415074113"><a name="p1314415074113"></a><a name="p1314415074113"></a>Description</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row61441505417"><td class="cellrowborder" valign="top" width="24.69%" headers="mcps1.1.3.1.1 "><p id="p191443034117"><a name="p191443034117"></a><a name="p191443034117"></a>Linear</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="75.31%" headers="mcps1.1.3.1.2 "><p id="p121447017412"><a name="p121447017412"></a><a name="p121447017412"></a>Linear progress bar.</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+- ProgressStyle enums
+    | Name | Description | 
+  | -------- | -------- |
+  | Linear | Linear&nbsp;style. | 
+  | Ring<sup>8+</sup> | Ring&nbsp;style&nbsp;without&nbsp;scale.&nbsp;The&nbsp;ring&nbsp;fills&nbsp;up&nbsp;as&nbsp;the&nbsp;progress&nbsp;increases. | 
+  | Eclipse | Eclipse&nbsp;style,&nbsp;which&nbsp;visualizes&nbsp;the&nbsp;progress&nbsp;in&nbsp;a&nbsp;way&nbsp;similar&nbsp;to&nbsp;the&nbsp;moon&nbsp;waxing&nbsp;from&nbsp;new&nbsp;to&nbsp;full. | 
+  | ScaleRing<sup>8+</sup> | Ring&nbsp;style&nbsp;with&nbsp;scale,&nbsp;which&nbsp;is&nbsp;similar&nbsp;to&nbsp;the&nbsp;clock&nbsp;scale&nbsp;style. | 
+  | Capsule<sup>8+</sup> | Capsule&nbsp;style.&nbsp;At&nbsp;both&nbsp;ends,&nbsp;the&nbsp;progress&nbsp;bar&nbsp;changes&nbsp;from&nbsp;an&nbsp;arc&nbsp;to&nbsp;a&nbsp;straight&nbsp;line&nbsp;and&nbsp;from&nbsp;a&nbsp;straight&nbsp;line&nbsp;to&nbsp;an&nbsp;arc.&nbsp;In&nbsp;the&nbsp;middle&nbsp;part&nbsp;of&nbsp;the&nbsp;capsule,&nbsp;the&nbsp;progress&nbsp;bar&nbsp;moves&nbsp;to&nbsp;the&nbsp;right. | 
 
 
-## Attributes<a name="section18430105671014"></a>
+## Attributes
 
-<a name="table952mcpsimp"></a>
-<table><thead align="left"><tr id="row959mcpsimp"><th class="cellrowborder" valign="top" width="16%" id="mcps1.1.5.1.1"><p id="p961mcpsimp"><a name="p961mcpsimp"></a><a name="p961mcpsimp"></a>Name</p>
-</th>
-<th class="cellrowborder" valign="top" width="28.51%" id="mcps1.1.5.1.2"><p id="p963mcpsimp"><a name="p963mcpsimp"></a><a name="p963mcpsimp"></a>Type</p>
-</th>
-<th class="cellrowborder" valign="top" width="12.82%" id="mcps1.1.5.1.3"><p id="p965mcpsimp"><a name="p965mcpsimp"></a><a name="p965mcpsimp"></a>Default Value</p>
-</th>
-<th class="cellrowborder" valign="top" width="42.67%" id="mcps1.1.5.1.4"><p id="p967mcpsimp"><a name="p967mcpsimp"></a><a name="p967mcpsimp"></a>Description</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row163041291058"><td class="cellrowborder" valign="top" width="16%" headers="mcps1.1.5.1.1 "><p id="p1352619001912"><a name="p1352619001912"></a><a name="p1352619001912"></a>value</p>
-</td>
-<td class="cellrowborder" valign="top" width="28.51%" headers="mcps1.1.5.1.2 "><p id="p9247199201913"><a name="p9247199201913"></a><a name="p9247199201913"></a>number</p>
-</td>
-<td class="cellrowborder" valign="top" width="12.82%" headers="mcps1.1.5.1.3 "><p id="p23053910513"><a name="p23053910513"></a><a name="p23053910513"></a>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="42.67%" headers="mcps1.1.5.1.4 "><p id="p18583122017217"><a name="p18583122017217"></a><a name="p18583122017217"></a>Current progress.</p>
-</td>
-</tr>
-<tr id="row14401548131820"><td class="cellrowborder" valign="top" width="16%" headers="mcps1.1.5.1.1 "><p id="p10401174801810"><a name="p10401174801810"></a><a name="p10401174801810"></a>color</p>
-</td>
-<td class="cellrowborder" valign="top" width="28.51%" headers="mcps1.1.5.1.2 "><p id="p3401104810185"><a name="p3401104810185"></a><a name="p3401104810185"></a>Color</p>
-</td>
-<td class="cellrowborder" valign="top" width="12.82%" headers="mcps1.1.5.1.3 "><p id="p10401048181818"><a name="p10401048181818"></a><a name="p10401048181818"></a>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="42.67%" headers="mcps1.1.5.1.4 "><p id="p1153317296299"><a name="p1153317296299"></a><a name="p1153317296299"></a>Background color of the progress bar.</p>
-</td>
-</tr>
-</tbody>
-</table>
+  | Name | Type | Default&nbsp;Value | Description | 
+| -------- | -------- | -------- | -------- |
+| value | number | - | Current&nbsp;progress. | 
+| color | Color | - | Background&nbsp;color&nbsp;of&nbsp;the&nbsp;progress&nbsp;bar. | 
+| style8+ | {<br/>strokeWidth?&nbsp;:&nbsp;Length,<br/>scaleCount?&nbsp;:&nbsp;number,<br/>scaleWidth?&nbsp;:&nbsp;Length<br/>} | - | Component&nbsp;style.<br/>-&nbsp;**strokeWidth**:&nbsp;width&nbsp;of&nbsp;the&nbsp;progress&nbsp;bar.<br/>-&nbsp;**scaleCount**:&nbsp;scale&nbsp;count&nbsp;of&nbsp;the&nbsp;circular&nbsp;progress&nbsp;bar.<br/>-&nbsp;**scaleWidth**:&nbsp;scale&nbsp;width&nbsp;of&nbsp;the&nbsp;circular&nbsp;progress&nbsp;bar.<br/>If&nbsp;the&nbsp;scale&nbsp;thickness&nbsp;is&nbsp;greater&nbsp;than&nbsp;the&nbsp;progress&nbsp;bar&nbsp;width,&nbsp;the&nbsp;default&nbsp;scale&nbsp;thickness&nbsp;is&nbsp;used. | 
 
-## Example<a name="section13800193662114"></a>
 
+## Example
+
+  
 ```
 @Entry
 @Component
 struct ProgressExample {
   build() {
-    Column({ space: 5 }) {
+    Column({ space: 15 }) {
       Text('Linear Progress').fontSize(9).fontColor(0xCCCCCC).width('90%')
       Progress({ value: 10, style: ProgressStyle.Linear }).width(200)
+      Progress({ value: 20, total: 150, style: ProgressStyle.Linear }).color(Color.Grey).value(50).width(200)
 
-      Text('Linear Progress Color').fontSize(9).fontColor(0xCCCCCC).width('90%')
-      Progress({ value: 20, total: 150, style: ProgressStyle.Linear }).color(Color.Red).value(50).width(200)
-    }.width('100%').margin({ top: 5 })
+      Text('Eclipse Progress').fontSize(9).fontColor(0xCCCCCC).width('90%')
+      Row({ space: 40 }) {
+        Progress({ value: 10, style: ProgressStyle.Eclipse }).width(100)
+        Progress({ value: 20, total: 150, style: ProgressStyle.Eclipse }).color(Color.Grey).value(50).width(100)
+      }
+
+      Text('ScaleRing Progress').fontSize(9).fontColor(0xCCCCCC).width('90%')
+      Row({ space: 40 }) {
+        Progress({ value: 10, style: ProgressStyle.ScaleRing }).width(100)
+        Progress({ value: 20, total: 150, style: ProgressStyle.ScaleRing })
+          .color(Color.Grey).value(50).width(100)
+          .style({ strokeWidth: 15, scaleCount: 15, scaleWidth: 5 })
+      }
+
+      Text('Ring Progress').fontSize(9).fontColor(0xCCCCCC).width('90%')
+      Row({ space: 40 }) {
+        Progress({ value: 10, style: ProgressStyle.Ring }).width(100)
+        Progress({ value: 20, total: 150, style: ProgressStyle.Ring })
+          .color(Color.Grey).value(50).width(100)
+          .style({ strokeWidth: 20, scaleCount: 30, scaleWidth: 20 })
+      }
+
+      Text('Capsule Progress').fontSize(9).fontColor(0xCCCCCC).width('90%')
+      Row({ space: 40 }) {
+        Progress({ value: 10, style: ProgressStyle.Capsule }).width(100)
+        Progress({ value: 20, total: 150, style: ProgressStyle.Capsule }).color(Color.Grey).value(50).width(100)
+      }
+    }.width('100%').margin({ top: 30 })
   }
 }
 ```
 
-![](figures/progress.png)
-
+![en-us_image_0000001212378432](figures/en-us_image_0000001212378432.gif)
