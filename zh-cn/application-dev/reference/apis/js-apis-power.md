@@ -23,9 +23,9 @@ shutdownDevice(reason: string): void
 
 系统关机。
 
-**需要权限：**ohos.permission.SHUTDOWN
+此接口为系统接口，三方应用不支持调用。
 
-**补充说明：**该接口为system api，仅供系统应用使用。
+**需要权限：** ohos.permission.SHUTDOWN
 
 **参数：**
 
@@ -47,7 +47,7 @@ rebootDevice(reason: string): void
 
 重启设备。
 
-**需要权限：**ohos.permission.REBOOT（重启权限）、ohos.permission.REBOOT_UPDATER（重启并进入updater模式的权限）
+**需要权限：** ohos.permission.REBOOT（重启权限）、ohos.permission.REBOOT_UPDATER（重启并进入updater模式的权限）
 
 **参数：**
 
