@@ -4,6 +4,8 @@
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+
 > 从API Version 9开始，该接口不再维护，推荐使用新接口 [@ohos.data.preferences](js-apis-data-preferences.md)
 
 
@@ -13,12 +15,9 @@
 import dataStorage from '@ohos.data.storage'
 ```
 
-## 系统能力
-SystemCapability.DistributedDataManager.Preferences.Core
-
-
-
 ## 属性
+
+**系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -26,11 +25,13 @@ SystemCapability.DistributedDataManager.Preferences.Core
 | MAX_VALUE_LENGTH | string | 是 | 否 | string类型value的最大长度限制，大小为8192字节。 |
 
 
-## dataStorage.getStorageSync<sup>(deprecated) </sup>
+## dataStorage.getStorageSync
 
 getStorageSync(path: string): Storage
 
 读取指定文件，将数据加载到Storage实例，用于数据操作，此方法为同步方法。
+
+**系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -55,11 +56,13 @@ getStorageSync(path: string): Storage
   ```
 
 
-## dataStorage.getStorage<sup>(deprecated) </sup>
+## dataStorage.getStorage
 
 getStorage(path: string, callback: AsyncCallback&lt;Storage&gt;): void
 
 读取指定文件，将数据加载到Storage实例，用于数据操作，使用callback形式返回结果。
+
+**系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -85,11 +88,13 @@ getStorage(path: string, callback: AsyncCallback&lt;Storage&gt;): void
   ```
 
 
-## dataStorage.getStorage<sup>(deprecated) </sup>
+## dataStorage.getStorage
 
 getStorage(path: string): Promise&lt;Storage&gt;
 
 读取指定文件，将数据加载到Storage实例，用于数据操作，使用Promise方式作为异步方法。
+
+**系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -118,11 +123,13 @@ getStorage(path: string): Promise&lt;Storage&gt;
   ```
 
 
-## dataStorage.deleteStorageSync<sup>(deprecated) </sup>
+## dataStorage.deleteStorageSync
 
 deleteStorageSync(path: string): void
 
 从内存中移除指定文件对应的Storage单实例，并删除指定文件及其备份文件、损坏文件。删除指定文件时，应用不允许再使用该实例进行数据操作，否则会出现数据一致性问题，此方法为同步方法。
+
+**系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -135,11 +142,13 @@ deleteStorageSync(path: string): void
   ```
 
 
-## dataStorage.deleteStorage<sup>(deprecated) </sup>
+## dataStorage.deleteStorage
 
-deleteStorage(path: string, callback: AsyncCallback&lt;void&gt;)
+deleteStorage(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 从内存中移除指定文件对应的Storage单实例，并删除指定文件及其备份文件、损坏文件。删除指定文件时，应用不允许再使用该实例进行数据操作，否则会出现数据一致性问题，使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -159,11 +168,13 @@ deleteStorage(path: string, callback: AsyncCallback&lt;void&gt;)
   ```
 
 
-## dataStorage.deleteStorage<sup>(deprecated) </sup>
+## dataStorage.deleteStorage
 
 deleteStorage(path: string): Promise&lt;void&gt;
 
 从内存中移除指定文件对应的Storage单实例，并删除指定文件及其备份文件、损坏文件。删除指定文件时，应用不允许再使用该实例进行数据操作，否则会出现数据一致性问题，使用promise方式作为异步方法。
+
+**系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -186,13 +197,15 @@ deleteStorage(path: string): Promise&lt;void&gt;
   ```
 
 
-## dataStorage.removeStorageFromCacheSync<sup>(deprecated) </sup>
+## dataStorage.removeStorageFromCacheSync
 
 removeStorageFromCacheSync(path: string): void
 
 从内存中移除指定文件对应的Storage单实例。移除Storage单实例时，应用不允许再使用该实例进行数据操作，否则会出现数据一致性问题。
 
 此方法为同步方法。
+
+**系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -205,19 +218,21 @@ removeStorageFromCacheSync(path: string): void
   ```
 
 
-## dataStorage.removeStorageFromCache<sup>(deprecated) </sup>
+## dataStorage.removeStorageFromCache
 
-removeStorageFromCache(path: string, callback: AsyncCallback&lt;Storage&gt;): void
+removeStorageFromCache(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 从内存中移除指定文件对应的Storage单实例。移除Storage单实例时，应用不允许再使用该实例进行数据操作，否则会出现数据一致性问题。
 
 此方法为异步方法。
 
+**系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | path | string | 是 | 应用程序内部数据存储路径。 |
-  | callback | AsyncCallback&lt;[Storage](#storage)&gt; | 是 | 回调函数。 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
 
 - 示例：
   ```
@@ -231,13 +246,15 @@ removeStorageFromCache(path: string, callback: AsyncCallback&lt;Storage&gt;): vo
   ```
 
 
-## dataStorage.removeStorageFromCache<sup>(deprecated) </sup>
+## dataStorage.removeStorageFromCache
 
 removeStorageFromCache(path: string): Promise&lt;void&gt;
 
 从内存中移除指定文件对应的Storage单实例。移除Storage单实例时，应用不允许再使用该实例进行数据操作，否则会出现数据一致性问题。
 
 此方法为异步方法。
+
+**系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -260,18 +277,20 @@ removeStorageFromCache(path: string): Promise&lt;void&gt;
   ```
 
 
-## Storage<sup>(deprecated) </sup>
+## Storage
 
 提供获取和修改存储数据的接口。
 
 
-### getSync<sup>(deprecated) </sup>
+### getSync
 
 getSync(key: string, defValue: ValueType): ValueType
 
 获取键对应的值，如果值为null或者非默认值类型，返回默认数据。
 
 此方法为同步方法。
+
+**系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -291,13 +310,15 @@ getSync(key: string, defValue: ValueType): ValueType
   ```
 
 
-### get<sup>(deprecated) </sup>
+### get
 
 get(key: string, defValue: ValueType, callback: AsyncCallback&lt;ValueType&gt;): void
 
 获取键对应的值，如果值为null或者非默认值类型，返回默认数据。
 
 此方法为异步方法。
+
+**系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -318,13 +339,15 @@ get(key: string, defValue: ValueType, callback: AsyncCallback&lt;ValueType&gt;):
   ```
 
 
-### get<sup>(deprecated) </sup>
+### get
 
 get(key: string, defValue: ValueType): Promise&lt;ValueType&gt;
 
 获取键对应的值，如果值为null或者非默认值类型，返默认数据。
 
 此方法为异步方法。
+
+**系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
 
 - **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
@@ -348,13 +371,15 @@ get(key: string, defValue: ValueType): Promise&lt;ValueType&gt;
   ```
 
 
-### putSync<sup>(deprecated) </sup>
+### putSync
 
 putSync(key: string, value: ValueType): void
 
 首先获取指定文件对应的Storage实例，然后借助Storage API将数据写入Storage实例，通过flush或者flushSync将Storage实例持久化。
 
 此方法为同步方法。
+
+**系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -368,13 +393,15 @@ putSync(key: string, value: ValueType): void
   ```
 
 
-### put<sup>(deprecated) </sup>
+### put
 
 put(key: string, value: ValueType, callback: AsyncCallback&lt;void&gt;): void
 
 首先获取指定文件对应的Storage实例，然后借助Storage API将数据写入Storage实例，通过flush或者flushSync将Storage实例持久化。
 
 此方法为异步方法。
+
+**系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -395,13 +422,15 @@ put(key: string, value: ValueType, callback: AsyncCallback&lt;void&gt;): void
   ```
 
 
-### put<sup>(deprecated) </sup>
+### put
 
 put(key: string, value: ValueType): Promise&lt;void&gt;
 
 首先获取指定文件对应的Storage实例，然后借助Storage API将数据写入Storage实例，通过flush或者flushSync将Storage实例持久化。
 
 此方法为异步方法。
+
+**系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -425,13 +454,15 @@ put(key: string, value: ValueType): Promise&lt;void&gt;
   ```
 
 
-### hasSync<sup>(deprecated) </sup>
+### hasSync
 
 hasSync(key: string): boolean
 
 检查存储对象是否包含名为给定key的存储。
 
 此方法为同步方法。
+
+**系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -452,13 +483,15 @@ hasSync(key: string): boolean
   ```
 
 
-### has<sup>(deprecated) </sup>
+### has
 
 has(key: string, callback: AsyncCallback&lt;boolean&gt;): boolean
 
 检查存储对象是否包含名为给定key的存储。
 
 此方法为异步方法。
+
+**系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -485,13 +518,15 @@ has(key: string, callback: AsyncCallback&lt;boolean&gt;): boolean
   ```
 
 
-### has<sup>(deprecated) </sup>
+### has
 
 has(key: string): Promise&lt;boolean&gt;
 
 检查存储对象是否包含名为给定key的存储。
 
 此方法为异步方法。
+
+**系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -516,13 +551,15 @@ has(key: string): Promise&lt;boolean&gt;
   ```
 
 
-### deleteSync<sup>(deprecated) </sup>
+### deleteSync
 
 deleteSync(key: string): void
 
 从存储对象中删除名为给定key的存储。
 
 此方法为同步方法。
+
+**系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -535,13 +572,15 @@ deleteSync(key: string): void
   ```
 
 
-### delete<sup>(deprecated) </sup>
+### delete
 
 delete(key: string, callback: AsyncCallback&lt;void&gt;): void
 
 从存储对象中删除名为给定key的存储。
 
 此方法为异步方法。
+
+**系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -561,13 +600,15 @@ delete(key: string, callback: AsyncCallback&lt;void&gt;): void
   ```
 
 
-### delete<sup>(deprecated) </sup>
+### delete
 
 delete(key: string): Promise&lt;void&gt;
 
 从存储对象删除名为给定key的存储。
 
 此方法为异步方法。
+
+**系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -590,7 +631,7 @@ delete(key: string): Promise&lt;void&gt;
   ```
 
 
-### flushSync<sup>(deprecated) </sup>
+### flushSync
 
 flushSync(): void
 
@@ -598,19 +639,23 @@ flushSync(): void
 
 此方法为同步方法。
 
+**系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
+
 - 示例：
   ```
   storage.flushSync()
   ```
 
 
-### flush<sup>(deprecated) </sup>
+### flush
 
 flush(callback: AsyncCallback&lt;void&gt;): void
 
 将当前storage对象中的修改保存到当前的storage，并异步存储到文件中。
 
 此方法为异步方法。
+
+**系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -629,13 +674,15 @@ flush(callback: AsyncCallback&lt;void&gt;): void
   ```
 
 
-### flush<sup>(deprecated) </sup>
+### flush
 
 flush(): Promise&lt;void&gt;
 
 将当前storage对象中的修改保存到当前的storage，并异步存储到文件中。
 
 此方法为异步方法。
+
+**系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
 
 - 返回值：
   | 类型 | 说明 |
@@ -653,7 +700,7 @@ flush(): Promise&lt;void&gt;
   ```
 
 
-### clearSync<sup>(deprecated) </sup>
+### clearSync
 
 clearSync(): void
 
@@ -661,19 +708,23 @@ clearSync(): void
 
 此方法为同步方法。
 
+**系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
+
 - 示例：
   ```
   storage.clearSync()
   ```
 
 
-### clear<sup>(deprecated) </sup>
+### clear
 
 clear(callback: AsyncCallback&lt;void&gt;): void
 
 清除此存储对象中的所有存储。
 
 此方法为异步方法。
+
+**系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -692,13 +743,15 @@ clear(callback: AsyncCallback&lt;void&gt;): void
   ```
 
 
-### clear<sup>(deprecated) </sup>
+### clear
 
 clear(): Promise&lt;void&gt;
 
 清除此存储对象中的所有存储。
 
 此方法为异步方法。
+
+**系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
 
 - 返回值：
   | 类型 | 说明 |
@@ -716,11 +769,13 @@ clear(): Promise&lt;void&gt;
   ```
 
 
-### on('change')<sup>(deprecated) </sup>
+### on('change')
 
 on(type: 'change', callback: Callback&lt;StorageObserver&gt;): void
 
 订阅数据变更者类需要实现StorageObserver接口，订阅的key的值发生变更后，在执行flush/flushSync方法后，callback方法会被回调。
+
+**系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 说明 |
@@ -739,11 +794,13 @@ on(type: 'change', callback: Callback&lt;StorageObserver&gt;): void
   ```
 
 
-### off('change')<sup>(deprecated) </sup>
+### off('change')
 
 off(type: 'change', callback: Callback&lt;StorageObserver&gt;): void
 
 当不再进行订阅数据变更时，使用此接口取消订阅。
+
+**系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 说明 |
@@ -760,7 +817,9 @@ off(type: 'change', callback: Callback&lt;StorageObserver&gt;): void
   ```
 
 
-## StorageObserver<sup>(deprecated) </sup>
+## StorageObserver
+
+**系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
 
 | 名称 | 参数类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |

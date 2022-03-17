@@ -15,10 +15,12 @@ import data_Preferences from '@ohos.data.preferences'
 
 ## 属性
 
+**系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
+
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| MAX_KEY_LENGTH | string | 是 | 否 | key的最大长度限制，大小为80字节。<br>**系统能力**：SystemCapability.DistributedDataManager.Preferences.Core |
-| MAX_VALUE_LENGTH | string | 是 | 否 | string类型value的最大长度限制，大小为8192字节。<br>**系统能力**：SystemCapability.DistributedDataManager.Preferences.Core |
+| MAX_KEY_LENGTH | string | 是 | 否 | key的最大长度限制，大小为80字节。 |
+| MAX_VALUE_LENGTH | string | 是 | 否 | string类型value的最大长度限制，大小为8192字节。 |
 
 
 ## data_Preferences.getPreferences
@@ -89,7 +91,7 @@ getPreferences(context: Context, name: string): Promise&lt;Preferences&gt;
 
 ## data_Preferences.deletePreferences
 
-deletePreferences(context: Context, name: string, callback: AsyncCallback&lt;void&gt;)
+deletePreferences(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void
 
 从内存中移除指定文件对应的Preferences单实例，并删除指定文件及其备份文件、损坏文件。删除指定文件时，应用不允许再使用该实例进行数据操作，否则会出现数据一致性问题，使用callback方式作为异步方法。
 
@@ -150,7 +152,7 @@ deletePreferences(context: Context, name: string): Promise&lt;void&gt;
 
 ## data_Preferences.removePreferencesFromCache
 
-removePreferencesFromCache(context: Context, name: string, callback: AsyncCallback&lt;Preferences&gt;): void
+removePreferencesFromCache(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void
 
 从内存中移除指定文件对应的Preferences单实例。移除Preferences单实例时，应用不允许再使用该实例进行数据操作，否则会出现数据一致性问题。
 
@@ -163,7 +165,7 @@ removePreferencesFromCache(context: Context, name: string, callback: AsyncCallba
   | -------- | -------- | -------- | -------- |
   | context | Context | 是 | 应用程序或功能的上下文 |
   | name | string | 是 | 应用程序内部数据存储名称。 |
-  | callback | AsyncCallback&lt;[Preferences](#preferences)&gt; | 是 | 回调函数。 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
 
 - 示例：
   ```
