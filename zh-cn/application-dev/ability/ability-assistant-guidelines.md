@@ -78,7 +78,7 @@ Ability assistant（Ability助手，简称为aa）是实现应用、原子化服
   | -s/--stack \<number>   | 打印指定mission stack内的Ability。     |
   | -m/--mission \<number> | 打印指定mission内的Ability。           |
   | -l/--stack-list        | 打印每个mission stack内的mission列表。 |
-  | -u/--ui                | 打印system ui Ability。                |
+  | -u/--ui                | 打印system UI Ability。                |
   | -e/--serv              | 打印Service Ability。                  |
   | -d/--data              | 打印Data Ability。                     |
 
