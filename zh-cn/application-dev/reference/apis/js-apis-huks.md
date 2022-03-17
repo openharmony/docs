@@ -371,7 +371,7 @@ var alias = 'alias';
 var properties = new Array();
 properties[0] = {
   tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-  value: huksHukssKeyAlg.HUKS_ALG_RSA
+  value: huksHuksKeyAlg.HUKS_ALG_RSA
 };
 properties[1] = {
   tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
@@ -892,8 +892,6 @@ properties[2] = {
   tag: huks.HksTag.HKS_TAG_KEY_SIZE,
   value: huks.HksKeySize.HKS_DH_KEY_SIZE_4096
 };
-  value: huks.HuksKeyDigest.HUKS_DIGEST_NONE
-};
 var options = {
   properties: properties
 };
@@ -983,8 +981,6 @@ properties[2] = {
   tag: huks.HksTag.HKS_TAG_KEY_SIZE,
   value: huks.HksKeySize.HKS_DH_KEY_SIZE_4096
 };
-  value: huks.HuksKeyDigest.HUKS_DIGEST_NONE
-};
 var options = {
   properties: properties
 };
@@ -1060,8 +1056,6 @@ properties[1] = {
 properties[2] = {
   tag: huks.HksTag.HKS_TAG_KEY_SIZE,
   value: huks.HksKeySize.HKS_DH_KEY_SIZE_4096
-};
-  value: huks.HuksKeyDigest.HUKS_DIGEST_NONE
 };
 var options = {
   properties: properties
@@ -1139,8 +1133,6 @@ properties[1] = {
 properties[2] = {
   tag: huks.HksTag.HKS_TAG_KEY_SIZE,
   value: huks.HksKeySize.HKS_DH_KEY_SIZE_4096
-};
-  value: huks.HuksKeyDigest.HUKS_DIGEST_NONE
 };
 var options = {
   properties: properties
