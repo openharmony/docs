@@ -116,8 +116,9 @@ The MIPI DSI module adaptation involves the following steps:
     -   Initialize  **MipiDsiCntlr**.
     -   Instantiate  **MipiDsiCntlrMethod**  in the  **MipiDsiCntlr**  object.
 
-        >![](../public_sys-resources/icon-note.gif) **NOTE:** 
-        >For details, see  [MipiDsiCntlrMethod](#section10711202141617)  and  [Table 1](#table218771071713).
+        >![](../public_sys-resources/icon-note.gif) **NOTE**
+ 
+        >For details, see [Available APIs](#availableapis).
 
 
 4.  Debug the driver.
