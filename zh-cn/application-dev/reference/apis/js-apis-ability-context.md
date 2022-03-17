@@ -96,7 +96,7 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 
 ## AbilityContext.startAbility
 
-startAbility(want: Want, options: StartOptions): Promise&lt;void&gt;;
+startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;;
 
 启动Ability。通过Promise返回结果。
 
@@ -107,7 +107,7 @@ startAbility(want: Want, options: StartOptions): Promise&lt;void&gt;;
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | want | [Want](js-apis-featureAbility.md#Want类型说明) | 是 | 启动Ability的want信息。 | 
-  | options | StartOptions | 是 | 启动Ability所携带的参数。 |
+  | options | StartOptions | 否 | 启动Ability所携带的参数。 |
 
 **返回值：**
 
@@ -198,7 +198,7 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 
 ## AbilityContext.startAbilityForResult
 
-startAbilityForResult(want: Want, options: StartOptions): Promise&lt;AbilityResult&gt;;
+startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityResult&gt;;
 
 启动Ability并在结束的时候返回执行结果。
 
@@ -209,7 +209,7 @@ startAbilityForResult(want: Want, options: StartOptions): Promise&lt;AbilityResu
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | want | [Want](js-apis-featureAbility.md#Want类型说明) | 是 | 启动Ability的want信息。 |
-  | options | StartOptions | 是 | 启动Ability所携带的参数。 |
+  | options | StartOptions | 否 | 启动Ability所携带的参数。 |
 
 
 **返回值：**

@@ -15,7 +15,7 @@ import particleAbility from '@ohos.ability.particleAbility'
 
 ## particleAbility.startAbility
 
-startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<void>: void
+startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<void>): void
 
 使用此方法启动指定的particleAbility（callback形式）。
 
@@ -58,7 +58,7 @@ particleAbility.startAbility(
 
 ## particleAbility.startAbility
 
-startAbility(parameter: StartAbilityParameter): Promise\<number>
+startAbility(parameter: StartAbilityParameter): Promise<void>;
 
 使用此方法启动指定的particleAbility（Promise形式）。
 
