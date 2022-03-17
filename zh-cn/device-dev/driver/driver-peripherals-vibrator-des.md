@@ -11,7 +11,6 @@
   - [场景介绍](###场景介绍)
   - [接口说明](###接口说明)
   - [开发步骤](###开发步骤)
-  - [开发实例](###开发实例)
 
 ## 概述
 
@@ -79,17 +78,10 @@
 Vibrator驱动模型为上层马达硬件服务层提供稳定的马达控制能力接口，包括马达一次振动、马达效果配置震动、马达停止。基于HDF（Hardware Driver Foundation）驱动框架开发的马达驱动模型，实现跨操作系统迁移、器件差异配置等功能。马达具体的开发步骤如下：
 
 1. 基于HDF驱动框架，按照驱动Driver Entry程序，完成马达抽象驱动开发，主要由Bind、Init、Release、Dispatch函数接口实现，配置资源和HCS解析。
-2. 创建马达效果模型，解析马达效果HCS配置。
-3. 完成马达振动和停止接口开发，会根据振动效果的模式创建和销毁定时器。
-4. 马达驱动模型提供给开发者马达驱动差异化接口，开发者实现差异化接口。
-
-### 开发实例
-
-1. 马达驱动的初始化和去初始化
 
    - 调用HDF_INIT将驱动入口注册到HDF框架中，在加载驱动时HDF框架会先调用Bind函数，再调用Init函数加载该驱动。当Init调用异常时，HDF框架会调用Release释放驱动资源并退出马达驱动模型，使用HCS作为配置描述源码。HCS配置字段详细介绍参考[配置管理](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/driver/driver-hdf-manage.md)。其中Driver Entry入口函数定义如下：
 
-     ```
+     ```c
      /* 注册马达抽象驱动入口数据结构体对象 */
      struct HdfDriverEntry g_vibratorDriverEntry = {
          .moduleVersion = 1, //马达模块版本号
@@ -99,12 +91,12 @@ Vibrator驱动模型为上层马达硬件服务层提供稳定的马达控制能
         .Release = ReleaseVibratorDriver, //马达资源释放函数
      };
      
-     HDF_INIT(g_vibratorDriverEntry); 
+     HDF_INIT(g_vibratorDriverEntry);
      ```
 
    - 基于HDF驱动框架，按照驱动Driver Entry程序，完成马达抽象驱动开发，主要由Bind、Init、Release、Dispatch函数接口实现。
 
-     ```
+     ```c
      /* 马达驱动对外发布的能力 */
      static int32_t DispatchVibrator(struct HdfDeviceIoClient *client,
          int32_t cmd, struct HdfSBuf *data, struct HdfSBuf *reply)
@@ -164,10 +156,10 @@ Vibrator驱动模型为上层马达硬件服务层提供稳定的马达控制能
          g_vibratorDrvData = NULL;
      }
      ```
-     
+
    - 在系统启动过程中，HDF设备管理模块通过设备HCS配置信息，加载马达抽象驱动，并对外发布马达驱动接口。
-   
-     ```
+
+     ```c
      /* 马达设备HCS配置 */
      vibrator :: host {
                  hostName = "vibrator_host";
@@ -183,12 +175,12 @@ Vibrator驱动模型为上层马达硬件服务层提供稳定的马达控制能
                      }
                  }
      ```
-   
+
 2. 创建马达效果模型，解析马达效果HCS配置。
 
    - 创建马达效果模型。
 
-     ```
+     ```hcs
      /* 创建马达效果模型，分配资源，解析马达效果HCS配置 */
      int32_t CreateVibratorHaptic(struct HdfDeviceObject *device)
      {
@@ -254,7 +246,7 @@ Vibrator驱动模型为上层马达硬件服务层提供稳定的马达控制能
 
    马达硬件服务调用StartOnce接口动态配置持续振动时间；调用StartEffect接口启动静态配置的振动效果，为驱动开发者提供抽象的配置接口能力。
 
-   ```
+   ```c
    /* 按照指定持续时间触发振动马达，duration为振动持续时长 */
    static int32_t StartOnce(struct HdfSBuf *data, struct HdfSBuf *reply)
    {
@@ -326,7 +318,7 @@ Vibrator驱动模型为上层马达硬件服务层提供稳定的马达控制能
 
    - 在差异化器件驱动初始化成功时，注册差异实现接口，方便实现器件差异的驱动接口。
 
-     ```
+     ```c
      /* 注册马达差异化实现接口 */
      int32_t RegisterVibrator(struct VibratorOps *ops)
      {
@@ -347,7 +339,7 @@ Vibrator驱动模型为上层马达硬件服务层提供稳定的马达控制能
 
    - 马达驱动模型提供给开发者马达驱动差异化接口，具体实现如下：
 
-     ```
+     ```c
      /* 按照指定持续时间触发线性马达的振动 */
      static int32_t StartLinearVibrator()
      {
