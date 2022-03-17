@@ -68,8 +68,9 @@ The I2C module adaptation involves the following steps:
     -   Initialize  **I2cCntlr**.
     -   Instantiate  **I2cMethod**  and  **I2cLockMethod**  in  **I2cCntlr**.
 
-        >![](../public_sys-resources/icon-note.gif) **NOTE:** 
-        >For details, see  [I2cMethod and I2cLockMethod](#section1683458184518)  and  [Table 1](#table10549174014611).
+        >![](../public_sys-resources/icon-note.gif) **NOTE** 
+
+        >For details, see [Available APIs](#availableapis).
 
 
 4.  Debug the driver.
