@@ -66,7 +66,7 @@ The regulator module adaptation involves the following steps:
    
         >![](../public_sys-resources/icon-note.gif) **NOTE**
 
-        >For details, see [Available APIs](#section2_REGULATORDevelop).
+        >For details, see [Available APIs](#availableapis).
    
 4. Debug the driver.
    - (Optional) Verify basic functionalities of new drivers. For example, verify the information returned when the driver is loaded and whether data is successfully transmitted.
