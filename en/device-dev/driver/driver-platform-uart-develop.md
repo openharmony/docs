@@ -8,7 +8,7 @@
 
 ## Overview<a name="section1761881586154520"></a>
 
-In the Hardware Driver Foundation \(HDF\) framework, the Universal Asynchronous Receiver/Transmitter \(UART\) uses the independent service mode for API adaptation. In this mode, each device independently publishes a device service to handle external access requests. After receiving an access request from an API, the device manager extracts the parameters in the request to call the internal method of the target device. In the independent service mode, the service management capabilities of the HDF Device Manager can be directly used. However, you need to configure a device node for each device, which increases the memory usage.
+In the Hardware Driver Foundation \(HDF\), the Universal Asynchronous Receiver/Transmitter \(UART\) uses the independent service mode for API adaptation. In this mode, each device independently publishes a device service to handle external access requests. After receiving an access request from an API, the device manager extracts the parameters in the request to call the internal method of the target device. In the independent service mode, the service management capabilities of the HDF Device Manager can be directly used. However, you need to configure a device node for each device, which increases the memory usage.
 
 **Figure  1**  Independent service mode<a name="fig1474518243468"></a>  
 ![](figures/independent-service-mode.png "independent-service-mode-14")
@@ -174,7 +174,7 @@ The UART module adaptation involves the following steps:
 
 1.  Instantiate the driver entry.
     -   Instantiate the  **HdfDriverEntry**  structure.
-    -   Call  **HDF\_INIT**  to register the  **HdfDriverEntry**  instance with the HDF framework.
+    -   Call  **HDF\_INIT**  to register the  **HdfDriverEntry**  instance with the HDF.
 
 2.  Configure attribute files.
     -   Add the  **deviceNode**  information to the  **device\_info.hcs**  file.
@@ -184,8 +184,9 @@ The UART module adaptation involves the following steps:
     -   Initialize  **UartHost**.
     -   Instantiate  **UartHostMethod**  in the  **UartHost**  object.
 
-        >![](../public_sys-resources/icon-note.gif) **NOTE:** 
-        >For details, see  [UartHostMethod](#section192316441461)  and  [Table 1](#table22862114719).
+        >![](../public_sys-resources/icon-note.gif) **NOTE** 
+
+        >For details, see [Available APIs](#availableapis).
 
 
 4.  Debug the driver.
@@ -196,7 +197,7 @@ The UART module adaptation involves the following steps:
 
 The following uses  **uart\_hi35xx.c**  as an example to present the contents that need to be provided by the vendor to implement device functions.
 
-1.  Instantiate the driver entry. The driver entry must be a global variable of the  **HdfDriverEntry**  type \(defined in  **hdf\_device\_desc.h**\), and the value of  **moduleName**  must be the same as that in  **device\_info.hcs**. In the HDF framework, the start address of each  **HdfDriverEntry**  object of all loaded drivers is collected to form a segment address space similar to an array for the upper layer to invoke.
+1.  Instantiate the driver entry. The driver entry must be a global variable of the  **HdfDriverEntry**  type \(defined in  **hdf\_device\_desc.h**\), and the value of  **moduleName**  must be the same as that in  **device\_info.hcs**. In the HDF, the start address of each  **HdfDriverEntry**  object of all loaded drivers is collected to form a segment address space similar to an array for the upper layer to invoke.
 
     Generally, HDF calls the  **Bind**  function and then the  **Init**  function to load a driver. If  **Init**  fails to be called, HDF calls  **Release**  to release driver resources and exit.
 
@@ -210,7 +211,7 @@ The following uses  **uart\_hi35xx.c**  as an example to present the contents th
             .Init = HdfUartDeviceInit,  // See the Init function.
            .Release = HdfUartDeviceRelease, //See the Release function.
         };
-        // Call HDF_INIT to register the driver entry with the HDF framework.
+        // Call HDF_INIT to register the driver entry with the HDF.
         HDF_INIT(g_hdfUartDevice);
         ```
 
@@ -515,7 +516,7 @@ The following uses  **uart\_hi35xx.c**  as an example to present the contents th
 
         Function description:
 
-        Releases the memory and deletes the controller. This function assigns a value to the  **Release**  API in the driver entry structure. When the HDF framework fails to call the  **Init**  function to initialize the driver, the  **Release**  function can be called to release driver resources. All forced conversion operations for obtaining the corresponding object can be successful only when the  **Init**  function has the corresponding value assignment operations.
+        Releases the memory and deletes the controller. This function assigns a value to the  **Release**  API in the driver entry structure. When the HDF fails to call the  **Init**  function to initialize the driver, the  **Release**  function can be called to release driver resources. All forced conversion operations for obtaining the corresponding object can be successful only when the  **Init**  function has the corresponding value assignment operations.
 
         ```
         void HdfUartDeviceRelease(struct HdfDeviceObject *device)
