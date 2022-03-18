@@ -417,6 +417,275 @@ var media = mediaLibrary.getMediaLibrary(context);
 media.release()
 ```
 
+### storeMediaAsset
+
+storeMediaAsset(option: MediaAssetOption, callback: AsyncCallback&lt;string&gt;): void
+
+保存媒体资源，以异步方法获取保存成功的URI，使用callback形式返回结果。
+
+本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
+
+**系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填 | 说明                                        |
+| -------- | ------------------------------------- | ---- | ------------------------------------------- |
+| option   | [MediaAssetOption](#mediaassetoption) | 是   | 媒体资源选项。                              |
+| callback | AsyncCallback&lt;string&gt;           | 是   | 媒体资源保存回调，返回保存成功后得到的URI。 |
+
+**示例：**
+
+  ```
+let option = {
+    src : "file:///data/data/ohos.xxx.yyy/files/image.png",
+    mimeType : "image/jpeg",
+    relativePath : "imageDir/image2/"
+};
+mediaLibrary.getMediaLibrary().storeMediaAsset(option, (err, value) => {
+    if (err) {
+        console.log("An error occurred when storing media resources.");
+        return;
+    }
+    console.log("Media resources stored. ");
+    // Obtain the URI that stores media resources.
+});
+  ```
+
+
+### storeMediaAsset
+
+storeMediaAsset(option: MediaAssetOption): Promise&lt;string&gt;
+
+保存媒体资源，以异步方法获取保存成功的URI，使用Promise形式返回结果。
+
+本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
+
+**系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
+
+**参数：**
+
+| 参数名 | 类型                                  | 必填 | 说明           |
+| ------ | ------------------------------------- | ---- | -------------- |
+| option | [MediaAssetOption](#mediaassetoption) | 是   | 媒体资源选项。 |
+
+**返回值：**
+
+| 类型                  | 说明                                           |
+| --------------------- | ---------------------------------------------- |
+| Promise&lt;string&gt; | Promise实例，用于异步获取保存成功后得到的URI。 |
+
+**示例：**
+
+  ```
+let option = {
+    src : "file:///data/data/ohos.xxx.yyy/files/image.jpg",
+    mimeType : "image/jpeg",
+    relativePath : "imageDir/image2/"
+};
+mediaLibrary.getMediaLibrary().storeMediaAsset(option).then((value) => {
+    console.log("Media resources stored.");
+    // Obtain the URI that stores media resources.
+}).catch((err) => {
+    console.log("An error occurred when storing media resources.");
+});
+  ```
+
+
+### startImagePreview
+
+startImagePreview(images: Array&lt;string&gt;, index: number, callback: AsyncCallback&lt;void&gt;): void
+
+启动图片预览界面并限定预览开始显示的图片。可以预览指定序号的单张本地图片（dataability://），也可以预览列表中的所有网络图片（https://）。使用callback方式进行异步回调。
+
+本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
+
+**系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明                                                |
+| -------- | ------------------------- | ---- | --------------------------------------------------- |
+| images   | Array&lt;string&gt;       | 是   | 预览的图片URI（"https://"，"dataability://"）列表。 |
+| index    | number                    | 是   | 开始显示的图片序号。                                |
+| callback | AsyncCallback&lt;void&gt; | 是   | 图片预览回调，失败时返回错误信息。                  |
+
+**示例：**
+
+  ```
+let images = [
+    "dataability:///media/external/images/media/50",
+    "dataability:///media/external/images/media/55"
+];
+let images = [
+    "https://media.xxxx.com/image1.jpg",
+    "https://media.xxxx.com/image2.jpg"
+];
+let index = 1;
+mediaLibrary.getMediaLibrary().startImagePreview(images, index, (err) => {
+    if (err) {
+        console.log("An error occurred when previewing the images.");
+        return;
+    }
+    console.log("Succeeded in previewing the images.");
+});
+  ```
+
+
+### startImagePreview
+
+startImagePreview(images: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
+
+启动图片预览界面，可以预览列表中首张本地图片（dataability://），也可以预览列表中的所有网络图片（https://）。使用callback方式进行异步回调。
+
+本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
+
+**系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明                                                |
+| -------- | ------------------------- | ---- | --------------------------------------------------- |
+| images   | Array&lt;string&gt;       | 是   | 预览的图片URI（"https://"，"dataability://"）列表。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 图片预览回调，失败时返回错误信息。                  |
+
+**示例：**
+
+  ```
+let images = [
+    "dataability:///media/external/images/media/50",
+    "dataability:///media/external/images/media/55"
+];
+let images = [
+    "https://media.xxxx.com/image1.jpg",
+    "https://media.xxxx.com/image2.jpg"
+];
+mediaLibrary.getMediaLibrary().startImagePreview(images, (err) => {
+    if (err) {
+        console.log("An error occurred when previewing the images.");
+        return;
+    }
+    console.log("Succeeded in previewing the images.");
+});
+  ```
+
+
+### startImagePreview
+
+startImagePreview(images: Array&lt;string&gt;, index?: number): Promise&lt;void&gt;
+
+启动图片预览界面并限定预览开始显示的图片。可以预览指定序号的单张本地图片（dataability://），也可以预览列表中的所有网络图片（https://）。使用Promise方式进行异步回调。
+
+本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
+
+**系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
+
+**参数：**
+
+| 参数名 | 类型                | 必填 | 说明                                                |
+| ------ | ------------------- | ---- | --------------------------------------------------- |
+| images | Array&lt;string&gt; | 是   | 预览的图片URI（"https://"，"dataability://"）列表。 |
+| index  | number              | 否   | 开始显示的图片序号，不选择时默认为0。               |
+
+**返回值：**
+
+| 类型                | 说明                                                    |
+| ------------------- | ------------------------------------------------------- |
+| Promise&lt;void&gt; | Promise实例，用于异步获取预览结果，失败时返回错误信息。 |
+
+**示例：**
+
+  ```
+let images = [
+    "dataability:///media/external/images/media/50",
+    "dataability:///media/external/images/media/55"
+];
+let images = [
+    "https://media.xxxx.com/image1.jpg",
+    "https://media.xxxx.com/image2.jpg"
+];
+let index = 1;
+mediaLibrary.getMediaLibrary().startImagePreview(images, index).then(() => {
+    console.log("Succeeded in previewing the images.");
+}).catch((err) => {
+    console.log("An error occurred when previewing the images.");
+});
+  ```
+
+
+### startMediaSelect
+
+startMediaSelect(option: MediaSelectOption, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
+
+启动媒体选择界面，以异步方法获取选择的媒体URI列表，使用callback形式返回结果。
+
+本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
+
+**系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
+
+**参数：**
+
+| 参数名   | 类型                                     | 必填 | 说明                                                    |
+| -------- | ---------------------------------------- | ---- | ------------------------------------------------------- |
+| option   | [MediaSelectOption](#mediaselectoption)  | 是   | 媒体选择选项。                                          |
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是   | 媒体选择回调，返回选择的媒体URI（dataability://）列表。 |
+
+**示例：**
+
+  ```
+let option = {
+    type : "image",
+    count : 2
+};
+mediaLibrary.getMediaLibrary().startMediaSelect(option, (err, value) => {
+    if (err) {
+        console.log("An error occurred when selecting media resources.");
+        return;
+    }
+    console.log("Media resources selected.");
+    // Obtain the media selection value.
+});
+  ```
+
+
+### startMediaSelect
+
+startMediaSelect(option: MediaSelectOption): Promise&lt;Array&lt;string&gt;&gt;
+
+启动媒体选择界面，以异步方法获取选择的媒体URI列表，使用Promise形式返回结果。
+
+本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
+
+**系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
+
+**参数：**
+
+| 参数名 | 类型                                    | 必填 | 说明           |
+| ------ | --------------------------------------- | ---- | -------------- |
+| option | [MediaSelectOption](#mediaselectoption) | 是   | 媒体选择选项。 |
+
+**返回值：**
+
+| 类型                               | 说明                                                         |
+| ---------------------------------- | ------------------------------------------------------------ |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise实例，用于异步获取选择的媒体URI（dataability://）列表。 |
+
+**示例：**
+
+  ```
+let option = {
+    type : "image",
+    count : 2
+};
+mediaLibrary.getMediaLibrary().startMediaSelect(option).then((value) => {
+    console.log("Media resources selected.");
+    // Obtain the media selection value.
+}).catch((err) => {
+    console.log("An error occurred when selecting media resources.");
+});
+
+  ```
+
 ## FileAsset<sup>8+</sup>
 
 提供封装文件属性的方法。
@@ -1906,4 +2175,35 @@ DeviceType
 | ------ | ------ | ---- | ---- | ---------------- |
 | width  | number | 是   | 是   | 宽（单位：像素） |
 | height | number | 是   | 是   | 高（单位：像素） |
+
+## MediaAssetOption
+
+媒体资源选项。
+
+本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
+
+
+| 名称         | 类型   | 必填 | 描述                                                         |
+| ------------ | ------ | ---- | ------------------------------------------------------------ |
+| src          | string | 是   | 媒体库数据的URI。                                            |
+| mimeType     | string | 是   | 媒体MIME（Multipurpose&nbsp;Internet&nbsp;Mail&nbsp;Extensions）类型。<br/>例：'image/\*'、'video/\*'等。 |
+| relativePath | string | 否   | 自定义媒体资源保存位置，不填则保存到默认路径。例：imageDir/image2/（媒体资源将保存位置为：default/imageDir/image2/）,default为默认保存路径。 |
+
+## MediaSelectOption
+
+媒体资源类型选项。
+
+本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
+
+
+### 属性
+
+| 名称  | 类型   | 必填 | 描述                           |
+| ----- | ------ | ---- | ------------------------------ |
+| type  | string | 是   | 媒体类型，包括：image，video。 |
+| count | number | 是   | 媒体选择最大数量。             |
 
