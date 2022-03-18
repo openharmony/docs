@@ -10,21 +10,16 @@
 import vibrator from '@ohos.vibrator';
 ```
 
-## System Capabilities
-
-SystemCapability.Sensors.MiscDevice
-
-## Required Permissions
-
-ohos.permission.VIBRATE
-
 
 ## vibrator.vibrate
 
 vibrate(duration: number): Promise&lt;void&gt;
 
+Triggers vibration with a specific duration. This API uses a promise to return the execution result.
 
-Triggers vibration with a specific duration. This method uses a promise to return the execution result.
+**Required permissions**: ohos.permission.VIBRATE (a system permission)
+
+**System capability**: SystemCapability.Sensors.MiscDevice
 
 
 - Parameters
@@ -52,7 +47,11 @@ Triggers vibration with a specific duration. This method uses a promise to retur
 
 vibrate(duration: number, callback?: AsyncCallback&lt;void&gt;): void
 
-Triggers vibration with a specific duration. This method uses a callback to return the execution result.
+Triggers vibration with a specific duration. This API uses an asynchronous callback to return the execution result.
+
+**Required permissions**: ohos.permission.VIBRATE (a system permission)
+
+**System capability**: SystemCapability.Sensors.MiscDevice
 
 - Parameters
   | Name| Type| Mandatory| Description|
@@ -76,7 +75,11 @@ Triggers vibration with a specific duration. This method uses a callback to retu
 
 vibrate(effectId: EffectId): Promise&lt;void&gt;
 
-Triggers vibration with a specific effect. This method uses a promise to return the execution result.
+Triggers vibration with a specific effect. This API uses a promise to return the execution result.
+
+**Required permissions**: ohos.permission.VIBRATE (a system permission)
+
+**System capability**: SystemCapability.Sensors.MiscDevice
 
 - Parameters
   | Name| Type| Mandatory| Description|
@@ -102,7 +105,11 @@ Triggers vibration with a specific effect. This method uses a promise to return 
 
 vibrate(effectId: EffectId, callback?: AsyncCallback&lt;void&gt;): void
 
-Triggers vibration with a specific effect. This method uses a callback to return the execution result.
+Triggers vibration with a specific effect. This API uses an asynchronous callback to return the execution result.
+
+**Required permissions**: ohos.permission.VIBRATE (a system permission)
+
+**System capability**: SystemCapability.Sensors.MiscDevice
 
 - Parameters
   | Name| Type| Mandatory| Description|
@@ -126,7 +133,11 @@ Triggers vibration with a specific effect. This method uses a callback to return
 
 stop(stopMode: VibratorStopMode): Promise&lt;void&gt;
 
-Stops the vibration based on the specified **stopMode**. This method uses a promise to return the execution result. If the specified **stopMode** is different from the mode used to trigger the vibration, this method fails to be called.
+Stops the vibration based on the specified **stopMode**. This API uses a promise to return the execution result. If the specified **stopMode** is different from the mode used to trigger the vibration, this API fails to be called.
+
+**Required permissions**: ohos.permission.VIBRATE (a system permission)
+
+**System capability**: SystemCapability.Sensors.MiscDevice
 
 - Parameters
   | Name| Type| Mandatory| Description|
@@ -152,7 +163,11 @@ Stops the vibration based on the specified **stopMode**. This method uses a prom
 
 stop(stopMode: VibratorStopMode, callback?: AsyncCallback&lt;void&gt;): void;
 
-Stops the vibration based on the specified **stopMode**. This method uses an asynchronous callback to return the execution result. If the specified **stopMode** is different from the mode used to trigger the vibration, this method fails to be called.
+Stops the vibration based on the specified **stopMode**. This API uses an asynchronous callback to return the execution result. If the specified **stopMode** is different from the mode used to trigger the vibration, this API fails to be called.
+
+**Required permissions**: ohos.permission.VIBRATE (a system permission)
+
+**System capability**: SystemCapability.Sensors.MiscDevice
 
 - Parameters
   | Name| Type| Mandatory| Description|
@@ -176,6 +191,8 @@ Stops the vibration based on the specified **stopMode**. This method uses an asy
 
 Describes the vibration effect.
 
+**System capability**: SystemCapability.Sensors.MiscDevice
+
 | Name| Default Value| Description|
 | -------- | -------- | -------- |
 | EFFECT_CLOCK_TIMER | "haptic.clock.timer" | Vibration effect of the vibrator when a user adjusts the timer.|
@@ -184,6 +201,8 @@ Describes the vibration effect.
 ## VibratorStopMode
 
 Describes the vibration mode to stop.
+
+**System capability**: SystemCapability.Sensors.MiscDevice
 
 | Name| Default Value| Description|
 | -------- | -------- | -------- |
