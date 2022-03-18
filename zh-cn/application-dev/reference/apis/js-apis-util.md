@@ -174,7 +174,7 @@ TextDecoder的构造函数。
 
 ### decode
 
-decode(input: Unit8Array, options?:{stream?:false}):string
+decode(input: Unit8Array, options?:{stream?:false}): string
 
 通过输入参数解码后输出对应文本。
 
