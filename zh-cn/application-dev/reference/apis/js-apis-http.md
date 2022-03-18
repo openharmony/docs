@@ -137,25 +137,25 @@ request\(url: string, options: HttpRequestOptions, callback: AsyncCallback<HttpR
 ```
 httpRequest.request("EXAMPLE_URL",
 {
-  method: 'GET',
-  header: {
-	'Content-Type': 'application/json'
-  },
-  readTimeout: 60000,
-  connectTimeout: 60000
-},(err, data) => {
-  if (!err) {
-	console.info('Result:' + data.result);
-	console.info('code:' + data.responseCode);
-	console.info('header:' + data.header);
-	console.info('cookies:' + data.cookies); // 8+
-	console.info('header['Content-Type']:' + data.header['Content-Type']);
-	console.info('header['Status-Line']:' + data.header['Status-Line']);
-	console.info('header.Date:' + data.header.Date);
-	console.info('header.Server:' + data.header.Server);
-  } else {
-	console.info('error:' + err.data);
-  }
+    method: 'GET',
+    header: {
+        'Content-Type': 'application/json'
+    },
+    readTimeout: 60000,
+    connectTimeout: 60000
+}, (err, data) => {
+    if (!err) {
+        console.info('Result:' + data.result);
+        console.info('code:' + data.responseCode);
+        console.info('header:' + data.header);
+        console.info('cookies:' + data.cookies); // 8+
+        console.info('header.Content-Type:' + data.header['Content-Type']);
+        console.info('header.Status-Line:' + data.header['Status-Line']);
+        console.info('header.Date:' + data.header.Date);
+        console.info('header.Server:' + data.header.Server);
+    } else {
+        console.info('error:' + err.data);
+    }
 });
 ```
 
@@ -188,24 +188,24 @@ request\(url: string, options? : HttpRequestOptions\): Promise<HttpResponse\>
 
 ```
 let promise = httpRequest.request("EXAMPLE_URL", {
-  method: "GET",
-  connectTimeout: 60000,
-  readTimeout: 60000,
-  header: {
-	'Content-Type': 'application/json'
-  }
+    method: "GET",
+    connectTimeout: 60000,
+    readTimeout: 60000,
+    header: {
+        'Content-Type': 'application/json'
+    }
 });
 promise.then((value) => {
-	console.info('Result:' + value.result);
-	console.info('code:' + value.responseCode);
-	console.info('header:' + value.header);
-	console.info('cookies:' + value.cookies); // 8+
-	console.info('header['Content-Type']:' + value.header['Content-Type']);
-	console.info('header['Status-Line']:' + value.header['Status-Line']);
-	console.info('header.Date:' + value.header.Date);
-	console.info('header.Server:' + value.header.Server);
+    console.info('Result:' + value.result);
+    console.info('code:' + value.responseCode);
+    console.info('header:' + value.header);
+    console.info('cookies:' + value.cookies); // 8+
+    console.info('header.Content-Type:' + value.header['Content-Type']);
+    console.info('header.Status-Line:' + value.header['Status-Line']);
+    console.info('header.Date:' + value.header.Date);
+    console.info('header.Server:' + value.header.Server);
 }).catch((err) => {
-	console.error(`errCode:${err.code}, errMessage:${err.data}`);
+    console.error(`errCode:${err.code}, errMessage:${err.data}`);
 });
 ```
 
@@ -246,9 +246,9 @@ on\(type: 'headerReceive', callback: AsyncCallback<Object\>\): void
 ```
 httpRequest.on('headerReceive', (err, data) => {
   if (!err) {
-	console.info('header: ' + data.header);
+    console.info('header: ' + data.header);
   } else {
-	console.info('error:' + err.data);
+    console.info('error:' + err.data);
   }
 });
 ```
@@ -280,9 +280,9 @@ off\(type: 'headerReceive', callback?: AsyncCallback<Object\>\): void
 ```
 httpRequest.on('headerReceive', (err, data) => {
   if (!err) {
-	console.info('header: ' + data.header);
+    console.info('header: ' + data.header);
   } else {
-	console.info('error:' + err.data);
+    console.info('error:' + err.data);
   }
 });
 httpRequest.off('headerReceive');

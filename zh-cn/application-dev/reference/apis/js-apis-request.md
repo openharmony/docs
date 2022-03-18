@@ -70,14 +70,14 @@ upload(config: UploadConfig): Promise&lt;UploadTask&gt;
 **系统能力**: SystemCapability.MiscServices.Upload
 
 - 参数：
-    | 参数名 | 类型 | 必填 | 说明 | 
+    | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | config | [UploadConfig](#uploadconfig) | 是 | 上传的配置信息。 | 
+  | config | [UploadConfig](#uploadconfig) | 是 | 上传的配置信息。 |
 
 - 返回值：
-    | 类型 | 说明 | 
+    | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;[UploadTask](#uploadtask)&gt; | 返回上传任务。 | 
+  | Promise&lt;[UploadTask](#uploadtask)&gt; | 返回上传任务。 |
 
 - 示例：
   
@@ -101,10 +101,10 @@ upload(config: UploadConfig, callback: AsyncCallback&lt;UploadTask&gt;): void
 **系统能力**: SystemCapability.MiscServices.Upload
 
 - 参数
-    | 参数名 | 参数类型 | 必填 | 说明 | 
+    | 参数名 | 参数类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | config | [UploadConfig](#uploadconfig) | 是 | 上传的配置信息。 | 
-  | callback | AsyncCallback&lt;[UploadTask](#uploadtask)&gt; | 否 | 回调函数，异步返回UploadTask对象。 | 
+  | config | [UploadConfig](#uploadconfig) | 是 | 上传的配置信息。 |
+  | callback | AsyncCallback&lt;[UploadTask](#uploadtask)&gt; | 否 | 回调函数，异步返回UploadTask对象。 |
 
 - 示例：
   
@@ -135,10 +135,10 @@ on(type: 'progress', callback:AsyncCallback &lt;uploadedSize: number, totalSize:
 **系统能力**: SystemCapability.MiscServices.Upload
 
 - 参数：
-    | 参数名 | 类型 | 必填 | 说明 | 
+    | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 订阅的事件类型，取值为'progress'（上传的进度信息）。 | 
-  | callback | function | 是 | 上传进度的回调函数。 | 
+  | type | string | 是 | 订阅的事件类型，取值为'progress'（上传的进度信息）。 |
+  | callback | function | 是 | 上传进度的回调函数。 |
 
   回调函数的参数：
 
@@ -168,10 +168,10 @@ on(type: 'headerReceive', callback: AsyncCallback&lt;object&gt; =&gt; void): voi
 **系统能力**: SystemCapability.MiscServices.Upload
 
 - 参数：
-    | 参数名 | 类型 | 必填 | 说明 | 
+    | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 订阅的事件类型，取值为'headerReceive'（接收响应头）。 | 
-  | callback | AsyncCallback&lt;object&gt; | 是 | HTTP&nbsp;Response&nbsp;Header事件的回调函数。 | 
+  | type | string | 是 | 订阅的事件类型，取值为'headerReceive'（接收响应头）。 |
+  | callback | AsyncCallback&lt;object&gt; | 是 | HTTP&nbsp;Response&nbsp;Header事件的回调函数。 |
 
   回调函数的参数：
 
@@ -200,10 +200,10 @@ off(type: 'progress', callback:AsyncCallback&lt;uploadedSize: number, totalSize:
 **系统能力**: SystemCapability.MiscServices.Upload
 
 - 参数：
-    | 参数名 | 参数类型 | 必填 | 说明 | 
+    | 参数名 | 参数类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 取消订阅的事件类型，取值为'progress'（上传的进度信息）。 | 
-  | callback | function | 否 | 上传任务的回调函数。 | 
+  | type | string | 是 | 取消订阅的事件类型，取值为'progress'（上传的进度信息）。 |
+  | callback | function | 否 | 上传任务的回调函数。 |
 
   回调函数的参数：
 
@@ -233,10 +233,10 @@ off(type: 'headerReceive', callback:AsyncCallback&lt;object&gt; =&gt; void): voi
 **系统能力**: SystemCapability.MiscServices.Upload
 
 - 参数：
-    | 参数名 | 参数类型 | 必填 | 说明 | 
+    | 参数名 | 参数类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 取消订阅的事件类型，取值为'headerReceive'（接收响应头）。 | 
-  | callback | AsyncCallback&lt;object&gt; | 否 | HTTP&nbsp;Response&nbsp;Header事件的回调函数。 | 
+  | type | string | 是 | 取消订阅的事件类型，取值为'headerReceive'（接收响应头）。 |
+  | callback | AsyncCallback&lt;object&gt; | 否 | HTTP&nbsp;Response&nbsp;Header事件的回调函数。 |
 
   回调函数的参数：
 
@@ -265,9 +265,9 @@ remove(): Promise&lt;boolean&gt;
 **系统能力**: SystemCapability.MiscServices.Upload
 
 - 返回值：
-    | 类型 | 说明 | 
+    | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;boolean&gt; | 移除任务是否成功。true：成功，false：不成功。 | 
+  | Promise&lt;boolean&gt; | 移除任务是否成功。true：成功，false：不成功。 |
 
 - 示例
   
@@ -295,9 +295,9 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 **系统能力**: SystemCapability.MiscServices.Upload
 
 - 参数
-    | 参数名 | 参数类型 | 必填 | 说明 | 
+    | 参数名 | 参数类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | 是 | 移除任务的回调函数。 | 
+  | callback | AsyncCallback&lt;boolean&gt; | 是 | 移除任务的回调函数。 |
 
 - 示例
   
@@ -320,35 +320,35 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 
 **系统能力**: 以下各项对应的系统能力均为SystemCapability.MiscServices.Upload。
 
-  | 名称 | 类型 | 必填 | 说明 | 
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| url | string | 是 | 资源地址。 | 
-| header | object | 否 | 添加要包含在上载请求中的HTTP或HTTPS标志头。 | 
-| method | string | 否 | 请求方法：POST、PUT。缺省为POST。 | 
-| files | Array&lt;[File](#file)&gt; | 是 | 要上传的文件列表。请使用&nbsp;multipart/form-data提交。 | 
-| data | Array&lt;[RequestData](#requestdata)&gt; | 否 | 请求的表单数据。 | 
+| url | string | 是 | 资源地址。 |
+| header | object | 否 | 添加要包含在上载请求中的HTTP或HTTPS标志头。 |
+| method | string | 否 | 请求方法：POST、PUT。缺省为POST。 |
+| files | Array&lt;[File](#file)&gt; | 是 | 要上传的文件列表。请使用&nbsp;multipart/form-data提交。 |
+| data | Array&lt;[RequestData](#requestdata)&gt; | 否 | 请求的表单数据。 |
 
 
 ## File
 
 **系统能力**: 以下各项对应的系统能力均为SystemCapability.MiscServices.Upload。
 
-  | 名称 | 类型 | 必填 | 说明 | 
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| filename | string | 否 | multipart提交时，请求头中的文件名。 | 
-| name | string | 否 | multipart提交时，表单项目的名称，缺省为file。 | 
-| url | string | 是 | 文件的本地存储路径。<br/>支持“dataability”和“internal”两种协议类型，但“internal”仅支持临时目录，示例：<br/>dataability:///com.domainname.dataability.persondata/person/10/file.txt<br/>internal://cache/path/to/file.txt | 
-| type | string | 否 | 文件的内容类型，默认根据文件名或路径的后缀获取。 | 
+| filename | string | 否 | multipart提交时，请求头中的文件名。 |
+| name | string | 否 | multipart提交时，表单项目的名称，缺省为file。 |
+| url | string | 是 | 文件的本地存储路径。<br/>支持“dataability”和“internal”两种协议类型，但“internal”仅支持临时目录，示例：<br/>dataability:///com.domainname.dataability.persondata/person/10/file.txt<br/>internal://cache/path/to/file.txt |
+| type | string | 否 | 文件的内容类型，默认根据文件名或路径的后缀获取。 |
 
 
 ## RequestData
 
 **系统能力**: 以下各项对应的系统能力均为SystemCapability.MiscServices.Upload。
 
-  | 名称 | 类型 | 必填 | 说明 | 
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| name | string | 是 | 表示表单元素的名称。 | 
-| value | string | 是 | 表示表单元素的值。 | 
+| name | string | 是 | 表示表单元素的名称。 |
+| value | string | 是 | 表示表单元素的值。 |
 
 
 ## request.download
@@ -362,14 +362,14 @@ download(config: DownloadConfig): Promise&lt;DownloadTask&gt;
 **系统能力**: SystemCapability.MiscServices.Download
 
 - 参数：
-    | 参数名 | 类型 | 必填 | 说明 | 
+    | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | config | [DownloadConfig](#downloadconfig) | 是 | 下载的配置信息。 | 
+  | config | [DownloadConfig](#downloadconfig) | 是 | 下载的配置信息。 |
 
 - 返回值：
-    | 类型 | 说明 | 
+    | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;[DownloadTask](#downloadtask)&gt; | 返回下载任务。 | 
+  | Promise&lt;[DownloadTask](#downloadtask)&gt; | 返回下载任务。 |
 
 - 示例
   
@@ -393,10 +393,10 @@ download(config: DownloadConfig, callback: AsyncCallback&lt;DownloadTask&gt;): v
 **系统能力**: SystemCapability.MiscServices.Download
 
 - 参数
-    | 参数名 | 参数类型 | 必填 | 说明 | 
+    | 参数名 | 参数类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | config | [DownloadConfig](#downloadconfig) | 是 | 下载的配置信息。 | 
-  | callback | AsyncCallback&lt;[DownloadTask](#downloadtask)&gt; | 否 | 下载接口的回调函数。 | 
+  | config | [DownloadConfig](#downloadconfig) | 是 | 下载的配置信息。 |
+  | callback | AsyncCallback&lt;[DownloadTask](#downloadtask)&gt; | 否 | 下载接口的回调函数。 |
 
 - 示例
   
@@ -428,10 +428,10 @@ on(type: 'progress', callback:AsyncCallback&lt;receivedSize: number, totalSize: 
 **系统能力**: SystemCapability.MiscServices.Download
 
 - 参数：
-    | 参数名 | 类型 | 必填 | 说明 | 
+    | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 订阅的事件类型，取值为'progress'（下载的进度信息）。 | 
-  | callback | function | 是 | 下载的回调函数。 | 
+  | type | string | 是 | 订阅的事件类型，取值为'progress'（下载的进度信息）。 |
+  | callback | function | 是 | 下载的回调函数。 |
 
   回调函数的参数：
 
@@ -468,10 +468,10 @@ off(type: 'progress', callback: AsyncCallback&lt;receivedSize: number, totalSize
 **系统能力**: SystemCapability.MiscServices.Download
 
 - 参数：
-    | 参数名 | 参数类型 | 必填 | 说明 | 
+    | 参数名 | 参数类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 取消订阅的事件类型，取值为'progress'（下载的进度信息）。 | 
-  | callback | function | 否 | 下载任务的回调函数。 | 
+  | type | string | 是 | 取消订阅的事件类型，取值为'progress'（下载的进度信息）。 |
+  | callback | function | 否 | 下载任务的回调函数。 |
 
   回调函数的参数：
 
@@ -508,10 +508,10 @@ on(type: 'complete', callback:AsyncCallback&lt;&gt; =&gt; void): void
 **系统能力**: SystemCapability.MiscServices.Download
 
 - 参数：
-    | 参数名 | 类型 | 必填 | 说明 | 
+    | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 订阅的事件类型，取值为'complete'（下载任务完成）。 | 
-  | callback | function | 是 | 下载完成的回调函数。 | 
+  | type | string | 是 | 订阅的事件类型，取值为'complete'（下载任务完成）。 |
+  | callback | function | 是 | 下载完成的回调函数。 |
 
 - 示例：
   
@@ -541,10 +541,10 @@ off(type: 'complete', callback:AsyncCallback&lt;&gt; =&gt; void): void
 **系统能力**: SystemCapability.MiscServices.Download
 
 - 参数：
-    | 参数名 | 类型 | 必填 | 说明 | 
+    | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 取消订阅的事件类型，取值为'complete'（下载任务完成）。 | 
-  | callback | function | 否 | 取消下载完成的回调函数。 | 
+  | type | string | 是 | 取消订阅的事件类型，取值为'complete'（下载任务完成）。 |
+  | callback | function | 否 | 取消下载完成的回调函数。 |
 
 - 示例：
   
@@ -574,10 +574,10 @@ on(type: 'fail', callback:AsyncCallback&lt;err: number&gt; =&gt; void): void
 **系统能力**: SystemCapability.MiscServices.Download
 
 - 参数：
-    | 参数名 | 类型 | 必填 | 说明 | 
+    | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 订阅的事件类型，取值为'fail'（下载失败）。 | 
-  | callback | function | 是 | 下载失败的回调函数。 | 
+  | type | string | 是 | 订阅的事件类型，取值为'fail'（下载失败）。 |
+  | callback | function | 是 | 下载失败的回调函数。 |
 
   回调函数的参数：
 
@@ -613,10 +613,10 @@ off(type: 'fail', callback:AsyncCallback&lt;err: number&gt; =&gt; void): void
 **系统能力**: SystemCapability.MiscServices.Download
 
 - 参数：
-    | 参数名 | 类型 | 必填 | 说明 | 
+    | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 取消订阅的事件类型，取值为'fail'（下载失败）。 | 
-  | callback | function | 否 | 取消下载失败的回调函数。 | 
+  | type | string | 是 | 取消订阅的事件类型，取值为'fail'（下载失败）。 |
+  | callback | function | 否 | 取消下载失败的回调函数。 |
 
   回调函数的参数
 
@@ -652,10 +652,10 @@ on(type: 'pause', callback:AsyncCallback&lt;&gt; =&gt; void): void
 **系统能力**: SystemCapability.MiscServices.Download
 
 - 参数：
-    | 参数名 | 类型 | 必填 | 说明 | 
+    | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 订阅的事件类型，取值为'pause'（下载暂停）。 | 
-  | callback | function | 是 | 下载暂停的回调函数。 | 
+  | type | string | 是 | 订阅的事件类型，取值为'pause'（下载暂停）。 |
+  | callback | function | 是 | 下载暂停的回调函数。 |
 
 - 示例：
   
@@ -685,10 +685,10 @@ off(type: 'pause', callback:AsyncCallback&lt;&gt; =&gt; void): void
 **系统能力**: SystemCapability.MiscServices.Download
 
 - 参数：
-    | 参数名 | 类型 | 必填 | 说明 | 
+    | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 取消订阅的事件类型，取值为'pause'（下载暂停）。 | 
-  | callback | function | 否 | 取消下载暂停的回调函数。 | 
+  | type | string | 是 | 取消订阅的事件类型，取值为'pause'（下载暂停）。 |
+  | callback | function | 否 | 取消下载暂停的回调函数。 |
 
 - 示例：
   
@@ -718,10 +718,10 @@ on(type: 'remove', callback:AsyncCallback&lt;&gt; =&gt; void): void
 **系统能力**: SystemCapability.MiscServices.Download
 
 - 参数：
-    | 参数名 | 类型 | 必填 | 说明 | 
+    | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 订阅的事件类型，取值为'remove'（下载任务移除）。 | 
-  | callback | function | 是 | 下载移除的回调函数。 | 
+  | type | string | 是 | 订阅的事件类型，取值为'remove'（下载任务移除）。 |
+  | callback | function | 是 | 下载移除的回调函数。 |
 
 - 示例:
   
@@ -751,10 +751,10 @@ off(type: 'remove', callback:AsyncCallback&lt;&gt; =&gt; void): void
 **系统能力**: SystemCapability.MiscServices.Download
 
 - 参数：
-    | 参数名 | 类型 | 必填 | 说明 | 
+    | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 取消订阅的事件类型，取值为'remove'（下载任务移除）。 | 
-  | callback | function | 否 | 取消下载移除的回调函数。 | 
+  | type | string | 是 | 取消订阅的事件类型，取值为'remove'（下载任务移除）。 |
+  | callback | function | 否 | 取消下载移除的回调函数。 |
 
 - 示例：
   
@@ -783,9 +783,9 @@ remove(): Promise&lt;boolean&gt;
 **系统能力**: SystemCapability.MiscServices.Download
 
 - 返回值：
-    | 类型 | 说明 | 
+    | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;boolean&gt; | 移除任务是否成功。 | 
+  | Promise&lt;boolean&gt; | 移除任务是否成功。 |
 
 - 示例
   
@@ -813,9 +813,9 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 **系统能力**: SystemCapability.MiscServices.Download
 
 - 参数
-    | 参数名 | 参数类型 | 必填 | 说明 | 
+    | 参数名 | 参数类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | 是 | 移除任务是否成功。 | 
+  | callback | AsyncCallback&lt;boolean&gt; | 是 | 移除任务是否成功。 |
 
 - 示例
   
@@ -845,9 +845,9 @@ query(): Promise&lt;DownloadInfo&gt;
 **系统能力**: SystemCapability.MiscServices.Download
 
 - 参数：
-    | 类型 | 说明 | 
+    | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;[DownloadInfo](#downloadinfo)&gt; | 查询下载任务信息。 | 
+  | Promise&lt;[DownloadInfo](#downloadinfo)&gt; | 查询下载任务信息。 |
 
 - 示例
   
@@ -871,9 +871,9 @@ query(callback: AsyncCallback&lt;DownloadInfo&gt;): void
 **系统能力**: SystemCapability.MiscServices.Download
 
 - 参数：
-    | 参数名 | 参数类型 | 必填 | 说明 | 
+    | 参数名 | 参数类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[DownloadInfo](#downloadinfo)&gt; | 是 | 查询下载任务的回调函数。 | 
+  | callback | AsyncCallback&lt;[DownloadInfo](#downloadinfo)&gt; | 是 | 查询下载任务的回调函数。 |
 
 - 示例：
   
@@ -899,9 +899,9 @@ queryMimeType(): Promise&lt;string&gt;
 **系统能力**: SystemCapability.MiscServices.Download
 
 - 返回值：
-    | 类型 | 说明 | 
+    | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;string&gt; | 查询下载任务的MimeType。 | 
+  | Promise&lt;string&gt; | 查询下载任务的MimeType。 |
 
 - 示例
   
@@ -925,9 +925,9 @@ queryMimeType(callback: AsyncCallback&lt;string&gt;): void;
 **系统能力**: SystemCapability.MiscServices.Download
 
 - 参数
-    | 参数名 | 参数类型 | 必填 | 说明 | 
+    | 参数名 | 参数类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;string&gt; | 是 | 查询下载任务的MimeType的回调函数。 | 
+  | callback | AsyncCallback&lt;string&gt; | 是 | 查询下载任务的MimeType的回调函数。 |
 
 - 示例
   
@@ -953,9 +953,9 @@ pause(): Promise&lt;boolean&gt;
 **系统能力**: SystemCapability.MiscServices.Download
 
 - 返回值：
-    | 类型 | 说明 | 
+    | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;boolean&gt; | 暂停下载任务是否成功。 | 
+  | Promise&lt;boolean&gt; | 暂停下载任务是否成功。 |
 
 - 示例
   
@@ -983,9 +983,9 @@ pause(callback: AsyncCallback&lt;boolean&gt;): void
 **系统能力**: SystemCapability.MiscServices.Download
 
 - 参数
-    | 参数名 | 参数类型 | 必填 | 说明 | 
+    | 参数名 | 参数类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | 是 | 暂停下载任务的回调函数。 | 
+  | callback | AsyncCallback&lt;boolean&gt; | 是 | 暂停下载任务的回调函数。 |
 
 - 示例
   
@@ -1015,9 +1015,9 @@ resume(): Promise&lt;boolean&gt;
 **系统能力**: SystemCapability.MiscServices.Download
 
 - 参数：
-    | 类型 | 说明 | 
+    | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;boolean&gt; | 重新启动暂停的下载任务是否成功。 | 
+  | Promise&lt;boolean&gt; | 重新启动暂停的下载任务是否成功。 |
 
 - 示例
   
@@ -1046,9 +1046,9 @@ resume(callback: AsyncCallback&lt;boolean&gt;): void
 **系统能力**: SystemCapability.MiscServices.Download
 
 - 参数
-    | 参数名 | 参数类型 | 必填 | 说明 | 
+    | 参数名 | 参数类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | 是 | 重新启动暂停的下载任务的回调函数。 | 
+  | callback | AsyncCallback&lt;boolean&gt; | 是 | 重新启动暂停的下载任务的回调函数。 |
 
 - 示例
   
@@ -1087,16 +1087,16 @@ resume(callback: AsyncCallback&lt;boolean&gt;): void
 
 **系统能力**: SystemCapability.MiscServices.Download
 
-  | 名称 | 类型 | 必填 | 说明 | 
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| downloadId | number | 是 | 下载的文件ID。 | 
-| failedReason | number | 否 | 下载失败原因，可以是任何[ERROR_*](#常量)常量。 | 
-| fileName | string | 是 | 下载的文件名。 | 
-| filePath | string | 是 | 存储文件的URI。 | 
-| pausedReason | number | 否 | 会话暂停的原因，可以是任何[PAUSED_*](#常量)常量。 | 
-| status | number | 是 | 下载状态代码，可以是任何[SESSION_*](#常量)常量。 | 
-| targetURI | string | 是 | 下载文件的URI。 | 
-| downloadTitle | string | 是 | 下载的文件的标题。 | 
-| downloadTotalBytes | number | 是 | 下载的文件的总大小（int&nbsp;bytes）。 | 
-| description | string | 是 | 待下载文件的描述信息。 | 
-| downloadedBytes | number | 是 | 实时下载大小（int&nbsp;&nbsp;bytes）。 | 
+| downloadId | number | 是 | 下载的文件ID。 |
+| failedReason | number | 否 | 下载失败原因，可以是任何[ERROR_*](#常量)常量。 |
+| fileName | string | 是 | 下载的文件名。 |
+| filePath | string | 是 | 存储文件的URI。 |
+| pausedReason | number | 否 | 会话暂停的原因，可以是任何[PAUSED_*](#常量)常量。 |
+| status | number | 是 | 下载状态代码，可以是任何[SESSION_*](#常量)常量。 |
+| targetURI | string | 是 | 下载文件的URI。 |
+| downloadTitle | string | 是 | 下载的文件的标题。 |
+| downloadTotalBytes | number | 是 | 下载的文件的总大小（int&nbsp;bytes）。 |
+| description | string | 是 | 待下载文件的描述信息。 |
+| downloadedBytes | number | 是 | 实时下载大小（int&nbsp;&nbsp;bytes）。 |

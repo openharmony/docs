@@ -1532,7 +1532,7 @@ writeCharArray(charArray: number[]): boolean
 
 ### readCharArray
 
-readCharArray(dataIn: boolean[]) : void
+readCharArray(dataIn: number[]) : void
 
 从MessageParcel实例中读取单个字符数组。
 
@@ -1541,7 +1541,7 @@ readCharArray(dataIn: boolean[]) : void
 - 参数
     | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | dataIn | boolean[] | 是 | 要读取的单个字符数组。 |
+  | dataIn | number[] | 是 | 要读取的单个字符数组。 |
 
 - 示例
 
@@ -1556,7 +1556,7 @@ readCharArray(dataIn: boolean[]) : void
 
 ### readCharArray
 
-readCharArray(): boolean[]
+readCharArray(): number[]
 
 从MessageParcel实例读取单个字符数组。
 
@@ -1565,7 +1565,7 @@ readCharArray(): boolean[]
 - 返回值
     | 类型 | 说明 |
   | -------- | -------- |
-  | boolean[] | 返回单个字符数组。 |
+  | number[] | 返回单个字符数组。 |
 
 - 示例
 
@@ -2191,69 +2191,6 @@ readRawData(size: number): number[]
   console.log("RpcTest: parcel read raw data result is : " + result);
   ```
 
-
-### getDataVersion<sup>8+</sup>
-
-getDataVersion(): number
-
-从MessageParcel对象返回数据格式版本。
-
-**系统能力**：SystemCapability.Communication.IPC.Core
-
-- 返回值
-    | 类型 | 说明 |
-  | -------- | -------- |
-  | number | 从MessageParcel返回数据格式版本。 |
-
-- 示例
-
-  ```
-  let parcel = new rpc.MessageParcel();
-  let version = parcel.getDataVersion();
-  console.log("RpcTest: parcel get data version is : " + version);
-  ```
-
-
-### updateDataVersion<sup>8+</sup>
-
-updateDataVersion(proxy: IRemoteObject): void
-
-将远程对象数据格式版本更新到MessageParcel对象。
-
-**系统能力**：SystemCapability.Communication.IPC.Core
-
-- 参数
-    | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | proxy | IRemoteObject | 是 | 使用该MessageParcel对象发送请求的远程对象。 |
-
-- 示例
-
-  ```
-  import FA from "@ohos.ability.featureAbility";
-  let proxy;
-  let connect = {
-      onConnect: function(elementName, remoteProxy) {
-          console.log("RpcClient: js onConnect called.");
-          proxy = remoteProxy;
-      },
-      onDisconnect: function(elementName) {
-          console.log("RpcClient: onDisconnect");
-      },
-      onFailed: function() {
-          console.log("RpcClient: onFailed");
-      }
-  };
-  let want = {
-      "bundleName": "com.huawei.server",
-      "abilityName": "com.huawei.server.MainAbility",
-  };
-  FA.connectAbility(want, connect);
-  let parcel = new rpc.MessageParcel();
-  parcel.updateDataVersion(proxy);
-  ```
-
-
 ## Sequenceable
 
 在进程间通信（IPC）期间，将类的对象写入MessageParcel并从MessageParcel中恢复它们。
@@ -2459,7 +2396,7 @@ queryLocalInterface(descriptor: string): IRemoteBroker
 
 ### sendRequest
 
-sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): Promise&lt;number&gt;<sup>7</sup>
+sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): boolean;<sup>7</sup>
 
 sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): Promise&lt;SendRequestResult&gt;<sup>8+</sup>
 
@@ -2571,10 +2508,22 @@ isObjectDead(): boolean
 
 实现IRemoteObject代理对象。
 
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.IPC.Core。
+
+| 参数                  | 值                      | 说明                              |
+| --------------------- | ----------------------- | --------------------------------- |
+| PING_TRANSACTION      | 1599098439 (0x5f504e47) | 内部指令码，用于测试IPC服务正常。 |
+| DUMP_TRANSACTION      | 1598311760 (0x5f444d50) | 内部指令码，获取Binder内部状态。 |
+| INTERFACE_TRANSACTION | 1598968902 (0x5f4e5446) | 内部指令码，获取对端接口描述符。  |
+| MIN_TRANSACTION_ID    | 1 (0x00000001)          | 最小有效指令码。                  |
+| MAX_TRANSACTION_ID    | 16777215 (0x00FFFFFF)   | 最大有效指令码。                  |
+
+
+
 
 ### sendRequest
 
-sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): Promise&lt;number&gt;<sup>7</sup>
+sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): boolean;<sup>7</sup>
 
 sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): Promise&lt;SendRequestResult&gt;<sup>8+</sup>
 
@@ -2977,51 +2926,6 @@ isObjectDead(): boolean
   ```
 
 
-### setDataVersion<sup>8+</sup>
-
-setDataVersion(dataVersion: number): boolean
-
-将数据格式版本设置到RemoteProxy对象。
-
-**系统能力**：SystemCapability.Communication.IPC.Core
-
-- 参数
-    | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | dataVersion | number | 是 | 数据格式版本。 |
-
-- 返回值
-    | 类型 | 说明 |
-  | -------- | -------- |
-  | boolean | 如果设置数据格式版本成功，则返回true；否则返回false。 |
-
-- 示例
-
-  ```
-  import FA from "@ohos.ability.featureAbility";
-  let proxy;
-  let connect = {
-      onConnect: function(elementName, remoteProxy) {
-          console.log("RpcClient: js onConnect called.");
-          proxy = remoteProxy;
-      },
-      onDisconnect: function(elementName) {
-          console.log("RpcClient: onDisconnect");
-      },
-      onFailed: function() {
-          console.log("RpcClient: onFailed");
-      }
-  };
-  let want = {
-      "bundleName": "com.huawei.server",
-      "abilityName": "com.huawei.server.MainAbility",
-  };
-  FA.connectAbility(want, connect);
-  let result = proxy.setDataVersion(1);
-  console.log("RpcClient: set Data Version is " + result);
-  ```
-
-
 ## MessageOption
 
 公共消息选项（int标志，int等待时间），使用标志中指定的标志构造指定的MessageOption对象。
@@ -3179,6 +3083,32 @@ static getCallingUid(): number
       onRemoteRequest(code, data, reply, option) {
           let callerUid = rpc.IPCSkeleton.getCallingUid();
           console.log("RpcServer: getCallingUid result: " + callerUid);
+          return true;
+      }
+  }
+  ```
+
+### getCallingTokenId
+
+static getCallingTokenId(): number;
+
+获取调用者的TokenId，用于被调用方对调用方的身份校验。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+* 返回值
+
+    | 类型   | 说明                  |
+  | ------ | --------------------- |
+  | number | 返回调用者的TokenId。 |
+
+* 示例
+
+  ```
+  class Stub extends rpc.RemoteObject {
+      onRemoteRequest(code, data, reply, option) {
+          let callerTokenId = rpc.IPCSkeleton.getCallingTokenId();
+          console.log("RpcServer: getCallingTokenId result: " + callerTokenId);
           return true;
       }
   }
@@ -3375,7 +3305,7 @@ RemoteObject构造函数。
 
 ### sendRequest
 
-sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): Promise&lt;number&gt;<sup>7</sup>
+sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): boolean;<sup>7</sup>
 
 sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): Promise&lt;SendRequestResult&gt;<sup>8+</sup>
 
@@ -3612,7 +3542,7 @@ getCallingPid(): number
 
 ### queryLocalInterface
 
-queryLocalInterface(descriptor: descriptor): IRemoteBroker
+queryLocalInterface(descriptor: string): IRemoteBroker
 
 查询并获取当前接口描述符对应的远端对象是否已经存在。
 
@@ -3621,7 +3551,7 @@ queryLocalInterface(descriptor: descriptor): IRemoteBroker
 - 参数
     | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | descriptor | descriptor | 是 | 需要查询的接口描述符。 |
+  | descriptor | string | 是 | 需要查询的接口描述符。 |
 
 - 返回值
     | 类型 | 说明 |
@@ -3714,7 +3644,7 @@ attachLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
 | PROT_WRITE | 2 | 映射的内存可写 |
 
 
-### createAshmem
+### createAshmem<sup>8+</sup>
 
 static createAshmem(name: string, size: number): Ashmem
 
@@ -3743,7 +3673,7 @@ static createAshmem(name: string, size: number): Ashmem
   ```
 
 
-### createAshmemFromExisting
+### createAshmemFromExisting<sup>8+</sup>
 
 static createAshmemFromExisting(ashmem: Ashmem): Ashmem
 
@@ -3772,7 +3702,7 @@ static createAshmemFromExisting(ashmem: Ashmem): Ashmem
   ```
 
 
-### closeAshmem
+### closeAshmem<sup>8+</sup>
 
 closeAshmem(): void
 
@@ -3788,7 +3718,7 @@ closeAshmem(): void
   ```
 
 
-### unmapAshmem
+### unmapAshmem<sup>8+</sup>
 
 unmapAshmem(): void
 
@@ -3804,7 +3734,7 @@ unmapAshmem(): void
   ```
 
 
-### getAshmemSize
+### getAshmemSize<sup>8+</sup>
 
 getAshmemSize(): number
 
@@ -3826,7 +3756,7 @@ getAshmemSize(): number
   ```
 
 
-### mapAshmem
+### mapAshmem<sup>8+</sup>
 
 mapAshmem(mapType: number): boolean
 
@@ -3853,7 +3783,7 @@ mapAshmem(mapType: number): boolean
   ```
 
 
-### mapReadAndWriteAshmem
+### mapReadAndWriteAshmem<sup>8+</sup>
 
 mapReadAndWriteAshmem(): boolean
 
@@ -3875,7 +3805,7 @@ mapReadAndWriteAshmem(): boolean
   ```
 
 
-### mapReadOnlyAshmem
+### mapReadOnlyAshmem<sup>8+</sup>
 
 mapReadOnlyAshmem(): boolean
 
@@ -3897,7 +3827,7 @@ mapReadOnlyAshmem(): boolean
   ```
 
 
-### setProtection
+### setProtection<sup>8+</sup>
 
 setProtection(protectionType: number): boolean
 
@@ -3924,7 +3854,7 @@ setProtection(protectionType: number): boolean
   ```
 
 
-### writeToAshmem
+### writeToAshmem<sup>8+</sup>
 
 writeToAshmem(buf: number[], size: number, offset: number): boolean
 
@@ -3954,7 +3884,7 @@ writeToAshmem(buf: number[], size: number, offset: number): boolean
   ```
 
 
-### readFromAshmem
+### readFromAshmem<sup>8+</sup>
 
 readFromAshmem(size: number, offset: number): number[]
 
