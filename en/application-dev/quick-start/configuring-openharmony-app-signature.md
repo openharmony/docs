@@ -124,7 +124,7 @@ Refer to the following descriptions about the parameters in the command:
 
 ## Generating the App Profile<a name="section2048641015325"></a>
 
-The profile contains the following inforamtion about the OpenHarmony app: bundle name, digital certificate information, certificate permissions that can be applied for by the app, and devices where the app can be debugged \(the device list will be empty if the app type is Release\). Each app package must contain a profile file.
+The profile contains the following information about the OpenHarmony app: bundle name, digital certificate information, certificate permissions that can be applied for by the app, and devices where the app can be debugged \(the device list will be empty if the app type is Release\). Each app package must contain a profile file.
 
 Go to the  **Sdk\\toolchains\\lib**  directory, open the command-line tool, and run the following command.
 
