@@ -458,7 +458,7 @@ bundle.getAllApplicationInfo(bundleFlags, userId, (err, data) => {
 
 ## bundle.getAllApplicationInfo
 
-function getAllApplicationInfo(bundleFlags: number, callback: AsyncCallback<Array<ApplicationInfo>>) : void;
+function getAllApplicationInfo(bundleFlags: number, callback: AsyncCallback<Array\<ApplicationInfo>>) : void;
 
 获取指定用户下所有已安装的应用信息，使用callback形式返回结果。
 
@@ -879,7 +879,7 @@ bundle.queryAbilityByWant(want, bundleFlags, userId, (err, data) => {
 
 ## bundle.queryAbilityByWant
 
-queryAbilityByWant(want: Want, bundleFlags: number, callback: AsyncCallback<Array<AbilityInfo>>): void
+queryAbilityByWant(want: Want, bundleFlags: number, callback: AsyncCallback<Array\<AbilityInfo>>): void
 
 以异步方法根据给定的意图获取Ability信息，使用callback形式返回结果。
 
@@ -1139,7 +1139,7 @@ bundle.getNameForUid(uid, (err, data) => {
 
 function getAbilityIcon(bundleName: string, abilityName: string): Promise\<[PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)>;
 
-以异步方法通过bundleName和abilityName获取对应Icon的PixelMap，使用Promise形式返回结果。
+以异步方法通过bundleName和abilityName获取对应Icon的<[PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)，使用Promise形式返回结果。
 
 **参数：**
 
@@ -1151,7 +1151,7 @@ function getAbilityIcon(bundleName: string, abilityName: string): Promise\<[Pixe
 **返回值：**
 | 类型                  | 说明                                                         |
 | --------------------- | ------------------------------------------------------------ |
-| Promise\<[PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)> | 返回值为PixelMap。 |
+| Promise\<[PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)> | 返回值为<[PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)。 |
 
 **示例：**
 
@@ -1170,7 +1170,7 @@ bundle.getAbilityIcon(bundleName, abilityName)
 
 function getAbilityIcon(bundleName: string, abilityName: string, callback: AsyncCallback\<[PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)>): void;
 
-以异步方法通过bundleName和abilityName获取对应的PixelMap，使用callback形式返回结果。
+以异步方法通过bundleName和abilityName获取对应的<[PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)，使用callback形式返回结果。
 
 **参数：**
 
@@ -1178,7 +1178,7 @@ function getAbilityIcon(bundleName: string, abilityName: string, callback: Async
 | ---------- | ------ | ---- | -------- |
 | bundleName | string | 是   | 要查询的bundleName。 |
 | abilityName | string | 是   | 要查询的abilityName。 |
-| callback   | AsyncCallback\<[PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)> | 是   | 程序启动作为入参的回调函数，返回指定PixelMap。 |
+| callback   | AsyncCallback\<[PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)> | 是   | 程序启动作为入参的回调函数，返回指定<[PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)。 |
 
 **示例：**
 
@@ -1423,10 +1423,10 @@ bundle.queryExtensionAbilityInfosByWant(want, extensionFlags, (err, data) => {
 | permissions      | Array\<string> | 是   | 否   | 访问应用程序所需的权限                     |
 | moduleInfos | Array\<ModuleInfo> | 是   | 否   | 应用程序的模块信息                         |
 | entryDir         | string        | 是   | 否   | 应用程序的文件保存路径                     |
-| customizeData    | Map\<string, Array<CustomizeData>> | 是   | 是   | 应用程序的自定义数据                       |
+| customizeData    | Map<string, Array\<CustomizeData>> | 是   | 是   | 应用程序的自定义数据                       |
 | codePath | string | 是 | 否 | 应用程序的安装目录 |
-| metaData | Map\<string, Array<CustomizeData>> | 是 | 否 | 应用程序的自定义元信息 |
-| metaData | Map\<string, Array<Metadata>> | 是 | 否 | 应用程序的元信息 |
+| metaData | Map<string, Array\<CustomizeData>> | 是 | 否 | 应用程序的自定义元信息 |
+| metaData | Map<string, Array\<Metadata>> | 是 | 否 | 应用程序的元信息 |
 | removable | boolean | 是 | 否 | 应用程序是否可以被移除 |
 | accessTokenId | number | 是 | 否 | 应用程序的accessTokenId |
 | uid | number | 是 | 否 | 应用程序的uid |
