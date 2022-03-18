@@ -580,6 +580,7 @@ off(event: 'distributedDataServiceDie', deathCallback?: Callback&lt;void&gt;): v
 | autoSync  | boolean | 否 |设置数据库文件是否自动同步，默认不自动同步。     |
 | kvStoreType | [KVStoreType](#kvstoretype) | 否 |设置要创建的数据库类型，默认为多设备协同数据库。 |
 | securityLevel | [SecurityLevel](#securitylevel) | 否 |设置数据库安全级别，默认不设置安全级别。  |
+| schema | [schema](#Schema<sup>8+</sup>) | 否 | 设置定义存储在数据库中的值。 |
 
 
 ## KVStoreType
@@ -634,11 +635,45 @@ KVStore常量。
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
 
 
+| 名称  |  | 说明                    |
+| ---   | ----  | ----------------------- |
+| root<sup>8+</sup>  |  | 表示json根对象  |
+| indexes<sup>8+</sup>  |  | 表示json类型的字符串数组。  |
+| mode<sup>8+</sup>  |  | 表示Schema的模式。  |
+| skip<sup>8+</sup>  |  |  Schema的跳跃大小。  |
+
+### constructor<sup>8+</sup> ###
+
+constructor()
+
+用于创建Schema实例的构造函数。
+
+**系统能力**：以下各项对应的系统能力均为 SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+
 ## FieldNode<sup>8+</sup> ##
 
 表示 Schema 实例的节点，提供定义存储在数据库中的值的方法。
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+
+| 名称  |  | 说明                    |
+| ---   | ----  | ----------------------- |
+| nullable<sup>9+</sup>  |  | 表示数据库字段可以为空。   |
+| default<sup>9+</sup>  |  | 表示fieldnode的默认值。 |
+
+### constructor<sup>8+</sup> ###
+
+constructor(name: string)
+
+用于创建带有string字段FieldNode实例的构造函数。
+
+**系统能力**：以下各项对应的系统能力均为 SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+
+-   参数：
+
+| 参数名  | 参数类型 | 必填  | 说明                    |
+| -----  | ------  | ----  | ----------------------- |
+| name  | string  | 是    | 要定义的字段名。  
 
 ### appendChild<sup>8+</sup> ###
 
@@ -1150,6 +1185,14 @@ getEntry(): Entry
 ## Query<sup>8+</sup> ##
 
 使用谓词表示数据库查询，提供创建Query实例、查询数据库中的数据和添加谓词的方法。
+
+**系统能力**：以下各项对应的系统能力均为 SystemCapability.DistributedDataManager.KVStore.Core。
+
+### constructor<sup>8+</sup> ###
+
+constructor() 
+
+用于创建Schema实例的构造函数
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.DistributedDataManager.KVStore.Core。
 
