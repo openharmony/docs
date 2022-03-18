@@ -61,83 +61,14 @@
 
 <a name="table3_MIPI_CSIDes"></a>
 
-<table border="0" cellpadding="0" cellspacing="0" width="700" style="border-collapse:
- collapse;table-layout:fixed;width:855pt">
- <colgroup><col class="xl66" width="200" style="mso-width-source:userset;mso-width-alt:7072;
- width:166pt">
- <col width="250" style="mso-width-source:userset;mso-width-alt:8800;width:206pt">
- <col class="xl71" width="300" style="mso-width-source:userset;mso-width-alt:9792;
- width:230pt">
- </colgroup><tbody><tr class="xl65" height="19" style="height:14.25pt">
-  <td height="19" class="xl65" width="221" style="height:14.25pt;width:166pt">功能分类</td>
-  <td class="xl65" width="275" style="width:206pt">接口名</td>
-  <td class="xl69" width="306" style="width:230pt">描述</td>
- </tr>
- <tr class="xl68" height="19" style="height:14.25pt">
-  <td rowspan="2" height="38" class="xl67" style="height:28.5pt">获取/释放MIPI-CSI控制器操作句柄</td>
-  <td class="xl68">MipiCsiOpen</td>
-  <td class="xl70" width="306" style="width:230pt">获取MIPI-CSI控制器操作句柄</td>
- </tr>
- <tr class="xl68" height="19" style="height:14.25pt">
-  <td height="19" class="xl68" style="height:14.25pt">MipiCsiClose</td>
-  <td class="xl70" width="306" style="width:230pt">释放MIPI-CSI控制器操作句柄</td>
- </tr>
- <tr class="xl68" height="114" style="height:85.5pt">
-  <td rowspan="4" height="228" class="xl67" style="height:171.0pt">MIPI-CSI相应配置</td>
-  <td class="xl68">MipiCsiSetComboDevAttr</td>
-  <td class="xl70" width="306" style="width:230pt">设置MIPI，CMOS或者LVDS相机的参数给控制器，参数包括工作模式，图像区域，图像深度，数据速率和物理通道等</td>
- </tr>
- <tr class="xl68" height="38" style="height:28.5pt">
-  <td height="38" class="xl68" style="height:28.5pt">MipiCsiSetExtDataType(可选)</td>
-  <td class="xl70" width="306" style="width:230pt">设置YUV和RAW数据格式和位深</td>
- </tr>
- <tr class="xl68" height="57" style="height:42.75pt">
-  <td height="57" class="xl68" style="height:42.75pt">MipiCsiSetHsMode</td>
-  <td class="xl70" width="306" style="width:230pt">设置MIPI RX的Lane分布。根据硬件连接的形式选择具体的mode</td>
- </tr>
- <tr class="xl68" height="19" style="height:14.25pt">
-  <td height="19" class="xl68" style="height:14.25pt">MipiCsiSetPhyCmvmode</td>
-  <td class="xl70" width="306" style="width:230pt">设置共模电压模式</td>
- </tr>
- <tr class="xl68" height="19" style="height:14.25pt">
-  <td rowspan="2" height="38" class="xl67" style="height:28.5pt">复位/撤销复位Sensor</td>
-  <td class="xl68">MipiCsiResetSensor</td>
-  <td class="xl70" width="306" style="width:230pt">复位Sensor</td>
- </tr>
- <tr class="xl68" height="19" style="height:14.25pt">
-  <td height="19" class="xl68" style="height:14.25pt">MipiCsiUnresetSensor</td>
-  <td class="xl70" width="306" style="width:230pt">撤销复位Sensor</td>
- </tr>
- <tr class="xl68" height="57" style="height:42.75pt">
-  <td rowspan="2" height="76" class="xl67" style="height:57.0pt">复位/撤销复位MIPI RX</td>
-  <td class="xl68">MipiCsiResetRx</td>
-  <td class="xl70" width="306" style="width:230pt">复位MIPI RX。不同的s32WorkingViNum有不同的enSnsType</td>
- </tr>
- <tr class="xl68" height="19" style="height:14.25pt">
-  <td height="19" class="xl68" style="height:14.25pt">MipiCsiUnresetRx</td>
-  <td class="xl70" width="306" style="width:230pt">撤销复位MIPI RX</td>
- </tr>
- <tr class="xl68" height="76" style="height:57.0pt">
-  <td rowspan="2" height="95" class="xl67" style="height:71.25pt">使能/关闭MIPI的时钟</td>
-  <td class="xl68">MipiCsiEnableClock</td>
-  <td class="xl70" width="306" style="width:230pt">使能MIPI的时钟。根据上层函数电泳传递的enSnsType参数决定是用MIPI还是LVDS</td>
- </tr>
- <tr class="xl68" height="19" style="height:14.25pt">
-  <td height="19" class="xl68" style="height:14.25pt">MipiCsiDisableClock</td>
-  <td class="xl70" width="306" style="width:230pt">关闭MIPI设备的时钟</td>
- </tr>
- <tr class="xl68" height="19" style="height:14.25pt">
-  <td rowspan="2" height="38" class="xl67" style="height:28.5pt">使能/禁用MIPI上的Sensor时钟</td>
-  <td class="xl68">MipiCsiEnableSensorClock</td>
-  <td class="xl70" width="306" style="width:230pt">使能MIPI上的Sensor时钟</td>
- </tr>
- <tr class="xl68" height="19" style="height:14.25pt">
-  <td height="19" class="xl68" style="height:14.25pt">MipiCsiDisableSensorClock</td>
-  <td class="xl70" width="306" style="width:230pt">关闭Sensor的时钟</td>
- </tr>
-</tbody></table>
-
-
+  | 功能分类 | 接口名 | 
+| -------- | -------- |
+| 获取/释放MIPI-CSI控制器操作句柄 | MipiCsiOpen：获取MIPI-CSI控制器操作句柄<br/>MipiCsiClose：释放MIPI-CSI控制器操作句柄 | 
+| MIPI-CSI相应配置 | MipiCsiSetComboDevAttr：设置MIPI，CMOS或者LVDS相机的参数给控制器，参数包括工作模式，图像区域，图像深度，数据速率和物理通道等<br/>MipiCsiSetExtDataType(可选)：设置YUV和RAW数据格式和位深<br/>MipiCsiSetHsMode：设置MIPI&nbsp;RX的Lane分布。根据硬件连接的形式选择具体的mode<br/>MipiCsiSetPhyCmvmode：设置共模电压模式 | 
+| 复位/撤销复位Sensor | MipiCsiResetSensor：复位Sensor<br/>MipiCsiUnresetSensor：撤销复位Sensor | 
+| 复位/撤销复位MIPI&nbsp;RX | MipiCsiResetRx：复位MIPI&nbsp;RX。不同的s32WorkingViNum有不同的enSnsType<br/>MipiCsiUnresetRx：撤销复位MIPI&nbsp;RX | 
+| 使能/关闭MIPI的时钟 | MipiCsiEnableClock：使能MIPI的时钟。根据上层函数电泳传递的enSnsType参数决定是用MIPI还是LVDS<br/>MipiCsiDisableClock：关闭MIPI设备的时钟 | 
+| 使能/禁用MIPI上的Sensor时钟 | MipiCsiEnableSensorClock：使能MIPI上的Sensor时钟<br/>MipiCsiDisableSensorClock：关闭Sensor的时钟 | 
 
 
 ## 使用指导<a name="section2_MIPI_CSIDes"></a>
@@ -611,19 +542,9 @@ void MipiCsiClose(DevHandle handle);
 
 <a name="table17_MIPI_CSIDes"></a>
 
-<table><thead align="left"><tr id="row1525793312"><th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.1"><p id="p115402031153111"><a name="p115402031153111"></a><a name="p115402031153111"></a>参数</p>
-</th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.2"><p id="p65406313319"><a name="p65406313319"></a><a name="p65406313319"></a>参数描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row1926109193116"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p105419317318"><a name="p105419317318"></a><a name="p105419317318"></a>handle</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p132442255912"><a name="p132442255912"></a><a name="p132442255912"></a>MIPI-CSI控制器操作句柄</p>
-</td>
-</tr>
-</tbody>
-</table>
+ | 参数         | 参数描述                                         |
+ | ------------ | ------------------------------------------------ |
+ | handle       | MIPI-CSI控制器操作句柄                                  |
 
 ```c
 MipiCsiClose(MIPIHandle); /* 释放掉MIPI-CSI控制器操作句柄 */
