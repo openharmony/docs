@@ -55,8 +55,10 @@
         - [DataPanel](ts-basic-components-datapanel.md)
         - [DatePicker](ts-basic-components-datepicker.md)
         - [Divider](ts-basic-components-divider.md)
+        - [Gauge](ts-basic-components-gauge.md)
         - [Image](ts-basic-components-image.md)
         - [ImageAnimator](ts-basic-components-imageanimator.md)
+        - [Marquee](ts-basic-components-marquee.md)
         - [LoadingProgress](ts-basic-components-loadingprogress.md)
         - [Progress](ts-basic-components-progress.md)
         - [QRCode](ts-basic-components-qrcode.md)
@@ -75,6 +77,7 @@
         - [TextClock](ts-basic-components-textclock.md)
         - [Web](ts-basic-components-web.md)
         - [Xcomponent](ts-basic-components-xcomponent.md)
+        - [PluginComponent](ts-basic-components-plugincomponent.md)
     - 容器组件
         - [AlphabetIndexer](ts-container-alphabet-indexer.md)
         - [Badge](ts-container-badge.md)
@@ -100,6 +103,8 @@
         - [Tabs](ts-container-tabs.md)
         - [TabContent](ts-container-tabcontent.md)
         - [Refresh](ts-container-refresh.md)
+        - [Stepper](ts-basic-components-stepper.md)
+        - [StepperItem](ts-basic-components-stepperitem.md)
     - 媒体组件
         - [Video](ts-media-components-video.md)
     - 绘制组件

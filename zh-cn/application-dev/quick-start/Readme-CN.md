@@ -10,3 +10,4 @@
     - [配置OpenHarmony应用签名信息](configuring-openharmony-app-signature.md)
     - [安装运行OpenHarmony应用](installing-openharmony-app.md)
 - [包结构说明](package-structure.md)
+- [资源文件的分类](basic-resource-file-categories.md)
