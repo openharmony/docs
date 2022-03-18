@@ -19,7 +19,7 @@ Hap包签名工具支持本地签名需求的开发，为OpenHarmony应用提供
     CSR（Certificate Signing Request）证书签发请求是生成证书的前提，他包括证书的公钥、证书主题和私钥签名，在申请证书之前，需要先基于密钥对生成CSR，然后提交给CA签发证书。
  - 证书：
 
-    OpenHarmony采用RFC5280标准构建X509证书信任体系。用于应用签名的OpenHarmony证书按层级可分为：根CA证书、子CA证书、三级实体证书，其中三级实体证书分为应用签名证书和profile签名证书。应用签名证书表示应用开发者的身份，可保证系统上安装的应用来源可追溯，profile签名证书实现对profile文件的签名进行验签，保证profile文件的完整性。
+    OpenHarmony采用RFC5280标准构建X509证书信任体系。用于应用签名的OpenHarmony证书共有三级，分为：根CA证书、中间CA证书、最终实体证书，其中最终实体证书分为应用签名证书和profile签名证书。应用签名证书表示应用开发者的身份，可保证系统上安装的应用来源可追溯，profile签名证书实现对profile文件的签名进行验签，保证profile文件的完整性。
 
  - HAP包：
 
@@ -61,7 +61,7 @@ Hap包签名工具支持本地签名需求的开发，为OpenHarmony应用提供
 
 ### 场景介绍
 
-OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含根CA证书、子CA证书、三级实体证书等信息，工具基于该密钥库文件对OpenHarmony应用进行签名。
+OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含根CA证书、中间CA证书、最终实体证书等信息，工具基于该密钥库文件对OpenHarmony应用进行签名。
 
 按照有无应用签名证书可分为以下两种场景：
 
@@ -103,9 +103,9 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
          ├── -keystorePwd       # 密钥库口令，可选项
          ├── -outFile           # 输出文件，可选项，如果不填，则直接输出到控制台
 
-5.生成根CA/子CA证书
+5.生成根CA/中间CA证书
 
-    generate-ca : 生成根CA/子CA证书，如果密钥不存在，一起生成密钥
+    generate-ca : 生成根CA/中间CA证书，如果密钥不存在，一起生成密钥
          ├── -keyAlias                        # 密钥别名，必填项
          ├── -keyPwd                          # 密钥口令，可选项
          ├── -keyAlg                          # 密钥算法，必填项，包括RSA/ECC
@@ -140,7 +140,7 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
          ├── -keystorePwd                     # 密钥库口令，可选项
          ├── -outForm                         # 输出证书文件的格式，包括 cert / certChain，可选项，默认为certChain
          ├── -rootCaCertFile                  #  outForm为certChain时必填，根CA证书文件
-         ├── -subCaCertFile                   #  outForm为certChain时必填，二级子CA证书文件
+         ├── -subCaCertFile                   #  outForm为certChain时必填，中间CA证书文件
          ├── -outFile                         #  输出证书文件(证书或证书链)，可选项，如果不填，则直接输出到控制台
 
 7.生成profile调试/发布证书
@@ -160,7 +160,7 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
          ├── -keystorePwd                     # 密钥库口令，可选项
          ├── -outForm                         # 输出证书文件的格式，包括 cert / certChain，可选项，默认为certChain
          ├── -rootCaCertFile                  #  outForm为certChain时必填，根CA证书文件
-         ├── -subCaCertFile                   #  outForm为certChain时必填，二级子CA证书文件
+         ├── -subCaCertFile                   #  outForm为certChain时必填，中间CA证书文件
          ├── -outFile                         #  输出证书文件(证书或证书链)，可选项，如果不填，则直接输出到控制台
 
 8.通用证书生成，可以生成自定义证书
@@ -197,7 +197,7 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
           ├── -mode            # 签名模式，必填项，包括localSign，remoteSign
           ├── -keyAlias        # 密钥别名，必填项
           ├── -keyPwd          # 密钥口令，可选项
-          ├── -profileCertFile # Profile签名证书（证书链，顺序为三级-二级-根），必填项
+          ├── -profileCertFile # Profile签名证书（证书链，顺序为最终实体证书-中间CA证书-根证书），必填项
           ├── -inFile          # 输入原始的模板Profile文件，文件为json格式，所在目录为developtools_hapsigner/autosign/UnsgnedReleasedProfileTemplate.json，必填项
           ├── -signAlg         # 签名算法，必填项，包括SHA256withECDSA / SHA384withECDSA
           ├── -keystoreFile    # 密钥库文件，localSign模式时为必填项，JKS或P12格式
@@ -216,7 +216,7 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
           ├── -mode          # 签名模式，必填项，包括localSign，remoteSign，remoteResign
           ├── -keyAlias      # 密钥别名，必填项
           ├──-keyPwd         # 密钥口令，可选项
-          ├── -appCertFile   # 应用签名证书文件（证书链，顺序为三级-二级-根），必填项
+          ├── -appCertFile   # 应用签名证书文件（证书链，顺序为最终实体证书-中间CA证书-根证书），必填项
           ├── -profileFile   # 签名后的Provision Profile文件名，p7b格式，必填项
           ├── -profileSigned # 指示profile文件是否带有签名，1表示有签名，0表示没有签名，默认为1。可选项
           ├── -inForm        # 输入的原始文件的格式，zip格式或bin格式，默认zip格式，可选项
@@ -243,8 +243,7 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
 
 > **注意事项：** <br/>
  1.步骤一中的密钥对算法推荐使用ECC，出于安全性考虑，应用签名暂不使用RSA算法;<br/>
- 2.建议将待签名hap包、profile文件、密钥库文件OpenHarmony.p12、根CA证书、子CA证书、签名工具放在同一个目录下，方便操作;<br/>
- 3.OpenHarmony密钥库文件所在路径：developtools_hapsigner/autosign/result/OpenHarmony.p12；<br/>根CA证书所在路径：developtools_hapsigner/autosign/result/rootCA.cer；<br/>子CA证书所在路径：developtools_hapsigner/autosign/result/subCA.cer；<br/>pfofile签名证书路径：developtools_hapsigner/autosign/result/OpenHarmonyProfileRelease.pem。
+ 2.建议将待签名hap包、profile文件、密钥库文件OpenHarmony.p12、根CA证书、中间CA证书、签名工具放在同一个目录下，方便操作。在**developtools_hapsigner/autosign/result**路径下，有如下文件：<br/>- OpenHarmony密钥库文件**OpenHarmony.p12**<br/>- 根CA证书**rootCA.cer**<br/>- 中间CA证书**subCA.cer**<br/>- profile签名证书**OpenHarmonyProfileRelease.pem**
 
 
 **1.生成应用签名证书密钥对**
@@ -271,7 +270,7 @@ java -jar hap-sign-tool.jar generate-keypair -keyAlias "oh-app1-key-v1" -keyAlg 
 
 **2.生成应用签名证书**
 
-调用应用签名证书生成接口，使用本地二级CA证书签发应用签名证书。
+调用应用签名证书生成接口，使用本地中间CA证书签发应用签名证书。
 
 命令实例：
     
@@ -283,13 +282,13 @@ java -jar hap-sign-tool.jar generate-app-cert -keyAlias "oh-app1-key-v1" -signAl
      generate-app-cert：生成应用签名证书
          ├── -keyAlias         # 用于生成应用签名证书的密钥别名，请与第一步生成密钥对的密钥别名-keyAlias保持一致
          ├── -signAlg          # 签名算法，必填项，包括 SHA256withECDSA / SHA384withECDSA
-         ├── -issuer           # 颁发者主题，填写已提供的子CA证书主题，该参数必填且不能修改
-         ├── -issuerKeyAlias   # 颁发者密钥别名，填写二级证书密钥别名，该参数必填且不能修改
+         ├── -issuer           # 颁发者主题，填写已提供的中间CA证书主题，该参数必填且不能修改
+         ├── -issuerKeyAlias   # 颁发者密钥别名，填写中间CA证书密钥别名，该参数必填且不能修改
          ├── -subject          # 证书主题，请参照命令实例中内容保证顺序不变，该参数必填
-         ├── -issuerKeyPwd     # 颁发者密钥口令，填写二级证书密钥口令，该参数必填，指定“123456”，不可修改
+         ├── -issuerKeyPwd     # 颁发者密钥口令，填写中间CA证书密钥口令，该参数必填，指定“123456”，不可修改
          ├── -keystoreFile     # 密钥库文件，指定使用提供的OpenHarmony.p12密钥库文件，该参数必填且不可修改
          ├── -rootCaCertFile   # 根CA证书文件，指定为已提供的根CA证书，该参数必填且不可修改
-         ├── -subCaCertFile    # 二级子CA证书文件，指定为已提供的子CA证书，该参数必填且不可修改
+         ├── -subCaCertFile    # 中间CA证书文件，指定为已提供的中间CA证书，该参数必填且不可修改
          ├── -outForm          # 输出证书文件格式，推荐使用certChain
          ├── -outFile          # 可选项，建议填写，不填则默认输出到控制台
          ├── -keyPwd           # 密钥口令，可选项，为第一步生成的密钥对口令
@@ -342,7 +341,7 @@ java -jar hap-sign-tool.jar sign-app -keyAlias "oh-app1-key-v1" -signAlg "SHA256
          ├──-keyAlias          # 密钥别名，为第一步生成的密钥信息别名，该参数必填
          ├──-signAlg           # 签名算法，包括 SHA256withECDSA / SHA384withECDSA，该参数必填
          ├── -mode             # 签名模式，目前仅支持localSign，该参数必填
-         ├── -appCertFile      # 应用签名证书（证书链，顺序为三级-二级-根），填写第二步生成的应用签名证书，该参数必填
+         ├── -appCertFile      # 应用签名证书（证书链，顺序为最终实体证书-中间CA证书-根证书），填写第二步生成的应用签名证书，该参数必填
          ├── -profileFile      # 签名后的Provision Profile文件，p7b格式，填写第三步中生成的profile文件，必填项
          ├── -inFile           # 输入原始APP包文件，该参数必填
          ├── -keystoreFile     # 密钥库文件，请与步骤一中密钥库文件保持一致，该参数必填且不可修改
@@ -385,9 +384,9 @@ java -jar hap-sign-tool.jar sign-app -keyAlias "oh-app1-key-v1" -signAlg "SHA256
 
   对应现象描述的可能原因：
 
-  (1).profile签名证书（三级证书）证书链顺序不正确。
+  (1).profile签名证书（最终实体证书）证书链顺序不正确。
 
-  (2).profile签名证书（三级证书）不是证书链。
+  (2).profile签名证书（最终实体证书）不是证书链。
 
   (3).证书主题顺序不正确 或者 生成应用签名证书时“-issuerKeyAlias”参数填写错误
 
@@ -395,7 +394,7 @@ java -jar hap-sign-tool.jar sign-app -keyAlias "oh-app1-key-v1" -signAlg "SHA256
 
   (1).检查并修正证书链顺序，只能正序或反序，不可乱序。
 
-  (2).检查签名时的三级证书是否为证书链。
+  (2).检查签名时的最终实体证书是否为证书链。
 
   (3).检查证书主题顺序是否正确，顺序须为C、O、OU、CN。
 
@@ -411,4 +410,4 @@ java -jar hap-sign-tool.jar sign-app -keyAlias "oh-app1-key-v1" -signAlg "SHA256
 
  - **解决办法**
 
-   三级证书密钥对推荐使用ECC生成，hap签名算法修改为ECC对应的SHA256withECDSA,SHA384withECDSA
+  最终实体证书密钥对推荐使用ECC生成，hap签名算法修改为ECC对应的SHA256withECDSA,SHA384withECDSA
