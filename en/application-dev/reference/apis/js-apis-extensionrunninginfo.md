@@ -39,7 +39,7 @@ abilitymanager.getExtensionRunningInfos(upperLimit, (err,data) => {
 
 ## bundle.ExtensionAbilityType
 
-Extension type.
+Enumerates extension types.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework
 
