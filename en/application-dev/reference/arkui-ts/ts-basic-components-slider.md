@@ -30,7 +30,7 @@ Slider(value:{value?: number, min?: number, max?: number, step?: number, style?:
   | max | number | No | 100 | Maximum&nbsp;value. |
   | step | number | No | 1 | Step&nbsp;of&nbsp;the&nbsp;slider.&nbsp;When&nbsp;the&nbsp;corresponding&nbsp;step&nbsp;is&nbsp;set,&nbsp;the&nbsp;slider&nbsp;slides&nbsp;intermittently. |
   | style | SliderStyle | No | SliderStyle.OutSet | Style&nbsp;of&nbsp;the&nbsp;slider. |
-  | direction<sup>8+</sup> | [Axis](ts-appendix-enums.md) | No | Axis.Horizontal | Whether&nbsp;the&nbsp;slider&nbsp;moves&nbsp;horizontally&nbsp;or&nbsp;vertically. |
+  | direction<sup>8+</sup> | [Axis](../reference/arkui-ts/ts-appendix-enums.md#axis-enums) | No | Axis.Horizontal | Whether&nbsp;the&nbsp;slider&nbsp;moves&nbsp;horizontally&nbsp;or&nbsp;vertically. |
   | reverse<sup>8+</sup> | boolean | No | false | Whether&nbsp;the&nbsp;slider&nbsp;values&nbsp;are&nbsp;reversed. |
 
 - SliderStyle enums
