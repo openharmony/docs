@@ -70,19 +70,19 @@ The usage of hapsigner varies depending on whether an application signing certif
 - If an application signing certification is available:
   You need to sign the profile, and use the application signing certificate and the local KS file (containing the corresponding key) to sign the application.
 
-### Usage
+### How to Use
 
 #### Description
-1. Display help information.
+1.Display help information.
 
         -help     # If no parameter is specified, the command help information is displayed by default.
 
-2. Display the version information.
+2.Display the version information.
 
         -version  # Display the tool version information.
 
 
-3. Generate a key pair. 
+3.Generate a key pair. 
 
      generate-keypair: Generate a key pair.
          ├── -keyAlias          # Key alias. It is mandatory.
@@ -92,7 +92,7 @@ The usage of hapsigner varies depending on whether an application signing certif
          ├── -keystoreFile      # KS file, in JKS or P12 format. It is mandatory.
          ├── -keystorePwd       # KS password. It is optional.
 
-4. Generate a CSR.
+4.Generate a CSR.
 
     generate-csr: Generate a CSR.
          ├── -keyAlias          # Key alias. It is mandatory.
@@ -103,7 +103,7 @@ The usage of hapsigner varies depending on whether an application signing certif
          ├── -keystorePwd       # KS password. It is optional.
          ├── -outFile           # CSR to generate. It is optional. If you do not specify this parameter, the CSR is output to the console.
 
-5. Generate a root CA or subordinate CA certificate.
+5.Generate a root CA or subordinate CA certificate.
 
     generate-ca: Generate a root CA or subordinate CA certificate. If the key does not exist, generate a key together with the certificate.
          ├── -keyAlias                        # Key alias. It is mandatory.
@@ -123,7 +123,7 @@ The usage of hapsigner varies depending on whether an application signing certif
          ├── -issuerKeystorePwd               # KS password of the issuer. It is optional. 
          ├── -outFile                         # File to generate. It is optional. The file is output to the console if this parameter is not specified.
 
-6. Generate an application debug or release certificate.
+6.Generate an application debug or release certificate.
 
     generate-app-cert: Generate an application debug or release certificate.
          ├── -keyAlias                        # Key alias. It is mandatory.
@@ -143,7 +143,7 @@ The usage of hapsigner varies depending on whether an application signing certif
          ├── -subCaCertFile                   # Subordinate CA certificate, which is mandatory when outForm is certChain.
          ├── -outFile                         # Certificate file (certificate or certificate chain) to generate. It is optional. The file is output to the console if this parameter is not specified.
 
-7. Generate a profile debug or release certificate.
+7.Generate a profile debug or release certificate.
 
     generate-profile-cert: Generate a profile debug or release certificate.
          ├── -keyAlias                        # Key alias. It is mandatory.
@@ -163,7 +163,7 @@ The usage of hapsigner varies depending on whether an application signing certif
          ├── -subCaCertFile                   # Subordinate CA certificate, which is mandatory when outForm is certChain.
          ├── -outFile                         # Certificate file (certificate or certificate chain) to generate. It is optional. The file is output to the console if this parameter is not specified.
 
-8. Generate a common certificate, which can be used to generate a custom certificate.
+8.Generate a common certificate, which can be used to generate a custom certificate.
 
     generate-cert: Generate a common certificate, which can be used to generate a custom certificate.
           ├── -keyAlias                          # Key alias. It is mandatory.
@@ -191,7 +191,7 @@ The usage of hapsigner varies depending on whether an application signing certif
           ├── -keystorePwd                       # KS password. It is optional.
           ├── -outFile                           # Certificate file to generate. It is optional. The file is output to the console if this parameter is not specified.
 
-9. Sign a provisioning profile.
+9.Sign a provisioning profile.
 
     sign-profile: Sign a provisioning profile.
           ├── -mode            # Signing mode, which can be localSign or remoteSign. It is mandatory.
@@ -204,13 +204,13 @@ The usage of hapsigner varies depending on whether an application signing certif
           ├── -keystorePwd     # KS password. It is optional.
           ├── -outFile         # Signed provisioning profile to generate, in p7b format. It is mandatory.
 
-10. Verify the provisioning profile signature.
+10.Verify the provisioning profile signature.
 
      verify-profile: Verify the provisioning profile signature.
            ├── -inFile       # Signed provisioning profile, in p7b format. It is mandatory.
            ├── -outFil       # Verification result file (including the verification result and profile content), in json format. It is optional. The file is output to the console if this parameter is not specified.
 
-11. Sign a HAP.
+11.Sign a HAP.
 
      sign-app: HAP signature.
           ├── -mode          # Signing mode, which can be localSign, remoteSign, or remoteResign. It is mandatory.
@@ -226,13 +226,15 @@ The usage of hapsigner varies depending on whether an application signing certif
           ├── -keystorePwd   # KS password. It is optional.
           ├── -outFile       # Signed HAP file to generate. It is mandatory.
 
-12. Verify the HAP signature.
+12.Verify the HAP signature.
 
       verify-app: Verify the HAP signature.
          ├── -inFile          # Signed application file, in HAP or bin format. It is mandatory.
          ├── -outCertchain    # Signed certificate chain file. It is mandatory.
          ├── -outProfile      # Profile of the application. It is mandatory.
-### Signing Procedure
+
+
+### Procedure
 The process of signing a HAP is as follows:
 
 1. Generate a key pair for an application signing certificate.
@@ -241,15 +243,11 @@ The process of signing a HAP is as follows:
 4. Signing the HAP.
 
 
-> **Precautions** 
->
-> - The ECC algorithm is recommended for generating key pairs for application signatures for security purposes. The RSA algorithm is not recommended.
-> -  You are advised to place the HAP, profile, **OpenHarmony.p12**, root CA certificate, subordinate CA certificate, and hapsigner in the same directory for easy operation.
-> -  The related files are in the following directories:
->   - OpenHarmony KS file: **developtools_hapsigner/autosign/result/OpenHarmony.p12** 
->   - Root CA certificate: **developtools_hapsigner/autosign/result/rootCA.cer**
->   - Subordinate CA certificate: **developtools_hapsigner/autosign/result/subCA.cer**
->   - Profile signing certificate: **developtools_hapsigner/autosign/result/OpenHarmonyProfileRelease.pem**
+> **Precautions** <br/>
+ 1.The ECC algorithm is recommended for generating key pairs for application signatures for security purposes. The RSA algorithm is not recommended.<br/>
+ 2.You are advised to place the HAP, profile, **OpenHarmony.p12**, root CA certificate, subordinate CA certificate, and hapsigner in the same directory for easy operation.<br/>
+ 3.The related files are in the following directories:<br/>OpenHarmony KS file: **developtools_hapsigner/autosign/result/OpenHarmony.p12** <br/>Root CA certificate: **developtools_hapsigner/autosign/result/rootCA.cer**<br/>Subordinate CA certificate: **developtools_hapsigner/autosign/result/subCA.cer**<br/>Profile signing certificate: **developtools_hapsigner/autosign/result/OpenHarmonyProfileRelease.pem**
+
 
 **1. Generate a key pair for the application signing certificate.**
 
