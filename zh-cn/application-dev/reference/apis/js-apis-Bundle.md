@@ -1139,7 +1139,7 @@ bundle.getNameForUid(uid, (err, data) => {
 
 function getAbilityIcon(bundleName: string, abilityName: string): Promise\<[PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)>;
 
-以异步方法通过bundleName和abilityName获取对应Icon的<[PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)>，使用Promise形式返回结果。
+以异步方法通过bundleName和abilityName获取对应Icon的[PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)，使用Promise形式返回结果。
 
 **参数：**
 
@@ -1170,7 +1170,7 @@ bundle.getAbilityIcon(bundleName, abilityName)
 
 function getAbilityIcon(bundleName: string, abilityName: string, callback: AsyncCallback\<[PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)>): void;
 
-以异步方法通过bundleName和abilityName获取对应的<[PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)>，使用callback形式返回结果。
+以异步方法通过bundleName和abilityName获取对应的[PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)，使用callback形式返回结果。
 
 **参数：**
 
