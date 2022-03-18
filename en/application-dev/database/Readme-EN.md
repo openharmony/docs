@@ -7,5 +7,9 @@
   - [RDB Overview](database-relational-overview.md)
   - [RDB Development](database-relational-guidelines.md)
 - Lightweight Data Store
-  - [Lightweight Data Store Overview](database-preference-overview.md)
-  - [Lightweight Data Store Development](database-preference-guidelines.md)
+  - [Lightweight Data Store Overview](database-distributedobject-overview.md)
+  - [Lightweight Data Store Development](database-distributedobject-guidelines.md)
+  
+  
+  
+  

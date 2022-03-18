@@ -36,6 +36,7 @@
     -   [App Storage Statistics](js-apis-storage-statistics.md)
     -   [Volume Management](js-apis-volumemanager.md)
 -   Account Management
+    -   [OS Account Management](js-apis-osAccount.md)
     -   [Distributed Account Management](js-apis-distributed-account.md)
     -   [App Account Management](js-apis-appAccount.md)
 -   Telephony Service
