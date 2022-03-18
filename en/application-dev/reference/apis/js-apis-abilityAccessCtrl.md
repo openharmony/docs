@@ -9,14 +9,14 @@
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
 ```
 
-## System Capabilities
-SystemCapability.Security.AccessToken
-
 ## abilityAccessCtrl.createAtManager
 
 createAtManager(): AtManager
 
 Creates an **AtManager** instance, which is used for ability access control.
+
+**System capability**: SystemCapability.Security.AccessToken
+
 
 **Return value**
 
@@ -38,25 +38,27 @@ Implements ability access control.
 
 verifyAccessToken(tokenID: number, permissionName: string): Promise&lt;GrantStatus&gt;
 
-Checks whether an application has been granted the specified permission. This method uses a promise to return the result.
+Checks whether an application has been granted the specified permission. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Security.AccessToken
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name  | Type                | Mandatory| Description                                      |
 | -------- | -------------------  | ---- | ------------------------------------------ |
-| tokenID   |  number   | Yes| ID of the application.|
-| permissionName | string | Yes| Name of the permission to verify.|
+| tokenID   |  number   | Yes  | ID of the application.             |
+| permissionName | string | Yes  | Name of the permission to verify.|
 
 **Return value**
 
-| Type| Description|
+| Type         | Description                               |
 | :------------ | :---------------------------------- |
 | Promise&lt;GrantStatus&gt; | Promise instance used to return the result.|
 
 **Example**
 
 ```
-const AtManager = abilityAccessCtrl.createAtManager();
+var AtManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0;
 let promise = AtManager.verifyAccessToken(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS");
 promise.then(data => {
@@ -68,28 +70,30 @@ promise.then(data => {
 
 grantUserGrantedPermission(tokenID: number, permissionName: string, permissionFlag: number): Promise&lt;number&gt;
 
-Grants a user granted permission to an application. This method uses a promise to return the result.
+Grants a user granted permission to an application. This API uses a promise to return the result.
 
-Required permission: ohos.permission.GRANT_SENSITIVE_PERMISSIONS
+**Required permissions**: ohos.permission.GRANT_SENSITIVE_PERMISSIONS
+
+**System capability**: SystemCapability.Security.AccessToken
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name   | Type               | Mandatory| Description                                                        |
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
-| tokenID      | number              | Yes| ID of the application.|
-| permissionName | string              | Yes| Name of the permission to grant.|
-| permissionFlag  | number | Yes| Permission flag. The value **1** means that a dialog box will still be displayed after the user grants or denies the permission. The value **2** means that no dialog box will be displayed after the user grants or denies the permission. The value **3** means a system permission that cannot be changed.|
+| tokenID      | number              | Yes  | ID of the application.           |
+| permissionName | string              | Yes  | Name of the permission to grant.|
+| permissionFlag  | number | Yes  | Permission flag. The value **1** means that a dialog box will still be displayed after the user grants or denies the permission. The value **2** means that no dialog box will be displayed after the user grants or denies the permission. The value **3** means a system permission that cannot be changed. |
 
 **Return value**
 
-| Type| Description|
+| Type         | Description                               |
 | :------------ | :---------------------------------- |
 | Promise&lt;number&gt; | Promise instance used to return the result.|
 
 **Example**
 
 ```
-const AtManager = abilityAccessCtrl.createAtManager();
+var AtManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0;
 let promise = AtManager.grantUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS");
 promise.then(data => {
@@ -103,23 +107,25 @@ promise.then(data => {
 
 grantUserGrantedPermission(tokenID: number, permissionName: string, permissionFlag: number, callback: AsyncCallback&lt;number&gt;): void
 
-Grants a user granted permission to an application. This method uses an asynchronous callback to return the result.
+Grants a user granted permission to an application. This API uses an asynchronous callback to return the result.
 
-Required permission: ohos.permission.GRANT_SENSITIVE_PERMISSIONS
+**Required permissions**: ohos.permission.GRANT_SENSITIVE_PERMISSIONS
+
+**System capability**: SystemCapability.Security.AccessToken
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name   | Type               | Mandatory| Description                         |
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
-| tokenID      | number              | Yes| ID of the application.|
-| permissionName | string              | Yes| Name of the permission to grant.|
-| permissionFlag  | number | Yes| Permission flag. The value **1** means that a dialog box will still be displayed after the user grants or denies the permission. The value **2** means that no dialog box will be displayed after the user grants or denies the permission. The value **3** means a system permission that cannot be changed.|
+| tokenID      | number              | Yes  | ID of the application.          |
+| permissionName | string              | Yes  | Name of the permission to grant.|
+| permissionFlag  | number | Yes  | Permission flag. The value **1** means that a dialog box will still be displayed after the user grants or denies the permission. The value **2** means that no dialog box will be displayed after the user grants or denies the permission. The value **3** means a system permission that cannot be changed. |
 | callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the result.|
 
 **Example**
 
 ```
-const AtManager = abilityAccessCtrl.createAtManager();
+var AtManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0;
 let permissionFlag = 1;
 AtManager.grantUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS",permissionFlag, data => {
@@ -131,28 +137,30 @@ AtManager.grantUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_P
 
 revokeUserGrantedPermission(tokenID: number, permissionName: string, permissionFlag: number): Promise&lt;number&gt;
 
-Revokes a user granted permission given to an application. This method uses a promise to return the result.
+Revokes a user granted permission given to an application. This API uses a promise to return the result.
 
-Required permission: ohos.permission.REVOKE_SENSITIVE_PERMISSIONS
+**Required permissions**: ohos.permission.REVOKE_SENSITIVE_PERMISSIONS
+
+**System capability**: SystemCapability.Security.AccessToken
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name   | Type               | Mandatory| Description                                                        |
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
-| tokenID      | number              | Yes| ID of the application.|
-| permissionName | string              | Yes| Name of the permission to revoke.|
-| permissionFlag  | number | Yes| Permission flag. The value **1** means that a dialog box will still be displayed after the user grants or denies the permission. The value **2** means that no dialog box will be displayed after the user grants or denies the permission. The value **3** means a system permission that cannot be changed.|
+| tokenID      | number              | Yes  | ID of the application.           |
+| permissionName | string              | Yes  | Name of the permission to revoke.|
+| permissionFlag  | number | Yes  | Permission flag. The value **1** means that a dialog box will still be displayed after the user grants or denies the permission. The value **2** means that no dialog box will be displayed after the user grants or denies the permission. The value **3** means a system permission that cannot be changed. |
 
 **Return value**
 
-| Type| Description|
+| Type         | Description                               |
 | :------------ | :---------------------------------- |
 | Promise&lt;number&gt; | Promise instance used to return the result.|
 
 **Example**
 
 ```
-const AtManager = abilityAccessCtrl.createAtManager();
+var AtManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0;
 let permissionFlag = 1;
 let promise = AtManager.revokeUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS", permissionFlag);
@@ -165,23 +173,25 @@ promise.then(data => {
 
 revokeUserGrantedPermission(tokenID: number, permissionName: string, permissionFlag: number, callback: AsyncCallback&lt;number&gt;): void
 
-Revokes a user granted permission given to an application. This method uses an asynchronous callback to return the result.
+Revokes a user granted permission given to an application. This API uses an asynchronous callback to return the result.
 
-Required permission: ohos.permission.REVOKE_SENSITIVE_PERMISSIONS
+**Required permissions**: ohos.permission.REVOKE_SENSITIVE_PERMISSIONS
+
+**System capability**: SystemCapability.Security.AccessToken
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name   | Type               | Mandatory| Description                         |
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
-| tokenID      | number              | Yes| ID of the application.|
-| permissionName | string              | Yes| Name of the permission to revoke.|
-| permissionFlag  | number | Yes| Permission flag. The value **1** means that a dialog box will still be displayed after the user grants or denies the permission. The value **2** means that no dialog box will be displayed after the user grants or denies the permission. The value **3** means a system permission that cannot be changed.|
+| tokenID      | number              | Yes  | ID of the application.           |
+| permissionName | string              | Yes  | Name of the permission to revoke.|
+| permissionFlag  | number | Yes  | Permission flag. The value **1** means that a dialog box will still be displayed after the user grants or denies the permission. The value **2** means that no dialog box will be displayed after the user grants or denies the permission. The value **3** means a system permission that cannot be changed. |
 | callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the result.|
 
 **Example**
 
 ```
-const AtManager = abilityAccessCtrl.createAtManager();
+var AtManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0;
 AtManager.revokeUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS",permissionFlag, data => {
     console.log(`callback: data->${JSON.stringify(data)}`);
@@ -192,25 +202,27 @@ AtManager.revokeUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_
 
 getPermissionFlags(tokenID: number, permissionName: string): Promise&lt;number&gt;
 
-Obtains the flags of the specified permission of a given application. This method uses a promise to return the result.
+Obtains the flags of the specified permission of a given application. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Security.AccessToken
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name   | Type               | Mandatory| Description                         |
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
-| tokenID      | number              | Yes| ID of the application.|
-| permissionName | string              | Yes| Name of the permission to query.|
+| tokenID      | number              | Yes  | ID of the application.           |
+| permissionName | string              | Yes  | Name of the permission to query.|
 
 **Return value**
 
-| Type| Description|
+| Type         | Description                               |
 | :------------ | :---------------------------------- |
 | Promise&lt;number&gt; | Promise instance used to return the result.|
 
 **Example**
 
 ```
-const AtManager = abilityAccessCtrl.createAtManager();
+var AtManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0;
 let promise = AtManager.getPermissionFlags(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS");
 promise.then(data => {
@@ -222,7 +234,9 @@ promise.then(data => {
 
 Enumerates the permission grant states.
 
-| Name| Default Value| Description|
+**System capability:** SystemCapability.Security.AccessToken
+
+| Name                         | Default Value                 | Description                   |
 | ----------------------------- | ---------------------- | -----------------------  |
-| PERMISSION_DENIED             | -1                     | Permission denied.|
-| PERMISSION_GRANTED            | 0                      | Permission granted.|
+| PERMISSION_DENIED             | -1                     | Permission denied.            |
+| PERMISSION_GRANTED            | 0                      | Permission granted.            |
