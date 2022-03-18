@@ -166,7 +166,7 @@ A constructor used to create a **TextDecoder** object.
 
 ### decode
 
-decode(input: Unit8Array, options?:{stream?:false}):string
+decode(input: Unit8Array, options?:{stream?:false}): string
 
 Decodes the input content.
 
@@ -2141,7 +2141,7 @@ Checks whether the input value is a string object.
 
 ### isSymbolObjec<sup>8+</sup>
 
-isSymbolObjec(value: Object):boolean
+isSymbolObjec(value: Object): boolean
 
 Checks whether the input value is a symbol object.
 
