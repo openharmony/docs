@@ -11,11 +11,11 @@
 
 ## TextPickerDialog.show
 
-show(options: TextPickerDialogOption)
+show(options: TextPickerDialogOptions)
 
 定义文本滑动选择器弹窗并弹出。
 
-- TextPickerDialogOption参数
+- TextPickerDialogOptions参数
   | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
   | -------- | -------- | -------- | -------- | -------- |
   | range | string[] | 是 | - | 选择器的数据选择范围。 |

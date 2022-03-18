@@ -40,9 +40,9 @@ Select(options: Array<SelectOption>)
 
 ## 事件
 
-| 名称                                                         | 功能描述                                                     |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| onSelected(callback: (index: number, value?:string) => void） | 下拉菜单选中某一项的回调。index：选中项的索引。value：选中项的值。 |
+| 名称                                                        | 功能描述                                                     |
+| ----------------------------------------------------------- | ------------------------------------------------------------ |
+| onSelect(callback: (index: number, value?:string) => void） | 下拉菜单选中某一项的回调。index：选中项的索引。value：选中项的值。 |
 
 ##  示例
 
@@ -61,7 +61,7 @@ struct SliderExample {
         .font({size: 30, weight:400, family: 'serif', style: FontStyle.Normal })
         .selectedOptionFont({size: 40, weight: 500, family: 'serif', style: FontStyle.Normal })
         .optionFont({size: 30, weight: 400, family: 'serif', style: FontStyle.Normal })
-        .onSelected((index:number)=>{
+        .onSelect((index:number)=>{
           console.info("Select:" + index)
         })
     }

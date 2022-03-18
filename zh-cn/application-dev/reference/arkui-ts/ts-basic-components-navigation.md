@@ -64,9 +64,9 @@ Navigation()
 
 ## 事件
 
-| 名称 | 功能描述 | 
+| 名称 | 功能描述 |
 | -------- | -------- |
-| onTitleModeChanged(callback:&nbsp;(titleMode:&nbsp;NavigationTitleMode)&nbsp;=&gt;&nbsp;void) | 当titleMode为NavigationTitleMode.Free时，随着可滚动组件的滑动标题栏模式发生变化时触发此回调。 | 
+| onTitleModeChange(callback:&nbsp;(titleMode:&nbsp;NavigationTitleMode)&nbsp;=&gt;&nbsp;void) | 当titleMode为NavigationTitleMode.Free时，随着可滚动组件的滑动标题栏模式发生变化时触发此回调。 |
 
 
 ## 示例
@@ -138,7 +138,7 @@ struct NavigationExample {
       .titleMode(NavigationTitleMode.Free)
       .hideTitleBar(false)
       .hideBackButton(false)
-      .onTitleModeChanged((titleModel: NavigationTitleMode) => {
+      .onTitleModeChange((titleModel: NavigationTitleMode) => {
         console.log('titleMode')
       })
       .toolBar({ items: [

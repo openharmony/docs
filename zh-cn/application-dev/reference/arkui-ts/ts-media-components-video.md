@@ -14,9 +14,9 @@
 
 ## 接口
 
-Video(value: VideoOption)
+Video(value: VideoOptions)
 
-- VideoOption类型接口说明
+- VideoOptions类型接口说明
   | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
   | -------- | -------- | -------- | -------- | -------- |
   | src | string | 否 | - | 视频播放源的路径。 |

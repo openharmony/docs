@@ -4,12 +4,12 @@
 > 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
-| 接口名称 | 功能描述 | 
-| -------- | -------- |
-| animateTo(value:&nbsp;[AnimationOption](#animationoption对象说明),&nbsp;event:&nbsp;()=&gt;&nbsp;void)&nbsp;:&nbsp;void | 提供全局animateTo显式动画接口来指定由于闭包代码导致的状态变化插入过渡动效。<br/>event指定显示动效的闭包函数，在闭包函数中导致的状态变化系统会自动插入过渡动画。 | 
+| 接口名称                                                     | 功能描述                                                     |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| animateTo(value:&nbsp;[AnimationOptions](#animationoptions对象说明),&nbsp;event:&nbsp;()=&gt;&nbsp;void)&nbsp;:&nbsp;void | 提供全局animateTo显式动画接口来指定由于闭包代码导致的状态变化插入过渡动效。<br/>event指定显示动效的闭包函数，在闭包函数中导致的状态变化系统会自动插入过渡动画。 |
 
 
-## AnimationOption对象说明
+## AnimationOptions对象说明
 
 - 属性
   | 属性名称 | 属性类型 | 默认值 | 描述 | 
