@@ -262,7 +262,7 @@ var pres = process.getThreadPriority(tid);
 
 ## process.getStartRealtime<sup>8+</sup>
 
-getStartRealtime() :number
+getStartRealtime(): number
 
 Obtains the duration, in milliseconds, from the time the system starts to the time the process starts.
 
@@ -280,7 +280,7 @@ var realtime = process.getStartRealtime();
 
 ## process.getPastCputime<sup>8+</sup>
 
-getPastCputime() :number
+getPastCputime(): number
 
 Obtains the CPU time (in milliseconds) from the time the process starts to the current time.
 

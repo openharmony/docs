@@ -166,7 +166,7 @@ A constructor used to create a **TextDecoder** object.
 
 ### decode
 
-decode(input: Unit8Array, options?:{stream?:false}):string
+decode(input: Unit8Array, options?:{stream?:false}): string
 
 Decodes the input content.
 
