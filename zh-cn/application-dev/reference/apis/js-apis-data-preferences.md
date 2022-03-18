@@ -15,7 +15,7 @@ import data_Preferences from '@ohos.data.preferences'
 
 ## 属性
 
-**系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
+**系统能力**：以下各项对应的系统能力均为SystemCapability.DistributedDataManager.Preferences.Core
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
