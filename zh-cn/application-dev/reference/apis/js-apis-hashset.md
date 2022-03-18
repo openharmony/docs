@@ -184,7 +184,7 @@ while(temp != undefined) {
 
 ### forEach
 
-forEach(callbackfn: (value: T, key?: T, set?: HashSet&lt;T&gt;) => void, thisArg?: Object): void
+forEach(callbackfn: (value?: T, key?: T, set?: HashSet&lt;T&gt;) => void, thisArg?: Object): void
 
 通过回调函数来遍历实例对象上的元素以及元素对应的下标。
 
