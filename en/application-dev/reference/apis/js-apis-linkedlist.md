@@ -10,7 +10,7 @@
 import LinkedList from '@ohos.util.LinkedList'  
 ```
 
-## System Capabilities
+## System Capability
 
 SystemCapability.Utils.Lang
 
@@ -452,7 +452,7 @@ callbackfn
 | -------- | -------- | -------- | -------- |
 | value | T | Yes| Value of the entry that is currently traversed.|
 | index | number | No| Position index of the entry that is currently traversed.|
-| LinkedList | LinkedList&lt;T&gt; | No| Instance that invokes the **forEach** method.|
+| LinkedList | LinkedList&lt;T&gt; | No| Instance that invokes the **forEach** API.|
 
 **Example**
 
