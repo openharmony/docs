@@ -13,7 +13,7 @@ Provides extension running information.
 The extension running information is obtained through an **abilityManager** instance.
 
 
-  
+
 ```
 import abilitymanager from '@ohos.application.abilityManager';
 abilitymanager.getExtensionRunningInfos(upperLimit, (err,data) => { 
@@ -24,30 +24,34 @@ abilitymanager.getExtensionRunningInfos(upperLimit, (err,data) => {
 
 ### Attributes
 
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
   | Name| Type| Readable| Writable| Description| 
 | -------- | -------- | -------- | -------- | -------- |
-| extension | ElementName | Yes| No| Information that matches an extension. <br><b>System capability</b>: SystemCapability.Ability.AbilityRuntime.Core| 
-| pid | number | Yes| No| Process ID. <br><b>System capability</b>: SystemCapability.Ability.AbilityRuntime.Core| 
-| uid | number | Yes| No| User ID. <br><b>System capability</b>: SystemCapability.Ability.AbilityRuntime.Core| 
-| processName | string | Yes| No| Process name. <br><b>System capability</b>: SystemCapability.Ability.AbilityRuntime.Core| 
-| startTime | number | Yes| No| Extension start time. <br><b>System capability</b>: SystemCapability.Ability.AbilityRuntime.Core| 
-| clientPackage | Array&lt;String&gt; | Yes| No| Names of all packages in the process. <br><b>System capability</b>: SystemCapability.Ability.AbilityRuntime.Core| 
-| type | [bundle.ExtensionAbilityType](#bundle-extensionabilitytype) | Yes| No| Extension type. <br><b>System capability</b>: SystemCapability.Ability.AbilityRuntime.Core| 
+| extension | ElementName | Yes| No| Information that matches an extension.| 
+| pid | number | Yes| No| Process ID.| 
+| uid | number | Yes| No| User ID.| 
+| processName | string | Yes| No| Process name.| 
+| startTime | number | Yes| No| Extension start time.| 
+| clientPackage | Array&lt;String&gt; | Yes| No| Names of all packages in the process.| 
+| type | [bundle.ExtensionAbilityType](#bundle-extensionabilitytype) | Yes| No| Extension type.| 
 
 
 ## bundle.ExtensionAbilityType
 
-Enumerates the extension types.
+Enumerates extension types.
+
+**System capability**: SystemCapability.BundleManager.BundleFramework
 
   | Name| Value| Description| 
 | -------- | -------- | -------- |
-| FORM | 0 | Extension information of the form type. <br><b>System capability</b>: SystemCapability.BundleManager.BundleFramework| 
-| WORK_SCHEDULER | 1 | Extension information of the work scheduler type. <br><b>System capability</b>: SystemCapability.BundleManager.BundleFramework| 
-| INPUT_METHOD | 2 | Extension information of the input method type. <br><b>System capability</b>: SystemCapability.BundleManager.BundleFramework| 
-| SERVICE | 3 | Extension information of the service type. <br><b>System capability</b>: SystemCapability.BundleManager.BundleFramework| 
-| ACCESSIBILITY | 4 | Extension information of the accessibility type. <br><b>System capability</b>: SystemCapability.BundleManager.BundleFramework| 
-| DATA_SHARE | 5 | Extension information of the data share type. <br><b>System capability</b>: SystemCapability.BundleManager.BundleFramework| 
-| FILE_SHARE | 6 | Extension information of the file share type. <br><b>System capability</b>: SystemCapability.BundleManager.BundleFramework| 
-| STATIC_SUBSCRIBER | 7 | Extension information of the static subscriber type. <br><b>System capability</b>: SystemCapability.BundleManager.BundleFramework| 
-| WALLPAPER | 8 | Extension information of the wallpaper type. <br><b>System capability</b>: SystemCapability.BundleManager.BundleFramework| 
-| UNSPECIFIED | 9 | Extension information of the unspecified type. <br><b>System capability</b>: SystemCapability.BundleManager.BundleFramework| 
+| FORM | 0 | Extension information of the form type. | 
+| WORK_SCHEDULER | 1 | Extension information of the work scheduler type. | 
+| INPUT_METHOD | 2 | Extension information of the input method type. | 
+| SERVICE | 3 | Extension information of the service type. | 
+| ACCESSIBILITY | 4 | Extension information of the accessibility type. | 
+| DATA_SHARE | 5 | Extension information of the data share type. | 
+| FILE_SHARE | 6 | Extension information of the file share type. | 
+| STATIC_SUBSCRIBER | 7 | Extension information of the static subscriber type. | 
+| WALLPAPER | 8 | Extension information of the wallpaper type. | 
+| UNSPECIFIED | 9 | Extension information of the unspecified type. | 
