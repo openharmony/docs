@@ -21,6 +21,10 @@ vibrate(Object): void
 
 触发设备振动。
 
+**系统能力**：SystemCapability.Sensors.MiscDevice
+
+**需要权限**：ohos.permission.VIBRATE，该权限为系统权限
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 | 
