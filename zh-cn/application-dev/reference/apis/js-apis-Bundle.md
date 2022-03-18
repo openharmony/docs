@@ -1178,7 +1178,7 @@ function getAbilityIcon(bundleName: string, abilityName: string, callback: Async
 | ---------- | ------ | ---- | -------- |
 | bundleName | string | 是   | 要查询的bundleName。 |
 | abilityName | string | 是   | 要查询的abilityName。 |
-| callback   | AsyncCallback\<[PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)> | 是   | 程序启动作为入参的回调函数，返回指定<[PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)。 |
+| callback   | AsyncCallback\<[PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)> | 是   | 程序启动作为入参的回调函数，返回指定<[PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)>。 |
 
 **示例：**
 
