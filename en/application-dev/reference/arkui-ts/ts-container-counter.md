@@ -1,47 +1,40 @@
-# Counter<a name="EN-US_TOPIC_0000001193075082"></a>
+# Counter
 
->![](../../public_sys-resources/icon-note.gif) **NOTE:** 
->This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
-The  **<Counter\>**  component provides an operation to increase or decrease the number.
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
-## Required Permissions<a name="section53281531154915"></a>
+
+The **&lt;Counter&gt;** component provides an operation to increase or decrease the number.
+
+
+## Required Permissions
 
 None
 
-## Child Components<a name="section5989144051714"></a>
+
+## Child Components
 
 This component can contain child components.
 
-## APIs<a name="section14196162892911"></a>
 
-Counter\(\)
+## APIs
 
-## Events<a name="section945991855410"></a>
+Counter()
+
+
+## Events
 
 Universal events and gestures are not supported. Only the events listed below are supported.
 
-<a name="table644016378401"></a>
-<table><thead align="left"><tr id="row544018378408"><th class="cellrowborder" colspan="2" valign="top" id="mcps1.1.4.1.1"><p id="p204408371408"><a name="p204408371408"></a><a name="p204408371408"></a>Name</p>
-</th>
-<th class="cellrowborder" valign="top" id="mcps1.1.4.1.2"><p id="p64407376405"><a name="p64407376405"></a><a name="p64407376405"></a>Description</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row124407372409"><td class="cellrowborder" colspan="2" valign="top" headers="mcps1.1.4.1.1 "><p id="p18440143716402"><a name="p18440143716402"></a><a name="p18440143716402"></a>onInc(event: () =&gt; void)</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.1.4.1.2 "><p id="p144407372407"><a name="p144407372407"></a><a name="p144407372407"></a>Event indicating that the number of monitored objects is increased.</p>
-</td>
-</tr>
-<tr id="row844013754010"><td class="cellrowborder" colspan="2" valign="top" headers="mcps1.1.4.1.1 "><p id="p244016375402"><a name="p244016375402"></a><a name="p244016375402"></a>onDec(event: () =&gt; void)</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.1.4.1.2 "><p id="p1744012372402"><a name="p1744012372402"></a><a name="p1744012372402"></a>Event indicating that the number of monitored objects is decreased.</p>
-</td>
-</tr>
-</tbody>
-</table>
+  | Name | Description | 
+| -------- | -------- |
+| onInc(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | Event&nbsp;indicating&nbsp;that&nbsp;the&nbsp;number&nbsp;of&nbsp;monitored&nbsp;objects&nbsp;is&nbsp;increased. | 
+| onDec(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | Event&nbsp;indicating&nbsp;that&nbsp;the&nbsp;number&nbsp;of&nbsp;monitored&nbsp;objects&nbsp;is&nbsp;decreased. | 
 
-## Example<a name="section1078035104913"></a>
+
+## Example
+
 
 ```
 @Entry
@@ -65,5 +58,4 @@ struct CounterExample {
 }
 ```
 
-![](figures/counter.gif)
-
+![en-us_image_0000001212378424](figures/en-us_image_0000001212378424.gif)

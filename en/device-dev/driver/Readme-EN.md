@@ -16,7 +16,7 @@
   - [MIPI CSI](driver-platform-mipicsi-develop.md)
   - [MIPI DSI](driver-platform-mipidsi-develop.md)
   - [MMC](driver-platform-mmc-develop.md)
-  - [PIN](driver-platform-pin-develop.md)
+  - [Pin](driver-platform-pin-develop.md)
   - [PWM](driver-platform-pwm-develop.md)
   - [Regulator](driver-platform-regulator-develop.md)
   - [RTC](driver-platform-rtc-develop.md)

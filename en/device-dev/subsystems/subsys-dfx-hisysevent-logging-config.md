@@ -74,7 +74,7 @@ Understanding the following concepts would be helpful for you in configuring HiS
 
 -   In the example YAML file, the event domain name is **MODULEA**. The event domain contains two events named **EVENT\_NAMEA** and **EVENT\_NAMEB**.
 -   **EVENT\_NAMEA** is defined as a critical event of the fault type. The event contains the **NAME1** parameter of the string type, the **NAME2** parameter of the string type, and the **NAME3** parameter of the unsigned short integer type. Therefore, you can perform [real-time subscription](subsys-dfx-hisysevent-listening.md) to the event based on the event domain **MODULEA** and event name **EVENT\_NAMEA**.
--   **EVENT\_NAMEB** is defined as a general event of the statistics type. The event contains the **NAME1** parameter of the unsigned short integer type and the **NAME2** parameter of the integer type. Because two event tags named **tag1** and **tag2** are defined for **EVENT\_NAMEB** in the **\__BASE** parameter, you can perform [real-time subscription](subsys-dfx-hisysevent-read.md) to the event based on the event domain **MODULEA** and event name **EVENT\_NAMEB**, or based on the event tag.
+-   **EVENT\_NAMEB** is defined as a general event of the statistics type. The event contains the **NAME1** parameter of the unsigned short integer type and the **NAME2** parameter of the integer type. Because two event tags named **tag1** and **tag2** are defined for **EVENT\_NAMEB** in the **\__BASE** parameter, you can perform [real-time subscription](subsys-dfx-hisysevent-listening.md) to the event based on the event domain **MODULEA** and event name **EVENT\_NAMEB**, or based on the event tag.
 
     ```
     ##########################################

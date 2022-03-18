@@ -187,7 +187,7 @@ template("too_much_deps") {
     ...
   }
   
-  _compile_resouce_target = "${target_name}__compile_res"
+  _compile_resource_target = "${target_name}__compile_res"
   action(_compile_resource_target) {
     deps = [":$_gen_resource_target"]
     ...

@@ -1,11 +1,5 @@
 # RTC<a name="EN-US_TOPIC_0000001153785954"></a>
 
--   [Overview](#section509989381142407)
--   [How to Develop](#section1784450860142407)
-    -   [RtcMethod](#section13652132473017)
-
--   [Development Example](#section1594883301142407)
-
 ## Overview<a name="section509989381142407"></a>
 
 In the Hardware Driver Foundation \(HDF\) framework, the real-time clock \(RTC\) uses the independent service mode for API adaptation. In this mode, each device independently publishes a device service to handle external access requests. After receiving an access request from an API, the device manager extracts the parameters in the request to call the internal method of the target device. In the independent service mode, the service management capabilities of the HDFDeviceManager can be directly used. However, you need to configure a device node for each device, which increases the memory usage.
@@ -190,7 +184,7 @@ The RTC module adaptation involves the following steps:
 
 1.  Instantiate the driver entry.
     -   Instantiate the  **HdfDriverEntry**  structure.
-    -   Call  **HDF\_INIT**  to register the  **HdfDriverEntry**  instance with the HDF framework.
+    -   Call  **HDF\_INIT**  to register the  **HdfDriverEntry**  instance with the HDF.
 
 2.  Configure attribute files.
     -   Add the  **deviceNode**  information to the  **device\_info.hcs**  file.
@@ -200,8 +194,9 @@ The RTC module adaptation involves the following steps:
     -   Initialize  **RtcHost**.
     -   Instantiate  **RtcMethod**  in the  **RtcHost**  object.
 
-        >![](../public_sys-resources/icon-note.gif) **NOTE:** 
-        >For details, see  [RtcMethod](#section13652132473017)  and  [Table 1](#table12929217311).
+        >![](../public_sys-resources/icon-note.gif) **NOTE** 
+
+        >For details, see [Available APIs](#availableapis).
 
 
 4.  Debug the driver.
@@ -212,7 +207,7 @@ The RTC module adaptation involves the following steps:
 
 The following uses  **rtc\_hi35xx.c**  as an example to present the contents that need to be provided by the vendor to implement device functions.
 
-1.  Instantiate the driver entry. The driver entry must be a global variable of the  **HdfDriverEntry**  type \(defined in  **hdf\_device\_desc.h**\), and the value of  **moduleName**  must be the same as that in  **device\_info.hcs**. In the HDF framework, the start address of each  **HdfDriverEntry**  object of all loaded drivers is collected to form a segment address space similar to an array for the upper layer to invoke.
+1.  Instantiate the driver entry. The driver entry must be a global variable of the  **HdfDriverEntry**  type \(defined in  **hdf\_device\_desc.h**\), and the value of  **moduleName**  must be the same as that in  **device\_info.hcs**. In the HDF, the start address of each  **HdfDriverEntry**  object of all loaded drivers is collected to form a segment address space similar to an array for the upper layer to invoke.
 
     Generally, HDF calls the  **Bind**  function and then the  **Init**  function to load a driver. If  **Init**  fails to be called, HDF calls  **Release**  to release driver resources and exit.
 
@@ -226,7 +221,7 @@ The following uses  **rtc\_hi35xx.c**  as an example to present the contents tha
           .Release = HiRtcRelease,         //See the Release function.
           .moduleName = "HDF_PLATFORM_RTC", // (Mandatory) This parameter must be the same as that in the .hcs file.
         };
-        // Call HDF_INIT to register the driver entry with the HDF framework.
+        // Call HDF_INIT to register the driver entry with the HDF.
         HDF_INIT(g_rtcDriverEntry);
         ```
 
@@ -450,7 +445,7 @@ The following uses  **rtc\_hi35xx.c**  as an example to present the contents tha
 
         **Function description**:
 
-        Releases the memory and deletes the controller. This function assigns a value to the  **Release**  API in the driver entry structure. When the HDF framework fails to call the  **Init**  function to initialize the driver, the  **Release**  function can be called to release driver resources. All forced conversion operations for obtaining the corresponding object can be successful only when the  **Init**  or  **Bind**  function has the corresponding value assignment operations.
+        Releases the memory and deletes the controller. This function assigns a value to the  **Release**  API in the driver entry structure. When the HDF fails to call the  **Init**  function to initialize the driver, the  **Release**  function can be called to release driver resources. All forced conversion operations for obtaining the corresponding object can be successful only when the  **Init**  or  **Bind**  function has the corresponding value assignment operations.
 
         ```
         static void HiRtcRelease(struct HdfDeviceObject *device)

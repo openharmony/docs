@@ -3,7 +3,7 @@
 
 ## Overview<a name="section1315827527160117"></a>
 
-In the Hardware Driver Foundation \(HDF\) framework, the Watchdog \(also called Watchdog timer\) module uses the independent service mode for API adaptation. In this mode, each device independently publishes a device service to handle external access requests. After receiving an access request from an API, the device manager extracts the parameters in the request to call the internal method of the target device. In the independent service mode, the service management capabilities of the HDF Device Manager can be directly used. However, you need to configure a device node for each device, which increases the memory usage.
+In the Hardware Driver Foundation \(HDF\), the Watchdog \(also called Watchdog timer\) module uses the independent service mode for API adaptation. In this mode, each device independently publishes a device service to handle external access requests. After receiving an access request from an API, the device manager extracts the parameters in the request to call the internal method of the target device. In the independent service mode, the service management capabilities of the HDF Device Manager can be directly used. However, you need to configure a device node for each device, which increases the memory usage.
 
 **Figure  1**  Independent service mode<a name="fig61584136211"></a>  
 ![](figures/independent-service-mode.png "independent-service-mode-15")
@@ -117,7 +117,7 @@ The Watchdog module adaptation involves the following steps:
 
 1.  Instantiate the driver entry.
     -   Instantiate the  **HdfDriverEntry**  structure.
-    -   Call  **HDF\_INIT**  to register the  **HdfDriverEntry**  instance with the HDF framework.
+    -   Call  **HDF\_INIT**  to register the  **HdfDriverEntry**  instance with the HDF.
 
 2.  Configure attribute files.
     -   Add the  **deviceNode**  information to the  **device\_info.hcs**  file.
@@ -127,8 +127,9 @@ The Watchdog module adaptation involves the following steps:
     -   Initialize  **WatchdogCntlr**.
     -   Instantiate  **WatchdogMethod**  in the  **WatchdogCntlr**  object.
 
-        >![](../public_sys-resources/icon-note.gif) **NOTE:** 
-        >For details, see  [WatchdogMethod](#section220331929)  and  [Table 1](#table1370451732).
+        >![](../public_sys-resources/icon-note.gif) **NOTE** 
+
+        >For details, see [Available APIs](#availableapis).
 
 
 4.  Debug the driver.
@@ -139,7 +140,7 @@ The Watchdog module adaptation involves the following steps:
 
 The following uses  **watchdog\_hi35xx.c**  as an example to present the contents that need to be provided by the vendor to implement device functions.
 
-1.  Instantiate the driver entry. The driver entry must be a global variable of the  **HdfDriverEntry**  type \(defined in  **hdf\_device\_desc.h**\), and the value of  **moduleName**  must be the same as that in  **device\_info.hcs**. In the HDF framework, the start address of each  **HdfDriverEntry**  object of all loaded drivers is collected to form a segment address space similar to an array for the upper layer to invoke.
+1.  Instantiate the driver entry. The driver entry must be a global variable of the  **HdfDriverEntry**  type \(defined in  **hdf\_device\_desc.h**\), and the value of  **moduleName**  must be the same as that in  **device\_info.hcs**. In the HDF, the start address of each  **HdfDriverEntry**  object of all loaded drivers is collected to form a segment address space similar to an array for the upper layer to invoke.
 
     Generally, HDF calls the  **Bind**  function and then the  **Init**  function to load a driver. If  **Init**  fails to be called, HDF calls  **Release**  to release driver resources and exit.
 
@@ -153,7 +154,7 @@ The following uses  **watchdog\_hi35xx.c**  as an example to present the content
         .Release = Hi35xxWatchdogRelease, //See the Release function.
         .moduleName = "HDF_PLATFORM_WATCHDOG",// (Mandatory) The value must be the same as that of moduleName in the .hcs file.
         };
-        HDF_INIT(g_watchdogDriverEntry);// Call HDF_INIT to register the driver entry with the HDF framework.
+        HDF_INIT(g_watchdogDriverEntry);// Call HDF_INIT to register the driver entry with the HDF.
         ```
 
 2.  Add the  **deviceNode**  information to the  **device\_info.hcs**  file and configure the component attributes in the  **watchdog\_config.hcs**  file. The  **deviceNode**  information is related to registration of the driver entry. The device attribute values are closely related to the default values or value ranges of the  **WatchdogCntlr**  members at the core layer.
@@ -244,7 +245,7 @@ The following uses  **watchdog\_hi35xx.c**  as an example to present the content
 
         Input parameters:
 
-        **HdfDeviceObject**: device object created by the HDF framework for each driver. It stores device-related private data and service APIs.
+        **HdfDeviceObject**: device object created by the HDF for each driver. It stores device-related private data and service APIs.
 
         Return values:
 
@@ -327,7 +328,7 @@ The following uses  **watchdog\_hi35xx.c**  as an example to present the content
 
         Input parameters:
 
-        **HdfDeviceObject**: device object created by the HDF framework for each driver. It stores device-related private data and service APIs.
+        **HdfDeviceObject**: device object created by the HDF for each driver. It stores device-related private data and service APIs.
 
         Return values:
 
@@ -335,7 +336,7 @@ The following uses  **watchdog\_hi35xx.c**  as an example to present the content
 
         Function description:
 
-        Releases the memory and deletes the controller. This function assigns a value to the  **Release**  API in the driver entry structure. When the HDF framework fails to call the  **Init**  function to initialize the driver, the  **Release**  function can be called to release driver resources. All forced conversion operations for obtaining the corresponding object can be successful only when the  **Init**  function has the corresponding value assignment operations.
+        Releases the memory and deletes the controller. This function assigns a value to the  **Release**  API in the driver entry structure. When the HDF fails to call the  **Init**  function to initialize the driver, the  **Release**  function can be called to release driver resources. All forced conversion operations for obtaining the corresponding object can be successful only when the  **Init**  function has the corresponding value assignment operations.
 
         ```
         static void Hi35xxWatchdogRelease(struct HdfDeviceObject *device)

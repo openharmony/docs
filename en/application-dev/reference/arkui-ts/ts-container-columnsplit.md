@@ -1,48 +1,41 @@
-# ColumnSplit<a name="EN-US_TOPIC_0000001237475057"></a>
+# ColumnSplit
 
->![](../../public_sys-resources/icon-note.gif) **NOTE:** 
->This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
-The  **<ColumnSplit\>**  lays out child components vertically and inserts a horizontal divider between every two child components.
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
-## Required Permissions<a name="section53281531154915"></a>
+
+The **&lt;ColumnSplit&gt;** lays out child components vertically and inserts a horizontal divider between every two child components.
+
+
+## Required Permissions
 
 None
 
-## Child Components<a name="section5989144051714"></a>
+
+## Child Components
 
 This component can contain child components.
 
-## APIs<a name="section1643325819470"></a>
 
-ColumnSplit\(\)
+## APIs
 
-## Attributes<a name="section945991855410"></a>
+ColumnSplit()
 
-<a name="table252174055416"></a>
-<table><thead align="left"><tr id="row353940135411"><th class="cellrowborder" valign="top" width="33.333333333333336%" id="mcps1.1.4.1.1"><p id="p175318403545"><a name="p175318403545"></a><a name="p175318403545"></a>Name</p>
-</th>
-<th class="cellrowborder" valign="top" width="33.29332933293329%" id="mcps1.1.4.1.2"><p id="p453194014548"><a name="p453194014548"></a><a name="p453194014548"></a>Type</p>
-</th>
-<th class="cellrowborder" valign="top" width="33.373337333733375%" id="mcps1.1.4.1.3"><p id="p19531240145412"><a name="p19531240145412"></a><a name="p19531240145412"></a>Description</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row125384035411"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p id="p1753134065413"><a name="p1753134065413"></a><a name="p1753134065413"></a>resizeable</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.29332933293329%" headers="mcps1.1.4.1.2 "><p id="p85364012541"><a name="p85364012541"></a><a name="p85364012541"></a>boolean</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.373337333733375%" headers="mcps1.1.4.1.3 "><p id="p85314400547"><a name="p85314400547"></a><a name="p85314400547"></a>Whether the divider can be dragged. The default value is <strong id="b77317111362"><a name="b77317111362"></a><a name="b77317111362"></a>false</strong>.</p>
-</td>
-</tr>
-</tbody>
-</table>
 
->![](../../public_sys-resources/icon-note.gif) **NOTE:** 
->Similar to  **<RowSplit\>**, the divider of  **<ColumnSplit\>**  can be dragged to a position that just fully holds a component.
+## Attributes
 
-## Example<a name="section1078035104913"></a>
+  | Name | Type | Description | 
+| -------- | -------- | -------- |
+| resizeable | boolean | Whether&nbsp;the&nbsp;divider&nbsp;can&nbsp;be&nbsp;dragged.&nbsp;The&nbsp;default&nbsp;value&nbsp;is&nbsp;**false**. | 
 
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> Similar to **&lt;RowSplit&gt;**, the divider of **&lt;ColumnSplit&gt;** can be dragged to a position that just fully holds a component.
+
+
+## Example
+
+  
 ```
 @Entry
 @Component
@@ -64,5 +57,4 @@ struct ColumnSplitExample {
 }
 ```
 
-![](figures/columnsplit.gif)
-
+![en-us_image_0000001212378422](figures/en-us_image_0000001212378422.gif)

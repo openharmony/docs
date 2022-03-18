@@ -6,7 +6,7 @@
 
 ## 导入模块
 
-  
+
 ```
 import systemTime from '@ohos.systemTime';
 ```
@@ -29,7 +29,7 @@ setTime(time : number, callback : AsyncCallback&lt;void&gt;) : void
   | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，可以在回调函数中处理接口返回值。 | 
 
 - 示例：
-    
+  
   ```
   // time对应的时间为2021-01-20 02:36:25
   var time = 1611081385000;
@@ -64,7 +64,7 @@ setTime(time : number) : Promise&lt;void&gt;
   | Promise&lt;void&gt; | 返回的异步回调函数。 | 
 
 - 示例：
-    
+  
   ```
   // time对应的时间为2021-01-20 02:36:25
   var time = 1611081385000;
@@ -91,7 +91,7 @@ getCurrentTime(isNano?: boolean, callback: AsyncCallback&lt;number&gt;): void
   | callback | AsyncCallback&lt;number&gt; | 是 | 回调函数，返回自&nbsp;Unix&nbsp;纪元以来经过的时间。 | 
 
 - 示例：
-    
+  
   ```
   systemTime.getCurrentTime(true, (error, data) => {
       if (error) {
@@ -122,7 +122,7 @@ getCurrentTime(isNano?: boolean): Promise&lt;number&gt;
   | Promise&lt;number&gt; | 以Promise形式返回结果，返回自&nbsp;Unix&nbsp;纪元以来经过的时间。 | 
 
 - 示例：
-    
+  
   ```
   systemTime.getCurrentTime().then((data) => {
       console.log(`systemTime.getCurrentTime success data : ` + JSON.stringify(data));
@@ -147,7 +147,7 @@ getRealActiveTime(isNano?: boolean, callback: AsyncCallback&lt;number&gt;): void
   | callback | AsyncCallback&lt;number&gt; | 是 | 回调函数，返回自系统启动以来但不包括度睡眠时间经过的时间。 | 
 
 - 示例：
-    
+  
   ```
   systemTime.getRealActiveTime(true, (error, data) => {
       if (error) {
@@ -178,7 +178,7 @@ getRealActiveTime(isNano?: boolean): Promise&lt;number&gt;
   | Promise&lt;number&gt; | 以Promise形式返回结果，返回自系统启动以来但不包括度睡眠时间经过的时间。 | 
 
 - 示例：
-    
+  
   ```
   systemTime.getCurrentTime().then((data) => {
       console.log(`systemTime.getRealActiveTime success data : ` + JSON.stringify(data));
@@ -203,7 +203,7 @@ getRealTime(callback: AsyncCallback&lt;number&gt;): void
   | callback | AsyncCallback&lt;number&gt; | 是 | 回调函数，返回自系统启动以来包括深度睡眠时间经过的毫秒数。 | 
 
 - 示例：
-    
+  
   ```
   systemTime.getRealTime(true, (error, data) => {
       if (error) {
@@ -234,7 +234,7 @@ getRealTime(): Promise&lt;number&gt;
   | Promise&lt;number&gt; | 以Promise形式返回结果，返回自系统启动以来包括深度睡眠时间经过的时间。 | 
 
 - 示例：
-    
+  
   ```
   systemTime.getRealTime().then((data) => {
       console.log(`systemTime.getRealTime success data: ` + JSON.stringify(data));
@@ -261,7 +261,7 @@ setDate(date: Date, callback: AsyncCallback&lt;void&gt;): void
   | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，可以在回调函数中处理接口返回值。 | 
 
 - 示例：
-    
+  
   ```
   var data = new Date("October 13, 2020 11:13:00");
   systemTime.setDate(data,(error, data) => {       
@@ -295,7 +295,7 @@ setDate(date: Date): Promise&lt;void&gt;
   | Promise&lt;void&gt; | 返回的异步回调函数。 | 
 
 - 示例：
-    
+  
   ```
   var data = new Date("October 13, 2020 11:13:00"); 
   systemTime.setDate(data).then((value) => {        
@@ -320,7 +320,7 @@ getDate(callback: AsyncCallback&lt;Date&gt;): void
   | callback | AsyncCallback&lt;Date&gt; | 是 | 回调函数，返回当前系统日期。 | 
 
 - 示例：
-    
+  
   ```
   systemTime.getDate((error, data) => {
       if (error) {
@@ -346,7 +346,7 @@ getDate(): Promise&lt;Date&gt;
   | Promise&lt;Date&gt; | 以Promise形式返回结果，返回当前系统日期。 | 
 
 - 示例：
-    
+  
   ```
   systemTime.getDate().then((data) => {
       console.log(`systemTime.getDate success data : ` + JSON.stringify(data));
@@ -373,7 +373,7 @@ setTimezone(timezone: string, callback: AsyncCallback&lt;void&gt;): void
   | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，可以在回调函数中处理接口返回值。 | 
 
 - 示例：
-    
+  
   ```
   systemTime.setTimezone('Asia/Shanghai', (error, data) => {       
       if (error) {          
@@ -406,7 +406,7 @@ setTimezone(timezone: string): Promise&lt;void&gt;
   | Promise&lt;void&gt; | 返回的异步回调函数。 | 
 
 - 示例：
-    
+  
   ```
   systemTime.setTimezone('Asia/Shanghai').then((data) => {        
       console.log(`systemTime.setTimezone success data : ` + JSON.stringify(data));     
@@ -430,7 +430,7 @@ getTimeZone(callback: AsyncCallback&lt;string&gt;): void
   | callback | AsyncCallback&lt;string&gt; | 是 | 回调函数，返回系统时区。 | 
 
 - 示例：
-    
+  
   ```
   systemTime.getTimeZone((error, data) => {
       if (error) {
@@ -456,7 +456,7 @@ getTimeZone(): Promise&lt;string&gt;
   | Promise&lt;string&gt; | 以Promise形式返回结果，返回系统时区。 | 
 
 - 示例：
-    
+  
   ```
   systemTime.getDate().then((data) => {
       console.log(`systemTime.getTimeZone success data : ` + JSON.stringify(data));

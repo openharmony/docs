@@ -19,7 +19,7 @@
 
 ## 接口说明
 
-Progress(value: {value: number, total?: number, style?: ProgressStyle})
+Progress(value: {value: number, total?: number, type?: ProgressType})
 
 创建进度组件，用于显示内容加载或操作处理进度。
 
@@ -28,10 +28,10 @@ Progress(value: {value: number, total?: number, style?: ProgressStyle})
   | -------- | -------- | -------- | -------- | -------- |
   | value | number | 是 | - | 指定当前进度值。 |
   | total | number | 否 | 100 | 指定进度总长。 |
-  | style | ProgressStyle | 否 | ProgressStyle.Linear | 指定进度条样式。 |
+  | type | ProgressType | 否 | ProgressType.Linear | 指定进度条样式。 |
 
 
-- ProgressStyle枚举说明
+- ProgressType枚举说明
   | 名称 | 描述 |
   | -------- | -------- |
   | Linear | 线性样式。 |
@@ -59,35 +59,35 @@ struct ProgressExample {
   build() {
     Column({ space: 15 }) {
       Text('Linear Progress').fontSize(9).fontColor(0xCCCCCC).width('90%')
-      Progress({ value: 10, style: ProgressStyle.Linear }).width(200)
-      Progress({ value: 20, total: 150, style: ProgressStyle.Linear }).color(Color.Grey).value(50).width(200)
+      Progress({ value: 10, type: ProgressType.Linear }).width(200)
+      Progress({ value: 20, total: 150, type: ProgressType.Linear }).color(Color.Grey).value(50).width(200)
 
       Text('Eclipse Progress').fontSize(9).fontColor(0xCCCCCC).width('90%')
       Row({ space: 40 }) {
-        Progress({ value: 10, style: ProgressStyle.Eclipse }).width(100)
-        Progress({ value: 20, total: 150, style: ProgressStyle.Eclipse }).color(Color.Grey).value(50).width(100)
+        Progress({ value: 10, type: ProgressType.Eclipse }).width(100)
+        Progress({ value: 20, total: 150, type: ProgressType.Eclipse }).color(Color.Grey).value(50).width(100)
       }
 
       Text('ScaleRing Progress').fontSize(9).fontColor(0xCCCCCC).width('90%')
       Row({ space: 40 }) {
-        Progress({ value: 10, style: ProgressStyle.ScaleRing }).width(100)
-        Progress({ value: 20, total: 150, style: ProgressStyle.ScaleRing })
+        Progress({ value: 10, type: ProgressType.ScaleRing }).width(100)
+        Progress({ value: 20, total: 150, type: ProgressType.ScaleRing })
           .color(Color.Grey).value(50).width(100)
           .style({ strokeWidth: 15, scaleCount: 15, scaleWidth: 5 })
       }
 
       Text('Ring Progress').fontSize(9).fontColor(0xCCCCCC).width('90%')
       Row({ space: 40 }) {
-        Progress({ value: 10, style: ProgressStyle.Ring }).width(100)
-        Progress({ value: 20, total: 150, style: ProgressStyle.Ring })
+        Progress({ value: 10, type: ProgressType.Ring }).width(100)
+        Progress({ value: 20, total: 150, type: ProgressType.Ring })
           .color(Color.Grey).value(50).width(100)
           .style({ strokeWidth: 20, scaleCount: 30, scaleWidth: 20 })
       }
 
       Text('Capsule Progress').fontSize(9).fontColor(0xCCCCCC).width('90%')
       Row({ space: 40 }) {
-        Progress({ value: 10, style: ProgressStyle.Capsule }).width(100)
-        Progress({ value: 20, total: 150, style: ProgressStyle.Capsule }).color(Color.Grey).value(50).width(100)
+        Progress({ value: 10, type: ProgressType.Capsule }).width(100)
+        Progress({ value: 20, total: 150, type: ProgressType.Capsule }).color(Color.Grey).value(50).width(100)
       }
     }.width('100%').margin({ top: 30 })
   }

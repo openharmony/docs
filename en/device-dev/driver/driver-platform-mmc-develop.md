@@ -207,8 +207,9 @@ The MMC module adaptation involves the following steps:
     -   Initialize  **MmcCntlr**.
     -   Instantiate  **MmcCntlrOps**  in the  **MmcCntlr**  object.
 
-        >![](../public_sys-resources/icon-note.gif) **NOTE:** 
-        >For details, see  [MmcCntlrOps](#section6203107192915)  and  [Table 1](#table99129433019). 
+        >![](../public_sys-resources/icon-note.gif) **NOTE** 
+
+        >For details, see [Available APIs](#availableapis). 
 
 
 4.  Debug the driver.

@@ -10,14 +10,6 @@
 import userIAM_userAuth from '@ohos.userIAM.userAuth';
 ```
 
-## 系统能力
-
-SystemCapability.UserIAM.UserAuth
-
-## 权限列表
-
-ohos.permission.ACCESS_BIOMETRIC
-
 ## 完整示例
 
 ```js
@@ -37,7 +29,9 @@ export default {
         });
     }
 }
+```
 
+```js
 // API version 8
 import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
@@ -118,14 +112,18 @@ export default {
 getAuthenticator(): Authenticator
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 从 API Version 8 开始废弃，建议使用[constructor](#constructor)替代。
+> 从 API Version 8 开始废弃，建议使用[constructor](#constructor8)替代。
 
-获取Authenticator对象，用于执行用户身份认证。<sup>6+</sup>
+获取Authenticator对象，用于执行用户身份认证。
+
+**需要权限**：ohos.permission.ACCESS_BIOMETRIC
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth
 
 - 返回值：
   | 类型 | 说明 |
   | -------- | -------- |
-  | [Authenticator](#authenticator) | 认证器对象。 |
+  | [Authenticator](#authenticatordeprecated) | 认证器对象。 |
 
 - 示例：
   ```js
@@ -135,7 +133,7 @@ getAuthenticator(): Authenticator
 ## Authenticator<sup>(deprecated)</sup>
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 从 API Version 8 开始废弃，建议使用[UserAuth](#UserAuth)替代。
+> 从 API Version 8 开始废弃，建议使用[UserAuth](#userauth8)替代。
 
 认证器对象。
 
@@ -145,9 +143,13 @@ getAuthenticator(): Authenticator
 execute(type: string, level: string, callback: AsyncCallback&lt;number&gt;): void
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 从 API Version 8 开始废弃，建议使用[auth](#auth)替代。
+> 从 API Version 8 开始废弃，建议使用[auth](#auth8)替代。
 
 执行用户认证，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.ACCESS_BIOMETRIC
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -160,7 +162,7 @@ execute(type: string, level: string, callback: AsyncCallback&lt;number&gt;): voi
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | number | 表示认证结果，参见[AuthenticationResult](#authenticationresult)。 |
+  | number | 表示认证结果，参见[AuthenticationResult](#authenticationresultdeprecated)。 |
 
 - 示例：
   ```js
@@ -179,9 +181,13 @@ execute(type: string, level: string, callback: AsyncCallback&lt;number&gt;): voi
 execute(type:string, level:string): Promise&lt;number&gt;
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 从 API Version 8 开始废弃，建议使用[auth](#auth)替代。
+> 从 API Version 8 开始废弃，建议使用[auth](#auth8)替代。
 
 执行用户认证，使用promise方式作为异步方法。
+
+**需要权限**：ohos.permission.ACCESS_BIOMETRIC
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -192,7 +198,7 @@ execute(type:string, level:string): Promise&lt;number&gt;
 - 返回值：
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;number&gt; | 返回携带一个number的Promise。number&nbsp;为认证结果，参见[AuthenticationResult](#authenticationresult)。 |
+  | Promise&lt;number&gt; | 返回携带一个number的Promise。number&nbsp;为认证结果，参见[AuthenticationResult](#authenticationresultdeprecated)。 |
 
 - 示例
   ```js
@@ -207,9 +213,11 @@ execute(type:string, level:string): Promise&lt;number&gt;
 ## AuthenticationResult<sup>(deprecated)</sup>
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 从 API Version 8 开始废弃，建议使用[ResultCode](#ResultCode)替代。
+> 从 API Version 8 开始废弃，建议使用[ResultCode](#resultcode8)替代。
 
 表示认证结果的枚举。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth
 
 | 名称 | 默认值 | 描述 |
 | -------- | -------- | -------- |
@@ -235,11 +243,15 @@ constructor();
 
 表示获取的认证器对象。
 
+**需要权限**：ohos.permission.ACCESS_BIOMETRIC
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth.Core
+
 - 返回值：
 
-  | 类型     | 说明                 |
-  | -------- | -------------------- |
-  | UserAuth | UserAuth认证器对象。 |
+  | 类型                   | 说明                 |
+  | ---------------------- | -------------------- |
+  | [UserAuth](#userauth8) | UserAuth认证器对象。 |
 
 - 示例：
 
@@ -254,6 +266,10 @@ constructor();
 getVersion() : number;
 
 表示获取的认证器版本信息。
+
+**需要权限**：ohos.permission.ACCESS_BIOMETRIC
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth.Core
 
 - 返回值：
 
@@ -277,18 +293,22 @@ getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel) : n
 
 表示检查指定的认证等级的认证能力是否可用。
 
+**需要权限**：ohos.permission.ACCESS_BIOMETRIC
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth.Core
+
 - 参数：
 
-  | 参数名         | 类型           | 必填 | 说明                                                         |
-  | -------------- | -------------- | ---- | ------------------------------------------------------------ |
-  | authType       | UserAuthType   | 是   | 认证类型，当前只支持FACE，参见[UserAuthType](#UserAuthType)。 |
-  | authTrustLevel | AuthTrustLevel | 是   | 认证结果的信任等级。参见[AuthTrustLevel](#AuthTrustLevel)。  |
+  | 参数名         | 类型                               | 必填 | 说明                       |
+  | -------------- | ---------------------------------- | ---- | -------------------------- |
+  | authType       | [UserAuthType](#userauthtype8)     | 是   | 认证类型，当前只支持FACE。 |
+  | authTrustLevel | [AuthTrustLevel](#authtrustlevel8) | 是   | 认证结果的信任等级。       |
 
 - 返回值：
 
   | 类型   | 说明                                                         |
   | ------ | ------------------------------------------------------------ |
-  | number | 获取指定的认证等级的认证能力是否可用的检查结果，返回值参见[ResultCode](#ResultCode)。 |
+  | number | 获取指定的认证等级的认证能力是否可用的检查结果，返回值参见[ResultCode](#resultcode8)。 |
 
 - 示例：
 
@@ -312,20 +332,24 @@ auth(challenge: Uint8Array, authType: UserAuthType, authTrustLevel: AuthTrustLev
 
 表示执行用户认证，使用callback方式作为异步方法。
 
+**需要权限**：ohos.permission.ACCESS_BIOMETRIC
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth.Core
+
 - 参数：
 
-  | 参数名         | 类型              | 必填 | 说明                                                         |
-  | -------------- | ----------------- | ---- | ------------------------------------------------------------ |
-  | challenge      | Uint8Array        | 是   | 挑战值，可以填null。                                         |
-  | authType       | UserAuthType      | 是   | 认证类型，当前支持FACE，参见[UserAuthType](#UserAuthType)。  |
-  | authTrustLevel | AuthTrustLevel    | 是   | 信任等级，对应认证的信任等级级别，参见[AuthTrustLevel](#AuthTrustLevel)。 |
-  | callback       | IUserAuthCallback | 是   | 回调函数，参见[IUserAuthCallback](#IUserAuthCallback)。      |
+  | 参数名         | 类型                                     | 必填 | 说明                     |
+  | -------------- | ---------------------------------------- | ---- | ------------------------ |
+  | challenge      | Uint8Array                               | 是   | 挑战值，可以填null。     |
+  | authType       | [UserAuthType](#userauthtype8)           | 是   | 认证类型，当前支持FACE。 |
+  | authTrustLevel | [AuthTrustLevel](#authtrustlevel8)       | 是   | 信任等级。               |
+  | callback       | [IUserAuthCallback](#iuserauthcallback8) | 是   | 回调函数。               |
 
 - 返回值：
 
   | 类型       | 说明                                                         |
   | ---------- | ------------------------------------------------------------ |
-  | Uint8Array | ContextId，作为取消认证[cancelAuth](#cancelAuth)接口的入参。 |
+  | Uint8Array | ContextId，作为取消认证[cancelAuth](#cancelauth8)接口的入参。 |
 
 - 示例：
 
@@ -356,11 +380,15 @@ cancelAuth(contextID : Uint8Array) : number;
 
 表示通过contextID取消本次认证操作。
 
+**需要权限**：ohos.permission.ACCESS_BIOMETRIC
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth.Core
+
 - 参数：
 
-  | 参数名    | 类型       | 必填 | 说明                                      |
-  | --------- | ---------- | ---- | ----------------------------------------- |
-  | contextID | Uint8Array | 是   | 上下文ID信息，通过[auth](#auth)接口获得。 |
+  | 参数名    | 类型       | 必填 | 说明                                       |
+  | --------- | ---------- | ---- | ------------------------------------------ |
+  | contextID | Uint8Array | 是   | 上下文ID信息，通过[auth](#auth8)接口获得。 |
 
 - 返回值：
 
@@ -393,12 +421,14 @@ onResult: (result : number, extraInfo : AuthResult) => void;
 
 表示在认证操作中，获取认证结果。
 
+**系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth.Core
+
 - 参数：
 
-  | 参数名    | 类型       | 必填 | 说明                                                         |
-  | --------- | ---------- | ---- | ------------------------------------------------------------ |
-  | result    | number     | 是   | 认证结果，参见[ResultCode](#ResultCode)。                    |
-  | extraInfo | AuthResult | 是   | 扩展信息，不同情况下的具体信息，参见[AuthResult](#AuthResult)，<br/>如果身份验证通过，则在extrainfo中返回用户认证令牌，<br/>如果身份验证失败，则在extrainfo中返回剩余的用户认证次数，<br/>如果身份验证执行器被锁定，则在extrainfo中返回冻结时间。 |
+  | 参数名    | 类型                       | 必填 | 说明                                                         |
+  | --------- | -------------------------- | ---- | ------------------------------------------------------------ |
+  | result    | number                     | 是   | 认证结果，参见[ResultCode](#resultcode8)。                   |
+  | extraInfo | [AuthResult](#authresult8) | 是   | 扩展信息，不同情况下的具体信息，<br/>如果身份验证通过，则在extrainfo中返回用户认证令牌，<br/>如果身份验证失败，则在extrainfo中返回剩余的用户认证次数，<br/>如果身份验证执行器被锁定，则在extrainfo中返回冻结时间。 |
 
 
 - 示例
@@ -439,6 +469,8 @@ onResult: (result : number, extraInfo : AuthResult) => void;
 onAcquireInfo ?: (module : number, acquire : number, extraInfo : any) => void;
 
 表示在认证过程中，获取提示码信息，非必须实现。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth.Core
 
 - 参数：
 
@@ -485,6 +517,8 @@ onAcquireInfo ?: (module : number, acquire : number, extraInfo : any) => void;
 
 表示认证结果的对象。
 
+**系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth.Core
+
 | 名称         | 参数类型   | 必填 | 说明                 |
 | ------------ | ---------- | ---- | -------------------- |
 | token        | Uint8Array | 否   | 身份认证令牌。       |
@@ -494,6 +528,8 @@ onAcquireInfo ?: (module : number, acquire : number, extraInfo : any) => void;
 ## ResultCode<sup>8+</sup>
 
 表示执行结果的枚举。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth.Core
 
 | 名称 | 默认值 | 描述 |
 | -------- | -------- | -------- |
@@ -514,6 +550,8 @@ onAcquireInfo ?: (module : number, acquire : number, extraInfo : any) => void;
 
 表示人脸认证过程中提示码的枚举。
 
+**系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth.Core
+
 | 名称                          | 默认值 | 描述                                 |
 | ----------------------------- | ------ | ------------------------------------ |
 | FACE_AUTH_TIP_TOO_BRIGHT      | 1      | 光线太强，获取的图像太亮。           |
@@ -533,6 +571,8 @@ onAcquireInfo ?: (module : number, acquire : number, extraInfo : any) => void;
 
 表示指纹认证过程中提示码的枚举。
 
+**系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth.Core
+
 | 名称 | 默认值 | 描述 |
 | -------- | -------- | -------- |
 | FINGERPRINT_AUTH_TIP_GOOD | 0 | 获取的指纹图像良好。 |
@@ -547,6 +587,8 @@ onAcquireInfo ?: (module : number, acquire : number, extraInfo : any) => void;
 
 表示身份认证的凭据类型枚举。
 
+**系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth.Core
+
 | 名称 | 默认值 | 描述 |
 | -------- | -------- | -------- |
 | FACE | 2 | 人脸认证。 |
@@ -555,6 +597,8 @@ onAcquireInfo ?: (module : number, acquire : number, extraInfo : any) => void;
 ## AuthTrustLevel<sup>8+</sup>
 
 表示认证结果的信任等级枚举。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth.Core
 
 | 名称 | 默认值 | 描述                      |
 | ---- | ------ | ------------------------- |

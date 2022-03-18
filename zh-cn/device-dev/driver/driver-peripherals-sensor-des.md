@@ -2,12 +2,13 @@
 
 - [概述](##概述)
   - [功能简介](###功能简介)
+  - [基本概念](###基本概念)
   - [运作机制](###运作机制)
   
 - [开发指导](##开发指导)
+  - [场景介绍](###场景介绍)
   - [接口说明](#section188213414114)
   - [开发步骤](#section7893102915819)
-  - [开发实例](#section257750691)
   - [调测验证](#section106021256121219)
   
 
@@ -18,7 +19,15 @@
 Sensor驱动模型屏蔽硬件器件差异，为上层Sensor服务系统提供稳定的Sensor基础能力接口，包括Sensor列表查询、Sensor启停、Sensor订阅及取消订阅，Sensor参数配置等功能；Sensor设备驱动的开发是基于HDF驱动框架基础上，结合操作系统适配层（OSAL）和平台驱动接口（比如I2C/SPI/UART总线等平台资源）能力，屏蔽不同操作系统和平台总线资源差异，实现Sensor驱动“一次开发，多系统部署”的目标。Sensor驱动模型如[图1](#fig10451455446)所示：<a name="section3634112111"></a>
 
 **图 1**  Sensor驱动模型图<a name="fig10451455446"></a>  
-![Sensor驱动模型图](figures/Sensor驱动模型图.png)
+![Sensor驱动模型图](figures/Sensor%E9%A9%B1%E5%8A%A8%E6%A8%A1%E5%9E%8B%E5%9B%BE.png)
+
+### 基本概念
+
+目前根据sensorId将Sensor分为医学类Sensor、传统类Sensor两种。
+
+- 医学类Sensor：已订阅的sensorId枚举值在128-160范围的为医学类Sensor。
+
+- 传统类Sensor：已订阅的sensorId枚举值不在128-160范围的为传统类Sensor。
 
 ### 运作机制
 
@@ -26,7 +35,7 @@ Sensor驱动模型屏蔽硬件器件差异，为上层Sensor服务系统提供�
 
 **图 2** Sensor驱动运行图
 
-![Sensor驱动运行图](figures/Sensor驱动运行图.png)
+![Sensor驱动运行图](figures/Sensor%E9%A9%B1%E5%8A%A8%E8%BF%90%E8%A1%8C%E5%9B%BE.png)
 
 Sensor驱动模型以标准系统Hi3516DV300产品中的加速度传感器驱动为例，介绍整个驱动加载及运行流程：
 
@@ -42,6 +51,14 @@ Sensor驱动模型以标准系统Hi3516DV300产品中的加速度传感器驱动
 10. 加速度传感器探测成功之后，加速度传感器差异化驱动通知加速度传感器抽象驱动，注册加速度传感器设备到Sensor设备管理中。
 
 ## 开发指导
+
+### 场景介绍
+
+- 通过重力和陀螺仪传感器数据，能感知设备倾斜和旋转量，提高用户在游戏场景中的体验。
+- 通过接近光传感器数据，感知距离遮挡物的距离，使设备能够自动亮灭屏，达到防误触目的。例如：通话时，当靠近手机时，关闭屏幕，达到降低功耗的作用。
+- 通过气压计传感器数据，可以准确的判断设备当前所处的海拔。
+- 通过环境光传感器数据，设备能够实现背光自动调节。
+- 通过霍尔传感器数据，设备可以实现皮套功能，皮套合上，手机上开一个小窗口，可降低功耗。
 
 ### 接口说明<a name="section188213414114"></a>
 
@@ -103,18 +120,20 @@ Sensor驱动模型对外开放的API接口能力的具体实现参考[表1](#tab
 </tr>
 <tr id="row939914814478"><td class="cellrowborder" rowspan="2" valign="top" width="8.260000000000002%" headers="mcps1.2.4.1.1 "><p id="p1039815743211"><a name="p1039815743211"></a><a name="p1039815743211"></a>数据订阅操作</p>
 </td>
-<td class="cellrowborder" valign="top" width="45.4%" headers="mcps1.2.4.1.2 "><p id="p11530101054411"><a name="p11530101054411"></a><a name="p11530101054411"></a>int32_t <strong id="b0569161217334"><a name="b0569161217334"></a><a name="b0569161217334"></a>Register</strong>(sensorId, RecordDataCallback cb);</p>
+<td class="cellrowborder" valign="top" width="45.4%" headers="mcps1.2.4.1.2 "><p id="p11530101054411"><a name="p11530101054411"></a><a name="p11530101054411"></a>int32_t <strong id="b0569161217334"><a name="b0569161217334"></a><a name="b0569161217334"></a>Register</strong>(int32_t groupId, RecordDataCallback cb);</p>
 </td>
-<td class="cellrowborder" valign="top" width="46.339999999999996%" headers="mcps1.2.4.1.3 "><p id="p892633118493"><a name="p892633118493"></a><a name="p892633118493"></a>订阅者根据不同sensorId注册传感器数据回调函数，系统会将获取到的传感器数据上报给订阅者。</p>
+<td class="cellrowborder" valign="top" width="46.339999999999996%" headers="mcps1.2.4.1.3 "><p id="p892633118493"><a name="p892633118493"></a><a name="p892633118493"></a>订阅者根据不同groupId注册传感器数据回调函数，系统会将获取到的传感器数据上报给订阅者。</p>
 </td>
 </tr>
-<tr id="row10716713314"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p196491214133110"><a name="p196491214133110"></a><a name="p196491214133110"></a>int32_t <strong id="b13758151483317"><a name="b13758151483317"></a><a name="b13758151483317"></a>Unregister</strong>(sensorId, RecordDataCallback cb)</p>
+<tr id="row10716713314"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p196491214133110"><a name="p196491214133110"></a><a name="p196491214133110"></a>int32_t <strong id="b13758151483317"><a name="b13758151483317"></a><a name="b13758151483317"></a>Unregister</strong>(int32_t groupId, RecordDataCallback cb)</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p5817133119"><a name="p5817133119"></a><a name="p5817133119"></a>订阅者根据sensorId和回调函数注销对应订阅者的传感器数据回调函数。</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p5817133119"><a name="p5817133119"></a><a name="p5817133119"></a>订阅者根据groupId和回调函数注销对应订阅者的传感器数据回调函数。</p>
 </td>
 </tr>
 </tbody>
 </table>
+
+
 Sensor驱动模型对驱动开发者开放的功能接口，驱动开发者无需实现，直接使用，参考[表2](#table1156812588320)：
 
  **表2** Sensor驱动模型对驱动开发者开放的功能接口列表
@@ -196,6 +215,8 @@ Sensor驱动模型对驱动开发者开放的功能接口，驱动开发者无�
 </tbody>
 </table>
 
+
+
 Sensor驱动模型要求驱动开发者实现的接口功能，参考[表3](#table1083014911336)：
 
 **表 3**  Sensor驱动模型要求驱动开发者实现的接口列表
@@ -250,32 +271,16 @@ Sensor驱动模型要求驱动开发者实现的接口功能，参考[表3](#tab
 </tbody>
 </table>
 
-接口实现参考[开发实例](#section257750691)章节。
+
+
+接口实现参考[开发步骤](#section7893102915819)章节。
 
 ### 开发步骤<a name="section7893102915819"></a>
-1.  基于HDF驱动框架，按照驱动Driver Entry程序，完成加速度抽象驱动开发，主要由Bind、Init、Release、Dispatch函数接口实现。
-2.  完成加速度传感器驱动的设备信息配置。
-3.  完成加速度传感器抽象驱动内部接口开发，包括Enable、Disable、SetBatch、SetMode、SetOption、AccelCreateCfgData、AccelReleaseCfgData、AccelRegisterChipOps接口实现。
-4.  基于HDF驱动框架，按照驱动Driver Entry程序，完成加速度传感器差异化驱动开发，主要有Bind、Init、Release、Dispatch函数接口实现。
-5.  完成加速度传感器差异化驱动中差异化接口ReadData函数实现。
-6.  新增文件脚本适配。
-
->![](../public_sys-resources/icon-note.gif) **说明：** 
->
->- 传感器驱动模型已经提供一部分能力集，包括驱动设备管理能力、抽象总线和平台操作接口能力、通用配置操作接口能力、配置解析操作接口能力，接口参考[表2](#table1156812588320)。
->
->- 需要开发人员实现部分有：传感器部分操作接口（[表3](#table1083014911336))和传感器HCS差异化数据配置。
-> - 驱动基本功能验证。
-
-### 开发实例<a name="section257750691"></a>
-
-基于HDF驱动模型，加载启动加速度计传感器驱动，代码形式如下，具体原理可参考[HDF驱动开发指南](driver-hdf-development.md)。本例中加速度传感器选择博世BMI160，其通讯接口方式选择I2C。
-
-1. 加速度传感器驱动入口注册
+1. 基于HDF驱动框架，按照驱动Driver Entry程序，完成加速度抽象驱动开发，主要由Bind、Init、Release、Dispatch函数接口实现。
 
    - 加速度传感器驱动入口函数实现
 
-     ```
+     ```c
      /* 注册加速度计传感器入口数据结构体对象 */
      struct HdfDriverEntry g_sensorAccelDevEntry = {
          .moduleVersion = 1, //加速度计传感器模块版本号
@@ -289,30 +294,163 @@ Sensor驱动模型要求驱动开发者实现的接口功能，参考[表3](#tab
      HDF_INIT(g_sensorAccelDevEntry);
      ```
 
-   - 加速度传感器设备配置描述
+   - 加速度传感器驱动操作接口实现
 
-     加速度传感器模型使用HCS作为配置描述源码，HCS配置字段请参考[配置管理](driver-hdf-manage.md)介绍。
-
-     ```
-     /* 加速度计传感器设备HCS配置 */
-     device_sensor_accel :: device {
-         device0 :: deviceNode {
-             policy = 1; // 驱动服务发布的策略
-             priority = 110; // 驱动启动优先级（0-200），值越大优先级越低，建议配置为100，优先级相同则不保证device的加载顺序
-             preload = 0; // 驱动按需加载字段，0表示加载，2表示不加载
-             permission = 0664; // 驱动创建设备节点权限
-             moduleName = "HDF_SENSOR_ACCEL"; // 驱动名称，该字段的值必须和驱动入口结构的moduleName值一致
-             serviceName = "sensor_accel"; // 驱动对外发布服务的名称，必须唯一
-             deviceMatchAttr = "hdf_sensor_accel_driver"; // 驱动私有数据匹配的关键字，必须和驱动私有数据配置表中的match_attr值相等
+     ```c
+     /* 加速度计传感器驱动对外提供的服务绑定到HDF框架 */
+     int32_t AccelBindDriver(struct HdfDeviceObject *device)
+     {
+         CHECK_NULL_PTR_RETURN_VALUE(device, HDF_ERR_INVALID_PARAM);
+     
+         struct AccelDrvData *drvData = (struct AccelDrvData *)OsalMemCalloc(sizeof(*drvData));
+         if (drvData == NULL) {
+             HDF_LOGE("%s: Malloc accel drv data fail!", __func__);
+             return HDF_ERR_MALLOC_FAIL;
          }
-     } 
+     
+         drvData->ioService.Dispatch = DispatchAccel;
+         drvData->device = device;
+         device->service = &drvData->ioService;
+         g_accelDrvData = drvData;
+         return HDF_SUCCESS;
+     }
+     
+     /* 注册加速度计传感器驱动归一化的接口函数 */
+     static int32_t InitAccelOps(struct SensorCfgData *config, struct SensorDeviceInfo *deviceInfo)
+     {
+         CHECK_NULL_PTR_RETURN_VALUE(config, HDF_ERR_INVALID_PARAM);
+     
+         deviceInfo->ops.Enable = SetAccelEnable;
+         deviceInfo->ops.Disable = SetAccelDisable;
+         deviceInfo->ops.SetBatch = SetAccelBatch;
+         deviceInfo->ops.SetMode = SetAccelMode;
+         deviceInfo->ops.SetOption = SetAccelOption;
+     
+         if (memcpy_s(&deviceInfo->sensorInfo, sizeof(deviceInfo->sensorInfo),
+             &config->sensorInfo, sizeof(config->sensorInfo)) != EOK) {
+             HDF_LOGE("%s: Copy sensor info failed", __func__);
+             return HDF_FAILURE;
+         }
+     
+         return HDF_SUCCESS;
+     }
+     /* 提供给差异化驱动的初始化接口，完成加速度器件基本配置信息解析（加速度信息，加速度总线配置，加速度器件探测寄存器配置），器件探测，器件寄存器解析 */
+     static int32_t InitAccelAfterDetected(struct SensorCfgData *config)
+     {
+         struct SensorDeviceInfo deviceInfo;
+         CHECK_NULL_PTR_RETURN_VALUE(config, HDF_ERR_INVALID_PARAM);
+         /* 初始化加速度计接口函数 */
+         if (InitAccelOps(config, &deviceInfo) != HDF_SUCCESS) {
+             HDF_LOGE("%s: Init accel ops failed", __func__);
+             return HDF_FAILURE;
+         }
+         /* 注册加速度计设备到传感器管理模块 */
+         if (AddSensorDevice(&deviceInfo) != HDF_SUCCESS) {
+             HDF_LOGE("%s: Add accel device failed", __func__);
+             return HDF_FAILURE;
+         }
+         /* 器件寄存器解析 */
+         if (ParseSensorRegConfig(config) != HDF_SUCCESS) {
+             HDF_LOGE("%s: Parse sensor register failed", __func__);
+             (void)DeleteSensorDevice(&config->sensorInfo);
+             ReleaseSensorAllRegConfig(config);
+             return HDF_FAILURE;
+         }
+         return HDF_SUCCESS;
+     }
+     struct SensorCfgData *AccelCreateCfgData(const struct DeviceResourceNode *node)
+     {
+         ……
+         /* 如果探测不到器件在位，返回进行下个器件探测 */
+         if (drvData->detectFlag) {
+             HDF_LOGE("%s: Accel sensor have detected", __func__);
+             return NULL;
+         }
+         if (drvData->accelCfg == NULL) {
+             HDF_LOGE("%s: Accel accelCfg pointer NULL", __func__);
+             return NULL;
+         }
+         /* 设备基本配置信息解析 */
+         if (GetSensorBaseConfigData(node, drvData->accelCfg) != HDF_SUCCESS) {
+             HDF_LOGE("%s: Get sensor base config failed", __func__);
+             goto BASE_CONFIG_EXIT;
+         }
+         /* 如果探测不到器件在位，返回进行下个器件探测 */
+         if (DetectSensorDevice(drvData->accelCfg) != HDF_SUCCESS) {
+             HDF_LOGI("%s: Accel sensor detect device no exist", __func__);
+             drvData->detectFlag = false;
+             goto BASE_CONFIG_EXIT;
+         }
+         drvData->detectFlag = true;
+         /* 器件寄存器解析 */
+         if (InitAccelAfterDetected(drvData->accelCfg) != HDF_SUCCESS) {
+             HDF_LOGE("%s: Accel sensor detect device no exist", __func__);
+             goto INIT_EXIT;
+         }
+         return drvData->accelCfg;
+         ……
+     }
+     /* 加速度计传感器驱动初始化入口函数，主要功能为对传感器私有数据的结构体对象进行初始化，传感器HCS数据配置对象空间分配，传感器HCS数据配置初始化入口函数调用，传感器设备探测是否在位功能，传感器数据上报定时器创建，传感器归一化接口注册，传感器设备注册功能 */ 
+     int32_t AccelInitDriver(struct HdfDeviceObject *device)
+     {
+         ……
+         /* 工作队列资源初始化 */
+         if (InitAccelData(drvData) != HDF_SUCCESS) {
+             HDF_LOGE("%s: Init accel config failed", __func__);
+             return HDF_FAILURE;
+         }
+         /* 分配加速度配置信息资源 */
+         drvData->accelCfg = (struct SensorCfgData *)OsalMemCalloc(sizeof(*drvData->accelCfg));
+         if (drvData->accelCfg == NULL) {
+             HDF_LOGE("%s: Malloc accel config data failed", __func__);
+             return HDF_FAILURE;
+         }
+         /* 注册寄存器分组信息 */
+         drvData->accelCfg->regCfgGroup = &g_regCfgGroup[0];
+         ……
+         return HDF_SUCCESS;
+     }
+     /* 释放驱动初始化时分配的资源 */
+     void AccelReleaseDriver(struct HdfDeviceObject *device)
+     {
+         CHECK_NULL_PTR_RETURN(device);
+         struct AccelDrvData *drvData = (struct AccelDrvData *)device->service;
+         CHECK_NULL_PTR_RETURN(drvData);
+         /* 器件在位，释放已分配资源 */
+         if (drvData->detectFlag) {
+             AccelReleaseCfgData(drvData->accelCfg);
+         }
+         OsalMemFree(drvData->accelCfg);
+         drvData->accelCfg = NULL;
+         /* 器件在位，销毁工作队列资源 */
+         HdfWorkDestroy(&drvData->accelWork);
+         HdfWorkQueueDestroy(&drvData->accelWorkQueue);
+         OsalMemFree(drvData);
+     }
      ```
 
-2. 加速度传感器驱动操作接口实现
+2. 完成加速度传感器驱动的设备信息配置。
 
-   开发者需要根据每种类型的传感器实现归一化接口。
+   加速度传感器模型使用HCS作为配置描述源码，HCS配置字段请参考[配置管理](driver-hdf-manage.md)介绍。
 
    ```
+   /* 加速度计传感器设备HCS配置 */
+   device_sensor_accel :: device {
+       device0 :: deviceNode {
+           policy = 1; // 驱动服务发布的策略
+           priority = 110; // 驱动启动优先级（0-200），值越大优先级越低，建议配置为100，优先级相同则不保证device的加载顺序
+           preload = 0; // 驱动按需加载字段，0表示加载，2表示不加载
+           permission = 0664; // 驱动创建设备节点权限
+           moduleName = "HDF_SENSOR_ACCEL"; // 驱动名称，该字段的值必须和驱动入口结构的moduleName值一致
+           serviceName = "sensor_accel"; // 驱动对外发布服务的名称，必须唯一
+           deviceMatchAttr = "hdf_sensor_accel_driver"; // 驱动私有数据匹配的关键字，必须和驱动私有数据配置表中的match_attr值相等
+       }
+   } 
+   ```
+
+3. 完成加速度传感器抽象驱动内部接口开发，包括Enable、Disable、SetBatch、SetMode、SetOption、AccelCreateCfgData、AccelReleaseCfgData、AccelRegisterChipOps接口实现。
+
+   ```c
    /* 不使用函数暂时置空 */
    static int32_t SetAccelInfo(struct SensorBasicInfo *info)
    {
@@ -409,7 +547,6 @@ Sensor驱动模型要求驱动开发者实现的接口功能，参考[表3](#tab
        (void)option;
        return HDF_SUCCESS;
    }
-   
    /* 设置传感器可选配置 */
    static int32_t SetAccelOption(uint32_t option)
    {
@@ -418,329 +555,100 @@ Sensor驱动模型要求驱动开发者实现的接口功能，参考[表3](#tab
    }
    ```
 
-3. 加速度传感器驱动初始化和去初始化
+4. 基于HDF驱动框架，按照驱动Driver Entry程序，完成加速度传感器差异化驱动开发，主要由Bind、Init、Release、Dispatch函数接口实现。
 
-   ```
-   /* 加速度计传感器驱动对外提供的服务绑定到HDF框架 */
-   int32_t AccelBindDriver(struct HdfDeviceObject *device)
+   ```c
+   /* 加速度计传感器差异化驱动消息交互 */
+   static int32_t DispatchBMI160(struct HdfDeviceIoClient *client,
+       int cmd, struct HdfSBuf *data, struct HdfSBuf *reply)
+   {
+       (void)client;
+       (void)cmd;
+       (void)data;
+       (void)reply;
+   
+       return HDF_SUCCESS;
+   }
+   /* 加速度计传感器差异化驱动对外提供的服务绑定到HDF框架 */
+   int32_t Bmi160BindDriver(struct HdfDeviceObject *device)
    {
        CHECK_NULL_PTR_RETURN_VALUE(device, HDF_ERR_INVALID_PARAM);
    
-       struct AccelDrvData *drvData = (struct AccelDrvData *)OsalMemCalloc(sizeof(*drvData));
+       struct Bmi160DrvData *drvData = (struct Bmi160DrvData *)OsalMemCalloc(sizeof(*drvData));
        if (drvData == NULL) {
-           HDF_LOGE("%s: Malloc accel drv data fail!", __func__);
+           HDF_LOGE("%s: Malloc Bmi160 drv data fail", __func__);
            return HDF_ERR_MALLOC_FAIL;
        }
    
-       drvData->ioService.Dispatch = DispatchAccel;
+       drvData->ioService.Dispatch = DispatchBMI160;
        drvData->device = device;
        device->service = &drvData->ioService;
-       g_accelDrvData = drvData;
-       return HDF_SUCCESS;
-   }
-   
-   /* 注册加速度计传感器驱动归一化的接口函数 */
-   static int32_t InitAccelOps(struct SensorCfgData *config, struct SensorDeviceInfo *deviceInfo)
-   {
-       CHECK_NULL_PTR_RETURN_VALUE(config, HDF_ERR_INVALID_PARAM);
-   
-       deviceInfo->ops.Enable = SetAccelEnable;
-       deviceInfo->ops.Disable = SetAccelDisable;
-       deviceInfo->ops.SetBatch = SetAccelBatch;
-       deviceInfo->ops.SetMode = SetAccelMode;
-       deviceInfo->ops.SetOption = SetAccelOption;
-   
-       if (memcpy_s(&deviceInfo->sensorInfo, sizeof(deviceInfo->sensorInfo),
-           &config->sensorInfo, sizeof(config->sensorInfo)) != EOK) {
-           HDF_LOGE("%s: Copy sensor info failed", __func__);
-           return HDF_FAILURE;
-       }
+       g_bmi160DrvData = drvData;
    
        return HDF_SUCCESS;
    }
-   /* 提供给差异化驱动的初始化接口，完成加速度器件基本配置信息解析（加速度信息，加速度总线配置，加速度器件探测寄存器配置），器件探测，器件寄存器解析 */
-   static int32_t InitAccelAfterDetected(struct SensorCfgData *config)
+   /* 加速度计传感器差异化驱动初始化 */
+   int32_t Bmi160InitDriver(struct HdfDeviceObject *device)
    {
-       struct SensorDeviceInfo deviceInfo;
-       CHECK_NULL_PTR_RETURN_VALUE(config, HDF_ERR_INVALID_PARAM);
-       /* 初始化加速度计接口函数 */
-       if (InitAccelOps(config, &deviceInfo) != HDF_SUCCESS) {
-           HDF_LOGE("%s: Init accel ops failed", __func__);
-           return HDF_FAILURE;
-       }
-       /* 注册加速度计设备到传感器管理模块 */
-       if (AddSensorDevice(&deviceInfo) != HDF_SUCCESS) {
-           HDF_LOGE("%s: Add accel device failed", __func__);
-           return HDF_FAILURE;
-       }
-       /* 器件寄存器解析 */
-       if (ParseSensorRegConfig(config) != HDF_SUCCESS) {
-           HDF_LOGE("%s: Parse sensor register failed", __func__);
-           (void)DeleteSensorDevice(&config->sensorInfo);
-           ReleaseSensorAllRegConfig(config);
-           return HDF_FAILURE;
-       }
-       return HDF_SUCCESS;
-   }
-   struct SensorCfgData *AccelCreateCfgData(const struct DeviceResourceNode *node)
-   {
-       ……
-       /* 如果探测不到器件在位，返回进行下个器件探测 */
-       if (drvData->detectFlag) {
-           HDF_LOGE("%s: Accel sensor have detected", __func__);
-           return NULL;
-       }
-       if (drvData->accelCfg == NULL) {
-           HDF_LOGE("%s: Accel accelCfg pointer NULL", __func__);
-           return NULL;
-       }
-       /* 设备基本配置信息解析 */
-       if (GetSensorBaseConfigData(node, drvData->accelCfg) != HDF_SUCCESS) {
-           HDF_LOGE("%s: Get sensor base config failed", __func__);
-           goto BASE_CONFIG_EXIT;
-       }
-       /* 如果探测不到器件在位，返回进行下个器件探测 */
-       if (DetectSensorDevice(drvData->accelCfg) != HDF_SUCCESS) {
-           HDF_LOGI("%s: Accel sensor detect device no exist", __func__);
-           drvData->detectFlag = false;
-           goto BASE_CONFIG_EXIT;
-       }
-       drvData->detectFlag = true;
-       /* 器件寄存器解析 */
-       if (InitAccelAfterDetected(drvData->accelCfg) != HDF_SUCCESS) {
-           HDF_LOGE("%s: Accel sensor detect device no exist", __func__);
-           goto INIT_EXIT;
-       }
-       return drvData->accelCfg;
-       ……
-   }
-   /* 加速度计传感器驱动初始化入口函数，主要功能为对传感器私有数据的结构体对象进行初始化，传感器HCS数据配置对象空间分配，传感器HCS数据配置初始化入口函数调用，传感器设备探测是否在位功能，传感器数据上报定时器创建，传感器归一化接口注册，传感器设备注册功能 */ 
-   int32_t InitAccelDriver(struct HdfDeviceObject *device)
-   {
-   int32_t AccelInitDriver(struct HdfDeviceObject *device)
-   {
-       ……
-       /* 工作队列资源初始化 */
-       if (InitAccelData(drvData) != HDF_SUCCESS) {
-           HDF_LOGE("%s: Init accel config failed", __func__);
-           return HDF_FAILURE;
-       }
-       /* 分配加速度配置信息资源 */
-       drvData->accelCfg = (struct SensorCfgData *)OsalMemCalloc(sizeof(*drvData->accelCfg));
-       if (drvData->accelCfg == NULL) {
-           HDF_LOGE("%s: Malloc accel config data failed", __func__);
-           return HDF_FAILURE;
-       }
-       /* 注册寄存器分组信息 */
-       drvData->accelCfg->regCfgGroup = &g_regCfgGroup[0];
-       ……
-       return HDF_SUCCESS;
-   }
+       int32_t ret;
+       struct AccelOpsCall ops;
    
+       CHECK_NULL_PTR_RETURN_VALUE(device, HDF_ERR_INVALID_PARAM);
+       struct Bmi160DrvData *drvData = (struct Bmi160DrvData *)device->service;
+       CHECK_NULL_PTR_RETURN_VALUE(drvData, HDF_ERR_INVALID_PARAM);
+   
+       ret = InitAccelPreConfig();
+       if (ret != HDF_SUCCESS) {
+           HDF_LOGE("%s: Init  BMI160 bus mux config", __func__);
+           return HDF_FAILURE;
+       }
+   
+       drvData->sensorCfg = AccelCreateCfgData(device->property);
+       if (drvData->sensorCfg == NULL || drvData->sensorCfg->root == NULL) {
+           HDF_LOGD("%s: Creating accelcfg failed because detection failed", __func__);
+           return HDF_ERR_NOT_SUPPORT;
+       }
+   
+       ops.Init = NULL;
+       ops.ReadData = ReadBmi160Data;
+       ret = AccelRegisterChipOps(&ops);
+       if (ret != HDF_SUCCESS) {
+           HDF_LOGE("%s: Register BMI160 accel failed", __func__);
+           return HDF_FAILURE;
+       }
+   
+       ret = InitBmi160(drvData->sensorCfg);
+       if (ret != HDF_SUCCESS) {
+           HDF_LOGE("%s: Init BMI160 accel failed", __func__);
+           return HDF_FAILURE;
+       }
+   
+       return HDF_SUCCESS;
+   }
    /* 释放驱动初始化时分配的资源 */
-   void AccelReleaseDriver(struct HdfDeviceObject *device)
+   void Bmi160ReleaseDriver(struct HdfDeviceObject *device)
    {
-       CHECK_NULL_PTR_RETURN(device);
-       struct AccelDrvData *drvData = (struct AccelDrvData *)device->service;
-       CHECK_NULL_PTR_RETURN(drvData);
-       /* 器件在位，释放已分配资源 */
-       if (drvData->detectFlag) {
-           AccelReleaseCfgData(drvData->accelCfg);
+   	......
+       if (drvData->sensorCfg != NULL) {
+           AccelReleaseCfgData(drvData->sensorCfg);
+           drvData->sensorCfg = NULL;
        }
-       OsalMemFree(drvData->accelCfg);
-       drvData->accelCfg = NULL;
-       /* 器件在位，销毁工作队列资源 */
-       HdfWorkDestroy(&drvData->accelWork);
-       HdfWorkQueueDestroy(&drvData->accelWorkQueue);
        OsalMemFree(drvData);
    }
+   /* 加速度传感器差异化驱动对应的HdfDriverEntry对象 */
+   struct HdfDriverEntry g_accelBmi160DevEntry = {
+       .moduleVersion = 1,
+       .moduleName = "HDF_SENSOR_ACCEL_BMI160",
+       .Bind = Bmi160BindDriver,
+       .Init = Bmi160InitDriver,
+       .Release = Bmi160ReleaseDriver,
+   };
+   HDF_INIT(g_accelBmi160DevEntry);
    ```
 
-4. 加速度传感器差异化驱动私有HCS配置实现
+5. 完成加速度传感器差异化驱动中差异化接口ReadData函数实现。
 
-   - 为了方便开发者使用传感器HCS私有配置，在sensor_common.hcs里面定义通用的传感器配置模板。
-
-     ```
-     accel sensor common config template
-     root {
-         sensorAccelConfig {
-             accelChipConfig {
-                 /* 传感器设备信息模板 */
-                 template sensorInfo {
-                     sensorName = "accelerometer"; // 加速度计名字，字符最大长度16字节
-                     vendorName = "borsh_bmi160"; // 传感器设备厂商，字符最大长度16字节
-                     firmwareVersion = "1.0"; // 传感器固件版本号，默认1.0，字符最大长度16字节
-                     hardwareVersion = "1.0"; // 传感器硬件版本号，默认1.0，字符最大长度16字节
-                     sensorTypeId = 1; // 传感器类型编号，详见{@link SensorTypeTag}
-                     sensorId = 1; // 传感器的标识号，有传感器驱动开发者定义，推荐用{@link SensorTypeTag}枚举
-                     maxRange = 8; // 传感器的最大量程,根据开发者需要配置
-                     accuracy = 0; // 传感器的精度，与上报数据配合使用，上报数据结构体{@link SensorEvents }
-                     power = 230; // 传感器的功耗
-                 }
-                 /* 传感器使用的总线类型和配置信息模板 */
-                 template sensorBusConfig {
-                     busType = 0; // 0:i2c 1:spi
-                     busNum = 6; // 芯片上分配给传感器的器件号
-                     busAddr = 0; // 芯片上分配给传感器的地址
-                     regWidth = 1; // 传感器寄存器地址宽度
-                     regBigEndian = 0; // 传感器寄存器大小端 
-                 }
-                 /* 传感器设备属性模板 */
-                 template sensorAttr {
-                     chipName = ""; // 传感器芯片名字
-                     chipIdRegister = 0xf; // 传感器在位检测寄存器地址
-                     chipIdValue = 0xd1; // 校验传感器在位检测寄存器值
-                 }
-             }
-         }
-     }
-     ```
-
-   - 开发者配置accel_bmi160_config.hcs文件时，引用加速度传感器的模板，并根据需要修改模板中继承的字段。如果需要新增寄存器配置字段，在配置传感器HCS后扩展。
-
-     ```
-     /* 根据不同器件硬件差异，修改模板配置，不修改的就会默认采用模板配置 */
-     #include "accel_config.hcs"
-     root {
-         accel_bmi160_chip_config : sensorConfig {
-           match_attr = "hdf_sensor_accel_bmi160_driver";
-           sensorInfo :: sensorDeviceInfo {
-               vendorName = "borsh_bmi160"; // max string length is 16 bytes
-               sensorTypeId = 1; // enum SensorTypeTag
-               sensorId = 1; // user define sensor id
-           }
-           sensorBusConfig:: sensorBusInfo {
-               busType = 0; // 0:i2c 1:spi
-               busNum = 6;
-               busAddr = 0x68;
-               regWidth = 1; // 1 btye
-           }
-           sensorIdAttr :: sensorIdInfo{
-               chipName = "bmi160";
-               chipIdRegister = 0x00;
-               chipIdValue = 0xd1;
-           }
-           sensorRegConfig {
-                /* regAddr: register address
-                	  value: config register value
-                   len: size of value
-                   mask: mask of value
-                   delay: config register delay time (ms)
-                   opsType: enum SensorOpsType 0-none 1-read 2-write 3-read_check 4-update_bit
-                   calType: enum SensorBitCalType 0-none 1-set 2-revert 3-xor 4-left shift 5-right shift
-                   shiftNum: shift bits
-                   debug: 0-no debug 1-debug
-                   save: 0-no save 1-save
-                */
-                /* regAddr, value, mask, len, delay, opsType, calType, shiftNum, debug, save */
-                /* 初始化寄存器组 */
-               initSeqConfig = [
-                   0x7e,    0xb6, 0xff,   1,     5,       2,       0,        0,     0,    0,
-                   0x7e,    0x10, 0xff,   1,     5,       2,       0,        0,     0,    0
-               ];
-               /* 使能寄存器组 */
-               enableSeqConfig = [
-                   0x7e,    0x11, 0xff,   1,     5,       2,       0,        0,     0,    0,
-                   0x41,    0x03, 0xff,   1,     0,       2,       0,        0,     0,    0,
-                   0x40,    0x08, 0xff,   1,     0,       2,       0,        0,     0,    0
-               ];
-               /* 去使能寄存器组 */
-               disableSeqConfig = [
-                   0x7e,    0x10, 0xff,   1,     5,       2,       0,        0,     0,    0
-               ];
-           }
-         }
-     }
-     ```
-   
-5. 加速度传感器差异化驱动实现
-
-   - 定义加速度传感器差异化驱动对应的HdfDriverEntry对象，其中Driver Entry入口函数定义如下：
-
-     ```
-     struct HdfDriverEntry g_accelBmi160DevEntry = {
-         .moduleVersion = 1,
-         .moduleName = "HDF_SENSOR_ACCEL_BMI160",
-         .Bind = Bmi160BindDriver,
-         .Init = Bmi160InitDriver,
-         .Release = Bmi160ReleaseDriver,
-     };
-     HDF_INIT(g_accelBmi160DevEntry)；
-     ```
-
-   - Bind驱动接口实例化。
-
-     ```
-     int32_t Bmi160BindDriver(struct HdfDeviceObject *device)
-     {
-         CHECK_NULL_PTR_RETURN_VALUE(device, HDF_ERR_INVALID_PARAM);
-         struct Bmi160DrvData *drvData = (struct Bmi160DrvData *)OsalMemCalloc(sizeof(*drvData));
-         if (drvData == NULL) {
-             HDF_LOGE("%s: Malloc Bmi160 drv data fail", __func__);
-             return HDF_ERR_MALLOC_FAIL;
-         }
-         drvData->ioService.Dispatch = DispatchBMI160;
-         drvData->device = device;
-         device->service = &drvData->ioService;
-         g_bmi160DrvData = drvData;
-         return HDF_SUCCESS;
-     }
-     ```
-
-   - Init驱动接口实例化。
-
-     ```
-     int32_t Bmi160InitDriver(struct HdfDeviceObject *device)
-     {
-         ……
-         /* 加速度计差异化初始化配置 */
-         ret = InitAccelPreConfig();
-         if (ret != HDF_SUCCESS) {
-             HDF_LOGE("%s: Init  BMI160 bus mux config", __func__);
-             return HDF_FAILURE;
-         }
-         /* 创建传感器配置数据接口，完成器件探测，私有数据配置解析 */
-         drvData->sensorCfg = AccelCreateCfgData(device->property);
-         if (drvData->sensorCfg == NULL) {
-             return HDF_ERR_NOT_SUPPORT;
-         }
-         /* 注册差异化接口 */
-         ops.Init = NULL;
-         ops.ReadData = ReadBmi160Data;
-         ret = AccelRegisterChipOps(&ops);
-         if (ret != HDF_SUCCESS) {
-             HDF_LOGE("%s: Register BMI160 accel failed", __func__);
-             return HDF_FAILURE;
-         }
-         /* 初始化器件配置 */
-         ret = InitBmi160(drvData->sensorCfg);
-         if (ret != HDF_SUCCESS) {
-             HDF_LOGE("%s: Init BMI160 accel failed", __func__);
-             return HDF_FAILURE;
-         }
-         return HDF_SUCCESS;
-     }
-     ```
-
-   - Release驱动接口实例化。
-
-     ```
-     void Bmi160ReleaseDriver(struct HdfDeviceObject *device)
-     {
-         CHECK_NULL_PTR_RETURN(device);
-         struct Bmi160DrvData *drvData = (struct Bmi160DrvData *)device->service;
-         CHECK_NULL_PTR_RETURN(drvData);
-         AccelReleaseCfgData(drvData->sensorCfg);
-         drvData->sensorCfg = NULL;
-         OsalMemFree(drvData);
-     }
-     ```
-
-6. 加速度传感器差异化函数接口实现
-
-   需要开发者实现的ReadBmi160Data接口函数，在Bmi160InitDriver函数里面注册此函数。
-
-   ```
+   ```c
    int32_t ReadBmi160Data(struct SensorCfgData *data)
    {
        int32_t ret;
@@ -765,51 +673,12 @@ Sensor驱动模型要求驱动开发者实现的接口功能，参考[表3](#tab
    }
    ```
 
-7. 主要的数据结构
-
-   ```
-   /* 传感器2g对应灵敏度转换值 */
-   #define BMI160_ACC_SENSITIVITY_2G            61
-   /* 传感器数据采样寄存器地址 */
-   #define BMI160_ACCEL_X_LSB_ADDR              0X12
-   #define BMI160_ACCEL_X_MSB_ADDR              0X13
-   #define BMI160_ACCEL_Y_LSB_ADDR              0X14
-   #define BMI160_ACCEL_Y_MSB_ADDR              0X15
-   #define BMI160_ACCEL_Z_LSB_ADDR              0X16
-   #define BMI160_ACCEL_Z_MSB_ADDR              0X17
-   #define BMI160_STATUS_ADDR                   0X1B
-   /* 传感器数据维度 */
-   enum AccelAxisNum {
-       ACCEL_X_AXIS   = 0,
-       ACCEL_Y_AXIS   = 1,
-       ACCEL_Z_AXIS   = 2,
-       ACCEL_AXIS_NUM = 3,
-   };
-   /* 传感器每个维度值 */
-   struct AccelData {
-       int32_t x;
-       int32_t y;
-       int32_t z;
-   };
-   /* 传感器私有数据结构体 */
-   struct AccelDrvData {
-       struct IDeviceIoService ioService;
-       struct HdfDeviceObject *device;
-       HdfWorkQueue accelWorkQueue;
-       HdfWork accelWork;
-       OsalTimer accelTimer;
-       bool detectFlag;
-       bool enable;
-       int64_t interval;
-       struct SensorCfgData *accelCfg;
-       struct AccelOpsCall ops;
-   };
-   /* 差异化适配函数 */
-   struct AccelOpsCall {
-       int32_t (*Init)(struct SensorCfgData *data);
-       int32_t (*ReadData)(struct SensorCfgData *data);
-   };
-   ```
+>![](../public_sys-resources/icon-note.gif) **说明：** 
+>
+>- 传感器驱动模型已经提供一部分能力集，包括驱动设备管理能力、抽象总线和平台操作接口能力、通用配置操作接口能力、配置解析操作接口能力，接口参考[表2](#table1156812588320)。
+>
+>- 需要开发人员实现部分有：传感器部分操作接口（[表3](#table1083014911336))和传感器HCS差异化数据配置。
+> - 驱动基本功能验证。
 
 ### 调测验证<a name="section106021256121219"></a>
 

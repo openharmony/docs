@@ -55,6 +55,7 @@ The pin module adaptation involves the following steps:
    - Instantiate **PinCntlrMethod** in the **PinCntlr** object.
    
         >![](../public_sys-resources/icon-note.gif) **NOTE**
+        
         >For details, see [Available APIs](#section2_PINDevelop).
    
 4. Debug the driver.

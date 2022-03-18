@@ -30,7 +30,7 @@ The ability management framework manages running status of OpenHarmony applicati
     **Figure  3**  Lifecycle state transition of a Page ability<a name="fig56111543375"></a>  
     
 
-    ![](figure/图片1.png)
+    ![](figure/fig1.png)
 
     -   **OnStart\(\)**
 

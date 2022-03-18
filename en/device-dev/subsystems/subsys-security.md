@@ -10,4 +10,3 @@
 
 -   **[Development on Device Security Level Management](subsys-security-devicesecuritylevel.md)**
 
--   **[Development on Key Management](subsys-security-huks.md)**

@@ -1,80 +1,52 @@
-# ListItem<a name="EN-US_TOPIC_0000001192595148"></a>
+# ListItem
 
->![](../../public_sys-resources/icon-note.gif) **NOTE:** 
->This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
-The  **<ListItem\>**  component displays specific items in the list. Its width occupies the  **<List\>**  component by default and must be used together with  **<List\>**.
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
-## Required Permissions<a name="section19446161017538"></a>
+
+The **&lt;ListItem&gt;** component displays specific items in the list. Its width occupies the **&lt;List&gt;** component by default and must be used together with **&lt;List&gt;**.
+
+
+## Required Permissions
 
 None
 
-## Child Components<a name="section3767111810531"></a>
+
+## Child Components
 
 This component can contain a single child component.
 
-## APIs<a name="section36922294535"></a>
 
-ListItem\(\)
+## APIs
 
-## Attributes<a name="section83861522436"></a>
-
-<a name="table1474mcpsimp"></a>
-<table><thead align="left"><tr id="row1481mcpsimp"><th class="cellrowborder" valign="top" width="13%" id="mcps1.1.5.1.1"><p id="p1483mcpsimp"><a name="p1483mcpsimp"></a><a name="p1483mcpsimp"></a>Name</p>
-</th>
-<th class="cellrowborder" valign="top" width="14.32%" id="mcps1.1.5.1.2"><p id="p1485mcpsimp"><a name="p1485mcpsimp"></a><a name="p1485mcpsimp"></a>Type</p>
-</th>
-<th class="cellrowborder" valign="top" width="13.270000000000001%" id="mcps1.1.5.1.3"><p id="p1487mcpsimp"><a name="p1487mcpsimp"></a><a name="p1487mcpsimp"></a>Default Value</p>
-</th>
-<th class="cellrowborder" valign="top" width="59.41%" id="mcps1.1.5.1.4"><p id="p1489mcpsimp"><a name="p1489mcpsimp"></a><a name="p1489mcpsimp"></a>Description</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row1490mcpsimp"><td class="cellrowborder" valign="top" width="13%" headers="mcps1.1.5.1.1 "><p id="p1492mcpsimp"><a name="p1492mcpsimp"></a><a name="p1492mcpsimp"></a>sticky</p>
-</td>
-<td class="cellrowborder" valign="top" width="14.32%" headers="mcps1.1.5.1.2 "><p id="p1494mcpsimp"><a name="p1494mcpsimp"></a><a name="p1494mcpsimp"></a><a href="#li66453411182">Sticky</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="13.270000000000001%" headers="mcps1.1.5.1.3 "><p id="p1496mcpsimp"><a name="p1496mcpsimp"></a><a name="p1496mcpsimp"></a>None</p>
-</td>
-<td class="cellrowborder" valign="top" width="59.41%" headers="mcps1.1.5.1.4 "><p id="p1644391915392"><a name="p1644391915392"></a><a name="p1644391915392"></a>Sticky effect of the list item. For details, see <a href="#table3452114216394">Sticky enums</a>.</p>
-</td>
-</tr>
-<tr id="row1501mcpsimp"><td class="cellrowborder" valign="top" width="13%" headers="mcps1.1.5.1.1 "><p id="p16779164274313"><a name="p16779164274313"></a><a name="p16779164274313"></a>editable</p>
-</td>
-<td class="cellrowborder" valign="top" width="14.32%" headers="mcps1.1.5.1.2 "><p id="p1219317506433"><a name="p1219317506433"></a><a name="p1219317506433"></a>boolean</p>
-</td>
-<td class="cellrowborder" valign="top" width="13.270000000000001%" headers="mcps1.1.5.1.3 "><p id="p1507mcpsimp"><a name="p1507mcpsimp"></a><a name="p1507mcpsimp"></a>false</p>
-</td>
-<td class="cellrowborder" valign="top" width="59.41%" headers="mcps1.1.5.1.4 "><p id="p1299917596433"><a name="p1299917596433"></a><a name="p1299917596433"></a>Whether the list item is editable. A list item can be deleted in editing mode.</p>
-</td>
-</tr>
-</tbody>
-</table>
-
--   <a name="li66453411182"></a>Sticky enums
-
-    <a name="table3452114216394"></a>
-    <table><thead align="left"><tr id="row245219426397"><th class="cellrowborder" valign="top" width="25.2%" id="mcps1.1.3.1.1"><p id="p545244283914"><a name="p545244283914"></a><a name="p545244283914"></a>Name</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="74.8%" id="mcps1.1.3.1.2"><p id="p2452114203917"><a name="p2452114203917"></a><a name="p2452114203917"></a>Description</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row6452144218390"><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p id="p34529427398"><a name="p34529427398"></a><a name="p34529427398"></a>None</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p id="p1245211421393"><a name="p1245211421393"></a><a name="p1245211421393"></a>No sticky.</p>
-    </td>
-    </tr>
-    <tr id="row12452184217398"><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p id="p54523425398"><a name="p54523425398"></a><a name="p54523425398"></a>Normal</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p id="p745215426391"><a name="p745215426391"></a><a name="p745215426391"></a>The list item is sticky and disappears when you slide it.</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+ListItem()
 
 
-## Example<a name="section559995265311"></a>
+## Attributes
+
+| Name | Type | Default&nbsp;Value | Description |
+| -------- | -------- | -------- | -------- |
+| sticky | Sticky | Sticky.None | Sticky&nbsp;effect&nbsp;of&nbsp;the&nbsp;list&nbsp;item.&nbsp;For&nbsp;details,&nbsp;see Sticky enums. |
+| editable | boolean | false | Whether&nbsp;the&nbsp;list&nbsp;item&nbsp;is&nbsp;editable.&nbsp;A&nbsp;list&nbsp;item&nbsp;can&nbsp;be&nbsp;deleted&nbsp;in&nbsp;editing&nbsp;mode. |
+| selectable<sup>8+</sup> | boolean | true | Whether&nbsp;the&nbsp;current&nbsp;**&lt;ListItem&gt;**&nbsp;is&nbsp;selectable&nbsp;by&nbsp;the&nbsp;mouse.<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**NOTE：**<br/>>&nbsp;This&nbsp;attribute&nbsp;takes&nbsp;effect&nbsp;only&nbsp;when&nbsp;mouse&nbsp;frame&nbsp;selection&nbsp;is&nbsp;enabled&nbsp;for&nbsp;the&nbsp;parent&nbsp;**&lt;List&gt;**&nbsp;container. |
+
+- Sticky enums
+    | Name | Description | 
+  | -------- | -------- |
+  | None | No&nbsp;sticky. | 
+  | Normal | The&nbsp;list&nbsp;item&nbsp;is&nbsp;sticky. | 
+
+
+## Events
+
+  | Name | Description | 
+| -------- | -------- |
+| onSelect(callback:&nbsp;(isSelected:&nbsp;boolean)&nbsp;=&gt;&nbsp;any)<sup>8+</sup> | Triggered&nbsp;when&nbsp;the&nbsp;selected&nbsp;state&nbsp;of&nbsp;the&nbsp;**&lt;ListItem&gt;**&nbsp;changes.<br/>**isSelected**:&nbsp;Returns&nbsp;**true**&nbsp;if&nbsp;the&nbsp;**&lt;ListItem&gt;**&nbsp;is&nbsp;selected&nbsp;by&nbsp;the&nbsp;mouse;&nbsp;returns&nbsp;**false**&nbsp;otherwise. | 
+
+
+## Example
+
 
 ```
 @Entry
@@ -115,5 +87,4 @@ struct ListItemExample {
 }
 ```
 
-![](figures/listitem.gif)
-
+![en-us_image_0000001257138339](figures/en-us_image_0000001257138339.gif)

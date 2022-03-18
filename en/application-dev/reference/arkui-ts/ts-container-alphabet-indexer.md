@@ -1,244 +1,72 @@
-# AlphabetIndexer<a name="EN-US_TOPIC_0000001192915108"></a>
+# AlphabetIndexer
 
->![](../../public_sys-resources/icon-note.gif) **NOTE:** 
->This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
-The  **<AlphabetIndexer\>**  component provides an alphabetic index bar.
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
-## Applicable Devices<a name="section151761552181217"></a>
 
-<a name="table857714145377"></a>
-<table><thead align="left"><tr id="row55778146373"><th class="cellrowborder" valign="top" width="25.223613595706617%" id="mcps1.1.5.1.1"><p id="p7577141417376"><a name="p7577141417376"></a><a name="p7577141417376"></a>Phone</p>
-</th>
-<th class="cellrowborder" valign="top" width="21.451997614788315%" id="mcps1.1.5.1.2"><p id="p487719816463"><a name="p487719816463"></a><a name="p487719816463"></a>Tablet</p>
-</th>
-<th class="cellrowborder" valign="top" width="26.25223613595707%" id="mcps1.1.5.1.3"><p id="p135771614203720"><a name="p135771614203720"></a><a name="p135771614203720"></a>Smart TV</p>
-</th>
-<th class="cellrowborder" valign="top" width="27.072152653548002%" id="mcps1.1.5.1.4"><p id="p25772014133712"><a name="p25772014133712"></a><a name="p25772014133712"></a>Wearable</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row8578151423715"><td class="cellrowborder" valign="top" width="25.223613595706617%" headers="mcps1.1.5.1.1 "><p id="p65782014203718"><a name="p65782014203718"></a><a name="p65782014203718"></a>Yes</p>
-</td>
-<td class="cellrowborder" valign="top" width="21.451997614788315%" headers="mcps1.1.5.1.2 "><p id="p148771182469"><a name="p148771182469"></a><a name="p148771182469"></a>Yes</p>
-</td>
-<td class="cellrowborder" valign="top" width="26.25223613595707%" headers="mcps1.1.5.1.3 "><p id="p45783141377"><a name="p45783141377"></a><a name="p45783141377"></a>No</p>
-</td>
-<td class="cellrowborder" valign="top" width="27.072152653548002%" headers="mcps1.1.5.1.4 "><p id="p11578161443718"><a name="p11578161443718"></a><a name="p11578161443718"></a>No</p>
-</td>
-</tr>
-</tbody>
-</table>
+The **&lt;AlphabetIndexer&gt;** component provides an alphabetic index bar.
 
-## Required Permissions<a name="section53281531154915"></a>
+
+## Required Permissions
 
 None
 
-## Child Components<a name="section1437452132415"></a>
+
+## Child Components
 
 None
 
-## APIs<a name="section6883949112416"></a>
 
-AlphabetIndexer\(value: \{arrayValue : Array<string\>, selected : number\}\)
+## APIs
 
--   Parameters
+AlphabetIndexer(value: {arrayValue : Array&lt;string&gt;, selected : number})
 
-    <a name="table10719114169"></a>
-    <table><thead align="left"><tr id="row1571913410610"><th class="cellrowborder" valign="top" width="16.11%" id="mcps1.1.6.1.1"><p id="p87202043618"><a name="p87202043618"></a><a name="p87202043618"></a>Name</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="17.75%" id="mcps1.1.6.1.2"><p id="p5720441466"><a name="p5720441466"></a><a name="p5720441466"></a>Type</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="10.75%" id="mcps1.1.6.1.3"><p id="p147201241662"><a name="p147201241662"></a><a name="p147201241662"></a>Mandatory</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="13.18%" id="mcps1.1.6.1.4"><p id="p187201141967"><a name="p187201141967"></a><a name="p187201141967"></a>Default Value</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="42.21%" id="mcps1.1.6.1.5"><p id="p127201740612"><a name="p127201740612"></a><a name="p127201740612"></a>Description</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row12720249611"><td class="cellrowborder" valign="top" width="16.11%" headers="mcps1.1.6.1.1 "><p id="p07201441569"><a name="p07201441569"></a><a name="p07201441569"></a>arrayValue</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="17.75%" headers="mcps1.1.6.1.2 "><p id="p872084169"><a name="p872084169"></a><a name="p872084169"></a>Array&lt;string&gt;</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="10.75%" headers="mcps1.1.6.1.3 "><p id="p16720134166"><a name="p16720134166"></a><a name="p16720134166"></a>Yes</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="13.18%" headers="mcps1.1.6.1.4 "><p id="p12720746619"><a name="p12720746619"></a><a name="p12720746619"></a>-</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="42.21%" headers="mcps1.1.6.1.5 "><p id="p137201841366"><a name="p137201841366"></a><a name="p137201841366"></a>Array of strings to be displayed in the alphabetic index bar.</p>
-    </td>
-    </tr>
-    <tr id="row97201341367"><td class="cellrowborder" valign="top" width="16.11%" headers="mcps1.1.6.1.1 "><p id="p2072011415617"><a name="p2072011415617"></a><a name="p2072011415617"></a>selected</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="17.75%" headers="mcps1.1.6.1.2 "><p id="p19720541461"><a name="p19720541461"></a><a name="p19720541461"></a>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="10.75%" headers="mcps1.1.6.1.3 "><p id="p1272074565"><a name="p1272074565"></a><a name="p1272074565"></a>Yes</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="13.18%" headers="mcps1.1.6.1.4 "><p id="p197206416614"><a name="p197206416614"></a><a name="p197206416614"></a>-</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="42.21%" headers="mcps1.1.6.1.5 "><p id="p175915249324"><a name="p175915249324"></a><a name="p175915249324"></a>ID of a selected item.</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+- Parameters
+    | Name | Type | Mandatory | Default&nbsp;Value | Description | 
+  | -------- | -------- | -------- | -------- | -------- |
+  | arrayValue | Array&lt;string&gt; | Yes | - | Array&nbsp;of&nbsp;strings&nbsp;to&nbsp;be&nbsp;displayed&nbsp;in&nbsp;the&nbsp;alphabetic&nbsp;index&nbsp;bar. | 
+  | selected | number | Yes | - | ID&nbsp;of&nbsp;a&nbsp;selected&nbsp;item. | 
 
 
-## Attributes<a name="section3345133819557"></a>
+## Attributes
 
-<a name="table252174055416"></a>
-<table><thead align="left"><tr id="row353940135411"><th class="cellrowborder" valign="top" width="33.333333333333336%" id="mcps1.1.4.1.1"><p id="p175318403545"><a name="p175318403545"></a><a name="p175318403545"></a>Name</p>
-</th>
-<th class="cellrowborder" valign="top" width="33.29332933293329%" id="mcps1.1.4.1.2"><p id="p453194014548"><a name="p453194014548"></a><a name="p453194014548"></a>Type</p>
-</th>
-<th class="cellrowborder" valign="top" width="33.373337333733375%" id="mcps1.1.4.1.3"><p id="p19531240145412"><a name="p19531240145412"></a><a name="p19531240145412"></a>Description</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row125384035411"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p id="p88251916135916"><a name="p88251916135916"></a><a name="p88251916135916"></a>selectedColor</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.29332933293329%" headers="mcps1.1.4.1.2 "><p id="p682413165594"><a name="p682413165594"></a><a name="p682413165594"></a>Color</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.373337333733375%" headers="mcps1.1.4.1.3 "><p id="p580541616595"><a name="p580541616595"></a><a name="p580541616595"></a>Font color of the selected text.</p>
-</td>
-</tr>
-<tr id="row1671818251594"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p id="p137181025105918"><a name="p137181025105918"></a><a name="p137181025105918"></a>popupColor</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.29332933293329%" headers="mcps1.1.4.1.2 "><p id="p771872513599"><a name="p771872513599"></a><a name="p771872513599"></a>Color</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.373337333733375%" headers="mcps1.1.4.1.3 "><p id="p17181625195912"><a name="p17181625195912"></a><a name="p17181625195912"></a>Font color of the pop-up text.</p>
-</td>
-</tr>
-<tr id="row14513333208"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p id="p11513633007"><a name="p11513633007"></a><a name="p11513633007"></a>selectedBackgroundColor</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.29332933293329%" headers="mcps1.1.4.1.2 "><p id="p25952011116"><a name="p25952011116"></a><a name="p25952011116"></a>Color</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.373337333733375%" headers="mcps1.1.4.1.3 "><p id="p85097152069"><a name="p85097152069"></a><a name="p85097152069"></a>Background color of the selected text.</p>
-</td>
-</tr>
-<tr id="row44901379019"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p id="p1349110379020"><a name="p1349110379020"></a><a name="p1349110379020"></a>popupBackground</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.29332933293329%" headers="mcps1.1.4.1.2 "><p id="p349115372014"><a name="p349115372014"></a><a name="p349115372014"></a>Color</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.373337333733375%" headers="mcps1.1.4.1.3 "><p id="p13491937208"><a name="p13491937208"></a><a name="p13491937208"></a>Background color of the pop-up text.</p>
-</td>
-</tr>
-<tr id="row147815431002"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p id="p0782431019"><a name="p0782431019"></a><a name="p0782431019"></a>usingPopup</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.29332933293329%" headers="mcps1.1.4.1.2 "><p id="p17786431508"><a name="p17786431508"></a><a name="p17786431508"></a>boolean</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.373337333733375%" headers="mcps1.1.4.1.3 "><p id="p979174315010"><a name="p979174315010"></a><a name="p979174315010"></a>Whether to use pop-up text.</p>
-</td>
-</tr>
-<tr id="row13515625712"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p id="p18515122516117"><a name="p18515122516117"></a><a name="p18515122516117"></a>selectedFont</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.29332933293329%" headers="mcps1.1.4.1.2 "><p id="p176795164384"><a name="p176795164384"></a><a name="p176795164384"></a>{</p>
-<p id="p1376855518379"><a name="p1376855518379"></a><a name="p1376855518379"></a>size?: number,</p>
-<p id="p6403113203818"><a name="p6403113203818"></a><a name="p6403113203818"></a>weight?: FontWeight,</p>
-<p id="p1723611203386"><a name="p1723611203386"></a><a name="p1723611203386"></a>family?: string,</p>
-<p id="p1297992210382"><a name="p1297992210382"></a><a name="p1297992210382"></a>style?: FontStyle</p>
-<p id="p195150250112"><a name="p195150250112"></a><a name="p195150250112"></a>}</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.373337333733375%" headers="mcps1.1.4.1.3 "><p id="p145161525415"><a name="p145161525415"></a><a name="p145161525415"></a>Font style of the selected text.</p>
-</td>
-</tr>
-<tr id="row17659646916"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p id="p116591464112"><a name="p116591464112"></a><a name="p116591464112"></a>popupFont</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.29332933293329%" headers="mcps1.1.4.1.2 "><p id="p144261144103819"><a name="p144261144103819"></a><a name="p144261144103819"></a>{</p>
-<p id="p127311850113819"><a name="p127311850113819"></a><a name="p127311850113819"></a>size?: number,</p>
-<p id="p838045363820"><a name="p838045363820"></a><a name="p838045363820"></a>weight?: FontWeight,</p>
-<p id="p12474195943811"><a name="p12474195943811"></a><a name="p12474195943811"></a>family?: string,</p>
-<p id="p2352812392"><a name="p2352812392"></a><a name="p2352812392"></a>style?: FontStyle</p>
-<p id="p1965944615113"><a name="p1965944615113"></a><a name="p1965944615113"></a>}</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.373337333733375%" headers="mcps1.1.4.1.3 "><p id="p1265918467111"><a name="p1265918467111"></a><a name="p1265918467111"></a>Font style of the pop-up text.</p>
-</td>
-</tr>
-<tr id="row85891259798"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p id="p15892593915"><a name="p15892593915"></a><a name="p15892593915"></a>font</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.29332933293329%" headers="mcps1.1.4.1.2 "><p id="p57062514106"><a name="p57062514106"></a><a name="p57062514106"></a>{</p>
-<p id="p870655181013"><a name="p870655181013"></a><a name="p870655181013"></a>size?: number,</p>
-<p id="p67061355103"><a name="p67061355103"></a><a name="p67061355103"></a>weight?: FontWeight,</p>
-<p id="p1370619516107"><a name="p1370619516107"></a><a name="p1370619516107"></a>family?: string,</p>
-<p id="p0706754104"><a name="p0706754104"></a><a name="p0706754104"></a>style?: FontStyle</p>
-<p id="p19706115151018"><a name="p19706115151018"></a><a name="p19706115151018"></a>}</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.373337333733375%" headers="mcps1.1.4.1.3 "><p id="p65896597914"><a name="p65896597914"></a><a name="p65896597914"></a>Default font style of the alphabetic index bar.</p>
-</td>
-</tr>
-<tr id="row627018105212"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p id="p14270710423"><a name="p14270710423"></a><a name="p14270710423"></a>itemSize</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.29332933293329%" headers="mcps1.1.4.1.2 "><p id="p12702010529"><a name="p12702010529"></a><a name="p12702010529"></a>Length</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.373337333733375%" headers="mcps1.1.4.1.3 "><p id="p32704106216"><a name="p32704106216"></a><a name="p32704106216"></a>Size of an item in the alphabetic index bar. The item is a square, and the side length needs to be set.</p>
-</td>
-</tr>
-<tr id="row19921412201510"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p id="p19331211153"><a name="p19331211153"></a><a name="p19331211153"></a>alignStyle</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.29332933293329%" headers="mcps1.1.4.1.2 "><p id="p11931912131517"><a name="p11931912131517"></a><a name="p11931912131517"></a>IndexerAlign</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.373337333733375%" headers="mcps1.1.4.1.3 "><p id="p17931121156"><a name="p17931121156"></a><a name="p17931121156"></a>Alignment style of the alphabetic index bar. Left alignment and right alignment are supported. The alignment style affects the position of the pop-up window.</p>
-</td>
-</tr>
-</tbody>
-</table>
+  | Name | Type | Description | 
+| -------- | -------- | -------- |
+| selectedColor | Color | Font&nbsp;color&nbsp;of&nbsp;the&nbsp;selected&nbsp;text. | 
+| popupColor | Color | Font&nbsp;color&nbsp;of&nbsp;the&nbsp;pop-up&nbsp;text. | 
+| selectedBackgroundColor | Color | Background&nbsp;color&nbsp;of&nbsp;the&nbsp;selected&nbsp;text. | 
+| popupBackground | Color | Background&nbsp;color&nbsp;of&nbsp;the&nbsp;pop-up&nbsp;text. | 
+| usingPopup | boolean | Whether&nbsp;to&nbsp;use&nbsp;pop-up&nbsp;text. | 
+| selectedFont | {<br/>size?:&nbsp;number,<br/>weight?:&nbsp;FontWeight,<br/>family?:&nbsp;string,<br/>style?:&nbsp;FontStyle<br/>} | Font&nbsp;style&nbsp;of&nbsp;the&nbsp;selected&nbsp;text. | 
+| popupFont | {<br/>size?:&nbsp;number,<br/>weight?:&nbsp;FontWeight,<br/>family?:&nbsp;string,<br/>style?:&nbsp;FontStyle<br/>} | Font&nbsp;style&nbsp;of&nbsp;the&nbsp;pop-up&nbsp;text. | 
+| font | {<br/>size?:&nbsp;number,<br/>weight?:&nbsp;FontWeight,<br/>family?:&nbsp;string,<br/>style?:&nbsp;FontStyle<br/>} | Default&nbsp;font&nbsp;style&nbsp;of&nbsp;the&nbsp;alphabetic&nbsp;index&nbsp;bar. | 
+| itemSize | Length | Size&nbsp;of&nbsp;an&nbsp;item&nbsp;in&nbsp;the&nbsp;alphabetic&nbsp;index&nbsp;bar.&nbsp;The&nbsp;item&nbsp;is&nbsp;a&nbsp;square,&nbsp;and&nbsp;the&nbsp;side&nbsp;length&nbsp;needs&nbsp;to&nbsp;be&nbsp;set. | 
+| alignStyle | IndexerAlign | Alignment&nbsp;style&nbsp;of&nbsp;the&nbsp;alphabetic&nbsp;index&nbsp;bar.&nbsp;Left&nbsp;alignment&nbsp;and&nbsp;right&nbsp;alignment&nbsp;are&nbsp;supported.&nbsp;The&nbsp;alignment&nbsp;style&nbsp;affects&nbsp;the&nbsp;position&nbsp;of&nbsp;the&nbsp;pop-up&nbsp;window. | 
 
--   IndexerAlign enums
-
-    <a name="table596619517127"></a>
-    <table><thead align="left"><tr id="row396620514126"><th class="cellrowborder" valign="top" width="25.2%" id="mcps1.1.3.1.1"><p id="p20966155121218"><a name="p20966155121218"></a><a name="p20966155121218"></a>Name</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="74.8%" id="mcps1.1.3.1.2"><p id="p169661450121"><a name="p169661450121"></a><a name="p169661450121"></a>Description</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row1596655131217"><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p id="p59668519127"><a name="p59668519127"></a><a name="p59668519127"></a>Left</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p id="p1096620514121"><a name="p1096620514121"></a><a name="p1096620514121"></a>The pop-up window is displayed on the right of the alphabetic indexer bar.</p>
-    </td>
-    </tr>
-    <tr id="row11966195101215"><td class="cellrowborder" valign="top" width="25.2%" headers="mcps1.1.3.1.1 "><p id="p696618521215"><a name="p696618521215"></a><a name="p696618521215"></a>Right</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.8%" headers="mcps1.1.3.1.2 "><p id="p99677591211"><a name="p99677591211"></a><a name="p99677591211"></a>The pop-up window is displayed on the left of the alphabetic indexer bar.</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+- IndexerAlign enums
+    | Name | Description | 
+  | -------- | -------- |
+  | Left | The&nbsp;pop-up&nbsp;window&nbsp;is&nbsp;displayed&nbsp;on&nbsp;the&nbsp;right&nbsp;of&nbsp;the&nbsp;alphabetic&nbsp;indexer&nbsp;bar. | 
+  | Right | The&nbsp;pop-up&nbsp;window&nbsp;is&nbsp;displayed&nbsp;on&nbsp;the&nbsp;left&nbsp;of&nbsp;the&nbsp;alphabetic&nbsp;indexer&nbsp;bar. | 
 
 
-## Events<a name="section12808326678"></a>
+## Events
 
-<a name="table268mcpsimp"></a>
-<table><thead align="left"><tr id="row274mcpsimp"><th class="cellrowborder" valign="top" width="40.6%" id="mcps1.1.3.1.1"><p id="p276mcpsimp"><a name="p276mcpsimp"></a><a name="p276mcpsimp"></a>Name</p>
-</th>
-<th class="cellrowborder" valign="top" width="59.4%" id="mcps1.1.3.1.2"><p id="p280mcpsimp"><a name="p280mcpsimp"></a><a name="p280mcpsimp"></a>Description</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row281mcpsimp"><td class="cellrowborder" valign="top" width="40.6%" headers="mcps1.1.3.1.1 "><p id="p283mcpsimp"><a name="p283mcpsimp"></a><a name="p283mcpsimp"></a>onSelected(index: number) =&gt; void</p>
-</td>
-<td class="cellrowborder" valign="top" width="59.4%" headers="mcps1.1.3.1.2 "><p id="p287mcpsimp"><a name="p287mcpsimp"></a><a name="p287mcpsimp"></a>Invoked when an item in the alphabetic indexer bar is selected.</p>
-</td>
-</tr>
-<tr id="row6557140191017"><td class="cellrowborder" valign="top" width="40.6%" headers="mcps1.1.3.1.1 "><p id="p7557240111016"><a name="p7557240111016"></a><a name="p7557240111016"></a>onRequestPopupData(callback: (index: number) =&gt; Array&lt;string&gt;)<sup id="sup17217132713428"><a name="sup17217132713428"></a><a name="sup17217132713428"></a>8+</sup></p>
-</td>
-<td class="cellrowborder" valign="top" width="59.4%" headers="mcps1.1.3.1.2 "><p id="p20571454122014"><a name="p20571454122014"></a><a name="p20571454122014"></a>Invoked when a request for displaying content in the index prompt window is sent when an item in the alphabetic indexer bar is selected.</p>
-<p id="p16840741181813"><a name="p16840741181813"></a><a name="p16840741181813"></a>The return value is a string array corresponding to the indexes. The string array is displayed vertically in the pop-up window. It can display up to five strings at a time and allows scrolling.</p>
-</td>
-</tr>
-<tr id="row4394151501110"><td class="cellrowborder" valign="top" width="40.6%" headers="mcps1.1.3.1.1 "><p id="p0394415161111"><a name="p0394415161111"></a><a name="p0394415161111"></a>onPopupSelected(callback: (index: number) =&gt; void)<sup id="sup1585891816340"><a name="sup1585891816340"></a><a name="sup1585891816340"></a>8+</sup></p>
-</td>
-<td class="cellrowborder" valign="top" width="59.4%" headers="mcps1.1.3.1.2 "><p id="p23941815181117"><a name="p23941815181117"></a><a name="p23941815181117"></a>Invoked when an item in the index prompt window is selected.</p>
-</td>
-</tr>
-</tbody>
-</table>
+  | Name | Description | 
+| -------- | -------- |
+| onSelected(index:&nbsp;number)&nbsp;=&gt;&nbsp;void | Callback&nbsp;invoked&nbsp;when&nbsp;an&nbsp;item&nbsp;in&nbsp;the&nbsp;alphabetic&nbsp;indexer&nbsp;bar&nbsp;is&nbsp;selected. | 
+| onRequestPopupData(callback:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;Array&lt;string&gt;)<sup>8+</sup> | Invoked&nbsp;when&nbsp;a&nbsp;request&nbsp;for&nbsp;displaying&nbsp;content&nbsp;in&nbsp;the&nbsp;index&nbsp;prompt&nbsp;window&nbsp;is&nbsp;sent&nbsp;when&nbsp;an&nbsp;item&nbsp;in&nbsp;the&nbsp;alphabetic&nbsp;indexer&nbsp;bar&nbsp;is&nbsp;selected.<br/>The&nbsp;return&nbsp;value&nbsp;is&nbsp;a&nbsp;string&nbsp;array&nbsp;corresponding&nbsp;to&nbsp;the&nbsp;indexes.&nbsp;The&nbsp;string&nbsp;array&nbsp;is&nbsp;displayed&nbsp;vertically&nbsp;in&nbsp;the&nbsp;pop-up&nbsp;window.&nbsp;It&nbsp;can&nbsp;display&nbsp;up&nbsp;to&nbsp;five&nbsp;strings&nbsp;at&nbsp;a&nbsp;time&nbsp;and&nbsp;allows&nbsp;scrolling. | 
+| onPopupSelected(callback:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;void)<sup>8+</sup> | Invoked&nbsp;when&nbsp;an&nbsp;item&nbsp;in&nbsp;the&nbsp;index&nbsp;pop-up&nbsp;window&nbsp;is&nbsp;selected. | 
 
-## Example<a name="section11665132318294"></a>
 
+## Example
+
+  
 ```
 @Entry
 @Component
-struct AlphabetIndexerComponent {
+struct AlphabetIndexerSample {
   private value: string[] = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
 
   build() {
@@ -260,5 +88,4 @@ struct AlphabetIndexerComponent {
 }
 ```
 
-![](figures/alphabetindexer.gif)
-
+![en-us_image_0000001212378392](figures/en-us_image_0000001212378392.gif)

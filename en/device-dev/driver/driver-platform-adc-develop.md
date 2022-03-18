@@ -2,7 +2,7 @@
 
 ## Overview<a name="section268031773165048"></a>
 
-The analog-to-digital converter \(ADC\) is a device that converts analog signals into digital signals. In the Hardware Driver Foundation \(HDF\) framework, the ADC module uses the unified service mode for API adaptation. In this mode, a device service is used as the ADC manager to handle external access requests in a unified manner, which is reflected in the configuration file. The unified service mode applies to the scenario where there are many device objects of the same type, for example, when the ADC has more than 10 controllers. If the independent service mode is used, more device nodes need to be configured and memory resources will be consumed by services.
+The analog-to-digital converter \(ADC\) is a device that converts analog signals into digital signals. In the Hardware Driver Foundation \(HDF\), the ADC module uses the unified service mode for API adaptation. In this mode, a device service is used as the ADC manager to handle external access requests in a unified manner, which is reflected in the configuration file. The unified service mode applies to the scenario where there are many device objects of the same type, for example, when the ADC has more than 10 controllers. If the independent service mode is used, more device nodes need to be configured and memory resources will be consumed by services.
 
 **Figure  1**  Unified service mode<a name="fig14423182615525"></a>  
 ![](figures/unified-service-mode.png "ADC-unified-service-mode")
@@ -77,7 +77,7 @@ The ADC module adaptation involves the following steps:
 
 1.  Instantiate the driver entry.
     -   Instantiate the  **HdfDriverEntry**  structure.
-    -   Call  **HDF\_INIT**  to register the  **HdfDriverEntry**  instance with the HDF framework.
+    -   Call  **HDF\_INIT**  to register the  **HdfDriverEntry**  instance with the HDF.
 
 2.  Configure attribute files.
     -   Add the  **deviceNode**  information to the  **device\_info.hcs**  file.
@@ -87,8 +87,9 @@ The ADC module adaptation involves the following steps:
     -   Initialize  **AdcDevice**.
     -   Instantiate  **AdcMethod**  in the  **AdcDevice**  object.
 
-        >![](../public_sys-resources/icon-note.gif) **NOTE:** 
-        >For details, see  [AdcMethod](#section1618135285210)  and  [Table 1](#table1943202316536).
+        >![](../public_sys-resources/icon-note.gif) **NOTE** 
+
+        >For details, see [Available APIs](#availableapis).
 
 
 4.  Debug the driver.
@@ -99,13 +100,13 @@ The ADC module adaptation involves the following steps:
 
 The following uses  **adc\_hi35xx.c**  as an example to present the contents that need to be provided by the vendor to implement device functions.
 
-1.  Instantiate the driver entry. The driver entry must be a global variable of the  **HdfDriverEntry**  type \(defined in  **hdf\_device\_desc.h**\), and the value of  **moduleName**  must be the same as that in  **device\_info.hcs**. In the HDF framework, the start address of each  **HdfDriverEntry**  object of all loaded drivers is collected to form a segment address space similar to an array for the upper layer to invoke.
+1.  Instantiate the driver entry. The driver entry must be a global variable of the  **HdfDriverEntry**  type \(defined in  **hdf\_device\_desc.h**\), and the value of  **moduleName**  must be the same as that in  **device\_info.hcs**. In the HDF, the start address of each  **HdfDriverEntry**  object of all loaded drivers is collected to form a segment address space similar to an array for the upper layer to invoke.
 
     Generally, HDF calls the  **Bind**  function and then the  **Init**  function to load a driver. If  **Init**  fails to be called, HDF calls  **Release**  to release driver resources and exits.
 
     -   ADC driver entry reference
 
-        Many devices may connect to the ADC. In the HDF framework, a manager object needs to be created for the ADC. When a device needs to be started, the manager object locates the device based on the specified parameters.
+        Many devices may connect to the ADC. In the HDF, a manager object needs to be created for the ADC. When a device needs to be started, the manager object locates the device based on the specified parameters.
 
         The driver of the ADC manager is implemented by the core layer. Vendors do not need to pay attention to the implementation of this part. However, when they implement the  **Init**  function, the  **AdcDeviceAdd**  function of the core layer must be called to implement the corresponding features.
 
@@ -116,7 +117,7 @@ The following uses  **adc\_hi35xx.c**  as an example to present the contents tha
          .Release = Hi35xxAdcRelease,
          .moduleName = "hi35xx_adc_driver",// (Mandatory) This parameter must be the same as that in the .hcs file.
         };
-        HDF_INIT(g_hi35xxAdcDriverEntry); // Call HDF_INIT to register the driver entry with the HDF framework.
+        HDF_INIT(g_hi35xxAdcDriverEntry); // Call HDF_INIT to register the driver entry with the HDF.
         
         // Driver entry of the adc_core.c manager service at the core layer
         struct HdfDriverEntry g_adcManagerEntry = {
@@ -378,7 +379,7 @@ The following uses  **adc\_hi35xx.c**  as an example to present the contents tha
 
         Function description:
 
-        Releases the memory and deletes the controller. This function assigns a value to the  **Release**  API in the driver entry structure. When the HDF framework fails to call the  **Init**  function to initialize the driver, the  **Release**  function can be called to release driver resources. All forced conversion operations for obtaining the corresponding object can be successful only when the  **Init**  function has the corresponding value assignment operations.
+        Releases the memory and deletes the controller. This function assigns a value to the  **Release**  API in the driver entry structure. When the HDF fails to call the  **Init**  function to initialize the driver, the  **Release**  function can be called to release driver resources. All forced conversion operations for obtaining the corresponding object can be successful only when the  **Init**  function has the corresponding value assignment operations.
 
         ```
         static void Hi35xxAdcRelease(struct HdfDeviceObject *device)

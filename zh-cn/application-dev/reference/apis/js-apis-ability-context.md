@@ -10,10 +10,10 @@ Ability的上下文环境，继承自Context。
 ## 使用说明
 
 
-​在使用AbilityContext的功能前，需要通过Ability子类实例获取。
+在使用AbilityContext的功能前，需要通过Ability子类实例获取。
 
 
-  
+
 ```js
 import Ability from '@ohos.application.Ability'
 class MainAbility extends Ability {
@@ -42,10 +42,10 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | want | [Want](js-apis-featureAbility.md#Want类型说明) | 是 | 启动Ability的want信息。 | 
-  | callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动结果 | 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-featureAbility.md#want) | 是 | 启动Ability的want信息。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动结果 |
 
 **示例：**
 
@@ -71,11 +71,11 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | want | [Want](js-apis-featureAbility.md#Want类型说明)  | 是 | 启动Ability的want信息。 | 
-  | options | StartOptions | 是 | 启动Ability所携带的参数。 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动结果。 | 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-featureAbility.md#want) | 是 | 启动Ability的want信息。 |
+| options | StartOptions | 是 | 启动Ability所携带的参数。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动结果。 |
 
 **示例：**
     
@@ -145,10 +145,10 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | want |[Want](js-apis-featureAbility.md#Want类型说明) | 是 | 启动Ability的want信息。 |
-  | callback | AsyncCallback&lt;[AbilityResult](js-apis-featureAbility.md#abilityresult)&gt; | 是 | 执行结果回调函数。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| want |[Want](js-apis-featureAbility.md#want) | 是 | 启动Ability的want信息。 |
+| callback | AsyncCallback&lt;[AbilityResult](js-apis-featureAbility.md#abilityresult)&gt; | 是 | 执行结果回调函数。 |
 
 
 **示例：**
@@ -173,11 +173,11 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | want |[Want](js-apis-featureAbility.md#Want类型说明) | 是 | 启动Ability的want信息。 |
-  | options | StartOptions | 是 | 启动Ability所携带的参数。 |
-  | callback | AsyncCallback&lt;[AbilityResult](js-apis-featureAbility.md#abilityresult)&gt; | 是 | 执行结果回调函数。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| want |[Want](js-apis-featureAbility.md#want) | 是 | 启动Ability的want信息。 |
+| options | StartOptions | 是 | 启动Ability所携带的参数。 |
+| callback | AsyncCallback&lt;[AbilityResult](js-apis-featureAbility.md#abilityresult)&gt; | 是 | 执行结果回调函数。 |
 
 
 **示例：**
@@ -353,9 +353,9 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | want | [Want](js-apis-featureAbility.md#Want类型说明) | 是 | 传入需要启动的ability的信息，包含ability名称、包名、设备ID，设备ID缺省或为空表示启动本地ability。 | 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-featureAbility.md#want) | 是 | 传入需要启动的ability的信息，包含ability名称、包名、设备ID，设备ID缺省或为空表示启动本地ability。 |
 
 **返回值：**
 

@@ -1,10 +1,11 @@
 # Column
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-The **<Column\>** component lays out child components vertically.
+The **&lt;Column&gt;** component lays out child components vertically.
 
 
 ## Required Permissions
@@ -14,7 +15,7 @@ None
 
 ## Child Components
 
-Supported
+This component can contain child components.
 
 
 ## APIs
@@ -23,28 +24,28 @@ Column(value:{space?: Length})
 
 
 - Parameters
-  | Name| Type| Mandatory| Default Value| Description| 
+    | Name | Type | Mandatory | Default&nbsp;Value | Description | 
   | -------- | -------- | -------- | -------- | -------- |
-  | space | Length | No| 0 | Space between two adjacent child components in the vertical layout.| 
+  | space | Length | No | 0 | Space&nbsp;between&nbsp;any&nbsp;two&nbsp;adjacent&nbsp;child&nbsp;components&nbsp;in&nbsp;the&nbsp;vertical&nbsp;layout. | 
 
 
 ## Attributes
 
-| Name| Type| Default Value| Description|
+| Name | Type | Default&nbsp;Value | Description |
 | -------- | -------- | -------- | -------- |
-| alignItems | HorizontalAlign | HorizontalAlign.Center | Alignment mode of the child components in the horizontal direction.|
-| justifyContent8+ | [FlexAlign](ts-container-flex.md) | FlexAlign.Start | Alignment mode of the child components in the vertical direction.|
+| alignItems | HorizontalAlign | HorizontalAlign.Center | Alignment&nbsp;mode&nbsp;of&nbsp;child&nbsp;components&nbsp;in&nbsp;the&nbsp;horizontal&nbsp;direction. |
+| justifyContent<sup>8+</sup> | [FlexAlign](ts-container-flex.md) | FlexAlign.Start | Alignment mode of child components in the vertical direction. |
 
 - HorizontalAlign enums
-  | Name| Description| 
+    | Name | Description | 
   | -------- | -------- |
-  | Start | Aligned with the start edge in the same direction as the language in use.| 
-  | Center | Center aligned. This is the default alignment mode.| 
-  | End | Aligned with the end edge in the same direction as the language in use.|
-
+  | Start | Aligned&nbsp;with&nbsp;the&nbsp;start&nbsp;edge&nbsp;in&nbsp;the&nbsp;same&nbsp;direction&nbsp;as&nbsp;the&nbsp;language&nbsp;in&nbsp;use. | 
+  | Center | Center&nbsp;alignment.&nbsp;This&nbsp;is&nbsp;the&nbsp;default&nbsp;alignment&nbsp;mode. | 
+  | End | Aligned&nbsp;with&nbsp;the&nbsp;end&nbsp;edge&nbsp;in&nbsp;the&nbsp;same&nbsp;direction&nbsp;as&nbsp;the&nbsp;language&nbsp;in&nbsp;use. | 
 
 
 ## Example
+
 
 ```
 @Entry
@@ -75,7 +76,6 @@ struct ColumnExample {
           Column().width('30%').height(30).backgroundColor(0xAFEEEE)
           Column().width('30%').height(30).backgroundColor(0x00FFFF)
         }.height('15%').border({ width: 1 }).justifyContent(FlexAlign.Center)
-
         Text('justifyContent(End)').fontSize(9).fontColor(0xCCCCCC).width('90%')
         Column() {
           Column().width('30%').height(30).backgroundColor(0xAFEEEE)
@@ -86,4 +86,4 @@ struct ColumnExample {
 }
 ```
 
-![zh-cn_image_0000001219982721](figures/Column.png)
+![](figures/column.png)
