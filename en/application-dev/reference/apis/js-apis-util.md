@@ -14,28 +14,26 @@ This module provides common utility functions, such as **TextEncoder** and **Tex
 import util from '@ohos.util';
 ```
 
-## System Capabilities
-
-SystemCapability.Utils.Lang
-
 ## util.printf
 
 printf(format: string,  ...args: Object[]): string
 
 Prints the input content in a formatted string.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | format | string | Yes| Format of the string to print.|
   | ...args | Object[] | No| Data to format.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | string | String in the specified format.|
 
-- Example
+**Example**
   ```
   var res = util.printf("%s", "hello world!");
   console.log(res);
@@ -48,17 +46,19 @@ getErrorString(errno: number): string
 
 Obtains detailed information about a system error code.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | errno | number | Yes| Error code generated.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | string | Detailed information about the error code.|
 
-- Example
+**Example**
   ```
   var errnum = 10; // 10 is the system error code.
   var result = util.getErrorString(errnum);
@@ -72,17 +72,20 @@ callbackWrapper(original: Function): (err: Object, value: Object )=&gt;void
 
 Calls back an asynchronous function. In the callback, the first parameter indicates the cause of the rejection (the value is **null** if the promise has been resolved), and the second parameter indicates the resolved value.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | original | Function | Yes| Asynchronous function.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | Function | Callback, in which the first parameter indicates the cause of the rejection (the value is **null** if the promise has been resolved) and the second parameter indicates the resolved value.|
 
-- Example
+**Example**
   ```
   async function promiseFn() {
       return Promise.reject('value');
@@ -101,17 +104,19 @@ promiseWrapper(original: (err: Object, value: Object) =&gt; void): Object
 
 Processes an asynchronous function and returns a promise version.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | original | Function | Yes| Asynchronous function to process.|
+  | original | Function | Yes| Asynchronous function.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | Function | Function in the error-first style (that is, **(err, value) =>...** is called as the last parameter) and the promise version.|
 
-- Example
+**Example**
   ```
   function aysnFun(str1, str2, callback) {
       if (typeof str1 === 'string' && typeof str2 === 'string') {
@@ -129,12 +134,13 @@ Processes an asynchronous function and returns a promise version.
 
 ## TextDecoder
 
-
 ### Attributes
+
+**System capability**: SystemCapability.Utils.Lang
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| encoding | string | Yes| No| Encoding format. <br/>-&nbsp;Supported formats: utf-8, ibm866, iso-8859-2, iso-8859-3, iso-8859-4, iso-8859-5, iso-8859-6, iso-8859-7, iso-8859-8, iso-8859-8-i, iso-8859-10, iso-8859-13, iso-8859-14, iso-8859-15, koi8-r, koi8-u, macintosh, windows-874, windows-1250, windows-1251, windows-1252, windows-1253, windows-1254, windows-1255, windows-1256, windows-1257, windows-1258, x-mac-cyrilli, gbk, gb18030, big5, euc-jp, iso-2022-jp, shift_jis, euc-kr, utf-16be, utf-16le|
+| encoding | string | Yes| No| Encoding format.<br>-&nbsp;Supported formats: utf-8, ibm866, iso-8859-2, iso-8859-3, iso-8859-4, iso-8859-5, iso-8859-6, iso-8859-7, iso-8859-8, iso-8859-8-i, iso-8859-10, iso-8859-13, iso-8859-14, iso-8859-15, koi8-r, koi8-u, macintosh, windows-874, windows-1250, windows-1251, windows-1252, windows-1253, windows-1254, windows-1255, windows-1256, windows-1257, windows-1258, x-mac-cyrilli, gbk, gb18030, big5, euc-jp, iso-2022-jp, shift_jis, euc-kr, utf-16be, utf-16le|
 | fatal | boolean | Yes| No| Whether to display fatal errors.|
 | ignoreBOM | boolean | Yes| No| Whether to ignore the byte order marker (BOM). The default value is **false**, which indicates that the result contains the BOM.|
 
@@ -145,20 +151,22 @@ constructor(encoding?:string, options?:{ fatal?:boolean;ignoreBOM?:boolean })
 
 A constructor used to create a **TextDecoder** object.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | encoding | string | No| Encoding format.|
   | options | Object | No| Encoding-related options, which include **fatal** and **ignoreBOM**.|
 
   **Table 1** options
-  
+
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | fatal | boolean | No| Whether to display fatal errors.|
   | ignoreBOM | boolean | No| Whether to ignore the BOM.|
 
-- Example
+**Example**
   ```
   var textDecoder = new util.TextDecoder("utf-8",{ignoreBOM:true});
   ```
@@ -170,24 +178,26 @@ decode(input: Unit8Array, options?:{stream?:false}): string
 
 Decodes the input content.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | input | Unit8Array | Yes| Uint8Array to decode.|
   | options | Object | No| Options related to decoding.|
 
   **Table 2** options
-  
+
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | stream | boolean | No| Whether to allow data blocks in subsequent **decode()**. If data is processed in blocks, set this parameter to **true**. If this is the last data block to process or data is not divided into blocks, set this parameter to **false**. The default value is **false**.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | string | Data decoded.|
 
-- Example
+**Example**
   ```
   var textDecoder = new util.TextDecoder("utf-8",{ignoreBOM:true});
   var result = new Uint8Array(6);
@@ -208,8 +218,9 @@ Decodes the input content.
 
 ## TextEncoder
 
-
 ### Attributes
+
+**System capability**: SystemCapability.Utils.Lang
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
@@ -222,7 +233,9 @@ constructor()
 
 A constructor used to create a **TextEncoder** object.
 
-- Example
+**System capability**: SystemCapability.Utils.Lang
+
+**Example**
   ```
   var textEncoder = new util.TextEncoder();
   ```
@@ -234,17 +247,19 @@ encode(input?:string):Uint8Array
 
 Encodes the input content.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | input | string | Yes| String to encode.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | Uint8Array | Encoded text.|
 
-- Example
+**Example**
   ```
   var textEncoder = new util.TextEncoder();
   var result = new Uint8Array(buffer);
@@ -258,18 +273,20 @@ encodeInto(input:string, dest:Uint8Array, ):{ read:number; written:number }
 
 Stores the UTF-8 encoded text.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | input | string | Yes| String to encode.|
   | dest | Uint8Array | Yes| **Uint8Array** instance used to store the UTF-8 encoded text.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | Uint8Array | Encoded text.|
 
-- Example
+**Example**
   ```
   var that = new util.TextEncoder();
   var buffer = new ArrayBuffer(4);
@@ -286,13 +303,15 @@ constructor(numerator:number,denominator:number)
 
 A constructor used to create a **RationalNumber** object.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | numerator | number | Yes| Numerator, which is an integer.|
   | denominator | number | Yes| Denominator, which is an integer.|
 
-- Example
+**Example**
   ```
   var rationalNumber = new util.RationalNumber(1,2);
   ```
@@ -304,17 +323,19 @@ static createRationalFromString​(rationalString:string):RationalNumber​
 
 Creates a **RationalNumber** object based on the given string.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | rationalString | string | Yes| String used to create the **RationalNumber** object.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | object | **RationalNumber** object created.|
 
-- Example
+**Example**
   ```
   var rationalNumber = new util.RationalNumber(1,2);
   var rational = rationalNumer.creatRationalFromString("3/4");
@@ -327,17 +348,19 @@ compareTo​(another:RationalNumber):number​
 
 Compares this **RationalNumber** object with a given object.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | another | RationalNumber | Yes| Object used to compare with this **RationalNumber** object.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | number | Returns **0** if the two objects are equal; returns **1** if the given object is less than this object; return **-1** if the given object is greater than this object.|
 
-- Example
+**Example**
   ```
   var rationalNumber = new util.RationalNumber(1,2);
   var rational = rationalNumer.creatRationalFromString("3/4");
@@ -351,12 +374,14 @@ valueOf():number
 
 Obtains the value of this **RationalNumber** object as an integer or a floating-point number.
 
-- Return value
+**System capability**: SystemCapability.Utils.Lang
+
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | number | An integer or a floating-point number.|
 
-- Example
+**Example**
   ```
   var rationalNumber = new util.RationalNumber(1,2);
   var result = rationalNumber.valueOf();
@@ -369,17 +394,19 @@ equals​(obj:Object):boolean
 
 Checks whether this **RationalNumber** object equals the given object.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | object | Object | Yes| Object used to compare with this **RationalNumber** object.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the two objects are equal; returns **false** otherwise.|
 
-- Example
+**Example**
   ```
   var rationalNumber = new util.RationalNumber(1,2);
   var rational = rationalNumer.creatRationalFromString("3/4");
@@ -393,18 +420,20 @@ static getCommonDivisor​(number1:number,number2:number):number
 
 Obtains the greatest common divisor of two specified integers.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | number1 | number | Yes| The first integer used to get the greatest common divisor.|
   | number2 | number | Yes| The second integer used to get the greatest common divisor.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | number | Greatest common divisor obtained.|
 
-- Example
+**Example**
   ```
   var rationalNumber = new util.RationalNumber(1,2);
   var result = rationalNumber.getCommonDivisor(4,6);
@@ -417,12 +446,15 @@ getNumerator​():number
 
 Obtains the numerator of this **RationalNumber** object.
 
-- Return value
+**System capability**: SystemCapability.Utils.Lang
+
+**Return value**
+
   | Type| Description|
   | -------- | -------- |
   | number | Numerator of this **RationalNumber** object.|
 
-- Example
+**Example**
   ```
   var rationalNumber = new util.RationalNumber(1,2);
   var result = rationalNumber.getNumerator();
@@ -435,12 +467,14 @@ getDenominator​():number
 
 Obtains the denominator of this **RationalNumber** object.
 
-- Return value
+**System capability**: SystemCapability.Utils.Lang
+
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | number | Denominator of this **RationalNumber** object.|
 
-- Example
+**Example**
   ```
   var rationalNumber = new util.RationalNumber(1,2);
   var result = rationalNumber.getDenominator();
@@ -453,12 +487,14 @@ isZero​():boolean
 
 Checks whether this **RationalNumber** object is **0**.
 
-- Return value
+**System capability**: SystemCapability.Utils.Lang
+
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the value of this **RationalNumber** object is **0**; returns **false** otherwise.|
 
-- Example
+**Example**
   ```
   var rationalNumber = new util.RationalNumber(1,2);
   var result = rationalNumber.isZero();
@@ -471,12 +507,14 @@ isNaN​():boolean
 
 Checks whether this **RationalNumber** object is a Not a Number (NaN).
 
-- Return value
+**System capability**: SystemCapability.Utils.Lang
+
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if this **RationalNumber** object is a NaN (the denominator and numerator are both **0**); returns **false** otherwise.|
 
-- Example
+**Example**
   ```
   var rationalNumber = new util.RationalNumber(1,2);
   var result = rationalNumber.isNaN();
@@ -489,12 +527,14 @@ isFinite​():boolean
 
 Checks whether this **RationalNumber** object represents a finite value.
 
-- Return value
+**System capability**: SystemCapability.Utils.Lang
+
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if this **RationalNumber** object represents a finite value (the denominator is not **0**); returns **false** otherwise.|
 
-- Example
+**Example**
   ```
   var rationalNumber = new util.RationalNumber(1,2);
   var result = rationalNumber.isFinite();
@@ -507,12 +547,14 @@ toString​():string
 
 Obtains the string representation of this **RationalNumber** object.
 
-- Return value
+**System capability**: SystemCapability.Utils.Lang
+
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | string | Returns **NaN** if the numerator and denominator of this object are both **0**; returns a string in Numerator/Denominator format otherwise, for example, **3/5**.|
 
-- Example
+**Example**
   ```
   var rationalNumber = new util.RationalNumber(1,2);
   var result = rationalNumber.toString();
@@ -520,14 +562,15 @@ Obtains the string representation of this **RationalNumber** object.
 
 ## LruBuffer<sup>8+</sup>
 
-
 ### Attributes
+
+**System capability**: SystemCapability.Utils.Lang
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | length | number | Yes| No| Total number of values in this buffer.|
 
-- Example
+**Example**
   ```
   var pro = new util.LruBuffer();
   pro.put(2,10);
@@ -542,12 +585,14 @@ constructor(capacity?:number)
 
 A constructor used to create an **LruBuffer** instance. The default capacity of the buffer is 64.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | capacity | number | No| Capacity of the **LruBuffer** to create.|
 
-- Example
+**Example**
   ```
   var lrubuffer= new util.LruBuffer();
   ```
@@ -559,12 +604,14 @@ updateCapacity(newCapacity:number):void
 
 Changes the **LruBuffer** capacity. If the new capacity is less than or equal to **0**, an exception will be thrown.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | newCapacity | number | Yes| New capacity of the **LruBuffer**.|
 
-- Example
+**Example**
   ```
   var pro = new util.LruBuffer();
   var result = pro.updateCapacity(100);
@@ -577,12 +624,14 @@ toString():string
 
 Obtains the string representation of this **LruBuffer** object.
 
-- Return value
+**System capability**: SystemCapability.Utils.Lang
+
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | string | String representation of this **LruBuffer** object.|
 
-- Example
+**Example**
   ```
   var pro = new util.LruBuffer();
   pro.put(2,10);
@@ -598,12 +647,14 @@ getCapacity():number
 
 Obtains the capacity of this buffer.
 
-- Return value
+**System capability**: SystemCapability.Utils.Lang
+
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | number | Capacity of this buffer.|
 
-- Example
+**Example**
   ```
   var pro = new util.LruBuffer();
   var result = pro.getCapacity();
@@ -616,7 +667,9 @@ clear():void
 
 Clears key-value pairs from this buffer. The **afterRemoval()** method will be called to perform subsequent operations.
 
-- Example
+**System capability**: SystemCapability.Utils.Lang
+
+**Example**
   ```
   var pro = new util.LruBuffer();
   pro.put(2,10);
@@ -631,12 +684,14 @@ getCreateCount():number
 
 Obtains the number of return values for **createDefault()**.
 
-- Return value
+**System capability**: SystemCapability.Utils.Lang
+
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | number | Number of return values for **createDefault()**.|
 
-- Example
+**Example**
   ```
   var pro = new util.LruBuffer();
   pro.put(1,8);
@@ -650,12 +705,14 @@ getMissCount():number
 
 Obtains the number of times that the queried values are mismatched.
 
-- Return value
+**System capability**: SystemCapability.Utils.Lang
+
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | number | Number of times that the queried values are mismatched.|
 
-- Example
+**Example**
   ```
   var pro = new util.LruBuffer();
   pro.put(2,10);
@@ -670,12 +727,14 @@ getRemovalCount():number
 
 Obtains the number of removals from this buffer.
 
-- Return value
+**System capability**: SystemCapability.Utils.Lang
+
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | number | Number of removals from the buffer.|
 
-- Example
+**Example**
   ```
   var pro = new util.LruBuffer();
   pro.put(2,10);
@@ -691,12 +750,14 @@ getMatchCount():number
 
 Obtains the number of times that the queried values are matched.
 
-- Return value
+**System capability**: SystemCapability.Utils.Lang
+
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | number | Number of times that the queried values are matched.|
 
-- Example
+**Example**
   ```
   var pro = new util.LruBuffer();
   pro.put(2,10);
@@ -711,12 +772,14 @@ getPutCount():number
 
 Obtains the number of additions to this buffer.
 
-- Return value
+**System capability**: SystemCapability.Utils.Lang
+
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | number | Number of additions to the buffer.|
 
-- Example
+**Example**
   ```
   var pro = new util.LruBuffer();
   pro.put(2,10);
@@ -730,12 +793,14 @@ isEmpty():boolean
 
 Checks whether this buffer is empty.
 
-- Return value
+**System capability**: SystemCapability.Utils.Lang
+
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the buffer does not contain any value.|
 
-- Example
+**Example**
   ```
   var pro = new util.LruBuffer();
   pro.put(2,10);
@@ -749,17 +814,19 @@ get(key:K):V | undefined
 
 Obtains the value of the specified key.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | key | K | Yes| Key based on which the value is queried.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | V&nbsp;\|&nbsp;undefind | Returns the value of the key if a match is found in the buffer; returns **undefined** otherwise.|
 
-- Example
+**Example**
   ```
   var pro = new util.LruBuffer();
   pro.put(2,10);
@@ -773,18 +840,20 @@ put(key:K,value:V):V
 
 Adds a key-value pair to this buffer.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | key | K | Yes| Key of the key-value pair to add.|
   | value | V | Yes| Value of the key-value pair to add.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | V | Returns the existing value if the key already exists; returns the value added otherwise. If the key or value is null, an exception will be thrown. |
 
-- Example
+**Example**
   ```
   var pro = new util.LruBuffer();
   var result = pro.put(2,10);
@@ -797,12 +866,14 @@ values():V[]
 
 Obtains all values in this buffer, listed from the most to the least recently accessed.
 
-- Return value
+**System capability**: SystemCapability.Utils.Lang
+
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | V&nbsp;[] | All values in the buffer, listed from the most to the least recently accessed.|
 
-- Example
+**Example**
   ```
   var pro = new util.LruBuffer();
   pro.put(2,10);
@@ -818,12 +889,14 @@ keys():K[]
 
 Obtains all keys in this buffer, listed from the most to the least recently accessed.
 
-- Return value
+**System capability**: SystemCapability.Utils.Lang
+
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | K&nbsp;[] | All keys in the buffer, listed from the most to the least recently accessed.|
 
-- Example
+**Example**
   ```
   var pro = new util.LruBuffer();
   pro.put(2,10);
@@ -837,17 +910,19 @@ remove(key:K):V | undefined
 
 Removes the specified key and its value from this buffer.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | key | K | Yes| Key to remove.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | V&nbsp;\|&nbsp;undefind | Returns an **Optional** object containing the removed key-value pair if the key exists in the buffer; returns an empty **Optional** object otherwise. If the key is null, an exception will be thrown.|
 
-- Example
+**Example**
   ```
   var pro = new util.LruBuffer();
   pro.put(2,10);
@@ -861,7 +936,9 @@ afterRemoval(isEvict:boolean,key:K,value:V,newValue:V):void
 
 Performs subsequent operations after a value is removed.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | isEvict | boolean | No| Whether the buffer capacity is insufficient. If the value is **true**, this method is called due to insufficient capacity.|
@@ -869,7 +946,7 @@ Performs subsequent operations after a value is removed.
   | value | V | Yes| Value removed.|
   | newValue | V | No| New value for the key if the **put()** method is called and the key to be added already exists. In other cases, this parameter is left blank.|
 
-- Example
+**Example**
   ```
   var arr = [];
   class ChildLruBuffer extends util.LruBuffer
@@ -904,17 +981,19 @@ contains(key:K):boolean
 
 Checks whether this buffer contains the specified key.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | key | K | Yes| Key to check.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the buffer contains the specified key; returns **false** otherwise.|
 
-- Example
+**Example**
   ```
   var pro = new util.LruBuffer();
   pro.put(2,10);
@@ -928,17 +1007,19 @@ createDefault(key:K):V
 
 Creates a value if the value of the specified key is not available.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | key | K | Yes| Key of which the value is missing.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | V | Value of the key.|
 
-- Example
+**Example**
   ```
   var pro = new util.LruBuffer();
   var result = pro.createDefault(50);
@@ -951,12 +1032,14 @@ entries():IterableIterator&lt;[K,V]&gt;
 
 Obtains a new iterator object that contains all key-value pairs in this object.
 
-- Return value
+**System capability**: SystemCapability.Utils.Lang
+
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | [K,&nbsp;V] | Iterable array.|
 
-- Example
+**Example**
   ```
   var pro = new util.LruBuffer();
   pro.put(2,10);
@@ -970,12 +1053,14 @@ Obtains a new iterator object that contains all key-value pairs in this object.
 
 Obtains a two-dimensional array in key-value pairs.
 
-- Return value
+**System capability**: SystemCapability.Utils.Lang
+
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | [K,&nbsp;V] | Two-dimensional array in key-value pairs.|
 
-- Example
+**Example**
   ```
   var pro = new util.LruBuffer();
   pro.put(2,10);
@@ -1027,13 +1112,15 @@ constructor(lowerObj:ScopeType,upperObje:ScopeType)
 
 A constructor used to create a **Scope** object with the specified upper and lower limits.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | lowerObj | [ScopeType](#scopetype8) | Yes| Lower limit of the **Scope** object.|
   | upperObj | [ScopeType](#scopetype8) | Yes| Upper limit of the **Scope** object.|
 
-- Example
+**Example**
   ```
   var tempLower = new Temperature(30);
   var tempUpper = new Temperature(40);
@@ -1047,12 +1134,14 @@ toString():string
 
 Obtains a string representation that contains this **Scope**.
 
-- Return value
+**System capability**: SystemCapability.Utils.Lang
+
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | string | String representation containing the **Scope**.|
 
-- Example
+**Example**
   ```
   var tempLower = new Temperature(30);
   var tempUpper = new Temperature(40);
@@ -1067,17 +1156,19 @@ intersect(range:Scope):Scope
 
 Obtains the intersection of this **Scope** and the given **Scope**.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | range | [Scope](#scope8) | Yes| **Scope** specified.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | [Scope](#scope8) | Intersection of this **Scope** and the given **Scope**.|
 
-- Example
+**Example**
   ```
   var tempLower = new Temperature(30);
   var tempUpper = new Temperature(40);
@@ -1095,18 +1186,20 @@ intersect(lowerObj:ScopeType,upperObj:ScopeType):Scope
 
 Obtains the intersection of this **Scope** and the given lower and upper limits.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | lowerObj | [ScopeType](#scopetype8) | Yes| Lower limit.|
   | upperObj | [ScopeType](#scopetype8) | Yes| Upper limit.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | [Scope](#scope8) | Intersection of this **Scope** and the given lower and upper limits.|
 
-- Example
+**Example**
   ```
   var tempLower = new Temperature(30);
   var tempUpper = new Temperature(40);
@@ -1123,12 +1216,15 @@ getUpper():ScopeType
 
 Obtains the upper limit of this **Scope**.
 
-- Return value
+**System capability**: SystemCapability.Utils.Lang
+
+**Return value**
+
   | Type| Description|
   | -------- | -------- |
   | [ScopeType](#scopetype8) | Upper limit of this **Scope**.|
 
-- Example
+**Example**
   ```
   var tempLower = new Temperature(30);
   var tempUpper = new Temperature(40);
@@ -1143,12 +1239,14 @@ getLower():ScopeType
 
 Obtains the lower limit of this **Scope**.
 
-- Return value
+**System capability**: SystemCapability.Utils.Lang
+
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | [ScopeType](#scopetype8) | Lower limit of this **Scope**.|
 
-- Example
+**Example**
   ```
   var tempLower = new Temperature(30);
   var tempUpper = new Temperature(40);
@@ -1163,18 +1261,20 @@ expand(lowerObj:ScopeType,upperObj:ScopeType):Scope
 
 Obtains the union set of this **Scope** and the given lower and upper limits.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | lowerObj | [ScopeType](#scopetype8) | Yes| Lower limit.|
   | upperObj | [ScopeType](#scopetype8) | Yes| Upper limit.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | [Scope](#scope8) | Union set of this **Scope** and the given lower and upper limits.|
 
-- Example
+**Example**
   ```
   var tempLower = new Temperature(30);
   var tempUpper = new Temperature(40);
@@ -1191,17 +1291,19 @@ expand(range:Scope):Scope
 
 Obtains the union set of this **Scope** and the given **Scope**.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | range | [Scope](#scope8) | Yes| **Scope** specified.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | [Scope](#scope8) | Union set of this **Scope** and the given **Scope**.|
 
-- Example
+**Example**
   ```
   var tempLower = new Temperature(30);
   var tempUpper = new Temperature(40);
@@ -1219,17 +1321,19 @@ expand(value:ScopeType):Scope
 
 Obtains the union set of this **Scope** and the given value.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | value | [ScopeType](#scopetype8) | Yes| Value specified.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | [Scope](#scope8) | Union set of this **Scope** and the given value.|
 
-- Example
+**Example**
   ```
   var tempLower = new Temperature(30);
   var tempUpper = new Temperature(40);
@@ -1245,17 +1349,19 @@ contains(value:ScopeType):boolean
 
 Checks whether a value is within this **Scope**.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | value | [ScopeType](#scopetype8) | Yes| Value specified.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the value is within this **Scope**; returns **false** otherwise.|
 
-- Example
+**Example**
   ```
   var tempLower = new Temperature(30);
   var tempUpper = new Temperature(40);
@@ -1271,17 +1377,19 @@ contains(range:Scope):boolean
 
 Checks whether a range is within this **Scope**.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | range | [Scope](#scope8) | Yes| Range specified.|
+  | range | [Scope](#scope8) | Yes| **Scope** specified.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the range is within this **Scope**; returns **false** otherwise.|
 
-- Example
+**Example**
   ```
   var tempLower = new Temperature(30);
   var tempUpper = new Temperature(40);
@@ -1299,17 +1407,19 @@ clamp(value:ScopeType):ScopeType
 
 Limits a value to this **Scope**.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | value | [ScopeType](#scopetype8) | Yes| Value specified.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | [ScopeType](#scopetype8) | Returns **lowerObj** if the specified value is less than the lower limit; returns **upperObj** if the specified value is greater than the upper limit; returns the specified value if it is within this **Scope**.|
 
-- Example
+**Example**
   ```
   var tempLower = new Temperature(30);
   var tempUpper = new Temperature(40);
@@ -1328,7 +1438,9 @@ constructor()
 
 A constructor used to create a **Base64** object.
 
-- Example
+**System capability**: SystemCapability.Utils.Lang
+
+**Example**
   ```
   var base64 = new  util.Base64();
   ```
@@ -1340,17 +1452,19 @@ encodeSync(src:Uint8Array):Uint8Array
 
 Encodes the input content.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | src | Uint8Array | Yes| Uint8Array to encode.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | Uint8Array | Uint8Array encoded.|
 
-- Example
+**Example**
   ```
   var that = new util.Base64();
   var array = new Uint8Array([115,49,51]);
@@ -1364,17 +1478,19 @@ encodeToStringSync(src:Uint8Array):string
 
 Encodes the input content.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | src | Uint8Array | Yes| Uint8Array to encode.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | string | String encoded from the Uint8Array.|
 
-- Example
+**Example**
   ```
   var that = new util.Base64();
   var array = new Uint8Array([115,49,51]);
@@ -1388,17 +1504,19 @@ decodeSync(src:Uint8Array | string):Uint8Array
 
 Decodes the input content.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | src | Uint8Array&nbsp;\|&nbsp;string | Yes| Uint8Array or string to decode.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | Uint8Array | Uint8Array decoded.|
 
-- Example
+**Example**
   ```
   var that = new util.Base64();
   var buff = 'czEz';
@@ -1412,17 +1530,19 @@ encode(src:Uint8Array):Promise&lt;Uint8Array&gt;
 
 Encodes the input content asynchronously.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | src | Uint8Array | Yes| Uint8Array to encode asynchronously.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | Promise&lt;Uint8Array&gt; | Uint8Array obtained after asynchronous encoding.|
 
-- Example
+**Example**
   ```
   var that = new util.Base64();
   var array = new Uint8Array([115,49,51]);
@@ -1441,17 +1561,19 @@ encodeToString(src:Uint8Array):Promise&lt;string&gt;
 
 Encodes the input content asynchronously.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | src | Uint8Array | Yes| Uint8Array to encode asynchronously.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | Promise&lt;string&gt; | String obtained after asynchronous encoding.|
 
-- Example
+**Example**
   ```
   var that = new util.Base64();
   var array = new Uint8Array([115,49,51]);
@@ -1467,17 +1589,19 @@ decode(src:Uint8Array | string):Promise&lt;Uint8Array&gt;
 
 Decodes the input content asynchronously.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | src | Uint8Array&nbsp;\|&nbsp;string | Yes| Uint8Array or string to decode asynchronously.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | Promise&lt;Uint8Array&gt; | Uint8Array obtained after asynchronous decoding.|
 
-- Example
+**Example**
   ```
   var that = new util.Base64();
   var array = new Uint8Array([99,122,69,122]);
@@ -1499,7 +1623,9 @@ constructor()
 
 A constructor used to create a **Types** object.
 
-- Example
+**System capability**: SystemCapability.Utils.Lang
+
+**Example**
   ```
   var type = new util.Types();
   ```
@@ -1511,17 +1637,19 @@ isAnyArrayBuffer(value: Object):boolean
 
 Checks whether the input value is of the **ArrayBuffer** type.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | value | Object | Yes| Object to check.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the input value is of the **ArrayBuffer** type; returns **false** otherwise.|
 
-- Example
+**Example**
   ```
   var that = new util.Types();
   var result = that.isAnyArrayBuffer(new ArrayBuffer([]));
@@ -1536,17 +1664,19 @@ Checks whether the input value is of the **ArrayBufferView** type.
 
 **ArrayBufferView** is a helper type representing any of the following: **Int8Array**, **Int16Array**, **Int32Array**, **Uint8Array**, **Uint8ClampedArray**, **Uint32Array**, **Float32Array**, **Float64Array**, and **DataView**.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | value | Object | Yes| Object to check.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the input value is of the **ArrayBufferView** type; returns **false** otherwise.|
 
-- Example
+**Example**
   ```
   var that = new util.Types();
   var result = that.isArrayBufferView(new Int8Array([]));
@@ -1559,17 +1689,19 @@ isArgumentsObject(value: Object):boolean
 
 Checks whether the input value is of the **arguments** type.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | value | Object | Yes| Object to check.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the input value is of the **arguments** type; returns **false** otherwise.|
 
-- Example
+**Example**
   ```
   var that = new util.Types();
   function foo() {
@@ -1585,17 +1717,19 @@ isArrayBuffer(value: Object):boolean
 
 Checks whether the input value is of the **ArrayBuffer** type.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | value | Object | Yes| Object to check.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the input value is of the **ArrayBuffer** type; returns **false** otherwise.|
 
-- Example
+**Example**
   ```
   var that = new util.Types();
   var result = that.isArrayBuffer(new ArrayBuffer([]));
@@ -1608,17 +1742,19 @@ isAsyncFunction(value: Object):boolean
 
 Checks whether the input value is an asynchronous function.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | value | Object | Yes| Object to check.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the input value is an asynchronous function; returns **false** otherwise.|
 
-- Example
+**Example**
   ```
   var that = new util.Types();
   var result = that.isAsyncFunction(async function foo() {});
@@ -1631,17 +1767,19 @@ isBooleanObject(value: Object):boolean
 
 Checks whether the input value is of the **Boolean** type.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | value | Object | Yes| Object to check.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the input value is of the **Boolean** type; returns **false** otherwise.|
 
-- Example
+**Example**
   ```
   var that = new util.Types();
   var result = that.isBooleanObject(new Boolean(true));
@@ -1654,17 +1792,19 @@ isBoxedPrimitive(value: Object):boolean
 
 Checks whether the input value is of the **Boolean**, **Number**, **String**, or **Symbol** type.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | value | Object | Yes| Object to check.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the input value is of the **Boolean**, **Number**, **String**, or **Symbol** type; returns **false** otherwise.|
 
-- Example
+**Example**
   ```
   var that = new util.Types();
   var result = that.isBoxedPrimitive(new Boolean(false));
@@ -1677,17 +1817,19 @@ isDataView(value: Object):boolean
 
 Checks whether the input value is of the **DataView** type.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | value | Object | Yes| Object to check.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the input value is of the **DataView** type; returns **false** otherwise.|
 
-- Example
+**Example**
   ```
   var that = new util.Types();
   const ab = new ArrayBuffer(20);
@@ -1701,17 +1843,19 @@ isDate(value: Object):boolean
 
 Checks whether the input value is of the **Date** type.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | value | Object | Yes| Object to check.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the input value is of the **Date** type; returns **false** otherwise.|
 
-- Example
+**Example**
   ```
   var that = new util.Types();
   var result = that.isDate(new Date());
@@ -1724,17 +1868,19 @@ isExternal(value: Object):boolean
 
 Checks whether the input value is of the **native external** type.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | value | Object | Yes| Object to check.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the input value is of the **native external** type; returns **false** otherwise.|
 
-- Example
+**Example**
   ```
   var that = new util.Types();
   const data = util.createExternalType();
@@ -1748,17 +1894,19 @@ isFloat32Array(value: Object):boolean
 
 Checks whether the input value is of the **Float32Array** type.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | value | Object | Yes| Object to check.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the input value is of the **Float32Array** type; returns **false** otherwise.|
 
-- Example
+**Example**
   ```
   var that = new util.Types();
   var result = that.isFloat32Array(new Float32Array());
@@ -1771,17 +1919,19 @@ isFloat64Array(value: Object):boolean
 
 Checks whether the input value is of the **Float64Array** type.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | value | Object | Yes| Object to check.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the input value is of the **Float64Array** type; returns **false** otherwise.|
 
-- Example
+**Example**
   ```
   var that = new util.Types();
   var result = that.isFloat64Array(new Float64Array());
@@ -1794,17 +1944,19 @@ isGeneratorFunction(value: Object):boolean
 
 Checks whether the input value is a generator function.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | value | Object | Yes| Object to check.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the input value is a generator function; returns **false** otherwise.|
 
-- Example
+**Example**
   ```
   var that = new util.Types();
   var result = that.isGeneratorFunction(function* foo() {});
@@ -1817,17 +1969,19 @@ isGeneratorObject(value: Object):boolean
 
 Checks whether the input value is a generator object.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | value | Object | Yes| Object to check.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the input value is a generator object; returns **false** otherwise.|
 
-- Example
+**Example**
   ```
   var that = new util.Types();
   function* foo() {}
@@ -1842,17 +1996,19 @@ isInt8Array(value: Object):boolean
 
 Checks whether the input value is of the **Int8Array** type.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | value | Object | Yes| Object to check.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the input value is of the **Int8Array** type; returns **false** otherwise.|
 
-- Example
+**Example**
   ```
   var that = new util.Types();
   var result = that.isInt8Array(new Int8Array([]));
@@ -1865,17 +2021,19 @@ isInt16Array(value: Object):boolean
 
 Checks whether the input value is of the **Int16Array** type.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | value | Object | Yes| Object to check.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the input value is of the **Int16Array** type; returns **false** otherwise.|
 
-- Example
+**Example**
   ```
   var that = new util.Types();
   var result = that.isInt16Array(new Int16Array([]));
@@ -1888,17 +2046,19 @@ isInt32Array(value: Object):boolean
 
 Checks whether the input value is of the **Int32Array** type.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | value | Object | Yes| Object to check.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the input value is of the **Int32Array** type; returns **false** otherwise.|
 
-- Example
+**Example**
   ```
   var that = new util.Types();
   var result = that.isInt32Array(new Int32Array([]));
@@ -1911,17 +2071,19 @@ isMap(value: Object):boolean
 
 Checks whether the input value is of the **Map** type.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | value | Object | Yes| Object to check.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the input value is of the **Map** type; returns **false** otherwise.|
 
-- Example
+**Example**
   ```
   var that = new util.Types();
   var result = that.isMap(new Map());
@@ -1934,17 +2096,19 @@ isMapIterator(value: Object):boolean
 
 Checks whether the input value is of the **MapIterator** type.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | value | Object | Yes| Object to check.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the input value is of the **MapIterator** type; returns **false** otherwise.|
 
-- Example
+**Example**
   ```
   var that = new util.Types();
   const map = new Map();
@@ -1958,17 +2122,19 @@ isNativeError(value: Object):boolean
 
 Checks whether the input value is of the **Error** type.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | value | Object | Yes| Object to check.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the input value is of the **Error** type; returns **false** otherwise.|
 
-- Example
+**Example**
   ```
   var that = new util.Types();
   var result = that.isNativeError(new TypeError());
@@ -1981,17 +2147,19 @@ isNumberObject(value: Object):boolean
 
 Checks whether the input value is a number object.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | value | Object | Yes| Object to check.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the input value is a number object; returns **false** otherwise.|
 
-- Example
+**Example**
   ```
   var that = new util.Types();
   var result = that.isNumberObject(new Number(0));
@@ -2004,17 +2172,19 @@ isPromise(value: Object):boolean
 
 Checks whether the input value is a promise.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | value | Object | Yes| Object to check.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the input value is a promise; returns **false** otherwise.|
 
-- Example
+**Example**
   ```
   var that = new util.Types();
   var result = that.isPromise(Promise.resolve(1));
@@ -2027,17 +2197,19 @@ isProxy(value: Object):boolean
 
 Checks whether the input value is a proxy.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | value | Object | Yes| Object to check.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the input value is a proxy; returns **false** otherwise.|
 
-- Example
+**Example**
   ```
   var that = new util.Types();
   const target = {};
@@ -2052,17 +2224,19 @@ isRegExp(value: Object):boolean
 
 Checks whether the input value is of the **RegExp** type.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | value | Object | Yes| Object to check.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the input value is of the **RegExp** type; returns **false** otherwise.|
 
-- Example
+**Example**
   ```
   var that = new util.Types();
   var result = that.isRegExp(new RegExp('abc'));
@@ -2075,17 +2249,19 @@ isSet(value: Object):boolean
 
 Checks whether the input value is of the **Set** type.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | value | Object | Yes| Object to check.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the input value is of the **Set** type; returns **false** otherwise.|
 
-- Example
+**Example**
   ```
   var that = new util.Types();
   var result = that.isSet(new Set());
@@ -2098,17 +2274,19 @@ isSetIterator(value: Object):boolean
 
 Checks whether the input value is of the **SetIterator** type.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | value | Object | Yes| Object to check.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the input value is of the **SetIterator** type; returns **false** otherwise.|
 
-- Example
+**Example**
   ```
   var that = new util.Types();
   const set = new Set();
@@ -2122,17 +2300,19 @@ isStringObject(value: Object):boolean
 
 Checks whether the input value is a string object.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | value | Object | Yes| Object to check.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the input value is a string object; returns **false** otherwise.|
 
-- Example
+**Example**
   ```
   var that = new util.Types();
   var result = that.isStringObject(new String('foo'));
@@ -2145,17 +2325,19 @@ isSymbolObjec(value: Object):boolean
 
 Checks whether the input value is a symbol object.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | value | Object | Yes| Object to check.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the input value is a symbol object; returns **false** otherwise.|
 
-- Example
+**Example**
   ```
   var that = new util.Types();
   const symbols = Symbol('foo');
@@ -2171,17 +2353,19 @@ Checks whether the input value is of the **TypedArray** type.
 
 **TypedArray** is a helper type representing any of the following: **Int8Array**, **Int16Array**, **Int32Array**, **Uint8Array**, **Uint8ClampedArray**, **Uint16Array**, **Uint32Array**, **Float32Array**, **Float64Array**, and **DataView**.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | value | Object | Yes| Object to check.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the input value is of the **TypedArray** type; returns **false** otherwise.|
 
-- Example
+**Example**
   ```
   var that = new util.Types();
   var result = that.isTypedArray(new Float64Array([]));
@@ -2194,17 +2378,19 @@ isUint8Array(value: Object):boolean
 
 Checks whether the input value is of the **Uint8Array** type.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | value | Object | Yes| Object to check.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the input value is of the **Uint8Array** type; returns **false** otherwise.|
 
-- Example
+**Example**
   ```
   var that = new util.Types();
   var result = that.isUint8Array(new Uint8Array([]));
@@ -2217,17 +2403,19 @@ isUint8ClampedArray(value: Object):boolean
 
 Checks whether the input value is of the **Uint8ClampedArray** type.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | value | Object | Yes| Object to check.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the input value is of the **Uint8ClampedArray** type; returns **false** otherwise.|
 
-- Example
+**Example**
   ```
   var that = new util.Types();
   var result = that.isUint8ClampedArray(new Uint8ClampedArray([]));
@@ -2240,17 +2428,19 @@ isUint16Array(value: Object):boolean
 
 Checks whether the input value is of the **Uint16Array** type.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | value | Object | Yes| Object to check.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the input value is of the **Uint16Array** type; returns **false** otherwise.|
 
-- Example
+**Example**
   ```
   var that = new util.Types();
   var result = that.isUint16Array(new Uint16Array([]));
@@ -2263,17 +2453,19 @@ isUint32Array(value: Object):boolean
 
 Checks whether the input value is of the **Uint32Array** type.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | value | Object | Yes| Object to check.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the input value is of the **Uint32Array** type; returns **false** otherwise.|
 
-- Example
+**Example**
   ```
   var that = new util.Types();
   var result = that.isUint32Array(new Uint32Array([]));
@@ -2286,17 +2478,19 @@ isWeakMap(value: Object):boolean
 
 Checks whether the input value is of the **WeakMap** type.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | value | Object | Yes| Object to check.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the input value is of the **WeakMap** type; returns **false** otherwise.|
 
-- Example
+**Example**
   ```
   var that = new util.Types();
   var result = that.isWeakMap(new WeakMap());
@@ -2309,17 +2503,19 @@ isWeakSet(value: Object):boolean
 
 Checks whether the input value is of the **WeakSet** type.
 
-- Parameters
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | value | Object | Yes| Object to check.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the input value is of the **WeakSet** type; returns **false** otherwise.|
 
-- Example
+**Example**
   ```
   var that = new util.Types();
   var result = that.isWeakSet(new WeakSet());
