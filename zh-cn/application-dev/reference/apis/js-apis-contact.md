@@ -776,7 +776,7 @@ queryContacts(attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Cont
 
 ## contact.queryContacts
 
-queryContacts(holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;)
+queryContacts(holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 查询所有联系人，使用callback方式作为异步方法。
 
