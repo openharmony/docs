@@ -27,7 +27,7 @@ subscribeAccelerometer(Object): void
 
 观察加速度数据变化。针对同一个应用，多次点击调用时，会覆盖前面的调用效果，即仅最后一次调用生效。
 
-**系统权限**：SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor
 
 **需要权限**：ohos.permission.ACCELEROMETER，该权限为系统权限
 
@@ -72,7 +72,7 @@ unsubscribeAccelerometer(): void
 
 取消订阅加速度数据。
 
-**系统权限**：SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor
 
 **需要权限**：ohos.permission.ACCELEROMETER，该权限为系统权限
 
@@ -88,7 +88,7 @@ subscribeCompass(Object): void
 
 订阅罗盘数据变化。针对同一个应用，多次点击调用时，会覆盖前面的调用效果，即仅最后一次调用生效。
 
-**系统权限**：SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：**
 
@@ -125,7 +125,7 @@ unsubscribeCompass(): void
 
 取消订阅罗盘。
 
-**系统权限**：SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor
 
 **示例：**
 
@@ -139,7 +139,7 @@ subscribeProximity(Object): void
 
 订阅距离感应数据变化。针对同一个应用，多次点击调用时，会覆盖前面的调用效果，即仅最后一次调用生效。
 
-**系统权限**：SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：**
 
@@ -176,7 +176,7 @@ unsubscribeProximity(): void
 
 取消订阅距离感应。
 
-**系统权限**：SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor
 
 **示例：**
 
@@ -190,7 +190,7 @@ sensor.subscribeLight(Object): void
 
 订阅环境光线感应数据变化。再次调用时，会覆盖前一次调用效果，即仅最后一次调用生效。
 
-**系统权限**：SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：**
 
@@ -227,7 +227,7 @@ unsubscribeLight(): void
 
 取消订阅环境光线感应。
 
-**系统权限**：SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor
 
 **示例：**
 
@@ -241,7 +241,7 @@ subscribeStepCounter(Object): void
 
 订阅计步传感器数据变化。针对同一个应用，多次点击调用时，会覆盖前面的调用效果，即仅最后一次调用生效。
 
-**系统权限**：SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor
 
 **需要权限**：ohos.permission.ACTIVITY_MOTION
 
@@ -280,7 +280,7 @@ unsubscribeStepCounter(): void
 
 取消订阅计步传感器。
 
-**系统权限**：SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor
 
 **需要权限**：ohos.permission.ACTIVITY_MOTION
 
@@ -297,7 +297,7 @@ subcribeBarometer(Object): void
 
 订阅气压传感器数据变化。针对同一个应用，多次点击调用时，会覆盖前面的调用效果，即仅最后一次调用生效。
 
-**系统权限**：SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：**
 
@@ -335,7 +335,7 @@ unsubscribeBarometer(): void
 
 取消订阅气压传感器。
 
-**系统权限**：SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor
 
 **示例：**
 
@@ -350,7 +350,7 @@ subscribeHeartRate(Object): void
 
 订阅心率传感器数据变化。针对同一个应用，多次点击调用时，会覆盖前面的调用效果，即仅最后一次调用生效。
 
-**系统权限**：SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor
 
 **需要权限**：ohos.permission.READ_HEALTH_DATA
 
@@ -390,7 +390,7 @@ unsubscribeHeartRate(): void
 
 取消订阅心率。
 
-**系统权限**：SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor
 
 **需要权限**：ohos.permission.READ_HEALTH_DATA
 
@@ -406,7 +406,7 @@ subscribeOnBodyState(Object): void
 
 订阅设备佩戴状态。针对同一个应用，多次点击调用时，会覆盖前面的调用效果，即仅最后一次调用生效。
 
-**系统权限**：SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：**
 
@@ -443,7 +443,7 @@ unsubscribeOnBodyState(): void
 
 取消订阅设备佩戴状态。
 
-**系统权限**：SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor
 
 **示例：**
 
@@ -457,7 +457,7 @@ getOnBodyState(Object): void
 
 获取设备佩戴状态。
 
-**系统权限**：SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：**
 
@@ -494,7 +494,7 @@ subscribeDeviceOrientation(interval: string, success: (data: DeviceOrientationRe
 
 针对同一个应用，多次点击调用时，会覆盖前面的调用效果，即仅最后一次调用生效；针对同一个方法内，不支持多次调用。
 
-**系统权限**：SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：**
 
@@ -536,7 +536,7 @@ unsubscribeDeviceOrientation(): void
 
 取消订阅设备方向传感器数据。
 
-**系统权限**：SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor
 
 **示例：**
 
@@ -552,7 +552,7 @@ subscribeGyroscope(interval: string, success: (data: GyroscopeResponse), fail?: 
 
 针对同一个应用，多次点击调用时，会覆盖前面的调用效果，即仅最后一次调用生效；针对同一个方法内，不支持多次调用。
 
-**系统权限**：SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor
 
 **需要权限**：ohos.permission.GYROSCOPE，该权限为系统权限
 
@@ -597,7 +597,7 @@ unsubscribeGyroscope(): void
 
 取消订阅陀螺仪数据。
 
-**系统权限**：SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor
 
 **需要权限**：ohos.permission.GYROSCOPE，该权限为系统权限
 
