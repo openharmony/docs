@@ -140,7 +140,7 @@ sim.hasOperatorPrivileges(0, (err, data) => {
 
 ## sim.hasOperatorPrivileges<sup>7+</sup>
 
-hasOperatorPrivileges(slotId: number): Promise<boolean>
+hasOperatorPrivileges(slotId: number): Promise<boolean\>
 
 检查应用（调用者）是否已被授予运营商权限，使用Promise方式作为异步方法。
 
