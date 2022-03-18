@@ -256,9 +256,9 @@ The following table describes the subsystems of OpenHarmony. For details about t
 <td class="cellrowborder" valign="top" width="8.080808080808081%" headers="mcps1.1.4.1.3 "><p id="p1962012112314"><a name="p1962012112314"></a><a name="p1962012112314"></a>Standard system</p>
 </td>
 </tr>
-<tr id="row176674368222"><td class="cellrowborder" valign="top" width="11.111111111111112%" headers="mcps1.1.4.1.1 "><p id="p3667203652214"><a name="p3667203652214"></a><a name="p3667203652214"></a>Application framework</p>
+<tr id="row176674368222"><td class="cellrowborder" valign="top" width="11.111111111111112%" headers="mcps1.1.4.1.1 "><p id="p3667203652214"><a name="p3667203652214"></a><a name="p3667203652214"></a>Bundle management</p>
 </td>
-<td class="cellrowborder" valign="top" width="80.80808080808082%" headers="mcps1.1.4.1.2 "><p id="p12923326230"><a name="p12923326230"></a><a name="p12923326230"></a>Provides bundle installation, uninstallation, running, and management capabilities.</p>
+<td class="cellrowborder" valign="top" width="80.80808080808082%" headers="mcps1.1.4.1.2 "><p id="p12923326230"><a name="p12923326230"></a><a name="p12923326230"></a>Provides bundle installation, uninstallation, update, and query capabilities.</p>
 </td>
 <td class="cellrowborder" valign="top" width="8.080808080808081%" headers="mcps1.1.4.1.3 "><p id="p12667123619226"><a name="p12667123619226"></a><a name="p12667123619226"></a>All systems</p>
 </td>
