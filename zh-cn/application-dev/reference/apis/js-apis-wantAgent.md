@@ -936,6 +936,11 @@ WantAgent.equal(wantAgent1, wantAgent2).then((data) => {
 | CANCEL_PRESENT_FLAG | WantAgentFlags | 在生成一个新的WantAgent对象前取消已存在的一个WantAgent对象。 |
 | UPDATE_PRESENT_FLAG | WantAgentFlags | 使用新的WantAgent的额外数据替换已存在的WantAgent中的额外数据。 |
 | CONSTANT_FLAG       | WantAgentFlags | WantAgent是不可变的。                                        |
+| REPLACE_ELEMENT     | WantAgentFlags | 当前Want中的element属性可被WantAgent.trigger()中Want的element属性取代 |
+| REPLACE_ACTION      | WantAgentFlags | 当前Want中的action属性可被WantAgent.trigger()中Want的action属性取代 |
+| REPLACE_URI         | WantAgentFlags | 当前Want中的uri属性可被WantAgent.trigger()中Want的uri属性取代 |
+| REPLACE_ENTITIES    | WantAgentFlags | 当前Want中的entities属性可被WantAgent.trigger()中Want的entities属性取代 |
+| REPLACE_BUNDLE      | WantAgentFlags | 当前Want中的bundleName属性可被WantAgent.trigger()中Want的bundleName属性取代 |
 
 
 

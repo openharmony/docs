@@ -1,7 +1,7 @@
-# ServiceExtension
+# ServiceExtensionAbility
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 本模块首批接口从API 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
 提供ServiceExtension服务扩展相关接口。
@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```
-import ServiceExtension from '@ohos.application.ServiceExtension';
+import ServiceExtension from '@ohos.application.ServiceExtensionAbility';
 ```
 
 
@@ -26,7 +26,7 @@ import ServiceExtension from '@ohos.application.ServiceExtension';
 | context | [ServiceExtensionContext](js-apis-service-extension-context.md)  | 是 | 否 | ServiceExtension的上下文环境，继承自ExtensionContext。 <br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core| 
 
 
-## onCreate
+## ServiceExtensionAbility.onCreate
 
 onCreate(want: Want): void;
 
@@ -51,7 +51,7 @@ Extension生命周期回调，在创建时回调，执行初始化业务逻辑�
   ```
 
 
-## onDestroy
+## ServiceExtensionAbility.onDestroy
 
 onDestroy(): void;
 
@@ -70,7 +70,7 @@ Extension生命周期回调，在销毁时回调，执行资源清理等操作�
   ```
 
 
-## onRequest
+## ServiceExtensionAbility.onRequest
 
 onRequest(want: Want, startId: number): void;
 
@@ -96,7 +96,7 @@ Extension生命周期回调，如果是startAbility拉起的服务，会在onCre
   ```
 
 
-## onConnect
+## ServiceExtensionAbility.onConnect
 
 onConnect(want: Want): rpc.RemoteObject;
 
@@ -136,7 +136,7 @@ Extension生命周期回调，如果是connectAbility拉起的服务，会在onC
   ```
 
 
-## onDisconnect
+## ServiceExtensionAbility.onDisconnect
 
 onDisconnect(want: Want): void;
 

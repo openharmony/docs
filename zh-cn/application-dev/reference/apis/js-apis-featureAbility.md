@@ -115,7 +115,7 @@ acquireDataAbilityHelper(uri: string): DataAbilityHelper
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility'
 featureAbility.acquireDataAbilityHelper(
-    "dataability:///com.exmaple.DataAbility"
+    "dataability:///com.example.DataAbility"
 )
 ```
 

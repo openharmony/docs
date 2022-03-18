@@ -25,7 +25,7 @@ import Ability from '@ohos.application.Ability';
 
 ## Ability.onCreate
 
-onCreate(want: Want，param：LaunchParam): void
+onCreate(want: Want, param: AbilityConstant.LaunchParam): void;
 
 Ability创建时回调，执行初始化业务逻辑操作。
 
@@ -36,7 +36,7 @@ Ability创建时回调，执行初始化业务逻辑操作。
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | want | [Want](js-apis-featureAbility.md#Want类型说明) | 是 | 当前Ability的Want类型信息，包括ability名称、bundle名称等。 | 
-  | param | LaunchParam | 是 | 创建&nbsp;ability、上次异常退出的原因信息。 | 
+  | param | AbilityConstant.LaunchParam | 是 | 创建&nbsp;ability、上次异常退出的原因信息。 | 
 
 **示例：**
     
@@ -177,7 +177,7 @@ Ability生命周期回调，当应用处于后台时触发。
 
 ## Ability.onContinue
 
-onContinue(wantParam : {[key: string]: any}): boolean;
+onContinue(wantParam : {[key: string]: any}): AbilityConstant.OnContinueResult;
 
 当ability迁移准备迁移时触发，保存数据。
 
@@ -193,7 +193,7 @@ onContinue(wantParam : {[key: string]: any}): boolean;
 
   | 类型 | 说明 | 
   | -------- | -------- |
-  | boolean | true表示同意迁移，false表示拒绝迁移。 | 
+  | AbilityConstant.OnContinueResult | 继续的结果。 | 
 
 **示例：**
     
@@ -443,7 +443,7 @@ release(): void;
 
 ## Caller.onRelease
 
-onRelease(callback: function): void;
+onRelease(callback: OnReleaseCallBack): void;
 
 注册通用组件服务端Stub断开监听通知。
 
@@ -453,7 +453,7 @@ onRelease(callback: function): void;
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | callback | function | 是 | 返回onRelease回调结果。 | 
+  | callback | OnReleaseCallBack | 是 | 返回onRelease回调结果。 | 
 
 **示例：**
     
@@ -491,7 +491,7 @@ onRelease(callback: function): void;
 
 ## Callee.on
 
-on(method: string, callback: function): void;
+on(method: string, callback: CaleeCallBack): void;
 
 通用组件服务端注册消息通知callback。
 
@@ -502,7 +502,7 @@ on(method: string, callback: function): void;
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | method | string | 是 | 与客户端约定的通知消息字符串。 | 
-  | callback | function | 是 | 一个rpc.MessageParcel类型入参的js通知同步回调函数,&nbsp;回调函数至少要返回一个空的rpc.Sequenceable数据对象,&nbsp;其他视为函数执行错误。 | 
+  | callback | CaleeCallBack | 是 | 一个rpc.MessageParcel类型入参的js通知同步回调函数,&nbsp;回调函数至少要返回一个空的rpc.Sequenceable数据对象,&nbsp;其他视为函数执行错误。 | 
 
 **示例：**
     
