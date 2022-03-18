@@ -138,7 +138,7 @@ The usage of hapsigner varies depending on whether an application signing certif
          ├── -issuerKeystorePwd               # KS password of the issuer. It is optional. 
          ├── -keystoreFile                    # KS file, in JKS or P12 format. It is mandatory.
          ├── -keystorePwd                     # KS password. It is optional.
-         ├──   -outForm                         # Format of the certificate to generate. It is optional. The value can be cert or certChain. The default value is certChain.
+         ├──   -outForm                       # Format of the certificate to generate. It is optional. The value can be cert or certChain. The default value is certChain.
          ├── -rootCaCertFile                  # Root CA certificate, which is mandatory when outForm is certChain.
          ├── -subCaCertFile                   # Subordinate CA certificate, which is mandatory when outForm is certChain.
          ├── -outFile                         # Certificate file (certificate or certificate chain) to generate. It is optional. The file is output to the console if this parameter is not specified.
