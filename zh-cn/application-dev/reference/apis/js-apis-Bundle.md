@@ -750,9 +750,8 @@ SystemCapability.BundleManager.BundleFramework
 **示例：**
 
 ```js
-let bundleName : "com.example.myapplication";
-bundle. 
-
+let bundleName = "com.example.myapplication";
+bundle.isApplicationEnabled(bundleName)
 .then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
 }).catch((error) => {
