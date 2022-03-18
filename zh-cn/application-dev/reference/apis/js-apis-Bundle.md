@@ -1383,23 +1383,23 @@ bundle.queryExtensionAbilityInfosByWant(want, extensionFlags, (err, data) => {
 | installTime              | number                     | 是   | 否   | HAP包安装时间                              |
 | updateTime               | number                     | 是   | 否   | HAP包更新时间                              |
 | appInfo                  | ApplicationInfo        | 是   | 否   | 应用程序的配置信息                         |
-| abilityInfos              | Array<AbilityInfo>         | 是   | 否   | Ability的配置信息                          |
-| reqPermissions           | Array<string>              | 是   | 否   | 应用运行时需向系统申请的权限集合           |
-| reqPermissionDetails     | Array<ReqPermissionDetail> | 是   | 否   | 应用运行时需向系统申请的权限集合的详细信息 |
+| abilityInfos              | Array\<AbilityInfo>         | 是   | 否   | Ability的配置信息                          |
+| reqPermissions           | Array\<string>              | 是   | 否   | 应用运行时需向系统申请的权限集合           |
+| reqPermissionDetails     | Array\<ReqPermissionDetail> | 是   | 否   | 应用运行时需向系统申请的权限集合的详细信息 |
 | vendor                   | string                     | 是   | 否   | 应用包的供应商                             |
 | versionCode              | number                     | 是   | 否   | 应用包的版本号                             |
 | versionName              | string                     | 是   | 否   | 应用包的版本文本描述信息                   |
 | compatibleVersion        | number                     | 是   | 否   | 运行应用包所需要最低的SDK版本号            |
 | targetVersion            | number                     | 是   | 否   | 运行应用包所需要最高SDK版本号              |
 | isCompressNativeLibs     | boolean                    | 是   | 否   | 是否压缩应用包的本地库，默认为true         |
-| hapModuleInfos            | Array<HapModuleInfo>       | 是   | 否   | 模块的配置信息                             |
+| hapModuleInfos            | Array\<HapModuleInfo>       | 是   | 否   | 模块的配置信息                             |
 | entryModuleName          | string                     | 是   | 否   | Entry的模块名称                            |
 | cpuAbi                   | string                     | 是   | 否   | 应用包的cpuAbi信息                         |
 | isSilentInstallation     | string                     | 是   | 否   | 是否通过静默安装                           |
 | minCompatibleVersionCode | number                     | 是   | 否   | 分布式场景下的应用包兼容的最低版本         |
 | entryInstallationFree | boolean | 是 | 否 | Entry是否支持免安装 |
-| reqPermissionStates | Array<number> | 是 | 否 | 申请权限的授予状态 |
-| extensionAbilityInfo | Array<ExtensionAbilityInfo> | 是 | 否 |   ability的可扩展信息 |
+| reqPermissionStates | Array\<number> | 是 | 否 | 申请权限的授予状态 |
+| extensionAbilityInfo | Array\<ExtensionAbilityInfo> | 是 | 否 |   ability的可扩展信息 |
 
 ## ApplicationInfo
 
@@ -1420,14 +1420,14 @@ bundle.queryExtensionAbilityInfosByWant(want, extensionFlags, (err, data) => {
 | iconId           | string        | 是   | 否   | 应用程序的图标id                           |
 | process          | string        | 是   | 否   | 应用程序的进程，如果不设置，默认为包的名称 |
 | supportedModes   | number        | 是   | 否   | 应用程序支持的运行模式                     |
-| moduleSourceDirs | Array<string> | 是   | 否   | 应用程序的资源存放的相对路径               |
-| permissions      | Array<string> | 是   | 否   | 访问应用程序所需的权限                     |
-| moduleInfos | Array<ModuleInfo> | 是   | 否   | 应用程序的模块信息                         |
+| moduleSourceDirs | Array\<string> | 是   | 否   | 应用程序的资源存放的相对路径               |
+| permissions      | Array\<string> | 是   | 否   | 访问应用程序所需的权限                     |
+| moduleInfos | Array\<ModuleInfo> | 是   | 否   | 应用程序的模块信息                         |
 | entryDir         | string        | 是   | 否   | 应用程序的文件保存路径                     |
-| customizeData    | Map<string, Array<CustomizeData>> | 是   | 是   | 应用程序的自定义数据                       |
+| customizeData    | Map\<string, Array<CustomizeData>> | 是   | 是   | 应用程序的自定义数据                       |
 | codePath | string | 是 | 否 | 应用程序的安装目录 |
-| metaData | Map<string, Array<CustomizeData>> | 是 | 否 | 应用程序的自定义元信息 |
-| metaData | Map<string, Array<Metadata>> | 是 | 否 | 应用程序的元信息 |
+| metaData | Map\<string, Array<CustomizeData>> | 是 | 否 | 应用程序的自定义元信息 |
+| metaData | Map\<string, Array<Metadata>> | 是 | 否 | 应用程序的元信息 |
 | removable | boolean | 是 | 否 | 应用程序是否可以被移除 |
 | accessTokenId | number | 是 | 否 | 应用程序的accessTokenId |
 | uid | number | 是 | 否 | 应用程序的uid |
@@ -1474,15 +1474,15 @@ Hap模块信息
 | iconId           | number        | 是   | 否   | 模块图标ID         |
 | backgroundImg    | string        | 是   | 否   | 模块背景图片       |
 | supportedModes   | number        | 是   | 否   | 模块支持的模式     |
-| reqCapabilities  | Array<string> | 是   | 否   | 模块运行需要的能力 |
-| deviceTypes      | Array<string> | 是   | 否   | 支持运行的设备类型 |
-| abilityInfo      | Array<AbilityInfo> | 是   | 否   | Ability信息        |
+| reqCapabilities  | Array\<string> | 是   | 否   | 模块运行需要的能力 |
+| deviceTypes      | Array\<string> | 是   | 否   | 支持运行的设备类型 |
+| abilityInfo      | Array\<AbilityInfo> | 是   | 否   | Ability信息        |
 | moduleName       | string        | 是   | 否   | 模块名             |
 | mainAbilityName  | string        | 是   | 否   | 入口Ability名称    |
 | installationFree | boolean       | 是   | 否   | 是否支持免安装     |
 | mainElementName | string | 是 | 否 | 入口ability信息 |
-| extensionAbilityInfo | Array<ExtensionAbilityInfo> | 是 | 否 | extensionAbility信息 |
-| metadata | Array<Metadata> | 是 | 否 | Ability的元信息 |
+| extensionAbilityInfo | Array\<ExtensionAbilityInfo> | 是 | 否 | extensionAbility信息 |
+| metadata | Array\<Metadata> | 是 | 否 | Ability的元信息 |
 
 ## ReqPermissionDetail
 
@@ -1504,7 +1504,7 @@ Hap模块信息
 
 | 名称               | 类型 | 可读 | 可写 | 说明 |
 | ------ | ------ | ------ | ------ | ------ |
-| abilities | Array<string> | 是   | 是   | 使用到该权限的Ability集合 |
+| abilities | Array\<string> | 是   | 是   | 使用到该权限的Ability集合 |
 | when      | string        | 是   | 是   | 使用该权限的时机          |
 
 
@@ -1532,17 +1532,17 @@ Ability信息
 | type               | AbilityType | 是   | 否   | Ability类型                               |
 | orientation        | DisplayOrientation | 是   | 否   | Ability的显示模式                         |
 | launchMode         | LaunchMode | 是   | 否   | Ability的启动模式                         |
-| permissions        | Array<string>                                                | 是   | 否   | 被其他应用Ability调用时需要申请的权限集合 |
-| deviceTypes        | Array<string>                                                | 是   | 否   | Ability支持的设备类型                     |
-| deviceCapabilities | Array<string>                                                | 是   | 否   | Ability需要的设备能力                     |
+| permissions        | Array\<string>                                                | 是   | 否   | 被其他应用Ability调用时需要申请的权限集合 |
+| deviceTypes        | Array\<string>                                                | 是   | 否   | Ability支持的设备类型                     |
+| deviceCapabilities | Array\<string>                                                | 是   | 否   | Ability需要的设备能力                     |
 | readPermission     | string                                                       | 是   | 否   | 读取Ability数据所需的权限                 |
 | writePermission    | string                                                       | 是   | 否   | 向Ability写数据所需的权限                 |
 | applicationInfo    | ApplicationInfo | 是   | 否   | 应用程序的配置信息                        |
 | uri                | string                                                       | 是   | 否   | 获取Ability的统一资源标识符（URI）        |
 | labelId            | number                                                       | 是   | 否   | Ability的标签id                           |
 | subType            | AbilitySubType | 是   | 否   | Ability中枚举使用的模板的子类型           |
-| metaData | Array<CustomizeData> | 是 | 否 | ability的自定义信息 |
-| metaData | Array<Metadata> | 是 | 否 | ability的元信息 |
+| metaData | Array\<CustomizeData> | 是 | 否 | ability的自定义信息 |
+| metaData | Array\<Metadata> | 是 | 否 | ability的元信息 |
 | enabled | boolean | 是 | 否 | ability是否可用 |
 
 ## AbilityType
@@ -1643,9 +1643,9 @@ ExtensionAbility信息
 | iconId             | number                                                       | 是   | 否   | ExtensionAbility的图标id                           |
 | isVisible          | boolean                                                      | 是   | 否   | 判断ExtensionAbility是否可以被其他应用调用         |
 | extensionAbilityType               | bundle.ExtensionAbilityType | 是   | 否   | ExtensionAbility类型                               |
-| permissions        | Array<string>                                                | 是   | 否   | 被其他应用ExtensionAbility调用时需要申请的权限集合 |
+| permissions        | Array\<string>                                                | 是   | 否   | 被其他应用ExtensionAbility调用时需要申请的权限集合 |
 | applicationInfo    | ApplicationInfo | 是   | 否   | 应用程序的配置信息                        |
-| metaData | Array<Metadata> | 是 | 否 | ExtensionAbility的元信息 |
+| metaData | Array\<Metadata> | 是 | 否 | ExtensionAbility的元信息 |
 | enabled | boolean | 是 | 否 | ExtensionAbility是否可用 |
 | readPermission     | string                                                       | 是   | 否   | 读取ExtensionAbility数据所需的权限                 |
 | writePermission    | string                                                       | 是   | 否   | 向ExtensionAbility写数据所需的权限                 |
