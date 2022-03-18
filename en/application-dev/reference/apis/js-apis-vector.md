@@ -10,7 +10,7 @@
 import Vector from '@ohos.util.Vector'  
 ```
 
-## System Capabilities
+## System Capability
 
 SystemCapability.Utils.Lang
 
@@ -284,7 +284,7 @@ callbackfn
 | -------- | -------- | -------- | -------- |
 | value | T | Yes| Value of the entry that is currently traversed.|
 | index | number | No| Position index of the entry that is currently traversed.|
-| vector | Vector&lt;T&gt; | No| Instance that invokes the **replaceAllElements** method.|
+| vector | Vector&lt;T&gt; | No| Instance that invokes the **replaceAllElements** API.|
 
 **Example**
 
@@ -321,7 +321,7 @@ callbackfn
 | -------- | -------- | -------- | -------- |
 | value | T | Yes| Value of the entry that is currently traversed.|
 | index | number | No| Position index of the entry that is currently traversed.|
-| vector | Vector&lt;T&gt; | No| Instance that invokes the **forEach** method.|
+| vector | Vector&lt;T&gt; | No| Instance that invokes the **forEach** API.|
 
 **Example**
 
