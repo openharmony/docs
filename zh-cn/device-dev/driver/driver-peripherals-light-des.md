@@ -10,7 +10,6 @@
 
   - [接口说明](###接口说明)
   - [开发步骤](###开发步骤)
-  - [开发实例](###开发实例)
   - [调测验证](###调测验证)
 
 
@@ -22,7 +21,7 @@
 
 **图 1**  Light驱动模型图
 
-![Light驱动模型图](figures/Light驱动模型图.png)
+![Light驱动模型图](figures/Light%E9%A9%B1%E5%8A%A8%E6%A8%A1%E5%9E%8B%E5%9B%BE.png)
 
 ### 运作机制
 
@@ -30,7 +29,7 @@
 
 **图 2**  Light驱动运行图
 
-![Light驱动运行图](figures/Light驱动运行图.png)
+![Light驱动运行图](figures/Light%E9%A9%B1%E5%8A%A8%E8%BF%90%E8%A1%8C%E5%9B%BE.png)
 
 Light驱动模型以标准系统Hi3516DV300为例，介绍整个驱动加载及运行流程：
 
@@ -60,20 +59,12 @@ Light驱动模型支持获取系统中所有灯的信息，动态配置闪烁模
 | int32_t (*TurnOffLight)(uint32_t type)                       | 根据指定的灯类型关闭灯列表中可用的灯。                       |
 
 ### 开发步骤
-1.  基于HDF驱动框架，按照驱动Driver Entry程序，完成Light抽象驱动开发（主要由Bind、Init、Release、Dispatch函数接口实现），资源配置及HCS解析。完成Light驱动的设备信息配置。
-3.  调用配置解析接口，完成器件属性信息解析，器件寄存器解析，并注册到Light设备管理中。
-3.  完成Light获取类型、闪烁和停止接口开发，会根据闪烁模式创建和销毁定时器。
-
-### 开发实例
-
-基于HDF驱动模型，加载启动Light驱动，代码形式如下，具体原理可参考[HDF驱动开发指南](driver-hdf-development.md)。本例中Light驱动通讯接口方式选择GPIO。
-
-1. Light驱动的初始化和去初始化
+1. 基于HDF驱动框架，按照驱动Driver Entry程序，完成Light抽象驱动开发（主要由Bind、Init、Release、Dispatch函数接口实现），资源配置及HCS解析。完成Light驱动的设备信息配置。
 
    - 调用HDF_INIT将驱动入口注册到HDF框架中。在加载驱动时HDF框架会先调用Bind函数，再调用Init函数加载该驱动。当Init调用异常时，HDF框架会调用Release释放驱动资源并退出。
      Light驱动模型使用HCS作为配置描述源码，HCS配置字段详细介绍请参考[配置管理](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/driver/driver-hdf-manage.md)。
      其Driver Entry入口函数定义如下:
-     
+
      ```c
      /* 注册灯入口数据结构体对象 */
      struct HdfDriverEntry g_lightDriverEntry = {
@@ -86,7 +77,7 @@ Light驱动模型支持获取系统中所有灯的信息，动态配置闪烁模
      /* 调用HDF_INIT将驱动入口注册到HDF框架中。在加载驱动时HDF框架会先调用Bind函数，再调用Init函数加载该驱动。当Init调用异常时，HDF框架会调用Release函数释放驱动资源并退出 */
      HDF_INIT(g_lightDriverEntry);
      ```
-     
+
    - 基于HDF驱动框架，按照驱动Driver Entry程序，完成Light抽象驱动开发，主要由Bind、Init、Release、Dispatch函数接口实现。
 
      ```c
@@ -172,12 +163,11 @@ Light驱动模型支持获取系统中所有灯的信息，动态配置闪烁模
          (void)OsalMemFree(drvData);
          g_lightDrvData = NULL;
      }
-     
      ```
 
    - Light设备管理模块负责系统中Light器件接口发布，在系统启动过程中，HDF框架机制通过灯Host里设备HCS配置信息，加载设备管理驱动。
 
-     ```hcs
+     ```
      /* 灯设备HCS配置 */
      device_light :: device {
          device0 :: deviceNode {
@@ -189,70 +179,42 @@ Light驱动模型支持获取系统中所有灯的信息，动态配置闪烁模
              serviceName = "hdf_light"; // Light驱动对外发布服务的名称，必须唯一
              deviceMatchAttr = "hdf_light_driver"; // 驱动私有数据匹配的关键字，必须和驱动私有数据配置表中的match_attr值相等
          }
-     }
      ```
 
-2. 分配资源，解析灯HCS配置。
+2. 调用配置解析接口，完成器件属性信息解析，器件寄存器解析，并注册到Light设备管理中。
 
-   - 解析HCS配置文件。
+   ```c
+   /* 分配资源，解析灯HCS配置 */
+   static int32_t ParseLightInfo(const struct DeviceResourceNode *node)
+   {
+       .....
+       /* 从HCS获取支持灯的类型个数 */
+       drvData->lightNum = parser->GetElemNum(light, "lightType");
+       ....
+       for (i = 0; i < drvData->lightNum; ++i) {
+       /* 获取类型 */
+       ret = parser->GetUint32ArrayElem(light, "lightType", i, &temp, 0);
+       CHECK_LIGHT_PARSER_RESULT_RETURN_VALUE(ret, "lightType");
+       }
+   
+       for (i = 0; i < drvData->lightNum; ++i) {
+       .....
+       /* 类型作为下标开辟空间 */
+       drvData->info[temp] = (struct LightDeviceInfo *)OsalMemCalloc(sizeof(struct LightDeviceInfo));
+       .....
+       /* 将Light设备信息进行填充 */
+       ret = parser->GetUint32(light, "busRNum", &drvData->info[temp]->busRNum, 0);
+       CHECK_LIGHT_PARSER_RESULT_RETURN_VALUE(ret, "busRNum");
+       ret = parser->GetUint32(light, "busGNum", &drvData->info[temp]->busGNum, 0);
+       CHECK_LIGHT_PARSER_RESULT_RETURN_VALUE(ret, "busGNum");
+       ret = parser->GetUint32(light, "busBNum", &drvData->info[temp]->busBNum, 0);
+       CHECK_LIGHT_PARSER_RESULT_RETURN_VALUE(ret, "busBNum");
+       .....
+       return HDF_SUCCESS;
+   }
+   ```
 
-     ```c
-     /* 分配资源，解析灯HCS配置 */
-     static int32_t ParseLightInfo(const struct DeviceResourceNode *node)
-     {
-         .....
-         /* 从HCS获取支持灯的类型个数 */
-         drvData->lightNum = parser->GetElemNum(light, "lightType");
-         ....
-         for (i = 0; i < drvData->lightNum; ++i) {
-         /* 获取类型 */
-         ret = parser->GetUint32ArrayElem(light, "lightType", i, &temp, 0);
-         CHECK_LIGHT_PARSER_RESULT_RETURN_VALUE(ret, "lightType");
-         }
-     
-         for (i = 0; i < drvData->lightNum; ++i) {
-         .....
-         /* 类型作为下标开辟空间 */
-         drvData->info[temp] = (struct LightDeviceInfo *)OsalMemCalloc(sizeof(struct LightDeviceInfo));
-         .....
-         /* 将Light设备信息进行填充 */
-         ret = parser->GetUint32(light, "busRNum", &drvData->info[temp]->busRNum, 0);
-         CHECK_LIGHT_PARSER_RESULT_RETURN_VALUE(ret, "busRNum");
-         ret = parser->GetUint32(light, "busGNum", &drvData->info[temp]->busGNum, 0);
-         CHECK_LIGHT_PARSER_RESULT_RETURN_VALUE(ret, "busGNum");
-         ret = parser->GetUint32(light, "busBNum", &drvData->info[temp]->busBNum, 0);
-         CHECK_LIGHT_PARSER_RESULT_RETURN_VALUE(ret, "busBNum");
-         .....
-         return HDF_SUCCESS;
-     
-     }
-     ```
-
-   - 灯效果模型使用HCS作为配置描述源码，HCS配置字段详细介绍参考[配置管理](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/driver/driver-hdf-manage.md)介绍。
-
-     ```hcs
-     /* 灯数据配置模板(light_config.hcs) */
-     root {
-         lightConfig {
-             boardConfig {
-                 match_attr = "hdf_light_driver";
-                 lightAttr {
-                     light01 {
-                         lightType = [1, 2];          // 灯类型
-                         busRNum = 31;                // 红色对应的GPIO管脚
-                         busGNum = 30;                // 绿色对应的GPIO管脚
-                         busBNum = 29;                // 蓝色对应的GPIO管脚
-                         lightBrightness = 0X80000000;// RGB: R:16-31bit、G:8-15bit、B:0-7bit
-                         onTime = 50;                 // 一个闪烁周期内亮灯时长（ms）
-                         offTime = 50;                // 一个闪烁周期内熄灯时长（ms）
-                     }
-                 }
-             }
-         }
-     }
-     ```
-
-3. 完成获取灯类型，闪烁和停止接口开发，会根据闪烁模式创建和销毁定时器。
+3. 完成Light获取类型、闪烁和停止接口开发，会根据闪烁模式创建和销毁定时器。
 
    ```c
    /* Light驱动服务调用GetAllLightInfo获取灯类型，Enable接口启动闪烁模式,
