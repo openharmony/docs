@@ -915,7 +915,7 @@ bundle.queryAbilityByWant(want, bundleFlags, (err, data) => {
 
 ## bundle.getBundleInstaller
 
-getBundleInstaller(): Promise<BundleInstaller>
+getBundleInstaller(): Promise\<BundleInstaller>
 
 以异步方法获取BundleInstaller，使用Promise形式返回结果。
 
@@ -931,7 +931,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | 类型                     | 说明                                                |
 | ------------------------ | --------------------------------------------------- |
-| Promise<BundleInstaller> | 返回值为Promise对象，Promise中包含BundleInstaller。 |
+| Promise\<BundleInstaller> | 返回值为Promise对象，Promise中包含BundleInstaller。 |
 
 **示例：**
 
@@ -958,7 +958,7 @@ bundle.getBundleInstaller()
 
 ## bundle.getBundleInstaller
 
-getBundleInstaller(callback: AsyncCallback<BundleInstaller>): void;
+getBundleInstaller(callback: AsyncCallback\<BundleInstaller>): void;
 
 以异步方法获取BundleInstaller，使用callback形式返回结果。
 
@@ -974,7 +974,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | 名称     | 类型                           | 必填 | 描述                                              |
 | -------- | ------------------------------ | ---- | ------------------------------------------------- |
-| callback | AsyncCallback<BundleInstaller> | 是   | 程序启动作为入参的回调函数，返回BundleInstaller。 |
+| callback | AsyncCallback\<BundleInstaller> | 是   | 程序启动作为入参的回调函数，返回BundleInstaller。 |
 
 **示例：**
 
@@ -1039,7 +1039,7 @@ bundle.getLaunchWantForBundle(bundleName)
 
 ## bundle.getLaunchWantForBundle
 
-getLaunchWantForBundle(bundleName: string, callback: AsyncCallback<Want>): void;
+getLaunchWantForBundle(bundleName: string, callback: AsyncCallback\<Want>): void;
 
 以异步方法查询拉起指定应用的want对象，使用callback形式返回结果。
 
@@ -1107,7 +1107,7 @@ bundle.getNameForUid(uid)
 
 ## bundle.getNameForUid
 
-getNameForUid(uid: number, callback: AsyncCallback<string>): void;
+getNameForUid(uid: number, callback: AsyncCallback\<string>): void;
 
 以异步方法通过uid获取对应的包名，使用callback形式返回结果。
 
@@ -1138,7 +1138,7 @@ bundle.getNameForUid(uid, (err, data) => {
 
 ## bundle.getAbilityIcon
 
-function getAbilityIcon(bundleName: string, abilityName: string): Promise<image.PixelMap>;
+function getAbilityIcon(bundleName: string, abilityName: string): Promise\<[PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)>;
 
 以异步方法通过bundleName和abilityName获取对应Icon的PixelMap，使用Promise形式返回结果。
 
@@ -1152,7 +1152,7 @@ function getAbilityIcon(bundleName: string, abilityName: string): Promise<image.
 **返回值：**
 | 类型                  | 说明                                                         |
 | --------------------- | ------------------------------------------------------------ |
-| Promise\<image.PixelMap> | 返回值为PixelMap。 |
+| Promise\<[PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)> | 返回值为PixelMap。 |
 
 **示例：**
 
@@ -1169,7 +1169,7 @@ bundle.getAbilityIcon(bundleName, abilityName)
 
 ## bundle.getAbilityIcon
 
-function getAbilityIcon(bundleName: string, abilityName: string, callback: AsyncCallback<image.PixelMap>): void;
+function getAbilityIcon(bundleName: string, abilityName: string, callback: AsyncCallback\<[PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)>): void;
 
 以异步方法通过bundleName和abilityName获取对应的PixelMap，使用callback形式返回结果。
 
@@ -1179,7 +1179,7 @@ function getAbilityIcon(bundleName: string, abilityName: string, callback: Async
 | ---------- | ------ | ---- | -------- |
 | bundleName | string | 是   | 要查询的bundleName。 |
 | abilityName | string | 是   | 要查询的abilityName。 |
-| callback   | AsyncCallback\<image.PixelMap> | 是   | 程序启动作为入参的回调函数，返回指定PixelMap。 |
+| callback   | AsyncCallback\<[PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)> | 是   | 程序启动作为入参的回调函数，返回指定PixelMap。 |
 
 **示例：**
 
@@ -1198,7 +1198,7 @@ bundle.getAbilityIcon(bundleName, abilityName, (err, data) => {
 
 ## bundle.queryExtensionAbilityInfosByWant
 
-function queryExtensionAbilityInfosByWant(want: Want, extensionFlags: number, userId?: number): Promise<Array<ExtensionAbilityInfo>>
+function queryExtensionAbilityInfosByWant(want: Want, extensionFlags: number, userId?: number): Promise<Array\<ExtensionAbilityInfo>>
 
 以异步方法根据给定的意图获取ExtensionAbility信息，使用Promise形式返回结果。
 
@@ -1245,7 +1245,7 @@ bundle.queryExtensionAbilityInfosByWant(want, extensionFlags, userId)
 
 ## bundle.queryExtensionAbilityInfosByWant
 
-function queryExtensionAbilityInfosByWant(want: Want, extensionFlags: number, userId: number, callback: AsyncCallback<Array<ExtensionAbilityInfo>>): void
+function queryExtensionAbilityInfosByWant(want: Want, extensionFlags: number, userId: number, callback: AsyncCallback<Array\<ExtensionAbilityInfo>>): void
 
 以异步方法根据给定的意图获取ExtensionAbility信息，使用callback形式返回结果。
 
@@ -1282,7 +1282,7 @@ bundle.queryExtensionAbilityInfosByWant(want, extensionFlags, userId, (err, data
 
 ## bundle.queryExtensionAbilityInfosByWant
 
-function queryExtensionAbilityInfosByWant(want: Want, extensionFlags: number, callback: AsyncCallback<Array<ExtensionAbilityInfo>>): void;
+function queryExtensionAbilityInfosByWant(want: Want, extensionFlags: number, callback: AsyncCallback<Array\<ExtensionAbilityInfo>>): void;
 
 以异步方法根据给定的意图获取ExtensionAbility信息，使用callback形式返回结果。
 
@@ -1318,7 +1318,7 @@ bundle.queryExtensionAbilityInfosByWant(want, extensionFlags, (err, data) => {
 
 ## ElementName
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
 | 名称        | 读写属性 | 类型   | 必填 | 描述                                                         |
 | ----------- | -------- | ------ | ---- | ------------------------------------------------------------ |
@@ -1330,7 +1330,7 @@ bundle.queryExtensionAbilityInfosByWant(want, extensionFlags, (err, data) => {
 
 ## InstallStatus
 
- **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
+ **系统能力:** SystemCapability.BundleManager.BundleFramework
 
 | 名称          | 读写属性 | 类型             | 必填 | 描述                                                         |
 | ------------- | -------- | ---------------- | ---- | ------------------------------------------------------------ |
@@ -1340,7 +1340,7 @@ bundle.queryExtensionAbilityInfosByWant(want, extensionFlags, (err, data) => {
 
 包的标志
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
 | 名称               | 默认值 | 说明   |
 | ------ | ------ | ------ |
@@ -1362,7 +1362,7 @@ bundle.queryExtensionAbilityInfosByWant(want, extensionFlags, (err, data) => {
 
 包的选项
 
- **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
+ **系统能力:** SystemCapability.BundleManager.BundleFramework
 
 | 名称               | 类型 | 可读 | 可写 | 说明 |
 | ------ | ------ | ------ | ------ | ------ |
@@ -1372,7 +1372,7 @@ bundle.queryExtensionAbilityInfosByWant(want, extensionFlags, (err, data) => {
 
 应用包的信息
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
 | 名称               | 类型 | 可读 | 可写 | 说明 |
 | ------ | ------ | ------ | ------ | ------ |
@@ -1405,7 +1405,7 @@ bundle.queryExtensionAbilityInfosByWant(want, extensionFlags, (err, data) => {
 
 应用程序信息
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
 | 名称               | 类型 | 可读 | 可写 | 说明 |
 | ------ | ------ | ------ | ------ | ------ |
@@ -1437,7 +1437,7 @@ bundle.queryExtensionAbilityInfosByWant(want, extensionFlags, (err, data) => {
 
 应用程序的模块信息
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
 | 名称               | 类型 | 可读 | 可写 | 说明 |
 | ------ | ------ | ------ | ------ | ------ |
@@ -1448,7 +1448,7 @@ bundle.queryExtensionAbilityInfosByWant(want, extensionFlags, (err, data) => {
 
 自定义元数据
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
 | 名称  | 类型   | 可读 | 可写 | 说明             |
 | ----- | ------ | ---- | ---- | ---------------- |
@@ -1461,7 +1461,7 @@ bundle.queryExtensionAbilityInfosByWant(want, extensionFlags, (err, data) => {
 
 Hap模块信息
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
 | 名称               | 类型 | 可读 | 可写 | 说明 |
 | ------ | ------ | ------ | ------ | ------ |
@@ -1488,7 +1488,7 @@ Hap模块信息
 
 应用运行时需向系统申请的权限集合的详细信息
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
 | 名称               | 类型 | 可读 | 可写 | 说明 |
 | ------ | ------ | ------ | ------ | ------ |
@@ -1500,7 +1500,7 @@ Hap模块信息
 
 描述权限使用的场景和时机
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
 | 名称               | 类型 | 可读 | 可写 | 说明 |
 | ------ | ------ | ------ | ------ | ------ |
@@ -1512,7 +1512,7 @@ Hap模块信息
 
 Ability信息
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
 | 名称               | 类型 | 可读 | 可写 | 说明 |
 | ------ | ------ | ------ | ------ | ------ |
@@ -1549,7 +1549,7 @@ Ability信息
 
 Ability类型
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
 | 名称    | 类型 | 说明                        |
 | ------- | ---- | --------------------------- |
@@ -1562,7 +1562,7 @@ Ability类型
 
 屏幕显示方向
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
 | 名称          | 类型 | 说明                     |
 | ------------- | ---- | ------------------------ |
@@ -1575,7 +1575,7 @@ Ability类型
 
 启动模式
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
 | 名称        | 类型 | 说明                |
 | ----------- | ---- | ------------------- |
@@ -1586,7 +1586,7 @@ Ability类型
 
 Ability的子类型
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
 | 名称        | 类型 | 说明                          |
 | ----------- | ---- | ----------------------------- |
@@ -1598,7 +1598,7 @@ Ability的子类型
 
 ExtensionAbility的类型
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
 | 名称                  | 类型 | 说明                          |
 | -------------------- | ---- | ----------------------------- |
@@ -1617,7 +1617,7 @@ ExtensionAbility的类型
 
 扩展标志
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
 | 名称               | 默认值 | 说明   |
 | ------ | ------ | ------ |
@@ -1631,7 +1631,7 @@ ExtensionAbility的类型
 
 ExtensionAbility信息
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
 | 名称               | 类型 | 可读 | 可写 | 说明 |
 | ------ | ------ | ------ | ------ | ------ |
@@ -1655,7 +1655,7 @@ ExtensionAbility信息
 
 元数据信息
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
 | 名称  | 类型   | 可读 | 可写 | 说明             |
 | ----- | ------ | ---- | ---- | ---------------- |
