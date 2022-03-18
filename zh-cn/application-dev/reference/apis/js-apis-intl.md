@@ -1,7 +1,7 @@
 # 国际化-Intl
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> - 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > 
 > - Intl模块包含国际化能力基础接口（在ECMA 402中定义）。
 
