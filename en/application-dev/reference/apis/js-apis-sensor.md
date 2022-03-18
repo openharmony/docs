@@ -10,43 +10,28 @@
 import sensor from '@ohos.sensor';
 ```
 
-## System Capabilities
 
-SystemCapability.Sensors.Sensor
+## sensor.on(SensorType.SENSOR_TYPE_ID_ACCELEROMETER)
 
-## Required Permissions
-
-To use the pedometer sensor, you must declare the **ohos.permission.ACTIVITY_MOTION** permission.
-
-To use the heart rate sensor, you must declare the **ohos.permission.READ_HEALTH_DATA** permission.
-
-To use the acceleration sensor, you must declare the **ohos.permission.ACCELEROMETER** permission.
-
-To use the gyroscope sensor, you must declare the **ohos.permission.GYROSCOPE** permission.
-
-
-## sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER)
-
-on(type:  sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: AsyncCallback&lt;AccelerometerResponse&gt;,options?: Options): void
-
+on(type:  SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: Callback&lt;AccelerometerResponse&gt;,options?: Options): void
 
 Subscribes to data changes of the acceleration sensor. If this API is called multiple times for the same application, the last call takes effect.
+
+**Required permissions**: ohos.permission.ACCELEROMETER (a system permission)
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | [SensorType](#sensortype) | Yes| Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_ACCELEROMETER**.|
-  | callback | AsyncCallback&lt;[AccelerometerResponse](#accelerometerresponse)&gt; | Yes| Callback used to return the acceleration sensor data. The reported data type in the callback is **AccelerometerResponse**.|
+  | callback | Callback&lt;[AccelerometerResponse](#accelerometerresponse)&gt; | Yes| Callback used to return the acceleration sensor data. The reported data type in the callback is **AccelerometerResponse**.|
   | options | [Options](#options) | No| Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns.|
 
 - Example
   ```
-  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER,function(error,data){
-      if (error) {
-          console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
-          return;
-      }
+  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER,function(data){
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
       console.info('Z-coordinate component: ' + data.z);
@@ -56,26 +41,26 @@ Subscribes to data changes of the acceleration sensor. If this API is called mul
   ```
 
 
-## sensor.on(sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION)
+## sensor.on(SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION)
 
-on(type:sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:AsyncCallback&lt;LinearAccelerometerResponse&gt;, options?: Options): void
+on(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:Callback&lt;LinearAccelerometerResponse&gt;, options?: Options): void
 
 Subscribes to data changes of the linear acceleration sensor. If this API is called multiple times for the same application, the last call takes effect.
+
+**Required permissions**: ohos.permission.ACCELEROMETER (a system permission)
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | [SensorType](#sensortype) | Yes| Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_LINEAR_ACCELERATION**.|
-  | callback | AsyncCallback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | Yes| Callback used to return the linear acceleration sensor data. The reported data type in the callback is **LinearAccelerometerResponse**.|
+  | callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | Yes| Callback used to return the linear acceleration sensor data. The reported data type in the callback is **LinearAccelerometerResponse**.|
   | options | [Options](#options) | No| Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns.|
 
 - Example
   ```
-  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,function(error,data){
-      if (error) {
-          console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
-          return;
-      }
+  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,function(data){
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
       console.info('Z-coordinate component: ' + data.z);
@@ -85,26 +70,26 @@ Subscribes to data changes of the linear acceleration sensor. If this API is cal
   ```
 
 
-## sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED)
+## sensor.on(SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED)
 
-on(type:sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,callback:AsyncCallback&lt;AccelerometerUncalibratedResponse&gt;, options?: Options): void
+on(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,callback: Callback&lt;AccelerometerUncalibratedResponse&gt;, options?: Options): void
 
 Subscribes to data changes of the uncalibrated acceleration sensor. If this API is called multiple times for the same application, the last call takes effect.
+
+**Required permissions**: ohos.permission.ACCELEROMETER (a system permission)
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | [SensorType](#sensortype) | Yes| Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED**.|
-  | callback | AsyncCallback&lt;[AccelerometerUncalibratedResponse](#accelerometeruncalibratedresponse)&gt; | Yes| Callback used to return the uncalibrated acceleration sensor data. The reported data type in the callback is **AccelerometerUncalibratedResponse**.|
+  | callback | Callback&lt;[AccelerometerUncalibratedResponse](#accelerometeruncalibratedresponse)&gt; | Yes| Callback used to return the uncalibrated acceleration sensor data. The reported data type in the callback is **AccelerometerUncalibratedResponse**.|
   | options | [Options](#options) | No| Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns.|
 
 - Example
   ```
-  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,function(error,data){
-      if (error) {
-          console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
-          return;
-      }
+  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,function(data){
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
       console.info('Z-coordinate component: ' + data.z);
@@ -117,26 +102,24 @@ Subscribes to data changes of the uncalibrated acceleration sensor. If this API 
   ```
 
 
-## sensor.on(sensor.SensorType.SENSOR_TYPE_ID_GRAVITY)
+## sensor.on(SensorType.SENSOR_TYPE_ID_GRAVITY)
 
-on(type: sensor.SensorType.SENSOR_TYPE_ID_GRAVITY, callback: AsyncCallback&lt;GravityResponse&gt;,options?: Options): void
+on(type: SensorType.SENSOR_TYPE_ID_GRAVITY, callback: Callback&lt;GravityResponse&gt;,options?: Options): void
 
 Subscribes to data changes of the gravity sensor. If this API is called multiple times for the same application, the last call takes effect.
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | [SensorType](#sensortype) | Yes| Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_GRAVITY**.|
-  | callback | AsyncCallback&lt;[GravityResponse](#gravityresponse)&gt; | Yes| Callback used to return the gravity sensor data. The reported data type in the callback is **GravityResponse**.|
+  | callback | Callback&lt;[GravityResponse](#gravityresponse)&gt; | Yes| Callback used to return the gravity sensor data. The reported data type in the callback is **GravityResponse**.|
   | options | [Options](#options) | No| Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns.|
 
 - Example
   ```
-  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_GRAVITY,function(error,data){
-      if (error) {
-          console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
-          return;
-      }
+  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_GRAVITY,function(data){
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
       console.info('Z-coordinate component: ' + data.z);
@@ -146,26 +129,26 @@ Subscribes to data changes of the gravity sensor. If this API is called multiple
   ```
 
 
-## sensor.on(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE)
+## sensor.on(SensorType.SENSOR_TYPE_ID_GYROSCOPE)
 
-on(type: sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback: AsyncCallback&lt;GyroscopeResponse&gt;, options?: Options): void
+on(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback: Callback&lt;GyroscopeResponse&gt;, options?: Options): void
 
 Subscribes to data changes of the gyroscope sensor. If this API is called multiple times for the same application, the last call takes effect.
+
+**Required permissions**: ohos.permission.GYROSCOPE (a system permission)
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | [SensorType](#sensortype) | Yes| Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_GYROSCOPE**.|
-  | callback | AsyncCallback&lt;[GyroscopeResponse](#gyroscoperesponse)&gt; | Yes| Callback used to return the gyroscope sensor data. The reported data type in the callback is **GyroscopeResponse**.|
+  | callback | Callback&lt;[GyroscopeResponse](#gyroscoperesponse)&gt; | Yes| Callback used to return the gyroscope sensor data. The reported data type in the callback is **GyroscopeResponse**.|
   | options | [Options](#options) | No| Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns.|
 
 - Example
   ```
-  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE,function(error,data){
-      if (error) {
-          console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
-          return;
-      }
+  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE,function(data){
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
       console.info('Z-coordinate component: ' + data.z);
@@ -175,26 +158,26 @@ Subscribes to data changes of the gyroscope sensor. If this API is called multip
   ```
 
 
-## sensor.on(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED)
+## sensor.on(SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED)
 
-on(type:sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED,callback:AsyncCallback&lt;GyroscopeUncalibratedResponse&gt;, options?: Options): void
+on(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED,callback:Callback&lt;GyroscopeUncalibratedResponse&gt;, options?: Options): void
 
 Subscribes to data changes of the uncalibrated gyroscope sensor. If this API is called multiple times for the same application, the last call takes effect.
+
+**Required permissions**: ohos.permission.GYROSCOPE (a system permission)
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | [SensorType](#sensortype) | Yes| Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED**.|
-  | callback | AsyncCallback&lt;[GyroscopeUncalibratedResponse](#gyroscopeuncalibratedresponse)&gt; | Yes| Callback used to return the uncalibrated gyroscope sensor data. The reported data type in the callback is **GyroscopeUncalibratedResponse**.|
+  | callback | Callback&lt;[GyroscopeUncalibratedResponse](#gyroscopeuncalibratedresponse)&gt; | Yes| Callback used to return the uncalibrated gyroscope sensor data. The reported data type in the callback is **GyroscopeUncalibratedResponse**.|
   | options | [Options](#options) | No| Interval at which the callback is invoked to return the sensor data.|
 
 - Example
   ```
-  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED,function(error,data){
-      if (error) {
-          console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
-          return;
-      }
+  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED,function(data){
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
       console.info('Z-coordinate component: ' + data.z);
@@ -207,26 +190,24 @@ Subscribes to data changes of the uncalibrated gyroscope sensor. If this API is 
   ```
 
 
-## sensor.on(sensor.SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION)
+## sensor.on(SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION)
 
-on(type: sensor.SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, callback: AsyncCallback&lt;SignificantMotionResponse&gt;, options?: Options): void
+on(type: SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, callback: Callback&lt;SignificantMotionResponse&gt;, options?: Options): void
 
 Subscribes to data changes of the significant motion sensor. If this API is called multiple times for the same application, the last call takes effect.
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | [SensorType](#sensortype) | Yes| Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_SIGNIFICANT_MOTION**.|
-  | callback | AsyncCallback&lt;[SignificantMotionResponse](#significantmotionresponse)&gt; | Yes| Callback used to return the significant motion sensor data. The reported data type in the callback is **SignificantMotionResponse**.|
+  | callback | Callback&lt;[SignificantMotionResponse](#significantmotionresponse)&gt; | Yes| Callback used to return the significant motion sensor data. The reported data type in the callback is **SignificantMotionResponse**.|
   | options | [Options](#options) | No| Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns.|
 
 - Example
   ```
-  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION,function(error,data){
-      if (error) {
-          console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
-          return;
-      }
+  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION,function(data){
       console.info('Scalar data: ' + data.scalar);
   },
       {interval: 10000000}
@@ -234,26 +215,26 @@ Subscribes to data changes of the significant motion sensor. If this API is call
   ```
 
 
-## sensor.on(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION)
+## sensor.on(SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION)
 
-on(type: sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, callback: AsyncCallback&lt;PedometerDetectResponse&gt;, options?: Options): void
+on(type: SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, callback: Callback&lt;PedometerDetectionResponse&gt;, options?: Options): void
 
 Subscribes to data changes of the pedometer detection sensor. If this API is called multiple times for the same application, the last call takes effect.
+
+**Required permissions**: ohos.permission.ACTIVITY_MOTION
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | [SensorType](#sensortype) | Yes| Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_PEDOMETER_DETECTION**.|
-  | callback | AsyncCallback&lt;[PedometerDetectResponse](#pedometerdetectresponse)&gt; | Yes| Callback used to return the pedometer detection sensor data. The reported data type in the callback is **PedometerDetectResponse**.|
+  | callback | Callback&lt;[PedometerDetectionResponse](#pedometerdetectionresponse)&gt; | Yes| Callback used to return the pedometer detection sensor data. The reported data type in the callback is **PedometerDetectionResponse**.|
   | options | [Options](#options) | No| Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns.|
 
 - Example
   ```
-  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION,function(error,data){
-      if (error) {
-          console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
-          return;
-      }
+  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION,function(data){
       console.info('Scalar data: ' + data.scalar);
   },
       {interval: 10000000}
@@ -261,26 +242,26 @@ Subscribes to data changes of the pedometer detection sensor. If this API is cal
   ```
 
 
-## sensor.on(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER)
+## sensor.on(SensorType.SENSOR_TYPE_ID_PEDOMETER)
 
-on(type: sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER, callback: AsyncCallback&lt;PedometerResponse&gt;, options?: Options): void
+on(type: SensorType.SENSOR_TYPE_ID_PEDOMETER, callback: Callback&lt;PedometerResponse&gt;, options?: Options): void
 
 Subscribes to data changes of the pedometer sensor. If this API is called multiple times for the same application, the last call takes effect.
+
+**Required permissions**: ohos.permission.ACTIVITY_MOTION
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | [SensorType](#sensortype) | Yes| Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_PEDOMETER**.|
-  | callback | AsyncCallback&lt;[PedometerResponse](#pedometerresponse)&gt; | Yes| Callback used to return the pedometer sensor data. The reported data type in the callback is **PedometerResponse**.|
+  | callback | Callback&lt;[PedometerResponse](#pedometerresponse)&gt; | Yes| Callback used to return the pedometer sensor data. The reported data type in the callback is **PedometerResponse**.|
   | options | [Options](#options) | No| Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns.|
 
 - Example
   ```
-  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER,function(error,data){
-      if (error) {
-          console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
-          return;
-      }
+  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER,function(data){
       console.info('Steps: ' + data.steps);
   },
       {interval: 10000000}
@@ -288,26 +269,24 @@ Subscribes to data changes of the pedometer sensor. If this API is called multip
   ```
 
 
-## sensor.on(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE)
+## sensor.on(SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE)
 
-on(type:sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE,callback:AsyncCallback&lt;AmbientTemperatureResponse&gt;,  options?: Options): void
+on(type:SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE,callback:Callback&lt;AmbientTemperatureResponse&gt;,  options?: Options): void
 
 Subscribes to data changes of the ambient temperature sensor. If this API is called multiple times for the same application, the last call takes effect.
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | [SensorType](#sensortype) | Yes| Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_AMBIENT_TEMPERATURE**.|
-  | callback | AsyncCallback&lt;[AmbientTemperatureResponse](#ambienttemperatureresponse)&gt; | Yes| Callback used to return the ambient temperature sensor data. The reported data type in the callback is **AmbientTemperatureResponse**.|
+  | callback | Callback&lt;[AmbientTemperatureResponse](#ambienttemperatureresponse)&gt; | Yes| Callback used to return the ambient temperature sensor data. The reported data type in the callback is **AmbientTemperatureResponse**.|
   | options | [Options](#options) | No| Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns.|
 
 - Example
   ```
-  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE,function(error,data){
-      if (error) {
-          console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
-          return;
-      }
+  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE,function(data){
       console.info('Temperature: ' + data.temperature);
   },
       {interval: 10000000}
@@ -315,26 +294,24 @@ Subscribes to data changes of the ambient temperature sensor. If this API is cal
   ```
 
 
-## sensor.on(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD)
+## sensor.on(SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD)
 
-on(type: sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback: AsyncCallback&lt;MagneticFieldResponse&gt;,options?: Options): void
+on(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback: Callback&lt;MagneticFieldResponse&gt;,options?: Options): void
 
 Subscribes to data changes of the magnetic field sensor. If this API is called multiple times for the same application, the last call takes effect.
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | [SensorType](#sensortype) | Yes| Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_MAGNETIC_FIELD**.|
-  | callback | AsyncCallback&lt;[MagneticFieldResponse](#magneticfieldresponse)&gt; | Yes| Callback used to return the magnetic field sensor data. The reported data type in the callback is **MagneticFieldResponse**.|
+  | callback | Callback&lt;[MagneticFieldResponse](#magneticfieldresponse)&gt; | Yes| Callback used to return the magnetic field sensor data. The reported data type in the callback is **MagneticFieldResponse**.|
   | options | [Options](#options) | No| Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns.|
 
 - Example
   ```
-  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD,function(error,data){
-      if (error) {
-          console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
-          return;
-      }
+  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD,function(data){
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
       console.info('Z-coordinate component: ' + data.z);
@@ -344,26 +321,24 @@ Subscribes to data changes of the magnetic field sensor. If this API is called m
   ```
 
 
-## sensor.on(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED)
+## sensor.on(SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED)
 
-on(type:sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED,callback:AsyncCallback&lt;MagneticFieldUncalibratedResponse&gt;, options: Options): void
+on(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED,callback: Callback&lt;MagneticFieldUncalibratedResponse&gt;, options: Options): void
 
 Subscribes to data changes of the uncalibrated magnetic field sensor. If this API is called multiple times for the same application, the last call takes effect.
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | [SensorType](#sensortype) | Yes| Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED**.|
-  | callback | AsyncCallback&lt;[MagneticFieldUncalibratedResponse](#magneticfielduncalibratedresponse)&gt; | Yes| Callback used to return the uncalibrated magnetic field sensor data. The reported data type in the callback is **MagneticFieldUncalibratedResponse**.|
+  | callback | Callback&lt;[MagneticFieldUncalibratedResponse](#magneticfielduncalibratedresponse)&gt; | Yes| Callback used to return the uncalibrated magnetic field sensor data. The reported data type in the callback is **MagneticFieldUncalibratedResponse**.|
   | options | [Options](#options) | No| Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns.|
 
 - Example
   ```
-  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED,function(error,data){
-      if (error) {
-          console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
-          return;
-      }
+  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED,function(data){
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
       console.info('Z-coordinate component: ' + data.z);
@@ -376,26 +351,24 @@ Subscribes to data changes of the uncalibrated magnetic field sensor. If this AP
   ```
 
 
-## sensor.on(sensor.SensorType.SENSOR_TYPE_ID_PROXIMITY)
+## sensor.on(SensorType.SENSOR_TYPE_ID_PROXIMITY)
 
-on(type:sensor.SensorType.SENSOR_TYPE_ID_PROXIMITY, callback: AsyncCallback&lt;ProximityResponse&gt;,options?: Options): void
+on(type: SensorType.SENSOR_TYPE_ID_PROXIMITY, callback: Callback&lt;ProximityResponse&gt;,options?: Options): void
 
 Subscribes to data changes of the proximity sensor. If this API is called multiple times for the same application, the last call takes effect.
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | [SensorType](#sensortype) | Yes| Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_PROXIMITY**.|
-  | callback | AsyncCallback&lt;[ProximityResponse](#proximityresponse)&gt; | Yes| Callback used to return the proximity sensor data. The reported data type in the callback is **ProximityResponse**.|
+  | callback | Callback&lt;[ProximityResponse](#proximityresponse)&gt; | Yes| Callback used to return the proximity sensor data. The reported data type in the callback is **ProximityResponse**.|
   | options | [Options](#options) | No| Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns.|
 
 - Example
   ```
-  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_PROXIMITY,function(error,data){
-      if (error) {
-          console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
-          return;
-      }
+  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_PROXIMITY,function(data){
       console.info('Distance: ' + data.distance);
   },
       {interval: 10000000}
@@ -403,26 +376,24 @@ Subscribes to data changes of the proximity sensor. If this API is called multip
   ```
 
 
-## sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HUMIDITY)
+## sensor.on(SensorType.SENSOR_TYPE_ID_HUMIDITY)
 
-on(type: sensor.SensorType.SENSOR_TYPE_ID_HUMIDITY, callback: AsyncCallback&lt;HumidityResponse&gt;,options?: Options): void
+on(type: SensorType.SENSOR_TYPE_ID_HUMIDITY, callback: Callback&lt;HumidityResponse&gt;,options?: Options): void
 
 Subscribes to data changes of the humidity sensor. If this API is called multiple times for the same application, the last call takes effect.
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | [SensorType](#sensortype) | Yes| Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_HUMIDITY**.|
-  | callback | AsyncCallback&lt;[HumidityResponse](#humidityresponse)&gt; | Yes| Callback used to return the humidity sensor data. The reported data type in the callback is **HumidityResponse**.|
+  | callback | Callback&lt;[HumidityResponse](#humidityresponse)&gt; | Yes| Callback used to return the humidity sensor data. The reported data type in the callback is **HumidityResponse**.|
   | options | [Options](#options) | No| Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns.|
 
 - Example
   ```
-  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HUMIDITY,function(error,data){
-      if (error) {
-          console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
-          return;
-      }
+  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HUMIDITY,function(data){
       console.info('Humidity: ' + data.humidity);
   },
       {interval: 10000000}
@@ -430,26 +401,24 @@ Subscribes to data changes of the humidity sensor. If this API is called multipl
   ```
 
 
-## sensor.on(sensor.SensorType.SENSOR_TYPE_ID_BAROMETER)
+## sensor.on(SensorType.SENSOR_TYPE_ID_BAROMETER)
 
-on(type:sensor.SensorType.SENSOR_TYPE_ID_BAROMETER, callback: AsyncCallback&lt;BarometerResponse&gt;,options?: Options): void
+on(type: SensorType.SENSOR_TYPE_ID_BAROMETER, callback: Callback&lt;BarometerResponse&gt;,options?: Options): void
 
 Subscribes to data changes of the barometer sensor. If this API is called multiple times for the same application, the last call takes effect.
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | [SensorType](#sensortype) | Yes| Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_BAROMETER**.|
-  | callback | AsyncCallback&lt;[BarometerResponse](#barometerresponse)&gt; | Yes| Callback used to return the barometer sensor data. The reported data type in the callback is **BarometerResponse**.|
+  | callback | Callback&lt;[BarometerResponse](#barometerresponse)&gt; | Yes| Callback used to return the barometer sensor data. The reported data type in the callback is **BarometerResponse**.|
   | options | [Options](#options) | No| Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns.|
 
 - Example
   ```
-  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_BAROMETER,function(error,data){
-      if (error) {
-          console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
-          return;
-      }
+  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_BAROMETER,function(data){
       console.info('Atmospheric pressure: ' + data.pressure);
   },
       {interval: 10000000}
@@ -457,26 +426,24 @@ Subscribes to data changes of the barometer sensor. If this API is called multip
   ```
 
 
-## sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HALL)
+## sensor.on(SensorType.SENSOR_TYPE_ID_HALL)
 
-on(type: sensor.SensorType.SENSOR_TYPE_ID_HALL, callback: AsyncCallback&lt;HallResponse&gt;, options?: Options): void
+on(type: SensorType.SENSOR_TYPE_ID_HALL, callback: Callback&lt;HallResponse&gt;, options?: Options): void
 
 Subscribes to data changes of the Hall effect sensor. If this API is called multiple times for the same application, the last call takes effect.
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | [SensorType](#sensortype) | Yes| Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_HALL**.|
-  | callback | AsyncCallback&lt;[HallResponse](#hallresponse)&gt; | Yes| Callback used to return the Hall effect sensor data. The reported data type in the callback is **HallResponse**.|
+  | callback | Callback&lt;[HallResponse](#hallresponse)&gt; | Yes| Callback used to return the Hall effect sensor data. The reported data type in the callback is **HallResponse**.|
   | options | [Options](#options) | No| Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns.|
 
 - Example
   ```
-  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HALL,function(error,data){
-      if (error) {
-          console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
-          return;
-      }
+  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HALL,function(data){
       console.info('Status: ' + data.status);
   },
       {interval: 10000000}
@@ -484,26 +451,24 @@ Subscribes to data changes of the Hall effect sensor. If this API is called mult
   ```
 
 
-## sensor.on(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT)
+## sensor.on(SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT)
 
-on(type:sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback: AsyncCallback&lt;LightResponse&gt;, options?: Options): void
+on(type: SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback: Callback&lt;LightResponse&gt;, options?: Options): void
 
 Subscribes to data changes of the ambient light sensor. If this API is called multiple times for the same application, the last call takes effect.
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | [SensorType](#sensortype) | Yes| Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_AMBIENT_LIGHT**.|
-  | callback | AsyncCallback&lt;[LightResponse](#lightresponse)&gt; | Yes| Callback used to return the ambient light sensor data. The reported data type in the callback is **LightResponse**.|
+  | callback | Callback&lt;[LightResponse](#lightresponse)&gt; | Yes| Callback used to return the ambient light sensor data. The reported data type in the callback is **LightResponse**.|
   | options | [Options](#options) | No| Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns.|
 
 - Example
   ```
-  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT,function(error,data){
-      if (error) {
-          console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
-          return;
-      }
+  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT,function(data){
       console.info(' Illumination: ' + data.intensity);
   },
       {interval: 10000000}
@@ -511,84 +476,105 @@ Subscribes to data changes of the ambient light sensor. If this API is called mu
   ```
 
 
-## sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION)
+## sensor.on(SensorType.SENSOR_TYPE_ID_ORIENTATION)
 
-on(type: sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION, callback: AsyncCallback&lt;OrientationResponse&gt;, options?: Options): void
+on(type: SensorType.SENSOR_TYPE_ID_ORIENTATION, callback: Callback&lt;OrientationResponse&gt;, options?: Options): void
 
 Subscribes to data changes of the orientation sensor. If this API is called multiple times for the same application, the last call takes effect.
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | [SensorType](#sensortype) | Yes| Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_ORIENTATION**.|
-  | callback | AsyncCallback&lt;[OrientationResponse](#orientationresponse)&gt; | Yes| Callback used to return the orientation sensor data. The reported data type in the callback is **OrientationResponse**.|
+  | callback | Callback&lt;[OrientationResponse](#orientationresponse)&gt; | Yes| Callback used to return the orientation sensor data. The reported data type in the callback is **OrientationResponse**.|
   | options | [Options](#options) | No| Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns.|
 
 - Example
   ```
-  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION,function(error,data){
-      if (error) {
-          console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
-          return;
-      }
-      console.info('X-coordinate component: ' + data.x);
-      console.info('Y-coordinate component: ' + data.y);
-      console.info('Z-coordinate component: ' + data.z);
+  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION,function(data){
+      console.info('The device rotates at an angle around the X axis: ' + data.beta);
+      console.info('The device rotates at an angle around the Y axis: ' + data.gamma);
+      console.info('The device rotates at an angle around the Z axis: ' + data.alpha);
   },
       {interval: 10000000}
   );
   ```
 
+## sensor.on(SensorType.SENSOR_TYPE_ID_HEART_RATE)
 
-## sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR)
+on(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback: Callback&lt;HeartRateResponse&gt;, options?: Options): void
 
-on(type:sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR,callback:AsyncCallback&lt;RotationVectorResponse&gt;,options?: Options): void
+Subscribes to only one data change of the heart rate sensor.
+
+**Required permissions**: ohos.permission.READ_HEALTH_DATA
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+- Parameters
+
+| Name  | Type                                                   | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype)                               | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_HEART_RATE**.         |
+| callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | Yes  | One-shot callback used to return the heart rate sensor data. The reported data type in the callback is **HeartRateResponse**.|
+
+- Example
+
+```
+sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HEART_RATE,function(data){
+    console.info("Heart rate: " + data.heartRate);
+},
+    {interval: 10000000}
+);
+```
+
+## sensor.on(SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR)
+
+on(type: SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR,callback: Callback&lt;RotationVectorResponse&gt;,options?: Options): void
 
 Subscribes to data changes of the rotation vector sensor. If this API is called multiple times for the same application, the last call takes effect.
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | [SensorType](#sensortype) | Yes| Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_ROTATION_VECTOR**.|
-  | callback | AsyncCallback&lt;[RotationVectorResponse](#rotationvectorresponse)&gt; | Yes| Callback used to return the rotation vector sensor data. The reported data type in the callback is **RotationVectorResponse**.|
+  | callback | Callback&lt;[RotationVectorResponse](#rotationvectorresponse)&gt; | Yes| Callback used to return the rotation vector sensor data. The reported data type in the callback is **RotationVectorResponse**.|
   | options | [Options](#options) | No| Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns.|
 
 - Example
   ```
-  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR,function(error,data){
-      if (error) {
-          console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
-          return;
-      }
+  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR,function(data){
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
       console.info('Z-coordinate component: ' + data.z);
+      console.info('Scalar quantity: ' + data.w);
   },
       {interval: 10000000}
   );
   ```
 
 
-## sensor.on(sensor.SensorType.SENSOR_TYPE_ID_WEAR_DETECTION)
+## sensor.on(SensorType.SENSOR_TYPE_ID_WEAR_DETECTION)
 
-on(type: sensor.SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback: AsyncCallback&lt;WearDetectionResponse&gt;,options?: Options): void
+on(type: SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback: Callback&lt;WearDetectionResponse&gt;,options?: Options): void
 
 Subscribes to data changes of the wear detection sensor. If this API is called multiple times for the same application, the last call takes effect.
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | [SensorType](#sensortype) | Yes| Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_WEAR_DETECTION**.|
-  | callback | AsyncCallback&lt;[WearDetectionResponse](#weardetectionresponse)&gt; | Yes| Callback used to return the wear detection sensor data. The reported data type in the callback is **WearDetectionResponse**.|
+  | callback | Callback&lt;[WearDetectionResponse](#weardetectionresponse)&gt; | Yes| Callback used to return the wear detection sensor data. The reported data type in the callback is **WearDetectionResponse**.|
   | options | [Options](#options) | No| Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns.|
 
 - Example
   ```
-  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_WEAR_DETECTION,function(error,data){
-      if (error) {
-          console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
-          return;
-      }
+  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_WEAR_DETECTION,function(data){
       console.info('Wear status: ' + data.value);
   },
       {interval: 10000000}
@@ -596,25 +582,25 @@ Subscribes to data changes of the wear detection sensor. If this API is called m
   ```
 
 
-## sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER)
+## sensor.once(SensorType.SENSOR_TYPE_ID_ACCELEROMETER)
 
-once(type: sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: AsyncCallback&lt;AccelerometerResponse&gt;): void
+once(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: Callback&lt;AccelerometerResponse&gt;): void
 
 Subscribes to only one data change of the acceleration sensor.
+
+**Required permissions**: ohos.permission.ACCELEROMETER (a system permission)
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | [SensorType](#sensortype) | Yes| Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_ACCELEROMETER**.|
-  | callback | AsyncCallback&lt;[AccelerometerResponse](#accelerometerresponse)&gt; | Yes| One-shot callback used to return the acceleration sensor data. The reported data type in the callback is **AccelerometerResponse**.|
+  | callback | Callback&lt;[AccelerometerResponse](#accelerometerresponse)&gt; | Yes| One-shot callback used to return the acceleration sensor data. The reported data type in the callback is **AccelerometerResponse**.|
 
 - Example
   ```
-  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER,function(error,data){
-      if (error) {
-          console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
-          return;
-      }
+  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER,function(data){
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
       console.info('Z-coordinate component: ' + data.z);
@@ -623,25 +609,25 @@ Subscribes to only one data change of the acceleration sensor.
   ```
 
 
-## sensor.once(sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION)
+## sensor.once(SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION)
 
-once(type:sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:AsyncCallback&lt;LinearAccelerometerResponse&gt;): void
+once(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:Callback&lt;LinearAccelerometerResponse&gt;): void
 
 Subscribes to only one data change of the linear acceleration sensor.
+
+**Required permissions**: ohos.permission.ACCELEROMETER (a system permission)
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | [SensorType](#sensortype) | Yes| Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_LINEAR_ACCELERATION**.|
-  | callback | AsyncCallback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | Yes| One-shot callback used to return the linear acceleration sensor data. The reported data type in the callback is **LinearAccelerometerResponse**.|
+  | callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | Yes| One-shot callback used to return the linear acceleration sensor data. The reported data type in the callback is **LinearAccelerometerResponse**.|
 
 - Example
   ```
-  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION, function(error, data) {
-      if (error) {
-          console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
-          return;
-      }
+  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION, function(data) {
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
       console.info('Z-coordinate component: ' + data.z);
@@ -650,25 +636,25 @@ Subscribes to only one data change of the linear acceleration sensor.
   ```
 
 
-## sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED)
+## sensor.once(SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED)
 
-once(type:sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,callback:AsyncCallback&lt;AccelerometerUncalibratedResponse&gt;): void
+once(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,callback: Callback&lt;AccelerometerUncalibratedResponse&gt;): void
 
 Subscribes to only one data change of the uncalibrated acceleration sensor.
+
+**Required permissions**: ohos.permission.ACCELEROMETER (a system permission)
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | [SensorType](#sensortype) | Yes| Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED**.|
-  | callback | AsyncCallback&lt;[AccelerometerUncalibratedResponse](#accelerometeruncalibratedresponse)&gt; | Yes| One-shot callback used to return the uncalibrated acceleration sensor data. The reported data type in the callback is **AccelerometerUncalibratedResponse**.|
+  | callback | Callback&lt;[AccelerometerUncalibratedResponse](#accelerometeruncalibratedresponse)&gt; | Yes| One-shot callback used to return the uncalibrated acceleration sensor data. The reported data type in the callback is **AccelerometerUncalibratedResponse**.|
 
 - Example
   ```
-  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED, function(error, data) {
-      if (error) {
-          console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
-          return;
-      }
+  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED, function(data) {
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
       console.info('Z-coordinate component: ' + data.z);
@@ -680,25 +666,23 @@ Subscribes to only one data change of the uncalibrated acceleration sensor.
   ```
 
 
-## sensor.once(sensor.SensorType.SENSOR_TYPE_ID_GRAVITY)
+## sensor.once(SensorType.SENSOR_TYPE_ID_GRAVITY)
 
-once(type:sensor.SensorType.SENSOR_TYPE_ID_GRAVITY, callback: AsyncCallback&lt;GravityResponse&gt;): void
+once(type: SensorType.SENSOR_TYPE_ID_GRAVITY, callback: Callback&lt;GravityResponse&gt;): void
 
 Subscribes to only one data change of the gravity sensor.
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | [SensorType](#sensortype) | Yes| Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_GRAVITY**.|
-  | callback | AsyncCallback&lt;[GravityResponse](#gravityresponse)&gt; | Yes| One-shot callback used to return the gravity sensor data. The reported data type in the callback is **GravityResponse**.|
+  | callback | Callback&lt;[GravityResponse](#gravityresponse)&gt; | Yes| One-shot callback used to return the gravity sensor data. The reported data type in the callback is **GravityResponse**.|
 
 - Example
   ```
-  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_GRAVITY, function(error, data) {
-      if (error) {
-          console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
-          return;
-      }
+  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_GRAVITY, function(data) {
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
       console.info('Z-coordinate component: ' + data.z);
@@ -707,25 +691,25 @@ Subscribes to only one data change of the gravity sensor.
   ```
 
 
-## sensor.once(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE)
+## sensor.once(SensorType.SENSOR_TYPE_ID_GYROSCOPE)
 
-once(type: sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback: AsyncCallback&lt;GyroscopeResponse&gt;): void
+once(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback: Callback&lt;GyroscopeResponse&gt;): void
 
 Subscribes to only one data change of the gyroscope sensor.
+
+**Required permissions**: ohos.permission.GYROSCOPE (a system permission)
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | [SensorType](#sensortype) | Yes| Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_GYROSCOPE**.|
-  | callback | AsyncCallback&lt;[GyroscopeResponse](#gyroscoperesponse)&gt; | Yes| One-shot callback used to return the gyroscope sensor data. The reported data type in the callback is **GyroscopeResponse**.|
+  | callback | Callback&lt;[GyroscopeResponse](#gyroscoperesponse)&gt; | Yes| One-shot callback used to return the gyroscope sensor data. The reported data type in the callback is **GyroscopeResponse**.|
 
 - Example
   ```
-  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE, function(error, data) {
-      if (error) {
-          console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
-          return;
-      }
+  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE, function(data) {
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
       console.info('Z-coordinate component: ' + data.z);
@@ -734,25 +718,25 @@ Subscribes to only one data change of the gyroscope sensor.
   ```
 
 
-## sensor.once(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED)
+## sensor.once(SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED)
 
-once(type:sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED,callback:AsyncCallback&lt;GyroscopeUncalibratedResponse&gt;): void
+once(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED,callback: Callback&lt;GyroscopeUncalibratedResponse&gt;): void
 
 Subscribes to only one data change of the uncalibrated gyroscope sensor.
+
+**Required permissions**: ohos.permission.GYROSCOPE (a system permission)
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | [SensorType](#sensortype) | Yes| Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED**.|
-  | callback | AsyncCallback&lt;[GyroscopeUncalibratedResponse](#gyroscopeuncalibratedresponse)&gt; | Yes| One-shot callback used to return the uncalibrated gyroscope sensor data. The reported data type in the callback is **GyroscopeUncalibratedResponse**.|
+  | callback | Callback&lt;[GyroscopeUncalibratedResponse](#gyroscopeuncalibratedresponse)&gt; | Yes| One-shot callback used to return the uncalibrated gyroscope sensor data. The reported data type in the callback is **GyroscopeUncalibratedResponse**.|
 
 - Example
   ```
-  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED, function(error, data) {
-      if (error) {
-          console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
-          return;
-      }
+  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED, function(data) {
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
       console.info('Z-coordinate component: ' + data.z);
@@ -764,125 +748,119 @@ Subscribes to only one data change of the uncalibrated gyroscope sensor.
   ```
 
 
-## sensor.once(sensor.SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION)
+## sensor.once(SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION)
 
-once(type: sensor.SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION,callback:AsyncCallback&lt;SignificantMotionResponse&gt;): void
+once(type: SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION,callback: Callback&lt;SignificantMotionResponse&gt;): void
 
 Subscribes to only one data change of the significant motion sensor.
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | [SensorType](#sensortype) | Yes| Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_SIGNIFICANT_MOTION**.|
-  | callback | AsyncCallback&lt;[SignificantMotionResponse](#significantmotionresponse)&gt; | Yes| One-shot callback used to return the significant motion sensor data. The reported data type in the callback is **SignificantMotionResponse**.|
+  | callback | Callback&lt;[SignificantMotionResponse](#significantmotionresponse)&gt; | Yes| One-shot callback used to return the significant motion sensor data. The reported data type in the callback is **SignificantMotionResponse**.|
 
 - Example
   ```
-  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, function(error, data) {
-      if (error) {
-          console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
-          return;
-      }
+  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, function(data) {
       console.info('Scalar data: ' + data.scalar);
     }
   );
   ```
 
 
-## sensor.once(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION)
+## sensor.once(SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION)
 
-once(type:sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION,callback:AsyncCallback&lt;PedometerDetectResponse&gt;): void
+once(type: SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION,callback: Callback&lt;PedometerDetectionResponse&gt;): void
 
 Subscribes to only one data change of the pedometer detection sensor.
+
+**Required permissions**: ohos.permission.ACTIVITY_MOTION
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | [SensorType](#sensortype) | Yes| Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_PEDOMETER_DETECTION**.|
-  | callback | AsyncCallback&lt;[PedometerDetectResponse](#pedometerdetectresponse)&gt; | Yes| One-shot callback used to return the pedometer detection sensor data. The reported data type in the callback is **PedometerDetectResponse**.|
+  | callback | Callback&lt;[PedometerDetectionResponse](#pedometerdetectionresponse)&gt; | Yes| One-shot callback used to return the pedometer detection sensor data. The reported data type in the callback is **PedometerDetectionResponse**.|
 
 - Example
   ```
-  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, function(error, data) {
-      if (error) {
-          console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
-          return;
-      }
+  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, function(data) {
       console.info('Scalar data: ' + data.scalar);
     }
   );
   ```
 
 
-## sensor.once(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER)
+## sensor.once(SensorType.SENSOR_TYPE_ID_PEDOMETER)
 
-once(type: sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER, callback: AsyncCallback&lt;PedometerResponse&gt;): void
+once(type: SensorType.SENSOR_TYPE_ID_PEDOMETER, callback: Callback&lt;PedometerResponse&gt;): void
 
 Subscribes to only one data change of the pedometer sensor.
+
+**Required permissions**: ohos.permission.ACTIVITY_MOTION
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | [SensorType](#sensortype) | Yes| Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_PEDOMETER**.|
-  | callback | AsyncCallback&lt;[PedometerResponse](#pedometerresponse)&gt; | Yes| One-shot callback used to return the pedometer sensor data. The reported data type in the callback is **PedometerResponse**.|
+  | callback | Callback&lt;[PedometerResponse](#pedometerresponse)&gt; | Yes| One-shot callback used to return the pedometer sensor data. The reported data type in the callback is **PedometerResponse**.|
 
 - Example
   ```
-  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER, function(error, data) {
-      if (error) {
-          console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
-          return;
-      }
+  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER, function(data) {
       console.info('Steps: ' + data.steps);
     }
   );
   ```
 
 
-## sensor.once(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE)
+## sensor.once(SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE)
 
-once(type:sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE,callback:AsyncCallback&lt;AmbientTemperatureResponse&gt;): void
+once(type: SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE,callback: Callback&lt;AmbientTemperatureResponse&gt;): void
 
 Subscribes to only one data change of the ambient temperature sensor.
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | [SensorType](#sensortype) | Yes| Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_AMBIENT_TEMPERATURE**.|
-  | callback | AsyncCallback&lt;[AmbientTemperatureResponse](#ambienttemperatureresponse)&gt; | Yes| One-shot callback used to return the ambient temperature sensor data. The reported data type in the callback is **AmbientTemperatureResponse**.|
+  | callback | Callback&lt;[AmbientTemperatureResponse](#ambienttemperatureresponse)&gt; | Yes| One-shot callback used to return the ambient temperature sensor data. The reported data type in the callback is **AmbientTemperatureResponse**.|
 
 - Example
   ```
-  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE, function(error, data) {
-      if (error) {
-          console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
-          return;
-      }
+  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE, function(data) {
       console.info('Temperature: ' + data.temperature);
     }
   );
   ```
 
 
-## sensor.once(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD)
+## sensor.once(SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD)
 
-once(type: sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback: AsyncCallback&lt;MagneticFieldResponse&gt;): void
+once(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback: Callback&lt;MagneticFieldResponse&gt;): void
 
 Subscribes to only one data change of the magnetic field sensor.
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | [SensorType](#sensortype) | Yes| Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_MAGNETIC_FIELD**.|
-  | callback | AsyncCallback&lt;[MagneticFieldResponse](#magneticfieldresponse)&gt; | Yes| One-shot callback used to return the magnetic field sensor data. The reported data type in the callback is **MagneticFieldResponse**.|
+  | callback | Callback&lt;[MagneticFieldResponse](#magneticfieldresponse)&gt; | Yes| One-shot callback used to return the magnetic field sensor data. The reported data type in the callback is **MagneticFieldResponse**.|
 
 - Example
   ```
-  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, function(error, data) {
-      if (error) {
-          console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
-          return;
-      }
+  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, function(data) {
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
       console.info('Z-coordinate component: ' + data.z);
@@ -891,25 +869,23 @@ Subscribes to only one data change of the magnetic field sensor.
   ```
 
 
-## sensor.once(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED)
+## sensor.once(SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED)
 
-once(type:sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED,callback:AsyncCallback&lt;MagneticFieldUncalibratedResponse&gt;): void
+once(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED,callback: Callback&lt;MagneticFieldUncalibratedResponse&gt;): void
 
 Subscribes to only one data change of the uncalibrated magnetic field sensor.
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | [SensorType](#sensortype) | Yes| Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED**.|
-  | callback | AsyncCallback&lt;[MagneticFieldUncalibratedResponse](#magneticfielduncalibratedresponse)&gt; | Yes| One-shot callback used to return the uncalibrated magnetic field sensor data. The reported data type in the callback is **MagneticFieldUncalibratedResponse**.|
+  | callback | Callback&lt;[MagneticFieldUncalibratedResponse](#magneticfielduncalibratedresponse)&gt; | Yes| One-shot callback used to return the uncalibrated magnetic field sensor data. The reported data type in the callback is **MagneticFieldUncalibratedResponse**.|
 
 - Example
   ```
-  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED, function(error, data) {
-      if (error) {
-          console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
-          return;
-      }
+  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED, function(data) {
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
       console.info('Z-coordinate component: ' + data.z);
@@ -921,17 +897,19 @@ Subscribes to only one data change of the uncalibrated magnetic field sensor.
   ```
 
 
-## sensor.once(sensor.SensorType.SENSOR_TYPE_ID_PROXIMITY)
+## sensor.once(SensorType.SENSOR_TYPE_ID_PROXIMITY)
 
-once(type: sensor.SensorType.SENSOR_TYPE_ID_PROXIMITY, callback: AsyncCallback&lt;ProximityResponse&gt;): void
+once(type: SensorType.SENSOR_TYPE_ID_PROXIMITY, callback: Callback&lt;ProximityResponse&gt;): void
 
 Subscribes to only one data change of the proximity sensor.
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | [SensorType](#sensortype) | Yes| Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_PROXIMITY**.|
-  | callback | AsyncCallback&lt;[ProximityResponse](#proximityresponse)&gt; | Yes| One-shot callback used to return the proximity sensor data. The reported data type in the callback is **ProximityResponse**.|
+  | callback | Callback&lt;[ProximityResponse](#proximityresponse)&gt; | Yes| One-shot callback used to return the proximity sensor data. The reported data type in the callback is **ProximityResponse**.|
 
 - Example
   ```
@@ -946,247 +924,760 @@ Subscribes to only one data change of the proximity sensor.
   ```
 
 
-## sensor.once(sensor.SensorType.SENSOR_TYPE_ID_HUMIDITY)
+## sensor.once(SensorType.SENSOR_TYPE_ID_HUMIDITY)
 
-once(type: sensor.SensorType.SENSOR_TYPE_ID_HUMIDITY, callback: AsyncCallback&lt;HumidityResponse&gt;): void
+once(type: SensorType.SENSOR_TYPE_ID_HUMIDITY, callback: Callback&lt;HumidityResponse&gt;): void
 
 Subscribes to only one data change of the humidity sensor.
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | [SensorType](#sensortype) | Yes| Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_HUMIDITY**.|
-  | callback | AsyncCallback&lt;[HumidityResponse](#humidityresponse)&gt; | Yes| One-shot callback used to return the humidity sensor data. The reported data type in the callback is **HumidityResponse**.|
+  | callback | Callback&lt;[HumidityResponse](#humidityresponse)&gt; | Yes| One-shot callback used to return the humidity sensor data. The reported data type in the callback is **HumidityResponse**.|
 
 - Example
   ```
-  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_HUMIDITY, function(error, data) {
-      if (error) {
-          console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
-          return;
-      }
+  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_HUMIDITY, function(data) {
       console.info('Humidity: ' + data.humidity);
     }
   );
   ```
 
 
-## sensor.once(sensor.SensorType.SENSOR_TYPE_ID_BAROMETER)
+## sensor.once(SensorType.SENSOR_TYPE_ID_BAROMETER)
 
-once(type: sensor.SensorType.SENSOR_TYPE_ID_BAROMETER, callback: AsyncCallback&lt;BarometerResponse&gt;): void
+once(type: SensorType.SENSOR_TYPE_ID_BAROMETER, callback: Callback&lt;BarometerResponse&gt;): void
 
 Subscribes to only one data change of the barometer sensor.
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | [SensorType](#sensortype) | Yes| Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_BAROMETER**.|
-  | callback | AsyncCallback&lt;[BarometerResponse](#barometerresponse)&gt; | Yes| One-shot callback used to return the barometer sensor data. The reported data type in the callback is **BarometerResponse**.|
+  | callback | Callback&lt;[BarometerResponse](#barometerresponse)&gt; | Yes| One-shot callback used to return the barometer sensor data. The reported data type in the callback is **BarometerResponse**.|
 
 - Example
   ```
-  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_BAROMETER, function(error, data) {
-      if (error) {
-          console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
-          return;
-      }
+  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_BAROMETER, function(data) {
       console.info('Atmospheric pressure: ' + data.pressure);
     }
   );
   ```
 
 
-## sensor.once(sensor.SensorType.SENSOR_TYPE_ID_HALL)
+## sensor.once(SensorType.SENSOR_TYPE_ID_HALL)
 
-once(type: sensor.SensorType.SENSOR_TYPE_ID_HALL, callback:   AsyncCallback&lt;HallResponse&gt;): void
+once(type: SensorType.SENSOR_TYPE_ID_HALL, callback: Callback&lt;HallResponse&gt;): void
 
 Subscribes to only one data change of the Hall effect sensor.
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | [SensorType](#sensortype) | Yes| Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_HALL**.|
-  | callback | AsyncCallback&lt;[HallResponse](#hallresponse)&gt; | Yes| One-shot callback used to return the Hall effect sensor data. The reported data type in the callback is **HallResponse**.|
+  | callback | Callback&lt;[HallResponse](#hallresponse)&gt; | Yes| One-shot callback used to return the Hall effect sensor data. The reported data type in the callback is **HallResponse**.|
 
 - Example
   ```
-  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_HALL, function(error, data) {
-      if (error) {
-          console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
-          return;
-      }
+  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_HALL, function(data) {
       console.info('Status: ' + data.status);
     }
   );
   ```
 
 
-## sensor.once(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT)
+## sensor.once(SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT)
 
-once(type: sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback: AsyncCallback&lt;LightResponse&gt;): void
+once(type: SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback: Callback&lt;LightResponse&gt;): void
 
 Subscribes to only one data change of the ambient light sensor.
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | [SensorType](#sensortype) | Yes| Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_AMBIENT_LIGHT**.|
-  | callback | AsyncCallback&lt;[LightResponse](#lightresponse)&gt; | Yes| One-shot callback used to return the ambient light sensor data. The reported data type in the callback is **LightResponse**.|
+  | callback | Callback&lt;[LightResponse](#lightresponse)&gt; | Yes| One-shot callback used to return the ambient light sensor data. The reported data type in the callback is **LightResponse**.|
 
 - Example
   ```
-  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, function(error, data) {
-      if (error) {
-          console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
-          return;
-      }
+  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, function(data) {
       console.info(' Illumination: ' + data.intensity);
     }
   );
   ```
 
 
-## sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION)
+## sensor.once(SensorType.SENSOR_TYPE_ID_ORIENTATION)
 
-once(type: sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION, callback: AsyncCallback&lt;OrientationResponse&gt;): void
+once(type: SensorType.SENSOR_TYPE_ID_ORIENTATION, callback: Callback&lt;OrientationResponse&gt;): void
 
 Subscribes to only one data change of the orientation sensor.
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | [SensorType](#sensortype) | Yes| Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_ORIENTATION**.|
-  | callback | AsyncCallback&lt;[OrientationResponse](#orientationresponse)&gt; | Yes| One-shot callback used to return the orientation sensor data. The reported data type in the callback is **OrientationResponse**.|
+  | callback | Callback&lt;[OrientationResponse](#orientationresponse)&gt; | Yes| One-shot callback used to return the orientation sensor data. The reported data type in the callback is **OrientationResponse**.|
 
 - Example
   ```
-  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION, function(error, data) {
-      if (error) {
-          console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
-          return;
-      }
-      console.info('X-coordinate component: ' + data.x);
-      console.info('Y-coordinate component: ' + data.y);
-      console.info('Z-coordinate component: ' + data.z);
+  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION, function(data) {
+      console.info('The device rotates at an angle around the X axis: ' + data.beta);
+      console.info('The device rotates at an angle around the Y axis: ' + data.gamma);
+      console.info('The device rotates at an angle around the Z axis: ' + data.alpha);
     }
   );
   ```
 
 
-## sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR)
+## sensor.once(SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR)
 
-once(type: sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback: AsyncCallback&lt;RotationVectorResponse&gt;): void
+once(type: SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback: Callback&lt;RotationVectorResponse&gt;): void
 
 Subscribes to only one data change of the rotation vector sensor.
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | [SensorType](#sensortype) | Yes| Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_ROTATION_VECTOR**.|
-  | callback | AsyncCallback&lt;[RotationVectorResponse](#rotationvectorresponse)&gt; | Yes| One-shot callback used to return the rotation vector sensor data. The reported data type in the callback is **RotationVectorResponse**.|
+  | callback | Callback&lt;[RotationVectorResponse](#rotationvectorresponse)&gt; | Yes| One-shot callback used to return the rotation vector sensor data. The reported data type in the callback is **RotationVectorResponse**.|
 
 - Example
   ```
-  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, function(error, data) {
-      if (error) {
-          console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
-          return;
-      }
+  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, function(data) {
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
       console.info('Z-coordinate component: ' + data.z);
+      console.info('Scalar quantity: ' + data.w);
     }
   );
   ```
 
 
-## sensor.once(sensor.SensorType.SENSOR_TYPE_ID_HEART_RATE)
+## sensor.once(SensorType.SENSOR_TYPE_ID_HEART_RATE)
 
-once(type: sensor.SensorType.SENSOR_TYPE_ID_HEART_RATE, callback: AsyncCallback&lt;HeartRateResponse&gt;): void
+once(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback: Callback&lt;HeartRateResponse&gt;): void
 
 Subscribes to only one data change of the heart rate sensor.
+
+**Required permissions**: ohos.permission.READ_HEALTH_DATA
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | [SensorType](#sensortype) | Yes| Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_HEART_RATE**.|
-  | callback | AsyncCallback&lt;[HeartRateResponse](#heartrateresponse)&gt; | Yes| One-shot callback used to return the heart rate sensor data. The reported data type in the callback is **HeartRateResponse**.|
+  | callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | Yes| One-shot callback used to return the heart rate sensor data. The reported data type in the callback is **HeartRateResponse**.|
 
 - Example
   ```
-  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_HEART_RATE, function(error, data) {
-      if (error) {
-          console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
-          return;
-      }
+  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_HEART_RATE, function(data) {
       console.info("Heart rate: " + data.heartRate);
     }
   );
   ```
 
 
-## sensor.once(sensor.SensorType.SENSOR_TYPE_ID_WEAR_DETECTION)
+## sensor.once(SensorType.SENSOR_TYPE_ID_WEAR_DETECTION)
 
-once(type: sensor.SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback: AsyncCallback&lt;WearDetectionResponse&gt;): void
+once(type: SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback: Callback&lt;WearDetectionResponse&gt;): void
 
 Subscribes to only one data change of the wear detection sensor.
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | [SensorType](#sensortype) | Yes| Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_WEAR_DETECTION**.|
-  | callback | AsyncCallback&lt;[WearDetectionResponse](#weardetectionresponse)&gt; | Yes| One-shot callback used to return the wear detection sensor data. The reported data type in the callback is **WearDetectionResponse**.|
+  | callback | Callback&lt;[WearDetectionResponse](#weardetectionresponse)&gt; | Yes| One-shot callback used to return the wear detection sensor data. The reported data type in the callback is **WearDetectionResponse**.|
 
 - Example
   ```
-  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, function(error, data) {
-      if (error) {
-          console.error("Failed to register data, error code is" + error.code + ", message: " + error.message);
-          return;
-      }
+  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, function(data) {
       console.info("Wear status: "+ data.value);
     }
   );
   ```
 
+## sensor.off(SensorType.SENSOR_TYPE_ID_ACCELEROMETER)
 
-## sensor.off
-
-off(type: SensorType, callback?: AsyncCallback&lt;void&gt;): void
+off(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback?: Callback&lt;AccelerometerResponse&gt;): void
 
 Unsubscribes from sensor data changes.
 
+**Required permissions**: ohos.permission.ACCELEROMETER (a system permission)
+
+**System capability**: SystemCapability.Sensors.Sensor
+
 - Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | type | [SensorType](#sensortype) | Yes| Type of the sensor to unsubscribe from.|
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the execution result.|
+
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype)                                    | Yes  | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_ACCELEROMETER**.|
+| callback | Callback&lt;[AccelerometerResponse](#accelerometerresponse)&gt; | Yes  | Callback used to return the acceleration sensor data. The reported data type in the callback is **AccelerometerResponse**.|
 
 - Example
-  ```
-  sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER, function(error) {
-      if (error) {
-          console.error("Failed to unsubscribe from acceleration sensor data. Error code: " + error.code + "; message: " + error.message);
-          return;
-      }
-      console.info("Succeeded in unsubscribing from acceleration sensor data.");
-    }
-  );
-  ```
+
+```
+function callback(data) {
+    console.info('x-coordinate component: ' + data.x);
+    console.info('Y-coordinate component: ' + data.y);
+    console.info('Z-coordinate component: ' + data.z);
+}
+sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback);
+```
+
+## sensor.off(SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED)
+
+off(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED, callback?: Callback&lt;AccelerometerUncalibratedResponse&gt;): void
+
+Unsubscribes from sensor data changes.
+
+**Required permissions**: ohos.permission.ACCELEROMETER (a system permission)
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+- Parameters
+
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype)                                    | Yes  | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED**.|
+| callback | Callback&lt;[AccelerometerUncalibratedResponse](#accelerometeruncalibratedresponse)&gt; | Yes  | Callback used to return the uncalibrated acceleration sensor data. The reported data type in the callback is **AccelerometerUncalibratedResponse**.|
+
+- Example
+
+```
+function callback(data) {
+    console.info('X-coordinate component: ' + data.x);
+    console.info('Y-coordinate component: ' + data.y);
+    console.info('Z-coordinate component: ' + data.z);
+    console.info('X-coordinate bias: ' + data.biasX);
+    console.info('Y-coordinate bias: ' + data.biasY);
+    console.info('Z-coordinate bias: ' + data.biasZ);
+}
+sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED, callback);
+```
+
+## sensor.off(SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT)
+
+off(type: SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback?: Callback&lt;LightResponse&gt;): void
+
+Unsubscribes from sensor data changes.
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+- Parameters
+
+| Name  | Type                                           | Mandatory| Description                                                        |
+| -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype)                       | Yes  | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_AMBIENT_LIGHT**.|
+| callback | Callback&lt;[LightResponse](#lightresponse)&gt; | Yes  | Callback used to return the ambient light sensor data. The reported data type in the callback is **LightResponse**.|
+
+- Example
+
+```
+function callback(data) {
+    console.info(' Illumination: ' + data.intensity);
+}
+sensor.off(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback);
+```
+
+## sensor.off(SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE)
+
+off(type: SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE, callback?: Callback&lt;AmbientTemperatureResponse&gt;): void
+
+Unsubscribes from sensor data changes.
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+- Parameters
+
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype)                                    | Yes  | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_AMBIENT_TEMPERATURE**.|
+| callback | Callback&lt;[AmbientTemperatureResponse](#ambienttemperatureresponse)&gt; | Yes  | Callback used to return the ambient temperature sensor data. The reported data type in the callback is **AmbientTemperatureResponse**.|
+
+- Example
+
+```
+function callback(data) {
+     console.info('Temperature: ' + data.temperature);
+}
+sensor.off( sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE, callback);
+```
+
+## sensor.off(SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE)
+
+off(type: SensorType.SENSOR_TYPE_ID_BAROMETER, callback?: Callback&lt;BarometerResponse&gt;): void
+
+Unsubscribes from sensor data changes.
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+- Parameters
+
+| Name  | Type                                                   | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype)                               | Yes  | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_BAROMETER**.    |
+| callback | Callback&lt;[BarometerResponse](#barometerresponse)&gt; | Yes  | Callback used to return the barometer sensor data. The reported data type in the callback is **BarometerResponse**.|
+
+- Example
+
+```
+function callback(data) {
+     console.info('Atmospheric pressure: ' + data.pressure);
+}
+sensor.off(sensor.SensorType.SENSOR_TYPE_ID_BAROMETER, callback);
+```
+
+## sensor.off(SensorType.SENSOR_TYPE_ID_GRAVITY)
+
+off(type: SensorType.SENSOR_TYPE_ID_GRAVITY, callback?: Callback&lt;GravityResponse&gt;): void
+
+Unsubscribes from sensor data changes.
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+- Parameters
+
+| Name  | Type                                               | Mandatory| Description                                                        |
+| -------- | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype)                           | Yes  | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_GRAVITY**.        |
+| callback | Callback&lt;[GravityResponse](#gravityresponse)&gt; | Yes  | Callback used to return the gravity sensor data. The reported data type in the callback is **GravityResponse**.|
+
+- Example
+
+```
+function callback(data) {
+    console.info('X-coordinate component: ' + data.x);
+    console.info('Y-coordinate component: ' + data.y);
+    console.info('Z-coordinate component: ' + data.z);
+}
+sensor.off( sensor.SensorType.SENSOR_TYPE_ID_GRAVITY, callback);
+```
+
+## sensor.off(SensorType.SENSOR_TYPE_ID_GYROSCOPE)
+
+off(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback?: Callback&lt;GyroscopeResponse&gt;): void
+
+Unsubscribes from sensor data changes.
+
+**Required permissions**: ohos.permission.GYROSCOPE (a system permission)
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+- Parameters
+
+| Name  | Type                                                   | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype)                               | Yes  | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_GYROSCOPE**.    |
+| callback | Callback&lt;[GyroscopeResponse](#gyroscoperesponse)&gt; | Yes  | Callback used to return the gyroscope sensor data. The reported data type in the callback is **GyroscopeResponse**.|
+
+- Example
+
+```
+function callback(data) {
+    console.info('X-coordinate component: ' + data.x);
+    console.info('Y-coordinate component: ' + data.y);
+    console.info('Z-coordinate component: ' + data.z);
+}
+sensor.off(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback);
+```
+
+## sensor.off(SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED)
+
+off(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED, callback?: Callback&lt;GyroscopeResponse&gt;): void
+
+Unsubscribes from sensor data changes.
+
+**Required permissions**: ohos.permission.GYROSCOPE (a system permission)
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+- Parameters
+
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype)                                    | Yes  | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED**.|
+| callback | Callback&lt;[GyroscopeUncalibratedResponse](#gyroscopeuncalibratedresponse)&gt; | Yes  | Callback used to return the uncalibrated gyroscope sensor data. The reported data type in the callback is **GyroscopeUncalibratedResponse**.|
+
+- Example
+
+```
+function callback(data) {
+    console.info('X-coordinate component: ' + data.x);
+    console.info('Y-coordinate component: ' + data.y);
+    console.info('Z-coordinate component: ' + data.z);
+}
+sensor.off(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED, callback);
+```
+
+## sensor.off(SensorType.SENSOR_TYPE_ID_HALL)
+
+off(type: SensorType.SENSOR_TYPE_ID_HALL, callback?: Callback&lt;HallResponse&gt;): void
+
+Unsubscribes from sensor data changes.
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+- Parameters
+
+| Name  | Type                                         | Mandatory| Description                                                        |
+| -------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype)                     | Yes  | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_HALL**.           |
+| callback | Callback&lt;[HallResponse](#hallresponse)&gt; | Yes  | Callback used to return the Hall effect sensor data. The reported data type in the callback is **HallResponse**.|
+
+- Example
+
+```
+function callback(data) {
+    console.info('Status: ' + data.status);
+}
+sensor.off(sensor.SensorType.SENSOR_TYPE_ID_HALL, callback);
+```
+
+## sensor.off(SensorType.SENSOR_TYPE_ID_HEART_RATE)
+
+off(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback?: Callback&lt;HeartRateResponse&gt;): void
+
+Unsubscribes from sensor data changes.
+
+**Required permissions**: ohos.permission.READ_HEALTH_DATA
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+- Parameters
+
+| Name  | Type                                                   | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype)[SensorType](#sensortype)      | Yes  | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_HEART_RATE**.     |
+| callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | Yes  | One-shot callback used to return the heart rate sensor data. The reported data type in the callback is **HeartRateResponse**.|
+
+- Example
+
+```
+function callback(data) {
+    console.info("Heart rate: " + data.heartRate);
+}
+sensor.off(sensor.SensorType.SENSOR_TYPE_ID_HEART_RATE, callback);
+```
+
+## sensor.off(SensorType.SENSOR_TYPE_ID_HUMIDITY)
+
+off(type: SensorType.SENSOR_TYPE_ID_HUMIDITY, callback?: Callback&lt;HumidityResponse&gt;): void
+
+Unsubscribes from sensor data changes.
+
+**Required permission**: ohos.permission.READ_HEALTH_DATA (a system permission)
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+- Parameters
+
+| Name  | Type                                                 | Mandatory| Description                                                        |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype)                             | Yes  | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_HUMIDITY**.       |
+| callback | Callback&lt;[HumidityResponse](#humidityresponse)&gt; | Yes  | Callback used to return the humidity sensor data. The reported data type in the callback is **HumidityResponse**.|
+
+- Example
+
+```
+function callback(data) {
+    console.info('Humidity: ' + data.humidity);
+}
+sensor.off(sensor.SensorType.SENSOR_TYPE_ID_HUMIDITY, callback);
+```
+
+## sensor.off(SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION)
+
+off(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION, callback?: Callback&lt;LinearAccelerometerResponse&gt;): void
+
+Unsubscribes from sensor data changes.
+
+**Required permissions**: ohos.permission.ACCELEROMETER (a system permission)
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+- Parameters
+
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype)                                    | Yes  | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_LINEAR_ACCELERATION**.|
+| callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | Yes  | Callback used to return the acceleration sensor data. The reported data type in the callback is **LinearAccelerometerResponse**.|
+
+- Example
+
+```
+function callback(data) {
+    console.info('X-coordinate component: ' + data.x);
+    console.info('Y-coordinate component: ' + data.y);
+    console.info('Z-coordinate component: ' + data.z);
+}
+sensor.off(sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION, callback);
+```
+
+## sensor.off(SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD)
+
+ off(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback?: Callback&lt;MagneticFieldResponse&gt;): void
+
+Unsubscribes from sensor data changes.
+
+**Required permissions**: ohos.permission.ACCELEROMETER (a system permission)
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+- Parameters
+
+| Name          | Type                                                        | Mandatory| Description                                                        |
+| ---------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type             | [SensorType](#sensortype)                                    | Yes  | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_MAGNETIC_FIELD**. |
+| callbackcallback | Callback&lt;[MagneticFieldResponse](#magneticfieldresponse)&gt; | Yes  | Callback used to return the magnetic field sensor data. The reported data type in the callback is **MagneticFieldResponse**.|
+
+- Example
+
+```
+function callback(data) {
+    console.info('X-coordinate component: ' + data.x);
+    console.info('Y-coordinate component: ' + data.y);
+    console.info('Z-coordinate component: ' + data.z);
+}
+sensor.off(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback);
+```
+
+## sensor.off(SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED)
+
+ off(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED, callback?: Callback&lt;MagneticFieldUncalibratedResponse&gt;): void
+
+Unsubscribes from sensor data changes.
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+- Parameters
+
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype)                                    | Yes  | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED**.|
+| callback | Callback&lt;[MagneticFieldUncalibratedResponse](#magneticfielduncalibratedresponse)&gt; | Yes  | Callback used to return the uncalibrated magnetic field sensor data. The reported data type in the callback is **MagneticFieldUncalibratedResponse**.|
+
+- Example
+
+```
+function callback(data) {
+    console.info('X-coordinate component: ' + data.x);
+    console.info('Y-coordinate component: ' + data.y);
+    console.info('Z-coordinate component: ' + data.z);
+    console.info('X-coordinate bias: ' + data.biasX);
+    console.info('Y-coordinate bias: ' + data.biasY);
+    console.info('Z-coordinate bias: ' + data.biasZ);
+}
+sensor.off(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED, callback);
+```
+
+## sensor.off(SensorType.SENSOR_TYPE_ID_ORIENTATION)
+
+ off(type: SensorType.SENSOR_TYPE_ID_ORIENTATION, callback?: Callback&lt;OrientationResponse&gt;): void
+
+Unsubscribes from sensor data changes.
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+- Parameters
+
+| Name  | Type                                                       | Mandatory| Description                                                        |
+| -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype)                                   | Yes  | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_ORIENTATION**.      |
+| callback | Callback&lt;[OrientationResponse](#orientationresponse)&gt; | Yes  | Callback used to return the orientation sensor data. The reported data type in the callback is **OrientationResponse**.|
+
+- Example
+
+```
+function callback(data) {
+    console.info('The device rotates at an angle around the X axis: ' + data.beta);
+    console.info('The device rotates at an angle around the Y axis: ' + data.gamma);
+    console.info('The device rotates at an angle around the Z axis: ' + data.alpha);
+}
+sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION, callback);
+```
+
+## sensor.off(SensorType.SENSOR_TYPE_ID_PEDOMETER)
+
+off(type: SensorType.SENSOR_TYPE_ID_PEDOMETER, callback?: Callback&lt;PedometerResponse&gt;): void
+
+Unsubscribes from sensor data changes.
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+- Parameters
+
+| Name  | Type                                                   | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype)                               | Yes  | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_PEDOMETER**.      |
+| callback | Callback&lt;[PedometerResponse](#pedometerresponse)&gt; | Yes  | Callback used to return the pedometer sensor data. The reported data type in the callback is **PedometerResponse**.|
+
+- Example
+
+```
+function callback(data) {
+    console.info('Steps: ' + data.steps);
+}
+sensor.off(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER, callback);
+```
+
+## sensor.off(SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION)
+
+off(type: SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, callback?: Callback&lt;PedometerDetectionResponse&gt;): void
+
+Unsubscribes from sensor data changes.
+
+**Required permissions**: ohos.permission.ACTIVITY_MOTION
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+- Parameters
+
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype)                                    | Yes  | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_PEDOMETER_DETECTION**.|
+| callback | Callback&lt;[PedometerDetectionResponse](#pedometerdetectionresponse)&gt; | Yes  | Callback used to return the pedometer detection sensor data. The reported data type in the callback is **PedometerDetectionResponse**.|
+
+- Example
+
+```
+function callback(data) {
+    console.info('Scalar data: ' + data.scalar);
+}
+sensor.off(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, callback);
+```
+
+## sensor.off(SensorType.SENSOR_TYPE_ID_PROXIMITY)
+
+off(type: SensorType.SENSOR_TYPE_ID_PROXIMITY, callback?: Callback&lt;ProximityResponse&gt;): void
+
+Unsubscribes from sensor data changes.
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+- Parameters
+
+| Name  | Type                                                   | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype)                               | Yes  | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_PROXIMITY**.    |
+| callback | Callback&lt;[ProximityResponse](#proximityresponse)&gt; | Yes  | Callback used to return the proximity sensor data. The reported data type in the callback is **ProximityResponse**.|
+
+- Example
+
+```
+function callback(data) {
+    console.info('Distance: ' + data.distance);
+}
+sensor.off(sensor.SensorType.SENSOR_TYPE_ID_PROXIMITY, callback);
+```
+
+## sensor.off(SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR)
+
+off(type: SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback?: Callback&lt;RotationVectorResponse&gt;): void
+
+Unsubscribes from sensor data changes.
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+- Parameters
+
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype)                                    | Yes  | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_ROTATION_VECTOR**.|
+| callback | Callback&lt;[RotationVectorResponse](#rotationvectorresponse)&gt; | Yes  | Callback used to return the rotation vector sensor data. The reported data type in the callback is **RotationVectorResponse**.|
+
+- Example
+
+```
+function callback(data) {
+    console.info('X-coordinate component: ' + data.x);
+    console.info('Y-coordinate component: ' + data.y);
+    console.info('Z-coordinate component: ' + data.z);
+    console.info('Scalar quantity: ' + data.w);
+}
+sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback);
+```
+
+## sensor.off(SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION)
+
+off(type: SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, callback?: Callback&lt;SignificantMotionResponse&gt;): void
+
+Unsubscribes from sensor data changes.
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+- Parameters
+
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype)                                    | Yes  | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_SIGNIFICANT_MOTION**.|
+| callback | Callback&lt;[SignificantMotionResponse](#significantmotionresponse)&gt; | Yes  | Callback used to return the significant motion sensor data. The reported data type in the callback is **SignificantMotionResponse**.|
+
+- Example
+
+```
+function callback(data) {
+    console.info('Scalar data: ' + data.scalar);
+}
+sensor.off(sensor.SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, callback);
+```
+
+## sensor.off(SensorType.SENSOR_TYPE_ID_WEAR_DETECTION)
+
+off(type: SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback?: Callback&lt;WearDetectionResponse&gt;): void
+
+Unsubscribes from sensor data changes.
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+- Parameters
+
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype)                                    | Yes  | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_WEAR_DETECTION**.|
+| callback | Callback&lt;[WearDetectionResponse](#weardetectionresponse)&gt; | Yes  | Callback used to return the wear detection sensor data. The reported data type in the callback is **WearDetectionResponse**.|
+
+- Example
+
+```
+function accCallback(data) {
+    console.info('Wear status: ' + data.value);
+}
+sensor.off(sensor.SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, accCallback);
+```
 
 ## sensor.transformCoordinateSystem
 
 transformCoordinateSystem(inRotationVector: Array&lt;number&gt;, coordinates: CoordinatesOptions, callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
-Rotates a rotation vector so that it can represent the coordinate system in different ways. This method uses a callback to return the result.
+Rotates a rotation vector so that it can represent the coordinate system in different ways. This API uses a callback to return the result.
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 - Parameters
 
-  | Name| Type| Mandatory| Description|
+  | Name          | Type                                     | Mandatory| Description                  |
   | ---------------- | ----------------------------------------- | ---- | ---------------------- |
-  | inRotationVector | Array&lt;number&gt;                       | Yes| Rotation vector to rotate.|
-  | coordinates      | [CoordinatesOptions](#coordinatesoptions) | Yes| Direction of the coordinate system.|
-  | callback         | AsyncCallback&lt;Array&lt;number&gt;&gt;  | Yes| Callback used to return the rotation vector after being rotated.|
+  | inRotationVector | Array&lt;number&gt;                       | Yes  | Rotation vector to rotate.        |
+  | coordinates      | [CoordinatesOptions](#coordinatesoptions) | Yes  | Direction of the coordinate system.      |
+  | callback         | AsyncCallback&lt;Array&lt;number&gt;&gt;  | Yes  | Callback used to return the rotation vector after being rotated.|
 
 - Example
 
@@ -1207,18 +1698,20 @@ Rotates a rotation vector so that it can represent the coordinate system in diff
 
 transformCoordinateSystem(inRotationVector: Array&lt;number&gt;, coordinates: CoordinatesOptions): Promise&lt;Array&lt;number&gt;&gt;
 
-Rotates a rotation vector so that it can represent the coordinate system in different ways. This method uses a promise to return the result.
+Rotates a rotation vector so that it can represent the coordinate system in different ways. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 - Parameters
 
-  | Name| Type| Mandatory| Description|
+  | Name          | Type                                     | Mandatory| Description            |
   | ---------------- | ----------------------------------------- | ---- | ---------------- |
-  | inRotationVector | Array&lt;number&gt;                       | Yes| Rotation vector to rotate.|
-  | coordinates      | [CoordinatesOptions](#coordinatesoptions) | Yes| Direction of the coordinate system.|
+  | inRotationVector | Array&lt;number&gt;                       | Yes  | Rotation vector to rotate.  |
+  | coordinates      | [CoordinatesOptions](#coordinatesoptions) | Yes  | Direction of the coordinate system.|
 
 - Return value
 
-  | Type| Description|
+  | Type                              | Description                  |
   | ---------------------------------- | ---------------------- |
   | Promise&lt;Array&lt;number&gt;&gt; | Promise used to return the rotation vector after being converted.|
 
@@ -1243,7 +1736,9 @@ Rotates a rotation vector so that it can represent the coordinate system in diff
 
 getGeomagneticField(locationOptions: LocationOptions, timeMillis: number, callback: AsyncCallback&lt;GeomagneticResponse&gt;): void
 
-Obtains the geomagnetic field of a geographic location. This method uses a callback to return the result.
+Obtains the geomagnetic field of a geographic location. This API uses a callback to return the result.
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 - Parameters
   | Name| Type| Mandatory| Description|
@@ -1270,7 +1765,9 @@ Obtains the geomagnetic field of a geographic location. This method uses a callb
 
 getGeomagneticField(locationOptions: LocationOptions, timeMillis: number): Promise&lt;GeomagneticResponse&gt;
 
-Obtains the geomagnetic field of a geographic location. This method uses a promise to return the result.
+Obtains the geomagnetic field of a geographic location. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 - Parameters
   | Name| Type| Mandatory| Description|
@@ -1299,15 +1796,17 @@ Obtains the geomagnetic field of a geographic location. This method uses a promi
 
 getAltitude(seaPressure: number, currentPressure: number, callback: AsyncCallback&lt;number&gt;): void
 
-Obtains the altitude at which the device is located based on the sea-level atmospheric pressure and the current atmospheric pressure. This method uses a callback to return the result.
+Obtains the altitude at which the device is located based on the sea-level atmospheric pressure and the current atmospheric pressure. This API uses a callback to return the result.
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 - Parameters
 
-  | Name| Type| Mandatory| Description|
+  | Name         | Type                       | Mandatory| Description                                 |
   | --------------- | --------------------------- | ---- | ------------------------------------- |
-  | seaPressure     | number                      | Yes| Sea-level atmospheric pressure, in hPa.|
-  | currentPressure | number                      | Yes| Current atmospheric pressure at the altitude where the device is located, in hPa.|
-  | callback        | AsyncCallback&lt;number&gt; | Yes| Callback used to return the altitude, in meters.|
+  | seaPressure     | number                      | Yes  | Sea-level atmospheric pressure, in hPa.        |
+  | currentPressure | number                      | Yes  | Current atmospheric pressure at the altitude where the device is located, in hPa.|
+  | callback        | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the altitude, in meters.   |
 
 - Example
 
@@ -1326,18 +1825,20 @@ Obtains the altitude at which the device is located based on the sea-level atmos
 
 getAltitude(seaPressure: number, currentPressure: number): Promise&lt;number&gt;
 
-Obtains the altitude at which the device is located based on the sea-level atmospheric pressure and the current atmospheric pressure. This method uses a promise to return the result.
+Obtains the altitude at which the device is located based on the sea-level atmospheric pressure and the current atmospheric pressure. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 - Parameters
 
-  | Name| Type| Mandatory| Description|
+  | Name         | Type  | Mandatory| Description                                 |
   | --------------- | ------ | ---- | ------------------------------------- |
-  | seaPressure     | number | Yes| Sea-level atmospheric pressure, in hPa.|
-  | currentPressure | number | Yes| Atmospheric pressure at the altitude where the device is located, in hPa.|
+  | seaPressure     | number | Yes  | Sea-level atmospheric pressure, in hPa.        |
+  | currentPressure | number | Yes  | Atmospheric pressure at the altitude where the device is located, in hPa.|
 
 - Return value
 
-  | Type| Description|
+  | Type                 | Description                                |
   | --------------------- | ------------------------------------ |
   | Promise&lt;number&gt; | Promise used to return the altitude, in meters.|
 
@@ -1357,14 +1858,16 @@ Obtains the altitude at which the device is located based on the sea-level atmos
 
 getGeomagneticDip(inclinationMatrix: Array&lt;number&gt;, callback: AsyncCallback&lt;number&gt;): void
 
-Obtains the magnetic dip based on the inclination matrix. This method uses a callback to return the result.
+Obtains the magnetic dip based on the inclination matrix. This API uses a callback to return the result.
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 - Parameters
 
-  | Name| Type| Mandatory| Description|
+  | Name           | Type                       | Mandatory| Description                        |
   | ----------------- | --------------------------- | ---- | ---------------------------- |
-  | inclinationMatrix | Array&lt;number&gt;         | Yes| Inclination matrix.|
-  | callback          | AsyncCallback&lt;number&gt; | Yes| Callback used to return the magnetic dip, in radians.|
+  | inclinationMatrix | Array&lt;number&gt;         | Yes  | Inclination matrix.              |
+  | callback          | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the magnetic dip, in radians.|
 
 - Example
 
@@ -1383,17 +1886,19 @@ Obtains the magnetic dip based on the inclination matrix. This method uses a cal
 
 getGeomagneticDip(inclinationMatrix: Array&lt;number&gt;): Promise&lt;number&gt;
 
-Obtains the magnetic dip based on the inclination matrix. This method uses a promise to return the result.
+Obtains the magnetic dip based on the inclination matrix. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 - Parameters
 
-  | Name| Type| Mandatory| Description|
+  | Name           | Type               | Mandatory| Description          |
   | ----------------- | ------------------- | ---- | -------------- |
-  | inclinationMatrix | Array&lt;number&gt; | Yes| Inclination matrix.|
+  | inclinationMatrix | Array&lt;number&gt; | Yes  | Inclination matrix.|
 
 - Return value
 
-  | Type| Description|
+  | Type                 | Description                        |
   | --------------------- | ---------------------------- |
   | Promise&lt;number&gt; | Promise used to return the magnetic dip, in radians.|
 
@@ -1412,15 +1917,17 @@ Obtains the magnetic dip based on the inclination matrix. This method uses a pro
 
 getAngleModify(currentRotationMatrix: Array&lt;number&gt;, preRotationMatrix: Array&lt;number&gt;, callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
-Obtains the angle change between two rotation matrices. This method uses a callback to return the result.
+Obtains the angle change between two rotation matrices. This API uses a callback to return the result.
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 - Parameters
 
-  | Name| Type| Mandatory| Description|
+  | Name               | Type                                    | Mandatory| Description                             |
   | --------------------- | ---------------------------------------- | ---- | --------------------------------- |
-  | currentRotationMatrix | Array&lt;number&gt;                      | Yes| Current rotation matrix.|
-  | preRotationMatrix     | Array&lt;number&gt;                      | Yes| The other rotation matrix.|
-  | callback              | AsyncCallback&lt;Array&lt;number&gt;&gt; | Yes| Callback used to return the angle change around the z, x, and y axes.|
+  | currentRotationMatrix | Array&lt;number&gt;                      | Yes  | Current rotation matrix.               |
+  | preRotationMatrix     | Array&lt;number&gt;                      | Yes  | The other rotation matrix.                   |
+  | callback              | AsyncCallback&lt;Array&lt;number&gt;&gt; | Yes  | Callback used to return the angle change around the z, x, and y axes.|
 
 - Example
 
@@ -1443,18 +1950,20 @@ Obtains the angle change between two rotation matrices. This method uses a callb
 
 getAngleModify(currentRotationMatrix: Array&lt;number&gt;, preRotationMatrix: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
 
-Obtains the angle change between two rotation matrices. This method uses a promise to return the result.
+Obtains the angle change between two rotation matrices. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 - Parameters
 
-  | Name| Type| Mandatory| Description|
+  | Name               | Type               | Mandatory| Description              |
   | --------------------- | ------------------- | ---- | ------------------ |
-  | currentRotationMatrix | Array&lt;number&gt; | Yes| Current rotation matrix.|
-  | preRotationMatrix     | Array&lt;number&gt; | Yes| The other rotation matrix.|
+  | currentRotationMatrix | Array&lt;number&gt; | Yes  | Current rotation matrix.|
+  | preRotationMatrix     | Array&lt;number&gt; | Yes  | Rotation matrix.|
 
 - Return value
 
-  | Type| Description|
+  | Type                              | Description                             |
   | ---------------------------------- | --------------------------------- |
   | Promise&lt;Array&lt;number&gt;&gt; | Promise used to return the angle change around the z, x, and y axes.|
 
@@ -1477,14 +1986,16 @@ Obtains the angle change between two rotation matrices. This method uses a promi
 
 createRotationMatrix(rotationVector: Array&lt;number&gt;, callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
-Converts a rotation vector into a rotation matrix. This method uses a callback to return the result.
+Converts a rotation vector into a rotation matrix. This API uses a callback to return the result.
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 - Parameters
 
-  | Name| Type| Mandatory| Description|
+  | Name        | Type                                    | Mandatory| Description          |
   | -------------- | ---------------------------------------- | ---- | -------------- |
-  | rotationVector | Array&lt;number&gt;                      | Yes| Rotation vector to convert.|
-  | callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | Yes| Callback used to return the rotation matrix.|
+  | rotationVector | Array&lt;number&gt;                      | Yes  | Rotation vector to convert.|
+  | callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | Yes  | Callback used to return the rotation matrix.|
 
 - Example
 
@@ -1507,17 +2018,19 @@ Converts a rotation vector into a rotation matrix. This method uses a callback t
 
 createRotationMatrix(rotationVector: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
 
-Converts a rotation vector into a rotation matrix. This method uses a promise to return the result.
+Converts a rotation vector into a rotation matrix. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 - Parameters
 
-  | Name| Type| Mandatory| Description|
+  | Name        | Type               | Mandatory| Description          |
   | -------------- | ------------------- | ---- | -------------- |
-  | rotationVector | Array&lt;number&gt; | Yes| Rotation vector to convert.|
+  | rotationVector | Array&lt;number&gt; | Yes  | Rotation vector to convert.|
 
 - Return value
 
-  | Type| Description|
+  | Type                              | Description          |
   | ---------------------------------- | -------------- |
   | Promise&lt;Array&lt;number&gt;&gt; | Promise used to return the rotation matrix.|
 
@@ -1540,14 +2053,16 @@ Converts a rotation vector into a rotation matrix. This method uses a promise to
 
 createQuaternion(rotationVector: Array&lt;number&gt;, callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
-Converts a rotation vector into a quaternion. This method uses a callback to return the result.
+Converts a rotation vector into a quaternion. This API uses a callback to return the result.
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 - Parameters
 
-  | Name| Type| Mandatory| Description|
+  | Name        | Type                                    | Mandatory| Description          |
   | -------------- | ---------------------------------------- | ---- | -------------- |
-  | rotationVector | Array&lt;number&gt;                      | Yes| Rotation vector to convert.|
-  | callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | Yes| Callback used to return the quaternion.|
+  | rotationVector | Array&lt;number&gt;                      | Yes  | Rotation vector to convert.|
+  | callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | Yes  | Callback used to return the quaternion.  |
 
 - Example
 
@@ -1570,17 +2085,19 @@ Converts a rotation vector into a quaternion. This method uses a callback to ret
 
 createQuaternion(rotationVector: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
 
-Converts a rotation vector into a quaternion. This method uses a promise to return the result.
+Converts a rotation vector into a quaternion. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 - Parameters
 
-  | Name| Type| Mandatory| Description|
+  | Name        | Type               | Mandatory| Description          |
   | -------------- | ------------------- | ---- | -------------- |
-  | rotationVector | Array&lt;number&gt; | Yes| Rotation vector to convert.|
+  | rotationVector | Array&lt;number&gt; | Yes  | Rotation vector to convert.|
 
 - Return value
 
-  | Type| Description|
+  | Type                              | Description        |
   | ---------------------------------- | ------------ |
   | Promise&lt;Array&lt;number&gt;&gt; | Promise used to return the quaternion.|
 
@@ -1603,14 +2120,16 @@ Converts a rotation vector into a quaternion. This method uses a promise to retu
 
 getDirection(rotationMatrix: Array&lt;number&gt;, callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
-Obtains the device direction based on the rotation matrix. This method uses a callback to return the result.
+Obtains the device direction based on the rotation matrix. This API uses a callback to return the result.
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 - Parameters
 
-  | Name| Type| Mandatory| Description|
+  | Name        | Type                                    | Mandatory| Description                             |
   | -------------- | ---------------------------------------- | ---- | --------------------------------- |
-  | rotationMatrix | Array&lt;number&gt;                      | Yes| Rotation matrix.|
-  | callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | Yes| Callback used to return the rotation angle around the z, x, and y axes.|
+  | rotationMatrix | Array&lt;number&gt;                      | Yes  | Rotation matrix.                   |
+  | callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | Yes  | Callback used to return the rotation angle around the z, x, and y axes.|
 
 - Example
 
@@ -1633,17 +2152,19 @@ Obtains the device direction based on the rotation matrix. This method uses a ca
 
 getDirection(rotationMatrix: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
 
-Obtains the device direction based on the rotation matrix. This method uses a promise to return the result.
+Obtains the device direction based on the rotation matrix. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 - Parameters
 
-  | Name| Type| Mandatory| Description|
+  | Name        | Type               | Mandatory| Description          |
   | -------------- | ------------------- | ---- | -------------- |
-  | rotationMatrix | Array&lt;number&gt; | Yes| Rotation matrix.|
+  | rotationMatrix | Array&lt;number&gt; | Yes  | Rotation matrix.|
 
 - Return value
 
-  | Type| Description|
+  | Type                              | Description                             |
   | ---------------------------------- | --------------------------------- |
   | Promise&lt;Array&lt;number&gt;&gt; | Promise used to return the rotation angle around the z, x, and y axes.|
 
@@ -1666,15 +2187,17 @@ Obtains the device direction based on the rotation matrix. This method uses a pr
 
 createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&gt;, callback: AsyncCallback&lt;RotationMatrixResponse&gt;): void
 
-Creates a rotation matrix based on the gravity vector and geomagnetic vector. This method uses a callback to return the result.
+Creates a rotation matrix based on the gravity vector and geomagnetic vector. This API uses a callback to return the result.
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 - Parameters
 
-  | Name| Type| Mandatory| Description|
+  | Name     | Type                                                        | Mandatory| Description          |
   | ----------- | ------------------------------------------------------------ | ---- | -------------- |
-  | gravity     | Array&lt;number&gt;                                          | Yes| Gravity vector.|
-  | geomagnetic | Array&lt;number&gt;                                          | Yes| Geomagnetic vector.|
-  | callback    | AsyncCallback&lt;[RotationMatrixResponse](#rotationmatrixresponse)&gt; | Yes| Callback used to return the rotation matrix.|
+  | gravity     | Array&lt;number&gt;                                          | Yes  | Gravity vector.|
+  | geomagnetic | Array&lt;number&gt;                                          | Yes  | Geomagnetic vector.|
+  | callback    | AsyncCallback&lt;[RotationMatrixResponse](#rotationmatrixresponse)&gt; | Yes  | Callback used to return the rotation matrix.|
 
 - Example
 
@@ -1697,18 +2220,20 @@ Creates a rotation matrix based on the gravity vector and geomagnetic vector. Th
 
 createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&gt;,): Promise&lt;RotationMatrixResponse&gt;
 
-Creates a rotation matrix based on the gravity vector and geomagnetic vector. This method uses a promise to return the result.
+Creates a rotation matrix based on the gravity vector and geomagnetic vector. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 - Parameters
 
-  | Name| Type| Mandatory| Description|
+  | Name     | Type               | Mandatory| Description          |
   | ----------- | ------------------- | ---- | -------------- |
-  | gravity     | Array&lt;number&gt; | Yes| Gravity vector.|
-  | geomagnetic | Array&lt;number&gt; | Yes| Geomagnetic vector.|
+  | gravity     | Array&lt;number&gt; | Yes  | Gravity vector.|
+  | geomagnetic | Array&lt;number&gt; | Yes  | Geomagnetic vector.|
 
 - Return value
 
-  | Type| Description|
+  | Type                                                        | Description          |
   | ------------------------------------------------------------ | -------------- |
   | Promise&lt;[RotationMatrixResponse](#rotationmatrixresponse)&gt; | Promise used to return the rotation matrix.|
 
@@ -1730,6 +2255,8 @@ Creates a rotation matrix based on the gravity vector and geomagnetic vector. Th
 ## SensorType
 
 Enumerates the sensor types.
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 
 | Name| Default Value| Description|
@@ -1761,6 +2288,8 @@ Enumerates the sensor types.
 
 Describes the timestamp of the sensor data.
 
+**System capability**: SystemCapability.Sensors.Sensor
+
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | timestamp | number | Yes| Yes| Timestamp when the sensor reports data.|
@@ -1769,6 +2298,8 @@ Describes the timestamp of the sensor data.
 ## AccelerometerResponse
 
 Describes the acceleration sensor data. It extends from [Response](#response).
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 
 | Name| Type| Readable| Writable| Description|
@@ -1782,6 +2313,8 @@ Describes the acceleration sensor data. It extends from [Response](#response).
 
 Describes the linear acceleration sensor data. It extends from [Response](#response).
 
+**System capability**: SystemCapability.Sensors.Sensor
+
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
@@ -1793,6 +2326,8 @@ Describes the linear acceleration sensor data. It extends from [Response](#respo
 ## AccelerometerUncalibratedResponse
 
 Describes the uncalibrated acceleration sensor data. It extends from [Response](#response).
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 
 | Name| Type| Readable| Writable| Description|
@@ -1809,6 +2344,8 @@ Describes the uncalibrated acceleration sensor data. It extends from [Response](
 
 Describes the gravity sensor data. It extends from [Response](#response).
 
+**System capability**: SystemCapability.Sensors.Sensor
+
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
@@ -1821,17 +2358,21 @@ Describes the gravity sensor data. It extends from [Response](#response).
 
 Describes the orientation sensor data. It extends from [Response](#response).
 
+**System capability**: SystemCapability.Sensors.Sensor
+
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| x | number | Yes| Yes| Rotation angle of the device around the x-axis, in rad.|
-| y | number | Yes| Yes| Rotation angle of the device around the y-axis, in rad.|
-| z | number | Yes| Yes| Rotation angle of the device around the z-axis, in rad.|
+| alpha | number | Yes| Yes| Rotation angle of the device around the z-axis, in rad.|
+| beta | number | Yes| Yes| Rotation angle of the device around the x-axis, in rad.|
+| gamma | number | Yes| Yes| Rotation angle of the device around the y-axis, in rad.|
 
 
 ## RotationVectorResponse
 
 Describes the rotation vector sensor data. It extends from [Response](#response).
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 
 | Name| Type| Readable| Writable| Description|
@@ -1839,11 +2380,14 @@ Describes the rotation vector sensor data. It extends from [Response](#response)
 | x | number | Yes| Yes| X-component of the rotation vector.|
 | y | number | Yes| Yes| Y-component of the rotation vector.|
 | z | number | Yes| Yes| Z-component of the rotation vector.|
+| w | number | Yes| Yes| Scalar.|
 
 
 ## GyroscopeResponse
 
 Describes the gyroscope sensor data. It extends from [Response](#response).
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 
 | Name| Type| Readable| Writable| Description|
@@ -1856,6 +2400,8 @@ Describes the gyroscope sensor data. It extends from [Response](#response).
 ## GyroscopeUncalibratedResponse
 
 Describes the uncalibrated gyroscope sensor data. It extends from [Response](#response).
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 
 | Name| Type| Readable| Writable| Description|
@@ -1872,6 +2418,8 @@ Describes the uncalibrated gyroscope sensor data. It extends from [Response](#re
 
 Describes the significant motion sensor data. It extends from [Response](#response).
 
+**System capability**: SystemCapability.Sensors.Sensor
+
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
@@ -1881,6 +2429,8 @@ Describes the significant motion sensor data. It extends from [Response](#respon
 ## ProximityResponse
 
 Describes the proximity sensor data. It extends from [Response](#response).
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 
 | Name| Type| Readable| Writable| Description|
@@ -1892,6 +2442,8 @@ Describes the proximity sensor data. It extends from [Response](#response).
 
 Describes the ambient light sensor data. It extends from [Response](#response).
 
+**System capability**: SystemCapability.Sensors.Sensor
+
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
@@ -1902,6 +2454,8 @@ Describes the ambient light sensor data. It extends from [Response](#response).
 
 Describes the Hall effect sensor data. It extends from [Response](#response).
 
+**System capability**: SystemCapability.Sensors.Sensor
+
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
@@ -1911,6 +2465,8 @@ Describes the Hall effect sensor data. It extends from [Response](#response).
 ## MagneticFieldResponse
 
 Describes the magnetic field sensor data. It extends from [Response](#response).
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 
 | Name| Type| Readable| Writable| Description|
@@ -1923,6 +2479,8 @@ Describes the magnetic field sensor data. It extends from [Response](#response).
 ## MagneticFieldUncalibratedResponse
 
 Describes the uncalibrated magnetic field sensor data. It extends from [Response](#response).
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 
 | Name| Type| Readable| Writable| Description|
@@ -1939,6 +2497,8 @@ Describes the uncalibrated magnetic field sensor data. It extends from [Response
 
 Describes the pedometer sensor data. It extends from [Response](#response).
 
+**System capability**: SystemCapability.Sensors.Sensor
+
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
@@ -1949,15 +2509,19 @@ Describes the pedometer sensor data. It extends from [Response](#response).
 
 Describes the humidity sensor data. It extends from [Response](#response).
 
+**System capability**: SystemCapability.Sensors.Sensor
+
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | humidity | number | Yes| Yes| Ambient relative humidity, in a percentage (%).|
 
 
-## PedometerDetectResponse
+## PedometerDetectionResponse
 
 Describes the pedometer detection sensor data. It extends from [Response](#response).
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 
 | Name| Type| Readable| Writable| Description|
@@ -1969,6 +2533,8 @@ Describes the pedometer detection sensor data. It extends from [Response](#respo
 
 Describes the ambient temperature sensor data. It extends from [Response](#response).
 
+**System capability**: SystemCapability.Sensors.Sensor
+
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
@@ -1978,6 +2544,8 @@ Describes the ambient temperature sensor data. It extends from [Response](#respo
 ## BarometerResponse
 
 Describes the barometer sensor data. It extends from [Response](#response).
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 
 | Name| Type| Readable| Writable| Description|
@@ -1989,6 +2557,8 @@ Describes the barometer sensor data. It extends from [Response](#response).
 
 Describes the heart rate sensor data. It extends from [Response](#response).
 
+**System capability**: SystemCapability.Sensors.Sensor
+
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
@@ -1998,6 +2568,8 @@ Describes the heart rate sensor data. It extends from [Response](#response).
 ## WearDetectionResponse
 
 Describes the wear detection sensor data. It extends from [Response](#response).
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 
 | Name| Type| Readable| Writable| Description|
@@ -2009,6 +2581,8 @@ Describes the wear detection sensor data. It extends from [Response](#response).
 
 Describes the sensor data reporting frequency.
 
+**System capability**: SystemCapability.Sensors.Sensor
+
 | Name| Type| Description|
 | -------- | -------- | -------- |
 | interval | number | Frequency at which a sensor reports data. The default value is 200,000,000 ns.|
@@ -2017,25 +2591,31 @@ Describes the sensor data reporting frequency.
 
 Describes the response for setting the rotation matrix.
 
-| Name| Type| Readable| Writable| Description|
+**System capability**: SystemCapability.Sensors.Sensor
+
+| Name       | Type           | Readable| Writable| Description      |
 | ----------- | ------------------- | ---- | ---- | ---------- |
-| rotation    | Array&lt;number&gt; | Yes| Yes| Rotation matrix.|
-| inclination | Array&lt;number&gt; | Yes| Yes| Inclination matrix.|
+| rotation    | Array&lt;number&gt; | Yes  | Yes  | Rotation matrix.|
+| inclination | Array&lt;number&gt; | Yes  | Yes  | Inclination matrix.|
 
 
 ## CoordinatesOptions
 
 Describes the coordinate options.
 
-| Name| Type| Readable| Writable| Description|
+**System capability**: SystemCapability.Sensors.Sensor
+
+| Name| Type| Readable| Writable| Description       |
 | ---- | -------- | ---- | ---- | ----------- |
-| x    | number   | Yes| Yes| X coordinate direction.|
-| y    | number   | Yes| Yes| Y coordinate direction.|
+| x    | number   | Yes  | Yes  | X coordinate direction.|
+| y    | number   | Yes  | Yes  | Y coordinate direction.|
 
 
 ## GeomagneticResponse
 
 Describes a geomagnetic response object. It extends from [Response](#response).
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
@@ -2047,8 +2627,11 @@ Describes a geomagnetic response object. It extends from [Response](#response).
 | levelIntensity | number | Yes| Yes| Horizontal intensity of the magnetic field vector field.|
 | totalIntensity | number | Yes| Yes| Total intensity of the magnetic field vector.|
 
-
 ## LocationOptions
+
+Describes the geographical location.
+
+**System capability**: SystemCapability.Sensors.Sensor
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
