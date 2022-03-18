@@ -273,7 +273,7 @@ Sensor驱动模型要求驱动开发者实现的接口功能，参考[表3](#tab
 
 
 
-接口实现参考[开发实例](#section257750691)章节。
+接口实现参考[开发步骤](#section7893102915819)章节。
 
 ### 开发步骤<a name="section7893102915819"></a>
 1. 基于HDF驱动框架，按照驱动Driver Entry程序，完成加速度抽象驱动开发，主要由Bind、Init、Release、Dispatch函数接口实现。
@@ -431,22 +431,22 @@ Sensor驱动模型要求驱动开发者实现的接口功能，参考[表3](#tab
 
 2. 完成加速度传感器驱动的设备信息配置。
 
-   - 加速度传感器模型使用HCS作为配置描述源码，HCS配置字段请参考[配置管理](driver-hdf-manage.md)介绍。
+   加速度传感器模型使用HCS作为配置描述源码，HCS配置字段请参考[配置管理](driver-hdf-manage.md)介绍。
 
-     ```
-     /* 加速度计传感器设备HCS配置 */
-     device_sensor_accel :: device {
-         device0 :: deviceNode {
-             policy = 1; // 驱动服务发布的策略
-             priority = 110; // 驱动启动优先级（0-200），值越大优先级越低，建议配置为100，优先级相同则不保证device的加载顺序
-             preload = 0; // 驱动按需加载字段，0表示加载，2表示不加载
-             permission = 0664; // 驱动创建设备节点权限
-             moduleName = "HDF_SENSOR_ACCEL"; // 驱动名称，该字段的值必须和驱动入口结构的moduleName值一致
-             serviceName = "sensor_accel"; // 驱动对外发布服务的名称，必须唯一
-             deviceMatchAttr = "hdf_sensor_accel_driver"; // 驱动私有数据匹配的关键字，必须和驱动私有数据配置表中的match_attr值相等
-         }
-     } 
-     ```
+   ```
+   /* 加速度计传感器设备HCS配置 */
+   device_sensor_accel :: device {
+       device0 :: deviceNode {
+           policy = 1; // 驱动服务发布的策略
+           priority = 110; // 驱动启动优先级（0-200），值越大优先级越低，建议配置为100，优先级相同则不保证device的加载顺序
+           preload = 0; // 驱动按需加载字段，0表示加载，2表示不加载
+           permission = 0664; // 驱动创建设备节点权限
+           moduleName = "HDF_SENSOR_ACCEL"; // 驱动名称，该字段的值必须和驱动入口结构的moduleName值一致
+           serviceName = "sensor_accel"; // 驱动对外发布服务的名称，必须唯一
+           deviceMatchAttr = "hdf_sensor_accel_driver"; // 驱动私有数据匹配的关键字，必须和驱动私有数据配置表中的match_attr值相等
+       }
+   } 
+   ```
 
 3. 完成加速度传感器抽象驱动内部接口开发，包括Enable、Disable、SetBatch、SetMode、SetOption、AccelCreateCfgData、AccelReleaseCfgData、AccelRegisterChipOps接口实现。
 
@@ -555,7 +555,7 @@ Sensor驱动模型要求驱动开发者实现的接口功能，参考[表3](#tab
    }
    ```
 
-4. 基于HDF驱动框架，按照驱动Driver Entry程序，完成加速度传感器差异化驱动开发，主要有Bind、Init、Release、Dispatch函数接口实现。
+4. 基于HDF驱动框架，按照驱动Driver Entry程序，完成加速度传感器差异化驱动开发，主要由Bind、Init、Release、Dispatch函数接口实现。
 
    ```c
    /* 加速度计传感器差异化驱动消息交互 */
