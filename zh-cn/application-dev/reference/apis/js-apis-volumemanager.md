@@ -11,7 +11,7 @@
 import volumemanager from "@ohos.volumeManager";
 ```
 
-## volumemanager.getAllVolumes
+## volumemanager.getAllVolumes<sup>9+</sup>
 
 getAllVolumes(): Promise&lt;Array&lt;Volume&gt;&gt;
 
@@ -33,7 +33,7 @@ getAllVolumes(): Promise&lt;Array&lt;Volume&gt;&gt;
   });
   ```
 
-## volumemanager.getAllVolumes
+## volumemanager.getAllVolumes<sup>9+</sup>
 
 getAllVolumes(callback: AsyncCallback&lt;Array&lt;Volume&gt;&gt;): void
 

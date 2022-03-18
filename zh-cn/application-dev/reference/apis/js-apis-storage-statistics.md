@@ -126,7 +126,7 @@ getFreeSizeOfVolume(volumeUuid: string, callback:AsyncCallback&lt;number&gt;):vo
   });
   ```
 
-## storagestatistics.getBundleStats<sup>9+</sup>
+## storagestatistics.getBundleStats
 
 getBundleStats(packageName: string): Promise&lt;BundleStats&gt;
 
@@ -157,7 +157,7 @@ getBundleStats(packageName: string): Promise&lt;BundleStats&gt;
   });
   ```
 
-## storagestatistics.getBundleStats<sup>9+</sup>
+## storagestatistics.getBundleStats
 
 getBundleStats(packageName: string,  callback: AsyncCallback&lt;BundleStats&gt;): void
 
