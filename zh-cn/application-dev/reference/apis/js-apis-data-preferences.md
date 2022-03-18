@@ -79,8 +79,8 @@ getPreferences(context: Context, name: string): Promise&lt;Preferences&gt;
   import Ability from '@ohos.application.Ability'
   import data_Preferences from '@ohos.data.preferences'
   var path = this.context.getDataBaseDir()
-  let promise = data_Preferences.getPreferences(this.context, 'mystore')
-  promise.then((preferences) => {
+  let promisePre = data_Preferences.getPreferences(this.context, 'mystore')
+  promisePre.then((preferences) => {
       preferences.putSync('startup', 'auto')
       preferences.flushSync()
   }).catch((err) => {
@@ -141,8 +141,8 @@ deletePreferences(context: Context, name: string): Promise&lt;void&gt;
   ```
   import Ability from '@ohos.application.Ability'
   import data_Preferences from '@ohos.data.preferences'
-  let promise = data_Preferences.deletePreferences(this.context, 'mystore')
-  promise.then(() => {
+  let promisedelPre = data_Preferences.deletePreferences(this.context, 'mystore')
+  promisedelPre.then(() => {
       console.info("Deleted successfully.")
   }).catch((err) => {
       console.info("Deleted failed with err: " + err)
@@ -206,8 +206,8 @@ removePreferencesFromCache(context: Context, name: string): Promise&lt;void&gt;
   ```
   import Ability from '@ohos.application.Ability'
   import data_Preferences from '@ohos.data.preferences'
-  let promise = data_Preferences.removePreferencesFromCache(this.context, 'mystore')
-  promise.then(() => {
+  let promiserevPre = data_Preferences.removePreferencesFromCache(this.context, 'mystore')
+  promiserevPre.then(() => {
       console.info("Removed preferences from cache successfully.")
   }).catch((err) => {
       console.info("Removed preferences from cache failed with err: " + err)
@@ -272,8 +272,8 @@ get(key: string, defValue: ValueType): Promise&lt;ValueType&gt;
 
 - 示例：
   ```
-  let promise = preferences.get('startup', 'default')
-  promise.then((value) => {
+  let promiseget = preferences.get('startup', 'default')
+  promiseget.then((value) => {
       console.info("The value of startup is " + value)
   }).catch((err) => {
       console.info("Get the value of startup failed with err: " + err)
@@ -333,8 +333,8 @@ put(key: string, value: ValueType): Promise&lt;void&gt;
 
 - 示例：
   ```
-  let promise = preferences.put('startup', 'auto')
-  promise.then(() => {
+  let promiseput = preferences.put('startup', 'auto')
+  promiseput.then(() => {
       console.info("Put the value of startup successfully.")
   }).catch((err) => {
       console.info("Put the value of startup failed with err: " + err)
@@ -399,8 +399,8 @@ has(key: string): Promise&lt;boolean&gt;
 
 - 示例：
   ```
-  let promise = preferences.has('startup')
-  promise.then((isExist) => {
+  let promisehas = preferences.has('startup')
+  promisehas.then((isExist) => {
       if (isExist) {
           console.info("The key of startup is contained.")
       }
@@ -460,8 +460,8 @@ delete(key: string): Promise&lt;void&gt;
 
 - 示例：
   ```
-  let promise = preferences.delete('startup')
-  promise.then(() => {
+  let promisedel = preferences.delete('startup')
+  promisedel.then(() => {
       console.info("Deleted startup key successfully.")
   }).catch((err) => {
       console.info("Delete startup key failed with err: " + err)
@@ -513,8 +513,8 @@ flush(): Promise&lt;void&gt;
 
 - 示例：
   ```
-  let promise = preferences.flush()
-  promise.then(() => {
+  let promiseflush = preferences.flush()
+  promiseflush.then(() => {
       console.info("Flushed to file successfully.")
   }).catch((err) => {
       console.info("Flush to file failed with err: " + err)
@@ -566,8 +566,8 @@ clear(): Promise&lt;void&gt;
 
 - 示例：
   ```
-  let promise = preferences.clear()
-  promise.then(() => {
+  let promiseclear = preferences.clear()
+  promiseclear.then(() => {
       console.info("Cleared to file successfully.")
   }).catch((err) => {
       console.info("Clear to file failed with err: " + err)

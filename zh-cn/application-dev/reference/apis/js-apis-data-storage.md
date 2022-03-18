@@ -111,8 +111,8 @@ getStorage(path: string): Promise&lt;Storage&gt;
 
   var context = featureAbility.getContext()
   var path = await context.getFilesDir()
-  let promise = dataStorage.getStorage(path + '/mystore')
-  promise.then((storage) => {
+  let promisegetSt = dataStorage.getStorage(path + '/mystore')
+  promisegetSt.then((storage) => {
       storage.putSync('startup', 'auto')
       storage.flushSync()
   }).catch((err) => {
@@ -186,8 +186,8 @@ deleteStorage(path: string): Promise&lt;void&gt;
 
 - 示例：
   ```
-  let promise = dataStorage.deleteStorage(path + '/mystore')
-  promise.then(() => {
+  let promisedelSt = dataStorage.deleteStorage(path + '/mystore')
+  promisedelSt.then(() => {
       console.info("Deleted successfully.")
   }).catch((err) => {
       console.info("Deleted failed with err: " + err)
@@ -266,8 +266,8 @@ removeStorageFromCache(path: string): Promise&lt;void&gt;
 
 - 示例：
   ```
-  let promise = dataStorage.removeStorageFromCache(path + '/mystore')
-  promise.then(() => {
+  let promiserevSt = dataStorage.removeStorageFromCache(path + '/mystore')
+  promiserevSt.then(() => {
       console.info("Removed storage from cache successfully.")
   }).catch((err) => {
       console.info("Removed storage from cache failed with err: " + err)
@@ -360,8 +360,8 @@ get(key: string, defValue: ValueType): Promise&lt;ValueType&gt;
 
 - 示例：
   ```
-  let promise = storage.get('startup', 'default')
-  promise.then((value) => {
+  let promiseget = storage.get('startup', 'default')
+  promiseget.then((value) => {
       console.info("The value of startup is " + value)
   }).catch((err) => {
       console.info("Get the value of startup failed with err: " + err)
@@ -443,8 +443,8 @@ put(key: string, value: ValueType): Promise&lt;void&gt;
 
 - 示例：
   ```
-  let promise = storage.put('startup', 'auto')
-  promise.then(() => {
+  let promiseput = storage.put('startup', 'auto')
+  promiseput.then(() => {
       console.info("Put the value of startup successfully.")
   }).catch((err) => {
       console.info("Put the value of startup failed with err: " + err)
@@ -538,8 +538,8 @@ has(key: string): Promise&lt;boolean&gt;
 
 - 示例：
   ```
-  let promise = storage.has('startup')
-  promise.then((isExist) => {
+  let promisehas = storage.has('startup')
+  promisehas.then((isExist) => {
       if (isExist) {
           console.info("The key of startup is contained.")
       }
@@ -620,8 +620,8 @@ delete(key: string): Promise&lt;void&gt;
 
 - 示例：
   ```
-  let promise = storage.delete('startup')
-  promise.then(() => {
+  let promisedel = storage.delete('startup')
+  promisedel.then(() => {
       console.info("Deleted startup key successfully.")
   }).catch((err) => {
       console.info("Delete startup key failed with err: " + err)
@@ -689,8 +689,8 @@ flush(): Promise&lt;void&gt;
 
 - 示例：
   ```
-  let promise = storage.flush()
-  promise.then(() => {
+  let promiseflush = storage.flush()
+  promiseflush.then(() => {
       console.info("Flushed to file successfully.")
   }).catch((err) => {
       console.info("Flush to file failed with err: " + err)
@@ -758,8 +758,8 @@ clear(): Promise&lt;void&gt;
 
 - 示例：
   ```
-  let promise = storage.clear()
-  promise.then(() => {
+  let promiseclear = storage.clear()
+  promiseclear.then(() => {
       console.info("Cleared to file successfully.")
   }).catch((err) => {
       console.info("Clear to file failed with err: " + err)
