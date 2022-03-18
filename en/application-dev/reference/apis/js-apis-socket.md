@@ -1448,4 +1448,4 @@ Defines other properties of the TCPSocket connection.
 | receiveBufferSize | number  | No  | Size of the receive buffer, in bytes.                              |
 | sendBufferSize    | number  | No  | Size of the send buffer, in bytes.                              |
 | reuseAddress      | boolean | No  | Whether to reuse addresses. The default value is **false**.                                 |
-| socketTimeout     | number  | No  | Timeout duration of the UDPSocket connection, in ms.                            |
+| socketTimeout     | number  | No  | Timeout duration of the TCPSocket connection, in ms.                            |
