@@ -15,11 +15,11 @@ import distributedData from '@ohos.data.distributedData';
 
 ## distributedData.createKVManager
 
-**系统能力**：SystemCapability.DistributedDataManager.KVStore.Core。
-
 createKVManager(config: KVManagerConfig, callback: AsyncCallback&lt;KVManager&gt;): void
 
 创建一个KVManager对象实例，用于管理数据库对象，并通过callback方式返回，此方法为异步方法。
+
+**系统能力**：SystemCapability.DistributedDataManager.KVStore.Core。
 
 - 参数：
 
@@ -56,11 +56,11 @@ createKVManager(config: KVManagerConfig, callback: AsyncCallback&lt;KVManager&gt
 
 ## distributedData.createKVManager
 
-**系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
-
 createKVManager(config: KVManagerConfig): Promise&lt;KVManager&gt;
 
 创建一个KVManager对象实例，用于管理数据库对象，并通过Promise方式返回，此方法为异步方法。
+
+**系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
 -   参数：
 
@@ -100,9 +100,9 @@ createKVManager(config: KVManagerConfig): Promise&lt;KVManager&gt;
 
 ## KVManagerConfig
 
-**系统能力**：以下各项对应的系统能力均为 SystemCapability.DistributedDataManager.KVStore.Core。
-
 提供KVManager实例的配置信息，包括调用方的包名和用户信息。
+
+**系统能力**：以下各项对应的系统能力均为 SystemCapability.DistributedDataManager.KVStore.Core。
 
 | 参数名 | 参数类型 | 必填 | 说明 |
 | ----- | ------ | ------ | ------ |
@@ -113,9 +113,9 @@ createKVManager(config: KVManagerConfig): Promise&lt;KVManager&gt;
 
 ## UserInfo
 
-**系统能力**：以下各项对应的系统能力均为 SystemCapability.DistributedDataManager.KVStore.Core。
-
 用户信息。
+
+**系统能力**：以下各项对应的系统能力均为 SystemCapability.DistributedDataManager.KVStore.Core。
 
 | 名称 | 参数类型 | 必填 | 说明 |
 | ----- | ------ | ------ | ------ |
@@ -124,10 +124,10 @@ createKVManager(config: KVManagerConfig): Promise&lt;KVManager&gt;
 
 
 ## UserType
-**系统能力**：以下各项对应的系统能力均为 SystemCapability.DistributedDataManager.KVStore.Core。
-
 
 用户类型。
+
+**系统能力**：以下各项对应的系统能力均为 SystemCapability.DistributedDataManager.KVStore.Core。
 
 | 名称 | 默认值 | 说明 |
 | ----- | ------ | ------ |
@@ -136,9 +136,9 @@ createKVManager(config: KVManagerConfig): Promise&lt;KVManager&gt;
 
 ## KVManager
 
-**系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
-
 数据管理实例，用于获取KVStore的相关信息。在调用KVManager的方法前，需要先通过createKVManager构建一个KVManager实例。
+
+
 
 ### getKVStore
 
@@ -724,7 +724,6 @@ appendChild(child: FieldNode): boolean
 
 提供获取KvStore数据库结果集的方法，提供查询和移动数据读取位置的方法，在调用KvStoreResultSet的方法前，需要先通过KvStore 构建一个KvStore 实例。
 
-**系统能力**： SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
 
 ### getCount<sup>8+</sup> ###
 
@@ -1585,7 +1584,7 @@ notInString(field: string, valueList: string[]): Query
 
 构造一个Query对象以查询具有指定字段且值不在指定字符串值列表中的条目。
 
-
+**系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
 -   参数：
 
