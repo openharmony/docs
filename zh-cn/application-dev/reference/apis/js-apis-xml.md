@@ -41,7 +41,7 @@ var thatSer = new xml.XmlSerializer(bufView);
 
 ### setAttributes
 
-setAttributes(name: string, value: string)：void
+setAttributes(name: string, value: string): void
 
 设置Attributes方法。
 
