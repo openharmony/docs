@@ -10,7 +10,7 @@
 - 音频播放（[AudioPlayer](#audioplayer)）
 - 视频播放（[VideoPlayer](#videoplayer8)）
 - 音频录制（[AudioRecorder](#audiorecorder)）
-- 视频录制（[VideoRecorder](#VideoRecorder<sup>8+</sup>)）
+- 视频录制（[VideoRecorder](#videoRecorder8)）
 
 后续将提供以下功能：DataSource音视频播放、音视频编解码、容器封装解封装、媒体能力查询等功能。
 
@@ -228,16 +228,16 @@ Codec MIME类型枚举。
 
 **系统能力：** 以下各项对应的系统能力均为 SystemCapability.Multimedia.Media.Core。
 
-| 名称         | 值                    | 说明                                                         |
-| ------------ | --------------------- | ------------------------------------------------------------ |
-| VIDEO_H263   | 'video/h263'          | 表示视频/h263类型。|
-| VIDEO_AVC    | 'video/avc'           | 表示视频/avc类型。 |
-| VIDEO_MPEG2  | 'video/mpeg2'         | 表示视频/mpeg2类型。 |
-| VIDEO_MPEG4  | 'video/mp4v-es'       | 表示视频/mpeg4类型。 |
-| VIDEO_VP8    | 'video/x-vnd.on2.vp8' | 表示视频/vp8类型。 |
+| 名称         | 值                    | 说明                     |
+| ------------ | --------------------- | ------------------------ |
+| VIDEO_H263   | 'video/h263'          | 表示视频/h263类型。      |
+| VIDEO_AVC    | 'video/avc'           | 表示视频/avc类型。       |
+| VIDEO_MPEG2  | 'video/mpeg2'         | 表示视频/mpeg2类型。     |
+| VIDEO_MPEG4  | 'video/mp4v-es'       | 表示视频/mpeg4类型。     |
+| VIDEO_VP8    | 'video/x-vnd.on2.vp8' | 表示视频/vp8类型。       |
 | AUDIO_AAC    | "audio/mp4a-latm"     | 表示音频/mp4a-latm类型。 |
-| AUDIO_VORBIS | 'audio/vorbis'        | 表示音频/vorbis类型。 |
-| AUDIO_FLAC   | 'audio/flac'          | 表示音频/flac类型。 |
+| AUDIO_VORBIS | 'audio/vorbis'        | 表示音频/vorbis类型。    |
+| AUDIO_FLAC   | 'audio/flac'          | 表示音频/flac类型。      |
 
 ## MediaDescriptionKey<sup>8+</sup>
 
@@ -283,7 +283,7 @@ Codec MIME类型枚举。
 
 | 名称        | 类型                      | 可读 | 可写 | 说明                                                         |
 | ----------- | ------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| src         | string                    | 是   | 是   | 音频媒体URI，支持当前主流的音频格式(mp4、aac、mp3、ogg、wav)。<br>**支持路径示例**：<br>1、fd类型播放：fd://xx<br>![zh-cn_image_0000001164217678](figures/zh-cn_image_url.png)<br>2、http网络播放: http://xx<br>3、hls网络播放路径：开发中<br>**注意事项**：<br>使用媒体素材需要获取读权限，否则无法正常播放。 |
+| src         | string                    | 是   | 是   | 音频媒体URI，支持当前主流的音频格式(mp4、aac、mp3、ogg、wav)。<br>**支持路径示例**：<br>1、fd类型播放：fd://xx<br>![](figures/zh-cn_image_url.png)<br>2、http网络播放: http://xx<br>3、hls网络播放路径：开发中<br>**注意事项**：<br>使用媒体素材需要获取读权限，否则无法正常播放。 |
 | loop        | boolean                   | 是   | 是   | 音频循环播放属性，设置为'true'表示循环播放。                 |
 | currentTime | number                    | 是   | 否   | 音频的当前播放位置。                                         |
 | duration    | number                    | 是   | 否   | 音频时长。                                                   |
@@ -293,7 +293,7 @@ Codec MIME类型枚举。
 
 play(): void
 
-开始播放音频资源，需在[dataLoad](#on('play' | 'pause' | 'stop' | 'reset' | 'dataload' | 'finish' | 'volumechange'))事件成功触发后，才能调用play方法。
+开始播放音频资源，需在[dataLoad](#audioplayer_on)事件成功触发后，才能调用play方法。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -424,7 +424,7 @@ audioPlayer = undefined;
 
 ### getTrackDescription<sup>8+</sup><a name=audioplayer_gettrackdescription1></a>
 
-getTrackDescription(callback: AsyncCallback<Array<[MediaDescription](#mediadescription8)>>): void
+getTrackDescription(callback: AsyncCallback<Array\<MediaDescription>>): void
 
 通过回调方式获取音频轨道信息。
 
@@ -460,7 +460,7 @@ audioPlayer.getTrackDescription((error, arrlist) => {
 
 ### getTrackDescription<sup>8+</sup><a name=audioplayer_gettrackdescription2></a>
 
-getTrackDescription(): Promise<Array<[MediaDescription](#mediadescription8)>>
+getTrackDescription(): Promise<Array\<MediaDescription>>
 
 通过Promise方式获取音频轨道信息。
 
@@ -511,10 +511,10 @@ on(type: 'bufferingUpdate', callback: (infoType: [BufferingInfoType](#bufferingi
 
 **参数：**
 
-| 参数名   | 类型                                                         | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | 是   | 音频缓存事件回调类型，支持的事件：'bufferingUpdate'。        |
-| callback | (infoType: [BufferingInfoType](#bufferinginfotype8), value: number) => void | 是   | 音频缓存事件回调方法。<br>[BufferingInfoType](#bufferinginfotype8)为BUFFERING_PERCENT或CACHED_DURATION时，value值有效，否则固定为0。 |
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | 是   | 音频缓存事件回调类型，支持的事件：'bufferingUpdate'。        |
+| callback | function | 是   | 音频缓存事件回调方法。<br>[BufferingInfoType](#bufferinginfotype8)为BUFFERING_PERCENT或CACHED_DURATION时，value值有效，否则固定为0。 |
 
 **示例：**
 
@@ -525,7 +525,7 @@ audioPlayer.on('bufferingUpdate', (infoType, value) => {
 });
 ```
 
- ### on('play' | 'pause' | 'stop' | 'reset' | 'dataLoad' | 'finish' | 'volumeChange')
+ ### on('play' | 'pause' | 'stop' | 'reset' | 'dataLoad' | 'finish' | 'volumeChange')<a name = audioplayer_on></a>
 
 on(type: 'play' | 'pause' | 'stop' | 'reset' | 'dataLoad' | 'finish' | 'volumeChange', callback: () => void): void
 
@@ -537,7 +537,7 @@ on(type: 'play' | 'pause' | 'stop' | 'reset' | 'dataLoad' | 'finish' | 'volumeCh
 
 | 参数名   | 类型       | 必填 | 说明                                                         |
 | -------- | ---------- | ---- | ------------------------------------------------------------ |
-| type     | string     | 是   | 播放事件回调类型，支持的事件包括：'play' \| 'pause' \| 'stop' \| 'reset' \| 'dataLoad' \| 'finish' \| 'volumeChange'。<br>- 'play'：完成[play()](#play)调用，音频开始播放，触发该事件。<br>- 'pause'：完成[pause()](#pause)调用，音频暂停播放，触发该事件。<br>- 'stop'：完成[stop()](#stop)调用，音频停止播放，触发该事件。<br>- 'reset'：完成[reset()](#reset7)调用，播放器重置，触发该事件。<br>- 'dataLoad'：完成音频数据加载后触发该事件，即src属性设置完成后触发该事件。<br>- 'finish'：完成音频播放后触发该事件。<br>- 'volumeChange'：完成[setVolume()](#setvolume)调用，播放音量改变后触发该事件。 |
+| type     | string     | 是   | 播放事件回调类型，支持的事件包括：'play' \| 'pause' \| 'stop' \| 'reset' \| 'dataLoad' \| 'finish' \| 'volumeChange'。<br>- 'play'：完成[play()](#audioplayer_play)调用，音频开始播放，触发该事件。<br>- 'pause'：完成[pause()](#audioplayer_pause)调用，音频暂停播放，触发该事件。<br>- 'stop'：完成[stop()](#audioplayer_stop)调用，音频停止播放，触发该事件。<br>- 'reset'：完成[reset()](#audioplayer_reset)调用，播放器重置，触发该事件。<br>- 'dataLoad'：完成音频数据加载后触发该事件，即src属性设置完成后触发该事件。<br>- 'finish'：完成音频播放后触发该事件。<br>- 'volumeChange'：完成[setVolume()](#audioplayer_setvolume)调用，播放音量改变后触发该事件。 |
 | callback | () => void | 是   | 播放事件回调方法。                                           |
 
 **示例：**
@@ -609,7 +609,7 @@ on(type: 'timeUpdate', callback: Callback\<number>): void
 
 | 参数名   | 类型              | 必填 | 说明                                                         |
 | -------- | ----------------- | ---- | ------------------------------------------------------------ |
-| type     | string            | 是   | 播放事件回调类型，支持的事件包括：'timeUpdate'。<br>- 'timeUpdate'：[seek()](#seek)调用完成，触发该事件。 |
+| type     | string            | 是   | 播放事件回调类型，支持的事件包括：'timeUpdate'。<br>- 'timeUpdate'：[seek()](#audioplayer_seek)调用完成，触发该事件。 |
 | callback | Callback\<number> | 是   | 播放事件回调方法。回调方法入参为成功seek的时间。             |
 
 **示例：**
@@ -667,7 +667,7 @@ audioPlayer.setVolume(3);  //设置volume为无效值，触发'error'事件
 
 ## VideoPlayer<sup>8+</sup>
 
-视频播放管理类，用于管理和播放视频媒体。在调用VideoPlayer的方法前，需要先通过[createVideoPlayer()](#media.createvideoplayer8)构建一个[VideoPlayer](#videoplayer8)实例。
+视频播放管理类，用于管理和播放视频媒体。在调用VideoPlayer的方法前，需要先通过[createVideoPlayer()](#mediacreatevideoplayer8)构建一个[VideoPlayer](#videoplayer8)实例。
 
 视频播放demo可参考：[视频播放开发指导](../../media/video-playback.md)
 
@@ -677,7 +677,7 @@ audioPlayer.setVolume(3);  //设置volume为无效值，触发'error'事件
 
 | 名称                     | 类型                               | 可读 | 可写 | 说明                                                         |
 | ------------------------ | ---------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| url<sup>8+</sup>         | string                             | 是   | 是   | 视频媒体URL，支持当前主流的视频格式(mp4、mpeg-ts、webm、mkv)。<br>**支持路径示例**：<br>1. fd类型播放：fd://xx<br>![zh-cn_image_0000001164217678](figures/zh-cn_image_url.png)<br>2、http网络播放: http://xx<br/>3、hls网络播放路径：开发中<br/>**注意事项**：<br>使用媒体素材需要获取读权限，否则无法正常播放。 |
+| url<sup>8+</sup>         | string                             | 是   | 是   | 视频媒体URL，支持当前主流的视频格式(mp4、mpeg-ts、webm、mkv)。<br>**支持路径示例**：<br>1. fd类型播放：fd://xx<br>![](figures/zh-cn_image_url.png)<br>2、http网络播放: http://xx<br/>3、hls网络播放路径：开发中<br/>**注意事项**：<br>使用媒体素材需要获取读权限，否则无法正常播放。 |
 | loop<sup>8+</sup>        | boolean                            | 是   | 是   | 视频循环播放属性，设置为'true'表示循环播放。                 |
 | currentTime<sup>8+</sup> | number                             | 是   | 否   | 视频的当前播放位置。                                         |
 | duration<sup>8+</sup>    | number                             | 是   | 否   | 视频时长，返回-1表示直播模式。                               |
@@ -1053,11 +1053,11 @@ seek(timeMs: number, mode:SeekMode, callback: AsyncCallback\<number>): void
 
 **参数：**
 
-| 参数名   | 类型     | 必填 | 说明                                     |
-| -------- | -------- | ---- | ---------------------------------------- |
-| timeMs   | number   | 是   | 指定的跳转时间节点，单位毫秒。           |
-| mode     | SeekMode | 是   | 跳转模式，具体见[SeekMode](#seekmode8)。 |
-| callback | function | 是   | 跳转到指定播放位置的回调方法。           |
+| 参数名   | 类型                   | 必填 | 说明                           |
+| -------- | ---------------------- | ---- | ------------------------------ |
+| timeMs   | number                 | 是   | 指定的跳转时间节点，单位毫秒。 |
+| mode     | [SeekMode](#seekmode8) | 是   | 跳转模式。                     |
+| callback | function               | 是   | 跳转到指定播放位置的回调方法。 |
 
 **示例：**
 
@@ -1081,10 +1081,10 @@ seek(timeMs: number, mode?:SeekMode): Promise\<number>
 
 **参数：**
 
-| 参数名 | 类型     | 必填 | 说明                                   |
-| ------ | -------- | ---- | -------------------------------------- |
-| timeMs | number   | 是   | 指定的跳转时间节点，单位毫秒。         |
-| mode   | SeekMode | 否   | 跳转模式，具体见[SeekMode](#seekmode8) |
+| 参数名 | 类型                   | 必填 | 说明                           |
+| ------ | ---------------------- | ---- | ------------------------------ |
+| timeMs | number                 | 是   | 指定的跳转时间节点，单位毫秒。 |
+| mode   | [SeekMode](#seekmode8) | 否   | 跳转模式。                     |
 
 **返回值：**
 
@@ -1227,7 +1227,7 @@ await videoPlayer.release().then() => {
 
 ### getTrackDescription<sup>8+</sup>
 
-getTrackDescription(callback: AsyncCallback<Array<[MediaDescription](#mediadescription8)>>): void
+getTrackDescription(callback: AsyncCallback<Array\<MediaDescription>>): void
 
 通过回调方式获取视频轨道信息。
 
@@ -1235,9 +1235,9 @@ getTrackDescription(callback: AsyncCallback<Array<[MediaDescription](#mediadescr
 
 **参数：**
 
-| 参数名   | 类型     | 必填 | 说明                       |
-| -------- | -------- | ---- | -------------------------- |
-| callback | function | 是   | 获取视频轨道信息回调方法。 |
+| 参数名   | 类型                                                         | 必填 | 说明                       |
+| -------- | ------------------------------------------------------------ | ---- | -------------------------- |
+| callback | AsyncCallback<Array<[MediaDescription](#mediadescription8)>> | 是   | 获取视频轨道信息回调方法。 |
 
 **示例：**
 
@@ -1263,7 +1263,7 @@ videoPlayer.getTrackDescription((error, arrlist) => {
 
 ### getTrackDescription<sup>8+</sup>
 
-getTrackDescription(): Promise<Array<[MediaDescription](#mediadescription8)>>
+getTrackDescription(): Promise<Array\<MediaDescription>>
 
 通过Promise方式获取视频轨道信息。
 
@@ -1417,10 +1417,10 @@ on(type: 'startRenderFrame', callback: Callback\<void>): void
 
 **参数：**
 
-| 参数名   | 类型     | 必填 | 说明                                                         |
-| -------- | -------- | ---- | ------------------------------------------------------------ |
-| type     | string   | 是   | 视频播放首帧送显上报事件回调类型，支持的事件：'startRenderFrame'。 |
-| callback | function | 是   | 视频播放首帧送显上报事件回调方法。                           |
+| 参数名   | 类型            | 必填 | 说明                                                         |
+| -------- | --------------- | ---- | ------------------------------------------------------------ |
+| type     | string          | 是   | 视频播放首帧送显上报事件回调类型，支持的事件：'startRenderFrame'。 |
+| callback | Callback\<void> | 是   | 视频播放首帧送显上报事件回调方法。                           |
 
 **示例：**
 
@@ -1464,10 +1464,10 @@ on(type: 'error', callback: ErrorCallback): void
 
 **参数：**
 
-| 参数名   | 类型     | 必填 | 说明                                                         |
-| -------- | -------- | ---- | ------------------------------------------------------------ |
-| type     | string   | 是   | 播放错误事件回调类型，支持的事件包括：'error'。<br>- 'error'：视频播放中发生错误，触发该事件。 |
-| callback | function | 是   | 播放错误事件回调方法。                                       |
+| 参数名   | 类型          | 必填 | 说明                                                         |
+| -------- | ------------- | ---- | ------------------------------------------------------------ |
+| type     | string        | 是   | 播放错误事件回调类型，支持的事件包括：'error'。<br>- 'error'：视频播放中发生错误，触发该事件。 |
+| callback | ErrorCallback | 是   | 播放错误事件回调方法。                                       |
 
 **示例：**
 
@@ -1555,7 +1555,7 @@ audioPlayer.getTrackDescription((error, arrlist) => {
 
 ## AudioRecorder
 
-音频录制管理类，用于录制音频媒体。在调用AudioRecorder的方法前，需要先通过[createAudioRecorder()](#media.createaudiorecorder) 构建一个[AudioRecorder](#audiorecorder)实例。
+音频录制管理类，用于录制音频媒体。在调用AudioRecorder的方法前，需要先通过[createAudioRecorder()](#mediacreateaudiorecorder) 构建一个[AudioRecorder](#audiorecorder)实例。
 
 音频录制demo可参考：[音频录制开发指导](../../media/audio-recorder.md)
 
@@ -1798,7 +1798,7 @@ audioRecorder.prepare();  												// prepare不设置参数，触发'error'�
 | format                | [AudioOutputFormat](#audiooutputformat) | 否   | 音量输出封装格式，默认设置为MPEG_4。                         |
 | location<sup>8+</sup> | [Location](#location8)                  | 否   | 音频采集的地理位置。                                         |
 | uri                   | string                                  | 是   | 视频输出URI：fd://xx&nbsp;(fd&nbsp;number)<br/>![zh-cn_image_0000001164217678](figures/zh-cn_image_url.png) <br/>文件需要由调用者创建，并赋予适当的权限。 |
-| audioEncoderMime      | [CodecMimeType](#CodecMimeType8)        | 否   | 音频编码格式。 |
+| audioEncoderMime      | [CodecMimeType](#codecmimetype8)        | 否   | 音频编码格式。                                               |
 
 
 ## AudioEncoder
@@ -1832,15 +1832,17 @@ audioRecorder.prepare();  												// prepare不设置参数，触发'error'�
 
 ## VideoRecorder<sup>8+</sup>
 
-视频录制管理类，用于录制视频媒体。在调用VideoRecorder的方法前，需要先通过[createVideoRecorder()](#media.createvideorecorder8)构建一个[VideoRecorder](#videorecorder8)实例。
+视频录制管理类，用于录制视频媒体。在调用VideoRecorder的方法前，需要先通过[createVideoRecorder()](#mediacreatevideorecorder8)构建一个[VideoRecorder](#videorecorder8)实例。
 
 视频录制demo可参考：[视频录制开发指导](../../media/video-recorder.md)
 
 ### 属性
 
-| 名称               | 类型                                  | 可读 | 可写 | 说明             |
-| ------------------ | ------------------------------------- | ---- | ---- | ---------------- |
-| state<sup>8+</sup> | [VideoRecordState](#videorecordstate) | 是   | 否   | 视频录制的状态。 |
+**系统能力：** 以下各项对应的系统能力均为 SystemCapability.Multimedia.Media.VideoRecorder。
+
+| 名称               | 类型                                   | 可读 | 可写 | 说明             |
+| ------------------ | -------------------------------------- | ---- | ---- | ---------------- |
+| state<sup>8+</sup> | [VideoRecordState](#videorecordstate8) | 是   | 否   | 视频录制的状态。 |
 
 ### prepare<sup>8+</sup><a name=videorecorder_prepare1></a>
 
@@ -1848,7 +1850,7 @@ prepare(config: VideoRecorderConfig, callback: AsyncCallback\<void>): void;
 
 异步方式进行视频录制的参数设置。通过注册回调函数获取返回值。
 
-**需要权限：** ohos.permission.MICROPHONE ohos.permission.CAMERA
+**需要权限：** ohos.permission.MICROPHONE，ohos.permission.CAMERA
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -1916,7 +1918,7 @@ prepare(config: VideoRecorderConfig): Promise\<void>;
 
 异步方式进行视频录制的参数设置。通过Promise获取返回值。
 
-**需要权限：** ohos.permission.MICROPHONE ohos.permission.CAMERA
+**需要权限：** ohos.permission.MICROPHONE，ohos.permission.CAMERA
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -2434,14 +2436,14 @@ videoRecorder.on('error', (error) => {      							// 设置'error'事件回调
 
 **系统能力：** 以下各项对应的系统能力均为 SystemCapability.Multimedia.Media.VideoRecorder。
 
-| 名称            | 参数类型                                                   | 必填 | 说明                                                         |
-| --------------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| audioSourceType | [AudioSourceType](#audiosourcetype<sup>8+</sup>)           | 是   | 视频录制的音频源类型。                                       |
-| videoSourceType | [VideoSourceType](#videosourcetype<sup>8+</sup>)           | 是   | 视频录制的视频源类型。                                       |
-| profile         | [VideoRecorderProfile](#videorecorderprofile8)             | 是   | 视频录制的profile。                                          |
-| rotation        | number                                                     | 否   | 录制视频的旋转角度。                                         |
-| location        | [Location](#location8)                                     | 否   | 录制视频的地理位置。                                         |
-| url             | string                                                     | 是   | 视频输出URL：fd://xx&nbsp;(fd&nbsp;number)<br/>![zh-cn_image_0000001164217678](figures/zh-cn_image_url.png) <br/>文件需要由调用者创建，并赋予适当的权限。 |
+| 名称            | 参数类型                                       | 必填 | 说明                                                         |
+| --------------- | ---------------------------------------------- | ---- | ------------------------------------------------------------ |
+| audioSourceType | [AudioSourceType](#audiosourcetype8)           | 是   | 视频录制的音频源类型。                                       |
+| videoSourceType | [VideoSourceType](#videosourcetype8)           | 是   | 视频录制的视频源类型。                                       |
+| profile         | [VideoRecorderProfile](#videorecorderprofile8) | 是   | 视频录制的profile。                                          |
+| rotation        | number                                         | 否   | 录制视频的旋转角度。                                         |
+| location        | [Location](#location8)                         | 否   | 录制视频的地理位置。                                         |
+| url             | string                                         | 是   | 视频输出URL：fd://xx&nbsp;(fd&nbsp;number)<br/>![](figures/zh-cn_image_url.png) <br/>文件需要由调用者创建，并赋予适当的权限。 |
 
 ## AudioSourceType<sup>8+</sup>
 
@@ -2475,10 +2477,10 @@ videoRecorder.on('error', (error) => {      							// 设置'error'事件回调
 | ---------------- | -------------------------------------------- | ---- | ---------------- |
 | audioBitrate     | number                                       | 是   | 音频编码比特率。 |
 | audioChannels    | number                                       | 是   | 音频采集声道数。 |
-| audioCodec       | [CodecMimeType](#CodecMimeType8)             | 是   | 音频编码格式。   |
+| audioCodec       | [CodecMimeType](#codecmimetype8)             | 是   | 音频编码格式。   |
 | audioSampleRate  | number                                       | 是   | 音频采样率。     |
 | fileFormat       | [ContainerFormatType](#containerformattype8) | 是   | 文件的容器格式。 |
-| videoCodec       | [CodecMimeType](#CodecMimeType8)             | 是   | 视频编码格式。   |
+| videoCodec       | [CodecMimeType](#codecmimetype8)             | 是   | 视频编码格式。   |
 | videoFrameWidth  | number                                       | 是   | 录制视频帧的宽。 |
 | videoFrameHeight | number                                       | 是   | 录制视频帧的高。 |
 

@@ -1,11 +1,9 @@
-媒体库管理
-==========
+# 媒体库管理
+
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 该组件从API Version 6开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
- 导入模块
----------
-
+## 导入模块
 ```
 import mediaLibrary from '@ohos.multimedia.medialibrary';
 ```
@@ -20,14 +18,14 @@ getMediaLibrary(context: Context): MediaLibrary
 
 **参数：** 
 
-| 参数名  | 类型    | 必填 | 说明                 |
-| ------- | ------- | ---- | -------------------- |
-| context | Context | 是 | API7以下接口可不传此参数，API 8以上接口此参数是必填参数，传入Ability实例的context，获取媒体库 |
+| 参数名  | 类型    | 必填 | 说明                                                         |
+| ------- | ------- | ---- | ------------------------------------------------------------ |
+| context | Context | 是   | API7以下接口可不传此参数，API 8以上接口此参数是必填参数，传入Ability实例的context，获取媒体库 |
 
 **返回值：**
 
-| 类型         | 说明   |
-| ------------ | :----- |
+| 类型                          | 说明       |
+| ----------------------------- | :--------- |
 | [MediaLibrary](#medialibrary) | 媒体库实例 |
 
 **示例：**
@@ -96,8 +94,8 @@ getFileAssets(options: MediaFetchOptions): Promise&lt;FetchFileResult&gt;
 
 **返回值**
 
-| 类型                          | 说明           |
-| ----------------------------- | -------------- |
+| 类型                                 | 说明           |
+| ------------------------------------ | -------------- |
 | [FetchFileResult](#fetchfileresult8) | 文件数据结果集 |
 
 **示例：**
@@ -126,10 +124,10 @@ on(type: 'deviceChange'|'albumChange'|'imageChange'|'audioChange'|'videoChange'|
 
 **参数：**
 
-| 参数名   | 类型                | 必填 | 说明                   |
-| -------- | ---------------- | ---- | ------------------- |
-| type  | string   | 是   | 媒体类型 <br/>'deviceChange'：&nbsp;注册设备变更 <br/>'albumChange'：&nbsp;相册变更<br/>'imageChange'：&nbsp;图片文件变更<br/>'audioChange'： &nbsp;音频文件变更<br/>'videoChange'：  &nbsp;视频文件变更<br/>'fileChange'：     &nbsp;文件变更<br/>'remoteFileChange'：&nbsp;注册设备上文件变更 |
-| callback | callback&lt;void&gt; | 是   | 回调返回空 |
+| 参数名   | 类型                 | 必填 | 说明                                                         |
+| -------- | -------------------- | ---- | ------------------------------------------------------------ |
+| type     | string               | 是   | 媒体类型 <br/>'deviceChange'：&nbsp;注册设备变更 <br/>'albumChange'：&nbsp;相册变更<br/>'imageChange'：&nbsp;图片文件变更<br/>'audioChange'： &nbsp;音频文件变更<br/>'videoChange'：  &nbsp;视频文件变更<br/>'fileChange'：     &nbsp;文件变更<br/>'remoteFileChange'：&nbsp;注册设备上文件变更 |
+| callback | callback&lt;void&gt; | 是   | 回调返回空                                                   |
 
 **示例：**
 
@@ -148,10 +146,10 @@ off(type: 'deviceChange'|'albumChange'|'imageChange'|'audioChange'|'videoChange'
 
 **参数：**
 
-| 参数名   | 类型                | 必填 | 说明                   |
-| -------- | ---------------- | ---- | ------------------- |
-| type  | string | 是   | 媒体类型 <br/>'deviceChange'：&nbsp;注册设备变更 <br/>'albumChange'：&nbsp;相册变更<br/>'imageChange'：&nbsp;图片文件变更<br/>'audioChange'： &nbsp;音频文件变更<br/>'videoChange'：  &nbsp;视频文件变更<br/>'fileChange'：     &nbsp;文件变更<br/>'remoteFileChange'：&nbsp;注册设备上文件变更         |
-| callback | callback&lt;void&gt; | 否   | 回调返回空 |
+| 参数名   | 类型                 | 必填 | 说明                                                         |
+| -------- | -------------------- | ---- | ------------------------------------------------------------ |
+| type     | string               | 是   | 媒体类型 <br/>'deviceChange'：&nbsp;注册设备变更 <br/>'albumChange'：&nbsp;相册变更<br/>'imageChange'：&nbsp;图片文件变更<br/>'audioChange'： &nbsp;音频文件变更<br/>'videoChange'：  &nbsp;视频文件变更<br/>'fileChange'：     &nbsp;文件变更<br/>'remoteFileChange'：&nbsp;注册设备上文件变更 |
+| callback | callback&lt;void&gt; | 否   | 回调返回空                                                   |
 
 **示例：**
 
@@ -248,10 +246,10 @@ getPublicDirectory(type: DirectoryType, callback: AsyncCallback&lt;string&gt;): 
 
 **参数：**
 
-| 参数名 | 类型                            | 必填 | 说明         |
-| ------ | ------------------------------- | ---- | ------------ |
-| type   | [DirectoryType](#directorytype) | 是   | 公共目录类型 |
-| callback   |AsyncCallback&lt;string&gt; | 是   | callback 返回公共目录路径 |
+| 参数名   | 类型                            | 必填 | 说明                      |
+| -------- | ------------------------------- | ---- | ------------------------- |
+| type     | [DirectoryType](#directorytype) | 是   | 公共目录类型              |
+| callback | AsyncCallback&lt;string&gt;     | 是   | callback 返回公共目录路径 |
 
 **示例：**
 
@@ -382,8 +380,8 @@ release(callback: AsyncCallback&lt;void&gt;): void
 
 **参数：**
 
-| 参数名   | 类型                   | 必填 | 说明                   |
-| -------- | ------------------- | ---- | ---------------------- |
+| 参数名   | 类型                      | 必填 | 说明                 |
+| -------- | ------------------------- | ---- | -------------------- |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调表示成功还是失败 |
 
 **示例：**
@@ -406,8 +404,8 @@ release(): Promise&lt;void&gt;
 
 **返回值：**
 
-| 类型          | 说明                                |
-| ------------- | ----------------------------------- |
+| 类型                | 说明                              |
+| ------------------- | --------------------------------- |
 | Promise&lt;void&gt; | Promise实例，用于获取异步返回结果 |
 
 **示例：**
@@ -690,7 +688,9 @@ mediaLibrary.getMediaLibrary().startMediaSelect(option).then((value) => {
 
 提供封装文件属性的方法。
 
-### **属性**
+### 属性
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
 
 | 名称         | 类型                    | 可读 | 可写 | 说明                                                   |
 | ------------ | ----------------------- | ---- | ---- | ------------------------------------------------------ |
@@ -729,8 +729,8 @@ isDirectory(callback: AsyncCallback&lt;boolean&gt;): void
 
 **参数：**
 
-| 参数名   | 类型                   | 必填 | 说明                          |
-| -------- | ---------------------- | ---- | ----------------------------- |
+| 参数名   | 类型                         | 必填 | 说明                          |
+| -------- | ---------------------------- | ---- | ----------------------------- |
 | callback | AsyncCallback&lt;boolean&gt; | 是   | 当前FileAsset是否是目录的回调 |
 
 **示例：**
@@ -764,8 +764,8 @@ isDirectory():Promise&lt;boolean&gt;
 
 **返回值：**
 
-| 类型             | 说明                                       |
-| ---------------- | ------------------------------------------ |
+| 类型                   | 说明                                     |
+| ---------------------- | ---------------------------------------- |
 | Promise&lt;boolean&gt; | Promise实例，返回当前FileAsset是否是目录 |
 
 **示例：**
@@ -801,8 +801,8 @@ commitModify(callback: AsyncCallback&lt;void&gt;): void
 
 **参数：**
 
-| 参数名   | 类型                   | 必填 | 说明                 |
-| -------- | ---------------------- | ---- | -------------------- |
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调返回空 |
 
 **示例：**
@@ -837,8 +837,8 @@ commitModify(): Promise&lt;void&gt;
 
 **返回值：**
 
-| 类型          | 说明                          |
-| ------------- | ----------------------------- |
+| 类型                | 说明          |
+| ------------------- | ------------- |
 | Promise&lt;void&gt; | Promise返回空 |
 
 **示例：**
@@ -871,10 +871,10 @@ open(mode: string, callback: AsyncCallback&lt;number&gt;): void
 
 **参数**
 
-| 参数名   | 类型                   | 必填 | 说明                 |
-| -------- | ---------------------- | ---- | -------------------- |
-| mode     | string                 | 是   | 打开文件方式，如：'r'（只读）, 'w'（只写）, 'rw'（读写） |
-| callback | AsyncCallback&lt;number&gt; | 是   | 回调返回文件句柄 |
+| 参数名   | 类型                        | 必填 | 说明                                                     |
+| -------- | --------------------------- | ---- | -------------------------------------------------------- |
+| mode     | string                      | 是   | 打开文件方式，如：'r'（只读）, 'w'（只写）, 'rw'（读写） |
+| callback | AsyncCallback&lt;number&gt; | 是   | 回调返回文件句柄                                         |
 
 **示例：**
 
@@ -912,8 +912,8 @@ open(mode: string): Promise&lt;number&gt;
 
 **返回值：**
 
-| 类型          | 说明                          |
-| ------------- | ----------------------------- |
+| 类型                  | 说明                |
+| --------------------- | ------------------- |
 | Promise&lt;number&gt; | Promise返回文件句柄 |
 
 **示例：**
@@ -946,9 +946,9 @@ close(fd: number, callback: AsyncCallback&lt;void&gt;): void
 
 **参数：**
 
-| 参数名   | 类型                   | 必填 | 说明                 |
-| -------- | ---------------------- | ---- | -------------------- |
-| fd       | number                 | 是   | 文件描述符          |
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| fd       | number                    | 是   | 文件描述符 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调返回空 |
 
 **示例：**
@@ -993,8 +993,8 @@ close(fd: number): Promise&lt;void&gt;
 
 **返回值：**
 
-| 类型          | 说明                          |
-| ------------- | ----------------------------- |
+| 类型                | 说明          |
+| ------------------- | ------------- |
 | Promise&lt;void&gt; | Promise返回空 |
 
 **示例：**
@@ -1034,8 +1034,8 @@ getThumbnail(callback: AsyncCallback&lt;image.PixelMap&gt;): void
 
 **参数：**
 
-| 参数名   | 类型                   | 必填 | 说明                 |
-| -------- | ---------------------- | ---- | -------------------- |
+| 参数名   | 类型                                | 必填 | 说明                     |
+| -------- | ----------------------------------- | ---- | ------------------------ |
 | callback | AsyncCallback&lt;image.PixelMap&gt; | 是   | 回调返回缩略图的PixelMap |
 
 **示例：**
@@ -1069,9 +1069,9 @@ getThumbnail(size: Size, callback: AsyncCallback&lt;image.PixelMap&gt;): void
 
 **参数：**
 
-| 参数名   | 类型                   | 必填 | 说明                 |
-| -------- | ---------------------- | ---- | -------------------- |
-| size     | [Size](#size8)        | 是   | 缩略图尺寸          |
+| 参数名   | 类型                                | 必填 | 说明                     |
+| -------- | ----------------------------------- | ---- | ------------------------ |
+| size     | [Size](#size8)                      | 是   | 缩略图尺寸               |
 | callback | AsyncCallback&lt;image.PixelMap&gt; | 是   | 回调返回缩略图的PixelMap |
 
 **示例：**
@@ -1111,8 +1111,8 @@ getThumbnail(size?: Size): Promise&lt;image.PixelMap&gt;
 
 **返回值：**
 
-| 类型          | 说明                          |
-| ------------- | ----------------------------- |
+| 类型                          | 说明                        |
+| ----------------------------- | --------------------------- |
 | Promise&lt;image.PixelMap&gt; | Promise返回缩略图的PixelMap |
 
 **示例：**
@@ -1146,10 +1146,10 @@ favorite(isFavorite: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 **参数：**
 
-| 参数名     | 类型                | 必填 | 说明           |
-| ---------- | ------------------- | ---- | -------------- |
-| isFavorite | boolean             | 是   | 是否设置为收藏文件， true：设置为收藏文件，false：取消收藏 |
-| callback   | AsyncCallback&lt;void&gt; | 是   | 回调返回空    |
+| 参数名     | 类型                      | 必填 | 说明                                                       |
+| ---------- | ------------------------- | ---- | ---------------------------------------------------------- |
+| isFavorite | boolean                   | 是   | 是否设置为收藏文件， true：设置为收藏文件，false：取消收藏 |
+| callback   | AsyncCallback&lt;void&gt; | 是   | 回调返回空                                                 |
 
 **示例：**
 
@@ -1188,8 +1188,8 @@ favorite(isFavorite: boolean): Promise&lt;void&gt;
 
 **返回值：**
 
-| 类型          | 说明                          |
-| ------------- | ----------------------------- |
+| 类型                | 说明          |
+| ------------------- | ------------- |
 | Promise&lt;void&gt; | Promise返回空 |
 
 **示例：**
@@ -1225,8 +1225,8 @@ isFavorite(callback: AsyncCallback&lt;boolean&gt;): void
 
 **参数：**
 
-| 参数名   | 类型                   | 必填 | 说明                   |
-| -------- | ---------------------- | ---- | ---------------------- |
+| 参数名   | 类型                         | 必填 | 说明                   |
+| -------- | ---------------------------- | ---- | ---------------------- |
 | callback | AsyncCallback&lt;boolean&gt; | 是   | 回调表示是否为收藏文件 |
 
 **示例：**
@@ -1264,8 +1264,8 @@ isFavorite():Promise&lt;boolean&gt;
 
 **返回值：**
 
-| 类型          | 说明                          |
-| ------------- | ----------------------------- |
+| 类型                   | 说明                          |
+| ---------------------- | ----------------------------- |
 | Promise&lt;boolean&gt; | Promise回调表示是否是收藏文件 |
 
 **示例：**
@@ -1303,10 +1303,10 @@ trash(isTrash: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 **参数：**
 
-| 参数名   | 类型                   | 必填 | 说明                 |
-| -------- | ---------------------- | ---- | -------------------- |
-| isTrash  | boolean                | 是   | 是否设置为垃圾文件    |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调返回空 |
+| 参数名   | 类型                      | 必填 | 说明               |
+| -------- | ------------------------- | ---- | ------------------ |
+| isTrash  | boolean                   | 是   | 是否设置为垃圾文件 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调返回空         |
 
 **示例：**
 
@@ -1348,8 +1348,8 @@ trash(isTrash: boolean): Promise&lt;void&gt;
 
 **返回值：**
 
-| 类型          | 说明                          |
-| ------------- | ----------------------------- |
+| 类型                | 说明          |
+| ------------------- | ------------- |
 | Promise&lt;void&gt; | Promise返回空 |
 
 **示例：**
@@ -1385,8 +1385,8 @@ isTrash(callback: AsyncCallback&lt;boolean&gt;): void
 
 **参数：**
 
-| 参数名   | 类型                   | 必填 | 说明                 |
-| -------- | ---------------------- | ---- | -------------------- |
+| 参数名   | 类型                         | 必填 | 说明                           |
+| -------- | ---------------------------- | ---- | ------------------------------ |
 | callback | AsyncCallback&lt;boolean&gt; | 是   | 回调返回表示文件是否为垃圾文件 |
 
 **示例：**
@@ -1429,8 +1429,8 @@ isTrash():Promise&lt;boolean&gt;
 
 **返回值：**
 
-| 类型          | 说明                          |
-| ------------- | ----------------------------- |
+| 类型                | 说明                              |
+| ------------------- | --------------------------------- |
 | Promise&lt;void&gt; | Promise回调表示文件是否为垃圾文件 |
 
 **示例：**
@@ -1600,9 +1600,9 @@ getFirstObject(): Promise&lt;FileAsset&gt;
 
 **返回值**：
 
-| 类型                | 说明                                   |
-| ------------------ | -------------------------------------- |
-| Promise&lt;[FileAsset](#fileasset8)&gt; | Promise方式返回FileAsset               |
+| 类型                                    | 说明                     |
+| --------------------------------------- | ------------------------ |
+| Promise&lt;[FileAsset](#fileasset8)&gt; | Promise方式返回FileAsset |
 
 **示例**：
 
@@ -1674,8 +1674,8 @@ async function example() {
 
 **返回值**：
 
-| 类型                             | 说明                |
-| -------------------------------- | ------------------- |
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
 | Promise&lt;[FileAsset](#fileasset8)&gt; | 返回FileAsset对象 |
 
 **示例**：
@@ -1742,8 +1742,8 @@ getLastObject(): Promise&lt;FileAsset&gt;
 
 **返回值**：
 
-| 类型                             | 说明                |
-| -------------------------------- | ------------------- |
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
 | Promise&lt;[FileAsset](#fileasset8)&gt; | 返回FileAsset对象 |
 
 **示例**：
@@ -1811,14 +1811,14 @@ getPositionObject(index: number): Promise&lt;FileAsset&gt;
 
 **参数**：
 
-| 参数  | 类型   | 必填 | 说明                 |
-| ----- | ------ | ---- | -------------------- |
+| 参数  | 类型   | 必填 | 说明                        |
+| ----- | ------ | ---- | --------------------------- |
 | index | number | 是   | 要获取的文件的索引，从0开始 |
 
 **返回值**：
 
-| 类型                             | 说明                |
-| -------------------------------- | ------------------- |
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
 | Promise&lt;[FileAsset](#fileasset8)&gt; | 返回FileAsset对象 |
 
 **示例**：
@@ -1917,6 +1917,8 @@ async function example() {
 
 ### **属性**
 
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
+
 | 名称         | 参数型 | 可读 | 可写 | 说明           |
 | ------------ | ------ | ---- | ---- | -------------- |
 | albumId      | number | 是   | 否   | 相册编号       |
@@ -1939,9 +1941,9 @@ commitModify(callback: AsyncCallback&lt;void&gt;): void
 
 **参数**：
 
-| 参数     | 类型                | 必填 | 说明                          |
-| -------- | ------------------- | ---- | ----------------------------- |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调返回空                  |
+| 参数     | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调返回空 |
 
 **示例**：
 
@@ -1976,8 +1978,8 @@ commitModify(): Promise&lt;void&gt;
 
 **返回值**：
 
-| 类型          | 说明                                                 |
-| ------------- | ---------------------------------------------------- |
+| 类型                | 说明              |
+| ------------------- | ----------------- |
 | Promise&lt;void&gt; | Promise调用返回空 |
 
 **示例**：
@@ -2011,9 +2013,9 @@ getFileAssets(options: MediaFetchOptions, callback: AsyncCallback&lt;FetchFileRe
 
 **参数**：
 
-| 参数     | 类型                                         | 必填 | 说明                              |
-| -------- | -------------------------------------------- | ---- | --------------------------------- |
-| options  | [MediaFetchOptions](#mediafetchoptions8)     | 是   | 媒体检索选项                      |
+| 参数     | 类型                                                | 必填 | 说明                              |
+| -------- | --------------------------------------------------- | ---- | --------------------------------- |
+| options  | [MediaFetchOptions](#mediafetchoptions8)            | 是   | 媒体检索选项                      |
 | callback | AsyncCallback<[FetchFileResult](#fetchfileresult8)> | 是   | 异步返回FetchFileResult之后的回调 |
 
 **示例**：
@@ -2077,6 +2079,8 @@ async function example() {
 
 注册设备的信息。
 
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
+
 | 名称       | 类型       | 可读 | 可写 | 说明             |
 | ---------- | ---------- | ---- | ---- | ---------------- |
 | deviceName | string     | 是   | 否   | 注册设备的名称   |
@@ -2091,6 +2095,8 @@ MediaType
 
 枚举，媒体类型。
 
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
+
 | 名称  | 默认值 | 描述 |
 | ----- | ------ | ---- |
 | FILE  | 0      | 文件 |
@@ -2102,6 +2108,8 @@ FileKey
 -------
 
 枚举，文件关键信息。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
 
 | 名称          | 默认值              | 描述                                                       |
 | ------------- | ------------------- | ---------------------------------------------------------- |
@@ -2130,6 +2138,8 @@ DirectoryType
 
 枚举，目录类型。
 
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
+
 | 名称          | 默认值 | 描述               |
 | ------------- | ------ | ------------------ |
 | DIR_CAMERA    | 0      | 表示Camera文件路径 |
@@ -2143,6 +2153,8 @@ DeviceType
 -----------
 
 枚举，设备类型。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
 
 | 名称         | 默认值 | 描述       |
 | ------------ | ------ | ---------- |
@@ -2158,14 +2170,16 @@ DeviceType
 
 检索条件。
 
-| 名称          | 类型          | 可读 | 可写 |  必填 |说明             |
-| ------------- | ------------- | ---- | ---- |  ---- |---------------- |
-| selections    | string        | 是   | 是   |是   | 检索条件，使用[FileKey](#filekey)中的枚举值作为检索条件的列名。示例：<br />selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ? OR' +mediaLibrary.FileKey.MEDIA_TYPE + '= ?‘, |
-| selectionArgs | Array&lt;string&gt; | 是   | 是   |是   | 检索条件的值，对应selections中检索条件列的值。<br />示例：<br />selectionArgs: [mediaLibrary.MediaType.IMAGE.toString(), mediaLibrary.MediaType.VIDEO.toString()], |
-| order         | string        | 是   | 是   | 否   |检索结果排序方式，使用[FileKey](#filekey)中的枚举值作为检索结果排序的列，可以用升序或降序排列。示例：<br />升序排列：order: mediaLibrary.FileKey.DATE_ADDED + " AESC"<br />降序排列：order: mediaLibrary.FileKey.DATE_ADDED + " DESC" |
-| uri           | string        | 是   | 是   | 否   |文件URI          |
-| networkId     | string        | 是   | 是   | 否   |注册设备网络ID   |
-| extendArgs    | string        | 是   | 是   | 否   |扩展的检索参数，目前没有扩展检索参数   |
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
+
+| 名称          | 类型                | 可读 | 可写 | 必填 | 说明                                                         |
+| ------------- | ------------------- | ---- | ---- | ---- | ------------------------------------------------------------ |
+| selections    | string              | 是   | 是   | 是   | 检索条件，使用[FileKey](#filekey)中的枚举值作为检索条件的列名。示例：<br />selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ? OR' +mediaLibrary.FileKey.MEDIA_TYPE + '= ?‘, |
+| selectionArgs | Array&lt;string&gt; | 是   | 是   | 是   | 检索条件的值，对应selections中检索条件列的值。<br />示例：<br />selectionArgs: [mediaLibrary.MediaType.IMAGE.toString(), mediaLibrary.MediaType.VIDEO.toString()], |
+| order         | string              | 是   | 是   | 否   | 检索结果排序方式，使用[FileKey](#filekey)中的枚举值作为检索结果排序的列，可以用升序或降序排列。示例：<br />升序排列：order: mediaLibrary.FileKey.DATE_ADDED + " AESC"<br />降序排列：order: mediaLibrary.FileKey.DATE_ADDED + " DESC" |
+| uri           | string              | 是   | 是   | 否   | 文件URI                                                      |
+| networkId     | string              | 是   | 是   | 否   | 注册设备网络ID                                               |
+| extendArgs    | string              | 是   | 是   | 否   | 扩展的检索参数，目前没有扩展检索参数                         |
 
 ## Size<sup>8+</sup>
 
@@ -2199,11 +2213,7 @@ DeviceType
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
 
-
-### 属性
-
 | 名称  | 类型   | 必填 | 描述                           |
 | ----- | ------ | ---- | ------------------------------ |
 | type  | string | 是   | 媒体类型，包括：image，video。 |
 | count | number | 是   | 媒体选择最大数量。             |
-
