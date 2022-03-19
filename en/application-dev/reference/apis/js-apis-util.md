@@ -2321,7 +2321,7 @@ Checks whether the input value is a string object.
 
 ### isSymbolObjec<sup>8+</sup>
 
-isSymbolObjec(value: Object):boolean
+isSymbolObjec(value: Object): boolean
 
 Checks whether the input value is a symbol object.
 

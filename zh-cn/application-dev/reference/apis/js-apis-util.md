@@ -2321,7 +2321,7 @@ isStringObject(value: Object):boolean
 
 ### isSymbolObjec<sup>8+</sup>
 
-isSymbolObjec(value: Object):boolean
+isSymbolObjec(value: Object): boolean
 
 检查输入的value是否是Symbol对象类型。
 
