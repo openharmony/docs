@@ -14,7 +14,7 @@ import brightness from '@ohos.brightness';
 
 ## brightness.setValue
 
-setValue(value: number)
+setValue(value: number): void
 
 设置系统的屏幕亮度。
 
