@@ -11,10 +11,6 @@ import distributedObject from '@ohos.data.distributedDataObject'
 ```
 
 
-## 系统能力
-
-SystemCapability.DistributedDataManager.DataObject.DistributedObject
-
 
 ## distributedDataObject.createDistributedObject
 
@@ -22,6 +18,9 @@ createDistributedObject(source: object): DistributedObject
 
 
 创建一个分布式对象distributedObject，用户可以通过source指定分布式对象中的属性，属性支持基本类型以及复杂类型，返回值是创建好的分布式对象。
+
+**系统能力**：SystemCapability.DistributedDataManager.DataObject.DistributedObject。
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -42,6 +41,7 @@ genSessionId(): string
 
 随机创建一个sessionId，返回值是随机创建的sessionId。
 
+**系统能力**：SystemCapability.DistributedDataManager.DataObject.DistributedObject。
 
 - 返回值：
   | 类型 | 说明 |
@@ -64,10 +64,12 @@ setSessionId(sessionId?: string): boolean
 
 设置同步的sessionId,当可信组网中有多个设备时，多个设备间的对象如果设置为同一个sessionId,就能自动同步。sessionId是指定的sessionId,如果要退出分布式组网，设置为""或不设置均可。结果以boolean形式返回，true标识设置sessionId成功
 
+**系统能力**：SystemCapability.DistributedDataManager.DataObject.DistributedObject。
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | sessionId | string | 是 | 分布式对象在可信组网中的标识ID。 |
+  | sessionId | string | 否 | 分布式对象在可信组网中的标识ID。 |
   
 - 示例：
   ```js
@@ -87,6 +89,7 @@ on(type: 'change', callback: Callback<{ sessionId: string, fields: Array&lt;stri
 
 监听分布式对象的变更，type需固定为'change'，callback是变更时触发的回调，回调参数sessionId标识变更对象的sessionId,fields标识对象变更的属性名
 
+**系统能力**：SystemCapability.DistributedDataManager.DataObject.DistributedObject。
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -99,16 +102,14 @@ on(type: 'change', callback: Callback<{ sessionId: string, fields: Array&lt;stri
   import distributedObject from '@ohos.data.distributedDataObject'
   var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, 
                  parent:{mother:"jack mom",father:"jack Dad"}});
-  changeCallback : function (sessionId, changeData) {
-        console.info("change" + sessionId);
-  
-        if (changeData != null && changeData != undefined) {
-            changeData.forEach(element => {
-                console.info("changed !" + element + " " + g_object[element]);
-        });
-        }
-  } 
-  g_object.on("change", this.changeCallback);
+  g_object.on("change", function (sessionId, changeData) {
+      console.info("change" + sessionId);  
+      if (changeData != null && changeData != undefined) {
+          changeData.forEach(element => {
+              console.info("changed !" + element + " " + g_object[element]);
+          });
+      }
+  });
   ```
 
 ### off('change')
@@ -116,6 +117,8 @@ on(type: 'change', callback: Callback<{ sessionId: string, fields: Array&lt;stri
 off(type: 'change', callback?: Callback<{ sessionId: string, fields: Array&lt;string&gt; }>): void
 
 当不再进行数据变更监听时，使用此接口删除对象的变更监听，type固定为'change'，callback为可选参数，若不设置则表示删除该对象所有的变更监听
+
+**系统能力**：SystemCapability.DistributedDataManager.DataObject.DistributedObject。
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -129,13 +132,13 @@ off(type: 'change', callback?: Callback<{ sessionId: string, fields: Array&lt;st
   import distributedObject from '@ohos.data.distributedDataObject'
   var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, 
                  parent:{mother:"jack mom",father:"jack Dad"}});
-  changeCallback : function (sessionId, changeData) {
-        console.info("change" + sessionId);
-  }
-  
-  g_object.on("change", this.changeCallback);
+  g_object.on("change", function (sessionId, changeData) {
+      console.info("change" + sessionId);
+  });
   //删除变更回调changeCallback
-  g_object.off("change", changeCallback);
+  g_object.off("change", function (sessionId, changeData) {
+      console.info("change" + sessionId);
+  });
   //删除所有的变更回调
   g_object.off("change");
   ```
@@ -145,6 +148,8 @@ off(type: 'change', callback?: Callback<{ sessionId: string, fields: Array&lt;st
 on(type: 'status', callback: Callback<{ sessionId: string, networkId: string, status: 'online' | 'offline' }>): void
 
 监听分布式对象的上下线，type需固定为'status'，callback是分布式对象上下线时触发的回调，回调参数sessionId标识变更对象的sessionId,networkId标识对象设备的networkId，status标识对象为'online'(上线)或'offline'(下线)的状态
+
+**系统能力**：SystemCapability.DistributedDataManager.DataObject.DistributedObject。
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -157,11 +162,9 @@ on(type: 'status', callback: Callback<{ sessionId: string, networkId: string, st
   import distributedObject from '@ohos.data.distributedDataObject'
   var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, 
                  parent:{mother:"jack mom",father:"jack Dad"}});
-  statusCallback : function (sessionId, networkid, status) {
+  g_object.on("status", function (sessionId, networkid, status) {
       this.response += "status changed " + sessionId + " " + status + " " + networkId;
-  }
-  
-  g_object.on("status", this.changeCallback);
+  });
   ```
 
 ### off('status')
@@ -171,6 +174,7 @@ off(type: 'status', callback?: Callback<{ sessionId: string, deviceId: string, s
 
 当不再进行对象上下线监听时，使用此接口删除对象的上下线监听，type固定为'status'，callback为可选参数，若不设置则表示删除该对象所有的上下线监听
 
+**系统能力**：SystemCapability.DistributedDataManager.DataObject.DistributedObject。
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -181,14 +185,14 @@ off(type: 'status', callback?: Callback<{ sessionId: string, deviceId: string, s
 
 - 示例：
   ```js
-  import distributedObject from '@ohos.data.distributedDataObject'
-  statusCallback : function (sessionId, networkId, status) {
+  import distributedObject from '@ohos.data.distributedDataObject'  
+  g_object.on("status", function (sessionId, networkId, status) {
       this.response += "status changed " + sessionId + " " + status + " " + networkId;
-  }
-  
-  g_object.on("status", this.changeCallback);
+  });
   //删除上下线回调changeCallback
-  g_object.off("status", changeCallback);
+  g_object.off("status", function (sessionId, networkId, status) {
+      this.response += "status changed " + sessionId + " " + status + " " + networkId;
+  });
   //删除所有的上下线回调
   g_object.off("status");
   ```

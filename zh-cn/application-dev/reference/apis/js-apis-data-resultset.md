@@ -3,8 +3,6 @@
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-## 系统能力
-SystemCapability.DistributedDataManager.RelationalStore.Core
 
 ## 使用说明
 
@@ -16,8 +14,8 @@ let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
 predicates.equalTo("AGE", 18)
 let promise = rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"])
 promise.then((resultSet) => {
-    await console.log(TAG + "resultSet columnNames:" + resultSet.columnNames);
-    await console.log(TAG + "resultSet columnCount:" + resultSet.columnCount);})
+    console.log(TAG + "resultSet columnNames:" + resultSet.columnNames);
+    console.log(TAG + "resultSet columnCount:" + resultSet.columnCount);})
 ```
 
 
@@ -31,6 +29,7 @@ promise.then((resultSet) => {
 
 ### 属性
 
+**系统能力**：以下各项对应的系统能力均为SystemCapability.DistributedDataManager.RelationalStore.Core。
 
 | 名称 | 参数类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -50,6 +49,8 @@ promise.then((resultSet) => {
 getColumnIndex(columnName: string): number
 
 根据指定的列名获取列索引。
+
+**系统能力**：SystemCapability.DistributedDataManager.RelationalStore.Core。
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -77,6 +78,8 @@ getColumnName(columnIndex: number): string
 
 根据指定的列索引获取列名。
 
+**系统能力**：SystemCapability.DistributedDataManager.RelationalStore.Core。
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -101,6 +104,8 @@ goTo(offset:number): boolean
 
 向前或向后转至结果集的指定行，相对于其当前位置偏移。
 
+**系统能力**：SystemCapability.DistributedDataManager.RelationalStore.Core。
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -113,11 +118,14 @@ goTo(offset:number): boolean
 
 - 示例：
   ```
-  let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
-  let resultSet = await rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"])
-  resultSet.goTo(1)
-  resultSet.close()
-  resultSet = null
+  let predicatesgoto = new dataRdb.RdbPredicates("EMPLOYEE")
+  let promisequerygoto = rdbStore.query(predicatesgoto, ["ID", "NAME", "AGE", "SALARY", "CODES"])
+  promisequerygoto.then((resultSet) {
+      resultSet.goTo(1)
+      resultSet.close()
+  }).catch((err) => {
+      console.log('query failed')
+  })
   ```
 
 
@@ -126,6 +134,8 @@ goTo(offset:number): boolean
 goToRow(position: number): boolean
 
 转到结果集的指定行。
+
+**系统能力**：SystemCapability.DistributedDataManager.RelationalStore.Core。
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -139,11 +149,14 @@ goToRow(position: number): boolean
 
 - 示例：
   ```
-  let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
-  let resultSet = await rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"])
-  resultSet.goToRow(1)
-  resultSet.close()
-  resultSet = null
+  let predicatesgotorow = new dataRdb.RdbPredicates("EMPLOYEE")
+  let promisequerygotorow = rdbStore.query(predicatesgotorow, ["ID", "NAME", "AGE", "SALARY", "CODES"])
+  promisequerygotorow.then((resultSet) {
+      resultSet.goToRow(5)
+      resultSet.close()
+  }).catch((err) => {
+      console.log('query failed')
+  })
   ```
 
 
@@ -154,6 +167,7 @@ goToFirstRow(): boolean
 
 转到结果集的第一行。
 
+**系统能力**：SystemCapability.DistributedDataManager.RelationalStore.Core。
 
 - 返回值：
   | 类型 | 说明 |
@@ -162,11 +176,14 @@ goToFirstRow(): boolean
 
 - 示例：
   ```
-  let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
-  let resultSet = await rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"])
-  resultSet.goToFirstRow()
-  resultSet.close()
-  resultSet = null;
+  let predicatesgoFirst = new dataRdb.RdbPredicates("EMPLOYEE")
+  let promisequerygoFirst = rdbStore.query(predicatesgoFirst, ["ID", "NAME", "AGE", "SALARY", "CODES"])
+  promisequerygoFirst.then((resultSet) {
+      resultSet.goToFirstRow()
+      resultSet.close()
+  }).catch((err) => {
+      console.log('query failed')
+  })
   ```
 
 
@@ -176,6 +193,8 @@ goToLastRow(): boolean
 
 转到结果集的最后一行。
 
+**系统能力**：SystemCapability.DistributedDataManager.RelationalStore.Core。
+
 - 返回值：
   | 类型 | 说明 |
   | -------- | -------- |
@@ -183,11 +202,14 @@ goToLastRow(): boolean
 
 - 示例：
   ```
-  let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
-  let resultSet = await rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"])
-  resultSet.goToLastRow()
-  resultSet.close()
-  resultSet = null;
+  let predicatesgoLast = new dataRdb.RdbPredicates("EMPLOYEE")
+  let promisequerygoLast = rdbStore.query(predicatesgoLast, ["ID", "NAME", "AGE", "SALARY", "CODES"])
+  promisequerygoLast.then((resultSet) {
+      resultSet.goToLastRow()
+      resultSet.close()
+  }).catch((err) => {
+      console.log('query failed')
+  })
   ```
 
 
@@ -197,6 +219,8 @@ goToNextRow(): boolean
 
 转到结果集的下一行。
 
+**系统能力**：SystemCapability.DistributedDataManager.RelationalStore.Core。
+
 - 返回值：
   | 类型 | 说明 |
   | -------- | -------- |
@@ -204,11 +228,14 @@ goToNextRow(): boolean
 
 - 示例：
   ```
-  let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
-  let resultSet = await rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"])
-  resultSet.goToNextRow()
-  resultSet.close()
-  resultSet = null;
+  let predicatesgoNext = new dataRdb.RdbPredicates("EMPLOYEE")
+  let promisequerygoNext = rdbStore.query(predicatesgoNext, ["ID", "NAME", "AGE", "SALARY", "CODES"])
+  promisequerygoNext.then((resultSet) {
+      resultSet.goToNextRow()
+      resultSet.close()
+  }).catch((err) => {
+      console.log('query failed')
+  })
   ```
 
 
@@ -218,6 +245,8 @@ goToPreviousRow(): boolean
 
 转到结果集的上一行。
 
+**系统能力**：SystemCapability.DistributedDataManager.RelationalStore.Core。
+
 - 返回值：
   | 类型 | 说明 |
   | -------- | -------- |
@@ -225,11 +254,14 @@ goToPreviousRow(): boolean
 
 - 示例：
   ```
-  let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
-  let resultSet = await rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"])
-  resultSet.goToPreviousRow()
-  resultSet.close()
-  resultSet = null
+  let predicatesgoPrev = new dataRdb.RdbPredicates("EMPLOYEE")
+  let promisequerygoPrev = rdbStore.query(predicatesgoPrev, ["ID", "NAME", "AGE", "SALARY", "CODES"])
+  promisequerygoPrev.then((resultSet) {
+      resultSet.goToPreviousRow()
+      resultSet.close()
+  }).catch((err) => {
+      console.log('query failed')
+  })
   ```
 
 
@@ -238,6 +270,8 @@ goToPreviousRow(): boolean
 getBlob(columnIndex: number): Uint8Array
 
 以字节数组的形式获取当前行中指定列的值。
+
+**系统能力**：SystemCapability.DistributedDataManager.RelationalStore.Core。
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -261,6 +295,8 @@ getString(columnIndex: number): string
 
 以字符串形式获取当前行中指定列的值。
 
+**系统能力**：SystemCapability.DistributedDataManager.RelationalStore.Core。
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -282,6 +318,8 @@ getString(columnIndex: number): string
 getLong(columnIndex: number): number
 
 以Long形式获取当前行中指定列的值。
+
+**系统能力**：SystemCapability.DistributedDataManager.RelationalStore.Core。
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -305,6 +343,8 @@ getDouble(columnIndex: number): number
 
 以double形式获取当前行中指定列的值。
 
+**系统能力**：SystemCapability.DistributedDataManager.RelationalStore.Core。
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -326,6 +366,8 @@ getDouble(columnIndex: number): number
 isColumnNull(columnIndex: number): boolean
 
 检查当前行中指定列的值是否为null。
+
+**系统能力**：SystemCapability.DistributedDataManager.RelationalStore.Core。
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -349,11 +391,15 @@ close(): void
 
 关闭结果集。
 
+**系统能力**：SystemCapability.DistributedDataManager.RelationalStore.Core。
 
 - 示例：
   ```
-  let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
-  let resultSet = await rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"])
-  resultSet.close()
-  resultSet = null
+  let predicatesclose = new dataRdb.RdbPredicates("EMPLOYEE")
+  let predicatesclose = rdbStore.query(predicatesclose, ["ID", "NAME", "AGE", "SALARY", "CODES"])
+  promisequerygoPrev.then((resultSet) {
+      resultSet.close()
+  }).catch((err) => {
+      console.log('query failed')
+  })
   ```
