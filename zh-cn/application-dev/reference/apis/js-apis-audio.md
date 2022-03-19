@@ -36,7 +36,7 @@ var audioManager = audio.getAudioManager();
 
 ## audio.createAudioRenderer<sup>8+</sup>
 
-createAudioRenderer(options: AudioRendererOptions): AudioRenderer
+createAudioRenderer(options: AudioRendererOptions, callback: AsyncCallback\<AudioRenderer>): void
 
 获取音频渲染器。
 
@@ -47,12 +47,7 @@ createAudioRenderer(options: AudioRendererOptions): AudioRenderer
 | 参数名  | 类型                                           | 必填 | 说明         |
 | ------- | ---------------------------------------------- | ---- | ------------ |
 | options | [AudioRendererOptions](#audiorendereroptions8) | 是   | 配置渲染器。 |
-
-**返回值**：
-
-| 类型                             | 说明             |
-| -------------------------------- | ---------------- |
-| [AudioRenderer](#audiorenderer8) | 音频渲染器对象。 |
+| callback | AsyncCallback<[AudioRenderer](#audiorenderer8)> | 是   | 音频渲染器对象。 |
 
 **示例：**
 
@@ -143,7 +138,7 @@ createAudioCapturer(options: AudioCapturerOptions, callback: AsyncCallback<Audio
 | 参数名   | 类型                                           | 必填 | 说明             |
 | :------- | :--------------------------------------------- | :--- | :--------------- |
 | options  | [AudioCapturerOptions](#AudioCapturerOptions)  | 是   | 配置音频采集器。 |
-| callback | AsyncCallback<[AudioCapturer](#AudioCapturer)> | 是   | 音频采集器对象。 |
+| callback | AsyncCallback<[AudioCapturer](#audiocapturer8)> | 是   | 音频采集器对象。 |
 
 **示例：**
 
@@ -194,7 +189,7 @@ createAudioCapturer(options: AudioCapturerOptions): Promise<AudioCapturer\>
 
 | 类型                                      | 说明           |
 | ----------------------------------------- | -------------- |
-| Promise<[AudioCapturer](#AudioCapturer8)> | 音频采集器对象 |
+| Promise<[AudioCapturer](#audiocapturer8)> | 音频采集器对象 |
 
 **示例：**
 
