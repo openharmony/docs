@@ -1480,7 +1480,7 @@ obtainDistributedTableName(device: string, table: string, callback: AsyncCallbac
 
 ### sync<sup>8+</sup>
 
-sync(mode: SyncMode, predicates: RdbPredicates, callback: AsyncCallback<Array<[string, number]>>): void
+sync(mode: SyncMode, predicates: RdbPredicates, callback: AsyncCallback&lt;Array&lt;[string, number]&gt;&gt;): void
 
 在设备之间同步数据, 结果以callbck形式返回。
 
@@ -1491,7 +1491,7 @@ sync(mode: SyncMode, predicates: RdbPredicates, callback: AsyncCallback<Array<[s
   | -------- | -------- | -------- | -------- |
   | mode | SyncMode | 是 | 指同步模式。该值可以是推、拉。 |
   | predicates | RdbPredicates | 是 | 约束同步数据和设备。 |
-  | callback | AsyncCallback&lt;Array<[string, number]>&gt; | 是 | 指定的callback回调函数，用于向调用者发送同步结果。string：设备ID；number：每个设备同步状态，0表示成功，其他值表示失败。|
+  | callback | AsyncCallback&lt;Array&lt;[string, number]&gt;&gt; | 是 | 指定的callback回调函数，用于向调用者发送同步结果。string：设备ID；number：每个设备同步状态，0表示成功，其他值表示失败。|
 
 - 示例：
   ```

@@ -102,16 +102,14 @@ on(type: 'change', callback: Callback<{ sessionId: string, fields: Array&lt;stri
   import distributedObject from '@ohos.data.distributedDataObject'
   var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, 
                  parent:{mother:"jack mom",father:"jack Dad"}});
-  changeCallback : function (sessionId, changeData) {
-        console.info("change" + sessionId);
-  
-        if (changeData != null && changeData != undefined) {
-            changeData.forEach(element => {
-                console.info("changed !" + element + " " + g_object[element]);
-        });
-        }
-  } 
-  g_object.on("change", this.changeCallback);
+  g_object.on("change", function (sessionId, changeData) {
+      console.info("change" + sessionId);  
+      if (changeData != null && changeData != undefined) {
+          changeData.forEach(element => {
+              console.info("changed !" + element + " " + g_object[element]);
+          });
+      }
+  });
   ```
 
 ### off('change')
@@ -134,13 +132,13 @@ off(type: 'change', callback?: Callback<{ sessionId: string, fields: Array&lt;st
   import distributedObject from '@ohos.data.distributedDataObject'
   var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, 
                  parent:{mother:"jack mom",father:"jack Dad"}});
-  changeCallback : function (sessionId, changeData) {
-        console.info("change" + sessionId);
-  }
-  
-  g_object.on("change", this.changeCallback);
+  g_object.on("change", function (sessionId, changeData) {
+      console.info("change" + sessionId);
+  });
   //删除变更回调changeCallback
-  g_object.off("change", changeCallback);
+  g_object.off("change", function (sessionId, changeData) {
+      console.info("change" + sessionId);
+  });
   //删除所有的变更回调
   g_object.off("change");
   ```
@@ -164,11 +162,9 @@ on(type: 'status', callback: Callback<{ sessionId: string, networkId: string, st
   import distributedObject from '@ohos.data.distributedDataObject'
   var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, 
                  parent:{mother:"jack mom",father:"jack Dad"}});
-  statusCallback : function (sessionId, networkid, status) {
+  g_object.on("status", function (sessionId, networkid, status) {
       this.response += "status changed " + sessionId + " " + status + " " + networkId;
-  }
-  
-  g_object.on("status", this.changeCallback);
+  });
   ```
 
 ### off('status')
@@ -189,14 +185,14 @@ off(type: 'status', callback?: Callback<{ sessionId: string, deviceId: string, s
 
 - 示例：
   ```js
-  import distributedObject from '@ohos.data.distributedDataObject'
-  statusCallback : function (sessionId, networkId, status) {
+  import distributedObject from '@ohos.data.distributedDataObject'  
+  g_object.on("status", function (sessionId, networkId, status) {
       this.response += "status changed " + sessionId + " " + status + " " + networkId;
-  }
-  
-  g_object.on("status", this.changeCallback);
+  });
   //删除上下线回调changeCallback
-  g_object.off("status", changeCallback);
+  g_object.off("status", function (sessionId, networkId, status) {
+      this.response += "status changed " + sessionId + " " + status + " " + networkId;
+  });
   //删除所有的上下线回调
   g_object.off("status");
   ```
