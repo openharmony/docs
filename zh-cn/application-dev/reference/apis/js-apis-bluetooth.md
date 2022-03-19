@@ -1,7 +1,7 @@
 # 蓝牙
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > 
 > 蓝牙模块提供了基础的传统蓝牙能力以及BLE的扫描、广播等功能。
 
@@ -26,11 +26,15 @@ ohos.permission.LOCATION
 
 
 
-## bluetooth.enableBluetooth
+## bluetooth.enableBluetooth<sup>8+</sup><a name="enableBluetooth"></a>
 
 enableBluetooth(): boolean
 
 开启蓝牙。
+
+**需要权限**：ohos.permission.DISCOVER_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **返回值：**
 
@@ -40,16 +44,20 @@ enableBluetooth(): boolean
 
 **示例：**
 
-```
+```js
 let enable = bluetooth.enableBluetooth();
 ```
 
 
-## bluetooth.disableBluetooth
+## bluetooth.disableBluetooth<sup>8+</sup><a name="disableBluetooth"></a>
 
 disableBluetooth(): boolean
 
 关闭蓝牙。
+
+**需要权限**：ohos.permission.DISCOVER_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **返回值：**
 
@@ -59,16 +67,20 @@ disableBluetooth(): boolean
 
 **示例：**
 
-```
+```js
 let disable = bluetooth.disableBluetooth();
 ```
 
 
-## bluetooth.getLocalName
+## bluetooth.getLocalName<sup>8+</sup><a name="getLocalName"></a>
 
 getLocalName(): string
 
 获取蓝牙本地设备名称。
+
+**需要权限**：ohos.permission.USE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **返回值：**
 
@@ -78,7 +90,7 @@ getLocalName(): string
 
 **示例：**
 
-```
+```js
 let localName = bluetooth.getLocalName();
 ```
 
@@ -89,6 +101,10 @@ getState(): BluetoothState
 
 获取蓝牙开关状态。
 
+**需要权限**：ohos.permission.USE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -97,7 +113,7 @@ getState(): BluetoothState
 
 **示例：**
 
-```
+```js
 let state = bluetooth.getState();
 ```
 
@@ -108,6 +124,10 @@ getBtConnectionState(): ProfileConnectionState
 
 获取蓝牙设备的Profile连接状态。
 
+**需要权限**：ohos.permission.USE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -116,33 +136,36 @@ getBtConnectionState(): ProfileConnectionState
 
 **示例：**
 
-```
+```js
 let connectionState = bluetooth.getBtConnectionState();
 ```
 
 
-## bluetooth.setLocalName
+## bluetooth.setLocalName<sup>8+</sup><a name="setLocalName"></a>
 
 setLocalName(name: string): boolean
 
 设置蓝牙本地设备名称。
 
+**需要权限**：ohos.permission.DISCOVER_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| name | string | 是 | 要设置的蓝牙名称，最大长度为128。 |
+| name | string | 是 | 要设置的蓝牙名称，最大长度为248。 |
 
 **返回值：**
 
-| | |
-| -------- | -------- |
 | 类型 | 说明 |
+| -------- | -------- |
 | boolean | 设置蓝牙本地设备名称，成功返回true，否则返回false。 |
 
 **示例：**
 
-```
+```js
 let ret = bluetooth.setLocalName('device_name');
 ```
 
@@ -152,6 +175,10 @@ let ret = bluetooth.setLocalName('device_name');
 pairDevice(deviceId: string): boolean
 
 发起蓝牙配对。
+
+**需要权限**：ohos.permission.DISCOVER_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **参数：**
 
@@ -167,17 +194,50 @@ pairDevice(deviceId: string): boolean
 
 **示例：**
 
-```
+```js
 // 实际的地址可由扫描流程获取
 let result = bluetooth.pairDevice("XX:XX:XX:XX:XX:XX");
 ```
 
 
-## bluetooth.cancelPairedDevice
+## bluetooth.getProfileConnState<sup>8+</sup><a name="getProfileConnState"></a>
+
+getProfileConnState(profileId: ProfileId): ProfileConnectionState
+
+获取profile的连接状态。
+
+**需要权限**：ohos.permission.USE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| ProfileId | profileId | 是 | 表示profile的枚举值，例如：PROFILE_A2DP_SOURCE。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| [ProfileConnectionState](#ProfileConnectionState) | profile的连接状态。 |
+
+**示例：**
+
+```js
+let result = bluetooth.getProfileConnState(PROFILE_A2DP_SOURCE);
+```
+
+
+## bluetooth.cancelPairedDevice<sup>8+</sup><a name="cancelPairedDevice"></a>
 
 cancelPairedDevice(deviceId: string): boolean
 
 删除配对的远程设备。
+
+**需要权限**：ohos.permission.DISCOVER_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **参数：**
 
@@ -193,16 +253,20 @@ cancelPairedDevice(deviceId: string): boolean
 
 **示例：**
 
-```
+```js
 let result = bluetooth.cancelPairedDevice("XX:XX:XX:XX:XX:XX");
 ```
 
 
-## bluetooth.getRemoteDeviceName
+## bluetooth.getRemoteDeviceName<sup>8+</sup><a name="getRemoteDeviceName"></a>
 
 getRemoteDeviceName(deviceId: string): string
 
 获取对端蓝牙设备的名称。
+
+**需要权限**：ohos.permission.USE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **参数：**
 
@@ -218,16 +282,20 @@ getRemoteDeviceName(deviceId: string): string
 
 **示例：**
 
-```
+```js
 let remoteDeviceName = bluetooth.getRemoteDeviceName("XX:XX:XX:XX:XX:XX");
 ```
 
 
-## bluetooth.getRemoteDeviceClass
+## bluetooth.getRemoteDeviceClass<sup>8+</sup><a name="getRemoteDeviceClass"></a>
 
 getRemoteDeviceClass(deviceId: string): DeviceClass
 
 获取对端蓝牙设备的类别。
+
+**需要权限**：ohos.permission.USE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **参数：**
 
@@ -243,16 +311,20 @@ getRemoteDeviceClass(deviceId: string): DeviceClass
 
 **示例：**
 
-```
+```js
 let remoteDeviceClass = bluetooth.getRemoteDeviceClass("XX:XX:XX:XX:XX:XX");
 ```
 
 
-## bluetooth.getPairedDevices
+## bluetooth.getPairedDevices<sup>8+</sup><a name="getPairedDevices"></a>
 
 getPairedDevices(): Array&lt;string&gt;
 
 获取蓝牙配对列表。
+
+**需要权限**：ohos.permission.USE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **返回值：**
 
@@ -262,16 +334,20 @@ getPairedDevices(): Array&lt;string&gt;
 
 **示例：**
 
-```
+```js
 let devices = bluetooth.getPairedDevices();
 ```
 
 
-## bluetooth.setBluetoothScanMode
+## bluetooth.setBluetoothScanMode<sup>8+</sup><a name="setBluetoothScanMode"></a>
 
 setBluetoothScanMode(mode: ScanMode, duration: number): boolean
 
 设置蓝牙扫描模式，可以被远端设备发现。
+
+**需要权限**：ohos.permission.USE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **参数：**
 
@@ -288,17 +364,21 @@ setBluetoothScanMode(mode: ScanMode, duration: number): boolean
 
 **示例：**
 
-```
+```js
 // 设置为可连接可发现才可被远端设备扫描到，可以连接。
 let result = bluetooth.setBluetoothScanMode(ScanMode.SCAN_MODE_CONNECTABLE_GENERAL_DISCOVERABLE, 100);
 ```
 
 
-## bluetooth.getBluetoothScanMode
+## bluetooth.getBluetoothScanMode<sup>8+</sup><a name="getBluetoothScanMode"></a>
 
 getBluetoothScanMode(): ScanMode
 
 获取蓝牙扫描模式。
+
+**需要权限**：ohos.permission.USE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **返回值：**
 
@@ -308,16 +388,20 @@ getBluetoothScanMode(): ScanMode
 
 **示例：**
 
-```
+```js
 let scanMode = bluetooth.getBluetoothScanMode();
 ```
 
 
-## bluetooth.startBluetoothDiscovery
+## bluetooth.startBluetoothDiscovery<sup>8+</sup><a name="startBluetoothDiscovery"></a>
 
 startBluetoothDiscovery(): boolean
 
 开启蓝牙扫描，可以发现远端设备。
+
+**需要权限**：ohos.permission.USE_BLUETOOTH；ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **返回值：**
 
@@ -327,7 +411,7 @@ startBluetoothDiscovery(): boolean
 
 **示例：**
 
-```
+```js
 let deviceId;
 function onReceiveEvent(data) {
     deviceId = data;
@@ -337,11 +421,15 @@ let result = bluetooth.startBluetoothDiscovery();
 ```
 
 
-## bluetooth.stopBluetoothDiscovery
+## bluetooth.stopBluetoothDiscovery<sup>8+</sup><a name="stopBluetoothDiscovery"></a>
 
 stopBluetoothDiscovery(): boolean
 
 关闭蓝牙扫描。
+
+**需要权限**：ohos.permission.DISCOVER_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **返回值：**
 
@@ -351,16 +439,20 @@ stopBluetoothDiscovery(): boolean
 
 **示例：**
 
-```
+```js
 let result = bluetooth.stopBluetoothDiscovery();
 ```
 
 
-## bluetooth.setDevicePairingConfirmation
+## bluetooth.setDevicePairingConfirmation<sup>8+</sup><a name="setDevicePairingConfirmation"></a>
 
 setDevicePairingConfirmation(device: string, accept: boolean): boolean
 
 设置设备配对请求确认。
+
+**需要权限**：ohos.permission.MANAGE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **参数：**
 
@@ -377,7 +469,7 @@ setDevicePairingConfirmation(device: string, accept: boolean): boolean
 
 **示例：**
 
-```
+```js
 // 订阅“pinRequired”配对请求事件，收到远端配对请求后设置配对确认
 function onReceivePinRequiredEvent(data) { // data为配对请求的入参，配对请求参数
     console.info('pin required  = '+ JSON.stringify(data));
@@ -387,11 +479,15 @@ bluetooth.on("pinRequired", onReceivePinRequiredEvent);
 ```
 
 
-## bluetooth.on('bluetoothDeviceFind')
+## bluetooth.on('bluetoothDeviceFind')<sup>8+</sup>
 
 on(type: "bluetoothDeviceFind", callback: Callback&lt;Array&lt;string&gt;&gt;): void
 
 订阅蓝牙设备发现上报事件。
+
+**需要权限**：ohos.permission.USE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **参数：**
 
@@ -406,7 +502,7 @@ on(type: "bluetoothDeviceFind", callback: Callback&lt;Array&lt;string&gt;&gt;): 
 
 **示例：**
 
-```
+```js
 function onReceiveEvent(data) { // data为蓝牙设备地址集合
     console.info('bluetooth device find = '+ JSON.stringify(data));
 }
@@ -414,11 +510,15 @@ bluetooth.on('bluetoothDeviceFind', onReceiveEvent);
 ```
 
 
-## bluetooth.off('bluetoothDeviceFind')
+## bluetooth.off('bluetoothDeviceFind')<sup>8+</sup>
 
 off(type: "bluetoothDeviceFind", callback?: Callback&lt;Array&lt;string&gt;&gt;): void
 
 取消订阅蓝牙设备发现上报事件。
+
+**需要权限**：ohos.permission.USE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **参数：**
 
@@ -433,7 +533,7 @@ off(type: "bluetoothDeviceFind", callback?: Callback&lt;Array&lt;string&gt;&gt;)
 
 **示例：**
 
-```
+```js
 function onReceiveEvent(data) {
     console.info('bluetooth device find = '+ JSON.stringify(data));
 }
@@ -442,11 +542,15 @@ bluetooth.off('bluetoothDeviceFind', onReceiveEvent);
 ```
 
 
-## bluetooth.on('pinRequired')
+## bluetooth.on('pinRequired')<sup>8+</sup>
 
 on(type: "pinRequired", callback: Callback&lt;PinRequiredParam&gt;): void
 
 订阅远端蓝牙设备的配对请求事件。
+
+**需要权限**：ohos.permission.DISCOVER_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **参数：**
 
@@ -461,7 +565,7 @@ on(type: "pinRequired", callback: Callback&lt;PinRequiredParam&gt;): void
 
 **示例：**
 
-```
+```js
 function onReceiveEvent(data) { // data为配对请求参数
     console.info('pin required = '+ JSON.stringify(data));
 }
@@ -469,11 +573,15 @@ bluetooth.on('pinRequired', onReceiveEvent);
 ```
 
 
-## bluetooth.off('pinRequired')
+## bluetooth.off('pinRequired')<sup>8+</sup>
 
 off(type: "pinRequired", callback?: Callback&lt;PinRequiredParam&gt;): void
 
 取消订阅远端蓝牙设备的配对请求事件。
+
+**需要权限**：ohos.permission.DISCOVER_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **参数：**
 
@@ -488,7 +596,7 @@ off(type: "pinRequired", callback?: Callback&lt;PinRequiredParam&gt;): void
 
 **示例：**
 
-```
+```js
 function onReceiveEvent(data) {
     console.info('pin required = '+ JSON.stringify(data));
 }
@@ -497,11 +605,15 @@ bluetooth.off('pinRequired', onReceiveEvent);
 ```
 
 
-## bluetooth.on('bondStateChange')
+## bluetooth.on('bondStateChange')<sup>8+</sup>
 
 on(type: "bondStateChange", callback: Callback&lt;BondState&gt;): void
 
 订阅蓝牙配对状态改变事件。
+
+**需要权限**：ohos.permission.USE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **参数：**
 
@@ -516,7 +628,7 @@ on(type: "bondStateChange", callback: Callback&lt;BondState&gt;): void
 
 **示例：**
 
-```
+```js
 function onReceiveEvent(data) { // data为回调函数入参，表示配对的状态
     console.info('pair state = '+ JSON.stringify(data));
 }
@@ -524,11 +636,15 @@ bluetooth.on('bondStateChange', onReceiveEvent);
 ```
 
 
-## bluetooth.off('bondStateChange')
+## bluetooth.off('bondStateChange')<sup>8+</sup>
 
 off(type: "bondStateChange", callback?: Callback&lt;BondState&gt;): void
 
 取消订阅蓝牙配对状态改变事件。
+
+**需要权限**：ohos.permission.USE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **参数：**
 
@@ -543,7 +659,7 @@ off(type: "bondStateChange", callback?: Callback&lt;BondState&gt;): void
 
 **示例：**
 
-```
+```js
 function onReceiveEvent(data) {
     console.info('bond state = '+ JSON.stringify(data));
 }
@@ -552,11 +668,15 @@ bluetooth.off('bondStateChange', onReceiveEvent);
 ```
 
 
-## bluetooth.on('stateChange')
+## bluetooth.on('stateChange')<sup>8+</sup>
 
 on(type: "stateChange", callback: Callback&lt;BluetoothState&gt;): void
 
 订阅蓝牙连接状态改变事件。
+
+**需要权限**：ohos.permission.USE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **参数：**
 
@@ -571,7 +691,7 @@ on(type: "stateChange", callback: Callback&lt;BluetoothState&gt;): void
 
 **示例：**
 
-```
+```js
 function onReceiveEvent(data) {
     console.info('bluetooth state = '+ JSON.stringify(data));
 }
@@ -579,11 +699,15 @@ bluetooth.on('stateChange', onReceiveEvent);
 ```
 
 
-## bluetooth.off('stateChange')
+## bluetooth.off('stateChange')<sup>8+</sup>
 
 off(type: "stateChange", callback?: Callback&lt;BluetoothState&gt;): void
 
 取消订阅蓝牙连接状态改变事件。
+
+**需要权限**：ohos.permission.USE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **参数：**
 
@@ -598,7 +722,7 @@ off(type: "stateChange", callback?: Callback&lt;BluetoothState&gt;): void
 
 **示例：**
 
-```
+```js
 function onReceiveEvent(data) {
     console.info('bluetooth state = '+ JSON.stringify(data));
 }
@@ -607,11 +731,15 @@ bluetooth.off('stateChange', onReceiveEvent);
 ```
 
 
-## bluetooth.sppListen
+## bluetooth.sppListen<sup>8+</sup><a name="sppListen<"></a>
 
 sppListen(name: string, option: SppOption, callback: AsyncCallback&lt;number&gt;): void
 
 创建一个服务端监听Socket。
+
+**需要权限**：ohos.permission.USE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **参数：**
 
@@ -623,7 +751,7 @@ sppListen(name: string, option: SppOption, callback: AsyncCallback&lt;number&gt;
 
 **示例：**
 
-```
+```js
 let serverNumber = -1;
 function serverSocket(code, number) {
   console.log('bluetooth error code: ' + code.code);
@@ -638,11 +766,13 @@ bluetooth.sppListen('server1', sppOption, serverSocket);
 ```
 
 
-## bluetooth.sppAccept
+## bluetooth.sppAccept<sup>8+</sup><a name="sppAccept"></a>
 
 sppAccept(serverSocket: number, callback: AsyncCallback&lt;number&gt;): void
 
 服务端监听socket等待客户端连接。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **参数：**
 
@@ -653,7 +783,7 @@ sppAccept(serverSocket: number, callback: AsyncCallback&lt;number&gt;): void
 
 **示例：**
 
-```
+```js
 let clientNumber = -1;
 function acceptClientSocket(code, number) {
   console.log('bluetooth error code: ' + code.code);
@@ -667,11 +797,15 @@ bluetooth.sppAccept(serverNumber, acceptClientSocket);
 ```
 
 
-## bluetooth.sppConnect
+## bluetooth.sppConnect<sup>8+</sup><a name="sppConnect"></a>
 
 sppConnect(device: string, option: SppOption, callback: AsyncCallback&lt;number&gt;): void
 
 客户端向远端设备发起spp连接。
+
+**需要权限**：ohos.permission.USE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **参数：**
 
@@ -683,7 +817,7 @@ sppConnect(device: string, option: SppOption, callback: AsyncCallback&lt;number&
 
 **示例：**
 
-```
+```js
 let clientNumber = -1;
 function clientSocket(code, number) {
   if (code.code != 0) {
@@ -698,11 +832,13 @@ bluetooth.sppConnect('XX:XX:XX:XX:XX:XX', sppOption, clientSocket);
 ```
 
 
-## bluetooth.sppCloseServerSocket
+## bluetooth.sppCloseServerSocket<sup>8+</sup><a name="sppCloseServerSocket"></a>
 
 sppCloseServerSocket(socket: number): void
 
 关闭服务端监听Socket，入参socket由sppListen接口返回。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **参数：**
 
@@ -712,16 +848,18 @@ sppCloseServerSocket(socket: number): void
 
 **示例：**
 
-```
+```js
 bluetooth.sppCloseServerSocket(serverNumber);
 ```
 
 
-## bluetooth.sppCloseClientSocket
+## bluetooth.sppCloseClientSocket<sup>8+</sup><a name="sppCloseClientSocket"></a>
 
 sppCloseClientSocket(socket: number): void
 
 关闭客户端socket，入参socket由sppAccept或sppConnect接口获取。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **参数：**
 
@@ -732,16 +870,18 @@ sppCloseClientSocket(socket: number): void
 
 **示例：**
 
-```
+```js
 bluetooth.sppCloseClientSocket(clientNumber);
 ```
 
 
-## bluetooth.sppWrite
+## bluetooth.sppWrite<sup>8+</sup><a name="sppWrite"></a>
 
 sppWrite(clientSocket: number, data: ArrayBuffer): boolean
 
 通过socket向远端发送数据，入参clientSocket由sppAccept或sppConnect接口获取 。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **参数：**
 
@@ -759,7 +899,7 @@ sppWrite(clientSocket: number, data: ArrayBuffer): boolean
 
 **示例：**
 
-```
+```js
 let arrayBuffer = new ArrayBuffer(8);
 let data = new Uint8Array(arrayBuffer);
 data[0] = 123;
@@ -772,11 +912,13 @@ if (ret) {
 ```
 
 
-## bluetooth.on('sppRead')
+## bluetooth.on('sppRead')<sup>8+</sup>
 
 on(type: "sppRead", clientSocket: number, callback: Callback&lt;ArrayBuffer&gt;): void
 
 订阅spp读请求事件，入参clientSocket由sppAccept或sppConnect接口获取。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **参数：**
 
@@ -792,7 +934,7 @@ on(type: "sppRead", clientSocket: number, callback: Callback&lt;ArrayBuffer&gt;)
 
 **示例：**
 
-```
+```js
 function dataRead(dataBuffer) {
   let data = new Uint8Array(dataBuffer);
   console.log('bluetooth data is: ' + data[0]);
@@ -801,11 +943,13 @@ bluetooth.on('sppRead', clientNumber, dataRead);
 ```
 
 
-## bluetooth.off('sppRead')
+## bluetooth.off('sppRead')<sup>8+</sup>
 
 off(type: "sppRead", clientSocket: number, callback?: Callback&lt;ArrayBuffer&gt;): void
 
 取消订阅spp读请求事件，入参clientSocket由sppAccept或sppConnect接口获取。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **参数：**
 
@@ -821,8 +965,36 @@ off(type: "sppRead", clientSocket: number, callback?: Callback&lt;ArrayBuffer&gt
 
 **示例：**
 
-```
+```js
 bluetooth.off('sppRead', clientNumber);
+```
+
+
+## bluetooth.getProfile<sup>8+</sup><a name="getProfile"></a>
+
+getProfile(profileId: ProfileId): A2dpSourceProfile | HandsFreeAudioGatewayProfile
+
+通过ProfileId，获取profile的对象实例。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| ProfileId | profileId | 是 | 表示profile的枚举值，例如：PROFILE_A2DP_SOURCE。 |
+
+**返回值：**
+
+| | |
+| -------- | -------- |
+| 类型 | 说明 |
+| A2dpSourceProfile 或者 HandsFreeAudioGatewayProfile | 对应的profile的对象实例，当前支持A2dpSourceProfile， HandsFreeAudioGatewayProfile。 |
+
+**示例：**
+
+```js
+A2dpSourceProfile a2dpSrc = bluetooth.getProfile(PROFILE_A2DP_SOURCE);
 ```
 
 
@@ -834,6 +1006,8 @@ createGattServer(): GattServer
 
 创建一个可使用的GattServer实例。
 
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -842,7 +1016,7 @@ createGattServer(): GattServer
 
 **示例：**
 
-```
+```js
 let gattServer = bluetooth.BLE.createGattServer();
 ```
 
@@ -852,6 +1026,8 @@ let gattServer = bluetooth.BLE.createGattServer();
 createGattClientDevice(deviceId: string): GattClientDevice
 
 创建一个可使用的GattClientDevice实例。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **参数：**
 
@@ -867,7 +1043,7 @@ createGattClientDevice(deviceId: string): GattClientDevice
 
 **示例：**
 
-```
+```js
 let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 ```
 
@@ -878,6 +1054,10 @@ getConnectedBLEDevices(): Array&lt;string&gt;
 
 获取和当前设备连接的BLE设备。
 
+**需要权限**：ohos.permission.USE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -886,7 +1066,7 @@ getConnectedBLEDevices(): Array&lt;string&gt;
 
 **示例：**
 
-```
+```js
 let result = bluetooth.BLE.getConnectedBLEDevices();
 ```
 
@@ -896,6 +1076,10 @@ let result = bluetooth.BLE.getConnectedBLEDevices();
 startBLEScan(filters: Array&lt;ScanFilter&gt;, options?: ScanOptions): void
 
 发起BLE扫描流程。
+
+**需要权限**：ohos.permission.DISCOVER_BLUETOOTH；ohos.permission.MANAGE_BLUETOOTH；                           ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **参数：**
 
@@ -910,7 +1094,7 @@ startBLEScan(filters: Array&lt;ScanFilter&gt;, options?: ScanOptions): void
 
 **示例：**
 
-```
+```js
 function onReceiveEvent(data) {
     console.info('BLE scan device find result = '+ JSON.stringify(data));
 }
@@ -936,13 +1120,17 @@ stopBLEScan(): void
 
 停止BLE扫描流程。
 
+**需要权限**：ohos.permission.DISCOVER_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
 **返回值：**
 
 无
 
 **示例：**
 
-```
+```js
 bluetooth.BLE.stopBLEScan();
 ```
 
@@ -952,6 +1140,10 @@ bluetooth.BLE.stopBLEScan();
 on(type: "BLEDeviceFind", callback: Callback&lt;Array&lt;ScanResult&gt;&gt;): void
 
 订阅BLE设备发现上报事件。
+
+**需要权限**：ohos.permission.USE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **参数：**
 
@@ -966,7 +1158,7 @@ on(type: "BLEDeviceFind", callback: Callback&lt;Array&lt;ScanResult&gt;&gt;): vo
 
 **示例：**
 
-```
+```js
 function onReceiveEvent(data) {
     console.info('bluetooth device find = '+ JSON.stringify(data));
 }
@@ -979,6 +1171,10 @@ bluetooth.BLE.on('BLEDeviceFind', onReceiveEvent);
 off(type: "BLEDeviceFind", callback?: Callback&lt;Array&lt;ScanResult&gt;&gt;): void
 
 取消订阅BLE设备发现上报事件。
+
+**需要权限**：ohos.permission.USE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **参数：**
 
@@ -993,12 +1189,347 @@ off(type: "BLEDeviceFind", callback?: Callback&lt;Array&lt;ScanResult&gt;&gt;): 
 
 **示例：**
 
-```
+```js
 function onReceiveEvent(data) {
     console.info('bluetooth device find = '+ JSON.stringify(data));
 }
 bluetooth.BLE.on('BLEDeviceFind', onReceiveEvent);
 bluetooth.BLE.off('BLEDeviceFind', onReceiveEvent);
+```
+
+
+## BaseProfile
+
+profile基类。
+
+
+### getConnectionDevices<sup>8+</sup><a name="getConnectionDevices"></a>
+
+getConnectionDevices(): Array&lt;string&gt;
+
+获取已连接设备列表。
+
+**需要权限**：ohos.permission.USE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+无
+
+**返回值：**
+
+| | |
+| -------- | -------- |
+| 类型 | 说明 |
+| Array&lt;string&gt; | 返回已连接设备的地址列表。 |
+
+
+### getDeviceState<sup>8+</sup><a name="getDeviceState"></a>
+
+getDeviceState(device: string): ProfileConnectionState
+
+获取设备profile的连接状态。
+
+**需要权限**：ohos.permission.USE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| device | string | 是 | 远端设备地址。 |
+|
+
+**返回值：**
+
+| | |
+| -------- | -------- |
+| 类型 | 说明 |
+| [ProfileConnectionState](#profileconnectionState) | 返回profile的连接状态。 |
+
+
+## A2dpSourceProfile
+
+使用A2dpSourceProfile方法之前需要创建该类的实例进行操作，通过getProfile()方法构造此实例。
+
+
+### connect<sup>8+</sup><a name="connect"></a>
+
+connect(device: string): boolean
+
+发起设备的A2dp服务连接请求。
+
+**需要权限**：ohos.permission.DISCOVER_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| device | string | 是 | 远端设备地址。 |
+|
+
+**返回值：**
+
+| | |
+| -------- | -------- |
+| 类型 | 说明 |
+| boolean | 成功返回true，失败返回false。 |
+
+**示例：**
+
+```js
+A2dpSourceProfile a2dpSrc = bluetooth.getProfile(PROFILE_A2DP_SOURCE);
+boolean ret = a2dpSrc.connect('XX:XX:XX:XX:XX:XX');
+```
+
+
+### disconnect<sup>8+</sup><a name="disconnect"></a>
+
+disconnect(device: string): boolean
+
+断开设备的a2dp服务连接。
+
+**需要权限**：ohos.permission.DISCOVER_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| device | string | 是 | 远端设备地址。 |
+|
+
+**返回值：**
+
+| | |
+| -------- | -------- |
+| 类型 | 说明 |
+| boolean | 成功返回true，失败返回false。 |
+
+**示例：**
+
+```js
+A2dpSourceProfile a2dpSrc = bluetooth.getProfile(PROFILE_A2DP_SOURCE);
+boolean ret = a2dpSrc.disconnect('XX:XX:XX:XX:XX:XX');
+```
+
+
+### A2dpSourceProfile.on('connectionStateChange')<sup>8+</sup>
+
+on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
+
+订阅a2dp连接状态变化事件。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 填写"connectionStateChange"字符串，表示连接状态变化事件。 |
+| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | 是 | 表示回调函数的入参。 |
+
+**返回值：**
+
+无
+
+**示例：**
+
+```js
+function onReceiveEvent(data) {
+    console.info('a2dp state = '+ JSON.stringify(data));
+}
+A2dpSourceProfile.on('connectionStateChange', onReceiveEvent);
+```
+
+
+### A2dpSourceProfile.off('connectionStateChange')<sup>8+</sup>
+
+off(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
+
+取消订阅a2dp连接状态变化事件。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 填写"connectionStateChange"字符串，表示连接状态变化事件。 |
+| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | 是 | 表示回调函数的入参。 |
+
+**返回值：**
+
+无
+
+**示例：**
+
+```js
+function onReceiveEvent(data) {
+    console.info('a2dp state = '+ JSON.stringify(data));
+}
+A2dpSourceProfile.off('connectionStateChange', onReceiveEvent);
+```
+
+
+### getPlayingState
+
+getPlayingState(device: string): PlayingState
+
+获取设备的播放状态。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| device | string | 是 | 远端设备地址。 |
+
+**返回值：**
+
+| | |
+| -------- | -------- |
+| 类型 | 说明 |
+| [PlayingState](#PlayingState) | 远端设备的播放状态。 |
+
+**示例：**
+
+```js
+A2dpSourceProfile a2dpSrc = bluetooth.getProfile(PROFILE_A2DP_SOURCE);
+PlayingState state = a2dpSrc.getPlayingState('XX:XX:XX:XX:XX:XX');
+```
+
+
+## HandsFreeAudioGatewayProfile
+
+使用HandsFreeAudioGatewayProfile方法之前需要创建该类的实例进行操作，通过getProfile()方法构造此实例。
+
+
+### connect<sup>8+</sup><a name="connect"></a>
+
+connect(device: string): boolean
+
+连接设备的HFP服务。
+
+**需要权限**：ohos.permission.DISCOVER_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| device | string | 是 | 远端设备地址。 |
+|
+
+**返回值：**
+
+| | |
+| -------- | -------- |
+| 类型 | 说明 |
+| boolean | 成功返回true，失败返回false。 |
+
+**示例：**
+
+```js
+HandsFreeAudioGatewayProfile hfpAg = bluetooth.getProfile(PROFILE_HANDS_FREE_AUDIO_GATEWAY);
+boolean ret = hfpAg.connect('XX:XX:XX:XX:XX:XX');
+```
+
+
+### disconnect<sup>8+</sup><a name="disconnect"></a>
+
+disconnect(device: string): boolean
+
+连接设备的HFP服务。
+
+**需要权限**：ohos.permission.DISCOVER_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| device | string | 是 | 远端设备地址。 |
+|
+
+**返回值：**
+
+| | |
+| -------- | -------- |
+| 类型 | 说明 |
+| boolean | 成功返回true，失败返回false。 |
+
+**示例：**
+
+```js
+HandsFreeAudioGatewayProfile hfpAg = bluetooth.getProfile(PROFILE_HANDS_FREE_AUDIO_GATEWAY);
+boolean ret = hfpAg.disconnect('XX:XX:XX:XX:XX:XX');
+```
+
+
+### HandsFreeAudioGatewayProfile.on('connectionStateChange')<sup>8+</sup>
+
+on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
+
+订阅HFP连接状态变化事件。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 填写"connectionStateChange"字符串，表示连接状态变化事件。 |
+| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | 是 | 表示回调函数的入参。 |
+
+**返回值：**
+
+无
+
+**示例：**
+
+```js
+function onReceiveEvent(data) {
+    console.info('hfp state = '+ JSON.stringify(data));
+}
+HandsFreeAudioGatewayProfile.on('connectionStateChange', onReceiveEvent);
+```
+
+
+### HandsFreeAudioGatewayProfile.off('connectionStateChange')<sup>8+</sup>
+
+off(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
+
+取消订阅HFP连接状态变化事件。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 填写"connectionStateChange"字符串，表示连接状态变化事件。 |
+| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | 是 | 表示回调函数的入参。 |
+
+**返回值：**
+
+无
+
+**示例：**
+
+```js
+function onReceiveEvent(data) {
+    console.info('hfp state = '+ JSON.stringify(data));
+}
+HandsFreeAudioGatewayProfile.off('connectionStateChange', onReceiveEvent);
 ```
 
 
@@ -1012,6 +1543,10 @@ server端类，使用server端方法之前需要创建该类的实例进行操�
 startAdvertising(setting: AdvertiseSetting, advData: AdvertiseData, advResponse?: AdvertiseData): void
 
 开始发送BLE广播。
+
+**需要权限**：ohos.permission.DISCOVER_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **参数：**
 
@@ -1027,7 +1562,7 @@ startAdvertising(setting: AdvertiseSetting, advData: AdvertiseData, advResponse?
 
 **示例：**
 
-```
+```js
 let manufactureValueBuffer = new Uint8Array(4);
 manufactureValueBuffer[0] = 1;
 manufactureValueBuffer[1] = 2;
@@ -1076,13 +1611,17 @@ stopAdvertising(): void
 
 停止发送BLE广播。
 
+**需要权限**：ohos.permission.DISCOVER_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
 **返回值：**
 
 无
 
 **示例：**
 
-```
+```js
 let server = bluetooth.BLE.createGattServer();
 server.stopAdvertising();
 ```
@@ -1093,6 +1632,10 @@ server.stopAdvertising();
 addService(service: GattService): boolean
 
 server端添加服务。
+
+**需要权限**：ohos.permission.USE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **参数：**
 
@@ -1108,7 +1651,7 @@ server端添加服务。
 
 **示例：**
 
-```
+```js
 // 创建descriptors
 let descriptors = [];
 let arrayBuffer = new ArrayBuffer(8);
@@ -1149,6 +1692,10 @@ removeService(serviceUuid: string): boolean
 
 删除已添加的服务。
 
+**需要权限**：ohos.permission.USE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -1164,7 +1711,7 @@ removeService(serviceUuid: string): boolean
 
 **示例：**
 
-```
+```js
 let server = bluetooth.BLE.createGattServer();
 server.removeService('00001810-0000-1000-8000-00805F9B34FB');
 ```
@@ -1176,9 +1723,13 @@ close(): void
 
 关闭服务端功能，去注册server在协议栈的注册，调用该接口后[GattServer](#gattserver)实例将不能再使用。
 
+**需要权限**：ohos.permission.USE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
 **示例：**
 
-```
+```js
 let server = bluetooth.BLE.createGattServer();
 server.close();
 ```
@@ -1189,6 +1740,10 @@ server.close();
 notifyCharacteristicChanged(deviceId: string, notifyCharacteristic: NotifyCharacteristic): boolean
 
 server端特征值发生变化时，主动通知已连接的client设备。
+
+**需要权限**：ohos.permission.USE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **参数：**
 
@@ -1206,7 +1761,7 @@ server端特征值发生变化时，主动通知已连接的client设备。
 
 **示例：**
 
-```
+```js
 let notifyCharacteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001821-0000-1000-8000-00805F9B34FB', characteristicValue:  notifyCcc.characteristicValue, confirm: false};
 let server = bluetooth.BLE.createGattServer();
@@ -1219,6 +1774,10 @@ server.notifyCharacteristicChanged('XX:XX:XX:XX:XX:XX', notifyCharacteristic);
 sendResponse(serverResponse: ServerResponse): boolean
 
 server端回复client端的读写请求。
+
+**需要权限**：ohos.permission.USE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **参数：**
 
@@ -1235,7 +1794,7 @@ server端回复client端的读写请求。
 
 **示例：**
 
-```
+```js
 /* send response */
 let arrayBufferCCC = new ArrayBuffer(8);
 let cccValue = new Uint8Array(arrayBufferCCC);
@@ -1264,6 +1823,10 @@ on(type: "characteristicRead", callback: Callback&lt;CharacteristicReadReq&gt;):
 
 server端订阅特征值读请求事件。
 
+**需要权限**：ohos.permission.USE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -1277,7 +1840,7 @@ server端订阅特征值读请求事件。
 
 **示例：**
 
-```
+```js
 let arrayBufferCCC = new ArrayBuffer(8);
 let cccValue = new Uint8Array(arrayBufferCCC);
 cccValue[0] = 1123;
@@ -1308,6 +1871,10 @@ off(type: "characteristicRead", callback?: Callback&lt;CharacteristicReadReq&gt;
 
 server端取消订阅特征值读请求事件。
 
+**需要权限**：ohos.permission.USE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -1321,7 +1888,7 @@ server端取消订阅特征值读请求事件。
 
 **示例：**
 
-```
+```js
 let gattServer = bluetooth.BLE.createGattServer();
 gattServer.off("characteristicRead");
 ```
@@ -1332,6 +1899,10 @@ gattServer.off("characteristicRead");
 on(type: "characteristicWrite", callback: Callback&lt;CharacteristicWriteReq&gt;): void
 
 server端订阅特征值写请求事件。
+
+**需要权限**：ohos.permission.USE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **参数：**
 
@@ -1346,7 +1917,7 @@ server端订阅特征值写请求事件。
 
 **示例：**
 
-```
+```js
 let arrayBufferCCC = new ArrayBuffer(8);
 let cccValue = new Uint8Array(arrayBufferCCC);
 function WriteCharacteristicReq(CharacteristicWriteReq) {
@@ -1380,6 +1951,10 @@ off(type: "characteristicWrite", callback?: Callback&lt;CharacteristicWriteReq&g
 
 server端取消订阅特征值写请求事件。
 
+**需要权限**：ohos.permission.USE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -1393,7 +1968,7 @@ server端取消订阅特征值写请求事件。
 
 **示例：**
 
-```
+```js
 let gattServer = bluetooth.BLE.createGattServer();
 gattServer.off("characteristicWrite");
 ```
@@ -1404,6 +1979,10 @@ gattServer.off("characteristicWrite");
 on(type: "descriptorRead", callback: Callback&lt;DescriptorReadReq&gt;): void
 
 server端订阅描述符读请求事件。
+
+**需要权限**：ohos.permission.USE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **参数：**
 
@@ -1418,7 +1997,7 @@ server端订阅描述符读请求事件。
 
 **示例：**
 
-```
+```js
 let arrayBufferDesc = new ArrayBuffer(8);
 let descValue = new Uint8Array(arrayBufferDesc);
 descValue[0] = 1101;
@@ -1449,6 +2028,10 @@ off(type: "descriptorRead", callback?: Callback&lt;DescriptorReadReq&gt;): void
 
 server端取消订阅描述符读请求事件。
 
+**需要权限**：ohos.permission.USE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -1462,7 +2045,7 @@ server端取消订阅描述符读请求事件。
 
 **示例：**
 
-```
+```js
 let gattServer = bluetooth.BLE.createGattServer();
 gattServer.off("descriptorRead");
 ```
@@ -1473,6 +2056,10 @@ gattServer.off("descriptorRead");
 on(type: "descriptorWrite", callback: Callback&lt;DescriptorWriteReq&gt;): void
 
 server端订阅描述符写请求事件。
+
+**需要权限**：ohos.permission.USE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **参数：**
 
@@ -1487,7 +2074,7 @@ server端订阅描述符写请求事件。
 
 **示例：**
 
-```
+```js
 let arrayBufferDesc = new ArrayBuffer(8);
 let descValue = new Uint8Array(arrayBufferDesc);
 function WriteDescriptorReq(DescriptorWriteReq) {
@@ -1521,6 +2108,10 @@ off(type: "descriptorWrite", callback?: Callback&lt;DescriptorWriteReq&gt;): voi
 
 server端取消订阅描述符写请求事件。
 
+**需要权限**：ohos.permission.USE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -1534,7 +2125,7 @@ server端取消订阅描述符写请求事件。
 
 **示例：**
 
-```
+```js
 let gattServer = bluetooth.BLE.createGattServer();
 gattServer.off("descriptorWrite");
 ```
@@ -1545,6 +2136,10 @@ gattServer.off("descriptorWrite");
 on(type: "connectStateChange", callback: Callback&lt;BLEConnectChangedState&gt;): void
 
 server端订阅BLE连接状态变化事件。
+
+**需要权限**：ohos.permission.USE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **参数：**
 
@@ -1559,7 +2154,7 @@ server端订阅BLE连接状态变化事件。
 
 **示例：**
 
-```
+```js
 function Connected(BLEConnectChangedState) {
   let deviceId = BLEConnectChangedState.deviceId;
   let status = BLEConnectChangedState.state;
@@ -1576,6 +2171,10 @@ off(type: "connectStateChange", callback?: Callback&lt;BLEConnectChangedState&gt
 
 server端取消订阅BLE连接状态变化事件。
 
+**需要权限**：ohos.permission.USE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -1589,7 +2188,7 @@ server端取消订阅BLE连接状态变化事件。
 
 **示例：**
 
-```
+```js
 let gattServer = bluetooth.BLE.createGattServer();
 gattServer.off("connectStateChange");
 ```
@@ -1606,6 +2205,10 @@ connect(): boolean
 
 client端发起连接远端蓝牙低功耗设备。
 
+**需要权限**：ohos.permission.USE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -1614,7 +2217,7 @@ client端发起连接远端蓝牙低功耗设备。
 
 **示例：**
 
-```
+```js
 let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 let ret = device.connect();
 ```
@@ -1626,6 +2229,10 @@ disconnect(): boolean
 
 client端断开与远端蓝牙低功耗设备的连接。
 
+**需要权限**：ohos.permission.USE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -1634,7 +2241,7 @@ client端断开与远端蓝牙低功耗设备的连接。
 
 **示例：**
 
-```
+```js
 let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 let ret = device.disconnect();
 ```
@@ -1646,6 +2253,10 @@ close(): boolean
 
 关闭客户端功能，注销client在协议栈的注册，调用该接口后[GattClientDevice](#gattclientdevice)实例将不能再使用。
 
+**需要权限**：ohos.permission.USE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -1654,7 +2265,7 @@ close(): boolean
 
 **示例：**
 
-```
+```js
 let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 let ret = device.close();
 ```
@@ -1668,6 +2279,10 @@ getServices(callback: AsyncCallback&lt;Array&lt;GattService&gt;&gt;): void
 
 client端获取蓝牙低功耗设备的所有服务，即服务发现 。
 
+**需要权限**：ohos.permission.USE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -1680,7 +2295,7 @@ client端获取蓝牙低功耗设备的所有服务，即服务发现 。
 
 **示例：**
 
-```
+```js
 // callkback 模式
 function getServices(code, gattServices) {
   if (code.code == 0) {
@@ -1706,6 +2321,10 @@ getServices(): Promise&lt;Array&lt;GattService&gt;&gt;
 
 client端获取蓝牙低功耗设备的所有服务，即服务发现。
 
+**需要权限**：ohos.permission.USE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
 **参数：**
 
 **返回值：**
@@ -1716,7 +2335,7 @@ client端获取蓝牙低功耗设备的所有服务，即服务发现。
 
 **示例：**
 
-```
+```js
 // Promise 模式
 let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 device.connect();
@@ -1735,6 +2354,10 @@ readCharacteristicValue(characteristic: BLECharacteristic, callback: AsyncCallba
 
 client端读取蓝牙低功耗设备特定服务的特征值。
 
+**需要权限**：ohos.permission.USE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -1748,7 +2371,7 @@ client端读取蓝牙低功耗设备特定服务的特征值。
 
 **示例：**
 
-```
+```js
 function readCcc(code, BLECharacteristic) {
   if (code.code != 0) {
       return;
@@ -1785,6 +2408,10 @@ readCharacteristicValue(characteristic: BLECharacteristic): Promise&lt;BLECharac
 
 client端读取蓝牙低功耗设备特定服务的特征值。
 
+**需要权限**：ohos.permission.USE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -1800,7 +2427,7 @@ client端读取蓝牙低功耗设备特定服务的特征值。
 
 **示例：**
 
-```
+```js
 let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 let descriptors = [];
 let bufferDesc = new ArrayBuffer(8);
@@ -1828,6 +2455,10 @@ readDescriptorValue(descriptor: BLEDescriptor, callback: AsyncCallback&lt;BLEDes
 
 client端读取蓝牙低功耗设备特定的特征包含的描述符。
 
+**需要权限**：ohos.permission.USE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -1841,7 +2472,7 @@ client端读取蓝牙低功耗设备特定的特征包含的描述符。
 
 **示例：**
 
-```
+```js
 function readDesc(code, BLEDescriptor) {
   if (code.code != 0) {
       return;
@@ -1868,6 +2499,10 @@ readDescriptorValue(descriptor: BLEDescriptor): Promise&lt;BLEDescriptor&gt;
 
 client端读取蓝牙低功耗设备特定的特征包含的描述符。
 
+**需要权限**：ohos.permission.USE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -1883,7 +2518,7 @@ client端读取蓝牙低功耗设备特定的特征包含的描述符。
 
 **示例：**
 
-```
+```js
 let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
@@ -1901,6 +2536,10 @@ writeCharacteristicValue(characteristic: BLECharacteristic): boolean
 
 client端向低功耗蓝牙设备写入特定的特征值。
 
+**需要权限**：ohos.permission.USE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -1915,7 +2554,7 @@ client端向低功耗蓝牙设备写入特定的特征值。
 
 **示例：**
 
-```
+```js
 let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 let descriptors = [];
 let bufferDesc = new ArrayBuffer(8);
@@ -1947,6 +2586,10 @@ writeDescriptorValue(descriptor: BLEDescriptor): boolean
 
 client端向低功耗蓝牙设备特定的描述符写入二进制数据。
 
+**需要权限**：ohos.permission.USE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -1961,7 +2604,7 @@ client端向低功耗蓝牙设备特定的描述符写入二进制数据。
 
 **示例：**
 
-```
+```js
 let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
@@ -1984,6 +2627,10 @@ setBLEMtuSize(mtu: number): boolean
 
 client协商远端蓝牙低功耗设备的最大传输单元（Maximum Transmission Unit, MTU），调用[connect](#connect)接口连接成功后才能使用。
 
+**需要权限**：ohos.permission.USE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -1998,7 +2645,7 @@ client协商远端蓝牙低功耗设备的最大传输单元（Maximum Transmiss
 
 **示例：**
 
-```
+```js
 let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 device.setBLEMtuSize(128);
 ```
@@ -2009,6 +2656,10 @@ device.setBLEMtuSize(128);
 setNotifyCharacteristicChanged(characteristic: BLECharacteristic, enable: boolean): boolean
 
 向服务端发送设置通知此特征值请求。
+
+**需要权限**：ohos.permission.USE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **参数：**
 
@@ -2025,7 +2676,7 @@ setNotifyCharacteristicChanged(characteristic: BLECharacteristic, enable: boolea
 
 **示例：**
 
-```
+```js
 let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 device.setNotifyCharacteristicChanged(notifyCcc, false);
 ```
@@ -2036,6 +2687,10 @@ device.setNotifyCharacteristicChanged(notifyCcc, false);
 on(type: "BLECharacteristicChange", callback: Callback&lt;BLECharacteristic&gt;): void
 
 订阅蓝牙低功耗设备的特征值变化事件。需要先调用setNotifyCharacteristicChanged接口才能接收server端的通知。
+
+**需要权限**：ohos.permission.USE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **参数：**
 
@@ -2050,7 +2705,7 @@ on(type: "BLECharacteristicChange", callback: Callback&lt;BLECharacteristic&gt;)
 
 **示例：**
 
-```
+```js
 function CharacteristicChange(CharacteristicChangeReq) {
   let serviceUuid = CharacteristicChangeReq.serviceUuid;
   let characteristicUuid = CharacteristicChangeReq.characteristicUuid;
@@ -2067,6 +2722,10 @@ off(type: "BLECharacteristicChange", callback?: Callback&lt;BLECharacteristic&gt
 
 取消订阅蓝牙低功耗设备的特征值变化事件。
 
+**需要权限**：ohos.permission.USE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -2080,7 +2739,7 @@ off(type: "BLECharacteristicChange", callback?: Callback&lt;BLECharacteristic&gt
 
 **示例：**
 
-```
+```js
 let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 device.off('BLECharacteristicChange');
 ```
@@ -2091,6 +2750,10 @@ device.off('BLECharacteristicChange');
 on(type: "BLEConnectionStateChange", callback: Callback&lt;BLEConnectChangedState&gt;): void
 
 client端订阅蓝牙低功耗设备的连接状态变化事件。
+
+**需要权限**：ohos.permission.USE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **参数：**
 
@@ -2105,7 +2768,7 @@ client端订阅蓝牙低功耗设备的连接状态变化事件。
 
 **示例：**
 
-```
+```js
 function ConnectStateChanged(state) {
   console.log('bluetooth connect state changed');
   let connectState = state.state;
@@ -2121,6 +2784,10 @@ off(type: "BLEConnectionStateChange", callback?: Callback&lt;BLEConnectChangedSt
 
 取消订阅蓝牙低功耗设备的连接状态变化事件。
 
+**需要权限**：ohos.permission.USE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -2134,7 +2801,7 @@ off(type: "BLEConnectionStateChange", callback?: Callback&lt;BLEConnectChangedSt
 
 **示例：**
 
-```
+```js
 let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 device.off('BLEConnectionStateChange');
 ```
@@ -2145,6 +2812,10 @@ device.off('BLEConnectionStateChange');
 getDeviceName(callback: AsyncCallback&lt;string&gt;): void
 
 client获取远端蓝牙低功耗设备名。
+
+**需要权限**：ohos.permission.USE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **参数：**
 
@@ -2158,7 +2829,7 @@ client获取远端蓝牙低功耗设备名。
 
 **示例：**
 
-```
+```js
 // callback
 let gattClient = bluetooth.BLE.createGattClientDevice("XX:XX:XX:XX:XX:XX");
 let deviceName = gattClient.getDeviceName((err, data)=> {
@@ -2174,6 +2845,10 @@ getDeviceName(): Promise&lt;string&gt;
 
 client获取远端蓝牙低功耗设备名。
 
+**需要权限**：ohos.permission.USE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -2182,7 +2857,7 @@ client获取远端蓝牙低功耗设备名。
 
 **示例：**
 
-```
+```js
 // promise
 let gattClient = bluetooth.BLE.createGattClientDevice("XX:XX:XX:XX:XX:XX");
 let ret = device.connect();
@@ -2198,6 +2873,10 @@ getRssiValue(callback: AsyncCallback&lt;number&gt;): void
 
 client获取远端蓝牙低功耗设备的信号强度 (Received Signal Strength Indication, RSSI)，调用[connect](#connect)接口连接成功后才能使用。
 
+**需要权限**：ohos.permission.USE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -2210,7 +2889,7 @@ client获取远端蓝牙低功耗设备的信号强度 (Received Signal Strength
 
 **示例：**
 
-```
+```js
 // callback
 let gattClient = bluetooth.BLE.createGattClientDevice("XX:XX:XX:XX:XX:XX");
 let ret = device.connect();
@@ -2227,6 +2906,10 @@ getRssiValue(): Promise&lt;number&gt;
 
 client获取远端蓝牙低功耗设备的信号强度 (Received Signal Strength Indication, RSSI)，调用[connect](#connect)接口连接成功后才能使用。
 
+**需要权限**：ohos.permission.USE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -2235,7 +2918,7 @@ client获取远端蓝牙低功耗设备的信号强度 (Received Signal Strength
 
 **示例：**
 
-```
+```js
 // promise
 let gattClient = bluetooth.BLE.createGattClientDevice("XX:XX:XX:XX:XX:XX");
 let rssi = gattClient.getRssiValue().then((data) => {
@@ -2243,10 +2926,11 @@ let rssi = gattClient.getRssiValue().then((data) => {
 })
 ```
 
-
-## ScanMode
+## ScanMode<sup>8+</sup><a name="ScanMode"></a>
 
 枚举，扫描模式。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 | 名称 | 默认值 | 说明 |
 | -------- | -------- | -------- |
@@ -2257,10 +2941,11 @@ let rssi = gattClient.getRssiValue().then((data) => {
 | SCAN_MODE_CONNECTABLE_GENERAL_DISCOVERABLE | 4 | 可连接general发现模式。 |
 | SCAN_MODE_CONNECTABLE_LIMITED_DISCOVERABLE | 5 | 可连接limited发现模式。 |
 
-
-## BondState
+## BondState<sup>8+</sup><a name="BondState"></a>
 
 枚举，配对状态。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 | 名称 | 默认值 | 说明 |
 | -------- | -------- | -------- |
@@ -2269,20 +2954,24 @@ let rssi = gattClient.getRssiValue().then((data) => {
 | BOND_STATE_BONDED | 2 | 已配对。 |
 
 
-## SppOption
+## SppOption<sup>8+</sup><a name="SppOption"></a>
 
 描述spp的配置参数。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | uuid | string | 是 | 是 | spp单据的uuid。 |
-| isPrimary | boolean | 是 | 是 | 是否是安全通道。 |
+| secure | boolean | 是 | 是 | 是否是安全通道。 |
 | type | [SppType](#spptype) | 是 | 是 | Spp链路类型。 |
 
 
-## SppType
+## SppType<sup>8+</sup><a name="SppType"></a>
 
 枚举，Spp链路类型。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 | 名称 | 默认值 | 说明 |
 | -------- | -------- | -------- |
@@ -2292,6 +2981,8 @@ let rssi = gattClient.getRssiValue().then((data) => {
 ## GattService
 
 描述service的接口参数定义。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -2305,6 +2996,8 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 描述characteristic的接口参数定义 。
 
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | serviceUuid | string | 是 | 是 | 特定服务（service）的UUID，例如：00001888-0000-1000-8000-00805f9b34fb。 |
@@ -2316,6 +3009,8 @@ let rssi = gattClient.getRssiValue().then((data) => {
 ## BLEDescriptor
 
 描述descriptor的接口参数定义 。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -2329,6 +3024,8 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 描述server端特征值变化时发送的特征通知参数定义。
 
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | serviceUuid | string | 是 | 是 | 特定服务（service）的UUID，例如：00001888-0000-1000-8000-00805f9b34fb。 |
@@ -2340,6 +3037,8 @@ let rssi = gattClient.getRssiValue().then((data) => {
 ## CharacteristicReadReq
 
 描述server端订阅后收到的特征值读请求事件参数结构。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -2353,6 +3052,8 @@ let rssi = gattClient.getRssiValue().then((data) => {
 ## CharacteristicWriteReq
 
 描述server端订阅后收到的特征值写请求事件参数结构。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -2368,6 +3069,8 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 描述server端订阅后收到的描述符读请求事件参数结构。
 
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | deviceId | string | 是 | 否 | 表示发送描述符读请求的远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
@@ -2381,6 +3084,8 @@ let rssi = gattClient.getRssiValue().then((data) => {
 ## DescriptorWriteReq
 
 描述server端订阅后收到的描述符写请求事件参数结构。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -2399,6 +3104,8 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 描述server端回复client端读/写请求的响应参数结构。
 
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | deviceId | string | 是 | 否 | 表示远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
@@ -2412,6 +3119,8 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 描述Gatt profile连接状态 。
 
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | deviceId | string | 是 | 否 | 表示远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
@@ -2421,6 +3130,8 @@ let rssi = gattClient.getRssiValue().then((data) => {
 ## ProfileConnectionState
 
 枚举，蓝牙设备的profile连接状态。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 | 名称 | 默认值 | 说明 |
 | -------- | -------- | -------- |
@@ -2434,6 +3145,8 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 扫描过滤参数。
 
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | deviceId | string | 是 | 是 | 表示过滤的BLE设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
@@ -2444,6 +3157,8 @@ let rssi = gattClient.getRssiValue().then((data) => {
 ## ScanOptions
 
 扫描的配置参数。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -2456,6 +3171,8 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 枚举，扫描模式。
 
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
 | 名称 | 默认值 | 说明 |
 | -------- | -------- | -------- |
 | SCAN_MODE_LOW_POWER | 0 | 表示低功耗模式，默认值。 |
@@ -2467,15 +3184,19 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 枚举，硬件过滤匹配模式。
 
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
 | 名称 | 默认值 | 说明 |
 | -------- | -------- | -------- |
 | MATCH_MODE_AGGRESSIVE | 1 | 表示硬件上报扫描结果门限较低，比如扫描到的功率较低或者一段时间扫描到的次数较少也触发上报，默认值。 |
-| SCAN_MODE_LOW_LATENCY | 2 | 表示硬件上报扫描结果门限较高，更高的功率门限以及扫描到多次才会上报。 |
+| MATCH_MODE_STICKY | 2 | 表示硬件上报扫描结果门限较高，更高的功率门限以及扫描到多次才会上报。 |
 
 
 ## ScanResult
 
 扫描结果上报数据。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -2487,6 +3208,8 @@ let rssi = gattClient.getRssiValue().then((data) => {
 ## BluetoothState
 
 枚举，蓝牙开关状态。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 | 名称 | 默认值 | 说明 |
 | -------- | -------- | -------- |
@@ -2503,6 +3226,8 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 描述蓝牙低功耗设备发送广播的参数。
 
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | interval | number | 是 | 是 | 表示广播间隔，最小值设置32个slot表示20ms，最大值设置16777215个slot，默认值设置为1600个slot表示1s。 |
@@ -2513,6 +3238,8 @@ let rssi = gattClient.getRssiValue().then((data) => {
 ## AdvertiseData
 
 描述BLE广播数据包的内容。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -2525,6 +3252,8 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 描述BLE广播数据包的内容。
 
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | manufactureId | Array&lt;string&gt; | 是 | 是 | 表示制造商的ID，由蓝牙SIG分配。 |
@@ -2535,15 +3264,19 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 描述广播包中服务数据内容。
 
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | serviceUuid | string | 是 | 是 | 表示服务的UUID。 |
 | serviceValue | ArrayBuffer | 是 | 是 | 表示服务数据。 |
 
 
-## PinRequiredParam
+## PinRequiredParam<sup>8+</sup><a name="PinRequiredParam"></a>
 
 描述配对请求参数。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -2551,9 +3284,23 @@ let rssi = gattClient.getRssiValue().then((data) => {
 | pinCode | string | 是 | 否 | 表示要配对的密钥。 |
 
 
-## DeviceClass
+## StateChangeParam<sup>8+</sup><a name="StateChangeParam"></a>
+
+描述profile状态改变参数。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+| 名称 | 参数类型 | 可读 | 可写 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| deviceId | string | 是 | 否 | 表示蓝牙设备地址。 |
+| state | [ProfileConnectionState](#ProfileConnectionState) | 是 | 否 | 表示蓝牙设备的profile连接状态。 |
+
+
+## DeviceClass<sup>8+</sup><a name="DeviceClass"></a>
 
 描述蓝牙设备的类别。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -2562,9 +3309,12 @@ let rssi = gattClient.getRssiValue().then((data) => {
 | classOfDevice | number | 是 | 否 | 表示设备类别。 |
 
 
-## MajorClass
+
+## MajorClass<sup>8+</sup><a name="MajorClass"></a>
 
 枚举，蓝牙设备主要类别。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 | 名称 | 默认值 | 说明 |
 | -------- | -------- | -------- |
@@ -2581,9 +3331,11 @@ let rssi = gattClient.getRssiValue().then((data) => {
 | MAJOR_UNCATEGORIZED | 0x1F00 | 表示未分类设备。 |
 
 
-## MajorMinorClass
+## MajorMinorClass<sup>8+</sup><a name="MajorMinorClass"></a>
 
 枚举，主要次要蓝牙设备类别。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 | 名称 | 默认值 | 说明 |
 | -------- | -------- | -------- |
@@ -2673,3 +3425,27 @@ let rssi = gattClient.getRssiValue().then((data) => {
 | HEALTH_ANKLE_PROSTHESIS | 0x0934 | 表示脚踝假肢健康设备。 |
 | HEALTH_GENERIC_HEALTH_MANAGER | 0x0938 | 表示通用健康管理设备。 |
 | HEALTH_PERSONAL_MOBILITY_DEVICE | 0x093C | 表示个人移动健康设备。 |
+
+
+## PlayingState<sup>8+</sup><a name="PlayingState"></a>
+
+枚举，蓝牙A2DP 播放状态。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+| 名称 | 默认值 | 说明 |
+| -------- | -------- | -------- |
+| STATE_NOT_PLAYING | 0x0000 | 表示未播放。 |
+| STATE_PLAYING | 0x0001 | 表示正在播放。 |
+
+
+## ProfileId<sup>8+</sup><a name="ProfileId"></a>
+
+枚举，蓝牙profile id。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+| 名称 | 默认值 | 说明 |
+| -------- | -------- | -------- |
+| PROFILE_A2DP_SOURCE | 0x0001 | 表示A2DP profile。 |
+| PROFILE_HANDS_FREE_AUDIO_GATEWAY | 0x0004 | 表示HFP profile。 |
