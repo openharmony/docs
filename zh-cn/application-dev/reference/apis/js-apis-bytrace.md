@@ -89,7 +89,7 @@ bytrace.finishTrace("myTestFunc", 1);
 
 ## bytrace.traceByValue
 
-traceByValue(name: string, value: number): void
+traceByValue(name: string, count: number): void
 
 用来标记一个预追踪的数值变量，该变量的数值会不断变化。
 
@@ -99,7 +99,7 @@ traceByValue(name: string, value: number): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | name | string | 是 | 要追踪的数值变量名称 |
-| value | number | 是 | 变量的值 |
+| count | number | 是 | 变量的值 |
 
 **示例：**
 
