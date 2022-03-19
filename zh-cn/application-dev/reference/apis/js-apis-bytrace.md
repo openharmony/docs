@@ -12,16 +12,14 @@ import bytrace from '@ohos.bytrace';
 ```
 
 
-## 系统能力
-
-SystemCapability.Developtools.Bytrace
-
 
 ## bytrace.startTrace
 
 startTrace(name: string, taskId: number, expectedTime?: number): void
 
 标记一个预追踪耗时任务的开始，expectedTime是可选参数，标识该任务的期望耗时。
+
+**系统能力：** SystemCapability.Developtools.Bytrace
 
 **参数：**
 
@@ -47,6 +45,8 @@ bytrace.startTrace("myTestFunc", 1, 5); //从startTrace到finishTrace流程的�
 finishTrace(name: string, taskId: number): void
 
 标记一个预追踪耗时任务的结束。
+
+**系统能力：** SystemCapability.Developtools.Bytrace
 
 **参数：**
 
@@ -92,6 +92,8 @@ bytrace.finishTrace("myTestFunc", 1);
 traceByValue(name: string, value: number): void
 
 用来标记一个预追踪的数值变量，该变量的数值会不断变化。
+
+**系统能力：** SystemCapability.Developtools.Bytrace
 
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
