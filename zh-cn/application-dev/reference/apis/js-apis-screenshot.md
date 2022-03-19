@@ -13,33 +13,40 @@ import screenshot from '@ohos.screenshot';
 
 设置截取图像的信息。
 
+**系统能力**：以下各项对应的系统能力均为 SystemCapability.WindowManager.WindowManager.Core。
+
+
 | 参数名     | 类型          | 必填 | 说明                                                         |
 | ---------- | ------------- | ---- | ------------------------------------------------------------ |
-| screenRect | [Rect](#Rect) | 否   | 表示截取图像的区域，不传值默认为全屏。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
-| imageSize  | [Size](#Size) | 否   | 表示截取图像的大小，不传值默认为全屏。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
-| rotation   | number        | 否   | 表示截取图像的旋转角度，当前仅支持输入值为0，默认值为0。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+| screenRect | [Rect](#Rect) | 否   | 表示截取图像的区域，不传值默认为全屏。|
+| imageSize  | [Size](#Size) | 否   | 表示截取图像的大小，不传值默认为全屏。|
+| rotation   | number        | 否   | 表示截取图像的旋转角度，当前仅支持输入值为0，默认值为0。|
 
 
 ## Rect
 
 表示截取图像的区域。
 
+**系统能力**：以下各项对应的系统能力均为 SystemCapability.WindowManager.WindowManager.Core。
+
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| left   | number | 是   | 表示截取图像区域的左边界。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
-| top    | number | 是   | 表示截取图像区域的上边界。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
-| width  | number | 是   | 表示截取图像区域的宽度。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
-| height | number | 是   | 表示截取图像区域的高度。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+| left   | number | 是   | 表示截取图像区域的左边界。|
+| top    | number | 是   | 表示截取图像区域的上边界。|
+| width  | number | 是   | 表示截取图像区域的宽度。|
+| height | number | 是   | 表示截取图像区域的高度。|
 
 
 ## Size
 
 表示截取图像的大小。
 
+**系统能力**：以下各项对应的系统能力均为 SystemCapability.WindowManager.WindowManager.Core。
+
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| width  | number | 是   | 表示截取图像的宽度。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
-| height | number | 是   | 表示截取图像的高度。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+| width  | number | 是   | 表示截取图像的宽度。|
+| height | number | 是   | 表示截取图像的高度。|
 
 ## screenshot.save
 

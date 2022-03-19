@@ -41,48 +41,52 @@ gl.clearColor(0.0, 0.0, 0.0, 1.0);
 
 ## Type
 
+**系统能力**：以下各项对应的系统能力均为 SystemCapability.Graphic.Graphic2D.WebGL。
+
   **表1** Type
 
-| 名称 | 类型 | 说明 | 
-| -------- | -------- | -------- |
-| GLenum | number | **系统能力：** SystemCapability.Graphic.Graphic2D.WebGL | 
-| GLboolean | boolean | **系统能力：** SystemCapability.Graphic.Graphic2D.WebGL | 
-| GLbitfield | number | **系统能力：** SystemCapability.Graphic.Graphic2D.WebGL | 
-| GLbyte | number | **系统能力：** SystemCapability.Graphic.Graphic2D.WebGL | 
-| GLshort | number | **系统能力：** SystemCapability.Graphic.Graphic2D.WebGL | 
-| GLint | number | **系统能力：** SystemCapability.Graphic.Graphic2D.WebGL | 
-| GLsizei | number | **系统能力：** SystemCapability.Graphic.Graphic2D.WebGL | 
-| GLintptr | number | **系统能力：** SystemCapability.Graphic.Graphic2D.WebGL | 
-| GLsizeiptr | number | **系统能力：** SystemCapability.Graphic.Graphic2D.WebGL | 
-| GLubyte | number | **系统能力：** SystemCapability.Graphic.Graphic2D.WebGL | 
-| GLushort | number | **系统能力：** SystemCapability.Graphic.Graphic2D.WebGL | 
-| GLuint | number | **系统能力：** SystemCapability.Graphic.Graphic2D.WebGL | 
-| GLfloat | number | **系统能力：** SystemCapability.Graphic.Graphic2D.WebGL | 
-| GLclampf | number | **系统能力：** SystemCapability.Graphic.Graphic2D.WebGL | 
-| TexImageSource | ImageData | **系统能力：** SystemCapability.Graphic.Graphic2D.WebGL | 
-| Float32List | array | **系统能力：** SystemCapability.Graphic.Graphic2D.WebGL | 
-| Int32List | array | **系统能力：** SystemCapability.Graphic.Graphic2D.WebGL | 
-| WebGLPowerPreference | string | **系统能力：** SystemCapability.Graphic.Graphic2D.WebGL | 
+| 名称 | 类型 | 
+| -------- | -------- |
+| GLenum | number | 
+| GLboolean | boolean |
+| GLbitfield | number |
+| GLbyte | number |
+| GLshort | number |
+| GLint | number |
+| GLsizei | number |
+| GLintptr | number |
+| GLsizeiptr | number |
+| GLubyte | number |
+| GLushort | number |
+| GLuint | number |
+| GLfloat | number |
+| GLclampf | number | 
+| TexImageSource | ImageData |
+| Float32List | array |
+| Int32List | array |
+| WebGLPowerPreference | string |
 
 
 ## Interface
 
+**系统能力**：以下各项对应的系统能力均为 SystemCapability.Graphic.Graphic2D.WebGL。
+
   **表2** Interface
 
-| 名称 | 说明 | 
-| -------- | -------- |
-| [WebGLContextAttributes](#webglcontextattributes) | **系统能力：** SystemCapability.Graphic.Graphic2D.WebGL | 
-| WebGLBuffer | **系统能力：** SystemCapability.Graphic.Graphic2D.WebGL | 
-| WebGLFrameBuffer | **系统能力：** SystemCapability.Graphic.Graphic2D.WebGL | 
-| WebGLProgram | **系统能力：** SystemCapability.Graphic.Graphic2D.WebGL | 
-| WebGLRenderbuffer | **系统能力：** SystemCapability.Graphic.Graphic2D.WebGL | 
-| WebGLShader | **系统能力：** SystemCapability.Graphic.Graphic2D.WebGL | 
-| WebGLTexture | **系统能力：** SystemCapability.Graphic.Graphic2D.WebGL | 
-| WebGLUniformLocation | **系统能力：** SystemCapability.Graphic.Graphic2D.WebGL | 
-| [WebGLActiveInfo](#webglactiveinfo) | **系统能力：** SystemCapability.Graphic.Graphic2D.WebGL | 
-| [WebGLShaderPrecisionFormat](#webglshaderprecisionformat) | **系统能力：** SystemCapability.Graphic.Graphic2D.WebGL | 
-| [WebGLRenderingContextBase](#webglrenderingcontextbase) | **系统能力：** SystemCapability.Graphic.Graphic2D.WebGL | 
-| [WebGLRenderingContextOverloads](#webglrenderingcontextoverloads) | **系统能力：** SystemCapability.Graphic.Graphic2D.WebGL | 
+| 名称 |
+| -------- |
+| [WebGLContextAttributes](#webglcontextattributes) |
+| WebGLBuffer |
+| WebGLFrameBuffer |
+| WebGLProgram |
+| WebGLRenderbuffer |
+| WebGLShader |
+| WebGLTexture |
+| WebGLUniformLocation |
+| [WebGLActiveInfo](#webglactiveinfo) | 
+| [WebGLShaderPrecisionFormat](#webglshaderprecisionformat) |
+| [WebGLRenderingContextBase](#webglrenderingcontextbase) |
+| [WebGLRenderingContextOverloads](#webglrenderingcontextoverloads) |
 
 
 ## WebGLContextAttributes

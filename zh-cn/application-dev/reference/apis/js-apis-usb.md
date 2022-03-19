@@ -419,122 +419,139 @@ closePipe(pipe: USBDevicePipe): number
 
 通过USB发送和接收数据的端口。通过[USBInterface](#usbinterface)获取。
 
+**系统能力**：以下各项对应的系统能力均为 SystemCapability.USB.USBManager。
+
 | 名称 | 参数类型 | 说明 |
 | -------- | -------- | -------- |
-| address | number | 端点地址。<br>**系统能力**: SystemCapability.USB.USBManager |
-| attributes | number | 端点属性。<br>**系统能力**: SystemCapability.USB.USBManager |
-| interval | number | 端点间隔。<br>**系统能力**: SystemCapability.USB.USBManager |
-| maxPacketSize | number | 端点最大数据包大小。<br>**系统能力**: SystemCapability.USB.USBManager |
-| direction | [USBRequestDirection](#usbrequestdirection) | 端点的方向。<br>**系统能力**: SystemCapability.USB.USBManager |
-| number | number | 端点号。<br>**系统能力**: SystemCapability.USB.USBManager |
-| type | number | 端点类型。<br>**系统能力**: SystemCapability.USB.USBManager |
-| interfaceId | number | 端点所属的接口的唯一标识。<br>**系统能力**: SystemCapability.USB.USBManager |
+| address | number | 端点地址。|
+| attributes | number | 端点属性。|
+| interval | number | 端点间隔。|
+| maxPacketSize | number | 端点最大数据包大小。|
+| direction | [USBRequestDirection](#usbrequestdirection) | 端点的方向。|
+| number | number | 端点号。|
+| type | number | 端点类型。|
+| interfaceId | number | 端点所属的接口的唯一标识。|
 
 
 ## USBInterface
 
 一个[USBConfig](#usbconfig)中可以含有多个USBInterface，每个USBInterface提供一个功能。
 
+**系统能力**：以下各项对应的系统能力均为 SystemCapability.USB.USBManager。
+
 | 名称 | 参数类型 | 说明 |
 | -------- | -------- | -------- |
-| id | number | 接口的唯一标识。<br>**系统能力**: SystemCapability.USB.USBManager |
-| protocol | number | 接口的协议。<br>**系统能力**: SystemCapability.USB.USBManager |
-| clazz | number | 设备类型。<br>**系统能力**: SystemCapability.USB.USBManager |
-| subClass | number | 设备子类。<br>**系统能力**: SystemCapability.USB.USBManager |
-| alternateSetting | number | 在同一个接口中的多个描述符中进行切换设置。<br>**系统能力**: SystemCapability.USB.USBManager |
-| name | string | 接口名称。<br>**系统能力**: SystemCapability.USB.USBManager |
-| endpoints | Array&lt;[USBEndpoint](#usbendpoint)&gt; | 当前接口所包含的端点。<br>**系统能力**: SystemCapability.USB.USBManager |
+| id | number | 接口的唯一标识。|
+| protocol | number | 接口的协议。|
+| clazz | number | 设备类型。|
+| subClass | number | 设备子类。|
+| alternateSetting | number | 在同一个接口中的多个描述符中进行切换设置。|
+| name | string | 接口名称。|
+| endpoints | Array&lt;[USBEndpoint](#usbendpoint)&gt; | 当前接口所包含的端点。|
 
 
 ## USBConfig
 
 USB配置，一个[USBDevice](#usbdevice)中可以含有多个配置。
 
+**系统能力**：以下各项对应的系统能力均为 SystemCapability.USB.USBManager。
+
 | 名称 | 参数类型 | 说明 |
 | -------- | -------- | -------- |
-| id | number | 配置的唯一标识。<br>**系统能力**: SystemCapability.USB.USBManager |
-| attributes | number | 配置的属性。<br>**系统能力**: SystemCapability.USB.USBManager |
-| maxPower | number | 最大功耗，以毫安为单位。<br>**系统能力**: SystemCapability.USB.USBManager |
-| name | string | 配置的名称，可以为空。<br>**系统能力**: SystemCapability.USB.USBManager |
-| isRemoteWakeup | boolean | 检查当前配置是否支持远程唤醒。<br>**系统能力**: SystemCapability.USB.USBManager |
-| isSelfPowered | boolean | 检查当前配置是否支持独立电源。<br>**系统能力**: SystemCapability.USB.USBManager |
-| interfaces | Array&nbsp;&lt;[USBInterface](#usbinterface)&gt; | 配置支持的接口属性。<br>**系统能力**: SystemCapability.USB.USBManager |
+| id | number | 配置的唯一标识。|
+| attributes | number | 配置的属性。|
+| maxPower | number | 最大功耗，以毫安为单位。|
+| name | string | 配置的名称，可以为空。|
+| isRemoteWakeup | boolean | 检查当前配置是否支持远程唤醒。|
+| isSelfPowered | boolean | 检查当前配置是否支持独立电源。|
+| interfaces | Array&nbsp;&lt;[USBInterface](#usbinterface)&gt; | 配置支持的接口属性。|
 
 
 ## USBDevice
 
 USB设备信息。
 
+**系统能力**：以下各项对应的系统能力均为 SystemCapability.USB.USBManager。
+
 | 名称 | 参数类型 | 说明 |
 | -------- | -------- | -------- |
-| busNum | number | 总线地址。<br>**系统能力**: SystemCapability.USB.USBManager |
-| devAddress | number | 设备地址。<br>**系统能力**: SystemCapability.USB.USBManager |
-| serial | string | 序列号。<br>**系统能力**: SystemCapability.USB.USBManager |
-| name | string | 设备名字。<br>**系统能力**: SystemCapability.USB.USBManager |
-| manufacturerName | string | 产商信息。<br>**系统能力**: SystemCapability.USB.USBManager |
-| productName | string | 产品信息。<br>**系统能力**: SystemCapability.USB.USBManager |
-| version | string | 版本。<br>**系统能力**: SystemCapability.USB.USBManager |
-| vendorId | number | 厂商ID。<br>**系统能力**: SystemCapability.USB.USBManager |
-| productId | number | 产品ID。<br>**系统能力**: SystemCapability.USB.USBManager |
-| clazz | number | 设备类。<br>**系统能力**: SystemCapability.USB.USBManager |
-| subClass | number | 设备子类。<br>**系统能力**: SystemCapability.USB.USBManager |
-| protocol | number | 设备协议码。<br>**系统能力**: SystemCapability.USB.USBManager |
-| configs | Array&lt;[USBConfig](#usbconfig)&gt; | 设备配置描述符信息。<br>**系统能力**: SystemCapability.USB.USBManager |
+| busNum | number | 总线地址。|
+| devAddress | number | 设备地址。|
+| serial | string | 序列号。|
+| name | string | 设备名字。|
+| manufacturerName | string | 产商信息。|
+| productName | string | 产品信息。|
+| version | string | 版本。|
+| vendorId | number | 厂商ID。|
+| productId | number | 产品ID。|
+| clazz | number | 设备类。|
+| subClass | number | 设备子类。|
+| protocol | number | 设备协议码。|
+| configs | Array&lt;[USBConfig](#usbconfig)&gt; | 设备配置描述符信息。|
 
 
 ## USBDevicePipe
 
 USB设备消息传输通道，用于确定设备。
 
+**系统能力**：以下各项对应的系统能力均为 SystemCapability.USB.USBManager。
+
 | 名称 | 参数类型 | 说明 |
 | -------- | -------- | -------- |
-| busNum | number | 总线地址。<br>**系统能力**: SystemCapability.USB.USBManager |
-| devAddress | number | 设备地址。<br>**系统能力**: SystemCapability.USB.USBManager |
+| busNum | number | 总线地址。|
+| devAddress | number | 设备地址。|
 
 
 ## USBControlParams
 
 控制传输参数。
 
+**系统能力**：以下各项对应的系统能力均为 SystemCapability.USB.USBManager。
+
 | 名称 | 参数类型 | 说明 |
 | -------- | -------- | -------- |
 | request | number | 请求类型。 |
-| target | [USBRequestTargetType](#usbrequesttargettype) | 请求目标类型。<br>**系统能力**: SystemCapability.USB.USBManager |
-| reqType | [USBControlRequestType](#usbcontrolrequesttype) | 请求控制类型。<br>**系统能力**: SystemCapability.USB.USBManager |
-| value | number | 请求参数。<br>**系统能力**: SystemCapability.USB.USBManager |
-| index | number | 请求参数value对应的索引值。<br>**系统能力**: SystemCapability.USB.USBManager |
-| data | Uint8Array | 用于写入或读取的缓冲区。<br>**系统能力**: SystemCapability.USB.USBManager |
+| target | [USBRequestTargetType](#usbrequesttargettype) | 请求目标类型。|
+| reqType | [USBControlRequestType](#usbcontrolrequesttype) | 请求控制类型。|
+| value | number | 请求参数。|
+| index | number | 请求参数value对应的索引值。|
+| data | Uint8Array | 用于写入或读取的缓冲区。|
 
 
 ## USBRequestTargetType
 
 请求目标类型。
 
+**系统能力**：以下各项对应的系统能力均为 SystemCapability.USB.USBManager。
 
 | 名称 | 默认值 | 说明 |
 | -------- | -------- | -------- |
-| USB_REQUEST_TARGET_DEVICE | 0 | 设备。<br>**系统能力**: SystemCapability.USB.USBManager |
-| USB_REQUEST_TARGET_INTERFACE | 1 | 接口。<br>**系统能力**: SystemCapability.USB.USBManager |
-| USB_REQUEST_TARGET_ENDPOINT | 2 | 端点。<br>**系统能力**: SystemCapability.USB.USBManager |
-| USB_REQUEST_TARGET_OTHER | 3 | 其他。<br>**系统能力**: SystemCapability.USB.USBManager |
+| USB_REQUEST_TARGET_DEVICE | 0 | 设备。|
+| USB_REQUEST_TARGET_INTERFACE | 1 | 接口。|
+| USB_REQUEST_TARGET_ENDPOINT | 2 | 端点。|
+| USB_REQUEST_TARGET_OTHER | 3 | 其他。|
 
 
 ## USBControlRequestType
 
 控制请求类型。
 
+**系统能力**：以下各项对应的系统能力均为 SystemCapability.USB.USBManager。
+
 | 名称 | 默认值 | 说明 |
 | -------- | -------- | -------- |
-| USB_REQUEST_TYPE_STANDARD | 0 | 标准。<br>**系统能力**: SystemCapability.USB.USBManager |
-| USB_REQUEST_TYPE_CLASS | 1 | 类。<br>**系统能力**: SystemCapability.USB.USBManager |
-| USB_REQUEST_TYPE_VENDOR | 2 | 厂商。<br>**系统能力**: SystemCapability.USB.USBManager |
+| USB_REQUEST_TYPE_STANDARD | 0 | 标准。|
+| USB_REQUEST_TYPE_CLASS | 1 | 类。|
+| USB_REQUEST_TYPE_VENDOR | 2 | 厂商。|
 
 
 ## USBRequestDirection
 
 请求方向。
 
+**系统能力**：以下各项对应的系统能力均为 SystemCapability.USB.USBManager。
+
 | 名称 | 默认值 | 说明 |
 | -------- | -------- | -------- |
-| USB_REQUEST_DIR_TO_DEVICE | 0 | 写数据，主设备往从设备。<br>**系统能力**: SystemCapability.USB.USBManager |
-| USB_REQUEST_DIR_FROM_DEVICE | 0x80 | 读数据，从设备往主设备。<br>**系统能力**: SystemCapability.USB.USBManager |
+| USB_REQUEST_DIR_TO_DEVICE | 0 | 写数据，主设备往从设备。|
+| USB_REQUEST_DIR_FROM_DEVICE | 0x80 | 读数据，从设备往主设备。|

@@ -14,36 +14,40 @@ import display from '@ohos.display';
 
 用于表示显示设备的状态。
 
+**系统能力**：以下各项对应的系统能力均为 SystemCapability.WindowManager.WindowManager.Core。
+
 | 名称 | 默认值 | 说明 |
 | -------- | -------- | -------- |
-| STATE_UNKNOWN | 0 | 表示显示设备状态未知。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
-| STATE_OFF | 1 | 表示显示设备状态为关闭。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
-| STATE_ON | 2 | 表示显示设备状态为开启。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
-| STATE_DOZE | 3 | 表示显示设备为低电耗模式。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
-| STATE_DOZE_SUSPEND | 4 | 表示显示设备为睡眠模式，CPU为挂起状态&nbsp;。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
-| STATE_VR | 5 | 表示显示设备为VR模式。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
-| STATE_ON_SUSPEND | 6 | 表示显示设备为开启状态，CPU为挂起状态。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+| STATE_UNKNOWN | 0 | 表示显示设备状态未知。|
+| STATE_OFF | 1 | 表示显示设备状态为关闭。 |
+| STATE_ON | 2 | 表示显示设备状态为开启。|
+| STATE_DOZE | 3 | 表示显示设备为低电耗模式。|
+| STATE_DOZE_SUSPEND | 4 | 表示显示设备为睡眠模式，CPU为挂起状态。 |
+| STATE_VR | 5 | 表示显示设备为VR模式。|
+| STATE_ON_SUSPEND | 6 | 表示显示设备为开启状态，CPU为挂起状态。 |
 
 
 ## Display
 
 描述display对象的属性。
 
+**系统能力**：以下各项对应的系统能力均为 SystemCapability.WindowManager.WindowManager.Core。
+
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| id | number | 是 | 否 | 显示设备的id号。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
-| name | string | 是 | 否 | 显示设备的名称。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
-| alive | boolean | 是 | 否 | 显示设备是否启用。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
-| state | [DisplayState](#DisplayState) | 是 | 否 | 显示设备的状态。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
-| refreshRate | number | 是 | 否 | 显示设备的刷新率。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
-| rotation | number | 是 | 否 | 显示设备的屏幕旋转角度。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
-| width | number | 是 | 否 | 显示设备的宽度，单位为像素。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
-| height | number | 是 | 否 | 显示设备的高度，单位为像素。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
-| densityDPI | number | 是 | 否 | 显示设备的屏幕密度，单位为DPI。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
-| densityPixels | number | 是 | 否 | 显示设备的屏幕密度，单位为像素。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
-| scaledDensity | number | 是 | 否 | 显示设备的显示字体的缩放因子。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
-| xDPI | number | 是 | 否 | x方向中每英寸屏幕的确切物理像素值。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
-| yDPI | number | 是 | 否 | y方向中每英寸屏幕的确切物理像素值。<br/>**系统能力**：SystemCapability.WindowManager.WindowManager.Core |
+| id | number | 是 | 否 | 显示设备的id号。|
+| name | string | 是 | 否 | 显示设备的名称。|
+| alive | boolean | 是 | 否 | 显示设备是否启用。|
+| state | [DisplayState](#DisplayState) | 是 | 否 | 显示设备的状态。|
+| refreshRate | number | 是 | 否 | 显示设备的刷新率。|
+| rotation | number | 是 | 否 | 显示设备的屏幕旋转角度。|
+| width | number | 是 | 否 | 显示设备的宽度，单位为像素。|
+| height | number | 是 | 否 | 显示设备的高度，单位为像素。|
+| densityDPI | number | 是 | 否 | 显示设备的屏幕密度，单位为DPI。|
+| densityPixels | number | 是 | 否 | 显示设备的屏幕密度，单位为像素。|
+| scaledDensity | number | 是 | 否 | 显示设备的显示字体的缩放因子。|
+| xDPI | number | 是 | 否 | x方向中每英寸屏幕的确切物理像素值。 |
+| yDPI | number | 是 | 否 | y方向中每英寸屏幕的确切物理像素值。|
 
 
 ## display.getDefaultDisplay
