@@ -14,16 +14,14 @@ import settings from '@ohos.settings';
 ```
 
 
-## 权限
-
-无
-
 
 ## settings.getUriSync
 
 getUriSync(name: string): string
 
 获取数据项的URI。
+
+**系统能力**：SystemCapability.Applictaions.settings.Core。
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -47,6 +45,8 @@ getUriSync(name: string): string
 getValueSync(dataAbilityHelper: DataAbilityHelper, name: string, defValue: string): string
 
 获取数据项的值。
+
+**系统能力**：SystemCapability.Applictaions.settings.Core。
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -79,7 +79,9 @@ setValueSync(dataAbilityHelper: DataAbilityHelper, name: string, value: string):
 设置数据项的值。
 如果数据库中已经存在该数据项，则setValueSync方法将更新该数据项的值；如果数据库中尚未存在该数据项，则setValueSync方法将向数据库中插入该数据项。
 
-使用此方法需获取ohos.permission.WRITE_SYSTEM_SETTING权限。
+**需要权限**：ohos.permission.WRITE_SYSTEM_SETTING。
+
+**系统能力**：SystemCapability.Applictaions.settings.Core。
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
