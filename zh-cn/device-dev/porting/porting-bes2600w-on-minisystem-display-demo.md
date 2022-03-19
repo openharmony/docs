@@ -294,7 +294,15 @@ if (ohos_kernel_type == "liteos_m") {                    --- 由于多内核设�
 
 ### 内核启动适配
 
-内核启动适配的文件路径在 `//device/soc/bestechnic/bes2600/liteos_m/sdk/bsp/rtos/liteos/liteos_m/board.c`
+系统启动流程分为三个阶段：
+
+| 阶段名称  | 分区规划                 | 描述                          |
+| --------- | ------------------------ | ----------------------------- |
+| BOOT1     | [0, 0x10000]             | 第一阶段启动，进行固件启动    |
+| BOOT2     | [0x2C010000, 0x2C020000] | 第二阶段启动，进行OTA升级启动 |
+| RTOS_MAIN | [0x2C080000, 0x2C860000] | 第三阶段启动，进行内核启动    |
+
+在第三阶段内核启动中，需要适配的文件路径在 `//device/soc/bestechnic/bes2600/liteos_m/sdk/bsp/rtos/liteos/liteos_m/board.c`
 
 内核启动适配总体思路如下：
 
@@ -332,7 +340,7 @@ int OhosSystemAdapterHooks(void)
 
 ### littlefs文件系统移植
 
-文件系统使用的是`littlefs`，适配过程中，需要在指定路径下放置文件系统预置文件，根据配置可自动生成文件系统镜像，可以实现自动化生成和打包到烧录包中。
+ `V200Z-R`开发板开发板采用最大`32MB`的支持`XIP`的`Nor Flash`，文件系统可以使用`example`，适配过程中，需要在指定路径下放置文件系统预置文件，根据配置可自动生成文件系统镜像，可以实现自动化生成和打包到烧录包中。
 
 1. 配置指定目录放置打包文件系统`config.json`，通过`flash_partition_dir`指定目录：
 
@@ -359,7 +367,7 @@ int OhosSystemAdapterHooks(void)
 ```
     misc {
         fs_config {
-            littlefs_config {
+            example_config {
                 match_attr = "littlefs_config";
                 mount_points = ["/data"];
                 partitions = [10];
@@ -613,7 +621,7 @@ static int32_t PanelDriverInit(struct HdfDeviceObject *object)
 - 在`config.json`中增加对应子系统和部件，这样编译系统会将该部件纳入编译目标中。
 - 针对该部件的`HAL`层接口进行硬件适配，或者可选的软件功能适配。
 
-#### communication子系统适配
+#### 分布式软总线子系统适配
 
 ##### wifi_lite部件适配
 
@@ -787,13 +795,126 @@ ethernetif_init(struct netif *netif)
 }
 ```
 
-#### 系统基本能力适配
+##### dsoftbus部件适配
 
-本小节主要从移植的角度出发，分析适配过程中，需要操作或者注意的事项。
+在`config.json`中增加`dsoftbus`部件配置如下：
 
-##### startup子系统适配
+```
+{
+  "component": "dsoftbus",
+  "features": [
+    "softbus_adapter_config = \"//vendor/bestechnic/mini_distributed_music_player/dsoftbus_lite_config\""
+  ]
+},
+```
 
-``startup`子系统适配`bootstrap_lite`/`syspara_lite`两个部件。请在`vendor/bestechnic_bak/display_demo/config.json`中新增对应的配置选项。
+`dsoftbus`部件在`//foundation/communication/dsoftbus/dsoftbus.gni`文件中提供了`softbus_adapter_config`配置选项可供移植过程进行配置，该配置设定了软总线移植适配的路径。
+
+在本案例中，`softbus_adapter_config`配置为`//vendor/bestechnic/mini_distributed_music_player/dsoftbus_lite_config`路径，该路径下的内容为：
+
+```
+.
+├── feature_config					--- 软总线功能特性配置，例如是否开启自发现功能等
+│   └── mini
+│       └── config.gni
+└── spec_config						--- 软总线规格特性配置，例如设置软总线日志级别设置
+    ├── softbus_config_adapter.c
+    ├── softbus_config_adapter.h
+    └── softbus_config_type.h
+```
+
+在`config.gni`文件中规定了以下配置项：
+
+| 配置项                                     | 描述                     |
+| ------------------------------------------ | ------------------------ |
+| dsoftbus_standard_feature_disc_ble         | 是否开启BLE发现功能      |
+| dsoftbus_standard_feature_disc_coap        | 是否开启COAP发现功能     |
+| dsoftbus_standard_feature_conn_tcp         | 是否开启TCP连接功能      |
+| dsoftbus_standard_feature_conn_br          | 是否开启BR连接功能       |
+| dsoftbus_standard_feature_conn_ble         | 是否开启BLE连接功能      |
+| dsoftbus_standard_feature_conn_p2p         | 是否开启P2P连接功能      |
+| dsoftbus_standard_feature_trans_udp        | 是否开启UDP传输功能      |
+| dsoftbus_standard_feature_trans_udp_stream | 是否开启UDP传输流功能    |
+| dsoftbus_standard_feature_trans_udp_file   | 是否开启UDP传输文件功能  |
+| dsoftbus_standard_feature_ip_auth          | 是否开启认证传输通道功能 |
+| dsoftbus_standard_feature_auth_account     | 是否开启基于账号认证功能 |
+| dsoftbus_standard_feature_qos              | 是否开启QoS功能          |
+
+在`softbus_config_adapter.c`文件中规定了以下配置项：
+
+| 配置项                               | 描述                          |
+| ------------------------------------ | ----------------------------- |
+| SOFTBUS_INT_MAX_BYTES_LENGTH         | SendBytes发送最大Bytes长度    |
+| SOFTBUS_INT_MAX_MESSAGE_LENGTH       | SendMessage发送最大消息的长度 |
+| SOFTBUS_INT_CONN_BR_MAX_DATA_LENGTH  | 蓝牙最大接收数据量            |
+| SOFTBUS_INT_CONN_RFCOM_SEND_MAX_LEN  | 蓝牙最大接收数据量            |
+| SOFTBUS_INT_ADAPTER_LOG_LEVEL        | 日志级别设置                  |
+| SOFTBUS_STR_STORAGE_DIRECTORY        | 存储目录设置                  |
+
+因为软总线配置了后，不会默认启动，所以需要在通过启动框架调用`InitSoftBusServer`函数，如下：
+
+```
+static void DSoftBus(void)
+{
+    osThreadAttr_t attr;
+    attr.name = "dsoftbus task";
+    attr.attr_bits = 0U;
+    attr.cb_mem = NULL;
+    attr.cb_size = 0U;
+    attr.stack_mem = NULL;
+    attr.stack_size = 65536;
+    attr.priority = 24;
+
+    extern void InitSoftBusServer(void);
+    if (osThreadNew((osThreadFunc_t) InitSoftBusServer, NULL, &attr) == NULL) {
+        printf("Falied to create WifiSTATask!\n");
+    }
+}
+
+APP_FEATURE_INIT(DSoftBus);
+```
+
+##### RPC部件适配
+
+在`config.json`中增加`rpc`部件配置如下：
+
+```
+{
+  "component": "rpc"
+},
+```
+
+同样地，`rpc`部件需要通过启动框架调用`StartDBinderService`函数，由于该函数正常运行依赖主机已经获取`IP`地址，因此在`LWIP`协议栈注册`IP`地址变化事件的回调函数中调用该函数，如下：
+
+```
+static void RpcServerWifiDHCPSucCB(struct netif *netif, netif_nsc_reason_t reason,
+                                   const netif_ext_callback_args_t *args)
+{
+    (void) args;
+    if (netif == NULL) {
+        printf("%s %d, error: input netif is NULL!\n", __FUNCTION__, __LINE__);
+        return;
+    }
+    if (reason == LWIP_NSC_IPSTATUS_CHANGE) {
+        if (netif_is_up(netif) && !ip_addr_isany(&netif->ip_addr)) {
+            printf("%s %d, start rpc server!\n", __FUNCTION__, __LINE__);
+            StartDBinderService();
+        }
+    }
+}
+
+static void WifiDHCPRpcServerCB(void)
+{
+    NETIF_DECLARE_EXT_CALLBACK(WifiReadyRpcServerCallback);
+    netif_add_ext_callback(&WifiReadyRpcServerCallback, RpcServerWifiDHCPSucCB);
+}
+
+APP_FEATURE_INIT(WifiDHCPRpcServerCB);
+```
+
+#### 启动恢复子系统适配
+
+启动恢复子系统适配`bootstrap_lite`/`syspara_lite`两个部件。请在`vendor/bestechnic_bak/display_demo/config.json`中新增对应的配置选项。
 
 ```
 {
@@ -1014,11 +1135,9 @@ const char* HalGetSerial(void)
 }
 ```
 
+#### DFX子系统适配
 
-
-##### hiviewdfx子系统适配
-
-进行`hiviewdfx`子系统适配需要添加`hilog_lite`部件，直接在`config.json`文件配置即可。
+进行`DFX`子系统适配需要添加`hilog_lite`部件，直接在`config.json`文件配置即可。
 
 ```
 {
@@ -1047,9 +1166,9 @@ boolean HilogProc_Impl(const HiLogContent *hilogContent, uint32 len)
 HiviewRegisterHilogProc(HilogProc_Impl);
 ```
 
-##### distributedschedule子系统适配
+#### 系统服务管理子系统适配
 
-进行`distributedschedule`子系统适配需要添加`samgr_lite`部件，直接在`config.json`配置即可。
+进行系统服务管理子系统适配需要添加`samgr_lite`部件，直接在`config.json`配置即可。
 
 ```
 {
@@ -1067,9 +1186,72 @@ HiviewRegisterHilogProc(HilogProc_Impl);
 
 在轻量系统中，`samgr_lite`配置的共享任务栈大小默认为`0x800`。当函数调用栈较大时，会出现栈溢出的问题。在本次适配过程中，将其调整为`0x1000`。
 
-##### utils子系统适配
+#### 安全子系统适配
 
-进行`utils`子系统适配需要添加`kv_store`/`js_builtin`/`timer_task`/`kal_timer`部件，直接在`config.json`配置即可。
+进行安全子系统适配需要添加`huks/deviceauth_lite`部件，直接在`config.json`配置即可。
+
+```
+    {
+      "subsystem": "security",
+      "components": [
+        {
+          "component": "huks",
+          "features": [
+            "huks_use_lite_storage = true",
+            "huks_use_hardware_root_key = true",
+            "huks_config_file = \"hks_config_lite.h\"",
+            "huks_key_store_path = \"/data/\"",
+            "ohos_security_huks_mbedtls_porting_path = \"//device/soc/bestechnic/hals/mbedtls\""
+          ]
+        },
+        {
+          "component": "deviceauth_lite",
+          "features": [
+            "deviceauth_storage_path = \"/data/\"",
+            "deviceauth_hichain_thread_stack_size = 9472"
+          ]
+        }
+      ]
+    }
+```
+
+`huks`部件适配时，`huks_key_store_path`配置选项用于指定存放秘钥路径，`ohos_security_huks_mbedtls_porting_path`配置选项用于指定进行`mbedtls`适配的目录，用于芯片对`mbedtls`进行硬件随机数等适配。
+
+`deviceauth_lite`部件适配时，`deviceauth_storage_path`配置选项用于指定存放设备认证信息的路径，`deviceauth_hichain_thread_stack_size`用于指定线程栈大小。
+
+#### 媒体子系统适配
+
+进行媒体子系统适配需要添加`histreamer`部件，直接在`config.json`配置即可。
+
+```
+{
+  "subsystem": "multimedia",
+  "components": [
+    {
+      "component": "histreamer",
+      "features": [
+        "multimedia_histreamer_enable_plugin_hdi_adapter = true",
+        "multimedia_histreamer_enable_plugin_minimp3_adapter = true",
+        "multimedia_histreamer_enable_plugin_ffmpeg_adapter = false",
+        "config_ohos_multimedia_histreamer_stack_size = 65536"
+      ]
+    }
+  ]
+},
+```
+
+`histreamer`部件配置项说明如下：
+
+| 配置项                                              | 说明                            |
+| --------------------------------------------------- | ------------------------------- |
+| multimedia_histreamer_enable_plugin_hdi_adapter     | 是否使能histreamer对接到hdi接口 |
+| multimedia_histreamer_enable_plugin_minimp3_adapter | 是否使能插件适配minimp3         |
+| multimedia_histreamer_enable_plugin_ffmpeg_adapter  | 是否使能插件适配FFmpeg          |
+| config_ohos_multimedia_histreamer_stack_size        | histreamer栈大小设置            |
+
+#### 公共基础库子系统适配
+
+进行公共基础库子系统适配需要添加`kv_store`/`js_builtin`/`timer_task`/`kal_timer`部件，直接在`config.json`配置即可。
 
 ```
 {
@@ -1096,11 +1278,9 @@ HiviewRegisterHilogProc(HilogProc_Impl);
 
 与适配`syspara_lite`部件类似，适配`kv_store`部件时，键值对会写到文件中。在轻量系统中，文件操作相关接口有`POSIX`接口与`HalFiles`接口这两套实现。因为对接内核的文件系统，采用`POSIX`相关的接口，所以`features`需要增加`enable_ohos_utils_native_lite_kv_store_use_posix_kv_api = true`。如果对接`HalFiles`相关的接口实现的，则无须修改。
 
-#### 图形显示子系统适配
+#### 图形子系统适配
 
-##### graphic子系统适配
-
-进行`graphic`子系统适配需要添加`graphic_utils`部件，直接在`config.json`配置即可。
+进行图形子系统适配需要添加`graphic_utils`部件，直接在`config.json`配置即可。
 
 ```
       "components": [
@@ -1125,10 +1305,10 @@ HiviewRegisterHilogProc(HilogProc_Impl);
 - `touch_input`：实例化`PointerInputDevice`。
 - `UiMainTask`：初始化字体引擎，执行渲染任务等。
 
-`graphic`子系统层次：
+图形子系统层次：
 
 ```
-aafwk_lite + appexecfwk_lite    (AMS + BMS)
+aafwk_lite + appexecfwk_lite    (AAFWK + APPEXECFWK)
       |
 ace_engine_lite + jerryscript + i18n_lite + resmgr_lite + utils/native/lite/... (ACE,JS引擎及其依赖)
       |
@@ -1158,9 +1338,9 @@ void AppEntry(void)
 APP_FEATURE_INIT(AppEntry);
 ```
 
-##### ace子系统适配
+#### ACE开发框架子系统适配
 
-进行`ace`子系统适配需要添加`ace_engine_lite`部件，直接在`config.json`配置即可。
+进行`ACE`开发框架子系统适配需要添加`ace_engine_lite`部件，直接在`config.json`配置即可。
 
     {
       "subsystem": "ace",
@@ -1192,9 +1372,9 @@ APP_FEATURE_INIT(AppEntry);
 
 4. 最终编译生成系统镜像，烧录到单板后，系统会从`app.js`加载启动`ace`的应用。
 
-##### aafwk子系统适配
+#### 元能力子系统适配
 
-进行`aafwk`子系统适配需要添加`aafwk_lite`部件，直接在`config.json`配置即可。
+进行元能力子系统适配需要添加`aafwk_lite`部件，直接在`config.json`配置即可。
 
 ```
     {
@@ -1204,7 +1384,7 @@ APP_FEATURE_INIT(AppEntry);
           "component": "aafwk_lite",
           "features": [
             "enable_ohos_appexecfwk_feature_ability = true",	 --- 支持FA特性，即包含图形能力
-            "config_ohos_aafwk_ams_task_size = 4096"			 --- 配置ams栈的大小
+            "config_ohos_aafwk_ams_task_size = 4096"			 --- 配置aafwk栈的大小
           ]
         }
       ]
@@ -1213,14 +1393,14 @@ APP_FEATURE_INIT(AppEntry);
 
 `aafwk_lite`相关的应用样例见`vendor/bestechnic/display_demo/tests/ability`目录，包含`launcher`和`js app`这两类应用，应用的函数调用流程描述如下：
 
-1. `launcher`应用，通过`InstallLauncher`安装`BundleName`为 `"com.huawei.launcher"`的`native ui`应用，在`AbilityMgrSliteFeature`启动后会调用`AbilityMgrHandler::StartLauncher()`启动`launcher`应用。
+1. `launcher`应用，通过`InstallLauncher`安装`BundleName`为 `"com.example.launcher"`的`native ui`应用，在`AbilityMgrSliteFeature`启动后会调用`AbilityMgrHandler::StartLauncher()`启动`launcher`应用。
    
 2. `StartJSApp`应用，通过`StartAbility`启动任意`Want`，通过将`want data`传递`JS_APP_PATH`,
    `SetWantData(&want, JS_APP_PATH, strlen(JS_APP_PATH) + 1)`。
 
-##### appexecfwk子系统适配
+#### 包管理子系统适配
 
-进行`appexecfwk`子系统适配需要添加`appexecfwk_lite`部件，直接在`config.json`配置即可。
+进行包管理子系统适配需要添加`appexecfwk_lite`部件，直接在`config.json`配置即可。
 
 ```
     {
@@ -1293,8 +1473,7 @@ APP_FEATURE_INIT(AppEntry);
 
 - 蓝牙
 - `bms`包安装
-- 音频播放
 - 验证运行`JS`的`bytecode`
-- 分布式能力：`dsoftbus`、`dms`、`dm`
+- 分布式能力：`dms`、`dm`
 - 分布式音乐播放器样例
 
