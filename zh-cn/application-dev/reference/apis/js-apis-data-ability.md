@@ -640,7 +640,12 @@ distinct(): DataAbilityPredicates
   ```
   let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
   predicates.equalTo("NAME", "Rose").distinct("NAME")
-  let resultSet = await rdbStore.query(predicates, ["NAME"])
+  let promiseDistinct =  rdbStore.query(predicates, ["NAME"])
+  promiseDistinct.then((resultSet) => {   
+      console.log("distinct")
+  }).catch((err) => {
+      expect(null).assertFail();
+  })
   ```
 
 

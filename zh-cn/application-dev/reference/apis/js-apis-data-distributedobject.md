@@ -69,7 +69,7 @@ setSessionId(sessionId?: string): boolean
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | sessionId | string | 是 | 分布式对象在可信组网中的标识ID。 |
+  | sessionId | string | 否 | 分布式对象在可信组网中的标识ID。 |
   
 - 示例：
   ```js
