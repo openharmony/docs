@@ -101,8 +101,7 @@ AudioRenderer提供了渲染音频文件和控制播放的接口，开发者可�
 
 3. 调用start()方法来启动/恢复播放任务。
    
-
-启动完成后，渲染器状态将变更为STATE_RUNNING，然后应用可以开始读取缓冲区。
+   启动完成后，渲染器状态将变更为STATE_RUNNING，然后应用可以开始读取缓冲区。
 
    ```js
     async function startRenderer() {
