@@ -44,9 +44,9 @@ createAudioRenderer(options: AudioRendererOptions, callback: AsyncCallback\<Audi
 
 **参数**：
 
-| 参数名  | 类型                                           | 必填 | 说明         |
-| ------- | ---------------------------------------------- | ---- | ------------ |
-| options | [AudioRendererOptions](#audiorendereroptions8) | 是   | 配置渲染器。 |
+| 参数名   | 类型                                            | 必填 | 说明             |
+| -------- | ----------------------------------------------- | ---- | ---------------- |
+| options  | [AudioRendererOptions](#audiorendereroptions8)  | 是   | 配置渲染器。     |
 | callback | AsyncCallback<[AudioRenderer](#audiorenderer8)> | 是   | 音频渲染器对象。 |
 
 **示例：**
@@ -135,9 +135,9 @@ createAudioCapturer(options: AudioCapturerOptions, callback: AsyncCallback<Audio
 
 **参数：**
 
-| 参数名   | 类型                                           | 必填 | 说明             |
-| :------- | :--------------------------------------------- | :--- | :--------------- |
-| options  | [AudioCapturerOptions](#AudioCapturerOptions)  | 是   | 配置音频采集器。 |
+| 参数名   | 类型                                            | 必填 | 说明             |
+| :------- | :---------------------------------------------- | :--- | :--------------- |
+| options  | [AudioCapturerOptions](#AudioCapturerOptions)   | 是   | 配置音频采集器。 |
 | callback | AsyncCallback<[AudioCapturer](#audiocapturer8)> | 是   | 音频采集器对象。 |
 
 **示例：**
@@ -259,17 +259,17 @@ let audioCapturer = await audio.createAudioCapturer(audioCapturerOptions);
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Device
 
-| 名称            | 默认值 | 描述                                                      |
-| --------------- | ------ | --------------------------------------------------------- |
-| INVALID         | 0      | 无效设备。                                                |
-| EARPIECE        | 1      | 听筒。                                                    |
-| SPEAKER         | 2      | 扬声器。                                                  |
-| WIRED_HEADSET   | 3      | 有线耳机，带麦克风。                                      |
-| WIRED_HEADPHONE | 4      | 有线耳机，无麦克风。                                      |
-| BLUETOOTH_SCO   | 7      | 蓝牙设备SCO（Synchronous Connection Oriented）连接。      |
-| BLUETOOTH_A2DP  | 8      | 蓝牙设备A2DP（Advanced Audio Distribution Profile）连接。 |
-| MIC             | 15     | 麦克风。                                                  |
-| USB_HEADSET     | 22     | USB耳机，带麦克风。                                       |
+| 名称             | 默认值 | 描述                                                      |
+| ---------------- | ------ | --------------------------------------------------------- |
+| INVALID          | 0      | 无效设备。                                                |
+| EARPIECE         | 1      | 听筒。                                                    |
+| SPEAKER          | 2      | 扬声器。                                                  |
+| WIRED_HEADSET    | 3      | 有线耳机，带麦克风。                                      |
+| WIRED_HEADPHONES | 4      | 有线耳机，无麦克风。                                      |
+| BLUETOOTH_SCO    | 7      | 蓝牙设备SCO（Synchronous Connection Oriented）连接。      |
+| BLUETOOTH_A2DP   | 8      | 蓝牙设备A2DP（Advanced Audio Distribution Profile）连接。 |
+| MIC              | 15     | 麦克风。                                                  |
+| USB_HEADSET      | 22     | USB耳机，带麦克风。                                       |
 
 ## ActiveDeviceType
 
@@ -451,10 +451,10 @@ let audioCapturer = await audio.createAudioCapturer(audioCapturerOptions);
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Renderer
 
-| 名称                  | 默认值 | 描述                                         |
-| --------------------- | ------ | -------------------------------------------- |
-| TYPE_ACTIVATED | 0    | 表示触发焦点事件。 |
-| TYPE_INTERRUPT | 1    | 表示音频打断事件。 |
+| 名称           | 默认值 | 描述               |
+| -------------- | ------ | ------------------ |
+| TYPE_ACTIVATED | 0      | 表示触发焦点事件。 |
+| TYPE_INTERRUPT | 1      | 表示音频打断事件。 |
 
 ## AudioStreamInfo<sup>8+</sup>
 
@@ -512,11 +512,11 @@ let audioCapturer = await audio.createAudioCapturer(audioCapturerOptions);
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Renderer
 
-| 名称      | 类型                                       | 必填 | 说明                                 |
-| --------- | ------------------------------------------ | ---- | ------------------------------------ |
-| streamUsage | [StreamUsage](#streamusage)           | 是   | 音频流使用类型。         |
-| contentType | [ContentType](#contenttype) | 是   | 音频打断媒体类型。 |
-| pauseWhenDucked  | boolean           | 是   | 音频打断时是否可以暂停音频播放（true表示音频播放可以在音频打断期间暂停，false表示相反）。                           |
+| 名称            | 类型                        | 必填 | 说明                                                         |
+| --------------- | --------------------------- | ---- | ------------------------------------------------------------ |
+| streamUsage     | [StreamUsage](#streamusage) | 是   | 音频流使用类型。                                             |
+| contentType     | [ContentType](#contenttype) | 是   | 音频打断媒体类型。                                           |
+| pauseWhenDucked | boolean                     | 是   | 音频打断时是否可以暂停音频播放（true表示音频播放可以在音频打断期间暂停，false表示相反）。 |
 
 ## InterruptAction
 
@@ -526,12 +526,12 @@ let audioCapturer = await audio.createAudioCapturer(audioCapturerOptions);
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Renderer
 
-| 名称      | 类型                                       | 必填 | 说明                                 |
-| --------- | ------------------------------------------ | ---- | ------------------------------------ |
-| actionType | [InterruptActionType](#interruptactiontype) | 是   | 事件返回类型。TYPE_ACTIVATED为焦点触发事件，TYPE_INTERRUPT为音频打断事件。         |
-| type  | [InterruptType](#interrupttype) | 否   | 打断事件类型。 |
-| hint  | [InterruptHint](interrupthint) | 否   | 打断事件提示。 |
-| activated | boolean | 否   | 获得/释放焦点。true表示焦点获取/释放成功，false表示焦点获得/释放失败。 |
+| 名称       | 类型                                        | 必填 | 说明                                                         |
+| ---------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
+| actionType | [InterruptActionType](#interruptactiontype) | 是   | 事件返回类型。TYPE_ACTIVATED为焦点触发事件，TYPE_INTERRUPT为音频打断事件。 |
+| type       | [InterruptType](#interrupttype)             | 否   | 打断事件类型。                                               |
+| hint       | [InterruptHint](interrupthint)              | 否   | 打断事件提示。                                               |
+| activated  | boolean                                     | 否   | 获得/释放焦点。true表示焦点获取/释放成功，false表示焦点获得/释放失败。 |
 
 ## VolumeEvent<sup>8+</sup>
 
@@ -1307,11 +1307,11 @@ setDeviceActive(deviceType: ActiveDeviceType, active: boolean, callback: AsyncCa
 
 **参数：**
 
-| 参数名     | 类型                      | 必填 | 说明                     |
-| ---------- | ------------------------- | ---- | ------------------------ |
-| deviceType | [ActiveDeviceType](#activedevicetype) | 是   | 活跃音频设备类型。           |
-| active     | boolean                   | 是   | 设备激活状态。           |
-| callback   | AsyncCallback&lt;void&gt; | 是   | 回调返回设置成功或失败。 |
+| 参数名     | 类型                                  | 必填 | 说明                     |
+| ---------- | ------------------------------------- | ---- | ------------------------ |
+| deviceType | [ActiveDeviceType](#activedevicetype) | 是   | 活跃音频设备类型。       |
+| active     | boolean                               | 是   | 设备激活状态。           |
+| callback   | AsyncCallback&lt;void&gt;             | 是   | 回调返回设置成功或失败。 |
 
 **示例：**
 
@@ -1336,10 +1336,10 @@ setDeviceActive(deviceType: ActiveDeviceType, active: boolean): Promise&lt;void&
 
 **参数：**
 
-| 参数名     | 类型                      | 必填 | 说明           |
-| ---------- | ------------------------- | ---- | -------------- |
+| 参数名     | 类型                                  | 必填 | 说明               |
+| ---------- | ------------------------------------- | ---- | ------------------ |
 | deviceType | [ActiveDeviceType](#activedevicetype) | 是   | 活跃音频设备类型。 |
-| active     | boolean                   | 是   | 设备激活状态。 |
+| active     | boolean                               | 是   | 设备激活状态。     |
 
 **返回值：**
 
@@ -1367,10 +1367,10 @@ isDeviceActive(deviceType: ActiveDeviceType, callback: AsyncCallback&lt;boolean&
 
 **参数：**
 
-| 参数名     | 类型                         | 必填 | 说明                     |
-| ---------- | ---------------------------- | ---- | ------------------------ |
-| deviceType | [ActiveDeviceType](#activedevicetype)    | 是   | 活跃音频设备类型。 |
-| callback   | AsyncCallback&lt;boolean&gt; | 是   | 回调返回设备的激活状态。 |
+| 参数名     | 类型                                  | 必填 | 说明                     |
+| ---------- | ------------------------------------- | ---- | ------------------------ |
+| deviceType | [ActiveDeviceType](#activedevicetype) | 是   | 活跃音频设备类型。       |
+| callback   | AsyncCallback&lt;boolean&gt;          | 是   | 回调返回设备的激活状态。 |
 
 **示例：**
 
@@ -1396,8 +1396,8 @@ isDeviceActive(deviceType: ActiveDeviceType): Promise&lt;boolean&gt;
 
 **参数：**
 
-| 参数名     | 类型                      | 必填 | 说明           |
-| ---------- | ------------------------- | ---- | -------------- |
+| 参数名     | 类型                                  | 必填 | 说明               |
+| ---------- | ------------------------------------- | ---- | ------------------ |
 | deviceType | [ActiveDeviceType](#activedevicetype) | 是   | 活跃音频设备类型。 |
 
 **返回值：**
@@ -1630,11 +1630,11 @@ on(type: 'interrupt', interrupt: AudioInterrupt, callback: Callback\<InterruptAc
 
 **参数：**
 
-| 参数名   | 类型                                   | 必填 | 说明                                                         |
-| -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| type      | string                         | 是   | 音频打断事件回调类型，支持的事件为：'interrupt'（多应用之间第二个应用会打断第一个应用，触发该事件）。 |
-| interrupt | AudioInterrupt                 | 是   | 音频打断事件类型的参数。 |
-| callback  | Callback<[InterruptAction](#interruptaction)> | 是   | 音频打断事件回调方法。 |
+| 参数名    | 类型                                          | 必填 | 说明                                                         |
+| --------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type      | string                                        | 是   | 音频打断事件回调类型，支持的事件为：'interrupt'（多应用之间第二个应用会打断第一个应用，触发该事件）。 |
+| interrupt | AudioInterrupt                                | 是   | 音频打断事件类型的参数。                                     |
+| callback  | Callback<[InterruptAction](#interruptaction)> | 是   | 音频打断事件回调方法。                                       |
 
 **示例：**
 
@@ -1668,11 +1668,11 @@ off(type: 'interrupt', interrupt: AudioInterrupt, callback?: Callback\<Interrupt
 
 **参数：**
 
-| 参数名   | 类型                                   | 必填 | 说明                                                         |
-| -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| type      | string                         | 是   | 音频打断事件回调类型，支持的事件为：'interrupt'（多应用之间第二个应用会打断第一个应用，触发该事件）。 |
-| interrupt | AudioInterrupt                 | 是   | 音频打断事件类型的参数。 |
-| callback  | Callback<[InterruptAction](#interruptaction)> | 否   | 音频打断事件回调方法。 |
+| 参数名    | 类型                                          | 必填 | 说明                                                         |
+| --------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type      | string                                        | 是   | 音频打断事件回调类型，支持的事件为：'interrupt'（多应用之间第二个应用会打断第一个应用，触发该事件）。 |
+| interrupt | AudioInterrupt                                | 是   | 音频打断事件类型的参数。                                     |
+| callback  | Callback<[InterruptAction](#interruptaction)> | 否   | 音频打断事件回调方法。                                       |
 
 **示例：**
 
@@ -1712,7 +1712,7 @@ setAudioScene\(scene: AudioScene, callback: AsyncCallback<void\>\): void
 ```
 audioManager.setAudioScene(audio.AudioScene.AUDIO_SCENE_PHONE_CALL, (err) => {
    if (err) {
-       console.error('Failed to set the audio scene mode.​ ${err.message}');
+       console.error('Failed to set the audio scene mode. ${err.message}');
        return;
     }
     console.log('Callback invoked to indicate a successful setting of the audio scene mode.');
@@ -1770,7 +1770,7 @@ getAudioScene\(callback: AsyncCallback<AudioScene\>\): void
 ```
 audioManager.getAudioScene((err, value) => {
    if (err) {
-       console.error('Failed to obtain the audio scene mode.​ ${err.message}');
+       console.error('Failed to obtain the audio scene mode. ${err.message}');
        return;
    }
    console.log('Callback invoked to indicate that the audio scene mode is obtained.' + value);
@@ -1815,11 +1815,7 @@ audioManager.getAudioScene().then((value) => {
 
 ## AudioDeviceDescriptors
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Device
-
-| 名称         | 描述                                |
-| ------------ | ----------------------------------- |
-| 设备属性数组 | AudioDeviceDescriptor的数组，只读。 |
+设备属性数组类型，为[AudioDeviceDescriptor](#audiodevicedescriptor)的数组，只读。
 
 **示例：**
 

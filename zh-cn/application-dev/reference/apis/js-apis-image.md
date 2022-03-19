@@ -1,11 +1,9 @@
-图片处理
-==========
+# 图片处理
 
 > **说明：**
-> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
- 导入模块
----------
+## 导入模块
 
 ```
 import image from '@ohos.multimedia.image';
@@ -20,10 +18,10 @@ createPixelMap(colors: ArrayBuffer, opts: InitializetionOptions): Promise\<Pixel
 
 **参数：**
 
-| 名称   | 类型                                             | 必填 | 说明                                                         |
-| ------ | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| colors | ArrayBuffer                                      | 是   | 颜色数组。                                                   |
-| opts   | [InitializetionOptions](#InitializationOptions8) | 是   | 创建像素的属性，包括透明度，尺寸，缩略值，像素格式和是否可编辑。 |
+| 名称    | 类型                                             | 必填 | 说明                                                         |
+| ------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| colors  | ArrayBuffer                                      | 是   | 颜色数组。                                                   |
+| options | [InitializetionOptions](#InitializationOptions8) | 是   | 创建像素的属性，包括透明度，尺寸，缩略值，像素格式和是否可编辑。 |
 
 **返回值：**
 
@@ -54,7 +52,7 @@ createPixelMap(colors: ArrayBuffer, opts: InitializetionOptions) callback: Async
 | 名称     | 类型                                             | 必填 | 说明                 |
 | -------- | ------------------------------------------------ | ---- | -------------------- |
 | colors   | ArrayBuffer                                      | 是   | 颜色数组。           |
-| opts     | [InitializetionOptions](#InitializationOptions8) | 是   | 属性。               |
+| options  | [InitializetionOptions](#InitializationOptions8) | 是   | 属性。               |
 | callback | AsyncCallback\<[PixelMap](#pixelmap7)>           | 是   | 回调表示成功或失败。 |
 
 **示例：**
@@ -1155,4 +1153,3 @@ imagePackerApi.release();
 | GPS_LONGITUDE     | "GPSLongitude"    | 图片经度。           |
 | GPS_LATITUDE_REF  | "GPSLatitudeRef"  | 纬度引用，例如N或S。 |
 | GPS_LONGITUDE_REF | "GPSLongitudeRef" | 经度引用，例如W或E。 |
-
