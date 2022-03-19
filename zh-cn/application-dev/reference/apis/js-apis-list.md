@@ -27,15 +27,10 @@ SystemCapability.Utils.Lang
 
 ### constructor
 
-constructor(head?: NodeObj&lt;T&gt;)
+constructor()
 
 List的构造函数。
 
-**参数：**
-
-| 参数名 | 类型 | 可读 | 说明 |
-| -------- | -------- | -------- | -------- |
-| head | NodeObj&lt;T&gt; | 是 | 节点对象，含有element、next指向。 |
 
 **示例：**
 
@@ -465,6 +460,7 @@ list.clear();
 
 ### set
 set(index: number, element: T): T
+
 将此 List 中指定位置的元素替换为指定元素。
 
 **参数：**

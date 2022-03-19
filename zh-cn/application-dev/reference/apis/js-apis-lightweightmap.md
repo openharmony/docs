@@ -510,7 +510,7 @@ while(temp != undefined) {
 
 ### forEach
 
-forEach(callbackfn: (value: V, key?: K, map?: LightWeightMap<K, V>) => void, thisArg?: Object): void
+forEach(callbackfn: (value?: V, key?: K, map?: LightWeightMap<K, V>) => void, thisArg?: Object): void
 
 通过回调函数来遍历实例对象上的元素以及元素对应的下标。
 
@@ -569,7 +569,7 @@ while(temp != undefined) {
 
 ### toString
 
-toString(): string
+toString(): String
 
 将此映射中包含的键值对拼接成字符串，并返回字符串类型。
 
@@ -577,7 +577,7 @@ toString(): string
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | string | 返回一个字符串。 |
+  | String | 返回一个字符串。 |
 
 **示例：**
 

@@ -67,7 +67,7 @@ getDisplayCountry(country: string, locale: string, sentenceCase?: boolean): stri
   ```
 
 
-## i18n.isRTL<sup>8+</sup>
+## i18n.isRTL<sup>7+</sup>
 
 isRTL(locale: string): boolean
 
@@ -1258,7 +1258,7 @@ isBoundary(offset: number): boolean
   ```
 
 
-## i18n.is24HourClock<sup>8+</sup>
+## i18n.is24HourClock<sup>7+</sup>
 
 is24HourClock(): boolean
 
@@ -1277,7 +1277,7 @@ is24HourClock(): boolean
   ```
 
 
-## i18n.set24HourClock<sup>8+</sup>
+## i18n.set24HourClock<sup>7+</sup>
 
 set24HourClock(option: boolean): boolean
 
@@ -1394,7 +1394,7 @@ getFirstPreferredLanguage(): string
   ```
 
 
-## i18n.getTimeZone<sup>8+</sup>
+## i18n.getTimeZone<sup>7+</sup>
 
 getTimeZone(zoneID?: string): TimeZone
 

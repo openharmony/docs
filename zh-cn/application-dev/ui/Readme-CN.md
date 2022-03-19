@@ -56,6 +56,8 @@
             - [应用代码文件访问规则](ts-framework-file-access-rules.md)
         - [js标签配置](ts-framework-js-tag.md)
         - 资源访问
+            - [访问应用资源](ts-application-resource-access.md)
+            - [访问系统资源](ts-system-resource-access.md)
             - [媒体资源类型说明](ts-media-resource-type.md)
         - [像素单位](ts-pixel-units.md)
         - [类型定义](ts-types.md)

@@ -15,17 +15,6 @@ import sensor from '@system.sensor';
 ```
 
 
-## 权限列表
-
-计步器：ohos.permission.ACTIVITY_MOTION
-
-心率：ohos.permission.READ_HEALTH_DATA
-
-加速度：ohos.permission.ACCELEROMETER
-
-陀螺仪：ohos.permission.GYROSCOPE
-
-
 ## 传感器错误码列表
 
   | 错误码 | 说明 | 
@@ -37,6 +26,10 @@ import sensor from '@system.sensor';
 subscribeAccelerometer(Object): void
 
 观察加速度数据变化。针对同一个应用，多次点击调用时，会覆盖前面的调用效果，即仅最后一次调用生效。
+
+**系统能力**：SystemCapability.Sensors.Sensor
+
+**需要权限**：ohos.permission.ACCELEROMETER，该权限为系统权限
 
 **参数：**
 
@@ -79,6 +72,10 @@ unsubscribeAccelerometer(): void
 
 取消订阅加速度数据。
 
+**系统能力**：SystemCapability.Sensors.Sensor
+
+**需要权限**：ohos.permission.ACCELEROMETER，该权限为系统权限
+
 **示例：**
 
 ```
@@ -90,6 +87,8 @@ sensor.unsubscribeAccelerometer();
 subscribeCompass(Object): void
 
 订阅罗盘数据变化。针对同一个应用，多次点击调用时，会覆盖前面的调用效果，即仅最后一次调用生效。
+
+**系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：**
 
@@ -126,6 +125,8 @@ unsubscribeCompass(): void
 
 取消订阅罗盘。
 
+**系统能力**：SystemCapability.Sensors.Sensor
+
 **示例：**
 
 ```
@@ -137,6 +138,8 @@ sensor.unsubscribeCompass();
 subscribeProximity(Object): void
 
 订阅距离感应数据变化。针对同一个应用，多次点击调用时，会覆盖前面的调用效果，即仅最后一次调用生效。
+
+**系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：**
 
@@ -173,6 +176,8 @@ unsubscribeProximity(): void
 
 取消订阅距离感应。
 
+**系统能力**：SystemCapability.Sensors.Sensor
+
 **示例：**
 
 ```
@@ -184,6 +189,8 @@ sensor.unsubscribeProximity();
 sensor.subscribeLight(Object): void
 
 订阅环境光线感应数据变化。再次调用时，会覆盖前一次调用效果，即仅最后一次调用生效。
+
+**系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：**
 
@@ -220,6 +227,8 @@ unsubscribeLight(): void
 
 取消订阅环境光线感应。
 
+**系统能力**：SystemCapability.Sensors.Sensor
+
 **示例：**
 
 ```
@@ -231,6 +240,10 @@ sensor.unsubscribeLight();
 subscribeStepCounter(Object): void
 
 订阅计步传感器数据变化。针对同一个应用，多次点击调用时，会覆盖前面的调用效果，即仅最后一次调用生效。
+
+**系统能力**：SystemCapability.Sensors.Sensor
+
+**需要权限**：ohos.permission.ACTIVITY_MOTION
 
 **参数：**
 
@@ -267,6 +280,10 @@ unsubscribeStepCounter(): void
 
 取消订阅计步传感器。
 
+**系统能力**：SystemCapability.Sensors.Sensor
+
+**需要权限**：ohos.permission.ACTIVITY_MOTION
+
 **示例：**
 
 ```
@@ -279,6 +296,8 @@ sensor.unsubscribeStepCounter();
 subcribeBarometer(Object): void
 
 订阅气压传感器数据变化。针对同一个应用，多次点击调用时，会覆盖前面的调用效果，即仅最后一次调用生效。
+
+**系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：**
 
@@ -316,6 +335,8 @@ unsubscribeBarometer(): void
 
 取消订阅气压传感器。
 
+**系统能力**：SystemCapability.Sensors.Sensor
+
 **示例：**
 
 ```
@@ -328,6 +349,10 @@ sensor.unsubscribeBarometer();
 subscribeHeartRate(Object): void
 
 订阅心率传感器数据变化。针对同一个应用，多次点击调用时，会覆盖前面的调用效果，即仅最后一次调用生效。
+
+**系统能力**：SystemCapability.Sensors.Sensor
+
+**需要权限**：ohos.permission.READ_HEALTH_DATA
 
 **参数：**
 
@@ -365,6 +390,10 @@ unsubscribeHeartRate(): void
 
 取消订阅心率。
 
+**系统能力**：SystemCapability.Sensors.Sensor
+
+**需要权限**：ohos.permission.READ_HEALTH_DATA
+
 **示例：**
 
 ```
@@ -376,6 +405,8 @@ sensor.unsubscribeHeartRate();
 subscribeOnBodyState(Object): void
 
 订阅设备佩戴状态。针对同一个应用，多次点击调用时，会覆盖前面的调用效果，即仅最后一次调用生效。
+
+**系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：**
 
@@ -412,6 +443,8 @@ unsubscribeOnBodyState(): void
 
 取消订阅设备佩戴状态。
 
+**系统能力**：SystemCapability.Sensors.Sensor
+
 **示例：**
 
 ```
@@ -423,6 +456,8 @@ sensor.unsubscribeOnBodyState();
 getOnBodyState(Object): void
 
 获取设备佩戴状态。
+
+**系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：**
 
@@ -458,6 +493,8 @@ subscribeDeviceOrientation(interval: string, success: (data: DeviceOrientationRe
 观察设备方向传感器数据变化。
 
 针对同一个应用，多次点击调用时，会覆盖前面的调用效果，即仅最后一次调用生效；针对同一个方法内，不支持多次调用。
+
+**系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：**
 
@@ -499,6 +536,8 @@ unsubscribeDeviceOrientation(): void
 
 取消订阅设备方向传感器数据。
 
+**系统能力**：SystemCapability.Sensors.Sensor
+
 **示例：**
 
 ```
@@ -512,6 +551,10 @@ subscribeGyroscope(interval: string, success: (data: GyroscopeResponse), fail?: 
 观察陀螺仪数据变化。
 
 针对同一个应用，多次点击调用时，会覆盖前面的调用效果，即仅最后一次调用生效；针对同一个方法内，不支持多次调用。
+
+**系统能力**：SystemCapability.Sensors.Sensor
+
+**需要权限**：ohos.permission.GYROSCOPE，该权限为系统权限
 
 **参数：**
 
@@ -553,6 +596,10 @@ sensor.subscribeGyroscope({
 unsubscribeGyroscope(): void
 
 取消订阅陀螺仪数据。
+
+**系统能力**：SystemCapability.Sensors.Sensor
+
+**需要权限**：ohos.permission.GYROSCOPE，该权限为系统权限
 
 **示例：**
 

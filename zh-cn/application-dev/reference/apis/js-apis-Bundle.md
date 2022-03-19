@@ -458,7 +458,7 @@ bundle.getAllApplicationInfo(bundleFlags, userId, (err, data) => {
 
 ## bundle.getAllApplicationInfo
 
-function getAllApplicationInfo(bundleFlags: number, callback: AsyncCallback<Array<ApplicationInfo>>) : void;
+function getAllApplicationInfo(bundleFlags: number, callback: AsyncCallback<Array\<ApplicationInfo>>) : void;
 
 获取指定用户下所有已安装的应用信息，使用callback形式返回结果。
 
@@ -490,7 +490,7 @@ bundle.getAllApplicationInfo(bundleFlags, (err, data) => {
 })
 ```
 
-``## bundle.getAbilityInfo
+## bundle.getAbilityInfo
 
 getAbilityInfo(bundleName: string, abilityName: string): Promise\<AbilityInfo>
 
@@ -750,9 +750,8 @@ SystemCapability.BundleManager.BundleFramework
 **示例：**
 
 ```js
-let bundleName : "com.example.myapplication";
-bundle. 
-
+let bundleName = "com.example.myapplication";
+bundle.isApplicationEnabled(bundleName)
 .then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
 }).catch((error) => {
@@ -880,7 +879,7 @@ bundle.queryAbilityByWant(want, bundleFlags, userId, (err, data) => {
 
 ## bundle.queryAbilityByWant
 
-queryAbilityByWant(want: Want, bundleFlags: number, callback: AsyncCallback<Array<AbilityInfo>>): void
+queryAbilityByWant(want: Want, bundleFlags: number, callback: AsyncCallback<Array\<AbilityInfo>>): void
 
 以异步方法根据给定的意图获取Ability信息，使用callback形式返回结果。
 
@@ -915,7 +914,7 @@ bundle.queryAbilityByWant(want, bundleFlags, (err, data) => {
 
 ## bundle.getBundleInstaller
 
-getBundleInstaller(): Promise<BundleInstaller>
+getBundleInstaller(): Promise\<BundleInstaller>
 
 以异步方法获取BundleInstaller，使用Promise形式返回结果。
 
@@ -931,7 +930,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | 类型                     | 说明                                                |
 | ------------------------ | --------------------------------------------------- |
-| Promise<BundleInstaller> | 返回值为Promise对象，Promise中包含BundleInstaller。 |
+| Promise\<BundleInstaller> | 返回值为Promise对象，Promise中包含BundleInstaller。 |
 
 **示例：**
 
@@ -958,7 +957,7 @@ bundle.getBundleInstaller()
 
 ## bundle.getBundleInstaller
 
-getBundleInstaller(callback: AsyncCallback<BundleInstaller>): void;
+getBundleInstaller(callback: AsyncCallback\<BundleInstaller>): void;
 
 以异步方法获取BundleInstaller，使用callback形式返回结果。
 
@@ -974,7 +973,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | 名称     | 类型                           | 必填 | 描述                                              |
 | -------- | ------------------------------ | ---- | ------------------------------------------------- |
-| callback | AsyncCallback<BundleInstaller> | 是   | 程序启动作为入参的回调函数，返回BundleInstaller。 |
+| callback | AsyncCallback\<BundleInstaller> | 是   | 程序启动作为入参的回调函数，返回BundleInstaller。 |
 
 **示例：**
 
@@ -1039,7 +1038,7 @@ bundle.getLaunchWantForBundle(bundleName)
 
 ## bundle.getLaunchWantForBundle
 
-getLaunchWantForBundle(bundleName: string, callback: AsyncCallback<Want>): void;
+getLaunchWantForBundle(bundleName: string, callback: AsyncCallback\<Want>): void;
 
 以异步方法查询拉起指定应用的want对象，使用callback形式返回结果。
 
@@ -1107,7 +1106,7 @@ bundle.getNameForUid(uid)
 
 ## bundle.getNameForUid
 
-getNameForUid(uid: number, callback: AsyncCallback<string>): void;
+getNameForUid(uid: number, callback: AsyncCallback\<string>): void;
 
 以异步方法通过uid获取对应的包名，使用callback形式返回结果。
 
@@ -1138,9 +1137,9 @@ bundle.getNameForUid(uid, (err, data) => {
 
 ## bundle.getAbilityIcon
 
-function getAbilityIcon(bundleName: string, abilityName: string): Promise<image.PixelMap>;
+function getAbilityIcon(bundleName: string, abilityName: string): Promise\<[PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)>;
 
-以异步方法通过bundleName和abilityName获取对应Icon的PixelMap，使用Promise形式返回结果。
+以异步方法通过bundleName和abilityName获取对应Icon的[PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)，使用Promise形式返回结果。
 
 **参数：**
 
@@ -1152,7 +1151,7 @@ function getAbilityIcon(bundleName: string, abilityName: string): Promise<image.
 **返回值：**
 | 类型                  | 说明                                                         |
 | --------------------- | ------------------------------------------------------------ |
-| Promise\<image.PixelMap> | 返回值为PixelMap。 |
+| Promise\<[PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)> | 返回值为<[PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)>。 |
 
 **示例：**
 
@@ -1169,9 +1168,9 @@ bundle.getAbilityIcon(bundleName, abilityName)
 
 ## bundle.getAbilityIcon
 
-function getAbilityIcon(bundleName: string, abilityName: string, callback: AsyncCallback<image.PixelMap>): void;
+function getAbilityIcon(bundleName: string, abilityName: string, callback: AsyncCallback\<[PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)>): void;
 
-以异步方法通过bundleName和abilityName获取对应的PixelMap，使用callback形式返回结果。
+以异步方法通过bundleName和abilityName获取对应的[PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)，使用callback形式返回结果。
 
 **参数：**
 
@@ -1179,7 +1178,7 @@ function getAbilityIcon(bundleName: string, abilityName: string, callback: Async
 | ---------- | ------ | ---- | -------- |
 | bundleName | string | 是   | 要查询的bundleName。 |
 | abilityName | string | 是   | 要查询的abilityName。 |
-| callback   | AsyncCallback\<image.PixelMap> | 是   | 程序启动作为入参的回调函数，返回指定PixelMap。 |
+| callback   | AsyncCallback\<[PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)> | 是   | 程序启动作为入参的回调函数，返回指定<[PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)>。 |
 
 **示例：**
 
@@ -1196,9 +1195,129 @@ bundle.getAbilityIcon(bundleName, abilityName, (err, data) => {
 ```
 
 
+## bundle.queryExtensionAbilityInfosByWant
+
+function queryExtensionAbilityInfosByWant(want: Want, extensionFlags: number, userId?: number): Promise<Array\<ExtensionAbilityInfo>>
+
+以异步方法根据给定的意图获取ExtensionAbility信息，使用Promise形式返回结果。
+
+**需要权限：**
+
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED, ohos.permission.GET_BUNDLE_INFO
+
+**系统能力：**
+
+SystemCapability.BundleManager.BundleFramework
+
+**参数：**
+
+| 名称        | 类型   | 必填 | 描述                                                         |
+| ----------- | ------ | ---- | ------------------------------------------------------------ |
+| want        | Want   | 是   | 包含要查询的应用程序包名称的意图。                           |
+| extensionFlags | number | 是   | 用于指定返回ExtensionAbilityInfo信息。默认值：0，取值范围：大于等于0。 |
+| userId      | number | 否   | 用户ID。默认值：调用方所在用户，取值范围：大于等于0          |
+
+**返回值：**
+
+| 类型                         | 说明                         |
+| ---------------------------- | ---------------------------- |
+| Promise<Array\<ExtensionAbilityInfo>> | Promise形式返回ExtensionAbility信息。 |
+
+**示例：**
+
+```js
+let extensionFlags = 0;
+let userId = 100;
+let want = {
+    bundleName : "com.example.myapplication",
+    abilityName : "com.example.myapplication.MainAbility"
+};
+bundle.queryExtensionAbilityInfosByWant(want, extensionFlags, userId)
+.then((data) => {
+    console.info('Operation successful. Data: ' + JSON.stringify(data));
+}).catch((error) => {
+    console.error('Operation failed. Cause: ' + JSON.stringify(error));
+})
+```
+
+
+
+## bundle.queryExtensionAbilityInfosByWant
+
+function queryExtensionAbilityInfosByWant(want: Want, extensionFlags: number, userId: number, callback: AsyncCallback<Array\<ExtensionAbilityInfo>>): void
+
+以异步方法根据给定的意图获取ExtensionAbility信息，使用callback形式返回结果。
+
+**系统能力：**
+
+SystemCapability.BundleManager.BundleFramework
+
+**参数：**
+
+| 名称        | 类型                               | 必填 | 描述                                                         |
+| ----------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
+| want        | Want                               | 是   | 指示包含要查询的应用程序包名称的意图。                       |
+| extensionFlags | number                             | 是   | 用于指定返回ExtensionAbilityInfo信息。默认值：0，取值范围：枚举值，大于等于0。 |
+| userId      | number                             | 是   | 用户ID。默认值：调用方所在用户，取值范围：大于等于0          |
+| callback    | AsyncCallback<Array\<ExtensionAbilityInfo>> | 是   | 程序启动作为入参的回调函数，返回ExtensionAbility信息。                |
+
+**示例：**
+
+```js
+let extensionFlags = 0;
+let userId = 100;
+let want = {
+    bundleName : "com.example.myapplication",
+    abilityName : "com.example.myapplication.MainAbility"
+};
+bundle.queryExtensionAbilityInfosByWant(want, extensionFlags, userId, (err, data) => {
+    if (err) {
+        console.error('Operation failed. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Operation successful. Data:' + JSON.stringify(data));
+})
+```
+
+## bundle.queryExtensionAbilityInfosByWant
+
+function queryExtensionAbilityInfosByWant(want: Want, extensionFlags: number, callback: AsyncCallback<Array\<ExtensionAbilityInfo>>): void;
+
+以异步方法根据给定的意图获取ExtensionAbility信息，使用callback形式返回结果。
+
+**系统能力：**
+
+SystemCapability.BundleManager.BundleFramework
+
+**参数：**
+
+| 名称        | 类型                               | 必填 | 描述                                                         |
+| ----------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
+| want        | Want                               | 是   | 指示包含要查询的应用程序包名称的意图。                       |
+| extensionFlags | number                             | 是   | 用于指定返回ExtensionAbilityInfo信息。默认值：0，取值范围：大于等于0。 |
+| callback    | AsyncCallback<Array\<ExtensionAbilityInfo>> | 是   | 程序启动作为入参的回调函数，返回ExtensionAbility信息。                |
+
+**示例：**
+
+```js
+let extensionFlags = 0;
+let want = {
+    bundleName : "com.example.myapplication",
+    abilityName : "com.example.myapplication.MainAbility"
+};
+bundle.queryExtensionAbilityInfosByWant(want, extensionFlags, (err, data) => {
+    if (err) {
+        console.error('Operation failed. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Operation successful. Data:' + JSON.stringify(data));
+})
+```
+
+
 ## ElementName
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
 | 名称        | 读写属性 | 类型   | 必填 | 描述                                                         |
 | ----------- | -------- | ------ | ---- | ------------------------------------------------------------ |
@@ -1210,7 +1329,7 @@ bundle.getAbilityIcon(bundleName, abilityName, (err, data) => {
 
 ## InstallStatus
 
- **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
+ **系统能力:** SystemCapability.BundleManager.BundleFramework
 
 | 名称          | 读写属性 | 类型             | 必填 | 描述                                                         |
 | ------------- | -------- | ---------------- | ---- | ------------------------------------------------------------ |
@@ -1220,7 +1339,7 @@ bundle.getAbilityIcon(bundleName, abilityName, (err, data) => {
 
 包的标志
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
 | 名称               | 默认值 | 说明   |
 | ------ | ------ | ------ |
@@ -1231,6 +1350,7 @@ bundle.getAbilityIcon(bundleName, abilityName, (err, data) => {
 | GET_APPLICATION_INFO_WITH_PERMISSION | 0x00000008 | 获取包括权限的应用信息 |
 | GET_BUNDLE_WITH_REQUESTED_PERMISSION | 0x00000010 | 获取包括所需权限的包信息 |
 | GET_ABILITY_INFO_WITH_METADATA | 0x00000020 | 获取ability的元数据信息 |
+| GET_BUNDLE_WITH_EXTENSION_ABILITY | 0x00000020 | 获取包括Ability信息的扩展包信息 |
 | GET_APPLICATION_INFO_WITH_METADATA | 0x00000040 | 获取应用的元数据信息 |
 | GET_ABILITY_INFO_SYSTEMAPP_ONLY | 0x00000080 | 获取仅包括系统应用的ability信息 |
 | GET_ABILITY_INFO_WITH_DISABLE | 0x00000100 | 获取包括被禁用的ability信息 |
@@ -1241,7 +1361,7 @@ bundle.getAbilityIcon(bundleName, abilityName, (err, data) => {
 
 包的选项
 
- **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
+ **系统能力:** SystemCapability.BundleManager.BundleFramework
 
 | 名称               | 类型 | 可读 | 可写 | 说明 |
 | ------ | ------ | ------ | ------ | ------ |
@@ -1251,7 +1371,7 @@ bundle.getAbilityIcon(bundleName, abilityName, (err, data) => {
 
 应用包的信息
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
 | 名称               | 类型 | 可读 | 可写 | 说明 |
 | ------ | ------ | ------ | ------ | ------ |
@@ -1262,28 +1382,29 @@ bundle.getAbilityIcon(bundleName, abilityName, (err, data) => {
 | installTime              | number                     | 是   | 否   | HAP包安装时间                              |
 | updateTime               | number                     | 是   | 否   | HAP包更新时间                              |
 | appInfo                  | ApplicationInfo        | 是   | 否   | 应用程序的配置信息                         |
-| abilityInfos              | Array<AbilityInfo>         | 是   | 否   | Ability的配置信息                          |
-| reqPermissions           | Array<string>              | 是   | 否   | 应用运行时需向系统申请的权限集合           |
-| reqPermissionDetails     | Array<ReqPermissionDetail> | 是   | 否   | 应用运行时需向系统申请的权限集合的详细信息 |
+| abilityInfos              | Array\<AbilityInfo>         | 是   | 否   | Ability的配置信息                          |
+| reqPermissions           | Array\<string>              | 是   | 否   | 应用运行时需向系统申请的权限集合           |
+| reqPermissionDetails     | Array\<ReqPermissionDetail> | 是   | 否   | 应用运行时需向系统申请的权限集合的详细信息 |
 | vendor                   | string                     | 是   | 否   | 应用包的供应商                             |
 | versionCode              | number                     | 是   | 否   | 应用包的版本号                             |
 | versionName              | string                     | 是   | 否   | 应用包的版本文本描述信息                   |
 | compatibleVersion        | number                     | 是   | 否   | 运行应用包所需要最低的SDK版本号            |
 | targetVersion            | number                     | 是   | 否   | 运行应用包所需要最高SDK版本号              |
 | isCompressNativeLibs     | boolean                    | 是   | 否   | 是否压缩应用包的本地库，默认为true         |
-| hapModuleInfos            | Array<HapModuleInfo>       | 是   | 否   | 模块的配置信息                             |
+| hapModuleInfos            | Array\<HapModuleInfo>       | 是   | 否   | 模块的配置信息                             |
 | entryModuleName          | string                     | 是   | 否   | Entry的模块名称                            |
 | cpuAbi                   | string                     | 是   | 否   | 应用包的cpuAbi信息                         |
 | isSilentInstallation     | string                     | 是   | 否   | 是否通过静默安装                           |
 | minCompatibleVersionCode | number                     | 是   | 否   | 分布式场景下的应用包兼容的最低版本         |
 | entryInstallationFree | boolean | 是 | 否 | Entry是否支持免安装 |
-| reqPermissionStates | Array<number> | 是 | 否 | 申请权限的授予状态 |
+| reqPermissionStates | Array\<number> | 是 | 否 | 申请权限的授予状态 |
+| extensionAbilityInfo | Array\<ExtensionAbilityInfo> | 是 | 否 |   ability的可扩展信息 |
 
 ## ApplicationInfo
 
 应用程序信息
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
 | 名称               | 类型 | 可读 | 可写 | 说明 |
 | ------ | ------ | ------ | ------ | ------ |
@@ -1298,22 +1419,24 @@ bundle.getAbilityIcon(bundleName, abilityName, (err, data) => {
 | iconId           | string        | 是   | 否   | 应用程序的图标id                           |
 | process          | string        | 是   | 否   | 应用程序的进程，如果不设置，默认为包的名称 |
 | supportedModes   | number        | 是   | 否   | 应用程序支持的运行模式                     |
-| moduleSourceDirs | Array<string> | 是   | 否   | 应用程序的资源存放的相对路径               |
-| permissions      | Array<string> | 是   | 否   | 访问应用程序所需的权限                     |
-| moduleInfos | Array<ModuleInfo> | 是   | 否   | 应用程序的模块信息                         |
+| moduleSourceDirs | Array\<string> | 是   | 否   | 应用程序的资源存放的相对路径               |
+| permissions      | Array\<string> | 是   | 否   | 访问应用程序所需的权限                     |
+| moduleInfos | Array\<ModuleInfo> | 是   | 否   | 应用程序的模块信息                         |
 | entryDir         | string        | 是   | 否   | 应用程序的文件保存路径                     |
-| customizeData    | Map<string, Array<CustomizeData>> | 是   | 是   | 应用程序的自定义数据                       |
+| customizeData    | Map<string, Array\<CustomizeData>> | 是   | 是   | 应用程序的自定义数据                       |
 | codePath | string | 是 | 否 | 应用程序的安装目录 |
-| metaData | Map<string, Array<CustomizeData>> | 是 | 否 | 应用程序的自定义元信息 |
+| metaData | Map<string, Array\<CustomizeData>> | 是 | 否 | 应用程序的自定义元信息 |
+| metaData | Map<string, Array\<Metadata>> | 是 | 否 | 应用程序的元信息 |
 | removable | boolean | 是 | 否 | 应用程序是否可以被移除 |
 | accessTokenId | number | 是 | 否 | 应用程序的accessTokenId |
 | uid | number | 是 | 否 | 应用程序的uid |
+| entityType | string | 是 | 否 | 应用程序的实体类型 |
 
 ## ModuleInfo
 
 应用程序的模块信息
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
 | 名称               | 类型 | 可读 | 可写 | 说明 |
 | ------ | ------ | ------ | ------ | ------ |
@@ -1324,7 +1447,7 @@ bundle.getAbilityIcon(bundleName, abilityName, (err, data) => {
 
 自定义元数据
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
 | 名称  | 类型   | 可读 | 可写 | 说明             |
 | ----- | ------ | ---- | ---- | ---------------- |
@@ -1337,7 +1460,7 @@ bundle.getAbilityIcon(bundleName, abilityName, (err, data) => {
 
 Hap模块信息
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
 | 名称               | 类型 | 可读 | 可写 | 说明 |
 | ------ | ------ | ------ | ------ | ------ |
@@ -1350,19 +1473,21 @@ Hap模块信息
 | iconId           | number        | 是   | 否   | 模块图标ID         |
 | backgroundImg    | string        | 是   | 否   | 模块背景图片       |
 | supportedModes   | number        | 是   | 否   | 模块支持的模式     |
-| reqCapabilities  | Array<string> | 是   | 否   | 模块运行需要的能力 |
-| deviceTypes      | Array<string> | 是   | 否   | 支持运行的设备类型 |
-| abilityInfo      | Array<AbilityInfo> | 是   | 否   | Ability信息        |
+| reqCapabilities  | Array\<string> | 是   | 否   | 模块运行需要的能力 |
+| deviceTypes      | Array\<string> | 是   | 否   | 支持运行的设备类型 |
+| abilityInfo      | Array\<AbilityInfo> | 是   | 否   | Ability信息        |
 | moduleName       | string        | 是   | 否   | 模块名             |
 | mainAbilityName  | string        | 是   | 否   | 入口Ability名称    |
 | installationFree | boolean       | 是   | 否   | 是否支持免安装     |
 | mainElementName | string | 是 | 否 | 入口ability信息 |
+| extensionAbilityInfo | Array\<ExtensionAbilityInfo> | 是 | 否 | extensionAbility信息 |
+| metadata | Array\<Metadata> | 是 | 否 | Ability的元信息 |
 
 ## ReqPermissionDetail
 
 应用运行时需向系统申请的权限集合的详细信息
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
 | 名称               | 类型 | 可读 | 可写 | 说明 |
 | ------ | ------ | ------ | ------ | ------ |
@@ -1374,11 +1499,11 @@ Hap模块信息
 
 描述权限使用的场景和时机
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
 | 名称               | 类型 | 可读 | 可写 | 说明 |
 | ------ | ------ | ------ | ------ | ------ |
-| abilities | Array<string> | 是   | 是   | 使用到该权限的Ability集合 |
+| abilities | Array\<string> | 是   | 是   | 使用到该权限的Ability集合 |
 | when      | string        | 是   | 是   | 使用该权限的时机          |
 
 
@@ -1386,7 +1511,7 @@ Hap模块信息
 
 Ability信息
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
 | 名称               | 类型 | 可读 | 可写 | 说明 |
 | ------ | ------ | ------ | ------ | ------ |
@@ -1406,23 +1531,24 @@ Ability信息
 | type               | AbilityType | 是   | 否   | Ability类型                               |
 | orientation        | DisplayOrientation | 是   | 否   | Ability的显示模式                         |
 | launchMode         | LaunchMode | 是   | 否   | Ability的启动模式                         |
-| permissions        | Array<string>                                                | 是   | 否   | 被其他应用Ability调用时需要申请的权限集合 |
-| deviceTypes        | Array<string>                                                | 是   | 否   | Ability支持的设备类型                     |
-| deviceCapabilities | Array<string>                                                | 是   | 否   | Ability需要的设备能力                     |
+| permissions        | Array\<string>                                                | 是   | 否   | 被其他应用Ability调用时需要申请的权限集合 |
+| deviceTypes        | Array\<string>                                                | 是   | 否   | Ability支持的设备类型                     |
+| deviceCapabilities | Array\<string>                                                | 是   | 否   | Ability需要的设备能力                     |
 | readPermission     | string                                                       | 是   | 否   | 读取Ability数据所需的权限                 |
 | writePermission    | string                                                       | 是   | 否   | 向Ability写数据所需的权限                 |
 | applicationInfo    | ApplicationInfo | 是   | 否   | 应用程序的配置信息                        |
 | uri                | string                                                       | 是   | 否   | 获取Ability的统一资源标识符（URI）        |
 | labelId            | number                                                       | 是   | 否   | Ability的标签id                           |
 | subType            | AbilitySubType | 是   | 否   | Ability中枚举使用的模板的子类型           |
-| metaData | Array<Metadata> | 是 | 否 | ability的自定义元信息 |
+| metaData | Array\<CustomizeData> | 是 | 否 | ability的自定义信息 |
+| metaData | Array\<Metadata> | 是 | 否 | ability的元信息 |
 | enabled | boolean | 是 | 否 | ability是否可用 |
 
 ## AbilityType
 
 Ability类型
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
 | 名称    | 类型 | 说明                        |
 | ------- | ---- | --------------------------- |
@@ -1435,7 +1561,7 @@ Ability类型
 
 屏幕显示方向
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
 | 名称          | 类型 | 说明                     |
 | ------------- | ---- | ------------------------ |
@@ -1448,7 +1574,7 @@ Ability类型
 
 启动模式
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
 | 名称        | 类型 | 说明                |
 | ----------- | ---- | ------------------- |
@@ -1459,9 +1585,79 @@ Ability类型
 
 Ability的子类型
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
 | 名称        | 类型 | 说明                          |
 | ----------- | ---- | ----------------------------- |
 | UNSPECIFIED | 0    | 未定义Ability子类型           |
 | CA          | 1    | Ability子类型是带有 UI 的服务 |
+
+
+## ExtensionAbilityType
+
+ExtensionAbility的类型
+
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
+
+| 名称                  | 类型 | 说明                          |
+| -------------------- | ---- | ----------------------------- |
+| FORM                 | 0    | ExtensionAbility的类型包括卡片     |
+| WORK_SCHEDULER       | 1    | ExtensionAbility的类型包括行程安排 |
+| INPUT_METHOD         | 2    | ExtensionAbility的类型包括输入法   |
+| SERVICE              | 3    | ExtensionAbility的类型包括服务     |
+| ACCESSIBILITY        | 4    | ExtensionAbility的类型包括无障碍   |
+| DATA_SHARE           | 5    | ExtensionAbility的类型包括数据共享 |
+| FILE_SHARE           | 6    | ExtensionAbility的类型包括文件共享 |
+| STATIC_SUBSCRIBER    | 7    | ExtensionAbility的类型包括订阅者   |
+| WALLPAPER            | 8    | ExtensionAbility的类型包括墙纸     |
+| UNSPECIFIED          | 9    | ExtensionAbility未指定类型     |
+
+## ExtensionFlag
+
+扩展标志
+
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
+
+| 名称               | 默认值 | 说明   |
+| ------ | ------ | ------ |
+| GET_EXTENSION_INFO_DEFAULT | 0x00000000 | 获取默认的extensionAbilityInfo |
+| GET_EXTENSION_INFO_WITH_PERMISSION | 0x00000002 | 获取携带权限信息的extensionAbilityInfo |
+| GET_EXTENSION_INFO_WITH_APPLICATION | 0x00000004 | 获取携带应用信息的extensionAbilityInfo |
+| GET_EXTENSION_INFO_WITH_METADATA | 0x00000020 | 获取携带元数据信息的extensionAbilityInfo |
+
+
+## ExtensionAbilityInfo
+
+ExtensionAbility信息
+
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
+
+| 名称               | 类型 | 可读 | 可写 | 说明 |
+| ------ | ------ | ------ | ------ | ------ |
+| bundleName         | string                                                       | 是   | 否   | 应用包名                                  |
+| moduleName         | string                                                       | 是   | 否   | ExtensionAbility所属的HAP包的名称                  |
+| name               | string                                                       | 是   | 否   | ExtensionAbility名称                               |
+| labelId            | number                                                       | 是   | 否   | ExtensionAbility的标签id                           |
+| descriptionId      | number                                                       | 是   | 否   | ExtensionAbility的描述id                           |
+| iconId             | number                                                       | 是   | 否   | ExtensionAbility的图标id                           |
+| isVisible          | boolean                                                      | 是   | 否   | 判断ExtensionAbility是否可以被其他应用调用         |
+| extensionAbilityType               | bundle.ExtensionAbilityType | 是   | 否   | ExtensionAbility类型                               |
+| permissions        | Array\<string>                                                | 是   | 否   | 被其他应用ExtensionAbility调用时需要申请的权限集合 |
+| applicationInfo    | ApplicationInfo | 是   | 否   | 应用程序的配置信息                        |
+| metaData | Array\<Metadata> | 是 | 否 | ExtensionAbility的元信息 |
+| enabled | boolean | 是 | 否 | ExtensionAbility是否可用 |
+| readPermission     | string                                                       | 是   | 否   | 读取ExtensionAbility数据所需的权限                 |
+| writePermission    | string                                                       | 是   | 否   | 向ExtensionAbility写数据所需的权限                 |
+
+
+## Metadata
+
+元数据信息
+
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
+
+| 名称  | 类型   | 可读 | 可写 | 说明             |
+| ----- | ------ | ---- | ---- | ---------------- |
+| name  | string | 是   | 是   | 元数据名称 |
+| value | string | 是   | 是   | 元数据值   |
+| resource | string | 是   | 是   | 元数据资源       |

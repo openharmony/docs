@@ -174,7 +174,7 @@ TextDecoder的构造函数。
 
 ### decode
 
-decode(input: Unit8Array, options?:{stream?:false}):string
+decode(input: Unit8Array, options?:{stream?:false}): string
 
 通过输入参数解码后输出对应文本。
 
@@ -2321,7 +2321,7 @@ isStringObject(value: Object):boolean
 
 ### isSymbolObjec<sup>8+</sup>
 
-isSymbolObjec(value: Object):boolean
+isSymbolObjec(value: Object): boolean
 
 检查输入的value是否是Symbol对象类型。
 

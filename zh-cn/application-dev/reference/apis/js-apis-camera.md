@@ -23,10 +23,10 @@ getCameraManager(context: Context, callback: AsyncCallback<CameraManager\>): voi
 
 **参数：**
 
-| 名称      | 类型                          | 必填       | 说明                                                 |
-|----------|-------------------------------|-----------|-----------------------------------------------------|
-| context  | Context                       | 是     | 应用上下文。 |
-| callback | AsyncCallback<[CameraManager](#cameramanager)\> | 是      | 回调函数，用于获取相机管理器实例。 |
+| 名称     | 类型                                            | 必填 | 说明                               |
+| -------- | ----------------------------------------------- | ---- | ---------------------------------- |
+| context  | Context                                         | 是   | 应用上下文。                       |
+| callback | AsyncCallback<[CameraManager](#cameramanager)\> | 是   | 回调函数，用于获取相机管理器实例。 |
 
 **示例：**
 
@@ -50,15 +50,15 @@ getCameraManager(context: Context): Promise<CameraManager\>
 
 **参数：**
 
-| 名称      | 类型                  | 必填      | 说明                        |
-|----------|----------------------|-----------|----------------------------|
-| context  | Context              | 是      | 应用上下文。                 |
+| 名称    | 类型    | 必填 | 说明         |
+| ------- | ------- | ---- | ------------ |
+| context | Context | 是   | 应用上下文。 |
 
 **返回值：**
 
-| 类型                     | 说明                                                   |
-|-------------------------|--------------------------------------------------------|
-| Promise<[CameraManager](#cameramanager)\> | 使用Promise的方式获取一个相机管理器实例。               |
+| 类型                                      | 说明                                      |
+| ----------------------------------------- | ----------------------------------------- |
+| Promise<[CameraManager](#cameramanager)\> | 使用Promise的方式获取一个相机管理器实例。 |
 
 **示例：**
 
@@ -72,58 +72,54 @@ camera.getCameraManager(context).then((cameraManger) => {
 
 枚举，相机状态。
 
-| 名称                       | 默认值         | 说明               |
-|---------------------------|---------------|--------------------|
-| CAMERA_STATUS_APPEAR      | 0             | 相机存在。<br/>**系统能力：**  SystemCapability.Multimedia.Camera.Core |
-| CAMERA_STATUS_DISAPPEAR   | 1             | 相机不存在。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
-| CAMERA_STATUS_AVAILABLE   | 2             | 相机就绪。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
-| CAMERA_STATUS_UNAVAILABLE | 3             | 相机未就绪。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Camera.Core。
+
+| 名称                      | 默认值 | 说明         |
+| ------------------------- | ------ | ------------ |
+| CAMERA_STATUS_APPEAR      | 0      | 相机存在。   |
+| CAMERA_STATUS_DISAPPEAR   | 1      | 相机不存在。 |
+| CAMERA_STATUS_AVAILABLE   | 2      | 相机就绪。   |
+| CAMERA_STATUS_UNAVAILABLE | 3      | 相机未就绪。 |
 
 
 ## CameraPosition
 
 枚举，相机方向。
 
-| 名称                         | 默认值         | 说明                  |
-|-----------------------------|---------------|-----------------------|
-| CAMERA_POSITION_UNSPECIFIED | 0             | 未指定方向相机。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
-| CAMERA_POSITION_BACK        | 1             | 后置相机。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
-| CAMERA_POSITION_FRONT       | 2             | 前置相机。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Camera.Core。
+
+| 名称                        | 默认值 | 说明             |
+| --------------------------- | ------ | ---------------- |
+| CAMERA_POSITION_UNSPECIFIED | 0      | 未指定方向相机。 |
+| CAMERA_POSITION_BACK        | 1      | 后置相机。       |
+| CAMERA_POSITION_FRONT       | 2      | 前置相机。       |
 
 ## CameraType
 
 枚举，相机类型。
 
-| 名称                     | 默认值         | 说明                     |
-|-------------------------|---------------|-------------------------|
-| CAMERA_TYPE_UNSPECIFIED | 0             | 未指定相机类型。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
-| CAMERA_TYPE_WIDE_ANGLE  | 1             | 广角相机。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
-| CAMERA_TYPE_ULTRA_WIDE  | 2             | 超级广角相机。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
-| CAMERA_TYPE_TELEPHOTO   | 3             | 长焦相机。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
-| CAMERA_TYPE_TRUE_DEPTH  | 4             | 深度相机。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Camera.Core。
+
+| 名称                    | 默认值 | 说明             |
+| ----------------------- | ------ | ---------------- |
+| CAMERA_TYPE_UNSPECIFIED | 0      | 未指定相机类型。 |
+| CAMERA_TYPE_WIDE_ANGLE  | 1      | 广角相机。       |
+| CAMERA_TYPE_ULTRA_WIDE  | 2      | 超级广角相机。   |
+| CAMERA_TYPE_TELEPHOTO   | 3      | 长焦相机。       |
+| CAMERA_TYPE_TRUE_DEPTH  | 4      | 深度相机。       |
 
 
 ## ConnectionType
 
 枚举，相机连接类型。
 
-| 名称                          | 默认值         | 说明                        |
-|------------------------------|---------------|----------------------------|
-| CAMERA_CONNECTION_BUILT_IN   | 0             | 内置相机。<br/>**系统能力：**  SystemCapability.Multimedia.Camera.Core |
-| CAMERA_CONNECTION_USB_PLUGIN | 1             | 外置USB相机。<br/>**系统能力：**  SystemCapability.Multimedia.Camera.Core |
-| CAMERA_CONNECTION_REMOTE     | 2             | 分布式相机。<br/>**系统能力：**  SystemCapability.Multimedia.Camera.Core |
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Camera.Core。
 
-
-## CameraFormat
-
-枚举，照片格式。
-
-| 名称                        | 默认值         | 说明                 |
-|----------------------------|---------------|---------------------|
-| CAMERA_FORMAT_YCRCb_420_SP | 1003          | YCRCb格式。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
-| CAMERA_FORMAT_JPEG         | 2000          | JPEG格式。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
-| CAMERA_FORMAT_AVC          | 3000          | AVC格式。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
-| CAMERA_FORMAT_HEVC         | 3001          | HEVC格式。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
+| 名称                         | 默认值 | 说明          |
+| ---------------------------- | ------ | ------------- |
+| CAMERA_CONNECTION_BUILT_IN   | 0      | 内置相机。    |
+| CAMERA_CONNECTION_USB_PLUGIN | 1      | 外置USB相机。 |
+| CAMERA_CONNECTION_REMOTE     | 2      | 分布式相机。  |
 
 
 ## CameraManager
@@ -140,9 +136,9 @@ getCameras(callback: AsyncCallback<Array<Camera\>\>): void
 
 **参数：**
 
-| 名称      | 类型                            | 必填      | 说明                                                    |
-|----------|--------------------------------|-----------|---------------------------------------------------------|
-| callback | AsyncCallback<Array<[Camera](#camera)\>\> | 是      | 使用callback方式获取支持的相机列表。                        |
+| 名称     | 类型                                      | 必填 | 说明                                 |
+| -------- | ----------------------------------------- | ---- | ------------------------------------ |
+| callback | AsyncCallback<Array<[Camera](#camera)\>\> | 是   | 使用callback方式获取支持的相机列表。 |
 
 **示例：**
 
@@ -166,9 +162,9 @@ getCameras(): Promise<Array<Camera\>\>
 
 **返回值：**
 
-| 类型                    | 说明                                                   |
-|------------------------|--------------------------------------------------------|
-| Promise<Array<[Camera](#camera)\>\> | 使用promise获取支持相机列表。                         |
+| 类型                                | 说明                          |
+| ----------------------------------- | ----------------------------- |
+| Promise<Array<[Camera](#camera)\>\> | 使用promise获取支持相机列表。 |
 
 
 **示例：**
@@ -189,10 +185,10 @@ createCameraInput(cameraId: string, callback: AsyncCallback<CameraInput\>): void
 
 **参数：**
 
-| 名称      | 默认值                        | 必填      | 说明                                              |
-|----------|------------------------------|-----------|--------------------------------------------------|
-| cameraId | string                       | 是       | 指定相机ID。               |
-| callback | AsyncCallback<[CameraInput](#camerainput)\> | 是       | 回调函数，用于获取CameraInput实例。 |
+| 名称     | 默认值                                      | 必填 | 说明                                |
+| -------- | ------------------------------------------- | ---- | ----------------------------------- |
+| cameraId | string                                      | 是   | 指定相机ID。                        |
+| callback | AsyncCallback<[CameraInput](#camerainput)\> | 是   | 回调函数，用于获取CameraInput实例。 |
 
 **示例：**
 
@@ -216,15 +212,15 @@ createCameraInput(cameraId: string): Promise<CameraInput\>
 
 **参数：**
 
-| 名称      | 默认值                       | 必填       | 说明                                     |
-|----------|-----------------------------|-----------|------------------------------------------|
-| cameraId | string                      | 是       | 指定相机ID。            |
+| 名称     | 默认值 | 必填 | 说明         |
+| -------- | ------ | ---- | ------------ |
+| cameraId | string | 是   | 指定相机ID。 |
 
 **返回值：**
 
-| 类型                     | 说明                                             |
-|-------------------------|-------------------------------------------------|
-| Promise<[CameraInput](#camerainput)\> | 使用Promise的方式获取CameraInput的实例。       |
+| 类型                                  | 说明                                     |
+| ------------------------------------- | ---------------------------------------- |
+| Promise<[CameraInput](#camerainput)\> | 使用Promise的方式获取CameraInput的实例。 |
 
 **示例：**
 
@@ -244,10 +240,10 @@ createCameraInput(position: CameraPosition, type: CameraType, callback: AsyncCal
 
 **参数：**
 
-| 名称            | 类型                        | 必填      | 说明                                               |
-|----------------|----------------------------|-----------|---------------------------------------------------|
-| cameraPosition | [CameraPosition](#cameraposition) | 是       | 相机位置。                                          |
-| cameraType     | [CameraType](#cameratype) | 是       | 相机类型。                                           |
+| 名称           | 类型                                        | 必填 | 说明                                |
+| -------------- | ------------------------------------------- | ---- | ----------------------------------- |
+| cameraPosition | [CameraPosition](#cameraposition)           | 是   | 相机位置。                          |
+| cameraType     | [CameraType](#cameratype)                   | 是   | 相机类型。                          |
 | callback       | AsyncCallback<[CameraInput](#camerainput)\> | 是   | 回调函数，用于获取CameraInput实例。 |
 
 **示例：**
@@ -272,15 +268,15 @@ createCameraInput(position: CameraPosition, type: CameraType): Promise<CameraInp
 
 **参数：**
 
-| 名称            | 类型                        | 必填      | 说明                                    |
-|----------------|----------------------------|-----------|----------------------------------------|
+| 名称           | 类型                              | 必填 | 说明       |
+| -------------- | --------------------------------- | ---- | ---------- |
 | cameraPosition | [CameraPosition](#cameraposition) | 是   | 相机位置。 |
 | cameraType     | [CameraType](#cameratype)         | 是   | 相机类型。 |
 
 **返回值：**
 
-| 类型                     | 说明                                             |
-|-------------------------|-------------------------------------------------|
+| 类型                                  | 说明                                     |
+| ------------------------------------- | ---------------------------------------- |
 | Promise<[CameraInput](#camerainput)\> | 使用Promise的方式获取CameraInput的实例。 |
 
 **示例：**
@@ -301,10 +297,10 @@ on(type: 'cameraStatus', callback: AsyncCallback<CameraStatusInfo\>): void
 
 **参数：**
 
-| 名称      | 类型                    | 必填       | 说明                                                 |
-| :------- | :--------------------- | :-------- | :--------------------------------------------------- |
-| type     | string                 | 是       | 监听事件。                               |
-| callback | AsyncCallback<[CameraStatusInfo](#camerastatusinfo)\> | 是  | 回调函数，用于获取相机状态变化信息。 |
+| 名称     | 类型                                                  | 必填 | 说明                                 |
+| :------- | :---------------------------------------------------- | :--- | :----------------------------------- |
+| type     | string                                                | 是   | 监听事件。                           |
+| callback | AsyncCallback<[CameraStatusInfo](#camerastatusinfo)\> | 是   | 回调函数，用于获取相机状态变化信息。 |
 
 **示例：**
 
@@ -319,12 +315,14 @@ cameraManager.on('cameraStatus', (cameraStatusInfo) => {
 
 相机实例。
 
-| 名称            | 类型           | 只读 | 说明                    |
-|----------------|----------------|----------|------------------------|
-| cameraId       | string         | 是 | 相机ID。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core|
-| cameraPosition | [CameraPosition](#cameraposition) | 是 | 相机位置。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
-| cameraType     | [CameraType](#cameratype) | 是 | 相机类型。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
-| connectionType | [ConnectionType](#connectiontype) | 是 | 相机连接类型。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Camera.Core。
+
+| 名称           | 类型                              | 只读 | 说明           |
+| -------------- | --------------------------------- | ---- | -------------- |
+| cameraId       | string                            | 是   | 相机ID。       |
+| cameraPosition | [CameraPosition](#cameraposition) | 是   | 相机位置。     |
+| cameraType     | [CameraType](#cameratype)         | 是   | 相机类型。     |
+| connectionType | [ConnectionType](#connectiontype) | 是   | 相机连接类型。 |
 
 **示例：**
 
@@ -343,10 +341,12 @@ var cameraId = cameraObj.connectionType;
 
 相机状态信息。
 
-| 名称            | 类型            | 说明             |
-|----------------|----------------|------------------|
-| camera         | [Camera](#camera) | 相机信息。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
-| status         | [CameraStatus](#camerastatus) | 相机状态。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Camera.Core。
+
+| 名称   | 类型                          | 说明       |
+| ------ | ----------------------------- | ---------- |
+| camera | [Camera](#camera)             | 相机信息。 |
+| status | [CameraStatus](#camerastatus) | 相机状态。 |
 
 
 ## CameraInput
@@ -363,9 +363,9 @@ getCameraId(callback: AsyncCallback<string\>\): void
 
 **参数：**
 
-| 名称      | 类型                    | 必填      | 说明                                   |
-|----------|------------------------|-----------|---------------------------------------|
-| callback | AsyncCallback<string\> | 是       | 回调函数，用于获取相机ID。     |
+| 名称     | 类型                   | 必填 | 说明                       |
+| -------- | ---------------------- | ---- | -------------------------- |
+| callback | AsyncCallback<string\> | 是   | 回调函数，用于获取相机ID。 |
 
 **示例：**
 
@@ -389,9 +389,9 @@ getCameraId(): Promise<string\>
 
 **返回值：**
 
-| 类型                    | 说明                                  |
-|------------------------|--------------------------------------|
-| Promise<string\>       | 使用Promise的方式获取相机ID。 |
+| 类型             | 说明                          |
+| ---------------- | ----------------------------- |
+| Promise<string\> | 使用Promise的方式获取相机ID。 |
 
 **示例：**
 
@@ -401,204 +401,6 @@ cameraInput.getCameraId().then((cameraId) => {
 })
 ```
 
-### getSupportedSizes
-
-getSupportedSizes\(format: CameraFormat, callback: AsyncCallback<Array<Size\>\>\): void
-
-根据指定格式，获取相机支持的分辨率，通过注册回调函数获取结果。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-**参数：**
-
-| 名称      | 类型                          | 必填      | 说明                                         |
-|----------|------------------------------|-----------|---------------------------------------------|
-| format   | [CameraFormat](#cameraformat) | 是       | 指定照片格式。    |
-| callback | AsyncCallback<Array<[Size](js-apis-image.md#Size)\>\> | 是       | 回调函数，用于获取相机支持分辨率。 |
-
-**示例：**
-
-```
-cameraInput.getSupportedSizes(format, (err, sizes) => {
-    if (err) {
-        console.error('Failed to get the supported sizes. ${err.message}');
-		return;
-    }
-    console.log('Callback returned with the supported sizes:' + sizes);
-})
-```
-
-### getSupportedSizes
-
-getSupportedSizes\(format: CameraFormat\): Promise<Array<Size\>\>
-
-根据指定格式，获取相机支持的分辨率，通过Promise获取结果。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-**参数：**
-
-| 名称   | 类型                          | 必填 | 说明           |
-| ------ | ----------------------------- | ---- | -------------- |
-| format | [CameraFormat](#cameraformat) | 是   | 指定照片格式。 |
-
-**返回值：**
-
-| 类型                    | 说明                                         |
-|------------------------|---------------------------------------------|
-| Promise<Array<[Size](js-apis-image.md#Size)\>\> | 使用Promise的方式获取相机支持的分辨率。 |
-
-**示例：**
-
-```
-cameraInput.getSupportedSizes(format).then((sizes) => {
-    console.log('Promise returned with supported sizes: ' + sizes);
-})
-```
-
-### getSupportedPreviewFormats
-
-getSupportedPreviewFormats\(callback: AsyncCallback<Array<CameraFormat\>\>\): void
-
-获取相机预览图片的支持格式，通过注册回调函数获取结果。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-**参数：**
-
-| 名称     | 类型                                                  | 必填 | 说明                                   |
-| -------- | ----------------------------------------------------- | ---- | -------------------------------------- |
-| callback | AsyncCallback<Array<[CameraFormat](#cameraformat)\>\> | 是   | 回调函数，用于获取预览图片的支持格式。 |
-
-**示例：**
-
-```
-cameraInput.getSupportedPreviewFormats((err, previewFormats) => {
-    if (err) {
-        console.error('Failed to get the supported preview formats. ${err.message}');
-        return;
-    }
-    console.log('Callback returned with supported preview formats: ' + previewFormats.length);
-})
-```
-
-### getSupportedPreviewFormats
-
-getSupportedPreviewFormats\(\): Promise<Array<CameraFormat\>\>
-
-获取相机预览图片的支持格式，通过注册回调函数获取结果。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-**返回值：**
-
-| 类型                            | 说明                                                   |
-|--------------------------------|-------------------------------------------------------|
-| Promise<Array<[CameraFormat](#cameraformat)\>\> | 使用Promise的方式获取预览图片的支持格式。 |
-
-**示例：**
-
-```
-cameraInput.getSupportedPreviewFormats().then((previewFormats) => {
-    console.log('Promise returned with supported preview formats.' + previewFormats.length);
-})
-```
-
-### getSupportedPhotoFormats
-
-getSupportedPhotoFormats\(callback: AsyncCallback<Array<CameraFormat\>\>\): void
-
-获取照片的支持格式，通过注册回调函数获取结果。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-**参数：**
-
-| 名称      | 类型                                  | 必填      | 说明                                             |
-|----------|--------------------------------------|-----------|-------------------------------------------------|
-| callback | AsyncCallback<Array<[CameraFormat](#cameraformat)\>\> | 是       | 回调函数，用于获取支持的照片格式。 |
-
-**示例：**
-
-```
-cameraInput.getSupportedPhotoFormats((err, photoFormats) => {
-    if (err) {
-        console.error('Failed to get the supported photo formats. ${err.message}');
-        return;
-    }
-    console.log('Callback returned with supported photo formats');
-})
-```
-
-### getSupportedPhotoFormats
-
-getSupportedPhotoFormats\(\): Promise<Array<CameraFormat\>\>
-
-获取照片的支持格式，通过Promise获取结果。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-**返回值：**
-
-| 类型                            | 说明                                               |
-|--------------------------------|---------------------------------------------------|
-| Promise<Array<[CameraFormat](#cameraformat)\>\> | 使用Promise的方式获取支持的照片格式。                |
-
-**示例：**
-
-```
-cameraInput.getSupportedPhotoFormats().then((photoFormats) => {
-    console.log('Promise returned with supported photo formats.' + photoFormats.length);
-})
-```
-
-### getSupportedVideoFormats
-
-getSupportedVideoFormats\(callback: AsyncCallback<Array<CameraFormat\>\>\): void
-
-获取录制视频的支持格式，通过注册回调函数获取结果。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-**参数：**
-
-| 名称      | 类型                                 | 必填       | 说明                                             |
-|----------|--------------------------------------|-----------|-------------------------------------------------|
-| callback | AsyncCallback<Array<[CameraFormat](#cameraformat)\>\> | 是       | 回调函数，用于获取支持的视频格式。 |
-
-**示例：**
-
-```
-cameraInput.getSupportedVideoFormats((err, videoFormats) => {
-    if (err) {
-        console.error('Failed to get the supported video formats. ${err.message}');
-        return;
-    }
-    console.log('Callback returned with supported video formats : ' + videoFormats.length);
-})
-```
-
-### getSupportedVideoFormats
-
-getSupportedVideoFormats\(\): Promise<Array<CameraFormat\>\>
-
-获取录制视频的支持格式，通过Promise获取结果。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-**返回值：**
-
-| 类型                            | 说明                                               |
-|--------------------------------|---------------------------------------------------|
-| Promise<Array<[CameraFormat](#cameraformat)\>\> | 使用Promise的方式获取支持的视频格式。         |
-
-**示例：**
-
-```
-cameraInput.getSupportedVideoFormats().then((videoFormats) => {
-    console.log('Promise returned with supported video formats.' + videoFormats.length);
-})
-```
 
 ### hasFlash
 
@@ -610,9 +412,9 @@ hasFlash(callback: AsyncCallback<boolean\>): void
 
 **参数：**
 
-| 名称     | 类型                     | 必填       | 说明                                                |
-|----------|-------------------------|-----------|----------------------------------------------------|
-| callback | AsyncCallback<boolean\> | 是       | 回调函数，返回true表示设备支持闪光灯。 |
+| 名称     | 类型                    | 必填 | 说明                                   |
+| -------- | ----------------------- | ---- | -------------------------------------- |
+| callback | AsyncCallback<boolean\> | 是   | 回调函数，返回true表示设备支持闪光灯。 |
 
 **示例：**
 
@@ -636,9 +438,9 @@ hasFlash(): Promise<boolean\>
 
 **返回值：**
 
-| 类型                   | 说明                                                    |
-|-----------------------|--------------------------------------------------------|
-| Promise<boolean\>     | 使用Promise的方式获取结果，返回true表示设备支持闪光灯。 |
+| 类型              | 说明                                                    |
+| ----------------- | ------------------------------------------------------- |
+| Promise<boolean\> | 使用Promise的方式获取结果，返回true表示设备支持闪光灯。 |
 
 **示例：**
 
@@ -658,10 +460,10 @@ isFlashModeSupported(flashMode: FlashMode, callback: AsyncCallback<boolean\>): v
 
 **参数：**
 
-| 名称      | 类型                    | 必填        | 说明                                               |
-|-----------|------------------------|-----------|----------------------------------------------------|
-| flashMode | [FlashMode](#flashmode) | 是       | 指定闪光灯模式。 |
-| callback  | AsyncCallback<boolean\> | 是       | 回调函数，返回true表示支持该闪光灯模式。 |
+| 名称      | 类型                    | 必填 | 说明                                     |
+| --------- | ----------------------- | ---- | ---------------------------------------- |
+| flashMode | [FlashMode](#flashmode) | 是   | 指定闪光灯模式。                         |
+| callback  | AsyncCallback<boolean\> | 是   | 回调函数，返回true表示支持该闪光灯模式。 |
 
 **示例：**
 
@@ -685,15 +487,15 @@ isFlashModeSupported(flashMode: FlashMode): Promise<boolean\>
 
 **参数：**
 
-| 名称       | 类型                   | 必填       | 说明                                                |
-|-----------|------------------------|-----------|----------------------------------------------------|
+| 名称      | 类型                    | 必填 | 说明             |
+| --------- | ----------------------- | ---- | ---------------- |
 | flashMode | [FlashMode](#flashmode) | 是   | 指定闪光灯模式。 |
 
 **返回值：**
 
-| 类型                   | 说明                                               |
-|-----------------------|---------------------------------------------------|
-| Promise<boolean\>     | 使用Promise的方式获取结果，返回true表示设备支持该闪光灯模式。 |
+| 类型              | 说明                                                         |
+| ----------------- | ------------------------------------------------------------ |
+| Promise<boolean\> | 使用Promise的方式获取结果，返回true表示设备支持该闪光灯模式。 |
 
 **示例：**
 
@@ -718,10 +520,10 @@ setFlashMode(flashMode: FlashMode, callback: AsyncCallback<void\>): void
 
 **参数：**
 
-| 名称       | 类型                   | 必填       | 说明                                                |
-|-----------|------------------------|-----------|----------------------------------------------------|
+| 名称      | 类型                    | 必填 | 说明                     |
+| --------- | ----------------------- | ---- | ------------------------ |
 | flashMode | [FlashMode](#flashmode) | 是   | 指定闪光灯模式。         |
-| callback  | AsyncCallback<void\>   | 是       | 回调函数，用于获取结果。            |
+| callback  | AsyncCallback<void\>    | 是   | 回调函数，用于获取结果。 |
 
 **示例：**
 
@@ -750,15 +552,15 @@ setFlashMode(flashMode: FlashMode): Promise<void\>
 
 **参数：**
 
-| 名称       | 类型                    | 必填      | 说明                                                |
-|-----------|------------------------|-----------|----------------------------------------------------|
+| 名称      | 类型                    | 必填 | 说明             |
+| --------- | ----------------------- | ---- | ---------------- |
 | flashMode | [FlashMode](#flashmode) | 是   | 指定闪光灯模式。 |
 
 **返回值：**
 
-| 类型                   | 说明                                    |
-|-----------------------|-----------------------------------------|
-| Promise<void\>        | 使用Promise的方式获取结果。                |
+| 类型           | 说明                        |
+| -------------- | --------------------------- |
+| Promise<void\> | 使用Promise的方式获取结果。 |
 
 **示例：**
 
@@ -778,9 +580,9 @@ getFlashMode(callback: AsyncCallback<FlashMode\>): void
 
 **参数：**
 
-| 名称       | 类型                      | 必填       | 说明                                            |
-|-----------|---------------------------|-----------|------------------------------------------------|
-| callback  | AsyncCallback<[FlashMode](#flashmode)\> | 是       | 回调函数，用于获取当前设备的闪光灯模式。 |
+| 名称     | 类型                                    | 必填 | 说明                                     |
+| -------- | --------------------------------------- | ---- | ---------------------------------------- |
+| callback | AsyncCallback<[FlashMode](#flashmode)\> | 是   | 回调函数，用于获取当前设备的闪光灯模式。 |
 
 **示例：**
 
@@ -804,9 +606,9 @@ getFlashMode(): Promise<FlashMode\>
 
 **返回值：**
 
-| 类型                   | 说明                                              |
-|-----------------------|---------------------------------------------------|
-| Promise<[FlashMode](#flashmode)\> | 使用Promise的方式获取当前的闪光灯模式。                 |
+| 类型                              | 说明                                    |
+| --------------------------------- | --------------------------------------- |
+| Promise<[FlashMode](#flashmode)\> | 使用Promise的方式获取当前的闪光灯模式。 |
 
 **示例：**
 
@@ -826,10 +628,10 @@ isFocusModeSupported(afMode: FocusMode, callback: AsyncCallback<boolean\>): void
 
 **参数：**
 
-| 名称       | 类型                    | 必填      | 说明                                                |
-|-----------|------------------------|-----------|----------------------------------------------------|
-| afMode    | [FocusMode](#focusmode) | 是       | 指定的焦距模式。                        |
-| callback  | AsyncCallback<boolean\> | 是       | 回调函数，返回true表示支持该焦距模式。 |
+| 名称     | 类型                    | 必填 | 说明                                   |
+| -------- | ----------------------- | ---- | -------------------------------------- |
+| afMode   | [FocusMode](#focusmode) | 是   | 指定的焦距模式。                       |
+| callback | AsyncCallback<boolean\> | 是   | 回调函数，返回true表示支持该焦距模式。 |
 
 **示例：**
 
@@ -853,15 +655,15 @@ isFocusModeSupported(afMode: FocusMode): Promise<boolean\>
 
 **参数：**
 
-| 名称       | 类型                                    | 必填      | 说明         |
-|-----------|----------------------------------------|-----------|-------------|
-| afMode    | [FocusMode](#focusmode) | 是   | 指定的焦距模式。 |
+| 名称   | 类型                    | 必填 | 说明             |
+| ------ | ----------------------- | ---- | ---------------- |
+| afMode | [FocusMode](#focusmode) | 是   | 指定的焦距模式。 |
 
 **返回值：**
 
-| 类型                   | 说明                                               |
-|-----------------------|---------------------------------------------------|
-| Promise<boolean\>     | 使用Promise的方式获取结果，返回true表示设备支持该焦距模式。 |
+| 类型              | 说明                                                        |
+| ----------------- | ----------------------------------------------------------- |
+| Promise<boolean\> | 使用Promise的方式获取结果，返回true表示设备支持该焦距模式。 |
 
 **示例：**
 
@@ -883,10 +685,10 @@ setFocusMode(afMode: FocusMode, callback: AsyncCallback<void\>): void
 
 **参数：**
 
-| 名称       | 类型                    | 必填      | 说明                                |
-|-----------|------------------------|-----------|------------------------------------|
-| afMode    | [FocusMode](#focusmode) | 是   | 指定的焦距模式。         |
-| callback  | AsyncCallback<void\>   | 是       | 回调函数，用于获取结果。 |
+| 名称     | 类型                    | 必填 | 说明                     |
+| -------- | ----------------------- | ---- | ------------------------ |
+| afMode   | [FocusMode](#focusmode) | 是   | 指定的焦距模式。         |
+| callback | AsyncCallback<void\>    | 是   | 回调函数，用于获取结果。 |
 
 **示例：**
 
@@ -912,15 +714,15 @@ setFocusMode(afMode: FocusMode): Promise<void\>
 
 **参数：**
 
-| 名称       | 类型                                     | 必填      | 说明         |
-|-----------|-----------------------------------------|-----------|-------------|
-| afMode    | [FocusMode](#focusmode) | 是   | 指定的焦距模式。 |
+| 名称   | 类型                    | 必填 | 说明             |
+| ------ | ----------------------- | ---- | ---------------- |
+| afMode | [FocusMode](#focusmode) | 是   | 指定的焦距模式。 |
 
 **返回值：**
 
-| 类型                   | 说明                                     |
-|-----------------------|-----------------------------------------|
-| Promise<void\>        | 使用Promise的方式获取结果。 |
+| 类型           | 说明                        |
+| -------------- | --------------------------- |
+| Promise<void\> | 使用Promise的方式获取结果。 |
 
 **示例：**
 
@@ -940,9 +742,9 @@ getFocusMode(callback: AsyncCallback<FocusMode\>): void
 
 **参数：**
 
-| 名称       | 类型                       | 必填      | 说明                                            |
-|-----------|---------------------------|-----------|------------------------------------------------|
-| callback  | AsyncCallback<[FocusMode](#focusmode)\> | 是       | 回调函数，用于获取当前设备的焦距模式。 |
+| 名称     | 类型                                    | 必填 | 说明                                   |
+| -------- | --------------------------------------- | ---- | -------------------------------------- |
+| callback | AsyncCallback<[FocusMode](#focusmode)\> | 是   | 回调函数，用于获取当前设备的焦距模式。 |
 
 **示例：**
 
@@ -988,9 +790,9 @@ getZoomRatioRange\(callback: AsyncCallback<Array<number\>\>\): void
 
 **参数：**
 
-| 名称      | 类型                            | 必填      | 说明                                             |
-|----------|--------------------------------|-----------|-------------------------------------------------|
-| callback | AsyncCallback<Array<number\>\> | 是       | 回调函数，用于获取结果。       |
+| 名称     | 类型                           | 必填 | 说明                     |
+| -------- | ------------------------------ | ---- | ------------------------ |
+| callback | AsyncCallback<Array<number\>\> | 是   | 回调函数，用于获取结果。 |
 
 **示例：**
 
@@ -1014,8 +816,8 @@ getZoomRatioRange\(\): Promise<Array<number\>\>
 
 **返回值：**
 
-| 类型                    | 说明                                         |
-|------------------------|---------------------------------------------|
+| 类型                     | 说明                                        |
+| ------------------------ | ------------------------------------------- |
 | Promise<Array<number\>\> | 使用Promise的方式获取当前的可变焦距比范围。 |
 
 **示例：**
@@ -1036,10 +838,10 @@ setZoomRatio(zoomRatio: number, callback: AsyncCallback<void\>): void
 
 **参数：**
 
-| 名称      | 类型                     | 必填      | 说明                                |
-|-----------|------------------------|-----------|------------------------------------|
-| zoomRatio | number                 | 是       | 可变焦距比。                      |
-| callback  | AsyncCallback<void\>   | 是       | 回调函数，用于获取结果。 |
+| 名称      | 类型                 | 必填 | 说明                     |
+| --------- | -------------------- | ---- | ------------------------ |
+| zoomRatio | number               | 是   | 可变焦距比。             |
+| callback  | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。 |
 
 **示例：**
 
@@ -1063,15 +865,15 @@ setZoomRatio(zoomRatio: number): Promise<void\>
 
 **参数：**
 
-| 名称       | 类型     | 必填 | 说明 |
-|-----------|----------|-----------|-------------|
-| zoomRatio | number   | 是       | 可变焦距比。 |
+| 名称      | 类型   | 必填 | 说明         |
+| --------- | ------ | ---- | ------------ |
+| zoomRatio | number | 是   | 可变焦距比。 |
 
 **返回值：**
 
-| 类型                   | 说明                                    |
-|-----------------------|-----------------------------------------|
-| Promise<void\>        | 使用Promise的方式获取结果。 |
+| 类型           | 说明                        |
+| -------------- | --------------------------- |
+| Promise<void\> | 使用Promise的方式获取结果。 |
 
 **示例：**
 
@@ -1091,9 +893,9 @@ getZoomRatio(callback: AsyncCallback<number\>): void
 
 **参数：**
 
-| 名称       | 类型                       | 必填      | 说明                                                  |
-|-----------|---------------------------|-----------|------------------------------------------------------|
-| callback  | AsyncCallback<number\>    | 是       | 回调函数，用于获取结果。                   |
+| 名称     | 类型                   | 必填 | 说明                     |
+| -------- | ---------------------- | ---- | ------------------------ |
+| callback | AsyncCallback<number\> | 是   | 回调函数，用于获取结果。 |
 
 **示例：**
 
@@ -1139,9 +941,9 @@ release\(callback: AsyncCallback<void\>\): void
 
 **参数：**
 
-| 名称     | 类型                 | 必填 | 说明                        |
-|----------|----------------------|-----------|------------------------------------|
-| callback | AsyncCallback<void\> | 是       | 回调函数，用于获取结果。     |
+| 名称     | 类型                 | 必填 | 说明                     |
+| -------- | -------------------- | ---- | ------------------------ |
+| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。 |
 
 **示例：**
 
@@ -1165,9 +967,9 @@ release(): Promise<void\>
 
 **返回值：**
 
-| 类型           | 说明                                 |
-|----------------|---------------------------------------------|
-| Promise<void\> | 使用Promise的方式获取结果。     |
+| 类型           | 说明                        |
+| -------------- | --------------------------- |
+| Promise<void\> | 使用Promise的方式获取结果。 |
 
 **示例：**
 
@@ -1187,10 +989,10 @@ on(type: 'focusStateChange', callback: AsyncCallback<FocusState\>): void
 
 **参数：**
 
-| 名称     | 类型                   | 必填 | 说明                                     |
-| :------- | :--------------------- | :-------- | :-----------------------------------------------|
-| type     | string                 | 是       | 监听事件，固定为'focusStateChange'，即焦距状态变化事件。 |
-| callback | AsyncCallback<[FocusState](#focusstate)\> | 是       | 回调函数，用于获取焦距状态。         |
+| 名称     | 类型                                      | 必填 | 说明                                                     |
+| :------- | :---------------------------------------- | :--- | :------------------------------------------------------- |
+| type     | string                                    | 是   | 监听事件，固定为'focusStateChange'，即焦距状态变化事件。 |
+| callback | AsyncCallback<[FocusState](#focusstate)\> | 是   | 回调函数，用于获取焦距状态。                             |
 
 **示例：**
 
@@ -1210,10 +1012,10 @@ on('error', callback: ErrorCallback<CameraInputError\>): void
 
 **参数：**
 
-| 名称     | 类型                   | 必填 | 说明                                     |
-| :------- | :--------------------- | :-------- | :-----------------------------------------------|
-| type     | string                 | 是       | 监听事件，固定为'error'。                 |
-| callback | ErrorCallback<CameraInputError\> | 是  | 回调函数，用于获取结果。 |
+| 名称     | 类型                             | 必填 | 说明                      |
+| :------- | :------------------------------- | :--- | :------------------------ |
+| type     | string                           | 是   | 监听事件，固定为'error'。 |
+| callback | ErrorCallback<CameraInputError\> | 是   | 回调函数，用于获取结果。  |
 
 **示例：**
 
@@ -1228,33 +1030,39 @@ cameraInput.on('error', (cameraInputError) => {
 
 枚举，闪光灯模式。
 
-| 名称                    | 默认值         | 说明                   |
-|------------------------|---------------|------------------------|
-| FLASH_MODE_CLOSE       | 0             | 闪光灯关闭。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
-| FLASH_MODE_OPEN        | 1             | 闪光灯开启。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
-| FLASH_MODE_AUTO        | 2             | 自动闪光灯。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
-| FLASH_MODE_ALWAYS_OPEN | 3             | 闪光灯常亮。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Camera.Core。
+
+| 名称                   | 默认值 | 说明         |
+| ---------------------- | ------ | ------------ |
+| FLASH_MODE_CLOSE       | 0      | 闪光灯关闭。 |
+| FLASH_MODE_OPEN        | 1      | 闪光灯开启。 |
+| FLASH_MODE_AUTO        | 2      | 自动闪光灯。 |
+| FLASH_MODE_ALWAYS_OPEN | 3      | 闪光灯常亮。 |
 
 ## FocusMode
 
 枚举，焦距模式。
 
-| 名称                        | 默认值         | 说明                        |
-|----------------------------|---------------|----------------------------|
-| FOCUS_MODE_MANUAL          | 0             | 手动变焦模式。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
-| FOCUS_MODE_CONTINUOUS_AUTO | 1             | 连续自动变焦模式。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
-| FOCUS_MODE_AUTO            | 2             | 自动变焦模式。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
-| FOCUS_MODE_LOCKED          | 3             | 定焦模式。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Camera.Core。
+
+| 名称                       | 默认值 | 说明               |
+| -------------------------- | ------ | ------------------ |
+| FOCUS_MODE_MANUAL          | 0      | 手动变焦模式。     |
+| FOCUS_MODE_CONTINUOUS_AUTO | 1      | 连续自动变焦模式。 |
+| FOCUS_MODE_AUTO            | 2      | 自动变焦模式。     |
+| FOCUS_MODE_LOCKED          | 3      | 定焦模式。         |
 
 ## FocusState
 
 枚举，焦距状态。
 
-| 名称                  | 默认值 | 说明                                                         |
-| --------------------- | ------ | ------------------------------------------------------------ |
-| FOCUS_STATE_SCAN      | 0      | 扫描状态。<br/> 系统能力 : SystemCapability.Multimedia.Camera.Core |
-| FOCUS_STATE_FOCUSED   | 1      | 相机已对焦。<br/> 系统能力 : SystemCapability.Multimedia.Camera.Core |
-| FOCUS_STATE_UNFOCUSED | 2      | 相机未对焦。<br/> 系统能力 : SystemCapability.Multimedia.Camera.Core |
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Camera.Core。
+
+| 名称                  | 默认值 | 说明         |
+| --------------------- | ------ | ------------ |
+| FOCUS_STATE_SCAN      | 0      | 扫描状态。   |
+| FOCUS_STATE_FOCUSED   | 1      | 相机已对焦。 |
+| FOCUS_STATE_UNFOCUSED | 2      | 相机未对焦。 |
 
 ## camera.createCaptureSession
 
@@ -1266,10 +1074,10 @@ createCaptureSession\(context: Context, callback: AsyncCallback<CaptureSession\>
 
 **参数：**
 
-| 名称      | 类型                            | 必填      | 说明                                                |
-|----------|--------------------------------|-----------|-----------------------------------------------------|
-| context  | Context                        | 是       | 应用上下文。                                         |
-| callback | AsyncCallback<[CaptureSession](#capturesession)\> | 是       | 回调函数，用于获取CaptureSession实例。 |
+| 名称     | 类型                                              | 必填 | 说明                                   |
+| -------- | ------------------------------------------------- | ---- | -------------------------------------- |
+| context  | Context                                           | 是   | 应用上下文。                           |
+| callback | AsyncCallback<[CaptureSession](#capturesession)\> | 是   | 回调函数，用于获取CaptureSession实例。 |
 
 **示例：**
 
@@ -1293,14 +1101,14 @@ createCaptureSession(context: Context\): Promise<CaptureSession\>;
 
 **参数：**
 
-| 名称      | 类型                          | 必填       | 说明                                                |
-|----------|-------------------------------|-----------|-----------------------------------------------------|
-| context  | Context                       | 是       | 应用上下文。                              |
+| 名称    | 类型    | 必填 | 说明         |
+| ------- | ------- | ---- | ------------ |
+| context | Context | 是   | 应用上下文。 |
 
 **返回值：**
 
-| 类型                       | 说明                                              |
-|---------------------------|---------------------------------------------------|
+| 类型                                        | 说明                                      |
+| ------------------------------------------- | ----------------------------------------- |
 | Promise<[CaptureSession](#capturesession)\> | 使用Promise的方式获取CaptureSession实例。 |
 
 **示例：**
@@ -1325,9 +1133,9 @@ beginConfig\(callback: AsyncCallback<void\>\): void
 
 **参数：**
 
-| 名称      | 类型                  | 必填      | 说明                                          |
-|----------|----------------------|-----------|----------------------------------------------|
-| callback | AsyncCallback<void\> | 是       | 回调函数，用于获取结果。            |
+| 名称     | 类型                 | 必填 | 说明                     |
+| -------- | -------------------- | ---- | ------------------------ |
+| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。 |
 
 **示例：**
 
@@ -1351,9 +1159,9 @@ beginConfig\(\): Promise<void\>
 
 **返回值：**
 
-| 类型           | 说明                                        |
-|---------------|---------------------------------------------|
-| Promise<void\> | 使用Promise的方式获取结果。                   |
+| 类型           | 说明                        |
+| -------------- | --------------------------- |
+| Promise<void\> | 使用Promise的方式获取结果。 |
 
 
 **示例：**
@@ -1374,9 +1182,9 @@ commitConfig\(callback: AsyncCallback<void\>\): void
 
 **参数：**
 
-| 名称      | 类型                 | 必填      | 说明                                          |
-|----------|---------------------|-----------|----------------------------------------------|
-| callback | AsyncCallback<void\> | 是       | 回调函数，用于获取结果。 |
+| 名称     | 类型                 | 必填 | 说明                     |
+| -------- | -------------------- | ---- | ------------------------ |
+| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。 |
 
 **示例：**
 
@@ -1400,9 +1208,9 @@ commitConfig\(\): Promise<void\>
 
 **返回值：**
 
-| 类型           | 说明                                         |
-|---------------|---------------------------------------------|
-| Promise<void\> | 使用Promise的方式获取结果。    |
+| 类型           | 说明                        |
+| -------------- | --------------------------- |
+| Promise<void\> | 使用Promise的方式获取结果。 |
 
 **示例：**
 
@@ -1422,10 +1230,10 @@ addInput\(cameraInput: CameraInput, callback: AsyncCallback<void\>\): void
 
 **参数：**
 
-| 名称         | 类型                  | 必填      | 说明                                         |
-|-------------|----------------------|-----------|---------------------------------------------|
-| cameraInput | [CameraInput](#camerainput) | 是       | 需要添加的CameraInput实例。         |
-| callback    | AsyncCallback<void\> | 是       | 回调函数，用于获取结果。         |
+| 名称        | 类型                        | 必填 | 说明                        |
+| ----------- | --------------------------- | ---- | --------------------------- |
+| cameraInput | [CameraInput](#camerainput) | 是   | 需要添加的CameraInput实例。 |
+| callback    | AsyncCallback<void\>        | 是   | 回调函数，用于获取结果。    |
 
 **示例：**
 
@@ -1449,14 +1257,14 @@ addInput\(cameraInput: CameraInput\): Promise<void\>
 
 **参数：**
 
-| 名称         | 类型                 | 必填      | 说明                           |
-|-------------|---------------------|-----------|-------------------------------|
+| 名称        | 类型                        | 必填 | 说明                        |
+| ----------- | --------------------------- | ---- | --------------------------- |
 | cameraInput | [CameraInput](#camerainput) | 是   | 需要添加的CameraInput实例。 |
 
 **返回值：**
 
-| 类型            | 说明                                |
-|----------------|------------------------------------|
+| 类型           | 说明                        |
+| -------------- | --------------------------- |
 | Promise<void\> | 使用Promise的方式获取结果。 |
 
 **示例：**
@@ -1477,10 +1285,10 @@ addOutput\(previewOutput: PreviewOutput, callback: AsyncCallback<void\>\): void
 
 **参数：**
 
-| 名称           | 类型                 | 必填       | 说明                                 |
-|---------------|----------------------|-----------|-------------------------------------|
-| previewOutput | [PreviewOutput](#previewoutput) | 是       | 需要添加的PreviewOutput实例。 |
-| callback      | AsyncCallback<void\> | 是       | 回调函数，用于获取结果。 |
+| 名称          | 类型                            | 必填 | 说明                          |
+| ------------- | ------------------------------- | ---- | ----------------------------- |
+| previewOutput | [PreviewOutput](#previewoutput) | 是   | 需要添加的PreviewOutput实例。 |
+| callback      | AsyncCallback<void\>            | 是   | 回调函数，用于获取结果。      |
 
 **示例：**
 
@@ -1504,14 +1312,14 @@ addOutput\(previewOutput: PreviewOutput\): Promise<void\>
 
 **参数：**
 
-| 名称           | 类型                 | 必填      | 说明                            |
-|---------------|---------------------|-----------|--------------------------------|
+| 名称          | 类型                            | 必填 | 说明                          |
+| ------------- | ------------------------------- | ---- | ----------------------------- |
 | previewOutput | [PreviewOutput](#previewoutput) | 是   | 需要添加的PreviewOutput实例。 |
 
 **返回值：**
 
-| 类型            | 说明                               |
-|----------------|-----------------------------------|
+| 类型           | 说明                        |
+| -------------- | --------------------------- |
 | Promise<void\> | 使用Promise的方式获取结果。 |
 
 **示例：**
@@ -1532,10 +1340,10 @@ addOutput\(photoOutput: PhotoOutput, callback: AsyncCallback<void\>\): void
 
 **参数：**
 
-| 名称           | 类型                | 必填       | 说明                                 |
-|---------------|---------------------|-----------|-------------------------------------|
-| photoOutput   | [PhotoOutput](#photooutput) | 是       | 需要添加的PhotoOutput实例。 |
-| callback      | AsyncCallback<void\> | 是      | 回调函数，用于获取结果。 |
+| 名称        | 类型                        | 必填 | 说明                        |
+| ----------- | --------------------------- | ---- | --------------------------- |
+| photoOutput | [PhotoOutput](#photooutput) | 是   | 需要添加的PhotoOutput实例。 |
+| callback    | AsyncCallback<void\>        | 是   | 回调函数，用于获取结果。    |
 
 **示例：**
 
@@ -1559,14 +1367,14 @@ addOutput\(photoOutput: PhotoOutput\): Promise<void\>
 
 **参数：**
 
-| 名称           | 类型                 | 必填      | 说明                            |
-|---------------|---------------------|-----------|--------------------------------|
-| photoOutput   | [PhotoOutput](#photooutput) | 是   | 需要添加的PhotoOutput实例。 |
+| 名称        | 类型                        | 必填 | 说明                        |
+| ----------- | --------------------------- | ---- | --------------------------- |
+| photoOutput | [PhotoOutput](#photooutput) | 是   | 需要添加的PhotoOutput实例。 |
 
 **返回值：**
 
-| 类型           | 说明                              |
-|---------------|-----------------------------------|
+| 类型           | 说明                        |
+| -------------- | --------------------------- |
 | Promise\<void> | 使用Promise的方式获取结果。 |
 
 **示例：**
@@ -1587,9 +1395,9 @@ addOutput\(videoOutput: VideoOutput, callback: AsyncCallback<void\>\): void
 
 **参数：**
 
-| 名称           | 类型                 | 必填      | 说明                                 |
-|---------------|---------------------|-----------|-------------------------------------|
-| videoOutput   | [VideoOutput](#videooutput) | 是       | 需要添加的VideoOutput实例。 |
+| 名称        | 类型                        | 必填 | 说明                        |
+| ----------- | --------------------------- | ---- | --------------------------- |
+| videoOutput | [VideoOutput](#videooutput) | 是   | 需要添加的VideoOutput实例。 |
 | callback    | AsyncCallback<void\>        | 是   | 回调函数，用于获取结果。    |
 
 **示例：**
@@ -1642,10 +1450,10 @@ removeInput\(cameraInput: CameraInput, callback: AsyncCallback<void\>\): void
 
 **参数：**
 
-| 名称         | 类型                  | 必填      | 说明                                |
-|-------------|----------------------|-----------|------------------------------------|
+| 名称        | 类型                        | 必填 | 说明                        |
+| ----------- | --------------------------- | ---- | --------------------------- |
 | cameraInput | [CameraInput](#camerainput) | 是   | 需要移除的CameraInput实例。 |
-| callback    | AsyncCallback<void\> | 是       | 回调函数，用于获取结果。 |
+| callback    | AsyncCallback<void\>        | 是   | 回调函数，用于获取结果。    |
 
 **示例：**
 
@@ -1669,14 +1477,14 @@ removeInput\(cameraInput: CameraInput\): Promise<void\>
 
 **参数：**
 
-| 名称         | 类型                | 必填       | 说明                             |
-|-------------|---------------------|-----------|---------------------------------|
+| 名称        | 类型                        | 必填 | 说明                        |
+| ----------- | --------------------------- | ---- | --------------------------- |
 | cameraInput | [CameraInput](#camerainput) | 是   | 需要移除的CameraInput实例。 |
 
 **返回值：**
 
-| 类型            | 说明                              |
-|----------------|-----------------------------------|
+| 类型           | 说明                        |
+| -------------- | --------------------------- |
 | Promise\<void> | 使用Promise的方式获取结果。 |
 
 **示例：**
@@ -1697,10 +1505,10 @@ removeOutput\(previewOutput: PreviewOutput, callback: AsyncCallback<void\>\): vo
 
 **参数：**
 
-| 名称           | 类型                 | 必填       | 说明                                |
-|---------------|----------------------|-----------|------------------------------------|
-| previewOutput | [PreviewOutput](#previewoutput) | 是       | 需要移除的PreviewOutput实例。 |
-| callback      | AsyncCallback<void\> | 是       | 回调函数，用于获取结果。 |
+| 名称          | 类型                            | 必填 | 说明                          |
+| ------------- | ------------------------------- | ---- | ----------------------------- |
+| previewOutput | [PreviewOutput](#previewoutput) | 是   | 需要移除的PreviewOutput实例。 |
+| callback      | AsyncCallback<void\>            | 是   | 回调函数，用于获取结果。      |
 
 **示例：**
 
@@ -1724,15 +1532,15 @@ removeOutput(previewOutput: PreviewOutput): Promise<void\>
 
 **参数：**
 
-| 名称           | 类型                | 必填       | 说明                               |
-|---------------|---------------------|-----------|-----------------------------------|
+| 名称          | 类型                            | 必填 | 说明                          |
+| ------------- | ------------------------------- | ---- | ----------------------------- |
 | previewOutput | [PreviewOutput](#previewoutput) | 是   | 需要移除的PreviewOutput实例。 |
 
 
 **返回值：**
 
-| 类型         | 说明                                 |
-|---------------|---------------------------------------------|
+| 类型           | 说明                        |
+| -------------- | --------------------------- |
 | Promise<void\> | 使用Promise的方式获取结果。 |
 
 
@@ -1754,10 +1562,10 @@ removeOutput(photoOutput: PhotoOutput, callback: AsyncCallback<void\>): void
 
 **参数：**
 
-| 名称           | 类型                 | 必填       | 说明                                |
-|---------------|----------------------|-----------|------------------------------------|
-| photoOutput   | [PhotoOutput](#photooutput) | 是   | 需要添加的PhotoOutput实例。 |
-| callback      | AsyncCallback<void\> | 是       | 回调函数，用于获取结果。           |
+| 名称        | 类型                        | 必填 | 说明                        |
+| ----------- | --------------------------- | ---- | --------------------------- |
+| photoOutput | [PhotoOutput](#photooutput) | 是   | 需要添加的PhotoOutput实例。 |
+| callback    | AsyncCallback<void\>        | 是   | 回调函数，用于获取结果。    |
 
 **示例：**
 
@@ -1781,16 +1589,16 @@ removeOutput(photoOutput: PhotoOutput): Promise<void\>
 
 **参数：**
 
-| 名称           | 类型                 | 必填      | 说明                             |
-|---------------|---------------------|-----------|---------------------------------|
-| photoOutput   | [PhotoOutput](#photooutput) | 是   | 需要添加的PhotoOutput实例。 |
+| 名称        | 类型                        | 必填 | 说明                        |
+| ----------- | --------------------------- | ---- | --------------------------- |
+| photoOutput | [PhotoOutput](#photooutput) | 是   | 需要添加的PhotoOutput实例。 |
 
 
 **返回值：**
 
-| 类型         | 说明                                  |
-|---------------|------------------------------------|
-| Promise<void\> | 使用Promise的方式获取结果。           |
+| 类型           | 说明                        |
+| -------------- | --------------------------- |
+| Promise<void\> | 使用Promise的方式获取结果。 |
 
 
 **示例：**
@@ -1811,10 +1619,10 @@ removeOutput(videoOutput: VideoOutput, callback: AsyncCallback<void\>): void
 
 **参数：**
 
-| 名称           | 类型                  | 必填      | 说明                                |
-|---------------|----------------------|-----------|------------------------------------|
-| videoOutput   | [VideoOutput](#videooutput) | 是   | 需要添加的VideoOutput实例。 |
-| callback      | AsyncCallback<void\> | 是       | 回调函数，用于获取结果。           |
+| 名称        | 类型                        | 必填 | 说明                        |
+| ----------- | --------------------------- | ---- | --------------------------- |
+| videoOutput | [VideoOutput](#videooutput) | 是   | 需要添加的VideoOutput实例。 |
+| callback    | AsyncCallback<void\>        | 是   | 回调函数，用于获取结果。    |
 
 **示例：**
 
@@ -1838,16 +1646,16 @@ removeOutput(videoOutput: VideoOutput): Promise<void\>
 
 **参数：**
 
-| 名称           | 类型                | 必填       | 说明                             |
-|---------------|---------------------|-----------|---------------------------------|
-| videoOutput   | [VideoOutput](#videooutput) | 是   | 需要添加的VideoOutput实例。 |
+| 名称        | 类型                        | 必填 | 说明                        |
+| ----------- | --------------------------- | ---- | --------------------------- |
+| videoOutput | [VideoOutput](#videooutput) | 是   | 需要添加的VideoOutput实例。 |
 
 
 **返回值：**
 
-| 类型            | 说明                                         |
-|----------------|---------------------------------------------|
-| Promise<void\> | 使用Promise的方式获取结果。                     |
+| 类型           | 说明                        |
+| -------------- | --------------------------- |
+| Promise<void\> | 使用Promise的方式获取结果。 |
 
 
 **示例：**
@@ -1868,9 +1676,9 @@ start\(callback: AsyncCallback<void\>\): void
 
 **参数：**
 
-| 名称      | 类型                 | 必填       | 说明                                          |
-|----------|----------------------|-----------|----------------------------------------------|
-| callback | AsyncCallback<void\> | 是       | 回调函数，用于获取结果。                     |
+| 名称     | 类型                 | 必填 | 说明                     |
+| -------- | -------------------- | ---- | ------------------------ |
+| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。 |
 
 **示例：**
 
@@ -1894,9 +1702,9 @@ start\(\): Promise<void\>
 
 **返回值：**
 
-| 类型            | 说明                              |
-|----------------|-----------------------------------|
-| Promise<void\> | 使用Promise的方式获取结果。           |
+| 类型           | 说明                        |
+| -------------- | --------------------------- |
+| Promise<void\> | 使用Promise的方式获取结果。 |
 
 **示例：**
 
@@ -1917,9 +1725,9 @@ stop\(callback: AsyncCallback<void\>\): void
 **参数：**
 
 
-| 名称      | 类型                 | 必填       | 说明                                |
-|----------|----------------------|-----------|------------------------------------|
-| callback | AsyncCallback<void\> | 是       | 回调函数，用于获取结果。           |
+| 名称     | 类型                 | 必填 | 说明                     |
+| -------- | -------------------- | ---- | ------------------------ |
+| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。 |
 
 **示例：**
 
@@ -1943,9 +1751,9 @@ stop(): Promise<void\>
 
 **返回值：**
 
-| 类型            | 说明                              |
-|----------------|-----------------------------------|
-| Promise<void\> | 使用Promise的方式获取结果。           |
+| 类型           | 说明                        |
+| -------------- | --------------------------- |
+| Promise<void\> | 使用Promise的方式获取结果。 |
 
 **示例：**
 
@@ -1965,9 +1773,9 @@ release\(callback: AsyncCallback<void\>\): void
 
 **参数：**
 
-| 名称      | 类型                 | 必填       | 说明                                |
-|----------|----------------------|-----------|------------------------------------|
-| callback | AsyncCallback<void\> | 是       | 回调函数，用于获取结果。           |
+| 名称     | 类型                 | 必填 | 说明                     |
+| -------- | -------------------- | ---- | ------------------------ |
+| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。 |
 
 **示例：**
 
@@ -1991,9 +1799,9 @@ release(): Promise<void\>
 
 **返回值：**
 
-| 类型            | 说明                                         |
-|----------------|---------------------------------------------|
-| Promise<void\> | 使用Promise的方式获取结果。                     |
+| 类型           | 说明                        |
+| -------------- | --------------------------- |
+| Promise<void\> | 使用Promise的方式获取结果。 |
 
 **示例：**
 
@@ -2013,10 +1821,10 @@ on(type: 'error', callback: ErrorCallback<CaptureSessionError\>): void
 
 **参数：**
 
-| 名称     | 类型                   | 必填 | 说明                                     |
-| :------- | :--------------------- | :-------- | :-----------------------------------------------|
-| type     | string                 | 是       | 监听事件，固定为'error'。                   |
-| callback | ErrorCallback<CaptureSessionError\> | 是  | 回调函数，用于获取错误信息。 |
+| 名称     | 类型                                | 必填 | 说明                         |
+| :------- | :---------------------------------- | :--- | :--------------------------- |
+| type     | string                              | 是   | 监听事件，固定为'error'。    |
+| callback | ErrorCallback<CaptureSessionError\> | 是   | 回调函数，用于获取错误信息。 |
 
 **示例：**
 
@@ -2036,10 +1844,10 @@ createPreviewOutput(surfaceId: string, callback: AsyncCallback<PreviewOutput\>):
 
 **参数：**
 
-| 名称        | 类型                          | 必填       | 说明                                                |
-|------------|-------------------------------|-----------|----------------------------------------------------|
-| surfaceId  | string                        | 是       | 从XComponent组件获取的Surface ID。                   |
-| callback   | AsyncCallback<[PreviewOutput](#previewoutput)\> | 是       | 回调函数，用于获取PreviewOutput实例。 |
+| 名称      | 类型                                            | 必填 | 说明                                  |
+| --------- | ----------------------------------------------- | ---- | ------------------------------------- |
+| surfaceId | string                                          | 是   | 从XComponent组件获取的Surface ID。    |
+| callback  | AsyncCallback<[PreviewOutput](#previewoutput)\> | 是   | 回调函数，用于获取PreviewOutput实例。 |
 
 **示例：**
 
@@ -2063,15 +1871,15 @@ createPreviewOutput(surfaceId: string): Promise\<PreviewOutput>
 
 **参数：**
 
-| 名称        | 类型             | 必填      | 说明                                                |
-|------------|-----------------|-----------|----------------------------------------------------|
-| surfaceId  | string          | 是       | 从XComponent组件获取的Surface ID。                   |
+| 名称      | 类型   | 必填 | 说明                               |
+| --------- | ------ | ---- | ---------------------------------- |
+| surfaceId | string | 是   | 从XComponent组件获取的Surface ID。 |
 
 **返回值：**
 
-| 类型                     | 说明                                               |
-|-------------------------|---------------------------------------------------|
-| Promise<[PreviewOutput](#previewoutput)\> | 使用Promise的方式获取结果。                           |
+| 类型                                      | 说明                        |
+| ----------------------------------------- | --------------------------- |
+| Promise<[PreviewOutput](#previewoutput)\> | 使用Promise的方式获取结果。 |
 
 **示例：**
 
@@ -2095,9 +1903,9 @@ release(callback: AsyncCallback<void\>): void
 
 **参数：**
 
-| 名称      | 类型                 | 必填       | 说明                                          |
-|----------|----------------------|-----------|----------------------------------------------|
-| callback | AsyncCallback<void\> | 是       | 回调函数，用于获取结果。                     |
+| 名称     | 类型                 | 必填 | 说明                     |
+| -------- | -------------------- | ---- | ------------------------ |
+| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。 |
 
 **示例：**
 
@@ -2121,9 +1929,9 @@ release(): Promise<void\>
 
 **返回值：**
 
-| 类型            | 说明                               |
-|----------------|-----------------------------------|
-| Promise<void\> | 使用Promise的方式获取结果。           |
+| 类型           | 说明                        |
+| -------------- | --------------------------- |
+| Promise<void\> | 使用Promise的方式获取结果。 |
 
 
 **示例：**
@@ -2144,10 +1952,10 @@ on(type: 'frameStart', callback: AsyncCallback<void\>): void
 
 **参数：**
 
-| 名称      | 类型               | 必填      |  说明                               |
-| :------- | :---------------- | :-------- | :----------------------------------|
-| type     | string            | 是       | 监听事件，固定为'frameStart'，即帧启动事件。 |
-| callback | AsyncCallback<void\> | 是       | 回调函数，用于获取结果。           |
+| 名称     | 类型                 | 必填 | 说明                                         |
+| :------- | :------------------- | :--- | :------------------------------------------- |
+| type     | string               | 是   | 监听事件，固定为'frameStart'，即帧启动事件。 |
+| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。                     |
 
 **示例：**
 
@@ -2167,10 +1975,10 @@ on(type: 'frameEnd', callback: AsyncCallback<void\>): void
 
 **参数：**
 
-| 名称      | 类型               | 必填      | 说明                                |
-| :------- | :---------------- | :-------- | :----------------------------------|
-| type     | string            | 是       | 监听事件，固定为'frameEnd'，即帧结束事件。 |
-| callback | AsyncCallback<void\> | 是       | 回调函数，用于获取结果。           |
+| 名称     | 类型                 | 必填 | 说明                                       |
+| :------- | :------------------- | :--- | :----------------------------------------- |
+| type     | string               | 是   | 监听事件，固定为'frameEnd'，即帧结束事件。 |
+| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。                   |
 
 **示例：**
 
@@ -2190,10 +1998,10 @@ on(type: 'error', callback: ErrorCallback<PreviewOutputError\>): void
 
 **参数：**
 
-| 名称      | 类型                    | 必填      | 说明                                             |
-| :------- | :--------------------- | :-------- | :-----------------------------------------------|
-| type     | string                 | 是       | 监听事件，固定为'error'。    |
-| callback | ErrorCallback<PreviewOutputError\> | 是  | 回调函数，用于获取错误信息。 |
+| 名称     | 类型                               | 必填 | 说明                         |
+| :------- | :--------------------------------- | :--- | :--------------------------- |
+| type     | string                             | 是   | 监听事件，固定为'error'。    |
+| callback | ErrorCallback<PreviewOutputError\> | 是   | 回调函数，用于获取错误信息。 |
 
 **示例：**
 
@@ -2213,10 +2021,10 @@ createPhotoOutput(surfaceId: string, callback: AsyncCallback<PhotoOutput\>): voi
 
 **参数：**
 
-| 名称        | 类型                          | 必填       | 说明                                                |
-|------------|-------------------------------|-----------|----------------------------------------------------|
-| surfaceId  | string                        | 是       | 从ImageReceiver获取的Surface ID。                   |
-| callback   | AsyncCallback<[PhotoOutput](#photooutput)\> | 是       | 回调函数，用于获取PhotoOutput实例。              |
+| 名称      | 类型                                        | 必填 | 说明                                |
+| --------- | ------------------------------------------- | ---- | ----------------------------------- |
+| surfaceId | string                                      | 是   | 从ImageReceiver获取的Surface ID。   |
+| callback  | AsyncCallback<[PhotoOutput](#photooutput)\> | 是   | 回调函数，用于获取PhotoOutput实例。 |
 
 **示例：**
 
@@ -2240,15 +2048,15 @@ createPhotoOutput(surfaceId: string): Promise<PhotoOutput\>
 
 **参数：**
 
-| 名称        | 类型             | 必填      | 说明                                                |
-|------------|-----------------|-----------|----------------------------------------------------|
-| surfaceId  | string          | 是       | 从ImageReceiver获取的Surface ID。                    |
+| 名称      | 类型   | 必填 | 说明                              |
+| --------- | ------ | ---- | --------------------------------- |
+| surfaceId | string | 是   | 从ImageReceiver获取的Surface ID。 |
 
 **返回值：**
 
-| 类型                     | 说明                                             |
-|-------------------------|--------------------------------------------------|
-| Promise<[PhotoOutput](#photooutput)\> | 使用Promise的方式获取PhotoOutput实例。             |
+| 类型                                  | 说明                                   |
+| ------------------------------------- | -------------------------------------- |
+| Promise<[PhotoOutput](#photooutput)\> | 使用Promise的方式获取PhotoOutput实例。 |
 
 **示例：**
 
@@ -2261,32 +2069,38 @@ camera.createPhotoOutput(surfaceId).then((photoOutput) => {
 
 枚举，图片旋转角度。
 
-| 名称          | 默认值         | 说明                                    |
-|--------------|---------------|----------------------------------------|
-| ROTATION_0   | 0             | 图片旋转0度。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
-| ROTATION_90  | 90            | 图片旋转90度。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
-| ROTATION_180 | 180           | 图片旋转180度。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
-| ROTATION_270 | 270           | 图片旋转270度。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Camera.Core。
+
+| 名称         | 默认值 | 说明            |
+| ------------ | ------ | --------------- |
+| ROTATION_0   | 0      | 图片旋转0度。   |
+| ROTATION_90  | 90     | 图片旋转90度。  |
+| ROTATION_180 | 180    | 图片旋转180度。 |
+| ROTATION_270 | 270    | 图片旋转270度。 |
 
 ## QualityLevel
 
 枚举，图片质量。
 
-| 名称                  | 默认值         | 说明                  |
-|----------------------|---------------|----------------------|
-| QUALITY_LEVEL_HIGH   | 0             | 图片质量高。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
-| QUALITY_LEVEL_MEDIUM | 1             | 图片质量中等。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
-| QUALITY_LEVEL_LOW    | 2             | 图片质量差。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Camera.Core。
+
+| 名称                 | 默认值 | 说明           |
+| -------------------- | ------ | -------------- |
+| QUALITY_LEVEL_HIGH   | 0      | 图片质量高。   |
+| QUALITY_LEVEL_MEDIUM | 1      | 图片质量中等。 |
+| QUALITY_LEVEL_LOW    | 2      | 图片质量差。   |
 
 
 ## PhotoCaptureSetting
 
 拍摄照片的设置。
 
-| 名称      | 类型          | 必填       | 说明                 |
-|----------|---------------|-----------|---------------------|
-| quality  | [QualityLevel](#qualitylevel) | 否 | 图片质量。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
-| rotation | [ImageRotation](#imagerotation) | 否 | 图片旋转角度。<br/>**系统能力：** SystemCapability.Multimedia.Camera.Core |
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Camera.Core。
+
+| 名称     | 类型                            | 必填 | 说明           |
+| -------- | ------------------------------- | ---- | -------------- |
+| quality  | [QualityLevel](#qualitylevel)   | 否   | 图片质量。     |
+| rotation | [ImageRotation](#imagerotation) | 否   | 图片旋转角度。 |
 
 
 ## PhotoOutput
@@ -2303,9 +2117,9 @@ capture(callback: AsyncCallback<void\>): void
 
 **参数：**
 
-| 名称      | 类型                 | 必填      | 说明                                          |
-|----------|---------------------|-----------|----------------------------------------------|
-| callback | AsyncCallback<void\> | 是       | 回调函数，用于获取结果。                    |
+| 名称     | 类型                 | 必填 | 说明                     |
+| -------- | -------------------- | ---- | ------------------------ |
+| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。 |
 
 **示例：**
 
@@ -2329,10 +2143,10 @@ capture(setting: PhotoCaptureSetting, callback: AsyncCallback<void\>): void
 
 **参数：**
 
-| 名称      | 类型                 | 必填       | 说明                                          |
-|----------|----------------------|-----------|----------------------------------------------|
-| setting  | [PhotoCaptureSetting](#photocapturesetting) | 是       | 拍照设置。                                     |
-| callback | AsyncCallback<void\> | 是       | 回调函数，用于获取结果。                     |
+| 名称     | 类型                                        | 必填 | 说明                     |
+| -------- | ------------------------------------------- | ---- | ------------------------ |
+| setting  | [PhotoCaptureSetting](#photocapturesetting) | 是   | 拍照设置。               |
+| callback | AsyncCallback<void\>                        | 是   | 回调函数，用于获取结果。 |
 
 **示例：**
 
@@ -2356,15 +2170,15 @@ capture(setting?: PhotoCaptureSetting): Promise<void\>
 
 **参数：**
 
-| 名称      | 类型                 | 必填      | 说明                                          |
-|----------|---------------------|-----------|----------------------------------------------|
-| setting  | [PhotoCaptureSetting](#photocapturesetting) | 否   | 拍照设置。 |
+| 名称    | 类型                                        | 必填 | 说明       |
+| ------- | ------------------------------------------- | ---- | ---------- |
+| setting | [PhotoCaptureSetting](#photocapturesetting) | 否   | 拍照设置。 |
 
 **返回值：**
 
-| 类型            | 说明                                         |
-|----------------|---------------------------------------------|
-| Promise<void\> | 使用Promise的方式获取结果。                     |
+| 类型           | 说明                        |
+| -------------- | --------------------------- |
+| Promise<void\> | 使用Promise的方式获取结果。 |
 
 
 **示例：**
@@ -2385,9 +2199,9 @@ release(callback: AsyncCallback<void\>): void
 
 **参数：**
 
-| 名称      | 类型                 | 必填       | 说明                                          |
-|----------|----------------------|-----------|----------------------------------------------|
-| callback | AsyncCallback<void\> | 是       | 回调函数，用于获取结果。                     |
+| 名称     | 类型                 | 必填 | 说明                     |
+| -------- | -------------------- | ---- | ------------------------ |
+| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。 |
 
 **示例：**
 
@@ -2411,9 +2225,9 @@ release(): Promise<void\>
 
 **返回值：**
 
-| 类型            | 说明                                         |
-|----------------|---------------------------------------------|
-| Promise<void\> | 使用Promise的方式获取结果。                     |
+| 类型           | 说明                        |
+| -------------- | --------------------------- |
+| Promise<void\> | 使用Promise的方式获取结果。 |
 
 
 **示例：**
@@ -2434,10 +2248,10 @@ on(type: 'captureStart', callback: AsyncCallback<number\>): void
 
 **参数：**
 
-| 名称     | 类型                   | 必填 | 说明                                     |
-| :------- | :--------------------- | :-------- | :-----------------------------------------------|
-| type     | string                 | 是       | 监听事件，固定为'captureStart'，即拍照启动事件。 |
-| callback | AsyncCallback<number\> | 是       | 使用callback的方式获取Capture ID。                 |
+| 名称     | 类型                   | 必填 | 说明                                             |
+| :------- | :--------------------- | :--- | :----------------------------------------------- |
+| type     | string                 | 是   | 监听事件，固定为'captureStart'，即拍照启动事件。 |
+| callback | AsyncCallback<number\> | 是   | 使用callback的方式获取Capture ID。               |
 
 **示例：**
 
@@ -2457,10 +2271,10 @@ on(type: 'frameShutter', callback: AsyncCallback<FrameShutterInfo\>): void
 
 **参数：**
 
-| 名称      | 类型                    | 必填      | 说明                                             |
-| :------- | :--------------------- | :-------- | :-----------------------------------------------|
-| type     | string                 | 是       | 监听事件，固定为'frameShutter'，即帧刷新事件。 |
-| callback | AsyncCallback<FrameShutterInfo\> | 是   | 回调函数，用于获取相关信息。                  |
+| 名称     | 类型                             | 必填 | 说明                                           |
+| :------- | :------------------------------- | :--- | :--------------------------------------------- |
+| type     | string                           | 是   | 监听事件，固定为'frameShutter'，即帧刷新事件。 |
+| callback | AsyncCallback<FrameShutterInfo\> | 是   | 回调函数，用于获取相关信息。                   |
 
 **示例：**
 
@@ -2481,10 +2295,10 @@ on(type: 'captureEnd', callback: AsyncCallback<CaptureEndInfo\>): void
 
 **参数：**
 
-| 名称     | 类型                   | 必填 | 说明                                     |
-| :------- | :--------------------- | :-------- | :-----------------------------------------------|
-| type     | string                 | 是       | 监听事件，固定为'captureEnd'，即拍照停止事件。 |
-| callback | AsyncCallback<CaptureEndInfo\> | 是    | 回调函数，用于获取相关信息。   |
+| 名称     | 类型                           | 必填 | 说明                                           |
+| :------- | :----------------------------- | :--- | :--------------------------------------------- |
+| type     | string                         | 是   | 监听事件，固定为'captureEnd'，即拍照停止事件。 |
+| callback | AsyncCallback<CaptureEndInfo\> | 是   | 回调函数，用于获取相关信息。                   |
 
 **示例：**
 
@@ -2505,10 +2319,10 @@ on(type: 'error', callback: ErrorCallback<PhotoOutputError\>): void
 
 **参数：**
 
-| 名称     | 类型                   | 必填 | 说明                                     |
-| :------- | :--------------------- | :-------- | :-----------------------------------------------|
-| type     | string                 | 是       | 监听事件，固定为'error'。    |
-| callback | ErrorCallback<PhotoOutputError\> | 是  | 回调函数，用于获取错误信息。 |
+| 名称     | 类型                             | 必填 | 说明                         |
+| :------- | :------------------------------- | :--- | :--------------------------- |
+| type     | string                           | 是   | 监听事件，固定为'error'。    |
+| callback | ErrorCallback<PhotoOutputError\> | 是   | 回调函数，用于获取错误信息。 |
 
 **示例：**
 
@@ -2528,10 +2342,10 @@ createVideoOutput(surfaceId: string, callback: AsyncCallback<VideoOutput\>): voi
 
 **参数：**
 
-| 名称        | 类型                           | 必填      | 说明                                                |
-|------------|-------------------------------|-----------|----------------------------------------------------|
-| surfaceId  | string                        | 是       | 从VideoRecorder获取的Surface ID。                   |
-| callback   | AsyncCallback<[VideoOutput](#videooutput)\> | 是       | 回调函数，用于获取VideoOutput实例。    |
+| 名称      | 类型                                        | 必填 | 说明                                |
+| --------- | ------------------------------------------- | ---- | ----------------------------------- |
+| surfaceId | string                                      | 是   | 从VideoRecorder获取的Surface ID。   |
+| callback  | AsyncCallback<[VideoOutput](#videooutput)\> | 是   | 回调函数，用于获取VideoOutput实例。 |
 
 **示例：**
 
@@ -2555,9 +2369,9 @@ createVideoOutput(surfaceId: string): Promise<VideoOutput\>
 
 **参数：**
 
-| 名称        | 类型            | 必填       | 说明                                                |
-|------------|-----------------|-----------|----------------------------------------------------|
-| surfaceId  | string          | 是       | 从VideoRecorder获取的Surface ID。                   |
+| 名称      | 类型   | 必填 | 说明                              |
+| --------- | ------ | ---- | --------------------------------- |
+| surfaceId | string | 是   | 从VideoRecorder获取的Surface ID。 |
 
 **返回值：**
 
@@ -2587,9 +2401,9 @@ start(callback: AsyncCallback<void\>): void
 
 **参数：**
 
-| 名称      | 类型                  | 必填      | 说明                                          |
-|----------|----------------------|-----------|----------------------------------------------|
-| callback | AsyncCallback<void\> | 是       | 回调函数，用于获取结果。                     |
+| 名称     | 类型                 | 必填 | 说明                     |
+| -------- | -------------------- | ---- | ------------------------ |
+| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。 |
 
 **示例：**
 
@@ -2613,9 +2427,9 @@ start(): Promise<void\>
 
 **返回值：**
 
-| 类型            | 说明                                         |
-|----------------|---------------------------------------------|
-| Promise<void\> | 使用Promise的方式获取结果。                     |
+| 类型           | 说明                        |
+| -------------- | --------------------------- |
+| Promise<void\> | 使用Promise的方式获取结果。 |
 
 
 **示例：**
@@ -2636,9 +2450,9 @@ stop(callback: AsyncCallback<void\>): void
 
 **参数：**
 
-| 名称      | 类型                 | 必填       | 说明                                          |
-|----------|----------------------|-----------|----------------------------------------------|
-| callback | AsyncCallback<void\> | 是       | 回调函数，用于获取结果。                     |
+| 名称     | 类型                 | 必填 | 说明                     |
+| -------- | -------------------- | ---- | ------------------------ |
+| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。 |
 
 **示例：**
 
@@ -2662,9 +2476,9 @@ stop(): Promise<void\>
 
 **返回值：**
 
-| 类型            | 说明                                         |
-|----------------|---------------------------------------------|
-| Promise<void\> | 使用Promise的方式获取结果。                     |
+| 类型           | 说明                        |
+| -------------- | --------------------------- |
+| Promise<void\> | 使用Promise的方式获取结果。 |
 
 **示例：**
 
@@ -2684,9 +2498,9 @@ release(callback: AsyncCallback<void\>): void
 
 **参数：**
 
-| 名称      | 类型                 | 必填       | 说明                                          |
-|----------|----------------------|-----------|----------------------------------------------|
-| callback | AsyncCallback<void\> | 是       | 回调函数，用于获取结果。                     |
+| 名称     | 类型                 | 必填 | 说明                     |
+| -------- | -------------------- | ---- | ------------------------ |
+| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。 |
 
 **示例：**
 
@@ -2710,9 +2524,9 @@ release(): Promise<void\>
 
 **返回值：**
 
-| 类型            | 说明                                         |
-|----------------|---------------------------------------------|
-| Promise<void\> | 使用Promise的方式获取结果。                     |
+| 类型           | 说明                        |
+| -------------- | --------------------------- |
+| Promise<void\> | 使用Promise的方式获取结果。 |
 
 
 **示例：**
@@ -2733,10 +2547,10 @@ on(type: 'frameStart', callback: AsyncCallback<void\>): void
 
 **参数：**
 
-| 名称      | 类型               | 必填      | 说明                                |
-| :------- | :---------------- | :-------- | :----------------------------------|
-| type     | string            | 是       | 监听事件，固定为'frameStart'，即视频帧开启事件。 |
-| callback | AsyncCallback<void\> | 是       | 回调函数，用于获取结果。           |
+| 名称     | 类型                 | 必填 | 说明                                             |
+| :------- | :------------------- | :--- | :----------------------------------------------- |
+| type     | string               | 是   | 监听事件，固定为'frameStart'，即视频帧开启事件。 |
+| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。                         |
 
 **示例：**
 
@@ -2756,10 +2570,10 @@ on(type: 'frameEnd', callback: AsyncCallback<void\>): void
 
 **参数：**
 
-| 名称      | 类型               | 必填      | 说明                                |
-| :------- | :---------------- | :-------- | :----------------------------------|
-| type     | string            | 是       | 监听事件，固定为'frameEnd'，即视频帧结束事件。 |
-| callback | AsyncCallback<void\> | 是       | 回调函数，用于获取结果。           |
+| 名称     | 类型                 | 必填 | 说明                                           |
+| :------- | :------------------- | :--- | :--------------------------------------------- |
+| type     | string               | 是   | 监听事件，固定为'frameEnd'，即视频帧结束事件。 |
+| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。                       |
 
 **示例：**
 
@@ -2779,10 +2593,10 @@ on(type: 'error', callback: ErrorCallback<VideoOutputError\>): void
 
 **参数：**
 
-| 名称      | 类型                    | 必填      | 说明                                             |
-| :------- | :--------------------- | :-------- | :-----------------------------------------------|
-| type     | string                 | 是       | 监听事件，固定为'error'。                      |
-| callback | Callback<VideoOutputError\> | 是  | 回调函数，用于获取错误信息。 |
+| 名称     | 类型                        | 必填 | 说明                         |
+| :------- | :-------------------------- | :--- | :--------------------------- |
+| type     | string                      | 是   | 监听事件，固定为'error'。    |
+| callback | Callback<VideoOutputError\> | 是   | 回调函数，用于获取错误信息。 |
 
 **示例：**
 

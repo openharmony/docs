@@ -319,7 +319,7 @@ let result = hashMap.replace("sdfs", 357);
 
 ### forEach
 
-forEach(callbackfn: (value: V, key?: K, map?: HashMap<K, V>) => void, thisArg?: Object): void
+forEach(callbackfn: (value?: V, key?: K, map?: HashMap<K, V>) => void, thisArg?: Object): void
 
 通过回调函数来遍历HashMap实例对象上的元素以及元素对应的下标。
 

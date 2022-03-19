@@ -1,11 +1,9 @@
-媒体库管理
-==========
+# 媒体库管理
+
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 该组件从API Version 6开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
- 导入模块
----------
-
+## 导入模块
 ```
 import mediaLibrary from '@ohos.multimedia.medialibrary';
 ```
@@ -20,14 +18,14 @@ getMediaLibrary(context: Context): MediaLibrary
 
 **参数：** 
 
-| 参数名  | 类型    | 必填 | 说明                 |
-| ------- | ------- | ---- | -------------------- |
-| context | Context | 是 | API7以下接口可不传此参数，API 8以上接口此参数是必填参数，传入Ability实例的context，获取媒体库 |
+| 参数名  | 类型    | 必填 | 说明                                                         |
+| ------- | ------- | ---- | ------------------------------------------------------------ |
+| context | Context | 是   | API7以下接口可不传此参数，API 8以上接口此参数是必填参数，传入Ability实例的context，获取媒体库 |
 
 **返回值：**
 
-| 类型         | 说明   |
-| ------------ | :----- |
+| 类型                          | 说明       |
+| ----------------------------- | :--------- |
 | [MediaLibrary](#medialibrary) | 媒体库实例 |
 
 **示例：**
@@ -96,8 +94,8 @@ getFileAssets(options: MediaFetchOptions): Promise&lt;FetchFileResult&gt;
 
 **返回值**
 
-| 类型                          | 说明           |
-| ----------------------------- | -------------- |
+| 类型                                 | 说明           |
+| ------------------------------------ | -------------- |
 | [FetchFileResult](#fetchfileresult8) | 文件数据结果集 |
 
 **示例：**
@@ -126,10 +124,10 @@ on(type: 'deviceChange'|'albumChange'|'imageChange'|'audioChange'|'videoChange'|
 
 **参数：**
 
-| 参数名   | 类型                | 必填 | 说明                   |
-| -------- | ---------------- | ---- | ------------------- |
-| type  | string   | 是   | 媒体类型 <br/>'deviceChange'：&nbsp;注册设备变更 <br/>'albumChange'：&nbsp;相册变更<br/>'imageChange'：&nbsp;图片文件变更<br/>'audioChange'： &nbsp;音频文件变更<br/>'videoChange'：  &nbsp;视频文件变更<br/>'fileChange'：     &nbsp;文件变更<br/>'remoteFileChange'：&nbsp;注册设备上文件变更 |
-| callback | callback&lt;void&gt; | 是   | 回调返回空 |
+| 参数名   | 类型                 | 必填 | 说明                                                         |
+| -------- | -------------------- | ---- | ------------------------------------------------------------ |
+| type     | string               | 是   | 媒体类型 <br/>'deviceChange'：&nbsp;注册设备变更 <br/>'albumChange'：&nbsp;相册变更<br/>'imageChange'：&nbsp;图片文件变更<br/>'audioChange'： &nbsp;音频文件变更<br/>'videoChange'：  &nbsp;视频文件变更<br/>'fileChange'：     &nbsp;文件变更<br/>'remoteFileChange'：&nbsp;注册设备上文件变更 |
+| callback | callback&lt;void&gt; | 是   | 回调返回空                                                   |
 
 **示例：**
 
@@ -148,10 +146,10 @@ off(type: 'deviceChange'|'albumChange'|'imageChange'|'audioChange'|'videoChange'
 
 **参数：**
 
-| 参数名   | 类型                | 必填 | 说明                   |
-| -------- | ---------------- | ---- | ------------------- |
-| type  | string | 是   | 媒体类型 <br/>'deviceChange'：&nbsp;注册设备变更 <br/>'albumChange'：&nbsp;相册变更<br/>'imageChange'：&nbsp;图片文件变更<br/>'audioChange'： &nbsp;音频文件变更<br/>'videoChange'：  &nbsp;视频文件变更<br/>'fileChange'：     &nbsp;文件变更<br/>'remoteFileChange'：&nbsp;注册设备上文件变更         |
-| callback | callback&lt;void&gt; | 否   | 回调返回空 |
+| 参数名   | 类型                 | 必填 | 说明                                                         |
+| -------- | -------------------- | ---- | ------------------------------------------------------------ |
+| type     | string               | 是   | 媒体类型 <br/>'deviceChange'：&nbsp;注册设备变更 <br/>'albumChange'：&nbsp;相册变更<br/>'imageChange'：&nbsp;图片文件变更<br/>'audioChange'： &nbsp;音频文件变更<br/>'videoChange'：  &nbsp;视频文件变更<br/>'fileChange'：     &nbsp;文件变更<br/>'remoteFileChange'：&nbsp;注册设备上文件变更 |
+| callback | callback&lt;void&gt; | 否   | 回调返回空                                                   |
 
 **示例：**
 
@@ -248,10 +246,10 @@ getPublicDirectory(type: DirectoryType, callback: AsyncCallback&lt;string&gt;): 
 
 **参数：**
 
-| 参数名 | 类型                            | 必填 | 说明         |
-| ------ | ------------------------------- | ---- | ------------ |
-| type   | [DirectoryType](#directorytype) | 是   | 公共目录类型 |
-| callback   |AsyncCallback&lt;string&gt; | 是   | callback 返回公共目录路径 |
+| 参数名   | 类型                            | 必填 | 说明                      |
+| -------- | ------------------------------- | ---- | ------------------------- |
+| type     | [DirectoryType](#directorytype) | 是   | 公共目录类型              |
+| callback | AsyncCallback&lt;string&gt;     | 是   | callback 返回公共目录路径 |
 
 **示例：**
 
@@ -382,8 +380,8 @@ release(callback: AsyncCallback&lt;void&gt;): void
 
 **参数：**
 
-| 参数名   | 类型                   | 必填 | 说明                   |
-| -------- | ------------------- | ---- | ---------------------- |
+| 参数名   | 类型                      | 必填 | 说明                 |
+| -------- | ------------------------- | ---- | -------------------- |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调表示成功还是失败 |
 
 **示例：**
@@ -406,8 +404,8 @@ release(): Promise&lt;void&gt;
 
 **返回值：**
 
-| 类型          | 说明                                |
-| ------------- | ----------------------------------- |
+| 类型                | 说明                              |
+| ------------------- | --------------------------------- |
 | Promise&lt;void&gt; | Promise实例，用于获取异步返回结果 |
 
 **示例：**
@@ -417,11 +415,282 @@ var media = mediaLibrary.getMediaLibrary(context);
 media.release()
 ```
 
+### storeMediaAsset
+
+storeMediaAsset(option: MediaAssetOption, callback: AsyncCallback&lt;string&gt;): void
+
+保存媒体资源，以异步方法获取保存成功的URI，使用callback形式返回结果。
+
+本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
+
+**系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填 | 说明                                        |
+| -------- | ------------------------------------- | ---- | ------------------------------------------- |
+| option   | [MediaAssetOption](#mediaassetoption) | 是   | 媒体资源选项。                              |
+| callback | AsyncCallback&lt;string&gt;           | 是   | 媒体资源保存回调，返回保存成功后得到的URI。 |
+
+**示例：**
+
+  ```
+let option = {
+    src : "file:///data/data/ohos.xxx.yyy/files/image.png",
+    mimeType : "image/jpeg",
+    relativePath : "imageDir/image2/"
+};
+mediaLibrary.getMediaLibrary().storeMediaAsset(option, (err, value) => {
+    if (err) {
+        console.log("An error occurred when storing media resources.");
+        return;
+    }
+    console.log("Media resources stored. ");
+    // Obtain the URI that stores media resources.
+});
+  ```
+
+
+### storeMediaAsset
+
+storeMediaAsset(option: MediaAssetOption): Promise&lt;string&gt;
+
+保存媒体资源，以异步方法获取保存成功的URI，使用Promise形式返回结果。
+
+本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
+
+**系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
+
+**参数：**
+
+| 参数名 | 类型                                  | 必填 | 说明           |
+| ------ | ------------------------------------- | ---- | -------------- |
+| option | [MediaAssetOption](#mediaassetoption) | 是   | 媒体资源选项。 |
+
+**返回值：**
+
+| 类型                  | 说明                                           |
+| --------------------- | ---------------------------------------------- |
+| Promise&lt;string&gt; | Promise实例，用于异步获取保存成功后得到的URI。 |
+
+**示例：**
+
+  ```
+let option = {
+    src : "file:///data/data/ohos.xxx.yyy/files/image.jpg",
+    mimeType : "image/jpeg",
+    relativePath : "imageDir/image2/"
+};
+mediaLibrary.getMediaLibrary().storeMediaAsset(option).then((value) => {
+    console.log("Media resources stored.");
+    // Obtain the URI that stores media resources.
+}).catch((err) => {
+    console.log("An error occurred when storing media resources.");
+});
+  ```
+
+
+### startImagePreview
+
+startImagePreview(images: Array&lt;string&gt;, index: number, callback: AsyncCallback&lt;void&gt;): void
+
+启动图片预览界面并限定预览开始显示的图片。可以预览指定序号的单张本地图片（dataability://），也可以预览列表中的所有网络图片（https://）。使用callback方式进行异步回调。
+
+本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
+
+**系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明                                                |
+| -------- | ------------------------- | ---- | --------------------------------------------------- |
+| images   | Array&lt;string&gt;       | 是   | 预览的图片URI（"https://"，"dataability://"）列表。 |
+| index    | number                    | 是   | 开始显示的图片序号。                                |
+| callback | AsyncCallback&lt;void&gt; | 是   | 图片预览回调，失败时返回错误信息。                  |
+
+**示例：**
+
+  ```
+let images = [
+    "dataability:///media/external/images/media/50",
+    "dataability:///media/external/images/media/55"
+];
+let images = [
+    "https://media.xxxx.com/image1.jpg",
+    "https://media.xxxx.com/image2.jpg"
+];
+let index = 1;
+mediaLibrary.getMediaLibrary().startImagePreview(images, index, (err) => {
+    if (err) {
+        console.log("An error occurred when previewing the images.");
+        return;
+    }
+    console.log("Succeeded in previewing the images.");
+});
+  ```
+
+
+### startImagePreview
+
+startImagePreview(images: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
+
+启动图片预览界面，可以预览列表中首张本地图片（dataability://），也可以预览列表中的所有网络图片（https://）。使用callback方式进行异步回调。
+
+本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
+
+**系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明                                                |
+| -------- | ------------------------- | ---- | --------------------------------------------------- |
+| images   | Array&lt;string&gt;       | 是   | 预览的图片URI（"https://"，"dataability://"）列表。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 图片预览回调，失败时返回错误信息。                  |
+
+**示例：**
+
+  ```
+let images = [
+    "dataability:///media/external/images/media/50",
+    "dataability:///media/external/images/media/55"
+];
+let images = [
+    "https://media.xxxx.com/image1.jpg",
+    "https://media.xxxx.com/image2.jpg"
+];
+mediaLibrary.getMediaLibrary().startImagePreview(images, (err) => {
+    if (err) {
+        console.log("An error occurred when previewing the images.");
+        return;
+    }
+    console.log("Succeeded in previewing the images.");
+});
+  ```
+
+
+### startImagePreview
+
+startImagePreview(images: Array&lt;string&gt;, index?: number): Promise&lt;void&gt;
+
+启动图片预览界面并限定预览开始显示的图片。可以预览指定序号的单张本地图片（dataability://），也可以预览列表中的所有网络图片（https://）。使用Promise方式进行异步回调。
+
+本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
+
+**系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
+
+**参数：**
+
+| 参数名 | 类型                | 必填 | 说明                                                |
+| ------ | ------------------- | ---- | --------------------------------------------------- |
+| images | Array&lt;string&gt; | 是   | 预览的图片URI（"https://"，"dataability://"）列表。 |
+| index  | number              | 否   | 开始显示的图片序号，不选择时默认为0。               |
+
+**返回值：**
+
+| 类型                | 说明                                                    |
+| ------------------- | ------------------------------------------------------- |
+| Promise&lt;void&gt; | Promise实例，用于异步获取预览结果，失败时返回错误信息。 |
+
+**示例：**
+
+  ```
+let images = [
+    "dataability:///media/external/images/media/50",
+    "dataability:///media/external/images/media/55"
+];
+let images = [
+    "https://media.xxxx.com/image1.jpg",
+    "https://media.xxxx.com/image2.jpg"
+];
+let index = 1;
+mediaLibrary.getMediaLibrary().startImagePreview(images, index).then(() => {
+    console.log("Succeeded in previewing the images.");
+}).catch((err) => {
+    console.log("An error occurred when previewing the images.");
+});
+  ```
+
+
+### startMediaSelect
+
+startMediaSelect(option: MediaSelectOption, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
+
+启动媒体选择界面，以异步方法获取选择的媒体URI列表，使用callback形式返回结果。
+
+本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
+
+**系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
+
+**参数：**
+
+| 参数名   | 类型                                     | 必填 | 说明                                                    |
+| -------- | ---------------------------------------- | ---- | ------------------------------------------------------- |
+| option   | [MediaSelectOption](#mediaselectoption)  | 是   | 媒体选择选项。                                          |
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是   | 媒体选择回调，返回选择的媒体URI（dataability://）列表。 |
+
+**示例：**
+
+  ```
+let option = {
+    type : "image",
+    count : 2
+};
+mediaLibrary.getMediaLibrary().startMediaSelect(option, (err, value) => {
+    if (err) {
+        console.log("An error occurred when selecting media resources.");
+        return;
+    }
+    console.log("Media resources selected.");
+    // Obtain the media selection value.
+});
+  ```
+
+
+### startMediaSelect
+
+startMediaSelect(option: MediaSelectOption): Promise&lt;Array&lt;string&gt;&gt;
+
+启动媒体选择界面，以异步方法获取选择的媒体URI列表，使用Promise形式返回结果。
+
+本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
+
+**系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
+
+**参数：**
+
+| 参数名 | 类型                                    | 必填 | 说明           |
+| ------ | --------------------------------------- | ---- | -------------- |
+| option | [MediaSelectOption](#mediaselectoption) | 是   | 媒体选择选项。 |
+
+**返回值：**
+
+| 类型                               | 说明                                                         |
+| ---------------------------------- | ------------------------------------------------------------ |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise实例，用于异步获取选择的媒体URI（dataability://）列表。 |
+
+**示例：**
+
+  ```
+let option = {
+    type : "image",
+    count : 2
+};
+mediaLibrary.getMediaLibrary().startMediaSelect(option).then((value) => {
+    console.log("Media resources selected.");
+    // Obtain the media selection value.
+}).catch((err) => {
+    console.log("An error occurred when selecting media resources.");
+});
+
+  ```
+
 ## FileAsset<sup>8+</sup>
 
 提供封装文件属性的方法。
 
-### **属性**
+### 属性
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
 
 | 名称         | 类型                    | 可读 | 可写 | 说明                                                   |
 | ------------ | ----------------------- | ---- | ---- | ------------------------------------------------------ |
@@ -460,8 +729,8 @@ isDirectory(callback: AsyncCallback&lt;boolean&gt;): void
 
 **参数：**
 
-| 参数名   | 类型                   | 必填 | 说明                          |
-| -------- | ---------------------- | ---- | ----------------------------- |
+| 参数名   | 类型                         | 必填 | 说明                          |
+| -------- | ---------------------------- | ---- | ----------------------------- |
 | callback | AsyncCallback&lt;boolean&gt; | 是   | 当前FileAsset是否是目录的回调 |
 
 **示例：**
@@ -495,8 +764,8 @@ isDirectory():Promise&lt;boolean&gt;
 
 **返回值：**
 
-| 类型             | 说明                                       |
-| ---------------- | ------------------------------------------ |
+| 类型                   | 说明                                     |
+| ---------------------- | ---------------------------------------- |
 | Promise&lt;boolean&gt; | Promise实例，返回当前FileAsset是否是目录 |
 
 **示例：**
@@ -532,8 +801,8 @@ commitModify(callback: AsyncCallback&lt;void&gt;): void
 
 **参数：**
 
-| 参数名   | 类型                   | 必填 | 说明                 |
-| -------- | ---------------------- | ---- | -------------------- |
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调返回空 |
 
 **示例：**
@@ -568,8 +837,8 @@ commitModify(): Promise&lt;void&gt;
 
 **返回值：**
 
-| 类型          | 说明                          |
-| ------------- | ----------------------------- |
+| 类型                | 说明          |
+| ------------------- | ------------- |
 | Promise&lt;void&gt; | Promise返回空 |
 
 **示例：**
@@ -602,10 +871,10 @@ open(mode: string, callback: AsyncCallback&lt;number&gt;): void
 
 **参数**
 
-| 参数名   | 类型                   | 必填 | 说明                 |
-| -------- | ---------------------- | ---- | -------------------- |
-| mode     | string                 | 是   | 打开文件方式，如：'r'（只读）, 'w'（只写）, 'rw'（读写） |
-| callback | AsyncCallback&lt;number&gt; | 是   | 回调返回文件句柄 |
+| 参数名   | 类型                        | 必填 | 说明                                                     |
+| -------- | --------------------------- | ---- | -------------------------------------------------------- |
+| mode     | string                      | 是   | 打开文件方式，如：'r'（只读）, 'w'（只写）, 'rw'（读写） |
+| callback | AsyncCallback&lt;number&gt; | 是   | 回调返回文件句柄                                         |
 
 **示例：**
 
@@ -643,8 +912,8 @@ open(mode: string): Promise&lt;number&gt;
 
 **返回值：**
 
-| 类型          | 说明                          |
-| ------------- | ----------------------------- |
+| 类型                  | 说明                |
+| --------------------- | ------------------- |
 | Promise&lt;number&gt; | Promise返回文件句柄 |
 
 **示例：**
@@ -677,9 +946,9 @@ close(fd: number, callback: AsyncCallback&lt;void&gt;): void
 
 **参数：**
 
-| 参数名   | 类型                   | 必填 | 说明                 |
-| -------- | ---------------------- | ---- | -------------------- |
-| fd       | number                 | 是   | 文件描述符          |
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| fd       | number                    | 是   | 文件描述符 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调返回空 |
 
 **示例：**
@@ -724,8 +993,8 @@ close(fd: number): Promise&lt;void&gt;
 
 **返回值：**
 
-| 类型          | 说明                          |
-| ------------- | ----------------------------- |
+| 类型                | 说明          |
+| ------------------- | ------------- |
 | Promise&lt;void&gt; | Promise返回空 |
 
 **示例：**
@@ -765,8 +1034,8 @@ getThumbnail(callback: AsyncCallback&lt;image.PixelMap&gt;): void
 
 **参数：**
 
-| 参数名   | 类型                   | 必填 | 说明                 |
-| -------- | ---------------------- | ---- | -------------------- |
+| 参数名   | 类型                                | 必填 | 说明                     |
+| -------- | ----------------------------------- | ---- | ------------------------ |
 | callback | AsyncCallback&lt;image.PixelMap&gt; | 是   | 回调返回缩略图的PixelMap |
 
 **示例：**
@@ -800,9 +1069,9 @@ getThumbnail(size: Size, callback: AsyncCallback&lt;image.PixelMap&gt;): void
 
 **参数：**
 
-| 参数名   | 类型                   | 必填 | 说明                 |
-| -------- | ---------------------- | ---- | -------------------- |
-| size     | [Size](#size8)        | 是   | 缩略图尺寸          |
+| 参数名   | 类型                                | 必填 | 说明                     |
+| -------- | ----------------------------------- | ---- | ------------------------ |
+| size     | [Size](#size8)                      | 是   | 缩略图尺寸               |
 | callback | AsyncCallback&lt;image.PixelMap&gt; | 是   | 回调返回缩略图的PixelMap |
 
 **示例：**
@@ -842,8 +1111,8 @@ getThumbnail(size?: Size): Promise&lt;image.PixelMap&gt;
 
 **返回值：**
 
-| 类型          | 说明                          |
-| ------------- | ----------------------------- |
+| 类型                          | 说明                        |
+| ----------------------------- | --------------------------- |
 | Promise&lt;image.PixelMap&gt; | Promise返回缩略图的PixelMap |
 
 **示例：**
@@ -877,10 +1146,10 @@ favorite(isFavorite: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 **参数：**
 
-| 参数名     | 类型                | 必填 | 说明           |
-| ---------- | ------------------- | ---- | -------------- |
-| isFavorite | boolean             | 是   | 是否设置为收藏文件， true：设置为收藏文件，false：取消收藏 |
-| callback   | AsyncCallback&lt;void&gt; | 是   | 回调返回空    |
+| 参数名     | 类型                      | 必填 | 说明                                                       |
+| ---------- | ------------------------- | ---- | ---------------------------------------------------------- |
+| isFavorite | boolean                   | 是   | 是否设置为收藏文件， true：设置为收藏文件，false：取消收藏 |
+| callback   | AsyncCallback&lt;void&gt; | 是   | 回调返回空                                                 |
 
 **示例：**
 
@@ -919,8 +1188,8 @@ favorite(isFavorite: boolean): Promise&lt;void&gt;
 
 **返回值：**
 
-| 类型          | 说明                          |
-| ------------- | ----------------------------- |
+| 类型                | 说明          |
+| ------------------- | ------------- |
 | Promise&lt;void&gt; | Promise返回空 |
 
 **示例：**
@@ -956,8 +1225,8 @@ isFavorite(callback: AsyncCallback&lt;boolean&gt;): void
 
 **参数：**
 
-| 参数名   | 类型                   | 必填 | 说明                   |
-| -------- | ---------------------- | ---- | ---------------------- |
+| 参数名   | 类型                         | 必填 | 说明                   |
+| -------- | ---------------------------- | ---- | ---------------------- |
 | callback | AsyncCallback&lt;boolean&gt; | 是   | 回调表示是否为收藏文件 |
 
 **示例：**
@@ -995,8 +1264,8 @@ isFavorite():Promise&lt;boolean&gt;
 
 **返回值：**
 
-| 类型          | 说明                          |
-| ------------- | ----------------------------- |
+| 类型                   | 说明                          |
+| ---------------------- | ----------------------------- |
 | Promise&lt;boolean&gt; | Promise回调表示是否是收藏文件 |
 
 **示例：**
@@ -1034,10 +1303,10 @@ trash(isTrash: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 **参数：**
 
-| 参数名   | 类型                   | 必填 | 说明                 |
-| -------- | ---------------------- | ---- | -------------------- |
-| isTrash  | boolean                | 是   | 是否设置为垃圾文件    |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调返回空 |
+| 参数名   | 类型                      | 必填 | 说明               |
+| -------- | ------------------------- | ---- | ------------------ |
+| isTrash  | boolean                   | 是   | 是否设置为垃圾文件 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调返回空         |
 
 **示例：**
 
@@ -1079,8 +1348,8 @@ trash(isTrash: boolean): Promise&lt;void&gt;
 
 **返回值：**
 
-| 类型          | 说明                          |
-| ------------- | ----------------------------- |
+| 类型                | 说明          |
+| ------------------- | ------------- |
 | Promise&lt;void&gt; | Promise返回空 |
 
 **示例：**
@@ -1116,8 +1385,8 @@ isTrash(callback: AsyncCallback&lt;boolean&gt;): void
 
 **参数：**
 
-| 参数名   | 类型                   | 必填 | 说明                 |
-| -------- | ---------------------- | ---- | -------------------- |
+| 参数名   | 类型                         | 必填 | 说明                           |
+| -------- | ---------------------------- | ---- | ------------------------------ |
 | callback | AsyncCallback&lt;boolean&gt; | 是   | 回调返回表示文件是否为垃圾文件 |
 
 **示例：**
@@ -1160,8 +1429,8 @@ isTrash():Promise&lt;boolean&gt;
 
 **返回值：**
 
-| 类型          | 说明                          |
-| ------------- | ----------------------------- |
+| 类型                | 说明                              |
+| ------------------- | --------------------------------- |
 | Promise&lt;void&gt; | Promise回调表示文件是否为垃圾文件 |
 
 **示例：**
@@ -1331,9 +1600,9 @@ getFirstObject(): Promise&lt;FileAsset&gt;
 
 **返回值**：
 
-| 类型                | 说明                                   |
-| ------------------ | -------------------------------------- |
-| Promise&lt;[FileAsset](#fileasset8)&gt; | Promise方式返回FileAsset               |
+| 类型                                    | 说明                     |
+| --------------------------------------- | ------------------------ |
+| Promise&lt;[FileAsset](#fileasset8)&gt; | Promise方式返回FileAsset |
 
 **示例**：
 
@@ -1405,8 +1674,8 @@ async function example() {
 
 **返回值**：
 
-| 类型                             | 说明                |
-| -------------------------------- | ------------------- |
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
 | Promise&lt;[FileAsset](#fileasset8)&gt; | 返回FileAsset对象 |
 
 **示例**：
@@ -1473,8 +1742,8 @@ getLastObject(): Promise&lt;FileAsset&gt;
 
 **返回值**：
 
-| 类型                             | 说明                |
-| -------------------------------- | ------------------- |
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
 | Promise&lt;[FileAsset](#fileasset8)&gt; | 返回FileAsset对象 |
 
 **示例**：
@@ -1542,14 +1811,14 @@ getPositionObject(index: number): Promise&lt;FileAsset&gt;
 
 **参数**：
 
-| 参数  | 类型   | 必填 | 说明                 |
-| ----- | ------ | ---- | -------------------- |
+| 参数  | 类型   | 必填 | 说明                        |
+| ----- | ------ | ---- | --------------------------- |
 | index | number | 是   | 要获取的文件的索引，从0开始 |
 
 **返回值**：
 
-| 类型                             | 说明                |
-| -------------------------------- | ------------------- |
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
 | Promise&lt;[FileAsset](#fileasset8)&gt; | 返回FileAsset对象 |
 
 **示例**：
@@ -1648,6 +1917,8 @@ async function example() {
 
 ### **属性**
 
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
+
 | 名称         | 参数型 | 可读 | 可写 | 说明           |
 | ------------ | ------ | ---- | ---- | -------------- |
 | albumId      | number | 是   | 否   | 相册编号       |
@@ -1670,9 +1941,9 @@ commitModify(callback: AsyncCallback&lt;void&gt;): void
 
 **参数**：
 
-| 参数     | 类型                | 必填 | 说明                          |
-| -------- | ------------------- | ---- | ----------------------------- |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调返回空                  |
+| 参数     | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调返回空 |
 
 **示例**：
 
@@ -1707,8 +1978,8 @@ commitModify(): Promise&lt;void&gt;
 
 **返回值**：
 
-| 类型          | 说明                                                 |
-| ------------- | ---------------------------------------------------- |
+| 类型                | 说明              |
+| ------------------- | ----------------- |
 | Promise&lt;void&gt; | Promise调用返回空 |
 
 **示例**：
@@ -1742,9 +2013,9 @@ getFileAssets(options: MediaFetchOptions, callback: AsyncCallback&lt;FetchFileRe
 
 **参数**：
 
-| 参数     | 类型                                         | 必填 | 说明                              |
-| -------- | -------------------------------------------- | ---- | --------------------------------- |
-| options  | [MediaFetchOptions](#mediafetchoptions8)     | 是   | 媒体检索选项                      |
+| 参数     | 类型                                                | 必填 | 说明                              |
+| -------- | --------------------------------------------------- | ---- | --------------------------------- |
+| options  | [MediaFetchOptions](#mediafetchoptions8)            | 是   | 媒体检索选项                      |
 | callback | AsyncCallback<[FetchFileResult](#fetchfileresult8)> | 是   | 异步返回FetchFileResult之后的回调 |
 
 **示例**：
@@ -1808,6 +2079,8 @@ async function example() {
 
 注册设备的信息。
 
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
+
 | 名称       | 类型       | 可读 | 可写 | 说明             |
 | ---------- | ---------- | ---- | ---- | ---------------- |
 | deviceName | string     | 是   | 否   | 注册设备的名称   |
@@ -1822,6 +2095,8 @@ MediaType
 
 枚举，媒体类型。
 
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
+
 | 名称  | 默认值 | 描述 |
 | ----- | ------ | ---- |
 | FILE  | 0      | 文件 |
@@ -1833,6 +2108,8 @@ FileKey
 -------
 
 枚举，文件关键信息。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
 
 | 名称          | 默认值              | 描述                                                       |
 | ------------- | ------------------- | ---------------------------------------------------------- |
@@ -1861,6 +2138,8 @@ DirectoryType
 
 枚举，目录类型。
 
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
+
 | 名称          | 默认值 | 描述               |
 | ------------- | ------ | ------------------ |
 | DIR_CAMERA    | 0      | 表示Camera文件路径 |
@@ -1874,6 +2153,8 @@ DeviceType
 -----------
 
 枚举，设备类型。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
 
 | 名称         | 默认值 | 描述       |
 | ------------ | ------ | ---------- |
@@ -1889,14 +2170,16 @@ DeviceType
 
 检索条件。
 
-| 名称          | 类型          | 可读 | 可写 |  必填 |说明             |
-| ------------- | ------------- | ---- | ---- |  ---- |---------------- |
-| selections    | string        | 是   | 是   |是   | 检索条件，使用[FileKey](#filekey)中的枚举值作为检索条件的列名。示例：<br />selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ? OR' +mediaLibrary.FileKey.MEDIA_TYPE + '= ?‘, |
-| selectionArgs | Array&lt;string&gt; | 是   | 是   |是   | 检索条件的值，对应selections中检索条件列的值。<br />示例：<br />selectionArgs: [mediaLibrary.MediaType.IMAGE.toString(), mediaLibrary.MediaType.VIDEO.toString()], |
-| order         | string        | 是   | 是   | 否   |检索结果排序方式，使用[FileKey](#filekey)中的枚举值作为检索结果排序的列，可以用升序或降序排列。示例：<br />升序排列：order: mediaLibrary.FileKey.DATE_ADDED + " AESC"<br />降序排列：order: mediaLibrary.FileKey.DATE_ADDED + " DESC" |
-| uri           | string        | 是   | 是   | 否   |文件URI          |
-| networkId     | string        | 是   | 是   | 否   |注册设备网络ID   |
-| extendArgs    | string        | 是   | 是   | 否   |扩展的检索参数，目前没有扩展检索参数   |
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
+
+| 名称          | 类型                | 可读 | 可写 | 必填 | 说明                                                         |
+| ------------- | ------------------- | ---- | ---- | ---- | ------------------------------------------------------------ |
+| selections    | string              | 是   | 是   | 是   | 检索条件，使用[FileKey](#filekey)中的枚举值作为检索条件的列名。示例：<br />selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ? OR' +mediaLibrary.FileKey.MEDIA_TYPE + '= ?‘, |
+| selectionArgs | Array&lt;string&gt; | 是   | 是   | 是   | 检索条件的值，对应selections中检索条件列的值。<br />示例：<br />selectionArgs: [mediaLibrary.MediaType.IMAGE.toString(), mediaLibrary.MediaType.VIDEO.toString()], |
+| order         | string              | 是   | 是   | 否   | 检索结果排序方式，使用[FileKey](#filekey)中的枚举值作为检索结果排序的列，可以用升序或降序排列。示例：<br />升序排列：order: mediaLibrary.FileKey.DATE_ADDED + " AESC"<br />降序排列：order: mediaLibrary.FileKey.DATE_ADDED + " DESC" |
+| uri           | string              | 是   | 是   | 否   | 文件URI                                                      |
+| networkId     | string              | 是   | 是   | 否   | 注册设备网络ID                                               |
+| extendArgs    | string              | 是   | 是   | 否   | 扩展的检索参数，目前没有扩展检索参数                         |
 
 ## Size<sup>8+</sup>
 
@@ -1907,3 +2190,30 @@ DeviceType
 | width  | number | 是   | 是   | 宽（单位：像素） |
 | height | number | 是   | 是   | 高（单位：像素） |
 
+## MediaAssetOption
+
+媒体资源选项。
+
+本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
+
+
+| 名称         | 类型   | 必填 | 描述                                                         |
+| ------------ | ------ | ---- | ------------------------------------------------------------ |
+| src          | string | 是   | 媒体库数据的URI。                                            |
+| mimeType     | string | 是   | 媒体MIME（Multipurpose&nbsp;Internet&nbsp;Mail&nbsp;Extensions）类型。<br/>例：'image/\*'、'video/\*'等。 |
+| relativePath | string | 否   | 自定义媒体资源保存位置，不填则保存到默认路径。例：imageDir/image2/（媒体资源将保存位置为：default/imageDir/image2/）,default为默认保存路径。 |
+
+## MediaSelectOption
+
+媒体资源类型选项。
+
+本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
+
+| 名称  | 类型   | 必填 | 描述                           |
+| ----- | ------ | ---- | ------------------------------ |
+| type  | string | 是   | 媒体类型，包括：image，video。 |
+| count | number | 是   | 媒体选择最大数量。             |

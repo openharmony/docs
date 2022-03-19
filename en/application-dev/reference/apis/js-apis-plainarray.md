@@ -10,7 +10,7 @@
 import PlainArray from '@ohos.util.PlainArray'  
 ```
 
-## System Capabilities
+## System Capability
 
 SystemCapability.Utils.Lang
 
@@ -432,7 +432,7 @@ callbackfn
 | -------- | -------- | -------- | -------- |
 | value | T | Yes| Value of the entry that is currently traversed.|
 | key | number | Yes| Key of the entry that is currently traversed.|
-| plainArray | PlainArray<number, T> | No| Instance that invokes the **forEach** method.|
+| plainArray | PlainArray<number, T> | No| Instance that invokes the **forEach** API.|
 
 **Example**
 

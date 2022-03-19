@@ -25,7 +25,8 @@
     - [访问控制](js-apis-abilityAccessCtrl.md)
     - [通用密钥库系统](js-apis-huks.md)
 - 数据管理
-    - [轻量级存储](js-apis-data-preferences.md)
+    - [轻量级存储<sup>9+</sup>](js-apis-data-preferences.md)
+    - [轻量级存储](js-apis-data-storage.md)
     - [分布式数据管理](js-apis-distributed-data.md)
     - [关系型数据库](js-apis-data-rdb.md)
     - [结果集](js-apis-data-resultset.md)

@@ -262,7 +262,7 @@ var pres = process.getThreadPriority(tid);
 
 ## process.getStartRealtime<sup>8+</sup>
 
-getStartRealtime() :number
+getStartRealtime(): number
 
 获取从系统启动到进程启动所经过的实时时间（以毫秒为单位）。
 
@@ -280,7 +280,7 @@ var realtime = process.getStartRealtime();
 
 ## process.getPastCputime<sup>8+</sup>
 
-getPastCputime() :number
+getPastCputime(): number
 
 获取进程启动到当前时间的CPU时间（以毫秒为单位）。
 

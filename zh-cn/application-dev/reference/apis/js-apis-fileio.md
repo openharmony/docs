@@ -760,7 +760,7 @@ rmdir(path: string, callback:AsyncCallback&lt;void&gt;): void
   ```
 
 
-## fileio.rmdirSync
+## fileio.rmdirSync<sup>7+</sup>
 
 rmdirSync(path: string): void
 
