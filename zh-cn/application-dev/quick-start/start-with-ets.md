@@ -241,5 +241,5 @@
 2. 点击**File &gt;Project Structure** &gt; **Project &gt; Signing**界面勾选“**Automatically generate signing**”，等待自动签名完成即可，点击“**OK**”。如下图所示：
    ![zh-cn_image_0000001217365030](figures/zh-cn_image_0000001217365030.png)
 
-3. **在编辑窗口右上角的工具栏，点击** ![zh-cn_image_0000001262206247](figures/zh-cn_image_0000001262206247.png) **按钮运行。** 效果如下图所示：
+3. 在编辑窗口右上角的工具栏，点击![zh-cn_image_0000001262206247](figures/zh-cn_image_0000001262206247.png) 按钮运行。效果如下图所示：
    ![zh-cn_image_0000001217526428](figures/zh-cn_image_0000001217526428.png)
