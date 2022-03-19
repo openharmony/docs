@@ -10,11 +10,10 @@
 import process from '@ohos.process';
 ```
 
-## 系统能力
-
-SystemCapability.Utils.Lang
 
 ## 属性
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Utils.Lang。
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -35,6 +34,8 @@ SystemCapability.Utils.Lang
 
 ### 属性
 
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Utils.Lang。
+
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | pid | number | 是 | 否 | 子进程的pid。 |
@@ -48,6 +49,8 @@ SystemCapability.Utils.Lang
 wait(): Promise&lt;number&gt;
 
 等待子进程运行结束，返回promise对象，其值为子进程的退出码。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
 
@@ -72,6 +75,8 @@ getOutput(): Promise&lt;Uint8Array&gt;
 
 获取子进程的标准输出。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -93,7 +98,9 @@ child.getOutput.then(val=>{
 
 getErrorOutput(): Promise&lt;Uint8Array&gt;
 
-getErrorOutput函数用来获取子进程的标准错误输出。
+获取子进程的标准错误输出。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
 
@@ -118,6 +125,8 @@ close():  void
 
 关闭正在运行的子进程。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **示例：**
 
 ```
@@ -130,7 +139,9 @@ child.close();
 
 kill(signal: number | string): void
 
-kill函数用来发送信号给子进程，结束指定进程。
+用于发送信号给子进程，结束指定进程。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -152,6 +163,8 @@ isIsolatedProcess(): boolean
 
 判断进程是否被隔离。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -170,6 +183,8 @@ var result = process.isIsolatedProcess();
 isAppUid(v:number): boolean
 
 判断uid是否属于应用程序。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -196,6 +211,8 @@ is64Bit(): boolean
 
 判断运行环境是否64位。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -214,6 +231,8 @@ var ressult = process.is64Bit();
 getUidForName(v:string): number
 
 通过进程名获取进程uid。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -239,6 +258,8 @@ var pres = process.getUidForName("tool")
 getThreadPriority(v:number): number
 
 根据指定的tid获取线程优先级。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -266,6 +287,8 @@ getStartRealtime(): number
 
 获取从系统启动到进程启动所经过的实时时间（以毫秒为单位）。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -283,6 +306,8 @@ var realtime = process.getStartRealtime();
 getPastCputime(): number
 
 获取进程启动到当前时间的CPU时间（以毫秒为单位）。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
 
@@ -302,6 +327,8 @@ var result = process.getPastCputime() ;
 getSystemConfig(name:number): number
 
 获取系统配置信息。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -329,6 +356,8 @@ getEnvironmentVar(name:string): string
 
 用该方法获取环境变量对应的值。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -353,6 +382,8 @@ var pres = process.getEnvironmentVar("PATH")
 runCmd(command: string, options?: { timeout : number, killSignal ：number | string, maxBuffer : number }) : ChildProcess
 
 通过runcmd可以fork一个新的进程来运行一段shell，并返回ChildProcess对象。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -392,6 +423,8 @@ abort(): void
 
 该方法会导致进程立即退出并生成一个核心文件，谨慎使用。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **示例：**
 
 ```
@@ -403,7 +436,9 @@ process.abort();
 
 on(type: string, listener: EventListener): void
 
-用该方法来存储用户所触发的事件。
+存储用户所触发的事件。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -431,7 +466,9 @@ process.on("data", (e)=>{
 
 off(type: string): boolean
 
-用该方法来删除用户存储的事件。
+删除用户存储的事件。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -459,7 +496,11 @@ var result = process.off("data");
 
 exit(code: number): void
 
-用该方法终止程序，谨慎使用。
+终止程序。
+
+请谨慎使用此接口。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -480,6 +521,8 @@ cwd(): string
 
 用该方法获取进程的工作目录。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **示例：**
 
 ```
@@ -491,7 +534,9 @@ var path = process.cwd();
 
 chdir(dir: string): void
 
-用该方法更改进程的当前工作目录。
+更改进程的当前工作目录。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -512,6 +557,8 @@ uptime(): number
 
 获取当前系统已运行的秒数。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -529,7 +576,9 @@ var time = process.uptime();
 
 kill(pid: number，signal: number ): boolean
 
-用该方法发送signal到指定的进程，结束指定进程。
+发送signal到指定的进程，结束指定进程。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
