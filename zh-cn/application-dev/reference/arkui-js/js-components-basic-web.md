@@ -3,11 +3,8 @@
 >![](../../public_sys-resources/icon-note.gif) **说明：** 
 >   该组件从API version 6开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-## 权限列表
-ohos.permission.INTERNET
-
 ## 约束
-web组件不跟随转场动画。一个页面仅支持一个web组件。不支持预览。
+web组件不跟随转场动画。一个页面仅支持一个web组件。
 
 ## 子组件
 不支持。
