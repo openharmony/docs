@@ -46,7 +46,7 @@ sudo apt-get install build-essential gcc g++ make libffi-dev e2fsprogs pkg-confi
     source ~/.bashrc
     ```
 
-3.  执行"hb -h"，界面打印以下信息即表示安装成功：
+3.  在源码目录执行"hb -h"，界面打印以下信息即表示安装成功：
 
     ```
     usage: hb
