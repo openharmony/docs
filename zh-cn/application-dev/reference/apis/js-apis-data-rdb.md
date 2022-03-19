@@ -37,7 +37,7 @@ getRdbStore(context?: Context, config: StoreConfig, version: number, callback: A
       const SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)"
       data_rdb.getRdbStore(this.context, STORE_CONFIG, 1, function (err, rdbStore) {
           rdbStore.executeSql(SQL_CREATE_TABLE)
-          console.info(TAG + 'create table done.')
+          console.info('create table done.')
       })
   }
   ```
@@ -69,13 +69,16 @@ getRdbStore(context?: Context, config: StoreConfig, version: number): Promise&lt
   export default class MainAbility extends Ability {
       const STORE_CONFIG = { name: "RdbTest.db" }
       const SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)"
-      let promise = data_rdb.getRdbStore(this.context, STORE_CONFIG, 1);
-      promise.then(async (rdbStore) => {
-        let promiseExecSql = rdbStore.executeSql(SQL_CREATE_TABLE, null)
-        promiseExecSql.then(() => {
-          console.info(TAG + 'creat done.')})
+      let promisegetRdb = data_rdb.getRdbStore(this.context, STORE_CONFIG, 1);
+      promisegetRdb.then(async (rdbStore) => {
+          let promiseExecSql = rdbStore.executeSql(SQL_CREATE_TABLE, null)
+          promiseExecSql.then(() => {
+              console.info('executeSql creat done.')
+          }).catch((err) => {
+              console.log("executeSql creat err.")
+          })
       }).catch((err) => {
-          expect(null).assertFail();
+          console.log("getRdbStore err.")
       })
   }
   ```
@@ -101,7 +104,8 @@ deleteRdbStore(context?: Context, name: string, callback: AsyncCallback&lt;void&
   import data_rdb from '@ohos.data.rdb'
   export default class MainAbility extends Ability {
       data_rdb.deleteRdbStore(this.context, "RdbTest.db", function (err, rdbStore) {
-          console.info(TAG + 'delete store done.')})
+          console.info('delete store done.')
+      })
   }
   ```
 
@@ -129,9 +133,11 @@ deleteRdbStore(context?: Context, name: string): Promise&lt;void&gt;
   import Ability from '@ohos.application.Ability'
   import data_rdb from '@ohos.data.rdb'
   export default class MainAbility extends Ability {
-      let promise = data_rdb.deleteRdbStore(this.context, "RdbTest.db")
-      promise.then(()=>{
-          console.info(TAG + 'delete store done.')
+      let promisedeleteRdb = data_rdb.deleteRdbStore(this.context, "RdbTest.db")
+      promisedeleteRdb.then(()=>{
+          console.info('delete store done.')
+      }).catch((err) => {
+          console.log("deleteRdbStore err.")
       })
   }
   ```
@@ -780,13 +786,13 @@ distinct(): RdbPredicates
   ```
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.equalTo("NAME", "Rose").distinct("NAME")
-  let resultSet = await rdbStore.query(predicates, ["NAME"])
-
-  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-  predicates.equalTo("NAME", "Rose").distinct("NAME")
-  let promise= rdbStore.query(predicates, ["NAME"])
-  promise.then(() => {   
-      console.log(TAG + "distinct" )})
+  let promisequery = rdbStore.query(predicates, ["NAME"])
+  promisequery.then((resultSet) => {
+      console.log("resultSet column names:" + resultSet.columnNames)
+      console.log("resultSet column count:" + resultSet.columnCount)
+  }).catch((err) => {
+      console.log("query err.")
+  })
   ```
 
 
@@ -978,8 +984,8 @@ insert(name: string, values: ValuesBucket, callback: AsyncCallback&lt;number&gt;
       "CODES": new Uint8Array([1, 2, 3, 4, 5]),
   }
   rdbStore.insert("EMPLOYEE", valueBucket, function (err, ret) {
-      expect(1).assertEqual(ret)
-      console.log(TAG + "insert first done: " + ret)})
+      console.log("insert first done: " + ret)
+  })
   ```
 
 
@@ -1010,10 +1016,12 @@ insert(name: string, values: ValuesBucket):Promise&lt;number&gt;
       "SALARY": 100.5,
       "CODES": new Uint8Array([1, 2, 3, 4, 5]),
   }
-  let promise = rdbStore.insert("EMPLOYEE", valueBucket)
-  promise.then(async (ret) => {
-       console.log(TAG + "insert first done: " + ret)
-  }).catch((err) => {})
+  let promiseinsert = rdbStore.insert("EMPLOYEE", valueBucket)
+  promiseinsert.then(async (ret) => {
+      console.log("insert first done: " + ret)
+  }).catch((err) => {
+      console.log("insert err.")
+  })
   ```
 
 
@@ -1043,7 +1051,7 @@ update(values: ValuesBucket, rdbPredicates: RdbPredicates, callback: AsyncCallba
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.equalTo("NAME", "Lisa")
   rdbStore.update(valueBucket, predicates, function (err, ret) {
-      console.log(TAG + "updated row count: " + changedRows)})
+      console.log("updated row count: " + changedRows)})
   ```
 
 
@@ -1076,10 +1084,12 @@ update(values: ValuesBucket, rdbPredicates: RdbPredicates):Promise&lt;number&gt;
   }
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.equalTo("NAME", "Lisa")
-  let promise = rdbStore.update(valueBucket, predicates)
-  promise.then(async (ret) => {
-       console.log(TAG + "updated row count: " + changedRows)
-  }).catch((err) => {})
+  let promiseupdate = rdbStore.update(valueBucket, predicates)
+  promiseupdate.then(async (ret) => {
+       console.log("updated row count: " + changedRows)
+  }).catch((err) => {
+      console.log("update err.")
+  })
   ```
 
 
@@ -1103,7 +1113,8 @@ delete(rdbPredicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.equalTo("NAME", "Lisa")
   rdbStore.delete(predicates, function (err, rows) {
-      console.log(TAG + "delete rows: " + rows)})
+      console.log("delete rows: " + rows)
+  })
   ```
 
 
@@ -1127,12 +1138,14 @@ delete(rdbPredicates: RdbPredicates):Promise&lt;number&gt;
 
 - 示例：
   ```
-  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-  predicates.equalTo("NAME", "Lisa")
-  let promise = rdbStore.delete(predicates)
-  promise.then((rows) => {
-      console.log(TAG + "delete rows: " + rows)
-  }).catch((err) => {})
+  let predicatesdelete = new data_rdb.RdbPredicates("EMPLOYEE")
+  predicatesdelete.equalTo("NAME", "Lisa")
+  let promisedelete = rdbStore.delete(predicates)
+  promisedelete.then((rows) => {
+      console.log("delete rows: " + rows)
+  }).catch((err) => {
+      console.log("delete err.")
+  })
   ```
 
 
@@ -1156,8 +1169,9 @@ query(rdbPredicates: RdbPredicates, columns: Array&lt;string&gt;, callback: Asyn
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.equalTo("NAME", "Rose")
   rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"], function (err, resultSet) {
-      console.log(TAG + "resultSet column names:" + resultSet.columnNames)
-      console.log(TAG + "resultSet column count:" + resultSet.columnCount)})
+      console.log("resultSet column names:" + resultSet.columnNames)
+      console.log("resultSet column count:" + resultSet.columnCount)
+  })
   ```
 
 
@@ -1184,10 +1198,13 @@ query(rdbPredicates: RdbPredicates, columns?: Array&lt;string&gt;):Promise&lt;Re
   ```
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.equalTo("NAME", "Rose")
-  let promise = rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"])
-  promise.then((resultSet) => {
-      console.log(TAG + "resultSet column names:" + resultSet.columnNames)
-      console.log(TAG + "resultSet column count:" + resultSet.columnCount)})
+  let promisequery = rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"])
+  promisequery.then((resultSet) => {
+      console.log("resultSet column names:" + resultSet.columnNames)
+      console.log("resultSet column count:" + resultSet.columnCount)
+  }).catch((err) => {
+      console.log("query err.")
+  })
   ```
 
 
@@ -1209,8 +1226,9 @@ querySql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&
 - 示例：
   ```
   rdbStore.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = ?", ['sanguo'], function (err, resultSet) {
-      console.log(TAG + "resultSet column names:" + resultSet.columnNames)
-      console.log(TAG + "resultSet column count:" + resultSet.columnCount)})
+      console.log("resultSet column names:" + resultSet.columnNames)
+      console.log("resultSet column count:" + resultSet.columnCount)
+  })
   ```
 
 
@@ -1235,10 +1253,13 @@ querySql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;ResultSet&gt
 
 - 示例：
   ```
-  let promise = rdbStore.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = ?", ['sanguo'])
-  promise.then((resultSet) => {
-      console.log(TAG + "resultSet column names:" + resultSet.columnNames)
-      console.log(TAG + "resultSet column count:" + resultSet.columnCount)})
+  let promisequerySql = rdbStore.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = ?", ['sanguo'])
+  promisequerySql.then((resultSet) => {
+      console.log("resultSet column names:" + resultSet.columnNames)
+      console.log("resultSet column count:" + resultSet.columnCount)
+  }).catch((err) => {
+      console.log("querySql err.")
+  })
   ```
 
 
@@ -1260,7 +1281,8 @@ executeSql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallbac
 - 示例：
   ```
   rdbStore.executeSql("DELETE FROM EMPLOYEE", null, function () {
-      console.info(TAG + 'delete done.')})
+      console.info('delete done.')
+  })
   ```
 
 
@@ -1285,9 +1307,12 @@ executeSql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;void&gt;
 
 - 示例：
   ```
-  let promise = rdbStore.executeSql("DELETE FROM EMPLOYEE")
-  promise.then(() => {
-      console.info(TAG + 'delete done.')})
+  let promiseexecuteSql = rdbStore.executeSql("DELETE FROM EMPLOYEE")
+  promiseexecuteSql.then(() => {
+      console.info('delete done.')
+  }).catch((err) => {
+      console.log("executeSql err.")
+  })
   ```
 
 ### beginTransaction<sup>8+</sup>
@@ -1308,8 +1333,8 @@ beginTransaction():void
       "blobType": new Uint8Array([1, 2, 3]),
   }
   rdbStore.insert("test", valueBucket, function (err, ret) {
-      expect(1).assertEqual(ret)
-      console.log(TAG + "insert done: " + ret)})
+      console.log("insert done: " + ret)
+  })
   rdbStore.commit()
 ```
 
@@ -1333,8 +1358,8 @@ commit():void
   }
 
   rdbStore.insert("test", valueBucket, function (err, ret) {
-      expect(1).assertEqual(ret)
-      console.log(TAG + "insert done: " + ret)})
+      console.log("insert done: " + ret)
+  })
   rdbStore.commit()
 ```
 
@@ -1358,10 +1383,10 @@ rollBack():void;
           "salary": 100.5,
           "blobType": new Uint8Array([1, 2, 3]),
       }
-    rdbStore.insert("test", valueBucket, function (err, ret) {
-    expect(1).assertEqual(ret)
-    console.log(TAG + "insert done: " + ret)})
-    rdbStore.commit()
+      rdbStore.insert("test", valueBucket, function (err, ret) {
+          console.log("insert done: " + ret)
+      })
+      rdbStore.commit()
   } catch (e) {
       rdbStore.rollBack()
   }
@@ -1414,11 +1439,11 @@ setDistributedTables(tables: Array&lt;string&gt;, callback: AsyncCallback&lt;voi
 
 - 示例：
   ```
-  let promise = rdbStore.setDistributedTables(["EMPLOYEE"])
-  promise.then(() => {
+  let promiseset = rdbStore.setDistributedTables(["EMPLOYEE"])
+  promiseset.then(() => {
       console.info("setDistributedTables success.")
   }).catch((err) => {
-      console.info("setDistributedTables failed."")
+      console.info("setDistributedTables failed.")
   })
   ```
 
@@ -1470,8 +1495,8 @@ obtainDistributedTableName(device: string, table: string, callback: AsyncCallbac
 
 - 示例：
   ```
-  let promise = rdbStore.obtainDistributedTableName(deviceId, "EMPLOYEE")
-  promise.then((tableName) => {
+  let promiseDistr = rdbStore.obtainDistributedTableName(deviceId, "EMPLOYEE")
+  promiseDistr.then((tableName) => {
       console.info('obtainDistributedTableName success, tableName=' + tableName)
   }).catch((err) => {
       console.info('obtainDistributedTableName failed.')
@@ -1531,17 +1556,17 @@ sync(mode: SyncMode, predicates: RdbPredicates, callback: AsyncCallback&lt;Array
 
 - 示例：
   ```
-  let predicate = new rdb.RdbPredicates('EMPLOYEE')
-  predicate.inDevices(['12345678abcde'])
-  let promise = rdbStore.sync(rdb.SyncMode.SYNC_MODE_PUSH, predicate)
-  promise.then(result) {
+  let predicatesync = new rdb.RdbPredicates('EMPLOYEE')
+  predicatesync.inDevices(['12345678abcde'])
+  let promisesync = rdbStore.sync(rdb.SyncMode.SYNC_MODE_PUSH, predicatesync)
+  promisesync.then((result) {
       console.log('sync done.')
       for (let i = 0; i < result.length; i++) {
           console.log('device=' + result[i][0] + ' status=' + result[i][1])
       }
-   }).catch((err) => {
-       console.log('sync failed')
-   })
+  }).catch((err) => {
+      console.log('sync failed')
+  })
   ```
 
 ### on
@@ -1563,13 +1588,13 @@ on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
   function storeObserver(devices) {
       for (let i = 0; i < devices.length; i++) {
           console.log('device=' + device[i] + ' data changed')
-       }
-   }
-   try {
-       rdbStore.on('dataChange', rdb.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver)
-   } catch (err) {
-       console.log('register observer failed')
-   }
+      }
+  }
+  try {
+      rdbStore.on('dataChange', rdb.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver)
+  } catch (err) {
+      console.log('register observer failed')
+  }
   ```
 
 ### off

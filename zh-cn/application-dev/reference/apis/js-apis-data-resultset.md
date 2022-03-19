@@ -14,8 +14,8 @@ let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
 predicates.equalTo("AGE", 18)
 let promise = rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"])
 promise.then((resultSet) => {
-    await console.log(TAG + "resultSet columnNames:" + resultSet.columnNames);
-    await console.log(TAG + "resultSet columnCount:" + resultSet.columnCount);})
+    console.log(TAG + "resultSet columnNames:" + resultSet.columnNames);
+    console.log(TAG + "resultSet columnCount:" + resultSet.columnCount);})
 ```
 
 
@@ -118,11 +118,14 @@ goTo(offset:number): boolean
 
 - 示例：
   ```
-  let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
-  let resultSet = await rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"])
-  resultSet.goTo(1)
-  resultSet.close()
-  resultSet = null
+  let predicatesgoto = new dataRdb.RdbPredicates("EMPLOYEE")
+  let promisequerygoto = rdbStore.query(predicatesgoto, ["ID", "NAME", "AGE", "SALARY", "CODES"])
+  promisequerygoto.then((resultSet) {
+      resultSet.goTo(1)
+      resultSet.close()
+  }).catch((err) => {
+      console.log('query failed')
+  })
   ```
 
 
@@ -146,11 +149,14 @@ goToRow(position: number): boolean
 
 - 示例：
   ```
-  let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
-  let resultSet = await rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"])
-  resultSet.goToRow(1)
-  resultSet.close()
-  resultSet = null
+  let predicatesgotorow = new dataRdb.RdbPredicates("EMPLOYEE")
+  let promisequerygotorow = rdbStore.query(predicatesgotorow, ["ID", "NAME", "AGE", "SALARY", "CODES"])
+  promisequerygotorow.then((resultSet) {
+      resultSet.goToRow(5)
+      resultSet.close()
+  }).catch((err) => {
+      console.log('query failed')
+  })
   ```
 
 
@@ -170,11 +176,14 @@ goToFirstRow(): boolean
 
 - 示例：
   ```
-  let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
-  let resultSet = await rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"])
-  resultSet.goToFirstRow()
-  resultSet.close()
-  resultSet = null;
+  let predicatesgoFirst = new dataRdb.RdbPredicates("EMPLOYEE")
+  let promisequerygoFirst = rdbStore.query(predicatesgoFirst, ["ID", "NAME", "AGE", "SALARY", "CODES"])
+  promisequerygoFirst.then((resultSet) {
+      resultSet.goToFirstRow()
+      resultSet.close()
+  }).catch((err) => {
+      console.log('query failed')
+  })
   ```
 
 
@@ -193,11 +202,14 @@ goToLastRow(): boolean
 
 - 示例：
   ```
-  let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
-  let resultSet = await rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"])
-  resultSet.goToLastRow()
-  resultSet.close()
-  resultSet = null;
+  let predicatesgoLast = new dataRdb.RdbPredicates("EMPLOYEE")
+  let promisequerygoLast = rdbStore.query(predicatesgoLast, ["ID", "NAME", "AGE", "SALARY", "CODES"])
+  promisequerygoLast.then((resultSet) {
+      resultSet.goToLastRow()
+      resultSet.close()
+  }).catch((err) => {
+      console.log('query failed')
+  })
   ```
 
 
@@ -216,11 +228,14 @@ goToNextRow(): boolean
 
 - 示例：
   ```
-  let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
-  let resultSet = await rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"])
-  resultSet.goToNextRow()
-  resultSet.close()
-  resultSet = null;
+  let predicatesgoNext = new dataRdb.RdbPredicates("EMPLOYEE")
+  let promisequerygoNext = rdbStore.query(predicatesgoNext, ["ID", "NAME", "AGE", "SALARY", "CODES"])
+  promisequerygoNext.then((resultSet) {
+      resultSet.goToNextRow()
+      resultSet.close()
+  }).catch((err) => {
+      console.log('query failed')
+  })
   ```
 
 
@@ -239,11 +254,14 @@ goToPreviousRow(): boolean
 
 - 示例：
   ```
-  let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
-  let resultSet = await rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"])
-  resultSet.goToPreviousRow()
-  resultSet.close()
-  resultSet = null
+  let predicatesgoPrev = new dataRdb.RdbPredicates("EMPLOYEE")
+  let promisequerygoPrev = rdbStore.query(predicatesgoPrev, ["ID", "NAME", "AGE", "SALARY", "CODES"])
+  promisequerygoPrev.then((resultSet) {
+      resultSet.goToPreviousRow()
+      resultSet.close()
+  }).catch((err) => {
+      console.log('query failed')
+  })
   ```
 
 
@@ -377,8 +395,11 @@ close(): void
 
 - 示例：
   ```
-  let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
-  let resultSet = await rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"])
-  resultSet.close()
-  resultSet = null
+  let predicatesclose = new dataRdb.RdbPredicates("EMPLOYEE")
+  let predicatesclose = rdbStore.query(predicatesclose, ["ID", "NAME", "AGE", "SALARY", "CODES"])
+  promisequerygoPrev.then((resultSet) {
+      resultSet.close()
+  }).catch((err) => {
+      console.log('query failed')
+  })
   ```
