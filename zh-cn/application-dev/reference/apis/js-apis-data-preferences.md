@@ -15,10 +15,12 @@ import data_Preferences from '@ohos.data.preferences'
 
 ## 属性
 
+**系统能力**：以下各项对应的系统能力均为SystemCapability.DistributedDataManager.Preferences.Core
+
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| MAX_KEY_LENGTH | string | 是 | 否 | key的最大长度限制，大小为80字节。<br>**系统能力**：SystemCapability.DistributedDataManager.Preferences.Core |
-| MAX_VALUE_LENGTH | string | 是 | 否 | string类型value的最大长度限制，大小为8192字节。<br>**系统能力**：SystemCapability.DistributedDataManager.Preferences.Core |
+| MAX_KEY_LENGTH | string | 是 | 否 | key的最大长度限制，大小为80字节。 |
+| MAX_VALUE_LENGTH | string | 是 | 否 | string类型value的最大长度限制，大小为8192字节。 |
 
 
 ## data_Preferences.getPreferences
@@ -77,8 +79,8 @@ getPreferences(context: Context, name: string): Promise&lt;Preferences&gt;
   import Ability from '@ohos.application.Ability'
   import data_Preferences from '@ohos.data.preferences'
   var path = this.context.getDataBaseDir()
-  let promise = data_Preferences.getPreferences(this.context, 'mystore')
-  promise.then((preferences) => {
+  let promisePre = data_Preferences.getPreferences(this.context, 'mystore')
+  promisePre.then((preferences) => {
       preferences.putSync('startup', 'auto')
       preferences.flushSync()
   }).catch((err) => {
@@ -89,7 +91,7 @@ getPreferences(context: Context, name: string): Promise&lt;Preferences&gt;
 
 ## data_Preferences.deletePreferences
 
-deletePreferences(context: Context, name: string, callback: AsyncCallback&lt;void&gt;)
+deletePreferences(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void
 
 从内存中移除指定文件对应的Preferences单实例，并删除指定文件及其备份文件、损坏文件。删除指定文件时，应用不允许再使用该实例进行数据操作，否则会出现数据一致性问题，使用callback方式作为异步方法。
 
@@ -139,8 +141,8 @@ deletePreferences(context: Context, name: string): Promise&lt;void&gt;
   ```
   import Ability from '@ohos.application.Ability'
   import data_Preferences from '@ohos.data.preferences'
-  let promise = data_Preferences.deletePreferences(this.context, 'mystore')
-  promise.then(() => {
+  let promisedelPre = data_Preferences.deletePreferences(this.context, 'mystore')
+  promisedelPre.then(() => {
       console.info("Deleted successfully.")
   }).catch((err) => {
       console.info("Deleted failed with err: " + err)
@@ -150,7 +152,7 @@ deletePreferences(context: Context, name: string): Promise&lt;void&gt;
 
 ## data_Preferences.removePreferencesFromCache
 
-removePreferencesFromCache(context: Context, name: string, callback: AsyncCallback&lt;Preferences&gt;): void
+removePreferencesFromCache(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void
 
 从内存中移除指定文件对应的Preferences单实例。移除Preferences单实例时，应用不允许再使用该实例进行数据操作，否则会出现数据一致性问题。
 
@@ -163,7 +165,7 @@ removePreferencesFromCache(context: Context, name: string, callback: AsyncCallba
   | -------- | -------- | -------- | -------- |
   | context | Context | 是 | 应用程序或功能的上下文 |
   | name | string | 是 | 应用程序内部数据存储名称。 |
-  | callback | AsyncCallback&lt;[Preferences](#preferences)&gt; | 是 | 回调函数。 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
 
 - 示例：
   ```
@@ -204,8 +206,8 @@ removePreferencesFromCache(context: Context, name: string): Promise&lt;void&gt;
   ```
   import Ability from '@ohos.application.Ability'
   import data_Preferences from '@ohos.data.preferences'
-  let promise = data_Preferences.removePreferencesFromCache(this.context, 'mystore')
-  promise.then(() => {
+  let promiserevPre = data_Preferences.removePreferencesFromCache(this.context, 'mystore')
+  promiserevPre.then(() => {
       console.info("Removed preferences from cache successfully.")
   }).catch((err) => {
       console.info("Removed preferences from cache failed with err: " + err)
@@ -270,8 +272,8 @@ get(key: string, defValue: ValueType): Promise&lt;ValueType&gt;
 
 - 示例：
   ```
-  let promise = preferences.get('startup', 'default')
-  promise.then((value) => {
+  let promiseget = preferences.get('startup', 'default')
+  promiseget.then((value) => {
       console.info("The value of startup is " + value)
   }).catch((err) => {
       console.info("Get the value of startup failed with err: " + err)
@@ -331,8 +333,8 @@ put(key: string, value: ValueType): Promise&lt;void&gt;
 
 - 示例：
   ```
-  let promise = preferences.put('startup', 'auto')
-  promise.then(() => {
+  let promiseput = preferences.put('startup', 'auto')
+  promiseput.then(() => {
       console.info("Put the value of startup successfully.")
   }).catch((err) => {
       console.info("Put the value of startup failed with err: " + err)
@@ -397,8 +399,8 @@ has(key: string): Promise&lt;boolean&gt;
 
 - 示例：
   ```
-  let promise = preferences.has('startup')
-  promise.then((isExist) => {
+  let promisehas = preferences.has('startup')
+  promisehas.then((isExist) => {
       if (isExist) {
           console.info("The key of startup is contained.")
       }
@@ -458,8 +460,8 @@ delete(key: string): Promise&lt;void&gt;
 
 - 示例：
   ```
-  let promise = preferences.delete('startup')
-  promise.then(() => {
+  let promisedel = preferences.delete('startup')
+  promisedel.then(() => {
       console.info("Deleted startup key successfully.")
   }).catch((err) => {
       console.info("Delete startup key failed with err: " + err)
@@ -511,8 +513,8 @@ flush(): Promise&lt;void&gt;
 
 - 示例：
   ```
-  let promise = preferences.flush()
-  promise.then(() => {
+  let promiseflush = preferences.flush()
+  promiseflush.then(() => {
       console.info("Flushed to file successfully.")
   }).catch((err) => {
       console.info("Flush to file failed with err: " + err)
@@ -564,8 +566,8 @@ clear(): Promise&lt;void&gt;
 
 - 示例：
   ```
-  let promise = preferences.clear()
-  promise.then(() => {
+  let promiseclear = preferences.clear()
+  promiseclear.then(() => {
       console.info("Cleared to file successfully.")
   }).catch((err) => {
       console.info("Clear to file failed with err: " + err)
