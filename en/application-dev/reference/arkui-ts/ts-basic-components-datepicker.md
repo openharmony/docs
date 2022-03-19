@@ -13,7 +13,7 @@ The **&lt;DatePicker&gt;** component allows users to select date and time.
 None
 
 
-## Child Component
+## Child Components
 
 None
 
@@ -25,42 +25,42 @@ DatePicker(value:{start?: Date, end?: Date, selected?: Date, type?: DatePickerTy
 Creates a date picker that allows users to select a date or time within the specified range.
 
 - Parameters
-    | Name | Type | Mandatory | Default&nbsp;Value | Description |
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | start | Date | No | Date('1970-1-1') | Start&nbsp;date&nbsp;of&nbsp;the&nbsp;date&nbsp;picker. |
-  | end | Date | No | Date('2100-12-31') | End&nbsp;date&nbsp;of&nbsp;the&nbsp;date&nbsp;picker. |
-  | selected | Date | No | Current&nbsp;system&nbsp;date&nbsp;or&nbsp;time | Selected&nbsp;date&nbsp;when&nbsp;**type**&nbsp;is&nbsp;set&nbsp;to&nbsp;**DatePickerType.Date**&nbsp;and&nbsp;selected&nbsp;time&nbsp;when&nbsp;**type**&nbsp;is&nbsp;set&nbsp;to&nbsp;**DatePickerType.Time**. |
-  | type | DatePickerType | No | DatePickerType.Date | Picker&nbsp;type,&nbsp;which&nbsp;can&nbsp;be&nbsp;date&nbsp;picker&nbsp;and&nbsp;time&nbsp;picker.&nbsp;The&nbsp;date&nbsp;picker&nbsp;is&nbsp;used&nbsp;by&nbsp;default. |
+  | start | Date | No | Date('1970-1-1') | Start date of the date picker. |
+  | end | Date | No | Date('2100-12-31') | End date of the date picker. |
+  | selected | Date | No | Current system date or time | Selected date when **type** is set to **DatePickerType.Date** and selected time when **type** is set to **DatePickerType.Time**. |
+  | type | DatePickerType | No | DatePickerType.Date | Picker type, which can be date picker and time picker. The date picker is used by default. |
 
 - DatePickerType enums
     | Name | Description |
   | -------- | -------- |
-  | Date | Date&nbsp;picker. |
-  | Time | Time&nbsp;picker. |
+  | Date | Date picker. |
+  | Time | Time picker. |
 
 
 ## Attributes
 
-| Name | Type | Default&nbsp;Value | Description |
+| Name | Type | Default Value | Description |
 | -------- | -------- | -------- |-------- |
-| lunar | boolean | false | Whether&nbsp;to&nbsp;display&nbsp;the&nbsp;lunar&nbsp;calendar.<br/>-&nbsp;**true**:&nbsp;The&nbsp;lunar&nbsp;calendar&nbsp;is&nbsp;displayed.<br/>-&nbsp;**false**:&nbsp;The&nbsp;lunar&nbsp;calendar&nbsp;is&nbsp;not&nbsp;displayed. |
-| useMilitaryTime | boolean | false | Whether&nbsp;the&nbsp;display&nbsp;time&nbsp;is&nbsp;in&nbsp;24-hour&nbsp;format. The value cannot be dynamically modified. |
+| lunar | boolean | false | Whether to display the lunar calendar.<br/>- **true**: The lunar calendar is displayed.<br/>- **false**: The lunar calendar is not displayed. |
+| useMilitaryTime | boolean | false | Whether the display time is in 24-hour format. The value cannot be dynamically modified. |
 
 
 ## Events
 
 | Name | Description |
 | -------- | -------- |
-| onChange(callback:&nbsp;(value:&nbsp;DatePickerResult)&nbsp;=&gt;&nbsp;void) | This&nbsp;event&nbsp;is&nbsp;triggered&nbsp;when&nbsp;a&nbsp;date&nbsp;or&nbsp;time&nbsp;is&nbsp;selected. |
+| onChange(callback: (value: DatePickerResult) =&gt; void) | This event is triggered when a date or time is selected. |
 
-- DatePickerResult object description
+- DatePickerResult
     | Name | Type | Description |
   | -------- | -------- | -------- |
-  | year | number | Year&nbsp;of&nbsp;the&nbsp;selected&nbsp;date&nbsp;(when&nbsp;**type**&nbsp;is&nbsp;**DatePickerType.Date**). |
-  | month | number | Month&nbsp;of&nbsp;the&nbsp;selected&nbsp;date&nbsp;(when&nbsp;**type**&nbsp;is&nbsp;**DatePickerType.Date**). |
-  | day | number | Date&nbsp;of&nbsp;the&nbsp;selected&nbsp;date&nbsp;(when&nbsp;**type**&nbsp;is&nbsp;**DatePickerType.Date**). |
-  | hour | number | Hour&nbsp;portion&nbsp;of&nbsp;the&nbsp;selected&nbsp;time&nbsp;(when&nbsp;**type**&nbsp;is&nbsp;**DatePickerType.Time**). |
-  | minute | number | Minute&nbsp;portion&nbsp;of&nbsp;the&nbsp;selected&nbsp;time&nbsp;(when&nbsp;**type**&nbsp;is&nbsp;**DatePickerType.Time**). |
+  | year | number | Year of the selected date (when **type** is **DatePickerType.Date**). |
+  | month | number | Month of the selected date (when **type** is **DatePickerType.Date**). |
+  | day | number | Date of the selected date (when **type** is **DatePickerType.Date**). |
+  | hour | number | Hour portion of the selected time (when **type** is **DatePickerType.Time**). |
+  | minute | number | Minute portion of the selected time (when **type** is **DatePickerType.Time**). |
 
 
 ## Example
