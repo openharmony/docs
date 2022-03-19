@@ -466,9 +466,9 @@ await videoPlayer.play().then(() => {
 
 ```js
 <xcomponent id = 'Xcomponent'
-	  if = "{{isFlush}}" // 刷新surfaceID，isFlush赋值false再赋值true为一次刷新，会主动再次加载LoadXcomponet获取新的surfaceID
+      if = "{{isFlush}}" // 刷新surfaceID，isFlush赋值false再赋值true为一次刷新，会主动再次加载LoadXcomponent获取新的surfaceID
       type = 'surface'
-	  onload = 'LoadXcomponet' // 默认加载接口
-      style = "wodth:720px;height:480px;border-color:red;border-width:5px;"> // 设置窗口宽高等属性
+      onload = 'LoadXcomponent' // 默认加载接口
+      style = "width:720px;height:480px;border-color:red;border-width:5px;"> // 设置窗口宽高等属性
 </xcomponent>
 ```

@@ -1,23 +1,20 @@
-# AudioCapturer音频采集开发指南
+# 音频采集开发指导
 
 ## 场景介绍
 
 AudioCapturer提供了用于获取原始音频文件的方法。开发者可以通过本指导了解应用如何通过AudioCapturer采集音频。
 
-## 注意事项
+### 状态检查
 
 在进行应用开发的过程中，建议开发者通过on('stateChange')方法订阅AudioCapturer的状态变更。因为针对AudioCapturer的某些操作，仅在音频采集器在固定状态时才能执行。如果应用在音频采集器处于错误状态时执行操作，系统可能会抛出异常或生成其他未定义的行为。
 
-## 状态检查 
-
-应用程序开发人员应该记住，AudioCapturer 是基于状态的。<br/>也就是说，AudioCapturer 有一个内部状态，应用程序在调用录制器控制 API 时必须始终检查该状态，因为某些操作仅在录制器处于给定状态时才可接受。   
-如果应用程序在录制器处于不正确状态时执行操作，系统可能会抛出错误/异常或生成其他未定义的行为。
-
 ## 开发步骤
 
-1. 使用createAudioCapturer()创建一个AudioCapturer实例。<br/>在audioCapturerOptions中设置音频采集器的相关参数。该实例可用于音频采集、控制和获取采集状态，以及注册通知回调。 
+1. 使用createAudioCapturer()创建一个AudioCapturer实例。
 
-   ```
+   在audioCapturerOptions中设置音频采集器的相关参数。该实例可用于音频采集、控制和获取采集状态，以及注册通知回调。 
+
+   ```js
       var audioStreamInfo = {
            samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
            channels: audio.AudioChannel.CHANNEL_1,
@@ -39,10 +36,11 @@ AudioCapturer提供了用于获取原始音频文件的方法。开发者可以�
        var state = audioRenderer.state;
    ```
 
-2. 调用start()方法来启动/恢复采集任务。   
+2. 调用start()方法来启动/恢复采集任务。
+
    启动完成后，采集器状态将变更为STATE_RUNNING，然后应用可以开始读取缓冲区。
 
-   ```
+   ```js
    await audioCapturer.start();
    if (audioCapturer.state == audio.AudioState.STATE_RUNNING) {
        console.info('AudioRecLog: Capturer started');
@@ -53,15 +51,16 @@ AudioCapturer提供了用于获取原始音频文件的方法。开发者可以�
 
 3. 使用getBufferSize()方法获取要读取的最小缓冲区大小。
 
-   ```
+   ```js
    var bufferSize = await audioCapturer.getBufferSize();
    console.info('AudioRecLog: buffer size: ' + bufferSize);
    ```
 
 4. 读取采集器的音频数据并将其转换为字节流。重复调用read()方法读取数据，直到应用准备停止采集。   
+
    参考以下示例，将采集到的数据写入文件。 
 
-   ```
+   ```js
    import fileio from '@ohos.fileio';
       
    const path = '/data/data/.pulse_dir/capture_js.wav';
@@ -106,7 +105,7 @@ AudioCapturer提供了用于获取原始音频文件的方法。开发者可以�
 
 6. 任务结束，调用release()方法释放相关资源。
 
-   ```
+   ```js
    await audioCapturer.release();
    if (audioCapturer.state == audio.AudioState.STATE_RELEASED) {
        console.info('AudioRecLog: Capturer released');
