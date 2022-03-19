@@ -79,10 +79,10 @@ function printfDescription(obj) {
     }
 }
 
-//1、创建实例
+//1. 创建实例
 let audioPlayer = media.createAudioPlayer();
 SetCallBack(audioPlayer);                          //设置事件回调
-//2、用户选择音频，设置uri
+//2. 用户选择音频，设置uri
 let fdPath = 'fd://'
 let path = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp3';
 await fileIO.open(path).then(fdNumber) => {
@@ -95,15 +95,15 @@ await fileIO.open(path).then(fdNumber) => {
 });
 
 audioPlayer.src = fdPath;                         //设置src属性，并触发'dataLoad'事件回调
-//3、播放音频
+//3. 播放音频
 audioPlayer.play();                               //需等待'dataLoad'事件回调完成后，才可调用play进行播放，触发'play'事件回调
-//4、跳转播放位置
+//4. 跳转播放位置
 audioPlayer.seek(30000);                          //触发'timeUpdate'事件回调，seek到30000ms处播放
-//5、设置音量
+//5. 设置音量
 audioPlayer.setVolume(0.5);                       //触发'volumeChange'事件回调
-//6、暂停播放
+//6. 暂停播放
 audioPlayer.pause();                              //触发'pause'事件回调，暂停播放
-//7、获取轨道信息
+//7. 获取轨道信息
 audioPlayer.getTrackDescription((error, arrlist) => {  //通过回调方式获取音频轨道信息
     if (typeof (arrlist) != 'undefined') {
         for (let i = 0; i < arrlist.length; i++) {
@@ -113,11 +113,11 @@ audioPlayer.getTrackDescription((error, arrlist) => {  //通过回调方式获�
         console.log(`audio getTrackDescription fail, error:${error.message}`);
     }
 });
-//8、停止播放
+//8. 停止播放
 audioPlayer.stop();                              //触发'stop'事件回调
-//9、重置播放资源
+//9. 重置播放资源
 audioPlayer.reset();                             //触发'reset'事件回调后，重新设置src属性，可完成切歌
-//10、释放资源
+//10. 释放资源
 audioPlayer.release();                           //audioPlayer资源被销毁
 audioPlayer = undefined;
 ```
@@ -145,7 +145,7 @@ function SetCallBack(audioPlayer) {
 
 let audioPlayer = media.createAudioPlayer();       //创建一个音频播放实例
 SetCallBack(audioPlayer);                          //设置事件回调
-/* 用户选择视频设置fd(本地播放) */
+/* 用户选择音频设置fd(本地播放) */
 let fdPath = 'fd://'
 let path = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp3';
 await fileIO.open(path).then(fdNumber) => {
@@ -183,7 +183,7 @@ function SetCallBack(audioPlayer) {
 
 let audioPlayer = media.createAudioPlayer();       //创建一个音频播放实例
 SetCallBack(audioPlayer);                          //设置事件回调
-/* 用户选择视频设置fd(本地播放) */
+/* 用户选择音频设置fd(本地播放) */
 let fdPath = 'fd://'
 let path = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp3';
 await fileIO.open(path).then(fdNumber) => {
@@ -199,7 +199,7 @@ audioPlayer.src = fdPath;                           //设置src属性，并触�
 /* 播放一段时间后，下发切歌指令 */
 audioPlayer.reset();
 
-/* 用户选择视频设置fd(本地播放) */
+/* 用户选择音频设置fd(本地播放) */
 let fdNextPath = 'fd://'
 let nextPath = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp3';
 await fileIO.open(nextPath).then(fdNumber) => {
@@ -237,7 +237,7 @@ function SetCallBack(audioPlayer) {
 let audioPlayer = media.createAudioPlayer();       //创建一个音频播放实例
 SetCallBack(audioPlayer);                          //设置事件回调
 
-/* 用户选择视频设置fd(本地播放) */
+/* 用户选择音频设置fd(本地播放) */
 let fdPath = 'fd://'
 let path = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp3';
 await fileIO.open(path).then(fdNumber) => {
