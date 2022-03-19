@@ -15,7 +15,7 @@
 **表1** 分布式数据对象实例创建接口
 | 包名 | 接口名 | 描述 | 
 | -------- | -------- | -------- |
-| ohos.data.distributedDataObject| createDistributedObject(source: object): DistributedObject | 创建一个分布式数据对象实例，用于数据操作 | 
+| ohos.data.distributedDataObject| createDistributedObject(source: object): DistributedObject | 创建一个分布式数据对象实例，用于数据操作 <br>-&nbsp;source:设置distributedObject的属性。<br>-&nbsp;DistributedObject:返回值是创建好的分布式对象。| 
 
 ### 创建分布式数据对象sessionId
 
@@ -33,7 +33,7 @@
 **表3** 分布式数据对象sessionId设置接口
 | 类名 | 接口名 | 描述 |
 | -------- | -------- | -------- |
-| DistributedDataObject | setSessionId(sessionId?: string): boolean | 为分布式数据对象设置sessionId |
+| DistributedDataObject | setSessionId(sessionId?: string): boolean | 为分布式数据对象设置sessionId <br>-&nbsp;sessionId:分布式数据对象sessionId。|
 
 ### 订阅数据变更
 
@@ -43,7 +43,7 @@
 | 类名 | 接口名 | 描述 | 
 | -------- | -------- | -------- |
 | DistributedDataObject| on(type: 'change', callback: Callback<{ sessionId: string, fields: Array&lt;string&gt; }>): void | 订阅数据变更。 | 
-| DistributedDataObject| off(type: 'change', callback?: Callback<{ sessionId: string, fields: Array&lt;string&gt; }>): void | 注销订阅。 |
+| DistributedDataObject| off(type: 'change', callback?: Callback<{ sessionId: string, fields: Array&lt;string&gt; }>): void | 注销订阅。如果写了Callback为注销某个订阅，不写Callback为注销所有订阅 |
 
 ### 订阅数据对象上下线
 
@@ -83,12 +83,12 @@
    //发起方
    var local_object = distributedObject.createDistributedObject({name:"jack", age:18, isVis:true, 
        parent:{mother:"jack mom",father:"jack Dad"},[{mother:"jack mom"}, {father:"jack Dad"}]};
-   local_object.setsessionId(sessionId);
+   local_object.setSessionId(sessionId);
    
-   //被发起方
+   //被拉起方
    var remote_object = distributedObject.createDistributedObject({name:undefined, age:undefined, isVis:true, 
                   parent:undefined, list:undefined});
-   remote_object.setsessionId(sessionId);
+   remote_object.setSessionId(sessionId);
    //收到status上线后remote_object同步数据，即name变成jack,age是18
    ```
    
