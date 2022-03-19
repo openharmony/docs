@@ -1,0 +1,84 @@
+# Vibrator开发指导
+
+
+## 场景介绍
+
+当设备需要设置不同的振动效果时，可以调用Vibrator模块，例如：设备的按键可以设置不同强度和不同时长的振动，闹钟和来电可以设置不同强度和时长的单次或周期振动。
+
+
+## 接口说明
+
+  | 模块 | 接口名 | 描述 | 
+| -------- | -------- | -------- |
+| ohos.vibrator | vibrate(duration:&nbsp;number):&nbsp;Promise&lt;void&gt; | 触发马达按照时长振动，Promise型。 | 
+| ohos.vibrator | vibrate(duration:&nbsp;number,&nbsp;callback?:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | 触发马达按照时长振动，Callback型。 | 
+| ohos.vibrator | vibrate(effectId:&nbsp;EffectId):&nbsp;Promise&lt;void&gt; | 触发马达按照指定字符串振动，Promise型。 | 
+| ohos.vibrator | vibrate(effectId:&nbsp;EffectId,&nbsp;callback?:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | 触发马达按照指定字符串振动，Callback型。 | 
+| ohos.vibrator | stop(stopMode:&nbsp;VibratorStopMode):&nbsp;Promise&lt;void&gt; | 停止振动。 | 
+| ohos.vibrator | stop(stopMode:&nbsp;VibratorStopMode,&nbsp;callback?:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | 停止振动。 | 
+
+
+## 开发步骤
+
+1. 控制设备上的振动器，需要在“config.json”里面进行配置请求权限。具体如下：
+  
+   ```
+   ”reqPermissions“:[
+     {
+        "name":"ohos.permission.ACCELEROMETER",
+        "reason"":"", 
+        "usedScene":{
+         "ability""[
+           ".MainAbility"
+         ],
+         "when":"inuse"
+       }
+     },
+     {
+        "name":"ohos.permission.VIBRATE",
+        "reason"":"", 
+        "usedScene":{
+         "ability""[
+           ".MainAbility"
+         ],
+         "when":"inuse"
+       }
+     },
+     {
+        "name":"ohos.permission.ACTIVITY_MOTION",
+        "reason"":"", 
+        "usedScene":{
+         "ability""[
+           ".MainAbility"
+         ],
+         "when":"inuse"
+       }
+     },
+   ]
+   ```
+
+2. 触发设备振动。
+  
+   ```
+   import vibrator from "@ohos.vibrator"
+   vibrator.vibrate(duration: number).then((error)=>{
+       if(error){//调用失败，打印error.code和error.message
+          console.log("Promise return faild.error.code"+error.code+"error.message"+error.message);  
+       }else{//调用成功,设备开始振动
+          console.log("Promise returned to indicate a successful vibration.")  
+       };
+   })
+   ```
+
+3. 停止设备振动。
+  
+   ```
+   import vibrator from "@ohos.vibrator"
+   vibrator.stop(stopMode: VibratorStopMode).then((error)=>{
+      if(error){//调用失败，打印error.code和error.message
+          console.log(“Promise return faild.error.code”+error.code+“error.message”+error.message);
+      }else{//调用成功，设备停止振动
+          Console.log(“Promise returned to indicate successful.”);
+      };
+   })
+   ```
