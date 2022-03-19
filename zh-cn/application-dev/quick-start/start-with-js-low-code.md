@@ -26,7 +26,7 @@ OpenHarmony低代码开发方式，具有丰富的UI界面编辑功能，遵循[
 1. 打开**DevEco Studio**，点击**File** &gt; **New &gt; Create Project**，选择模板“**Empty Ability**”，点击**Next**进行下一步配置。
    ![zh-cn_image_0000001259949659](figures/zh-cn_image_0000001259949659.png)
 
-2. 进入配置工程界面，打开“**Super Visual Enable**”开关**，UI Syntax**选择“**JS**”，其他参数保持默认设置即可。
+2. 进入配置工程界面，打开“**Super Visual Enable**”开关， **UI Syntax** 选择“**JS**”，其他参数保持默认设置即可。
    ![zh-cn_image_0000001261786055](figures/zh-cn_image_0000001261786055.png)
 
 3. 点击**Finish**，工具会自动生成示例代码和相关资源，等待工程创建完成。
@@ -71,7 +71,7 @@ OpenHarmony低代码开发方式，具有丰富的UI界面编辑功能，遵循[
 
    ![zh-cn_image_0000001260928361](figures/zh-cn_image_0000001260928361.gif)
 
-5. **在编辑窗口右上角的侧边工具栏，点击Previewer，打开预览器。**第一个页面效果如下图所示：
+5. **在编辑窗口右上角的侧边工具栏，点击Previewer，打开预览器。** 第一个页面效果如下图所示：
    ![zh-cn_image_0000001216288558](figures/zh-cn_image_0000001216288558.png)
 
 
@@ -118,6 +118,7 @@ OpenHarmony低代码开发方式，具有丰富的UI界面编辑功能，遵循[
      ```
    
    - “**index.viusal**”： 打开index.visual，选中画布上的Button组件。点击右侧属性样式栏中的事件图标![zh-cn_image_0000001215388136](figures/zh-cn_image_0000001215388136.png)（Events），鼠标点击Click事件的输入框，选择onclick事件，如下所示：
+
      ![zh-cn_image_0000001261137889](figures/zh-cn_image_0000001261137889.png)
 
 2. **第二个页面返回到第一个页面。**
@@ -140,7 +141,7 @@ OpenHarmony低代码开发方式，具有丰富的UI界面编辑功能，遵循[
 
    ![zh-cn_image_0000001216618320](figures/zh-cn_image_0000001216618320.png)
 
-3. **打开index.visual或index.js文件，点击预览器中的**![zh-cn_image_0000001261979271](figures/zh-cn_image_0000001261979271.png)**按钮进行刷新。**效果如下图所示：
+3. **打开index.visual或index.js文件，点击预览器中的** ![zh-cn_image_0000001261979271](figures/zh-cn_image_0000001261979271.png) **按钮进行刷新。** 效果如下图所示：
    ![zh-cn_image_0000001261142799](figures/zh-cn_image_0000001261142799.png)
 
 
@@ -151,5 +152,6 @@ OpenHarmony低代码开发方式，具有丰富的UI界面编辑功能，遵循[
 2. 点击**File &gt;Project Structure** &gt; **Project &gt; Signing**界面勾选“**Automatically generate signing**”，等待自动签名完成即可，点击“**OK**”。如下图所示：
    ![zh-cn_image_0000001217527948](figures/zh-cn_image_0000001217527948.png)
 
-3. **在编辑窗口右上角的工具栏，点击**![zh-cn_image_0000001262207811](figures/zh-cn_image_0000001262207811.png)**按钮运行。**效果如下图所示：
+3. 在编辑窗口右上角的工具栏，点击![zh-cn_image_0000001262207811](figures/zh-cn_image_0000001262207811.png)按钮运行效果如下图所示：
+
    ![zh-cn_image_0000001262127855](figures/zh-cn_image_0000001262127855.png)
