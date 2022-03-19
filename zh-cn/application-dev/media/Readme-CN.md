@@ -3,8 +3,10 @@
 - 音频
     - [音频开发概述](audio-overview.md)
     - [音频播放开发指导](audio-playback.md)
-    - [音频管理开发指导](audio-management.md)
     - [音频录制开发指导](audio-recorder.md)
+    - [音频渲染开发指导](audio-renderer.md)
+    - [音频采集开发指导](audio-capturer.md)
+    - [音频管理开发指导](audio-management.md)
 - 视频
 
   - [视频播放开发指导](video-playback.md)
