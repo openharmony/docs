@@ -18,19 +18,19 @@
 
 ## JS工程项目文件
 
-- **entry：**OpenHarmony工程模块，编译构建生成一个Hap包。
-  - **entry &gt; src &gt; main &gt; js**：用于存放js源码。
-     - **entry &gt; src &gt;main &gt; js &gt; MainAbility：**应用/服务的入口。
-        - **entry &gt; src &gt;main &gt; js &gt; MainAbility &gt; pages：**MainAbility包含的页面。
-        - **entry &gt; src &gt;main &gt;js &gt; MainAbility &gt; app.js**：承载Ability生命周期。
-  - **entry &gt; src &gt; main &gt; resources：**用于存放应用/服务所用到的资源文件，如图形、多媒体、字符串、布局文件等。
-  - **entry &gt; src &gt; main &gt; config.json**：模块配置文件。主要包含HAP包的配置信息、应用在具体设备上的配置信息以及应用的全局配置信息。
-  - **entry &gt; build-profile.json5：**模块的模块信息 、编译信息配置项，包括 buildOption target配置等。
-  - **entry &gt; hvigorfile.js**：模块级编译构建任务脚本，开发者可以自定义相关任务和代码实现。
+- **entry：** OpenHarmony工程模块，编译构建生成一个Hap包。
+  - **entry &gt; src &gt; main &gt; js** ：用于存放js源码。
+     - **entry &gt; src &gt;main &gt; js &gt; MainAbility** ：应用/服务的入口。
+        - **entry &gt; src &gt;main &gt; js &gt; MainAbility &gt; pages** ：MainAbility包含的页面。
+        - **entry &gt; src &gt;main &gt;js &gt; MainAbility &gt; app.js** ：承载Ability生命周期。
+  - **entry &gt; src &gt; main &gt; resources** ：用于存放应用/服务所用到的资源文件，如图形、多媒体、字符串、布局文件等。
+  - **entry &gt; src &gt; main &gt; config.json** ：模块配置文件。主要包含HAP包的配置信息、应用在具体设备上的配置信息以及应用的全局配置信息。
+  - **entry &gt; build-profile.json5** ：模块的模块信息 、编译信息配置项，包括 buildOption target配置等。
+  - **entry &gt; hvigorfile.js** ：模块级编译构建任务脚本，开发者可以自定义相关任务和代码实现。
 
-- **build-profile.json5：**应用级配置信息，包括签名、产品配置等。
+- **build-profile.json5** ：应用级配置信息，包括签名、产品配置等。
 
-- **hvigorfile.js：**应用级编译构建任务脚本。
+- **hvigorfile.js** ：应用级编译构建任务脚本。
 
 
 ## 构建第一个页面
@@ -94,7 +94,8 @@
    }
    ```
 
-4. **在编辑窗口右上角的侧边工具栏，点击Previewer，打开预览器。**第一个页面效果如下图所示：
+4. **在编辑窗口右上角的侧边工具栏，点击Previewer，打开预览器。** 第一个页面效果如下图所示：
+
    ![zh-cn_image_0000001216084724](figures/zh-cn_image_0000001216084724.png)
 
 
@@ -185,7 +186,7 @@
    }
    ```
 
-3. **打开index文件夹下的任意一个文件，点击预览器中的**![zh-cn_image_0000001262339067](figures/zh-cn_image_0000001262339067.png)**按钮进行刷新。**效果如下图所示：
+3. **打开index文件夹下的任意一个文件，点击预览器中的** ![zh-cn_image_0000001262339067](figures/zh-cn_image_0000001262339067.png) **按钮进行刷新。** 效果如下图所示：
    ![zh-cn_image_0000001216269940](figures/zh-cn_image_0000001216269940.png)
 
 
@@ -196,5 +197,5 @@
 2. 点击**File &gt;Project Structure** &gt; **Project &gt; Signing**界面勾选“**Automatically generate signing**”，等待自动签名完成即可，点击“**OK**”。如下图所示：
    ![zh-cn_image_0000001262327095](figures/zh-cn_image_0000001262327095.png)
 
-3. **在编辑窗口右上角的工具栏，点击**![zh-cn_image_0000001217047316](figures/zh-cn_image_0000001217047316.png)**按钮运行。**效果如下图所示：
+3. 在编辑窗口右上角的工具栏，点击![zh-cn_image_0000001217047316](figures/zh-cn_image_0000001217047316.png) 按钮运行。效果如下图所示：
    ![zh-cn_image_0000001217527892](figures/zh-cn_image_0000001217527892.png)

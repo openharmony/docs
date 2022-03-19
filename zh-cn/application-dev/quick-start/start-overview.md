@@ -42,6 +42,6 @@ Ability可以分为[FA（Feature Ability）](https://gitee.com/openharmony/docs/
 
 1. 安装最新版[DevEco Studio](https://developer.harmonyos.com/cn/develop/deveco-studio#download_beta)。
 
-2. 请参考[[配置OpenHarmony SDK](configuring-openharmony-sdk.md)](zh-cn_topic_0000001113561194.xml)，完成**DevEco Studio**的安装和开发环境配置。
+2. 请参考[配置OpenHarmony SDK](configuring-openharmony-sdk.md)，完成**DevEco Studio**的安装和开发环境配置。
 
 完成上述操作及基本概念的理解后，可参照[使用eTS语言开发](start-with-ets.md)、[使用JS语言开发（传统代码方式）](start-with-js.md)、[使用JS语言开发（低代码方式）](start-with-js-low-code.md)中的任一章节进行下一步体验和学习。
