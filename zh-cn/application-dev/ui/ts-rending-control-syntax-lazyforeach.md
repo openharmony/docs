@@ -19,10 +19,10 @@ interface IDataSource {
 
 interface DataChangeListener {
     onDataReloaded(): void;                      // Called while data reloaded
-    onDataAdded(index: number): void;            // Called while single data added
-    onDataMoved(from: number, to: number): void; // Called while single data moved
-    onDataDeleted(index: number): void;          // Called while single data deleted
-    onDataChanged(index: number): void;          // Called while single data changed
+    onDataAdd(index: number): void;            // Called while single data added
+    onDataMove(from: number, to: number): void; // Called while single data moved
+    onDataDelete(index: number): void;          // Called while single data deleted
+    onDataChange(index: number): void;          // Called while single data changed
 }
 ```
 
@@ -55,13 +55,17 @@ LazyForEach(dataSource: IDataSource, itemGenerator: (item: any) =&gt; void, keyG
 
 **表3** DataChangeListener类型说明
 
-| 名称 | 描述 | 
+| 名称 | 描述 |
 | -------- | -------- |
-| onDataReloaded():&nbsp;void | 重新加载所有数据。 | 
-| onDataAdded(index:&nbsp;number):&nbsp;void | 通知组件index的位置有数据添加。 | 
-| onDataMoved(from:&nbsp;number,&nbsp;to:&nbsp;number):&nbsp;void | 通知组件数据从from的位置移到to的位置。 | 
-| onDataDeleted(index:&nbsp;number):&nbsp;void | 通知组件index的位置有数据删除。 | 
-| onDataChanged(index:&nbsp;number):&nbsp;void | 通知组件index的位置有数据变化。 | 
+| onDataReloaded():&nbsp;void | 重新加载所有数据。 |
+| onDataAdded(index:&nbsp;number):&nbsp;void <sup>(deprecated) </sup>| 通知组件index的位置有数据添加。 |
+| onDataMoved(from:&nbsp;number,&nbsp;to:&nbsp;number):&nbsp;void <sup>(deprecated) </sup>| 通知组件数据从from的位置移到to的位置。 |
+| onDataDeleted(index:&nbsp;number):&nbsp;void <sup>(deprecated) </sup>| 通知组件index的位置有数据删除。 |
+| onDataChanged(index:&nbsp;number):&nbsp;void <sup>(deprecated) </sup>| 通知组件index的位置有数据变化。 |
+| onDataAdd(index:&nbsp;number):&nbsp;void <sup>8+</sup> | 通知组件index的位置有数据添加。 |
+| onDataMove(from:&nbsp;number,&nbsp;to:&nbsp;number):&nbsp;void <sup>8+</sup> | 通知组件数据从from的位置移到to的位置。 |
+| onDataDelete(index:&nbsp;number):&nbsp;void <sup>8+</sup> | 通知组件index的位置有数据删除。 |
+| onDataChange(index:&nbsp;number):&nbsp;void <sup>8+</sup> | 通知组件index的位置有数据变化。 |
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
@@ -73,7 +77,7 @@ LazyForEach(dataSource: IDataSource, itemGenerator: (item: any) =&gt; void, keyG
 > 
 > - 允许**LazyForEach**包含在**if/else**条件渲染语句中，不允许**LazyForEach**中出现**if/else**条件渲染语句；
 > 
-> - 为了高性能渲染，通过DataChangeListener对象的onDataChanged方法来更新UI时，仅itemGenerator中的UI描述的组件内使用了状态变量时，才会触发组件刷新；
+> - 为了高性能渲染，通过DataChangeListener对象的onDataChange方法来更新UI时，仅itemGenerator中的UI描述的组件内使用了状态变量时，才会触发组件刷新；
 > 
 > - 子项生成器函数的调用顺序不一定和数据源中的数据项相同，在开发过程中不要假设子项生成器和键值生成器函数是否执行以及执行顺序。如下示例可能无法正常工作：
 >   ```
@@ -124,22 +128,22 @@ class BasicDataSource implements IDataSource {
     }
     notifyDataAdd(index: number): void {
         this.listeners.forEach(listener => {
-            listener.onDataAdded(index)
+            listener.onDataAdd(index)
         })
     }
     notifyDataChange(index: number): void {
         this.listeners.forEach(listener => {
-            listener.onDataChanged(index)
+            listener.onDataChange(index)
         })
     }
     notifyDataDelete(index: number): void {
         this.listeners.forEach(listener => {
-            listener.onDataDeleted(index)
+            listener.onDataDelete(index)
         })
     }
     notifyDataMove(from: number, to: number): void {
         this.listeners.forEach(listener => {
-            listener.onDataMoved(from, to)
+            listener.onDataMove(from, to)
         })
     }
 }
