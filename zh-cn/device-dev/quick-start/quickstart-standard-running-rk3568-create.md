@@ -2,7 +2,7 @@
 
 下方将通过修改源码的方式展示如何在单板上运行第一个应用程序，其中包括新建应用程序、编译、烧写、运行等步骤，最终输出“Hello World！”。
 
-这里演示在原有applications子系统下，添加hello部件以及该部件下的helloworld模块。
+这里演示新建examples子系统，添加hello部件以及该部件下的helloworld模块。
 
 示例完整目录如下。
 
@@ -15,7 +15,8 @@ applications/standard/hello
 │   └── src
 │       └── helloworld.c
 ├── ohos.build
-│
+build
+├── subsystem_config.json
 productdefine/common
 └── products
     └── rk3568.json
@@ -73,7 +74,7 @@ productdefine/common
         import("//build/ohos.gni")  # 导入编译模板
         ohos_executable("helloworld") { # 可执行模块
           sources = [       # 模块源码
-        	"src/helloworld.c"
+            "src/helloworld.c"
           ]
           include_dirs = [  # 模块依赖头文件目录
             "include" 
@@ -94,21 +95,19 @@ productdefine/common
 
         ```
         {
-          "subsystem": "applications", # 子系统名
-          "parts": { # 包含部件
-            "hello": { # 新建部件名
-              "version": "1.0.0", # 版本
-              "variants": [ # 变种版本
+          "subsystem": "examples",
+          "parts": {
+            "hello": {
+              "version": "1.0.0",
+              "variants": [
                 "wearable",
                 "phone"
               ],
-              "module_list": [ # 部件包含模块的gn目标
-                "//applications/standard/hello/helloworld:helloworld"
+              "module_list": [
+                "//applications/standard/hello:helloworld"
               ],
-               "inner_kits": [ # 提供给其他部件的接口
-              ],
-               "test_list": [  # 测试用例
-              ]
+               "inner_kits": [],
+               "test_list": []
             }
           }
         }
@@ -116,14 +115,24 @@ productdefine/common
 
         ohos.build文件包含两个部分，第一部分subsystem说明该子系统的名称，parts定义该子系统包含的部件，要添加一个部件，需要把该部件对应的内容添加进parts中去。添加的时候需要指明该部件包含的模块module\_list，假如有提供给其它部件的接口，需要在inner\_kits中说明，假如有测试用例，需要在test\_list中说明，inner\_kits与test\_list没有也可以不添加。
 
-3.  修改产品配置文件。
+3.  修改子系统配置文件。
 
-    在productdefine\\common\\products\\rk3568.json中添加对应的hello部件，直接添加到原有部件后即可。
+    在build/subsystem_config.json中添加examples子系统配置。
+    ```
+    "examples": {
+      "path": "applications/standard/hello",
+      "name": "examples"
+    },
+    ```
+
+4.  修改产品配置文件。
+
+    在productdefine/common/products/rk3568.json中添加对应的hello部件，直接添加到原有部件后即可。
 
     ```
-    "usb:usb_manager_native":{},
+        "usb:usb_manager_native":{},
         "applications:prebuilt_hap":{},
-        "applications:hello":{},
+        "examples:hello":{},
         "wpa_supplicant-2.9:wpa_supplicant-2.9":{},
     ```
 
