@@ -301,9 +301,9 @@ getStartRealtime(): number
 var realtime = process.getStartRealtime();
 ```
 
-## process.getPastCputime<sup>8+</sup>
+## process.getPastCpuTime<sup>8+</sup>
 
-getPastCputime(): number
+getPastCpuTime(): number
 
 获取进程启动到当前时间的CPU时间（以毫秒为单位）。
 
@@ -318,7 +318,7 @@ getPastCputime(): number
 **示例：**
 
 ```
-var result = process.getPastCputime() ;
+var result = process.getPastCpuTime() ;
 ```
 
 
@@ -379,7 +379,7 @@ var pres = process.getEnvironmentVar("PATH")
 
 ## process.runCmd
 
-runCmd(command: string, options?: { timeout : number, killSignal ：number | string, maxBuffer : number }) : ChildProcess
+runCmd(command: string, options?: { timeout : number, killSignal : number | string, maxBuffer : number }) : ChildProcess
 
 通过runcmd可以fork一个新的进程来运行一段shell，并返回ChildProcess对象。
 
@@ -574,7 +574,7 @@ var time = process.uptime();
 
 ## process.kill
 
-kill(pid: number，signal: number ): boolean
+kill(pid: number, signal: number ): boolean
 
 发送signal到指定的进程，结束指定进程。
 
