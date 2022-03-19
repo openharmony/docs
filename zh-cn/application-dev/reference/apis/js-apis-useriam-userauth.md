@@ -111,7 +111,7 @@ export default {
 
 getAuthenticator(): Authenticator
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 从 API Version 8 开始废弃，建议使用[constructor](#constructor8)替代。
 
 获取Authenticator对象，用于执行用户身份认证。
@@ -120,19 +120,19 @@ getAuthenticator(): Authenticator
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | [Authenticator](#authenticatordeprecated) | 认证器对象。 |
+**返回值：**
+| 类型                                      | 说明         |
+| ----------------------------------------- | ------------ |
+| [Authenticator](#authenticatordeprecated) | 认证器对象。 |
 
-- 示例：
+**示例：**
   ```js
   let authenticator = userIAM_userAuth.getAuthenticator();
   ```
 
 ## Authenticator<sup>(deprecated)</sup>
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 从 API Version 8 开始废弃，建议使用[UserAuth](#userauth8)替代。
 
 认证器对象。
@@ -142,7 +142,7 @@ getAuthenticator(): Authenticator
 
 execute(type: string, level: string, callback: AsyncCallback&lt;number&gt;): void
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 从 API Version 8 开始废弃，建议使用[auth](#auth8)替代。
 
 执行用户认证，使用callback方式作为异步方法。
@@ -151,20 +151,21 @@ execute(type: string, level: string, callback: AsyncCallback&lt;number&gt;): voi
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 认证类型，当前只支持FACE_ONLY。<br/>ALL为预留参数，当前版本暂不支持ALL类型的认证。 |
-  | level | string | 是 | 安全级别，对应认证的安全级别，有效值为S1（最低）、S2、S3、S4（最高）。<br/>具备3D人脸识别能力的设备支持S3及以下安全级别的认证。<br/>具备2D人脸识别能力的设备支持S2及以下安全级别的认证。 |
-  | callback | AsyncCallback&lt;number&gt; | 否 | 回调函数。 |
+**参数：**
 
-  callback返回值：
+| 参数名   | 类型                        | 必填 | 说明                                                         |
+| -------- | --------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                      | 是   | 认证类型，当前只支持FACE_ONLY。<br/>ALL为预留参数，当前版本暂不支持ALL类型的认证。 |
+| level    | string                      | 是   | 安全级别，对应认证的安全级别，有效值为S1（最低）、S2、S3、S4（最高）。<br/>具备3D人脸识别能力的设备支持S3及以下安全级别的认证。<br/>具备2D人脸识别能力的设备支持S2及以下安全级别的认证。 |
+| callback | AsyncCallback&lt;number&gt; | 否   | 回调函数。                                                   |
 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | number | 表示认证结果，参见[AuthenticationResult](#authenticationresultdeprecated)。 |
+ callback返回值：
 
-- 示例：
+| 类型   | 说明                                                         |
+| ------ | ------------------------------------------------------------ |
+| number | 表示认证结果，参见[AuthenticationResult](#authenticationresultdeprecated)。 |
+
+**示例：**
   ```js
   authenticator.execute("FACE_ONLY", "S2", (code)=>{
       if (code == userIAM_userAuth.AuthenticationResult.SUCCESS) {
@@ -180,7 +181,7 @@ execute(type: string, level: string, callback: AsyncCallback&lt;number&gt;): voi
 
 execute(type:string, level:string): Promise&lt;number&gt;
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 从 API Version 8 开始废弃，建议使用[auth](#auth8)替代。
 
 执行用户认证，使用promise方式作为异步方法。
@@ -189,49 +190,50 @@ execute(type:string, level:string): Promise&lt;number&gt;
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 认证类型，当前只支持FACE_ONLY。<br/>ALL为预留参数，当前版本暂不支持ALL类型的认证。 |
-  | level | string | 是 | 安全级别，对应认证的安全级别，有效值为S1（最低）、S2、S3、S4（最高）。<br/>具备3D人脸识别能力的设备支持S3及以下安全级别的认证。<br/>具备2D人脸识别能力的设备支持S2及以下安全级别的认证。 |
+**参数：**
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| type   | string | 是   | 认证类型，当前只支持FACE_ONLY。<br/>ALL为预留参数，当前版本暂不支持ALL类型的认证。 |
+| level  | string | 是   | 安全级别，对应认证的安全级别，有效值为S1（最低）、S2、S3、S4（最高）。<br/>具备3D人脸识别能力的设备支持S3及以下安全级别的认证。<br/>具备2D人脸识别能力的设备支持S2及以下安全级别的认证。 |
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | Promise&lt;number&gt; | 返回携带一个number的Promise。number&nbsp;为认证结果，参见[AuthenticationResult](#authenticationresultdeprecated)。 |
+**返回值：**
+| 类型                  | 说明                                                         |
+| --------------------- | ------------------------------------------------------------ |
+| Promise&lt;number&gt; | 返回携带一个number的Promise。number&nbsp;为认证结果，参见[AuthenticationResult](#authenticationresultdeprecated)。 |
 
-- 示例
-  ```js
-  let authenticator = userIAM_userAuth.getAuthenticator();
-  authenticator.execute("FACE_ONLY", "S2").then((code)=>{
-      console.info("auth success");
-  }).catch((code)=>{
-      console.error("auth fail, code = " + code);
-  });
-  ```
+**示例：**
+
+```js
+let authenticator = userIAM_userAuth.getAuthenticator();
+authenticator.execute("FACE_ONLY", "S2").then((code)=>{
+    console.info("auth success");
+}).catch((code)=>{
+    console.error("auth fail, code = " + code);
+});
+```
 
 ## AuthenticationResult<sup>(deprecated)</sup>
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 从 API Version 8 开始废弃，建议使用[ResultCode](#resultcode8)替代。
 
 表示认证结果的枚举。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth
 
-| 名称 | 默认值 | 描述 |
-| -------- | -------- | -------- |
-| NO_SUPPORT | -1 | 设备不支持当前的认证方式。 |
-| SUCCESS | 0 | 认证成功。 |
-| COMPARE_FAILURE | 1 | 比对失败。 |
-| CANCELED | 2 | 用户取消认证。 |
-| TIMEOUT | 3 | 认证超时。 |
-| CAMERA_FAIL | 4 | 开启相机失败。 |
-| BUSY | 5 | 认证服务忙，请稍后重试。 |
-| INVALID_PARAMETERS | 6 | 认证参数无效。 |
-| LOCKED | 7 | 认证失败次数过多，已锁定。 |
-| NOT_ENROLLED | 8 | 未录入认证凭据。 |
-| GENERAL_ERROR | 100 | 其他错误。 |
+| 名称               | 默认值 | 描述                       |
+| ------------------ | ------ | -------------------------- |
+| NO_SUPPORT         | -1     | 设备不支持当前的认证方式。 |
+| SUCCESS            | 0      | 认证成功。                 |
+| COMPARE_FAILURE    | 1      | 比对失败。                 |
+| CANCELED           | 2      | 用户取消认证。             |
+| TIMEOUT            | 3      | 认证超时。                 |
+| CAMERA_FAIL        | 4      | 开启相机失败。             |
+| BUSY               | 5      | 认证服务忙，请稍后重试。   |
+| INVALID_PARAMETERS | 6      | 认证参数无效。             |
+| LOCKED             | 7      | 认证失败次数过多，已锁定。 |
+| NOT_ENROLLED       | 8      | 未录入认证凭据。           |
+| GENERAL_ERROR      | 100    | 其他错误。                 |
 
 ## UserAuth<sup>8+</sup>
 
@@ -239,7 +241,7 @@ execute(type:string, level:string): Promise&lt;number&gt;
 
 ### constructor<sup>8+</sup>
 
-constructor();
+constructor()
 
 表示获取的认证器对象。
 
@@ -247,13 +249,13 @@ constructor();
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth.Core
 
-- 返回值：
+**返回值：**
 
-  | 类型                   | 说明                 |
-  | ---------------------- | -------------------- |
-  | [UserAuth](#userauth8) | UserAuth认证器对象。 |
+| 类型                   | 说明                 |
+| ---------------------- | -------------------- |
+| [UserAuth](#userauth8) | UserAuth认证器对象。 |
 
-- 示例：
+**示例：**
 
   ```js
   import userIAM_userAuth from '@ohos.userIAM.userAuth';
@@ -263,7 +265,7 @@ constructor();
 
 ### getVersion<sup>8+</sup>
 
-getVersion() : number;
+getVersion() : number
 
 表示获取的认证器版本信息。
 
@@ -271,13 +273,13 @@ getVersion() : number;
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth.Core
 
-- 返回值：
+**返回值：**
 
-  | 类型   | 说明                   |
-  | ------ | ---------------------- |
-  | number | 获取的认证器版本信息。 |
+| 类型   | 说明                   |
+| ------ | ---------------------- |
+| number | 获取的认证器版本信息。 |
 
-- 示例：
+**示例：**
 
   ```js
   import userIAM_userAuth from '@ohos.userIAM.userAuth';
@@ -289,7 +291,7 @@ getVersion() : number;
 
 ### getAvailableStatus<sup>8+</sup>
 
-getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel) : number;
+getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel) : number
 
 表示检查指定的认证等级的认证能力是否可用。
 
@@ -297,20 +299,20 @@ getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel) : n
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth.Core
 
-- 参数：
+**参数：**
 
-  | 参数名         | 类型                               | 必填 | 说明                       |
-  | -------------- | ---------------------------------- | ---- | -------------------------- |
-  | authType       | [UserAuthType](#userauthtype8)     | 是   | 认证类型，当前只支持FACE。 |
-  | authTrustLevel | [AuthTrustLevel](#authtrustlevel8) | 是   | 认证结果的信任等级。       |
+| 参数名         | 类型                               | 必填 | 说明                       |
+| -------------- | ---------------------------------- | ---- | -------------------------- |
+| authType       | [UserAuthType](#userauthtype8)     | 是   | 认证类型，当前只支持FACE。 |
+| authTrustLevel | [AuthTrustLevel](#authtrustlevel8) | 是   | 认证结果的信任等级。       |
 
-- 返回值：
+**返回值：**
 
-  | 类型   | 说明                                                         |
-  | ------ | ------------------------------------------------------------ |
-  | number | 获取指定的认证等级的认证能力是否可用的检查结果，返回值参见[ResultCode](#resultcode8)。 |
+| 类型   | 说明                                                         |
+| ------ | ------------------------------------------------------------ |
+| number | 获取指定的认证等级的认证能力是否可用的检查结果，返回值参见[ResultCode](#resultcode8)。 |
 
-- 示例：
+**示例：**
 
   ```js
   import userIAM_userAuth from '@ohos.userIAM.userAuth';
@@ -328,7 +330,7 @@ getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel) : n
 
 ### auth<sup>8+</sup>
 
-auth(challenge: Uint8Array, authType: UserAuthType, authTrustLevel: AuthTrustLevel, callback: IUserAuthCallback): Uint8Array;
+auth(challenge: Uint8Array, authType: UserAuthType, authTrustLevel: AuthTrustLevel, callback: IUserAuthCallback): Uint8Array
 
 表示执行用户认证，使用callback方式作为异步方法。
 
@@ -336,22 +338,22 @@ auth(challenge: Uint8Array, authType: UserAuthType, authTrustLevel: AuthTrustLev
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth.Core
 
-- 参数：
+**参数：**
 
-  | 参数名         | 类型                                     | 必填 | 说明                     |
-  | -------------- | ---------------------------------------- | ---- | ------------------------ |
-  | challenge      | Uint8Array                               | 是   | 挑战值，可以填null。     |
-  | authType       | [UserAuthType](#userauthtype8)           | 是   | 认证类型，当前支持FACE。 |
-  | authTrustLevel | [AuthTrustLevel](#authtrustlevel8)       | 是   | 信任等级。               |
-  | callback       | [IUserAuthCallback](#iuserauthcallback8) | 是   | 回调函数。               |
+| 参数名         | 类型                                     | 必填 | 说明                     |
+| -------------- | ---------------------------------------- | ---- | ------------------------ |
+| challenge      | Uint8Array                               | 是   | 挑战值，可以填null。     |
+| authType       | [UserAuthType](#userauthtype8)           | 是   | 认证类型，当前支持FACE。 |
+| authTrustLevel | [AuthTrustLevel](#authtrustlevel8)       | 是   | 信任等级。               |
+| callback       | [IUserAuthCallback](#iuserauthcallback8) | 是   | 回调函数。               |
 
-- 返回值：
+**返回值：**
 
-  | 类型       | 说明                                                         |
-  | ---------- | ------------------------------------------------------------ |
-  | Uint8Array | ContextId，作为取消认证[cancelAuth](#cancelauth8)接口的入参。 |
+| 类型       | 说明                                                         |
+| ---------- | ------------------------------------------------------------ |
+| Uint8Array | ContextId，作为取消认证[cancelAuth](#cancelauth8)接口的入参。 |
 
-- 示例：
+**示例：**
 
   ```js
   import userIAM_userAuth from '@ohos.userIAM.userAuth';
@@ -376,7 +378,7 @@ auth(challenge: Uint8Array, authType: UserAuthType, authTrustLevel: AuthTrustLev
 
 ### cancelAuth<sup>8+</sup>
 
-cancelAuth(contextID : Uint8Array) : number;
+cancelAuth(contextID : Uint8Array) : number
 
 表示通过contextID取消本次认证操作。
 
@@ -384,19 +386,19 @@ cancelAuth(contextID : Uint8Array) : number;
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth.Core
 
-- 参数：
+**参数：**
 
-  | 参数名    | 类型       | 必填 | 说明                                       |
-  | --------- | ---------- | ---- | ------------------------------------------ |
-  | contextID | Uint8Array | 是   | 上下文ID信息，通过[auth](#auth8)接口获得。 |
+| 参数名    | 类型       | 必填 | 说明                                       |
+| --------- | ---------- | ---- | ------------------------------------------ |
+| contextID | Uint8Array | 是   | 上下文ID信息，通过[auth](#auth8)接口获得。 |
 
-- 返回值：
+**返回值：**
 
-  | 类型   | 说明                     |
-  | ------ | ------------------------ |
-  | number | 取消本次认证操作的结果。 |
+| 类型   | 说明                     |
+| ------ | ------------------------ |
+| number | 取消本次认证操作的结果。 |
 
-- 示例：
+**示例：**
 
   ```js
   import userIAM_userAuth from '@ohos.userIAM.userAuth';
@@ -417,21 +419,21 @@ cancelAuth(contextID : Uint8Array) : number;
 
 ### onResult<sup>8+</sup>
 
-onResult: (result : number, extraInfo : AuthResult) => void;
+onResult: (result : number, extraInfo : AuthResult) => void
 
 表示在认证操作中，获取认证结果。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth.Core
 
-- 参数：
+**参数：**
 
-  | 参数名    | 类型                       | 必填 | 说明                                                         |
-  | --------- | -------------------------- | ---- | ------------------------------------------------------------ |
-  | result    | number                     | 是   | 认证结果，参见[ResultCode](#resultcode8)。                   |
-  | extraInfo | [AuthResult](#authresult8) | 是   | 扩展信息，不同情况下的具体信息，<br/>如果身份验证通过，则在extrainfo中返回用户认证令牌，<br/>如果身份验证失败，则在extrainfo中返回剩余的用户认证次数，<br/>如果身份验证执行器被锁定，则在extrainfo中返回冻结时间。 |
+| 参数名    | 类型                       | 必填 | 说明                                                         |
+| --------- | -------------------------- | ---- | ------------------------------------------------------------ |
+| result    | number                     | 是   | 认证结果，参见[ResultCode](#resultcode8)。                   |
+| extraInfo | [AuthResult](#authresult8) | 是   | 扩展信息，不同情况下的具体信息，<br/>如果身份验证通过，则在extrainfo中返回用户认证令牌，<br/>如果身份验证失败，则在extrainfo中返回剩余的用户认证次数，<br/>如果身份验证执行器被锁定，则在extrainfo中返回冻结时间。 |
 
 
-- 示例
+**示例：**
 
   ```js
   import userIAM_userAuth from '@ohos.userIAM.userAuth';
@@ -466,21 +468,21 @@ onResult: (result : number, extraInfo : AuthResult) => void;
 
 ### onAcquireInfo<sup>8+</sup>
 
-onAcquireInfo ?: (module : number, acquire : number, extraInfo : any) => void;
+onAcquireInfo ?: (module : number, acquire : number, extraInfo : any) => void
 
 表示在认证过程中，获取提示码信息，非必须实现。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth.Core
 
-- 参数：
+**参数：**
 
-  | 参数名    | 类型   | 必填 | 说明                           |
-  | --------- | ------ | ---- | ------------------------------ |
-  | module    | number | 是   | 认证执行器的类型。             |
-  | acquire   | number | 是   | 认证执行器认证过程的交互信息。 |
-  | extraInfo | any    | 是   | 预留字段。                     |
+| 参数名    | 类型   | 必填 | 说明                           |
+| --------- | ------ | ---- | ------------------------------ |
+| module    | number | 是   | 认证执行器的类型。             |
+| acquire   | number | 是   | 认证执行器认证过程的交互信息。 |
+| extraInfo | any    | 是   | 预留字段。                     |
 
-- 示例
+**示例：**
 
   ```js
   import userIAM_userAuth from '@ohos.userIAM.userAuth';
@@ -531,19 +533,19 @@ onAcquireInfo ?: (module : number, acquire : number, extraInfo : any) => void;
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth.Core
 
-| 名称 | 默认值 | 描述 |
-| -------- | -------- | -------- |
-| SUCCESS | 0 | 执行成功。 |
-| FAIL | 1 | 执行失败。 |
-| GENERAL_ERROR | 2 | 操作通用错误。 |
-| CANCELED | 3 | 操作取消。 |
-| TIMEOUT | 4 | 操作超时。 |
-| TYPE_NOT_SUPPORT | 5 | 不支持的认证类型。 |
-| TRUST_LEVEL_NOT_SUPPORT | 6 | 不支持的认证等级。 |
-| BUSY | 7 | 忙碌状态。 |
-| INVALID_PARAMETERS | 8 | 无效参数。 |
-| LOCKED | 9 | 认证器已锁定。       |
-| NOT_ENROLLED | 10 | 用户未录入认证信息。 |
+| 名称                    | 默认值 | 描述                 |
+| ----------------------- | ------ | -------------------- |
+| SUCCESS                 | 0      | 执行成功。           |
+| FAIL                    | 1      | 执行失败。           |
+| GENERAL_ERROR           | 2      | 操作通用错误。       |
+| CANCELED                | 3      | 操作取消。           |
+| TIMEOUT                 | 4      | 操作超时。           |
+| TYPE_NOT_SUPPORT        | 5      | 不支持的认证类型。   |
+| TRUST_LEVEL_NOT_SUPPORT | 6      | 不支持的认证等级。   |
+| BUSY                    | 7      | 忙碌状态。           |
+| INVALID_PARAMETERS      | 8      | 无效参数。           |
+| LOCKED                  | 9      | 认证器已锁定。       |
+| NOT_ENROLLED            | 10     | 用户未录入认证信息。 |
 
 
 ## FaceTips<sup>8+</sup>
@@ -573,14 +575,14 @@ onAcquireInfo ?: (module : number, acquire : number, extraInfo : any) => void;
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth.Core
 
-| 名称 | 默认值 | 描述 |
-| -------- | -------- | -------- |
-| FINGERPRINT_AUTH_TIP_GOOD | 0 | 获取的指纹图像良好。 |
-| FINGERPRINT_AUTH_TIP_DIRTY | 1      | 由于传感器上可疑或检测到的污垢，指纹图像噪音过大。 |
-| FINGERPRINT_AUTH_TIP_INSUFFICIENT | 2 | 由于检测到的情况，指纹图像噪声太大，无法处理。 |
-| FINGERPRINT_AUTH_TIP_PARTIAL | 3 | 仅检测到部分指纹图像。 |
-| FINGERPRINT_AUTH_TIP_TOO_FAST | 4 | 快速移动，指纹图像不完整。 |
-| FINGERPRINT_AUTH_TIP_TOO_SLOW | 5 | 缺少运动，指纹图像无法读取。 |
+| 名称                              | 默认值 | 描述                                               |
+| --------------------------------- | ------ | -------------------------------------------------- |
+| FINGERPRINT_AUTH_TIP_GOOD         | 0      | 获取的指纹图像良好。                               |
+| FINGERPRINT_AUTH_TIP_DIRTY        | 1      | 由于传感器上可疑或检测到的污垢，指纹图像噪音过大。 |
+| FINGERPRINT_AUTH_TIP_INSUFFICIENT | 2      | 由于检测到的情况，指纹图像噪声太大，无法处理。     |
+| FINGERPRINT_AUTH_TIP_PARTIAL      | 3      | 仅检测到部分指纹图像。                             |
+| FINGERPRINT_AUTH_TIP_TOO_FAST     | 4      | 快速移动，指纹图像不完整。                         |
+| FINGERPRINT_AUTH_TIP_TOO_SLOW     | 5      | 缺少运动，指纹图像无法读取。                       |
 
 
 ## UserAuthType<sup>8+</sup>
@@ -589,9 +591,9 @@ onAcquireInfo ?: (module : number, acquire : number, extraInfo : any) => void;
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth.Core
 
-| 名称 | 默认值 | 描述 |
-| -------- | -------- | -------- |
-| FACE | 2 | 人脸认证。 |
+| 名称        | 默认值 | 描述       |
+| ----------- | ------ | ---------- |
+| FACE        | 2      | 人脸认证。 |
 | FINGERPRINT | 4      | 指纹认证。 |
 
 ## AuthTrustLevel<sup>8+</sup>
