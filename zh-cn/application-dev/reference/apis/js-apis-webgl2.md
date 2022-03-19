@@ -41,29 +41,33 @@ gl.clearColor(0.0, 0.0, 0.0, 1.0);
 
 ## Type
 
+**系统能力**：以下各项对应的系统能力均为 SystemCapability.Graphic.Graphic2D.WebGL2。
+
   **表1**  Type
 
-| 名称 | 类型 | 说明 | 
-| -------- | -------- | -------- |
-| GLenum | number | **系统能力：** SystemCapability.Graphic.Graphic2D.WebGL2 | 
-| GLint64 | number | **系统能力：** SystemCapability.Graphic.Graphic2D.WebGL2 | 
-| GLuint64 | number | **系统能力：** SystemCapability.Graphic.Graphic2D.WebGL2 | 
-| Uint32List | array | **系统能力：** SystemCapability.Graphic.Graphic2D.WebGL2 | 
+| 名称 | 类型 |
+| -------- | -------- |
+| GLenum | number |
+| GLint64 | number |
+| GLuint64 | number |
+| Uint32List | array |
 
 
 ## Interface
 
+**系统能力**：以下各项对应的系统能力均为 SystemCapability.Graphic.Graphic2D.WebGL2。
+
   **表2**  Interface
 
-| 名称 | 说明 | 
-| -------- | -------- |
-| [WebGL2RenderingContextBase](#webgl2renderingcontextbase) | **系统能力：** SystemCapability.Graphic.Graphic2D.WebGL2 | 
-| [WebGL2RenderingContextOverloads](#webgl2renderingcontextoverloads) | **系统能力：** SystemCapability.Graphic.Graphic2D.WebGL2 | 
-| WebGLQuery | **系统能力：** SystemCapability.Graphic.Graphic2D.WebGL2 | 
-| WebGLSampler | **系统能力：** SystemCapability.Graphic.Graphic2D.WebGL2 | 
-| WebGLSync | **系统能力：** SystemCapability.Graphic.Graphic2D.WebGL2 | 
-| WebGLTransformFeedback | **系统能力：** SystemCapability.Graphic.Graphic2D.WebGL2 | 
-| WebGLVertexArrayObject | **系统能力：** SystemCapability.Graphic.Graphic2D.WebGL2 | 
+| 名称 |
+| -------- |
+| [WebGL2RenderingContextBase](#webgl2renderingcontextbase) |
+| [WebGL2RenderingContextOverloads](#webgl2renderingcontextoverloads) |
+| WebGLQuery |
+| WebGLSampler |
+| WebGLSync |
+| WebGLTransformFeedback |
+| WebGLVertexArrayObject |
 
 
 ## WebGL2RenderingContextBase
