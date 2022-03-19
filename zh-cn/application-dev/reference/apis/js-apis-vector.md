@@ -569,6 +569,7 @@ let result = vector.toSting();
 ### copyToArray
 
 copyToArray(array: Array&lt;T&gt;): void
+
 将Vector实例中的元素按照下标复制到指定数组。
 
 **参数：**

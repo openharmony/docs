@@ -27,16 +27,10 @@ SystemCapability.Utils.Lang
 
 ### constructor
 
-constructor(head?: NodeObj&lt;T&gt;, tail?: NodeObj&lt;T&gt;)
+constructor()
 
 LinkedList的构造函数。
 
-**参数：**
-
-| 参数名 | 类型 | 可读 | 可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| head | NodeObj&lt;T&gt; | 是 | 否 | 节点对象，含有element、next指向和prev指向。 |
-| tail | NodeObj&lt;T&gt; | 是 | 否 | 节点对象，含有element、next指向和prev指向。 |
 
 **示例：**
 
@@ -300,7 +294,7 @@ let result = linkedList.removeFirst();
 
 ### removeLast
 
-removeLst(): T
+removeLast(): T
 
 删除并返回LinkedList的最后一个元素。
 
