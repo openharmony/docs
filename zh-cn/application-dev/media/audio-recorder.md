@@ -23,6 +23,11 @@
 包含流程：创建实例，设置录制参数，录制音频，暂停录制，恢复录制，停止录制，释放资源等流程。
 
 ```js
+import media from '@ohos.multimedia.media'
+import mediaLibrary from '@ohos.multimedia.mediaLibrary'
+
+let testFdNumber;
+
 function SetCallBack(audioRecorder) {
     audioRecorder.on('prepare', () => {              								// 设置'prepare'事件回调
         console.log('prepare success');    
@@ -57,6 +62,31 @@ function SetCallBack(audioRecorder) {
     });
 }
 
+// pathName是传入的录制文件名，例如：01.mp3，生成后的文件地址：/storage/media/100/local/files/Movies/01.mp3
+// 使用mediaLibrary需要添加以下权限, ohos.permission.MEDIA_LOCATION、ohos.permission.WRITE_MEDIA、ohos.permission.READ_MEDIA
+async function getFd(pathName) {
+    let displayName = pathName;
+    const mediaTest = mediaLibrary.getMediaLibrary();
+    let fileKeyObj = mediaLibrary.FileKey;
+    let mediaType = mediaLibrary.MediaType.VIDEO;
+    let publicPath = await mediaTest.getPublicDirectory(mediaLibrary.DirectoryType.DIR_VIDEO);
+    let dataUri = await mediaTest.createAsset(mediaType, displayName, publicPath);
+    if (dataUri != undefined) {
+        let args = dataUri.id.toString();
+        let fetchOp = {
+            selections : fileKeyObj.ID + "=?",
+            selectionArgs : [args],
+        }
+        let fetchFileResult = await mediaTest.getFileAssets(fetchOp);
+        let fileAsset = await fetchFileResult.getAllObject();
+        let fdNumber = await fileAsset[0].open('Rw');
+        fdNumber = "fd://" + fdNumber.toString();
+        testFdNumber = fdNumber;
+    }
+}
+
+await getFd('01.mp3');
+
 // 1.创建实例
 let audioRecorder = media.createAudioRecorder();    
 // 2.设置回调
@@ -68,7 +98,7 @@ let audioRecorderConfig = {
     audioSampleRate : 22050,
     numberOfChannels : 2,
     format : media.AudioOutputFormat.AAC_ADTS,
-    uri : 'file:///data/accounts/account_0/appdata/appdata/recorder/test.m4a',       // 文件需先由调用者创建，并给予适当的权限
+    uri : testFdNumber,                             // testFdNumber由getFd生成
     location : { latitude : 30, longitude : 130},
 }																					
 audioRecorder.prepare(audioRecorderConfig);
@@ -92,7 +122,12 @@ audioRecorder = undefined;
 与全流程场景不同，不包括暂停录制，恢复录制的过程。
 
 ```js
-function SetCallBack(audioRecorder) {
+import media from '@ohos.multimedia.media'
+import mediaLibrary from '@ohos.multimedia.mediaLibrary'
+
+let testFdNumber;
+
+function SetCallBack(audioPlayer) {
     audioRecorder.on('prepare', () => {              								// 设置'prepare'事件回调
         console.log('prepare success');    
         // 录制界面可切换至已准备好，可点击录制按钮进行录制
@@ -108,6 +143,32 @@ function SetCallBack(audioRecorder) {
         console.log('audio recorder release success');
     });    
 }
+
+// pathName是传入的录制文件名，例如：01.mp3，生成后的文件地址：/storage/media/100/local/files/Movies/01.mp3
+// 使用mediaLibrary需要添加以下权限, ohos.permission.MEDIA_LOCATION、ohos.permission.WRITE_MEDIA、ohos.permission.READ_MEDIA
+async function getFd(pathName) {
+    let displayName = pathName;
+    const mediaTest = mediaLibrary.getMediaLibrary();
+    let fileKeyObj = mediaLibrary.FileKey;
+    let mediaType = mediaLibrary.MediaType.VIDEO;
+    let publicPath = await mediaTest.getPublicDirectory(mediaLibrary.DirectoryType.DIR_VIDEO);
+    let dataUri = await mediaTest.createAsset(mediaType, displayName, publicPath);
+    if (dataUri != undefined) {
+        let args = dataUri.id.toString();
+        let fetchOp = {
+            selections : fileKeyObj.ID + "=?",
+            selectionArgs : [args],
+        }
+        let fetchFileResult = await mediaTest.getFileAssets(fetchOp);
+        let fileAsset = await fetchFileResult.getAllObject();
+        let fdNumber = await fileAsset[0].open('Rw');
+        fdNumber = "fd://" + fdNumber.toString();
+        testFdNumber = fdNumber;
+    }
+}
+
+await getFd('01.mp3');
+
 // 1.创建实例
 let audioRecorder = media.createAudioRecorder();   
 // 2.设置回调
@@ -119,7 +180,7 @@ let audioRecorderConfig = {
     audioSampleRate : 22050,
     numberOfChannels : 2,
     format : media.AudioOutputFormat.AAC_ADTS,
-    uri : 'file:///data/accounts/account_0/appdata/appdata/recorder/test.m4a',      // 文件需先由调用者创建，并给予适当的权限
+    uri : testFdNumber,                             // testFdNumber由getFd生成
     location : { latitude : 30, longitude : 130},
 }
 audioRecorder.prepare(audioRecorderConfig)
