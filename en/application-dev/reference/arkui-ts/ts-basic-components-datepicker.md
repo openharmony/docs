@@ -92,8 +92,6 @@ struct DatePickerExample01 {
 }
 ```
 
-![en-us_image_0000001211898486](figures/en-us_image_0000001211898486.gif)
-
 
 ### Date Picker (Without Lunar Calendar)
 
@@ -121,7 +119,6 @@ struct DatePickerExample02 {
 }
 ```
 
-![en-us_image_0000001257138355](figures/en-us_image_0000001257138355.gif)
 
 
 ### Time Picker
