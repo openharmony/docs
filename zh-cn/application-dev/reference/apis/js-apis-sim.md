@@ -557,4 +557,4 @@ SIM卡状态。
 |CU_DUAL_MODE_CARD | 42 | 中国联通双模卡 |
 |DUAL_MODE_TELECOM_LTE_CARD | 43 | 双模式电信LTE卡 |
 |DUAL_MODE_UG_CARD | 50 | 双模式UG卡 |
-|SINGLE_MODE_ISIM_CARD | 60 | 单一ISIM卡类型 |
+|SINGLE_MODE_ISIM_CARD<sup>8+</sup> | 60 | 单一ISIM卡类型 |
