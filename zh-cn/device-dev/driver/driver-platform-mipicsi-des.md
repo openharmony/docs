@@ -1,4 +1,4 @@
-# MIPI CSI<a name="title_MIPI_CSIDes"></a>
+# MIPI-CSI<a name="title_MIPI_CSIDes"></a>
 
 -   [概述](#section1_MIPI_CSIDes)
     -   [ComboDevAttr结构体](#section1.1_MIPI_CSIDes)
