@@ -13,7 +13,7 @@ import parameter from '@ohos.systemParameter'
 
 ## parameter.getSync
 
-getSync(key: string, def?: string)
+getSync(key: string, def?: string): string
 
 获取系统属性Key对应的值。
 
@@ -46,7 +46,7 @@ try {
 
 ## parameter.get
 
-get(key: string, callback: AsyncCallback&lt;string&gt;)
+get(key: string, callback: AsyncCallback&lt;string&gt;): void
 
 获取系统属性Key对应的值。
 
@@ -77,7 +77,7 @@ try {
 
 ## parameter.get
 
-get(key: string, def: string, callback: AsyncCallback&lt;string&gt;)
+get(key: string, def: string, callback: AsyncCallback&lt;string&gt;): void
 
 获取系统属性Key对应的值。
 
@@ -110,7 +110,7 @@ try {
 
 ## parameter.get
 
-get(key: string, def?: string)
+get(key: string, def?: string): Promise&lt;string&gt;
 
 获取系统属性Key对应的值。
 
@@ -147,7 +147,7 @@ try {
 
 ## parameter.setSync
 
-setSync(key: string, value: string)
+setSync(key: string, value: string): void
 
 设置系统属性Key对应的值。
 
@@ -173,7 +173,7 @@ try {
 
 ## parameter.set(key: string, value: string, callback: AsyncCallback&lt;void&gt;)
 
-set(key: string, value: string, callback: AsyncCallback&lt;void&gt;)
+set(key: string, value: string, callback: AsyncCallback&lt;void&gt;): void
 
 设置系统属性Key对应的值。
 
@@ -205,7 +205,7 @@ try {
 
 ## parameter.set(key: string, def?: string)
 
-set(key: string, def?: string)
+set(key: string, def?: string): Promise&lt;string&gt;
 
 设置系统属性Key对应的值。
 
