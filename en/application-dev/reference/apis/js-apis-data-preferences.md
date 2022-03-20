@@ -187,7 +187,7 @@ removePreferencesFromCache(context: Context, name: string): Promise&lt;void&gt;
 
 Removes the singleton **Preferences** instance of a file from the cache. The removed instance cannot be used for data operations. Otherwise, data inconsistency will occur.
 
-This method uses an asynchronous callback to return the result.
+This method uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
