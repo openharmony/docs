@@ -72,7 +72,7 @@
         - [TextTimer](ts-basic-components-texttimer.md)
         - [Toggle](ts-basic-components-toggle.md)
         - [TextClock](ts-basic-components-textclock.md)
-        -  [PluginComponent](ts-basic-components-plugincomponent.md)
+        - [PluginComponent](ts-basic-components-plugincomponent.md)
     - Container Components
         - [AlphabetIndexer](ts-container-alphabet-indexer.md)
         - [Badge](ts-container-badge.md)
