@@ -1,21 +1,18 @@
 # Application Development
 
-[Application Development Overview](application-dev-guide.md)
-
-- Learn About the OpenHarmony Community
-  - [OpenHarmony Community](../OpenHarmony-Overview.md)
-  - [OpenHarmony OS](../readme)
+- [Application Development Overview](application-dev-guide.md)
+- Learn About OpenHarmony
+  - [OpenHarmony Project](../OpenHarmony-Overview.md)
   - [Glossary ](../device-dev/glossary/glossary.md)
   - [OpenHarmony Release Notes](../release-notes/Readme.md)
 - Quick Start
   - [Getting Started with Application Development](quick-start/Readme-EN.md)
   - [Directory Structure](quick-start/package-structure.md)
-
 -   Development
     - [ArkUI](ui/Readme-EN.md)
     - Basic Functions
-      - [Agent-Powered Scheduled Reminders ](background-agent-scheduled-reminder/Readme-EN.md)
-      - [Background Task Management ](background-task-management/Readme-EN.md)
+      - [Agent-Powered Scheduled Reminders](background-agent-scheduled-reminder/Readme-EN.md)
+      - [Background Task Management](background-task-management/Readme-EN.md)
       - [WebGL](webgl/Readme-EN.md)
       - [Media](media/Readme-EN.md)
       - [Security](security/Readme-EN.md)
