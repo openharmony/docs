@@ -16,9 +16,9 @@ The distributed data object management framework is an object-oriented in-memory
 
   The distributed data object can be in the following states in its lifecycle:
 
-  - ** Uninitialized**: The distributed data object is not instantiated or has been destroyed.
-  - ** Local**: The data table is created, but the data cannot be synchronized.
-  - ** Distributed**: The data table is created, there are at least two online with the same session ID, and data can be synchronized across devices. If the device is offline or the session ID is empty, the distributed data object changes to the local state.
+  - **Uninitialized**: The distributed data object is not instantiated or has been destroyed.
+  - **Local**: The data table is created, but the data cannot be synchronized.
+  - **Distributed**: The data table is created, there are at least two online with the same session ID, and data can be synchronized across devices. If the device is offline or the session ID is empty, the distributed data object changes to the local state.
 
 
 ## Working Principles
