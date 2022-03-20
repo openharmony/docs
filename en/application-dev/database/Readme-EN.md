@@ -1,4 +1,4 @@
-# Data management
+# Data Management
 
 - Distributed Data Service
   - [Distributed Data Service Overview](database-mdds-overview.md)
