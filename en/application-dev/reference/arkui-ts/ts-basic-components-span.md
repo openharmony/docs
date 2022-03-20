@@ -23,9 +23,9 @@ None
 Span(content: string)
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | content | string | Yes | - | Text content. | 
+  | content | string | Yes | - | Text content. |
 
 
 ## Attributes

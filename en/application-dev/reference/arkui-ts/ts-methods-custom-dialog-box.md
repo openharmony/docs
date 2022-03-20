@@ -16,7 +16,7 @@ CustomDialogController(value:{builder: CustomDialog, cancel?: () =&gt; void, aut
 - Parameters
     | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | builder | [CustomDialog](../../ui/ ts-component-based-customdialog.md) | Yes | - | Constructor of the custom dialog box content. |
+  | builder | [CustomDialog](../../ui/ts-component-based-customdialog.md) | Yes | - | Constructor of the custom dialog box content. |
   | cancel | () =&gt; void | No | - | Callback invoked when the dialog box is closed after the overlay exits. |
   | autoCancel | boolean | No | true | Whether to allow users to click the overlay to exit. |
   | alignment | DialogAlignment | No | DialogAlignment.Default | Alignment mode of the dialog box in the vertical direction. |
@@ -24,18 +24,18 @@ CustomDialogController(value:{builder: CustomDialog, cancel?: () =&gt; void, aut
   | customStyle | boolean | No | false | Whether the style of the dialog box is customized. |
 
 - DialogAlignment enums
-    | Name | Description | 
+    | Name | Description |
   | -------- | -------- |
-  | Top | Aligns vertically to the top. | 
-  | Center | Aligns vertically to the middle. | 
-  | Bottom | Aligns vertically to the bottom. | 
-  | Default | Default alignment. | 
-  | TopStart<sup>8+</sup> | Top left alignment. | 
-  | TopEnd<sup>8+</sup> | Top right alignment. | 
-  | CenterStart<sup>8+</sup> | Center left alignment. | 
-  | CenterEnd<sup>8+</sup> | Center right alignment. | 
-  | BottomStart<sup>8+</sup> | Bottom left alignment. | 
-  | BottomEnd<sup>8+</sup> | Bottom right alignment. | 
+  | Top | Aligns vertically to the top. |
+  | Center | Aligns vertically to the middle. |
+  | Bottom | Aligns vertically to the bottom. |
+  | Default | Default alignment. |
+  | TopStart<sup>8+</sup> | Top left alignment. |
+  | TopEnd<sup>8+</sup> | Top right alignment. |
+  | CenterStart<sup>8+</sup> | Center left alignment. |
+  | CenterEnd<sup>8+</sup> | Center right alignment. |
+  | BottomStart<sup>8+</sup> | Bottom left alignment. |
+  | BottomEnd<sup>8+</sup> | Bottom right alignment. |
 
 
 ### CustomDialogController

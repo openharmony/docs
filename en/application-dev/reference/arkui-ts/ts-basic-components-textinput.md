@@ -23,10 +23,10 @@ None
 TextInput(value?:{placeholder?: string controller?: TextInputController})
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | placeholder | string | No | - | Text displayed when there is no input. | 
-  | controller<sup>8+</sup> | [TextInputController](#textinputcontroller8) | No | - | Text input controller. | 
+  | placeholder | string | No | - | Text displayed when there is no input. |
+  | controller<sup>8+</sup> | [TextInputController](#textinputcontroller8) | No | - | Text input controller. |
 
 
 ## Attributes
@@ -41,33 +41,33 @@ In addition to [universal attributes](ts-universal-attributes.md), the following
 | enterKeyType | EnterKeyType | EnterKeyType.Done | How the Enter key is labeled. |
 | caretColor | Color | - | Color of the caret (also known as the text insertion cursor). |
 | maxLength<sup>8+</sup> | number | - | Maximum number of characters in the text input. |
-| inputFilter<sup>8+</sup> | {<br/>value: [ResourceStr](../../ui/ts-types.md#resourcestr8),<br/>error?: (value: string)<br/>} | - | Regular expression for input filtering. Only inputs that comply with the regular expression can be displayed. Other inputs are ignored. The specified regular expression can match single characters, but not strings. Example: ^(? =.\*\d)(? =.\*[a-z])(? =.\*[A-Z]).{8,10}$. Strong passwords containing 8 to 10 characters cannot be filtered.<br/>- **value**: indicates the regular expression to set.<br/>- **error**: returns the ignored content when regular expression matching fails. |
+| inputFilter<sup>8+</sup> | {<br/>value: [ResourceStr](../../ui/ts-types.md)<sup>8+</sup>,<br/>error?: (value: string)<br/>} | - | Regular expression for input filtering. Only inputs that comply with the regular expression can be displayed. Other inputs are ignored. The specified regular expression can match single characters, but not strings. Example: ^(? =.\*\d)(? =.\*[a-z])(? =.\*[A-Z]).{8,10}$. Strong passwords containing 8 to 10 characters cannot be filtered.<br/>- **value**: indicates the regular expression to set.<br/>- **error**: returns the ignored content when regular expression matching fails. |
 
 - EnterKeyType enums
-    | Name | Description | 
+    | Name | Description |
   | -------- | -------- |
-  | EnterKeyType.Go | The Enter key is labeled "Go." | 
-  | EnterKeyType.Search | The Enter key is labeled "Search." | 
-  | EnterKeyType.Send | The Enter key is labeled "Send." | 
-  | EnterKeyType.Next | The Enter key is labeled "Next." | 
-  | EnterKeyType.Done | The Enter key is labeled "Done." | 
+  | EnterKeyType.Go | The Enter key is labeled "Go." |
+  | EnterKeyType.Search | The Enter key is labeled "Search." |
+  | EnterKeyType.Send | The Enter key is labeled "Send." |
+  | EnterKeyType.Next | The Enter key is labeled "Next." |
+  | EnterKeyType.Done | The Enter key is labeled "Done." |
 
 - InputType enums
-    | Name | Description | 
+    | Name | Description |
   | -------- | -------- |
-  | InputType.Normal | Normal input mode. | 
-  | InputType.Password | Password input mode. | 
-  | InputType.Email | Email address input mode. | 
-  | InputType.Number | Digit input mode. | 
+  | InputType.Normal | Normal input mode. |
+  | InputType.Password | Password input mode. |
+  | InputType.Email | Email address input mode. |
+  | InputType.Number | Digit input mode. |
 
 
 ### TextInputController<sup>8+</sup>
 
 Implements the controller of the **&lt;TextInput&gt;** component.
 
-  | Name | Description | 
+| Name | Description |
 | -------- | -------- |
-| caretPosition(value: number):void | Position of the input cursor.<br/>**value**: indicates the length from the start of the string to the position where the input cursor is located. | 
+| caretPosition(value: number):void | Position of the input cursor.<br/>**value**: indicates the length from the start of the string to the position where the input cursor is located. |
 
 
 ### Objects to Import
@@ -85,21 +85,21 @@ caretPosition(value: number): void
 Sets the cursor in a specified position.
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | value | number | Yes | - | Position of the input cursor.<br/>**value**: indicates the length from the start of the string to the position where the input cursor is located. | 
+  | value | number | Yes | - | Position of the input cursor.<br/>**value**: indicates the length from the start of the string to the position where the input cursor is located. |
 
 
 ## Events
 
-  | Name | Description | 
+| Name | Description |
 | -------- | -------- |
-| onChange(value: string) =&gt; void | Triggered when the input changes. | 
-| onSubmit(callback: (enterKey: EnterKeyType) =&gt; void) | Triggered when the Enter key on the physical or soft keyboard is pressed. | 
-| onEditChanged(callback: (isEditing: boolean) =&gt; void) | Triggered when the input status changes. | 
-| onCopy<sup>8+</sup>(callback:(value: string) =&gt; void) | Triggered when the copy button on the pasteboard, which displays when the text box is long pressed, is clicked.<br/>**value**: text to be copied. | 
-| onCut<sup>8+</sup>(callback:(value: string) =&gt; void) | Triggered when the cut button on the pasteboard, which displays when the text box is long pressed, is clicked.<br/>**value**: text to be cut. | 
-| onPaste<sup>8+</sup>(callback:(value: string) =&gt; void) | Triggered when the paste button on the pasteboard, which displays when the text box is long pressed, is clicked.<br/>**value**: text to be pasted. | 
+| onChange(value: string) =&gt; void | Triggered when the input changes. |
+| onSubmit(callback: (enterKey: EnterKeyType) =&gt; void) | Triggered when the Enter key on the physical or soft keyboard is pressed. |
+| onEditChanged(callback: (isEditing: boolean) =&gt; void) | Triggered when the input status changes. |
+| onCopy<sup>8+</sup>(callback:(value: string) =&gt; void) | Triggered when the copy button on the pasteboard, which displays when the text box is long pressed, is clicked.<br/>**value**: text to be copied. |
+| onCut<sup>8+</sup>(callback:(value: string) =&gt; void) | Triggered when the cut button on the pasteboard, which displays when the text box is long pressed, is clicked.<br/>**value**: text to be cut. |
+| onPaste<sup>8+</sup>(callback:(value: string) =&gt; void) | Triggered when the paste button on the pasteboard, which displays when the text box is long pressed, is clicked.<br/>**value**: text to be pasted. |
 
 
 ## Example

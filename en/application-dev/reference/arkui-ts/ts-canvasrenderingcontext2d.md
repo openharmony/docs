@@ -13,9 +13,9 @@ Use **RenderingContext** to draw rectangles, text, images, and other objects on 
 CanvasRenderingContext2D(setting: RenderingContextSetting)
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | setting | [RenderingContextSettings](#renderingcontextsettings) | Yes | - | See RenderingContextSettings. | 
+  | setting | [RenderingContextSettings](#renderingcontextsettings) | Yes | - | See RenderingContextSettings. |
 
 
 ### RenderingContextSettings
@@ -25,9 +25,9 @@ RenderingContextSettings(antialias?: bool)
 Configures the settings of a **CanvasRenderingContext2D** object, including whether to enable antialiasing.
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | antialias | bool | No | false | Whether antialiasing is enabled. | 
+  | antialias | bool | No | false | Whether antialiasing is enabled. |
 
 
 ## Attributes
@@ -439,19 +439,19 @@ struct LineDashOffset {
 
 ### globalCompositeOperation
 
-  | Name | Description | 
+| Name | Description |
 | -------- | -------- |
-| source-over | Displays the new drawing above the existing drawing. This attribute is used by default. | 
-| source-atop | Displays the new drawing on the top of the existing drawing. | 
-| source-in | Displays the new drawing inside the existing drawing. | 
-| source-out | Displays the part of the new drawing that is outside of the existing drawing. | 
-| destination-over | Displays the existing drawing above the new drawing. | 
-| destination-atop | Displays the existing drawing on the top of the new drawing. | 
-| destination-in | Displays the existing drawing inside the new drawing. | 
-| destination-out | Displays the part of the existing drawing that is outside of the new drawing. | 
-| lighter | Displays both the new drawing and the existing drawing. | 
-| copy | Displays the new drawing and neglects the existing drawing. | 
-| xor | Combines the new drawing and existing drawing using the XOR operation. | 
+| source-over | Displays the new drawing above the existing drawing. This attribute is used by default. |
+| source-atop | Displays the new drawing on the top of the existing drawing. |
+| source-in | Displays the new drawing inside the existing drawing. |
+| source-out | Displays the part of the new drawing that is outside of the existing drawing. |
+| destination-over | Displays the existing drawing above the new drawing. |
+| destination-atop | Displays the existing drawing on the top of the new drawing. |
+| destination-in | Displays the existing drawing inside the new drawing. |
+| destination-out | Displays the part of the existing drawing that is outside of the new drawing. |
+| lighter | Displays both the new drawing and the existing drawing. |
+| copy | Displays the new drawing and neglects the existing drawing. |
+| xor | Combines the new drawing and existing drawing using the XOR operation. |
 
 
 ```
@@ -659,12 +659,12 @@ fillRect(x: number, y: number, w: number, h: number): void
 Fills a rectangle on the canvas.
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | x | number | Yes | 0 | X-coordinate of the upper left corner of the rectangle. | 
-  | y | number | Yes | 0 | Y-coordinate of the upper left corner of the rectangle. | 
-  | width | number | Yes | 0 | Width of the rectangle. | 
-  | height | number | Yes | 0 | Height of the rectangle. | 
+  | x | number | Yes | 0 | X-coordinate of the upper left corner of the rectangle. |
+  | y | number | Yes | 0 | Y-coordinate of the upper left corner of the rectangle. |
+  | width | number | Yes | 0 | Width of the rectangle. |
+  | height | number | Yes | 0 | Height of the rectangle. |
 
 - Example
   
@@ -701,12 +701,12 @@ strokeRect(x: number, y: number, w: number, h: number): void
 Draws an outlined rectangle on the canvas.
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | x | number | Yes | 0 | X-coordinate of the upper left corner of the rectangle. | 
-  | y | number | Yes | 0 | Y-coordinate of the upper left corner of the rectangle. | 
-  | width | number | Yes | 0 | Width of the rectangle. | 
-  | height | number | Yes | 0 | Height of the rectangle. | 
+  | x | number | Yes | 0 | X-coordinate of the upper left corner of the rectangle. |
+  | y | number | Yes | 0 | Y-coordinate of the upper left corner of the rectangle. |
+  | width | number | Yes | 0 | Width of the rectangle. |
+  | height | number | Yes | 0 | Height of the rectangle. |
 
 - Example
   
@@ -742,12 +742,12 @@ clearRect(x: number, y: number, w: number, h: number): void
 Clears the content in a rectangle on the canvas.
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | x | number | Yes | 0 | X-coordinate of the upper left corner of the rectangle. | 
-  | y | number | Yes | 0 | Y-coordinate of the upper left corner of the rectangle. | 
-  | width | number | Yes | 0 | Width of the rectangle. | 
-  | height | number | Yes | 0 | Height of the rectangle. | 
+  | x | number | Yes | 0 | X-coordinate of the upper left corner of the rectangle. |
+  | y | number | Yes | 0 | Y-coordinate of the upper left corner of the rectangle. |
+  | width | number | Yes | 0 | Width of the rectangle. |
+  | height | number | Yes | 0 | Height of the rectangle. |
 
 - Example
   
@@ -785,11 +785,11 @@ fillText(text: string, x: number, y: number): void
 Draws filled text on the canvas.
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | text | string | Yes | "" | Text to draw. | 
-  | x | number | Yes | 0 | X-coordinate of the lower left corner of the text. | 
-  | y | number | Yes | 0 | Y-coordinate of the lower left corner of the text. | 
+  | text | string | Yes | "" | Text to draw. |
+  | x | number | Yes | 0 | X-coordinate of the lower left corner of the text. |
+  | y | number | Yes | 0 | Y-coordinate of the lower left corner of the text. |
 
 - Example
   
@@ -826,11 +826,11 @@ strokeText(text: string, x: number, y: number): void
 Draws a text stroke on the canvas.
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | text | string | Yes | "" | Text to draw. | 
-  | x | number | Yes | 0 | X-coordinate of the lower left corner of the text. | 
-  | y | number | Yes | 0 | Y-coordinate of the lower left corner of the text. | 
+  | text | string | Yes | "" | Text to draw. |
+  | x | number | Yes | 0 | X-coordinate of the lower left corner of the text. |
+  | y | number | Yes | 0 | Y-coordinate of the lower left corner of the text. |
 
 - Example
   
@@ -867,19 +867,19 @@ measureText(text: string): TextMetrics
 Returns a **TextMetrics** object used to obtain the width of specified text.
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | text | string | Yes | "" | Text to be measured. | 
+  | text | string | Yes | "" | Text to be measured. |
 
 - Return value
-    | Type | Description | 
+    | Type | Description |
   | -------- | -------- |
-  | TextMetrics | **TextMetrics** object. | 
+  | TextMetrics | **TextMetrics** object. |
 
 - **TextMetrics** attributes
-    | Name | Type | Description | 
+    | Name | Type | Description |
   | -------- | -------- | -------- |
-  | width | number | Width of the text. | 
+  | width | number | Width of the text. |
 
 - Example
   
@@ -917,9 +917,9 @@ stroke(path?: Path2D): void
 Strokes a path.
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | path | [Path2D](../reference/arkui-ts/ts-components-canvas-path2d.md) | No | null | A **Path2D** path to draw. | 
+  | path | [Path2D](ts-components-canvas-path2d.md) | No | null | A **Path2D** path to draw. |
 
 - Example
   
@@ -998,10 +998,10 @@ moveTo(x: number, y: number): void
 Moves a drawing path to a target position on the canvas.
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | x | number | Yes | 0 | X-coordinate of the target position. | 
-  | y | number | Yes | 0 | Y-coordinate of the target position. | 
+  | x | number | Yes | 0 | X-coordinate of the target position. |
+  | y | number | Yes | 0 | Y-coordinate of the target position. |
 
 - Example
   
@@ -1041,10 +1041,10 @@ lineTo(x: number, y: number): void
 Connects the current point to a target position using a straight line.
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | x | number | Yes | 0 | X-coordinate of the target position. | 
-  | y | number | Yes | 0 | Y-coordinate of the target position. | 
+  | x | number | Yes | 0 | X-coordinate of the target position. |
+  | y | number | Yes | 0 | Y-coordinate of the target position. |
 
 - Example
   
@@ -1123,10 +1123,10 @@ createPattern(image: ImageBitmap, repetition: string): void
 Creates a pattern for image filling based on a specified source image and repetition mode.
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | image | [ERROR:Invalid link:en-us_topic_0000001212378364.xml#en-us_topic_0000001193075104_xref1892917323814,link:en-us_topic_0000001192915114.xml](en-us_topic_0000001192915114.xml) | Yes | null | Source image. For details, see [ERROR:Invalid link:en-us_topic_0000001212378364.xml#xref539610179238,link:en-us_topic_0000001192915114.xml](en-us_topic_0000001192915114.xml). | 
-  | repetition | string | Yes | "" | Repetition mode. The value can be **'repeat'**, **'repeat-x'**, **'repeat-y'**, or **'no-repeat'**. | 
+  | image | [ImageBitmap](ts-components-canvas-imagebitmap.md) | Yes | null | Source image. For details, see ImageBitmap. |
+  | repetition | string | Yes | "" | Repetition mode. The value can be **'repeat'**, **'repeat-x'**, **'repeat-y'**, or **'no-repeat'**. |
 
 - Example
   
@@ -1166,14 +1166,14 @@ bezierCurveTo(cp1x: number, cp1y: number, cp2x: number, cp2y: number, x: number,
 Draws a cubic bezier curve on the canvas.
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | cp1x | number | Yes | 0 | X-coordinate of the first parameter of the bezier curve. | 
-  | cp1y | number | Yes | 0 | Y-coordinate of the first parameter of the bezier curve. | 
-  | cp2x | number | Yes | 0 | X-coordinate of the second parameter of the bezier curve. | 
-  | cp2y | number | Yes | 0 | Y-coordinate of the second parameter of the bezier curve. | 
-  | x | number | Yes | 0 | X-coordinate of the end point on the bezier curve. | 
-  | y | number | Yes | 0 | Y-coordinate of the end point on the bezier curve. | 
+  | cp1x | number | Yes | 0 | X-coordinate of the first parameter of the bezier curve. |
+  | cp1y | number | Yes | 0 | Y-coordinate of the first parameter of the bezier curve. |
+  | cp2x | number | Yes | 0 | X-coordinate of the second parameter of the bezier curve. |
+  | cp2y | number | Yes | 0 | Y-coordinate of the second parameter of the bezier curve. |
+  | x | number | Yes | 0 | X-coordinate of the end point on the bezier curve. |
+  | y | number | Yes | 0 | Y-coordinate of the end point on the bezier curve. |
 
 - Example
   
@@ -1213,12 +1213,12 @@ quadraticCurveTo(cpx: number, cpy: number, x: number, y: number): void
 Draws a quadratic curve on the canvas.
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | cpx | number | Yes | 0 | X-coordinate of the bezier curve parameter. | 
-  | cpy | number | Yes | 0 | Y-coordinate of the bezier curve parameter. | 
-  | x | number | Yes | 0 | X-coordinate of the end point on the bezier curve. | 
-  | y | number | Yes | 0 | Y-coordinate of the end point on the bezier curve. | 
+  | cpx | number | Yes | 0 | X-coordinate of the bezier curve parameter. |
+  | cpy | number | Yes | 0 | Y-coordinate of the bezier curve parameter. |
+  | x | number | Yes | 0 | X-coordinate of the end point on the bezier curve. |
+  | y | number | Yes | 0 | Y-coordinate of the end point on the bezier curve. |
 
 - Example
   
@@ -1257,14 +1257,14 @@ arc(x: number, y: number, radius: number, startAngle: number, endAngle: number, 
 Draws an arc on the canvas.
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | x | number | Yes | 0 | X-coordinate of the center point of the arc. | 
-  | y | number | Yes | 0 | Y-coordinate of the center point of the arc. | 
-  | radius | number | Yes | 0 | Radius of the arc. | 
-  | startAngle | number | Yes | 0 | Start radian of the arc. | 
-  | endAngle | number | Yes | 0 | End radian of the arc. | 
-  | anticlockwise | boolean | No | false | Whether to draw the arc counterclockwise. | 
+  | x | number | Yes | 0 | X-coordinate of the center point of the arc. |
+  | y | number | Yes | 0 | Y-coordinate of the center point of the arc. |
+  | radius | number | Yes | 0 | Radius of the arc. |
+  | startAngle | number | Yes | 0 | Start radian of the arc. |
+  | endAngle | number | Yes | 0 | End radian of the arc. |
+  | anticlockwise | boolean | No | false | Whether to draw the arc counterclockwise. |
 
 - Example
   
@@ -1303,13 +1303,13 @@ arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): void
 Draws an arc based on the radius and points on the arc.
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | x1 | number | Yes | 0 | X-coordinate of the first point on the arc. | 
-  | y1 | number | Yes | 0 | Y-coordinate of the first point on the arc. | 
-  | x2 | number | Yes | 0 | X-coordinate of the second point on the arc. | 
-  | y2 | number | Yes | 0 | Y-coordinate of the second point on the arc. | 
-  | radius | number | Yes | 0 | Radius of the arc. | 
+  | x1 | number | Yes | 0 | X-coordinate of the first point on the arc. |
+  | y1 | number | Yes | 0 | Y-coordinate of the first point on the arc. |
+  | x2 | number | Yes | 0 | X-coordinate of the second point on the arc. |
+  | y2 | number | Yes | 0 | Y-coordinate of the second point on the arc. |
+  | radius | number | Yes | 0 | Radius of the arc. |
 
 - Example
   
@@ -1348,16 +1348,16 @@ ellipse(x: number, y: number, radiusX: number, radiusY: number, rotation: number
 Draws an ellipse in the specified rectangular region.
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | x | number | Yes | 0 | X-coordinate of the ellipse center. | 
-  | y | number | Yes | 0 | Y-coordinate of the ellipse center. | 
-  | radiusX | number | Yes | 0 | Ellipse radius on the x-axis. | 
-  | radiusY | number | Yes | 0 | Ellipse radius on the y-axis. | 
-  | rotation | number | Yes | 0 | Rotation angle of the ellipse, in radians. | 
-  | startAngle | number | Yes | 0 | Angle of the start point for drawing the ellipse, in radians. | 
-  | endAngle | number | Yes | 0 | Angle of the end point for drawing the ellipse, in radians. | 
-  | anticlockwise | boolean | No | false | Whether to draw the ellipse in the counterclockwise direction. | 
+  | x | number | Yes | 0 | X-coordinate of the ellipse center. |
+  | y | number | Yes | 0 | Y-coordinate of the ellipse center. |
+  | radiusX | number | Yes | 0 | Ellipse radius on the x-axis. |
+  | radiusY | number | Yes | 0 | Ellipse radius on the y-axis. |
+  | rotation | number | Yes | 0 | Rotation angle of the ellipse, in radians. |
+  | startAngle | number | Yes | 0 | Angle of the start point for drawing the ellipse, in radians. |
+  | endAngle | number | Yes | 0 | Angle of the end point for drawing the ellipse, in radians. |
+  | anticlockwise | boolean | No | false | Whether to draw the ellipse in the counterclockwise direction. |
 
 - Example
 
@@ -1397,12 +1397,12 @@ rect(x: number, y: number, width: number, height: number): void
 Creates a rectangle.
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | x | number | Yes | 0 | X-coordinate of the upper left corner of the rectangle. | 
-  | y | number | Yes | 0 | Y-coordinate of the upper left corner of the rectangle. | 
-  | width | number | Yes | 0 | Width of the rectangle. | 
-  | height | number | Yes | 0 | Height of the rectangle. | 
+  | x | number | Yes | 0 | X-coordinate of the upper left corner of the rectangle. |
+  | y | number | Yes | 0 | Y-coordinate of the upper left corner of the rectangle. |
+  | width | number | Yes | 0 | Width of the rectangle. |
+  | height | number | Yes | 0 | Height of the rectangle. |
 
 - Example
   
@@ -1513,9 +1513,9 @@ rotate(rotate: number): void
 Rotates a canvas clockwise around its coordinate axes.
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | rotate | number | Yes | 0 | Clockwise rotation angle. You can use **Math.PI / 180** to convert the angle to a radian. | 
+  | rotate | number | Yes | 0 | Clockwise rotation angle. You can use **Math.PI / 180** to convert the angle to a radian. |
 
 - Example
   
@@ -1553,10 +1553,10 @@ scale(x: number, y: number): void
 Scales a canvas based on scale factors.
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | x | number | Yes | 0 | Horizontal scale factor. | 
-  | y | number | Yes | 0 | Vertical scale factor. | 
+  | x | number | Yes | 0 | Horizontal scale factor. |
+  | y | number | Yes | 0 | Vertical scale factor. |
 
 - Example
   
@@ -1602,14 +1602,14 @@ Defines a transformation matrix. To transform a graph, you only need to set para
 > - y' = skewX \* x + scaleY \* y + translateY
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | scaleX | number | Yes | 0 | X-axis scale. | 
-  | skewX | number | Yes | 0 | X-axis skew. | 
-  | skewY | number | Yes | 0 | Y-axis skew. | 
-  | scaleY | number | Yes | 0 | Y-axis scale. | 
-  | translateX | number | Yes | 0 | X-axis translation. | 
-  | translateY | number | Yes | 0 | Y-axis translation. | 
+  | scaleX | number | Yes | 0 | X-axis scale. |
+  | skewX | number | Yes | 0 | X-axis skew. |
+  | skewY | number | Yes | 0 | Y-axis skew. |
+  | scaleY | number | Yes | 0 | Y-axis scale. |
+  | translateX | number | Yes | 0 | X-axis translation. |
+  | translateY | number | Yes | 0 | Y-axis translation. |
 
 - Example
   
@@ -1653,14 +1653,14 @@ setTransform(scaleX: number, skewX: number, skewY: number, scale: number, transl
 Resets the existing transformation matrix and creates a new transformation matrix by using the same parameters as the **transform()** function.
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | scaleX | number | Yes | 0 | X-axis scale. | 
-  | skewX | number | Yes | 0 | X-axis skew. | 
-  | skewY | number | Yes | 0 | Y-axis skew. | 
-  | scaleY | number | Yes | 0 | Y-axis scale. | 
-  | translateX | number | Yes | 0 | X-axis translation. | 
-  | translateY | number | Yes | 0 | Y-axis translation. | 
+  | scaleX | number | Yes | 0 | X-axis scale. |
+  | skewX | number | Yes | 0 | X-axis skew. |
+  | skewY | number | Yes | 0 | Y-axis skew. |
+  | scaleY | number | Yes | 0 | Y-axis scale. |
+  | translateX | number | Yes | 0 | X-axis translation. |
+  | translateY | number | Yes | 0 | Y-axis translation. |
 
 - Example
   
@@ -1701,10 +1701,10 @@ translate(x: number, y: number): void
 Moves the origin of the coordinate system.
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | x | number | Yes | 0 | X-axis translation. | 
-  | y | number | Yes | 0 | Y-axis translation. | 
+  | x | number | Yes | 0 | X-axis translation. |
+  | y | number | Yes | 0 | Y-axis translation. |
 
 - Example
   
@@ -1747,17 +1747,17 @@ drawImage(image: ImageBitmap, sx: number, sy: number, sWidth: number, sHeight: n
 Draws an image.
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | image | [ERROR:Invalid link:en-us_topic_0000001212378364.xml#en-us_topic_0000001193075104_xref962584519412,link:en-us_topic_0000001192915114.xml](en-us_topic_0000001192915114.xml) | Yes | null | Image resource. For details, see [ERROR:Invalid link:en-us_topic_0000001212378364.xml#xref29052050153012,link:en-us_topic_0000001192915114.xml](en-us_topic_0000001192915114.xml). | 
-  | sx | number | No | 0 | X-coordinate of the upper left corner of the rectangle used to crop the source image. | 
-  | sy | number | No | 0 | Y-coordinate of the upper left corner of the rectangle used to crop the source image. | 
-  | sWidth | number | No | 0 | Target width to crop the source image. | 
-  | sHeight | number | No | 0 | Target height to crop the source image. | 
-  | dx | number | Yes | 0 | X-coordinate of the upper left corner of the drawing area on the canvas. | 
-  | dy | number | Yes | 0 | Y-coordinate of the upper left corner of the drawing area on the canvas. | 
-  | dWidth | number | No | 0 | Width of the drawing area. | 
-  | dHeight | number | No | 0 | Height of the drawing area. | 
+  | image | [ImageBitmap](ts-components-canvas-imagebitmap.md) | Yes | null | Image resource. For details, see ImageBitmap |
+  | sx | number | No | 0 | X-coordinate of the upper left corner of the rectangle used to crop the source image. |
+  | sy | number | No | 0 | Y-coordinate of the upper left corner of the rectangle used to crop the source image. |
+  | sWidth | number | No | 0 | Target width to crop the source image. |
+  | sHeight | number | No | 0 | Target height to crop the source image. |
+  | dx | number | Yes | 0 | X-coordinate of the upper left corner of the drawing area on the canvas. |
+  | dy | number | Yes | 0 | Y-coordinate of the upper left corner of the drawing area on the canvas. |
+  | dWidth | number | No | 0 | Width of the drawing area. |
+  | dHeight | number | No | 0 | Height of the drawing area. |
 
 
 - Example
@@ -1795,10 +1795,10 @@ createImageData(width: number, height: number): Object
 Creates an **ImageData** object. For details, see [ImageData](../reference/arkui-ts/ts-components-canvas-imagebitmap.md).
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | width | number | Yes | 0 | Width of the **ImageData** object. | 
-  | height | number | Yes | 0 | Height of the **ImageData** object. | 
+  | width | number | Yes | 0 | Width of the **ImageData** object. |
+  | height | number | Yes | 0 | Height of the **ImageData** object. |
 
 
 ### createImageData
@@ -1808,9 +1808,9 @@ createImageData(imageData: Object): Object
 Creates an **ImageData** object. For details, see [ImageData](../reference/arkui-ts/ts-components-canvas-imagebitmap.md).
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | imagedata | Object | Yes | null | **ImageData** object with the same width and height copied from the original **ImageData** object. | 
+  | imagedata | Object | Yes | null | **ImageData** object with the same width and height copied from the original **ImageData** object. |
 
 
 ### getImageData
@@ -1819,12 +1819,12 @@ getImageData(sx: number, sy: number, sw: number, sh: number): Object
 
   Creates an [ImageData](../reference/arkui-ts/ts-components-canvas-imagebitmap.md) object with pixels in the specified area on the canvas.
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | sx | number | Yes | 0 | X-coordinate of the upper left corner of the output area. | 
-  | sy | number | Yes | 0 | Y-coordinate of the upper left corner of the output area. | 
-  | sw | number | Yes | 0 | Width of the output area. | 
-  | sh | number | Yes | 0 | Height of the output area. | 
+  | sx | number | Yes | 0 | X-coordinate of the upper left corner of the output area. |
+  | sy | number | Yes | 0 | Y-coordinate of the upper left corner of the output area. |
+  | sw | number | Yes | 0 | Width of the output area. |
+  | sh | number | Yes | 0 | Height of the output area. |
 
 
 ### putImageData
@@ -1834,15 +1834,15 @@ putImageData(imageData: Object, dx: number, dy: number, dirtyX?: number, dirtyY?
 Puts the [ImageData](../reference/arkui-ts/ts-components-canvas-imagebitmap.md) onto a rectangular area on the canvas.
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | imagedata | Object | Yes | null | **ImageData** object with pixels to put onto the canvas. | 
-  | dx | number | Yes | 0 | X-axis offset of the rectangular area on the canvas. | 
-  | dy | number | Yes | 0 | Y-axis offset of the rectangular area on the canvas. | 
-  | dirtyX | number | No | 0 | X-axis offset of the upper left corner of the rectangular area relative to that of the source image. | 
-  | dirtyY | number | No | 0 | Y-axis offset of the upper left corner of the rectangular area relative to that of the source image. | 
-  | dirtyWidth | number | No | Width of the **ImageData** object | Width of the rectangular area to crop the source image. | 
-  | dirtyHeight | number | No | Height of the **ImageData** object | Height of the rectangular area to crop the source image. | 
+  | imagedata | Object | Yes | null | **ImageData** object with pixels to put onto the canvas. |
+  | dx | number | Yes | 0 | X-axis offset of the rectangular area on the canvas. |
+  | dy | number | Yes | 0 | Y-axis offset of the rectangular area on the canvas. |
+  | dirtyX | number | No | 0 | X-axis offset of the upper left corner of the rectangular area relative to that of the source image. |
+  | dirtyY | number | No | 0 | Y-axis offset of the upper left corner of the rectangular area relative to that of the source image. |
+  | dirtyWidth | number | No | Width of the **ImageData** object | Width of the rectangular area to crop the source image. |
+  | dirtyHeight | number | No | Height of the **ImageData** object | Height of the rectangular area to crop the source image. |
 
 - Example
   
@@ -1950,12 +1950,12 @@ createLinearGradient(x0: number, y0: number, x1: number, y1: number): void
 Creates a linear gradient.
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | x0 | number | Yes | 0 | X-coordinate of the start point. | 
-  | y0 | number | Yes | 0 | Y-coordinate of the start point. | 
-  | x1 | number | Yes | 0 | X-coordinate of the end point. | 
-  | y1 | number | Yes | 0 | Y-coordinate of the end point. | 
+  | x0 | number | Yes | 0 | X-coordinate of the start point. |
+  | y0 | number | Yes | 0 | Y-coordinate of the start point. |
+  | x1 | number | Yes | 0 | X-coordinate of the end point. |
+  | y1 | number | Yes | 0 | Y-coordinate of the end point. |
 
 - Example
   
@@ -1997,14 +1997,14 @@ createRadialGradient(x0: number, y0: number, r0: number, x1: number, y1: number,
 Creates a linear gradient.
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | x0 | number | Yes | 0 | X-coordinate of the center of the start circle. | 
-  | y0 | number | Yes | 0 | Y-coordinate of the center of the start circle. | 
-  | r0 | number | Yes | 0 | Radius of the start circle, which must be a non-negative finite number. | 
-  | x1 | number | Yes | 0 | X-coordinate of the center of the end circle. | 
-  | y1 | number | Yes | 0 | Y-coordinate of the center of the end circle. | 
-  | r1 | number | Yes | 0 | Radius of the end circle, which must be a non-negative finite number. | 
+  | x0 | number | Yes | 0 | X-coordinate of the center of the start circle. |
+  | y0 | number | Yes | 0 | Y-coordinate of the center of the start circle. |
+  | r0 | number | Yes | 0 | Radius of the start circle, which must be a non-negative finite number. |
+  | x1 | number | Yes | 0 | X-coordinate of the center of the end circle. |
+  | y1 | number | Yes | 0 | Y-coordinate of the center of the end circle. |
+  | r1 | number | Yes | 0 | Radius of the end circle, which must be a non-negative finite number. |
 
 - Example
   

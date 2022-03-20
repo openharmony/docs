@@ -15,7 +15,7 @@ None
 
 ## Child Components
 
-This component contains the child component [<ListItem>](../reference/arkui-ts/ts-container-listitem.md).
+This component contains the child component [<ListItem>](ts-container-listitem.md).
 
 
 ## APIs
@@ -23,10 +23,10 @@ This component contains the child component [<ListItem>](../reference/arkui-ts/t
 List(value:{space?: number, initialIndex?: number})
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | space | number | No | 0 | Spacing between list items. | 
-  | initialIndex | number | No | 0 | Item displayed at the beginning of the component when the current list is loaded for the first time, that is, the first item to be displayed. If the configured sequence number is greater than the sequence number of the last item, the setting does not take effect. | 
+  | space | number | No | 0 | Spacing between list items. |
+  | initialIndex | number | No | 0 | Item displayed at the beginning of the component when the current list is loaded for the first time, that is, the first item to be displayed. If the configured sequence number is greater than the sequence number of the last item, the setting does not take effect. |
 
 
 ## Attributes
@@ -42,18 +42,18 @@ List(value:{space?: number, initialIndex?: number})
 | restoreId<sup>8+</sup> | number | - | Migration ID of the component. During application migration, the status of the component is migrated to the component with the same migration ID on the peer end.<br/>For a **&lt;List&gt;** component, the status includes the item serial number displayed at the start position. |
 
 - EdgeEffect enums
-    | Name | Description | 
+    | Name | Description |
   | -------- | -------- |
-  | Spring | Similar to the physical dynamic effect of a spring. After scrolling to the edge, you can continue to scroll for a distance based on the initial speed or by touching the knob of the scrollbar. After you release your hand, the knob is rebounded. | 
-  | None | No effect after the scroll bar is moved to the edge. | 
+  | Spring | Similar to the physical dynamic effect of a spring. After scrolling to the edge, you can continue to scroll for a distance based on the initial speed or by touching the knob of the scrollbar. After you release your hand, the knob is rebounded. |
+  | None | No effect after the scroll bar is moved to the edge. |
 
 
 ## Events
 
-  | Name | Description | 
+| Name | Description |
 | -------- | -------- |
-| onItemDelete(index: number) =&gt; boolean | Triggered when a list item is deleted. | 
-| onScrollIndex(firstIndex: number, lastIndex: number) =&gt; void | Triggered when the start position and end position of the current list are changed. | 
+| onItemDelete(index: number) =&gt; boolean | Triggered when a list item is deleted. |
+| onScrollIndex(firstIndex: number, lastIndex: number) =&gt; void | Triggered when the start position and end position of the current list are changed. |
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > To enable the editable mode for a list, the following conditions must be met:
