@@ -316,7 +316,7 @@ put(key: string, value: ValueType): Promise&lt;void&gt;
 
 Obtains the **Preferences** instance corresponding to the specified file, writes data to the **Preferences** instance using a **Preferences** API, and saves data to the file using **flush()** or **flushSync()**.
 
-This method uses an asynchronous callback to return the result.
+This method uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -383,7 +383,7 @@ has(key: string): Promise&lt;boolean&gt;
 
 Checks whether the **Preference** object contains data with a given key.
 
-This method uses an asynchronous callback to return the result.
+This method uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -502,7 +502,7 @@ flush(): Promise&lt;void&gt;
 
 Saves the modification of this object to the **Preferences** instance and synchronizes the modification to the file.
 
-This method uses an asynchronous callback to return the result.
+This method uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -555,7 +555,7 @@ clear(): Promise&lt;void&gt;
 
 Clears this **Preferences** object.
 
-This method uses an asynchronous callback to return the result.
+This method uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
