@@ -109,7 +109,7 @@ The following example shows how to implement a distributed data object synchroni
     local_object.on("change", this.changeCallback);
    ```
    
-5. Modifies object attributes. The object attributes support basic data types (such as number, Boolean, and string) and complex data types (array and nested basic types).
+5. Modify object attributes. The object attributes support basic data types (such as number, Boolean, and string) and complex data types (array and nested basic types).
    
    The sample code is as follows:
    ```js
@@ -120,7 +120,7 @@ The following example shows how to implement a distributed data object synchroni
    local_object.list = [{mother:"jack mom"}, {father:"jack Dad"}];
    ```
 
-   > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+   > ![icon-note.gif](../public_sys-resources/icon-note.gif) **NOTE**<br/>
    > For the distributed data object of the complex type, only the root attribute can be modified. The subordinate attributes cannot be modified. Example:
    ```js
    // Supported modification.
