@@ -1,7 +1,7 @@
 # Span
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -23,26 +23,26 @@ None
 Span(content: string)
 
 - Parameters
-    | Name | Type | Mandatory | Default&nbsp;Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description | 
   | -------- | -------- | -------- | -------- | -------- |
-  | content | string | Yes | - | Text&nbsp;content. | 
+  | content | string | Yes | - | Text content. | 
 
 
 ## Attributes
 
 In addition to the text style attributes, the attributes below are supported.
 
-| Name | Type | Default&nbsp;Value | Description |
+| Name | Type | Default Value | Description |
 | -------- | -------- | -------- | -------- |
-| decoration | {<br/>type:&nbsp;[TextDecorationType](ts-appendix-enums.md#textdecorationtype-enums),<br/>color?:&nbsp;Color<br/>} | {<br/>type:&nbsp;TextDecorationType.None<br/>} | Style&nbsp;and&nbsp;color&nbsp;of&nbsp;the&nbsp;text&nbsp;decorative&nbsp;line. |
-| textCase | [TextCase](ts-appendix-enums.md#textcase-enums) | Normal | Text&nbsp;case. |
+| decoration | {<br/>type: [TextDecorationType](ts-appendix-enums.md#textdecorationtype-enums),<br/>color?: Color<br/>} | {<br/>type: TextDecorationType.None<br/>} | Style and color of the text decorative line. |
+| textCase | [TextCase](ts-appendix-enums.md#textcase-enums) | Normal | Text case. |
 
 
 ## Events
 
 Among all the universal events, only the click event is supported.
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > As the **&lt;Span&gt;** component does not have size information, the **target** attribute of the **ClickEvent** object returned by the click event is invalid.
 
 

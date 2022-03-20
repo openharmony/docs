@@ -1,7 +1,7 @@
 # Image
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -23,54 +23,54 @@ None
 Image(value: {uri: string | PixelMap})
 
 - Parameters
-    | Name | Type | Mandatory | Default&nbsp;Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description | 
   | -------- | -------- | -------- | -------- | -------- |
-  | uri | string | Yes | - | Image&nbsp;URI.&nbsp;Both&nbsp;local&nbsp;and&nbsp;Internal&nbsp;URIs&nbsp;are&nbsp;supported. | 
+  | uri | string | Yes | - | Image URI. Both local and Internal URIs are supported. | 
 
 
 ## Attributes
 
-| Name | Type | Default&nbsp;Value | Description |
+| Name | Type | Default Value | Description |
 | -------- | -------- | -------- | -------- |
-| alt | string | - | Placeholder&nbsp;image&nbsp;displayed&nbsp;during&nbsp;loading.&nbsp;Both&nbsp;local&nbsp;and&nbsp;Internal&nbsp;URIs&nbsp;are&nbsp;supported. |
-| objectFit | ImageFit | ImageFit.Cover | Image&nbsp;scale&nbsp;type. |
-| objectRepeat | [ImageRepeat](ts-appendix-enums.md#imagerepeat enums) | ImageRepeat.NoRepeat | Whether&nbsp;the&nbsp;image&nbsp;is&nbsp;repeated.<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**NOTE：**<br/>>&nbsp;-&nbsp;This&nbsp;attribute&nbsp;is&nbsp;not&nbsp;applicable&nbsp;to&nbsp;SVG&nbsp;images. |
-| interpolation | ImageInterpolation | ImageInterpolation.None | Interpolation&nbsp;effect&nbsp;of&nbsp;the&nbsp;image.&nbsp;This&nbsp;attribute&nbsp;is&nbsp;valid&nbsp;only&nbsp;when&nbsp;the&nbsp;image&nbsp;is&nbsp;zoomed&nbsp;in.<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**NOTE：**<br/>>&nbsp;-&nbsp;This&nbsp;attribute&nbsp;is&nbsp;not&nbsp;applicable&nbsp;to&nbsp;SVG&nbsp;images.<br/>>&nbsp;<br/>>&nbsp;-&nbsp;This&nbsp;attribute&nbsp;is&nbsp;not&nbsp;applicable&nbsp;to&nbsp;a&nbsp;**PixelMap**&nbsp;object. |
-| renderMode | ImageRenderMode | ImageRenderMode.Original | Rendering&nbsp;mode&nbsp;of&nbsp;the&nbsp;image.<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**NOTE：**<br/>>&nbsp;-&nbsp;This&nbsp;attribute&nbsp;is&nbsp;not&nbsp;applicable&nbsp;to&nbsp;SVG&nbsp;images. |
-| sourceSize | {<br/>width:&nbsp;number,<br/>height:&nbsp;number<br/>} | - | Decoding&nbsp;size&nbsp;of&nbsp;the&nbsp;image.&nbsp;The&nbsp;original&nbsp;image&nbsp;is&nbsp;decoded&nbsp;into&nbsp;an&nbsp;image&nbsp;of&nbsp;the&nbsp;specified&nbsp;size.&nbsp;If&nbsp;the&nbsp;value&nbsp;is&nbsp;of&nbsp;the&nbsp;number&nbsp;type,&nbsp;the&nbsp;unit&nbsp;px&nbsp;is&nbsp;used.<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**NOTE：**<br/>>&nbsp;This&nbsp;attribute&nbsp;is&nbsp;not&nbsp;applicable&nbsp;to&nbsp;a&nbsp;**PixelMap**&nbsp;object. |
-| syncLoad<sup>8+</sup> | boolean | false | Whether&nbsp;to&nbsp;load&nbsp;images&nbsp;synchronously.&nbsp;By&nbsp;default,&nbsp;images&nbsp;are&nbsp;loaded&nbsp;asynchronously.&nbsp;During&nbsp;synchronous&nbsp;loading,&nbsp;the&nbsp;UI&nbsp;thread&nbsp;is&nbsp;blocked&nbsp;and&nbsp;the&nbsp;placeholder&nbsp;diagram&nbsp;is&nbsp;not&nbsp;displayed. |
+| alt | string | - | Placeholder image displayed during loading. Both local and Internal URIs are supported. |
+| objectFit | ImageFit | ImageFit.Cover | Image scale type. |
+| objectRepeat | [ImageRepeat](ts-appendix-enums.md#imagerepeat enums) | ImageRepeat.NoRepeat | Whether the image is repeated.<br/>> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>> - This attribute is not applicable to SVG images. |
+| interpolation | ImageInterpolation | ImageInterpolation.None | Interpolation effect of the image. This attribute is valid only when the image is zoomed in.<br/>> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>> - This attribute is not applicable to SVG images.<br/>> <br/>> - This attribute is not applicable to a **PixelMap** object. |
+| renderMode | ImageRenderMode | ImageRenderMode.Original | Rendering mode of the image.<br/>> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>> - This attribute is not applicable to SVG images. |
+| sourceSize | {<br/>width: number,<br/>height: number<br/>} | - | Decoding size of the image. The original image is decoded into an image of the specified size. If the value is of the number type, the unit px is used.<br/>> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>> This attribute is not applicable to a **PixelMap** object. |
+| syncLoad<sup>8+</sup> | boolean | false | Whether to load images synchronously. By default, images are loaded asynchronously. During synchronous loading, the UI thread is blocked and the placeholder diagram is not displayed. |
 
 - ImageFit enums
     | Name | Description | 
   | -------- | -------- |
-  | Cover | The&nbsp;image&nbsp;is&nbsp;scaled&nbsp;with&nbsp;its&nbsp;aspect&nbsp;ratio&nbsp;retained&nbsp;for&nbsp;both&nbsp;sides&nbsp;to&nbsp;be&nbsp;greater&nbsp;than&nbsp;or&nbsp;equal&nbsp;to&nbsp;the&nbsp;display&nbsp;boundaries. | 
-  | Contain | The&nbsp;image&nbsp;is&nbsp;scaled&nbsp;with&nbsp;its&nbsp;aspect&nbsp;ratio&nbsp;retained&nbsp;for&nbsp;the&nbsp;content&nbsp;to&nbsp;be&nbsp;completely&nbsp;displayed&nbsp;within&nbsp;the&nbsp;display&nbsp;boundaries. | 
-  | Fill | The&nbsp;video&nbsp;content&nbsp;is&nbsp;resized&nbsp;to&nbsp;fill&nbsp;the&nbsp;display&nbsp;area&nbsp;while&nbsp;retaining&nbsp;its&nbsp;aspect&nbsp;ratio. | 
-  | None | The&nbsp;original&nbsp;size&nbsp;is&nbsp;retained.&nbsp;Generally,&nbsp;this&nbsp;enum&nbsp;is&nbsp;used&nbsp;together&nbsp;with&nbsp;the&nbsp;**objectRepeat**&nbsp;attribute. | 
-  | ScaleDown | The&nbsp;image&nbsp;content&nbsp;is&nbsp;displayed&nbsp;with&nbsp;its&nbsp;aspect&nbsp;ratio&nbsp;retained.&nbsp;The&nbsp;size&nbsp;is&nbsp;smaller&nbsp;than&nbsp;or&nbsp;equal&nbsp;to&nbsp;the&nbsp;original&nbsp;size. | 
+  | Cover | The image is scaled with its aspect ratio retained for both sides to be greater than or equal to the display boundaries. | 
+  | Contain | The image is scaled with its aspect ratio retained for the content to be completely displayed within the display boundaries. | 
+  | Fill | The video content is resized to fill the display area while retaining its aspect ratio. | 
+  | None | The original size is retained. Generally, this enum is used together with the **objectRepeat** attribute. | 
+  | ScaleDown | The image content is displayed with its aspect ratio retained. The size is smaller than or equal to the original size. | 
 
 - ImageInterpolation enums
     | Name | Description | 
   | -------- | -------- |
-  | None | Interpolation&nbsp;image&nbsp;data&nbsp;is&nbsp;not&nbsp;used. | 
-  | High | The&nbsp;interpolation&nbsp;image&nbsp;data&nbsp;is&nbsp;used&nbsp;at&nbsp;the&nbsp;high&nbsp;level.&nbsp;The&nbsp;use&nbsp;of&nbsp;the&nbsp;interpolation&nbsp;image&nbsp;data&nbsp;may&nbsp;affect&nbsp;the&nbsp;image&nbsp;rendering&nbsp;speed. | 
-  | Medium | The&nbsp;interpolation&nbsp;image&nbsp;data&nbsp;is&nbsp;used&nbsp;at&nbsp;the&nbsp;medium&nbsp;level. | 
-  | Low | The&nbsp;interpolation&nbsp;image&nbsp;data&nbsp;is&nbsp;used&nbsp;at&nbsp;the&nbsp;low&nbsp;level. | 
+  | None | Interpolation image data is not used. | 
+  | High | The interpolation image data is used at the high level. The use of the interpolation image data may affect the image rendering speed. | 
+  | Medium | The interpolation image data is used at the medium level. | 
+  | Low | The interpolation image data is used at the low level. | 
 
 - ImageRenderMode enums
     | Name | Description | 
   | -------- | -------- |
-  | Original | The&nbsp;image&nbsp;is&nbsp;rendered&nbsp;based&nbsp;on&nbsp;the&nbsp;original&nbsp;image,&nbsp;including&nbsp;the&nbsp;color. | 
-  | Template | The&nbsp;image&nbsp;is&nbsp;rendered&nbsp;as&nbsp;a&nbsp;template&nbsp;image,&nbsp;and&nbsp;its&nbsp;color&nbsp;is&nbsp;ignored. | 
+  | Original | The image is rendered based on the original image, including the color. | 
+  | Template | The image is rendered as a template image, and its color is ignored. | 
 
 
 ## Events
 
   | Name | Description | 
 | -------- | -------- |
-| onComplete(callback:&nbsp;(event?:&nbsp;{&nbsp;width:&nbsp;number,&nbsp;height:&nbsp;number,&nbsp;componentWidth:&nbsp;number,&nbsp;componentHeight:&nbsp;number,&nbsp;loadingStatus:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void) | Triggered&nbsp;when&nbsp;an&nbsp;image&nbsp;is&nbsp;successfully&nbsp;loaded.&nbsp;The&nbsp;loaded&nbsp;image&nbsp;is&nbsp;returned. | 
-| onError(callback:&nbsp;(event?:&nbsp;{&nbsp;componentWidth:&nbsp;number,&nbsp;componentHeight:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void) | An&nbsp;exception&nbsp;occurs&nbsp;during&nbsp;image&nbsp;loading. | 
-| onFinish(callback:&nbsp;()&nbsp;=&gt;&nbsp;void) | If&nbsp;the&nbsp;source&nbsp;file&nbsp;to&nbsp;be&nbsp;loaded&nbsp;is&nbsp;an&nbsp;SVG&nbsp;image,&nbsp;this&nbsp;callback&nbsp;is&nbsp;invoked&nbsp;when&nbsp;the&nbsp;SVG&nbsp;animation&nbsp;playback&nbsp;is&nbsp;complete.&nbsp;If&nbsp;the&nbsp;animation&nbsp;is&nbsp;an&nbsp;infinite&nbsp;loop,&nbsp;this&nbsp;callback&nbsp;is&nbsp;not&nbsp;triggered. | 
+| onComplete(callback: (event?: { width: number, height: number, componentWidth: number, componentHeight: number, loadingStatus: number }) =&gt; void) | Triggered when an image is successfully loaded. The loaded image is returned. | 
+| onError(callback: (event?: { componentWidth: number, componentHeight: number }) =&gt; void) | An exception occurs during image loading. | 
+| onFinish(callback: () =&gt; void) | If the source file to be loaded is an SVG image, this callback is invoked when the SVG animation playback is complete. If the animation is an infinite loop, this callback is not triggered. | 
 
 
 ## Example

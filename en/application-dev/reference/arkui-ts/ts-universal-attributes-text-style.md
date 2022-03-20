@@ -1,7 +1,7 @@
 # Text Style
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This attribute is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -16,31 +16,31 @@ None
 ## Attributes
 
 
-  | Name | Type | Default&nbsp;Value | Description | 
+  | Name | Type | Default Value | Description | 
 | -------- | -------- | -------- | -------- |
-| fontColor | Color | - | Text&nbsp;color. | 
-| fontSize | Length | - | Text&nbsp;size.&nbsp;If&nbsp;the&nbsp;value&nbsp;is&nbsp;of&nbsp;the&nbsp;number&nbsp;type,&nbsp;the&nbsp;unit&nbsp;fp&nbsp;is&nbsp;used. | 
-| fontStyle | FontStyle | FontStyle.Normal | Font&nbsp;style&nbsp;of&nbsp;the&nbsp;text. | 
-| fontWeight | number&nbsp;\|&nbsp;FontWeight | FontWeight.Normal | Font&nbsp;weight.&nbsp;For&nbsp;the&nbsp;number&nbsp;type,&nbsp;the&nbsp;value&nbsp;ranges&nbsp;from&nbsp;100&nbsp;to&nbsp;900,&nbsp;at&nbsp;an&nbsp;interval&nbsp;of&nbsp;100.&nbsp;The&nbsp;default&nbsp;value&nbsp;is&nbsp;**400**.&nbsp;A&nbsp;larger&nbsp;value&nbsp;indicates&nbsp;a&nbsp;larger&nbsp;font&nbsp;weight.<br/>For&nbsp;common&nbsp;values&nbsp;of&nbsp;the&nbsp;**FontWeight**&nbsp;type,&nbsp;see&nbsp;**FontWeight**&nbsp;enums. | 
-| fontFamily | string | - | Font&nbsp;family&nbsp;of&nbsp;the&nbsp;text.&nbsp;Use&nbsp;commas&nbsp;(,)&nbsp;to&nbsp;separate&nbsp;multiple&nbsp;fonts.&nbsp;The&nbsp;priority&nbsp;the&nbsp;fonts&nbsp;is&nbsp;the&nbsp;sequence&nbsp;in&nbsp;which&nbsp;they&nbsp;are&nbsp;placed.&nbsp;An&nbsp;example&nbsp;value&nbsp;is&nbsp;**Arial,&nbsp;sans-serif**. | 
+| fontColor | Color | - | Text color. | 
+| fontSize | Length | - | Text size. If the value is of the number type, the unit fp is used. | 
+| fontStyle | FontStyle | FontStyle.Normal | Font style of the text. | 
+| fontWeight | number \| FontWeight | FontWeight.Normal | Font weight. For the number type, the value ranges from 100 to 900, at an interval of 100. The default value is **400**. A larger value indicates a larger font weight.<br/>For common values of the **FontWeight** type, see **FontWeight** enums. | 
+| fontFamily | string | - | Font family of the text. Use commas (,) to separate multiple fonts. The priority the fonts is the sequence in which they are placed. An example value is **Arial, sans-serif**. | 
 
 
 - FontStyle enums
     | Name | Description | 
   | -------- | -------- |
-  | Normal | Standard&nbsp;font&nbsp;style. | 
-  | Italic | Italic&nbsp;font&nbsp;style. | 
+  | Normal | Standard font style. | 
+  | Italic | Italic font style. | 
 
 
 - FontWeight enums
     | Name | Description | 
   | -------- | -------- |
-  | Lighter | The&nbsp;font&nbsp;weight&nbsp;is&nbsp;lighter. | 
-  | Normal | The&nbsp;font&nbsp;weight&nbsp;is&nbsp;normal. | 
-  | Regular | The&nbsp;font&nbsp;weight&nbsp;is&nbsp;regular. | 
-  | Medium | The&nbsp;font&nbsp;weight&nbsp;is&nbsp;medium. | 
-  | Bold | The&nbsp;font&nbsp;weight&nbsp;is&nbsp;bold. | 
-  | Bolder | The&nbsp;font&nbsp;weight&nbsp;is&nbsp;bolder. | 
+  | Lighter | The font weight is lighter. | 
+  | Normal | The font weight is normal. | 
+  | Regular | The font weight is regular. | 
+  | Medium | The font weight is medium. | 
+  | Bold | The font weight is bold. | 
+  | Bolder | The font weight is bolder. | 
 
 
 ## Example

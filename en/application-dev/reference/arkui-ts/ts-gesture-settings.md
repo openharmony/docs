@@ -1,7 +1,7 @@
 # Gesture Binding Methods
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This method is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -16,29 +16,29 @@ None
 Use the following attributes to bind gesture recognition to a component. When a gesture is recognized, the event callback is invoked to notify the component.
 
 
-  | Name | Type | Default&nbsp;Value | Description | 
+  | Name | Type | Default Value | Description | 
 | -------- | -------- | -------- | -------- |
-| gesture | gesture:&nbsp;GestureType,<br/>mask?:&nbsp;GestureMask | gesture:&nbsp;-,<br/>mask:&nbsp;GestureMask.Normal | Gesture&nbsp;to&nbsp;recognize.<br/>**gesture**&nbsp;specifies&nbsp;the&nbsp;type&nbsp;of&nbsp;the&nbsp;gesture&nbsp;to&nbsp;bind,&nbsp;and&nbsp;**mask**&nbsp;specifies&nbsp;the&nbsp;event&nbsp;response&nbsp;setting. | 
-| priorityGesture | gesture:&nbsp;GestureType,<br/>mask?:&nbsp;GestureMask | gesture:&nbsp;-,<br/>mask:&nbsp;GestureMask.Normal | Gesture&nbsp;to&nbsp;preferentially&nbsp;recognize.<br/>**gesture**&nbsp;specifies&nbsp;the&nbsp;type&nbsp;of&nbsp;the&nbsp;gesture&nbsp;to&nbsp;bind,&nbsp;and&nbsp;**mask**&nbsp;specifies&nbsp;the&nbsp;event&nbsp;response&nbsp;setting.<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**NOTE：**<br/>>&nbsp;-&nbsp;By&nbsp;default,&nbsp;the&nbsp;child&nbsp;component&nbsp;takes&nbsp;precedence&nbsp;over&nbsp;the&nbsp;parent&nbsp;component&nbsp;in&nbsp;gesture&nbsp;recognition.&nbsp;When&nbsp;**priorityGesture**&nbsp;is&nbsp;configured&nbsp;for&nbsp;the&nbsp;parent&nbsp;component,&nbsp;the&nbsp;parent&nbsp;component&nbsp;takes&nbsp;precedence&nbsp;over&nbsp;the&nbsp;child&nbsp;component&nbsp;in&nbsp;gesture&nbsp;recognition. | 
-| parallelGesture | gesture:&nbsp;GestureType,<br/>mask?:&nbsp;GestureMask | gesture:&nbsp;-,<br/>mask:&nbsp;GestureMask.Normal | Gesture&nbsp;that&nbsp;can&nbsp;be&nbsp;triggered&nbsp;together&nbsp;with&nbsp;the&nbsp;child&nbsp;component&nbsp;gesture.<br/>**gesture**&nbsp;specifies&nbsp;the&nbsp;type&nbsp;of&nbsp;the&nbsp;gesture&nbsp;to&nbsp;bind,&nbsp;and&nbsp;**mask**&nbsp;specifies&nbsp;the&nbsp;event&nbsp;response&nbsp;setting.<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**NOTE：**<br/>>&nbsp;-&nbsp;The&nbsp;gesture&nbsp;event&nbsp;is&nbsp;not&nbsp;a&nbsp;bubbling&nbsp;event.&nbsp;When&nbsp;**parallelGesture**&nbsp;is&nbsp;set&nbsp;for&nbsp;the&nbsp;parent&nbsp;component,&nbsp;gesture&nbsp;events&nbsp;that&nbsp;are&nbsp;the&nbsp;same&nbsp;for&nbsp;the&nbsp;parent&nbsp;component&nbsp;and&nbsp;child&nbsp;components&nbsp;can&nbsp;be&nbsp;triggered,&nbsp;thereby&nbsp;implementing&nbsp;a&nbsp;bubbling&nbsp;effect. | 
+| gesture | gesture: GestureType,<br/>mask?: GestureMask | gesture: -,<br/>mask: GestureMask.Normal | Gesture to recognize.<br/>**gesture** specifies the type of the gesture to bind, and **mask** specifies the event response setting. | 
+| priorityGesture | gesture: GestureType,<br/>mask?: GestureMask | gesture: -,<br/>mask: GestureMask.Normal | Gesture to preferentially recognize.<br/>**gesture** specifies the type of the gesture to bind, and **mask** specifies the event response setting.<br/>> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>> - By default, the child component takes precedence over the parent component in gesture recognition. When **priorityGesture** is configured for the parent component, the parent component takes precedence over the child component in gesture recognition. | 
+| parallelGesture | gesture: GestureType,<br/>mask?: GestureMask | gesture: -,<br/>mask: GestureMask.Normal | Gesture that can be triggered together with the child component gesture.<br/>**gesture** specifies the type of the gesture to bind, and **mask** specifies the event response setting.<br/>> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>> - The gesture event is not a bubbling event. When **parallelGesture** is set for the parent component, gesture events that are the same for the parent component and child components can be triggered, thereby implementing a bubbling effect. | 
 
 
 - GestureMask enums
     | Name | Description | 
   | -------- | -------- |
-  | Normal | The&nbsp;gestures&nbsp;of&nbsp;child&nbsp;components&nbsp;are&nbsp;not&nbsp;masked&nbsp;and&nbsp;are&nbsp;recognized&nbsp;based&nbsp;on&nbsp;the&nbsp;default&nbsp;gesture&nbsp;recognition&nbsp;sequence. | 
-  | IgnoreInternal | The&nbsp;gestures&nbsp;of&nbsp;child&nbsp;components&nbsp;are&nbsp;masked.&nbsp;Only&nbsp;the&nbsp;gestures&nbsp;of&nbsp;the&nbsp;current&nbsp;component&nbsp;are&nbsp;recognized.<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**NOTE：**<br/>>&nbsp;However,&nbsp;the&nbsp;built-in&nbsp;gestures&nbsp;of&nbsp;the&nbsp;child&nbsp;components&nbsp;are&nbsp;not&nbsp;masked.&nbsp;For&nbsp;example,&nbsp;when&nbsp;the&nbsp;child&nbsp;component&nbsp;is&nbsp;a&nbsp;**&lt;List&gt;**&nbsp;component,&nbsp;the&nbsp;built-in&nbsp;sliding&nbsp;gestures&nbsp;can&nbsp;still&nbsp;be&nbsp;triggered. | 
+  | Normal | The gestures of child components are not masked and are recognized based on the default gesture recognition sequence. | 
+  | IgnoreInternal | The gestures of child components are masked. Only the gestures of the current component are recognized.<br/>> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>> However, the built-in gestures of the child components are not masked. For example, when the child component is a **&lt;List&gt;** component, the built-in sliding gestures can still be triggered. | 
 
 
 - Gesture types
     | Name | Description | 
   | -------- | -------- |
-  | TapGesture | Tap&nbsp;gesture,&nbsp;which&nbsp;can&nbsp;be&nbsp;a&nbsp;single-tap&nbsp;or&nbsp;multi-tap&nbsp;gesture. | 
-  | LongPressGesture | Long&nbsp;press&nbsp;gesture. | 
-  | PanGesture | Pan&nbsp;gesture. | 
-  | PinchGesture | Pinch&nbsp;gesture. | 
-  | RotationGesture | Rotation&nbsp;gesture. | 
-  | GestureGroup | A&nbsp;group&nbsp;of&nbsp;gestures.&nbsp;Continuous&nbsp;recognition,&nbsp;parallel&nbsp;recognition,&nbsp;and&nbsp;exclusive&nbsp;recognition&nbsp;are&nbsp;supported. | 
+  | TapGesture | Tap gesture, which can be a single-tap or multi-tap gesture. | 
+  | LongPressGesture | Long press gesture. | 
+  | PanGesture | Pan gesture. | 
+  | PinchGesture | Pinch gesture. | 
+  | RotationGesture | Rotation gesture. | 
+  | GestureGroup | A group of gestures. Continuous recognition, parallel recognition, and exclusive recognition are supported. | 
 
 
 ## Gesture Response Event
@@ -48,13 +48,13 @@ The component uses the **gesture** method to bind the gesture object and uses th
 - TapGesture events
     | Name | Description | 
   | -------- | -------- |
-  | onAction((event?:&nbsp;GestureEvent)&nbsp;=&gt;&nbsp;void) | Callback&nbsp;invoked&nbsp;when&nbsp;a&nbsp;tap&nbsp;gesture&nbsp;is&nbsp;recognized. | 
+  | onAction((event?: GestureEvent) =&gt; void) | Callback invoked when a tap gesture is recognized. | 
 
 - GestureEvent attributes
     | Name | Type | Description | 
   | -------- | -------- | -------- |
-  | timestamp | number | Timestamp&nbsp;of&nbsp;the&nbsp;event. | 
-  | target<sup>8+</sup> | EventTarget | Object&nbsp;that&nbsp;triggers&nbsp;the&nbsp;gesture&nbsp;event. | 
+  | timestamp | number | Timestamp of the event. | 
+  | target<sup>8+</sup> | EventTarget | Object that triggers the gesture event. | 
 
 
 ## Example

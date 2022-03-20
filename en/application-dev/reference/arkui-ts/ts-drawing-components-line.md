@@ -1,7 +1,7 @@
 # Line
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -23,12 +23,12 @@ None
 Line(options?: {width: Length, height: Length})
 
 - Parameters
-    | Name | Type | Mandatory | Default&nbsp;Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description | 
   | -------- | -------- | -------- | -------- | -------- |
-  | options | Object | No | - | For&nbsp;details,&nbsp;see&nbsp;the&nbsp;**options**&nbsp;parameters. | 
+  | options | Object | No | - | For details, see the **options** parameters. | 
 
 - options parameters
-    | Name | Type | Mandatory | Default&nbsp;Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description | 
   | -------- | -------- | -------- | -------- | -------- |
   | width | Length | Yes | - | Width. | 
   | height | Length | Yes | - | Height. | 
@@ -36,12 +36,12 @@ Line(options?: {width: Length, height: Length})
 
 ## Attributes
 
-  | Name | Type | Default&nbsp;Value | Mandatory | Description | 
+  | Name | Type | Default Value | Mandatory | Description | 
 | -------- | -------- | -------- | -------- | -------- |
-| width | Length | 0 | No | Width&nbsp;of&nbsp;the&nbsp;rectangle&nbsp;where&nbsp;the&nbsp;straight&nbsp;line&nbsp;is&nbsp;located. | 
-| height | Length | 0 | No | Height&nbsp;of&nbsp;the&nbsp;rectangle&nbsp;where&nbsp;the&nbsp;straight&nbsp;line&nbsp;is&nbsp;located. | 
-| startPoint | Point | [0,&nbsp;0] | Yes | Coordinate&nbsp;(relative&nbsp;coordinate)&nbsp;of&nbsp;the&nbsp;start&nbsp;point&nbsp;of&nbsp;the&nbsp;straight&nbsp;line. | 
-| endPoint | Point | [0,&nbsp;0] | Yes | Coordinate&nbsp;(relative&nbsp;coordinate)&nbsp;of&nbsp;the&nbsp;end&nbsp;point&nbsp;of&nbsp;the&nbsp;straight&nbsp;line. | 
+| width | Length | 0 | No | Width of the rectangle where the straight line is located. | 
+| height | Length | 0 | No | Height of the rectangle where the straight line is located. | 
+| startPoint | Point | [0, 0] | Yes | Coordinate (relative coordinate) of the start point of the straight line. | 
+| endPoint | Point | [0, 0] | Yes | Coordinate (relative coordinate) of the end point of the straight line. | 
 
 
 ## Example

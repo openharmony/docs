@@ -1,7 +1,7 @@
 # Page Transition
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This animation is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -10,44 +10,44 @@ Customize the page transition animations by configuring the page entrance and ex
 
   | Name | Parameter | Description | 
 | -------- | -------- | -------- |
-| PageTransitionEnter | Object | Page&nbsp;entrance&nbsp;component,&nbsp;which&nbsp;is&nbsp;used&nbsp;to&nbsp;customize&nbsp;the&nbsp;entrance&nbsp;effect&nbsp;of&nbsp;the&nbsp;current&nbsp;page.&nbsp;For&nbsp;details,&nbsp;see&nbsp;animation&nbsp;parameters. | 
-| PageTransitionExit | Object | Page&nbsp;exit&nbsp;component,&nbsp;which&nbsp;is&nbsp;used&nbsp;to&nbsp;customize&nbsp;the&nbsp;exit&nbsp;effect&nbsp;of&nbsp;the&nbsp;current&nbsp;page.&nbsp;For&nbsp;details,&nbsp;see&nbsp;animation&nbsp;parameters. | 
+| PageTransitionEnter | Object | Page entrance component, which is used to customize the entrance effect of the current page. For details, see animation parameters. | 
+| PageTransitionExit | Object | Page exit component, which is used to customize the exit effect of the current page. For details, see animation parameters. | 
 
 
 - Animation parameters
-    | Name | Type | Default&nbsp;Value | Mandatory | Description | 
+    | Name | Type | Default Value | Mandatory | Description | 
   | -------- | -------- | -------- | -------- | -------- |
-  | type | RouteType | - | No | If&nbsp;this&nbsp;parameter&nbsp;is&nbsp;not&nbsp;set,&nbsp;the&nbsp;reverse&nbsp;playback&nbsp;effect&nbsp;as&nbsp;pop&nbsp;switches&nbsp;to&nbsp;push&nbsp;is&nbsp;used. | 
-  | duration | number | 1000 | No | Animation&nbsp;duration,&nbsp;in&nbsp;ms. | 
-  | curve | Curve&nbsp;\|&nbsp;Curves | Linear | No | Animation&nbsp;curve.&nbsp;For&nbsp;details&nbsp;about&nbsp;the&nbsp;valid&nbsp;values,&nbsp;see&nbsp;**Curve&nbsp;enums**. | 
-  | delay | number | 0 | No | Animation&nbsp;delay,&nbsp;in&nbsp;ms.&nbsp;Delayed&nbsp;animation&nbsp;is&nbsp;disabled&nbsp;by&nbsp;default. | 
+  | type | RouteType | - | No | If this parameter is not set, the reverse playback effect as pop switches to push is used. | 
+  | duration | number | 1000 | No | Animation duration, in ms. | 
+  | curve | Curve \| Curves | Linear | No | Animation curve. For details about the valid values, see **Curve enums**. | 
+  | delay | number | 0 | No | Animation delay, in ms. Delayed animation is disabled by default. | 
 
 
 - RouteType enums
     | Name | Description | 
   | -------- | -------- |
-  | Pop | When&nbsp;page&nbsp;A&nbsp;jumps&nbsp;to&nbsp;page&nbsp;B,&nbsp;page&nbsp;A&nbsp;is&nbsp;Exit+Push,&nbsp;and&nbsp;page&nbsp;B&nbsp;is&nbsp;Enter+Push. | 
-  | Push | When&nbsp;page&nbsp;B&nbsp;returns&nbsp;to&nbsp;page&nbsp;A,&nbsp;page&nbsp;A&nbsp;is&nbsp;Enter+Pop,&nbsp;and&nbsp;page&nbsp;B&nbsp;is&nbsp;Exit+Pop. | 
+  | Pop | When page A jumps to page B, page A is Exit+Push, and page B is Enter+Push. | 
+  | Push | When page B returns to page A, page A is Enter+Pop, and page B is Exit+Pop. | 
 
 
 ## Attributes
 
 The **PageTransitionEnter** and **PageTransitionExit** components support the following attributes:
 
-  | Name | Type | Default&nbsp;Value | Mandatory | Description | 
+  | Name | Type | Default Value | Mandatory | Description | 
 | -------- | -------- | -------- | -------- | -------- |
-| slide | SlideEffect | SlideEffect.Right | No | Slide&nbsp;effect&nbsp;during&nbsp;page&nbsp;transition.&nbsp;For&nbsp;details&nbsp;about&nbsp;the&nbsp;valid&nbsp;values,&nbsp;see&nbsp;the&nbsp;description&nbsp;of&nbsp;[ERROR:Invalid&nbsp;link:en-us_topic_0000001257138309.xml#xref2991922111212,link:#li81331342185820](#li81331342185820). | 
-| translate | {<br/>x?&nbsp;:&nbsp;number,<br/>y?&nbsp;:&nbsp;number,<br/>z?&nbsp;:&nbsp;number<br/>} | - | No | Translation&nbsp;effect&nbsp;during&nbsp;page&nbsp;transition,&nbsp;which&nbsp;is&nbsp;the&nbsp;value&nbsp;of&nbsp;the&nbsp;start&nbsp;point&nbsp;of&nbsp;entrance&nbsp;and&nbsp;the&nbsp;end&nbsp;point&nbsp;of&nbsp;exit.&nbsp;When&nbsp;this&nbsp;parameter&nbsp;is&nbsp;set&nbsp;together&nbsp;with&nbsp;**slide**,&nbsp;the&nbsp;latter&nbsp;takes&nbsp;effect&nbsp;by&nbsp;default. | 
-| scale | {<br/>x?&nbsp;:&nbsp;number,<br/>y?&nbsp;:&nbsp;number,<br/>z?&nbsp;:&nbsp;number,<br/>centerX?&nbsp;:&nbsp;number,<br/>centerY?&nbsp;:&nbsp;number<br/>} | - | No | Scaling&nbsp;effect&nbsp;during&nbsp;page&nbsp;transition,&nbsp;which&nbsp;is&nbsp;the&nbsp;value&nbsp;of&nbsp;the&nbsp;start&nbsp;point&nbsp;of&nbsp;entrance&nbsp;and&nbsp;the&nbsp;end&nbsp;point&nbsp;of&nbsp;exit. | 
-| opacity | number | 1 | No | Opacity,&nbsp;which&nbsp;is&nbsp;the&nbsp;opacity&nbsp;value&nbsp;of&nbsp;the&nbsp;start&nbsp;point&nbsp;of&nbsp;entrance&nbsp;or&nbsp;the&nbsp;end&nbsp;point&nbsp;of&nbsp;exit. | 
+| slide | SlideEffect | SlideEffect.Right | No | Slide effect during page transition. For details about the valid values, see the description of [ERROR:Invalid link:en-us_topic_0000001257138309.xml#xref2991922111212,link:#li81331342185820](#li81331342185820). | 
+| translate | {<br/>x? : number,<br/>y? : number,<br/>z? : number<br/>} | - | No | Translation effect during page transition, which is the value of the start point of entrance and the end point of exit. When this parameter is set together with **slide**, the latter takes effect by default. | 
+| scale | {<br/>x? : number,<br/>y? : number,<br/>z? : number,<br/>centerX? : number,<br/>centerY? : number<br/>} | - | No | Scaling effect during page transition, which is the value of the start point of entrance and the end point of exit. | 
+| opacity | number | 1 | No | Opacity, which is the opacity value of the start point of entrance or the end point of exit. | 
 
 - SlideEffect enums
     | Name | Description | 
   | -------- | -------- |
-  | Left | When&nbsp;set&nbsp;to&nbsp;Enter,&nbsp;slides&nbsp;in&nbsp;from&nbsp;the&nbsp;left.&nbsp;When&nbsp;set&nbsp;to&nbsp;Exit,&nbsp;slides&nbsp;out&nbsp;to&nbsp;the&nbsp;left. | 
-  | Right | When&nbsp;set&nbsp;to&nbsp;Enter,&nbsp;slides&nbsp;in&nbsp;from&nbsp;the&nbsp;right.&nbsp;When&nbsp;set&nbsp;to&nbsp;Exit,&nbsp;slides&nbsp;out&nbsp;to&nbsp;the&nbsp;right. | 
-  | Top | When&nbsp;set&nbsp;to&nbsp;Enter,&nbsp;slides&nbsp;in&nbsp;from&nbsp;the&nbsp;top.&nbsp;When&nbsp;set&nbsp;to&nbsp;Exit,&nbsp;slides&nbsp;out&nbsp;to&nbsp;the&nbsp;top. | 
-  | Bottom | When&nbsp;set&nbsp;to&nbsp;Enter,&nbsp;slides&nbsp;in&nbsp;from&nbsp;the&nbsp;bottom.&nbsp;When&nbsp;set&nbsp;to&nbsp;Exit,&nbsp;slides&nbsp;out&nbsp;to&nbsp;the&nbsp;bottom. | 
+  | Left | When set to Enter, slides in from the left. When set to Exit, slides out to the left. | 
+  | Right | When set to Enter, slides in from the right. When set to Exit, slides out to the right. | 
+  | Top | When set to Enter, slides in from the top. When set to Exit, slides out to the top. | 
+  | Bottom | When set to Enter, slides in from the bottom. When set to Exit, slides out to the bottom. | 
 
 
 ## Events
@@ -56,8 +56,8 @@ The PageTransitionEnter and PageTransitionExit components support the following 
 
   | Event | Description | 
 | -------- | -------- |
-| onEnter(type:&nbsp;RouteType,&nbsp;progress:&nbsp;number)&nbsp;=&gt;&nbsp;void | The&nbsp;callback&nbsp;input&nbsp;parameter&nbsp;is&nbsp;the&nbsp;normalized&nbsp;progress&nbsp;of&nbsp;the&nbsp;current&nbsp;entrance&nbsp;animation.&nbsp;The&nbsp;value&nbsp;range&nbsp;is&nbsp;0–1. | 
-| onExit(type:&nbsp;RouteType,&nbsp;progress:&nbsp;number)&nbsp;=&gt;&nbsp;void | The&nbsp;callback&nbsp;input&nbsp;parameter&nbsp;is&nbsp;the&nbsp;normalized&nbsp;progress&nbsp;of&nbsp;the&nbsp;current&nbsp;exit&nbsp;animation.&nbsp;The&nbsp;value&nbsp;range&nbsp;is&nbsp;0–1. | 
+| onEnter(type: RouteType, progress: number) =&gt; void | The callback input parameter is the normalized progress of the current entrance animation. The value range is 0–1. | 
+| onExit(type: RouteType, progress: number) =&gt; void | The callback input parameter is the normalized progress of the current exit animation. The value range is 0–1. | 
 
 
 ## Example

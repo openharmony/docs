@@ -1,7 +1,7 @@
 # Focus Control
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This attribute is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -12,11 +12,11 @@ None
 
 ## Attributes
 
-  | **Name** | **Type** | **Default&nbsp;Value** | **Description** | 
+  | **Name** | **Type** | **Default Value** | **Description** | 
 | -------- | -------- | -------- | -------- |
-| focusable | boolean | false | Whether&nbsp;the&nbsp;current&nbsp;component&nbsp;is&nbsp;focusable. | 
+| focusable | boolean | false | Whether the current component is focusable. | 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > The following components support focus control: **&lt;Button&gt;**, **&lt;Text&gt;**, **&lt;Image&gt;**, **&lt;List&gt;**, and **&lt;Grid&gt;**.
 
 

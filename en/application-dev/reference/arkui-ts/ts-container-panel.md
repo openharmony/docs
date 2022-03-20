@@ -1,7 +1,7 @@
 # Panel
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -23,42 +23,42 @@ This component can contain child components.
 Panel(value:{show:boolean})
 
 - Parameter
-    | Name | Type | Mandatory | Default&nbsp;Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description | 
   | -------- | -------- | -------- | -------- | -------- |
-  | show | boolean | Yes | - | Whether&nbsp;the&nbsp;panel&nbsp;is&nbsp;shown&nbsp;or&nbsp;hidden. | 
+  | show | boolean | Yes | - | Whether the panel is shown or hidden. | 
 
 
 ## Attributes
 
-  | Name | Type | Default&nbsp;Value | Description | 
+  | Name | Type | Default Value | Description | 
 | -------- | -------- | -------- | -------- |
-| type | PanelType | PanelType.Foldable | Type&nbsp;of&nbsp;the&nbsp;panel. | 
-| mode | PanelMode | - | Initial&nbsp;status&nbsp;of&nbsp;the&nbsp;panel. | 
-| dragBar | boolean | true | Whether&nbsp;to&nbsp;enable&nbsp;a&nbsp;drag&nbsp;bar.&nbsp;The&nbsp;value&nbsp;**true**&nbsp;means&nbsp;that&nbsp;the&nbsp;drag&nbsp;bar&nbsp;will&nbsp;be&nbsp;displayed,&nbsp;and&nbsp;**false**&nbsp;means&nbsp;the&nbsp;opposite. | 
-| fullHeight | Length | - | Panel&nbsp;height&nbsp;in&nbsp;the&nbsp;**PanelMode.Full**&nbsp;mode. | 
-| halfHeight | Length | - | Panel&nbsp;height&nbsp;in&nbsp;the&nbsp;**PanelMode.Half**&nbsp;mode.&nbsp;The&nbsp;default&nbsp;value&nbsp;is&nbsp;half&nbsp;of&nbsp;the&nbsp;screen&nbsp;height. | 
-| miniHeight | Length | - | Panel&nbsp;height&nbsp;in&nbsp;the&nbsp;**PanelMode.Mini**&nbsp;mode. | 
+| type | PanelType | PanelType.Foldable | Type of the panel. | 
+| mode | PanelMode | - | Initial status of the panel. | 
+| dragBar | boolean | true | Whether to enable a drag bar. The value **true** means that the drag bar will be displayed, and **false** means the opposite. | 
+| fullHeight | Length | - | Panel height in the **PanelMode.Full** mode. | 
+| halfHeight | Length | - | Panel height in the **PanelMode.Half** mode. The default value is half of the screen height. | 
+| miniHeight | Length | - | Panel height in the **PanelMode.Mini** mode. | 
 
 - PanelType enums
     | Name | Description | 
   | -------- | -------- |
-  | Minibar | A&nbsp;minibar&nbsp;panel&nbsp;displays&nbsp;content&nbsp;in&nbsp;the&nbsp;minibar&nbsp;area&nbsp;or&nbsp;a&nbsp;large&nbsp;(fullscreen-like)&nbsp;area. | 
-  | Foldable | A&nbsp;foldable&nbsp;panel&nbsp;displays&nbsp;permanent&nbsp;content&nbsp;in&nbsp;a&nbsp;large&nbsp;(fullscreen-like),&nbsp;medium-sized&nbsp;(halfscreen-like),&nbsp;or&nbsp;small&nbsp;area. | 
-  | Temporary | A&nbsp;temporary&nbsp;panel&nbsp;displays&nbsp;content&nbsp;in&nbsp;a&nbsp;large&nbsp;(fullscreen-like)&nbsp;or&nbsp;medium-sized&nbsp;(halfscreen-like)&nbsp;area. | 
+  | Minibar | A minibar panel displays content in the minibar area or a large (fullscreen-like) area. | 
+  | Foldable | A foldable panel displays permanent content in a large (fullscreen-like), medium-sized (halfscreen-like), or small area. | 
+  | Temporary | A temporary panel displays content in a large (fullscreen-like) or medium-sized (halfscreen-like) area. | 
 
 - PanelMode enums
     | Name | Description | 
   | -------- | -------- |
-  | Mini | Displays&nbsp;a&nbsp;**minibar**&nbsp;or&nbsp;**foldable**&nbsp;panel&nbsp;in&nbsp;its&nbsp;minimum&nbsp;size.&nbsp;This&nbsp;attribute&nbsp;does&nbsp;not&nbsp;take&nbsp;effect&nbsp;for&nbsp;**temporary**&nbsp;panels. | 
-  | Half | Displays&nbsp;a&nbsp;**foldable**&nbsp;or&nbsp;**temporary**&nbsp;panel&nbsp;in&nbsp;a&nbsp;medium-sized&nbsp;(halfscreen-like)&nbsp;area.&nbsp;This&nbsp;attribute&nbsp;does&nbsp;not&nbsp;take&nbsp;effect&nbsp;for&nbsp;**minibar**&nbsp;panels. | 
-  | Full | Displays&nbsp;a&nbsp;panel&nbsp;in&nbsp;a&nbsp;large&nbsp;(fullscreen-like)&nbsp;area. | 
+  | Mini | Displays a **minibar** or **foldable** panel in its minimum size. This attribute does not take effect for **temporary** panels. | 
+  | Half | Displays a **foldable** or **temporary** panel in a medium-sized (halfscreen-like) area. This attribute does not take effect for **minibar** panels. | 
+  | Full | Displays a panel in a large (fullscreen-like) area. | 
 
 
 ## Events
 
   | Name | Description | 
 | -------- | -------- |
-| onChange(callback:&nbsp;(width:&nbsp;number,&nbsp;height:&nbsp;number,&nbsp;mode:&nbsp;PanelMode)&nbsp;=&gt;&nbsp;void) | Triggered&nbsp;when&nbsp;the&nbsp;status&nbsp;of&nbsp;the&nbsp;panel&nbsp;changes.&nbsp;The&nbsp;returned&nbsp;height&nbsp;value&nbsp;is&nbsp;the&nbsp;height&nbsp;of&nbsp;the&nbsp;content&nbsp;area.&nbsp;When&nbsp;the&nbsp;value&nbsp;of&nbsp;**dragbar**&nbsp;is&nbsp;**true**,&nbsp;the&nbsp;height&nbsp;of&nbsp;the&nbsp;panel&nbsp;is&nbsp;the&nbsp;dragbar&nbsp;height&nbsp;plus&nbsp;the&nbsp;height&nbsp;of&nbsp;the&nbsp;content&nbsp;area. | 
+| onChange(callback: (width: number, height: number, mode: PanelMode) =&gt; void) | Triggered when the status of the panel changes. The returned height value is the height of the content area. When the value of **dragbar** is **true**, the height of the panel is the dragbar height plus the height of the content area. | 
 
 
 ## Example

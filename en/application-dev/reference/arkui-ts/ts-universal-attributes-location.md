@@ -1,7 +1,7 @@
 # Location
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This attribute is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -13,21 +13,21 @@ None
 ## Attributes
 
 
-| Name | Type | Default&nbsp;Value | Description |
+| Name | Type | Default Value | Description |
 | -------- | -------- | -------- | -------- |
-| align | [Alignment](ts-appendix-enums.md#alignment-enums) | Center | Alignment&nbsp;of&nbsp;the&nbsp;component&nbsp;content.&nbsp;This&nbsp;attribute&nbsp;is&nbsp;valid&nbsp;only&nbsp;when&nbsp;the&nbsp;values&nbsp;of&nbsp;**width**&nbsp;and&nbsp;**height**&nbsp;are&nbsp;greater&nbsp;than&nbsp;the&nbsp;size&nbsp;of&nbsp;the&nbsp;component&nbsp;content. |
-| direction | Direction | Auto | Horizontal&nbsp;layout&nbsp;of&nbsp;the&nbsp;component.&nbsp;For&nbsp;details&nbsp;about&nbsp;the&nbsp;options,&nbsp;see&nbsp;**Direction**&nbsp;enums. |
-| position | {<br/>x:&nbsp;Length,<br/>y:&nbsp;Length<br/>} | - | Offset&nbsp;of&nbsp;the&nbsp;component&nbsp;anchor&nbsp;point&nbsp;relative&nbsp;to&nbsp;the&nbsp;top&nbsp;start&nbsp;edge&nbsp;of&nbsp;the&nbsp;parent&nbsp;component.&nbsp;The&nbsp;offset&nbsp;is&nbsp;expressed&nbsp;using&nbsp;absolute&nbsp;values.&nbsp;When&nbsp;laying&nbsp;out&nbsp;components,&nbsp;this&nbsp;attribute&nbsp;does&nbsp;not&nbsp;affect&nbsp;the&nbsp;layout&nbsp;of&nbsp;the&nbsp;parent&nbsp;component.&nbsp;It&nbsp;only&nbsp;adjusts&nbsp;the&nbsp;component&nbsp;position&nbsp;during&nbsp;drawing. |
-| markAnchor | {<br/>x:&nbsp;Length,<br/>y:&nbsp;Length<br/>} | {<br/>x:&nbsp;0,<br/>y:&nbsp;0<br/>} | Anchor&nbsp;point&nbsp;of&nbsp;the&nbsp;component&nbsp;for&nbsp;positioning.&nbsp;The&nbsp;top&nbsp;start&nbsp;edge&nbsp;of&nbsp;the&nbsp;component&nbsp;is&nbsp;used&nbsp;as&nbsp;the&nbsp;reference&nbsp;point&nbsp;for&nbsp;offset. |
-| offset | {<br/>x:&nbsp;Length,<br/>y:&nbsp;Length<br/>} | {<br/>x:&nbsp;0,<br/>y:&nbsp;0<br/>} | Coordinate&nbsp;offset&nbsp;of&nbsp;the&nbsp;relative&nbsp;layout.&nbsp;This&nbsp;attribute&nbsp;does&nbsp;not&nbsp;affect&nbsp;the&nbsp;layout&nbsp;of&nbsp;the&nbsp;parent&nbsp;component.&nbsp;It&nbsp;only&nbsp;adjusts&nbsp;the&nbsp;component&nbsp;position&nbsp;during&nbsp;drawing. |
+| align | [Alignment](ts-appendix-enums.md#alignment-enums) | Center | Alignment of the component content. This attribute is valid only when the values of **width** and **height** are greater than the size of the component content. |
+| direction | Direction | Auto | Horizontal layout of the component. For details about the options, see **Direction** enums. |
+| position | {<br/>x: Length,<br/>y: Length<br/>} | - | Offset of the component anchor point relative to the top start edge of the parent component. The offset is expressed using absolute values. When laying out components, this attribute does not affect the layout of the parent component. It only adjusts the component position during drawing. |
+| markAnchor | {<br/>x: Length,<br/>y: Length<br/>} | {<br/>x: 0,<br/>y: 0<br/>} | Anchor point of the component for positioning. The top start edge of the component is used as the reference point for offset. |
+| offset | {<br/>x: Length,<br/>y: Length<br/>} | {<br/>x: 0,<br/>y: 0<br/>} | Coordinate offset of the relative layout. This attribute does not affect the layout of the parent component. It only adjusts the component position during drawing. |
 
 
 - Direction enums
     | Name | Description | 
   | -------- | -------- |
-  | Ltr | Components&nbsp;are&nbsp;arranged&nbsp;from&nbsp;left&nbsp;to&nbsp;right. | 
-  | Rtl | Components&nbsp;are&nbsp;arranged&nbsp;from&nbsp;right&nbsp;to&nbsp;left. | 
-  | Auto | The&nbsp;default&nbsp;layout&nbsp;direction&nbsp;is&nbsp;used. | 
+  | Ltr | Components are arranged from left to right. | 
+  | Rtl | Components are arranged from right to left. | 
+  | Auto | The default layout direction is used. | 
 
 
 ## Example

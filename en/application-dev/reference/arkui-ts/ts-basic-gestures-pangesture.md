@@ -1,7 +1,7 @@
 # PanGesture
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This gesture is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -15,23 +15,23 @@ None
 PanGesture(options?: { fingers?: number, direction?: PanDirection, distance?: number } | [PanGestureOption](#pangestureoption))
 
 - Parameters
-    | Name | Type | Mandatory | Default&nbsp;Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description | 
   | -------- | -------- | -------- | -------- | -------- |
-  | fingers | number | No | 1 | Minimum&nbsp;number&nbsp;of&nbsp;fingers&nbsp;to&nbsp;trigger&nbsp;a&nbsp;long&nbsp;press&nbsp;gesture.&nbsp;The&nbsp;value&nbsp;ranges&nbsp;from&nbsp;1&nbsp;to&nbsp;10. | 
-  | direction | PanDirection | No | All | Slide&nbsp;direction.&nbsp;The&nbsp;enumerated&nbsp;value&nbsp;supports&nbsp;the&nbsp;AND&nbsp;(&amp;)&nbsp;and&nbsp;OR&nbsp;(\|)&nbsp;operations. | 
-  | distance | number | No | 5.0 | Minimum&nbsp;slide&nbsp;recognition&nbsp;distance,&nbsp;in&nbsp;vp. | 
+  | fingers | number | No | 1 | Minimum number of fingers to trigger a long press gesture. The value ranges from 1 to 10. | 
+  | direction | PanDirection | No | All | Slide direction. The enumerated value supports the AND (&amp;) and OR (\|) operations. | 
+  | distance | number | No | 5.0 | Minimum slide recognition distance, in vp. | 
 
 - PanDirection enums
     | Name | Description | 
   | -------- | -------- |
-  | All | All&nbsp;directions. | 
-  | Horizontal | Horizontal&nbsp;slide. | 
-  | Vertical | Vertical&nbsp;slide. | 
-  | Left | Slide&nbsp;to&nbsp;the&nbsp;left. | 
-  | Right | Slide&nbsp;to&nbsp;the&nbsp;right. | 
-  | Up | Slide&nbsp;up. | 
-  | Down | Slide&nbsp;down. | 
-  | None | Slide&nbsp;disabled. | 
+  | All | All directions. | 
+  | Horizontal | Horizontal slide. | 
+  | Vertical | Vertical slide. | 
+  | Left | Slide to the left. | 
+  | Right | Slide to the right. | 
+  | Up | Slide up. | 
+  | Down | Slide down. | 
+  | None | Slide disabled. | 
 
 
 ### PanGestureOption
@@ -46,25 +46,25 @@ PanGestureOption(options?: { fingers?: number, direction?: PanDirection, distanc
 - APIs
     | Name | Description | 
   | -------- | -------- |
-  | setDirection(value:&nbsp;PanDirection) | Sets&nbsp;the&nbsp;direction. | 
-  | setDistance(value:&nbsp;number) | Sets&nbsp;the&nbsp;distance. | 
-  | setFingers(value:&nbsp;number) | Sets&nbsp;the&nbsp;number&nbsp;of&nbsp;fingers. | 
+  | setDirection(value: PanDirection) | Sets the direction. | 
+  | setDistance(value: number) | Sets the distance. | 
+  | setFingers(value: number) | Sets the number of fingers. | 
 
 
 ## Events
 
   | Name | Description | 
 | -------- | -------- |
-| onActionStart(callback:&nbsp;(event?:&nbsp;PanGestureEvent)&nbsp;=&gt;&nbsp;void) | Callback&nbsp;for&nbsp;the&nbsp;pan&nbsp;gestures&nbsp;reorganization&nbsp;event. | 
-| onActionUpdate(callback:&nbsp;(event?:&nbsp;PanGestureEvent)&nbsp;=&gt;&nbsp;void) | Callback&nbsp;invoked&nbsp;when&nbsp;a&nbsp;pan&nbsp;gesture&nbsp;is&nbsp;recognized. | 
-| onActionEnd(callback:&nbsp;(event?:&nbsp;PanGestureEvent)&nbsp;=&gt;&nbsp;void) | Callback&nbsp;invoked&nbsp;when&nbsp;the&nbsp;finger&nbsp;used&nbsp;for&nbsp;a&nbsp;pan&nbsp;gesture&nbsp;is&nbsp;lift. | 
-| onActionCancel(callback:&nbsp;()&nbsp;=&gt;&nbsp;void) | Callback&nbsp;invoked&nbsp;when&nbsp;a&nbsp;tap&nbsp;cancellation&nbsp;event&nbsp;is&nbsp;received&nbsp;after&nbsp;a&nbsp;pan&nbsp;gesture&nbsp;is&nbsp;recognized. | 
+| onActionStart(callback: (event?: PanGestureEvent) =&gt; void) | Callback for the pan gestures reorganization event. | 
+| onActionUpdate(callback: (event?: PanGestureEvent) =&gt; void) | Callback invoked when a pan gesture is recognized. | 
+| onActionEnd(callback: (event?: PanGestureEvent) =&gt; void) | Callback invoked when the finger used for a pan gesture is lift. | 
+| onActionCancel(callback: () =&gt; void) | Callback invoked when a tap cancellation event is received after a pan gesture is recognized. | 
 
 - PanGestureEvent<sup>8+</sup> attributes
     | Name | Type | Description | 
   | -------- | -------- | -------- |
-  | offsetX | number | Offset&nbsp;of&nbsp;the&nbsp;gesture&nbsp;event,&nbsp;in&nbsp;vp. | 
-  | offsetY | number | Offset&nbsp;of&nbsp;the&nbsp;gesture&nbsp;event,&nbsp;in&nbsp;vp. | 
+  | offsetX | number | Offset of the gesture event, in vp. | 
+  | offsetY | number | Offset of the gesture event, in vp. | 
 
 
 ## Example

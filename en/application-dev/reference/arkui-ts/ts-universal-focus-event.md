@@ -1,7 +1,7 @@
 # Focus Event
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -12,12 +12,12 @@ None
 
 ## Events
 
-  | **Name** | **Bubble&nbsp;Supported** | **Description** | 
+  | **Name** | **Bubble Supported** | **Description** | 
 | -------- | -------- | -------- |
-| onFocus(callback:&nbsp;()&nbsp;=&gt;&nbsp;void) | No | Triggered&nbsp;when&nbsp;the&nbsp;current&nbsp;component&nbsp;obtains&nbsp;focus. | 
-| onBlur(callback:()&nbsp;=&gt;&nbsp;void) | No | Triggered&nbsp;when&nbsp;the&nbsp;current&nbsp;component&nbsp;loses&nbsp;focus. | 
+| onFocus(callback: () =&gt; void) | No | Triggered when the current component obtains focus. | 
+| onBlur(callback:() =&gt; void) | No | Triggered when the current component loses focus. | 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > The following components support focus events: **&lt;Button&gt;**, **&lt;Text&gt;**, **&lt;Image&gt;**, **&lt;List&gt;**, and **&lt;Grid&gt;**.
 
 

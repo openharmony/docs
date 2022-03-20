@@ -1,7 +1,7 @@
 # TextTimer
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -23,11 +23,11 @@ None
 TextTimer(options: { isCountDown?: boolean, count?: number, controller?: TextTimerController })
 
 - Parameters
-    | Name | Type | Mandatory | Default&nbsp;Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description | 
   | -------- | -------- | -------- | -------- | -------- |
-  | isCountDown | boolean | No | false | Whether&nbsp;to&nbsp;count&nbsp;down. | 
-  | count | number | No | 60000 | Countdown&nbsp;time,&nbsp;in&nbsp;milliseconds.&nbsp;This&nbsp;parameter&nbsp;is&nbsp;valid&nbsp;only&nbsp;when&nbsp;**isCountDown**&nbsp;is&nbsp;set&nbsp;to&nbsp;**true**.<br/>-&nbsp;If&nbsp;the&nbsp;value&nbsp;of&nbsp;**count**&nbsp;is&nbsp;less&nbsp;than&nbsp;or&nbsp;equal&nbsp;to&nbsp;0,&nbsp;the&nbsp;default&nbsp;value&nbsp;is&nbsp;used.<br/>-&nbsp;If&nbsp;the&nbsp;value&nbsp;of&nbsp;**count**&nbsp;is&nbsp;greater&nbsp;than&nbsp;0,&nbsp;it&nbsp;is&nbsp;used. | 
-  | controller | [TextTimerController](#texttimercontroller) | No | null | **&lt;TextTimer&gt;**&nbsp;controller. | 
+  | isCountDown | boolean | No | false | Whether to count down. | 
+  | count | number | No | 60000 | Countdown time, in milliseconds. This parameter is valid only when **isCountDown** is set to **true**.<br/>- If the value of **count** is less than or equal to 0, the default value is used.<br/>- If the value of **count** is greater than 0, it is used. | 
+  | controller | [TextTimerController](#texttimercontroller) | No | null | **&lt;TextTimer&gt;** controller. | 
 
 
 ### TextTimerController
@@ -36,23 +36,23 @@ Defines the controller for controlling the **&lt;TextTimer&gt;** component.
 
   | Name | Description | 
 | -------- | -------- |
-| start() | Starts&nbsp;the&nbsp;timer. | 
-| pause() | Pauses&nbsp;the&nbsp;timer. | 
-| reset() | Resets&nbsp;the&nbsp;timer. | 
+| start() | Starts the timer. | 
+| pause() | Pauses the timer. | 
+| reset() | Resets the timer. | 
 
 
 ## Attributes
 
-  | Name | Type | Default&nbsp;Value | Description | 
+  | Name | Type | Default Value | Description | 
 | -------- | -------- | -------- | -------- |
-| format | string | 'hh:mm:ss.ms' | Custom&nbsp;format.&nbsp;The&nbsp;value&nbsp;must&nbsp;contain&nbsp;at&nbsp;least&nbsp;one&nbsp;of&nbsp;the&nbsp;following&nbsp;keywords:&nbsp;**hh**,&nbsp;**mm**,&nbsp;**ss**,&nbsp;and&nbsp;**ms**. | 
+| format | string | 'hh:mm:ss.ms' | Custom format. The value must contain at least one of the following keywords: **hh**, **mm**, **ss**, and **ms**. | 
 
 
 ## Events
 
   | Name | Description | 
 | -------- | -------- |
-| onTimer(callback:&nbsp;(utc:&nbsp;number,&nbsp;elapsedTime:&nbsp;number)&nbsp;=&gt;&nbsp;void) | Triggered&nbsp;when&nbsp;the&nbsp;time&nbsp;text&nbsp;changes.<br/>**utc**:&nbsp;currently&nbsp;displayed&nbsp;time,&nbsp;in&nbsp;milliseconds.<br/>**elapsedTime**:&nbsp;elapsed&nbsp;time&nbsp;of&nbsp;the&nbsp;timer,&nbsp;in&nbsp;milliseconds. | 
+| onTimer(callback: (utc: number, elapsedTime: number) =&gt; void) | Triggered when the time text changes.<br/>**utc**: currently displayed time, in milliseconds.<br/>**elapsedTime**: elapsed time of the timer, in milliseconds. | 
 
 
 ## Example

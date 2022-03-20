@@ -1,7 +1,7 @@
 # Show/Hide Event
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This method is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -12,10 +12,10 @@ None
 
 ## Events
 
-  | Name | Bubble&nbsp;Supported | Description | 
+  | Name | Bubble Supported | Description | 
 | -------- | -------- | -------- |
-| onAppear(callback:&nbsp;()&nbsp;=&gt;&nbsp;void) | No | Called&nbsp;when&nbsp;the&nbsp;component&nbsp;is&nbsp;displayed. | 
-| onDisappear(callback:&nbsp;()&nbsp;=&gt;&nbsp;void) | No | Called&nbsp;when&nbsp;the&nbsp;component&nbsp;disappears. | 
+| onAppear(callback: () =&gt; void) | No | Called when the component is displayed. | 
+| onDisappear(callback: () =&gt; void) | No | Called when the component disappears. | 
 
 
 ## Example

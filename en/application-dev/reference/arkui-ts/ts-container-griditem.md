@@ -1,7 +1,7 @@
 # GridItem
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -13,7 +13,7 @@ The **&lt;GridItem&gt;** component provides a single item in a grid.
 None
 
 
-## Child Component
+## Child Components
 
 This component can contain child components.
 
@@ -25,26 +25,26 @@ GridItem()
 
 ## Attributes
 
-  | Name | Type | Default&nbsp;Value | Description | 
+| Name | Type | Default Value | Description |
 | -------- | -------- | -------- | -------- |
-| rowStart | number | - | Start&nbsp;row&nbsp;number&nbsp;of&nbsp;the&nbsp;component. | 
-| rowEnd | number | - | End&nbsp;row&nbsp;number&nbsp;of&nbsp;the&nbsp;component. | 
-| columnStart | number | - | Start&nbsp;column&nbsp;number&nbsp;of&nbsp;the&nbsp;component. | 
-| columnEnd | number | - | End&nbsp;column&nbsp;number&nbsp;of&nbsp;the&nbsp;component. | 
-| forceRebuild | boolean | false | Whether&nbsp;to&nbsp;re-create&nbsp;this&nbsp;node&nbsp;when&nbsp;the&nbsp;component&nbsp;is&nbsp;being&nbsp;built. | 
-| selectable<sup>8+</sup> | boolean | true | Whether&nbsp;the&nbsp;current&nbsp;**&lt;GridItem&gt;**&nbsp;is&nbsp;selectable&nbsp;by&nbsp;the&nbsp;mouse.<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**NOTE：**<br/>>&nbsp;This&nbsp;attribute&nbsp;takes&nbsp;effect&nbsp;only&nbsp;when&nbsp;mouse&nbsp;frame&nbsp;selection&nbsp;is&nbsp;enabled&nbsp;for&nbsp;the&nbsp;parent&nbsp;**&lt;Grid&gt;**&nbsp;container. | 
+| rowStart | number | - | Start row number of the component. |
+| rowEnd | number | - | End row number of the component. |
+| columnStart | number | - | Start column number of the component. |
+| columnEnd | number | - | End column number of the component. |
+| forceRebuild | boolean | false | Whether to re-create this node when the component is being built. |
+| selectable<sup>8+</sup> | boolean | true | Whether the current **&lt;GridItem&gt;** is selectable by the mouse.<br/>> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>> This attribute takes effect only when mouse frame selection is enabled for the parent **&lt;Grid&gt;** container. |
 
 
 ## Events
 
-  | Name | Description | 
+| Name | Description |
 | -------- | -------- |
-| onSelect(callback:&nbsp;(isSelected:&nbsp;boolean)&nbsp;=&gt;&nbsp;any)<sup>8+</sup> | Triggered&nbsp;when&nbsp;the&nbsp;selected&nbsp;state&nbsp;of&nbsp;the&nbsp;**&lt;GridItem&gt;**&nbsp;changes.<br/>**isSelected**:&nbsp;Returns&nbsp;**true**&nbsp;if&nbsp;the&nbsp;**&lt;GridItem&gt;**&nbsp;is&nbsp;selected&nbsp;by&nbsp;the&nbsp;mouse;&nbsp;returns&nbsp;**false**&nbsp;otherwise. | 
+| onSelect(callback: (isSelected: boolean) =&gt; any)<sup>8+</sup> | Triggered when the selected state of the **&lt;GridItem&gt;** changes.<br/>**isSelected**: Returns **true** if the **&lt;GridItem&gt;** is selected by the mouse; returns **false** otherwise. |
 
 
 ## Example
 
-  
+
 ```
 @Entry
 @Component

@@ -1,7 +1,7 @@
 # RotationGesture
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This gesture is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -15,25 +15,25 @@ None
 RotationGesture(options?: { fingers?: number, angle?: number })
 
 - Parameters
-    | Name | Type | Mandatory | Default&nbsp;Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description | 
   | -------- | -------- | -------- | -------- | -------- |
-  | fingers | number | No | 2 | Minimum&nbsp;number&nbsp;of&nbsp;fingers&nbsp;to&nbsp;trigger&nbsp;a&nbsp;rotation.&nbsp;The&nbsp;value&nbsp;ranges&nbsp;from&nbsp;2&nbsp;to&nbsp;5. | 
-  | angle | number | No | 1.0 | Minimum&nbsp;degree&nbsp;that&nbsp;can&nbsp;trigger&nbsp;the&nbsp;rotation&nbsp;gesture. | 
+  | fingers | number | No | 2 | Minimum number of fingers to trigger a rotation. The value ranges from 2 to 5. | 
+  | angle | number | No | 1.0 | Minimum degree that can trigger the rotation gesture. | 
 
 
 ## Events
 
   | Name | Description | 
 | -------- | -------- |
-| onActionStart((event?:&nbsp;RotationGestureEvent)&nbsp;=&gt;&nbsp;void) | Callback&nbsp;invoked&nbsp;when&nbsp;a&nbsp;rotation&nbsp;gesture&nbsp;is&nbsp;recognized. | 
-| onActionUpdate((event?:&nbsp;RotationGestureEvent)&nbsp;=&gt;&nbsp;void) | Callback&nbsp;invoked&nbsp;during&nbsp;the&nbsp;movement&nbsp;of&nbsp;the&nbsp;rotation&nbsp;gesture. | 
-| onActionEnd((event?:&nbsp;RotationGestureEvent)&nbsp;=&gt;&nbsp;void) | Callback&nbsp;invoked&nbsp;when&nbsp;the&nbsp;finger&nbsp;used&nbsp;for&nbsp;the&nbsp;rotation&nbsp;gesture&nbsp;is&nbsp;lift. | 
-| onActionCancel(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | Callback&nbsp;invoked&nbsp;when&nbsp;a&nbsp;tap&nbsp;cancellation&nbsp;event&nbsp;is&nbsp;received&nbsp;after&nbsp;the&nbsp;rotation&nbsp;gesture&nbsp;is&nbsp;recognized. | 
+| onActionStart((event?: RotationGestureEvent) =&gt; void) | Callback invoked when a rotation gesture is recognized. | 
+| onActionUpdate((event?: RotationGestureEvent) =&gt; void) | Callback invoked during the movement of the rotation gesture. | 
+| onActionEnd((event?: RotationGestureEvent) =&gt; void) | Callback invoked when the finger used for the rotation gesture is lift. | 
+| onActionCancel(event: () =&gt; void) | Callback invoked when a tap cancellation event is received after the rotation gesture is recognized. | 
 
 - RotationGestureEvent<sup>8+</sup> attributes
     | Name | Type | Description | 
   | -------- | -------- | -------- |
-  | angle | number | Rotation&nbsp;angle. | 
+  | angle | number | Rotation angle. | 
 
 
 ## Example

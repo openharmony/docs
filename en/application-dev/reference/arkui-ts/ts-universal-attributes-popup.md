@@ -1,7 +1,7 @@
 # Popup Control
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This attribute is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -13,42 +13,42 @@ None
 ## Attributes
 
 
-  | Name | Type | Default&nbsp;Value | Description | 
+  | Name | Type | Default Value | Description | 
 | -------- | -------- | -------- | -------- |
-| bindPopup | show:&nbsp;boolean,<br/>popup:&nbsp;PopupOption&nbsp;\|&nbsp;CustomPopupOption | - | Settings&nbsp;of&nbsp;the&nbsp;popup&nbsp;bound&nbsp;to&nbsp;a&nbsp;component.<br/>**show**:&nbsp;whether&nbsp;to&nbsp;display&nbsp;the&nbsp;popup&nbsp;on&nbsp;the&nbsp;creation&nbsp;page&nbsp;by&nbsp;default.&nbsp;The&nbsp;default&nbsp;value&nbsp;is&nbsp;**false**.<br/>**popup**:&nbsp;parameters&nbsp;of&nbsp;the&nbsp;current&nbsp;popup. | 
+| bindPopup | show: boolean,<br/>popup: PopupOption \| CustomPopupOption | - | Settings of the popup bound to a component.<br/>**show**: whether to display the popup on the creation page by default. The default value is **false**.<br/>**popup**: parameters of the current popup. | 
 
 
 - PopupOption attributes
-    | Name | Type | Mandatory | Default&nbsp;Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description | 
   | -------- | -------- | -------- | -------- | -------- |
-  | message | string | Yes | - | Content&nbsp;of&nbsp;the&nbsp;popup&nbsp;message. | 
-  | placementOnTop | boolean | No | false | Whether&nbsp;to&nbsp;display&nbsp;the&nbsp;popup&nbsp;above&nbsp;the&nbsp;component.&nbsp;The&nbsp;default&nbsp;value&nbsp;is&nbsp;**false**. | 
-  | primaryButton | {<br/>value:&nbsp;string,<br/>action:&nbsp;()&nbsp;=&gt;&nbsp;void<br/>} | No | - | First&nbsp;button.<br/>**value**:&nbsp;text&nbsp;of&nbsp;the&nbsp;primary&nbsp;button&nbsp;in&nbsp;the&nbsp;popup.<br/>**action**:&nbsp;callback&nbsp;function&nbsp;for&nbsp;clicking&nbsp;the&nbsp;primary&nbsp;button. | 
-  | secondaryButton | {<br/>value:&nbsp;string,<br/>action:&nbsp;()&nbsp;=&gt;&nbsp;void<br/>} | No | - | Second&nbsp;button.<br/>**value**:&nbsp;text&nbsp;of&nbsp;the&nbsp;secondary&nbsp;button&nbsp;in&nbsp;the&nbsp;popup.<br/>**action**:&nbsp;callback&nbsp;function&nbsp;for&nbsp;clicking&nbsp;the&nbsp;secondary&nbsp;button. | 
-  | onStateChange | (isVisible:&nbsp;boolean)&nbsp;=&gt;&nbsp;void | No | - | Callback&nbsp;for&nbsp;the&nbsp;popup&nbsp;status&nbsp;change&nbsp;event.&nbsp;The&nbsp;parameter&nbsp;**isVisible**&nbsp;indicates&nbsp;the&nbsp;visibility&nbsp;of&nbsp;the&nbsp;popup. | 
+  | message | string | Yes | - | Content of the popup message. | 
+  | placementOnTop | boolean | No | false | Whether to display the popup above the component. The default value is **false**. | 
+  | primaryButton | {<br/>value: string,<br/>action: () =&gt; void<br/>} | No | - | First button.<br/>**value**: text of the primary button in the popup.<br/>**action**: callback function for clicking the primary button. | 
+  | secondaryButton | {<br/>value: string,<br/>action: () =&gt; void<br/>} | No | - | Second button.<br/>**value**: text of the secondary button in the popup.<br/>**action**: callback function for clicking the secondary button. | 
+  | onStateChange | (isVisible: boolean) =&gt; void | No | - | Callback for the popup status change event. The parameter **isVisible** indicates the visibility of the popup. | 
 
 - CustomPopupOption<sup>8+</sup>
-    | Name | Type | Mandatory | Default&nbsp;Value | Description |
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | builder | ()&nbsp;=&gt;&nbsp;any | Yes | - | Builder&nbsp;of&nbsp;the&nbsp;tooltip&nbsp;content. |
-  | placement | Placement | No | Placement.Bottom | Preferred&nbsp;position&nbsp;of&nbsp;the&nbsp;tooltip&nbsp;component.&nbsp;If&nbsp;the&nbsp;set&nbsp;position&nbsp;is&nbsp;insufficient&nbsp;for&nbsp;holding&nbsp;the&nbsp;component,&nbsp;it&nbsp;will&nbsp;be&nbsp;automatically&nbsp;adjusted. |
-  | maskColor | [Color](../../ui/ts-types.md) | No | - | Color&nbsp;of&nbsp;the&nbsp;tooltip&nbsp;mask. |
-  | popupColor | [Color](../../ui/ts-types.md) | No | - | Color&nbsp;of&nbsp;the&nbsp;tooltip. |
-  | enableArrow | boolean | No | true | Whether&nbsp;to&nbsp;display&nbsp;arrows.&nbsp;Arrows&nbsp;are&nbsp;displayed&nbsp;only&nbsp;for&nbsp;tooltips&nbsp;in&nbsp;the&nbsp;up&nbsp;and&nbsp;down&nbsp;directions. |
-  | autoCancel | boolean | No | true | Whether&nbsp;to&nbsp;automatically&nbsp;close&nbsp;the&nbsp;tooltip&nbsp;when&nbsp;an&nbsp;operation&nbsp;is&nbsp;performed&nbsp;on&nbsp;the&nbsp;page. |
-  | onStateChange | (isVisible:&nbsp;boolean)&nbsp;=&gt;&nbsp;void | No | - | Callback&nbsp;for&nbsp;the&nbsp;popup&nbsp;status&nbsp;change&nbsp;event.&nbsp;The&nbsp;parameter&nbsp;**isVisible**&nbsp;indicates&nbsp;the&nbsp;visibility&nbsp;of&nbsp;the&nbsp;popup. |
+  | builder | () =&gt; any | Yes | - | Builder of the tooltip content. |
+  | placement | Placement | No | Placement.Bottom | Preferred position of the tooltip component. If the set position is insufficient for holding the component, it will be automatically adjusted. |
+  | maskColor | [Color](../../ui/ts-types.md) | No | - | Color of the tooltip mask. |
+  | popupColor | [Color](../../ui/ts-types.md) | No | - | Color of the tooltip. |
+  | enableArrow | boolean | No | true | Whether to display arrows. Arrows are displayed only for tooltips in the up and down directions. |
+  | autoCancel | boolean | No | true | Whether to automatically close the tooltip when an operation is performed on the page. |
+  | onStateChange | (isVisible: boolean) =&gt; void | No | - | Callback for the popup status change event. The parameter **isVisible** indicates the visibility of the popup. |
 
 - Placement<sup>8+</sup> enums
     | Name | Description | 
   | -------- | -------- |
-  | Left | The&nbsp;tooltip&nbsp;is&nbsp;on&nbsp;the&nbsp;left&nbsp;of&nbsp;the&nbsp;component. | 
-  | Right | The&nbsp;tooltip&nbsp;is&nbsp;on&nbsp;the&nbsp;right&nbsp;of&nbsp;the&nbsp;component. | 
-  | Top | The&nbsp;tooltip&nbsp;is&nbsp;on&nbsp;the&nbsp;top&nbsp;of&nbsp;the&nbsp;component. | 
-  | Bottom | The&nbsp;tooltip&nbsp;is&nbsp;at&nbsp;the&nbsp;bottom&nbsp;of&nbsp;the&nbsp;component. | 
-  | TopLeft | The&nbsp;tooltip&nbsp;is&nbsp;in&nbsp;the&nbsp;upper&nbsp;left&nbsp;corner&nbsp;of&nbsp;the&nbsp;component. | 
-  | TopRight | The&nbsp;tooltip&nbsp;is&nbsp;in&nbsp;the&nbsp;upper&nbsp;right&nbsp;corner&nbsp;of&nbsp;the&nbsp;component. | 
-  | BottomLeft | The&nbsp;tooltip&nbsp;is&nbsp;in&nbsp;the&nbsp;lower&nbsp;left&nbsp;corner&nbsp;of&nbsp;the&nbsp;component. | 
-  | BottomRight | The&nbsp;tooltip&nbsp;is&nbsp;in&nbsp;the&nbsp;lower&nbsp;right&nbsp;corner&nbsp;of&nbsp;the&nbsp;component. | 
+  | Left | The tooltip is on the left of the component. | 
+  | Right | The tooltip is on the right of the component. | 
+  | Top | The tooltip is on the top of the component. | 
+  | Bottom | The tooltip is at the bottom of the component. | 
+  | TopLeft | The tooltip is in the upper left corner of the component. | 
+  | TopRight | The tooltip is in the upper right corner of the component. | 
+  | BottomLeft | The tooltip is in the lower left corner of the component. | 
+  | BottomRight | The tooltip is in the lower right corner of the component. | 
 
 
 ## Example

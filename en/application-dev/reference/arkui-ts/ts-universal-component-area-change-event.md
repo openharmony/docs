@@ -1,7 +1,7 @@
 # Component Area Change Event
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -12,9 +12,9 @@ None
 
 ## Events
 
-  | Name | Bubble&nbsp;Supported | Description | 
+  | Name | Bubble Supported | Description | 
 | -------- | -------- | -------- |
-| onAreaChange(event:&nbsp;(oldValue:&nbsp;Area,&nbsp;newValue:&nbsp;Area)&nbsp;=&gt;&nbsp;void) | No | Triggered&nbsp;when&nbsp;the&nbsp;component&nbsp;area&nbsp;changes.&nbsp;For&nbsp;details&nbsp;about&nbsp;the&nbsp;**Area**&nbsp;type,&nbsp;see&nbsp;**Area**&nbsp;attributes. | 
+| onAreaChange(event: (oldValue: Area, newValue: Area) =&gt; void) | No | Triggered when the component area changes. For details about the **Area** type, see **Area** attributes. | 
 
 
 ## Example

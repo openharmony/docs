@@ -1,7 +1,7 @@
 # Hover Effect
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -12,17 +12,17 @@ None
 
 ## Attributes
 
-  | Name | Type | Default&nbsp;Value | Description | 
+  | Name | Type | Default Value | Description | 
 | -------- | -------- | -------- | -------- |
-| hoverEffect | HoverEffect | HoverEffect.Auto | Hover&nbsp;effect&nbsp;of&nbsp;the&nbsp;component&nbsp;in&nbsp;hover&nbsp;state. | 
+| hoverEffect | HoverEffect | HoverEffect.Auto | Hover effect of the component in hover state. | 
 
 - HoverEffect enums
     | Name | Description | 
   | -------- | -------- |
-  | Auto | Default&nbsp;hover&nbsp;effect. | 
-  | Scale | Scale&nbsp;effect. | 
-  | Board | Fade-in&nbsp;and&nbsp;fade-out&nbsp;effect. | 
-  | None | No&nbsp;effect. | 
+  | Auto | Default hover effect. | 
+  | Scale | Scale effect. | 
+  | Board | Fade-in and fade-out effect. | 
+  | None | No effect. | 
 
 
 ## Example

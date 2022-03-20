@@ -1,7 +1,7 @@
 # Path
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -20,11 +20,11 @@ None
 
 ## Attributes
 
-  | Name | Type | Default&nbsp;Value | Mandatory | Description | 
+  | Name | Type | Default Value | Mandatory | Description | 
 | -------- | -------- | -------- | -------- | -------- |
-| width | Length | 0 | No | Width&nbsp;of&nbsp;the&nbsp;rectangle&nbsp;where&nbsp;the&nbsp;path&nbsp;is&nbsp;located. | 
-| height | Length | 0 | No | Height&nbsp;of&nbsp;the&nbsp;rectangle&nbsp;where&nbsp;the&nbsp;path&nbsp;is&nbsp;located. | 
-| commands | string | '' | Yes | Command&nbsp;string&nbsp;for&nbsp;drawing&nbsp;the&nbsp;path. | 
+| width | Length | 0 | No | Width of the rectangle where the path is located. | 
+| height | Length | 0 | No | Height of the rectangle where the path is located. | 
+| commands | string | '' | Yes | Command string for drawing the path. | 
 
 
 The supported commands are as follows:

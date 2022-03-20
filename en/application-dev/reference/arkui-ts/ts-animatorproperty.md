@@ -1,38 +1,38 @@
 # AnimatorProperty
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This animation is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 When the universal attributes of a component change, you can create an **AnimatorProperty** for gradient to improve user experience.
 
 
-| Name | Type | Default&nbsp;Value | Description |
+| Name | Type | Default Value | Description |
 | -------- | -------- | -------- | -------- |
-| duration | number | 1000 | Animation&nbsp;duration,&nbsp;in&nbsp;ms.&nbsp;The&nbsp;default&nbsp;duration&nbsp;is&nbsp;1000&nbsp;ms. |
-| curve | Curve | Curve.Linear | Animation&nbsp;curve.&nbsp;The&nbsp;default&nbsp;curve&nbsp;is&nbsp;linear. |
-| delay | number | 0 | Delay&nbsp;of&nbsp;animation&nbsp;playback,&nbsp;in&nbsp;ms.&nbsp;By&nbsp;default,&nbsp;the&nbsp;playback&nbsp;is&nbsp;not&nbsp;delayed. |
-| iterations | number | 1 | Number&nbsp;of&nbsp;times&nbsp;that&nbsp;the&nbsp;animation&nbsp;is&nbsp;played.&nbsp;By&nbsp;default,&nbsp;the&nbsp;animation&nbsp;is&nbsp;played&nbsp;once.&nbsp;The&nbsp;value&nbsp;**-1**&nbsp;indicates&nbsp;that&nbsp;the&nbsp;animation&nbsp;is&nbsp;played&nbsp;for&nbsp;an&nbsp;unlimited&nbsp;number&nbsp;of&nbsp;times. |
-| playMode | [PlayMode](ts-appendix-enums.md#playmode-enums) | PlayMode.Normal | Playback&nbsp;mode.&nbsp;By&nbsp;default,&nbsp;the&nbsp;animation&nbsp;is&nbsp;played&nbsp;from&nbsp;the&nbsp;beginning&nbsp;after&nbsp;the&nbsp;playback&nbsp;is&nbsp;complete. |
+| duration | number | 1000 | Animation duration, in ms. The default duration is 1000 ms. |
+| curve | Curve | Curve.Linear | Animation curve. The default curve is linear. |
+| delay | number | 0 | Delay of animation playback, in ms. By default, the playback is not delayed. |
+| iterations | number | 1 | Number of times that the animation is played. By default, the animation is played once. The value **-1** indicates that the animation is played for an unlimited number of times. |
+| playMode | [PlayMode](ts-appendix-enums.md#playmode-enums) | PlayMode.Normal | Playback mode. By default, the animation is played from the beginning after the playback is complete. |
 
 
 - Curve enums
     | Name | Description | 
   | -------- | -------- |
-  | Linear | The&nbsp;animation&nbsp;speed&nbsp;keeps&nbsp;unchanged. | 
-  | Ease | The&nbsp;animation&nbsp;starts&nbsp;at&nbsp;a&nbsp;low&nbsp;speed&nbsp;and&nbsp;then&nbsp;accelerates.&nbsp;It&nbsp;slows&nbsp;down&nbsp;before&nbsp;the&nbsp;animation&nbsp;ends.&nbsp;The&nbsp;cubic-bezier&nbsp;curve&nbsp;(0.25,&nbsp;0.1,&nbsp;0.25,&nbsp;1.0)&nbsp;is&nbsp;used. | 
-  | EaseIn | The&nbsp;animation&nbsp;starts&nbsp;at&nbsp;a&nbsp;low&nbsp;speed.&nbsp;The&nbsp;cubic-bezier&nbsp;curve&nbsp;(0.42,&nbsp;0.0,&nbsp;1.0,&nbsp;1.0)&nbsp;is&nbsp;used. | 
-  | EaseOut | The&nbsp;animation&nbsp;ends&nbsp;at&nbsp;a&nbsp;low&nbsp;speed.&nbsp;The&nbsp;cubic-bezier&nbsp;curve&nbsp;(0.0,&nbsp;0.0,&nbsp;0.58,&nbsp;1.0)&nbsp;is&nbsp;used. | 
-  | EaseInOut | The&nbsp;animation&nbsp;starts&nbsp;and&nbsp;ends&nbsp;at&nbsp;a&nbsp;low&nbsp;speed.&nbsp;The&nbsp;cubic-bezier&nbsp;curve&nbsp;(0.42,&nbsp;0.0,&nbsp;0.58,&nbsp;1.0)&nbsp;is&nbsp;used. | 
-  | FastOutSlowIn | The&nbsp;animation&nbsp;uses&nbsp;the&nbsp;standard&nbsp;cubic-bezier&nbsp;curve&nbsp;(0.4,&nbsp;0.0,&nbsp;0.2,&nbsp;1.0). | 
-  | LinearOutSlowIn | The&nbsp;animation&nbsp;uses&nbsp;the&nbsp;deceleration&nbsp;cubic-bezier&nbsp;curve&nbsp;(0.0,&nbsp;0.0,&nbsp;0.2,&nbsp;1.0). | 
-  | FastOutLinearIn | The&nbsp;animation&nbsp;uses&nbsp;the&nbsp;acceleration&nbsp;cubic-bezier&nbsp;curve&nbsp;(0.4,&nbsp;0.0,&nbsp;1.0,&nbsp;1.0). | 
-  | ExtremeDeceleration | The&nbsp;animation&nbsp;uses&nbsp;the&nbsp;extreme&nbsp;deceleration&nbsp;cubic-bezier&nbsp;curve&nbsp;(0.0,&nbsp;0.0,&nbsp;0.0,&nbsp;1.0). | 
-  | Sharp | The&nbsp;animation&nbsp;uses&nbsp;the&nbsp;sharp&nbsp;cubic-bezier&nbsp;curve&nbsp;(0.33,&nbsp;0.0,&nbsp;0.67,&nbsp;1.0). | 
-  | Rhythm | The&nbsp;animation&nbsp;uses&nbsp;the&nbsp;rhythm&nbsp;cubic-bezier&nbsp;curve&nbsp;(0.7,&nbsp;0.0,&nbsp;0.2,&nbsp;1.0). | 
-  | Smooth | The&nbsp;animation&nbsp;uses&nbsp;the&nbsp;smooth&nbsp;cubic-bezier&nbsp;curve&nbsp;(0.4,&nbsp;0.0,&nbsp;0.4,&nbsp;1.0). | 
-  | Friction | Damping&nbsp;curve.&nbsp;The&nbsp;cubic-bezier&nbsp;curve&nbsp;(0.2,&nbsp;0.0,&nbsp;0.2,&nbsp;1.0)&nbsp;is&nbsp;used. | 
+  | Linear | The animation speed keeps unchanged. | 
+  | Ease | The animation starts at a low speed and then accelerates. It slows down before the animation ends. The cubic-bezier curve (0.25, 0.1, 0.25, 1.0) is used. | 
+  | EaseIn | The animation starts at a low speed. The cubic-bezier curve (0.42, 0.0, 1.0, 1.0) is used. | 
+  | EaseOut | The animation ends at a low speed. The cubic-bezier curve (0.0, 0.0, 0.58, 1.0) is used. | 
+  | EaseInOut | The animation starts and ends at a low speed. The cubic-bezier curve (0.42, 0.0, 0.58, 1.0) is used. | 
+  | FastOutSlowIn | The animation uses the standard cubic-bezier curve (0.4, 0.0, 0.2, 1.0). | 
+  | LinearOutSlowIn | The animation uses the deceleration cubic-bezier curve (0.0, 0.0, 0.2, 1.0). | 
+  | FastOutLinearIn | The animation uses the acceleration cubic-bezier curve (0.4, 0.0, 1.0, 1.0). | 
+  | ExtremeDeceleration | The animation uses the extreme deceleration cubic-bezier curve (0.0, 0.0, 0.0, 1.0). | 
+  | Sharp | The animation uses the sharp cubic-bezier curve (0.33, 0.0, 0.67, 1.0). | 
+  | Rhythm | The animation uses the rhythm cubic-bezier curve (0.7, 0.0, 0.2, 1.0). | 
+  | Smooth | The animation uses the smooth cubic-bezier curve (0.4, 0.0, 0.4, 1.0). | 
+  | Friction | Damping curve. The cubic-bezier curve (0.2, 0.0, 0.2, 1.0) is used. | 
 
 
 ## Example

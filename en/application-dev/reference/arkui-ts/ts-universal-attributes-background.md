@@ -1,7 +1,7 @@
 # Background
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This attribute is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -16,20 +16,20 @@ None
 ## Attributes
 
 
-| Name | Type | Default&nbsp;Value | Description |
+| Name | Type | Default Value | Description |
 | -------- | -------- | -------- | -------- |
-| backgroundColor | Color | - | Background&nbsp;color&nbsp;of&nbsp;a&nbsp;component. |
-| backgroundImage | src:&nbsp;string,<br/>repeat?:&nbsp;[ImageRepeat](ts-appendix-enums.md#imagerepeat-enums) | - | **src**:&nbsp;image&nbsp;address,&nbsp;which&nbsp;can&nbsp;be&nbsp;the&nbsp;address&nbsp;of&nbsp;an&nbsp;Internet&nbsp;or&nbsp;a&nbsp;local&nbsp;image.&nbsp;(SVG&nbsp;images&nbsp;are&nbsp;not&nbsp;supported.)<br/>**repeat**:&nbsp;whether&nbsp;the&nbsp;background&nbsp;image&nbsp;is&nbsp;repeatedly&nbsp;used.&nbsp;By&nbsp;default,&nbsp;the&nbsp;background&nbsp;image&nbsp;is&nbsp;not&nbsp;repeatedly&nbsp;used. |
-| backgroundImageSize | {<br/>width?:&nbsp;Length,<br/>height?:&nbsp;Length<br/>}&nbsp;\|&nbsp;ImageSize | Auto | Width&nbsp;and&nbsp;height&nbsp;of&nbsp;the&nbsp;background&nbsp;image.&nbsp;When&nbsp;the&nbsp;input&nbsp;is&nbsp;a&nbsp;**{width:&nbsp;Length,&nbsp;height:&nbsp;Length}**&nbsp;object,&nbsp;if&nbsp;only&nbsp;one&nbsp;attribute&nbsp;is&nbsp;set,&nbsp;the&nbsp;other&nbsp;attribute&nbsp;is&nbsp;the&nbsp;set&nbsp;value&nbsp;multiplied&nbsp;by&nbsp;the&nbsp;original&nbsp;aspect&nbsp;ratio&nbsp;of&nbsp;the&nbsp;image.&nbsp;By&nbsp;default,&nbsp;the&nbsp;original&nbsp;image&nbsp;aspect&nbsp;ratio&nbsp;remains&nbsp;unchanged. |
-| backgroundImagePosition | {<br/>x?:&nbsp;Length,<br/>y?:&nbsp;Length<br/>}&nbsp;\|&nbsp;[Alignment](ts-appendix-enums.md#alignment-enums) | {<br/>x:&nbsp;0,<br/>y:&nbsp;0<br/>} | Position&nbsp;of&nbsp;the&nbsp;background&nbsp;image&nbsp;in&nbsp;the&nbsp;component. |
+| backgroundColor | Color | - | Background color of a component. |
+| backgroundImage | src: string,<br/>repeat?: [ImageRepeat](ts-appendix-enums.md#imagerepeat-enums) | - | **src**: image address, which can be the address of an Internet or a local image. (SVG images are not supported.)<br/>**repeat**: whether the background image is repeatedly used. By default, the background image is not repeatedly used. |
+| backgroundImageSize | {<br/>width?: Length,<br/>height?: Length<br/>} \| ImageSize | Auto | Width and height of the background image. When the input is a **{width: Length, height: Length}** object, if only one attribute is set, the other attribute is the set value multiplied by the original aspect ratio of the image. By default, the original image aspect ratio remains unchanged. |
+| backgroundImagePosition | {<br/>x?: Length,<br/>y?: Length<br/>} \| [Alignment](ts-appendix-enums.md#alignment-enums) | {<br/>x: 0,<br/>y: 0<br/>} | Position of the background image in the component. |
 
 
 - ImageSize enums
     | Name | Description | 
   | -------- | -------- |
-  | Cover | Default&nbsp;value.&nbsp;The&nbsp;image&nbsp;is&nbsp;scaled&nbsp;with&nbsp;its&nbsp;aspect&nbsp;ratio&nbsp;retained&nbsp;for&nbsp;both&nbsp;sides&nbsp;to&nbsp;be&nbsp;greater&nbsp;than&nbsp;or&nbsp;equal&nbsp;to&nbsp;the&nbsp;display&nbsp;boundaries. | 
-  | Contain | The&nbsp;image&nbsp;is&nbsp;scaled&nbsp;with&nbsp;its&nbsp;aspect&nbsp;ratio&nbsp;retained&nbsp;for&nbsp;the&nbsp;content&nbsp;to&nbsp;be&nbsp;completely&nbsp;displayed&nbsp;within&nbsp;the&nbsp;display&nbsp;boundaries. | 
-  | Auto | The&nbsp;original&nbsp;image&nbsp;aspect&nbsp;ratio&nbsp;is&nbsp;retained. | 
+  | Cover | Default value. The image is scaled with its aspect ratio retained for both sides to be greater than or equal to the display boundaries. | 
+  | Contain | The image is scaled with its aspect ratio retained for the content to be completely displayed within the display boundaries. | 
+  | Auto | The original image aspect ratio is retained. | 
 
 
 ## Example

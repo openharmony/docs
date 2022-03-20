@@ -1,7 +1,7 @@
 # Border
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This attribute is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -16,21 +16,21 @@ None
 ## Attributes
 
 
-  | Name | Type | Default&nbsp;Value | Description | 
+  | Name | Type | Default Value | Description | 
 | -------- | -------- | -------- | -------- |
-| border | {<br/>width?:&nbsp;Length,<br/>color?:&nbsp;Color,<br/>radius?:&nbsp;Length,<br/>style?:&nbsp;BorderStyle<br/>} | - | Sets&nbsp;a&nbsp;unified&nbsp;border&nbsp;style. | 
-| borderStyle | BorderStyle | BorderStyle.Solid | Sets&nbsp;the&nbsp;border&nbsp;style&nbsp;of&nbsp;an&nbsp;element. | 
-| borderWidth | Length | 0 | Sets&nbsp;the&nbsp;border&nbsp;width&nbsp;of&nbsp;an&nbsp;element. | 
-| borderColor | Color | - | Sets&nbsp;the&nbsp;border&nbsp;color&nbsp;of&nbsp;an&nbsp;element. | 
-| borderRadius | Length | 0 | Sets&nbsp;the&nbsp;border&nbsp;radius&nbsp;of&nbsp;an&nbsp;element. | 
+| border | {<br/>width?: Length,<br/>color?: Color,<br/>radius?: Length,<br/>style?: BorderStyle<br/>} | - | Sets a unified border style. | 
+| borderStyle | BorderStyle | BorderStyle.Solid | Sets the border style of an element. | 
+| borderWidth | Length | 0 | Sets the border width of an element. | 
+| borderColor | Color | - | Sets the border color of an element. | 
+| borderRadius | Length | 0 | Sets the border radius of an element. | 
 
 
 - BorderStyle enums
     | Name | Description | 
   | -------- | -------- |
-  | Dotted | Dotted&nbsp;border.&nbsp;The&nbsp;radius&nbsp;of&nbsp;a&nbsp;dot&nbsp;is&nbsp;half&nbsp;of&nbsp;**borderWidth**. | 
-  | Dashed | Dashed&nbsp;border. | 
-  | Solid | Solid&nbsp;border. | 
+  | Dotted | Dotted border. The radius of a dot is half of **borderWidth**. | 
+  | Dashed | Dashed border. | 
+  | Solid | Solid border. | 
 
 
 ## Example

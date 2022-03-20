@@ -1,7 +1,7 @@
 # Flex
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -25,38 +25,38 @@ Flex(options?: { direction?: FlexDirection, wrap?: FlexWrap,  justifyContent?: F
 Creates a standard **&lt;Flex&gt;** component.
 
 - Parameters
-    | Name | Type | Mandatory | Default&nbsp;Value | Description |
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | direction | FlexDirection | No | FlexDirection.Row | Direction&nbsp;in&nbsp;which&nbsp;child&nbsp;components&nbsp;are&nbsp;arranged&nbsp;in&nbsp;the&nbsp;**&lt;Flex&gt;**&nbsp;component,&nbsp;that&nbsp;is,&nbsp;the&nbsp;direction&nbsp;of&nbsp;the&nbsp;main&nbsp;axis. |
-  | wrap | FlexWrap | No | FlexWrap.NoWrap | Whether&nbsp;the&nbsp;**&lt;Flex&gt;**&nbsp;component&nbsp;has&nbsp;a&nbsp;single&nbsp;line&nbsp;or&nbsp;multiple&nbsp;lines. |
-  | justifyContent | FlexAlign | No | FlexAlign.Start | Alignment&nbsp;mode&nbsp;of&nbsp;the&nbsp;child&nbsp;components&nbsp;in&nbsp;the&nbsp;**&lt;Flex&gt;**&nbsp;component&nbsp;along&nbsp;the&nbsp;main&nbsp;axis. |
-  | alignItems | [ItemAlign](ts-appendix-enums.md#itemalign-enums) | No | ItemAlign.Stretch | Alignment&nbsp;mode&nbsp;of&nbsp;the&nbsp;child&nbsp;components&nbsp;in&nbsp;the&nbsp;**&lt;Flex&gt;**&nbsp;component&nbsp;along&nbsp;the&nbsp;cross&nbsp;axis. |
-  | alignContent | FlexAlign | No | FlexAlign.Start | Alignment&nbsp;mode&nbsp;of&nbsp;the&nbsp;child&nbsp;components&nbsp;in&nbsp;a&nbsp;multi-line&nbsp;**&lt;Flex&gt;**&nbsp;component&nbsp;along&nbsp;the&nbsp;cross&nbsp;axis.&nbsp;This&nbsp;parameter&nbsp;is&nbsp;valid&nbsp;only&nbsp;when&nbsp;**wrap**&nbsp;is&nbsp;set&nbsp;to&nbsp;**Wrap**&nbsp;or&nbsp;**WrapReverse**. |
+  | direction | FlexDirection | No | FlexDirection.Row | Direction in which child components are arranged in the **&lt;Flex&gt;** component, that is, the direction of the main axis. |
+  | wrap | FlexWrap | No | FlexWrap.NoWrap | Whether the **&lt;Flex&gt;** component has a single line or multiple lines. |
+  | justifyContent | FlexAlign | No | FlexAlign.Start | Alignment mode of the child components in the **&lt;Flex&gt;** component along the main axis. |
+  | alignItems | [ItemAlign](ts-appendix-enums.md#itemalign-enums) | No | ItemAlign.Stretch | Alignment mode of the child components in the **&lt;Flex&gt;** component along the cross axis. |
+  | alignContent | FlexAlign | No | FlexAlign.Start | Alignment mode of the child components in a multi-line **&lt;Flex&gt;** component along the cross axis. This parameter is valid only when **wrap** is set to **Wrap** or **WrapReverse**. |
 
 - FlexDirection enums
     | Name | Description | 
   | -------- | -------- |
-  | Row | The&nbsp;child&nbsp;components&nbsp;are&nbsp;arranged&nbsp;in&nbsp;the&nbsp;same&nbsp;direction&nbsp;as&nbsp;the&nbsp;main&nbsp;axis&nbsp;runs&nbsp;along&nbsp;the&nbsp;rows. | 
-  | RowReverse | The&nbsp;child&nbsp;components&nbsp;are&nbsp;arranged&nbsp;opposite&nbsp;to&nbsp;the&nbsp;**Row**&nbsp;direction. | 
-  | Column | The&nbsp;child&nbsp;components&nbsp;are&nbsp;arranged&nbsp;in&nbsp;the&nbsp;same&nbsp;direction&nbsp;as&nbsp;the&nbsp;main&nbsp;axis&nbsp;runs&nbsp;down&nbsp;the&nbsp;columns. | 
-  | ColumnReverse | The&nbsp;child&nbsp;components&nbsp;are&nbsp;arranged&nbsp;opposite&nbsp;to&nbsp;the&nbsp;**Column**&nbsp;direction. | 
+  | Row | The child components are arranged in the same direction as the main axis runs along the rows. | 
+  | RowReverse | The child components are arranged opposite to the **Row** direction. | 
+  | Column | The child components are arranged in the same direction as the main axis runs down the columns. | 
+  | ColumnReverse | The child components are arranged opposite to the **Column** direction. | 
 
 - FlexWrap enums
     | Name | Description | 
   | -------- | -------- |
-  | NoWrap | The&nbsp;child&nbsp;components&nbsp;in&nbsp;the&nbsp;**&lt;Flex&gt;**&nbsp;component&nbsp;are&nbsp;arranged&nbsp;in&nbsp;a&nbsp;single&nbsp;line,&nbsp;and&nbsp;they&nbsp;may&nbsp;overflow. | 
-  | Wrap | The&nbsp;child&nbsp;components&nbsp;in&nbsp;the&nbsp;**&lt;Flex&gt;**&nbsp;component&nbsp;are&nbsp;arranged&nbsp;in&nbsp;multiple&nbsp;lines,&nbsp;and&nbsp;they&nbsp;may&nbsp;overflow. | 
-  | WrapReverse | The&nbsp;child&nbsp;components&nbsp;in&nbsp;the&nbsp;**&lt;Flex&gt;**&nbsp;component&nbsp;are&nbsp;reversely&nbsp;arranged&nbsp;in&nbsp;multiple&nbsp;lines,&nbsp;and&nbsp;they&nbsp;may&nbsp;overflow. | 
+  | NoWrap | The child components in the **&lt;Flex&gt;** component are arranged in a single line, and they may overflow. | 
+  | Wrap | The child components in the **&lt;Flex&gt;** component are arranged in multiple lines, and they may overflow. | 
+  | WrapReverse | The child components in the **&lt;Flex&gt;** component are reversely arranged in multiple lines, and they may overflow. | 
 
 - FlexAlign enums
     | Name | Description | 
   | -------- | -------- |
-  | Start | The&nbsp;child&nbsp;components&nbsp;are&nbsp;aligned&nbsp;with&nbsp;the&nbsp;start&nbsp;edge&nbsp;of&nbsp;the&nbsp;main&nbsp;axis.&nbsp;The&nbsp;first&nbsp;component&nbsp;is&nbsp;aligned&nbsp;with&nbsp;the&nbsp;main-start,&nbsp;and&nbsp;subsequent&nbsp;components&nbsp;are&nbsp;aligned&nbsp;with&nbsp;the&nbsp;previous&nbsp;one. | 
-  | Center | The&nbsp;child&nbsp;components&nbsp;are&nbsp;aligned&nbsp;in&nbsp;the&nbsp;center&nbsp;of&nbsp;the&nbsp;main&nbsp;axis.&nbsp;The&nbsp;space&nbsp;between&nbsp;the&nbsp;first&nbsp;component&nbsp;and&nbsp;the&nbsp;main-start&nbsp;is&nbsp;the&nbsp;same&nbsp;as&nbsp;that&nbsp;between&nbsp;the&nbsp;last&nbsp;component&nbsp;and&nbsp;the&nbsp;main-end. | 
-  | End | The&nbsp;child&nbsp;components&nbsp;are&nbsp;aligned&nbsp;with&nbsp;the&nbsp;end&nbsp;edge&nbsp;of&nbsp;the&nbsp;main&nbsp;axis.&nbsp;The&nbsp;last&nbsp;component&nbsp;is&nbsp;aligned&nbsp;with&nbsp;the&nbsp;main-end,&nbsp;and&nbsp;other&nbsp;components&nbsp;are&nbsp;aligned&nbsp;with&nbsp;the&nbsp;next&nbsp;one. | 
-  | SpaceBetween | The&nbsp;child&nbsp;components&nbsp;are&nbsp;evenly&nbsp;distributed&nbsp;along&nbsp;the&nbsp;main&nbsp;axis.&nbsp;The&nbsp;first&nbsp;component&nbsp;is&nbsp;aligned&nbsp;with&nbsp;the&nbsp;main-start,&nbsp;the&nbsp;last&nbsp;component&nbsp;is&nbsp;aligned&nbsp;with&nbsp;the&nbsp;main-end,&nbsp;and&nbsp;the&nbsp;remaining&nbsp;components&nbsp;are&nbsp;distributed&nbsp;so&nbsp;that&nbsp;the&nbsp;space&nbsp;between&nbsp;any&nbsp;two&nbsp;adjacent&nbsp;components&nbsp;is&nbsp;the&nbsp;same. | 
-  | SpaceAround | The&nbsp;child&nbsp;components&nbsp;are&nbsp;evenly&nbsp;distributed&nbsp;along&nbsp;the&nbsp;main&nbsp;axis,&nbsp;with&nbsp;a&nbsp;half-size&nbsp;space&nbsp;on&nbsp;either&nbsp;end.&nbsp;The&nbsp;space&nbsp;between&nbsp;any&nbsp;two&nbsp;adjacent&nbsp;components&nbsp;is&nbsp;the&nbsp;same.&nbsp;The&nbsp;space&nbsp;between&nbsp;the&nbsp;first&nbsp;component&nbsp;and&nbsp;main-start,&nbsp;and&nbsp;that&nbsp;between&nbsp;the&nbsp;last&nbsp;component&nbsp;and&nbsp;cross-main&nbsp;are&nbsp;both&nbsp;half&nbsp;the&nbsp;size&nbsp;of&nbsp;the&nbsp;space&nbsp;between&nbsp;two&nbsp;adjacent&nbsp;components. | 
-  | SpaceEvenly | The&nbsp;child&nbsp;components&nbsp;are&nbsp;equally&nbsp;distributed&nbsp;along&nbsp;the&nbsp;main&nbsp;axis.&nbsp;The&nbsp;space&nbsp;between&nbsp;the&nbsp;first&nbsp;component&nbsp;and&nbsp;main-start,&nbsp;the&nbsp;space&nbsp;between&nbsp;the&nbsp;last&nbsp;component&nbsp;and&nbsp;main-end,&nbsp;and&nbsp;the&nbsp;space&nbsp;between&nbsp;two&nbsp;adjacent&nbsp;components&nbsp;are&nbsp;the&nbsp;same. | 
+  | Start | The child components are aligned with the start edge of the main axis. The first component is aligned with the main-start, and subsequent components are aligned with the previous one. | 
+  | Center | The child components are aligned in the center of the main axis. The space between the first component and the main-start is the same as that between the last component and the main-end. | 
+  | End | The child components are aligned with the end edge of the main axis. The last component is aligned with the main-end, and other components are aligned with the next one. | 
+  | SpaceBetween | The child components are evenly distributed along the main axis. The first component is aligned with the main-start, the last component is aligned with the main-end, and the remaining components are distributed so that the space between any two adjacent components is the same. | 
+  | SpaceAround | The child components are evenly distributed along the main axis, with a half-size space on either end. The space between any two adjacent components is the same. The space between the first component and main-start, and that between the last component and cross-main are both half the size of the space between two adjacent components. | 
+  | SpaceEvenly | The child components are equally distributed along the main axis. The space between the first component and main-start, the space between the last component and main-end, and the space between two adjacent components are the same. | 
 
 
 ## Example

@@ -1,7 +1,7 @@
 # Motion Path Animation
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This animation is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -10,9 +10,9 @@ The attributes described in this topic are used to set the motion path of the co
 
 ## Attributes
 
-  | Name | Type | Default&nbsp;Value | Description | 
+  | Name | Type | Default Value | Description | 
 | -------- | -------- | -------- | -------- |
-| motionPath | {<br/>path:&nbsp;string,<br/>from?:&nbsp;number,<br/>to?:&nbsp;number,<br/>rotatable?:&nbsp;boolean<br/>}<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**NOTE：**<br/>>&nbsp;In&nbsp;a&nbsp;path,&nbsp;**start**&nbsp;and&nbsp;**end**&nbsp;can&nbsp;be&nbsp;used&nbsp;to&nbsp;replace&nbsp;the&nbsp;start&nbsp;point&nbsp;and&nbsp;end&nbsp;point.&nbsp;Example:<br/>>&nbsp;<br/>>&nbsp;'Mstart.x&nbsp;start.y&nbsp;L50&nbsp;50&nbsp;Lend.x&nbsp;end.y&nbsp;Z' | {<br/>"",<br/>0.0,<br/>1.0,<br/>false<br/>} | Motion&nbsp;path&nbsp;of&nbsp;the&nbsp;component.&nbsp;The&nbsp;input&nbsp;parameters&nbsp;are&nbsp;described&nbsp;as&nbsp;follows:<br/>-&nbsp;**path**:&nbsp;motion&nbsp;path&nbsp;of&nbsp;the&nbsp;translation&nbsp;animation.&nbsp;The&nbsp;**svg**&nbsp;path&nbsp;string&nbsp;is&nbsp;used.<br/>-&nbsp;**from**:&nbsp;start&nbsp;point&nbsp;of&nbsp;the&nbsp;motion&nbsp;path.&nbsp;The&nbsp;default&nbsp;value&nbsp;is&nbsp;**0.0**.<br/>-&nbsp;**to**:&nbsp;end&nbsp;point&nbsp;of&nbsp;the&nbsp;motion&nbsp;path.&nbsp;The&nbsp;default&nbsp;value&nbsp;is&nbsp;**1.0**.<br/>-&nbsp;**rotatable**:&nbsp;whether&nbsp;to&nbsp;rotate&nbsp;along&nbsp;the&nbsp;path. | 
+| motionPath | {<br/>path: string,<br/>from?: number,<br/>to?: number,<br/>rotatable?: boolean<br/>}<br/>> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>> In a path, **start** and **end** can be used to replace the start point and end point. Example:<br/>> <br/>> 'Mstart.x start.y L50 50 Lend.x end.y Z' | {<br/>"",<br/>0.0,<br/>1.0,<br/>false<br/>} | Motion path of the component. The input parameters are described as follows:<br/>- **path**: motion path of the translation animation. The **svg** path string is used.<br/>- **from**: start point of the motion path. The default value is **0.0**.<br/>- **to**: end point of the motion path. The default value is **1.0**.<br/>- **rotatable**: whether to rotate along the path. | 
 
 
 ## Example

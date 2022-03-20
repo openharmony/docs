@@ -1,7 +1,7 @@
 # TabContent
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -13,7 +13,7 @@ The **&lt;TabContent&gt;** component is used only in the **&lt;Tabs&gt;** compon
 None
 
 
-## Child Component
+## Child Components
 
 This component supports only one child component.
 
@@ -27,11 +27,11 @@ TabContent()
 
 Touch target configuration is not supported.
 
-| Name | Type | Default&nbsp;Value | Description |
+| Name | Type | Default Value | Description |
 | -------- | -------- | -------- | -------- |
-| tabBar | string&nbsp;\|&nbsp;{<br/>icon?:&nbsp;string,<br/>text?:&nbsp;string<br/>}<br/>\|[CustomBuilder](../../ui/ts-types.md) | - | Content&nbsp;displayed&nbsp;on&nbsp;the&nbsp;tab&nbsp;bar.<br/>**CustomBuilder**:&nbsp;builder,&nbsp;to&nbsp;which&nbsp;components&nbsp;can&nbsp;be&nbsp;passed&nbsp;(applicable&nbsp;to&nbsp;API&nbsp;version&nbsp;8&nbsp;and&nbsp;later&nbsp;versions).<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**NOTE：**<br/>>&nbsp;If&nbsp;an&nbsp;icon&nbsp;uses&nbsp;an&nbsp;SVG&nbsp;image,&nbsp;the&nbsp;width&nbsp;and&nbsp;height&nbsp;attributes&nbsp;of&nbsp;the&nbsp;SVG&nbsp;image&nbsp;must&nbsp;be&nbsp;deleted.&nbsp;Otherwise,&nbsp;the&nbsp;icon&nbsp;size&nbsp;will&nbsp;be&nbsp;determined&nbsp;by&nbsp;the&nbsp;width&nbsp;and&nbsp;height&nbsp;attributes&nbsp;of&nbsp;the&nbsp;SVG&nbsp;image. |
+| tabBar | string \| {<br/>icon?: string,<br/>text?: string<br/>}<br/>\|[CustomBuilder](../../ui/ts-types.md) | - | Content displayed on the tab bar.<br/>**CustomBuilder**: builder, to which components can be passed (applicable to API version 8 and later versions).<br/>> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>> If an icon uses an SVG image, the width and height attributes of the SVG image must be deleted. Otherwise, the icon size will be determined by the width and height attributes of the SVG image. |
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > - The **&lt;TabContent&gt;** component does not support setting of the common width attribute. By default, its width is the same as that of the parent **&lt;Tabs&gt;** component.
 > 
 > - The **&lt;TabContent&gt;** component does not support setting of the common height attribute. Its height is determined by the height of the parent **&lt;Tabs&gt;** component and the **&lt;TabBar&gt;** component.

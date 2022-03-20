@@ -1,7 +1,7 @@
 # StepperItem
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -25,19 +25,19 @@ StepperItem()
 
 ## Attributes
 
-| Name | Type | Default&nbsp;Value | Description |
+| Name | Type | Default Value | Description |
 | -------- | -------- | -------- | -------- |
-| prevLabel | string | - | When&nbsp;the&nbsp;**&lt;Stepper&gt;**&nbsp;contains&nbsp;more&nbsp;than&nbsp;one&nbsp;page,&nbsp;the&nbsp;default&nbsp;value&nbsp;for&nbsp;all&nbsp;pages&nbsp;except&nbsp;the&nbsp;first&nbsp;page&nbsp;is&nbsp;**Back**. |
-| nextLabel | string | - | When&nbsp;the&nbsp;stepper&nbsp;contains&nbsp;more&nbsp;than&nbsp;one&nbsp;page,&nbsp;the&nbsp;default&nbsp;value&nbsp;for&nbsp;the&nbsp;last&nbsp;page&nbsp;is&nbsp;**Start**,&nbsp;and&nbsp;the&nbsp;default&nbsp;value&nbsp;for&nbsp;other&nbsp;pages&nbsp;is&nbsp;**Next**. |
-| status | ItemState | ItemState.Normal | Status&nbsp;of&nbsp;the&nbsp;**&lt;StepperItem&gt;**. |
+| prevLabel | string | - | When the **&lt;Stepper&gt;** contains more than one page, the default value for all pages except the first page is **Back**. |
+| nextLabel | string | - | When the stepper contains more than one page, the default value for the last page is **Start**, and the default value for other pages is **Next**. |
+| status | ItemState | ItemState.Normal | Status of the **&lt;StepperItem&gt;**. |
 
 - ItemState enums
     | Name | Description | 
   | -------- | -------- |
-  | Normal | The&nbsp;right&nbsp;button&nbsp;is&nbsp;clickable&nbsp;and&nbsp;can&nbsp;navigate&nbsp;users&nbsp;to&nbsp;the&nbsp;next&nbsp;**&lt;StepperItem&gt;**&nbsp;when&nbsp;it&nbsp;is&nbsp;clicked.. | 
-  | Disabled | The&nbsp;right&nbsp;button&nbsp;is&nbsp;grayed&nbsp;out&nbsp;and&nbsp;unavailable. | 
-  | Waiting | The&nbsp;right&nbsp;button&nbsp;is&nbsp;not&nbsp;displayed,&nbsp;and&nbsp;a&nbsp;progress&nbsp;bar&nbsp;is&nbsp;displayed&nbsp;instead. | 
-  | Skip | The&nbsp;current&nbsp;**&lt;StepperItem&gt;**&nbsp;is&nbsp;skipped,&nbsp;and&nbsp;the&nbsp;next&nbsp;**&lt;StepperItem&gt;**&nbsp;is&nbsp;displayed. | 
+  | Normal | The right button is clickable and can navigate users to the next **&lt;StepperItem&gt;** when it is clicked.. | 
+  | Disabled | The right button is grayed out and unavailable. | 
+  | Waiting | The right button is not displayed, and a progress bar is displayed instead. | 
+  | Skip | The current **&lt;StepperItem&gt;** is skipped, and the next **&lt;StepperItem&gt;** is displayed. | 
 
 
 ## Example

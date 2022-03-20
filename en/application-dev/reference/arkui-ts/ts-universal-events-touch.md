@@ -1,7 +1,7 @@
 # Touch Event
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This method is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -14,7 +14,7 @@ None
 
 | Name | Pop-up | Description |
 | -------- | -------- | -------- |
-| onTouch(callback:&nbsp;(event?:&nbsp;TouchEvent)&nbsp;=&gt;&nbsp;void) | Yes | Invoked&nbsp;when&nbsp;a&nbsp;touch&nbsp;action&nbsp;is&nbsp;triggered.&nbsp;For&nbsp;details&nbsp;about&nbsp;the&nbsp;event&nbsp;parameters,&nbsp;see&nbsp;[TouchEvent](#touchevent). |
+| onTouch(callback: (event?: TouchEvent) =&gt; void) | Yes | Invoked when a touch action is triggered. For details about the event parameters, see [TouchEvent](#touchevent). |
 
 
 ### TouchEvent
@@ -22,36 +22,36 @@ None
 - Attributes
     | Name | Type | Description | 
   | -------- | -------- | -------- |
-  | type | TouchType | Type&nbsp;of&nbsp;a&nbsp;touch&nbsp;event. | 
-  | touches | Array&lt;TouchObject&gt; | All&nbsp;finger&nbsp;information. | 
-  | changedTouches | Array&lt;TouchObject&gt; | Finger&nbsp;information&nbsp;changed. | 
-  | timestamp | number | Timestamp&nbsp;of&nbsp;the&nbsp;event. | 
-  | target<sup>8+</sup> | EventTarget | Target&nbsp;of&nbsp;the&nbsp;event. | 
+  | type | TouchType | Type of a touch event. | 
+  | touches | Array&lt;TouchObject&gt; | All finger information. | 
+  | changedTouches | Array&lt;TouchObject&gt; | Finger information changed. | 
+  | timestamp | number | Timestamp of the event. | 
+  | target<sup>8+</sup> | EventTarget | Target of the event. | 
 
 - APIs
     | API | Description | 
   | -------- | -------- |
-  | stopPropagation():&nbsp;void | Pop-up&nbsp;of&nbsp;the&nbsp;stop&nbsp;event. | 
+  | stopPropagation(): void | Pop-up of the stop event. | 
 
 
 - TouchObject
     | Name | Type | Description | 
   | -------- | -------- | -------- |
-  | type | TouchType | Type&nbsp;of&nbsp;a&nbsp;touch&nbsp;event. | 
-  | id | number | Unique&nbsp;identifier&nbsp;of&nbsp;a&nbsp;finger. | 
-  | screenX | number | X&nbsp;coordinate&nbsp;of&nbsp;the&nbsp;touch&nbsp;point&nbsp;relative&nbsp;to&nbsp;the&nbsp;left&nbsp;edge&nbsp;of&nbsp;the&nbsp;screen. | 
-  | screenY | number | Y&nbsp;coordinate&nbsp;of&nbsp;the&nbsp;touch&nbsp;point&nbsp;relative&nbsp;to&nbsp;the&nbsp;upper&nbsp;edge&nbsp;of&nbsp;the&nbsp;device&nbsp;screen. | 
-  | x | number | X&nbsp;coordinate&nbsp;of&nbsp;the&nbsp;touch&nbsp;point&nbsp;relative&nbsp;to&nbsp;the&nbsp;left&nbsp;edge&nbsp;of&nbsp;the&nbsp;element&nbsp;to&nbsp;touch. | 
-  | y | number | Y&nbsp;coordinate&nbsp;of&nbsp;the&nbsp;touch&nbsp;point&nbsp;relative&nbsp;to&nbsp;the&nbsp;upper&nbsp;edge&nbsp;of&nbsp;the&nbsp;element&nbsp;to&nbsp;touch. | 
+  | type | TouchType | Type of a touch event. | 
+  | id | number | Unique identifier of a finger. | 
+  | screenX | number | X coordinate of the touch point relative to the left edge of the screen. | 
+  | screenY | number | Y coordinate of the touch point relative to the upper edge of the device screen. | 
+  | x | number | X coordinate of the touch point relative to the left edge of the element to touch. | 
+  | y | number | Y coordinate of the touch point relative to the upper edge of the element to touch. | 
 
 
 - TouchType
     | Name | Description | 
   | -------- | -------- |
-  | Down | Trigger&nbsp;a&nbsp;touch&nbsp;event&nbsp;when&nbsp;a&nbsp;finger&nbsp;is&nbsp;pressed. | 
-  | Up | Trigger&nbsp;a&nbsp;touch&nbsp;event&nbsp;when&nbsp;a&nbsp;finger&nbsp;is&nbsp;lifted. | 
-  | Move | Trigger&nbsp;a&nbsp;touch&nbsp;event&nbsp;when&nbsp;a&nbsp;finger&nbsp;moves&nbsp;on&nbsp;the&nbsp;screen&nbsp;in&nbsp;pressed&nbsp;state. | 
-  | Cancel | Trigger&nbsp;an&nbsp;event&nbsp;when&nbsp;a&nbsp;touch&nbsp;event&nbsp;is&nbsp;canceled. | 
+  | Down | Trigger a touch event when a finger is pressed. | 
+  | Up | Trigger a touch event when a finger is lifted. | 
+  | Move | Trigger a touch event when a finger moves on the screen in pressed state. | 
+  | Cancel | Trigger an event when a touch event is canceled. | 
 
 
 ## Example

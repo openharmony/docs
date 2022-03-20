@@ -1,7 +1,7 @@
 # QRCode
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -23,16 +23,16 @@ None
 QRCode(value: string)
 
 - Parameters
-    | Name | Type | Mandatory | Default&nbsp;Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description | 
   | -------- | -------- | -------- | -------- | -------- |
-  | value | string | Yes | - | QR&nbsp;code&nbsp;content&nbsp;string. | 
+  | value | string | Yes | - | QR code content string. | 
 
 
 ## Attributes
 
-  | Name | Type | Default&nbsp;Value | Description | 
+  | Name | Type | Default Value | Description | 
 | -------- | -------- | -------- | -------- |
-| color | Color | Black | QR&nbsp;code&nbsp;color. | 
+| color | Color | Black | QR code color. | 
 
 
 ## Events

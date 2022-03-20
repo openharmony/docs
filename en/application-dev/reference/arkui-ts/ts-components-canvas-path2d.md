@@ -1,7 +1,7 @@
 # Path2D
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -15,9 +15,9 @@ addPath(path: Object): void
 Adds a path to this path.
 
 - Parameters
-    | Name | Type | Mandatory | Default&nbsp;Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description | 
   | -------- | -------- | -------- | -------- | -------- |
-  | path | Object | Yes | null | Path&nbsp;to&nbsp;be&nbsp;added&nbsp;to&nbsp;this&nbsp;path. | 
+  | path | Object | Yes | null | Path to be added to this path. | 
 
 - Example
     
@@ -97,10 +97,10 @@ moveTo(x: number, y: number): void
 Moves the current coordinate point of the path to the target point, without drawing a line during the movement.
 
 - Parameters
-    | Name | Type | Mandatory | Default&nbsp;Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description | 
   | -------- | -------- | -------- | -------- | -------- |
-  | x | number | Yes | 0 | X-coordinate&nbsp;of&nbsp;the&nbsp;target&nbsp;point. | 
-  | y | number | Yes | 0 | Y-coordinate&nbsp;of&nbsp;the&nbsp;target&nbsp;point. | 
+  | x | number | Yes | 0 | X-coordinate of the target point. | 
+  | y | number | Yes | 0 | Y-coordinate of the target point. | 
 
 - Example
     
@@ -142,10 +142,10 @@ lineTo(x: number, y: number): void
 Draws a straight line from the current point to the target point.
 
 - Parameters
-    | Name | Type | Mandatory | Default&nbsp;Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description | 
   | -------- | -------- | -------- | -------- | -------- |
-  | x | number | Yes | 0 | X-coordinate&nbsp;of&nbsp;the&nbsp;target&nbsp;point. | 
-  | y | number | Yes | 0 | Y-coordinate&nbsp;of&nbsp;the&nbsp;target&nbsp;point. | 
+  | x | number | Yes | 0 | X-coordinate of the target point. | 
+  | y | number | Yes | 0 | Y-coordinate of the target point. | 
 
 - Example
     
@@ -188,14 +188,14 @@ bezierCurveTo(cp1x: number, cp1y: number, cp2x: number, cp2y: number, x: number,
 Draws a cubic bezier curve on the canvas.
 
 - Parameters
-    | Name | Type | Mandatory | Default&nbsp;Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description | 
   | -------- | -------- | -------- | -------- | -------- |
-  | cp1x | number | Yes | 0 | X-coordinate&nbsp;of&nbsp;the&nbsp;first&nbsp;parameter&nbsp;of&nbsp;the&nbsp;bezier&nbsp;curve. | 
-  | cp1y | number | Yes | 0 | Y-coordinate&nbsp;of&nbsp;the&nbsp;first&nbsp;parameter&nbsp;of&nbsp;the&nbsp;bezier&nbsp;curve. | 
-  | cp2x | number | Yes | 0 | X-coordinate&nbsp;of&nbsp;the&nbsp;second&nbsp;parameter&nbsp;of&nbsp;the&nbsp;bezier&nbsp;curve. | 
-  | cp2y | number | Yes | 0 | Y-coordinate&nbsp;of&nbsp;the&nbsp;second&nbsp;parameter&nbsp;of&nbsp;the&nbsp;bezier&nbsp;curve. | 
-  | x | number | Yes | 0 | X-coordinate&nbsp;of&nbsp;the&nbsp;end&nbsp;point&nbsp;on&nbsp;the&nbsp;bezier&nbsp;curve. | 
-  | y | number | Yes | 0 | Y-coordinate&nbsp;of&nbsp;the&nbsp;end&nbsp;point&nbsp;on&nbsp;the&nbsp;bezier&nbsp;curve. | 
+  | cp1x | number | Yes | 0 | X-coordinate of the first parameter of the bezier curve. | 
+  | cp1y | number | Yes | 0 | Y-coordinate of the first parameter of the bezier curve. | 
+  | cp2x | number | Yes | 0 | X-coordinate of the second parameter of the bezier curve. | 
+  | cp2y | number | Yes | 0 | Y-coordinate of the second parameter of the bezier curve. | 
+  | x | number | Yes | 0 | X-coordinate of the end point on the bezier curve. | 
+  | y | number | Yes | 0 | Y-coordinate of the end point on the bezier curve. | 
 
 - Example
     
@@ -234,12 +234,12 @@ quadraticCurveTo(cpx: number, cpy: number, x: number ,y: number): void
 Draws a quadratic curve on the canvas.
 
 - Parameters
-    | Name | Type | Mandatory | Default&nbsp;Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description | 
   | -------- | -------- | -------- | -------- | -------- |
-  | cpx | number | Yes | 0 | X-coordinate&nbsp;of&nbsp;the&nbsp;bezier&nbsp;curve&nbsp;parameter. | 
-  | cpy | number | Yes | 0 | Y-coordinate&nbsp;of&nbsp;the&nbsp;bezier&nbsp;curve&nbsp;parameter. | 
-  | x | number | Yes | 0 | X-coordinate&nbsp;of&nbsp;the&nbsp;end&nbsp;point&nbsp;on&nbsp;the&nbsp;bezier&nbsp;curve. | 
-  | y | number | Yes | 0 | Y-coordinate&nbsp;of&nbsp;the&nbsp;end&nbsp;point&nbsp;on&nbsp;the&nbsp;bezier&nbsp;curve. | 
+  | cpx | number | Yes | 0 | X-coordinate of the bezier curve parameter. | 
+  | cpy | number | Yes | 0 | Y-coordinate of the bezier curve parameter. | 
+  | x | number | Yes | 0 | X-coordinate of the end point on the bezier curve. | 
+  | y | number | Yes | 0 | Y-coordinate of the end point on the bezier curve. | 
 
 - Example
     
@@ -279,14 +279,14 @@ arc(x: number, y: number, radius: number, startAngle: number, endAngle: number, 
 Draws an arc on the canvas.
 
 - Parameters
-    | Name | Type | Mandatory | Default&nbsp;Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description | 
   | -------- | -------- | -------- | -------- | -------- |
-  | x | number | Yes | 0 | X-coordinate&nbsp;of&nbsp;the&nbsp;center&nbsp;point&nbsp;of&nbsp;the&nbsp;arc. | 
-  | y | number | Yes | 0 | Y-coordinate&nbsp;of&nbsp;the&nbsp;center&nbsp;point&nbsp;of&nbsp;the&nbsp;arc. | 
-  | radius | number | Yes | 0 | Radius&nbsp;of&nbsp;the&nbsp;arc. | 
-  | startAngle | number | Yes | 0 | Start&nbsp;radian&nbsp;of&nbsp;the&nbsp;arc. | 
-  | endAngle | number | Yes | 0 | End&nbsp;radian&nbsp;of&nbsp;the&nbsp;arc. | 
-  | anticlockwise | boolean | No | false | Whether&nbsp;to&nbsp;draw&nbsp;the&nbsp;arc&nbsp;counterclockwise. | 
+  | x | number | Yes | 0 | X-coordinate of the center point of the arc. | 
+  | y | number | Yes | 0 | Y-coordinate of the center point of the arc. | 
+  | radius | number | Yes | 0 | Radius of the arc. | 
+  | startAngle | number | Yes | 0 | Start radian of the arc. | 
+  | endAngle | number | Yes | 0 | End radian of the arc. | 
+  | anticlockwise | boolean | No | false | Whether to draw the arc counterclockwise. | 
 
 - Example
     
@@ -324,13 +324,13 @@ arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): void
 Draws an arc based on the radius and points on the arc.
 
 - Parameters
-    | Name | Type | Mandatory | Default&nbsp;Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description | 
   | -------- | -------- | -------- | -------- | -------- |
-  | x1 | number | Yes | 0 | X-coordinate&nbsp;of&nbsp;the&nbsp;first&nbsp;point&nbsp;on&nbsp;the&nbsp;arc. | 
-  | y1 | number | Yes | 0 | Y-coordinate&nbsp;of&nbsp;the&nbsp;first&nbsp;point&nbsp;on&nbsp;the&nbsp;arc. | 
-  | x2 | number | Yes | 0 | X-coordinate&nbsp;of&nbsp;the&nbsp;second&nbsp;point&nbsp;on&nbsp;the&nbsp;arc. | 
-  | y2 | number | Yes | 0 | Y-coordinate&nbsp;of&nbsp;the&nbsp;second&nbsp;point&nbsp;on&nbsp;the&nbsp;arc. | 
-  | radius | number | Yes | 0 | Radius&nbsp;of&nbsp;the&nbsp;arc. | 
+  | x1 | number | Yes | 0 | X-coordinate of the first point on the arc. | 
+  | y1 | number | Yes | 0 | Y-coordinate of the first point on the arc. | 
+  | x2 | number | Yes | 0 | X-coordinate of the second point on the arc. | 
+  | y2 | number | Yes | 0 | Y-coordinate of the second point on the arc. | 
+  | radius | number | Yes | 0 | Radius of the arc. | 
 
 - Example
     
@@ -369,16 +369,16 @@ ellipse(x: number, y: number, radiusX: number, radiusY: number, rotation: number
 Draws an ellipse in the specified rectangular region.
 
 - Parameters
-    | Name | Type | Mandatory | Default&nbsp;Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description | 
   | -------- | -------- | -------- | -------- | -------- |
-  | x | number | Yes | 0 | X-coordinate&nbsp;of&nbsp;the&nbsp;ellipse&nbsp;center. | 
-  | y | number | Yes | 0 | Y-coordinate&nbsp;of&nbsp;the&nbsp;ellipse&nbsp;center. | 
-  | radiusX | number | Yes | 0 | Ellipse&nbsp;radius&nbsp;on&nbsp;the&nbsp;x-axis. | 
-  | radiusY | number | Yes | 0 | Ellipse&nbsp;radius&nbsp;on&nbsp;the&nbsp;y-axis. | 
-  | rotation | number | Yes | 0 | Rotation&nbsp;angle&nbsp;of&nbsp;the&nbsp;ellipse,&nbsp;in&nbsp;radians. | 
-  | startAngle | number | Yes | 0 | Angle&nbsp;of&nbsp;the&nbsp;start&nbsp;point&nbsp;for&nbsp;drawing&nbsp;the&nbsp;ellipse,&nbsp;in&nbsp;radians. | 
-  | endAngle | number | Yes | 0 | Angle&nbsp;of&nbsp;the&nbsp;end&nbsp;point&nbsp;for&nbsp;drawing&nbsp;the&nbsp;ellipse,&nbsp;in&nbsp;radians. | 
-  | anticlockwise | number | No | 0 | Whether&nbsp;to&nbsp;draw&nbsp;the&nbsp;ellipse&nbsp;in&nbsp;the&nbsp;counterclockwise&nbsp;direction.&nbsp;The&nbsp;value&nbsp;**0**&nbsp;means&nbsp;to&nbsp;draw&nbsp;the&nbsp;ellipse&nbsp;in&nbsp;the&nbsp;clockwise&nbsp;direction,&nbsp;and&nbsp;**1**&nbsp;means&nbsp;to&nbsp;draw&nbsp;the&nbsp;ellipse&nbsp;in&nbsp;the&nbsp;counterclockwise&nbsp;direction.&nbsp;This&nbsp;parameter&nbsp;is&nbsp;optional.&nbsp;The&nbsp;default&nbsp;value&nbsp;is&nbsp;**0**. | 
+  | x | number | Yes | 0 | X-coordinate of the ellipse center. | 
+  | y | number | Yes | 0 | Y-coordinate of the ellipse center. | 
+  | radiusX | number | Yes | 0 | Ellipse radius on the x-axis. | 
+  | radiusY | number | Yes | 0 | Ellipse radius on the y-axis. | 
+  | rotation | number | Yes | 0 | Rotation angle of the ellipse, in radians. | 
+  | startAngle | number | Yes | 0 | Angle of the start point for drawing the ellipse, in radians. | 
+  | endAngle | number | Yes | 0 | Angle of the end point for drawing the ellipse, in radians. | 
+  | anticlockwise | number | No | 0 | Whether to draw the ellipse in the counterclockwise direction. The value **0** means to draw the ellipse in the clockwise direction, and **1** means to draw the ellipse in the counterclockwise direction. This parameter is optional. The default value is **0**. | 
 
 - Example
     
@@ -417,12 +417,12 @@ rect(x: number, y: number, width: number, height: number): void
 Creates a rectangle.
 
 - Parameters
-    | Name | Type | Mandatory | Default&nbsp;Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description | 
   | -------- | -------- | -------- | -------- | -------- |
-  | x | number | Yes | 0 | X-coordinate&nbsp;of&nbsp;the&nbsp;upper&nbsp;left&nbsp;corner&nbsp;of&nbsp;the&nbsp;rectangle. | 
-  | y | number | Yes | 0 | Y-coordinate&nbsp;of&nbsp;the&nbsp;upper&nbsp;left&nbsp;corner&nbsp;of&nbsp;the&nbsp;rectangle. | 
-  | width | number | Yes | 0 | Width&nbsp;of&nbsp;the&nbsp;rectangle. | 
-  | height | number | Yes | 0 | Height&nbsp;of&nbsp;the&nbsp;rectangle. | 
+  | x | number | Yes | 0 | X-coordinate of the upper left corner of the rectangle. | 
+  | y | number | Yes | 0 | Y-coordinate of the upper left corner of the rectangle. | 
+  | width | number | Yes | 0 | Width of the rectangle. | 
+  | height | number | Yes | 0 | Height of the rectangle. | 
 
 - Example
     

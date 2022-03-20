@@ -1,7 +1,7 @@
 # Layout Constraints
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This attribute is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -13,10 +13,10 @@ None
 ## Attributes
 
 
-  | Name | Type | Default&nbsp;Value | Description | 
+  | Name | Type | Default Value | Description | 
 | -------- | -------- | -------- | -------- |
-| aspectRatio | number | - | Specifies&nbsp;an&nbsp;aspect&nbsp;ratio&nbsp;for&nbsp;the&nbsp;current&nbsp;component. | 
-| displayPriority | number | - | Sets&nbsp;a&nbsp;display&nbsp;priority&nbsp;for&nbsp;the&nbsp;current&nbsp;component&nbsp;in&nbsp;the&nbsp;layout&nbsp;container.&nbsp;When&nbsp;the&nbsp;space&nbsp;of&nbsp;the&nbsp;parent&nbsp;container&nbsp;is&nbsp;insufficient,&nbsp;the&nbsp;component&nbsp;with&nbsp;a&nbsp;lower&nbsp;priority&nbsp;is&nbsp;hidden.<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**NOTE：**<br/>>&nbsp;This&nbsp;parameter&nbsp;is&nbsp;valid&nbsp;only&nbsp;for&nbsp;the&nbsp;Row/Column/Flex&nbsp;(single-row)&nbsp;container&nbsp;component. | 
+| aspectRatio | number | - | Specifies an aspect ratio for the current component. | 
+| displayPriority | number | - | Sets a display priority for the current component in the layout container. When the space of the parent container is insufficient, the component with a lower priority is hidden.<br/>> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>> This parameter is valid only for the Row/Column/Flex (single-row) container component. | 
 
 
 ## Example

@@ -1,7 +1,7 @@
 # Navigation
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -13,9 +13,9 @@ The **&lt;Navigation&gt;** component typically functions as the root container o
 None
 
 
-## Child Component
+## Child Components
 
-It can contain subcomponents.
+Supported
 
 
 ## APIs
@@ -27,47 +27,47 @@ Creates a component that can automatically display the navigation bar, title, an
 
 ## Attributes
 
-| Name | Type | Default&nbsp;Value | Description |
+| Name | Type | Default Value | Description |
 | -------- | -------- | -------- | -------- |
-| title | string&nbsp;\|&nbsp;[Custom Builder](../../ui/ts-types.md) | - | Page&nbsp;title. |
-| subtitle | string | - | Subtitle&nbsp;of&nbsp;the&nbsp;page. |
-| menus | Array&lt;NavigationMenuItem&gt;&nbsp;\|&nbsp;[Custom Builder](../../ui/ts-types.md) | - | Menu&nbsp;in&nbsp;the&nbsp;upper&nbsp;right&nbsp;corner&nbsp;of&nbsp;the&nbsp;page. |
-| titleMode | NavigationTitleMode | NavigationTitleMode.Free | Display&nbsp;mode&nbsp;of&nbsp;the&nbsp;page&nbsp;title&nbsp;bar. |
-| toolBar | {<br/>items:[<br/>Object<br/>]&nbsp;}<br/>\|&nbsp;[Custom Builder](../../ui/ts-types.md) | - | Content&nbsp;of&nbsp;the&nbsp;toolbar.<br/>**items**:&nbsp;all&nbsp;items&nbsp;on&nbsp;the&nbsp;toolbar. |
-| hideToolBar | boolean | false | Whether&nbsp;to&nbsp;hide&nbsp;the&nbsp;toolbar.<br/>**true**:&nbsp;Hide&nbsp;the&nbsp;toolbar.<br/>**false**:&nbsp;Show&nbsp;the&nbsp;toolbar. |
-| hideTitleBar | boolean | false | Whether&nbsp;to&nbsp;hide&nbsp;the&nbsp;title&nbsp;bar. |
-| hideBackButton | boolean | false | Whether&nbsp;to&nbsp;hide&nbsp;the&nbsp;back&nbsp;button. |
+| title | string \| [Custom Builder](../../ui/ts-types.md) | - | Page title. |
+| subtitle | string | - | Subtitle of the page. |
+| menus | Array&lt;NavigationMenuItem&gt; \| [Custom Builder](../../ui/ts-types.md) | - | Menu in the upper right corner of the page. |
+| titleMode | NavigationTitleMode | NavigationTitleMode.Free | Display mode of the page title bar. |
+| toolBar | {<br/>items:[<br/>Object<br/>] }<br/>\| [Custom Builder](../../ui/ts-types.md) | - | Content of the toolbar.<br/>**items**: all items on the toolbar. |
+| hideToolBar | boolean | false | Whether to hide the toolbar.<br/>**true**: Hide the toolbar.<br/>**false**: Show the toolbar. |
+| hideTitleBar | boolean | false | Whether to hide the title bar. |
+| hideBackButton | boolean | false | Whether to hide the back button. |
 
 - NavigationMenuItem attributes
-    | Name | Type | Mandatory | Default&nbsp;Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | value | string | Yes | - | Text&nbsp;of&nbsp;an&nbsp;option&nbsp;on&nbsp;the&nbsp;menu&nbsp;bar. | 
-  | icon | string | No | - | Icon&nbsp;path&nbsp;of&nbsp;an&nbsp;option&nbsp;on&nbsp;the&nbsp;menu&nbsp;bar. | 
-  | action | ()&nbsp;=&gt;&nbsp;void | No | - | Callback&nbsp;invoked&nbsp;when&nbsp;an&nbsp;option&nbsp;is&nbsp;selected. | 
+  | value | string | Yes | - | Text of an option on the menu bar. |
+  | icon | string | No | - | Icon path of an option on the menu bar. |
+  | action | () =&gt; void | No | - | Callback invoked when an option is selected. |
 
 - Object attributes
-    | Name | Type | Mandatory | Default&nbsp;Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | value | string | Yes | - | Text&nbsp;of&nbsp;an&nbsp;option&nbsp;on&nbsp;the&nbsp;toolbar. | 
-  | icon | string | No | - | Icon&nbsp;path&nbsp;of&nbsp;an&nbsp;option&nbsp;on&nbsp;the&nbsp;toolbar. | 
-  | action | ()&nbsp;=&gt;&nbsp;void | No | - | Callback&nbsp;invoked&nbsp;when&nbsp;an&nbsp;option&nbsp;is&nbsp;selected. | 
+  | value | string | Yes | - | Text of an option on the toolbar. |
+  | icon | string | No | - | Icon path of an option on the toolbar. |
+  | action | () =&gt; void | No | - | Callback invoked when an option is selected. |
 
 - NavigationTitleMode enums
-    | Name | Description | 
+    | Name | Description |
   | -------- | -------- |
-  | Free | When&nbsp;the&nbsp;content&nbsp;is&nbsp;a&nbsp;scrollable&nbsp;component,&nbsp;the&nbsp;title&nbsp;shrinks&nbsp;as&nbsp;the&nbsp;content&nbsp;scrolls&nbsp;up&nbsp;(the&nbsp;subtitle&nbsp;fades&nbsp;out&nbsp;with&nbsp;its&nbsp;size&nbsp;remaining&nbsp;unchanged)&nbsp;and&nbsp;restores&nbsp;as&nbsp;the&nbsp;content&nbsp;scrolls&nbsp;down. | 
-  | Mini | The&nbsp;mode&nbsp;is&nbsp;fixed&nbsp;at&nbsp;mini&nbsp;mode&nbsp;(icon&nbsp;+&nbsp;main&nbsp;title&nbsp;and&nbsp;subtitle). | 
-  | Full | The&nbsp;mode&nbsp;is&nbsp;fixed&nbsp;at&nbsp;full&nbsp;mode&nbsp;(main&nbsp;title&nbsp;and&nbsp;subtitle). | 
+  | Free | When the content is a scrollable component, the title shrinks as the content scrolls up (the subtitle fades out with its size remaining unchanged) and restores as the content scrolls down. |
+  | Mini | The mode is fixed at mini mode (icon + main title and subtitle). |
+  | Full | The mode is fixed at full mode (main title and subtitle). |
 
-  > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+  > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
   > Currently, only the scrollable component **&lt;List&gt;** is supported.
 
 
 ## Events
 
-  | Name | Description | 
+| Name | Description |
 | -------- | -------- |
-| onTitleModeChanged(callback:&nbsp;(titleMode:&nbsp;NavigationTitleMode)&nbsp;=&gt;&nbsp;void) | Triggered&nbsp;when&nbsp;**titleMode**&nbsp;is&nbsp;set&nbsp;to&nbsp;**NavigationTitleMode.Free**&nbsp;and&nbsp;the&nbsp;title&nbsp;bar&nbsp;mode&nbsp;changes&nbsp;as&nbsp;content&nbsp;scrolls. | 
+| onTitleModeChanged(callback: (titleMode: NavigationTitleMode) =&gt; void) | Triggered when **titleMode** is set to **NavigationTitleMode.Free** and the title bar mode changes as content scrolls. |
 
 
 ## Example

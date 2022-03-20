@@ -1,7 +1,7 @@
 # Scroll
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -25,19 +25,19 @@ Scroll(scroller?: Scroller)
 
 ## Attributes
 
-| Name | Type | Default&nbsp;Value | Description |
+| Name | Type | Default Value | Description |
 | -------- | -------- | -------- | -------- |
-| scrollable | ScrollDirection | ScrollDirection.Vertical | Scroll&nbsp;method. |
-| scrollBar | [BarState](ts-appendix-enums.md#barstate-enums) | Auto | Scroll&nbsp;bar&nbsp;status. |
-| scrollBarColor | Color | - | Color&nbsp;of&nbsp;the&nbsp;scroll&nbsp;bar. |
-| scrollBarWidth | Length | - | Width&nbsp;of&nbsp;the&nbsp;scrollbar. |
+| scrollable | ScrollDirection | ScrollDirection.Vertical | Scroll method. |
+| scrollBar | [BarState](ts-appendix-enums.md#barstate-enums) | Auto | Scroll bar status. |
+| scrollBarColor | Color | - | Color of the scroll bar. |
+| scrollBarWidth | Length | - | Width of the scrollbar. |
 
 - ScrollDirection
     | Name | Description | 
   | -------- | -------- |
-  | Horizontal | Only&nbsp;horizontal&nbsp;scrolling&nbsp;is&nbsp;supported. | 
-  | Vertical | Only&nbsp;vertical&nbsp;scrolling&nbsp;is&nbsp;supported. | 
-  | None | Scrolling&nbsp;is&nbsp;disabled. | 
+  | Horizontal | Only horizontal scrolling is supported. | 
+  | Vertical | Only vertical scrolling is supported. | 
+  | None | Scrolling is disabled. | 
 
 
 ## Scroller
@@ -62,11 +62,11 @@ Scrolls to the specified position.
 
 
 - Parameters
-    | Name | Type | Mandatory | Default&nbsp;Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description | 
   | -------- | -------- | -------- | -------- | -------- |
-  | xOffset | Length | Yes | - | Horizontal&nbsp;scrolling&nbsp;offset. | 
-  | yOffset | Length | Yes | - | Vertical&nbsp;scrolling&nbsp;offset. | 
-  | animation | {<br/>duration:&nbsp;number,<br/>curve:&nbsp;Curve&nbsp;\|<br/>CubicBezier&nbsp;\|<br/>SpringCurve<br/>} | No |  | Animation&nbsp;configuration,&nbsp;which&nbsp;includes&nbsp;the&nbsp;following:<br/>-&nbsp;**duration**:&nbsp;scrolling&nbsp;duration.<br/>-&nbsp;**curve**:&nbsp;scrolling&nbsp;curve. | 
+  | xOffset | Length | Yes | - | Horizontal scrolling offset. | 
+  | yOffset | Length | Yes | - | Vertical scrolling offset. | 
+  | animation | {<br/>duration: number,<br/>curve: Curve \|<br/>CubicBezier \|<br/>SpringCurve<br/>} | No |  | Animation configuration, which includes the following:<br/>- **duration**: scrolling duration.<br/>- **curve**: scrolling curve. | 
 
 
 ### scroller.scrollEdge
@@ -78,9 +78,9 @@ Scrolls to the edge of the container.
 
 
 - Parameters
-    | Name | Type | Mandatory | Default&nbsp;Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description | 
   | -------- | -------- | -------- | -------- | -------- |
-  | value | Edge | Yes | - | Edge&nbsp;position&nbsp;to&nbsp;scroll&nbsp;to. | 
+  | value | Edge | Yes | - | Edge position to scroll to. | 
 
 
 ### scroller.scrollPage
@@ -90,9 +90,9 @@ scrollPage(value: { next: boolean, direction?: Axis }): void
 Scrolls to the next or previous page.
 
 - Parameters
-    | Name | Type | Mandatory | Default&nbsp;Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description | 
   | -------- | -------- | -------- | -------- | -------- |
-  | next | boolean | Yes | - | Whether&nbsp;to&nbsp;turn&nbsp;to&nbsp;the&nbsp;next&nbsp;page.&nbsp;The&nbsp;value&nbsp;**true**&nbsp;means&nbsp;to&nbsp;scroll&nbsp;to&nbsp;the&nbsp;next&nbsp;page,&nbsp;and&nbsp;the&nbsp;value&nbsp;**false**&nbsp;means&nbsp;to&nbsp;scroll&nbsp;to&nbsp;the&nbsp;previous&nbsp;page. |
+  | next | boolean | Yes | - | Whether to turn to the next page. The value **true** means to scroll to the next page, and the value **false** means to scroll to the previous page. |
 
 
 ### scroller.currentOffset
@@ -106,7 +106,7 @@ Obtains the scrolling offset.
 - Return values
     | Type | Description | 
   | -------- | -------- |
-  | {<br/>xOffset:&nbsp;number,<br/>yOffset:&nbsp;number<br/>} | **xOffset**:&nbsp;horizontal&nbsp;scrolling&nbsp;offset.<br/>**yOffset**:&nbsp;vertical&nbsp;scrolling&nbsp;offset. | 
+  | {<br/>xOffset: number,<br/>yOffset: number<br/>} | **xOffset**: horizontal scrolling offset.<br/>**yOffset**: vertical scrolling offset. | 
 
 
 ### scroller.scrollToIndex
@@ -117,23 +117,23 @@ scroller.scrollToIndex(value: number): void
 Scrolls to the specified index.
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > Only the **&lt;List&gt;** component is supported.
 
 
 - Parameters
-    | Name | Type | Mandatory | Default&nbsp;Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description | 
   | -------- | -------- | -------- | -------- | -------- |
-  | value | number | Yes | - | Index&nbsp;of&nbsp;the&nbsp;item&nbsp;to&nbsp;be&nbsp;scrolled&nbsp;to&nbsp;in&nbsp;the&nbsp;list. | 
+  | value | number | Yes | - | Index of the item to be scrolled to in the list. | 
 
 
 ## Events
 
   | Name | Description | 
 | -------- | -------- |
-| onScroll(xOffset:&nbsp;number,&nbsp;yOffset:&nbsp;number)&nbsp;=&gt;&nbsp;void | Invoked&nbsp;to&nbsp;return&nbsp;the&nbsp;horizontal&nbsp;and&nbsp;vertical&nbsp;offsets&nbsp;during&nbsp;scrolling&nbsp;when&nbsp;the&nbsp;specified&nbsp;scroll&nbsp;event&nbsp;occurs. | 
-| onScrollEdge(side:&nbsp;Edge)&nbsp;=&gt;&nbsp;void | Callback&nbsp;for&nbsp;the&nbsp;event&nbsp;of&nbsp;scrolling&nbsp;to&nbsp;the&nbsp;edge. | 
-| onScrollEnd()&nbsp;=&gt;&nbsp;void | Invoked&nbsp;when&nbsp;scrolling&nbsp;stops. | 
+| onScroll(xOffset: number, yOffset: number) =&gt; void | Invoked to return the horizontal and vertical offsets during scrolling when the specified scroll event occurs. | 
+| onScrollEdge(side: Edge) =&gt; void | Callback for the event of scrolling to the edge. | 
+| onScrollEnd() =&gt; void | Invoked when scrolling stops. | 
 
 
 ## Example

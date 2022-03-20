@@ -1,7 +1,7 @@
 # Navigator
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -25,25 +25,25 @@ Navigator(value?: {target: string, type?: NavigationType})
 Creates a navigator.
 
 - Parameters
-    | Name | Type | Mandatory | Default&nbsp;Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description | 
   | -------- | -------- | -------- | -------- | -------- |
-  | target | string | Yes | - | Path&nbsp;of&nbsp;the&nbsp;target&nbsp;page&nbsp;to&nbsp;be&nbsp;redirected&nbsp;to. | 
-  | type | NavigationType | No | NavigationType.Push | Navigation&nbsp;type. | 
+  | target | string | Yes | - | Path of the target page to be redirected to. | 
+  | type | NavigationType | No | NavigationType.Push | Navigation type. | 
 
 - NavigationType enums
     | Name | Description | 
   | -------- | -------- |
-  | Push | Navigates&nbsp;to&nbsp;a&nbsp;specified&nbsp;page&nbsp;in&nbsp;the&nbsp;application. | 
-  | Replace | Replaces&nbsp;the&nbsp;current&nbsp;page&nbsp;with&nbsp;another&nbsp;one&nbsp;in&nbsp;the&nbsp;application&nbsp;and&nbsp;destroys&nbsp;the&nbsp;current&nbsp;page. | 
-  | Back | Returns&nbsp;to&nbsp;the&nbsp;previous&nbsp;page&nbsp;or&nbsp;a&nbsp;specified&nbsp;page. | 
+  | Push | Navigates to a specified page in the application. | 
+  | Replace | Replaces the current page with another one in the application and destroys the current page. | 
+  | Back | Returns to the previous page or a specified page. | 
 
 
 ## Attributes
 
-  | Name | Parameters | Default&nbsp;Value | Description | 
+  | Name | Parameters | Default Value | Description | 
 | -------- | -------- | -------- | -------- |
-| active | boolean | - | Whether&nbsp;the&nbsp;**&lt;Navigator&gt;**&nbsp;component&nbsp;is&nbsp;activated.&nbsp;If&nbsp;the&nbsp;component&nbsp;is&nbsp;activated,&nbsp;the&nbsp;corresponding&nbsp;navigation&nbsp;takes&nbsp;effect. | 
-| params | Object | undefined | Data&nbsp;that&nbsp;needs&nbsp;to&nbsp;be&nbsp;passed&nbsp;to&nbsp;the&nbsp;target&nbsp;page&nbsp;during&nbsp;redirection.&nbsp;You&nbsp;can&nbsp;use&nbsp;**router.getParams()**&nbsp;to&nbsp;obtain&nbsp;the&nbsp;data&nbsp;on&nbsp;the&nbsp;target&nbsp;page. | 
+| active | boolean | - | Whether the **&lt;Navigator&gt;** component is activated. If the component is activated, the corresponding navigation takes effect. | 
+| params | Object | undefined | Data that needs to be passed to the target page during redirection. You can use **router.getParams()** to obtain the data on the target page. | 
 
 
 ## Example

@@ -1,7 +1,7 @@
 # ColumnSplit
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -27,9 +27,9 @@ ColumnSplit()
 
   | Name | Type | Description | 
 | -------- | -------- | -------- |
-| resizeable | boolean | Whether&nbsp;the&nbsp;divider&nbsp;can&nbsp;be&nbsp;dragged.&nbsp;The&nbsp;default&nbsp;value&nbsp;is&nbsp;**false**. | 
+| resizeable | boolean | Whether the divider can be dragged. The default value is **false**. | 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > Similar to **&lt;RowSplit&gt;**, the divider of **&lt;ColumnSplit&gt;** can be dragged to a position that just fully holds a component.
 
 

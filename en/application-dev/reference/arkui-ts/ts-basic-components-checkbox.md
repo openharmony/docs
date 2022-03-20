@@ -35,14 +35,14 @@ Checkbox( name?: string,  group?: string )
 
 ## Events
 
-| Name     | Description| 
+| Name     | Description|
 | ----------| -------- |
-|onChange(callback: (value: boolean) => void) | Triggered when the selection status of the check box changes.<br>- The value **true** means that the check box is selected.<br>- The value **false** means that the check box is not selected.| 
- 
+|onChange(callback: (value: boolean) => void) | Triggered when the selection status of the check box changes.<br>- The value **true** means that the check box is selected.<br>- The value **false** means that the check box is not selected.|
+
 ## Example
 
 ```
-@Entry'
+@Entry
 @Component
 struct CheckboxExample {
 

@@ -1,7 +1,7 @@
 # Divider
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -25,12 +25,12 @@ Divider()
 
 ## Attributes
 
-| Name | Type | Default&nbsp;Value | Description |
+| Name | Type | Default Value | Description |
 | -------- | -------- | -------- | -------- |
-| vertical | boolean | false | Whether&nbsp;a&nbsp;vertical&nbsp;divider&nbsp;is&nbsp;used.&nbsp;The&nbsp;value&nbsp;**true**&nbsp;means&nbsp;that&nbsp;a&nbsp;vertical&nbsp;divider&nbsp;is&nbsp;used,&nbsp;and&nbsp;**false**&nbsp;means&nbsp;that&nbsp;a&nbsp;horizontal&nbsp;divider&nbsp;is&nbsp;used. |
-| color | Color | - | Color&nbsp;of&nbsp;the&nbsp;divider. |
-| strokeWidth | Length | 1 | Width&nbsp;of&nbsp;the&nbsp;divider. |
-| lineCap | [LineCapStyle](ts-appendix-enums.md#linecapstyle-enums) | LineCapStyle.Butt | Cap&nbsp;style&nbsp;of&nbsp;the&nbsp;divider. |
+| vertical | boolean | false | Whether a vertical divider is used. The value **true** means that a vertical divider is used, and **false** means that a horizontal divider is used. |
+| color | Color | - | Color of the divider. |
+| strokeWidth | Length | 1 | Width of the divider. |
+| lineCap | [LineCapStyle](ts-appendix-enums.md#linecapstyle-enums) | LineCapStyle.Butt | Cap style of the divider. |
 
 
 ## Events

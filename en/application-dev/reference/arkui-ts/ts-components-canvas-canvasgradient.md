@@ -1,7 +1,7 @@
 # CanvasGradient
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -15,10 +15,10 @@ addColorStop(offset: number, color: string): void
 Adds a color stop for the **CanvasGradient** object based on the specified offset and gradient color.
 
 - Parameters
-    | Name | Type | Mandatory | Default&nbsp;Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description | 
   | -------- | -------- | -------- | -------- | -------- |
-  | offset | number | Yes | 0 | Proportion&nbsp;of&nbsp;the&nbsp;distance&nbsp;between&nbsp;the&nbsp;color&nbsp;stop&nbsp;and&nbsp;the&nbsp;start&nbsp;point&nbsp;to&nbsp;the&nbsp;total&nbsp;length.&nbsp;The&nbsp;value&nbsp;ranges&nbsp;from&nbsp;0&nbsp;to&nbsp;1. | 
-  | color | string | Yes | 'ffffff' | Gradient&nbsp;color&nbsp;to&nbsp;set. | 
+  | offset | number | Yes | 0 | Proportion of the distance between the color stop and the start point to the total length. The value ranges from 0 to 1. | 
+  | color | string | Yes | 'ffffff' | Gradient color to set. | 
 
 - Example
     

@@ -1,7 +1,11 @@
+
+
+
+
 # Size
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This attribute is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -13,15 +17,15 @@ None
 ## Attributes
 
 
-  | Name | Type | Default&nbsp;Value | Description | 
+| Name | Type | Default Value | Description |
 | -------- | -------- | -------- | -------- |
-| width | Length | - | Width&nbsp;of&nbsp;a&nbsp;component.&nbsp;By&nbsp;default,&nbsp;the&nbsp;width&nbsp;required&nbsp;to&nbsp;fully&nbsp;hold&nbsp;the&nbsp;component&nbsp;content&nbsp;is&nbsp;used. | 
-| height | Length | - | Height&nbsp;of&nbsp;the&nbsp;component.&nbsp;By&nbsp;default,&nbsp;the&nbsp;height&nbsp;required&nbsp;to&nbsp;fully&nbsp;hold&nbsp;the&nbsp;component&nbsp;content&nbsp;is&nbsp;used. | 
-| size | {<br/>width?:&nbsp;Length,<br/>height?:&nbsp;Length<br/>} | - | Height&nbsp;and&nbsp;width&nbsp;of&nbsp;the&nbsp;component. | 
-| padding | {<br/>top?:&nbsp;Length,<br/>right?:&nbsp;Length,<br/>bottom?:&nbsp;Length,<br/>left?:&nbsp;Length<br/>}&nbsp;\|&nbsp;Length | 0 | Padding&nbsp;of&nbsp;the&nbsp;component.<br/>When&nbsp;the&nbsp;parameter&nbsp;is&nbsp;of&nbsp;the&nbsp;**Length**&nbsp;type,&nbsp;the&nbsp;four&nbsp;paddings&nbsp;take&nbsp;effect. | 
-| margin | {<br/>top?:&nbsp;Length,<br/>right?:&nbsp;Length,<br/>bottom?:&nbsp;Length,<br/>left?:&nbsp;Length<br/>}<br/>\|&nbsp;Length | 0 | Margin&nbsp;of&nbsp;the&nbsp;component.&nbsp;<br/>When&nbsp;the&nbsp;parameter&nbsp;is&nbsp;of&nbsp;the&nbsp;**Length**&nbsp;type,&nbsp;the&nbsp;four&nbsp;margins&nbsp;take&nbsp;effect. | 
-| constraintSize | {<br/>minWidth?:&nbsp;Length,<br/>maxWidth?:&nbsp;Length,<br/>minHeight?:&nbsp;Length,<br/>maxHeight?:&nbsp;Length<br/>} | {<br/>minWidth:&nbsp;0,<br/>maxWidth:&nbsp;Infinity,<br/>minHeight:&nbsp;0,<br/>maxHeight:&nbsp;Infinity<br/>} | Constraint&nbsp;size&nbsp;of&nbsp;the&nbsp;component,&nbsp;which&nbsp;is&nbsp;used&nbsp;to&nbsp;limit&nbsp;the&nbsp;size&nbsp;range&nbsp;during&nbsp;component&nbsp;layout. |
-| layoutWeight | number | 0 | Weight&nbsp;of&nbsp;the&nbsp;component&nbsp;during&nbsp;layout.&nbsp;When&nbsp;the&nbsp;container&nbsp;size&nbsp;is&nbsp;determined,&nbsp;the&nbsp;layout&nbsp;of&nbsp;the&nbsp;component&nbsp;and&nbsp;sibling&nbsp;components&nbsp;is&nbsp;allocated&nbsp;based&nbsp;on&nbsp;the&nbsp;weight&nbsp;along&nbsp;the&nbsp;main&nbsp;axis.&nbsp;The&nbsp;component&nbsp;size&nbsp;setting&nbsp;is&nbsp;ignored.<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**NOTE：**<br/>>&nbsp;This&nbsp;attribute&nbsp;is&nbsp;valid&nbsp;only&nbsp;for&nbsp;the&nbsp;**Row**,&nbsp;**Column**,&nbsp;and&nbsp;**Flex**&nbsp;layouts. | 
+| width | Length | - | Width of a component. By default, the width required to fully hold the component content is used. |
+| height | Length | - | Height of the component. By default, the height required to fully hold the component content is used. |
+| size | {<br/>width?: Length,<br/>height?: Length<br/>} | - | Height and width of the component. |
+| padding | {<br/>top?: Length,<br/>right?: Length,<br/>bottom?: Length,<br/>left?: Length<br/>} \| Length | 0 | Padding of the component.<br/>When the parameter is of the **Length** type, the four paddings take effect. |
+| margin | {<br/>top?: Length,<br/>right?: Length,<br/>bottom?: Length,<br/>left?: Length<br/>}<br/>\| Length | 0 | Margin of the component. <br/>When the parameter is of the **Length** type, the four margins take effect. |
+| constraintSize | {<br/>minWidth?: Length,<br/>maxWidth?: Length,<br/>minHeight?: Length,<br/>maxHeight?: Length<br/>} | {<br/>minWidth: 0,<br/>maxWidth: Infinity,<br/>minHeight: 0,<br/>maxHeight: Infinity<br/>} | Constraint size of the component, which is used to limit the size range during component layout. |
+| layoutWeight | number | 0 | Weight of the component during layout. When the container size is determined, the layout of the component and sibling components is allocated based on the weight along the main axis. The component size setting is ignored.<br/>> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>> This attribute is valid only for the **Row**, **Column**, and **Flex** layouts. |
 
 
 ## Example

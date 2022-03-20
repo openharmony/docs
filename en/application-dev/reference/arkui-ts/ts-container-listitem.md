@@ -1,7 +1,7 @@
 # ListItem
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -25,24 +25,24 @@ ListItem()
 
 ## Attributes
 
-| Name | Type | Default&nbsp;Value | Description |
+| Name | Type | Default Value | Description |
 | -------- | -------- | -------- | -------- |
-| sticky | Sticky | Sticky.None | Sticky&nbsp;effect&nbsp;of&nbsp;the&nbsp;list&nbsp;item.&nbsp;For&nbsp;details,&nbsp;see Sticky enums. |
-| editable | boolean | false | Whether&nbsp;the&nbsp;list&nbsp;item&nbsp;is&nbsp;editable.&nbsp;A&nbsp;list&nbsp;item&nbsp;can&nbsp;be&nbsp;deleted&nbsp;in&nbsp;editing&nbsp;mode. |
-| selectable<sup>8+</sup> | boolean | true | Whether&nbsp;the&nbsp;current&nbsp;**&lt;ListItem&gt;**&nbsp;is&nbsp;selectable&nbsp;by&nbsp;the&nbsp;mouse.<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**NOTE：**<br/>>&nbsp;This&nbsp;attribute&nbsp;takes&nbsp;effect&nbsp;only&nbsp;when&nbsp;mouse&nbsp;frame&nbsp;selection&nbsp;is&nbsp;enabled&nbsp;for&nbsp;the&nbsp;parent&nbsp;**&lt;List&gt;**&nbsp;container. |
+| sticky | Sticky | Sticky.None | Sticky effect of the list item. For details, see Sticky enums. |
+| editable | boolean | false | Whether the list item is editable. A list item can be deleted in editing mode. |
+| selectable<sup>8+</sup> | boolean | true | Whether the current **&lt;ListItem&gt;** is selectable by the mouse.<br/>> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>> This attribute takes effect only when mouse frame selection is enabled for the parent **&lt;List&gt;** container. |
 
 - Sticky enums
     | Name | Description | 
   | -------- | -------- |
-  | None | No&nbsp;sticky. | 
-  | Normal | The&nbsp;list&nbsp;item&nbsp;is&nbsp;sticky. | 
+  | None | No sticky. | 
+  | Normal | The list item is sticky. | 
 
 
 ## Events
 
   | Name | Description | 
 | -------- | -------- |
-| onSelect(callback:&nbsp;(isSelected:&nbsp;boolean)&nbsp;=&gt;&nbsp;any)<sup>8+</sup> | Triggered&nbsp;when&nbsp;the&nbsp;selected&nbsp;state&nbsp;of&nbsp;the&nbsp;**&lt;ListItem&gt;**&nbsp;changes.<br/>**isSelected**:&nbsp;Returns&nbsp;**true**&nbsp;if&nbsp;the&nbsp;**&lt;ListItem&gt;**&nbsp;is&nbsp;selected&nbsp;by&nbsp;the&nbsp;mouse;&nbsp;returns&nbsp;**false**&nbsp;otherwise. | 
+| onSelect(callback: (isSelected: boolean) =&gt; any)<sup>8+</sup> | Triggered when the selected state of the **&lt;ListItem&gt;** changes.<br/>**isSelected**: Returns **true** if the **&lt;ListItem&gt;** is selected by the mouse; returns **false** otherwise. | 
 
 
 ## Example

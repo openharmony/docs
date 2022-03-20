@@ -1,7 +1,7 @@
 # LongPressGesture
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This gesture is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -15,25 +15,25 @@ None
 LongPressGesture(options?: { fingers?: number, repeat?: boolean, duration?: number })
 
 - Parameters
-    | Name | Type | Mandatory | Default&nbsp;Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description | 
   | -------- | -------- | -------- | -------- | -------- |
-  | fingers | number | No | 1 | Minimum&nbsp;number&nbsp;of&nbsp;fingers&nbsp;to&nbsp;trigger&nbsp;a&nbsp;long&nbsp;press&nbsp;gesture.&nbsp;The&nbsp;value&nbsp;ranges&nbsp;from&nbsp;1&nbsp;to&nbsp;10. | 
-  | repeat | boolean | No | false | Whether&nbsp;to&nbsp;continuously&nbsp;trigger&nbsp;the&nbsp;event&nbsp;callback. | 
-  | duration | number | No | 500 | Minimum&nbsp;hold-down&nbsp;time,&nbsp;in&nbsp;ms. | 
+  | fingers | number | No | 1 | Minimum number of fingers to trigger a long press gesture. The value ranges from 1 to 10. | 
+  | repeat | boolean | No | false | Whether to continuously trigger the event callback. | 
+  | duration | number | No | 500 | Minimum hold-down time, in ms. | 
 
 
 ## Events
 
   | Name | Description | 
 | -------- | -------- |
-| onAction((event?:&nbsp;LongPressGestureEvent)&nbsp;=&gt;&nbsp;void) | Callback&nbsp;invoked&nbsp;when&nbsp;a&nbsp;long&nbsp;press&nbsp;gesture&nbsp;is&nbsp;recognized. | 
-| onActionEnd((event?:&nbsp;LongPressGestureEvent)&nbsp;=&gt;&nbsp;void) | Callback&nbsp;invoked&nbsp;when&nbsp;the&nbsp;finger&nbsp;used&nbsp;for&nbsp;a&nbsp;long&nbsp;press&nbsp;gesture&nbsp;is&nbsp;lift. | 
-| onActionCancel(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | Callback&nbsp;invoked&nbsp;when&nbsp;a&nbsp;tap&nbsp;cancellation&nbsp;event&nbsp;is&nbsp;received&nbsp;after&nbsp;a&nbsp;long&nbsp;press&nbsp;gesture&nbsp;is&nbsp;recognized. | 
+| onAction((event?: LongPressGestureEvent) =&gt; void) | Callback invoked when a long press gesture is recognized. | 
+| onActionEnd((event?: LongPressGestureEvent) =&gt; void) | Callback invoked when the finger used for a long press gesture is lift. | 
+| onActionCancel(event: () =&gt; void) | Callback invoked when a tap cancellation event is received after a long press gesture is recognized. | 
 
 - LongPressGestureEvent<sup>8+</sup> attributes
     | Name | Type | Description | 
   | -------- | -------- | -------- |
-  | repeat | boolean | Whether&nbsp;the&nbsp;event&nbsp;is&nbsp;repeated. | 
+  | repeat | boolean | Whether the event is repeated. | 
 
 
 ## Example
