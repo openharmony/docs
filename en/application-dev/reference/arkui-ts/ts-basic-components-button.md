@@ -15,7 +15,7 @@ None
 
 ## Child Components
 
-This component can contain child components.
+Supported
 
 
 ## APIs
