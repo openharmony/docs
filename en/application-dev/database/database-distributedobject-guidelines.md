@@ -162,7 +162,7 @@ The following example shows how to implement a distributed data object synchroni
    // unsubscribe from all status change callbacks.
    local_object.off("status");
    ```
-10. Remote a distributed data object from the synchronization network. After the distributed data object is removed from the network, the data changes on the local end will not be synchronized to the remote end.
+10. Remove the distributed data object from the synchronization network. After the distributed data object is removed from the network, the data changes on the local end will not be synchronized to the remote end.
 
      The sample code is as follows:
        ```js
