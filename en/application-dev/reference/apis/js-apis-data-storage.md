@@ -250,7 +250,7 @@ removeStorageFromCache(path: string): Promise&lt;void&gt;
 
 Removes the singleton **Storage** instance of a file from the cache. The removed instance cannot be used for data operations. Otherwise, data inconsistency will occur.
 
-This method uses an asynchronous callback to return the result.
+This method uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -343,7 +343,7 @@ get(key: string, defValue: ValueType): Promise&lt;ValueType&gt;
 
 Obtains the value corresponding to a key. If the value is null or not in the default value format, the default value is returned.
 
-This method uses an asynchronous callback to return the result.
+This method uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -426,7 +426,7 @@ put(key: string, value: ValueType): Promise&lt;void&gt;
 
 Obtains the **Storage** instance corresponding to the specified file, writes data to the **Storage** instance using a **Storage** API, and saves the modification using **flush()** or **flushSync()**.
 
-This method uses an asynchronous callback to return the result.
+This method uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -522,7 +522,7 @@ has(key: string): Promise&lt;boolean&gt;
 
 Checks whether the storage object contains data with a given key.
 
-This method uses an asynchronous callback to return the result.
+This method uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -604,7 +604,7 @@ delete(key: string): Promise&lt;void&gt;
 
 Deletes data with the specified key from this storage object.
 
-This method uses an asynchronous callback to return the result.
+This method uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -678,7 +678,7 @@ flush(): Promise&lt;void&gt;
 
 Saves the modification of this object to the **Storage** instance and synchronizes the modification to the file.
 
-This method uses an asynchronous callback to return the result.
+This method uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -747,7 +747,7 @@ clear(): Promise&lt;void&gt;
 
 Clears this **Storage** object.
 
-This method uses an asynchronous callback to return the result.
+This method uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
