@@ -24,7 +24,7 @@ The System Ability Manager (SAMGR) subsystem implements the system service frame
 
 ## Repositories Involved<a name="section1371113476307"></a>
 
-** SAMGR**
+**SAMGR**
 
 distributedschedule\_safwk
 
