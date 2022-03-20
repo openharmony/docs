@@ -71,7 +71,7 @@ media.createVideoPlayer((error, video) => {
 
 ## media.createVideoPlayer<sup>8+</sup>
 
-createVideoPlayer: Promise<[VideoPlayer](#videoplayer8)>
+createVideoPlayer(): Promise<[VideoPlayer](#videoplayer8)>
 
 Creates a **VideoPlayer** instance in asynchronous mode. This API uses a promise to return the result.
 
@@ -156,7 +156,7 @@ media.createVideoRecorder((error, video) => {
 
 ## media.createVideoRecorder<sup>8+</sup>
 
-createVideoRecorder: Promise<[VideoRecorder](#videorecorder8)>
+createVideoRecorder(): Promise<[VideoRecorder](#videorecorder8)>
 
 Creates a **VideoRecorder** instance in asynchronous mode. This API uses a promise to return the result.
 
@@ -196,66 +196,80 @@ await media.createVideoRecorder.then((video) => {
 
 Enumerates the media error codes.
 
-| Name                      | Value  | Description                                                        |
-| -------------------------- | ---- | ------------------------------------------------------------ |
-| MSERR_OK                   | 0    | The operation is successful.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
-| MSERR_NO_MEMORY            | 1    | Failed to allocate memory. The system may have no available memory.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
-| MSERR_OPERATION_NOT_PERMIT | 2    | No permission to perform this operation.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
-| MSERR_INVALID_VAL          | 3    | Invalid input parameter.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
-| MSERR_IO                   | 4    | An I/O error occurs.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
-| MSERR_TIMEOUT              | 5    | The operation times out.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
-| MSERR_UNKNOWN              | 6    | An unknown error occurs.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
-| MSERR_SERVICE_DIED         | 7    | Invalid server.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
-| MSERR_INVALID_STATE        | 8    | The operation is not allowed in the current state.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
-| MSERR_UNSUPPORTED          | 9    | The operation is not supported in the current version.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
+**System capability**: SystemCapability.Multimedia.Media.Core
+
+| Name                      | Value  | Description                                  |
+| -------------------------- | ---- | -------------------------------------- |
+| MSERR_OK                   | 0    | The operation is successful.                        |
+| MSERR_NO_MEMORY            | 1    | Failed to allocate memory. The system may have no available memory.|
+| MSERR_OPERATION_NOT_PERMIT | 2    | No permission to perform this operation.                |
+| MSERR_INVALID_VAL          | 3    | Invalid input parameter.                    |
+| MSERR_IO                   | 4    | An I/O error occurs.                      |
+| MSERR_TIMEOUT              | 5    | The operation times out.                        |
+| MSERR_UNKNOWN              | 6    | An unknown error occurs.                        |
+| MSERR_SERVICE_DIED         | 7    | Invalid server.                      |
+| MSERR_INVALID_STATE        | 8    | The operation is not allowed in the current state.  |
+| MSERR_UNSUPPORTED          | 9    | The operation is not supported in the current version.      |
 
 ## MediaType<sup>8+</sup>
 
 Enumerates the media types.
 
-| Name          | Value  | Description                                                        |
-| -------------- | ---- | ------------------------------------------------------------ |
-| MEDIA_TYPE_AUD | 0    | Media.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
-| MEDIA_TYPE_VID | 1    | Video.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
+**System capability**: SystemCapability.Multimedia.Media.Core
+
+| Name          | Value  | Description      |
+| -------------- | ---- | ---------- |
+| MEDIA_TYPE_AUD | 0    | Media.|
+| MEDIA_TYPE_VID | 1    | Video.|
 
 ## CodecMimeType<sup>8+</sup>
 
 Enumerates the codec MIME types.
 
-| Name        | Value               | Description                                                        |
-| ------------ | ----------------- | ------------------------------------------------------------ |
-| VIDEO_MPEG4  | "video/mp4v-es"  | Video in MPEG-4 format.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
-| AUDIO_AAC    | "audio/mp4a-latm" | Audio in MP4A-LATM format.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
-| AUDIO_VORBIS | "audio/vorbis"    | Audio in Vorbis format.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
-| AUDIO_FLAC   | "audio/flac"      | Audio in FLAC format.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
+**System capability**: SystemCapability.Multimedia.Media.Core
+
+| Name        | Value                   | Description                                                        |
+| ------------ | --------------------- | ------------------------------------------------------------ |
+| VIDEO_H263   | 'video/h263'          | Video in H.263 format.|
+| VIDEO_AVC    | 'video/avc'           | Video in AVC format.|
+| VIDEO_MPEG2  | 'video/mpeg2'         | Video in MPEG-2 format.|
+| VIDEO_MPEG4  | 'video/mp4v-es'       | Video in MPEG-4 format.|
+| VIDEO_VP8    | 'video/x-vnd.on2.vp8' | Video in VP8 format.|
+| AUDIO_AAC    | "audio/mp4a-latm"     | Audio in MP4A-LATM format.|
+| AUDIO_VORBIS | 'audio/vorbis'        | Audio in Vorbis format.|
+| AUDIO_FLAC   | 'audio/flac'          | Audio in FLAC format.|
 
 ## MediaDescriptionKey<sup>8+</sup>
 
 Enumerates the media description keys.
 
+**System capability**: SystemCapability.Multimedia.Media.Core
+
 | Name                    | Value             | Description                                                        |
 | ------------------------ | --------------- | ------------------------------------------------------------ |
-| MD_KEY_TRACK_INDEX       | "track_index"   | Track index, which is a number.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
-| MD_KEY_TRACK_TYPE        | "track_type"    | Track type, which is a number. For details, see [MediaType](#mediatype8).<br>**System capability**: SystemCapability.Multimedia.Media.Core|
-| MD_KEY_CODEC_MIME        | "codec_mime"    | Codec MIME type, which is a string.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
-| MD_KEY_DURATION          | "duration"      | Media duration, which is a number, in units of ms.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
-| MD_KEY_BITRATE           | "bitrate"       | Bit rate, which is a number, in units of bit/s.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
-| MD_KEY_WIDTH             | "width"         | Video width, which is a number, in units of pixel.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
-| MD_KEY_HEIGHT            | "height"        | Video height, which is a number, in units of pixel.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
-| MD_KEY_FRAME_RATE        | "frame_rate"    | Video frame rate, which is a number, in units of 100 fps.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
-| MD_KEY_AUD_CHANNEL_COUNT | "channel_count" | Number of audio channels, which is a number.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
-| MD_KEY_AUD_SAMPLE_RATE   | "sample_rate"   | Sampling rate, which is a number, in units of Hz.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
+| MD_KEY_TRACK_INDEX       | "track_index"   | Track index, which is a number.                      |
+| MD_KEY_TRACK_TYPE        | "track_type"    | Track type, which is a number. For details, see [MediaType](#mediatype8).|
+| MD_KEY_CODEC_MIME        | "codec_mime"    | Codec MIME type, which is a string.                |
+| MD_KEY_DURATION          | "duration"      | Media duration, which is a number, in units of ms.            |
+| MD_KEY_BITRATE           | "bitrate"       | Bit rate, which is a number, in units of bit/s.             |
+| MD_KEY_WIDTH             | "width"         | Video width, which is a number, in units of pixel.          |
+| MD_KEY_HEIGHT            | "height"        | Video height, which is a number, in units of pixel.          |
+| MD_KEY_FRAME_RATE        | "frame_rate"    | Video frame rate, which is a number, in units of 100 fps.        |
+| MD_KEY_AUD_CHANNEL_COUNT | "channel_count" | Number of audio channels, which is a number.                        |
+| MD_KEY_AUD_SAMPLE_RATE   | "sample_rate"   | Sampling rate, which is a number, in units of Hz.              |
 
 ## BufferingInfoType<sup>8+</sup>
 
 Enumerates the buffering event types.
 
-| Name             | Value  | Description                                                        |
-| ----------------- | ---- | ------------------------------------------------------------ |
-| BUFFERING_START   | 1    | Buffering starts.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
-| BUFFERING_END     | 2    | Buffering ends.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
-| BUFFERING_PERCENT | 3    | Buffering progress, in percent.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
-| CACHED_DURATION   | 4    | Cache duration, in milliseconds.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
+**System capability**: SystemCapability.Multimedia.Media.Core
+
+| Name             | Value  | Description                      |
+| ----------------- | ---- | -------------------------- |
+| BUFFERING_START   | 1    | Buffering starts.            |
+| BUFFERING_END     | 2    | Buffering ends.            |
+| BUFFERING_PERCENT | 3    | Buffering progress, in percent.          |
+| CACHED_DURATION   | 4    | Cache duration, in milliseconds.|
 
 ## AudioPlayer
 
@@ -263,15 +277,17 @@ Provides methods to manage and play audio. Before calling a method of **AudioPla
 
 For details about the audio playback demo, see [Audio Playback Development](../../media/audio-playback.md).
 
-### Attributes<a name=audioplayer_Attributes></a>
+### Attributes<a name=audioplayer_attributes></a>
+
+**System capability**: SystemCapability.Multimedia.Media.AudioPlayer
 
 | Name       | Type                     | Readable| Writable| Description                                                        |
 | ----------- | ------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| src         | string                    | Yes  | Yes  | Audio media URI. The mainstream audio formats (MP4, AAC, MP3, and OGG) are supported.<br>**Example of supported URIs**:<br>1. FD playback: fd://xxx<br>![en-us_image_0000001164217678](figures/en-us_image_url.png)<br>2. HTTP network playback path (under development)<br>3. HLS network playback path (under development)<br>**Note**:<br>To use media materials, you must declare the read permission. Otherwise, the media materials cannot be played properly.<br>**System capability**: SystemCapability.Multimedia.Media.AudioPlayer|
-| loop        | boolean                   | Yes  | Yes  | Whether to loop audio playback. The value **true** means to loop audio playback, and **false** means the opposite.<br>**System capability**: SystemCapability.Multimedia.Media.AudioPlayer|
-| currentTime | number                    | Yes  | No  | Current audio playback position.<br>**System capability**: SystemCapability.Multimedia.Media.AudioPlayer|
-| duration    | number                    | Yes  | No  | Audio duration.<br>**System capability**: SystemCapability.Multimedia.Media.AudioPlayer|
-| state       | [AudioState](#audiostate) | Yes  | No  | Audio playback state.<br>**System capability**: SystemCapability.Multimedia.Media.AudioPlayer|
+| src         | string                    | Yes  | Yes  | Audio media URI. The mainstream audio formats (MPEG-4, AAC, MPEG-3, OGG, and WAV) are supported.<br>**Example of supported URIs**:<br>1. FD playback: fd://xx<br>![en-us_image_0000001164217678](figures/en-us_image_url.png)<br>2. HTTP network playback: http://xx<br>3. HLS network playback path (under development)<br>**Note**:<br>To use media materials, you must declare the read permission. Otherwise, the media materials cannot be played properly.|
+| loop        | boolean                   | Yes  | Yes  | Whether to loop audio playback. The value **true** means to loop audio playback, and **false** means the opposite.                |
+| currentTime | number                    | Yes  | No  | Current audio playback position.                                        |
+| duration    | number                    | Yes  | No  | Audio duration.                                                  |
+| state       | [AudioState](#audiostate) | Yes  | No  | Audio playback state.                                            |
 
 ### play<a name=audioplayer_play></a>
 
@@ -639,13 +655,15 @@ audioPlayer.setVolume(3); // Set volume to an invalid value to trigger the 'erro
 
 Enumerates the audio playback states. You can obtain the state through the **state** attribute.
 
-| Name              | Type  | Description                                                        |
-| ------------------ | ------ | ------------------------------------------------------------ |
-| idle               | string | The audio player is idle.<br>**System capability**: SystemCapability.Multimedia.Media.AudioPlayer|
-| playing            | string | Audio playback is in progress.<br>**System capability**: SystemCapability.Multimedia.Media.AudioPlayer|
-| paused             | string | Audio playback is paused.<br>**System capability**: SystemCapability.Multimedia.Media.AudioPlayer|
-| stopped            | string | Audio playback is stopped.<br>**System capability**: SystemCapability.Multimedia.Media.AudioPlayer|
-| error<sup>8+</sup> | string | Audio playback is in the error state.<br>**System capability**: SystemCapability.Multimedia.Media.AudioPlayer|
+**System capability**: SystemCapability.Multimedia.Media.AudioPlayer
+
+| Name              | Type  | Description          |
+| ------------------ | ------ | -------------- |
+| idle               | string | The audio player is idle.|
+| playing            | string | Audio playback is in progress.|
+| paused             | string | Audio playback is paused.|
+| stopped            | string | Audio playback is stopped.|
+| error<sup>8+</sup> | string | Audio playback is in the error state.    |
 
 ## VideoPlayer<sup>8+</sup>
 
@@ -655,15 +673,17 @@ For details about the video playback demo, see [Video Playback Development](../.
 
 ### Attributes<a name=videoplayer_attributes></a>
 
+**System capability**: SystemCapability.Multimedia.Media.VideoPlayer
+
 | Name                    | Type                              | Readable| Writable| Description                                                        |
 | ------------------------ | ---------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| url<sup>8+</sup>         | string                             | Yes  | Yes  | Video media URL. The mainstream video formats (MPEG-4, MPEG-TS, WebM, and MKV) are supported.<br>**Example of supported URIs**:<br>1. FD playback: fd://xxx<br>![en-us_image_0000001164217678](figures/en-us_image_url.png)<br>**Note**:<br>To use media materials, you must declare the read permission. Otherwise, the media materials cannot be played properly.<br>**System capability**: SystemCapability.Multimedia.Media.VideoPlayer|
-| loop<sup>8+</sup>        | boolean                            | Yes  | Yes  | Whether to loop video playback. The value **true** means to loop video playback, and **false** means the opposite.<br>**System capability**: SystemCapability.Multimedia.Media.VideoPlayer|
-| currentTime<sup>8+</sup> | number                             | Yes  | No  | Current video playback position.<br>**System capability**: SystemCapability.Multimedia.Media.VideoPlayer|
-| duration<sup>8+</sup>    | number                             | Yes  | No  | Video duration. The value **-1** indicates the live streaming mode.<br>**System capability**: SystemCapability.Multimedia.Media.VideoPlayer|
-| state<sup>8+</sup>       | [VideoPlayState](#videoplaystate8) | Yes  | No  | Video playback state.<br>**System capability**: SystemCapability.Multimedia.Media.VideoPlayer|
-| width<sup>8+</sup>       | number                             | Yes  | No  | Video width.<br>**System capability**: SystemCapability.Multimedia.Media.VideoPlayer|
-| height<sup>8+</sup>      | number                             | Yes  | No  | Video height.<br>**System capability**: SystemCapability.Multimedia.Media.VideoPlayer|
+| url<sup>8+</sup>         | string                             | Yes  | Yes  | Video media URL. The mainstream video formats (MPEG-4, MPEG-TS, WebM, and MKV) are supported.<br>**Example of supported URIs**:<br>1. FD playback: fd://xx<br>![en-us_image_0000001164217678](figures/en-us_image_url.png)<br>2. HTTP network playback: http://xx<br>3. HLS network playback path (under development)<br>**Note**:<br>To use media materials, you must declare the read permission. Otherwise, the media materials cannot be played properly.|
+| loop<sup>8+</sup>        | boolean                            | Yes  | Yes  | Whether to loop video playback. The value **true** means to loop video playback, and **false** means the opposite.                |
+| currentTime<sup>8+</sup> | number                             | Yes  | No  | Current video playback position.                                        |
+| duration<sup>8+</sup>    | number                             | Yes  | No  | Video duration. The value **-1** indicates the live streaming mode.                              |
+| state<sup>8+</sup>       | [VideoPlayState](#videoplaystate8) | Yes  | No  | Video playback state.                                            |
+| width<sup>8+</sup>       | number                             | Yes  | No  | Video width.                                                    |
+| height<sup>8+</sup>      | number                             | Yes  | No  | Video height.                                                    |
 
 ### setDisplaySurface<sup>8+</sup>
 
@@ -1207,7 +1227,7 @@ await videoPlayer.release().then() => {
 
 ### getTrackDescription<sup>8+</sup>
 
-getTrackDescription(callback: AsyncCallback<Array<[MediaDescription](#mediadescription8>>)>>): void
+getTrackDescription(callback: AsyncCallback<Array<[MediaDescription](#mediadescription8)>>): void
 
 Obtains the video track information. This API uses a callback to return the result.
 
@@ -1243,7 +1263,7 @@ videoPlayer.getTrackDescription((error, arrlist) => {
 
 ### getTrackDescription<sup>8+</sup>
 
-getTrackDescription(): Promise<Array<[MediaDescription](#mediadescription8>>)>>
+getTrackDescription(): Promise<Array<[MediaDescription](#mediadescription8)>>
 
 Obtains the video track information. This API uses a promise to return the result.
 
@@ -1251,9 +1271,9 @@ Obtains the video track information. This API uses a promise to return the resul
 
 **Return value**
 
-| Type                                                    | Description                           |
-| -------------------------------------------------------- | ------------------------------- |
-| Promise<Array<[MediaDescription](#mediadescription8>>)>> | Promise used to return the video track information obtained.|
+| Type                                                  | Description                           |
+| ------------------------------------------------------ | ------------------------------- |
+| Promise<Array<[MediaDescription](#mediadescription8)>> | Promise used to return the video track information obtained.|
 
 **Example**
 
@@ -1464,46 +1484,54 @@ videoPlayer.setVolume(3);  // Set volume to an invalid value to trigger the 'err
 
 Enumerates the video playback states. You can obtain the state through the **state** attribute.
 
-| Name    | Type  | Description                                                        |
-| -------- | ------ | ------------------------------------------------------------ |
-| idle     | string | The video player is idle.<br>**System capability**: SystemCapability.Multimedia.Media.VideoPlayer|
-| prepared | string | Video playback is being prepared.<br>**System capability**: SystemCapability.Multimedia.Media.VideoPlayer|
-| playing  | string | Video playback is in progress.<br>**System capability**: SystemCapability.Multimedia.Media.VideoPlayer|
-| paused   | string | Video playback is paused.<br>**System capability**: SystemCapability.Multimedia.Media.VideoPlayer|
-| stopped  | string | Video playback is stopped.<br>**System capability**: SystemCapability.Multimedia.Media.VideoPlayer|
-| error    | string | Video playback is in the error state.<br>**System capability**: SystemCapability.Multimedia.Media.VideoPlayer|
+**System capability**: SystemCapability.Multimedia.Media.VideoPlayer
+
+| Name    | Type  | Description          |
+| -------- | ------ | -------------- |
+| idle     | string | The video player is idle.|
+| prepared | string | Video playback is being prepared.|
+| playing  | string | Video playback is in progress.|
+| paused   | string | Video playback is paused.|
+| stopped  | string | Video playback is stopped.|
+| error    | string | Video playback is in the error state.    |
 
 ## SeekMode<sup>8+</sup>
 
 Enumerates the video playback seek modes, which can be passed in the **seek** method.
 
+**System capability**: SystemCapability.Multimedia.Media.Core
+
 | Name          | Value  | Description                                                        |
 | -------------- | ---- | ------------------------------------------------------------ |
-| SEEK_NEXT_SYNC | 0    | Seeks to the next key frame at the specified position. You are advised to use this value for the rewind operation.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
-| SEEK_PREV_SYNC | 1    | Seeks to the previous key frame at the specified position. You are advised to use this value for the fast-forward operation.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
+| SEEK_NEXT_SYNC | 0    | Seeks to the next key frame at the specified position. You are advised to use this value for the rewind operation.|
+| SEEK_PREV_SYNC | 1    | Seeks to the previous key frame at the specified position. You are advised to use this value for the fast-forward operation.|
 
 ## PlaybackSpeed<sup>8+</sup>
 
 Enumerates the video playback speeds, which can be passed in the **setSpeed** method.
 
-| Name                | Value  | Description                                                        |
-| -------------------- | ---- | ------------------------------------------------------------ |
-| SPEED_FORWARD_0_75_X | 0    | Plays the video at 0.75 times the normal speed.<br>**System capability**: SystemCapability.Multimedia.Media.VideoPlayer|
-| SPEED_FORWARD_1_00_X | 1    | Plays the video at the normal speed.<br>**System capability**: SystemCapability.Multimedia.Media.VideoPlayer|
-| SPEED_FORWARD_1_25_X | 2    | Plays the video at 1.25 times the normal speed.<br>**System capability**: SystemCapability.Multimedia.Media.VideoPlayer|
-| SPEED_FORWARD_1_75_X | 3    | Plays the video at 1.75 times the normal speed.<br>**System capability**: SystemCapability.Multimedia.Media.VideoPlayer|
-| SPEED_FORWARD_2_00_X | 4    | Plays the video at 2.00 times the normal speed.<br>**System capability**: SystemCapability.Multimedia.Media.VideoPlayer|
+**System capability**: SystemCapability.Multimedia.Media.VideoPlayer
+
+| Name                | Value  | Description                          |
+| -------------------- | ---- | ------------------------------ |
+| SPEED_FORWARD_0_75_X | 0    | Plays the video at 0.75 times the normal speed.|
+| SPEED_FORWARD_1_00_X | 1    | Plays the video at the normal speed.        |
+| SPEED_FORWARD_1_25_X | 2    | Plays the video at 1.25 times the normal speed.|
+| SPEED_FORWARD_1_75_X | 3    | Plays the video at 1.75 times the normal speed.|
+| SPEED_FORWARD_2_00_X | 4    | Plays the video at 2.00 times the normal speed.|
 
 ## MediaDescription<sup>8+</sup>
 
-### [key : string] : any
+### [key : string] : Object
 
 Defines media information in key-value mode.
 
+**System capability**: SystemCapability.Multimedia.Media.Core
+
 | Name | Type  | Description                                                        |
 | ----- | ------ | ------------------------------------------------------------ |
-| key   | string | Key of the media information. For details about the keys, see [MediaDescriptionKey](#mediadescriptionkey8).<br>**System capability**: SystemCapability.Multimedia.Media.Core|
-| value | any    | Value of the key. For details about the values, see [MediaDescriptionKey](#mediadescriptionkey8).<br>**System capability**: SystemCapability.Multimedia.Media.Core|
+| key   | string | Key of the media information. For details about the keys, see [MediaDescriptionKey](#mediadescriptionkey8).|
+| value | any    | Value of the key. For details about the values, see [MediaDescriptionKey](#mediadescriptionkey8).|
 
 **Example**
 
@@ -1759,41 +1787,48 @@ audioRecorder.prepare();  												// Do no set any parameter in prepare and 
 
 Describes audio recording configurations.
 
+**System capability**: SystemCapability.Multimedia.Media.AudioRecorder
+
 | Name                 | Type                               | Mandatory| Description                                                        |
 | --------------------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| audioEncoder          | [AudioEncoder](#audioencoder)           | No  | Audio encoding format. The default value is **AAC_LC**.<br>**System capability**: SystemCapability.Multimedia.Media.AudioRecorder|
-| audioEncodeBitRate    | number                                  | No  | Audio encoding bit rate. The default value is **48000**.<br>**System capability**: SystemCapability.Multimedia.Media.AudioRecorder|
-| audioSampleRate       | number                                  | No  | Audio sampling rate. The default value is **48000**.<br>**System capability**: SystemCapability.Multimedia.Media.AudioRecorder|
-| numberOfChannels      | number                                  | No  | Number of audio channels. The default value is **2**.<br>**System capability**: SystemCapability.Multimedia.Media.AudioRecorder|
-| format                | [AudioOutputFormat](#audiooutputformat) | No  | Audio output format. The default value is **MPEG_4**.<br>**System capability**: SystemCapability.Multimedia.Media.AudioRecorder|
-| location<sup>8+</sup> | [Location](#location8)                  | No  | Geographical location of the recorded audio.<br>**System capability**: SystemCapability.Multimedia.Media.AudioRecorder|
-| uri                   | string                                  | Yes  | Audio output URI. Supported: fd://xx&nbsp;(fd&nbsp;number)<br>![en-us_image_0000001164217678](figures/en-us_image_url.png) <br>The file must be created by the caller and granted with proper permissions.<br>**System capability**: SystemCapability.Multimedia.Media.AudioRecorder|
+| audioEncoder          | [AudioEncoder](#audioencoder)           | No  | Audio encoding format. The default value is **AAC_LC**.                            |
+| audioEncodeBitRate    | number                                  | No  | Audio encoding bit rate. The default value is **48000**.                             |
+| audioSampleRate       | number                                  | No  | Audio sampling rate. The default value is **48000**.                             |
+| numberOfChannels      | number                                  | No  | Number of audio channels. The default value is **2**.                                 |
+| format                | [AudioOutputFormat](#audiooutputformat) | No  | Audio output format. The default value is **MPEG_4**.                        |
+| location<sup>8+</sup> | [Location](#location8)                  | No  | Geographical location of the recorded audio.                                        |
+| uri                   | string                                  | Yes  | Audio output URI. Supported: fd://xx&nbsp;(fd&nbsp;number)<br>![en-us_image_0000001164217678](figures/en-us_image_url.png)<br>The file must be created by the caller and granted with proper permissions.|
+| audioEncoderMime      | [CodecMimeType](#CodecMimeType8)        | No  | Audio encoding format.|
 
 
 ## AudioEncoder
 
 Enumerates the audio encoding formats.
 
+**System capability**: SystemCapability.Multimedia.Media.AudioRecorder
+
 | Name   | Default Value| Description                                                        |
 | ------- | ------ | ------------------------------------------------------------ |
-| DEFAULT | 0      | Default audio encoding format, which is Adaptive Multi Rate-Narrow Band Speech Codec (AMR-NB).<br>This API is merely defined in OpenHarmony 3.1 Release and cannot be used currently. It can be used in OpenHarmony 3.1 MR.<br>**System capability**: SystemCapability.Multimedia.Media.AudioRecorder|
-| AMR_NB  | 1      | AMR-NB.<br>This API is merely defined in OpenHarmony 3.1 Release and cannot be used currently. It can be used in OpenHarmony 3.1 MR.<br>**System capability**: SystemCapability.Multimedia.Media.AudioRecorder|
-| AMR_WB  | 2      | Adaptive Multi Rate-Wide Band Speech Codec (AMR-WB).<br>This API is merely defined in OpenHarmony 3.1 Release and cannot be used currently. It can be used in OpenHarmony 3.1 MR.<br>**System capability**: SystemCapability.Multimedia.Media.AudioRecorder|
-| AAC_LC  | 3      | Advanced Audio Coding Low Complexity (AAC-LC).<br>**System capability**: SystemCapability.Multimedia.Media.AudioRecorder|
-| HE_AAC  | 4      | High-Efficiency Advanced&nbsp;Audio&nbsp;Coding (HE_AAC).<br>This API is merely defined in OpenHarmony 3.1 Release and cannot be used currently. It can be used in OpenHarmony 3.1 MR.<br>**System capability**: SystemCapability.Multimedia.Media.AudioRecorder|
+| DEFAULT | 0      | Default audio encoding format, which is Adaptive Multi Rate-Narrow Band Speech Codec (AMR-NB).<br>This API is merely defined in OpenHarmony 3.1 Release and cannot be used currently. It can be used in OpenHarmony 3.1 MR.|
+| AMR_NB  | 1      | AMR-NB.<br>This API is merely defined in OpenHarmony 3.1 Release and cannot be used currently. It can be used in OpenHarmony 3.1 MR.|
+| AMR_WB  | 2      | Adaptive Multi Rate-Wide Band Speech Codec (AMR-WB).<br>This API is merely defined in OpenHarmony 3.1 Release and cannot be used currently. It can be used in OpenHarmony 3.1 MR.|
+| AAC_LC  | 3      | Advanced Audio Coding Low Complexity (AAC-LC).|
+| HE_AAC  | 4      | High-Efficiency Advanced&nbsp;Audio&nbsp;Coding (HE_AAC).<br>This API is merely defined in OpenHarmony 3.1 Release and cannot be used currently. It can be used in OpenHarmony 3.1 MR.|
 
 
 ## AudioOutputFormat
 
 Enumerates the audio output formats.
 
+**System capability**: SystemCapability.Multimedia.Media.AudioRecorder
+
 | Name    | Default Value| Description                                                        |
 | -------- | ------ | ------------------------------------------------------------ |
-| DEFAULT  | 0      | Default encapsulation format, which is MPEG-4.<br>This API is merely defined in OpenHarmony 3.1 Release and cannot be used currently. It can be used in OpenHarmony 3.1 MR.<br>**System capability**: SystemCapability.Multimedia.Media.AudioRecorder|
-| MPEG_4   | 2      | MPEG-4.<br>**System capability**: SystemCapability.Multimedia.Media.AudioRecorder|
-| AMR_NB   | 3      | AMR_NB.<br>This API is merely defined in OpenHarmony 3.1 Release and cannot be used currently. It can be used in OpenHarmony 3.1 MR.<br>**System capability**: SystemCapability.Multimedia.Media.AudioRecorder|
-| AMR_WB   | 4      | AMR_WB.<br>This API is merely defined in OpenHarmony 3.1 Release and cannot be used currently. It can be used in OpenHarmony 3.1 MR.<br>**System capability**: SystemCapability.Multimedia.Media.AudioRecorder|
-| AAC_ADTS | 6      | Audio Data Transport Stream (ADTS), which is a transport stream format of AAC-based audio.<br>**System capability**: SystemCapability.Multimedia.Media.AudioRecorder|
+| DEFAULT  | 0      | Default encapsulation format, which is MPEG-4.<br>This API is merely defined in OpenHarmony 3.1 Release and cannot be used currently. It can be used in OpenHarmony 3.1 MR.|
+| MPEG_4   | 2      | MPEG-4.                                          |
+| AMR_NB   | 3      | AMR_NB.<br>This API is merely defined in OpenHarmony 3.1 Release and cannot be used currently. It can be used in OpenHarmony 3.1 MR.|
+| AMR_WB   | 4      | AMR_WB.<br>This API is merely defined in OpenHarmony 3.1 Release and cannot be used currently. It can be used in OpenHarmony 3.1 MR.|
+| AAC_ADTS | 6      | Audio Data Transport Stream (ADTS), which is a transport stream format of AAC-based audio.|
 
 ## VideoRecorder<sup>8+</sup>
 
@@ -1819,10 +1854,10 @@ Sets video recording parameters in asynchronous mode. This API uses a callback t
 
 **Parameters**
 
-| Name  | Type                                       | Mandatory| Description                               |
-| -------- | ------------------------------------------- | ---- | ----------------------------------- |
-| config   | [VideoRecorderConfig](#videorecorderconfig) | Yes  | Video recording parameters to set.           |
-| callback | AsyncCallback\<void>                        | Yes  | Callback used to return the result.|
+| Name  | Type                                        | Mandatory| Description                               |
+| -------- | -------------------------------------------- | ---- | ----------------------------------- |
+| config   | [VideoRecorderConfig](#videorecorderconfig8) | Yes  | Video recording parameters to set.           |
+| callback | AsyncCallback\<void>                         | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -1887,9 +1922,9 @@ Sets video recording parameters in asynchronous mode. This API uses a promise to
 
 **Parameters**
 
-| Name| Type                                       | Mandatory| Description                    |
-| ------ | ------------------------------------------- | ---- | ------------------------ |
-| config | [VideoRecorderConfig](#videorecorderconfig) | Yes  | Video recording parameters to set.|
+| Name| Type                                        | Mandatory| Description                    |
+| ------ | -------------------------------------------- | ---- | ------------------------ |
+| config | [VideoRecorderConfig](#videorecorderconfig8) | Yes  | Video recording parameters to set.|
 
 **Return value**
 
@@ -2382,75 +2417,89 @@ videoRecorder.on('error', (error) => {      							// Set the 'error' event call
 
 Enumerates the video recording states. You can obtain the state through the **state** attribute.
 
-| Name    | Type  | Description                                                        |
-| -------- | ------ | ------------------------------------------------------------ |
-| idle     | string | The video recorder is idle.<br>**System capability**: SystemCapability.Multimedia.Media.VideoRecorder|
-| prepared | string | The video recording parameters are set.<br>**System capability**: SystemCapability.Multimedia.Media.VideoRecorder|
-| playing  | string | Video recording is in progress.<br>**System capability**: SystemCapability.Multimedia.Media.VideoRecorder|
-| paused   | string | Video recording is paused.<br>**System capability**: SystemCapability.Multimedia.Media.VideoRecorder|
-| stopped  | string | Video recording is stopped.<br>**System capability**: SystemCapability.Multimedia.Media.VideoRecorder|
-| error    | string | Video recording is in the error state.<br>**System capability**: SystemCapability.Multimedia.Media.VideoRecorder|
+**System capability**: SystemCapability.Multimedia.Media.VideoRecorder
+
+| Name    | Type  | Description                  |
+| -------- | ------ | ---------------------- |
+| idle     | string | The video recorder is idle.        |
+| prepared | string | The video recording parameters are set.|
+| playing  | string | Video recording is in progress.        |
+| paused   | string | Video recording is paused.        |
+| stopped  | string | Video recording is stopped.        |
+| error    | string | Video recording is in the error state.            |
 
 ## VideoRecorderConfig<sup>8+</sup>
 
 Describes the video recording parameters.
 
+**System capability**: SystemCapability.Multimedia.Media.VideoRecorder
+
 | Name           | Type                                                  | Mandatory| Description                                                        |
 | --------------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| audioSourceType | [AudioSourceType](#audiosourcetype<sup>8+</sup>)           | Yes  | Type of the audio source for video recording.<br>**System capability**: SystemCapability.Multimedia.Media.VideoRecorder|
-| videoSourceType | [VideoSourceType](#videosourcetype<sup>8+</sup>)           | Yes  | Type of the video source for video recording.<br>**System capability**: SystemCapability.Multimedia.Media.VideoRecorder|
-| profile         | [VideoRecorderProfile](#videorecorderprofile<sup>8+</sup>) | Yes  | Video recording profile.<br>**System capability**: SystemCapability.Multimedia.Media.VideoRecorder|
-| orientationHint | number                                                     | No  | Rotation angle of the recorded video.<br>**System capability**: SystemCapability.Multimedia.Media.VideoRecorder|
-| location        | [Location](#location8)                                     | No  | Geographical location of the recorded video.<br>**System capability**: SystemCapability.Multimedia.Media.VideoRecorder|
-| url             | string                                                     | Yes  | Video output URL. Supported: fd://xx&nbsp;(fd&nbsp;number)<br>![en-us_image_0000001164217678](figures/en-us_image_url.png) <br>The file must be created by the caller and granted with proper permissions.<br>**System capability**: SystemCapability.Multimedia.Media.VideoRecorder|
+| audioSourceType | [AudioSourceType](#audiosourcetype<sup>8+</sup>)           | Yes  | Type of the audio source for video recording.                                      |
+| videoSourceType | [VideoSourceType](#videosourcetype<sup>8+</sup>)           | Yes  | Type of the video source for video recording.                                      |
+| profile         | [VideoRecorderProfile](#videorecorderprofile8)             | Yes  | Video recording profile.                                         |
+| rotation        | number                                                     | No  | Rotation angle of the recorded video.                                        |
+| location        | [Location](#location8)                                     | No  | Geographical location of the recorded video.                                        |
+| url             | string                                                     | Yes  | Video output URL. Supported: fd://xx&nbsp;(fd&nbsp;number)<br>![en-us_image_0000001164217678](figures/en-us_image_url.png) <br>The file must be created by the caller and granted with proper permissions.|
 
 ## AudioSourceType<sup>8+</sup>
 
 Enumerates the audio source types for video recording.
 
-| Name                     | Value  | Description                                                        |
-| ------------------------- | ---- | ------------------------------------------------------------ |
-| AUDIO_SOURCE_TYPE_DEFAULT | 0    | Default audio input source.<br>**System capability**: SystemCapability.Multimedia.Media.VideoRecorder|
-| AUDIO_SOURCE_TYPE_MIC     | 1    | Mic audio input source.<br>**System capability**: SystemCapability.Multimedia.Media.VideoRecorder|
+**System capability**: SystemCapability.Multimedia.Media.VideoRecorder
+
+| Name                     | Value  | Description                  |
+| ------------------------- | ---- | ---------------------- |
+| AUDIO_SOURCE_TYPE_DEFAULT | 0    | Default audio input source.|
+| AUDIO_SOURCE_TYPE_MIC     | 1    | Mic audio input source. |
 
 ## VideoSourceType<sup>8+</sup>
 
 Enumerates the video source types for video recording.
 
-| Name                         | Value  | Description                                                        |
-| ----------------------------- | ---- | ------------------------------------------------------------ |
-| VIDEO_SOURCE_TYPE_SURFACE_YUV | 0    | The input surface carries raw data.<br>**System capability**: SystemCapability.Multimedia.Media.VideoRecorder|
-| VIDEO_SOURCE_TYPE_SURFACE_ES  | 1    | The input surface carries ES data.<br>**System capability**: SystemCapability.Multimedia.Media.VideoRecorder|
+**System capability**: SystemCapability.Multimedia.Media.VideoRecorder
+
+| Name                         | Value  | Description                           |
+| ----------------------------- | ---- | ------------------------------- |
+| VIDEO_SOURCE_TYPE_SURFACE_YUV | 0    | The input surface carries raw data.|
+| VIDEO_SOURCE_TYPE_SURFACE_ES  | 1    | The input surface carries ES data. |
 
 ## VideoRecorderProfile<sup>8+</sup>
 
 Describes the video recording profile.
 
-| Name            | Type                                    | Mandatory| Description                                                        |
-| ---------------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| audioBitrate     | number                                       | Yes  | Audio encoding bit rate.<br>**System capability**: SystemCapability.Multimedia.Media.VideoRecorder|
-| audioChannels    | number                                       | Yes  | Number of audio channels.<br>**System capability**: SystemCapability.Multimedia.Media.VideoRecorder|
-| audioCodec       | [CodecMimeType](#CodecMimeType8)             | Yes  | Audio encoding format.<br>**System capability**: SystemCapability.Multimedia.Media.VideoRecorder|
-| audioSampleRate  | number                                       | Yes  | Audio sampling rate.<br>**System capability**: SystemCapability.Multimedia.Media.VideoRecorder|
-| fileFormat       | [ContainerFormatType](#containerformattype8) | Yes  | Container format of a file.<br>**System capability**: SystemCapability.Multimedia.Media.VideoRecorder|
-| videoCodec       | [CodecMimeType](#CodecMimeType8)             | Yes  | Video encoding format.<br>**System capability**: SystemCapability.Multimedia.Media.VideoRecorder|
-| videoFrameWidth  | number                                       | Yes  | Width of the recorded video frame.<br>**System capability**: SystemCapability.Multimedia.Media.VideoRecorder|
-| videoFrameHeight | number                                       | Yes  | Height of the recorded video frame.<br>**System capability**: SystemCapability.Multimedia.Media.VideoRecorder|
+**System capability**: SystemCapability.Multimedia.Media.VideoRecorder
+
+| Name            | Type                                    | Mandatory| Description            |
+| ---------------- | -------------------------------------------- | ---- | ---------------- |
+| audioBitrate     | number                                       | Yes  | Audio encoding bit rate.|
+| audioChannels    | number                                       | Yes  | Number of audio channels.|
+| audioCodec       | [CodecMimeType](#CodecMimeType8)             | Yes  | Audio encoding format.  |
+| audioSampleRate  | number                                       | Yes  | Audio sampling rate.    |
+| fileFormat       | [ContainerFormatType](#containerformattype8) | Yes  | Container format of a file.|
+| videoCodec       | [CodecMimeType](#CodecMimeType8)             | Yes  | Video encoding format.  |
+| videoFrameWidth  | number                                       | Yes  | Width of the recorded video frame.|
+| videoFrameHeight | number                                       | Yes  | Height of the recorded video frame.|
 
 ## ContainerFormatType<sup>8+</sup>
 
 Enumerates the container format types (CFTs).
 
-| Name       | Value   | Description                                                        |
-| ----------- | ----- | ------------------------------------------------------------ |
-| CFT_MPEG_4  | "mp4" | Video container format MP4.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
-| CFT_MPEG_4A | "m4a" | Audio container format M4A.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
+**System capability**: SystemCapability.Multimedia.Media.Core
+
+| Name       | Value   | Description                 |
+| ----------- | ----- | --------------------- |
+| CFT_MPEG_4  | "mp4" | Video container format MP4.|
+| CFT_MPEG_4A | "m4a" | Audio container format M4A.|
 
 ## Location<sup>8+</sup>
 
 Describes the geographical location of the recorded video.
 
-| Name     | Type| Mandatory| Description                                                        |
-| --------- | -------- | ---- | ------------------------------------------------------------ |
-| latitude  | number   | Yes  | Latitude of the geographical location.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
-| longitude | number   | Yes  | Longitude of the geographical location.<br>**System capability**: SystemCapability.Multimedia.Media.Core|
+**System capability**: SystemCapability.Multimedia.Media.Core
+
+| Name     | Type| Mandatory| Description            |
+| --------- | -------- | ---- | ---------------- |
+| latitude  | number   | Yes  | Latitude of the geographical location.|
+| longitude | number   | Yes  | Longitude of the geographical location.|
