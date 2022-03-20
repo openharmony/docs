@@ -4,13 +4,13 @@ Lightweight storage provides applications with data processing capability and al
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
-> The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version. <br/>The APIs of this module are no longer maintained since API Version 9. You are advised to use [@ohos.data.preferences](js-apis-data-preferences.md).
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 ## Modules to Import
 
 ```
-import dataStorage from '@ohos.data.storage'
+import data_Preferences from '@ohos.data.preferences'
 ```
 
 ## Attributes
@@ -23,140 +23,92 @@ import dataStorage from '@ohos.data.storage'
 | MAX_VALUE_LENGTH | string | Yes| No| Maximum length of a value of the string type. It is 8192 bytes.|
 
 
-## dataStorage.getStorageSync
+## data_Preferences.getPreferences
 
-getStorageSync(path: string): Storage
+getPreferences(context: Context, name: string, callback: AsyncCallback&lt;Preferences&gt;): void
 
-Reads a file and loads the data to the **Storage** instance in synchronous mode.
+Reads a file and loads the data to the **Preferences** instance. This method uses an asynchronous callback to return the execution result.
+
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | path | string | Yes| Path of the target file.|
-
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | [Storage](#storage) | **Storage** instance used for data storage operations.|
+  | context | Context | Yes| Context of the app or functionality.|
+  | name | string | Yes| Name of the app's internal data storage.|
+  | callback | AsyncCallback&lt;[Preferences](#preferences)&gt; | Yes| Callback used to return the execution result.|
 
 - Example
   ```
-  import dataStorage from '@ohos.data.storage'
-  import featureAbility from '@ohos.ability.featureAbility'
-
-  var context = featureAbility.getContext()
-  var path = await context.getFilesDir()
-  let storage = dataStorage.getStorageSync(path + '/mystore')
-  storage.putSync('startup', 'auto')
-  storage.flushSync()
-  ```
-
-
-## dataStorage.getStorage
-
-getStorage(path: string, callback: AsyncCallback&lt;Storage&gt;): void
-
-Reads a file and loads the data to the **Storage** instance. This method uses an asynchronous callback to return the execution result.
-
-**System capability**: SystemCapability.DistributedDataManager.Preferences.Core
-
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | path | string | Yes| Path of the target file.|
-  | callback | AsyncCallback&lt;[Storage](#storage)&gt; | Yes| Callback used to return the execution result.|
-
-- Example
-  ```
-  import dataStorage from '@ohos.data.storage'
-  import featureAbility from '@ohos.ability.featureAbility'
-
-  var context = featureAbility.getContext()
-  var path = await context.getFilesDir()
-  dataStorage.getStorage(path + '/mystore', function (err, storage) {
+  import Ability from '@ohos.application.Ability'
+  import data_Preferences from '@ohos.data.preferences'
+  var path = this.context.getDataBaseDir()
+  data_Preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
       if (err) {
-          console.info("Get the storage failed, path: " + path + '/mystore')
+          console.info("Get the preferences failed, path: " + path + '/mystore')
           return;
       }
-      storage.putSync('startup', 'auto')
-      storage.flushSync()
+      preferences.putSync('startup', 'auto')
+      preferences.flushSync()
   })
   ```
 
 
-## dataStorage.getStorage
+## data_Preferences.getPreferences
 
-getStorage(path: string): Promise&lt;Storage&gt;
+getPreferences(context: Context, name: string): Promise&lt;Preferences&gt;
 
-Reads a file and loads the data to the **Storage** instance. This method uses a promise to return the execution result.
+Reads a file and loads the data to the **Preferences** instance. This method uses a promise to return the execution result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | path | string | Yes| Path of the target file.|
+  | context | Context | Yes| Context of the app or functionality.|
+  | name | string | Yes| Name of the app's internal data storage.|
 
 - Return value
   | Type| Description|
   | -------- | -------- |
-  | Promise&lt;[Storage](#storage)&gt; | Promise used to return the result.|
+  | Promise&lt;[Preferences](#preferences)&gt; | Promise used to return the result.|
 
 - Example
   ```
-  import dataStorage from '@ohos.data.storage'
-  import featureAbility from '@ohos.ability.featureAbility'
-
-  var context = featureAbility.getContext()
-  var path = await context.getFilesDir()
-  let promisegetSt = dataStorage.getStorage(path + '/mystore')
-  promisegetSt.then((storage) => {
-      storage.putSync('startup', 'auto')
-      storage.flushSync()
+  import Ability from '@ohos.application.Ability'
+  import data_Preferences from '@ohos.data.preferences'
+  var path = this.context.getDataBaseDir()
+  let promisePre = data_Preferences.getPreferences(this.context, 'mystore')
+  promisePre.then((preferences) => {
+      preferences.putSync('startup', 'auto')
+      preferences.flushSync()
   }).catch((err) => {
-      console.info("Get the storage failed, path: " + path + '/mystore')
+      console.info("Get the preferences failed, path: " + path + '/mystore')
   })
   ```
 
 
-## dataStorage.deleteStorageSync
+## data_Preferences.deletePreferences
 
-deleteStorageSync(path: string): void
+deletePreferences(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void
 
-Deletes the singleton **Storage** instance of a file from the memory, and deletes the specified file, its backup file, and damaged files. After the specified files are deleted, the **Storage** instance cannot be used for data operations. Otherwise, data inconsistency will occur. This method uses a synchronous mode.
-
-**System capability**: SystemCapability.DistributedDataManager.Preferences.Core
-
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | path | string | Yes| Path of the target file.|
-
-- Example
-  ```
-  dataStorage.deleteStorageSync(path + '/mystore')
-  ```
-
-
-## dataStorage.deleteStorage
-
-deleteStorage(path: string, callback: AsyncCallback&lt;void&gt;): void
-
-Deletes the singleton **Storage** instance of a file from the memory, and deletes the specified file, its backup file, and damaged files. After the specified files are deleted, the **Storage** instance cannot be used for data operations. Otherwise, data inconsistency will occur. This method uses an asynchronous callback to return the execution result.
+Removes the singleton **Preferences** instance of the specified file from the memory, and deletes the specified file, its backup file, and corrupted files. After the specified files are deleted, the **Preferences** instance cannot be used for data operations. Otherwise, data inconsistency will occur. This method uses an asynchronous callback to return the execution result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | path | string | Yes| Path of the target file.|
+  | context | Context | Yes| Context of the app or functionality.|
+  | name | string | Yes| Name of the app's internal data storage.|
   | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the execution result.|
 
 - Example
   ```
-  dataStorage.deleteStorage(path + '/mystore', function (err) {
+  import Ability from '@ohos.application.Ability'
+  import data_Preferences from '@ohos.data.preferences'
+  data_Preferences.deletePreferences(this.context, 'mystore', function (err) {
       if (err) {
           console.info("Deleted failed with err: " + err)
           return
@@ -166,18 +118,19 @@ Deletes the singleton **Storage** instance of a file from the memory, and delete
   ```
 
 
-## dataStorage.deleteStorage
+## data_Preferences.deletePreferences
 
-deleteStorage(path: string): Promise&lt;void&gt;
+deletePreferences(context: Context, name: string): Promise&lt;void&gt;
 
-Deletes the singleton **Storage** instance of a file from the memory, and deletes the specified file, its backup file, and damaged files. After the specified files are deleted, the **Storage** instance cannot be used for data operations. Otherwise, data inconsistency will occur. This method uses a promise to return the execution result.
+Removes the singleton **Preferences** instance of the specified file from the memory, and deletes the specified file, its backup file, and corrupted files. After the specified files are deleted, the **Preferences** instance cannot be used for data operations. Otherwise, data inconsistency will occur. This method uses a promise to return the execution result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | path | string | Yes| Path of the target file.|
+  | context | Context | Yes| Context of the app or functionality.|
+  | name | string | Yes| Name of the app's internal data storage.|
 
 - Return value
   | Type| Description|
@@ -186,8 +139,10 @@ Deletes the singleton **Storage** instance of a file from the memory, and delete
 
 - Example
   ```
-  let promisedelSt = dataStorage.deleteStorage(path + '/mystore')
-  promisedelSt.then(() => {
+  import Ability from '@ohos.application.Ability'
+  import data_Preferences from '@ohos.data.preferences'
+  let promisedelPre = data_Preferences.deletePreferences(this.context, 'mystore')
+  promisedelPre.then(() => {
       console.info("Deleted successfully.")
   }).catch((err) => {
       console.info("Deleted failed with err: " + err)
@@ -195,32 +150,11 @@ Deletes the singleton **Storage** instance of a file from the memory, and delete
   ```
 
 
-## dataStorage.removeStorageFromCacheSync
+## data_Preferences.removePreferencesFromCache
 
-removeStorageFromCacheSync(path: string): void
+removePreferencesFromCache(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void
 
-Removes the singleton **Storage** instance of a file from the cache. The removed instance cannot be used for data operations. Otherwise, data inconsistency will occur.
-
-This method uses a synchronous mode.
-
-**System capability**: SystemCapability.DistributedDataManager.Preferences.Core
-
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | path | string | Yes| Path of the target file.|
-
-- Example
-  ```
-  dataStorage.removeStorageFromCacheSync(path + '/mystore')
-  ```
-
-
-## dataStorage.removeStorageFromCache
-
-removeStorageFromCache(path: string, callback: AsyncCallback&lt;void&gt;): void
-
-Removes the singleton **Storage** instance of a file from the cache. The removed instance cannot be used for data operations. Otherwise, data inconsistency will occur.
+Removes the singleton **Preferences** instance of a file from the cache. The removed instance cannot be used for data operations. Otherwise, data inconsistency will occur.
 
 This method uses an asynchronous callback to return the result.
 
@@ -229,26 +163,29 @@ This method uses an asynchronous callback to return the result.
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | path | string | Yes| Path of the target file.|
+  | context | Context | Yes| Context of the app or functionality.|
+  | name | string | Yes| Name of the app's internal data storage.|
   | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the execution result.|
 
 - Example
   ```
-  dataStorage.removeStorageFromCache(path + '/mystore', function (err) {
+  import Ability from '@ohos.application.Ability'
+  import data_Preferences from '@ohos.data.preferences'
+  data_Preferences.removePreferencesFromCache(this.context, 'mystore', function (err) {
       if (err) {
-          console.info("Removed storage from cache failed with err: " + err)
+          console.info("Removed preferences from cache failed with err: " + err)
           return
       }
-      console.info("Removed storage from cache successfully.")
+      console.info("Removed preferences from cache successfully.")
   })
   ```
 
 
-## dataStorage.removeStorageFromCache
+## data_Preferences.removePreferencesFromCache
 
-removeStorageFromCache(path: string): Promise&lt;void&gt;
+removePreferencesFromCache(context: Context, name: string): Promise&lt;void&gt;
 
-Removes the singleton **Storage** instance of a file from the cache. The removed instance cannot be used for data operations. Otherwise, data inconsistency will occur.
+Removes the singleton **Preferences** instance of a file from the cache. The removed instance cannot be used for data operations. Otherwise, data inconsistency will occur.
 
 This method uses an asynchronous callback to return the result.
 
@@ -257,7 +194,8 @@ This method uses an asynchronous callback to return the result.
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | path | string | Yes| Path of the target file.|
+  | context | Context | Yes| Context of the app or functionality.|
+  | name | string | Yes| Name of the app's internal data storage.|
 
 - Return value
   | Type| Description|
@@ -266,46 +204,20 @@ This method uses an asynchronous callback to return the result.
 
 - Example
   ```
-  let promiserevSt = dataStorage.removeStorageFromCache(path + '/mystore')
-  promiserevSt.then(() => {
-      console.info("Removed storage from cache successfully.")
+  import Ability from '@ohos.application.Ability'
+  import data_Preferences from '@ohos.data.preferences'
+  let promiserevPre = data_Preferences.removePreferencesFromCache(this.context, 'mystore')
+  promiserevPre.then(() => {
+      console.info("Removed preferences from cache successfully.")
   }).catch((err) => {
-      console.info("Removed storage from cache failed with err: " + err)
+      console.info("Removed preferences from cache failed with err: " + err)
   })
   ```
 
 
-## Storage
+## Preferences
 
 Provides APIs for obtaining and modifying storage data.
-
-
-### getSync
-
-getSync(key: string, defValue: ValueType): ValueType
-
-Obtains the value corresponding to a key. If the value is null or not in the default value format, the default value is returned.
-
-This method uses a synchronous mode.
-
-**System capability**: SystemCapability.DistributedDataManager.Preferences.Core
-
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | key | string | Yes| Key of the data. It cannot be empty.|
-  | defValue | ValueType | Yes| Default value to be returned if the value of the specified key does not exist. It can be a number, string, or Boolean value.|
-
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | ValueType | Value corresponding to the specified key. If the value is null or not in the default value format, the default value is returned.|
-
-- Example
-  ```
-  let value = storage.getSync('startup', 'default')
-  console.info("The value of startup is " + value)
-  ```
 
 
 ### get
@@ -327,7 +239,7 @@ This method uses an asynchronous callback to return the result.
 
 - Example
   ```
-  storage.get('startup', 'default', function(err, value) {
+  preferences.get('startup', 'default', function(err, value) {
       if (err) {
           console.info("Get the value of startup failed with err: " + err)
           return
@@ -343,7 +255,7 @@ get(key: string, defValue: ValueType): Promise&lt;ValueType&gt;
 
 Obtains the value corresponding to a key. If the value is null or not in the default value format, the default value is returned.
 
-This method uses an asynchronous callback to return the result.
+This method uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -360,7 +272,7 @@ This method uses an asynchronous callback to return the result.
 
 - Example
   ```
-  let promiseget = storage.get('startup', 'default')
+  let promiseget = preferences.get('startup', 'default')
   promiseget.then((value) => {
       console.info("The value of startup is " + value)
   }).catch((err) => {
@@ -369,33 +281,11 @@ This method uses an asynchronous callback to return the result.
   ```
 
 
-### putSync
-
-putSync(key: string, value: ValueType): void
-
-Obtains the **Storage** instance corresponding to the specified file, writes data to the **Storage** instance using a **Storage** API, and saves the modification using **flush()** or **flushSync()**.
-
-This method uses a synchronous mode.
-
-**System capability**: SystemCapability.DistributedDataManager.Preferences.Core
-
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | key | string | Yes| Key of the data to modify. It cannot be empty.|
-  | value | ValueType | Yes| New value to store. It can be a number, string, or Boolean value.|
-
-- Example
-  ```
-  storage.putSync('startup', 'auto')
-  ```
-
-
 ### put
 
 put(key: string, value: ValueType, callback: AsyncCallback&lt;void&gt;): void
 
-Obtains the **Storage** instance corresponding to the specified file, writes data to the **Storage** instance using a **Storage** API, and saves the modification using **flush()** or **flushSync()**.
+Obtains the **Preferences** instance corresponding to the specified file, writes data to the **Preferences** instance using a **Preferences** API, and saves data to the file using **flush()** or **flushSync()**.
 
 This method uses an asynchronous callback to return the result.
 
@@ -410,7 +300,7 @@ This method uses an asynchronous callback to return the result.
 
 - Example
   ```
-  storage.put('startup', 'auto', function (err) {
+  preferences.put('startup', 'auto', function (err) {
       if (err) {
           console.info("Put the value of startup failed with err: " + err)
           return
@@ -424,7 +314,7 @@ This method uses an asynchronous callback to return the result.
 
 put(key: string, value: ValueType): Promise&lt;void&gt;
 
-Obtains the **Storage** instance corresponding to the specified file, writes data to the **Storage** instance using a **Storage** API, and saves the modification using **flush()** or **flushSync()**.
+Obtains the **Preferences** instance corresponding to the specified file, writes data to the **Preferences** instance using a **Preferences** API, and saves data to the file using **flush()** or **flushSync()**.
 
 This method uses an asynchronous callback to return the result.
 
@@ -443,7 +333,7 @@ This method uses an asynchronous callback to return the result.
 
 - Example
   ```
-  let promiseput = storage.put('startup', 'auto')
+  let promiseput = preferences.put('startup', 'auto')
   promiseput.then(() => {
       console.info("Put the value of startup successfully.")
   }).catch((err) => {
@@ -452,40 +342,11 @@ This method uses an asynchronous callback to return the result.
   ```
 
 
-### hasSync
-
-hasSync(key: string): boolean
-
-Checks whether the storage object contains data with a given key.
-
-This method uses a synchronous mode.
-
-**System capability**: SystemCapability.DistributedDataManager.Preferences.Core
-
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | key | string | Yes| Key of the data. It cannot be empty.|
-
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | boolean | Returns **true** if the storage object contains data with the specified key; returns **false** otherwise.|
-
-- Example
-  ```
-  let isExist = storage.hasSync('startup')
-  if (isExist) {
-      console.info("The key of startup is contained.")
-  }
-  ```
-
-
 ### has
 
 has(key: string, callback: AsyncCallback&lt;boolean&gt;): boolean
 
-Checks whether the storage object contains data with a given key.
+Checks whether the **Preference** object contains data with a given key.
 
 This method uses an asynchronous callback to return the result.
 
@@ -500,11 +361,11 @@ This method uses an asynchronous callback to return the result.
 - Return value
   | Type| Description|
   | -------- | -------- |
-  | boolean | Returns **true** if the storage object contains data with the specified key; returns **false** otherwise.|
+  | boolean | Returns **true** if the **Preference** object contains data with the specified key; returns **false** otherwise.|
 
 - Example
   ```
-  storage.has('startup', function (err, isExist) {
+  preferences.has('startup', function (err, isExist) {
       if (err) {
           console.info("Check the key of startup failed with err: " + err)
           return
@@ -520,7 +381,7 @@ This method uses an asynchronous callback to return the result.
 
 has(key: string): Promise&lt;boolean&gt;
 
-Checks whether the storage object contains data with a given key.
+Checks whether the **Preference** object contains data with a given key.
 
 This method uses an asynchronous callback to return the result.
 
@@ -538,7 +399,7 @@ This method uses an asynchronous callback to return the result.
 
 - Example
   ```
-  let promisehas = storage.has('startup')
+  let promisehas = preferences.has('startup')
   promisehas.then((isExist) => {
       if (isExist) {
           console.info("The key of startup is contained.")
@@ -549,32 +410,11 @@ This method uses an asynchronous callback to return the result.
   ```
 
 
-### deleteSync
-
-deleteSync(key: string): void
-
-Deletes data with the specified key from this storage object.
-
-This method uses a synchronous mode.
-
-**System capability**: SystemCapability.DistributedDataManager.Preferences.Core
-
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | key | string | Yes| Key of the data. It cannot be empty.|
-
-- Example
-  ```
-  storage.deleteSync('startup')
-  ```
-
-
 ### delete
 
 delete(key: string, callback: AsyncCallback&lt;void&gt;): void
 
-Deletes data with the specified key from this storage object.
+Deletes data with the specified key from this **Preference** object.
 
 This method uses an asynchronous callback to return the result.
 
@@ -588,7 +428,7 @@ This method uses an asynchronous callback to return the result.
 
 - Example
   ```
-  storage.delete('startup', function (err) {
+  preferences.delete('startup', function (err) {
       if (err) {
           console.info("Delete startup key failed with err: " + err)
           return
@@ -602,9 +442,9 @@ This method uses an asynchronous callback to return the result.
 
 delete(key: string): Promise&lt;void&gt;
 
-Deletes data with the specified key from this storage object.
+Deletes data with the specified key from this **Preference** object.
 
-This method uses an asynchronous callback to return the result.
+This method uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -620,7 +460,7 @@ This method uses an asynchronous callback to return the result.
 
 - Example
   ```
-  let promisedel = storage.delete('startup')
+  let promisedel = preferences.delete('startup')
   promisedel.then(() => {
       console.info("Deleted startup key successfully.")
   }).catch((err) => {
@@ -629,27 +469,11 @@ This method uses an asynchronous callback to return the result.
   ```
 
 
-### flushSync
-
-flushSync(): void
-
-Saves the modification of this object to the **Storage** instance and synchronizes the modification to the file.
-
-This method uses a synchronous mode.
-
-**System capability**: SystemCapability.DistributedDataManager.Preferences.Core
-
-- Example
-  ```
-  storage.flushSync()
-  ```
-
-
 ### flush
 
 flush(callback: AsyncCallback&lt;void&gt;): void
 
-Saves the modification of this object to the **Storage** instance and synchronizes the modification to the file.
+Saves the modification of this object to the **Preferences** instance and synchronizes the modification to the file.
 
 This method uses an asynchronous callback to return the result.
 
@@ -662,7 +486,7 @@ This method uses an asynchronous callback to return the result.
 
 - Example
   ```
-  storage.flush(function (err) {
+  preferences.flush(function (err) {
       if (err) {
           console.info("Flush to file failed with err: " + err)
           return
@@ -676,7 +500,7 @@ This method uses an asynchronous callback to return the result.
 
 flush(): Promise&lt;void&gt;
 
-Saves the modification of this object to the **Storage** instance and synchronizes the modification to the file.
+Saves the modification of this object to the **Preferences** instance and synchronizes the modification to the file.
 
 This method uses an asynchronous callback to return the result.
 
@@ -689,7 +513,7 @@ This method uses an asynchronous callback to return the result.
 
 - Example
   ```
-  let promiseflush = storage.flush()
+  let promiseflush = preferences.flush()
   promiseflush.then(() => {
       console.info("Flushed to file successfully.")
   }).catch((err) => {
@@ -698,27 +522,11 @@ This method uses an asynchronous callback to return the result.
   ```
 
 
-### clearSync
-
-clearSync(): void
-
-Clears this **Storage** object.
-
-This method uses a synchronous mode.
-
-**System capability**: SystemCapability.DistributedDataManager.Preferences.Core
-
-- Example
-  ```
-  storage.clearSync()
-  ```
-
-
 ### clear
 
 clear(callback: AsyncCallback&lt;void&gt;): void
 
-Clears this **Storage** object.
+Clears this **Preferences** object.
 
 This method uses an asynchronous callback to return the result.
 
@@ -731,7 +539,7 @@ This method uses an asynchronous callback to return the result.
 
 - Example
   ```
-  storage.clear(function (err) {
+  preferences.clear(function (err) {
       if (err) {
           console.info("Clear to file failed with err: " + err)
           return
@@ -745,7 +553,7 @@ This method uses an asynchronous callback to return the result.
 
 clear(): Promise&lt;void&gt;
 
-Clears this **Storage** object.
+Clears this **Preferences** object.
 
 This method uses an asynchronous callback to return the result.
 
@@ -758,7 +566,7 @@ This method uses an asynchronous callback to return the result.
 
 - Example
   ```
-  let promiseclear = storage.clear()
+  let promiseclear = preferences.clear()
   promiseclear.then(() => {
       console.info("Cleared to file successfully.")
   }).catch((err) => {
@@ -769,9 +577,9 @@ This method uses an asynchronous callback to return the result.
 
 ### on('change')
 
-on(type: 'change', callback: Callback&lt;StorageObserver&gt;): void
+on(type: 'change', callback: Callback&lt;{ key : string }&gt;): void
 
-Subscribes to data changes. The **StorageObserver** needs to be implemented. When the value of the key subscribed to is changed, a callback will be invoked after **flush()** or **flushSync()** is executed.
+Subscribes to data changes. When the value of the subscribed key changes, a callback will be invoked after the **flush()** method is executed.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -779,22 +587,22 @@ Subscribes to data changes. The **StorageObserver** needs to be implemented. Whe
   | Name| Type| Description|
   | -------- | -------- | -------- |
   | type | string | Event type. The value **change** indicates data change events.|
-  | callback | Callback&lt;[StorageObserver](#storageobserver)&gt; | Callback used to return data changes.|
+  | callback | Callback&lt;{ key : string }&gt; | Callback used to return data changes.|
 
 - Example
   ```
   var observer = function (key) {
       console.info("The key of " + key + " changed.")
   }
-  storage.on('change', observer)
-  storage.putSync('startup', 'auto')
-  storage.flushSync()  // observer will be called.
+  preferences.on('change', observer)
+  preferences.put('startup', 'auto')
+  preferences.flush()  // observer will be called.
   ```
 
 
 ### off('change')
 
-off(type: 'change', callback: Callback&lt;StorageObserver&gt;): void
+off(type: 'change', callback: Callback&lt;{ key : string }&gt;): void
 
 Unsubscribes from data changes.
 
@@ -804,21 +612,12 @@ Unsubscribes from data changes.
   | Name| Type| Description|
   | -------- | -------- | -------- |
   | type | string | Event type. The value **change** indicates data change events.|
-  | callback | Callback&lt;[StorageObserver](#storageobserver)&gt; | Callback used to return data changes.|
+  | callback | Callback&lt;{ key : string }&gt; | Callback used to return data changes.|
 
 - Example
   ```
   var observer = function (key) {
       console.info("The key of " + key + " changed.")
   }
-  storage.off('change', observer)
+  preferences.off('change', observer)
   ```
-
-
-## StorageObserver
-
-**System capability**: SystemCapability.DistributedDataManager.Preferences.Core
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| key | string | No| Data changed.|
