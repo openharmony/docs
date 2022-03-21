@@ -121,7 +121,7 @@ child.getErrorOutput.then(val=>{
 
 ### close
 
-close():  void
+close(): void
 
 关闭正在运行的子进程。
 
@@ -180,7 +180,7 @@ var result = process.isIsolatedProcess();
 
 ## process.isAppUid<sup>8+</sup>
 
-isAppUid(v:number): boolean
+isAppUid(v: number): boolean
 
 判断uid是否属于应用程序。
 
@@ -228,7 +228,7 @@ var ressult = process.is64Bit();
 
 ## process.getUidForName<sup>8+</sup>
 
-getUidForName(v:string): number
+getUidForName(v: string): number
 
 通过进程名获取进程uid。
 
@@ -255,7 +255,7 @@ var pres = process.getUidForName("tool")
 
 ## process.getThreadPriority<sup>8+</sup>
 
-getThreadPriority(v:number): number
+getThreadPriority(v: number): number
 
 根据指定的tid获取线程优先级。
 
@@ -324,7 +324,7 @@ var result = process.getPastCpuTime() ;
 
 ## process.getSystemConfig<sup>8+</sup>
 
-getSystemConfig(name:number): number
+getSystemConfig(name: number): number
 
 获取系统配置信息。
 
@@ -352,7 +352,7 @@ var pres = process.getSystemConfig(_SC_ARG_MAX)
 
 ## process.getEnvironmentVar<sup>8+</sup>
 
-getEnvironmentVar(name:string): string
+getEnvironmentVar(name: string): string
 
 用该方法获取环境变量对应的值。
 
@@ -451,7 +451,7 @@ on(type: string, listener: EventListener): void
 
 | 名称 | 说明 |
 | -------- | -------- |
-| EventListener&nbsp;=&nbsp;(evt:&nbsp;Object)&nbsp;=&gt;&nbsp;void | 用户存储的事件。 |
+| EventListener&nbsp;=&nbsp;(evt: &nbsp;Object)&nbsp;=&gt;&nbsp;void | 用户存储的事件。 |
 
 **示例：**
 
