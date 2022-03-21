@@ -62,6 +62,7 @@
         - [QRCode](ts-basic-components-qrcode.md)
         - [Radio](ts-basic-components-radio.md)
         - [Rating](ts-basic-components-rating.md)
+        - [Search](ts-basic-components-search.md)
         - [Select](ts-basic-components-select.md)
         - [Slider](ts-basic-components-slider.md)
         - [Span](ts-basic-components-span.md)
