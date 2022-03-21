@@ -11,7 +11,7 @@
 
 ## 接口
 
-PanGesture(options?: { fingers?: number, direction?: PanDirection, distance?: number } | [PanGestureOption](#pangestureoption))
+PanGesture(options?: { fingers?: number, direction?: PanDirection, distance?: number } | [PanGestureOptions](#pangestureoptions))
 
 - 参数
   | 参数名称 | 参数类型 | 必填 | 默认值 | 参数描述 |
@@ -33,11 +33,11 @@ PanGesture(options?: { fingers?: number, direction?: PanDirection, distance?: nu
   | None | 任何方向都不可滑动。 | 
 
 
-### PanGestureOption
+### PanGestureOptions
 
-通过PanGestureOption对象接口可以动态修改滑动手势识别器的属性，从而避免通过状态变量修改属性（状态变量修改会导致UI刷新）。
+通过PanGestureOptions对象接口可以动态修改滑动手势识别器的属性，从而避免通过状态变量修改属性（状态变量修改会导致UI刷新）。
 
-PanGestureOption(options?: { fingers?: number, direction?: PanDirection, distance?: number })
+PanGestureOptions(options?: { fingers?: number, direction?: PanDirection, distance?: number })
 
 - 参数
   同PanGesture参数说明。

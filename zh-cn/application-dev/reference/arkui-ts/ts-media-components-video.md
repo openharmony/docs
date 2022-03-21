@@ -14,14 +14,14 @@
 
 ## 接口
 
-Video(value: VideoOption)
+Video(value: VideoOptions)
 
-- VideoOption类型接口说明
+- VideoOptions类型接口说明
   | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
   | -------- | -------- | -------- | -------- | -------- |
   | src | string | 否 | - | 视频播放源的路径。 |
   | currentProgressRate | number&nbsp;\|&nbsp;PlaybackSpeed<sup>8+</sup> | 否 | 1.0&nbsp;\|&nbsp;PlaybackSpeed.<br>Speed_Forward_1_00_X | 视频播放倍速。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;number取值仅支持：0.75，1.0，1.25，1.75，2.0。<br/> |
-  | previewUri | string&nbsp;\|&nbsp;PixelMap<sup>8+</sup>&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource类型) | 否 | - | 预览图片的路径。 |
+  | previewUri | string&nbsp;\|&nbsp;PixelMap<sup>8+</sup>&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#Resource类型) | 否 | - | 预览图片的路径。 |
   | controller | [VideoController](#videocontroller) | 否 | - | 控制器。 |
 
 

@@ -114,7 +114,7 @@ child.getErrorOutput.then(val=>{
 
 ### close
 
-close():  void
+close(): void
 
 Closes the child process in running.
 
@@ -167,7 +167,7 @@ var result = process.isIsolatedProcess();
 
 ## process.isAppUid<sup>8+</sup>
 
-isAppUid(v:number): boolean
+isAppUid(v: number): boolean
 
 Checks whether a UID belongs to this app.
 
@@ -211,7 +211,7 @@ var ressult = process.is64Bit();
 
 ## process.getUidForName<sup>8+</sup>
 
-getUidForName(v:string): number
+getUidForName(v: string): number
 
 Obtains the process UID based on the process name.
 
@@ -236,7 +236,7 @@ var pres = process.getUidForName("tool")
 
 ## process.getThreadPriority<sup>8+</sup>
 
-getThreadPriority(v:number): number
+getThreadPriority(v: number): number
 
 Obtains the thread priority based on the specified TID.
 
@@ -278,9 +278,9 @@ Obtains the duration, in milliseconds, from the time the system starts to the ti
 var realtime = process.getStartRealtime();
 ```
 
-## process.getPastCputime<sup>8+</sup>
+## process.getPastCpuTime<sup>8+</sup>
 
-getPastCputime(): number
+getPastCpuTime(): number
 
 Obtains the CPU time (in milliseconds) from the time the process starts to the current time.
 
@@ -293,13 +293,13 @@ Obtains the CPU time (in milliseconds) from the time the process starts to the c
 **Example**
 
 ```
-var result = process.getPastCputime() ;
+var result = process.getPastCpuTime() ;
 ```
 
 
 ## process.getSystemConfig<sup>8+</sup>
 
-getSystemConfig(name:number): number
+getSystemConfig(name: number): number
 
 Obtains the system configuration.
 
@@ -325,7 +325,7 @@ var pres = process.getSystemConfig(_SC_ARG_MAX)
 
 ## process.getEnvironmentVar<sup>8+</sup>
 
-getEnvironmentVar(name:string): string
+getEnvironmentVar(name: string): string
 
 Obtains the value of an environment variable.
 
@@ -416,7 +416,7 @@ Stores the events triggered by the user.
 
 | Name| Description|
 | -------- | -------- |
-| EventListener&nbsp;=&nbsp;(evt:&nbsp;Object)&nbsp;=&gt;&nbsp;void | Event to store.|
+| EventListener&nbsp;=&nbsp;(evt: &nbsp;Object)&nbsp;=&gt;&nbsp;void | Event to store.|
 
 **Example**
 
@@ -527,7 +527,7 @@ var time = process.uptime();
 
 ## process.kill
 
-kill(pid: number, signal: number): boolean
+kill(pid: number, signal: number ): boolean
 
 Sends a signal to the specified process to terminate it.
 

@@ -1346,6 +1346,12 @@ setSpeed(speed:number): Promise\<number>
 | ------ | ------ | ---- | ---------------------------------------------------------- |
 | speed  | number | 是   | 指定播放视频速度，具体见[PlaybackSpeed](#playbackspeed8)。 |
 
+**返回值：**
+
+| 类型             | 说明                      |
+| ---------------- | ------------------------- |
+| Promise\<number> | 通过Promise获取设置结果。 |
+
 **示例：**
 
 ```js
@@ -1632,7 +1638,7 @@ audioRecorder.pause();
 
 resume():void
 
-暂停录制，需要在[pause](#audiorecorder_on)事件成功触发后，才能调用resume方法。
+恢复录制，需要在[pause](#audiorecorder_on)事件成功触发后，才能调用resume方法。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioRecorder
 
@@ -2401,7 +2407,7 @@ on(type: 'error', callback: ErrorCallback): void
 
 | 参数名   | 类型          | 必填 | 说明                                                         |
 | -------- | ------------- | ---- | ------------------------------------------------------------ |
-| type     | string        | 是   | 录制错误事件回调类型'error'。<br/>-&nbsp;'error'：音频录制过程中发生错误，触发该事件。 |
+| type     | string        | 是   | 录制错误事件回调类型'error'。<br/>-&nbsp;'error'：视频录制过程中发生错误，触发该事件。 |
 | callback | ErrorCallback | 是   | 录制错误事件回调方法。                                       |
 
 **示例：**

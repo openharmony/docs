@@ -28,11 +28,11 @@ Navigation()
 
 | 名称 | 参数类型 | 默认值 | 描述 |
 | -------- | -------- | -------- | -------- |
-| title | string&nbsp;\|&nbsp;[CustomBuilder](../../ui/ts-types.md#custombuilder类型8+)<sup>8+</sup> | - | 页面标题。 |
+| title | string&nbsp;\|&nbsp;[CustomBuilder](../../ui/ts-types.md#CustomBuilder类型)<sup>8+</sup> | - | 页面标题。 |
 | subtitle | string | - | 页面副标题。 |
-| menus | Array<NavigationMenuItem&gt;&nbsp;\|&nbsp;[CustomBuilder](../../ui/ts-types.md#custombuilder类型8+)<sup>8+</sup> | - | 页面右上角菜单。 |
+| menus | Array<NavigationMenuItem&gt;&nbsp;\|&nbsp;[CustomBuilder](../../ui/ts-types.md#CustomBuilder类型)<sup>8+</sup> | - | 页面右上角菜单。 |
 | titleMode | NavigationTitleMode | NavigationTitleMode.Free | 页面标题栏显示模式。 |
-| toolBar | {<br/>items:[<br/>Object<br/>]&nbsp;}<br/>\|&nbsp;[CustomBuilder](../../ui/ts-types.md#custombuilder类型8+)<sup>8+</sup> | - | 设置工具栏内容。<br/>items:&nbsp;工具栏所有项。 |
+| toolBar | {<br/>items:[<br/>Object<br/>]&nbsp;}<br/>\|&nbsp;[CustomBuilder](../../ui/ts-types.md#CustomBuilder类型)<sup>8+</sup> | - | 设置工具栏内容。<br/>items:&nbsp;工具栏所有项。 |
 | hideToolBar | boolean | false | 设置隐藏/显示工具栏：<br/>true:&nbsp;隐藏工具栏。<br/>false:&nbsp;显示工具栏。 |
 | hideTitleBar | boolean | false | 隐藏标题栏。 |
 | hideBackButton | boolean | false | 隐藏返回键。 |
@@ -64,9 +64,9 @@ Navigation()
 
 ## 事件
 
-| 名称 | 功能描述 | 
+| 名称 | 功能描述 |
 | -------- | -------- |
-| onTitleModeChanged(callback:&nbsp;(titleMode:&nbsp;NavigationTitleMode)&nbsp;=&gt;&nbsp;void) | 当titleMode为NavigationTitleMode.Free时，随着可滚动组件的滑动标题栏模式发生变化时触发此回调。 | 
+| onTitleModeChange(callback:&nbsp;(titleMode:&nbsp;NavigationTitleMode)&nbsp;=&gt;&nbsp;void) | 当titleMode为NavigationTitleMode.Free时，随着可滚动组件的滑动标题栏模式发生变化时触发此回调。 |
 
 
 ## 示例
@@ -138,7 +138,7 @@ struct NavigationExample {
       .titleMode(NavigationTitleMode.Free)
       .hideTitleBar(false)
       .hideBackButton(false)
-      .onTitleModeChanged((titleModel: NavigationTitleMode) => {
+      .onTitleModeChange((titleModel: NavigationTitleMode) => {
         console.log('titleMode')
       })
       .toolBar({ items: [

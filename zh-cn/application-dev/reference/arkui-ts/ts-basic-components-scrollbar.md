@@ -19,9 +19,9 @@
 
 ## 接口
 
-ScrollBar(value: ScrollBarOption)
+ScrollBar(value: ScrollBarOptions)
 
-- ScrollBarOption的参数描述
+- ScrollBarOptions的参数描述
   | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
   | -------- | -------- | -------- | -------- | -------- |
   | scroller | [Scroller](ts-container-scroll.md#scroller) | 是 | - | 可滚动组件的控制器。用于与可滚动组件进行绑定。 |

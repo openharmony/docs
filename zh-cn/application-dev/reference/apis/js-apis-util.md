@@ -147,7 +147,7 @@ promiseWrapper(original: (err: Object, value: Object) =&gt; void): Object
 
 ### constructor
 
-constructor(encoding?:string, options?:{ fatal?:boolean;ignoreBOM?:boolean })
+constructor(encoding?: string, options?: { fatal?: boolean;ignoreBOM?: boolean })
 
 TextDecoder的构造函数。
 
@@ -168,13 +168,13 @@ TextDecoder的构造函数。
 
 **示例：**
   ```
-  var textDecoder = new util.TextDecoder("utf-8",{ignoreBOM:true});
+  var textDecoder = new util.TextDecoder("utf-8",{ignoreBOM: true});
   ```
 
 
 ### decode
 
-decode(input: Unit8Array, options?:{stream?:false}): string
+decode(input: Unit8Array, options?: {stream?: false}): string
 
 通过输入参数解码后输出对应文本。
 
@@ -199,7 +199,7 @@ decode(input: Unit8Array, options?:{stream?:false}): string
 
 **示例：**
   ```
-  var textDecoder = new util.TextDecoder("utf-8",{ignoreBOM:true});
+  var textDecoder = new util.TextDecoder("utf-8",{ignoreBOM: true});
   var result = new Uint8Array(6);
   result[0] = 0xEF;
   result[1] = 0xBB;
@@ -211,7 +211,7 @@ decode(input: Unit8Array, options?:{stream?:false}): string
   for(var j= 0; j < 6; j++) {
       console.log(result[j]);
   }
-  var retStr = textDecoder.decode( result , {stream:false});
+  var retStr = textDecoder.decode( result , {stream: false});
   console.log("retStr = " + retStr);
   ```
 
@@ -243,7 +243,7 @@ TextEncoder的构造函数。
 
 ### encode
 
-encode(input?:string):Uint8Array
+encode(input?: string): Uint8Array
 
 通过输入参数编码后输出对应文本。
 
@@ -269,7 +269,7 @@ encode(input?:string):Uint8Array
 
 ### encodeInto
 
-encodeInto(input:string, dest:Uint8Array, ):{ read:number; written:number }
+encodeInto(input: string, dest: Uint8Array, ): { read: number; written: number }
 
 放置生成的UTF-8编码文本。
 
@@ -299,7 +299,7 @@ encodeInto(input:string, dest:Uint8Array, ):{ read:number; written:number }
 
 ### constructor<sup>8+</sup>
 
-constructor(numerator:number,denominator:number)
+constructor(numerator: number,denominator: number)
 
 RationalNumber的构造函数。
 
@@ -319,7 +319,7 @@ RationalNumber的构造函数。
 
 ### createRationalFromString<sup>8+</sup>
 
-static createRationalFromString​(rationalString:string):RationalNumber​
+static createRationalFromString​(rationalString: string): RationalNumber​
 
 基于给定的字符串创建一个RationalNumber对象。
 
@@ -344,7 +344,7 @@ static createRationalFromString​(rationalString:string):RationalNumber​
 
 ### compareTo<sup>8+</sup>
 
-compareTo​(another:RationalNumber):number​
+compareTo​(another: RationalNumber): number​
 
 将当前的RationalNumber对象与给定的对象进行比较。
 
@@ -370,7 +370,7 @@ compareTo​(another:RationalNumber):number​
 
 ### valueOf<sup>8+</sup>
 
-valueOf():number
+valueOf(): number
 
 以整数形式或者浮点数的形式获取当前RationalNumber对象的值。
 
@@ -390,7 +390,7 @@ valueOf():number
 
 ### equals<sup>8+</sup>
 
-equals​(obj:Object):boolean
+equals​(obj: Object): boolean
 
 将当前的RationalNumber对象与给定的对象进行比较是否相等。
 
@@ -416,7 +416,7 @@ equals​(obj:Object):boolean
 
 ### getCommonDivisor<sup>8+</sup>
 
-static getCommonDivisor​(number1:number,number2:number):number
+static getCommonDivisor​(number1: number,number2: number): number
 
 获取两个指定整数的最大公约数。
 
@@ -442,7 +442,7 @@ static getCommonDivisor​(number1:number,number2:number):number
 
 ### getNumerator<sup>8+</sup>
 
-getNumerator​():number
+getNumerator​(): number
 
 获取当前RationalNumber对象的分子。
 
@@ -463,7 +463,7 @@ getNumerator​():number
 
 ### getDenominator<sup>8+</sup>
 
-getDenominator​():number
+getDenominator​(): number
 
 获取当前RationalNumber对象的分母。
 
@@ -503,7 +503,7 @@ isZero​():boolean
 
 ### isNaN<sup>8+</sup>
 
-isNaN​():boolean
+isNaN​(): boolean
 
 检查当前RationalNumber对象是否表示非数字(NaN)值。
 
@@ -543,7 +543,7 @@ isFinite​():boolean
 
 ### toString<sup>8+</sup>
 
-toString​():string
+toString​(): string
 
 获取当前RationalNumber对象的字符串表示形式。
 
@@ -581,7 +581,7 @@ toString​():string
 
 ### constructor<sup>8+</sup>
 
-constructor(capacity?:number)
+constructor(capacity?: number)
 
 默认构造函数用于创建一个新的LruBuffer实例，默认容量为64。
 
@@ -600,7 +600,7 @@ constructor(capacity?:number)
 
 ### updateCapacity<sup>8+</sup>
 
-updateCapacity(newCapacity:number):void
+updateCapacity(newCapacity: number): void
 
 将缓冲区容量更新为指定容量，如果newCapacity小于或等于0，则抛出异常。
 
@@ -620,7 +620,7 @@ updateCapacity(newCapacity:number):void
 
 ### toString<sup>8+</sup>
 
-toString():string
+toString(): string
 
 返回对象的字符串表示形式。
 
@@ -643,7 +643,7 @@ toString():string
 
 ### getCapacity<sup>8+</sup>
 
-getCapacity():number
+getCapacity(): number
 
 获取当前缓冲区的容量。
 
@@ -663,7 +663,7 @@ getCapacity():number
 
 ### clear<sup>8+</sup>
 
-clear():void
+clear(): void
 
 从当前缓冲区清除键值对。后续会调用afterRemoval()方法执行后续操作。
 
@@ -680,7 +680,7 @@ clear():void
 
 ### getCreateCount<sup>8+</sup>
 
-getCreateCount():number
+getCreateCount(): number
 
 获取createDefault()返回值的次数。
 
@@ -701,7 +701,7 @@ getCreateCount():number
 
 ### getMissCount<sup>8+</sup>
 
-getMissCount():number
+getMissCount(): number
 
 获取查询值不匹配的次数。
 
@@ -723,7 +723,7 @@ getMissCount():number
 
 ### getRemovalCount<sup>8+</sup>
 
-getRemovalCount():number
+getRemovalCount(): number
 
 获取从缓冲区中逐出值的次数。
 
@@ -746,7 +746,7 @@ getRemovalCount():number
 
 ### getMatchCount<sup>8+</sup>
 
-getMatchCount():number
+getMatchCount(): number
 
 获取查询值匹配成功的次数。
 
@@ -768,7 +768,7 @@ getMatchCount():number
 
 ### getPutCount<sup>8+</sup>
 
-getPutCount():number
+getPutCount(): number
 
 获取将值添加到缓冲区的次数。
 
@@ -789,7 +789,7 @@ getPutCount():number
 
 ### isEmpty<sup>8+</sup>
 
-isEmpty():boolean
+isEmpty(): boolean
 
 检查当前缓冲区是否为空。
 
@@ -810,7 +810,7 @@ isEmpty():boolean
 
 ### get<sup>8+</sup>
 
-get(key:K):V | undefined
+get(key: K): V | undefined
 
 表示要查询的键。
 
@@ -836,7 +836,7 @@ get(key:K):V | undefined
 
 ### put<sup>8+</sup>
 
-put(key:K,value:V):V
+put(key: K,value: V): V
 
 将键值对添加到缓冲区。
 
@@ -862,7 +862,7 @@ put(key:K,value:V):V
 
 ### values<sup>8+</sup>
 
-values():V[]
+values(): V[]
 
 获取当前缓冲区中所有值从最近访问到最近最少访问的顺序列表 。
 
@@ -885,7 +885,7 @@ values():V[]
 
 ### keys<sup>8+</sup>
 
-keys():K[]
+keys(): K[]
 
 获取当前缓冲区中所有键从最近访问到最近最少访问的升序列表。
 
@@ -906,7 +906,7 @@ keys():K[]
 
 ### remove<sup>8+</sup>
 
-remove(key:K):V | undefined
+remove(key: K): V | undefined
 
 从当前缓冲区中删除指定的键及其关联的值。
 
@@ -932,7 +932,7 @@ remove(key:K):V | undefined
 
 ### afterRemoval<sup>8+</sup>
 
-afterRemoval(isEvict:boolean,key:K,value:V,newValue:V):void
+afterRemoval(isEvict: boolean,key: K,value: V,newValue: V): void
 
 删除值后执行后续操作。
 
@@ -977,7 +977,7 @@ afterRemoval(isEvict:boolean,key:K,value:V,newValue:V):void
 
 ### contains<sup>8+</sup>
 
-contains(key:K):boolean
+contains(key: K): boolean
 
 检查当前缓冲区是否包含指定的键。
 
@@ -1003,7 +1003,7 @@ contains(key:K):boolean
 
 ### createDefault<sup>8+</sup>
 
-createDefault(key:K):V
+createDefault(key: K): V
 
 如果未计算特定键的值，则执行后续操作，参数表示丢失的键，返回与键关联的值。
 
@@ -1028,7 +1028,7 @@ createDefault(key:K):V
 
 ### entries<sup>8+</sup>
 
-entries():IterableIterator&lt;[K,V]&gt;
+entries(): IterableIterator&lt;[K,V]&gt;
 
 允许迭代包含在这个对象中的所有键值对。
 
@@ -1078,7 +1078,7 @@ entries():IterableIterator&lt;[K,V]&gt;
 ScopeComparable类型的值需要实现compareTo方法，确保传入的数据具有可比性。
 ```
 interface ScopeComparable{
-    compareTo(other:ScopeComparable):boolean;
+    compareTo(other: ScopeComparable): boolean;
 }
 type ScopeType = ScopeComparable | number;
 ```
@@ -1108,7 +1108,7 @@ class Temperature{
 
 ### constructor<sup>8+</sup>
 
-constructor(lowerObj:ScopeType,upperObje:ScopeType)
+constructor(lowerObj: ScopeType,upperObje: ScopeType)
 
 用于创建指定下限和上限的作用域实例的构造函数，返回一个Scope对象。
 
@@ -1130,7 +1130,7 @@ constructor(lowerObj:ScopeType,upperObje:ScopeType)
 
 ### toString<sup>8+</sup>
 
-toString():string
+toString(): string
 
 该字符串化方法返回一个包含当前范围的字符串表示形式。
 
@@ -1152,7 +1152,7 @@ toString():string
 
 ### intersect<sup>8+</sup>
 
-intersect(range:Scope):Scope
+intersect(range: Scope): Scope
 
 获取给定范围和当前范围的交集。
 
@@ -1212,7 +1212,7 @@ intersect(lowerObj:ScopeType,upperObj:ScopeType):Scope
 
 ### getUpper<sup>8+</sup>
 
-getUpper():ScopeType
+getUpper(): ScopeType
 
 获取当前范围的上限。
 
@@ -1235,7 +1235,7 @@ getUpper():ScopeType
 
 ### getLower<sup>8+</sup>
 
-getLower():ScopeType
+getLower(): ScopeType
 
 获取当前范围的下限。
 
@@ -1257,7 +1257,7 @@ getLower():ScopeType
 
 ### expand<sup>8+</sup>
 
-expand(lowerObj:ScopeType,upperObj:ScopeType):Scope
+expand(lowerObj: ScopeType,upperObj: ScopeType): Scope
 
 创建并返回包括当前范围和给定下限和上限的并集。
 
@@ -1287,7 +1287,7 @@ expand(lowerObj:ScopeType,upperObj:ScopeType):Scope
 
 ### expand<sup>8+</sup>
 
-expand(range:Scope):Scope
+expand(range: Scope): Scope
 
 创建并返回包括当前范围和给定范围的并集。
 
@@ -1317,7 +1317,7 @@ expand(range:Scope):Scope
 
 ### expand<sup>8+</sup>
 
-expand(value:ScopeType):Scope
+expand(value: ScopeType): Scope
 
 创建并返回包括当前范围和给定值的并集。
 
@@ -1345,7 +1345,7 @@ expand(value:ScopeType):Scope
 
 ### contains<sup>8+</sup>
 
-contains(value:ScopeType):boolean
+contains(value: ScopeType): boolean
 
 检查给定value是否包含在当前范围内。
 
@@ -1373,7 +1373,7 @@ contains(value:ScopeType):boolean
 
 ### contains<sup>8+</sup>
 
-contains(range:Scope):boolean
+contains(range: Scope): boolean
 
 检查给定range是否在当前范围内。
 
@@ -1403,7 +1403,7 @@ contains(range:Scope):boolean
 
 ### clamp<sup>8+</sup>
 
-clamp(value:ScopeType):ScopeType
+clamp(value: ScopeType): ScopeType
 
 将给定值限定到当前范围内。
 
@@ -1448,7 +1448,7 @@ Base64的构造函数。
 
 ### encodeSync<sup>8+</sup>
 
-encodeSync(src:Uint8Array):Uint8Array
+encodeSync(src: Uint8Array): Uint8Array
 
 通过输入参数编码后输出对应文本。
 
@@ -1474,7 +1474,7 @@ encodeSync(src:Uint8Array):Uint8Array
 
 ### encodeToStringSync<sup>8+</sup>
 
-encodeToStringSync(src:Uint8Array):string
+encodeToStringSync(src: Uint8Array): string
 
 通过输入参数编码后输出对应文本。
 
@@ -1500,7 +1500,7 @@ encodeToStringSync(src:Uint8Array):string
 
 ### decodeSync<sup>8+</sup>
 
-decodeSync(src:Uint8Array | string):Uint8Array
+decodeSync(src: Uint8Array | string): Uint8Array
 
 通过输入参数解码后输出对应文本。
 
@@ -1526,7 +1526,7 @@ decodeSync(src:Uint8Array | string):Uint8Array
 
 ### encode<sup>8+</sup>
 
-encode(src:Uint8Array):Promise&lt;Uint8Array&gt;
+encode(src: Uint8Array): Promise&lt;Uint8Array&gt;
 
 通过输入参数异步编码后输出对应文本。
 
@@ -1557,7 +1557,7 @@ encode(src:Uint8Array):Promise&lt;Uint8Array&gt;
 
 ### encodeToString<sup>8+</sup>
 
-encodeToString(src:Uint8Array):Promise&lt;string&gt;
+encodeToString(src: Uint8Array): Promise&lt;string&gt;
 
 通过输入参数异步编码后输出对应文本。
 
@@ -1585,7 +1585,7 @@ encodeToString(src:Uint8Array):Promise&lt;string&gt;
 
 ### decode<sup>8+</sup>
 
-decode(src:Uint8Array | string):Promise&lt;Uint8Array&gt;
+decode(src: Uint8Array | string): Promise&lt;Uint8Array&gt;
 
 通过输入参数异步解码后输出对应文本。
 
@@ -1633,7 +1633,7 @@ Types的构造函数。
 
 ### isAnyArrayBuffer<sup>8+</sup>
 
-isAnyArrayBuffer(value: Object):boolean
+isAnyArrayBuffer(value: Object): boolean
 
 检查输入的value是否是ArrayBuffer类型。
 
@@ -1658,7 +1658,7 @@ isAnyArrayBuffer(value: Object):boolean
 
 ### isArrayBufferView<sup>8+</sup>
 
-isArrayBufferView(value: Object):boolean
+isArrayBufferView(value: Object): boolean
 
 检查输入的value是否是内置ArrayBufferView辅助类型。
 
@@ -1685,7 +1685,7 @@ ArrayBufferView辅助类型包括：Int8Array、Int16Array、Int32Array、Uint8A
 
 ### isArgumentsObject<sup>8+</sup>
 
-isArgumentsObject(value: Object):boolean
+isArgumentsObject(value: Object): boolean
 
 检查输入的value是否是一个arguments对象类型。
 
@@ -1713,7 +1713,7 @@ isArgumentsObject(value: Object):boolean
 
 ### isArrayBuffer<sup>8+</sup>
 
-isArrayBuffer(value: Object):boolean
+isArrayBuffer(value: Object): boolean
 
 检查输入的value是否是ArrayBuffer类型。
 
@@ -1738,7 +1738,7 @@ isArrayBuffer(value: Object):boolean
 
 ### isAsyncFunction<sup>8+</sup>
 
-isAsyncFunction(value: Object):boolean
+isAsyncFunction(value: Object): boolean
 
 检查输入的value是否是一个异步函数类型。
 
@@ -1763,7 +1763,7 @@ isAsyncFunction(value: Object):boolean
 
 ### isBooleanObject<sup>8+</sup>
 
-isBooleanObject(value: Object):boolean
+isBooleanObject(value: Object): boolean
 
 检查输入的value是否是一个Boolean对象类型。
 
@@ -1788,7 +1788,7 @@ isBooleanObject(value: Object):boolean
 
 ### isBoxedPrimitive<sup>8+</sup>
 
-isBoxedPrimitive(value: Object):boolean
+isBoxedPrimitive(value: Object): boolean
 
 检查输入的value是否是Boolean或Number或String或Symbol对象类型。
 
@@ -1813,7 +1813,7 @@ isBoxedPrimitive(value: Object):boolean
 
 ### isDataView<sup>8+</sup>
 
-isDataView(value: Object):boolean
+isDataView(value: Object): boolean
 
 检查输入的value是否是DataView类型。
 
@@ -1839,7 +1839,7 @@ isDataView(value: Object):boolean
 
 ### isDate<sup>8+</sup>
 
-isDate(value: Object):boolean
+isDate(value: Object): boolean
 
 检查输入的value是否是Date类型。
 
@@ -1864,7 +1864,7 @@ isDate(value: Object):boolean
 
 ### isExternal<sup>8+</sup>
 
-isExternal(value: Object):boolean
+isExternal(value: Object): boolean
 
 检查输入的value是否是native External类型。
 
@@ -1890,7 +1890,7 @@ isExternal(value: Object):boolean
 
 ### isFloat32Array<sup>8+</sup>
 
-isFloat32Array(value: Object):boolean
+isFloat32Array(value: Object): boolean
 
 检查输入的value是否是Float32Array数组类型。
 
@@ -1915,7 +1915,7 @@ isFloat32Array(value: Object):boolean
 
 ### isFloat64Array<sup>8+</sup>
 
-isFloat64Array(value: Object):boolean
+isFloat64Array(value: Object): boolean
 
 检查输入的value是否是Float64Array数组类型。
 
@@ -1940,7 +1940,7 @@ isFloat64Array(value: Object):boolean
 
 ### isGeneratorFunction<sup>8+</sup>
 
-isGeneratorFunction(value: Object):boolean
+isGeneratorFunction(value: Object): boolean
 
 检查输入的value是否是generator函数类型。
 
@@ -1965,7 +1965,7 @@ isGeneratorFunction(value: Object):boolean
 
 ### isGeneratorObject<sup>8+</sup>
 
-isGeneratorObject(value: Object):boolean
+isGeneratorObject(value: Object): boolean
 
 检查输入的value是否是generator对象类型。
 
@@ -1992,7 +1992,7 @@ isGeneratorObject(value: Object):boolean
 
 ### isInt8Array<sup>8+</sup>
 
-isInt8Array(value: Object):boolean
+isInt8Array(value: Object): boolean
 
 检查输入的value是否是Int8Array数组类型。
 
@@ -2017,7 +2017,7 @@ isInt8Array(value: Object):boolean
 
 ### isInt16Array<sup>8+</sup>
 
-isInt16Array(value: Object):boolean
+isInt16Array(value: Object): boolean
 
 检查输入的value是否是Int16Array数组类型。
 
@@ -2042,7 +2042,7 @@ isInt16Array(value: Object):boolean
 
 ### isInt32Array<sup>8+</sup>
 
-isInt32Array(value: Object):boolean
+isInt32Array(value: Object): boolean
 
 检查输入的value是否是Int32Array数组类型。
 
@@ -2067,7 +2067,7 @@ isInt32Array(value: Object):boolean
 
 ### isMap<sup>8+</sup>
 
-isMap(value: Object):boolean
+isMap(value: Object): boolean
 
 检查输入的value是否是Map类型。
 
@@ -2092,7 +2092,7 @@ isMap(value: Object):boolean
 
 ### isMapIterator<sup>8+</sup>
 
-isMapIterator(value: Object):boolean
+isMapIterator(value: Object): boolean
 
 检查输入的value是否是Map的Iterator类型。
 
@@ -2118,7 +2118,7 @@ isMapIterator(value: Object):boolean
 
 ### isNativeError<sup>8+</sup>
 
-isNativeError(value: Object):boolean
+isNativeError(value: Object): boolean
 
 检查输入的value是否是Error类型。
 
@@ -2143,7 +2143,7 @@ isNativeError(value: Object):boolean
 
 ### isNumberObject<sup>8+</sup>
 
-isNumberObject(value: Object):boolean
+isNumberObject(value: Object): boolean
 
 检查输入的value是否是Number对象类型。
 
@@ -2168,7 +2168,7 @@ isNumberObject(value: Object):boolean
 
 ### isPromise<sup>8+</sup>
 
-isPromise(value: Object):boolean
+isPromise(value: Object): boolean
 
 检查输入的value是否是Promise类型。
 
@@ -2193,7 +2193,7 @@ isPromise(value: Object):boolean
 
 ### isProxy<sup>8+</sup>
 
-isProxy(value: Object):boolean
+isProxy(value: Object): boolean
 
 检查输入的value是否是Proxy类型。
 
@@ -2220,7 +2220,7 @@ isProxy(value: Object):boolean
 
 ### isRegExp<sup>8+</sup>
 
-isRegExp(value: Object):boolean
+isRegExp(value: Object): boolean
 
 检查输入的value是否是RegExp类型。
 
@@ -2245,7 +2245,7 @@ isRegExp(value: Object):boolean
 
 ### isSet<sup>8+</sup>
 
-isSet(value: Object):boolean
+isSet(value: Object): boolean
 
 检查输入的value是否是Set类型。
 
@@ -2270,7 +2270,7 @@ isSet(value: Object):boolean
 
 ### isSetIterator<sup>8+</sup>
 
-isSetIterator(value: Object):boolean
+isSetIterator(value: Object): boolean
 
 检查输入的value是否是Set的Iterator类型。
 
@@ -2296,7 +2296,7 @@ isSetIterator(value: Object):boolean
 
 ### isStringObject<sup>8+</sup>
 
-isStringObject(value: Object):boolean
+isStringObject(value: Object): boolean
 
 检查输入的value是否是String对象类型。
 
@@ -2347,7 +2347,7 @@ isSymbolObjec(value: Object): boolean
 
 ### isTypedArray<sup>8+</sup>
 
-isTypedArray(value: Object):boolean
+isTypedArray(value: Object): boolean
 
 检查输入的value是否是TypedArray类型的辅助类型。
 
@@ -2374,7 +2374,7 @@ TypedArray类型的辅助类型，包括Int8Array、Int16Array、Int32Array、Ui
 
 ### isUint8Array<sup>8+</sup>
 
-isUint8Array(value: Object):boolean
+isUint8Array(value: Object): boolean
 
 检查输入的value是否是Uint8Array数组类型。
 
@@ -2399,7 +2399,7 @@ isUint8Array(value: Object):boolean
 
 ### isUint8ClampedArray<sup>8+</sup>
 
-isUint8ClampedArray(value: Object):boolean
+isUint8ClampedArray(value: Object): boolean
 
 检查输入的value是否是Uint8ClampedArray数组类型。
 
@@ -2424,7 +2424,7 @@ isUint8ClampedArray(value: Object):boolean
 
 ### isUint16Array<sup>8+</sup>
 
-isUint16Array(value: Object):boolean
+isUint16Array(value: Object): boolean
 
 检查输入的value是否是Uint16Array数组类型。
 
@@ -2449,7 +2449,7 @@ isUint16Array(value: Object):boolean
 
 ### isUint32Array<sup>8+</sup>
 
-isUint32Array(value: Object):boolean
+isUint32Array(value: Object): boolean
 
 检查输入的value是否是Uint32Array数组类型。
 
@@ -2474,7 +2474,7 @@ isUint32Array(value: Object):boolean
 
 ### isWeakMap<sup>8+</sup>
 
-isWeakMap(value: Object):boolean
+isWeakMap(value: Object): boolean
 
 检查输入的value是否是WeakMap类型。
 
@@ -2499,7 +2499,7 @@ isWeakMap(value: Object):boolean
 
 ### isWeakSet<sup>8+</sup>
 
-isWeakSet(value: Object):boolean
+isWeakSet(value: Object): boolean
 
 检查输入的value是否是WeakSet类型。
 

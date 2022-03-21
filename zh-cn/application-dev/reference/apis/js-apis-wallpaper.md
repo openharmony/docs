@@ -358,7 +358,7 @@ reset(wallpaperType: WallpaperType, callback: AsyncCallback&lt;void&gt;): void
 - 示例：
   
   ```
-  wallpaper.reset((error, data) => {
+  wallpaper.reset(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error, data) => {
       if (error) {
           console.error(`failed to reset because: ` + JSON.stringify(error));
           return;
@@ -391,7 +391,7 @@ reset(wallpaperType: WallpaperType): Promise&lt;void&gt;
 - 示例：
   
   ```
-  wallpaper.reset(wallpaper.WALLPAPER_SYSTEM).then((data) => {
+  wallpaper.reset(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data) => {
       console.log(`success to reset.`);
   }).catch((error) => {
       console.error(`failed to reset because: ` + JSON.stringify(error));
@@ -401,7 +401,7 @@ reset(wallpaperType: WallpaperType): Promise&lt;void&gt;
 
 ## wallpaper.setWallpaper
 
-setWallpaper(uriOrPixelMap: string | image.PixelMap, wallpaperType: WallpaperType, callback: AsyncCallback&lt;void&gt;): void
+setWallpaper(source: string | image.PixelMap, wallpaperType: WallpaperType, callback: AsyncCallback&lt;void&gt;): void
 
 将指定资源设置为指定类型的壁纸。
 
@@ -412,16 +412,16 @@ setWallpaper(uriOrPixelMap: string | image.PixelMap, wallpaperType: WallpaperTyp
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | uriOrPixelMap | string&nbsp;\|[PixelMap](js-apis-image.md#pixelmap7) |  | JPEG或PNG文件的Uri路径，或者PNG格式文件的位图。 |
+  | source | string&nbsp;\|[PixelMap](js-apis-image.md#pixelmap7) |  | JPEG或PNG文件的Uri路径，或者PNG格式文件的位图。 |
   | wallpaperType | [WallpaperType](#wallpapertype) | 是 | 壁纸类型。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，调用成功则返回是返回设置的结果，调用失败则返回error信息。 |
 
 - 示例：
   
   ```
-  // uriOrPixelMap类型为string
+  // source类型为string
   let wallpaperPath = "/data/data/ohos.acts.aafwk.plrdtest.form/files/Cup_ic.jpg";
-  wallpaper.setWallpaper(wallpaperPath, wallpaper.WALLPAPER_SYSTEM, (error, data) => {   
+  wallpaper.setWallpaper(wallpaperPath, wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error, data) => {    
       if (error) {        
           console.error(`failed to setWallpaper because: ` + JSON.stringify(error));       
           return;   
@@ -429,7 +429,7 @@ setWallpaper(uriOrPixelMap: string | image.PixelMap, wallpaperType: WallpaperTyp
       console.log(`success to setWallpaper.`);
   });
   
-  // uriOrPixelMap类型为image.PixelMap
+  // source类型为image.PixelMap
   import image from '@ohos.multimedia.image';
   let imageSource = image.createImageSource("file://" + wallpaperPath);
   let opts = {
@@ -439,7 +439,7 @@ setWallpaper(uriOrPixelMap: string | image.PixelMap, wallpaperType: WallpaperTyp
       }
   };
   imageSource.createPixelMap(opts).then((pixelMap) => {      
-      wallpaper.setWallpaper(pixelMap, wallpaper.WALLPAPER_SYSTEM, (error, data) => {    
+      wallpaper.setWallpaper(pixelMap, wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error, data) => {    
           if (error) {       
               console.error(`failed to setWallpaper because: ` + JSON.stringify(error));
               return;
@@ -454,7 +454,7 @@ setWallpaper(uriOrPixelMap: string | image.PixelMap, wallpaperType: WallpaperTyp
 
 ## wallpaper.setWallpaper
 
-setWallpaper(uriOrPixelMap: string | image.PixelMap, wallpaperType: WallpaperType): Promise&lt;void&gt;
+setWallpaper(source: string | image.PixelMap, wallpaperType: WallpaperType): Promise&lt;void&gt;
 
 将指定资源设置为指定类型的壁纸。
 
@@ -465,7 +465,7 @@ setWallpaper(uriOrPixelMap: string | image.PixelMap, wallpaperType: WallpaperTyp
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | uriOrPixelMap | string&nbsp;\|[PixelMap](js-apis-image.md#pixelmap7) | 是 | JPEG或PNG文件的Uri路径，或者PNG格式文件的位图。 |
+  | source | string&nbsp;\|[PixelMap](js-apis-image.md#pixelmap7) | 是 | JPEG或PNG文件的Uri路径，或者PNG格式文件的位图。 |
   | wallpaperType | [WallpaperType](#wallpapertype) | 是 | 壁纸类型。 |
 
 - 返回值：
@@ -476,15 +476,15 @@ setWallpaper(uriOrPixelMap: string | image.PixelMap, wallpaperType: WallpaperTyp
 - 示例：
   
   ```
-  // uriOrPixelMap类型为string
+  // source类型为string
   let wallpaperPath = "/data/data/ohos.acts.aafwk.plrdtest.form/files/Cup_ic.jpg";
-  wallpaper.setWallpaper(wallpaperPath, wallpaper.WALLPAPER_SYSTEM).then((data) => {
+  wallpaper.setWallpaper(wallpaperPath, wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data) => {
       console.log(`success to setWallpaper.`);
   }).catch((error) => {
       console.error(`failed to setWallpaper because: ` + JSON.stringify(error));
   });
   
-  // uriOrPixelMap类型为image.PixelMap
+  // source类型为image.PixelMap
   import image from '@ohos.multimedia.image';
   let imageSource = image.createImageSource("file://" + wallpaperPath);
   let opts = {
@@ -494,13 +494,69 @@ setWallpaper(uriOrPixelMap: string | image.PixelMap, wallpaperType: WallpaperTyp
       }
   };
   imageSource.createPixelMap(opts).then((pixelMap) => {      
-      wallpaper.setWallpaper(pixelMap, wallpaper.WALLPAPER_SYSTEM).then((data) => {
+      wallpaper.setWallpaper(pixelMap, wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data) => {
           console.log(`success to setWallpaper.`);
       }).catch((error) => {
           console.error(`failed to setWallpaper because: ` + JSON.stringify(error));
       });
   }).catch((error) => {       
       console.error(`failed to createPixelMap because: ` + JSON.stringify(error));
+  });
+  ```
+## wallpaper.getFile<sup>8+</sup>
+
+getFile(wallpaperType: WallpaperType, callback: AsyncCallback&lt;number&gt;): void
+
+获取指定类型的壁纸文件。
+
+**需要权限**：ohos.permission.SET_WALLPAPER、ohos.permission.READ_USER_STORAGE
+
+**系统能力**: SystemCapability.Miscservices.Wallpaper
+
+- 参数：
+    | 参数名 | 类型 | 必填 | 说明 | 
+  | -------- | -------- | -------- | -------- |
+  | wallpaperType | [WallpaperType](#wallpapertype) | 是 | 壁纸类型。 | 
+  | callback | AsyncCallback&lt;number&gt; | 是 | 回调函数，调用成功则返回壁纸文件描述符ID，调用失败则返回error信息。 | 
+
+- 示例：
+  
+  ```
+  wallpaper.getFile(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error, data) => {
+      if (error) {
+          console.error(`failed to getFile because: ` + JSON.stringify(error));
+          return;
+      }
+      console.log(`success to getFile: ` + JSON.stringify(data));
+  });
+  ```
+## wallpaper.getFile<sup>8+</sup>
+
+getFile(wallpaperType: WallpaperType): Promise&lt;number&gt;
+
+获取指定类型的壁纸文件。
+
+**需要权限：** ohos.permission.SET_WALLPAPER、ohos.permission.READ_USER_STORAGE
+
+**系统能力**: SystemCapability.Miscservices.Wallpaper
+
+- 参数：
+    | 参数名 | 类型 | 必填 | 说明 | 
+  | -------- | -------- | -------- | -------- |
+  | wallpaperType | [WallpaperType](#wallpapertype) | 是 | 壁纸类型。 | 
+
+- 返回值：
+    | 类型 | 说明 | 
+  | -------- | -------- |
+  | Promise&lt;number&gt; | 调用成功则返回壁纸文件描述符ID，调用失败则返回error信息。 | 
+
+- 示例：
+  
+  ```
+  wallpaper.getFile(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data) => {
+      console.log(`success to getFile: ` + JSON.stringify(data));
+  }).catch((error) => {
+      console.error(`failed to getFile because: ` + JSON.stringify(error));
   });
   ```
 
