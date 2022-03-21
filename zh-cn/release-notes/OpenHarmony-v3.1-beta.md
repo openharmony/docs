@@ -45,6 +45,26 @@
 
 ## 源码获取
 
+### 前提条件
+
+1.  注册码云gitee账号。
+2.  注册码云SSH公钥，请参考[码云帮助中心](https://gitee.com/help/articles/4191)。
+3.  安装[git客户端](https://git-scm.com/book/zh/v2/%E8%B5%B7%E6%AD%A5-%E5%AE%89%E8%A3%85-Git)和[git-lfs](https://gitee.com/vcs-all-in-one/git-lfs?_from=gitee_search#downloading)并配置用户信息。
+
+    ```
+    git config --global user.name "yourname"
+    git config --global user.email "your-email-address"
+    git config --global credential.helper store
+    ```
+
+4.  安装码云repo工具，可以执行如下命令。
+
+    ```
+    curl -s https://gitee.com/oschina/repo/raw/fork_flow/repo-py3 > /usr/local/bin/repo  #如果没有权限，可下载至其他目录，并将其配置到环境变量中
+    chmod a+x /usr/local/bin/repo
+    pip3 install -i https://repo.huaweicloud.com/repository/pypi/simple requests
+    ```
+
 
 ### 通过repo获取
 
@@ -159,7 +179,7 @@ _[Changelog](api-change/v3.1-beta/changelog-v3.1-beta.md)_
 | [字符串编解码](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/StringCodec) | 本示例对字符串进行了特定格式的输出，对错误码的内容进行了文本输出，对字符串的编码和解码做了演示结果。 | eTS |
 | [Js音频播放和管理](https://gitee.com/openharmony/app_samples/tree/master/media/JsAudioPlayer) | 本示例展示了JS音频播放的使用方法，以及音频的音量大小设置。 | JS |
 | [JsVideo](https://gitee.com/openharmony/app_samples/tree/master/media/JsVideo) | 本示例使用JS&nbsp;UI中的&lt;video/&gt;组件，实现视频播放。可以通过video自带的控制栏进行播放、暂停等操作。 | JS |
-| [测试打点](https://gitee.com/openharmony/app_samples/tree/master/security/JsDotTest) | 本示例展示了测试打点功能，包括应用打点与性能打点两部分。 | JS |
+| [测试打点](https://gitee.com/openharmony/app_samples/tree/master/DFX/JsDotTest) | 本示例展示了测试打点功能，包括应用打点与性能打点两部分。 | JS |
 | [JsWorker](https://gitee.com/openharmony/app_samples/tree/master/thread/JsWorker) | 本示例展示了在JS中如何启动一个worker线程，并实现worker线程和宿主线程的通信。 | JS |
 | [画布组件](https://gitee.com/openharmony/app_samples/tree/master/UI/JsCanvas) | &lt;canvas/>组件可以自定义绘制图形，本示例展示了&lt;canvas\>组件的使用方法 | JS |
 | [JS页面弹窗](https://gitee.com/openharmony/app_samples/tree/master/UI/JsDialog) | JS中支持用户自定义弹窗，&lt;dialog/&gt;组件作为容器组件，用户可以自定义弹窗的样式和布局。本示例完成了添加和删除联系人功能，在添加和删除时使用自定义弹窗来实现。 | JS |
