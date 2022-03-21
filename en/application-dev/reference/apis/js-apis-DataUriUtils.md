@@ -1,5 +1,8 @@
 # DataUriUtils Module
 
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+
 ## Modules to Import
 
 ```js
@@ -12,15 +15,17 @@ getId(uri: string): number
 
 Obtains the ID attached to the end of a given URI.
 
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
 **Parameters**
 
-
-| Name| Type| Mandatory| Description|
+| Name| Type  | Mandatory| Description                       |
 | ---- | ------ | ---- | --------------------------- |
-| uri  | string | Yes| URI object from which the ID is to be obtained.|
+| uri  | string | Yes  | URI object from which the ID is to be obtained.|
 
 **Return value**
-| Type| Description|
+
+| Type  | Description                    |
 | ------ | ------------------------ |
 | number | ID obtained from the URI object.|
 
@@ -38,16 +43,18 @@ attachId(uri: string, id: number): string
 
 Attaches an ID to the end of a given URI.
 
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
 **Parameters**
 
-
-| Name| Type| Mandatory| Description|
+| Name| Type  | Mandatory| Description                       |
 | ---- | ------ | ---- | --------------------------- |
-| uri  | string | Yes| URI object to which an ID is to be attached.|
-| id   | number | Yes| ID to be attached.|
+| uri  | string | Yes  | URI object to which an ID is to be attached.|
+| id   | number | Yes  | ID to be attached.           |
 
 **Return value**
-| Type| Description|
+
+| Type  | Description                 |
 | ------ | --------------------- |
 | string | URI object with the ID attached.|
 
@@ -69,14 +76,17 @@ deleteId(uri: string): string
 
 Deletes the ID from the end of a given URI.
 
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name| Type  | Mandatory| Description                       |
 | ---- | ------ | ---- | --------------------------- |
-| uri  | string | Yes| URI object from which the ID is to be deleted.|
+| uri  | string | Yes  | URI object from which the ID is to be deleted.|
 
 **Return value**
-| Type| Description|
+
+| Type  | Description               |
 | ------ | ------------------- |
 | string | URI object with the ID deleted.|
 
@@ -94,15 +104,18 @@ updateId(uri: string, id: number): string
 
 Updates the ID in a given URI.
 
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name| Type  | Mandatory| Description               |
 | ---- | ------ | ---- | ------------------- |
-| uri  | string | Yes| URI object to be updated.|
-| id   | number | Yes| New ID.|
+| uri  | string | Yes  | URI object to be updated.|
+| id   | number | Yes  | New ID.           |
 
 **Return value**
-| Type| Description|
+
+| Type  | Description           |
 | ------ | --------------- |
 | string | URI object with the new ID.|
 

@@ -10,11 +10,11 @@ Implements event subscription, unsubscription, and triggering.
 ## Usage
 
 
-Before using any methods in the **EventHub**, you must obtain an **EventHub** instance through the member variable **context** of the **Ability** instance.
+Before using any APIs in the **EventHub**, you must obtain an **EventHub** instance through the member variable **context** of the **Ability** instance.
 
 
   
-```
+```js
 import Ability from '@ohos.application.Ability'
 export default class MainAbility extends Ability {
     onForeground() {
@@ -24,25 +24,24 @@ export default class MainAbility extends Ability {
 ```
 
 
-## on
+## EventHub.on
 
 on(event: string, callback: Function): void;
 
 Subscribes to an event.
 
-**System capability**:
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-SystemCapability.Ability.AbilityRuntime.Core
+**Parameters**
 
-- Parameters
-    | Name| Type| Mandatory| Description| 
+  | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
   | event | string | Yes| Event name.| 
   | callback | Function | Yes| Callback invoked when the event is triggered.| 
 
-- Example
+**Example**
     
-  ```
+  ```js
   import Ability from '@ohos.application.Ability'
   
   export default class MainAbility extends Ability {
@@ -63,25 +62,24 @@ SystemCapability.Ability.AbilityRuntime.Core
   ```
 
 
-## off
+## EventHub.off
 
 off(event: string, callback?: Function): void;
 
-Unsubscribes from an event. If **callback** is specified, this method unsubscribes from the specified callback. If **callback** is not specified, this method unsubscribes from all callbacks in the event.
+Unsubscribes from an event. If **callback** is specified, this API unsubscribes from the specified callback. If **callback** is not specified, this API unsubscribes from all callbacks in the event.
 
-**System capability**:
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-SystemCapability.Ability.AbilityRuntime.Core
+**Parameters**
 
-- Parameters
-    | Name| Type| Mandatory| Description| 
+  | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
   | event | string | Yes| Event name.| 
   | callback | Function | No| Callback for the event. If **callback** is unspecified, all callbacks of the event are unsubscribed.| 
 
-- Example
+**Example**
     
-  ```
+  ```js
   import Ability from '@ohos.application.Ability'
   
   export default class MainAbility extends Ability {
@@ -102,25 +100,24 @@ SystemCapability.Ability.AbilityRuntime.Core
   ```
 
 
-## emit
+## EventHub.emit
 
 emit(event: string, ...args: Object[]): void;
 
 Triggers an event.
 
-**System capability**:
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-SystemCapability.Ability.AbilityRuntime.Core
+**Parameters**
 
-- Parameters
-    | Name| Type| Mandatory| Description| 
+  | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
   | event | string | Yes| Event name.| 
   | ...args | Object[] | Yes| Variable parameters, which are passed to the callback when the event is triggered.| 
 
-- Example
+**Example**
     
-  ```
+  ```js
   import Ability from '@ohos.application.Ability'
   
   export default class MainAbility extends Ability {

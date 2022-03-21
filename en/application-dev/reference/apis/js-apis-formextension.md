@@ -1,7 +1,7 @@
 # FormExtension
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 Provides **FormExtension** APIs.
 
@@ -17,9 +17,9 @@ None
 
 ## Attributes
 
-| Name| Type| Readable| Writable| Description|
+| Name   | Type                                               | Readable| Writable| Description                                               |
 | ------- | ------------------------------------------------------- | ---- | ---- | --------------------------------------------------- |
-| context | [FormExtensionContext](js-apis-formextensioncontext.md) | Yes| No| Context of the **FormExtension**. This class is inherited from **ExtensionContext**.|
+| context | [FormExtensionContext](js-apis-formextensioncontext.md) | Yes  | No  | Context of the **FormExtension**. This class is inherited from **ExtensionContext**.<br>**System capability**: SystemCapability.Ability.Form|
 
 ## onCreate
 
@@ -27,21 +27,23 @@ onCreate(want: Want): formBindingData.FormBindingData
 
 Called to notify the widget provider that a **Form** instance (widget) has been created.
 
-- Parameters
+**System capability**: SystemCapability.Ability.Form
 
-  | Name| Type| Mandatory| Description|
+**Parameters**
+
+  | Name| Type                                  | Mandatory| Description                                                        |
   | ------ | -------------------------------------- | ---- | ------------------------------------------------------------ |
-  | want   | [Want](js-apis-featureAbility.md#want) | Yes| Information related to the extension, including the widget ID, name, and style. The information must be managed as persistent data to facilitate subsequent widget update and deletion.|
+  | want   | [Want](js-apis-featureAbility.md#want) | Yes  | Information related to the extension, including the widget ID, name, and style. The information must be managed as persistent data to facilitate subsequent widget update and deletion.|
 
-- Return value
+**Return value**
 
-  | Type| Description|
+  | Type                                                        | Description                                                       |
   | ------------------------------------------------------------ | ----------------------------------------------------------- |
   | [formBindingData.FormBindingData](js-apis-formbindingdata.md#formbindingdata) | A **formBindingData.FormBindingData** object containing the data to be displayed on the widget.|
 
-- Example
+**Example**
 
-  ```
+  ```js
   export default class MyFormExtension extends FormExtension {
       onCreate(want) {
           console.log('FormExtension onCreate, want:' + want.abilityName);
@@ -55,19 +57,21 @@ Called to notify the widget provider that a **Form** instance (widget) has been 
   }
   ```
 
-## onCastToNormal
+## FormExtension.onCastToNormal
 
 onCastToNormal(formId: string): void
 
 Called to notify the widget provider that a temporary widget has been converted to a normal one.
 
-- Parameters
+**System capability**: SystemCapability.Ability.Form
 
-  | Name| Type| Mandatory| Description|
+**Parameters**
+
+  | Name| Type  | Mandatory| Description                    |
   | ------ | ------ | ---- | ------------------------ |
-  | formId | string | Yes| ID of the widget that requests to be converted to a normal one.|
+  | formId | string | Yes  | ID of the widget that requests to be converted to a normal one.|
 
-- Example
+**Example**
 
   ```
   export default class MyFormExtension extends FormExtension {
@@ -77,21 +81,23 @@ Called to notify the widget provider that a temporary widget has been converted 
   }
   ```
 
-## onUpdate
+## FormExtension.onUpdate
 
 onUpdate(formId: string): void
 
 Called to notify the widget provider that a widget has been updated. After obtaining the latest data, the caller invokes **updateForm** of the [FormExtensionContext](js-apis-formextensioncontext.md) class to update the widget data.
 
-- Parameters
+**System capability**: SystemCapability.Ability.Form
 
-  | Name| Type| Mandatory| Description|
+**Parameters**
+
+  | Name| Type  | Mandatory| Description              |
   | ------ | ------ | ---- | ------------------ |
-  | formId | string | Yes| ID of the widget that requests to be updated.|
+  | formId | string | Yes  | ID of the widget that requests to be updated.|
 
-- Example
+**Example**
 
-  ```
+  ```js
   export default class MyFormExtension extends FormExtension {
       onUpdate(formId) {
           console.log('FormExtension onUpdate, formId:' + formId);
@@ -105,21 +111,23 @@ Called to notify the widget provider that a widget has been updated. After obtai
   }
   ```
 
-## onVisibilityChange
+## FormExtension.onVisibilityChange
 
 onVisibilityChange(newStatus: { [key: string]: number }): void
 
 Called to notify the widget provider of the change of visibility.
 
-- Parameters
+**System capability**: SystemCapability.Ability.Form
 
-  | Name| Type| Mandatory| Description|
+**Parameters**
+
+  | Name   | Type                     | Mandatory| Description                        |
   | --------- | ------------------------- | ---- | ---------------------------- |
-  | newStatus | { [key: string]: number } | Yes| ID and visibility status of the widget to be changed.|
+  | newStatus | { [key: string]: number } | Yes  | ID and visibility status of the widget to be changed.|
 
-- Example
+**Example**
 
-  ```
+  ```js
   export default class MyFormExtension extends FormExtension {
       onVisibilityChange(newStatus) {
           console.log('FormExtension onVisibilityChange, newStatus:' + newStatus);
@@ -137,22 +145,24 @@ Called to notify the widget provider of the change of visibility.
   }
   ```
 
-## onEvent
+## FormExtension.onEvent
 
 onEvent(formId: string, message: string): void
 
 Called to instruct the widget provider to receive and process the widget event.
 
-- Parameters
+**System capability**: SystemCapability.Ability.Form
 
-  | Name| Type| Mandatory| Description|
+**Parameters**
+
+  | Name | Type  | Mandatory| Description                  |
   | ------- | ------ | ---- | ---------------------- |
-  | formId  | string | Yes| ID of the widget that requests the event.|
-  | message | string | Yes| Event message.|
+  | formId  | string | Yes  | ID of the widget that requests the event.|
+  | message | string | Yes  | Event message.            |
 
-- Example
+**Example**
 
-  ```
+  ```js
   export default class MyFormExtension extends FormExtension {
       onEvent(formId, message) {
           console.log('FormExtension onEvent, formId:' + formId + ", message:" + message);
@@ -160,24 +170,50 @@ Called to instruct the widget provider to receive and process the widget event.
   }
   ```
 
-## onDestroy
+## FormExtension.onDestroy
 
 onDestroy(formId: string): void
 
 Called to notify the widget provider that a **Form** instance (widget) has been destroyed.
 
-- Parameters
+**System capability**: SystemCapability.Ability.Form
 
-  | Name| Type| Mandatory| Description|
+**Parameters**
+
+  | Name| Type  | Mandatory| Description              |
   | ------ | ------ | ---- | ------------------ |
-  | formId | string | Yes| ID of the widget to be destroyed.|
+  | formId | string | Yes  | ID of the widget to be destroyed.|
 
-- Example
+**Example**
 
-  ```
+  ```js
   export default class MyFormExtension extends FormExtension {
       onDestroy(formId) {
           console.log('FormExtension onDestroy, formId:' + formId);
+      }
+  }
+  ```
+
+## FormExtension.onConfigurationUpdated
+
+onConfigurationUpdated(config: Configuration): void;
+
+Called when the configuration of the environment where the ability is running is updated.
+
+**System capability**: SystemCapability.Ability.Form
+
+**Parameters**
+
+  | Name| Type| Mandatory| Description| 
+  | -------- | -------- | -------- | -------- |
+  | config | [Configuration](#section188911144124715) | Yes| New configuration.| 
+
+**Example**
+    
+  ```js
+  class MyFormExtension extends MyFormExtension {
+      onConfigurationUpdated(config) {
+          console.log('onConfigurationUpdated, config:' + JSON.stringify(config));
       }
   }
   ```

@@ -9,7 +9,9 @@ Provides the permission request result.
 
 ## Attributes
 
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
   | Name| Type| Readable| Writable| Description| 
 | -------- | -------- | -------- | -------- | -------- |
-| permissions | Array&lt;string&gt; | Yes| No| Permissions requested. <br><b>System capability</b>: SystemCapability.Ability.AbilityRuntime.Core| 
-| authResults | Array&lt;number&gt; | Yes| No| Whether the requested permissions are granted or denied. The value **0** means that the requests permissions are granted, and **-1** means the opposite. <br><b>System capability</b>: SystemCapability.Ability.AbilityRuntime.Core| 
+| permissions | Array&lt;string&gt; | Yes| No| Permissions requested.| 
+| authResults | Array&lt;number&gt; | Yes| No| Whether the requested permissions are granted or denied. The value **0** means that the requests permissions are granted, and **-1** means the opposite. | 
