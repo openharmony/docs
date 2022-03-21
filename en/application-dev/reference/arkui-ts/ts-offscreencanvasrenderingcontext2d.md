@@ -1895,7 +1895,7 @@ Draws an image.
 
 createImageData(width: number, height: number): Object
 
-Creates an **ImageData** object based on the specified width and height. For details, see [ImageData](../reference/arkui-ts/ts-components-canvas-imagebitmap.md).
+Creates an **ImageData** object based on the specified width and height. For details, see [ImageData](ts-components-canvas-imagebitmap.md).
 
 - Parameters
     | Name | Type | Mandatory | Default Value | Description |
@@ -1908,19 +1908,19 @@ Creates an **ImageData** object based on the specified width and height. For det
 
 createImageData(imageData: ImageData): Object
 
-Creates an **ImageData** object by copying an existing **ImageData** object. For details, see [ImageData](../reference/arkui-ts/ts-components-canvas-imagebitmap.md).
+Creates an **ImageData** object by copying an existing **ImageData** object. For details, see [ImageData](ts-components-canvas-imagebitmap.md).
 
 - Parameters
     | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | imagedata | [ImageData](../reference/arkui-ts/ts-components-canvas-imagebitmap.md) | Yes | null | **ImageData** object to copy. |
+  | imagedata | [ImageData](ts-components-canvas-imagebitmap.md) | Yes | null | **ImageData** object to copy. |
 
 
 ### getImageData
 
 getImageData(sx: number, sy: number, sw: number, sh: number): Object
 
-Creates an [ImageData](../reference/arkui-ts/ts-components-canvas-imagebitmap.md) object with pixels in the specified area on the canvas.
+Creates an [ImageData](ts-components-canvas-imagebitmap.md) object with pixels in the specified area on the canvas.
 
 - Parameters
     | Name | Type | Mandatory | Default Value | Description |
@@ -1935,7 +1935,7 @@ Creates an [ImageData](../reference/arkui-ts/ts-components-canvas-imagebitmap.md
 
 putImageData(imageData: Object, dx: number, dy: number, dirtyX?: number, dirtyY?: number, dirtyWidth?: number, dirtyHeight?: number): void
 
-Puts the [ImageData](../reference/arkui-ts/ts-components-canvas-imagebitmap.md) onto a rectangular area on the canvas.
+Puts the [ImageData](ts-components-canvas-imagebitmap.md) onto a rectangular area on the canvas.
 
 - Parameters
     | Name | Type | Mandatory | Default Value | Description |

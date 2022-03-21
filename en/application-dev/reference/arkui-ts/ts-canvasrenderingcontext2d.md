@@ -1792,7 +1792,7 @@ Draws an image.
 
 createImageData(width: number, height: number): Object
 
-Creates an **ImageData** object. For details, see [ImageData](../reference/arkui-ts/ts-components-canvas-imagebitmap.md).
+Creates an **ImageData** object. For details, see [ImageData](ts-components-canvas-imagebitmap.md).
 
 - Parameters
     | Name | Type | Mandatory | Default Value | Description |
@@ -1805,7 +1805,7 @@ Creates an **ImageData** object. For details, see [ImageData](../reference/arkui
 
 createImageData(imageData: Object): Object
 
-Creates an **ImageData** object. For details, see [ImageData](../reference/arkui-ts/ts-components-canvas-imagebitmap.md).
+Creates an **ImageData** object. For details, see [ImageData](ts-components-canvas-imagebitmap.md).
 
 - Parameters
     | Name | Type | Mandatory | Default Value | Description |
@@ -1817,7 +1817,7 @@ Creates an **ImageData** object. For details, see [ImageData](../reference/arkui
 
 getImageData(sx: number, sy: number, sw: number, sh: number): Object
 
-  Creates an [ImageData](../reference/arkui-ts/ts-components-canvas-imagebitmap.md) object with pixels in the specified area on the canvas.
+  Creates an [ImageData](ts-components-canvas-imagebitmap.md) object with pixels in the specified area on the canvas.
 - Parameters
     | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
@@ -1831,7 +1831,7 @@ getImageData(sx: number, sy: number, sw: number, sh: number): Object
 
 putImageData(imageData: Object, dx: number, dy: number, dirtyX?: number, dirtyY?: number, dirtyWidth?: number, dirtyHeight?: number): void
 
-Puts the [ImageData](../reference/arkui-ts/ts-components-canvas-imagebitmap.md) onto a rectangular area on the canvas.
+Puts the [ImageData](ts-components-canvas-imagebitmap.md) onto a rectangular area on the canvas.
 
 - Parameters
     | Name | Type | Mandatory | Default Value | Description |
