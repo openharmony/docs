@@ -76,7 +76,7 @@ subsystem  # 子系统
 - 用例示例
     ```
     /*
-     * Copyright (c) 2021 XXXX Device Co., Ltd.
+     * Copyright (c) 2022 XXXX Device Co., Ltd.
      * Licensed under the Apache License, Version 2.0 (the "License");
      * you may not use this file except in compliance with the License.
      * You may obtain a copy of the License at
@@ -142,7 +142,7 @@ subsystem  # 子系统
     1. 添加测试用例文件头注释信息
 	    ```
     	/*
-    	 * Copyright (c) 2021 XXXX Device Co., Ltd.
+    	 * Copyright (c) 2022 XXXX Device Co., Ltd.
     	 * Licensed under the Apache License, Version 2.0 (the "License");
     	 * you may not use this file except in compliance with the License.
     	 * You may obtain a copy of the License at
@@ -256,7 +256,7 @@ subsystem  # 子系统
 - 用例示例
     ```
     /*
-     * Copyright (C) 2021 XXXX Device Co., Ltd.
+     * Copyright (C) 2022 XXXX Device Co., Ltd.
      * Licensed under the Apache License, Version 2.0 (the "License");
      * you may not use this file except in compliance with the License.
      * You may obtain a copy of the License at
@@ -313,7 +313,7 @@ subsystem  # 子系统
     1. 添加测试用例文件头注释信息
 	    ```
     	/*
-    	 * Copyright (C) 2021 XXXX Device Co., Ltd.
+    	 * Copyright (C) 2022 XXXX Device Co., Ltd.
     	 * Licensed under the Apache License, Version 2.0 (the "License");
     	 * you may not use this file except in compliance with the License.
     	 * You may obtain a copy of the License at
@@ -381,7 +381,7 @@ subsystem  # 子系统
 
 - **C++用例编译配置示例**
     ```
-    # Copyright (c) 2021 XXXX Device Co., Ltd.
+    # Copyright (c) 2022 XXXX Device Co., Ltd.
     
     import("//build/test.gni")
     
@@ -417,7 +417,7 @@ subsystem  # 子系统
 
     1. 添加文件头注释信息
 	    ```
-    	# Copyright (c) 2021 XXXX Device Co., Ltd.
+    	# Copyright (c) 2022 XXXX Device Co., Ltd.
     	```
     2. 导入编译模板文件
 	    ```
@@ -483,7 +483,7 @@ subsystem  # 子系统
 - **JavaScript用例编译配置示例**
 
     ```
-    # Copyright (C) 2021 XXXX Device Co., Ltd.
+    # Copyright (C) 2022 XXXX Device Co., Ltd.
     
     import("//build/test.gni")
     
@@ -507,7 +507,7 @@ subsystem  # 子系统
     1. 添加文件头注释信息
     
     	```
-    	# Copyright (C) 2021 XXXX Device Co., Ltd.
+    	# Copyright (C) 2022 XXXX Device Co., Ltd.
     	```
     2. 导入编译模板文件
     
