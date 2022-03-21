@@ -1,108 +1,90 @@
 # I3C<a name="1"></a>
 
 -   [概述](#section1)
--   [接口说明](#section2)
--   [使用指导](#section3)
-    -   [使用流程](#section4)
-    -   [打开I3C控制器](#section5)
-    -   [进行I3C通信](#section6)
-    -   [获取I3C控制器配置](#section7)
-    -   [配置I3C控制器](#section8)
-    -   [请求IBI（带内中断）](#section9)
-    -   [释放IBI（带内中断）](#section10)
-    -   [关闭I3C控制器](#section11)
-    
--   [使用实例](#section12)
+    -   [功能简介](#section2)
+    -   [基本概念](#section3)
+    -   [运作机制](#section4)
+    -   [约束与限制](#section5)
+-   [使用指导](#section6)
+    -   [场景介绍](#section7)
+    -   [接口说明](#section8)
+    -   [开发步骤](#section9)
+    -   [使用实例](#section10)
 
 ## 概述<a name="section1"></a>
 
-- I3C（Improved Inter Integrated Circuit）总线是由MIPI Alliance开发的一种简单、低成本的双向二线制同步串行总线。
-- I3C总线向下兼容传统的I2C设备，同时增加了带内中断（In-Bind Interrupt）功能，支持I3C设备进行热接入操作，弥补了I2C总线需要额外增加中断线来完成中断的不足。
+### 功能简介<a name="section2"></a>
+
+I3C（Improved Inter Integrated Circuit）总线是由MIPI Alliance开发的一种简单、低成本的双向二线制同步串行总线。
+
+- I3C接口定义了完成I3C传输的通用方法集合，包括：
+    I3C控制器管理：打开或关闭I3C控制器。
+    I3C控制器配置：获取或配置I3C控制器参数。
+    I3C消息传输：通过消息传输结构体数组进行自定义传输。
+    I3C带内中断：请求或释放带内中断。
+
+### 基本概念<a name="section3"></a>
+
+- I3C是两线双向串行总线，针对多个传感器从设备进行了优化，并且一次只能由一个I3C主设备控制。 相比于I2C，I3C总线拥有更高的速度、更低的功耗，支持带内中断、从设备热接入以及切换当前主设备，同时向后兼容I2C从设备。
+- I3C增加了带内中断（In-Bind Interrupt）功能，支持I3C设备进行热接入操作，弥补了I2C总线需要额外增加中断线来完成中断的不足。
 - I3C总线上允许同时存在I2C设备、I3C从设备和I3C次级主设备。
--   I3C接口定义了完成I3C传输的通用方法集合，包括：
+- I3C相关缩略词解释：
+    - IBI（In-Band Interrupt）：带内中断。在SCL线没有启动信号时，I3C从设备可以通过拉低SDA线使主设备发出SCL启动信号，从而发出带内中断请求。若有多个从机同时发出中断请求，I3C主机则通过从机地址进行仲裁，低地址优先相应。
+    - DAA（Dynamic Address Assignment）：动态地址分配。I3C支持对从设备地址进行动态分配从而避免地址冲突。在分配动态地址之前，连接到I3C总线上的每个I3C设备都应以两种方式之一来唯一标识：
+    1）设备可能有一个符合I2C规范的静态地址，主机可以使用此静态地址；
+    2）在任何情况下，设备均应具有48位的临时ID。 除非设备具有静态地址且主机使用静态地址，否则主机应使用此48位临时ID。
+    - CCC（Common Command Code） ：通用命令代码，所有I3C设备均支持CCC，可以直接将其传输到特定的I3C从设备，也可以同时传输到所有I3C从设备。
+    - BCR（Bus Characteristic Register）：总线特性寄存器，每个连接到 I3C 总线的 I3C 设备都应具有相关的只读总线特性寄存器 （BCR），该寄存器描述了I3C兼容设备在动态地址分配和通用命令代码中的作用和功能。
+    - DCR（Device Characteristic Register）：设备特性寄存器，连接到 I3C 总线的每个 I3C 设备都应具有相关的只读设备特性寄存器 (DCR)。 该寄存器描述了用于动态地址分配和通用命令代码的 I3C 兼容设备类型（例如，加速度计、陀螺仪等）。
 
-    -   I3C控制器管理：打开或关闭I3C控制器。
-    -   I3C控制器配置：获取或配置I3C控制器参数。
-    -   I3C消息传输：通过消息传输结构体数组进行自定义传输。
-    -   I3C带内中断：请求或释放带内中断。
- -    I3C的物理连接如[图1](#fig1)所示：  
-    **图 1**  I3C物理连线示意图<a name="fig1"></a>  
-    ![](figures/I3C物理连线示意图.png "I3C物理连线示意图")
+### 运作机制<a name="section4"></a>
 
-## 接口说明<a name="section2"></a>
+在HDF框架中，I3C模块接口适配模式采用统一服务模式，这需要一个设备服务来作为I3C模块的管理器，统一处理外部访问，这会在配置文件中有所体现。统一服务模式适合于同类型设备对象较多的情况，如I3C可能同时具备十几个控制器，采用独立服务模式需要配置更多的设备节点，且服务会占据内存资源。
+
+ 相比于I2C，I3C总线拥有更高的速度、更低的功耗，支持带内中断、从设备热接入以及切换当前主设备，同时向后兼容I2C从设备。一路I3C总线上，可以连接多个设备，这些设备可以是I2C从设备、I3C从设备和I3C次级主设备，但只能同时存在一个主设备，一般为控制器本身。
+
+**图 1**  I3C物理连线示意图<a name="fig1"></a>  
+![](figures/I3C物理连线示意图.png "I3C物理连线示意图")
+
+### 约束与限制<a name="section5"></a>
+
+I3C模块当前仅支持轻量和小型系统内核（LiteOS） 。
+
+## 使用指导<a name="section6"></a>
+
+### 场景介绍<a name="section7"></a>
+
+I3C可连接单个或多个I3C、I2C从器件，它主要用于：
+1. 与传感器通信，如陀螺仪、气压计或支持I3C协议的图像传感器等；
+2. 通过软件或硬件协议转换，与其他接口（如 UART 串口等）的设备进行通信。
+
+### 接口说明<a name="section8"></a>
 
 **表 1**  I3C驱动API接口功能介绍
 
 <a name="table1"></a>
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="18.63%"><p>功能分类</p>
-</th>
-<th class="cellrowborder" valign="top" width="28.03%"><p>接口名</p>
-</th>
-<th class="cellrowborder" valign="top" width="53.339999999999996%"><p>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" bgcolor="#ffffff" rowspan="2" valign="top" width="18.63%"><p>I3C控制器管理接口</p>
-</td>
-<td class="cellrowborder" valign="top" width="28.03%"><p>I3cOpen</p>
-</td>
-<td class="cellrowborder" valign="top" width="53.339999999999996%">打开I3C控制器</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top"><p>I3cClose</p>
-</td>
-<td class="cellrowborder" valign="top"><p>关闭I3C控制器</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" bgcolor="#ffffff" valign="top" width="18.63%"><p>I3c消息传输接口</p>
-</td>
-<td class="cellrowborder" valign="top" width="28.03%"><p>I3cTransfer</p>
-</td>
-<td class="cellrowborder" valign="top" width="53.339999999999996%"><p>自定义传输</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" bgcolor=ffffff rowspan="2" valign="top" width="18.63%"><p>I3C控制器配置接口</p>
-</td>
-<td class="cellrowborder" valign="top" width="28.03%"><p>I3cSetConfig</p>
-</td>
-<td class="cellrowborder"valign="top" width="53.339999999999996%">配置I3C控制器</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top"><p>I3cGetConfig</p>
-</td>
-<td class="cellrowborder" valign="top"><p>获取I3C控制器配置</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" bgcolor=ffffff rowspan="2" valign="top" width="18.63%"><p>I3C带内中断接口</p>
-</td>
-<td class="cellrowborder" valign="top" width="28.03%"><p>I3cRequestIbi</p>
-</td>
-<td class="cellrowborder" valign="top" width="53.339999999999996%">请求带内中断</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top"><p>I3cFreeIbi</p>
-</td>
-<td class="cellrowborder" valign="top"><p>释放带内中断</p>
-</td>
-</tr>
-</table>
-
-
+| 接口名        | 描述              |
+| ------------- | ----------------- |
+| I3cOpen       | 打开I3C控制器     |
+| I3cClose      | 关闭I3C控制器     |
+| I3cTransfer   | 自定义传输        |
+| I3cSetConfig  | 配置I3C控制器     |
+| I3cGetConfig  | 获取I3C控制器配置 |
+| I3cRequestIbi | 请求带内中断      |
+| I3cFreeIbi    | 释放带内中断      |
 
 >![](../public_sys-resources/icon-note.gif) **说明：** 
 >本文涉及的所有接口，仅限内核态使用，不支持在用户态使用。
 
-## 使用指导<a name="section3"></a>
-
-### 使用流程<a name="section4"></a>
+### 开发步骤<a name="section9"></a>
 
 I3C的使用流程如[图2](#fig2)所示。
 
 **图 2**  I3C使用流程图<a name="fig2"></a>  
 ![](figures/I3C使用流程图.png "I3C使用流程图")
 
-### 打开I3C控制器<a name="section5"></a>
+#### 打开I3C控制器<a name="section5"></a>
 
 在进行I3C通信前，首先要调用I3cOpen打开I3C控制器。
 ```c
@@ -113,34 +95,12 @@ DevHandle I3cOpen(int16_t number);
 
 <a name="table2"></a>
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="20.66%"><p>参数</strong></p>
-</th>
-<th class="cellrowborder" valign="top" width="79.34%"><p><strong>参数描述</strong></p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="20.66%"><p>number</p>
-</td>
-<td class="cellrowborder" valign="top" width="79.34%"><p>I3C控制器号</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="20.66%"><p><strong>返回值</strong></p>
-</td>
-<td class="cellrowborder" valign="top" width="79.34%"><p><strong>返回值描述</strong></p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="20.66%"><p>NULL</p>
-</td>
-<td class="cellrowborder" valign="top" width="79.34%"><p>打开I3C控制器失败</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="20.66%"><p>控制器句柄</p>
-</td>
-<td class="cellrowborder" valign="top" width="79.34%"><p>打开的I3C控制器句柄</p>
-</td>
-</tr>
-</tbody>
-</table>
+| 参数       | 参数描述            |
+| ---------- | ------------------- |
+| number     | I3C控制器号         |
+| **返回值** | **返回值描述**      |
+| NULL       | 打开I3C控制器失败   |
+| 控制器句柄 | 打开的I3C控制器句柄 |
 
 假设系统中存在8个I3C控制器，编号从0到7，那么我们现在打开1号控制器：
 
@@ -155,7 +115,7 @@ if (i3cHandle == NULL) {
 }
 ```
 
-### 进行I3C通信<a name="section6"></a>
+#### 进行I3C通信<a name="section6"></a>
 
 消息传输
 ```c
@@ -166,49 +126,15 @@ int32_t I3cTransfer(DevHandle handle, struct I3cMsg *msgs, int16_t count, enum T
 
 <a name="table3"></a>
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="50%"><p><strong>参数</strong></p>
-</th>
-<th class="cellrowborder" valign="top" width="50%"><p><strong>参数描述</strong></p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="50%"><p>handle</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>I3C控制器句柄</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>msgs</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>待传输数据的消息结构体数组</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>count</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>消息数组长度</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>mode</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>传输模式，0：I2C模式；1：I3C模式；2：发送CCC（Common Command Code）</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p><strong>返回值</strong></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p><strong>返回值描述</strong></p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>正整数</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>成功传输的消息结构体数目</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>负数</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>执行失败</p>
-</td>
-</tr>
-</tbody>
-</table>
+| 参数       | 参数描述                                     |
+| ---------- | -------------------------------------------- |
+| handle     | I3C控制器句柄                                |
+| msgs       | 待传输数据的消息结构体数组                   |
+| count      | 消息数组长度                                 |
+| mode       | 传输模式，0：I2C模式；1：I3C模式；2：发送CCC |
+| **返回值** | **返回值描述**                               |
+| 正整数     | 成功传输的消息结构体数目                     |
+| 负数       | 执行失败                                     |
 
 I3C传输消息类型为I3cMsg，每个传输消息结构体表示一次读或写，通过一个消息数组，可以执行若干次的读写组合操作。
 
@@ -239,7 +165,7 @@ if (ret != 2) {
 >-   本函数不对每个消息结构体中的数据长度做限制，同样由具体I3C控制器决定。
 >-   本函数可能会引起系统休眠，禁止在中断上下文调用。
 
-### 获取I3C控制器配置<a name="section7"></a>
+#### 获取I3C控制器配置<a name="section7"></a>
 
 ```c
 int32_t I3cGetConfig(DevHandle handle, struct I3cConfig *config);
@@ -249,41 +175,27 @@ int32_t I3cGetConfig(DevHandle handle, struct I3cConfig *config);
 
 <a name="table4"></a>
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="50%"><p><strong>参数</strong></p>
-</th>
-<th class="cellrowborder" valign="top" width="50%"><p><strong>参数描述</strong></p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="50%"><p>handle</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>I3C控制器句柄</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>config</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>I3C控制器配置</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p><strong>返回值</strong></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p><strong>返回值描述</strong></p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>0</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>获取成功</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>负数</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>获取失败</p>
-</td>
-</tr>
-</tbody>
-</table>
+| 参数       | 参数描述       |
+| ---------- | -------------- |
+| handle     | I3C控制器句柄  |
+| config     | I3C控制器配置  |
+| **返回值** | **返回值描述** |
+| 0          | 获取成功       |
+| 负数       | 获取失败       |
 
-### 配置I3C控制器<a name="section8"></a>
+获取I3C控制器配置示例：
+
+```c
+struct I3cConfig config;
+
+ret = I3cGetConfig(i3cHandle, &config);
+if (ret != HDF_SUCCESS) {
+    HDF_LOGE("%s: Get config fail!", __func__);
+    return HDF_FAILURE;
+}
+```
+
+#### 配置I3C控制器<a name="section8"></a>
 
 ```c
 int32_t I3cSetConfig(DevHandle handle, struct I3cConfig *config);
@@ -293,41 +205,29 @@ int32_t I3cSetConfig(DevHandle handle, struct I3cConfig *config);
 
 <a name="table5"></a>
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="50%"><p><strong>参数</strong></p>
-</th>
-<th class="cellrowborder" valign="top" width="50%"><p><strong>参数描述</strong></p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="50%"><p>handle</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>I3C控制器句柄</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>config</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>I3C控制器配置</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p><strong>返回值</strong></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p><strong>返回值描述</strong></p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>0</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>配置成功</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>负数</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>配置失败</p>
-</td>
-</tr>
-</tbody>
-</table>
+| 参数       | 参数描述       |
+| ---------- | -------------- |
+| handle     | I3C控制器句柄  |
+| config     | I3C控制器配置  |
+| **返回值** | **返回值描述** |
+| 0          | 配置成功       |
+| 负数       | 配置失败       |
 
-### 请求IBI（带内中断）<a name="section9"></a>
+配置I3C控制器示例：
+
+```c
+struct I3cConfig config;
+
+config->busMode = I3C_BUS_HDR_MODE;
+config->curMaster = NULL;
+ret = I3cSetConfig(i3cHandle, &config);
+if (ret != HDF_SUCCESS) {
+    HDF_LOGE("%s: Set config fail!", __func__);
+    return HDF_FAILURE;
+}
+```
+
+#### 请求IBI（带内中断）<a name="section9"></a>
 
 ```c
 int32_t I3cRequestIbi(DevHandle handle, uint16_t addr, I3cIbiFunc func, uint32_t payload);
@@ -337,49 +237,17 @@ int32_t I3cRequestIbi(DevHandle handle, uint16_t addr, I3cIbiFunc func, uint32_t
 
 <a name="table6"></a>
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="50%"><p><strong>参数</strong></p>
-</th>
-<th class="cellrowborder" valign="top" width="50%"><p><strong>参数描述</strong></p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="50%"><p>handle</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>I3C控制器设备句柄</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>addr</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>I3C设备地址</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>func</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>IBI回调函数</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>payload</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>IBI有效载荷</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p><strong>返回值</strong></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p><strong>返回值描述</strong></p>
-</td>
-</tr>
-<tr><td class="cellrowborder"valign="top" width="50%"><p>0</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>请求成功</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>负数</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>请求失败</p>
-</td>
-</tr>
-</tbody>
-</table>
+| 参数       | 参数描述       |
+| ---------- | -------------- |
+| handle     | I3C控制器句柄  |
+| addr       | I3C设备地址    |
+| func       | IBI回调函数    |
+| payload    | IBI有效载荷    |
+| **返回值** | **返回值描述** |
+| 0          | 请求成功       |
+| 负数       | 请求失败       |
+
+请求带内中断示例：
 
 ```c
 static int32_t TestI3cIbiFunc(DevHandle handle, uint16_t addr, struct I3cIbiData data)
@@ -415,7 +283,7 @@ int32_t I3cTestRequestIbi(void)
 }
 ```
 
-### 释放IBI（带内中断）<a name="section10"></a>
+#### 释放IBI（带内中断）<a name="section10"></a>
 
 ```c
 int32_t I3cFreeIbi(DevHandle handle, uint16_t addr);
@@ -425,45 +293,21 @@ int32_t I3cFreeIbi(DevHandle handle, uint16_t addr);
 
 <a name="table7"></a>
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="50%"><p><strong>参数</strong></p>
-</th>
-<th class="cellrowborder" valign="top" width="50%"><p><strong>参数描述</strong></p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="50%"><p>handle</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>I3C控制器设备句柄</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>addr</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>I3C设备地址</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p><strong>返回值</strong></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p><strong>返回值描述</strong></p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>0</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>释放成功</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>负数</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>释放失败</p>
-</td>
-</tr>
-</tbody>
-</table>
+| 参数       | 参数描述       |
+| ---------- | -------------- |
+| handle     | I3C控制器句柄  |
+| addr       | I3C设备地址    |
+| **返回值** | **返回值描述** |
+| 0          | 释放成功       |
+| 负数       | 释放失败       |
+
+释放带内中断示例：
 
 ```c
 I3cFreeIbi(i3cHandle, 0x3F); /* 释放带内中断 */
 ```
 
-### 关闭I3C控制器<a name="section11"></a>
+#### 关闭I3C控制器<a name="section11"></a>
 
 I3C通信完成之后，需要关闭I3C控制器，关闭函数如下所示：
 ```c
@@ -474,26 +318,17 @@ void I3cClose(DevHandle handle);
 
 <a name="table4"></a>
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="50%"><p>参数</p>
-</th>
-<th class="cellrowborder" valign="top" width="50%"><p>参数描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="50%"><p>handle</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>I3C控制器设备句柄</p>
-</td>
-</tr>
-</tbody>
-</table>
+| 参数       | 参数描述       |
+| ---------- | -------------- |
+| handle     | I3C控制器句柄  |
 
+关闭I3C控制器实例：
 
 ```c
 I3cClose(i3cHandle); /* 关闭I3C控制器 */
 ```
 
-## 使用实例<a name="section12"></a>
+## 使用实例<a name="section10"></a>
 
 本例程以操作开发板上的I3C设备为例，详细展示I3C接口的完整使用流程。
 
@@ -511,7 +346,6 @@ I3cClose(i3cHandle); /* 关闭I3C控制器 */
 
 ```c
 #include "i3c_if.h"          /* I3C标准接口头文件 */
-#include "i3c_ccc.h"         /* I3C通用命令代码头文件 */
 #include "hdf_log.h"         /* 标准日志打印头文件 */
 #include "osal_io.h"         /* 标准IO读写接口头文件 */
 #include "osal_time.h"       /* 标准延迟&睡眠接口头文件 */

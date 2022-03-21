@@ -1,137 +1,89 @@
 # HDMI<a name="1"></a>
 
 -   [概述](#section1)
--   [接口说明](#section2)
--   [使用指导](#section3)
-    -   [使用流程](#section4)
-    -   [打开HDMI控制器](#section5)
-    -   [注册热插拔回调函数](#section6)
-    -   [读取EDID](#section7)
-    -   [设置属性](#section8)
-    -   [启动HDMI传输](#section10)
-    -   [停止HDMI传输](#section11)
-    -   [注销热插拔回调函数](#section12)
-    -   [关闭HDMI控制器](#section13)
-    
--   [使用实例](#section14)
+    -   [功能简介](#section2)
+    -   [基本概念](#section3)
+    -   [运作机制](#section4)
+    -   [约束与限制](#section5)
+-   [使用指导](#section6)
+    -   [场景介绍](#section7)
+    -   [接口说明](#section8)
+    -   [开发步骤](#section9)
+    -   [使用实例](#section10)
 
 ## 概述<a name="section1"></a>
 
--   HDMI（High-Definition Multiface Interface）是Hitachi, Panasonic, Philips, SiliconImage, Sony, Thomson, Toshiba共同发布的一款音视频传输协议。
--   HDMI以主从方式工作，通常有一个Source端和一个Sink端。
--   HDMI接口定义了完成HDMI传输的通用方法集合，包括：
+### 功能简介<a name="section2"></a>
+
+- HDMI（High-Definition Multiface Interface），即高清多媒体接口，主要用于DVD、机顶盒等音视频Source到TV、显示器等Sink设备的传输。
+- HDMI以主从方式工作，通常有一个Source端和一个Sink端。
+- HDMI接口定义了完成HDMI传输的通用方法集合，包括：
 
     - HDMI控制器管理：打开或关闭HDMI控制器
     - HDMI启动/停止传输：启动或停止HDMI传输
     - HDMI控制器设置：设置音频、视频及HDR属性，设置色彩深度、声音图像消隐等
     - HDMI读取EDID：读取Sink端原始的EDID数据
     - HDMI热插拔：注册/注销热插拔回调函数
--   HDMI物理连接如[图1](#fig1)所示：  
-     **图 1**  HDMI物理连线示意图<a name="fig1"></a>  
-     ![](figures/HDMI物理连线示意图.png "HDMI物理连线示意图")
 
-## 接口说明<a name="section2"></a>
+### 基本概念<a name="section3"></a>
+
+HDMI（High-Definition Multiface Interface）是Hitachi、Panasonic、Philips、SiliconImage、Sony、Thomson、Toshiba共同发布的一款音视频传输协议。传输过程遵循TMDS（Transition Minimized Differential Signaling）协议。
+
+- TMDS（Transition Minimized Differential signal）：过渡调制差分信号，也被称为最小化传输差分信号，用于发送音频、视频及各种辅助数据。
+- DDC（Display Data Channel）：显示数据通道，发送端与接收端可利用DDC通道得知彼此的发送与接收能力，但HDMI仅需单向获知接收端（显示器）的能力。
+- CEC（Consumer Electronics Control）：消费电子控制，该功能应该能够在连接HDMI的发送设备与接收设备之间实现交互操作。
+- FRL（Fixed Rate Link）：TMDS 的架构进行讯号传输时，最高带宽可达 18Gbps，而 FRL 模式的带宽则提升到 48 Gbps。
+- HDCP（High-bandwidth Digital Content Protection）：即高带宽数字内容保护技术，当用户对高清晰信号进行非法复制时，该技术会进行干扰，降低复制出来的影像的质量，从而对内容进行保护。
+- EDID（Extended Display Identification Data）：扩展显示标识数据， 通常存储在显示器的固件中，标识供应商信息、EDID版本信息、最大图像大小、颜色设置、厂商预设置、频率范围的限制以及显示器名和序列号的字符串。
+
+### 运作机制<a name="section4"></a>
+
+HDMI的Source端提供+5V和GND，用于DDC和CEC通信。通过DDC通道，Source端可以读取Sink端的各项参数，如接受能力等；CEC为可选通道，用于同步Source端与Sink端的控制信号，改善用户体验。TMDS通道有四组差分信号，TMDS Clock Channel为TMDS提供时钟信号，其余三组传输音视频数据及各种辅助数据；HDP为热插拔检测端口，当有Sink端接入时，Source端会通过中断服务程序进行响应。
+
+HDMI物理连接如[图1](#fig1)所示：  
+**图 1**  HDMI物理连线示意图<a name="fig1"></a>  
+![](figures/HDMI物理连线示意图.png "HDMI物理连线示意图")
+
+### 约束与限制<a name="section5"></a>
+
+HDMI模块当前仅支持轻量和小型系统内核（LiteOS） 。
+
+## 使用指导<a name="section6"></a>
+
+### 场景介绍<a name="section7"></a>
+
+HDMI具有体积小，传输速率高，传输带宽宽，兼容性好，能同时传输无压缩音视频信号等优点。与传统的全模拟接口相比，HDMI不但增加了设备间接线的便捷性，还提供了一些HDMI特有的智能化功能，可用于小体积设备进行高质量音视频传输的场景。
+
+### 接口说明<a name="section8"></a>
 
 **表 1**  HDMI驱动API接口功能介绍
 
 <a name="table1"></a>
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="18.63%"><p>功能分类</p>
-</th>
-<th class="cellrowborder" valign="top" width="28.03%"><p>接口名</p>
-</th>
-<th class="cellrowborder" valign="top" width="53.339999999999996%"><p>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" bgcolor="#ffffff" rowspan="2" valign="top" width="18.63%"><p>HDMI控制器管理接口</p>
-</td>
-<td class="cellrowborder" valign="top" width="28.03%"><p>HdmiOpen</p>
-</td>
-<td class="cellrowborder" valign="top" width="53.339999999999996%">打开HDMI控制器</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top"><p>HdmiClose</p>
-</td>
-<td class="cellrowborder" valign="top"><p>关闭HDMI控制器</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" bgcolor="#ffffff" rowspan="2" valign="top" width="18.63%"><p>启动/停止HDMI传输接口</p>
-</td>
-<td class="cellrowborder" valign="top" width="28.03%"><p>HdmiStart</p>
-</td>
-<td class="cellrowborder" valign="top" width="53.339999999999996%">启动HDMI传输</p>
-</td>
-</tr>
-<tr id="row5632152611414"><td class="cellrowborder" valign="top"><p>HdmiStop</p>
-</td>
-<td class="cellrowborder" valign="top"><p>停止HDMI传输</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" bgcolor="#ffffff" rowspan="6" valign="top" width="18.63%"><p>HDMI控制器设置接口</p>
-</td>
-<td class="cellrowborder" valign="top" width="28.03%"><p>HdmiAvmuteSet</p>
-</td>
-<td class="cellrowborder" valign="top" width="53.339999999999996%">HDMI声音图像消隐设置</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top"><p>HdmiDeepColorSet</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p>设置色彩深度</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top"><p>HdmiDeepColorGet</p>
-</td>
-<td class="cellrowborder" valign="top"><p>获取色彩深度</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top"><p>HdmiSetVideoAttribute</p>
-</td>
-<td class="cellrowborder" valign="top"><p>设置视频属性</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top"><p>HdmiSetAudioAttribute</p>
-</td>
-<td class="cellrowborder" valign="top"><p>设置音频属性</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top"><p>HdmiSetHdrAttribute</p>
-</td>
-<td class="cellrowborder" valign="top"><p>设置HDR属性</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" bgcolor="#ffffff" valign="top" width="18.63%"><p>EDID获取接口</p>
-</td>
-<td class="cellrowborder" valign="top" width="28.03%"><p>HdmiReadSinkEdid</p>
-</td>
-<td class="cellrowborder" valign="top" width="53.339999999999996%">HDMI读取Sink端原始EDID数据</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" bgcolor="#ffffff" rowspan="2" valign="top" width="18.63%"><p>HDMI热插拔相关接口</p>
-</td>
-<td class="cellrowborder" valign="top" width="28.03%"><p>HdmiRegisterHpdCallbackFunc</p>
-</td>
-<td class="cellrowborder" valign="top" width="53.339999999999996%">注册HDMI热插拔检测回调函数</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top"><p>HdmiUnregisterHpdCallbackFunc</p>
-</td>
-<td class="cellrowborder" valign="top"><p>注销HDMI热插拔检测回调函数</p>
-</td>
-</tr>
-</tbody>
-</table>
+| 接口名                        | 描述                       |
+| ----------------------------- | -------------------------- |
+| HdmiOpen                      | 打开HDMI控制器             |
+| HdmiClose                     | 关闭HDMI控制器             |
+| HdmiStart                     | 启动HDMI传输               |
+| HdmiStop                      | 停止HDMI传输               |
+| HdmiAvmuteSet                 | 声音图像消隐设置           |
+| HdmiDeepColorSet              | 设置色彩深度               |
+| HdmiDeepColorGet              | 获取色彩深度               |
+| HdmiSetVideoAttribute         | 设置视频属性               |
+| HdmiSetAudioAttribute         | 设置音频属性               |
+| HdmiSetHdrAttribute           | 设置HDR属性                |
+| HdmiReadSinkEdid              | 读取Sink端原始EDID数据     |
+| HdmiRegisterHpdCallbackFunc   | 注册HDMI热插拔检测回调函数 |
+| HdmiUnregisterHpdCallbackFunc | 注销HDMI热插拔检测回调函数 |
 
-## 使用指导<a name="section3"></a>
-
-### 使用流程<a name="section4"></a>
+### 开发步骤<a name="section9"></a>
 
 使用HDMI设备的一般流程如[图2](#fig2)所示。
 
 **图 2**  HDMI设备使用流程图<a name="fig2"></a>  
 ![](figures/HDMI使用流程图.png "HDMI使用流程图")
 
-### 打开HDMI控制器<a name="section5"></a>
+#### 打开HDMI控制器
 
 在进行HDMI通信前，首先要调用HdmiOpen打开HDMI控制器。
 
@@ -143,34 +95,12 @@ DevHandle HdmiOpen(int16_t number);
 
 <a name="table2"></a>
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="20.66%"><p>参数</strong></p>
-</th>
-<th class="cellrowborder" valign="top" width="79.34%"><p><strong>参数描述</strong></p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="20.66%"><p>number</p>
-</td>
-<td class="cellrowborder" valign="top" width="79.34%"><p>HDMI控制器号</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="20.66%"><p><strong>返回值</strong></p>
-</td>
-<td class="cellrowborder" valign="top" width="79.34%"><p><strong>返回值描述</strong></p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="20.66%"><p>NULL</p>
-</td>
-<td class="cellrowborder" valign="top" width="79.34%"><p>打开HDMI控制器失败</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="20.66%"><p>控制器句柄</p>
-</td>
-<td class="cellrowborder" valign="top" width="79.34%"><p>打开的HDMI控制器句柄</p>
-</td>
-</tr>
-</tbody>
-</table>
+| 参数       | 参数描述             |
+| ---------- | -------------------- |
+| number     | HDMI控制器号         |
+| **返回值** | **返回值描述**       |
+| NULL       | 打开HDMI控制器失败   |
+| 控制器句柄 | 打开的HDMI控制器句柄 |
 
 假设系统中存在2个HDMI控制器，编号从0到1，那么我们现在获取0号控制器：
 
@@ -185,7 +115,7 @@ if (hdmiHandle == NULL) {
 }
 ```
 
-### 注册热插拔检测回调函数<a name="section6"></a>
+#### 注册热插拔检测回调函数
 
 ```c
 int32_t HdmiRegisterHpdCallbackFunc(DevHandle handle, struct HdmiHpdCallbackInfo *callback);
@@ -195,39 +125,13 @@ int32_t HdmiRegisterHpdCallbackFunc(DevHandle handle, struct HdmiHpdCallbackInfo
 
 <a name="table3"></a>
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="50%"><p><strong>参数</strong></p>
-</th>
-<th class="cellrowborder" valign="top" width="50%"><p><strong>参数描述</strong></p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="50%"><p>handle</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>HDMI控制器句柄</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>callback</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>热插拔回调函数信息</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p><strong>返回值</strong></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p><strong>返回值描述</strong></p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>0</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>注册成功</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>负数</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>注册失败</p>
-</td>
-</tr>
-</tbody>
-</table>
+| 参数       | 参数描述           |
+| ---------- | ------------------ |
+| handle     | HDMI控制器句柄     |
+| callback   | 热插拔回调函数信息 |
+| **返回值** | **返回值描述**     |
+| 0          | 注册成功           |
+| 负数       | 注册失败           |
 
 注册热插拔检测回调函数示例：
 
@@ -236,30 +140,31 @@ int32_t HdmiRegisterHpdCallbackFunc(DevHandle handle, struct HdmiHpdCallbackInfo
 static void HdmiHpdHandle(void *data, bool hpd)
 {
     if (data == NULL) {
-    HDF_LOGE("priv data is NULL");
-    return;
-}
-
+        HDF_LOGE("priv data is NULL");
+        return;
+    }
     if (hpd == true) {
         HDF_LOGD("HdmiHpdHandle: hot plug");
         /* 调用者添加相关处理 */
     } else {
-        HDF_LOGD("HdmiHpdHandle: hot unplog");
+        HDF_LOGD("HdmiHpdHandle: hot unplug");
         /* 调用者添加相关处理 */
     }
 }
 
-    /* 热插拔检测回调函数注册示例 */
-    struct HdmiHpdCallbackInfo info = {0};
-    info.data = handle;
-    info.callbackFunc = HdmiHpdHandle;
-    ret = HdmiRegisterHpdCallbackFunc(hdmiHandle, info);
-    if (ret != 0) {
-        HDF_LOGE("HdmiRegisterHpdCallbackFunc: Register failed.");
-    }
+/* 热插拔检测回调函数注册示例 */
+···
+struct HdmiHpdCallbackInfo info = {0};
+info.data = handle;
+info.callbackFunc = HdmiHpdHandle;
+ret = HdmiRegisterHpdCallbackFunc(hdmiHandle, info);
+if (ret != 0) {
+    HDF_LOGE("HdmiRegisterHpdCallbackFunc: Register failed.");
+}
+···
 ```
 
-### 读取EDID<a name="section7"></a>
+#### 读取EDID
 
 ```c
 int32_t HdmiReadSinkEdid(DevHandle handle, uint8_t *buffer, uint32_t len);
@@ -269,44 +174,14 @@ int32_t HdmiReadSinkEdid(DevHandle handle, uint8_t *buffer, uint32_t len);
 
 <a name="table4"></a>
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="50%"><p><strong>参数</strong></p>
-</th>
-<th class="cellrowborder" valign="top" width="50%"><p><strong>参数描述</strong></p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="50%"><p>handle</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>HDMI控制器句柄</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>buffer</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>数据缓冲区</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>len</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>数据长度</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p><strong>返回值</strong></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p><strong>返回值描述</strong></p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>正整数</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>成功读取的原始EDID数据</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>负数或0</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>读取失败</p>
-</td>
-</tr>
-</tbody>
-</table>
+| 参数       | 参数描述               |
+| ---------- | ---------------------- |
+| handle     | HDMI控制器句柄         |
+| buffer     | 数据缓冲区             |
+| len        | 数据长度               |
+| **返回值** | **返回值描述**         |
+| 正整数     | 成功读取的原始EDID数据 |
+| 负数或0    | 读取失败               |
 
 读取Sink端的原始EDID数据示例：
 
@@ -320,8 +195,6 @@ if (len <= 0) {
 }
 ```
 
-### 设置音频、视频及HDR属性<a name="section8"></a>
-
 #### 设置音频属性
 
 ```c
@@ -332,39 +205,13 @@ int32_t HdmiSetAudioAttribute(DevHandle handle, struct HdmiAudioAttr *attr);
 
 <a name="table5"></a>
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="50%"><p><strong>参数</strong></p>
-</th>
-<th class="cellrowborder" valign="top" width="50%"><p><strong>参数描述</strong></p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="50%"><p>handle</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>HDMI控制器句柄</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>attr</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>音频属性</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p><strong>返回值</strong></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p><strong>返回值描述</strong></p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>0</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>设置成功</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>负数</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>设置失败</p>
-</td>
-</tr>
-</tbody>
-</table>
+| 参数   | 参数描述       |
+| ------ | -------------- |
+| handle | HDMI控制器句柄 |
+| attr   | 音频属性       |
+| 返回值 | 返回值描述     |
+| 0      | 设置成功       |
+| 负数   | 设置失败       |
 
 设置音频属性示例：
 
@@ -393,39 +240,13 @@ int32_t HdmiSetVideoAttribute(DevHandle handle, struct HdmiVideoAttr *attr);
 
 <a name="table6"></a>
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="50%"><p><strong>参数</strong></p>
-</th>
-<th class="cellrowborder" valign="top" width="50%"><p><strong>参数描述</strong></p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="50%"><p>handle</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>HDMI控制器句柄</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>attr</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>视频属性</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p><strong>返回值</strong></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p><strong>返回值描述</strong></p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>0</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>设置成功</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>负数</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>设置失败</p>
-</td>
-</tr>
-</tbody>
-</table>
+| 参数       | 参数描述       |
+| ---------- | -------------- |
+| handle     | HDMI控制器句柄 |
+| attr       | 视频属性       |
+| **返回值** | **返回值描述** |
+| 0          | 设置成功       |
+| 负数       | 设置失败       |
 
 设置视频属性示例：
 
@@ -453,39 +274,13 @@ int32_t HdmiSetHdrAttribute(DevHandle handle, struct HdmiHdrAttr *attr);
 
 <a name="table7"></a>
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="50%"><p><strong>参数</strong></p>
-</th>
-<th class="cellrowborder" valign="top" width="50%"><p><strong>参数描述</strong></p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="50%"><p>handle</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>HDMI控制器句柄</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>attr</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>HDR属性</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p><strong>返回值</strong></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p><strong>返回值描述</strong></p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>0</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>设置成功</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>负数</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>设置失败</p>
-</td>
-</tr>
-</tbody>
-</table>
+| 参数       | 参数描述       |
+| ---------- | -------------- |
+| handle     | HDMI控制器句柄 |
+| attr       | HDR属性        |
+| **返回值** | **返回值描述** |
+| 0          | 设置成功       |
+| 负数       | 设置失败       |
 
 设置HDR属性示例：
 
@@ -504,8 +299,6 @@ if (ret != 0) {
 }
 ```
 
-### 其他可选设置<a name="section9"></a>
-
 #### 设置HDMI声音图像消隐
 
 ```c
@@ -516,39 +309,13 @@ int32_t HdmiAvmuteSet(DevHandle handle, bool enable);
 
 <a name="table8"></a>
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="50%"><p><strong>参数</strong></p>
-</th>
-<th class="cellrowborder" valign="top" width="50%"><p><strong>参数描述</strong></p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="50%"><p>handle</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>HDMI控制器句柄</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>enable</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>使能/去使能avmute</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p><strong>返回值</strong></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p><strong>返回值描述</strong></p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>0</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>设置成功</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>负数</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>设置失败</p>
-</td>
-</tr>
-</tbody>
-</table>
+| 参数       | 参数描述          |
+| ---------- | ----------------- |
+| handle     | HDMI控制器句柄    |
+| enable     | 使能/去使能avmute |
+| **返回值** | **返回值描述**    |
+| 0          | 设置成功          |
+| 负数       | 设置失败          |
 
 设置声音图像消隐示例：
 
@@ -571,39 +338,13 @@ int32_t HdmiDeepColorSet(DevHandle handle, enum HdmiDeepColor color);
 
 <a name="table9"></a>
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="50%"><p><strong>参数</strong></p>
-</th>
-<th class="cellrowborder" valign="top" width="50%"><p><strong>参数描述</strong></p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="50%"><p>handle</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>HDMI控制器句柄</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>color</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>色彩深度</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p><strong>返回值</strong></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p><strong>返回值描述</strong></p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>0</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>设置成功</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>负数</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>设置失败</p>
-</td>
-</tr>
-</tbody>
-</table>
+| 参数       | 参数描述       |
+| ---------- | -------------- |
+| handle     | HDMI控制器句柄 |
+| color      | 色彩深度       |
+| **返回值** | **返回值描述** |
+| 0          | 设置成功       |
+| 负数       | 设置失败       |
 
 设置色彩深度示例：
 
@@ -626,39 +367,13 @@ int32_t HdmiDeepColorGet(DevHandle handle, enum HdmiDeepColor *color);
 
 <a name="table10"></a>
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="50%"><p><strong>参数</strong></p>
-</th>
-<th class="cellrowborder" valign="top" width="50%"><p><strong>参数描述</strong></p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="50%"><p>handle</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>HDMI控制器句柄</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>color</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>色彩深度</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p><strong>返回值</strong></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p><strong>返回值描述</strong></p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>0</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>获取成功</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>负数</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>获取失败</p>
-</td>
-</tr>
-</tbody>
-</table>
+| 参数       | 参数描述       |
+| ---------- | -------------- |
+| handle     | HDMI控制器句柄 |
+| color      | 色彩深度       |
+| **返回值** | **返回值描述** |
+| 0          | 获取成功       |
+| 负数       | 获取失败       |
 
 获取色彩深度示例：
 
@@ -672,7 +387,7 @@ if (ret != 0) {
 }
 ```
 
-### 启动HDMI传输<a name="section10"></a>
+#### 启动HDMI传输
 
 ```c
 int32_t HdmiStart(DevHandle handle);
@@ -682,34 +397,12 @@ int32_t HdmiStart(DevHandle handle);
 
 <a name="table11"></a>
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="50%"><p><strong>参数</strong></p>
-</th>
-<th class="cellrowborder" valign="top" width="50%"><p><strong>参数描述</strong></p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="50%"><p>handle</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>HDMI控制器句柄</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p><strong>返回值</strong></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p><strong>返回值描述</strong></p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>0</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>启动成功</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>负数</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>启动失败</p>
-</td>
-</tr>
-</tbody>
-</table>
+| 参数       | 参数描述       |
+| ---------- | -------------- |
+| handle     | HDMI控制器句柄 |
+| **返回值** | **返回值描述** |
+| 0          | 启动成功       |
+| 负数       | 启动失败       |
 
 启动HDMI传输示例：
 
@@ -722,7 +415,7 @@ if (ret != 0) {
 }
 ```
 
-### 停止HDMI传输<a name="section11"></a>
+#### 停止HDMI传输<a name="section11"></a>
 
 ```c
 int32_t HdmiStop(DevHandle handle);
@@ -732,34 +425,12 @@ int32_t HdmiStop(DevHandle handle);
 
 <a name="table12"></a>
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="50%"><p><strong>参数</strong></p>
-</th>
-<th class="cellrowborder" valign="top" width="50%"><p><strong>参数描述</strong></p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="50%"><p>handle</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>HDMI控制器句柄</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p><strong>返回值</strong></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p><strong>返回值描述</strong></p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>0</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>停止成功</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>负数</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>停止失败</p>
-</td>
-</tr>
-</tbody>
-</table>
+| 参数       | 参数描述       |
+| ---------- | -------------- |
+| handle     | HDMI控制器句柄 |
+| **返回值** | **返回值描述** |
+| 0          | 停止成功       |
+| 负数       | 停止失败       |
 
 停止HDMI传输示例：
 
@@ -772,7 +443,7 @@ if (ret != 0) {
 }
 ```
 
-### 注销热插拔检测回调函数<a name="section12"></a>
+#### 注销热插拔检测回调函数
 
 ```c
 int32_t HdmiUnregisterHpdCallbackFunc(DevHandle handle);
@@ -782,34 +453,12 @@ int32_t HdmiUnregisterHpdCallbackFunc(DevHandle handle);
 
 <a name="table13"></a>
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="50%"><p><strong>参数</strong></p>
-</th>
-<th class="cellrowborder" valign="top" width="50%"><p><strong>参数描述</strong></p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="50%"><p>handle</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>HDMI控制器句柄</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p><strong>返回值</strong></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p><strong>返回值描述</strong></p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>0</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>注销成功</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>负数</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>注销失败</p>
-</td>
-</tr>
-</tbody>
-</table>
+| 参数       | 参数描述       |
+| ---------- | -------------- |
+| handle     | HDMI控制器句柄 |
+| **返回值** | **返回值描述** |
+| 0          | 注销成功       |
+| 负数       | 注销失败       |
 
 注销热插拔检测回调函数示例：
 
@@ -822,7 +471,7 @@ if (ret != 0) {
 }
 ```
 
-### 关闭HDMI控制器<a name="section13"></a>
+#### 关闭HDMI控制器
 
 ```c
 void HdmiClose(DevHandle handle);
@@ -832,19 +481,9 @@ void HdmiClose(DevHandle handle);
 
 <a name="table14"></a>
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="50%"><p><strong>参数</strong></p>
-</th>
-<th class="cellrowborder" valign="top" width="50%"><p><strong>参数描述</strong></p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="50%"><p>handle</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>HDMI控制器句柄</p>
-</td>
-</tr>
-</tbody>
-</table>
+| 参数       | 参数描述       |
+| ---------- | -------------- |
+| handle     | HDMI控制器句柄 |
 
 关闭HDMI控制器示例：
 
@@ -852,7 +491,7 @@ void HdmiClose(DevHandle handle);
 HdmiClose(hdmiHandle);
 ```
 
-## 使用实例<a name="section14"></a>
+### 使用实例<a name="section10"></a>
 
 本例程以操作开发板上的HDMI设备为例，详细展示HDMI接口的完整使用流程。
 
@@ -882,7 +521,7 @@ static void HdmiHpdHandle(void *data, bool hpd)
         HDF_LOGD("HdmiHpdHandle: hot plug");
         /* 调用者添加相关处理 */
     } else {
-        HDF_LOGD("HdmiHpdHandle: hot unplog");
+        HDF_LOGD("HdmiHpdHandle: hot unplug");
         /* 调用者添加相关处理 */
     }
 }

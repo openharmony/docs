@@ -1,16 +1,19 @@
 # ADC<a name="1"></a>
 
 -   [概述](#section1)
--   [接口说明](#section2)
--   [使用指导](#section3)
-    -   [使用流程](#section4)
-    -   [打开ADC设备](#section5)
-    -   [读取AD转换结果](#section6)
-    -   [关闭ADC设备](#section7)
-
--   [使用实例](#section8)
+    -   [功能简介](#section2)
+    -   [基本概念](#section3) 
+    -   [运作机制](#section4) 
+    -   [约束与限制](#section5)
+-   [使用指导](#section6)
+    -   [场景介绍](#section7)
+    -   [接口说明](#section8) 
+    -   [开发步骤](#section9)
+    -   [使用实例](#section10)
 
 ## 概述<a name="section1"></a>
+
+### 功能简介<a name="section2"></a>
 
 -   ADC（Analog to Digital Converter），即模拟-数字转换器，是一种将模拟信号转换成对应数字信号的设备。
 
@@ -18,54 +21,65 @@
     -   ADC设备管理：打开或关闭ADC设备。
     -   ADC读取转换结果：读取AD转换结果。
 
-    **图 1**  ADC物理连线示意图<a name="fig1"></a>  
-    ![](figures/ADC物理连线示意图.png "ADC物理连线示意图")
+### 基本概念<a name="section3"></a>
 
-## 接口说明<a name="section2"></a>
+ADC主要用于将模拟量转换成数字量，从而便于存储与计算等。
+
+ADC的主要技术参数有：
+
+- 分辨率
+  分辨率指的是ADC模块能够转换的二进制位数，位数越多分辨率越高。
+
+- 转换误差
+  转换误差通常是以输出误差的最大值形式给出。它表示A/D转换器实际输出的数字量和理论上的输出数字量之间的差别。常用最低有效位的倍数表示。
+
+- 转换时间
+  转换时间是指A/D转换器从转换控制信号到来开始，到输出端得到稳定的数字信号所经过的时间。
+
+### 运作机制<a name="section4"></a>
+
+在HDF框架中，同类型设备对象较多时（可能同时存在十几个同类型配置器），如果采用独立服务模式则需要配置更多的设备节点，且相关服务会占据更多的内存资源。相反，采用统一服务模式可以使用一个设备服务作为管理器，统一处理所有同类型对象的外部访问（这会在配置文件中有所体现），实现便捷管理和节约资源的目的。ADC模块接口适配模式采用统一服务模式。
+
+ADC模块各分层的作用为：接口层提供打开设备，写入数据，关闭设备的接口。核心层主要提供绑定设备、初始化设备以及释放设备的能力。适配层实现其他具体的功能。
+
+除电源线和地线之外，ADC只需要1根线与被测量的设备进行连接，其物理连线如[图1](#fig1)所示：
+
+**图 1**  ADC物理连线示意图<a name="fig1"></a>  
+![](figures/ADC物理连线示意图.png "ADC物理连线示意图")
+
+### 约束与限制<a name="section5"></a>
+
+ADC模块当前仅支持轻量和小型系统内核（LiteOS） 。
+
+## 使用指导<a name="section6"></a>
+
+### 场景介绍<a name="section7"></a>
+
+ADC设备通常用于将模拟电压转换为数字量，如与咪头搭配进行声音采集、与NTC电阻搭配进行温度测量，或者将其他模拟传感器的输出量转换为数字量的场景。
+
+### 接口说明<a name="section8"></a>
+
+ADC模块提供的主要接口如[表1](#table1)所示，更多关于接口的介绍请参考对应的API接口文档。
 
 **表 1**  ADC驱动API接口功能介绍
 
 <a name="table1"></a>
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="18.63%"><p>功能分类</p>
-</th>
-<th class="cellrowborder" valign="top" width="28.03%"><p>接口名</p>
-</th>
-<th class="cellrowborder" valign="top" width="53.339999999999996%"><p>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" bgcolor="#ffffff" rowspan="2" valign="top" width="18.63%"><p>ADC设备管理接口</p>
-</td>
-<td class="cellrowborder" valign="top" width="28.03%"><p>AdcOpen</p>
-</td>
-<td class="cellrowborder" valign="top" width="53.339999999999996%">打开ADC设备</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top"><p>AdcClose</p>
-</td>
-<td valign="top"><p>关闭ADC设备</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" bgcolor="#ffffff" valign="top" width="18.63%"><p>ADC读取转换结果接口</p>
-</td>
-<td class="cellrowborder" valign="top" width="28.03%"><p>AdcRead</p>
-</td>
-<td class="cellrowborder" valign="top" width="53.339999999999996%"><p>读取AD转换结果值</p>
-</td>
-</tr>
-</table>
+| 接口名   | 描述             |
+| -------- | ---------------- |
+| AdcOpen  | 打开ADC设备      |
+| AdcClose | 关闭ADC设备      |
+| AdcRead  | 读取AD转换结果值 |
 
-## 使用指导<a name="section3"></a>
-
-### 使用流程<a name="section4"></a>
+### 开发步骤<a name="section9"></a>
 
 使用ADC设备的一般流程如[图2](#fig2)所示。
 
  **图 2**  ADC使用流程图<a name="fig2"></a>  
 ![](figures/ADC使用流程图.png "ADC使用流程图") 
 
-### 打开ADC设备<a name="section5"></a>
+
+#### 打开ADC设备
 
 在进行AD转换之前，首先要调用AdcOpen打开ADC设备。
 
@@ -77,34 +91,12 @@ DevHandle AdcOpen(int16_t number);
 
 <a name="table2"></a>
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="20.66%"><p>参数</strong></p>
-</th>
-<th class="cellrowborder" valign="top" width="79.34%"><p><strong>参数描述</strong></p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="20.66%"><p>number</p>
-</td>
-<td class="cellrowborder" valign="top" width="79.34%"><p>ADC设备号</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="20.66%"><p><strong>返回值</strong></p>
-</td>
-<td class="cellrowborder" valign="top" width="79.34%"><p><strong>返回值描述</strong></p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="20.66%"><p>NULL</p>
-</td>
-<td class="cellrowborder" valign="top" width="79.34%"><p>打开ADC设备失败</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="20.66%"><p>设备句柄</p>
-</td>
-<td class="cellrowborder" valign="top" width="79.34%"><p>打开的ADC设备句柄</p>
-</td>
-</tr>
-</tbody>
-</table>
+| 参数       | 参数描述          |
+| ---------- | ----------------- |
+| number     | ADC设备号         |
+| **返回值** | **返回值描述**    |
+| NULL       | 打开ADC设备失败   |
+| 设备句柄   | 打开的ADC设备句柄 |
 
 假设系统中存在2个ADC设备，编号从0到1，那么我们现在打开1号设备。
 
@@ -114,12 +106,12 @@ DevHandle adcHandle = NULL;  /* ADC设备句柄 /
 /* 打开ADC设备 */
 adcHandle = AdcOpen(1);
 if (adcHandle == NULL) {
-    HDF_LOGE("AdcOpen: failed\n");
+    HDF_LOGE("AdcOpen: fail\n");
     return;
 }
 ```
 
-### 读取AD转换结果<a name="section6"></a>
+#### 读取AD转换结果
 
 ```c
 int32_t AdcRead(DevHandle handle, uint32_t channel, uint32_t *val);
@@ -129,46 +121,29 @@ int32_t AdcRead(DevHandle handle, uint32_t channel, uint32_t *val);
 
 <a name="table3"></a>
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="50%"><p><strong>参数</strong></p>
-</th>
-<th class="cellrowborder" valign="top" width="50%"><p><strong>参数描述</strong></p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="50%"><p>handle</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>ADC设备句柄</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>channel</p>
-</td>
-<td class="cellrowborder"valign="top" width="50%"><p>ADC设备通道号</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>val</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>AD转换结果</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p><strong>返回值</strong></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p><strong>返回值描述</strong></p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>0</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>读取成功</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>负数</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>读取失败</p>
-</td>
-</tr>
-</tbody>
-</table>
+| 参数       | 参数描述       |
+| ---------- | -------------- |
+| handle     | ADC设备句柄    |
+| channel    | ADC设备通道号  |
+| val        | AD转换结果     |
+| **返回值** | **返回值描述** |
+| 0          | 读取成功       |
+| 负数       | 读取失败       |
 
-### 关闭ADC设备<a name="section7"></a>
+读取转换结果示例（以通道1为例）：
+
+```c
+uint32_t value;
+int32_t ret;
+
+ret = AdcRead(adcHandle, 1, &value);
+if (ret != 0) {
+    HDF_LOGE("ADC read fail!\n");
+    return;
+}
+```
+
+#### 关闭ADC设备
 
 ADC通信完成之后，需要关闭ADC设备。
 ```c
@@ -178,29 +153,11 @@ void AdcClose(DevHandle handle);
 
 <a name="table4"></a>
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="50%"><p>参数</p>
-</th>
-<th class="cellrowborder" valign="top" width="50%"><p>参数描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="50%"><p>handle</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>ADC设备句柄</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p><strong>返回值</strong></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p><strong>返回值描述</strong></p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>无</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>无</p>
-</td>
-</tr>
-</tbody>
-</table>
+| 参数   | 参数描述    |
+| ------ | ----------- |
+| handle | ADC设备句柄 |
+| 返回值 | 返回值描述  |
+| 无     | 无          |
 
 关闭ADC设备示例：
 
@@ -208,7 +165,7 @@ void AdcClose(DevHandle handle);
 AdcClose(adcHandle); /* 关闭ADC设备 */
 ```
 
-## 使用实例<a name="section8"></a>
+### 使用实例<a name="section10"></a>
 
 本例程以操作开发板上的ADC设备为例，详细展示ADC接口的完整使用流程。
 
@@ -249,7 +206,7 @@ static int32_t TestCaseAdc(void)
     for (i = 0; i < 30; i++) {
         ret = AdcRead(adcHandle, ADC_CHANNEL_NUM, &Readbuf[i]);
         if (ret != HDF_SUCCESS) {
-            HDF_LOGE("%s: tp ADC write reg fail!:%d", __func__, ret);
+            HDF_LOGE("%s: ADC read fail!:%d", __func__, ret);
             AdcClose(adcHandle);
             return -1;
         }
@@ -262,4 +219,3 @@ static int32_t TestCaseAdc(void)
     return 0;
 }
 ```
-
