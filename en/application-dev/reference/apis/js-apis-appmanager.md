@@ -1,7 +1,7 @@
 # appManager
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> The initial APIs of this module are supported since API 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 Implements application management.
@@ -10,50 +10,159 @@ Implements application management.
 ## Modules to Import
 
   
-```
+```js
 import app from '@ohos.application.appManager';
 ```
 
 
-## isRunningInStabilityTest
+## appManager.isRunningInStabilityTest<sup>8+</sup>
 
 static isRunningInStabilityTest(callback: AsyncCallback&lt;boolean&gt;): void
 
-Checks whether this application is undergoing a stability test. This API uses a callback to return the result.
+Checks whether this application is undergoing a stability test. This API uses an asynchronous callback to return the result.
 
-- Parameters
-    | Name| Type| Mandatory| Description| 
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+  | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | No| Callback used to return the result.| 
+  | callback | AsyncCallback&lt;boolean&gt; | No| Callback used to return the result. If the application is undergoing a stability test, **true** will be returned; otherwise, **false** will be returned.| 
 
-- Example
+**Example**
     
-  ```
+  ```js
   import app from '@ohos.application.appManager';
   app.isRunningInStabilityTest((err, flag) => {
-      console.log('startAbility result:' + JSON.stringfy(err);
-  }  
+      console.log('startAbility result:' + JSON.stringfy(err));
+  })  
   ```
 
 
-## isRunningInStabilityTest
+## appManager.isRunningInStabilityTest<sup>8+</sup>
 
 static isRunningInStabilityTest(): Promise&lt;boolean&gt;
 
-Checks whether this application is undergoing a stability test. This method uses a promise to return the result.
+Checks whether this application is undergoing a stability test. This API uses a promise to return the result.
 
-- Return value
-    | Type| Description| 
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Return value**
+
+  | Type| Description| 
   | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise used to return the result.| 
+  | Promise&lt;boolean&gt; | Promise used to return the result. If the application is undergoing a stability test, **true** will be returned; otherwise, **false** will be returned.| 
 
-- Example
+**Example**
     
-  ```
+  ```js
   import app from '@ohos.application.appManager';
   app.isRunningInStabilityTest().then((flag) => {
       console.log('success:' + JSON.stringfy(flag));
-  )).catch((error) => {
+  }).catch((error) => {
       console.log('failed:' + JSON.stringfy(error));
   });
+  ```
+
+
+## appManager.isRamConstrainedDevice
+
+isRamConstrainedDevice(): Promise\<boolean>;
+
+Checks whether this application is running in a RAM constrained device. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Return value**
+
+  | Type| Description| 
+  | -------- | -------- |
+  | Promise&lt;boolean&gt; | Promise used to return whether the the application is running in a RAM constrained device. If the the application is running in a RAM constrained device, **true** will be returned; otherwise, **false** will be returned.| 
+
+**Example**
+    
+  ```js
+  IsRamConstrainedDevicePromise(){
+        app.isRamConstrainedDevicePromise().then((data) => {
+            console.log('success:' + JSON.stringify(data));
+        }).catch((error) => {
+            console.log('failed:' + JSON.stringify(error));
+        });
+    }
+  ```
+
+## appManager.isRamConstrainedDevice
+
+isRamConstrainedDevice(callback: AsyncCallback\<boolean>): void;
+
+Checks whether this application is running in a RAM constrained device. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+  | Name| Type| Mandatory| Description| 
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;boolean&gt; | No| Callback used to return whether the the application is running in a RAM constrained device. If the the application is running in a RAM constrained device, **true** will be returned; otherwise, **false** will be returned.| 
+
+**Example**
+    
+  ```js
+  IsRamConstrainedDeviceCallBack(){
+        app.isRamConstrainedDevicePromise((err, data) => {
+            console.log('startAbility result failed:' + JSON.stringify(err));
+            console.log('startAbility result success:' + JSON.stringify(data));
+        })
+    }
+  ```
+
+## appManager.getAppMemorySize
+
+getAppMemorySize(): Promise\<number>;
+
+Obtains the memory size of this application. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Return value**
+
+  | Type| Description| 
+  | -------- | -------- |
+  | Promise&lt;number&gt; | Size of the application memory.| 
+
+**Example**
+    
+  ```js
+  GetAppMemorySize(){
+        app.getAppMemorySize().then((data) => {
+            console.log('success:' + JSON.stringify(data));
+        }).catch((error) => {
+            console.log('failed:' + JSON.stringify(error));
+        });
+    }
+  ```
+
+## appManager.getAppMemorySize
+
+getAppMemorySize(callback: AsyncCallback\<number>): void;
+
+Obtains the memory size of this application. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+  | Name| Type| Mandatory| Description| 
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;number&gt; | No| Size of the application memory.| 
+
+**Example**
+    
+  ```js
+  GetAppMemorySizeCallBack(){
+        app.getAppMemorySize((err, data) => {
+            console.log('startAbility result failed :' + JSON.stringify(err));
+            console.log('startAbility result success:' + JSON.stringify(data));
+        })
+    }
   ```

@@ -1,5 +1,8 @@
 # FeatureAbility Module (JavaScript)
 
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+
 ## Constraints
 
 APIs of the **FeatureAbility** module can be called only by Page abilities.
@@ -16,9 +19,7 @@ startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<number>)
 
 Starts an ability. This method uses a callback to return the result.
 
-**System capabilities**
-
-SystemCapability.Ability.AbilityRuntime.FAModel
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
 **Parameters**
 
@@ -57,9 +58,7 @@ startAbility(parameter: StartAbilityParameter): Promise\<number>
 
 Starts an ability. This method uses a promise to return the result.
 
-**System capabilities**
-
-SystemCapability.Ability.AbilityRuntime.FAModel
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
 **Parameters**
 
@@ -91,15 +90,13 @@ featureAbility.startAbility(
 });
 ```
 
-## featureAbility.acquireDataAbilityHelper
+## featureAbility.acquireDataAbilityHelper<sup>7+</sup>
 
 acquireDataAbilityHelper(uri: string): DataAbilityHelper
 
 Obtains a **dataAbilityHelper** object.
 
-**System capabilities**
-
-SystemCapability.Ability.AbilityRuntime.FAModel
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
 **Parameters**
 
@@ -122,15 +119,13 @@ featureAbility.acquireDataAbilityHelper(
 )
 ```
 
-## featureAbility.startAbilityForResult
+## featureAbility.startAbilityForResult<sup>7+</sup>
 
 startAbilityForResult(parameter: StartAbilityParameter, callback: AsyncCallback\<AbilityResult>): void
 
 Starts an ability. This method uses a callback to return the execution result when the ability is destroyed.
 
-**System capabilities**
-
-SystemCapability.Ability.AbilityRuntime.FAModel
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
 **Parameters**
 
@@ -161,15 +156,13 @@ featureAbility.startAbilityForResult(
 )
 ```
 
-## featureAbility.startAbilityForResult
+## featureAbility.startAbilityForResult<sup>7+</sup>
 
 startAbilityForResult(parameter: StartAbilityParameter): Promise\<AbilityResult>
 
 Starts an ability. This method uses a promise to return the execution result when the ability is destroyed.
 
-**System capabilities**
-
-SystemCapability.Ability.AbilityRuntime.FAModel
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
 **Parameters**
 
@@ -178,6 +171,7 @@ SystemCapability.Ability.AbilityRuntime.FAModel
 | parameter | [StartAbilityParameter](#startabilityparameter) | Yes  | Ability to start.|
 
 **Return value**
+
 | Type                                     | Description          |
 | ----------------------------------------- | -------------- |
 | Promise\<[AbilityResult](#abilityresult)> | Promised returned with the execution result.|
@@ -218,15 +212,13 @@ featureAbility.startAbilityForResult(
 });
 ```
 
-## featureAbility.terminateSelfWithResult
+## featureAbility.terminateSelfWithResult<sup>7+</sup>
 
 terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback\<void>): void
 
 Destroys this Page ability, with the result code and data sent to the caller. This method uses a callback to return the result.
 
-**System capabilities**
-
-SystemCapability.Ability.AbilityRuntime.FAModel
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
 **Parameters**
 
@@ -268,15 +260,13 @@ featureAbility.terminateSelfWithResult(
 );
 ```
 
-## featureAbility.terminateSelfWithResult
+## featureAbility.terminateSelfWithResult<sup>7+</sup>
 
 terminateSelfWithResult(parameter: AbilityResult): Promise\<void>
 
 Destroys this Page ability, with the result code and data sent to the caller. This method uses a promise to return the result.
 
-**System capabilities**
-
-SystemCapability.Ability.AbilityRuntime.FAModel
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
 **Parameters**
 
@@ -285,6 +275,7 @@ SystemCapability.Ability.AbilityRuntime.FAModel
 | parameter | [AbilityResult](#abilityresult) | Yes  | Ability to start.|
 
 **Return value**
+
 | Type          | Description                   |
 | -------------- | ----------------------- |
 | Promise\<void> | Promise used to return the result.|
@@ -326,15 +317,13 @@ featureAbility.terminateSelfWithResult(
 
 
 
-## featureAbility.hasWindowFocus
+## featureAbility.hasWindowFocus<sup>7+<sup>
 
 hasWindowFocus(callback: AsyncCallback\<boolean>): void
 
 Checks whether the main window of this ability has the focus. This method uses a callback to return the result.
 
-**System capabilities**
-
-SystemCapability.Ability.AbilityRuntime.FAModel
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
 **Parameters**
 
@@ -351,15 +340,13 @@ featureAbility.hasWindowFocus()
 
 
 
-## featureAbility.hasWindowFocus
+## featureAbility.hasWindowFocus<sup>7+<sup>
 
 hasWindowFocus(): Promise\<boolean>
 
 Checks whether the main window of this ability has the focus. This method uses a promise to return the result.
 
-**System capabilities**
-
-SystemCapability.Ability.AbilityRuntime.FAModel
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
 **Return value**
 
@@ -384,9 +371,7 @@ getWant(callback: AsyncCallback\<Want>): void
 
 Obtains the **Want** object sent from this ability. This method uses a callback to return the result.
 
-**System capabilities**
-
-SystemCapability.Ability.AbilityRuntime.FAModel
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
 **Parameters**
 
@@ -409,11 +394,10 @@ getWant(): Promise\<Want>
 
 Obtains the **Want** object sent from this ability. This method uses a promise to return the result.
 
-**System capabilities**
-
-SystemCapability.Ability.AbilityRuntime.FAModel
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
 **Return value**
+
 | Type                   | Description                     |
 | ----------------------- | ------------------------- |
 | Promise\<[Want](#want)> | Promise used to return the result.|
@@ -433,11 +417,10 @@ getContext(): Context
 
 Obtains the application context.
 
-**System capabilities**
-
-SystemCapability.Ability.AbilityRuntime.FAModel
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
 **Return value**
+
 | Type   | Description                |
 | ------- | -------------------- |
 | Context | Application context returned.|
@@ -452,15 +435,13 @@ context.getBundleName()
 
 
 
-## featureAbility.terminateSelf
+## featureAbility.terminateSelf<sup>7+</sup>
 
 terminateSelf(callback: AsyncCallback\<void>): void
 
 Destroys this Page ability, with the result code and data sent to the caller. This method uses a callback to return the result.
 
-**System capabilities**
-
-SystemCapability.Ability.AbilityRuntime.FAModel
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
 **Parameters**
 
@@ -477,17 +458,16 @@ featureAbility.terminateSelf()
 
 
 
-## featureAbility.terminateSelf
+## featureAbility.terminateSelf<sup>7+</sup>
 
 terminateSelf(): Promise\<void>
 
 Destroys this Page ability, with the result code and data sent to the caller. This method uses a promise to return the result.
 
-**System capabilities**
-
-SystemCapability.Ability.AbilityRuntime.FAModel
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
 **Return value**
+
 | Type          | Description                     |
 | -------------- | ------------------------- |
 | Promise\<void> | Promise used to return the result.|
@@ -500,15 +480,13 @@ featureAbility.terminateSelf().then((data) => {		    console.info("=============
 });
 ```
 
-## featureAbility.connectAbility
+## featureAbility.connectAbility<sup>7+</sup>
 
 connectAbility(request: Want, options:ConnectOptions): number
 
 Connects this ability to a specific Service ability. This method uses a callback to return the result.
 
-**System capabilities**
-
-SystemCapability.Ability.AbilityRuntime.FAModel
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
 **Parameters**
 
@@ -519,21 +497,26 @@ SystemCapability.Ability.AbilityRuntime.FAModel
 
 Want
 
+**System capability**: SystemCapability.Ability.AbilityBase
+
 | Name        | Readable/Writable | Type    | Mandatory| Description                                                             |
 | ------------ | -------- | -------- | ---- | ----------------------------------                               |
-| deviceId     | Read-only    | string   | No  | Device ID of the Service ability to connect. The default value is the local device ID.<br><b>System capabilities:</b> SystemCapability.Ability.AbilityBase|
-| bundleName   | Read-only    | string   | Yes  | Bundle name of the Service ability to connect.<br><b>System capabilities:</b> SystemCapability.Ability.AbilityBase                                  |
-| abilityName  | Read-only    | string   | Yes  | Class name of the Service ability to connect.<br><b>System capabilities:</b> SystemCapability.Ability.AbilityBase                                  |
+| deviceId     | Read-only    | string   | No  | Device ID of the Service ability to connect. The default value is the local device ID.|
+| bundleName   | Read-only    | string   | Yes  | Bundle name of the Service ability to connect.                                  |
+| abilityName  | Read-only    | string   | Yes  | Class name of the Service ability to connect.                                  |
 
 ConnectOptions
 
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
 | Name        | Readable/Writable| Type    | Mandatory| Description                              |
 | ------------ | -------- | -------- | ---- | ---------------------------------- |
-| onConnect    | Read-only    | function | Yes  | Callback invoked when the connection is successful.<br><b>System capabilities:</b> SystemCapability.Ability.AbilityRuntime.Core              |
-| onDisconnect | Read-only    | function | Yes  | Callback invoked when the connection fails.<br><b>System capabilities:</b> SystemCapability.Ability.AbilityRuntime.Core              |
-| onFailed     | Read-only    | function | Yes  | Callback invoked when **connectAbility** fails to be called.<br><b>System capabilities:</b> SystemCapability.Ability.AbilityRuntime.Core|
+| onConnect    | Read-only    | function | Yes  | Callback invoked when the connection is successful.              |
+| onDisconnect | Read-only    | function | Yes  | Callback invoked when the connection fails.              |
+| onFailed     | Read-only    | function | Yes  | Callback invoked when **connectAbility** fails to be called.|
 
 **Return value**
+
 | Type  | Description                    |
 | ------ | ------------------------ |
 | number | Returns the ID of the Service ability connected.|
@@ -566,15 +549,13 @@ var connId = featureAbility.connectAbility(
 );
 ```
 
-## featureAbility.disconnectAbility
+## featureAbility.disconnectAbility<sup>7+</sup>
 
 disconnectAbility(connection: number, callback:AsyncCallback\<void>): void
 
 Disconnects this ability from a specific Service ability. This method uses a callback to return the result.
 
-**System capabilities**
-
-SystemCapability.Ability.AbilityRuntime.FAModel
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
 **Parameters**
 
@@ -615,15 +596,13 @@ var result = featureAbility.disconnectAbility(connId,
 );
 ```
 
-## featureAbility.disconnectAbility
+## featureAbility.disconnectAbility<sup>7+</sup>
 
 disconnectAbility(connection: number): Promise\<void>
 
 Disconnects this ability from a specific Service ability. This method uses a promise to return the result.
 
-**System capabilities**
-
-SystemCapability.Ability.AbilityRuntime.FAModel
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
 **Parameters**
 
@@ -632,6 +611,7 @@ SystemCapability.Ability.AbilityRuntime.FAModel
 | connection | number | Yes  | ID of the Service ability to disconnect.|
 
 **Return value**
+
 | Type          | Description                   |
 | -------------- | ----------------------- |
 | Promise\<void> | Promise used to return the result.|
@@ -661,54 +641,176 @@ var connId = featureAbility.connectAbility(
         onFailed: onFailedCallback,
     },
 );
-var result = await featureAbility.disconnectAbility(connId);
+
+featureAbility.disconnectAbility(connId).then((error,data)=>{
+    console.log('featureAbilityTest result errCode : ' + error.code + " data: " + data);
+});
 ```
+
+
+## featureAbility.getWindow<sup>7+</sup>
+
+getWindow(callback: AsyncCallback\<window.Window>): void
+
+Obtains the window corresponding to this ability. This method uses a callback to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
+
+**Parameters**
+
+| Name    | Type                   | Mandatory| Description                                                        |
+| -------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback\<window.Window> | Yes  | Callback used to return the window.|
+
+**Example**
+
+```javascript
+GetWindow(){
+        featureAbility.getWindow()
+    }
+```
+
+## featureAbility.getWindow<sup>7+</sup>
+
+getWindow(): Promise\<window.Window>;
+
+Obtains the window corresponding to this ability. This method uses a promise to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
+
+**Return value**
+
+| Type             | Description                                                      |
+| ----------------- | ---------------------------------------------------------- |
+| Promise\<window.Window> | Promise used to return the window.|
+
+**Example**
+
+```javascript
+GetWindowPromise(){
+        featureAbility.getWindow().then((data) => {
+            console.info("=============getWindowPromise========== " + JSON.stringify(data));
+        });
+    }
+```
+
+
+## AbilityWindowConfiguration
+
+The value is obtained through the **featureAbility.AbilityWindowConfiguration** API.
+
+**Example**
+
+```
+featureAbility.AbilityWindowConfiguration.WINDOW_MODE_UNDEFINED
+```
+
+| Name                       | Name| Description      |
+| --------------------------- | ---- | ---------- |
+| WINDOW_MODE_UNDEFINED<sup>7+</sup>       | 0    | The Page ability is in an undefined window display mode.<br>**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel  |
+| WINDOW_MODE_FULLSCREEN<sup>7+</sup>      | 1    | The Page ability is in full screen mode.<br>**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel    |
+| WINDOW_MODE_SPLIT_PRIMARY<sup>7+</sup>   | 100  | The Page ability is displayed in the primary window when it is in split-screen mode.<br>**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel|
+| WINDOW_MODE_SPLIT_SECONDARY<sup>7+</sup> | 101  | The Page ability is displayed in the secondary window when it is in split-screen mode.<br>**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel|
+| WINDOW_MODE_FLOATING<sup>7+</sup>        | 102  | The Page ability is displayed in floating window mode.<br>**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel  |
+
+
+## AbilityStartSetting
+
+The **AbilityStartSetting** attribute is an object defined as [key: string]: any. The key is a type of **AbilityStartSetting**, and the value is a type of **AbilityWindowConfiguration**.
+
+The value is obtained through the **featureAbility.AbilityStartSetting** API.
+
+**Example**
+
+```
+featureAbility.AbilityStartSetting.BOUNDS_KEY
+```
+
+| Name           | Name           | Description                      |
+| --------------- | --------------- | -------------------------- |
+| BOUNDS_KEY<sup>7+</sup>       | "abilityBounds" | Ability window size.<br>**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel  |
+| WINDOW_MODE_KEY<sup>7+</sup>  | "windowMode"    | Ability window display mode.<br>**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel  |
+| DISPLAY_ID_KEY<sup>7+</sup>   | "displayId"     | Display device ID.<br>**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel|
+
+## ErrorCode
+
+Enumerates error codes.
+
+| Variable                         | Value  | Description                                                        |
+| ----------------------------- | ---- | ------------------------------------------------------------ |
+| NO_ERROR<sup>7+</sup>           | 0    | No error occurs.<br>**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel|
+| INVALID_PARAMETER<sup>7+</sup>          | -1    | Invalid parameter.<br>**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel|
+| ABILITY_NOT_FOUND<sup>7+</sup>  | -2    | The ability is not found.<br>**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel|
+| PERMISSION_DENY<sup>7+</sup>            | -3    | The request is denied.<br>**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel|
+
+
+## DataAbilityOperationType
+
+Enumerates operation types of the Data ability.
+
+| Variable                         | Value  | Description                                                        |
+| ----------------------------- | ---- | ------------------------------------------------------------ |
+| TYPE_INSERT<sup>7+</sup>           | 1   | Insert operation.<br>**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel|
+| TYPE_UPDATE<sup>7+</sup>          | 2  | Update operation.<br>**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel|
+| TYPE_DELETE<sup>7+</sup>  | 3    | Deletion operation.<br>**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel|
+| TYPE_ASSERT<sup>7+</sup>            | 4    | Assert operation.<br>**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel|
+
+
 
 ## AbilityResult
 
+**System capability**: SystemCapability.Ability.AbilityBase
+
 | Name      | Readable/Writable| Type                 | Mandatory| Description                                                        |
 | ---------- | -------- | --------------------- | ---- | ------------------------------------------------------------ |
-| resultCode | Read-only    | number                | Yes  | Result code returned after the ability is destroyed. The feature for defining error-specific result codes is coming soon.<br><b>System capabilities:</b> SystemCapability.Ability.AbilityBase|
-| want       | Read-only    | [Want](#want) | No  | Data returned after the ability is destroyed. You can define the data to be returned. This parameter can be **null**.<br><b>System capabilities:</b> SystemCapability.Ability.AbilityBase |
+| resultCode<sup>7+</sup> | Read-only    | number                | Yes  | Result code returned after the ability is destroyed. The feature for defining error-specific result codes is coming soon.|
+| want<sup>7+</sup>       | Read-only    | [Want](#want) | No  | Data returned after the ability is destroyed. You can define the data to be returned. This parameter can be **null**. |
 
 ## StartAbilityParameter
 
+**System capability**: SystemCapability.AbilityRuntime.FAModel
+
 | Name               | Readable/Writable| Type                | Mandatory| Description                                                        |
 | ------------------- | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| want                | Read-only    | [Want](#want)        | Yes  | Information about the ability to start.<br><b>System capabilities:</b> SystemCapability.Ability.AbilityRuntime.FAModel                      |
-| abilityStartSetting | Read-only    | {[key: string]: any} | No  | Special attribute of the ability to start. This attribute can be passed in the method call.<br><b>System capabilities:</b> SystemCapability.Ability.AbilityRuntime.FAModel|
+| want                | Read-only    | [Want](#want)        | Yes  | Information about the ability to start.                      |
+| abilityStartSetting | Read-only    | {[key: string]: any} | No  | Special attribute of the ability to start. This attribute can be passed in the method call.|
+
 
 ## Want
 
+**System capability**: SystemCapability.Ability.AbilityBase
+
 | Name       | Readable/Writable| Type                | Mandatory| Description                                                        |
 | ----------- | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| deviceId    | Read-only    | string               | No  | ID of the device that runs the ability.<br><b>System capabilities:</b> SystemCapability.Ability.AbilityBase                               |
-| bundleName  | Read-only    | string               | No  | Bundle name of the ability to start. If both **bundleName** and **abilityName** are specified in a **Want** object, the **Want** object can directly match the specified ability.<br><b>System capabilities:</b> SystemCapability.Ability.AbilityBase|
-| abilityName | Read-only    | string               | No  | Name of the ability to start. If both **bundleName** and **abilityName** are specified in a **Want** object, the **Want** object can directly match the specified ability.<br><b>System capabilities:</b> SystemCapability.Ability.AbilityBase|
-| uri         | Read-only    | string               | No  | URI information to match. If **uri** is specified in a **Want** object, the **Want** object will match the specified URI information, including **scheme**, **schemeSpecificPart**, **authority**, and **path**.<br><b>System capabilities:</b> SystemCapability.Ability.AbilityBase|
-| type        | Read-only    | string               | No  | MIME type, for example, text/plain or image/*.<br><b>System capabilities:</b> SystemCapability.Ability.AbilityBase  |
-| flags       | Read-only    | number               | No  | How the **Want** object will be handled. By default, a number is passed. For details, see [flags](#flags).<br><b>System capabilities:</b> SystemCapability.Ability.AbilityBase|
-| action      | Read-only    | string               | No  | Action option.<br><b>System capabilities:</b> SystemCapability.Ability.AbilityBase                          |
-| parameters  | Read-only    | {[key: string]: any} | No  | List of parameters in a **Want** object.<br><b>System capabilities:</b> SystemCapability.Ability.AbilityBase                                      |
-| entities    | Read-only    | Array\<string>       | No  | List of entities.<br><b>System capabilities:</b> SystemCapability.Ability.AbilityBase                                   |
+| deviceId<sup>8+</sup>     | Read-only    | string               | No  | ID of the device that runs the ability.                               |
+| bundleName<sup>8+</sup>   | Read-only    | string               | No  | Bundle name of the ability to start. If both **bundleName** and **abilityName** are specified in a **Want** object, the **Want** object can directly match the specified ability.|
+| abilityName<sup>8+</sup>  | Read-only    | string               | No  | Name of the ability to start. If both **bundleName** and **abilityName** are specified in a **Want** object, the **Want** object can directly match the specified ability.|
+| uri<sup>8+</sup>          | Read-only    | string               | No  | URI information to match. If **uri** is specified in a **Want** object, the **Want** object will match the specified URI information, including **scheme**, **schemeSpecificPart**, **authority**, and **path**.|
+| type<sup>8+</sup>         | Read-only    | string               | No  | MIME type, for example, text/plain or image/*.  |
+| flags<sup>8+</sup>        | Read-only    | number               | No  | How the **Want** object will be handled. By default, a number is passed. For details, see [flags](#flags).|
+| action<sup>8+</sup>       | Read-only    | string               | No  | Action option.                          |
+| parameters<sup>8+</sup>   | Read-only    | {[key: string]: any} | No  | List of parameters in a **Want** object.                                      |
+| entities<sup>8+</sup>     | Read-only    | Array\<string>       | No  | List of entities.                                   |
 
 ## flags
 
+**System capability**: SystemCapability.Ability.AbilityBase
+
 | Name                                | Name      | Description                                                        |
 | ------------------------------------ | ---------- | ------------------------------------------------------------ |
-| FLAG_AUTH_READ_URI_PERMISSION        | 0x00000001 | Indicates the permission to read the URI.<br><b>System capabilities:</b> SystemCapability.Ability.AbilityBase                                 |
-| FLAG_AUTH_WRITE_URI_PERMISSION       | 0x00000002 | Indicates the permission to write the URI.<br><b>System capabilities:</b> SystemCapability.Ability.AbilityBase                                 |
-| FLAG_ABILITY_FORWARD_RESULT          | 0x00000004 | Returns the result to the ability.<br><b>System capabilities:</b> SystemCapability.Ability.AbilityBase                                          |
-| FLAG_ABILITY_CONTINUATION            | 0x00000008 | Indicates whether the ability on the local device can be migrated to a remote device.<br><b>System capabilities:</b> SystemCapability.Ability.AbilityBase                |
-| FLAG_NOT_OHOS_COMPONENT              | 0x00000010 | Indicates that a component does not belong to OHOS.<br><b>System capabilities:</b> SystemCapability.Ability.AbilityBase                                        |
-| FLAG_ABILITY_FORM_ENABLED            | 0x00000020 | Indicates whether to enable an ability.<br><b>System capabilities:</b> SystemCapability.Ability.AbilityBase                                        |
-| FLAG_AUTH_PERSISTABLE_URI_PERMISSION | 0x00000040 | Indicates the permission to make the URI persistent.<br><b>System capabilities:</b> SystemCapability.Ability.AbilityBase                                   |
-| FLAG_AUTH_PREFIX_URI_PERMISSION      | 0x00000080 | Indicates the permission to verify URIs by prefix matching.<br><b>System capabilities:</b> SystemCapability.Ability.AbilityBase                                          |
-| FLAG_ABILITYSLICE_MULTI_DEVICE       | 0x00000100 | Supports cross-device startup in a distributed scheduler.<br><b>System capabilities:</b> SystemCapability.Ability.AbilityBase                            |
-| FLAG_START_FOREGROUND_ABILITY        | 0x00000200 | Indicates that the Service ability is started regardless of whether the host application has been started.<br><b>System capabilities:</b> SystemCapability.Ability.AbilityBase  |
-| FLAG_ABILITY_CONTINUATION_REVERSIBLE | 0x00000400 | Indicates that the migration is reversible.<br><b>System capabilities:</b> SystemCapability.Ability.AbilityBase                                        |
-| FLAG_INSTALL_ON_DEMAND               | 0x00000800 | Indicates that the specific ability will be installed if it has not been installed.<br><b>System capabilities:</b> SystemCapability.Ability.AbilityBase                         |
-| FLAG_INSTALL_WITH_BACKGROUND_MODE    | 0x80000000 | Indicates that the specific ability will be installed in the background if it has not been installed.<br><b>System capabilities:</b> SystemCapability.Ability.AbilityBase                        |
-| FLAG_ABILITY_CLEAR_MISSION           | 0x00008000 | Clears other operation missions. This flag can be set for the **Want** object passed to **ohos.app.Context#startAbility** and must be used together with **flag_ABILITY_NEW_MISSION**.<br><b>System capabilities:</b> SystemCapability.Ability.AbilityBase|
-| FLAG_ABILITY_NEW_MISSION             | 0x10000000 | Creates a mission on the historical mission stack.<br><b>System capabilities:</b> SystemCapability.Ability.AbilityBase                        |
-| FLAG_ABILITY_MISSION_TOP             | 0x20000000 | Starts the mission on the top of the existing mission stack; creates an ability instance if no mission exists.<br><b>System capabilities:</b> SystemCapability.Ability.AbilityBase|
+| FLAG_AUTH_READ_URI_PERMISSION        | 0x00000001 | Indicates the permission to read the URI.                                 |
+| FLAG_AUTH_WRITE_URI_PERMISSION       | 0x00000002 | Indicates the permission to write the URI.                                |
+| FLAG_ABILITY_FORWARD_RESULT          | 0x00000004 | Returns the result to the ability.                                          |
+| FLAG_ABILITY_CONTINUATION            | 0x00000008 | Indicates whether the ability on the local device can be migrated to a remote device.               |
+| FLAG_NOT_OHOS_COMPONENT              | 0x00000010 | Indicates that a component does not belong to OHOS.                                        |
+| FLAG_ABILITY_FORM_ENABLED            | 0x00000020 | Indicates whether to enable an ability.                                        |
+| FLAG_AUTH_PERSISTABLE_URI_PERMISSION | 0x00000040 | Indicates the permission to make the URI persistent.                                   |
+| FLAG_AUTH_PREFIX_URI_PERMISSION      | 0x00000080 | Indicates the permission to verify URIs by prefix matching.                                          |
+| FLAG_ABILITYSLICE_MULTI_DEVICE       | 0x00000100 | Supports cross-device startup in a distributed scheduler.                              |
+| FLAG_START_FOREGROUND_ABILITY        | 0x00000200 | Indicates that the Service ability is started regardless of whether the host application has been started.  |
+| FLAG_ABILITY_CONTINUATION_REVERSIBLE | 0x00000400 | Indicates that the migration is reversible.                                       |
+| FLAG_INSTALL_ON_DEMAND               | 0x00000800 | Indicates that the specific ability will be installed if it has not been installed.                          |
+| FLAG_INSTALL_WITH_BACKGROUND_MODE    | 0x80000000 | Indicates that the specific ability will be installed in the background if it has not been installed.                        |
+| FLAG_ABILITY_CLEAR_MISSION           | 0x00008000 | Clears other operation missions. This flag can be set for the **Want** object passed to **ohos.app.Context#startAbility** and must be used together with **flag_ABILITY_NEW_MISSION**.|
+| FLAG_ABILITY_NEW_MISSION             | 0x10000000 | Creates a mission on the historical mission stack.                        |
+| FLAG_ABILITY_MISSION_TOP             | 0x20000000 | Starts the mission on the top of the existing mission stack; creates an ability instance if no mission exists.|

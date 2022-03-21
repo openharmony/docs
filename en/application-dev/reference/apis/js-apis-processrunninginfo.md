@@ -14,7 +14,7 @@ The process running information is obtained through an **appManager** instance.
 
 
   
-```
+```js
 import appManager from '@ohos.application.appManager';
 appManager.getProcessRunningInfos((error,data) => { 
     console.log("getProcessRunningInfos error: "  + error.code + " data: " + JSON.stringify(data));
@@ -24,9 +24,11 @@ appManager.getProcessRunningInfos((error,data) => {
 
 ## Attributes
 
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
   | Name| Type| Readable| Writable| Description| 
 | -------- | -------- | -------- | -------- | -------- |
-| pid | number | Yes| No| Process ID. <br><b>System capability</b>: SystemCapability.Ability.AbilityRuntime.Core| 
-| uid | number | Yes| No| User ID. <br><b>System capability</b>: SystemCapability.Ability.AbilityRuntime.Core| 
-| processName | string | Yes| No| Process name. <br><b>System capability</b>: SystemCapability.Ability.AbilityRuntime.Core| 
-| bundleNames | Array&lt;string&gt; | Yes| No| Names of all bundles running in the process. <br><b>System capability</b>: SystemCapability.Ability.AbilityRuntime.Core| 
+| pid | number | Yes| No| Process ID.| 
+| uid | number | Yes| No| User ID.| 
+| processName | string | Yes| No| Process name.| 
+| bundleNames | Array&lt;string&gt; | Yes| No| Names of all bundles running in the process.| 

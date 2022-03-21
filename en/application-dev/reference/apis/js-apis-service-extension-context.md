@@ -9,25 +9,22 @@ Implements the context that provides the capabilities and APIs of **ServiceExten
 
 ## startAbility
 
-
 startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 
+Starts an ability. This API uses a callback to return the result.
 
-Starts an ability. This method uses a callback to return the result.
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
+**Parameters**
 
-**System capabilities**
-
-SystemCapability.Ability.AbilityRuntime.Core
-
-- Parameters
   | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
   | want | [Want](js-apis-featureAbility.md#Want) | Yes| Information about the ability to start, such as the ability name and bundle name.| 
-  | callback | AsyncCallback&lt;void&gt; | No| Callback used to return the result indicating whether the method is successfully called.| 
+  | callback | AsyncCallback&lt;void&gt; | No| Callback used to return the result indicating whether the API is successfully called.| 
 
-- Example
-  ```
+**Example**
+
+  ```js
   let want = {
       "bundleName": "com.example.myapp",
       "abilityName": "com.example.myapp.MyAbility"
@@ -38,28 +35,29 @@ SystemCapability.Ability.AbilityRuntime.Core
   ```
 
 
-## startAbility
+## ServiceExtensionContext.startAbility
 
 startAbility(want: Want): Promise&lt;void&gt;;
 
-Starts an ability. This method uses a promise to return the result.
+Starts an ability. This API uses a promise to return the result.
 
-**System capabilities**
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-SystemCapability.Ability.AbilityRuntime.Core
+**Parameters**
 
-- Parameters
   | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
   | want | [Want](js-apis-featureAbility.md#Want) | Yes| Information about the ability to start, such as the ability name and bundle name.| 
 
-- Return value
+**Return value**
+
   | Type| Description| 
   | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to return the result indicating whether the method is successfully called.| 
+  | Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.| 
 
-- Example
-  ```
+**Example**
+
+  ```js
   let want = {
       "bundleName": "com.example.myapp",
       "abilityName": "com.example.myapp.MyAbility"
@@ -72,46 +70,46 @@ SystemCapability.Ability.AbilityRuntime.Core
   ```
 
 
-## terminateSelf
+## ServiceExtensionContext.terminateSelf
 
 terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
 
-Terminates this ability. This method uses a callback to return the result.
+Terminates this ability. This API uses a callback to return the result.
 
-**System capabilities**
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-SystemCapability.Ability.AbilityRuntime.Core
+**Parameters**
 
-- Parameters
   | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;void&gt; | No| Callback used to return the result indicating whether the method is successfully called.| 
+  | callback | AsyncCallback&lt;void&gt; | No| Callback used to return the result indicating whether the API is successfully called.| 
 
-- Example
-  ```
+**Example**
+
+  ```js
   this.context.terminateSelf((err) => {
       console.log('terminateSelf result:' + JSON.stringfy(err));
   });
   ```
 
 
-## terminateSelf
+## ServiceExtensionContext.terminateSelf
 
 terminateSelf(): Promise&lt;void&gt;;
 
-Terminates this ability. This method uses a promise to return the result.
+Terminates this ability. This API uses a promise to return the result.
 
-**System capabilities**
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-SystemCapability.Ability.AbilityRuntime.Core
+**Return value**
 
-- Return value
   | Type| Description| 
   | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to return the result indicating whether the method is successfully called.| 
+  | Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.| 
 
-- Example
-  ```
+**Example**
+
+  ```js
   this.context.terminateSelf(want).then((data) => {
       console.log('success:' + JSON.stringfy(data));
   }).catch((error) => {
@@ -120,29 +118,30 @@ SystemCapability.Ability.AbilityRuntime.Core
   ```
 
 
-## connectAbility
+## ServiceExtensionContext.connectAbility
 
 connectAbility(want: Want, options: ConnectOptions): number;
 
 Connects this ability to a Service ability.
 
-**System capabilities**
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-SystemCapability.Ability.AbilityRuntime.Core
+**Parameters**
 
-- Parameters
   | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
   | want | [Want](js-apis-featureAbility.md#Want) | Yes| Information about the ability to connect to, such as the ability name and bundle name.| 
   | options | [ConnectOptions](#connectoptions) | Yes| Callback used to return the information indicating that the connection is successful, interrupted, or failed.| 
 
-- Return value
+**Return value**
+
   | Type| Description| 
   | -------- | -------- |
   | number | A number, based on which the connection will be interrupted.| 
 
-- Example
-  ```
+**Example**
+
+  ```js
   let want = {
       "bundleName": "com.example.myapp",
       "abilityName": "com.example.myapp.MyAbility"
@@ -156,52 +155,53 @@ SystemCapability.Ability.AbilityRuntime.Core
   ```
 
 
-## disconnectAbility
+## ServiceExtensionContext.disconnectAbility
 
 disconnectAbility(connection: number, callback:AsyncCallback&lt;void&gt;): void;
 
-Disconnects this ability from the Service ability. This method uses a callback to return the result.
+Disconnects this ability from the Service ability. This API uses a callback to return the result.
 
-**System capabilities**
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-SystemCapability.Ability.AbilityRuntime.Core
+**Parameters**
 
-- Parameters
   | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
   | connection | number | Yes| Number returned after **connectAbility** is called.| 
-  | callback | AsyncCallback&lt;void&gt; | No| Callback used to return the result indicating whether the method is successfully called.| 
+  | callback | AsyncCallback&lt;void&gt; | No| Callback used to return the result indicating whether the API is successfully called.| 
 
-- Example
-  ```
+**Example**
+
+  ```js
   this.context.disconnectAbility(connection, (err) => { // connection is the return value of connectAbility.
       console.log('terminateSelf result:' + JSON.stringfy(err));
   });
   ```
 
 
-## disconnectAbility
+## ServiceExtensionContext.disconnectAbility
 
 disconnectAbility(connection: number): Promise&lt;void&gt;;
 
-Disconnects this ability from the Service ability. This method uses a promise to return the result.
+Disconnects this ability from the Service ability. This API uses a promise to return the result.
 
-**System capabilities**
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-SystemCapability.Ability.AbilityRuntime.Core
+**Parameters**
 
-- Parameters
   | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
   | connection | number | Yes| Number returned after **connectAbility** is called.| 
 
-- Return value
+**Return value**
+
   | Type| Description| 
   | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to return the result indicating whether the method is successfully called.| 
+  | Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.| 
  
-- Example
-  ```
+**Example**
+
+  ```js
   this.context.disconnectAbility(connection).then((data) => { // connection is the return value of connectAbility.
       console.log('success:' + JSON.stringfy(data));
   }).catch((error) => {
@@ -214,8 +214,10 @@ SystemCapability.Ability.AbilityRuntime.Core
 
 Defines the **ConnectOptions** data structure.
 
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
 | Name| Description| 
 | -------- | -------- |
-| onConnect(elementName:ElementName,&nbsp;remote:IRemoteObject) | Called when this ability is connected to a Service ability.<br><b>System capabilities: </b>SystemCapability.Ability.AbilityRuntime.Core| 
-| onDisconnect(elementName:ElementName) | Called when the peer service is abnormal or killed.<br><b>System capabilities: </b>SystemCapability.Ability.AbilityRuntime.Core| 
-| onFailed(code:&nbsp;number) | Called when the connection fails.<br><b>System capabilities: </b>SystemCapability.Ability.AbilityRuntime.Core| 
+| onConnect(elementName:ElementName,&nbsp;remote:IRemoteObject) | Called when this ability is connected to a Service ability.| 
+| onDisconnect(elementName:ElementName) | Called when the peer service is abnormal or killed.| 
+| onFailed(code:&nbsp;number) | Called when the connection fails.| 

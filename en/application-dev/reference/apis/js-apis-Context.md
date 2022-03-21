@@ -7,7 +7,7 @@ import featureAbility from '@ohos.ability.featureAbility'
 import bundle from '@ohos.bundle'
 ```
 
-The **Context** object is created in a **featureAbility** and returned through its **getContext()** method. Therefore, you must import the **@ohos.ability.featureAbility** package before using the Context module. An example is as follows:
+The **Context** object is created in a **featureAbility** and returned through its **getContext()** API. Therefore, you must import the **@ohos.ability.featureAbility** package before using the Context module. An example is as follows:
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -15,26 +15,21 @@ var context = featureAbility.getContext();
 context.getOrCreateLocalDir()
 ```
 
-## Context
-
-### getOrCreateLocalDir
+## Context.getOrCreateLocalDir
 
 getOrCreateLocalDir(callback: AsyncCallback\<string>): void
 
-Obtains the local root directory of the application. This method uses a callback to return the result.
+Obtains the local root directory of the application. This API uses an asynchronous callback to return the result.
 
-If this method is called for the first time, a root directory is created.
+If this API is called for the first time, a root directory will be created.
 
-**System capabilities**
-
-SystemCapability.Ability.AbilityRuntime.Core
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
 
-
 | Name    | Type                  | Mandatory| Description                      |
 | -------- | ---------------------- | ---- | -------------------------- |
-| callback | AsyncCallback\<string> | Yes  | Callback used to return the local root directory of the application.|
+| callback | AsyncCallback\<string> | Yes  | Callback used to return the local root directory.|
 
 **Example**
 
@@ -48,23 +43,21 @@ context.getOrCreateLocalDir((err, data)=>{
 
 
 
-### getOrCreateLocalDir
+## Context.getOrCreateLocalDir
 
 getOrCreateLocalDir(): Promise\<string>
 
-Obtains the local root directory of the application. This method uses a promise to return the result.
+Obtains the local root directory of the application. This API uses a promise to return the result.
 
-If this method is called for the first time, a root directory is created.
+If this API is called for the first time, a root directory will be created.
 
-**System capabilities**
-
-SystemCapability.Ability.AbilityRuntime.Core
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Return value**
 
 | Type            | Description                  |
 | ---------------- | ---------------------- |
-| Promise\<string> | Promise used to return the local root directory of the application.|
+| Promise\<string> | Promise used to return the local root directory.|
 
 **Example**
 
@@ -78,18 +71,15 @@ context.getOrCreateLocalDir().then((data) => {
 
 
 
-### verifyPermission
+## Context.verifyPermission
 
 verifyPermission(permission: string, options: PermissionOptions, callback: AsyncCallback\<number>): void
 
-Verifies whether a specific PID and UID have the given permission. This method uses a callback to return the result.
+Verifies whether a specific PID and UID have the given permission. This API uses an asynchronous callback to return the result.
 
-**System capabilities**
-
-SystemCapability.Ability.AbilityRuntime.Core
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
-
 
 | Name      | Type                                   | Mandatory| Description                                 |
 | ---------- | --------------------------------------- | ---- | ------------------------------------- |
@@ -110,14 +100,15 @@ bundle.getBundleInfo('com.context.test', 1, (datainfo) =>{
 
 
 
-### verifyPermission
+## Context.verifyPermission
 
 verifyPermission(permission: string, callback: AsyncCallback\<number>): void
 
-Verifies whether the current PID and UID have the given permission. This method uses a callback to return the result.
+Verifies whether the current PID and UID have the given permission. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
-
 
 | Name      | Type                  | Mandatory| Description                                 |
 | ---------- | ---------------------- | ---- | ------------------------------------- |
@@ -132,18 +123,15 @@ var context = featureAbility.getContext();
 context.verifyPermission("com.example.permission")
 ```
 
-### verifyPermission
+## Context.verifyPermission
 
 verifyPermission(permission: string, options?: PermissionOptions): Promise\<number>
 
-Verifies whether a specific PID and UID have the given permission. This method uses a promise to return the result.
+Verifies whether a specific PID and UID have the given permission. This API uses a promise to return the result.
 
-**System capabilities**
-
-SystemCapability.Ability.AbilityRuntime.Core
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
-
 
 | Name      | Type                                   | Mandatory| Description            |
 | ---------- | --------------------------------------- | ---- | ---------------- |
@@ -170,24 +158,22 @@ context.verifyPermission('com.context.permission',Permission).then((data) => {
 
 
 
-### requestPermissionsFromUser
+## Context.requestPermissionsFromUser
 
-requestPermissionsFromUser(permissions: Array\<string>, requestCode: number, resultCallback: AsyncCallback<[PermissionRequestResult](#permissionrequestresult)>)
+requestPermissionsFromUser(permissions: Array\<string>, requestCode: number, resultCallback: AsyncCallback<[PermissionRequestResult](#permissionrequestresult)>): void
 
-Requests certain permissions from the system. This method uses a callback to return the result.
+Requests certain permissions from the system. This API uses an asynchronous callback to return the result.
 
-**System capabilities**
-
-SystemCapability.Ability.AbilityRuntime.Core
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
-
 
 | Name          | Type                                                        | Mandatory| Description                                           |
 | -------------- | ------------------------------------------------------------ | ---- | ----------------------------------------------- |
 | permissions    | Array\<string>                                               | Yes  | Permissions to request. This parameter cannot be **null**.       |
 | requestCode    | number                                                       | Yes  | Request code to be passed to **PermissionRequestResult**.|
 | resultCallback | AsyncCallback<[PermissionRequestResult](#permissionrequestresult)> | Yes  | Permission request result.                             |
+
 **Example**
 
 ```js
@@ -208,15 +194,13 @@ context.requestPermissionsFromUser(
 
 
 
-### getApplicationInfo
+## Context.getApplicationInfo
 
-getApplicationInfo(callback: AsyncCallback\<ApplicationInfo>)
+getApplicationInfo(callback: AsyncCallback\<ApplicationInfo>): void
 
-Obtains information about the current application. This method uses a callback to return the result.
+Obtains information about the current application. This API uses an asynchronous callback to return the result.
 
-**System capabilities**
-
-SystemCapability.Ability.AbilityRuntime.Core
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
 
@@ -234,15 +218,13 @@ context.getApplicationInfo()
 
 
 
-### getApplicationInfo
+## Context.getApplicationInfo
 
 getApplicationInfo(): Promise\<ApplicationInfo>
 
-Obtains information about the current application. This method uses a promise to return the result.
+Obtains information about the current application. This API uses a promise to return the result.
 
-**System capabilities**
-
-SystemCapability.Ability.AbilityRuntime.Core
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Return value**
 
@@ -263,15 +245,13 @@ context.getApplicationInfo().then((data) => {
 
 
 
-### getBundleName
+## Context.getBundleName
 
 getBundleName(callback: AsyncCallback\<string>): void
 
-Obtains the bundle name of the current ability. This method uses a callback to return the result.
+Obtains the bundle name of the current ability. This API uses an asynchronous callback to return the result.
 
-**System capabilities**
-
-SystemCapability.Ability.AbilityRuntime.Core
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
 
@@ -289,15 +269,13 @@ context.getBundleName()
 
 
 
-### getBundleName
+## Context.getBundleName
 
 getBundleName(): Promise\<string>
 
-Obtains the bundle name of the current ability. This method uses a promise to return the result.
+Obtains the bundle name of the current ability. This API uses a promise to return the result.
 
-**System capabilities**
-
-SystemCapability.Ability.AbilityRuntime.Core
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Return value**
 
@@ -318,15 +296,13 @@ context.getBundleName().then((data) => {
 
 
 
-### getProcessInfo
+## Context.getProcessInfo
 
-getProcessInfo(callback: AsyncCallback\<ProcessInfo>)
+getProcessInfo(callback: AsyncCallback\<ProcessInfo>): void
 
-Obtains information about the current process, including the PID and process name. This method uses a callback to return the result.
+Obtains information about the current process, including the PID and process name. This API uses an asynchronous callback to return the result.
 
-**System capabilities**
-
-SystemCapability.Ability.AbilityRuntime.Core
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
 
@@ -344,15 +320,13 @@ context.getProcessInfo()
 
 
 
-### getProcessInfo
+## Context.getProcessInfo
 
 getProcessInfo(): Promise\<ProcessInfo>
 
-Obtains information about the current process, including the PID and process name. This method uses a promise to return the result.
+Obtains information about the current process, including the PID and process name. This API uses a promise to return the result.
 
-**System capabilities**
-
-SystemCapability.Ability.AbilityRuntime.Core
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Return value**
 
@@ -373,17 +347,15 @@ context.getProcessInfo().then((data) => {
 
 
 
-### getElementName
+## Context.getElementName
 
 getElementName(callback: AsyncCallback\<ElementName>): void
 
-Obtains the **ohos.bundle.ElementName** object of the current ability. This method uses a callback to return the result.
+Obtains the **ohos.bundle.ElementName** object of the current ability. This API uses an asynchronous callback to return the result.
 
-This method is available only to Page abilities.
+This API is available only to Page abilities.
 
-**System capabilities**
-
-SystemCapability.Ability.AbilityRuntime.Core
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
 
@@ -401,17 +373,15 @@ context.getElementName()
 
 
 
-### getElementName
+## Context.getElementName
 
 getElementName(): Promise\<ElementName>
 
-Obtains the **ohos.bundle.ElementName** object of the current ability. This method uses a promise to return the result.
+Obtains the **ohos.bundle.ElementName** object of the current ability. This API uses a promise to return the result.
 
-This method is available only to Page abilities.
+This API is available only to Page abilities.
 
-**System capabilities**
-
-SystemCapability.Ability.AbilityRuntime.Core
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Return value**
 
@@ -430,15 +400,15 @@ context.getElementName().then((data) => {
 });
 ```
 
-### getProcessName
+## Context.getProcessName
 
 getProcessName(callback: AsyncCallback\<string>): void
 
-Obtains the name of the current process. This method uses a callback to return the result.
+Obtains the name of the current process. This API uses an asynchronous callback to return the result.
 
-**System capabilities**
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-SystemCapability.Ability.AbilityRuntime.Core
+**Parameters**
 
 | Name    | Type                  | Mandatory| Description                |
 | -------- | ---------------------- | ---- | -------------------- |
@@ -454,15 +424,13 @@ context.getProcessName()
 
 
 
-### getProcessName
+## Context.getProcessName
 
 getProcessName(): Promise\<string>
 
-Obtains the name of the current process. This method uses a promise to return the result.
+Obtains the name of the current process. This API uses a promise to return the result.
 
-**System capabilities**
-
-SystemCapability.Ability.AbilityRuntime.Core
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Return value**
 
@@ -483,15 +451,13 @@ context.getProcessName().then((data) => {
 
 
 
-### getCallingBundle
+## Context.getCallingBundle
 
 getCallingBundle(callback: AsyncCallback\<string>): void
 
-Obtains the bundle name of the calling ability. This method uses a callback to return the result.
+Obtains the bundle name of the calling ability. This API uses an asynchronous callback to return the result.
 
-**System capabilities**
-
-SystemCapability.Ability.AbilityRuntime.Core
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
 
@@ -509,15 +475,13 @@ context.getCallingBundle()
 
 
 
-### getCallingBundle
+## Context.getCallingBundle
 
 getCallingBundle(): Promise\<string>
 
-Obtains the bundle name of the calling ability. This method uses a promise to return the result.
+Obtains the bundle name of the calling ability. This API uses a promise to return the result.
 
-**System capabilities**
-
-SystemCapability.Ability.AbilityRuntime.Core
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Return value**
 
@@ -536,17 +500,443 @@ context.getCallingBundle().then((data) => {
 });
 ```
 
+## Context.getCacheDir
+
+getCacheDir(callback: AsyncCallback\<string>): void
+
+Obtains the cache directory of the application on the internal storage. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name    | Type                  | Mandatory| Description                     |
+| -------- | ---------------------- | ---- | ------------------------- |
+| callback | AsyncCallback\<string> | Yes  | Callback used to return the cache directory.|
+
+**Example**
+
+```js
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getCacheDir();
+context.getCacheDir((err, data) => {
+    if (err) {
+        console.error('Operation failed. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Operation successful. Data:' + JSON.stringify(data));
+});
+```
+
+## Context.getCacheDir
+
+getCacheDir(): Promise\<string>
+
+Obtains the cache directory of the application on the internal storage. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Return value**
+
+| Type           | Description                     |
+| --------------- | ------------------------- |
+| Promise\<string> | Promise used to return the cache directory.|
+
+**Example**
+
+```js
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getContext();
+context.getCacheDir().then((data) => {
+    console.info("======================>getCacheDirPromsie====================>");
+    console.info("====>data====>" + JSON.stringify(data));
+});
+```
+
+## Context.getFilesDir
+
+getFilesDir(callback: AsyncCallback\<string>): void
+
+Obtains the file directory of the application on the internal storage. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name    | Type                  | Mandatory| Description                     |
+| -------- | ---------------------- | ---- | ------------------------- |
+| callback | AsyncCallback\<string> | Yes  | Callback used to return the file directory.|
+
+**Example**
+
+```js
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getFilesDir();
+context.getFilesDir((err, data) => {
+    if (err) {
+        console.error('Operation failed. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Operation successful. Data:' + JSON.stringify(data));
+});
+```
+
+## Context.getFilesDir
+
+getFilesDir(): Promise\<string>
+
+Obtains the file directory of the application on the internal storage. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Return value**
+
+| Type           | Description                     |
+| --------------- | ------------------------- |
+| Promise\<string> | Promise used to return the file directory.|
+
+**Example**
+
+```js
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getContext();
+context.getFilesDir().then((data) => {
+    console.info("======================>getFilesDirPromsie====================>");
+    console.info("====>data====>" + JSON.stringify(data));
+});
+```
+
+## Context.getOrCreateDistributedDir
+
+getOrCreateDistributedDir(callback: AsyncCallback\<string>): void
+
+Obtains the distributed file path for storing ability or application data files. This API uses an asynchronous callback to return the result.
+
+If the distributed file path does not exist, the system will create one and return the created path.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name    | Type                  | Mandatory| Description                     |
+| -------- | ---------------------- | ---- | ------------------------- |
+| callback | AsyncCallback\<string> | Yes  | Callback used to return the distributed file path. If the distributed file path does not exist, the system will create one and return the created path.|
+
+**Example**
+
+```js
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getContext();
+context.getOrCreateDistributedDir((err, data) => {
+    if (err) {
+        console.error('Operation failed. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Operation successful. Data:' + JSON.stringify(data));
+});
+```
+
+## Context.getOrCreateDistributedDir
+
+getOrCreateDistributedDir(): Promise\<string>
+
+Obtains the distributed file path for storing ability or application data files. This API uses a promise to return the result.
+
+If the distributed file path does not exist, the system will create one and return the created path.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Return value**
+
+| Type           | Description                     |
+| --------------- | ------------------------- |
+| Promise\<string> | Promise used to return the distributed file path. If this API is called for the first time, a new path will be created.|
+
+**Example**
+
+```js
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getContext();
+context.getOrCreateDistributedDir().then((data) => {
+    console.info("====>data====>" + JSON.stringify(data));
+});
+```
+
+## Context.getAppType
+
+getAppType(callback: AsyncCallback\<string>): void
+
+Obtains the application type. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name    | Type                  | Mandatory| Description                     |
+| -------- | ---------------------- | ---- | ------------------------- |
+| callback | AsyncCallback\<string> | Yes  | Callback used to return the application type.|
+
+**Example**
+
+```js
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getContext();
+context.getAppType((err, data) => {
+    if (err) {
+        console.error('Operation failed. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Operation successful. Data:' + JSON.stringify(data));
+});
+```
+
+## Context.getAppType
+
+getAppType(): Promise\<string>
+
+Obtains the application type. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Return value**
+
+| Type           | Description                     |
+| --------------- | ------------------------- |
+| Promise\<string> | Promise used to return the application type.|
+
+**Example**
+
+```js
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getContext();
+context.getAppType().then((data) => {
+    console.info("====>data====>" + JSON.stringify(data));
+});
+```
+
+## Context.getHapModuleInfo
+
+getHapModuleInfo(callback: AsyncCallback\<HapModuleInfo>): void
+
+Obtains the **ModuleInfo** object of the application. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name    | Type                  | Mandatory| Description                     |
+| -------- | ---------------------- | ---- | ------------------------- |
+| callback | AsyncCallback\<[HapModuleInfo](#hapmoduleinfo)> | Yes  | Callback used to return the **ModuleInfo** object.|
+
+**Example**
+
+```js
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getContext();
+context.getHapModuleInfo((err, data) => {
+    if (err) {
+        console.error('Operation failed. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Operation successful. Data:' + JSON.stringify(data));
+});
+```
+
+## Context.getHapModuleInfo
+
+getHapModuleInfo(): Promise\<HapModuleInfo>
+
+Obtains the **ModuleInfo** object of the application. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Return value**
+
+| Type           | Description                     |
+| --------------- | ------------------------- |
+| Promise\<[HapModuleInfo](#hapmoduleinfo)> | Promise used to return the **ModuleInfo** object.|
+
+**Example**
+
+```js
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getContext();
+context.getHapModuleInfo().then((data) => {
+    console.info("====>data====>" + JSON.stringify(data));
+});
+```
+
+## Context.getAppVersionInfo
+
+getAppVersionInfo(callback: AsyncCallback\<HapModuleInfo>): void
+
+Obtains the version information of the application. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name    | Type                  | Mandatory| Description                     |
+| -------- | ---------------------- | ---- | ------------------------- |
+| callback | AsyncCallback\<[AppVersionInfo](#appversioninfo)> | Yes  | Callback used to return the version information.|
+
+**Example**
+
+```js
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getContext();
+context.getAppVersionInfo((err, data) => {
+    if (err) {
+        console.error('Operation failed. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Operation successful. Data:' + JSON.stringify(data));
+});
+```
+
+## Context.getAppVersionInfo
+
+getAppVersionInfo(): Promise\<AppVersionInfo>
+
+Obtains the version information of the application. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Return value**
+
+| Type           | Description                     |
+| --------------- | ------------------------- |
+| Promise\<[AppVersionInfo](#appversioninfo)> | Promise used to return the version information.|
+
+**Example**
+
+```js
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getContext();
+context.getAppVersionInfo().then((data) => {
+    console.info("====>data====>" + JSON.stringify(data));
+});
+```
+
+## Context.getAbilityInfo
+
+getAbilityInfo(callback: AsyncCallback\<AbilityInfo>): void
+
+Obtains information of the current ability. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name    | Type                  | Mandatory| Description                     |
+| -------- | ---------------------- | ---- | ------------------------- |
+| callback | AsyncCallback\<[AbilityInfo](#abilityInfo)> | Yes  |Callback used to return the ability information.|
+
+**Example**
+
+```js
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getContext();
+context.getAbilityInfo((err, data) => {
+    if (err) {
+        console.error('Operation failed. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Operation successful. Data:' + JSON.stringify(data));
+});
+```
+
+## Context.getAbilityInfo
+
+getAbilityInfo(): Promise\<AbilityInfo>
+
+Obtains information of the current ability. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Return value**
+
+| Type           | Description                     |
+| --------------- | ------------------------- |
+| Promise\<[AbilityInfo](#abilityInfo)> | Promise used to return the ability information.|
+
+**Example**
+
+```js
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getContext();
+context.getAbilityInfo().then((data) => {
+    console.info("====>data====>" + JSON.stringify(data));
+});
+```
+
+## Context.getApplicationContext
+
+getApplicationContext(): Context
+
+Obtains the context of the application.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Return value**
+
+| Parameters           | Type     | Description                     |
+| --------------- | ------------------------- |------    |
+| Context |  Context |Application context.|
+
+**Example**
+
+```js
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getContext().getApplicationContext();
+```
+
 ## PermissionOptions
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 | Name| Readable/Writable| Type  | Mandatory| Description  |
 | ---- | -------- | ------ | ---- | ------ |
-| pid  | Read-only    | number | No  | PID.<br><b>System capabilities: </b>SystemCapability.Ability.AbilityRuntime.Core|
-| uid  | Read-only    | number | No  | UID.<br><b>System capabilities: </b>SystemCapability.Ability.AbilityRuntime.Core|
+| pid  | Read-only    | number | No  | Process ID.|
+| uid  | Read-only    | number | No  | User ID.|
 
 ## PermissionRequestResult
 
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
 | Name       | Readable/Writable| Type          | Mandatory| Description              |
 | ----------- | -------- | -------------- | ---- | ------------------ |
-| requestCode | Read-only    | number         | Yes  | Request code passed.<br><b>System capabilities: </b>SystemCapability.Ability.AbilityRuntime.Core|
-| permissions | Read-only    | Array\<string> | Yes  | Permissions passed.<br><b>System capabilities: </b>SystemCapability.Ability.AbilityRuntime.Core    |
-| authResults | Read-only    | Array\<number> | Yes  | Permission request result.<br><b>System capabilities: </b>SystemCapability.Ability.AbilityRuntime.Core      |
+| requestCode | Read-only    | number         | Yes  | Request code passed.|
+| permissions | Read-only    | Array\<string> | Yes  | Permissions requested.    |
+| authResults | Read-only    | Array\<number> | Yes  | Permission request result.     |
+
+## HapModuleInfo
+
+Describes the HAP module information.
+
+| Name              | Type| Readable| Writable| Description|
+| ------ | ------ | ------ | ------ | ------ |
+| name             | string        | Yes  | No  | Module name.          |
+| description      | string        | Yes  | No  | Module description.      |
+| descriptionId    | number        | Yes  | No  | Module description ID.        |
+| icon             | string        | Yes  | No  | Module icon.          |
+| label            | string        | Yes  | No  | Module label.          |
+| labelId          | number        | Yes  | No  | Module label ID.        |
+| iconId           | number        | Yes  | No  | Module icon ID.        |
+| backgroundImg    | string        | Yes  | No  | Module background image.      |
+| supportedModes   | number        | Yes  | No  | Modes supported by the module.    |
+| reqCapabilities  | Array<string> | Yes  | No  | Capabilities required for module running.|
+| deviceTypes      | Array<string> | Yes  | No  | An array of supported device types.|
+| abilityInfo      | Array<AbilityInfo> | Yes  | No  | Ability information.       |
+| moduleName       | string        | Yes  | No  | Module name.            |
+| mainAbilityName  | string        | Yes  | No  | Name of the entrance ability.   |
+| installationFree | boolean       | Yes  | No  | When installation-free is supported.    |
+| mainElementName | string | Yes| No| Information about the entry ability.|
+
+## AppVersionInfo
+
+| Name            | Type| Readable   | Writable  | Description|
+| ------          | ------ | ------| ------ | ------    |
+| appName         | string | Yes   | No    | Module name.     |
+| versionCode     | number | Yes   | No    | Module description.  |
+| versionName     | string | Yes   | No    | Module description ID.    |

@@ -8,17 +8,13 @@ import ohos_data_ability from '@ohos.data.dataability'
 import ohos_data_rdb from '@ohos.data.rdb'
 ```
 
-## DataAbilityHelper
-
-### openFile
+## DataAbilityHelper.openFile
 
 openFile(uri: string, mode: string, callback: AsyncCallback\<number>): void
 
-Opens a file with a specified URI. This method uses a callback to return the result.
+Opens a file with a specified URI. This API uses an asynchronous callback to return the result.
 
-**System capabilities**
-
-SystemCapability.Ability.AbilityRuntime.FAModel
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
 **Parameters**
 
@@ -44,15 +40,13 @@ DAHelper.openFile(
 });
 ```
 
-### openFile
+## DataAbilityHelper.openFile
 
 openFile(uri: string, mode: string): Promise\<number>
 
-Opens a file with a specified URI. This method uses a promise to return the result.
+Opens a file with a specified URI. This API uses a promise to return the result.
 
-**System capabilities**
-
-SystemCapability.Ability.AbilityRuntime.FAModel
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
 **Parameters**
 
@@ -62,6 +56,7 @@ SystemCapability.Ability.AbilityRuntime.FAModel
 | mode | string | Yes  | Mode for opening the file. The value can be **rwt**. |
 
 **Return value**
+
 | Type            | Description            |
 | ---------------- | ---------------- |
 | Promise\<number> | Promise used to return the file descriptor.|
@@ -81,15 +76,13 @@ DAHelper.openFile(
 });
 ```
 
-### on('dataChange')
+## DataAbilityHelper.on
 
 on(type: 'dataChange', uri: string, callback: AsyncCallback\<void>): void
 
-Registers an observer to observe data specified by a given URI. This method uses a callback to return the result.
+Registers an observer to observe data specified by a given URI. This API uses an asynchronous callback to return the result.
 
-**System capabilities**
-
-SystemCapability.Ability.AbilityRuntime.FAModel
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
 **Parameters**
 
@@ -116,15 +109,13 @@ helper.on(
 )
 ```
 
-### off('dataChange')
+## DataAbilityHelper.off
 
 off(type: 'dataChange', uri: string, callback?: AsyncCallback\<void>): void
 
-Unregisters the observer used to observe data specified by a given URI. This method uses a callback to return the result.
+Unregisters the observer used to observe data specified by a given URI. This API uses an asynchronous callback to return the result.
 
-**System capabilities**
-
-SystemCapability.Ability.AbilityRuntime.FAModel
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
 **Parameters**
 
@@ -155,15 +146,13 @@ helper.off(
 )
 ```
 
-### getType
+## DataAbilityHelper.getType
 
 getType(uri: string, callback: AsyncCallback\<string>): void
 
-Obtains the MIME type of the data specified by a given URI. This method uses a callback to return the result.
+Obtains the MIME type of the data specified by a given URI. This API uses an asynchronous callback to return the result.
 
-**System capabilities**
-
-SystemCapability.Ability.AbilityRuntime.FAModel
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
 **Parameters**
 
@@ -186,15 +175,13 @@ DAHelper.getType(
 });
 ```
 
-### getType
+## DataAbilityHelper.getType
 
 getType(uri: string): Promise\<string>
 
-Obtains the MIME type of the data specified by a given URI. This method uses a promise to return the result.
+Obtains the MIME type of the data specified by a given URI. This API uses a promise to return the result.
 
-**System capabilities**
-
-SystemCapability.Ability.AbilityRuntime.FAModel
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
 **Parameters**
 
@@ -203,6 +190,7 @@ SystemCapability.Ability.AbilityRuntime.FAModel
 | uri  | string | Yes  | URI of the data.|
 
 **Return value**
+
 | Type            | Description                               |
 | ---------------- | ----------------------------------- |
 | Promise\<string> | Promise used to return the MIME type.|
@@ -221,15 +209,13 @@ DAHelper.getType(
 });
 ```
 
-### getFileTypes
+## DataAbilityHelper.getFileTypes
 
 getFileTypes(uri: string, mimeTypeFilter: string, callback: AsyncCallback<Array\<string>>): void
 
-Obtains the supported MIME types of a specified file. This method uses a callback to return the result.
+Obtains the supported MIME types of a specified file. This API uses an asynchronous callback to return the result.
 
-**System capabilities**
-
-SystemCapability.Ability.AbilityRuntime.FAModel
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
 **Parameters**
 
@@ -256,15 +242,13 @@ DAHelper.getFileTypes(
 
 
 
-### getFileTypes
+## DataAbilityHelper.getFileTypes
 
 getFileTypes(uri: string, mimeTypeFilter: string): Promise\<Array\<string>>
 
-Obtains the supported MIME types of a specified file. This method uses a promise to return the result.
+Obtains the supported MIME types of a specified file. This API uses a promise to return the result.
 
-**System capabilities**
-
-SystemCapability.Ability.AbilityRuntime.FAModel
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
 **Parameters**
 
@@ -274,6 +258,7 @@ SystemCapability.Ability.AbilityRuntime.FAModel
 | mimeTypeFilter | string | Yes  | MIME type of the file.|
 
 **Return value**
+
 | Type                    | Description                    |
 | ------------------------ | ------------------------ |
 | Promise\<Array\<string>> | Promise used to return the supported MIME types.|
@@ -293,15 +278,13 @@ DAHelper.getFileTypes(
 });
 ```
 
-### normalizeUri
+## DataAbilityHelper.normalizeUri
 
 normalizeUri(uri: string, callback: AsyncCallback\<string>): void
 
-Converts the URI that refers to a Data ability into a normalized URI. This method uses a callback to return the result.
+Converts the URI that refers to a Data ability into a normalized URI. This API uses an asynchronous callback to return the result.
 
-**System capabilities**
-
-SystemCapability.Ability.AbilityRuntime.FAModel
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
 **Parameters**
 
@@ -324,15 +307,13 @@ DAHelper.normalizeUri(
 });
 ```
 
-### normalizeUri
+## DataAbilityHelper.normalizeUri
 
 normalizeUri(uri: string): Promise\<string>
 
-Converts the URI that refers to a Data ability into a normalized URI. This method uses a promise to return the result.
+Converts the URI that refers to a Data ability into a normalized URI. This API uses a promise to return the result.
 
-**System capabilities**
-
-SystemCapability.Ability.AbilityRuntime.FAModel
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
 **Parameters**
 
@@ -341,6 +322,7 @@ SystemCapability.Ability.AbilityRuntime.FAModel
 | uri  | string | Yes  | URI object to normalize.|
 
 **Return value**
+
 | Type            | Description                                                  |
 | ---------------- | ------------------------------------------------------ |
 | Promise\<string> | Promise used to return the normalized URI object if the Data ability supports URI normalization. If the Data ability does not support URI normalization, **null** is returned.|
@@ -359,15 +341,13 @@ DAHelper.normalizeUri(
 });
 ```
 
-### denormalizeUri
+## DataAbilityHelper.denormalizeUri
 
 denormalizeUri(uri: string, callback: AsyncCallback\<string>): void
 
-Converts a normalized URI generated by **DataAbilityHelper.normalizeUri(uri: string, callback: AsyncCallback\<string>)** to a denormalized one. This method uses a callback to return the result.
+Converts a normalized URI generated by **DataAbilityHelper.normalizeUri(uri: string, callback: AsyncCallback\<string>)** to a denormalized one. This API uses an asynchronous callback to return the result.
 
-**System capabilities**
-
-SystemCapability.Ability.AbilityRuntime.FAModel
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
 **Parameters**
 
@@ -392,15 +372,13 @@ DAHelper.denormalizeUri(
 
 
 
-### denormalizeUri
+## DataAbilityHelper.denormalizeUri
 
 denormalizeUri(uri: string): Promise\<string>
 
-Converts a normalized URI generated by **DataAbilityHelper.normalizeUri(uri: string)** to a denormalized one. This method uses a promise to return the result.
+Converts a normalized URI generated by **DataAbilityHelper.normalizeUri(uri: string)** to a denormalized one. This API uses a promise to return the result.
 
-**System capabilities**
-
-SystemCapability.Ability.AbilityRuntime.FAModel
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
 **Parameters**
 
@@ -409,6 +387,7 @@ SystemCapability.Ability.AbilityRuntime.FAModel
 | uri  | string | Yes  | URI object to normalize.|
 
 **Return value**
+
 | Type            | Description                                     |
 | ---------------- | ----------------------------------------- |
 | Promise\<string> | Promise used to return the denormalized URI object.|
@@ -427,15 +406,13 @@ DAHelper.denormalizeUri(
 });
 ```
 
-### notifyChange
+## DataAbilityHelper.notifyChange
 
 notifyChange(uri: string, callback: AsyncCallback\<void>): void
 
-Notifies the registered observer of a change to the data specified by the URI. This method uses a callback to return the result.
+Notifies the registered observer of a change to the data specified by the URI. This API uses an asynchronous callback to return the result.
 
-**System capabilities**
-
-SystemCapability.Ability.AbilityRuntime.FAModel
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
 **Parameters**
 
@@ -458,15 +435,13 @@ helper.notifyChange(
 });
 ```
 
-### notifyChange
+## DataAbilityHelper.notifyChange
 
 notifyChange(uri: string): Promise\<void>
 
-Notifies the registered observer of a change to the data specified by the URI. This method uses a promise to return the result.
+Notifies the registered observer of a change to the data specified by the URI. This API uses a promise to return the result.
 
-**System capabilities**
-
-SystemCapability.Ability.AbilityRuntime.FAModel
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
 **Parameters**
 
@@ -475,6 +450,7 @@ SystemCapability.Ability.AbilityRuntime.FAModel
 | uri  | string | Yes  | URI of the data.|
 
 **Return value**
+
 | Type          | Description                 |
 | -------------- | --------------------- |
 | Promise\<void> | Promise used to return the result.|
@@ -493,15 +469,13 @@ DAHelper.notifyChange(
 });
 ```
 
-### insert
+## DataAbilityHelper.insert
 
 insert(uri: string, valuesBucket: rdb.ValuesBucket, callback: AsyncCallback\<number>): void
 
-Inserts a single data record into the database. This method uses a callback to return the result.
+Inserts a single data record into the database. This API uses an asynchronous callback to return the result.
 
-**System capabilities**
-
-SystemCapability.Ability.AbilityRuntime.FAModel
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
 **Parameters**
 
@@ -532,15 +506,13 @@ DAHelper.insert(
 });
 ```
 
-### insert
+## DataAbilityHelper.insert
 
 insert(uri: string, valuesBucket: rdb.ValuesBucket): Promise\<number>
 
-Inserts a single data record into the database. This method uses a promise to return the result.
+Inserts a single data record into the database. This API uses a promise to return the result.
 
-**System capabilities**
-
-SystemCapability.Ability.AbilityRuntime.FAModel
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
 **Parameters**
 
@@ -550,6 +522,7 @@ SystemCapability.Ability.AbilityRuntime.FAModel
 | valuesBucket | rdb.ValuesBucket | Yes  | Data record to insert. If this parameter is **null**, a blank row will be inserted.|
 
 **Return value**
+
 | Type            | Description                    |
 | ---------------- | ------------------------ |
 | Promise\<number> | Promise used to return the index of the inserted data record.|
@@ -575,15 +548,13 @@ DAHelper.insert(
 });
 ```
 
-### batchInsert
+## DataAbilityHelper.batchInsert
 
 batchInsert(uri: string, valuesBuckets: Array<rdb.ValuesBucket>, callback: AsyncCallback\<number>): void
 
-Inserts multiple data records into the database. This method uses a callback to return the result.
+Inserts multiple data records into the database. This API uses an asynchronous callback to return the result.
 
-**System capabilities**
-
-SystemCapability.Ability.AbilityRuntime.FAModel
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
 **Parameters**
 
@@ -611,15 +582,13 @@ DAHelper.batchInsert(
 });
 ```
 
-### batchInsert
+## DataAbilityHelper.batchInsert
 
 batchInsert(uri: string, valuesBuckets: Array<rdb.ValuesBucket>): Promise\<number>
 
-Inserts multiple data records into the database. This method uses a promise to return the result.
+Inserts multiple data records into the database. This API uses a promise to return the result.
 
-**System capabilities**
-
-SystemCapability.Ability.AbilityRuntime.FAModel
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
 **Parameters**
 
@@ -629,6 +598,7 @@ SystemCapability.Ability.AbilityRuntime.FAModel
 | valuesBucket | Array<rdb.ValuesBucket> | Yes  | Data record to insert.  |
 
 **Return value**
+
 | Type            | Description                  |
 | ---------------- | ---------------------- |
 | Promise\<number> | Promise used to return the number of inserted data records.|
@@ -651,15 +621,13 @@ DAHelper.batchInsert(
 });
 ```
 
-### delete
+## DataAbilityHelper.delete
 
 delete(uri: string, predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback\<number>): void
 
-Deletes one or more data records from the database. This method uses a callback to return the result.
+Deletes one or more data records from the database. This API uses an asynchronous callback to return the result.
 
-**System capabilities**
-
-SystemCapability.Ability.AbilityRuntime.FAModel
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
 **Parameters**
 
@@ -686,15 +654,13 @@ DAHelper.delete(
 });
 ```
 
-### delete
+## DataAbilityHelper.delete
 
 delete(uri: string, predicates: dataAbility.DataAbilityPredicates): Promise\<number>
 
-Deletes one or more data records from the database. This method uses a promise to return the result.
+Deletes one or more data records from the database. This API uses a promise to return the result.
 
-**System capabilities**
-
-SystemCapability.Ability.AbilityRuntime.FAModel
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
 **Parameters**
 
@@ -704,6 +670,7 @@ SystemCapability.Ability.AbilityRuntime.FAModel
 | valuesBucket | dataAbility.DataAbilityPredicates | Yes  | Filter criteria. You should define the processing logic when this parameter is **null**.|
 
 **Return value**
+
 | Type            | Description                    |
 | ---------------- | ------------------------ |
 | Promise\<number> | Promise used to return the number of deleted data records.|
@@ -724,15 +691,13 @@ DAHelper.delete(
 });
 ```
 
-### update
+## DataAbilityHelper.update
 
 update(uri: string, valuesBucket: rdb.ValuesBucket, predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback\<number>): void
 
-Updates data records in the database. This method uses a callback to return the result.
+Updates data records in the database. This API uses an asynchronous callback to return the result.
 
-**System capabilities**
-
-SystemCapability.Ability.AbilityRuntime.FAModel
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
 **Parameters**
 
@@ -767,15 +732,13 @@ DAHelper.update(
 });
 ```
 
-### update
+## DataAbilityHelper.update
 
 update(uri: string, valuesBucket: rdb.ValuesBucket, predicates: dataAbility.DataAbilityPredicates): Promise\<number>
 
-Updates data records in the database. This method uses a promise to return the result.
+Updates data records in the database. This API uses a promise to return the result.
 
-**System capabilities**
-
-SystemCapability.Ability.AbilityRuntime.FAModel
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
 **Parameters**
 
@@ -786,9 +749,10 @@ SystemCapability.Ability.AbilityRuntime.FAModel
 | predicates   | dataAbility.DataAbilityPredicates | Yes  | Filter criteria. You should define the processing logic when this parameter is **null**.|
 
 **Return value**
+
 | Type            | Description                                        |
 | ---------------- | -------------------------------------------- |
-| Promise\<number> | Promise used to return the number of updated data records.|
+| Promise\<number> | Promise used to return the number of updated data records.  |
 
 **Example**
 
@@ -814,15 +778,13 @@ DAHelper.update(
 });
 ```
 
-### query
+## DataAbilityHelper.query
 
 query(uri: string, columns: Array\<string>, predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback\<ResultSet>): void
 
-Queries data in the database. This method uses a callback to return the result.
+Queries data in the database. This API uses an asynchronous callback to return the result.
 
-**System capabilities**
-
-SystemCapability.Ability.AbilityRuntime.FAModel
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
 **Parameters**
 
@@ -854,15 +816,13 @@ DAHelper.query(
 
 
 
-### query
+## DataAbilityHelper.query
 
 query(uri: string, columns: Array\<string>, predicates: dataAbility.DataAbilityPredicates): Promise\<ResultSet>
 
-Queries data in the database. This method uses a promise to return the result.
+Queries data in the database. This API uses a promise to return the result.
 
-**System capabilities**
-
-SystemCapability.Ability.AbilityRuntime.FAModel
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
 **Parameters**
 
@@ -873,6 +833,7 @@ SystemCapability.Ability.AbilityRuntime.FAModel
 | predicates | dataAbility.DataAbilityPredicates | Yes  | Filter criteria. You should define the processing logic when this parameter is **null**.|
 
 **Return value**
+
 | Type               | Description          |
 | ------------------- | -------------- |
 | Promise\<ResultSet> | Promise used to return the data queried.|
@@ -895,3 +856,77 @@ DAHelper.query(
 		console.info("==========================>queryCallback=======================>");
 });
 ```
+
+## DataAbilityHelper.call
+
+call(uri: string, method: string, arg: string, extras: PacMap): Promise<PacMap>
+
+Calls the extended API of the Data ability. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
+
+**Parameters**
+
+| Name      | Type                             | Mandatory| Description                                            |
+| ---------- | --------------------------------- | ---- | ------------------------------------------------ |
+| uri        | string                 | Yes  | URI of the Data ability. Example: "dataability:///com.example.xxx.xxxx"          |
+| method    | string                  | Yes  | Name of the API to call.  |
+| arg      | string                   | Yes  |Parameter to pass.     |
+| extras   | [PacMap](#pacmap)        | Yes  | Key-value pair parameter.      |
+
+**Return value**
+
+| Type| Description|
+|------ | ------- |
+|Promise<[PacMap](#pacmap)> | Promise used to return the result.|
+
+**Example**
+
+```js
+import featureAbility from '@ohos.ability.featureAbility';
+
+let dataAbilityHelper = featureAbility.acquireDataAbilityHelper("dataability:///com.example.jsapidemo.UserDataAbility");
+dataAbilityHelper.call("dataability:///com.example.jsapidemo.UserDataAbility", "method", "arg", {"key1":"value1"}).then((data) => {
+    console.info('Operation succeeded: ' + data);
+}).catch((error) => {
+    console.error('Operation failed. Cause: ' + error);
+});
+```
+
+## DataAbilityHelper.call
+
+call(uri: string, method: string, arg: string, extras: PacMap, callback: AsyncCallback<PacMap>): void
+
+Calls the extended API of the Data ability. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
+
+**Parameters**
+
+| Name      | Type                             | Mandatory| Description                                            |
+| ---------- | --------------------------------- | ---- | ------------------------------------------------ |
+| uri        | string                 | Yes  | URI of the Data ability. Example: "dataability:///com.example.xxx.xxxx"          |
+| method    | string                  | Yes  | Name of the API to call.  |
+| arg      | string                   | Yes  |Parameter to pass.     |
+| extras   | [PacMap](#pacmap)        | Yes  | Key-value pair parameter.      |
+| callback | AsyncCallback<[PacMap](#pacmap)> | Yes| Callback used to return the result.    |
+
+**Example**
+
+```js
+import featureAbility from '@ohos.ability.featureAbility';
+
+let dataAbilityHelper = featureAbility.acquireDataAbilityHelper("dataability:///com.example.jsapidemo.UserDataAbility");
+dataAbilityHelper.call("dataability:///com.example.jsapidemo.UserDataAbility", "method", "arg", {"key1":"value1"}, (err, data) => {
+    if (err) {
+        console.error('Operation failed. Cause: ' + err);
+        return;
+    }
+    console.info('Operation succeeded: ' + data);
+});
+```
+## PacMap
+
+| Name| Type| Mandatory| Description|
+| ------ | ------ | ------ | ------ |
+| [key: string] | number \| string \| boolean \| Array\<string \| number \| boolean\> \| null | Yes| Data stored in key-value pairs.|

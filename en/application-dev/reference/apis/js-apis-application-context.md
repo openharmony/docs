@@ -14,6 +14,7 @@ You must extend **AbilityContext** to implement this module.
 
 
 ## Attributes
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
   | Name| Type| Readable| Writable| Description| 
 | -------- | -------- | -------- | -------- | -------- |
@@ -29,44 +30,51 @@ You must extend **AbilityContext** to implement this module.
 | eventHub | [EventHub](js-apis-eventhub.md) | Yes| No| Event hub information.| 
 
 
-## createBundleContext
+## Context.createBundleContext
 
 createBundleContext(bundleName: string): Context;
 
 Creates an application context.
 
-- **Parameters**
-    | Name| Type| Mandatory| Description| 
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+  | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
   | bundleName | string | Yes| Application bundle name.| 
 
-- Return value
-    | Type| Description| 
+**Return value**
+
+  | Type| Description| 
   | -------- | -------- |
   | Context | Context of the application created.| 
 
-- Example
+**Example**
     
-  ```
+  ```js
   let test = "com.example.test";
   let context = this.context.createBundleContext(test);
   ```
 
 
-## getApplicationContext
+## Context.getApplicationContext
 
 getApplicationContext(): Context;
 
 Obtains the context of this application.
 
-- Return value
-    | Type| Description| 
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Return value**
+
+  | Type| Description| 
   | -------- | -------- |
   | Context | Context obtained.| 
 
-- Example
+**Example**
     
-  ```
+  ```js
   // This part is mandatory.
   let context = this.context.getApplicationContext();
   ```
