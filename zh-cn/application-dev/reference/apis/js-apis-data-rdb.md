@@ -30,7 +30,7 @@ getRdbStore(context?: Context, config: StoreConfig, version: number, callback: A
 
 - 示例：
   ```
-  示例一：Stage or FA 模式
+  //示例一：Stage or FA 模式
   import Ability from '@ohos.application.Ability'
   import data_rdb from '@ohos.data.rdb'
   export default class MainAbility extends Ability {
@@ -41,7 +41,7 @@ getRdbStore(context?: Context, config: StoreConfig, version: number, callback: A
           console.info('create table done.')
       })
   }
-  示例二：FA Only模式
+  //示例二：FA Only模式
   import data_rdb from '@ohos.data.rdb'
   const STORE_CONFIG = { name: "RdbTest.db"}
   const SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)"
@@ -73,7 +73,7 @@ getRdbStore(context?: Context, config: StoreConfig, version: number): Promise&lt
 
 - 示例：
   ```
-  示例一：Stage or FA 模式
+  //示例一：Stage or FA 模式
   import Ability from '@ohos.application.Ability'
   import data_rdb from '@ohos.data.rdb'
   export default class MainAbility extends Ability {
@@ -91,7 +91,7 @@ getRdbStore(context?: Context, config: StoreConfig, version: number): Promise&lt
           console.log("getRdbStore err.")
       })
   }
-  示例二：FA Only模式
+  //示例二：FA Only模式
   import data_rdb from '@ohos.data.rdb'
   const STORE_CONFIG = { name: "RdbTest.db" }
   const SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)"
@@ -125,7 +125,7 @@ deleteRdbStore(context?: Context, name: string, callback: AsyncCallback&lt;void&
 
 - 示例：
   ```
-  示例一：Stage or FA 模式
+  //示例一：Stage or FA 模式
   import Ability from '@ohos.application.Ability'
   import data_rdb from '@ohos.data.rdb'
   export default class MainAbility extends Ability {
@@ -133,7 +133,7 @@ deleteRdbStore(context?: Context, name: string, callback: AsyncCallback&lt;void&
           console.info('delete store done.')
       })
   }
-  示例二：FA Only模式
+  //示例二：FA Only模式
   import data_rdb from '@ohos.data.rdb'
   data_rdb.deleteRdbStore("RdbTest.db", function (err, rdbStore) {
       console.info('delete store done.')
