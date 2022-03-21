@@ -20,6 +20,6 @@
 
   - [Video Recording Development](video-recorder.md)
 
-- Sound
+- Image
 
-  - [SoundManager Development](sound-manager.md)
+  - [Image Development](image.md)
