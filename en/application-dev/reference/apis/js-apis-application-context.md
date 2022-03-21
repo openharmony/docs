@@ -48,7 +48,7 @@ Creates an application context.
 - Example
     
   ```
-  let test = "com.huawei.test";
+  let test = "com.example.test";
   let context = this.context.createBundleContext(test);
   ```
 
