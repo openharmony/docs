@@ -7,3 +7,9 @@
   - [位置开发概述](device-location-overview.md)
   - [获取设备的位置信息](device-location-info.md)
   - [（逆）地理编码转化](device-location-geocoding.md)
+- 传感器
+  - [传感器开发概述](sensor-overview.md)
+  - [传感器开发指导](sensor-guidelines.md)
+- 振动
+  - [振动开发概述](vibrator-guidelines.md)
+  - [振动开发指导](vibrator-guidelines.md)
