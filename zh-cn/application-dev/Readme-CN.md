@@ -23,6 +23,7 @@
        - [设备管理](device/Readme-CN.md)
        - [设备使用信息统计](device-usage-statistics/Readme-CN.md)
        - [DFX](dfx/Readme-CN.md)
+       - [国际化](internationalization/Readme-CN.md)
 - 工具
     - [DevEco Studio（OpenHarmony）使用指南](quick-start/deveco-studio-user-guide-for-openharmony.md)
 - 示例教程
