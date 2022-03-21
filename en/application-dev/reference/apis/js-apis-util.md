@@ -147,7 +147,7 @@ Processes an asynchronous function and returns a promise version.
 
 ### constructor
 
-constructor(encoding?:string, options?:{ fatal?:boolean;ignoreBOM?:boolean })
+constructor(encoding?: string, options?: { fatal?: boolean;ignoreBOM?: boolean })
 
 A constructor used to create a **TextDecoder** object.
 
@@ -168,13 +168,13 @@ A constructor used to create a **TextDecoder** object.
 
 **Example**
   ```
-  var textDecoder = new util.TextDecoder("utf-8",{ignoreBOM:true});
+  var textDecoder = new util.TextDecoder("utf-8",{ignoreBOM: true});
   ```
 
 
 ### decode
 
-decode(input: Unit8Array, options?:{stream?:false}): string
+decode(input: Unit8Array, options?: {stream?: false}): string
 
 Decodes the input content.
 
@@ -199,7 +199,7 @@ Decodes the input content.
 
 **Example**
   ```
-  var textDecoder = new util.TextDecoder("utf-8",{ignoreBOM:true});
+  var textDecoder = new util.TextDecoder("utf-8",{ignoreBOM: true});
   var result = new Uint8Array(6);
   result[0] = 0xEF;
   result[1] = 0xBB;
@@ -211,7 +211,7 @@ Decodes the input content.
   for(var j= 0; j < 6; j++) {
       console.log(result[j]);
   }
-  var retStr = textDecoder.decode( result , {stream:false});
+  var retStr = textDecoder.decode( result , {stream: false});
   console.log("retStr = " + retStr);
   ```
 
@@ -243,7 +243,7 @@ A constructor used to create a **TextEncoder** object.
 
 ### encode
 
-encode(input?:string):Uint8Array
+encode(input?: string): Uint8Array
 
 Encodes the input content.
 
@@ -269,7 +269,7 @@ Encodes the input content.
 
 ### encodeInto
 
-encodeInto(input:string, dest:Uint8Array, ):{ read:number; written:number }
+encodeInto(input: string, dest: Uint8Array, ): { read: number; written: number }
 
 Stores the UTF-8 encoded text.
 
@@ -299,7 +299,7 @@ Stores the UTF-8 encoded text.
 
 ### constructor<sup>8+</sup>
 
-constructor(numerator:number,denominator:number)
+constructor(numerator: number,denominator: number)
 
 A constructor used to create a **RationalNumber** object.
 
@@ -319,7 +319,7 @@ A constructor used to create a **RationalNumber** object.
 
 ### createRationalFromString<sup>8+</sup>
 
-static createRationalFromString​(rationalString:string):RationalNumber​
+static createRationalFromString​(rationalString: string): RationalNumber​
 
 Creates a **RationalNumber** object based on the given string.
 
@@ -344,7 +344,7 @@ Creates a **RationalNumber** object based on the given string.
 
 ### compareTo<sup>8+</sup>
 
-compareTo​(another:RationalNumber):number​
+compareTo​(another: RationalNumber): number​
 
 Compares this **RationalNumber** object with a given object.
 
@@ -370,7 +370,7 @@ Compares this **RationalNumber** object with a given object.
 
 ### valueOf<sup>8+</sup>
 
-valueOf():number
+valueOf(): number
 
 Obtains the value of this **RationalNumber** object as an integer or a floating-point number.
 
@@ -390,7 +390,7 @@ Obtains the value of this **RationalNumber** object as an integer or a floating-
 
 ### equals<sup>8+</sup>
 
-equals​(obj:Object):boolean
+equals​(obj: Object): boolean
 
 Checks whether this **RationalNumber** object equals the given object.
 
@@ -416,7 +416,7 @@ Checks whether this **RationalNumber** object equals the given object.
 
 ### getCommonDivisor<sup>8+</sup>
 
-static getCommonDivisor​(number1:number,number2:number):number
+static getCommonDivisor​(number1: number,number2: number): number
 
 Obtains the greatest common divisor of two specified integers.
 
@@ -442,7 +442,7 @@ Obtains the greatest common divisor of two specified integers.
 
 ### getNumerator<sup>8+</sup>
 
-getNumerator​():number
+getNumerator​(): number
 
 Obtains the numerator of this **RationalNumber** object.
 
@@ -463,7 +463,7 @@ Obtains the numerator of this **RationalNumber** object.
 
 ### getDenominator<sup>8+</sup>
 
-getDenominator​():number
+getDenominator​(): number
 
 Obtains the denominator of this **RationalNumber** object.
 
@@ -483,7 +483,7 @@ Obtains the denominator of this **RationalNumber** object.
 
 ### isZero<sup>8+</sup>
 
-isZero​():boolean
+isZero​(): boolean
 
 Checks whether this **RationalNumber** object is **0**.
 
@@ -503,7 +503,7 @@ Checks whether this **RationalNumber** object is **0**.
 
 ### isNaN<sup>8+</sup>
 
-isNaN​():boolean
+isNaN​(): boolean
 
 Checks whether this **RationalNumber** object is a Not a Number (NaN).
 
@@ -523,7 +523,7 @@ Checks whether this **RationalNumber** object is a Not a Number (NaN).
 
 ### isFinite<sup>8+</sup>
 
-isFinite​():boolean
+isFinite​(): boolean
 
 Checks whether this **RationalNumber** object represents a finite value.
 
@@ -543,7 +543,7 @@ Checks whether this **RationalNumber** object represents a finite value.
 
 ### toString<sup>8+</sup>
 
-toString​():string
+toString​(): string
 
 Obtains the string representation of this **RationalNumber** object.
 
@@ -581,7 +581,7 @@ Obtains the string representation of this **RationalNumber** object.
 
 ### constructor<sup>8+</sup>
 
-constructor(capacity?:number)
+constructor(capacity?: number)
 
 A constructor used to create an **LruBuffer** instance. The default capacity of the buffer is 64.
 
@@ -600,7 +600,7 @@ A constructor used to create an **LruBuffer** instance. The default capacity of 
 
 ### updateCapacity<sup>8+</sup>
 
-updateCapacity(newCapacity:number):void
+updateCapacity(newCapacity: number): void
 
 Changes the **LruBuffer** capacity. If the new capacity is less than or equal to **0**, an exception will be thrown.
 
@@ -620,7 +620,7 @@ Changes the **LruBuffer** capacity. If the new capacity is less than or equal to
 
 ### toString<sup>8+</sup>
 
-toString():string
+toString(): string
 
 Obtains the string representation of this **LruBuffer** object.
 
@@ -643,7 +643,7 @@ Obtains the string representation of this **LruBuffer** object.
 
 ### getCapacity<sup>8+</sup>
 
-getCapacity():number
+getCapacity(): number
 
 Obtains the capacity of this buffer.
 
@@ -663,7 +663,7 @@ Obtains the capacity of this buffer.
 
 ### clear<sup>8+</sup>
 
-clear():void
+clear(): void
 
 Clears key-value pairs from this buffer. The **afterRemoval()** method will be called to perform subsequent operations.
 
@@ -680,7 +680,7 @@ Clears key-value pairs from this buffer. The **afterRemoval()** method will be c
 
 ### getCreateCount<sup>8+</sup>
 
-getCreateCount():number
+getCreateCount(): number
 
 Obtains the number of return values for **createDefault()**.
 
@@ -701,7 +701,7 @@ Obtains the number of return values for **createDefault()**.
 
 ### getMissCount<sup>8+</sup>
 
-getMissCount():number
+getMissCount(): number
 
 Obtains the number of times that the queried values are mismatched.
 
@@ -723,7 +723,7 @@ Obtains the number of times that the queried values are mismatched.
 
 ### getRemovalCount<sup>8+</sup>
 
-getRemovalCount():number
+getRemovalCount(): number
 
 Obtains the number of removals from this buffer.
 
@@ -746,7 +746,7 @@ Obtains the number of removals from this buffer.
 
 ### getMatchCount<sup>8+</sup>
 
-getMatchCount():number
+getMatchCount(): number
 
 Obtains the number of times that the queried values are matched.
 
@@ -768,7 +768,7 @@ Obtains the number of times that the queried values are matched.
 
 ### getPutCount<sup>8+</sup>
 
-getPutCount():number
+getPutCount(): number
 
 Obtains the number of additions to this buffer.
 
@@ -789,7 +789,7 @@ Obtains the number of additions to this buffer.
 
 ### isEmpty<sup>8+</sup>
 
-isEmpty():boolean
+isEmpty(): boolean
 
 Checks whether this buffer is empty.
 
@@ -810,7 +810,7 @@ Checks whether this buffer is empty.
 
 ### get<sup>8+</sup>
 
-get(key:K):V | undefined
+get(key: K): V | undefined
 
 Obtains the value of the specified key.
 
@@ -836,7 +836,7 @@ Obtains the value of the specified key.
 
 ### put<sup>8+</sup>
 
-put(key:K,value:V):V
+put(key: K,value: V): V
 
 Adds a key-value pair to this buffer.
 
@@ -862,7 +862,7 @@ Adds a key-value pair to this buffer.
 
 ### values<sup>8+</sup>
 
-values():V[]
+values(): V[]
 
 Obtains all values in this buffer, listed from the most to the least recently accessed.
 
@@ -885,7 +885,7 @@ Obtains all values in this buffer, listed from the most to the least recently ac
 
 ### keys<sup>8+</sup>
 
-keys():K[]
+keys(): K[]
 
 Obtains all keys in this buffer, listed from the most to the least recently accessed.
 
@@ -906,7 +906,7 @@ Obtains all keys in this buffer, listed from the most to the least recently acce
 
 ### remove<sup>8+</sup>
 
-remove(key:K):V | undefined
+remove(key: K): V | undefined
 
 Removes the specified key and its value from this buffer.
 
@@ -932,7 +932,7 @@ Removes the specified key and its value from this buffer.
 
 ### afterRemoval<sup>8+</sup>
 
-afterRemoval(isEvict:boolean,key:K,value:V,newValue:V):void
+afterRemoval(isEvict: boolean,key: K,value: V,newValue: V): void
 
 Performs subsequent operations after a value is removed.
 
@@ -977,7 +977,7 @@ Performs subsequent operations after a value is removed.
 
 ### contains<sup>8+</sup>
 
-contains(key:K):boolean
+contains(key: K): boolean
 
 Checks whether this buffer contains the specified key.
 
@@ -1003,7 +1003,7 @@ Checks whether this buffer contains the specified key.
 
 ### createDefault<sup>8+</sup>
 
-createDefault(key:K):V
+createDefault(key: K): V
 
 Creates a value if the value of the specified key is not available.
 
@@ -1028,7 +1028,7 @@ Creates a value if the value of the specified key is not available.
 
 ### entries<sup>8+</sup>
 
-entries():IterableIterator&lt;[K,V]&gt;
+entries(): IterableIterator&lt;[K,V]&gt;
 
 Obtains a new iterator object that contains all key-value pairs in this object.
 
@@ -1078,7 +1078,7 @@ Defines the type of values in a **Scope** object. The value type can be **ScopeC
 The values of the **ScopeComparable** type are used to implement the **compareTo** method. Therefore, ensure that the input parameters are comparable.
 ```
 interface ScopeComparable{
-    compareTo(other:ScopeComparable):boolean;
+    compareTo(other: ScopeComparable): boolean;
 }
 type ScopeType = ScopeComparable | number;
 ```
@@ -1108,7 +1108,7 @@ class Temperature{
 
 ### constructor<sup>8+</sup>
 
-constructor(lowerObj:ScopeType,upperObje:ScopeType)
+constructor(lowerObj: ScopeType,upperObje: ScopeType)
 
 A constructor used to create a **Scope** object with the specified upper and lower limits.
 
@@ -1130,7 +1130,7 @@ A constructor used to create a **Scope** object with the specified upper and low
 
 ### toString<sup>8+</sup>
 
-toString():string
+toString(): string
 
 Obtains a string representation that contains this **Scope**.
 
@@ -1152,7 +1152,7 @@ Obtains a string representation that contains this **Scope**.
 
 ### intersect<sup>8+</sup>
 
-intersect(range:Scope):Scope
+intersect(range: Scope): Scope
 
 Obtains the intersection of this **Scope** and the given **Scope**.
 
@@ -1182,7 +1182,7 @@ Obtains the intersection of this **Scope** and the given **Scope**.
 
 ### intersect<sup>8+</sup>
 
-intersect(lowerObj:ScopeType,upperObj:ScopeType):Scope
+intersect(lowerObj: ScopeType,upperObj: ScopeType): Scope
 
 Obtains the intersection of this **Scope** and the given lower and upper limits.
 
@@ -1212,7 +1212,7 @@ Obtains the intersection of this **Scope** and the given lower and upper limits.
 
 ### getUpper<sup>8+</sup>
 
-getUpper():ScopeType
+getUpper(): ScopeType
 
 Obtains the upper limit of this **Scope**.
 
@@ -1235,7 +1235,7 @@ Obtains the upper limit of this **Scope**.
 
 ### getLower<sup>8+</sup>
 
-getLower():ScopeType
+getLower(): ScopeType
 
 Obtains the lower limit of this **Scope**.
 
@@ -1257,7 +1257,7 @@ Obtains the lower limit of this **Scope**.
 
 ### expand<sup>8+</sup>
 
-expand(lowerObj:ScopeType,upperObj:ScopeType):Scope
+expand(lowerObj: ScopeType,upperObj: ScopeType): Scope
 
 Obtains the union set of this **Scope** and the given lower and upper limits.
 
@@ -1317,7 +1317,7 @@ Obtains the union set of this **Scope** and the given **Scope**.
 
 ### expand<sup>8+</sup>
 
-expand(value:ScopeType):Scope
+expand(value: ScopeType): Scope
 
 Obtains the union set of this **Scope** and the given value.
 
@@ -1345,7 +1345,7 @@ Obtains the union set of this **Scope** and the given value.
 
 ### contains<sup>8+</sup>
 
-contains(value:ScopeType):boolean
+contains(value: ScopeType): boolean
 
 Checks whether a value is within this **Scope**.
 
@@ -1373,7 +1373,7 @@ Checks whether a value is within this **Scope**.
 
 ### contains<sup>8+</sup>
 
-contains(range:Scope):boolean
+contains(range: Scope): boolean
 
 Checks whether a range is within this **Scope**.
 
@@ -1403,7 +1403,7 @@ Checks whether a range is within this **Scope**.
 
 ### clamp<sup>8+</sup>
 
-clamp(value:ScopeType):ScopeType
+clamp(value: ScopeType): ScopeType
 
 Limits a value to this **Scope**.
 
@@ -1448,7 +1448,7 @@ A constructor used to create a **Base64** object.
 
 ### encodeSync<sup>8+</sup>
 
-encodeSync(src:Uint8Array):Uint8Array
+encodeSync(src: Uint8Array): Uint8Array
 
 Encodes the input content.
 
@@ -1474,7 +1474,7 @@ Encodes the input content.
 
 ### encodeToStringSync<sup>8+</sup>
 
-encodeToStringSync(src:Uint8Array):string
+encodeToStringSync(src: Uint8Array): string
 
 Encodes the input content.
 
@@ -1500,7 +1500,7 @@ Encodes the input content.
 
 ### decodeSync<sup>8+</sup>
 
-decodeSync(src:Uint8Array | string):Uint8Array
+decodeSync(src: Uint8Array | string): Uint8Array
 
 Decodes the input content.
 
@@ -1526,7 +1526,7 @@ Decodes the input content.
 
 ### encode<sup>8+</sup>
 
-encode(src:Uint8Array):Promise&lt;Uint8Array&gt;
+encode(src: Uint8Array): Promise&lt;Uint8Array&gt;
 
 Encodes the input content asynchronously.
 
@@ -1557,7 +1557,7 @@ Encodes the input content asynchronously.
 
 ### encodeToString<sup>8+</sup>
 
-encodeToString(src:Uint8Array):Promise&lt;string&gt;
+encodeToString(src: Uint8Array): Promise&lt;string&gt;
 
 Encodes the input content asynchronously.
 
@@ -1585,7 +1585,7 @@ Encodes the input content asynchronously.
 
 ### decode<sup>8+</sup>
 
-decode(src:Uint8Array | string):Promise&lt;Uint8Array&gt;
+decode(src: Uint8Array | string): Promise&lt;Uint8Array&gt;
 
 Decodes the input content asynchronously.
 
@@ -1633,7 +1633,7 @@ A constructor used to create a **Types** object.
 
 ### isAnyArrayBuffer<sup>8+</sup>
 
-isAnyArrayBuffer(value: Object):boolean
+isAnyArrayBuffer(value: Object): boolean
 
 Checks whether the input value is of the **ArrayBuffer** type.
 
@@ -1658,7 +1658,7 @@ Checks whether the input value is of the **ArrayBuffer** type.
 
 ### isArrayBufferView<sup>8+</sup>
 
-isArrayBufferView(value: Object):boolean
+isArrayBufferView(value: Object): boolean
 
 Checks whether the input value is of the **ArrayBufferView** type.
 
@@ -1685,7 +1685,7 @@ Checks whether the input value is of the **ArrayBufferView** type.
 
 ### isArgumentsObject<sup>8+</sup>
 
-isArgumentsObject(value: Object):boolean
+isArgumentsObject(value: Object): boolean
 
 Checks whether the input value is of the **arguments** type.
 
@@ -1713,7 +1713,7 @@ Checks whether the input value is of the **arguments** type.
 
 ### isArrayBuffer<sup>8+</sup>
 
-isArrayBuffer(value: Object):boolean
+isArrayBuffer(value: Object): boolean
 
 Checks whether the input value is of the **ArrayBuffer** type.
 
@@ -1738,7 +1738,7 @@ Checks whether the input value is of the **ArrayBuffer** type.
 
 ### isAsyncFunction<sup>8+</sup>
 
-isAsyncFunction(value: Object):boolean
+isAsyncFunction(value: Object): boolean
 
 Checks whether the input value is an asynchronous function.
 
@@ -1763,7 +1763,7 @@ Checks whether the input value is an asynchronous function.
 
 ### isBooleanObject<sup>8+</sup>
 
-isBooleanObject(value: Object):boolean
+isBooleanObject(value: Object): boolean
 
 Checks whether the input value is of the **Boolean** type.
 
@@ -1788,7 +1788,7 @@ Checks whether the input value is of the **Boolean** type.
 
 ### isBoxedPrimitive<sup>8+</sup>
 
-isBoxedPrimitive(value: Object):boolean
+isBoxedPrimitive(value: Object): boolean
 
 Checks whether the input value is of the **Boolean**, **Number**, **String**, or **Symbol** type.
 
@@ -1813,7 +1813,7 @@ Checks whether the input value is of the **Boolean**, **Number**, **String**, or
 
 ### isDataView<sup>8+</sup>
 
-isDataView(value: Object):boolean
+isDataView(value: Object): boolean
 
 Checks whether the input value is of the **DataView** type.
 
@@ -1839,7 +1839,7 @@ Checks whether the input value is of the **DataView** type.
 
 ### isDate<sup>8+</sup>
 
-isDate(value: Object):boolean
+isDate(value: Object): boolean
 
 Checks whether the input value is of the **Date** type.
 
@@ -1864,7 +1864,7 @@ Checks whether the input value is of the **Date** type.
 
 ### isExternal<sup>8+</sup>
 
-isExternal(value: Object):boolean
+isExternal(value: Object): boolean
 
 Checks whether the input value is of the **native external** type.
 
@@ -1890,7 +1890,7 @@ Checks whether the input value is of the **native external** type.
 
 ### isFloat32Array<sup>8+</sup>
 
-isFloat32Array(value: Object):boolean
+isFloat32Array(value: Object): boolean
 
 Checks whether the input value is of the **Float32Array** type.
 
@@ -1915,7 +1915,7 @@ Checks whether the input value is of the **Float32Array** type.
 
 ### isFloat64Array<sup>8+</sup>
 
-isFloat64Array(value: Object):boolean
+isFloat64Array(value: Object): boolean
 
 Checks whether the input value is of the **Float64Array** type.
 
@@ -1940,7 +1940,7 @@ Checks whether the input value is of the **Float64Array** type.
 
 ### isGeneratorFunction<sup>8+</sup>
 
-isGeneratorFunction(value: Object):boolean
+isGeneratorFunction(value: Object): boolean
 
 Checks whether the input value is a generator function.
 
@@ -1965,7 +1965,7 @@ Checks whether the input value is a generator function.
 
 ### isGeneratorObject<sup>8+</sup>
 
-isGeneratorObject(value: Object):boolean
+isGeneratorObject(value: Object): boolean
 
 Checks whether the input value is a generator object.
 
@@ -1992,7 +1992,7 @@ Checks whether the input value is a generator object.
 
 ### isInt8Array<sup>8+</sup>
 
-isInt8Array(value: Object):boolean
+isInt8Array(value: Object): boolean
 
 Checks whether the input value is of the **Int8Array** type.
 
@@ -2017,7 +2017,7 @@ Checks whether the input value is of the **Int8Array** type.
 
 ### isInt16Array<sup>8+</sup>
 
-isInt16Array(value: Object):boolean
+isInt16Array(value: Object): boolean
 
 Checks whether the input value is of the **Int16Array** type.
 
@@ -2042,7 +2042,7 @@ Checks whether the input value is of the **Int16Array** type.
 
 ### isInt32Array<sup>8+</sup>
 
-isInt32Array(value: Object):boolean
+isInt32Array(value: Object): boolean
 
 Checks whether the input value is of the **Int32Array** type.
 
@@ -2067,7 +2067,7 @@ Checks whether the input value is of the **Int32Array** type.
 
 ### isMap<sup>8+</sup>
 
-isMap(value: Object):boolean
+isMap(value: Object): boolean
 
 Checks whether the input value is of the **Map** type.
 
@@ -2092,7 +2092,7 @@ Checks whether the input value is of the **Map** type.
 
 ### isMapIterator<sup>8+</sup>
 
-isMapIterator(value: Object):boolean
+isMapIterator(value: Object): boolean
 
 Checks whether the input value is of the **MapIterator** type.
 
@@ -2118,7 +2118,7 @@ Checks whether the input value is of the **MapIterator** type.
 
 ### isNativeError<sup>8+</sup>
 
-isNativeError(value: Object):boolean
+isNativeError(value: Object): boolean
 
 Checks whether the input value is of the **Error** type.
 
@@ -2143,7 +2143,7 @@ Checks whether the input value is of the **Error** type.
 
 ### isNumberObject<sup>8+</sup>
 
-isNumberObject(value: Object):boolean
+isNumberObject(value: Object): boolean
 
 Checks whether the input value is a number object.
 
@@ -2168,7 +2168,7 @@ Checks whether the input value is a number object.
 
 ### isPromise<sup>8+</sup>
 
-isPromise(value: Object):boolean
+isPromise(value: Object): boolean
 
 Checks whether the input value is a promise.
 
@@ -2193,7 +2193,7 @@ Checks whether the input value is a promise.
 
 ### isProxy<sup>8+</sup>
 
-isProxy(value: Object):boolean
+isProxy(value: Object): boolean
 
 Checks whether the input value is a proxy.
 
@@ -2220,7 +2220,7 @@ Checks whether the input value is a proxy.
 
 ### isRegExp<sup>8+</sup>
 
-isRegExp(value: Object):boolean
+isRegExp(value: Object): boolean
 
 Checks whether the input value is of the **RegExp** type.
 
@@ -2245,7 +2245,7 @@ Checks whether the input value is of the **RegExp** type.
 
 ### isSet<sup>8+</sup>
 
-isSet(value: Object):boolean
+isSet(value: Object): boolean
 
 Checks whether the input value is of the **Set** type.
 
@@ -2270,7 +2270,7 @@ Checks whether the input value is of the **Set** type.
 
 ### isSetIterator<sup>8+</sup>
 
-isSetIterator(value: Object):boolean
+isSetIterator(value: Object): boolean
 
 Checks whether the input value is of the **SetIterator** type.
 
@@ -2296,7 +2296,7 @@ Checks whether the input value is of the **SetIterator** type.
 
 ### isStringObject<sup>8+</sup>
 
-isStringObject(value: Object):boolean
+isStringObject(value: Object): boolean
 
 Checks whether the input value is a string object.
 
@@ -2347,7 +2347,7 @@ Checks whether the input value is a symbol object.
 
 ### isTypedArray<sup>8+</sup>
 
-isTypedArray(value: Object):boolean
+isTypedArray(value: Object): boolean
 
 Checks whether the input value is of the **TypedArray** type.
 
@@ -2374,7 +2374,7 @@ Checks whether the input value is of the **TypedArray** type.
 
 ### isUint8Array<sup>8+</sup>
 
-isUint8Array(value: Object):boolean
+isUint8Array(value: Object): boolean
 
 Checks whether the input value is of the **Uint8Array** type.
 
@@ -2399,7 +2399,7 @@ Checks whether the input value is of the **Uint8Array** type.
 
 ### isUint8ClampedArray<sup>8+</sup>
 
-isUint8ClampedArray(value: Object):boolean
+isUint8ClampedArray(value: Object): boolean
 
 Checks whether the input value is of the **Uint8ClampedArray** type.
 
@@ -2424,7 +2424,7 @@ Checks whether the input value is of the **Uint8ClampedArray** type.
 
 ### isUint16Array<sup>8+</sup>
 
-isUint16Array(value: Object):boolean
+isUint16Array(value: Object): boolean
 
 Checks whether the input value is of the **Uint16Array** type.
 
@@ -2449,7 +2449,7 @@ Checks whether the input value is of the **Uint16Array** type.
 
 ### isUint32Array<sup>8+</sup>
 
-isUint32Array(value: Object):boolean
+isUint32Array(value: Object): boolean
 
 Checks whether the input value is of the **Uint32Array** type.
 
@@ -2474,7 +2474,7 @@ Checks whether the input value is of the **Uint32Array** type.
 
 ### isWeakMap<sup>8+</sup>
 
-isWeakMap(value: Object):boolean
+isWeakMap(value: Object): boolean
 
 Checks whether the input value is of the **WeakMap** type.
 
@@ -2499,7 +2499,7 @@ Checks whether the input value is of the **WeakMap** type.
 
 ### isWeakSet<sup>8+</sup>
 
-isWeakSet(value: Object):boolean
+isWeakSet(value: Object): boolean
 
 Checks whether the input value is of the **WeakSet** type.
 
