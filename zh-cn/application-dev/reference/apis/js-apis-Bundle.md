@@ -567,7 +567,7 @@ bundle.getAbilityInfo(bundleName, abilityName, (err, data) => {
 })
 ```
 
-## bundle.getAbilityLabel
+## bundle.getAbilityLabel<sup>8+</sup>
 
 getAbilityLabel(bundleName: string, abilityName: string): Promise\<string>
 
@@ -607,7 +607,7 @@ bundle.getAbilityLabel(bundleName, abilityName)
 })
 ```
 
-## bundle.getAbilityLabel
+## bundle.getAbilityLabel<sup>8+</sup>
 
 getAbilityLabel(bundleName: string, abilityName: string, callback : AsyncCallback\<string>): void
 
@@ -643,7 +643,7 @@ bundle.getAbilityLabel(bundleName, abilityName, (err, data) => {
 })
 ```
 
-## bundle.isAbilityEnabled
+## bundle.isAbilityEnabled<sup>8+</sup>
 
 isAbilityEnabled(info: AbilityInfo): Promise\<boolean>
 
@@ -684,7 +684,7 @@ bundle.isAbilityEnabled(Info)
 })
 ```
 
-## bundle.isAbilityEnabled
+## bundle.isAbilityEnabled<sup>8+</sup>
 
 isAbilityEnabled(info : AbilityInfo, callback : AsyncCallback\<boolean>): void
 
@@ -721,7 +721,7 @@ bundle.isAbilityEnabled(Info, (err, data) => {
 })
 ```
 
-## bundle.isApplicationEnabled
+## bundle.isApplicationEnabled<sup>8+</sup>
 
 isApplicationEnabled(bundleName: string): Promise\<boolean>
 
@@ -759,7 +759,7 @@ bundle.isApplicationEnabled(bundleName)
 })
 ```
 
-## bundle.isApplicationEnabled
+## bundle.isApplicationEnabled<sup>8+</sup>
 
 isApplicationEnabled(bundleName: string, callback : AsyncCallback\<boolean>): void
 
@@ -1071,7 +1071,7 @@ bundle.getLaunchWantForBundle(bundleName, (err, data) => {
 ```
 
 
-## bundle.getNameForUid
+## bundle.getNameForUid<sup>8+</sup>
 
 getNameForUid(uid: number): Promise\<string>
 
@@ -1104,7 +1104,7 @@ bundle.getNameForUid(uid)
 })
 ```
 
-## bundle.getNameForUid
+## bundle.getNameForUid<sup>8+</sup>
 
 getNameForUid(uid: number, callback: AsyncCallback\<string>): void;
 
@@ -1135,11 +1135,19 @@ bundle.getNameForUid(uid, (err, data) => {
 ```
 
 
-## bundle.getAbilityIcon
+## bundle.getAbilityIcon<sup>8+</sup>
 
-function getAbilityIcon(bundleName: string, abilityName: string): Promise\<[PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)>;
+getAbilityIcon(bundleName: string, abilityName: string): Promise\<[PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)>;
 
 以异步方法通过bundleName和abilityName获取对应Icon的[PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)，使用Promise形式返回结果。
+
+**需要权限：**
+
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED, ohos.permission.GET_BUNDLE_INFO
+
+**系统能力：**
+
+SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
@@ -1166,11 +1174,19 @@ bundle.getAbilityIcon(bundleName, abilityName)
 })
 ```
 
-## bundle.getAbilityIcon
+## bundle.getAbilityIcon<sup>8+</sup>
 
-function getAbilityIcon(bundleName: string, abilityName: string, callback: AsyncCallback\<[PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)>): void;
+getAbilityIcon(bundleName: string, abilityName: string, callback: AsyncCallback\<[PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)>): void;
 
 以异步方法通过bundleName和abilityName获取对应的[PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)，使用callback形式返回结果。
+
+**需要权限：**
+
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED, ohos.permission.GET_BUNDLE_INFO
+
+**系统能力：**
+
+SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
@@ -1195,9 +1211,9 @@ bundle.getAbilityIcon(bundleName, abilityName, (err, data) => {
 ```
 
 
-## bundle.queryExtensionAbilityInfosByWant
+## bundle.queryExtensionAbilityInfosByWant<sup>9+</sup>
 
-function queryExtensionAbilityInfosByWant(want: Want, extensionFlags: number, userId?: number): Promise<Array\<ExtensionAbilityInfo>>
+queryExtensionAbilityInfosByWant(want: Want, extensionFlags: number, userId?: number): Promise<Array\<ExtensionAbilityInfo>>
 
 以异步方法根据给定的意图获取ExtensionAbility信息，使用Promise形式返回结果。
 
@@ -1242,11 +1258,15 @@ bundle.queryExtensionAbilityInfosByWant(want, extensionFlags, userId)
 
 
 
-## bundle.queryExtensionAbilityInfosByWant
+## bundle.queryExtensionAbilityInfosByWant<sup>9+</sup>
 
-function queryExtensionAbilityInfosByWant(want: Want, extensionFlags: number, userId: number, callback: AsyncCallback<Array\<ExtensionAbilityInfo>>): void
+queryExtensionAbilityInfosByWant(want: Want, extensionFlags: number, userId: number, callback: AsyncCallback<Array\<ExtensionAbilityInfo>>): void
 
 以异步方法根据给定的意图获取ExtensionAbility信息，使用callback形式返回结果。
+
+**需要权限：**
+
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED, ohos.permission.GET_BUNDLE_INFO
 
 **系统能力：**
 
@@ -1279,11 +1299,15 @@ bundle.queryExtensionAbilityInfosByWant(want, extensionFlags, userId, (err, data
 })
 ```
 
-## bundle.queryExtensionAbilityInfosByWant
+## bundle.queryExtensionAbilityInfosByWant<sup>9+</sup>
 
-function queryExtensionAbilityInfosByWant(want: Want, extensionFlags: number, callback: AsyncCallback<Array\<ExtensionAbilityInfo>>): void;
+queryExtensionAbilityInfosByWant(want: Want, extensionFlags: number, callback: AsyncCallback<Array\<ExtensionAbilityInfo>>): void;
 
 以异步方法根据给定的意图获取ExtensionAbility信息，使用callback形式返回结果。
+
+**需要权限：**
+
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED, ohos.permission.GET_BUNDLE_INFO
 
 **系统能力：**
 
@@ -1314,7 +1338,6 @@ bundle.queryExtensionAbilityInfosByWant(want, extensionFlags, (err, data) => {
 })
 ```
 
-
 ## ElementName
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
@@ -1333,7 +1356,7 @@ bundle.queryExtensionAbilityInfosByWant(want, extensionFlags, (err, data) => {
 
 | 名称          | 读写属性 | 类型             | 必填 | 描述                                                         |
 | ------------- | -------- | ---------------- | ---- | ------------------------------------------------------------ |
-| status        | 只读     | InstallErrorCode | 是   | 安装结果code<br/>SUCCESS = 0<br/>STATUS_INSTALL_FAILURE = 1<br/>STATUS_INSTALL_FAILURE_ABORTED = 2,<br/>STATUS_INSTALL_FAILURE_INVALID = 3<br/>STATUS_INSTALL_FAILURE_CONFLICT = 4<br/>STATUS_INSTALL_FAILURE_STORAGE = 5<br/>STATUS_INSTALL_FAILURE_INCOMPATIBLE = 6<br/>STATUS_UNINSTALL_FAILURE = 7<br>STATUS_UNINSTALL_FAILURE_BLOCKED = 8<br/>STATUS_UNINSTALL_FAILURE_ABORTED = 9<br/>STATUS_UNINSTALL_FAILURE_CONFLICT = 10<br/>STATUS_INSTALL_FAILURE_DOWNLOAD_TIMEOUT = 0x0B<br/>STATUS_INSTALL_FAILURE_DOWNLOAD_FAILED = 0x0C<br/>STATUS_RECOVER_FAILURE_INVALID = 0x0D<br/>STATUS_ABILITY_NOT_FOUND = 0x40<br/>STATUS_BMS_SERVICE_ERROR = 0x41<br/>STATUS_FAILED_NO_SPACE_LEFT = 0x42<br/>STATUS_GRANT_REQUEST_PERMISSIONS_FAILED = 0x43<br/>STATUS_INSTALL_PERMISSION_DENIED = 0x44<br/>STATUS_UNINSTALL_PERMISSION_DENIED = 0x45 |
+| status        | 只读     | InstallErrorCode | 是   | 安装结果code<br/>SUCCESS = 0<br/>STATUS_INSTALL_FAILURE = 1<br/>STATUS_INSTALL_FAILURE_ABORTED = 2,<br/>STATUS_INSTALL_FAILURE_INVALID = 3<br/>STATUS_INSTALL_FAILURE_CONFLICT = 4<br/>STATUS_INSTALL_FAILURE_STORAGE = 5<br/>STATUS_INSTALL_FAILURE_INCOMPATIBLE = 6<br/>STATUS_UNINSTALL_FAILURE = 7<br>STATUS_UNINSTALL_FAILURE_BLOCKED = 8<br/>STATUS_UNINSTALL_FAILURE_ABORTED = 9<br/>STATUS_UNINSTALL_FAILURE_CONFLICT = 10<br/>STATUS_INSTALL_FAILURE_DOWNLOAD_TIMEOUT = 0x0B<br/>STATUS_INSTALL_FAILURE_DOWNLOAD_FAILED = 0x0C<br/>STATUS_RECOVER_FAILURE_INVALID<sup>8+</sup> = 0x0D<br/>STATUS_ABILITY_NOT_FOUND = 0x40<br/>STATUS_BMS_SERVICE_ERROR = 0x41<br/>STATUS_FAILED_NO_SPACE_LEFT<sup>8+</sup> = 0x42<br/>STATUS_GRANT_REQUEST_PERMISSIONS_FAILED<sup>8+</sup> = 0x43<br/>STATUS_INSTALL_PERMISSION_DENIED<sup>8+</sup> = 0x44<br/>STATUS_UNINSTALL_PERMISSION_DENIED<sup>8+</sup> = 0x45 |
 
 ## BundleFlag
 
@@ -1349,12 +1372,12 @@ bundle.queryExtensionAbilityInfosByWant(want, extensionFlags, (err, data) => {
 | GET_ABILITY_INFO_WITH_APPLICATION | 0x00000004 | 获取包括应用的Ability信息 |
 | GET_APPLICATION_INFO_WITH_PERMISSION | 0x00000008 | 获取包括权限的应用信息 |
 | GET_BUNDLE_WITH_REQUESTED_PERMISSION | 0x00000010 | 获取包括所需权限的包信息 |
-| GET_ABILITY_INFO_WITH_METADATA | 0x00000020 | 获取ability的元数据信息 |
-| GET_BUNDLE_WITH_EXTENSION_ABILITY | 0x00000020 | 获取包括Ability信息的扩展包信息 |
-| GET_APPLICATION_INFO_WITH_METADATA | 0x00000040 | 获取应用的元数据信息 |
-| GET_ABILITY_INFO_SYSTEMAPP_ONLY | 0x00000080 | 获取仅包括系统应用的ability信息 |
-| GET_ABILITY_INFO_WITH_DISABLE | 0x00000100 | 获取包括被禁用的ability信息 |
-| GET_APPLICATION_INFO_WITH_DISABLE | 0x00000200 | 获取包括被禁用的应用信息 |
+| GET_ABILITY_INFO_WITH_METADATA<sup>8+</sup> | 0x00000020 | 获取ability的元数据信息 |
+| GET_BUNDLE_WITH_EXTENSION_ABILITY<sup>9+</sup> | 0x00000020 | 获取包括Ability信息的扩展包信息 |
+| GET_APPLICATION_INFO_WITH_METADATA<sup>8+</sup> | 0x00000040 | 获取应用的元数据信息 |
+| GET_ABILITY_INFO_SYSTEMAPP_ONLY<sup>8+</sup> | 0x00000080 | 获取仅包括系统应用的ability信息 |
+| GET_ABILITY_INFO_WITH_DISABLE<sup>8+</sup> | 0x00000100 | 获取包括被禁用的ability信息 |
+| GET_APPLICATION_INFO_WITH_DISABLE<sup>8+</sup> | 0x00000200 | 获取包括被禁用的应用信息 |
 | GET_ALL_APPLICATION_INFO | 0xFFFF0000 | 获取应用所有的信息 |
 
 ## BundleOptions
@@ -1397,8 +1420,8 @@ bundle.queryExtensionAbilityInfosByWant(want, extensionFlags, (err, data) => {
 | isSilentInstallation     | string                     | 是   | 否   | 是否通过静默安装                           |
 | minCompatibleVersionCode | number                     | 是   | 否   | 分布式场景下的应用包兼容的最低版本         |
 | entryInstallationFree | boolean | 是 | 否 | Entry是否支持免安装 |
-| reqPermissionStates | Array\<number> | 是 | 否 | 申请权限的授予状态 |
-| extensionAbilityInfo | Array\<ExtensionAbilityInfo> | 是 | 否 |   ability的可扩展信息 |
+| reqPermissionStates<sup>8+</sup> | Array\<number> | 是 | 否 | 申请权限的授予状态 |
+| extensionAbilityInfo<sup>9+</sup> | Array\<ExtensionAbilityInfo> | 是 | 否 |   ability的可扩展信息 |
 
 ## ApplicationInfo
 
@@ -1424,13 +1447,13 @@ bundle.queryExtensionAbilityInfosByWant(want, extensionFlags, (err, data) => {
 | moduleInfos | Array\<ModuleInfo> | 是   | 否   | 应用程序的模块信息                         |
 | entryDir         | string        | 是   | 否   | 应用程序的文件保存路径                     |
 | customizeData    | Map<string, Array\<CustomizeData>> | 是   | 是   | 应用程序的自定义数据                       |
-| codePath | string | 是 | 否 | 应用程序的安装目录 |
-| metaData | Map<string, Array\<CustomizeData>> | 是 | 否 | 应用程序的自定义元信息 |
-| metaData | Map<string, Array\<Metadata>> | 是 | 否 | 应用程序的元信息 |
-| removable | boolean | 是 | 否 | 应用程序是否可以被移除 |
-| accessTokenId | number | 是 | 否 | 应用程序的accessTokenId |
-| uid | number | 是 | 否 | 应用程序的uid |
-| entityType | string | 是 | 否 | 应用程序的实体类型 |
+| codePath<sup>8+</sup> | string | 是 | 否 | 应用程序的安装目录 |
+| metaData<sup>8+</sup> | Map<string, Array\<CustomizeData>> | 是 | 否 | 应用程序的自定义元信息 |
+| metaData<sup>9+</sup> | Map<string, Array\<Metadata>> | 是 | 否 | 应用程序的元信息 |
+| removable<sup>8+</sup> | boolean | 是 | 否 | 应用程序是否可以被移除 |
+| accessTokenId<sup>8+</sup> | number | 是 | 否 | 应用程序的accessTokenId |
+| uid<sup>8+</sup> | number | 是 | 否 | 应用程序的uid |
+| entityType<sup>9+</sup> | string | 是 | 否 | 应用程序的实体类型 |
 
 ## ModuleInfo
 
@@ -1453,7 +1476,7 @@ bundle.queryExtensionAbilityInfosByWant(want, extensionFlags, (err, data) => {
 | ----- | ------ | ---- | ---- | ---------------- |
 | name  | string | 是   | 是   | 自定义元数据名称 |
 | value | string | 是   | 是   | 自定义元数据值   |
-| extra | string | 是   | 是   | 自定义资源       |
+| extra<sup>8+</sup> | string | 是   | 是   | 自定义资源       |
 
 
 ## HapModuleInfo
@@ -1479,9 +1502,9 @@ Hap模块信息
 | moduleName       | string        | 是   | 否   | 模块名             |
 | mainAbilityName  | string        | 是   | 否   | 入口Ability名称    |
 | installationFree | boolean       | 是   | 否   | 是否支持免安装     |
-| mainElementName | string | 是 | 否 | 入口ability信息 |
-| extensionAbilityInfo | Array\<ExtensionAbilityInfo> | 是 | 否 | extensionAbility信息 |
-| metadata | Array\<Metadata> | 是 | 否 | Ability的元信息 |
+| mainElementName<sup>8+</sup> | string | 是 | 否 | 入口ability信息 |
+| extensionAbilityInfo<sup>9+</sup> | Array\<ExtensionAbilityInfo> | 是 | 否 | extensionAbility信息 |
+| metadata<sup>9+</sup> | Array\<Metadata> | 是 | 否 | Ability的元信息 |
 
 ## ReqPermissionDetail
 
@@ -1540,9 +1563,9 @@ Ability信息
 | uri                | string                                                       | 是   | 否   | 获取Ability的统一资源标识符（URI）        |
 | labelId            | number                                                       | 是   | 否   | Ability的标签id                           |
 | subType            | AbilitySubType | 是   | 否   | Ability中枚举使用的模板的子类型           |
-| metaData | Array\<CustomizeData> | 是 | 否 | ability的自定义信息 |
-| metaData | Array\<Metadata> | 是 | 否 | ability的元信息 |
-| enabled | boolean | 是 | 否 | ability是否可用 |
+| metaData | Array\<CustomizeData><sup>8+</sup> | 是 | 否 | ability的自定义信息 |
+| metaData | Array\<Metadata><sup>9+</sup> | 是 | 否 | ability的元信息 |
+| enabled | boolean<sup>8+</sup> | 是 | 否 | ability是否可用 |
 
 ## AbilityType
 
@@ -1593,7 +1616,7 @@ Ability的子类型
 | CA          | 1    | Ability子类型是带有 UI 的服务 |
 
 
-## ExtensionAbilityType
+## ExtensionAbilityType<sup>9+</sup>
 
 ExtensionAbility的类型
 
@@ -1601,18 +1624,18 @@ ExtensionAbility的类型
 
 | 名称                  | 类型 | 说明                          |
 | -------------------- | ---- | ----------------------------- |
-| FORM                 | 0    | ExtensionAbility的类型包括卡片     |
-| WORK_SCHEDULER       | 1    | ExtensionAbility的类型包括行程安排 |
-| INPUT_METHOD         | 2    | ExtensionAbility的类型包括输入法   |
-| SERVICE              | 3    | ExtensionAbility的类型包括服务     |
-| ACCESSIBILITY        | 4    | ExtensionAbility的类型包括无障碍   |
-| DATA_SHARE           | 5    | ExtensionAbility的类型包括数据共享 |
-| FILE_SHARE           | 6    | ExtensionAbility的类型包括文件共享 |
-| STATIC_SUBSCRIBER    | 7    | ExtensionAbility的类型包括订阅者   |
-| WALLPAPER            | 8    | ExtensionAbility的类型包括墙纸     |
-| UNSPECIFIED          | 9    | ExtensionAbility未指定类型     |
+| FORM<sup>9+</sup>    | 0    | ExtensionAbility的类型包括卡片     |
+| WORK_SCHEDULER<sup>9+</sup>    | 1    | ExtensionAbility的类型包括行程安排 |
+| INPUT_METHOD<sup>9+</sup>         | 2    | ExtensionAbility的类型包括输入法   |
+| SERVICE<sup>9+</sup>    | 3    | ExtensionAbility的类型包括服务     |
+| ACCESSIBILITY<sup>9+</sup>    | 4    | ExtensionAbility的类型包括无障碍   |
+| DATA_SHARE<sup>9+</sup>      | 5    | ExtensionAbility的类型包括数据共享 |
+| FILE_SHARE<sup>9+</sup>    | 6    | ExtensionAbility的类型包括文件共享 |
+| STATIC_SUBSCRIBER<sup>9+</sup>  | 7    | ExtensionAbility的类型包括订阅者   |
+| WALLPAPER<sup>9+</sup>    | 8    | ExtensionAbility的类型包括墙纸     |
+| UNSPECIFIED<sup>9+</sup>     | 9    | ExtensionAbility未指定类型     |
 
-## ExtensionFlag
+## ExtensionFlag<sup>9+</sup>
 
 扩展标志
 
@@ -1626,7 +1649,7 @@ ExtensionAbility的类型
 | GET_EXTENSION_INFO_WITH_METADATA | 0x00000020 | 获取携带元数据信息的extensionAbilityInfo |
 
 
-## ExtensionAbilityInfo
+## ExtensionAbilityInfo<sup>9+</sup>
 
 ExtensionAbility信息
 
@@ -1634,23 +1657,23 @@ ExtensionAbility信息
 
 | 名称               | 类型 | 可读 | 可写 | 说明 |
 | ------ | ------ | ------ | ------ | ------ |
-| bundleName         | string                                                       | 是   | 否   | 应用包名                                  |
-| moduleName         | string                                                       | 是   | 否   | ExtensionAbility所属的HAP包的名称                  |
-| name               | string                                                       | 是   | 否   | ExtensionAbility名称                               |
-| labelId            | number                                                       | 是   | 否   | ExtensionAbility的标签id                           |
-| descriptionId      | number                                                       | 是   | 否   | ExtensionAbility的描述id                           |
-| iconId             | number                                                       | 是   | 否   | ExtensionAbility的图标id                           |
-| isVisible          | boolean                                                      | 是   | 否   | 判断ExtensionAbility是否可以被其他应用调用         |
-| extensionAbilityType               | bundle.ExtensionAbilityType | 是   | 否   | ExtensionAbility类型                               |
-| permissions        | Array\<string>                                                | 是   | 否   | 被其他应用ExtensionAbility调用时需要申请的权限集合 |
-| applicationInfo    | ApplicationInfo | 是   | 否   | 应用程序的配置信息                        |
-| metaData | Array\<Metadata> | 是 | 否 | ExtensionAbility的元信息 |
-| enabled | boolean | 是 | 否 | ExtensionAbility是否可用 |
-| readPermission     | string                                                       | 是   | 否   | 读取ExtensionAbility数据所需的权限                 |
-| writePermission    | string                                                       | 是   | 否   | 向ExtensionAbility写数据所需的权限                 |
+| bundleName<sup>9+</sup>     | string                                                       | 是   | 否   | 应用包名                                  |
+| moduleName<sup>9+</sup>     | string                                                       | 是   | 否   | ExtensionAbility所属的HAP包的名称                  |
+| name<sup>9+</sup>       | string                                                       | 是   | 否   | ExtensionAbility名称                               |
+| labelId<sup>9+</sup>    | number                                                       | 是   | 否   | ExtensionAbility的标签id                           |
+| descriptionId<sup>9+</sup>   | number                                                       | 是   | 否   | ExtensionAbility的描述id                           |
+| iconId<sup>9+</sup>    | number                                                       | 是   | 否   | ExtensionAbility的图标id                           |
+| isVisible<sup>9+</sup>    | boolean                                                      | 是   | 否   | 判断ExtensionAbility是否可以被其他应用调用         |
+| extensionAbilityType<sup>9+</sup>      | bundle.ExtensionAbilityType | 是   | 否   | ExtensionAbility类型                               |
+| permissions<sup>9+</sup>     | Array\<string>                                                | 是   | 否   | 被其他应用ExtensionAbility调用时需要申请的权限集合 |
+| applicationInfo<sup>9+</sup>   | ApplicationInfo | 是   | 否   | 应用程序的配置信息                        |
+| metaData<sup>9+</sup> | Array\<Metadata> | 是 | 否 | ExtensionAbility的元信息 |
+| enabled<sup>9+</sup> | boolean | 是 | 否 | ExtensionAbility是否可用 |
+| readPermission<sup>9+</sup>   | string                                                       | 是   | 否   | 读取ExtensionAbility数据所需的权限                 |
+| writePermission<sup>9+</sup>   | string                                                       | 是   | 否   | 向ExtensionAbility写数据所需的权限                 |
 
 
-## Metadata
+## Metadata<sup>9+</sup>
 
 元数据信息
 
@@ -1658,6 +1681,6 @@ ExtensionAbility信息
 
 | 名称  | 类型   | 可读 | 可写 | 说明             |
 | ----- | ------ | ---- | ---- | ---------------- |
-| name  | string | 是   | 是   | 元数据名称 |
-| value | string | 是   | 是   | 元数据值   |
-| resource | string | 是   | 是   | 元数据资源       |
+| name<sup>9+</sup>  | string | 是   | 是   | 元数据名称 |
+| value<sup>9+</sup> | string | 是   | 是   | 元数据值   |
+| resource<sup>9+</sup> | string | 是   | 是   | 元数据资源       |
