@@ -83,7 +83,7 @@ Checks whether the localized script for the specified language is displayed from
 - Return value
   | Type| Description|
   | -------- | -------- |
-  | boolean | The value **true** indicates that the localized script is displayed from right to left, and value **false** indicates the opposite.|
+  | boolean | Returns **true** if the localized script is displayed from right to left; returns **false** otherwise.|
 
 - Example
   ```
@@ -111,6 +111,73 @@ Obtains the system language.
   ```
 
 
+## i18n.setSystemLanguage
+
+setSystemLanguage(language: string): boolean
+
+Sets the system language.
+
+**System capability**: SystemCapability.Global.I18n
+
+- Parameters
+  | Name| Type| Description|
+  | -------- | -------- | -------- |
+  | language | string | Language ID.|
+
+- Return value
+  | Type| Description|
+  | -------- | -------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+
+- Example
+  ```
+  i18n.setSystemLanguage('zh');
+  ```
+
+
+## i18n.getSystemLanguages
+
+getSystemLanguages(): Array<string>
+
+Obtains the list of system languages.
+
+**System capability**: SystemCapability.Global.I18n
+
+- Return value
+  | Type| Description|
+  | -------- | -------- |
+  | Array<string> | List of the IDs of system languages.|
+
+- Example
+  ```
+  i18n.getSystemLanguages();
+  ```
+
+
+## i18n.getSystemCountries
+
+getSystemCountries(language: string): Array<string>
+
+Obtains the list of countries and regions supported for the specified language.
+
+**System capability**: SystemCapability.Global.I18n
+
+- Parameters
+  | Name| Type| Description|
+  | -------- | -------- | -------- |
+  | language | string | Language ID.|
+
+- Return value
+  | Type| Description|
+  | -------- | -------- |
+  | Array<string> | List of the IDs of the countries and regions supported for the specified language.|
+
+- Example
+  ```
+  i18n.getSystemCountries('zh');
+  ```
+
+
 ## i18n.getSystemRegion
 
 getSystemRegion(): string
@@ -127,6 +194,30 @@ Obtains the system region.
 - Example
   ```
   i18n.getSystemRegion();
+  ```
+
+
+## i18n.setSystemRegion
+
+setSystemRegion(region: string): boolean
+
+Sets the system region.
+
+**System capability**: SystemCapability.Global.I18n
+
+- Parameters
+  | Name| Type| Description|
+  | -------- | -------- | -------- |
+  | region | string | Region ID.|
+
+- Return value
+  | Type| Description|
+  | -------- | -------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+
+- Example
+  ```
+  i18n.setSystemRegion();
   ```
 
 
@@ -149,6 +240,55 @@ Obtains the system locale.
   ```
 
 
+## i18n.setSystemLocale
+
+setSystemLocale(locale: string): boolean
+
+Sets the system locale.
+
+**System capability**: SystemCapability.Global.I18n
+
+- Parameters
+  | Name| Type| Description|
+  | -------- | -------- | -------- |
+  | locale | string | System locale ID, for example, **zh-CN**.|
+
+- Return value
+  | Type| Description|
+  | -------- | -------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+
+- Example
+  ```
+  i18n.setSystemLocale('zh-CN');
+  ```
+
+
+## i18n.isSuggested
+
+isSuggested(language: string, region?: string): boolean
+
+Checks whether the system language matches the specified region.
+
+**System capability**: SystemCapability.Global.I18n
+
+- Parameters
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | language | string | Yes| Valid language ID, for example, **zh**.|
+  | region | string | No| Valid region ID, for example, **CN**.|
+
+- Return value
+  | Type| Description|
+  | -------- | -------- |
+  | boolean | Returns **true** if the system language matches the specified region; returns **false** otherwise.|
+
+- Example
+  ```
+  i18n.isSuggested('zh', 'CN');
+  ```
+
+
 ## i18n.getCalendar<sup>8+</sup>
 
 getCalendar(locale: string, type? : string): Calendar
@@ -161,7 +301,7 @@ Obtains a **Calendar** object.
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | locale | string | Yes| Valid locale value, for example, **zh-Hans-CN**.|
-  | type | string | No| Valid calendar type. Currently, the valid types are as follows: buddhist, chinese, coptic, ethiopic, hebrew, gregory, indian, islamic\_civil, islamic\_tbla, islamic\_umalqura, japanese, and persian. If this parameter is left unspecified, the default calendar type of the specified locale is used.|
+  | type | string | No| Valid calendar type. Currently, the valid types are as follows: **buddhist**, **chinese**, **coptic**, **ethiopic**, **hebrew**, **gregory**, **indian**, **islamic\_civil**, **islamic\_tbla**, **islamic\_umalqura**, **japanese**, and **persian**. If this parameter is left unspecified, the default calendar type of the specified locale is used.|
 
 - Return value
   | Type| Description|
@@ -295,7 +435,7 @@ Obtains the start day of a week for this **Calendar** object.
 - Return value
   | Type| Description|
   | -------- | -------- |
-  | number | Start day of a week. The value **1** indicates Sunday, and value **7** indicates Saturday.|
+  | number | Start day of a week. The value **1** indicates Sunday, and the value **7** indicates Saturday.|
 
 - Example
   ```
@@ -315,7 +455,7 @@ Sets the start day of a week for this **Calendar** object.
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | value | number | No| Start day of a week. The value **1** indicates Sunday, and value **7** indicates Saturday.|
+  | value | number | No| Start day of a week. The value **1** indicates Sunday, and the value **7** indicates Saturday.|
 
 - Example
   ```
@@ -375,7 +515,7 @@ Obtains the value of the specified field in the **Calendar** object.
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | field | string | Yes| Value of the specified field in the **Calendar** object. Currently, a valid field can be any of the following: era, year, month, week\_of\_year, week\_of\_month, date, day\_of\_year, day\_of\_week, day\_of\_week\_in\_month, hour, hour\_of\_day, minute, second, millisecond, zone\_offset, dst\_offset, year\_woy, dow\_local, extended\_year, julian\_day, milliseconds\_in\_day, is\_leap\_month.|
+  | field | string | Yes| Value of the specified field in the **Calendar** object. Currently, a valid field can be any of the following: **era**, **year**, **month**, **week\_of\_year**, **week\_of\_month**, **date**, **day\_of\_year**, **day\_of\_week**, **day\_of\_week\_in\_month**, **hour**, **hour\_of\_day**, **minute**, **second**, **millisecond**, **zone\_offset**, **dst\_offset**, **year\_woy**, **dow\_local**, **extended\_year**, **julian\_day**, **milliseconds\_in\_day**, **is\_leap\_month**.|
 
 - Return value
   | Type| Description|
@@ -431,7 +571,7 @@ Checks whether the specified date in this **Calendar** object is a weekend.
 - Return value
   | Type| Description|
   | -------- | -------- |
-  | boolean | The value **true** indicates that the date is a weekend, and value **false** indicates a weekday.|
+  | boolean | Returns **true** if the date is a weekend; returns **false** if the date is a weekday.|
 
 - Example
   ```
@@ -482,7 +622,7 @@ Checks whether the format of the specified phone number is valid.
 - Return value
   | Type| Description|
   | -------- | -------- |
-  | boolean | The value **true** indicates the phone number format is valid, and value **false** indicates the opposite.|
+  | boolean | Returns **true** if the phone number format is valid; returns **false** otherwise.|
 
 - Example
   ```
@@ -520,21 +660,23 @@ Formats a phone number.
 
 Defines the options for this PhoneNumberFormat object.
 
+**System capability**: SystemCapability.Global.I18n
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| type | string | Yes| Yes| Format type of a phone number. The value can be **E164**, **INTERNATIONAL**, **NATIONAL**, or **RFC3966**.<br>**System capability**: SystemCapability.Global.I18n|
+| type | string | Yes| Yes| Format type of a phone number. The value can be **E164**, **INTERNATIONAL**, **NATIONAL**, or **RFC3966**.|
 
 
 ## UnitInfo<sup>8+</sup>
 
 Defines the measurement unit information.
 
+**System capability**: SystemCapability.Global.I18n
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | unit | string | Yes| Yes| Name of the measurement unit, for example, **meter**, **inch**, or **cup**.|
-| measureSystem | string | Yes| Yes| Measurement system. The value can be **SI**, **US**, or **UK**.<br>**System capability**: SystemCapability.Global.I18n|
+| measureSystem | string | Yes| Yes| Measurement system. The value can be **SI**, **US**, or **UK**.|
 
 
 ## Util<sup>8+</sup>
@@ -568,12 +710,9 @@ Converts one measurement unit into another and formats the unit based on the spe
   ```
 
 
-## IndexUtil<sup>8+</sup>
+## getInstance<sup>8+</sup>
 
-
-### getInstance<sup>8+</sup>
-
-getInstance(): IndexUtil
+getInstance(locale?:string): IndexUtil
 
 Creates an **IndexUtil** object.
 
@@ -593,6 +732,9 @@ Creates an **IndexUtil** object.
   ```
   var indexUtil= i18n.IndexUtil.getInstance("zh-CN");
   ```
+
+
+## IndexUtil<sup>8+</sup>
 
 
 ### getIndexList<sup>8+</sup>
@@ -617,7 +759,7 @@ Obtains the index list for this **locale** object.
 
 ### addLocale<sup>8+</sup>
 
-addLocale(locale: string)
+addLocale(locale: string): void
 
 Adds the index of the new **locale** object to the index list.
 
@@ -679,7 +821,7 @@ Checks whether the input character string is composed of digits.
 - Return value
   | Type| Description|
   | -------- | -------- |
-  | boolean | The value **true** indicates that the input character is a digit, and value **false** indicates the opposite.|
+  | boolean | Returns **true** if the input character is a digit; returns **false** otherwise.|
 
 - Example
   ```
@@ -703,7 +845,7 @@ Checks whether the input character is a space.
 - Return value
   | Type| Description|
   | -------- | -------- |
-  | boolean | The value **true** indicates that the input character is a space, and value **false** indicates the opposite.|
+  | boolean | Returns **true** if the input character is a space; returns **false** otherwise.|
 
 - Example
   ```
@@ -727,7 +869,7 @@ Checks whether the input character is a white space.
 - Return value
   | Type| Description|
   | -------- | -------- |
-  | boolean | The value **true** indicates that the input character is a white space, and value **false** indicates the opposite.|
+  | boolean | Returns **true** if the input character is a white space; returns **false** otherwise.|
 
 - Example
   ```
@@ -751,7 +893,7 @@ Checks whether the input character is of the right to left (RTL) language.
 - Return value
   | Type| Description|
   | -------- | -------- |
-  | boolean | The value **true** indicates that the input character is of the RTL language, and value **false** indicates the opposite.|
+  | boolean | Returns **true** if the input character is of the RTL language; returns **false** otherwise.|
 
 - Example
   ```
@@ -775,7 +917,7 @@ Checks whether the input character is an ideographic character.
 - Return value
   | Type| Description|
   | -------- | -------- |
-  | boolean | The value **true** indicates that the input character is an ideographic character, and value **false** indicates the opposite.|
+  | boolean | Returns **true** if the input character is an ideographic character; returns **false** otherwise.|
 
 - Example
   ```
@@ -799,7 +941,7 @@ Checks whether the input character is a letter.
 - Return value
   | Type| Description|
   | -------- | -------- |
-  | boolean | The value **true** indicates that the input character is a letter, and value **false** indicates the opposite.|
+  | boolean | Returns **true** if the input character is a letter; returns **false** otherwise.|
 
 - Example
   ```
@@ -823,7 +965,7 @@ Checks whether the input character is a lowercase letter.
 - Return value
   | Type| Description|
   | -------- | -------- |
-  | boolean | The value **true** indicates that the input character is a lowercase letter, and value **false** indicates the opposite.|
+  | boolean | Returns **true** if the input character is a lowercase letter; returns **false** otherwise.|
 
 - Example
   ```
@@ -847,7 +989,7 @@ Checks whether the input character is an uppercase letter.
 - Return value
   | Type| Description|
   | -------- | -------- |
-  | boolean | The value true indicates that the input character is an uppercase letter, and value false indicates the opposite.|
+  | boolean | Returns **true** if the input character is an uppercase letter; returns **false** otherwise.|
 
 - Example
   ```
@@ -1105,7 +1247,7 @@ Checks whether the position specified by the offset is a text boundary. If **tru
 - Return value
   | Type| Description|
   | -------- | -------- |
-  | boolean | The value **true** indicates that the position specified by the offset is a text boundary, and value **false** indicates the opposite.|
+  | boolean | Returns **true** if the position specified by the offset is a text boundary; returns **false** otherwise.|
 
 - Example
   ```
@@ -1127,7 +1269,7 @@ Checks whether the 24-hour clock is used.
 - Return value
   | Type| Description|
   | -------- | -------- |
-  | boolean | The value **true** indicates that the 24-hour clock is used, and value **false** indicates the opposite.|
+  | boolean | Returns **true** if the 24-hour clock is used; returns **false** otherwise.|
 
 - Example
   ```
@@ -1146,12 +1288,12 @@ Sets the 24-hour clock.
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | option | boolean | Yes| Whether to enable the 24-hour clock. The value **true** means to enable the 24-hour clock, and value **false** means the opposite.|
+  | option | boolean | Yes| Whether to enable the 24-hour clock. The value **true** means to enable the 24-hour clock, and the value **false** means the opposite.|
 
 - Return value
   | Type| Description|
   | -------- | -------- |
-  | boolean | The value **true** indicates that the 24-hour clock is enabled, and value **false** indicates the opposite.|
+  | boolean | Returns **true** if the 24-hour clock is enabled; returns **false** otherwise.|
 
 - Example
   ```
@@ -1177,7 +1319,7 @@ Adds a preferred language to the specified position on the preferred language li
 - Return value
   | Type| Description|
   | -------- | -------- |
-  | boolean | The value **true** indicates that the preferred language is successfully added, and value **false** indicates the opposite.|
+  | boolean | Returns **true** if the preferred language is successfully added; returns **false** otherwise.|
 
 - Example
   ```
@@ -1188,9 +1330,9 @@ Adds a preferred language to the specified position on the preferred language li
   ```
 
 
-## i18n.removeDisplayLanguage<sup>8+</sup>
+## i18n.removePreferredLanguage<sup>8+</sup>
 
-removeDisplayLanguage(index: number): boolean
+removePreferredLanguage(index: number): boolean
 
 Deletes a preferred language from the specified position on the preferred language list.
 
@@ -1204,7 +1346,7 @@ Deletes a preferred language from the specified position on the preferred langua
 - Return value
   | Type| Description|
   | -------- | -------- |
-  | boolean | The value **true** indicates that the preferred language is deleted, and value **false** indicates the opposite.|
+  | boolean | Returns **true** if the preferred language is deleted; returns **false** otherwise.|
 
 - Example
   ```
@@ -1218,14 +1360,14 @@ Deletes a preferred language from the specified position on the preferred langua
 
 getPreferredLanguageList(): Array<string>
 
-Obtains the preferred language list.
+Obtains the list of preferred languages.
 
 **System capability**: SystemCapability.Global.I18n
 
 - Return value
   | Type| Description|
   | -------- | -------- |
-  | Array<string> | Preferred language list.|
+  | Array<string> | List of preferred languages.|
 
 - Example
   ```
@@ -1237,16 +1379,129 @@ Obtains the preferred language list.
 
 getFirstPreferredLanguage(): string
 
-Obtains the preferred language that best matches the HAP resource.
+Obtains the first language in the preferred language list.
 
 **System capability**: SystemCapability.Global.I18n
 
 - Return value
   | Type| Description|
   | -------- | -------- |
-  | string | Preferred language that best matches the HAP resource.|
+  | string | First language in the preferred language list.|
 
 - Example
   ```
   var firstPreferredLanguage = i18n.getFirstPreferredLanguage();
+  ```
+
+
+## i18n.getTimeZone<sup>8+</sup>
+
+getTimeZone(zoneID?: string): TimeZone
+
+Obtains the **TimeZone** object corresponding to the specified time zone ID.
+
+**System capability**: SystemCapability.Global.I18n
+
+- Parameters
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | zondID | string | No| Time zone ID.|
+
+- Return value
+  | Type| Description|
+  | -------- | -------- |
+  | TimeZone | **TimeZone** object corresponding to the time zone ID.|
+
+- Example
+  ```
+  var timezone = i18n.getTimeZone();
+  ```
+
+
+## RelativeTimeFormat<sup>8+</sup>
+
+
+### getID<sup>8+</sup>
+
+getID(): string
+
+Obtains the ID of the specified **TimeZone** object.
+
+**System capability**: SystemCapability.Global.I18n
+
+- Return value
+  | Type| Description|
+  | -------- | -------- |
+  | string | Time zone ID corresponding to the **TimeZone** object.|
+
+- Example
+  ```
+  var timezone = i18n.getTimeZone();
+  timezone.getID();
+  ```
+
+
+### getDisplayName<sup>8+</sup>
+
+getDisplayName(locale?: string, isDST?: boolean): string
+
+Obtains the representation of a **TimeZone** object in the specified locale.
+
+**System capability**: SystemCapability.Global.I18n
+
+- Parameters
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | locale | string | No| System locale ID.|
+  | isDST | boolean | No| Whether to consider DST when obtaining the representation of the **TimeZone** object.|
+
+- Return value
+  | Type| Description|
+  | -------- | -------- |
+  | string | Representation of the **TimeZone** object in the specified locale.|
+
+- Example
+  ```
+  var timezone = i18n.getTimeZone();
+  timezone.getDisplayName("zh-CN", false);
+  ```
+
+
+### getRawOffset<sup>8+</sup>
+
+getRawOffset(): number
+
+Obtains the offset between the time zone represented by a **TimeZone** object and the UTC time zone.
+
+**System capability**: SystemCapability.Global.I18n
+
+- Return value
+  | Type| Description|
+  | -------- | -------- |
+  | number | Offset between the time zone represented by the **TimeZone** object and the UTC time zone.|
+
+- Example
+  ```
+  var timezone = i18n.getTimeZone();
+  timezone.getRawOffset();
+  ```
+
+
+### getOffset<sup>8+</sup>
+
+getOffset(date?: number): number
+
+Obtains the offset between the time zone represented by a **TimeZone** object and the UTC time zone at a certain time point.
+
+**System capability**: SystemCapability.Global.I18n
+
+- Return value
+  | Type| Description|
+  | -------- | -------- |
+  | number | Offset between the time zone represented by the **TimeZone** object and the UTC time zone at a certain time point.|
+
+- Example
+  ```
+  var timezone = i18n.getTimeZone();
+  timezone.getOffset(1234567890);
   ```
