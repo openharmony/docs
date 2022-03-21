@@ -159,7 +159,7 @@ _[Changelog](api-change/v3.1-beta/changelog-v3.1-beta.md)_
 | [字符串编解码](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/StringCodec) | 本示例对字符串进行了特定格式的输出，对错误码的内容进行了文本输出，对字符串的编码和解码做了演示结果。 | eTS |
 | [Js音频播放和管理](https://gitee.com/openharmony/app_samples/tree/master/media/JsAudioPlayer) | 本示例展示了JS音频播放的使用方法，以及音频的音量大小设置。 | JS |
 | [JsVideo](https://gitee.com/openharmony/app_samples/tree/master/media/JsVideo) | 本示例使用JS&nbsp;UI中的&lt;video/&gt;组件，实现视频播放。可以通过video自带的控制栏进行播放、暂停等操作。 | JS |
-| [测试打点](https://gitee.com/openharmony/app_samples/tree/master/security/JsDotTest) | 本示例展示了测试打点功能，包括应用打点与性能打点两部分。 | JS |
+| [测试打点](https://gitee.com/openharmony/app_samples/tree/master/DFX/JsDotTest) | 本示例展示了测试打点功能，包括应用打点与性能打点两部分。 | JS |
 | [JsWorker](https://gitee.com/openharmony/app_samples/tree/master/thread/JsWorker) | 本示例展示了在JS中如何启动一个worker线程，并实现worker线程和宿主线程的通信。 | JS |
 | [画布组件](https://gitee.com/openharmony/app_samples/tree/master/UI/JsCanvas) | &lt;canvas/>组件可以自定义绘制图形，本示例展示了&lt;canvas\>组件的使用方法 | JS |
 | [JS页面弹窗](https://gitee.com/openharmony/app_samples/tree/master/UI/JsDialog) | JS中支持用户自定义弹窗，&lt;dialog/&gt;组件作为容器组件，用户可以自定义弹窗的样式和布局。本示例完成了添加和删除联系人功能，在添加和删除时使用自定义弹窗来实现。 | JS |
