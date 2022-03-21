@@ -416,9 +416,9 @@ setTimezone(timezone: string): Promise&lt;void&gt;
   ```
 
 
-## systemTime.getTimeZone<sup>8+</sup>
+## systemTime.getTimezone<sup>8+</sup>
 
-getTimeZone(callback: AsyncCallback&lt;string&gt;): void
+getTimezone(callback: AsyncCallback&lt;string&gt;): void
 
 获取系统时区，使用callback形式返回结果。
 
@@ -432,19 +432,19 @@ getTimeZone(callback: AsyncCallback&lt;string&gt;): void
 - 示例：
     
   ```
-  systemTime.getTimeZone((error, data) => {
+  systemTime.getTimezone((error, data) => {
       if (error) {
-          console.error(`failed to systemTime.getTimeZone because ` + JSON.stringify(error));
+          console.error(`failed to systemTime.getTimezone because ` + JSON.stringify(error));
           return;
       }
-      console.log(`systemTime.getTimeZone success data : ` + JSON.stringify(data));
+      console.log(`systemTime.getTimezone success data : ` + JSON.stringify(data));
   });
   ```
 
 
-## systemTime.getTimeZone<sup>8+</sup>
+## systemTime.getTimezone<sup>8+</sup>
 
-getTimeZone(): Promise&lt;string&gt;
+getTimezone(): Promise&lt;string&gt;
 
 获取系统时区，使用Promise形式返回结果。
 
@@ -458,9 +458,9 @@ getTimeZone(): Promise&lt;string&gt;
 - 示例：
     
   ```
-  systemTime.getDate().then((data) => {
-      console.log(`systemTime.getTimeZone success data : ` + JSON.stringify(data));
+  systemTime.getTimezone().then((data) => {
+      console.log(`systemTime.getTimezone success data : ` + JSON.stringify(data));
   }).catch((error) => {
-      console.error(`failed to systemTime.getTimeZone because ` + JSON.stringify(error));
+      console.error(`failed to systemTime.getTimezone because ` + JSON.stringify(error));
   });
   ```
