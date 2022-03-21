@@ -22,12 +22,13 @@
     -   [User Authentication](js-apis-useriam-userauth.md)
     -   [Access Control](js-apis-abilityAccessCtrl.md)
 - Data Management
-    -   [Lightweight Storage (deprecated since 8)](js-apis-data-storage.md)
+    -   [Lightweight Storage<sup>9+</sup>](js-apis-data-preferences.md)
+	-   [Lightweight Storage](js-apis-data-storage.md)
     -   [Distributed Data Management](js-apis-distributed-data.md)
     -   [Relational Database](js-apis-data-rdb.md)
     -   [Result Set](js-apis-data-resultset.md)
     -   [DataAbilityPredicates](js-apis-data-ability.md)
-    -   [Settings](js-apis-settings.md)
+    -   [Settings](js-apis-settings.md)		
 - File Management
     -   [File Management](js-apis-fileio.md)
     -   [Statfs](js-apis-statfs.md)

@@ -1268,6 +1268,8 @@
 
 ——>——>——>——> Data Management
 
+——>——>——>——>——> [Lightweight Storage](application-dev/reference/apis/js-apis-data-preferences.md)
+
 ——>——>——>——>——> [Lightweight Storage (deprecated since 8)](application-dev/reference/apis/js-apis-data-storage.md)
 
 ——>——>——>——>——> [Distributed Data Management](application-dev/reference/apis/js-apis-distributed-data.md)
