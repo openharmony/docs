@@ -1,5 +1,8 @@
 # Bundle模块(JS端SDK接口)
 
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+
 ## 导入模块
 
 ```
@@ -1563,9 +1566,9 @@ Ability信息
 | uri                | string                                                       | 是   | 否   | 获取Ability的统一资源标识符（URI）        |
 | labelId            | number                                                       | 是   | 否   | Ability的标签id                           |
 | subType            | AbilitySubType | 是   | 否   | Ability中枚举使用的模板的子类型           |
-| metaData | Array\<CustomizeData><sup>8+</sup> | 是 | 否 | ability的自定义信息 |
-| metaData | Array\<Metadata><sup>9+</sup> | 是 | 否 | ability的元信息 |
-| enabled | boolean<sup>8+</sup> | 是 | 否 | ability是否可用 |
+| metaData<sup>8+</sup> | Array\<CustomizeData> | 是 | 否 | ability的自定义信息 |
+| metaData<sup>9+</sup> | Array\<Metadata> | 是 | 否 | ability的元信息 |
+| enabled<sup>8+</sup> | boolean | 是 | 否 | ability是否可用 |
 
 ## AbilityType
 
@@ -1643,10 +1646,10 @@ ExtensionAbility的类型
 
 | 名称               | 默认值 | 说明   |
 | ------ | ------ | ------ |
-| GET_EXTENSION_INFO_DEFAULT | 0x00000000 | 获取默认的extensionAbilityInfo |
-| GET_EXTENSION_INFO_WITH_PERMISSION | 0x00000002 | 获取携带权限信息的extensionAbilityInfo |
-| GET_EXTENSION_INFO_WITH_APPLICATION | 0x00000004 | 获取携带应用信息的extensionAbilityInfo |
-| GET_EXTENSION_INFO_WITH_METADATA | 0x00000020 | 获取携带元数据信息的extensionAbilityInfo |
+| GET_EXTENSION_INFO_DEFAULT<sup>9+</sup> | 0x00000000 | 获取默认的extensionAbilityInfo |
+| GET_EXTENSION_INFO_WITH_PERMISSION<sup>9+</sup> | 0x00000002 | 获取携带权限信息的extensionAbilityInfo |
+| GET_EXTENSION_INFO_WITH_APPLICATION<sup>9+</sup> | 0x00000004 | 获取携带应用信息的extensionAbilityInfo |
+| GET_EXTENSION_INFO_WITH_METADATA<sup>9+</sup> | 0x00000020 | 获取携带元数据信息的extensionAbilityInfo |
 
 
 ## ExtensionAbilityInfo<sup>9+</sup>
