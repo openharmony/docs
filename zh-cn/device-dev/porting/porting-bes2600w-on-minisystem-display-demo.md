@@ -1213,7 +1213,7 @@ APP_FEATURE_INIT(AppEntry);
 
 `aafwk_lite`相关的应用样例见`vendor/bestechnic/display_demo/tests/ability`目录，包含`launcher`和`js app`这两类应用，应用的函数调用流程描述如下：
 
-1. `launcher`应用，通过`InstallLauncher`安装`BundleName`为 `"com.huawei.launcher"`的`native ui`应用，在`AbilityMgrSliteFeature`启动后会调用`AbilityMgrHandler::StartLauncher()`启动`launcher`应用。
+1. `launcher`应用，通过`InstallLauncher`安装`BundleName`为 `"com.example.launcher"`的`native ui`应用，在`AbilityMgrSliteFeature`启动后会调用`AbilityMgrHandler::StartLauncher()`启动`launcher`应用。
    
 2. `StartJSApp`应用，通过`StartAbility`启动任意`Want`，通过将`want data`传递`JS_APP_PATH`,
    `SetWantData(&want, JS_APP_PATH, strlen(JS_APP_PATH) + 1)`。
