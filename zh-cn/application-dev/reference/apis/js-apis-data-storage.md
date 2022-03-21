@@ -47,10 +47,16 @@ getStorageSync(path: string): Storage
   import featureAbility from '@ohos.ability.featureAbility'
 
   var context = featureAbility.getContext()
-  var path = await context.getFilesDir()
-  let storage = dataStorage.getStorageSync(path + '/mystore')
-  storage.putSync('startup', 'auto')
-  storage.flushSync()
+  context.getFilesDir((err, path) => {
+      if (err) {
+          console.error('getFilesDir failed. err: ' + JSON.stringify(err));
+          return;
+      }
+      console.info('getFilesDir successful. path:' + JSON.stringify(data));
+      let storage = dataStorage.getStorageSync(path + '/mystore')
+      storage.putSync('startup', 'auto')
+      storage.flushSync()
+  });
   ```
 
 
@@ -74,15 +80,21 @@ getStorage(path: string, callback: AsyncCallback&lt;Storage&gt;): void
   import featureAbility from '@ohos.ability.featureAbility'
 
   var context = featureAbility.getContext()
-  var path = await context.getFilesDir()
-  dataStorage.getStorage(path + '/mystore', function (err, storage) {
+  context.getFilesDir((err, path) => {
       if (err) {
-          console.info("Get the storage failed, path: " + path + '/mystore')
+          console.error('getFilesDir failed. err: ' + JSON.stringify(err));
           return;
       }
-      storage.putSync('startup', 'auto')
-      storage.flushSync()
-  })
+      console.info('getFilesDir successful. path:' + JSON.stringify(data));
+      dataStorage.getStorage(path + '/mystore', function (err, storage) {
+          if (err) {
+              console.info("Get the storage failed, path: " + path + '/mystore')
+              return;
+          }
+          storage.putSync('startup', 'auto')
+          storage.flushSync()
+      })
+  });
   ```
 
 
@@ -110,14 +122,15 @@ getStorage(path: string): Promise&lt;Storage&gt;
   import featureAbility from '@ohos.ability.featureAbility'
 
   var context = featureAbility.getContext()
-  var path = await context.getFilesDir()
-  let promisegetSt = dataStorage.getStorage(path + '/mystore')
-  promisegetSt.then((storage) => {
-      storage.putSync('startup', 'auto')
-      storage.flushSync()
-  }).catch((err) => {
-      console.info("Get the storage failed, path: " + path + '/mystore')
-  })
+  context.getFilesDir((err, path) => {
+      let promisegetSt = dataStorage.getStorage(path + '/mystore')
+      promisegetSt.then((storage) => {
+          storage.putSync('startup', 'auto')
+          storage.flushSync()
+      }).catch((err) => {
+          console.info("Get the storage failed, path: " + path + '/mystore')
+      })
+  });
   ```
 
 
