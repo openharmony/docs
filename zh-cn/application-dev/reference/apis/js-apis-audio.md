@@ -137,7 +137,7 @@ createAudioCapturer(options: AudioCapturerOptions, callback: AsyncCallback<Audio
 
 | 参数名   | 类型                                            | 必填 | 说明             |
 | :------- | :---------------------------------------------- | :--- | :--------------- |
-| options  | [AudioCapturerOptions](#AudioCapturerOptions)   | 是   | 配置音频采集器。 |
+| options  | [AudioCapturerOptions](#audiocaptureroptions8)  | 是   | 配置音频采集器。 |
 | callback | AsyncCallback<[AudioCapturer](#audiocapturer8)> | 是   | 音频采集器对象。 |
 
 **示例：**
@@ -181,9 +181,9 @@ createAudioCapturer(options: AudioCapturerOptions): Promise<AudioCapturer\>
 
 **参数：**
 
-| 参数名  | 类型                 | 必填 | 说明             |
-| :------ | :------------------- | :--- | :--------------- |
-| options | AudioCapturerOptions | 是   | 配置音频采集器。 |
+| 参数名  | 类型                                           | 必填 | 说明             |
+| :------ | :--------------------------------------------- | :--- | :--------------- |
+| options | [AudioCapturerOptions](#audiocaptureroptions8) | 是   | 配置音频采集器。 |
 
 **返回值：**
 
@@ -570,6 +570,17 @@ let audioCapturer = await audio.createAudioCapturer(audioCapturerOptions);
 | :--------- | :----- | :------------- |
 | CONNECT    | 0      | 设备连接。     |
 | DISCONNECT | 1      | 断开设备连接。 |
+
+## AudioCapturerOptions<sup>8+</sup>
+
+音频采集器选项信息。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Capturer
+
+| 名称         | 类型                                    | 必填 | 说明             |
+| ------------ | --------------------------------------- | ---- | ---------------- |
+| streamInfo   | [AudioStreamInfo](#audiostreaminfo8)    | 是   | 表示音频流信息。 |
+| rendererInfo | [AudioCapturerInfo](#audiocapturerinfo) | 是   | 表示采集器信息。 |
 
 ## AudioCapturerInfo<sup>8+</sup><a name="audiocapturerinfo"></a>
 
@@ -2698,9 +2709,9 @@ getStreamInfo(callback: AsyncCallback<AudioStreamInfo\>): void
 
 **参数：**
 
-| 参数名   | 类型                                                      | 必填 | 说明                             |
-| :------- | :-------------------------------------------------------- | :--- | :------------------------------- |
-| callback | AsyncCallback<[AudioStreamInfo](#AudioRendererOptions8)\> | 是   | 使用callback方式异步返回流信息。 |
+| 参数名   | 类型                                                 | 必填 | 说明                             |
+| :------- | :--------------------------------------------------- | :--- | :------------------------------- |
+| callback | AsyncCallback<[AudioStreamInfo](#audiostreaminfo8)\> | 是   | 使用callback方式异步返回流信息。 |
 
 **示例：**
 
@@ -2728,9 +2739,9 @@ getStreamInfo(): Promise<AudioStreamInfo\>
 
 **返回值：**
 
-| 类型                                                | 说明                            |
-| :-------------------------------------------------- | :------------------------------ |
-| Promise<[AudioStreamInfo](#AudioRendererOptions8)\> | 使用Promise方式异步返回流信息。 |
+| 类型                                           | 说明                            |
+| :--------------------------------------------- | :------------------------------ |
+| Promise<[AudioStreamInfo](#audiostreaminfo8)\> | 使用Promise方式异步返回流信息。 |
 
 **示例：**
 
