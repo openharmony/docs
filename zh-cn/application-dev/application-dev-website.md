@@ -36,6 +36,11 @@
               - [通过导入Sample方式创建新工程](quick-start/import-sample-to-create-project.md)
           - [配置OpenHarmony应用签名信息](quick-start/configuring-openharmony-app-signature.md)
           - [安装运行OpenHarmony应用](quick-start/installing-openharmony-app.md)
+      - 快速入门
+          - [前言](start-overview.md)
+          - [使用eTS语言开发](start-with-ets.md)
+          - [使用JS语言开发（传统代码方式）](start-with-js.md)
+          - [使用JS语言开发（低代码方式）](start-with-js-low-code.md)
     - [应用开发包结构说明](quick-start/quick-start/package-structure.md)
 - 开发
     - [Ability开发](ability/Readme-CN.md)
