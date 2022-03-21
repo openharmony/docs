@@ -1,4 +1,4 @@
-# CommonEvent Module
+# CommonEvent
 
 > **Note:**
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -8,6 +8,7 @@
 | Common Event Macro     | Common Event Name         | Subscriber Permissions    |
 | ------------ | ------------------ | ---------------------- |
 | COMMON_EVENT_BOOT_COMPLETED                                  | usual.event.BOOT_COMPLETED                                  | ohos.permission.RECEIVER_STARTUP_COMPLETED                   |
+| COMMON_EVENT_LOCKED_BOOT_COMPLETED                           | usual.event.LOCKED_BOOT_COMPLETED                           | ohos.permission.RECEIVER_STARTUP_COMPLETED                   |
 | COMMON_EVENT_SHUTDOWN                                        | usual.event.SHUTDOWN                                        | N/A                                                          |
 | COMMON_EVENT_BATTERY_CHANGED                                 | usual.event.BATTERY_CHANGED                                 | N/A                                                          |
 | COMMON_EVENT_BATTERY_LOW                                     | usual.event.BATTERY_LOW                                     | N/A                                                          |
@@ -16,6 +17,7 @@
 | COMMON_EVENT_POWER_DISCONNECTED                              | usual.event.POWER_DISCONNECTED                              | N/A                                                          |
 | COMMON_EVENT_SCREEN_OFF                                      | usual.event.SCREEN_OFF                                      | N/A                                                          |
 | COMMON_EVENT_SCREEN_ON                                       | usual.event.SCREEN_ON                                       | N/A                                                          |
+| COMMON_EVENT_THERMAL_LEVEL_CHANGED                           | usual.event.THERMAL_LEVEL_CHANGED                           | N/A                                                          |
 | COMMON_EVENT_USER_PRESENT                                    | usual.event.USER_PRESENT                                    | N/A                                                          |
 | COMMON_EVENT_TIME_TICK                                       | usual.event.TIME_TICK                                       | N/A                                                          |
 | COMMON_EVENT_TIME_CHANGED                                    | usual.event.TIME_CHANGED                                    | N/A                                                          |
@@ -50,7 +52,9 @@
 | COMMON_EVENT_USER_BACKGROUND                                 | usual.event.USER_BACKGROUND                                 | N/A                                                          |
 | COMMON_EVENT_USER_FOREGROUND                                 | usual.event.USER_FOREGROUND                                 | N/A                                                          |
 | COMMON_EVENT_USER_SWITCHED                                   | usual.event.USER_SWITCHED                                   | ohos.permission.MANAGE_USERS                                 |
+| COMMON_EVENT_USER_STARTING                                   | usual.event.USER_STARTING                                   | ohos.permission.INTERACT_ACROSS_USERS                        |
 | COMMON_EVENT_USER_UNLOCKED                                   | usual.event.USER_UNLOCKED                                   | N/A                                                          |
+| COMMON_EVENT_USER_STOPPING                                   | usual.event.USER_STOPPING                                   | ohos.permission.INTERACT_ACROSS_USERS                        |
 | COMMON_EVENT_USER_STOPPED                                    | usual.event.USER_STOPPED                                    | N/A                                                          |
 | COMMON_EVENT_HWID_LOGIN                                      | common.event.HWID_LOGIN                                     | N/A                                                          |
 | COMMON_EVENT_HWID_LOGOUT                                     | common.event.HWID_LOGOUT                                    | N/A                                                          |
@@ -63,14 +67,31 @@
 | COMMON_EVENT_WIFI_HOTSPOT_STATE                              | usual.event.wifi.HOTSPOT_STATE                              | N/A                                                          |
 | COMMON_EVENT_WIFI_AP_STA_JOIN                                | usual.event.wifi.WIFI_HS_STA_JOIN                           | ohos.permission.GET_WIFI_INFO                                |
 | COMMON_EVENT_WIFI_AP_STA_LEAVE                               | usual.event.wifi.WIFI_HS_STA_LEAVE                          | ohos.permission.GET_WIFI_INFO                                |
+| COMMON_EVENT_WIFI_MPLINK_STATE_CHANGE                        | usual.event.wifi.mplink.STATE_CHANGE                        | ohos.permission.MPLINK_CHANGE_STATE                          |
 | COMMON_EVENT_WIFI_P2P_CONN_STATE                             | usual.event.wifi.p2p.CONN_STATE_CHANGE                      | ohos.permission.GET_WIFI_INFO and ohos.permission.LOCATION   |
 | COMMON_EVENT_WIFI_P2P_STATE_CHANGED                          | usual.event.wifi.p2p.STATE_CHANGE                           | ohos.permission.GET_WIFI_INFO                                |
 | COMMON_EVENT_WIFI_P2P_PEERS_STATE_CHANGED                    | usual.event.wifi.p2p.DEVICES_CHANGE                         | ohos.permission.GET_WIFI_INFO                                |
 | COMMON_EVENT_WIFI_P2P_PEERS_DISCOVERY_STATE_CHANGED          | usual.event.wifi.p2p.PEER_DISCOVERY_STATE_CHANGE            | ohos.permission.GET_WIFI_INFO                                |
 | COMMON_EVENT_WIFI_P2P_CURRENT_DEVICE_STATE_CHANGED           | usual.event.wifi.p2p.CURRENT_DEVICE_CHANGE                  | ohos.permission.GET_WIFI_INFO                                |
 | COMMON_EVENT_WIFI_P2P_GROUP_STATE_CHANGED                    | usual.event.wifi.p2p.GROUP_STATE_CHANGED                    | ohos.permission.GET_WIFI_INFO                                |
+| COMMON_EVENT_BLUETOOTH_HANDSFREE_AG_CONNECT_STATE_UPDATE     | usual.event.bluetooth.handsfree.ag.CONNECT_STATE_UPDATE     | ohos.permission.USE_BLUETOOTH                                |
+| COMMON_EVENT_BLUETOOTH_HANDSFREE_AG_CURRENT_DEVICE_UPDATE    | usual.event.bluetooth.handsfree.ag.CURRENT_DEVICE_UPDATE    | ohos.permission.USE_BLUETOOTH                                |
+| COMMON_EVENT_BLUETOOTH_HANDSFREE_AG_AUDIO_STATE_UPDATE       | usual.event.bluetooth.handsfree.ag.AUDIO_STATE_UPDATE       | ohos.permission.USE_BLUETOOTH                                |
+| COMMON_EVENT_BLUETOOTH_A2DPSOURCE_CONNECT_STATE_UPDATE       | usual.event.bluetooth.a2dpsource.CONNECT_STATE_UPDATE       | ohos.permission.USE_BLUETOOTH                                |
+| COMMON_EVENT_BLUETOOTH_A2DPSOURCE_CURRENT_DEVICE_UPDATE      | usual.event.bluetooth.a2dpsource.CURRENT_DEVICE_UPDATE      | ohos.permission.USE_BLUETOOTH                                |
+| COMMON_EVENT_BLUETOOTH_A2DPSOURCE_PLAYING_STATE_UPDATE       | usual.event.bluetooth.a2dpsource.PLAYING_STATE_UPDATE       | ohos.permission.USE_BLUETOOTH                                |
 | COMMON_EVENT_BLUETOOTH_A2DPSOURCE_AVRCP_CONNECT_STATE_UPDATE | usual.event.bluetooth.a2dpsource.AVRCP_CONNECT_STATE_UPDATE | ohos.permission.USE_BLUETOOTH                                |
+| COMMON_EVENT_BLUETOOTH_A2DPSOURCE_CODEC_VALUE_UPDATE         | usual.event.bluetooth.a2dpsource.CODEC_VALUE_UPDATE         | ohos.permission.USE_BLUETOOTH                                |
+| COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_DISCOVERED               | usual.event.bluetooth.remotedevice.DISCOVERED               | ohos.permission.LOCATION                                     |
+| COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_CLASS_VALUE_UPDATE       | usual.event.bluetooth.remotedevice.CLASS_VALUE_UPDATE       | ohos.permission.USE_BLUETOOTH                                |
+| COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_ACL_CONNECTED            | usual.event.bluetooth.remotedevice.ACL_CONNECTED            | ohos.permission.USE_BLUETOOTH                                |
+| COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_ACL_DISCONNECTED         | usual.event.bluetooth.remotedevice.ACL_DISCONNECTED         | ohos.permission.USE_BLUETOOTH                                |
+| COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_NAME_UPDATE              | usual.event.bluetooth.remotedevice.NAME_UPDATE              | ohos.permission.USE_BLUETOOTH                                |
+| COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_PAIR_STATE               | usual.event.bluetooth.remotedevice.PAIR_STATE               | ohos.permission.USE_BLUETOOTH                                |
+| COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_BATTERY_VALUE_UPDATE     | usual.event.bluetooth.remotedevice.BATTERY_VALUE_UPDATE     | ohos.permission.USE_BLUETOOTH                                |
 | COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_SDP_RESULT               | usual.event.bluetooth.remotedevice.SDP_RESULT               | N/A                                                          |
+| COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_UUID_VALUE               | usual.event.bluetooth.remotedevice.UUID_VALUE               | ohos.permission.DISCOVER_BLUETOOTH                           |
+| COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_PAIRING_REQ              | usual.event.bluetooth.remotedevice.PAIRING_REQ              | ohos.permission.DISCOVER_BLUETOOTH                           |
 | COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_PAIRING_CANCEL           | usual.event.bluetooth.remotedevice.PAIRING_CANCEL           | N/A                                                          |
 | COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_CONNECT_REQ              | usual.event.bluetooth.remotedevice.CONNECT_REQ              | N/A                                                          |
 | COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_CONNECT_REPLY            | usual.event.bluetooth.remotedevice.CONNECT_REPLY            | N/A                                                          |
@@ -79,14 +100,29 @@
 | COMMON_EVENT_BLUETOOTH_HANDSFREEUNIT_AUDIO_STATE_UPDATE      | usual.event.bluetooth.handsfreeunit.AUDIO_STATE_UPDATE      | N/A                                                          |
 | COMMON_EVENT_BLUETOOTH_HANDSFREEUNIT_AG_COMMON_EVENT         | usual.event.bluetooth.handsfreeunit.AG_COMMON_EVENT         | N/A                                                          |
 | COMMON_EVENT_BLUETOOTH_HANDSFREEUNIT_AG_CALL_STATE_UPDATE    | usual.event.bluetooth.handsfreeunit.AG_CALL_STATE_UPDATE    | N/A                                                          |
+| COMMON_EVENT_BLUETOOTH_HOST_STATE_UPDATE                     | usual.event.bluetooth.host.STATE_UPDATE                     | ohos.permission.USE_BLUETOOTH                                |
 | COMMON_EVENT_BLUETOOTH_HOST_REQ_DISCOVERABLE                 | usual.event.bluetooth.host.REQ_DISCOVERABLE                 | N/A                                                          |
+| COMMON_EVENT_BLUETOOTH_HOST_REQ_ENABLE                       | usual.event.bluetooth.host.REQ_ENABLE                       | ohos.permission.USE_BLUETOOTH                                |
+| COMMON_EVENT_BLUETOOTH_HOST_REQ_DISABLE                      | usual.event.bluetooth.host.REQ_DISABLE                      | ohos.permission.USE_BLUETOOTH                                |
+| COMMON_EVENT_BLUETOOTH_HOST_SCAN_MODE_UPDATE                 | usual.event.bluetooth.host.SCAN_MODE_UPDATE                 | ohos.permission.USE_BLUETOOTH                                |
+| COMMON_EVENT_BLUETOOTH_HOST_DISCOVERY_STARTED                | usual.event.bluetooth.host.DISCOVERY_STARTED                | ohos.permission.USE_BLUETOOTH                                |
+| COMMON_EVENT_BLUETOOTH_HOST_DISCOVERY_FINISHED               | usual.event.bluetooth.host.DISCOVERY_FINISHED               | ohos.permission.USE_BLUETOOTH                                |
+| COMMON_EVENT_BLUETOOTH_HOST_NAME_UPDATE                      | usual.event.bluetooth.host.NAME_UPDATE                      | ohos.permission.USE_BLUETOOTH                                |
+| COMMON_EVENT_BLUETOOTH_A2DPSINK_CONNECT_STATE_UPDATE         | usual.event.bluetooth.a2dpsink.CONNECT_STATE_UPDATE         | ohos.permission.USE_BLUETOOTH                                |
+| COMMON_EVENT_BLUETOOTH_A2DPSINK_PLAYING_STATE_UPDATE         | usual.event.bluetooth.a2dpsink.PLAYING_STATE_UPDATE         | ohos.permission.USE_BLUETOOTH                                |
+| COMMON_EVENT_BLUETOOTH_A2DPSINK_AUDIO_STATE_UPDATE           | usual.event.bluetooth.a2dpsink.AUDIO_STATE_UPDATE           | ohos.permission.USE_BLUETOOTH                                |
 | COMMON_EVENT_NFC_ACTION_ADAPTER_STATE_CHANGED                | usual.event.nfc.action.ADAPTER_STATE_CHANGED                | N/A                                                          |
+| COMMON_EVENT_NFC_ACTION_RF_FIELD_ON_DETECTED                 | usual.event.nfc.action.RF_FIELD_ON_DETECTED                 | ohos.permission.MANAGE_SECURE_SETTINGS                       |
+| COMMON_EVENT_NFC_ACTION_RF_FIELD_OFF_DETECTED                | usual.event.nfc.action.RF_FIELD_OFF_DETECTED                | ohos.permission.MANAGE_SECURE_SETTINGS                       |
 | COMMON_EVENT_DISCHARGING                                     | usual.event.DISCHARGING                                     | N/A                                                          |
 | COMMON_EVENT_CHARGING                                        | usual.event.CHARGING                                        | N/A                                                          |
 | COMMON_EVENT_DEVICE_IDLE_MODE_CHANGED                        | usual.event.DEVICE_IDLE_MODE_CHANGED                        | N/A                                                          |
 | COMMON_EVENT_POWER_SAVE_MODE_CHANGED                         | usual.event.POWER_SAVE_MODE_CHANGED                         | N/A                                                          |
 | COMMON_EVENT_USER_ADDED                                      | usual.event.USER_ADDED                                      | ohos.permission.MANAGE_USERS                                 |
 | COMMON_EVENT_USER_REMOVED                                    | usual.event.USER_REMOVED                                    | ohos.permission.MANAGE_USERS                                 |
+| COMMON_EVENT_ABILITY_ADDED                                   | usual.event.ABILITY_ADDED                                   | ohos.permission.LISTEN_BUNDLE_CHANGE                         |
+| COMMON_EVENT_ABILITY_REMOVED                                 | usual.event.ABILITY_REMOVED                                 | ohos.permission.LISTEN_BUNDLE_CHANGE                         |
+| COMMON_EVENT_ABILITY_UPDATED                                 | usual.event.ABILITY_UPDATED                                 | ohos.permission.LISTEN_BUNDLE_CHANGE                         |
 | COMMON_EVENT_LOCATION_MODE_STATE_CHANGED                     | usual.event.location.MODE_STATE_CHANGED                     | N/A                                                          |
 | COMMON_EVENT_IVI_SLEEP                                       | common.event.IVI_SLEEP                                      | N/A                                                          |
 | COMMON_EVENT_IVI_PAUSE                                       | common.event.IVI_PAUSE                                      | N/A                                                          |
@@ -107,8 +143,18 @@
 | COMMON_EVENT_DISK_UNMOUNTED                                  | usual.event.data.DISK_UNMOUNTED                             | ohos.permission.WRITE_USER_STORAGE or ohos.permission.READ_USER_STORAGE|
 | COMMON_EVENT_DISK_MOUNTED                                    | usual.event.data.DISK_MOUNTED                               | ohos.permission.WRITE_USER_STORAGE or ohos.permission.READ_USER_STORAGE|
 | COMMON_EVENT_DISK_BAD_REMOVAL                                | usual.event.data.DISK_BAD_REMOVAL                           | ohos.permission.WRITE_USER_STORAGE or ohos.permission.READ_USER_STORAGE|
+| COMMON_EVENT_DISK_UNMOUNTABLE                                | usual.event.data.DISK_UNMOUNTABLE                           | ohos.permission.WRITE_USER_STORAGE or ohos.permission.READ_USER_STORAGE|
 | COMMON_EVENT_DISK_EJECT                                      | usual.event.data.DISK_EJECT                                 | ohos.permission.WRITE_USER_STORAGE or ohos.permission.READ_USER_STORAGE|
+| COMMON_EVENT_VOLUME_REMOVED                                  | usual.event.data.VOLUME_REMOVED                             | ohos.permission.WRITE_USER_STORAGE or ohos.permission.READ_USER_STORAGE|
+| COMMON_EVENT_VOLUME_UNMOUNTED                                | usual.event.data.VOLUME_UNMOUNTED                           | ohos.permission.WRITE_USER_STORAGE or ohos.permission.READ_USER_STORAGE|
+| COMMON_EVENT_VOLUME_MOUNTED                                  | usual.event.data.VOLUME_MOUNTED                             | ohos.permission.WRITE_USER_STORAGE or ohos.permission.READ_USER_STORAGE|
+| COMMON_EVENT_VOLUME_BAD_REMOVAL                              | usual.event.data.VOLUME_BAD_REMOVAL                         | ohos.permission.WRITE_USER_STORAGE or ohos.permission.READ_USER_STORAGE|
+| COMMON_EVENT_VOLUME_EJECT                                    | usual.event.data.VOLUME_EJECT                               | ohos.permission.WRITE_USER_STORAGE or ohos.permission.READ_USER_STORAGE|
+| COMMON_EVENT_VISIBLE_ACCOUNTS_UPDATED                        | usual.event.data.VISIBLE_ACCOUNTS_UPDATED                   | ohos.permission.GET_APP_ACCOUNTS                             |
+| COMMON_EVENT_ACCOUNT_DELETED                                 | usual.event.data.ACCOUNT_DELETED                            | ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS               |
+| COMMON_EVENT_FOUNDATION_READY                                | usual.event.data.FOUNDATION_READY                           | ohos.permission.RECEIVER_STARTUP_COMPLETED                   |
 | COMMON_EVENT_AIRPLANE_MODE_CHANGED                           | usual.event.AIRPLANE_MODE                                   | N/A                                                          |
+| COMMON_EVENT_SPLIT_SCREEN                                    | usual.event.SPLIT_SCREEN                                    | ohos.permission.RECEIVER_SPLIT_SCREEN                        |
 
 ## Modules to Import
 
@@ -120,9 +166,9 @@ import CommonEvent from '@ohos.commonEvent';
 
 publish(event: string, callback: AsyncCallback\<void>): void
 
-Publishes a common event. This method uses a callback to return the result.
+Publishes a common event. This API uses a callback to return the result.
 
-**System capabilities**: SystemCapability.Notification.CommonEvent
+**System capability**: SystemCapability.Notification.CommonEvent
 
 **Parameters**
 
@@ -153,9 +199,9 @@ CommonEvent.publish("event", PublishCallBack);
 
 publish(event: string, options: CommonEventPublishData, callback: AsyncCallback\<void>): void
 
-Publishes a common event with given attributes. This method uses a callback to return the result.
+Publishes a common event with given attributes. This API uses a callback to return the result.
 
-**System capabilities**: SystemCapability.Notification.CommonEvent
+**System capability**: SystemCapability.Notification.CommonEvent
 
 **Parameters**
 
@@ -191,13 +237,13 @@ CommonEvent.publish("event", options, PublishCallBack);
 
 
 
-## CommonEvent.publishAsUser
+## CommonEvent.publishAsUser<sup>8+</sup>
 
 publishAsUser(event: string, userId: number, callback: AsyncCallback\<void>): void
 
-Publishes a common event to a specific user. This method uses a callback to return the result.
+Publishes a common event to a specific user. This API uses a callback to return the result.
 
-**System capabilities**: SystemCapability.Notification.CommonEvent
+**System capability**: SystemCapability.Notification.CommonEvent
 
 **Parameters**
 
@@ -228,13 +274,13 @@ CommonEvent.publishAsUser("event", userId, PublishAsUserCallBack);
 
 
 
-## CommonEvent.publishAsUser
+## CommonEvent.publishAsUser<sup>8+</sup>
 
 publishAsUser(event: string, userId: number, options: CommonEventPublishData, callback: AsyncCallback\<void>): void
 
-Publishes a common event with given attributes to a specific user. This method uses a callback to return the result.
+Publishes a common event with given attributes to a specific user. This API uses a callback to return the result.
 
-**System capabilities**: SystemCapability.Notification.CommonEvent
+**System capability**: SystemCapability.Notification.CommonEvent
 
 **Parameters**
 
@@ -251,7 +297,7 @@ Publishes a common event with given attributes to a specific user. This method u
 ```js
 // Attributes of a common event.
 var options = {
-	code: 0;			 // Result code of the common event
+	code: 0,			 // Result code of the common event
 	data: "initial data";// Result data of the common event
 }
 
@@ -277,9 +323,9 @@ CommonEvent.publishAsUser("event", userId, options, PublishAsUserCallBack);
 
 createSubscriber(subscribeInfo: CommonEventSubscribeInfo, callback: AsyncCallback\<CommonEventSubscriber>): void
 
-Creates a subscriber. This method uses a callback to return the result.
+Creates a subscriber. This API uses a callback to return the result.
 
-**System capabilities**: SystemCapability.Notification.CommonEvent
+**System capability**: SystemCapability.Notification.CommonEvent
 
 **Parameters**
 
@@ -319,9 +365,9 @@ CommonEvent.createSubscriber(subscribeInfo, CreateSubscriberCallBack);
 
 createSubscriber(subscribeInfo: CommonEventSubscribeInfo): Promise\<CommonEventSubscriber>
 
-Creates a subscriber. This method uses a promise to return the result.
+Creates a subscriber. This API uses a promise to return the result.
 
-**System capabilities**: SystemCapability.Notification.CommonEvent
+**System capability**: SystemCapability.Notification.CommonEvent
 
 **Parameters**
 
@@ -359,9 +405,9 @@ CommonEvent.createSubscriber(subscribeInfo).then((commonEventSubscriber) => {
 
 subscribe(subscriber: CommonEventSubscriber, callback: AsyncCallback\<CommonEventData>): void
 
-Subscribes to common events. This method uses a callback to return the result.
+Subscribes to common events. This API uses a callback to return the result.
 
-**System capabilities**: SystemCapability.Notification.CommonEvent
+**System capability**: SystemCapability.Notification.CommonEvent
 
 **Parameters**
 
@@ -372,8 +418,6 @@ Subscribes to common events. This method uses a callback to return the result.
 
 **Example**
 
-Unordered common event:
-
 ```js
 var subscriber; // Used to save the created subscriber object for subsequent subscription and unsubscription.
 
@@ -407,83 +451,15 @@ function CreateSubscriberCallBack(err, commonEventSubscriber) {
 CommonEvent.createSubscriber(subscribeInfo, CreateSubscriberCallBack);
 ```
 
- Ordered common event:
-
-```js
-var subscriber; // Used to save the created subscriber object for subsequent subscription and unsubscription.
-
-// Subscriber information
-var subscribeInfo = {
-    events: ["event"]
-};
-
-// Callback for result code setting of an ordered common event
-function SetCodeCallBack(err) {
-    if (err.code) {
-        console.error("setCode failed " + JSON.stringify(err));
-    } else {
-        console.info("setCode");
-    }
-}
-
-// Callback for result data setting of an ordered common event
-function SetDataCallBack(err) {
-    if (err.code) {
-        console.error("setData failed " + JSON.stringify(err));
-    } else {
-        console.info("setData");
-    }
-}
-
-// Callback for ordered common event processing
-function FinishCommonEventCallBack(err) {
-    if (err.code) {
-        console.error("finishCommonEvent failed " + JSON.stringify(err));
-    } else {
-        console.info("finishCommonEvent");
-    }
-}
-
-// Callback for common event subscription
-function SubscribeCallBack(err, data) {
-    if (err.code) {
-        console.error("subscribe failed " + JSON.stringify(err));
-    } else {
-        console.info("subscribe " + JSON.stringify(data));
-        // Set the result code for the ordered common event.
-        subscriber.setCode(0, SetCodeCallBack);
-        // Set the result data for the ordered common event.
-        subscriber.setData("publish_data_changed", SetDataCallBack);
-        // Complete the processing of the ordered common event.
-        subscriber.finishCommonEvent(FinishCommonEventCallBack)
-    }
-}
-
-// Callback for subscriber creation
-function CreateSubscriberCallBack(err, commonEventSubscriber) {
-    if (err.code) {
-        console.error("createSubscriber failed " + JSON.stringify(err));
-    } else {
-        console.info("createSubscriber");
-        subscriber = commonEventSubscriber;
-        // Subscribe to a common event.
-        CommonEvent.subscribe(subscriber, SubscribeCallBack);
-    }
-}
-
-// Create a subscriber.
-CommonEvent.createSubscriber(subscribeInfo, CreateSubscriberCallBack);
-```
-
-
+ 
 
 ## CommonEvent.unsubscribe
 
 unsubscribe(subscriber: CommonEventSubscriber, callback?: AsyncCallback\<void>): void
 
-Unsubscribes from common events. This method uses a callback to return the result.
+Unsubscribes from common events. This API uses a callback to return the result.
 
-**System capabilities**: SystemCapability.Notification.CommonEvent
+**System capability**: SystemCapability.Notification.CommonEvent
 
 **Parameters**
 
@@ -541,34 +517,40 @@ CommonEvent.unsubscribe(subscriber, UnsubscribeCallBack);
 
 ## CommonEventPublishData
 
-| Name                 | Readable/Writable| Type                | Mandatory| Description                                                        |
-| --------------------- | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| bundleName            | Read-only    | string               | No  | Bundle name.<br>**System capabilities**: SystemCapability.Notification.CommonEvent|
-| code                  | Read-only    | number               | No  | Result code of the common event.<br>**System capabilities**: SystemCapability.Notification.CommonEvent|
-| data                  | Read-only    | string               | No  | Custom result data of the common event.<br>**System capabilities**: SystemCapability.Notification.CommonEvent|
-| subscriberPermissions | Read-only    | Array\<string>       | No  | Permissions required for subscribers to receive the common event.<br>**System capabilities**: SystemCapability.Notification.CommonEvent|
-| isOrdered             | Read-only    | boolean              | No  | Whether the common event is an ordered one.<br>**System capabilities**: SystemCapability.Notification.CommonEvent|
-| parameters            | Read-only    | {[key: string]: any} | No  | Additional information about the common event.<br>**System capabilities**: SystemCapability.Notification.CommonEvent|
+**System capability**: SystemCapability.Notification.CommonEvent
+
+| Name                 | Readable/Writable| Type                | Mandatory| Description                        |
+| --------------------- | -------- | -------------------- | ---- | ---------------------------- |
+| bundleName            | Read-only    | string               | No  | Bundle name.                  |
+| code                  | Read-only    | number               | No  | Result code of the common event.      |
+| data                  | Read-only    | string               | No  | Custom result data of the common event.|
+| subscriberPermissions | Read-only    | Array\<string>       | No  | Permissions required for subscribers to receive the common event.            |
+| isOrdered             | Read-only    | boolean              | No  | Whether the common event is an ordered one.          |
+| parameters            | Read-only    | {[key: string]: any} | No  | Additional information about the common event.      |
 
 ## CommonEventSubscribeInfo
 
+**System capability**: SystemCapability.Notification.CommonEvent
+
 | Name               | Readable/Writable| Type          | Mandatory| Description                                                        |
 | ------------------- | -------- | -------------- | ---- | ------------------------------------------------------------ |
-| events              | Read-only    | Array\<string> | Yes  | Common events to subscribe to.<br>**System capabilities**: SystemCapability.Notification.CommonEvent|
-| publisherPermission | Read-only    | string         | No  | Permission required for the publisher.<br>**System capabilities**: SystemCapability.Notification.CommonEvent|
-| publisherDeviceId   | Read-only    | string         | No  | Device ID. The value must be the ID of an existing device on the same network.<br>**System capabilities**: SystemCapability.Notification.CommonEvent|
-| userId              | Read-only    | number         | No  | User ID. The default value is the ID of the current user. If this parameter is specified, the value must be an existing user ID in the system.<br>**System capabilities**: SystemCapability.Notification.CommonEvent|
-| priority            | Read-only    | number         | No  | Subscriber priority. The value ranges from -100 to 1000.<br>**System capabilities**: SystemCapability.Notification.CommonEvent|
+| events              | Read-only    | Array\<string> | Yes  | Common events to subscribe to.                                        |
+| publisherPermission | Read-only    | string         | No  | Permission required for the publisher.                                            |
+| publisherDeviceId   | Read-only    | string         | No  | Device ID. The value must be the ID of an existing device on the same network.            |
+| userId              | Read-only    | number         | No  | User ID. The default value is the ID of the current user. If this parameter is specified, the value must be an existing user ID in the system.|
+| priority            | Read-only    | number         | No  | Subscriber priority. The value ranges from -100 to 1000.                    |
 
 ## CommonEventData
 
-| Name      | Readable/Writable| Type                | Mandatory| Description                                                        |
-| ---------- | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| event      | Read-only    | string               | Yes  | Name of the common event to subscribe to.<br>**System capabilities**: SystemCapability.Notification.CommonEvent|
-| bundleName | Read-only    | string               | No  | Bundle name.<br>**System capabilities**: SystemCapability.Notification.CommonEvent|
-| code       | Read-only    | number               | No  | Result code of the common event, which is used to transfer data of the int type.<br>**System capabilities**: SystemCapability.Notification.CommonEvent|
-| data       | Read-only    | string               | No  | Custom result data of the common event, which is used to transfer data of the string type.<br>**System capabilities**: SystemCapability.Notification.CommonEvent|
-| parameters | Read-only    | {[key: string]: any} | No  | Additional information about the common event.<br>**System capabilities**: SystemCapability.Notification.CommonEvent|
+**System capability**: SystemCapability.Notification.CommonEvent
+
+| Name      | Readable/Writable| Type                | Mandatory| Description                                                   |
+| ---------- | -------- | -------------------- | ---- | ------------------------------------------------------- |
+| event      | Read-only    | string               | Yes  | Name of the common event to subscribe to.                             |
+| bundleName | Read-only    | string               | No  | Bundle name.                                             |
+| code       | Read-only    | number               | No  | Result code of the common event, which is used to transfer data of the int type.          |
+| data       | Read-only    | string               | No  | Custom result data of the common event, which is used to transfer data of the string type.|
+| parameters | Read-only    | {[key: string]: any} | No  | Additional information about the common event.                                 |
 
 ## CommonEventSubscriber
 
@@ -576,9 +558,9 @@ CommonEvent.unsubscribe(subscriber, UnsubscribeCallBack);
 
 getCode(callback: AsyncCallback\<number>): void
 
-Obtains the result code of this common event. This method uses a callback to return the result.
+Obtains the result code of this common event. This API uses a callback to return the result.
 
-**System capabilities**: SystemCapability.Notification.CommonEvent
+**System capability**: SystemCapability.Notification.CommonEvent
 
 **Parameters**
 
@@ -589,7 +571,7 @@ Obtains the result code of this common event. This method uses a callback to ret
 **Example**
 
 ```js
-var subscriber;	// Subscriber object successfully created
+var subscriber;	// Subscriber object successfully created.
 
 // Callback for result data setting of an ordered common event
 getCode() {
@@ -607,9 +589,9 @@ subscriber.getCode(getCodeCallback);
 
 getCode(): Promise\<number>
 
-Obtains the result code of this common event. This method uses a promise to return the result.
+Obtains the result code of this common event. This API uses a promise to return the result.
 
-**System capabilities**: SystemCapability.Notification.CommonEvent
+**System capability**: SystemCapability.Notification.CommonEvent
 
 **Return value**
 
@@ -620,7 +602,7 @@ Obtains the result code of this common event. This method uses a promise to retu
 **Example**
 
 ```js
-var subscriber;	// Subscriber object successfully created
+var subscriber;	// Subscriber object successfully created.
 
 subscriber.getCode().then((Code) => {
     console.info("getCode " + JSON.stringify(Code));
@@ -633,9 +615,9 @@ subscriber.getCode().then((Code) => {
 
 setCode(code: number, callback: AsyncCallback\<void>): void
 
-Sets the result code for this common event. This method uses a callback to return the result.
+Sets the result code for this common event. This API uses a callback to return the result.
 
-**System capabilities**: SystemCapability.Notification.CommonEvent
+**System capability**: SystemCapability.Notification.CommonEvent
 
 **Parameters**
 
@@ -647,7 +629,7 @@ Sets the result code for this common event. This method uses a callback to retur
 **Example**
 
 ```js
-var subscriber;	// Subscriber object successfully created
+var subscriber;	// Subscriber object successfully created.
 
 // Callback for result data setting of an ordered common event
 function setCodeCallback(err) {
@@ -664,9 +646,9 @@ subscriber.setCode(1, setCodeCallback);
 
 setCode(code: number): Promise\<void>
 
-Sets the result code for this common event. This method uses a promise to return the result.
+Sets the result code for this common event. This API uses a promise to return the result.
 
-**System capabilities**: SystemCapability.Notification.CommonEvent
+**System capability**: SystemCapability.Notification.CommonEvent
 
 **Parameters**
 
@@ -677,7 +659,7 @@ Sets the result code for this common event. This method uses a promise to return
 **Example**
 
 ```js
-var subscriber;	// Subscriber object successfully created
+var subscriber;	// Subscriber object successfully created.
 
 subscriber.setCode(1).then(() => {
     console.info("setCode");
@@ -690,9 +672,9 @@ subscriber.setCode(1).then(() => {
 
 getData(callback: AsyncCallback\<string>): void
 
-Obtains the result data of this common event. This method uses a callback to return the result.
+Obtains the result data of this common event. This API uses a callback to return the result.
 
-**System capabilities**: SystemCapability.Notification.CommonEvent
+**System capability**: SystemCapability.Notification.CommonEvent
 
 **Parameters**
 
@@ -703,7 +685,7 @@ Obtains the result data of this common event. This method uses a callback to ret
 **Example**
 
 ```js
-var subscriber;	// Subscriber object successfully created
+var subscriber;	// Subscriber object successfully created.
 
 // Callback for result data setting of an ordered common event
 function getDataCallback(err, Data) {
@@ -720,9 +702,9 @@ subscriber.getData(getDataCallback);
 
 getData(): Promise\<string>
 
-Obtains the result data of this common event. This method uses a promise to return the result.
+Obtains the result data of this common event. This API uses a promise to return the result.
 
-**System capabilities**: SystemCapability.Notification.CommonEvent
+**System capability**: SystemCapability.Notification.CommonEvent
 
 **Return value**
 
@@ -733,7 +715,7 @@ Obtains the result data of this common event. This method uses a promise to retu
 **Example**
 
 ```js
-var subscriber;	// Subscriber object successfully created
+var subscriber;	// Subscriber object successfully created.
 
 subscriber.getData().then((Data) => {
     console.info("getData " + JSON.stringify(Data));
@@ -746,9 +728,9 @@ subscriber.getData().then((Data) => {
 
 setData(data: string, callback: AsyncCallback\<void>): void
 
-Sets the result data for this common event. This method uses a callback to return the result.
+Sets the result data for this common event. This API uses a callback to return the result.
 
-**System capabilities**: SystemCapability.Notification.CommonEvent
+**System capability**: SystemCapability.Notification.CommonEvent
 
 **Parameters**
 
@@ -760,7 +742,7 @@ Sets the result data for this common event. This method uses a callback to retur
 **Example**
 
 ```js
-var subscriber;	// Subscriber object successfully created
+var subscriber;	// Subscriber object successfully created.
 
 // Callback for result data setting of an ordered common event
 function setDataCallback(err) {
@@ -777,9 +759,9 @@ subscriber.setData("publish_data_changed", setDataCallback);
 
 setData(data: string): Promise\<void>
 
-Sets the result data for this common event. This method uses a promise to return the result.
+Sets the result data for this common event. This API uses a promise to return the result.
 
-**System capabilities**: SystemCapability.Notification.CommonEvent
+**System capability**: SystemCapability.Notification.CommonEvent
 
 **Parameters**
 
@@ -790,7 +772,7 @@ Sets the result data for this common event. This method uses a promise to return
 **Example**
 
 ```js
-var subscriber;	// Subscriber object successfully created
+var subscriber;	// Subscriber object successfully created.
 
 subscriber.setData("publish_data_changed").then(() => {
     console.info("setData");
@@ -803,9 +785,9 @@ subscriber.setData("publish_data_changed").then(() => {
 
 setCodeAndData(code: number, data: string, callback:AsyncCallback\<void>): void
 
-Sets the result code and result data for this common event. This method uses a callback to return the result.
+Sets the result code and result data for this common event. This API uses a callback to return the result.
 
-**System capabilities**: SystemCapability.Notification.CommonEvent
+**System capability**: SystemCapability.Notification.CommonEvent
 
 **Parameters**
 
@@ -818,7 +800,7 @@ Sets the result code and result data for this common event. This method uses a c
 **Example**
 
 ```js
-var subscriber;	// Subscriber object successfully created
+var subscriber;	// Subscriber object successfully created.
 
 // Callback for result data setting of an ordered common event
 function setCodeDataCallback(err) {
@@ -835,9 +817,9 @@ subscriber.setCodeAndData(1, "publish_data_changed", setCodeDataCallback);
 
 setCodeAndData(code: number, data: string): Promise\<void>
 
-Sets the result code and result data for this common event. This method uses a promise to return the result.
+Sets the result code and result data for this common event. This API uses a promise to return the result.
 
-**System capabilities**: SystemCapability.Notification.CommonEvent
+**System capability**: SystemCapability.Notification.CommonEvent
 
 **Parameters**
 
@@ -849,7 +831,7 @@ Sets the result code and result data for this common event. This method uses a p
 **Example**
 
 ```js
-var subscriber;	// Subscriber object successfully created
+var subscriber;	// Subscriber object successfully created.
 
 subscriber.setCodeAndData(1, "publish_data_changed").then(() => {
     console.info("setCodeAndData");
@@ -862,9 +844,9 @@ subscriber.setCodeAndData(1, "publish_data_changed").then(() => {
 
 isOrderedCommonEvent(callback: AsyncCallback\<boolean>): void
 
-Checks whether this common event is an ordered one. This method uses a callback to return the result.
+Checks whether this common event is an ordered one. This API uses a callback to return the result.
 
-**System capabilities**: SystemCapability.Notification.CommonEvent
+**System capability**: SystemCapability.Notification.CommonEvent
 
 **Parameters**
 
@@ -875,7 +857,7 @@ Checks whether this common event is an ordered one. This method uses a callback 
 **Example**
 
 ```js
-var subscriber;	// Subscriber object successfully created
+var subscriber;	// Subscriber object successfully created.
 
 // Callback for result data setting of an ordered common event
 function isOrderedCallback(err, isOrdered) {
@@ -892,9 +874,9 @@ subscriber.isOrderedCommonEvent(isOrderedCallback);
 
 isOrderedCommonEvent(): Promise\<boolean>
 
-Checks whether this common event is an ordered one. This method uses a promise to return the result.
+Checks whether this common event is an ordered one. This API uses a promise to return the result.
 
-**System capabilities**: SystemCapability.Notification.CommonEvent
+**System capability**: SystemCapability.Notification.CommonEvent
 
 **Return value**
 
@@ -905,7 +887,7 @@ Checks whether this common event is an ordered one. This method uses a promise t
 **Example**
 
 ```js
-var subscriber;	// Subscriber object successfully created
+var subscriber;	// Subscriber object successfully created.
 
 subscriber.isOrderedCommonEvent().then((isOrdered) => {
     console.info("isOrdered " + JSON.stringify(isOrdered));
@@ -918,9 +900,9 @@ subscriber.isOrderedCommonEvent().then((isOrdered) => {
 
 abortCommonEvent(callback: AsyncCallback\<void>): void
 
-Aborts this common event. After the abort, the common event is not sent to the next subscriber. This method takes effect only for ordered common events. It uses a callback to return the result.
+Aborts this common event. After the abort, the common event is not sent to the next subscriber. This API takes effect only for ordered common events. It uses a callback to return the result.
 
-**System capabilities**: SystemCapability.Notification.CommonEvent
+**System capability**: SystemCapability.Notification.CommonEvent
 
 **Parameters**
 
@@ -931,7 +913,7 @@ Aborts this common event. After the abort, the common event is not sent to the n
 **Example**
 
 ```js
-var subscriber;	// Subscriber object successfully created
+var subscriber;	// Subscriber object successfully created.
 
 // Callback for result data setting of an ordered common event
 function abortCallback(err) {
@@ -948,14 +930,14 @@ subscriber.abortCommonEvent(abortCallback);
 
 abortCommonEvent(): Promise\<void>
 
-Aborts this common event. After the abort, the common event is not sent to the next subscriber. This method takes effect only for ordered common events. It uses a promise to return the result.
+Aborts this common event. After the abort, the common event is not sent to the next subscriber. This API takes effect only for ordered common events. It uses a promise to return the result.
 
-**System capabilities**: SystemCapability.Notification.CommonEvent
+**System capability**: SystemCapability.Notification.CommonEvent
 
 **Example**
 
 ```js
-var subscriber;	// Subscriber object successfully created
+var subscriber;	// Subscriber object successfully created.
 
 subscriber.abortCommonEvent().then(() => {
     console.info("abortCommonEvent");
@@ -968,9 +950,9 @@ subscriber.abortCommonEvent().then(() => {
 
 clearAbortCommonEvent(callback: AsyncCallback\<void>): void
 
-Clears the aborted state of this common event. This method takes effect only for ordered common events. It uses a callback to return the result.
+Clears the aborted state of this common event. This API takes effect only for ordered common events. It uses a callback to return the result.
 
-**System capabilities**: SystemCapability.Notification.CommonEvent
+**System capability**: SystemCapability.Notification.CommonEvent
 
 **Parameters**
 
@@ -981,7 +963,7 @@ Clears the aborted state of this common event. This method takes effect only for
 **Example**
 
 ```js
-var subscriber;	// Subscriber object successfully created
+var subscriber;	// Subscriber object successfully created.
 
 // Callback for result data setting of an ordered common event
 function clearAbortCallback(err) {
@@ -998,14 +980,14 @@ subscriber.clearAbortCommonEvent(clearAbortCallback);
 
 clearAbortCommonEvent(): Promise\<void>
 
-Clears the aborted state of this common event. This method takes effect only for ordered common events. It uses a promise to return the result.
+Clears the aborted state of this common event. This API takes effect only for ordered common events. It uses a promise to return the result.
 
-**System capabilities**: SystemCapability.Notification.CommonEvent
+**System capability**: SystemCapability.Notification.CommonEvent
 
 **Example**
 
 ```js
-var subscriber;	// Subscriber object successfully created
+var subscriber;	// Subscriber object successfully created.
 
 subscriber.clearAbortCommonEvent().then(() => {
     console.info("clearAbortCommonEvent");
@@ -1018,9 +1000,9 @@ subscriber.clearAbortCommonEvent().then(() => {
 
 getAbortCommonEvent(callback: AsyncCallback\<boolean>): void
 
-Checks whether this common event is in the aborted state. This method takes effect only for ordered common events. It uses a callback to return the result.
+Checks whether this common event is in the aborted state. This API takes effect only for ordered common events. It uses a callback to return the result.
 
-**System capabilities**: SystemCapability.Notification.CommonEvent
+**System capability**: SystemCapability.Notification.CommonEvent
 
 **Parameters**
 
@@ -1031,7 +1013,7 @@ Checks whether this common event is in the aborted state. This method takes effe
 **Example**
 
 ```js
-var subscriber;	// Subscriber object successfully created
+var subscriber;	// Subscriber object successfully created.
 
 // Callback for result data setting of an ordered common event
 function getAbortCallback(err, AbortCommonEvent) {
@@ -1048,9 +1030,9 @@ subscriber.getAbortCommonEvent(getAbortCallback);
 
 getAbortCommonEvent(): Promise\<void>
 
-Checks whether this common event is in the aborted state. This method takes effect only for ordered common events. It uses a promise to return the result.
+Checks whether this common event is in the aborted state. This API takes effect only for ordered common events. It uses a promise to return the result.
 
-**System capabilities**: SystemCapability.Notification.CommonEvent
+**System capability**: SystemCapability.Notification.CommonEvent
 
 **Return value**
 
@@ -1061,7 +1043,7 @@ Checks whether this common event is in the aborted state. This method takes effe
 **Example**
 
 ```js
-var subscriber;	// Subscriber object successfully created
+var subscriber;	// Subscriber object successfully created.
 
 subscriber.getAbortCommonEvent().then((AbortCommonEvent) => {
     console.info("AbortCommonEvent " + JSON.stringify(AbortCommonEvent));
@@ -1074,9 +1056,9 @@ subscriber.getAbortCommonEvent().then((AbortCommonEvent) => {
 
 getSubscribeInfo(callback: AsyncCallback\<CommonEventSubscribeInfo>): void
 
-Obtains the subscriber information. This method uses a callback to return the result.
+Obtains the subscriber information. This API uses a callback to return the result.
 
-**System capabilities**: SystemCapability.Notification.CommonEvent
+**System capability**: SystemCapability.Notification.CommonEvent
 
 **Parameters**
 
@@ -1087,7 +1069,7 @@ Obtains the subscriber information. This method uses a callback to return the re
 **Example**
 
 ```js
-var subscriber;	// Subscriber object successfully created
+var subscriber;	// Subscriber object successfully created.
 
 // Callback for result data setting of an ordered common event
 function getSubscribeInfoCallback(err, SubscribeInfo) {
@@ -1104,9 +1086,9 @@ subscriber.getSubscribeInfo(getSubscribeInfoCallback);
 
 getSubscribeInfo(): Promise\<CommonEventSubscribeInfo>
 
-Obtains the subscriber information. This method uses a promise to return the result.
+Obtains the subscriber information. This API uses a promise to return the result.
 
-**System capabilities**: SystemCapability.Notification.CommonEvent
+**System capability**: SystemCapability.Notification.CommonEvent
 
 **Return value**
 
@@ -1117,7 +1099,7 @@ Obtains the subscriber information. This method uses a promise to return the res
 **Example**
 
 ```js
-var subscriber;	// Subscriber object successfully created
+var subscriber;	// Subscriber object successfully created.
 
 subscriber.getSubscribeInfo().then((SubscribeInfo) => {
     console.info("SubscribeInfo " + JSON.stringify(SubscribeInfo));
