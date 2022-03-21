@@ -461,7 +461,7 @@ queryMyCard(attrs?: ContactAttributes): Promise&lt;Contact&gt;
 
 ## contact.selectContact
 
-selectContact(AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
+selectContact(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 选择联系人，使用callback方式作为异步方法。
 
