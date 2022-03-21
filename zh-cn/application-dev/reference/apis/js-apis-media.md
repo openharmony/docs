@@ -125,7 +125,7 @@ createAudioRecorder(): AudioRecorder
 let audiorecorder = media.createAudioRecorder(); 
 ```
 
-## media.createVideoRecorder<sup>8+</sup>
+## media.createVideoRecorder<sup>9+</sup>
 
 createVideoRecorder(callback: AsyncCallback\<[VideoRecorder](#videorecorder8)>): void
 
@@ -154,7 +154,7 @@ media.createVideoRecorder((error, video) => {
 });
 ```
 
-## media.createVideoRecorder<sup>8+</sup>
+## media.createVideoRecorder<sup>9+</sup>
 
 createVideoRecorder(): Promise<[VideoRecorder](#videorecorder8)>
 
@@ -1785,15 +1785,15 @@ audioRecorder.prepare();  												// prepare不设置参数，触发'error'�
 
 **系统能力：** 以下各项对应的系统能力均为 SystemCapability.Multimedia.Media.AudioRecorder。
 
-| 名称                  | 参数类型                                | 必填 | 说明                                                         |
-| --------------------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| audioEncoder          | [AudioEncoder](#audioencoder)           | 否   | 音频编码格式，默认设置为AAC_LC。                             |
-| audioEncodeBitRate    | number                                  | 否   | 音频编码比特率，默认值为48000。                              |
-| audioSampleRate       | number                                  | 否   | 音频采集采样率，默认值为48000。                              |
-| numberOfChannels      | number                                  | 否   | 音频采集声道数，默认值为2。                                  |
-| format                | [AudioOutputFormat](#audiooutputformat) | 否   | 音量输出封装格式，默认设置为MPEG_4。                         |
-| location<sup>8+</sup> | [Location](#location8)                  | 否   | 音频采集的地理位置。                                         |
-| uri                   | string                                  | 是   | 视频输出URI：fd://xx&nbsp;(fd&nbsp;number)<br/>![zh-cn_image_0000001164217678](figures/zh-cn_image_url.png) <br/>文件需要由调用者创建，并赋予适当的权限。 |
+| 名称               | 参数类型                                | 必填 | 说明                                                         |
+| ------------------ | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| audioEncoder       | [AudioEncoder](#audioencoder)           | 否   | 音频编码格式，默认设置为AAC_LC。                             |
+| audioEncodeBitRate | number                                  | 否   | 音频编码比特率，默认值为48000。                              |
+| audioSampleRate    | number                                  | 否   | 音频采集采样率，默认值为48000。                              |
+| numberOfChannels   | number                                  | 否   | 音频采集声道数，默认值为2。                                  |
+| format             | [AudioOutputFormat](#audiooutputformat) | 否   | 音量输出封装格式，默认设置为MPEG_4。                         |
+| location           | [Location](#location)                   | 否   | 音频采集的地理位置。                                         |
+| uri                | string                                  | 是   | 视频输出URI：fd://xx&nbsp;(fd&nbsp;number)<br/>![zh-cn_image_0000001164217678](figures/zh-cn_image_url.png) <br/>文件需要由调用者创建，并赋予适当的权限。 |
 
 
 ## AudioEncoder
@@ -1825,9 +1825,9 @@ audioRecorder.prepare();  												// prepare不设置参数，触发'error'�
 | AMR_WB   | 4      | 封装为AMR_WB格式。<br/>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
 | AAC_ADTS | 6      | 封装为ADTS（Audio&nbsp;Data&nbsp;Transport&nbsp;Stream）格式，是AAC音频的传输流格式。 |
 
-## VideoRecorder<sup>8+</sup>
+## VideoRecorder<sup>9+</sup>
 
-视频录制管理类，用于录制视频媒体。在调用VideoRecorder的方法前，需要先通过[createVideoRecorder()](#media.createvideorecorder8)构建一个[VideoRecorder](#videorecorder8)实例。
+视频录制管理类，用于录制视频媒体。在调用VideoRecorder的方法前，需要先通过[createVideoRecorder()](#media.createvideorecorder9)构建一个[VideoRecorder](#videorecorder9)实例。
 
 视频录制demo可参考：[视频录制开发指导](../../media/video-recorder.md)
 
@@ -1837,7 +1837,7 @@ audioRecorder.prepare();  												// prepare不设置参数，触发'error'�
 | ------------------ | ------------------------------------- | ---- | ---- | ---------------- |
 | state<sup>8+</sup> | [VideoRecordState](#videorecordstate) | 是   | 否   | 视频录制的状态。 |
 
-### prepare<sup>8+</sup><a name=videorecorder_prepare1></a>
+### prepare<sup>9+</sup><a name=videorecorder_prepare1></a>
 
 prepare(config: VideoRecorderConfig, callback: AsyncCallback\<void>): void;
 
@@ -1849,10 +1849,10 @@ prepare(config: VideoRecorderConfig, callback: AsyncCallback\<void>): void;
 
 **参数：**
 
-| 参数名   | 类型                                        | 必填 | 说明                                |
-| -------- | ------------------------------------------- | ---- | ----------------------------------- |
-| config   | [VideoRecorderConfig](#videorecorderconfig) | 是   | 配置视频录制的相关参数。            |
-| callback | AsyncCallback\<void>                        | 是   | 异步视频录制prepare方法的回调方法。 |
+| 参数名   | 类型                                         | 必填 | 说明                                |
+| -------- | -------------------------------------------- | ---- | ----------------------------------- |
+| config   | [VideoRecorderConfig](#videorecorderconfig9) | 是   | 配置视频录制的相关参数。            |
+| callback | AsyncCallback\<void>                         | 是   | 异步视频录制prepare方法的回调方法。 |
 
 **示例：**
 
@@ -1905,7 +1905,7 @@ media.createVideoRecorder((err, recorder) => {
 });
 ```
 
-### prepare<sup>8+</sup><a name=videorecorder_prepare2></a>
+### prepare<sup>9+</sup><a name=videorecorder_prepare2></a>
 
 prepare(config: VideoRecorderConfig): Promise\<void>;
 
@@ -1917,9 +1917,9 @@ prepare(config: VideoRecorderConfig): Promise\<void>;
 
 **参数：**
 
-| 参数名 | 类型                                        | 必填 | 说明                     |
-| ------ | ------------------------------------------- | ---- | ------------------------ |
-| config | [VideoRecorderConfig](#videorecorderconfig) | 是   | 配置视频录制的相关参数。 |
+| 参数名 | 类型                                         | 必填 | 说明                     |
+| ------ | -------------------------------------------- | ---- | ------------------------ |
+| config | [VideoRecorderConfig](#videorecorderconfig9) | 是   | 配置视频录制的相关参数。 |
 
 **返回值：**
 
@@ -1976,7 +1976,7 @@ await videoRecorder.prepare(videoConfig).then(() => {
 });
 ```
 
-### getInputSurface<sup>8+</sup>
+### getInputSurface<sup>9+</sup>
 
 getInputSurface(callback: AsyncCallback\<string>): void;
 
@@ -2009,7 +2009,7 @@ videoRecorder.getInputSurface((err, surfaceId) => {
 });
 ```
 
-### getInputSurface<sup>8+</sup>
+### getInputSurface<sup>9+</sup>
 
 getInputSurface(): Promise\<string>;
 
@@ -2042,7 +2042,7 @@ await videoRecorder.getInputSurface().then((surfaceId) => {
 });
 ```
 
-### start<sup>8+</sup><a name=videorecorder_start1></a>
+### start<sup>9+</sup><a name=videorecorder_start1></a>
 
 start(callback: AsyncCallback\<void>): void;
 
@@ -2071,7 +2071,7 @@ videoRecorder.start((err) => {
 });
 ```
 
-### start<sup>8+</sup><a name=videorecorder_start2></a>
+### start<sup>9+</sup><a name=videorecorder_start2></a>
 
 start(): Promise\<void>;
 
@@ -2100,7 +2100,7 @@ await videoRecorder.start().then(() => {
 });
 ```
 
-### pause<sup>8+</sup><a name=videorecorder_pause1></a>
+### pause<sup>9+</sup><a name=videorecorder_pause1></a>
 
 pause(callback: AsyncCallback\<void>): void;
 
@@ -2129,7 +2129,7 @@ videoRecorder.pause((err) => {
 });
 ```
 
-### pause<sup>8+</sup><a name=videorecorder_pause2></a>
+### pause<sup>9+</sup><a name=videorecorder_pause2></a>
 
 pause(): Promise\<void>;
 
@@ -2158,7 +2158,7 @@ await videoRecorder.pause().then(() => {
 });
 ```
 
-### resume<sup>8+</sup><a name=videorecorder_resume1></a>
+### resume<sup>9+</sup><a name=videorecorder_resume1></a>
 
 resume(callback: AsyncCallback\<void>): void;
 
@@ -2185,7 +2185,7 @@ videoRecorder.resume((err) => {
 });
 ```
 
-### resume<sup>8+</sup><a name=videorecorder_resume2></a>
+### resume<sup>9+</sup><a name=videorecorder_resume2></a>
 
 resume(): Promise\<void>;
 
@@ -2212,7 +2212,7 @@ await videoRecorder.resume().then(() => {
 });
 ```
 
-### stop<sup>8+</sup><a name=videorecorder_stop1></a>
+### stop<sup>9+</sup><a name=videorecorder_stop1></a>
 
 stop(callback: AsyncCallback\<void>): void;
 
@@ -2241,7 +2241,7 @@ videoRecorder.stop((err) => {
 });
 ```
 
-### stop<sup>8+</sup><a name=videorecorder_stop2></a>
+### stop<sup>9+</sup><a name=videorecorder_stop2></a>
 
 stop(): Promise\<void>;
 
@@ -2270,7 +2270,7 @@ await videoRecorder.stop().then(() => {
 });
 ```
 
-### release<sup>8+</sup><a name=videorecorder_release1></a>
+### release<sup>9+</sup><a name=videorecorder_release1></a>
 
 release(callback: AsyncCallback\<void>): void;
 
@@ -2297,7 +2297,7 @@ videoRecorder.release((err) => {
 });
 ```
 
-### release<sup>8+</sup><a name=videorecorder_release2></a>
+### release<sup>9+</sup><a name=videorecorder_release2></a>
 
 release(): Promise\<void>;
 
@@ -2324,7 +2324,7 @@ await videoRecorder.release().then(() => {
 });
 ```
 
-### reset<sup>8+</sup><a name=videorecorder_reset1></a>
+### reset<sup>9+</sup><a name=videorecorder_reset1></a>
 
 reset(callback: AsyncCallback\<void>): void;
 
@@ -2353,7 +2353,7 @@ videoRecorder.reset((err) => {
 });
 ```
 
-### reset<sup>8+</sup><a name=videorecorder_reset2></a>
+### reset<sup>9+</sup><a name=videorecorder_reset2></a>
 
 reset(): Promise\<void>;
 
@@ -2382,7 +2382,7 @@ await videoRecorder.reset().then(() => {
 });
 ```
 
-### on('error')<sup>8+</sup>
+### on('error')<sup>9+</sup>
 
 on(type: 'error', callback: ErrorCallback): void
 
@@ -2423,7 +2423,7 @@ videoRecorder.on('error', (error) => {      							// 设置'error'事件回调
 | stopped  | string | 视频录制停止。         |
 | error    | string | 错误状态。             |
 
-## VideoRecorderConfig<sup>8+</sup>
+## VideoRecorderConfig<sup>9+</sup>
 
 表示视频录制的参数设置。
 
@@ -2431,14 +2431,14 @@ videoRecorder.on('error', (error) => {      							// 设置'error'事件回调
 
 | 名称            | 参数类型                                                   | 必填 | 说明                                                         |
 | --------------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| audioSourceType | [AudioSourceType](#audiosourcetype<sup>8+</sup>)           | 是   | 视频录制的音频源类型。                                       |
-| videoSourceType | [VideoSourceType](#videosourcetype<sup>8+</sup>)           | 是   | 视频录制的视频源类型。                                       |
-| profile         | [VideoRecorderProfile](#videorecorderprofile<sup>8+</sup>) | 是   | 视频录制的profile。                                          |
+| audioSourceType | [AudioSourceType](#audiosourcetype<sup>9+</sup>)           | 是   | 视频录制的音频源类型。                                       |
+| videoSourceType | [VideoSourceType](#videosourcetype<sup>9+</sup>)           | 是   | 视频录制的视频源类型。                                       |
+| profile         | [VideoRecorderProfile](#videorecorderprofile<sup>9+</sup>) | 是   | 视频录制的profile。                                          |
 | orientationHint | number                                                     | 否   | 录制视频的旋转角度。                                         |
-| location        | [Location](#location8)                                     | 否   | 录制视频的地理位置。                                         |
+| location        | [Location](#location)                                      | 否   | 录制视频的地理位置。                                         |
 | url             | string                                                     | 是   | 视频输出URL：fd://xx&nbsp;(fd&nbsp;number)<br/>![zh-cn_image_0000001164217678](figures/zh-cn_image_url.png) <br/>文件需要由调用者创建，并赋予适当的权限。 |
 
-## AudioSourceType<sup>8+</sup>
+## AudioSourceType<sup>9+</sup>
 
 表示视频录制中音频源类型的枚举。
 
@@ -2449,7 +2449,7 @@ videoRecorder.on('error', (error) => {      							// 设置'error'事件回调
 | AUDIO_SOURCE_TYPE_DEFAULT | 0    | 默认的音频输入源类型。 |
 | AUDIO_SOURCE_TYPE_MIC     | 1    | 表示MIC的音频输入源。  |
 
-## VideoSourceType<sup>8+</sup>
+## VideoSourceType<sup>9+</sup>
 
 表示视频录制中视频源类型的枚举。
 
@@ -2460,7 +2460,7 @@ videoRecorder.on('error', (error) => {      							// 设置'error'事件回调
 | VIDEO_SOURCE_TYPE_SURFACE_YUV | 0    | 输入surface中携带的是raw data。 |
 | VIDEO_SOURCE_TYPE_SURFACE_ES  | 1    | 输入surface中携带的是ES data。  |
 
-## VideoRecorderProfile<sup>8+</sup>
+## VideoRecorderProfile<sup>9+</sup>
 
 视频录制的配置文件。
 
@@ -2473,9 +2473,11 @@ videoRecorder.on('error', (error) => {      							// 设置'error'事件回调
 | audioCodec       | [CodecMimeType](#CodecMimeType8)             | 是   | 音频编码格式。   |
 | audioSampleRate  | number                                       | 是   | 音频采样率。     |
 | fileFormat       | [ContainerFormatType](#containerformattype8) | 是   | 文件的容器格式。 |
+| videoBitrate     | number                                       | 是   | 视频编码比特率。 |
 | videoCodec       | [CodecMimeType](#CodecMimeType8)             | 是   | 视频编码格式。   |
 | videoFrameWidth  | number                                       | 是   | 录制视频帧的宽。 |
 | videoFrameHeight | number                                       | 是   | 录制视频帧的高。 |
+| videoFrameRate   | number                                       | 是   | 录制视频帧率。   |
 
 ## ContainerFormatType<sup>8+</sup>
 
@@ -2488,7 +2490,7 @@ videoRecorder.on('error', (error) => {      							// 设置'error'事件回调
 | CFT_MPEG_4  | "mp4" | 视频的容器格式，MP4。 |
 | CFT_MPEG_4A | "m4a" | 音频的容器格式，M4A。 |
 
-## Location<sup>8+</sup>
+## Location
 
 视频录制的地理位置。
 
