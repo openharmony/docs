@@ -154,7 +154,7 @@ WLAN热点信息。
 | WIFI_SEC_TYPE_SAE | 4 | Simultaneous&nbsp;Authentication&nbsp;of&nbsp;Equals&nbsp;(SAE)加密类型。 |
 
 
-## wifi.addUntrustedConfig
+## wifi.addUntrustedConfig<sup>7+</sup>
 
 addUntrustedConfig(config: WifiDeviceConfig): Promise&lt;boolean&gt;
 
@@ -189,7 +189,7 @@ WLAN配置信息。
 | securityType | [WifiSecurityType](#WifiSecurityType) | 只读 | 加密类型。 |
 
 
-## wifi.addUntrustedConfig
+## wifi.addUntrustedConfig<sup>7+</sup>
 
 addUntrustedConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;boolean&gt;): void
 
@@ -208,7 +208,7 @@ addUntrustedConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;boolean&
   | callback | AsyncCallback&lt;boolean&gt; | 是 | 操作结果，ture: 成功， false: 失败。 |
 
 
-## wifi.removeUntrustedConfig
+## wifi.removeUntrustedConfig<sup>7+</sup>
 
 removeUntrustedConfig(config: WifiDeviceConfig): Promise&lt;boolean&gt;
 
@@ -231,7 +231,7 @@ removeUntrustedConfig(config: WifiDeviceConfig): Promise&lt;boolean&gt;
   | Promise&lt;boolean&gt; | 操作结果，ture: 成功， false: 失败。 |
 
 
-## wifi.removeUntrustedConfig
+## wifi.removeUntrustedConfig<sup>7+</sup>
 
 removeUntrustedConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;boolean&gt;): void
 
@@ -274,7 +274,7 @@ getSignalLevel(rssi: number, band: number): number
   | number | 信号强度，取值范围为[0,&nbsp;4]。 |
 
 
-## wifi.getLinkedInfo<sup>7+</sup>
+## wifi.getLinkedInfo
 
 getLinkedInfo(): Promise&lt;WifiLinkedInfo&gt;
 
@@ -292,7 +292,7 @@ getLinkedInfo(): Promise&lt;WifiLinkedInfo&gt;
   | Promise&lt;[WifiLinkedInfo](#WifiLinkedInfo)&gt; | WLAN连接的相关信息。 |
 
 
-## wifi.getLinkedInfo<sup>7+</sup>
+## wifi.getLinkedInfo
 
 getLinkedInfo(callback: AsyncCallback&lt;WifiLinkedInfo&gt;): void
 
@@ -437,7 +437,7 @@ getIpInfo(): IpInfo
   | [IpInfo](#IpInfo) | IP信息。 |
 
 
-## IpInfo
+## IpInfo<sup>7+</sup>
 
 IP信息。
 
@@ -506,7 +506,7 @@ getP2pLinkedInfo(callback: AsyncCallback&lt;WifiP2pLinkedInfo&gt;): void
   | callback | AsyncCallback&lt;[WifiP2pLinkedInfo](#WifiP2pLinkedInfo)&gt; | 是 | P2P连接信息结果回调函数。 |
 
 
-## WifiP2pLinkedInfo
+## WifiP2pLinkedInfo<sup>8+</sup>
 
 提供WLAN连接的相关信息。
 
@@ -517,7 +517,7 @@ getP2pLinkedInfo(callback: AsyncCallback&lt;WifiP2pLinkedInfo&gt;): void
 | groupOwnerAddr | string | 只读 | 群组MAC地址。 |
 
 
-## P2pConnectState
+## P2pConnectState<sup>8+</sup>
 
 表示P2P连接状态的枚举。
 
@@ -563,7 +563,7 @@ getCurrentGroup(callback: AsyncCallback&lt;WifiP2pGroupInfo&gt;): void
   | callback | AsyncCallback&lt;[WifiP2pGroupInfo](#WifiP2pGroupInfo)&gt; | 是 | 当前组信息的回调函数。 |
 
 
-## WifiP2pGroupInfo
+## WifiP2pGroupInfo<sup>8+</sup>
 
 表示P2P群组相关信息。
 
@@ -579,7 +579,7 @@ getCurrentGroup(callback: AsyncCallback&lt;WifiP2pGroupInfo&gt;): void
 | clientDevices | [WifiP2pDevice[]](#WifiP2pDevice) | 只读 | 接入的设备列表信息。 |
 | goIpAddress | string | 只读 | 群组IP地址。 |
 
-## WifiP2pDevice
+## WifiP2pDevice<sup>8+</sup>
 
 表示P2P设备信息。
 
@@ -591,7 +591,7 @@ getCurrentGroup(callback: AsyncCallback&lt;WifiP2pGroupInfo&gt;): void
 | deviceStatus | [P2pDeviceStatus](#P2pDeviceStatus) | 只读 | 设备状态。 |
 | groupCapabilitys | number | 只读 | 群组能力。 |
 
-## P2pDeviceStatus
+## P2pDeviceStatus<sup>8+</sup>
 
 表示设备状态的枚举。
 
@@ -662,7 +662,7 @@ createGroup(config: WifiP2PConfig): boolean;
   | -------- | -------- |
   | boolean | true:创建群组操作执行成功，&nbsp;false:创建群组操作执行失败。 |
 
-## WifiP2PConfig
+## WifiP2PConfig<sup>8+</sup>
 
 表示P2P配置信息。
 
@@ -675,7 +675,7 @@ createGroup(config: WifiP2PConfig): boolean;
 | goBand | [GroupOwnerBand](#GroupOwnerBand) | 只读 | 群组带宽。 |
 
 
-## GroupOwnerBand
+## GroupOwnerBand<sup>8+</sup>
 
 表示群组带宽的枚举。
 
