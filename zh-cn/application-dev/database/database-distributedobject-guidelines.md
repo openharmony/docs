@@ -15,7 +15,7 @@
 **表1** 分布式数据对象实例创建接口
 | 包名 | 接口名 | 描述 | 
 | -------- | -------- | -------- |
-| ohos.data.distributedDataObject| createDistributedObject(source: object): DistributedObject | 创建一个分布式数据对象实例，用于数据操作 <br>-&nbsp;source:设置distributedObject的属性。<br>-&nbsp;DistributedObject:返回值是创建好的分布式对象。| 
+| ohos.data.distributedDataObject| createDistributedObject(source: object): DistributedObject | 创建一个分布式数据对象实例，用于数据操作 <br>-&nbsp;source：设置distributedObject的属性。<br>-&nbsp;DistributedObject：返回值是创建好的分布式对象。| 
 
 ### 创建分布式数据对象sessionId
 
@@ -33,7 +33,7 @@
 **表3** 分布式数据对象sessionId设置接口
 | 类名 | 接口名 | 描述 |
 | -------- | -------- | -------- |
-| DistributedDataObject | setSessionId(sessionId?: string): boolean | 为分布式数据对象设置sessionId <br>-&nbsp;sessionId:分布式数据对象sessionId。|
+| DistributedDataObject | setSessionId(sessionId?: string): boolean | 为分布式数据对象设置sessionId <br>-&nbsp;sessionId：分布式数据对象sessionId是指定的sessionId,如果要退出分布式组网，设置为""或不设置均可。|
 
 ### 订阅数据变更
 
@@ -43,7 +43,7 @@
 | 类名 | 接口名 | 描述 | 
 | -------- | -------- | -------- |
 | DistributedDataObject| on(type: 'change', callback: Callback<{ sessionId: string, fields: Array&lt;string&gt; }>): void | 订阅数据变更。 | 
-| DistributedDataObject| off(type: 'change', callback?: Callback<{ sessionId: string, fields: Array&lt;string&gt; }>): void | 注销订阅。如果写了Callback为注销某个订阅，不写Callback为注销所有订阅 |
+| DistributedDataObject| off(type: 'change', callback?: Callback<{ sessionId: string, fields: Array&lt;string&gt; }>): void | 注销订阅。需要删除的变更回调，若不设置则删除该对象所有的变更回调。 |
 
 ### 订阅数据对象上下线
 
