@@ -99,8 +99,8 @@ createWantData(want:Want): PasteData
   
   ```
   var object = {
-      bundleName: "com.huawei.aafwk.test",
-      abilityName: "com.huawei.aafwk.test.TwoAbility"
+      bundleName: "com.example.aafwk.test",
+      abilityName: "com.example.aafwk.test.TwoAbility"
   };
   var pasteData = pasteboard.createWantData(object);
   ```
@@ -204,8 +204,8 @@ createWantRecord(want:Want): PasteDataRecord
   
   ```
   var object = {
-      bundleName: "com.huawei.aafwk.test",
-      abilityName: "com.huawei.aafwk.test.TwoAbility"
+      bundleName: "com.example.aafwk.test",
+      abilityName: "com.example.aafwk.test.TwoAbility"
   };
   var record = pasteboard.createWantRecord(object);
   ```
@@ -396,8 +396,8 @@ getPrimaryWant(): Want
   
   ```
   var object = { 
-      bundleName: "com.huawei.aafwk.test",    
-      abilityName: "com.huawei.aafwk.test.TwoAbility"
+      bundleName: "com.example.aafwk.test",    
+      abilityName: "com.example.aafwk.test.TwoAbility"
   };
   var pasteData = pasteboard.createWantData(object);
   var want = pasteData.getPrimaryWant();
@@ -476,7 +476,7 @@ addHtmlRecord(htmlText: string): void
 
 addWantRecord(want: Want): void
 
-向当前剪贴板内容中添加一条Want条目，并将MIMETYPE_TEXT_INTENT添加到[PasteDataProperty](#pastedataproperty7)的mimeTypes中。入参均不能为空，否则添加失败。
+向当前剪贴板内容中添加一条Want条目，并将MIMETYPE_TEXT_WANT添加到[PasteDataProperty](#pastedataproperty7)的mimeTypes中。入参均不能为空，否则添加失败。
 
 剪贴板内容中添加的条目达到数量上限128后，后续的添加操作无效。
 
@@ -492,8 +492,8 @@ addWantRecord(want: Want): void
   ```
   var pasteData = pasteboard.createPlainTextData("hello");
   var object = { 
-      bundleName: "com.huawei.aafwk.test",    
-      abilityName: "com.huawei.aafwk.test.TwoAbility"
+      bundleName: "com.example.aafwk.test",    
+      abilityName: "com.example.aafwk.test.TwoAbility"
   };
   pasteData.addWantRecord(object);
   ```
