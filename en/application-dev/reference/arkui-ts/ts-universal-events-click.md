@@ -28,6 +28,28 @@ None
 | target<sup>8+</sup> | EventTarget | Target element that is clicked. | 
 | timestamp | number | Timestamp of the event. | 
 
+- EventTarget<sup>8+</sup> attributes
+
+    | Name | Type | Description | 
+    | -------- | -------- | -------- |
+    | area | Area | Area information of the target element.| 
+
+- Area<sup>8+</sup> attributes
+
+    | Name | Type | Description | 
+    | -------- | -------- | -------- |
+    | width | number | Width of the target element, in vp. | 
+    | height | number | Height of the target element, in vp. | 
+    | pos | Position | Position of the upper left corner of the target element relative to that of the parent element. | 
+    | globalPos | Position | Position of the upper left corner of the target element relative to that of the page. | 
+
+- Position<sup>8+</sup> attributes
+
+    | Name | Type | Description | 
+    | -------- | -------- | -------- |
+    | x | number | X-coordinate, in vp. | 
+    | y | number | Y-coordinate, in vp. | 
+
 
 ## Example
 
