@@ -43,7 +43,7 @@ Understanding the following concepts would be helpful for you in configuring HiS
   | ----- | ----- |
   | type | Indicates the type of the event. This field is mandatory. <br><br>Value:<ul><li>**FAULT**: fault </li><li>**STATISTIC**: statistics </li><li>**SECURITY**: security </li><li>**BEHAVIOR**: user behavior</li></ul> |
   | level | Indicates the level of the event. This field is mandatory. <br><br>Value: <ul><li>**CRITICAL**: critical </li><li>**MINOR**: minor</li></ul> |
-  | tag | Indicates the tag of the event. This field is mandatory. <br><br>Rule:<ul><li>You can define a maximum of five tags,separated with a space. </li><li>A single tag can contain a maximum of 16 characters, including a to z, A to Z, and 0 to 9.</li></ul>|
+  | tag | Indicates the tag of the event. This field is mandatory. <br><br>Rule:<ul><li>You can define a maximum of five tags separated with a space. </li><li>A single tag can contain a maximum of 16 characters, including a to z, A to Z, and 0 to 9.</li></ul>|
   | desc | Describes the event name. This field is mandatory. <br><br>Rule:<ul><li>The description contains 3 to 128 characters, including a to z, A to Z, 0 to 9, and underscores (&#95;).</li></ul>|
 
   **Table 2** Description of custom parameters
