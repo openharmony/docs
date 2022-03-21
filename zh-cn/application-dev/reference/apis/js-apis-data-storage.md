@@ -123,6 +123,11 @@ getStorage(path: string): Promise&lt;Storage&gt;
 
   var context = featureAbility.getContext()
   context.getFilesDir((err, path) => {
+      if (err) {
+          console.info("Get the storage failed, path: " + path + '/mystore')
+          return;
+      }
+      console.info('getFilesDir successful. path:' + JSON.stringify(path));
       let promisegetSt = dataStorage.getStorage(path + '/mystore')
       promisegetSt.then((storage) => {
           storage.putSync('startup', 'auto')
