@@ -10,33 +10,34 @@
 import account_osAccount from '@ohos.account.osAccount';
 ```
 
-## 系统能力
-
-SystemCapability.Account.OsAccount
-
 ## account_osAccount.getAccountManager
 
 getAccountManager(): AccountManager
 
 获取系统帐号能力的实例。
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | [AccountManager](#accountmanager) | 获取系统帐号能力的实例。 |
+**系统能力：** SystemCapability.Account.OsAccount
 
-- 示例：
+**返回值：**
+| 类型                              | 说明                     |
+| --------------------------------- | ------------------------ |
+| [AccountManager](#accountmanager) | 获取系统帐号能力的实例。 |
+
+**示例：**
   ```
   const accountManager = account_osAccount.getAccountManager();
   ```
 
 ## OsAccountType
 枚举，系统帐号类型。
-  | 参数 | 默认值 | 说明 |
-  | -------- | -------- | -------- |
-  | ADMIN | 0 | 管理员帐号。|
-  | NORMAL | 1 | 普通帐号。|
-  | GUEST | 2 | 访客帐号。|
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount。
+
+| 参数   | 默认值 | 说明         |
+| ------ | ------ | ------------ |
+| ADMIN  | 0      | 管理员帐号。 |
+| NORMAL | 1      | 普通帐号。   |
+| GUEST  | 2      | 访客帐号。   |
 
 ## AccountManager
 
@@ -48,14 +49,18 @@ activateOsAccount(localId: number, callback: AsyncCallback&lt;void&gt;): void
 
 激活指定系统帐号，使用callback回调异步返回结果。
 
-- 参数：
+此接口为系统接口，三方应用不支持调用。
 
-  | 参数名   | 类型                | 必填 | 说明                 |
-  | -------- | ------------------- | ---- | -------------------- |
-  | localId  | number              | 是   | 要激活的系统帐号ID。 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 回调结果。 |
+**系统能力：** SystemCapability.Account.OsAccount
 
-- 示例：激活ID为100的系统帐号
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明                 |
+| -------- | ------------------------- | ---- | -------------------- |
+| localId  | number                    | 是   | 要激活的系统帐号ID。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调结果。           |
+
+**示例：**激活ID为100的系统帐号
   ```
   const accountManager = account_osAccount.getAccountManager();
   var localId = 100;
@@ -70,19 +75,23 @@ activateOsAccount(localId: number): Promise&lt;void&gt;
 
 激活指定系统帐号，使用Promise方式异步返回结果。
 
-- 参数：
+此接口为系统接口，三方应用不支持调用。
 
-  | 参数名  | 类型   | 必填 | 说明         |
-  | ------- | ------ | ---- | ------------ |
-  | localId | number | 是   | 要激活的系统帐号ID。 |
+**系统能力：** SystemCapability.Account.OsAccount
 
-- 返回值：
+**参数：**
 
-  | 类型          | 说明                                |
-  | :------------ | :---------------------------------- |
-  | Promise&lt;void&gt; | Promise实例，用于获取异步返回结果。 |
+| 参数名  | 类型   | 必填 | 说明                 |
+| ------- | ------ | ---- | -------------------- |
+| localId | number | 是   | 要激活的系统帐号ID。 |
 
-- 示例：激活ID为100的系统帐号
+**返回值：**
+
+| 类型                | 说明                                |
+| :------------------ | :---------------------------------- |
+| Promise&lt;void&gt; | Promise实例，用于获取异步返回结果。 |
+
+**示例：**激活ID为100的系统帐号
   ```
   const accountManager = account_osAccount.getAccountManager();
   var localId = 100;
@@ -99,13 +108,15 @@ isMultiOsAccountEnable(callback: AsyncCallback&lt;boolean&gt;): void
 
 判断是否支持多系统帐号，使用callback回调异步返回结果。
 
-- 参数：
+**系统能力：** SystemCapability.Account.OsAccount
 
-  | 参数名   | 类型                   | 必填 | 说明                           |
-  | -------- | ---------------------- | ---- | ------------------------------ |
-  | callback | AsyncCallback&lt;boolean&gt; | 是   | 回调结果，支持多系统帐号则返回true，否则返回false。 |
+**参数：**
 
-- 示例：
+| 参数名   | 类型                         | 必填 | 说明                                                |
+| -------- | ---------------------------- | ---- | --------------------------------------------------- |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调结果，支持多系统帐号则返回true，否则返回false。 |
+
+**示例：**
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -121,13 +132,15 @@ isMultiOsAccountEnable(): Promise&lt;boolean&gt;
 
 判断是否支持多系统帐号，使用Promise方式异步返回结果。
 
-- 返回值：
+**系统能力：** SystemCapability.Account.OsAccount
 
-  | 类型             | 说明                                |
-  | :--------------- | :---------------------------------- |
-  | Promise&lt;boolean&gt; | Promise实例，用于获取异步返回结果，支持多系统帐号则返回true，否则返回false。 |
+**返回值：**
 
-- 示例：
+| 类型                   | 说明                                                         |
+| :--------------------- | :----------------------------------------------------------- |
+| Promise&lt;boolean&gt; | Promise实例，用于获取异步返回结果，支持多系统帐号则返回true，否则返回false。 |
+
+**示例：**
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -144,14 +157,18 @@ isOsAccountActived(localId: number, callback: AsyncCallback&lt;boolean&gt;): voi
 
 判断指定系统帐号是否处于激活状态，使用callback回调异步返回结果。
 
-- 参数：
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS、ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
-  | 参数名   | 类型                   | 必填 | 说明                           |
-  | -------- | ---------------------- | ---- | ------------------------------ |
-  | localId  | number                 | 是   | 系统帐号ID。                   |
-  | callback | AsyncCallback&lt;boolean&gt; | 是   | 回调结果，处于激活状态则返回true，否则返回false。 |
+**系统能力：** SystemCapability.Account.OsAccount
 
-- 示例：判断ID为100的系统帐号是否处于激活状态
+**参数：**
+
+| 参数名   | 类型                         | 必填 | 说明                                              |
+| -------- | ---------------------------- | ---- | ------------------------------------------------- |
+| localId  | number                       | 是   | 系统帐号ID。                                      |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调结果，处于激活状态则返回true，否则返回false。 |
+
+**示例：**判断ID为100的系统帐号是否处于激活状态
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -168,19 +185,23 @@ isOsAccountActived(localId: number): Promise&lt;boolean&gt;
 
 判断指定系统帐号是否处于激活状态，使用Promise方式异步返回结果。
 
-- 参数：
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS、ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
-  | 参数名  | 类型   | 必填 | 说明         |
-  | ------- | ------ | ---- | ------------ |
-  | localId | number | 是   | 系统帐号ID。 |
+**系统能力：** SystemCapability.Account.OsAccount
 
-- 返回值：
+**参数：**
 
-  | 类型             | 说明                                |
-  | :--------------- | :---------------------------------- |
-  | Promise&lt;boolean&gt; | Promise实例，用于获取异步返回结果，处于激活状态则返回true，否则返回false。 |
+| 参数名  | 类型   | 必填 | 说明         |
+| ------- | ------ | ---- | ------------ |
+| localId | number | 是   | 系统帐号ID。 |
 
-- 示例：判断ID为100的系统帐号是否处于激活状态
+**返回值：**
+
+| 类型                   | 说明                                                         |
+| :--------------------- | :----------------------------------------------------------- |
+| Promise&lt;boolean&gt; | Promise实例，用于获取异步返回结果，处于激活状态则返回true，否则返回false。 |
+
+**示例：**判断ID为100的系统帐号是否处于激活状态
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -196,17 +217,21 @@ isOsAccountActived(localId: number): Promise&lt;boolean&gt;
 
 isOsAccountConstraintEnable(localId: number, constraint: string, callback: AsyncCallback&lt;boolean&gt;): void
 
-判断指定系统帐号是否具有指定[约束](#系统帐号约束列表)，使用callback回调异步返回结果。
+判断指定系统帐号是否具有指定约束，使用callback回调异步返回结果。
 
-- 参数：
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
-  | 参数名     | 类型                   | 必填 | 说明                           |
-  | ---------- | ---------------------- | ---- | ------------------------------ |
-  | localId    | number                 | 是   | 指定的系统帐号ID。 |
-  | constraint | string                 | 是   | 指定的[约束](#系统帐号约束列表)名称。 |
-  | callback   | AsyncCallback&lt;boolean&gt; | 是   | 回调结果，具有指定约束则返回true，否则返回false。 |
+**系统能力：** SystemCapability.Account.OsAccount
 
-- 示例：判断ID为100的系统帐号是否有禁止使用wifi的[约束](#系统帐号约束列表)
+**参数：**
+
+| 参数名     | 类型                         | 必填 | 说明                                              |
+| ---------- | ---------------------------- | ---- | ------------------------------------------------- |
+| localId    | number                       | 是   | 指定的系统帐号ID。                                |
+| constraint | string                       | 是   | 指定的[约束](#系统帐号约束列表)名称。             |
+| callback   | AsyncCallback&lt;boolean&gt; | 是   | 回调结果，具有指定约束则返回true，否则返回false。 |
+
+**示例：**判断ID为100的系统帐号是否有禁止使用wifi的约束
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -221,22 +246,26 @@ isOsAccountConstraintEnable(localId: number, constraint: string, callback: Async
 
 isOsAccountConstraintEnable(localId: number, constraint: string): Promise&lt;boolean&gt;
 
-判断指定系统帐号是否具有指定[约束](#系统帐号约束列表)，使用Promise方式异步返回结果。
+判断指定系统帐号是否具有指定约束，使用Promise方式异步返回结果。
 
-- 参数：
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
-  | 参数名     | 类型   | 必填 | 说明             |
-  | ---------- | ------ | ---- | ---------------- |
-  | localId    | number | 是   | 指定的系统帐号ID。 |
-  | constraint | string | 是   | 指定的[约束](#系统帐号约束列表)名称。 |
+**系统能力：** SystemCapability.Account.OsAccount
 
-- 返回值：
+**参数：**
 
-  | 类型             | 说明                                |
-  | :--------------- | :---------------------------------- |
-  | Promise&lt;boolean&gt; | Promise实例，用于获取异步返回结果，具有指定[约束](#系统帐号约束列表)则返回true，否则返回false。 |
+| 参数名     | 类型   | 必填 | 说明                                  |
+| ---------- | ------ | ---- | ------------------------------------- |
+| localId    | number | 是   | 指定的系统帐号ID。                    |
+| constraint | string | 是   | 指定的[约束](#系统帐号约束列表)名称。 |
 
-- 示例：判断ID为100的系统帐号是否有禁止使用wifi的[约束](#系统帐号约束列表)
+**返回值：**
+
+| 类型                   | 说明                                                         |
+| :--------------------- | :----------------------------------------------------------- |
+| Promise&lt;boolean&gt; | Promise实例，用于获取异步返回结果，具有指定约束则返回true，否则返回false。 |
+
+**示例：**判断ID为100的系统帐号是否有禁止使用wifi的约束
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -254,13 +283,15 @@ isTestOsAccount(callback: AsyncCallback&lt;boolean&gt;): void
 
 检查当前系统帐号是否为测试帐号，使用callback回调异步返回结果。
 
-- 参数：
+**系统能力：** SystemCapability.Account.OsAccount
 
-  | 参数名   | 类型                   | 必填 | 说明                                       |
-  | -------- | ---------------------- | ---- | ------------------------------------------ |
-  | callback | AsyncCallback&lt;boolean&gt; | 是   | 回调结果，是测试帐号则返回true，否则返回false。 |
+**参数：**
 
-- 示例：
+| 参数名   | 类型                         | 必填 | 说明                                            |
+| -------- | ---------------------------- | ---- | ----------------------------------------------- |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调结果，是测试帐号则返回true，否则返回false。 |
+
+**示例：**
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -276,13 +307,15 @@ isTestOsAccount(): Promise&lt;boolean&gt;
 
 检查当前系统帐号是否为测试帐号，使用Promise方式异步返回结果。
 
-- 返回值：
+**系统能力：** SystemCapability.Account.OsAccount
 
-  | 类型             | 说明                                |
-  | :--------------- | :---------------------------------- |
-  | Promise&lt;boolean&gt; | Promise实例，用于获取异步返回结果，是测试帐号则返回true，否则返回false。 |
+**返回值：**
 
-- 示例：
+| 类型                   | 说明                                                         |
+| :--------------------- | :----------------------------------------------------------- |
+| Promise&lt;boolean&gt; | Promise实例，用于获取异步返回结果，是测试帐号则返回true，否则返回false。 |
+
+**示例：**
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -299,13 +332,15 @@ isOsAccountVerified(callback: AsyncCallback&lt;boolean&gt;): void
 
 检查当前系统帐号是否已验证，使用callback回调异步返回结果。
 
-- 参数：
+**系统能力：** SystemCapability.Account.OsAccount
 
-  | 参数名   | 类型                   | 必填 | 说明                               |
-  | -------- | ---------------------- | ---- | ---------------------------------- |
-  | callback | AsyncCallback&lt;boolean&gt; | 是   | 回调结果，已验证则返回true，否则返回false。 |
+**参数：**
 
-- 示例：
+| 参数名   | 类型                         | 必填 | 说明                                        |
+| -------- | ---------------------------- | ---- | ------------------------------------------- |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调结果，已验证则返回true，否则返回false。 |
+
+**示例：**
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -321,14 +356,16 @@ isOsAccountVerified(localId: number, callback: AsyncCallback&lt;boolean&gt;): vo
 
 检查指定系统帐号是否已验证，使用callback回调异步返回结果。
 
-- 参数：
+**系统能力：** SystemCapability.Account.OsAccount
 
-  | 参数名   | 类型                   | 必填 | 说明                               |
-  | -------- | ---------------------- | ---- | ---------------------------------- |
-  | localId  | number                 | 否   | 指定的系统帐号ID。                       |
-  | callback | AsyncCallback&lt;boolean&gt; | 是   | 回调结果，已验证则返回true，否则返回false。 |
+**参数：**
 
-- 示例：
+| 参数名   | 类型                         | 必填 | 说明                                        |
+| -------- | ---------------------------- | ---- | ------------------------------------------- |
+| localId  | number                       | 否   | 指定的系统帐号ID。                          |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调结果，已验证则返回true，否则返回false。 |
+
+**示例：**
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -340,23 +377,25 @@ isOsAccountVerified(localId: number, callback: AsyncCallback&lt;boolean&gt;): vo
 
 ### isOsAccountVerified
 
-isOsAccountVerified(localId: number?): Promise&lt;boolean&gt;
+isOsAccountVerified(localId?: number): Promise&lt;boolean&gt;
 
 检查指定系统帐号是否已验证，使用Promise方式异步返回结果。
 
-- 参数：
+**系统能力：** SystemCapability.Account.OsAccount
 
-  | 参数名  | 类型   | 必填 | 说明         |
-  | ------- | ------ | ---- | ------------ |
-  | localId | number | 否   | 指定的系统帐号ID。 |
+**参数：**
 
-- 返回值：
+| 参数名  | 类型   | 必填 | 说明               |
+| ------- | ------ | ---- | ------------------ |
+| localId | number | 否   | 指定的系统帐号ID。 |
 
-  | 类型             | 说明                                |
-  | :--------------- | :---------------------------------- |
-  | Promise&lt;boolean&gt; | Promise实例，用于获取异步返回结果，已验证则返回true，否则返回false。 |
+**返回值：**
 
-- 示例：
+| 类型                   | 说明                                                         |
+| :--------------------- | :----------------------------------------------------------- |
+| Promise&lt;boolean&gt; | Promise实例，用于获取异步返回结果，已验证则返回true，否则返回false。 |
+
+**示例：**
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -373,14 +412,20 @@ removeOsAccount(localId: number, callback: AsyncCallback&lt;void&gt;): void
 
 删除指定系统帐号，使用callback回调异步返回结果。
 
-- 参数：
+此接口为系统接口，三方应用不支持调用。
 
-  | 参数名   | 类型                | 必填 | 说明                     |
-  | -------- | ------------------- | ---- | ------------------------ |
-  | localId  | number              | 是   | 要删除的系统帐号ID。             |
-  | callback | AsyncCallback&lt;void&gt; | 是   | 回调结果。 |
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
-- 示例：
+**系统能力：** SystemCapability.Account.OsAccount
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明                 |
+| -------- | ------------------------- | ---- | -------------------- |
+| localId  | number                    | 是   | 要删除的系统帐号ID。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调结果。           |
+
+**示例：**
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -399,19 +444,25 @@ removeOsAccount(localId: number): Promise&lt;void&gt;
 
 删除指定系统帐号，使用Promise方式异步返回结果。
 
-- 参数：
+此接口为系统接口，三方应用不支持调用。
 
-  | 参数名  | 类型   | 必填 | 说明         |
-  | ------- | ------ | ---- | ------------ |
-  | localId | number | 是   | 要删除的系统帐号ID。 |
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
-- 返回值：
+**系统能力：** SystemCapability.Account.OsAccount
 
-  | 类型          | 说明                                |
-  | :------------ | :---------------------------------- |
-  | Promise&lt;void&gt; | Promise实例，用于获取异步返回结果。 |
+**参数：**
 
-- 示例：
+| 参数名  | 类型   | 必填 | 说明                 |
+| ------- | ------ | ---- | -------------------- |
+| localId | number | 是   | 要删除的系统帐号ID。 |
+
+**返回值：**
+
+| 类型                | 说明                                |
+| :------------------ | :---------------------------------- |
+| Promise&lt;void&gt; | Promise实例，用于获取异步返回结果。 |
+
+**示例：**
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -431,18 +482,24 @@ removeOsAccount(localId: number): Promise&lt;void&gt;
 
 setOsAccountConstraints(localId: number, constraints: Array&lt;string&gt;, enable: boolean,callback: AsyncCallback&lt;void&gt;): void
 
-为指定系统帐号设置/删除[约束](#系统帐号约束列表)，使用callback回调异步返回结果。
+为指定系统帐号设置/删除约束返回结果。
 
-- 参数：
+此接口为系统接口，三方应用不支持调用。
 
-  | 参数名      | 类型                | 必填 | 说明                            |
-  | ----------- | ------------------- | ---- | ------------------------------- |
-  | localId     | number              | 是   | 系统帐号ID。                    |
-  | constraints | Array&lt;string&gt;       | 是   | 待设置/删除的[约束](#系统帐号约束列表)列表。         |
-  | enable      | boolean             | 是   | 设置(true)/删除(false)  |
-  | callback    | AsyncCallback&lt;void&gt; | 是   | 回调结果。 |
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
-- 示例：给ID为100的系统帐号设置禁止使用wifi的[约束](#系统帐号约束列表)
+**系统能力：** SystemCapability.Account.OsAccount
+
+**参数：**
+
+| 参数名      | 类型                      | 必填 | 说明                                         |
+| ----------- | ------------------------- | ---- | -------------------------------------------- |
+| localId     | number                    | 是   | 系统帐号ID。                                 |
+| constraints | Array&lt;string&gt;       | 是   | 待设置/删除的[约束](#系统帐号约束列表)列表。 |
+| enable      | boolean                   | 是   | 设置(true)/删除(false)                       |
+| callback    | AsyncCallback&lt;void&gt; | 是   | 回调结果。                                   |
+
+**示例：**给ID为100的系统帐号设置禁止使用wifi的约束
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -456,23 +513,29 @@ setOsAccountConstraints(localId: number, constraints: Array&lt;string&gt;, enabl
 
 setOsAccountConstraints(localId: number, constraints: Array&lt;string&gt;, enable: boolean): Promise&lt;void&gt;
 
-为指定系统帐号设置/删除[约束](#系统帐号约束列表)，使用Promise方式异步返回结果。
+为指定系统帐号设置/删除约束回结果。
 
-- 参数：
+此接口为系统接口，三方应用不支持调用。
 
-  | 参数名      | 类型          | 必填 | 说明                    |
-  | ----------- | ------------- | ---- | ----------------------- |
-  | localId     | number        | 是   | 系统帐号ID。            |
-  | constraints | Array&lt;string&gt; | 是   | 待设置/删除的[约束](#系统帐号约束列表)列表。 |
-  | enable      | boolean       | 是   | 设置(true)/删除(false)。 |
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
-- 返回值：
+**系统能力：** SystemCapability.Account.OsAccount
 
-  | 类型          | 说明                                |
-  | :------------ | :---------------------------------- |
-  | Promise&lt;void&gt; | Promise实例，用于获取异步返回结果。 |
+**参数：**
 
-- 示例：删除ID为100的系统帐号的禁止使用wifi的[约束](#系统帐号约束列表)
+| 参数名      | 类型                | 必填 | 说明                                         |
+| ----------- | ------------------- | ---- | -------------------------------------------- |
+| localId     | number              | 是   | 系统帐号ID。                                 |
+| constraints | Array&lt;string&gt; | 是   | 待设置/删除的[约束](#系统帐号约束列表)列表。 |
+| enable      | boolean             | 是   | 设置(true)/删除(false)。                     |
+
+**返回值：**
+
+| 类型                | 说明                                |
+| :------------------ | :---------------------------------- |
+| Promise&lt;void&gt; | Promise实例，用于获取异步返回结果。 |
+
+**示例：**删除ID为100的系统帐号的禁止使用wifi的约束
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -490,15 +553,19 @@ setOsAccountName(localId: number, localName: string, callback: AsyncCallback&lt;
 
 设置指定系统帐号的帐号名，使用callback回调异步返回结果。
 
-- 参数：
+此接口为系统接口，三方应用不支持调用。
 
-  | 参数名    | 类型                | 必填 | 说明                     |
-  | :-------- | ------------------- | ---- | ------------------------ |
-  | localId   | number              | 是   | 系统帐号ID。             |
-  | localName | string              | 是   | 帐号名。  |
-  | callback  | AsyncCallback&lt;void&gt; | 是   | 回调结果。 |
+**系统能力：** SystemCapability.Account.OsAccount
 
-- 示例：将ID为100的系统帐号的帐号名设置成demoName
+**参数：**
+
+| 参数名    | 类型                      | 必填 | 说明         |
+| :-------- | ------------------------- | ---- | ------------ |
+| localId   | number                    | 是   | 系统帐号ID。 |
+| localName | string                    | 是   | 帐号名。     |
+| callback  | AsyncCallback&lt;void&gt; | 是   | 回调结果。   |
+
+**示例：**将ID为100的系统帐号的帐号名设置成demoName
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -515,20 +582,24 @@ setOsAccountName(localId: number, localName: string): Promise&lt;void&gt;
 
 设置指定系统帐号的帐号名，使用Promise方式异步返回结果。 
 
-- 参数：
+此接口为系统接口，三方应用不支持调用。
 
-  | 参数名    | 类型   | 必填 | 说明                    |
-  | --------- | ------ | ---- | ----------------------- |
-  | localId   | number | 是   | 系统帐号ID。  |
-  | localName | string | 是   | 帐号名。 |
+**系统能力：** SystemCapability.Account.OsAccount
 
-- 返回值：
+**参数：**
 
-  | 类型          | 说明                                |
-  | :------------ | :---------------------------------- |
-  | Promise&lt;void&gt; | Promise实例，用于获取异步返回结果。 |
+| 参数名    | 类型   | 必填 | 说明         |
+| --------- | ------ | ---- | ------------ |
+| localId   | number | 是   | 系统帐号ID。 |
+| localName | string | 是   | 帐号名。     |
 
-- 示例：将ID为100的系统帐号的帐号名设置成demoName
+**返回值：**
+
+| 类型                | 说明                                |
+| :------------------ | :---------------------------------- |
+| Promise&lt;void&gt; | Promise实例，用于获取异步返回结果。 |
+
+**示例：**将ID为100的系统帐号的帐号名设置成demoName
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -547,13 +618,17 @@ getCreatedOsAccountsCount(callback: AsyncCallback&lt;number&gt;): void
 
 获取已创建的系统帐号数量，使用callback回调异步返回结果。
 
-- 参数：
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
-  | 参数名   | 类型                  | 必填 | 说明                           |
-  | -------- | --------------------- | ---- | ------------------------------ |
-  | callback | AsyncCallback&lt;number&gt; | 是   | 回调结果，返回的是已创建的系统帐号的数量。 |
+**系统能力：** SystemCapability.Account.OsAccount
 
-- 示例：
+**参数：**
+
+| 参数名   | 类型                        | 必填 | 说明                                       |
+| -------- | --------------------------- | ---- | ------------------------------------------ |
+| callback | AsyncCallback&lt;number&gt; | 是   | 回调结果，返回的是已创建的系统帐号的数量。 |
+
+**示例：**
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -569,13 +644,17 @@ getCreatedOsAccountsCount(): Promise&lt;number&gt;
 
 获取已创建的系统帐号数量，使用Promise方式异步返回结果。
 
-- 返回值：
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
-  | 类型            | 说明                                |
-  | :-------------- | :---------------------------------- |
-  | Promise&lt;number&gt; | Promise实例，用于获取异步返回结果，返回的是已创建的系统帐号的数量。 |
+**系统能力：** SystemCapability.Account.OsAccount
 
-- 示例：
+**返回值：**
+
+| 类型                  | 说明                                                         |
+| :-------------------- | :----------------------------------------------------------- |
+| Promise&lt;number&gt; | Promise实例，用于获取异步返回结果，返回的是已创建的系统帐号的数量。 |
+
+**示例：**
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -592,13 +671,15 @@ getOsAccountLocalIdFromProcess(callback: AsyncCallback&lt;number&gt;): void
 
 获取当前进程所属的系统帐号的帐号ID，使用callback回调异步返回结果。
 
-- 参数：
+**系统能力：** SystemCapability.Account.OsAccount
 
-  | 参数名   | 类型                  | 必填 | 说明                                      |
-  | -------- | --------------------- | ---- | ----------------------------------------- |
-  | callback | AsyncCallback&lt;number&gt; | 是   | 回调结果，返回的是当前进程所属的系统帐号的帐号ID。 |
+**参数：**
 
-- 示例：
+| 参数名   | 类型                        | 必填 | 说明                                               |
+| -------- | --------------------------- | ---- | -------------------------------------------------- |
+| callback | AsyncCallback&lt;number&gt; | 是   | 回调结果，返回的是当前进程所属的系统帐号的帐号ID。 |
+
+**示例：**
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -614,13 +695,15 @@ getOsAccountLocalIdFromProcess(): Promise&lt;number&gt;
 
 获取当前进程所属的系统帐号的帐号ID，使用Promise方式异步返回结果。
 
-- 返回值：
+**系统能力：** SystemCapability.Account.OsAccount
 
-  | 类型            | 说明                                |
-  | :-------------- | :---------------------------------- |
-  | Promise&lt;number&gt; | Promise实例，用于获取异步返回结果，返回的是当前进程所属的系统帐号的帐号ID。 |
+**返回值：**
 
-- 示例：
+| 类型                  | 说明                                                         |
+| :-------------------- | :----------------------------------------------------------- |
+| Promise&lt;number&gt; | Promise实例，用于获取异步返回结果，返回的是当前进程所属的系统帐号的帐号ID。 |
+
+**示例：**
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -637,14 +720,16 @@ getOsAccountLocalIdFromUid(uid: number, callback: AsyncCallback&lt;number&gt;): 
 
 从进程uid中获取该uid所属的系统帐号的帐号ID，使用callback回调异步返回结果。
 
-- 参数：
+**系统能力：** SystemCapability.Account.OsAccount
 
-  | 参数名   | 类型                  | 必填 | 说明                                    |
-  | -------- | --------------------- | ---- | --------------------------------------- |
-  | uid      | number                | 是   | 进程uid。 |
-  | callback | AsyncCallback&lt;number&gt; | 是   | 回调结果，返回的是uid所属的系统帐号的帐号ID。 |
+**参数：**
 
-- 示例：查询值为12345678的uid所属的系统帐号的帐号ID
+| 参数名   | 类型                        | 必填 | 说明                                          |
+| -------- | --------------------------- | ---- | --------------------------------------------- |
+| uid      | number                      | 是   | 进程uid。                                     |
+| callback | AsyncCallback&lt;number&gt; | 是   | 回调结果，返回的是uid所属的系统帐号的帐号ID。 |
+
+**示例：**查询值为12345678的uid所属的系统帐号的帐号ID
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -661,19 +746,21 @@ getOsAccountLocalIdFromUid(uid: number): Promise&lt;number&gt;
 
 从进程uid中获取该uid所属的系统帐号的帐号ID，使用Promise方式异步返回结果。
 
-- 参数：
+**系统能力：** SystemCapability.Account.OsAccount
 
-  | 参数名 | 类型   | 必填 | 说明          |
-  | ------ | ------ | ---- | ------------- |
-  | uid    | number | 是   | 进程uid。 |
+**参数：**
 
-- 返回值：
+| 参数名 | 类型   | 必填 | 说明      |
+| ------ | ------ | ---- | --------- |
+| uid    | number | 是   | 进程uid。 |
 
-  | 类型            | 说明                                |
-  | :-------------- | :---------------------------------- |
-  | Promise&lt;number&gt; | Promise实例，用于获取异步返回结果，返回的是uid所属的系统帐号的帐号ID。 |
+**返回值：**
 
-- 示例：查询值为12345678的uid所属的系统帐号的帐号ID
+| 类型                  | 说明                                                         |
+| :-------------------- | :----------------------------------------------------------- |
+| Promise&lt;number&gt; | Promise实例，用于获取异步返回结果，返回的是uid所属的系统帐号的帐号ID。 |
+
+**示例：**查询值为12345678的uid所属的系统帐号的帐号ID
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -685,20 +772,24 @@ getOsAccountLocalIdFromUid(uid: number): Promise&lt;number&gt;
   });
   ```
 
-### getOsAccountLocalIdFromDomain
+### getOsAccountLocalIdFromDomain<sup>8+</sup>
 
 getOsAccountLocalIdFromDomain(domainInfo: DomainAccountInfo, callback: AsyncCallback&lt;number&gt;): void
 
 根据域帐号信息，获取与其关联的系统帐号的帐号ID。
 
-- 参数：
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
-  | 参数名   | 类型                  | 必填 | 说明                                    |
-  | -------- | --------------------- | ---- | --------------------------------------- |
-  | domainInfo | [DomainAccountInfo](#domainaccountinfo)  | 是   | 域帐号信息。  |
-  | callback | AsyncCallback&lt;number&gt; | 是   | 回调结果，返回的是和域帐号关联的系统帐号ID。 |
+**系统能力：** SystemCapability.Account.OsAccount
 
-- 示例：
+**参数：**
+
+| 参数名     | 类型                                    | 必填 | 说明                                         |
+| ---------- | --------------------------------------- | ---- | -------------------------------------------- |
+| domainInfo | [DomainAccountInfo](#domainaccountinfo) | 是   | 域帐号信息。                                 |
+| callback   | AsyncCallback&lt;number&gt;             | 是   | 回调结果，返回的是和域帐号关联的系统帐号ID。 |
+
+**示例：**
 
   ```
   var domainInfo = {domain: "testDomain", accountName: "testAccountName"};
@@ -709,25 +800,29 @@ getOsAccountLocalIdFromDomain(domainInfo: DomainAccountInfo, callback: AsyncCall
   });
   ```
 
-### getOsAccountLocalIdFromDomain
+### getOsAccountLocalIdFromDomain<sup>8+</sup>
 
 getOsAccountLocalIdFromDomain(domainInfo: DomainAccountInfo): Promise&lt;number&gt;
 
 根据域帐号信息，获取与其关联的系统帐号的帐号ID，使用Promise方式异步返回结果。
 
-- 参数：
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
-  | 参数名 | 类型   | 必填 | 说明          |
-  | ------ | ------ | ---- | ------------- |
-  | domainInfo    | [DomainAccountInfo](#domainaccountinfo) | 是   | 域帐号信息。 |
+**系统能力：** SystemCapability.Account.OsAccount
 
-- 返回值：
+**参数：**
 
-  | 类型            | 说明                                |
-  | :-------------- | :---------------------------------- |
-  | Promise&lt;number&gt; | Promise实例，用于获取异步返回结果，返回的是和域帐号关联的系统帐号ID。 |
+| 参数名     | 类型                                    | 必填 | 说明         |
+| ---------- | --------------------------------------- | ---- | ------------ |
+| domainInfo | [DomainAccountInfo](#domainaccountinfo) | 是   | 域帐号信息。 |
 
-- 示例：
+**返回值：**
+
+| 类型                  | 说明                                                         |
+| :-------------------- | :----------------------------------------------------------- |
+| Promise&lt;number&gt; | Promise实例，用于获取异步返回结果，返回的是和域帐号关联的系统帐号ID。 |
+
+**示例：**
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -745,13 +840,17 @@ queryMaxOsAccountNumber(callback: AsyncCallback&lt;number&gt;): void
 
 查询允许创建的系统帐号的最大数量，使用callback回调异步返回结果。
 
-- 参数：
+此接口为系统接口，三方应用不支持调用。
 
-  | 参数名   | 类型                  | 必填 | 说明                               |
-  | -------- | --------------------- | ---- | ---------------------------------- |
-  | callback | AsyncCallback&lt;number&gt; | 是   | 回调结果，返回的是允许创建的系统帐号的最大数量。 |
+**系统能力：** SystemCapability.Account.OsAccount
 
-- 示例：
+**参数：**
+
+| 参数名   | 类型                        | 必填 | 说明                                             |
+| -------- | --------------------------- | ---- | ------------------------------------------------ |
+| callback | AsyncCallback&lt;number&gt; | 是   | 回调结果，返回的是允许创建的系统帐号的最大数量。 |
+
+**示例：**
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -767,13 +866,17 @@ queryMaxOsAccountNumber(): Promise&lt;number&gt;
 
 查询允许创建的系统帐号的最大数量，使用Promise方式异步返回结果。
 
-- 返回值：
+此接口为系统接口，三方应用不支持调用。
 
-  | 类型            | 说明                                |
-  | :-------------- | :---------------------------------- |
-  | Promise&lt;number&gt; | Promise实例，用于获取异步返回结果，返回的是允许创建的系统帐号的最大数量。 |
+**系统能力：** SystemCapability.Account.OsAccount
 
-- 示例：
+**返回值：**
+
+| 类型                  | 说明                                                         |
+| :-------------------- | :----------------------------------------------------------- |
+| Promise&lt;number&gt; | Promise实例，用于获取异步返回结果，返回的是允许创建的系统帐号的最大数量。 |
+
+**示例：**
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -788,16 +891,20 @@ queryMaxOsAccountNumber(): Promise&lt;number&gt;
 
 getOsAccountAllConstraints(localId: number, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
-获取指定系统帐号的全部[约束](#系统帐号约束列表)，使用callback回调异步返回结果。
+获取指定系统帐号的全部约束，使用callback回调异步返回结果。
 
-- 参数：
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
-  | 参数名   | 类型                         | 必填 | 说明                               |
-  | -------- | ---------------------------- | ---- | ---------------------------------- |
-  | localId  | number                       | 是   | 系统帐号ID。                       |
-  | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是   | 回调结果，返回的是该系统帐号的全部[约束](#系统帐号约束列表)。 |
+**系统能力：** SystemCapability.Account.OsAccount
 
-- 示例：获取ID为100的系统帐号的全部[约束](#系统帐号约束列表)
+**参数：**
+
+| 参数名   | 类型                                     | 必填 | 说明                                                         |
+| -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
+| localId  | number                                   | 是   | 系统帐号ID。                                                 |
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是   | 回调结果，返回的是该系统帐号的全部[约束](#系统帐号约束列表)。 |
+
+**示例：**获取ID为100的系统帐号的全部约束
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -812,21 +919,25 @@ getOsAccountAllConstraints(localId: number, callback: AsyncCallback&lt;Array&lt;
 
 getOsAccountAllConstraints(localId: number): Promise&lt;Array&lt;string&gt;&gt;
 
-获取指定系统帐号的全部[约束](#系统帐号约束列表)，使用Promise方式异步返回结果。
+获取指定系统帐号的全部约束，使用Promise方式异步返回结果。
 
-- 参数：
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
-  | 参数名  | 类型   | 必填 | 说明         |
-  | ------- | ------ | ---- | ------------ |
-  | localId | number | 是   | 系统帐号ID。 |
+**系统能力：** SystemCapability.Account.OsAccount
 
-- 返回值：
+**参数：**
 
-  | 类型                   | 说明                                |
-  | :--------------------- | :---------------------------------- |
-  | Promise&lt;Array&lt;string&gt;&gt; | Promise实例，用于获取异步返回结果，返回的是该系统帐号的全部[约束](#系统帐号约束列表)。 |
+| 参数名  | 类型   | 必填 | 说明         |
+| ------- | ------ | ---- | ------------ |
+| localId | number | 是   | 系统帐号ID。 |
 
-- 示例：获取ID为100的系统帐号的全部[约束](#系统帐号约束列表)
+**返回值：**
+
+| 类型                               | 说明                                                         |
+| :--------------------------------- | :----------------------------------------------------------- |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise实例，用于获取异步返回结果，返回的是该系统帐号的全部[约束](#系统帐号约束列表)。 |
+
+**示例：**获取ID为100的系统帐号的全部约束
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -844,13 +955,17 @@ queryAllCreatedOsAccounts(callback: AsyncCallback&lt;Array&lt;OsAccountInfo&gt;&
 
 查询已创建的所有系统帐号的信息列表，使用callback回调异步返回结果。
 
-- 参数：
+此接口为系统接口，三方应用不支持调用。
 
-  | 参数名   | 类型                                | 必填 | 说明                             |
-  | -------- | ----------------------------------- | ---- | -------------------------------- |
-  | callback | AsyncCallback&lt;Array&lt;[OsAccountInfo](#osaccountinfo)&gt;&gt; | 是   | 回调结果，返回的是已创建的所有系统帐号的信息列表。 |
+**系统能力：** SystemCapability.Account.OsAccount
 
-- 示例：
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                               |
+| -------- | ------------------------------------------------------------ | ---- | -------------------------------------------------- |
+| callback | AsyncCallback&lt;Array&lt;[OsAccountInfo](#osaccountinfo)&gt;&gt; | 是   | 回调结果，返回的是已创建的所有系统帐号的信息列表。 |
+
+**示例：**
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -866,13 +981,17 @@ queryAllCreatedOsAccounts(): Promise&lt;Array&lt;OsAccountInfo&gt;&gt;
 
 查询已创建的所有系统帐号的信息列表，使用Promise方式异步返回结果。
 
-- 返回值：
+此接口为系统接口，三方应用不支持调用。
 
-  | 类型                          | 说明                                |
-  | :---------------------------- | :---------------------------------- |
-  | Promise&lt;Array&lt;[OsAccountInfo](#osaccountinfo)&gt;&gt; | Promise实例，用于获取异步返回结果，返回的是已创建的所有系统帐号的信息列表。 |
+**系统能力：** SystemCapability.Account.OsAccount
 
-- 示例：
+**返回值：**
+
+| 类型                                                        | 说明                                                         |
+| :---------------------------------------------------------- | :----------------------------------------------------------- |
+| Promise&lt;Array&lt;[OsAccountInfo](#osaccountinfo)&gt;&gt; | Promise实例，用于获取异步返回结果，返回的是已创建的所有系统帐号的信息列表。 |
+
+**示例：**
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -883,19 +1002,21 @@ queryAllCreatedOsAccounts(): Promise&lt;Array&lt;OsAccountInfo&gt;&gt;
   });
   ```
 
-### queryActivatedOsAccountIds
+### queryActivatedOsAccountIds<sup>8+</sup>
 
 queryActivatedOsAccountIds(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
 查询当前处于激活状态的系统帐号的ID列表，使用callback回调异步返回结果。
 
-- 参数：
+**系统能力：** SystemCapability.Account.OsAccount
 
-  | 参数名   | 类型                                | 必填 | 说明                             |
-  | -------- | ----------------------------------- | ---- | -------------------------------- |
-  | callback | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是   | 回调结果，返回的是当前处于激活状态的系统帐号的ID列表。 |
+**参数：**
 
-- 示例：
+| 参数名   | 类型                                     | 必填 | 说明                                                   |
+| -------- | ---------------------------------------- | ---- | ------------------------------------------------------ |
+| callback | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是   | 回调结果，返回的是当前处于激活状态的系统帐号的ID列表。 |
+
+**示例：**
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -908,19 +1029,21 @@ queryActivatedOsAccountIds(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): 
   });
   ```
 
-### queryActivatedOsAccountIds
+### queryActivatedOsAccountIds<sup>8+</sup>
 
 queryActivatedOsAccountIds(): Promise&lt;Array&lt;number&gt;&gt;
 
 查询当前处于激活状态的系统帐号的ID列表，使用Promise方式异步返回结果。
 
-- 返回值：
+**系统能力：** SystemCapability.Account.OsAccount
 
-  | 类型                          | 说明                                |
-  | :---------------------------- | :---------------------------------- |
-  | Promise&lt;Array&lt;number&gt;&gt; | Promise实例，用于获取异步返回结果，返回的是当前处于激活状态的系统帐号的ID列表。 |
+**返回值：**
 
-- 示例：
+| 类型                               | 说明                                                         |
+| :--------------------------------- | :----------------------------------------------------------- |
+| Promise&lt;Array&lt;number&gt;&gt; | Promise实例，用于获取异步返回结果，返回的是当前处于激活状态的系统帐号的ID列表。 |
+
+**示例：**
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -937,15 +1060,21 @@ createOsAccount(localName: string, type: OsAccountType, callback: AsyncCallback&
 
 创建一个系统帐号，使用callback回调异步返回结果。
 
-- 参数：
+此接口为系统接口，三方应用不支持调用。
 
-  | 参数名    | 类型                         | 必填 | 说明                 |
-  | :-------- | ---------------------------- | ---- | -------------------- |
-  | localName | string                       | 是   | 创建的系统帐号的名称。       |
-  | type      | [OsAccountType](#osaccounttype)  | 是   | 创建的系统帐号的类型。     |
-  | callback  | AsyncCallback&lt;[OsAccountInfo](#osaccountinfo)&gt; | 是   | 回调结果，返回的是新创建的系统帐号的信息。 |
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
-- 示例：
+**系统能力：** SystemCapability.Account.OsAccount
+
+**参数：**
+
+| 参数名    | 类型                                                 | 必填 | 说明                                       |
+| :-------- | ---------------------------------------------------- | ---- | ------------------------------------------ |
+| localName | string                                               | 是   | 创建的系统帐号的名称。                     |
+| type      | [OsAccountType](#osaccounttype)                      | 是   | 创建的系统帐号的类型。                     |
+| callback  | AsyncCallback&lt;[OsAccountInfo](#osaccountinfo)&gt; | 是   | 回调结果，返回的是新创建的系统帐号的信息。 |
+
+**示例：**
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -961,20 +1090,26 @@ createOsAccount(localName: string, type: OsAccountType): Promise&lt;OsAccountInf
 
 创建一个系统帐号，使用Promise方式异步返回结果。 
 
-- 参数：
+此接口为系统接口，三方应用不支持调用。
 
-  | 参数名    | 类型          | 必填 | 说明             |
-  | --------- | ------------- | ---- | ---------------- |
-  | localName | string        | 是   | 创建的系统帐号的名称。 |
-  | type      | [OsAccountType](#osaccounttype) | 是   | 创建的系统帐号的类型。 |
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
-- 返回值：
+**系统能力：** SystemCapability.Account.OsAccount
 
-  | 类型                   | 说明                                |
-  | :--------------------- | :---------------------------------- |
-  | Promise&lt;[OsAccountInfo](#osaccountinfo)&gt; | Promise实例，用于获取异步返回结果，返回的是新创建的系统帐号的信息。 |
+**参数：**
 
-- 示例：
+| 参数名    | 类型                            | 必填 | 说明                   |
+| --------- | ------------------------------- | ---- | ---------------------- |
+| localName | string                          | 是   | 创建的系统帐号的名称。 |
+| type      | [OsAccountType](#osaccounttype) | 是   | 创建的系统帐号的类型。 |
+
+**返回值：**
+
+| 类型                                           | 说明                                                         |
+| :--------------------------------------------- | :----------------------------------------------------------- |
+| Promise&lt;[OsAccountInfo](#osaccountinfo)&gt; | Promise实例，用于获取异步返回结果，返回的是新创建的系统帐号的信息。 |
+
+**示例：**
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -985,21 +1120,27 @@ createOsAccount(localName: string, type: OsAccountType): Promise&lt;OsAccountInf
   });
   ```
 
-### createOsAccountForDomain
+### createOsAccountForDomain<sup>8+</sup>
 
 createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo, callback: AsyncCallback&lt;OsAccountInfo&gt;): void
 
 根据域帐号信息，创建一个系统帐号并将其与域帐号关联，使用callback回调异步返回结果。
 
-- 参数：
+此接口为系统接口，三方应用不支持调用。
 
-  | 参数名    | 类型                         | 必填 | 说明                 |
-  | :-------- | ---------------------------- | ---- | -------------------- |
-  | type      | [OsAccountType](#osaccounttype) | 是   | 创建的系统帐号的类型。     |
-  | domainInfo | [DomainAccountInfo](#domainaccountinfo) | 是   | 域帐号信息。     |
-  | callback  | AsyncCallback&lt;[OsAccountInfo](#osaccountinfo)&gt; | 是   | 回调结果，返回的是新创建的系统帐号的信息。 |
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
-- 示例：
+**系统能力：** SystemCapability.Account.OsAccount
+
+**参数：**
+
+| 参数名     | 类型                                                 | 必填 | 说明                                       |
+| :--------- | ---------------------------------------------------- | ---- | ------------------------------------------ |
+| type       | [OsAccountType](#osaccounttype)                      | 是   | 创建的系统帐号的类型。                     |
+| domainInfo | [DomainAccountInfo](#domainaccountinfo)              | 是   | 域帐号信息。                               |
+| callback   | AsyncCallback&lt;[OsAccountInfo](#osaccountinfo)&gt; | 是   | 回调结果，返回的是新创建的系统帐号的信息。 |
+
+**示例：**
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -1010,26 +1151,32 @@ createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo, cal
   });
   ```
 
-### createOsAccountForDomain
+### createOsAccountForDomain<sup>8+</sup>
 
 createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo): Promise&lt;OsAccountInfo&gt;
 
 根据传入的域帐号信息，创建与其关联的系统帐号，使用Promise方式异步返回结果。 
 
-- 参数：
+此接口为系统接口，三方应用不支持调用。
 
-  | 参数名    | 类型          | 必填 | 说明             |
-  | --------- | ------------- | ---- | ---------------- |
-  | type      | [OsAccountType](#osaccounttype) | 是   | 创建的系统帐号的类型。 |
-  | domainInfo | [DomainAccountInfo](#domainaccountinfo) | 是   | 域帐号信息。 |
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
-- 返回值：
+**系统能力：** SystemCapability.Account.OsAccount
 
-  | 类型                   | 说明                                |
-  | :--------------------- | :---------------------------------- |
-  | Promise&lt;[OsAccountInfo](#osaccountinfo)&gt; | Promise实例，用于获取异步返回结果，返回的是新创建的系统帐号的信息。 |
+**参数：**
 
-- 示例：
+| 参数名     | 类型                                    | 必填 | 说明                   |
+| ---------- | --------------------------------------- | ---- | ---------------------- |
+| type       | [OsAccountType](#osaccounttype)         | 是   | 创建的系统帐号的类型。 |
+| domainInfo | [DomainAccountInfo](#domainaccountinfo) | 是   | 域帐号信息。           |
+
+**返回值：**
+
+| 类型                                           | 说明                                                         |
+| :--------------------------------------------- | :----------------------------------------------------------- |
+| Promise&lt;[OsAccountInfo](#osaccountinfo)&gt; | Promise实例，用于获取异步返回结果，返回的是新创建的系统帐号的信息。 |
+
+**示例：**
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -1047,13 +1194,17 @@ queryCurrentOsAccount(callback: AsyncCallback&lt;OsAccountInfo&gt;): void
 
 查询当前进程所属的系统帐号的信息，使用callback回调异步返回结果。
 
-- 参数：
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
-  | 参数名   | 类型                         | 必填 | 说明                       |
-  | -------- | ---------------------------- | ---- | -------------------------- |
-  | callback | AsyncCallback&lt;[OsAccountInfo](#osaccountinfo)&gt; | 是   | 回调结果，返回的是当前进程所属的系统帐号信息。 |
+**系统能力：** SystemCapability.Account.OsAccount
 
-- 示例：
+**参数：**
+
+| 参数名   | 类型                                                 | 必填 | 说明                                           |
+| -------- | ---------------------------------------------------- | ---- | ---------------------------------------------- |
+| callback | AsyncCallback&lt;[OsAccountInfo](#osaccountinfo)&gt; | 是   | 回调结果，返回的是当前进程所属的系统帐号信息。 |
+
+**示例：**
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -1069,13 +1220,17 @@ queryCurrentOsAccount(): Promise&lt;OsAccountInfo&gt;
 
 查询当前进程所属的系统帐号的信息，使用Promise方式异步返回结果。
 
-- 返回值：
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
-  | 类型                   | 说明                                |
-  | :--------------------- | :---------------------------------- |
-  | Promise&lt;[OsAccountInfo](#osaccountinfo)&gt; | Promise实例，用于获取异步返回结果，返回的是当前进程所属的系统帐号信息。 |
+**系统能力：** SystemCapability.Account.OsAccount
 
-- 示例：
+**返回值：**
+
+| 类型                                           | 说明                                                         |
+| :--------------------------------------------- | :----------------------------------------------------------- |
+| Promise&lt;[OsAccountInfo](#osaccountinfo)&gt; | Promise实例，用于获取异步返回结果，返回的是当前进程所属的系统帐号信息。 |
+
+**示例：**
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -1092,14 +1247,20 @@ queryOsAccountById(localId: number, callback: AsyncCallback&lt;OsAccountInfo&gt;
 
 查询指定系统帐号的信息，使用callback回调异步返回结果。
 
-- 参数：
+此接口为系统接口，三方应用不支持调用。
 
-  | 参数名   | 类型                         | 必填 | 说明                       |
-  | -------- | ---------------------------- | ---- | -------------------------- |
-  | localId | number | 是   | 要查询的系统帐号的ID |
-  | callback | AsyncCallback&lt;[OsAccountInfo](#osaccountinfo)&gt; | 是   | 回调结果，返回的是查到的系统帐号的信息。 |
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS、ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION
 
-- 示例：查询ID为100的系统帐号信息
+**系统能力：** SystemCapability.Account.OsAccount
+
+**参数：**
+
+| 参数名   | 类型                                                 | 必填 | 说明                                     |
+| -------- | ---------------------------------------------------- | ---- | ---------------------------------------- |
+| localId  | number                                               | 是   | 要查询的系统帐号的ID                     |
+| callback | AsyncCallback&lt;[OsAccountInfo](#osaccountinfo)&gt; | 是   | 回调结果，返回的是查到的系统帐号的信息。 |
+
+**示例：**查询ID为100的系统帐号信息
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -1116,19 +1277,25 @@ queryOsAccountById(localId: number): Promise&lt;OsAccountInfo&gt;
 
 查询指定系统帐号的信息，使用Promise方式异步返回结果。
 
-- 参数：
+此接口为系统接口，三方应用不支持调用。
 
-  | 参数名   | 类型                         | 必填 | 说明                       |
-  | -------- | ---------------------------- | ---- | -------------------------- |
-  | localId | number | 是   | 要查询的系统帐号的ID |
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS、ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION
 
-- 返回值：
+**系统能力：** SystemCapability.Account.OsAccount
 
-  | 类型                   | 说明                                |
-  | :--------------------- | :---------------------------------- |
-  | Promise&lt;[OsAccountInfo](#osaccountinfo)&gt; | Promise实例，用于获取异步返回结果，返回的是查到的系统帐号的信息。 |
+**参数：**
 
-- 示例：查询ID为100的系统帐号信息
+| 参数名  | 类型   | 必填 | 说明                 |
+| ------- | ------ | ---- | -------------------- |
+| localId | number | 是   | 要查询的系统帐号的ID |
+
+**返回值：**
+
+| 类型                                           | 说明                                                         |
+| :--------------------------------------------- | :----------------------------------------------------------- |
+| Promise&lt;[OsAccountInfo](#osaccountinfo)&gt; | Promise实例，用于获取异步返回结果，返回的是查到的系统帐号的信息。 |
+
+**示例：**查询ID为100的系统帐号信息
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -1146,13 +1313,15 @@ getOsAccountTypeFromProcess(callback: AsyncCallback&lt;OsAccountType&gt;): void
 
 查询当前进程所属的系统帐号的帐号类型，使用callback回调异步返回结果。
 
-- 参数：
+**系统能力：** SystemCapability.Account.OsAccount
 
-  | 参数名   | 类型                         | 必填 | 说明                                     |
-  | -------- | ---------------------------- | ---- | ---------------------------------------- |
-  | callback | AsyncCallback&lt;[OsAccountType](#osaccounttype)&gt; | 是   | 回调结果，返回的是当前进程所属的系统帐号的帐号类型。 |
+**参数：**
 
-- 示例：
+| 参数名   | 类型                                                 | 必填 | 说明                                                 |
+| -------- | ---------------------------------------------------- | ---- | ---------------------------------------------------- |
+| callback | AsyncCallback&lt;[OsAccountType](#osaccounttype)&gt; | 是   | 回调结果，返回的是当前进程所属的系统帐号的帐号类型。 |
+
+**示例：**
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -1168,13 +1337,15 @@ getOsAccountTypeFromProcess(): Promise&lt;OsAccountType&gt;
 
 查询当前进程所属的系统帐号的帐号类型，使用Promise方式异步返回结果。
 
-- 返回值：
+**系统能力：** SystemCapability.Account.OsAccount
 
-  | 类型                   | 说明                                |
-  | :--------------------- | :---------------------------------- |
-  | Promise&lt;[OsAccountType](#osaccounttype)&gt; | Promise实例，用于获取异步返回结果，返回的是当前进程所属的系统帐号的帐号类型。 |
+**返回值：**
 
-- 示例：
+| 类型                                           | 说明                                                         |
+| :--------------------------------------------- | :----------------------------------------------------------- |
+| Promise&lt;[OsAccountType](#osaccounttype)&gt; | Promise实例，用于获取异步返回结果，返回的是当前进程所属的系统帐号的帐号类型。 |
+
+**示例：**
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -1191,13 +1362,17 @@ getDistributedVirtualDeviceId(callback: AsyncCallback&lt;string&gt;): void
 
 获取分布式虚拟设备ID，使用callback回调异步返回结果。
 
-- 参数：
+**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
-  | 参数名   | 类型                  | 必填 | 说明                         |
-  | -------- | --------------------- | ---- | ---------------------------- |
-  | callback | AsyncCallback&lt;string&gt; | 是   | 回调结果，返回的是分布式虚拟设备ID。 |
+**系统能力：** SystemCapability.Account.OsAccount
 
-- 示例：
+**参数：**
+
+| 参数名   | 类型                        | 必填 | 说明                                 |
+| -------- | --------------------------- | ---- | ------------------------------------ |
+| callback | AsyncCallback&lt;string&gt; | 是   | 回调结果，返回的是分布式虚拟设备ID。 |
+
+**示例：**
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -1213,13 +1388,17 @@ getDistributedVirtualDeviceId(): Promise&lt;string&gt;
 
 获取分布式虚拟设备ID，使用Promise方式异步返回结果。
 
-- 返回值：
+**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
-  | 类型            | 说明                                |
-  | :-------------- | :---------------------------------- |
-  | Promise&lt;string&gt; | Promise实例，用于获取异步返回结果，返回的是分布式虚拟设备ID。 |
+**系统能力：** SystemCapability.Account.OsAccount
 
-- 示例：
+**返回值：**
+
+| 类型                  | 说明                                                         |
+| :-------------------- | :----------------------------------------------------------- |
+| Promise&lt;string&gt; | Promise实例，用于获取异步返回结果，返回的是分布式虚拟设备ID。 |
+
+**示例：**
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -1236,14 +1415,20 @@ getOsAccountProfilePhoto(localId: number, callback: AsyncCallback&lt;string&gt;)
 
 获取指定系统帐号的头像信息，使用callback回调异步返回结果。
 
-- 参数：
+此接口为系统接口，三方应用不支持调用。
 
-  | 参数名   | 类型                  | 必填 | 说明                     |
-  | -------- | --------------------- | ---- | ------------------------ |
-  | localId  | number                | 是   | 系统帐号ID。             |
-  | callback | AsyncCallback&lt;string&gt; | 是   | 回调结果，返回的是该系统帐号的头像信息。 |
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
-- 示例：获取ID为100的系统帐号的头像
+**系统能力：** SystemCapability.Account.OsAccount
+
+**参数：**
+
+| 参数名   | 类型                        | 必填 | 说明                                     |
+| -------- | --------------------------- | ---- | ---------------------------------------- |
+| localId  | number                      | 是   | 系统帐号ID。                             |
+| callback | AsyncCallback&lt;string&gt; | 是   | 回调结果，返回的是该系统帐号的头像信息。 |
+
+**示例：**获取ID为100的系统帐号的头像
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -1260,19 +1445,25 @@ getOsAccountProfilePhoto(localId: number): Promise&lt;string&gt;
 
 获取指定系统帐号的头像信息，使用Promise方式异步返回结果。
 
-- 参数：
+此接口为系统接口，三方应用不支持调用。
 
-  | 参数名  | 类型   | 必填 | 说明         |
-  | ------- | ------ | ---- | ------------ |
-  | localId | number | 是   | 系统帐号ID。 |
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
-- 返回值：
+**系统能力：** SystemCapability.Account.OsAccount
 
-  | 类型            | 说明                                |
-  | :-------------- | :---------------------------------- |
-  | Promise&lt;string&gt; | Promise实例，用于获取异步返回结果，返回的是该系统帐号的头像信息。 |
+**参数：**
 
-- 示例：获取ID为100的系统帐号的头像
+| 参数名  | 类型   | 必填 | 说明         |
+| ------- | ------ | ---- | ------------ |
+| localId | number | 是   | 系统帐号ID。 |
+
+**返回值：**
+
+| 类型                  | 说明                                                         |
+| :-------------------- | :----------------------------------------------------------- |
+| Promise&lt;string&gt; | Promise实例，用于获取异步返回结果，返回的是该系统帐号的头像信息。 |
+
+**示例：**获取ID为100的系统帐号的头像
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -1290,15 +1481,21 @@ setOsAccountProfilePhoto(localId: number, photo: string, callback: AsyncCallback
 
 为指定系统帐号设置头像信息，使用callback回调异步返回结果。
 
-- 参数：
+此接口为系统接口，三方应用不支持调用。
 
-  | 参数名   | 类型                | 必填 | 说明                     |
-  | -------- | ------------------- | ---- | ------------------------ |
-  | localId  | number              | 是   | 系统帐号ID。             |
-  | photo    | string              | 是   | 头像信息。               |
-  | callback | AsyncCallback&lt;void&gt; | 是   | 回调结果。 |
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
-- 示例：给ID为100的系统帐号设置头像
+**系统能力：** SystemCapability.Account.OsAccount
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明         |
+| -------- | ------------------------- | ---- | ------------ |
+| localId  | number                    | 是   | 系统帐号ID。 |
+| photo    | string                    | 是   | 头像信息。   |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调结果。   |
+
+**示例：**给ID为100的系统帐号设置头像
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -1318,20 +1515,26 @@ setOsAccountProfilePhoto(localId: number, photo: string): Promise&lt;void&gt;
 
 为指定系统帐号设置头像信息，使用Promise方式异步返回结果。
 
-- 参数：
+此接口为系统接口，三方应用不支持调用。
 
-  | 参数名  | 类型   | 必填 | 说明         |
-  | ------- | ------ | ---- | ------------ |
-  | localId | number | 是   | 系统帐号ID。 |
-  | photo   | string | 是   | 头像信息。   |
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
-- 返回值：
+**系统能力：** SystemCapability.Account.OsAccount
 
-  | 类型          | 说明                                |
-  | :------------ | :---------------------------------- |
-  | Promise&lt;void&gt; | Promise实例，用于获取异步返回结果。 |
+**参数：**
 
-- 示例：给ID为100的系统帐号设置头像
+| 参数名  | 类型   | 必填 | 说明         |
+| ------- | ------ | ---- | ------------ |
+| localId | number | 是   | 系统帐号ID。 |
+| photo   | string | 是   | 头像信息。   |
+
+**返回值：**
+
+| 类型                | 说明                                |
+| :------------------ | :---------------------------------- |
+| Promise&lt;void&gt; | Promise实例，用于获取异步返回结果。 |
+
+**示例：**给ID为100的系统帐号设置头像
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -1347,20 +1550,22 @@ setOsAccountProfilePhoto(localId: number, photo: string): Promise&lt;void&gt;
   });
   ```
 
-### getOsAccountLocalIdBySerialNumber
+### getOsAccountLocalIdBySerialNumber<sup>8+</sup>
 
 getOsAccountLocalIdBySerialNumber(serialNumber: number, callback: AsyncCallback&lt;number&gt;): void
 
 通过SN码查询与其关联的系统帐号的帐号ID，使用callback回调异步返回结果。
 
-- 参数：
+**系统能力：** SystemCapability.Account.OsAccount
 
-  | 参数名       | 类型                  | 必填 | 说明                           |
-  | ------------ | --------------------- | ---- | ------------------------------ |
-  | serialNumber | number                | 是   | 帐号SN码。                     |
-  | callback     | AsyncCallback&lt;number&gt; | 是   | 回调结果，返回的是与SN码关联的系统帐号的帐号ID。 |
+**参数：**
 
-- 示例：查询与SN码12345关联的系统帐号的ID
+| 参数名       | 类型                        | 必填 | 说明                                             |
+| ------------ | --------------------------- | ---- | ------------------------------------------------ |
+| serialNumber | number                      | 是   | 帐号SN码。                                       |
+| callback     | AsyncCallback&lt;number&gt; | 是   | 回调结果，返回的是与SN码关联的系统帐号的帐号ID。 |
+
+**示例：**查询与SN码12345关联的系统帐号的ID
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -1371,25 +1576,27 @@ getOsAccountLocalIdBySerialNumber(serialNumber: number, callback: AsyncCallback&
   });
   ```
 
-### getOsAccountLocalIdBySerialNumber
+### getOsAccountLocalIdBySerialNumber<sup>8+</sup>
 
 getOsAccountLocalIdBySerialNumber(serialNumber: number): Promise&lt;number&gt;
 
 通过SN码查询与其关联的系统帐号的帐号ID，使用Promise方式异步返回结果。
 
-- 参数：
+**系统能力：** SystemCapability.Account.OsAccount
 
-  | 参数名       | 类型   | 必填 | 说明       |
-  | ------------ | ------ | ---- | ---------- |
-  | serialNumber | number | 是   | 帐号SN码。 |
+**参数：**
 
-- 返回值：
+| 参数名       | 类型   | 必填 | 说明       |
+| ------------ | ------ | ---- | ---------- |
+| serialNumber | number | 是   | 帐号SN码。 |
 
-  | 类型            | 说明                                |
-  | :-------------- | :---------------------------------- |
-  | Promise&lt;number&gt; | Promise实例，用于获取异步返回结果，返回的是与SN码关联的系统帐号的帐号ID。 |
+**返回值：**
 
-- 示例：查询与SN码12345关联的系统帐号的ID
+| 类型                  | 说明                                                         |
+| :-------------------- | :----------------------------------------------------------- |
+| Promise&lt;number&gt; | Promise实例，用于获取异步返回结果，返回的是与SN码关联的系统帐号的帐号ID。 |
+
+**示例：**查询与SN码12345关联的系统帐号的ID
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -1401,20 +1608,22 @@ getOsAccountLocalIdBySerialNumber(serialNumber: number): Promise&lt;number&gt;
   });
   ```
 
-### getSerialNumberByOsAccountLocalId
+### getSerialNumberByOsAccountLocalId<sup>8+</sup>
 
 getSerialNumberByOsAccountLocalId(localId: number, callback: AsyncCallback&lt;number&gt;): void
 
 通过系统帐号ID获取与该系统帐号关联的SN码，使用callback回调异步返回结果。
 
-- 参数：
+**系统能力：** SystemCapability.Account.OsAccount
 
-  | 参数名   | 类型                  | 必填 | 说明                           |
-  | -------- | --------------------- | ---- | ------------------------------ |
-  | localId  | number                | 是   | 系统帐号ID。                   |
-  | callback | AsyncCallback&lt;number&gt; | 是   | 回调结果，返回的是与该系统帐号关联的SN码。 |
+**参数：**
 
-- 示例：获取ID为100的系统帐号关联的SN码
+| 参数名   | 类型                        | 必填 | 说明                                       |
+| -------- | --------------------------- | ---- | ------------------------------------------ |
+| localId  | number                      | 是   | 系统帐号ID。                               |
+| callback | AsyncCallback&lt;number&gt; | 是   | 回调结果，返回的是与该系统帐号关联的SN码。 |
+
+**示例：**获取ID为100的系统帐号关联的SN码
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -1425,25 +1634,27 @@ getSerialNumberByOsAccountLocalId(localId: number, callback: AsyncCallback&lt;nu
   });
   ```
 
-### getSerialNumberByOsAccountLocalId
+### getSerialNumberByOsAccountLocalId<sup>8+</sup>
 
 getSerialNumberByOsAccountLocalId(localId: number): Promise&lt;number&gt;
 
 通过系统帐号ID获取与该系统帐号关联的SN码，使用Promise方式异步返回结果。
 
-- 参数：
+**系统能力：** SystemCapability.Account.OsAccount
 
-  | 参数名  | 类型   | 必填 | 说明         |
-  | ------- | ------ | ---- | ------------ |
-  | localId | number | 是   | 系统帐号ID。 |
+**参数：**
 
-- 返回值：
+| 参数名  | 类型   | 必填 | 说明         |
+| ------- | ------ | ---- | ------------ |
+| localId | number | 是   | 系统帐号ID。 |
 
-  | 类型            | 说明                                |
-  | :-------------- | :---------------------------------- |
-  | Promise&lt;number&gt; | Promise实例，用于获取异步返回结果，返回的是与该系统帐号关联的SN码。 |
+**返回值：**
 
-- 示例：获取ID为100的系统帐号关联的SN码
+| 类型                  | 说明                                                         |
+| :-------------------- | :----------------------------------------------------------- |
+| Promise&lt;number&gt; | Promise实例，用于获取异步返回结果，返回的是与该系统帐号关联的SN码。 |
+
+**示例：**获取ID为100的系统帐号关联的SN码
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -1461,15 +1672,21 @@ on(type: 'activate' | 'activating', name: string, callback: Callback&lt;number&g
 
 订阅系统帐号的变动信息，使用callback回调异步返回结果。
 
-- 参数：
+此接口为系统接口，三方应用不支持调用。
 
-  | 参数名   | 类型                       | 必填 | 说明                     |
-  | -------- | -------------------------- | ---- | ------------------------ |
-  | type     | 'activate' \| 'activating' | 是   | 订阅类型，activate表示订阅的是帐号已激活完成的事件，activating表示订阅的是帐号正在激活的事件。               |
-  | name     | string                     | 是   | 订阅名称，可自定义，要求非空且长度不超过1024字节。|
-  | callback | Callback&lt;number&gt;           | 是   | 订阅系统帐号变动信息的回调，表示当前事件对应的系统帐号ID。 |
+**需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION
 
-- 示例：
+**系统能力：** SystemCapability.Account.OsAccount
+
+**参数：**
+
+| 参数名   | 类型                       | 必填 | 说明                                                         |
+| -------- | -------------------------- | ---- | ------------------------------------------------------------ |
+| type     | 'activate' \| 'activating' | 是   | 订阅类型，activate表示订阅的是帐号已激活完成的事件，activating表示订阅的是帐号正在激活的事件。 |
+| name     | string                     | 是   | 订阅名称，可自定义，要求非空且长度不超过1024字节。           |
+| callback | Callback&lt;number&gt;     | 是   | 订阅系统帐号变动信息的回调，表示当前事件对应的系统帐号ID。   |
+
+**示例：**
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -1485,15 +1702,21 @@ off(type: 'activate' | 'activating', name: string, callback?: Callback&lt;number
 
 取消订阅系统帐号的变动信息，使用callback回调异步返回结果。
 
-- 参数：
+此接口为系统接口，三方应用不支持调用。
 
-  | 参数名   | 类型                       | 必填 | 说明                         |
-  | -------- | -------------------------- | ---- | ---------------------------- |
-  | type     | 'activate' \| 'activating' | 是   | 取消订阅类型，activate表示取消订阅帐号已激活完成的事件，activating取消订阅帐号正在激活的事件。             |
-  | name     | string                     | 是   | 订阅名称，可自定义，，要求非空且长度不超过1024字节，需要与订阅接口传入的值保持一致。 |
-  | callback | Callback&lt;number&gt;     | 否   | 取消订阅系统帐号变化的回调，默认返回0。 |
+**需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION
 
-- 示例：
+**系统能力：** SystemCapability.Account.OsAccount
+
+**参数：**
+
+| 参数名   | 类型                       | 必填 | 说明                                                         |
+| -------- | -------------------------- | ---- | ------------------------------------------------------------ |
+| type     | 'activate' \| 'activating' | 是   | 取消订阅类型，activate表示取消订阅帐号已激活完成的事件，activating取消订阅帐号正在激活的事件。 |
+| name     | string                     | 是   | 订阅名称，可自定义，，要求非空且长度不超过1024字节，需要与订阅接口传入的值保持一致。 |
+| callback | Callback&lt;number&gt;     | 否   | 取消订阅系统帐号变化的回调，默认返回0。                      |
+
+**示例：**
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -1504,45 +1727,51 @@ off(type: 'activate' | 'activating', name: string, callback?: Callback&lt;number
   ```
 
 ## OsAccountInfo
-系统帐号信息
-| 参数名            | 类型                               | 必填 | 说明                     |
-| ----------------- | ---------------------------------- | ---- | ------------------------ |
-| localId           | number                             | 是   | 系统帐号ID。             |
-| localName         | string                             | 是   | 系统帐号名称。           |
-| type              | [OsAccountType](#osaccounttype)    | 是   | 系统帐号类型             |
-| constraints       | Array&lt;string&gt;                | 否   | 系统帐号[约束](#系统帐号约束列表)             |
-| isVerified        | boolean                            | 是   | 帐号是否锁屏             |
-| photo             | string                             | 否   | 系统帐号头像             |
-| createTime        | number                             | 是   | 系统帐号创建时间         |
-| lastLoginTime     | number                             | 否   | 系统帐号最后一次登录时间 |
-| serialNumber      | number                             | 是   | 系统帐号SN码             |
-| isActived         | boolean                            | 是   | 系统帐号激活状态         |
-| isCreateCompleted | boolean                            | 是   | 系统帐号创建是否完整     |
-| distributedInfo   | [distributedAccount.DistributedInfo](js-apis-distributed-account.md) | 否   | 分布式帐号信息           |
-| domainInfo        | [DomainAccountInfo](#domainaccountinfo)   | 否   | 域帐号信息              |
+系统帐号信息。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount。
+
+| 参数名            | 类型                                                         | 必填 | 说明                              |
+| ----------------- | ------------------------------------------------------------ | ---- | --------------------------------- |
+| localId           | number                                                       | 是   | 系统帐号ID。                      |
+| localName         | string                                                       | 是   | 系统帐号名称。                    |
+| type              | [OsAccountType](#osaccounttype)                              | 是   | 系统帐号类型                      |
+| constraints       | Array&lt;string&gt;                                          | 否   | 系统帐号[约束](#系统帐号约束列表) |
+| isVerified        | boolean                                                      | 是   | 帐号是否锁屏                      |
+| photo             | string                                                       | 否   | 系统帐号头像                      |
+| createTime        | number                                                       | 是   | 系统帐号创建时间                  |
+| lastLoginTime     | number                                                       | 否   | 系统帐号最后一次登录时间          |
+| serialNumber      | number                                                       | 是   | 系统帐号SN码                      |
+| isActived         | boolean                                                      | 是   | 系统帐号激活状态                  |
+| isCreateCompleted | boolean                                                      | 是   | 系统帐号创建是否完整              |
+| distributedInfo   | [distributedAccount.DistributedInfo](js-apis-distributed-account.md) | 否   | 分布式帐号信息                    |
+| domainInfo        | [DomainAccountInfo](#domainaccountinfo)                      | 否   | 域帐号信息                        |
 
 ## DomainAccountInfo
-域帐号信息
-| 参数名            | 类型                               | 必填 | 说明                     |
-| ----------------- | ---------------------------------- | ---- | ------------------------ |
-| domain            | string                             | 是   | 域名。             |
-| accountName       | string                             | 是   | 域帐号名。           |
+域帐号信息。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount。
+
+| 参数名      | 类型   | 必填 | 说明       |
+| ----------- | ------ | ---- | ---------- |
+| domain      | string | 是   | 域名。     |
+| accountName | string | 是   | 域帐号名。 |
 
 ## 系统帐号约束列表
 
-| 约束 | 说明 |
-| ----------------- | ------------------- |
-| constraint.wifi | 禁止使用wifi |
-| constraint.wifi.set | 禁止配置wifi |
-| constraint.locale.set | 禁止配置设备语言 |
-| constraint.app.accounts | 禁止添加和删除应用帐号 |
-| constraint.apps.install | 禁止安装应用 |
-| constraint.apps.uninstall | 禁止卸载应用 |
-| constraint.location.shared | 禁止打开位置共享 |
-| constraint.unknown.sources.install | 禁止安装未知来源的应用 |
+| 约束                                  | 说明                           |
+| ------------------------------------- | ------------------------------ |
+| constraint.wifi                       | 禁止使用wifi                   |
+| constraint.wifi.set                   | 禁止配置wifi                   |
+| constraint.locale.set                 | 禁止配置设备语言               |
+| constraint.app.accounts               | 禁止添加和删除应用帐号         |
+| constraint.apps.install               | 禁止安装应用                   |
+| constraint.apps.uninstall             | 禁止卸载应用                   |
+| constraint.location.shared            | 禁止打开位置共享               |
+| constraint.unknown.sources.install    | 禁止安装未知来源的应用         |
 | constraint.global.unknown.app.install | 禁止所有用户安装未知来源的应用 |
-| constraint.bluetooth.set | 禁止配置蓝牙 |
-| constraint.bluetooth | 禁止使用蓝牙
+| constraint.bluetooth.set              | 禁止配置蓝牙                   |
+| constraint.bluetooth | 禁止使用蓝牙 |
 | constraint.bluetooth.share | 禁止共享使用蓝牙 |
 | constraint.usb.file.transfer | 禁止通过USB传输文件 |
 | constraint.credentials.set | 禁止配置用户凭据 |
