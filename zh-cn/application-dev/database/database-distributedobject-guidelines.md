@@ -33,7 +33,7 @@
 **表3** 分布式数据对象sessionId设置接口
 | 类名 | 接口名 | 描述 |
 | -------- | -------- | -------- |
-| DistributedDataObject | setSessionId(sessionId?: string): boolean | 为分布式数据对象设置sessionId <br>-&nbsp;sessionId：分布式数据对象sessionId是指定的sessionId,如果要退出分布式组网，设置为""或不设置均可。|
+| DistributedDataObject | setSessionId(sessionId?: string): boolean | 为分布式数据对象设置sessionId <br>&nbsp;sessionId：如果指定sessionId，则退出指定分布式组网；如果不指定，则全部退出。|
 
 ### 订阅数据变更
 
