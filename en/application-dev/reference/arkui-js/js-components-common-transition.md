@@ -6,6 +6,7 @@
 ### Attributes<a name="section179214816810"></a>
 
 <a name="table82912285910"></a>
+
 <table><thead align="left"><tr id="row529115281090"><th class="cellrowborder" valign="top" width="15.370000000000001%" id="mcps1.1.5.1.1"><p id="p9291182819919"><a name="p9291182819919"></a><a name="p9291182819919"></a>Name</p>
 </th>
 <th class="cellrowborder" valign="top" width="12.920000000000002%" id="mcps1.1.5.1.2"><p id="p62914282912"><a name="p62914282912"></a><a name="p62914282912"></a>Type</p>
@@ -97,8 +98,10 @@ Page A jumps to Page B. The shared element is  **image**, and the  **shareid**  
 <div>
   <list>
     <list-item type="description">
-      <image src="item.jpg" shareid="shareImage" onclick="jump" class="shared-transition-style"></image>
-      <text onclick="jump">Click on picture to Jump to ths details</text>
+      <div>
+        <image src="item.jpg" shareid="shareImage" onclick="jump" class="shared-transition-style"></image>
+        <text onclick="jump">Click on picture to Jump to ths details</text>
+      </div>
     </list-item>
   </list>
 </div>
