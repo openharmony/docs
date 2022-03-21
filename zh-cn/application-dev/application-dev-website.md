@@ -42,6 +42,7 @@
           - [使用JS语言开发（传统代码方式）](start-with-js.md)
           - [使用JS语言开发（低代码方式）](start-with-js-low-code.md)
     - [应用开发包结构说明](quick-start/quick-start/package-structure.md)
+    - [资源文件的分类](quick-start/basic-resource-file-categories.md)
 - 开发
     - [Ability开发](ability/Readme-CN.md)
       - [Ability框架概述](ability/ability-brief.md)
@@ -89,22 +90,46 @@
                - [动画](ui/ui-js-building-ui-animation.md)
                - [事件](ui/ui-js-building-ui-event.md)
                - [页面路由](ui/ui-js-building-ui-routes.md)
-           - 常见组件开发指导
-               - [Text](ui/ui-js-components-text.md)
-               - [Input](ui/ui-js-components-input.md)
-               - [Button](ui/ui-js-components-button.md)
-               - [List](ui/ui-js-components-list.md)
-               - [Picker](ui/ui-js-components-picker.md)
-               - [Dialog](ui/ui-js-components-dialog.md)
-               - [Form](ui/ui-js-components-form.md)
-               - [Stepper](ui/ui-js-components-stepper.md)
-               - [Tabs](ui/ui-js-component-tabs.md)
-               - [Image](ui/ui-js-components-images.md)
+          - 常见组件开发指导
+            - 容器组件
+                - [List开发指导](ui/ui-js-components-list.md)
+                - [Dialog开发指导](ui/ui-js-components-dialog.md)
+                - [Form开发指导](ui/ui-js-components-form.md)
+                - [Stepper开发指导](ui/ui-js-components-stepper.md)
+                - [Tabs开发指导](ui/ui-js-component-tabs.md)
+                - [Swiper开发指导](ui/ui-js-components-swiper.md)
+            - 基础组件
+                - [Text开发指导](ui/ui-js-components-text.md)
+                - [Input开发指导](ui/ui-js-components-input.md)
+                - [Button开发指导](ui/ui-js-components-button.md)
+                - [Picker开发指导](ui/ui-js-components-picker.md)
+                - [Image开发指导](ui/ui-js-components-images.md)
+                - [Image-animator开发指导](ui/ui-js-components-image-animator.md)
+                - [Rating开发指导](ui/ui-js-components-rating.md)
+                - [Slider开发指导](ui/ui-js-components-slider.md)
+                - [Chart开发指导](ui/ui-js-components-chart.md)
+                - [Switch开发指导](ui/ui-js-components-switch.md)
+                - [Toolbar开发指导](ui/ui-js-components-toolbar.md)
+                - [Menu开发指导](ui/ui-js-components-menu.md)
+                - [Marquee开发指导](ui/ui-js-components-marquee.md)
+                - [Qrcode开发指导](ui/ui-js-components-qrcode.md)
+                - [Search开发指导](ui/ui-js-components-search.md)
+            - Canvas开发指导
+                - [CanvasRenderingContext2D对象](ui/ui-js-components-canvasrenderingcontext2d.md)
+                - [Path2D对象](ui/ui-js-components-path2d.md)
+                - [OffscreenCanvas对象](ui/ui-js-components-offscreencanvas.md)
+            - [栅格布局](ui/ui-js-components-calendar.md)
+            - Svg开发指导
+                - [基础知识](ui/ui-js-components-svg-overview.md)
+                - [绘制图形](ui/ui-js-components-svg-graphics.md)
+                - [绘制路径](ui/ui-js-components-svg-path.md)
+                - [绘制文本](ui/ui-js-components-svg-text.md)
            - 动效开发指导
                - CSS动画
                    - [属性样式动画](ui/ui-js-animate-attribute-style.md)
                    - [transform样式动画](ui/ui-js-animate-transform.md)
                    - [background-position样式动画](ui/ui-js-animate-background-position-style.md)
+                   - [svg动画](ui/ui-js-animate-svg.md)
                - JS动画
                    - [组件动画](ui/ui-js-animate-component.md)
                    - 插值器动画
@@ -247,6 +272,12 @@
            - [位置开发概述](device/device-location-overview.md)
            - [获取设备的位置信息](device/device-location-info.md)
            - [（逆）地理编码转化](device/device-location-geocoding.md)
+         - 传感器
+           - [传感器开发概述](device/sensor-overview.md)
+           - [传感器开发指导](device/sensor-guidelines.md)
+         - 振动
+           - [振动开发概述](device/vibrator-guidelines.md)
+           - [振动开发指导](device/vibrator-guidelines.md)
        - [设备使用信息统计](device-usage-statistics/Readme-CN.md)
          - [设备使用信息统计概述](device-usage-statistics/device-usage-statistics-overview.md)
          - [设备使用信息统计开发指导](device-usage-statistics/device-usage-statistics-dev-guide.md)
@@ -260,6 +291,10 @@
          - 分布式跟踪
            - [分布式跟踪概述](dfx/hitracechain-overview.md)
            - [分布式跟踪开发指导](dfx/hitracechain-guidelines.md)
+       - [国际化](international/Readme-CN.md)
+         - [国际化开发概述](international/international-overview.md)
+         - [Intl开发指导](international/intl-guidelines.md)
+         - [I18n开发指导](international/i18n-guidelines.md)
 - 工具
     - [DevEco Studio（OpenHarmony）使用指南](quick-start/deveco-studio-user-guide-for-openharmony.md)
       - [概述](quick-start/deveco-studio-overview.md)
