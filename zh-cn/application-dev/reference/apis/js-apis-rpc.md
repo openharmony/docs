@@ -1708,8 +1708,8 @@ readException(): void
       }
   };
   let want = {
-      "bundleName": "com.huawei.server",
-      "abilityName": "com.huawei.server.MainAbility",
+      "bundleName": "com.ohos.server",
+      "abilityName": "com.ohos.server.MainAbility",
   };
   FA.connectAbility(want, connect);
   let option = new rpc.MessageOption();
@@ -2563,8 +2563,8 @@ sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options 
       }
   };
   let want = {
-      "bundleName": "com.huawei.server",
-      "abilityName": "com.huawei.server.MainAbility",
+      "bundleName": "com.ohos.server",
+      "abilityName": "com.ohos.server.MainAbility",
   };
   FA.connectAbility(want, connect);
   let option = new rpc.MessageOption();
@@ -2608,8 +2608,8 @@ sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options 
       }
   };
   let want = {
-      "bundleName": "com.huawei.server",
-      "abilityName": "com.huawei.server.MainAbility",
+      "bundleName": "com.ohos.server",
+      "abilityName": "com.ohos.server.MainAbility",
   };
   FA.connectAbility(want, connect);
   let option = new rpc.MessageOption();
@@ -2672,8 +2672,8 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
       }
   };
   let want = {
-      "bundleName": "com.huawei.server",
-      "abilityName": "com.huawei.server.MainAbility",
+      "bundleName": "com.ohos.server",
+      "abilityName": "com.ohos.server.MainAbility",
   };
   function sendRequestCallback(result) {
       if (result.errCode === 0) {
@@ -2734,8 +2734,8 @@ queryLocalInterface(interface: string): IRemoteBroker
       }
   };
   let want = {
-      "bundleName":"com.huawei.server",
-      "abilityName":"com.huawei.server.MainAbility",
+      "bundleName":"com.ohos.server",
+      "abilityName":"com.ohos.server.MainAbility",
   };
   FA.connectAbility(want, connect);
   let broker = proxy.queryLocalInterface("testObject");
@@ -2780,8 +2780,8 @@ addDeathRecipient(recipient : DeathRecipient, flags : number): boolean
       }
   };
   let want = {
-      "bundleName": "com.huawei.server",
-      "abilityName": "com.huawei.server.MainAbility",
+      "bundleName": "com.ohos.server",
+      "abilityName": "com.ohos.server.MainAbility",
   };
   FA.connectAbility(want, connect);
   class MyDeathRecipient {
@@ -2831,8 +2831,8 @@ removeDeathRecipient(recipient : DeathRecipient, flags : number): boolean
       }
   };
   let want = {
-      "bundleName": "com.huawei.server",
-      "abilityName": "com.huawei.server.MainAbility",
+      "bundleName": "com.ohos.server",
+      "abilityName": "com.ohos.server.MainAbility",
   };
   FA.connectAbility(want, connect);
   class MyDeathRecipient {
@@ -2877,8 +2877,8 @@ getInterfaceDescriptor(): string
       }
   };
   let want = {
-      "bundleName": "com.huawei.server",
-      "abilityName": "com.huawei.server.MainAbility",
+      "bundleName": "com.ohos.server",
+      "abilityName": "com.ohos.server.MainAbility",
   };
   FA.connectAbility(want, connect);
   let descriptor = proxy.getInterfaceDescriptor();
@@ -2917,8 +2917,8 @@ isObjectDead(): boolean
       }
   };
   let want = {
-      "bundleName": "com.huawei.server",
-      "abilityName": "com.huawei.server.MainAbility",
+      "bundleName": "com.ohos.server",
+      "abilityName": "com.ohos.server.MainAbility",
   };
   FA.connectAbility(want, connect);
   let isDead = proxy.isObjectDead();
