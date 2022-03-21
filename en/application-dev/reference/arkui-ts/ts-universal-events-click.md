@@ -1,7 +1,7 @@
 # Click Event
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This method is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -12,21 +12,21 @@ None
 
 ## Events
 
-  | Name | Bubble&nbsp;Supported | Description | 
+  | Name | Bubble Supported | Description | 
 | -------- | -------- | -------- |
-| onClick(callback:&nbsp;(event?:&nbsp;ClickEvent)&nbsp;=&gt;&nbsp;void) | No | Called&nbsp;when&nbsp;a&nbsp;click&nbsp;event&nbsp;occurs.&nbsp;For&nbsp;details&nbsp;about&nbsp;the&nbsp;event&nbsp;parameters,&nbsp;see&nbsp;[ClickEvent](#clickevent). | 
+| onClick(callback: (event?: ClickEvent) =&gt; void) | No | Called when a click event occurs. For details about the event parameters, see [ClickEvent](#clickevent). | 
 
 
 ### ClickEvent
 
   | Name | Type | Description | 
 | -------- | -------- | -------- |
-| screenX | number | X&nbsp;coordinate&nbsp;of&nbsp;the&nbsp;click&nbsp;relative&nbsp;to&nbsp;the&nbsp;left&nbsp;edge&nbsp;of&nbsp;the&nbsp;screen. | 
-| screenY | number | Y&nbsp;coordinate&nbsp;of&nbsp;the&nbsp;click&nbsp;relative&nbsp;to&nbsp;the&nbsp;upper&nbsp;edge&nbsp;of&nbsp;the&nbsp;screen. | 
-| x | number | X&nbsp;coordinate&nbsp;of&nbsp;the&nbsp;click&nbsp;relative&nbsp;to&nbsp;the&nbsp;left&nbsp;edge&nbsp;of&nbsp;the&nbsp;component&nbsp;being&nbsp;clicked. | 
-| y | number | Y&nbsp;coordinate&nbsp;of&nbsp;the&nbsp;click&nbsp;relative&nbsp;to&nbsp;the&nbsp;upper&nbsp;edge&nbsp;of&nbsp;the&nbsp;component&nbsp;being&nbsp;clicked. | 
-| target<sup>8+</sup> | EventTarget | Target&nbsp;element&nbsp;that&nbsp;is&nbsp;clicked. | 
-| timestamp | number | Timestamp&nbsp;of&nbsp;the&nbsp;event. | 
+| screenX | number | X coordinate of the click relative to the left edge of the screen. | 
+| screenY | number | Y coordinate of the click relative to the upper edge of the screen. | 
+| x | number | X coordinate of the click relative to the left edge of the component being clicked. | 
+| y | number | Y coordinate of the click relative to the upper edge of the component being clicked. | 
+| target<sup>8+</sup> | EventTarget | Target element that is clicked. | 
+| timestamp | number | Timestamp of the event. | 
 
 
 ## Example

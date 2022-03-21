@@ -1,7 +1,7 @@
 # Polymorphic Style
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -15,16 +15,16 @@ None
 
 ## Attributes
 
-  | Name | Type | Default&nbsp;Value | Description | 
+  | Name | Type | Default Value | Description | 
 | -------- | -------- | -------- | -------- |
-| stateStyle | StateStyles | - | Sets&nbsp;the&nbsp;styles&nbsp;of&nbsp;a&nbsp;component&nbsp;for&nbsp;different&nbsp;states. | 
+| stateStyle | StateStyles | - | Sets the styles of a component for different states. | 
 
 - StateStyles<sup>8+</sup>
-    | Name | Type | Mandatory | Default&nbsp;Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description | 
   | -------- | -------- | -------- | -------- | -------- |
-  | normal | ()=&gt;void | No | - | Style&nbsp;of&nbsp;the&nbsp;component&nbsp;when&nbsp;stateless. | 
-  | pressed | ()=&gt;void | No | - | Style&nbsp;of&nbsp;the&nbsp;component&nbsp;in&nbsp;the&nbsp;pressed&nbsp;state. | 
-  | disabled | ()=&gt;void | No | - | Style&nbsp;of&nbsp;the&nbsp;component&nbsp;in&nbsp;disabled&nbsp;state. | 
+  | normal | ()=&gt;void | No | - | Style of the component when stateless. | 
+  | pressed | ()=&gt;void | No | - | Style of the component in the pressed state. | 
+  | disabled | ()=&gt;void | No | - | Style of the component in disabled state. | 
 
 
 ## Example

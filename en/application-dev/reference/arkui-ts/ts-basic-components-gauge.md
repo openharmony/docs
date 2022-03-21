@@ -1,7 +1,7 @@
 # Gauge
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -13,9 +13,9 @@ Data gauge chart widget, which is used to display data in a ring chart.
 None
 
 
-## Child Component
+## Child Components
 
-N/A
+None
 
 
 ## APIs
@@ -23,22 +23,22 @@ N/A
 Gauge(value:{value: number, min?: number, max?: number})
 
 - Parameter
-    | Name | Type | Mandatory | Default&nbsp;Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | value | number | Yes | - | Current&nbsp;data&nbsp;value. | 
-  | min | number | No | 0 | Minimum&nbsp;value&nbsp;of&nbsp;the&nbsp;current&nbsp;data&nbsp;segment. | 
-  | max | number | No | 100 | Maximum&nbsp;value&nbsp;of&nbsp;the&nbsp;current&nbsp;data&nbsp;segment. | 
+  | value | number | Yes | - | Current data value. |
+  | min | number | No | 0 | Minimum value of the current data segment. |
+  | max | number | No | 100 | Maximum value of the current data segment. |
 
 
 ## Attributes
 
-  | Name | Type | Default&nbsp;Value | Description | 
+| Name | Type | Default Value | Description |
 | -------- | -------- | -------- | -------- |
-| value | number | 0 | Sets&nbsp;the&nbsp;value&nbsp;of&nbsp;the&nbsp;current&nbsp;data&nbsp;chart. | 
-| startAngle | Angle | -150 | Set&nbsp;the&nbsp;start&nbsp;angle.&nbsp;Clock&nbsp;0&nbsp;indicates&nbsp;0&nbsp;degree,&nbsp;and&nbsp;the&nbsp;clockwise&nbsp;direction&nbsp;indicates&nbsp;the&nbsp;positive&nbsp;angle. | 
-| endAngle | Angle | 150 | Sets&nbsp;the&nbsp;end&nbsp;angle&nbsp;position.&nbsp;The&nbsp;clock&nbsp;0&nbsp;point&nbsp;is&nbsp;0&nbsp;degree,&nbsp;and&nbsp;the&nbsp;clockwise&nbsp;direction&nbsp;is&nbsp;the&nbsp;positive&nbsp;angle. | 
-| colors | Color&nbsp;\|&nbsp;Array&lt;ColorStop&gt; | - | Set&nbsp;the&nbsp;color&nbsp;of&nbsp;the&nbsp;chart.&nbsp;You&nbsp;can&nbsp;set&nbsp;the&nbsp;pure&nbsp;color&nbsp;or&nbsp;segmental&nbsp;gradient&nbsp;color. | 
-| strokeWidth | Length | - | Sets&nbsp;the&nbsp;ring&nbsp;thickness&nbsp;of&nbsp;a&nbsp;ring&nbsp;chart. | 
+| value | number | 0 | Sets the value of the current data chart. |
+| startAngle | Angle | -150 | Set the start angle. Clock 0 indicates 0 degree, and the clockwise direction indicates the positive angle. |
+| endAngle | Angle | 150 | Sets the end angle position. The clock 0 point is 0 degree, and the clockwise direction is the positive angle. |
+| colors | Color \| Array&lt;ColorStop&gt; | - | Set the color of the chart. You can set the pure color or segmental gradient color. |
+| strokeWidth | Length | - | Sets the ring thickness of a ring chart. |
 
 
 ## Example

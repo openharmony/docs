@@ -1,7 +1,7 @@
 # Enable/Disable
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This attribute is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -13,9 +13,9 @@ None
 ## Attributes
 
 
-  | Name | Type | Default&nbsp;Value | Description | 
+  | Name | Type | Default Value | Description | 
 | -------- | -------- | -------- | -------- |
-| enabled | boolean | true | The&nbsp;value&nbsp;**true**&nbsp;means&nbsp;that&nbsp;the&nbsp;component&nbsp;is&nbsp;available&nbsp;and&nbsp;can&nbsp;respond&nbsp;to&nbsp;operations&nbsp;such&nbsp;as&nbsp;clicking.&nbsp;The&nbsp;value&nbsp;**false**&nbsp;means&nbsp;that&nbsp;the&nbsp;component&nbsp;does&nbsp;not&nbsp;respond&nbsp;to&nbsp;operations&nbsp;such&nbsp;as&nbsp;clicking. | 
+| enabled | boolean | true | The value **true** means that the component is available and can respond to operations such as clicking. The value **false** means that the component does not respond to operations such as clicking. | 
 
 
 ## Example

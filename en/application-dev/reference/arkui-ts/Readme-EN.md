@@ -50,13 +50,17 @@
     - Basic Components
         - [Blank](ts-basic-components-blank.md)
         - [Button](ts-basic-components-button.md)
+        - [Checkbox](ts-basic-components-checkbox.md)
+        - [CheckboxGroup](ts-basic-components-checkboxgroup.md)
         - [DataPanel](ts-basic-components-datapanel.md)
         - [DatePicker](ts-basic-components-datepicker.md)
         - [Divider](ts-basic-components-divider.md)
+        - [Gauge](ts-basic-components-gauge.md)
         - [Image](ts-basic-components-image.md)
         - [ImageAnimator](ts-basic-components-imageanimator.md)
         - [Progress](ts-basic-components-progress.md)
         - [QRCode](ts-basic-components-qrcode.md)
+        - [Radio](ts-basic-components-radio.md)
         - [Rating](ts-basic-components-rating.md)
         - [Select](ts-basic-components-rating.md)
         - [Span](ts-basic-components-span.md)
@@ -68,6 +72,7 @@
         - [TextTimer](ts-basic-components-texttimer.md)
         - [Toggle](ts-basic-components-toggle.md)
         - [TextClock](ts-basic-components-textclock.md)
+        - [PluginComponent](ts-basic-components-plugincomponent.md)
     - Container Components
         - [AlphabetIndexer](ts-container-alphabet-indexer.md)
         - [Badge](ts-container-badge.md)
@@ -91,6 +96,9 @@
         - [Swiper](ts-container-swiper.md)
         - [Tabs](ts-container-tabs.md)
         - [TabContent](ts-container-tabcontent.md)
+        - [Refresh](ts-container-refresh.md)
+        - [Stepper](ts-basic-components-stepper.md)
+        - [StepperItem](ts-basic-components-stepperitem.md)
     - Media Components
         - [Video](ts-media-components-video.md)
     - Drawing Components
@@ -123,10 +131,12 @@
     - [Interpolation Calculation](ts-interpolation-calculation.md)
 - Global UI Methods
     - [Image Cache](ts-methods-image-cache.md)
-    - [Media Query](ts-methods-media-query.md)
     - Pop-up Window
         - [Alert Dialog Box](ts-methods-alert-dialog-box.md)
         - [Action Sheet](ts-methods-action-sheet.md)
         - [Custom Dialog Box](ts-methods-custom-dialog-box.md)
+        - [Date Picker Dialog Box](ts-methods-datepicker-dialog.md)
+        - [Text Picker Dialog Box](ts-methods-textpicker-dialog.md)
+    - [Menu](ts-methods-menu.md)
 - Appendix
     - [Built-in Enums](ts-appendix-enums.md)

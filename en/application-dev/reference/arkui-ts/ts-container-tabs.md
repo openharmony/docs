@@ -1,7 +1,7 @@
 # Tabs
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -13,7 +13,7 @@ The **&lt;Tabs&gt;** component is a container component that allows users to swi
 None
 
 
-## Child Component
+## Child Components
 
 The **&lt;Tabs&gt;** component can contain [TabContent](ts-container-tabcontent.md) child components.
 
@@ -23,53 +23,53 @@ The **&lt;Tabs&gt;** component can contain [TabContent](ts-container-tabcontent.
 Tabs(value: {barPosition?: BarPosition, index?: number, controller?: [TabsController](#tabscontroller)})
 
 - Parameters
-    | Name | Type | Mandatory | Default&nbsp;Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | barPosition | BarPosition | No | BarPosition.Start | Tab&nbsp;bar&nbsp;position&nbsp;for&nbsp;creating&nbsp;the&nbsp;**&lt;Tabs&gt;**&nbsp;container&nbsp;component. | 
-  | index | number | No | 0 | Initial&nbsp;tab&nbsp;index. | 
-  | controller | [TabsController](#tabscontroller) | No | - | Tab&nbsp;controller. | 
+  | barPosition | BarPosition | No | BarPosition.Start | Tab bar position for creating the **&lt;Tabs&gt;** container component. |
+  | index | number | No | 0 | Initial tab index. |
+  | controller | [TabsController](#tabscontroller) | No | - | Tab controller. |
 
 - BarPosition enums
-    | Name | Description | 
+    | Name | Description |
   | -------- | -------- |
-  | Start | If&nbsp;the&nbsp;**vertical**&nbsp;attribute&nbsp;is&nbsp;set&nbsp;to&nbsp;**true**,&nbsp;the&nbsp;tab&nbsp;is&nbsp;on&nbsp;the&nbsp;left&nbsp;of&nbsp;the&nbsp;container.&nbsp;If&nbsp;the&nbsp;**vertical**&nbsp;attribute&nbsp;is&nbsp;set&nbsp;to&nbsp;**false**,&nbsp;the&nbsp;tab&nbsp;is&nbsp;on&nbsp;the&nbsp;top&nbsp;of&nbsp;the&nbsp;container. | 
-  | End | If&nbsp;the&nbsp;**vertical**&nbsp;attribute&nbsp;is&nbsp;set&nbsp;to&nbsp;**true**,&nbsp;the&nbsp;tab&nbsp;is&nbsp;on&nbsp;the&nbsp;right&nbsp;of&nbsp;the&nbsp;container.&nbsp;If&nbsp;the&nbsp;**vertical**&nbsp;attribute&nbsp;is&nbsp;set&nbsp;to&nbsp;**false**,&nbsp;the&nbsp;tab&nbsp;is&nbsp;at&nbsp;the&nbsp;bottom&nbsp;of&nbsp;the&nbsp;container. | 
+  | Start | If the **vertical** attribute is set to **true**, the tab is on the left of the container. If the **vertical** attribute is set to **false**, the tab is on the top of the container. |
+  | End | If the **vertical** attribute is set to **true**, the tab is on the right of the container. If the **vertical** attribute is set to **false**, the tab is at the bottom of the container. |
 
 
 ### TabsController
 
 Defines a tab controller, which is used to control switching of tabs.
 
-  | API | Description | 
+| API | Description |
 | -------- | -------- |
-| changeIndex(value:&nbsp;number):&nbsp;void | Changes&nbsp;the&nbsp;index&nbsp;of&nbsp;a&nbsp;tab.&nbsp;The&nbsp;value&nbsp;starts&nbsp;from&nbsp;**0**. | 
+| changeIndex(value: number): void | Changes the index of a tab. The value starts from **0**. |
 
 
 ## Attributes
 
 Touch target configuration is not supported.
 
-  | Name | Type | Default&nbsp;Value | Description | 
+| Name | Type | Default Value | Description |
 | -------- | -------- | -------- | -------- |
-| vertical | boolean | false | Whether&nbsp;a&nbsp;tab&nbsp;is&nbsp;a&nbsp;vertical&nbsp;tab. | 
-| scrollable | boolean | true | Whether&nbsp;page&nbsp;switching&nbsp;can&nbsp;be&nbsp;performed&nbsp;by&nbsp;swiping&nbsp;left&nbsp;or&nbsp;right. | 
-| barMode | BarMode | - | Tab&nbsp;bar&nbsp;layout&nbsp;mode. | 
-| barWidth | number | - | Width&nbsp;of&nbsp;the&nbsp;tab&nbsp;bar.&nbsp;If&nbsp;this&nbsp;parameter&nbsp;is&nbsp;not&nbsp;set,&nbsp;the&nbsp;default&nbsp;value&nbsp;in&nbsp;the&nbsp;system&nbsp;theme&nbsp;is&nbsp;used. | 
-| barHeight | number | - | Height&nbsp;of&nbsp;the&nbsp;tab&nbsp;bar.&nbsp;If&nbsp;this&nbsp;parameter&nbsp;is&nbsp;not&nbsp;set,&nbsp;the&nbsp;default&nbsp;value&nbsp;in&nbsp;the&nbsp;system&nbsp;theme&nbsp;is&nbsp;used. | 
-| animationDuration | number | 200 | Animation&nbsp;duration&nbsp;of&nbsp;the&nbsp;tab&nbsp;content. | 
+| vertical | boolean | false | Whether a tab is a vertical tab. |
+| scrollable | boolean | true | Whether page switching can be performed by swiping left or right. |
+| barMode | BarMode | - | Tab bar layout mode. |
+| barWidth | number | - | Width of the tab bar. If this parameter is not set, the default value in the system theme is used. |
+| barHeight | number | - | Height of the tab bar. If this parameter is not set, the default value in the system theme is used. |
+| animationDuration | number | 200 | Animation duration of the tab content. |
 
 - BarMode enums
-    | Name | Description | 
+    | Name | Description |
   | -------- | -------- |
-  | Scrollable | The&nbsp;actual&nbsp;layout&nbsp;width&nbsp;of&nbsp;the&nbsp;tab&nbsp;bar&nbsp;is&nbsp;used.&nbsp;If&nbsp;the&nbsp;actual&nbsp;width&nbsp;exceeds&nbsp;the&nbsp;total&nbsp;length,&nbsp;the&nbsp;tab&nbsp;bar&nbsp;is&nbsp;scrollable. | 
-  | Fixed | The&nbsp;widths&nbsp;of&nbsp;all&nbsp;tab&nbsp;bars&nbsp;are&nbsp;evenly&nbsp;allocated. | 
+  | Scrollable | The actual layout width of the tab bar is used. If the actual width exceeds the total length, the tab bar is scrollable. |
+  | Fixed | The widths of all tab bars are evenly allocated. |
 
 
 ## Events
 
-  | Name | Description | 
+| Name | Description |
 | -------- | -------- |
-| onChange(callback:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;void) | Event&nbsp;triggered&nbsp;when&nbsp;a&nbsp;tab&nbsp;is&nbsp;switched. | 
+| onChange(callback: (index: number) =&gt; void) | Event triggered when a tab is switched. |
 
 
 ## Example

@@ -1,7 +1,7 @@
 # Transformation
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This attribute is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -13,12 +13,12 @@ None
 ## Attributes
 
 
-  | Name | Type | Default&nbsp;Value | Description | 
+  | Name | Type | Default Value | Description | 
 | -------- | -------- | -------- | -------- |
-| rotate | {<br/>x?:&nbsp;number,<br/>y?:&nbsp;number,<br/>z?:&nbsp;number,<br/>angle?:&nbsp;Angle,<br/>centerX?:&nbsp;Length,<br/>centerY?:&nbsp;Length<br/>} | {<br/>x:&nbsp;0,<br/>y:&nbsp;0,<br/>z:&nbsp;0,<br/>angle:&nbsp;0,<br/>centerX:&nbsp;'50%',<br/>centerY:&nbsp;'50%'<br/>} | The&nbsp;vector&nbsp;(x,&nbsp;y,&nbsp;z)&nbsp;specifies&nbsp;a&nbsp;rotation&nbsp;axis.&nbsp;A&nbsp;positive&nbsp;angle&nbsp;indicates&nbsp;a&nbsp;clockwise&nbsp;rotation,&nbsp;and&nbsp;a&nbsp;negative&nbsp;angle&nbsp;indicates&nbsp;a&nbsp;counterclockwise&nbsp;rotation.&nbsp;The&nbsp;default&nbsp;value&nbsp;is&nbsp;**0**.&nbsp;**centerX**&nbsp;and&nbsp;**centerY**&nbsp;are&nbsp;used&nbsp;to&nbsp;set&nbsp;the&nbsp;rotation&nbsp;center&nbsp;point. | 
-| translate | {<br/>x?:&nbsp;Length,<br/>y?:&nbsp;Length,<br/>z?&nbsp;:&nbsp;Length<br/>} | {<br/>x:&nbsp;0,<br/>y:&nbsp;0,<br/>z:&nbsp;0<br/>} | Translation&nbsp;distance&nbsp;along&nbsp;the&nbsp;x-,&nbsp;y-,&nbsp;and&nbsp;z-axis.&nbsp;The&nbsp;translation&nbsp;direction&nbsp;is&nbsp;determined&nbsp;by&nbsp;the&nbsp;positive&nbsp;and&nbsp;negative&nbsp;values.&nbsp;The&nbsp;default&nbsp;value&nbsp;is&nbsp;**0**. | 
-| scale | {<br/>x?:&nbsp;number,<br/>y?:&nbsp;number,<br/>z?:&nbsp;number,<br/>centerX?:&nbsp;Length,<br/>centerY?:&nbsp;Length<br/>} | {<br/>x:&nbsp;1,<br/>y:&nbsp;1,<br/>z:&nbsp;1,<br/>centerX:'50%',<br/>centerY:'50%'<br/>} | Scale&nbsp;ratio&nbsp;of&nbsp;the&nbsp;x-,&nbsp;y-,&nbsp;and&nbsp;z-axis.&nbsp;The&nbsp;default&nbsp;value&nbsp;is&nbsp;**1**.&nbsp;**centerX**&nbsp;and&nbsp;**centerY**&nbsp;are&nbsp;used&nbsp;to&nbsp;set&nbsp;the&nbsp;scale&nbsp;center&nbsp;point. | 
-| transform | matrix:&nbsp;Matrix4 | - | Transformation&nbsp;matrix&nbsp;of&nbsp;the&nbsp;component. | 
+| rotate | {<br/>x?: number,<br/>y?: number,<br/>z?: number,<br/>angle?: Angle,<br/>centerX?: Length,<br/>centerY?: Length<br/>} | {<br/>x: 0,<br/>y: 0,<br/>z: 0,<br/>angle: 0,<br/>centerX: '50%',<br/>centerY: '50%'<br/>} | The vector (x, y, z) specifies a rotation axis. A positive angle indicates a clockwise rotation, and a negative angle indicates a counterclockwise rotation. The default value is **0**. **centerX** and **centerY** are used to set the rotation center point. | 
+| translate | {<br/>x?: Length,<br/>y?: Length,<br/>z? : Length<br/>} | {<br/>x: 0,<br/>y: 0,<br/>z: 0<br/>} | Translation distance along the x-, y-, and z-axis. The translation direction is determined by the positive and negative values. The default value is **0**. | 
+| scale | {<br/>x?: number,<br/>y?: number,<br/>z?: number,<br/>centerX?: Length,<br/>centerY?: Length<br/>} | {<br/>x: 1,<br/>y: 1,<br/>z: 1,<br/>centerX:'50%',<br/>centerY:'50%'<br/>} | Scale ratio of the x-, y-, and z-axis. The default value is **1**. **centerX** and **centerY** are used to set the scale center point. | 
+| transform | matrix: Matrix4 | - | Transformation matrix of the component. | 
 
 
 ## Example

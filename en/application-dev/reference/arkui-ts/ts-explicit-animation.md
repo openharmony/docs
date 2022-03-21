@@ -1,31 +1,31 @@
 # Explicit Animation
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This animation is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
   | Name | Description | 
 | -------- | -------- |
-| animateTo(value:&nbsp;[AnimationOption](#animationoption-object),&nbsp;event:&nbsp;()=&gt;&nbsp;void)&nbsp;:&nbsp;void | Provides&nbsp;a&nbsp;transition&nbsp;animation&nbsp;when&nbsp;the&nbsp;status&nbsp;changes&nbsp;due&nbsp;to&nbsp;the&nbsp;closure&nbsp;code.<br/>**event**&nbsp;specifies&nbsp;the&nbsp;closure&nbsp;function&nbsp;that&nbsp;displays&nbsp;the&nbsp;dynamic&nbsp;effect.&nbsp;The&nbsp;system&nbsp;automatically&nbsp;inserts&nbsp;the&nbsp;transition&nbsp;animation&nbsp;if&nbsp;the&nbsp;status&nbsp;changes&nbsp;in&nbsp;the&nbsp;closure&nbsp;function. | 
+| animateTo(value: [AnimationOption](#animationoption-object), event: ()=&gt; void) : void | Provides a transition animation when the status changes due to the closure code.<br/>**event** specifies the closure function that displays the dynamic effect. The system automatically inserts the transition animation if the status changes in the closure function. | 
 
 
 ## AnimationOption Object
 
 - Attributes
-    | Name | Type | Default&nbsp;Value | Description | 
+    | Name | Type | Default Value | Description | 
   | -------- | -------- | -------- | -------- |
-  | duration | number | 1000 | Animation&nbsp;duration,&nbsp;in&nbsp;ms. | 
-  | tempo | number | 1.0 | Animation&nbsp;playback&nbsp;speed.&nbsp;A&nbsp;larger&nbsp;value&nbsp;indicates&nbsp;faster&nbsp;animation&nbsp;playback,&nbsp;and&nbsp;a&nbsp;smaller&nbsp;value&nbsp;indicates&nbsp;slower&nbsp;animation&nbsp;playback.&nbsp;The&nbsp;value&nbsp;**0**&nbsp;means&nbsp;that&nbsp;there&nbsp;is&nbsp;no&nbsp;animation. | 
-  | curve | Curve&nbsp;\|&nbsp;Curves | Linear | Animation&nbsp;curve. | 
-  | delay | number | 0 | Delay&nbsp;of&nbsp;animation&nbsp;playback,&nbsp;in&nbsp;ms.&nbsp;By&nbsp;default,&nbsp;the&nbsp;playback&nbsp;is&nbsp;not&nbsp;delayed. | 
-  | iterations | number | 1 | Number&nbsp;of&nbsp;times&nbsp;that&nbsp;the&nbsp;animation&nbsp;is&nbsp;played.&nbsp;By&nbsp;default,&nbsp;the&nbsp;animation&nbsp;is&nbsp;played&nbsp;once.&nbsp;The&nbsp;value&nbsp;**-1**&nbsp;indicates&nbsp;that&nbsp;the&nbsp;animation&nbsp;is&nbsp;played&nbsp;for&nbsp;an&nbsp;unlimited&nbsp;number&nbsp;of&nbsp;times. | 
-  | playMode | PlayMode | Normal | Animation&nbsp;playback&nbsp;mode.&nbsp;By&nbsp;default,&nbsp;the&nbsp;animation&nbsp;is&nbsp;played&nbsp;from&nbsp;the&nbsp;beginning&nbsp;after&nbsp;the&nbsp;playback&nbsp;is&nbsp;complete. | 
+  | duration | number | 1000 | Animation duration, in ms. | 
+  | tempo | number | 1.0 | Animation playback speed. A larger value indicates faster animation playback, and a smaller value indicates slower animation playback. The value **0** means that there is no animation. | 
+  | curve | Curve \| Curves | Linear | Animation curve. | 
+  | delay | number | 0 | Delay of animation playback, in ms. By default, the playback is not delayed. | 
+  | iterations | number | 1 | Number of times that the animation is played. By default, the animation is played once. The value **-1** indicates that the animation is played for an unlimited number of times. | 
+  | playMode | PlayMode | Normal | Animation playback mode. By default, the animation is played from the beginning after the playback is complete. | 
 
 
 - APIs
     | Name | Description | 
   | -------- | -------- |
-  | onFinish()&nbsp;=&gt;&nbsp;void | Callback&nbsp;invoked&nbsp;when&nbsp;the&nbsp;animation&nbsp;playback&nbsp;is&nbsp;complete. | 
+  | onFinish() =&gt; void | Callback invoked when the animation playback is complete. | 
 
 
 ## Example

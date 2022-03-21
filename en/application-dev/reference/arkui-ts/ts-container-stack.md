@@ -1,7 +1,7 @@
 # Stack
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -13,9 +13,9 @@ The **&lt;Stack&gt;** component provides a stack container where child component
 None
 
 
-## Child Component
+## Child Components
 
-The **&lt;Stack&gt;** component can contain child components.
+ Supported
 
 
 ## APIs
@@ -23,9 +23,9 @@ The **&lt;Stack&gt;** component can contain child components.
 Stack(value:{alignContent?: Alignment})
 
 - Parameters
-    | Name | Type | Mandatory | Default&nbsp;Value | Description |
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | alignContent | [Alignment](ts-appendix-enums.md#alignment-enums) | No | Center | Alignment&nbsp;of&nbsp;child&nbsp;components&nbsp;in&nbsp;the&nbsp;container. |
+  | alignContent | [Alignment](ts-appendix-enums.md#alignment-enums) | No | Center | Alignment of child components in the container. |
 
 
 ## Example

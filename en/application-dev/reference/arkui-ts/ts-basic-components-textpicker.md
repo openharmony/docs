@@ -1,7 +1,7 @@
 # TextPicker
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -13,7 +13,7 @@ The **&lt;TextPicker&gt;** component allows users to select text from a list of 
 None
 
 
-## Child Component
+## Child Components
 
 None
 
@@ -25,24 +25,24 @@ TextPicker(value: {range: string[], selected?: number})
 Creates a text picker based on the selection range specified by **range**.
 
 - Parameter
-    | Name | Type | Mandatory | Default&nbsp;Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | range | string[] | Yes | - | Data&nbsp;selection&nbsp;range&nbsp;of&nbsp;the&nbsp;picker. | 
-  | selected | number | No | First&nbsp;element | Index&nbsp;value&nbsp;of&nbsp;the&nbsp;selected&nbsp;item&nbsp;in&nbsp;the&nbsp;array. | 
+  | range | string[] | Yes | - | Data selection range of the picker. |
+  | selected | number | No | First element | Index value of the selected item in the array. |
 
 
 ## Attributes
 
-  | Name | Type | Default&nbsp;Value | Description | 
+| Name | Type | Default Value | Description |
 | -------- | -------- | -------- | -------- |
-| defaultPickerItemHeight | Length | - | Default&nbsp;height&nbsp;of&nbsp;a&nbsp;Picker&nbsp;content&nbsp;item&nbsp;element. | 
+| defaultPickerItemHeight | Length | - | Default height of a Picker content item element. |
 
 
 ## Events
 
-  | Name | Description | 
-| -------- | -------- | 
-| onChange(callback:&nbsp;(value:&nbsp;string,&nbsp;index:&nbsp;number)&nbsp;=&gt;&nbsp;void) | Triggered&nbsp;when&nbsp;an&nbsp;item&nbsp;in&nbsp;the&nbsp;picker&nbsp;is&nbsp;selected.<br/>-&nbsp;**value**:&nbsp;text&nbsp;of&nbsp;the&nbsp;selected&nbsp;item.<br/>-&nbsp;**index**:&nbsp;index&nbsp;of&nbsp;the&nbsp;selected&nbsp;item. | 
+| Name | Description |
+| -------- | -------- |
+| onChange(callback: (value: string, index: number) =&gt; void) | Triggered when an item in the picker is selected.<br/>- **value**: text of the selected item.<br/>- **index**: index of the selected item. |
 
 
 ## Example

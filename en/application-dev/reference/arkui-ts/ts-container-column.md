@@ -1,7 +1,7 @@
 # Column
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -24,24 +24,24 @@ Column(value:{space?: Length})
 
 
 - Parameters
-    | Name | Type | Mandatory | Default&nbsp;Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description | 
   | -------- | -------- | -------- | -------- | -------- |
-  | space | Length | No | 0 | Space&nbsp;between&nbsp;any&nbsp;two&nbsp;adjacent&nbsp;child&nbsp;components&nbsp;in&nbsp;the&nbsp;vertical&nbsp;layout. | 
+  | space | Length | No | 0 | Space between any two adjacent child components in the vertical layout. | 
 
 
 ## Attributes
 
-| Name | Type | Default&nbsp;Value | Description |
+| Name | Type | Default Value | Description |
 | -------- | -------- | -------- | -------- |
-| alignItems | HorizontalAlign | HorizontalAlign.Center | Alignment&nbsp;mode&nbsp;of&nbsp;child&nbsp;components&nbsp;in&nbsp;the&nbsp;horizontal&nbsp;direction. |
+| alignItems | HorizontalAlign | HorizontalAlign.Center | Alignment mode of child components in the horizontal direction. |
 | justifyContent<sup>8+</sup> | [FlexAlign](ts-container-flex.md) | FlexAlign.Start | Alignment mode of child components in the vertical direction. |
 
 - HorizontalAlign enums
     | Name | Description | 
   | -------- | -------- |
-  | Start | Aligned&nbsp;with&nbsp;the&nbsp;start&nbsp;edge&nbsp;in&nbsp;the&nbsp;same&nbsp;direction&nbsp;as&nbsp;the&nbsp;language&nbsp;in&nbsp;use. | 
-  | Center | Center&nbsp;alignment.&nbsp;This&nbsp;is&nbsp;the&nbsp;default&nbsp;alignment&nbsp;mode. | 
-  | End | Aligned&nbsp;with&nbsp;the&nbsp;end&nbsp;edge&nbsp;in&nbsp;the&nbsp;same&nbsp;direction&nbsp;as&nbsp;the&nbsp;language&nbsp;in&nbsp;use. | 
+  | Start | Aligned with the start edge in the same direction as the language in use. | 
+  | Center | Center alignment. This is the default alignment mode. | 
+  | End | Aligned with the end edge in the same direction as the language in use. | 
 
 
 ## Example

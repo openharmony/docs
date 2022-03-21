@@ -1,7 +1,7 @@
 # Rating
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -23,26 +23,26 @@ None
 Rating(options?: { rating: number, indicator?: boolean })
 
 - Parameters
-    | Name | Type | Mandatory | Default&nbsp;Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description | 
   | -------- | -------- | -------- | -------- | -------- |
-  | rating | number | Yes | 0 | Value&nbsp;to&nbsp;rate. | 
-  | indicator | boolean | No | false | Used&nbsp;only&nbsp;as&nbsp;an&nbsp;indicator&nbsp;and&nbsp;cannot&nbsp;be&nbsp;operated. | 
+  | rating | number | Yes | 0 | Value to rate. | 
+  | indicator | boolean | No | false | Used only as an indicator and cannot be operated. | 
 
 
 ## Attributes
 
-  | Name | Type | Default&nbsp;Value | Description | 
+  | Name | Type | Default Value | Description | 
 | -------- | -------- | -------- | -------- |
-| stars | number | 5 | Total&nbsp;number&nbsp;of&nbsp;stars. | 
-| stepSize | number | 0.5 | Step&nbsp;of&nbsp;an&nbsp;operation. | 
-| starStyle | {<br/>backgroundUri:&nbsp;string,<br/>foregroundUri:&nbsp;string,<br/>secondaryUri?:&nbsp;string<br/>} | - | **backgroundSrc**:&nbsp;image&nbsp;link&nbsp;of&nbsp;the&nbsp;unselected&nbsp;star.&nbsp;You&nbsp;can&nbsp;customize&nbsp;the&nbsp;image&nbsp;or&nbsp;use&nbsp;the&nbsp;default&nbsp;image.&nbsp;Only&nbsp;local&nbsp;images&nbsp;are&nbsp;supported.<br/>**foregroundSrc**:&nbsp;image&nbsp;path&nbsp;of&nbsp;the&nbsp;selected&nbsp;star.&nbsp;You&nbsp;can&nbsp;customize&nbsp;the&nbsp;image&nbsp;or&nbsp;use&nbsp;the&nbsp;default&nbsp;image.&nbsp;Only&nbsp;local&nbsp;images&nbsp;are&nbsp;supported.<br/>**secondarySrc**:&nbsp;image&nbsp;path&nbsp;of&nbsp;the&nbsp;partially&nbsp;selected&nbsp;star.&nbsp;You&nbsp;can&nbsp;customize&nbsp;the&nbsp;image&nbsp;or&nbsp;use&nbsp;the&nbsp;default&nbsp;image.&nbsp;Only&nbsp;local&nbsp;images&nbsp;are&nbsp;supported. | 
+| stars | number | 5 | Total number of stars. | 
+| stepSize | number | 0.5 | Step of an operation. | 
+| starStyle | {<br/>backgroundUri: string,<br/>foregroundUri: string,<br/>secondaryUri?: string<br/>} | - | **backgroundSrc**: image link of the unselected star. You can customize the image or use the default image. Only local images are supported.<br/>**foregroundSrc**: image path of the selected star. You can customize the image or use the default image. Only local images are supported.<br/>**secondarySrc**: image path of the partially selected star. You can customize the image or use the default image. Only local images are supported. | 
 
 
 ## Events
 
   | Name | Description | 
 | -------- | -------- |
-| onChange(callback:(value:&nbsp;number)&nbsp;=&gt;&nbsp;void) | Triggered&nbsp;when&nbsp;the&nbsp;rating&nbsp;value&nbsp;changes. | 
+| onChange(callback:(value: number) =&gt; void) | Triggered when the rating value changes. | 
 
 
 ## Example

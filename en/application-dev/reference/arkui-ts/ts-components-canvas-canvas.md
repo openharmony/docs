@@ -1,7 +1,7 @@
 # Canvas
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -23,9 +23,9 @@ None
 Canvas(context: CanvasRenderingContext2D)
 
 - Parameters
-    | Name | Type | Mandatory | Default&nbsp;Value | Description |
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | context | [CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md) | Yes | - | For&nbsp;details,&nbsp;see&nbsp;CanvasRenderingContext2D. |
+  | context | [CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md) | Yes | - | For details, see CanvasRenderingContext2D. |
 
 
 ## Attributes
@@ -39,7 +39,7 @@ In addition to [universal events](ts-universal-events-click.md), the following e
 
   | Name | Parameter | Description | 
 | -------- | -------- | -------- |
-| onReady(callback:&nbsp;()&nbsp;=&gt;&nbsp;void) | None | Triggered&nbsp;when&nbsp;. | 
+| onReady(callback: () =&gt; void) | None | Triggered when . | 
 
 
 ## Example

@@ -5,83 +5,83 @@
 
   | Name | Description | 
 | -------- | -------- |
-| TopStart | Top&nbsp;start. | 
-| Top | Horizontally&nbsp;centered&nbsp;on&nbsp;the&nbsp;top. | 
-| TopEnd | Top&nbsp;end. | 
-| Start | Vertically&nbsp;centered&nbsp;start. | 
-| Center | Horizontally&nbsp;and&nbsp;vertically&nbsp;centered. | 
-| End | Vertically&nbsp;centered&nbsp;end. | 
-| BottomStart | Bottom&nbsp;start. | 
-| Bottom | Horizontally&nbsp;centered&nbsp;on&nbsp;the&nbsp;bottom. | 
-| BottomEnd | Bottom&nbsp;end. | 
+| TopStart | Top start. | 
+| Top | Horizontally centered on the top. | 
+| TopEnd | Top end. | 
+| Start | Vertically centered start. | 
+| Center | Horizontally and vertically centered. | 
+| End | Vertically centered end. | 
+| BottomStart | Bottom start. | 
+| Bottom | Horizontally centered on the bottom. | 
+| BottomEnd | Bottom end. | 
 
 
 ## Axis Enums
 
   | Name | Description | 
 | -------- | -------- |
-| Vertical | Vertical&nbsp;direction. | 
-| Horizontal | Horizontal&nbsp;direction. | 
+| Vertical | Vertical direction. | 
+| Horizontal | Horizontal direction. | 
 
 
 ## ItemAlign Enums
 
   | Name | Description | 
 | -------- | -------- |
-| Auto | The&nbsp;default&nbsp;configuration&nbsp;in&nbsp;the&nbsp;Flex&nbsp;container&nbsp;is&nbsp;used. | 
-| Start | The&nbsp;elements&nbsp;are&nbsp;in&nbsp;the&nbsp;Flex&nbsp;container,&nbsp;top-aligned&nbsp;in&nbsp;the&nbsp;cross-axis&nbsp;direction | 
-| Center | The&nbsp;elements&nbsp;are&nbsp;in&nbsp;the&nbsp;Flex&nbsp;container,&nbsp;centered&nbsp;in&nbsp;the&nbsp;cross-axis&nbsp;direction. | 
-| End | The&nbsp;elements&nbsp;are&nbsp;in&nbsp;the&nbsp;Flex&nbsp;container,&nbsp;bottom-aligned&nbsp;in&nbsp;the&nbsp;cross-axis&nbsp;direction. | 
-| Stretch | The&nbsp;elements&nbsp;are&nbsp;in&nbsp;the&nbsp;Flex&nbsp;container,&nbsp;stretched&nbsp;and&nbsp;padded&nbsp;in&nbsp;the&nbsp;cross-axis&nbsp;direction.&nbsp;If&nbsp;the&nbsp;size&nbsp;is&nbsp;not&nbsp;set,&nbsp;the&nbsp;elements&nbsp;are&nbsp;stretched&nbsp;to&nbsp;the&nbsp;container&nbsp;size. | 
-| Baseline | The&nbsp;elements&nbsp;are&nbsp;in&nbsp;the&nbsp;Flex&nbsp;container,&nbsp;text&nbsp;baseline&nbsp;aligned&nbsp;in&nbsp;the&nbsp;cross-axis&nbsp;direction. | 
+| Auto | The default configuration in the Flex container is used. | 
+| Start | The elements are in the Flex container, top-aligned in the cross-axis direction | 
+| Center | The elements are in the Flex container, centered in the cross-axis direction. | 
+| End | The elements are in the Flex container, bottom-aligned in the cross-axis direction. | 
+| Stretch | The elements are in the Flex container, stretched and padded in the cross-axis direction. If the size is not set, the elements are stretched to the container size. | 
+| Baseline | The elements are in the Flex container, text baseline aligned in the cross-axis direction. | 
 
 
 ## LineCapStyle Enums
 
   | Name | Description | 
 | -------- | -------- |
-| Butt | The&nbsp;ends&nbsp;of&nbsp;dividing&nbsp;lines&nbsp;are&nbsp;square. | 
-| Round | The&nbsp;ends&nbsp;of&nbsp;dividing&nbsp;lines&nbsp;are&nbsp;rounded. | 
-| Square | The&nbsp;ends&nbsp;of&nbsp;dividing&nbsp;lines&nbsp;are&nbsp;square. | 
+| Butt | The ends of dividing lines are square. | 
+| Round | The ends of dividing lines are rounded. | 
+| Square | The ends of dividing lines are square. | 
 
 
 ## PlayMode Enums
 
   | Name | Description | 
 | -------- | -------- |
-| Normal | The&nbsp;animation&nbsp;is&nbsp;played&nbsp;normally. | 
-| Reverse | The&nbsp;animation&nbsp;is&nbsp;played&nbsp;reversely. | 
-| Alternate | The&nbsp;animation&nbsp;is&nbsp;played&nbsp;normally&nbsp;for&nbsp;an&nbsp;odd&nbsp;number&nbsp;of&nbsp;times&nbsp;(1,&nbsp;3,&nbsp;5...)&nbsp;and&nbsp;reversely&nbsp;for&nbsp;an&nbsp;even&nbsp;number&nbsp;of&nbsp;times&nbsp;(2,&nbsp;4,&nbsp;6...). | 
-| AlternateReverse | The&nbsp;animation&nbsp;is&nbsp;played&nbsp;reversely&nbsp;for&nbsp;an&nbsp;odd&nbsp;number&nbsp;of&nbsp;times&nbsp;(1,&nbsp;3,&nbsp;5...)&nbsp;and&nbsp;normally&nbsp;for&nbsp;an&nbsp;even&nbsp;number&nbsp;of&nbsp;times&nbsp;(2,&nbsp;4,&nbsp;6...). | 
+| Normal | The animation is played normally. | 
+| Reverse | The animation is played reversely. | 
+| Alternate | The animation is played normally for an odd number of times (1, 3, 5...) and reversely for an even number of times (2, 4, 6...). | 
+| AlternateReverse | The animation is played reversely for an odd number of times (1, 3, 5...) and normally for an even number of times (2, 4, 6...). | 
 
 
 ## ImageRepeat Enums
 
   | Name | Description | 
 | -------- | -------- |
-| X | Images&nbsp;are&nbsp;repeatedly&nbsp;drawn&nbsp;only&nbsp;on&nbsp;the&nbsp;horizontal&nbsp;axis. | 
-| Y | Images&nbsp;are&nbsp;repeatedly&nbsp;drawn&nbsp;only&nbsp;on&nbsp;the&nbsp;vertical&nbsp;axis. | 
-| XY | Images&nbsp;are&nbsp;repeatedly&nbsp;drawn&nbsp;on&nbsp;both&nbsp;axes. | 
-| NoRepeat | Images&nbsp;are&nbsp;not&nbsp;repeatedly&nbsp;drawn. | 
+| X | Images are repeatedly drawn only on the horizontal axis. | 
+| Y | Images are repeatedly drawn only on the vertical axis. | 
+| XY | Images are repeatedly drawn on both axes. | 
+| NoRepeat | Images are not repeatedly drawn. | 
 
 
 ## TextDecorationType Enums
 
   | Name | Description | 
 | -------- | -------- |
-| Underline | Line&nbsp;under&nbsp;the&nbsp;text. | 
-| LineThrough | Line&nbsp;through&nbsp;the&nbsp;text. | 
-| Overline | Line&nbsp;over&nbsp;the&nbsp;text. | 
-| None | No&nbsp;decorative&nbsp;lines. | 
+| Underline | Line under the text. | 
+| LineThrough | Line through the text. | 
+| Overline | Line over the text. | 
+| None | No decorative lines. | 
 
 
 ## TextCase Enums
 
   | Name | Description | 
 | -------- | -------- |
-| Normal | Normal&nbsp;case. | 
-| LowerCase | All&nbsp;lowercase. | 
-| UpperCase | All&nbsp;uppercase. | 
+| Normal | Normal case. | 
+| LowerCase | All lowercase. | 
+| UpperCase | All uppercase. | 
 
 
 ## BarState Enums
@@ -90,7 +90,7 @@
 | -------- | -------- |
 | Off | Hide. | 
 | On | Display. | 
-| Auto | Display&nbsp;on&nbsp;demand&nbsp;(displays&nbsp;when&nbsp;the&nbsp;screen&nbsp;is&nbsp;touched&nbsp;and&nbsp;disappears&nbsp;after&nbsp;2s). | 
+| Auto | Display on demand (displays when the screen is touched and disappears after 2s). | 
 
 ## LayoutDirection Enums
 

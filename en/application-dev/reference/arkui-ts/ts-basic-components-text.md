@@ -1,7 +1,7 @@
 # Text
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -15,7 +15,7 @@ None
 
 ## Child Components
 
-The **&lt;Text&gt;** component can contain the child component [<Span>](../reference/arkui-ts/ts-basic-components-span.md).
+The **&lt;Text&gt;** component can contain the child component [<Span>](ts-basic-components-span.md).
 
 
 ## APIs
@@ -23,53 +23,53 @@ The **&lt;Text&gt;** component can contain the child component [<Span>](../refer
 Text(content?: string)
 
 - Parameters
-    | Name | Type | Mandatory | Default&nbsp;Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | content | string | No | '' | Text&nbsp;content,&nbsp;which&nbsp;is&nbsp;the&nbsp;content&nbsp;of&nbsp;the&nbsp;child&nbsp;component&nbsp;**&lt;Span&gt;**.&nbsp;This&nbsp;parameter&nbsp;does&nbsp;not&nbsp;take&nbsp;effect&nbsp;when&nbsp;the&nbsp;child&nbsp;component&nbsp;**&lt;Span&gt;**&nbsp;is&nbsp;contained. | 
+  | content | string | No | '' | Text content, which is the content of the child component **&lt;Span&gt;**. This parameter does not take effect when the child component **&lt;Span&gt;** is contained. |
 
 
 ## Attributes
 
-| Name | Type | Default&nbsp;Value | Description |
+| Name | Type | Default Value | Description |
 | -------- | -------- | -------- | -------- |
-| textAlign | TextAlign | TextAlign.Start                                              | Text&nbsp;alignment&nbsp;mode&nbsp;of&nbsp;multiple&nbsp;lines&nbsp;of&nbsp;text. |
-| textOverflow | {overflow:&nbsp;TextOverflow} | {overflow:&nbsp;TextOverflow.Clip} | Display&nbsp;mode&nbsp;when&nbsp;the&nbsp;text&nbsp;is&nbsp;too&nbsp;long. |
-| maxLines | number | Infinity | Maximum&nbsp;number&nbsp;of&nbsp;lines&nbsp;in&nbsp;the&nbsp;text. |
-| lineHeight | Length | - | Text&nbsp;line&nbsp;height.&nbsp;If&nbsp;the&nbsp;value&nbsp;is&nbsp;less&nbsp;than&nbsp;or&nbsp;equal&nbsp;to&nbsp;**0**,&nbsp;the&nbsp;line&nbsp;height&nbsp;is&nbsp;not&nbsp;limited&nbsp;and&nbsp;the&nbsp;font&nbsp;size&nbsp;is&nbsp;adaptive.&nbsp;If&nbsp;the&nbsp;value&nbsp;of&nbsp;the&nbsp;number&nbsp;type,&nbsp;the&nbsp;unit&nbsp;fp&nbsp;is&nbsp;used. |
-| decoration | {<br/>type:&nbsp;TextDecorationType,<br/>color?:&nbsp;Color<br/>} | {<br/>type:&nbsp;TextDecorationType.None,<br/>color:&nbsp;Color.Black<br/>} | Style&nbsp;and&nbsp;color&nbsp;of&nbsp;the&nbsp;text&nbsp;decorative&nbsp;line. |
-| baselineOffset | Length | - | Offset&nbsp;of&nbsp;the&nbsp;text&nbsp;baseline. |
-| textCase | TextCase | TextCase.Normal | Text&nbsp;case. |
+| textAlign | TextAlign | TextAlign.Start                                              | Text alignment mode of multiple lines of text. |
+| textOverflow | {overflow: TextOverflow} | {overflow: TextOverflow.Clip} | Display mode when the text is too long. |
+| maxLines | number | Infinity | Maximum number of lines in the text. |
+| lineHeight | Length | - | Text line height. If the value is less than or equal to **0**, the line height is not limited and the font size is adaptive. If the value of the number type, the unit fp is used. |
+| decoration | {<br/>type: TextDecorationType,<br/>color?: Color<br/>} | {<br/>type: TextDecorationType.None,<br/>color: Color.Black<br/>} | Style and color of the text decorative line. |
+| baselineOffset | Length | - | Offset of the text baseline. |
+| textCase | TextCase | TextCase.Normal | Text case. |
 
 - TextAlign enums
-    | Name | Description | 
+    | Name | Description |
   | -------- | -------- |
-  | Center | The&nbsp;text&nbsp;is&nbsp;center-aligned. | 
-  | Start | The&nbsp;text&nbsp;is&nbsp;aligned&nbsp;with&nbsp;the&nbsp;direction&nbsp;in&nbsp;which&nbsp;the&nbsp;text&nbsp;is&nbsp;written. | 
-  | End | The&nbsp;text&nbsp;is&nbsp;aligned&nbsp;with&nbsp;the&nbsp;opposite&nbsp;direction&nbsp;in&nbsp;which&nbsp;the&nbsp;text&nbsp;is&nbsp;written. | 
+  | Center | The text is center-aligned. |
+  | Start | The text is aligned with the direction in which the text is written. |
+  | End | The text is aligned with the opposite direction in which the text is written. |
 
 - TextOverflow enums
-    | Name | Description | 
+    | Name | Description |
   | -------- | -------- |
-  | Clip | Extra&nbsp;text&nbsp;is&nbsp;truncated. | 
-  | Ellipsis | The&nbsp;ellipsis&nbsp;(...)&nbsp;is&nbsp;used&nbsp;for&nbsp;extra-long&nbsp;text. | 
-  | None | No&nbsp;truncation&nbsp;or&nbsp;ellipsis&nbsp;is&nbsp;used&nbsp;for&nbsp;extra-long&nbsp;text. | 
+  | Clip | Extra text is truncated. |
+  | Ellipsis | The ellipsis (...) is used for extra-long text. |
+  | None | No truncation or ellipsis is used for extra-long text. |
 
 - TextDecorationType enums
-    | Name | Description | 
+    | Name | Description |
   | -------- | -------- |
-  | Underline | An&nbsp;underline&nbsp;is&nbsp;used. | 
-  | LineThrough | A&nbsp;strikethrough&nbsp;is&nbsp;used. | 
-  | Overline | An&nbsp;overline&nbsp;is&nbsp;used. | 
-  | None | No&nbsp;decorative&nbsp;line&nbsp;is&nbsp;used. | 
+  | Underline | An underline is used. |
+  | LineThrough | A strikethrough is used. |
+  | Overline | An overline is used. |
+  | None | No decorative line is used. |
 
 - TextCase enums
-    | Name | Description | 
+    | Name | Description |
   | -------- | -------- |
-  | Normal | The&nbsp;original&nbsp;case&nbsp;of&nbsp;the&nbsp;text&nbsp;is&nbsp;retained. | 
-  | LowerCase | All&nbsp;letters&nbsp;in&nbsp;the&nbsp;text&nbsp;are&nbsp;in&nbsp;lowercase. | 
-  | UpperCase | All&nbsp;letters&nbsp;in&nbsp;the&nbsp;text&nbsp;are&nbsp;in&nbsp;uppercase. | 
+  | Normal | The original case of the text is retained. |
+  | LowerCase | All letters in the text are in lowercase. |
+  | UpperCase | All letters in the text are in uppercase. |
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > The **&lt;Text&gt;** component cannot contain both the text and the child component **&lt;Span&gt;**. If both of them exist, only the content in **&lt;Span&gt;** is displayed.
 
 

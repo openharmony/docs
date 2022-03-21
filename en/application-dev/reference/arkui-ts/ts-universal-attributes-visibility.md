@@ -1,7 +1,7 @@
 # Visibility
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This attribute is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -13,17 +13,17 @@ None
 ## Attributes
 
 
-  | Name | Type | Default&nbsp;Value | Description | 
+  | Name | Type | Default Value | Description | 
 | -------- | -------- | -------- | -------- |
-| visibility | Visibility | Visibility.Visible | Whether&nbsp;the&nbsp;component&nbsp;is&nbsp;shown&nbsp;or&nbsp;hidden. | 
+| visibility | Visibility | Visibility.Visible | Whether the component is shown or hidden. | 
 
 
 - Visibility enums
     | Name | Description | 
   | -------- | -------- |
-  | Hidden | The&nbsp;component&nbsp;is&nbsp;hidden,&nbsp;and&nbsp;a&nbsp;placeholder&nbsp;is&nbsp;used&nbsp;for&nbsp;it&nbsp;in&nbsp;the&nbsp;layout. | 
-  | Visible | The&nbsp;component&nbsp;is&nbsp;shown. | 
-  | None | The&nbsp;component&nbsp;is&nbsp;hidden.&nbsp;It&nbsp;is&nbsp;not&nbsp;involved&nbsp;in&nbsp;the&nbsp;layout,&nbsp;and&nbsp;no&nbsp;placeholder&nbsp;is&nbsp;used&nbsp;for&nbsp;it. | 
+  | Hidden | The component is hidden, and a placeholder is used for it in the layout. | 
+  | Visible | The component is shown. | 
+  | None | The component is hidden. It is not involved in the layout, and no placeholder is used for it. | 
 
 
 ## Example

@@ -1,7 +1,7 @@
 # SwipeGesture
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This gesture is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -15,32 +15,32 @@ None
 SwipeGesture(value?: { fingers?: number; direction?: SwipeDirection; speed?: number })
 
 - Parameters
-    | Name | Type | Mandatory | Default&nbsp;Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description | 
   | -------- | -------- | -------- | -------- | -------- |
-  | fingers | number | No | 1 | Minimum&nbsp;number&nbsp;of&nbsp;fingers&nbsp;to&nbsp;trigger&nbsp;a&nbsp;swipe&nbsp;gesture.&nbsp;The&nbsp;value&nbsp;ranges&nbsp;from&nbsp;1&nbsp;to&nbsp;10. | 
-  | direction | SwipeDirection | No | SwipeDirection.All | Swipe&nbsp;direction. | 
-  | speed | number | No | 100 | Minimum&nbsp;speed&nbsp;of&nbsp;the&nbsp;swipe&nbsp;gesture&nbsp;(100&nbsp;vp/s). | 
+  | fingers | number | No | 1 | Minimum number of fingers to trigger a swipe gesture. The value ranges from 1 to 10. | 
+  | direction | SwipeDirection | No | SwipeDirection.All | Swipe direction. | 
+  | speed | number | No | 100 | Minimum speed of the swipe gesture (100 vp/s). | 
 
 - SwipeDirection enums
     | Name | Description | 
   | -------- | -------- |
-  | All | All&nbsp;directions. | 
-  | Horizontal | Horizontal&nbsp;direction. | 
-  | Vertical | Vertical&nbsp;direction. | 
+  | All | All directions. | 
+  | Horizontal | Horizontal direction. | 
+  | Vertical | Vertical direction. | 
 
 
 ## Events
 
   | Name | Description | 
 | -------- | -------- |
-| onAction(callback:(event?:&nbsp;SwipeGestureEvent)&nbsp;=&gt;&nbsp;void) | Callback&nbsp;invoked&nbsp;when&nbsp;a&nbsp;swipe&nbsp;gesture&nbsp;is&nbsp;recognized. | 
+| onAction(callback:(event?: SwipeGestureEvent) =&gt; void) | Callback invoked when a swipe gesture is recognized. | 
 
 
 - SwipeGestureEvent attributes
     | Name | Type | Description | 
   | -------- | -------- | -------- |
-  | angle | number | Angle&nbsp;of&nbsp;the&nbsp;swipe&nbsp;gesture. | 
-  | speed | number | Speed&nbsp;of&nbsp;the&nbsp;swipe&nbsp;gesture. | 
+  | angle | number | Angle of the swipe gesture. | 
+  | speed | number | Speed of the swipe gesture. | 
 
 
 ## Example

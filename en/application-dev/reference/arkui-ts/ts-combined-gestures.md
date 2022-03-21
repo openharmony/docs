@@ -1,7 +1,7 @@
 # Combined Gestures
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > Combined gestures are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -15,24 +15,24 @@ None
 GestureGroup(mode: GestureMode, ...gesture: GestureType[])
 
 - Parameters
-    | Name | Type | Mandatory | Default&nbsp;Value | Description |
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | mode | GestureMode | Yes | - | Recognition&nbsp;mode&nbsp;of&nbsp;combined&nbsp;gestures. |
-  | gesture | [TapGesture](ts-basic-gestures-tapgesture.md)<br/>\|&nbsp;[LongPressGesture](ts-basic-gestures-longpressgesture.md)<br/>\|&nbsp;[PanGesture](ts-basic-gestures-pangesture.md)<br/>\|&nbsp;[PinchGesture](ts-basic-gestures-pinchgesture.md)<br/>\|&nbsp;[RotationGesture](ts-basic-gestures-rotationgesture.md) | Yes | - | Variable-length&nbsp;parameter,&nbsp;indicating&nbsp;one&nbsp;or&nbsp;more&nbsp;basic&nbsp;gesture&nbsp;types.&nbsp;These&nbsp;gestures&nbsp;are&nbsp;recognized&nbsp;in&nbsp;combination. |
+  | mode | GestureMode | Yes | - | Recognition mode of combined gestures. |
+  | gesture | [TapGesture](ts-basic-gestures-tapgesture.md)<br/>\| [LongPressGesture](ts-basic-gestures-longpressgesture.md)<br/>\| [PanGesture](ts-basic-gestures-pangesture.md)<br/>\| [PinchGesture](ts-basic-gestures-pinchgesture.md)<br/>\| [RotationGesture](ts-basic-gestures-rotationgesture.md) | Yes | - | Variable-length parameter, indicating one or more basic gesture types. These gestures are recognized in combination. |
 
 - GestureMode enums
     | Name | Description | 
   | -------- | -------- |
-  | Sequence | Sequential&nbsp;recognition:&nbsp;Gestures&nbsp;are&nbsp;recognized&nbsp;in&nbsp;the&nbsp;registration&nbsp;sequence&nbsp;until&nbsp;all&nbsp;gestures&nbsp;are&nbsp;recognized&nbsp;successfully.&nbsp;When&nbsp;one&nbsp;gesture&nbsp;fails&nbsp;to&nbsp;be&nbsp;recognized,&nbsp;all&nbsp;gestures&nbsp;fail&nbsp;to&nbsp;be&nbsp;recognized. | 
-  | Parallel | Parallel&nbsp;recognition.&nbsp;Registered&nbsp;gestures&nbsp;are&nbsp;recognized&nbsp;concurrently&nbsp;until&nbsp;all&nbsp;gestures&nbsp;are&nbsp;recognized.&nbsp;The&nbsp;recognition&nbsp;result&nbsp;of&nbsp;each&nbsp;gesture&nbsp;does&nbsp;not&nbsp;affect&nbsp;each&nbsp;other. | 
-  | Exclusive | Exclusive&nbsp;recognition.&nbsp;Registered&nbsp;gestures&nbsp;are&nbsp;identified&nbsp;concurrently.&nbsp;If&nbsp;one&nbsp;gesture&nbsp;is&nbsp;successfully&nbsp;recognized,&nbsp;gesture&nbsp;recognition&nbsp;ends. | 
+  | Sequence | Sequential recognition: Gestures are recognized in the registration sequence until all gestures are recognized successfully. When one gesture fails to be recognized, all gestures fail to be recognized. | 
+  | Parallel | Parallel recognition. Registered gestures are recognized concurrently until all gestures are recognized. The recognition result of each gesture does not affect each other. | 
+  | Exclusive | Exclusive recognition. Registered gestures are identified concurrently. If one gesture is successfully recognized, gesture recognition ends. | 
 
 
 ## Events
 
   | Name | Description | 
 | -------- | -------- |
-| onCancel(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | Callback&nbsp;for&nbsp;the&nbsp;GestureMode.Sequence&nbsp;cancellation&nbsp;event. | 
+| onCancel(event: () =&gt; void) | Callback for the GestureMode.Sequence cancellation event. | 
 
 
 ## Example

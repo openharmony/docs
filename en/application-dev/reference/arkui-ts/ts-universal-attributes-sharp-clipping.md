@@ -1,7 +1,7 @@
 # Shape Clipping
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This attribute is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -13,10 +13,10 @@ None
 ## Attributes
 
 
-  | Name | Type | Default&nbsp;Value | Description | 
+  | Name | Type | Default Value | Description | 
 | -------- | -------- | -------- | -------- |
-| clip | Shape&nbsp;\|&nbsp;boolean | false | Specifies&nbsp;a&nbsp;clip&nbsp;mode.&nbsp;The&nbsp;value&nbsp;**Shape**&nbsp;indicates&nbsp;that&nbsp;the&nbsp;current&nbsp;component&nbsp;is&nbsp;cropped&nbsp;based&nbsp;on&nbsp;the&nbsp;specified&nbsp;shape.&nbsp;The&nbsp;value&nbsp;**boolean**&nbsp;specifies&nbsp;whether&nbsp;to&nbsp;clip&nbsp;the&nbsp;component&nbsp;based&nbsp;on&nbsp;the&nbsp;edge&nbsp;outline. | 
-| mask | Shape | - | Adds&nbsp;a&nbsp;mask&nbsp;of&nbsp;the&nbsp;specified&nbsp;shape&nbsp;to&nbsp;the&nbsp;current&nbsp;component. | 
+| clip | Shape \| boolean | false | Specifies a clip mode. The value **Shape** indicates that the current component is cropped based on the specified shape. The value **boolean** specifies whether to clip the component based on the edge outline. | 
+| mask | Shape | - | Adds a mask of the specified shape to the current component. | 
 
 
 ## Example

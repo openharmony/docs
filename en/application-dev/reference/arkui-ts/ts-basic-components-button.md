@@ -1,7 +1,7 @@
 # Button
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -13,9 +13,9 @@ The **&lt;Button&gt;** component represents a component that can trigger actions
 None
 
 
-## Child Component
+## Child Components
 
-This component can contain child components.
+Supported
 
 
 ## APIs
@@ -23,40 +23,41 @@ This component can contain child components.
 - Button(options?: {type?: ButtonType, stateEffect?: boolean})
     **Table1** options parameters
   
-  | Name | Type | Mandatory | Default&nbsp;Value | Description | 
+  | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | type | ButtonType | No | Capsule | Button&nbsp;type. | 
-  | stateEffect | boolean | No | true | Whether&nbsp;to&nbsp;enable&nbsp;the&nbsp;state&nbsp;switchover&nbsp;effect&nbsp;when&nbsp;a&nbsp;button&nbsp;is&nbsp;pressed.&nbsp;When&nbsp;the&nbsp;state&nbsp;is&nbsp;set&nbsp;to&nbsp;**false**,&nbsp;the&nbsp;state&nbsp;switchover&nbsp;effect&nbsp;is&nbsp;disabled. | 
+  | type | ButtonType | No | Capsule | Button type. |
+  | stateEffect | boolean | No | true | Whether to enable the state switchover effect when a button is pressed. When the state is set to **false**, the state switchover effect is disabled. |
 
 
 - Button(label?: string, options?: { type?: ButtonType, stateEffect?: boolean })
-  Creates a button component based on text content. In this case, the **&lt;Button&gt;** component cannot contain subcomponents.
+  Creates a button component based on text content. In this case, the **&lt;Button&gt;** component cannot contain child components.
 
     **Table2** value parameters
   
-  | Name | Type | Mandatory | Default&nbsp;Value | Description | 
+  | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | label | string | No | - | Button&nbsp;text. | 
-  | options | Object | No | - | For&nbsp;details,&nbsp;see&nbsp;the&nbsp;**options**&nbsp;parameters. | 
+  | label | string | No | - | Button text. |
+  | options | Object | No | - | For details, see the **options** parameters. |
 
 
 ## Attributes
 
-  | Name | Type | Default&nbsp;Value | Description | 
+| Name | Type | Default Value | Description |
 | -------- | -------- | -------- | -------- |
-| type | ButtonType | Capsule | Button&nbsp;type. | 
-| stateEffect | boolean | true | Whether&nbsp;to&nbsp;enable&nbsp;the&nbsp;state&nbsp;switchover&nbsp;effect.&nbsp;When&nbsp;the&nbsp;state&nbsp;is&nbsp;set&nbsp;to&nbsp;**false**,&nbsp;the&nbsp;state&nbsp;switchover&nbsp;effect&nbsp;is&nbsp;disabled. | 
+| type | ButtonType | Capsule | Button type. |
+| stateEffect | boolean | true | Whether to enable the state switchover effect. When the state is set to **false**, the state switchover effect is disabled. |
 
 - ButtonType enums
-    | Name | Description | 
+    | Name | Description |
   | -------- | -------- |
-  | Capsule | Capsule-type&nbsp;button&nbsp;(the&nbsp;round&nbsp;corner&nbsp;is&nbsp;half&nbsp;of&nbsp;the&nbsp;height&nbsp;by&nbsp;default). | 
-  | Circle | Circle&nbsp;button. | 
-  | Normal | Normal&nbsp;button&nbsp;(without&nbsp;rounded&nbsp;corners&nbsp;by&nbsp;default). | 
+  | Capsule | Capsule-type button (the round corner is half of the height by default). |
+  | Circle | Circle button. |
+  | Normal | Normal button (without rounded corners by default). |
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > - The rounded corner of a button is set by using [Border](ts-universal-attributes-border.md). (The rounded corner cannot be set by using a border API.)
-> 
+> - When the button type is **Capsule**, the **borderRadius** settings do not take effect, and the rounded corner of the button is always half of the button height. 
+> - When the button type is **Circle**, the value of **borderRadius** is used as the button radius. If **borderRadius** is not set, the button radius is half of the width or height, whichever is smaller. 
 > - The button text is set using the [common text style](ts-universal-attributes-text-style.md).
 
 

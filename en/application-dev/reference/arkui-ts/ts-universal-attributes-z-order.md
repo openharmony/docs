@@ -1,7 +1,7 @@
 # Z-order Control
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This attribute is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -13,9 +13,9 @@ None
 ## Attributes
 
 
-  | Name | Type | Default&nbsp;Value | Description | 
+  | Name | Type | Default Value | Description | 
 | -------- | -------- | -------- | -------- |
-| zIndex | number | 0 | Hierarchy&nbsp;of&nbsp;sibling&nbsp;components&nbsp;in&nbsp;a&nbsp;container.&nbsp;A&nbsp;larger&nbsp;z-order&nbsp;value&nbsp;indicates&nbsp;a&nbsp;higher&nbsp;display&nbsp;level. | 
+| zIndex | number | 0 | Hierarchy of sibling components in a container. A larger z-order value indicates a higher display level. | 
 
 
 ## Example

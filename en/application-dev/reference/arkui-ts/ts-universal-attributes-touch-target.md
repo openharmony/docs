@@ -1,7 +1,7 @@
 # Touch Target
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -16,20 +16,20 @@ None
 ## Attributes
 
 
-  | Name | Type | Default&nbsp;Value | Description | 
+  | Name | Type | Default Value | Description | 
 | -------- | -------- | -------- | -------- |
-| responseRegion | Array&lt;Rectangle&gt;&nbsp;\|&nbsp;Rectangle | {<br/>x:&nbsp;0,<br/>y:&nbsp;0,<br/>width:&nbsp;'100%',<br/>height:&nbsp;'100%'<br/>} | One&nbsp;or&nbsp;more&nbsp;touch&nbsp;targets,&nbsp;including&nbsp;their&nbsp;location&nbsp;and&nbsp;size.<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**NOTE：**<br/>>&nbsp;The&nbsp;percentage&nbsp;is&nbsp;measured&nbsp;relative&nbsp;to&nbsp;the&nbsp;component&nbsp;itself.<br/>>&nbsp;<br/>>&nbsp;**x**&nbsp;and&nbsp;**y**&nbsp;can&nbsp;be&nbsp;set&nbsp;to&nbsp;a&nbsp;positive&nbsp;or&nbsp;negative&nbsp;percentage&nbsp;value.&nbsp;For&nbsp;example,&nbsp;when&nbsp;**x**&nbsp;is&nbsp;set&nbsp;to&nbsp;**'100%'**,&nbsp;the&nbsp;touch&nbsp;target&nbsp;is&nbsp;offset&nbsp;from&nbsp;the&nbsp;right&nbsp;edge&nbsp;of&nbsp;the&nbsp;component&nbsp;by&nbsp;the&nbsp;component's&nbsp;width.&nbsp;When&nbsp;**x**&nbsp;is&nbsp;set&nbsp;to&nbsp;**'-100%'**,&nbsp;the&nbsp;touch&nbsp;target&nbsp;is&nbsp;offset&nbsp;from&nbsp;the&nbsp;left&nbsp;edge&nbsp;of&nbsp;the&nbsp;component&nbsp;by&nbsp;the&nbsp;component's&nbsp;width.&nbsp;When&nbsp;**y**&nbsp;is&nbsp;set&nbsp;to&nbsp;**'100%'**,&nbsp;the&nbsp;touch&nbsp;target&nbsp;is&nbsp;offset&nbsp;from&nbsp;the&nbsp;bottom&nbsp;edge&nbsp;of&nbsp;the&nbsp;component&nbsp;by&nbsp;the&nbsp;component's&nbsp;height.&nbsp;When&nbsp;**y**&nbsp;is&nbsp;set&nbsp;to&nbsp;**'-100%'**,&nbsp;the&nbsp;touch&nbsp;target&nbsp;is&nbsp;offset&nbsp;from&nbsp;the&nbsp;top&nbsp;edge&nbsp;of&nbsp;the&nbsp;component&nbsp;by&nbsp;the&nbsp;component's&nbsp;height.<br/>>&nbsp;<br/>>&nbsp;**width**&nbsp;and&nbsp;**height**&nbsp;can&nbsp;only&nbsp;be&nbsp;set&nbsp;to&nbsp;positive&nbsp;percentage&nbsp;values.&nbsp;When&nbsp;**width**&nbsp;is&nbsp;set&nbsp;to&nbsp;**'100%'**,&nbsp;the&nbsp;width&nbsp;of&nbsp;the&nbsp;touch&nbsp;target&nbsp;is&nbsp;equal&nbsp;to&nbsp;that&nbsp;of&nbsp;the&nbsp;component;&nbsp;when&nbsp;**height**&nbsp;is&nbsp;set&nbsp;to&nbsp;**'100%'**,&nbsp;the&nbsp;height&nbsp;of&nbsp;the&nbsp;touch&nbsp;target&nbsp;is&nbsp;equal&nbsp;to&nbsp;that&nbsp;of&nbsp;the&nbsp;component. | 
+| responseRegion | Array&lt;Rectangle&gt; \| Rectangle | {<br/>x: 0,<br/>y: 0,<br/>width: '100%',<br/>height: '100%'<br/>} | One or more touch targets, including their location and size.<br/>> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>> The percentage is measured relative to the component itself.<br/>> <br/>> **x** and **y** can be set to a positive or negative percentage value. For example, when **x** is set to **'100%'**, the touch target is offset from the right edge of the component by the component's width. When **x** is set to **'-100%'**, the touch target is offset from the left edge of the component by the component's width. When **y** is set to **'100%'**, the touch target is offset from the bottom edge of the component by the component's height. When **y** is set to **'-100%'**, the touch target is offset from the top edge of the component by the component's height.<br/>> <br/>> **width** and **height** can only be set to positive percentage values. When **width** is set to **'100%'**, the width of the touch target is equal to that of the component; when **height** is set to **'100%'**, the height of the touch target is equal to that of the component. | 
 
 
 - Rectangle attributes
-    | Name | Type | Mandatory | Default&nbsp;Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description | 
   | -------- | -------- | -------- | -------- | -------- |
-  | x | Length | No | 0vp | X&nbsp;coordinate&nbsp;of&nbsp;the&nbsp;touch&nbsp;point&nbsp;relative&nbsp;to&nbsp;the&nbsp;left&nbsp;edge&nbsp;of&nbsp;the&nbsp;component. | 
-  | y | Length | No | 0vp | Y&nbsp;coordinate&nbsp;of&nbsp;the&nbsp;touch&nbsp;point&nbsp;relative&nbsp;to&nbsp;the&nbsp;left&nbsp;edge&nbsp;of&nbsp;the&nbsp;component. | 
-  | width | Length | No | 100% | Width&nbsp;of&nbsp;the&nbsp;touch&nbsp;target. | 
-  | height | Length | No | 100% | Height&nbsp;of&nbsp;the&nbsp;touch&nbsp;target. | 
+  | x | Length | No | 0vp | X coordinate of the touch point relative to the left edge of the component. | 
+  | y | Length | No | 0vp | Y coordinate of the touch point relative to the left edge of the component. | 
+  | width | Length | No | 100% | Width of the touch target. | 
+  | height | Length | No | 100% | Height of the touch target. | 
 
-  > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+  > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
   > When both **x** and **y** are set to positive values, the entire touch target offsets towards the lower right corner of the component. How much the touch target offsets is subject to the set values.
 
 

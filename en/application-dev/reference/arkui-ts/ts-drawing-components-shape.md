@@ -1,7 +1,7 @@
 # Shape
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -29,33 +29,33 @@ The **&lt;Shape&gt;** component can contain child components.
 Shape(value:{target?: PixelMap})
 
 - Parameters
-    | Name | Type | Mandatory | Default&nbsp;Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description | 
   | -------- | -------- | -------- | -------- | -------- |
-  | target | PixelMap | No | null | Shape&nbsp;to&nbsp;draw.&nbsp;You&nbsp;can&nbsp;draw&nbsp;a&nbsp;shape&nbsp;in&nbsp;the&nbsp;specified&nbsp;**PixelMap**&nbsp;object.&nbsp;If&nbsp;no&nbsp;object&nbsp;is&nbsp;specified,&nbsp;the&nbsp;shape&nbsp;is&nbsp;drawn&nbsp;in&nbsp;the&nbsp;current&nbsp;drawing&nbsp;target. | 
+  | target | PixelMap | No | null | Shape to draw. You can draw a shape in the specified **PixelMap** object. If no object is specified, the shape is drawn in the current drawing target. | 
 
 
 ## Attributes
 
-  | Name | Type | Default&nbsp;Value | Mandatory | Description | 
+  | Name | Type | Default Value | Mandatory | Description | 
 | -------- | -------- | -------- | -------- | -------- |
-| viewPort | {<br/>x:&nbsp;Length,<br/>y:&nbsp;Length,<br/>width:&nbsp;Length,<br/>height:&nbsp;Length<br/>} | - | Yes | View&nbsp;port&nbsp;of&nbsp;the&nbsp;shape. | 
-| fill | Color | Black | No | Fill&nbsp;color. | 
-| stroke | Color | - | No | Stroke&nbsp;color. | 
-| strokeDashArray | Array&lt;Length&gt; | [] | No | Stroke&nbsp;dash. | 
-| strokeDashOffset | Length | 0 | No | Offset&nbsp;of&nbsp;the&nbsp;start&nbsp;point&nbsp;for&nbsp;drawing&nbsp;the&nbsp;stroke. | 
-| strokeLineCap | LineCapStyle | LineCapStyle.Butt | No | Cap&nbsp;style&nbsp;of&nbsp;the&nbsp;stroke. | 
-| strokeLineJoin | LineJoinStyle | LineJoinStyle.Miter | No | Join&nbsp;style&nbsp;of&nbsp;the&nbsp;stroke. | 
-| strokeMiterLimit | number | 4 | No | Limit&nbsp;value&nbsp;when&nbsp;the&nbsp;sharp&nbsp;angle&nbsp;is&nbsp;drawn&nbsp;as&nbsp;a&nbsp;miter. | 
-| strokeOpacity | number | 1 | No | Stroke&nbsp;opacity. | 
-| strokeWidth | Length | 1 | No | Stroke&nbsp;width. | 
-| antiAlias | boolean | true | No | Whether&nbsp;anti-aliasing&nbsp;is&nbsp;enabled. | 
+| viewPort | {<br/>x: Length,<br/>y: Length,<br/>width: Length,<br/>height: Length<br/>} | - | Yes | View port of the shape. | 
+| fill | Color | Black | No | Fill color. | 
+| stroke | Color | - | No | Stroke color. | 
+| strokeDashArray | Array&lt;Length&gt; | [] | No | Stroke dash. | 
+| strokeDashOffset | Length | 0 | No | Offset of the start point for drawing the stroke. | 
+| strokeLineCap | LineCapStyle | LineCapStyle.Butt | No | Cap style of the stroke. | 
+| strokeLineJoin | LineJoinStyle | LineJoinStyle.Miter | No | Join style of the stroke. | 
+| strokeMiterLimit | number | 4 | No | Limit value when the sharp angle is drawn as a miter. | 
+| strokeOpacity | number | 1 | No | Stroke opacity. | 
+| strokeWidth | Length | 1 | No | Stroke width. | 
+| antiAlias | boolean | true | No | Whether anti-aliasing is enabled. | 
 
 - LineJoinStyle enums
     | Name | Description | 
   | -------- | -------- |
-  | Bevel | Bevel&nbsp;is&nbsp;used&nbsp;to&nbsp;connect&nbsp;paths. | 
-  | Miter | Miter&nbsp;is&nbsp;used&nbsp;to&nbsp;connect&nbsp;paths. | 
-  | Round | Round&nbsp;is&nbsp;used&nbsp;to&nbsp;connect&nbsp;paths. | 
+  | Bevel | Bevel is used to connect paths. | 
+  | Miter | Miter is used to connect paths. | 
+  | Round | Round is used to connect paths. | 
 
 
 ## Example

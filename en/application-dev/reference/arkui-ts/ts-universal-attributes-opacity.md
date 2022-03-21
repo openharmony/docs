@@ -1,7 +1,7 @@
 # Opacity
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This attribute is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -16,9 +16,9 @@ None
 ## Attributes
 
 
-  | Name | Type | Default&nbsp;Value | Description | 
+  | Name | Type | Default Value | Description | 
 | -------- | -------- | -------- | -------- |
-| opacity | number | 1 | Opacity&nbsp;of&nbsp;a&nbsp;component.&nbsp;The&nbsp;value&nbsp;ranges&nbsp;from&nbsp;**0**&nbsp;to&nbsp;**1**.&nbsp;The&nbsp;value&nbsp;**1**&nbsp;means&nbsp;opaque,&nbsp;and&nbsp;**0**&nbsp;means&nbsp;completely&nbsp;transparent. | 
+| opacity | number | 1 | Opacity of a component. The value ranges from **0** to **1**. The value **1** means opaque, and **0** means completely transparent. | 
 
 
 ## Example

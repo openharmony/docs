@@ -1,7 +1,7 @@
 # Slider
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -23,34 +23,34 @@ None
 Slider(value:{value?: number, min?: number, max?: number, step?: number, style?: SliderStyle, direction?: Axis})
 
 - Parameters
-    | Name | Type | Mandatory | Default&nbsp;Value | Description |
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | value | number | No | 0 | Current&nbsp;progress. |
-  | min | number | No | 0 | Minimum&nbsp;value. |
-  | max | number | No | 100 | Maximum&nbsp;value. |
-  | step | number | No | 1 | Step&nbsp;of&nbsp;the&nbsp;slider.&nbsp;When&nbsp;the&nbsp;corresponding&nbsp;step&nbsp;is&nbsp;set,&nbsp;the&nbsp;slider&nbsp;slides&nbsp;intermittently. |
-  | style | SliderStyle | No | SliderStyle.OutSet | Style&nbsp;of&nbsp;the&nbsp;slider. |
-  | direction<sup>8+</sup> | [Axis](../reference/arkui-ts/ts-appendix-enums.md#axis-enums) | No | Axis.Horizontal | Whether&nbsp;the&nbsp;slider&nbsp;moves&nbsp;horizontally&nbsp;or&nbsp;vertically. |
-  | reverse<sup>8+</sup> | boolean | No | false | Whether&nbsp;the&nbsp;slider&nbsp;values&nbsp;are&nbsp;reversed. |
+  | value | number | No | 0 | Current progress. |
+  | min | number | No | 0 | Minimum value. |
+  | max | number | No | 100 | Maximum value. |
+  | step | number | No | 1 | Step of the slider. When the corresponding step is set, the slider slides intermittently. |
+  | style | SliderStyle | No | SliderStyle.OutSet | Style of the slider. |
+  | direction<sup>8+</sup> | [Axis](../reference/arkui-ts/ts-appendix-enums.md#axis-enums) | No | Axis.Horizontal | Whether the slider moves horizontally or vertically. |
+  | reverse<sup>8+</sup> | boolean | No | false | Whether the slider values are reversed. |
 
 - SliderStyle enums
     | Name | Description | 
   | -------- | -------- |
-  | OutSet | The&nbsp;slider&nbsp;is&nbsp;on&nbsp;the&nbsp;slider&nbsp;rail. | 
-  | InSet | The&nbsp;slider&nbsp;is&nbsp;in&nbsp;the&nbsp;slider&nbsp;rail. | 
+  | OutSet | The slider is on the slider rail. | 
+  | InSet | The slider is in the slider rail. | 
 
 
 ## Attributes
 
 Touch target configuration is not supported.
 
-  | Name | Type | Default&nbsp;Value | Description | 
+  | Name | Type | Default Value | Description | 
 | -------- | -------- | -------- | -------- |
-| blockColor | Color | - | Color&nbsp;of&nbsp;the&nbsp;slider. | 
-| trackColor | Color | - | Background&nbsp;color&nbsp;of&nbsp;the&nbsp;slider. | 
-| selectedColor | Color | - | Color&nbsp;of&nbsp;the&nbsp;slider&nbsp;rail&nbsp;that&nbsp;has&nbsp;been&nbsp;slid. | 
-| showSteps | boolean | false | Whether&nbsp;to&nbsp;display&nbsp;the&nbsp;current&nbsp;step. | 
-| showTips | boolean | false | Whether&nbsp;to&nbsp;display&nbsp;a&nbsp;bubble&nbsp;to&nbsp;indicate&nbsp;the&nbsp;percentage&nbsp;when&nbsp;sliding. | 
+| blockColor | Color | - | Color of the slider. | 
+| trackColor | Color | - | Background color of the slider. | 
+| selectedColor | Color | - | Color of the slider rail that has been slid. | 
+| showSteps | boolean | false | Whether to display the current step. | 
+| showTips | boolean | false | Whether to display a bubble to indicate the percentage when sliding. | 
 
 
 ## Events
@@ -59,14 +59,14 @@ Among all the universal events, only **OnAppear** and **OnDisAppear** are suppor
 
 | Name | Description |
 | -------- | -------- |
-| onChange(callback:&nbsp;(value:&nbsp;number,&nbsp;mode: SliderChangeMode)&nbsp;=&gt;&nbsp;void) | Callback&nbsp;invoked&nbsp;when&nbsp;the&nbsp;slider&nbsp;slides.<br/>**value**:&nbsp;current&nbsp;progress.<br/>**mode**:&nbsp;dragging&nbsp;state. |
+| onChange(callback: (value: number, mode: SliderChangeMode) =&gt; void) | Callback invoked when the slider slides.<br/>**value**: current progress.<br/>**mode**: dragging state. |
 
 - SliderChangeMode enums
     | Name | Description | 
   | -------- | -------- |
-  | Begin | The&nbsp;user&nbsp;starts&nbsp;to&nbsp;drag&nbsp;the&nbsp;slider. | 
-  | Moving | The&nbsp;user&nbsp;is&nbsp;dragging&nbsp;the&nbsp;slider. | 
-  | End | The&nbsp;user&nbsp;stops&nbsp;dragging&nbsp;the&nbsp;slider. | 
+  | Begin | The user starts to drag the slider. | 
+  | Moving | The user is dragging the slider. | 
+  | End | The user stops dragging the slider. | 
 
 
 ## Example

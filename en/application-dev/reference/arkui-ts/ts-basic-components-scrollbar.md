@@ -1,7 +1,7 @@
 # ScrollBar
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -23,13 +23,13 @@ This component can contain a single child component.
 ScrollBar(value: ScrollBarOption)
 
 - ScrollBarOption parameters
-    | Name | Type | Mandatory | Default&nbsp;Value | Description |
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | scroller | [Scroller](ts-container-scroll.md#scroller) | Yes | - | Scroller,&nbsp;which&nbsp;can&nbsp;be&nbsp;bound&nbsp;to&nbsp;and&nbsp;control&nbsp;scrollable&nbsp;components. |
-  | direction | ScrollBarDirection | No | ScrollBarDirection.Vertical | Scrollbar&nbsp;direction&nbsp;in&nbsp;which&nbsp;scrollable&nbsp;components&nbsp;scroll. |
-  | state | BarState | No | BarState.Auto | Scrollbar&nbsp;state. |
+  | scroller | [Scroller](ts-container-scroll.md#scroller) | Yes | - | Scroller, which can be bound to and control scrollable components. |
+  | direction | ScrollBarDirection | No | ScrollBarDirection.Vertical | Scrollbar direction in which scrollable components scroll. |
+  | state | BarState | No | BarState.Auto | Scrollbar state. |
 
-  > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+  > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
   > The **&lt;ScrollBar&gt;** component defines the behavior style of the scrollable area, and its subnodes define the behavior style of the scrollbar.
   > 
   > This component is bound to a scrollable component through **scroller**, and can be used to scroll the scrollable component only when their directions are the same. The **&lt;ScrollBar&gt;** component can be bound to only one scrollable component, and vice versa.
@@ -37,15 +37,15 @@ ScrollBar(value: ScrollBarOption)
 - ScrollBarDirection enums
     | Name | Description | 
   | -------- | -------- |
-  | Vertical | Vertical&nbsp;scrollbar. | 
-  | Horizontal | Horizontal&nbsp;scrollbar. | 
+  | Vertical | Vertical scrollbar. | 
+  | Horizontal | Horizontal scrollbar. | 
 
 - BarState enums
     | Name | Description | 
   | -------- | -------- |
-  | On | Always&nbsp;display. | 
+  | On | Always display. | 
   | Off | Hide. | 
-  | Auto | Display&nbsp;on&nbsp;demand&nbsp;(displays&nbsp;when&nbsp;the&nbsp;screen&nbsp;is&nbsp;touched&nbsp;and&nbsp;disappears&nbsp;after&nbsp;2s&nbsp;of&nbsp;inactivity). | 
+  | Auto | Display on demand (displays when the screen is touched and disappears after 2s of inactivity). | 
 
 
 ## Example

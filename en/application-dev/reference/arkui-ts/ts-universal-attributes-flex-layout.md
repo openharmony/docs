@@ -1,7 +1,7 @@
 # Flex Layout
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > - This attribute is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 > 
 > - This attribute is valid only when the parent component is a **Flex** component.
@@ -15,12 +15,12 @@ None
 ## Attributes
 
 
-| Name | Type | Default&nbsp;Value | Description |
+| Name | Type | Default Value | Description |
 | -------- | -------- | -------- | -------- |
-| flexBasis | 'auto'&nbsp;\|&nbsp;Length | 'auto' | Base&nbsp;dimension&nbsp;of&nbsp;a&nbsp;component&nbsp;in&nbsp;the&nbsp;main&nbsp;axis&nbsp;of&nbsp;the&nbsp;**Flex**&nbsp;layout. |
-| flexGrow | number | 0 | Percentage&nbsp;of&nbsp;the&nbsp;**Flex**&nbsp;layout's&nbsp;remaining&nbsp;space&nbsp;that&nbsp;is&nbsp;allocated&nbsp;to&nbsp;the&nbsp;component. |
-| flexShrink | number | 1 | Percentage&nbsp;of&nbsp;the&nbsp;**Flex**&nbsp;layout's&nbsp;shrink&nbsp;size&nbsp;that&nbsp;is&nbsp;allocated&nbsp;to&nbsp;the&nbsp;component. |
-| alignSelf | [ItemAlign](ts-appendix-enums.md#itemalign-enums) | Auto | Alignment&nbsp;mode,&nbsp;which&nbsp;overwrites&nbsp;the&nbsp;default&nbsp;**alignItems**&nbsp;configuration&nbsp;in&nbsp;the&nbsp;**Flex**&nbsp;layout. |
+| flexBasis | 'auto' \| Length | 'auto' | Base dimension of a component in the main axis of the **Flex** layout. |
+| flexGrow | number | 0 | Percentage of the **Flex** layout's remaining space that is allocated to the component. |
+| flexShrink | number | 1 | Percentage of the **Flex** layout's shrink size that is allocated to the component. |
+| alignSelf | [ItemAlign](ts-appendix-enums.md#itemalign-enums) | Auto | Alignment mode, which overwrites the default **alignItems** configuration in the **Flex** layout. |
 
 
 ## Example

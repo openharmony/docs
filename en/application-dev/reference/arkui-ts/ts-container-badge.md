@@ -1,7 +1,7 @@
 # Badge
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -23,38 +23,38 @@ This component supports only one child component.
 Badge(value: {count: number, position?: BadgePosition, maxCount?: number, style?: BadgeStyle})
 
 - Parameters
-    | Name | Type | Mandatory | Default&nbsp;Value | Description |
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | count | number | Yes | - | Number&nbsp;of&nbsp;prompt&nbsp;messages. |
-  | position | BadgePosition | No | BadgePosition.RightTop | Position&nbsp;to&nbsp;display&nbsp;the&nbsp;badge&nbsp;relative&nbsp;to&nbsp;the&nbsp;parent&nbsp;component. |
-  | maxCount | number | No | 99 | Maximum&nbsp;number&nbsp;of&nbsp;prompt&nbsp;messages.&nbsp;When&nbsp;the&nbsp;maximum&nbsp;number&nbsp;is&nbsp;reached,&nbsp;only&nbsp;**maxCount+**&nbsp;is&nbsp;displayed. |
-  | style | BadgeStyle | No | - | Style&nbsp;of&nbsp;the&nbsp;**&lt;Badge&gt;**&nbsp;component,&nbsp;including&nbsp;the&nbsp;text&nbsp;color,&nbsp;text&nbsp;size,&nbsp;badge&nbsp;color,&nbsp;and&nbsp;badge&nbsp;size. |
+  | count | number | Yes | - | Number of prompt messages. |
+  | position | BadgePosition | No | BadgePosition.RightTop | Position to display the badge relative to the parent component. |
+  | maxCount | number | No | 99 | Maximum number of prompt messages. When the maximum number is reached, only **maxCount+** is displayed. |
+  | style | BadgeStyle | No | - | Style of the **&lt;Badge&gt;** component, including the text color, text size, badge color, and badge size. |
 
 Badge(value: {value: string, position?: BadgePosition, style?: BadgeStyle})
 
 Creates a **&lt;Badge&gt;** component based on the string.
 
 - Parameters
-    | Name | Type | Mandatory | Default&nbsp;Value | Description |
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | value | string | Yes | - | String&nbsp;of&nbsp;the&nbsp;content&nbsp;to&nbsp;prompt. |
-  | position | BadgePosition | No | BadgePosition.RightTop | Display&nbsp;position&nbsp;of&nbsp;the&nbsp;badge. |
-  | style | BadgeStyle | No | - | Style&nbsp;of&nbsp;the&nbsp;**&lt;Badge&gt;**&nbsp;component,&nbsp;including&nbsp;the&nbsp;text&nbsp;color,&nbsp;text&nbsp;size,&nbsp;badge&nbsp;color,&nbsp;and&nbsp;badge&nbsp;size. |
+  | value | string | Yes | - | String of the content to prompt. |
+  | position | BadgePosition | No | BadgePosition.RightTop | Display position of the badge. |
+  | style | BadgeStyle | No | - | Style of the **&lt;Badge&gt;** component, including the text color, text size, badge color, and badge size. |
 
 - BadgeStyle object
-    | Name | Type | Mandatory | Default&nbsp;Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description | 
   | -------- | -------- | -------- | -------- | -------- |
-  | color | Color | No | Color.White | Text&nbsp;color. | 
-  | fontSize | number&nbsp;\|&nbsp;string | No | 10 | Text&nbsp;size. | 
-  | badgeSize | number&nbsp;\|&nbsp;string | Yes | - | Size&nbsp;of&nbsp;the&nbsp;badge. | 
-  | badgeColor | Color | No | Color.Red | Color&nbsp;of&nbsp;the&nbsp;badge. | 
+  | color | Color | No | Color.White | Text color. | 
+  | fontSize | number \| string | No | 10 | Text size. | 
+  | badgeSize | number \| string | Yes | - | Size of the badge. | 
+  | badgeColor | Color | No | Color.Red | Color of the badge. | 
 
 - BadgePosition enums
     | Name | Description | 
   | -------- | -------- |
-  | Right | The&nbsp;badge&nbsp;is&nbsp;vertically&nbsp;centered&nbsp;on&nbsp;the&nbsp;right&nbsp;of&nbsp;the&nbsp;parent&nbsp;component. | 
-  | RightTop | The&nbsp;badge&nbsp;is&nbsp;displayed&nbsp;in&nbsp;the&nbsp;upper&nbsp;right&nbsp;corner&nbsp;of&nbsp;the&nbsp;parent&nbsp;component. | 
-  | Left | The&nbsp;badge&nbsp;is&nbsp;vertically&nbsp;centered&nbsp;on&nbsp;the&nbsp;left&nbsp;of&nbsp;the&nbsp;parent&nbsp;component. | 
+  | Right | The badge is vertically centered on the right of the parent component. | 
+  | RightTop | The badge is displayed in the upper right corner of the parent component. | 
+  | Left | The badge is vertically centered on the left of the parent component. | 
 
 
 ## Example

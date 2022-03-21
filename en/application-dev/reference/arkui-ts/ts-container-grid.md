@@ -1,7 +1,7 @@
 # Grid
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -25,18 +25,18 @@ Grid()
 
 ## Attributes
 
-| Name | Type | Default&nbsp;Value | Description |
+| Name | Type | Default Value | Description |
 | -------- | -------- | -------- | -------- |
-| columnsTemplate | string | '1fr' | Number&nbsp;of&nbsp;columns&nbsp;in&nbsp;the&nbsp;current&nbsp;grid&nbsp;layout.&nbsp;If&nbsp;this&nbsp;parameter&nbsp;is&nbsp;not&nbsp;set,&nbsp;one&nbsp;column&nbsp;is&nbsp;used&nbsp;by&nbsp;default.&nbsp;For&nbsp;example,&nbsp;'1fr&nbsp;1fr&nbsp;2fr'&nbsp;divides&nbsp;the&nbsp;component&nbsp;into&nbsp;three&nbsp;columns,&nbsp;with&nbsp;four&nbsp;equal&nbsp;parts.&nbsp;The&nbsp;first&nbsp;column&nbsp;occupies&nbsp;one&nbsp;part,&nbsp;the&nbsp;second&nbsp;column&nbsp;occupies&nbsp;one&nbsp;part,&nbsp;and&nbsp;the&nbsp;third&nbsp;column&nbsp;occupies&nbsp;two&nbsp;parts. |
-| rowsTemplate | string | '1fr' | Number&nbsp;of&nbsp;rows&nbsp;in&nbsp;the&nbsp;current&nbsp;grid&nbsp;layout.&nbsp;If&nbsp;this&nbsp;parameter&nbsp;is&nbsp;not&nbsp;set,&nbsp;one&nbsp;row&nbsp;is&nbsp;used&nbsp;by&nbsp;default.&nbsp;For&nbsp;example,&nbsp;'1fr&nbsp;1fr&nbsp;2fr'&nbsp;divides&nbsp;the&nbsp;component&nbsp;into&nbsp;three&nbsp;rows.&nbsp;The&nbsp;width&nbsp;allowed&nbsp;by&nbsp;the&nbsp;parent&nbsp;component&nbsp;is&nbsp;divided&nbsp;into&nbsp;four&nbsp;equal&nbsp;parts.&nbsp;The&nbsp;first&nbsp;row&nbsp;occupies&nbsp;one&nbsp;part,&nbsp;the&nbsp;second&nbsp;row&nbsp;occupies&nbsp;one&nbsp;part,&nbsp;and&nbsp;the&nbsp;third&nbsp;row&nbsp;occupies&nbsp;two&nbsp;parts. |
-| columnsGap | Length | 0 | Spacing&nbsp;between&nbsp;columns. |
-| rowsGap | Length | 0 | Spacing&nbsp;between&nbsp;rows. |
-| editMode<sup>8+</sup> | boolean | false | Whether&nbsp;to&nbsp;enter&nbsp;editing&nbsp;mode.&nbsp;In&nbsp;editing&nbsp;mode,&nbsp;you&nbsp;can&nbsp;drag&nbsp;the&nbsp;**&lt;[GridItem](ts-container-griditem.md)&gt;**&nbsp;in&nbsp;the&nbsp;**&lt;Gird&gt;**&nbsp;component. |
+| columnsTemplate | string | '1fr' | Number of columns in the current grid layout. If this parameter is not set, one column is used by default. For example, '1fr 1fr 2fr' divides the component into three columns, with four equal parts. The first column occupies one part, the second column occupies one part, and the third column occupies two parts. |
+| rowsTemplate | string | '1fr' | Number of rows in the current grid layout. If this parameter is not set, one row is used by default. For example, '1fr 1fr 2fr' divides the component into three rows. The width allowed by the parent component is divided into four equal parts. The first row occupies one part, the second row occupies one part, and the third row occupies two parts. |
+| columnsGap | Length | 0 | Spacing between columns. |
+| rowsGap | Length | 0 | Spacing between rows. |
+| editMode<sup>8+</sup> | boolean | false | Whether to enter editing mode. In editing mode, you can drag the **&lt;[GridItem](ts-container-griditem.md)&gt;** in the **&lt;Gird&gt;** component. |
 | layoutDirection<sup>8+</sup> | [LayoutDirection](ts-appendix-enums.md#layoutdirection-enums) | LayoutDirection.Row | Main axis direction of the layout. The options are as follows:- **LayoutDirection.Row**: Horizontal layout, where the child components are arranged in the same direction as the main axis runs along the rows.- **LayoutDirection.Column**: Vertical layout, where the child components are arranged in the same direction as the main axis runs down the columns. |
-| maxCount<sup>8+</sup> | number | 1 | Maximum&nbsp;number&nbsp;of&nbsp;rows&nbsp;that&nbsp;can&nbsp;be&nbsp;displayed. |
-| minCount<sup>8+</sup> | number | 1 | Minimum&nbsp;number&nbsp;of&nbsp;rows&nbsp;that&nbsp;can&nbsp;be&nbsp;displayed. |
-| cellLength<sup>8+</sup> | number | 0 | Fixed&nbsp;height&nbsp;per&nbsp;row. |
-| multiSelectable<sup>8+</sup> | boolean | false | Whether&nbsp;to&nbsp;enable&nbsp;mouse&nbsp;frame&nbsp;selection.<br/>-&nbsp;**false**:&nbsp;The&nbsp;mouse&nbsp;frame&nbsp;selection&nbsp;is&nbsp;disabled.<br/>-&nbsp;**true**:&nbsp;The&nbsp;mouse&nbsp;frame&nbsp;selection&nbsp;is&nbsp;disabled. |
+| maxCount<sup>8+</sup> | number | 1 | Maximum number of rows that can be displayed. |
+| minCount<sup>8+</sup> | number | 1 | Minimum number of rows that can be displayed. |
+| cellLength<sup>8+</sup> | number | 0 | Fixed height per row. |
+| multiSelectable<sup>8+</sup> | boolean | false | Whether to enable mouse frame selection.<br/>- **false**: The mouse frame selection is disabled.<br/>- **true**: The mouse frame selection is disabled. |
 | edgeEffection<sup>8+</sup> | EdgeEffect | EdgeEffect.Spring | Edge effect. For details, see **EdgeEffect**. |
 
 - EdgeEffect enums
@@ -50,7 +50,7 @@ Grid()
 
   | Name | Description | 
 | -------- | -------- |
-| onScrollIndex(first:&nbsp;number)&nbsp;=&gt;&nbsp;void | Triggered&nbsp;when&nbsp;the&nbsp;start&nbsp;item&nbsp;of&nbsp;the&nbsp;grid&nbsp;changes. | 
+| onScrollIndex(first: number) =&gt; void | Triggered when the start item of the grid changes. | 
 
 
 ## Example

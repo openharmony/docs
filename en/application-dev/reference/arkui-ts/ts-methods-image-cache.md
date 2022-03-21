@@ -1,7 +1,7 @@
 # Image Cache
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This method is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -26,7 +26,7 @@ setImageCacheCount(value: number): void
 - Parameters
     | Name | Type | Mandatory | Description | 
   | -------- | -------- | -------- | -------- |
-  | value | number | Yes | Number&nbsp;of&nbsp;decoded&nbsp;images&nbsp;that&nbsp;are&nbsp;cached&nbsp;in&nbsp;the&nbsp;memory. | 
+  | value | number | Yes | Number of decoded images that are cached in the memory. | 
 
 - Example
     
@@ -55,7 +55,7 @@ Sets the maximum size (in bytes) of the image data cached in the memory before d
 - Parameters
     | Name | Type | Mandatory | Description | 
   | -------- | -------- | -------- | -------- |
-  | value | number | Yes | Size&nbsp;of&nbsp;the&nbsp;image&nbsp;data&nbsp;cached&nbsp;before&nbsp;decoding,&nbsp;in&nbsp;bytes. | 
+  | value | number | Yes | Size of the image data cached before decoding, in bytes. | 
 
 - Example
     
@@ -84,7 +84,7 @@ Sets the maximum size of the image file cache (in bytes) to speed up the loading
 - Parameters
     | Name | Type | Mandatory | Description | 
   | -------- | -------- | -------- | -------- |
-  | value | number | Yes | Size&nbsp;of&nbsp;the&nbsp;image&nbsp;file&nbsp;cache,&nbsp;in&nbsp;bytes. | 
+  | value | number | Yes | Size of the image file cache, in bytes. | 
 
 - Example
     

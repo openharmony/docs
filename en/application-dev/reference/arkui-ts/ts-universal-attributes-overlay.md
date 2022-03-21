@@ -1,7 +1,7 @@
 # Overlay
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This attribute is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -13,9 +13,9 @@ None
 ## Attributes
 
 
-| Name | Type | Default&nbsp;Value | Description |
+| Name | Type | Default Value | Description |
 | -------- | -------- | -------- | -------- |
-| overlay | title:&nbsp;string,<br/>options:&nbsp;{<br/>align?:&nbsp;[Alignment](ts-appendix-enums.md#alignment-enums),<br/>offset?:&nbsp;{x:&nbsp;number,&nbsp;y:&nbsp;number}<br/>} | {<br/>align:&nbsp;Alignment.Center,<br/>offset:&nbsp;{0,&nbsp;0}<br/>} | Mask&nbsp;added&nbsp;to&nbsp;the&nbsp;component.&nbsp;The&nbsp;mask&nbsp;has&nbsp;the&nbsp;same&nbsp;layout&nbsp;as&nbsp;the&nbsp;component. |
+| overlay | title: string,<br/>options: {<br/>align?: [Alignment](ts-appendix-enums.md#alignment-enums),<br/>offset?: {x: number, y: number}<br/>} | {<br/>align: Alignment.Center,<br/>offset: {0, 0}<br/>} | Mask added to the component. The mask has the same layout as the component. |
 
 
 ## Example

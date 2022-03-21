@@ -1,7 +1,7 @@
 # Transition of Shared Elements
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This animationis supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -10,16 +10,16 @@ Shared element transition can be used for transition between pages, for example,
 
 ## Type
 
-  | Name | Type | Default&nbsp;Value | Description | 
+  | Name | Type | Default Value | Description | 
 | -------- | -------- | -------- | -------- |
-| sharedTransition | id:&nbsp;string,<br/>options?:&nbsp;Object | - | If&nbsp;the&nbsp;same&nbsp;ID&nbsp;is&nbsp;configured&nbsp;for&nbsp;a&nbsp;component&nbsp;on&nbsp;the&nbsp;two&nbsp;pages,&nbsp;this&nbsp;shared&nbsp;component&nbsp;is&nbsp;transited.&nbsp;If&nbsp;this&nbsp;parameter&nbsp;is&nbsp;set&nbsp;to&nbsp;an&nbsp;empty&nbsp;string,&nbsp;no&nbsp;shared&nbsp;elements&nbsp;are&nbsp;transited. | 
+| sharedTransition | id: string,<br/>options?: Object | - | If the same ID is configured for a component on the two pages, this shared component is transited. If this parameter is set to an empty string, no shared elements are transited. | 
 
 - options parameters
-    | Name | Type | Default&nbsp;Value | Mandatory | Description | 
+    | Name | Type | Default Value | Mandatory | Description | 
   | -------- | -------- | -------- | -------- | -------- |
-  | duration | number | 1000 | No | Animation&nbsp;duration,&nbsp;in&nbsp;ms.&nbsp;The&nbsp;default&nbsp;duration&nbsp;is&nbsp;1000&nbsp;ms. | 
-  | curve | Curve&nbsp;\|&nbsp;Curves | Linear | No | The&nbsp;default&nbsp;curve&nbsp;is&nbsp;linear.&nbsp;For&nbsp;details&nbsp;about&nbsp;the&nbsp;valid&nbsp;values,&nbsp;see&nbsp;**Curve&nbsp;enums**. | 
-  | delay | number | 0 | No | Delay&nbsp;of&nbsp;animation&nbsp;playback,&nbsp;in&nbsp;ms.&nbsp;By&nbsp;default,&nbsp;the&nbsp;playback&nbsp;is&nbsp;not&nbsp;delayed. | 
+  | duration | number | 1000 | No | Animation duration, in ms. The default duration is 1000 ms. | 
+  | curve | Curve \| Curves | Linear | No | The default curve is linear. For details about the valid values, see **Curve enums**. | 
+  | delay | number | 0 | No | Delay of animation playback, in ms. By default, the playback is not delayed. | 
 
 
 ## Example

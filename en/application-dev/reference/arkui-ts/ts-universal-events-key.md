@@ -1,7 +1,7 @@
 # Key Event
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This method is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -12,9 +12,9 @@ None
 
 ## Events
 
-| Name | Bubble&nbsp;Supported | Description |
+| Name | Bubble Supported | Description |
 | -------- | -------- | -------- |
-| onKeyEvent(event:&nbsp;(event?:&nbsp;KeyEvent)&nbsp;=&gt;&nbsp;void) | Yes | Called&nbsp;when&nbsp;a&nbsp;key&nbsp;event&nbsp;occurs.&nbsp;For&nbsp;details&nbsp;about&nbsp;the&nbsp;event&nbsp;parameters,&nbsp;see&nbsp;[KeyEvent&nbsp;Object](#KeyEvent Object). |
+| onKeyEvent(event: (event?: KeyEvent) =&gt; void) | Yes | Called when a key event occurs. For details about the event parameters, see [KeyEvent Object](#KeyEvent Object). |
 
 
 ### KeyEvent Object
@@ -22,42 +22,42 @@ None
 - Attributes
     | Name | Type | Description | 
   | -------- | -------- | -------- |
-  | type | KeyType | Type&nbsp;of&nbsp;a&nbsp;key. | 
-  | keyCode | number | Key&nbsp;code. | 
-  | keyText | string | Key&nbsp;value. | 
-  | keySource | KeySource | Type&nbsp;of&nbsp;the&nbsp;input&nbsp;device&nbsp;that&nbsp;triggers&nbsp;the&nbsp;key&nbsp;event. | 
-  | deviceId | number | ID&nbsp;of&nbsp;the&nbsp;input&nbsp;device&nbsp;that&nbsp;triggers&nbsp;the&nbsp;key&nbsp;event. | 
-  | metaKey | number | State&nbsp;of&nbsp;the&nbsp;metakey&nbsp;when&nbsp;the&nbsp;key&nbsp;is&nbsp;pressed.&nbsp;The&nbsp;value&nbsp;**1**&nbsp;means&nbsp;the&nbsp;pressed&nbsp;state,&nbsp;and&nbsp;**0**&nbsp;means&nbsp;the&nbsp;unpressed&nbsp;state. | 
-  | timestamp | number | Timestamp&nbsp;when&nbsp;the&nbsp;key&nbsp;is&nbsp;pressed. | 
+  | type | KeyType | Type of a key. | 
+  | keyCode | number | Key code. | 
+  | keyText | string | Key value. | 
+  | keySource | KeySource | Type of the input device that triggers the key event. | 
+  | deviceId | number | ID of the input device that triggers the key event. | 
+  | metaKey | number | State of the metakey when the key is pressed. The value **1** means the pressed state, and **0** means the unpressed state. | 
+  | timestamp | number | Timestamp when the key is pressed. | 
 
 - APIs
     | Name | Description | 
   | -------- | -------- |
-  | stopPropagation():&nbsp;void | Stops&nbsp;the&nbsp;event&nbsp;from&nbsp;bubbling&nbsp;upwards&nbsp;or&nbsp;downwards. | 
+  | stopPropagation(): void | Stops the event from bubbling upwards or downwards. | 
 
 - KeyType enums
     | Name | Description | 
   | -------- | -------- |
-  | Down | The&nbsp;key&nbsp;is&nbsp;pressed. | 
-  | Up | The&nbsp;key&nbsp;is&nbsp;released. | 
+  | Down | The key is pressed. | 
+  | Up | The key is released. | 
 
 
 - KeySource enums
     | Name | Description | 
   | -------- | -------- |
-  | Unknown | Unknown&nbsp;input&nbsp;device. | 
-  | Keyboard | The&nbsp;input&nbsp;device&nbsp;is&nbsp;a&nbsp;keyboard. | 
+  | Unknown | Unknown input device. | 
+  | Keyboard | The input device is a keyboard. | 
 
 - Common KeyCode description
-    | Value | Behavior | Physical&nbsp;Button | 
+    | Value | Behavior | Physical Button | 
   | -------- | -------- | -------- |
-  | 19 | Upward | Up&nbsp;button. | 
-  | 20 | Downward | Down&nbsp;button. | 
-  | 21 | Leftward | Left&nbsp;button. | 
-  | 22 | Rightward | Right&nbsp;button. | 
-  | 23 | OK | **OK**&nbsp;key&nbsp;on&nbsp;a&nbsp;remote&nbsp;control. | 
-  | 66 | OK | **Enter**&nbsp;key&nbsp;on&nbsp;a&nbsp;keyboard. | 
-  | 160 | OK | **Enter**&nbsp;button&nbsp;on&nbsp;the&nbsp;numeric&nbsp;keypad. | 
+  | 19 | Upward | Up button. | 
+  | 20 | Downward | Down button. | 
+  | 21 | Leftward | Left button. | 
+  | 22 | Rightward | Right button. | 
+  | 23 | OK | **OK** key on a remote control. | 
+  | 66 | OK | **Enter** key on a keyboard. | 
+  | 160 | OK | **Enter** button on the numeric keypad. | 
 
 
 ## Example

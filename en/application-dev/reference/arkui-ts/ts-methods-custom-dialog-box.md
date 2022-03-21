@@ -1,7 +1,7 @@
 # Custom Dialog Box
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This method is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -14,28 +14,28 @@ CustomDialogController(value:{builder: CustomDialog, cancel?: () =&gt; void, aut
 
 
 - Parameters
-    | Name | Type | Mandatory | Default&nbsp;Value | Description |
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | builder | [CustomDialog](../../ui/ ts-component-based-customdialog.md) | Yes | - | Constructor&nbsp;of&nbsp;the&nbsp;custom&nbsp;dialog&nbsp;box&nbsp;content. |
-  | cancel | ()&nbsp;=&gt;&nbsp;void | No | - | Callback&nbsp;invoked&nbsp;when&nbsp;the&nbsp;dialog&nbsp;box&nbsp;is&nbsp;closed&nbsp;after&nbsp;the&nbsp;overlay&nbsp;exits. |
-  | autoCancel | boolean | No | true | Whether&nbsp;to&nbsp;allow&nbsp;users&nbsp;to&nbsp;click&nbsp;the&nbsp;overlay&nbsp;to&nbsp;exit. |
-  | alignment | DialogAlignment | No | DialogAlignment.Default | Alignment&nbsp;mode&nbsp;of&nbsp;the&nbsp;dialog&nbsp;box&nbsp;in&nbsp;the&nbsp;vertical&nbsp;direction. |
-  | offset | {<br/>dx:&nbsp;Length&nbsp;\|[Resource](../../ui/ts-types.md#resource),<br/>dy:&nbsp;Length&nbsp;&nbsp;\|[Resource](../../ui/ts-types.md#resource)<br/>} |  |  | Offset&nbsp;of&nbsp;the&nbsp;dialog&nbsp;box&nbsp;relative&nbsp;to&nbsp;the&nbsp;alignment&nbsp;position. |
-  | customStyle | boolean | No | false | Whether&nbsp;the&nbsp;style&nbsp;of&nbsp;the&nbsp;dialog&nbsp;box&nbsp;is&nbsp;customized. |
+  | builder | [CustomDialog](../../ui/ts-component-based-customdialog.md) | Yes | - | Constructor of the custom dialog box content. |
+  | cancel | () =&gt; void | No | - | Callback invoked when the dialog box is closed after the overlay exits. |
+  | autoCancel | boolean | No | true | Whether to allow users to click the overlay to exit. |
+  | alignment | DialogAlignment | No | DialogAlignment.Default | Alignment mode of the dialog box in the vertical direction. |
+  | offset | {<br/>dx: Length \|[Resource](../../ui/ts-types.md#resource),<br/>dy: Length  \|[Resource](../../ui/ts-types.md#resource)<br/>} |  |  | Offset of the dialog box relative to the alignment position. |
+  | customStyle | boolean | No | false | Whether the style of the dialog box is customized. |
 
 - DialogAlignment enums
-    | Name | Description | 
+    | Name | Description |
   | -------- | -------- |
-  | Top | Aligns&nbsp;vertically&nbsp;to&nbsp;the&nbsp;top. | 
-  | Center | Aligns&nbsp;vertically&nbsp;to&nbsp;the&nbsp;middle. | 
-  | Bottom | Aligns&nbsp;vertically&nbsp;to&nbsp;the&nbsp;bottom. | 
-  | Default | Default&nbsp;alignment. | 
-  | TopStart<sup>8+</sup> | Top&nbsp;left&nbsp;alignment. | 
-  | TopEnd<sup>8+</sup> | Top&nbsp;right&nbsp;alignment. | 
-  | CenterStart<sup>8+</sup> | Center&nbsp;left&nbsp;alignment. | 
-  | CenterEnd<sup>8+</sup> | Center&nbsp;right&nbsp;alignment. | 
-  | BottomStart<sup>8+</sup> | Bottom&nbsp;left&nbsp;alignment. | 
-  | BottomEnd<sup>8+</sup> | Bottom&nbsp;right&nbsp;alignment. | 
+  | Top | Aligns vertically to the top. |
+  | Center | Aligns vertically to the middle. |
+  | Bottom | Aligns vertically to the bottom. |
+  | Default | Default alignment. |
+  | TopStart<sup>8+</sup> | Top left alignment. |
+  | TopEnd<sup>8+</sup> | Top right alignment. |
+  | CenterStart<sup>8+</sup> | Center left alignment. |
+  | CenterEnd<sup>8+</sup> | Center right alignment. |
+  | BottomStart<sup>8+</sup> | Bottom left alignment. |
+  | BottomEnd<sup>8+</sup> | Bottom right alignment. |
 
 
 ### CustomDialogController

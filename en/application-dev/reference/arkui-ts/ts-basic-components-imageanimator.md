@@ -1,7 +1,7 @@
 # ImageAnimator
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -25,41 +25,41 @@ ImageAnimator()
 
 ## Attributes
 
-| Name | Type | Default&nbsp;Value | Mandatory | Description |
+| Name | Type | Default Value | Mandatory | Description |
 | -------- | -------- | -------- | -------- | -------- |
-| images | Array&lt;{<br/>src:string,<br/>width?:Length,<br/>height?:Length,<br/>top?:Length,<br/>left?:Length,<br/>duration?:number<br/>}&gt; | [] | Yes | Image&nbsp;frame&nbsp;information.&nbsp;The&nbsp;information&nbsp;of&nbsp;each&nbsp;frame&nbsp;includes&nbsp;the&nbsp;image&nbsp;path,&nbsp;image&nbsp;size,&nbsp;image&nbsp;position,&nbsp;and&nbsp;image&nbsp;playback&nbsp;duration.&nbsp;The&nbsp;detailed&nbsp;description&nbsp;is&nbsp;as&nbsp;follows:<br/>**src**:&nbsp;image&nbsp;path.&nbsp;The&nbsp;image&nbsp;format&nbsp;can&nbsp;be&nbsp;SVG,&nbsp;PNG,&nbsp;or&nbsp;JPG.<br/>**width**:&nbsp;image&nbsp;width.<br/>**height**:&nbsp;image&nbsp;height.<br/>**top**:&nbsp;vertical&nbsp;coordinate&nbsp;of&nbsp;the&nbsp;image&nbsp;relative&nbsp;to&nbsp;the&nbsp;upper&nbsp;left&nbsp;corner&nbsp;of&nbsp;the&nbsp;component.<br/>**left**:&nbsp;horizontal&nbsp;coordinate&nbsp;of&nbsp;the&nbsp;image&nbsp;relative&nbsp;to&nbsp;the&nbsp;upper&nbsp;left&nbsp;corner&nbsp;of&nbsp;the&nbsp;component.<br/>**duration**:&nbsp;playback&nbsp;duration&nbsp;of&nbsp;the&nbsp;image,&nbsp;in&nbsp;ms. |
-| state | AnimationStatus | AnimationStatus.Initial | No | Playback&nbsp;status&nbsp;of&nbsp;the&nbsp;animation.&nbsp;The&nbsp;default&nbsp;status&nbsp;is&nbsp;**Initial**. |
-| duration | number | 1000 | No | Playback&nbsp;duration,&nbsp;in&nbsp;ms.&nbsp;The&nbsp;default&nbsp;duration&nbsp;is&nbsp;1000&nbsp;ms.&nbsp;When&nbsp;the&nbsp;duration&nbsp;is&nbsp;**0**,&nbsp;no&nbsp;image&nbsp;is&nbsp;played.&nbsp;The&nbsp;value&nbsp;change&nbsp;takes&nbsp;effect&nbsp;only&nbsp;at&nbsp;the&nbsp;beginning&nbsp;of&nbsp;the&nbsp;next&nbsp;cycle.&nbsp;When&nbsp;a&nbsp;separate&nbsp;duration&nbsp;is&nbsp;set&nbsp;in&nbsp;images,&nbsp;the&nbsp;setting&nbsp;of&nbsp;this&nbsp;attribute&nbsp;is&nbsp;invalid. |
-| reverse | boolean | false | No | Playback&nbsp;sequence.&nbsp;The&nbsp;value&nbsp;**false**&nbsp;indicates&nbsp;that&nbsp;images&nbsp;are&nbsp;played&nbsp;from&nbsp;the&nbsp;first&nbsp;one&nbsp;to&nbsp;the&nbsp;last&nbsp;one,&nbsp;and&nbsp;**true**&nbsp;indicates&nbsp;that&nbsp;images&nbsp;are&nbsp;played&nbsp;from&nbsp;the&nbsp;last&nbsp;one&nbsp;to&nbsp;the&nbsp;first&nbsp;one. |
-| fixedSize | boolean | true | No | Whether&nbsp;the&nbsp;image&nbsp;size&nbsp;is&nbsp;the&nbsp;same&nbsp;as&nbsp;the&nbsp;component&nbsp;size.&nbsp;**true**:&nbsp;The&nbsp;image&nbsp;size&nbsp;is&nbsp;the&nbsp;same&nbsp;as&nbsp;the&nbsp;component&nbsp;size.&nbsp;In&nbsp;this&nbsp;case,&nbsp;the&nbsp;width,&nbsp;height,&nbsp;top,&nbsp;and&nbsp;left&nbsp;attributes&nbsp;of&nbsp;the&nbsp;image&nbsp;are&nbsp;invalid.&nbsp;**false**:&nbsp;The&nbsp;width,&nbsp;height,&nbsp;top,&nbsp;and&nbsp;left&nbsp;attributes&nbsp;of&nbsp;each&nbsp;image&nbsp;must&nbsp;be&nbsp;set&nbsp;separately. |
-| preDecode | number | 0 | No | Whether&nbsp;to&nbsp;enable&nbsp;pre-decoding.&nbsp;The&nbsp;default&nbsp;value&nbsp;**0**&nbsp;indicates&nbsp;that&nbsp;pre-decoding&nbsp;is&nbsp;disabled.&nbsp;If&nbsp;this&nbsp;attribute&nbsp;is&nbsp;set&nbsp;to&nbsp;**2**,&nbsp;two&nbsp;images&nbsp;following&nbsp;the&nbsp;currently&nbsp;playing&nbsp;frame&nbsp;will&nbsp;be&nbsp;cached&nbsp;in&nbsp;advance&nbsp;to&nbsp;improve&nbsp;performance. |
-| fillMode | FillMode | FillMode.Forwards | No | Status&nbsp;before&nbsp;and&nbsp;after&nbsp;the&nbsp;animation&nbsp;starts.&nbsp;For&nbsp;details&nbsp;about&nbsp;the&nbsp;options,&nbsp;see&nbsp;**FillMode**. |
-| iterations | number | 1 | No | By&nbsp;default,&nbsp;the&nbsp;animation&nbsp;is&nbsp;played&nbsp;once.&nbsp;The&nbsp;value&nbsp;**-1**&nbsp;indicates&nbsp;that&nbsp;the&nbsp;animation&nbsp;is&nbsp;played&nbsp;for&nbsp;an&nbsp;unlimited&nbsp;number&nbsp;of&nbsp;times. |
+| images | Array&lt;{<br/>src:string,<br/>width?:Length,<br/>height?:Length,<br/>top?:Length,<br/>left?:Length,<br/>duration?:number<br/>}&gt; | [] | Yes | Image frame information. The information of each frame includes the image path, image size, image position, and image playback duration. The detailed description is as follows:<br/>**src**: image path. The image format can be SVG, PNG, or JPG.<br/>**width**: image width.<br/>**height**: image height.<br/>**top**: vertical coordinate of the image relative to the upper left corner of the component.<br/>**left**: horizontal coordinate of the image relative to the upper left corner of the component.<br/>**duration**: playback duration of the image, in ms. |
+| state | AnimationStatus | AnimationStatus.Initial | No | Playback status of the animation. The default status is **Initial**. |
+| duration | number | 1000 | No | Playback duration, in ms. The default duration is 1000 ms. When the duration is **0**, no image is played. The value change takes effect only at the beginning of the next cycle. When a separate duration is set in images, the setting of this attribute is invalid. |
+| reverse | boolean | false | No | Playback sequence. The value **false** indicates that images are played from the first one to the last one, and **true** indicates that images are played from the last one to the first one. |
+| fixedSize | boolean | true | No | Whether the image size is the same as the component size. **true**: The image size is the same as the component size. In this case, the width, height, top, and left attributes of the image are invalid. **false**: The width, height, top, and left attributes of each image must be set separately. |
+| preDecode | number | 0 | No | Whether to enable pre-decoding. The default value **0** indicates that pre-decoding is disabled. If this attribute is set to **2**, two images following the currently playing frame will be cached in advance to improve performance. |
+| fillMode | FillMode | FillMode.Forwards | No | Status before and after the animation starts. For details about the options, see **FillMode**. |
+| iterations | number | 1 | No | By default, the animation is played once. The value **-1** indicates that the animation is played for an unlimited number of times. |
 
 - AnimationStatus enums
     | Name | Description | 
   | -------- | -------- |
-  | Initial | The&nbsp;animation&nbsp;is&nbsp;in&nbsp;the&nbsp;initial&nbsp;state. | 
-  | Running | The&nbsp;animation&nbsp;is&nbsp;being&nbsp;played. | 
-  | Paused | The&nbsp;animation&nbsp;is&nbsp;paused. | 
-  | Stopped | The&nbsp;animation&nbsp;is&nbsp;stopped. | 
+  | Initial | The animation is in the initial state. | 
+  | Running | The animation is being played. | 
+  | Paused | The animation is paused. | 
+  | Stopped | The animation is stopped. | 
 
 - FillMode enums
     | Name | Description | 
   | -------- | -------- |
-  | None | After&nbsp;the&nbsp;playback&nbsp;is&nbsp;complete,&nbsp;the&nbsp;animation&nbsp;restores&nbsp;to&nbsp;the&nbsp;initial&nbsp;state. | 
-  | Forwards | After&nbsp;the&nbsp;playback&nbsp;is&nbsp;complete,&nbsp;the&nbsp;animation&nbsp;remains&nbsp;in&nbsp;the&nbsp;end&nbsp;state. | 
+  | None | After the playback is complete, the animation restores to the initial state. | 
+  | Forwards | After the playback is complete, the animation remains in the end state. | 
 
 
 ## Events
 
   | Name | Description | 
 | -------- | -------- | -------- |
-| onStart()&nbsp;=&gt;&nbsp;void | Triggered&nbsp;when&nbsp;the&nbsp;animation&nbsp;starts&nbsp;to&nbsp;play. | 
-| onPause()&nbsp;=&gt;&nbsp;void | Triggered&nbsp;when&nbsp;the&nbsp;animation&nbsp;playback&nbsp;is&nbsp;paused. | 
-| onRepeat()&nbsp;=&gt;&nbsp;void | Triggered&nbsp;when&nbsp;the&nbsp;animation&nbsp;playback&nbsp;is&nbsp;repeated. | 
-| onCancel()&nbsp;=&gt;&nbsp;void | Triggered&nbsp;when&nbsp;the&nbsp;animation&nbsp;playback&nbsp;is&nbsp;canceled. | 
-| onFinish()&nbsp;=&gt;&nbsp;void | Triggered&nbsp;when&nbsp;the&nbsp;animation&nbsp;playback&nbsp;is&nbsp;complete. | 
+| onStart() =&gt; void | Triggered when the animation starts to play. | 
+| onPause() =&gt; void | Triggered when the animation playback is paused. | 
+| onRepeat() =&gt; void | Triggered when the animation playback is repeated. | 
+| onCancel() =&gt; void | Triggered when the animation playback is canceled. | 
+| onFinish() =&gt; void | Triggered when the animation playback is complete. | 
 
 
 ## Example

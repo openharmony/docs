@@ -1,7 +1,7 @@
 # Click Control
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -13,9 +13,9 @@ None
 ## Attributes
 
 
-  | **Name** | **Type** | **Default&nbsp;Value** | **Description** | 
+  | **Name** | **Type** | **Default Value** | **Description** | 
 | -------- | -------- | -------- | -------- |
-| touchable | boolean | true | Whether&nbsp;the&nbsp;current&nbsp;component&nbsp;is&nbsp;touchable. | 
+| touchable | boolean | true | Whether the current component is touchable. | 
 
 
 ## Example

@@ -1,7 +1,7 @@
 # GridContainer
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -23,21 +23,21 @@ This component can contain child components.
 GridContainer(options?: { columns?: number | 'auto', sizeType?: SizeType, gutter?: Length, margin?: Length})
 
 - Parameter
-    | Name | Type | Mandatory | Default&nbsp;Value | Description |
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | columns | number&nbsp;\|&nbsp;'auto' | No | 'auto' | Total&nbsp;number&nbsp;of&nbsp;columns&nbsp;in&nbsp;the&nbsp;current&nbsp;layout. |
-  | sizeType | SizeType | No | SizeType.Auto | Device&nbsp;size&nbsp;type. |
-  | gutter | Length | No | - | Gutter&nbsp;of&nbsp;the&nbsp;grid&nbsp;layout. |
-  | margin | Length | No | - | Margin&nbsp;of&nbsp;the&nbsp;grid&nbsp;layout. |
+  | columns | number \| 'auto' | No | 'auto' | Total number of columns in the current layout. |
+  | sizeType | SizeType | No | SizeType.Auto | Device size type. |
+  | gutter | Length | No | - | Gutter of the grid layout. |
+  | margin | Length | No | - | Margin of the grid layout. |
 
 - SizeType enums
     | Name | Description | 
   | -------- | -------- |
-  | XS | Device&nbsp;of&nbsp;the&nbsp;minimum&nbsp;size. | 
-  | SM | Small-sized&nbsp;device. | 
-  | MD | Medium-sized&nbsp;device. | 
-  | LG | Large-sized&nbsp;device. | 
-  | Auto | Auto.&nbsp;The&nbsp;size&nbsp;type&nbsp;is&nbsp;selected&nbsp;based&nbsp;on&nbsp;the&nbsp;device&nbsp;type. | 
+  | XS | Device of the minimum size. | 
+  | SM | Small-sized device. | 
+  | MD | Medium-sized device. | 
+  | LG | Large-sized device. | 
+  | Auto | Auto. The size type is selected based on the device type. | 
 
 
 ## Attributes

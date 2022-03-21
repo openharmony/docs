@@ -53,17 +53,16 @@ RichText\(content:string\)
 @Entry
 @Component
 struct RichTextExample {
-  @State data: string =' <h1 style='text-align: center;'>h1 heading</h1>
-                        <h1 style='text-align: center;'><i>h1 italic</i></h1>
-                        <h1 style='text-align: center;'><u>h1 underlined</u></h1>
-                        <h2 style='text-align: center;'>h2 heading</h2>
-                        <h3 style='text-align: center;'>h3 heading</h3>
-                        <p style='text-align: center;'>Regular paragraph</p> <hr/>
-                        <div style='width: 500px;height: 500px;border: 1px solid;margin: 0auto;'>
-                        <p style='font-size: 35px;text-align: center;font-weight: bold; color: rgb(24,78,228)'>Font size: 35px; line height: 45px</p>
-                        <p style='background-color: #e5e5e5;line-height: 45px;font-size: 35px;text-indent: 2em;'>
-                        This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph.
-                        This is a paragraph.</p></div>'
+  @State data: string = "<h1 style='text-align: center;'>h1 heading</h1>" +
+                        "<h1 style='text-align: center;'><i>h1 italic</i></h1>" +
+                        "<h1 style='text-align: center;'><u>h1 underlined</u></h1>" +
+                        "<h2 style='text-align: center;'>h2 heading</h2>" +
+                        "<h3 style='text-align: center;'>h3 heading</h3>" +
+                        "<p style='text-align: center;'>Regular paragraph</p><hr/>" +
+                        "<div style='width: 500px;height: 500px;border: 1px solid;margin: 0auto;'>" +
+                        "<p style='font-size: 35px;text-align: center;font-weight: bold; color: rgb(24,78,228)'>Font size: 35px; line height: 45px</p>" +
+                        "<p style='background-color: #e5e5e5;line-height: 45px;font-size: 35px;text-indent: 2em;'>" +
+                        "<p>This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph.</p>"
 
   build() {
     Flex({direction: FlexDirection.Column,alignItems: ItemAlign.Center,

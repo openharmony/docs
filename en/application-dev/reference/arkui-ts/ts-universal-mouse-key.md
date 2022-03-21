@@ -1,7 +1,7 @@
 # Mouse Event
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -12,10 +12,10 @@ None
 
 ## Events
 
-  | Name | Bubble&nbsp;Supported | Description | 
+  | Name | Bubble Supported | Description | 
 | -------- | -------- | -------- |
-| onHover(callback:&nbsp;(isHover:&nbsp;boolean)&nbsp;=&gt;&nbsp;void) | No | Triggered&nbsp;when&nbsp;the&nbsp;mouse&nbsp;cursor&nbsp;enters&nbsp;or&nbsp;leaves&nbsp;the&nbsp;component.<br/>**isHover**:&nbsp;whether&nbsp;the&nbsp;mouse&nbsp;cursor&nbsp;hovers&nbsp;over&nbsp;the&nbsp;component.&nbsp;The&nbsp;value&nbsp;**true**&nbsp;means&nbsp;that&nbsp;the&nbsp;mouse&nbsp;cursor&nbsp;enters&nbsp;the&nbsp;component,&nbsp;and&nbsp;the&nbsp;value&nbsp;**false**&nbsp;means&nbsp;that&nbsp;the&nbsp;mouse&nbsp;cursor&nbsp;leaves&nbsp;the&nbsp;component. | 
-| onMouse(callback:&nbsp;(event?:&nbsp;MouseEvent)&nbsp;=&gt;&nbsp;void) | Yes | Triggered&nbsp;when&nbsp;the&nbsp;component&nbsp;is&nbsp;clicked&nbsp;by&nbsp;a&nbsp;mouse&nbsp;button&nbsp;or&nbsp;the&nbsp;mouse&nbsp;cursor&nbsp;moves&nbsp;on&nbsp;the&nbsp;component.&nbsp;The&nbsp;**event**&nbsp;parameter&nbsp;indicates&nbsp;the&nbsp;timestamp,&nbsp;mouse&nbsp;button,&nbsp;action,&nbsp;coordinates&nbsp;of&nbsp;the&nbsp;clicked&nbsp;point&nbsp;on&nbsp;the&nbsp;entire&nbsp;screen,&nbsp;and&nbsp;coordinates&nbsp;of&nbsp;the&nbsp;clicked&nbsp;point&nbsp;relative&nbsp;to&nbsp;the&nbsp;component&nbsp;when&nbsp;the&nbsp;event&nbsp;is&nbsp;triggered. | 
+| onHover(callback: (isHover: boolean) =&gt; void) | No | Triggered when the mouse cursor enters or leaves the component.<br/>**isHover**: whether the mouse cursor hovers over the component. The value **true** means that the mouse cursor enters the component, and the value **false** means that the mouse cursor leaves the component. | 
+| onMouse(callback: (event?: MouseEvent) =&gt; void) | Yes | Triggered when the component is clicked by a mouse button or the mouse cursor moves on the component. The **event** parameter indicates the timestamp, mouse button, action, coordinates of the clicked point on the entire screen, and coordinates of the clicked point relative to the component when the event is triggered. | 
 
 
 ### MouseEvent
@@ -23,31 +23,31 @@ None
 - Attributes
     | Name | Type | Description | 
   | -------- | -------- | -------- |
-  | timestamp | number | Timestamp&nbsp;when&nbsp;the&nbsp;event&nbsp;is&nbsp;triggered. | 
-  | screenX | number | X-coordinate&nbsp;of&nbsp;the&nbsp;clicked&nbsp;point&nbsp;relative&nbsp;to&nbsp;the&nbsp;upper&nbsp;left&nbsp;corner&nbsp;of&nbsp;the&nbsp;screen. | 
-  | screenY | number | Y-coordinate&nbsp;of&nbsp;the&nbsp;clicked&nbsp;point&nbsp;relative&nbsp;to&nbsp;the&nbsp;upper&nbsp;left&nbsp;corner&nbsp;of&nbsp;the&nbsp;screen. | 
-  | x | number | X-coordinate&nbsp;of&nbsp;the&nbsp;clicked&nbsp;point&nbsp;relative&nbsp;to&nbsp;the&nbsp;upper&nbsp;left&nbsp;corner&nbsp;of&nbsp;the&nbsp;component. | 
-  | y | number | Y-coordinate&nbsp;of&nbsp;the&nbsp;clicked&nbsp;point&nbsp;relative&nbsp;to&nbsp;the&nbsp;upper&nbsp;left&nbsp;corner&nbsp;of&nbsp;the&nbsp;component. | 
-  | button | MouseButton | Mouse&nbsp;button. | 
-  | action | MouseAction | Event&nbsp;action. | 
+  | timestamp | number | Timestamp when the event is triggered. | 
+  | screenX | number | X-coordinate of the clicked point relative to the upper left corner of the screen. | 
+  | screenY | number | Y-coordinate of the clicked point relative to the upper left corner of the screen. | 
+  | x | number | X-coordinate of the clicked point relative to the upper left corner of the component. | 
+  | y | number | Y-coordinate of the clicked point relative to the upper left corner of the component. | 
+  | button | MouseButton | Mouse button. | 
+  | action | MouseAction | Event action. | 
 
 
 - MouseButton attributes
     | Name | Type | Description | 
   | -------- | -------- | -------- |
-  | Left | number | Left&nbsp;mouse&nbsp;button. | 
-  | Right | number | Right&nbsp;mouse&nbsp;button. | 
-  | Middle | number | Middle&nbsp;mouse&nbsp;button. | 
-  | Back | number | Back&nbsp;button&nbsp;on&nbsp;the&nbsp;left&nbsp;of&nbsp;the&nbsp;mouse. | 
-  | Forward | number | Forward&nbsp;button&nbsp;on&nbsp;the&nbsp;left&nbsp;of&nbsp;the&nbsp;mouse. | 
-  | None | number | No&nbsp;button. | 
+  | Left | number | Left mouse button. | 
+  | Right | number | Right mouse button. | 
+  | Middle | number | Middle mouse button. | 
+  | Back | number | Back button on the left of the mouse. | 
+  | Forward | number | Forward button on the left of the mouse. | 
+  | None | number | No button. | 
 
 - MouseAction attributes
     | Name | Type | Description | 
   | -------- | -------- | -------- |
-  | Press | number | The&nbsp;mouse&nbsp;button&nbsp;is&nbsp;pressed. | 
-  | Release | number | The&nbsp;mouse&nbsp;button&nbsp;is&nbsp;released. | 
-  | Move | number | The&nbsp;mouse&nbsp;cursor&nbsp;moves. | 
+  | Press | number | The mouse button is pressed. | 
+  | Release | number | The mouse button is released. | 
+  | Move | number | The mouse cursor moves. | 
 
 
 ## Example
