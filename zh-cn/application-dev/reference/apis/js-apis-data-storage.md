@@ -52,7 +52,7 @@ getStorageSync(path: string): Storage
           console.error('getFilesDir failed. err: ' + JSON.stringify(err));
           return;
       }
-      console.info('getFilesDir successful. path:' + JSON.stringify(data));
+      console.info('getFilesDir successful. path:' + JSON.stringify(path));
       let storage = dataStorage.getStorageSync(path + '/mystore')
       storage.putSync('startup', 'auto')
       storage.flushSync()
@@ -85,7 +85,7 @@ getStorage(path: string, callback: AsyncCallback&lt;Storage&gt;): void
           console.error('getFilesDir failed. err: ' + JSON.stringify(err));
           return;
       }
-      console.info('getFilesDir successful. path:' + JSON.stringify(data));
+      console.info('getFilesDir successful. path:' + JSON.stringify(path));
       dataStorage.getStorage(path + '/mystore', function (err, storage) {
           if (err) {
               console.info("Get the storage failed, path: " + path + '/mystore')
