@@ -207,12 +207,12 @@
    示例代码如下：
 
    ```
-   import dataRdb from '@ohos.data.rdb';
+   import data_rdb from '@ohos.data.rdb'
    
    const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " + "name TEXT NOT NULL, " + "age INTEGER, " + "salary REAL, " + "blobType BLOB)";
    const STORE_CONFIG = {name: "rdbstore.db",}
    
-   let rdbStore = await dataRdb.getRdbStore(STORE_CONFIG, 1);
+   let rdbStore = await data_rdb.getRdbStore(STORE_CONFIG, 1);
    await rdbStore.executeSql(CREATE_TABLE_TEST);
    ```
 
@@ -236,7 +236,7 @@
    示例代码如下：
 
    ```
-   let predicates = new dataRdb.RdbPredicates("test");
+   let predicates = new data_rdb.RdbPredicates("test");
    predicates.equalTo("name", "Tom")
    let resultSet = await rdbStore.query(predicates)
    
@@ -273,7 +273,7 @@
     示例代码如下：
 
     ```
-    let predicate = new dataRdb.RdbPredicates('test')
+    let predicate = new data_rdb.RdbPredicates('test')
     predicate.inDevices(['12345678abcde'])
     let promise = rdbStore.sync(rdb.SyncMode.SYNC_MODE_PUSH, predicate)
     promise.then(result) {
