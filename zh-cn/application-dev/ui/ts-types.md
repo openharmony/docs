@@ -90,6 +90,11 @@
 | -------- | -------- | -------- |
 | ResourceColor | Color&nbsp;\|&nbsp;number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;Resource | 用于描述资源颜色类型。 | 
 
+## Font类型<sup>8+</sup>
+
+| 名称 | 类型定义 | 描述 |
+| -------- | -------- | -------- |
+| Font | {<br/>size?: Length;<br/>weight?: <a href="https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-universal-attributes-text-style.md#li24391125115311">FontWeight</a> &nbsp;\| number &nbsp;\| string;<br/>family?: string &nbsp;\| <a href="ts-types.md#Resource">Resource</a>;<br/>style?: <a href="https://gitee.com/superFat/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-universal-attributes-text-style.md#li6906111945316">FontStyle</a>;<br/>} | 设置文本样式：<br/>size: 设置文本尺寸，Length为number类型时，使用fp单位。<br/>weight: 设置文本的字体粗细，number类型取值[100, 900]，取值间隔为100，默认为400，取值越大，字体越粗。<br/>family: 设置文本的字体列表。使用多个字体，使用','进行分割，优先级按顺序生效。例如：'Arial, sans-serif'。<br/>style: 设置文本的字体样式。 |
 
 ## CustomBuilder类型<sup>8+</sup>
 

@@ -29,20 +29,20 @@ Select(options: Array<SelectOption>)
 | ----------------------- | --------------------------------------------------- | ------ | ----------------------------------------------- |
 | selected                | number                                              | -      | 设置下拉菜单初始选择项的索引，第一项的索引为0。 |
 | value                   | string                                              | -      | 设置下拉按钮本身的文本显示。                    |
-| font                    | [Font](../../ui/ts-types.md#Font)                   | -      | 设置下拉按钮本身的文本样式：                    |
+| font                    | [Font](../../ui/ts-types.md#Font类型)                   | -      | 设置下拉按钮本身的文本样式：                    |
 | fontColor               | [ResourceColor](../../ui/ts-types.md#ResourceColor) | -      | 设置下拉按钮本身的文本颜色。                    |
 | selectedOptionBgColor   | [ResourceColor](../../ui/ts-types.md#ResourceColor) | -      | 设置下拉菜单选中项的背景色。                    |
-| selectedOptionFont      | [Font](../../ui/ts-types.md#Font)                   | -      | 设置下拉菜单选中项的文本样式：                  |
+| selectedOptionFont      | [Font](../../ui/ts-types.md#Font类型)                   | -      | 设置下拉菜单选中项的文本样式：                  |
 | selectedOptionFontColor | [ResourceColor](../../ui/ts-types.md#ResourceColor) | -      | 设置下拉菜单选中项的文本颜色。                  |
 | optionBgColor           | [ResourceColor](../../ui/ts-types.md#ResourceColor) | -      | 设置下拉菜单项的背景色。                        |
-| optionFont              | [Font](../../ui/ts-types.md#Font)                   | -      | 设置下拉菜单项的文本样式：                      |
+| optionFont              | [Font](../../ui/ts-types.md#Font类型)                   | -      | 设置下拉菜单项的文本样式：                      |
 | optionFontColor         | [ResourceColor](../../ui/ts-types.md#ResourceColor) | -      | 设置下拉菜单项的文本颜色。                      |
 
 ## 事件
 
-| 名称                                                         | 功能描述                                                     |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| onSelected(callback: (index: number, value?:string) => void） | 下拉菜单选中某一项的回调。index：选中项的索引。value：选中项的值。 |
+| 名称                                                        | 功能描述                                                     |
+| ----------------------------------------------------------- | ------------------------------------------------------------ |
+| onSelect(callback: (index: number, value?:string) => void） | 下拉菜单选中某一项的回调。index：选中项的索引。value：选中项的值。 |
 
 ##  示例
 
@@ -61,7 +61,7 @@ struct SliderExample {
         .font({size: 30, weight:400, family: 'serif', style: FontStyle.Normal })
         .selectedOptionFont({size: 40, weight: 500, family: 'serif', style: FontStyle.Normal })
         .optionFont({size: 30, weight: 400, family: 'serif', style: FontStyle.Normal })
-        .onSelected((index:number)=>{
+        .onSelect((index:number)=>{
           console.info("Select:" + index)
         })
     }

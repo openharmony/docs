@@ -35,8 +35,8 @@
   | -------- | -------- | -------- |
   | width | number | 目标元素的宽度，单位为vp。 |
   | height | number | 目标元素的高度，单位为vp。 |
-  | pos | Position | 目标元素左上角相对父元素左上角的位置。 |
-  | globalPos | Position | 目标元素左上角相对页面左上角的位置。 |
+  | position | Position | 目标元素左上角相对父元素左上角的位置。 |
+  | globalPosition | Position | 目标元素左上角相对页面左上角的位置。 |
 
 - Position<sup>8+</sup>对象说明
   | 属性名称 | 参数类型 | 描述 | 

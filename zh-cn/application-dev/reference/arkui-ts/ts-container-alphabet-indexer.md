@@ -55,9 +55,10 @@ AlphabetIndexer(value: {arrayValue : Array&lt;string&gt;, selected : number})
 
 | 名称 | 功能描述 |
 | -------- | -------- |
-| onSelected(index:&nbsp;number)&nbsp;=&gt;&nbsp;void | 索引条选中回调。 |
+| onSelected(index:&nbsp;number)&nbsp;=&gt;&nbsp;void<sup>(deprecated) </sup>| 索引条选中回调。 |
+| onSelect(index:&nbsp;number)&nbsp;=&gt;&nbsp;void<sup>8+</sup> | 索引条选中回调。 |
 | onRequestPopupData(callback:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;Array&lt;string&gt;)<sup>8+</sup> | 选中字母索引后，请求索引提示窗口显示内容回调。<br/>返回值：索引对应的字符串数组，此字符串数组在弹出窗口中竖排显示，字符串列表最多显示5个，超出部分可以滑动显示。 |
-| onPopupSelected(callback:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;void)<sup>8+</sup> | 字母索引提示窗口选中回调。 |
+| onPopupSelect(callback:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;void)<sup>8+</sup> | 字母索引提示窗口选中回调。 |
 
 
 ## 示例
@@ -79,7 +80,7 @@ struct AlphabetIndexerSample {
       .popupFont({ size: 30, weight: FontWeight.Bolder }) // 弹出框的演示
       .itemSize(28) // 每一项的大小正方形
       .alignStyle(IndexerAlign.Left) // 左对齐
-      .onSelected((index: number) => {
+      .onSelect((index: number) => {
         console.info(this.value[index] + '被选中了') // 选中的事件
       })
       .margin({ left: 50 })

@@ -16,12 +16,12 @@
 | hoverEffect | HoverEffect | HoverEffect.Auto | 设置当前组件悬停态下的悬浮效果。 |
 
 - HoverEffect 枚举说明
-  | 名称 | 描述 | 
+  | 名称 | 描述 |
   | -------- | -------- |
-  | Auto | 使用组件的系统默认悬浮效果。 | 
-  | Scale | 放大缩小效果。 | 
-  | Board | 背景淡入淡出效果。 | 
-  | None | 不设置效果。 | 
+  | Auto | 使用组件的系统默认悬浮效果。 |
+  | Scale | 放大缩小效果。 |
+  | Highlight | 背景淡入淡出的强调效果。 |
+  | None | 不设置效果。 |
 
 
 ## 示例
@@ -41,17 +41,17 @@ struct HoverExample {
           .position({ x: 40, y: 120 })
           .hoverEffect(HoverEffect.Scale)
           .onHover((isHover: boolean) => {
-            console.info('Scale' + isHover)
+            console.info('Scale isHover: ' + isHover)
             this.isHoverVal = isHover
           })
 
         Text('Board').fontSize(20).fontColor(Color.Gray).width('90%').position({ x: 0, y: 380 })
         Column()
           .width('80%').height(200).backgroundColor(Color.Gray)
-          .hoverEffect(HoverEffect.Board)
+          .hoverEffect(HoverEffect.Highlight)
           .position({ x: 40, y: 420 })
           .onHover((isHover: boolean) => {
-            console.info('HoverEffect.Board')
+            console.info('Highlight isHover: ' +isHover )
             this.isHoverVal = isHover
           })
       }

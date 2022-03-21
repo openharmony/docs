@@ -14,10 +14,10 @@
 
 | 名称 | 参数类型 | 默认值 | 描述 |
 | -------- | -------- | -------- | -------- |
-| bindPopup | show:&nbsp;boolean,<br/>popup:&nbsp;PopupOption\|&nbsp;CustomPopupOption | - | 给组件绑定Popup，点击弹出弹窗。<br/>show:&nbsp;创建页面弹窗提示是否默认显示，默认值为false。<br/>popup:&nbsp;配置当前弹窗提示的参数。 |
+| bindPopup | show:&nbsp;boolean,<br/>popup:&nbsp;PopupOptions\|&nbsp;CustomPopupOptions | - | 给组件绑定Popup，点击弹出弹窗。<br/>show:&nbsp;创建页面弹窗提示是否默认显示，默认值为false。<br/>popup:&nbsp;配置当前弹窗提示的参数。 |
 
 
-- PopupOption类型接口说明
+- PopupOptions类型接口说明
   | 名称 | 类型 | 必填 | 默认值 | 描述 | 
   | -------- | -------- | -------- | -------- | -------- |
   | message | string | 是 | - | 弹窗信息内容。 | 
@@ -26,7 +26,7 @@
   | secondaryButton | {<br/>value:&nbsp;string,<br/>action:&nbsp;()&nbsp;=&gt;&nbsp;void<br/>} | 否 | - | 第二个按钮。<br/>value:&nbsp;弹窗里辅助按钮的文本。<br/>action:&nbsp;点击辅助按钮的回调函数。 | 
   | onStateChange | (isVisible:&nbsp;boolean)&nbsp;=&gt;&nbsp;void | 否 | - | 弹窗状态变化事件回调，参数isVisible为弹窗当前的显示状态。 | 
 
-- CustomPopupOption<sup>8+</sup>类型接口说明
+- CustomPopupOptions<sup>8+</sup>类型接口说明
   | 名称 | 类型 | 必填 | 默认值 | 描述 |
   | -------- | -------- | -------- | -------- | -------- |
   | builder | ()&nbsp;=&gt;&nbsp;any | 是 | - | 提示气泡内容的构造器。 |
