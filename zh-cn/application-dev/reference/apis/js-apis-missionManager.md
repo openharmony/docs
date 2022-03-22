@@ -110,7 +110,7 @@ function unregisterMissionListener(listenerId: number): Promise&lt;void&gt;;
     console.log("registerMissionListener")
     var listenerid = missionManager.registerMissionListener(listener);
 
-    await missionManager.unregisterMissionListener(listenerid).catch(function (err){
+    missionManager.unregisterMissionListener(listenerid).catch(function (err){
       console.log(err);
     });
   ```
@@ -145,7 +145,7 @@ function getMissionInfo(deviceId: string, missionId: number, callback: AsyncCall
   	console.log("mission.timestamp = " + mission.timestamp);
   	console.log("mission.label = " + mission.label);
   	console.log("mission.iconPath = " + mission.iconPath);
-  }
+  });
   ```
 
 
@@ -175,7 +175,7 @@ function getMissionInfo(deviceId: string, missionId: number): Promise&lt;Mission
   ```js
   import missionManager from '@ohos.application.missionManager'
 
-  var mission = await missionManager.getMissionInfo("", id).catch(function (err){
+  var mission = missionManager.getMissionInfo("", id).catch(function (err){
       console.log(err);
   });
   ```
@@ -236,7 +236,7 @@ function getMissionInfos(deviceId: string, numMax: number): Promise&lt;Array&lt;
   ```js
   import missionManager from '@ohos.application.missionManager'
 
-  var allMissions = await missionManager.getMissionInfos("", 10).catch(function (err){
+  var allMissions = missionManager.getMissionInfos("", 10).catch(function (err){
       console.log(err);
   });
   ```
@@ -303,13 +303,13 @@ function getMissionSnapShot(deviceId: string, missionId: number): Promise&lt;Mis
   ```js
   import missionManager from '@ohos.application.missionManager'
 
-  var allMissions = await missionManager.getMissionInfos("", 10).catch(function (err){
+  var allMissions = missionManager.getMissionInfos("", 10).catch(function (err){
     console.log(err);
   });
   console.log("size = " + allMissions.length);
   console.log("missions = " + JSON.stringify(allMissions));
   var id = allMissions[0].missionId;
-  var snapshot = await missionManager.getMissionSnapShot("", id).catch(function (err){
+  var snapshot = missionManager.getMissionSnapShot("", id).catch(function (err){
     console.log(err);
   });
   ```
@@ -367,14 +367,14 @@ function lockMission(missionId: number): Promise&lt;void&gt;;
   ```js
   import missionManager from '@ohos.application.missionManager'
 
-  var allMissions = await missionManager.getMissionInfos("", 10).catch(function (err){
+  var allMissions = missionManager.getMissionInfos("", 10).catch(function (err){
     console.log(err);
   });
   console.log("size = " + allMissions.length);
   console.log("missions = " + JSON.stringify(allMissions));
   var id = allMissions[0].missionId;
 
-  await missionManager.lockMission(id).catch(function (err){
+  missionManager.lockMission(id).catch(function (err){
       console.log(err);
   });
   ```
@@ -431,17 +431,17 @@ function unlockMission(missionId: number): Promise&lt;void&gt;;
   ```js
   import missionManager from '@ohos.application.missionManager'
 
-  var allMissions = await missionManager.getMissionInfos("", 10).catch(function (err){
+  var allMissions = missionManager.getMissionInfos("", 10).catch(function (err){
     console.log(err);
   });
   console.log("size = " + allMissions.length);
   console.log("missions = " + JSON.stringify(allMissions));
   var id = allMissions[0].missionId;
 
-  await missionManager.lockMission(id).catch(function (err){
+  missionManager.lockMission(id).catch(function (err){
       console.log(err);
   });
-  await missionManager.unlockMission(id).catch(function (err){
+  missionManager.unlockMission(id).catch(function (err){
       console.log(err);
   });
   ```
@@ -499,14 +499,14 @@ function clearMission(missionId: number): Promise&lt;void&gt;;
   ```js
   import missionManager from '@ohos.application.missionManager'
 
-  var allMissions = await missionManager.getMissionInfos("", 10).catch(function (err){
+  var allMissions = missionManager.getMissionInfos("", 10).catch(function (err){
     console.log(err);
   });
   console.log("size = " + allMissions.length);
   console.log("missions = " + JSON.stringify(allMissions));
   var id = allMissions[0].missionId;
 
-  await missionManager.clearMission(id).catch(function (err){
+  missionManager.clearMission(id).catch(function (err){
     console.log(err);
   });
   ```
@@ -543,7 +543,7 @@ function clearAllMissions(): Promise&lt;void&gt;;
 
   ```js
   import missionManager from '@ohos.application.missionManager'
-  await missionManager.clearAllMissions().catch(function (err){
+  missionManager.clearAllMissions().catch(function (err){
     console.log(err);
   });
   ```
@@ -636,14 +636,14 @@ function moveMissionToFront(missionId: number, options?: StartOptions): Promise&
   ```js
   import missionManager from '@ohos.application.missionManager'
 
-  var allMissions = await missionManager.getMissionInfos("", 10).catch(function (err){
+  var allMissions = missionManager.getMissionInfos("", 10).catch(function (err){
     console.log(err);
   });
   console.log("size = " + allMissions.length);
   console.log("missions = " + JSON.stringify(allMissions));
   var id = allMissions[0].missionId;
 
-  await missionManager.moveMissionToFront(id).catch(function (err){
+  missionManager.moveMissionToFront(id).catch(function (err){
     console.log(err);
   });
   ```
