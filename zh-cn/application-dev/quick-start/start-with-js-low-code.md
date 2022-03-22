@@ -156,4 +156,4 @@ OpenHarmony低代码开发方式，具有丰富的UI界面编辑功能，遵循[
 
    ![zh-cn_image_0000001262127855](figures/zh-cn_image_0000001262127855.png)
 
-恭喜您已经使用JS语言开发（低代码方式）完成了第一个OpenHarmony应用，赶紧探索更多的OpenHarmony功能吧。
+恭喜您已经使用JS语言开发（低代码方式）完成了第一个OpenHarmony应用，赶紧[探索更多的OpenHarmony功能](../application-dev-guide.md)吧。
