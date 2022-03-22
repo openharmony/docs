@@ -165,7 +165,7 @@ testGetDevice: function () {
 
 ## AxisType
 
-轴类型，当前不支持此信息。
+轴类型，本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
 
 ## AxisRange
 
