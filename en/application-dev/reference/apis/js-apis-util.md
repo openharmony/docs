@@ -147,7 +147,7 @@ Processes an asynchronous function and returns a promise version.
 
 ### constructor
 
-constructor(encoding?: string, options?: { fatal?: boolean; ignoreBOM?: boolean })
+constructor(encoding?: string, options?: { fatal?: boolean; ignoreBOM?: boolean },)
 
 A constructor used to create a **TextDecoder** object.
 
@@ -174,7 +174,7 @@ A constructor used to create a **TextDecoder** object.
 
 ### decode
 
-decode(input: Unit8Array, options?: {stream?: false}): string
+decode(input: Uint8Array, options?: { stream?: false }): string
 
 Decodes the input content.
 
