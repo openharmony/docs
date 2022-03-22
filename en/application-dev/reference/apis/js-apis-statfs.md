@@ -1,6 +1,6 @@
 # statfs
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE:**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE:**<br/>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -9,7 +9,7 @@
 import statfs from '@ohos.statfs';
 ```
 
-## Note
+## Guidelines
 
 Before using this module to perform operations on a file or directory, obtain the absolute path of the file or directory. For details, see [getOrCreateLocalDir of the Context module](js-apis-Context.md).
 
@@ -21,27 +21,25 @@ For example, if the application directory obtained by using **getOrCreateLocalDi
 let path = dir + "xxx.txt";
 ```
 
-## System Capabilities
-
-SystemCapability.FileManagement.File.FileIO
-
 ## statfs.getFreeBytes
 
 getFreeBytes(path:string):Promise&lt;number&gt;
 
 Obtains the number of free bytes of the specified file system in asynchronous mode. This method uses a promise to return the result.
 
-- Parameters
+**System capability**: SystemCapability.FileManagement.File.FileIO
 
-  | Name| Type| Mandatory| Description|
+- **Parameters**
+
+  | Name| Type  | Mandatory| Description                        |
   | ------ | ------ | ---- | ---------------------------- |
-  | path   | string | Yes| File path of the file system.|
+  | path   | string | Yes  | File path of the file system.|
 
-- Return values
+- Return value
 
-  | Type| Description|
+  | Type                 | Description          |
   | --------------------- | -------------- |
-  | Promise&lt;number&gt; | Number of free bytes obtained.|
+  | Promise&lt;number&gt; | Promise used to return the number of free bytes obtained.|
 
 - Example
 
@@ -60,38 +58,42 @@ getFreeBytes(path:string, callback:AsyncCallback&lt;number&gt;): void
 
 Obtains the number of free bytes of the specified file system in asynchronous mode. This method uses a callback to return the result.
 
-- Parameters
+**System capability**: SystemCapability.FileManagement.File.FileIO
 
-  | Name| Type| Mandatory| Description|
+- **Parameters**
+
+  | Name  | Type                       | Mandatory| Description                        |
   | -------- | --------------------------- | ---- | ---------------------------- |
-  | path     | string                      | Yes| File path of the file system.|
-  | callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the number of free bytes obtained.|
+  | path     | string                      | Yes  | File path of the file system.|
+  | callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the number of free bytes obtained.|
 
 - Example
 
   ```js
   statfs.getFreeBytes(path, function(err, number){
-      // Do something.
+      //do something
   });
   ```
 
 ## statfs.getTotalBytes
 
-getTotalBytes.(path:string):Promise&lt;number&gt;
+getTotalBytes(path: string): Promise&lt;number&gt;
 
 Obtains the total number of bytes of the specified file system in asynchronous mode. This method uses a promise to return the result.
 
-- Parameters
+**System capability**: SystemCapability.FileManagement.File.FileIO
 
-  | Name| Type| Mandatory| Description|
+- **Parameters**
+
+  | Name| Type  | Mandatory| Description                        |
   | ---- | ------ | ---- | ---------------------------- |
-  | path | string | Yes| File path of the file system.|
+  | path | string | Yes  | File path of the file system.|
 
-- Return values
+- Return value
 
-  | Type| Description|
+  | Type                 | Description        |
   | --------------------- | ------------ |
-  | Promise&lt;number&gt; | Total number of bytes obtained.|
+  | Promise&lt;number&gt; | Promise used to return the total number of bytes obtained.|
 
 - Example
 
@@ -106,21 +108,23 @@ Obtains the total number of bytes of the specified file system in asynchronous m
 
 ## statfs.getTotalBytes
 
-getTotalBytes(path:string, callback:AsyncCallback&lt;number&gt;): void
+getTotalBytes(path: string, callback: AsyncCallback&lt;number&gt;): void
 
 Obtains the total number of bytes of the specified file system in asynchronous mode. This method uses a callback to return the result.
 
-- Parameters
+**System capability**: SystemCapability.FileManagement.File.FileIO
 
-  | Name| Type| Mandatory| Description|
+- **Parameters**
+
+  | Name  | Type                       | Mandatory| Description                        |
   | -------- | --------------------------- | ---- | ---------------------------- |
-  | path     | string                      | Yes| File path of the file system.|
-  | callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the total number of bytes obtained.|
+  | path     | string                      | Yes  | File path of the file system.|
+  | callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the total number of bytes obtained.  |
 
 - Example
 
   ```js
   statfs.getTotalBytes(path, function(err, number){
-      // Do something.
+      //do something
   });
   ```
