@@ -24,11 +24,12 @@ getDeviceIds(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputDevice
 
-**参数：** 
+**参数：**
 
-| 参数 | 类型 | 必填 | 说明 | 
+| 参数 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是 | 回调函数。 | 
+| callback | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是 | 回调函数。 |
+
 
 **示例：** 
 
@@ -46,6 +47,37 @@ testGetDeviceIds: function () {
 }
 ```
 
+## inputDevice.getDeviceIds
+
+function getDeviceIds(): Promise<Array<number>>
+
+获取所有输入设备的id列表，使用Promise方式作为异步方法。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.InputDevice
+
+**返回值：**
+
+| 参数 | 说明 |
+| -------- | -------- |
+| Promise<Array<number>> | Promise实例，用于异步获取结果 |
+
+**示例：**
+
+```
+testGetDeviceIds: function () {
+    console.info("InputDeviceJsTest---start---testGetDeviceIds");
+    let promise = inputDevice.getDeviceIds();
+    promise.then((data)=> {
+        console.info('GetDeviceIds successed, Data: ' + JSON.stringify(data))
+    }).catch((err)=>{
+        console.error('Failed GetDeviceIds. Cause: ' + JSON.stringify(err));
+    });
+}
+```
+
+
+
+
 
 ## inputDevice.getDevice
 
@@ -57,10 +89,10 @@ getDevice(deviceId: number, callback: AsyncCallback&lt;InputDeviceData&gt;): voi
 
 **参数：** 
 
-| 参数 | 类型 | 必填 | 说明 | 
+| 参数 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| deviceId | number | 是 | 需要获取信息的设备id。 | 
-| callback | AsyncCallback&lt;[InputDeviceData](#inputdevicedata)&gt; | 是 | 回调函数，异步返回InputDeviceData对象。 | 
+| deviceId | number | 是 | 需要获取信息的设备id。 |
+| callback | AsyncCallback&lt;[InputDeviceData](#inputdevicedata)&gt; | 是 | 回调函数，异步返回InputDeviceData对象。 |
 
 **示例：** 
 
@@ -82,30 +114,84 @@ testGetDevice: function () {
 }
 ```
 
+## inputDevice.getDevice
+
+function getDevice(deviceId: number): Promise<InputDeviceData>
+
+获取输入设备的描述信息，使用Promise方式作为异步方法。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.InputDevice
+
+**返回值：**
+
+| 参数 | 说明 |
+| -------- | -------- |
+| Promise<InputDeviceData> | Promise实例，用于异步获取结果 |
+
+**示例：**
+
+```
+InputDeviceData {
+    deviceId : 0,
+    name : "NA",
+    sources : Array,
+    axisRanges : Array,
+},
+testGetDevice: function () {
+    // 示例获取设备id为1的设备信息。
+    console.info("InputDeviceJsTest---start---testGetDevice");
+    let promise = inputDevice.getDevice(1);
+    promise.then((data)=> {
+        console.info('GetDeviceId successed, Data: ' + JSON.stringify(data))
+ 	}).catch((err)=>{
+        console.error('Failed GetDeviceId. Cause: ' + JSON.stringify(err));
+ 	});
+}
+```
+
+
 
 ## InputDeviceData
 
 输入设备的描述信息。
 
-**系统能力：**  以下各项对应系统能力均为SystemCapability.MultimodalInput.Input.InputDevice
+**系统能力：**  以下各项对应的系统能力均为SystemCapability.MultimodalInput.Input.InputDevice
 
-  | 名称 | 参数类型 | 说明 | 
+| 名称 | 参数类型 | 说明 |
 | -------- | -------- | -------- |
-| id | number | 输入设备的唯一标识，同一个物理设备反复插拔，其设备id会发生变化。 | 
-| name | string | 输入设备的名字。 | 
+| id | number | 输入设备的唯一标识，同一个物理设备反复插拔，其设备id会发生变化。 |
+| name | string | 输入设备的名字。 |
 | sources | Array&lt;[SourceType](#sourcetype)&gt; | 输入设备支持的源类型。比如有的键盘上附带触摸板，则此设备有keyboard和touchpad两种输入源。 |
+
+## AxisType
+
+轴类型，当前不支持此信息。
+
+## AxisRange
+
+输入设备的轴信息
+
+**系统能力：**  以下各项对应的系统能力均为SystemCapability.MultimodalInput.Input.InputDevice
+
+| 名称   | 参数类型                  | 说明             |
+| ------ | ------------------------- | ---------------- |
+| source | [SourceType](#sourcetype) | 轴的输入源类型。 |
+| axis   | [AxisType](axistype)      | 轴的类型         |
+| max    | number                    | 轴上报的最大值   |
+| min    | number                    | 轴上报的最小值   |
+
 
 
 ## SourceType
 
 定义这个轴的输入源类型。比如鼠标设备可上报x轴事件，则x轴的源就是鼠标。
 
-**系统能力：**  以下各项对应系统能力均为SystemCapability.MultimodalInput.Input.InputDevice
+**系统能力：**  以下各项对应的系统能力均为SystemCapability.MultimodalInput.Input.InputDevice
 
-  | 名称 | 参数类型 | 说明 | 
+| 名称 | 参数类型 | 说明 |
 | -------- | -------- | -------- |
 | keyboard | string | 表示输入设备是键盘。 |
-| touchscreen | string | 表示输入设备是触摸屏。 | 
+| touchscreen | string | 表示输入设备是触摸屏。 |
 | mouse | string | 表示输入设备是鼠标。 |
 | trackball | string | 表示输入设备是轨迹球。 |
 | touchpad | string | 表示输入设备是触摸板。 |
