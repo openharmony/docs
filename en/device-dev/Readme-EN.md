@@ -1,5 +1,6 @@
 # Device
 
+- [Device Development Overview](device-dev-guide.md)
 - Learn About OpenHarmony
   - [OpenHarmony Community](../OpenHarmony-Overview.md) 
   - [OpenHarmony OS](../readme.md) 
