@@ -80,6 +80,7 @@
     - [输入设备](js-apis-inputdevice.md)
     - [组合按键](js-apis-inputconsumer.md)
     - [输入监听](js-apis-inputmonitor.md)
+    - [事件注入](js-apis-inputeventclient.md)
 - 基本功能
     - [应用上下文](js-apis-system-app.md)
     - [日志打印](js-apis-basic-features-logs.md)
