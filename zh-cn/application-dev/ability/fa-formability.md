@@ -21,7 +21,7 @@
 卡片提供方控制卡片实际显示的内容、控件布局以及点击事件。
 
 ## FormAbility基本概念
-基于Form模板的Ability（以下简称“Form”）主要用于控制其自身卡片实际显示的内容及点击事件等。
+FormAbility是基于Form模板的Ability（以下简称“Form”）。卡片提供方开发者可以通过FormAbility控制其自身卡片实际显示的内容及点击事件等。
 
 ## 创建Form
 
@@ -59,8 +59,9 @@
 创建Form的代码示例如下：
 
    ```javascript
-   import formInfo from '@ohos.application.formInfo'
    import formBindingData from '@ohos.application.formBindingData'
+   import formInfo from '@ohos.application.formInfo'
+   import formProvider from '@ohos.application.formProvider'
 
    export default {
        onCreate(want) {
@@ -80,6 +81,14 @@
        onUpdate(formId) {
            // 若卡片支持定时更新/定点更新/卡片使用方主动请求更新功能，则提供方需要覆写该方法以支持数据更新
            console.log('FormAbility onUpdate');
+           let obj = {
+               "title": "titleOnUpdate",
+               "detail": "detailOnUpdate"
+           };
+           let formData = formBindingData.createFormBindingData(obj);
+           formProvider.updateForm(formId, formData).catch((error) => {
+               console.log('FormAbility updateForm, error:' + JSON.stringify(error));
+           });
        },
        onVisibilityChange(newStatus) {
            // 使用方发起可见或者不可见通知触发，提供方需要做相应的处理
