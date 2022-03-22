@@ -20,6 +20,7 @@
       - [Data Management](database/Readme-EN.md)
       - [Device](device/Readme-EN.md)
       - [DFX](dfx/Readme-EN.md)
+      - [Window Manager](windowmanager/Readme-EN.md)
 -   Tools
     - [DevEco Studio \(OpenHarmony\) User Guide](quick-start/deveco-studio-user-guide-for-openharmony.md)
 -   Hands-On Tutorials
