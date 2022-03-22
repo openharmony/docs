@@ -79,7 +79,6 @@
     -   [WebGL](js-apis-webgl.md)
     -   [WebGL2](js-apis-webgl2.md)
     -   [Screenshot](js-apis-screenshot.md)
-    -   [Accessibility](js-apis-accessibility.md)
 - DFX
     -   [HiAppEvent](js-apis-hiappevent.md)
     -   [Performance Tracing](js-apis-hitracemeter.md)
@@ -110,4 +109,6 @@
     -   [Nonlinear Container TreeSet](js-apis-treeset.md)
     -   [Nonlinear Container LightWeightMap](js-apis-lightweightmap.md)
     -   [Nonlinear Container LightWeightSet](js-apis-lightweightset.md)
+- Custom Management
+    -   [Configuration Policy](js-apis-config-policy.md)
 
