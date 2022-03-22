@@ -278,11 +278,11 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-|workId    |number    |是    |当前工作的ID。|
-|bundleName    |string    |是|    延迟任务包名。|
+|workId    |number    |是    |当前工作的ID|
+|bundleName    |string    |是|    延迟任务包名|
 |abilityName | string| 是| 延迟任务回调通知的组件名（必填）|
-|networkType | [NetworkType](#networktype) | 否| 网络条件 |
-|isCharging | bool| 否|是否充电 |
+|networkType | [NetworkType](#networktype) | 否| 网络类型 |
+|isCharging | boolean| 否|是否充电 |
 |chargerType | [ChargingType](#chargingtype) | 否|充电类型 |
 |batteryLevel | number| 否|电量|
 |batteryStatus| [BatteryStatus](#batterystatus) | 否|电池状态|
