@@ -17,7 +17,7 @@ import formProvider from '@ohos.application.formProvider';
 
 ## setFormNextRefreshTime
 
-setFormNextRefreshTime(formId: string, minute: number, callback: AsyncCallback<void>): void;
+setFormNextRefreshTime(formId: string, minute: number, callback: AsyncCallback&lt;void&gt;): void;
 
 设置指定卡片的下一次更新时间。
 
@@ -31,6 +31,7 @@ SystemCapability.Ability.Form
   | ------ | ------ | ---- | ------------------------------------- |
   | formId | string | 是   | 卡片标识                               |
   | minute | number | 是   | 指定多久之后更新，单位分钟，大于等于5     |
+  | callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动结果 |
 
 **示例：**
 
@@ -45,7 +46,7 @@ SystemCapability.Ability.Form
 
 ## setFormNextRefreshTime
 
-setFormNextRefreshTime(formId: string, minute: number): Promise<void>;
+setFormNextRefreshTime(formId: string, minute: number): Promise&lt;void&gt;;
 
 设置指定卡片的下一次更新时间，以promise方式返回。
 
@@ -71,7 +72,7 @@ SystemCapability.Ability.Form
 
 ## updateForm
 
-updateForm(formId: string, formBindingData: formBindingData.FormBindingData, callback: AsyncCallback<void>): void;
+updateForm(formId: string, formBindingData: FormBindingData, callback: AsyncCallback&lt;void&gt;): void;
 
 更新指定的卡片。
 
@@ -85,6 +86,7 @@ SystemCapability.Ability.Form
   | ------ | ---------------------------------------------------------------------- | ---- | ---------------- |
   | formId | string                                                                 | 是   | 请求更新的卡片标识 |
   | formBindingData | [FormBindingData](js-apis-formbindingdata.md#formbindingdata) | 是   | 用于更新的数据    |
+  | callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动结果 |
 
 **示例：**
 
@@ -101,7 +103,7 @@ SystemCapability.Ability.Form
 
 ## updateForm
 
-updateForm(formId: string, formBindingData: formBindingData.FormBindingData): Promise<void>;
+updateForm(formId: string, formBindingData: FormBindingData): Promise&lt;void&gt;;
 
 更新指定的卡片，以promise方式返回。
 
