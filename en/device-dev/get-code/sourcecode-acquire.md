@@ -8,7 +8,7 @@ The open-source code repositories are available at  [https://openharmony.gitee.c
 
 ## Overview of Source Code Acquisition<a name="section12763342204"></a>
 
-This document describes how to acquire OpenHarmony source code and provides its directory structure. The OpenHarmony code is open to you as  [bundles](../bundles/bundles-standard-rules.md), which can be obtained in any of the following ways:
+You can use any of the following methods to acquire the OpenHarmony source code:
 
 -   **Method 1**: Acquire the source code from the Gitee code repository. You can use the  **repo**  or  **git**  tool to download the latest code from the code repository.
 -   **Method 2**: Acquire the source code from  [DevEco Marketplace](https://repo.harmonyos.com/#/en/home). Visit  [DevEco Marketplace](https://repo.harmonyos.com/#/en/home), search for your desired open-source distribution, and download the bundle list \(or customize bundles and download the bundle list\). Then use  **hpm-cli**  to download and install the bundles and compilation toolchain on your local PC.
