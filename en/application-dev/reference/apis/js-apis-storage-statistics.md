@@ -1,18 +1,15 @@
 # App Storage Statistics
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
 >
-> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - This is a system API and cannot be called by third-party applications.
 
 ## Modules to Import
 
 ```js
-import storagestatistics from "@ohos.storagestatistics";
+import storagestatistics from "@ohos.storageStatistics";
 ```
-
-## System Capabilities
-
-SystemCapability.FileManagement.StorageService.SpatialStatistics
 
 ## storagestatistics.getTotalSizeOfVolume
 
@@ -20,15 +17,17 @@ getTotalSizeOfVolume(volumeUuid: string): Promise&lt;number&gt;
 
 Asynchronously obtains the total space of the specified volume. This method uses a promise to return the result.
 
+**System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
+
 - Parameters
 
-  | Name| Type| Mandatory| Description|
+  | Name    | Type  | Mandatory| Description|
   | ---------- | ------ | ---- | ---- |
-  | volumeUuid | string | Yes| Universally unique identifier (UUID) of the volume.|
+  | volumeUuid | string | Yes  | UUID of the volume.|
 
 - Return value
 
-  | Type| Description|
+  | Type                 | Description            |
   | --------------------- | ---------------- |
   | Promise&lt;number&gt; | Promise used to return the total space of the volume.|
 
@@ -49,12 +48,14 @@ getTotalSizeOfVolume(volumeUuid: string, callback:AsyncCallback&lt;number&gt;):v
 
 Asynchronously obtains the total space of the specified volume. This method uses a callback to return the result.
 
+**System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
+
 - Parameters
 
-  | Name| Type| Mandatory| Description|
+  | Name    | Type                                | Mandatory| Description                      |
   | ---------- | ------------------------------------ | ---- | -------------------------- |
-  | volumeUuid | string                               | Yes| UUID of the volume.|
-  | callback   | callback:AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the total space of the volume.|
+  | volumeUuid | string                               | Yes  | UUID of the volume.                      |
+  | callback   | callback:AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the total space of the volume.|
 
 - Example
 
@@ -62,9 +63,10 @@ Asynchronously obtains the total space of the specified volume. This method uses
   let uuid = "";
   storagestatistics.getTotalSizeOfVolume(uuid, function(error, number){
       // Do something
+      console.info("getTotalSizeOfVolume successfully:"+ number);
   });
   ```
-
+  
   
 
 ## storagestatistics.getFreeSizeOfVolume
@@ -73,15 +75,17 @@ getFreeSizeOfVolume(volumeUuid: string): Promise&lt;number&gt;
 
 Asynchronously obtains the available space of the specified volume. This method uses a promise to return the result.
 
+**System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
+
 - Parameters
 
-  | Name| Type| Mandatory| Description|
+  | Name    | Type  | Mandatory| Description|
   | ---------- | ------ | ---- | ---- |
-  | volumeUuid | string | Yes| UUID of the volume.|
+  | volumeUuid | string | Yes  | UUID of the volume.|
 
 - Return value
 
-  | Type| Description|
+  | Type                 | Description              |
   | --------------------- | ------------------ |
   | Promise&lt;number&gt; | Promise used to return the available space of the volume.|
 
@@ -103,12 +107,14 @@ getFreeSizeOfVolume(volumeUuid: string, callback:AsyncCallback&lt;number&gt;):vo
 
 Asynchronously obtains the available space of the specified volume. This method uses a callback to return the result.
 
+**System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
+
 - Parameters
 
-  | Name| Type| Mandatory| Description|
+  | Name    | Type                                | Mandatory| Description                        |
   | ---------- | ------------------------------------ | ---- | ---------------------------- |
-  | volumeUuid | string                               | Yes| UUID of the volume.|
-  | callback   | callback:AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the available space of the volume.|
+  | volumeUuid | string                               | Yes  | UUID of the volume.                        |
+  | callback   | callback:AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the available space of the volume.|
 
 - Example
 
@@ -116,34 +122,35 @@ Asynchronously obtains the available space of the specified volume. This method 
   let uuid = "";
   storagestatistics.getFreeSizeOfVolume(uuid, function(error, number){
       // Do something
+      console.info("getFreeSizeOfVolume successfully:"+ number);
   });
   ```
 
 ## storagestatistics.getBundleStats
 
-getBundleStats(volumeUuid: string,  packageName:String, ): Promise&lt;BundleStats&gt;
+getBundleStats(packageName: string): Promise&lt;BundleStats&gt;
 
-Asynchronously obtains the bundle status on the specified volume. This method uses a promise to return the result.
+Obtains the bundle status. This method uses a promise to return the result.
+
+**System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
 - Parameters
 
-  | Name| Type| Mandatory| Description|
+  | Name     | Type  | Mandatory| Description    |
   | ----------- | ------ | ---- | -------- |
-  | volumeUuid  | string | Yes| UUID of the volume.|
-  | packageName | string | Yes| Bundle name of the app.|
-
+  | packageName | string | Yes  | Bundle name of the app.|
+  
 - Return value
 
-  | Type| Description|
+  | Type                                      | Description                      |
   | ------------------------------------------ | -------------------------- |
   | Promise&lt;[Bundlestats](#bundlestats)&gt; | Promise used to return the bundle status on the volume.|
 
 - Example
 
   ```js
-  let uuid = "";
   let packageName = "";
-  storagestatistics.getBundleStats(uuid, packageName).then(function(BundleStats){
+  storagestatistics.getBundleStats(packageName).then(function(BundleStats){
       console.info("getBundleStats successfully:"+ JSON.stringify(BundleStats));
   }).catch(function(err){
       console.info("getBundleStats failed with error:"+ err);
@@ -152,33 +159,37 @@ Asynchronously obtains the bundle status on the specified volume. This method us
 
 ## storagestatistics.getBundleStats
 
-getBundleStats(volumeUuid: string, callback:AsyncCallback&lt;BundleStats&gt;):void
+getBundleStats(packageName: string,  callback: AsyncCallback&lt;BundleStats&gt;): void
 
-Asynchronously obtains the bundle status on the specified volume. This method uses a callback to return the result.
+Obtains the bundle status. This method uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
 - Parameters
 
-  | Name| Type| Mandatory| Description|
-  | ---------- | --------------------------------------------------------- | ---- | ------------------------------------ |
-  | volumeUuid | string                                                    | Yes| UUID of the volume.|
-  | callback   | callback:AsyncCallback&lt;[Bundlestats](#bundlestats)&gt; | Yes| Callback invoked to return the bundle status on the volume.|
-
+  | Name  | Type                                                     | Mandatory| Description                                |
+  | -------- | --------------------------------------------------------- | ---- | ------------------------------------ |
+  | packageName | string | Yes  | Bundle name of the app.|
+  | callback | callback:AsyncCallback&lt;[Bundlestats](#bundlestats)&gt; | Yes  | Callback invoked to return the bundle status on the volume.|
+  
 - Example
 
   ```js
-  let uuid = "";
   let packageName = "";
-  storagestatistics.getBundleStats(uuid, packageName, function(error, BundleStats){
+  storagestatistics.getBundleStats(packageName, function(error, BundleStats){
       // Do something
+      console.info("getBundleStats successfully:"+ JSON.stringify(BundleStats));
   });
   ```
 
-## BundleStats
+## BundleStats<sup>9+</sup>
+
+**System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
 ### Attributes
 
-| Name| Type| Description|
+| Name     | Type  | Description          |
 | --------- | ------ | -------------- |
-| appSize   | number | Size of the app.|
-| cacheSize | number | Size of the cached data.|
-| dataSize  | number | Total data size of the app.|
+| appSize<sup>9+</sup>   | number | Size of the app.   |
+| cacheSize<sup>9+</sup> | number | Size of the cached data.  |
+| dataSize<sup>9+</sup>  | number | Total data size of the app.|
