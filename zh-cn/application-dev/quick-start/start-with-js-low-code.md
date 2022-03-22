@@ -122,7 +122,7 @@ OpenHarmony低代码开发方式，具有丰富的UI界面编辑功能，遵循[
      - “**index.viusal**”： 打开index.visual，选中画布上的Button组件。点击右侧属性样式栏中的事件图标![zh-cn_image_0000001215388136](figures/zh-cn_image_0000001215388136.png)（Events），鼠标点击Click事件的输入框，选择onclick事件，如下所示：
    
        ![zh-cn_image_0000001261137889](figures/zh-cn_image_0000001261137889.png)
-     
+   
 2. **第二个页面返回到第一个页面。**
    在第二个页面中，返回按钮绑定onClick方法，点击按钮时返回到第一页。
 
@@ -158,4 +158,4 @@ OpenHarmony低代码开发方式，具有丰富的UI界面编辑功能，遵循[
 
    ![zh-cn_image_0000001262127855](figures/zh-cn_image_0000001262127855.png)
 
-恭喜您已经使用JS语言开发（低代码方式）完成了第一个OpenHarmony应用，赶紧[探索更多的OpenHarmony功能](../application-dev-guide.md)吧。
+恭喜您已经使用JS语言开发（低代码方式）完成了第一个OpenHarmony应用，来[探索更多的OpenHarmony功能](../application-dev-guide.md)吧。
