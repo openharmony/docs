@@ -1,0 +1,344 @@
+- - # Device
+  
+    - [Device Development Guide](device-dev-guide.md)
+    - Quick Start
+      - Mini and Small Systems
+        - [Overview](quick-start/quickstart-lite-overview.md)
+        - Introduction
+          - [Hi3861 Development Board](quick-start/quickstart-lite-introduction-hi3861.md)
+          - [Hi3516 Development Board](quick-start/quickstart-lite-introduction-hi3516.md)
+          - [Hi3518 Development Board](quick-start/quickstart-lite-introduction-hi3518.md)
+        - Environment Setup
+          - [Overview](quick-start/quickstart-lite-env-setup-overview.md)
+          - [Setting Up Windows Development Environment](quick-start/quickstart-lite-env-setup-windows.md)
+          - [Setting Up Ubuntu Development Environment](quick-start/quickstart-lite-env-setup-linux.md)
+          - [FAQs](quick-start/quickstart-lite-env-setup-faqs.md)
+        - How to Develop
+          - Hi3861
+            - [Setting Up the Environment](quick-start/quickstart-lite-steps-hi3861-setting.md)
+            - [Setting Up WLAN Connection](quick-start/quickstart-lite-steps-hi3861-connection.md)
+            - [Running a Hello World Program](quick-start/quickstart-lite-steps-hi3861-running.md)
+            - [FAQs](quick-start/quickstart-lite-steps-hi3861-faqs.md)
+          - Hi3516
+            - [Setting Up the Environment](quick-start/quickstart-lite-steps-hi3516-setting.md)
+            - [Running a Hello OHOS Program](quick-start/quickstart-lite-steps-hi3516-running.md)
+            - [Developing a Driver](quick-start/quickstart-lite-steps-hi3516-program.md)
+            - [FAQs](quick-start/quickstart-lite-steps-hi3516-faqs.md)
+          - Hi3518
+            - [Setting Up the Environment](quick-start/quickstart-lite-steps-hi3518-setting.md)
+            - [Running a Hello OHOS Program](quick-start/quickstart-lite-steps-hi3518-running.md)
+            - [FAQs](quick-start/quickstart-lite-steps-hi3518-faqs.md)
+      - Standard System
+        - [Introduction](quick-start/quickstart-standard-overview.md)
+        - [Setting Up Windows Development Environment](quick-start/quickstart-standard-windows-environment.md)
+        - [Setting Up Ubuntu Development Environment in Docker Mode](quick-start/quickstart-standard-docker-environment.md)
+        - [Setting Up Ubuntu Development Environment with Installation Package](quick-start/quickstart-standard-package-environment.md)
+        - [Burning Images](quick-start/quickstart-standard-burn.md)
+        - [Running an Image](quick-start/quickstart-standard-running.md)
+        - [FAQs](quick-start/quickstart-standard-faqs.md)
+    - Compatibility and Security
+      - [Privacy Protection](security/security-privacy-protection.md)
+      - [Security Guidelines](security/security-guidelines-overall.md)
+    - Porting
+      - Mini System SoC Porting Guide
+        - Porting Preparations
+          - [Before You Start](porting/oem_transplant_chip_prepare_knows.md)
+          - [Building Adaptation Process](porting/porting-chip-prepare-process.md)
+        - Kernel Porting
+          - [Overview](porting/porting-chip-kernel-overview.md)
+          - [Basic Kernel Adaptation](porting/porting-chip-kernel-adjustment.md)
+          - [Kernel Porting Verification](porting/porting-chip-kernel-verify.md)
+        - Board-Level OS Porting
+          - [Overview](porting/porting-chip-board-overview.md)
+          - [Board-Level Driver Adaptation](porting/porting-chip-board-driver.md)
+          - [Implementation of APIs at the HAL](porting/porting-chip-board-hal.md)
+          - [System Modules](porting/porting-chip-board-component.md)
+          - [lwIP Module Adaptation](porting/porting-chip-board-lwip.md)
+          - [Third-party Module Adaptation](porting/porting-chip-board-bundle.md)
+          - [XTS](porting/porting-chip-board-xts.md)
+        - [FAQ](porting/porting-chip-faqs.md)
+      - Small System SoC Porting Guide
+        - Porting Preparations
+          - [Before You Start](porting/porting-smallchip-prepare-needs.md)
+          - [Compilation and Building](porting/porting-smallchip-prepare-building.md)
+        - Kernel Porting
+          - [LiteOS Cortex-A](porting/porting-smallchip-kernel-a.md)
+          - [Linux Kernel](porting/porting-smallchip-kernel-linux.md)
+        - Driver Porting
+          - [Overview](porting/porting-smallchip-driver-overview.md)
+          - [Platform Driver Porting](porting/porting-smallchip-driver-plat.md)
+          - [Device Driver Porting](porting/porting-smallchip-driver-oom.md)
+      - Standard System SoC Porting Guide
+        - [Standard System Porting Guide](porting/standard-system-porting-guide.md)
+        - [A Method for Rapidly Porting the OpenHarmony Linux Kernel](porting/porting-linux-kernel.md)
+      - Third-Party Library Porting Guide for Mini and Small Systems
+        - [Overview](porting/porting-thirdparty-overview.md)
+        - [Porting a Library Built Using CMake](porting/porting-thirdparty-cmake.md)
+        - [Porting a Library Built Using Makefile](porting/porting-thirdparty-makefile.md)
+    - Subsystem Development
+      - Kernel
+        - Kernel for Mini Systems
+          - [Kernel Overview](kernel/kernel-mini-overview.md)
+          - Basic Kernel
+            - [Interrupt Management](kernel/kernel-mini-basic-interrupt.md)
+            - [Task Management](kernel/kernel-mini-basic-task.md)
+            - Memory Management
+              - [Basic Concepts](kernel/kernel-mini-basic-memory-basic.md)
+              - [Static Memory](kernel/kernel-mini-basic-memory-static.md)
+              - [Dynamic Memory](kernel/kernel-mini-basic-memory-dynamic.md)
+            - Kernel Communication Mechanisms
+              - [Event](kernel/kernel-mini-basic-ipc-event.md)
+              - [Mutex](kernel/kernel-mini-basic-ipc-mutex.md)
+              - [Queue](kernel/kernel-mini-basic-ipc-queue.md)
+              - [Semaphore](kernel/kernel-mini-basic-ipc-sem.md)
+            - [Time Management](kernel/kernel-basic-mini-time.md)
+            - [Software Timer](kernel/kernel-mini-basic-soft.md)
+          - Extended Components
+            - [C++ Support](kernel/kernel-mini-extend-support.md)
+            - [CPUP](kernel/kernel-mini-extend-cpup.md)
+            - [Dynamic Loading](kernel/kernel-mini-extend-dynamic-loading.md)
+            - File System
+              - [FAT](kernel/kernel-mini-extend-file-fat.md)
+              - [LittleFS](kernel/kernel-mini-extend-file-lit.md)
+          - Kernel Debugging
+            - Memory Debugging
+              - [Memory Information Statistics](kernel/kernel-mini-memory-debug-mes.md)
+              - [Memory Leak Check](kernel/kernel-mini-imemory-debug-det.md)
+              - [Memory Corruption Check](kernel/kernel-mini-memory-debug-cet.md)
+            - [Exception Debugging](kernel/kernel-mini-memory-exception.md)
+            - [Trace](kernel/kernel-mini-memory-trace.md)
+            - [LMS](kernel/kernel-mini-memory-lms.md)
+          - Appendix
+            - [Kernel Coding Specification](kernel/kernel-mini-appx-code.md)
+            - Basic Data Structure
+              - [Doubly Linked List](kernel/kernel-mini-appx-data-list.md)
+            - Standard Libraries
+              - [CMSIS Support](kernel/kernel-mini-appx-lib-cmsis.md)
+              - [POSIX Support](kernel/kernel-mini-appx-lib-posix.md)
+        - Kernel for Small Systems
+          - [Kernel Overview](kernel/kernel-small-overview.md)
+          - Kernel Startup
+            - [Startup in Kernel Space](kernel/kernel-small-start-kernel.md)
+            - [Startup in User Space](kernel/kernel-small-start-user.md)
+          - Basic Kernel
+            - [Interrupt and Exception Handling](kernel/kernel-small-basic-interrupt.md)
+            - Process Management
+              - [Process](kernel/kernel-small-basic-process-process.md)
+              - [Task](kernel/kernel-small-basic-process-thread.md)
+              - [Scheduler](kernel/kernel-small-basic-process-scheduler.md)
+            - Memory Management
+              - [Heap Memory Management](kernel/kernel-small-basic-memory-heap.md)
+              - [Physical Memory Management](kernel/kernel-small-basic-memory-physical.md)
+              - [Virtual Memory Management](kernel/kernel-small-basic-memory-virtual.md)
+              - [Virtual-to-Physical Mapping](kernel/kernel-small-basic-inner-reflect.md)
+            - Kernel Communication Mechanisms
+              - [Event](kernel/kernel-small-basic-trans-event.md)
+              - [Semaphore](kernel/kernel-small-basic-trans-semaphore.md)
+              - [Mutex](kernel/kernel-small-basic-trans-mutex.md)
+              - [Queue](kernel/kernel-small-basic-trans-queue.md)
+              - [RW Lock](kernel/kernel-small-basic-trans-rwlock.md)
+              - [Futex](kernel/kernel-small-basic-trans-user-mutex.md)
+              - [Signal](kernel/kernel-small-basic-trans-user-signal.md)
+            - [Time Management](kernel/kernel-small-basic-time.md)
+            - [Software Timer](kernel/kernel-small-basic-softtimer.md)
+            - [Atomic Operation](kernel/kernel-small-basic-atomic.md)
+          - Extension Components
+            - [System Call](kernel/kernel-small-bundles-system.md)
+            - [Dynamic Loading and Linking](kernel/kernel-small-bundles-linking.md)
+            - [Virtual Dynamic Shared Object](kernel/kernel-small-bundles-share.md)
+            - [LiteIPC](kernel/kernel-small-bundles-ipc.md)
+            - File Systems
+              - [Virtual File System](kernel/kernel-small-bundles-fs-virtual.md)
+              - Supported File Systems
+                - [FAT](kernel/kernel-small-bundles-fs-support-fat.md)
+                - [JFFS2](kernel/kernel-small-bundles-fs-support-jffs2.md)
+                - [NFS](kernel/kernel-small-bundles-fs-support-nfs.md)
+                - [Ramfs](kernel/kernel-small-bundles-fs-support-ramfs.md)
+                - [procfs](kernel/kernel-small-bundles-fs-support-procfs.md)
+              - [File System Adaptation](kernel/kernel-small-bundles-fs-new.md)
+          - Debugging and Tools
+            - Shell
+              - [Introduction to the Shell](kernel/kernel-small-debug-shell-overview.md)
+              - [Shell Command Development Guidelines](kernel/kernel-small-debug-shell-guide.md)
+              - [Shell Command Programming Example](kernel/kernel-small-debug-shell-build.md)
+              - Shell Command Reference
+                - System Commands
+                  - [cpup](kernel/kernel-small-debug-shell-cmd-cpup.md)
+                  - [date](kernel/kernel-small-debug-shell-cmd-date.md)
+                  - [dmesg](kernel/kernel-small-debug-shell-cmd-dmesg.md)
+                  - [exec](kernel/kernel-small-debug-shell-cmd-exec.md)
+                  - [free](kernel/kernel-small-debug-shell-cmd-free.md)
+                  - [help](kernel/kernel-small-debug-shell-cmd-help.md)
+                  - [hwi](kernel/kernel-small-debug-shell-cmd-hwi.md)
+                  - [kill](kernel/kernel-small-debug-shell-cmd-kill.md)
+                  - [log](kernel/kernel-small-debug-shell-cmd-log.md)
+                  - [memcheck](kernel/kernel-small-debug-shell-cmd-memcheck.md)
+                  - [oom](kernel/kernel-small-debug-shell-cmd-oom.md)
+                  - [pmm](kernel/kernel-small-debug-shell-cmd-pmm.md)
+                  - [reset](kernel/kernel-small-debug-shell-cmd-reset.md)
+                  - [sem](kernel/kernel-small-debug-shell-cmd-sem.md)
+                  - [stack](kernel/kernel-small-debug-shell-cmd-stack.md)
+                  - [su](kernel/kernel-small-debug-shell-cmd-su.md)
+                  - [swtmr](kernel/kernel-small-debug-shell-cmd-swtmr.md)
+                  - [systeminfo](kernel/kernel-small-debug-shell-cmd-sysinfo.md)
+                  - [task](kernel/kernel-small-debug-shell-cmd-task.md)
+                  - [uname](kernel/kernel-small-debug-shell-cmd-uname.md)
+                  - [vmm](kernel/kernel-small-debug-shell-cmd-vmm.md)
+                  - [watch](kernel/kernel-small-debug-shell-cmd-watch.md)
+                - File Commands
+                  - [cat](kernel/kernel-small-debug-shell-file-cat.md)
+                  - [cd](kernel/kernel-small-debug-shell-file-cd.md)
+                  - [chgrp](kernel/kernel-small-debug-shell-file-chgrp.md)
+                  - [chmod](kernel/kernel-small-debug-shell-file-chmod.md)
+                  - [chown](kernel/kernel-small-debug-shell-file-chown.md)
+                  - [cp](kernel/kernel-small-debug-shell-file-cp.md)
+                  - [format](kernel/kernel-small-debug-shell-file-format.md)
+                  - [ls](kernel/kernel-small-debug-shell-file-ls.md)
+                  - [lsfd](kernel/kernel-small-debug-shell-file-lsfd.md)
+                  - [mkdir](kernel/kernel-small-debug-shell-file-mkdir.md)
+                  - [mount](kernel/kernel-small-debug-shell-file-mount.md)
+                  - [partinfo](kernel/kernel-small-debug-shell-file-partinfo.md)
+                  - [partition](kernel/kernel-small-debug-shell-file-partition.md)
+                  - [pwd](kernel/kernel-small-debug-shell-file-pwd.md)
+                  - [rm](kernel/kernel-small-debug-shell-file-rm.md)
+                  - [rmdir](kernel/kernel-small-debug-shell-file-rmdir.md)
+                  - [statfs](kernel/kernel-small-debug-shell-file-statfs.md)
+                  - [sync](kernel/kernel-small-debug-shell-file-sync.md)
+                  - [touch](kernel/kernel-small-debug-shell-file-touch.md)
+                  - [writeproc](kernel/kernel-small-debug-shell-file-write.md)
+                  - [umount](kernel/kernel-small-debug-shell-file-umount.md)
+                - Network Commands
+                  - [arp](kernel/kernel-small-debug-shell-net-arp.md)
+                  - [dhclient](kernel/kernel-small-debug-shell-net-dhclient.md)
+                  - [ifconfig](kernel/kernel-small-debug-shell-net-ifconfig.md)
+                  - [ipdebug](kernel/kernel-small-debug-shell-net-ipdebug.md)
+                  - [netstat](kernel/kernel-small-debug-shell-net-netstat.md)
+                  - [ntpdate](kernel/kernel-small-debug-shell-net-ntpdate.md)
+                  - [ping](kernel/kernel-small-debug-shell-net-ping.md)
+                  - [ping6](kernel/kernel-small-debug-shell-net-ping6.md)
+                  - [telnet](kernel/kernel-small-debug-shell-net-telnet.md)
+                  - [tftp](kernel/kernel-small-debug-shell-net-tftp.md)
+              - [Magic Key](kernel/kernel-small-debug-shell-magickey.md)
+              - [User-Space Exception Information](kernel/kernel-small-debug-shell-error.md)
+            - [Trace](kernel/kernel-small-debug-trace.md)
+            - [perf](kernel/kernel-mini-memory-perf)
+            - [LMS](kernel/kernel-small-memory-lms)
+            - Process Commissioning
+              - [CPUP](kernel/kernel-small-debug-process-cpu.md)
+            - Memory Debugging
+              - [Memory Information Statistics](kernel/kernel-small-debug-memory-info.md)
+              - [Memory Leak Check](kernel/kernel-small-debug-memory-leak.md)
+              - [Memory Corruption Check](kernel/kernel-small-debug-memory-corrupt.md)
+            - User-Mode Memory Debugging
+              - [Basic Concepts](kernel/kernel-small-debug-user-concept.md)
+              - [Working Principles](kernel/kernel-small-debug-user-function.md)
+              - Usage
+                - [API Description](kernel/kernel-small-debug-user-guide-api.md)
+                - How to Use
+                  - [Calling APIs](kernel/kernel-small-debug-user-guide-use-api.md)
+                  - [Using the CLI](kernel/kernel-small-debug-user-guide-use-cli.md)
+              - [Typical Memory Problems](kernel/kernel-small-debug-user-faqs.md)
+            - Other Kernel Debugging Methods
+              - [Dying Gasp](kernel/kernel-small-debug-trace-other-lastwords.md)
+              - [Common Fault Locating Methods](kernel/kernel-small-debug-trace-other-faqs.md)
+          - Appendix
+            - Basic Data Structure
+              - [Doubly Linked List](kernel/kernel-small-apx-dll.md)
+              - [Bitwise Operation](kernel/kernel-small-apx-bitwise.md)
+            - [Standard Library](kernel/kernel-small-apx-library.md)
+        - Kernel for Standard Systems
+          - [Linux Kernel Overview](kernel/kernel-standard-overview.md)
+          - [Applying Patches on OpenHarmony Development Boards](kernel/kernel-standard-patch.md)
+          - [Guidelines for Building the Linux Kernel](kernel/kernel-standard-build.md)
+      - Driver
+        - HDF
+          - [HDF Overview](driver/driver-hdf-overview.md)
+          - [Driver Development](driver/driver-hdf-development.md)
+          - [Driver Service Management](driver/driver-hdf-servicemanage.md)
+          - [Driver Message Mechanism Management](driver/driver-hdf-message-management.md)
+          - [Driver Configuration Management](driver/driver-hdf-manage.md)
+          - [HDF Development Example](driver/driver-hdf-sample.md)
+        - Platform Driver Development
+          - [ADC](driver/driver-platform-adc-develop.md)
+          - [GPIO](driver/driver-platform-gpio-develop.md)
+          - [HDMI](driver/driver-platform-hdmi-develop.md)
+          - [I2C](driver/driver-platform-i2c-develop.md)
+          - [I3C](driver/driver-platform-i3c-develop.md)
+          - [MIPI DSI](driver/driver-platform-mipidsi-develop.md)
+          - [MMC](driver/driver-platform-mmc-develop.md)
+          - [PWM](driver/driver-platform-pwm-develop.md)
+          - [RTC](driver/driver-platform-rtc-develop.md)
+          - [SDIO](driver/driver-platform-sdio-develop.md)
+          - [SPI](driver/driver-platform-spi-develop.md)
+          - [UART](driver/driver-platform-uart-develop.md)
+          - [Watchdog](driver/driver-platform-watchdog-develop.md)
+        - Platform Driver Usage
+          - [ADC](driver/driver-platform-adc-des.md)
+          - [GPIO](driver/driver-platform-gpio-des.md)
+          - [HDMI](driver/driver-platform-hdmi-des.md)
+          - [I2C](driver/driver-platform-i2c-des.md)
+          - [I3C](driver/driver-platform-i3c-des.md)
+          - [MIPI DSI](driver/driver-platform-mipidsi-des.md)
+          - [PWM](driver/driver-platform-pwm-des.md)
+          - [RTC](driver/driver-platform-rtc-des.md)
+          - [SDIO](driver/driver-platform-sdio-des.md)
+          - [SPI](driver/driver-platform-spi-des.md)
+          - [UART](driver/driver-platform-uart-des.md)
+          - [Watchdog](driver/driver-platform-watchdog-des.md)
+        - Peripheral Driver Usage
+          - [LCD](driver/driver-peripherals-lcd-des.md)
+          - [Touchscreen](driver/driver-peripherals-touch-des.md)
+          - [Sensor](driver/driver-peripherals-sensor-des.md)
+          - [WLAN](driver/driver-peripherals-external-des.md)
+          - [Audio](driver/driver-peripherals-audio-des.md)
+          - [USB](driver/driver-peripherals-usb-des.md)
+          - [Camera](driver/driver-peripherals-camera-des.md)
+      - [Compilation and Building](subsystems/subsys-build.md)
+      - [Distributed Remote Startup](subsystems/subsys-remote-start.md)
+      - [Graphics](subsystems/subsys-graphics.md) [Multimedia](subsystems/subsys-multimedia.md)
+      - [Utils](subsystems/subsys-utils.md)
+      - [AI Framework](subsystems/subsys-aiframework.md)
+      - [Data Management](subsystems/subsys-data.md)
+      - [Sensor](subsystems/subsys-sensor.md)
+      - [USB](subsystems/subsys-usbservice.md)
+      - [Application Framework](subsystems/subsys-application-framework.md)
+      - [OTA Upgrade](subsystems/subsys-ota-guide.md)
+      - [Telephony Service](subsystems/subsys-tel.md)
+      - [Security](subsystems/subsys-security.md)
+      - [Startup](subsystems/subsys-boot.md)
+      - [DFX](subsystems/subsys-dfx.md)
+    - Featured Topics
+      - [HPM Bundle](bundles/Readme-EN.md)
+        - [Development Specifications](bundles/bundles-standard-rules.md)
+        - Development Guidelines
+          - [Bundle Development](bundles/bundles-guide-overview.md)
+          - [Preparations](bundles/bundles-guide-prepare.md)
+          - [Bundle Development](bundles/bundles-guide-develop.md)
+        - HPM User Guide
+          - [Introduction](bundles/bundles-demo-hpmdescription.md)
+          - [Preparations](bundles/bundles-demo-environment.md)
+          - [Development Example](bundles/bundles-demo-devsample.md)
+    - Device Development Examples
+      - [Mini- and Small-System Devices](guide/device-lite.md)
+      - [Standard-System Devices](guide/device-standard.md)
+    - Debugging
+      - [Test Subsystem](subsystems/subsys-testguide-test.md)
+      - [R&D Tools](subsystems/subsys-toolchain.md)
+    - XTS Certification
+      - [XTS](subsystems/subsys-xts-guide.md)
+    - Tools
+      - [Docker Environment](get-code/gettools-acquire.md)
+      - [IDE](get-code/gettools-ide.md)
+    - Hands-On Tutorials
+      - [Samples](https://gitee.com/openharmony/app_samples/blob/master/README.md)
+      - [Codelabs](https://gitee.com/openharmony/codelabs/blob/master/README.md)
+    - References
+      - [FAQs](faqs/Readme-EN.md)
+        - [Overview of FAQs](faqs/faqs-overview.md)
+        - [Environment Setup](faqs/faqs-environment-setup.md)
+        - [Compilation and Building Subsystem](faqs/faqs-building.md)
+        - [Burning](faqs/faqs-burning.md)
+        - [Kernel](faqs/faqs-kernel.md)
+        - [Porting](faqs/faqs-porting.md)
+        - [Startup](faqs/faqs-startup.md)
+        - [System Applications](faqs/faqs-system-applications.md)

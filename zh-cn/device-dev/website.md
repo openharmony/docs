@@ -1,0 +1,399 @@
+- [设备开发导读](device-dev-guide.md)
+
+- 快速开始
+
+  - 轻量和小型系统入门
+    - [轻量与小型系统入门概述](quick-start/quickstart-lite-overview.md)
+    - 搭建轻量与小型系统环境
+      - [搭建系统环境概述](quick-start/quickstart-lite-env-setup-overview.md)
+      - [开发环境准备](quick-start/quickstart-lite-env-prepare.md)
+      - [获取源码](quick-start/quickstart-lite-sourcecode-acquire.md)
+      - [使用安装包方式搭建编译环境](quick-start/quickstart-lite-package-environment.md)
+      - [使用Docker方式搭建编译环境](quick-start/quickstart-lite-docker-environment.md)
+      - [常见问题](quick-start/quickstart-lite-env-setup-faqs.md)
+    - 运行“Hello World”
+      - Hi3861开发板
+        - [安装开发板环境](quick-start/quickstart-lite-steps-hi3861-setting.md)
+        - [新建应用程序](quick-start/quickstart-lite-steps-hi3861-application-framework.md)
+        - [编译](quick-start/quickstart-lite-steps-hi3861-building.md)
+        - [烧录](quick-start/quickstart-lite-steps-hi3861-burn.md)
+        - [调试验证](quick-start/quickstart-lite-steps-hi3861-debug.md)
+        - [运行](quick-start/quickstart-lite-steps-hi3861-running.md)
+        - [常见问题](quick-start/quickstart-lite-steps-hi3861-faqs.md)
+      - Hi3516开发板
+        - [安装开发板环境](quick-start/quickstart-lite-steps-hi3516-setting.md)
+        - [新建应用程序](quick-start/quickstart-lite-steps-hi3516-application-framework.md)
+        - [编译](quick-start/quickstart-lite-steps-hi3516-building.md)
+        - [烧录](quick-start/quickstart-lite-steps-hi3516-burn.md)
+        - [运行](quick-start/quickstart-lite-steps-hi3516-running.md)
+        - [常见问题](quick-start/quickstart-lite-steps-hi3516-faqs.md)
+      - Hi3518开发板
+        - [安装开发板环境](quick-start/quickstart-lite-steps-hi3518-setting.md)
+        - [新建应用程序](quick-start/quickstart-lite-steps-hi3518-application-framework.md)
+        - [编译](quick-start/quickstart-lite-steps-hi3518-building.md)
+        - [烧录](quick-start/quickstart-lite-steps-hi3518-burn.md)
+        - [运行](quick-start/quickstart-lite-steps-hi3518-running.md)
+        - [常见问题](quick-start/quickstart-lite-steps-hi3518-faqs.md)
+    - 附录
+      - [Hi3861开发板介绍](quick-start/quickstart-lite-introduction-hi3861.md)
+      - [Hi3516开发板介绍](quick-start/quickstart-lite-introduction-hi3516.md)
+      - [Hi3518开发板介绍](quick-start/quickstart-lite-introduction-hi3518.md)
+  - 标准系统入门
+    - [标准系统入门简介](quick-start/quickstart-standard-overview.md)
+    - [标准系统开发环境准备（仅Hi3516需要）](quick-start/quickstart-standard-env-setup.md)
+    - [获取源码](quick-start/quickstart-standard-sourcecode-acquire.md)
+    - 运行“Hello World”
+      - Hi3516开发板
+        - [创建应用程序](quick-start/quickstart-standard-running-hi3516-create.md)
+        - [编译](quick-start/quickstart-standard-running-hi3516-build.md)
+        - [烧录](quick-start/quickstart-standard-running-hi3516-burn.md)
+        - [运行](quick-start/quickstart-standard-running-hi3516-run.md)
+      - RK3568开发板
+        - [创建应用程序](quick-start/quickstart-standard-running-rk3568-create.md)
+        - [编译](quick-start/quickstart-standard-running-rk3568-build.md)
+        - [烧录](quick-start/quickstart-standard-running-rk3568-burn.md)
+        - [运行](quick-start/quickstart-standard-running-rk3568-run.md)
+    - [常见问题](quick-start/quickstart-standard-faqs.md)
+    - 附录
+      - [Hi3516开发板介绍](quick-start/quickstart-standard-appendix-hi3516.md)
+      - [RK3568开发板介绍](quick-start/quickstart-standard-appendix-rk3568.md)
+
+- 兼容性与安全
+
+  - [隐私保护](security/security-privacy-protection.md)
+  - [安全指南](security/security-guidelines-overall.md)
+
+- 移植
+
+  - 轻量系统芯片移植指导
+
+    - 移植准备
+      - [移植须知](porting/oem_transplant_chip_prepare_knows.md)
+      - [编译构建适配流程](porting/porting-chip-prepare-process.md)
+    - 内核移植
+      - [移植概述](porting/porting-chip-kernel-overview.md)
+      - [内核基础适配](porting/porting-chip-kernel-adjustment.md)
+      - [内核移植验证](porting/porting-chip-kernel-verify.md)
+    - 板级系统移植
+      - [移植概述](porting/porting-chip-board-overview.md)
+      - [板级驱动适配](porting/porting-chip-board-driver.md)
+      - [HAL层实现](porting/porting-chip-board-hal.md)
+      - [系统组件调用](porting/porting-chip-board-component.md)
+      - [lwIP组件适配](porting/porting-chip-board-lwip.md)
+      - [三方组件适配](porting/porting-chip-board-bundle.md)
+      - [XTS认证](porting/porting-chip-board-xts.md)
+    - [常见问题](porting/porting-chip-faqs.md)
+
+  - 小型系统芯片移植指导
+
+    - 移植准备
+      - [移植须知](porting/porting-smallchip-prepare-needs.md)
+      - [编译构建](porting/porting-smallchip-prepare-building.md)
+    - 移植内核
+      - [LiteOS-A内核](porting/porting-smallchip-kernel-a.md)
+      - [Linux内核](porting/porting-smallchip-kernel-linux.md)
+    - 驱动移植
+      - [移植概述](porting/porting-smallchip-driver-overview.md)
+      - [平台驱动移植](porting/porting-smallchip-driver-plat.md)
+      - [器件驱动移植](porting/porting-smallchip-driver-oom.md)
+
+  - 标准系统芯片移植指导
+
+    - [标准系统移植指南](porting/standard-system-porting-guide.md)
+    - [一种快速移植OpenHarmony Linux内核的方法](porting/porting-linux-kernel.md)
+
+  - [轻量和小型系统三方库移植指导](porting/porting-thirdparty.md)
+    - [概述](porting/porting-thirdparty-overview.md)
+    - [CMake方式组织编译的库移植](porting/porting-thirdparty-cmake.md)
+    - [Makefile方式组织编译的库移植](porting/porting-thirdparty-makefile.md)
+
+  - 轻量系统芯片移植案例
+
+    - [带屏解决方案之恒玄芯片移植案例](porting/porting-bes2600w-on-minisystem-display-demo.md)
+
+- 子系统开发
+
+  - 内核
+    - 轻量系统内核
+      - [内核概述](kernel/kernel-mini-overview.md)
+      - 基础内核
+        - [中断管理](kernel/kernel-mini-basic-interrupt.md)
+        - [任务管理](kernel/kernel-mini-basic-task.md)
+        - 内存管理
+          - [基本概念](kernel/kernel-mini-basic-memory-basic.md)
+          - [静态内存](kernel/kernel-mini-basic-memory-static.md)
+          - [动态内存](kernel/kernel-mini-basic-memory-dynamic.md)
+        - 内核通信机制
+          - [事件](kernel/kernel-mini-basic-ipc-event.md)
+          - [互斥锁](kernel/kernel-mini-basic-ipc-mutex.md)
+          - [消息队列](kernel/kernel-mini-basic-ipc-queue.md)
+          - [信号量](kernel/kernel-mini-basic-ipc-sem.md)
+        - [时间管理](kernel/kernel-basic-mini-time.md)
+        - [软件定时器](kernel/kernel-mini-basic-soft.md)
+      - 扩展组件
+        - [C++支持](kernel/kernel-mini-extend-support.md)
+        - [CPU占用率](kernel/kernel-mini-extend-cpup.md)
+        - [动态加载](kernel/kernel-mini-extend-dynamic-loading.md)
+        - 文件系统
+          - [FAT](kernel/kernel-mini-extend-file-fat.md)
+          - [LittleFS](kernel/kernel-mini-extend-file-lit.md)
+      - 内核调测
+        - 内存调测
+          - [内存信息统计](kernel/kernel-mini-memory-debug-mes.md)
+          - [内存泄漏检测](kernel/kernel-mini-imemory-debug-det.md)
+          - [踩内存检测](kernel/kernel-mini-memory-debug-cet.md)
+        - [异常调测](kernel/kernel-mini-memory-exception.md)
+        - [Trace调测](kernel/kernel-mini-memory-trace.md)
+        - [LMS调测](kernel/kernel-mini-memory-lms.md)
+      - 附录
+        - [内核编码规范](kernel/kernel-mini-appx-code.md)
+        - 基本数据结构
+          - [双向链表](kernel/kernel-mini-appx-data-list.md)
+        - 标准库支持
+          - [CMSIS支持](kernel/kernel-mini-appx-lib-cmsis.md)
+          - [POSIX支持](kernel/kernel-mini-appx-lib-posix.md)
+    - 小型系统内核
+      - [内核概述](kernel/kernel-small-overview.md)
+      - 内核启动
+        - [内核态启动](kernel/kernel-small-start-kernel.md)
+        - [用户态启动](kernel/kernel-small-start-user.md)
+      - 基础内核
+        - [中断及异常处理](kernel/kernel-small-basic-interrupt.md)
+        - 进程管理
+          - [进程](kernel/kernel-small-basic-process-process.md)
+          - [任务](kernel/kernel-small-basic-process-thread.md)
+          - [调度器](kernel/kernel-small-basic-process-scheduler.md)
+        - 内存管理
+          - [堆内存管理](kernel/kernel-small-basic-memory-heap.md)
+          - [物理内存管理](kernel/kernel-small-basic-memory-physical.md)
+          - [虚拟内存管理](kernel/kernel-small-basic-memory-virtual.md)
+          - [虚实映射](kernel/kernel-small-basic-inner-reflect.md)
+        - 内核通信机制
+          - [事件](kernel/kernel-small-basic-trans-event.md)
+          - [信号量](kernel/kernel-small-basic-trans-semaphore.md)
+          - [互斥锁](kernel/kernel-small-basic-trans-mutex.md)
+          - [消息队列](kernel/kernel-small-basic-trans-queue.md)
+          - [读写锁](kernel/kernel-small-basic-trans-rwlock.md)
+          - [用户态快速互斥锁](kernel/kernel-small-basic-trans-user-mutex.md)
+          - [信号](kernel/kernel-small-basic-trans-user-signal.md)
+        - [时间管理](kernel/kernel-small-basic-time.md)
+        - [软件定时器](kernel/kernel-small-basic-softtimer.md)
+        - [原子操作](kernel/kernel-small-basic-atomic.md)
+      - 扩展组件
+        - [系统调用](kernel/kernel-small-bundles-system.md)
+        - [动态加载与链接](kernel/kernel-small-bundles-linking.md)
+        - [虚拟动态共享库](kernel/kernel-small-bundles-share.md)
+        - [轻量级进程间通信](kernel/kernel-small-bundles-ipc.md)
+        - 文件系统
+          - [虚拟文件系统](kernel/kernel-small-bundles-fs-virtual.md)
+          - 支持的文件系统
+            - [FAT](kernel/kernel-small-bundles-fs-support-fat.md)
+            - [JFFS2](kernel/kernel-small-bundles-fs-support-jffs2.md)
+            - [NFS](kernel/kernel-small-bundles-fs-support-nfs.md)
+            - [Ramfs](kernel/kernel-small-bundles-fs-support-ramfs.md)
+            - [Procfs](kernel/kernel-small-bundles-fs-support-procfs.md)
+          - [适配新的文件系统](kernel/kernel-small-bundles-fs-new.md)
+      - 调测与工具
+        - Shell
+          - [Shell介绍](kernel/kernel-small-debug-shell-overview.md)
+          - [Shell命令开发指导](kernel/kernel-small-debug-shell-guide.md)
+          - [Shell命令编程实例](kernel/kernel-small-debug-shell-build.md)
+          - Shell命令使用详解
+            - 系统命令
+              - [cpup](kernel/kernel-small-debug-shell-cmd-cpup.md)
+              - [date](kernel/kernel-small-debug-shell-cmd-date.md)
+              - [dmesg](kernel/kernel-small-debug-shell-cmd-dmesg.md)
+              - [exec](kernel/kernel-small-debug-shell-cmd-exec.md)
+              - [free](kernel/kernel-small-debug-shell-cmd-free.md)
+              - [help](kernel/kernel-small-debug-shell-cmd-help.md)
+              - [hwi](kernel/kernel-small-debug-shell-cmd-hwi.md)
+              - [kill](kernel/kernel-small-debug-shell-cmd-kill.md)
+              - [log](kernel/kernel-small-debug-shell-cmd-log.md)
+              - [memcheck](kernel/kernel-small-debug-shell-cmd-memcheck.md)
+              - [oom](kernel/kernel-small-debug-shell-cmd-oom.md)
+              - [pmm](kernel/kernel-small-debug-shell-cmd-pmm.md)
+              - [reset](kernel/kernel-small-debug-shell-cmd-reset.md)
+              - [sem](kernel/kernel-small-debug-shell-cmd-sem.md)
+              - [stack](kernel/kernel-small-debug-shell-cmd-stack.md)
+              - [su](kernel/kernel-small-debug-shell-cmd-su.md)
+              - [swtmr](kernel/kernel-small-debug-shell-cmd-swtmr.md)
+              - [systeminfo](kernel/kernel-small-debug-shell-cmd-sysinfo.md)
+              - [task](kernel/kernel-small-debug-shell-cmd-task.md)
+              - [uname](kernel/kernel-small-debug-shell-cmd-uname.md)
+              - [vmm](kernel/kernel-small-debug-shell-cmd-vmm.md)
+              - [watch](kernel/kernel-small-debug-shell-cmd-watch.md)
+              - [reboot](kernel/kernel-small-debug-shell-cmd-reboot.md)
+              - [top](kernel/kernel-small-debug-shell-cmd-top.md)
+            - 文件命令
+              - [cat](kernel/kernel-small-debug-shell-file-cat.md)
+              - [cd](kernel/kernel-small-debug-shell-file-cd.md)
+              - [chgrp](kernel/kernel-small-debug-shell-file-chgrp.md)
+              - [chmod](kernel/kernel-small-debug-shell-file-chmod.md)
+              - [chown](kernel/kernel-small-debug-shell-file-chown.md)
+              - [cp](kernel/kernel-small-debug-shell-file-cp.md)
+              - [format](kernel/kernel-small-debug-shell-file-format.md)
+              - [ls](kernel/kernel-small-debug-shell-file-ls.md)
+              - [lsfd](kernel/kernel-small-debug-shell-file-lsfd.md)
+              - [mkdir](kernel/kernel-small-debug-shell-file-mkdir.md)
+              - [mount](kernel/kernel-small-debug-shell-file-mount.md)
+              - [partinfo](kernel/kernel-small-debug-shell-file-partinfo.md)
+              - [partition](kernel/kernel-small-debug-shell-file-partition.md)
+              - [pwd](kernel/kernel-small-debug-shell-file-pwd.md)
+              - [rm](kernel/kernel-small-debug-shell-file-rm.md)
+              - [rmdir](kernel/kernel-small-debug-shell-file-rmdir.md)
+              - [statfs](kernel/kernel-small-debug-shell-file-statfs.md)
+              - [sync](kernel/kernel-small-debug-shell-file-sync.md)
+              - [touch](kernel/kernel-small-debug-shell-file-touch.md)
+              - [writeproc](kernel/kernel-small-debug-shell-file-write.md)
+              - [umount](kernel/kernel-small-debug-shell-file-umount.md)
+              - [du](kernel/kernel-small-debug-shell-file-du.md)
+              - [mv](kernel/kernel-small-debug-shell-file-mv.md)
+            - 网络命令
+              - [arp](kernel/kernel-small-debug-shell-net-arp.md)
+              - [dhclient](kernel/kernel-small-debug-shell-net-dhclient.md)
+              - [ifconfig](kernel/kernel-small-debug-shell-net-ifconfig.md)
+              - [ipdebug](kernel/kernel-small-debug-shell-net-ipdebug.md)
+              - [netstat](kernel/kernel-small-debug-shell-net-netstat.md)
+              - [ntpdate](kernel/kernel-small-debug-shell-net-ntpdate.md)
+              - [ping](kernel/kernel-small-debug-shell-net-ping.md)
+              - [ping6](kernel/kernel-small-debug-shell-net-ping6.md)
+              - [telnet](kernel/kernel-small-debug-shell-net-telnet.md)
+              - [tftp](kernel/kernel-small-debug-shell-net-tftp.md)
+          - [魔法键使用方法](kernel/kernel-small-debug-shell-magickey.md)
+          - [用户态异常信息说明](kernel/kernel-small-debug-shell-error.md)
+        - [Trace](kernel/kernel-small-debug-trace.md)
+        - [Perf调测](kernel/kernel-mini-memory-perf.md)
+        - [LMS调测](kernel/kernel-small-memory-lms.md)
+        - 进程调测
+          - [CPU占用率](kernel/kernel-small-debug-process-cpu.md)
+        - 内核态内存调测
+          - [内存信息统计](kernel/kernel-small-debug-memory-info.md)
+          - [内存泄漏检测](kernel/kernel-small-debug-memory-leak.md)
+          - [踩内存检测](kernel/kernel-small-debug-memory-corrupt.md)
+        - 用户态内存调测
+          - [基本概念](kernel/kernel-small-debug-user-concept.md)
+          - [运行机制](kernel/kernel-small-debug-user-function.md)
+          - 使用指导
+            - [接口说明](kernel/kernel-small-debug-user-guide-api.md)
+            - 使用说明
+              - [接口调用方式](kernel/kernel-small-debug-user-guide-use-api.md)
+              - [命令行参数方式](kernel/kernel-small-debug-user-guide-use-cli.md)
+          - [常见问题场景](kernel/kernel-small-debug-user-faqs.md)
+        - 其他内核调测手段
+          - [临终遗言](kernel/kernel-small-debug-trace-other-lastwords.md)
+          - [常见问题定位方法](kernel/kernel-small-debug-trace-other-faqs.md)
+      - 附录
+        - 基本数据结构
+          - [双向链表](kernel/kernel-small-apx-dll.md)
+          - [位操作](kernel/kernel-small-apx-bitwise.md)
+        - [标准库](kernel/kernel-small-apx-library.md)
+    - 标准系统内核
+      - [Linux内核概述](kernel/kernel-standard-overview.md)
+      - [开发板Patch使用指导](kernel/kernel-standard-patch.md)
+      - [Linux内核编译与构建指导](kernel/kernel-standard-build.md)
+      - 内核增强特性
+        - 内存管理
+          - [Enhanced SWAP特性介绍](kernel/kernel-standard-mm-eswap.md)
+        - 任务调度
+          - [关联线程组调度](kernel/kernel-standard-sched-rtg.md)
+          - [CPU轻量级隔离](kernel/kernel-standard-sched-cpuisolation.md)
+  - 驱动
+    - HDF驱动框架
+      - [HDF开发概述](driver/driver-hdf-overview.md)
+      - [驱动开发](driver/driver-hdf-development.md)
+      - [驱动服务管理](driver/driver-hdf-servicemanage.md)
+      - [驱动消息机制管理](driver/driver-hdf-message-management.md)
+      - [配置管理](driver/driver-hdf-manage.md)
+      - [HDF开发实例](driver/driver-hdf-sample.md)
+    - 平台驱动开发
+      - [ADC](driver/driver-platform-adc-develop.md)
+      - [GPIO](driver/driver-platform-gpio-develop.md)
+      - [HDMI](driver/driver-platform-hdmi-develop.md)
+      - [I2C](driver/driver-platform-i2c-develop.md)
+      - [I3C](driver/driver-platform-i3c-develop.md)
+      - [MIPI-CSI](driver/driver-platform-mipicsi-develop.md)
+      - [MIPI-DSI](driver/driver-platform-mipidsi-develop.md)
+      - [MMC](driver/driver-platform-mmc-develop.md)
+      - [PIN](driver/driver-platform-pin-develop.md)
+      - [PWM](driver/driver-platform-pwm-develop.md)
+      - [REGULATOR](driver/driver-platform-regulator-develop.md)
+      - [RTC](driver/driver-platform-rtc-develop.md)
+      - [SDIO](driver/driver-platform-sdio-develop.md)
+      - [SPI](driver/driver-platform-spi-develop.md)
+      - [UART](driver/driver-platform-uart-develop.md)
+      - [WatchDog](driver/driver-platform-watchdog-develop.md)
+    - 平台驱动使用
+      - [ADC](driver/driver-platform-adc-des.md)
+      - [GPIO](driver/driver-platform-gpio-des.md)
+      - [HDMI](driver/driver-platform-hdmi-des.md)
+      - [I2C](driver/driver-platform-i2c-des.md)
+      - [I3C](driver/driver-platform-i3c-des.md)
+      - [MIPI-CSI](driver/driver-platform-mipicsi-des.md)
+      - [MIPI-DSI](driver/driver-platform-mipidsi-des.md)
+      - [PWM](driver/driver-platform-pwm-des.md)
+      - [REGULATOR](driver/driver-platform-regulator-des.md)
+      - [RTC](driver/driver-platform-rtc-des.md)
+      - [SDIO](driver/driver-platform-sdio-des.md)
+      - [SPI](driver/driver-platform-spi-des.md)
+      - [UART](driver/driver-platform-uart-des.md)
+      - [WATCHDOG](driver/driver-platform-watchdog-des.md)
+    - 外设驱动使用
+      - [LCD](driver/driver-peripherals-lcd-des.md)
+      - [TOUCHSCREEN](driver/driver-peripherals-touch-des.md)
+      - [SENSOR](driver/driver-peripherals-sensor-des.md)
+      - [WLAN](driver/driver-peripherals-external-des.md)
+      - [AUDIO](driver/driver-peripherals-audio-des.md)
+      - [USB](driver/driver-peripherals-usb-des.md)
+      - [CAMERA](driver/driver-peripherals-camera-des.md)
+  - [编译构建](subsystems/subsys-build.md)
+  - [分布式远程启动](subsystems/subsys-remote-start.md)
+  - [图形图像](subsystems/subsys-graphics.md)
+  - [媒体](subsystems/subsys-multimedia.md)
+  - [公共基础](subsystems/subsys-utils.md)
+  - [AI框架](subsystems/subsys-aiframework.md)
+  - [数据管理](subsystems/subsys-data.md)
+  - [Sensor服务](subsystems/subsys-sensor.md)
+  - [USB服务](subsystems/subsys-usbservice.md)
+  - [用户程序框架](subsystems/subsys-application-framework.md)
+  - [OTA升级](subsystems/subsys-ota-guide.md)
+  - [电话服务](subsystems/subsys-tel.md)
+  - [安全](subsystems/subsys-security.md)
+  - [启动恢复](subsystems/subsys-boot.md)
+  - [DFX](subsystems/subsys-dfx.md)
+
+- 专题
+  - [HPM Part](hpm-part/Readme-CN.md)
+    - [HPM Part介绍](hpm-part/hpm-part-about.md)
+    - [HPM Part开发指导](hpm-part/hpm-part-development.md)
+    - [HPM Part参考](hpm-part/hpm-part-reference.md)
+  
+- 设备开发示例
+
+  - [轻量和小型系统设备开发示例](guide/device-lite.md)
+  - [标准系统设备开发示例](guide/device-lite.md)
+
+- 调测
+
+  - [测试用例开发](subsystems/subsys-testguide-test.md)
+  - [调测工具](subsystems/subsys-toolchain.md)
+
+- XTS认证
+
+  - [XTS认证](subsystems/subsys-xts-guide.md)
+
+- 工具
+
+  - [Docker编译环境](get-code/gettools-acquire.md)
+  - [IDE集成开发环境](get-code/gettools-ide.md)
+
+- 参考
+
+  - [常见问题-设备开发](faqs/Readme-CN.md)
+    - [常见问题概述](faqs/faqs-overview.md)
+    - [环境搭建常见问题](faqs/faqs-environment-setup.md)
+    - [编译构建子系统常见问题](faqs/faqs-building.md)
+    - [烧录常见问题](faqs/faqs-burning.md)
+    - [内核常见问题](faqs/faqs-kernel.md)
+    - [移植常见问题](faqs/faqs-porting.md)
+    - [启动恢复常见问题](faqs/faqs-startup.md)
+    - [系统应用常见问题](faqs/faqs-system-applications.md)

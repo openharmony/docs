@@ -165,7 +165,7 @@ hb set
 
 ## 基于HPM的Docker环境<a name="section485713518337"></a>
 
-docker\_dist是一个[HPM](https://hpm.harmonyos.com/)系统中的模板组件，能够帮助用户快速初始化HPM工程，利用docker镜像来快速编译OpenHarmony发行版，在很大程度上简化了编译前的环境配置。开发者在配置好Ubuntu和[hpm-cli](../bundles/hpm-part-development.md)开发环境后，可以通过以下步骤来使用我们提供的Docker环境。
+docker\_dist是一个[HPM](https://hpm.harmonyos.com/)系统中的模板组件，能够帮助用户快速初始化HPM工程，利用docker镜像来快速编译OpenHarmony发行版，在很大程度上简化了编译前的环境配置。开发者在配置好Ubuntu和[hpm-cli](../hpm-part/hpm-part-development.md)开发环境后，可以通过以下步骤来使用我们提供的Docker环境。
 
 ### 搭建Docker环境<a name="section3295842510"></a>
 
