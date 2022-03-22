@@ -110,4 +110,6 @@
     -   [Nonlinear Container TreeSet](js-apis-treeset.md)
     -   [Nonlinear Container LightWeightMap](js-apis-lightweightmap.md)
     -   [Nonlinear Container LightWeightSet](js-apis-lightweightset.md)
+- Custom Management
+    -   [Configuration Policy](js-apis-config-policy.md)
 
