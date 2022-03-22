@@ -25,7 +25,7 @@
 > 0.8 - **Deprecated content**: Do not delete the deprecated content directly from the document. Instead, suffix **deprecated** as a superscript to the content, and use the greater-than symbol (>) to introduce the substitute method plus the corresponding link.
 > 	Example: abandonmentMethod<sup>(deprecated) </sup>
 >
-> > Discarded. This change is effective since API version 7. You are advised to use [newMethod](#newMethod) instead.
+> > This APIs is no longer maintained since API version 7. You are advised to use [newMethod](#newMethod) instead.
 >
 > 0.9 - For **empty APIs that will be implemented only in the MR version**, add the following information to the interface description:
 > This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.
