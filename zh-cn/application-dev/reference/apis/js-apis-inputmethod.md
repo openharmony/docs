@@ -14,7 +14,7 @@ import inputMethod from '@ohos.inputMethod';
 
 常量值。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.MiscServices.InputMethodFramework
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Miscservices.InputMethodFramework
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -25,7 +25,7 @@ import inputMethod from '@ohos.inputMethod';
 
 输入法应用属性。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.MiscServices.InputMethodFramework
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Miscservices.InputMethodFramework
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -38,7 +38,7 @@ getInputMethodController(): InputMethodController
 
 获取客户端实例[InputMethodController](#InputMethodController)。
 
-**系统能力**：SystemCapability.MiscServices.InputMethodFramework
+**系统能力**：SystemCapability.Miscservices.InputMethodFramework
 
 - 返回值
 
@@ -56,7 +56,7 @@ getInputMethodSetting(): InputMethodSetting
 
 获取客户端设置实例[InputMethodSetting](#InputMethodSetting)。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力**： SystemCapability.Miscservices.InputMethodFramework
 
 - 返回值
 
@@ -80,7 +80,7 @@ stopInput(callback: AsyncCallback&lt;boolean&gt;): void
 
 隐藏输入法。
 
-**系统能力**：SystemCapability.MiscServices.InputMethodFramework
+**系统能力**：SystemCapability.Miscservices.InputMethodFramework
 
 - 参数
 
@@ -102,7 +102,7 @@ stopInput(): Promise&lt;boolean&gt;
 
 隐藏输入法。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力**： SystemCapability.Miscservices.InputMethodFramework
 
 - 返回值
 
@@ -128,7 +128,7 @@ listInputMethod(callback: AsyncCallback&lt;Array&lt;InputMethodProperty&gt;&gt;)
 
 查询已安装的输入法列表。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力**： SystemCapability.Miscservices.InputMethodFramework
 
 - 参数
   | 参数名   | 类型                                               | 必填 | 说明                   |
@@ -151,7 +151,7 @@ listInputMethod(): Promise&lt;Array&lt;InputMethodProperty&gt;&gt;
 
 查询已安装的输入法列表。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力**： SystemCapability.Miscservices.InputMethodFramework
 
 - 返回值
   | 类型                                                        | 说明                   |
@@ -173,7 +173,7 @@ displayOptionalInputMethod(callback: AsyncCallback&lt;void&gt;): void
 
 显示输入法选择对话框。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力**： SystemCapability.Miscservices.InputMethodFramework
 
 - 参数
 
@@ -194,7 +194,7 @@ displayOptionalInputMethod(callback: AsyncCallback&lt;void&gt;): void
 
   显示输入法选择对话框。
 
-  **系统能力**： SystemCapability.MiscServices.InputMethodFramework
+  **系统能力**： SystemCapability.Miscservices.InputMethodFramework
 
 - 返回值
 
