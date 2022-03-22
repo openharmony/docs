@@ -14,7 +14,8 @@
   - [轻量和小型系统三方库移植指导](porting/porting-thirdparty.md)
   - [轻量系统芯片移植指导](porting/porting-minichip.md)
   - [轻量系统芯片移植案例](porting/porting-minichip-cases.md)
-  - [小型系统芯片移植指导](porting/porting-smallchip.md)	 	
+  - [小型系统芯片移植指导](porting/porting-smallchip.md)
+  - [标准系统芯片移植指导](porting/standard-system-porting-guide.md)	 	
 - 子系统开发
   - 内核 
     - [轻量系统内核](kernel/kernel-mini.md)
