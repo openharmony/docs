@@ -21,13 +21,14 @@
 - **entry：** OpenHarmony工程模块，编译构建生成一个Hap包。
   - **entry &gt; src &gt; main &gt; js** ：用于存放js源码。
      - **entry &gt; src &gt;main &gt; js &gt; MainAbility** ：应用/服务的入口。
+        - **entry &gt; src &gt;main &gt; js &gt; MainAbility &gt; i18n** ：用于配置不同语言场景资源内容，比如应用文本词条、图片路径资源等。
         - **entry &gt; src &gt;main &gt; js &gt; MainAbility &gt; pages** ：MainAbility包含的页面。
         - **entry &gt; src &gt;main &gt;js &gt; MainAbility &gt; app.js** ：承载Ability生命周期。
   - **entry &gt; src &gt; main &gt; resources** ：用于存放应用/服务所用到的资源文件，如图形、多媒体、字符串、布局文件等。
   - **entry &gt; src &gt; main &gt; config.json** ：模块配置文件。主要包含HAP包的配置信息、应用在具体设备上的配置信息以及应用的全局配置信息。
   - **entry &gt; build-profile.json5** ：模块的模块信息 、编译信息配置项，包括 buildOption target配置等。
   - **entry &gt; hvigorfile.js** ：模块级编译构建任务脚本，开发者可以自定义相关任务和代码实现。
-
+  
 - **build-profile.json5** ：应用级配置信息，包括签名、产品配置等。
 
 - **hvigorfile.js** ：应用级编译构建任务脚本。
@@ -157,7 +158,7 @@
 页面间的导航可以通过[页面路由router](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/ui-js-building-ui-routes.md)来实现。页面路由router根据页面uri找到目标页面，从而实现跳转。使用页面路由请导入router模块。
 
 1. **第一个页面跳转到第二个页面。**
-   在第一个页面中，跳转按钮绑定onClick方法，当按钮点击时触发页面路由变化，跳转到第二页。“**index.js**”示例如下：
+   在第一个页面中，跳转按钮绑定onClick方法，点击按钮时跳转到第二页。“**index.js**”示例如下：
 
    
    ```
@@ -173,7 +174,7 @@
    ```
 
 2. **第二个页面返回到第一个页面。**
-   在第二个页面中，返回按钮绑定onClick方法，当按钮点击时触发页面路由返回，返回到第二页。“**second.js**”示例如下：
+   在第二个页面中，返回按钮绑定onClick方法，点击按钮时返回到第二页。“**second.js**”示例如下：
 
    
    ```
