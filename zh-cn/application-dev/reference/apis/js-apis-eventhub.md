@@ -133,7 +133,7 @@ emit(event: string, ...args: Object[]): void;
           // func1 is called,1,2
           this.context.eventHub.emit("123", 1, 2);
       }
-      func1(a: string, b: string) {
+      func1(a, b) {
           console.log("func1 is called," + a + "," + b);
       }
   }

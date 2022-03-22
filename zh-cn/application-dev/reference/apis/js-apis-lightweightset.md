@@ -160,7 +160,7 @@ has(key: T): boolean
 let lightWeightSet = new LightWeightSet();
 let result = lightWeightSet.has(123);
 lightWeightSet.add(123);
-let result = lightWeightSet.has(123);
+result = lightWeightSet.has(123);
 ```
 
 
@@ -188,7 +188,7 @@ equal(obj: Object): boolean
 let lightWeightSet = new LightWeightSet();
 lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 lightWeightSet.add("sdfs");
-let obj = {"Ahfbrgrbgnutfodgorrogorgrogofdfdf", "sdfs"};
+let obj = ["Ahfbrgrbgnutfodgorrogorgrogofdfdf", "sdfs"];
 let result = lightWeightSet.equal(obj);
 ```
 

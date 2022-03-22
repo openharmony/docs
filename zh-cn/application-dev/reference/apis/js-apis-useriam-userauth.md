@@ -34,24 +34,23 @@ export default {
 ```js
 // API version 8
 import userIAM_userAuth from '@ohos.userIAM.userAuth';
+let auth = new userIAM_userAuth.UserAuth();
 
 export default {
-    let auth = new userIAM_userAuth.UserAuth();
-
     getVersion() {
         console.info("start get version");
-        let version = auth.getVersion();
+        let version = this.auth.getVersion();
         console.info("auth version = " + version);
     },
 
     startAuth() {
         console.info("start auth");
-        auth.auth(null, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1, {
+        this.auth.auth(null, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1, {
             onResult: (result, extraInfo) => {
                 try {
                     console.info("auth onResult result = " + result);
                     console.info("auth onResult extraInfo = " + JSON.stringify(extraInfo));
-                    if (result == SUCCESS) {
+                    if (result == 'SUCCESS') {
                         // 此处添加认证成功逻辑
                     }  else {
                         // 此处添加认证失败逻辑
@@ -75,7 +74,7 @@ export default {
 
     checkAuthSupport() {
         console.info("start check auth support");
-        let checkCode = auth.getAvailableStatus(userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1);
+        let checkCode = this.auth.getAvailableStatus(userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1);
         if (checkCode == userIAM_userAuth.ResultCode.SUCCESS) {
             console.info("check auth support success");
             // 此处添加支持指定类型认证的逻辑
@@ -91,13 +90,13 @@ export default {
         let contextId = auth.auth(null, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1, {
             onResult: (result, extraInfo) => {
                 console.info("auth onResult result = " + result);
-            }
+            },
 
             onAcquireInfo: (module, acquire, extraInfo) => {
                 console.info("auth onAcquireInfo module = " + module);
             }
         });
-        let cancelCode = auth.cancel(contextId);
+        let cancelCode = this.auth.cancel(contextId);
         if (cancelCode == userIAM_userAuth.Result.SUCCESS) {
             console.info("cancel auth success");
         } else {

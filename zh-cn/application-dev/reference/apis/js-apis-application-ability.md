@@ -363,7 +363,6 @@ callWithResult(method: string, data: rpc.Sequenceable): Promise&lt;rpc.MessagePa
         this.name = name;
         this.str = str;
       }
-      constructor() {}
       marshalling(messageParcel) {
           messageParcel.writeInt(this.num);
           messageParcel.writeString(this.str);
@@ -380,7 +379,6 @@ callWithResult(method: string, data: rpc.Sequenceable): Promise&lt;rpc.MessagePa
   var method = 'call_Function';
   var caller;
   export default class MainAbility extends Ability {
-      onWindowStageCreate(windowStage) {
       onWindowStageCreate(windowStage) {
         this.context.startAbilityByCall({
             bundleName: "com.example.myservice",
