@@ -325,7 +325,7 @@ Installs the update package. This API uses an asynchronous callback to return th
 
 | Name  | Type    | Mandatory| Description                  |
 | -------- | -------- | ---- | ---------------------- |
-| callback | AsyncCallback\<number> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<number>| Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -386,7 +386,7 @@ Sets the update policy. This API uses an asynchronous callback to return the res
 | Name  | Type                         | Mandatory| Description        |
 | -------- | ----------------------------- | ---- | ------------ |
 | policy   | [UpdatePolicy](#updatepolicy) | Yes  | Update policy to set.|
-| callback | AsyncCallback\<number>        | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<number>       | Yes  | Callback used to return the result.|
 
 **Example**
 
