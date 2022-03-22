@@ -1,30 +1,6 @@
 # 应用开发
 
 - [应用开发导读](application-dev-guide.md)
-- 了解OpenHarmony
-    - [了解OpenHarmony开源项目](../OpenHarmony-Overview_zh.md)
-    - [术语](../device-dev/glossary/glossary.md)
-    - [版本说明](../release-notes/Readme.md)
-    
-      - OpenHarmony 3.x Releases
-    
-        -   [OpenHarmony v3.1 Beta (2021-12-31)](../release-notes/OpenHarmony-v3.1-beta.md)
-        -   [OpenHarmony v3.0.1 LTS (2022-01-12)](../release-notes/OpenHarmony-v3.0.1-LTS.md)
-        -   [OpenHarmony v3.0 LTS (2021-09-30)](../release-notes/OpenHarmony-v3.0-LTS.md)
-    
-      - OpenHarmony 2.x Releases
-    
-        -   [OpenHarmony v2.2 beta2 (2021-08-04)](../release-notes/OpenHarmony-v2.2-beta2.md)
-        -   [OpenHarmony 2.0 Canary (2021-06-01)](../release-notes/OpenHarmony-2-0-Canary.md)
-    
-      - OpenHarmony 1.x Releases 
-    
-        -   [OpenHarmony v1.1.4 LTS (2022-02-11)](../release-notes/OpenHarmony-v1-1-4-LTS.md)
-        -   [OpenHarmony v1.1.3 LTS (2021-09-30)](../release-notes/OpenHarmony-v1-1-3-LTS.md)
-        -   [OpenHarmony v1.1.2 LTS (2021-08-04)](../release-notes/OpenHarmony-v1.1.2-LTS.md)
-        -   [OpenHarmony 1.1.1 LTS (2021-06-22)](../release-notes/OpenHarmony-1-1-1-LTS.md)
-        -   [OpenHarmony 1.1.0 LTS (2021-04-01)](../release-notes/OpenHarmony-1-1-0-LTS.md)
-        -   [OpenHarmony 1.0 (2020-09-10)](../release-notes/OpenHarmony-1-0.md)
 - 快速开始
     - [应用开发快速入门](quick-start/Readme-CN.md)
       - DevEco Studio（OpenHarmony）使用指南
@@ -674,6 +650,3 @@
       - 定制管理
           - [配置策略](reference/apis/js-apis-config-policy.md)
           - [企业设备管理](reference/apis/js-apis-enterprise-device-manager.md)
-- 贡献
-  
-    - [参与贡献](../contribute/贡献文档.md)
