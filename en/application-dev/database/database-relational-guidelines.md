@@ -24,7 +24,7 @@ The following table describes the APIs available for creating and deleting an RD
 
 The RDB provides APIs for inserting, deleting, updating, and querying data in the local RDB store.
 
-- **Inserting data**
+- **Inserting data**<br/>
   The RDB provides APIs for inserting data through a **ValuesBucket** in a data table. If the data is inserted, the row ID of the data inserted will be returned; otherwise, **-1** will be returned.
 
   **Table 2** APIs for inserting data
@@ -34,7 +34,7 @@ The RDB provides APIs for inserting, deleting, updating, and querying data in th
   | RdbStore | insert(name:&nbsp;string,&nbsp;values:&nbsp;ValuesBucket,&nbsp;callback:&nbsp;AsyncCallback&lt;number&gt;):void | Inserts a row of data into a table. This method uses a callback to return the result.<br>-&nbsp;**name**: name of the target table.<br>-&nbsp;**values**: data to be inserted into the table.<br>-&nbsp;**callback**: callback invoked to return the result. If the operation is successful, the row ID will be returned. Otherwise, **-1** will be returned.|
   | RdbStore | insert(name:&nbsp;string,&nbsp;values:&nbsp;ValuesBucket):&nbsp;Promise&lt;number&gt; | Inserts a row of data into a table. This method uses a promise to return the result.<br>-&nbsp;**name**: name of the target table.<br>-&nbsp;**values**: data to be inserted into the table.|
 
-- **Updating data**
+- **Updating data**<br/>
   Call the **update()** method to pass new data and specify the update conditions by using **RdbPredicates**. If the data is updated, the number of rows of the updated data will be returned; otherwise, **0** will be returned.
 
   **Table 3** APIs for updating data
@@ -44,7 +44,7 @@ The RDB provides APIs for inserting, deleting, updating, and querying data in th
   | RdbStore | update(values:&nbsp;ValuesBucket,&nbsp;rdbPredicates:&nbsp;RdbPredicates,&nbsp;callback:&nbsp;AsyncCallback&lt;number&gt;):void | Updates data in the RDB store based on the specified **RdbPredicates** object. This method uses a callback to return the result.<br>-&nbsp;**values**: data to update, which is stored in a **ValuesBucket**.<br>-&nbsp;**rdbPredicates**: conditions for updating data.<br>-&nbsp;**callback**: callback invoked to return the number of rows updated.|
   | RdbStore | update(values:&nbsp;ValuesBucket,&nbsp;rdbPredicates:&nbsp;RdbPredicates):&nbsp;Promise | Updates data in the RDB store based on the specified **RdbPredicates** object. This method uses a promise to return the result.<br>-&nbsp;**values**: data to update, which is stored in a **ValuesBucket**.<br>-&nbsp;**rdbPredicates**: conditions for updating data.|
 
-- **Deleting data**
+- **Deleting data**<br/>
   Call the **delete()** method to delete data meeting the conditions specified by **RdbPredicates**. If the data is deleted, the number of rows of the deleted data will be returned; otherwise, **0** will be returned.
 
   **Table 4** APIs for deleting data
@@ -54,7 +54,7 @@ The RDB provides APIs for inserting, deleting, updating, and querying data in th
   | RdbStore | delete(rdbPredicates:&nbsp;RdbPredicates,&nbsp;callback:&nbsp;AsyncCallback&lt;number&gt;):void | Deletes data from the RDB store based on the specified **RdbPredicates** object. This method uses a callback to return the result.<br>-&nbsp;**rdbPredicates**: conditions for deleting data.<br>-&nbsp;**callback**: callback invoked to return the number of rows deleted.|
   | RdbStore | delete(rdbPredicates:&nbsp;RdbPredicates):&nbsp;Promise | Deletes data from the RDB store based on the specified **RdbPredicates** object. This method uses a promise to return the result.<br>-&nbsp;**rdbPredicates**: conditions for deleting data.|
 
-- **Querying data**
+- **Querying data**<br/>
   You can query data in an RDB store in either of the following ways:
 
   - Call the **query()** method to query data based on the predicates, without passing any SQL statement.
@@ -112,7 +112,7 @@ The RDB provides **RdbPredicates** for you to set database operation conditions.
 
 A result set can be regarded as a row of data in the queried results. It allows you to traverse and access the data you have queried. The following table describes the external APIs of **ResultSet**.
 
-> ![icon-notice.gif](public_sys-resources/icon-notice.gif) **NOTICE**<br/>
+> ![icon-notice.gif](../public_sys-resources/icon-notice.gif) **NOTICE**<br/>
 > After a result set is used, you must call the **close()** method to close it explicitly.
 
 **Table 7** APIs for using the result set
