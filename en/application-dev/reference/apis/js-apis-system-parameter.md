@@ -13,7 +13,7 @@ import parameter from '@ohos.systemParameter'
 
 ## parameter.getSync
 
-getSync(key: string, def?: string)
+getSync(key: string, def?: string): string
 
 Obtains the value of the attribute with the specified key.
 
@@ -46,7 +46,7 @@ try {
 
 ## parameter.get
 
-get(key: string, callback: AsyncCallback&lt;string&gt;)
+get(key: string, callback: AsyncCallback&lt;string&gt;): void
 
 Obtains the value of the attribute with the specified key. This API uses an asynchronous callback to return the result.
 
@@ -77,7 +77,7 @@ try {
 
 ## parameter.get
 
-get(key: string, def: string, callback: AsyncCallback&lt;string&gt;)
+get(key: string, def: string, callback: AsyncCallback&lt;string&gt;): void
 
 Obtains the value of the attribute with the specified key. This API uses an asynchronous callback to return the result.
 
@@ -110,7 +110,7 @@ try {
 
 ## parameter.get
 
-get(key: string, def?: string)
+get(key: string, def?: string): Promise&lt;string&gt;
 
 Obtains the value of the attribute with the specified key. This API uses a promise to return the result.
 
@@ -147,7 +147,7 @@ try {
 
 ## parameter.setSync
 
-setSync(key: string, value: string)
+setSync(key: string, value: string): void
 
 Sets a value for the attribute with the specified key.
 
@@ -173,7 +173,7 @@ try {
 
 ## parameter.set(key: string, value: string, callback: AsyncCallback&lt;void&gt;)
 
-set(key: string, value: string, callback: AsyncCallback&lt;void&gt;)
+set(key: string, value: string, callback: AsyncCallback&lt;void&gt;): void
 
 Sets a value for the attribute with the specified key. This API uses an asynchronous callback to return the result.
 
@@ -205,7 +205,7 @@ try {
 
 ## parameter.set(key: string, def?: string)
 
-set(key: string, def?: string)
+set(key: string, def?: string): Promise&lt;string&gt;
 
 Sets a value for the attribute with the specified key. This API uses a promise to return the result.
 
