@@ -117,7 +117,7 @@ getAuthenticator(): Authenticator
 
 **需要权限**：ohos.permission.ACCESS_BIOMETRIC
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth
+**系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth.Core
 
 **返回值：**
 | 类型                                      | 说明         |
@@ -148,7 +148,7 @@ execute(type: string, level: string, callback: AsyncCallback&lt;number&gt;): voi
 
 **需要权限**：ohos.permission.ACCESS_BIOMETRIC
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth
+**系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth.Core
 
 **参数：**
 
@@ -187,7 +187,7 @@ execute(type:string, level:string): Promise&lt;number&gt;
 
 **需要权限**：ohos.permission.ACCESS_BIOMETRIC
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth
+**系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth.Core
 
 **参数：**
 | 参数名 | 类型   | 必填 | 说明                                                         |
@@ -218,7 +218,7 @@ authenticator.execute("FACE_ONLY", "S2").then((code)=>{
 
 表示认证结果的枚举。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth
+**系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth.Core
 
 | 名称               | 默认值 | 描述                       |
 | ------------------ | ------ | -------------------------- |
