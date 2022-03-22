@@ -199,3 +199,5 @@
 
 3. 在编辑窗口右上角的工具栏，点击![zh-cn_image_0000001217047316](figures/zh-cn_image_0000001217047316.png) 按钮运行。效果如下图所示：
    ![zh-cn_image_0000001217527892](figures/zh-cn_image_0000001217527892.png)
+
+恭喜您已经使用JS语言开发（传统代码方式）完成了第一个OpenHarmony应用，赶紧探索更多的OpenHarmony功能吧。
