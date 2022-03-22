@@ -13,12 +13,12 @@ The following table describes the APIs available for creating and deleting an RD
 
 **Table 1** APIs for creating and deleting an RDB store
 
-| Class| API| Description|
-| -------- | -------- | -------- |
-| dataRdb | getRdbStore(config:&nbsp;StoreConfig,&nbsp;version:&nbsp;number,&nbsp;callback:&nbsp;AsyncCallback&lt;RdbStore&gt;):&nbsp;void | Obtains an RDB store. This method uses a callback to return the result. You can set parameters for the RDB store based on service requirements, and then call APIs to perform data operations.<br>-&nbsp;**config**: configuration of the RDB store.<br>-&nbsp;**version**: RDB version.<br>-&nbsp;**callback**: callback invoked to return the RDB store obtained.|
-| dataRdb | getRdbStore(config:&nbsp;StoreConfig,&nbsp;version:&nbsp;number):&nbsp;Promise&lt;RdbStore&gt; | Obtains an RDB store. This method uses a promise to return the result. You can set parameters for the RDB store based on service requirements, and then call APIs to perform data operations.<br>-&nbsp;**config**: configuration of the RDB store.<br>-&nbsp;**version**: RDB version.|
-| dataRdb | deleteRdbStore(name:&nbsp;string,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | Deletes an RDB store. This method uses a callback to return the result. <br>-&nbsp;**name**: RDB store to delete.<br>-&nbsp;**callback**: callback invoked to return the result. If the RDB store is deleted, **true** will be returned. Otherwise, **false** will be returned.|
-| dataRdb | deleteRdbStore(name:&nbsp;string):&nbsp;Promise&lt;void&gt; | Deletes an RDB store. This method uses a promise to return the result.<br>-&nbsp;**name**: RDB store to delete.|
+| API| Description|
+| -------- | -------- |
+|getRdbStore(config:&nbsp;StoreConfig,&nbsp;version:&nbsp;number,&nbsp;callback:&nbsp;AsyncCallback&lt;RdbStore&gt;):&nbsp;void | Obtains an RDB store. This method uses a callback to return the result. You can set parameters for the RDB store based on service requirements, and then call APIs to perform data operations.<br>-&nbsp;**config**: configuration of the RDB store.<br>-&nbsp;**version**: RDB version.<br>-&nbsp;**callback**: callback invoked to return the RDB store obtained.|
+|getRdbStore(config:&nbsp;StoreConfig,&nbsp;version:&nbsp;number):&nbsp;Promise&lt;RdbStore&gt; | Obtains an RDB store. This method uses a promise to return the result. You can set parameters for the RDB store based on service requirements, and then call APIs to perform data operations.<br>-&nbsp;**config**: configuration of the RDB store.<br>-&nbsp;**version**: RDB version.|
+|deleteRdbStore(name:&nbsp;string,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | Deletes an RDB store. This method uses a callback to return the result. <br>-&nbsp;**name**: RDB store to delete.<br>-&nbsp;**callback**: callback invoked to return the result. If the RDB store is deleted, **true** will be returned. Otherwise, **false** will be returned.|
+| deleteRdbStore(name:&nbsp;string):&nbsp;Promise&lt;void&gt; | Deletes an RDB store. This method uses a promise to return the result.<br>-&nbsp;**name**: RDB store to delete.|
 
 **Managing Data in an RDB Store**
 
@@ -26,6 +26,7 @@ The RDB provides APIs for inserting, deleting, updating, and querying data in th
 
 - **Inserting data**
   The RDB provides APIs for inserting data through a **ValuesBucket** in a data table. If the data is inserted, the row ID of the data inserted will be returned; otherwise, **-1** will be returned.
+
   **Table 2** APIs for inserting data
   
   | Class| API| Description|
@@ -76,42 +77,42 @@ The RDB provides **RdbPredicates** for you to set database operation conditions.
 
 | Class| API| Description|
 | -------- | -------- | -------- |
-| RdbPredicates |inDevices(devices: Array<string>): RdbPredicates | Specifies remote devices on the network with RDB stores to be synchronized.<br>-&nbsp;**devices**: IDs of the remote devices on the network.<br>-&nbsp;**RdbPredicates**: returns a **RdbPredicates** object that matches the specified field. |
-| RdbPredicates |inAllDevices(): RdbPredicates | Connects to all remote devices on the network with RDB stores to be synchronized.<br>-&nbsp;**RdbPredicates**: returns a **RdbPredicates** object that matches the specified field. |
-| RdbPredicates | equalTo(field:&nbsp;string,&nbsp;value:&nbsp;ValueType):&nbsp;RdbPredicates | Sets the **RdbPredicates** to match the field with data type **ValueType** and value equal to the specified value.<br>-&nbsp;**field**: column name in the database table.<br>-&nbsp;**value**: value specified.<br>-&nbsp;**RdbPredicates**: returns a **RdbPredicates** object that matches the specified field. |
-| RdbPredicates | notEqualTo(field:&nbsp;string,&nbsp;value:&nbsp;ValueType):&nbsp;RdbPredicates | Sets the **RdbPredicates** to match the field with data type **ValueType** and value not equal to the specified value.<br>-&nbsp;**field**: column name in the database table.<br>-&nbsp;**value**: value specified.<br>-&nbsp;**RdbPredicates**: returns a **RdbPredicates** object that matches the specified field. |
-| RdbPredicates | beginWrap():&nbsp;RdbPredicates | Adds a left parenthesis to the **RdbPredicates**.<br>-&nbsp;**RdbPredicates**: returns a **RdbPredicates** with a left parenthesis. |
-| RdbPredicates | endWrap():&nbsp;RdbPredicates | Adds a right parenthesis to the **RdbPredicates**.<br>-&nbsp;**RdbPredicates**: returns a **RdbPredicates** with a right parenthesis. |
-| RdbPredicates | or():&nbsp;RdbPredicates | Adds the OR condition to the **RdbPredicates**.<br>-&nbsp;**RdbPredicates**: returns a **RdbPredicates** with the OR condition. |
-| RdbPredicates | and():&nbsp;RdbPredicates | Adds the AND condition to the **RdbPredicates**.<br>-&nbsp;**RdbPredicates**: returns a **RdbPredicates** with the AND condition. |
-| RdbPredicates | contains(field:&nbsp;string,&nbsp;value:&nbsp;string):&nbsp;RdbPredicats | Sets the **RdbPredicates** to match a string containing the specified value.<br>-&nbsp;**field**: column name in the database table.<br>-&nbsp;**value**: value specified.<br>-&nbsp;**RdbPredicates**: returns a **RdbPredicates** object that matches the specified string. |
-| RdbPredicates | beginsWith(field:&nbsp;string,&nbsp;value:&nbsp;string):&nbsp;RdbPredicates | Sets the **RdbPredicates** to match a string that starts with the specified value.<br>-&nbsp;**field**: column name in the database table.<br>-&nbsp;**value**: value specified.<br>-&nbsp;**RdbPredicates**: returns a **RdbPredicates** object that matches the specified string. |
-| RdbPredicates | endsWith(field:&nbsp;string,&nbsp;value:&nbsp;string):&nbsp;RdbPredicates | Sets the **RdbPredicates** to match a string that ends with the specified value.<br>-&nbsp;**field**: column name in the database table.<br>-&nbsp;**value**: value specified.<br>-&nbsp;**RdbPredicates**: returns a **RdbPredicates** object that matches the specified string. |
-| RdbPredicates | isNull(field:&nbsp;string):&nbsp;RdbPredicates | Sets the **RdbPredicates** to match the field whose value is null.<br>-&nbsp;**field**: column name in the database table.<br>-&nbsp;**RdbPredicates**: returns a **RdbPredicates** object that matches the specified field. |
-| RdbPredicates | isNotNull(field:&nbsp;string):&nbsp;RdbPredicates | Sets the **RdbPredicates** to match the field whose value is not null.<br>-&nbsp;**field**: column name in the database table.<br>-&nbsp;**RdbPredicates**: returns a **RdbPredicates** object that matches the specified field. |
-| RdbPredicates | like(field:&nbsp;string,&nbsp;value:&nbsp;string):&nbsp;RdbPredicates | Sets the **RdbPredicates** to match a string that is similar to the specified value.<br>-&nbsp;**field**: column name in the database table.<br>-&nbsp;**value**: value specified.<br>-&nbsp;**RdbPredicates**: returns a **RdbPredicates** object that matches the specified string. |
-| RdbPredicates | glob(field:&nbsp;string,&nbsp;value:&nbsp;string):&nbsp;RdbPredicates | Sets the **RdbPredicates** to match the specified string.<br>-&nbsp;**field**: column name in the database table.<br>-&nbsp;**value**: value specified.<br>-&nbsp;**RdbPredicates**: returns a **RdbPredicates** object that matches the specified string. |
-| RdbPredicates | between(field:&nbsp;string,&nbsp;low:&nbsp;ValueType,&nbsp;high:&nbsp;ValueType):&nbsp;RdbPredicates | Sets the **RdbPredicates** to match the field with data type **ValueType** and value within the specified range.<br>-&nbsp;**field**: column name in the database table.<br>-&nbsp;**low**: minimum value that matches the **RdbPredicates**.<br>-&nbsp;**high**: maximum value that matches the **RdbPredicates**.<br>-&nbsp;**RdbPredicates**: returns a **RdbPredicates** object that matches the specified field. |
-| RdbPredicates | notBetween(field:&nbsp;string,&nbsp;low:&nbsp;ValueType,&nbsp;high:&nbsp;ValueType):&nbsp;RdbPredicates | Sets the **RdbPredicates** to match the field with data type **ValueType** and value out of the specified range.<br>-&nbsp;**field**: column name in the database table.<br>-&nbsp;**low**: minimum value that matches the **RdbPredicates**.<br>-&nbsp;**high**: maximum value that matches the **RdbPredicates**.<br>-&nbsp;**RdbPredicates**: returns a **RdbPredicates** object that matches the specified field. |
-| RdbPredicates | greaterThan(field:&nbsp;string,&nbsp;value:&nbsp;ValueType):&nbsp;RdbPredicatesgr | Sets the **RdbPredicates** to match the field with data type **ValueType** and value greater than the specified value.<br>-&nbsp;**field**: column name in the database table.<br>-&nbsp;**value**: value specified.<br>-&nbsp;**RdbPredicates**: returns a **RdbPredicates** object that matches the specified field. |
-| RdbPredicates | lessThan(field:&nbsp;string,&nbsp;value:&nbsp;ValueType):&nbsp;RdbPredicates | Sets the **RdbPredicates** to match the field with data type **ValueType** and value less than the specified value.<br>-&nbsp;**field**: column name in the database table.<br>-&nbsp;**value**: value specified.<br>-&nbsp;**RdbPredicates**: returns a **RdbPredicates** object that matches the specified field. |
-| RdbPredicates | greaterThanOrEqualTo(field:&nbsp;string,&nbsp;value:&nbsp;ValueType):&nbsp;RdbPredicates | Sets the **RdbPredicates** to match the field with data type **ValueType** and value greater than or equal to the specified value.<br>-&nbsp;**field**: column name in the database table.<br>-&nbsp;**value**: value specified.<br>-&nbsp;**RdbPredicates**: returns a **RdbPredicates** object that matches the specified field. |
-| RdbPredicates | lessThanOrEqualTo(field:&nbsp;string,&nbsp;value:&nbsp;ValueType):&nbsp;RdbPredicates | Sets the **RdbPredicates** to match the field with data type **ValueType** and value less than or equal to the specified value.<br>-&nbsp;**field**: column name in the database table.<br>-&nbsp;**value**: value specified.<br>-&nbsp;**RdbPredicates**: returns a **RdbPredicates** object that matches the specified field. |
-| RdbPredicates | orderByAsc(field:&nbsp;string):&nbsp;RdbPredicates | Sets the **RdbPredicates** to match the column with values sorted in ascending order.<br>-&nbsp;**field**: column name in the database table.<br>-&nbsp;**RdbPredicates**: returns a **RdbPredicates** object that sorts the values in ascending order. |
-| RdbPredicates | orderByDesc(field:&nbsp;string):&nbsp;RdbPredicates | Sets the **RdbPredicates** to match the column with values sorted in descending order.<br>-&nbsp;**field**: column name in the database table.<br>-&nbsp;**RdbPredicates**: returns a **RdbPredicates** object that sorts the values in descending order. |
-| RdbPredicates | distinct():&nbsp;RdbPredicates | Sets the **RdbPredicates** to filter out duplicate records.<br>-&nbsp;**RdbPredicates**: returns a **RdbPredicates** object that can filter out duplicate records. |
-| RdbPredicates | limitAs(value:&nbsp;number):&nbsp;RdbPredicates | Sets the **RdbPredicates** to specify the maximum number of records.<br>-&nbsp;**value**: maximum number of records.<br>-&nbsp;**RdbPredicates**: returns a **RdbPredicates** object that can be used to set the maximum number of records. |
-| RdbPredicates | offsetAs(rowOffset:&nbsp;number):&nbsp;RdbPredicates | Sets the **RdbPredicates** to specify the start position of the returned result.<br>-&nbsp;**rowOffset**: start position of the returned result. The value is a positive integer.<br>-&nbsp;**RdbPredicates**: returns a **RdbPredicates** object that specifies the start position of the returned result. |
-| RdbPredicates | groupBy(fields:&nbsp;Array&lt;string&gt;):&nbsp;RdbPredicates | Sets the **RdbPredicates** to group rows that have the same value into summary rows.<br>-&nbsp;**fields**: names of the columns grouped for querying data.<br>-&nbsp;**RdbPredicates**: returns a **RdbPredicates** object that groups rows with the same value. |
-| RdbPredicates | indexedBy(indexName:&nbsp;string):&nbsp;RdbPredicates | Sets the **RdbPredicates** to specify the index column.<br>-&nbsp;**indexName**: name of the index column.<br>-&nbsp;**RdbPredicates**: returns a **RdbPredicates** object that specifies the index column. |
-| RdbPredicates | in(field:&nbsp;string,&nbsp;value:&nbsp;Array&lt;ValueType&gt;):&nbsp;RdbPredicates | Sets the **RdbPredicates** to match the field with data type **Array&#60;ValueType&#62;** and value within the specified range.<br>-&nbsp;**field**: column name in the database table.<br>-&nbsp;**value**: array of **ValueType** to match.<br>-&nbsp;**RdbPredicates**: returns a **RdbPredicates** object that matches the specified field. |
-| RdbPredicates | notIn(field:&nbsp;string,&nbsp;value:&nbsp;Array&lt;ValueType&gt;):&nbsp;RdbPredicates | Sets the **RdbPredicates** to match the field with data type **Array&#60;ValueType&#62;** and value out of the specified range.<br>-&nbsp;**field**: column name in the database table.<br>-&nbsp;**value**: array of **ValueType** to match.<br>-&nbsp;**RdbPredicates**: returns a **RdbPredicates** object that matches the specified field. |
+| RdbPredicates |inDevices(devices: Array<string>): RdbPredicates | Specifies remote devices on the network with RDB stores to be synchronized.<br>-&nbsp;**devices**: IDs of the remote devices on the network.<br>-&nbsp;**RdbPredicates**: returns a **RdbPredicates** object that matches the specified field.|
+| RdbPredicates |inAllDevices(): RdbPredicates | Connects to all remote devices on the network with RDB stores to be synchronized.<br>-&nbsp;**RdbPredicates**: returns a **RdbPredicates** object that matches the specified field.|
+| RdbPredicates | equalTo(field:&nbsp;string,&nbsp;value:&nbsp;ValueType):&nbsp;RdbPredicates | Sets the **RdbPredicates** to match the field with data type **ValueType** and value equal to the specified value.<br>-&nbsp;**field**: column name in the database table.<br>-&nbsp;**value**: value specified.<br>-&nbsp;**RdbPredicates**: returns a **RdbPredicates** object that matches the specified field.|
+| RdbPredicates | notEqualTo(field:&nbsp;string,&nbsp;value:&nbsp;ValueType):&nbsp;RdbPredicates | Sets the **RdbPredicates** to match the field with data type **ValueType** and value not equal to the specified value.<br>-&nbsp;**field**: column name in the database table.<br>-&nbsp;**value**: value specified.<br>-&nbsp;**RdbPredicates**: returns a **RdbPredicates** object that matches the specified field.|
+| RdbPredicates | beginWrap():&nbsp;RdbPredicates | Adds a left parenthesis to the **RdbPredicates**.<br>-&nbsp;**RdbPredicates**: returns a **RdbPredicates** with a left parenthesis.|
+| RdbPredicates | endWrap():&nbsp;RdbPredicates | Adds a right parenthesis to the **RdbPredicates**.<br>-&nbsp;**RdbPredicates**: returns a **RdbPredicates** with a right parenthesis.|
+| RdbPredicates | or():&nbsp;RdbPredicates | Adds the OR condition to the **RdbPredicates**.<br>-&nbsp;**RdbPredicates**: returns a **RdbPredicates** with the OR condition.|
+| RdbPredicates | and():&nbsp;RdbPredicates | Adds the AND condition to the **RdbPredicates**.<br>-&nbsp;**RdbPredicates**: returns a **RdbPredicates** with the AND condition.|
+| RdbPredicates | contains(field:&nbsp;string,&nbsp;value:&nbsp;string):&nbsp;RdbPredicats | Sets the **RdbPredicates** to match a string containing the specified value.<br>-&nbsp;**field**: column name in the database table.<br>-&nbsp;**value**: value specified.<br>-&nbsp;**RdbPredicates**: returns a **RdbPredicates** object that matches the specified string.|
+| RdbPredicates | beginsWith(field:&nbsp;string,&nbsp;value:&nbsp;string):&nbsp;RdbPredicates | Sets the **RdbPredicates** to match a string that starts with the specified value.<br>-&nbsp;**field**: column name in the database table.<br>-&nbsp;**value**: value specified.<br>-&nbsp;**RdbPredicates**: returns a **RdbPredicates** object that matches the specified field.|
+| RdbPredicates | endsWith(field:&nbsp;string,&nbsp;value:&nbsp;string):&nbsp;RdbPredicates | Sets the **RdbPredicates** to match a string that ends with the specified value.<br>-&nbsp;**field**: column name in the database table.<br>-&nbsp;**value**: value specified.<br>-&nbsp;**RdbPredicates**: returns a **RdbPredicates** object that matches the specified field.|
+| RdbPredicates | isNull(field:&nbsp;string):&nbsp;RdbPredicates | Sets the **RdbPredicates** to match the field whose value is null.<br>-&nbsp;**field**: column name in the database table.<br>-&nbsp;**RdbPredicates**: returns a **RdbPredicates** object that matches the specified field.|
+| RdbPredicates | isNotNull(field:&nbsp;string):&nbsp;RdbPredicates | Sets the **RdbPredicates** to match the field whose value is not null.<br>-&nbsp;**field**: column name in the database table.<br>-&nbsp;**RdbPredicates**: returns a **RdbPredicates** object that matches the specified field.|
+| RdbPredicates | like(field:&nbsp;string,&nbsp;value:&nbsp;string):&nbsp;RdbPredicates | Sets the **RdbPredicates** to match a string that is similar to the specified value.<br>-&nbsp;**field**: column name in the database table.<br>-&nbsp;**value**: value specified.<br>-&nbsp;**RdbPredicates**: returns a **RdbPredicates** object that matches the specified field.|
+| RdbPredicates | glob(field:&nbsp;string,&nbsp;value:&nbsp;string):&nbsp;RdbPredicates | Sets the **RdbPredicates** to match the specified string.<br>-&nbsp;**field**: column name in the database table.<br>-&nbsp;**value**: value specified.<br>-&nbsp;**RdbPredicates**: returns a **RdbPredicates** object that matches the specified field.|
+| RdbPredicates | between(field:&nbsp;string,&nbsp;low:&nbsp;ValueType,&nbsp;high:&nbsp;ValueType):&nbsp;RdbPredicates | Sets the **RdbPredicates** to match the field with data type **ValueType** and value within the specified range.<br>-&nbsp;**field**: column name in the database table.<br>-&nbsp;**low**: minimum value that matches the **RdbPredicates**.<br>-&nbsp;**high**: maximum value that matches the **RdbPredicates**.<br>-&nbsp;**RdbPredicates**: returns a **RdbPredicates** object that matches the specified field.|
+| RdbPredicates | notBetween(field:&nbsp;string,&nbsp;low:&nbsp;ValueType,&nbsp;high:&nbsp;ValueType):&nbsp;RdbPredicates | Sets the **RdbPredicates** to match the field with data type **ValueType** and value out of the specified range.<br>-&nbsp;**field**: column name in the database table.<br>-&nbsp;**low**: minimum value that matches the **RdbPredicates**.<br>-&nbsp;**high**: maximum value that matches the **RdbPredicates**.<br>-&nbsp;**RdbPredicates**: returns a **RdbPredicates** object that matches the specified field.|
+| RdbPredicates | greaterThan(field:&nbsp;string,&nbsp;value:&nbsp;ValueType):&nbsp;RdbPredicatesgr | Sets the **RdbPredicates** to match the field with data type **ValueType** and value greater than the specified value.<br>-&nbsp;**field**: column name in the database table.<br>-&nbsp;**value**: value specified.<br>-&nbsp;**RdbPredicates**: returns a **RdbPredicates** object that matches the specified field.|
+| RdbPredicates | lessThan(field:&nbsp;string,&nbsp;value:&nbsp;ValueType):&nbsp;RdbPredicates | Sets the **RdbPredicates** to match the field with data type **ValueType** and value less than the specified value.<br>-&nbsp;**field**: column name in the database table.<br>-&nbsp;**value**: value specified.<br>-&nbsp;**RdbPredicates**: returns a **RdbPredicates** object that matches the specified field.|
+| RdbPredicates | greaterThanOrEqualTo(field:&nbsp;string,&nbsp;value:&nbsp;ValueType):&nbsp;RdbPredicates | Sets the **RdbPredicates** to match the field with data type **ValueType** and value greater than or equal to the specified value.<br>-&nbsp;**field**: column name in the database table.<br>-&nbsp;**value**: value specified.<br>-&nbsp;**RdbPredicates**: returns a **RdbPredicates** object that matches the specified field.|
+| RdbPredicates | lessThanOrEqualTo(field:&nbsp;string,&nbsp;value:&nbsp;ValueType):&nbsp;RdbPredicates | Sets the **RdbPredicates** to match the field with data type **ValueType** and value less than or equal to the specified value.<br>-&nbsp;**field**: column name in the database table.<br>-&nbsp;**value**: value specified.<br>-&nbsp;**RdbPredicates**: returns a **RdbPredicates** object that matches the specified field.|
+| RdbPredicates | orderByAsc(field:&nbsp;string):&nbsp;RdbPredicates | Sets the **RdbPredicates** to match the column with values sorted in ascending order.<br>-&nbsp;**field**: column name in the database table.<br>-&nbsp;**RdbPredicates**: returns a **RdbPredicates** object that matches the specified field.|
+| RdbPredicates | orderByDesc(field:&nbsp;string):&nbsp;RdbPredicates | Sets the **RdbPredicates** to match the column with values sorted in descending order.<br>-&nbsp;**field**: column name in the database table.<br>-&nbsp;**RdbPredicates**: returns a **RdbPredicates** object that matches the specified field.|
+| RdbPredicates | distinct():&nbsp;RdbPredicates | Sets the **RdbPredicates** to filter out duplicate records.<br>-&nbsp;**RdbPredicates**: returns a **RdbPredicates** object that can filter out duplicate records.|
+| RdbPredicates | limitAs(value:&nbsp;number):&nbsp;RdbPredicates | Sets the **RdbPredicates** to specify the maximum number of records.<br>-&nbsp;**value**: maximum number of records.<br>-&nbsp;**RdbPredicates**: returns a **RdbPredicates** object that can be used to set the maximum number of records.|
+| RdbPredicates | offsetAs(rowOffset:&nbsp;number):&nbsp;RdbPredicates | Sets the **RdbPredicates** to specify the start position of the returned result.<br>-&nbsp;**rowOffset**: start position of the returned result. The value is a positive integer.<br>-&nbsp;**RdbPredicates**: returns a **RdbPredicates** object that specifies the start position of the returned result.|
+| RdbPredicates | groupBy(fields:&nbsp;Array&lt;string&gt;):&nbsp;RdbPredicates | Sets the **RdbPredicates** to group rows that have the same value into summary rows.<br>-&nbsp;**fields**: names of the columns grouped for querying data.<br>-&nbsp;**RdbPredicates**: returns a **RdbPredicates** object that groups rows with the same value.|
+| RdbPredicates | indexedBy(indexName:&nbsp;string):&nbsp;RdbPredicates | Sets the **RdbPredicates** to specify the index column.<br>-&nbsp;**indexName**: name of the index column.<br>-&nbsp;**RdbPredicates**: returns a **RdbPredicates** object that specifies the index column.|
+| RdbPredicates | in(field:&nbsp;string,&nbsp;value:&nbsp;Array&lt;ValueType&gt;):&nbsp;RdbPredicates | Sets the **RdbPredicates** to match the field with data type **Array&#60;ValueType&#62;** and value within the specified range.<br>-&nbsp;**field**: column name in the database table.<br>-&nbsp;**value**: array of **ValueType** to match.<br>-&nbsp;**RdbPredicates**: returns a **RdbPredicates** object that matches the specified field.|
+| RdbPredicates | notIn(field:&nbsp;string,&nbsp;value:&nbsp;Array&lt;ValueType&gt;):&nbsp;RdbPredicates | Sets the **RdbPredicates** to match the field with data type **Array&#60;ValueType&#62;** and value out of the specified range.<br>-&nbsp;**field**: column name in the database table.<br>-&nbsp;**value**: array of **ValueType** to match.<br>-&nbsp;**RdbPredicates**: returns a **RdbPredicates** object that matches the specified field.|
 
 **Using the Result Set**
 
 A result set can be regarded as a row of data in the queried results. It allows you to traverse and access the data you have queried. The following table describes the external APIs of **ResultSet**.
 
-> ![icon-notice.gif](public_sys-resources/icon-notice.gif) **NOTICE**
+> ![icon-notice.gif](public_sys-resources/icon-notice.gif) **NOTICE**<br/>
 > After a result set is used, you must call the **close()** method to close it explicitly.
 
 **Table 7** APIs for using the result set
@@ -206,12 +207,12 @@ You can obtain the distributed table name for a remote device based on the local
    The sample code is as follows:
 
    ```
-   import dataRdb from '@ohos.data.rdb';
+   import data_rdb from '@ohos.data.rdb'
    
    const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " + "name TEXT NOT NULL, " + "age INTEGER, " + "salary REAL, " + "blobType BLOB)";
    const STORE_CONFIG = {name: "rdbstore.db",}
    
-   let rdbStore = await dataRdb.getRdbStore(STORE_CONFIG, 1);
+   let rdbStore = await data_rdb.getRdbStore(STORE_CONFIG, 1);
    await rdbStore.executeSql(CREATE_TABLE_TEST);
    ```
 
@@ -235,7 +236,7 @@ You can obtain the distributed table name for a remote device based on the local
    The sample code is as follows:
 
    ```
-   let predicates = new dataRdb.RdbPredicates("test");
+   let predicates = new data_rdb.RdbPredicates("test");
    predicates.equalTo("name", "Tom")
    let resultSet = await rdbStore.query(predicates)
    
@@ -272,7 +273,7 @@ You can obtain the distributed table name for a remote device based on the local
     The sample code is as follows:
 
     ```
-    let predicate = new dataRdb.RdbPredicates('test')
+    let predicate = new data_rdb.RdbPredicates('test')
     predicate.inDevices(['12345678abcde'])
     let promise = rdbStore.sync(rdb.SyncMode.SYNC_MODE_PUSH, predicate)
     promise.then(result) {
