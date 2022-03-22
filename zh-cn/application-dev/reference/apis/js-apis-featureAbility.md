@@ -694,6 +694,136 @@ GetWindowPromise(){
     }
 ```
 
+## ConnectOptions.onConnect<sup>7+</sup>
+
+onConnect(elementName: ElementName, remote: rpc.IRemoteObject): void;
+
+连接成功时的回调函数。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 名称     | 类型                    | 必填 | 描述                                                         |
+| -------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| elementName | ElementName | 是   | 元素名。 |
+| remote | rpc.IRemoteObject | 是   | rpc远程对象。 |
+
+**示例：**
+
+```javascript
+import rpc from '@ohos.rpc'
+import featureAbility from '@ohos.ability.featureAbility'
+function onConnectCallback(element, remote){
+    console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
+}
+function onDisconnectCallback(element){
+    console.log('ConnectAbility onDisconnect element.deviceId : ' + element.deviceId)
+}
+function onFailedCallback(code){
+    console.log('featureAbilityTest ConnectAbility onFailed errCode : ' + code)
+}
+var connId = featureAbility.connectAbility(
+    {
+        deviceId: "",
+        bundleName: "com.ix.ServiceAbility",
+        abilityName: "ServiceAbilityA",
+    },
+    {
+        onConnect: onConnectCallback,
+        onDisconnect: onDisconnectCallback,
+        onFailed: onFailedCallback,
+    },
+);
+```
+
+## ConnectOptions.onDisconnect<sup>7+</sup>
+
+onDisconnect(elementName: ElementName): void;
+
+连接失败时的回调函数。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 名称     | 类型                    | 必填 | 描述                                                         |
+| -------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| elementName | ElementName | 是   | 元素名。 |
+
+**示例：**
+
+```javascript
+import rpc from '@ohos.rpc'
+import featureAbility from '@ohos.ability.featureAbility'
+function onConnectCallback(element, remote){
+    console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
+}
+function onDisconnectCallback(element){
+    console.log('ConnectAbility onDisconnect element.deviceId : ' + element.deviceId)
+}
+function onFailedCallback(code){
+    console.log('featureAbilityTest ConnectAbility onFailed errCode : ' + code)
+}
+var connId = featureAbility.connectAbility(
+    {
+        deviceId: "",
+        bundleName: "com.ix.ServiceAbility",
+        abilityName: "ServiceAbilityA",
+    },
+    {
+        onConnect: onConnectCallback,
+        onDisconnect: onDisconnectCallback,
+        onFailed: onFailedCallback,
+    },
+);
+```
+
+## ConnectOptions.onFailed<sup>7+</sup>
+
+onFailed(code: number): void;
+
+ConnectAbility调用失败时的回调函数。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 名称     | 类型                    | 必填 | 描述                                                         |
+| -------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| code | number | 是   | number类型。 |
+
+**示例：**
+
+```javascript
+import rpc from '@ohos.rpc'
+import featureAbility from '@ohos.ability.featureAbility'
+function onConnectCallback(element, remote){
+    console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
+}
+function onDisconnectCallback(element){
+    console.log('ConnectAbility onDisconnect element.deviceId : ' + element.deviceId)
+}
+function onFailedCallback(code){
+    console.log('featureAbilityTest ConnectAbility onFailed errCode : ' + code)
+}
+var connId = featureAbility.connectAbility(
+    {
+        deviceId: "",
+        bundleName: "com.ix.ServiceAbility",
+        abilityName: "ServiceAbilityA",
+    },
+    {
+        onConnect: onConnectCallback,
+        onDisconnect: onDisconnectCallback,
+        onFailed: onFailedCallback,
+    },
+);
+```
+
+
+
+
 
 ## AbilityWindowConfiguration
 
@@ -702,7 +832,7 @@ GetWindowPromise(){
 **示例：**
 
 ```
-featureAbility.AbilityWindowConfiguration.WINDOW_MODE_UNDEFINED。 
+featureAbility.AbilityWindowConfiguration.WINDOW_MODE_UNDEFINED
 ```
 
 | 名称                        | 参数 | 描述       |
@@ -723,7 +853,7 @@ abilityStartSetting属性是一个定义为[key: string]: any的对象，key对�
 **示例：**
 
 ```
-featureAbility.AbilityStartSetting.BOUNDS_KEY。 
+featureAbility.AbilityStartSetting.BOUNDS_KEY
 ```
 
 | 名称            | 参数            | 描述                       |

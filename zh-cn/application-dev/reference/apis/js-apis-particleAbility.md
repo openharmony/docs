@@ -417,7 +417,7 @@ connectAbility(request: Want, options:ConnectOptions): number
 
 ## particleAbility.disconnectAbility
 
-disconnectAbility(connection: number, callback:AsyncCallback<void>): void;
+disconnectAbility(connection: number, callback:AsyncCallback\<void>): void;
 
 将功能与服务功能断开连接。
 
@@ -463,7 +463,7 @@ disconnectAbility(connection: number, callback:AsyncCallback<void>): void;
 
 ## particleAbility.disconnectAbility
 
-disconnectAbility(connection: number): Promise<void>;
+disconnectAbility(connection: number): Promise\<void>;
 
 将功能与服务功能断开连接。
 

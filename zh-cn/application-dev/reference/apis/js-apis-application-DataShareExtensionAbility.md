@@ -6,7 +6,7 @@
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 从API Version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
 类的数据共享扩展能力。
@@ -21,10 +21,10 @@ import DataShareExtensionAbility from '@ohos.application.DataShareExtensionAbili
 
 ## 属性
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 | 
-| -------- | -------- | -------- | -------- | -------- |
-| context? | ExtensionContext | 是 | 否 | 指示数据共享扩展能力上下文。<br/>**系统能力**：SystemCapability.DistributedDataManager.DataShare.Provider | 
- 
+| 名称 | 可读 | 可写 | 参数类型 | 必填 | 说明 | 
+| -------- | -------- | -------- | -------- | -------- | -------- |
+| context | 是 | 否 | ExtensionContext | 否 | 指示数据共享扩展能力上下文。<br/>**系统能力**：SystemCapability.DistributedDataManager.DataShare.Provider | 
+
 
 ## DataShareExtensionAbility.onCreate
 
@@ -83,7 +83,7 @@ DAHelper.getFileTypes(
 
 ## DataShareExtensionAbility.insert
 
-insert?(uri: string, valuesBucket: rdb.ValuesBucket, callback: AsyncCallback\<number>): void
+insert?(uri: string, valueBucket: rdb.ValuesBucket, callback: AsyncCallback\<number>): void
 
 将单个数据记录插入数据库（callback形式）。
 
@@ -120,7 +120,7 @@ DAHelper.insert(
 
 ## DataShareExtensionAbility.update
 
-update?(uri: string, valuesBucket: rdb.ValuesBucket, predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback\<number>): void
+update?(uri: string, valueBucket: rdb.ValuesBucket, predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback\<number>): void
 
 更新数据库中的数据记录（callback形式）。
 
@@ -259,7 +259,7 @@ DAHelper.getType(
 
 ## DataShareExtensionAbility.batchInsert
 
-batchInsert?(uri: string, valuesBuckets: Array<rdb.ValuesBucket>, callback: AsyncCallback\<number>): void
+batchInsert?(uri: string, valueBuckets: Array<rdb.ValuesBucket>, callback: AsyncCallback\<number>): void
 
 插入数据库（callback形式）。
 
