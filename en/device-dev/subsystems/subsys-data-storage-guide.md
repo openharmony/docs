@@ -165,7 +165,7 @@ Use the following APIs to delete a **Preferences** instance or data file.
     Subscribe to data changes and invoke the callback:
     ``` C++
     std::shared_ptr<PreferencesObserver> counter =
-        std::shared_ptr<PreferencesObserver>(new PreferencesObserverCounter());
+        std::make_shared<PreferencesObserverCounter>();
     pref->RegisterObserver(counter); // Register a callback to return data changes.
 
     pref->PutString(PreferencesTest::KEY_TEST_STRING_ELEMENT, "test");
