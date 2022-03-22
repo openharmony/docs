@@ -37,7 +37,7 @@
   - [启动恢复](subsystems/subsys-boot.md)	
   - [DFX](subsystems/subsys-dfx.md)
 - 专题开发
-  - [HPM Bundle](bundles/Readme-CN.md) 	 	
+  - [HPM Part](hpm-part/Readme-CN.md) 	 	
 - 设备开发示例	 
   -  [轻量和小型系统设备开发示例](guide/device-lite.md) 	
   - [标准系统设备开发示例](guide/device-lite.md) 
