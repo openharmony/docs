@@ -11,364 +11,329 @@ import workScheduler from '@ohos.workScheduler'
 ```
 
 ## workScheduler.startWork
-- **System capability**
-SystemCapability.ResourceSchedule.WorkScheduler
+startWork(work: WorkInfo): boolean
 
-- **API**
-workScheduler.startWork(work: WorkInfo): boolean
-
-- **Description**
 Instructs the **WorkSchedulerService** to add the specified task to the execution queue.
 
-- **Parameters**
+**System capability**: SystemCapability.ResourceSchedule.WorkScheduler
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | work | WorkInfo | Yes| Task to be added to the execution queue.|
+**Parameters**
 
-- **Return value**
+| Name | Type                   | Mandatory  | Description            |
+| ---- | --------------------- | ---- | -------------- |
+| work | [WorkInfo](#workinfo) | Yes   | Task to be added to the execution queue.|
 
-  | Type| Description|
-  | -------- | -------- |
-  | boolean | Returns **true** if the task is added to the execution queue; returns **false** otherwise.|
+**Return value**
 
-- **Example**
+| Type     | Description                              |
+| ------- | -------------------------------- |
+| boolean | Returns **true** if the task is added to the execution queue; returns **false** otherwise.|
 
-  ```
-    let workInfo = {
-        workId: 1,
-        batteryLevel:50,
-        batteryStatus:workScheduler.BatteryStatus.BATTERY_STATUS_LOW,
-        isRepeat: false,
-        isPersisted: true,
-        bundleName: "com.example.myapplication",
-        abilityName: "MyExtension"
-    }
-    var res = workScheduler.startWork(workInfo);
-    console.info("workschedulerLog res:" + res);
-  ```
+**Example**
+
+```
+  let workInfo = {
+      workId: 1,
+      batteryLevel:50,
+      batteryStatus:workScheduler.BatteryStatus.BATTERY_STATUS_LOW,
+      isRepeat: false,
+      isPersisted: true,
+      bundleName: "com.example.myapplication",
+      abilityName: "MyExtension"
+  }
+  var res = workScheduler.startWork(workInfo);
+  console.info("workschedulerLog res:" + res);
+```
 
 ## workScheduler.stopWork
-- **System capability**
-SystemCapability.ResourceSchedule.WorkScheduler
-
-- **API**
 stopWork(work: WorkInfo, needCancel?: boolean): boolean
 
-- **Description**
 Instructs the **WorkSchedulerService** to stop the specified task.
 
-- **Parameters**
+**System capability**: SystemCapability.ResourceSchedule.WorkScheduler
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | work | WorkInfo | Yes| Task to stop.|
-  |needCancel|boolean|    Yes|    Whether to cancel the task.|
+**Parameters**
 
-- **Return value**
+| Name       | Type                   | Mandatory  | Description        |
+| ---------- | --------------------- | ---- | ---------- |
+| work       | [WorkInfo](#workinfo) | Yes   | Task to stop. |
+| needCancel | boolean               | Yes   | Whether to cancel the task.|
 
-  | Type| Description|
-  | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+**Return value**
 
-- **Example**
+| Type     | Description                     |
+| ------- | ----------------------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
-  ```
-    let workInfo = {
-        workId: 1,
-        batteryLevel:50,
-        batteryStatus:workScheduler.BatteryStatus.BATTERY_STATUS_LOW,
-        isRepeat: false,
-        isPersisted: true,
-        bundleName: "com.example.myapplication",
-        abilityName: "MyExtension"
-       }
-    var res = workScheduler.stopWork(workInfo, false);
-    console.info("workschedulerLog res:" + res);
-  ```
+**Example**
 
-## workScheduler.getWorkStatus
-- **System capability**
-SystemCapability.ResourceSchedule.WorkScheduler
-
-- **API**
-getWorkStatus(workId: number, callback : AsyncCallback<WorkInfo>): void
-
-- **Description**
-Obtains the latest task status. This method uses an asynchronous callback to return the result.
-
-- **Parameters**
-
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | workId | number | Yes| Task ID.|
-  |callback|AsyncCallback<WorkInfo>|    Yes|    Callback used to return the result. Returns the task status obtained from the **WorkSchedulerService** if the specified task ID is valid; returns **null** otherwise.|
-
-
-- **Example**
-
-  ```
-    workScheduler.getWorkStatus(50, (err, res) => {
-      if (err) {
-        console.info('workschedulerLog getWorkStatus failed, because:' + err.data);
-      } else {
-        for (let item in res) {
-          console.info('workschedulerLog getWorkStatus success,' + item + ' is:' + res[item]);
-        }
-      }
-    });
-  ```
+```
+  let workInfo = {
+      workId: 1,
+      batteryLevel:50,
+      batteryStatus:workScheduler.BatteryStatus.BATTERY_STATUS_LOW,
+      isRepeat: false,
+      isPersisted: true,
+      bundleName: "com.example.myapplication",
+      abilityName: "MyExtension"
+     }
+  var res = workScheduler.stopWork(workInfo, false);
+  console.info("workschedulerLog res:" + res);
+```
 
 ## workScheduler.getWorkStatus
-- **System capability**
-SystemCapability.ResourceSchedule.WorkScheduler
+getWorkStatus(workId: number, callback : AsyncCallback\<WorkInfo>): void
 
-- **API**
-getWorkStatus(workID: number): Promise<WorkInfo>
+Obtains the latest task status. This API uses an asynchronous callback to return the result.
 
-- **Description**
-Obtains the latest task status. This method uses a promise to return the result.
+**System capability**: SystemCapability.ResourceSchedule.WorkScheduler
 
-- **Parameters**
+**Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | workId | number | Yes| Task ID.|
+| Name     | Type                                   | Mandatory  | Description                                      |
+| -------- | ------------------------------------- | ---- | ---------------------------------------- |
+| workId   | number                                | Yes   | Task ID.                                |
+| callback | AsyncCallback\<[WorkInfo](#workinfo)> | Yes   | Callback used to return the result. Returns the task status obtained from the **WorkSchedulerService** if the specified task ID is valid; returns **null** otherwise.|
 
-- **Return value**
+**Example**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise<WorkInfo> | Promise used to return the result. Returns the task status obtained from the **WorkSchedulerService** if the specified task ID is valid; returns **null** otherwise.|
-
-- **Example**
-
-  ```
-    workScheduler.getWorkStatus(50).then((res) => {
+```
+  workScheduler.getWorkStatus(50, (err, res) => {
+    if (err) {
+      console.info('workschedulerLog getWorkStatus failed, because:' + err.data);
+    } else {
       for (let item in res) {
         console.info('workschedulerLog getWorkStatus success,' + item + ' is:' + res[item]);
       }
-    }).catch((err) => {
-      console.info('workschedulerLog getWorkStatus failed, because:' + err.data);
-    })
-  ```
+    }
+  });
+```
+
+## workScheduler.getWorkStatus
+getWorkStatus(workId: number): Promise\<WorkInfo>
+
+Obtains the latest task status. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.ResourceSchedule.WorkScheduler
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description      |
+| ------ | ------ | ---- | -------- |
+| workId | number | Yes   | Task ID.|
+
+**Return value**
+
+| Type                             | Description                                      |
+| ------------------------------- | ---------------------------------------- |
+| Promise\<[WorkInfo](#workinfo)> | Promise used to return the result. Returns the task status obtained from the **WorkSchedulerService** if the specified task ID is valid; returns **null** otherwise.|
+
+**Example**
+
+```
+  workScheduler.getWorkStatus(50).then((res) => {
+    for (let item in res) {
+      console.info('workschedulerLog getWorkStatus success,' + item + ' is:' + res[item]);
+    }
+  }).catch((err) => {
+    console.info('workschedulerLog getWorkStatus failed, because:' + err.data);
+  })
+```
 
 ## workScheduler.obtainAllWorks
-- **System capability**
-SystemCapability.ResourceSchedule.WorkScheduler
+obtainAllWorks(callback : AsyncCallback\<void>): Array\<WorkInfo>
 
-- **API**
-obtainAllWorks(callback : AsyncCallback<void>): Array<WorkInfo>
+Obtains all tasks associated with this application. This API uses an asynchronous callback to return the result.
 
-- **Description**
-Obtains all tasks associated with this application. This method uses an asynchronous callback to return the result.
+**System capability**: SystemCapability.ResourceSchedule.WorkScheduler
 
-- **Parameters**
+**Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  |callback|AsyncCallback<WorkInfo>|    Yes|    Callback used to return all tasks associated with the current application.|
+| Name     | Type                  | Mandatory  | Description                             |
+| -------- | -------------------- | ---- | ------------------------------- |
+| callback | AsyncCallback\<void> | Yes   | Callback used to return all tasks associated with the current application.|
 
+**Return value**
 
-- **Return value**
+| Type                           | Description             |
+| ----------------------------- | --------------- |
+| Array\<[WorkInfo](#workinfo)> | All tasks associated with the current application.|
 
-  | Type| Description|
-  | -------- | -------- |
-  | Array<WorkInfo> | All tasks associated with the current application.|
+**Example**
 
-- **Example**
-
-  ```
-    workScheduler.obtainAllWorks((err, res) =>{
-      if (err) {
-        console.info('workschedulerLog obtainAllWorks failed, because:' + err.data);
-      } else {
-        console.info('workschedulerLog obtainAllWorks success, data is:' + JSON.stringify(res));
-      }
-    });
-  ```
-
-## workScheduler.obtainAllWorks
-- **System capability**
-SystemCapability.ResourceSchedule.WorkScheduler
-
-- **API**
-obtainAllWorks(): Promise<Array<WorkInfo>>
-
-- **Description**
-Obtains all tasks associated with this application. This method uses a promise to return the result.
-
-- **Return value**
-
-  | Type| Description|
-  | -------- | -------- |
-  | Promise<Array<WorkInfo>> |    Promise used to return all tasks associated with the current application.|
-
-- **Example**
-
-  ```
-    workScheduler.obtainAllWorks().then((res) => {
-      console.info('workschedulerLog obtainAllWorks success, data is:' + JSON.stringify(res));
-    }).catch((err) => {
+```
+  workScheduler.obtainAllWorks((err, res) =>{
+    if (err) {
       console.info('workschedulerLog obtainAllWorks failed, because:' + err.data);
-    })
-  ```
+    } else {
+      console.info('workschedulerLog obtainAllWorks success, data is:' + JSON.stringify(res));
+    }
+  });
+```
+
+## workScheduler.obtainAllWorks
+obtainAllWorks(): Promise<Array\<WorkInfo>>
+
+Obtains all tasks associated with this application. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.ResourceSchedule.WorkScheduler
+
+**Return value**
+
+| Type                                    | Description                            |
+| -------------------------------------- | ------------------------------ |
+| Promise<Array\<[WorkInfo](#workinfo)>> | Promise used to return all tasks associated with the current application.|
+
+**Example**
+
+```
+  workScheduler.obtainAllWorks().then((res) => {
+    console.info('workschedulerLog obtainAllWorks success, data is:' + JSON.stringify(res));
+  }).catch((err) => {
+    console.info('workschedulerLog obtainAllWorks failed, because:' + err.data);
+  })
+```
 
 ## workScheduler.stopAndClearWorks
-- **System capability**
-SystemCapability.ResourceSchedule.WorkScheduler
-
-- **API**
 stopAndClearWorks(): boolean
 
-- **Description**
 Stops and cancels all tasks associated with the current application.
 
-- **Example**
+**System capability**: SystemCapability.ResourceSchedule.WorkScheduler
 
-  ```
-    let res = workScheduler.stopAndClearWorks();
-    console.info("workschedulerLog res:" + res);
-  ```
+**Example**
 
-## workScheduler.isLastWorkTimeOut
-- **System capability**
-SystemCapability.ResourceSchedule.WorkScheduler
-
-- **API**
-isLastWorkTimeOut(workId: number, callback : AsyncCallback<void>): boolean
-
-- **Description**
-Checks whether the last execution of the specified task timed out. This method uses an asynchronous callback to return the result.
-
-- **Parameters**
-
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | workId | number | Yes| Task ID.|
-  |callback|AsyncCallback<WorkInfo>|    Yes|    Callback used to return the result.|
-
-- **Return value**
-
-  | Type| Description|
-  | -------- | -------- |
-  | boolean | Returns **true** if the last execution of the specified task timed out; returns **false** otherwise.|
-
-- **Example**
-
-  ```
-    workScheduler.isLastWorkTimeOut(500, (err, res) =>{
-      if (err) {
-        console.info('workschedulerLog isLastWorkTimeOut failed, because:' + err.data);
-      } else {
-        console.info('workschedulerLog isLastWorkTimeOut success, data is:' + res);
-      }
-    });
-  ```
+```
+  let res = workScheduler.stopAndClearWorks();
+  console.info("workschedulerLog res:" + res);
+```
 
 ## workScheduler.isLastWorkTimeOut
-- **System capability**
-SystemCapability.ResourceSchedule.WorkScheduler
+isLastWorkTimeOut(workId: number, callback : AsyncCallback\<void>): boolean
 
-- **API**
-isLastWorkTimeOut(workId: number): Promise<boolean>
+Checks whether the last execution of the specified task timed out. This API uses an asynchronous callback to return the result.
 
-- **Description**
-Checks whether the last execution of the specified task timed out. This method uses a promise to return the result.
+**System capability**: SystemCapability.ResourceSchedule.WorkScheduler
 
-- **Parameters**
+**Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | workId | number | Yes| Task ID.|
+| Name     | Type                  | Mandatory  | Description                                      |
+| -------- | -------------------- | ---- | ---------------------------------------- |
+| workId   | number               | Yes   | Task ID.                                |
+| callback | AsyncCallback\<void> | Yes   | Callback used to return the result.|
 
-- **Return value**
+**Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise<boolean> | Promise used to return the result. Returns **true** if the last execution of the specified task timed out; returns **false** otherwise.|
+| Type     | Description                                      |
+| ------- | ---------------------------------------- |
+| boolean | Returns **true** if the last execution of the specified task timed out; returns **false** otherwise.|
 
-- **Example**
+**Example**
 
-  ```
-    workScheduler.isLastWorkTimeOut(500)
-      .then(res => {
-        console.info('workschedulerLog isLastWorkTimeOut success, data is:' + res);
-      })
-      .catch(err =>  {
-        console.info('workschedulerLog isLastWorkTimeOut failed, because:' + err.data);
-      });
+```
+  workScheduler.isLastWorkTimeOut(500, (err, res) =>{
+    if (err) {
+      console.info('workschedulerLog isLastWorkTimeOut failed, because:' + err.data);
+    } else {
+      console.info('workschedulerLog isLastWorkTimeOut success, data is:' + res);
+    }
+  });
+```
+
+## workScheduler.isLastWorkTimeOut
+isLastWorkTimeOut(workId: number): Promise\<boolean>
+
+Checks whether the last execution of the specified task timed out. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.ResourceSchedule.WorkScheduler
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description      |
+| ------ | ------ | ---- | -------- |
+| workId | number | Yes   | Task ID.|
+
+**Return value**
+
+| Type               | Description                                      |
+| ----------------- | ---------------------------------------- |
+| Promise\<boolean> | Promise used to return the result. Returns **true** if the last execution of the specified task timed out; returns **false** otherwise.|
+
+**Example**
+
+```
+  workScheduler.isLastWorkTimeOut(500)
+    .then(res => {
+      console.info('workschedulerLog isLastWorkTimeOut success, data is:' + res);
     })
-  ```
+    .catch(err =>  {
+      console.info('workschedulerLog isLastWorkTimeOut failed, because:' + err.data);
+    });
+```
 
-## workScheduler.WorkInfo
-- **System capability**
-SystemCapability.ResourceSchedule.WorkScheduler
-
+## WorkInfo
 Provides detailed information about the task.
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-|workId    |number    |Yes|Task ID.|
-|bundleName    |string    |Yes|    Name of the Work Scheduler task bundle.|
-|abilityName | string| Yes| Name of the component to be notified by a Work Scheduler callback.|
-|networkType | NetworkType| No| Network type.|
-|isCharging | bool| No|Whether the device is charging.|
-|chargerType | ChargingType| No|Charging type.|
-|batteryLevel | number| No|Battery level.|
-|batteryStatus| BatteryStatus| No|Battery status.|
-|storageRequest|StorageRequest| No|Storage status.|
-|isRepeat|boolean|No|Whether the task is repeated.|
-|repeatCycleTime |number|No|Repeat interval.|
-|repeatCount    |number|No|Number of repeat times.|
+**System capability**: SystemCapability.ResourceSchedule.WorkScheduler
 
-## workScheduler.NetworkType
-- **System capability**
-SystemCapability.ResourceSchedule.WorkScheduler
+| Name            | Type                               | Mandatory  | Description              |
+| --------------- | --------------------------------- | ---- | ---------------- |
+| workId          | number                            | Yes   | Task ID.         |
+| bundleName      | string                            | Yes   | Name of the Work Scheduler task bundle.          |
+| abilityName     | string                            | Yes   | Name of the component to be notified by a Work Scheduler callback.|
+| networkType     | [NetworkType](#networktype)       | No   | Network type.            |
+| isCharging      | boolean                           | No   | Whether the device is charging.            |
+| chargerType     | [ChargingType](#chargingtype)     | No   | Charging type.            |
+| batteryLevel    | number                            | No   | Battery level.              |
+| batteryStatus   | [BatteryStatus](#batterystatus)   | No   | Battery status.            |
+| storageRequest  | [StorageRequest](#storagerequest) | No   | Storage status.            |
+| isRepeat        | boolean                           | No   | Whether the task is repeated.          |
+| repeatCycleTime | number                            | No   | Repeat interval.            |
+| repeatCount     | number                            | No   | Number of repeat times.            |
 
+## NetworkType
 Enumerates the network types that can trigger the task.
 
-|Name|Default Value|Description|
-| -------- | -------- | -------- |
-|NETWORK_TYPE_ANY    |0    |Any network type.|
-|NETWORK_TYPE_MOBILE    |1|    Mobile network.|
-|NETWORK_TYPE_WIFI    |2    |Wi-Fi network.|
-|NETWORK_TYPE_BLUETOOTH    |3    |Bluetooth network.|
-|NETWORK_TYPE_WIFI_P2P    |4    |Wi-Fi P2P network.|
-|NETWORK_TYPE_ETHERNET    |5    |Ethernet.|
+**System capability**: SystemCapability.ResourceSchedule.WorkScheduler
 
-## workScheduler.ChargingType
-- **System capability**
-SystemCapability.ResourceSchedule.WorkScheduler
+| Name                    | Default Value | Description                     |
+| ---------------------- | ---- | ----------------------- |
+| NETWORK_TYPE_ANY       | 0    | Any network type.    |
+| NETWORK_TYPE_MOBILE    | 1    | Mobile network.   |
+| NETWORK_TYPE_WIFI      | 2    | Wi-Fi network.  |
+| NETWORK_TYPE_BLUETOOTH | 3    | Bluetooth network.|
+| NETWORK_TYPE_WIFI_P2P  | 4    | Wi-Fi P2P network. |
+| NETWORK_TYPE_ETHERNET  | 5    | Ethernet.       |
 
+## ChargingType
 Enumerates the charging types that can trigger the task.
 
-|Name|Default Value|Description|
-| -------- | -------- | -------- |
-|CHARGING_PLUGGED_ANY    |0|    Any charging type.|
-|CHARGING_PLUGGED_AC    |1    |DC charging.|
-|CHARGING_PLUGGED_USB    |2    |USB charging.|
-|CHARGING_PLUGGED_WIRELESS    |3|    Wireless charging.|
+**System capability**: SystemCapability.ResourceSchedule.WorkScheduler
 
-## workScheduler.BatteryStatus
-- **System capability**
-SystemCapability.ResourceSchedule.WorkScheduler
+| Name                       | Default Value | Description                  |
+| ------------------------- | ---- | -------------------- |
+| CHARGING_PLUGGED_ANY      | 0    | Any charging type.|
+| CHARGING_PLUGGED_AC       | 1    | DC charging.   |
+| CHARGING_PLUGGED_USB      | 2    | USB charging.    |
+| CHARGING_PLUGGED_WIRELESS | 3    | Wireless charging.   |
 
+## BatteryStatus
 Enumerates the battery status that can trigger the task.
 
-|Name|Default Value|Description|
-| -------- | -------- | -------- |
-|BATTERY_STATUS_LOW    |0    |A low battery alert is displayed.|
-|BATTERY_STATUS_OKAY    |1|    The battery level is restored from low to normal.|
-|BATTERY_STATUS_LOW_OR_OKAY    |2    |The battery level is restored from low to normal, or a low battery alert is displayed.|
+**System capability**: SystemCapability.ResourceSchedule.WorkScheduler
 
-## workScheduler.StorageRequest
-- **System capability**
-SystemCapability.ResourceSchedule.WorkScheduler
+| Name                        | Default Value | Description                        |
+| -------------------------- | ---- | -------------------------- |
+| BATTERY_STATUS_LOW         | 0    | A low battery alert is displayed.            |
+| BATTERY_STATUS_OKAY        | 1    | The battery level is restored from low to normal.      |
+| BATTERY_STATUS_LOW_OR_OKAY | 2    | The battery level is restored from low to normal, or a low battery alert is displayed.|
 
+## StorageRequest
 Enumerates the storage status that can trigger the task.
 
-  |Name|Default Value|Description|
+**System capability**: SystemCapability.ResourceSchedule.WorkScheduler
+
+  |Name   |Default Value   |Description|
   | -------- | -------- | -------- |
   |STORAGE_LEVEL_LOW    |0    |The storage space is insufficient.
   |STORAGE_LEVEL_OKAY    |1    |The storage space is restored from insufficient to normal.
