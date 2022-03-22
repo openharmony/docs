@@ -77,6 +77,7 @@
         - [Toggle](ts-basic-components-toggle.md)
         - [TextClock](ts-basic-components-textclock.md)
         - [Web](ts-basic-components-web.md)
+        - [RichText](ts-basic-components-richtext.md)
         - [Xcomponent](ts-basic-components-xcomponent.md)
         - [PluginComponent](ts-basic-components-plugincomponent.md)
     - 容器组件
