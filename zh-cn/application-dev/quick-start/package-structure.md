@@ -351,7 +351,7 @@ metaData示例：
 | name             | 表示Ability名称。取值可采用反向域名方式表示，由包名和类名组成，如“com.example.myapplication.MainAbility”；也可采用“.”开头的类名方式表示，如“.MainAbility”。<br /> Ability的名称，需在一个应用的范围内保证唯一。该标签仅适用于手机、平板、智慧屏、车机、智能穿戴。<br /> 说明：在使用DevEco Studio新建项目时，默认生成首个Ability的配置，包括生成“MainAbility.java”文件，及“config.json”中“MainAbility”的配置。如使用其他IDE工具，可自定义名称。该标签最大长度为127。 | 字符串     | 否                                                       |
 | description      | 表示对Ability的描述。取值可以是描述性内容，也可以是对描述性内容的资源索引，以支持多语言。该标签最大长度为255。 | 字符串     | 可缺省，缺省值为空。                                     |
 | icon             | 表示Ability图标资源文件的索引。取值示例：$media:ability_icon。如果在该Ability的skills属性中，actions的取值包含 “action.system.home”，entities取值中包含“entity.system.home”，则该Ability的icon将同时作为应用的icon。如果存在多个符合条件的Ability，则取位置靠前的Ability的icon作为应用的icon。<br /> 说明：应用的“icon”和“label”是用户可感知配置项，需要区别于当前所有已有的应用“icon”或“label”（至少有一个不同）。 | 字符串     | 可缺省，缺省值为空。                                     |
-| label            | 表示Ability对用户显示的名称。取值可以是Ability名称，也可以是对该名称的资源索引，以支持多语言。如果在该Ability的skills属性中，actions的取值包含 “action.system.home”，entities取值中包含“entity.system.home”，则该Ability的label将同时作为应用的label。如果存在多个符合条件的Ability，则取位置靠前的Ability的label作为应用的label。<br /> 说明： 应用的“icon”和“label”是用户可感知配置项，需要区别于当前所有已有的应用“icon”或“label”（至少有一个不同）。该标签最大长度为255。 | 字符串     | 可缺省，缺省值为空。                                     |
+| label            | 表示Ability对用户显示的名称。取值可以是Ability名称，也可以是对该名称的资源索引，以支持多语言。如果在该Ability的skills属性中，actions的取值包含 “action.system.home”，entities取值中包含“entity.system.home”，则该Ability的label将同时作为应用的label。如果存在多个符合条件的Ability，则取位置靠前的Ability的label作为应用的label。<br /> 说明： 应用的“icon”和“label”是用户可感知配置项，需要区别于当前所有已有的应用“icon”或“label”（至少有一个不同）。该标签为资源文件中定义的字符串的引用，或以"{}"包括的字符串。该标签最大长度为255。 | 字符串     | 可缺省，缺省值为空。                                     |
 | uri              | 表示Ability的统一资源标识符。该标签最大长度为255。           | 字符串     | 可缺省，对于data类型的Ability不可缺省。                  |
 | launchType       | 表示Ability的启动模式，支持“standard”、“singleMission”和“singleton”三种模式：<br />standard：表示该Ability可以有多实例。<br />“standard”模式适用于大多数应用场景。<br />singleMission：表示此Ability在每个任务栈中只能有一个实例。<br />singleton：表示该Ability在所有任务栈中仅可以有一个实例。例如，具有全局唯一性的呼叫来电界面即采用“singleton”模式。该标签仅适用于手机、平板、智慧屏、车机、智能穿戴。 | 字符串     | 可缺省，缺省值为“standard”。                             |
 | visible          | 表示Ability是否可以被其他应用调用。<br />true：可以被其他应用调用。<br />false：不能被其他应用调用。 | 布尔类型   | 可缺省，缺省值为“false”。                                |
@@ -391,7 +391,7 @@ abilities示例：
         "name": ".MainAbility",
         "description": "test main ability",
         "icon": "$media:ic_launcher",
-        "label": "example",
+        "label": "$media:example",
         "launchType": "standard",
         "orientation": "unspecified",
         "permissions": [
@@ -419,7 +419,7 @@ abilities示例：
         "name": ".PlayService",
         "description": "example play ability",
         "icon": "$media:ic_launcher",
-        "label": "example",
+        "label": "$media:example",
         "launchType": "standard",
         "orientation": "unspecified",
         "visible": false,
