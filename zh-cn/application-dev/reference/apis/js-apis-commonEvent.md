@@ -468,7 +468,7 @@ unsubscribe(subscriber: CommonEventSubscriber, callback?: AsyncCallback\<void>):
 | 名称       | 读写属性 | 类型                  | 必填 | 描述                     |
 | ---------- | -------- | --------------------- | ---- | ------------------------ |
 | subscriber | 只读     | CommonEventSubscriber | 是   | 表示订阅者对象。         |
-| callback   | 只读     | AsyncCallback\<void>  | 是   | 表示取消订阅的回调方法。 |
+| callback   | 只读     | AsyncCallback\<void>  | 否   | 表示取消订阅的回调方法。 |
 
 **示例：**
 

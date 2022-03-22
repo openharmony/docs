@@ -25,7 +25,6 @@ getCode(callback: AsyncCallback\<number>): void
 var subscriber;	//创建成功的订阅者对象
 
 //设置有序公共事件的结果数据回调
-getCode() {
 function getCodeCallback(err, Code) {
     if (err.code) {
         console.error("getCode failed " + JSON.stringify(err));
@@ -337,7 +336,7 @@ isOrderedCommonEvent(): Promise\<boolean>
 
 | 类型              | 说明                             |
 | ----------------- | -------------------------------- |
-| Promise\<boolean> | 当前公共事件的是否为有序公共事件 |
+| Promise\<boolean> | 当前公共事件的是否为有序公共事件。 |
 
 **示例：**
 
@@ -348,6 +347,66 @@ subscriber.isOrderedCommonEvent().then((isOrdered) => {
     console.info("isOrdered " + JSON.stringify(isOrdered));
 }).catch((err) => {
     console.error("isOrdered failed " + JSON.stringify(err));
+});
+```
+
+### isStickyCommonEvent
+
+isStickyCommonEvent(callback: AsyncCallback\<boolean>): void
+
+检查当前公共事件是否为一个粘性事件（callback形式）。
+
+返回true代表是粘性公共事件，false代表不是粘性公共事件。
+
+**系统能力**：SystemCapability.Notification.CommonEvent
+
+**参数：**
+
+| 参数名   | 类型                    | 必填 | 描述                               |
+| -------- | ----------------------- | ---- | ---------------------------------- |
+| callback | AsyncCallback\<boolean> | 是   | 当前公共事件的是否为粘性公共事件。 |
+
+**示例：**
+
+```js
+var subscriber;	//创建成功的订阅者对象
+
+//设置有序公共事件的结果数据回调
+function isStickyCallback(err, isSticky) {
+    if (err.code) {
+        console.error("isStickyCommonEvent failed " + JSON.stringify(err));
+    } else {
+        console.info("isSticky " + JSON.stringify(isSticky));
+    }
+}
+subscriber.isStickyCommonEvent(isStickyCallback);
+```
+
+### isStickyCommonEvent
+
+isStickyCommonEvent(): Promise\<boolean>
+
+检查当前公共事件是否为一个粘性事件（callback形式）。
+
+返回true代表是粘性公共事件，false代表不是粘性公共事件。
+
+**系统能力**：SystemCapability.Notification.CommonEvent
+
+**返回值：**
+
+| 类型              | 说明                             |
+| ----------------- | -------------------------------- |
+| Promise\<boolean> | 当前公共事件的是否为粘性公共事件。 |
+
+**示例：**
+
+```js
+var subscriber;	//创建成功的订阅者对象
+
+subscriber.isStickyCommonEvent().then((isSticky) => {
+    console.info("isSticky " + JSON.stringify(isSticky));
+}).catch((err) => {
+    console.error("isSticky failed " + JSON.stringify(err));
 });
 ```
 
