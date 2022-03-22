@@ -1,4 +1,4 @@
-# hdc\_std Usage Guidelines<a name="EN-US_TOPIC_0000001080478129"></a>
+# hdc\_std<a name="EN-US_TOPIC_0000001080478129"></a>
 
 hdc\_std \(OpenHarmony Device Connector\) is a command line tool provided by OpenHarmony for debugging. With this tool, you can interact with real devices or simulators from a Windows or Linux OS.
 
