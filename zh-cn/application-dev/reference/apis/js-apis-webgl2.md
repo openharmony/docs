@@ -7,13 +7,6 @@
 WebGL标准图形API，对应OpenGL ES 3.0特性集。更多信息请参考[WebGL™标准](https://www.khronos.org/registry/webgl/specs/latest/2.0/)。
 
 
-## 导入模块
-
-```
-import webgl from '@ohos.webglnapi'
-```
-
-
 ## 调用方式
 
 hml内创建canvas，示例如下：
@@ -33,7 +26,7 @@ js内获取canvas实例，示例如下：
 // 获取canvas组件实例
 const el = this.$refs.canvas1;
 // 从canvas组件实例获取WebGL上下文
-const gl = el.getContext('webgl');
+const gl = el.getContext('webgl2');
 // 调用WebGL API
 gl.clearColor(0.0, 0.0, 0.0, 1.0);
 ```

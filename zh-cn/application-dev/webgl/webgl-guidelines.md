@@ -7,12 +7,6 @@ WebGL主要帮助开发者在前端开发中完成图形图像的相关处理，
 
 ## 接口说明
 
-使用WebGL开放能力需导入模块：
-
-```
-import webgl from "@ohos.webglnapi";
-```
-
 **表1** WebGL主要接口列表
 
 | 接口名 | 描述 |
@@ -142,7 +136,6 @@ import webgl from "@ohos.webglnapi";
 3. 编辑JavaScript代码文件，增加彩色三角形绘制逻辑代码。index.js示例如下：
    ```
    //index.js
-   import webgl from "@ohos.webglnapi";//导入WebGL模块
    
    //WebGL相关预定义
    var gl = {
