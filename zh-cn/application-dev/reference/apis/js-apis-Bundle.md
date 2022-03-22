@@ -1353,13 +1353,32 @@ bundle.queryExtensionAbilityInfosByWant(want, extensionFlags, (err, data) => {
 | uri | 只读     | string | 否   | 资源标识符。 |
 | shortName | 只读     | string | 否   | ElementName的简名。 |
 
-## InstallStatus
+## InstallErrorCode
 
  **系统能力:** SystemCapability.BundleManager.BundleFramework
 
-| 名称          | 读写属性 | 类型             | 必填 | 描述                                                         |
-| ------------- | -------- | ---------------- | ---- | ------------------------------------------------------------ |
-| status        | 只读     | InstallErrorCode | 是   | 安装结果code<br/>SUCCESS = 0<br/>STATUS_INSTALL_FAILURE = 1<br/>STATUS_INSTALL_FAILURE_ABORTED = 2,<br/>STATUS_INSTALL_FAILURE_INVALID = 3<br/>STATUS_INSTALL_FAILURE_CONFLICT = 4<br/>STATUS_INSTALL_FAILURE_STORAGE = 5<br/>STATUS_INSTALL_FAILURE_INCOMPATIBLE = 6<br/>STATUS_UNINSTALL_FAILURE = 7<br>STATUS_UNINSTALL_FAILURE_BLOCKED = 8<br/>STATUS_UNINSTALL_FAILURE_ABORTED = 9<br/>STATUS_UNINSTALL_FAILURE_CONFLICT = 10<br/>STATUS_INSTALL_FAILURE_DOWNLOAD_TIMEOUT = 0x0B<br/>STATUS_INSTALL_FAILURE_DOWNLOAD_FAILED = 0x0C<br/>STATUS_RECOVER_FAILURE_INVALID<sup>8+</sup> = 0x0D<br/>STATUS_ABILITY_NOT_FOUND = 0x40<br/>STATUS_BMS_SERVICE_ERROR = 0x41<br/>STATUS_FAILED_NO_SPACE_LEFT<sup>8+</sup> = 0x42<br/>STATUS_GRANT_REQUEST_PERMISSIONS_FAILED<sup>8+</sup> = 0x43<br/>STATUS_INSTALL_PERMISSION_DENIED<sup>8+</sup> = 0x44<br/>STATUS_UNINSTALL_PERMISSION_DENIED<sup>8+</sup> = 0x45 |
+| 名称               | 默认值 | 说明   |
+| ------ | ------ | ------ |
+| SUCCESS | 0 | 安装成功 |
+| STATUS_INSTALL_FAILURE | 1 | 安装失败（不存在安装的应用） |
+| STATUS_INSTALL_FAILURE_ABORTED | 2 | 安装中止 |
+| STATUS_INSTALL_FAILURE_INVALID | 3 | 安装参数无效 |
+| STATUS_INSTALL_FAILURE_CONFLICT | 4 | 安装冲突 （常见于升级和已有应用基本信息不一致） |
+| STATUS_INSTALL_FAILURE_STORAGE | 5 | 存储包信息失败 |
+| STATUS_INSTALL_FAILURE_INCOMPATIBLE | 6 | 安装不兼容（常见于版本降级安装或者签名信息错误） |
+| STATUS_UNINSTALL_FAILURE | 7 | 卸载失败 （不存在卸载的应用） |
+| STATUS_UNINSTALL_FAILURE_BLOCKED | 8 | 卸载中止 （没有使用） |
+| STATUS_UNINSTALL_FAILURE_ABORTED | 9 | 卸载中止 （参数无效导致） |
+| STATUS_UNINSTALL_FAILURE_CONFLICT | 10 | 卸载冲突 （卸载系统应用失败， 结束应用进程失败） |
+| STATUS_INSTALL_FAILURE_DOWNLOAD_TIMEOUT | 0x0B | 安装失败 （下载超时） |
+| STATUS_INSTALL_FAILURE_DOWNLOAD_FAILED | 0x0C | 安装失败 （下载失败） |
+| STATUS_RECOVER_FAILURE_INVALID<sup>8+</sup> | 0x0D | 恢复预置应用失败 |
+| STATUS_ABILITY_NOT_FOUND | 0x40 | Ability未找到 |
+| STATUS_BMS_SERVICE_ERROR | 0x41 | BMS服务错误 |
+| STATUS_FAILED_NO_SPACE_LEFT<sup>8+</sup> | 0x42 | 设备空间不足 |
+| STATUS_GRANT_REQUEST_PERMISSIONS_FAILED<sup>8+</sup> | 0x43 | 应用授权失败 |
+| STATUS_INSTALL_PERMISSION_DENIED<sup>8+</sup> | 0x44 | 安装权限拒绝 |
+| STATUS_UNINSTALL_PERMISSION_DENIED<sup>8+</sup> | 0x45 | 卸载权限拒绝 |
 
 ## BundleFlag
 
@@ -1650,6 +1669,31 @@ ExtensionAbility的类型
 | GET_EXTENSION_INFO_WITH_PERMISSION<sup>9+</sup> | 0x00000002 | 获取携带权限信息的extensionAbilityInfo |
 | GET_EXTENSION_INFO_WITH_APPLICATION<sup>9+</sup> | 0x00000004 | 获取携带应用信息的extensionAbilityInfo |
 | GET_EXTENSION_INFO_WITH_METADATA<sup>9+</sup> | 0x00000020 | 获取携带元数据信息的extensionAbilityInfo |
+
+
+## ColorMode
+
+颜色模式
+
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
+
+| 名称        | 类型 | 说明                |
+| ----------- | ---- | ------------------- |
+| AUTO_MODE  | -1    | 自动模式 |
+| DARK_MODE    | 0    | 夜间模式   |
+| LIGHT_MODE    | 1    | 灯光模式   |
+
+
+## GrantStatus
+
+授予状态
+
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
+
+| 名称        | 类型 | 说明                |
+| ----------- | ---- | ------------------- |
+| PERMISSION_DENIED  | -1    | 拒绝许可 |
+| PERMISSION_GRANTED    | 0    | 批准   |
 
 
 ## ExtensionAbilityInfo<sup>9+</sup>
