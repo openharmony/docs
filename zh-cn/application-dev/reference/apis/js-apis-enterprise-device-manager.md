@@ -40,8 +40,8 @@ let wantTemp = {
 	abilityName: "com.example.myapplication.MainAbility",
 };
 let enterpriseInfo = {
-	name = "enterprise name",
-	description = "enterprise description"
+	name: "enterprise name",
+	description: "enterprise description"
 }
 enterpriseDeviceManager.activateAdmin(wantTemp, enterpriseInfo, enterpriseDeviceManager.AdminType.ADMIN_TYPE_NORMAL, (error, result) => {
     if (error != null) {
@@ -86,8 +86,8 @@ let wantTemp = {
 	abilityName: "com.example.myapplication.MainAbility",
 };
 let enterpriseInfo = {
-	name = "enterprise name",
-	description = "enterprise description"
+	name: "enterprise name",
+	description: "enterprise description"
 }
 enterpriseDeviceManager.activateAdmin(wantTemp, enterpriseInfo, enterpriseDeviceManager.AdminType.ADMIN_TYPE_NORMAL)
 .then((result) => {
@@ -461,8 +461,8 @@ let wantTemp = {
 	abilityName: "com.example.myapplication.MainAbility",
 };
 let enterpriseInfo = {
-	name = "enterprise name",
-	description = "enterprise description"
+	name: "enterprise name",
+	description: "enterprise description"
 }
 enterpriseDeviceManager.setEnterpriseInfo(wantTemp, enterpriseInfo)
 .then((result) => {
@@ -503,8 +503,8 @@ let wantTemp = {
 	abilityName: "com.example.myapplication.MainAbility",
 };
 let enterpriseInfo = {
-	name = "enterprise name",
-	description = "enterprise description"
+	name: "enterprise name",
+	description: "enterprise description"
 }
 enterpriseDeviceManager.setEnterpriseInfo(wantTemp, enterpriseInfo)
 .then((result) => {
