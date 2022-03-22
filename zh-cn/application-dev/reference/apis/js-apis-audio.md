@@ -1741,7 +1741,7 @@ setAudioScene\(scene: AudioScene\): Promise<void\>
 
 **系统能力：** SystemCapability.Multimedia.Audio.Communication
 
-**Parameters**
+**参数：**
 
 | 参数名 | 类型                                 | 必填 | 说明           |
 | :----- | :----------------------------------- | :--- | :------------- |
