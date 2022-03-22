@@ -29,7 +29,7 @@ createDistributedObject(source: object): DistributedObject
 **返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
-  | DistributedObject | 创建好的分布式对象。 |
+  | [DistributedObject](#distributedobject) | 创建好的分布式对象。 |
 
 **示例：**
   ```js
@@ -67,7 +67,7 @@ genSessionId(): string
 
 setSessionId(sessionId?: string): boolean
 
-设置同步的sessionId,当可信组网中有多个设备时，多个设备间的对象如果设置为同一个sessionId,就能自动同步。
+设置同步的sessionId，当可信组网中有多个设备时，多个设备间的对象如果设置为同一个sessionId，就能自动同步。
 
 **系统能力**：SystemCapability.DistributedDataManager.DataObject.DistributedObject。
 
@@ -76,10 +76,10 @@ setSessionId(sessionId?: string): boolean
   | -------- | -------- | -------- | -------- |
   | sessionId | string | 否 | 分布式对象在可信组网中的标识ID。如果要退出分布式组网，设置为""或不设置均可。 |
 
-  **返回值：**
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
-  | boolean | <br>true：标识设置sessionId成功 <br>false：标识设置sessionId失败 |
+  | boolean | true：标识设置sessionId成功； <br>false：标识设置sessionId失败。 |
   
 **示例：**
   ```js
@@ -192,7 +192,7 @@ off(type: 'status', callback?: Callback<{ sessionId: string, deviceId: string, s
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 事件类型，固定为'status'，表示对象上下线。 |
-  | callback | Callback<{ sessionId: string, networkId: string, status: 'online' \| 'offline' }> | 否 | 需要删除的上下线回调，若不设置则删除该对象所有的上下线回调。 |
+  | callback | Callback<{ sessionId: string, deviceId: string, status: 'online' \| 'offline' }> | 否 | 需要删除的上下线回调，若不设置则删除该对象所有的上下线回调。<br>sessionId：标识变更对象的sessionId <br>deviceId：标识变更对象的deviceId <br>status：标识对象为'online'(上线)或'offline'(下线)的状态 |
 
 
 **示例：**
