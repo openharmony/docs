@@ -1,34 +1,34 @@
-# Zip模块(JS端SDK接口)
+# Zip Module (JavaScript SDK APIs)
 
-## 使用限制
-无。
-## 导入模块
+## Constraints
+None
+## Modules to Import
 import zlib from '@ohos.zlib'
 ## zlib.zipFile
 zipFile(inFile:string, outFile:string, options: Options): Promise<void>;
-压缩接口（Promise形式）。
+Zips a file. This API uses a promise to return the result.
 
-**系统能力：** SystemCapability.BundleManager.Zlib
+**System capability**: SystemCapability.BundleManager.Zlib
 
-**参数：**
+**Parameters**
 
-| 名称    | 类型                                | 必填 | 描述                                        |
+| Name   | Type                               | Mandatory| Description                                       |
 | ------- | ----------------------------------- | ---- | ------------------------------------------- |
-| inFile  | string                              | 是   | 指定压缩的文件夹路径或者文件路径            |
-| outFile | string                              | 是   | 指定的压缩结果的文件路径（文件的扩展名zip） |
-| options | [Options](#options对象可选参数说明) | 否   | 压缩的可选参数                              |
+| inFile  | string                              | Yes  | Path of the folder or file to zip.           |
+| outFile | string                              | Yes  | Path of the zipped file. The file name extension is .zip.|
+| options | [Options](#options)| No  | Optional parameters for the zip operation.                             |
 
-**返回值：**
+**Return value**
 
-| 类型           | 说明                                                 |
+| Type          | Description                                                |
 | -------------- | ---------------------------------------------------- |
-| Promise\<void> | ERROR_CODE_OK：压缩成功   ERROR_CODE_ERRNO：压缩失败 |
+| Promise\<void> | Returns **ERROR_CODE_OK** if the operation is successful; returns **ERROR_CODE_ERRNO** otherwise.|
 
-**示例1：**
+**Example 1**
 
 ```javascript
 
-//【压缩文件 例子1】 
+// Zip a file.
 import zlib from '@ohos.zlib'
 var inFile = "/xxx/filename.xxx";
 var outFile = "/xxx/xxx.zip";
@@ -49,10 +49,10 @@ zlib.zipFile(inFile, outFile, options).then((data) => {
 
 ```
 
-**示例2：**
+**Example 2**
 
 ```
-// 【压缩文件夹 例子2】
+// Zip a folder.
 import zlib from '@ohos.zlib'
 var inFile = "/xxx/xxx";
 var outFile = "/xxx/xxx.zip";
@@ -76,28 +76,28 @@ zlib.zipFile(inFile , unzipDir, options).then((data) => {
 
 unzipFile(inFile:string, outFile:string, options: Options): Promise<void>;
 
-解压文件，解压完成返回执行结果（Promise形式）。
+Unzips a file. This API uses a promise to return the result.
 
-**系统能力：** SystemCapability.BundleManager.Zlib
+**System capability**: SystemCapability.BundleManager.Zlib
 
-**参数：**
+**Parameters**
 
-| 名称    | 类型                                | 必填 | 描述                                |
+| Name   | Type                               | Mandatory| Description                               |
 | ------- | ----------------------------------- | ---- | ----------------------------------- |
-| inFile  | string                              | 是   | 指定解压的文件路径（文件扩展名zip） |
-| outFile | string                              | 是   | 指定的解压文件路径                  |
-| options | [Options](#options对象可选参数说明) | 否   | 解压的可选参数                      |
+| inFile  | string                              | Yes  | Path of the file to unzip. The file name extension is .zip.|
+| outFile | string                              | Yes  | Path of the unzipped file.                 |
+| options | [Options](#options)| No  | Optional parameters for the unzip operation.                     |
 
-**返回值：**
+**Return value**
 
-| 类型           | 说明                                                         |
+| Type          | Description                                                        |
 | -------------- | ------------------------------------------------------------ |
-| Promise\<void> | ERROR_CODE_OK：解压成功   ERROR_CODE_ERRNO：解压失败返回执行结果。 |
+| Promise\<void> | Returns **ERROR_CODE_OK** if the operation is successful; returns **ERROR_CODE_ERRNO** otherwise.|
 
-**示例：**
+**Example**
 
 ```javascript
-// 【解压例子1】 
+// Unzip a file.
 import zlib from '@ohos.zlib'
 var inFile = "/xx/xxx.zip";
 var outFile = "/xxx";
@@ -119,43 +119,43 @@ zlib.unzipFile(inFile, outFile, options).then((data) => {
 	
 ```
 
-## Options对象可选参数说明
+## options
 
-| 参数                        |                                                              |
+| Name                       |                                                              |
 | --------------------------- | ------------------------------------------------------------ |
-| level?: CompressLeve        | [参考zip.CompressLevel枚举定义](#zip.CompressLevel压缩等级可选参数说明) |
-| memLevel?: MemLevel         | [参考zip.MemLevel枚举定义](#zip.MemLevel可选参数说明)        |
-| strategy?: CompressStrategy | [参考zip.CompressStrategy枚举定义](#zip.CompressStrategy压缩策略可选参数说明) |
+| level?: CompressLeve        | See [zip.CompressLevel](#zip.CompressLevel).|
+| memLevel?: MemLevel         | See [zip.MemLevel](#zip.MemLevel)       |
+| strategy?: CompressStrategy | See [zip.CompressStrategy](#zip.CompressStrategy)|
 
-## zip.MemLevel可选参数说明
+## zip.MemLevel
 
-| MEM_LEVEL_MIN     | zip 接口在压缩过程中最小使用内存 |
+| MEM_LEVEL_MIN     | Minimum memory used by the **zip** API during compression.|
 | ----------------- | -------------------------------- |
-| MEM_LEVEL_MAX     | zip 接口在压缩过程中最大使用内存 |
-| MEM_LEVEL_DEFAULT | zip 接口在压缩过程中默认使用内存 |
+| MEM_LEVEL_MAX     | Maximum memory used by the **zip** API during compression.|
+| MEM_LEVEL_DEFAULT | Default memory used by the **zip** API during compression.|
 
-## zip.CompressLevel压缩等级可选参数说明
+## Zip.CompressLevel
 
-| 参数                                    | 描述              |
+| Name                                   | Description             |
 | --------------------------------------- | ----------------- |
-| COMPRESS_LEVEL_NO_COMPRESSION : 0       | 压缩率为0压缩等级 |
-| COMPRESS_LEVEL_BEST_SPEED : 1           | 最佳速度压缩等级  |
-| COMPRESS_LEVEL_BEST_COMPRESSION :9      | 最佳压缩等级      |
-| COMPRESS_LEVEL_DEFAULT_COMPRESSION ：-1 | 默认压缩等级      |
+| COMPRESS_LEVEL_NO_COMPRESSION : 0       | Compress level 0 that indicates uncompressed.|
+| COMPRESS_LEVEL_BEST_SPEED : 1           | Compression level 1 that gives the best speed. |
+| COMPRESS_LEVEL_BEST_COMPRESSION :9      | Compression level 9 that gives the best compression.     |
+| COMPRESS_LEVEL_DEFAULT_COMPRESSION : -1| Default compression level.     |
 
-## zip.CompressStrategy压缩策略可选参数说明
+## Zip.CompressStrategy
 
-| 参数                                   | 描述                     |
+| Name                                  | Description                    |
 | -------------------------------------- | ------------------------ |
-| COMPRESS_STRATEGY_DEFAULT_STRATEGY : 0 | 常规数据策略             |
-| COMPRESS_STRATEGY_FILTERED : 1         | 过滤器产生的数据压缩策略 |
-| COMPRESS_STRATEGY_HUFFMAN_ONLY : 2     | 霍夫曼编码格式压缩策略   |
-| OMPRESS_STRATEGY_RLE : 3               | 游标编码压缩策略         |
-| COMPRESS_STRATEGY_FIXED : 4            | 固定的压缩策略           |
+| COMPRESS_STRATEGY_DEFAULT_STRATEGY : 0 | Default compression strategy.            |
+| COMPRESS_STRATEGY_FILTERED : 1         | Filtered compression strategy.|
+| COMPRESS_STRATEGY_HUFFMAN_ONLY : 2     | Huffman coding compression strategy.  |
+| OMPRESS_STRATEGY_RLE : 3               | RLE compression strategy.        |
+| COMPRESS_STRATEGY_FIXED : 4            | Fixed compression strategy.          |
 
-## zip.ErrorCode接口返回值参数说明
+## zip.ErrorCode
 
-| 参数                 | 描述         |
+| Name                | Description        |
 | -------------------- | ------------ |
-| ERROR_CODE_OK: 0     | 函数调用成功 |
-| ERROR_CODE_ERRNO:- 1 | 函数调用失败 |
+| ERROR_CODE_OK: 0     | The API is successfully called.|
+| ERROR_CODE_ERRNO:- 1 | Failed to call the API.|
