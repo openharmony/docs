@@ -10,9 +10,9 @@ import image from '@ohos.multimedia.image';
 ```
 
 ## image.createPixelMap<sup>8+</sup>
-createPixelMap(colors: ArrayBuffer, opts: InitializetionOptions): Promise\<PixelMap>
+createPixelMap(colors: ArrayBuffer, options: InitializetionOptions): Promise\<PixelMap>
 
-通过属性创建Pixelmap，通过Promise返回结果。
+通过属性创建PixelMap，通过Promise返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Image
 
@@ -21,13 +21,13 @@ createPixelMap(colors: ArrayBuffer, opts: InitializetionOptions): Promise\<Pixel
 | 名称    | 类型                                             | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | colors  | ArrayBuffer                                      | 是   | 颜色数组。                                                   |
-| options | [InitializetionOptions](#InitializationOptions8) | 是   | 创建像素的属性，包括透明度，尺寸，缩略值，像素格式和是否可编辑。 |
+| options | [InitializetionOptions](#initializationoptions8) | 是   | 创建像素的属性，包括透明度，尺寸，缩略值，像素格式和是否可编辑。 |
 
 **返回值：**
 
 | 类型                             | 说明           |
 | -------------------------------- | -------------- |
-| Promise\<[PixelMap](#pixelmap7)> | 返回pixelmap。 |
+| Promise\<[PixelMap](#pixelmap7)> | 返回Pixelmap。 |
 
 **示例：**
 
@@ -43,17 +43,17 @@ image.createPixelMap(Color, opts)
 
 createPixelMap(colors: ArrayBuffer, opts: InitializetionOptions) callback: AsyncCallback\<PixelMap>): void
 
-通过属性创建Pixelmap，通过回调函数返回结果。
+通过属性创建PixelMap，通过回调函数返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Image
 
 **参数：**
 
-| 名称     | 类型                                             | 必填 | 说明                 |
-| -------- | ------------------------------------------------ | ---- | -------------------- |
-| colors   | ArrayBuffer                                      | 是   | 颜色数组。           |
-| options  | [InitializetionOptions](#InitializationOptions8) | 是   | 属性。               |
-| callback | AsyncCallback\<[PixelMap](#pixelmap7)>           | 是   | 回调表示成功或失败。 |
+| 名称     | 类型                                             | 必填 | 说明                       |
+| -------- | ------------------------------------------------ | ---- | -------------------------- |
+| colors   | ArrayBuffer                                      | 是   | 颜色数组。                 |
+| options  | [InitializetionOptions](#initializationoptions8) | 是   | 属性。                     |
+| callback | AsyncCallback\<[PixelMap](#pixelmap7)>           | 是   | 通过回调返回PixelMap对象。 |
 
 **示例：**
 
@@ -255,7 +255,7 @@ writePixels(area: PositionArea): Promise\<void>
 
 | 参数名 | 类型                           | 必填 | 说明                 |
 | ------ | ------------------------------ | ---- | -------------------- |
-| area   | [PositionArea](#PositionArea7) | 是   | 区域，根据区域写入。 |
+| area   | [PositionArea](#positionarea7) | 是   | 区域，根据区域写入。 |
 
 **返回值：**
 
@@ -285,7 +285,7 @@ writePixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
 | 参数名    | 类型                           | 必填 | 说明                           |
 | --------- | ------------------------------ | ---- | ------------------------------ |
-| area      | [PositionArea](#PositionArea7) | 是   | 区域，根据区域写入。           |
+| area      | [PositionArea](#positionarea7) | 是   | 区域，根据区域写入。           |
 | callback: | AsyncCallback\<void>           | 是   | 获取回调，失败时返回错误信息。 |
 
 **示例：**
@@ -335,7 +335,7 @@ pixelMap.writeBufferToPixels(colorBuffer).then(() => {
 
 writeBufferToPixels(src: ArrayBuffer, callback: AsyncCallback\<void>): void
 
-读取缓冲区中的图片数据，结果写入Pixelmap中，使用Promise形式返回。
+读取缓冲区中的图片数据，结果写入Pixelmap中，使用callback形式返回。
 
 **系统能力：** SystemCapability.Multimedia.Image
 
@@ -739,11 +739,11 @@ createPixelMap(index: number, options: DecodingOptions, callback: AsyncCallback\
 
 **参数：**
 
-| 名称          | 类型                                  | 必填 | 说明                 |
-| ------------- | ------------------------------------- | ---- | -------------------- |
-| options       | [DecodingOptions](#decodingoptions7)  | 是   | 解码参数。           |
-| index         | number                                | 是   | 图片索引。           |
-| AsyncCallback | AsyncCallback<[PixelMap](#pixelmap7)> | 是   | 回调表示成功或失败。 |
+| 名称          | 类型                                  | 必填 | 说明                       |
+| ------------- | ------------------------------------- | ---- | -------------------------- |
+| options       | [DecodingOptions](#decodingoptions7)  | 是   | 解码参数。                 |
+| index         | number                                | 是   | 图片索引。                 |
+| AsyncCallback | AsyncCallback<[PixelMap](#pixelmap7)> | 是   | 通过回调返回PixelMap对象。 |
 
 **示例：**
 
@@ -765,10 +765,10 @@ createPixelMap(options: DecodingOptions, callback: AsyncCallback\<PixelMap>): vo
 
 **参数：**
 
-| 名称     | 类型                                  | 必填 | 说明                 |
-| -------- | ------------------------------------- | ---- | -------------------- |
-| options  | [DecodingOptions](#decodingoptions7)  | 是   | 解码参数。           |
-| callback | AsyncCallback<[PixelMap](#pixelmap7)> | 是   | 回调表示成功或失败。 |
+| 名称     | 类型                                  | 必填 | 说明                       |
+| -------- | ------------------------------------- | ---- | -------------------------- |
+| options  | [DecodingOptions](#decodingoptions7)  | 是   | 解码参数。                 |
+| callback | AsyncCallback<[PixelMap](#pixelmap7)> | 是   | 通过回调返回PixelMap对象。 |
 
 **示例：**
 
@@ -798,10 +798,10 @@ createPixelMap(opts: DecodingOptions, callback: AsyncCallback\<PixelMap>): void
 
 **参数：**
 
-| 名称     | 类型                                  | 必填 | 说明                 |
-| -------- | ------------------------------------- | ---- | -------------------- |
-| opts     | [DecodingOptions](#decodingoptions7)  | 是   | 解码参数。           |
-| callback | AsyncCallback<[PixelMap](#pixelmap7)> | 是   | 回调表示成功或失败。 |
+| 名称     | 类型                                  | 必填 | 说明                       |
+| -------- | ------------------------------------- | ---- | -------------------------- |
+| opts     | [DecodingOptions](#decodingoptions7)  | 是   | 解码参数。                 |
+| callback | AsyncCallback<[PixelMap](#pixelmap7)> | 是   | 通过回调返回PixelMap对象。 |
 
 **示例：**
 
@@ -881,9 +881,9 @@ createImagePacker(): ImagePacker
 
 **返回值：**
 
-| 类型        | 说明                   |
-| ----------- | ---------------------- |
-| ImagePacker | 返回ImagePackers实例。 |
+| 类型                        | 说明                  |
+| --------------------------- | --------------------- |
+| [ImagePacker](#imagepacker) | 返回ImagePacker实例。 |
 
 **示例：**
 
@@ -1098,14 +1098,14 @@ imagePackerApi.release();
 | 名称               | 类型                               | 可读 | 可写 | 说明             |
 | ------------------ | ---------------------------------- | ---- | ---- | ---------------- |
 | sampleSize         | number                             | 是   | 是   | 缩略图采样大小。 |
-| rotateDegrees      | number                             | 是   | 是   | 旋转角度。       |
+| rotate             | number                             | 是   | 是   | 旋转角度。       |
 | editable           | boolean                            | 是   | 是   | 是否可编辑。     |
 | desiredSize        | [Size](#size)                      | 是   | 是   | 期望输出大小。   |
-| desiredRegion      | [Region](#region8)                 | 是   | 是   | 解码区域。       |
+| desiredRegion      | [Region](#region7)                 | 是   | 是   | 解码区域。       |
 | desiredPixelFormat | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 解码的像素格式。 |
 | index              | numer                              | 是   | 是   | 解码图片序号     |
 
-## Region<sup>8+</sup>
+## Region<sup>7+</sup>
 
 表示区域信息。
 
