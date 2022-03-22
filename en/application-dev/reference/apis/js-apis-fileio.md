@@ -1,6 +1,6 @@
 # File Management
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **Note:**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -15,7 +15,7 @@ import fileio from '@ohos.fileio';
 None
 
 
-## Note
+## Guidelines
 
 Before using this module to perform operations on a file or directory, obtain the absolute path of the file or directory. For details, see [getOrCreateLocalDir of the Context module](js-apis-Context.md).
 
@@ -41,6 +41,8 @@ let fd = fileio.openSync(path);
 stat(path: string): Promise&lt;Stat&gt;
 
 Asynchronously obtains file information. This method uses a promise to return the result.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
 
 - Parameters
   | Name| Type| Mandatory| Description|
@@ -68,6 +70,8 @@ stat(path:string, callback:AsyncCallback&lt;Stat&gt;): void
 
 Asynchronously obtains file information. This method uses a callback to return the result.
 
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
@@ -87,6 +91,8 @@ Asynchronously obtains file information. This method uses a callback to return t
 statSync(path:string): Stat
 
 Synchronously obtains file information.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
 
 - Parameters
   | Name| Type| Mandatory| Description|
@@ -111,6 +117,8 @@ Synchronously obtains file information.
 opendir(path: string): Promise&lt;Dir&gt;
 
 Asynchronously opens a directory. This method uses a promise to return the result.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
 
 - Parameters
   | Name| Type| Mandatory| Description|
@@ -138,6 +146,8 @@ opendir(path: string, callback: AsyncCallback&lt;Dir&gt;): void
 
 Asynchronously opens a directory. This method uses a callback to return the result.
 
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
@@ -148,7 +158,7 @@ Asynchronously opens a directory. This method uses a callback to return the resu
   ```js
   fileio.opendir(path, function (err, dir) { 
       // Example code in Dir struct
-      // Use read/readSync/close
+      // Use read/readSync/close.
   });
   ```
 
@@ -158,6 +168,8 @@ Asynchronously opens a directory. This method uses a callback to return the resu
 opendirSync(path: string): Dir
 
 Synchronously opens a directory.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
 
 
 - Parameters
@@ -184,11 +196,13 @@ access(path: string, mode?: number): Promise&lt;void&gt;
 
 Asynchronously checks whether the current process can access a file. This method uses a promise to return the result.
 
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | path | string | Yes| Absolute path of the target file.|
-  | mode | number | No| Options for accessing the file. You can specify multiple options, separated with a bitwise OR operator (&#124;). The default value is **0**. <br/>The options are as follows:<br/>-&nbsp;**0**: check whether the file exists. <br/>-&nbsp;**1**: check whether the current process has the execute permission on the file. <br/>-&nbsp;**2**: check whether the current process has the write permission on the file. <br/>-&nbsp;**4**: check whether the current process has the read permission on the file.|
+  | mode | number | No| Options for accessing the file. You can specify multiple options, separated with a bitwise OR operator (&#124;). The default value is **0**.<br>The options are as follows:<br>-&nbsp;**0**: check whether the file exists.<br>-&nbsp;**1**: check whether the current process has the execute permission on the file.<br>-&nbsp;**2**: check whether the current process has the write permission on the file.<br>-&nbsp;**4**: check whether the current process has the read permission on the file.|
 
 - Return value
   | Type| Description|
@@ -207,15 +221,17 @@ Asynchronously checks whether the current process can access a file. This method
 
 ## fileio.access
 
-access(path: String, mode?: number, callback: AsyncCallback&lt;void&gt;): void
+access(path: string, mode: number, callback: AsyncCallback&lt;void&gt;): void
 
 Asynchronously checks whether the current process can access a file. This method uses a callback to return the result.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
 
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | path | string | Yes| Absolute path of the target file.|
-  | mode | number | No| Options for accessing the file. You can specify multiple options, separated with a bitwise OR operator (&#124;). The default value is **0**. <br/>The options are as follows:<br/>-&nbsp;**0**: check whether the file exists. <br/>-&nbsp;**1**: check whether the current process has the execute permission on the file. <br/>-&nbsp;**2**: check whether the current process has the write permission on the file. <br/>-&nbsp;**4**: check whether the current process has the read permission on the file.|
+  | mode | number | No| Options for accessing the file. You can specify multiple options, separated with a bitwise OR operator (&#124;). The default value is **0**.<br>The options are as follows:<br>-&nbsp;**0**: check whether the file exists.<br>-&nbsp;**1**: check whether the current process has the execute permission on the file.<br>-&nbsp;**2**: check whether the current process has the write permission on the file.<br>-&nbsp;**4**: check whether the current process has the read permission on the file.|
   | callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked when the file is asynchronously checked.|
 
 - Example
@@ -232,12 +248,13 @@ accessSync(path: string, mode?: number): void
 
 Synchronously checks whether the current process can access the specified file.
 
+**System capability**: SystemCapability.FileManagement.File.FileIO
 
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | path | string | Yes| Absolute path of the target file.|
-  | mode | number | No| Options for accessing the file. You can specify multiple options, separated with a bitwise OR operator (&#124;). The default value is **0**. <br/>The options are as follows:<br/>-&nbsp;**0**: check whether the file exists. <br/>-&nbsp;**1**: check whether the current process has the execute permission on the file. <br/>-&nbsp;**2**: check whether the current process has the write permission on the file. <br/>-&nbsp;**4**: check whether the current process has the read permission on the file.|
+  | mode | number | No| Options for accessing the file. You can specify multiple options, separated with a bitwise OR operator (&#124;). The default value is **0**.<br>The options are as follows:<br>-&nbsp;**0**: check whether the file exists.<br>-&nbsp;**1**: check whether the current process has the execute permission on the file.<br>-&nbsp;**2**: check whether the current process has the write permission on the file.<br>-&nbsp;**4**: check whether the current process has the read permission on the file.|
 
 - Example
   ```js
@@ -254,6 +271,8 @@ Synchronously checks whether the current process can access the specified file.
 close(fd: number):Promise&lt;void&gt;
 
 Asynchronously closes a file. This method uses a promise to return the result.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
 
 - Parameters
   | Name| Type| Mandatory| Description|
@@ -282,6 +301,8 @@ close(fd: number, callback:AsyncCallback&lt;void&gt;): void
 
 Asynchronously closes a file. This method uses a callback to return the result.
 
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
@@ -303,6 +324,8 @@ closeSync(fd: number): void
 
 Synchronously closes a file.
 
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
@@ -319,6 +342,8 @@ Synchronously closes a file.
 close(): Promise&lt;void&gt;
 
 Asynchronously closes the stream. This method uses a promise to return the result.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
 
 - Return value
   | Type| Description|
@@ -341,6 +366,8 @@ close(callback: AsyncCallback&lt;void&gt;): void
 
 Asynchronously closes the stream. This method uses a callback to return the result.
 
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
@@ -360,12 +387,14 @@ copyFile(src:string | number, dest:string | number, mode?:number):Promise&lt;voi
 
 Asynchronously copies a file. This method uses a promise to return the result.
 
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | src | string&nbsp;\|&nbsp;number | Yes| Path or file descriptor of the file to copy.|
   | dest | string&nbsp;\|&nbsp;number | Yes| Path or file descriptor of the new file.|
-  | mode | number | No| Option for overwriting the file of the same name in the destination path. The default value is **0**, which is the only value supported. <br/>**0**: Completely overwrite the file with the same name and truncate the part that is not overwritten.|
+  | mode | number | No| Option for overwriting the file of the same name in the destination path. The default value is **0**, which is the only value supported.<br>**0**: Completely overwrite the file with the same name and truncate the part that is not overwritten.|
 
 - Return value
   | Type| Description|
@@ -384,16 +413,18 @@ Asynchronously copies a file. This method uses a promise to return the result.
 
 ## fileio.copyFile
 
-copyFile(src:string | number, dest:string | number, mode?: number, callback: AsyncCallbak&lt;void&gt;): void
+copyFile(src: string | number, dest: string | number, mode: number, callback: AsyncCallback&lt;void&gt;): void
 
 Asynchronously copies a file. This method uses a callback to return the result.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
 
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | src | string&nbsp;\|&nbsp;number | Yes| Path or file descriptor of the file to copy.|
   | dest | string&nbsp;\|&nbsp;number | Yes| Path or file descriptor of the new file.|
-  | mode | number | No| Option for overwriting the file of the same name in the destination path. The default value is **0**, which is the only value supported. <br/>**0**: Completely overwrite the file with the same name and truncate the part that is not overwritten.|
+  | mode | number | No| Option for overwriting the file of the same name in the destination path. The default value is **0**, which is the only value supported.<br>**0**: Completely overwrite the file with the same name and truncate the part that is not overwritten.|
   | callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked when the file is copied asynchronously.|
 
 - Example
@@ -406,16 +437,18 @@ Asynchronously copies a file. This method uses a callback to return the result.
 
 ## fileio.copyFileSync
 
-fileio.copyFileSync(src:string | number, dest:string | number, mode?:number): void
+copyFileSync(src: string | number, dest: string | number, mode?: number): void
 
 Synchronously copies a file.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
 
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | src | string&nbsp;\|&nbsp;number | Yes| Path or file descriptor of the file to copy.|
   | dest | string&nbsp;\|&nbsp;number | Yes| Path or file descriptor of the new file.|
-  | mode | number | No| Option for overwriting the file of the same name in the destination path. The default value is **0**, which is the only value supported. <br/>**0**: Completely overwrite the file with the same name and truncate the part that is not overwritten.|
+  | mode | number | No| Option for overwriting the file of the same name in the destination path. The default value is **0**, which is the only value supported.<br>**0**: Completely overwrite the file with the same name and truncate the part that is not overwritten.|
 
 - Example
   ```js
@@ -429,12 +462,13 @@ mkdir(path:string, mode?: number): Promise&lt;void&gt;
 
 Asynchronously creates a directory. This method uses a promise to return the result.
 
+**System capability**: SystemCapability.FileManagement.File.FileIO
 
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | path | string | Yes| Absolute path of the directory to create.|
-  | mode | number | No| Permission on the directory to create. You can specify multiple permissions, separated using a bitwise OR operator (&#124;). The default value is **0o775**. <br/>-&nbsp;**0o775**: The owner has the read, write, and execute permissions, and other users have the read and execute permissions. <br/>-&nbsp;**0o700**: The owner has the read, write, and execute permissions. <br/>-&nbsp;**0o400**: The owner has the read permission. <br/>-&nbsp;**0o200**: The owner has the write permission. <br/>-&nbsp;**0o100**: The owner has the execute permission. <br/>-&nbsp;**0o070**: The user group has the read, write, and execute permissions. <br/>-&nbsp;**0o040**: The user group has the read permission. <br/>-&nbsp;**0o020**: The user group has the write permission. <br/>-&nbsp;**0o010**: The user group has the execute permission. <br/>-&nbsp;**0o007**: Other users have the read, write, and execute permissions. <br/>-&nbsp;**0o004**: Other users have the read permission. <br/>-&nbsp;**0o002**: Other users have the write permission. <br/>-&nbsp;**0o001**: Other users have the execute permission.|
+  | mode | number | No| Permission on the directory to create. You can specify multiple permissions, separated using a bitwise OR operator (&#124;). The default value is **0o775**.<br>-&nbsp;**0o775**: The owner has the read, write, and execute permissions, and other users have the read and execute permissions.<br>-&nbsp;**0o700**: The owner has the read, write, and execute permissions.<br>- &nbsp;**0o400**: The owner has the read permission.<br>-&nbsp;**0o200**: The owner has the write permission.<br>-&nbsp;**0o100**: The owner has the execute permission.<br>-&nbsp;**0o070**: The user group has the read, write, and execute permissions.<br>-&nbsp;**0o040**: The user group has the read permission.<br>-&nbsp;**0o020**: The user group has the write permission.<br>-&nbsp;**0o010**: The user group has the execute permission.<br>-&nbsp;**0o007**: Other users have the read, write, and execute permissions.<br>-&nbsp;**0o004**: Other users have the read permission.<br>-&nbsp;**0o002**: Other users have the write permission.<br>-&nbsp;**0o001**: Other users have the execute permission.|
 
 - Return value
   | Type| Description|
@@ -453,15 +487,17 @@ Asynchronously creates a directory. This method uses a promise to return the res
 
 ## fileio.mkdir
 
-mkdir(path:string, mode?:number, callback:AsyncCallbak&lt;void&gt;): void
+mkdir(path: string, mode: number, callback: AsyncCallback&lt;void&gt;): void
 
 Asynchronously creates a directory. This method uses a callback to return the result.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
 
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | path | string | Yes| Absolute path of the directory to create.|
-  | mode | number | No| Permission on the directory to create. You can specify multiple permissions, separated using a bitwise OR operator (&#124;). The default value is **0o775**. <br/>-&nbsp;**0o775**: The owner has the read, write, and execute permissions, and other users have the read and execute permissions. <br/>-&nbsp;**0o700**: The owner has the read, write, and execute permissions. <br/>-&nbsp;**0o400**: The owner has the read permission. <br/>-&nbsp;**0o200**: The owner has the write permission. <br/>-&nbsp;**0o100**: The owner has the execute permission. <br/>-&nbsp;**0o070**: The user group has the read, write, and execute permissions. <br/>-&nbsp;**0o040**: The user group has the read permission. <br/>-&nbsp;**0o020**: The user group has the write permission. <br/>-&nbsp;**0o010**: The user group has the execute permission. <br/>-&nbsp;**0o007**: Other users have the read, write, and execute permissions. <br/>-&nbsp;**0o004**: Other users have the read permission. <br/>-&nbsp;**0o002**: Other users have the write permission. <br/>-&nbsp;**0o001**: Other users have the execute permission.|
+  | mode | number | No| Permission on the directory to create. You can specify multiple permissions, separated using a bitwise OR operator (&#124;). The default value is **0o775**.<br>-&nbsp;**0o775**: The owner has the read, write, and execute permissions, and other users have the read and execute permissions.<br>-&nbsp;**0o700**: The owner has the read, write, and execute permissions.<br>- &nbsp;**0o400**: The owner has the read permission.<br>-&nbsp;**0o200**: The owner has the write permission.<br>-&nbsp;**0o100**: The owner has the execute permission.<br>-&nbsp;**0o070**: The user group has the read, write, and execute permissions.<br>-&nbsp;**0o040**: The user group has the read permission.<br>-&nbsp;**0o020**: The user group has the write permission.<br>-&nbsp;**0o010**: The user group has the execute permission.<br>-&nbsp;**0o007**: Other users have the read, write, and execute permissions.<br>-&nbsp;**0o004**: Other users have the read permission.<br>-&nbsp;**0o002**: Other users have the write permission.<br>-&nbsp;**0o001**: Other users have the execute permission.|
   | callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked when the directory is created asynchronously.|
 
 - Example
@@ -476,15 +512,17 @@ Asynchronously creates a directory. This method uses a callback to return the re
 
 ## fileio.mkdirSync
 
-fileio.mkdirSync(path: string, mode?: number): void
+mkdirSync(path: string, mode?: number): void
 
 Synchronously creates a directory.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
 
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | path | string | Yes| Absolute path of the directory to create.|
-  | mode | number | No| Permission on the directory to create. You can specify multiple permissions, separated using a bitwise OR operator (&#124;). The default value is **0o775**. <br/>-&nbsp;**0o775**: The owner has the read, write, and execute permissions, and other users have the read and execute permissions. <br/>-&nbsp;**0o700**: The owner has the read, write, and execute permissions. <br/>-&nbsp;**0o400**: The owner has the read permission. <br/>-&nbsp;**0o200**: The owner has the write permission. <br/>-&nbsp;**0o100**: The owner has the execute permission. <br/>-&nbsp;**0o070**: The user group has the read, write, and execute permissions. <br/>-&nbsp;**0o040**: The user group has the read permission. <br/>-&nbsp;**0o020**: The user group has the write permission. <br/>-&nbsp;**0o010**: The user group has the execute permission. <br/>-&nbsp;**0o007**: Other users have the read, write, and execute permissions. <br/>-&nbsp;**0o004**: Other users have the read permission. <br/>-&nbsp;**0o002**: Other users have the write permission. <br/>-&nbsp;**0o001**: Other users have the execute permission.|
+  | mode | number | No| Permission on the directory to create. You can specify multiple permissions, separated using a bitwise OR operator (&#124;). The default value is **0o775**.<br>-&nbsp;**0o775**: The owner has the read, write, and execute permissions, and other users have the read and execute permissions.<br>-&nbsp;**0o700**: The owner has the read, write, and execute permissions.<br>- &nbsp;**0o400**: The owner has the read permission.<br>-&nbsp;**0o200**: The owner has the write permission.<br>-&nbsp;**0o100**: The owner has the execute permission.<br>-&nbsp;**0o070**: The user group has the read, write, and execute permissions.<br>-&nbsp;**0o040**: The user group has the read permission.<br>-&nbsp;**0o020**: The user group has the write permission.<br>-&nbsp;**0o010**: The user group has the execute permission.<br>-&nbsp;**0o007**: Other users have the read, write, and execute permissions.<br>-&nbsp;**0o004**: Other users have the read permission.<br>-&nbsp;**0o002**: Other users have the write permission.<br>-&nbsp;**0o001**: Other users have the execute permission.|
 
 - Example
   ```js
@@ -498,17 +536,19 @@ open(path: string, flags?: number, mode?: number): Promise&lt;number&gt;
 
 Asynchronously opens a file. This method uses a promise to return the result.
 
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | path | string | Yes| Absolute path of the target file.|
-  | flags | number | No| Option for opening a file. You must specify one of the following options. By default, the file is opened in read-only mode. <br/>-&nbsp;**0o0**: Open the file in read-only mode. <br/>-&nbsp;**0o1**: Open the file in write-only mode. <br/>-&nbsp;**0o2**: Open the file in read/write mode. <br/>You can also specify the following options, separated using a bitwise OR operator (&#124;). By default, no extra option is specified. <br/>-&nbsp;**0o100**: If the file does not exist, create it. If you use this option, you must also specify **mode**. <br/>-&nbsp;**0o200**: If **0o100** is added and the file already exists, throw an exception. <br/>-&nbsp;**0o1000**: If the file exists and is open in write-only or read/write mode, truncate the file length to 0. <br/>-&nbsp;**0o2000**: Open the file in append mode. New data will be appended to the file (added to the end of the file). <br/>-&nbsp;**0o4000**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the open file and in subsequent I/Os. <br/>-&nbsp;**0o200000**: If **path** points to a directory, throw an exception. <br/>-&nbsp;**0o400000**: If **path** points to a symbolic link, throw an exception. <br/>-&nbsp;**0o4010000**: Open the file in synchronous I/O mode.|
-  | mode | number | No| Permissions on the file. You can specify multiple permissions, separated using a bitwise OR operator (&#124;). The default value is **0o666**. <br/>-&nbsp;**0o666**: The owner, user group, and other users have the read and write permissions on the file. <br/>-&nbsp;**0o700**: The owner has the read, write, and execute permissions. <br/>-&nbsp;**0o400**: The owner has the read permission. <br/>-&nbsp;**0o200**: The owner has the write permission. <br/>-&nbsp;**0o100**: The owner has the execute permission. <br/>-&nbsp;**0o070**: The user group has the read, write, and execute permissions. <br/>-&nbsp;**0o040**: The user group has the read permission. <br/>-&nbsp;**0o020**: The user group has the write permission. <br/>-&nbsp;**0o010**: The user group has the execute permission. <br/>-&nbsp;**0o007**: Other users have the read, write, and execute permissions. <br/>-&nbsp;**0o004**: Other users have the read permission. <br/>-&nbsp;**0o002**: Other users have the write permission. <br/>-&nbsp;**0o001**: Other users have the execute permission.|
+  | flags | number | No| Option for opening the file. You must specify one of the following options. By default, the file is open in read-only mode.<br>-&nbsp;**0o0**: Open the file in read-only mode.<br>-&nbsp;**0o1**: Open the file in write-only mode.<br>-&nbsp;**0o2**: Open the file in read/write mode.<br>In addition, you can specify the following options, separated using a bitwise OR operator (&#124;). By default, no additional option is specified.<br>-&nbsp;**0o100**: If the file does not exist, create it. If you use this option, you must also specify **mode**.<br>-&nbsp;**0o200**: If **0o100** is added and the file already exists, throw an exception.<br>-&nbsp;**0o1000**: If the file exists and is open in write-only or read/write mode, truncate the file length to 0.<br>-&nbsp;**0o2000**: Open the file in append mode. New data will be appended to the file (added to the end of the file).<br>-&nbsp;**0o4000**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the open file and in subsequent I/Os.<br>-&nbsp;**0o200000**: If **path** points to a directory, throw an exception.<br><br/>-&nbsp;**0o400000**: If **path** points to a symbolic link, throw an exception.<br>-&nbsp;**0o4010000**: Open the file in synchronous I/O mode.|
+  | mode | number | No| Permissions on the file. You can specify multiple permissions, separated using a bitwise OR operator (&#124;). The default value is **0o666**.<br>-&nbsp;**0o666**: The owner, user group, and other users have the read and write permissions on the file.<br>-&nbsp;**0o700**: The owner has the read, write, and execute permissions.<br>- &nbsp;**0o400**: The owner has the read permission.<br>-&nbsp;**0o200**: The owner has the write permission.<br>-&nbsp;**0o100**: The owner has the execute permission.<br>-&nbsp;**0o070**: The user group has the read, write, and execute permissions.<br>-&nbsp;**0o040**: The user group has the read permission.<br>-&nbsp;**0o020**: The user group has the write permission.<br>-&nbsp;**0o010**: The user group has the execute permission.<br>-&nbsp;**0o007**: Other users have the read, write, and execute permissions.<br>-&nbsp;**0o004**: Other users have the read permission.<br>-&nbsp;**0o002**: Other users have the write permission.<br>-&nbsp;**0o001**: Other users have the execute permission.|
 
 - Return value
   | Type| Description|
   | -------- | -------- |
-  | Promise&lt;number&gt; | Promise used to return the file descriptor of the file opened.|
+  | Promise&lt;number&gt; | File descriptor of the file opened.|
 
 - Example
   ```js
@@ -526,12 +566,14 @@ open(path: string, flags: number, mode: number, callback: AsyncCallback&lt;numbe
 
 Asynchronously opens a file. This method uses a callback to return the result.
 
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | path | string | Yes| Absolute path of the target file.|
-  | flags | number | Yes| Option for opening a file. You must specify one of the following options. By default, the file is opened in read-only mode. <br/>-&nbsp;**0o0**: Open the file in read-only mode. <br/>-&nbsp;**0o1**: Open the file in write-only mode. <br/>-&nbsp;**0o2**: Open the file in read/write mode. <br/>You can also specify the following options, separated using a bitwise OR operator (&#124;). By default, no extra option is specified. <br/>-&nbsp;**0o100**: If the file does not exist, create it. If you use this option, you must also specify **mode**. <br/>-&nbsp;**0o200**: If **0o100** is added and the file already exists, throw an exception. <br/>-&nbsp;**0o1000**: If the file exists and is open in write-only or read/write mode, truncate the file length to 0. <br/>-&nbsp;**0o2000**: Open the file in append mode. New data will be appended to the file (added to the end of the file). <br/>-&nbsp;**0o4000**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the open file and in subsequent I/Os. <br/>-&nbsp;**0o200000**: If **path** points to a directory, throw an exception. <br/>-&nbsp;**0o400000**: If **path** points to a symbolic link, throw an exception. <br/>-&nbsp;**0o4010000**: Open the file in synchronous I/O mode.|
-  | mode | number | Yes| Permissions on the file. You can specify multiple permissions, separated using a bitwise OR operator (&#124;). The default value is **0o666**. <br/>-&nbsp;**0o666**: The owner, user group, and other users have the read and write permissions on the file. <br/>-&nbsp;**0o700**: The owner has the read, write, and execute permissions. <br/>-&nbsp;**0o400**: The owner has the read permission. <br/>-&nbsp;**0o200**: The owner has the write permission. <br/>-&nbsp;**0o100**: The owner has the execute permission. <br/>-&nbsp;**0o070**: The user group has the read, write, and execute permissions. <br/>-&nbsp;**0o040**: The user group has the read permission. <br/>-&nbsp;**0o020**: The user group has the write permission. <br/>-&nbsp;**0o010**: The user group has the execute permission. <br/>-&nbsp;**0o007**: Other users have the read, write, and execute permissions. <br/>-&nbsp;**0o004**: Other users have the read permission. <br/>-&nbsp;**0o002**: Other users have the write permission. <br/>-&nbsp;**0o001**: Other users have the execute permission.|
+  | flags | number | Yes| Option for opening the file. You must specify one of the following options. By default, the file is open in read-only mode.<br>-&nbsp;**0o0**: Open the file in read-only mode.<br>-&nbsp;**0o1**: Open the file in write-only mode.<br>-&nbsp;**0o2**: Open the file in read/write mode.<br>In addition, you can specify the following options, separated using a bitwise OR operator (&#124;). By default, no additional option is specified.<br>-&nbsp;**0o100**: If the file does not exist, create it. If you use this option, you must also specify **mode**.<br>-&nbsp;**0o200**: If **0o100** is added and the file already exists, throw an exception.<br>-&nbsp;**0o1000**: If the file exists and is open in write-only or read/write mode, truncate the file length to 0.<br>-&nbsp;**0o2000**: Open the file in append mode. New data will be appended to the file (added to the end of the file).<br>-&nbsp;**0o4000**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the open file and in subsequent I/Os.<br>-&nbsp;**0o200000**: If **path** points to a directory, throw an exception.<br><br/>-&nbsp;**0o400000**: If **path** points to a symbolic link, throw an exception.<br>-&nbsp;**0o4010000**: Open the file in synchronous I/O mode.|
+  | mode | number | Yes| Permissions on the file. You can specify multiple permissions, separated using a bitwise OR operator (&#124;). The default value is **0o666**.<br>-&nbsp;**0o666**: The owner, user group, and other users have the read and write permissions on the file.<br>-&nbsp;**0o700**: The owner has the read, write, and execute permissions.<br>- &nbsp;**0o400**: The owner has the read permission.<br>-&nbsp;**0o200**: The owner has the write permission.<br>-&nbsp;**0o100**: The owner has the execute permission.<br>-&nbsp;**0o070**: The user group has the read, write, and execute permissions.<br>-&nbsp;**0o040**: The user group has the read permission.<br>-&nbsp;**0o020**: The user group has the write permission.<br>-&nbsp;**0o010**: The user group has the execute permission.<br>-&nbsp;**0o007**: Other users have the read, write, and execute permissions.<br>-&nbsp;**0o004**: Other users have the read permission.<br>-&nbsp;**0o002**: Other users have the write permission.<br>-&nbsp;**0o001**: Other users have the execute permission.|
   | callback | AsyncCallback&nbsp;&lt;void&gt; | Yes| Callback invoked when the file is open asynchronously.|
 
 - Example
@@ -548,12 +590,14 @@ openSync(path:string, flags?:number, mode?:number): number
 
 Synchronously opens a file.
 
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | path | string | Yes| Absolute path of the target file.|
-  | flags | number | No| Option for opening a file. You must specify one of the following options. By default, the file is opened in read-only mode. <br/>-&nbsp;**0o0**: Open the file in read-only mode. <br/>-&nbsp;**0o1**: Open the file in write-only mode. <br/>-&nbsp;**0o2**: Open the file in read/write mode. <br/>You can also specify the following options, separated using a bitwise OR operator (&#124;). By default, no extra option is specified. <br/>-&nbsp;**0o100**: If the file does not exist, create it. If you use this option, you must also specify **mode**. <br/>-&nbsp;**0o200**: If **0o100** is added and the file already exists, throw an exception. <br/>-&nbsp;**0o1000**: If the file exists and is open in write-only or read/write mode, truncate the file length to 0. <br/>-&nbsp;**0o2000**: Open the file in append mode. New data will be appended to the file (added to the end of the file). <br/>-&nbsp;**0o4000**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the open file and in subsequent I/Os. <br/>-&nbsp;**0o200000**: If **path** points to a directory, throw an exception. <br/>-&nbsp;**0o400000**: If **path** points to a symbolic link, throw an exception. <br/>-&nbsp;**0o4010000**: Open the file in synchronous I/O mode.|
-  | mode | number | No| Permissions on the file. You can specify multiple permissions, separated using a bitwise OR operator (&#124;). The default value is **0o666**. <br/>-&nbsp;**0o666**: The owner, user group, and other users have the read and write permissions on the file. <br/>-&nbsp;**0o700**: The owner has the read, write, and execute permissions. <br/>-&nbsp;**0o400**: The owner has the read permission. <br/>-&nbsp;**0o200**: The owner has the write permission. <br/>-&nbsp;**0o100**: The owner has the execute permission. <br/>-&nbsp;**0o070**: The user group has the read, write, and execute permissions. <br/>-&nbsp;**0o040**: The user group has the read permission. <br/>-&nbsp;**0o020**: The user group has the write permission. <br/>-&nbsp;**0o010**: The user group has the execute permission. <br/>-&nbsp;**0o007**: Other users have the read, write, and execute permissions. <br/>-&nbsp;**0o004**: Other users have the read permission. <br/>-&nbsp;**0o002**: Other users have the write permission. <br/>-&nbsp;**0o001**: Other users have the execute permission.<br/>The file permissions of newly created files are affected by **umask**, which is set as the process starts. Currently, the modification of **umask** is not open.
+  | flags | number | No| Option for opening the file. You must specify one of the following options. By default, the file is open in read-only mode.<br>-&nbsp;**0o0**: Open the file in read-only mode.<br>-&nbsp;**0o1**: Open the file in write-only mode.<br>-&nbsp;**0o2**: Open the file in read/write mode.<br>In addition, you can specify the following options, separated using a bitwise OR operator (&#124;). By default, no additional option is specified.<br>-&nbsp;**0o100**: If the file does not exist, create it. If you use this option, you must also specify **mode**.<br>-&nbsp;**0o200**: If **0o100** is added and the file already exists, throw an exception.<br>-&nbsp;**0o1000**: If the file exists and is open in write-only or read/write mode, truncate the file length to 0.<br>-&nbsp;**0o2000**: Open the file in append mode. New data will be appended to the file (added to the end of the file).<br>-&nbsp;**0o4000**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the open file and in subsequent I/Os.<br>-&nbsp;**0o200000**: If **path** points to a directory, throw an exception.<br><br/>-&nbsp;**0o400000**: If **path** points to a symbolic link, throw an exception.<br>-&nbsp;**0o4010000**: Open the file in synchronous I/O mode.|
+  | mode | number | No| Permissions on the file. You can specify multiple permissions, separated using a bitwise OR operator (&#124;). The default value is **0o666**.<br>-&nbsp;**0o666**: The owner, user group, and other users have the read and write permissions on the file.<br>-&nbsp;**0o700**: The owner has the read, write, and execute permissions.<br>- &nbsp;**0o400**: The owner has the read permission.<br>-&nbsp;**0o200**: The owner has the write permission.<br>-&nbsp;**0o100**: The owner has the execute permission.<br>-&nbsp;**0o070**: The user group has the read, write, and execute permissions.<br>-&nbsp;**0o040**: The user group has the read permission.<br>-&nbsp;**0o020**: The user group has the write permission.<br>-&nbsp;**0o010**: The user group has the execute permission.<br>-&nbsp;**0o007**: Other users have the read, write, and execute permissions.<br>-&nbsp;**0o004**: Other users have the read permission.<br>-&nbsp;**0o002**: Other users have the write permission.<br>-&nbsp;**0o001**: Other users have the execute permission.<br>The file permissions on newly created files are affected by umask, which is set as the process starts. Currently, the modification of umask is not open.|
 
 - Return value
   | Type| Description|
@@ -568,21 +612,27 @@ Synchronously opens a file.
 
 ## fileio.read
 
-read(fd: number, buffer: ArrayBuffer, options?: Object): Promise&lt;Readout&gt;
+read(fd: number, buffer: ArrayBuffer, options?: {
+    offset?: number;
+    length?: number;
+    position?: number;
+}): Promise&lt;ReadOut&gt;
 
 Asynchronously reads data from a file. This method uses a promise to return the result.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
 
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | fd | number | Yes| File descriptor of the file to read.|
   | buffer | ArrayBuffer | Yes| Buffer used to store the file data read.|
-  | options | Object | No| The options are as follows: <br/>-&nbsp;**offset** (number): position to store the data read in the buffer in reference to the start address of the buffer. The default value is **0**. <br/>-&nbsp;**length** (number): length of the data to be read. The default value is the buffer length minus the offset. <br/>-&nbsp;**position** (number): position of the data to be read in the file. By default, data is read from the current position.|
+  | options | Object | No| The options are as follows:<br>-&nbsp;**offset** (number): position to store the data read in the buffer in reference to the start address of the buffer. The default value is **0**.<br>-&nbsp;**length** (number): length of the data to read. The default value is the buffer length minus the offset.<br>-&nbsp;**position** (number): position of the data to read in the file. By default, data is read from the current position.|
 
 - Return value
   | Type| Description|
   | -------- | -------- |
-  | Promise&lt;[Readout](#readout)&gt; | Promise used to return the data read.|
+  | Promise&lt;[ReadOut](#readout)&gt; | Data read.|
 
 - Example
   ```js
@@ -598,17 +648,23 @@ Asynchronously reads data from a file. This method uses a promise to return the 
 
 ## fileio.read
 
-read(fd: number, buffer: ArrayBuffer, options?: Object, callback: AsyncCallback&lt;Readout&gt;): void
+read(fd: number, buffer: ArrayBuffer, options: {
+    offset?: number;
+    length?: number;
+    position?: number;
+}, callback: AsyncCallback&lt;ReadOut&gt;): void
 
 Asynchronously reads data from a file. This method uses a callback to return the result.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
 
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | fd | number | Yes| File descriptor of the file to read.|
   | buffer | ArrayBuffer | Yes| Buffer used to store the file data read.|
-  | options | Object | No| The options are as follows: <br/>-&nbsp;**offset** (number): position to store the data read in the buffer in reference to the start address of the buffer. The default value is **0**. <br/>-&nbsp;**length** (number): length of the data to be read. The default value is the buffer length minus the offset. <br/>-&nbsp;**position** (number): position of the data to be read in the file. By default, data is read from the current position.|
-  | callback | AsyncCallback&lt;[Readout](#readout)&gt; | Yes| Callback invoked when the data is read asynchronously.|
+  | options | Object | No| The options are as follows:<br>-&nbsp;**offset** (number): position to store the data read in the buffer in reference to the start address of the buffer. The default value is **0**.<br>-&nbsp;**length** (number): length of the data to read. The default value is the buffer length minus the offset.<br>-&nbsp;**position** (number): position of the data to read in the file. By default, data is read from the current position.|
+  | callback | AsyncCallback&lt;[ReadOut](#readout)&gt; | Yes| Callback invoked when the data is read asynchronously.|
 
 - Example
   ```js
@@ -624,16 +680,22 @@ Asynchronously reads data from a file. This method uses a callback to return the
 
 ## fileio.readSync
 
-readSync(fd: number, buffer: ArrayBuffer, options?: Object): number
+readSync(fd: number, buffer: ArrayBuffer, options?: {
+    offset?: number;
+    length?: number;
+    position?: number;
+}): number
 
 Synchronously reads data from a file.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
 
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | fd | number | Yes| File descriptor of the file to read.|
   | buffer | ArrayBuffer | Yes| Buffer used to store the file data read.|
-  | options | Object | No| The options are as follows: <br/>-&nbsp;**offset** (number): position to store the data read in the buffer in reference to the start address of the buffer. The default value is **0**. <br/>-&nbsp;**length** (number): length of the data to be read. The default value is the buffer length minus the offset. <br/>-&nbsp;**position** (number): position of the data to be read in the file. By default, data is read from the current position.|
+  | options | Object | No| The options are as follows:<br>-&nbsp;**offset** (number): position to store the data read in the buffer in reference to the start address of the buffer. The default value is **0**.<br>-&nbsp;**length** (number): length of the data to read. The default value is the buffer length minus the offset.<br>-&nbsp;**position** (number): position of the data to read in the file. By default, data is read from the current position.|
 
 - Return value
   | Type| Description|
@@ -653,6 +715,8 @@ Synchronously reads data from a file.
 rmdir(path: string): Promise&lt;void&gt;
 
 Asynchronously deletes a directory. This method uses a promise to return the result.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
 
 - Parameters
   | Name| Type| Mandatory| Description|
@@ -680,6 +744,8 @@ rmdir(path: string, callback:AsyncCallback&lt;void&gt;): void
 
 Asynchronously deletes a directory. This method uses a callback to return the result.
 
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
@@ -694,11 +760,13 @@ Asynchronously deletes a directory. This method uses a callback to return the re
   ```
 
 
-## fileio.rmdirSync
+## fileio.rmdirSync<sup>7+</sup>
 
-rmdirSync(path:string)
+rmdirSync(path: string): void
 
 Synchronously deletes a directory.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
 
 - Parameters
   | Name| Type| Mandatory| Description|
@@ -716,6 +784,8 @@ Synchronously deletes a directory.
 unlink(path:string): Promise&lt;void&gt;
 
 Asynchronously deletes a file. This method uses a promise to return the result.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
 
 - Parameters
   | Name| Type| Mandatory| Description|
@@ -743,6 +813,8 @@ unlink(path:string, callback:AsyncCallback&lt;void&gt;): void
 
 Asynchronously deletes a file. This method uses a callback to return the result.
 
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
@@ -765,6 +837,8 @@ unlinkSync(path: string): void
 
 Synchronously deletes a file.
 
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
@@ -778,21 +852,28 @@ Synchronously deletes a file.
 
 ## fileio.write
 
-write(fd: number, buffer: ArrayBuffer | string, options?: Object): Promise&lt;number&gt;
+write(fd: number, buffer: ArrayBuffer | string, options?: {
+    offset?: number;
+    length?: number;
+    position?: number;
+    encoding?: string;
+}): Promise&lt;number&gt;
 
 Asynchronously writes data into a file. This method uses a promise to return the result.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
 
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | fd | number | Yes| File descriptor of the file to write.|
   | buffer | ArrayBuffer&nbsp;\|&nbsp;string | Yes| Data to write. It can be a string or data from a buffer.|
-  | options | Object | No| The options are as follows: <br/>-&nbsp;**offset** (number): position of the data to write in reference to the start address of the data. The default value is **0**. <br/>-&nbsp;**length** (number): length of the data to write. The default value is the buffer length minus the offset. <br/>-&nbsp;**position** (number): start position to write the data in the file. By default, data is written from the current position. <br/>-&nbsp;**encoding** (string): format of the string to be encoded. The default value is **utf-8**, which is the only value supported.|
+  | options | Object | No| The options are as follows:<br>-&nbsp;**offset** (number): position of the data to write in reference to the start address of the data. The default value is **0**.<br>-&nbsp;**length** (number): length of the data to write. The default value is the buffer length minus the offset.<br>-&nbsp;**position** (number): start position to write the data in the file. By default, data is written from the current position.<br>-&nbsp;**encoding** (string): format of the string to be encoded. The default value is **utf-8**, which is the only value supported.|
 
 - Return value
   | Type| Description|
   | -------- | -------- |
-  | Promise&lt;number&gt; | Promise used to return the length of the data written in the file.|
+  | Promise&lt;number&gt; | Length of the data written in the file.|
 
 - Example
   ```js
@@ -807,16 +888,23 @@ Asynchronously writes data into a file. This method uses a promise to return the
 
 ## fileio.write
 
-write(fd:number, buffer:ArrayBuffer | string,options?:Object, callback:AsyncCallback&lt;number&gt;): void
+write(fd: number, buffer: ArrayBuffer | string, options: {
+    offset?: number;
+    length?: number;
+    position?: number;
+    encoding?: string;
+}, callback: AsyncCallback&lt;number&gt;): void
 
 Asynchronously writes data into a file. This method uses a callback to return the result.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
 
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | fd | number | Yes| File descriptor of the file to write.|
   | buffer | ArrayBuffer&nbsp;\|&nbsp;string | Yes| Data to write. It can be a string or data from a buffer.|
-  | options | Object | No| The options are as follows: <br/>-&nbsp;**offset** (number): position of the data to write in reference to the start address of the data. The default value is **0**. <br/>-&nbsp;**length** (number): length of the data to write. The default value is the buffer length minus the offset. <br/>-&nbsp;**position** (number): start position to write the data in the file. By default, data is written from the current position. <br/>-&nbsp;**encoding** (string): format of the string to be encoded. The default value is **utf-8**, which is the only value supported.|
+  | options | Object | No| The options are as follows:<br>-&nbsp;**offset** (number): position of the data to write in reference to the start address of the data. The default value is **0**.<br>-&nbsp;**length** (number): length of the data to write. The default value is the buffer length minus the offset.<br>-&nbsp;**position** (number): start position to write the data in the file. By default, data is written from the current position.<br>-&nbsp;**encoding** (string): format of the string to be encoded. The default value is **utf-8**, which is the only value supported.|
   | callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked when the data is written asynchronously.|
 
 - Example
@@ -832,16 +920,23 @@ Asynchronously writes data into a file. This method uses a callback to return th
 
 ## fileio.writeSync
 
-writeSync(fd: number, buffer: ArrayBuffer | string, options?:Object): number
+writeSync(fd: number, buffer: ArrayBuffer | string, options?: {
+    offset?: number;
+    length?: number;
+    position?: number;
+    encoding?: string;
+}): number
 
 Synchronously writes data into a file.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
 
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | fd | number | Yes| File descriptor of the file to write.|
   | buffer | ArrayBuffer&nbsp;\|&nbsp;string | Yes| Data to write. It can be a string or data from a buffer.|
-  | options | Object | No| The options are as follows: <br/>-&nbsp;**offset** (number): position of the data to write in reference to the start address of the data. The default value is **0**. <br/>-&nbsp;**length** (number): length of the data to write. The default value is the buffer length minus the offset. <br/>-&nbsp;**position** (number): start position to write the data in the file. By default, data is written from the current position. <br/>-&nbsp;**encoding** (string): format of the string to be encoded. The default value is **utf-8**, which is the only value supported.|
+  | options | Object | No| The options are as follows:<br>-&nbsp;**offset** (number): position of the data to write in reference to the start address of the data. The default value is **0**.<br>-&nbsp;**length** (number): length of the data to write. The default value is the buffer length minus the offset.<br>-&nbsp;**position** (number): start position to write the data in the file. By default, data is written from the current position.<br>-&nbsp;**encoding** (string): format of the string to be encoded. The default value is **utf-8**, which is the only value supported.|
 
 - Return value
   | Type| Description|
@@ -860,6 +955,8 @@ Synchronously writes data into a file.
 hash(path: string, algorithm: string): Promise&lt;string&gt;
 
 Asynchronously calculates the hash value of a file. This method uses a promise to return the result.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
 
 - Parameters
   | Name| Type| Mandatory| Description|
@@ -884,9 +981,11 @@ Asynchronously calculates the hash value of a file. This method uses a promise t
 
 ## fileio.hash
 
-hash(psth:string, algorithm:string, callback:AsyncCallback&lt;string&gt;): void
+hash(path: string, algorithm: string, callback: AsyncCallback&lt;string&gt;): void
 
 Asynchronously calculates the hash value of a file. This method uses a callback to return the result.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
 
 - Parameters
   | Name| Type| Mandatory| Description|
@@ -911,11 +1010,13 @@ chmod(path: string, mode: number):Promise&lt;void&gt;
 
 Asynchronously changes the file permissions based on its path. This method uses a promise to return the result.
 
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | path | string | Yes| Absolute path of the target file.|
-  | mode | number | Yes| Permissions on the file. You can specify multiple permissions, separated using a bitwise OR operator (&#124;). <br/>-&nbsp;**0o700**: The owner has the read, write, and execute permissions. <br/>-&nbsp;**0o400**: The owner has the read permission. <br/>-&nbsp;**0o200**: The owner has the write permission. <br/>-&nbsp;**0o100**: The owner has the execute permission. <br/>-&nbsp;**0o070**: The user group has the read, write, and execute permissions. <br/>-&nbsp;**0o040**: The user group has the read permission. <br/>-&nbsp;**0o020**: The user group has the write permission. <br/>-&nbsp;**0o010**: The user group has the execute permission. <br/>-&nbsp;**0o007**: Other users have the read, write, and execute permissions. <br/>-&nbsp;**0o004**: Other users have the read permission. <br/>-&nbsp;**0o002**: Other users have the write permission. <br/>-&nbsp;**0o001**: Other users have the execute permission.|
+  | mode | number | Yes| Permissions on the file. You can specify multiple permissions, separated using a bitwise OR operator (&#124;).<br>-&nbsp;**0o700**: The owner has the read, write, and execute permissions.<br>- &nbsp;**0o400**: The owner has the read permission.<br>-&nbsp;**0o200**: The owner has the write permission.<br>-&nbsp;**0o100**: The owner has the execute permission.<br>-&nbsp;**0o070**: The user group has the read, write, and execute permissions.<br>-&nbsp;**0o040**: The user group has the read permission.<br>-&nbsp;**0o020**: The user group has the write permission.<br>-&nbsp;**0o010**: The user group has the execute permission.<br>-&nbsp;**0o007**: Other users have the read, write, and execute permissions.<br>-&nbsp;**0o004**: Other users have the read permission.<br>-&nbsp;**0o002**: Other users have the write permission.<br>-&nbsp;**0o001**: Other users have the execute permission.|
 
 - Return value
   | Type| Description|
@@ -938,11 +1039,13 @@ chmod(path: string, mode: number, callback: AsyncCallback&lt;void&gt;): void
 
 Asynchronously changes the file permissions based on its path. This method uses a callback to return the result.
 
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | path | string | Yes| Absolute path of the target file.|
-  | mode | number | Yes| Permissions on the file. You can specify multiple permissions, separated using a bitwise OR operator (&#124;). <br/>-&nbsp;**0o700**: The owner has the read, write, and execute permissions. <br/>-&nbsp;**0o400**: The owner has the read permission. <br/>-&nbsp;**0o200**: The owner has the write permission. <br/>-&nbsp;**0o100**: The owner has the execute permission. <br/>-&nbsp;**0o070**: The user group has the read, write, and execute permissions. <br/>-&nbsp;**0o040**: The user group has the read permission. <br/>-&nbsp;**0o020**: The user group has the write permission. <br/>-&nbsp;**0o010**: The user group has the execute permission. <br/>-&nbsp;**0o007**: Other users have the read, write, and execute permissions. <br/>-&nbsp;**0o004**: Other users have the read permission. <br/>-&nbsp;**0o002**: Other users have the write permission. <br/>-&nbsp;**0o001**: Other users have the execute permission.|
+  | mode | number | Yes| Permissions on the file. You can specify multiple permissions, separated using a bitwise OR operator (&#124;).<br>-&nbsp;**0o700**: The owner has the read, write, and execute permissions.<br>- &nbsp;**0o400**: The owner has the read permission.<br>-&nbsp;**0o200**: The owner has the write permission.<br>-&nbsp;**0o100**: The owner has the execute permission.<br>-&nbsp;**0o070**: The user group has the read, write, and execute permissions.<br>-&nbsp;**0o040**: The user group has the read permission.<br>-&nbsp;**0o020**: The user group has the write permission.<br>-&nbsp;**0o010**: The user group has the execute permission.<br>-&nbsp;**0o007**: Other users have the read, write, and execute permissions.<br>-&nbsp;**0o004**: Other users have the read permission.<br>-&nbsp;**0o002**: Other users have the write permission.<br>-&nbsp;**0o001**: Other users have the execute permission.|
   | callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked when the file permissions are changed asynchronously.|
 
 - Example
@@ -959,11 +1062,13 @@ chmodSync(path: string, mode: number): void
 
 Synchronously changes the file permissions based on its path.
 
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | path | string | Yes| Absolute path of the target file.|
-  | mode | number | Yes| Permissions on the file. You can specify multiple permissions, separated using a bitwise OR operator (&#124;). <br/>-&nbsp;**0o700**: The owner has the read, write, and execute permissions. <br/>-&nbsp;**0o400**: The owner has the read permission. <br/>-&nbsp;**0o200**: The owner has the write permission. <br/>-&nbsp;**0o100**: The owner has the execute permission. <br/>-&nbsp;**0o070**: The user group has the read, write, and execute permissions. <br/>-&nbsp;**0o040**: The user group has the read permission. <br/>-&nbsp;**0o020**: The user group has the write permission. <br/>-&nbsp;**0o010**: The user group has the execute permission. <br/>-&nbsp;**0o007**: Other users have the read, write, and execute permissions. <br/>-&nbsp;**0o004**: Other users have the read permission. <br/>-&nbsp;**0o002**: Other users have the write permission. <br/>-&nbsp;**0o001**: Other users have the execute permission.|
+  | mode | number | Yes| Permissions on the file. You can specify multiple permissions, separated using a bitwise OR operator (&#124;).<br>-&nbsp;**0o700**: The owner has the read, write, and execute permissions.<br>- &nbsp;**0o400**: The owner has the read permission.<br>-&nbsp;**0o200**: The owner has the write permission.<br>-&nbsp;**0o100**: The owner has the execute permission.<br>-&nbsp;**0o070**: The user group has the read, write, and execute permissions.<br>-&nbsp;**0o040**: The user group has the read permission.<br>-&nbsp;**0o020**: The user group has the write permission.<br>-&nbsp;**0o010**: The user group has the execute permission.<br>-&nbsp;**0o007**: Other users have the read, write, and execute permissions.<br>-&nbsp;**0o004**: Other users have the read permission.<br>-&nbsp;**0o002**: Other users have the write permission.<br>-&nbsp;**0o001**: Other users have the execute permission.|
 
 - Example
   ```js
@@ -977,6 +1082,8 @@ fstat(fd: number): Promise&lt;Stat&gt;
 
 Asynchronously obtains file status information based on the file descriptor. This method uses a promise to return the result.
 
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
@@ -985,7 +1092,7 @@ Asynchronously obtains file status information based on the file descriptor. Thi
 - Return value
   | Type| Description|
   | -------- | -------- |
-  | Promise&lt;[Stat](#stat)&gt; | Promise used to return the file status information.|
+  | Promise&lt;[Stat](#stat)&gt; | Promise used to return the file status information obtained.|
 
 - Example
   ```js
@@ -1002,6 +1109,8 @@ Asynchronously obtains file status information based on the file descriptor. Thi
 fstat(fd: number, callback: AsyncCallback&lt;Stat&gt;): void
 
 Asynchronously obtains file status information based on the file descriptor. This method uses a callback to return the result.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
 
 - Parameters
   | Name| Type| Mandatory| Description|
@@ -1024,6 +1133,8 @@ fstatSync(fd: number): Stat
 
 Synchronously obtains file status information based on the file descriptor.
 
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
@@ -1043,9 +1154,11 @@ Synchronously obtains file status information based on the file descriptor.
 
 ## fileio.ftruncate<sup>7+</sup>
 
-ftruncate(fd: number, len: number): Promise&lt;void&gt;
+ftruncate(fd: number, len?: number): Promise&lt;void&gt;
 
 Asynchronously truncates a file based on the file descriptor. This method uses a promise to return the result.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
 
 - Parameters
   | Name| Type| Mandatory| Description|
@@ -1062,7 +1175,7 @@ Asynchronously truncates a file based on the file descriptor. This method uses a
   ```js
   let fd = fileio.openSync(path);
   fileio.ftruncate(fd, 5).then(function(err) {    
-      console.info("File truncated successfully");
+      console.info("File truncated successfully.");
   }).catch(function(err){
       console.info("Failed to truncate the file. Error:"+ err);
   });
@@ -1074,6 +1187,8 @@ Asynchronously truncates a file based on the file descriptor. This method uses a
 ftruncate(fd: number, len: number, callback:AsyncCallback&lt;void&gt;): void
 
 Asynchronously truncates a file based on the file descriptor. This method uses a callback to return the result.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
 
 - Parameters
   | Name| Type| Mandatory| Description|
@@ -1096,6 +1211,8 @@ ftruncateSync(fd: number, len?: number): void
 
 Synchronously truncates a file based on the file descriptor.
 
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
@@ -1110,9 +1227,11 @@ Synchronously truncates a file based on the file descriptor.
 
 ## fileio.truncate<sup>7+</sup>
 
-truncate(path: string, len: number): Promise&lt;void&gt;
+truncate(path: string, len?: number): Promise&lt;void&gt;
 
 Asynchronously truncates a file based on its path. This method uses a promise to return the result.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
 
 - Parameters
   | Name| Type| Mandatory| Description|
@@ -1128,7 +1247,7 @@ Asynchronously truncates a file based on its path. This method uses a promise to
 - Example
   ```js
   fileio.truncate(path, len).then(function(){
-      console.info("File truncated successfully");
+      console.info("File truncated successfully.");
   }).catch(function(err){
       console.info("Failed to truncate the file. Error:"+ err);
   });
@@ -1140,6 +1259,8 @@ Asynchronously truncates a file based on its path. This method uses a promise to
 truncate(path: string, len: number, callback:AsyncCallback&lt;void&gt;): void
 
 Asynchronously truncates a file based on its path. This method uses a callback to return the result.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
 
 - Parameters
   | Name| Type| Mandatory| Description|
@@ -1158,9 +1279,11 @@ Asynchronously truncates a file based on its path. This method uses a callback t
 
 ## fileio.truncateSync<sup>7+</sup>
 
-truncateSync(fpath: string, len?: number): void
+truncateSync(path: string, len?: number): void
 
 Synchronously truncates a file based on the file path.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
 
 - Parameters
   | Name| Type| Mandatory| Description|
@@ -1176,15 +1299,21 @@ Synchronously truncates a file based on the file path.
 
 ## fileio.readText<sup>7+</sup>
 
-readText(filePath: string, options?:Object): Promise&lt;string&gt;
+readText(filePath: string, options?: {
+    position?: number;
+    length?: number;
+    encoding?: string;
+}): Promise&lt;string&gt;
 
 Asynchronously reads the text of a file. This method uses a promise to return the result.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
 
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | filePath | string | Yes| Absolute path of the file to read.|
-  | options | Object | No| The options are as follows: <br/>-&nbsp;**position** (number): position of the data to read in the file. By default, data is read from the current position. <br/>-&nbsp;**length** (number): length of the data to be read. The default value is the buffer length minus the offset. <br/>-&nbsp;**encoding** (string): format of the data (string) to be encoded. The default value is **utf-8**, which is the only value supported.|
+  | options | Object | No| The options are as follows:<br>-&nbsp;**position** (number): position of the data to read in the file. By default, data is read from the current position.<br>-&nbsp;**length** (number): length of the data to read. The default value is the buffer length minus the offset.<br>-&nbsp;**encoding** (string): format of the data (string) to be encoded. The default value is **utf-8**, which is the only value supported.|
 
 - Return value
   | Type| Description|
@@ -1203,15 +1332,21 @@ Asynchronously reads the text of a file. This method uses a promise to return th
 
 ## fileio.readText<sup>7+</sup>
 
-readText(filePath: string, options?:Object, callback:AsyncCallback&lt;string&gt;): void
+readText(filePath: string, options: {
+    position?: number;
+    length?: number;
+    encoding?: string;
+}, callback: AsyncCallback&lt;string&gt;): void
 
 Asynchronously reads the text of a file. This method uses a callback to return the result.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
 
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | filePath | string | Yes| Absolute path of the file to read.|
-  | options | Object | No| The options are as follows: <br/>-&nbsp;**position** (number): position of the data to read in the file. By default, data is read from the current position. <br/>-&nbsp;**length** (number): length of the data to be read. The default value is the buffer length minus the offset. <br/>-&nbsp;**encoding** (string): format of the data (string) to be encoded. The default value is **utf-8**, which is the only value supported.|
+  | options | Object | No| The options are as follows:<br>-&nbsp;**position** (number): position of the data to read in the file. By default, data is read from the current position.<br>-&nbsp;**length** (number): length of the data to read. The default value is the buffer length minus the offset.<br>-&nbsp;**encoding** (string): format of the data (string) to be encoded. The default value is **utf-8**, which is the only value supported.|
   | callback | AsyncCallback&lt;string&gt; | Yes| Callback invoked when the file is read asynchronously.|
 
 - Example
@@ -1224,20 +1359,26 @@ Asynchronously reads the text of a file. This method uses a callback to return t
 
 ## fileio.readTextSync<sup>7+</sup>
 
-readTextSync(filePath: string, options?:Object): string
+readTextSync(filePath: string, options?: {
+    position?: number;
+    length?: number;
+    encoding?: string;
+}): string
 
 Synchronously reads the text of a file. 
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
 
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | filePath | string | Yes| Absolute path of the file to read.|
-  | options | Object | No| The options are as follows: <br/>-&nbsp;**position** (number): position of the data to read in the file. By default, data is read from the current position. <br/>-&nbsp;**length** (number): length of the data to be read. The default value is the buffer length minus the offset. <br/>-&nbsp;**encoding** (string): format of the data (string) to be encoded. The default value is **utf-8**, which is the only value supported.|
+  | options | Object | No| The options are as follows:<br>-&nbsp;**position** (number): position of the data to read in the file. By default, data is read from the current position.<br>-&nbsp;**length** (number): length of the data to read. The default value is the buffer length minus the offset.<br>-&nbsp;**encoding** (string): format of the data (string) to be encoded. The default value is **utf-8**, which is the only value supported.|
 
 - Return value
   | Type| Description|
   | -------- | -------- |
-  | string| Content of the file read.|
+  | &lt;string&gt;| Content of the file read.|
 
 - Example
   ```js
@@ -1251,6 +1392,8 @@ lstat(path: string): Promise&lt;Stat&gt;
 
 Asynchronously obtains link status information. This method uses a promise to return the result.
 
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
@@ -1259,7 +1402,7 @@ Asynchronously obtains link status information. This method uses a promise to re
 - Return value
   | Type| Description|
   | -------- | -------- |
-  | Promise&lt;[Stat](#stat)&gt; | Promise used to return the link status.|
+  | Promise&lt;[Stat](#stat)&gt; | Promise used to return the link status obtained.|
 
 - Example
   ```js
@@ -1277,6 +1420,8 @@ lstat(path:string, callback:AsyncCallback&lt;Stat&gt;): void
 
 Asynchronously obtains link status information. This method uses a callback to return the result.
 
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
@@ -1287,7 +1432,7 @@ Asynchronously obtains link status information. This method uses a callback to r
   ```js
   fileio.lstat(path, function (err, stat) {
       // Do something.
-  ));
+  });
   ```
 
 
@@ -1297,6 +1442,8 @@ lstatSync(path:string): Stat
 
 Synchronously obtains link status information.
 
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
@@ -1305,7 +1452,7 @@ Synchronously obtains link status information.
 - Return value
   | Type| Description|
   | -------- | -------- |
-  | [Stat](#stat) | Link status information.|
+  | [Stat](#stat) | Link status obtained.|
 
 - Example
   ```js
@@ -1315,20 +1462,26 @@ Synchronously obtains link status information.
 
 ## fileio.read<sup>7+</sup>
 
-read(buffer: ArrayBuffer, options?: Object): Promise&lt;Readout&gt;
+read(buffer: ArrayBuffer, options?: {
+    position?: number;
+    offset?: number;
+    length?: number;
+}): Promise&lt;ReadOut&gt;
 
 Asynchronously reads data from a file. This method uses a promise to return the result.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
 
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | buffer | ArrayBuffer | Yes| Buffer used to store the file data read.|
-  | options | Object | No| The options are as follows: <br/>-&nbsp;**offset** (number): position to store the data read in the buffer in reference to the start address of the buffer. The default value is **0**. <br/>-&nbsp;**length** (number): length of the data to be read. It is optional. The default value is the buffer length minus the offset.|
+  | options | Object | No| The options are as follows:<br>-&nbsp;**offset** (number): position to store the data read in the buffer in reference to the start address of the buffer. The default value is **0**.<br>-&nbsp;**length** (number): length of the data to read. The default value is the buffer length minus the offset.|
 
 - Return value
   | Type| Description|
   | -------- | -------- |
-  | Promise&lt;[Readout](#readout)&gt; | Promise used to return the data read.|
+  | Promise&lt;[ReadOut](#readout)&gt; | Data read.|
 
 - Example
   ```js
@@ -1342,16 +1495,22 @@ Asynchronously reads data from a file. This method uses a promise to return the 
 
 ## fileio.read<sup>7+</sup>
 
-read(buffer: ArrayBuffer, options?: Object, callback: AsyncCallback&lt;Readout&gt;): void
+read(buffer: ArrayBuffer, options: {
+    position?: number;
+    offset?: number;
+    length?: number;
+}, callback: AsyncCallback&lt;ReadOut&gt;): void
 
 Asynchronously reads data from a file. This method uses a callback to return the result.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
 
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | buffer | ArrayBuffer | Yes| Buffer used to store the file data read.|
-  | options | Object | No| The options are as follows: <br/>-&nbsp;**offset** (number): position to store the data read in the buffer in reference to the start address of the buffer. The default value is **0**. <br/>-&nbsp;**length** (number): length of the data to be read. It is optional. The default value is the buffer length minus the offset.|
-  | callback | AsyncCallback&lt;[Readout](#readout)&gt; | Yes| Callback invoked when the data is read asynchronously from the file.|
+  | options | Object | No| The options are as follows:<br>-&nbsp;**offset** (number): position to store the data read in the buffer in reference to the start address of the buffer. The default value is **0**.<br>-&nbsp;**length** (number): length of the data to read. The default value is the buffer length minus the offset.|
+  | callback | AsyncCallback&lt;[ReadOut](#readout)&gt; | Yes| Callback invoked when the data is read asynchronously from the file.|
 
 - Example
   ```js
@@ -1369,6 +1528,8 @@ Asynchronously reads data from a file. This method uses a callback to return the
 rename(oldPath: string, newPath: string): Promise&lt;void&gt;
 
 Asynchronously renames a file. This method uses a promise to return the result.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
 
 - Parameters
   | Name| Type| Mandatory| Description|
@@ -1397,6 +1558,8 @@ rename(oldPath: string, newPath: string, callback: AsyncCallback&lt;void&gt;): v
 
 Asynchronously renames a file. This method uses a callback to return the result.
 
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
@@ -1417,6 +1580,8 @@ renameSync(oldPath: string, newPath: string): void
 
 Synchronously renames a file.
 
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
@@ -1434,6 +1599,8 @@ Synchronously renames a file.
 fsync(fd: number): Promise&lt;void&gt;
 
 Asynchronously synchronizes a file. This method uses a promise to return the result.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
 
 - Parameters
   | Name| Type| Mandatory| Description|
@@ -1461,6 +1628,8 @@ fsync(fd: number, callback: AsyncCallback&lt;void&gt;): void
 
 Asynchronously synchronizes a file. This method uses a callback to return the result.
 
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
@@ -1479,7 +1648,9 @@ Asynchronously synchronizes a file. This method uses a callback to return the re
 
 fsyncSync(fd: number): void
 
-Synchronizes a file in synchronous mode.
+Synchronizes a file in synchronous mode. 
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
 
 - Parameters
   | Name| Type| Mandatory| Description|
@@ -1497,6 +1668,8 @@ Synchronizes a file in synchronous mode.
 fdatasync(fd: number): Promise&lt;void&gt;
 
 Asynchronously synchronizes data in a file. This method uses a promise to return the result.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
 
 - Parameters
   | Name| Type| Mandatory| Description|
@@ -1524,6 +1697,8 @@ fdatasync(fd: number, callback:AsyncCallback&lt;void&gt;): void
 
 Asynchronously synchronizes data in a file. This method uses a callback to return the result.
 
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
@@ -1544,6 +1719,8 @@ fdatasyncSync(fd: number): void
 
 Synchronizes data in a file in synchronous mode.
 
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
@@ -1560,6 +1737,8 @@ Synchronizes data in a file in synchronous mode.
 symlink(target: string, srcPath: string): Promise&lt;void&gt;
 
 Asynchronously creates a symbolic link based on a path. This method uses a promise to return the result.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
 
 - Parameters
   | Name| Type| Mandatory| Description|
@@ -1588,6 +1767,8 @@ symlink(target: string, srcPath: string, callback: AsyncCallback&lt;void&gt;): v
 
 Asynchronously creates a symbolic link based on a path. This method uses a callback to return the result.
 
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
@@ -1609,6 +1790,8 @@ symlinkSync(target: string, srcPath: string): void
 
 Synchronously creates a symbolic link based on a specified path.
 
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
@@ -1627,6 +1810,8 @@ chown(path: string, uid: number, gid: number): Promise&lt;void&gt;
 
 Asynchronously changes the file owner based on its path. This method uses a promise to return the result.
 
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
@@ -1642,7 +1827,7 @@ Asynchronously changes the file owner based on its path. This method uses a prom
 - Example
   ```js
   let stat = fileio.statSync(path);
-  fileio.chown(path, stat.uid, stat.gid)).then(function(){
+  fileio.chown(path, stat.uid, stat.gid).then(function(){
       console.info("chown successfully");
   }).catch(function(err){
       console.info("chown failed with error:"+ err);
@@ -1655,6 +1840,8 @@ Asynchronously changes the file owner based on its path. This method uses a prom
 chown(path: string, uid: number, gid: number, callback: AsyncCallback&lt;void&gt;): void
 
 Asynchronously changes the file owner based on its path. This method uses a callback to return the result.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
 
 - Parameters
   | Name| Type| Mandatory| Description|
@@ -1679,6 +1866,8 @@ chownSync(path: string, uid: number, gid: number): void
 
 Synchronously changes the file owner based on its path.
 
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
@@ -1699,6 +1888,8 @@ mkdtemp(prefix: string): Promise&lt;string&gt;
 
 Asynchronously creates a temporary directory. This method uses a promise to return the result.
 
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
@@ -1707,7 +1898,7 @@ Asynchronously creates a temporary directory. This method uses a promise to retu
 - Return value
   | Name| Description|
   | -------- | -------- |
-  | Promise&lt;string&gt; | Promise used to return the unique path generated.|
+  | Promise&lt;string&gt; | Unique path generated.|
 
 - Example
   ```js
@@ -1724,6 +1915,8 @@ Asynchronously creates a temporary directory. This method uses a promise to retu
 mkdtemp(prefix: string, callback: AsyncCallback&lt;string&gt;): void
 
 Asynchronously creates a temporary directory. This method uses a callback to return the result.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
 
 - Parameters
   | Name| Type| Mandatory| Description|
@@ -1744,6 +1937,8 @@ Asynchronously creates a temporary directory. This method uses a callback to ret
 mkdtempSync(prefix: string): string
 
 Synchronously creates a temporary directory.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
 
 - Parameters
   | Name| Type| Mandatory| Description|
@@ -1767,11 +1962,13 @@ fchmod(fd: number, mode: number): Promise&lt;void&gt;
 
 Asynchronously changes the file permissions based on the file descriptor. This method uses a promise to return the result.
 
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | fd | number | Yes| File descriptor of the target file.|
-  | mode | number | Yes| Permissions on the file. You can specify multiple permissions, separated using a bitwise OR operator (&#124;). <br/>-&nbsp;**0o700**: The owner has the read, write, and execute permissions. <br/>-&nbsp;**0o400**: The owner has the read permission. <br/>-&nbsp;**0o200**: The owner has the write permission. <br/>-&nbsp;**0o100**: The owner has the execute permission. <br/>-&nbsp;**0o070**: The user group has the read, write, and execute permissions. <br/>-&nbsp;**0o040**: The user group has the read permission. <br/>-&nbsp;**0o020**: The user group has the write permission. <br/>-&nbsp;**0o010**: The user group has the execute permission. <br/>-&nbsp;**0o007**: Other users have the read, write, and execute permissions. <br/>-&nbsp;**0o004**: Other users have the read permission. <br/>-&nbsp;**0o002**: Other users have the write permission. <br/>-&nbsp;**0o001**: Other users have the execute permission.|
+  | mode | number | Yes| Permissions on the file. You can specify multiple permissions, separated using a bitwise OR operator (&#124;).<br>-&nbsp;**0o700**: The owner has the read, write, and execute permissions.<br>- &nbsp;**0o400**: The owner has the read permission.<br>-&nbsp;**0o200**: The owner has the write permission.<br>-&nbsp;**0o100**: The owner has the execute permission.<br>-&nbsp;**0o070**: The user group has the read, write, and execute permissions.<br>-&nbsp;**0o040**: The user group has the read permission.<br>-&nbsp;**0o020**: The user group has the write permission.<br>-&nbsp;**0o010**: The user group has the execute permission.<br>-&nbsp;**0o007**: Other users have the read, write, and execute permissions.<br>-&nbsp;**0o004**: Other users have the read permission.<br>-&nbsp;**0o002**: Other users have the write permission.<br>-&nbsp;**0o001**: Other users have the execute permission.|
 
 - Return value
   | Name| Description|
@@ -1794,11 +1991,13 @@ fchmod(fd: number, mode: number, callback: AsyncCallback&lt;void&gt;): void
 
 Asynchronously changes the file permissions based on the file descriptor. This method uses a callback to return the result.
 
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | fd | number | Yes| File descriptor of the target file.|
-  | mode | number | Yes| Permissions on the file. You can specify multiple permissions, separated using a bitwise OR operator (&#124;). <br/>-&nbsp;**0o700**: The owner has the read, write, and execute permissions. <br/>-&nbsp;**0o400**: The owner has the read permission. <br/>-&nbsp;**0o200**: The owner has the write permission. <br/>-&nbsp;**0o100**: The owner has the execute permission. <br/>-&nbsp;**0o070**: The user group has the read, write, and execute permissions. <br/>-&nbsp;**0o040**: The user group has the read permission. <br/>-&nbsp;**0o020**: The user group has the write permission. <br/>-&nbsp;**0o010**: The user group has the execute permission. <br/>-&nbsp;**0o007**: Other users have the read, write, and execute permissions. <br/>-&nbsp;**0o004**: Other users have the read permission. <br/>-&nbsp;**0o002**: Other users have the write permission. <br/>-&nbsp;**0o001**: Other users have the execute permission.|
+  | mode | number | Yes| Permissions on the file. You can specify multiple permissions, separated using a bitwise OR operator (&#124;).<br>-&nbsp;**0o700**: The owner has the read, write, and execute permissions.<br>- &nbsp;**0o400**: The owner has the read permission.<br>-&nbsp;**0o200**: The owner has the write permission.<br>-&nbsp;**0o100**: The owner has the execute permission.<br>-&nbsp;**0o070**: The user group has the read, write, and execute permissions.<br>-&nbsp;**0o040**: The user group has the read permission.<br>-&nbsp;**0o020**: The user group has the write permission.<br>-&nbsp;**0o010**: The user group has the execute permission.<br>-&nbsp;**0o007**: Other users have the read, write, and execute permissions.<br>-&nbsp;**0o004**: Other users have the read permission.<br>-&nbsp;**0o002**: Other users have the write permission.<br>-&nbsp;**0o001**: Other users have the execute permission.|
   | callback | AsyncCallback&nbsp;&lt;void&gt; | Yes| Callback invoked when the file permissions are changed asynchronously.|
 
 - Example
@@ -1811,15 +2010,17 @@ Asynchronously changes the file permissions based on the file descriptor. This m
 
 ## fileio.fchmodSync<sup>7+</sup>
 
-fchmodSync(existingPath: string, newPath: string): void
+fchmodSync(fd: number, mode: number): void
 
 Synchronously changes the file permissions based on the file descriptor.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
 
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | fd | number | Yes| File descriptor of the target file.|
-  | mode | number | Yes| Permissions on the file. You can specify multiple permissions, separated using a bitwise OR operator (&#124;). <br/>-&nbsp;**0o700**: The owner has the read, write, and execute permissions. <br/>-&nbsp;**0o400**: The owner has the read permission. <br/>-&nbsp;**0o200**: The owner has the write permission. <br/>-&nbsp;**0o100**: The owner has the execute permission. <br/>-&nbsp;**0o070**: The user group has the read, write, and execute permissions. <br/>-&nbsp;**0o040**: The user group has the read permission. <br/>-&nbsp;**0o020**: The user group has the write permission. <br/>-&nbsp;**0o010**: The user group has the execute permission. <br/>-&nbsp;**0o007**: Other users have the read, write, and execute permissions. <br/>-&nbsp;**0o004**: Other users have the read permission. <br/>-&nbsp;**0o002**: Other users have the write permission. <br/>-&nbsp;**0o001**: Other users have the execute permission.|
+  | mode | number | Yes| Permissions on the file. You can specify multiple permissions, separated using a bitwise OR operator (&#124;).<br>-&nbsp;**0o700**: The owner has the read, write, and execute permissions.<br>- &nbsp;**0o400**: The owner has the read permission.<br>-&nbsp;**0o200**: The owner has the write permission.<br>-&nbsp;**0o100**: The owner has the execute permission.<br>-&nbsp;**0o070**: The user group has the read, write, and execute permissions.<br>-&nbsp;**0o040**: The user group has the read permission.<br>-&nbsp;**0o020**: The user group has the write permission.<br>-&nbsp;**0o010**: The user group has the execute permission.<br>-&nbsp;**0o007**: Other users have the read, write, and execute permissions.<br>-&nbsp;**0o004**: Other users have the read permission.<br>-&nbsp;**0o002**: Other users have the write permission.<br>-&nbsp;**0o001**: Other users have the execute permission.|
 
 - Example
   ```js
@@ -1833,11 +2034,13 @@ createStream(path: string, mode: string): Promise&lt;Stream&gt;
 
 Asynchronously opens a stream based on the file path. This method uses a promise to return the result.
 
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | path | string | Yes| Absolute path of the target file.|
-  | mode | string | Yes| -&nbsp;**r**: Open a file for reading. The file must exist. <br/>-&nbsp;**r+**: Open a file for both reading and writing. The file must exist. <br/>-&nbsp;**w**: Open a file for writing. If the file exists, clear its content. If the file does not exist, create a file. <br/>-&nbsp;**w+**: Open a file for both reading and writing. If the file exists, clear its content. If the file does not exist, create a file. <br/>-&nbsp;**a**: Open a file in append mode for writing at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved). <br/>-&nbsp;**a+**: Open a file in append mode for reading or updating at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).|
+  | mode | string | Yes| -&nbsp;**r**: Open a file for reading. The file must exist.<br>-&nbsp;**r+**: Open a file for both reading and writing. The file must exist.<br>-&nbsp;**w**: Open a file for writing. If the file exists, clear its content. If the file does not exist, create a file.<br>-&nbsp;**w+**: Open a file for both reading and writing. If the file exists, clear its content. If the file does not exist, create a file.<br>-&nbsp;**a**: Open a file in append mode for writing at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).<br>-&nbsp;**a+**: Open a file in append mode for reading or updating at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).|
 
 - Return value
   | Type| Description|
@@ -1860,11 +2063,13 @@ createStream(path: string, mode: string, callback: AsyncCallback&lt;Stream&gt;):
 
 Asynchronously opens a stream based on the file path. This method uses a callback to return the result.
 
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | path | string | Yes| Absolute path of the target file.|
-  | mode | string | Yes| -&nbsp;**r**: Open a file for reading. The file must exist. <br/>-&nbsp;**r+**: Open a file for both reading and writing. The file must exist. <br/>-&nbsp;**w**: Open a file for writing. If the file exists, clear its content. If the file does not exist, create a file. <br/>-&nbsp;**w+**: Open a file for both reading and writing. If the file exists, clear its content. If the file does not exist, create a file. <br/>-&nbsp;**a**: Open a file in append mode for writing at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved). <br/>-&nbsp;**a+**: Open a file in append mode for reading or updating at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).|
+  | mode | string | Yes| -&nbsp;**r**: Open a file for reading. The file must exist.<br>-&nbsp;**r+**: Open a file for both reading and writing. The file must exist.<br>-&nbsp;**w**: Open a file for writing. If the file exists, clear its content. If the file does not exist, create a file.<br>-&nbsp;**w+**: Open a file for both reading and writing. If the file exists, clear its content. If the file does not exist, create a file.<br>-&nbsp;**a**: Open a file in append mode for writing at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).<br>-&nbsp;**a+**: Open a file in append mode for reading or updating at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).|
   | callback | AsyncCallback&lt;[Stream](#stream7)&gt; | Yes| Callback invoked when the stream is open asynchronously.|
 
 - Example
@@ -1881,16 +2086,18 @@ createStreamSync(path: string, mode: string): Stream
 
 Synchronously opens a stream based on the file path.
 
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | path | string | Yes| Absolute path of the target file.|
-  | mode | string | Yes| -&nbsp;**r**: Open a file for reading. The file must exist. <br/>-&nbsp;**r+**: Open a file for both reading and writing. The file must exist. <br/>-&nbsp;**w**: Open a file for writing. If the file exists, clear its content. If the file does not exist, create a file. <br/>-&nbsp;**w+**: Open a file for both reading and writing. If the file exists, clear its content. If the file does not exist, create a file. <br/>-&nbsp;**a**: Open a file in append mode for writing at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved). <br/>-&nbsp;**a+**: Open a file in append mode for reading or updating at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).|
+  | mode | string | Yes| -&nbsp;**r**: Open a file for reading. The file must exist.<br>-&nbsp;**r+**: Open a file for both reading and writing. The file must exist.<br>-&nbsp;**w**: Open a file for writing. If the file exists, clear its content. If the file does not exist, create a file.<br>-&nbsp;**w+**: Open a file for both reading and writing. If the file exists, clear its content. If the file does not exist, create a file.<br>-&nbsp;**a**: Open a file in append mode for writing at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).<br>-&nbsp;**a+**: Open a file in append mode for reading or updating at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).|
 
 - Return value
   | Name| Description|
   | -------- | -------- |
-  | [Stream](#stream7) | Stream obtained.|
+  | [Stream](#stream7) | Stream opened.|
 
 - Example
   ```js
@@ -1904,11 +2111,13 @@ fdopenStream(fd: number, mode: string): Promise&lt;Stream&gt;
 
 Asynchronously opens a stream based on the file descriptor. This method uses a promise to return the result.
 
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | fd | number | Yes| File descriptor of the target file.|
-  | mode | string | Yes| -&nbsp;**r**: Open a file for reading. The file must exist. <br/>-&nbsp;**r+**: Open a file for both reading and writing. The file must exist. <br/>-&nbsp;**w**: Open a file for writing. If the file exists, clear its content. If the file does not exist, create a file. <br/>-&nbsp;**w+**: Open a file for both reading and writing. If the file exists, clear its content. If the file does not exist, create a file. <br/>-&nbsp;**a**: Open a file in append mode for writing at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved). <br/>-&nbsp;**a+**: Open a file in append mode for reading or updating at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).|
+  | mode | string | Yes| -&nbsp;**r**: Open a file for reading. The file must exist.<br>-&nbsp;**r+**: Open a file for both reading and writing. The file must exist.<br>-&nbsp;**w**: Open a file for writing. If the file exists, clear its content. If the file does not exist, create a file.<br>-&nbsp;**w+**: Open a file for both reading and writing. If the file exists, clear its content. If the file does not exist, create a file.<br>-&nbsp;**a**: Open a file in append mode for writing at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).<br>-&nbsp;**a+**: Open a file in append mode for reading or updating at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).|
 
 - Return value
   | Name| Description|
@@ -1918,7 +2127,7 @@ Asynchronously opens a stream based on the file descriptor. This method uses a p
 - Example
   ```js
   fileio.fdopenStream(fd, mode).then(function(stream){
-      console.info("openStream successfully"+);
+      console.info("openStream successfully");
   }).catch(function(err){
       console.info("openStream failed with error:"+ err);
   });
@@ -1931,11 +2140,13 @@ fdopenStream(fd: number, mode: string, callback: AsyncCallback&lt;Stream&gt;): v
 
 Asynchronously opens a stream based on the file descriptor. This method uses a callback to return the result.
 
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | fd | number | Yes| File descriptor of the target file.|
-  | mode | string | Yes| -&nbsp;**r**: Open a file for reading. The file must exist. <br/>-&nbsp;**r+**: Open a file for both reading and writing. The file must exist. <br/>-&nbsp;**w**: Open a file for writing. If the file exists, clear its content. If the file does not exist, create a file. <br/>-&nbsp;**w+**: Open a file for both reading and writing. If the file exists, clear its content. If the file does not exist, create a file. <br/>-&nbsp;**a**: Open a file in append mode for writing at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved). <br/>-&nbsp;**a+**: Open a file in append mode for reading or updating at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).|
+  | mode | string | Yes| -&nbsp;**r**: Open a file for reading. The file must exist.<br>-&nbsp;**r+**: Open a file for both reading and writing. The file must exist.<br>-&nbsp;**w**: Open a file for writing. If the file exists, clear its content. If the file does not exist, create a file.<br>-&nbsp;**w+**: Open a file for both reading and writing. If the file exists, clear its content. If the file does not exist, create a file.<br>-&nbsp;**a**: Open a file in append mode for writing at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).<br>-&nbsp;**a+**: Open a file in append mode for reading or updating at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).|
   | callback | AsyncCallback&nbsp;&lt;[Stream](#stream7)&gt; | Yes| Callback invoked when the stream is open asynchronously.|
 
 - Example
@@ -1952,16 +2163,18 @@ fdopenStreamSync(fd: number, mode: string): Stream
 
 Synchronously opens a stream based on the file descriptor.
 
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | fd | number | Yes| File descriptor of the target file.|
-  | mode | string | Yes| -&nbsp;**r**: Open a file for reading. The file must exist. <br/>-&nbsp;**r+**: Open a file for both reading and writing. The file must exist. <br/>-&nbsp;**w**: Open a file for writing. If the file exists, clear its content. If the file does not exist, create a file. <br/>-&nbsp;**w+**: Open a file for both reading and writing. If the file exists, clear its content. If the file does not exist, create a file. <br/>-&nbsp;**a**: Open a file in append mode for writing at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved). <br/>-&nbsp;**a+**: Open a file in append mode for reading or updating at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).|
+  | mode | string | Yes| -&nbsp;**r**: Open a file for reading. The file must exist.<br>-&nbsp;**r+**: Open a file for both reading and writing. The file must exist.<br>-&nbsp;**w**: Open a file for writing. If the file exists, clear its content. If the file does not exist, create a file.<br>-&nbsp;**w+**: Open a file for both reading and writing. If the file exists, clear its content. If the file does not exist, create a file.<br>-&nbsp;**a**: Open a file in append mode for writing at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).<br>-&nbsp;**a+**: Open a file in append mode for reading or updating at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).|
 
 - Return value
   | Name| Description|
   | -------- | -------- |
-  | [Stream](#stream7) | Stream operation result.|
+  | [Stream](#stream7) | Stream opened.|
 
 - Example
   ```js
@@ -1974,6 +2187,8 @@ Synchronously opens a stream based on the file descriptor.
 fchown(fd: number, uid: number, gid: number): Promise&lt;void&gt;
 
 Asynchronously changes the file owner based on the file descriptor. This method uses a promise to return the result.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
 
 - Parameters
   | Name| Type| Mandatory| Description|
@@ -2004,6 +2219,8 @@ fchown(fd: number, uid: number, gid: number, callback: AsyncCallback&lt;void&gt;
 
 Asynchronously changes the file owner based on the file descriptor. This method uses a callback to return the result.
 
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
@@ -2027,6 +2244,8 @@ fchownSync(fd: number, uid: number, gid: number): void
 
 Synchronously changes the file owner based on the file descriptor.
 
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
@@ -2046,6 +2265,8 @@ Synchronously changes the file owner based on the file descriptor.
 lchown(path: string, uid: number, gid: number): Promise&lt;void&gt;
 
 Asynchronously changes the file owner based on the file path, changes the owner of the symbolic link (not the referenced file), and returns the result in a promise.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
 
 - Parameters
   | Name| Type| Mandatory| Description|
@@ -2076,6 +2297,8 @@ lchown(path: string, uid: number, gid: number, callback: AsyncCallback&lt;void&g
 
 Asynchronously changes the file owner based on the file path, changes the owner of the symbolic link (not the referenced file), and returns the result in a callback.
 
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
@@ -2099,6 +2322,8 @@ lchownSync(path: string, uid: number, gid: number): void
 
 Synchronously changes the file owner based on the file path and changes the owner of the symbolic link (not the referenced file).
 
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
@@ -2119,11 +2344,13 @@ createWatcher(filename: string, events: number, callback: AsyncCallback&lt;numbe
 
 Asynchronously listens for the changes of a file or directory. This method uses a callback to return the result.
 
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | filename | string | Yes| Absolute path of the target file.|
-  | events | Number | Yes| -&nbsp;**1**:&nbsp;: The file or directory is renamed. <br/>-&nbsp;**2**: The file or directory is modified. <br/>-&nbsp;**3**: The file or directory is modified and renamed.|
+  | events | Number | Yes| -&nbsp;**1**: The file or directory is renamed.<br>-&nbsp;**2**: The file or directory is modified.<br>-&nbsp;**3**: The file or directory is modified and renamed.|
   | callback | AsyncCallback&lt;number&nbsp;&gt; | Yes| Called each time a change is detected.|
 
 - Return value
@@ -2143,6 +2370,8 @@ Asynchronously listens for the changes of a file or directory. This method uses 
 
 Obtains the file read result. This class applies only to the **read()** method.
 
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | bytesRead | number | Yes| Yes| Length of the data read.|
@@ -2154,6 +2383,7 @@ Obtains the file read result. This class applies only to the **read()** method.
 
 Provides detailed file information. Before calling a method of the **Stat** class, use the [stat()](#fileiostat) method synchronously or asynchronously to create a **Stat** instance.
 
+**System capability**: SystemCapability.FileManagement.File.FileIO
 
 ### Attributes
 
@@ -2161,7 +2391,7 @@ Provides detailed file information. Before calling a method of the **Stat** clas
 | -------- | -------- | -------- | -------- | -------- |
 | dev | number | Yes| No| Major device number.|
 | ino | number | Yes| No| File ID. Different files on the same device have different **ino**s.|
-| mode | number | Yes| No| File type and permissions. The first four bits indicate the file type, and the last 12 bits indicate the permissions. The bit fields are described as follows: <br/>-&nbsp;**0o170000**: mask used to obtain the file type. <br/>-&nbsp;**0o140000**: The file is a socket. <br/>-&nbsp;**0o120000**: The file is a symbolic link. <br/> -&nbsp;**0o100000**: The file is a regular file. <br/>-&nbsp;**0o060000**: The file is a block device. <br/>-&nbsp;**0o040000**: The file is a directory. <br/>-&nbsp;**0o020000**: The file is a character device. <br/>-&nbsp;**0o010000**: The file is a named pipe (FIFO). <br/>-&nbsp;**0o0700**: mask used to obtain the owner permissions. <br/>-&nbsp;**0o0400**: The owner has the permission to read a regular file or a directory entry. <br/>-&nbsp;**0o0200**: The owner has the permission to write a regular file or create and delete a directory entry. <br/>-&nbsp;**0o0100**: The owner has the permission to execute a regular file or search for the specified path in a directory. <br/>-&nbsp;**0o0070**: mask used to obtain the user group permissions. <br/>-&nbsp;**0o0040**: The user group has the permission to read a regular file or a directory entry. <br/>-&nbsp;**0o0020**: The user group has the permission to write a regular file or create and delete a directory entry. <br/>-&nbsp;**0o0010**: The user group has the permission to execute a regular file or search for the specified path in a directory. <br/>-&nbsp;**0o0007**: mask used to obtain the permissions of other users. <br/>-&nbsp;**0o0004**: Other users have the permission to read a regular file or a directory entry. <br/>-&nbsp;**0o0002**: Other users have the permission to write a regular file or create and delete a directory entry. <br/>-&nbsp;**0o0001**: Other users have the permission to execute a regular file or search for the specified path in a directory.|
+| mode | number | Yes| No| File type and permissions. The first four bits indicate the file type, and the last 12 bits indicate the permissions. The bit fields are described as follows:<br>-&nbsp;**0o170000**: mask used to obtain the file type.<br>-&nbsp;**0o140000**: The file is a socket.<br>-&nbsp;**0o120000**: The file is a symbolic link.<br>-&nbsp;**0o100000**: The file is a regular file.<br>-&nbsp;**0o060000**: The file is a block device.<br>-&nbsp;**0o040000**: The file is a directory.<br>-&nbsp;**0o020000**: The file is a character device.<br>-&nbsp;**0o010000**: The file is a named pipe (FIFO).<br>-&nbsp;**0o0700**: mask used to obtain the owner permissions.<br>-&nbsp;**0o0400**: The owner has the permission to read a regular file or a directory entry.<br>-&nbsp;**0o0200**: The owner has the permission to write a regular file or create and delete a directory entry.<br>-&nbsp;**0o0100**: The owner has the permission to execute a regular file or search for the specified path in a directory.<br>-&nbsp;**0o0070**: mask used to obtain the user group permissions.<br>-&nbsp;**0o0040**: The user group has the permission to read a regular file or a directory entry.<br>-&nbsp;**0o0020**: The user group has the permission to write a regular file or create and delete a directory entry.<br>-&nbsp;**0o0010**: The user group has the permission to execute a regular file or search for the specified path in a directory.<br>-&nbsp;**0o0007**: mask used to obtain the permissions of other users.<br>-&nbsp;**0o0004**: Other users have the permission to read a regular file or a directory entry.<br>-&nbsp;**0o0002**: Other users have the permission to write a regular file or create and delete a directory entry.<br>-&nbsp;**0o0001**: Other users have the permission to execute a regular file or search for the specified path in a directory.|
 | nlink | number | Yes| No| Number of hard links in the file.|
 | uid | number | Yes| No| User ID, that is ID of the file owner.|
 | gid | number | Yes| No| Group ID, that is, ID of the user group of the file.|
@@ -2178,6 +2408,8 @@ Provides detailed file information. Before calling a method of the **Stat** clas
 isBlockDevice(): boolean
 
 Checks whether the current directory entry is a block special file. A block special file supports access by block only, and it is cached when accessed.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
 
 - Return value
   | Type| Description|
@@ -2196,6 +2428,8 @@ isCharacterDevice(): boolean
 
 Checks whether the current directory entry is a character special file. A character special file supports random access, and it is not cached when accessed.
 
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
 - Return value
   | Type| Description|
   | -------- | -------- |
@@ -2212,6 +2446,8 @@ Checks whether the current directory entry is a character special file. A charac
 isDirectory(): boolean
 
 Checks whether a directory entry is a directory.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
 
 - Return value
   | Type| Description|
@@ -2230,6 +2466,8 @@ isFIFO(): boolean
 
 Checks whether the current directory entry is a named pipe (or FIFO). Named pipes are used for inter-process communication.
 
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
 - Return value
   | Type| Description|
   | -------- | -------- |
@@ -2246,6 +2484,8 @@ Checks whether the current directory entry is a named pipe (or FIFO). Named pipe
 isFile(): boolean
 
 Checks whether a directory entry is a regular file.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
 
 - Return value
   | Type| Description|
@@ -2264,6 +2504,8 @@ isSocket(): boolean
 
 Checks whether a directory entry is a socket.
 
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
 - Return value
   | Type| Description|
   | -------- | -------- |
@@ -2280,6 +2522,8 @@ Checks whether a directory entry is a socket.
 isSymbolicLink(): boolean
 
 Checks whether a directory entry is a symbolic link.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
 
 - Return value
   | Type| Description|
@@ -2299,9 +2543,11 @@ Listens for the changes of a file. You can call the **Watcher.stop()** method sy
 
 ### stop<sup>7+</sup>
 
-stop(): void
+stop(): Promise&lt;void&gt;
 
 Asynchronously stops **watcher**. This method uses a promise to return the result.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
 
 - Example
   ```js
@@ -2311,9 +2557,11 @@ Asynchronously stops **watcher**. This method uses a promise to return the resul
 
 ### stop<sup>7+</sup>
 
-stop(callback: AsyncCallback): void
+stop(callback: AsyncCallback&lt;void&gt;): void
 
 Asynchronously stops **watcher**. This method uses a callback to return the result.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
 
 - Parameters
   | Name| Type| Mandatory| Description|
@@ -2325,489 +2573,4 @@ Asynchronously stops **watcher**. This method uses a callback to return the resu
   fileio.stop(function(err){
       // Do something.
   });
-  ```
-## Stream<sup>7+</sup>
-
-File stream. Before calling a method of the **Stream** class, use the **createStream()** method synchronously or asynchronously to create a **Stream** instance.
-
-
-### close<sup>7+</sup>
-
-close(): Promise&lt;void&gt;
-
-Asynchronously closes the stream. This method uses a promise to return the result.
-
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to return the stream close result.|
-
-- Example
-  ```js
-  let ss= fileio.createStreamSync(path);
-  ss.close().then(function(){
-      console.info("close fileStream successfully");
-  }).catch(function(err){
-      console.info("close fileStream  failed with error:"+ err);
-  });
-  ```
-
-
-### close<sup>7+</sup>
-
-close(callback: AsyncCallback&lt;void&gt;): void
-
-Asynchronously closes the stream. This method uses a callback to return the result.
-
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked when the stream is closed asynchronously.|
-
-- Example
-  ```js
-  let ss= fileio.createStreamSync(path);
-  ss.close(function (err) {
-      // do something
-  });
-  ```
-
-
-### closeSync<sup>7+</sup>
-
-closeSync(): void
-
-Synchronously closes the stream.
-
-- Example
-  ```js
-  let ss= fileio.createStreamSync(path);
-  ss.closeSync();
-  ```
-
-
-### flush<sup>7+</sup>
-
-flush(): Promise&lt;void&gt;
-
-Asynchronously flushes the stream. This method uses a promise to return the result.
-
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to return the stream flushing result.|
-
-- Example
-  ```js
-  let ss= fileio.createStreamSync(path);
-  ss.flush().then(function (){
-      console.info("flush successfully");
-  }).catch(function(err){
-      console.info("flush failed with error:"+ err);
-  });
-  ```
-
-
-### flush<sup>7+</sup>
-
-flush(callback: AsyncCallback&lt;void&gt;): void
-
-Asynchronously flushes the stream. This method uses a callback to return the result.
-
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked when the stream is asynchronously flushed.|
-
-- Example
-  ```js
-  let ss= fileio.createStreamSync(path);
-  ss.flush(function (err) {
-      // do something
-  });
-  ```
-
-
-### flushSync<sup>7+</sup>
-
-flushSync(): void
-
-Synchronously flushes the stream.
-
-- Example
-  ```js
-  let ss= fileio.createStreamSync(path);
-  ss.flushSync();
-  ```
-
-
-### write<sup>7+</sup>
-
-write(buffer: ArrayBuffer | string, options?: Object): Promise&lt;number&gt;
-
-Asynchronously writes data into the stream. This method uses a promise to return the result.
-
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | buffer | ArrayBuffer&nbsp;\|&nbsp;string | Yes| Data to write. It can be a string or data from a buffer.|
-  | options | Object | No| The options are as follows: <br/>-&nbsp;**offset** (number): position of the data to write in reference to the start address of the data. The default value is **0**. <br/>-&nbsp;**length** (number): length of the data to write. The default value is the buffer length minus the offset. <br/>-&nbsp;**position** (number): start position to write the data in the file. By default, data is written from the current position. <br/>-&nbsp;**encoding** (string): format of the string to be encoded. The default value is **utf-8**, which is the only value supported.|
-
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;number&gt; | Promise used to return the length of the data written in the file.|
-
-- Example
-  ```js
-  let ss= fileio.createStreamSync(fpath, "r+");
-  ss.write("hello, world",{offset: 1,length: 5,position: 5,encoding :'utf-8'}).then(function (number){
-      console.info("write successfully:"+ number);
-  }).catch(function(err){
-      console.info("write failed with error:"+ err);
-  });
-  ```
-
-
-### write<sup>7+</sup>
-
-write(buffer:ArrayBuffer | string,options?:Object, callback:AsyncCallback&lt;number&gt;): void
-
-Asynchronously writes data into the stream. This method uses a callback to return the result.
-
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | buffer | ArrayBuffer&nbsp;\|&nbsp;string | Yes| Data to write. It can be a string or data from a buffer.|
-  | options | Object | No| The options are as follows: <br/>-&nbsp;**offset** (number): position of the data to write in reference to the start address of the data. The default value is **0**. <br/>-&nbsp;**length** (number): length of the data to write. The default value is the buffer length minus the offset. <br/>-&nbsp;**position** (number): start position to write the data in the file. By default, data is written from the current position. <br/>-&nbsp;**encoding** (string): format of the string to be encoded. The default value is **utf-8**, which is the only value supported.|
-  | callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked when the data is written asynchronously.|
-
-- Example
-  ```js
-  let ss= fileio.createStreamSync(fpath, "r+");
-  ss.write("hello, world", {offset: 1, length: 5, position: 5, encoding :'utf-8'}, function (err, bytesWritten) {
-      if (!err) {
-         // do something
-         console.log(bytesWritten);
-      }
-  });
-  ```
-
-
-### writeSync<sup>7+</sup>
-
-writeSync(buffer: ArrayBuffer | string, options?:Object): number
-
-Synchronously writes data into the stream.
-
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | buffer | ArrayBuffer&nbsp;\|&nbsp;string | Yes| Data to write. It can be a string or data from a buffer.|
-  | options | Object | No| The options are as follows: <br/>-&nbsp;**offset** (number): position of the data to write in reference to the start address of the data. The default value is **0**. <br/>-&nbsp;**length** (number): length of the data to write. The default value is the buffer length minus the offset. <br/>-&nbsp;**position** (number): start position to write the data in the file. By default, data is written from the current position. <br/>-&nbsp;**encoding** (string): format of the string to be encoded. The default value is **utf-8**, which is the only value supported.|
-
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | number | Length of the data written in the file.|
-
-- Example
-  ```js
-  let ss= fileio.createStreamSync(fpath,"r+");
-  let num = ss.writeSync("hello, world", {offset: 1, length: 5, position: 5, encoding :'utf-8'});
-  ```
-
-
-### read<sup>7+</sup>
-
-read(buffer: ArrayBuffer, options?: Object): Promise&lt;Readout&gt;
-
-Asynchronously reads data from the stream. This method uses a promise to return the result.
-
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | buffer | ArrayBuffer | Yes| Buffer used to store the file read.|
-  | options | Object | No| The options are as follows: <br/>-&nbsp;**offset** (number): position to store the data read in the buffer in reference to the start address of the buffer. The default value is **0**. <br/>-&nbsp;**length** (number): length of the data to read. The default value is the buffer length minus the offset. <br/>-&nbsp;**position** (number): position of the data to be read in the file. By default, data is read from the current position.|
-
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;[Readout](#readout)&gt; | Promise used to return the data read.|
-
-- Example
-  ```js
-  let ss = fileio.createStreamSync(fpath, "r+");
-  ss.read(new ArrayBuffer(4096), {offset: 1, length: 5, position: 5}).then(function (readout){
-      console.info("read data successfully");
-  }).catch(function(err){
-      console.info("read data failed with error:"+ err);
-  });
-  ```
-
-
-### read<sup>7+</sup>
-
-read(buffer: ArrayBuffer, options?: Object, callback: AsyncCallback&lt;Readout&gt;): void
-
-Asynchronously reads data from the stream. This method uses a callback to return the result.
-
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | buffer | ArrayBuffer | Yes| Buffer used to store the file read.|
-  | options | Object | No| The options are as follows: <br/>-&nbsp;**offset** (number): position to store the data read in the buffer in reference to the start address of the buffer. The default value is **0**. <br/>-&nbsp;**length** (number): length of the data to read. The default value is the buffer length minus the offset. <br/>-&nbsp;**position** (number): position of the data to be read in the file. By default, data is read from the current position.|
-  | callback | AsyncCallback&lt;[Readout](#readout)&gt; | Yes| Callback invoked when data is read asynchronously from the stream.|
-
-- Example
-  ```js
-  let ss = fileio.createStreamSync(fpath, "r+");
-  ss.read(new ArrayBuffer(4096),{offset: 1, length: 5, position: 5},function (err, readOut) {
-      if (!err) {
-          // do something
-      }
-  });
-  ```
-
-
-### readSync<sup>7+</sup>
-
-readSync(buffer: ArrayBuffer, options?: Object): number
-
-Synchronously reads data from the stream.
-
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | buffer | ArrayBuffer | Yes| Buffer used to store the file read.|
-  | options | Object | No| The options are as follows: <br/>-&nbsp;**offset** (number): position to store the data read in the buffer in reference to the start address of the buffer. The default value is **0**. <br/>-&nbsp;**length** (number): length of the data to read. The default value is the buffer length minus the offset. <br/>-&nbsp;**position** (number): position of the data to be read in the file. By default, data is read from the current position.|
-
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | number | Length of the data read.|
-
-- Example
-  ```js
-  let ss = fileio.createStreamSync(fpath, "r+");
-  let num = ss.readSync(new ArrayBuffer(4096), {offset: 1, length: 5, position: 5});
-  ```
-
-
-## Dir
-
-Manages directories. Before calling a method of the **Dir** class, use the [opendir()](#fileioopendir) method synchronously or asynchronously to create a **Dir** instance.
-
-
-### read
-
-read(): Promise&lt;Dirent&gt;
-
-Asynchronously reads the next directory entry. This method uses a promise to return the result.
-
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;[Dirent](#dirent)&gt; | Directory entry that is read asynchronously.|
-
-- Example
-  ```js
-  let dir = fileio.opendirSync(dpath);
-  dir.read().then(function (dirent){
-      console.info("read successfully:"+ dirent.name);
-  }).catch(function(err){
-      console.info("read failed with error:"+ err);
-  });
-  ```
-
-
-### read
-
-read(callback: AsyncCallback&lt;Dirent&gt;): void
-
-Asynchronously reads the next directory entry. This method uses a callback to return the result.
-
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[Dirent](#dirent)&gt; | Yes| Callback invoked when the next directory entry is asynchronously read.|
-
-- Example
-  ```js
-  let dir = fileio.opendirSync(dpath);
-  dir.read(function (err, dirent) {
-      if (!err) {
-          // do something
-          console.log(dirent.name)
-      }
-  });
-  ```
-
-
-### readSync
-
-readSync(): Dirent
-
-Synchronously reads the next directory entry.
-
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | [Dirent](#dirent) | Directory entry read.|
-
-- Example
-  ```js
-  let dir = fileio.opendirSync(dpath);
-  let dirent = dir.readSync();
-  ```
-
-
-### closeSync
-
-closeSync(): void
-
-Closes a directory. After a directory is closed, the file descriptor in Dir will be released and no directory entry can be read from Dir.
-
-- Example
-  ```js
-  let dir = fileio.opendirSync(dpath);
-  dir.closeSync();
-  ```
-
-
-## Dirent
-
-Provides information about files and directories. Before calling a method of the **Dirent** class, use the [dir.read()](#read) method synchronously or asynchronously to create a **Dirent** instance.
-
-
-### Attributes
-
-| Name| Type| Readable| Writable| Description|
-| -------- | -------- | -------- | -------- | -------- |
-| name | string | Yes| No| Directory entry name.|
-
-
-### isBlockDevice
-
-isBlockDevice(): boolean
-
-Checks whether the current directory entry is a block special file. A block special file supports access by block only, and it is cached when accessed.
-
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | boolean | Whether the directory entry is a block special file.|
-
-- Example
-  ```js
-  let dir = fileio.opendirSync(dpath);
-  let isBLockDevice = dir.readSync().isBlockDevice();
-  ```
-
-
-### isCharacterDevice
-
-isCharacterDevice(): boolean
-
-Checks whether a directory entry is a character special file. A character special file supports random access, and it is not cached when accessed.
-
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | boolean | Whether the directory entry is a character special file.|
-
-- Example
-  ```js
-  let dir = fileio.opendirSync(dpath);
-  let isCharacterDevice = dir.readSync().isCharacterDevice(); 
-  ```
-
-
-### isDirectory
-
-isDirectory(): boolean
-
-Checks whether a directory entry is a directory.
-
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | boolean | Whether the directory entry is a directory.|
-
-- Example
-  ```js
-  let dir = fileio.opendirSync(dpath);
-  let isDirectory = dir.readSync().isDirectory(); 
-  ```
-
-
-### isFIFO
-
-isFIFO(): boolean
-
-Checks whether the current directory entry is a named pipe (or FIFO). Named pipes are used for inter-process communication.
-
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | boolean | Whether the directory entry is a FIFO.|
-
-- Example
-  ```js
-  let dir = fileio.opendirSync(dpath);
-  let isFIFO = dir.readSync().isFIFO(); 
-  ```
-
-
-### isFile
-
-isFile(): boolean
-
-Checks whether a directory entry is a regular file.
-
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | boolean | Whether the directory entry is a regular file.|
-
-- Example
-  ```js
-  let dir = fileio.opendirSync(dpath);
-  let isFile = dir.readSync().isFile(); 
-  ```
-
-
-### isSocket
-
-isSocket(): boolean
-
-Checks whether a directory entry is a socket.
-
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | boolean | Whether the directory entry is a socket.|
-
-- Example
-  ```js
-  let dir = fileio.opendirSync(dpath);
-  let isSocket = dir.readSync().isSocket(); 
-  ```
-
-
-### isSymbolicLink
-
-isSymbolicLink(): boolean
-
-Checks whether a directory entry is a symbolic link.
-
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | boolean | Whether the directory entry is a symbolic link.|
-
-- Example
-  ```js
-  let dir = fileio.opendirSync(dpath);
-  let isSymbolicLink = dir.readSync().isSymbolicLink();
   ```
