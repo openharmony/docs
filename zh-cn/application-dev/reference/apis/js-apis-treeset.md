@@ -136,6 +136,7 @@ let result = treeSet.getLastValue();
 
 
 ### add
+
 add(value: T): boolean
 
 向TreeSet中添加一组数据。
@@ -162,7 +163,7 @@ let result = treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 
 ### remove
 
-remove(value: T): boolean;
+remove(value: T): boolean
 
 删除指定的元素。
 
@@ -335,7 +336,7 @@ while(temp != undefined) {
 
 ### forEach
 
-forEach(callbackfn: (value: T, key?: T, set?: TreeSet&lt;T&gt;) => void, thisArg?: Object): void
+forEach(callbackfn: (value?: T, key?: T, set?: TreeSet&lt;T&gt;) => void, thisArg?: Object): void
 
 通过回调函数来遍历实例对象上的元素以及元素对应的下标。
 
@@ -349,7 +350,7 @@ forEach(callbackfn: (value: T, key?: T, set?: TreeSet&lt;T&gt;) => void, thisArg
 callbackfn的参数说明：
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | T | 是 | 当前遍历到的元素。 |
+| value | T | 否 | 当前遍历到的元素。 |
 | key | T | 否 | 当前遍历到的元素（和value相同）。 |
 | set | TreeSet&lt;T&gt; | 否 | 当前调用forEach方法的实例对象。 |
 

@@ -524,8 +524,8 @@ forEach(callbackfn: (value?: V, key?: K, map?: LightWeightMap<K, V>) => void, th
 callbackfn的参数说明：
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | V | 是 | 当前遍历到的元素键值对的值。 |
-| key | K | 是 | 当前遍历到的元素键值对的键。 |
+| value | V | 否 | 当前遍历到的元素键值对的值。 |
+| key | K | 否 | 当前遍历到的元素键值对的键。 |
 | map | LightWeightMap<K, V> | 否 | 当前调用forEach方法的实例对象。 |
 
 **示例：**

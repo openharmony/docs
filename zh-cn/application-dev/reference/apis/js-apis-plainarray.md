@@ -115,7 +115,7 @@ let result = plainArray.get(1);
 
 ### getIndexOfKey
 
-getIndexOfKey(key: number): number;
+getIndexOfKey(key: number): number
 
 查找指定key第一次出现的下标值，如果没有找到该key返回-1。
 
@@ -143,7 +143,7 @@ let result = plainArray.getIndexOfKey("sdfs");
 
 ### getIndexOfValue
 
-getIndexOfValue(value: T): number;
+getIndexOfValue(value: T): number
 
 查找指定value元素第一次出现的下标值，如果没有找到该value元素返回-1。
 
@@ -171,7 +171,7 @@ let result = plainArray.getIndexOfValue("sddfhf");
 
 ### getKeyAt
 
-getKeyAt(index: number): number;
+getKeyAt(index: number): number
 
 查找指定下标的元素键值对中key值。
 
@@ -238,7 +238,7 @@ clone(): PlainArray&lt;T&gt;
 **示例：**
 
 ```
-let plainArray = new ArrayList();
+let plainArray = new PlainArray();
 plainArray.add(1, "sddfhf");
 plainArray.add(2, "sffdfhf");
 let newPlainArray = plainArray.clone();
@@ -416,7 +416,7 @@ plainArray.clear();
 
 ### forEach
 
-forEach(callbackfn: (value?: T, index?: number, PlainArray?: PlainArray<T>) => void, thisArg?: Object): void
+forEach(callbackfn: (value: T, index?: number, PlainArray?: PlainArray<T>) => void, thisArg?: Object): void
 
 通过回调函数来遍历实例对象上的元素以及元素对应的下标。
 
@@ -431,7 +431,7 @@ callbackfn的参数说明：
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | T | 是 | 当前遍历到的元素键值对的值。 |
-| index | number | 是 | 当前遍历到的元素键值对的键。 |
+| index | number | 否 | 当前遍历到的元素键值对的键。 |
 | plainArray | PlainArray<T> | 否 | 当前调用forEach方法的实例对象。 |
 
 **示例：**
