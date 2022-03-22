@@ -113,7 +113,7 @@ console.log(params.getAll('fod')) // Output ["1","3"].
 
 ### entries
 
-entries(): IterableIterator&lt;[string, string]&gt;
+entries(): IterableIterator<[string, string]>
 
 Obtains an ES6 iterator. Each item of the iterator is a JavaScript array, and the first and second fields of each array are the key and value respectively.
 
@@ -135,7 +135,7 @@ for (var pair of searchParamsObject .entries()) { // Show keyName/valueName pair
 
 ### forEach
 
-forEach(callbackfn: (value: string, key: string, searchParams: Object) =&gt; void, thisArg?: Object): void
+forEach(callbackfn: (value: string, key: string, searchParams: this) => void, thisArg?: Object): void
 
 Traverses the key-value pairs in the **URLSearchParams** instance by using a callback.
 

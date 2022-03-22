@@ -147,7 +147,7 @@ Processes an asynchronous function and returns a promise version.
 
 ### constructor
 
-constructor(encoding?: string, options?: { fatal?: boolean;ignoreBOM?: boolean })
+constructor(encoding?: string, options?: { fatal?: boolean; ignoreBOM?: boolean })
 
 A constructor used to create a **TextDecoder** object.
 
@@ -1108,7 +1108,7 @@ class Temperature{
 
 ### constructor<sup>8+</sup>
 
-constructor(lowerObj: ScopeType,upperObje: ScopeType)
+constructor(lowerObj: ScopeType, upperObj: ScopeType)
 
 A constructor used to create a **Scope** object with the specified upper and lower limits.
 
@@ -2321,7 +2321,7 @@ Checks whether the input value is a string object.
 
 ### isSymbolObjec<sup>8+</sup>
 
-isSymbolObjec(value: Object): boolean
+isSymbolObject(value: Object): boolean
 
 Checks whether the input value is a symbol object.
 

@@ -113,7 +113,7 @@ console.log(params.getAll('fod')) // Output ["1","3"].
 
 ### entries
 
-entries(): IterableIterator&lt;[string, string]&gt;
+entries(): IterableIterator<[string, string]>
 
 返回一个ES6的迭代器，迭代器的每一项都是一个 JavaScript Array。Array的第一项是name，Array的第二项是value。
 
@@ -135,7 +135,7 @@ for (var pair of searchParamsObject .entries()) { // Show keyName/valueName pair
 
 ### forEach
 
-forEach(callbackfn: (value: string, key: string, searchParams: Object) =&gt; void, thisArg?: Object): void
+forEach(callbackfn: (value: string, key: string, searchParams: this) => void, thisArg?: Object): void
 
 通过回调函数来遍历URLSearchParams实例对象上的键值对。
 
