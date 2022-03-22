@@ -7,13 +7,6 @@
 WebGL标准图形API，对应OpenGL ES 2.0特性集。更多信息请参考[WebGL™标准](https://www.khronos.org/registry/webgl/specs/latest/1.0/)。
 
 
-## 导入模块
-
-```
-import webgl from '@ohos.webglnapi'
-```
-
-
 ## 调用方式
 
 hml内创建canvas，示例如下：
