@@ -350,7 +350,7 @@ var pres = process.getEnvironmentVar("PATH")
 
 ## process.runCmd
 
-runCmd(command: string, options?: { timeout : number, killSignal : number | string, maxBuffer : number }) : ChildProcess
+runCmd(command: string, options?: { timeout : number, killSignal : number | string, maxBuffer : number }): ChildProcess
 
 Forks a new process to run a shell command and returns the **ChildProcess** object.
 
@@ -527,7 +527,7 @@ var time = process.uptime();
 
 ## process.kill
 
-kill(pid: number, signal: number ): boolean
+kill(signal: number, pid: number): boolean
 
 Sends a signal to the specified process to terminate it.
 

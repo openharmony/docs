@@ -147,7 +147,7 @@ promiseWrapper(original: (err: Object, value: Object) =&gt; void): Object
 
 ### constructor
 
-constructor(encoding?: string, options?: { fatal?: boolean; ignoreBOM?: boolean })
+constructor(encoding?: string, options?: { fatal?: boolean; ignoreBOM?: boolean },)
 
 TextDecoder的构造函数。
 
@@ -174,7 +174,7 @@ TextDecoder的构造函数。
 
 ### decode
 
-decode(input: Unit8Array, options?: {stream?: false}): string
+decode(input: Uint8Array, options?: { stream?: false }): string
 
 通过输入参数解码后输出对应文本。
 
