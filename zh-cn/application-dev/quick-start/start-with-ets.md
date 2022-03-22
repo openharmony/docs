@@ -243,3 +243,5 @@
 
 3. 在编辑窗口右上角的工具栏，点击![zh-cn_image_0000001262206247](figures/zh-cn_image_0000001262206247.png) 按钮运行。效果如下图所示：
    ![zh-cn_image_0000001217526428](figures/zh-cn_image_0000001217526428.png)
+
+恭喜您已经使用eTS语言开发完成了第一个OpenHarmony应用，赶紧探索更多的OpenHarmony功能吧。
