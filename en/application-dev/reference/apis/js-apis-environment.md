@@ -1,7 +1,9 @@
 # Environment
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **Note:**
-> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+>
+> - The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The APIs of this module are system APIs and cannot be called by third-party applications.
 
 ## Modules to Import
 
@@ -9,19 +11,17 @@
 import environment from '@ohos.environment';
 ```
 
-## System Capabilities
-
-SystemCapability.FileManagement.File.Environment
-
 ## environment.getStorageDataDir
 
 getStorageDataDir():Promise&lt;string&gt;
 
-Obtains the root directory of the storage. This method uses a promise to return the result.
+Obtains the root directory of the storage. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.FileManagement.File.Environment
 
 - Return value
 
-  | Type| Description|
+  | Type                 | Description            |
   | --------------------- | ---------------- |
   | Promise&lt;string&gt; | Promise returned with the root directory of the storage.|
 
@@ -39,13 +39,15 @@ Obtains the root directory of the storage. This method uses a promise to return 
 
 getStorageDataDir(callback:AsyncCallback&lt;string&gt;):void
 
-Obtains the root directory of the storage. This method uses an asynchronous callback to return the result.
+Obtains the root directory of the storage. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.FileManagement.File.Environment
 
 - Parameters
 
-  | Name| Type| Mandatory| Description|
+  | Name  | Type                       | Mandatory| Description                            |
   | -------- | --------------------------- | ---- | -------------------------------- |
-  | callback | AsyncCallback&lt;string&gt; | Yes| Asynchronous callback used to return the root directory of the storage.|
+  | callback | AsyncCallback&lt;string&gt; | Yes  | Asynchronous callback used to return the root directory of the storage.|
 
 - Example
 
@@ -59,11 +61,13 @@ Obtains the root directory of the storage. This method uses an asynchronous call
 
 getUserDataDir():Promise&lt;string&gt;
 
-Obtains the root directory of public files. This method uses a promise to return the result.
+Obtains the root directory of public files. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.FileManagement.File.Environment
 
 - Return value
 
-  | Type| Description|
+  | Type                 | Description              |
   | --------------------- | ------------------ |
   | Promise&lt;string&gt; | Promise returned with the root directory of public files.|
 
@@ -81,13 +85,15 @@ Obtains the root directory of public files. This method uses a promise to return
 
 getUserDataDir(callback:AsyncCallback&lt;string&gt;): void
 
-Obtains the root directory of public files. This method uses an asynchronous callback to return the result.
+Obtains the root directory of public files. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.FileManagement.File.Environment
 
 - Parameters
 
-  | Name| Type| Mandatory| Description|
+  | Name  | Type                       | Mandatory| Description                            |
   | -------- | --------------------------- | ---- | -------------------------------- |
-  | callback | AsyncCallback&lt;string&gt; | Yes| Asynchronous callback used to return the root directory of public files.|
+  | callback | AsyncCallback&lt;string&gt; | Yes  | Asynchronous callback used to return the root directory of public files.|
   
 - Example
 
