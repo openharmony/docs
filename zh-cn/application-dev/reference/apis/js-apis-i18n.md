@@ -2,7 +2,7 @@
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > - 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> 
+>
 > - I18N模块包含国际化能力增强接口（未在ECMA 402中定义）。
 
 
@@ -21,19 +21,19 @@ getDisplayLanguage(language: string, locale: string, sentenceCase?: boolean): st
 
 **系统能力**：SystemCapability.Global.I18n
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | language | string | 是 | 指定语言。 |
-  | locale | string | 是 | 显示指定语言的区域ID。 |
-  | sentenceCase | boolean | 否 | 本地化显示文本是否要首字母大写。 |
+**参数：** 
+| 参数名          | 类型      | 必填   | 说明               |
+| ------------ | ------- | ---- | ---------------- |
+| language     | string  | 是    | 指定语言。            |
+| locale       | string  | 是    | 显示指定语言的区域ID。     |
+| sentenceCase | boolean | 否    | 本地化显示文本是否要首字母大写。 |
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | string | 指定语言的本地化显示文本。 |
+**返回值：** 
+| 类型     | 说明            |
+| ------ | ------------- |
+| string | 指定语言的本地化显示文本。 |
 
-- 示例：
+**示例：** 
   ```
   i18n.getDisplayLanguage("zh", "en-GB", true);
   i18n.getDisplayLanguage("zh", "en-GB");
@@ -48,19 +48,19 @@ getDisplayCountry(country: string, locale: string, sentenceCase?: boolean): stri
 
 **系统能力**：SystemCapability.Global.I18n
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | country | string | 是 | 指定国家。 |
-  | locale | string | 是 | 显示指定国家的区域ID。 |
-  | sentenceCase | boolean | 否 | 本地化显示文本是否要首字母大写。 |
+**参数：** 
+| 参数名          | 类型      | 必填   | 说明               |
+| ------------ | ------- | ---- | ---------------- |
+| country      | string  | 是    | 指定国家。            |
+| locale       | string  | 是    | 显示指定国家的区域ID。     |
+| sentenceCase | boolean | 否    | 本地化显示文本是否要首字母大写。 |
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | string | 指定国家的本地化显示文本。 |
+**返回值：** 
+| 类型     | 说明            |
+| ------ | ------------- |
+| string | 指定国家的本地化显示文本。 |
 
-- 示例：
+**示例：** 
   ```
   i18n.getDisplayCountry("zh-CN", "en-GB", true);
   i18n.getDisplayCountry("zh-CN", "en-GB");
@@ -75,17 +75,17 @@ isRTL(locale: string): boolean
 
 **系统能力**：SystemCapability.Global.I18n
 
-- 参数：
-  | 参数名 | 类型 | 说明 |
-  | -------- | -------- | -------- |
-  | locale | string | 指定区域ID。 |
+**参数：** 
+| 参数名    | 类型     | 说明      |
+| ------ | ------ | ------- |
+| locale | string | 指定区域ID。 |
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | boolean | true表示该locale从右至左显示语言；false表示该locale从左至右显示语言。 |
+**返回值：** 
+| 类型      | 说明                                       |
+| ------- | ---------------------------------------- |
+| boolean | true表示该locale从右至左显示语言；false表示该locale从左至右显示语言。 |
 
-- 示例：
+**示例：** 
   ```
   i18n.isRTL("zh-CN");// 中文不是RTL语言，返回false
   i18n.isRTL("ar-EG");// 阿语是RTL语言，返回true
@@ -100,12 +100,12 @@ getSystemLanguage(): string
 
 **系统能力**：SystemCapability.Global.I18n
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | string | 系统语言ID。 |
+**返回值：** 
+| 类型     | 说明      |
+| ------ | ------- |
+| string | 系统语言ID。 |
 
-- 示例：
+**示例：** 
   ```
   i18n.getSystemLanguage();
   ```
@@ -119,17 +119,17 @@ setSystemLanguage(language: string): boolean
 
 **系统能力**：SystemCapability.Global.I18n
 
-- 参数：
-  | 参数名 | 类型 | 说明 |
-  | -------- | -------- | -------- |
-  | language | string | 语言ID。 |
+**参数：** 
+| 参数名      | 类型     | 说明    |
+| -------- | ------ | ----- |
+| language | string | 语言ID。 |
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | boolean | 返回true，表示系统语言设置成功；返回false，表示系统语言设置失败。 |
+**返回值：** 
+| 类型      | 说明                                    |
+| ------- | ------------------------------------- |
+| boolean | 返回true，表示系统语言设置成功；返回false，表示系统语言设置失败。 |
 
-- 示例：
+**示例：** 
   ```
   i18n.setSystemLanguage('zh');
   ```
@@ -137,18 +137,18 @@ setSystemLanguage(language: string): boolean
 
 ## i18n.getSystemLanguages
 
-getSystemLanguages(): Array<string>
+getSystemLanguages(): Array&lt;string&gt;
 
 获取系统支持的语言列表。
 
 **系统能力**：SystemCapability.Global.I18n
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | Array<string> | 系统支持的语言ID列表。 |
+**返回值：** 
+| 类型                  | 说明           |
+| ------------------- | ------------ |
+| Array&lt;string&gt; | 系统支持的语言ID列表。 |
 
-- 示例：
+**示例：** 
   ```
   i18n.getSystemLanguages();
   ```
@@ -156,23 +156,23 @@ getSystemLanguages(): Array<string>
 
 ## i18n.getSystemCountries
 
-getSystemCountries(language: string): Array<string>
+getSystemCountries(language: string): Array&lt;string&gt;
 
 获取针对输入语言系统支持的区域列表。
 
 **系统能力**：SystemCapability.Global.I18n
 
-- 参数：
-  | 参数名 | 类型 | 说明 |
-  | -------- | -------- | -------- |
-  | language | string | 语言ID。 |
+**参数：** 
+| 参数名      | 类型     | 说明    |
+| -------- | ------ | ----- |
+| language | string | 语言ID。 |
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | Array<string> | 系统支持的区域ID列表。 |
+**返回值：** 
+| 类型                  | 说明           |
+| ------------------- | ------------ |
+| Array&lt;string&gt; | 系统支持的区域ID列表。 |
 
-- 示例：
+**示例：** 
   ```
   i18n.getSystemCountries('zh');
   ```
@@ -186,12 +186,12 @@ getSystemRegion(): string
 
 **系统能力**：SystemCapability.Global.I18n
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | string | 系统地区ID。 |
+**返回值：** 
+| 类型     | 说明      |
+| ------ | ------- |
+| string | 系统地区ID。 |
 
-- 示例：
+**示例：** 
   ```
   i18n.getSystemRegion();
   ```
@@ -205,17 +205,17 @@ setSystemRegion(region: string): boolean
 
 **系统能力**：SystemCapability.Global.I18n
 
-- 参数：
-  | 参数名 | 类型 | 说明 |
-  | -------- | -------- | -------- |
-  | region | string | 地区ID。 |
+**参数：** 
+| 参数名    | 类型     | 说明    |
+| ------ | ------ | ----- |
+| region | string | 地区ID。 |
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | boolean | 返回true，表示系统区域设置成功；返回false，表示系统区域设置失败。 |
+**返回值：** 
+| 类型      | 说明                                    |
+| ------- | ------------------------------------- |
+| boolean | 返回true，表示系统区域设置成功；返回false，表示系统区域设置失败。 |
 
-- 示例：
+**示例：** 
   ```
   i18n.setSystemRegion();
   ```
@@ -229,12 +229,12 @@ getSystemLocale(): string
 
 **系统能力**：SystemCapability.Global.I18n
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | string | 系统区域ID。 |
+**返回值：** 
+| 类型     | 说明      |
+| ------ | ------- |
+| string | 系统区域ID。 |
 
-- 示例：
+**示例：** 
   ```
   i18n.getSystemLocale();
   ```
@@ -248,17 +248,17 @@ setSystemLocale(locale: string): boolean
 
 **系统能力**：SystemCapability.Global.I18n
 
-- 参数：
-  | 参数名 | 类型 | 说明 |
-  | -------- | -------- | -------- |
-  | locale | string | 指定区域ID，例如zh-CN。 |
+**参数：** 
+| 参数名    | 类型     | 说明              |
+| ------ | ------ | --------------- |
+| locale | string | 指定区域ID，例如zh-CN。 |
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | boolean | 返回true，表示系统Locale设置成功；返回false，表示系统Locale设置失败。 |
+**返回值：** 
+| 类型      | 说明                                       |
+| ------- | ---------------------------------------- |
+| boolean | 返回true，表示系统Locale设置成功；返回false，表示系统Locale设置失败。 |
 
-- 示例：
+**示例：** 
   ```
   i18n.setSystemLocale('zh-CN');
   ```
@@ -272,18 +272,18 @@ isSuggested(language: string, region?: string): boolean
 
 **系统能力**：SystemCapability.Global.I18n
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | language | string | 是 | 合法的语言ID，例如zh。 |
-  | region | string | 否 | 合法的地区ID，例如CN |
+**参数：** 
+| 参数名      | 类型     | 必填   | 说明            |
+| -------- | ------ | ---- | ------------- |
+| language | string | 是    | 合法的语言ID，例如zh。 |
+| region   | string | 否    | 合法的地区ID，例如CN  |
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | boolean | 返回true，表示当前语言和地区匹配；返回false，表示当前语言和地区不匹配。 |
+**返回值：** 
+| 类型      | 说明                                       |
+| ------- | ---------------------------------------- |
+| boolean | 返回true，表示当前语言和地区匹配；返回false，表示当前语言和地区不匹配。 |
 
-- 示例：
+**示例：** 
   ```
   i18n.isSuggested('zh', 'CN');
   ```
@@ -297,18 +297,18 @@ getCalendar(locale: string, type? : string): Calendar
 
 **系统能力**：SystemCapability.Global.I18n
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | locale | string | 是 | 合法的locale值，例如zh-Hans-CN。 |
-  | type | string | 否 | 合法的日历类型，目前合法的类型有buddhist,&nbsp;chinese,&nbsp;coptic,&nbsp;ethiopic,&nbsp;hebrew,&nbsp;gregory,&nbsp;indian,&nbsp;islamic_civil,&nbsp;islamic_tbla,&nbsp;islamic_umalqura,&nbsp;japanese,&nbsp;persian。当type没有给出时，采用区域默认的日历类型。 |
+**参数：** 
+| 参数名    | 类型     | 必填   | 说明                                       |
+| ------ | ------ | ---- | ---------------------------------------- |
+| locale | string | 是    | 合法的locale值，例如zh-Hans-CN。                 |
+| type   | string | 否    | 合法的日历类型，目前合法的类型有buddhist,&nbsp;chinese,&nbsp;coptic,&nbsp;ethiopic,&nbsp;hebrew,&nbsp;gregory,&nbsp;indian,&nbsp;islamic_civil,&nbsp;islamic_tbla,&nbsp;islamic_umalqura,&nbsp;japanese,&nbsp;persian。当type没有给出时，采用区域默认的日历类型。 |
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | [Calendar](#calendar8) | 日历对象。 |
+**返回值：** 
+| 类型                     | 说明    |
+| ---------------------- | ----- |
+| [Calendar](#calendar8) | 日历对象。 |
 
-- 示例：
+**示例：** 
   ```
   i18n.getCalendar("zh-Hans", "gregory");
   ```
@@ -325,12 +325,12 @@ setTime(date: Date): void
 
 **系统能力**：SystemCapability.Global.I18n
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | date | Date | 是 | 将要设置的日历对象的内部时间日期。 |
+**参数：** 
+| 参数名  | 类型   | 必填   | 说明                |
+| ---- | ---- | ---- | ----------------- |
+| date | Date | 是    | 将要设置的日历对象的内部时间日期。 |
 
-- 示例：
+**示例：** 
   ```
   var calendar = I18n.getCalendar("en-US", "gregory");
   var date = new Date(2021, 10, 7, 8, 0, 0, 0);
@@ -346,12 +346,12 @@ setTime(time: number): void
 
 **系统能力**：SystemCapability.Global.I18n
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | time | number | 是 | time为从1970.1.1&nbsp;00:00:00&nbsp;GMT逝去的毫秒数。 |
+**参数：** 
+| 参数名  | 类型     | 必填   | 说明                                       |
+| ---- | ------ | ---- | ---------------------------------------- |
+| time | number | 是    | time为从1970.1.1&nbsp;00:00:00&nbsp;GMT逝去的毫秒数。 |
 
-- 示例：
+**示例：** 
   ```
   var calendar = I18n.getCalendar("en-US", "gregory");
   calendar.setTime(10540800000);
@@ -366,17 +366,17 @@ set(year: number, month: number, date:number, hour?: number, minute?: number, se
 
 **系统能力**：SystemCapability.Global.I18n
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | year | number | 是 | 设置的年。 |
-  | month | number | 是 | 设置的月。 |
-  | date | number | 是 | 设置的日。 |
-  | hour | number | 否 | 设置的小时。 |
-  | minute | number | 否 | 设置的分钟。 |
-  | second | number | 否 | 设置的秒。 |
+**参数：** 
+| 参数名    | 类型     | 必填   | 说明     |
+| ------ | ------ | ---- | ------ |
+| year   | number | 是    | 设置的年。  |
+| month  | number | 是    | 设置的月。  |
+| date   | number | 是    | 设置的日。  |
+| hour   | number | 否    | 设置的小时。 |
+| minute | number | 否    | 设置的分钟。 |
+| second | number | 否    | 设置的秒。  |
 
-- 示例：
+**示例：** 
   ```
   var calendar = i18n.getCalendar("zh-Hans");
   calendar.setTime(2021, 10, 1, 8, 0, 0); // set time to 2021.10.1 08:00:00
@@ -391,12 +391,12 @@ setTimeZone(timezone: string): void
 
 **系统能力**：SystemCapability.Global.I18n
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | timezone | string | 是 | 设置的时区id，如“Asia/Shanghai”。 |
+**参数：** 
+| 参数名      | 类型     | 必填   | 说明                        |
+| -------- | ------ | ---- | ------------------------- |
+| timezone | string | 是    | 设置的时区id，如“Asia/Shanghai”。 |
 
-- 示例：
+**示例：** 
   ```
   var calendar = i18n.getCalendar("zh-Hans");
   calendar.setTimeZone("Asia/Shanghai");
@@ -411,12 +411,12 @@ getTimeZone(): string
 
 **系统能力**：SystemCapability.Global.I18n
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | string | 日历对象的时区id。 |
+**返回值：** 
+| 类型     | 说明         |
+| ------ | ---------- |
+| string | 日历对象的时区id。 |
 
-- 示例：
+**示例：** 
   ```
   var calendar = i18n.getCalendar("zh-Hans");
   calendar.setTimeZone("Asia/Shanghai");
@@ -432,12 +432,12 @@ getFirstDayOfWeek(): number
 
 **系统能力**：SystemCapability.Global.I18n
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | number | 获取一周的起始日，1代表周日，7代表周六。 |
+**返回值：** 
+| 类型     | 说明                    |
+| ------ | --------------------- |
+| number | 获取一周的起始日，1代表周日，7代表周六。 |
 
-- 示例：
+**示例：** 
   ```
   var calendar = I18n.getCalendar("en-US", "gregory");
   calendar.getFirstDayOfWeek();
@@ -452,12 +452,12 @@ setFirstDayOfWeek(value: number): void
 
 **系统能力**：SystemCapability.Global.I18n
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | value | number | 否 | 设置一周的起始日，1代表周日，7代表周六。 |
+**参数：** 
+| 参数名   | 类型     | 必填   | 说明                    |
+| ----- | ------ | ---- | --------------------- |
+| value | number | 否    | 设置一周的起始日，1代表周日，7代表周六。 |
 
-- 示例：
+**示例：** 
   ```
   var calendar = i18n.getCalendar("zh-Hans");
   calendar.setFirstDayOfWeek(0);
@@ -472,12 +472,12 @@ getMinimalDaysInFirstWeek(): number
 
 **系统能力**：SystemCapability.Global.I18n
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | number | 一年中第一周的最小天数。 |
+**返回值：** 
+| 类型     | 说明           |
+| ------ | ------------ |
+| number | 一年中第一周的最小天数。 |
 
-- 示例：
+**示例：** 
   ```
   var calendar = i18n.getCalendar("zh-Hans");
   calendar.getMinimalDaysInFirstWeek();
@@ -492,12 +492,12 @@ setMinimalDaysInFirstWeek(value: number): void
 
 **系统能力**：SystemCapability.Global.I18n
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | value | number | 否 | 一年中第一周的最小天数。 |
+**参数：** 
+| 参数名   | 类型     | 必填   | 说明           |
+| ----- | ------ | ---- | ------------ |
+| value | number | 否    | 一年中第一周的最小天数。 |
 
-- 示例：
+**示例：** 
   ```
   var calendar = i18n.getCalendar("zh-Hans");
   calendar.setMinimalDaysInFirstWeek(3);
@@ -512,17 +512,17 @@ get(field: string): number
 
 **系统能力**：SystemCapability.Global.I18n
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | field | string | 是 | 通过field来获取日历对象相应的值。目前支持的field值有&nbsp;era,&nbsp;year,&nbsp;month,&nbsp;week_of_year,&nbsp;week_of_month,&nbsp;date,&nbsp;day_of_year,&nbsp;day_of_week,&nbsp;day_of_week_in_month,&nbsp;hour,&nbsp;hour_of_day,&nbsp;minute,&nbsp;second,&nbsp;millisecond,&nbsp;zone_offset,&nbsp;dst_offset,&nbsp;year_woy,&nbsp;dow_local,&nbsp;extended_year,&nbsp;julian_day,&nbsp;milliseconds_in_day,&nbsp;is_leap_month。 |
+**参数：** 
+| 参数名   | 类型     | 必填   | 说明                                       |
+| ----- | ------ | ---- | ---------------------------------------- |
+| field | string | 是    | 通过field来获取日历对象相应的值。目前支持的field值有&nbsp;era,&nbsp;year,&nbsp;month,&nbsp;week_of_year,&nbsp;week_of_month,&nbsp;date,&nbsp;day_of_year,&nbsp;day_of_week,&nbsp;day_of_week_in_month,&nbsp;hour,&nbsp;hour_of_day,&nbsp;minute,&nbsp;second,&nbsp;millisecond,&nbsp;zone_offset,&nbsp;dst_offset,&nbsp;year_woy,&nbsp;dow_local,&nbsp;extended_year,&nbsp;julian_day,&nbsp;milliseconds_in_day,&nbsp;is_leap_month。 |
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | number | 与field相关联的值，如当前Calendar对象的内部日期的年份为1990，get("year")返回1990。 |
+**返回值：** 
+| 类型     | 说明                                       |
+| ------ | ---------------------------------------- |
+| number | 与field相关联的值，如当前Calendar对象的内部日期的年份为1990，get("year")返回1990。 |
 
-- 示例：
+**示例：** 
   ```
   var calendar = i18n.getCalendar("zh-Hans");
   calendar.setTime(2021, 10, 1, 8, 0, 0); // set time to 2021.10.1 08:00:00
@@ -538,17 +538,17 @@ getDisplayName(locale: string): string
 
 **系统能力**：SystemCapability.Global.I18n
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | locale | string | 是 | locale指定获取哪个区域下该calendar的名字，如buddhist在en-US上显示的名称为“Buddhist&nbsp;Calendar”。 |
+**参数：** 
+| 参数名    | 类型     | 必填   | 说明                                       |
+| ------ | ------ | ---- | ---------------------------------------- |
+| locale | string | 是    | locale指定获取哪个区域下该calendar的名字，如buddhist在en-US上显示的名称为“Buddhist&nbsp;Calendar”。 |
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | string | 日历在locale所指示的区域的名字。 |
+**返回值：** 
+| 类型     | 说明                  |
+| ------ | ------------------- |
+| string | 日历在locale所指示的区域的名字。 |
 
-- 示例：
+**示例：** 
   ```
   var calendar = i18n.getCalendar("en-US", "buddhist");
   calendar.getDisplayName("zh"); // 佛历
@@ -563,17 +563,17 @@ isWeekend(date?: Date): boolean
 
 **系统能力**：SystemCapability.Global.I18n
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | date | Date | 否 | 判断日期在日历中是否是周末。如果date没有给出，判断calendar当前日期是否为周末。 |
+**参数：** 
+| 参数名  | 类型   | 必填   | 说明                                       |
+| ---- | ---- | ---- | ---------------------------------------- |
+| date | Date | 否    | 判断日期在日历中是否是周末。如果date没有给出，判断calendar当前日期是否为周末。 |
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | boolean | 当所判断的日期为周末时，返回&nbsp;true，否则返回false。 |
+**返回值：** 
+| 类型      | 说明                                  |
+| ------- | ----------------------------------- |
+| boolean | 当所判断的日期为周末时，返回&nbsp;true，否则返回false。 |
 
-- 示例：
+**示例：** 
   ```
   var calendar = i18n.getCalendar("zh-Hans");
   calendar.setTime(2021, 11, 11, 8, 0, 0); // set time to 2021.11.11 08:00:00
@@ -595,12 +595,12 @@ constructor(country: string, options?: PhoneNumberFormatOptions)
 **系统能力**：SystemCapability.Global.I18n
 
 参数：
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| country | string | 是 | 表示电话号码所属国家或地区代码。 |
-| options | [PhoneNumberFormatOptions](#phonenumberformatoptions8) | 否 | 电话号码格式化对象的相关选项。 |
+| 参数名     | 类型                                       | 必填   | 说明               |
+| ------- | ---------------------------------------- | ---- | ---------------- |
+| country | string                                   | 是    | 表示电话号码所属国家或地区代码。 |
+| options | [PhoneNumberFormatOptions](#phonenumberformatoptions8) | 否    | 电话号码格式化对象的相关选项。  |
 
-- 示例：
+**示例：** 
   ```
   var phoneNumberFormat= new i18n.PhoneNumberFormat("CN", {"type": "E164"});
   ```
@@ -614,17 +614,17 @@ isValidNumber(number: string): boolean
 
 **系统能力**：SystemCapability.Global.I18n
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | number | string | 是 | 待判断的电话号码。 |
+**参数：** 
+| 参数名    | 类型     | 必填   | 说明        |
+| ------ | ------ | ---- | --------- |
+| number | string | 是    | 待判断的电话号码。 |
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | boolean | 返回true表示电话号码的格式正确，返回false表示电话号码的格式错误。 |
+**返回值：** 
+| 类型      | 说明                                    |
+| ------- | ------------------------------------- |
+| boolean | 返回true表示电话号码的格式正确，返回false表示电话号码的格式错误。 |
 
-- 示例：
+**示例：** 
   ```
   var phonenumberfmt = new i18n.PhoneNumberFormat("CN");
   phonenumberfmt.isValidNumber("15812312312");
@@ -639,17 +639,17 @@ format(number: string): string
 
 **系统能力**：SystemCapability.Global.I18n
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | number | string | 是 | 待格式化的电话号码。 |
+**参数：** 
+| 参数名    | 类型     | 必填   | 说明         |
+| ------ | ------ | ---- | ---------- |
+| number | string | 是    | 待格式化的电话号码。 |
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | string | 格式化后的电话号码。 |
+**返回值：** 
+| 类型     | 说明         |
+| ------ | ---------- |
+| string | 格式化后的电话号码。 |
 
-- 示例：
+**示例：** 
   ```
   var phonenumberfmt = new i18n.PhoneNumberFormat("CN");
   phonenumberfmt.format("15812312312");
@@ -662,9 +662,9 @@ format(number: string): string
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Global.I18n
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| type | string | 是 | 是 | 表示对电话号码格式化的类型，取值范围："E164",&nbsp;"INTERNATIONAL",&nbsp;"NATIONAL",&nbsp;"RFC3966"。 |
+| 名称   | 参数类型   | 可读   | 可写   | 说明                                       |
+| ---- | ------ | ---- | ---- | ---------------------------------------- |
+| type | string | 是    | 是    | 表示对电话号码格式化的类型，取值范围："E164",&nbsp;"INTERNATIONAL",&nbsp;"NATIONAL",&nbsp;"RFC3966"。 |
 
 
 ## UnitInfo<sup>8+</sup>
@@ -673,10 +673,10 @@ format(number: string): string
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Global.I18n
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| unit | string | 是 | 是 | 单位的名称，如："meter",&nbsp;"inch",&nbsp;"cup"等。 |
-| measureSystem | string | 是 | 是 | 单位的度量体系，取值包括："SI",&nbsp;"US",&nbsp;"UK"。 |
+| 名称            | 参数类型   | 可读   | 可写   | 说明                                       |
+| ------------- | ------ | ---- | ---- | ---------------------------------------- |
+| unit          | string | 是    | 是    | 单位的名称，如："meter",&nbsp;"inch",&nbsp;"cup"等。 |
+| measureSystem | string | 是    | 是    | 单位的度量体系，取值包括："SI",&nbsp;"US",&nbsp;"UK"。 |
 
 
 ## Util<sup>8+</sup>
@@ -690,21 +690,21 @@ unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: string,
 
 **系统能力**：SystemCapability.Global.I18n
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | fromUnit | [UnitInfo](#unitinfo8) | 是 | 要被转换的单位。 |
-  | toUnit | [UnitInfo](#unitinfo8) | 是 | 要转换为的单位。 |
-  | value | number | 是 | 要被转换的单位的数量值。 |
-  | locale | string | 是 | 格式化时使用的区域参数，如：zh-Hans-CN。 |
-  | style | string | 否 | 格式化使用的风格，取值包括："long",&nbsp;"short",&nbsp;"medium"。 |
+**参数：** 
+| 参数名      | 类型                     | 必填   | 说明                                       |
+| -------- | ---------------------- | ---- | ---------------------------------------- |
+| fromUnit | [UnitInfo](#unitinfo8) | 是    | 要被转换的单位。                                 |
+| toUnit   | [UnitInfo](#unitinfo8) | 是    | 要转换为的单位。                                 |
+| value    | number                 | 是    | 要被转换的单位的数量值。                             |
+| locale   | string                 | 是    | 格式化时使用的区域参数，如：zh-Hans-CN。                |
+| style    | string                 | 否    | 格式化使用的风格，取值包括："long",&nbsp;"short",&nbsp;"medium"。 |
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | string | 按照toUnit的单位格式化后，得到的字符串。 |
+**返回值：** 
+| 类型     | 说明                      |
+| ------ | ----------------------- |
+| string | 按照toUnit的单位格式化后，得到的字符串。 |
 
-- 示例：
+**示例：** 
   ```
   I18n.Util.unitConvert({unit: "cup", measureSystem: "US"}, {unit: "liter", measureSystem: "SI"}, 1000, "en-US", "long");
   ```
@@ -718,17 +718,17 @@ getInstance(locale?:string): IndexUtil
 
 **系统能力**：SystemCapability.Global.I18n
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | locale | string | 否 | 包含区域设置信息的字符串，包括语言以及可选的脚本和区域。 |
+**参数：** 
+| 参数名    | 类型     | 必填   | 说明                           |
+| ------ | ------ | ---- | ---------------------------- |
+| locale | string | 否    | 包含区域设置信息的字符串，包括语言以及可选的脚本和区域。 |
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | [IndexUtil](#indexutil8) | locale对应的IndexUtil对象。 |
+**返回值：** 
+| 类型                       | 说明                    |
+| ------------------------ | --------------------- |
+| [IndexUtil](#indexutil8) | locale对应的IndexUtil对象。 |
 
-- 示例：
+**示例：** 
   ```
   var indexUtil= i18n.IndexUtil.getInstance("zh-CN");
   ```
@@ -745,12 +745,12 @@ getIndexList(): Array&lt;string&gt;
 
 **系统能力**：SystemCapability.Global.I18n
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | Array&lt;string&gt; | 返回当前locale对应的索引列表。 |
+**返回值：** 
+| 类型                  | 说明                 |
+| ------------------- | ------------------ |
+| Array&lt;string&gt; | 返回当前locale对应的索引列表。 |
 
-- 示例：
+**示例：** 
   ```
   var indexUtil = i18n.getInstance("zh-CN");
   var indexList = indexUtil.getIndexList();
@@ -765,12 +765,12 @@ addLocale(locale: string): void
 
 **系统能力**：SystemCapability.Global.I18n
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | locale | string | 是 | 包含区域设置信息的字符串，包括语言以及可选的脚本和区域。 |
+**参数：** 
+| 参数名    | 类型     | 必填   | 说明                           |
+| ------ | ------ | ---- | ---------------------------- |
+| locale | string | 是    | 包含区域设置信息的字符串，包括语言以及可选的脚本和区域。 |
 
-- 示例：
+**示例：** 
   ```
   var indexUtil = i18n.getInstance("zh-CN");
   indexUtil.addLocale("en-US");
@@ -785,17 +785,17 @@ getIndex(text: string): string
 
 **系统能力**：SystemCapability.Global.I18n
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | text | string | 是 | 待计算索引值的输入文本。 |
+**参数：** 
+| 参数名  | 类型     | 必填   | 说明           |
+| ---- | ------ | ---- | ------------ |
+| text | string | 是    | 待计算索引值的输入文本。 |
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | string | 输入文本对应的索引值。 |
+**返回值：** 
+| 类型     | 说明          |
+| ------ | ----------- |
+| string | 输入文本对应的索引值。 |
 
-- 示例：
+**示例：** 
   ```
   var indexUtil= i18n.getInstance("zh-CN");
   indexUtil.getIndex("hi");  // 返回h
@@ -813,17 +813,17 @@ isDigit(char: string): boolean
 
 **系统能力**：SystemCapability.Global.I18n
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | char | string | 是 | 输入字符。 |
+**参数：** 
+| 参数名  | 类型     | 必填   | 说明    |
+| ---- | ------ | ---- | ----- |
+| char | string | 是    | 输入字符。 |
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | boolean | 返回true表示输入的字符是数字，返回false表示输入的字符不是数字。 |
+**返回值：** 
+| 类型      | 说明                                   |
+| ------- | ------------------------------------ |
+| boolean | 返回true表示输入的字符是数字，返回false表示输入的字符不是数字。 |
 
-- 示例：
+**示例：** 
   ```
   var isdigit = Character.isDigit("1");  // 返回true
   ```
@@ -837,17 +837,17 @@ isSpaceChar(char: string): boolean
 
 **系统能力**：SystemCapability.Global.I18n
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | char | string | 是 | 输入字符。 |
+**参数：** 
+| 参数名  | 类型     | 必填   | 说明    |
+| ---- | ------ | ---- | ----- |
+| char | string | 是    | 输入字符。 |
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | boolean | 返回true表示输入的字符是空格符，返回false表示输入的字符不是空格符。 |
+**返回值：** 
+| 类型      | 说明                                     |
+| ------- | -------------------------------------- |
+| boolean | 返回true表示输入的字符是空格符，返回false表示输入的字符不是空格符。 |
 
-- 示例：
+**示例：** 
   ```
   var isspacechar = Character.isSpaceChar("a");  // 返回false
   ```
@@ -861,17 +861,17 @@ isWhitespace(char: string): boolean
 
 **系统能力**：SystemCapability.Global.I18n
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | char | string | 是 | 输入字符。 |
+**参数：** 
+| 参数名  | 类型     | 必填   | 说明    |
+| ---- | ------ | ---- | ----- |
+| char | string | 是    | 输入字符。 |
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | boolean | 返回true表示输入的字符是空白符，返回false表示输入的字符不是空白符。 |
+**返回值：** 
+| 类型      | 说明                                     |
+| ------- | -------------------------------------- |
+| boolean | 返回true表示输入的字符是空白符，返回false表示输入的字符不是空白符。 |
 
-- 示例：
+**示例：** 
   ```
   var iswhitespace = Character.isWhitespace("a");  // 返回false
   ```
@@ -885,17 +885,17 @@ isRTL(char: string): boolean
 
 **系统能力**：SystemCapability.Global.I18n
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | char | string | 是 | 输入字符。 |
+**参数：** 
+| 参数名  | 类型     | 必填   | 说明    |
+| ---- | ------ | ---- | ----- |
+| char | string | 是    | 输入字符。 |
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | boolean | 返回true表示输入的字符是从右到左语言的字符，返回false表示输入的字符不是从右到左语言的字符。 |
+**返回值：** 
+| 类型      | 说明                                       |
+| ------- | ---------------------------------------- |
+| boolean | 返回true表示输入的字符是从右到左语言的字符，返回false表示输入的字符不是从右到左语言的字符。 |
 
-- 示例：
+**示例：** 
   ```
   var isrtl = Character.isRTL("a");  // 返回false
   ```
@@ -909,17 +909,17 @@ isIdeograph(char: string): boolean
 
 **系统能力**：SystemCapability.Global.I18n
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | char | string | 是 | 输入字符。 |
+**参数：** 
+| 参数名  | 类型     | 必填   | 说明    |
+| ---- | ------ | ---- | ----- |
+| char | string | 是    | 输入字符。 |
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | boolean | 返回true表示输入的字符是表意文字，返回false表示输入的字符不是表意文字。 |
+**返回值：** 
+| 类型      | 说明                                       |
+| ------- | ---------------------------------------- |
+| boolean | 返回true表示输入的字符是表意文字，返回false表示输入的字符不是表意文字。 |
 
-- 示例：
+**示例：** 
   ```
   var isideograph = Character.isIdeograph("a");  // 返回false
   ```
@@ -933,17 +933,17 @@ isLetter(char: string): boolean
 
 **系统能力**：SystemCapability.Global.I18n
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | char | string | 是 | 输入字符。 |
+**参数：** 
+| 参数名  | 类型     | 必填   | 说明    |
+| ---- | ------ | ---- | ----- |
+| char | string | 是    | 输入字符。 |
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | boolean | 返回true表示输入的字符是字母，返回false表示输入的字符不是字母。 |
+**返回值：** 
+| 类型      | 说明                                   |
+| ------- | ------------------------------------ |
+| boolean | 返回true表示输入的字符是字母，返回false表示输入的字符不是字母。 |
 
-- 示例：
+**示例：** 
   ```
   var isletter = Character.isLetter("a");  // 返回true
   ```
@@ -957,17 +957,17 @@ isLowerCase(char: string): boolean
 
 **系统能力**：SystemCapability.Global.I18n
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | char | string | 是 | 输入字符。 |
+**参数：** 
+| 参数名  | 类型     | 必填   | 说明    |
+| ---- | ------ | ---- | ----- |
+| char | string | 是    | 输入字符。 |
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | boolean | 返回true表示输入的字符是小写字母，返回false表示输入的字符不是小写字母。 |
+**返回值：** 
+| 类型      | 说明                                       |
+| ------- | ---------------------------------------- |
+| boolean | 返回true表示输入的字符是小写字母，返回false表示输入的字符不是小写字母。 |
 
-- 示例：
+**示例：** 
   ```
   var islowercase = Character.isLowerCase("a");  // 返回true
   ```
@@ -981,17 +981,17 @@ isUpperCase(char: string): boolean
 
 **系统能力**：SystemCapability.Global.I18n
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | char | string | 是 | 输入字符。 |
+**参数：** 
+| 参数名  | 类型     | 必填   | 说明    |
+| ---- | ------ | ---- | ----- |
+| char | string | 是    | 输入字符。 |
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | boolean | 返回true表示输入的字符是大写字母，返回false表示输入的字符不是大写字母。 |
+**返回值：** 
+| 类型      | 说明                                       |
+| ------- | ---------------------------------------- |
+| boolean | 返回true表示输入的字符是大写字母，返回false表示输入的字符不是大写字母。 |
 
-- 示例：
+**示例：** 
   ```
   var isuppercase = Character.isUpperCase("a");  // 返回false
   ```
@@ -1005,17 +1005,17 @@ getType(char: string): string
 
 **系统能力**：SystemCapability.Global.I18n
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | char | string | 是 | 输入字符。 |
+**参数：** 
+| 参数名  | 类型     | 必填   | 说明    |
+| ---- | ------ | ---- | ----- |
+| char | string | 是    | 输入字符。 |
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | string | 输入字符的一般类别值。 |
+**返回值：** 
+| 类型     | 说明          |
+| ------ | ----------- |
+| string | 输入字符的一般类别值。 |
 
-- 示例：
+**示例：** 
   ```
   var type = Character.getType("a");
   ```
@@ -1029,17 +1029,17 @@ getLineInstance(locale: string): BreakIterator
 
 **系统能力**：SystemCapability.Global.I18n
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | locale | string | 是 | 合法的locale值，例如zh-Hans-CN。生成的[BreakIterator](#breakiterator8)将按照locale所指定的区域的规则来进行断句。 |
+**参数：** 
+| 参数名    | 类型     | 必填   | 说明                                       |
+| ------ | ------ | ---- | ---------------------------------------- |
+| locale | string | 是    | 合法的locale值，例如zh-Hans-CN。生成的[BreakIterator](#breakiterator8)将按照locale所指定的区域的规则来进行断句。 |
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | [BreakIterator](#breakiterator8) | 用于进行断句的处理器。 |
+**返回值：** 
+| 类型                               | 说明          |
+| -------------------------------- | ----------- |
+| [BreakIterator](#breakiterator8) | 用于进行断句的处理器。 |
 
-- 示例：
+**示例：** 
   ```
   i18n.getLineInstance("en");
   ```
@@ -1056,12 +1056,12 @@ setLineBreakText(text: string): void
 
 **系统能力**：SystemCapability.Global.I18n
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | text | string | 是 | 指定BreakIterator进行断句的文本。 |
+**参数：** 
+| 参数名  | 类型     | 必填   | 说明                      |
+| ---- | ------ | ---- | ----------------------- |
+| text | string | 是    | 指定BreakIterator进行断句的文本。 |
 
-- 示例：
+**示例：** 
   ```
   iterator = I18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
@@ -1076,12 +1076,12 @@ getLineBreakText(): string
 
 **系统能力**：SystemCapability.Global.I18n
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | string | BreakIterator对象正在处理的文本 |
+**返回值：** 
+| 类型     | 说明                     |
+| ------ | ---------------------- |
+| string | BreakIterator对象正在处理的文本 |
 
-- 示例：
+**示例：** 
   ```
   iterator = I18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
@@ -1097,12 +1097,12 @@ current(): number
 
 **系统能力**：SystemCapability.Global.I18n
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | number | BreakIterator在当前所处理的文本中的位置。 |
+**返回值：** 
+| 类型     | 说明                          |
+| ------ | --------------------------- |
+| number | BreakIterator在当前所处理的文本中的位置。 |
 
-- 示例：
+**示例：** 
   ```
   iterator = I18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
@@ -1118,12 +1118,12 @@ first(): number
 
 **系统能力**：SystemCapability.Global.I18n
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | number | 被处理文本的第一个分割点的偏移量。 |
+**返回值：** 
+| 类型     | 说明                |
+| ------ | ----------------- |
+| number | 被处理文本的第一个分割点的偏移量。 |
 
-- 示例：
+**示例：** 
   ```
   iterator = I18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
@@ -1139,12 +1139,12 @@ last(): number
 
 **系统能力**：SystemCapability.Global.I18n
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | number | 被处理的文本的最后一个分割点的偏移量 |
+**返回值：** 
+| 类型     | 说明                 |
+| ------ | ------------------ |
+| number | 被处理的文本的最后一个分割点的偏移量 |
 
-- 示例：
+**示例：** 
   ```
   iterator = I18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
@@ -1160,17 +1160,17 @@ next(index?: number): number
 
 **系统能力**：SystemCapability.Global.I18n
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | index | number | 否 | [BreakIterator](#breakiterator8)将要移动的分割点数，正数代表向后移动，负数代表向前移动。若index没有给出，则按照index=1处理。 |
+**参数：** 
+| 参数名   | 类型     | 必填   | 说明                                       |
+| ----- | ------ | ---- | ---------------------------------------- |
+| index | number | 否    | [BreakIterator](#breakiterator8)将要移动的分割点数，正数代表向后移动，负数代表向前移动。若index没有给出，则按照index=1处理。 |
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | number | 返回移动了index个分割点后，当前[BreakIterator](#breakiterator8)在文本中的位置。若移动index个分割点后超出了所处理的文本的长度范围，返回-1。 |
+**返回值：** 
+| 类型     | 说明                                       |
+| ------ | ---------------------------------------- |
+| number | 返回移动了index个分割点后，当前[BreakIterator](#breakiterator8)在文本中的位置。若移动index个分割点后超出了所处理的文本的长度范围，返回-1。 |
 
-- 示例：
+**示例：** 
   ```
   iterator = I18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
@@ -1188,12 +1188,12 @@ previous(): number
 
 **系统能力**：SystemCapability.Global.I18n
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | number | 返回移动到前一个分割点后，当前[BreakIterator](#breakiterator8)在文本中的位置。若移动index个分割点后超出了所处理的文本的长度范围，返回-1。 |
+**返回值：** 
+| 类型     | 说明                                       |
+| ------ | ---------------------------------------- |
+| number | 返回移动到前一个分割点后，当前[BreakIterator](#breakiterator8)在文本中的位置。若移动index个分割点后超出了所处理的文本的长度范围，返回-1。 |
 
-- 示例：
+**示例：** 
   ```
   iterator = I18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
@@ -1211,17 +1211,17 @@ following(offset: number): number
 
 **系统能力**：SystemCapability.Global.I18n
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | offset | number | 是 | 将[BreakIterator](#breakiterator8)对象的位置设置到由offset所指定的位置的下一个分割点。 |
+**参数：** 
+| 参数名    | 类型     | 必填   | 说明                                       |
+| ------ | ------ | ---- | ---------------------------------------- |
+| offset | number | 是    | 将[BreakIterator](#breakiterator8)对象的位置设置到由offset所指定的位置的下一个分割点。 |
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | number | 返回[BreakIterator](#breakiterator8)移动后的位置，如果由offset所指定的位置的下一个分割点超出了文本的范围则返回-1。 |
+**返回值：** 
+| 类型     | 说明                                       |
+| ------ | ---------------------------------------- |
+| number | 返回[BreakIterator](#breakiterator8)移动后的位置，如果由offset所指定的位置的下一个分割点超出了文本的范围则返回-1。 |
 
-- 示例：
+**示例：** 
   ```
   iterator = I18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
@@ -1239,17 +1239,17 @@ isBoundary(offset: number): boolean
 
 **系统能力**：SystemCapability.Global.I18n
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | offset | number | 是 | 指定需要进行判断的位置 |
+**参数：** 
+| 参数名    | 类型     | 必填   | 说明          |
+| ------ | ------ | ---- | ----------- |
+| offset | number | 是    | 指定需要进行判断的位置 |
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | boolean | 如果是一个分割点返回true,&nbsp;否则返回false。 |
+**返回值：** 
+| 类型      | 说明                              |
+| ------- | ------------------------------- |
+| boolean | 如果是一个分割点返回true,&nbsp;否则返回false。 |
 
-- 示例：
+**示例：** 
   ```
   iterator = I18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
@@ -1266,12 +1266,12 @@ is24HourClock(): boolean
 
 **系统能力**：SystemCapability.Global.I18n
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | boolean | 返回true，表示系统24小时开关开启；返回false，表示系统24小时开关关闭。 |
+**返回值：** 
+| 类型      | 说明                                       |
+| ------- | ---------------------------------------- |
+| boolean | 返回true，表示系统24小时开关开启；返回false，表示系统24小时开关关闭。 |
 
-- 示例：
+**示例：** 
   ```
   var is24HourClock = i18n.is24HourClock();
   ```
@@ -1285,17 +1285,17 @@ set24HourClock(option: boolean): boolean
 
 **系统能力**：SystemCapability.Global.I18n
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | option | boolean | 是 | option为true，表示开启系统24小时制开关；返回false，表示关闭系统24小时开关。 |
+**参数：** 
+| 参数名    | 类型      | 必填   | 说明                                       |
+| ------ | ------- | ---- | ---------------------------------------- |
+| option | boolean | 是    | option为true，表示开启系统24小时制开关；返回false，表示关闭系统24小时开关。 |
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | boolean | 返回true，表示修改成功；返回false，表示修改失败。 |
+**返回值：** 
+| 类型      | 说明                            |
+| ------- | ----------------------------- |
+| boolean | 返回true，表示修改成功；返回false，表示修改失败。 |
 
-- 示例：
+**示例：** 
   ```
   // 将系统时间设置为24小时制
   var success = I18n.set24HourClock(true);
@@ -1310,18 +1310,18 @@ addPreferredLanguage(language: string, index?: number): boolean
 
 **系统能力**：SystemCapability.Global.I18n
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | language | string | 是 | 待添加的偏好语言。 |
-  | index | number | 否 | 偏好语言的添加位置。 |
+**参数：** 
+| 参数名      | 类型     | 必填   | 说明         |
+| -------- | ------ | ---- | ---------- |
+| language | string | 是    | 待添加的偏好语言。  |
+| index    | number | 否    | 偏好语言的添加位置。 |
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | boolean | 返回true，表示添加成功；返回false，表示添加失败。 |
+**返回值：** 
+| 类型      | 说明                            |
+| ------- | ----------------------------- |
+| boolean | 返回true，表示添加成功；返回false，表示添加失败。 |
 
-- 示例：
+**示例：** 
   ```
   // 将语言zh-CN添加到系统偏好语言列表中
   var language = 'zh-CN';
@@ -1338,17 +1338,17 @@ removePreferredLanguage(index: number): boolean
 
 **系统能力**：SystemCapability.Global.I18n
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | index | number | 是 | 待删除偏好语言在系统偏好语言列表中的位置。 |
+**参数：** 
+| 参数名   | 类型     | 必填   | 说明                    |
+| ----- | ------ | ---- | --------------------- |
+| index | number | 是    | 待删除偏好语言在系统偏好语言列表中的位置。 |
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | boolean | 返回true，表示删除成功；返回false，表示删除失败。 |
+**返回值：** 
+| 类型      | 说明                            |
+| ------- | ----------------------------- |
+| boolean | 返回true，表示删除成功；返回false，表示删除失败。 |
 
-- 示例：
+**示例：** 
   ```
   // 删除系统偏好语言列表中的第一个偏好语言
   var index = 0;
@@ -1358,18 +1358,18 @@ removePreferredLanguage(index: number): boolean
 
 ## i18n.getPreferredLanguageList<sup>8+</sup>
 
-getPreferredLanguageList(): Array<string>
+getPreferredLanguageList(): Array&lt;string&gt;
 
 获取系统偏好语言列表。
 
 **系统能力**：SystemCapability.Global.I18n
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | Array<string> | 系统偏好语言列表。 |
+**返回值：** 
+| 类型                  | 说明        |
+| ------------------- | --------- |
+| Array&lt;string&gt; | 系统偏好语言列表。 |
 
-- 示例：
+**示例：** 
   ```
   var preferredLanguageList = i18n.getPreferredLanguageList();
   ```
@@ -1383,12 +1383,12 @@ getFirstPreferredLanguage(): string
 
 **系统能力**：SystemCapability.Global.I18n
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | string | 偏好语言列表中的第一个语言。 |
+**返回值：** 
+| 类型     | 说明             |
+| ------ | -------------- |
+| string | 偏好语言列表中的第一个语言。 |
 
-- 示例：
+**示例：** 
   ```
   var firstPreferredLanguage = i18n.getFirstPreferredLanguage();
   ```
@@ -1402,17 +1402,17 @@ getTimeZone(zoneID?: string): TimeZone
 
 **系统能力**：SystemCapability.Global.I18n
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | zondID | string | 否 | 时区ID。 |
+**参数：** 
+| 参数名    | 类型     | 必填   | 说明    |
+| ------ | ------ | ---- | ----- |
+| zondID | string | 否    | 时区ID。 |
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | TimeZone | 时区ID对应的时区对象。 |
+**返回值：** 
+| 类型       | 说明           |
+| -------- | ------------ |
+| TimeZone | 时区ID对应的时区对象。 |
 
-- 示例：
+**示例：** 
   ```
   var timezone = i18n.getTimeZone();
   ```
@@ -1429,12 +1429,12 @@ getID(): string
 
 **系统能力**：SystemCapability.Global.I18n
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | string | 时区对象对应的时区ID。 |
+**返回值：** 
+| 类型     | 说明           |
+| ------ | ------------ |
+| string | 时区对象对应的时区ID。 |
 
-- 示例：
+**示例：** 
   ```
   var timezone = i18n.getTimeZone();
   timezone.getID();
@@ -1449,18 +1449,18 @@ getDisplayName(locale?: string, isDST?: boolean): string
 
 **系统能力**：SystemCapability.Global.I18n
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | locale | string | 否 | 区域ID。 |
-  | isDST | boolean | 否 | 表示获取时区对象的表示时是否考虑夏令时。 |
+**参数：** 
+| 参数名    | 类型      | 必填   | 说明                   |
+| ------ | ------- | ---- | -------------------- |
+| locale | string  | 否    | 区域ID。                |
+| isDST  | boolean | 否    | 表示获取时区对象的表示时是否考虑夏令时。 |
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | string | 时区对象在指定区域的表示。 |
+**返回值：** 
+| 类型     | 说明            |
+| ------ | ------------- |
+| string | 时区对象在指定区域的表示。 |
 
-- 示例：
+**示例：** 
   ```
   var timezone = i18n.getTimeZone();
   timezone.getDisplayName("zh-CN", false);
@@ -1475,12 +1475,12 @@ getRawOffset(): number
 
 **系统能力**：SystemCapability.Global.I18n
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | number | 时区对象表示的时区与UTC时区的偏差。 |
+**返回值：** 
+| 类型     | 说明                  |
+| ------ | ------------------- |
+| number | 时区对象表示的时区与UTC时区的偏差。 |
 
-- 示例：
+**示例：** 
   ```
   var timezone = i18n.getTimeZone();
   timezone.getRawOffset();
@@ -1495,12 +1495,12 @@ getOffset(date?: number): number
 
 **系统能力**：SystemCapability.Global.I18n
 
-- 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | number | 某一时刻时区对象表示的时区与UTC时区的偏差。 |
+**返回值：** 
+| 类型     | 说明                      |
+| ------ | ----------------------- |
+| number | 某一时刻时区对象表示的时区与UTC时区的偏差。 |
 
-- 示例：
+**示例：** 
   ```
   var timezone = i18n.getTimeZone();
   timezone.getOffset(1234567890);

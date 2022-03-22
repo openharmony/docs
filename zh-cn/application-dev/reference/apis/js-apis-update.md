@@ -30,15 +30,15 @@ getUpdater(upgradeFile: string, updateType?: UpdateTypes): Updater
 
 **参数：**
 
-| 参数名      | 类型                        | 必填 | 说明     |
-| ----------- | --------------------------- | ---- | -------- |
-| upgradeFile | string                      | 是   | 升级文件 |
-| updateType  | [UpdateTypes](#updatetypes) | 是   | 升级类型 |
+| 参数名         | 类型                          | 必填   | 说明   |
+| ----------- | --------------------------- | ---- | ---- |
+| upgradeFile | string                      | 是    | 升级文件 |
+| updateType  | [UpdateTypes](#updatetypes) | 是    | 升级类型 |
 
 **返回值：**
 
-| 类型                | 说明     |
-| ------------------- | -------- |
+| 类型                  | 说明   |
+| ------------------- | ---- |
 | [Updater](#updater) | 升级对象 |
 
 **示例：**
@@ -61,16 +61,16 @@ getUpdaterForOther(upgradeFile: string, device: string, updateType?: UpdateTypes
 
 **参数：**
 
-| 参数名      | 类型                        | 必填 | 说明       |
-| ----------- | --------------------------- | ---- | ---------- |
-| upgradeFile | string                      | 是   | 升级文件   |
-| device      | string                      | 是   | 待升级设备 |
-| updateType  | [UpdateTypes](#updatetypes) | 是   | 升级类型   |
+| 参数名         | 类型                          | 必填   | 说明    |
+| ----------- | --------------------------- | ---- | ----- |
+| upgradeFile | string                      | 是    | 升级文件  |
+| device      | string                      | 是    | 待升级设备 |
+| updateType  | [UpdateTypes](#updatetypes) | 是    | 升级类型  |
 
 **返回值：**
 
-| 类型                | 说明     |
-| ------------------- | -------- |
+| 类型                  | 说明   |
+| ------------------- | ---- |
 | [Updater](#updater) | 升级对象 |
 
 **示例：**
@@ -93,16 +93,16 @@ getUpdaterFromOther(upgradeFile: string, device: string, updateType?: UpdateType
 
 **参数：**
 
-| 参数名      | 类型                        | 必填 | 说明       |
-| ----------- | --------------------------- | ---- | ---------- |
-| upgradeFile | string                      | 是   | 升级文件   |
-| device      | string                      | 是   | 待升级设备 |
-| updateType  | [UpdateTypes](#updatetypes) | 是   | 升级类型   |
+| 参数名         | 类型                          | 必填   | 说明    |
+| ----------- | --------------------------- | ---- | ----- |
+| upgradeFile | string                      | 是    | 升级文件  |
+| device      | string                      | 是    | 待升级设备 |
+| updateType  | [UpdateTypes](#updatetypes) | 是    | 升级类型  |
 
 **返回值：**
 
-| 类型                | 说明     |
-| ------------------- | -------- |
+| 类型                  | 说明   |
+| ------------------- | ---- |
 | [Updater](#updater) | 升级对象 |
 
 **示例：**
@@ -127,9 +127,9 @@ getNewVersionInfo(callback: AsyncCallback\<NewVersionInfo>): void
 
 **参数：**
 
-| 参数名   | 类型                                             | 必填 | 说明               |
-| -------- | ------------------------------------------------ | ---- | ------------------ |
-| callback | AsyncCallback<[NewVersionInfo](#newversioninfo)> | 否   | 回调返回新版本信息 |
+| 参数名      | 类型                                       | 必填   | 说明        |
+| -------- | ---------------------------------------- | ---- | --------- |
+| callback | AsyncCallback<[NewVersionInfo](#newversioninfo)> | 否    | 回调返回新版本信息 |
 
 **示例：**
 
@@ -152,8 +152,8 @@ getNewVersionInfo(): Promise\<NewVersionInfo>
 
 **返回值：**
 
-| 类型                                        | 说明                      |
-| ------------------------------------------- | ------------------------- |
+| 类型                                       | 说明               |
+| ---------------------------------------- | ---------------- |
 | Promise\<[NewVersionInfo](#newversioninfo)> | Promise，用于异步获取结果 |
 
 **示例：**
@@ -178,9 +178,9 @@ checkNewVersion(callback: AsyncCallback\<NewVersionInfo>): void
 
 **参数：**
 
-| 参数名   | 类型                                              | 必填 | 说明               |
-| -------- | ------------------------------------------------- | ---- | ------------------ |
-| callback | AsyncCallback\<[NewVersionInfo](#newversioninfo)> | 否   | 回调返回新版本信息 |
+| 参数名      | 类型                                       | 必填   | 说明        |
+| -------- | ---------------------------------------- | ---- | --------- |
+| callback | AsyncCallback\<[NewVersionInfo](#newversioninfo)> | 否    | 回调返回新版本信息 |
 
 **示例：**
 
@@ -203,8 +203,8 @@ checkNewVersion(): Promise\<NewVersionInfo>
 
 **返回值:**
 
-| 类型                                        | 说明                      |
-| ------------------------------------------- | ------------------------- |
+| 类型                                       | 说明               |
+| ---------------------------------------- | ---------------- |
 | Promise\<[NewVersionInfo](#newversioninfo)> | Promise函数返回新版本信息 |
 
 **示例:**
@@ -229,10 +229,10 @@ verifyUpdatePackage(upgradeFile: string, certsFile: string): void
 
 **参数：**
 
-| 参数名      | 类型   | 必填 | 说明               |
-| ----------- | ------ | ---- | ------------------ |
-| upgradeFile | string | 是   | 待校验的升级包路径 |
-| certsFile   | string | 是   | 证书路径           |
+| 参数名         | 类型     | 必填   | 说明        |
+| ----------- | ------ | ---- | --------- |
+| upgradeFile | string | 是    | 待校验的升级包路径 |
+| certsFile   | string | 是    | 证书路径      |
 
 **示例：**
 
@@ -253,8 +253,8 @@ rebootAndCleanUserData(): Promise\<number>
 
 **返回值：**
 
-| 类型             | 说明                            |
-| ---------------- | ------------------------------- |
+| 类型               | 说明                  |
+| ---------------- | ------------------- |
 | Promise\<number> | Promise示例，用于异步获取结果。 |
 
 **示例：**
@@ -277,9 +277,9 @@ rebootAndCleanUserData(callback: AsyncCallback\<number>): void
 
 **参数：**
 
-| 参数名   | 类型     | 必填 | 说明                   |
+| 参数名      | 类型       | 必填   | 说明                     |
 | -------- | -------- | ---- | ---------------------- |
-| callback | Function | 是   | AsyncCallback\<number> |
+| callback | Function | 是    | AsyncCallback\<number> |
 
 **示例：**
 
@@ -299,8 +299,8 @@ applyNewVersion(): Promise\<number>
 
 **返回值：**
 
-| 类型             | 说明                            |
-| ---------------- | ------------------------------- |
+| 类型               | 说明                  |
+| ---------------- | ------------------- |
 | Promise\<number> | Promise示例，用于异步获取结果。 |
 
 **示例：**
@@ -323,9 +323,9 @@ applyNewVersion(callback: AsyncCallback\<number>): void
 
 **参数：**
 
-| 参数名   | 类型     | 必填 | 说明                   |
+| 参数名      | 类型       | 必填   | 说明                     |
 | -------- | -------- | ---- | ---------------------- |
-| callback | Function | 是   | AsyncCallback\<number> |
+| callback | Function | 是    | AsyncCallback\<number> |
 
 **示例：**
 
@@ -356,7 +356,7 @@ updater.download();
 
 ### upgrade
 
-updater.upgrade():void
+upgrade():void
 
 启动升级。
 
@@ -383,10 +383,10 @@ setUpdatePolicy(policy: UpdatePolicy, callback: AsyncCallback\<number>): void
 
 **参数：**
 
-| 参数名   | 类型                          | 必填 | 说明         |
-| -------- | ----------------------------- | ---- | ------------ |
-| policy   | [UpdatePolicy](#updatepolicy) | 是   | 设置升级策略 |
-| callback | AsyncCallback\<number>        | 是   | 回调返回结果 |
+| 参数名      | 类型                            | 必填   | 说明     |
+| -------- | ----------------------------- | ---- | ------ |
+| policy   | [UpdatePolicy](#updatepolicy) | 是    | 设置升级策略 |
+| callback | AsyncCallback\<number>        | 是    | 回调返回结果 |
 
 **示例：**
 
@@ -414,14 +414,14 @@ setUpdatePolicy(policy: UpdatePolicy): Promise\<number>
 
 **参数：**
 
-| 参数名 | 类型                          | 必填 | 说明         |
-| ------ | ----------------------------- | ---- | ------------ |
-| policy | [UpdatePolicy](#updatepolicy) | 是   | 设置升级策略 |
+| 参数名    | 类型                            | 必填   | 说明     |
+| ------ | ----------------------------- | ---- | ------ |
+| policy | [UpdatePolicy](#updatepolicy) | 是    | 设置升级策略 |
 
 **返回值：**
 
-| 类型             | 说明                    |
-| ---------------- | ----------------------- |
+| 类型               | 说明              |
+| ---------------- | --------------- |
 | Promise\<number> | Promise函数返回设置结果 |
 
 **示例：**
@@ -451,9 +451,9 @@ getUpdatePolicy(callback: AsyncCallback\<UpdatePolicy>): void
 
 **参数：**
 
-| 参数名   | 类型                                          | 必填 | 说明                 |
-| -------- | --------------------------------------------- | ---- | -------------------- |
-| callback | AsyncCallback\<[UpdatePolicy](#updatepolicy)> | 否   | 回调返回升级策略信息 |
+| 参数名      | 类型                                       | 必填   | 说明         |
+| -------- | ---------------------------------------- | ---- | ---------- |
+| callback | AsyncCallback\<[UpdatePolicy](#updatepolicy)> | 否    | 回调返回升级策略信息 |
 
 **示例：**
 
@@ -476,8 +476,8 @@ getUpdatePolicy(): Promise\<UpdatePolicy>
 
 **返回值：**
 
-| 类型                                    | 说明                        |
-| --------------------------------------- | --------------------------- |
+| 类型                                      | 说明                |
+| --------------------------------------- | ----------------- |
 | Promise\<[UpdatePolicy](#updatepolicy)> | Promise函数返回升级策略信息 |
 
 **示例：**
@@ -498,10 +498,10 @@ update.getUpdatePolicy().then(value => {
 
 **系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
 
-| 参数名 | 说明     |
-| ------ | -------- |
-| OTA    | OTA升级  |
-| patch  | 补丁升级 |
+| 参数名   | 说明    |
+| ----- | ----- |
+| OTA   | OTA升级 |
+| patch | 补丁升级  |
 
 ## PackageTypes
 
@@ -509,15 +509,15 @@ update.getUpdatePolicy().then(value => {
 
 **系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
 
-| 参数名               | 默认值 | 说明           |
-| -------------------- | ------ | -------------- |
-| PACKAGE_TYPE_NORMAL  | 1      | 通用升级包     |
-| PACKAGE_TYPE_BASE    | 2      | 基础升级包     |
-| PACKAGE_TYPE_CUST    | 3      | 定制升级包     |
-| PACKAGE_TYPE_PRELOAD | 4      | 预装升级包     |
-| PACKAGE_TYPE_COTA    | 5      | 参数配置升级包 |
-| PACKAGE_TYPE_VERSION | 6      | 版本升级包     |
-| PACKAGE_TYPE_PATCH   | 7      | 补丁包         |
+| 参数名                  | 默认值  | 说明      |
+| -------------------- | ---- | ------- |
+| PACKAGE_TYPE_NORMAL  | 1    | 通用升级包   |
+| PACKAGE_TYPE_BASE    | 2    | 基础升级包   |
+| PACKAGE_TYPE_CUST    | 3    | 定制升级包   |
+| PACKAGE_TYPE_PRELOAD | 4    | 预装升级包   |
+| PACKAGE_TYPE_COTA    | 5    | 参数配置升级包 |
+| PACKAGE_TYPE_VERSION | 6    | 版本升级包   |
+| PACKAGE_TYPE_PATCH   | 7    | 补丁包     |
 
 ## InstallMode
 
@@ -525,11 +525,11 @@ update.getUpdatePolicy().then(value => {
 
 **系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
 
-| 参数名              | 默认值 | 说明     |
-| ------------------- | ------ | -------- |
-| INSTALL_MODE_NORMAL | 0      | 正常升级 |
-| INSTALL_MODE_NIGHT  | 1      | 夜间升级 |
-| INSTALL_MODE_AUTO   | 2      | 自动升级 |
+| 参数名                 | 默认值  | 说明   |
+| ------------------- | ---- | ---- |
+| INSTALL_MODE_NORMAL | 0    | 正常升级 |
+| INSTALL_MODE_NIGHT  | 1    | 夜间升级 |
+| INSTALL_MODE_AUTO   | 2    | 自动升级 |
 
 ## NewVersionStatus
 
@@ -537,12 +537,12 @@ update.getUpdatePolicy().then(value => {
 
 **系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
 
-| 参数名              | 默认值 | 说明             |
-| ------------------- | ------ | ---------------- |
-| VERSION_STATUS_ERR  | -1     | 检测版本时出错   |
-| VERSION_STATUS_NEW  | 0      | 检测到新版本     |
-| VERSION_STATUS_NONE | 1      | 没有检测到新版本 |
-| VERSION_STATUS_BUSY | 2      | 检测版本时忙     |
+| 参数名                 | 默认值  | 说明       |
+| ------------------- | ---- | -------- |
+| VERSION_STATUS_ERR  | -1   | 检测版本时出错  |
+| VERSION_STATUS_NEW  | 0    | 检测到新版本   |
+| VERSION_STATUS_NONE | 1    | 没有检测到新版本 |
+| VERSION_STATUS_BUSY | 2    | 检测版本时忙   |
 
 ## UpdatePolicy
 
@@ -550,11 +550,11 @@ update.getUpdatePolicy().then(value => {
 
 **系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
 
-| 名称                | 参数类型                    | 必填 | 说明           |
-| ------------------- | --------------------------- | ---- | -------------- |
-| autoDownload        | bool                        | 是   | 自动升级开关   |
-| installMode         | [InstallMode](#installmode) | 是   | 安装模式       |
-| autoUpgradeInterval | Array\<number>              | 是   | 自动升级时间段 |
+| 名称                  | 参数类型                        | 必填   | 说明      |
+| ------------------- | --------------------------- | ---- | ------- |
+| autoDownload        | bool                        | 是    | 自动升级开关  |
+| installMode         | [InstallMode](#installmode) | 是    | 安装模式    |
+| autoUpgradeInterval | Array\<number>              | 是    | 自动升级时间段 |
 
 ## NewVersionInfo
 
@@ -562,12 +562,12 @@ update.getUpdatePolicy().then(value => {
 
 **系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
 
-| 名称            | 参数类型                                    | 必填 | 说明     |
-| --------------- | ------------------------------------------- | ---- | -------- |
-| status          | [NewVersionStatus](#newversionstatus)       | 是   | 升级状态 |
-| errMsg          | string                                      | 是   | 错误信息 |
-| checkResults    | Array<[CheckResult](#checkresult)>          | 是   | 检测结果 |
-| descriptionInfo | Array\<[DescriptionInfo](#descriptioninfo)> | 是   | 描述信息 |
+| 名称              | 参数类型                                     | 必填   | 说明   |
+| --------------- | ---------------------------------------- | ---- | ---- |
+| status          | [NewVersionStatus](#newversionstatus)    | 是    | 升级状态 |
+| errMsg          | string                                   | 是    | 错误信息 |
+| checkResults    | Array<[CheckResult](#checkresult)>       | 是    | 检测结果 |
+| descriptionInfo | Array\<[DescriptionInfo](#descriptioninfo)> | 是    | 描述信息 |
 
 ## CheckResult
 
@@ -575,14 +575,14 @@ update.getUpdatePolicy().then(value => {
 
 **系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
 
-| 名称          | 参数类型                      | 必填 | 说明         |
-| ------------- | ----------------------------- | ---- | ------------ |
-| versionName   | string                        | 是   | 版本名称     |
-| versionCode   | number                        | 是   | 版本编码     |
-| size          | number                        | 是   | 版本大小     |
-| verifyInfo    | string                        | 是   | 版本校验信息 |
-| packageType   | [PackageTypes](#packagetypes) | 是   | 版本类型     |
-| descriptionId | string                        | 是   | 版本描述信息 |
+| 名称            | 参数类型                          | 必填   | 说明     |
+| ------------- | ----------------------------- | ---- | ------ |
+| versionName   | string                        | 是    | 版本名称   |
+| versionCode   | number                        | 是    | 版本编码   |
+| size          | number                        | 是    | 版本大小   |
+| verifyInfo    | string                        | 是    | 版本校验信息 |
+| packageType   | [PackageTypes](#packagetypes) | 是    | 版本类型   |
+| descriptionId | string                        | 是    | 版本描述信息 |
 
 ## DescriptionInfo
 
@@ -590,7 +590,7 @@ update.getUpdatePolicy().then(value => {
 
 **系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
 
-| 名称          | 参数类型 | 必填 | 说明              |
-| ------------- | -------- | ---- | ----------------- |
-| descriptionId | string   | 是   | 版本versionId信息 |
-| content       | string   | 是   | 版本changelog信息 |
+| 名称            | 参数类型   | 必填   | 说明            |
+| ------------- | ------ | ---- | ------------- |
+| descriptionId | string | 是    | 版本versionId信息 |
+| content       | string | 是    | 版本changelog信息 |
