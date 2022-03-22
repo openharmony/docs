@@ -10,33 +10,34 @@
 import account_osAccount from '@ohos.account.osAccount';
 ```
 
-## System Capabilities
-
-SystemCapability.Account.OsAccount
-
 ## account_osAccount.getAccountManager
 
 getAccountManager(): AccountManager
 
 Obtains an **AccountManager** instance.
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | [AccountManager](#accountmanager) | **AccountManager** instance obtained.|
+**System capability**: SystemCapability.Account.OsAccount
 
-- Example
+**Return Value**
+| Type                             | Description                    |
+| --------------------------------- | ------------------------ |
+| [AccountManager](#accountmanager) | Obtains an **AccountManager** instance.|
+
+**Example**
   ```
   const accountManager = account_osAccount.getAccountManager();
   ```
 
 ## OsAccountType
 Enumerates OS account types.
-  | Name| Default Value| Description|
-  | -------- | -------- | -------- |
-  | ADMIN | 0 | Administrator account|
-  | NORMAL | 1 | Normal account|
-  | GUEST | 2 | Guest account|
+
+**System capability**: SystemCapability.Account.OsAccount
+
+| Name  | Default Value| Description        |
+| ------ | ------ | ------------ |
+| ADMIN  | 0      | Administrator account|
+| NORMAL | 1      | Normal account  |
+| GUEST  | 2      | Guest account  |
 
 ## AccountManager
 
@@ -48,17 +49,18 @@ activateOsAccount(localId: number, callback: AsyncCallback&lt;void&gt;): void
 
 Activates an OS account. This method uses an asynchronous callback to return the result.
 
-- Parameters
+This is a system API and cannot be called by third-party applications.
 
-  | Name  | Type               | Mandatory| Description                |
-  | -------- | ------------------- | ---- | -------------------- |
-  | localId  | number              | Yes  | ID of the OS account to activate.|
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+**System capability**: SystemCapability.Account.OsAccount
 
-- Example 
-  
-  Activate OS account 100.
-  
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description                |
+| -------- | ------------------------- | ---- | -------------------- |
+| localId  | number                    | Yes  | ID of the OS account to activate.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.          |
+
+**Example**: Activate OS account 100.
   ```
   const accountManager = account_osAccount.getAccountManager();
   var localId = 100;
@@ -73,22 +75,23 @@ activateOsAccount(localId: number): Promise&lt;void&gt;
 
 Activates an OS account. This method uses a promise to return the result.
 
-- Parameters
+This is a system API and cannot be called by third-party applications.
 
-  | Name | Type  | Mandatory| Description        |
-  | ------- | ------ | ---- | ------------ |
-  | localId | number | Yes  | ID of the OS account to activate.|
+**System capability**: SystemCapability.Account.OsAccount
 
-- Return value
+**Parameters**
 
-  | Type         | Description                               |
-  | :------------ | :---------------------------------- |
-  | Promise&lt;void&gt; | Promise used to return the result.|
+| Name | Type  | Mandatory| Description                |
+| ------- | ------ | ---- | -------------------- |
+| localId | number | Yes  | ID of the OS account to activate.|
 
-- Example 
-  
-  Activate OS account 100.
-  
+**Return Value**
+
+| Type               | Description                               |
+| :------------------ | :---------------------------------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Example**: Activate OS account 100.
   ```
   const accountManager = account_osAccount.getAccountManager();
   var localId = 100;
@@ -105,13 +108,15 @@ isMultiOsAccountEnable(callback: AsyncCallback&lt;boolean&gt;): void
 
 Checks whether multiple OS accounts are supported. This method uses an asynchronous callback to return the result.
 
-- Parameters
+**System capability**: SystemCapability.Account.OsAccount
 
-  | Name  | Type                  | Mandatory| Description                          |
-  | -------- | ---------------------- | ---- | ------------------------------ |
-  | callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. If multiple OS accounts are supported, **true** will be returned. Otherwise, **false** will be returned.|
+**Parameters**
 
-- Example
+| Name  | Type                        | Mandatory| Description                                               |
+| -------- | ---------------------------- | ---- | --------------------------------------------------- |
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. If multiple OS accounts are supported, **true** will be returned. Otherwise, **false** will be returned.|
+
+**Example**
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -127,13 +132,15 @@ isMultiOsAccountEnable(): Promise&lt;boolean&gt;
 
 Checks whether multiple OS accounts are supported. This method uses a promise to return the result.
 
-- Return value
+**System capability**: SystemCapability.Account.OsAccount
 
-  | Type            | Description                               |
-  | :--------------- | :---------------------------------- |
-  | Promise&lt;boolean&gt; | Promise used to return the result. If multiple OS accounts are supported, **true** will be returned. Otherwise, **false** will be returned.|
+**Return Value**
 
-- Example
+| Type                  | Description                                                        |
+| :--------------------- | :----------------------------------------------------------- |
+| Promise&lt;boolean&gt; | Promise used to return the result. If multiple OS accounts are supported, **true** will be returned. Otherwise, **false** will be returned.|
+
+**Example**
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -150,17 +157,19 @@ isOsAccountActived(localId: number, callback: AsyncCallback&lt;boolean&gt;): voi
 
 Checks whether an OS account is activated. This method uses an asynchronous callback to return the result.
 
-- Parameters
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS and ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
-  | Name  | Type                  | Mandatory| Description                          |
-  | -------- | ---------------------- | ---- | ------------------------------ |
-  | localId  | number                 | Yes  | ID of the target OS account.                  |
-  | callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. If the OS account is activated, **true** will be returned. Otherwise, **false** will be returned.|
+**System capability**: SystemCapability.Account.OsAccount
 
-- Example 
+**Parameters**
 
-  Check whether OS account 100 is activated.
-  
+| Name  | Type                        | Mandatory| Description                                             |
+| -------- | ---------------------------- | ---- | ------------------------------------------------- |
+| localId  | number                       | Yes  | ID of the target OS account.                                     |
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. If the OS account is activated, **true** will be returned. Otherwise, **false** will be returned.|
+
+**Example**: Check whether OS account 100 is activated.
+
   ```
   const accountManager = account_osAccount.getAccountManager();
   var osLocalId = 100;
@@ -176,22 +185,24 @@ isOsAccountActived(localId: number): Promise&lt;boolean&gt;
 
 Checks whether an OS account is activated. This method uses a promise to return the result.
 
-- Parameters
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS and ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
-  | Name | Type  | Mandatory| Description        |
-  | ------- | ------ | ---- | ------------ |
-  | localId | number | Yes  | ID of the target OS account.|
+**System capability**: SystemCapability.Account.OsAccount
 
-- Return value
+**Parameters**
 
-  | Type            | Description                               |
-  | :--------------- | :---------------------------------- |
-  | Promise&lt;boolean&gt; | Promise used to return the result. If the OS account is activated, **true** will be returned. Otherwise, **false** will be returned.|
+| Name | Type  | Mandatory| Description        |
+| ------- | ------ | ---- | ------------ |
+| localId | number | Yes  | ID of the target OS account.|
 
-- Example 
+**Return Value**
 
-  Check whether OS account 100 is activated.
-  
+| Type                  | Description                                                        |
+| :--------------------- | :----------------------------------------------------------- |
+| Promise&lt;boolean&gt; | Promise used to return the result. If the OS account is activated, **true** will be returned. Otherwise, **false** will be returned.|
+
+**Example**: Check whether OS account 100 is activated.
+
   ```
   const accountManager = account_osAccount.getAccountManager();
   var osLocalId = 100;
@@ -208,18 +219,20 @@ isOsAccountConstraintEnable(localId: number, constraint: string, callback: Async
 
 Checks whether the specified constraint is enabled for an OS account. This method uses an asynchronous callback to return the result.
 
-- Parameters
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
-  | Name    | Type                  | Mandatory| Description                          |
-  | ---------- | ---------------------- | ---- | ------------------------------ |
-  | localId    | number                 | Yes  | ID of the target OS account.|
-  | [constraint](#constraints) | string                 | Yes  | Constraint specified.|
-  | callback   | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. If the constraint is enabled for the OS account, **true** will be returned. Otherwise, **false** will be returned.|
+**System capability**: SystemCapability.Account.OsAccount
 
-- Example 
+**Parameters**
 
-  Check whether OS account 100 is forbidden to use Wi-Fi.
-  
+| Name    | Type                        | Mandatory| Description                                             |
+| ---------- | ---------------------------- | ---- | ------------------------------------------------- |
+| localId    | number                       | Yes  | ID of the target OS account.                               |
+| constraint | string                       | Yes  | [Constraint](#constraints) specified.            |
+| callback   | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. If the constraint is enabled for the OS account, **true** will be returned. Otherwise, **false** will be returned.|
+
+** Example**: Check whether OS account 100 is forbidden to use Wi-Fi.
+
   ```
   const accountManager = account_osAccount.getAccountManager();
   var localId = 100;
@@ -235,23 +248,25 @@ isOsAccountConstraintEnable(localId: number, constraint: string): Promise&lt;boo
 
 Checks whether the specified constraint is enabled for an OS account. This method uses a promise to return the result.
 
-- Parameters
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
-  | Name    | Type  | Mandatory| Description            |
-  | ---------- | ------ | ---- | ---------------- |
-  | localId    | number | Yes  | ID of the target OS account.|
-  | [constraint](#constraints)| string | Yes  | Constraint specified.|
+**System capability**: SystemCapability.Account.OsAccount
 
-- Return value
+**Parameters**
 
-  | Type            | Description                               |
-  | :--------------- | :---------------------------------- |
-  | Promise&lt;boolean&gt; | Promise used to return the result. If the constraint is enabled for the OS account, **true** will be returned. Otherwise, **false** will be returned.|
+| Name    | Type  | Mandatory| Description                                 |
+| ---------- | ------ | ---- | ------------------------------------- |
+| localId    | number | Yes  | ID of the target OS account.                   |
+| constraint | string | Yes  | [Constraint](#constraints) specified.|
 
-- Example 
+**Return Value**
 
-  Check whether OS account 100 is forbidden to use Wi-Fi.
-  
+| Type                  | Description                                                        |
+| :--------------------- | :----------------------------------------------------------- |
+| Promise&lt;boolean&gt; | Promise used to return the result. If the constraint is enabled for the OS account, **true** will be returned. Otherwise, **false** will be returned.|
+
+** Example**: Check whether OS account 100 is forbidden to use Wi-Fi.
+
   ```
   const accountManager = account_osAccount.getAccountManager();
   var localId = 100;
@@ -268,13 +283,15 @@ isTestOsAccount(callback: AsyncCallback&lt;boolean&gt;): void
 
 Checks whether this OS account is a test account. This method uses an asynchronous callback to return the result.
 
-- Parameters
+**System capability**: SystemCapability.Account.OsAccount
 
-  | Name  | Type                  | Mandatory| Description                                      |
-  | -------- | ---------------------- | ---- | ------------------------------------------ |
-  | callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. If the account is a test account, **true** will be returned. Otherwise, **false** will be returned.|
+**Parameters**
 
-- Example
+| Name  | Type                        | Mandatory| Description                                           |
+| -------- | ---------------------------- | ---- | ----------------------------------------------- |
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. If the account is a test account, **true** will be returned. Otherwise, **false** will be returned.|
+
+**Example**
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -290,13 +307,15 @@ isTestOsAccount(): Promise&lt;boolean&gt;
 
 Checks whether this OS account is a test account. This method uses a promise to return the result.
 
-- Return value
+**System capability**: SystemCapability.Account.OsAccount
 
-  | Type            | Description                               |
-  | :--------------- | :---------------------------------- |
-  | Promise&lt;boolean&gt; | Promise used to return the result. If the account is a test account, **true** will be returned. Otherwise, **false** will be returned.|
+**Return Value**
 
-- Example
+| Type                  | Description                                                        |
+| :--------------------- | :----------------------------------------------------------- |
+| Promise&lt;boolean&gt; | Promise used to return the result. If the account is a test account, **true** will be returned. Otherwise, **false** will be returned.|
+
+**Example**
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -313,13 +332,15 @@ isOsAccountVerified(callback: AsyncCallback&lt;boolean&gt;): void
 
 Checks whether this OS account has been verified. This method uses an asynchronous callback to return the result.
 
-- Parameters
+**System capability**: SystemCapability.Account.OsAccount
 
-  | Name  | Type                  | Mandatory| Description                              |
-  | -------- | ---------------------- | ---- | ---------------------------------- |
-  | callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. If the OS account has been verified, **true** will be returned. Otherwise, **false** will be returned.|
+**Parameters**
 
-- Example
+| Name  | Type                        | Mandatory| Description                                       |
+| -------- | ---------------------------- | ---- | ------------------------------------------- |
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. If the OS account has been verified, **true** will be returned. Otherwise, **false** will be returned.|
+
+**Example**
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -335,14 +356,16 @@ isOsAccountVerified(localId: number, callback: AsyncCallback&lt;boolean&gt;): vo
 
 Checks whether an OS account has been verified. This method uses an asynchronous callback to return the result.
 
-- Parameters
+**System capability**: SystemCapability.Account.OsAccount
 
-  | Name  | Type                  | Mandatory| Description                              |
-  | -------- | ---------------------- | ---- | ---------------------------------- |
-  | localId  | number                 | No  | ID of the target OS account.                      |
-  | callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. If the OS account has been verified, **true** will be returned. Otherwise, **false** will be returned.|
+**Parameters**
 
-- Example
+| Name  | Type                        | Mandatory| Description                                       |
+| -------- | ---------------------------- | ---- | ------------------------------------------- |
+| localId  | number                       | No  | ID of the target OS account.                         |
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. If the OS account has been verified, **true** will be returned. Otherwise, **false** will be returned.|
+
+**Example**
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -354,23 +377,25 @@ Checks whether an OS account has been verified. This method uses an asynchronous
 
 ### isOsAccountVerified
 
-isOsAccountVerified(localId: number?): Promise&lt;boolean&gt;
+isOsAccountVerified(localId?: number): Promise&lt;boolean&gt;
 
 Checks whether an OS account has been verified. This method uses a promise to return the result.
 
-- Parameters
+**System capability**: SystemCapability.Account.OsAccount
 
-  | Name | Type  | Mandatory| Description        |
-  | ------- | ------ | ---- | ------------ |
-  | localId | number | No  | ID of the target OS account.|
+**Parameters**
 
-- Return value
+| Name | Type  | Mandatory| Description              |
+| ------- | ------ | ---- | ------------------ |
+| localId | number | No  | ID of the target OS account.|
 
-  | Type            | Description                               |
-  | :--------------- | :---------------------------------- |
-  | Promise&lt;boolean&gt; | Promise used to return the result. If the OS account has been verified, **true** will be returned. Otherwise, **false** will be returned.|
+**Return Value**
 
-- Example
+| Type                  | Description                                                        |
+| :--------------------- | :----------------------------------------------------------- |
+| Promise&lt;boolean&gt; | Promise used to return the result. If the OS account has been verified, **true** will be returned. Otherwise, **false** will be returned.|
+
+**Example**
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -387,21 +412,27 @@ removeOsAccount(localId: number, callback: AsyncCallback&lt;void&gt;): void
 
 Removes an OS account. This method uses an asynchronous callback to return the result.
 
-- Parameters
+This is a system API and cannot be called by third-party applications.
 
-  | Name  | Type               | Mandatory| Description                    |
-  | -------- | ------------------- | ---- | ------------------------ |
-  | localId  | number              | Yes  | ID of the OS account to remove.            |
-  | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
-- Example
+**System capability**: SystemCapability.Account.OsAccount
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description                |
+| -------- | ------------------------- | ---- | -------------------- |
+| localId  | number                    | Yes  | ID of the OS account to remove.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.          |
+
+**Example**
 
   ```
   const accountManager = account_osAccount.getAccountManager();
   var createIocalId;
   osAccountManager.createOsAccount("testAccountName", osaccount.OsAccountType.NORMAL, (err, osAccountInfo)=>{
     createIocalId = osAccountInfo.localId;
-  )};
+  });
   accountManager.removeOsAccount(createIocalId, (err)=>{
     console.log("removeOsAccount err:" + JSON.stringify(err));
   });
@@ -413,26 +444,32 @@ removeOsAccount(localId: number): Promise&lt;void&gt;
 
 Removes an OS account. This method uses a promise to return the result.
 
-- Parameters
+This is a system API and cannot be called by third-party applications.
 
-  | Name | Type  | Mandatory| Description        |
-  | ------- | ------ | ---- | ------------ |
-  | localId | number | Yes  | ID of the OS account to remove.|
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
-- Return value
+**System capability**: SystemCapability.Account.OsAccount
 
-  | Type         | Description                               |
-  | :------------ | :---------------------------------- |
-  | Promise&lt;void&gt; | Promise used to return the result.|
+**Parameters**
 
-- Example
+| Name | Type  | Mandatory| Description                |
+| ------- | ------ | ---- | -------------------- |
+| localId | number | Yes  | ID of the OS account to remove.|
+
+**Return Value**
+
+| Type               | Description                               |
+| :------------------ | :---------------------------------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Example**
 
   ```
   const accountManager = account_osAccount.getAccountManager();
   var createIocalId;
   osAccountManager.createOsAccount("testAccountName", osaccount.OsAccountType.NORMAL, (err, osAccountInfo)=>{
     createIocalId = osAccountInfo.localId;
-  )};
+  });
   createIocalId = osAccount.localId;
   accountManager.removeOsAccount(createIocalId).then(() => {
     console.log('removeOsAccount Success');
@@ -445,21 +482,25 @@ Removes an OS account. This method uses a promise to return the result.
 
 setOsAccountConstraints(localId: number, constraints: Array&lt;string&gt;, enable: boolean,callback: AsyncCallback&lt;void&gt;): void
 
-Sets or removes constraints for an OS account. This method uses an asynchronous callback to return the result.
+Sets or removes constraints for an OS account.
 
-- Parameters
+This is a system API and cannot be called by third-party applications.
 
-  | Name     | Type               | Mandatory| Description                           |
-  | ----------- | ------------------- | ---- | ------------------------------- |
-  | localId     | number              | Yes  | ID of the target OS account.                   |
-  | [constraints](constraints)| Array&lt;string&gt;       | Yes  | List of constraints to set or remove.        |
-  | enable      | boolean             | Yes  | Set or remove constraints. The value **true** means to set constraints, and **false** means to remove constraints. |
-  | callback    | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
-- Example 
+**System capability**: SystemCapability.Account.OsAccount
 
-  Disable Wi-Fi for OS account 100.
-  
+**Parameters**
+
+| Name     | Type                     | Mandatory| Description                                        |
+| ----------- | ------------------------- | ---- | -------------------------------------------- |
+| localId     | number                    | Yes  | ID of the target OS account.                                |
+| constraints | Array&lt;string&gt;       | Yes  | List of [constraints](#constraints) to set or remove.|
+| enable      | boolean                   | Yes  | Set or remove constraints. The value **true** means to set constraints, and **false** means to remove constraints.                      |
+| callback    | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                                  |
+
+** Example**: Disable Wi-Fi for OS account 100.
+
   ```
   const accountManager = account_osAccount.getAccountManager();
   var localId = 100;
@@ -472,26 +513,30 @@ Sets or removes constraints for an OS account. This method uses an asynchronous 
 
 setOsAccountConstraints(localId: number, constraints: Array&lt;string&gt;, enable: boolean): Promise&lt;void&gt;
 
-Sets or removes constraints for an OS account. This method uses a promise to return the result.
+Sets or removes constraints for an OS account.
 
-- Parameters
+This is a system API and cannot be called by third-party applications.
 
-  | Name     | Type         | Mandatory| Description                   |
-  | ----------- | ------------- | ---- | ----------------------- |
-  | localId     | number        | Yes  | ID of the target OS account.           |
-  | [constraints](constraints)| Array&lt;string&gt; | Yes  | List of constraints to set or remove.|
-  | enable      | boolean       | Yes  | Set or remove constraints. The value **true** means to set constraints, and **false** means to remove constraints.|
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
-- Return value
+**System capability**: SystemCapability.Account.OsAccount
 
-  | Type         | Description                               |
-  | :------------ | :---------------------------------- |
-  | Promise&lt;void&gt; | Promise used to return the result.|
+**Parameters**
 
-- Example 
+| Name     | Type               | Mandatory| Description                                        |
+| ----------- | ------------------- | ---- | -------------------------------------------- |
+| localId     | number              | Yes  | ID of the target OS account.                                |
+| constraints | Array&lt;string&gt; | Yes  | List of [constraints](#constraints) to set or remove.|
+| enable      | boolean             | Yes  | Set or remove constraints. The value **true** means to set constraints, and **false** means to remove constraints.                    |
 
-  Remove the constraint on Wi-Fi for OS account 100.
-  
+**Return Value**
+
+| Type               | Description                               |
+| :------------------ | :---------------------------------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Example**: Remote the constraint on the use of Wi-Fi for OS account 100.
+
   ```
   const accountManager = account_osAccount.getAccountManager();
   var localId = 100;
@@ -508,18 +553,20 @@ setOsAccountName(localId: number, localName: string, callback: AsyncCallback&lt;
 
 Sets a name for an OS account. This method uses an asynchronous callback to return the result.
 
-- Parameters
+This is a system API and cannot be called by third-party applications.
 
-  | Name   | Type               | Mandatory| Description                    |
-  | :-------- | ------------------- | ---- | ------------------------ |
-  | localId   | number              | Yes  | ID of the target OS account.            |
-  | localName | string              | Yes  | Account name to set. |
-  | callback  | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
+**System capability**: SystemCapability.Account.OsAccount
 
-- Example 
+**Parameters**
 
-  Set the name of OS account 100 to **demoName**.
-  
+| Name   | Type                     | Mandatory| Description        |
+| :-------- | ------------------------- | ---- | ------------ |
+| localId   | number                    | Yes  | ID of the target OS account.|
+| localName | string                    | Yes  | Account name to set.    |
+| callback  | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.  |
+
+**Example**: Set the name of OS account 100 to **demoName**.
+
   ```
   const accountManager = account_osAccount.getAccountManager();
   var localId = 100;
@@ -535,23 +582,25 @@ setOsAccountName(localId: number, localName: string): Promise&lt;void&gt;
 
 Sets a name for an OS account. This method uses a promise to return the result.
 
-- Parameters
+This is a system API and cannot be called by third-party applications.
 
-  | Name   | Type  | Mandatory| Description                   |
-  | --------- | ------ | ---- | ----------------------- |
-  | localId   | number | Yes  | ID of the target OS account. |
-  | localName | string | Yes  | Account name to set.|
+**System capability**: SystemCapability.Account.OsAccount
 
-- Return value
+**Parameters**
 
-  | Type         | Description                               |
-  | :------------ | :---------------------------------- |
-  | Promise&lt;void&gt; | Promise used to return the result.|
+| Name   | Type  | Mandatory| Description        |
+| --------- | ------ | ---- | ------------ |
+| localId   | number | Yes  | ID of the target OS account.|
+| localName | string | Yes  | Account name to set.    |
 
-- Example 
+**Return Value**
 
-  Set the name of OS account 100 to **demoName**.
-  
+| Type               | Description                               |
+| :------------------ | :---------------------------------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Example**: Set the name of OS account 100 to **demoName**.
+
   ```
   const accountManager = account_osAccount.getAccountManager();
   var localId = 100;
@@ -569,13 +618,17 @@ getCreatedOsAccountsCount(callback: AsyncCallback&lt;number&gt;): void
 
 Obtains the number of OS accounts created. This method uses an asynchronous callback to return the result.
 
-- Parameters
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
-  | Name  | Type                 | Mandatory| Description                          |
-  | -------- | --------------------- | ---- | ------------------------------ |
-  | callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the number of OS accounts created.|
+**System capability**: SystemCapability.Account.OsAccount
 
-- Example
+**Parameters**
+
+| Name  | Type                       | Mandatory| Description                                      |
+| -------- | --------------------------- | ---- | ------------------------------------------ |
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the number of OS accounts created.|
+
+**Example**
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -591,13 +644,17 @@ getCreatedOsAccountsCount(): Promise&lt;number&gt;
 
 Obtains the number of OS accounts created. This method uses a promise to return the result.
 
-- Return value
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
-  | Type           | Description                               |
-  | :-------------- | :---------------------------------- |
-  | Promise&lt;number&gt; | Promise used to return the number of OS accounts created.|
+**System capability**: SystemCapability.Account.OsAccount
 
-- Example
+**Return Value**
+
+| Type                 | Description                                                        |
+| :-------------------- | :----------------------------------------------------------- |
+| Promise&lt;number&gt; | Promise used to return the number of OS accounts created.|
+
+**Example**
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -614,13 +671,15 @@ getOsAccountLocalIdFromProcess(callback: AsyncCallback&lt;number&gt;): void
 
 Obtains the ID of the OS account to which the current process belongs. This method uses an asynchronous callback to return the result.
 
-- Parameters
+**System capability**: SystemCapability.Account.OsAccount
 
-  | Name  | Type                 | Mandatory| Description                                     |
-  | -------- | --------------------- | ---- | ----------------------------------------- |
-  | callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the account ID obtained.|
+**Parameters**
 
-- Example
+| Name  | Type                       | Mandatory| Description                                              |
+| -------- | --------------------------- | ---- | -------------------------------------------------- |
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the account ID obtained.|
+
+**Example**
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -636,13 +695,15 @@ getOsAccountLocalIdFromProcess(): Promise&lt;number&gt;
 
 Obtains the ID of the OS account to which the current process belongs. This method uses a promise to return the result.
 
-- Return value
+**System capability**: SystemCapability.Account.OsAccount
 
-  | Type           | Description                               |
-  | :-------------- | :---------------------------------- |
-  | Promise&lt;number&gt; | Promise used to return the account ID obtained.|
+**Return Value**
 
-- Example
+| Type                 | Description                                                        |
+| :-------------------- | :----------------------------------------------------------- |
+| Promise&lt;number&gt; | Promise used to return the account ID obtained.|
+
+**Example**
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -659,17 +720,17 @@ getOsAccountLocalIdFromUid(uid: number, callback: AsyncCallback&lt;number&gt;): 
 
 Obtains the OS account ID based on the process UID. This method uses an asynchronous callback to return the result.
 
-- Parameters
+**System capability**: SystemCapability.Account.OsAccount
 
-  | Name  | Type                 | Mandatory| Description                                   |
-  | -------- | --------------------- | ---- | --------------------------------------- |
-  | uid      | number                | Yes  | Process UID.|
-  | callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the OS account ID obtained.|
+**Parameters**
 
-- Example 
+| Name  | Type                       | Mandatory| Description                                         |
+| -------- | --------------------------- | ---- | --------------------------------------------- |
+| uid      | number                      | Yes  | Process UID.                                    |
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the OS account ID obtained.|
 
-  Obtain the ID of the OS account whose process UID is **12345678**.
-  
+**Example**: Obtain the ID of the OS account whose process UID is **12345678**.
+
   ```
   const accountManager = account_osAccount.getAccountManager();
   let uid = 12345678;
@@ -685,22 +746,22 @@ getOsAccountLocalIdFromUid(uid: number): Promise&lt;number&gt;
 
 Obtains the OS account ID based on the process UID. This method uses a promise to return the result.
 
-- Parameters
+**System capability**: SystemCapability.Account.OsAccount
 
-  | Name| Type  | Mandatory| Description         |
-  | ------ | ------ | ---- | ------------- |
-  | uid    | number | Yes  | Process UID.|
+**Parameters**
 
-- Return value
+| Name| Type  | Mandatory| Description     |
+| ------ | ------ | ---- | --------- |
+| uid    | number | Yes  | Process UID.|
 
-  | Type           | Description                               |
-  | :-------------- | :---------------------------------- |
-  | Promise&lt;number&gt; | Promise used to return the OS account ID obtained.|
+**Return Value**
 
-- Example 
+| Type                 | Description                                                        |
+| :-------------------- | :----------------------------------------------------------- |
+| Promise&lt;number&gt; | Promise used to return the OS account ID obtained.|
 
-  Obtain the ID of the OS account whose process UID is **12345678**.
-  
+**Example**: Obtain the ID of the OS account whose process UID is **12345678**.
+
   ```
   const accountManager = account_osAccount.getAccountManager();
   let uid = 12345678;
@@ -711,20 +772,24 @@ Obtains the OS account ID based on the process UID. This method uses a promise t
   });
   ```
 
-### getOsAccountLocalIdFromDomain
+### getOsAccountLocalIdFromDomain<sup>8+</sup>
 
 getOsAccountLocalIdFromDomain(domainInfo: DomainAccountInfo, callback: AsyncCallback&lt;number&gt;): void
 
 Obtains the OS account ID based on domain account information. This method uses an asynchronous callback to return the result.
 
-- Parameters
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
-  | Name  | Type                 | Mandatory| Description                                   |
-  | -------- | --------------------- | ---- | --------------------------------------- |
-  | domainInfo | [DomainAccountInfo](#domainaccountinfo)  | Yes  | Domain account information. |
-  | callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the ID of the OS account associated with the domain account.|
+**System capability**: SystemCapability.Account.OsAccount
 
-- Example
+**Parameters**
+
+| Name    | Type                                   | Mandatory| Description                                        |
+| ---------- | --------------------------------------- | ---- | -------------------------------------------- |
+| domainInfo | [DomainAccountInfo](#domainaccountinfo) | Yes  | Domain account information.                                |
+| callback   | AsyncCallback&lt;number&gt;             | Yes  | Callback used to return the ID of the OS account associated with the domain account.|
+
+**Example**
 
   ```
   var domainInfo = {domain: "testDomain", accountName: "testAccountName"};
@@ -735,25 +800,29 @@ Obtains the OS account ID based on domain account information. This method uses 
   });
   ```
 
-### getOsAccountLocalIdFromDomain
+### getOsAccountLocalIdFromDomain<sup>8+</sup>
 
 getOsAccountLocalIdFromDomain(domainInfo: DomainAccountInfo): Promise&lt;number&gt;
 
 Obtains the OS account ID based on domain account information. This method uses a promise to return the result.
 
-- Parameters
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
-  | Name| Type  | Mandatory| Description         |
-  | ------ | ------ | ---- | ------------- |
-  | domainInfo    | [DomainAccountInfo](#domainaccountinfo) | Yes  | Domain account information.|
+**System capability**: SystemCapability.Account.OsAccount
 
-- Return value
+**Parameters**
 
-  | Type           | Description                               |
-  | :-------------- | :---------------------------------- |
-  | Promise&lt;number&gt; | Promise used to return the ID of the OS account associated with the domain account.|
+| Name    | Type                                   | Mandatory| Description        |
+| ---------- | --------------------------------------- | ---- | ------------ |
+| domainInfo | [DomainAccountInfo](#domainaccountinfo) | Yes  | Domain account information.|
 
-- Example
+**Return Value**
+
+| Type                 | Description                                                        |
+| :-------------------- | :----------------------------------------------------------- |
+| Promise&lt;number&gt; | Promise used to return the ID of the OS account associated with the domain account.|
+
+**Example**
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -771,13 +840,17 @@ queryMaxOsAccountNumber(callback: AsyncCallback&lt;number&gt;): void
 
 Obtains the maximum number of OS accounts that can be created. This method uses an asynchronous callback to return the result.
 
-- Parameters
+This is a system API and cannot be called by third-party applications.
 
-  | Name  | Type                 | Mandatory| Description                              |
-  | -------- | --------------------- | ---- | ---------------------------------- |
-  | callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the maximum number of OS accounts that can be created.|
+**System capability**: SystemCapability.Account.OsAccount
 
-- Example
+**Parameters**
+
+| Name  | Type                       | Mandatory| Description                                            |
+| -------- | --------------------------- | ---- | ------------------------------------------------ |
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the maximum number of OS accounts that can be created.|
+
+**Example**
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -793,13 +866,17 @@ queryMaxOsAccountNumber(): Promise&lt;number&gt;
 
 Obtains the maximum number of OS accounts that can be created. This method uses a promise to return the result.
 
-- Return value
+This is a system API and cannot be called by third-party applications.
 
-  | Type           | Description                               |
-  | :-------------- | :---------------------------------- |
-  | Promise&lt;number&gt; | Promise used to return the maximum number of OS accounts that can be created.|
+**System capability**: SystemCapability.Account.OsAccount
 
-- Example
+**Return Value**
+
+| Type                 | Description                                                        |
+| :-------------------- | :----------------------------------------------------------- |
+| Promise&lt;number&gt; | Promise used to return the maximum number of OS accounts that can be created.|
+
+**Example**
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -814,19 +891,21 @@ Obtains the maximum number of OS accounts that can be created. This method uses 
 
 getOsAccountAllConstraints(localId: number, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
-Obtains all constraints of an OS account. This method uses an asynchronous callback to return the result.
+Obtains all constraints enabled for an OS account. This method uses an asynchronous callback to return the result.
 
-- Parameters
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
-  | Name  | Type                        | Mandatory| Description                              |
-  | -------- | ---------------------------- | ---- | ---------------------------------- |
-  | localId  | number                       | Yes  | ID of the target OS account.                      |
-  | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes  | Callback used to return all constraints obtained.|
+**System capability**: SystemCapability.Account.OsAccount
 
-- Example 
+**Parameters**
 
-  Obtain all constraints of OS account 100.
-  
+| Name  | Type                                    | Mandatory| Description                                                        |
+| -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
+| localId  | number                                   | Yes  | ID of the target OS account.                                                |
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes  | Callback used to return all [constraints](#constraints) obtained.|
+
+** Example**: Obtain all constraints of OS account 100.
+
   ```
   const accountManager = account_osAccount.getAccountManager();
   var localId = 100;
@@ -840,24 +919,26 @@ Obtains all constraints of an OS account. This method uses an asynchronous callb
 
 getOsAccountAllConstraints(localId: number): Promise&lt;Array&lt;string&gt;&gt;
 
-Obtains all constraints of an OS account. This method uses a promise to return the result.
+Obtains all constraints enabled for an OS account. This method uses a promise to return the result.
 
-- Parameters
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
-  | Name | Type  | Mandatory| Description        |
-  | ------- | ------ | ---- | ------------ |
-  | localId | number | Yes  | ID of the target OS account.|
+**System capability**: SystemCapability.Account.OsAccount
 
-- Return value
+**Parameters**
 
-  | Type                  | Description                               |
-  | :--------------------- | :---------------------------------- |
-  | Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the constraints obtained.|
+| Name | Type  | Mandatory| Description        |
+| ------- | ------ | ---- | ------------ |
+| localId | number | Yes  | ID of the target OS account.|
 
-- Example 
+**Return Value**
 
-  Obtain all constraints of OS account 100.
-  
+| Type                              | Description                                                        |
+| :--------------------------------- | :----------------------------------------------------------- |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the [constraints](#constraints) obtained.|
+
+** Example**: Obtain all constraints of OS account 100.
+
   ```
   const accountManager = account_osAccount.getAccountManager();
   var localId = 100;
@@ -874,13 +955,17 @@ queryAllCreatedOsAccounts(callback: AsyncCallback&lt;Array&lt;OsAccountInfo&gt;&
 
 Obtains information about all the OS accounts created. This method uses an asynchronous callback to return the result.
 
-- Parameters
+This is a system API and cannot be called by third-party applications.
 
-  | Name  | Type                               | Mandatory| Description                            |
-  | -------- | ----------------------------------- | ---- | -------------------------------- |
-  | callback | AsyncCallback&lt;Array&lt;[OsAccountInfo](#osaccountinfo)&gt;&gt; | Yes  | Callback used to return information about OS accounts created.|
+**System capability**: SystemCapability.Account.OsAccount
 
-- Example
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                              |
+| -------- | ------------------------------------------------------------ | ---- | -------------------------------------------------- |
+| callback | AsyncCallback&lt;Array&lt;[OsAccountInfo](#osaccountinfo)&gt;&gt; | Yes  | Callback used to return information about OS accounts created.|
+
+**Example**
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -896,13 +981,17 @@ queryAllCreatedOsAccounts(): Promise&lt;Array&lt;OsAccountInfo&gt;&gt;
 
 Obtains information about all the OS accounts created. This method uses a promise to return the result.
 
-- Return value
+This is a system API and cannot be called by third-party applications.
 
-  | Type                         | Description                               |
-  | :---------------------------- | :---------------------------------- |
-  | Promise&lt;Array&lt;[OsAccountInfo](#osaccountinfo)&gt;&gt; | Promise used to return information about OS accounts created.|
+**System capability**: SystemCapability.Account.OsAccount
 
-- Example
+**Return Value**
+
+| Type                                                       | Description                                                        |
+| :---------------------------------------------------------- | :----------------------------------------------------------- |
+| Promise&lt;Array&lt;[OsAccountInfo](#osaccountinfo)&gt;&gt; | Promise used to return information about OS accounts created.|
+
+**Example**
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -913,19 +1002,21 @@ Obtains information about all the OS accounts created. This method uses a promis
   });
   ```
 
-### queryActivatedOsAccountIds
+### queryActivatedOsAccountIds<sup>8+</sup>
 
 queryActivatedOsAccountIds(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
 Obtains information about all activated OS accounts. This method uses an asynchronous callback to return the result.
 
-- Parameters
+**System capability**: SystemCapability.Account.OsAccount
 
-  | Name  | Type                               | Mandatory| Description                            |
-  | -------- | ----------------------------------- | ---- | -------------------------------- |
-  | callback | AsyncCallback&lt;Array&lt;number&gt;&gt; | Yes  | Callback used to return information about activated OS accounts.|
+**Parameters**
 
-- Example
+| Name  | Type                                    | Mandatory| Description                                                  |
+| -------- | ---------------------------------------- | ---- | ------------------------------------------------------ |
+| callback | AsyncCallback&lt;Array&lt;number&gt;&gt; | Yes  | Callback used to return information about activated OS accounts.|
+
+**Example**
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -938,19 +1029,21 @@ Obtains information about all activated OS accounts. This method uses an asynchr
   });
   ```
 
-### queryActivatedOsAccountIds
+### queryActivatedOsAccountIds<sup>8+</sup>
 
 queryActivatedOsAccountIds(): Promise&lt;Array&lt;number&gt;&gt;
 
 Obtains information about all activated OS accounts. This method uses a promise to return the result.
 
-- Return value
+**System capability**: SystemCapability.Account.OsAccount
 
-  | Type                         | Description                               |
-  | :---------------------------- | :---------------------------------- |
-  | Promise&lt;Array&lt;number&gt;&gt; | Promise used to return information about activated OS accounts.|
+**Return Value**
 
-- Example
+| Type                              | Description                                                        |
+| :--------------------------------- | :----------------------------------------------------------- |
+| Promise&lt;Array&lt;number&gt;&gt; | Promise used to return information about activated OS accounts.|
+
+**Example**
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -967,15 +1060,21 @@ createOsAccount(localName: string, type: OsAccountType, callback: AsyncCallback&
 
 Creates an OS account. This method uses an asynchronous callback to return the result.
 
-- Parameters
+This is a system API and cannot be called by third-party applications.
 
-  | Name   | Type                        | Mandatory| Description                |
-  | :-------- | ---------------------------- | ---- | -------------------- |
-  | localName | string                       | Yes  | Name of the OS account to create.      |
-  | type      | [OsAccountType](#osaccounttype)  | Yes  | Type of the OS account to create.    |
-  | callback  | AsyncCallback&lt;[OsAccountInfo](#osaccountinfo)&gt; | Yes  | Callback used to return the OS account created.|
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
-- Example
+**System capability**: SystemCapability.Account.OsAccount
+
+**Parameters**
+
+| Name   | Type                                                | Mandatory| Description                                      |
+| :-------- | ---------------------------------------------------- | ---- | ------------------------------------------ |
+| localName | string                                               | Yes  | Name of the OS account to create.                    |
+| type      | [OsAccountType](#osaccounttype)                      | Yes  | Type of the OS account to create.                    |
+| callback  | AsyncCallback&lt;[OsAccountInfo](#osaccountinfo)&gt; | Yes  | Callback used to return the OS account created.|
+
+**Example**
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -991,20 +1090,26 @@ createOsAccount(localName: string, type: OsAccountType): Promise&lt;OsAccountInf
 
 Creates an OS account. This method uses a promise to return the result.
 
-- Parameters
+This is a system API and cannot be called by third-party applications.
 
-  | Name   | Type         | Mandatory| Description            |
-  | --------- | ------------- | ---- | ---------------- |
-  | localName | string        | Yes  | Name of the OS account to create.|
-  | type      | [OsAccountType](#osaccounttype) | Yes  | Type of the OS account to create.|
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
-- Return value
+**System capability**: SystemCapability.Account.OsAccount
 
-  | Type                  | Description                               |
-  | :--------------------- | :---------------------------------- |
-  | Promise&lt;[OsAccountInfo](#osaccountinfo)&gt; | Promise used to return the OS account created.|
+**Parameters**
 
-- Example
+| Name   | Type                           | Mandatory| Description                  |
+| --------- | ------------------------------- | ---- | ---------------------- |
+| localName | string                          | Yes  | Name of the OS account to create.|
+| type      | [OsAccountType](#osaccounttype) | Yes  | Type of the OS account to create.|
+
+**Return Value**
+
+| Type                                          | Description                                                        |
+| :--------------------------------------------- | :----------------------------------------------------------- |
+| Promise&lt;[OsAccountInfo](#osaccountinfo)&gt; | Promise used to return the OS account created.|
+
+**Example**
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -1015,21 +1120,27 @@ Creates an OS account. This method uses a promise to return the result.
   });
   ```
 
-### createOsAccountForDomain
+### createOsAccountForDomain<sup>8+</sup>
 
 createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo, callback: AsyncCallback&lt;OsAccountInfo&gt;): void
 
 Creates an OS account and associates it with the specified domain account. This method uses an asynchronous callback to return the result.
 
-- Parameters
+This is a system API and cannot be called by third-party applications.
 
-  | Name   | Type                        | Mandatory| Description                |
-  | :-------- | ---------------------------- | ---- | -------------------- |
-  | type      | [OsAccountType](#osaccounttype) | Yes  | Type of the OS account to create.    |
-  | domainInfo | [DomainAccountInfo](#domainaccountinfo) | Yes  | Domain account information.    |
-  | callback  | AsyncCallback&lt;[OsAccountInfo](#osaccountinfo)&gt; | Yes  | Callback used to return the OS account created.|
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
-- Example
+**System capability**: SystemCapability.Account.OsAccount
+
+**Parameters**
+
+| Name    | Type                                                | Mandatory| Description                                      |
+| :--------- | ---------------------------------------------------- | ---- | ------------------------------------------ |
+| type       | [OsAccountType](#osaccounttype)                      | Yes  | Type of the OS account to create.                    |
+| domainInfo | [DomainAccountInfo](#domainaccountinfo)              | Yes  | Domain account information.                              |
+| callback   | AsyncCallback&lt;[OsAccountInfo](#osaccountinfo)&gt; | Yes  | Callback used to return the OS account created.|
+
+**Example**
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -1040,26 +1151,32 @@ Creates an OS account and associates it with the specified domain account. This 
   });
   ```
 
-### createOsAccountForDomain
+### createOsAccountForDomain<sup>8+</sup>
 
 createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo): Promise&lt;OsAccountInfo&gt;
 
 Creates an OS account and associates it with the specified domain account. This method uses a promise to return the result.
 
-- Parameters
+This is a system API and cannot be called by third-party applications.
 
-  | Name   | Type         | Mandatory| Description            |
-  | --------- | ------------- | ---- | ---------------- |
-  | type      | [OsAccountType](#osaccounttype) | Yes  | Type of the OS account to create.|
-  | domainInfo | [DomainAccountInfo](#domainaccountinfo) | Yes  | Domain account information.|
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
-- Return value
+**System capability**: SystemCapability.Account.OsAccount
 
-  | Type                  | Description                               |
-  | :--------------------- | :---------------------------------- |
-  | Promise&lt;[OsAccountInfo](#osaccountinfo)&gt; | Promise used to return the OS account created.|
+**Parameters**
 
-- Example
+| Name    | Type                                   | Mandatory| Description                  |
+| ---------- | --------------------------------------- | ---- | ---------------------- |
+| type       | [OsAccountType](#osaccounttype)         | Yes  | Type of the OS account to create.|
+| domainInfo | [DomainAccountInfo](#domainaccountinfo) | Yes  | Domain account information.          |
+
+**Return Value**
+
+| Type                                          | Description                                                        |
+| :--------------------------------------------- | :----------------------------------------------------------- |
+| Promise&lt;[OsAccountInfo](#osaccountinfo)&gt; | Promise used to return the OS account created.|
+
+**Example**
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -1077,13 +1194,17 @@ queryCurrentOsAccount(callback: AsyncCallback&lt;OsAccountInfo&gt;): void
 
 Obtains information about the OS account to which the current process belongs. This method uses an asynchronous callback to return the result.
 
-- Parameters
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
-  | Name  | Type                        | Mandatory| Description                      |
-  | -------- | ---------------------------- | ---- | -------------------------- |
-  | callback | AsyncCallback&lt;[OsAccountInfo](#osaccountinfo)&gt; | Yes  | Callback used to return information about the OS account obtained.|
+**System capability**: SystemCapability.Account.OsAccount
 
-- Example
+**Parameters**
+
+| Name  | Type                                                | Mandatory| Description                                          |
+| -------- | ---------------------------------------------------- | ---- | ---------------------------------------------- |
+| callback | AsyncCallback&lt;[OsAccountInfo](#osaccountinfo)&gt; | Yes  | Callback used to return information about the OS account obtained.|
+
+**Example**
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -1099,13 +1220,17 @@ queryCurrentOsAccount(): Promise&lt;OsAccountInfo&gt;
 
 Obtains information about the OS account to which the current process belongs. This method uses a promise to return the result.
 
-- Return value
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
-  | Type                  | Description                               |
-  | :--------------------- | :---------------------------------- |
-  | Promise&lt;[OsAccountInfo](#osaccountinfo)&gt; | Promise used to return information about the OS account obtained.|
+**System capability**: SystemCapability.Account.OsAccount
 
-- Example
+**Return Value**
+
+| Type                                          | Description                                                        |
+| :--------------------------------------------- | :----------------------------------------------------------- |
+| Promise&lt;[OsAccountInfo](#osaccountinfo)&gt; | Promise used to return information about the OS account obtained.|
+
+**Example**
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -1122,17 +1247,21 @@ queryOsAccountById(localId: number, callback: AsyncCallback&lt;OsAccountInfo&gt;
 
 Obtains information about an OS account. This method uses an asynchronous callback to return the result.
 
-- Parameters
+This is a system API and cannot be called by third-party applications.
 
-  | Name  | Type                        | Mandatory| Description                      |
-  | -------- | ---------------------------- | ---- | -------------------------- |
-  | localId | number | Yes  | ID of the target OS account.|
-  | callback | AsyncCallback&lt;[OsAccountInfo](#osaccountinfo)&gt; | Yes  | Callback used to return the OS account information obtained.|
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS and ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION
 
-- Example 
+**System capability**: SystemCapability.Account.OsAccount
 
-  Query information about OS account 100.
-  
+**Parameters**
+
+| Name  | Type                                                | Mandatory| Description                                    |
+| -------- | ---------------------------------------------------- | ---- | ---------------------------------------- |
+| localId  | number                                               | Yes  | ID of the target OS account.                    |
+| callback | AsyncCallback&lt;[OsAccountInfo](#osaccountinfo)&gt; | Yes  | Callback used to return the OS account information obtained.|
+
+**Example**: Query information about OS account 100.
+
   ```
   const accountManager = account_osAccount.getAccountManager();
   var localId = 100;
@@ -1148,22 +1277,26 @@ queryOsAccountById(localId: number): Promise&lt;OsAccountInfo&gt;
 
 Obtains information about an OS account. This method uses a promise to return the result.
 
-- Parameters
+This is a system API and cannot be called by third-party applications.
 
-  | Name  | Type                        | Mandatory| Description                      |
-  | -------- | ---------------------------- | ---- | -------------------------- |
-  | localId | number | Yes  | ID of the target OS account.|
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS and ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION
 
-- Return value
+**System capability**: SystemCapability.Account.OsAccount
 
-  | Type                  | Description                               |
-  | :--------------------- | :---------------------------------- |
-  | Promise&lt;[OsAccountInfo](#osaccountinfo)&gt; | Promise used to return the OS account information obtained.|
+**Parameters**
 
-- Example 
+| Name | Type  | Mandatory| Description                |
+| ------- | ------ | ---- | -------------------- |
+| localId | number | Yes  | ID of the target OS account.|
 
-  Query information about OS account 100.
-  
+**Return Value**
+
+| Type                                          | Description                                                        |
+| :--------------------------------------------- | :----------------------------------------------------------- |
+| Promise&lt;[OsAccountInfo](#osaccountinfo)&gt; | Promise used to return the OS account information obtained.|
+
+**Example**: Query information about OS account 100.
+
   ```
   const accountManager = account_osAccount.getAccountManager();
   var localId = 100;
@@ -1180,13 +1313,15 @@ getOsAccountTypeFromProcess(callback: AsyncCallback&lt;OsAccountType&gt;): void
 
 Obtains the type of the OS account to which the current process belongs. This method uses an asynchronous callback to return the result.
 
-- Parameters
+**System capability**: SystemCapability.Account.OsAccount
 
-  | Name  | Type                        | Mandatory| Description                                    |
-  | -------- | ---------------------------- | ---- | ---------------------------------------- |
-  | callback | AsyncCallback&lt;[OsAccountType](#osaccounttype)&gt; | Yes  | Callback used to return the OS account type.|
+**Parameters**
 
-- Example
+| Name  | Type                                                | Mandatory| Description                                                |
+| -------- | ---------------------------------------------------- | ---- | ---------------------------------------------------- |
+| callback | AsyncCallback&lt;[OsAccountType](#osaccounttype)&gt; | Yes  | Callback used to return the OS account type.|
+
+**Example**
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -1202,13 +1337,15 @@ getOsAccountTypeFromProcess(): Promise&lt;OsAccountType&gt;
 
 Obtains the type of the OS account to which the current process belongs. This method uses a promise to return the result.
 
-- Return value
+**System capability**: SystemCapability.Account.OsAccount
 
-  | Type                  | Description                               |
-  | :--------------------- | :---------------------------------- |
-  | Promise&lt;[OsAccountType](#osaccounttype)&gt; | Promise used to return the OS account type.|
+**Return Value**
 
-- Example
+| Type                                          | Description                                                        |
+| :--------------------------------------------- | :----------------------------------------------------------- |
+| Promise&lt;[OsAccountType](#osaccounttype)&gt; | Promise used to return the OS account type.|
+
+**Example**
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -1225,13 +1362,17 @@ getDistributedVirtualDeviceId(callback: AsyncCallback&lt;string&gt;): void
 
 Obtains the ID of this distributed virtual device. This method uses an asynchronous callback to return the result.
 
-- Parameters
+**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
-  | Name  | Type                 | Mandatory| Description                        |
-  | -------- | --------------------- | ---- | ---------------------------- |
-  | callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the device ID obtained.|
+**System capability**: SystemCapability.Account.OsAccount
 
-- Example
+**Parameters**
+
+| Name  | Type                       | Mandatory| Description                                |
+| -------- | --------------------------- | ---- | ------------------------------------ |
+| callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the device ID obtained.|
+
+**Example**
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -1247,13 +1388,17 @@ getDistributedVirtualDeviceId(): Promise&lt;string&gt;
 
 Obtains the ID of this distributed virtual device. This method uses a promise to return the result.
 
-- Return value
+**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
-  | Type           | Description                               |
-  | :-------------- | :---------------------------------- |
-  | Promise&lt;string&gt; | Promise used to return the device ID obtained.|
+**System capability**: SystemCapability.Account.OsAccount
 
-- Example
+**Return Value**
+
+| Type                 | Description                                                        |
+| :-------------------- | :----------------------------------------------------------- |
+| Promise&lt;string&gt; | Promise used to return the device ID obtained.|
+
+**Example**
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -1270,17 +1415,21 @@ getOsAccountProfilePhoto(localId: number, callback: AsyncCallback&lt;string&gt;)
 
 Obtains the profile photo of an OS account. This method uses an asynchronous callback to return the result.
 
-- Parameters
+This is a system API and cannot be called by third-party applications.
 
-  | Name  | Type                 | Mandatory| Description                    |
-  | -------- | --------------------- | ---- | ------------------------ |
-  | localId  | number                | Yes  | ID of the target OS account.            |
-  | callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the profile photo obtained.|
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
-- Example 
+**System capability**: SystemCapability.Account.OsAccount
 
-  Obtain the profile photo of OS account 100.
-  
+**Parameters**
+
+| Name  | Type                       | Mandatory| Description                                    |
+| -------- | --------------------------- | ---- | ---------------------------------------- |
+| localId  | number                      | Yes  | ID of the target OS account.                            |
+| callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the profile photo obtained.|
+
+**Example**: Obtain the profile photo of OS account 100.
+
   ```
   const accountManager = account_osAccount.getAccountManager();
   var localId = 100;
@@ -1296,22 +1445,26 @@ getOsAccountProfilePhoto(localId: number): Promise&lt;string&gt;
 
 Obtains the profile photo of an OS account. This method uses a promise to return the result.
 
-- Parameters
+This is a system API and cannot be called by third-party applications.
 
-  | Name | Type  | Mandatory| Description        |
-  | ------- | ------ | ---- | ------------ |
-  | localId | number | Yes  | ID of the target OS account.|
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
-- Return value
+**System capability**: SystemCapability.Account.OsAccount
 
-  | Type           | Description                               |
-  | :-------------- | :---------------------------------- |
-  | Promise&lt;string&gt; | Promise used to return the profile photo obtained.|
+**Parameters**
 
-- Example 
+| Name | Type  | Mandatory| Description        |
+| ------- | ------ | ---- | ------------ |
+| localId | number | Yes  | ID of the target OS account.|
 
-  Obtain the profile photo of OS account 100.
-  
+**Return Value**
+
+| Type                 | Description                                                        |
+| :-------------------- | :----------------------------------------------------------- |
+| Promise&lt;string&gt; | Promise used to return the profile photo obtained.|
+
+**Example**: Obtain the profile photo of OS account 100.
+
   ```
   const accountManager = account_osAccount.getAccountManager();
   var localId = 100;
@@ -1328,18 +1481,22 @@ setOsAccountProfilePhoto(localId: number, photo: string, callback: AsyncCallback
 
 Sets a profile photo for an OS account. This method uses an asynchronous callback to return the result.
 
-- Parameters
+This is a system API and cannot be called by third-party applications.
 
-  | Name  | Type               | Mandatory| Description                    |
-  | -------- | ------------------- | ---- | ------------------------ |
-  | localId  | number              | Yes  | ID of the target OS account.            |
-  | photo    | string              | Yes  | Profile photo information.              |
-  | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
-- Example 
+**System capability**: SystemCapability.Account.OsAccount
 
-  Set a profile photo for OS account 100.
-  
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description        |
+| -------- | ------------------------- | ---- | ------------ |
+| localId  | number                    | Yes  | ID of the target OS account.|
+| photo    | string                    | Yes  | Profile photo information.  |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.  |
+
+**Example**: Set a profile photo for OS account 100.
+
   ```
   const accountManager = account_osAccount.getAccountManager();
   var localId = 100;
@@ -1358,23 +1515,27 @@ setOsAccountProfilePhoto(localId: number, photo: string): Promise&lt;void&gt;
 
 Sets a profile photo for an OS account. This method uses a promise to return the result.
 
-- Parameters
+This is a system API and cannot be called by third-party applications.
 
-  | Name | Type  | Mandatory| Description        |
-  | ------- | ------ | ---- | ------------ |
-  | localId | number | Yes  | ID of the target OS account.|
-  | photo   | string | Yes  | Profile photo information.  |
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
-- Return value
+**System capability**: SystemCapability.Account.OsAccount
 
-  | Type         | Description                               |
-  | :------------ | :---------------------------------- |
-  | Promise&lt;void&gt; | Promise used to return the result.|
+**Parameters**
 
-- Example 
+| Name | Type  | Mandatory| Description        |
+| ------- | ------ | ---- | ------------ |
+| localId | number | Yes  | ID of the target OS account.|
+| photo   | string | Yes  | Profile photo information.  |
 
-  Set a profile photo for OS account 100.
-  
+**Return Value**
+
+| Type               | Description                               |
+| :------------------ | :---------------------------------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Example**: Set a profile photo for OS account 100.
+
   ```
   const accountManager = account_osAccount.getAccountManager();
   var localId = 100;
@@ -1389,23 +1550,23 @@ Sets a profile photo for an OS account. This method uses a promise to return the
   });
   ```
 
-### getOsAccountLocalIdBySerialNumber
+### getOsAccountLocalIdBySerialNumber<sup>8+</sup>
 
 getOsAccountLocalIdBySerialNumber(serialNumber: number, callback: AsyncCallback&lt;number&gt;): void
 
 Obtains the OS account ID based on the SN. This method uses an asynchronous callback to return the result.
 
-- Parameters
+**System capability**: SystemCapability.Account.OsAccount
 
-  | Name      | Type                 | Mandatory| Description                          |
-  | ------------ | --------------------- | ---- | ------------------------------ |
-  | serialNumber | number                | Yes  | Account SN.                    |
-  | callback     | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the OS account ID obtained.|
+**Parameters**
 
-- Example 
+| Name      | Type                       | Mandatory| Description                                            |
+| ------------ | --------------------------- | ---- | ------------------------------------------------ |
+| serialNumber | number                      | Yes  | Account SN.                                      |
+| callback     | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the OS account ID obtained.|
 
-  Obtain the ID of the OS account whose SN is 12345.
-  
+**Example**: Obtain the ID of the OS account whose SN is **12345**.
+
   ```
   const accountManager = account_osAccount.getAccountManager();
   var serialNumber = 12345;
@@ -1415,28 +1576,28 @@ Obtains the OS account ID based on the SN. This method uses an asynchronous call
   });
   ```
 
-### getOsAccountLocalIdBySerialNumber
+### getOsAccountLocalIdBySerialNumber<sup>8+</sup>
 
 getOsAccountLocalIdBySerialNumber(serialNumber: number): Promise&lt;number&gt;
 
 Obtains the OS account ID based on the SN. This method uses a promise to return the result.
 
-- Parameters
+**System capability**: SystemCapability.Account.OsAccount
 
-  | Name      | Type  | Mandatory| Description      |
-  | ------------ | ------ | ---- | ---------- |
-  | serialNumber | number | Yes  | Account SN.|
+**Parameters**
 
-- Return value
+| Name      | Type  | Mandatory| Description      |
+| ------------ | ------ | ---- | ---------- |
+| serialNumber | number | Yes  | Account SN.|
 
-  | Type           | Description                               |
-  | :-------------- | :---------------------------------- |
-  | Promise&lt;number&gt; | Promise used to return the OS account ID obtained.|
+**Return Value**
 
-- Example 
+| Type                 | Description                                                        |
+| :-------------------- | :----------------------------------------------------------- |
+| Promise&lt;number&gt; | Promise used to return the OS account ID obtained.|
 
-  Obtain the ID of the OS account whose SN is 12345.
-  
+**Example**: Obtain the ID of the OS account whose SN is **12345**.
+
   ```
   const accountManager = account_osAccount.getAccountManager();
   var serialNumber = 12345;
@@ -1447,23 +1608,23 @@ Obtains the OS account ID based on the SN. This method uses a promise to return 
   });
   ```
 
-### getSerialNumberByOsAccountLocalId
+### getSerialNumberByOsAccountLocalId<sup>8+</sup>
 
 getSerialNumberByOsAccountLocalId(localId: number, callback: AsyncCallback&lt;number&gt;): void
 
 Obtains the SN of an OS account based on the account ID. This method uses an asynchronous callback to return the result.
 
-- Parameters
+**System capability**: SystemCapability.Account.OsAccount
 
-  | Name  | Type                 | Mandatory| Description                          |
-  | -------- | --------------------- | ---- | ------------------------------ |
-  | localId  | number                | Yes  | ID of the target OS account.                  |
-  | callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the account SN obtained.|
+**Parameters**
 
-- Example 
+| Name  | Type                       | Mandatory| Description                                      |
+| -------- | --------------------------- | ---- | ------------------------------------------ |
+| localId  | number                      | Yes  | ID of the target OS account.                              |
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the account SN obtained.|
 
-  Obtain the SN of the OS account 100.
-  
+**Example**: Obtain the SN of OS account 100.
+
   ```
   const accountManager = account_osAccount.getAccountManager();
   var localId = 100;
@@ -1473,28 +1634,28 @@ Obtains the SN of an OS account based on the account ID. This method uses an asy
   });
   ```
 
-### getSerialNumberByOsAccountLocalId
+### getSerialNumberByOsAccountLocalId<sup>8+</sup>
 
 getSerialNumberByOsAccountLocalId(localId: number): Promise&lt;number&gt;
 
 Obtains the SN of an OS account based on the account ID. This method uses a promise to return the result.
 
-- Parameters
+**System capability**: SystemCapability.Account.OsAccount
 
-  | Name | Type  | Mandatory| Description        |
-  | ------- | ------ | ---- | ------------ |
-  | localId | number | Yes  | ID of the target OS account.|
+**Parameters**
 
-- Return value
+| Name | Type  | Mandatory| Description        |
+| ------- | ------ | ---- | ------------ |
+| localId | number | Yes  | ID of the target OS account.|
 
-  | Type           | Description                               |
-  | :-------------- | :---------------------------------- |
-  | Promise&lt;number&gt; | Promise used to return the account SN obtained.|
+**Return Value**
 
-- Example 
+| Type                 | Description                                                        |
+| :-------------------- | :----------------------------------------------------------- |
+| Promise&lt;number&gt; | Promise used to return the account SN obtained.|
 
-  Obtain the SN of the OS account 100.
-  
+**Example**: Obtain the SN of OS account 100.
+
   ```
   const accountManager = account_osAccount.getAccountManager();
   var localId = 100;
@@ -1511,15 +1672,21 @@ on(type: 'activate' | 'activating', name: string, callback: Callback&lt;number&g
 
 Subscribes to OS account changes. This method uses an asynchronous callback to return the result.
 
-- Parameters
+This is a system API and cannot be called by third-party applications.
 
-  | Name  | Type                      | Mandatory| Description                    |
-  | -------- | -------------------------- | ---- | ------------------------ |
-  | type     | 'activate' \| 'activating' | Yes  | Type of the event to subscribe to. The value **activate** means an event indicating that an OS account is activated, and **activating** means an event indicating that an OS account is being activated.              |
-  | name     | string                     | Yes  | Subscription name, which can be customized. The value cannot be empty or exceed 1024 bytes.|
-  | callback | Callback&lt;number&gt;           | Yes  | Callback used to return the OS account ID and status changes.|
+**Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION
 
-- Example
+**System capability**: SystemCapability.Account.OsAccount
+
+**Parameters**
+
+| Name  | Type                      | Mandatory| Description                                                        |
+| -------- | -------------------------- | ---- | ------------------------------------------------------------ |
+| type     | 'activate' \| 'activating' | Yes  | Type of the event to subscribe to. The value **activate** means an event indicating that an OS account is activated, and **activating** means an event indicating that an OS account is being activated.|
+| name     | string                     | Yes  | Subscription name, which can be customized. The value cannot be empty or exceed 1024 bytes.          |
+| callback | Callback&lt;number&gt;     | Yes  | Callback used to return the OS account ID and status changes.  |
+
+**Example**
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -1535,15 +1702,21 @@ off(type: 'activate' | 'activating', name: string, callback?: Callback&lt;number
 
 Unsubscribes from the OS account changes. This method uses an asynchronous callback to return the result.
 
-- Parameters
+This is a system API and cannot be called by third-party applications.
 
-  | Name  | Type                      | Mandatory| Description                        |
-  | -------- | -------------------------- | ---- | ---------------------------- |
-  | type     | 'activate' \| 'activating' | Yes  | Type of the event to unsubscribe from. The value **activate** means an event indicating that an OS account is activated, and **activating** means an event indicating that an OS account is being activated.            |
-  | name     | string                     | Yes  | Subscription name, which can be customized. The value cannot be empty or exceed 1024 bytes, and must be the same as the value passed by **on()**.|
-  | callback | Callback&lt;number&gt;     | No  | Callback used to return the OS account changes. By default, **0** is returned.|
+**Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION
 
-- Example
+**System capability**: SystemCapability.Account.OsAccount
+
+**Parameters**
+
+| Name  | Type                      | Mandatory| Description                                                        |
+| -------- | -------------------------- | ---- | ------------------------------------------------------------ |
+| type     | 'activate' \| 'activating' | Yes  | Type of the event to unsubscribe from. The value **activate** means an event indicating that an OS account is activated, and **activating** means an event indicating that an OS account is being activated.|
+| name     | string                     | Yes  | Subscription name, which can be customized. The value cannot be empty or exceed 1024 bytes, and must be the same as the value passed by **on()**.|
+| callback | Callback&lt;number&gt;     | No  | Callback used to return the OS account changes. By default, **0** is returned.                     |
+
+**Example**
 
   ```
   const accountManager = account_osAccount.getAccountManager();
@@ -1555,44 +1728,50 @@ Unsubscribes from the OS account changes. This method uses an asynchronous callb
 
 ## OsAccountInfo
 Defines information about an OS account.
-| Name           | Type                              | Mandatory| Description                    |
-| ----------------- | ---------------------------------- | ---- | ------------------------ |
-| localId           | number                             | Yes  | ID of the target OS account.            |
-| localName         | string                             | Yes  | OS account name.          |
-| type              | [OsAccountType](#osaccounttype)    | Yes  | OS account type.            |
-| [constraints](constraints)      | Array&lt;string&gt;                | No  | Constraints on the OS account.            |
-| isVerified        | boolean                            | Yes  | Whether the OS account is verified.            |
-| photo             | string                             | No  | Profile photo of the OS account.            |
-| createTime        | number                             | Yes  | Time when the OS account was created.        |
-| lastLoginTime     | number                             | No  | Last login time of the OS account.|
-| serialNumber      | number                             | Yes  | SN of the OS account.            |
-| isActived         | boolean                            | Yes  | Whether the OS account is activated.        |
-| isCreateCompleted | boolean                            | Yes  | Whether the OS account information is complete.    |
-| distributedInfo   | [distributedAccount.DistributedInfo](js-apis-distributed-account.md) | No  | Distributed account information.          |
-| domainInfo        | [DomainAccountInfo](#domainaccountinfo)   | No  | Domain account information.             |
+
+**System capability**: SystemCapability.Account.OsAccount
+
+| Name           | Type                                                        | Mandatory| Description                             |
+| ----------------- | ------------------------------------------------------------ | ---- | --------------------------------- |
+| localId           | number                                                       | Yes  | ID of the target OS account.                     |
+| localName         | string                                                       | Yes  | OS account name.                   |
+| type              | [OsAccountType](#osaccounttype)                              | Yes  | OS account type.                     |
+| constraints       | Array&lt;string&gt;                                          | No  | [Constraints](#constraints) on the OS account.|
+| isVerified        | boolean                                                      | Yes  | Whether the OS account is verified.                     |
+| photo             | string                                                       | No  | Profile photo of the OS account.                     |
+| createTime        | number                                                       | Yes  | Time when the OS account was created.                 |
+| lastLoginTime     | number                                                       | No  | Last login time of the OS account.         |
+| serialNumber      | number                                                       | Yes  | SN of the OS account.                     |
+| isActived         | boolean                                                      | Yes  | Whether the OS account is activated.                 |
+| isCreateCompleted | boolean                                                      | Yes  | Whether the OS account information is complete.             |
+| distributedInfo   | [distributedAccount.DistributedInfo](js-apis-distributed-account.md) | No  | Distributed account information.                   |
+| domainInfo        | [DomainAccountInfo](#domainaccountinfo)                      | No  | Domain account information.                       |
 
 ## DomainAccountInfo
-Defines the domain account information.
-| Name           | Type                              | Mandatory| Description                    |
-| ----------------- | ---------------------------------- | ---- | ------------------------ |
-| domain            | string                             | Yes  | Domain name.            |
-| accountName       | string                             | Yes  | Domain account name.          |
+Domain account information.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+| Name     | Type  | Mandatory| Description      |
+| ----------- | ------ | ---- | ---------- |
+| domain      | string | Yes  | Domain name.    |
+| accountName | string | Yes  | Domain account name.|
 
 ## Constraints
 
-| Constraint| Description|
-| ----------------- | ------------------- |
-| constraint.wifi | A user is not allowed to use Wi-Fi.|
-| constraint.wifi.set | A user is not allowed to change Wi-Fi settings.|
-| constraint.locale.set | A user is not allowed to change the device language.|
-| constraint.app.accounts | A user is not allowed to add or delete app accounts.|
-| constraint.apps.install | A user is not allowed to install apps.|
-| constraint.apps.uninstall | A user is not allowed to uninstall apps.|
-| constraint.location.shared | A user is not allowed to enable location sharing.|
-| constraint.unknown.sources.install | A user is not allowed to install apps from unknown sources.|
+| Constraint                                 | Description                          |
+| ------------------------------------- | ------------------------------ |
+| constraint.wifi                       | A user is not allowed to use Wi-Fi.                  |
+| constraint.wifi.set                   | A user is not allowed to change Wi-Fi settings.                  |
+| constraint.locale.set                 | A user is not allowed to change the device language.              |
+| constraint.app.accounts               | A user is not allowed to add or delete app accounts.        |
+| constraint.apps.install               | A user is not allowed to install apps.                  |
+| constraint.apps.uninstall             | A user is not allowed to uninstall apps.                  |
+| constraint.location.shared            | A user is not allowed to enable location sharing.              |
+| constraint.unknown.sources.install    | A user is not allowed to install apps from unknown sources.        |
 | constraint.global.unknown.app.install | All users are not allowed to install apps from unknown sources.|
-| constraint.bluetooth.set | A user is not allowed to configure Bluetooth.|
-| constraint.bluetooth | The use of Bluetooth is prohibited on the device.
+| constraint.bluetooth.set              | A user is not allowed to configure Bluetooth.                  |
+| constraint.bluetooth | The use of Bluetooth is prohibited on the device.|
 | constraint.bluetooth.share | Bluetooth sharing is prohibited.|
 | constraint.usb.file.transfer | A user is not allowed to transfer files over USB.|
 | constraint.credentials.set | A user is not allowed to configure user credentials.|
