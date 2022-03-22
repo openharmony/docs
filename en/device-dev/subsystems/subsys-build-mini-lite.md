@@ -1,4 +1,4 @@
-# Building Guidelines for Mini and Small Systems<a name="EN-US_TOPIC_0000001060646620"></a>
+# Building Mini and Small Systems<a name="EN-US_TOPIC_0000001060646620"></a>
 
 ## Overview<a name="section10958256161119"></a>
 
