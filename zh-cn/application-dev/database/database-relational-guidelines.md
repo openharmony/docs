@@ -133,20 +133,7 @@
 | ResultSet | isColumnNull(columnIndex:&nbsp;number):&nbsp;boolean | 检查当前行中指定列的值是否为null。 |
 | ResultSet | close():&nbsp;void | 关闭结果集。 |
 
-**数据库更改秘钥**
 
-用户可以对当前数据库进行加密。
-
-数据库的加密仅限于初始使用一个数据库时就进行加密，使用过程中进行秘钥的变更，但不支持取消秘钥。
-
-数据库初始时为加密库，则一直为加密库；初始时为未加密库，则一直为未加密库。
-
-**表8** 数据库更改秘钥
-
-| 类名 | 接口名 | 描述 |
-| -------- | -------- | -------- |
-| RdbStore | changeEncryptKey(newEncryptKey:Uint8Array,&nbsp;callback:&nbsp;AsyncCallback&lt;number&gt;):void; | 数据库更改秘钥接口，通过callback&nbsp;可以异步处理返回结果。返回结果0成功，非0失败。 |
-| RdbStore | changeEncryptKey(newEncryptKey:Uint8Array):&nbsp;Promise&lt;number&gt;; | 数据库更改秘钥接口，通过await&nbsp;可以同步处理返回结果。返回结果0成功，非0失败。 |
 
 **设置分布式列表。**
 
