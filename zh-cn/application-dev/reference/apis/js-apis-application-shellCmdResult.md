@@ -7,7 +7,7 @@
 ## 导入模块
 
 ```js
-import { ShellCmdResult } from './shellCmdResult';
+import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
 ```
 
 
