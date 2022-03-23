@@ -16,6 +16,9 @@ import deviceManager from '@ohos.distributedHardware.deviceManager';
 createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager&gt;): void
 
 创建一个设备管理器实例。
+
+**系统能力**：SystemCapability.DistributedHardware.DeviceManager
+
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -39,6 +42,8 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 
 表示设备状态变化的枚举。
 
+**系统能力**：以下各项对应的系统能力均为SystemCapability.DistributedHardware.DeviceManager
+
 | 名称 | 默认值 | 说明 |
 | -------- | -------- | -------- |
 | ONLINE | 0 | 设备上线。 |
@@ -51,6 +56,8 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 
 表示设备类型的枚举类。
 
+**系统能力**：以下各项对应的系统能力均为SystemCapability.DistributedHardware.DeviceManager
+
 | 名称 | 默认值 | 说明 |
 | -------- | -------- | -------- |
 | SPEAKER | 0x0A | 智能音箱 |
@@ -58,11 +65,15 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 | TABLET | 0x11 | 平板 |
 | WEARABLE | 0x6D | 智能穿戴 |
 | TV | 0x9C | 智慧屏 |
+| CAR | 0x83 | 车 |
+| UNKNOWN_TYPE | 0 | 未知设备 |
 
 
 ## DeviceInfo
 
 设备信息。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.DistributedHardware.DeviceManager
 
 | 名称 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
@@ -82,6 +93,8 @@ release(): void
 
 设备管理实例不再使用后，通过该方法释放DeviceManager实例。
 
+**系统能力**：SystemCapability.DistributedHardware.DeviceManager
+
 - 示例：
   ```
   dmInstance.release();
@@ -93,6 +106,8 @@ release(): void
 getTrustedDeviceListSync(): Array&lt;DeviceInfo&gt;
 
 同步获取所有可信设备列表。
+
+**系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
 - 返回值：
   | 名称 | 说明 |
@@ -110,6 +125,8 @@ getTrustedDeviceListSync(): Array&lt;DeviceInfo&gt;
 on(type: 'deviceStateChange',  callback: Callback&lt;{ action: DeviceStateChangeAction, device: DeviceInfo }&gt;): void
 
 注册设备状态回调。
+
+**系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
 - 参数：
   | 名称 | 参数类型 | 必填 | 说明 |
@@ -132,6 +149,8 @@ off(type: 'deviceStateChange', callback?: Call	back&lt;{ action: DeviceStateChan
 
 取消注册设备状态回调。
 
+**系统能力**：SystemCapability.DistributedHardware.DeviceManager
+
 - 参数：
   | 名称 | 参数类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -153,6 +172,8 @@ on(type: 'serviceDie', callback: () =&gt; void): void
 
 注册设备管理服务死亡监听。
 
+**系统能力**：SystemCapability.DistributedHardware.DeviceManager
+
 - 参数：
   | 名称 | 参数类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -173,6 +194,8 @@ on(type: 'serviceDie', callback: () =&gt; void): void
 off(type: 'serviceDie', callback?: () =&gt; void): void
 
 取消注册设备管理服务死亡监听。
+
+**系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
 - 参数：
   | 名称 | 参数类型 | 必填 | 说明 |
