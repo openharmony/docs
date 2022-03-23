@@ -82,13 +82,11 @@ isRamConstrainedDevice(): Promise\<boolean>;
 **示例：**
     
   ```js
-  IsRamConstrainedDevicePromise(){
         app.isRamConstrainedDevicePromise().then((data) => {
             console.log('success:' + JSON.stringify(data));
         }).catch((error) => {
             console.log('failed:' + JSON.stringify(error));
         });
-    }
   ```
 
 ## appManager.isRamConstrainedDevice
@@ -108,12 +106,10 @@ isRamConstrainedDevice(callback: AsyncCallback\<boolean>): void;
 **示例：**
     
   ```js
-  IsRamConstrainedDeviceCallBack(){
         app.isRamConstrainedDevicePromise((err, data) => {
             console.log('startAbility result failed:' + JSON.stringify(err));
             console.log('startAbility result success:' + JSON.stringify(data));
         })
-    }
   ```
 
 ## appManager.getAppMemorySize
@@ -133,13 +129,11 @@ getAppMemorySize(): Promise\<number>;
 **示例：**
     
   ```js
-  GetAppMemorySize(){
         app.getAppMemorySize().then((data) => {
             console.log('success:' + JSON.stringify(data));
         }).catch((error) => {
             console.log('failed:' + JSON.stringify(error));
         });
-    }
   ```
 
 ## appManager.getAppMemorySize
@@ -159,12 +153,10 @@ getAppMemorySize(callback: AsyncCallback\<number>): void;
 **示例：**
     
   ```js
-  GetAppMemorySizeCallBack(){
         app.getAppMemorySize((err, data) => {
             console.log('startAbility result failed :' + JSON.stringify(err));
             console.log('startAbility result success:' + JSON.stringify(data));
         })
-    }
   ```
 ## appManager.getProcessRunningInfos<sup>8+</sup>
 
@@ -183,13 +175,11 @@ getProcessRunningInfos(): Promise<Array<ProcessRunningInfo>>;
 **示例：**
     
   ```js
-  GetProcessRunningInfos(){
         app.GetProcessRunningInfos().then((data) => {
             console.log('success:' + JSON.stringify(data));
         }).catch((error) => {
             console.log('failed:' + JSON.stringify(error));
         });
-    }
   ```
 
 ## appManager.getProcessRunningInfos<sup>8+</sup>
@@ -209,12 +199,10 @@ getProcessRunningInfos(callback: AsyncCallback<Array<ProcessRunningInfo>>): void
 **示例：**
     
   ```js
-  GetProcessRunningInfosCallBack(){
         app.GetProcessRunningInfos((err, data) => {
             console.log('startAbility result failed :' + JSON.stringify(err));
             console.log('startAbility result success:' + JSON.stringify(data));
         })
-    }
   ```
 
 ## ProcessRunningInfo
