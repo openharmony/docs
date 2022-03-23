@@ -1,7 +1,7 @@
 # Network Connection Management
 
 
-> **NOTE**<br/>
+> **NOTE**
 >
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
@@ -17,7 +17,7 @@ getDefaultNet(callback: AsyncCallback\<NetHandle>): void
 
 Obtains the default active data network. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.GET_NETWORK_INFO
+**Required permission**: ohos.permission.GET_NETWORK_INFO
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
@@ -42,11 +42,11 @@ getDefaultNet(): Promise\<NetHandle>
 
 Obtains the default active data network. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.GET_NETWORK_INFO
+**Required permission**: ohos.permission.GET_NETWORK_INFO
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
-**Return value**
+**Return Value**
 
 | Type                             | Description                                 |
 | --------------------------------- | ------------------------------------- |
@@ -91,7 +91,7 @@ Checks whether the default data network is activated. This API uses a promise to
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
-**Return value**
+**Return Value**
 
 | Type             | Description                                           |
 | ----------------- | ----------------------------------------------- |
@@ -111,7 +111,7 @@ getAllNets(callback: AsyncCallback&lt;Array&lt;NetHandle&gt;&gt;): void
 
 Obtains the list of all active data networks. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.GET_NETWORK_INFO
+**Required permission**: ohos.permission.GET_NETWORK_INFO
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
@@ -136,11 +136,11 @@ getAllNets(): Promise&lt;Array&lt;NetHandle&gt;&gt;
 
 Obtains the list of all active data networks. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.GET_NETWORK_INFO
+**Required permission**: ohos.permission.GET_NETWORK_INFO
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
-**Return value**
+**Return Value**
 | Type| Description|
 | -------- | -------- |
 | Promise&lt;Array&lt;[NetHandle](#nethandle)&gt;&gt; | Promise used to return the result.|
@@ -157,9 +157,9 @@ connection.getAllNets().then(function (nets) {
 
 getConnectionProperties(netHandle: NetHandle, callback: AsyncCallback\<ConnectionProperties>): void
 
-Obtains connection properties of the network corresponding to the **netHandle**. This API uses an asynchronous callback to return the result.
+Obtains connection properties of the network corresponding to given network handle. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.GET_NETWORK_INFO
+**Required permission**: ohos.permission.GET_NETWORK_INFO
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
@@ -185,9 +185,9 @@ connection.getDefaultNet().then(function (netHandle) {
 
 getConnectionProperties(netHandle: NetHandle): Promise\<ConnectionProperties>
 
-Obtains connection properties of the network corresponding to the **netHandle**. This API uses a promise to return the result.
+Obtains connection properties of the network corresponding to **netHandle**. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.GET_NETWORK_INFO
+**Required permission**: ohos.permission.GET_NETWORK_INFO
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
@@ -197,7 +197,7 @@ Obtains connection properties of the network corresponding to the **netHandle**.
 | --------- | ----------------------- | ---- | ---------------- |
 | netHandle | [NetHandle](#nethandle) | Yes  | Network handle.|
 
-**Return value**
+**Return Value**
 
 | Type                                                   | Description                             |
 | ------------------------------------------------------- | --------------------------------- |
@@ -217,9 +217,9 @@ connection.getDefaultNet().then(function (netHandle) {
 
 getNetCapabilities(netHandle: NetHandle, callback: AsyncCallback\<NetCapabilities>): void
 
-Obtains capability information of the network corresponding to the **netHandle**. This API uses an asynchronous callback to return the result.
+Obtains capability information of the network corresponding to **netHandle**. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.GET_NETWORK_INFO
+**Required permission**: ohos.permission.GET_NETWORK_INFO
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
@@ -245,9 +245,9 @@ connection.getDefaultNet().then(function (netHandle) {
 
 getNetCapabilities(netHandle: NetHandle): Promise\<NetCapabilities>
 
-Obtains capability information of the network corresponding to the **netHandle**. This API uses a promise to return the result.
+Obtains capability information of the network corresponding to **netHandle**. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.GET_NETWORK_INFO
+**Required permission**: ohos.permission.GET_NETWORK_INFO
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
@@ -257,7 +257,7 @@ Obtains capability information of the network corresponding to the **netHandle**
 | --------- | ----------------------- | ---- | ---------------- |
 | netHandle | [NetHandle](#nethandle) | Yes  | Network handle.|
 
-**Return value**
+**Return Value**
 
 | Type                                         | Description                             |
 | --------------------------------------------- | --------------------------------- |
@@ -279,7 +279,7 @@ reportNetConnected(netHandle: NetHandle, callback: AsyncCallback&lt;void&gt;): v
 
 Reports connection of the data network. This API uses an asynchronous callback to return the result.
 
-**Required permissions** : ohos.permission.GET_NETWORK_INFO and ohos.permission.INTERNET
+** Permission required**: ohos.permission.GET_NETWORK_INFO and ohos.permission.INTERNET
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
@@ -306,7 +306,7 @@ reportNetConnected(netHandle: NetHandle): Promise&lt;void&gt;
 
 Reports connection of the data network. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.GET_NETWORK_INFO and ohos.permission.INTERNET
+** Permission required**: ohos.permission.GET_NETWORK_INFO and ohos.permission.INTERNET
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
@@ -315,7 +315,7 @@ Reports connection of the data network. This API uses a promise to return the re
 | -------- | -------- | -------- | -------- |
 | netHandle | [NetHandle](#nethandle) | Yes| Handle of the data network. For details, see [NetHandle](#nethandle).|
 
-**Return value**
+**Return Value**
 | Type| Description|
 | -------- | -------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
@@ -337,7 +337,7 @@ reportNetDisconnected(netHandle: NetHandle, callback: AsyncCallback&lt;void&gt;)
 
 Reports disconnection of the data network. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.GET_NETWORK_INFO and ohos.permission.INTERNET
+** Permission required**: ohos.permission.GET_NETWORK_INFO and ohos.permission.INTERNET
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
@@ -364,7 +364,7 @@ reportNetDisconnected(netHandle: NetHandle): Promise&lt;void&gt;
 
 Reports disconnection of the data network. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.GET_NETWORK_INFO and ohos.permission.INTERNET
+** Permission required**: ohos.permission.GET_NETWORK_INFO and ohos.permission.INTERNET
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
@@ -373,7 +373,7 @@ Reports disconnection of the data network. This API uses a promise to return the
 | -------- | -------- | -------- | -------- |
 | netHandle | [NetHandle](#nethandle) | Yes| Handle of the data network. For details, see [NetHandle](#nethandle).|
 
-**Return value**
+**Return Value**
 | Type| Description|
 | -------- | -------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
@@ -394,7 +394,7 @@ getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): 
 
 Resolves the host name by using the default network to obtain all IP addresses. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.GET_NETWORK_INFO
+**Required permission**: ohos.permission.GET_NETWORK_INFO
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
@@ -402,7 +402,7 @@ Resolves the host name by using the default network to obtain all IP addresses. 
 
 | Name  | Type                                             | Mandatory| Description              |
 | -------- | ------------------------------------------------- | ---- | ------------------ |
-| host     | string                                            | Yes  | Host name to resolve.|
+| host     | string                                            | Yes  | Host name to be resolved.|
 | callback | AsyncCallback\<Array\<[NetAddress](#netaddress)>> | Yes  | Callback used to return the result.        |
 
 **Example**
@@ -421,7 +421,7 @@ getAddressesByName(host: string): Promise\<Array\<NetAddress>>
 
 Resolves the host name by using the default network to obtain all IP addresses. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.GET_NETWORK_INFO
+**Required permission**: ohos.permission.GET_NETWORK_INFO
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
@@ -429,13 +429,13 @@ Resolves the host name by using the default network to obtain all IP addresses. 
 
 | Name| Type  | Mandatory| Description              |
 | ------ | ------ | ---- | ------------------ |
-| host   | string | Yes  | Host name to resolve.|
+| host   | string | Yes  | Host name to be resolved.|
 
-**Return value**
+**Return Value**
 
 | Type                                       | Description                         |
 | ------------------------------------------- | ----------------------------- |
-| Promise\<Array\<[NetAddress](#netaddress)>> | Promise used to return the IP addresses obtained.|
+| Promise\<Array\<[NetAddress](#netaddress)>> | Promise used to return the result.|
 
 **Example**
 
@@ -461,7 +461,7 @@ Obtains the handle of the network specified by **netSpecifier**.
 | netSpecifier | [NetSpecifier](#netspecifier) | No  | Network specifier. If this parameter is not set, the default network is used.                  |
 | timeout      | number                        | No  | Timeout interval for obtaining the network specified by **netSpecifier**. This parameter is valid only when **netSpecifier** is set.|
 
-**Return value**
+**Return Value**
 
 | Type                           | Description                |
 | ------------------------------- | -------------------- |
@@ -520,7 +520,7 @@ Registers a listener for **netCapabilitiesChange** events.
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event type. The value is fixed to **netCapabilitiesChange**.<br>**netCapabilitiesChange**: event indicating that the network capabilities have changed.|
+| type     | string                                                       | Yes  | Event type. The value is fixed to **netCapabilitiesChange**.<br>**netCapabilitiesChange**: event indicating that he network capabilities have changed.|
 | callback | Callback<{ netHandle: [NetHandle](#nethandle), netCap: [NetCapabilities](#netcapabilities) }> | Yes  | Callback used to return the result.                                                  |
 
 **Example**
@@ -630,7 +630,7 @@ register(callback: AsyncCallback\<void>): void
 
 Registers a listener for network status changes.
 
-**Required permissions**: ohos.permission.GET_NETWORK_INFO
+**Required permission**: ohos.permission.GET_NETWORK_INFO
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
@@ -674,15 +674,15 @@ netConnection.unregister(function (error) {
 
 Defines the handle of the data network.
 
-Before invoking **NetHandle** APIs, call **getNetHandle** to obtain a **NetHandle** object.
+Before invoking NetHandle APIs, call **getNetHandle** to obtain a **NetHandle** object.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
-### Attributes
+### Parameters
 
 | Name| Type  | Description                     |
 | ------ | ------ | ------------------------- |
-| netId  | number | Network ID. The value must be greater than or equal to **100**.|
+| netId  | number | Network ID. The value must be greater than or equal to 100.|
 
 ### bindSocket
 
@@ -731,7 +731,7 @@ Binds a **TCPSocket** or **UDPSocket** object to the data network. This API uses
 | ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | socketParam | TCPSocket \| UDPSocket    | Yes  | **TCPSocket** or **UDPSocket** object.|
 
-**Return value**
+**Return Value**
 | Type               | Description                       |
 | ------------------- | --------------------------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
@@ -767,7 +767,7 @@ Resolves the host name by using the corresponding network to obtain all IP addre
 
 | Name  | Type                                             | Mandatory| Description              |
 | -------- | ------------------------------------------------- | ---- | ------------------ |
-| host     | string                                            | Yes  | Host name to resolve.|
+| host     | string                                            | Yes  | Host name to be resolved.|
 | callback | AsyncCallback\<Array\<[NetAddress](#netaddress)>> | Yes  | Callback used to return the result.          |
 
 **Example**
@@ -794,9 +794,9 @@ Resolves the host name by using the corresponding network to obtain all IP addre
 
 | Name| Type  | Mandatory| Description              |
 | ------ | ------ | ---- | ------------------ |
-| host   | string | Yes  | Host name to resolve.|
+| host   | string | Yes  | Host name to be resolved.|
 
-**Return value**
+**Return Value**
 
 | Type                                       | Description                         |
 | ------------------------------------------- | ----------------------------- |
@@ -825,7 +825,7 @@ Resolves the host name by using the corresponding network to obtain the first IP
 
 | Name  | Type                                     | Mandatory| Description              |
 | -------- | ----------------------------------------- | ---- | ------------------ |
-| host     | string                                    | Yes  | Host name to resolve.|
+| host     | string                                    | Yes  | Host name to be resolved.|
 | callback | AsyncCallback\<[NetAddress](#netaddress)> | Yes  | Callback used to return the result.        |
 
 **Example**
@@ -852,9 +852,9 @@ Resolves the host name by using the corresponding network to obtain the first IP
 
 | Name| Type  | Mandatory| Description              |
 | ------ | ------ | ---- | ------------------ |
-| host   | string | Yes  | Host name to resolve.|
+| host   | string | Yes  | Host name to be resolved.|
 
-**Return value**
+**Return Value**
 
 | Type                               | Description                           |
 | ----------------------------------- | ------------------------------- |
@@ -901,7 +901,7 @@ Defines the network capability.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
-| Name                 | Value α  | Description                  |
+| Name                 | Value  | Description                  |
 | ------------------------ | ---- | ---------------------- |
 | NET_CAPABILITY_MMS | 0 | The network can connect to the carrier's Multimedia Messaging Service Center (MMSC) to send and receive multimedia messages.|
 | NET_CAPABILITY_NOT_METERED | 11 | The network traffic is not metered.|
@@ -915,7 +915,7 @@ Defines the network type.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
-| Name        | Value α  | Description       |
+| Name        | Value  | Description       |
 | --------------- | ---- | ----------- |
 | BEARER_CELLULAR | 0    | Cellular network |
 | BEARER_WIFI     | 1    | Wi-Fi network|
@@ -938,7 +938,7 @@ Defines the network connection properties.
 
 ## LinkAddress
 
-Defines network link information.
+Network link information.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
@@ -949,7 +949,7 @@ Defines network link information.
 
 ## RouteInfo
 
-Defines network route information.
+Network route information.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
@@ -971,4 +971,4 @@ Defines the network address.
 | ------- | ------ | ------------------------------ |
 | address | string | Network address.                        |
 | family  | number | Address family identifier. The value is **1** for IPv4 and **2** for IPv6. The default value is **1**.|
-| port    | number | Port number. The value range is 0 to 65535.   |
+| port    | number | Port number. The value ranges from **0** to **65535**.   |
