@@ -26,7 +26,7 @@ push(options: RouterOptions): void
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | options | [RouterOptions](#RouterOptions) | 是 | 跳转页面描述信息。 |
+  | options | [RouterOptions](#routeroptions) | 是 | 跳转页面描述信息。 |
 
 
 **示例：**
@@ -74,7 +74,7 @@ replace(options: RouterOptions): void
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | options | [RouterOptions](#RouterOptions) | 是 | 替换页面描述信息。 |
+  | options | [RouterOptions](#routeroptions) | 是 | 替换页面描述信息。 |
 
 **示例：**
   ```
@@ -114,7 +114,7 @@ back(options?: RouterOptions ): void
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | options | [RouterOptions](#RouterOptions) | 是 | 返回页面描述信息，其中参数url指路由跳转时会返回到指定url的界面，如果页面栈上没有url页面，则不响应该情况。如果url未设置，则返回上一页。 |
+  | options | [RouterOptions](#routeroptions) | 是 | 返回页面描述信息，其中参数url指路由跳转时会返回到指定url的界面，如果页面栈上没有url页面，则不响应该情况。如果url未设置，则返回上一页。 |
 
 **示例：**
   ```
@@ -216,7 +216,7 @@ getState(): RouterState
 
 | 类型                        | 说明           |
 | --------------------------- | -------------- |
-| [RouterState](#RouterState) | 页面状态信息。 |
+| [RouterState](#routerstate) | 页面状态信息。 |
 ## RouterState
 页面状态信息。
 
@@ -251,7 +251,7 @@ enableAlertBeforeBackPage(options: EnableAlertOptions): void
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | options | [EnableAlertOptions](#EnableAlertOptions) | 是 | 文本弹窗信息描述。 |
+  | options | [EnableAlertOptions](#enablealertoptions) | 是 | 文本弹窗信息描述。 |
 
 **示例：**
 

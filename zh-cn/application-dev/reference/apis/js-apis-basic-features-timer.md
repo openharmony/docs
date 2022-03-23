@@ -81,7 +81,7 @@ setInterval(handler[, delay[, ...args]]): number
 - 返回值
   | 类型 | 说明 |
   | -------- | -------- |
-  | number | intervallID重复定时器的ID。 |
+  | number | intervalID重复定时器的ID。 |
 
 - 示例
   ```

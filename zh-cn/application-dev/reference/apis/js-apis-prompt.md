@@ -23,7 +23,7 @@ showToast(options: ShowToastOptions): void
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | options | [ShowToastOptions](#ShowToastOptions) | 是 | 文本弹窗选项。 |
+  | options | [ShowToastOptions](#showtoastoptions) | 是 | 文本弹窗选项。 |
 
 **示例：**
   ```
@@ -45,8 +45,8 @@ showToast(options: ShowToastOptions): void
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | message | string | 是 | 显示的文本信息。 |
-| duration | number | 否 | 默认值1500ms，建议区间：1500ms-10000ms。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;若小于1500ms则取默认值，最大取值为10000ms。 |
-| bottom  | &lt;length&gt; | 否 | 设置弹窗边框距离屏幕底部的位置。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;仅手机和平板设备支持。 |
+| duration | number | 否 | 默认值1500ms，建议区间：1500ms-10000ms，若小于1500ms则取默认值。 |
+| bottom  | &lt;length&gt; | 否 | 设置弹窗边框距离屏幕底部的位置，仅手机和平板设备支持。 |
 
 ## prompt.showDialog
 
@@ -59,13 +59,13 @@ showDialog(options: ShowDialogOptions): Promise&lt;ShowDialogSuccessResponse&gt;
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | options | [ShowDialogOptions](#ShowDialogOptions) | 是 | 对话框选项。|
+  | options | [ShowDialogOptions](#showdialogoptions) | 是 | 对话框选项。|
 
 **返回值：**
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;[ShowDialogSuccessResponse](#ShowDialogSuccessResponse)&gt; |  对话框响应结果。|
+  | Promise&lt;[ShowDialogSuccessResponse](#showdialogsuccessresponse)&gt; |  对话框响应结果。|
 
 **示例：**
 
@@ -108,8 +108,8 @@ showDialog(options: ShowDialogOptions, callback: AsyncCallback&lt;ShowDialogSucc
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | options | [ShowDialogOptions](#ShowDialogOptions) | 是 | 页面显示对话框信息描述。|
-  | callback | AsyncCallback&lt;[ShowDialogSuccessResponse](#ShowDialogSuccessResponse)&gt; | 是 | 对话框响应结果回调。 |
+  | options | [ShowDialogOptions](#showdialogoptions) | 是 | 页面显示对话框信息描述。|
+  | callback | AsyncCallback&lt;[ShowDialogSuccessResponse](#showdialogsuccessresponse)&gt; | 是 | 对话框响应结果回调。 |
 
 **示例：**
   ```
@@ -174,8 +174,8 @@ showActionMenu(options: ActionMenuOptions, callback: AsyncCallback&lt;ActionMenu
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | options  | [ActionMenuOptions](#ActionMenuOptions) | 是 | 操作菜单选项。 |
-  | callback |  AsyncCallback&lt;[ActionMenuSuccessResponse](#ActionMenuSuccessResponse)>  | 是 | 菜单响应结果回调。 |
+  | options  | [ActionMenuOptions](#actionmenuoptions) | 是 | 操作菜单选项。 |
+  | callback |  AsyncCallback&lt;[ActionMenuSuccessResponse](#actionmenusuccessresponse)>  | 是 | 菜单响应结果回调。 |
 
 
 **示例：**
@@ -217,12 +217,12 @@ showActionMenu(options: ActionMenuOptions): Promise<ActionMenuSuccessResponse>
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | options  | [ActionMenuOptions](#ActionMenuOptions) | 是 | 操作菜单选项。 |
+  | options  | [ActionMenuOptions](#actionmenuoptions) | 是 | 操作菜单选项。 |
 
 **返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;[ActionMenuSuccessResponse](#ActionMenuSuccessResponse)&gt; |  菜单响应结果。|
+  | Promise&lt;[ActionMenuSuccessResponse](#actionmenusuccessresponse)&gt; |  菜单响应结果。|
 
 **示例：**
   ```
