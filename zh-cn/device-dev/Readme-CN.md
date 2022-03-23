@@ -1,8 +1,8 @@
 # 设备开发
 
+- [设备开发导读](device-dev-guide.md) 
 - 了解OpenHarmony
   - [了解OpenHarmony开源项目](../OpenHarmony-Overview_zh.md) 
-  - [了解OpenHarmony系统](../readme.md) 
   - [术语](glossary/glossary.md) 
   - [版本说明](../release-notes/Readme.md) 
 - 快速开始
@@ -14,7 +14,8 @@
   - [轻量和小型系统三方库移植指导](porting/porting-thirdparty.md)
   - [轻量系统芯片移植指导](porting/porting-minichip.md)
   - [轻量系统芯片移植案例](porting/porting-minichip-cases.md)
-  - [小型系统芯片移植指导](porting/porting-smallchip.md)	 	
+  - [小型系统芯片移植指导](porting/porting-smallchip.md)
+  - [标准系统芯片移植指导](porting/standard-system-porting-guide.md)	 	
 - 子系统开发
   - 内核 
     - [轻量系统内核](kernel/kernel-mini.md)
@@ -37,7 +38,7 @@
   - [启动恢复](subsystems/subsys-boot.md)	
   - [DFX](subsystems/subsys-dfx.md)
 - 专题开发
-  - [HPM Bundle](bundles/Readme-CN.md) 	 	
+  - [HPM Part](hpm-part/Readme-CN.md) 	 	
 - 设备开发示例	 
   -  [轻量和小型系统设备开发示例](guide/device-lite.md) 	
   - [标准系统设备开发示例](guide/device-lite.md) 
