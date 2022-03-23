@@ -483,7 +483,7 @@ removeOsAccount(localId: number): Promise&lt;void&gt;
 
 setOsAccountConstraints(localId: number, constraints: Array&lt;string&gt;, enable: boolean,callback: AsyncCallback&lt;void&gt;): void
 
-为指定系统帐号设置/删除约束返回结果。
+为指定系统帐号设置/删除约束，使用callback回调异步返回结果。
 
 此接口为系统接口，三方应用不支持调用。
 
@@ -514,7 +514,7 @@ setOsAccountConstraints(localId: number, constraints: Array&lt;string&gt;, enabl
 
 setOsAccountConstraints(localId: number, constraints: Array&lt;string&gt;, enable: boolean): Promise&lt;void&gt;
 
-为指定系统帐号设置/删除约束回结果。
+为指定系统帐号设置/删除约束，使用Promise方式异步返回结果。
 
 此接口为系统接口，三方应用不支持调用。
 
