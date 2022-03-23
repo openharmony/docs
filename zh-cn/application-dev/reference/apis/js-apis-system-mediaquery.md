@@ -15,7 +15,7 @@ import mediaquery from '@system.mediaquery';
 
 ## mediaquery.matchMedia
 
-matchMedia(condition: string): &lt;MediaQueryList&gt;
+matchMedia(condition: string): MediaQueryList
 
 根据媒体查询条件，创建MediaQueryList对象。
 
@@ -28,11 +28,10 @@ matchMedia(condition: string): &lt;MediaQueryList&gt;
 | condition | string | 是 | 用于查询的条件。 |
 
 **返回值：**
-**表1** MediaQueryList
 
-| 参数名 | 类型 | 说明 |
-| -------- | -------- | -------- |
-| MediaQueryList | Object | 表示创建MediaQueryList对象的属性，详情见下表 MediaQueryList说明。 |
+| 参数类型 | 说明 |
+| -------- | -------- |
+| MediaQueryList | 表示创建MediaQueryList对象的属性，详情见下表 MediaQueryList说明。 |
 
 **示例：**
 
@@ -44,18 +43,47 @@ export default {
 }
 ```
 
-  **表2** MediaQueryList说明
+## MediaQueryEvent
 
-| 参数名 | 类型 | 说明 |
-| -------- | -------- | -------- |
-| matches | boolean | 如果查询条件匹配成功则返回true，否则返回值为false。只读。 |
-| media | string | 序列化的媒体查询条件，只读。 |
-| onchange | Function | matches状态变化时的执行函数。 |
+定义MediaQuery事件。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 参数类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| matches | boolean | 是 | 匹配结果。 |
+
+## MediaQueryList
+
+定义MediaQuery列表信息。
+
+### 属性
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 参数类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| media | string | 否 | 序列化媒体查询条件，该参数为只读。 |
+| matches | boolean | 是 | 匹配结果。 |
+
+### onchange
+
+onchange?: (matches: boolean) => void
+
+matches状态变化时的执行函数。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| matches | boolean | 是 | matches状态变化时值。 |
 
 
-## MediaQueryList.addListener
+### MediaQueryList.addListener
 
-addListener(Object): void
+addListener(callback: (event: MediaQueryEvent) => void): void
 
 给MediaQueryList添加回调函数，回调函数应在onShow生命周期之前添加，即需要在onInit或onReady生命周期里添加。
 
@@ -65,28 +93,18 @@ addListener(Object): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | Function | 是 | 匹配条件发生变化的响应函数。 |
+| callback | (event: MediaQueryEvent) => void | 是 | 匹配条件发生变化的响应函数。 |
 
 **示例：**
 
 ```
-export default {
-  onReady() {
-    var mMediaQueryList = mediaquery.matchMedia('(max-width: 466)');
-    function maxWidthMatch(e) {
-      if (e.matches) {
-        // do something
-      }
-    }
-    mMediaQueryList.addListener(maxWidthMatch);
-  },
-}
+mMediaQueryList.addListener(maxWidthMatch);
 ```
 
 
-## MediaQueryList.removeListener
+### MediaQueryList.removeListener
 
-removeListener(Object): void
+removeListener(callback: (event: MediaQueryEvent) => void): void
 
 移除MediaQueryList中的回调函数。
 
@@ -96,10 +114,16 @@ removeListener(Object): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | Function | 是 | 匹配条件发生变化的响应函数。 |
+| callback | (event: MediaQueryEvent) => void) | 是 | 匹配条件发生变化的响应函数。 |
+
+**示例：**
 
 **示例：**
 
 ```
-query.removeListener(minWidthMatch);
+mMediaQueryList.removeListener(maxWidthMatch);
 ```
+
+
+
+
