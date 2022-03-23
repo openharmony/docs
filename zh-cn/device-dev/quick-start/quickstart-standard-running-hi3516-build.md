@@ -58,11 +58,13 @@ bash build/prebuilts_download.sh
 请在终端中输入如下命令安装编译相关的依赖工具：
 
 ```
-sudo apt-get update && sudo apt-get install binutils git git-lfs gnupg flex bison gperf build-essential zip curl zlib1g-dev gcc-multilib g++-multilib libc6-dev-i386 lib32ncurses5-dev x11proto-core-dev libx11-dev lib32z1-dev ccache libgl1-mesa-dev libxml2-utils xsltproc unzip m4 bc gnutls-bin python3.8 python3-pip ruby libncurses5 libncurses5-dev libncursesw5
+sudo apt-get update && sudo apt-get install binutils git git-lfs gnupg flex bison gperf build-essential zip curl zlib1g-dev gcc-multilib g++-multilib libc6-dev-i386 lib32ncurses5-dev x11proto-core-dev libx11-dev lib32z1-dev ccache libgl1-mesa-dev libxml2-utils xsltproc unzip m4 bc gnutls-bin python3.8 python3-pip ruby libncurses5 libncurses5-dev libncursesw5 openjdk-8-jre default-jre default-jdk
 ```
 
 >![](../public_sys-resources/icon-note.gif) **说明：** 
->以上安装命令适用于Ubuntu18.04，其他版本请根据安装包名称采用对应的安装命令。其中Python要求安装Python 3.7及以上版本，此处以Python 3.8为例。
+>以上安装命令适用于Ubuntu18.04，其他版本请根据安装包名称采用对应的安装命令。其中：
+>- Python要求安装Python 3.8及以上版本，此处以Python 3.8为例。
+>- java要求java8及以上版本，此处以java8为例。
 
 ### 执行prebuilts<a name="section6389714142011"></a>
 
