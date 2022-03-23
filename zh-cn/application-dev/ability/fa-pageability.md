@@ -1,14 +1,14 @@
 # PageAbility开发指导
 
-## PageAbility介绍
+## 概述
+### 功能简介
+PageAbility是具备ArkUI的Ability，是用户具体可见并可以交互的Ability实例，开发者通过IDE创建Ability时，IDE会自动创建相关模板代码。PageAbility相关能力通过单例featureAbility暴露，生命周期相关回调通过app.js/app.ets中回调函数暴露。
 
-Page模板（以下简称“Page”）是FA唯一支持的模板，用于提供与用户交互的能力。
-
-## PageAbility的生命周期
+### PageAbility的生命周期
 
 **Ability生命周期介绍**（Ability Life Cycle）是Ability被调度到INACTIVE、ACTIVE、BACKGROUND等各个状态的统称（主要涉及PageAbility类型和ServiceAbility类型的Ability）。
 
-  - **PageAbility类型的Ability生命周期流转如下图所示**
+**PageAbility生命周期流转如下图所示**
 
 ![PageAbility-Lifecycle](figures/page-ability-lifecycle.png)
 
@@ -25,76 +25,32 @@ Page模板（以下简称“Page”）是FA唯一支持的模板，用于提供�
 
   - **BACKGROUND**: 后台状态，表示当前Ability退到后台，Ability在被销毁后由BACKGROUND状态进入INITIAL状态，或者重新被激活后由BACKGROUND状态进入ACTIVE状态。
 
-**PageAbility类型Ability生命周期回调如下图所示：**
+**PageAbility生命周期回调如下图所示：**
 
 ![fa-pageAbility-lifecycle](figures/fa-pageAbility-lifecycle.png)
 
-PageAbility提供如下生命周期回调，开发者可以在  app.js/app.ets 中重写生相关命周期函数 。
+PageAbility提供命周期回调，开发者可以在  app.js/app.ets 中重写生相关命周期函数 。
 
-* onShow()
+## 开发指导
+### featureAbility接口说明
 
-  Ability由后台不可见状态切换到前台可见状态调用onShow方法，此时用户在屏幕可以看到该Ability。
+**表1** featureAbility接口介绍
 
-* onHide()
+| 接口名                                              | 描述            |
+| --------------------------------------------------- | --------------- |
+| void startAbility(parameter: StartAbilityParameter) | 启动Ability     |
+| Context getContext():                               | 获取应用Context |
+| void terminateSelf()                                | 结束Ability     |
+| bool hasWindowFocus()                               | 是否获取焦点    |
 
-  Ability由前台切换到后台不可见状态时调用onHide方法，此时用户在屏幕看不到该Ability。
 
-* onDestroy()
+### 启动本地PageAbility
 
-  应用退出，销毁Ability对象前调用onDestroy方法，开发者可以在该方法里做一些回收资源、清空缓存等应用退出前的准备工作。
-
-* onCreate()
-
-  Ability第一次启动创建Ability时调用onCreate方法，开发者可以在该方法里做一些应用初始化工作。
-
-* onInactive()
-
-  Ability失去焦点时调用onInactive方法，Ability在进入后台状态时会先失去焦点，再进入后台。
-
-* onActive()
-
-  Ability切换到前台，并且已经获取焦点时调用onActive方法。
-
-* 示例
-
-```javascript
-export default {
-  onCreate() {
-    console.info('Application onCreate')
-  },
-  onDestroy() {
-    console.info('Application onDestroy')
-  },
-  onShow(){
-    console.info('Application onShow')
-  },
-  onHide(){
-    console.info('Application onHide')
-  },
-  onInactive(){
-    console.info('Application onInactive')
-  },
-  onActive(){
-    console.info('Application onActive')
-  },
-}
-```
-
-## 启动本地PageAbility
-
- * 导入模块
+* 导入模块
 
 ```
 import featureAbility from '@ohos.ability.featureAbility'
 ```
-```
- featureAbility.startAbility(parameter: StartAbilityParameter, callback: AsyncCallback<number>)
-```
-
-* 接口说明
-
-  启动新的ability(callback形式)
-
 * 示例
 
 ```javascript
@@ -158,21 +114,13 @@ featureAbility.startAbility({
 },
 );
 ```
-## 启动远程PageAbility
+### 启动远程PageAbility
 
 * 导入模块
 
 ```
 import featureAbility from '@ohos.ability.featureAbility'
 ```
-
-```
-featureAbility.startAbility(parameter: StartAbilityParameter)
-```
-* 接口说明
-
-  启动远程的ability(promise形式)
-  前提：通过deviceManager获取远程deviceid
 
 * 示例
 
@@ -187,7 +135,43 @@ var promise = await featureAbility.startAbility({
 }
 );
 ```
-## 开发实例
+### 生命周期接口说明
+**表2** 生命周期回调函数介绍
+
+| 接口名       | 描述                                                         |
+| ------------ | ------------------------------------------------------------ |
+| onShow()     | Ability由后台不可见状态切换到前台可见状态调用onShow方法，此时用户在屏幕可以看到该Ability |
+| onHide()     | Ability由前台切换到后台不可见状态时调用onHide方法，此时用户在屏幕看不到该Ability。 |
+| onDestroy()  | 应用退出，销毁Ability对象前调用onDestroy方法，开发者可以在该方法里做一些回收资源、清空缓存等应用退出前的准备工作。 |
+| onCreate()   | Ability第一次启动创建Ability时调用onCreate方法，开发者可以在该方法里做一些应用初始化工作。 |
+| onInactive() | Ability失去焦点时调用onInactive方法，Ability在进入后台状态时会先失去焦点，再进入后台。 |
+| onActive()   | Ability切换到前台，并且已经获取焦点时调用onActive方法。      |
+
+* 示例
+开发者需要重写app.js/app.ets 中相关生命周期回调函数，IDE模板默认生成onCreate()和onDestroy()方法，其他方法需要开发者自行实现。
+```javascript
+export default {
+  onCreate() {
+    console.info('Application onCreate')
+  },
+  onDestroy() {
+    console.info('Application onDestroy')
+  },
+  onShow(){
+    console.info('Application onShow')
+  },
+  onHide(){
+    console.info('Application onHide')
+  },
+  onInactive(){
+    console.info('Application onInactive')
+  },
+  onActive(){
+    console.info('Application onActive')
+  },
+}
+```
+### 开发实例
 针对pageAbility开发，有以下示例工程可供参考：
 
 - [DMS](https://gitee.com/openharmony/app_samples/tree/master/ability/DMS)
