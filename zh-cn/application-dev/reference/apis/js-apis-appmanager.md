@@ -166,6 +166,56 @@ getAppMemorySize(callback: AsyncCallback\<number>): void;
         })
     }
   ```
+## appManager.getProcessRunningInfos<sup>8+</sup>
+
+getProcessRunningInfos(): Promise<Array<ProcessRunningInfo>>;
+
+获取有关运行进程的信息。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**返回值：**
+
+  | 类型 | 说明 | 
+  | -------- | -------- |
+  | Promise<Array\<ProcessRunningInfo>> | 获取有关运行进程的信息。 | 
+
+**示例：**
+    
+  ```js
+  GetProcessRunningInfos(){
+        app.GetProcessRunningInfos().then((data) => {
+            console.log('success:' + JSON.stringify(data));
+        }).catch((error) => {
+            console.log('failed:' + JSON.stringify(error));
+        });
+    }
+  ```
+
+## appManager.getProcessRunningInfos<sup>8+</sup>
+
+getProcessRunningInfos(callback: AsyncCallback<Array<ProcessRunningInfo>>): void;
+
+获取有关运行进程的信息。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 | 
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback<Array\<ProcessRunningInfo>> | 否 | 获取有关运行进程的信息。 | 
+
+**示例：**
+    
+  ```js
+  GetProcessRunningInfosCallBack(){
+        app.GetProcessRunningInfos((err, data) => {
+            console.log('startAbility result failed :' + JSON.stringify(err));
+            console.log('startAbility result success:' + JSON.stringify(data));
+        })
+    }
+  ```
 
 ## ProcessRunningInfo
 
