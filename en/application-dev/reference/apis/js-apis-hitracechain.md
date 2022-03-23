@@ -9,57 +9,62 @@
 import hiTraceChain from '@ohos.hiTraceChain';
 ```
 
-## System Capabilities
-
-SystemCapability.HiviewDFX.HiTrace
 
 ## HiTraceFlag
 
 Enumerates trace flag types.
 
+**System capability**: SystemCapability.HiviewDFX.HiTrace
+
 | Name| Default Value| Description|
 | -------- | -------- | -------- |
-| DEFAULT           | 0      | Default flag|
-| INCLUDE_ASYNC     | 1      | Asynchronous call flag|
-| DONOT_CREATE_SPAN | 1 << 1 | No span flag|
-| TP_INFO           | 1 << 2 | Trace point flag|
-| NO_BE_INFO        | 1 << 3 | No begin/end flag|
-| DISABLE_LOG       | 1 << 4 | Log association flag|
-| FAILURE_TRIGGER   | 1 << 5 | Failure trigger flag|
-| D2D_TP_INFO       | 1 << 6 | Device-to-device trace point flag|
+| DEFAULT           | 0      | Default flag.      |
+| INCLUDE_ASYNC     | 1      | Asynchronous call flag. By default, only synchronous calls are traced. If this flag is set, both synchronous and asynchronous calls will be traced.  |
+| DONOT_CREATE_SPAN | 1 << 1 | No span flag. By default, a span is automatically created during tracing of synchronous and asynchronous calls. If this flag is set, no span will be created.    |
+| TP_INFO           | 1 << 2 | Trace point flag. By default, no trace point is added when tracing is enabled. This flag is used for debugging. If this flag is set, trace points will be automatically added on the TX and RX sides of synchronous and asynchronous calls to output trace point and timestamp information. Trace points are classified into four types: [CS, SR, SS, and CR](#hitracetracepointtype). For a synchronous call, the output trace points are CS, SR, SS, and CR; for an asynchronous call, the output trace points are CS, SR, and SS.      |
+| NO_BE_INFO        | 1 << 3 | No begin/end flag. By default, information about the start and end of the trace task is printed. If this flag is set, information about the start and end of the trace task will not be printed.|
+| DISABLE_LOG       | 1 << 4 | Log association flag. If this flag is set, information about the trace task will not be printed. |
+| FAILURE_TRIGGER   | 1 << 5 | Failure trigger flag. This flag is reserved for future use. |
+| D2D_TP_INFO       | 1 << 6 | Device-to-device trace point flag. It is a subset of **TP_INFO**. If this flag is set, trace points are added only for call chain tracing between devices.|
 
 ## HiTraceTracepointType
 
 Enumerates trace point types.
 
+**System capability**: SystemCapability.HiviewDFX.HiTrace
+
 | Name| Default Value| Description|
 | -------- | -------- | -------- |
-| CS       | 0 | Client Send|
-| CR       | 1 | Client Receive|
-| SS       | 2 | Server Send|
-| SR       | 3 | Server Receive|
-| GENERAL  | 4 | General|
+| CS       | 0 | Client Send (CS) trace point.       |
+| CR       | 1 | Client Receive (CS) trace point.       |
+| SS       | 2 | Server Send (SS) trace point.       |
+| SR       | 3 | Server Receive (SR) trace point.       |
+| GENERAL  | 4 | General trace points except CS, CR, SS, and SR.|
 
 ## HiTraceCommunicationMode
 
 Enumerates communication modes.
 
+**System capability**: SystemCapability.HiviewDFX.HiTrace
+
 | Name| Default Value| Description|
 | -------- | -------- | -------- |
-| DEFAULT  | 0 | Default mode|
-| THREAD   | 1 | Inter-thread communication|
-| PROCESS  | 2 | Inter-process communication|
-| DEVICE   | 3 | Inter-device communication|
+| DEFAULT  | 0 | Default communication mode   |
+| THREAD   | 1 | Inter-thread communication |
+| PROCESS  | 2 | Inter-process communication |
+| DEVICE   | 3 | Inter-device communication |
 
 ## HiTraceId
 
 Defines a **HiTraceId** object.
 
+**System capability**: SystemCapability.HiviewDFX.HiTrace
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| chainId      | bigint | Yes| Call chain ID.|
-| spanId      | number | No| Span ID.|
-| parentSpanId | number | No| Parent span ID.|
+| chainId      | bigint | Yes| Call chain ID.  |
+| spanId      | number | No| Span ID.    |
+| parentSpanId | number | No| Parent span ID.  |
 | flags        | number | No| Trace flag combination.|
 
 ## hiTraceChain.begin
@@ -67,6 +72,8 @@ Defines a **HiTraceId** object.
 begin(name: string, flags: number = HiTraceFlag.DEFAULT): HiTraceId
 
 Starts call chain tracing. This API works in synchronous manner.
+
+**System capability**: SystemCapability.HiviewDFX.HiTrace
 
 **Parameters**
 
@@ -93,6 +100,8 @@ end(id: HiTraceId): void
 
 Stops call chain tracing. This API works in synchronous manner.
 
+**System capability**: SystemCapability.HiviewDFX.HiTrace
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
@@ -112,6 +121,8 @@ hiTraceChain.end(asyncTraceId);
 getId(): HiTraceId
 
 Obtains the trace ID. This API works in synchronous manner.
+
+**System capability**: SystemCapability.HiviewDFX.HiTrace
 
 **Return value**
 
@@ -133,6 +144,8 @@ setId(id: HiTraceId): void
 
 Sets a trace ID. This API works in synchronous manner.
 
+**System capability**: SystemCapability.HiviewDFX.HiTrace
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
@@ -153,6 +166,8 @@ clearId(): void
 
 Clears the trace ID. This API works in synchronous manner.
 
+**System capability**: SystemCapability.HiviewDFX.HiTrace
+
 **Example**
 
 ```
@@ -166,6 +181,8 @@ hiTraceChain.clearId();
 createSpan(): HiTraceId
 
 Creates a trace span. This API works in synchronous manner.
+
+**System capability**: SystemCapability.HiviewDFX.HiTrace
 
 **Return value**
 
@@ -186,6 +203,8 @@ let spanTraceId = hiTraceChain.createSpan();
 tracepoint(mode: HiTraceCommunicationMode, type: HiTraceTracepointType, id: HiTraceId, msg?: string): void
 
 Triggers a trace point. This API works in synchronous manner.
+
+**System capability**: SystemCapability.HiviewDFX.HiTrace
 
 **Parameters**
 
@@ -209,6 +228,8 @@ hiTraceChain.tracepoint(hiTraceChain.HiTraceCommunicationMode.THREAD, hiTraceCha
 isValid(id: HiTraceId): boolean
 
 Checks whether a **HiTraceId** instance is valid. This API works in synchronous manner.
+
+**System capability**: SystemCapability.HiviewDFX.HiTrace
 
 **Parameters**
 
@@ -234,6 +255,8 @@ let traceIdIsvalid = hiTraceChain.isValid(traceId);
 isFlagEnabled(id: HiTraceId, flag: HiTraceFlag): boolean
 
 Checks whether the specified trace flag in the **HiTraceId** instance is enabled. This API works in synchronous manner.
+
+**System capability**: SystemCapability.HiviewDFX.HiTrace
 
 **Parameters**
 
@@ -261,6 +284,8 @@ let enabledDoNotCreateSpanFlag = hiTraceChain.isFlagEnabled(asyncTraceId, hiTrac
 enableFlag(id: HiTraceId, flag: HiTraceFlag): void
 
 Enables the specified trace flag in the **HiTraceId** instance. This API works in synchronous manner.
+
+**System capability**: SystemCapability.HiviewDFX.HiTrace
 
 **Parameters**
 | Name| Type| Mandatory| Description|
