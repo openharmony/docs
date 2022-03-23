@@ -116,8 +116,8 @@
           - [应用代码文件访问规则](ui/ts-framework-file-access-rules.md)
         - [js标签配置](ui/ts-framework-js-tag.md)
         - 资源访问
-          - [访问应用资源](ts-application-resource-access.md)
-          - [访问系统资源](ts-system-resource-access.md)
+          - [访问应用资源](ui/ts-application-resource-access.md)
+          - [访问系统资源](ui/ts-system-resource-access.md)
           - [媒体资源类型说明](ui/ts-media-resource-type.md)
         - [像素单位](ui/ts-pixel-units.md)
         - [类型定义](ui/ts-types.md)
