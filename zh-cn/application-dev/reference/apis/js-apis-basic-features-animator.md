@@ -100,10 +100,11 @@ update(options: AnimatorOptions): void
 animator.update(options)；
 ```
 
-
 ### play
 
 play(): void
+
+启动动画。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -116,6 +117,8 @@ animator.play()；
 
 finish(): void
 
+结束动画。
+
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **示例：**
@@ -126,6 +129,8 @@ animator.finish()；
 ### pause
 
 pause(): void
+
+暂停动画。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -138,6 +143,8 @@ animator.pause()；
 
 cancel(): void
 
+删除动画。
+
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **示例：**
@@ -149,26 +156,58 @@ animator.cancel()；
 
 reverse(): void
 
+以相反的顺序播放动画。
+
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**示例：**
+```
+animator.reverse()；
+```
 
 ### onframe
 
 onframe: (progress: number) => void
 
+回调时触发。
+
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
+**参数：** 
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | progress | number | 是 | 动画的当前进度。|
+
+**示例：**
+```
+animator.onframe()；
+```
 
 ### onfinish
 
 onfinish: () => void
 
+动画完成。
+
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**示例：**
+```
+animator.onfinish()；
+```
 
 ### oncancel
 
 oncancel: () => void
 
+动画被取消。
+
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**示例：**
+```
+animator.oncancel()；
+```
 
 ### onrepeat
 
@@ -176,6 +215,12 @@ onrepeat: () => void
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
+**示例：**
+```
+animator.onrepeat()；
+```
+
+动画将重复。
 
 ## AnimatorOptions
 
