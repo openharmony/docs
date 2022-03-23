@@ -1,6 +1,6 @@
 # Running Lock
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 The Running Lock module provides APIs for creating, querying, holding, and releasing running locks.
@@ -19,9 +19,9 @@ Enumerates the types of **RunningLock** objects.
 
 **System capability:** SystemCapability.PowerManager.PowerManager.Core
 
-| Name                      | Default Value  | Description                 |
+| Name                      | Default Value | Description                 |
 | ------------------------ | ---- | ------------------- |
-| BACKGROUND               | 1    | A lock that prevents the system from hibernating when the screen is off.|
+| BACKGROUND               | 1    | A lock that prevents the system from hibernating when the screen is off.          |
 | PROXIMITY_SCREEN_CONTROL | 2    | A lock that determines whether to turn on or off the screen based on the distance away from the screen.|
 
 

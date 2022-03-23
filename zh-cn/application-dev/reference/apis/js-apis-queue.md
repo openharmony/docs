@@ -117,6 +117,7 @@ let result = queue.getFirst();
 ```
 
 ### forEach
+
 forEach(callbackfn: (value: T, index?: number, Queue?: Queue&lt;T&gt;) => void,
 thisArg?: Object): void
 

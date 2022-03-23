@@ -89,7 +89,7 @@ ESwap(Enhanced Swap)提供了自定义新增存储分区作为内存交换分区
 	> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 	> /sys/block/zram0/group可接受参数及作用为：
 	>
-	> - none：表示disable；
+	> - disable：表示disable；
 	> - readonly：表示只记录数据的cgroup信息，并不换出；
 	> - readwrite：表示打开ZRAM到eswap的换入换出功能。
 
@@ -120,6 +120,8 @@ ESwap(Enhanced Swap)提供了自定义新增存储分区作为内存交换分区
 2. 关闭ZRAM及ZRAM group
 
 	```Bash
+	// 若已经执行过swapon，则需先执行swapoff
+	swapoff /dev/block/zram0
 	echo 1 > /sys/block/zram0/reset
 	```
 

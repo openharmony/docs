@@ -1,27 +1,5 @@
 # 内核常见问题<a name="ZH-CN_TOPIC_0000001169850498"></a>
 
--   [基础内核](#section263912372168)
-    -   [LiteOS-A和LiteOS-M内核对外API的差异](#section447571122918)
-    -   [如何分析线程栈溢出](#section8623141711293)
-
--   [文件系统](#section098519592162)
-    -   [Hi3516开源板以写的模式打开同一个文件失败（LiteOS-A）](#section517972255311)
-    -   [LiteOS内核已支持哪些硬件平台](#section868413518533)
-    -   [LiteOS内核已支持哪几款芯片架构](#section1131661465417)
-
--   [三方组件](#section971818231178)
-    -   [OpenHarmony已支持哪些三方组件](#section74138185411)
-    -   [在OpenHarmony上使用OpenSSL，出现秘钥长度校验不正确](#section10564614135516)
-    -   [setsockopt是否支持SO\_RCVBUF和SO\_SNDBUF选项](#section2093373215556)
-
--   [编译链接](#section10955302179)
-    -   [Arm Linux开发的应用程序，OpenHarmony如何在LiteOS-A上运行](#section1164175713557)
-    -   [OpenHarmony在什么系统下编译，使用什么编译器](#section132287223567)
-    -   [LiteOS-M上使用单独编译成静态库的三方组件，出现三方组件中的全局变量值不正确，或调用三方组件的函数后系统卡死](#section15189154225619)
-    -   [LiteOS-A生成目标可执行文件时，提示 use  VFP register arguments，xxx.o does not](#section193571012578)
-    -   [clock\_gettime接口获取的时间打印不对](#section8973152015717)
-
-
 ## 基础内核<a name="section263912372168"></a>
 
 ### LiteOS-A和LiteOS-M内核对外API的差异<a name="section447571122918"></a>
@@ -48,7 +26,7 @@ Hi3516开源板使用FAT文件系统，不允许该操作。
 
 ### LiteOS内核已支持哪些硬件平台<a name="section868413518533"></a>
 
-开源版本LiteOS-A已支持Hi3516/Hi3518开发板；LiteOS-M已支持Hi3861开发板、STM32F103、野火挑战者STM32F429IGTb、Nucleo\_f767zi等，详细查看kernel/liteos\_m目录下的README\_zh.md文件。
+开源版本LiteOS-A已支持Hi3516/Hi3518开发板；LiteOS-M已支持Hi3861开发板、Nucleo\_f767zi等，详细查看kernel/liteos\_m目录下的README\_zh.md文件。
 
 ### LiteOS内核已支持哪几款芯片架构<a name="section1131661465417"></a>
 

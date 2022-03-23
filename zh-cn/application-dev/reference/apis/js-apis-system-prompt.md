@@ -13,7 +13,7 @@ import prompt from '@system.prompt';
 
 ## prompt.showToast
 
-showToast(Object): void
+showToast(options: ShowToastOptions): void
 
 显示文本弹窗。
 
@@ -23,9 +23,7 @@ showToast(Object): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| message | string | 是 | 显示的文本信息。 |
-| duration | number | 否 | 默认值1500ms，建议区间：1500ms-10000ms。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;若小于1500ms则取默认值，最大取值为10000ms。 |
-| [bottom]<sup>5+</sup> | &lt;length&gt; | 否 | 设置弹窗边框距离屏幕底部的位置。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;仅手机和平板设备支持。 |
+| options | [ShowToastOptions](#showtoastoptions) | 是 | 定义ShowToast的选项。 |
 
 **示例：** 
 
@@ -43,9 +41,9 @@ export default {
 
 ## prompt.showDialog
 
-showDialog(): void
+showDialog(options: ShowDialogOptions): void
 
-在页面内显示对话框。
+显示对话框。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -53,18 +51,8 @@ showDialog(): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| title | string | 否 | 标题文本。 |
-| message | string | 否 | 内容文本。 |
-| buttons | Array | 否 | 对话框中按钮的数组，结构为：{text:'button',&nbsp;color:&nbsp;'\#666666'}，支持1-3个按钮。其中第一个为positiveButton；第二个为negativeButton；第三个为neutralButton。 |
-| success | Function | 否 | 接口调用成功的回调函数，返回值如success返回值所示。 |
-| cancel | Function | 否 | 取消调用此接口的回调函数。 |
-| complete | Function | 否 | 弹框退出时的回调函数。 |
+| options | [ShowDialogOptions](#showdialogoptions) | 是 | 定义显示对话框的选项。|
 
-success返回值：
-
-| 参数名 | 类型 | 说明 |
-| -------- | -------- | -------- |
-| index | number | 选中按钮在buttons数组中的索引。 |
 
 **示例：**
 
@@ -93,7 +81,7 @@ export default {
 
 ## prompt.showActionMenu<sup>6+</sup>
 
-showActionMenu(Object): void
+showActionMenu(options: ShowActionMenuOptions): void
 
 显示操作菜单。
 
@@ -103,17 +91,8 @@ showActionMenu(Object): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| title | string | 否 | 标题文本。 |
-| buttons | Array | 是 | 对话框中按钮的数组，结构为：{text:'button',&nbsp;color:&nbsp;'\#666666'}，支持1-6个按钮。大于6个按钮时弹窗不显示。 |
-| success | (data: TapIndex)&nbsp;=&gt;&nbsp;void | 否 | 接口调用成功的回调函数。 |
-| cancel | ()&nbsp;=&gt;&nbsp;void | 否 | 接口调用失败的回调函数。 |
-| complete | ()&nbsp;=&gt;&nbsp;void | 否 | 接口调用结束的回调函数。 |
+| options | [ShowActionMenuOptions](#showactionmenuoptions) | 是 | 定义ShowActionMenu的选项。 |
 
-  **表1** TapIndex
-
-| 参数名 | 类型 | 说明 |
-| -------- | -------- | -------- |
-| tapIndex | number | 选中按钮在buttons数组中的索引，从0开始。 |
 
 **示例：**
 
@@ -142,3 +121,64 @@ export default {
   }
 }
 ```
+## ShowToastOptions
+
+定义ShowToast的选项。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 参数类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| message | string | 是 | 显示的文本信息。 |
+| duration | number | 否 | 默认值1500ms，建议区间：1500ms-10000ms。若小于1500ms则取默认值，最大取值为10000ms。 |
+| bottom<sup>5+</sup> | string\|number| 否 | 设置弹窗边框距离屏幕底部的位置，仅手机和平板设备支持。 |
+
+## Button
+
+定义按钮的提示信息。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 参数类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| text | string | 是 | 定义按钮信息。 |
+| color | string | 是 | 定义按钮颜色。 |
+
+## ShowDialogSuccessResponse
+
+定义ShowDialog的响应。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 参数类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| index | number | 是 | 定义数据的索引信息。 |
+
+## ShowDialogOptions
+
+定义显示对话框的选项。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 参数类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| title | string | 否 | 标题文本。 |
+| message | string | 否 | 文本内容。 |
+| buttons | [[Button](#button), [Button](#button)?, [Button](#button)?] | 否 | 对话框中按钮的数组，结构为：{text:'button', color: '\#666666'}，支持1-6个按钮。大于6个按钮时弹窗不显示。 |
+| success | (data: [ShowDialogSuccessResponse](#showdialogsuccessresponse)) => void | 否 | 接口调用成功的回调函数。 |
+| cancel | (data: string, code: string) => void | 否 | 接口调用失败的回调函数。 |
+| complete | (data: string) => void | 否 | 接口调用结束的回调函数。 |
+
+## ShowActionMenuOptions<sup>6+</sup>
+
+定义ShowActionMenu的选项。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 参数类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| title | string | 否 | 标题文本。 |
+| buttons | [[Button](#button), [Button](#button)?, [Button](#button)?, [Button](#button)?, [Button](#button)?, [Button](#button)?] | 是 | 对话框中按钮的数组，结构为：{text:'button', color: '\#666666'}，支持1-6个按钮。|
+| success | (tapIndex: number, errMsg: string) => void | 否 | 弹出对话框时调用。 |
+| fail | (errMsg: string) => void | 否 | 接口调用失败的回调函数。 |
+| complete | (data: string) => void | 否 | 关闭对话框时调用。 |

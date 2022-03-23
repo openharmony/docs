@@ -1,6 +1,6 @@
 # 公共事件与通知
 
-[公共事件与通知概述](notification-brief)
+[公共事件与通知概述](notification-brief.md)
 
 ### 公共事件
 

@@ -22,7 +22,7 @@ import ConfigurationConstant from '@ohos.application.ConfigurationConstant';
 **示例：**
 
 ```
-ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT。
+ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT
 ```
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase
@@ -41,7 +41,7 @@ ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT。
 **示例：**
 
 ```
-ConfigurationConstant.Direction.DIRECTION_VERTICAL。
+ConfigurationConstant.Direction.DIRECTION_VERTICAL
 ```
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase
@@ -60,7 +60,7 @@ ConfigurationConstant.Direction.DIRECTION_VERTICAL。
 **示例：**
 
 ```
-ConfigurationConstant.ScreenDensity.SCREEN_DENSITY_NOT_SET。
+ConfigurationConstant.ScreenDensity.SCREEN_DENSITY_NOT_SET
 ```
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase

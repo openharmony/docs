@@ -1,7 +1,7 @@
 # appManager
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 本模块首批接口从API 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 7 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
 App管理。
@@ -166,3 +166,14 @@ getAppMemorySize(callback: AsyncCallback\<number>): void;
         })
     }
   ```
+
+## ProcessRunningInfo
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+
+| 名称        | 读写属性 | 类型                 | 必填 | 描述                                                         |
+| ----------- | -------- | -------------------- | ---- | ------------------------------------------------------------ |
+| pid<sup>8+</sup>     | 只读     | number               | 否   | 进程ID。                                |
+| uid<sup>8+</sup>   | 只读     | number               | 否   | 用户ID。 |
+| processName<sup>8+</sup>  | 只读     | string               | 否   | 进程的名称。 |
+| bundleNames<sup>8+</sup>          | 只读     | Array\<string>              | 否   | 进程中运行的bundleName数组。 |

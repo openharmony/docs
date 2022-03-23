@@ -15,18 +15,22 @@ SystemCapability.BundleManager.BundleFramework
 |  Required Permissions| Permission Level| Description|
 |-------| --------- | ---- |
 | ohos.permission.GET_BUNDLE_INFO | normal | Permission to query information about the current application.|
-| ohos.permission.GET\_BUNDLE\_INFO\_PRIVILEGED| system_basic | Permission to query information about all applications.|
+| ohos.permission.GET_BUNDLE_INFO_PRIVILEGED| system_basic | Permission to query information about all applications.|
 | ohos.permission.INSTALL_BUNDLE | system_core | Permission to install or uninstall applications.|
 
 ## bundle.getApplicationInfo
 
-getApplicationInfo(bundleName: string, bundleFlags: number, userId: number): Promise\<ApplicationInfo>
+getApplicationInfo(bundleName: string, bundleFlags: number, userId?: number): Promise\<ApplicationInfo>
 
-Obtains the application information of the specified user based on a given bundle name in asynchronous mode. This method uses a promise to return the result.
+Obtains the application information based on a given bundle name. This method uses a promise to return the result.
 
 **Required permissions**
 
-ohos.permission.GET\_BUNDLE\_INFO\_PRIVILEGED or ohos.permission.GET\_BUNDLE\_INFO
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
+
+**System capability**
+
+SystemCapability.BundleManager.BundleFramework
 
 **Parameters**
 
@@ -34,7 +38,7 @@ ohos.permission.GET\_BUNDLE\_INFO\_PRIVILEGED or ohos.permission.GET\_BUNDLE\_IN
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
 | bundleName  | string | Yes  | Bundle name of the application.                                    |
 | bundleFlags | number | Yes  | Type of information that will be returned. The default value is **0**. The value must be greater than or equal to 0.|
-| userId      | number | Yes  | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.                    |
+| userId      | number | No  | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.                    |
 
 **Return value**
 
@@ -62,11 +66,15 @@ bundle.getApplicationInfo(bundleName, bundleFlags, userId)
 
 getApplicationInfo(bundleName: string, bundleFlags: number, userId: number, callback: AsyncCallback\<ApplicationInfo>): void
 
-Obtains the application information of the specified user based on a given bundle name in asynchronous mode. This method uses a callback to return the result.
+Obtains the application information based on a given bundle name. This method uses an asynchronous callback to return the result.
 
 **Required permissions**
 
-ohos.permission.GET\_BUNDLE\_INFO\_PRIVILEGED or ohos.permission.GET\_BUNDLE\_INFO
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
+
+**System capability**
+
+SystemCapability.BundleManager.BundleFramework
 
 **Parameters**
 
@@ -93,16 +101,56 @@ bundle.getApplicationInfo(bundleName, bundleFlags, userId, (err, data) => {
 ```
 
 
+## bundle.getApplicationInfo
+
+getApplicationInfo(bundleName: string, bundleFlags: number, callback: AsyncCallback\<ApplicationInfo>): void
+
+Obtains the application information based on a given bundle name. This method uses an asynchronous callback to return the result.
+
+**Required permissions**
+
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
+
+**System capability**
+
+SystemCapability.BundleManager.BundleFramework
+
+**Parameters**
+
+| Name       | Type                           | Mandatory| Description                                                        |
+| ----------- | ------------------------------- | ---- | ------------------------------------------------------------ |
+| bundleName  | string                          | Yes  | Bundle name of the application.                                    |
+| bundleFlags | number                          | Yes  | Type of information that will be returned. The default value is **0**. The value must be greater than or equal to 0.|
+| callback    | AsyncCallback\<ApplicationInfo> | Yes  | Callback used to return the application information.              |
+
+**Example**
+
+```js
+let bundleName = "com.example.myapplication";
+let bundleFlags = 0;
+bundle.getApplicationInfo(bundleName, bundleFlags, (err, data) => {
+    if (err) {
+        console.error('Operation failed. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Operation successful. Data:' + JSON.stringify(data));
+ })
+```
+
 
 ## bundle.getAllBundleInfo
 
 getAllBundleInfo(bundleFlag: BundleFlag, userId?: number): Promise<Array\<BundleInfo>>
 
-Obtains the information of all available bundles in the system in asynchronous mode. This method uses a promise to return the result.
+Obtains the information of all available bundles of a specified user in the system. This method uses a promise to return the result.
 
 **Required permissions**
 
-ohos.permission.GET\_BUNDLE\_INFO\_PRIVILEGED
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**System capability**
+
+SystemCapability.BundleManager.BundleFramework
 
 **Parameters**
 
@@ -136,11 +184,15 @@ bundle.getAllBundleInfo(bundleFlag, userId)
 
 getAllBundleInfo(bundleFlag: BundleFlag, callback: AsyncCallback<Array\<BundleInfo>>): void
 
-Obtains the information of all available bundles in the system in asynchronous mode. This method uses a callback to return the result.
+Obtains the information of all available bundles in the system. This method uses an asynchronous callback to return the result.
 
 **Required permissions**
 
-ohos.permission.GET\_BUNDLE\_INFO\_PRIVILEGED
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**System capability**
+
+SystemCapability.BundleManager.BundleFramework
 
 **Parameters**
 
@@ -167,11 +219,15 @@ bundle.getAllBundleInfo(bundleFlag, (err, data) => {
 
 getAllBundleInfo(bundleFlag: BundleFlag, userId: number, callback: AsyncCallback<Array\<BundleInfo>>): void
 
-Obtains the information of all available bundles in the system in asynchronous mode. This method uses a callback to return the result.
+Obtains the information of all available bundles in the system. This method uses an asynchronous callback to return the result.
 
 **Required permissions**
 
-ohos.permission.GET\_BUNDLE\_INFO\_PRIVILEGED
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**System capability**
+
+SystemCapability.BundleManager.BundleFramework
 
 **Parameters**
 
@@ -201,11 +257,15 @@ bundle.getAllBundleInfo(bundleFlag, userId, (err, data) => {
 
 getBundleInfo(bundleName: string, bundleFlags: number, options?: BundleOptions): Promise\<BundleInfo>
 
-Obtains the bundle information based on a given bundle name in asynchronous mode. This method uses a promise to return the result.
+Obtains the bundle information based on a given bundle name. This method uses a promise to return the result.
 
 **Required permissions**
 
-ohos.permission.GET\_BUNDLE\_INFO\_PRIVILEGED or ohos.permission.GET\_BUNDLE\_INFO
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
+
+**System capability**
+
+SystemCapability.BundleManager.BundleFramework
 
 **Parameters**
 
@@ -213,7 +273,7 @@ ohos.permission.GET\_BUNDLE\_INFO\_PRIVILEGED or ohos.permission.GET\_BUNDLE\_IN
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
 | bundleName  | string | Yes  | Bundle name.                                                        |
 | bundleFlags | number | Yes  | Type of information that will be returned. The default value is **0**. The value must be greater than or equal to 0.|
-| options     | BundleOptions              | No  | Includes **userId** and **networkId**.                                   |
+| options     | BundleOptions              | No  | Includes **userId**.                                   |
 
 **Return value**
 
@@ -227,8 +287,7 @@ ohos.permission.GET\_BUNDLE\_INFO\_PRIVILEGED or ohos.permission.GET\_BUNDLE\_IN
 let bundleName = "com.example.myapplication";
 let bundleFlags = 1;
 let options = {
-  "userId" : 100,
-  "networkId" : null
+  "userId" : 100
 };
 bundle.getBundleInfo(bundleName, bundleFlags, options)
 .then((data) => {
@@ -244,11 +303,15 @@ bundle.getBundleInfo(bundleName, bundleFlags, options)
 
 getBundleInfo(bundleName: string, bundleFlags: number, callback: AsyncCallback\<BundleInfo>): void
 
-Obtains the bundle information based on a given bundle name in asynchronous mode. This method uses a callback to return the result.
+Obtains the bundle information based on a given bundle name. This method uses an asynchronous callback to return the result.
 
 **Required permissions**
 
-ohos.permission.GET\_BUNDLE\_INFO\_PRIVILEGED or ohos.permission.GET\_BUNDLE\_INFO
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
+
+**System capability**
+
+SystemCapability.BundleManager.BundleFramework
 
 **Parameters**
 
@@ -277,11 +340,15 @@ bundle.getBundleInfo(bundleName, bundleFlags, (err, data) => {
 
 getBundleInfo(bundleName: string, bundleFlags: number, options: BundleOptions, callback: AsyncCallback\<BundleInfo>): void
 
-Obtains the bundle information based on a given bundle name in asynchronous mode. This method uses a callback to return the result.
+Obtains the bundle information based on a given bundle name. This method uses an asynchronous callback to return the result.
 
 **Required permissions**
 
-ohos.permission.GET\_BUNDLE\_INFO\_PRIVILEGED or ohos.permission.GET\_BUNDLE\_INFO
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
+
+**System capability**
+
+SystemCapability.BundleManager.BundleFramework
 
 **Parameters**
 
@@ -289,7 +356,7 @@ ohos.permission.GET\_BUNDLE\_INFO\_PRIVILEGED or ohos.permission.GET\_BUNDLE\_IN
 | ----------- | -------------------------- | ---- | ------------------------------------------------------------ |
 | bundleName  | string                     | Yes  | Bundle name.                                                        |
 | bundleFlags | number                     | Yes  | Type of information that will be returned. The default value is **0**. The value must be greater than or equal to 0.|
-| options     | BundleOptions              | Yes  | Includes **userId** and **networkId**.                                   |
+| options     | BundleOptions              | Yes  | Includes **userId**.                                   |
 | callback    | AsyncCallback\<BundleInfo> | Yes  | Callback used to return the bundle information.                    |
 
 **Example**
@@ -298,8 +365,7 @@ ohos.permission.GET\_BUNDLE\_INFO\_PRIVILEGED or ohos.permission.GET\_BUNDLE\_IN
 let bundleName = "com.example.myapplication";
 let bundleFlags = 1;
 let options = {
-  "userId" : 100,
-  "networkId" : null
+  "userId" : 100
 };
 bundle.getBundleInfo(bundleName, bundleFlags, options, (err, data) => {
     if (err) {
@@ -313,20 +379,24 @@ bundle.getBundleInfo(bundleName, bundleFlags, options, (err, data) => {
 
 ## bundle.getAllApplicationInfo
 
-getAllApplicationInfo(bundleFlags: number, userId: number): Promise<Array\<ApplicationInfo>>
+getAllApplicationInfo(bundleFlags: number, userId?: number): Promise<Array\<ApplicationInfo>>
 
 Obtains the information about all applications of the specified user. This method uses a promise to return the result.
 
 **Required permissions**
 
-ohos.permission.GET\_BUNDLE\_INFO\_PRIVILEGED
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**System capability**
+
+SystemCapability.BundleManager.BundleFramework
 
 **Parameters**
 
 | Name       | Type  | Mandatory| Description                                                  |
 | ----------- | ------ | ---- | ------------------------------------------------------ |
 | bundleFlags | number | Yes  | Type of information that will be returned. The default value is **0**. The value must be greater than or equal to 0.|
-| userId      | number | Yes  | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.  |
+| userId      | number | No  | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.  |
 
 **Return value**
 
@@ -353,18 +423,22 @@ bundle.getAllApplicationInfo(bundleFlags, userId)
 
 getAllApplicationInfo(bundleFlags: number, userId: number, callback: AsyncCallback<Array\<ApplicationInfo>>): void
 
-Obtains the information about all installed applications of the specified user. This method uses a callback to return the result.
+Obtains the information about all applications of the specified user. This method uses an asynchronous callback to return the result.
 
 **Required permissions**
 
-ohos.permission.GET\_BUNDLE\_INFO\_PRIVILEGED
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**System capability**
+
+SystemCapability.BundleManager.BundleFramework
 
 **Parameters**
 
 | Name       | Type                                  | Mandatory| Description                                                  |
 | ----------- | -------------------------------------- | ---- | ------------------------------------------------------ |
 | bundleFlags | number                                 | Yes  | Type of information that will be returned. The default value is **0**. The value must be greater than or equal to 0.|
-| userId      | number                                 | Yes  | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.   |
+| userId      | number                                 | No  | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.   |
 | callback    | AsyncCallback<Array\<ApplicationInfo>> | Yes  | Callback used to return the application information.        |
 
 **Example**
@@ -382,16 +456,356 @@ bundle.getAllApplicationInfo(bundleFlags, userId, (err, data) => {
 ```
 
 
+## bundle.getAllApplicationInfo
+
+function getAllApplicationInfo(bundleFlags: number, callback: AsyncCallback<Array\<ApplicationInfo>>) : void;
+
+Obtains the information about all applications. This method uses an asynchronous callback to return the result.
+
+**Required permissions**
+
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**System capability**
+
+SystemCapability.BundleManager.BundleFramework
+
+**Parameters**
+
+| Name       | Type                                  | Mandatory| Description                                                  |
+| ----------- | -------------------------------------- | ---- | ------------------------------------------------------ |
+| bundleFlags | number                                 | Yes  | Type of information that will be returned. The default value is **0**. The value must be greater than or equal to 0.|
+| callback    | AsyncCallback<Array\<ApplicationInfo>> | Yes  | Callback used to return the application information.        |
+
+**Example**
+
+```js
+let bundleFlags = 8;
+bundle.getAllApplicationInfo(bundleFlags, (err, data) => {
+    if (err) {
+        console.error('Operation failed. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Operation successful. Data:' + JSON.stringify(data));
+})
+```
+
+## bundle.getAbilityInfo
+
+getAbilityInfo(bundleName: string, abilityName: string): Promise\<AbilityInfo>
+
+Obtains the ability information based on a given want. This method uses a promise to return the result.
+
+**Required permissions**
+
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
+
+**System capability**
+
+SystemCapability.BundleManager.BundleFramework
+
+**Parameters**
+
+| Name       | Type  | Mandatory| Description                                                      |
+| ----------- | ------ | ---- | -------------------------------------------------------- |
+| bundleName  | string  | Yes  | Bundle name of the application. |
+| abilityName | string  |  Yes | Name of the ability.|
+
+**Return value**
+
+| Type                        | Description                        |
+| ---------------------------- | ---------------------------- |
+| Promise\<AbilityInfo> | Promise used to return the ability information.|
+
+**Example**
+
+```js
+let bundleName = "com.example.myapplication";
+let abilityName = "com.example.myapplication.MainAbility";
+bundle.getAbilityInfo(bundleName, abilityName)
+.then((data) => {
+    console.info('Operation successful. Data: ' + JSON.stringify(data));
+}).catch((error) => {
+    console.error('Operation failed. Cause: ' + JSON.stringify(error));
+})
+```
+
+## bundle.getAbilityInfo
+
+getAbilityInfo(bundleName: string, abilityName: string): callback :
+AsyncCallback\<AbilityInfo>: void
+
+Obtains the ability information based on a given want. This method uses an asynchronous callback to return the result.
+
+**Required permissions**
+
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
+
+**System capability**
+
+SystemCapability.BundleManager.BundleFramework
+
+**Parameters**
+
+| Name       | Type  | Mandatory| Description                                                       |
+| ----------- | ------ | ---- | --------------------------------------------------------- |
+| bundleName  | string  | Yes  | Bundle name of the application. |
+| abilityName | string  |  Yes | Name of the ability.|
+| callback    | AsyncCallback\<AbilityInfo> | Yes| Callback used to return the ability information.|
+
+**Example**
+
+```js
+let bundleName = "com.example.myapplication";
+let abilityName = "com.example.myapplication.MainAbility";
+bundle.getAbilityInfo(bundleName, abilityName, (err, data) => {
+    if (err) {
+        console.error('Operation failed. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Operation successful. Data:' + JSON.stringify(data));
+})
+```
+
+## bundle.getAbilityLabel
+
+getAbilityLabel(bundleName: string, abilityName: string): Promise\<string>
+
+Obtains the application name based on a given want. This method uses a promise to return the result.
+
+**Required permissions**
+
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
+
+**System capability**
+
+SystemCapability.BundleManager.BundleFramework
+
+**Parameters**
+
+| Name       | Type  | Mandatory| Description                                                      |
+| ----------- | ------ | ---- | -------------------------------------------------------- |
+| bundleName  | string  | Yes  | Bundle name of the application. |
+| abilityName | string  |  Yes | Name of the ability.|
+
+**Return value**
+
+| Type                        | Description                        |
+| ---------------------------- | ---------------------------- |
+| Promise\<string> | Promise used to return the application name.|
+
+**Example**
+
+```js
+let bundleName = "com.example.myapplication";
+let abilityName = "com.example.myapplication.MainAbility";
+bundle.getAbilityLabel(bundleName, abilityName)
+.then((data) => {
+    console.info('Operation successful. Data: ' + JSON.stringify(data));
+}).catch((error) => {
+    console.error('Operation failed. Cause: ' + JSON.stringify(error));
+})
+```
+
+## bundle.getAbilityLabel
+
+getAbilityLabel(bundleName: string, abilityName: string, callback : AsyncCallback\<string>): void
+
+Obtains the application name based on a given want. This method uses an asynchronous callback to return the result.
+
+**Required permissions**
+
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
+
+**System capability**
+
+SystemCapability.BundleManager.BundleFramework
+
+**Parameters**
+
+| Name       | Type  | Mandatory| Description                                                       |
+| ----------- | ------ | ---- | --------------------------------------------------------- |
+| bundleName  | string  | Yes  | Bundle name of the application. |
+| abilityName | string  |  Yes | Name of the ability.|
+| callback | AsyncCallback\<string> | Yes| Callback used to return the application name.|
+
+**Example**
+
+```js
+let bundleName = "com.example.myapplication";
+let abilityName = "com.example.myapplication.MainAbility";
+bundle.getAbilityLabel(bundleName, abilityName, (err, data) => {
+    if (err) {
+        console.error('Operation failed. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Operation successful. Data:' + JSON.stringify(data));
+})
+```
+
+## bundle.isAbilityEnabled
+
+isAbilityEnabled(info: AbilityInfo): Promise\<boolean>
+
+Checks whether an ability is enabled based on a given want. This method uses a promise to return the result.
+
+**Required permissions**
+
+None
+
+**System capability**
+
+SystemCapability.BundleManager.BundleFramework
+
+**Parameters**
+
+| Name       | Type  | Mandatory| Description                     |
+| ----------- | ------ | ---- | ------------             |
+| info       | AbilityInfo  | Yes  | Ability information.   |
+
+**Return value**
+
+| Type                        | Description                    |
+| ---------------------------- | ------------------------|
+| Promise\<boolean> | Promise used to return whether the ability is enabled. If the ability is enabled, **true** will be returned; otherwise, **false** will be returned.|
+
+**Example**
+
+```js
+let Info = {
+    bundleName : "com.example.myapplication",
+    name : "com.example.myapplication.MainAbility"
+};
+bundle.isAbilityEnabled(Info)
+.then((data) => {
+    console.info('Operation successful. Data: ' + JSON.stringify(data));
+}).catch((error) => {
+    console.error('Operation failed. Cause: ' + JSON.stringify(error));
+})
+```
+
+## bundle.isAbilityEnabled
+
+isAbilityEnabled(info : AbilityInfo, callback : AsyncCallback\<boolean>): void
+
+Checks whether an ability is enabled based on a given want. This method uses an asynchronous callback to return the result.
+
+**Required permissions**
+
+None
+
+**System capability**
+
+SystemCapability.BundleManager.BundleFramework
+
+**Parameters**
+
+| Name       | Type  | Mandatory| Description                                                       |
+| ----------- | ------ | ---- | --------------------------------------------------------- |
+| info  | AbilityInfo  | Yes  | Ability information.        |
+| callback |  AsyncCallback\<boolean> | Yes| Callback used to return whether the ability is enabled. If the ability is enabled, **true** will be returned; otherwise, **false** will be returned.|
+
+**Example**
+
+```js
+let Info = {
+    bundleName : "com.example.myapplication",
+    name : "com.example.myapplication.MainAbility"
+};
+bundle.isAbilityEnabled(Info, (err, data) => {
+    if (err) {
+        console.error('Operation failed. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Operation successful. Data:' + JSON.stringify(data));
+})
+```
+
+## bundle.isApplicationEnabled
+
+isApplicationEnabled(bundleName: string): Promise\<boolean>
+
+Checks whether an application is enabled based on a given want. This method uses a promise to return the result.
+
+**Required permissions**
+
+None
+
+**System capability**
+
+SystemCapability.BundleManager.BundleFramework
+
+**Parameters**
+
+| Name       | Type  | Mandatory| Description                                                      |
+| ----------- | ------ | ---- | -------------------------------------------------------- |
+| bundleName  | string | Yes  | Bundle name of the application.  |
+
+**Return value**
+
+| Type                        | Description                    |
+| ---------------------------- | ------------------------|
+| Promise\<boolean> | Promise used to return whether the application is enabled. If the application is enabled, **true** will be returned; otherwise, **false** will be returned.|
+
+**Example**
+
+```js
+let bundleName = "com.example.myapplication";
+bundle.isApplicationEnabled(bundleName)
+.then((data) => {
+    console.info('Operation successful. Data: ' + JSON.stringify(data));
+}).catch((error) => {
+    console.error('Operation failed. Cause: ' + JSON.stringify(error));
+})
+```
+
+## bundle.isApplicationEnabled
+
+isApplicationEnabled(bundleName: string, callback : AsyncCallback\<boolean>): void
+
+Checks whether an application is enabled based on a given want. This method uses an asynchronous callback to return the result.
+
+**Required permissions**
+
+None
+
+**System capability**
+
+SystemCapability.BundleManager.BundleFramework
+
+**Parameters**
+
+| Name       | Type  | Mandatory| Description                                                       |
+| ----------- | ------ | ---- | --------------------------------------------------------- |
+| bundleName  | string | Yes  | Bundle name of the application.  |
+| callback |  AsyncCallback\<boolean> | Yes| Callback used to return whether the application is enabled. If the application is enabled, **true** will be returned; otherwise, **false** will be returned.|
+
+**Example**
+
+```js
+let bundleName : "com.example.myapplication";
+bundle.isApplicationEnabled(bundleName, (err, data) => {
+    if (err) {
+        console.error('Operation failed. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Operation successful. Data:' + JSON.stringify(data));
+})
+```
 
 ## bundle.queryAbilityByWant
 
 queryAbilityByWant(want: Want, bundleFlags: number, userId?: number): Promise<Array\<AbilityInfo>>
 
-Obtains the ability information of the specified user based on a given want. This method uses a promise to return the result.
+Obtains the ability information based on a given want. This method uses a promise to return the result.
 
 **Required permissions**
 
-ohos.permission.GET\_BUNDLE\_INFO\_PRIVILEGED or ohos.permission.GET\_BUNDLE\_INFO
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
+
+**System capability**
+
+SystemCapability.BundleManager.BundleFramework
 
 **Parameters**
 
@@ -430,7 +844,11 @@ bundle.queryAbilityByWant(want, bundleFlags, userId)
 
 queryAbilityByWant(want: Want, bundleFlags: number, userId: number, callback: AsyncCallback\<Array\<AbilityInfo>>): void
 
-Obtains the ability information of the specified user based on a given want. This method uses an asynchronous callback to return the result.
+Obtains the ability information based on a given want. This method uses an asynchronous callback to return the result.
+
+**System capability**
+
+SystemCapability.BundleManager.BundleFramework
 
 **Parameters**
 
@@ -461,9 +879,13 @@ bundle.queryAbilityByWant(want, bundleFlags, userId, (err, data) => {
 
 ## bundle.queryAbilityByWant
 
-queryAbilityByWant(want: Want, bundleFlags: number, callback: AsyncCallback<Array<AbilityInfo>>): void
+queryAbilityByWant(want: Want, bundleFlags: number, callback: AsyncCallback<Array\<AbilityInfo>>): void
 
 Obtains the ability information based on a given want. This method uses an asynchronous callback to return the result.
+
+**System capability**
+
+SystemCapability.BundleManager.BundleFramework
 
 **Parameters**
 
@@ -492,19 +914,23 @@ bundle.queryAbilityByWant(want, bundleFlags, (err, data) => {
 
 ## bundle.getBundleInstaller
 
-getBundleInstaller(): Promise<BundleInstaller>
+getBundleInstaller(): Promise\<BundleInstaller>
 
-Obtains the bundle installer in asynchronous mode. This method uses a promise to return the result.
+Obtains the bundle installer. This method uses a promise to return the result.
 
 **Required permissions**
 
 ohos.permission.INSTALL_BUNDLE
 
+**System capability**
+
+SystemCapability.BundleManager.BundleFramework
+
 **Return value**
 
 | Type                    | Description                                               |
 | ------------------------ | --------------------------------------------------- |
-| Promise<BundleInstaller> | Promise used to return the bundle installer.|
+| Promise\<BundleInstaller> | Promise used to return the bundle installer.|
 
 **Example**
 
@@ -531,19 +957,23 @@ bundle.getBundleInstaller()
 
 ## bundle.getBundleInstaller
 
-getBundleInstaller(callback: AsyncCallback<BundleInstaller>): void;
+getBundleInstaller(callback: AsyncCallback\<BundleInstaller>): void;
 
-Obtains the bundle installer in asynchronous mode. This method uses a callback to return the result.
+Obtains the bundle installer. This method uses an asynchronous callback to return the result.
 
 **Required permissions**
 
 ohos.permission.INSTALL_BUNDLE
 
+**System capability**
+
+SystemCapability.BundleManager.BundleFramework
+
 **Parameters**
 
 | Name    | Type                          | Mandatory| Description                                             |
 | -------- | ------------------------------ | ---- | ------------------------------------------------- |
-| callback | AsyncCallback<BundleInstaller> | Yes  | Callback used to return the bundle installer.|
+| callback | AsyncCallback\<BundleInstaller> | Yes  | Callback used to return the bundle installer.|
 
 **Example**
 
@@ -573,11 +1003,15 @@ bundle.getBundleInstaller((err, installerObject) => {
 
 getLaunchWantForBundle(bundleName: string): Promise\<Want>
 
-Obtains the **Want** object that launches the specified application in asynchronous mode. This method uses a promise to return the result.
+Obtains the **Want** object that launches the specified application. This method uses a promise to return the result.
 
 **Required permissions**
 
-ohos.permission.GET\_BUNDLE\_INFO\_PRIVILEGED
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**System capability**
+
+SystemCapability.BundleManager.BundleFramework
 
 **Parameters**
 
@@ -604,13 +1038,17 @@ bundle.getLaunchWantForBundle(bundleName)
 
 ## bundle.getLaunchWantForBundle
 
-getLaunchWantForBundle(bundleName: string, callback: AsyncCallback<Want>): void;
+getLaunchWantForBundle(bundleName: string, callback: AsyncCallback\<Want>): void;
 
-Obtains the **Want** object that launches the specified application in asynchronous mode. This method uses a callback to return the result.
+Obtains the **Want** object that launches the specified application. This method uses an asynchronous callback to return the result.
 
 **Required permissions**
 
-ohos.permission.GET\_BUNDLE\_INFO\_PRIVILEGED
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**System capability**
+
+SystemCapability.BundleManager.BundleFramework
 
 **Parameters**
 
@@ -637,7 +1075,11 @@ bundle.getLaunchWantForBundle(bundleName, (err, data) => {
 
 getNameForUid(uid: number): Promise\<string>
 
-Obtains the bundle name based on a UID in asynchronous mode. This method uses a promise to return the result.
+Obtains the bundle name based on a UID. This method uses a promise to return the result.
+
+**System capability**
+
+SystemCapability.BundleManager.BundleFramework
 
 **Parameters**
 
@@ -664,9 +1106,13 @@ bundle.getNameForUid(uid)
 
 ## bundle.getNameForUid
 
-getNameForUid(uid: number, callback: AsyncCallback<string>): void;
+getNameForUid(uid: number, callback: AsyncCallback\<string>): void;
 
-Obtains the bundle name based on a UID in asynchronous mode. This method uses a callback to return the result.
+Obtains the bundle name based on a UID. This method uses an asynchronous callback to return the result.
+
+**System capability**
+
+SystemCapability.BundleManager.BundleFramework
 
 **Parameters**
 
@@ -689,7 +1135,189 @@ bundle.getNameForUid(uid, (err, data) => {
 ```
 
 
+## bundle.getAbilityIcon
+
+function getAbilityIcon(bundleName: string, abilityName: string): Promise\<[PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)>;
+
+Obtains the [PixelMap](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-image.md) of the corresponding icon based on a given bundle name and ability name. This method uses a promise to return the result.
+
+**Parameters**
+
+| Name      | Type  | Mandatory| Description    |
+| ---------- | ------ | ---- | -------- |
+| bundleName | string | Yes  | Bundle name based on which the pixel map is to obtain.|
+| abilityName | string | Yes  | Ability name based on which the pixel map is to obtain.|
+
+**Return value**
+| Type                 | Description                                                        |
+| --------------------- | ------------------------------------------------------------ |
+| Promise\<[PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)> | Promise used to return the <[PixelMap](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-image.md)>.|
+
+**Example**
+
+```js
+let bundleName = com.example.myapplication;
+let abilityName = com.example.myapplication.MainAbility;
+bundle.getAbilityIcon(bundleName, abilityName)
+.then((data) => {
+    console.info('Operation successful. Data: ' + JSON.stringify(data));
+}).catch((error) => {
+    console.error('Operation failed. Cause: ' + JSON.stringify(error));
+})
+```
+
+## bundle.getAbilityIcon
+
+function getAbilityIcon(bundleName: string, abilityName: string, callback: AsyncCallback\<[PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)>): void;
+
+Obtains the [PixelMap](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-image.md) of the corresponding icon based on a given bundle name and ability name. This method uses an asynchronous callback to return the result.
+
+**Parameters**
+
+| Name      | Type  | Mandatory| Description    |
+| ---------- | ------ | ---- | -------- |
+| bundleName | string | Yes  | Bundle name based on which the pixel map is to obtain.|
+| abilityName | string | Yes  | Ability name based on which the pixel map is to obtain.|
+| callback   | AsyncCallback\<[PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)> | Yes  | Callback used to return the <[PixelMap](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-image.md)>.|
+
+**Example**
+
+```js
+let bundleName = com.example.myapplication;
+let abilityName = com.example.myapplication.MainAbility;
+bundle.getAbilityIcon(bundleName, abilityName, (err, data) => {
+    if (err) {
+        console.error('Operation failed. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Operation successful. Data:' + JSON.stringify(data));
+})
+```
+
+
+## bundle.queryExtensionAbilityInfosByWant
+
+function queryExtensionAbilityInfosByWant(want: Want, extensionFlags: number, userId?: number): Promise<Array\<ExtensionAbilityInfo>>
+
+Obtains the extension ability information based on a given want. This method uses a promise to return the result.
+
+**Required permissions**
+
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED, ohos.permission.GET_BUNDLE_INFO
+
+**System capability**
+
+SystemCapability.BundleManager.BundleFramework
+
+**Parameters**
+
+| Name       | Type  | Mandatory| Description                                                        |
+| ----------- | ------ | ---- | ------------------------------------------------------------ |
+| want        | Want   | Yes  | Want that contains the bundle name.                          |
+| extensionFlags | number | Yes  | Extension ability information to be returned. The default value is **0**. The value must be greater than or equal to 0.|
+| userId      | number | No  | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.         |
+
+**Return value**
+
+| Type                        | Description                        |
+| ---------------------------- | ---------------------------- |
+| Promise<Array\<ExtensionAbilityInfo>> | Promise used to return the extension ability information.|
+
+**Example**
+
+```js
+let extensionFlags = 0;
+let userId = 100;
+let want = {
+    bundleName : "com.example.myapplication",
+    abilityName : "com.example.myapplication.MainAbility"
+};
+bundle.queryExtensionAbilityInfosByWant(want, extensionFlags, userId)
+.then((data) => {
+    console.info('Operation successful. Data: ' + JSON.stringify(data));
+}).catch((error) => {
+    console.error('Operation failed. Cause: ' + JSON.stringify(error));
+})
+```
+
+
+
+## bundle.queryExtensionAbilityInfosByWant
+
+function queryExtensionAbilityInfosByWant(want: Want, extensionFlags: number, userId: number, callback: AsyncCallback<Array\<ExtensionAbilityInfo>>): void
+
+Obtains the extension ability information based on a given want. This method uses an asynchronous callback to return the result.
+
+**System capability**
+
+SystemCapability.BundleManager.BundleFramework
+
+**Parameters**
+
+| Name       | Type                              | Mandatory| Description                                                        |
+| ----------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
+| want        | Want                               | Yes  | Want that contains the bundle name.                      |
+| extensionFlags | number                             | Yes  | Extension ability information to be returned. The default value is **0**. The value must be greater than or equal to 0.|
+| userId      | number                             | Yes  | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.         |
+| callback    | AsyncCallback<Array\<ExtensionAbilityInfo>> | Yes  | Callback used to return the extension ability information.               |
+
+**Example**
+
+```js
+let extensionFlags = 0;
+let userId = 100;
+let want = {
+    bundleName : "com.example.myapplication",
+    abilityName : "com.example.myapplication.MainAbility"
+};
+bundle.queryExtensionAbilityInfosByWant(want, extensionFlags, userId, (err, data) => {
+    if (err) {
+        console.error('Operation failed. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Operation successful. Data:' + JSON.stringify(data));
+})
+```
+
+## bundle.queryExtensionAbilityInfosByWant
+
+function queryExtensionAbilityInfosByWant(want: Want, extensionFlags: number, callback: AsyncCallback<Array\<ExtensionAbilityInfo>>): void;
+
+Obtains the extension ability information based on a given want. This method uses an asynchronous callback to return the result.
+
+**System capability**
+
+SystemCapability.BundleManager.BundleFramework
+
+**Parameters**
+
+| Name       | Type                              | Mandatory| Description                                                        |
+| ----------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
+| want        | Want                               | Yes  | Want that contains the bundle name.                      |
+| extensionFlags | number                             | Yes  | Extension ability information to be returned. The default value is **0**. The value must be greater than or equal to 0.|
+| callback    | AsyncCallback<Array\<ExtensionAbilityInfo>> | Yes  | Callback used to return the extension ability information.               |
+
+**Example**
+
+```js
+let extensionFlags = 0;
+let want = {
+    bundleName : "com.example.myapplication",
+    abilityName : "com.example.myapplication.MainAbility"
+};
+bundle.queryExtensionAbilityInfosByWant(want, extensionFlags, (err, data) => {
+    if (err) {
+        console.error('Operation failed. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Operation successful. Data:' + JSON.stringify(data));
+})
+```
+
+
 ## ElementName
+
+ **System capability**: SystemCapability.BundleManager.BundleFramework
 
 | Name       | Readable/Writable| Type  | Mandatory| Description                                                        |
 | ----------- | -------- | ------ | ---- | ------------------------------------------------------------ |
@@ -701,13 +1329,17 @@ bundle.getNameForUid(uid, (err, data) => {
 
 ## InstallStatus
 
+ **System capability**: SystemCapability.BundleManager.BundleFramework
+
 | Name         | Readable/Writable| Type            | Mandatory| Description                                                        |
 | ------------- | -------- | ---------------- | ---- | ------------------------------------------------------------ |
 | status        | Read-only    | InstallErrorCode | Yes  | Installation result code.<br>SUCCESS = 0<br>STATUS_INSTALL_FAILURE = 1<br>STATUS_INSTALL_FAILURE_ABORTED = 2,<br>STATUS_INSTALL_FAILURE_INVALID = 3<br>STATUS_INSTALL_FAILURE_CONFLICT = 4<br>STATUS_INSTALL_FAILURE_STORAGE = 5<br>STATUS_INSTALL_FAILURE_INCOMPATIBLE = 6<br>STATUS_UNINSTALL_FAILURE = 7<br>STATUS_UNINSTALL_FAILURE_BLOCKED = 8<br>STATUS_UNINSTALL_FAILURE_ABORTED = 9<br>STATUS_UNINSTALL_FAILURE_CONFLICT = 10<br>STATUS_INSTALL_FAILURE_DOWNLOAD_TIMEOUT = 0x0B<br>STATUS_INSTALL_FAILURE_DOWNLOAD_FAILED = 0x0C<br>STATUS_RECOVER_FAILURE_INVALID = 0x0D<br>STATUS_ABILITY_NOT_FOUND = 0x40<br>STATUS_BMS_SERVICE_ERROR = 0x41<br>STATUS_FAILED_NO_SPACE_LEFT = 0x42<br>STATUS_GRANT_REQUEST_PERMISSIONS_FAILED = 0x43<br>STATUS_INSTALL_PERMISSION_DENIED = 0x44<br>STATUS_UNINSTALL_PERMISSION_DENIED = 0x45 |
 
 ## BundleFlag
 
-Enumerates the bundle flags.
+Enumerates bundle flags.
+
+ **System capability**: SystemCapability.BundleManager.BundleFramework
 
 | Name              | Default Value| Description  |
 | ------ | ------ | ------ |
@@ -718,8 +1350,9 @@ Enumerates the bundle flags.
 | GET_APPLICATION_INFO_WITH_PERMISSION | 0x00000008 | Obtains the application information with the permission information.|
 | GET_BUNDLE_WITH_REQUESTED_PERMISSION | 0x00000010 | Obtains the bundle information with the information about the required permissions.|
 | GET_ABILITY_INFO_WITH_METADATA | 0x00000020 | Obtains the ability metadata information.|
+| GET_BUNDLE_WITH_EXTENSION_ABILITY | 0x00000020 | Obtains the bundle information with the extension ability information.|
 | GET_APPLICATION_INFO_WITH_METADATA | 0x00000040 | Obtains the application metadata information.|
-| GET_ABILITY_INFO_SYSTEMAPP_ONLY | 0x00000080 | Obtains only the ability information with information about system applications.|
+| GET_ABILITY_INFO_SYSTEMAPP_ONLY | 0x00000080 | Obtains the ability information with information about system applications.|
 | GET_ABILITY_INFO_WITH_DISABLE | 0x00000100 | Obtains information about disabled abilities.|
 | GET_APPLICATION_INFO_WITH_DISABLE | 0x00000200 | Obtains information about disabled applications.|
 | GET_ALL_APPLICATION_INFO | 0xFFFF0000 | Obtains all application information.|
@@ -728,14 +1361,17 @@ Enumerates the bundle flags.
 
 Describes the bundle options.
 
+ **System capability**: SystemCapability.BundleManager.BundleFramework
+
 | Name              | Type| Readable| Writable| Description|
 | ------ | ------ | ------ | ------ | ------ |
 | userId | number | Yes| Yes| User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.|
-| networkId | string | Yes| Yes| Network ID. The default value is **null**.|
 
 ## BundleInfo
 
 Describes the application bundle information.
+
+ **System capability**: SystemCapability.BundleManager.BundleFramework
 
 | Name              | Type| Readable| Writable| Description|
 | ------ | ------ | ------ | ------ | ------ |
@@ -743,29 +1379,32 @@ Describes the application bundle information.
 | type                     | string                     | Yes  | No  | Bundle type.                                |
 | appId                    | string                     | Yes  | No  | ID of the application to which the bundle belongs.                      |
 | uid                      | number                     | Yes  | No  | UID of the application to which the bundle belongs.                     |
-| installTime              | number                     | Yes  | No  | Time when the HAP file is installed.                             |
-| updateTime               | number                     | Yes  | No  | Time when the HAP file is updated.                             |
+| installTime              | number                     | Yes  | No  | Time when the HAP file was installed.                             |
+| updateTime               | number                     | Yes  | No  | Time when the HAP file was updated.                             |
 | appInfo                  | ApplicationInfo        | Yes  | No  | Application configuration information.                        |
-| abilityInfo              | Array<AbilityInfo>         | Yes  | No  | Ability configuration information.                         |
-| reqPermissions           | Array<string>              | Yes  | No  | Array of the permissions to request from the system.          |
-| reqPermissionDetails     | Array<ReqPermissionDetail> | Yes  | No  | Detailed information of the permissions to request from the system.|
+| abilityInfos              | Array\<AbilityInfo>         | Yes  | No  | Ability configuration information.                         |
+| reqPermissions           | Array\<string>              | Yes  | No  | Array of the permissions to request from the system.          |
+| reqPermissionDetails     | Array\<ReqPermissionDetail> | Yes  | No  | Detailed information of the permissions to request from the system.|
 | vendor                   | string                     | Yes  | No  | Vendor of the bundle.                            |
 | versionCode              | number                     | Yes  | No  | Version number of the bundle.                            |
 | versionName              | string                     | Yes  | No  | Version description of the bundle.                  |
 | compatibleVersion        | number                     | Yes  | No  | Earliest SDK version required for running the bundle.           |
 | targetVersion            | number                     | Yes  | No  | Latest SDK version required for running the bundle.             |
 | isCompressNativeLibs     | boolean                    | Yes  | No  | Whether to compress the native library of the bundle. The default value is **true**.        |
-| hapModuleInfo            | Array<HapModuleInfo>       | Yes  | No  | Module configuration information.                            |
+| hapModuleInfos            | Array\<HapModuleInfo>       | Yes  | No  | Module configuration information.                            |
 | entryModuleName          | string                     | Yes  | No  | Name of the entry module.                           |
 | cpuAbi                   | string                     | Yes  | No  | cpuAbi information of the bundle.                        |
 | isSilentInstallation     | string                     | Yes  | No  | Whether to install the bundle in silent mode.                          |
 | minCompatibleVersionCode | number                     | Yes  | No  | Earliest version compatible with the bundle in the distributed scenario.        |
 | entryInstallationFree | boolean | Yes| No| Whether installation-free is supported for the entry.|
-| reqPermissionStates | Array<number> | Yes| No| Permission grant state.|
+| reqPermissionStates | Array\<number> | Yes| No| Permission grant state.|
+| extensionAbilityInfo | Array\<ExtensionAbilityInfo> | Yes| No|   Extended information of the ability.|
 
 ## ApplicationInfo
 
 Describes the application information.
+
+ **System capability**: SystemCapability.BundleManager.BundleFramework
 
 | Name              | Type| Readable| Writable| Description|
 | ------ | ------ | ------ | ------ | ------ |
@@ -778,22 +1417,26 @@ Describes the application information.
 | labelId          | string        | Yes  | No  | Application label ID.                          |
 | icon             | string        | Yes  | No  | Application icon.                            |
 | iconId           | string        | Yes  | No  | Application icon ID.                          |
-| process          | string        | Yes  | No  | Process in which this application runs. If this parameter is not set, the bundle name is used by default.|
+| process          | string        | Yes  | No  | Process in which the application runs. If this parameter is not set, the bundle name is used by default.|
 | supportedModes   | number        | Yes  | No  | Running modes supported by the application.                    |
-| moduleSourceDirs | Array<string> | Yes  | No  | Relative paths for storing application resources.              |
-| permissions      | Array<string> | Yes  | No  | Permissions required for accessing the application.                    |
-| moduleInfos | Array<ModuleInfo> | Yes  | No  | Application module information.                        |
+| moduleSourceDirs | Array\<string> | Yes  | No  | Relative paths for storing application resources.              |
+| permissions      | Array\<string> | Yes  | No  | Permissions required for accessing the application.                    |
+| moduleInfos | Array\<ModuleInfo> | Yes  | No  | Application module information.                        |
 | entryDir         | string        | Yes  | No  | Path for storing application files.                    |
-| customizeData    | Map<string, Array<CustomizeData>> | Yes  | Yes  | Custom data of the application.                      |
+| customizeData    | Map<string, Array\<CustomizeData>> | Yes  | Yes  | Custom data of the application.                      |
 | codePath | string | Yes| No| Installation directory of the application.|
-| metaData | Map<string, Array<CustomizeData>> | Yes| No| Custom metadata of the application.|
+| metaData | Map<string, Array\<CustomizeData>> | Yes| No| Custom metadata of the application.|
+| metaData | Map<string, Array\<Metadata>> | Yes| No| Metadata of the application.|
 | removable | boolean | Yes| No| Whether the application is removable.|
 | accessTokenId | number | Yes| No| Access token ID of the application.|
 | uid | number | Yes| No| UID of the application.|
+| entityType | string | Yes| No| Entity type of the application.|
 
 ## ModuleInfo
 
-Describes the application module information.
+Describes the module information of the application.
+
+ **System capability**: SystemCapability.BundleManager.BundleFramework
 
 | Name              | Type| Readable| Writable| Description|
 | ------ | ------ | ------ | ------ | ------ |
@@ -803,6 +1446,8 @@ Describes the application module information.
 ## CustomizeData
 
 Describes the custom metadata.
+
+ **System capability**: SystemCapability.BundleManager.BundleFramework
 
 | Name | Type  | Readable| Writable| Description            |
 | ----- | ------ | ---- | ---- | ---------------- |
@@ -815,6 +1460,8 @@ Describes the custom metadata.
 
 Describes the HAP module information.
 
+ **System capability**: SystemCapability.BundleManager.BundleFramework
+
 | Name              | Type| Readable| Writable| Description|
 | ------ | ------ | ------ | ------ | ------ |
 | name             | string        | Yes  | No  | Module name.          |
@@ -826,17 +1473,21 @@ Describes the HAP module information.
 | iconId           | number        | Yes  | No  | Module icon ID.        |
 | backgroundImg    | string        | Yes  | No  | Module background image.      |
 | supportedModes   | number        | Yes  | No  | Modes supported by the module.    |
-| reqCapabilities  | Array<string> | Yes  | No  | Capabilities required for module running.|
-| deviceTypes      | Array<string> | Yes  | No  | An array of supported device types.|
-| abilityInfo      | Array<AbilityInfo> | Yes  | No  | Ability information.       |
+| reqCapabilities  | Array\<string> | Yes  | No  | Capabilities required for module running.|
+| deviceTypes      | Array\<string> | Yes  | No  | An array of supported device types.|
+| abilityInfo      | Array\<AbilityInfo> | Yes  | No  | Ability information.       |
 | moduleName       | string        | Yes  | No  | Module name.            |
 | mainAbilityName  | string        | Yes  | No  | Name of the entry ability.   |
 | installationFree | boolean       | Yes  | No  | Whether installation-free is supported.    |
 | mainElementName | string | Yes| No| Information about the entry ability.|
+| extensionAbilityInfo | Array\<ExtensionAbilityInfo> | Yes| No| Extension ability information.|
+| metadata | Array\<Metadata> | Yes| No| Metadata of the ability.|
 
 ## ReqPermissionDetail
 
 Describes the detailed information of the permissions to request from the system.
+
+ **System capability**: SystemCapability.BundleManager.BundleFramework
 
 | Name              | Type| Readable| Writable| Description|
 | ------ | ------ | ------ | ------ | ------ |
@@ -848,15 +1499,19 @@ Describes the detailed information of the permissions to request from the system
 
 Describes the application scenario and timing for using the permission.
 
+ **System capability**: SystemCapability.BundleManager.BundleFramework
+
 | Name              | Type| Readable| Writable| Description|
 | ------ | ------ | ------ | ------ | ------ |
-| abilities | Array<string> | Yes  | Yes  | Abilities that use the permission.|
+| abilities | Array\<string> | Yes  | Yes  | Abilities that use the permission.|
 | when      | string        | Yes  | Yes  | Time when the permission is used.         |
 
 
 ## AbilityInfo
 
-Describes ability information.
+Describes the ability information.
+
+ **System capability**: SystemCapability.BundleManager.BundleFramework
 
 | Name              | Type| Readable| Writable| Description|
 | ------ | ------ | ------ | ------ | ------ |
@@ -869,34 +1524,31 @@ Describes ability information.
 | iconId             | number                                                       | Yes  | No  | Ability icon ID.                          |
 | moduleName         | string                                                       | Yes  | No  | Name of the HAP file to which the ability belongs.                 |
 | process            | string                                                       | Yes  | No  | Process in which this ability runs. If this parameter is not set, the bundle name is used by default.|
-| targetAbility      | string                                                       | Yes  | No  | Target ability that this ability alias points to.             |
+| targetAbility      | string                                                       | Yes  | No  | Target ability that the ability alias points to.             |
 | backgroundModes    | number                                                       | Yes  | No  | Background service mode of the ability.                       |
 | isVisible          | boolean                                                      | Yes  | No  | Whether the ability can be called by other applications.        |
 | formEnabled        | boolean                                                      | Yes  | No  | Whether the ability provides the service widget capability.              |
 | type               | AbilityType | Yes  | No  | Ability type.                              |
 | orientation        | DisplayOrientation | Yes  | No  | Ability display orientation.                        |
 | launchMode         | LaunchMode | Yes  | No  | Ability launch mode.                        |
-| permissions        | Array<string>                                                | Yes  | No  | Permissions required for other applications to call the ability.|
-| deviceTypes        | Array<string>                                                | Yes  | No  | Device types supported by the ability.                    |
-| deviceCapabilities | Array<string>                                                | Yes  | No  | Device capabilities required for the ability.                    |
+| permissions        | Array\<string>                                                | Yes  | No  | Permissions required for other applications to call the ability.|
+| deviceTypes        | Array\<string>                                                | Yes  | No  | Device types supported by the ability.                    |
+| deviceCapabilities | Array\<string>                                                | Yes  | No  | Device capabilities required for the ability.                    |
 | readPermission     | string                                                       | Yes  | No  | Permission required for reading the ability data.                |
 | writePermission    | string                                                       | Yes  | No  | Permission required for writing data to the ability.                |
 | applicationInfo    | ApplicationInfo | Yes  | No  | Application configuration information.                       |
-| formEntity         | number                                                       | Yes  | No  | Area where the ability form can be displayed.                           |
-| minFormHeight      | number                                                       | Yes  | No  | Minimum height of the ability form.                        |
-| defaultFormHeight  | number                                                       | Yes  | No  | Default height of the ability form.                        |
-| minFormWidth       | number                                                       | Yes  | No  | Minimum width of the ability form.                        |
-| defaultFormWidth   | number                                                       | Yes  | No  | Default width of the ability form.                        |
 | uri                | string                                                       | Yes  | No  | URI of the ability.       |
-| customizeData      | Map<string, Array<CustomizeData>> | Yes  | Yes  | Custom data of the ability.                      |
 | labelId            | number                                                       | Yes  | No  | Ability label ID.                          |
 | subType            | AbilitySubType | Yes  | No  | Subtype of the template that can be used by the ability.          |
-| metaData | Array<Metadata> | Yes| No| Custom metadata of the ability.|
+| metaData | Array\<CustomizeData> | Yes| No| Custom information of the ability.|
+| metaData | Array\<Metadata> | Yes| No| Metadata of the ability.|
 | enabled | boolean | Yes| No| Whether the ability is enabled.|
 
 ## AbilityType
 
-Describes the ability type.
+Enumerates ability types.
+
+ **System capability**: SystemCapability.BundleManager.BundleFramework
 
 | Name   | Type| Description                       |
 | ------- | ---- | --------------------------- |
@@ -907,7 +1559,9 @@ Describes the ability type.
 
 ## DisplayOrientation
 
-Describes the display orientation.
+Enumerates display orientations.
+
+ **System capability**: SystemCapability.BundleManager.BundleFramework
 
 | Name         | Type| Description                    |
 | ------------- | ---- | ------------------------ |
@@ -918,18 +1572,92 @@ Describes the display orientation.
 
 ## LaunchMode
 
-Describes the launch mode.
+Enumerates launch modes.
+
+ **System capability**: SystemCapability.BundleManager.BundleFramework
 
 | Name       | Type| Description               |
 | ----------- | ---- | ------------------- |
-| UNSPECIFIED | 0    | The ability has only one instance.|
+| SINGLETON  | 0    | The ability has only one instance.|
 | STANDARD    | 1    | The ability can have multiple instances.  |
 
 ## AbilitySubType
 
-Describes the ability subtype.
+Enumerates ability subtypes.
+
+ **System capability**: SystemCapability.BundleManager.BundleFramework
 
 | Name       | Type| Description                         |
 | ----------- | ---- | ----------------------------- |
 | UNSPECIFIED | 0    | Undefined ability subtype.          |
 | CA          | 1    | Ability that has a UI.|
+
+
+## ExtensionAbilityType
+
+Enumerates extension ability types.
+
+ **System capability**: SystemCapability.BundleManager.BundleFramework
+
+| Name                 | Type| Description                         |
+| -------------------- | ---- | ----------------------------- |
+| FORM                 | 0    | Form included.    |
+| WORK_SCHEDULER       | 1    | Work scheduler included.|
+| INPUT_METHOD         | 2    | Input method included.  |
+| SERVICE              | 3    | Service included.    |
+| ACCESSIBILITY        | 4    | Accessibility included.  |
+| DATA_SHARE           | 5    | Data sharing included.|
+| FILE_SHARE           | 6    | File sharing included.|
+| STATIC_SUBSCRIBER    | 7    | Subscribers included.  |
+| WALLPAPER            | 8    | Wallpaper included.    |
+| UNSPECIFIED          | 9    | Unspecified type.    |
+
+## ExtensionFlag
+
+Enumerates extension flags.
+
+ **System capability**: SystemCapability.BundleManager.BundleFramework
+
+| Name              | Default Value| Description  |
+| ------ | ------ | ------ |
+| GET_EXTENSION_INFO_DEFAULT | 0x00000000 | Obtains the default extension ability information.|
+| GET_EXTENSION_INFO_WITH_PERMISSION | 0x00000002 | Obtains the extension ability information that carries permission information.|
+| GET_EXTENSION_INFO_WITH_APPLICATION | 0x00000004 | Obtains the extension ability information that carries application information.|
+| GET_EXTENSION_INFO_WITH_METADATA | 0x00000020 | Obtains the extension ability information that carries metadata information.|
+
+
+## ExtensionAbilityInfo
+
+Describes the extension ability information.
+
+ **System capability**: SystemCapability.BundleManager.BundleFramework
+
+| Name              | Type| Readable| Writable| Description|
+| ------ | ------ | ------ | ------ | ------ |
+| bundleName         | string                                                       | Yes  | No  | Application bundle name.                                 |
+| moduleName         | string                                                       | Yes  | No  | Name of the HAP file to which the extension ability belongs.                 |
+| name               | string                                                       | Yes  | No  | Name of the extension ability.                              |
+| labelId            | number                                                       | Yes  | No  | Label ID of the extension ability.                          |
+| descriptionId      | number                                                       | Yes  | No  | Description ID of the extension ability.                          |
+| iconId             | number                                                       | Yes  | No  | Icon ID of the extension ability.                          |
+| isVisible          | boolean                                                      | Yes  | No  | Whether the extension ability can be called by other applications.        |
+| extensionAbilityType               | bundle.ExtensionAbilityType | Yes  | No  | Type of the extension ability.                              |
+| permissions        | Array\<string>                                                | Yes  | No  | Permissions required for other applications to call the extension ability.|
+| applicationInfo    | ApplicationInfo | Yes  | No  | Application configuration information.                       |
+| metaData | Array\<Metadata> | Yes| No| Metadata of the extension ability.|
+| enabled | boolean | Yes| No| Whether the extension ability is enabled.|
+| readPermission     | string                                                       | Yes  | No  | Permission required for reading the extension ability data.                |
+| writePermission    | string                                                       | Yes  | No  | Permission required for writing data to the extension ability.                |
+
+
+## Metadata
+
+Describes the metadata information.
+
+ **System capability**: SystemCapability.BundleManager.BundleFramework
+
+| Name | Type  | Readable| Writable| Description            |
+| ----- | ------ | ---- | ---- | ---------------- |
+| name  | string | Yes  | Yes  | Metadata name.|
+| value | string | Yes  | Yes  | Metadata value.  |
+| resource | string | Yes  | Yes  | Metadata resource.      |

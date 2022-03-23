@@ -34,24 +34,23 @@ export default {
 ```js
 // API version 8
 import userIAM_userAuth from '@ohos.userIAM.userAuth';
+let auth = new userIAM_userAuth.UserAuth();
 
 export default {
-    let auth = new userIAM_userAuth.UserAuth();
-
     getVersion() {
         console.info("start get version");
-        let version = auth.getVersion();
+        let version = this.auth.getVersion();
         console.info("auth version = " + version);
     },
 
     startAuth() {
         console.info("start auth");
-        auth.auth(null, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1, {
+        this.auth.auth(null, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1, {
             onResult: (result, extraInfo) => {
                 try {
                     console.info("auth onResult result = " + result);
                     console.info("auth onResult extraInfo = " + JSON.stringify(extraInfo));
-                    if (result == SUCCESS) {
+                    if (result == 'SUCCESS') {
                         // 此处添加认证成功逻辑
                     }  else {
                         // 此处添加认证失败逻辑
@@ -75,7 +74,7 @@ export default {
 
     checkAuthSupport() {
         console.info("start check auth support");
-        let checkCode = auth.getAvailableStatus(userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1);
+        let checkCode = this.auth.getAvailableStatus(userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1);
         if (checkCode == userIAM_userAuth.ResultCode.SUCCESS) {
             console.info("check auth support success");
             // 此处添加支持指定类型认证的逻辑
@@ -91,13 +90,13 @@ export default {
         let contextId = auth.auth(null, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1, {
             onResult: (result, extraInfo) => {
                 console.info("auth onResult result = " + result);
-            }
+            },
 
             onAcquireInfo: (module, acquire, extraInfo) => {
                 console.info("auth onAcquireInfo module = " + module);
             }
         });
-        let cancelCode = auth.cancel(contextId);
+        let cancelCode = this.auth.cancel(contextId);
         if (cancelCode == userIAM_userAuth.Result.SUCCESS) {
             console.info("cancel auth success");
         } else {
@@ -118,7 +117,7 @@ getAuthenticator(): Authenticator
 
 **需要权限**：ohos.permission.ACCESS_BIOMETRIC
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth
+**系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth.Core
 
 **返回值：**
 | 类型                                      | 说明         |
@@ -149,7 +148,7 @@ execute(type: string, level: string, callback: AsyncCallback&lt;number&gt;): voi
 
 **需要权限**：ohos.permission.ACCESS_BIOMETRIC
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth
+**系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth.Core
 
 **参数：**
 
@@ -188,7 +187,7 @@ execute(type:string, level:string): Promise&lt;number&gt;
 
 **需要权限**：ohos.permission.ACCESS_BIOMETRIC
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth
+**系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth.Core
 
 **参数：**
 | 参数名 | 类型   | 必填 | 说明                                                         |
@@ -219,7 +218,7 @@ authenticator.execute("FACE_ONLY", "S2").then((code)=>{
 
 表示认证结果的枚举。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth
+**系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth.Core
 
 | 名称               | 默认值 | 描述                       |
 | ------------------ | ------ | -------------------------- |

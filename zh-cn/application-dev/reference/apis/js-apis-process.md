@@ -379,7 +379,7 @@ var pres = process.getEnvironmentVar("PATH")
 
 ## process.runCmd
 
-runCmd(command: string, options?: { timeout : number, killSignal : number | string, maxBuffer : number }) : ChildProcess
+runCmd(command: string, options?: { timeout : number, killSignal : number | string, maxBuffer : number }): ChildProcess
 
 通过runcmd可以fork一个新的进程来运行一段shell，并返回ChildProcess对象。
 
@@ -574,7 +574,7 @@ var time = process.uptime();
 
 ## process.kill
 
-kill(pid: number, signal: number ): boolean
+kill(signal: number, pid: number): boolean
 
 发送signal到指定的进程，结束指定进程。
 

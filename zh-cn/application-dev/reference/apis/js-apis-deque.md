@@ -158,6 +158,7 @@ let result = deque.popLast();
 ```
 
 ### forEach
+
 forEach(callbackfn: (value: T, index?: number, deque?: Deque&lt;T&gt;) => void,
 thisArg?: Object): void
 
@@ -193,7 +194,7 @@ deque.forEach((value, index) => {
 
 ### getFirst
 
-getFirst(): T;
+getFirst(): T
 
 获取Deque实例中的头元素。
 

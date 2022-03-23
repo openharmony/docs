@@ -313,7 +313,7 @@ cameraManager.on('cameraStatus', (cameraStatusInfo) => {
 
 ## Camera
 
-相机实例。
+调用[camera.getCameraManager](#cameragetcameramanager)后，将返回Camera实例，包括相机ID、位置、类型、连接类型等相机相关的元数据。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Camera.Core。
 
@@ -327,19 +327,21 @@ cameraManager.on('cameraStatus', (cameraStatusInfo) => {
 **示例：**
 
 ```
-var cameraManager = await camera.getCameraManager();
-var cameras = await cameraManager.getCameras();
-var cameraObj = cameras[0];
-var cameraId = cameraObj.cameraId;
-var cameraPosition = cameraObj.cameraPosition;
-var cameraType = cameraObj.cameraType;
-var cameraId = cameraObj.connectionType;
+async function getCameraInfo() {
+    var cameraManager = await camera.getCameraManager();
+    var cameras = await cameraManager.getCameras();
+    var cameraObj = cameras[0];
+    var cameraId = cameraObj.cameraId;
+    var cameraPosition = cameraObj.cameraPosition;
+    var cameraType = cameraObj.cameraType;
+    var cameraId = cameraObj.connectionType;
+}
 
 ```
 
 ## CameraStatusInfo
 
-相机状态信息。
+相机管理器回调返回的接口实例，表示相机状态信息。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Camera.Core。
 
@@ -565,7 +567,7 @@ setFlashMode(flashMode: FlashMode): Promise<void\>
 **示例：**
 
 ```
-cameraInput.setFlashMode(flashMode).then() => {
+cameraInput.setFlashMode((flashMode).then() => {
     console.log('Promise returned with the successful execution of setFlashMode.');
 })
 ```
@@ -613,7 +615,7 @@ getFlashMode(): Promise<FlashMode\>
 **示例：**
 
 ```
-cameraInput.getFlashMode().then(flashMode) => {
+cameraInput.getFlashMode().then((flashMode) => {
     console.log('Promise returned with current flash mode : ' + flashMode);
 })
 ```
@@ -727,7 +729,7 @@ setFocusMode(afMode: FocusMode): Promise<void\>
 **示例：**
 
 ```
-cameraInput.setFocusMode(afMode).then() => {
+cameraInput.setFocusMode(afMode).then(() => {
     console.log('Promise returned with the successful execution of setFocusMode.');
 })
 ```
@@ -775,7 +777,7 @@ getFocusMode(): Promise<FocusMode\>
 **示例：**
 
 ```
-cameraInput.getFocusMode().then(afMode) => {
+cameraInput.getFocusMode().then((afMode) => {
     console.log('Promise returned with current focus mode : ' + afMode);
 })
 ```
@@ -797,7 +799,7 @@ getZoomRatioRange\(callback: AsyncCallback<Array<number\>\>\): void
 **示例：**
 
 ```
-cameraInput.getZoomRatioRange(err, zoomRatioRange) => {
+cameraInput.getZoomRatioRange((err, zoomRatioRange) => {
     if (err) {
         console.error('Failed to get the zoom ratio range. ${err.message}');
         return;
@@ -878,7 +880,7 @@ setZoomRatio(zoomRatio: number): Promise<void\>
 **示例：**
 
 ```
-cameraInput.setZoomRatio(zoomRatio).then() => {
+cameraInput.setZoomRatio(zoomRatio).then(() => {
     console.log('Promise returned with the successful execution of setZoomRatio.');
 })
 ```
@@ -926,7 +928,7 @@ getZoomRatio(): Promise<number\>
 **示例：**
 
 ```
-cameraInput.getZoomRatio().then(zoomRatio) => {
+cameraInput.getZoomRatio().then((zoomRatio) => {
     console.log('Promise returned with current zoom ratio : ' + zoomRatio);
 })
 ```
@@ -1004,7 +1006,7 @@ cameraInput.on('focusStateChange', (focusState) => {
 
 ### on('error')
 
-on('error', callback: ErrorCallback<CameraInputError\>): void
+on(type: 'error', callback: ErrorCallback<CameraInputError\>): void
 
 监听CameraInput的错误事件，通过注册回调函数获取结果。
 
@@ -1082,7 +1084,7 @@ createCaptureSession\(context: Context, callback: AsyncCallback<CaptureSession\>
 **示例：**
 
 ```
-camera.createCaptureSession(context), (err, captureSession) => {
+camera.createCaptureSession((context), (err, captureSession) => {
     if (err) {
         console.error('Failed to create the CaptureSession instance. ${err.message}');
         return;
@@ -1852,7 +1854,7 @@ createPreviewOutput(surfaceId: string, callback: AsyncCallback<PreviewOutput\>):
 **示例：**
 
 ```
-camera.createPreviewOutput(surfaceId), (err, previewOutput) => {
+camera.createPreviewOutput((surfaceId), (err, previewOutput) => {
     if (err) {
         console.error('Failed to create the PreviewOutput instance. ${err.message}');
         return;
@@ -2029,7 +2031,7 @@ createPhotoOutput(surfaceId: string, callback: AsyncCallback<PhotoOutput\>): voi
 **示例：**
 
 ```
-camera.createPhotoOutput(surfaceId), (err, photoOutput) => {
+camera.createPhotoOutput((surfaceId), (err, photoOutput) => {
     if (err) {
         console.error('Failed to create the PhotoOutput instance. ${err.message}');
         return;
@@ -2077,6 +2079,8 @@ camera.createPhotoOutput(surfaceId).then((photoOutput) => {
 | ROTATION_90  | 90     | 图片旋转90度。  |
 | ROTATION_180 | 180    | 图片旋转180度。 |
 | ROTATION_270 | 270    | 图片旋转270度。 |
+
+
 
 ## QualityLevel
 
@@ -2350,7 +2354,7 @@ createVideoOutput(surfaceId: string, callback: AsyncCallback<VideoOutput\>): voi
 **示例：**
 
 ```
-camera.createVideoOutput(surfaceId), (err, videoOutput) => {
+camera.createVideoOutput((surfaceId), (err, videoOutput) => {
     if (err) {
         console.error('Failed to create the VideoOutput instance. ${err.message}');
         return;

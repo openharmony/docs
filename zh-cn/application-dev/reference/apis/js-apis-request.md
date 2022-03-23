@@ -126,7 +126,7 @@ upload(config: UploadConfig, callback: AsyncCallback&lt;UploadTask&gt;): void
 
 ### on('progress')
 
-on(type: 'progress', callback:AsyncCallback &lt;uploadedSize: number, totalSize: number&gt; =&gt; void): void
+on(type: 'progress', callback:(uploadedSize: number, totalSize: number) =&gt; void): void
 
 开启上传任务监听，异步方法，使用callback形式返回结果。
 
@@ -142,10 +142,10 @@ on(type: 'progress', callback:AsyncCallback &lt;uploadedSize: number, totalSize:
 
   回调函数的参数：
 
-    | 参数名 | 类型 | 必填 | 说明 | 
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | uploadedSize | number | 是 | 当前已上传文件大小，单位为KB。 | 
-  | totalSize | number | 是 | 上传文件的总大小，单位为KB。 | 
+  | uploadedSize | number | 是 | 当前已上传文件大小，单位为KB。 |
+  | totalSize | number | 是 | 上传文件的总大小，单位为KB。 |
 
 - 示例：
   
@@ -159,7 +159,7 @@ on(type: 'progress', callback:AsyncCallback &lt;uploadedSize: number, totalSize:
 
 ### on('headerReceive')<sup>7+</sup>
 
-on(type: 'headerReceive', callback: AsyncCallback&lt;object&gt; =&gt; void): void
+on(type: 'headerReceive', callback:  (header: object) =&gt; void): void
 
 开启上传任务监听，异步方法，使用callback形式返回结果。
 
@@ -171,13 +171,13 @@ on(type: 'headerReceive', callback: AsyncCallback&lt;object&gt; =&gt; void): voi
     | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 订阅的事件类型，取值为'headerReceive'（接收响应头）。 |
-  | callback | AsyncCallback&lt;object&gt; | 是 | HTTP&nbsp;Response&nbsp;Header事件的回调函数。 |
+  | callback | header:&nbsp;object | 是 | HTTP&nbsp;Response&nbsp;Header事件的回调函数。 |
 
   回调函数的参数：
 
-    | 参数名 | 类型 | 必填 | 说明 | 
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | headers | object | 是 | HTTP&nbsp;Response&nbsp;Header。 | 
+  | header | object | 是 | HTTP&nbsp;Response&nbsp;Header。 |
 
 - 示例：
   
@@ -191,7 +191,7 @@ on(type: 'headerReceive', callback: AsyncCallback&lt;object&gt; =&gt; void): voi
 
 ### off('progress')
 
-off(type: 'progress', callback:AsyncCallback&lt;uploadedSize: number, totalSize: number&gt;=&gt; void): void
+off(type:  'progress',  callback?: (uploadedSize: number, totalSize: number) =&gt;  void): void
 
 关闭上传任务监听，异步方法，使用callback形式返回结果。
 
@@ -207,10 +207,10 @@ off(type: 'progress', callback:AsyncCallback&lt;uploadedSize: number, totalSize:
 
   回调函数的参数：
 
-    | 参数名 | 类型 | 必填 | 说明 | 
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | uploadedSize | number | 是 | 当前已上传文件的大小，单位为KB。 | 
-  | totalSize | number | 是 | 上传文件的总大小，单位为KB。 | 
+  | uploadedSize | number | 是 | 当前已上传文件的大小，单位为KB。 |
+  | totalSize | number | 是 | 上传文件的总大小，单位为KB。 |
 
 - 示例：
   
@@ -224,7 +224,7 @@ off(type: 'progress', callback:AsyncCallback&lt;uploadedSize: number, totalSize:
 
 ### off('headerReceive')<sup>7+</sup>
 
-off(type: 'headerReceive', callback:AsyncCallback&lt;object&gt; =&gt; void): void
+off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
 
 关闭上传任务监听，异步方法，使用callback形式返回结果。
 
@@ -236,13 +236,13 @@ off(type: 'headerReceive', callback:AsyncCallback&lt;object&gt; =&gt; void): voi
     | 参数名 | 参数类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 取消订阅的事件类型，取值为'headerReceive'（接收响应头）。 |
-  | callback | AsyncCallback&lt;object&gt; | 否 | HTTP&nbsp;Response&nbsp;Header事件的回调函数。 |
+  | callback | header:&nbsp;object | 否 | HTTP&nbsp;Response&nbsp;Header事件的回调函数。 |
 
   回调函数的参数：
 
-    | 参数名 | 类型 | 必填 | 说明 | 
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | headers | object | 是 | HTTP&nbsp;Response&nbsp;Header。 | 
+  | header | object | 是 | HTTP&nbsp;Response&nbsp;Header。 |
 
 - 示例：
   
@@ -337,7 +337,7 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 | -------- | -------- | -------- | -------- |
 | filename | string | 否 | multipart提交时，请求头中的文件名。 |
 | name | string | 否 | multipart提交时，表单项目的名称，缺省为file。 |
-| url | string | 是 | 文件的本地存储路径。<br/>支持“dataability”和“internal”两种协议类型，但“internal”仅支持临时目录，示例：<br/>dataability:///com.domainname.dataability.persondata/person/10/file.txt<br/>internal://cache/path/to/file.txt |
+| uri | string | 是 | 文件的本地存储路径。<br/>支持“dataability”和“internal”两种协议类型，但“internal”仅支持临时目录，示例：<br/>dataability:///com.domainname.dataability.persondata/person/10/file.txt<br/>internal://cache/path/to/file.txt |
 | type | string | 否 | 文件的内容类型，默认根据文件名或路径的后缀获取。 |
 
 
@@ -419,7 +419,7 @@ download(config: DownloadConfig, callback: AsyncCallback&lt;DownloadTask&gt;): v
 
 ### on('progress')
 
-on(type: 'progress', callback:AsyncCallback&lt;receivedSize: number, totalSize: number&gt; =&gt; void): void
+on(type: 'progress', callback:(receivedSize: number, totalSize: number) =&gt; void): void
 
 开启下载任务监听，异步方法，使用callback形式返回结果。
 
@@ -435,10 +435,10 @@ on(type: 'progress', callback:AsyncCallback&lt;receivedSize: number, totalSize: 
 
   回调函数的参数：
 
-    | 参数名 | 类型 | 必填 | 说明 | 
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | receivedSize | number | 是 | 当前下载的进度，单位为KB。 | 
-  | totalSize | number | 是 | 下载文件的总大小，单位为KB。 | 
+  | receivedSize | number | 是 | 当前下载的进度，单位为KB。 |
+  | totalSize | number | 是 | 下载文件的总大小，单位为KB。 |
 
 - 示例：
   
@@ -459,7 +459,7 @@ on(type: 'progress', callback:AsyncCallback&lt;receivedSize: number, totalSize: 
 
 ### off('progress')
 
-off(type: 'progress', callback: AsyncCallback&lt;receivedSize: number, totalSize: number&gt; =&gt; void): void
+off(type: 'progress', callback?: (receivedSize: number, totalSize: number) =&gt; void): void
 
 关闭下载任务监听，异步方法，使用callback形式返回结果。
 
@@ -475,10 +475,10 @@ off(type: 'progress', callback: AsyncCallback&lt;receivedSize: number, totalSize
 
   回调函数的参数：
 
-    | 参数名 | 类型 | 必填 | 说明 | 
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | receivedSize | number | 是 | 当前下载的进度。 | 
-  | totalSize | number | 是 | 下载文件的总大小。 | 
+  | receivedSize | number | 是 | 当前下载的进度。 |
+  | totalSize | number | 是 | 下载文件的总大小。 |
 
 - 示例：
   
@@ -499,7 +499,7 @@ off(type: 'progress', callback: AsyncCallback&lt;receivedSize: number, totalSize
 
 ### on('complete')<sup>7+</sup>
 
-on(type: 'complete', callback:AsyncCallback&lt;&gt; =&gt; void): void
+on(type: 'complete', callback:() =&gt; void): void
 
 开启下载任务完成监听，异步方法，使用callback形式返回。
 
@@ -532,7 +532,7 @@ on(type: 'complete', callback:AsyncCallback&lt;&gt; =&gt; void): void
 
 ### off('complete')<sup>7+</sup>
 
-off(type: 'complete', callback:AsyncCallback&lt;&gt; =&gt; void): void
+off(type: 'complete', callback?:() =&gt; void): void
 
 取消下载任务完成监听，异步方法，使用callback形式返回。
 
@@ -565,7 +565,7 @@ off(type: 'complete', callback:AsyncCallback&lt;&gt; =&gt; void): void
 
 ### on('fail')<sup>7+</sup>
 
-on(type: 'fail', callback:AsyncCallback&lt;err: number&gt; =&gt; void): void
+on(type: 'fail', callback: (err: number) =&gt; void): void
 
 开启下载任务失败监听，异步方法，使用callback形式返回结果。
 
@@ -581,9 +581,9 @@ on(type: 'fail', callback:AsyncCallback&lt;err: number&gt; =&gt; void): void
 
   回调函数的参数：
 
-    | 参数名 | 类型 | 必填 | 说明 | 
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | err | number | 是 | 下载失败的错误码，错误原因见[ERROR.*](#常量)。 | 
+  | err | number | 是 | 下载失败的错误码，错误原因见[ERROR.*](#常量)。 |
 
 - 示例
   
@@ -604,7 +604,7 @@ on(type: 'fail', callback:AsyncCallback&lt;err: number&gt; =&gt; void): void
 
 ### off('fail')<sup>7+</sup>
 
-off(type: 'fail', callback:AsyncCallback&lt;err: number&gt; =&gt; void): void
+off(type: 'fail', callback?: (err: number) =&gt; void): void
 
 取消下载任务失败监听，异步方法，使用callback形式返回结果。
 
@@ -620,9 +620,9 @@ off(type: 'fail', callback:AsyncCallback&lt;err: number&gt; =&gt; void): void
 
   回调函数的参数
 
-    | 参数名 | 类型 | 必填 | 说明 | 
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | err | number | 是 | 下载失败的错误码。错误原因见[ERROR_*](#常量)。 | 
+  | err | number | 是 | 下载失败的错误码。错误原因见[ERROR_*](#常量)。 |
 
 - 示例
   
@@ -643,7 +643,7 @@ off(type: 'fail', callback:AsyncCallback&lt;err: number&gt; =&gt; void): void
 
 ### on('pause')<sup>7+</sup>
 
-on(type: 'pause', callback:AsyncCallback&lt;&gt; =&gt; void): void
+on(type: 'pause', callback:() =&gt; void): void
 
 开启下载任务暂停监听，异步方法，使用callback形式返回结果。
 
@@ -676,7 +676,7 @@ on(type: 'pause', callback:AsyncCallback&lt;&gt; =&gt; void): void
 
 ### off('pause')<sup>7+</sup>
 
-off(type: 'pause', callback:AsyncCallback&lt;&gt; =&gt; void): void
+off(type: 'pause', callback?:() =&gt; void): void
 
 取消下载任务暂停监听，异步方法，使用callback形式返回结果。
 
@@ -709,7 +709,7 @@ off(type: 'pause', callback:AsyncCallback&lt;&gt; =&gt; void): void
 
 ### on('remove')<sup>7+</sup>
 
-on(type: 'remove', callback:AsyncCallback&lt;&gt; =&gt; void): void
+on(type: 'remove', callback:() =&gt; void): void
 
 开启下载任务移除监听，异步方法，使用callback形式返回结果。
 
@@ -742,7 +742,7 @@ on(type: 'remove', callback:AsyncCallback&lt;&gt; =&gt; void): void
 
 ### off('remove')<sup>7+</sup>
 
-off(type: 'remove', callback:AsyncCallback&lt;&gt; =&gt; void): void
+off(type: 'remove', callback?:() =&gt; void): void
 
 取消下载任务移除监听，异步方法，使用callback形式返回结果。
 
@@ -847,7 +847,7 @@ query(): Promise&lt;DownloadInfo&gt;
 - 参数：
     | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;[DownloadInfo](#downloadinfo)&gt; | 查询下载任务信息。 |
+  | Promise&lt;[DownloadInfo](#downloadinfo7)&gt; | 查询下载任务信息。 |
 
 - 示例
   
@@ -873,7 +873,7 @@ query(callback: AsyncCallback&lt;DownloadInfo&gt;): void
 - 参数：
     | 参数名 | 参数类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[DownloadInfo](#downloadinfo)&gt; | 是 | 查询下载任务的回调函数。 |
+  | callback | AsyncCallback&lt;[DownloadInfo](#downloadinfo7)&gt; | 是 | 查询下载任务的回调函数。 |
 
 - 示例：
   
@@ -944,7 +944,7 @@ queryMimeType(callback: AsyncCallback&lt;string&gt;): void;
 
 ### pause<sup>7+</sup>
 
-pause(): Promise&lt;boolean&gt;
+pause(): Promise&lt;void&gt;
 
 暂停下载任务，异步方法，使用promise形式返回结果。
 
@@ -955,7 +955,7 @@ pause(): Promise&lt;boolean&gt;
 - 返回值：
     | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;boolean&gt; | 暂停下载任务是否成功。 |
+  | Promise&lt;void&gt; | 暂停下载任务是否成功。 |
 
 - 示例
   
@@ -974,7 +974,7 @@ pause(): Promise&lt;boolean&gt;
 
 ### pause<sup>7+</sup>
 
-pause(callback: AsyncCallback&lt;boolean&gt;): void
+pause(callback: AsyncCallback&lt;void&gt;): void
 
 暂停下载任务，异步方法，使用callback形式返回结果。
 
@@ -985,7 +985,7 @@ pause(callback: AsyncCallback&lt;boolean&gt;): void
 - 参数
     | 参数名 | 参数类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | 是 | 暂停下载任务的回调函数。 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 暂停下载任务的回调函数。 |
 
 - 示例
   
@@ -1006,7 +1006,7 @@ pause(callback: AsyncCallback&lt;boolean&gt;): void
 
 ### resume<sup>7+</sup>
 
-resume(): Promise&lt;boolean&gt;
+resume(): Promise&lt;void&gt;
 
 重新启动暂停的下载任务，异步方法，使用promise形式返回结果。
 
@@ -1017,7 +1017,7 @@ resume(): Promise&lt;boolean&gt;
 - 参数：
     | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;boolean&gt; | 重新启动暂停的下载任务是否成功。 |
+  | Promise&lt;void&gt; | 重新启动暂停的下载任务是否成功。 |
 
 - 示例
   
@@ -1037,7 +1037,7 @@ resume(): Promise&lt;boolean&gt;
 
 ### resume<sup>7+</sup>
 
-resume(callback: AsyncCallback&lt;boolean&gt;): void
+resume(callback: AsyncCallback&lt;void&gt;): void
 
 重新启动暂停的下载任务，异步方法，使用callback形式返回结果。
 
@@ -1048,7 +1048,7 @@ resume(callback: AsyncCallback&lt;boolean&gt;): void
 - 参数
     | 参数名 | 参数类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | 是 | 重新启动暂停的下载任务的回调函数。 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 重新启动暂停的下载任务的回调函数。 |
 
 - 示例
   
@@ -1083,7 +1083,7 @@ resume(callback: AsyncCallback&lt;boolean&gt;): void
 | title | string | 否 | 设置下载会话标题。 |
 
 
-## DownloadInfo
+## DownloadInfo<sup>7+</sup>
 
 **系统能力**: SystemCapability.MiscServices.Download
 

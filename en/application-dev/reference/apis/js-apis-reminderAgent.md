@@ -457,7 +457,7 @@ Adds a reminder notification slot. This method uses an asynchronous callback to 
 </thead>
 <tbody><tr id="row35416101090"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.1.5.1.1 "><p id="p3542103919"><a name="p3542103919"></a><a name="p3542103919"></a>slot</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%" headers="mcps1.1.5.1.2 "><p id="p75441016916"><a name="p75441016916"></a><a name="p75441016916"></a><a href="../nottoctopics/en-us_topic_0000001180018813.md#section1382174172015">NotificationSlot</a></p>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.1.5.1.2 "><p id="p75441016916"><a name="p75441016916"></a><a name="p75441016916"></a><a href="js-apis-notification.md#notificationslot">NotificationSlot</a></p>
 </td>
 <td class="cellrowborder" valign="top" width="25%" headers="mcps1.1.5.1.3 "><p id="p1754181020915"><a name="p1754181020915"></a><a name="p1754181020915"></a>Yes</p>
 </td>
@@ -515,7 +515,7 @@ Adds a reminder notification slot. This method uses a promise to return the resu
 </thead>
 <tbody><tr id="row949919401498"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.1.5.1.1 "><p id="p449911401493"><a name="p449911401493"></a><a name="p449911401493"></a>slot</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%" headers="mcps1.1.5.1.2 "><p id="p114991540996"><a name="p114991540996"></a><a name="p114991540996"></a><a href="../nottoctopics/en-us_topic_0000001180018813.md#section1382174172015">NotificationSlot</a></p>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.1.5.1.2 "><p id="p114991540996"><a name="p114991540996"></a><a name="p114991540996"></a><a href="js-apis-notification.md#notificationslot">NotificationSlot</a></p>
 </td>
 <td class="cellrowborder" valign="top" width="25%" headers="mcps1.1.5.1.3 "><p id="p04991140690"><a name="p04991140690"></a><a name="p04991140690"></a>Yes</p>
 </td>
@@ -581,7 +581,7 @@ Removes a  **NotificationSlot**  instance of a specified type. This method uses 
 </thead>
 <tbody><tr id="row48371611201912"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.1.5.1.1 "><p id="p583701119198"><a name="p583701119198"></a><a name="p583701119198"></a>slotType</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%" headers="mcps1.1.5.1.2 "><p id="p283751171916"><a name="p283751171916"></a><a name="p283751171916"></a><a href="../nottoctopics/en-us_topic_0000001180018813.md#section072355105110">notification.SlotType</a></p>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.1.5.1.2 "><p id="p283751171916"><a name="p283751171916"></a><a name="p283751171916"></a><a href="js-apis-notification.md#slottype">notification.SlotType</a></p>
 </td>
 <td class="cellrowborder" valign="top" width="25%" headers="mcps1.1.5.1.3 "><p id="p2083731110197"><a name="p2083731110197"></a><a name="p2083731110197"></a>Yes</p>
 </td>
@@ -633,7 +633,7 @@ Removes a  **NotificationSlot**  instance of a specified type. This method uses 
 </thead>
 <tbody><tr id="row120720355108"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.1.5.1.1 "><p id="p1120893520105"><a name="p1120893520105"></a><a name="p1120893520105"></a>slotType</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%" headers="mcps1.1.5.1.2 "><p id="p22081435141018"><a name="p22081435141018"></a><a name="p22081435141018"></a><a href="../nottoctopics/en-us_topic_0000001180018813.md#section072355105110">notification.SlotType</a></p>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.1.5.1.2 "><p id="p22081435141018"><a name="p22081435141018"></a><a name="p22081435141018"></a><a href="js-apis-notification.md#slottype">notification.SlotType</a></p>
 </td>
 <td class="cellrowborder" valign="top" width="25%" headers="mcps1.1.5.1.3 "><p id="p920813531010"><a name="p920813531010"></a><a name="p920813531010"></a>Yes</p>
 </td>
@@ -972,7 +972,7 @@ Defines the reminder to publish.
 </tr>
 <tr id="row47993181141"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.1.5.1.1 "><p id="p198054189418"><a name="p198054189418"></a><a name="p198054189418"></a>slotType</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%" headers="mcps1.1.5.1.2 "><p id="p18805318844"><a name="p18805318844"></a><a name="p18805318844"></a><a href="../nottoctopics/en-us_topic_0000001180018813.md#section072355105110">notification.SlotType</a></p>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.1.5.1.2 "><p id="p18805318844"><a name="p18805318844"></a><a name="p18805318844"></a><a href="js-apis-notification.md#slottype">notification.SlotType</a></p>
 </td>
 <td class="cellrowborder" valign="top" width="15.21%" headers="mcps1.1.5.1.3 "><p id="p162610811713"><a name="p162610811713"></a><a name="p162610811713"></a>No</p>
 </td>

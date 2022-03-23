@@ -165,7 +165,7 @@
     订阅数据变化，并触发执行回调方法：
     ``` C++
     std::shared_ptr<PreferencesObserver> counter =
-        std::shared_ptr<PreferencesObserver>(new PreferencesObserverCounter());
+        std::make_shared<PreferencesObserverCounter>();
     pref->RegisterObserver(counter);  // 注册数据变化的回调。
 
     pref->PutString(PreferencesTest::KEY_TEST_STRING_ELEMENT, "test");

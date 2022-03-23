@@ -15,6 +15,6 @@ The compiled executable program is run directly without being converted to an ap
 Call the  **UtilsSetEnv**  function of the KV store to set the data storage path.
 
 ```
-UtilsSetEnv("/storage/com.huawei.kv");
+UtilsSetEnv("/storage/com.example.kv");
 ```
 

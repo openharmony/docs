@@ -23,7 +23,7 @@ None
 
 | Name| Type| Readable| Writable| Description| 
 | -------- | -------- | -------- | -------- | -------- |
-| context | [ServiceExtensionContext](js-apis-service-extension-context.md)  | Yes| No| Service extension context, which is inherited from **ExtensionContext**.| 
+| context | [ServiceExtensionContext](js-apis-service-extension-context.md)  | Yes| No| Service extension context, which is inherited from **ExtensionContext**.<br>**System capability**: SystemCapability.Ability.AbilityRuntime.Core| 
 
 
 ## onCreate
@@ -32,17 +32,17 @@ onCreate(want: Want): void;
 
 Called when an extension is created to initialize the service logic.
 
-**System capabilities**
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-SystemCapability.Ability.AbilityRuntime.Core
+**Parameters**
 
-- Parameters
   | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
   | want |  [Want](js-apis-featureAbility.md#Want)| Yes| Information related to this extension, including the ability name and bundle name.| 
 
-- Example
-  ```
+**Example**
+
+  ```js
   class ServiceExt extends ServiceExtension {
     onCreate(want) {
       console.log('onCreate, want:' + want.abilityName);
@@ -57,12 +57,11 @@ onDestroy(): void;
 
 Called when this extension is destroyed to clear resources.
 
-**System capabilities**
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-SystemCapability.Ability.AbilityRuntime.Core
+**Example**
 
-- Example
-  ```
+  ```js
   class ServiceExt extends ServiceExtension {
     onDestroy() {
       console.log('onDestroy');
@@ -77,18 +76,18 @@ onRequest(want: Want, startId: number): void;
 
 Called after **onCreate** is invoked when an ability is started by calling **startAbility**. The value of **startId** is incremented for each ability that is started.
 
-**System capabilities**
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-SystemCapability.Ability.AbilityRuntime.Core
+**Parameters**
 
-- Parameters
   | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
   | want |  [Want](js-apis-featureAbility.md#Want)| Yes| Information related to this extension, including the ability name and bundle name.| 
   | startId | number | Yes| Number of ability start times. The initial value is **1**, and the value is automatically incremented for each ability started.| 
 
-- Example
-  ```
+**Example**
+
+  ```js
   class ServiceExt extends ServiceExtension {
     onRequest(want, startId) {
       console.log('onRequest, want:' + want.abilityName);
@@ -103,22 +102,23 @@ onConnect(want: Want): rpc.RemoteObject;
 
 Called after **onCreate** is invoked when an ability is started by calling **connectAbility**. A **RemoteObject** object is returned for communication with the client.
 
-**System capabilities**
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-SystemCapability.Ability.AbilityRuntime.Core
+**Parameters**
 
-- Parameters
   | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
   | want |  [Want](js-apis-featureAbility.md#Want)| Yes| Information related to this extension, including the ability name and bundle name.| 
 
-- Return value
+**Return value**
+
   | Type| Description| 
   | -------- | -------- |
   | rpc.RemoteObject | A **RemoteObject** object used for communication with the client.| 
 
-- Example
-  ```
+**Example**
+
+  ```js
   import rpc from '@ohos.rpc'
   class StubTest extends rpc.RemoteObject{
       constructor(des) {
@@ -142,17 +142,17 @@ onDisconnect(want: Want): void;
 
 Called when the ability is disconnected.
 
-**System capabilities**
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-SystemCapability.Ability.AbilityRuntime.Core
+**Parameters**
 
-- Parameters
   | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
   | want |[Want](js-apis-featureAbility.md#Want)| Yes| Information related to this extension, including the ability name and bundle name.| 
 
-- Example
-  ```
+**Example**
+
+  ```js
   class ServiceExt extends ServiceExtension {
     onDisconnect(want) {
       console.log('onDisconnect, want:' + want.abilityName);

@@ -1,5 +1,8 @@
 # Update
 
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+> The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+
 The Update module applies to updates throughout the entire system, including built-in resources and preset applications, but not third-party applications.
 
 There are two types of updates: SD card update and over the air (OTA) update.
@@ -17,15 +20,13 @@ import update from '@ohos.update'
 
 None
 
-## Obtaining an Updater Object
-
-### update.getUpdater
+## update.getUpdater
 
 getUpdater(upgradeFile: string, updateType?: UpdateTypes): Updater
 
 Obtains the **Updater** object for local update.
 
-**System capability**: SystemCapability.Updater.update_service
+**System capability**: SystemCapability.Update.UpdateService
 
 **Parameters**
 
@@ -34,7 +35,7 @@ Obtains the **Updater** object for local update.
 | upgradeFile | string                      | Yes  | Update file.|
 | updateType  | [UpdateTypes](#updatetypes) | Yes  | Update type.|
 
-**Return value**
+**Return Value**
 
 | Type               | Description    |
 | ------------------- | -------- |
@@ -50,13 +51,13 @@ try {
 }
 ```
 
-### update.getUpdaterForOther
+## update.getUpdaterForOther
 
 getUpdaterForOther(upgradeFile: string, device: string, updateType?: UpdateTypes): Updater
 
 Obtains the **Updater** object for the device to be updated.
 
-**System capability**: SystemCapability.Updater.update_service
+**System capability**: SystemCapability.Update.UpdateService
 
 **Parameters**
 
@@ -66,7 +67,7 @@ Obtains the **Updater** object for the device to be updated.
 | device      | string                      | Yes  | Device to be updated.|
 | updateType  | [UpdateTypes](#updatetypes) | Yes  | Update type.  |
 
-**Return value**
+**Return Value**
 
 | Type               | Description    |
 | ------------------- | -------- |
@@ -82,13 +83,13 @@ try {
 }
 ```
 
-### update.getUpdaterFromOther
+## update.getUpdaterFromOther
 
 getUpdaterFromOther(upgradeFile: string, device: string, updateType?: UpdateTypes): Updater
 
 Obtains the **Updater** object from another device for the device to be updated.
 
-**System capability**: SystemCapability.Updater.update_service
+**System capability**: SystemCapability.Update.UpdateService
 
 **Parameters**
 
@@ -98,7 +99,7 @@ Obtains the **Updater** object from another device for the device to be updated.
 | device      | string                      | Yes  | Device to be updated.|
 | updateType  | [UpdateTypes](#updatetypes) | Yes  | Update type.  |
 
-**Return value**
+**Return Value**
 
 | Type               | Description    |
 | ------------------- | -------- |
@@ -120,15 +121,15 @@ try {
 
 getNewVersionInfo(callback: AsyncCallback\<NewVersionInfo>): void
 
-Obtains the new version information. This function uses an asynchronous callback to return the result.
+Obtains the new version information. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Updater.update_service
+**System capability**: SystemCapability.Update.UpdateService
 
 **Parameters**
 
 | Name  | Type                                            | Mandatory| Description              |
 | -------- | ------------------------------------------------ | ---- | ------------------ |
-| callback | AsyncCallback<[NewVersionInfo](#newversioninfo)> | No  | Callback used to return the new version information.|
+| callback | AsyncCallback<[NewVersionInfo](#newversioninfo)> | No  | Callback used to return the result.|
 
 **Example**
 
@@ -145,15 +146,15 @@ update.getNewVersionInfo(info => {
 
 getNewVersionInfo(): Promise\<NewVersionInfo>
 
-Obtains the new version information. This function uses a promise to return the result.
+Obtains the new version information. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.Updater.update_service
+**System capability**: SystemCapability.Update.UpdateService
 
-**Return value**
+**Return Value**
 
 | Type                                       | Description                     |
 | ------------------------------------------- | ------------------------- |
-| Promise\<[NewVersionInfo](#newversioninfo)> | Promise used to return the new version information.|
+| Promise\<[NewVersionInfo](#newversioninfo)> | Promise used to return the result.|
 
 **Example**
 
@@ -171,15 +172,15 @@ updater.getNewVersionInfo().then(value => {
 
 checkNewVersion(callback: AsyncCallback\<NewVersionInfo>): void
 
-Checks whether the current version is the latest. This function uses an asynchronous callback to return the result.
+Checks whether the current version is the latest. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Updater.update_service
+**System capability**: SystemCapability.Update.UpdateService
 
 **Parameters**
 
 | Name  | Type                                             | Mandatory| Description              |
 | -------- | ------------------------------------------------- | ---- | ------------------ |
-| callback | AsyncCallback\<[NewVersionInfo](#newversioninfo)> | No  | Callback used to return the new version information.|
+| callback | AsyncCallback\<[NewVersionInfo](#newversioninfo)> | No  | Callback used to return the result.|
 
 **Example**
 
@@ -196,15 +197,15 @@ update.checkNewVersion(info => {
 
 checkNewVersion(): Promise\<NewVersionInfo>
 
-Checks whether the current version is the latest. This function uses a promise to return the result.
+Checks whether the current version is the latest. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.Updater.update_service
+**System capability**: SystemCapability.Update.UpdateService
 
-**Return value**
+**Return Value**
 
 | Type                                       | Description                     |
 | ------------------------------------------- | ------------------------- |
-| Promise\<[NewVersionInfo](#newversioninfo)> | Promise used to return the new version information.|
+| Promise\<[NewVersionInfo](#newversioninfo)> | Promise used to return the result.|
 
 **Example**
 
@@ -224,7 +225,7 @@ verifyUpdatePackage(upgradeFile: string, certsFile: string): void
 
 Verifies whether the update package is valid.
 
-**System capability**: SystemCapability.Updater.update_service
+**System capability**: SystemCapability.Update.UpdateService
 
 **Parameters**
 
@@ -246,15 +247,15 @@ update.verifyUpdatePackage("XXX", "XXX");
 
 rebootAndCleanUserData(): Promise\<number>
 
-Reboots the device and clears the user partition data. This function uses a promise to return the result.
+Reboots the device and clears the user partition data. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.Updater.update_service
+**System capability**: SystemCapability.Update.UpdateService
 
-**Return value**
+**Return Value**
 
 | Type            | Description                           |
 | ---------------- | ------------------------------- |
-| Promise\<number> | Promise used to return the execution result.|
+| Promise\<number> | Promise used to return the result.|
 
 **Example**
 
@@ -270,15 +271,15 @@ update.rebootAndCleanUserData().then(result => {
 
 rebootAndCleanUserData(callback: AsyncCallback\<number>): void
 
-Reboots the device and clears the user partition data. This function uses an asynchronous callback to return the result.
+Reboots the device and clears the user partition data. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Updater.update_service
+**System capability**: SystemCapability.Update.UpdateService
 
 **Parameters**
 
 | Name  | Type    | Mandatory| Description                  |
 | -------- | -------- | ---- | ---------------------- |
-| callback | AsyncCallback\<number>| Yes  | Callback used to return the execution result.|
+| callback | AsyncCallback\<number>| Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -292,15 +293,15 @@ update.rebootAndCleanUserData(result => {
 
 applyNewVersion(): Promise\<number>
 
-Installs the update package. This function uses a promise to return the result.
+Installs the update package. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.Updater.update_service
+**System capability**: SystemCapability.Update.UpdateService
 
-**Return value**
+**Return Value**
 
 | Type            | Description                           |
 | ---------------- | ------------------------------- |
-| Promise\<number> | Promise used to return the execution result.|
+| Promise\<number> | Promise used to return the result.|
 
 **Example**
 
@@ -316,15 +317,15 @@ update.applyNewVersion().then(result => {
 
 applyNewVersion(callback: AsyncCallback\<number>): void
 
-Installs the update package. This function uses an asynchronous callback to return the result.
+Installs the update package. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Updater.update_service
+**System capability**: SystemCapability.Update.UpdateService
 
 **Parameters**
 
 | Name  | Type    | Mandatory| Description                  |
 | -------- | -------- | ---- | ---------------------- |
-| callback| AsyncCallback\<number>| Yes  | Callback used to return the execution result.|
+| callback | AsyncCallback\<number>| Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -340,7 +341,7 @@ download(): void
 
 Downloads the new version and displays the download process.
 
-**System capability**: SystemCapability.Updater.update_service
+**System capability**: SystemCapability.Update.UpdateService
 
 **Example**
 
@@ -359,7 +360,7 @@ updater.upgrade():void
 
 Starts an update.
 
-**System capability**: SystemCapability.Updater.update_service
+**System capability**: SystemCapability.Update.UpdateService
 
 **Example**
 
@@ -376,16 +377,16 @@ updater.upgrade();
 
 setUpdatePolicy(policy: UpdatePolicy, callback: AsyncCallback\<number>): void
 
-Sets the update policy. This function uses an asynchronous callback to return the result.
+Sets the update policy. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Updater.update_service
+**System capability**: SystemCapability.Update.UpdateService
 
 **Parameters**
 
 | Name  | Type                         | Mandatory| Description        |
 | -------- | ----------------------------- | ---- | ------------ |
 | policy   | [UpdatePolicy](#updatepolicy) | Yes  | Update policy to set.|
-| callback | AsyncCallback\<number>        | Yes  | Callback used to return the execution result.|
+| callback | AsyncCallback\<number>       | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -407,9 +408,9 @@ update.setUpdatePolicy(policy, result => {
 
 setUpdatePolicy(policy: UpdatePolicy): Promise\<number>
 
-Sets the update policy. This function uses a promise to return the result.
+Sets the update policy. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.Updater.update_service
+**System capability**: SystemCapability.Update.UpdateService
 
 **Parameters**
 
@@ -417,11 +418,11 @@ Sets the update policy. This function uses a promise to return the result.
 | ------ | ----------------------------- | ---- | ------------ |
 | policy | [UpdatePolicy](#updatepolicy) | Yes  | Update policy to set.|
 
-**Return value**
+**Return Value**
 
 | Type            | Description                   |
 | ---------------- | ----------------------- |
-| Promise\<number> | Promise used to return the execution result.|
+| Promise\<number> | Promise used to return the result.|
 
 **Example**
 
@@ -444,15 +445,15 @@ update.setUpdatePolicy(policy).then(result =>
 
 getUpdatePolicy(callback: AsyncCallback\<UpdatePolicy>): void
 
-Obtains the update policy. This function uses an asynchronous callback to return the result.
+Obtains the update policy. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Updater.update_service
+**System capability**: SystemCapability.Update.UpdateService
 
 **Parameters**
 
 | Name  | Type                                         | Mandatory| Description                |
 | -------- | --------------------------------------------- | ---- | -------------------- |
-| callback | AsyncCallback\<[UpdatePolicy](#updatepolicy)> | No  | Callback used to return the update policy.|
+| callback | AsyncCallback\<[UpdatePolicy](#updatepolicy)> | No  | Callback used to return the result.|
 
 **Example**
 
@@ -469,15 +470,15 @@ update.getUpdatePolicy(policy => {
 
 getUpdatePolicy(): Promise\<UpdatePolicy>
 
-Obtains the update policy. This function uses a promise to return the result.
+Obtains the update policy. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.Updater.update_service
+**System capability**: SystemCapability.Update.UpdateService
 
-**Return value**
+**Return Value**
 
 | Type                                   | Description                       |
 | --------------------------------------- | --------------------------- |
-| Promise\<[UpdatePolicy](#updatepolicy)> | Promise used to return the update policy.|
+| Promise\<[UpdatePolicy](#updatepolicy)> | Promise used to return the result.|
 
 **Example**
 
@@ -495,85 +496,101 @@ update.getUpdatePolicy().then(value => {
 
 Enumerates update types.
 
+**System capability**: SystemCapability.Update.UpdateService
+
 | Name| Description    |
 | ------ | -------- |
-| OTA    | OTA update.<br>**System capability**: SystemCapability.Updater.update_service|
-| patch  | Patch update.<br>**System capability**: SystemCapability.Updater.update_service|
+| OTA    | OTA update. |
+| patch  | Patch update.|
 
 ## PackageTypes
 
 Enumerates update package types.
 
+**System capability**: SystemCapability.Update.UpdateService
+
 | Name              | Default Value| Description          |
 | -------------------- | ------ | -------------- |
-| PACKAGE_TYPE_NORMAL  | 1      | Common update package.<br>**System capability**: SystemCapability.Updater.update_service|
-| PACKAGE_TYPE_BASE    | 2      | Basic update package.<br>**System capability**: SystemCapability.Updater.update_service|
-| PACKAGE_TYPE_CUST    | 3      | Custom update package.<br>**System capability**: SystemCapability.Updater.update_service|
-| PACKAGE_TYPE_PRELOAD | 4      | Preinstalled update package.<br>**System capability**: SystemCapability.Updater.update_service|
-| PACKAGE_TYPE_COTA    | 5      | Parameter configuration update package.<br>**System capability**: SystemCapability.Updater.update_service|
-| PACKAGE_TYPE_VERSION | 6      | Version update package.<br>**System capability**: SystemCapability.Updater.update_service|
-| PACKAGE_TYPE_PATCH   | 7      | Patch package.<br>**System capability**: SystemCapability.Updater.update_service|
+| PACKAGE_TYPE_NORMAL  | 1      | Common update package.    |
+| PACKAGE_TYPE_BASE    | 2      | Basic update package.    |
+| PACKAGE_TYPE_CUST    | 3      | Custom update package.    |
+| PACKAGE_TYPE_PRELOAD | 4      | Preinstalled update package.    |
+| PACKAGE_TYPE_COTA    | 5      | Parameter configuration update package.|
+| PACKAGE_TYPE_VERSION | 6      | Version update package.    |
+| PACKAGE_TYPE_PATCH   | 7      | Patch packages        |
 
 ## InstallMode
 
 Enumerates update modes.
 
+**System capability**: SystemCapability.Update.UpdateService
+
 | Name             | Default Value| Description    |
 | ------------------- | ------ | -------- |
-| INSTALL_MODE_NORMAL | 0      | Normal update.<br>**System capability**: SystemCapability.Updater.update_service|
-| INSTALL_MODE_NIGHT  | 1      | Update at night.<br>**System capability**: SystemCapability.Updater.update_service|
-| INSTALL_MODE_AUTO   | 2      | Automatic update.<br>**System capability**: SystemCapability.Updater.update_service|
+| INSTALL_MODE_NORMAL | 0      | Normal update.|
+| INSTALL_MODE_NIGHT  | 1      | Update at night.|
+| INSTALL_MODE_AUTO   | 2      | Automatic update.|
 
 ## NewVersionStatus
 
 Enumerates new version check results.
 
+**System capability**: SystemCapability.Update.UpdateService
+
 | Name             | Default Value| Description            |
 | ------------------- | ------ | ---------------- |
-| VERSION_STATUS_ERR  | -1     | System error while checking for the new version.<br>**System capability**: SystemCapability.Updater.update_service|
-| VERSION_STATUS_NEW  | 0      | New version detected.<br>**System capability**: SystemCapability.Updater.update_service|
-| VERSION_STATUS_NONE | 1      | No new version detected.<br>**System capability**: SystemCapability.Updater.update_service|
-| VERSION_STATUS_BUSY | 2      | System busy while checking for the new version.<br>**System capability**: SystemCapability.Updater.update_service|
+| VERSION_STATUS_ERR  | -1     | System error while checking for the new version.  |
+| VERSION_STATUS_NEW  | 0      | New version detected.    |
+| VERSION_STATUS_NONE | 1      | No new version detected.|
+| VERSION_STATUS_BUSY | 2      | System busy while checking for the new version.    |
 
 ## UpdatePolicy
 
 Defines the update policy.
 
+**System capability**: SystemCapability.Update.UpdateService
+
 | Name               | Type                   | Mandatory| Description          |
 | ------------------- | --------------------------- | ---- | -------------- |
-| autoDownload        | bool                        | Yes  | Automatic update switch.<br>**System capability**: SystemCapability.Updater.update_service|
-| installMode         | [InstallMode](#installmode) | Yes  | Update mode.<br>**System capability**: SystemCapability.Updater.update_service|
-| autoUpgradeInterval | Array\<number>              | Yes  | Period of time for automatic update.<br>**System capability**: SystemCapability.Updater.update_service|
+| autoDownload        | bool                        | Yes  | Automatic update switch.  |
+| installMode         | [InstallMode](#installmode) | Yes  | Installation mode.      |
+| autoUpgradeInterval | Array\<number>              | Yes  | Period of time for automatic update.|
 
 ## NewVersionInfo
 
 Defines the new version information.
 
+**System capability**: SystemCapability.Update.UpdateService
+
 | Name           | Type                                   | Mandatory| Description    |
 | --------------- | ------------------------------------------- | ---- | -------- |
-| status          | [NewVersionStatus](#newversionstatus)       | Yes  | Update status.<br>**System capability**: SystemCapability.Updater.update_service|
-| errMsg          | string                                      | Yes  | Error message.<br>**System capability**: SystemCapability.Updater.update_service|
-| checkResults    | Array<[CheckResult](#checkresult)>          | Yes  | Version check result.<br>**System capability**: SystemCapability.Updater.update_service|
-| descriptionInfo | Array\<[DescriptionInfo](#descriptioninfo)> | Yes  | Version description information.<br>**System capability**: SystemCapability.Updater.update_service|
+| status          | [NewVersionStatus](#newversionstatus)       | Yes  | Update status.|
+| errMsg          | string                                      | Yes  | Error message.|
+| checkResults    | Array<[CheckResult](#checkresult)>          | Yes  | Version check result.|
+| descriptionInfo | Array\<[DescriptionInfo](#descriptioninfo)> | Yes  | Version description information.|
 
 ## CheckResult
 
 Defines the version check result.
 
+**System capability**: SystemCapability.Update.UpdateService
+
 | Name         | Type                     | Mandatory| Description        |
 | ------------- | ----------------------------- | ---- | ------------ |
-| versionName   | string                        | Yes  | Version name.<br>**System capability**: SystemCapability.Updater.update_service|
-| versionCode   | number                        | Yes  | Version code.<br>**System capability**: SystemCapability.Updater.update_service|
-| size          | number                        | Yes  | Version size.<br>**System capability**: SystemCapability.Updater.update_service|
-| verifyInfo    | string                        | Yes  | Version verification information.<br>**System capability**: SystemCapability.Updater.update_service|
-| packageType   | [PackageTypes](#packagetypes) | Yes  | Version type.<br>**System capability**: SystemCapability.Updater.update_service|
-| descriptionId | string                        | Yes  | Version description information.<br>**System capability**: SystemCapability.Updater.update_service|
+| versionName   | string                        | Yes  | Version name.    |
+| versionCode   | number                        | Yes  | Version code.    |
+| size          | number                        | Yes  | Version size.    |
+| verifyInfo    | string                        | Yes  | Version verification information.|
+| packageType   | [PackageTypes](#packagetypes) | Yes  | Version type.    |
+| descriptionId | string                        | Yes  | Version description information.|
 
 ## DescriptionInfo
 
 Defines the version description information.
 
+**System capability**: SystemCapability.Update.UpdateService
+
 | Name         | Type| Mandatory| Description             |
 | ------------- | -------- | ---- | ----------------- |
-| descriptionId | string   | Yes  | Version ID information.<br>**System capability**: SystemCapability.Updater.update_service|
-| content       | string   | Yes  | Version changelog information.<br>**System capability**: SystemCapability.Updater.update_service|
+| descriptionId | string   | Yes  | Version ID information.|
+| content       | string   | Yes  | Version changelog information.|

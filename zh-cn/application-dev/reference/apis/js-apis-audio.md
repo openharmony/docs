@@ -477,7 +477,7 @@ let audioCapturer = await audio.createAudioCapturer(audioCapturerOptions);
 
 | 名称          | 类型                        | 必填 | 说明             |
 | ------------- | --------------------------- | ---- | ---------------- |
-| contentType   | [ContentType](#contenttype) | 是   | 媒体类型。       |
+| content       | [ContentType](#contenttype) | 是   | 媒体类型。       |
 | usage         | [StreamUsage](#streamusage) | 是   | 音频流使用类型。 |
 | rendererFlags | number                      | 是   | 音频渲染器标志。 |
 
@@ -580,7 +580,7 @@ let audioCapturer = await audio.createAudioCapturer(audioCapturerOptions);
 | 名称         | 类型                                    | 必填 | 说明             |
 | ------------ | --------------------------------------- | ---- | ---------------- |
 | streamInfo   | [AudioStreamInfo](#audiostreaminfo8)    | 是   | 表示音频流信息。 |
-| rendererInfo | [AudioCapturerInfo](#audiocapturerinfo) | 是   | 表示采集器信息。 |
+| capturerInfo | [AudioCapturerInfo](#audiocapturerinfo) | 是   | 表示采集器信息。 |
 
 ## AudioCapturerInfo<sup>8+</sup><a name="audiocapturerinfo"></a>
 
@@ -599,10 +599,11 @@ let audioCapturer = await audio.createAudioCapturer(audioCapturerOptions);
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Core
 
-| 名称                | 默认值 | 描述           |
-| :------------------ | :----- | :------------- |
-| SOURCE_TYPE_INVALID | -1     | 无效的音频源。 |
-| SOURCE_TYPE_MIC     | 0      | Mic音频源。    |
+| 名称                            | 默认值 | 描述                                                         |
+| :------------------------------ | :----- | :----------------------------------------------------------- |
+| SOURCE_TYPE_INVALID             | -1     | 无效的音频源。                                               |
+| SOURCE_TYPE_MIC                 | 0      | Mic音频源。                                                  |
+| SOURCE_TYPE_VOICE_COMMUNICATION | 7      | 语音通话场景的音频源。<br/>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
 
 ## AudioScene<sup>8+</sup><a name="audioscene"></a>
 
@@ -610,12 +611,12 @@ let audioCapturer = await audio.createAudioCapturer(audioCapturerOptions);
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Communication
 
-| 名称                                               | 默认值 | 描述           |
-| :------------------------------------------------- | :----- | :------------- |
-| AUDIO_SCENE_DEFAULT                                | 0      | 默认音频场景。 |
-| AUDIO_SCENE_RINGING（系统接口，三方应用不支持）    | 1      | 响铃模式。     |
-| AUDIO_SCENE_PHONE_CALL（系统接口，三方应用不支持） | 2      | 电话模式。     |
-| AUDIO_SCENE_VOICE_CHAT                             | 3      | 语音聊天模式。 |
+| 名称                   | 默认值 | 描述                                          |
+| :--------------------- | :----- | :-------------------------------------------- |
+| AUDIO_SCENE_DEFAULT    | 0      | 默认音频场景。                                |
+| AUDIO_SCENE_RINGING    | 1      | 响铃模式。<br/>系统接口，三方应用不支持调用。 |
+| AUDIO_SCENE_PHONE_CALL | 2      | 电话模式。<br/>系统接口，三方应用不支持调用。 |
+| AUDIO_SCENE_VOICE_CHAT | 3      | 语音聊天模式。                                |
 
 ## AudioManager
 
@@ -1738,9 +1739,9 @@ setAudioScene\(scene: AudioScene\): Promise<void\>
 
 此接口为系统接口，三方应用不支持。
 
-**系统能力：**: SystemCapability.Multimedia.Audio.Communication
+**系统能力：** SystemCapability.Multimedia.Audio.Communication
 
-**Parameters**
+**参数：**
 
 | 参数名 | 类型                                 | 必填 | 说明           |
 | :----- | :----------------------------------- | :--- | :------------- |
@@ -1768,7 +1769,7 @@ getAudioScene\(callback: AsyncCallback<AudioScene\>\): void
 
 获取音频场景模式，使用callback方式返回异步结果。
 
-**系统能力：**SystemCapability.Multimedia.Audio.Communication
+**系统能力：** SystemCapability.Multimedia.Audio.Communication
 
 **参数：**
 
@@ -3177,7 +3178,7 @@ on(type: 'stateChange', callback: Callback<AudioState\>): void
 | 参数名   | 类型                       | 必填 | 说明                                        |
 | :------- | :------------------------- | :--- | :------------------------------------------ |
 | type     | string                     | 是   | 事件回调类型，支持的事件为：'stateChange'。 |
-| callback | [AudioState](#AudioState8) | 是   | 返回监听的状态。                            |
+| callback | [AudioState](#audiostate8) | 是   | 返回监听的状态。                            |
 
 **示例：**
 

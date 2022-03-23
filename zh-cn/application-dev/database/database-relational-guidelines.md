@@ -133,20 +133,7 @@
 | ResultSet | isColumnNull(columnIndex:&nbsp;number):&nbsp;boolean | 检查当前行中指定列的值是否为null。 |
 | ResultSet | close():&nbsp;void | 关闭结果集。 |
 
-**数据库更改秘钥**
 
-用户可以对当前数据库进行加密。
-
-数据库的加密仅限于初始使用一个数据库时就进行加密，使用过程中进行秘钥的变更，但不支持取消秘钥。
-
-数据库初始时为加密库，则一直为加密库；初始时为未加密库，则一直为未加密库。
-
-**表8** 数据库更改秘钥
-
-| 类名 | 接口名 | 描述 |
-| -------- | -------- | -------- |
-| RdbStore | changeEncryptKey(newEncryptKey:Uint8Array,&nbsp;callback:&nbsp;AsyncCallback&lt;number&gt;):void; | 数据库更改秘钥接口，通过callback&nbsp;可以异步处理返回结果。返回结果0成功，非0失败。 |
-| RdbStore | changeEncryptKey(newEncryptKey:Uint8Array):&nbsp;Promise&lt;number&gt;; | 数据库更改秘钥接口，通过await&nbsp;可以同步处理返回结果。返回结果0成功，非0失败。 |
 
 **设置分布式列表。**
 
@@ -207,12 +194,12 @@
    示例代码如下：
 
    ```
-   import dataRdb from '@ohos.data.rdb';
+   import data_rdb from '@ohos.data.rdb'
    
    const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " + "name TEXT NOT NULL, " + "age INTEGER, " + "salary REAL, " + "blobType BLOB)";
    const STORE_CONFIG = {name: "rdbstore.db",}
    
-   let rdbStore = await dataRdb.getRdbStore(STORE_CONFIG, 1);
+   let rdbStore = await data_rdb.getRdbStore(STORE_CONFIG, 1);
    await rdbStore.executeSql(CREATE_TABLE_TEST);
    ```
 
@@ -236,7 +223,7 @@
    示例代码如下：
 
    ```
-   let predicates = new dataRdb.RdbPredicates("test");
+   let predicates = new data_rdb.RdbPredicates("test");
    predicates.equalTo("name", "Tom")
    let resultSet = await rdbStore.query(predicates)
    
@@ -273,7 +260,7 @@
     示例代码如下：
 
     ```
-    let predicate = new dataRdb.RdbPredicates('test')
+    let predicate = new data_rdb.RdbPredicates('test')
     predicate.inDevices(['12345678abcde'])
     let promise = rdbStore.sync(rdb.SyncMode.SYNC_MODE_PUSH, predicate)
     promise.then(result) {

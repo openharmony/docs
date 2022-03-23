@@ -14,7 +14,7 @@ The ability stage context is obtained through an **AbilityStage** instance.
 
 
   
-```
+```js
 import AbilityStage from '@ohos.application.AbilityStage';
 class MyAbilityStage extends AbilityStage {
     onCreate() {
@@ -25,8 +25,9 @@ class MyAbilityStage extends AbilityStage {
 
 
 ## Attributes
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-  | Name| Type| Readable| Writable| Description| 
+| Name| Type| Readable| Writable| Description| 
 | -------- | -------- | -------- | -------- | -------- |
 | currentHapModuleInfo | HapModuleInfo | Yes| No| **ModuleInfo** object corresponding to the **AbilityStage**.| 
 | config | [Configuration](js-apis-configuration.md) | Yes| No| Configuration for the environment where the application is running.| 

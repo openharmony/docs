@@ -160,7 +160,7 @@ has(key: T): boolean
 let lightWeightSet = new LightWeightSet();
 let result = lightWeightSet.has(123);
 lightWeightSet.add(123);
-let result = lightWeightSet.has(123);
+result = lightWeightSet.has(123);
 ```
 
 
@@ -188,7 +188,7 @@ equal(obj: Object): boolean
 let lightWeightSet = new LightWeightSet();
 lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 lightWeightSet.add("sdfs");
-let obj = {"Ahfbrgrbgnutfodgorrogorgrogofdfdf", "sdfs"};
+let obj = ["Ahfbrgrbgnutfodgorrogorgrogofdfdf", "sdfs"];
 let result = lightWeightSet.equal(obj);
 ```
 
@@ -428,7 +428,7 @@ forEach(callbackfn: (value?: T, key?: T, set?: LightWeightSet&lt;T&gt;) => void,
 callbackfn的参数说明：
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | T | 是 | 当前遍历到的元素。 |
+| value | T | 否 | 当前遍历到的元素。 |
 | key | T | 否 | 当前遍历到的元素（和value相同）。 |
 | set | LightWeightSet&lt;T&gt; | 否 | 当前调用forEach方法的实例对象。 |
 

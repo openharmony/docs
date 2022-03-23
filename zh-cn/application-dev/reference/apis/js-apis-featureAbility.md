@@ -694,6 +694,136 @@ GetWindowPromise(){
     }
 ```
 
+## ConnectOptions.onConnect<sup>7+</sup>
+
+onConnect(elementName: ElementName, remote: rpc.IRemoteObject): void;
+
+连接成功时的回调函数。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 名称     | 类型                    | 必填 | 描述                                                         |
+| -------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| elementName | ElementName | 是   | 元素名。 |
+| remote | rpc.IRemoteObject | 是   | rpc远程对象。 |
+
+**示例：**
+
+```javascript
+import rpc from '@ohos.rpc'
+import featureAbility from '@ohos.ability.featureAbility'
+function onConnectCallback(element, remote){
+    console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
+}
+function onDisconnectCallback(element){
+    console.log('ConnectAbility onDisconnect element.deviceId : ' + element.deviceId)
+}
+function onFailedCallback(code){
+    console.log('featureAbilityTest ConnectAbility onFailed errCode : ' + code)
+}
+var connId = featureAbility.connectAbility(
+    {
+        deviceId: "",
+        bundleName: "com.ix.ServiceAbility",
+        abilityName: "ServiceAbilityA",
+    },
+    {
+        onConnect: onConnectCallback,
+        onDisconnect: onDisconnectCallback,
+        onFailed: onFailedCallback,
+    },
+);
+```
+
+## ConnectOptions.onDisconnect<sup>7+</sup>
+
+onDisconnect(elementName: ElementName): void;
+
+连接失败时的回调函数。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 名称     | 类型                    | 必填 | 描述                                                         |
+| -------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| elementName | ElementName | 是   | 元素名。 |
+
+**示例：**
+
+```javascript
+import rpc from '@ohos.rpc'
+import featureAbility from '@ohos.ability.featureAbility'
+function onConnectCallback(element, remote){
+    console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
+}
+function onDisconnectCallback(element){
+    console.log('ConnectAbility onDisconnect element.deviceId : ' + element.deviceId)
+}
+function onFailedCallback(code){
+    console.log('featureAbilityTest ConnectAbility onFailed errCode : ' + code)
+}
+var connId = featureAbility.connectAbility(
+    {
+        deviceId: "",
+        bundleName: "com.ix.ServiceAbility",
+        abilityName: "ServiceAbilityA",
+    },
+    {
+        onConnect: onConnectCallback,
+        onDisconnect: onDisconnectCallback,
+        onFailed: onFailedCallback,
+    },
+);
+```
+
+## ConnectOptions.onFailed<sup>7+</sup>
+
+onFailed(code: number): void;
+
+ConnectAbility调用失败时的回调函数。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 名称     | 类型                    | 必填 | 描述                                                         |
+| -------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| code | number | 是   | number类型。 |
+
+**示例：**
+
+```javascript
+import rpc from '@ohos.rpc'
+import featureAbility from '@ohos.ability.featureAbility'
+function onConnectCallback(element, remote){
+    console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
+}
+function onDisconnectCallback(element){
+    console.log('ConnectAbility onDisconnect element.deviceId : ' + element.deviceId)
+}
+function onFailedCallback(code){
+    console.log('featureAbilityTest ConnectAbility onFailed errCode : ' + code)
+}
+var connId = featureAbility.connectAbility(
+    {
+        deviceId: "",
+        bundleName: "com.ix.ServiceAbility",
+        abilityName: "ServiceAbilityA",
+    },
+    {
+        onConnect: onConnectCallback,
+        onDisconnect: onDisconnectCallback,
+        onFailed: onFailedCallback,
+    },
+);
+```
+
+
+
+
 
 ## AbilityWindowConfiguration
 
@@ -702,7 +832,7 @@ GetWindowPromise(){
 **示例：**
 
 ```
-featureAbility.AbilityWindowConfiguration.WINDOW_MODE_UNDEFINED。 
+featureAbility.AbilityWindowConfiguration.WINDOW_MODE_UNDEFINED
 ```
 
 | 名称                        | 参数 | 描述       |
@@ -723,7 +853,7 @@ abilityStartSetting属性是一个定义为[key: string]: any的对象，key对�
 **示例：**
 
 ```
-featureAbility.AbilityStartSetting.BOUNDS_KEY。 
+featureAbility.AbilityStartSetting.BOUNDS_KEY
 ```
 
 | 名称            | 参数            | 描述                       |
@@ -782,15 +912,17 @@ featureAbility.AbilityStartSetting.BOUNDS_KEY。
 
 | 名称        | 读写属性 | 类型                 | 必填 | 描述                                                         |
 | ----------- | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| deviceId<sup>8+</sup>     | 只读     | string               | 否   | 表示运行指定Ability的设备ID。                                |
-| bundleName<sup>8+</sup>   | 只读     | string               | 否   | 表示包描述。如果在Want中同时指定了BundleName和AbilityName，则Want可以直接匹配到指定的Ability。 |
-| abilityName<sup>8+</sup>  | 只读     | string               | 否   | 表示待启动的Ability名称。如果在Want中同时指定了BundleName和AbilityName，则Want可以直接匹配到指定的Ability。 |
-| uri<sup>8+</sup>          | 只读     | string               | 否   | 表示Uri描述。如果在Want中指定了Uri，则Want将匹配指定的Uri信息，包括scheme, schemeSpecificPart, authority和path信息。 |
-| type<sup>8+</sup>         | 只读     | string               | 否   | 表示MIME type类型描述，比如："text/plain" 、 "image/*"等。   |
-| flags<sup>8+</sup>        | 只读     | number               | 否   | 表示处理Want的方式。默认传数字，具体参考：[flags说明](#flags说明)。 |
-| action<sup>8+</sup>       | 只读     | string               | 否   | 表示action选项描述。                           |
-| parameters<sup>8+</sup>   | 只读     | {[key: string]: any} | 否   | 表示WantParams描述。                                       |
-| entities<sup>8+</sup>     | 只读     | Array\<string>       | 否   | 表示entities相关描述。                                    |
+| deviceId    | 只读     | string               | 否   | 表示运行指定Ability的设备ID。                                |
+| bundleName   | 只读     | string               | 否   | 表示包描述。如果在Want中同时指定了BundleName和AbilityName，则Want可以直接匹配到指定的Ability。 |
+| abilityName  | 只读     | string               | 否   | 表示待启动的Ability名称。如果在Want中同时指定了BundleName和AbilityName，则Want可以直接匹配到指定的Ability。 |
+| uri          | 只读     | string               | 否   | 表示Uri描述。如果在Want中指定了Uri，则Want将匹配指定的Uri信息，包括scheme, schemeSpecificPart, authority和path信息。 |
+| type         | 只读     | string               | 否   | 表示MIME type类型描述，比如："text/plain" 、 "image/*"等。   |
+| flags        | 只读     | number               | 否   | 表示处理Want的方式。默认传数字，具体参考：[flags说明](#flags说明)。 |
+| action      | 只读     | string               | 否   | 表示action选项描述。                           |
+| parameters   | 只读     | {[key: string]: any} | 否   | 表示WantParams描述。                                       |
+| entities    | 只读     | Array\<string>       | 否   | 表示entities相关描述。                                    |
+| extensionAbilityName<sup>9+<sup>    | 只读     | string       | 否   | Want中扩展能力名称的描述。                                    |
+| extensionAbilityType<sup>9+<sup>     | 只读     | number       | 否   | 需求中扩展能力类型的描述。                                    |
 
 ## flags说明
 
@@ -806,12 +938,12 @@ featureAbility.AbilityStartSetting.BOUNDS_KEY。
 | FLAG_ABILITY_FORM_ENABLED            | 0x00000020 | 指定是否启动某个能力。                                         |
 | FLAG_AUTH_PERSISTABLE_URI_PERMISSION | 0x00000040 | 指示URI上可能持久化的授权。                                    |
 | FLAG_AUTH_PREFIX_URI_PERMISSION      | 0x00000080 | 按照前缀匹配的方式验证URI权限。                                           |
-| FLAG_ABILITYSLICE_MULTI_DEVICE       | 0x00000100 | 支持分布式调度系统中的多设备启动。<                             |
+| FLAG_ABILITYSLICE_MULTI_DEVICE       | 0x00000100 | 支持分布式调度系统中的多设备启动。                             |
 | FLAG_START_FOREGROUND_ABILITY        | 0x00000200 | 指示无论主机应用程序是否已启动，都将启动使用服务模板的功能。   |
 | FLAG_ABILITY_CONTINUATION_REVERSIBLE | 0x00000400 | 表示迁移是可拉回的。                                        |
 | FLAG_INSTALL_ON_DEMAND               | 0x00000800 | 如果未安装指定的功能，请安装该功能。                           |
 | FLAG_INSTALL_WITH_BACKGROUND_MODE    | 0x80000000 | 如果未安装，使用后台模式安装该功能。                         |
-| FLAG_ABILITY_CLEAR_MISSION           | 0x00008000 | 指示清除其他任务的操作。可以为传递给**ohos.app.Context#startAbility**的**Want**设置此标志，并且必须与**flag_ABILITY_NEW_MISSION**一起使用。 |
+| FLAG_ABILITY_CLEAR_MISSION           | 0x00008000 | 指示清除其他任务的操作。可以为传递给 **[ohos.app.Context](js-apis-ability-context.md)** 中**startAbility**方法的**Want**设置此标志，并且必须与**flag_ABILITY_NEW_MISSION**一起使用。 |
 | FLAG_ABILITY_NEW_MISSION             | 0x10000000 | 指示在历史任务堆栈上创建任务的操作。                         |
 | FLAG_ABILITY_MISSION_TOP             | 0x20000000 | 指示如果启动能力的现有实例已位于任务堆栈的顶部，则将重用该实例。否则，将创建一个新的能力实例。 |
 

@@ -7,7 +7,7 @@
 > 为确保运行效果，本文以使用**DevEco Studio V3.0.0.900 Beta2**版本为例，点击[此处](https://developer.harmonyos.com/cn/develop/deveco-studio#download_beta)获取下载链接。
 
 
-OpenHarmony低代码开发方式，具有丰富的UI界面编辑功能，遵循[JS开发规范](https://developer.harmonyos.com/cn/docs/documentation/doc-references/js-apis-overview-0000001056361791)，通过可视化界面开发方式快速构建布局，可有效降低用户的上手成本并提升用户构建UI界面的效率。
+OpenHarmony低代码开发方式，具有丰富的UI界面编辑功能，遵循[JS开发规范](../reference/apis/)，通过可视化界面开发方式快速构建布局，可有效降低用户的上手成本并提升用户构建UI界面的效率。
 
 
 使用低代码开发应用或服务有以下两种开发方式：
@@ -38,10 +38,11 @@ OpenHarmony低代码开发方式，具有丰富的UI界面编辑功能，遵循[
 
 ![zh-cn_image_0000001216753776](figures/zh-cn_image_0000001216753776.png)
 
-- **pages &gt; index &gt; index.js**：低代码页面的逻辑描述文件，定义了页面里所用到的所有的逻辑关系，比如数据、事件等，详情请参考[JS语法参考](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/js-framework-syntax-js-0000000000611432)。如果创建了多个低代码页面，则pages目录下会生成多个页面文件夹及对应的js文件。
+- **pages &gt; index &gt; index.js**：低代码页面的逻辑描述文件，定义了页面里所用到的所有的逻辑关系，比如数据、事件等，详情请参考[JS语法参考](../ui/js-framework-syntax-js.md)。如果创建了多个低代码页面，则pages目录下会生成多个页面文件夹及对应的js文件。
+  
   > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
   > 使用低代码页面开发时，其关联js文件的同级目录中不能包含hml和css页面，例如上图中的**js &gt; MainAbility &gt; pages &gt; index**目录下不能包含hml与css文件，否则会出现编译报错。
-
+  
 - **pages &gt; index &gt; index.visual**：visual文件存储低代码页面的数据模型，双击该文件即可打开低代码页面，进行可视化开发设计。如果创建了多个低代码页面，则pages目录下会生成多个页面文件夹及对应的visual文件。
 
 
@@ -102,7 +103,8 @@ OpenHarmony低代码开发方式，具有丰富的UI界面编辑功能，遵循[
 页面间的导航可以通过[页面路由router](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/ui-js-building-ui-routes.md)来实现。页面路由router根据页面uri找到目标页面，从而实现跳转。使用页面路由请导入router模块。
 
 1. **第一个页面跳转到第二个页面。**
-     在第一个页面中，跳转按钮绑定onclick方法，当按钮点击时触发页面路由变化，跳转到第二页。需同时处理js文件及visual文件。
+     在第一个页面中，跳转按钮绑定onclick方法，点击按钮时跳转到第二页。需同时处理js文件及visual文件。
+   
    - “**index.js**”示例如下：
      
      ```
@@ -117,12 +119,12 @@ OpenHarmony低代码开发方式，具有丰富的UI界面编辑功能，遵循[
      }
      ```
    
-   - “**index.viusal**”： 打开index.visual，选中画布上的Button组件。点击右侧属性样式栏中的事件图标![zh-cn_image_0000001215388136](figures/zh-cn_image_0000001215388136.png)（Events），鼠标点击Click事件的输入框，选择onclick事件，如下所示：
-
-     ![zh-cn_image_0000001261137889](figures/zh-cn_image_0000001261137889.png)
-
+     - “**index.viusal**”： 打开index.visual，选中画布上的Button组件。点击右侧属性样式栏中的事件图标![zh-cn_image_0000001215388136](figures/zh-cn_image_0000001215388136.png)（Events），鼠标点击Click事件的输入框，选择onclick事件，如下所示：
+   
+       ![zh-cn_image_0000001261137889](figures/zh-cn_image_0000001261137889.png)
+   
 2. **第二个页面返回到第一个页面。**
-   在第二个页面中，返回按钮绑定onClick方法，当按钮点击时触发页面路由返回，返回到第二页。
+   在第二个页面中，返回按钮绑定onClick方法，点击按钮时返回到第一页。
 
    需同时处理js文件及visual文件。
 
@@ -155,3 +157,5 @@ OpenHarmony低代码开发方式，具有丰富的UI界面编辑功能，遵循[
 3. 在编辑窗口右上角的工具栏，点击![zh-cn_image_0000001262207811](figures/zh-cn_image_0000001262207811.png)按钮运行效果如下图所示：
 
    ![zh-cn_image_0000001262127855](figures/zh-cn_image_0000001262127855.png)
+
+恭喜您已经使用JS语言开发（低代码方式）完成了第一个OpenHarmony应用，来[探索更多的OpenHarmony功能](../application-dev-guide.md)吧。

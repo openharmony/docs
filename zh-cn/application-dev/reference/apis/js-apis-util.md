@@ -147,7 +147,7 @@ promiseWrapper(original: (err: Object, value: Object) =&gt; void): Object
 
 ### constructor
 
-constructor(encoding?: string, options?: { fatal?: boolean;ignoreBOM?: boolean })
+constructor(encoding?: string, options?: { fatal?: boolean; ignoreBOM?: boolean },)
 
 TextDecoder的构造函数。
 
@@ -174,7 +174,7 @@ TextDecoder的构造函数。
 
 ### decode
 
-decode(input: Unit8Array, options?: {stream?: false}): string
+decode(input: Uint8Array, options?: { stream?: false }): string
 
 通过输入参数解码后输出对应文本。
 
@@ -1108,7 +1108,7 @@ class Temperature{
 
 ### constructor<sup>8+</sup>
 
-constructor(lowerObj: ScopeType,upperObje: ScopeType)
+constructor(lowerObj: ScopeType, upperObj: ScopeType)
 
 用于创建指定下限和上限的作用域实例的构造函数，返回一个Scope对象。
 
@@ -2321,7 +2321,7 @@ isStringObject(value: Object): boolean
 
 ### isSymbolObjec<sup>8+</sup>
 
-isSymbolObjec(value: Object): boolean
+isSymbolObject(value: Object): boolean
 
 检查输入的value是否是Symbol对象类型。
 

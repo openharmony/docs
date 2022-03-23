@@ -198,7 +198,7 @@ forEach(callbackfn: (value?: T, key?: T, set?: HashSet&lt;T&gt;) => void, thisAr
 callbackfn的参数说明：
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | T | 是 | 当前遍历到的元素键值对的值。 |
+| value | T | 否 | 当前遍历到的元素键值对的值。 |
 | key | T | 否 | 当前遍历到的元素键值对的值（和value相同）。 |
 | set | HashSet&lt;T&gt; | 否 | 当前调用forEach方法的实例对象。 |
 

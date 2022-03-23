@@ -1,7 +1,6 @@
 #  	App Account Management
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
->
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -12,23 +11,20 @@ import account_appAccount from '@ohos.account.appAccount';
 ```
 
 
-## System Capabilities
-
-SystemCapability.Account.AppAccount
-
-
 ## account_appAccount.createAppAccountManager
 
-createAppAccountManager(): AppAccountManager;
+createAppAccountManager(): AppAccountManager
 
 Creates an **AppAccountManager** instance.
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | AppAccountManager | **AppAccountManager** instance created.|
+**System capability**: SystemCapability.Account.AppAccount
 
-- Example
+**Return Value**
+| Type             | Description                    |
+| ----------------- | ------------------------ |
+| AppAccountManager | **AppAccountManager** instance created.|
+
+**Example**
   ```
   var appAccountManager = account.createAppAccountManager();
   ```
@@ -39,20 +35,20 @@ Provides methods to manage app accounts.
 
 ### addAccount
 
-addAccount(name: string, callback: AsyncCallback&lt;void&gt;): void;
+addAccount(name: string, callback: AsyncCallback&lt;void&gt;): void
 
 Adds an app account to the account management service. This method uses an asynchronous callback to return the result.
 
-Required permission: none.
+**System capability**: SystemCapability.Account.AppAccount
 
-- Parameters
+**Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | ------------------- | ---- | ------------------------------------------ |
-  | name     | string              | Yes| Name of the app account to add.|
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked when the app account is added.|
+| Name  | Type                     | Mandatory| Description                                      |
+| -------- | ------------------------- | ---- | ------------------------------------------ |
+| name     | string                    | Yes  | Name of the app account to add.                  |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked when the app account is added.|
 
-- Example
+**Example**
 
   ```
   const appAccountManager = account_appAccount.createAppAccountManager();
@@ -63,21 +59,21 @@ Required permission: none.
 
 ### addAccount
 
-addAccount(name: string, extraInfo: string, callback: AsyncCallback&lt;void&gt;): void;
+addAccount(name: string, extraInfo: string, callback: AsyncCallback&lt;void&gt;): void
 
 Adds an app account and its additional information to the account management service. This method uses an asynchronous callback to return the result.
 
-Required permission: none.
+**System capability**: SystemCapability.Account.AppAccount
 
-- Parameters
+**Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | --------- | ------------------- | ---- | ------------------------------------------------------------ |
-  | name      | string              | Yes| Name of the app account to add.|
-  | extraInfo | string              | Yes| Additional information (for example, token) of the app account to add. The additional information cannot contain sensitive information about the app account.|
-  | callback  | AsyncCallback&lt;void&gt; | Yes| Callback invoked when the app account and its additional information are added.|
+| Name   | Type                     | Mandatory| Description                                                        |
+| --------- | ------------------------- | ---- | ------------------------------------------------------------ |
+| name      | string                    | Yes  | Name of the app account to add.                                    |
+| extraInfo | string                    | Yes  | Additional information (for example, token) of the app account to add. The additional information cannot contain sensitive information about the app account.|
+| callback  | AsyncCallback&lt;void&gt; | Yes  | Callback invoked when the app account and its additional information are added.  |
 
-- Example
+**Example**
 
   ```
   const appAccountManager = account_appAccount.createAppAccountManager();
@@ -90,26 +86,26 @@ Required permission: none.
 
 ### addAccount
 
-addAccount(name: string, extraInfo?: string): Promise&lt;void&gt;;
+addAccount(name: string, extraInfo?: string): Promise&lt;void&gt;
 
 Adds an app account and its additional information to the account management service. This method uses a promise to return the result.
 
-Required permission: none.
+**System capability**: SystemCapability.Account.AppAccount
 
-- Parameters
+**Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | --------- | ------ | ---- | ------------------------------------------------------------ |
-  | name      | string | Yes| Name of the app account to add.|
-  | extraInfo | string | Yes| Additional information of the app account to add. The additional information cannot contain sensitive information about the app account.|
+| Name   | Type  | Mandatory| Description                                                        |
+| --------- | ------ | ---- | ------------------------------------------------------------ |
+| name      | string | Yes  | Name of the app account to add.                                    |
+| extraInfo | string | Yes  | Additional information of the app account to add. The additional information cannot contain sensitive information about the app account.|
 
-- Return value
+**Return Value**
 
-  | Type| Description|
-  | ------------- | ---------------------------------- |
-  | Promise&lt;void&gt; | Promise used to return the result.|
+| Type               | Description                              |
+| ------------------- | ---------------------------------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
 
-- Example
+**Example**
 
   ```
   const appAccountManager = account_appAccount.createAppAccountManager();
@@ -122,38 +118,38 @@ Required permission: none.
 
 ### addAccountImplicitly<sup>8+</sup>
 
-addAccountImplicitly(owner: string, authType: string, options: {[key: string]: any}, callback: AuthenticatorCallback): void;
+addAccountImplicitly(owner: string, authType: string, options: {[key: string]: any}, callback: AuthenticatorCallback): void
 
 Implicitly adds an app account based on the specified account owner, authentication type, and options. This method uses an asynchronous callback to return the result.
 
-Required permission: none.
+**System capability**: SystemCapability.Account.AppAccount
 
-- Parameters
+**Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | --------------------- | ---  | --------------------------  |
-  | owner    | string                | Yes| Bundle name of the app account to add.|
-  | authType | string                | Yes| Authentication type of the app account to add.|
-  | options  | {[key: string]: any}  | Yes| Options for the authentication.|
-  | callback | AuthenticatorCallback | Yes| Authenticator callback invoked to return the authentication result.|
+| Name  | Type                 | Mandatory| Description                          |
+| -------- | --------------------- | ---- | ------------------------------ |
+| owner    | string                | Yes  | Bundle name of the app account to add.|
+| authType | string                | Yes  | Authentication type of the app account to add.  |
+| options  | {[key: string]: any}  | Yes  | Options for the authentication.          |
+| callback | AuthenticatorCallback | Yes  | Authenticator callback invoked to return the authentication result.|
 
-- Example
+**Example**
 
   ```
   import featureAbility from '@ohos.ability.featureAbility';
-  
+
   function onResultCallback(code, result) {
       console.log("resultCode: "  + code);
       console.log("result: "  + JSON.stringify(result));
   }
-  
+
   function onRequestRedirectedCallback(request) {
       let abilityStartSetting = {want: request};
       featureAbility.startAbility(abilityStartSetting, (err)=>{
           console.log("startAbility err: " + JSON.stringify(err));
       });
   }
-  
+
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.addAccountImplicitly("LiSi", "readAge", {}, {
       onResult: onResultCallback,
@@ -163,18 +159,20 @@ Required permission: none.
 
 ### deleteAccount
 
-deleteAccount(name: string, callback: AsyncCallback&lt;void&gt;): void;
+deleteAccount(name: string, callback: AsyncCallback&lt;void&gt;): void
 
 Deletes an app account from the account management service. This method uses an asynchronous callback to return the result.
 
-- Parameters
+**System capability**: SystemCapability.Account.AppAccount
 
-  | Name| Type| Mandatory| Description|
-  | -------- | ------------------- | ---- | ---------------------------------- |
-  | name     | string              | Yes| Name of the app account to delete.|
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked when the app account is deleted.|
+**Parameters**
 
-- Example
+| Name  | Type                     | Mandatory| Description                              |
+| -------- | ------------------------- | ---- | ---------------------------------- |
+| name     | string                    | Yes  | Name of the app account to delete.          |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked when the app account is deleted.|
+
+**Example**
 
   ```
   const appAccountManager = account_appAccount.createAppAccountManager();
@@ -185,23 +183,25 @@ Deletes an app account from the account management service. This method uses an 
 
 ### deleteAccount
 
-deleteAccount(name: string): Promise&lt;void&gt;;
+deleteAccount(name: string): Promise&lt;void&gt;
 
 Deletes an app account from the account management service. This method uses a promise to return the result.
 
-- Parameters
+**System capability**: SystemCapability.Account.AppAccount
 
-  | Name| Type| Mandatory| Description|
-  | ------ | ------ | ---- | ------------------------ |
-  | name   | string | Yes| Name of the app account to delete.|
+**Parameters**
 
-- Return value
+| Name| Type  | Mandatory| Description                    |
+| ------ | ------ | ---- | ------------------------ |
+| name   | string | Yes  | Name of the app account to delete.|
 
-  | Type| Description|
-  | :------------ | :---------------------------------- |
-  | Promise&lt;void&gt; | Promise used to return the result.|
+**Return Value**
 
-- Example
+| Type               | Description                               |
+| :------------------ | :---------------------------------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Example**
 
   ```
   const appAccountManager = account_appAccount.createAppAccountManager();
@@ -214,19 +214,21 @@ Deletes an app account from the account management service. This method uses a p
 
 ### disableAppAccess
 
-disableAppAccess(name: string, bundleName: string, callback: AsyncCallback&lt;void&gt;): void;
+disableAppAccess(name: string, bundleName: string, callback: AsyncCallback&lt;void&gt;): void
 
 Disables an app account from accessing an application with the given bundle name. This method uses an asynchronous callback to return the result.
 
-- Parameters
+**System capability**: SystemCapability.Account.AppAccount
 
-  | Name| Type| Mandatory| Description|
-  | ---------- | ------------------- | ---- | ------------------------------------------------------------ |
-  | name       | string              | Yes| App account name.|
-  | bundleName | string              | Yes| Bundle name of an app.|
-  | callback   | AsyncCallback&lt;void&gt; | Yes| Callback invoked when the app account is disabled from accessing the application with the given bundle name.|
+**Parameters**
 
-- Example
+| Name    | Type                     | Mandatory| Description                                                        |
+| ---------- | ------------------------- | ---- | ------------------------------------------------------------ |
+| name       | string                    | Yes  | App account name.                          |
+| bundleName | string                    | Yes  | Bundle name of an app.                                          |
+| callback   | AsyncCallback&lt;void&gt; | Yes  | Callback invoked when the app account is disabled from accessing the application with the given bundle name.|
+
+**Example**
 
   ```
   const appAccountManager = account_appAccount.createAppAccountManager();
@@ -237,24 +239,26 @@ Disables an app account from accessing an application with the given bundle name
 
 ### disableAppAccess
 
-disableAppAccess(name: string, bundleName: string): Promise&lt;void&gt;;
+disableAppAccess(name: string, bundleName: string): Promise&lt;void&gt;
 
 Disables an app account from accessing an application with the given bundle name. This method uses a promise to return the result.
 
-- Parameters
+**System capability**: SystemCapability.Account.AppAccount
 
-  | Name| Type| Mandatory| Description|
-  | ---------- | ------ | ---- | ---------------------------------- |
-  | name       | string | Yes| App account name.|
-  | bundleName | string | Yes| Bundle name of an app.|
+**Parameters**
 
-- Return value
+| Name    | Type  | Mandatory| Description                              |
+| ---------- | ------ | ---- | ---------------------------------- |
+| name       | string | Yes  | App account name.|
+| bundleName | string | Yes  | Bundle name of an app.                |
 
-  | Type| Description|
-  | :------------ | :---------------------------------- |
-  | Promise&lt;void&gt; | Promise used to return the result.|
+**Return Value**
 
-- Example
+| Type               | Description                               |
+| :------------------ | :---------------------------------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Example**
 
   ```
   const appAccountManager = account_appAccount.createAppAccountManager();
@@ -267,19 +271,21 @@ Disables an app account from accessing an application with the given bundle name
 
 ### enableAppAccess
 
-enableAppAccess(name: string, bundleName: string, callback: AsyncCallback&lt;void&gt;): void;
+enableAppAccess(name: string, bundleName: string, callback: AsyncCallback&lt;void&gt;): void
 
 Enables an app account to access an application with the given bundle name. This method uses an asynchronous callback to return the result.
 
-- Parameters
+**System capability**: SystemCapability.Account.AppAccount
 
-  | Name| Type| Mandatory| Description|
-  | ---------- | ------------------- | ---- | ------------------------------------------------------------ |
-  | name       | string              | Yes| App account name.|
-  | bundleName | string              | Yes| Bundle name of an app.|
-  | callback   | AsyncCallback&lt;void&gt; | Yes| Callback invoked when the app account is enabled to access the application with the given bundle name.|
+**Parameters**
 
-- Example
+| Name    | Type                     | Mandatory| Description                                                        |
+| ---------- | ------------------------- | ---- | ------------------------------------------------------------ |
+| name       | string                    | Yes  | App account name.                                              |
+| bundleName | string                    | Yes  | Bundle name of an app.                                          |
+| callback   | AsyncCallback&lt;void&gt; | Yes  | Callback invoked when the app account is enabled to access the application with the given bundle name.|
+
+**Example**
 
   ```
   const appAccountManager = account_appAccount.createAppAccountManager();
@@ -290,24 +296,26 @@ Enables an app account to access an application with the given bundle name. This
 
 ### enableAppAccess
 
-enableAppAccess(name: string, bundleName: string): Promise&lt;void&gt;;
+enableAppAccess(name: string, bundleName: string): Promise&lt;void&gt;
 
 Enables an app account to access an application with the given bundle name. This method uses a promise to return the result.
 
-- Parameters
+**System capability**: SystemCapability.Account.AppAccount
 
-  | Name| Type| Mandatory| Description|
-  | ---------- | ------ | ---- | ------------------ |
-  | name       | string | Yes| App account name.|
-  | bundleName | string | Yes| Bundle name of an app.|
+**Parameters**
 
-- Return value
+| Name    | Type  | Mandatory| Description              |
+| ---------- | ------ | ---- | ------------------ |
+| name       | string | Yes  | App account name.    |
+| bundleName | string | Yes  | Bundle name of an app.|
 
-  | Type| Description|
-  | :------------ | :---------------------------------- |
-  | Promise&lt;void&gt; | Promise used to return the result.|
+**Return Value**
 
-- Example
+| Type               | Description                               |
+| :------------------ | :---------------------------------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Example**
 
   ```
   app_account_instance.enableAppAccess("ZhangSan", "com.example.ohos.accountjsdemo").then(() => { 
@@ -319,20 +327,22 @@ Enables an app account to access an application with the given bundle name. This
 
 ### checkAppAccountSyncEnable
 
-checkAppAccountSyncEnable(name: string, callback: AsyncCallback&lt;boolean&gt;): void;
+checkAppAccountSyncEnable(name: string, callback: AsyncCallback&lt;boolean&gt;): void
 
 Checks whether an app account allows application data synchronization. This method uses an asynchronous callback to return the result.
 
-The **ohos.permission.DISTRIBUTED_DATASYNC** permission is required. This permission is intended for system applications only.
+**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC (available only to system applications)
 
-- Parameters
+**System capability**: SystemCapability.Account.AppAccount
 
-  | Name| Type| Mandatory| Description|
-  | -------- | ---------------------- | ---- | -------------------------------------------- |
-  | name     | string                 | Yes| App account name.|
-  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return whether the app account allows application data synchronization.|
+**Parameters**
 
-- Example
+| Name  | Type                        | Mandatory| Description                                        |
+| -------- | ---------------------------- | ---- | -------------------------------------------- |
+| name     | string                       | Yes  | App account name.                              |
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return whether the app account allows application data synchronization.|
+
+**Example**
 
   ```
   const appAccountManager = account_appAccount.createAppAccountManager();
@@ -344,25 +354,27 @@ The **ohos.permission.DISTRIBUTED_DATASYNC** permission is required. This permis
 
 ### checkAppAccountSyncEnable
 
-checkAppAccountSyncEnable(name: string): Promise&lt;boolean&gt;;
+checkAppAccountSyncEnable(name: string): Promise&lt;boolean&gt;
 
 Checks whether an app account allows application data synchronization. This method uses a promise to return the result.
 
-The **ohos.permission.DISTRIBUTED_DATASYNC** permission is required. This permission is intended for system applications only.
+**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC (available only to system applications)
 
-- Parameters
+**System capability**: SystemCapability.Account.AppAccount
 
-  | Name| Type| Mandatory| Description|
-  | ------ | ------ | ---- | -------------- |
-  | name   | string | Yes| App account name.|
+**Parameters**
 
-- Return value
+| Name| Type  | Mandatory| Description          |
+| ------ | ------ | ---- | -------------- |
+| name   | string | Yes  | App account name.|
 
-  | Type| Description|
-  | :--------------- | :---------------------------------- |
-  | Promise&lt;boolean&gt; | Promise used to return the result.|
+**Return Value**
 
-- Example
+| Type                  | Description                               |
+| :--------------------- | :---------------------------------- |
+| Promise&lt;boolean&gt; | Promise used to return the result.|
+
+**Example**
 
   ```
   const appAccountManager = account_appAccount.createAppAccountManager();
@@ -375,20 +387,22 @@ The **ohos.permission.DISTRIBUTED_DATASYNC** permission is required. This permis
 
 ### setAccountCredential
 
-setAccountCredential(name: string, credentialType: string, credential: string,callback: AsyncCallback&lt;void&gt;): void;
+setAccountCredential(name: string, credentialType: string, credential: string,callback: AsyncCallback&lt;void&gt;): void
 
 Sets a credential for an app account. This method uses an asynchronous callback to return the result.
 
-- Parameters
+**System capability**: SystemCapability.Account.AppAccount
 
-  | Name| Type| Mandatory| Description|
-  | -------------- | ------------------- | ---- | ---------------------------- |
-  | name           | string              | Yes| App account name.|
-  | credentialType | string              | Yes| Type of the credential to set.|
-  | credential     | string              | Yes| Credential to set.|
-  | callback       | AsyncCallback&lt;void&gt; | Yes| Callback invoked when a credential is set for the specified app account.|
+**Parameters**
 
-- Example
+| Name        | Type                     | Mandatory| Description                        |
+| -------------- | ------------------------- | ---- | ---------------------------- |
+| name           | string                    | Yes  | App account name.        |
+| credentialType | string                    | Yes  | Type of the credential to set.        |
+| credential     | string                    | Yes  | Credential to set.              |
+| callback       | AsyncCallback&lt;void&gt; | Yes  | Callback invoked when a credential is set for the specified app account.|
+
+**Example**
 
   ```
   const appAccountManager = account_appAccount.createAppAccountManager();
@@ -399,25 +413,27 @@ Sets a credential for an app account. This method uses an asynchronous callback 
 
 ### setAccountCredential
 
-setAccountCredential(name: string, credentialType: string, credential: string): Promise&lt;void&gt;;
+setAccountCredential(name: string, credentialType: string, credential: string): Promise&lt;void&gt;
 
 Sets a credential for an app account. This method uses a promise to return the result asynchronously.
 
-- Parameters
+**System capability**: SystemCapability.Account.AppAccount
 
-  | Name| Type| Mandatory| Description|
-  | -------------- | ------ | ---- | -------------------- |
-  | name           | string | Yes| App account name.|
-  | credentialType | string | Yes| Type of the credential to set.|
-  | credential     | string | Yes| Credential to set.|
+**Parameters**
 
-- Return value
+| Name        | Type  | Mandatory| Description                |
+| -------------- | ------ | ---- | -------------------- |
+| name           | string | Yes  | App account name.    |
+| credentialType | string | Yes  | Type of the credential to set.|
+| credential     | string | Yes  | Credential to set.      |
 
-  | Type| Description|
-  | :------------ | :---------------------------------- |
-  | Promise&lt;void&gt; | Promise used to return the result.|
+**Return Value**
 
-- Example
+| Type               | Description                               |
+| :------------------ | :---------------------------------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Example**
 
   ```
   const appAccountManager = account_appAccount.createAppAccountManager();
@@ -430,19 +446,21 @@ Sets a credential for an app account. This method uses a promise to return the r
 
 ### setAccountExtraInfo
 
-setAccountExtraInfo(name: string, extraInfo: string, callback: AsyncCallback&lt;void&gt;): void;
+setAccountExtraInfo(name: string, extraInfo: string, callback: AsyncCallback&lt;void&gt;): void
 
 Sets additional information for an app account. This method uses an asynchronous callback to return the result.
 
-- Parameters
+**System capability**: SystemCapability.Account.AppAccount
 
-  | Name| Type| Mandatory| Description|
-  | --------- | ------------------- | ---- | -------------------------------- |
-  | name      | string              | Yes| App account name.|
-  | extraInfo | string              | Yes| Additional information to set.|
-  | callback  | AsyncCallback&lt;void&gt; | Yes| Callback invoked when additional information is set for the specified app account.|
+**Parameters**
 
-- Example
+| Name   | Type                     | Mandatory| Description                            |
+| --------- | ------------------------- | ---- | -------------------------------- |
+| name      | string                    | Yes  | App account name.                |
+| extraInfo | string                    | Yes  | Additional information to set.              |
+| callback  | AsyncCallback&lt;void&gt; | Yes  | Callback invoked when additional information is set for the specified app account.|
+
+**Example**
 
   ```
   const appAccountManager = account_appAccount.createAppAccountManager();
@@ -453,24 +471,26 @@ Sets additional information for an app account. This method uses an asynchronous
 
 ### setAccountExtraInfo
 
-setAccountExtraInfo(name: string, extraInfo: string): Promise&lt;void&gt;;
+setAccountExtraInfo(name: string, extraInfo: string): Promise&lt;void&gt;
 
 Sets additional information for an app account. This method uses a promise to return the result asynchronously.
 
-- Parameters
+**System capability**: SystemCapability.Account.AppAccount
 
-  | Name| Type| Mandatory| Description|
-  | --------- | ------ | ---- | ------------------ |
-  | name      | string | Yes| App account name.|
-  | extraInfo | string | Yes| Additional information to set.|
+**Parameters**
 
-- Return value
+| Name   | Type  | Mandatory| Description              |
+| --------- | ------ | ---- | ------------------ |
+| name      | string | Yes  | App account name.  |
+| extraInfo | string | Yes  | Additional information to set.|
 
-  | Type| Description|
-  | :------------ | :---------------------------------- |
-  | Promise&lt;void&gt; | Promise used to return the result.|
+**Return Value**
 
-- Example
+| Type               | Description                               |
+| :------------------ | :---------------------------------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Example**
 
   ```
   const appAccountManager = account_appAccount.createAppAccountManager();
@@ -483,21 +503,23 @@ Sets additional information for an app account. This method uses a promise to re
 
 ### setAppAccountSyncEnable
 
-setAppAccountSyncEnable(name: string, isEnable: boolean, callback: AsyncCallback&lt;void&gt;): void;
+setAppAccountSyncEnable(name: string, isEnable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 Sets whether to enable application data synchronization for an app account. This method uses an asynchronous callback to return the result.
 
-The **ohos.permission.DISTRIBUTED_DATASYNC** permission is required. This permission is intended for system applications only.
+**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC (available only to system applications)
 
-- Parameters
+**System capability**: SystemCapability.Account.AppAccount
 
-  | Name| Type| Mandatory| Description|
-  | -------- | ------------------- | ---- | -------------------------------------------------- |
-  | name     | string              | Yes| App account name.|
-  | isEnable | boolean             | Yes| Whether to enable app data synchronization.|
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked when application data synchronization is enabled or disabled for the app account.|
+**Parameters**
 
-- Example
+| Name  | Type                     | Mandatory| Description                                              |
+| -------- | ------------------------- | ---- | -------------------------------------------------- |
+| name     | string                    | Yes  | App account name.                                  |
+| isEnable | boolean                   | Yes  | Whether to enable app data synchronization.                            |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked when application data synchronization is enabled or disabled for the app account.|
+
+**Example**
 
   ```
   const appAccountManager = account_appAccount.createAppAccountManager();
@@ -508,26 +530,28 @@ The **ohos.permission.DISTRIBUTED_DATASYNC** permission is required. This permis
 
 ### setAppAccountSyncEnable
 
-setAppAccountSyncEnable(name: string, isEnable: boolean): Promise&lt;void&gt;;
+setAppAccountSyncEnable(name: string, isEnable: boolean): Promise&lt;void&gt;
 
 Sets whether to enable application data synchronization for an app account. This method uses a promise to return the result asynchronously.
 
-The **ohos.permission.DISTRIBUTED_DATASYNC** permission is required. This permission is intended for system applications only.
+**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC (available only to system applications)
 
-- Parameters
+**System capability**: SystemCapability.Account.AppAccount
 
-  | Name| Type| Mandatory| Description|
-  | -------- | ------- | ---- | ---------------------- |
-  | name     | string  | Yes| App account name.|
-  | isEnable | boolean | Yes| Whether to enable app data synchronization.|
+**Parameters**
 
-- Return value
+| Name  | Type   | Mandatory| Description                  |
+| -------- | ------- | ---- | ---------------------- |
+| name     | string  | Yes  | App account name.      |
+| isEnable | boolean | Yes  | Whether to enable app data synchronization.|
 
-  | Type| Description|
-  | :------------ | :---------------------------------- |
-  | Promise&lt;void&gt; | Promise used to return the result.|
+**Return Value**
 
-- Example
+| Type               | Description                               |
+| :------------------ | :---------------------------------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Example**
 
   ```
   const appAccountManager = account_appAccount.createAppAccountManager();
@@ -540,20 +564,22 @@ The **ohos.permission.DISTRIBUTED_DATASYNC** permission is required. This permis
 
 ### setAssociatedData
 
-setAssociatedData(name: string, key: string, value: string, callback: AsyncCallback&lt;void&gt;): void;
+setAssociatedData(name: string, key: string, value: string, callback: AsyncCallback&lt;void&gt;): void
 
 Sets data to be associated with an app account. This method uses an asynchronous callback to return the result.
 
-- Parameters
+**System capability**: SystemCapability.Account.AppAccount
 
-  | Name| Type| Mandatory| Description|
-  | -------- | ------------------- | ---- | ---------------------------------- |
-  | name     | string              | Yes| App account name.|
-  | key      | string              | Yes| Key of the data to set. The private key can be customized.|
-  | value    | string              | Yes| Value of the data to be set.|
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked when the data associated with the specified app account is set.|
+**Parameters**
 
-- Example
+| Name  | Type                     | Mandatory| Description                              |
+| -------- | ------------------------- | ---- | ---------------------------------- |
+| name     | string                    | Yes  | App account name.                  |
+| key      | string                    | Yes  | Key of the data to set. The private key can be customized.|
+| value    | string                    | Yes  | Value of the data to be set.                |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked when the data associated with the specified app account is set.|
+
+**Example**
 
   ```
   app_account_instance.setAssociatedData("ZhangSan", "k001", "v001", (err) => { 
@@ -563,25 +589,27 @@ Sets data to be associated with an app account. This method uses an asynchronous
 
 ### setAssociatedData
 
-setAssociatedData(name: string, key: string, value: string): Promise&lt;void&gt;;
+setAssociatedData(name: string, key: string, value: string): Promise&lt;void&gt;
 
 Sets data to be associated with an app account. This method uses a promise to return the result asynchronously.
 
-- Parameters
+**System capability**: SystemCapability.Account.AppAccount
 
-  | Name| Type| Mandatory| Description|
-  | ------ | ------ | ---- | ---------------------------------- |
-  | name   | string | Yes| App account name.|
-  | key    | string | Yes| Key of the data to set. The private key can be customized.|
-  | value  | string | Yes| Value of the data to be set.|
+**Parameters**
 
-- Return value
+| Name| Type  | Mandatory| Description                              |
+| ------ | ------ | ---- | ---------------------------------- |
+| name   | string | Yes  | App account name.                  |
+| key    | string | Yes  | Key of the data to set. The private key can be customized.|
+| value  | string | Yes  | Value of the data to be set.                |
 
-  | Type| Description|
-  | :------------ | :---------------------------------- |
-  | Promise&lt;void&gt; | Promise used to return the result.|
+**Return Value**
 
-- Example
+| Type               | Description                               |
+| :------------------ | :---------------------------------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Example**
 
   ```
   const appAccountManager = account_appAccount.createAppAccountManager();
@@ -594,19 +622,21 @@ Sets data to be associated with an app account. This method uses a promise to re
 
 ### getAccountCredential
 
-getAccountCredential(name: string, credentialType: string, callback: AsyncCallback&lt;string&gt;): void;
+getAccountCredential(name: string, credentialType: string, callback: AsyncCallback&lt;string&gt;): void
 
 Obtains the credential of an app account. This method uses an asynchronous callback to return the result.
 
-- Parameters
+**System capability**: SystemCapability.Account.AppAccount
 
-  | Name| Type| Mandatory| Description|
-  | -------------- | --------------------- | ---- | ---------------------------- |
-  | name           | string                | Yes| App account name.|
-  | credentialType | string                | Yes| Type of the credential to obtain.|
-  | callback       | AsyncCallback&lt;string&gt; | Yes| Callback invoked to return the credential of the specified app account.|
+**Parameters**
 
-- Example
+| Name        | Type                       | Mandatory| Description                        |
+| -------------- | --------------------------- | ---- | ---------------------------- |
+| name           | string                      | Yes  | App account name.              |
+| credentialType | string                      | Yes  | Type of the credential to obtain.        |
+| callback       | AsyncCallback&lt;string&gt; | Yes  | Callback invoked to return the credential of the specified app account.|
+
+**Example**
 
   ```
   const appAccountManager = account_appAccount.createAppAccountManager();
@@ -618,24 +648,26 @@ Obtains the credential of an app account. This method uses an asynchronous callb
 
 ### getAccountCredential
 
-getAccountCredential(name: string, credentialType: string): Promise&lt;string&gt;;
+getAccountCredential(name: string, credentialType: string): Promise&lt;string&gt;
 
 Obtains the credential of an app account. This method uses a promise to return the result asynchronously.
 
-- Parameters
+**System capability**: SystemCapability.Account.AppAccount
 
-  | Name| Type| Mandatory| Description|
-  | -------------- | ------ | ---- | -------------------- |
-  | name           | string | Yes| App account name.|
-  | credentialType | string | Yes| Type of the credential to obtain.|
+**Parameters**
 
-- Return value
+| Name        | Type  | Mandatory| Description                |
+| -------------- | ------ | ---- | -------------------- |
+| name           | string | Yes  | App account name.      |
+| credentialType | string | Yes  | Type of the credential to obtain.|
 
-  | Type| Description|
-  | :-------------- | :---------------------------------- |
-  | Promise&lt;string&gt; | Promise used to return the result.|
+**Return Value**
 
-- Example
+| Type                 | Description                               |
+| :-------------------- | :---------------------------------- |
+| Promise&lt;string&gt; | Promise used to return the result.|
+
+**Example**
 
   ```
   const appAccountManager = account_appAccount.createAppAccountManager();
@@ -648,18 +680,20 @@ Obtains the credential of an app account. This method uses a promise to return t
 
 ### getAccountExtraInfo
 
-getAccountExtraInfo(name: string, callback: AsyncCallback&lt;string&gt;): void;
+getAccountExtraInfo(name: string, callback: AsyncCallback&lt;string&gt;): void
 
 Obtains additional information of an app account. This method uses an asynchronous callback to return the result.
 
-- Parameters
+**System capability**: SystemCapability.Account.AppAccount
 
-  | Name| Type| Mandatory| Description|
-  | -------- | --------------------- | ---- | -------------------------------- |
-  | name     | string                | Yes| App account name.|
-  | callback | AsyncCallback&lt;string&gt; | Yes| Callback invoked to return the additional information of the specified app account.|
+**Parameters**
 
-- Example
+| Name  | Type                       | Mandatory| Description                            |
+| -------- | --------------------------- | ---- | -------------------------------- |
+| name     | string                      | Yes  | App account name.                  |
+| callback | AsyncCallback&lt;string&gt; | Yes  | Callback invoked to return the additional information of the specified app account.|
+
+**Example**
 
   ```
   const appAccountManager = account_appAccount.createAppAccountManager();
@@ -671,23 +705,25 @@ Obtains additional information of an app account. This method uses an asynchrono
 
 ### getAccountExtraInfo
 
-getAccountExtraInfo(name: string): Promise&lt;string&gt;;
+getAccountExtraInfo(name: string): Promise&lt;string&gt;
 
 Obtains additional information of an app account. This method uses a promise to return the result asynchronously.
 
-- Parameters
+**System capability**: SystemCapability.Account.AppAccount
 
-  | Name| Type| Mandatory| Description|
-  | ------ | ------ | ---- | -------------- |
-  | name   | string | Yes| App account name.|
+**Parameters**
 
-- Return value
+| Name| Type  | Mandatory| Description          |
+| ------ | ------ | ---- | -------------- |
+| name   | string | Yes  | App account name.|
 
-  | Type| Description|
-  | :-------------- | :---------------------------------- |
-  | Promise&lt;string&gt; | Promise used to return the result.|
+**Return Value**
 
-- Example
+| Type                 | Description                               |
+| :-------------------- | :---------------------------------- |
+| Promise&lt;string&gt; | Promise used to return the result.|
+
+**Example**
 
   ```
   const appAccountManager = account_appAccount.createAppAccountManager();
@@ -700,19 +736,21 @@ Obtains additional information of an app account. This method uses a promise to 
 
 ### getAssociatedData
 
-getAssociatedData(name: string, key: string, callback: AsyncCallback&lt;string&gt;): void;
+getAssociatedData(name: string, key: string, callback: AsyncCallback&lt;string&gt;): void
 
 Obtains data associated with an app account. This method uses an asynchronous callback to return the result.
 
-- Parameters
+**System capability**: SystemCapability.Account.AppAccount
 
-  | Name| Type| Mandatory| Description|
-  | -------- | --------------------- | ---- | ---------------------------------- |
-  | name     | string                | Yes| App account name.|
-  | key      | string                | Yes| Key of the data to obtain.|
-  | callback | AsyncCallback&lt;string&gt; | Yes| Callback invoked to return the data associated with the specified app account.|
+**Parameters**
 
-- Example
+| Name  | Type                       | Mandatory| Description                              |
+| -------- | --------------------------- | ---- | ---------------------------------- |
+| name     | string                      | Yes  | App account name.                    |
+| key      | string                      | Yes  | Key of the data to obtain.               |
+| callback | AsyncCallback&lt;string&gt; | Yes  | Callback invoked to return the data associated with the specified app account.|
+
+**Example**
 
   ```
   const appAccountManager = account_appAccount.createAppAccountManager();
@@ -724,24 +762,26 @@ Obtains data associated with an app account. This method uses an asynchronous ca
 
 ### getAssociatedData
 
-getAssociatedData(name: string, key: string): Promise&lt;string&gt;;
+getAssociatedData(name: string, key: string): Promise&lt;string&gt;
 
 Obtains data associated with an app account. This method uses a promise to return the result asynchronously.
 
-- Parameters
+**System capability**: SystemCapability.Account.AppAccount
 
-  | Name| Type| Mandatory| Description|
-  | ------ | ------ | ---- | ------------------- |
-  | name   | string | Yes| App account name.|
-  | key    | string | Yes| Key of the data to obtain.|
+**Parameters**
 
-- Return value
+| Name| Type  | Mandatory| Description               |
+| ------ | ------ | ---- | ------------------- |
+| name   | string | Yes  | App account name.     |
+| key    | string | Yes  | Key of the data to obtain.|
 
-  | Type| Description|
-  | :-------------- | :---------------------------------- |
-  | Promise&lt;string&gt; | Promise used to return the result.|
+**Return Value**
 
-- Example
+| Type                 | Description                               |
+| :-------------------- | :---------------------------------- |
+| Promise&lt;string&gt; | Promise used to return the result.|
+
+**Example**
 
   ```
   const appAccountManager = account_appAccount.createAppAccountManager();
@@ -754,19 +794,21 @@ Obtains data associated with an app account. This method uses a promise to retur
 
 ### getAllAccessibleAccounts
 
-getAllAccessibleAccounts(callback: AsyncCallback&lt;Array&lt;AppAccountInfo&gt;&gt;): void;
+getAllAccessibleAccounts(callback: AsyncCallback&lt;Array&lt;AppAccountInfo&gt;&gt;): void
 
 Obtains information about all accessible app accounts. This method uses an asynchronous callback to return the result.
 
-The **ohos.permission.GET_ACCOUNTS_PRIVILEGED** permission is required. This permission is intended for system applications only.
+**Required permissions**: ohos.permission.GET_ACCOUNTS_PRIVILEGED (available only to system applications)
 
-- Parameters
+**System capability**: SystemCapability.Account.AppAccount
 
-  | Name| Type| Mandatory| Description|
-  | -------- | ------------------------------------ | ---- | ---------------- |
-  | callback | AsyncCallback&lt;Array&lt;AppAccountInfo&gt;&gt; | Yes| Callback invoked to return information about all accessible app accounts.|
+**Parameters**
 
-- Example
+| Name  | Type                                            | Mandatory| Description            |
+| -------- | ------------------------------------------------ | ---- | ---------------- |
+| callback | AsyncCallback&lt;Array&lt;AppAccountInfo&gt;&gt; | Yes  | Callback invoked to return information about all accessible app accounts.|
+
+**Example**
 
   ```
   const appAccountManager = account_appAccount.createAppAccountManager();
@@ -778,19 +820,21 @@ The **ohos.permission.GET_ACCOUNTS_PRIVILEGED** permission is required. This per
 
 ### getAllAccessibleAccounts
 
-getAllAccessibleAccounts(): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;;
+getAllAccessibleAccounts(): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 
-Obtains information about all accessible app accounts. This method uses a promise to return the result.
+Obtains information about all accessible app accounts. This method uses an asynchronous callback to return the result.
 
-The **ohos.permission.GET_ACCOUNTS_PRIVILEGED** permission is required. This permission is intended for system applications only.
+**Required permissions**: ohos.permission.GET_ACCOUNTS_PRIVILEGED (available only to system applications)
 
-- Parameters
+**System capability**: SystemCapability.Account.AppAccount
 
-  | Type| Description|
-  | ------------------------------ | ----------------------------------- |
-  | Promise&lt;Array&lt;AppAccountInfo&gt;&gt; | Promise used to return the result.|
+**Parameters**
 
-- Example
+| Type                                      | Description                               |
+| ------------------------------------------ | ----------------------------------- |
+| Promise&lt;Array&lt;AppAccountInfo&gt;&gt; | Promise used to return the result.|
+
+**Example**
 
   ```
   const appAccountManager = account_appAccount.createAppAccountManager();
@@ -803,20 +847,22 @@ The **ohos.permission.GET_ACCOUNTS_PRIVILEGED** permission is required. This per
 
 ### getAllAccounts
 
-getAllAccounts(owner: string, callback: AsyncCallback&lt;Array&lt;AppAccountInfo&gt;&gt;): void;
+getAllAccounts(owner: string, callback: AsyncCallback&lt;Array&lt;AppAccountInfo&gt;&gt;): void
 
 Obtains information about all app accounts of the specified app. This method uses an asynchronous callback to return the result.
 
-The **ohos.permission.GET_ACCOUNTS_PRIVILEGED** permission is required. This permission is intended for system applications only.
+**Required permissions**: ohos.permission.GET_ACCOUNTS_PRIVILEGED (available only to system applications)
 
-- Parameters
+**System capability**: SystemCapability.Account.AppAccount
 
-  | Name| Type| Mandatory| Description|
-  | -------- | ------------------------------------ | ---- | ---------------- |
-  | owner    | string                               | Yes| Bundle name of the app.|
-  | callback | AsyncCallback&lt;Array&lt;AppAccountInfo&gt;&gt; | Yes| Callback invoked to return information about all app accounts.|
+**Parameters**
 
-- Example
+| Name  | Type                                            | Mandatory| Description            |
+| -------- | ------------------------------------------------ | ---- | ---------------- |
+| owner    | string                                           | Yes  | Bundle name of the app.      |
+| callback | AsyncCallback&lt;Array&lt;AppAccountInfo&gt;&gt; | Yes  | Callback invoked to return information about all accessible app accounts.|
+
+**Example**
 
   ```
   const appAccountManager = account.createAppAccountManager();
@@ -829,25 +875,27 @@ The **ohos.permission.GET_ACCOUNTS_PRIVILEGED** permission is required. This per
 
 ### getAllAccounts
 
-getAllAccounts(owner: string): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;;
+getAllAccounts(owner: string): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 
-Obtains information about all app accounts of the specified app. This method uses a promise to return the result.
+Obtains information about all app accounts of the specified app. This method uses an asynchronous callback to return the result.
 
-The **ohos.permission.GET_ACCOUNTS_PRIVILEGED** permission is required. This permission is intended for system applications only.
+**Required permissions**: ohos.permission.GET_ACCOUNTS_PRIVILEGED (available only to system applications)
 
-- Parameters
+**System capability**: SystemCapability.Account.AppAccount
 
-  | Name| Type| Mandatory| Description|
-  | ------ | ------ | ---- | ---------- |
-  | owner  | string | Yes| Bundle name of the app.|
+**Parameters**
 
-- Parameters
+| Name| Type  | Mandatory| Description      |
+| ------ | ------ | ---- | ---------- |
+| owner  | string | Yes  | Bundle name of the app.|
 
-  | Type| Description|
-  | ------------------------------ | ----------------------------------- |
-  | Promise&lt;Array&lt;AppAccountInfo&gt;&gt; | Promise used to return the result.|
+**Parameters**
 
-- Example
+| Type                                      | Description                               |
+| ------------------------------------------ | ----------------------------------- |
+| Promise&lt;Array&lt;AppAccountInfo&gt;&gt; | Promise used to return the result.|
+
+**Example**
 
   ```
   const appAccountManager = account_appAccount.createAppAccountManager();
@@ -861,19 +909,21 @@ The **ohos.permission.GET_ACCOUNTS_PRIVILEGED** permission is required. This per
 
 ### on('change')
 
-on(type: 'change', owners: Array&lt;string&gt;, callback: Callback&lt;Array&lt;AppAccountInfo&gt;&gt;): void;
+on(type: 'change', owners: Array&lt;string&gt;, callback: Callback&lt;Array&lt;AppAccountInfo&gt;&gt;): void
 
 Subscribes to the account change event of the specified account owners. This method uses an asynchronous callback to return the result.
 
-- Parameters
+**System capability**: SystemCapability.Account.AppAccount
 
-  | Name| Type| Mandatory| Description|
-  | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-  | type     | 'change'                        | Yes| Type of the event to subscribe to. The subscriber will receive a notification when the account owners update their accounts.|
-  | owners   | Array&lt;string&gt;                   | Yes| Owners of the accounts.|
-  | callback | Callback&lt;Array&lt;AppAccountInfo&gt;&gt; | Yes| Callback invoked to return the account change.|
+**Parameters**
 
-- Example
+| Name  | Type                                       | Mandatory| Description                                                        |
+| -------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | 'change'                                    | Yes  | Type of the event to subscribe to. The subscriber will receive a notification when the account owners update their accounts.|
+| owners   | Array&lt;string&gt;                         | Yes  | Owners of the accounts.                                          |
+| callback | Callback&lt;Array&lt;AppAccountInfo&gt;&gt; | Yes  | Callback invoked to return the account change.                    |
+
+**Example**
 
   ```
   const appAccountManager = account.createAppAccountManager();
@@ -890,18 +940,20 @@ Subscribes to the account change event of the specified account owners. This met
 
 ### off('change')
 
-off(type: 'change', callback?: Callback&lt;void&gt;): void;
+off(type: 'change', callback?: Callback<Array\<AppAccountInfo>>): void
 
 Unsubscribes from the account change event. This method uses an asynchronous callback to return the result.
 
-- Parameters
+**System capability**: SystemCapability.Account.AppAccount
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------------------- | ---- | ------------------------ |
-  | type     | 'change'             | Yes| Account change event to unsubscribe from.|
-  | callback | Callback&lt;void&gt; | No| Callback used to report the account change.|
+**Parameters**
 
-- Example
+| Name  | Type                            | Mandatory| Description                    |
+| -------- | -------------------------------- | ---- | ------------------------ |
+| type     | 'change'                         | Yes  | Account change event to unsubscribe from.      |
+| callback | Callback<Array\<AppAccountInfo>> | No  | Callback used to report the account change.|
+
+**Example**
 
   ```
   const appAccountManager = account.createAppAccountManager();
@@ -921,37 +973,39 @@ Unsubscribes from the account change event. This method uses an asynchronous cal
 
 ### authenticate<sup>8+</sup>
 
-authenticate(name: string, owner: string, authType: string, options: {[key: string]: any}, callback: AuthenticatorCallback): void;
+authenticate(name: string, owner: string, authType: string, options: {[key: string]: any}, callback: AuthenticatorCallback): void
 
 Authenticates an app account to obtain the Open Authorization (OAuth) access token. This method uses an asynchronous callback to return the result.
 
-- Parameters
+**System capability**: SystemCapability.Account.AppAccount
 
-  | Name| Type| Mandatory| Description|
-  | -------- | --------------------- | ---- | --------------------------- |
-  | name     | string                | Yes| Name of the app account to authenticate.|
-  | owner    | string                | Yes| Bundle name of the app.|
-  | authType | string                | Yes| Authentication type.|
-  | options  | {[key: string]: any}  | Yes| Options for the authentication.|
-  | callback | AuthenticatorCallback | Yes| Authenticator callback invoked to return the authentication result.|
+**Parameters**
 
-- Example
+| Name  | Type                 | Mandatory| Description                          |
+| -------- | --------------------- | ---- | ------------------------------ |
+| name     | string                | Yes  | Name of the app account to authenticate.      |
+| owner    | string                | Yes  | Bundle name of the app.|
+| authType | string                | Yes  | Authentication type.                    |
+| options  | {[key: string]: any}  | Yes  | Options for the authentication.            |
+| callback | AuthenticatorCallback | Yes  | Authenticator callback invoked to return the authentication result.|
+
+**Example**
 
   ```
   import featureAbility from '@ohos.ability.featureAbility';
-  
+
   function onResultCallback(code, result) {
       console.log("resultCode: "  + code);
       console.log("result: "  + JSON.stringify(result));
   }
-  
+
   function onRequestRedirectedCallback(request) {
       let abilityStartSetting = {want: request};
       featureAbility.startAbility(abilityStartSetting, (err)=>{
           console.log("startAbility err: " + JSON.stringify(err));
       });
   }
-  
+
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.authenticate("LiSi", "com.example.ohos.accountjsdemo", "readAge", {}, {
     onResult: onResultCallback,
@@ -961,20 +1015,22 @@ Authenticates an app account to obtain the Open Authorization (OAuth) access tok
 
 ### getOAuthToken<sup>8+</sup>
 
-getOAuthToken(name: string, owner: string, authType: string, callback: AsyncCallback&lt;string&gt;): void;
+getOAuthToken(name: string, owner: string, authType: string, callback: AsyncCallback&lt;string&gt;): void
 
 Obtains the OAuth access token of an app account based on the specified authentication type. This method uses an asynchronous callback to return the result.
 
-- Parameters
+**System capability**: SystemCapability.Account.AppAccount
 
-  | Name| Type| Mandatory| Description|
-  | -------- | --------------------------- | ---- | -------------------- |
-  | name     | string                      | Yes| App account name.|
-  | owner    | string                      | Yes| Bundle name of the app.|
-  | authType | string                      | Yes| Authentication type.|
-  | callback | AsyncCallback&lt;string&gt; | Yes| Callback invoked to return the result.|
+**Parameters**
 
-- Example
+| Name  | Type                       | Mandatory| Description                  |
+| -------- | --------------------------- | ---- | ---------------------- |
+| name     | string                      | Yes  | App account name.      |
+| owner    | string                      | Yes  | Bundle name of the app.|
+| authType | string                      | Yes  | Authentication type.            |
+| callback | AsyncCallback&lt;string&gt; | Yes  | Callback invoked to return the result.      |
+
+**Example**
 
   ```
   const appAccountManager = account_appAccount.createAppAccountManager();
@@ -986,25 +1042,27 @@ Obtains the OAuth access token of an app account based on the specified authenti
 
 ### getOAuthToken<sup>8+</sup>
 
-getOAuthToken(name: string, owner: string, authType: string): Promise&lt;string&gt;;
+getOAuthToken(name: string, owner: string, authType: string): Promise&lt;string&gt;
 
 Obtains the OAuth access token of an app account based on the specified authentication type. This method uses a promise to return the result.
 
-- Parameters
+**System capability**: SystemCapability.Account.AppAccount
 
-  | Name| Type| Mandatory| Description|
-  | -------- | ------ | ---- | -------------------- |
-  | name     | string | Yes| App account name.|
-  | owner    | string | Yes| Bundle name of the app.|
-  | authType | string | Yes| Authentication type.|
+**Parameters**
 
-- Parameters
+| Name  | Type  | Mandatory| Description                  |
+| -------- | ------ | ---- | ---------------------- |
+| name     | string | Yes  | App account name.      |
+| owner    | string | Yes  | Bundle name of the app.|
+| authType | string | Yes  | Authentication type.            |
 
-  | Type| Description|
-  | --------------------- | -------------------------------- |
-  | Promise&lt;string&gt; | Promise used to return the result.|
+**Parameters**
 
-- Example
+| Type                 | Description                               |
+| --------------------- | ----------------------------------- |
+| Promise&lt;string&gt; | Promise used to return the result.|
+
+**Example**
 
   ```
   const appAccountManager = account_appAccount.createAppAccountManager();
@@ -1017,20 +1075,22 @@ Obtains the OAuth access token of an app account based on the specified authenti
 
 ### setOAuthToken<sup>8+</sup>
 
-setOAuthToken(name: string, authType: string, token: string, callback: AsyncCallback&lt;void&gt;): void;
+setOAuthToken(name: string, authType: string, token: string, callback: AsyncCallback&lt;void&gt;): void
 
 Sets an OAuth access token for an app account. This method uses an asynchronous callback to return the result.
 
-- Parameters
+**System capability**: SystemCapability.Account.AppAccount
 
-  | Name| Type| Mandatory| Description|
-  | -------- | ------------------------- | ---- | -------------  |
-  | name     | string                    | Yes| App account name.|
-  | authType | string                    | Yes| Authentication type.|
-  | token    | string                    | Yes| OAuth access token to set.|
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result.|
+**Parameters**
 
-- Example
+| Name  | Type                     | Mandatory| Description            |
+| -------- | ------------------------- | ---- | ---------------- |
+| name     | string                    | Yes  | App account name.|
+| authType | string                    | Yes  | Authentication type.      |
+| token    | string                    | Yes  | OAuth access token to set.     |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.|
+
+**Example**
 
   ```
   const appAccountManager = account_appAccount.createAppAccountManager();
@@ -1041,25 +1101,27 @@ Sets an OAuth access token for an app account. This method uses an asynchronous 
 
 ### setOAuthToken<sup>8+</sup>
 
-setOAuthToken(name: string, authType: string, token: string): Promise&lt;void&gt;;
+setOAuthToken(name: string, authType: string, token: string): Promise&lt;void&gt;
 
 Sets an OAuth access token for an app account. This method uses a promise to return the result.
 
-- Parameters
+**System capability**: SystemCapability.Account.AppAccount
 
-  | Name| Type| Mandatory| Description|
-  | -------- | ------ | ---- | -------------  |
-  | name     | string | Yes| App account name.|
-  | authType | string | Yes| Authentication type.|
-  | token    | string | Yes| OAuth access token to set.|
+**Parameters**
 
-- Parameters
+| Name  | Type  | Mandatory| Description            |
+| -------- | ------ | ---- | ---------------- |
+| name     | string | Yes  | App account name.|
+| authType | string | Yes  | Authentication type.      |
+| token    | string | Yes  | OAuth access token to set.     |
 
-  | Type| Description|
-  | ------------------- | -------------------------------- |
-  | Promise&lt;void&gt; | Promise used to return the result.|
+**Parameters**
 
-- Example
+| Type               | Description                               |
+| ------------------- | ----------------------------------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Example**
 
   ```
   const appAccountManager = account_appAccount.createAppAccountManager();
@@ -1072,21 +1134,23 @@ Sets an OAuth access token for an app account. This method uses a promise to ret
 
 ### deleteOAuthToken<sup>8+</sup>
 
-deleteOAuthToken(name: string, owner: string, authType: string, token: string, callback: AsyncCallback&lt;void&gt;): void;
+deleteOAuthToken(name: string, owner: string, authType: string, token: string, callback: AsyncCallback&lt;void&gt;): void
 
 Deletes the specified OAuth access token for an app account. This method uses an asynchronous callback to return the result.
 
-- Parameters
+**System capability**: SystemCapability.Account.AppAccount
 
-  | Name| Type| Mandatory| Description|
-  | -------- | ------------------------- | ---- | ------------------  |
-  | name     | string                    | Yes| App account name.|
-  | owner    | string                    | Yes| Bundle name of the app.|
-  | authType | string                    | Yes| Authentication type.|
-  | token    | string                    | Yes| OAuth access token to delete.|
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result.|
+**Parameters**
 
-- Example
+| Name  | Type                     | Mandatory| Description                  |
+| -------- | ------------------------- | ---- | ---------------------- |
+| name     | string                    | Yes  | App account name.      |
+| owner    | string                    | Yes  | Bundle name of the app.|
+| authType | string                    | Yes  | Authentication type.            |
+| token    | string                    | Yes  | OAuth access token to delete.   |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.      |
+
+**Example**
 
   ```
   const appAccountManager = account_appAccount.createAppAccountManager();
@@ -1097,26 +1161,28 @@ Deletes the specified OAuth access token for an app account. This method uses an
 
 ### deleteOAuthToken<sup>8+</sup>
 
-deleteOAuthToken(name: string, owner: string, authType: string, token: string): Promise&lt;void&gt;;
+deleteOAuthToken(name: string, owner: string, authType: string, token: string): Promise&lt;void&gt;
 
 Deletes the specified OAuth access token for an app account. This method uses a promise to return the result.
 
-- Parameters
+**System capability**: SystemCapability.Account.AppAccount
 
-  | Name| Type| Mandatory| Description|
-  | -------- | ------ | ---- | ------------------  |
-  | name     | string | Yes| App account name.|
-  | owner    | string | Yes| Bundle name of the app.|
-  | authType | string | Yes| Authentication type.|
-  | token    | string | Yes| OAuth access token to delete.|
+**Parameters**
 
-- Parameters
+| Name  | Type  | Mandatory| Description                  |
+| -------- | ------ | ---- | ---------------------- |
+| name     | string | Yes  | App account name.      |
+| owner    | string | Yes  | Bundle name of the app.|
+| authType | string | Yes  | Authentication type.            |
+| token    | string | Yes  | OAuth access token to delete.   |
 
-  | Type| Description|
-  | ------------------------------ | --------------------- |
-  | Promise&lt;void&gt; | Promise used to return the result.|
+**Parameters**
 
-- Example
+| Type               | Description                               |
+| ------------------- | ----------------------------------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Example**
 
   ```
   const appAccountManager = account_appAccount.createAppAccountManager();
@@ -1129,21 +1195,23 @@ Deletes the specified OAuth access token for an app account. This method uses a 
 
 ### setOAuthTokenVisibility<sup>8+</sup>
 
-setOAuthTokenVisibility(name: string, authType: string, bundleName: string, isVisible: boolean, callback: AsyncCallback&lt;void&gt;): void;
+setOAuthTokenVisibility(name: string, authType: string, bundleName: string, isVisible: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 Sets the visibility of an OAuth access token to the specified app. This method uses an asynchronous callback to return the result.
 
-- Parameters
+**System capability**: SystemCapability.Account.AppAccount
 
-  | Name| Type| Mandatory| Description|
-  | ---------- | ------------------------- | ---- | -------------------  |
-  | name       | string                    | Yes| App account name.|
-  | authType   | string                    | Yes| Authentication type.|
-  | bundleName | string                    | Yes| Bundle name of the app.|
-  | isVisible  | boolean                   | Yes| Whether the OAuth access token is visible to the app.|
-  | callback   | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result.|
+**Parameters**
 
-- Example
+| Name    | Type                     | Mandatory| Description                    |
+| ---------- | ------------------------- | ---- | ------------------------ |
+| name       | string                    | Yes  | App account name.        |
+| authType   | string                    | Yes  | Authentication type.              |
+| bundleName | string                    | Yes  | Bundle name of the app.|
+| isVisible  | boolean                   | Yes  | Whether the OAuth access token is visible to the app.              |
+| callback   | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.        |
+
+**Example**
 
   ```
   const appAccountManager = account_appAccount.createAppAccountManager();
@@ -1154,26 +1222,28 @@ Sets the visibility of an OAuth access token to the specified app. This method u
 
 ### setOAuthTokenVisibility<sup>8+</sup>
 
-setOAuthTokenVisibility(name: string, authType: string, bundleName: string, isVisible: boolean): Promise&lt;void&gt;;
+setOAuthTokenVisibility(name: string, authType: string, bundleName: string, isVisible: boolean): Promise&lt;void&gt;
 
 Sets the visibility of an OAuth access token to the specified app. This method uses a promise to return the result.
 
-- Parameters
+**System capability**: SystemCapability.Account.AppAccount
 
-  | Name| Type| Mandatory| Description|
-  | ---------- | ------------------------- | ---- | -------------------  |
-  | name       | string                    | Yes| App account name.|
-  | authType   | string                    | Yes| Authentication type.|
-  | bundleName | string                    | Yes| Bundle name of the app.|
-  | isVisible  | boolean                   | Yes| Whether the OAuth access token is visible to the app.|
+**Parameters**
 
-- Parameters
+| Name    | Type   | Mandatory| Description                    |
+| ---------- | ------- | ---- | ------------------------ |
+| name       | string  | Yes  | App account name.        |
+| authType   | string  | Yes  | Authentication type.              |
+| bundleName | string  | Yes  | Bundle name of the app.|
+| isVisible  | boolean | Yes  | Whether the OAuth access token is visible to the app.              |
 
-  | Type| Description|
-  | ------------------------------ | --------------------- |
-  | Promise&lt;void&gt; | Promise used to return the result.|
+**Parameters**
 
-- Example
+| Type               | Description                               |
+| ------------------- | ----------------------------------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Example**
 
   ```
   const appAccountManager = account_appAccount.createAppAccountManager();
@@ -1187,20 +1257,22 @@ Sets the visibility of an OAuth access token to the specified app. This method u
 
 ### checkOAuthTokenVisibility<sup>8+</sup>
 
-checkOAuthTokenVisibility(name: string, authType: string, bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void;
+checkOAuthTokenVisibility(name: string, authType: string, bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void
 
 Checks whether an OAuth token is visible to the specified app. This method uses an asynchronous callback to return the result.
 
-- Parameters
+**System capability**: SystemCapability.Account.AppAccount
 
-  | Name| Type| Mandatory| Description|
-  | ---------- | ---------------------------- | ---- | ----------------------  |
-  | name       | string                       | Yes| App account name.|
-  | authType   | string                       | Yes| Authentication type.|
-  | bundleName | string                       | Yes| Bundle name of the app.|
-  | callback   | AsyncCallback&lt;boolean&gt; | Yes| Callback invoked to return the result.|
+**Parameters**
 
-- Example
+| Name    | Type                        | Mandatory| Description                      |
+| ---------- | ---------------------------- | ---- | -------------------------- |
+| name       | string                       | Yes  | App account name.          |
+| authType   | string                       | Yes  | Authentication type.                |
+| bundleName | string                       | Yes  | Bundle name of the app.|
+| callback   | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result.          |
+
+**Example**
 
   ```
   const appAccountManager = account_appAccount.createAppAccountManager();
@@ -1212,25 +1284,27 @@ Checks whether an OAuth token is visible to the specified app. This method uses 
 
 ### checkOAuthTokenVisibility<sup>8+</sup>
 
-checkOAuthTokenVisibility(name: string, authType: string, bundleName: string): Promise&lt;boolean&gt;;
+checkOAuthTokenVisibility(name: string, authType: string, bundleName: string): Promise&lt;boolean&gt;
 
 Checks whether an OAuth token is visible to the specified app. This method uses a promise to return the result.
 
-- Parameters
+**System capability**: SystemCapability.Account.AppAccount
 
-  | Name| Type| Mandatory| Description|
-  | ---------- | ------------------------- | ---- | ----------------------  |
-  | name       | string                    | Yes| App account name.|
-  | authType   | string                    | Yes| Authentication type.|
-  | bundleName | string                    | Yes| Bundle name of the app.|
+**Parameters**
 
-- Parameters
+| Name    | Type  | Mandatory| Description                      |
+| ---------- | ------ | ---- | -------------------------- |
+| name       | string | Yes  | App account name.          |
+| authType   | string | Yes  | Authentication type.                |
+| bundleName | string | Yes  | Bundle name of the app.|
 
-  | Type| Description|
-  | ------------------------------ | ------------------------ |
-  | Promise&lt;boolean&gt; | Promise used to return the result.|
+**Parameters**
 
-- Example
+| Type                  | Description                               |
+| ---------------------- | ----------------------------------- |
+| Promise&lt;boolean&gt; | Promise used to return the result.|
+
+**Example**
 
   ```
   const appAccountManager = account_appAccount.createAppAccountManager();
@@ -1243,19 +1317,21 @@ Checks whether an OAuth token is visible to the specified app. This method uses 
 
 ### getAllOAuthTokens<sup>8+</sup>
 
-getAllOAuthTokens(name: string, owner: string, callback: AsyncCallback&lt;Array&lt;OAuthTokenInfo&gt;&gt;): void;
+getAllOAuthTokens(name: string, owner: string, callback: AsyncCallback&lt;Array&lt;OAuthTokenInfo&gt;&gt;): void
 
 Obtains information about all OAuth access tokens of an app account visible to the specified app. This method uses an asynchronous callback to return the result.
 
-- Parameters
+**System capability**: SystemCapability.Account.AppAccount
 
-  | Name| Type| Mandatory| Description|
-  | -------- | ------------------------------------------------ | ---- | -------------------  |
-  | name     | string                                           | Yes| App account name.|
-  | owner    | string                                           | Yes| Bundle name of the app.|
-  | callback | AsyncCallback&lt;Array&lt;OAuthTokenInfo&gt;&gt; | Yes| Callback invoked to return the result.|
+**Parameters**
 
-- Example
+| Name  | Type                                            | Mandatory| Description                  |
+| -------- | ------------------------------------------------ | ---- | ---------------------- |
+| name     | string                                           | Yes  | App account name.      |
+| owner    | string                                           | Yes  | Bundle name of the app.|
+| callback | AsyncCallback&lt;Array&lt;OAuthTokenInfo&gt;&gt; | Yes  | Callback invoked to return the result.      |
+
+**Example**
 
   ```
   const appAccountManager = account_appAccount.createAppAccountManager();
@@ -1267,24 +1343,26 @@ Obtains information about all OAuth access tokens of an app account visible to t
 
 ### getAllOAuthTokens<sup>8+</sup>
 
-getAllOAuthTokens(name: string, owner: string): Promise&lt;Array&lt;OAuthTokenInfo&gt;&gt;;
+getAllOAuthTokens(name: string, owner: string): Promise&lt;Array&lt;OAuthTokenInfo&gt;&gt;
 
 Obtains information about all OAuth access tokens of an app account visible to the specified app. This method uses a promise to return the result.
 
-- Parameters
+**System capability**: SystemCapability.Account.AppAccount
 
-  | Name| Type| Mandatory| Description|
-  | -------- | ------ | ---- | -------------------  |
-  | name     | string | Yes| App account name.|
-  | owner    | string | Yes| Bundle name of the app.|
+**Parameters**
 
-- Parameters
+| Name| Type  | Mandatory| Description                  |
+| ------ | ------ | ---- | ---------------------- |
+| name   | string | Yes  | App account name.      |
+| owner  | string | Yes  | Bundle name of the app.|
 
-  | Type| Description|
-  | ------------------------------ | ----------------------------------- |
-  | Promise&lt;Array&lt;OAuthTokenInfo&gt;&gt; | Promise used to return the result.|
+**Parameters**
 
-- Example
+| Type                                      | Description                               |
+| ------------------------------------------ | ----------------------------------- |
+| Promise&lt;Array&lt;OAuthTokenInfo&gt;&gt; | Promise used to return the result.|
+
+**Example**
 
   ```
   const appAccountManager = account_appAccount.createAppAccountManager();
@@ -1297,19 +1375,21 @@ Obtains information about all OAuth access tokens of an app account visible to t
 
 ### getOAuthList<sup>8+</sup>
 
-getOAuthList(name: string, authType: string, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void;
+getOAuthList(name: string, authType: string, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 Obtains the authorization list of OAuth access tokens of an app account. This method uses an asynchronous callback to return the result.
 
-- Parameters
+**System capability**: SystemCapability.Account.AppAccount
 
-  | Name| Type| Mandatory| Description|
-  | -------- | ---------------------------------------- | ---- | ------------------  |
-  | name     | string                                   | Yes| App account name.|
-  | owner    | string                                   | Yes| Bundle name of the app.|
-  | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes| Callback invoked to return the result.|
+**Parameters**
 
-- Example
+| Name  | Type                                    | Mandatory| Description                  |
+| -------- | ---------------------------------------- | ---- | ---------------------- |
+| name     | string                                   | Yes  | App account name.      |
+| owner    | string                                   | Yes  | Bundle name of the app.|
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes  | Callback invoked to return the result.      |
+
+**Example**
 
   ```
   const appAccountManager = account_appAccount.createAppAccountManager();
@@ -1321,24 +1401,26 @@ Obtains the authorization list of OAuth access tokens of an app account. This me
 
 ### getOAuthList<sup>8+</sup>
 
-getOAuthList(name: string, authType: string): Promise&lt;Array&lt;string&gt;&gt;;
+getOAuthList(name: string, authType: string): Promise&lt;Array&lt;string&gt;&gt;
 
 Obtains the authorization list of OAuth access tokens of an app account. This method uses a promise to return the result.
 
-- Parameters
+**System capability**: SystemCapability.Account.AppAccount
 
-  | Name| Type| Mandatory| Description|
-  | -------- | ------ | ---- | -------------------  |
-  | name     | string | Yes| App account name.|
-  | owner    | string | Yes| Bundle name of the app.|
+**Parameters**
 
-- Parameters
+| Name| Type  | Mandatory| Description                  |
+| ------ | ------ | ---- | ---------------------- |
+| name   | string | Yes  | App account name.      |
+| owner  | string | Yes  | Bundle name of the app.|
 
-  | Type| Description|
-  | ------------------------------ | ------------------------------------ |
-  | Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the result.|
+**Parameters**
 
-- Example
+| Type                              | Description                               |
+| ---------------------------------- | ----------------------------------- |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the result.|
+
+**Example**
 
   ```
   const appAccountManager = account_appAccount.createAppAccountManager();
@@ -1351,63 +1433,71 @@ Obtains the authorization list of OAuth access tokens of an app account. This me
 
 ### getAuthenticatorCallback<sup>8+</sup>
 
-getAuthenticatorCallback(sessionId: string, callback: AsyncCallback&lt;AuthenticatorCallback&gt;): void;
+getAuthenticatorCallback(sessionId: string, callback: AsyncCallback&lt;AuthenticatorCallback&gt;): void
 
 Obtains the authenticator callback for a session. This method uses an asynchronous callback to return the result.
 
-- Parameters
+**System capability**: SystemCapability.Account.AppAccount
 
-  | Name| Type| Mandatory| Description|
-  | --------- | ------------------------------------------ | ---- | -------------- |
-  | sessionId | string                                     | Yes| ID of the session to authenticate.|
-  | callback  | AsyncCallback&lt;AuthenticatorCallback&gt; | Yes| Callback invoked to return the result.|
+**Parameters**
 
-- Example
+| Name   | Type                                      | Mandatory| Description            |
+| --------- | ------------------------------------------ | ---- | ---------------- |
+| sessionId | string                                     | Yes  | ID of the session to authenticate.|
+| callback  | AsyncCallback&lt;AuthenticatorCallback&gt; | Yes  | Callback invoked to return the result.|
+
+**Example**
 
   ```
   const appAccountManager = account_appAccount.createAppAccountManager();
   featureAbility.getWant((err, want) => {
-    var sessionId = want.parameters[Constants.KEY_SESSION_ID];
+    var sessionId = want.parameters[account_appAccount.Constants.KEY_SESSION_ID];
     appAccountManager.getAuthenticatorCallback(sessionId, (err, callback) => {
-        if (err.code != ResultCode.SUCCESS) {
+        if (err.code != account_appAccount.ResultCode.SUCCESS) {
             console.log("getAuthenticatorCallback err: "  + JSON.stringify(err));
             return;
         }
-        var result = {Constants.KEY_NAME: "LiSi", Constants.KEY_OWNER: "com.example.ohos.accountjsdemo",
-                      Constants.KEY_AUTH_TYPE: "readAge", Constants.KEY_TOKEN: "xxxxxx"};
-        callback.OnResult(ResultCode.SUCCESS, result);
+        var result = {[account_appAccount.Constants.KEY_NAME]: "LiSi",
+                      [account_appAccount.Constants.KEY_OWNER]: "com.example.ohos.accountjsdemo",
+                      [account_appAccount.Constants.KEY_AUTH_TYPE]: "readAge",
+                      [account_appAccount.Constants.KEY_TOKEN]: "xxxxxx"};
+        callback.OnResult(account_appAccount.ResultCode.SUCCESS, result);
     });
   });
   ```
 
 ### getAuthenticatorCallback<sup>8+</sup>
 
-getAuthenticatorCallback(sessionId: string): Promise&lt;AuthenticatorCallback&gt;;
+getAuthenticatorCallback(sessionId: string): Promise&lt;AuthenticatorCallback&gt;
 
 Obtains the authenticator callback for a session. This method uses a promise to return the result.
 
-- Parameters
+**System capability**: SystemCapability.Account.AppAccount
 
-  | Name| Type| Mandatory| Description|
-  | ---------- | ------ | ---- | -------------- |
-  | sessionId  | string | Yes| ID of the session to authenticate.|
+**Parameters**
 
-- Parameters
+| Name   | Type  | Mandatory| Description            |
+| --------- | ------ | ---- | ---------------- |
+| sessionId | string | Yes  | ID of the session to authenticate.|
 
-  | Type| Description|
-  | ------------------------------------ | -------------------------------- |
-  | Promise&lt;AuthenticatorCallback&gt; | Promise used to return the result.|
+**Parameters**
 
-- Example
+| Type                                | Description                               |
+| ------------------------------------ | ----------------------------------- |
+| Promise&lt;AuthenticatorCallback&gt; | Promise used to return the result.|
+
+**Example**
 
   ```
   const appAccountManager = account_appAccount.createAppAccountManager();
   featureAbility.getWant().then((want) => {
-      var sessionId = want.parameters[Constants.KEY_SESSION_ID];
+      var sessionId = want.parameters[account_appAccount.Constants.KEY_SESSION_ID];
       appAccountManager.getAuthenticatorCallback(sessionId).then((callback) => {
-          var result = {Constants.KEY_NAME: "LiSi", Constants.KEY_OWNER: "com.example.ohos.accountjsdemo",
-                        Constants.KEY_AUTH_TYPE: "readAge", Constants.KEY_TOKEN: "xxxxxx"};
-          callback.OnResult(ResultCode.SUCCESS, result);
+          var result = {[account_appAccount.Constants.KEY_NAME]: "LiSi",
+                        [account_appAccount.Constants.KEY_OWNER]: "com.example.ohos.accountjsdemo",
+                        [account_appAccount.Constants.KEY_AUTH_TYPE]: "readAge",
+                        [account_appAccount.Constants.KEY_TOKEN]: "xxxxxx"};
+          callback.OnResult(account_appAccount.ResultCode.SUCCESS, result);
       }).catch((err) => {
           console.log("getAuthenticatorCallback err: "  + JSON.stringify(err));
       });
@@ -1418,18 +1508,20 @@ Obtains the authenticator callback for a session. This method uses a promise to 
 
 ### getAuthenticatorInfo<sup>8+</sup>
 
-getAuthenticatorInfo(owner: string, callback: AsyncCallback&lt;AuthenticatorInfo&gt;): void;
+getAuthenticatorInfo(owner: string, callback: AsyncCallback&lt;AuthenticatorInfo&gt;): void
 
 Obtains authenticator information of an app account. This method uses an asynchronous callback to return the result.
 
-- Parameters
+**System capability**: SystemCapability.Account.AppAccount
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------------------------------------- | ---- | ------------------- |
-  | owner    | string                                 | Yes| Bundle name of the app.|
-  | callback | AsyncCallback&lt;AuthenticatorInfo&gt; | Yes| Callback invoked to return the result.|
+**Parameters**
 
-- Example
+| Name  | Type                                  | Mandatory| Description                  |
+| -------- | -------------------------------------- | ---- | ---------------------- |
+| owner    | string                                 | Yes  | Bundle name of the app.|
+| callback | AsyncCallback&lt;AuthenticatorInfo&gt; | Yes  | Callback invoked to return the result.      |
+
+**Example**
 
   ```
   const appAccountManager = account_appAccount.createAppAccountManager();
@@ -1441,23 +1533,25 @@ Obtains authenticator information of an app account. This method uses an asynchr
 
 ### getAuthenticatorInfo<sup>8+</sup>
 
-getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;;
+getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 Obtains authenticator information of an app account. This method uses a promise to return the result.
 
-- Parameters
+**System capability**: SystemCapability.Account.AppAccount
 
-  | Name| Type| Mandatory| Description|
-  | ----- | ------ | ---- | -------------------- |
-  | owner | string | Yes| Bundle name of the app.|
+**Parameters**
 
-- Parameters
+| Name| Type  | Mandatory| Description                  |
+| ------ | ------ | ---- | ---------------------- |
+| owner  | string | Yes  | Bundle name of the app.|
 
-  | Type| Description|
-  | ------------------------------ | ----------------------------------- |
-  | Promise&lt;AuthenticatorInfo&gt; | Promise used to return the result.|
+**Parameters**
 
-- Example
+| Type                            | Description                               |
+| -------------------------------- | ----------------------------------- |
+| Promise&lt;AuthenticatorInfo&gt; | Promise used to return the result.|
+
+**Example**
 
   ```
   const appAccountManager = account_appAccount.createAppAccountManager();
@@ -1472,73 +1566,83 @@ Obtains authenticator information of an app account. This method uses a promise 
 
 Defines app account information.
 
-| Name| Type| Mandatory| Description|
-| ----- | ------ | ---- | ---------------- |
-| owner | string | Yes| Bundle name of the app.|
-| name  | string | Yes| App account name.|
+**System capability**: SystemCapability.Account.AppAccount
+
+| Name| Type  | Mandatory| Description                  |
+| ------ | ------ | ---- | ---------------------- |
+| owner  | string | Yes  | Bundle name of the app.|
+| name   | string | Yes  | App account name.      |
 
 ## OAuthTokenInfo<sup>8+</sup>
 
 Defines OAuth access token information.
 
-| Name| Type| Mandatory| Description|
-| -------- | ------ | ---- | -------------- |
-| authType | string | Yes| Authentication type.|
-| token    | string | Yes| Value of the access token.|
+**System capability**: SystemCapability.Account.AppAccount
+
+| Name  | Type  | Mandatory| Description            |
+| -------- | ------ | ---- | ---------------- |
+| authType | string | Yes  | Authentication type.|
+| token    | string | Yes  | Value of the access token.    |
 
 ## AuthenticatorInfo<sup>8+</sup>
 
 Defines OAuth authenticator information.
 
-| Name| Type| Mandatory| Description|
-| ------- | ------ | ---- | ------------------ |
-| owner   | string | Yes| Bundle name of the authenticator owner.|
-| iconId  | string | Yes| ID of the authenticator icon.|
-| labelId | string | Yes| ID of the authenticator label.|
+**System capability**: SystemCapability.Account.AppAccount
+
+| Name | Type  | Mandatory| Description                |
+| ------- | ------ | ---- | -------------------- |
+| owner   | string | Yes  | Bundle name of the authenticator owner.|
+| iconId  | string | Yes  | ID of the authenticator icon.  |
+| labelId | string | Yes  | ID of the authenticator label.  |
 
 ## Constants<sup>8+</sup>
 
 Enumerates the constants.
 
-| Name| Default Value| Description|
-| ----------------------------- | ---------------------- | ----------------------- |
-| ACTION_ADD_ACCOUNT_IMPLICITLY | "addAccountImplicitly" | Operation for implicitly adding an account.|
-| ACTION_AUTHENTICATE           | "authenticate"         | Authentication operation.|
-| KEY_NAME                      | "name"                 | App account name.|
+**System capability**: SystemCapability.Account.AppAccount
+
+| Name                         | Default Value                | Description                     |
+| ----------------------------- | ---------------------- | ------------------------- |
+| ACTION_ADD_ACCOUNT_IMPLICITLY | "addAccountImplicitly" | Operation for implicitly adding an account.  |
+| ACTION_AUTHENTICATE           | "authenticate"         | Authentication operation.          |
+| KEY_NAME                      | "name"                 | App account name.  |
 | KEY_OWNER                     | "owner"                | App account owner.|
-| KEY_TOKEN                     | "token"                | OAuth access token.|
-| KEY_ACTION                    | "action"               | Action.|
-| KEY_AUTH_TYPE                 | "authType"             | Authentication type.|
-| KEY_SESSION_ID                | "sessionId"            | Session ID.|
-| KEY_CALLER_PID                | "callerPid"            | Caller process ID (PID).|
-| KEY_CALLER_UID                | "callerUid"            | Caller user ID (UID).|
-| KEY_CALLER_BUNDLE_NAME        | "callerBundleName"     | Caller bundle name.|
+| KEY_TOKEN                     | "token"                | OAuth access token.          |
+| KEY_ACTION                    | "action"               | Action.          |
+| KEY_AUTH_TYPE                 | "authType"             | Authentication type.      |
+| KEY_SESSION_ID                | "sessionId"            | Session ID.      |
+| KEY_CALLER_PID                | "callerPid"            | Caller process ID (PID).     |
+| KEY_CALLER_UID                | "callerUid"            | Caller user ID (UID).     |
+| KEY_CALLER_BUNDLE_NAME        | "callerBundleName"     | Caller bundle name.    |
 
 ## ResultCode<sup>8+</sup>
 
 Enumerates the result codes.
 
-| Name| Default Value| Description|
-| ----------------------------------- | ----- | ---------------------- |
-| SUCCESS                             | 0     | The operation is successful.|
-| ERROR_ACCOUNT_NOT_EXIST             | 10001 | The app account does not exist.|
-| ERROR_APP_ACCOUNT_SERVICE_EXCEPTION | 10002 | The app account service is abnormal.|
-| ERROR_INVALID_PASSWORD              | 10003 | The password is invalid.|
-| ERROR_INVALID_REQUEST               | 10004 | The request is invalid.|
-| ERROR_INVALID_RESPONSE              | 10005 | The response is invalid.|
-| ERROR_NETWORK_EXCEPTION             | 10006 | The network is abnormal.|
-| ERROR_OAUTH_AUTHENTICATOR_NOT_EXIST | 10007 | The authenticator does not exist.|
-| ERROR_OAUTH_CANCELED                | 10008 | The authentication is canceled.|
-| ERROR_OAUTH_LIST_TOO_LARGE          | 10009 | The size of the OAuth list exceeds the limit.|
-| ERROR_OAUTH_SERVICE_BUSY            | 10010 | The OAuth service is busy.|
-| ERROR_OAUTH_SERVICE_EXCEPTION       | 10011 | The OAuth service is abnormal.|
-| ERROR_OAUTH_SESSION_NOT_EXIST       | 10012 | The session to be authenticated does not exist.|
-| ERROR_OAUTH_TIMEOUT                 | 10013 | The authentication timed out.|
-| ERROR_OAUTH_TOKEN_NOT_EXIST         | 10014 | The OAuth access token does not exist.|
-| ERROR_OAUTH_TOKEN_TOO_MANY          | 10015 | The number of OAuth access tokens reaches the limit.|
-| ERROR_OAUTH_UNSUPPORT_ACTION        | 10016 | The authentication operation is not supported.|
-| ERROR_OAUTH_UNSUPPORT_AUTH_TYPE     | 10017 | The authentication type is not supported.|
-| ERROR_PERMISSION_DENIED             | 10018 | The required permission is missing.|
+**System capability**: SystemCapability.Account.AppAccount
+
+| Name                               | Default Value| Description                    |
+| ----------------------------------- | ------ | ------------------------ |
+| SUCCESS                             | 0      | The operation is successful.          |
+| ERROR_ACCOUNT_NOT_EXIST             | 10001  | The app account does not exist.    |
+| ERROR_APP_ACCOUNT_SERVICE_EXCEPTION | 10002  | The app account service is abnormal.  |
+| ERROR_INVALID_PASSWORD              | 10003  | The password is invalid.          |
+| ERROR_INVALID_REQUEST               | 10004  | The request is invalid.          |
+| ERROR_INVALID_RESPONSE              | 10005  | The response is invalid.          |
+| ERROR_NETWORK_EXCEPTION             | 10006  | The network is abnormal.          |
+| ERROR_OAUTH_AUTHENTICATOR_NOT_EXIST | 10007  | The authenticator does not exist.      |
+| ERROR_OAUTH_CANCELED                | 10008  | The authentication is canceled.          |
+| ERROR_OAUTH_LIST_TOO_LARGE          | 10009  | The size of the OAuth list exceeds the limit.  |
+| ERROR_OAUTH_SERVICE_BUSY            | 10010  | The OAuth service is busy.  |
+| ERROR_OAUTH_SERVICE_EXCEPTION       | 10011  | The OAuth service is abnormal.  |
+| ERROR_OAUTH_SESSION_NOT_EXIST       | 10012  | The session to be authenticated does not exist.    |
+| ERROR_OAUTH_TIMEOUT                 | 10013  | The authentication timed out.          |
+| ERROR_OAUTH_TOKEN_NOT_EXIST         | 10014  | The OAuth access token does not exist.|
+| ERROR_OAUTH_TOKEN_TOO_MANY          | 10015  | The number of OAuth access tokens reaches the limit.  |
+| ERROR_OAUTH_UNSUPPORT_ACTION        | 10016  | The authentication operation is not supported.  |
+| ERROR_OAUTH_UNSUPPORT_AUTH_TYPE     | 10017  | The authentication type is not supported.  |
+| ERROR_PERMISSION_DENIED             | 10018  | The required permission is missing.          |
 
 ## AuthenticatorCallback<sup>8+</sup>
 
@@ -1546,25 +1650,29 @@ Provides methods for managing the OAuth authenticator callback.
 
 ### onResult<sup>8+</sup>
 
-onResult: (code: number, result: {[key: string]: any}) =&gt; void;
+onResult: (code: number, result: {[key: string]: any}) =&gt; void
 
 Called back to send the authentication result.
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | ------ | -------------------- | ---- | ----------- |
-  | code   | number               | Yes| Authentication result code.|
-  | result | {[key: string]: any} | Yes| Authentication result.|
+**System capability**: SystemCapability.Account.AppAccount
 
-- Example
+**Parameters**
+| Name| Type                | Mandatory| Description        |
+| ------ | -------------------- | ---- | ------------ |
+| code   | number               | Yes  | Authentication result code.|
+| result | {[key: string]: any} | Yes  | Authentication result.  |
+
+**Example**
 
   ```
   const appAccountManager = account_appAccount.createAppAccountManager();
   var sessionId = "1234";
   appAccountManager.getAuthenticatorCallback(sessionId).then((callback) => {
-      var result = {Constants.KEY_NAME: "LiSi", Constants.KEY_OWNER: "com.example.ohos.accountjsdemo",
-                    Constants.KEY_AUTH_TYPE: "readAge", Constants.KEY_TOKEN: "xxxxxx"};
-      callback.OnResult(ResultCode.SUCCESS, result);
+      var result = {[account_appAccount.Constants.KEY_NAME]: "LiSi",
+                    [account_appAccount.Constants.KEY_OWNER]: "com.example.ohos.accountjsdemo",
+                    [account_appAccount.Constants.KEY_AUTH_TYPE]: "readAge",
+                    [account_appAccount.Constants.KEY_TOKEN]: "xxxxxx"};
+      callback.OnResult(account_appAccount.ResultCode.SUCCESS, result);
   }).catch((err) => {
       console.log("getAuthenticatorCallback err: "  + JSON.stringify(err));
   });
@@ -1572,16 +1680,18 @@ Called back to send the authentication result.
 
 ### onRequestRedirected<sup>8+</sup>
 
-onRequestRedirected: (request: Want) =&gt; void;
+onRequestRedirected: (request: Want) =&gt; void
 
 Called back to redirect an authentication request.
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | ------- | ---- | ---- | ------------------ |
-  | request | Want | Yes| Request to be redirected.|
+**System capability**: SystemCapability.Account.AppAccount
 
-- Example
+**Parameters**
+| Name | Type| Mandatory| Description                |
+| ------- | ---- | ---- | -------------------- |
+| request | Want | Yes  | Request to be redirected.|
+
+**Example**
 
   ```
   class MyAuthenticator extends account_appAccount.Authenticator {
@@ -1591,10 +1701,12 @@ Called back to redirect an authentication request.
               abilityName: "com.example.ohos.accountjsdemo.LoginAbility",
           });
       }
-  
+
       authenticate(name, authType, callerBundleName, options, callback) {
-          var result = {Constants.KEY_NAME: name, Constants.KEY_AUTH_TYPE: authType, Constants.KEY_TOKEN: "xxxxxx"};
-          callback.onResult(ResultCode.SUCCESS, result);
+          var result = {[account_appAccount.Constants.KEY_NAME]: name,
+                        [account_appAccount.Constants.KEY_AUTH_TYPE]: authType,
+                        [account_appAccount.Constants.KEY_TOKEN]: "xxxxxx"};
+          callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
       }
   }
   ```
@@ -1605,34 +1717,38 @@ Defines the OAuth authenticator base class.
 
 ### addAccountImplicitly<sup>8+</sup>
 
-addAccountImplicitly(authType: string, callerBundleName: string, options: {[key: string]: any}, callback: AuthenticatorCallback): void;
+addAccountImplicitly(authType: string, callerBundleName: string, options: {[key: string]: any}, callback: AuthenticatorCallback): void
 
 Implicitly adds an app account based on the specified authentication type and options. This method uses an asynchronous callback to return the result.
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | ---------------- | --------------------- | ---  | --------------------------  |
-  | authType         | string                | Yes| Authentication type.|
-  | callerBundleName | string                | Yes| Bundle name of the authentication requester.|
-  | options          | {[key: string]: any}  | Yes| Options for the authentication.|
-  | callback         | AuthenticatorCallback | Yes| Authenticator callback invoked to return the authentication result.|
+**System capability**: SystemCapability.Account.AppAccount
+
+**Parameters**
+| Name          | Type                 | Mandatory| Description                          |
+| ---------------- | --------------------- | ---- | ------------------------------ |
+| authType         | string                | Yes  | Authentication type.          |
+| callerBundleName | string                | Yes  | Bundle name of the authentication requester.            |
+| options          | {[key: string]: any}  | Yes  | Options for the authentication.          |
+| callback         | AuthenticatorCallback | Yes  | Authenticator callback invoked to return the authentication result.|
 
 ### authenticate<sup>8+</sup>
 
-authenticate(name: string, authType: string, callerBundleName: string, options: {[key: string]: any}, callback: AuthenticatorCallback): void;
+authenticate(name: string, authType: string, callerBundleName: string, options: {[key: string]: any}, callback: AuthenticatorCallback): void
 
 Authenticates an app account to obtain the OAuth access token. This method uses an asynchronous callback to return the result.
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | ---------------- | --------------------- | ---- | --------------------------  |
-  | name             | string                | Yes| App account name.|
-  | authType         | string                | Yes| Authentication type.|
-  | callerBundleName | string                | Yes| Bundle name of the authentication requester.|
-  | options          | {[key: string]: any}  | Yes| Options for the authentication.|
-  | callback         | AuthenticatorCallback | Yes| Authenticator callback invoked to return the authentication result.|
+**System capability**: SystemCapability.Account.AppAccount
 
-- Example
+**Parameters**
+| Name          | Type                 | Mandatory| Description                          |
+| ---------------- | --------------------- | ---- | ------------------------------ |
+| name             | string                | Yes  | App account name.              |
+| authType         | string                | Yes  | Authentication type.          |
+| callerBundleName | string                | Yes  | Bundle name of the authentication requester.            |
+| options          | {[key: string]: any}  | Yes  | Options for the authentication.          |
+| callback         | AuthenticatorCallback | Yes  | Authenticator callback invoked to return the authentication result.|
+
+**Example**
 
   ```
   class MyAuthenticator extends account_appAccount.Authenticator {
@@ -1642,13 +1758,15 @@ Authenticates an app account to obtain the OAuth access token. This method uses 
               abilityName: "com.example.ohos.accountjsdemo.LoginAbility",
           });
       }
-  
+
       authenticate(name, authType, callerBundleName, options, callback) {
-          var result = {Constants.KEY_NAME: name, Constants.KEY_AUTH_TYPE: authType, Constants.KEY_TOKEN: "xxxxxx"};
-          callback.onResult(ResultCode.SUCCESS, result);
+          var result = {[account_appAccount.Constants.KEY_NAME]: name,
+                        [account_appAccount.Constants.KEY_AUTH_TYPE]: authType,
+                        [account_appAccount.Constants.KEY_TOKEN]: "xxxxxx"};
+          callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
       }
   }
-  
+
   export default {
       onConnect(want) {
           return new MyAuthenticator();

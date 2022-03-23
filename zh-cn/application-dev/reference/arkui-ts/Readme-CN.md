@@ -64,6 +64,7 @@
         - [QRCode](ts-basic-components-qrcode.md)
         - [Radio](ts-basic-components-radio.md)
         - [Rating](ts-basic-components-rating.md)
+        - [Search](ts-basic-components-search.md)
         - [Select](ts-basic-components-select.md)
         - [Slider](ts-basic-components-slider.md)
         - [Span](ts-basic-components-span.md)
@@ -76,6 +77,7 @@
         - [Toggle](ts-basic-components-toggle.md)
         - [TextClock](ts-basic-components-textclock.md)
         - [Web](ts-basic-components-web.md)
+        - [RichText](ts-basic-components-richtext.md)
         - [Xcomponent](ts-basic-components-xcomponent.md)
         - [PluginComponent](ts-basic-components-plugincomponent.md)
     - 容器组件

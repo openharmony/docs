@@ -264,6 +264,7 @@ arrayList.removeByRange(2, 6);
 ```
 
 ### replaceAllElements
+
 replaceAllElements(callbackfn: (value: T, index?: number, arrlist?: ArrayList&lt;T&gt;) => T,
 thisArg?: Object): void
 
@@ -301,6 +302,7 @@ arrayList.replaceAllElements((value, index) => {
 ```
 
 ### forEach
+
 forEach(callbackfn: (value: T, index?: number, arrlist?: ArrayList&lt;T&gt;) => void,
 thisArg?: Object): void
 
@@ -335,6 +337,7 @@ arrayList.forEach((value, index) => {
 ```
 
 ### sort
+
 sort(comparator?: (firstValue: T, secondValue: T) => number): void
 
 对ArrayList中的元素排序。
@@ -366,6 +369,7 @@ arrayList.sort();
 ```
 
 ### subArrayList
+
 subArrayList(fromIndex: number, toIndex: number): ArrayList&lt;T&gt;
 
 根据下标截取ArrayList中的一段元素，并返回这一段ArrayList实例，包括起始值但不包括终止值。
@@ -397,6 +401,7 @@ let result3 = arrayList.subArrayList(2, 6);
 ```
 
 ### clear
+
 clear(): void
 
 清除ArrayList中的所有元素，并把length置为0。
@@ -413,6 +418,7 @@ arrayList.clear();
 ```
 
 ### clone
+
 clone(): ArrayList&lt;T&gt; 
 
 克隆一个与ArrayList相同的实例，并返回克隆后的实例。修改克隆后的实例并不会影响原实例。
@@ -436,6 +442,7 @@ let result = arrayList.clone();
 ```
 
 ### getCapacity
+
 getCapacity(): number
 
 获取当前实例的容量大小。
@@ -458,6 +465,7 @@ let result = arrayList.getCapacity();
 ```
 
 ### convertToArray
+
 convertToArray(): Array&lt;T&gt;
 
 把当前ArrayList实例转换成数组，并返回转换后的数组。
@@ -480,6 +488,7 @@ let result = arrayList.convertToArray();
 ```
 
 ### isEmpty
+
 isEmpty(): boolean
 
 判断该ArrayList是否为空。
@@ -502,6 +511,7 @@ let result = arrayList.isEmpty();
 ```
 
 ### increaseCapacityTo
+
 increaseCapacityTo(newCapacity: number): void
 
 如果传入的新容量大于或等于ArrayList中的元素个数，将容量变更为新容量。
@@ -525,6 +535,7 @@ arrayList.increaseCapacityTo(8);
 ```
 
 ### trimToCurrentLength
+
 trimToCurrentLength(): void
 
 把容量限制为当前的length大小。

@@ -19,7 +19,7 @@ The hapsigner tool is implemented based on the Public Key Infrastructure (PKI). 
     The CSR contains the public key, subject, and private key signature of a certificate. Before applying for a certificate, you must generate a CSR based on the key pair and submit the CSR to the Certificate Authority (CA).
  - Certificate
 
-    OpenHarmony uses the RFC5280 standard to build the X.509 certificate trust system. The OpenHarmony certificates used for application signatures are classified into the root CA certificate, subordinate CA certificate, and application or profile signing certificate. The application signing certificate indicates the identity of the application developer, which ensures the traceability of the source of the applications. The profile signing certificate is used to verify the signature of the profile, which ensures the integrity of the profile.
+    OpenHarmony uses the RFC5280 standard to build the X.509 certificate trust system. The OpenHarmony certificates used for application signatures are classified into the root CA certificate, intermediate CA certificate, and end-entity certificate (application or profile signing certificate). The application signing certificate indicates the identity of the application developer, which ensures the traceability of the source of the applications. The profile signing certificate is used to verify the signature of the profile, which ensures the integrity of the profile.
 
  - HAP
 
@@ -61,7 +61,7 @@ The hapsigner tool is implemented based on the Public Key Infrastructure (PKI). 
 
 ### When to Use
 
-The OpenHarmony system has a built-in KeyStore (KS) file named **OpenHarmony.p12**. This file contains the root CA certificate, subordinate CA certificate, and application or profile signing certificate information. The hapsigner tool signs the OpenHarmony applications based on this KS file.
+The OpenHarmony system has a built-in KeyStore (KS) file named **OpenHarmony.p12**. This file contains the root CA certificate, intermediate CA certificate, and end-entity certificate information. The hapsigner tool signs the OpenHarmony applications based on this KS file.
 
 The usage of hapsigner varies depending on whether an application signing certificate is available. 
 
@@ -102,9 +102,9 @@ The usage of hapsigner varies depending on whether an application signing certif
             ├── -keystorePwd       # KS password. It is optional.
             ├── -outFile           # CSR to generate. It is optional. If you do not specify this parameter, the CSR is output to the console.
 
-5. Generate a root CA or subordinate CA certificate.
+5. Generate a root CA or intermediate CA certificate.
 
-       generate-ca: Generate a root CA or subordinate CA certificate. If the key does not exist, generate a key together with the certificate.
+       generate-ca: Generate a root CA or intermediate CA certificate. If the key does not exist, generate a key together with the certificate.
             ├── -keyAlias                        # Key alias. It is mandatory.
             ├── -keyPwd                          # Key password. It is optional.
             ├── -keyAlg                          # Key algorithm, which can be RSA or ECC. It is mandatory.
@@ -139,7 +139,7 @@ The usage of hapsigner varies depending on whether an application signing certif
             ├── -keystorePwd                     # KS password. It is optional.
             ├── -outForm                         # Format of the certificate to generate. It is optional. The value can be cert or certChain. The default value is certChain.
             ├── -rootCaCertFile                  # Root CA certificate, which is mandatory when outForm is certChain.
-            ├── -subCaCertFile                   # Subordinate CA certificate, which is mandatory when outForm is certChain.
+            ├── -subCaCertFile                   # Intermediate CA certificate, which is mandatory when outForm is certChain.
             ├── -outFile                         # Certificate file (certificate or certificate chain) to generate. It is optional. The file is output to the console if this parameter is not specified.
 
 7. Generate a profile debug or release certificate.
@@ -159,7 +159,7 @@ The usage of hapsigner varies depending on whether an application signing certif
             ├── -keystorePwd                     # KS password. It is optional.
             ├── -outForm                         # Format of the certificate to generate. It is optional. The value can be cert or certChain. The default value is certChain.
             ├── -rootCaCertFile                  # Root CA certificate, which is mandatory when outForm is certChain.
-            ├── -subCaCertFile                   # Subordinate CA certificate, which is mandatory when outForm is certChain.
+            ├── -subCaCertFile                   # Intermediate CA certificate, which is mandatory when outForm is certChain.
             ├── -outFile                         # Certificate file (certificate or certificate chain) to generate. It is optional. The file is output to the console if this parameter is not specified.
 
 8. Generate a common certificate, which can be used to generate a custom certificate.
@@ -196,7 +196,7 @@ The usage of hapsigner varies depending on whether an application signing certif
              ├── -mode            # Signing mode, which can be localSign or remoteSign. It is mandatory.
              ├── -keyAlias        # Key alias. It is mandatory.
              ├── -keyPwd          # Key password. It is optional.
-             ├── -profileCertFile # Profile signing certificate (certificate chain, in application or profile certificate, subordinate CA certificate, and root certificate order). It is mandatory.
+             ├── -profileCertFile # Profile signing certificate (certificate chain, in the end-entity certificate, intermediate CA certificate, and root certificate order). It is mandatory.
              ├── -inFile          # Raw profile template in JSON format (developtools_hapsigner/autosign/UnsgnedReleasedProfileTemplate.json). It is mandatory.
              ├── -signAlg         # Signature algorithm, which can be SHA256withECDSA or SHA384withECDSA. It is mandatory.
              ├── -keystoreFile    # KS file, in JKS or P12 format. It is mandatory if the signing mode is localSign.
@@ -207,15 +207,15 @@ The usage of hapsigner varies depending on whether an application signing certif
 
          verify-profile: Verify the provisioning profile signature.
                ├── -inFile       # Signed provisioning profile, in p7b format. It is mandatory.
-               ├── -outFil       # Verification result file (including the verification result and profile content), in json format. It is optional. The file is output to the console if this parameter is not specified.
+               ├── -outFile       # Verification result file (including the verification result and profile content), in json format. It is optional. The file is output to the console if this parameter is not specified.
 
 11. Sign a HAP.
 
          sign-app: Sign a HAP.
               ├── -mode          # Signing mode, which can be localSign, remoteSign, or remoteResign. It is mandatory.
               ├── -keyAlias      # Key alias. It is mandatory.
-              ├──-keyPwd         # Key password. It is optional.
-              ├── -appCertFile   # Application signing certificate (certificate chain in application or profile certificate, subordinate CA certificate, and root certificate order). It is mandatory.
+              ├── -keyPwd         # Key password. It is optional.
+              ├── -appCertFile   # Application signing certificate (certificate chain, in the end-entity certificate, intermediate CA certificate, and root certificate order). It is mandatory.
               ├── -profileFile   # Singed provisioning profile, in p7b format. It is mandatory.
               ├── -profileSigned # Whether the profile is signed. The value 1 means signed, and value 0 means unsigned. The default value is 1. It is optional.
               ├── -inForm        # Raw file, in .zip (default) or .bin format. It is optional.
@@ -245,8 +245,8 @@ The process of signing a HAP is as follows:
 > **Precautions** <br/>
 >
 > For security purposes, the ECC algorithm is recommended for generating key pairs for application signing signatures. The RSA algorithm is not recommended.<br/>
->  You are advised to place the HAP, profile, KS file **OpenHarmony.p12**, root CA certificate, subordinate CA certificate, and hapsigner in the same directory for easy operation.
->  The **developtools_hapsigner/autosign/result/** directory has the following files:<br/>-&nbsp;OpenHarmony KS file **OpenHarmony.p12** <br/>-&nbsp;Root CA certificate **rootCA.cer**<br/>-&nbsp;Subordinate CA certificate **subCA.cer**<br/>-&nbsp;Profile signing certificate **OpenHarmonyProfileRelease.pem**
+>  You are advised to place the HAP, profile, KS file **OpenHarmony.p12**, root CA certificate, intermediate CA certificate, and hapsigner in the same directory for easy operation.
+>  The **developtools_hapsigner/autosign/result/** directory has the following files:<br/>-&nbsp;OpenHarmony KS file **OpenHarmony.p12** <br/>-&nbsp;Root CA certificate **rootCA.cer**<br/>-&nbsp;Intermediate CA certificate **subCA.cer**<br/>-&nbsp;Profile signing certificate **OpenHarmonyProfileRelease.pem**
 
 
 **1. Generate a key pair for the application signing certificate.**
@@ -273,7 +273,7 @@ The command parameters are described as follows:
 
 **2. Generate an application signing certificate.**
 
-Use the local subordinate CA certificate to issue an application signing certificate.
+Use the local intermediate CA certificate to issue an application signing certificate.
 
 Example:
     
@@ -285,13 +285,13 @@ The command parameters are described as follows:
      generate-app-cert: Generate an application signing certificate.
          ├── -keyAlias         # Key alias, which must be the same as that in the previous step.
          ├── -signAlg          # Signature algorithm, which can be SHA256withECDSA or SHA384withECDSA. It is mandatory.
-         ├── -issuer           #  Issuer of the certificate. Enter the issuer of the subordinate CA certificate. It is mandatory and cannot be changed.
-         ├── -issuerKeyAlias   # Key alias of the issuer. Enter the key alias of the subordinate CA certificate. It is mandatory and cannot be changed.
+         ├── -issuer           #  Issuer of the certificate. Enter the issuer of the intermediate CA certificate. It is mandatory and cannot be changed.
+         ├── -issuerKeyAlias   # Key alias of the issuer. Enter the key alias of the intermediate CA certificate. It is mandatory and cannot be changed.
          ├── -subject          # Subject of the certificate. Enter the subject in the same sequence specified in the command. This parameter is mandatory.
-         ├── -issuerKeyPwd     # Key password of the issuer. Enter the key password of the subordinate CA certificate. It is mandatory and cannot be changed. In this example, it is 123456. 
+         ├── -issuerKeyPwd     # Key password of the issuer. Enter the key password of the intermediate CA certificate. It is mandatory and cannot be changed. In this example, it is 123456. 
          ├── -keystoreFile     # KS file. Use OpenHarmony.p12. It is mandatory and cannot be changed.
          ├── -rootCaCertFile   # Root certificate. It is mandatory and cannot be changed.
-         ├── -subCaCertFile    # Subordinate CA certificate. It is mandatory and cannot be changed.
+         ├── -subCaCertFile    # Intermediate CA certificate. It is mandatory and cannot be changed.
          ├── -outForm          # Format of the certificate file to generate. certChain is recommended.
          ├── -outFile          # File to generate. It is optional. The file is output to the console if this parameter is not specified.
          ├── -keyPwd           # Key password. It is optional. It is the key password set when the key pair is generated. 
@@ -344,7 +344,7 @@ The command parameters are described as follows:
          ├──-keyAlias          # Key alias, which must be the same as the alias of the key pair generated. This parameter is mandatory.
          ├── -signAlg          # Signature algorithm, which can be SHA256withECDSA or SHA384withECDSA. It is mandatory.
          ├── -mode             # Signing mode, which must be localSign. It is mandatory.
-         ├── -appCertFile      # Application signing certificate (certificate chain, in application signing certificate, subordinate CA certificate, and root certificate order). Enter the application signing certificate generated. This parameter is mandatory.
+         ├── -appCertFile      # Application signing certificate (certificate chain, in the end-entity certificate, intermediate CA certificate, and root certificate order). Enter the application signing certificate generated. This parameter is mandatory.
          ├── -profileFile      # Signed provisioning profile in p7b format. Enter the profile generated. This parameter is mandatory.
          ├── -inFile           # Raw application package. It is mandatory.
          ├── -keystoreFile     # KS file, which must be the same as the KS file generated. It is mandatory and cannot be changed.

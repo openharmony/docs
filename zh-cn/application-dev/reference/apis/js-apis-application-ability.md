@@ -1,7 +1,7 @@
 # Ability
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 从API Version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
 Ability模块，提供对Ability生命周期、上下文环境等调用管理。
@@ -363,7 +363,6 @@ callWithResult(method: string, data: rpc.Sequenceable): Promise&lt;rpc.MessagePa
         this.name = name;
         this.str = str;
       }
-      constructor() {}
       marshalling(messageParcel) {
           messageParcel.writeInt(this.num);
           messageParcel.writeString(this.str);
@@ -380,7 +379,6 @@ callWithResult(method: string, data: rpc.Sequenceable): Promise&lt;rpc.MessagePa
   var method = 'call_Function';
   var caller;
   export default class MainAbility extends Ability {
-      onWindowStageCreate(windowStage) {
       onWindowStageCreate(windowStage) {
         this.context.startAbilityByCall({
             bundleName: "com.example.myservice",

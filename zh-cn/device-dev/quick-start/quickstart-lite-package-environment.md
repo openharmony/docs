@@ -1,8 +1,5 @@
 # 使用安装包方式搭建编译环境<a name="ZH-CN_TOPIC_0000001171615528"></a>
 
--   [安装必要的库和工具](#section108201740181219)
--   [安装hb](#section15794154618411)
--   [安装LLVM\(仅OpenHarmony\_v1.x分支/标签需要\)](#section711117144296)
 
 使用安装包方式搭建Ubuntu编译环境步骤如下：
 
@@ -46,7 +43,7 @@ sudo apt-get install build-essential gcc g++ make libffi-dev e2fsprogs pkg-confi
     source ~/.bashrc
     ```
 
-3.  执行"hb -h"，界面打印以下信息即表示安装成功：
+3.  在源码目录执行"hb -h"，界面打印以下信息即表示安装成功：
 
     ```
     usage: hb

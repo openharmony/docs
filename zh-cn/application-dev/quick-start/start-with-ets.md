@@ -21,17 +21,15 @@
 ## eTS工程项目文件
 
 - **entry** ：OpenHarmony工程模块，编译构建生成一个Hap包。
-  - **entry &gt; src &gt; main &gt; ets** ：用于存放ets源码。
-     - **entry &gt; src &gt;main &gt; ets &gt; MainAbility** ：应用/服务的入口。
-        - **entry &gt; src &gt;main &gt; ets &gt; MainAbility &gt; pages** ：MainAbility包含的页面。
-        - **entry &gt; src &gt;main &gt; ets &gt;  MainAbility &gt; app.ets** ：承载Ability生命周期。
-  - **entry &gt; src &gt; main &gt; resources** ：用于存放应用/服务所用到的资源文件，如图形、多媒体、字符串、布局文件等。
-  - **entry &gt; src &gt; main &gt;config.json** ：模块配置文件。主要包含HAP包的配置信息、应用在具体设备上的配置信息以及应用的全局配置信息。
-  - **entry &gt; build-profile.json5** ：模块的模块信息 、编译信息配置项，包括 buildOption target配置等。
-  - **entry &gt; hvigorfile.js** ：模块级编译构建任务脚本，开发者可以自定义相关任务和代码实现。
-
+  - **src &gt; main &gt; ets** ：用于存放ets源码。
+  - **src &gt; main &gt; ets &gt; MainAbility** ：应用/服务的入口。
+  - **src &gt; main &gt; ets &gt; MainAbility &gt; pages** ：MainAbility包含的页面。
+  - **src &gt; main &gt; ets &gt;  MainAbility &gt; app.ets** ：承载Ability生命周期。
+  - **src &gt; main &gt; resources** ：用于存放应用/服务所用到的资源文件，如图形、多媒体、字符串、布局文件等。
+  - **src &gt; main &gt;config.json** ：模块配置文件。主要包含HAP包的配置信息、应用在具体设备上的配置信息以及应用的全局配置信息。
+  - **build-profile.json5** ：模块的模块信息 、编译信息配置项，包括 buildOption target配置等。
+  - **hvigorfile.js** ：模块级编译构建任务脚本，开发者可以自定义相关任务和代码实现。
 - **build-profile.json5** ：应用级配置信息，包括签名、产品配置等。
-
 - **hvigorfile.js** ：应用级编译构建任务脚本。
 
 
@@ -149,7 +147,7 @@
 页面间的导航可以通过页面路由router来实现。页面路由router根据页面uri找到目标页面，从而实现跳转。使用页面路由请导入router模块。
 
 1. **第一个页面跳转到第二个页面。**
-   在第一个页面中，跳转按钮绑定onClick方法，当按钮点击时触发页面路由变化，跳转到第二页。“**index.ets**”文件的示例如下：
+   在第一个页面中，跳转按钮绑定onClick方法，点击按钮时跳转到第二页。“**index.ets**”文件的示例如下：
 
    
    ```
@@ -178,7 +176,7 @@
            .backgroundColor('#0D9FFB')
            .width('40%')
            .height('5%')
-           // 跳转按钮绑定onClicke方法，点击时触发页面路由变化，跳转到第二页
+           // 跳转按钮绑定onClicke方法，点击按钮时跳转到第二页
            .onClick(()=>{
              router.push({uri:'pages/second'})
            })
@@ -191,7 +189,7 @@
    ```
 
 2. **第二个页面返回到第一个页面。**
-   在第二个页面中，返回按钮绑定onClick方法，当按钮点击时触发页面路由返回，返回到第一页。“**second.ets**”文件的示例如下：
+   在第二个页面中，返回按钮绑定onClick方法，点击按钮时返回到第一页。“**second.ets**”文件的示例如下：
 
    
    ```
@@ -218,7 +216,7 @@
                    .backgroundColor('#0D9FFB')
                    .width('40%')
                    .height('5%')
-                   // 返回按钮绑定onClicke方法，点击时触发页面返回，返回到第一页
+                   // 返回按钮绑定onClicke方法，点击按钮时返回到第一页
                    .onClick(()=>{
                        router.back()
                    })
@@ -243,3 +241,5 @@
 
 3. 在编辑窗口右上角的工具栏，点击![zh-cn_image_0000001262206247](figures/zh-cn_image_0000001262206247.png) 按钮运行。效果如下图所示：
    ![zh-cn_image_0000001217526428](figures/zh-cn_image_0000001217526428.png)
+
+恭喜您已经使用eTS语言开发完成了第一个OpenHarmony应用，来[探索更多的OpenHarmony功能](../application-dev-guide.md)吧。

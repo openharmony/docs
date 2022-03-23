@@ -6,7 +6,7 @@
 
 ## 接口说明
 
-详细API含义请参考[js-apis-image.md](https://gitee.com/openharmony/docs/blob/791904121afc0b9887510a6ec0504a23a71e6a3c/zh-cn/application-dev/reference/apis/js-apis-image.md)
+详细API含义请参考[js-apis-image.md](../reference/apis/js-apis-image.md)
 
 ## 开发步骤
 

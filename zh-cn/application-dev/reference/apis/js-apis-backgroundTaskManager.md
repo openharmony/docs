@@ -129,10 +129,10 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 **参数**：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | context | [Context](js-apis-Context.md) | 是 | 应用运行的上下文 |
-  | bgMode | [BackgroundMode](#BackgroundMode<sup>8+</sup>) | 是 | 向系统申请的后台模式 |
+  | context | [Context](js-apis-Context.md) | 是 | 应用运行的上下文。 |
+  | bgMode | [BackgroundMode](#backgroundmode8) | 是 | 向系统申请的后台模式。|
   | wantAgent | [WantAgent](js-apis-notification.md#WantAgent接口) | 是 | 通知参数，用于指定长时任务通知点击后跳转的界面。 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动长时任务的结果 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动长时任务的结果。 |
 
 **示例**：
 ```js
@@ -181,9 +181,9 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
   
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | context | [Context](js-apis-Context.md) | 是 | 应用运行的上下文 |
-  | bgMode | [BackgroundMode](#BackgroundMode<sup>8+</sup>) | 是 | 向系统申请的后台模式 |
-  | wantAgent | [WantAgent](js-apis-notification.md#WantAgent接口) | 是 | 通知参数，用于指定长时任务通知点击跳转的界面 |
+  | context | [Context](js-apis-Context.md) | 是 | 应用运行的上下文。 |
+  | bgMode | [BackgroundMode](#backgroundmode8) | 是 | 向系统申请的后台模式。 |
+  | wantAgent | [WantAgent](js-apis-notification.md#WantAgent接口) | 是 | 通知参数，用于指定长时任务通知点击跳转的界面。 |
   
 **返回值**
   | 类型           | 说明                      |
@@ -232,8 +232,8 @@ stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): vo
 **参数**：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | context | [Context](js-apis-Context.md) | 是 | 应用运行的上下文 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动长时任务的结果 |
+  | context | [Context](js-apis-Context.md) | 是 | 应用运行的上下文。 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动长时任务的结果。 |
 
 **示例**：
 ```js
@@ -265,7 +265,7 @@ stopBackgroundRunning(context: Context): Promise&lt;void&gt;
 **参数**：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | context | [Context](js-apis-Context.md) | 是 | 应用运行的上下文 |
+  | context | [Context](js-apis-Context.md) | 是 | 应用运行的上下文。 |
 
 **返回值**
   | 类型           | 说明                      |

@@ -145,6 +145,7 @@ let result = stack.locate(2);
 ```
 
 ### forEach
+
 forEach(callbackfn: (value: T, index?: number, stack?: Stack&lt;T&gt;) => void,
 thisArg?: Object): void
 
@@ -179,6 +180,7 @@ stack.forEach((value, index) => {
 ```
 
 ### isEmpty
+
 isEmpty(): boolean
 
 判断该栈是否为空。

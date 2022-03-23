@@ -1,4 +1,4 @@
-# reference/arkui-ts
+# TypeScript-based Declarative Development Paradigm
 
 - Components
     - Universal Components
@@ -58,6 +58,7 @@
         - [Gauge](ts-basic-components-gauge.md)
         - [Image](ts-basic-components-image.md)
         - [ImageAnimator](ts-basic-components-imageanimator.md)
+        - [LoadingProgress](ts-basic-components-loadingprogress.md)
         - [Progress](ts-basic-components-progress.md)
         - [QRCode](ts-basic-components-qrcode.md)
         - [Radio](ts-basic-components-radio.md)

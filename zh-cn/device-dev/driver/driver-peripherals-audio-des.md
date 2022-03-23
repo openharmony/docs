@@ -69,8 +69,8 @@ Audio驱动框架基于[HDF驱动框架](https://device.harmonyos.com/cn/docs/do
 - Audio Control Dispatch : 接收lib层的控制指令并将控制指令分发到驱动层。
 - Audio Stream Dispatch : 接收lib层的数据并将数据分发到驱动层。
 
-- Card Manager : 多声卡管理模块。每个声卡含有Dai、Platform、Codec、Accessory、Dsp、Sapm模块。
-- Platform Driver : 驱动适配层。
+- Card Manager : 多声卡管理模块。每个声卡含有Dai、Platform、Codec、Accessory、Dsp、SAPM模块。
+- Platform Drivers : 驱动适配层。
 - SAPM(Smart Audio Power Manager) : 电源管理模块，对整个ADM电源进行功耗策略优化。
 
 # Audio驱动开发<a name="section3000"></a>

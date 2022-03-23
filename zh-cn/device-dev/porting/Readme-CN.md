@@ -52,7 +52,7 @@ repo init -u https://gitee.com/openharmony-sig/manifest.git -b master -m devboar
 - [标准系统芯片移植指导](standard-system-porting-guide.md)
     - [标准系统移植指南](standard-system-porting-guide.md)
     - [一种快速移植OpenHarmony Linux内核的方法](porting-linux-kernel.md)
-- [轻量和小型系统三方库移植指导]( porting-thirdparty.md)
+- [轻量和小型系统三方库移植指导](porting-thirdparty.md)
     - [概述](porting-thirdparty-overview.md)
     - [CMake方式组织编译的库移植](porting-thirdparty-cmake.md)
     - [Makefile方式组织编译的库移植](porting-thirdparty-makefile.md)
