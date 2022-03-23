@@ -404,11 +404,10 @@ let result = linkedList.removeLastFound(4);
 ```
 
 ### clone
+
 clone(): LinkedList&lt;T&gt;
 
-克隆一个与LinkedList相同的实例，并返回克隆后的实例。
-
-修改克隆后的实例并不会影响原实例。
+克隆一个与LinkedList相同的实例，并返回克隆后的实例。修改克隆后的实例并不会影响原实例。
 
 **返回值：**
 
@@ -428,6 +427,7 @@ let result = linkedList.clone();
 ```
 
 ### forEach
+
 forEach(callbackfn: (value: T, index?: number, LinkedList?: LinkedList&lt;T&gt;) => void,
 thisArg?: Object): void
 
@@ -462,6 +462,7 @@ linkedList.forEach((value, index) => {
 ```
 
 ### clear
+
 clear(): void
 
 清除LinkedList中的所有元素，并把length置为0。
@@ -478,6 +479,7 @@ linkedList.clear();
 ```
 
 ### set
+
 set(index: number, element: T): T
 
 将此LinkedList中指定位置的元素替换为指定元素。
