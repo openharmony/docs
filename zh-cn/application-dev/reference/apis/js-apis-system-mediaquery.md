@@ -118,8 +118,6 @@ removeListener(callback: (event: MediaQueryEvent) => void): void
 
 **示例：**
 
-**示例：**
-
 ```
 mMediaQueryList.removeListener(maxWidthMatch);
 ```
