@@ -461,7 +461,7 @@ bundle.getAllApplicationInfo(bundleFlags, userId, (err, data) => {
 
 ## bundle.getAllApplicationInfo
 
-function getAllApplicationInfo(bundleFlags: number, callback: AsyncCallback<Array\<ApplicationInfo>>) : void;
+getAllApplicationInfo(bundleFlags: number, callback: AsyncCallback<Array\<ApplicationInfo>>) : void;
 
 获取指定用户下所有已安装的应用信息，使用callback形式返回结果。
 
@@ -535,8 +535,7 @@ bundle.getAbilityInfo(bundleName, abilityName)
 
 ## bundle.getAbilityInfo
 
-getAbilityInfo(bundleName: string, abilityName: string): callback :
-AsyncCallback\<AbilityInfo>: void
+getAbilityInfo(bundleName: string, abilityName: string, callback: AsyncCallback\<AbilityInfo>): void;
 
 以异步方法根据给定的意图获取Ability信息，使用callback形式返回结果。
 
@@ -882,7 +881,7 @@ bundle.queryAbilityByWant(want, bundleFlags, userId, (err, data) => {
 
 ## bundle.queryAbilityByWant
 
-queryAbilityByWant(want: Want, bundleFlags: number, callback: AsyncCallback<Array\<AbilityInfo>>): void
+queryAbilityByWant(want: Want, bundleFlags: number, callback: AsyncCallback<Array\<AbilityInfo>>): void;
 
 以异步方法根据给定的意图获取Ability信息，使用callback形式返回结果。
 
@@ -915,91 +914,6 @@ bundle.queryAbilityByWant(want, bundleFlags, (err, data) => {
 })
 ```
 
-## bundle.getBundleInstaller
-
-getBundleInstaller(): Promise\<BundleInstaller>
-
-以异步方法获取BundleInstaller，使用Promise形式返回结果。
-
-**需要权限：**
-
-ohos.permission.INSTALL_BUNDLE
-
-**系统能力：**
-
-SystemCapability.BundleManager.BundleFramework
-
-**返回值：**
-
-| 类型                     | 说明                                                |
-| ------------------------ | --------------------------------------------------- |
-| Promise\<BundleInstaller> | 返回值为Promise对象，Promise中包含BundleInstaller。 |
-
-**示例：**
-
-```js
-let bundleFilePaths = ['/data/test.hap'];
-let param = {
-    userId : 100,
-    installFlag : 1,
-    isKeepData : false
-};
-bundle.getBundleInstaller()
-.then((installerObject) => {
-    console.info('Operation successful. ');
-    installerObject.install(bundleFilePaths, param)
-    .then((data) => {
-        console.info('Operation successful. Data:' + JSON.stringify(data));
-    }).catch((error) => {
-        console.error('Operation failed. Cause: ' + JSON.stringify(error));
-    })
-}).catch((error) => {
-    console.error('Operation failed. Cause: ' + JSON.stringify(error));
-})
-```
-
-## bundle.getBundleInstaller
-
-getBundleInstaller(callback: AsyncCallback\<BundleInstaller>): void;
-
-以异步方法获取BundleInstaller，使用callback形式返回结果。
-
-**需要权限：**
-
-ohos.permission.INSTALL_BUNDLE
-
-**系统能力：**
-
-SystemCapability.BundleManager.BundleFramework
-
-**参数：**
-
-| 名称     | 类型                           | 必填 | 描述                                              |
-| -------- | ------------------------------ | ---- | ------------------------------------------------- |
-| callback | AsyncCallback\<BundleInstaller> | 是   | 程序启动作为入参的回调函数，返回BundleInstaller。 |
-
-**示例：**
-
-```js
-let bundleFilePaths = ['/data/test.hap'];
-let param = {
-    userId : 100,
-    installFlag : 1,
-    isKeepData : false
-};
-bundle.getBundleInstaller((err, installerObject) => {
-    if (err) {
-        console.error('Operation failed. Cause: ' + JSON.stringify(err));
-    }
-    console.info('Operation successful. Data:' + JSON.stringify(installerObject));
-    installerObject.install(bundleFilePaths, param, (err, data) => {
-        if (err) {
-            console.error('Operation failed. Cause: ' + JSON.stringify(err));
-        }
-        console.info('Operation successful. Data:' + JSON.stringify(data));
-    })
-})
-```
 
 
 ## bundle.getLaunchWantForBundle
@@ -1109,7 +1023,7 @@ bundle.getNameForUid(uid)
 
 ## bundle.getNameForUid<sup>8+</sup>
 
-getNameForUid(uid: number, callback: AsyncCallback\<string>): void;
+getNameForUid(uid: number, callback: AsyncCallback\<string>) : void
 
 以异步方法通过uid获取对应的包名，使用callback形式返回结果。
 
@@ -1140,7 +1054,7 @@ bundle.getNameForUid(uid, (err, data) => {
 
 ## bundle.getAbilityIcon<sup>8+</sup>
 
-getAbilityIcon(bundleName: string, abilityName: string): Promise\<[PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)>;
+getAbilityIcon(bundleName: string, abilityName: string): Promise\<image.PixelMap>;
 
 以异步方法通过bundleName和abilityName获取对应Icon的[PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)，使用Promise形式返回结果。
 
@@ -1154,15 +1068,15 @@ SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
-| 名称       | 类型   | 必填 | 描述     |
-| ---------- | ------ | ---- | -------- |
-| bundleName | string | 是   | 要查询的bundleName。 |
-| abilityName | string | 是   | 要查询的abilityName。 |
+| 名称          | 类型                                       | 必填   | 描述                                       |
+| ----------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| bundleName  | string                                   | 是    | 要查询的bundleName。                          |
+| abilityName | string                                   | 是    | 要查询的abilityName。                         |
 
 **返回值：**
 | 类型                  | 说明                                                         |
 | --------------------- | ------------------------------------------------------------ |
-| Promise\<[PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)> | 返回值为<[PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)>。 |
+| Promise\<image.PixelMap> | 返回值为[PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)。 |
 
 **示例：**
 
@@ -1179,7 +1093,7 @@ bundle.getAbilityIcon(bundleName, abilityName)
 
 ## bundle.getAbilityIcon<sup>8+</sup>
 
-getAbilityIcon(bundleName: string, abilityName: string, callback: AsyncCallback\<[PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)>): void;
+getAbilityIcon(bundleName: string, abilityName: string, callback: AsyncCallback\<image.PixelMap>): void;
 
 以异步方法通过bundleName和abilityName获取对应的[PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)，使用callback形式返回结果。
 
@@ -1193,11 +1107,11 @@ SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
-| 名称       | 类型   | 必填 | 描述     |
-| ---------- | ------ | ---- | -------- |
-| bundleName | string | 是   | 要查询的bundleName。 |
-| abilityName | string | 是   | 要查询的abilityName。 |
-| callback   | AsyncCallback\<[PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)> | 是   | 程序启动作为入参的回调函数，返回指定<[PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)>。 |
+| 名称          | 类型                                       | 必填   | 描述                                       |
+| ----------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| bundleName  | string                                   | 是    | 要查询的bundleName。                          |
+| abilityName | string                                   | 是    | 要查询的abilityName。                         |
+| callback   | AsyncCallback\<image.PixelMap> | 是   | 程序启动作为入参的回调函数，返回指定[PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)。 |
 
 **示例：**
 
@@ -1451,31 +1365,30 @@ bundle.queryExtensionAbilityInfosByWant(want, extensionFlags, (err, data) => {
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
-| 名称               | 类型 | 可读 | 可写 | 说明 |
-| ------ | ------ | ------ | ------ | ------ |
-| name             | string        | 是   | 否   | 应用程序的名称                             |
-| description      | string        | 是   | 否   | 应用程序的描述                             |
-| descriptionId    | number        | 是   | 否   | 应用程序的描述id                           |
-| systemApp        | boolean       | 是   | 否   | 判断是否为系统应用程序，默认为false        |
-| enabled          | boolean       | 是   | 否   | 判断应用程序是否可以使用，默认为true       |
-| label            | string        | 是   | 否   | 应用程序的标签                             |
-| labelId          | string        | 是   | 否   | 应用程序的标签id                           |
-| icon             | string        | 是   | 否   | 应用程序的图标                             |
-| iconId           | string        | 是   | 否   | 应用程序的图标id                           |
-| process          | string        | 是   | 否   | 应用程序的进程，如果不设置，默认为包的名称 |
-| supportedModes   | number        | 是   | 否   | 应用程序支持的运行模式                     |
-| moduleSourceDirs | Array\<string> | 是   | 否   | 应用程序的资源存放的相对路径               |
-| permissions      | Array\<string> | 是   | 否   | 访问应用程序所需的权限                     |
-| moduleInfos | Array\<ModuleInfo> | 是   | 否   | 应用程序的模块信息                         |
-| entryDir         | string        | 是   | 否   | 应用程序的文件保存路径                     |
-| customizeData    | Map<string, Array\<CustomizeData>> | 是   | 是   | 应用程序的自定义数据                       |
-| codePath<sup>8+</sup> | string | 是 | 否 | 应用程序的安装目录 |
-| metaData<sup>8+</sup> | Map<string, Array\<CustomizeData>> | 是 | 否 | 应用程序的自定义元信息 |
-| metaData<sup>9+</sup> | Map<string, Array\<Metadata>> | 是 | 否 | 应用程序的元信息 |
-| removable<sup>8+</sup> | boolean | 是 | 否 | 应用程序是否可以被移除 |
-| accessTokenId<sup>8+</sup> | number | 是 | 否 | 应用程序的accessTokenId |
-| uid<sup>8+</sup> | number | 是 | 否 | 应用程序的uid |
-| entityType<sup>9+</sup> | string | 是 | 否 | 应用程序的实体类型 |
+| 名称                         | 类型                                 | 可读   | 可写   | 说明                    |
+| -------------------------- | ---------------------------------- | ---- | ---- | --------------------- |
+| name                       | string                             | 是    | 否    | 应用程序的名称               |
+| description                | string                             | 是    | 否    | 应用程序的描述               |
+| descriptionId              | number                             | 是    | 否    | 应用程序的描述id             |
+| systemApp                  | boolean                            | 是    | 否    | 判断是否为系统应用程序，默认为false  |
+| enabled                    | boolean                            | 是    | 否    | 判断应用程序是否可以使用，默认为true  |
+| label                      | string                             | 是    | 否    | 应用程序的标签               |
+| labelId                    | string                             | 是    | 否    | 应用程序的标签id             |
+| icon                       | string                             | 是    | 否    | 应用程序的图标               |
+| iconId                     | string                             | 是    | 否    | 应用程序的图标id             |
+| process                    | string                             | 是    | 否    | 应用程序的进程，如果不设置，默认为包的名称 |
+| supportedModes             | number                             | 是    | 否    | 应用程序支持的运行模式           |
+| moduleSourceDirs           | Array\<string>                     | 是    | 否    | 应用程序的资源存放的相对路径        |
+| permissions                | Array\<string>                     | 是    | 否    | 访问应用程序所需的权限           |
+| moduleInfos                | Array\<ModuleInfo>                 | 是    | 否    | 应用程序的模块信息             |
+| entryDir                   | string                             | 是    | 否    | 应用程序的文件保存路径           |
+| codePath<sup>8+</sup>      | string                             | 是    | 否    | 应用程序的安装目录             |
+| metaData<sup>8+</sup>      | Map<string, Array\<CustomizeData>> | 是    | 否    | 应用程序的自定义元信息           |
+| metaData<sup>9+</sup>      | Map<string, Array\<Metadata>>      | 是    | 否    | 应用程序的元信息              |
+| removable<sup>8+</sup>     | boolean                            | 是    | 否    | 应用程序是否可以被移除           |
+| accessTokenId<sup>8+</sup> | number                             | 是    | 否    | 应用程序的accessTokenId    |
+| uid<sup>8+</sup>           | number                             | 是    | 否    | 应用程序的uid              |
+| entityType<sup>9+</sup>    | string                             | 是    | 否    | 应用程序的实体类型             |
 
 ## ModuleInfo
 
@@ -1507,26 +1420,26 @@ Hap模块信息
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
-| 名称               | 类型 | 可读 | 可写 | 说明 |
-| ------ | ------ | ------ | ------ | ------ |
-| name             | string        | 是   | 否   | 模块名称           |
-| description      | string        | 是   | 否   | 模块描述信息       |
-| descriptionId    | number        | 是   | 否   | 描述信息ID         |
-| icon             | string        | 是   | 否   | 模块图标           |
-| label            | string        | 是   | 否   | 模块标签           |
-| labelId          | number        | 是   | 否   | 模块标签ID         |
-| iconId           | number        | 是   | 否   | 模块图标ID         |
-| backgroundImg    | string        | 是   | 否   | 模块背景图片       |
-| supportedModes   | number        | 是   | 否   | 模块支持的模式     |
-| reqCapabilities  | Array\<string> | 是   | 否   | 模块运行需要的能力 |
-| deviceTypes      | Array\<string> | 是   | 否   | 支持运行的设备类型 |
-| abilityInfo      | Array\<AbilityInfo> | 是   | 否   | Ability信息        |
-| moduleName       | string        | 是   | 否   | 模块名             |
-| mainAbilityName  | string        | 是   | 否   | 入口Ability名称    |
-| installationFree | boolean       | 是   | 否   | 是否支持免安装     |
-| mainElementName<sup>8+</sup> | string | 是 | 否 | 入口ability信息 |
-| extensionAbilityInfo<sup>9+</sup> | Array\<ExtensionAbilityInfo> | 是 | 否 | extensionAbility信息 |
-| metadata<sup>9+</sup> | Array\<Metadata> | 是 | 否 | Ability的元信息 |
+| 名称                                | 类型                           | 可读   | 可写   | 说明                 |
+| --------------------------------- | ---------------------------- | ---- | ---- | ------------------ |
+| name                              | string                       | 是    | 否    | 模块名称               |
+| description                       | string                       | 是    | 否    | 模块描述信息             |
+| descriptionId                     | number                       | 是    | 否    | 描述信息ID             |
+| icon                              | string                       | 是    | 否    | 模块图标               |
+| label                             | string                       | 是    | 否    | 模块标签               |
+| labelId                           | number                       | 是    | 否    | 模块标签ID             |
+| iconId                            | number                       | 是    | 否    | 模块图标ID             |
+| backgroundImg                     | string                       | 是    | 否    | 模块背景图片             |
+| supportedModes                    | number                       | 是    | 否    | 模块支持的模式            |
+| reqCapabilities                   | Array\<string>               | 是    | 否    | 模块运行需要的能力          |
+| deviceTypes                       | Array\<string>               | 是    | 否    | 支持运行的设备类型          |
+| abilityInfo                       | Array\<AbilityInfo>          | 是    | 否    | Ability信息          |
+| moduleName                        | string                       | 是    | 否    | 模块名                |
+| mainAbilityName                   | string                       | 是    | 否    | 入口Ability名称        |
+| installationFree                  | boolean                      | 是    | 否    | 是否支持免安装            |
+| mainElementName<sup>9+</sup>      | string                       | 是    | 否    | 入口ability信息        |
+| extensionAbilityInfo<sup>9+</sup> | Array\<ExtensionAbilityInfo> | 是    | 否    | extensionAbility信息 |
+| metadata<sup>9+</sup>             | Array\<Metadata>             | 是    | 否    | Ability的元信息        |
 
 ## ReqPermissionDetail
 
