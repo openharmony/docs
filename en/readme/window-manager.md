@@ -25,7 +25,8 @@ The Window Manager subsystem provides basic capabilities of window and display m
     Provides display information, screenshot, screen on/off, and brightness processing control, and processes the mapping between the display and screen.
 
 ## Directory Structure
-```
+
+```text
 foundation/windowmanager/
 ├── dm                      # Stores Display Manager Client implementation code
 ├── dmserver                # Stores Display Manager Server implementation code
@@ -41,8 +42,9 @@ foundation/windowmanager/
 ```
 
 ## Constraints
+
 - Programming language version
-    - C++ 11 or later
+  - C++ 11 or later
 
 ## Available APIs
 
@@ -50,6 +52,7 @@ foundation/windowmanager/
 - [Display](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-display.md)
 
 ## Repositories Involved
+
 - graphic_standard
 - ace_ace_engine
 - aafwk_standard
