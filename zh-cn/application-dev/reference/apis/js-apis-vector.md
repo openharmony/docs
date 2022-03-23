@@ -241,7 +241,8 @@ let result = vector.remove(2);
 ```
 
 ### removeByRange
-removeByRange(fromIndex: number, toIndex: number): void;
+
+removeByRange(fromIndex: number, toIndex: number): void
 
 从一段范围内删除元素，包括起始值但不包括终止值。
 
@@ -266,6 +267,7 @@ vector.removeByRange(2,6);
 ```
 
 ### replaceAllElements
+
 replaceAllElements(callbackfn: (value: T, index?: number, vector?: Vector&lt;T&gt;) => T,
 thisArg?: Object): void
 
@@ -303,8 +305,9 @@ vector.replaceAllElements((value, index) => {
 ```
 
 ### forEach
+
 forEach(callbackfn: (value: T, index?: number, vector?: Vector&lt;T&gt;) => void,
-thisArg?: Object): void;
+thisArg?: Object): void
 
 通过回调函数来遍历Vector实例对象上的元素以及元素对应的下标。
 
@@ -338,6 +341,7 @@ vector.forEach((value, index) => {
 ```
 
 ### sort
+
 sort(comparator?: (firstValue: T, secondValue: T) => number): void
 
 对Vector中的元素进行一个排序操作。
@@ -369,6 +373,7 @@ vector.sort();
 ```
 
 ### subVector
+
 subVector(fromIndex: number, toIndex: number): Vector&lt;T&gt;
 
 根据下标截取Vector中的一段元素，并返回这一段vector实例，包括起始值但不包括终止值。
@@ -401,6 +406,7 @@ let result2 = vector.subVector(2,6);
 ```
 
 ### clear
+
 clear(): void
 
 清除Vector中的所有元素，并把length置为0。
@@ -417,6 +423,7 @@ vector.clear();
 ```
 
 ### clone
+
 clone(): Vector&lt;T&gt;
 
 克隆一个与Vector相同的实例，并返回克隆后的实例。修改克隆后的实例并不会影响原实例。
@@ -439,6 +446,7 @@ let result = vector.clone();
 ```
 
 ### getCapacity
+
 getCapacity(): number
 
 获取当前实例的容量大小。
@@ -461,6 +469,7 @@ let result = vector.getCapacity();
 ```
 
 ### convertToArray
+
 convertToArray(): Array&lt;T&gt;
 
 把当前Vector实例转换成数组，并返回转换后的数组。
@@ -483,6 +492,7 @@ let result = vector.convertToArray();
 ```
 
 ### isEmpty
+
 isEmpty(): boolean
 
 判断该Vector是否为空。
@@ -505,6 +515,7 @@ let result = vector.isEmpty();
 ```
 
 ### increaseCapacityTo
+
 increaseCapacityTo(newCapacity: number): void
 
 如果传入的新容量大于或等于Vector中的元素个数，将容量变更为新容量。
@@ -699,6 +710,7 @@ let result = vector.getIndexFrom(4, 3);
 ```
 
 ### setLength
+
 setLength(newSize: number): void
 
 设置Vector实例的元素个数。
@@ -722,6 +734,7 @@ vector.setLength(2);
 ```
 
 ### get
+
 get(index: number): T 
 
 根据下标值获取Vector实例中的元素。
@@ -749,6 +762,7 @@ get(index: number): T
   let result = vector.get(2);
   ```
 ### set
+
 set(index: number, element: T): T
 
 将此Vector中指定位置的元素替换为指定元素。

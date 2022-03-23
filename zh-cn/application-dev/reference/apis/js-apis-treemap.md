@@ -45,7 +45,7 @@ let treeMap = new TreeMap();
 
 ### isEmpty
 
-isEmpty(): boolean;
+isEmpty(): boolean
 
 判断该容器是否为空。
 
@@ -65,7 +65,7 @@ let result = treeMap.isEmpty();
 
 ### hasKey
 
-hasKey(key: K): boolean;
+hasKey(key: K): boolean
 
 判断此容器中是否含有该指定key。
 
@@ -149,7 +149,7 @@ let result = treeMap.get("sdfs");
 
 ### getFirstKey
 
-getFirstKey(): K;
+getFirstKey(): K
 
 获取容器中排序第一的key。
 
@@ -171,7 +171,7 @@ let result = treeMap.getFirstKey();
 
 ### getLastKey
 
-getLastKey(): K;
+getLastKey(): K
 
 获取容器中排序最后的key。
 
@@ -215,6 +215,7 @@ treeMap.setAll(map);
 
 
 ### set
+
 set(key: K, value: V): Object
 
 向treemap中添加一组数据。
@@ -242,7 +243,7 @@ treeMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 
 ### remove
 
-remove(key: K): V;
+remove(key: K): V
 
 删除指定key对应的元素。
 
@@ -326,6 +327,7 @@ let result = treeMap.getHigherKey("sdfs");
 ```
 
 ### replace
+
 replace(key: K, newValue: V): boolean
 
 对TreeMap中一组数据进行更新（替换）。
@@ -424,7 +426,7 @@ while(temp != undefined) {
 
 ### forEach
 
-forEach(callbackfn: (value: V, key?: K, map?: TreeMap<K, V>) => void, thisArg?: Object): void
+forEach(callbackfn: (value?: V, key?: K, map?: TreeMap<K, V>) => void, thisArg?: Object): void
 
 通过回调函数来遍历实例对象上的元素以及元素对应的下标。
 
@@ -438,8 +440,8 @@ forEach(callbackfn: (value: V, key?: K, map?: TreeMap<K, V>) => void, thisArg?: 
 callbackfn的参数说明：
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | V | 是 | 当前遍历到的元素键值对的值。 |
-| key | K | 是 | 当前遍历到的元素键值对的键。 |
+| value | V | 否 | 当前遍历到的元素键值对的值。 |
+| key | K | 否 | 当前遍历到的元素键值对的键。 |
 | map | TreeMap<K, V> | 否 | 当前调用forEach方法的实例对象。 |
 
 **示例：**
@@ -484,7 +486,7 @@ while(temp != undefined) {
 
 ### [Symbol.iterator]
 
-[Symbol.iterator]\(): IterableIterator&lt;[K, V]&gt;;
+[Symbol.iterator]\(): IterableIterator&lt;[K, V]&gt;
 
 
 返回一个迭代器，迭代器的每一项都是一个 JavaScript 对象，并返回该对象。

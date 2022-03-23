@@ -176,7 +176,7 @@ let result = linkedList.get(2);
 
 ### getLastIndexOf
 
-getLastIndexOf(element: T): number;
+getLastIndexOf(element: T): number
 
 返回指定元素最后一次出现时的下标值，查找失败返回-1。
 
@@ -507,6 +507,7 @@ let result = linkedList.set(2, "b");
 ```
 
 ### convertToArray
+
 convertToArray(): Array&lt;T&gt;
 
 把当前LinkedList实例转换成数组，并返回转换后的数组。
@@ -575,7 +576,7 @@ linkedList.getLast();
 
 ### [Symbol.iterator]
 
-[Symbol.iterator]\(): IterableIterator&lt;T&gt;;
+[Symbol.iterator]\(): IterableIterator&lt;T&gt;
 
 
 返回一个迭代器，迭代器的每一项都是一个 JavaScript 对象，并返回该对象。

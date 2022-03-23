@@ -310,6 +310,7 @@ let result = list.remove(2);
 ```
 
 ### replaceAllElements
+
 replaceAllElements(callbackfn: (value: T, index?: number, list?: List&lt;T&gt;) => T,
 thisArg?: Object): void
 
@@ -347,6 +348,7 @@ list.replaceAllElements((value, index) => {
 ```
 
 ### forEach
+
 forEach(callbackfn: (value: T, index?: number, List?: List&lt;T&gt;) => void,
 thisArg?: Object): void
 
@@ -382,6 +384,7 @@ list.forEach((value, index) => {
 ```
 
 ### sort
+
 sort(comparator: (firstValue: T, secondValue: T) => number): void
 
 对List中的元素进行一个排序操作。
@@ -412,6 +415,7 @@ list.sort(a, (b => b - a));
 ```
 
 ### getSubList
+
 getSubList(fromIndex: number, toIndex: number): List&lt;T&gt;
 
 根据下标截取List中的一段元素，并返回这一段List实例，包括起始值但不包括终止值。
@@ -443,6 +447,7 @@ let result2 = list.subList(2, 6);
 ```
 
 ### clear
+
 clear(): void
 
 清除List中的所有元素，并把length置为0。
@@ -459,6 +464,7 @@ list.clear();
 ```
 
 ### set
+
 set(index: number, element: T): T
 
 将此 List 中指定位置的元素替换为指定元素。
@@ -489,6 +495,7 @@ list.set(2, "b");
 ```
 
 ### convertToArray
+
 convertToArray(): Array&lt;T&gt;
 
 把当前List实例转换成数组，并返回转换后的数组。
@@ -511,6 +518,7 @@ let result = list.convertToArray();
 ```
 
 ### isEmpty
+
 isEmpty(): boolean
 
 判断该List是否为空。
@@ -547,7 +555,7 @@ getFirst(): T
 **示例：**
 
 ```
-let list = new Vector();
+let list = new List();
 list.add(2);
 list.add(4);
 list.add(5);
@@ -580,7 +588,7 @@ let result = list.getLast();
 
 ### [Symbol.iterator]
 
-[Symbol.iterator]\(): IterableIterator&lt;T&gt;;
+[Symbol.iterator]\(): IterableIterator&lt;T&gt;
 
 
 返回一个迭代器，迭代器的每一项都是一个 JavaScript 对象，并返回该对象。
