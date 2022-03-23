@@ -912,15 +912,17 @@ featureAbility.AbilityStartSetting.BOUNDS_KEY
 
 | 名称        | 读写属性 | 类型                 | 必填 | 描述                                                         |
 | ----------- | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| deviceId<sup>8+</sup>     | 只读     | string               | 否   | 表示运行指定Ability的设备ID。                                |
-| bundleName<sup>8+</sup>   | 只读     | string               | 否   | 表示包描述。如果在Want中同时指定了BundleName和AbilityName，则Want可以直接匹配到指定的Ability。 |
-| abilityName<sup>8+</sup>  | 只读     | string               | 否   | 表示待启动的Ability名称。如果在Want中同时指定了BundleName和AbilityName，则Want可以直接匹配到指定的Ability。 |
-| uri<sup>8+</sup>          | 只读     | string               | 否   | 表示Uri描述。如果在Want中指定了Uri，则Want将匹配指定的Uri信息，包括scheme, schemeSpecificPart, authority和path信息。 |
-| type<sup>8+</sup>         | 只读     | string               | 否   | 表示MIME type类型描述，比如："text/plain" 、 "image/*"等。   |
-| flags<sup>8+</sup>        | 只读     | number               | 否   | 表示处理Want的方式。默认传数字，具体参考：[flags说明](#flags说明)。 |
-| action<sup>8+</sup>       | 只读     | string               | 否   | 表示action选项描述。                           |
-| parameters<sup>8+</sup>   | 只读     | {[key: string]: any} | 否   | 表示WantParams描述。                                       |
-| entities<sup>8+</sup>     | 只读     | Array\<string>       | 否   | 表示entities相关描述。                                    |
+| deviceId    | 只读     | string               | 否   | 表示运行指定Ability的设备ID。                                |
+| bundleName   | 只读     | string               | 否   | 表示包描述。如果在Want中同时指定了BundleName和AbilityName，则Want可以直接匹配到指定的Ability。 |
+| abilityName  | 只读     | string               | 否   | 表示待启动的Ability名称。如果在Want中同时指定了BundleName和AbilityName，则Want可以直接匹配到指定的Ability。 |
+| uri          | 只读     | string               | 否   | 表示Uri描述。如果在Want中指定了Uri，则Want将匹配指定的Uri信息，包括scheme, schemeSpecificPart, authority和path信息。 |
+| type         | 只读     | string               | 否   | 表示MIME type类型描述，比如："text/plain" 、 "image/*"等。   |
+| flags        | 只读     | number               | 否   | 表示处理Want的方式。默认传数字，具体参考：[flags说明](#flags说明)。 |
+| action      | 只读     | string               | 否   | 表示action选项描述。                           |
+| parameters   | 只读     | {[key: string]: any} | 否   | 表示WantParams描述。                                       |
+| entities    | 只读     | Array\<string>       | 否   | 表示entities相关描述。                                    |
+| extensionAbilityName<sup>9+<sup>    | 只读     | string       | 否   | Want中扩展能力名称的描述。                                    |
+| extensionAbilityType<sup>9+<sup>     | 只读     | number       | 否   | 需求中扩展能力类型的描述。                                    |
 
 ## flags说明
 
