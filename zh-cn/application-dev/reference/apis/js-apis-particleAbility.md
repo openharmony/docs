@@ -58,7 +58,7 @@ particleAbility.startAbility(
 
 ## particleAbility.startAbility
 
-startAbility(parameter: StartAbilityParameter): Promise<void>;
+startAbility(parameter: StartAbilityParameter): Promise\<void>;
 
 使用此方法启动指定的particleAbility（Promise形式）。
 
