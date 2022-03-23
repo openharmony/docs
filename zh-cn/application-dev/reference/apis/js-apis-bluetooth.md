@@ -2,7 +2,7 @@
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> 
+>
 > 蓝牙模块提供了基础的传统蓝牙能力以及BLE的扫描、广播等功能。
 
 
@@ -38,8 +38,8 @@ enableBluetooth(): boolean
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
+| 类型    | 说明                                    |
+| ------- | --------------------------------------- |
 | boolean | 打开蓝牙，成功返回true，否则返回false。 |
 
 **示例：**
@@ -61,8 +61,8 @@ disableBluetooth(): boolean
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
+| 类型    | 说明                                    |
+| ------- | --------------------------------------- |
 | boolean | 关闭蓝牙，成功返回true，否则返回false。 |
 
 **示例：**
@@ -84,8 +84,8 @@ getLocalName(): string
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
+| 类型   | 说明               |
+| ------ | ------------------ |
 | string | 蓝牙本地设备名称。 |
 
 **示例：**
@@ -107,8 +107,8 @@ getState(): BluetoothState
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
+| 类型                              | 说明               |
+| --------------------------------- | ------------------ |
 | [BluetoothState](#bluetoothstate) | 表示蓝牙开关状态。 |
 
 **示例：**
@@ -130,8 +130,8 @@ getBtConnectionState(): ProfileConnectionState
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
+| 类型                                              | 说明                            |
+| ------------------------------------------------- | ------------------------------- |
 | [ProfileConnectionState](#profileconnectionstate) | 表示蓝牙设备的Profile连接状态。 |
 
 **示例：**
@@ -153,14 +153,14 @@ setLocalName(name: string): boolean
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| name | string | 是 | 要设置的蓝牙名称，最大长度为248。 |
+| 参数名 | 类型   | 必填 | 说明                                    |
+| ------ | ------ | ---- | --------------------------------------- |
+| name   | string | 是   | 要设置的蓝牙名称，最大长度为248字节数。 |
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
+| 类型    | 说明                                                |
+| ------- | --------------------------------------------------- |
 | boolean | 设置蓝牙本地设备名称，成功返回true，否则返回false。 |
 
 **示例：**
@@ -182,14 +182,14 @@ pairDevice(deviceId: string): boolean
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| deviceId | string | 是 | 表示配对的远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
+| 参数名   | 类型   | 必填 | 说明                                                |
+| -------- | ------ | ---- | --------------------------------------------------- |
+| deviceId | string | 是   | 表示配对的远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
+| 类型    | 说明                                        |
+| ------- | ------------------------------------------- |
 | boolean | 发起蓝牙配对，成功返回true，否则返回false。 |
 
 **示例：**
@@ -212,14 +212,14 @@ getProfileConnState(profileId: ProfileId): ProfileConnectionState
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| ProfileId | profileId | 是 | 表示profile的枚举值，例如：PROFILE_A2DP_SOURCE。 |
+| 参数名    | 类型      | 必填 | 说明                                             |
+| --------- | --------- | ---- | ------------------------------------------------ |
+| ProfileId | profileId | 是   | 表示profile的枚举值，例如：PROFILE_A2DP_SOURCE。 |
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
+| 类型                                              | 说明                |
+| ------------------------------------------------- | ------------------- |
 | [ProfileConnectionState](#ProfileConnectionState) | profile的连接状态。 |
 
 **示例：**
@@ -241,14 +241,14 @@ cancelPairedDevice(deviceId: string): boolean
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| deviceId | string | 是 | 表示要删除的远程设备的地址，例如："XX:XX:XX:XX:XX:XX"。 |
+| 参数名   | 类型   | 必填 | 说明                                                    |
+| -------- | ------ | ---- | ------------------------------------------------------- |
+| deviceId | string | 是   | 表示要删除的远程设备的地址，例如："XX:XX:XX:XX:XX:XX"。 |
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
+| 类型    | 说明                                        |
+| ------- | ------------------------------------------- |
 | boolean | 启动取消配对，成功返回true，否则返回false。 |
 
 **示例：**
@@ -270,14 +270,14 @@ getRemoteDeviceName(deviceId: string): string
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| deviceId | string | 是 | 表示远程设备的地址，例如："XX:XX:XX:XX:XX:XX"。 |
+| 参数名   | 类型   | 必填 | 说明                                            |
+| -------- | ------ | ---- | ----------------------------------------------- |
+| deviceId | string | 是   | 表示远程设备的地址，例如："XX:XX:XX:XX:XX:XX"。 |
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
+| 类型   | 说明                       |
+| ------ | -------------------------- |
 | string | 以字符串格式返回设备名称。 |
 
 **示例：**
@@ -299,14 +299,14 @@ getRemoteDeviceClass(deviceId: string): DeviceClass
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| deviceId | string | 是 | 表示远程设备的地址，例如："XX:XX:XX:XX:XX:XX"。 |
+| 参数名   | 类型   | 必填 | 说明                                            |
+| -------- | ------ | ---- | ----------------------------------------------- |
+| deviceId | string | 是   | 表示远程设备的地址，例如："XX:XX:XX:XX:XX:XX"。 |
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
+| 类型                        | 说明             |
+| --------------------------- | ---------------- |
 | [DeviceClass](#deviceclass) | 远程设备的类别。 |
 
 **示例：**
@@ -328,8 +328,8 @@ getPairedDevices(): Array&lt;string&gt;
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
+| 类型                | 说明                       |
+| ------------------- | -------------------------- |
 | Array&lt;string&gt; | 已配对蓝牙设备的地址列表。 |
 
 **示例：**
@@ -351,15 +351,15 @@ setBluetoothScanMode(mode: ScanMode, duration: number): boolean
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| mode | [ScanMode](#scanmode) | 是 | 蓝牙扫描模式。 |
-| duration | number | 是 | 设备可被发现的持续时间，单位为秒；设置为0则持续可发现。 |
+| 参数名   | 类型                  | 必填 | 说明                                                    |
+| -------- | --------------------- | ---- | ------------------------------------------------------- |
+| mode     | [ScanMode](#scanmode) | 是   | 蓝牙扫描模式。                                          |
+| duration | number                | 是   | 设备可被发现的持续时间，单位为秒；设置为0则持续可发现。 |
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
+| 类型    | 说明                                        |
+| ------- | ------------------------------------------- |
 | boolean | 设置蓝牙扫描，成功返回true，否则返回false。 |
 
 **示例：**
@@ -382,8 +382,8 @@ getBluetoothScanMode(): ScanMode
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
+| 类型                  | 说明           |
+| --------------------- | -------------- |
 | [ScanMode](#scanmode) | 蓝牙扫描模式。 |
 
 **示例：**
@@ -405,8 +405,8 @@ startBluetoothDiscovery(): boolean
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
+| 类型    | 说明                                        |
+| ------- | ------------------------------------------- |
 | boolean | 开启蓝牙扫描，成功返回true，否则返回false。 |
 
 **示例：**
@@ -433,8 +433,8 @@ stopBluetoothDiscovery(): boolean
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
+| 类型    | 说明                                        |
+| ------- | ------------------------------------------- |
 | boolean | 关闭蓝牙扫描，成功返回true，否则返回false。 |
 
 **示例：**
@@ -456,15 +456,15 @@ setDevicePairingConfirmation(device: string, accept: boolean): boolean
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| device | string | 是 | 表示远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
-| accept | boolean | 是 | 接受配对请求设置为true，否则设置为false。 |
+| 参数名 | 类型    | 必填 | 说明                                          |
+| ------ | ------- | ---- | --------------------------------------------- |
+| device | string  | 是   | 表示远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
+| accept | boolean | 是   | 接受配对请求设置为true，否则设置为false。     |
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
+| 类型    | 说明                                            |
+| ------- | ----------------------------------------------- |
 | boolean | 设置设备配对确认，成功返回true，否则返回false。 |
 
 **示例：**
@@ -491,10 +491,10 @@ on(type: "bluetoothDeviceFind", callback: Callback&lt;Array&lt;string&gt;&gt;): 
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| type | string | 是 | 填写"bluetoothDeviceFind"字符串，表示蓝牙设备发现事件。 |
-| callback | Callback&lt;Array&lt;string&gt;&gt; | 是 | 表示回调函数的入参，发现的设备集合。回调函数由用户创建通过该接口注册。 |
+| 参数名   | 类型                                | 必填 | 说明                                                         |
+| -------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                              | 是   | 填写"bluetoothDeviceFind"字符串，表示蓝牙设备发现事件。      |
+| callback | Callback&lt;Array&lt;string&gt;&gt; | 是   | 表示回调函数的入参，发现的设备集合。回调函数由用户创建通过该接口注册。 |
 
 **返回值：**
 
@@ -522,10 +522,10 @@ off(type: "bluetoothDeviceFind", callback?: Callback&lt;Array&lt;string&gt;&gt;)
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| type | string | 是 | 填写"bluetoothDeviceFind"字符串，表示蓝牙设备发现事件。 |
-| callback | Callback&lt;Array&lt;string&gt;&gt; | 否 | 表示取消订阅蓝牙设备发现事件上报。不填该参数则取消订阅该type对应的所有回调。 |
+| 参数名   | 类型                                | 必填 | 说明                                                         |
+| -------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                              | 是   | 填写"bluetoothDeviceFind"字符串，表示蓝牙设备发现事件。      |
+| callback | Callback&lt;Array&lt;string&gt;&gt; | 否   | 表示取消订阅蓝牙设备发现事件上报。不填该参数则取消订阅该type对应的所有回调。 |
 
 **返回值：**
 
@@ -554,10 +554,10 @@ on(type: "pinRequired", callback: Callback&lt;PinRequiredParam&gt;): void
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| type | string | 是 | 填写"pinRequired"字符串，表示配对请求事件。 |
-| callback | Callback&lt;[PinRequiredParam](#pinrequiredparam)&gt; | 是 | 表示回调函数的入参，配对请求。回调函数由用户创建通过该接口注册。 |
+| 参数名   | 类型                                                  | 必填 | 说明                                                         |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                | 是   | 填写"pinRequired"字符串，表示配对请求事件。                  |
+| callback | Callback&lt;[PinRequiredParam](#pinrequiredparam)&gt; | 是   | 表示回调函数的入参，配对请求。回调函数由用户创建通过该接口注册。 |
 
 **返回值：**
 
@@ -585,10 +585,10 @@ off(type: "pinRequired", callback?: Callback&lt;PinRequiredParam&gt;): void
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| type | string | 是 | 填写"pinRequired"字符串，表示配对请求事件。 |
-| callback | Callback&lt;[PinRequiredParam](#pinrequiredparam)&gt; | 否 | 表示取消订阅蓝牙配对请求事件上报，入参为配对请求参数。不填该参数则取消订阅该type对应的所有回调。 |
+| 参数名   | 类型                                                  | 必填 | 说明                                                         |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                | 是   | 填写"pinRequired"字符串，表示配对请求事件。                  |
+| callback | Callback&lt;[PinRequiredParam](#pinrequiredparam)&gt; | 否   | 表示取消订阅蓝牙配对请求事件上报，入参为配对请求参数。不填该参数则取消订阅该type对应的所有回调。 |
 
 **返回值：**
 
@@ -617,10 +617,10 @@ on(type: "bondStateChange", callback: Callback&lt;BondStateParam&gt;): void
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| type | string | 是 | 填写"bondStateChange"字符串，表示蓝牙配对状态改变事件。 |
-| callback | Callback&lt;[BondStateParam](#bondstate)&gt; | 是 | 表示回调函数的入参，配对的状态。回调函数由用户创建通过该接口注册。 |
+| 参数名   | 类型                                         | 必填 | 说明                                                         |
+| -------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                       | 是   | 填写"bondStateChange"字符串，表示蓝牙配对状态改变事件。      |
+| callback | Callback&lt;[BondStateParam](#bondstate)&gt; | 是   | 表示回调函数的入参，配对的状态。回调函数由用户创建通过该接口注册。 |
 
 **返回值：**
 
@@ -648,10 +648,10 @@ off(type: "bondStateChange", callback?: Callback&lt;BondStateParam&gt;): void
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| type | string | 是 | 填写"bondStateChange"字符串，表示蓝牙配对状态改变事件。 |
-| callback | Callback&lt;[BondStateParam](#bondstate)&gt; | 否 | 表示取消订阅蓝牙配对状态改变事件上报。不填该参数则取消订阅该type对应的所有回调。 |
+| 参数名   | 类型                                         | 必填 | 说明                                                         |
+| -------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                       | 是   | 填写"bondStateChange"字符串，表示蓝牙配对状态改变事件。      |
+| callback | Callback&lt;[BondStateParam](#bondstate)&gt; | 否   | 表示取消订阅蓝牙配对状态改变事件上报。不填该参数则取消订阅该type对应的所有回调。 |
 
 **返回值：**
 
@@ -680,10 +680,10 @@ on(type: "stateChange", callback: Callback&lt;BluetoothState&gt;): void
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| type | string | 是 | 填写"stateChange"字符串，表示蓝牙状态改变事件。 |
-| callback | Callback&lt;[BluetoothState](#bluetoothstate)&gt; | 是 | 表示回调函数的入参，蓝牙状态。回调函数由用户创建通过该接口注册。 |
+| 参数名   | 类型                                              | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                            | 是   | 填写"stateChange"字符串，表示蓝牙状态改变事件。              |
+| callback | Callback&lt;[BluetoothState](#bluetoothstate)&gt; | 是   | 表示回调函数的入参，蓝牙状态。回调函数由用户创建通过该接口注册。 |
 
 **返回值：**
 
@@ -711,10 +711,10 @@ off(type: "stateChange", callback?: Callback&lt;BluetoothState&gt;): void
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| type | string | 是 | 填写"stateChange"字符串，表示蓝牙状态改变事件。 |
-| callback | Callback&lt;[BluetoothState](#bluetoothstate)&gt; | 否 | 表示取消订阅蓝牙状态改变事件上报。不填该参数则取消订阅该type对应的所有回调。 |
+| 参数名   | 类型                                              | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                            | 是   | 填写"stateChange"字符串，表示蓝牙状态改变事件。              |
+| callback | Callback&lt;[BluetoothState](#bluetoothstate)&gt; | 否   | 表示取消订阅蓝牙状态改变事件上报。不填该参数则取消订阅该type对应的所有回调。 |
 
 **返回值：**
 
@@ -743,11 +743,11 @@ sppListen(name: string, option: SppOption, callback: AsyncCallback&lt;number&gt;
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| name | string | 是 | 服务的名称。 |
-| option | [SppOption](#sppoption) | 是 | spp监听配置参数。 |
-| callback | AsyncCallback&lt;number&gt; | 是 | 表示回调函数的入参，服务端Socket的id。 |
+| 参数名   | 类型                        | 必填 | 说明                                   |
+| -------- | --------------------------- | ---- | -------------------------------------- |
+| name     | string                      | 是   | 服务的名称。                           |
+| option   | [SppOption](#sppoption)     | 是   | spp监听配置参数。                      |
+| callback | AsyncCallback&lt;number&gt; | 是   | 表示回调函数的入参，服务端Socket的id。 |
 
 **示例：**
 
@@ -776,10 +776,10 @@ sppAccept(serverSocket: number, callback: AsyncCallback&lt;number&gt;): void
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| serverSocket | number | 是 | 服务端socket的id。 |
-| callback | AsyncCallback&lt;number&gt; | 是 | 表示回调函数的入参，客户端socket的id。 |
+| 参数名       | 类型                        | 必填 | 说明                                   |
+| ------------ | --------------------------- | ---- | -------------------------------------- |
+| serverSocket | number                      | 是   | 服务端socket的id。                     |
+| callback     | AsyncCallback&lt;number&gt; | 是   | 表示回调函数的入参，客户端socket的id。 |
 
 **示例：**
 
@@ -809,11 +809,11 @@ sppConnect(device: string, option: SppOption, callback: AsyncCallback&lt;number&
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| device | string | 是 | 对端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
-| option | [SppOption](#sppoption) | 是 | spp客户端连接配置参数。 |
-| callback | AsyncCallback&lt;number&gt; | 是 | 表示回调函数的入参，客户端socket的id。 |
+| 参数名   | 类型                        | 必填 | 说明                                      |
+| -------- | --------------------------- | ---- | ----------------------------------------- |
+| device   | string                      | 是   | 对端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
+| option   | [SppOption](#sppoption)     | 是   | spp客户端连接配置参数。                   |
+| callback | AsyncCallback&lt;number&gt; | 是   | 表示回调函数的入参，客户端socket的id。    |
 
 **示例：**
 
@@ -842,9 +842,9 @@ sppCloseServerSocket(socket: number): void
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| socket | number | 是 | 服务端监听socket的id。 |
+| 参数名 | 类型   | 必填 | 说明                   |
+| ------ | ------ | ---- | ---------------------- |
+| socket | number | 是   | 服务端监听socket的id。 |
 
 **示例：**
 
@@ -863,10 +863,10 @@ sppCloseClientSocket(socket: number): void
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| 参数名 | 类型 | 必填 | 说明 |
-| socket | number | 是 | 客户端socket的id。 |
+| 参数名 | 类型   | 必填 | 说明               |
+| ------ | ------ | ---- | ------------------ |
+| 参数名 | 类型   | 必填 | 说明               |
+| socket | number | 是   | 客户端socket的id。 |
 
 **示例：**
 
@@ -885,16 +885,15 @@ sppWrite(clientSocket: number, data: ArrayBuffer): boolean
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| clientSocket | number | 是 | 客户端socket的id。 |
-| data | ArrayBuffer | 是 | 写入的数据。 |
+| 参数名       | 类型        | 必填 | 说明               |
+| ------------ | ----------- | ---- | ------------------ |
+| clientSocket | number      | 是   | 客户端socket的id。 |
+| data         | ArrayBuffer | 是   | 写入的数据。       |
 
 **返回值：**
 
-| | |
-| -------- | -------- |
-| 类型 | 说明 |
+| 类型    | 说明                                      |
+| ------- | ----------------------------------------- |
 | boolean | 写数据操作，成功返回true，否则返回false。 |
 
 **示例：**
@@ -922,11 +921,11 @@ on(type: "sppRead", clientSocket: number, callback: Callback&lt;ArrayBuffer&gt;)
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| type | string | 是 | 填写"sppRead"字符串，表示spp读请求事件。 |
-| clientSocket | number | 是 | 客户端socket的id。 |
-| callback | Callback&lt;ArrayBuffer&gt; | 是 | 表示回调函数的入参，读取到的数据。 |
+| 参数名       | 类型                        | 必填 | 说明                                     |
+| ------------ | --------------------------- | ---- | ---------------------------------------- |
+| type         | string                      | 是   | 填写"sppRead"字符串，表示spp读请求事件。 |
+| clientSocket | number                      | 是   | 客户端socket的id。                       |
+| callback     | Callback&lt;ArrayBuffer&gt; | 是   | 表示回调函数的入参，读取到的数据。       |
 
 **返回值：**
 
@@ -953,11 +952,11 @@ off(type: "sppRead", clientSocket: number, callback?: Callback&lt;ArrayBuffer&gt
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| type | string | 是 | 填写"sppRead"字符串，表示spp读请求事件。 |
-| clientSocket | number | 是 | 客户端Socket的id。 |
-| callback | Callback&lt;ArrayBuffer&gt; | 否 | 表示取消订阅spp读请求事件上报。不填该参数则取消订阅该type对应的所有回调。 |
+| 参数名       | 类型                        | 必填 | 说明                                                         |
+| ------------ | --------------------------- | ---- | ------------------------------------------------------------ |
+| type         | string                      | 是   | 填写"sppRead"字符串，表示spp读请求事件。                     |
+| clientSocket | number                      | 是   | 客户端Socket的id。                                           |
+| callback     | Callback&lt;ArrayBuffer&gt; | 否   | 表示取消订阅spp读请求事件上报。不填该参数则取消订阅该type对应的所有回调。 |
 
 **返回值：**
 
@@ -980,15 +979,14 @@ getProfile(profileId: ProfileId): A2dpSourceProfile | HandsFreeAudioGatewayProfi
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| ProfileId | profileId | 是 | 表示profile的枚举值，例如：PROFILE_A2DP_SOURCE。 |
+| 参数名    | 类型      | 必填 | 说明                                             |
+| --------- | --------- | ---- | ------------------------------------------------ |
+| ProfileId | profileId | 是   | 表示profile的枚举值，例如：PROFILE_A2DP_SOURCE。 |
 
 **返回值：**
 
-| | |
-| -------- | -------- |
-| 类型 | 说明 |
+| 类型                                                | 说明                                                         |
+| --------------------------------------------------- | ------------------------------------------------------------ |
 | A2dpSourceProfile 或者 HandsFreeAudioGatewayProfile | 对应的profile的对象实例，当前支持A2dpSourceProfile， HandsFreeAudioGatewayProfile。 |
 
 **示例：**
@@ -1010,8 +1008,8 @@ createGattServer(): GattServer
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
+| 类型                      | 说明                                                         |
+| ------------------------- | ------------------------------------------------------------ |
 | [GattServer](#gattserver) | server端类，使用server端方法之前需要创建该类的实例进行操作。 |
 
 **示例：**
@@ -1031,14 +1029,14 @@ createGattClientDevice(deviceId: string): GattClientDevice
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| deviceId | string | 是 | 对端设备地址，&nbsp;例如："XX:XX:XX:XX:XX:XX"。 |
+| 参数名   | 类型   | 必填 | 说明                                            |
+| -------- | ------ | ---- | ----------------------------------------------- |
+| deviceId | string | 是   | 对端设备地址，&nbsp;例如："XX:XX:XX:XX:XX:XX"。 |
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
+| 类型                                  | 说明                                                         |
+| ------------------------------------- | ------------------------------------------------------------ |
 | [GattClientDevice](#gattclientdevice) | client端类，使用client端方法之前需要创建该类的实例进行操作。 |
 
 **示例：**
@@ -1060,8 +1058,8 @@ getConnectedBLEDevices(): Array&lt;string&gt;
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
+| 类型                | 说明                                |
+| ------------------- | ----------------------------------- |
 | Array&lt;string&gt; | 返回和当前设备连接BLE设备地址集合。 |
 
 **示例：**
@@ -1083,10 +1081,10 @@ startBLEScan(filters: Array&lt;ScanFilter&gt;, options?: ScanOptions): void
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| filters | Array&lt;[ScanFilter](#scanfilter)&gt; | 是 | 表示扫描结果过滤策略集合，如果不使用过滤的方式，该参数设置为null。 |
-| options | [ScanOptions](#scanoptions) | 否 | 表示扫描的参数配置，可选参数。 |
+| 参数名  | 类型                                   | 必填 | 说明                                                         |
+| ------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
+| filters | Array&lt;[ScanFilter](#scanfilter)&gt; | 是   | 表示扫描结果过滤策略集合，如果不使用过滤的方式，该参数设置为null。 |
+| options | [ScanOptions](#scanoptions)            | 否   | 表示扫描的参数配置，可选参数。                               |
 
 **返回值：**
 
@@ -1147,10 +1145,10 @@ on(type: "BLEDeviceFind", callback: Callback&lt;Array&lt;ScanResult&gt;&gt;): vo
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| type | string | 是 | 填写"BLEDeviceFind"字符串，表示BLE设备发现事件。 |
-| callback | Callback&lt;Array&lt;[ScanResult](#scanresult)&gt;&gt; | 是 | 表示回调函数的入参，发现的设备集合。回调函数由用户创建通过该接口注册。 |
+| 参数名   | 类型                                                   | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                 | 是   | 填写"BLEDeviceFind"字符串，表示BLE设备发现事件。             |
+| callback | Callback&lt;Array&lt;[ScanResult](#scanresult)&gt;&gt; | 是   | 表示回调函数的入参，发现的设备集合。回调函数由用户创建通过该接口注册。 |
 
 **返回值：**
 
@@ -1178,10 +1176,10 @@ off(type: "BLEDeviceFind", callback?: Callback&lt;Array&lt;ScanResult&gt;&gt;): 
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| type | string | 是 | 填写"BLEDeviceFind"字符串，表示BLE设备发现事件。 |
-| callback | Callback&lt;Array&lt;[ScanResult](#scanresult)&gt;&gt; | 否 | 表示取消订阅BLE设备发现事件上报。不填该参数则取消订阅该type对应的所有回调。 |
+| 参数名   | 类型                                                   | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                 | 是   | 填写"BLEDeviceFind"字符串，表示BLE设备发现事件。             |
+| callback | Callback&lt;Array&lt;[ScanResult](#scanresult)&gt;&gt; | 否   | 表示取消订阅BLE设备发现事件上报。不填该参数则取消订阅该type对应的所有回调。 |
 
 **返回值：**
 
@@ -1219,9 +1217,9 @@ getConnectionDevices(): Array&lt;string&gt;
 
 **返回值：**
 
-| | |
-| -------- | -------- |
-| 类型 | 说明 |
+|                     |                            |
+| ------------------- | -------------------------- |
+| 类型                | 说明                       |
 | Array&lt;string&gt; | 返回已连接设备的地址列表。 |
 
 
@@ -1237,16 +1235,16 @@ getDeviceState(device: string): ProfileConnectionState
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| device | string | 是 | 远端设备地址。 |
+| 参数名 | 类型   | 必填 | 说明           |
+| ------ | ------ | ---- | -------------- |
+| device | string | 是   | 远端设备地址。 |
 |
 
 **返回值：**
 
-| | |
-| -------- | -------- |
-| 类型 | 说明 |
+|                                                   |                         |
+| ------------------------------------------------- | ----------------------- |
+| 类型                                              | 说明                    |
 | [ProfileConnectionState](#profileconnectionState) | 返回profile的连接状态。 |
 
 
@@ -1267,16 +1265,16 @@ connect(device: string): boolean
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| device | string | 是 | 远端设备地址。 |
+| 参数名 | 类型   | 必填 | 说明           |
+| ------ | ------ | ---- | -------------- |
+| device | string | 是   | 远端设备地址。 |
 |
 
 **返回值：**
 
-| | |
-| -------- | -------- |
-| 类型 | 说明 |
+|         |                               |
+| ------- | ----------------------------- |
+| 类型    | 说明                          |
 | boolean | 成功返回true，失败返回false。 |
 
 **示例：**
@@ -1299,16 +1297,16 @@ disconnect(device: string): boolean
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| device | string | 是 | 远端设备地址。 |
+| 参数名 | 类型   | 必填 | 说明           |
+| ------ | ------ | ---- | -------------- |
+| device | string | 是   | 远端设备地址。 |
 |
 
 **返回值：**
 
-| | |
-| -------- | -------- |
-| 类型 | 说明 |
+|         |                               |
+| ------- | ----------------------------- |
+| 类型    | 说明                          |
 | boolean | 成功返回true，失败返回false。 |
 
 **示例：**
@@ -1329,10 +1327,10 @@ on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#Stat
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| type | string | 是 | 填写"connectionStateChange"字符串，表示连接状态变化事件。 |
-| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | 是 | 表示回调函数的入参。 |
+| 参数名   | 类型                                                  | 必填 | 说明                                                      |
+| -------- | ----------------------------------------------------- | ---- | --------------------------------------------------------- |
+| type     | string                                                | 是   | 填写"connectionStateChange"字符串，表示连接状态变化事件。 |
+| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | 是   | 表示回调函数的入参。                                      |
 
 **返回值：**
 
@@ -1358,10 +1356,10 @@ off(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#Sta
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| type | string | 是 | 填写"connectionStateChange"字符串，表示连接状态变化事件。 |
-| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | 是 | 表示回调函数的入参。 |
+| 参数名   | 类型                                                  | 必填 | 说明                                                      |
+| -------- | ----------------------------------------------------- | ---- | --------------------------------------------------------- |
+| type     | string                                                | 是   | 填写"connectionStateChange"字符串，表示连接状态变化事件。 |
+| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | 是   | 表示回调函数的入参。                                      |
 
 **返回值：**
 
@@ -1387,15 +1385,15 @@ getPlayingState(device: string): PlayingState
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| device | string | 是 | 远端设备地址。 |
+| 参数名 | 类型   | 必填 | 说明           |
+| ------ | ------ | ---- | -------------- |
+| device | string | 是   | 远端设备地址。 |
 
 **返回值：**
 
-| | |
-| -------- | -------- |
-| 类型 | 说明 |
+|                               |                      |
+| ----------------------------- | -------------------- |
+| 类型                          | 说明                 |
 | [PlayingState](#PlayingState) | 远端设备的播放状态。 |
 
 **示例：**
@@ -1423,16 +1421,16 @@ connect(device: string): boolean
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| device | string | 是 | 远端设备地址。 |
+| 参数名 | 类型   | 必填 | 说明           |
+| ------ | ------ | ---- | -------------- |
+| device | string | 是   | 远端设备地址。 |
 |
 
 **返回值：**
 
-| | |
-| -------- | -------- |
-| 类型 | 说明 |
+|         |                               |
+| ------- | ----------------------------- |
+| 类型    | 说明                          |
 | boolean | 成功返回true，失败返回false。 |
 
 **示例：**
@@ -1447,7 +1445,7 @@ boolean ret = hfpAg.connect('XX:XX:XX:XX:XX:XX');
 
 disconnect(device: string): boolean
 
-连接设备的HFP服务。
+断开连接设备的HFP服务。
 
 **需要权限**：ohos.permission.DISCOVER_BLUETOOTH
 
@@ -1455,16 +1453,15 @@ disconnect(device: string): boolean
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| device | string | 是 | 远端设备地址。 |
+| 参数名 | 类型   | 必填 | 说明           |
+| ------ | ------ | ---- | -------------- |
+| device | string | 是   | 远端设备地址。 |
 |
 
 **返回值：**
 
-| | |
-| -------- | -------- |
-| 类型 | 说明 |
+| 类型    | 说明                          |
+| ------- | ----------------------------- |
 | boolean | 成功返回true，失败返回false。 |
 
 **示例：**
@@ -1485,10 +1482,10 @@ on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#Stat
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| type | string | 是 | 填写"connectionStateChange"字符串，表示连接状态变化事件。 |
-| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | 是 | 表示回调函数的入参。 |
+| 参数名   | 类型                                                  | 必填 | 说明                                                      |
+| -------- | ----------------------------------------------------- | ---- | --------------------------------------------------------- |
+| type     | string                                                | 是   | 填写"connectionStateChange"字符串，表示连接状态变化事件。 |
+| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | 是   | 表示回调函数的入参。                                      |
 
 **返回值：**
 
@@ -1514,10 +1511,10 @@ off(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#Sta
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| type | string | 是 | 填写"connectionStateChange"字符串，表示连接状态变化事件。 |
-| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | 是 | 表示回调函数的入参。 |
+| 参数名   | 类型                                                  | 必填 | 说明                                                      |
+| -------- | ----------------------------------------------------- | ---- | --------------------------------------------------------- |
+| type     | string                                                | 是   | 填写"connectionStateChange"字符串，表示连接状态变化事件。 |
+| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | 是   | 表示回调函数的入参。                                      |
 
 **返回值：**
 
@@ -1550,11 +1547,11 @@ startAdvertising(setting: AdvertiseSetting, advData: AdvertiseData, advResponse?
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| setting | [AdvertiseSetting](#advertisesetting) | 是 | BLE广播的相关参数。 |
-| advData | [AdvertiseData](#advertisedata) | 是 | BLE广播包内容。 |
-| advResponse | [AdvertiseData](#advertisedata) | 否 | BLE回复扫描请求回复响应。 |
+| 参数名      | 类型                                  | 必填 | 说明                      |
+| ----------- | ------------------------------------- | ---- | ------------------------- |
+| setting     | [AdvertiseSetting](#advertisesetting) | 是   | BLE广播的相关参数。       |
+| advData     | [AdvertiseData](#advertisedata)       | 是   | BLE广播包内容。           |
+| advResponse | [AdvertiseData](#advertisedata)       | 否   | BLE回复扫描请求回复响应。 |
 
 **返回值：**
 
@@ -1639,14 +1636,14 @@ server端添加服务。
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| service | [GattService](#gattservice) | 是 | 服务端的service数据。BLE广播的相关参数 |
+| 参数名  | 类型                        | 必填 | 说明                                   |
+| ------- | --------------------------- | ---- | -------------------------------------- |
+| service | [GattService](#gattservice) | 是   | 服务端的service数据。BLE广播的相关参数 |
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
+| 类型    | 说明                                        |
+| ------- | ------------------------------------------- |
 | boolean | 添加服务操作，成功返回true，否则返回false。 |
 
 **示例：**
@@ -1698,15 +1695,15 @@ removeService(serviceUuid: string): boolean
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| serviceUuid | string | 是 | service的UUID，例如“00001810-0000-1000-8000-00805F9B34FB”。 |
+| 参数名      | 类型   | 必填 | 说明                                                        |
+| ----------- | ------ | ---- | ----------------------------------------------------------- |
+| serviceUuid | string | 是   | service的UUID，例如“00001810-0000-1000-8000-00805F9B34FB”。 |
 
 **返回值：**
 
-| | |
-| -------- | -------- |
-| 类型 | 说明 |
+|         |                                             |
+| ------- | ------------------------------------------- |
+| 类型    | 说明                                        |
 | boolean | 删除服务操作，成功返回true，否则返回false。 |
 
 **示例：**
@@ -1747,16 +1744,16 @@ server端特征值发生变化时，主动通知已连接的client设备。
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| deviceId | string | 是 | 接收通知的client端设备地址，例如“XX:XX:XX:XX:XX:XX”。 |
-| notifyCharacteristic | [NotifyCharacteristic](#notifycharacteristic) | 是 | 通知的特征值数据。 |
+| 参数名               | 类型                                          | 必填 | 说明                                                  |
+| -------------------- | --------------------------------------------- | ---- | ----------------------------------------------------- |
+| deviceId             | string                                        | 是   | 接收通知的client端设备地址，例如“XX:XX:XX:XX:XX:XX”。 |
+| notifyCharacteristic | [NotifyCharacteristic](#notifycharacteristic) | 是   | 通知的特征值数据。                                    |
 
 **返回值：**
 
-| | |
-| -------- | -------- |
-| 类型 | 说明 |
+|         |                                         |
+| ------- | --------------------------------------- |
+| 类型    | 说明                                    |
 | boolean | 通知操作，成功返回true，否则返回false。 |
 
 **示例：**
@@ -1781,15 +1778,15 @@ server端回复client端的读写请求。
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| serverResponse | [ServerResponse](#serverresponse) | 是 | server端回复的响应数据。 |
+| 参数名         | 类型                              | 必填 | 说明                     |
+| -------------- | --------------------------------- | ---- | ------------------------ |
+| serverResponse | [ServerResponse](#serverresponse) | 是   | server端回复的响应数据。 |
 
 **返回值：**
 
-| | |
-| -------- | -------- |
-| 类型 | 说明 |
+|         |                                             |
+| ------- | ------------------------------------------- |
+| 类型    | 说明                                        |
 | boolean | 回复响应操作，成功返回true，否则返回false。 |
 
 **示例：**
@@ -1829,10 +1826,10 @@ server端订阅特征值读请求事件。
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| type | string | 是 | 填写"characteristicRead"字符串，表示特征值读请求事件。 |
-| callback | Callback&lt;[CharacteristicReadReq](#characteristicreadreq)&gt; | 是 | 表示回调函数的入参，client端发送的读请求数据。 |
+| 参数名   | 类型                                                         | 必填 | 说明                                                   |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------ |
+| type     | string                                                       | 是   | 填写"characteristicRead"字符串，表示特征值读请求事件。 |
+| callback | Callback&lt;[CharacteristicReadReq](#characteristicreadreq)&gt; | 是   | 表示回调函数的入参，client端发送的读请求数据。         |
 
 **返回值：**
 
@@ -1877,10 +1874,10 @@ server端取消订阅特征值读请求事件。
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| type | string | 是 | 填写"characteristicRead"字符串，表示特征值读请求事件。 |
-| callback | Callback&lt;[CharacteristicReadReq](#characteristicreadreq)&gt; | 否 | 表示取消订阅特征值读请求事件上报。不填该参数则取消订阅该type对应的所有回调。 |
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 填写"characteristicRead"字符串，表示特征值读请求事件。       |
+| callback | Callback&lt;[CharacteristicReadReq](#characteristicreadreq)&gt; | 否   | 表示取消订阅特征值读请求事件上报。不填该参数则取消订阅该type对应的所有回调。 |
 
 **返回值：**
 
@@ -1906,10 +1903,10 @@ server端订阅特征值写请求事件。
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| type | string | 是 | 填写"characteristicWrite"字符串，表示特征值写请求事件。 |
-| callback | Callback&lt;[DescriptorWriteReq](#descriptorwritereq)&gt; | 是 | 表示回调函数的入参，client端发送的写请求数据。 |
+| 参数名   | 类型                                                      | 必填 | 说明                                                    |
+| -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------- |
+| type     | string                                                    | 是   | 填写"characteristicWrite"字符串，表示特征值写请求事件。 |
+| callback | Callback&lt;[DescriptorWriteReq](#descriptorwritereq)&gt; | 是   | 表示回调函数的入参，client端发送的写请求数据。          |
 
 **返回值：**
 
@@ -1957,10 +1954,10 @@ server端取消订阅特征值写请求事件。
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| type | string | 是 | 填写"characteristicWrite"字符串，表示特征值写请求事件。 |
-| callback | Callback&lt;[CharacteristicWriteReq](#characteristicwritereq)&gt; | 否 | 表示取消订阅特征值写请求事件上报。不填该参数则取消订阅该type对应的所有回调。 |
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 填写"characteristicWrite"字符串，表示特征值写请求事件。      |
+| callback | Callback&lt;[CharacteristicWriteReq](#characteristicwritereq)&gt; | 否   | 表示取消订阅特征值写请求事件上报。不填该参数则取消订阅该type对应的所有回调。 |
 
 **返回值：**
 
@@ -1986,10 +1983,10 @@ server端订阅描述符读请求事件。
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| type | string | 是 | 填写"descriptorRead"字符串，表示描述符读请求事件。 |
-| callback | Callback&lt;[DescriptorReadReq](#descriptorreadreq)&gt; | 是 | 表示回调函数的入参，client端发送的读请求数据。 |
+| 参数名   | 类型                                                    | 必填 | 说明                                               |
+| -------- | ------------------------------------------------------- | ---- | -------------------------------------------------- |
+| type     | string                                                  | 是   | 填写"descriptorRead"字符串，表示描述符读请求事件。 |
+| callback | Callback&lt;[DescriptorReadReq](#descriptorreadreq)&gt; | 是   | 表示回调函数的入参，client端发送的读请求数据。     |
 
 **返回值：**
 
@@ -2034,10 +2031,10 @@ server端取消订阅描述符读请求事件。
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| type | string | 是 | 填写"descriptorRead"字符串，表示描述符读请求事件。 |
-| callback | Callback&lt;[DescriptorReadReq](#descriptorreadreq)&gt; | 否 | 表示取消订阅描述符读请求事件上报。不填该参数则取消订阅该type对应的所有回调。 |
+| 参数名   | 类型                                                    | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                  | 是   | 填写"descriptorRead"字符串，表示描述符读请求事件。           |
+| callback | Callback&lt;[DescriptorReadReq](#descriptorreadreq)&gt; | 否   | 表示取消订阅描述符读请求事件上报。不填该参数则取消订阅该type对应的所有回调。 |
 
 **返回值：**
 
@@ -2063,10 +2060,10 @@ server端订阅描述符写请求事件。
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| type | string | 是 | 填写"descriptorWrite"字符串，表示描述符写请求事件。 |
-| callback | Callback&lt;[DescriptorWriteReq](#descriptorwritereq)&gt; | 是 | 表示回调函数的入参，client端发送的写请求数据。 |
+| 参数名   | 类型                                                      | 必填 | 说明                                                |
+| -------- | --------------------------------------------------------- | ---- | --------------------------------------------------- |
+| type     | string                                                    | 是   | 填写"descriptorWrite"字符串，表示描述符写请求事件。 |
+| callback | Callback&lt;[DescriptorWriteReq](#descriptorwritereq)&gt; | 是   | 表示回调函数的入参，client端发送的写请求数据。      |
 
 **返回值：**
 
@@ -2114,10 +2111,10 @@ server端取消订阅描述符写请求事件。
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| type | string | 是 | 填写"descriptorWrite"字符串，表示描述符写请求事件。 |
-| callback | Callback&lt;[DescriptorWriteReq](#descriptorwritereq)&gt; | 否 | 表示取消订阅描述符读请求事件上报。不填该参数则取消订阅该type对应的所有回调。 |
+| 参数名   | 类型                                                      | 必填 | 说明                                                         |
+| -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                    | 是   | 填写"descriptorWrite"字符串，表示描述符写请求事件。          |
+| callback | Callback&lt;[DescriptorWriteReq](#descriptorwritereq)&gt; | 否   | 表示取消订阅描述符写请求事件上报。不填该参数则取消订阅该type对应的所有回调。 |
 
 **返回值：**
 
@@ -2143,10 +2140,10 @@ server端订阅BLE连接状态变化事件。
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| type | string | 是 | 填写"connectStateChange"字符串，表示BLE连接状态变化事件。 |
-| callback | Callback&lt;[BLEConnectChangedState](#bleconnectchangedstate)&gt; | 是 | 表示回调函数的入参，连接状态。 |
+| 参数名   | 类型                                                         | 必填 | 说明                                                      |
+| -------- | ------------------------------------------------------------ | ---- | --------------------------------------------------------- |
+| type     | string                                                       | 是   | 填写"connectStateChange"字符串，表示BLE连接状态变化事件。 |
+| callback | Callback&lt;[BLEConnectChangedState](#bleconnectchangedstate)&gt; | 是   | 表示回调函数的入参，连接状态。                            |
 
 **返回值：**
 
@@ -2177,10 +2174,10 @@ server端取消订阅BLE连接状态变化事件。
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| type | string | 是 | 填写"connectStateChange"字符串，表示BLE连接状态变化事件。 |
-| callback | Callback&lt;[BLEConnectChangedState](#bleconnectchangedstate)&gt; | 否 | 表示取消订阅BLE连接状态变化事件。不填该参数则取消订阅该type对应的所有回调。 |
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 填写"connectStateChange"字符串，表示BLE连接状态变化事件。    |
+| callback | Callback&lt;[BLEConnectChangedState](#bleconnectchangedstate)&gt; | 否   | 表示取消订阅BLE连接状态变化事件。不填该参数则取消订阅该type对应的所有回调。 |
 
 **返回值：**
 
@@ -2211,8 +2208,8 @@ client端发起连接远端蓝牙低功耗设备。
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
+| 类型    | 说明                                      |
+| ------- | ----------------------------------------- |
 | boolean | 连接操作成功返回true，操作失败返回false。 |
 
 **示例：**
@@ -2235,9 +2232,9 @@ client端断开与远端蓝牙低功耗设备的连接。
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
-| boolean | 连接操作，成功返回true，操作失败返回false。 |
+| 类型    | 说明                                            |
+| ------- | ----------------------------------------------- |
+| boolean | 断开连接操作，成功返回true，操作失败返回false。 |
 
 **示例：**
 
@@ -2259,8 +2256,8 @@ close(): boolean
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
+| 类型    | 说明                                        |
+| ------- | ------------------------------------------- |
 | boolean | 关闭操作，成功返回true，操作失败返回false。 |
 
 **示例：**
@@ -2285,9 +2282,9 @@ client端获取蓝牙低功耗设备的所有服务，即服务发现 。
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;Array&lt;[GattService](#gattservice)&gt;&gt; | 是 | client进行服务发现，通过注册回调函数获取。 |
+| 参数名   | 类型                                                         | 必填 | 说明                                       |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------ |
+| callback | AsyncCallback&lt;Array&lt;[GattService](#gattservice)&gt;&gt; | 是   | client进行服务发现，通过注册回调函数获取。 |
 
 **返回值：**
 
@@ -2329,8 +2326,8 @@ client端获取蓝牙低功耗设备的所有服务，即服务发现。
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
+| 类型                                                    | 说明                                      |
+| ------------------------------------------------------- | ----------------------------------------- |
 | Promise&lt;Array&lt;[GattService](#gattservice)&gt;&gt; | client进行服务发现，通过promise形式获取。 |
 
 **示例：**
@@ -2360,10 +2357,10 @@ client端读取蓝牙低功耗设备特定服务的特征值。
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| characteristic | [BLECharacteristic](#blecharacteristic) | 是 | 待读取的特征值。 |
-| callback | AsyncCallback&lt;[BLECharacteristic](#blecharacteristic)&gt; | 是 | client读取特征值，通过注册回调函数获取。 |
+| 参数名         | 类型                                                         | 必填 | 说明                                     |
+| -------------- | ------------------------------------------------------------ | ---- | ---------------------------------------- |
+| characteristic | [BLECharacteristic](#blecharacteristic)                      | 是   | 待读取的特征值。                         |
+| callback       | AsyncCallback&lt;[BLECharacteristic](#blecharacteristic)&gt; | 是   | client读取特征值，通过注册回调函数获取。 |
 
 **返回值：**
 
@@ -2414,15 +2411,15 @@ client端读取蓝牙低功耗设备特定服务的特征值。
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| characteristic | [BLECharacteristic](#blecharacteristic) | 是 | 待读取的特征值。 |
+| 参数名         | 类型                                    | 必填 | 说明             |
+| -------------- | --------------------------------------- | ---- | ---------------- |
+| characteristic | [BLECharacteristic](#blecharacteristic) | 是   | 待读取的特征值。 |
 
 **返回值：**
 
-| | |
-| -------- | -------- |
-| 类型 | 说明 |
+|                                                        |                                         |
+| ------------------------------------------------------ | --------------------------------------- |
+| 类型                                                   | 说明                                    |
 | Promise&lt;[BLECharacteristic](#blecharacteristic)&gt; | client读取特征值，通过promise形式获取。 |
 
 **示例：**
@@ -2461,10 +2458,10 @@ client端读取蓝牙低功耗设备特定的特征包含的描述符。
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| descriptor | [BLEDescriptor](#bledescriptor) | 是 | 待读取的描述符。 |
-| callback | AsyncCallback&lt;[BLECharacteristic](#blecharacteristic)&gt; | 是 | client读取描述符，通过注册回调函数获取。 |
+| 参数名     | 类型                                                         | 必填 | 说明                                     |
+| ---------- | ------------------------------------------------------------ | ---- | ---------------------------------------- |
+| descriptor | [BLEDescriptor](#bledescriptor)                              | 是   | 待读取的描述符。                         |
+| callback   | AsyncCallback&lt;[BLECharacteristic](#blecharacteristic)&gt; | 是   | client读取描述符，通过注册回调函数获取。 |
 
 **返回值：**
 
@@ -2505,15 +2502,15 @@ client端读取蓝牙低功耗设备特定的特征包含的描述符。
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| descriptor | [BLEDescriptor](#bledescriptor) | 是 | 待读取的描述符。 |
+| 参数名     | 类型                            | 必填 | 说明             |
+| ---------- | ------------------------------- | ---- | ---------------- |
+| descriptor | [BLEDescriptor](#bledescriptor) | 是   | 待读取的描述符。 |
 
 **返回值：**
 
-| | |
-| -------- | -------- |
-| 类型 | 说明 |
+|                                                |                                         |
+| ---------------------------------------------- | --------------------------------------- |
+| 类型                                           | 说明                                    |
 | Promise&lt;[BLEDescriptor](#bledescriptor)&gt; | client读取描述符，通过promise形式获取。 |
 
 **示例：**
@@ -2542,14 +2539,14 @@ client端向低功耗蓝牙设备写入特定的特征值。
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| characteristic | [BLECharacteristic](#blecharacteristic) | 是 | 蓝牙设备特征对应的二进制值及其它参数。 |
+| 参数名         | 类型                                    | 必填 | 说明                                   |
+| -------------- | --------------------------------------- | ---- | -------------------------------------- |
+| characteristic | [BLECharacteristic](#blecharacteristic) | 是   | 蓝牙设备特征对应的二进制值及其它参数。 |
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
+| 类型    | 说明                                          |
+| ------- | --------------------------------------------- |
 | boolean | 写特征值操作成功返回true，操作失败返回false。 |
 
 **示例：**
@@ -2592,14 +2589,14 @@ client端向低功耗蓝牙设备特定的描述符写入二进制数据。
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| descriptor | [BLEDescriptor](#bledescriptor) | 是 | 蓝牙设备描述符的二进制值及其它参数。 |
+| 参数名     | 类型                            | 必填 | 说明                                 |
+| ---------- | ------------------------------- | ---- | ------------------------------------ |
+| descriptor | [BLEDescriptor](#bledescriptor) | 是   | 蓝牙设备描述符的二进制值及其它参数。 |
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
+| 类型    | 说明                                          |
+| ------- | --------------------------------------------- |
 | boolean | 写描述符操作成功返回true，操作失败返回false。 |
 
 **示例：**
@@ -2633,14 +2630,14 @@ client协商远端蓝牙低功耗设备的最大传输单元（Maximum Transmiss
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| mtu | number | 是 | 设置范围为22~512字节。 |
+| 参数名 | 类型   | 必填 | 说明                   |
+| ------ | ------ | ---- | ---------------------- |
+| mtu    | number | 是   | 设置范围为22~512字节。 |
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
+| 类型    | 说明                                         |
+| ------- | -------------------------------------------- |
 | boolean | MTU协商操作成功返回true，操作失败返回false。 |
 
 **示例：**
@@ -2663,15 +2660,15 @@ setNotifyCharacteristicChanged(characteristic: BLECharacteristic, enable: boolea
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| characteristic | [BLECharacteristic](#blecharacteristic) | 是 | 蓝牙低功耗特征。 |
-| enable | boolean | 是 | 启用接收notify设置为true，否则设置为false。 |
+| 参数名         | 类型                                    | 必填 | 说明                                        |
+| -------------- | --------------------------------------- | ---- | ------------------------------------------- |
+| characteristic | [BLECharacteristic](#blecharacteristic) | 是   | 蓝牙低功耗特征。                            |
+| enable         | boolean                                 | 是   | 启用接收notify设置为true，否则设置为false。 |
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
+| 类型    | 说明                                      |
+| ------- | ----------------------------------------- |
 | boolean | 设置操作成功返回true，操作失败返回false。 |
 
 **示例：**
@@ -2694,10 +2691,10 @@ on(type: "BLECharacteristicChange", callback: Callback&lt;BLECharacteristic&gt;)
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| type | string | 是 | 填写"BLECharacteristicChange"字符串，表示特征值变化事件。 |
-| callback | Callback&lt;[BLECharacteristic](#blecharacteristic)&gt; | 是 | 表示蓝牙低功耗设备的特征值变化事件的回调函数。 |
+| 参数名   | 类型                                                    | 必填 | 说明                                                      |
+| -------- | ------------------------------------------------------- | ---- | --------------------------------------------------------- |
+| type     | string                                                  | 是   | 填写"BLECharacteristicChange"字符串，表示特征值变化事件。 |
+| callback | Callback&lt;[BLECharacteristic](#blecharacteristic)&gt; | 是   | 表示蓝牙低功耗设备的特征值变化事件的回调函数。            |
 
 **返回值：**
 
@@ -2728,10 +2725,10 @@ off(type: "BLECharacteristicChange", callback?: Callback&lt;BLECharacteristic&gt
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| type | string | 是 | 填写"BLECharacteristicChange"字符串，表示特征值变化事件。 |
-| callback | Callback&lt;[BLECharacteristic](#blecharacteristic)&gt; | 否 | 表示取消订阅蓝牙低功耗设备的特征值变化事件。不填该参数则取消订阅该type对应的所有回调。 |
+| 参数名   | 类型                                                    | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                  | 是   | 填写"BLECharacteristicChange"字符串，表示特征值变化事件。    |
+| callback | Callback&lt;[BLECharacteristic](#blecharacteristic)&gt; | 否   | 表示取消订阅蓝牙低功耗设备的特征值变化事件。不填该参数则取消订阅该type对应的所有回调。 |
 
 **返回值：**
 
@@ -2757,10 +2754,10 @@ client端订阅蓝牙低功耗设备的连接状态变化事件。
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| type | string | 是 | 填写"BLEConnectionStateChange"字符串，表示连接状态变化事件。 |
-| callback | Callback&lt;[BLEConnectChangedState](#bleconnectchangedstate)&gt; | 是 | 表示连接状态，已连接或断开。 |
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 填写"BLEConnectionStateChange"字符串，表示连接状态变化事件。 |
+| callback | Callback&lt;[BLEConnectChangedState](#bleconnectchangedstate)&gt; | 是   | 表示连接状态，已连接或断开。                                 |
 
 **返回值：**
 
@@ -2790,10 +2787,10 @@ off(type: "BLEConnectionStateChange", callback?: Callback&lt;BLEConnectChangedSt
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| type | string | 是 | 填写"BLEConnectionStateChange"字符串，表示连接状态变化事件。 |
-| callback | Callback&lt;[BLEConnectChangedState](#bleconnectchangedstate)&gt; | 否 | 表示取消订阅蓝牙低功耗设备的连接状态变化事件。不填该参数则取消订阅该type对应的所有回调。 |
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 填写"BLEConnectionStateChange"字符串，表示连接状态变化事件。 |
+| callback | Callback&lt;[BLEConnectChangedState](#bleconnectchangedstate)&gt; | 否   | 表示取消订阅蓝牙低功耗设备的连接状态变化事件。不填该参数则取消订阅该type对应的所有回调。 |
 
 **返回值：**
 
@@ -2819,9 +2816,9 @@ client获取远端蓝牙低功耗设备名。
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;string&gt; | 是 | client获取对端server设备名，通过注册回调函数获取。 |
+| 参数名   | 类型                        | 必填 | 说明                                               |
+| -------- | --------------------------- | ---- | -------------------------------------------------- |
+| callback | AsyncCallback&lt;string&gt; | 是   | client获取对端server设备名，通过注册回调函数获取。 |
 
 **返回值：**
 
@@ -2851,8 +2848,8 @@ client获取远端蓝牙低功耗设备名。
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
+| 类型                  | 说明                                              |
+| --------------------- | ------------------------------------------------- |
 | Promise&lt;string&gt; | client获取对端server设备名，通过promise形式获取。 |
 
 **示例：**
@@ -2879,9 +2876,9 @@ client获取远端蓝牙低功耗设备的信号强度 (Received Signal Strength
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;number&gt; | 是 | 返回信号强度，单位&nbsp;dBm，通过注册回调函数获取。 |
+| 参数名   | 类型                        | 必填 | 说明                                                |
+| -------- | --------------------------- | ---- | --------------------------------------------------- |
+| callback | AsyncCallback&lt;number&gt; | 是   | 返回信号强度，单位&nbsp;dBm，通过注册回调函数获取。 |
 
 **返回值：**
 
@@ -2912,8 +2909,8 @@ client获取远端蓝牙低功耗设备的信号强度 (Received Signal Strength
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
+| 类型                  | 说明                                               |
+| --------------------- | -------------------------------------------------- |
 | Promise&lt;number&gt; | 返回信号强度，单位&nbsp;dBm，通过promise形式获取。 |
 
 **示例：**
@@ -2932,14 +2929,14 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称 | 默认值 | 说明 |
-| -------- | -------- | -------- |
-| SCAN_MODE_NONE | 0 | 没有扫描模式。 |
-| SCAN_MODE_CONNECTABLE | 1 | 可连接扫描模式。 |
-| SCAN_MODE_GENERAL_DISCOVERABLE | 2 | general发现模式。 |
-| SCAN_MODE_LIMITED_DISCOVERABLE | 3 | limited发现模式。 |
-| SCAN_MODE_CONNECTABLE_GENERAL_DISCOVERABLE | 4 | 可连接general发现模式。 |
-| SCAN_MODE_CONNECTABLE_LIMITED_DISCOVERABLE | 5 | 可连接limited发现模式。 |
+| 名称                                       | 默认值 | 说明                    |
+| ------------------------------------------ | ------ | ----------------------- |
+| SCAN_MODE_NONE                             | 0      | 没有扫描模式。          |
+| SCAN_MODE_CONNECTABLE                      | 1      | 可连接扫描模式。        |
+| SCAN_MODE_GENERAL_DISCOVERABLE             | 2      | general发现模式。       |
+| SCAN_MODE_LIMITED_DISCOVERABLE             | 3      | limited发现模式。       |
+| SCAN_MODE_CONNECTABLE_GENERAL_DISCOVERABLE | 4      | 可连接general发现模式。 |
+| SCAN_MODE_CONNECTABLE_LIMITED_DISCOVERABLE | 5      | 可连接limited发现模式。 |
 
 ## BondState<sup>8+</sup><a name="BondState"></a>
 
@@ -2947,11 +2944,11 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称 | 默认值 | 说明 |
-| -------- | -------- | -------- |
-| BOND_STATE_INVALID | 0 | 无效的配对。 |
-| BOND_STATE_BONDING | 1 | 正在配对。 |
-| BOND_STATE_BONDED | 2 | 已配对。 |
+| 名称               | 默认值 | 说明         |
+| ------------------ | ------ | ------------ |
+| BOND_STATE_INVALID | 0      | 无效的配对。 |
+| BOND_STATE_BONDING | 1      | 正在配对。   |
+| BOND_STATE_BONDED  | 2      | 已配对。     |
 
 
 ## SppOption<sup>8+</sup><a name="SppOption"></a>
@@ -2960,11 +2957,11 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| uuid | string | 是 | 是 | spp单据的uuid。 |
-| secure | boolean | 是 | 是 | 是否是安全通道。 |
-| type | [SppType](#spptype) | 是 | 是 | Spp链路类型。 |
+| 名称   | 参数类型            | 可读 | 可写 | 说明             |
+| ------ | ------------------- | ---- | ---- | ---------------- |
+| uuid   | string              | 是   | 是   | spp单据的uuid。  |
+| secure | boolean             | 是   | 是   | 是否是安全通道。 |
+| type   | [SppType](#spptype) | 是   | 是   | Spp链路类型。    |
 
 
 ## SppType<sup>8+</sup><a name="SppType"></a>
@@ -2973,9 +2970,9 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称 | 默认值 | 说明 |
-| -------- | -------- | -------- |
-| SPP_RFCOMM | 0 | 表示rfcomm链路类型。 |
+| 名称       | 默认值 | 说明                 |
+| ---------- | ------ | -------------------- |
+| SPP_RFCOMM | 0      | 表示rfcomm链路类型。 |
 
 
 ## GattService
@@ -2984,12 +2981,12 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| serviceUuid | string | 是 | 是 | 特定服务（service）的UUID，例如：00001888-0000-1000-8000-00805f9b34fb。 |
-| isPrimary | boolean | 是 | 是 | 如果是主服务设置为true，否则设置为false。 |
-| characteristics | Array&lt;[BLECharacteristic](#blecharacteristic)&gt; | 是 | 是 | 当前服务包含的特征列表。 |
-| includeServices | Array&lt;[GattService](#gattservice)&gt; | 是 | 是 | 当前服务依赖的其它服务。 |
+| 名称            | 参数类型                                             | 可读 | 可写 | 说明                                                         |
+| --------------- | ---------------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
+| serviceUuid     | string                                               | 是   | 是   | 特定服务（service）的UUID，例如：00001888-0000-1000-8000-00805f9b34fb。 |
+| isPrimary       | boolean                                              | 是   | 是   | 如果是主服务设置为true，否则设置为false。                    |
+| characteristics | Array&lt;[BLECharacteristic](#blecharacteristic)&gt; | 是   | 是   | 当前服务包含的特征列表。                                     |
+| includeServices | Array&lt;[GattService](#gattservice)&gt;             | 是   | 是   | 当前服务依赖的其它服务。                                     |
 
 
 ## BLECharacteristic
@@ -2998,12 +2995,12 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| serviceUuid | string | 是 | 是 | 特定服务（service）的UUID，例如：00001888-0000-1000-8000-00805f9b34fb。 |
-| characteristicUuid | string | 是 | 是 | 特定特征（characteristic）的UUID，例如：00002a11-0000-1000-8000-00805f9b34fb。 |
-| characteristicValue | ArrayBuffer | 是 | 是 | 特征对应的二进制值。 |
-| descriptors | Array&lt;[BLEDescriptor](#bledescriptor)&gt; | 是 | 是 | 特定特征的描述符列表。 |
+| 名称                | 参数类型                                     | 可读 | 可写 | 说明                                                         |
+| ------------------- | -------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
+| serviceUuid         | string                                       | 是   | 是   | 特定服务（service）的UUID，例如：00001888-0000-1000-8000-00805f9b34fb。 |
+| characteristicUuid  | string                                       | 是   | 是   | 特定特征（characteristic）的UUID，例如：00002a11-0000-1000-8000-00805f9b34fb。 |
+| characteristicValue | ArrayBuffer                                  | 是   | 是   | 特征对应的二进制值。                                         |
+| descriptors         | Array&lt;[BLEDescriptor](#bledescriptor)&gt; | 是   | 是   | 特定特征的描述符列表。                                       |
 
 
 ## BLEDescriptor
@@ -3012,12 +3009,12 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| serviceUuid | string | 是 | 是 | 特定服务（service）的UUID，例如：00001888-0000-1000-8000-00805f9b34fb。 |
-| characteristicUuid | string | 是 | 是 | 特定特征（characteristic）的UUID，例如：00002a11-0000-1000-8000-00805f9b34fb。 |
-| descriptorUuid | string | 是 | 是 | 描述符（descriptor）的UUID，例如：00002902-0000-1000-8000-00805f9b34fb。 |
-| descriptorValue | ArrayBuffer | 是 | 是 | 描述符对应的二进制值。 |
+| 名称               | 参数类型    | 可读 | 可写 | 说明                                                         |
+| ------------------ | ----------- | ---- | ---- | ------------------------------------------------------------ |
+| serviceUuid        | string      | 是   | 是   | 特定服务（service）的UUID，例如：00001888-0000-1000-8000-00805f9b34fb。 |
+| characteristicUuid | string      | 是   | 是   | 特定特征（characteristic）的UUID，例如：00002a11-0000-1000-8000-00805f9b34fb。 |
+| descriptorUuid     | string      | 是   | 是   | 描述符（descriptor）的UUID，例如：00002902-0000-1000-8000-00805f9b34fb。 |
+| descriptorValue    | ArrayBuffer | 是   | 是   | 描述符对应的二进制值。                                       |
 
 
 ## NotifyCharacteristic
@@ -3026,12 +3023,12 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| serviceUuid | string | 是 | 是 | 特定服务（service）的UUID，例如：00001888-0000-1000-8000-00805f9b34fb。 |
-| characteristicUuid | string | 是 | 是 | 特定特征（characteristic）的UUID，例如：00002a11-0000-1000-8000-00805f9b34fb。 |
-| characteristicValue | ArrayBuffer | 是 | 是 | 特征对应的二进制值。 |
-| confirm | boolean | 是 | 是 | 如果是notification则对端回复确认设置为true，如果是indication则对端不需要回复确认设置为false。 |
+| 名称                | 参数类型    | 可读 | 可写 | 说明                                                         |
+| ------------------- | ----------- | ---- | ---- | ------------------------------------------------------------ |
+| serviceUuid         | string      | 是   | 是   | 特定服务（service）的UUID，例如：00001888-0000-1000-8000-00805f9b34fb。 |
+| characteristicUuid  | string      | 是   | 是   | 特定特征（characteristic）的UUID，例如：00002a11-0000-1000-8000-00805f9b34fb。 |
+| characteristicValue | ArrayBuffer | 是   | 是   | 特征对应的二进制值。                                         |
+| confirm             | boolean     | 是   | 是   | 如果是notification则对端回复确认设置为true，如果是indication则对端不需要回复确认设置为false。 |
 
 
 ## CharacteristicReadReq
@@ -3040,13 +3037,13 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| deviceId | string | 是 | 否 | 表示发送特征值读请求的远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
-| transId | number | 是 | 否 | 表示读请求的传输ID，server端回复响应时需填写相同的传输ID。 |
-| offset | number | 是 | 否 | 表示读特征值数据的起始位置。例如：k表示从第k个字节开始读，server端回复响应时需填写相同的offset。 |
-| characteristicUuid | string | 是 | 否 | 特定特征（characteristic）的UUID，例如：00002a11-0000-1000-8000-00805f9b34fb。 |
-| serviceUuid | string | 是 | 否 | 特定服务（service）的UUID，例如：00001888-0000-1000-8000-00805f9b34fb。 |
+| 名称               | 参数类型 | 可读 | 可写 | 说明                                                         |
+| ------------------ | -------- | ---- | ---- | ------------------------------------------------------------ |
+| deviceId           | string   | 是   | 否   | 表示发送特征值读请求的远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
+| transId            | number   | 是   | 否   | 表示读请求的传输ID，server端回复响应时需填写相同的传输ID。   |
+| offset             | number   | 是   | 否   | 表示读特征值数据的起始位置。例如：k表示从第k个字节开始读，server端回复响应时需填写相同的offset。 |
+| characteristicUuid | string   | 是   | 否   | 特定特征（characteristic）的UUID，例如：00002a11-0000-1000-8000-00805f9b34fb。 |
+| serviceUuid        | string   | 是   | 否   | 特定服务（service）的UUID，例如：00001888-0000-1000-8000-00805f9b34fb。 |
 
 
 ## CharacteristicWriteReq
@@ -3055,14 +3052,14 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| deviceId | string | 是 | 否 | 表示发送特征值写请求的远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
-| transId | number | 是 | 否 | 表示写请求的传输ID，server端回复响应时需填写相同的传输ID。 |
-| offset | number | 是 | 否 | 表示写特征值数据的起始位置。例如：k表示从第k个字节开始写，server端回复响应时需填写相同的offset。 |
-| descriptorUuid | string | 是 | 否 | 表示描述符（descriptor）的UUID，例如：00002902-0000-1000-8000-00805f9b34fb。 |
-| characteristicUuid | string | 是 | 否 | 特定特征（characteristic）的UUID，例如：00002a11-0000-1000-8000-00805f9b34fb。 |
-| serviceUuid | string | 是 | 否 | 特定服务（service）的UUID，例如：00001888-0000-1000-8000-00805f9b34fb。 |
+| 名称               | 参数类型 | 可读 | 可写 | 说明                                                         |
+| ------------------ | -------- | ---- | ---- | ------------------------------------------------------------ |
+| deviceId           | string   | 是   | 否   | 表示发送特征值写请求的远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
+| transId            | number   | 是   | 否   | 表示写请求的传输ID，server端回复响应时需填写相同的传输ID。   |
+| offset             | number   | 是   | 否   | 表示写特征值数据的起始位置。例如：k表示从第k个字节开始写，server端回复响应时需填写相同的offset。 |
+| descriptorUuid     | string   | 是   | 否   | 表示描述符（descriptor）的UUID，例如：00002902-0000-1000-8000-00805f9b34fb。 |
+| characteristicUuid | string   | 是   | 否   | 特定特征（characteristic）的UUID，例如：00002a11-0000-1000-8000-00805f9b34fb。 |
+| serviceUuid        | string   | 是   | 否   | 特定服务（service）的UUID，例如：00001888-0000-1000-8000-00805f9b34fb。 |
 
 
 ## DescriptorReadReq
@@ -3071,14 +3068,14 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| deviceId | string | 是 | 否 | 表示发送描述符读请求的远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
-| transId | number | 是 | 否 | 表示读请求的传输ID，server端回复响应时需填写相同的传输ID。 |
-| offset | number | 是 | 否 | 表示读描述符数据的起始位置。例如：k表示从第k个字节开始读，server端回复响应时需填写相同的offset。 |
-| descriptorUuid | string | 是 | 否 | 表示描述符（descriptor）的UUID，例如：00002902-0000-1000-8000-00805f9b34fb。 |
-| characteristicUuid | string | 是 | 否 | 特定特征（characteristic）的UUID，例如：00002a11-0000-1000-8000-00805f9b34fb。 |
-| serviceUuid | string | 是 | 否 | 特定服务（service）的UUID，例如：00001888-0000-1000-8000-00805f9b34fb。 |
+| 名称               | 参数类型 | 可读 | 可写 | 说明                                                         |
+| ------------------ | -------- | ---- | ---- | ------------------------------------------------------------ |
+| deviceId           | string   | 是   | 否   | 表示发送描述符读请求的远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
+| transId            | number   | 是   | 否   | 表示读请求的传输ID，server端回复响应时需填写相同的传输ID。   |
+| offset             | number   | 是   | 否   | 表示读描述符数据的起始位置。例如：k表示从第k个字节开始读，server端回复响应时需填写相同的offset。 |
+| descriptorUuid     | string   | 是   | 否   | 表示描述符（descriptor）的UUID，例如：00002902-0000-1000-8000-00805f9b34fb。 |
+| characteristicUuid | string   | 是   | 否   | 特定特征（characteristic）的UUID，例如：00002a11-0000-1000-8000-00805f9b34fb。 |
+| serviceUuid        | string   | 是   | 否   | 特定服务（service）的UUID，例如：00001888-0000-1000-8000-00805f9b34fb。 |
 
 
 ## DescriptorWriteReq
@@ -3087,17 +3084,17 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| deviceId | string | 是 | 否 | 表示发送描述符写请求的远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
-| transId | number | 是 | 否 | 表示写请求的传输ID，server端回复响应时需填写相同的传输ID。 |
-| offset | number | 是 | 否 | 表示写描述符数据的起始位置。例如：k表示从第k个字节开始写，server端回复响应时需填写相同的offset。 |
-| isPrep | boolean | 是 | 否 | 表示写请求是否立即执行。 |
-| needRsp | boolean | 是 | 否 | 表示是否要给client端回复响应。 |
-| value | ArrayBuffer | 是 | 否 | 表示写入的描述符二进制数据。 |
-| descriptorUuid | string | 是 | 否 | 表示描述符（descriptor）的UUID，例如：00002902-0000-1000-8000-00805f9b34fb。 |
-| characteristicUuid | string | 是 | 否 | 特定特征（characteristic）的UUID，例如：00002a11-0000-1000-8000-00805f9b34fb。 |
-| serviceUuid | string | 是 | 否 | 特定服务（service）的UUID，例如：00001888-0000-1000-8000-00805f9b34fb。 |
+| 名称               | 参数类型    | 可读 | 可写 | 说明                                                         |
+| ------------------ | ----------- | ---- | ---- | ------------------------------------------------------------ |
+| deviceId           | string      | 是   | 否   | 表示发送描述符写请求的远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
+| transId            | number      | 是   | 否   | 表示写请求的传输ID，server端回复响应时需填写相同的传输ID。   |
+| offset             | number      | 是   | 否   | 表示写描述符数据的起始位置。例如：k表示从第k个字节开始写，server端回复响应时需填写相同的offset。 |
+| isPrep             | boolean     | 是   | 否   | 表示写请求是否立即执行。                                     |
+| needRsp            | boolean     | 是   | 否   | 表示是否要给client端回复响应。                               |
+| value              | ArrayBuffer | 是   | 否   | 表示写入的描述符二进制数据。                                 |
+| descriptorUuid     | string      | 是   | 否   | 表示描述符（descriptor）的UUID，例如：00002902-0000-1000-8000-00805f9b34fb。 |
+| characteristicUuid | string      | 是   | 否   | 特定特征（characteristic）的UUID，例如：00002a11-0000-1000-8000-00805f9b34fb。 |
+| serviceUuid        | string      | 是   | 否   | 特定服务（service）的UUID，例如：00001888-0000-1000-8000-00805f9b34fb。 |
 
 
 ## ServerResponse
@@ -3106,13 +3103,13 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| deviceId | string | 是 | 否 | 表示远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
-| transId | number | 是 | 否 | 表示请求的传输ID，与订阅的读/写请求事件携带的ID保持一致。 |
-| status | number | 是 | 否 | 表示响应的状态，设置为0即可，表示正常。 |
-| offset | number | 是 | 否 | 表示请求的读/写起始位置，与订阅的读/写请求事件携带的offset保持一致。 |
-| value | ArrayBuffer | 是 | 否 | 表示回复响应的二进制数据。 |
+| 名称     | 参数类型    | 可读 | 可写 | 说明                                                         |
+| -------- | ----------- | ---- | ---- | ------------------------------------------------------------ |
+| deviceId | string      | 是   | 否   | 表示远端设备地址，例如："XX:XX:XX:XX:XX:XX"。                |
+| transId  | number      | 是   | 否   | 表示请求的传输ID，与订阅的读/写请求事件携带的ID保持一致。    |
+| status   | number      | 是   | 否   | 表示响应的状态，设置为0即可，表示正常。                      |
+| offset   | number      | 是   | 否   | 表示请求的读/写起始位置，与订阅的读/写请求事件携带的offset保持一致。 |
+| value    | ArrayBuffer | 是   | 否   | 表示回复响应的二进制数据。                                   |
 
 
 ## BLEConnectChangedState
@@ -3121,10 +3118,10 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| deviceId | string | 是 | 否 | 表示远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
-| state | [ProfileConnectionState](#profileconnectionState) | 是 | 是 | 表示BLE连接状态的枚举。 |
+| 名称     | 参数类型                                          | 可读 | 可写 | 说明                                          |
+| -------- | ------------------------------------------------- | ---- | ---- | --------------------------------------------- |
+| deviceId | string                                            | 是   | 否   | 表示远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
+| state    | [ProfileConnectionState](#profileconnectionState) | 是   | 是   | 表示BLE连接状态的枚举。                       |
 
 
 ## ProfileConnectionState
@@ -3133,12 +3130,12 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称 | 默认值 | 说明 |
-| -------- | -------- | -------- |
-| STATE_DISCONNECTED | 0 | 表示profile已断连。 |
-| STATE_CONNECTING | 1 | 表示profile正在连接。 |
-| STATE_CONNECTED | 2 | 表示profile已连接。 |
-| STATE_DISCONNECTING | 3 | 表示profile正在断连。 |
+| 名称                | 默认值 | 说明                  |
+| ------------------- | ------ | --------------------- |
+| STATE_DISCONNECTED  | 0      | 表示profile已断连。   |
+| STATE_CONNECTING    | 1      | 表示profile正在连接。 |
+| STATE_CONNECTED     | 2      | 表示profile已连接。   |
+| STATE_DISCONNECTING | 3      | 表示profile正在断连。 |
 
 
 ## ScanFilter
@@ -3147,11 +3144,11 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| deviceId | string | 是 | 是 | 表示过滤的BLE设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
-| name | string | 是 | 是 | 表示过滤的BLE设备名。 |
-| serviceUuid | string | 是 | 是 | 表示过滤包含该UUID服务的设备，例如：00001888-0000-1000-8000-00805f9b34fb。 |
+| 名称        | 参数类型 | 可读 | 可写 | 说明                                                         |
+| ----------- | -------- | ---- | ---- | ------------------------------------------------------------ |
+| deviceId    | string   | 是   | 是   | 表示过滤的BLE设备地址，例如："XX:XX:XX:XX:XX:XX"。           |
+| name        | string   | 是   | 是   | 表示过滤的BLE设备名。                                        |
+| serviceUuid | string   | 是   | 是   | 表示过滤包含该UUID服务的设备，例如：00001888-0000-1000-8000-00805f9b34fb。 |
 
 
 ## ScanOptions
@@ -3160,11 +3157,11 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| interval | number | 是 | 是 | 表示扫描结果上报延迟时间，默认值为0。 |
-| dutyMode | [ScanDuty](#scanduty) | 是 | 是 | 表示扫描模式，默认值为SCAN_MODE_LOW_POWER。 |
-| matchMode | [MatchMode](#matchmode) | 是 | 是 | 表示硬件的过滤匹配模式，默认值为MATCH_MODE_AGGRESSIVE。 |
+| 名称      | 参数类型                | 可读 | 可写 | 说明                                                    |
+| --------- | ----------------------- | ---- | ---- | ------------------------------------------------------- |
+| interval  | number                  | 是   | 是   | 表示扫描结果上报延迟时间，默认值为0。                   |
+| dutyMode  | [ScanDuty](#scanduty)   | 是   | 是   | 表示扫描模式，默认值为SCAN_MODE_LOW_POWER。             |
+| matchMode | [MatchMode](#matchmode) | 是   | 是   | 表示硬件的过滤匹配模式，默认值为MATCH_MODE_AGGRESSIVE。 |
 
 
 ## ScanDuty
@@ -3173,11 +3170,11 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称 | 默认值 | 说明 |
-| -------- | -------- | -------- |
-| SCAN_MODE_LOW_POWER | 0 | 表示低功耗模式，默认值。 |
-| SCAN_MODE_BALANCED | 1 | 表示均衡模式。 |
-| SCAN_MODE_LOW_LATENCY | 2 | 表示低延迟模式。 |
+| 名称                  | 默认值 | 说明                     |
+| --------------------- | ------ | ------------------------ |
+| SCAN_MODE_LOW_POWER   | 0      | 表示低功耗模式，默认值。 |
+| SCAN_MODE_BALANCED    | 1      | 表示均衡模式。           |
+| SCAN_MODE_LOW_LATENCY | 2      | 表示低延迟模式。         |
 
 
 ## MatchMode
@@ -3186,10 +3183,10 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称 | 默认值 | 说明 |
-| -------- | -------- | -------- |
-| MATCH_MODE_AGGRESSIVE | 1 | 表示硬件上报扫描结果门限较低，比如扫描到的功率较低或者一段时间扫描到的次数较少也触发上报，默认值。 |
-| MATCH_MODE_STICKY | 2 | 表示硬件上报扫描结果门限较高，更高的功率门限以及扫描到多次才会上报。 |
+| 名称                  | 默认值 | 说明                                                         |
+| --------------------- | ------ | ------------------------------------------------------------ |
+| MATCH_MODE_AGGRESSIVE | 1      | 表示硬件上报扫描结果门限较低，比如扫描到的功率较低或者一段时间扫描到的次数较少也触发上报，默认值。 |
+| MATCH_MODE_STICKY     | 2      | 表示硬件上报扫描结果门限较高，更高的功率门限以及扫描到多次才会上报。 |
 
 
 ## ScanResult
@@ -3198,11 +3195,11 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| deviceId | string | 是 | 否 | 表示扫描到的设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
-| rssi | number | 是 | 否 | 表示扫描到的设备的rssi值。 |
-| data | ArrayBuffer | 是 | 否 | 表示扫描到的设备发送的广播包。 |
+| 名称     | 参数类型    | 可读 | 可写 | 说明                                              |
+| -------- | ----------- | ---- | ---- | ------------------------------------------------- |
+| deviceId | string      | 是   | 否   | 表示扫描到的设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
+| rssi     | number      | 是   | 否   | 表示扫描到的设备的rssi值。                        |
+| data     | ArrayBuffer | 是   | 否   | 表示扫描到的设备发送的广播包。                    |
 
 
 ## BluetoothState
@@ -3211,15 +3208,15 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称 | 默认值 | 说明 |
-| -------- | -------- | -------- |
-| STATE_OFF | 0 | 表示蓝牙已关闭。 |
-| STATE_TURNING_ON | 1 | 表示蓝牙正在打开。 |
-| STATE_ON | 2 | 表示蓝牙已打开。 |
-| STATE_TURNING_OFF | 3 | 表示蓝牙正在关闭。 |
-| STATE_BLE_TURNING_ON | 4 | 表示蓝牙正在打开LE-only模式。 |
-| STATE_BLE_ON | 5 | 表示蓝牙正处于LE-only模式。 |
-| STATE_BLE_TURNING_OFF | 6 | 表示蓝牙正在关闭LE-only模式。 |
+| 名称                  | 默认值 | 说明                          |
+| --------------------- | ------ | ----------------------------- |
+| STATE_OFF             | 0      | 表示蓝牙已关闭。              |
+| STATE_TURNING_ON      | 1      | 表示蓝牙正在打开。            |
+| STATE_ON              | 2      | 表示蓝牙已打开。              |
+| STATE_TURNING_OFF     | 3      | 表示蓝牙正在关闭。            |
+| STATE_BLE_TURNING_ON  | 4      | 表示蓝牙正在打开LE-only模式。 |
+| STATE_BLE_ON          | 5      | 表示蓝牙正处于LE-only模式。   |
+| STATE_BLE_TURNING_OFF | 6      | 表示蓝牙正在关闭LE-only模式。 |
 
 
 ## AdvertiseSetting
@@ -3228,11 +3225,11 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| interval | number | 是 | 是 | 表示广播间隔，最小值设置32个slot表示20ms，最大值设置16777215个slot，默认值设置为1600个slot表示1s。 |
-| txPower | number | 是 | 是 | 表示发送功率，最小值设置-127，最大值设置1，默认值设置-7，单位dbm。 |
-| connectable | boolean | 是 | 是 | 表示是否是可连接广播，默认值设置为true。 |
+| 名称        | 参数类型 | 可读 | 可写 | 说明                                                         |
+| ----------- | -------- | ---- | ---- | ------------------------------------------------------------ |
+| interval    | number   | 是   | 是   | 表示广播间隔，最小值设置32个slot表示20ms，最大值设置16777215个slot，默认值设置为1600个slot表示1s。 |
+| txPower     | number   | 是   | 是   | 表示发送功率，最小值设置-127，最大值设置1，默认值设置-7，单位dbm。 |
+| connectable | boolean  | 是   | 是   | 表示是否是可连接广播，默认值设置为true。                     |
 
 
 ## AdvertiseData
@@ -3241,11 +3238,11 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| serviceUuids | Array&lt;string&gt; | 是 | 是 | 表示要广播的服务&nbsp;UUID&nbsp;列表。 |
-| manufactureData | Array&lt;[ManufactureData](#manufacturedata)&gt; | 是 | 是 | 表示要广播的广播的制造商信息列表。 |
-| serviceData | Array&lt;[ServiceData](#servicedata)&gt; | 是 | 是 | 表示要广播的服务数据列表。 |
+| 名称            | 参数类型                                         | 可读 | 可写 | 说明                                   |
+| --------------- | ------------------------------------------------ | ---- | ---- | -------------------------------------- |
+| serviceUuids    | Array&lt;string&gt;                              | 是   | 是   | 表示要广播的服务&nbsp;UUID&nbsp;列表。 |
+| manufactureData | Array&lt;[ManufactureData](#manufacturedata)&gt; | 是   | 是   | 表示要广播的广播的制造商信息列表。     |
+| serviceData     | Array&lt;[ServiceData](#servicedata)&gt;         | 是   | 是   | 表示要广播的服务数据列表。             |
 
 
 ## ManufactureData
@@ -3254,10 +3251,10 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| manufactureId | Array&lt;string&gt; | 是 | 是 | 表示制造商的ID，由蓝牙SIG分配。 |
-| manufactureValue | ArrayBuffer | 是 | 是 | 表示制造商发送的制造商数据。 |
+| 名称             | 参数类型            | 可读 | 可写 | 说明                            |
+| ---------------- | ------------------- | ---- | ---- | ------------------------------- |
+| manufactureId    | Array&lt;string&gt; | 是   | 是   | 表示制造商的ID，由蓝牙SIG分配。 |
+| manufactureValue | ArrayBuffer         | 是   | 是   | 表示制造商发送的制造商数据。    |
 
 
 ## ServiceData
@@ -3266,10 +3263,10 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| serviceUuid | string | 是 | 是 | 表示服务的UUID。 |
-| serviceValue | ArrayBuffer | 是 | 是 | 表示服务数据。 |
+| 名称         | 参数类型    | 可读 | 可写 | 说明             |
+| ------------ | ----------- | ---- | ---- | ---------------- |
+| serviceUuid  | string      | 是   | 是   | 表示服务的UUID。 |
+| serviceValue | ArrayBuffer | 是   | 是   | 表示服务数据。   |
 
 
 ## PinRequiredParam<sup>8+</sup><a name="PinRequiredParam"></a>
@@ -3278,10 +3275,10 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| deviceId | string | 是 | 否 | 表示要配对的设备ID。 |
-| pinCode | string | 是 | 否 | 表示要配对的密钥。 |
+| 名称     | 参数类型 | 可读 | 可写 | 说明                 |
+| -------- | -------- | ---- | ---- | -------------------- |
+| deviceId | string   | 是   | 否   | 表示要配对的设备ID。 |
+| pinCode  | string   | 是   | 否   | 表示要配对的密钥。   |
 
 
 ## StateChangeParam<sup>8+</sup><a name="StateChangeParam"></a>
@@ -3290,10 +3287,10 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| deviceId | string | 是 | 否 | 表示蓝牙设备地址。 |
-| state | [ProfileConnectionState](#ProfileConnectionState) | 是 | 否 | 表示蓝牙设备的profile连接状态。 |
+| 名称     | 参数类型                                          | 可读 | 可写 | 说明                            |
+| -------- | ------------------------------------------------- | ---- | ---- | ------------------------------- |
+| deviceId | string                                            | 是   | 否   | 表示蓝牙设备地址。              |
+| state    | [ProfileConnectionState](#ProfileConnectionState) | 是   | 否   | 表示蓝牙设备的profile连接状态。 |
 
 
 ## DeviceClass<sup>8+</sup><a name="DeviceClass"></a>
@@ -3302,11 +3299,11 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| majorClass | [MajorClass](#majorclass) | 是 | 否 | 表示蓝牙设备主要类别的枚举。 |
-| majorMinorClass | [MajorMinorClass](#majorminorclass) | 是 | 否 | 表示主要次要蓝牙设备类别的枚举。 |
-| classOfDevice | number | 是 | 否 | 表示设备类别。 |
+| 名称            | 参数类型                            | 可读 | 可写 | 说明                             |
+| --------------- | ----------------------------------- | ---- | ---- | -------------------------------- |
+| majorClass      | [MajorClass](#majorclass)           | 是   | 否   | 表示蓝牙设备主要类别的枚举。     |
+| majorMinorClass | [MajorMinorClass](#majorminorclass) | 是   | 否   | 表示主要次要蓝牙设备类别的枚举。 |
+| classOfDevice   | number                              | 是   | 否   | 表示设备类别。                   |
 
 
 
@@ -3316,19 +3313,19 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称 | 默认值 | 说明 |
-| -------- | -------- | -------- |
-| MAJOR_MISC | 0x0000 | 表示杂项设备。 |
-| MAJOR_COMPUTER | 0x0100 | 表示计算机设备。 |
-| MAJOR_PHONE | 0x0200 | 表示手机设备。 |
-| MAJOR_NETWORKING | 0x0300 | 表示网络设备。 |
-| MAJOR_AUDIO_VIDEO | 0x0400 | 表示音频和视频设备。 |
-| MAJOR_PERIPHERAL | 0x0500 | 表示外围设备。 |
-| MAJOR_IMAGING | 0x0600 | 表示成像设备。 |
-| MAJOR_WEARABLE | 0x0700 | 表示可穿戴设备。 |
-| MAJOR_TOY | 0x0800 | 表示玩具设备。 |
-| MAJOR_HEALTH | 0x0900 | 表示健康设备。 |
-| MAJOR_UNCATEGORIZED | 0x1F00 | 表示未分类设备。 |
+| 名称                | 默认值 | 说明                 |
+| ------------------- | ------ | -------------------- |
+| MAJOR_MISC          | 0x0000 | 表示杂项设备。       |
+| MAJOR_COMPUTER      | 0x0100 | 表示计算机设备。     |
+| MAJOR_PHONE         | 0x0200 | 表示手机设备。       |
+| MAJOR_NETWORKING    | 0x0300 | 表示网络设备。       |
+| MAJOR_AUDIO_VIDEO   | 0x0400 | 表示音频和视频设备。 |
+| MAJOR_PERIPHERAL    | 0x0500 | 表示外围设备。       |
+| MAJOR_IMAGING       | 0x0600 | 表示成像设备。       |
+| MAJOR_WEARABLE      | 0x0700 | 表示可穿戴设备。     |
+| MAJOR_TOY           | 0x0800 | 表示玩具设备。       |
+| MAJOR_HEALTH        | 0x0900 | 表示健康设备。       |
+| MAJOR_UNCATEGORIZED | 0x1F00 | 表示未分类设备。     |
 
 
 ## MajorMinorClass<sup>8+</sup><a name="MajorMinorClass"></a>
@@ -3337,94 +3334,94 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称 | 默认值 | 说明 |
-| -------- | -------- | -------- |
-| COMPUTER_UNCATEGORIZED | 0x0100 | 表示未分类计算机设备。 |
-| COMPUTER_DESKTOP | 0x0104 | 表示台式计算机设备。 |
-| COMPUTER_SERVER | 0x0108 | 表示服务器设备。 |
-| COMPUTER_LAPTOP | 0x010C | 表示便携式计算机设备。 |
-| COMPUTER_HANDHELD_PC_PDA | 0x0110 | 表示手持式计算机设备。 |
-| COMPUTER_PALM_SIZE_PC_PDA | 0x0114 | 表示掌上电脑设备。 |
-| COMPUTER_WEARABLE | 0x0118 | 表示可穿戴计算机设备。 |
-| COMPUTER_TABLET | 0x011C | 表示平板电脑设备。 |
-| PHONE_UNCATEGORIZED | 0x0200 | 表示未分类手机设备。 |
-| PHONE_CELLULAR | 0x0204 | 表示便携式手机设备。 |
-| PHONE_CORDLESS | 0x0208 | 表示无线电话设备。 |
-| PHONE_SMART | 0x020C | 表示智能手机设备。 |
-| PHONE_MODEM_OR_GATEWAY | 0x0210 | 表示调制解调器或网关手机设备。 |
-| PHONE_ISDN | 0x0214 | 表示ISDN手机设备。 |
-| NETWORK_FULLY_AVAILABLE | 0x0300 | 表示网络完全可用设备。 |
-| NETWORK_1_TO_17_UTILIZED | 0x0320 | 表示使用网络1到17设备。 |
-| NETWORK_17_TO_33_UTILIZED | 0x0340 | 表示使用网络17到33设备。 |
-| NETWORK_33_TO_50_UTILIZED | 0x0360 | 表示使用网络33到50设备。 |
-| NETWORK_60_TO_67_UTILIZED | 0x0380 | 表示使用网络60到67设备。 |
-| NETWORK_67_TO_83_UTILIZED | 0x03A0 | 表示使用网络67到83设备。 |
-| NETWORK_83_TO_99_UTILIZED | 0x03C0 | 表示使用网络83到99设备。 |
-| NETWORK_NO_SERVICE | 0x03E0 | 表示网络无服务设备。 
-| AUDIO_VIDEO_UNCATEGORIZED | 0x0400 | 表示未分类音频视频设备。 |
-| AUDIO_VIDEO_WEARABLE_HEADSET | 0x0404 | 表示可穿戴式音频视频设备。 |
-| AUDIO_VIDEO_HANDSFREE | 0x0408 | 表示免提音频视频设备。 |
-| AUDIO_VIDEO_MICROPHONE | 0x0410 | 表示麦克风音频视频设备。 |
-| AUDIO_VIDEO_LOUDSPEAKER | 0x0414 | 表示扬声器音频视频设备。 |
-| AUDIO_VIDEO_HEADPHONES | 0x0418 | 表示头戴式音频视频设备。 |
-| AUDIO_VIDEO_PORTABLE_AUDIO | 0x041C | 表示便携式音频视频设备。 |
-| AUDIO_VIDEO_CAR_AUDIO | 0x0420 | 表示汽车音频视频设备。 |
-| AUDIO_VIDEO_SET_TOP_BOX | 0x0424 | 表示机顶盒音频视频设备。 |
-| AUDIO_VIDEO_HIFI_AUDIO | 0x0428 | 表示高保真音响设备。 |
-| AUDIO_VIDEO_VCR| 0x042C | 表示录像机音频视频设备。 |
-| AUDIO_VIDEO_VIDEO_CAMERA | 0x0430 | 表示照相机音频视频设备。 |
-| AUDIO_VIDEO_CAMCORDER | 0x0434 | 表示摄像机音频视频设备。 |
-| AUDIO_VIDEO_VIDEO_MONITOR | 0x0438 | 表示监视器音频视频设备。 |
-| AUDIO_VIDEO_VIDEO_DISPLAY_AND_LOUDSPEAKER | 0x043C | 表示视频显示器和扬声器设备。 |
-| AUDIO_VIDEO_VIDEO_CONFERENCING | 0x0440 | 表示音频视频会议设备。 |
-| AUDIO_VIDEO_VIDEO_GAMING_TOY | 0x0448 | 表示游戏玩具音频视频设备。 |
-| PERIPHERAL_NON_KEYBOARD_NON_POINTING | 0x0500 | 表示非键盘非指向外围设备。 |
-| PERIPHERAL_KEYBOARD | 0x0540 | 表示外设键盘设备。 |
-| PERIPHERAL_POINTING_DEVICE | 0x0580 | 表示定点装置外围设备。 |
-| PERIPHERAL_KEYBOARD_POINTING| 0x05C0 | 表示键盘指向外围设备。 |
-| PERIPHERAL_UNCATEGORIZED | 0x0500 | 表示未分类外围设备。 |
-| PERIPHERAL_JOYSTICK | 0x0504 | 表示周边操纵杆设备。 |
-| PERIPHERAL_GAMEPAD | 0x0508 | 表示周边游戏板设备。 |
-| PERIPHERAL_REMOTE_CONTROL | 0x05C0 | 表示远程控制外围设备。 |
-| PERIPHERAL_SENSING_DEVICE | 0x0510 | 表示外围传感设备设备。 |
-| PERIPHERAL_DIGITIZER_TABLET | 0x0514 | 表示外围数字化仪平板电脑设备。 |
-| PERIPHERAL_CARD_READER | 0x0518 | 表示外围读卡器设备。 |
-| PERIPHERAL_DIGITAL_PEN | 0x051C | 表示外设数码笔设备。 |
-| PERIPHERAL_SCANNER_RFID | 0x0520 | 表示射频识别扫描仪外围设备。 |
-| PERIPHERAL_GESTURAL_INPUT | 0x0522 | 表示手势输入外围设备。 |
-| IMAGING_UNCATEGORIZED | 0x0600 | 表示未分类的图像设备。 |
-| IMAGING_DISPLAY | 0x0610 | 表示图像显示设备。 |
-| IMAGING_CAMERA | 0x0620 | 表示成像照相机设备。 |
-| IMAGING_SCANNER | 0x0640 | 表示成像扫描仪设备。 |
-| IMAGING_PRINTER | 0x0680 | 表示成像打印机设备。 |
-| WEARABLE_UNCATEGORIZED | 0x0700 | 表示未分类的可穿戴设备。 |
-| WEARABLE_WRIST_WATCH | 0x0704 | 表示可穿戴腕表设备。 |
-| WEARABLE_PAGER | 0x0708 | 表示可穿戴寻呼机设备。 |
-| WEARABLE_JACKET | 0x070C | 表示夹克可穿戴设备。 |
-| WEARABLE_HELMET | 0x0710 | 表示可穿戴头盔设备。 |
-| WEARABLE_GLASSES | 0x0714 | 表示可穿戴眼镜设备。 |
-| TOY_UNCATEGORIZED | 0x0800 | 表示未分类的玩具设备。 |
-| TOY_ROBOT| 0x0804 | 表示玩具机器人设备。 |
-| TOY_VEHICLE | 0x0808 | 表示玩具车设备。 |
-| TOY_DOLL_ACTION_FIGURE | 0x080C | 表示人形娃娃玩具设备。 |
-| TOY_CONTROLLER | 0x0810 | 表示玩具控制器设备。 |
-| TOY_GAME | 0x0814 | 表示玩具游戏设备。 |
-| HEALTH_UNCATEGORIZED | 0x0900 | 表示未分类健康设备。 |
-| HEALTH_BLOOD_PRESSURE | 0x0904 | 表示血压健康设备。 |
-| HEALTH_THERMOMETER | 0x0908 | 表示温度计健康设备。 |
-| HEALTH_WEIGHING | 0x090C | 表示体重健康设备。 |
-| HEALTH_GLUCOSE | 0x0910 | 表示葡萄糖健康设备。 |
-| HEALTH_PULSE_OXIMETER | 0x0914 | 表示脉搏血氧仪健康设备。 |
-| HEALTH_PULSE_RATE | 0x0918 | 表示脉搏率健康设备。 |
-| HEALTH_DATA_DISPLAY | 0x091C | 表示数据显示健康设备。 |
-| HEALTH_STEP_COUNTER | 0x0920 | 表示阶梯计数器健康设备。 |
-| HEALTH_BODY_COMPOSITION_ANALYZER | 0x0924 | 表示身体成分分析仪健康设备。 |
-| HEALTH_PEAK_FLOW_MOITOR | 0x0928 | 表示湿度计健康设备。 |
-| HEALTH_MEDICATION_MONITOR | 0x092C | 表示药物监视仪健康设备。 |
-| HEALTH_KNEE_PROSTHESIS | 0x0930 | 表示膝盖假肢健康设备。 |
-| HEALTH_ANKLE_PROSTHESIS | 0x0934 | 表示脚踝假肢健康设备。 |
-| HEALTH_GENERIC_HEALTH_MANAGER | 0x0938 | 表示通用健康管理设备。 |
-| HEALTH_PERSONAL_MOBILITY_DEVICE | 0x093C | 表示个人移动健康设备。 |
+| 名称                                      | 默认值 | 说明                           |
+| ----------------------------------------- | ------ | ------------------------------ |
+| COMPUTER_UNCATEGORIZED                    | 0x0100 | 表示未分类计算机设备。         |
+| COMPUTER_DESKTOP                          | 0x0104 | 表示台式计算机设备。           |
+| COMPUTER_SERVER                           | 0x0108 | 表示服务器设备。               |
+| COMPUTER_LAPTOP                           | 0x010C | 表示便携式计算机设备。         |
+| COMPUTER_HANDHELD_PC_PDA                  | 0x0110 | 表示手持式计算机设备。         |
+| COMPUTER_PALM_SIZE_PC_PDA                 | 0x0114 | 表示掌上电脑设备。             |
+| COMPUTER_WEARABLE                         | 0x0118 | 表示可穿戴计算机设备。         |
+| COMPUTER_TABLET                           | 0x011C | 表示平板电脑设备。             |
+| PHONE_UNCATEGORIZED                       | 0x0200 | 表示未分类手机设备。           |
+| PHONE_CELLULAR                            | 0x0204 | 表示便携式手机设备。           |
+| PHONE_CORDLESS                            | 0x0208 | 表示无线电话设备。             |
+| PHONE_SMART                               | 0x020C | 表示智能手机设备。             |
+| PHONE_MODEM_OR_GATEWAY                    | 0x0210 | 表示调制解调器或网关手机设备。 |
+| PHONE_ISDN                                | 0x0214 | 表示ISDN手机设备。             |
+| NETWORK_FULLY_AVAILABLE                   | 0x0300 | 表示网络完全可用设备。         |
+| NETWORK_1_TO_17_UTILIZED                  | 0x0320 | 表示使用网络1到17设备。        |
+| NETWORK_17_TO_33_UTILIZED                 | 0x0340 | 表示使用网络17到33设备。       |
+| NETWORK_33_TO_50_UTILIZED                 | 0x0360 | 表示使用网络33到50设备。       |
+| NETWORK_60_TO_67_UTILIZED                 | 0x0380 | 表示使用网络60到67设备。       |
+| NETWORK_67_TO_83_UTILIZED                 | 0x03A0 | 表示使用网络67到83设备。       |
+| NETWORK_83_TO_99_UTILIZED                 | 0x03C0 | 表示使用网络83到99设备。       |
+| NETWORK_NO_SERVICE                        | 0x03E0 | 表示网络无服务设备。           |
+| AUDIO_VIDEO_UNCATEGORIZED                 | 0x0400 | 表示未分类音频视频设备。       |
+| AUDIO_VIDEO_WEARABLE_HEADSET              | 0x0404 | 表示可穿戴式音频视频设备。     |
+| AUDIO_VIDEO_HANDSFREE                     | 0x0408 | 表示免提音频视频设备。         |
+| AUDIO_VIDEO_MICROPHONE                    | 0x0410 | 表示麦克风音频视频设备。       |
+| AUDIO_VIDEO_LOUDSPEAKER                   | 0x0414 | 表示扬声器音频视频设备。       |
+| AUDIO_VIDEO_HEADPHONES                    | 0x0418 | 表示头戴式音频视频设备。       |
+| AUDIO_VIDEO_PORTABLE_AUDIO                | 0x041C | 表示便携式音频视频设备。       |
+| AUDIO_VIDEO_CAR_AUDIO                     | 0x0420 | 表示汽车音频视频设备。         |
+| AUDIO_VIDEO_SET_TOP_BOX                   | 0x0424 | 表示机顶盒音频视频设备。       |
+| AUDIO_VIDEO_HIFI_AUDIO                    | 0x0428 | 表示高保真音响设备。           |
+| AUDIO_VIDEO_VCR                           | 0x042C | 表示录像机音频视频设备。       |
+| AUDIO_VIDEO_VIDEO_CAMERA                  | 0x0430 | 表示照相机音频视频设备。       |
+| AUDIO_VIDEO_CAMCORDER                     | 0x0434 | 表示摄像机音频视频设备。       |
+| AUDIO_VIDEO_VIDEO_MONITOR                 | 0x0438 | 表示监视器音频视频设备。       |
+| AUDIO_VIDEO_VIDEO_DISPLAY_AND_LOUDSPEAKER | 0x043C | 表示视频显示器和扬声器设备。   |
+| AUDIO_VIDEO_VIDEO_CONFERENCING            | 0x0440 | 表示音频视频会议设备。         |
+| AUDIO_VIDEO_VIDEO_GAMING_TOY              | 0x0448 | 表示游戏玩具音频视频设备。     |
+| PERIPHERAL_NON_KEYBOARD_NON_POINTING      | 0x0500 | 表示非键盘非指向外围设备。     |
+| PERIPHERAL_KEYBOARD                       | 0x0540 | 表示外设键盘设备。             |
+| PERIPHERAL_POINTING_DEVICE                | 0x0580 | 表示定点装置外围设备。         |
+| PERIPHERAL_KEYBOARD_POINTING              | 0x05C0 | 表示键盘指向外围设备。         |
+| PERIPHERAL_UNCATEGORIZED                  | 0x0500 | 表示未分类外围设备。           |
+| PERIPHERAL_JOYSTICK                       | 0x0504 | 表示周边操纵杆设备。           |
+| PERIPHERAL_GAMEPAD                        | 0x0508 | 表示周边游戏板设备。           |
+| PERIPHERAL_REMOTE_CONTROL                 | 0x05C0 | 表示远程控制外围设备。         |
+| PERIPHERAL_SENSING_DEVICE                 | 0x0510 | 表示外围传感设备设备。         |
+| PERIPHERAL_DIGITIZER_TABLET               | 0x0514 | 表示外围数字化仪平板电脑设备。 |
+| PERIPHERAL_CARD_READER                    | 0x0518 | 表示外围读卡器设备。           |
+| PERIPHERAL_DIGITAL_PEN                    | 0x051C | 表示外设数码笔设备。           |
+| PERIPHERAL_SCANNER_RFID                   | 0x0520 | 表示射频识别扫描仪外围设备。   |
+| PERIPHERAL_GESTURAL_INPUT                 | 0x0522 | 表示手势输入外围设备。         |
+| IMAGING_UNCATEGORIZED                     | 0x0600 | 表示未分类的图像设备。         |
+| IMAGING_DISPLAY                           | 0x0610 | 表示图像显示设备。             |
+| IMAGING_CAMERA                            | 0x0620 | 表示成像照相机设备。           |
+| IMAGING_SCANNER                           | 0x0640 | 表示成像扫描仪设备。           |
+| IMAGING_PRINTER                           | 0x0680 | 表示成像打印机设备。           |
+| WEARABLE_UNCATEGORIZED                    | 0x0700 | 表示未分类的可穿戴设备。       |
+| WEARABLE_WRIST_WATCH                      | 0x0704 | 表示可穿戴腕表设备。           |
+| WEARABLE_PAGER                            | 0x0708 | 表示可穿戴寻呼机设备。         |
+| WEARABLE_JACKET                           | 0x070C | 表示夹克可穿戴设备。           |
+| WEARABLE_HELMET                           | 0x0710 | 表示可穿戴头盔设备。           |
+| WEARABLE_GLASSES                          | 0x0714 | 表示可穿戴眼镜设备。           |
+| TOY_UNCATEGORIZED                         | 0x0800 | 表示未分类的玩具设备。         |
+| TOY_ROBOT                                 | 0x0804 | 表示玩具机器人设备。           |
+| TOY_VEHICLE                               | 0x0808 | 表示玩具车设备。               |
+| TOY_DOLL_ACTION_FIGURE                    | 0x080C | 表示人形娃娃玩具设备。         |
+| TOY_CONTROLLER                            | 0x0810 | 表示玩具控制器设备。           |
+| TOY_GAME                                  | 0x0814 | 表示玩具游戏设备。             |
+| HEALTH_UNCATEGORIZED                      | 0x0900 | 表示未分类健康设备。           |
+| HEALTH_BLOOD_PRESSURE                     | 0x0904 | 表示血压健康设备。             |
+| HEALTH_THERMOMETER                        | 0x0908 | 表示温度计健康设备。           |
+| HEALTH_WEIGHING                           | 0x090C | 表示体重健康设备。             |
+| HEALTH_GLUCOSE                            | 0x0910 | 表示葡萄糖健康设备。           |
+| HEALTH_PULSE_OXIMETER                     | 0x0914 | 表示脉搏血氧仪健康设备。       |
+| HEALTH_PULSE_RATE                         | 0x0918 | 表示脉搏率健康设备。           |
+| HEALTH_DATA_DISPLAY                       | 0x091C | 表示数据显示健康设备。         |
+| HEALTH_STEP_COUNTER                       | 0x0920 | 表示阶梯计数器健康设备。       |
+| HEALTH_BODY_COMPOSITION_ANALYZER          | 0x0924 | 表示身体成分分析仪健康设备。   |
+| HEALTH_PEAK_FLOW_MOITOR                   | 0x0928 | 表示湿度计健康设备。           |
+| HEALTH_MEDICATION_MONITOR                 | 0x092C | 表示药物监视仪健康设备。       |
+| HEALTH_KNEE_PROSTHESIS                    | 0x0930 | 表示膝盖假肢健康设备。         |
+| HEALTH_ANKLE_PROSTHESIS                   | 0x0934 | 表示脚踝假肢健康设备。         |
+| HEALTH_GENERIC_HEALTH_MANAGER             | 0x0938 | 表示通用健康管理设备。         |
+| HEALTH_PERSONAL_MOBILITY_DEVICE           | 0x093C | 表示个人移动健康设备。         |
 
 
 ## PlayingState<sup>8+</sup><a name="PlayingState"></a>
@@ -3433,10 +3430,10 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称 | 默认值 | 说明 |
-| -------- | -------- | -------- |
-| STATE_NOT_PLAYING | 0x0000 | 表示未播放。 |
-| STATE_PLAYING | 0x0001 | 表示正在播放。 |
+| 名称              | 默认值 | 说明           |
+| ----------------- | ------ | -------------- |
+| STATE_NOT_PLAYING | 0x0000 | 表示未播放。   |
+| STATE_PLAYING     | 0x0001 | 表示正在播放。 |
 
 
 ## ProfileId<sup>8+</sup><a name="ProfileId"></a>
@@ -3445,7 +3442,7 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称 | 默认值 | 说明 |
-| -------- | -------- | -------- |
-| PROFILE_A2DP_SOURCE | 0x0001 | 表示A2DP profile。 |
-| PROFILE_HANDS_FREE_AUDIO_GATEWAY | 0x0004 | 表示HFP profile。 |
+| 名称                             | 默认值 | 说明               |
+| -------------------------------- | ------ | ------------------ |
+| PROFILE_A2DP_SOURCE              | 0x0001 | 表示A2DP profile。 |
+| PROFILE_HANDS_FREE_AUDIO_GATEWAY | 0x0004 | 表示HFP profile。  |
