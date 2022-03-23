@@ -1020,7 +1020,7 @@ imagePackerApi.release();
 | stride | number             | 是   | 否   | 像素间距。           |
 | region | [Region](#region8) | 是   | 否   | 区域，按照区域读写。 |
 
-## **ImageInfo**
+## ImageInfo
 
 表示图片信息。
 
