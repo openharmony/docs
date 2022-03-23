@@ -29,6 +29,7 @@ getAccountManager(): AccountManager
   ```
 
 ## OsAccountType
+
 枚举，系统帐号类型。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount。
@@ -1727,6 +1728,7 @@ off(type: 'activate' | 'activating', name: string, callback?: Callback&lt;number
   ```
 
 ## OsAccountInfo
+
 系统帐号信息。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount。
@@ -1748,6 +1750,7 @@ off(type: 'activate' | 'activating', name: string, callback?: Callback&lt;number
 | domainInfo        | [DomainAccountInfo](#domainaccountinfo)                      | 否   | 域帐号信息                        |
 
 ## DomainAccountInfo
+
 域帐号信息。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount。
