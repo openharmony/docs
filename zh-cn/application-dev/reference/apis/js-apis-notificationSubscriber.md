@@ -101,7 +101,7 @@ onUpdate?:(data: [NotificationSortingMap](#notificationsortingmap))
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------------ | ------------------------ | ---- | -------------------------- |
-| data | [NotificationSortingMap](#notificationsortingmap) | 是 |  |
+| data | [NotificationSortingMap](#notificationsortingmap) | 是 | 回调返回接收到的通知信息。 |
 
 **示例：**
 
