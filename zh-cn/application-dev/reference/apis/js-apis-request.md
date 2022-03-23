@@ -150,10 +150,10 @@ on(type: 'progress', callback:(uploadedSize: number, totalSize: number) =&gt; vo
 - 示例：
   
   ```
-  uploadTask.on('progress', callback);
-  callback(uploadedSize, totalSize) {
+  uploadTask.on('progress', function callback(uploadedSize, totalSize) {
       console.info("upload totalSize:" + totalSize + "  uploadedSize:" + uploadedSize);
   }
+  );
   ```
 
 
@@ -171,7 +171,7 @@ on(type: 'headerReceive', callback:  (header: object) =&gt; void): void
     | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 订阅的事件类型，取值为'headerReceive'（接收响应头）。 |
-  | callback | header:&nbsp;object | 是 | HTTP&nbsp;Response&nbsp;Header事件的回调函数。 |
+  | callback | function | 是 | HTTP&nbsp;Response&nbsp;Header事件的回调函数。 |
 
   回调函数的参数：
 
@@ -182,10 +182,10 @@ on(type: 'headerReceive', callback:  (header: object) =&gt; void): void
 - 示例：
   
   ```
-  uploadTask.on('headerReceive', callback);
-  callback(headers){   
+  uploadTask.on('headerReceive', function callback(headers){   
       console.info("upOnHeader headers:" + JSON.stringify(headers));
   }
+  );
   ```
 
 
@@ -215,10 +215,10 @@ off(type:  'progress',  callback?: (uploadedSize: number, totalSize: number) =&g
 - 示例：
   
   ```
-  uploadTask.off('progress', callback);
-  callback(uploadedSize, totalSize) {
+  uploadTask.off('progress', function callback(uploadedSize, totalSize) {
       console.info('uploadedSize: ' + uploadedSize, 'totalSize: ' + totalSize);
   }
+  );
   ```
 
 
@@ -236,7 +236,7 @@ off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
     | 参数名 | 参数类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 取消订阅的事件类型，取值为'headerReceive'（接收响应头）。 |
-  | callback | header:&nbsp;object | 否 | HTTP&nbsp;Response&nbsp;Header事件的回调函数。 |
+  | callback | function | 否 | HTTP&nbsp;Response&nbsp;Header事件的回调函数。 |
 
   回调函数的参数：
 
@@ -247,10 +247,10 @@ off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
 - 示例：
   
   ```
-  uploadTask.off('headerReceive', callback);
-  callback(headers) {
+  uploadTask.off('headerReceive', function callback(headers) {
       console.info("upOnHeader headers:" + JSON.stringify(headers));
   }
+  );
   ```
 
 
@@ -449,11 +449,11 @@ on(type: 'progress', callback:(receivedSize: number, totalSize: number) =&gt; vo
           return;
       }    
       downloadTask = data;    
-      downloadTask.on('progress', download_callback);
-  });
-  download_callback(receivedSize, totalSize) {
+      downloadTask.on('progress', function download_callback(receivedSize, totalSize) {
       console.info("download receivedSize:" + receivedSize + " totalSize:" + totalSize);
   }
+  );
+  });
   ```
 
 
@@ -489,11 +489,11 @@ off(type: 'progress', callback?: (receivedSize: number, totalSize: number) =&gt;
           return;
       }
       downloadTask = data;    
-      downloadTask .off('progress', download_callback);
+      downloadTask .off('progress', function download_callback(receivedSize, totalSize) {
+          console.info("download receivedSize:" + receivedSize + " totalSize:" + totalSize);
+      }
+  );
   });
-  download_callback(receivedSize, totalSize) {
-      console.info("download receivedSize:" + receivedSize + " totalSize:" + totalSize);
-  }
   ```
 
 
@@ -522,11 +522,11 @@ on(type: 'complete', callback:() =&gt; void): void
           return;   
       }    
       downloadTask= data;    
-      downloadTask.on('complete',callback);
+      downloadTask.on('complete', function callback() {
+          console.info('Download task completed.');
+      }
+  );
   });
-  callback() {
-      console.info('Download task completed.');
-  }
   ```
 
 
@@ -555,11 +555,11 @@ off(type: 'complete', callback?:() =&gt; void): void
           return;
      }    
       downloadTask = data;
-      downloadTask.off('complete',callback);
+      downloadTask.off('complete', function callback() {
+          console.info('Download task completed.');
+      }
+  );
   }); 
-  callback() {
-      console.info('Download task completed.');
-  }
   ```
 
 
@@ -594,11 +594,11 @@ on(type: 'fail', callback: (err: number) =&gt; void): void
           return;
       }    
       downloadTask = data;    
-      downloadTask.on('fail', callBack);
+      downloadTask.on('fail', function callBack(err) {
+          console.info('Download task failed. Cause:' + err);
+      }
+  );
   });
-  callBack(err) {
-      console.info('Download task failed. Cause:' + err);
-  }
   ```
 
 
@@ -633,11 +633,11 @@ off(type: 'fail', callback?: (err: number) =&gt; void): void
           return;
       }    
       downloadTask = data;       
-      downloadTask.off('fail', callBack);
+      downloadTask.off('fail', function callBack(err) {
+          console.info('Download task failed. Cause:' + err);
+      } 
+  );
   });
-  callBack(err) {
-      console.info('Download task failed. Cause:' + err);
-  } 
   ```
 
 
@@ -666,11 +666,11 @@ on(type: 'pause', callback:() =&gt; void): void
           return;
       }    
       downloadTask = data;    
-      downloadTask.on('pause', callBack);
+      downloadTask.on('pause', function callBack() {
+          console.info('Download task paused.');
+      }
+  );
   });
-  callBack() {
-      console.info('Download task paused.');
-  }
   ```
 
 
@@ -699,11 +699,11 @@ off(type: 'pause', callback?:() =&gt; void): void
           return;
       }    
       downloadTask = data;    
-      downloadTask.off('pause', callBack);
+      downloadTask.off('pause', function callBack() {
+          console.info('Download task paused.');
+      }
+  );
   });
-  callBack() {
-      console.info('Download task paused.');
-  }
   ```
 
 
@@ -732,11 +732,11 @@ on(type: 'remove', callback:() =&gt; void): void
           return;
       }    
       downloadTask = data;    
-      downloadTask.on('remove', callBack);
+      downloadTask.on('remove', function callBack() {
+          console.info('Download task removed.');
+      }
+  );
   });
-  callBack() {
-      console.info('Download task removed.');
-  }
   ```
 
 
@@ -764,11 +764,11 @@ off(type: 'remove', callback?:() =&gt; void): void
           console.error('Failed to remove the download task. Cause:' + JSON.stringify(err));    
       }    
       downloadTask = data;    
-      downloadTask.off('remove', callBack);
+      downloadTask.off('remove', function callBack() {
+          console.info('Download task removed.');
+      }
+  );
   });
-  callBack() {
-      console.info('Download task removed.');
-  }
   ```
 
 
