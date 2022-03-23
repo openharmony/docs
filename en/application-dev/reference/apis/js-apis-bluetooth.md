@@ -607,7 +607,7 @@ bluetooth.off('pinRequired', onReceiveEvent);
 
 ## bluetooth.on('bondStateChange')<sup>8+</sup>
 
-on(type: "bondStateChange", callback: Callback&lt;BondState&gt;): void
+on(type: "bondStateChange", callback: Callback&lt;BondStateParam&gt;): void
 
 Subscribes to the Bluetooth pairing state change events.
 
@@ -620,7 +620,7 @@ Subscribes to the Bluetooth pairing state change events.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type. The value **bondStateChange** indicates a Bluetooth pairing state change event.|
-| callback | Callback&lt;[BondState](#bondstate)&gt; | Yes| Callback invoked to return the pairing state. You need to implement this callback.|
+| callback | Callback&lt;[BondStateParam](#bondstate)&gt; | Yes| Callback invoked to return the pairing state. You need to implement this callback.|
 
 **Return value**
 
@@ -638,7 +638,7 @@ bluetooth.on('bondStateChange', onReceiveEvent);
 
 ## bluetooth.off('bondStateChange')<sup>8+</sup>
 
-off(type: "bondStateChange", callback?: Callback&lt;BondState&gt;): void
+off(type: "bondStateChange", callback?: Callback&lt;BondStateParam&gt;): void
 
 Unsubscribes from the Bluetooth pairing state change events.
 
@@ -651,7 +651,7 @@ Unsubscribes from the Bluetooth pairing state change events.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type. The value **bondStateChange** indicates a Bluetooth pairing state change event.|
-| callback | Callback&lt;[BondState](#bondstate)&gt; | No| Callback used to report the change of the Bluetooth pairing state. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
+| callback | Callback&lt;[BondStateParam](#bondstate)&gt; | No| Callback used to report the change of the Bluetooth pairing state. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
 
 **Return value**
 
@@ -982,7 +982,7 @@ Obtains a profile object.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| ProfileId | profileId | Yes| ID of the profile to obtain, for example, **PROFILE_A2DP_SOURCE**.|
+| ProfileId | profileId | Yes| ID of the target profile, for example, **PROFILE_A2DP_SOURCE**.|
 
 **Return value**
 
@@ -1269,7 +1269,7 @@ Sets up an Advanced Audio Distribution Profile (A2DP) connection.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| device | string | Yes| Address of the remote device to connect.|
+| device | string | Yes| Address of the remote device.|
 |
 
 **Return value**
@@ -1301,7 +1301,7 @@ Disconnects an A2DP connection.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| device | string | Yes| Address of the remote device to disconnect.|
+| device | string | Yes| Address of the remote device.|
 |
 
 **Return value**
@@ -1361,7 +1361,7 @@ Unsubscribes from the A2DP connection status change events.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type. The value **connectionStateChange** indicates an A2DP connection state change event.|
-| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | Yes| Callback used to return the A2DP connection state change event.|
+| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | Yes| Callback invoked to return the A2DP connection state change event.|
 
 **Return value**
 
@@ -1389,7 +1389,7 @@ Obtains the playing status of a device.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| device | string | Yes| Address of the target device.|
+| device | string | Yes| Address of the remote device.|
 
 **Return value**
 
@@ -1425,7 +1425,7 @@ Sets up a Hands-free Profile (HFP) connection of a device.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| device | string | Yes| Address of the target device.|
+| device | string | Yes| Address of the remote device.|
 |
 
 **Return value**
@@ -1447,7 +1447,7 @@ boolean ret = hfpAg.connect('XX:XX:XX:XX:XX:XX');
 
 disconnect(device: string): boolean
 
-Disconnects the HFP connection of a device.
+Sets up a Hands-free Profile (HFP) connection of a device.
 
 **Required permissions**: ohos.permission.DISCOVER_BLUETOOTH
 
@@ -1457,7 +1457,7 @@ Disconnects the HFP connection of a device.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| device | string | Yes| Address of the target device.|
+| device | string | Yes| Address of the remote device.|
 |
 
 **Return value**
@@ -1487,8 +1487,8 @@ Subscribes to the HFP connection status change events.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type. The value **connectionStateChange** indicates an HFP connection state change event.|
-| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | Yes| Callback invoked to return the HFP connection state change event.|
+| type | string | Yes| Event type. The value **connectionStateChange** indicates an A2DP connection state change event.|
+| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | Yes| Callback invoked to return the A2DP connection state change event.|
 
 **Return value**
 
@@ -1516,8 +1516,8 @@ Unsubscribes from the HFP connection status change events.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type. The value **connectionStateChange** indicates an HFP connection state change event.|
-| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | Yes| Callback used to return the HFP connection state change event.|
+| type | string | Yes| Event type. The value **connectionStateChange** indicates an A2DP connection state change event.|
+| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | Yes| Callback invoked to return the A2DP connection state change event.|
 
 **Return value**
 
@@ -1989,7 +1989,7 @@ Subscribes to the descriptor read request events.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type. The value **descriptorRead** indicates a descriptor read request event.|
-| callback | Callback&lt;[DescriptorReadReq](#descriptorreadreq)&gt; | Yes| Callback invoked to return a descriptor read request event from the GATT client.|
+| callback | Callback&lt;[DescriptorReadReq](#descriptorreadreq)&gt; | Yes| Callback invoked to return a characteristic read request from the GATT client.|
 
 **Return value**
 
@@ -2066,7 +2066,7 @@ Subscribes to the descriptor write request events.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type. The value **descriptorWrite** indicates a descriptor write request event.|
-| callback | Callback&lt;[DescriptorWriteReq](#descriptorwritereq)&gt; | Yes| Callback invoked to return a descriptor write request from the GATT client.|
+| callback | Callback&lt;[DescriptorWriteReq](#descriptorwritereq)&gt; | Yes| Callback invoked to return a characteristic write request from the GATT client.|
 
 **Return value**
 
@@ -2117,7 +2117,7 @@ Unsubscribes from the descriptor write request events.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type. The value **descriptorWrite** indicates a descriptor write request event.|
-| callback | Callback&lt;[DescriptorWriteReq](#descriptorwritereq)&gt; | No| Callback used to report a descriptor write request event. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
+| callback | Callback&lt;[DescriptorWriteReq](#descriptorwritereq)&gt; | No| Callback used to report a descriptor read request event. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
 
 **Return value**
 
