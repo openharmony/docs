@@ -14,8 +14,8 @@
 使用如下apt-get命令安装编译所需的必要的库和工具：
 
 ```
-sudo apt-get install build-essential gcc g++ make libffi-dev e2fsprogs pkg-config flex bison perl bc openssl libssl-dev libelf-dev libc6-dev-amd64 binutils binutils-dev libdwarf-dev u-boot-tools mtd-utils gcc-arm-linux-gnueabi cpio device-tree-compiler
-```
+sudo apt-get install build-essential gcc g++ make libffi-dev e2fsprogs pkg-config flex bison perl bc openssl libssl-dev libelf-dev libc6-dev-amd64 binutils binutils-dev libdwarf-dev u-boot-tools mtd-utils gcc-arm-linux-gnueabi cpio device-tree-compiler libncurses5 libncurses5-dev libncursesw5
+``` 
 
 ## 安装hb<a name="section15794154618411"></a>
 
