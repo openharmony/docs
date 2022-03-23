@@ -147,7 +147,7 @@ setImageFileCacheSize(value: number): void
 | fail | (data: string, code: number) => void | 否 | 接口调用失败的回调函数。 |
 | complete | () => void | 否 | 接口调用结束的回调函数。 |
 
-# RequestFullWindowOptions
+## RequestFullWindowOptions
 
 定义RequestFullWindow接口的选项。
 
