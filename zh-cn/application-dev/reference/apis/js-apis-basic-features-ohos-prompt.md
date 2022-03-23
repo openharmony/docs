@@ -50,7 +50,7 @@ showToast(options: ShowToastOptions): void
 
 ## prompt.showDialog
 
-showDialog(options: ShowDialogOptions): Promise<ShowDialogSuccessResponse>
+showDialog(options: ShowDialogOptions): Promise&lt;ShowDialogSuccessResponse&gt;
 
 创建并显示对话框，对话框响应后同步返回结果。
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -61,12 +61,13 @@ showDialog(options: ShowDialogOptions): Promise<ShowDialogSuccessResponse>
   | options | [ShowDialogOptions](#ShowDialogOptions) | 是 | 对话框选项。|
 
 **返回值：**
+
   | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;[ShowDialogSuccessResponse](#ShowDialogSuccessResponse)&gt; |  对话框响应结果。|
-  
+
 **示例：**
-  
+
   ```
   export default {    
     showDialog() {       
@@ -90,7 +91,7 @@ showDialog(options: ShowDialogOptions): Promise<ShowDialogSuccessResponse>
   }
   ```
 
-showDialog(options: ShowDialogOptions, callback: AsyncCallback<ShowDialogSuccessResponse>):void 
+showDialog(options: ShowDialogOptions, callback: AsyncCallback&lt;ShowDialogSuccessResponse&gt;):void 
 
 创建并显示对话框，对话框响应结果异步返回。
 
@@ -191,7 +192,7 @@ showDialog(options: ShowDialogOptions, callback: AsyncCallback<ShowDialogSuccess
     }
   }
   ```
-  
+
 
 showActionMenu(options: ActionMenuOptions): Promise<ActionMenuSuccessResponse>
 
@@ -203,6 +204,7 @@ showActionMenu(options: ActionMenuOptions): Promise<ActionMenuSuccessResponse>
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | options  | [ActionMenuOptions](#ActionMenuOptions) | 是 | 操作菜单选项。 |
+
 **返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
@@ -245,12 +247,6 @@ showActionMenu(options: ActionMenuOptions): Promise<ActionMenuSuccessResponse>
 | title | string | 否 | 标题文本。 |
 | buttons | Array | 是 | 对话框中按钮的数组，结构为：{text:'button',&nbsp;color:&nbsp;'\#666666'}，支持1-6个按钮。大于6个按钮时弹窗不显示。 |
 
-  **表1** TapIndex
-
-| 参数名 | 类型 | 说明 |
-| -------- | -------- | -------- |
-| tapIndex | number | 选中按钮在buttons数组中的索引，从0开始。 |
-
 ## ActionMenuSuccessResponse
 
 操作菜单的响应结果。
@@ -259,5 +255,5 @@ showActionMenu(options: ActionMenuOptions): Promise<ActionMenuSuccessResponse>
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| index | number | 否 | 菜单成功的响应值 |
+| index | number | 否 | 选中按钮在buttons数组中的索引，从0开始。 |
 
