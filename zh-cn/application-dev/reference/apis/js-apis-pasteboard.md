@@ -34,18 +34,18 @@ createPlainTextData(text:string): PasteData
 
 **系统能力**: SystemCapability.Miscservices.Pasteboard
 
-- 参数
-    | 参数名 | 类型 | 必填 | 说明 | 
+**参数**
+  | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | text | string | 是 | 纯文本数据。 | 
 
-- 返回值
-    | 类型 | 说明 | 
+**返回值**
+  | 类型 | 说明 | 
   | -------- | -------- |
   | [PasteData](#pastedata) | 包含此内容的剪贴板内容对象。 | 
 
-- 示例
-  
+**示例**
+
   ```
   var pasteData = pasteboard.createPlainTextData("content");
   ```
@@ -59,18 +59,18 @@ createHtmlData(htmlText:string): PasteData
 
 **系统能力**: SystemCapability.Miscservices.Pasteboard
 
-- 参数
-    | 参数名 | 类型 | 必填 | 说明 | 
+**参数**
+  | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | htmlText | string | 是 | 待保存的HTML文本内容。 | 
 
-- 返回值
-    | 类型 | 说明 | 
+**返回值**
+  | 类型 | 说明 | 
   | -------- | -------- |
   | [PasteData](#pastedata) | 包含此内容的剪贴板内容对象。 | 
 
-- 示例
-  
+**示例**
+
   ```
   var html = "<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "<meta charset=\"utf-8\">\n" + "<title>HTML-PASTEBOARD_HTML</title>\n" + "</head>\n" + "<body>\n" + "    <h1>HEAD</h1>\n" + "    <p></p>\n" + "</body>\n" + "</html>";
   var pasteData = pasteboard.createHtmlData(html);
@@ -85,18 +85,18 @@ createWantData(want:Want): PasteData
 
 **系统能力**: SystemCapability.Miscservices.Pasteboard
 
-- 参数
-    | 参数名 | 类型 | 必填 | 说明 |
+**参数**
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | want | [Want](js-apis-featureAbility.md#want) | 是 | 待保存的Want内容。 |
 
-- 返回值
-    | 类型 | 说明 | 
+**返回值**
+  | 类型 | 说明 | 
   | -------- | -------- |
   | [PasteData](#pastedata) | 包含此内容的剪贴板内容对象。 | 
 
-- 示例
-  
+**示例**
+
   ```
   var object = {
       bundleName: "com.example.aafwk.test",
@@ -114,20 +114,20 @@ createUriData(uri:string): PasteData
 
 **系统能力**: SystemCapability.Miscservices.Pasteboard
 
-- 参数
-    | 参数名 | 类型 | 必填 | 说明 | 
+**参数**
+  | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | uri | string | 是 | 待保存的URI内容。 | 
 
-- 返回值
-    | 类型 | 说明 | 
+**返回值**
+  | 类型 | 说明 | 
   | -------- | -------- |
   | [PasteData](#pastedata) | 包含此内容的剪贴板内容对象。 | 
 
-- 示例
-  
+**示例**
+
   ```
-  var pasteData = pasteboard.createUriData("dataability:///com.example.myapplication1?user.txt");
+  var pasteData = pasteboard.createUriData("dataability:///com.example.myapplication1?user.txt"");
   ```
 
 
@@ -139,18 +139,18 @@ createPlainTextRecord(text:string): PasteDataRecord
 
 **系统能力**: SystemCapability.Miscservices.Pasteboard
 
-- 参数
-    | 参数名 | 类型 | 必填 | 说明 | 
+**参数**
+  | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | text | string | 是 | 纯文本内容。 | 
 
-- 返回值
-    | 类型 | 说明 |
+**返回值**
+  | 类型 | 说明 |
   | -------- | -------- |
   | [PasteDataRecord](#pastedatarecord7) | 一条新建的纯文本内容条目。 |
 
-- 示例
-  
+**示例**
+
   ```
   var record = pasteboard.createPlainTextRecord("hello");
   ```
@@ -164,18 +164,18 @@ createHtmlTextRecord(htmlText:string): PasteDataRecord
 
 **系统能力**: SystemCapability.Miscservices.Pasteboard
 
-- 参数
-    | 参数名 | 类型 | 必填 | 说明 | 
+**参数**
+  | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | htmlText | string | 是 | 文本内容。 | 
 
-- 返回值
-    | 类型 | 说明 |
+**返回值**
+  | 类型 | 说明 |
   | -------- | -------- |
   | [PasteDataRecord](#pastedatarecord7) | 一条新建的HTML内容条目。 |
 
-- 示例
-  
+**示例**
+
   ```
   var html = "<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "<meta charset=\"utf-8\">\n" + "<title>HTML-PASTEBOARD_HTML</title>\n" + "</head>\n" + "<body>\n" + "    <h1>HEAD</h1>\n" + "    <p></p>\n" + "</body>\n" + "</html>";
   var record = pasteboard.createHtmlTextRecord(html);
@@ -190,18 +190,18 @@ createWantRecord(want:Want): PasteDataRecord
 
 **系统能力**: SystemCapability.Miscservices.Pasteboard
 
-- 参数
-    | 参数名 | 类型 | 必填 | 说明 |
+**参数**
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | want | [Want](js-apis-featureAbility.md#want) | 是 | Want类型数据。 |
 
-- 返回值
-    | 类型 | 说明 |
+**返回值**
+  | 类型 | 说明 |
   | -------- | -------- |
   | [PasteDataRecord](#pastedatarecord7) | 一条新建的Want内容条目 |
 
-- 示例
-  
+**示例**
+
   ```
   var object = {
       bundleName: "com.example.aafwk.test",
@@ -219,20 +219,20 @@ createUriRecord(uri:string): PasteDataRecord
 
 **系统能力**: SystemCapability.Miscservices.Pasteboard
 
-- 参数
-    | 参数名 | 类型 | 必填 | 说明 | 
+**参数**
+  | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | uri | string | 是 | URI内容。 | 
 
-- 返回值
-    | 类型 | 说明 |
+**返回值**
+  | 类型 | 说明 |
   | -------- | -------- |
   | [PasteDataRecord](#pastedatarecord7) | 一条新建的URI内容条目。 |
 
-- 示例
-  
+**示例**
+
   ```
-  var record = pasteboard.createUriRecord("dataability:///com.example.myapplication1?user.txt");
+  var record = pasteboard.createUriRecord("dataability:///com.example.myapplication1?user.txt"");
   ```
 
 
@@ -277,15 +277,15 @@ convertToText(): Promise&lt;string&gt;
 
 **系统能力**: SystemCapability.Miscservices.Pasteboard
 
-- 返回值
-    | 类型 | 说明 | 
+**返回值**
+  | 类型 | 说明 | 
   | -------- | -------- |
   | Promise&lt;void&gt; | 异步回调函数，调用成功则返回强制转换的文本内容，调用失败则返回error信息。 | 
 
-- 示例
-  
+**示例**
+
   ```
-  var record = pasteboard.createUriRecord("dataability:///com.example.myapplication1?user.txt");
+  var record = pasteboard.createUriRecord("dataability:///com.example.myapplication1?user.txt"");
   record.convertToText().then((data) => {
       console.info('convertToText success data : ' + JSON.stringify(data));
   }).catch((error) => { 
@@ -302,15 +302,15 @@ convertToText(callback: AsyncCallback&lt;string&gt;): void
 
 **系统能力**: SystemCapability.Miscservices.Pasteboard
 
-- 参数
-    | 参数名 | 类型 | 必填 | 说明 | 
+**参数**
+  | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;string&gt; | 是 | 回调函数，调用成功则返回强制转换的文本内容，调用失败则返回error信息。 | 
 
-- 示例
-  
+**示例**
+
   ```
-  var record = pasteboard.createUriRecord("dataability:///com.example.myapplication1?user.txt");
+  var record = pasteboard.createUriRecord("dataability:///com.example.myapplication1?user.txt"");
   record.convertToText((err, data) => {    
       if (err) {        
           console.error('convertToText failed because ' + JSON.stringify(err));        
@@ -336,21 +336,16 @@ getPrimaryText(): string
 
 获取首个条目的纯文本内容。
 
-
 **系统能力**: SystemCapability.Miscservices.Pasteboard
 
 
-- 参数
-  无
-
-
-- 返回值
-    | 类型 | 说明 | 
+**返回值**
+  | 类型 | 说明 | 
   | -------- | -------- |
   | string | 纯文本内容。 | 
 
-- 示例
-  
+**示例**
+
   ```
   var pasteData = pasteboard.createPlainTextData("hello");
   var plainText = pasteData.getPrimaryText();
@@ -365,13 +360,13 @@ getPrimaryHtml(): string
 
 **系统能力**: SystemCapability.Miscservices.Pasteboard
 
-- 返回值
-    | 类型 | 说明 | 
+**返回值**
+  | 类型 | 说明 | 
   | -------- | -------- |
   | string | HTML文本数据。 | 
 
-- 示例
-  
+**示例**
+
   ```
   var html = "<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "<meta charset=\"utf-8\">\n" + "<title>HTML-PASTEBOARD_HTML</title>\n" + "</head>\n" + "<body>\n" + "    <h1>HEAD</h1>\n" + "    <p></p>\n" + "</body>\n" + "</html>";
   var pasteData = pasteboard.createHtmlData(html);
@@ -387,13 +382,13 @@ getPrimaryWant(): Want
 
 **系统能力**: SystemCapability.Miscservices.Pasteboard
 
-- 返回值
-    | 类型 | 说明 |
+**返回值**
+  | 类型 | 说明 |
   | -------- | -------- |
   | [Want](js-apis-featureAbility.md#want) | Want对象内容。 |
 
-- 示例
-  
+**示例**
+
   ```
   var object = { 
       bundleName: "com.example.aafwk.test",    
@@ -412,15 +407,15 @@ getPrimaryUri(): string
 
 **系统能力**: SystemCapability.Miscservices.Pasteboard
 
-- 返回值
-    | 类型 | 说明 | 
+**返回值**
+  | 类型 | 说明 | 
   | -------- | -------- |
   | string | URI文本内容。 | 
 
-- 示例
-  
+**示例**
+
   ```
-  var pasteData = pasteboard.createUriData("dataability:///com.example.myapplication1?user.txt);
+  var pasteData = pasteboard.createUriData("dataability:///com.example.myapplication1?user.txt");
   var uri = pasteData.getPrimaryUri();
   ```
 
@@ -435,13 +430,13 @@ addTextRecord(text: string): void
 
 **系统能力**: SystemCapability.Miscservices.Pasteboard
 
-- 参数
-    | 参数名 | 类型 | 必填 | 说明 | 
+**参数**
+  | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | text | string | 是 | 纯文本内容。 | 
 
-- 示例
-  
+**示例**
+
   ```
   var pasteData = pasteboard.createPlainTextData("hello");
   pasteData.addTextRecord("good");
@@ -458,13 +453,13 @@ addHtmlRecord(htmlText: string): void
 
 **系统能力**: SystemCapability.Miscservices.Pasteboard
 
-- 参数
-    | 参数名 | 类型 | 必填 | 说明 | 
+**参数**
+  | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | htmlText | string | 是 | HTML格式的文本内容。 | 
 
-- 示例
-  
+**示例**
+
   ```
   var pasteData = pasteboard.createPlainTextData("hello");
   var html = "<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "<meta charset=\"utf-8\">\n" + "<title>HTML-PASTEBOARD_HTML</title>\n" + "</head>\n" + "<body>\n" + "    <h1>HEAD</h1>\n" + "    <p></p>\n" + "</body>\n" + "</html>";
@@ -482,13 +477,13 @@ addWantRecord(want: Want): void
 
 **系统能力**: SystemCapability.Miscservices.Pasteboard
 
-- 参数
-    | 参数名 | 类型 | 必填 | 说明 |
+**参数**
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | want | [Want](js-apis-featureAbility.md#want) | 是 | Want对象内容。 |
 
-- 示例
-  
+**示例**
+
   ```
   var pasteData = pasteboard.createPlainTextData("hello");
   var object = { 
@@ -509,16 +504,16 @@ addUriRecord(uri: string): void
 
 **系统能力**: SystemCapability.Miscservices.Pasteboard
 
-- 参数
-    | 参数名 | 类型 | 必填 | 说明 | 
+**参数**
+  | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | uri | string | 是 | URI文本内容。 | 
 
-- 示例
-  
+**示例**
+
   ```
   var pasteData = pasteboard.createPlainTextData("hello");
-  pasteData.addUriRecord("dataability:///com.example.myapplication1?user.txt");
+  pasteData.addUriRecord("dataability:///com.example.myapplication1?user.txt"");
   ```
 
 
@@ -532,15 +527,15 @@ addRecord(record: PasteDataRecord): void
 
 **系统能力**: SystemCapability.Miscservices.Pasteboard
 
-- 参数
-    | 参数名 | 类型 | 必填 | 说明 |
+**参数**
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | record | [PasteDataRecord](#pastedatarecord7) | 是 | 待添加的条目。 |
 
-- 示例
-  
+**示例**
+
   ```
-  var pasteData = pasteboard.createUriData("dataability:///com.example.myapplication1?user.txt");
+  var pasteData = pasteboard.createUriData("dataability:///com.example.myapplication1?user.txt"");
   var textRecord = pasteboard.createPlainTextRecord("hello");
   var html = "<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "<meta charset=\"utf-8\">\n" + "<title>HTML-PASTEBOARD_HTML</title>\n" + "</head>\n" + "<body>\n" + "    <h1>HEAD</h1>\n" + "    <p></p>\n" + "</body>\n" + "</html>";
   var htmlRecord = pasteboard.createHtmlTextRecord(html);
@@ -557,13 +552,13 @@ getMimeTypes(): Array&lt;string&gt;
 
 **系统能力**: SystemCapability.Miscservices.Pasteboard
 
-- 返回值
-    | 类型 | 说明 | 
+**返回值**
+  | 类型 | 说明 | 
   | -------- | -------- |
   | Array&lt;string&gt; | 非重复的类型列表。 | 
 
-- 示例
-  
+**示例**
+
   ```
   var pasteData = pasteboard.createPlainTextData("hello");
   var types = pasteData.getMimeTypes();
@@ -578,13 +573,13 @@ getPrimaryMimeType(): string
 
 **系统能力**: SystemCapability.Miscservices.Pasteboard
 
-- 返回值
-    | 类型 | 说明 | 
+**返回值**
+  | 类型 | 说明 | 
   | -------- | -------- |
   | string | 首个条目的数据类型。 | 
 
-- 示例
-  
+**示例**
+
   ```
   var pasteData = pasteboard.createPlainTextData("hello");
   var type = pasteData.getPrimaryMimeType();
@@ -599,13 +594,13 @@ getProperty(): PasteDataProperty
 
 **系统能力**: SystemCapability.Miscservices.Pasteboard
 
-- 返回值
-    | 类型 | 说明 |
+**返回值**
+  | 类型 | 说明 |
   | -------- | -------- |
   | [PasteDataProperty](#pastedataproperty7) | 属性描述对象。 |
 
-- 示例
-  
+**示例**
+
   ```
   var pasteData = pasteboard.createPlainTextData("hello");
   var property = pasteData.getProperty();
@@ -620,18 +615,18 @@ getRecordAt(index: number): PasteDataRecord
 
 **系统能力**: SystemCapability.Miscservices.Pasteboard
 
-- 参数
-    | 参数名 | 类型 | 必填 | 说明 | 
+**参数**
+  | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | index | number | 是 | 指定条目的下标。 | 
 
-- 返回值
-    | 类型 | 说明 |
+**返回值**
+  | 类型 | 说明 |
   | -------- | -------- |
   | [PasteDataRecord](#pastedatarecord7) | 指定下标的条目。 |
 
-- 示例
-  
+**示例**
+
   ```
   var pasteData = pasteboard.createPlainTextData("hello");
   var record = pasteData.getRecordAt(0);
@@ -646,13 +641,13 @@ getRecordCount(): number
 
 **系统能力**: SystemCapability.Miscservices.Pasteboard
 
-- 返回值
-    | 类型 | 说明 | 
+**返回值**
+  | 类型 | 说明 | 
   | -------- | -------- |
   | number | 条目的个数。 | 
 
-- 示例
-  
+**示例**
+
   ```
   var pasteData = pasteboard.createPlainTextData("hello");
   var count = pasteData.getRecordCount();
@@ -667,13 +662,13 @@ getTag(): string
 
 **系统能力**: SystemCapability.Miscservices.Pasteboard
 
-- 返回值
-    | 类型 | 说明 | 
+**返回值**
+  | 类型 | 说明 | 
   | -------- | -------- |
   | string | 获取用户自定义的标签内容，如果没有设置用户自定义的标签内容将返回空。 | 
 
-- 示例
-  
+**示例**
+
   ```
   var pasteData = pasteboard.createPlainTextData("hello");
   var tag = pasteData.getTag();
@@ -688,18 +683,18 @@ hasMimeType(mimeType: string): boolean
 
 **系统能力**: SystemCapability.Miscservices.Pasteboard
 
-- 参数
-    | 参数名 | 类型 | 必填 | 说明 | 
+**参数**
+  | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | mimeType | string | 是 | 待查询的数据类型。 | 
 
-- 返回值
-    | 类型 | 说明 | 
+**返回值**
+  | 类型 | 说明 | 
   | -------- | -------- |
   | boolean | 有指定的数据类型返回true，否则返回false。 | 
 
-- 示例
-  
+**示例**
+
   ```
   var pasteData = pasteboard.createPlainTextData("hello");
   var hasType = pasteData.hasMimeType(pasteboard.MIMETYPE_TEXT_PLAIN);
@@ -714,18 +709,18 @@ removeRecordAt(index: number): boolean
 
 **系统能力**: SystemCapability.Miscservices.Pasteboard
 
-- 参数
-    | 参数名 | 类型 | 必填 | 说明 | 
+**参数**
+  | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | index | number | 是 | 指定的下标。 | 
 
-- 返回值
-    | 类型 | 说明 | 
+**返回值**
+  | 类型 | 说明 | 
   | -------- | -------- |
   | boolean | 成功移除返回true，失败返回false。 | 
 
-- 示例
-  
+**示例**
+
   ```
   var pasteData = pasteboard.createPlainTextData("hello");
   var isRemove = pasteData.removeRecordAt(0);
@@ -740,22 +735,22 @@ replaceRecordAt(index: number, record: PasteDataRecord): boolean
 
 **系统能力**: SystemCapability.Miscservices.Pasteboard
 
-- 参数
-    | 参数名 | 类型 | 必填 | 说明 |
+**参数**
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | index | number | 是 | 指定的下标。 |
   | record | [PasteDataRecord](#pastedatarecord7) | 是 | 替换后的条目。 |
 
-- 返回值
-    | 类型 | 说明 | 
+**返回值**
+  | 类型 | 说明 | 
   | -------- | -------- |
   | boolean | 成功替换返回true，失败返回false。 | 
 
-- 示例
-  
+**示例**
+
   ```
   var pasteData = pasteboard.createPlainTextData("hello");
-  var record = pasteboard.createUriRecord("dataability:///com.example.myapplication1?user.txt");
+  var record = pasteboard.createUriRecord("dataability:///com.example.myapplication1?user.txt"");
   var isReplace = pasteData.replaceRecordAt(0, record);
   ```
 
@@ -768,13 +763,13 @@ getSystemPasteboard(): SystemPasteboard
 
 **系统能力**: SystemCapability.Miscservices.Pasteboard
 
-- 返回值
-    | 类型 | 说明 | 
+**返回值**
+  | 类型 | 说明 | 
   | -------- | -------- |
   | [SystemPasteboard](#systempasteboard) | 系统剪切板对象。 | 
 
-- 示例
-  
+**示例**
+
   ```
   var systemPasteboard = pasteboard.getSystemPasteboard();
   ```
@@ -797,14 +792,14 @@ setPasteData(pasteData:PasteData, callback:AsyncCallback&lt;void&gt;): void
 
 **系统能力**: SystemCapability.Miscservices.Pasteboard
 
-- 参数
-    | 参数名 | 类型 | 必填 | 说明 | 
+**参数**
+  | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | pasteData | [PasteData](#pastedata) | 是 | PasteData对象。 | 
   | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，表示是否成功将数据写入系统剪切板。 | 
 
-- 示例
-  
+**示例**
+
   ```
   var pasteData = pasteboard.createPlainTextData("content");
   var systemPasteboard = pasteboard.getSystemPasteboard();
@@ -826,18 +821,18 @@ setPasteData(pasteData:PasteData): Promise&lt;void&gt;
 
 **系统能力**: SystemCapability.Miscservices.Pasteboard
 
-- 参数
-    | 参数名 | 类型 | 说明 | 
+**参数**
+  | 参数名 | 类型 | 说明 | 
   | -------- | -------- | -------- |
   | pasteData | [PasteData](#pastedata) | PasteData对象。 | 
 
-- 返回值
-    | 类型 | 说明 | 
+**返回值**
+  | 类型 | 说明 | 
   | -------- | -------- |
   | Promise&lt;void&gt; | 异步回调函数，表示是否成功将数据写入系统剪切板。 | 
 
-- 示例
-  
+**示例**
+
   ```
   var pasteData = pasteboard.createPlainTextData("content");
   var systemPasteboard = pasteboard.getSystemPasteboard();
@@ -857,13 +852,13 @@ getPasteData( callback:AsyncCallback&lt;PasteData&gt;): void
 
 **系统能力**: SystemCapability.Miscservices.Pasteboard
 
-- 参数
-    | 参数名 | 类型 | 必填 | 说明 | 
+**参数**
+  | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;[PasteData](#pastedata)&gt; | 是 | 回调函数，返回系统剪切板数据。 | 
 
-- 示例
-  
+**示例**
+
   ```
   var systemPasteboard = pasteboard.getSystemPasteboard();
   systemPasteboard.getPasteData((error, pasteData) => {  
@@ -884,13 +879,13 @@ getPasteData(): Promise&lt;PasteData&gt;
 
 **系统能力**: SystemCapability.Miscservices.Pasteboard
 
-- 返回值
-    | 类型 | 说明 | 
+**返回值**
+  | 类型 | 说明 | 
   | -------- | -------- |
   | Promise&lt;[PasteData](#pastedata)&gt; | 异步回调函数，调返回系统剪切板数据。 | 
 
-- 示例
-  
+**示例**
+
   ```
   var systemPasteboard = pasteboard.getSystemPasteboard();
   systemPasteboard.getPasteData().then((pasteData) => { 
@@ -909,14 +904,14 @@ on(type:  'update', callback: () =&gt;void ): void
 
 **系统能力**: SystemCapability.Miscservices.Pasteboard
 
-- 参数
-    | 参数名 | 类型 | 必填 | 说明 | 
+**参数**
+  | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 取值为'update'，表示系统剪贴板内容变化事件。 | 
   | callback | function | 是 | 剪贴板中内容变化时触发的用户程序的回调。 | 
 
-- 示例
-  
+**示例**
+
   ```
   var systemPasteboard = pasteboard.getSystemPasteboard();
   var listener = ()=>{
@@ -934,14 +929,14 @@ off(type:  'update', callback？: () =&gt;void ): void
 
 **系统能力**: SystemCapability.Miscservices.Pasteboard
 
-- 参数
-    | 参数名 | 类型 | 必填 | 说明 | 
+**参数**
+  | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 取值为'update'，表示系统剪贴板内容变化事件。 | 
   | callback | function | 否 | 剪贴板中内容变化时触发的用户程序的回调。 | 
 
-- 示例
-  
+**示例**
+
   ```
   systemPasteboard.off('update', listener);
   ```
@@ -955,13 +950,13 @@ hasPasteData(callback:  AsyncCallback&lt;boolean&gt;): void
 
 **系统能力**: SystemCapability.Miscservices.Pasteboard
 
-- 参数
-    | 参数名 | 类型 | 必填 | 说明 | 
+**参数**
+  | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;boolean&gt; | 是 | 返回为true表示系统剪切板中有内容，返回false表示系统剪切板中没有内容。 | 
 
-- 示例
-  
+**示例**
+
   ```
   systemPasteboard.hasPasteData((err, data) => {
       if (err) {
@@ -981,13 +976,13 @@ hasPasteData():  Promise&lt;boolean&gt;
 
 **系统能力**: SystemCapability.Miscservices.Pasteboard
 
-- 返回值
-    | 类型 | 说明 | 
+**返回值**
+  | 类型 | 说明 | 
   | -------- | -------- |
   | Promise&lt;boolean&gt; | 返回为true表示系统剪切板中有内容，返回false表示系统剪切板中没有内容。 | 
 
-- 示例
-  
+**示例**
+
   ```
   systemPasteboard.hasPasteData().then((data) => { 
       console.info('success hasPasteData : ' + JSON.stringify(data));
@@ -1005,13 +1000,13 @@ clear(callback:  AsyncCallback&lt;void&gt;): void
 
 **系统能力**: SystemCapability.Miscservices.Pasteboard
 
-- 参数
-    | 参数名 | 类型 | 必填 | 说明 | 
+**参数**
+  | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，表示是否成功清空系统剪切板内容。 | 
 
-- 示例
-  
+**示例**
+
   ```
   systemPasteboard.clear((err, data) => { 
       if (err) {        
@@ -1031,13 +1026,13 @@ clear():  Promise&lt;void&gt;
 
 **系统能力**: SystemCapability.Miscservices.Pasteboard
 
-- 返回值
-    | 类型 | 说明 | 
+**返回值**
+  | 类型 | 说明 | 
   | -------- | -------- |
   | Promise&lt;void&gt; | 异步回调函数，表示是否成功清空系统剪切板内容。 | 
 
-- 示例
-  
+**示例**
+
   ```
   systemPasteboard.clear().then((data) => { 
       console.info('success clear');

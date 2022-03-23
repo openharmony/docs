@@ -1612,10 +1612,10 @@ sync(mode: SyncMode, predicates: RdbPredicates, callback: AsyncCallback&lt;Array
 
 **示例**：
   ```
-  let predicatesync = new rdb.RdbPredicates('EMPLOYEE')
+  let predicatesync = new data_rdb.RdbPredicates('EMPLOYEE')
   predicatesync.inDevices(['12345678abcde'])
-  let promisesync = rdbStore.sync(rdb.SyncMode.SYNC_MODE_PUSH, predicatesync)
-  promisesync.then((result) {
+  let promisesync = rdbStore.sync(data_rdb.SyncMode.SYNC_MODE_PUSH, predicatesync)
+  promisesync.then((result) =>{
       console.log('sync done.')
       for (let i = 0; i < result.length; i++) {
           console.log('device=' + result[i][0] + ' status=' + result[i][1])
@@ -1634,6 +1634,7 @@ on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
 **系统能力**：SystemCapability.DistributedDataManager.RelationalStore.Core。
 
 **参数**：
+
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | SubscribeType | 是 | 指在{@code SubscribeType}中定义的订阅类型。 |
@@ -1647,7 +1648,7 @@ on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
       }
   }
   try {
-      rdbStore.on('dataChange', rdb.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver)
+      rdbStore.on('dataChange', data_rdb.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver)
   } catch (err) {
       console.log('register observer failed')
   }
@@ -1662,6 +1663,7 @@ off(event:'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
 **系统能力**：SystemCapability.DistributedDataManager.RelationalStore.Core。
 
 **参数**：
+
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | SubscribeType | 是 | 指在{@code SubscribeType}中定义的订阅类型。 |
@@ -1675,7 +1677,7 @@ off(event:'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
       }
   }
   try {
-      rdbStore.off('dataChange', rdb.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver)
+      rdbStore.off('dataChange', data_rdb.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver)
   } catch (err) {
       console.log('unregister observer failed')
   }
