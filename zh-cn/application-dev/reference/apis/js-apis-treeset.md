@@ -139,7 +139,7 @@ let result = treeSet.getLastValue();
 
 add(value: T): boolean
 
-向TreeSet中添加一组数据。
+向容器中添加一组数据。
 
 **参数：**
 
