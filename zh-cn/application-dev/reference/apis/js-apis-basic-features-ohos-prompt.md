@@ -53,6 +53,7 @@ showToast(options: ShowToastOptions): void
 showDialog(options: ShowDialogOptions): Promise&lt;ShowDialogSuccessResponse&gt;
 
 创建并显示对话框，对话框响应后同步返回结果。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -69,27 +70,33 @@ showDialog(options: ShowDialogOptions): Promise&lt;ShowDialogSuccessResponse&gt;
 **示例：**
 
   ```
-  export default {    
-    showDialog() {       
-      prompt.showDialog({           
-        title: 'Title Info',            
-        message: 'Message Info',           
-        buttons: [                
-          {                    
-             text: 'button',                   
-             color: '#666666',                
-           },            
-         ],            
-         success: function(data) {                
-           console.log('dialog success callback，click button : ' + data.index);            
-         },            
-         cancel: function() {                
-           console.log('dialog cancel callback');            
-         },
-       });    
+  export default {
+    showDialog() {
+      prompt.showDialog({
+        title: 'Title Info',
+        message: 'Message Info',
+        buttons: [
+          {
+             text: 'button1',
+             color: '#000000',
+          },
+          {
+             text: 'button2',
+             color: '#000000',
+          }
+         ],
+      })
+      .then(data => {
+        console.info('showDialog success, click button: ' + data.index);
+      })
+      .catch(err => {
+        console.info('showDialog error: ' + err);
+      })
     }
   }
   ```
+
+## prompt.showDialog
 
 showDialog(options: ShowDialogOptions, callback: AsyncCallback&lt;ShowDialogSuccessResponse&gt;):void 
 
@@ -106,24 +113,29 @@ showDialog(options: ShowDialogOptions, callback: AsyncCallback&lt;ShowDialogSucc
 
 **示例：**
   ```
-  export default {    
-    showDialog() {       
-      prompt.showDialog({           
-        title: 'Title Info',            
-        message: 'Message Info',           
-        buttons: [                
-          {                    
-             text: 'button',                   
-             color: '#666666',                
-           },            
-         ],            
-         success: function(data) {                
-           console.log('dialog success callback，click button : ' + data.index);            
-         },            
-         cancel: function() {                
-           console.log('dialog cancel callback');            
-         },
-       });    
+  export default {
+    callback(err, data) {
+      if(err) {
+        console.info('showDialog err: ' + err);
+        return;
+      }
+      console.info('showDialog success callback, click button: ' + data.index);
+    },
+    showDialog() {
+      prompt.showDialog({
+        title: 'showDialog Title Info',
+        message: 'Message Info',
+        buttons: [
+          {
+            text: 'button1',
+            color: '#000000',
+          },
+          {
+            text: 'button2',
+            color: '#000000',
+          }
+        ]
+      }, this.callback);
     }
   }
   ```
@@ -153,7 +165,7 @@ showDialog(options: ShowDialogOptions, callback: AsyncCallback&lt;ShowDialogSucc
 
 ## prompt.showActionMenu
 
- showActionMenu(options: ActionMenuOptions, callback: AsyncCallback&lt;ActionMenuSuccessResponse&gt;):void
+showActionMenu(options: ActionMenuOptions, callback: AsyncCallback&lt;ActionMenuSuccessResponse&gt;):void
 
 创建并显示操作菜单，菜单响应结果异步返回。
 
@@ -168,31 +180,33 @@ showDialog(options: ShowDialogOptions, callback: AsyncCallback&lt;ShowDialogSucc
 
 **示例：**
   ```
-  export default {    
-    showActionMenu() {        
-      prompt.showActionMenu({            
-        title: 'Title Info',            
-        buttons: [                
-          {                    
-            text: 'item1',                    
-            color: '#666666',                
-          },                
-          {                    
-             text: 'item2',                    
-             color: '#000000',                
-          },            
-        ],            
-        success: function(data) {                
-          console.log('dialog success callback，click button : ' + data.tapIndex);            
-        },            
-        fail: function(data) {                
-          console.log('dialog fail callback' + data.errMsg);            
-        },       
-      });    
+  export default {
+    callback(err, data) {
+      if(err) {
+        console.info('showActionMenu err: ' + err);
+        return;
+      }
+      console.info('showActionMenu success callback, click button: ' + data.index);
+    },
+    showActionMenu() {
+      prompt.showActionMenu({
+        title: 'Title Info',
+        buttons: [
+          {
+            text: 'item1',
+            color: '#666666',
+          },
+          {
+             text: 'item2',
+             color: '#000000',
+          },
+        ]
+      }, this.callback)
     }
   }
   ```
 
+## prompt.showActionMenu
 
 showActionMenu(options: ActionMenuOptions): Promise<ActionMenuSuccessResponse>
 
@@ -212,27 +226,27 @@ showActionMenu(options: ActionMenuOptions): Promise<ActionMenuSuccessResponse>
 
 **示例：**
   ```
-  export default {    
-    showActionMenu() {        
-      prompt.showActionMenu({            
-        title: 'Title Info',            
-        buttons: [                
-          {                    
-            text: 'item1',                    
-            color: '#666666',                
-          },                
-          {                    
-             text: 'item2',                    
-             color: '#000000',                
-          },            
-        ],            
-        success: function(data) {                
-          console.log('dialog success callback，click button : ' + data.tapIndex);            
-        },            
-        fail: function(data) {                
-          console.log('dialog fail callback' + data.errMsg);            
-        },       
-      });    
+  export default {
+    showActionMenu() {
+      prompt.showActionMenu({
+        title: 'showActionMenu Title Info',
+        buttons: [
+          {
+            text: 'item1',
+            color: '#666666',
+          },
+          {
+             text: 'item2',
+             color: '#000000',
+          },
+        ]
+      })
+      .then(data => {
+        console.info('showActionMenu success, click button: ' + data.index);
+      })
+      .catch(err => {
+        console.info('showActionMenu error: ' + err);
+      })
     }
   }
   ```
@@ -245,7 +259,7 @@ showActionMenu(options: ActionMenuOptions): Promise<ActionMenuSuccessResponse>
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | title | string | 否 | 标题文本。 |
-| buttons | Array | 是 | 对话框中按钮的数组，结构为：{text:'button',&nbsp;color:&nbsp;'\#666666'}，支持1-6个按钮。大于6个按钮时弹窗不显示。 |
+| buttons | Array | 是 | 菜单中菜单项按钮的数组，结构为：{text:'button',&nbsp;color:&nbsp;'\#666666'}，支持1-6个按钮。大于6个按钮时弹窗不显示。 |
 
 ## ActionMenuSuccessResponse
 

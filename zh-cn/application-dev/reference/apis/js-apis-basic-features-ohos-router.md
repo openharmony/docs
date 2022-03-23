@@ -1,10 +1,10 @@
 # 页面路由
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明**
-> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> - 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 页面路由需要在页面渲染完成之后才能调用，在onInit和onReady生命周期中页面还处于渲染阶段，禁止调用页面路由方法。
 
-> ![icon-notice.gif](public_sys-resources/icon-notice.gif) **须知：**
-> 页面路由需要在页面渲染完成之后才能调用，在onInit和onReady生命周期中页面还处于渲染阶段，禁止调用页面路由方法。
 ## 导入模块
 
 ```
@@ -272,11 +272,13 @@ enableAlertBeforeBackPage(options: EnableAlertOptions): void
   ```
 ## EnableAlertOptions
 
+页面返回询问对话框选项。
+
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.ArkUI.ArkUI.Lite。
 
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | message | string | 是 | 询问对话框内容。 |
-| 名称 | 类型 | 必填 | 说明 |
 
 ## router.disableAlertBeforeBackPage
 
