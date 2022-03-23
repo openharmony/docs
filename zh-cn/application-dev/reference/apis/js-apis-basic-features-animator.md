@@ -22,7 +22,7 @@ createAnimator(options: AnimatorOptions): AnimatorResult
 **参数：** 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | options | AnimatorOptions | 是 | |
+  | options | [AnimatorOptions](#animatoroptions) | 是 | |
 
 **返回值：** 
   | 类型 | 说明 |
@@ -238,18 +238,3 @@ animator.onrepeat()；
 | iterations | number | 是 | 动画播放次数，默认值1。设置为0时不播放，设置为-1时无限次播放。 |
 | begin | number | 是 | 动画插值起点，不设置时默认为0。 |
 | end | number | 是 | 动画插值终点，不设置时默认为1。 |
-
-## AnimatorResult
-
-定义Animator结果接口。
-
-**系统能力：**  以下各项对应的系统能力均为SystemCapability.ArkUI.ArkUI.Full
-
-| 名称 | 参数类型 | | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| update | options | 过程中可以使用这个接口更新动画参数，入参与createAnimator一致。 |
-| play | - | 开始动画。 |
-| finish | - | 结束动画。 |
-| pause | - | 暂停动画。 |
-| cancel | - | 取消动画。 |
-| reverse | - | 倒播动画。 |
