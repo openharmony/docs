@@ -33,7 +33,14 @@ OpenHarmony_v1.x_release：OpenHarmony 1.1.4 LTS稳定版本，[了解版本详�
 [了解更多版本详情](zh-cn/release-notes/)。
 
 
+## 第三方开源软件及许可说明
 
+3rd-Party-License：[第三方开源软件及许可证说明](zh-cn/contribute/第三方开源软件及许可证说明.md)
 
+## 贡献
 
+非常欢迎您参与[贡献](zh-cn/contribute/参与贡献.md)，我们鼓励开发者以各种方式参与文档反馈和贡献。
 
+您可以对现有文档进行评价、简单更改、反馈文档质量问题、贡献您的原创内容，详细请参考[贡献文档](zh-cn/contribute/贡献文档.md)。
+
+卓越贡献者将会在开发者社区文档贡献专栏表彰公示。
