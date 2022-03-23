@@ -186,7 +186,7 @@ Notification.cancel(0, "label", cancelCallback)
 
 ## Notification.cancel
 
-cancel(id：number, label? ：string): Promise\<void\>
+cancel(id：number, label?：string): Promise\<void\>
 
 取消与指定id相匹配的已发布通知,label可以指定也可以不指定（Promise形式)。
 
@@ -2562,7 +2562,7 @@ Notification.getDeviceRemindType()
 | 名称  | 可读 | 可写 | 类型   | 必填 | 描述     |
 | ----- | ---- | --- | ------ | ---- | -------- |
 | id    | 是  | 是  | number | 是   | 通知ID。   |
-| label | 是  | 是  | string | 否   | 通知标签。< |
+| label | 是  | 是  | string | 否   | 通知标签。 |
 
 
 ## SlotType
