@@ -127,7 +127,7 @@ createUriData(uri:string): PasteData
 **示例**
 
   ```
-  var pasteData = pasteboard.createUriData("dataability:///com.example.myapplication1?user.txt"");
+  var pasteData = pasteboard.createUriData("dataability:///com.example.myapplication1?user.txt");
   ```
 
 
@@ -232,7 +232,7 @@ createUriRecord(uri:string): PasteDataRecord
 **示例**
 
   ```
-  var record = pasteboard.createUriRecord("dataability:///com.example.myapplication1?user.txt"");
+  var record = pasteboard.createUriRecord("dataability:///com.example.myapplication1?user.txt");
   ```
 
 
@@ -285,7 +285,7 @@ convertToText(): Promise&lt;string&gt;
 **示例**
 
   ```
-  var record = pasteboard.createUriRecord("dataability:///com.example.myapplication1?user.txt"");
+  var record = pasteboard.createUriRecord("dataability:///com.example.myapplication1?user.txt");
   record.convertToText().then((data) => {
       console.info('convertToText success data : ' + JSON.stringify(data));
   }).catch((error) => { 
@@ -310,7 +310,7 @@ convertToText(callback: AsyncCallback&lt;string&gt;): void
 **示例**
 
   ```
-  var record = pasteboard.createUriRecord("dataability:///com.example.myapplication1?user.txt"");
+  var record = pasteboard.createUriRecord("dataability:///com.example.myapplication1?user.txt");
   record.convertToText((err, data) => {    
       if (err) {        
           console.error('convertToText failed because ' + JSON.stringify(err));        
@@ -513,7 +513,7 @@ addUriRecord(uri: string): void
 
   ```
   var pasteData = pasteboard.createPlainTextData("hello");
-  pasteData.addUriRecord("dataability:///com.example.myapplication1?user.txt"");
+  pasteData.addUriRecord("dataability:///com.example.myapplication1?user.txt");
   ```
 
 
@@ -535,7 +535,7 @@ addRecord(record: PasteDataRecord): void
 **示例**
 
   ```
-  var pasteData = pasteboard.createUriData("dataability:///com.example.myapplication1?user.txt"");
+  var pasteData = pasteboard.createUriData("dataability:///com.example.myapplication1?user.txt");
   var textRecord = pasteboard.createPlainTextRecord("hello");
   var html = "<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "<meta charset=\"utf-8\">\n" + "<title>HTML-PASTEBOARD_HTML</title>\n" + "</head>\n" + "<body>\n" + "    <h1>HEAD</h1>\n" + "    <p></p>\n" + "</body>\n" + "</html>";
   var htmlRecord = pasteboard.createHtmlTextRecord(html);
@@ -750,7 +750,7 @@ replaceRecordAt(index: number, record: PasteDataRecord): boolean
 
   ```
   var pasteData = pasteboard.createPlainTextData("hello");
-  var record = pasteboard.createUriRecord("dataability:///com.example.myapplication1?user.txt"");
+  var record = pasteboard.createUriRecord("dataability:///com.example.myapplication1?user.txt");
   var isReplace = pasteData.replaceRecordAt(0, record);
   ```
 
@@ -1027,6 +1027,7 @@ clear():  Promise&lt;void&gt;
 **系统能力**: SystemCapability.Miscservices.Pasteboard
 
 **返回值**
+
   | 类型 | 说明 | 
   | -------- | -------- |
   | Promise&lt;void&gt; | 异步回调函数，表示是否成功清空系统剪切板内容。 | 
