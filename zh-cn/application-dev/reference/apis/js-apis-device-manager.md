@@ -69,7 +69,6 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 | UNKNOWN_TYPE | 0 | 未知设备 |
 
 
-
 ## DeviceInfo
 
 设备信息。
