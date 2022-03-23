@@ -8,7 +8,7 @@
    - [FormAbility开发指导](fa-formability.md)
  - Stage模型
    - [ServiceExtensionAbility开发指导](stage-serviceextension.md)
-   - [应用迁移开发指导](stage-ability-continuation.md)
+   - [跨端迁移开发指导](stage-ability-continuation.md)
    - [Call调用开发指导](stage-call.md)
  - 其他
    - [WantAgent使用指导](wantagent.md)
