@@ -380,7 +380,7 @@ if (MipiCsiHandle == NULL) {
     }
     ```
 
-### Enabling or Disabling the MIPI clock<a name="section2.6_MIPI_CSIDes"></a>
+### Enabling or Disabling the MIPI Clock<a name="section2.6_MIPI_CSIDes"></a>
 
 -   Enable the MIPI clock.
 
