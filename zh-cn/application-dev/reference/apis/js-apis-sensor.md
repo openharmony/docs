@@ -1301,7 +1301,7 @@ sensor.off(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback);
 
 ## sensor.off(SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED)
 
-off(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED, callback?: Callback&lt;GyroscopeResponse&gt;): void
+off(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED, callback?: Callback&lt;GyroscopeUncalibratedResponse&gt;): void
 
 取消订阅传感器数据。
 
@@ -1909,7 +1909,7 @@ getGeomagneticDip(inclinationMatrix: Array&lt;number&gt;): Promise&lt;number&gt;
 
 ## sensor. getAngleModify
 
-getAngleModify(currentRotationMatrix: Array&lt;number&gt;, preRotationMatrix: Array&lt;number&gt;，callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
+getAngleModify(currentRotationMatrix: Array&lt;number&gt;, preRotationMatrix: Array&lt;number&gt;, callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
 获取两个旋转矩阵之间的角度变化。
 
