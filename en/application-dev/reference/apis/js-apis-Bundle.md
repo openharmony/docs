@@ -1,5 +1,8 @@
 # Bundle Module (JavaScript SDK APIs)
 
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+
 ## Modules to Import
 
 ```
@@ -567,7 +570,7 @@ bundle.getAbilityInfo(bundleName, abilityName, (err, data) => {
 })
 ```
 
-## bundle.getAbilityLabel
+## bundle.getAbilityLabel<sup>8+</sup>
 
 getAbilityLabel(bundleName: string, abilityName: string): Promise\<string>
 
@@ -607,7 +610,7 @@ bundle.getAbilityLabel(bundleName, abilityName)
 })
 ```
 
-## bundle.getAbilityLabel
+## bundle.getAbilityLabel<sup>8+</sup>
 
 getAbilityLabel(bundleName: string, abilityName: string, callback : AsyncCallback\<string>): void
 
@@ -643,7 +646,7 @@ bundle.getAbilityLabel(bundleName, abilityName, (err, data) => {
 })
 ```
 
-## bundle.isAbilityEnabled
+## bundle.isAbilityEnabled<sup>8+</sup>
 
 isAbilityEnabled(info: AbilityInfo): Promise\<boolean>
 
@@ -684,7 +687,7 @@ bundle.isAbilityEnabled(Info)
 })
 ```
 
-## bundle.isAbilityEnabled
+## bundle.isAbilityEnabled<sup>8+</sup>
 
 isAbilityEnabled(info : AbilityInfo, callback : AsyncCallback\<boolean>): void
 
@@ -721,7 +724,7 @@ bundle.isAbilityEnabled(Info, (err, data) => {
 })
 ```
 
-## bundle.isApplicationEnabled
+## bundle.isApplicationEnabled<sup>8+</sup>
 
 isApplicationEnabled(bundleName: string): Promise\<boolean>
 
@@ -759,7 +762,7 @@ bundle.isApplicationEnabled(bundleName)
 })
 ```
 
-## bundle.isApplicationEnabled
+## bundle.isApplicationEnabled<sup>8+</sup>
 
 isApplicationEnabled(bundleName: string, callback : AsyncCallback\<boolean>): void
 
@@ -1071,7 +1074,7 @@ bundle.getLaunchWantForBundle(bundleName, (err, data) => {
 ```
 
 
-## bundle.getNameForUid
+## bundle.getNameForUid<sup>8+</sup>
 
 getNameForUid(uid: number): Promise\<string>
 
@@ -1104,7 +1107,7 @@ bundle.getNameForUid(uid)
 })
 ```
 
-## bundle.getNameForUid
+## bundle.getNameForUid<sup>8+</sup>
 
 getNameForUid(uid: number, callback: AsyncCallback\<string>): void;
 
@@ -1135,11 +1138,19 @@ bundle.getNameForUid(uid, (err, data) => {
 ```
 
 
-## bundle.getAbilityIcon
+## bundle.getAbilityIcon<sup>8+</sup>
 
-function getAbilityIcon(bundleName: string, abilityName: string): Promise\<[PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)>;
+getAbilityIcon(bundleName: string, abilityName: string): Promise\<[PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)>;
 
 Obtains the [PixelMap](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-image.md) of the corresponding icon based on a given bundle name and ability name. This method uses a promise to return the result.
+
+**Required permissions**
+
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED, ohos.permission.GET_BUNDLE_INFO
+
+**System capability**
+
+SystemCapability.BundleManager.BundleFramework
 
 **Parameters**
 
@@ -1166,11 +1177,19 @@ bundle.getAbilityIcon(bundleName, abilityName)
 })
 ```
 
-## bundle.getAbilityIcon
+## bundle.getAbilityIcon<sup>8+</sup>
 
-function getAbilityIcon(bundleName: string, abilityName: string, callback: AsyncCallback\<[PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)>): void;
+getAbilityIcon(bundleName: string, abilityName: string, callback: AsyncCallback\<[PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)>): void;
 
 Obtains the [PixelMap](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-image.md) of the corresponding icon based on a given bundle name and ability name. This method uses an asynchronous callback to return the result.
+
+**Required permissions**
+
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED, ohos.permission.GET_BUNDLE_INFO
+
+**System capability**
+
+SystemCapability.BundleManager.BundleFramework
 
 **Parameters**
 
@@ -1195,9 +1214,9 @@ bundle.getAbilityIcon(bundleName, abilityName, (err, data) => {
 ```
 
 
-## bundle.queryExtensionAbilityInfosByWant
+## bundle.queryExtensionAbilityInfosByWant<sup>9+</sup>
 
-function queryExtensionAbilityInfosByWant(want: Want, extensionFlags: number, userId?: number): Promise<Array\<ExtensionAbilityInfo>>
+queryExtensionAbilityInfosByWant(want: Want, extensionFlags: number, userId?: number): Promise<Array\<ExtensionAbilityInfo>>
 
 Obtains the extension ability information based on a given want. This method uses a promise to return the result.
 
@@ -1242,11 +1261,15 @@ bundle.queryExtensionAbilityInfosByWant(want, extensionFlags, userId)
 
 
 
-## bundle.queryExtensionAbilityInfosByWant
+## bundle.queryExtensionAbilityInfosByWant<sup>9+</sup>
 
-function queryExtensionAbilityInfosByWant(want: Want, extensionFlags: number, userId: number, callback: AsyncCallback<Array\<ExtensionAbilityInfo>>): void
+queryExtensionAbilityInfosByWant(want: Want, extensionFlags: number, userId: number, callback: AsyncCallback<Array\<ExtensionAbilityInfo>>): void
 
 Obtains the extension ability information based on a given want. This method uses an asynchronous callback to return the result.
+
+**Required permissions**
+
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED, ohos.permission.GET_BUNDLE_INFO
 
 **System capability**
 
@@ -1279,11 +1302,15 @@ bundle.queryExtensionAbilityInfosByWant(want, extensionFlags, userId, (err, data
 })
 ```
 
-## bundle.queryExtensionAbilityInfosByWant
+## bundle.queryExtensionAbilityInfosByWant<sup>9+</sup>
 
-function queryExtensionAbilityInfosByWant(want: Want, extensionFlags: number, callback: AsyncCallback<Array\<ExtensionAbilityInfo>>): void;
+queryExtensionAbilityInfosByWant(want: Want, extensionFlags: number, callback: AsyncCallback<Array\<ExtensionAbilityInfo>>): void;
 
 Obtains the extension ability information based on a given want. This method uses an asynchronous callback to return the result.
+
+**Required permissions**
+
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED, ohos.permission.GET_BUNDLE_INFO
 
 **System capability**
 
@@ -1314,7 +1341,6 @@ bundle.queryExtensionAbilityInfosByWant(want, extensionFlags, (err, data) => {
 })
 ```
 
-
 ## ElementName
 
  **System capability**: SystemCapability.BundleManager.BundleFramework
@@ -1327,13 +1353,32 @@ bundle.queryExtensionAbilityInfosByWant(want, extensionFlags, (err, data) => {
 | uri | Read-only    | string | No  | Resource ID.|
 | shortName | Read-only    | string | No  | Short name of the **ElementName**.|
 
-## InstallStatus
+## InstallErrorCode
 
  **System capability**: SystemCapability.BundleManager.BundleFramework
 
-| Name         | Readable/Writable| Type            | Mandatory| Description                                                        |
-| ------------- | -------- | ---------------- | ---- | ------------------------------------------------------------ |
-| status        | Read-only    | InstallErrorCode | Yes  | Installation result code.<br>SUCCESS = 0<br>STATUS_INSTALL_FAILURE = 1<br>STATUS_INSTALL_FAILURE_ABORTED = 2,<br>STATUS_INSTALL_FAILURE_INVALID = 3<br>STATUS_INSTALL_FAILURE_CONFLICT = 4<br>STATUS_INSTALL_FAILURE_STORAGE = 5<br>STATUS_INSTALL_FAILURE_INCOMPATIBLE = 6<br>STATUS_UNINSTALL_FAILURE = 7<br>STATUS_UNINSTALL_FAILURE_BLOCKED = 8<br>STATUS_UNINSTALL_FAILURE_ABORTED = 9<br>STATUS_UNINSTALL_FAILURE_CONFLICT = 10<br>STATUS_INSTALL_FAILURE_DOWNLOAD_TIMEOUT = 0x0B<br>STATUS_INSTALL_FAILURE_DOWNLOAD_FAILED = 0x0C<br>STATUS_RECOVER_FAILURE_INVALID = 0x0D<br>STATUS_ABILITY_NOT_FOUND = 0x40<br>STATUS_BMS_SERVICE_ERROR = 0x41<br>STATUS_FAILED_NO_SPACE_LEFT = 0x42<br>STATUS_GRANT_REQUEST_PERMISSIONS_FAILED = 0x43<br>STATUS_INSTALL_PERMISSION_DENIED = 0x44<br>STATUS_UNINSTALL_PERMISSION_DENIED = 0x45 |
+| Name              | Default Value| Description  |
+| ------ | ------ | ------ |
+| SUCCESS | 0 | Installation succeeded.|
+| STATUS_INSTALL_FAILURE | 1 | Installation failed. (The application to be installed does not exist.)|
+| STATUS_INSTALL_FAILURE_ABORTED | 2 | Installation aborted.|
+| STATUS_INSTALL_FAILURE_INVALID | 3 | Invalid installation parameter.|
+| STATUS_INSTALL_FAILURE_CONFLICT | 4 | Installation conflict. (The basic information about the application to upgrade is inconsistent with that of the existing application.)|
+| STATUS_INSTALL_FAILURE_STORAGE | 5 | Failed to store the bundle information.|
+| STATUS_INSTALL_FAILURE_INCOMPATIBLE | 6 | Installation incompatible. (A downgrade occurs or the signature information is incorrect.)|
+| STATUS_UNINSTALL_FAILURE | 7 | Uninstallation failed. (The application to be uninstalled does not exist.)|
+| STATUS_UNINSTALL_FAILURE_BLOCKED | 8 | Uninstallation aborted. (This error code is not in use.)|
+| STATUS_UNINSTALL_FAILURE_ABORTED | 9 | Uninstallation aborted. (Invalid parameters.)|
+| STATUS_UNINSTALL_FAILURE_CONFLICT | 10 | Uninstallation conflict. (Failed to uninstall a system application or end the application process.)|
+| STATUS_INSTALL_FAILURE_DOWNLOAD_TIMEOUT | 0x0B | Installation failed. (Download timed out.)|
+| STATUS_INSTALL_FAILURE_DOWNLOAD_FAILED | 0x0C | Installation failed. (Download failed.)|
+| STATUS_RECOVER_FAILURE_INVALID<sup>8+</sup> | 0x0D | Failed to restore the pre-installed application.|
+| STATUS_ABILITY_NOT_FOUND | 0x40 | Ability not found.|
+| STATUS_BMS_SERVICE_ERROR | 0x41 | BMS service error.|
+| STATUS_FAILED_NO_SPACE_LEFT<sup>8+</sup> | 0x42 | Insufficient device space.|
+| STATUS_GRANT_REQUEST_PERMISSIONS_FAILED<sup>8+</sup> | 0x43 | Application authorization failed.|
+| STATUS_INSTALL_PERMISSION_DENIED<sup>8+</sup> | 0x44 | Installation permission denied.|
+| STATUS_UNINSTALL_PERMISSION_DENIED<sup>8+</sup> | 0x45 | Uninstallation permission denied.|
 
 ## BundleFlag
 
@@ -1349,12 +1394,12 @@ Enumerates bundle flags.
 | GET_ABILITY_INFO_WITH_APPLICATION | 0x00000004 | Obtains the ability information with the application information.|
 | GET_APPLICATION_INFO_WITH_PERMISSION | 0x00000008 | Obtains the application information with the permission information.|
 | GET_BUNDLE_WITH_REQUESTED_PERMISSION | 0x00000010 | Obtains the bundle information with the information about the required permissions.|
-| GET_ABILITY_INFO_WITH_METADATA | 0x00000020 | Obtains the ability metadata information.|
-| GET_BUNDLE_WITH_EXTENSION_ABILITY | 0x00000020 | Obtains the bundle information with the extension ability information.|
-| GET_APPLICATION_INFO_WITH_METADATA | 0x00000040 | Obtains the application metadata information.|
-| GET_ABILITY_INFO_SYSTEMAPP_ONLY | 0x00000080 | Obtains the ability information with information about system applications.|
-| GET_ABILITY_INFO_WITH_DISABLE | 0x00000100 | Obtains information about disabled abilities.|
-| GET_APPLICATION_INFO_WITH_DISABLE | 0x00000200 | Obtains information about disabled applications.|
+| GET_ABILITY_INFO_WITH_METADATA<sup>8+</sup> | 0x00000020 | Obtains the ability metadata information.|
+| GET_BUNDLE_WITH_EXTENSION_ABILITY<sup>9+</sup> | 0x00000020 | Obtains the bundle information with the extension ability information.|
+| GET_APPLICATION_INFO_WITH_METADATA<sup>8+</sup> | 0x00000040 | Obtains the application metadata information.|
+| GET_ABILITY_INFO_SYSTEMAPP_ONLY<sup>8+</sup> | 0x00000080 | Obtains the ability information with information about system applications.|
+| GET_ABILITY_INFO_WITH_DISABLE<sup>8+</sup> | 0x00000100 | Obtains information about disabled abilities.|
+| GET_APPLICATION_INFO_WITH_DISABLE<sup>8+</sup> | 0x00000200 | Obtains information about disabled applications.|
 | GET_ALL_APPLICATION_INFO | 0xFFFF0000 | Obtains all application information.|
 
 ## BundleOptions
@@ -1397,8 +1442,8 @@ Describes the application bundle information.
 | isSilentInstallation     | string                     | Yes  | No  | Whether to install the bundle in silent mode.                          |
 | minCompatibleVersionCode | number                     | Yes  | No  | Earliest version compatible with the bundle in the distributed scenario.        |
 | entryInstallationFree | boolean | Yes| No| Whether installation-free is supported for the entry.|
-| reqPermissionStates | Array\<number> | Yes| No| Permission grant state.|
-| extensionAbilityInfo | Array\<ExtensionAbilityInfo> | Yes| No|   Extended information of the ability.|
+| reqPermissionStates<sup>8+</sup> | Array\<number> | Yes| No| Permission grant state.|
+| extensionAbilityInfo<sup>9+</sup> | Array\<ExtensionAbilityInfo> | Yes| No|   Extended information of the ability.|
 
 ## ApplicationInfo
 
@@ -1424,13 +1469,13 @@ Describes the application information.
 | moduleInfos | Array\<ModuleInfo> | Yes  | No  | Application module information.                        |
 | entryDir         | string        | Yes  | No  | Path for storing application files.                    |
 | customizeData    | Map<string, Array\<CustomizeData>> | Yes  | Yes  | Custom data of the application.                      |
-| codePath | string | Yes| No| Installation directory of the application.|
-| metaData | Map<string, Array\<CustomizeData>> | Yes| No| Custom metadata of the application.|
-| metaData | Map<string, Array\<Metadata>> | Yes| No| Metadata of the application.|
-| removable | boolean | Yes| No| Whether the application is removable.|
-| accessTokenId | number | Yes| No| Access token ID of the application.|
-| uid | number | Yes| No| UID of the application.|
-| entityType | string | Yes| No| Entity type of the application.|
+| codePath<sup>8+</sup> | string | Yes| No| Installation directory of the application.|
+| metaData<sup>8+</sup> | Map<string, Array\<CustomizeData>> | Yes| No| Custom metadata of the application.|
+| metaData<sup>9+</sup> | Map<string, Array\<Metadata>> | Yes| No| Metadata of the application.|
+| removable<sup>8+</sup> | boolean | Yes| No| Whether the application is removable.|
+| accessTokenId<sup>8+</sup> | number | Yes| No| Access token ID of the application.|
+| uid<sup>8+</sup> | number | Yes| No| UID of the application.|
+| entityType<sup>9+</sup> | string | Yes| No| Entity type of the application.|
 
 ## ModuleInfo
 
@@ -1453,7 +1498,7 @@ Describes the custom metadata.
 | ----- | ------ | ---- | ---- | ---------------- |
 | name  | string | Yes  | Yes  | Custom metadata name.|
 | value | string | Yes  | Yes  | Custom metadata value.  |
-| extra | string | Yes  | Yes  | Custom resources.      |
+| extra<sup>8+</sup> | string | Yes  | Yes  | Custom resources.      |
 
 
 ## HapModuleInfo
@@ -1479,9 +1524,9 @@ Describes the HAP module information.
 | moduleName       | string        | Yes  | No  | Module name.            |
 | mainAbilityName  | string        | Yes  | No  | Name of the entry ability.   |
 | installationFree | boolean       | Yes  | No  | Whether installation-free is supported.    |
-| mainElementName | string | Yes| No| Information about the entry ability.|
-| extensionAbilityInfo | Array\<ExtensionAbilityInfo> | Yes| No| Extension ability information.|
-| metadata | Array\<Metadata> | Yes| No| Metadata of the ability.|
+| mainElementName<sup>8+</sup> | string | Yes| No| Information about the entry ability.|
+| extensionAbilityInfo<sup>9+</sup> | Array\<ExtensionAbilityInfo> | Yes| No| Extension ability information.|
+| metadata<sup>9+</sup> | Array\<Metadata> | Yes| No| Metadata of the ability.|
 
 ## ReqPermissionDetail
 
@@ -1540,9 +1585,9 @@ Describes the ability information.
 | uri                | string                                                       | Yes  | No  | URI of the ability.       |
 | labelId            | number                                                       | Yes  | No  | Ability label ID.                          |
 | subType            | AbilitySubType | Yes  | No  | Subtype of the template that can be used by the ability.          |
-| metaData | Array\<CustomizeData> | Yes| No| Custom information of the ability.|
-| metaData | Array\<Metadata> | Yes| No| Metadata of the ability.|
-| enabled | boolean | Yes| No| Whether the ability is enabled.|
+| metaData<sup>8+</sup> | Array\<CustomizeData> | Yes| No| Custom information of the ability.|
+| metaData<sup>9+</sup> | Array\<Metadata> | Yes| No| Metadata of the ability.|
+| enabled<sup>8+</sup> | boolean | Yes| No| Whether the ability is enabled.|
 
 ## AbilityType
 
@@ -1593,7 +1638,7 @@ Enumerates ability subtypes.
 | CA          | 1    | Ability that has a UI.|
 
 
-## ExtensionAbilityType
+## ExtensionAbilityType<sup>9+</sup>
 
 Enumerates extension ability types.
 
@@ -1601,18 +1646,18 @@ Enumerates extension ability types.
 
 | Name                 | Type| Description                         |
 | -------------------- | ---- | ----------------------------- |
-| FORM                 | 0    | Form included.    |
-| WORK_SCHEDULER       | 1    | Work scheduler included.|
-| INPUT_METHOD         | 2    | Input method included.  |
-| SERVICE              | 3    | Service included.    |
-| ACCESSIBILITY        | 4    | Accessibility included.  |
-| DATA_SHARE           | 5    | Data sharing included.|
-| FILE_SHARE           | 6    | File sharing included.|
-| STATIC_SUBSCRIBER    | 7    | Subscribers included.  |
-| WALLPAPER            | 8    | Wallpaper included.    |
-| UNSPECIFIED          | 9    | Unspecified type.    |
+| FORM<sup>9+</sup>    | 0    | Form included.    |
+| WORK_SCHEDULER<sup>9+</sup>    | 1    | Work scheduler included.|
+| INPUT_METHOD<sup>9+</sup>         | 2    | Input method included.  |
+| SERVICE<sup>9+</sup>    | 3    | Service included.    |
+| ACCESSIBILITY<sup>9+</sup>    | 4    | Accessibility included.  |
+| DATA_SHARE<sup>9+</sup>      | 5    | Data sharing included.|
+| FILE_SHARE<sup>9+</sup>    | 6    | File sharing included.|
+| STATIC_SUBSCRIBER<sup>9+</sup>  | 7    | Subscribers included.  |
+| WALLPAPER<sup>9+</sup>    | 8    | Wallpaper included.    |
+| UNSPECIFIED<sup>9+</sup>     | 9    | Unspecified type.    |
 
-## ExtensionFlag
+## ExtensionFlag<sup>9+</sup>
 
 Enumerates extension flags.
 
@@ -1620,13 +1665,38 @@ Enumerates extension flags.
 
 | Name              | Default Value| Description  |
 | ------ | ------ | ------ |
-| GET_EXTENSION_INFO_DEFAULT | 0x00000000 | Obtains the default extension ability information.|
-| GET_EXTENSION_INFO_WITH_PERMISSION | 0x00000002 | Obtains the extension ability information that carries permission information.|
-| GET_EXTENSION_INFO_WITH_APPLICATION | 0x00000004 | Obtains the extension ability information that carries application information.|
-| GET_EXTENSION_INFO_WITH_METADATA | 0x00000020 | Obtains the extension ability information that carries metadata information.|
+| GET_EXTENSION_INFO_DEFAULT<sup>9+</sup> | 0x00000000 | Obtains the default extension ability information.|
+| GET_EXTENSION_INFO_WITH_PERMISSION<sup>9+</sup> | 0x00000002 | Obtains the extension ability information that carries permission information.|
+| GET_EXTENSION_INFO_WITH_APPLICATION<sup>9+</sup> | 0x00000004 | Obtains the extension ability information that carries application information.|
+| GET_EXTENSION_INFO_WITH_METADATA<sup>9+</sup> | 0x00000020 | Obtains the extension ability information that carries metadata information.|
 
 
-## ExtensionAbilityInfo
+## ColorMode
+
+Enumerates color modes.
+
+ **System capability**: SystemCapability.BundleManager.BundleFramework
+
+| Name       | Type| Description               |
+| ----------- | ---- | ------------------- |
+| AUTO_MODE  | -1    | Automatic mode.|
+| DARK_MODE    | 0    | Dark mode.  |
+| LIGHT_MODE    | 1    | Light mode.  |
+
+
+## GrantStatus
+
+Enumerates permission grant statuses.
+
+ **System capability**: SystemCapability.BundleManager.BundleFramework
+
+| Name       | Type| Description               |
+| ----------- | ---- | ------------------- |
+| PERMISSION_DENIED  | -1    | Permission denied.|
+| PERMISSION_GRANTED    | 0    | Permission granted.  |
+
+
+## ExtensionAbilityInfo<sup>9+</sup>
 
 Describes the extension ability information.
 
@@ -1634,23 +1704,23 @@ Describes the extension ability information.
 
 | Name              | Type| Readable| Writable| Description|
 | ------ | ------ | ------ | ------ | ------ |
-| bundleName         | string                                                       | Yes  | No  | Application bundle name.                                 |
-| moduleName         | string                                                       | Yes  | No  | Name of the HAP file to which the extension ability belongs.                 |
-| name               | string                                                       | Yes  | No  | Name of the extension ability.                              |
-| labelId            | number                                                       | Yes  | No  | Label ID of the extension ability.                          |
-| descriptionId      | number                                                       | Yes  | No  | Description ID of the extension ability.                          |
-| iconId             | number                                                       | Yes  | No  | Icon ID of the extension ability.                          |
-| isVisible          | boolean                                                      | Yes  | No  | Whether the extension ability can be called by other applications.        |
-| extensionAbilityType               | bundle.ExtensionAbilityType | Yes  | No  | Type of the extension ability.                              |
-| permissions        | Array\<string>                                                | Yes  | No  | Permissions required for other applications to call the extension ability.|
-| applicationInfo    | ApplicationInfo | Yes  | No  | Application configuration information.                       |
-| metaData | Array\<Metadata> | Yes| No| Metadata of the extension ability.|
-| enabled | boolean | Yes| No| Whether the extension ability is enabled.|
-| readPermission     | string                                                       | Yes  | No  | Permission required for reading the extension ability data.                |
-| writePermission    | string                                                       | Yes  | No  | Permission required for writing data to the extension ability.                |
+| bundleName<sup>9+</sup>     | string                                                       | Yes  | No  | Application bundle name.                                 |
+| moduleName<sup>9+</sup>     | string                                                       | Yes  | No  | Name of the HAP file to which the extension ability belongs.                 |
+| name<sup>9+</sup>       | string                                                       | Yes  | No  | Name of the extension ability.                              |
+| labelId<sup>9+</sup>    | number                                                       | Yes  | No  | Label ID of the extension ability.                          |
+| descriptionId<sup>9+</sup>   | number                                                       | Yes  | No  | Description ID of the extension ability.                          |
+| iconId<sup>9+</sup>    | number                                                       | Yes  | No  | Icon ID of the extension ability.                          |
+| isVisible<sup>9+</sup>    | boolean                                                      | Yes  | No  | Whether the extension ability can be called by other applications.        |
+| extensionAbilityType<sup>9+</sup>      | bundle.ExtensionAbilityType | Yes  | No  | Type of the extension ability.                              |
+| permissions<sup>9+</sup>     | Array\<string>                                                | Yes  | No  | Permissions required for other applications to call the extension ability.|
+| applicationInfo<sup>9+</sup>   | ApplicationInfo | Yes  | No  | Application configuration information.                       |
+| metaData<sup>9+</sup> | Array\<Metadata> | Yes| No| Metadata of the extension ability.|
+| enabled<sup>9+</sup> | boolean | Yes| No| Whether the extension ability is enabled.|
+| readPermission<sup>9+</sup>   | string                                                       | Yes  | No  | Permission required for reading the extension ability data.                |
+| writePermission<sup>9+</sup>   | string                                                       | Yes  | No  | Permission required for writing data to the extension ability.                |
 
 
-## Metadata
+## Metadata<sup>9+</sup>
 
 Describes the metadata information.
 
@@ -1658,6 +1728,6 @@ Describes the metadata information.
 
 | Name | Type  | Readable| Writable| Description            |
 | ----- | ------ | ---- | ---- | ---------------- |
-| name  | string | Yes  | Yes  | Metadata name.|
-| value | string | Yes  | Yes  | Metadata value.  |
-| resource | string | Yes  | Yes  | Metadata resource.      |
+| name<sup>9+</sup>  | string | Yes  | Yes  | Metadata name.|
+| value<sup>9+</sup> | string | Yes  | Yes  | Metadata value.  |
+| resource<sup>9+</sup> | string | Yes  | Yes  | Metadata resource.      |

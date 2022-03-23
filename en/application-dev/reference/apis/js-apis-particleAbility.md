@@ -417,7 +417,7 @@ Connects this ability to a specific Service ability. This API uses a callback to
 
 ## particleAbility.disconnectAbility
 
-disconnectAbility(connection: number, callback:AsyncCallback<void>): void;
+disconnectAbility(connection: number, callback:AsyncCallback\<void>): void;
 
 Disconnects this ability from the Service ability. This API uses a callback to return the result.
 
@@ -463,7 +463,7 @@ Disconnects this ability from the Service ability. This API uses a callback to r
 
 ## particleAbility.disconnectAbility
 
-disconnectAbility(connection: number): Promise<void>;
+disconnectAbility(connection: number): Promise\<void>;
 
 Disconnects this ability from the Service ability. This API uses a promise to return the result.
 
