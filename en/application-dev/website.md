@@ -16,7 +16,7 @@
     
   - [Directory Structure](quick-start/package-structure.md)
 -   Development
-    - [UI](ui/Readme-EN.md) 
+    - UI
       - JavaScript-based Web-Like Development Paradigm
           - [Overview](ui/ui-js-overview.md)
           - Framework
