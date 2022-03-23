@@ -60,7 +60,7 @@ add(element: T): boolean
 **示例：**
 
 ```
-let list = new List;
+let list = new List();
 let result = list.add("a");
 let result1 = list.add(1);
 let b = [1, 2, 3];

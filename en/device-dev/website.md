@@ -308,7 +308,7 @@
       - [Startup](subsystems/subsys-boot.md)
       - [DFX](subsystems/subsys-dfx.md)
     - Featured Topics
-      - [HPM Bundle](bundles/Readme-EN.md)
+      - HPM Bundle
         - [Development Specifications](bundles/bundles-standard-rules.md)
         - Development Guidelines
           - [Bundle Development](bundles/bundles-guide-overview.md)
@@ -333,7 +333,7 @@
       - [Samples](https://gitee.com/openharmony/app_samples/blob/master/README.md)
       - [Codelabs](https://gitee.com/openharmony/codelabs/blob/master/README.md)
     - References
-      - [FAQs](faqs/Readme-EN.md)
+      - FAQs
         - [Overview of FAQs](faqs/faqs-overview.md)
         - [Environment Setup](faqs/faqs-environment-setup.md)
         - [Compilation and Building Subsystem](faqs/faqs-building.md)

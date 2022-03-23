@@ -9,7 +9,7 @@
   - [HUKS开发指导](huks-guidelines.md)
   
 - Hap包签名工具  
-  - [Hap包签名工具开发指导](hapsigntool-guidelines.md)
+  - [Hap包签名工具指导](hapsigntool-guidelines.md)
 
 - 访问控制  
   - [访问控制开发概述](accesstoken-overview.md)

@@ -362,7 +362,7 @@
   - [DFX](subsystems/subsys-dfx.md)
 
 - 专题
-  - [HPM Part](hpm-part/Readme-CN.md)
+  - HPM Part
     - [HPM Part介绍](hpm-part/hpm-part-about.md)
     - [HPM Part开发指导](hpm-part/hpm-part-development.md)
     - [HPM Part参考](hpm-part/hpm-part-reference.md)
@@ -388,7 +388,7 @@
 
 - 参考
 
-  - [常见问题-设备开发](faqs/Readme-CN.md)
+  - 常见问题-设备开发
     - [常见问题概述](faqs/faqs-overview.md)
     - [环境搭建常见问题](faqs/faqs-environment-setup.md)
     - [编译构建子系统常见问题](faqs/faqs-building.md)

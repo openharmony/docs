@@ -17,7 +17,7 @@ getCode(callback: AsyncCallback\<number>): void
 
 | 参数名   | 类型                   | 必填 | 描述               |
 | -------- | ---------------------- | ---- | ------------------ |
-| callback | AsyncCallback\<number> | 是   | 公共事件的结果代码 |
+| callback | AsyncCallback\<number> | 是   | 公共事件的结果代码。 |
 
 **示例：**
 
@@ -104,7 +104,7 @@ setCode(code: number): Promise\<void>
 
 | 参数名 | 类型   | 必填 | 描述               |
 | ------ | ------ | ---- | ------------------ |
-| code   | number | 是   | 公共事件的结果代码 |
+| code   | number | 是   | 公共事件的结果代码。 |
 
 **示例：**
 
@@ -160,7 +160,7 @@ getData(): Promise\<string>
 
 | 类型             | 说明               |
 | ---------------- | ------------------ |
-| Promise\<string> | 公共事件的结果数据 |
+| Promise\<string> | 公共事件的结果数据。 |
 
 **示例：**
 
@@ -186,8 +186,8 @@ setData(data: string, callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                 | 必填 | 描述                 |
 | -------- | -------------------- | ---- | -------------------- |
-| data     | string               | 是   | 公共事件的结果数据   |
-| callback | AsyncCallback\<void> | 是   | 表示被指定的回调方法 |
+| data     | string               | 是   | 公共事件的结果数据。   |
+| callback | AsyncCallback\<void> | 是   | 表示被指定的回调方法。 |
 
 **示例：**
 
@@ -472,7 +472,7 @@ clearAbortCommonEvent(callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                 | 必填 | 描述                 |
 | -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback\<void> | 是   | 表示被指定的回调方法 |
+| callback | AsyncCallback\<void> | 是   | 表示被指定的回调方法。 |
 
 **示例：**
 
@@ -522,7 +522,7 @@ getAbortCommonEvent(callback: AsyncCallback\<boolean>): void
 
 | 参数名   | 类型                    | 必填 | 描述                               |
 | -------- | ----------------------- | ---- | ---------------------------------- |
-| callback | AsyncCallback\<boolean> | 是   | 表示当前有序公共事件是否取消的状态 |
+| callback | AsyncCallback\<boolean> | 是   | 表示当前有序公共事件是否取消的状态。 |
 
 **示例：**
 
@@ -552,7 +552,7 @@ getAbortCommonEvent(): Promise\<boolean>
 
 | 类型              | 说明                               |
 | ----------------- | ---------------------------------- |
-| Promise\<boolean> | 表示当前有序公共事件是否取消的状态 |
+| Promise\<boolean> | 表示当前有序公共事件是否取消的状态。 |
 
 **示例：**
 

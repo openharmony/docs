@@ -10,7 +10,7 @@ This subsystem offers various media services covering audio and video, which pro
 - Audio playback ([AudioPlayer](#audioplayer))
 - Video playback ([VideoPlayer](#videoplayer8))
 - Audio recording ([AudioRecorder](#audiorecorder))
-- Video recording ([VideoRecorder](#VideoRecorder<sup>8+</sup>))
+- Video recording ([VideoRecorder](#videoRecorder9))
 
 The following capabilities will be provided in later versions: data source audio/video playback, audio/video encoding and decoding, container encapsulation and decapsulation, and media capability query.
 
@@ -125,9 +125,9 @@ Creates an **AudioRecorder** instance to control audio recording.
 let audiorecorder = media.createAudioRecorder(); 
 ```
 
-## media.createVideoRecorder<sup>8+</sup>
+## media.createVideoRecorder<sup>9+</sup>
 
-createVideoRecorder(callback: AsyncCallback\<[VideoRecorder](#videorecorder8)>): void
+createVideoRecorder(callback: AsyncCallback\<[VideoRecorder](#videorecorder9)>): void
 
 Creates a **VideoRecorder** instance in asynchronous mode. This API uses a callback to return the result.
 
@@ -137,7 +137,7 @@ Creates a **VideoRecorder** instance in asynchronous mode. This API uses a callb
 
 | Name  | Type                                           | Mandatory| Description                          |
 | -------- | ----------------------------------------------- | ---- | ------------------------------ |
-| callback | AsyncCallback<[VideoRecorder](#videorecorder8)> | Yes  | Callback used to return the **VideoRecorder** instance created.|
+| callback | AsyncCallback<[VideoRecorder](#videorecorder9)> | Yes  | Callback used to return the **VideoRecorder** instance created.|
 
 **Example**
 
@@ -154,9 +154,9 @@ media.createVideoRecorder((error, video) => {
 });
 ```
 
-## media.createVideoRecorder<sup>8+</sup>
+## media.createVideoRecorder<sup>9+</sup>
 
-createVideoRecorder(): Promise<[VideoRecorder](#videorecorder8)>
+createVideoRecorder(): Promise<[VideoRecorder](#videorecorder9)>
 
 Creates a **VideoRecorder** instance in asynchronous mode. This API uses a promise to return the result.
 
@@ -166,7 +166,7 @@ Creates a **VideoRecorder** instance in asynchronous mode. This API uses a promi
 
 | Type                                     | Description                               |
 | ----------------------------------------- | ----------------------------------- |
-| Promise<[VideoRecorder](#videorecorder8)> | Promise used to return the **VideoRecorder** instance created.|
+| Promise<[VideoRecorder](#videorecorder9)> | Promise used to return the **VideoRecorder** instance created.|
 
 **Example**
 
@@ -228,16 +228,16 @@ Enumerates the codec MIME types.
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
-| Name        | Value                   | Description                                                        |
-| ------------ | --------------------- | ------------------------------------------------------------ |
-| VIDEO_H263   | 'video/h263'          | Video in H.263 format.|
-| VIDEO_AVC    | 'video/avc'           | Video in AVC format.|
-| VIDEO_MPEG2  | 'video/mpeg2'         | Video in MPEG-2 format.|
-| VIDEO_MPEG4  | 'video/mp4v-es'       | Video in MPEG-4 format.|
-| VIDEO_VP8    | 'video/x-vnd.on2.vp8' | Video in VP8 format.|
+| Name        | Value                   | Description                    |
+| ------------ | --------------------- | ------------------------ |
+| VIDEO_H263   | 'video/h263'          | Video in H.263 format.     |
+| VIDEO_AVC    | 'video/avc'           | Video in AVC format.      |
+| VIDEO_MPEG2  | 'video/mpeg2'         | Video in MPEG-2 format.    |
+| VIDEO_MPEG4  | 'video/mp4v-es'       | Video in MPEG-4 format.    |
+| VIDEO_VP8    | 'video/x-vnd.on2.vp8' | Video in VP8 format.      |
 | AUDIO_AAC    | "audio/mp4a-latm"     | Audio in MP4A-LATM format.|
-| AUDIO_VORBIS | 'audio/vorbis'        | Audio in Vorbis format.|
-| AUDIO_FLAC   | 'audio/flac'          | Audio in FLAC format.|
+| AUDIO_VORBIS | 'audio/vorbis'        | Audio in Vorbis format.   |
+| AUDIO_FLAC   | 'audio/flac'          | Audio in FLAC format.     |
 
 ## MediaDescriptionKey<sup>8+</sup>
 
@@ -273,7 +273,7 @@ Enumerates the buffering event types.
 
 ## AudioPlayer
 
-Provides methods to manage and play audio. Before calling a method of **AudioPlayer**, you must use [createAudioPlayer()](#mediacreateaudioplayer) to create an **AudioPlayer** instance.
+Provides APIs to manage and play audio. Before calling an API of **AudioPlayer**, you must use [createAudioPlayer()](#mediacreateaudioplayer) to create an **AudioPlayer** instance.
 
 For details about the audio playback demo, see [Audio Playback Development](../../media/audio-playback.md).
 
@@ -283,7 +283,7 @@ For details about the audio playback demo, see [Audio Playback Development](../.
 
 | Name       | Type                     | Readable| Writable| Description                                                        |
 | ----------- | ------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| src         | string                    | Yes  | Yes  | Audio media URI. The mainstream audio formats (MPEG-4, AAC, MPEG-3, OGG, and WAV) are supported.<br>**Example of supported URIs**:<br>1. FD playback: fd://xx<br>![en-us_image_0000001164217678](figures/en-us_image_url.png)<br>2. HTTP network playback: http://xx<br>3. HLS network playback path (under development)<br>**Note**:<br>To use media materials, you must declare the read permission. Otherwise, the media materials cannot be played properly.|
+| src         | string                    | Yes  | Yes  | Audio media URI. The mainstream audio formats (MPEG-4, AAC, MPEG-3, OGG, and WAV) are supported.<br>**Example of supported URIs**:<br>1. FD playback: fd://xx<br>![](figures/en_image_url.png)<br>2. HTTP network playback: http://xx<br>3. HLS network playback path (under development)<br>**Note**:<br>To use media materials, you must declare the read permission. Otherwise, the media materials cannot be played properly.|
 | loop        | boolean                   | Yes  | Yes  | Whether to loop audio playback. The value **true** means to loop audio playback, and **false** means the opposite.                |
 | currentTime | number                    | Yes  | No  | Current audio playback position.                                        |
 | duration    | number                    | Yes  | No  | Audio duration.                                                  |
@@ -293,7 +293,7 @@ For details about the audio playback demo, see [Audio Playback Development](../.
 
 play(): void
 
-Starts to play audio resources. This method can be called only after the [dataLoad](#on('play' | 'pause' | 'stop' | 'reset' | 'dataLoad' | 'finish' | 'volumeChange')) event is triggered.
+Starts to play audio resources. This API can be called only after the [dataLoad](#audioplayer_on) event is triggered.
 
 **System capability**: SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -424,7 +424,7 @@ audioPlayer = undefined;
 
 ### getTrackDescription<sup>8+</sup><a name=audioplayer_gettrackdescription1></a>
 
-getTrackDescription(callback: AsyncCallback<Array<[MediaDescription](#mediadescription8)>>): void
+getTrackDescription(callback: AsyncCallback<Array\<MediaDescription>>): void
 
 Obtains the audio track information. This API uses a callback to return the result.
 
@@ -460,7 +460,7 @@ audioPlayer.getTrackDescription((error, arrlist) => {
 
 ### getTrackDescription<sup>8+</sup><a name=audioplayer_gettrackdescription2></a>
 
-getTrackDescription(): Promise<Array<[MediaDescription](#mediadescription8)>>
+getTrackDescription(): Promise<Array\<MediaDescription>>
 
 Obtains the audio track information. This API uses a promise to return the result.
 
@@ -511,10 +511,10 @@ Subscribes to the audio buffering update event.
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory| Description                                                        |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Type of the event to subscribe to, which is 'bufferingUpdate' in this example.       |
-| callback | (infoType: [BufferingInfoType](#bufferinginfotype8), value: number) => void | Yes  | Callback invoked when the event is triggered.<br>When [BufferingInfoType](#bufferinginfotype8) is set to **BUFFERING_PERCENT** or **CACHED_DURATION**, **value** is valid. Otherwise, **value** is fixed at **0**.|
+| Name  | Type    | Mandatory| Description                                                        |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | Yes  | Type of the event to subscribe to, which is 'bufferingUpdate' in this example.       |
+| callback | function | Yes  | Callback invoked when the event is triggered.<br>When [BufferingInfoType](#bufferinginfotype8) is set to **BUFFERING_PERCENT** or **CACHED_DURATION**, **value** is valid. Otherwise, **value** is fixed at **0**.|
 
 **Example**
 
@@ -525,7 +525,7 @@ audioPlayer.on('bufferingUpdate', (infoType, value) => {
 });
 ```
 
- ### on('play' | 'pause' | 'stop' | 'reset' | 'dataLoad' | 'finish' | 'volumeChange')
+ ### on('play' | 'pause' | 'stop' | 'reset' | 'dataLoad' | 'finish' | 'volumeChange')<a name = audioplayer_on></a>
 
 on(type: 'play' | 'pause' | 'stop' | 'reset' | 'dataLoad' | 'finish' | 'volumeChange', callback: () => void): void
 
@@ -537,7 +537,7 @@ Subscribes to the audio playback events.
 
 | Name  | Type      | Mandatory| Description                                                        |
 | -------- | ---------- | ---- | ------------------------------------------------------------ |
-| type     | string     | Yes  | Type of the event to subscribe to. The following events are supported: 'play' \| 'pause' \| 'stop' \| 'reset' \| 'dataLoad' \| 'finish' \| 'volumeChange'<br>- The 'play' event is triggered when the [play()](#play) method is called and audio playback starts.<br>- The 'pause' event is triggered when the [pause()](#pause) method is called and audio playback is paused.<br>- The 'stop' event is triggered when the [stop()](#stop) method is called and audio playback stops.<br>- The 'reset' event is triggered when the [reset()](#reset7) method is called and audio playback is reset.<br>- The 'dataLoad' event is triggered when the audio data is loaded, that is, when the **src** attribute is configured.<br>- The 'finish' event is triggered when the audio playback is finished.<br>- The 'volumeChange' event is triggered when the [setVolume()](#setvolume) method is called and the playback volume is changed.|
+| type     | string     | Yes  | Type of the event to subscribe to. The following events are supported: 'play' \| 'pause' \| 'stop' \| 'reset' \| 'dataLoad' \| 'finish' \| 'volumeChange'<br>- The 'play' event is triggered when the [play()](#audioplayer_play) API is called and audio playback starts.<br>- The 'pause' event is triggered when the [pause()](#audioplayer_pause) API is called and audio playback is paused.<br>- The 'stop' event is triggered when the [stop()](#audioplayer_stop) API is called and audio playback stops.<br>- The 'reset' event is triggered when the [reset()](#audioplayer_reset) API is called and audio playback is reset.<br>- The 'dataLoad' event is triggered when the audio data is loaded, that is, when the **src** attribute is configured.<br>- The 'finish' event is triggered when the audio playback is finished.<br>- The 'volumeChange' event is triggered when the [setVolume()](#audioplayer_setvolume) API is called and the playback volume is changed.|
 | callback | () => void | Yes  | Callback invoked when the event is triggered.                                          |
 
 **Example**
@@ -550,7 +550,7 @@ audioPlayer.on('dataLoad', () => {            // Set the 'dataLoad' event callba
 });
 audioPlayer.on('play', () => {                // Set the 'play' event callback.
 	console.info('audio play success');
-    audioPlayer.seek(30000);                  // Call the seek() method and trigger the 'timeUpdate' event callback.
+    audioPlayer.seek(30000);                  // Call the seek() API and trigger the 'timeUpdate' event callback.
 });
 audioPlayer.on('pause', () => {               // Set the 'pause' event callback.
 	console.info('audio pause success');
@@ -609,7 +609,7 @@ Subscribes to the 'timeUpdate' event.
 
 | Name  | Type             | Mandatory| Description                                                        |
 | -------- | ----------------- | ---- | ------------------------------------------------------------ |
-| type     | string            | Yes  | Type of the event to subscribe to, which is 'timeUpdate' in this method.<br>The 'timeUpdate' event is triggered when the [seek()](#seek) method is called.|
+| type     | string            | Yes  | Type of the event to subscribe to, which is 'timeUpdate' in this API.<br>The 'timeUpdate' event is triggered when the [seek()](#audioplayer_seek) API is called.|
 | callback | Callback\<number> | Yes  | Callback invoked when the event is triggered. The input parameter of the callback is the time when the seek operation is successful.            |
 
 **Example**
@@ -637,7 +637,7 @@ Subscribes to the audio playback error event.
 
 | Name  | Type         | Mandatory| Description                                                        |
 | -------- | ------------- | ---- | ------------------------------------------------------------ |
-| type     | string        | Yes  | Type of the event to subscribe to, which is 'error' in this method.<br>The 'error' event is triggered when an error occurs during audio playback.|
+| type     | string        | Yes  | Type of the event to subscribe to, which is 'error' in this API.<br>The 'error' event is triggered when an error occurs during audio playback.|
 | callback | ErrorCallback | Yes  | Callback invoked when the event is triggered.                                      |
 
 **Example**
@@ -667,7 +667,7 @@ Enumerates the audio playback states. You can obtain the state through the **sta
 
 ## VideoPlayer<sup>8+</sup>
 
-Provides methods to manage and play video. Before calling a method of the **VideoPlayer** class, you must call [createVideoPlayer()](#media.createvideoplayer8) to create a [VideoPlayer](#videoplayer8) instance.
+Provides APIs to manage and play video. Before calling an API of the **VideoPlayer** class, you must call [createVideoPlayer()](#mediacreatevideoplayer8) to create a [VideoPlayer](#videoplayer8) instance.
 
 For details about the video playback demo, see [Video Playback Development](../../media/video-playback.md).
 
@@ -677,7 +677,7 @@ For details about the video playback demo, see [Video Playback Development](../.
 
 | Name                    | Type                              | Readable| Writable| Description                                                        |
 | ------------------------ | ---------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| url<sup>8+</sup>         | string                             | Yes  | Yes  | Video media URL. The mainstream video formats (MPEG-4, MPEG-TS, WebM, and MKV) are supported.<br>**Example of supported URIs**:<br>1. FD playback: fd://xx<br>![en-us_image_0000001164217678](figures/en-us_image_url.png)<br>2. HTTP network playback: http://xx<br>3. HLS network playback path (under development)<br>**Note**:<br>To use media materials, you must declare the read permission. Otherwise, the media materials cannot be played properly.|
+| url<sup>8+</sup>         | string                             | Yes  | Yes  | Video media URL. The mainstream video formats (MPEG-4, MPEG-TS, WebM, and MKV) are supported.<br>**Example of supported URIs**:<br>1. FD playback: fd://xx<br>![](figures/en_image_url.png)<br>2. HTTP network playback: http://xx<br>3. HLS network playback path (under development)<br>**Note**:<br>To use media materials, you must declare the read permission. Otherwise, the media materials cannot be played properly.|
 | loop<sup>8+</sup>        | boolean                            | Yes  | Yes  | Whether to loop video playback. The value **true** means to loop video playback, and **false** means the opposite.                |
 | currentTime<sup>8+</sup> | number                             | Yes  | No  | Current video playback position.                                        |
 | duration<sup>8+</sup>    | number                             | Yes  | No  | Video duration. The value **-1** indicates the live streaming mode.                              |
@@ -1053,11 +1053,11 @@ Seeks to the specified playback position. This API uses a callback to return the
 
 **Parameters**
 
-| Name  | Type    | Mandatory| Description                                    |
-| -------- | -------- | ---- | ---------------------------------------- |
-| timeMs   | number   | Yes  | Position to seek to, in milliseconds.          |
-| mode     | SeekMode | Yes  | Seek mode. For details, see [SeekMode](#seekmode8).|
-| callback | function | Yes  | Callback used to return the result.          |
+| Name  | Type                  | Mandatory| Description                          |
+| -------- | ---------------------- | ---- | ------------------------------ |
+| timeMs   | number                 | Yes  | Position to seek to, in milliseconds.|
+| mode     | [SeekMode](#seekmode8) | Yes  | Seek mode.                    |
+| callback | function               | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -1081,10 +1081,10 @@ Seeks to the specified playback position. If **mode** is not specified, the next
 
 **Parameters**
 
-| Name| Type    | Mandatory| Description                                  |
-| ------ | -------- | ---- | -------------------------------------- |
-| timeMs | number   | Yes  | Position to seek to, in milliseconds.        |
-| mode   | SeekMode | No  | Seek mode. For details, see [SeekMode](#seekmode8).|
+| Name| Type                  | Mandatory| Description                          |
+| ------ | ---------------------- | ---- | ------------------------------ |
+| timeMs | number                 | Yes  | Position to seek to, in milliseconds.|
+| mode   | [SeekMode](#seekmode8) | No  | Seek mode.                    |
 
 **Return value**
 
@@ -1227,7 +1227,7 @@ await videoPlayer.release().then() => {
 
 ### getTrackDescription<sup>8+</sup>
 
-getTrackDescription(callback: AsyncCallback<Array<[MediaDescription](#mediadescription8)>>): void
+getTrackDescription(callback: AsyncCallback<Array\<MediaDescription>>): void
 
 Obtains the video track information. This API uses a callback to return the result.
 
@@ -1235,9 +1235,9 @@ Obtains the video track information. This API uses a callback to return the resu
 
 **Parameters**
 
-| Name  | Type    | Mandatory| Description                      |
-| -------- | -------- | ---- | -------------------------- |
-| callback | function | Yes  | Callback used to return the video track information obtained.|
+| Name  | Type                                                        | Mandatory| Description                      |
+| -------- | ------------------------------------------------------------ | ---- | -------------------------- |
+| callback | AsyncCallback<Array<[MediaDescription](#mediadescription8)>> | Yes  | Callback used to return the video track information obtained.|
 
 **Example**
 
@@ -1263,7 +1263,7 @@ videoPlayer.getTrackDescription((error, arrlist) => {
 
 ### getTrackDescription<sup>8+</sup>
 
-getTrackDescription(): Promise<Array<[MediaDescription](#mediadescription8)>>
+getTrackDescription(): Promise<Array\<MediaDescription>>
 
 Obtains the video track information. This API uses a promise to return the result.
 
@@ -1346,6 +1346,12 @@ Sets the video playback speed. This API uses a promise to return the result.
 | ------ | ------ | ---- | ---------------------------------------------------------- |
 | speed  | number | Yes  | Video playback speed. For details, see [PlaybackSpeed](#playbackspeed8).|
 
+**Return value**
+
+| Type            | Description                     |
+| ---------------- | ------------------------- |
+| Promise\<number> | Promise used to return the result.|
+
 **Example**
 
 ```js
@@ -1417,10 +1423,10 @@ Subscribes to the frame rendering start event.
 
 **Parameters**
 
-| Name  | Type    | Mandatory| Description                                                        |
-| -------- | -------- | ---- | ------------------------------------------------------------ |
-| type     | string   | Yes  | Type of the event to subscribe to, which is 'startRenderFrame' in this example.|
-| callback | function | Yes  | Callback invoked when the event is triggered.                          |
+| Name  | Type           | Mandatory| Description                                                        |
+| -------- | --------------- | ---- | ------------------------------------------------------------ |
+| type     | string          | Yes  | Type of the event to subscribe to, which is 'startRenderFrame' in this example.|
+| callback | Callback\<void> | Yes  | Callback invoked when the event is triggered.                          |
 
 **Example**
 
@@ -1464,10 +1470,10 @@ Subscribes to the video playback error event.
 
 **Parameters**
 
-| Name  | Type    | Mandatory| Description                                                        |
-| -------- | -------- | ---- | ------------------------------------------------------------ |
-| type     | string   | Yes  | Type of the event to subscribe to, which is 'error' in this method.<br>The 'error' event is triggered when an error occurs during video playback.|
-| callback | function | Yes  | Callback invoked when the event is triggered.                                      |
+| Name  | Type         | Mandatory| Description                                                        |
+| -------- | ------------- | ---- | ------------------------------------------------------------ |
+| type     | string        | Yes  | Type of the event to subscribe to, which is 'error' in this API.<br>The 'error' event is triggered when an error occurs during video playback.|
+| callback | ErrorCallback | Yes  | Callback invoked when the event is triggered.                                      |
 
 **Example**
 
@@ -1497,7 +1503,7 @@ Enumerates the video playback states. You can obtain the state through the **sta
 
 ## SeekMode<sup>8+</sup>
 
-Enumerates the video playback seek modes, which can be passed in the **seek** method.
+Enumerates the video playback seek modes, which can be passed in the **seek** API.
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -1508,7 +1514,7 @@ Enumerates the video playback seek modes, which can be passed in the **seek** me
 
 ## PlaybackSpeed<sup>8+</sup>
 
-Enumerates the video playback speeds, which can be passed in the **setSpeed** method.
+Enumerates the video playback speeds, which can be passed in the **setSpeed** API.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -1555,7 +1561,7 @@ audioPlayer.getTrackDescription((error, arrlist) => {
 
 ## AudioRecorder
 
-Implements audio recording. Before calling a method of the **AudioRecorder** class, you must call [createAudioRecorder()](#media.createaudiorecorder) to create an [AudioRecorder](#audiorecorder) instance.
+Implements audio recording. Before calling an API of the **AudioRecorder** class, you must call [createAudioRecorder()](#mediacreateaudiorecorder) to create an [AudioRecorder](#audiorecorder) instance.
 
 For details about the audio recording demo, see [Audio Recording Development](../../media/audio-recorder.md).
 
@@ -1598,7 +1604,7 @@ audioRecorder.prepare(audioRecorderConfig);
 
 start(): void
 
-Starts audio recording. This method can be called only after the [prepare](#audiorecorder_on) event is triggered.
+Starts audio recording. This API can be called only after the [prepare](#audiorecorder_on) event is triggered.
 
 **System capability**: SystemCapability.Multimedia.Media.AudioRecorder
 
@@ -1615,7 +1621,7 @@ audioRecorder.start();
 
 pause():void
 
-Pauses audio recording. This method can be called only after the [start](#audiorecorder_on) event is triggered.
+Pauses audio recording. This API can be called only after the [start](#audiorecorder_on) event is triggered.
 
 **System capability**: SystemCapability.Multimedia.Media.AudioRecorder
 
@@ -1632,7 +1638,7 @@ audioRecorder.pause();
 
 resume():void
 
-Resumes audio recording. This method can be called only after the [pause](#audiorecorder_on) event is triggered.
+Resumes audio recording. This API can be called only after the [pause](#audiorecorder_on) event is triggered.
 
 **System capability**: SystemCapability.Multimedia.Media.AudioRecorder
 
@@ -1711,7 +1717,7 @@ Subscribes to the audio recording events.
 
 | Name  | Type    | Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
-| type     | string   | Yes  | Type of the event to subscribe to. The following events are supported: 'prepare'\|'start'\|  'pause' \| 'resume' \|'stop'\|'release'\|'reset'<br>- The 'prepare' event is triggered when the [prepare](#audiorecorder_prepare) method is called and the audio recording parameters are set.<br>- The 'start' event is triggered when the [start](#audiorecorder_start) method is called and audio recording starts.<br>- The 'pause' event is triggered when the [pause](#audiorecorder_pause) method is called and audio recording is paused.<br>- The 'resume' event is triggered when the [resume](#audiorecorder_resume) method is called and audio recording is resumed.<br>- The 'stop' event is triggered when the [stop](#audiorecorder_stop) method is called and audio recording stops.<br>- The 'release' event is triggered when the [release](#audiorecorder_release) method is called and the recording resource is released.<br>- The 'reset' event is triggered when the [reset](#audiorecorder_reset) method is called and audio recording is reset.|
+| type     | string   | Yes  | Type of the event to subscribe to. The following events are supported: 'prepare'\|'start'\|  'pause' \| 'resume' \|'stop'\|'release'\|'reset'<br>- The 'prepare' event is triggered when the [prepare](#audiorecorder_prepare) API is called and the audio recording parameters are set.<br>- The 'start' event is triggered when the [start](#audiorecorder_start) API is called and audio recording starts.<br>- The 'pause' event is triggered when the [pause](#audiorecorder_pause) API is called and audio recording is paused.<br>- The 'resume' event is triggered when the [resume](#audiorecorder_resume) API is called and audio recording is resumed.<br>- The 'stop' event is triggered when the [stop](#audiorecorder_stop) API is called and audio recording stops.<br>- The 'release' event is triggered when the [release](#audiorecorder_release) API is called and the recording resource is released.<br>- The 'reset' event is triggered when the [reset](#audiorecorder_reset) API is called and audio recording is reset.|
 | callback | ()=>void | Yes  | Callback invoked when the event is triggered.                                          |
 
 **Example**
@@ -1769,7 +1775,7 @@ Subscribes to the audio recording error event.
 
 | Name  | Type         | Mandatory| Description                                                        |
 | -------- | ------------- | ---- | ------------------------------------------------------------ |
-| type     | string        | Yes  | Type of the event to subscribe to, which is 'error' in this method.<br>The 'error' event is triggered when an error occurs during audio recording.|
+| type     | string        | Yes  | Type of the event to subscribe to, which is 'error' in this API.<br>The 'error' event is triggered when an error occurs during audio recording.|
 | callback | ErrorCallback | Yes  | Callback invoked when the event is triggered.                                      |
 
 **Example**
@@ -1796,9 +1802,9 @@ Describes audio recording configurations.
 | audioSampleRate       | number                                  | No  | Audio sampling rate. The default value is **48000**.                             |
 | numberOfChannels      | number                                  | No  | Number of audio channels. The default value is **2**.                                 |
 | format                | [AudioOutputFormat](#audiooutputformat) | No  | Audio output format. The default value is **MPEG_4**.                        |
-| location<sup>8+</sup> | [Location](#location8)                  | No  | Geographical location of the recorded audio.                                        |
+| location              | [Location](#location)                   | No  | Geographical location of the recorded audio.                                        |
 | uri                   | string                                  | Yes  | Audio output URI. Supported: fd://xx&nbsp;(fd&nbsp;number)<br>![en-us_image_0000001164217678](figures/en-us_image_url.png)<br>The file must be created by the caller and granted with proper permissions.|
-| audioEncoderMime      | [CodecMimeType](#CodecMimeType8)        | No  | Audio encoding format.|
+| audioEncoderMime      | [CodecMimeType](#codecmimetype8)        | No  | Audio encoding format.                                              |
 
 
 ## AudioEncoder
@@ -1830,25 +1836,27 @@ Enumerates the audio output formats.
 | AMR_WB   | 4      | AMR_WB.<br>This API is merely defined in OpenHarmony 3.1 Release and cannot be used currently. It can be used in OpenHarmony 3.1 MR.|
 | AAC_ADTS | 6      | Audio Data Transport Stream (ADTS), which is a transport stream format of AAC-based audio.|
 
-## VideoRecorder<sup>8+</sup>
+## VideoRecorder<sup>9+</sup>
 
-Implements video recording. Before calling a method of the **VideoRecorder** class, you must call [createVideoRecorder()](#media.createvideorecorder8) to create a [VideoRecorder](#videorecorder8) instance.
+Implements video recording. Before calling an API of the **VideoRecorder** class, you must call [createVideoRecorder()](#mediacreatevideorecorder9) to create a [VideoRecorder](#videorecorder9) instance.
 
 For details about the video recording demo, see [Video Recording Development](../../media/video-recorder.md).
 
 ### Attributes
 
-| Name              | Type                                 | Readable| Writable| Description            |
-| ------------------ | ------------------------------------- | ---- | ---- | ---------------- |
-| state<sup>8+</sup> | [VideoRecordState](#videorecordstate) | Yes  | No  | Video recording state.|
+**System capability**: SystemCapability.Multimedia.Media.VideoRecorder
 
-### prepare<sup>8+</sup><a name=videorecorder_prepare1></a>
+| Name              | Type                                  | Readable| Writable| Description            |
+| ------------------ | -------------------------------------- | ---- | ---- | ---------------- |
+| state<sup>8+</sup> | [VideoRecordState](#videorecordstate9) | Yes  | No  | Video recording state.|
+
+### prepare<sup>9+</sup><a name=videorecorder_prepare1></a>
 
 prepare(config: VideoRecorderConfig, callback: AsyncCallback\<void>): void;
 
 Sets video recording parameters in asynchronous mode. This API uses a callback to return the result.
 
-**Required permissions:** ohos.permission.MICROPHONE ohos.permission.CAMERA
+**Required permissions:** ohos.permission.MICROPHONE and ohos.permission.CAMERA
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -1856,7 +1864,7 @@ Sets video recording parameters in asynchronous mode. This API uses a callback t
 
 | Name  | Type                                        | Mandatory| Description                               |
 | -------- | -------------------------------------------- | ---- | ----------------------------------- |
-| config   | [VideoRecorderConfig](#videorecorderconfig8) | Yes  | Video recording parameters to set.           |
+| config   | [VideoRecorderConfig](#videorecorderconfig9) | Yes  | Video recording parameters to set.           |
 | callback | AsyncCallback\<void>                         | Yes  | Callback used to return the result.|
 
 **Example**
@@ -1910,13 +1918,13 @@ media.createVideoRecorder((err, recorder) => {
 });
 ```
 
-### prepare<sup>8+</sup><a name=videorecorder_prepare2></a>
+### prepare<sup>9+</sup><a name=videorecorder_prepare2></a>
 
 prepare(config: VideoRecorderConfig): Promise\<void>;
 
 Sets video recording parameters in asynchronous mode. This API uses a promise to return the result.
 
-**Required permissions:** ohos.permission.MICROPHONE ohos.permission.CAMERA
+**Required permissions:** ohos.permission.MICROPHONE and ohos.permission.CAMERA
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -1924,7 +1932,7 @@ Sets video recording parameters in asynchronous mode. This API uses a promise to
 
 | Name| Type                                        | Mandatory| Description                    |
 | ------ | -------------------------------------------- | ---- | ------------------------ |
-| config | [VideoRecorderConfig](#videorecorderconfig8) | Yes  | Video recording parameters to set.|
+| config | [VideoRecorderConfig](#videorecorderconfig9) | Yes  | Video recording parameters to set.|
 
 **Return value**
 
@@ -1981,7 +1989,7 @@ await videoRecorder.prepare(videoConfig).then(() => {
 });
 ```
 
-### getInputSurface<sup>8+</sup>
+### getInputSurface<sup>9+</sup>
 
 getInputSurface(callback: AsyncCallback\<string>): void;
 
@@ -1989,7 +1997,7 @@ Obtains the surface required for recording in asynchronous mode. This surface is
 
 Note that the video data must carry the timestamp (in ns) and buffer size, and the start time of the timestamp is based on the system startup time.
 
-This method can be called only after [prepare()](#videorecorder_prepare1) is called.
+This API can be called only after [prepare()](#videorecorder_prepare1) is called.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -2014,7 +2022,7 @@ videoRecorder.getInputSurface((err, surfaceId) => {
 });
 ```
 
-### getInputSurface<sup>8+</sup>
+### getInputSurface<sup>9+</sup>
 
 getInputSurface(): Promise\<string>;
 
@@ -2022,7 +2030,7 @@ getInputSurface(): Promise\<string>;
 
 Note that the video data must carry the timestamp (in ns) and buffer size, and the start time of the timestamp is based on the system startup time.
 
-This method can be called only after [prepare()](#videorecorder_prepare1) is called.
+This API can be called only after [prepare()](#videorecorder_prepare1) is called.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -2047,13 +2055,13 @@ await videoRecorder.getInputSurface().then((surfaceId) => {
 });
 ```
 
-### start<sup>8+</sup><a name=videorecorder_start1></a>
+### start<sup>9+</sup><a name=videorecorder_start1></a>
 
 start(callback: AsyncCallback\<void>): void;
 
 Starts video recording in asynchronous mode. This API uses a callback to return the result.
 
-This method can be called only after [prepare()](#videorecorder_prepare1) and [getInputSurface()](#getinputsurface8) are called, because the data source must pass data to the surface first.
+This API can be called only after [prepare()](#videorecorder_prepare1) and [getInputSurface()](#getinputsurface8) are called, because the data source must pass data to the surface first.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -2076,13 +2084,13 @@ videoRecorder.start((err) => {
 });
 ```
 
-### start<sup>8+</sup><a name=videorecorder_start2></a>
+### start<sup>9+</sup><a name=videorecorder_start2></a>
 
 start(): Promise\<void>;
 
 Starts video recording in asynchronous mode. This API uses a promise to return the result.
 
-This method can be called only after [prepare()](#videorecorder_prepare1) and [getInputSurface()](#getinputsurface8) are called, because the data source must pass data to the surface first.
+This API can be called only after [prepare()](#videorecorder_prepare1) and [getInputSurface()](#getinputsurface8) are called, because the data source must pass data to the surface first.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -2105,13 +2113,13 @@ await videoRecorder.start().then(() => {
 });
 ```
 
-### pause<sup>8+</sup><a name=videorecorder_pause1></a>
+### pause<sup>9+</sup><a name=videorecorder_pause1></a>
 
 pause(callback: AsyncCallback\<void>): void;
 
 Pauses video recording in asynchronous mode. This API uses a callback to return the result.
 
-This method can be called only after [start()](#videorecorder_start1) is called. You can resume recording by calling [resume()](#videorecorder_resume1).
+This API can be called only after [start()](#videorecorder_start1) is called. You can resume recording by calling [resume()](#videorecorder_resume1).
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -2134,13 +2142,13 @@ videoRecorder.pause((err) => {
 });
 ```
 
-### pause<sup>8+</sup><a name=videorecorder_pause2></a>
+### pause<sup>9+</sup><a name=videorecorder_pause2></a>
 
 pause(): Promise\<void>;
 
 Pauses video recording in asynchronous mode. This API uses a promise to return the result.
 
-This method can be called only after [start()](#videorecorder_start1) is called. You can resume recording by calling [resume()](#videorecorder_resume1).
+This API can be called only after [start()](#videorecorder_start1) is called. You can resume recording by calling [resume()](#videorecorder_resume1).
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -2163,7 +2171,7 @@ await videoRecorder.pause().then(() => {
 });
 ```
 
-### resume<sup>8+</sup><a name=videorecorder_resume1></a>
+### resume<sup>9+</sup><a name=videorecorder_resume1></a>
 
 resume(callback: AsyncCallback\<void>): void;
 
@@ -2190,7 +2198,7 @@ videoRecorder.resume((err) => {
 });
 ```
 
-### resume<sup>8+</sup><a name=videorecorder_resume2></a>
+### resume<sup>9+</sup><a name=videorecorder_resume2></a>
 
 resume(): Promise\<void>;
 
@@ -2217,7 +2225,7 @@ await videoRecorder.resume().then(() => {
 });
 ```
 
-### stop<sup>8+</sup><a name=videorecorder_stop1></a>
+### stop<sup>9+</sup><a name=videorecorder_stop1></a>
 
 stop(callback: AsyncCallback\<void>): void;
 
@@ -2246,7 +2254,7 @@ videoRecorder.stop((err) => {
 });
 ```
 
-### stop<sup>8+</sup><a name=videorecorder_stop2></a>
+### stop<sup>9+</sup><a name=videorecorder_stop2></a>
 
 stop(): Promise\<void>;
 
@@ -2275,7 +2283,7 @@ await videoRecorder.stop().then(() => {
 });
 ```
 
-### release<sup>8+</sup><a name=videorecorder_release1></a>
+### release<sup>9+</sup><a name=videorecorder_release1></a>
 
 release(callback: AsyncCallback\<void>): void;
 
@@ -2302,7 +2310,7 @@ videoRecorder.release((err) => {
 });
 ```
 
-### release<sup>8+</sup><a name=videorecorder_release2></a>
+### release<sup>9+</sup><a name=videorecorder_release2></a>
 
 release(): Promise\<void>;
 
@@ -2329,7 +2337,7 @@ await videoRecorder.release().then(() => {
 });
 ```
 
-### reset<sup>8+</sup><a name=videorecorder_reset1></a>
+### reset<sup>9+</sup><a name=videorecorder_reset1></a>
 
 reset(callback: AsyncCallback\<void>): void;
 
@@ -2358,7 +2366,7 @@ videoRecorder.reset((err) => {
 });
 ```
 
-### reset<sup>8+</sup><a name=videorecorder_reset2></a>
+### reset<sup>9+</sup><a name=videorecorder_reset2></a>
 
 reset(): Promise\<void>;
 
@@ -2387,7 +2395,7 @@ await videoRecorder.reset().then(() => {
 });
 ```
 
-### on('error')<sup>8+</sup>
+### on('error')<sup>9+</sup>
 
 on(type: 'error', callback: ErrorCallback): void
 
@@ -2399,7 +2407,7 @@ Subscribes to the video recording error event.
 
 | Name  | Type         | Mandatory| Description                                                        |
 | -------- | ------------- | ---- | ------------------------------------------------------------ |
-| type     | string        | Yes  | Type of the event to subscribe to, which is 'error' in this method.<br>The 'error' event is triggered when an error occurs during video recording.|
+| type     | string        | Yes  | Type of the event to subscribe to, which is 'error' in this API.<br>The 'error' event is triggered when an error occurs during video recording.|
 | callback | ErrorCallback | Yes  | Callback invoked when the event is triggered.                                      |
 
 **Example**
@@ -2413,7 +2421,7 @@ videoRecorder.on('error', (error) => {      							// Set the 'error' event call
 // This event is reported when an error occurs during the retrieval of videoRecordState.
 ```
 
-## VideoRecordState<sup>8+</sup>
+## VideoRecordState<sup>9+</sup>
 
 Enumerates the video recording states. You can obtain the state through the **state** attribute.
 
@@ -2426,24 +2434,24 @@ Enumerates the video recording states. You can obtain the state through the **st
 | playing  | string | Video recording is in progress.        |
 | paused   | string | Video recording is paused.        |
 | stopped  | string | Video recording is stopped.        |
-| error    | string | Video recording is in the error state.            |
+| error    | string | Audio playback is in the error state.            |
 
-## VideoRecorderConfig<sup>8+</sup>
+## VideoRecorderConfig<sup>9+</sup>
 
 Describes the video recording parameters.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
 
-| Name           | Type                                                  | Mandatory| Description                                                        |
-| --------------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| audioSourceType | [AudioSourceType](#audiosourcetype<sup>8+</sup>)           | Yes  | Type of the audio source for video recording.                                      |
-| videoSourceType | [VideoSourceType](#videosourcetype<sup>8+</sup>)           | Yes  | Type of the video source for video recording.                                      |
-| profile         | [VideoRecorderProfile](#videorecorderprofile8)             | Yes  | Video recording profile.                                         |
-| rotation        | number                                                     | No  | Rotation angle of the recorded video.                                        |
-| location        | [Location](#location8)                                     | No  | Geographical location of the recorded video.                                        |
-| url             | string                                                     | Yes  | Video output URL. Supported: fd://xx&nbsp;(fd&nbsp;number)<br>![en-us_image_0000001164217678](figures/en-us_image_url.png) <br>The file must be created by the caller and granted with proper permissions.|
+| Name           | Type                                      | Mandatory| Description                                                        |
+| --------------- | ---------------------------------------------- | ---- | ------------------------------------------------------------ |
+| audioSourceType | [AudioSourceType](#audiosourcetype9)           | Yes  | Type of the audio source for video recording.                                      |
+| videoSourceType | [VideoSourceType](#videosourcetype9)           | Yes  | Type of the video source for video recording.                                      |
+| profile         | [VideoRecorderProfile](#videorecorderprofile9) | Yes  | Video recording profile.                                         |
+| rotation        | number                                         | No  | Rotation angle of the recorded video.                                        |
+| location        | [Location](#location)                          | No  | Geographical location of the recorded video.                                        |
+| url             | string                                         | Yes  | Video output URL. Supported: fd://xx&nbsp;(fd&nbsp;number)<br>![](figures/en-us_image_url.png) <br>The file must be created by the caller and granted with proper permissions.|
 
-## AudioSourceType<sup>8+</sup>
+## AudioSourceType<sup>9+</sup>
 
 Enumerates the audio source types for video recording.
 
@@ -2454,7 +2462,7 @@ Enumerates the audio source types for video recording.
 | AUDIO_SOURCE_TYPE_DEFAULT | 0    | Default audio input source.|
 | AUDIO_SOURCE_TYPE_MIC     | 1    | Mic audio input source. |
 
-## VideoSourceType<sup>8+</sup>
+## VideoSourceType<sup>9+</sup>
 
 Enumerates the video source types for video recording.
 
@@ -2465,7 +2473,7 @@ Enumerates the video source types for video recording.
 | VIDEO_SOURCE_TYPE_SURFACE_YUV | 0    | The input surface carries raw data.|
 | VIDEO_SOURCE_TYPE_SURFACE_ES  | 1    | The input surface carries ES data. |
 
-## VideoRecorderProfile<sup>8+</sup>
+## VideoRecorderProfile<sup>9+</sup>
 
 Describes the video recording profile.
 
@@ -2475,12 +2483,14 @@ Describes the video recording profile.
 | ---------------- | -------------------------------------------- | ---- | ---------------- |
 | audioBitrate     | number                                       | Yes  | Audio encoding bit rate.|
 | audioChannels    | number                                       | Yes  | Number of audio channels.|
-| audioCodec       | [CodecMimeType](#CodecMimeType8)             | Yes  | Audio encoding format.  |
+| audioCodec       | [CodecMimeType](#codecmimetype8)             | Yes  | Audio encoding format.  |
 | audioSampleRate  | number                                       | Yes  | Audio sampling rate.    |
 | fileFormat       | [ContainerFormatType](#containerformattype8) | Yes  | Container format of a file.|
+| videoBitrate     | number                                       | Yes  | Video encoding bit rate.|
 | videoCodec       | [CodecMimeType](#CodecMimeType8)             | Yes  | Video encoding format.  |
 | videoFrameWidth  | number                                       | Yes  | Width of the recorded video frame.|
 | videoFrameHeight | number                                       | Yes  | Height of the recorded video frame.|
+| videoFrameRate   | number                                       | Yes  | Video frame rate.  |
 
 ## ContainerFormatType<sup>8+</sup>
 
@@ -2493,7 +2503,7 @@ Enumerates the container format types (CFTs).
 | CFT_MPEG_4  | "mp4" | Video container format MP4.|
 | CFT_MPEG_4A | "m4a" | Audio container format M4A.|
 
-## Location<sup>8+</sup>
+## Location
 
 Describes the geographical location of the recorded video.
 

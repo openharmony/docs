@@ -1,4 +1,4 @@
-# OpenHarmony开源项目<a name="ZH-CN_TOPIC_0000001158661243"></a>
+# OpenHarmony开源项目
 
 -   [项目介绍](#section1270210396435)
 -   [技术架构](#section2502124574318)
@@ -346,7 +346,10 @@ OpenHarmony支持如下几种系统类型：
 
 ## 快速入门<a name="section44681652104210"></a>
 
-入口：[device-dev/quick-start/Readme-CN.md](device-dev/quick-start/Readme-CN.md)
+- 设备开发快速入门：[device-dev/quick-start/Readme-CN.md](device-dev/quick-start/Readme-CN.md)
+- 应用开发快速入门：[application-dev/quick-start/Readme-CN.md](application-dev/quick-start/Readme-CN.md)
+
+
 
 ## 代码仓地址<a name="section107651249181914"></a>
 

@@ -3,7 +3,7 @@
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > - 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> 
+>
 > - 本模块接口均为系统接口，三方应用不支持调用。
 
 
@@ -31,30 +31,32 @@ on(type: "touch", receiver: TouchEventReceiver): void
 **系统能力：**SystemCapability.MultimodalInput.Input.InputMonitor
 
   **参数：**
-  | 参数 | 类型 | 必填 | 说明 | 
-| -------- | -------- | -------- | -------- |
-| type | string | 是 | 监听输入事件类型，只支持“touch”。 | 
-| receiver | [TouchEventReceiver](#toucheventreceiver) | 是 | 触摸输入事件回调函数。 | 
+| 参数       | 类型                                       | 必填   | 说明                   |
+| -------- | ---------------------------------------- | ---- | -------------------- |
+| type     | string                                   | 是    | 监听输入事件类型，只支持“touch”。 |
+| receiver | [TouchEventReceiver](#toucheventreceiver) | 是    | 触摸输入事件回调函数。          |
 
   **示例：**
 
 ```
-callback: function (value) {
-    if (checkEvent(value)) {
-        //事件满足业务要求，事件被消费
-        return true;
-    } else {
-        //事件不满足业务要求，事件未被消费
-        return false;
+export default {
+    callback: function (value) {
+        if (checkEvent(value)) {
+            //事件满足业务要求，事件被消费
+            return true;
+        } else {
+            //事件不满足业务要求，事件未被消费
+            return false;
+        }
+    },
+    testOn: function () {
+        console.info("InputMonitorJsTest---start---testOn");
+        inputMonitor.on(
+            "touch",
+            this.callback
+        );
+        console.info("InputMonitorJsTest---end---testOn");
     }
-},
-testOn: function () {
-    console.info("InputMonitorJsTest---start---testOn");
-    inputMonitor.on(
-        "touch",
-        this.callback
-    );
-    console.info("InputMonitorJsTest---end---testOn");
 }
 ```
 
@@ -70,31 +72,33 @@ off(type: "touch", receiver: TouchEventReceiver): void
 **系统能力：**SystemCapability.MultimodalInput.Input.InputMonitor
 
   **参数：**
-  | 参数 | 类型 | 必填 | 说明 | 
-| -------- | -------- | -------- | -------- |
-| type | string | 是 | 监听输入事件类型，只支持“touch”。 | 
-| receiver | [TouchEventReceiver](#toucheventreceiver) | 否 | 触摸输入事件回调函数。 | 
+| 参数       | 类型                                       | 必填   | 说明                   |
+| -------- | ---------------------------------------- | ---- | -------------------- |
+| type     | string                                   | 是    | 监听输入事件类型，只支持“touch”。 |
+| receiver | [TouchEventReceiver](#toucheventreceiver) | 否    | 触摸输入事件回调函数。          |
 
   **示例：**
 
 ```
-callback: function (value) {
-    if (checkEvent(value)) {
-        //事件满足业务要求，事件被消费
-        return true;
-    } else {
-        //事件不满足业务要求，事件未被消费
-        return false;
+export default {
+    callback: function (value) {
+        if (checkEvent(value)) {
+            //事件满足业务要求，事件被消费
+            return true;
+        } else {
+            //事件不满足业务要求，事件未被消费
+            return false;
+        }
+    },
+    testOff: function () {
+        console.info("InputMonitorJsTest---start---testOff");
+        inputMonitor.off(
+            "touch",
+            this.callback
+        );
+        console.info("InputMonitorJsTest---end---testOff");
     }
-},
-testOff: function () {
-    console.info("InputMonitorJsTest---start---testOff");
-    inputMonitor.off(
-        "touch",
-        this.callback
-    );
-    console.info("InputMonitorJsTest---end---testOff");
-}
+  }
 ```
 
 
@@ -110,33 +114,35 @@ testOff: function () {
 **系统能力：**SystemCapability.MultimodalInput.Input.InputMonitor
 
   **参数：**
-| 参数 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| touchEvent | [TouchEvent](../arkui-js/js-components-common-events.md) | 是 | 触摸输入事件回调函数，返回true表示输触事件被监听器消费，false表示输触事件未被监听器消费。 |
+| 参数         | 类型                                       | 必填   | 说明                                       |
+| ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| touchEvent | [TouchEvent](../arkui-js/js-components-common-events.md) | 是    | 触摸输入事件回调函数，返回true表示输触事件被监听器消费，false表示输触事件未被监听器消费。 |
 
   **返回值：**
-  | 类型 | 说明 | 
-| -------- | -------- |
-| Boolean | 返回true表示输触事件被监听器消费，false表示输触事件未被监听器消费。 | 
+| 类型      | 说明                                     |
+| ------- | -------------------------------------- |
+| Boolean | 返回true表示输触事件被监听器消费，false表示输触事件未被监听器消费。 |
 
   **示例：**
 
 ```
-callback: function (value) {  //此处为(touchEvent:TouchEvent): Boolean 方法的实现
-    if (checkEvent(value)) {
-        //事件满足业务要求，事件被消费
-        return true;
-    } else {
-        //事件不满足业务要求，事件未被消费
-        return false;
+export default {
+    callback: function (value) {  //此处为(touchEvent:TouchEvent): Boolean 方法的实现
+        if (checkEvent(value)) {
+            //事件满足业务要求，事件被消费
+            return true;
+        } else {
+            //事件不满足业务要求，事件未被消费
+            return false;
+        }
+    },
+    testOff: function () {
+        console.info("InputMonitorJsTest---start---testOff");
+        inputMonitor.off(
+            "touch",
+            this.callback
+        );
+        console.info("InputMonitorJsTest---end---testOff");
     }
-},
-testOff: function () {
-    console.info("InputMonitorJsTest---start---testOff");
-    inputMonitor.off(
-        "touch",
-        this.callback
-    );
-    console.info("InputMonitorJsTest---end---testOff");
 }
 ```

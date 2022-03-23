@@ -23,10 +23,10 @@ startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<number>)
 
 **参数：**
 
-| 名称      | 类型                  | 必填 | 描述                |
-| --------- | --------------------- | ---- | ------------------- |
-| parameter | [StartAbilityParameter](#startabilityparameter) | 是   | 表示被启动的Ability。 |
-| callback  | AsyncCallback\<number>         | 是   | 被指定的回调方法。   |
+| 名称        | 类型                                       | 必填   | 描述             |
+| --------- | ---------------------------------------- | ---- | -------------- |
+| parameter | [StartAbilityParameter](#startabilityparameter) | 是    | 表示被启动的Ability。 |
+| callback  | AsyncCallback\<number>                   | 是    | 被指定的回调方法。      |
 
 **示例：**
 
@@ -62,9 +62,9 @@ startAbility(parameter: StartAbilityParameter): Promise\<number>
 
 **参数：**
 
-| 名称      | 类型                                            | 必填 | 描述                  |
-| --------- | ----------------------------------------------- | ---- | --------------------- |
-| parameter | [StartAbilityParameter](#startabilityparameter) | 是   | 表示被启动的Ability。 |
+| 名称        | 类型                                       | 必填   | 描述             |
+| --------- | ---------------------------------------- | ---- | -------------- |
+| parameter | [StartAbilityParameter](#startabilityparameter) | 是    | 表示被启动的Ability。 |
 
 **示例：**
 
@@ -100,14 +100,14 @@ acquireDataAbilityHelper(uri: string): DataAbilityHelper
 
 **参数：**
 
-| 名称 | 类型   | 必填 | 描述                     |
-| ---- | ------ | ---- | ------------------------ |
-| uri  | string | 是   | 指示要打开的文件的路径。 |
+| 名称   | 类型     | 必填   | 描述           |
+| ---- | ------ | ---- | ------------ |
+| uri  | string | 是    | 指示要打开的文件的路径。 |
 
 **返回值：**
 
-| 类型              | 说明                                         |
-| ----------------- | -------------------------------------------- |
+| 类型                | 说明                              |
+| ----------------- | ------------------------------- |
 | DataAbilityHelper | 用来协助其他Ability访问DataAbility的工具类。 |
 
 **示例：**
@@ -129,10 +129,10 @@ startAbilityForResult(parameter: StartAbilityParameter, callback: AsyncCallback\
 
 **参数：**
 
-| 名称      | 类型                                            | 必填 | 描述                  |
-| --------- | ----------------------------------------------- | ---- | --------------------- |
-| parameter | [StartAbilityParameter](#startabilityparameter) | 是   | 表示被启动的Ability。 |
-| callback  | AsyncCallback\<[AbilityResult](#abilityresult)> | 是   | 被指定的回调方法。    |
+| 名称        | 类型                                       | 必填   | 描述             |
+| --------- | ---------------------------------------- | ---- | -------------- |
+| parameter | [StartAbilityParameter](#startabilityparameter) | 是    | 表示被启动的Ability。 |
+| callback  | AsyncCallback\<[AbilityResult](#abilityresult)> | 是    | 被指定的回调方法。      |
 
 **示例：**
 
@@ -166,14 +166,14 @@ startAbilityForResult(parameter: StartAbilityParameter): Promise\<AbilityResult>
 
 **参数：**
 
-| 名称      | 类型                                            | 必填 | 描述                |
-| --------- | ----------------------------------------------- | ---- | ------------------- |
-| parameter | [StartAbilityParameter](#startabilityparameter) | 是   | 表示被启动的Ability |
+| 名称        | 类型                                       | 必填   | 描述            |
+| --------- | ---------------------------------------- | ---- | ------------- |
+| parameter | [StartAbilityParameter](#startabilityparameter) | 是    | 表示被启动的Ability |
 
 **返回值：**
 
-| 类型                                      | 说明           |
-| ----------------------------------------- | -------------- |
+| 类型                                       | 说明      |
+| ---------------------------------------- | ------- |
 | Promise\<[AbilityResult](#abilityresult)> | 返回执行结果。 |
 
 **示例：**
@@ -222,10 +222,10 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback\<void>
 
 **参数：**
 
-| 名称      | 类型          | 必填 | 描述                |
-| --------- | ------------- | ---- | ------------------- |
-| parameter | [AbilityResult](#abilityresult) | 是   | 表示被启动的Ability。 |
-| callback  | AsyncCallback\<void> | 是   | 被指定的回调方法。  |
+| 名称        | 类型                              | 必填   | 描述             |
+| --------- | ------------------------------- | ---- | -------------- |
+| parameter | [AbilityResult](#abilityresult) | 是    | 表示被启动的Ability。 |
+| callback  | AsyncCallback\<void>            | 是    | 被指定的回调方法。      |
 
 **示例：**
 
@@ -270,14 +270,14 @@ terminateSelfWithResult(parameter: AbilityResult): Promise\<void>
 
 **参数：**
 
-| 名称      | 类型                            | 必填 | 描述                |
-| --------- | ------------------------------- | ---- | ------------------- |
-| parameter | [AbilityResult](#abilityresult) | 是   | 表示被启动的Ability |
+| 名称        | 类型                              | 必填   | 描述            |
+| --------- | ------------------------------- | ---- | ------------- |
+| parameter | [AbilityResult](#abilityresult) | 是    | 表示被启动的Ability |
 
 **返回值：**
 
-| 类型           | 说明                    |
-| -------------- | ----------------------- |
+| 类型             | 说明              |
+| -------------- | --------------- |
 | Promise\<void> | 以Promise形式返回结果。 |
 
 **示例：**
@@ -327,9 +327,9 @@ hasWindowFocus(callback: AsyncCallback\<boolean>): void
 
 **参数：**
 
-| 名称     | 类型                    | 必填 | 描述                                                         |
-| -------- | ----------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<boolean> | 是   | 被指定的回调方法。<br>如果此Ability当前具有视窗焦点，则返回true；否则返回false。 |
+| 名称       | 类型                      | 必填   | 描述                                       |
+| -------- | ----------------------- | ---- | ---------------------------------------- |
+| callback | AsyncCallback\<boolean> | 是    | 被指定的回调方法。<br>如果此Ability当前具有视窗焦点，则返回true；否则返回false。 |
 
 **示例：**
 
@@ -350,8 +350,8 @@ hasWindowFocus(): Promise\<boolean>
 
 **返回值：**
 
-| 类型              | 说明                                                       |
-| ----------------- | ---------------------------------------------------------- |
+| 类型                | 说明                                    |
+| ----------------- | ------------------------------------- |
 | Promise\<boolean> | 如果此Ability当前具有视窗焦点，则返回true；否则返回false。 |
 
 **示例：**
@@ -375,9 +375,9 @@ getWant(callback: AsyncCallback\<Want>): void
 
 **参数：**
 
-| 名称     | 类型                          | 必填 | 描述               |
-| -------- | ----------------------------- | ---- | ------------------ |
-| callback | AsyncCallback\<[Want](#want)> | 是   | 被指定的回调方法。 |
+| 名称       | 类型                            | 必填   | 描述        |
+| -------- | ----------------------------- | ---- | --------- |
+| callback | AsyncCallback\<[Want](#want)> | 是    | 被指定的回调方法。 |
 
 **示例：**
 
@@ -398,8 +398,8 @@ getWant(): Promise\<Want>
 
 **返回值：**
 
-| 类型                    | 说明                      |
-| ----------------------- | ------------------------- |
+| 类型                      | 说明               |
+| ----------------------- | ---------------- |
 | Promise\<[Want](#want)> | 以Promise的形式返回结果。 |
 
 **示例：**
@@ -421,8 +421,8 @@ getContext(): Context
 
 **返回值：**
 
-| 类型    | 说明                 |
-| ------- | -------------------- |
+| 类型      | 说明         |
+| ------- | ---------- |
 | Context | 返回应用程序上下文。 |
 
 **示例：**
@@ -445,9 +445,9 @@ terminateSelf(callback: AsyncCallback\<void>): void
 
 **参数：**
 
-| 名称     | 类型                 | 必填 | 描述             |
-| -------- | -------------------- | ---- | ---------------- |
-| callback | AsyncCallback\<void> | 是   | 被指定的回调方法 |
+| 名称       | 类型                   | 必填   | 描述       |
+| -------- | -------------------- | ---- | -------- |
+| callback | AsyncCallback\<void> | 是    | 被指定的回调方法 |
 
 **示例：**
 
@@ -468,8 +468,8 @@ terminateSelf(): Promise\<void>
 
 **返回值：**
 
-| 类型           | 说明                      |
-| -------------- | ------------------------- |
+| 类型             | 说明               |
+| -------------- | ---------------- |
 | Promise\<void> | 以Promise的形式返回结果。 |
 
 **示例：**
@@ -490,35 +490,35 @@ connectAbility(request: Want, options:ConnectOptions): number
 
 **参数：**
 
-| 名称    | 类型           | 必填 | 描述                         |
-| ------- | -------------- | ---- | ---------------------------- |
-| request | [Want](#want)           | 是   | 表示被连接的ServiceAbility。 |
-| options | ConnectOptions | 是   | 被指定的回调方法。           |
+| 名称      | 类型             | 必填   | 描述                    |
+| ------- | -------------- | ---- | --------------------- |
+| request | [Want](#want)  | 是    | 表示被连接的ServiceAbility。 |
+| options | ConnectOptions | 是    | 被指定的回调方法。             |
 
 **Want类型说明：**
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase
 
-| 名称         | 读写属性  | 类型     | 必填 | 描述                                                              |
-| ------------ | -------- | -------- | ---- | ----------------------------------                               |
-| deviceId     | 只读     | string   | 否   | 表示被连接的ServiceAbility的设备id，缺省表示连接本地的ServiceAbility。 |
-| bundleName   | 只读     | string   | 是   | 表示被连接的ServiceAbility的包名。                                   |
-| abilityName  | 只读     | string   | 是   | 表示被连接的ServiceAbility的类名。                                   |
+| 名称          | 读写属性 | 类型     | 必填   | 描述                                       |
+| ----------- | ---- | ------ | ---- | ---------------------------------------- |
+| deviceId    | 只读   | string | 否    | 表示被连接的ServiceAbility的设备id，缺省表示连接本地的ServiceAbility。 |
+| bundleName  | 只读   | string | 是    | 表示被连接的ServiceAbility的包名。                 |
+| abilityName | 只读   | string | 是    | 表示被连接的ServiceAbility的类名。                 |
 
 **ConnectOptions类型说明：**
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称         | 读写属性 | 类型     | 必填 | 描述                               |
-| ------------ | -------- | -------- | ---- | ---------------------------------- |
-| onConnect    | 只读     | function | 是   | 连接成功时的回调函数。               |
-| onDisconnect | 只读     | function | 是   | 连接失败时的回调函数。               |
-| onFailed     | 只读     | function | 是   | ConnectAbility调用失败时的回调函数。 |
+| 名称           | 读写属性 | 类型       | 必填   | 描述                        |
+| ------------ | ---- | -------- | ---- | ------------------------- |
+| onConnect    | 只读   | function | 是    | 连接成功时的回调函数。               |
+| onDisconnect | 只读   | function | 是    | 连接失败时的回调函数。               |
+| onFailed     | 只读   | function | 是    | ConnectAbility调用失败时的回调函数。 |
 
 **返回值：**
 
-| 类型   | 说明                     |
-| ------ | ------------------------ |
+| 类型     | 说明                   |
+| ------ | -------------------- |
 | number | 连接的ServiceAbilityID。 |
 
 **示例：**
@@ -559,10 +559,10 @@ disconnectAbility(connection: number, callback:AsyncCallback\<void>): void
 
 **参数：**
 
-| 名称       | 类型          | 必填 | 描述                           |
-| ---------- | ------------- | ---- | ------------------------------ |
-| connection | number        | 是   | 指定断开连接的ServiceAbilityID |
-| callback   | AsyncCallback\<void> | 是   | 被指定的回调方法               |
+| 名称         | 类型                   | 必填   | 描述                      |
+| ---------- | -------------------- | ---- | ----------------------- |
+| connection | number               | 是    | 指定断开连接的ServiceAbilityID |
+| callback   | AsyncCallback\<void> | 是    | 被指定的回调方法                |
 
 **示例：**
 
@@ -606,14 +606,14 @@ disconnectAbility(connection: number): Promise\<void>
 
 **参数：**
 
-| 名称       | 类型   | 必填 | 描述                           |
-| ---------- | ------ | ---- | ------------------------------ |
-| connection | number | 是   | 指定断开连接的ServiceAbilityID |
+| 名称         | 类型     | 必填   | 描述                      |
+| ---------- | ------ | ---- | ----------------------- |
+| connection | number | 是    | 指定断开连接的ServiceAbilityID |
 
 **返回值：**
 
-| 类型           | 说明                    |
-| -------------- | ----------------------- |
+| 类型             | 说明              |
+| -------------- | --------------- |
 | Promise\<void> | 以Promise形式返回结果。 |
 
 **示例：**
@@ -658,16 +658,18 @@ getWindow(callback: AsyncCallback\<window.Window>): void
 
 **参数：**
 
-| 名称     | 类型                    | 必填 | 描述                                                         |
-| -------- | ----------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<window.Window> | 是   | 返回与当前能力对应的窗口。 |
+| 名称       | 类型                            | 必填   | 描述            |
+| -------- | ----------------------------- | ---- | ------------- |
+| callback | AsyncCallback\<window.Window> | 是    | 返回与当前能力对应的窗口。 |
 
 **示例：**
 
 ```javascript
-GetWindow(){
+<<<<<<< HEAD
+featureAbility.getWindow()
+=======
         featureAbility.getWindow()
-    }
+>>>>>>> 45a0d5bbd5a373948e44b76b9e7eeb3239fe94e7
 ```
 
 ## featureAbility.getWindow<sup>7+</sup>
@@ -680,18 +682,22 @@ getWindow(): Promise\<window.Window>;
 
 **返回值：**
 
-| 类型              | 说明                                                       |
-| ----------------- | ---------------------------------------------------------- |
+| 类型                      | 说明            |
+| ----------------------- | ------------- |
 | Promise\<window.Window> | 返回与当前能力对应的窗口。 |
 
 **示例：**
 
 ```javascript
-GetWindowPromise(){
+<<<<<<< HEAD
+featureAbility.getWindow().then((data) => {
+  console.info("=============getWindowPromise========== " +           JSON.stringify(data)); 
+});
+=======
         featureAbility.getWindow().then((data) => {
             console.info("=============getWindowPromise========== " + JSON.stringify(data));
-        });
-    }
+        });     
+>>>>>>> 45a0d5bbd5a373948e44b76b9e7eeb3239fe94e7
 ```
 
 ## ConnectOptions.onConnect<sup>7+</sup>
@@ -704,10 +710,10 @@ onConnect(elementName: ElementName, remote: rpc.IRemoteObject): void;
 
 **参数：**
 
-| 名称     | 类型                    | 必填 | 描述                                                         |
-| -------- | ----------------------- | ---- | ------------------------------------------------------------ |
-| elementName | ElementName | 是   | 元素名。 |
-| remote | rpc.IRemoteObject | 是   | rpc远程对象。 |
+| 名称          | 类型                | 必填   | 描述       |
+| ----------- | ----------------- | ---- | -------- |
+| elementName | ElementName       | 是    | 元素名。     |
+| remote      | rpc.IRemoteObject | 是    | rpc远程对象。 |
 
 **示例：**
 
@@ -747,9 +753,9 @@ onDisconnect(elementName: ElementName): void;
 
 **参数：**
 
-| 名称     | 类型                    | 必填 | 描述                                                         |
-| -------- | ----------------------- | ---- | ------------------------------------------------------------ |
-| elementName | ElementName | 是   | 元素名。 |
+| 名称          | 类型          | 必填   | 描述   |
+| ----------- | ----------- | ---- | ---- |
+| elementName | ElementName | 是    | 元素名。 |
 
 **示例：**
 
@@ -789,9 +795,9 @@ ConnectAbility调用失败时的回调函数。
 
 **参数：**
 
-| 名称     | 类型                    | 必填 | 描述                                                         |
-| -------- | ----------------------- | ---- | ------------------------------------------------------------ |
-| code | number | 是   | number类型。 |
+| 名称   | 类型     | 必填   | 描述        |
+| ---- | ------ | ---- | --------- |
+| code | number | 是    | number类型。 |
 
 **示例：**
 
@@ -835,13 +841,13 @@ var connId = featureAbility.connectAbility(
 featureAbility.AbilityWindowConfiguration.WINDOW_MODE_UNDEFINED
 ```
 
-| 名称                        | 参数 | 描述       |
-| --------------------------- | ---- | ---------- |
-| WINDOW_MODE_UNDEFINED<sup>7+</sup>       | 0    | 未定义。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel   |
-| WINDOW_MODE_FULLSCREEN<sup>7+</sup>      | 1    | 全屏。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel     |
+| 名称                                       | 参数   | 描述                                       |
+| ---------------------------------------- | ---- | ---------------------------------------- |
+| WINDOW_MODE_UNDEFINED<sup>7+</sup>       | 0    | 未定义。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel |
+| WINDOW_MODE_FULLSCREEN<sup>7+</sup>      | 1    | 全屏。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel |
 | WINDOW_MODE_SPLIT_PRIMARY<sup>7+</sup>   | 100  | 分屏主屏。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel |
 | WINDOW_MODE_SPLIT_SECONDARY<sup>7+</sup> | 101  | 分屏次屏。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel |
-| WINDOW_MODE_FLOATING<sup>7+</sup>        | 102  | 悬浮窗。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel   |
+| WINDOW_MODE_FLOATING<sup>7+</sup>        | 102  | 悬浮窗。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel |
 
 
 ## AbilityStartSetting
@@ -856,34 +862,34 @@ abilityStartSetting属性是一个定义为[key: string]: any的对象，key对�
 featureAbility.AbilityStartSetting.BOUNDS_KEY
 ```
 
-| 名称            | 参数            | 描述                       |
-| --------------- | --------------- | -------------------------- |
-| BOUNDS_KEY<sup>7+</sup>       | "abilityBounds" | 窗口显示大小属性的名称。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel   |
-| WINDOW_MODE_KEY<sup>7+</sup>  | "windowMode"    | 窗口显示模式属性的名称。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel   |
-| DISPLAY_ID_KEY<sup>7+</sup>   | "displayId"     | 窗口显示设备ID属性的名称。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel |
+| 名称                           | 参数              | 描述                                       |
+| ---------------------------- | --------------- | ---------------------------------------- |
+| BOUNDS_KEY<sup>7+</sup>      | "abilityBounds" | 窗口显示大小属性的名称。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel |
+| WINDOW_MODE_KEY<sup>7+</sup> | "windowMode"    | 窗口显示模式属性的名称。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel |
+| DISPLAY_ID_KEY<sup>7+</sup>  | "displayId"     | 窗口显示设备ID属性的名称。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel |
 
 ## ErrorCode
 
 获取错误代码。
 
-| 变量                          | 值   | 说明                                                         |
-| ----------------------------- | ---- | ------------------------------------------------------------ |
-| NO_ERROR<sup>7+</sup>           | 0    | 没有错误。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel |
-| INVALID_PARAMETER<sup>7+</sup>          | -1    | 无效的参数。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel |
-| ABILITY_NOT_FOUND<sup>7+</sup>  | -2    | 找不到能力。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel |
-| PERMISSION_DENY<sup>7+</sup>            | -3    | 拒绝许可。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel |
+| 变量                             | 值    | 说明                                       |
+| ------------------------------ | ---- | ---------------------------------------- |
+| NO_ERROR<sup>7+</sup>          | 0    | 没有错误。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel |
+| INVALID_PARAMETER<sup>7+</sup> | -1   | 无效的参数。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel |
+| ABILITY_NOT_FOUND<sup>7+</sup> | -2   | 找不到能力。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel |
+| PERMISSION_DENY<sup>7+</sup>   | -3   | 拒绝许可。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel |
 
 
 ## DataAbilityOperationType
 
 指示数据的操作类型。
 
-| 变量                          | 值   | 说明                                                         |
-| ----------------------------- | ---- | ------------------------------------------------------------ |
-| TYPE_INSERT<sup>7+</sup>           | 1   | 插入类型。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel |
-| TYPE_UPDATE<sup>7+</sup>          | 2  | 修改类型。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel |
-| TYPE_DELETE<sup>7+</sup>  | 3    | 删除类型。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel |
-| TYPE_ASSERT<sup>7+</sup>            | 4    | 声明类型。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel |
+| 变量                       | 值    | 说明                                       |
+| ------------------------ | ---- | ---------------------------------------- |
+| TYPE_INSERT<sup>7+</sup> | 1    | 插入类型。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel |
+| TYPE_UPDATE<sup>7+</sup> | 2    | 修改类型。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel |
+| TYPE_DELETE<sup>7+</sup> | 3    | 删除类型。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel |
+| TYPE_ASSERT<sup>7+</sup> | 4    | 声明类型。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel |
 
 
 
@@ -891,59 +897,59 @@ featureAbility.AbilityStartSetting.BOUNDS_KEY
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase
 
-| 名称       | 读写属性 | 类型                  | 必填 | 描述                                                         |
-| ---------- | -------- | --------------------- | ---- | ------------------------------------------------------------ |
-| resultCode<sup>7+</sup> | 只读     | number                | 是   | 指示销毁该能力后返回的结果代码。您可以定义结果代码来识别错误（暂不支持）。 |
-| want<sup>7+</sup>       | 只读     | [Want](#want) | 否   | 指示销毁该能力后返回的数据。您可以定义返回的数据。此参数可以为null。  |
+| 名称                      | 读写属性 | 类型            | 必填   | 描述                                    |
+| ----------------------- | ---- | ------------- | ---- | ------------------------------------- |
+| resultCode<sup>7+</sup> | 只读   | number        | 是    | 指示销毁该能力后返回的结果代码。您可以定义结果代码来识别错误（暂不支持）。 |
+| want<sup>7+</sup>       | 只读   | [Want](#want) | 否    | 指示销毁该能力后返回的数据。您可以定义返回的数据。此参数可以为null。  |
 
 ## StartAbilityParameter
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.AbilityRuntime.FAModel 
 
-| 名称                | 读写属性 | 类型                 | 必填 | 描述                                                         |
-| ------------------- | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| want                | 只读     | [Want](#want)        | 是   | 表示需要包含有关目标启动能力的信息。                       |
-| abilityStartSetting | 只读     | {[key: string]: any} | 否   | 表示能力的特殊属性，当开发者启动能力时，该属性可以作为调用中的输入参数传递。 |
+| 名称                  | 读写属性 | 类型                   | 必填   | 描述                                     |
+| ------------------- | ---- | -------------------- | ---- | -------------------------------------- |
+| want                | 只读   | [Want](#want)        | 是    | 表示需要包含有关目标启动能力的信息。                     |
+| abilityStartSetting | 只读   | {[key: string]: any} | 否    | 表示能力的特殊属性，当开发者启动能力时，该属性可以作为调用中的输入参数传递。 |
 
 
 ## Want
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase
 
-| 名称        | 读写属性 | 类型                 | 必填 | 描述                                                         |
-| ----------- | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| deviceId    | 只读     | string               | 否   | 表示运行指定Ability的设备ID。                                |
-| bundleName   | 只读     | string               | 否   | 表示包描述。如果在Want中同时指定了BundleName和AbilityName，则Want可以直接匹配到指定的Ability。 |
-| abilityName  | 只读     | string               | 否   | 表示待启动的Ability名称。如果在Want中同时指定了BundleName和AbilityName，则Want可以直接匹配到指定的Ability。 |
-| uri          | 只读     | string               | 否   | 表示Uri描述。如果在Want中指定了Uri，则Want将匹配指定的Uri信息，包括scheme, schemeSpecificPart, authority和path信息。 |
-| type         | 只读     | string               | 否   | 表示MIME type类型描述，比如："text/plain" 、 "image/*"等。   |
-| flags        | 只读     | number               | 否   | 表示处理Want的方式。默认传数字，具体参考：[flags说明](#flags说明)。 |
-| action      | 只读     | string               | 否   | 表示action选项描述。                           |
-| parameters   | 只读     | {[key: string]: any} | 否   | 表示WantParams描述。                                       |
-| entities    | 只读     | Array\<string>       | 否   | 表示entities相关描述。                                    |
-| extensionAbilityName<sup>9+<sup>    | 只读     | string       | 否   | Want中扩展能力名称的描述。                                    |
-| extensionAbilityType<sup>9+<sup>     | 只读     | number       | 否   | 需求中扩展能力类型的描述。                                    |
+| 名称                               | 读写属性 | 类型                   | 必填   | 描述                                       |
+| -------------------------------- | ---- | -------------------- | ---- | ---------------------------------------- |
+| deviceId                         | 只读   | string               | 否    | 表示运行指定Ability的设备ID。                      |
+| bundleName                       | 只读   | string               | 否    | 表示包描述。如果在Want中同时指定了BundleName和AbilityName，则Want可以直接匹配到指定的Ability。 |
+| abilityName                      | 只读   | string               | 否    | 表示待启动的Ability名称。如果在Want中同时指定了BundleName和AbilityName，则Want可以直接匹配到指定的Ability。 |
+| uri                              | 只读   | string               | 否    | 表示Uri描述。如果在Want中指定了Uri，则Want将匹配指定的Uri信息，包括scheme, schemeSpecificPart, authority和path信息。 |
+| type                             | 只读   | string               | 否    | 表示MIME type类型描述，比如："text/plain" 、 "image/*"等。 |
+| flags                            | 只读   | number               | 否    | 表示处理Want的方式。默认传数字，具体参考：[flags说明](#flags说明)。 |
+| action                           | 只读   | string               | 否    | 表示action选项描述。                            |
+| parameters                       | 只读   | {[key: string]: any} | 否    | 表示WantParams描述。                          |
+| entities                         | 只读   | Array\<string>       | 否    | 表示entities相关描述。                          |
+| extensionAbilityName<sup>9+<sup> | 只读   | string               | 否    | Want中扩展能力名称的描述。                          |
+| extensionAbilityType<sup>9+<sup> | 只读   | number               | 否    | 需求中扩展能力类型的描述。                            |
 
 ## flags说明
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase
 
-| 名称                                 | 参数       | 描述                                                         |
-| ------------------------------------ | ---------- | ------------------------------------------------------------ |
-| FLAG_AUTH_READ_URI_PERMISSION        | 0x00000001 | 指示对URI执行读取操作的授权。                                  |
-| FLAG_AUTH_WRITE_URI_PERMISSION       | 0x00000002 | 指示对URI执行写入操作的授权。                                 |
-| FLAG_ABILITY_FORWARD_RESULT          | 0x00000004 | 将结果返回给元能力。                                           |
-| FLAG_ABILITY_CONTINUATION            | 0x00000008 | 确定是否可以将本地设备上的功能迁移到远程设备。                |
-| FLAG_NOT_OHOS_COMPONENT              | 0x00000010 | 指定组件是否属于OHOS。                                         |
-| FLAG_ABILITY_FORM_ENABLED            | 0x00000020 | 指定是否启动某个能力。                                         |
-| FLAG_AUTH_PERSISTABLE_URI_PERMISSION | 0x00000040 | 指示URI上可能持久化的授权。                                    |
-| FLAG_AUTH_PREFIX_URI_PERMISSION      | 0x00000080 | 按照前缀匹配的方式验证URI权限。                                           |
-| FLAG_ABILITYSLICE_MULTI_DEVICE       | 0x00000100 | 支持分布式调度系统中的多设备启动。                             |
-| FLAG_START_FOREGROUND_ABILITY        | 0x00000200 | 指示无论主机应用程序是否已启动，都将启动使用服务模板的功能。   |
-| FLAG_ABILITY_CONTINUATION_REVERSIBLE | 0x00000400 | 表示迁移是可拉回的。                                        |
-| FLAG_INSTALL_ON_DEMAND               | 0x00000800 | 如果未安装指定的功能，请安装该功能。                           |
-| FLAG_INSTALL_WITH_BACKGROUND_MODE    | 0x80000000 | 如果未安装，使用后台模式安装该功能。                         |
+| 名称                                   | 参数         | 描述                                       |
+| ------------------------------------ | ---------- | ---------------------------------------- |
+| FLAG_AUTH_READ_URI_PERMISSION        | 0x00000001 | 指示对URI执行读取操作的授权。                         |
+| FLAG_AUTH_WRITE_URI_PERMISSION       | 0x00000002 | 指示对URI执行写入操作的授权。                         |
+| FLAG_ABILITY_FORWARD_RESULT          | 0x00000004 | 将结果返回给元能力。                               |
+| FLAG_ABILITY_CONTINUATION            | 0x00000008 | 确定是否可以将本地设备上的功能迁移到远程设备。                  |
+| FLAG_NOT_OHOS_COMPONENT              | 0x00000010 | 指定组件是否属于OHOS。                            |
+| FLAG_ABILITY_FORM_ENABLED            | 0x00000020 | 指定是否启动某个能力。                              |
+| FLAG_AUTH_PERSISTABLE_URI_PERMISSION | 0x00000040 | 指示URI上可能持久化的授权。                          |
+| FLAG_AUTH_PREFIX_URI_PERMISSION      | 0x00000080 | 按照前缀匹配的方式验证URI权限。                        |
+| FLAG_ABILITYSLICE_MULTI_DEVICE       | 0x00000100 | 支持分布式调度系统中的多设备启动。                        |
+| FLAG_START_FOREGROUND_ABILITY        | 0x00000200 | 指示无论主机应用程序是否已启动，都将启动使用服务模板的功能。           |
+| FLAG_ABILITY_CONTINUATION_REVERSIBLE | 0x00000400 | 表示迁移是可拉回的。                               |
+| FLAG_INSTALL_ON_DEMAND               | 0x00000800 | 如果未安装指定的功能，请安装该功能。                       |
+| FLAG_INSTALL_WITH_BACKGROUND_MODE    | 0x80000000 | 如果未安装，使用后台模式安装该功能。                       |
 | FLAG_ABILITY_CLEAR_MISSION           | 0x00008000 | 指示清除其他任务的操作。可以为传递给 **[ohos.app.Context](js-apis-ability-context.md)** 中**startAbility**方法的**Want**设置此标志，并且必须与**flag_ABILITY_NEW_MISSION**一起使用。 |
-| FLAG_ABILITY_NEW_MISSION             | 0x10000000 | 指示在历史任务堆栈上创建任务的操作。                         |
+| FLAG_ABILITY_NEW_MISSION             | 0x10000000 | 指示在历史任务堆栈上创建任务的操作。                       |
 | FLAG_ABILITY_MISSION_TOP             | 0x20000000 | 指示如果启动能力的现有实例已位于任务堆栈的顶部，则将重用该实例。否则，将创建一个新的能力实例。 |
 

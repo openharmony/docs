@@ -42,16 +42,12 @@ createFormBindingData(obj?: Object | string): FormBindingData
   let formBindingDataObj = formBindingData.createFormBindingData(obj);
   ```
 
-## formBindingData.FormBindingData
-
-data: Object
+## 属性
 
 FormBindingData相关描述。
 
-**系统能力**：SystemCapability.Ability.Form
+| 名称 | 可读 | 可写 | 参数类型 | 必填 | 说明 | 
+| -------- | -------- | -------- | -------- | -------- | -------- |
+| data | 是 | 否 | Object | 是 | js卡片要展示的数据。可以是包含若干键值对的Object或者 json 格式的字符串。<br/>**系统能力**：SystemCapability.Ability.Form | 
 
-**参数：**
-
-| 名称 | 类型           | 说明                                                         |
-| ---- | -------------- | ------------------------------------------------------------ |
-| data  | Object或string | js卡片要展示的数据。可以是包含若干键值对的Object或者 json 格式的字符串。 |
+ 

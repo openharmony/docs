@@ -539,6 +539,7 @@ vector.increaseCapacityTo(8);
 ```
 
 ### trimToCurrentLength
+
 trimToCurrentLength(): void
 
 把容量限制为当前的length大小。
