@@ -1,6 +1,6 @@
 # Background Task Overview
 
-On an OS that allows for user interaction, resources gravitate to service processes that interact with users. In other words, apart from processes that support system running, service processes that can be perceived by users have the highest priority. Therefore, background task management is applicable to service processes that cannot be perceived by users.
+Frequent activities of background applications cause user devices to consume power quickly and respond slowly. To meet performance and power consumption requirements, the system allows applications to execute only activities within the specifications in the background. Activities beyond the specifications are suspended by default, and resources allocated to them will be reclaimed when the available resources are insufficient.
 
 
 ## Background Task Types
@@ -11,14 +11,14 @@ Background tasks described in this document refer to the services that need to b
 
 2. Transient task: If an application or service module has an urgent, short task that must continue in the background until it is completed, such as data compression, the application or service module can request a transient task for delayed suspension.
 
-3. Continuous task: If an application or service module has a user-initiated, perceivable task that needs to run in an extended period of time in the background, it can request a continuous task so that it will not be suspended. Examples of continuous tasks include music playback, navigation, upload and download, device connection, and VoIP.
+3. Continuous task: If an application or service module has a user-initiated, perceivable task that needs to run in an extended period of time in the background, it can request a continuous task so that it will not be suspended. Examples of continuous tasks include music playback, navigation, device connection, and VoIP.
 
 
 ## Transient Tasks
 
 As mentioned above, applications and service modules with transient tasks have their suspension delayed so that their running is not affected by background lifecycle management within the specified time frame.
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **Note:**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > Applications and service modules can request transient tasks only for temporary tasks. The time quota is 3 minutes per time and 10 minutes per day. The system allocates the time frame based on the application scenario and system status.
 
 
@@ -44,7 +44,7 @@ OpenHarmony provides 9 background modes for services that require continuous tas
 
 | Background Mode| Description| Hint in Notification Panel| Remarks|
 | -------- | -------- | -------- | -------- |
-| dataTransfer | Data transfer through the network or peer device, such as upload, download, backup, and restore| A data transfer task is running.|  |
+| dataTransfer | Data transfer through the network or peer device, such as download, backup, share, and transfer| A data transfer task is running.|  |
 | audioPlayback | Audio output| An audio playback task is running.|  |
 | audioRecording | Audio input| A recording task is running.|  |
 | location | Positioning and navigation| A positioning task is running.|  |
@@ -55,7 +55,7 @@ OpenHarmony provides 9 background modes for services that require continuous tas
 | taskKeeping | Computing task| A computing task is running| PC-specific, valid only on PCs|
 
 ### Restrictions on Using Continuous Tasks
-- If a user triggers a perceivable task, such as broadcasting, navigation, upload, and download, the corresponding background mode is triggered. When the task is started, the system forcibly displays a notification to the user.
+- If a user triggers a perceivable task, such as broadcasting and navigation, the corresponding background mode is triggered. When the task is started, the system forcibly displays a notification to the user.
 - If the task is complete, the application should exit the background mode. If the system detects that an application is not using the resources in the corresponding background mode when the application is running in the background, the application is suspended.
 - Ensure that the requested continuous task background mode matches the application type. If the background mode does not match the application type, the system will suspend the task once it detects the issue.
 - If a requested continuous task is not actually executed, the system will suspend the task once it detects the issue.
