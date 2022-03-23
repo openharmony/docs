@@ -14,8 +14,12 @@
 使用如下apt-get命令安装编译所需的必要的库和工具：
 
 ```
-sudo apt-get install build-essential gcc g++ make libffi-dev e2fsprogs pkg-config flex bison perl bc openssl libssl-dev libelf-dev libc6-dev-amd64 binutils binutils-dev libdwarf-dev u-boot-tools mtd-utils gcc-arm-linux-gnueabi cpio device-tree-compiler libncurses5 libncurses5-dev libncursesw5
+sudo apt-get install build-essential gcc g++ make libffi-dev e2fsprogs pkg-config flex bison perl bc openssl libssl-dev libelf-dev libc6-dev-amd64 binutils binutils-dev libdwarf-dev u-boot-tools mtd-utils gcc-arm-linux-gnueabi cpio device-tree-compiler libncurses5 libncurses5-dev libncursesw5 openjdk-8-jre default-jre default-jdk python3.8 python3-pip
 ``` 
+>![](public_sys-resources/icon-note.gif) **说明：** 
+>以上安装命令适用于Ubuntu18.04，其他版本请根据安装包名称采用对应的安装命令。其中：
+>- Python要求安装Python 3.8及以上版本，此处以Python 3.8为例。
+>- java要求java8及以上版本，此处以java8为例。
 
 ## 安装hb<a name="section15794154618411"></a>
 
