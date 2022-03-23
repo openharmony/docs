@@ -10,11 +10,10 @@
 import process from '@ohos.process';
 ```
 
-## System Capabilities
-
-SystemCapability.Utils.Lang
 
 ## Attributes
+
+**System capability**: SystemCapability.Utils.Lang
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
@@ -35,6 +34,8 @@ Allows a process to obtain the standard input and output of its child processes,
 
 ### Attributes
 
+**System capability**: SystemCapability.Utils.Lang
+
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | pid | number | Yes| No| PID of the child process.|
@@ -48,6 +49,8 @@ Allows a process to obtain the standard input and output of its child processes,
 wait(): Promise&lt;number&gt;
 
 Waits until the child process ends. This method uses a promise to return the exit code of the child process.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
@@ -72,6 +75,8 @@ getOutput(): Promise&lt;Uint8Array&gt;
 
 Obtains the standard output of the child process.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Return value**
 
 | Type| Description|
@@ -94,6 +99,8 @@ child.getOutput.then(val=>{
 getErrorOutput(): Promise&lt;Uint8Array&gt;
 
 Obtains the standard error output of the child process.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
@@ -118,6 +125,8 @@ close(): void
 
 Closes the child process in running.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Example**
 
 ```
@@ -131,6 +140,8 @@ child.close();
 kill(signal: number | string): void
 
 Sends a signal to the specified child process to terminate it.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
@@ -152,6 +163,8 @@ isIsolatedProcess(): boolean
 
 Checks whether this process is isolated.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Return value**
 
 | Type| Description|
@@ -170,6 +183,8 @@ var result = process.isIsolatedProcess();
 isAppUid(v: number): boolean
 
 Checks whether a UID belongs to this app.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
@@ -196,6 +211,8 @@ is64Bit(): boolean
 
 Checks whether this process is running in a 64-bit environment.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Return value**
 
 | Type| Description|
@@ -214,6 +231,8 @@ var ressult = process.is64Bit();
 getUidForName(v: string): number
 
 Obtains the process UID based on the process name.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
@@ -239,6 +258,8 @@ var pres = process.getUidForName("tool")
 getThreadPriority(v: number): number
 
 Obtains the thread priority based on the specified TID.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
@@ -266,6 +287,8 @@ getStartRealtime(): number
 
 Obtains the duration, in milliseconds, from the time the system starts to the time the process starts.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Return value**
 
 | Type| Description|
@@ -283,6 +306,8 @@ var realtime = process.getStartRealtime();
 getPastCpuTime(): number
 
 Obtains the CPU time (in milliseconds) from the time the process starts to the current time.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
@@ -302,6 +327,8 @@ var result = process.getPastCpuTime() ;
 getSystemConfig(name: number): number
 
 Obtains the system configuration.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
@@ -329,6 +356,8 @@ getEnvironmentVar(name: string): string
 
 Obtains the value of an environment variable.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
@@ -353,6 +382,8 @@ var pres = process.getEnvironmentVar("PATH")
 runCmd(command: string, options?: { timeout : number, killSignal : number | string, maxBuffer : number }): ChildProcess
 
 Forks a new process to run a shell command and returns the **ChildProcess** object.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
@@ -392,6 +423,8 @@ abort(): void
 
 Aborts a process and generates a core file. This method will cause a process to exit immediately. Exercise caution when using this method.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Example**
 
 ```
@@ -404,6 +437,8 @@ process.abort();
 on(type: string, listener: EventListener): void
 
 Stores the events triggered by the user.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
@@ -433,6 +468,8 @@ off(type: string): boolean
 
 Deletes the event stored by the user.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
@@ -461,6 +498,10 @@ exit(code: number): void
 
 Terminates this process.
 
+Exercise caution when using this API.
+
+**System capability**: SystemCapability.Utils.Lang
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
@@ -480,6 +521,8 @@ cwd(): string
 
 Obtains the working directory of this process.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Example**
 
 ```
@@ -492,6 +535,8 @@ var path = process.cwd();
 chdir(dir: string): void
 
 Changes the working directory of this process.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
@@ -512,6 +557,8 @@ uptime(): number
 
 Obtains the running time of this process.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Return value**
 
 | Type| Description|
@@ -530,6 +577,8 @@ var time = process.uptime();
 kill(signal: number, pid: number): boolean
 
 Sends a signal to the specified process to terminate it.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 

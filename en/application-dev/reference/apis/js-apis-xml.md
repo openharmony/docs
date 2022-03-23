@@ -340,7 +340,7 @@ Defines the XML parsing options.
 
 ## ParseInfo
 
-Provides methods to manage the parsed XML information.
+Provides APIs to manage the parsed XML information.
 
 
 ### getColumnNumber
