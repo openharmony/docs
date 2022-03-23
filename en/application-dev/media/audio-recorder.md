@@ -103,15 +103,15 @@ let audioRecorderConfig = {
 }																					
 audioRecorder.prepare(audioRecorderConfig);
 // 4. Start recording.
-audioRecorder.start();                            	// The start method can be called to trigger the 'start' event callback only after the 'prepare' event callback is complete.
+audioRecorder.start();                            	// The start API can be called to trigger the 'start' event callback only after the 'prepare' event callback is complete.
 // 5. Pause recording.
-audioRecorder.pause();                             	// The pause method can be called to trigger the 'pause' event callback only after the 'start' event callback is complete.
+audioRecorder.pause();                             	// The pause API can be called to trigger the 'pause' event callback only after the 'start' event callback is complete.
 // 6. Resume recording.
-audioRecorder.resume();                             // The resume method can be called to trigger the 'resume' event callback only after the 'pause' event callback is complete.
+audioRecorder.resume();                             // The resume API can be called to trigger the 'resume' event callback only after the 'pause' event callback is complete.
 // 7. Stop recording.
-audioRecorder.stop();                             	// The stop method can be called to trigger the 'stop' event callback only after the 'start' or 'resume' event callback is complete.
+audioRecorder.stop();                             	// The stop API can be called to trigger the 'stop' event callback only after the 'start' or 'resume' event callback is complete.
 // 8. Reset recording.
-audioRecorder.reset();                              // The prepare method can be called for another recording only after the 'reset' event callback is complete.
+audioRecorder.reset();                              // The prepare API can be called for another recording only after the 'reset' event callback is complete.
 // 9. Release resources.
 audioRecorder.release();                           	// The AudioRecorder resource is destroyed.
 audioRecorder = undefined;
@@ -185,9 +185,9 @@ let audioRecorderConfig = {
 }
 audioRecorder.prepare(audioRecorderConfig)
 // 4. Start recording.
-audioRecorder.start();                            	// The start method can be called to trigger the 'start' event callback only after the 'prepare' event callback is complete.
+audioRecorder.start();                            	// The start API can be called to trigger the 'start' event callback only after the 'prepare' event callback is complete.
 // 5. Stop recording.
-audioRecorder.stop();                             	// The stop method can be called to trigger the 'stop' event callback only after the 'start' or 'resume' event callback is complete.
+audioRecorder.stop();                             	// The stop API can be called to trigger the 'stop' event callback only after the 'start' or 'resume' event callback is complete.
 // 6. Release resources.
 audioRecorder.release();                           	// The AudioRecorder resource is destroyed.
 audioRecorder = undefined;
