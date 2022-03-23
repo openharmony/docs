@@ -279,7 +279,7 @@ reportNetConnected(netHandle: NetHandle, callback: AsyncCallback&lt;void&gt;): v
 
 Reports connection of the data network. This API uses an asynchronous callback to return the result.
 
-** Permission required**: ohos.permission.GET_NETWORK_INFO and ohos.permission.INTERNET
+**Permission required**: ohos.permission.GET_NETWORK_INFO and ohos.permission.INTERNET
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
@@ -306,7 +306,7 @@ reportNetConnected(netHandle: NetHandle): Promise&lt;void&gt;
 
 Reports connection of the data network. This API uses a promise to return the result.
 
-** Permission required**: ohos.permission.GET_NETWORK_INFO and ohos.permission.INTERNET
+**Permission required**: ohos.permission.GET_NETWORK_INFO and ohos.permission.INTERNET
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
@@ -337,7 +337,7 @@ reportNetDisconnected(netHandle: NetHandle, callback: AsyncCallback&lt;void&gt;)
 
 Reports disconnection of the data network. This API uses an asynchronous callback to return the result.
 
-** Permission required**: ohos.permission.GET_NETWORK_INFO and ohos.permission.INTERNET
+**Permission required**: ohos.permission.GET_NETWORK_INFO and ohos.permission.INTERNET
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
@@ -364,7 +364,7 @@ reportNetDisconnected(netHandle: NetHandle): Promise&lt;void&gt;
 
 Reports disconnection of the data network. This API uses a promise to return the result.
 
-** Permission required**: ohos.permission.GET_NETWORK_INFO and ohos.permission.INTERNET
+**Permission required**: ohos.permission.GET_NETWORK_INFO and ohos.permission.INTERNET
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 

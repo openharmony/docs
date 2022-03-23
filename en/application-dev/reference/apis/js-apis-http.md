@@ -37,8 +37,8 @@ httpRequest.request(
         extraData: {
             "data": "data to send",
         },
-        connectTimeout: 60000, // Optional. The default value is **60000**, in ms.
-        readTimeout: 60000, // Optional. The default value is **60000**, in ms.
+        connectTimeout: 60000, // Optional. The default value is 60000, in ms.
+        readTimeout: 60000, // Optional. The default value is 60000, in ms.
     },(err, data) => {
         if (!err) {
             // data.result contains the HTTP response. It is up to you whether to parse the content.
@@ -60,7 +60,7 @@ httpRequest.request(
 
 createHttp\(\): HttpRequest
 
-Creates an HTTP request. You can use this API to initiate or destroy an HTTP request, or enable or disable listening for HTTP Response Header events. An HttpRequest object corresponds to an HTTP request. To initiate multiple HTTP requests, you must create an HttpRequest object for each HTTP request.
+Creates an HTTP request. You can use this API to initiate or destroy an HTTP request, or enable or disable listening for HTTP Response Header events. An HttpRequest object corresponds to an HTTP request. To initiate multiple HTTP requests, you must create an **HttpRequest** object for each HTTP request.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -68,7 +68,7 @@ Creates an HTTP request. You can use this API to initiate or destroy an HTTP req
 
 | Type       | Description                                                        |
 | :---------- | :----------------------------------------------------------- |
-| HttpRequest | An **HttpRequest **object, which contains the **request**, **destroy**, **on**, or **off** method.|
+| HttpRequest | An **HttpRequest** object, which contains the **request**, **destroy**, **on**, or **off** method.|
 
 **Example**
 
