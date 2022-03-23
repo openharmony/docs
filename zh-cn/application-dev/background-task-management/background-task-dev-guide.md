@@ -106,7 +106,7 @@ ohos.permission.KEEP_BACKGROUND_RUNNING
 | function stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): void;<br/>function stopBackgroundRunning(context: Context): Promise&lt;void&gt;; | 停止后台长时任务的运行 |
 
 
-其中，wantAgent的信息详见（[WantAgent](../reference/apis/js-apis-notification.md#WantAgent接口)）
+其中，wantAgent的信息详见（[WantAgent](../reference/apis/js-apis-wantAgent.md)）
 
 **表4** 后台模式类型
 
@@ -125,21 +125,21 @@ ohos.permission.KEEP_BACKGROUND_RUNNING
 
 ## 开发步骤
 
-1. 在config.json文件中配置长时任务权限和后台模式类型。其中ability类型为service
+1. 在config.json文件中配置长时任务权限和后台模式类型，其中ability类型为service。
 
     ```json
     "module": {
       "package": "com.example.myapplication",
-      ...
+      //...
       "abilities": [
-      ...
+      //...
         {
           "backgroundModes": [
             "dataTransfer",
             "location",
-            ...
+            //...
           ],
-          ...
+          //...
           "type": "service"
         }
       ],

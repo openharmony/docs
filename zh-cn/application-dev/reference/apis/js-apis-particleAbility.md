@@ -188,7 +188,7 @@ particleAbility.acquireDataAbilityHelper(uri)
 
 startBackgroundRunning(id: number, request: NotificationRequest, callback: AsyncCallback&lt;void&gt;): void;
 
-向系统申请长时任务，使用callback形式返回结果。（此接口为api7接口，后续会被废弃，请使用新的[api8接口](js-apis-backgroundTaskManager.md)）
+向系统申请长时任务，使用callback形式返回结果。（此接口为api7接口,[建议使用新接口](js-apis-backgroundTaskManager.md#backgroundtaskmanager.startbackgroundrunning8)）
 
 **系统能力**：SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
@@ -252,7 +252,7 @@ startBackgroundRunning(id: number, request: NotificationRequest): Promise&lt;voi
 
 **系统能力**：SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
-向系统申请长时任务，使用promise形式返回结果。（此接口为api7接口，后续会被废弃，请使用新的[api8接口](js-apis-backgroundTaskManager.md)）
+向系统申请长时任务，使用promise形式返回结果。（此接口为api7接口，[建议使用新接口](js-apis-backgroundTaskManager.md#backgroundtaskmanager.startbackgroundrunning8)）
 
 **参数：**
 
@@ -313,7 +313,7 @@ wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
 
 cancelBackgroundRunning(callback: AsyncCallback&lt;void&gt;): void;
 
-向系统申请取消长时任务，使用callback形式返回结果。（此接口为api7接口，后续会被废弃，请使用新的[api8接口](js-apis-backgroundTaskManager.md)）
+向系统申请取消长时任务，使用callback形式返回结果。（此接口为api7接口，[建议使用新接口](js-apis-backgroundTaskManager.md#backgroundtaskmanager.stopbackgroundrunning8)）
 
 **系统能力**：SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
@@ -344,7 +344,7 @@ particleAbility.cancelBackgroundRunning(callback);
 
 cancelBackgroundRunning(): Promise&lt;void&gt;;
 
-向系统申请取消长时任务，使用promise形式返回结果。（此接口为api7接口，后续会被废弃，请使用新的[api8接口](js-apis-backgroundTaskManager.md)）
+向系统申请取消长时任务，使用promise形式返回结果。（此接口为api7接口，[建议使用新接口](js-apis-backgroundTaskManager.md#backgroundtaskmanager.stopbackgroundrunning8)）
 
 **系统能力**：SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 

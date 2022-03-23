@@ -56,6 +56,7 @@ getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;):
   | callback | AsyncCallback&lt;number&gt; | 是 | 指定的callback回调方法。用于返回应用程序进入挂起状态之前的剩余时间，以毫秒为单位。 |
 
 **示例**：
+
   ```js
   let id = 1;
   backgroundTaskManager.getRemainingDelayTime(id, (err, res) => {
@@ -127,12 +128,12 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
 **参数**：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | context | [Context](js-apis-Context.md) | 是 | 应用运行的上下文。 |
-  | bgMode | [BackgroundMode](#backgroundmode8) | 是 | 向系统申请的后台模式。|
-  | wantAgent | [WantAgent](js-apis-notification.md#WantAgent接口) | 是 | 通知参数，用于指定长时任务通知点击后跳转的界面。 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动长时任务的结果。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| context | [Context](js-apis-Context.md) | 是 | 应用运行的上下文。 |
+| bgMode | [BackgroundMode](#backgroundmode8) | 是 | 向系统申请的后台模式。|
+| wantAgent | [WantAgent](js-apis-wantAgent.md) | 是 | 通知参数，用于指定长时任务通知点击后跳转的界面。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动长时任务的结果。 |
 
 **示例**：
 ```js
@@ -178,13 +179,13 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
 **参数**：
-  
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | context | [Context](js-apis-Context.md) | 是 | 应用运行的上下文。 |
-  | bgMode | [BackgroundMode](#backgroundmode8) | 是 | 向系统申请的后台模式。 |
-  | wantAgent | [WantAgent](js-apis-notification.md#WantAgent接口) | 是 | 通知参数，用于指定长时任务通知点击跳转的界面。 |
-  
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| context | [Context](js-apis-Context.md) | 是 | 应用运行的上下文。 |
+| bgMode | [BackgroundMode](#backgroundmode8) | 是 | 向系统申请的后台模式。 |
+| wantAgent | [WantAgent](js-apis-wantAgent.md) | 是 | 通知参数，用于指定长时任务通知点击跳转的界面。 |
+
 **返回值**
   | 类型           | 说明                      |
   | -------------- | ------------------------- |
