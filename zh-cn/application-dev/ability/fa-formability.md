@@ -23,40 +23,41 @@
 ## FormAbility基本概念
 FormAbility是基于Form模板的Ability（以下简称“Form”）。卡片提供方开发者可以通过FormAbility控制其自身卡片实际显示的内容及点击事件等。
 
+FormExtensionAbility中相关生命周期说明如下：
+
+- onCreate
+
+  卡片提供方接收创建卡片通知接口。
+
+- onCastToNormal
+
+  卡片提供方接收临时卡片转常态卡片通知接口。
+
+- onUpdate
+
+  卡片提供方接收更新卡片通知接口。
+
+- onDestroy
+
+  卡片提供方接收删除卡片通知接口。
+
+- onEvent
+
+  卡片提供方接收删除卡片通知接口。
+
+- onVisibilityChange
+
+  卡片提供方接收卡片可见性通知接口。
+
+- onAcquireFormState
+
+  卡片提供方接收查询卡片状态通知接口。默认返回卡片初始状态。
+
 ## 创建Form
 
-1. Form中相关生命周期说明如下：
+1. 创建FormAbility
 
-   - onCreate
-
-     卡片提供方接收创建卡片通知接口。
-
-   - onCastToNormal
-
-     卡片提供方接收临时卡片转常态卡片通知接口。
-
-   - onUpdate
-
-     卡片提供方接收更新卡片通知接口。
-
-   - onDestroy
-
-     卡片提供方接收删除卡片通知接口。
-
-   - onEvent
-
-     卡片提供方接收删除卡片通知接口。
-
-   - onVisibilityChange
-
-     卡片提供方接收卡片可见性通知接口。
-
-   - onAcquireFormState
-
-     卡片提供方接收查询卡片状态通知接口。默认返回卡片初始状态。
-
-
-创建Form的代码示例如下：
+   创建Form的代码示例如下：
 
    ```javascript
    import formBindingData from '@ohos.application.formBindingData'
@@ -185,16 +186,53 @@ FormAbility是基于Form模板的Ability（以下简称“Form”）。卡片提
    ```
 
 ## 卡片信息的持久化
-因大部分卡片提供方都不是常驻服务，只有在需要使用时才会被拉起获取卡片信息，且卡片管理服务支持对卡片进行多实例管理，卡片ID对应实例ID，因此若卡片提供方支持对卡片数据进行配置，则需要对卡片的业务数据按照卡片ID进行持久化管理，以便在后续获取、更新以及拉起时能获取到正确的卡片业务数据。且需要适配onDestroy卡片删除通知接口，在其中实现卡片实例数据的删除。
+因大部分卡片提供方都不是常驻服务，只有在需要使用时才会被拉起获取卡片信息，且卡片管理服务支持对卡片进行多实例管理，卡片ID对应实例ID，因此若卡片提供方支持对卡片数据进行配置，则需要对卡片的业务数据按照卡片ID进行持久化管理，以便在后续获取、更新以及拉起时能获取到正确的卡片业务数据。
+
+```javascript
+       onCreate(want) {
+           console.log('FormAbility onCreate');
+
+           let formId = want.parameters["ohos.extra.param.key.form_identity"];
+           let formName = want.parameters["ohos.extra.param.key.form_name"];
+           let tempFlag = want.parameters["ohos.extra.param.key.form_temporary"];
+           // 由开发人员自行实现，将创建的卡片信息持久化，以便在下次获取/更新该卡片实例时进行使用
+           storeFormInfo(formId, formName, tempFlag, want);
+
+           let obj = {
+               "title": "titleOnCreate",
+               "detail": "detailOnCreate"
+           };
+           let formData = formBindingData.createFormBindingData(obj);
+           return formData;
+       }
+```
+
+且需要适配onDestroy卡片删除通知接口，在其中实现卡片实例数据的删除。
+
+```javascript
+       onDestroy(formId) {
+           // 删除卡片实例数据
+           deleteFormInfo(formId);
+           console.log('FormAbility onDestroy');
+       }
+```
+
+具体的持久化方法可以参考[轻量级数据存储开发指导](../database/database-preference-guidelines.md)。
+
+需要注意的是，卡片使用方在请求卡片时传递给提供方应用的Want数据中存在临时标记字段，表示此次请求的卡片是否为临时卡片：
 
 常态卡片：卡片使用方会持久化的卡片；
 
 临时卡片：卡片使用方不会持久化的卡片；
 
-需要注意的是，卡片使用方在请求卡片时传递给提供方应用的Want数据中存在临时标记字段，表示此次请求的卡片是否为临时卡片，由于临时卡片的数据具有非持久化的特殊性，某些场景比如卡片服务框架死亡重启，此时临时卡片数据在卡片管理服务中已经删除，且对应的卡片ID不会通知到提供方，所以卡片提供方需要自己负责清理长时间未删除的临时卡片数据。同时对应的卡片使用方可能会将之前请求的临时卡片转换为常态卡片。如果转换成功，卡片提供方也需要对对应的临时卡片ID进行处理，把卡片提供方记录的临时卡片数据转换为常态卡片数据，防止提供方在清理长时间未删除的临时卡片时，把已经转换为常态卡片的临时卡片信息删除，导致卡片信息丢失。
+由于临时卡片的数据具有非持久化的特殊性，某些场景比如卡片服务框架死亡重启，此时临时卡片数据在卡片管理服务中已经删除，且对应的卡片ID不会通知到提供方，所以卡片提供方需要自己负责清理长时间未删除的临时卡片数据。同时对应的卡片使用方可能会将之前请求的临时卡片转换为常态卡片。如果转换成功，卡片提供方也需要对对应的临时卡片ID进行处理，把卡片提供方记录的临时卡片数据转换为常态卡片数据，防止提供方在清理长时间未删除的临时卡片时，把已经转换为常态卡片的临时卡片信息删除，导致卡片信息丢失。
 
 ## 开发卡片页面
 开发者可以使用hml+css+json开发JS卡片页面：
+
+> ![icon-note.gif](public_sys-resources\icon-note.gif) **说明：**
+> 当前仅支持JS扩展的类Web开发范式来实现卡片的UI页面。
+
    - hml:
    ```html
    <div class="container">
