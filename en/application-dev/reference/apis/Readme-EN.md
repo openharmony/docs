@@ -45,8 +45,13 @@
     -   [SMS](js-apis-sms.md)
     -   [SIM Management](js-apis-sim.md)
     -   [Radio](js-apis-radio.md)
-    -   [observer](js-apis-observer.md)
+    -   [Observer](js-apis-observer.md)
     -   [Cellular Data](js-apis-telephony-data.md)
+- Network Management
+    - [Network Connection Management](js-apis-net-connection.md)
+    - [Socket Connection](js-apis-socket.md)
+    - [WebSocket Connection](js-apis-webSocket.md)
+    - [Data Request](js-apis-http.md)
 - Network and Connectivity
     -   [WLAN](js-apis-wifi.md)  
     -   [Bluetooth](js-apis-bluetooth.md)
