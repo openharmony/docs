@@ -49,10 +49,10 @@ Enumerates communication modes.
 
 | Name| Default Value| Description|
 | -------- | -------- | -------- |
-| DEFAULT  | 0 | Default communication mode   |
-| THREAD   | 1 | Inter-thread communication |
-| PROCESS  | 2 | Inter-process communication |
-| DEVICE   | 3 | Inter-device communication |
+| DEFAULT  | 0 | Default communication mode.   |
+| THREAD   | 1 | Inter-thread communication. |
+| PROCESS  | 2 | Inter-process communication. |
+| DEVICE   | 3 | Inter-device communication. |
 
 ## HiTraceId
 
