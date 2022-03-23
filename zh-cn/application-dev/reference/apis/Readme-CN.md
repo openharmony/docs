@@ -84,8 +84,8 @@
 - 基本功能
     - [应用上下文](js-apis-system-app.md)
     - [日志打印](js-apis-basic-features-logs.md)
-    - [页面路由](js-apis-system-router.md)
-    - [弹窗](js-apis-system-prompt.md)
+    - [页面路由](js-apis-router.md)
+    - [弹窗](js-apis-prompt.md)
     - [应用配置](js-apis-system-configuration.md)
     - [定时器](js-apis-basic-features-timer.md)
     - [锁屏管理](js-apis-screen-lock.md)
