@@ -665,7 +665,11 @@ getWindow(callback: AsyncCallback\<window.Window>): void
 **示例：**
 
 ```javascript
+<<<<<<< HEAD
 featureAbility.getWindow()
+=======
+        featureAbility.getWindow()
+>>>>>>> 45a0d5bbd5a373948e44b76b9e7eeb3239fe94e7
 ```
 
 ## featureAbility.getWindow<sup>7+</sup>
@@ -685,9 +689,15 @@ getWindow(): Promise\<window.Window>;
 **示例：**
 
 ```javascript
+<<<<<<< HEAD
 featureAbility.getWindow().then((data) => {
   console.info("=============getWindowPromise========== " +           JSON.stringify(data)); 
 });
+=======
+        featureAbility.getWindow().then((data) => {
+            console.info("=============getWindowPromise========== " + JSON.stringify(data));
+        });     
+>>>>>>> 45a0d5bbd5a373948e44b76b9e7eeb3239fe94e7
 ```
 
 ## ConnectOptions.onConnect<sup>7+</sup>

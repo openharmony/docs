@@ -13,10 +13,31 @@
 import notification from '@system.notification';
 ```
 
+## ActionResult
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+
+| 名称        | 可读 | 可写 | 类型                                           | 必填 | 描述                      |
+| ----------- | --- | ---- | ---------------------------------------------- | ---- | ------------------------- |
+| bundleName  | 是  | 是  | string                                          | 是   | 单击通知后要重定向到的应用程序的Bundle名。                  |
+| abilityName | 是  | 是  | string                                          | 是   | 单击通知后要重定向到的应用程序的Ability名称。 |
+| uri         | 是  | 是  | string                                          | 否   | 要重定向到的页面的uri。              |
+
+
+## ShowNotificationOptions
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+
+| 名称          | 可读 | 可写 | 类型                                           | 必填 | 描述                        |
+| ------------- | --- | ---- | ---------------------------------------------- | ---- | ------------------------- |
+| contentTitle  | 是  | 是  | string                                          | 否   | 通知标题。                  |
+| contentText   | 是  | 是  | string                                          | 否   | 通知内容。                  |
+| clickAction   | 是  | 是  | ActionResult                                    | 否   | 通知被点击后触发的行为。     |
+
 
 ## notification.show
 
-show(contentTitle: string, contentText: string, clickAction: ActionInfo): void
+show(options?: ShowNotificationOptions): void
 
 显示通知。
 
@@ -26,21 +47,10 @@ show(contentTitle: string, contentText: string, clickAction: ActionInfo): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| contentTitle | string | 否 | 通知标题。 |
-| contentText | string | 否 | 通知内容。 |
-| clickAction | ActionInfo | 否 | 通知点击后触发的动作。 |
-
-  **表1** ActionInfo
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| bundleName | string | 是 | 点击通知后要跳转到的应用的bundleName |
-| abilityName | string | 是 | 点击通知后要跳转到的应用的abilityName |
-| uri | string | 是 | 要跳转到的uri，可以是下面的两种格式：<br/>-&nbsp;页面绝对路径，由配置文件中pages列表提供，例如：<br/>&nbsp;&nbsp;-&nbsp;pages/index/index<br/>&nbsp;&nbsp;-&nbsp;pages/detail/detail<br/>-&nbsp;特殊的，如果uri的值是"/"，则跳转到首页。 |
+| options | ShowNotificationOptions | 否 | 通知标题。 |
 
 **示例：**
-
-```
+```javascript
 export default {    
   show() {        
     notification.show({            
