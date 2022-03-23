@@ -6,191 +6,31 @@
 
 ## 导入模块
 
-requestAnimationFrame：无需导入
-
-cancelAnimationFrame：无需导入
-
-createAnimator：
-
 ```
 import animator from '@ohos.animator';
 ```
 
-## 权限列表
-
-无
-
-
-## requestAnimationFrame
-
-requestAnimationFrame(handler[, [ ...args]]): number
-
-请求动画帧，逐帧回调JS函数。
-
-- 参数
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | handler | Function | 是 | 表示要逐帧回调的函数。requestAnimationFrame函数回调handler函数时会在第一个参数位置传入timestamp时间戳。它表示requestAnimationFrame开始去执行回调函数的时刻。 |
-  | ...args | Array&lt;any&gt; | 否 | 附加参数，函数回调时，他们会作为参数传递给handler。 |
-
-- 返回值
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | number | requestID请求的ID。 |
-
-- 示例
-  ```
-  <!-- xxx.hml -->
-  <div class="container">
-    <button type="capsule" class="btn" onclick="beginAnimation">beginAnimation</button>
-  </div>
-  ```
-
-  ```
-  /* xxx.css */
-  .container {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-  }
-  .btn{
-    width: 300px;
-    margin-top: 40px;
-  }
-  ```
-
-  ```
-  /* xxx.js */
-  export default {
-    data: {
-      requestId: 0,
-      startTime: 0,
-    },
-    beginAnimation() {
-      cancelAnimationFrame(this.requestId);
-      this.requestId = requestAnimationFrame(this.runAnimation);
-    },
-    runAnimation(timestamp) {
-      if (this.startTime == 0) {
-        this.startTime = timestamp;
-      }
-      var elapsed = timestamp - this.startTime;
-      if (elapsed < 500) {
-        console.log('callback handler timestamp: ' + timestamp);
-        this.requestId = requestAnimationFrame(this.runAnimation);
-      }
-    }
-  }
-  ```
-
-
-## cancelAnimationFrame
-
-cancelAnimationFrame(requestId: number): void
-
-取消动画帧，取消逐帧回调请求。
-
-- 参数
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | requestId | number | 是 | 逐帧回调函数的标识id。 |
-
-- 示例
-  ```
-  <!-- xxx.hml -->
-  <div class="container">
-    <button type="capsule" class="btn" onclick="beginAnimation">beginAnimation</button>
-    <button type="capsule" class="btn" onclick="stopAnimation">stopAnimation</button>
-  </div>
-  ```
-
-  ```
-  /* xxx.css */
-  .container {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-  }
-  .btn{
-    width: 300px;
-    margin-top: 40px;
-  }
-  ```
-
-  ```
-  /* xxx.js */
-  export default {
-    data: {
-      requestId: 0,
-      startTime: 0,
-    },
-    beginAnimation() {
-      cancelAnimationFrame(this.requestId);
-      this.requestId = requestAnimationFrame(this.runAnimation);
-    },
-    runAnimation(timestamp) {
-      if (this.startTime == 0) {
-        this.startTime = timestamp;
-      }
-      var elapsed = timestamp - this.startTime;
-      if (elapsed < 500) {
-        console.log('callback handler timestamp: ' + timestamp);
-        this.requestId = requestAnimationFrame(this.runAnimation);
-      }
-    },
-    stopAnimation() {
-      cancelAnimationFrame(this.requestId);
-    }
-  }
-  ```
-
 
 ## createAnimator
 
-createAnimator(options[...]): void
+createAnimator(options: AnimatorOptions): AnimatorResult
 
-创建动画对象。
+定义Animator类。
 
-- 参数
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | options | Object | 是 | 表示待创建Animator对象的属性，详情见下表options说明。 |
+  | options | [AnimatorOptions](#animatoroptions) | 是 | 定义动画选项，详细请参考AnimatorOptions。|
 
-- options说明
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | duration | number | 否 | 动画播放的时长，单位毫秒，默认为0。 |
-  | easing | string | 否 | 动画插值曲线，默认为'&nbsp;ease&nbsp;'。 |
-  | delay | number | 否 | 动画延时播放时长，单位毫秒，默认为0，即不延时。 |
-  | fill | string | 否 | 动画启停模式，默认值none，详情见：[animation-fill-mode](../arkui-js/js-components-common-animation.md) |
-  | direction | string | 否 | 动画播放模式，默认值normal，详情见：[animation-direction](../arkui-js/js-components-common-animation.md) |
-  | iterations | number | 否 | 动画播放次数，默认值1，设置为0时不播放，设置为-1时无限次播放。 |
-  | begin | number | 否 | 动画插值起点，不设置时默认为0。 |
-  | end | number | 否 | 动画插值终点，不设置时默认为1。 |
+**返回值：** 
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | [AnimatorResult](#animatorresult) | Animator结果接口。 |
 
-- animator支持的接口
-  | 参数名 | 类型 | 说明 |
-  | -------- | -------- | -------- |
-  | update | options | 过程中可以使用这个接口更新动画参数，入参与createAnimator一致。 |
-  | play | - | 开始动画。 |
-  | finish | - | 结束动画。 |
-  | pause | - | 暂停动画。 |
-  | cancel | - | 取消动画。 |
-  | reverse | - | 倒播动画。 |
+**示例：** 
 
-- animator支持的事件：
-  | 参数名 | 类型 | 说明 |
-  | -------- | -------- | -------- |
-  | frame | number | 逐帧插值回调事件，入参为当前帧的插值 |
-  | cancel | - | 动画被强制取消 |
-  | finish | - | 动画播放完成 |
-  | repeat | - | 动画重新播放 |
-
-- 示例
   ```
   <!-- hml -->
   <div class="container">
@@ -237,3 +77,164 @@ createAnimator(options[...]): void
     }
   }
   ```
+
+## AnimatorResult
+
+定义Animator结果接口。
+
+### update
+
+update(options: AnimatorOptions): void
+
+更新当前动画器。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | options | [AnimatorOptions](#animatoroptions) | 是 | 定义动画选项。|
+
+**示例：**
+```
+animator.update(options)；
+```
+
+### play
+
+play(): void
+
+启动动画。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**示例：**
+```
+animator.play()；
+```
+
+### finish
+
+finish(): void
+
+结束动画。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**示例：**
+```
+animator.finish()；
+```
+
+### pause
+
+pause(): void
+
+暂停动画。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**示例：**
+```
+animator.pause()；
+```
+
+### cancel
+
+cancel(): void
+
+删除动画。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**示例：**
+```
+animator.cancel()；
+```
+
+### reverse
+
+reverse(): void
+
+以相反的顺序播放动画。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**示例：**
+```
+animator.reverse()；
+```
+
+### onframe
+
+onframe: (progress: number) => void
+
+回调时触发。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | progress | number | 是 | 动画的当前进度。|
+
+**示例：**
+```
+animator.onframe()；
+```
+
+### onfinish
+
+onfinish: () => void
+
+动画完成。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**示例：**
+```
+animator.onfinish()；
+```
+
+### oncancel
+
+oncancel: () => void
+
+动画被取消。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**示例：**
+```
+animator.oncancel()；
+```
+
+### onrepeat
+
+onrepeat: () => void
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**示例：**
+```
+animator.onrepeat()；
+```
+
+动画将重复。
+
+## AnimatorOptions
+
+定义动画选项。
+
+**系统能力：**  以下各项对应的系统能力均为SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 参数类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| duration | number | 是 | 动画播放的时长，单位毫秒，默认为0。 |
+| easing | string | 是 | 动画插值曲线，默认为ease'。 |
+| delay | number | 是 | 动画延时播放时长，单位毫秒，默认为0，即不延时。 |
+| fill | "none" \| "forwards" \| "backwards" \| "both" | 是 | 动画执行后是否恢复到初始状态，默认值为"none"。动画执行后，动画结束时的状态（在最后一个关键帧中定义）将保留。 |
+| direction | "normal" \| "reverse" \| "alternate" \| "alternate-reverse" | 是 | 动画播放模式，默认值"normal"。|
+| iterations | number | 是 | 动画播放次数，默认值1。设置为0时不播放，设置为-1时无限次播放。 |
+| begin | number | 是 | 动画插值起点，不设置时默认为0。 |
+| end | number | 是 | 动画插值终点，不设置时默认为1。 |
