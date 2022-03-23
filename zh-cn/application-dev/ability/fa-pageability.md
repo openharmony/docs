@@ -187,3 +187,9 @@ var promise = await featureAbility.startAbility({
 }
 );
 ```
+## 开发实例
+针对pageAbility开发，有以下示例工程可供参考：
+
+- [DMS](https://gitee.com/openharmony/app_samples/tree/master/ability/DMS)
+
+在本示例中完整展示了启动本地Ability、启动远程Ability的使用方法。
