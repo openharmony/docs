@@ -578,7 +578,7 @@ getLast(): T
 **示例：**
 
 ```
-let list = new Vector();
+let list = new List();
 list.add(2);
 list.add(4);
 list.add(5);

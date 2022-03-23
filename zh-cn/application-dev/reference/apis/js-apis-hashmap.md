@@ -351,7 +351,7 @@ hashMap.forEach((value, key) => {
 
 ### entries
 
-entries(): IterableIterator<[K, V]>
+entries(): IterableIterator&lt;[K, V]&gt;
 
 返回包含此映射中包含的键值对的新迭代器对象。
 
@@ -359,7 +359,7 @@ entries(): IterableIterator<[K, V]>
 
 | 类型 | 说明 |
 | -------- | -------- |
-| IterableIterator<[K, V]> | 返回一个迭代器。 |
+| IterableIterator&lt;[K, V]&gt; | 返回一个迭代器。 |
 
 **示例：**
 
@@ -387,7 +387,7 @@ while(temp != undefined) {
 
 | 类型 | 说明 |
 | -------- | -------- |
-| IterableIterator<[K, V]> | 返回一个迭代器。 |
+| IterableIterator&lt;[K, V]&gt; | 返回一个迭代器。 |
 
 **示例：**
 ```
