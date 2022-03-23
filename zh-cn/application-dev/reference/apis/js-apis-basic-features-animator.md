@@ -22,7 +22,7 @@ createAnimator(options: AnimatorOptions): AnimatorResult
 **参数：** 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | options | [AnimatorOptions](#animatoroptions) | 是 | |
+  | options | [AnimatorOptions](#animatoroptions) | 是 | 定义动画选项，详细请参考AnimatorOptions。|
 
 **返回值：** 
   | 类型 | 说明 |
