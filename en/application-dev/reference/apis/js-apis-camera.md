@@ -1,7 +1,7 @@
 # Camera<a name="EN-US_TOPIC_0000001149807881"></a>
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
@@ -30,11 +30,6 @@ Gets a **CameraManager** instance. This method uses an asynchronous callback to 
 |----------|-------------------------------|-----------|-----------------------------------------------------|
 | context  | Context                       | Yes       | Application context                                 |
 | callback | AsyncCallback<CameraManager\> | Yes       | Callback used to return the CameraManager instance  |
-
-
-**Return values**
-
-none
 
 **Example**
 
@@ -82,59 +77,62 @@ camera.getCameraManager(context).then((cameraManger) => {
 
 Enumerates camera status types.
 
+**System Capabilities:**
+
+SystemCapability.Multimedia.Camera.Core
+
 | Name                      | Default Value | Description        |
 |---------------------------|---------------|--------------------|
-| CAMERA_STATUS_APPEAR      | 0             | Camera appear<br/>System Capabilities: SystemCapability.Multimedia.Camera.Core      |
-| CAMERA_STATUS_DISAPPEAR   | 1             | Camera disappear <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core   |
-| CAMERA_STATUS_AVAILABLE   | 2             | Camera available<br/>System Capabilities: SystemCapability.Multimedia.Camera.Core   |
-| CAMERA_STATUS_UNAVAILABLE | 3             | Camera unavailable <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core|
+| CAMERA_STATUS_APPEAR      | 0             | Camera appear      |
+| CAMERA_STATUS_DISAPPEAR   | 1             | Camera disappear   |
+| CAMERA_STATUS_AVAILABLE   | 2             | Camera available   |
+| CAMERA_STATUS_UNAVAILABLE | 3             | Camera unavailable |
 
 
 ## CameraPosition<a name="section_camera_position"></a>
 
 Enumerates the camera positions.
 
+**System Capabilities:**
+
+SystemCapability.Multimedia.Camera.Core
+
 | Name                        | Default value | Description           |
 |-----------------------------|---------------|-----------------------|
-| CAMERA_POSITION_UNSPECIFIED | 0             | Unspecified position <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core |
-| CAMERA_POSITION_BACK        | 1             | Rear camera <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core          |
-| CAMERA_POSITION_FRONT       | 2             | Front camera <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core        |
+| CAMERA_POSITION_UNSPECIFIED | 0             | Unspecified position  |
+| CAMERA_POSITION_BACK        | 1             | Rear camera           |
+| CAMERA_POSITION_FRONT       | 2             | Front camera          |
 
 ## CameraType<a name="section_camera_type"></a>
 
 Enumerates the camera types.
 
+**System Capabilities:**
+
+SystemCapability.Multimedia.Camera.Core
+
 | Name                    | Default value | Description             |
 |-------------------------|---------------|-------------------------|
-| CAMERA_TYPE_UNSPECIFIED | 0             | Unspecified camera type <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core |
-| CAMERA_TYPE_WIDE_ANGLE  | 1             | Wide camera <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core            |
-| CAMERA_TYPE_ULTRA_WIDE  | 2             | Ultra wide camera <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core       |
-| CAMERA_TYPE_TELEPHOTO   | 3             | Telephoto camera <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core       |
-| CAMERA_TYPE_TRUE_DEPTH  | 4             | True depth camera <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core      |
+| CAMERA_TYPE_UNSPECIFIED | 0             | Unspecified camera type |
+| CAMERA_TYPE_WIDE_ANGLE  | 1             | Wide camera             |
+| CAMERA_TYPE_ULTRA_WIDE  | 2             | Ultra wide camera       |
+| CAMERA_TYPE_TELEPHOTO   | 3             | Telephoto camera        |
+| CAMERA_TYPE_TRUE_DEPTH  | 4             | True depth camera       |
 
 
 ## ConnectionType<a name="section_ConnectionType"></a>
 
 Enumerates camera connection types.
 
+**System Capabilities:**
+
+SystemCapability.Multimedia.Camera.Core
+
 | Name                         | Default value | Description                |
 |------------------------------|---------------|----------------------------|
-| CAMERA_CONNECTION_BUILT_IN   | 0             | Built-in camera <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core           |
-| CAMERA_CONNECTION_USB_PLUGIN | 1             | Camera connected using USB <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core |
-| CAMERA_CONNECTION_REMOTE     | 2             | Remote camera  <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core             |
-
-
-## CameraFormat<a name="section_CameraFormat"></a>
-
-Enumerates the camera formats.
-
-| Name                       | Default value | Description         |
-|----------------------------|---------------|---------------------|
-| CAMERA_FORMAT_YCRCb_420_SP | 1003          | Camera YCRCb <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core       |
-| CAMERA_FORMAT_JPEG         | 2000          | Camera format jpeg <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core |
-| CAMERA_FORMAT_AVC          | 3000          | Camera format avc <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core  |
-| CAMERA_FORMAT_HEVC         | 3001          | Camera format hevc <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core  |
-
+| CAMERA_CONNECTION_BUILT_IN   | 0             | Built-in camera            |
+| CAMERA_CONNECTION_USB_PLUGIN | 1             | Camera connected using USB  |
+| CAMERA_CONNECTION_REMOTE     | 2             | Remote camera               |
 
 ## CameraManager<a name="section_CameraManager"></a>
 
@@ -155,10 +153,6 @@ Gets all cameras supported by the device. This method uses an asynchronous callb
 | Name     | Type                           | Mandatory | Description                                             |
 |----------|--------------------------------|-----------|---------------------------------------------------------|
 | callback | AsyncCallback<Array<Camera\>\> | Yes       | Callback used to return the array of supported cameras. |
-
-**Return values**
-
-none
 
 **Example**
 
@@ -181,10 +175,6 @@ SystemCapability.Multimedia.Camera.Core
 **Description**
 
 Gets all cameras supported by the device. This method uses a promise to return the array of supported cameras.
-
-**Parameters**
-
-none
 
 **Return values**
 
@@ -217,10 +207,6 @@ Creates a **CameraInput** instance with the specified camera ID. This method use
 |----------|------------------------------|-----------|--------------------------------------------------|
 | cameraId | string                       | Yes       | Camera ID used to create the instance            |
 | callback | AsyncCallback<CameraInput\>  | Yes       | Callback used to return the CameraInput instance |
-
-**Return values**
-
-none
 
 **Example**
 
@@ -282,10 +268,6 @@ Creates a **CameraInput** instance with the specified camera position and camera
 | cameraType     | CameraType                 | Yes       | Camera type                                       |
 | callback       | AsyncCallback<CameraInput\> | Yes       | Callback used to return the CameraInput instance |
 
-**Return values**
-
-none
-
 **Example**
 
 ```
@@ -346,10 +328,6 @@ Listens for camera status changes. This method uses a callback to get camera sta
 | type     | string                 | Yes       | Name of the event to listen for.                         |
 | callback | Callback<CameraStatusInfo\> | Yes  | Callback used to get the camera status change. |
 
-**Return value**
-
-None
-
 **Example**
 
 ```
@@ -361,38 +339,48 @@ cameraManager.on('cameraStatus', (cameraStatusInfo) => {
 
 ## Camera<a name="section_Camera"></a>
 
-Camera class.
+when we call *cameraManager.getCameras()* API, then it will return the **Camera** class which will have all camera-related metadata such as *cameraId, cameraPosition, cameraType & connectionType*.
+
+**System Capabilities:**
+
+SystemCapability.Multimedia.Camera.Core
 
 **Fields**
 
 | Name           | Type           | Access   | Description            |
 |----------------|----------------|----------|------------------------|
-| cameraId       | string         | readonly | Camera ID <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core             |
-| cameraPosition | cameraPosition | readonly | Camera position <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core       |
-| cameraType     | cameraType     | readonly | Camera type <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core           |
-| connectionType | connectionType | readonly | Camera connection type  <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core|
+| cameraId       | string         | readonly | Camera ID              |
+| cameraPosition | cameraPosition | readonly | Camera position        |
+| cameraType     | cameraType     | readonly | Camera type            |
+| connectionType | connectionType | readonly | Camera connection type |
 
 ```
-var cameraManager = await camera.getCameraManager();
-var cameras = await cameraManager.getCameras();
-var cameraObj = cameras[0];
-var cameraId = cameraObj.cameraId;
-var cameraPosition = cameraObj.cameraPosition;
-var cameraType = cameraObj.cameraType;
-var cameraId = cameraObj.connectionType;
+async function getCameraInfo() {
+    var cameraManager = await camera.getCameraManager();
+    var cameras = await cameraManager.getCameras();
+    var cameraObj = cameras[0];
+    var cameraId = cameraObj.cameraId;
+    var cameraPosition = cameraObj.cameraPosition;
+    var cameraType = cameraObj.cameraType;
+    var cameraId = cameraObj.connectionType;
+}
 
 ```
 
 ## CameraStatusInfo<a name="section_Camera"></a>
 
-CameraStatusInfo class.
+This interface is a CameraManager callback API return. **CameraStatusInfo** will have *Camera* class & *CameraStatus* predefine constants.From *Camera* class, we can have all camera-related metadata & from *CameraStatus* constants, we will have information such as *APPEAR, DISAPPEAR, AVAILABLE & UNAVAILABLE*.
+
+**System Capabilities:**
+
+SystemCapability.Multimedia.Camera.Core
 
 **Fields**
 
 | Name           | Type           | Description      |
 |----------------|----------------|------------------|
-| camera         | Camera         | Camera object  <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core   |
-| status         | CameraStatus   | Camera status  <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core  |
+| camera         | Camera         | Camera object    |
+| status         | CameraStatus   | Camera status    |
 
 
 ## CameraInput<a name="section_CameraInput"></a>
@@ -415,10 +403,6 @@ Gets the camera ID based on which this **CameraInput** instance is created. This
 |----------|------------------------|-----------|---------------------------------------|
 | callback | AsyncCallback<string\> | Yes       | Callback used to return the camera ID |
 
-**Return values**
-
-none
-
 ```
 cameraInput.getCameraId((err, cameraId) => {
     if (err) {
@@ -439,10 +423,6 @@ SystemCapability.Multimedia.Camera.Core
 
 Gets the camera ID based on which this **CameraInput** instance is created. This method uses a promise to return the camera ID.
 
-**Parameters**
-
-none
-
 **Return values**
 
 | Type                   | Description                          |
@@ -454,251 +434,6 @@ none
 ```
 cameraInput.getCameraId().then((cameraId) => {
     console.log('Promise returned with the camera ID:' + cameraId);
-})
-```
-
-### getSupportedSizes\(format: CameraFormat, callback: AsyncCallback<Array<Size\>\>\): void;
-
-**System Capabilities:**
-
-SystemCapability.Multimedia.Camera.Core
-
-**Description**
-
-Gets supported sizes for a given format. This method uses an asynchronous callback to return the supported sizes.
-
-**Parameters**
-
-| Name     | Type                         | Mandatory | Description                                 |
-|----------|------------------------------|-----------|---------------------------------------------|
-| format   | CameraFormat                 | Yes       | Camera format used to get supported sizes   |
-| callback | AsyncCallback<Array<Size\>\> | Yes       | Callback used to return the supported sizes |
-
-
-**Return values**
-
-none
-
-**Example**
-
-```
-cameraInput.getSupportedSizes(format, (err, sizes) => {
-    if (err) {
-        console.error('Failed to get the supported sizes. ${err.message}');
-		return;
-    }
-    console.log('Callback returned with the supported sizes:' + sizes);
-})
-```
-
-### getSupportedSizes\(format: CameraFormat\): Promise<Array<Size\>\>;
-
-**System Capabilities:**
-
-SystemCapability.Multimedia.Camera.Core
-
-**Description**
-
-Gets supported sizes for a given format. This method uses a promise to return the supported sizes.
-
-**Parameters**
-
-| Name     | Type                       | Mandatory | Description                                   |
-|----------|----------------------------|-----------|-----------------------------------------------|
-| format   | CameraFormat               | Yes       | Camera format used to get the supported sizes |
-
-**Return values**
-
-| Type                   | Description                                 |
-|------------------------|---------------------------------------------|
-| Promise<Array<Size\>\> | Promise used to return the supported sizes. |
-
-**Example**
-
-```
-cameraInput.getSupportedSizes(format).then((sizes) => {
-    console.log('Promise returned with supported sizes: ' + sizes);
-})
-```
-
-### getSupportedPreviewFormats\(callback: AsyncCallback<Array<CameraFormat\>\>\): void;
-
-**System Capabilities:**
-
-SystemCapability.Multimedia.Camera.Core
-
-**Description**
-
-Gets supported formats for preview. This method uses an asynchronous callback to return the supported formats.
-
-**Parameters**
-
-| Name     | Type                                 | Mandatory | Description                                       |
-|----------|--------------------------------------|-----------|---------------------------------------------------|
-| callback | AsyncCallback<Array<CameraFormat\>\> | Yes       | Callback used to return the supported preview formats. |
-
-
-**Return values**
-
-none
-
-**Example**
-
-```
-cameraInput.getSupportedPreviewFormats((err, previewFormats) => {
-    if (err) {
-        console.error('Failed to get the supported preview formats. ${err.message}');
-        return;
-    }
-    console.log('Callback returned with supported preview formats: ' + previewFormats.length);
-})
-```
-
-### getSupportedPreviewFormats\(\): Promise<Array<CameraFormat\>\>;
-
-**System Capabilities:**
-
-SystemCapability.Multimedia.Camera.Core
-
-**Description**
-
-Gets supported formats for preview. This method uses a promise to return the supported formats.
-
-**Parameters**
-
-none
-
-**Return values**
-
-| Type                           | Description                                           |
-|--------------------------------|-------------------------------------------------------|
-| Promise<Array<CameraFormat\>\> | Promise used to return the supported preview formats  |
-
-**Example**
-
-```
-cameraInput.getSupportedPreviewFormats().then((previewFormats) => {
-    console.log('Promise returned with supported preview formats.' + previewFormats.length);
-})
-```
-
-### getSupportedPhotoFormats\(callback: AsyncCallback<Array<CameraFormat\>\>\): void;<a name="section189141826104616"></a>
-
-**System Capabilities:**
-
-SystemCapability.Multimedia.Camera.Core
-
-**Description**
-
-Gets supported formats for photographing. This method uses an asynchronous callback to return the supported formats.
-
-**Parameters**
-
-| Name     | Type                                 | Mandatory | Description                                     |
-|----------|--------------------------------------|-----------|-------------------------------------------------|
-| callback | AsyncCallback<Array<CameraFormat\>\> | Yes       | Callback used to return the supported photo formats. |
-
-**Return values**
-
-none
-
-**Example**
-
-```
-cameraInput.getSupportedPhotoFormats((err, photoFormats) => {
-    if (err) {
-        console.error('Failed to get the supported photo formats. ${err.message}');
-        return;
-    }
-    console.log('Callback returned with supported photo formats');
-})
-```
-
-### getSupportedPhotoFormats\(\): Promise<Array<CameraFormat\>\>;<a name="section189141826104616"></a>
-
-**System Capabilities:**
-
-SystemCapability.Multimedia.Camera.Core
-
-**Description**
-
-Gets supported formats for photographing. This method uses a promise to return the supported formats.
-
-**Parameters**
-
-none
-
-**Return values**
-
-| Type                           | Description                                       |
-|--------------------------------|---------------------------------------------------|
-| Promise<Array<CameraFormat\>\> | Promise used to return supported photo formats.   |
-
-**Example**
-
-```
-cameraInput.getSupportedPhotoFormats().then((photoFormats) => {
-    console.log('Promise returned with supported photo formats.' + photoFormats.length);
-})
-```
-
-### getSupportedVideoFormats\(callback: AsyncCallback<Array<CameraFormat\>\>\): void;
-
-**System Capabilities:**
-
-SystemCapability.Multimedia.Camera.Core
-
-**Description**
-
-Gets supported formats for video recording. This method uses an asynchronous callback to return the supported video formats.
-
-**Parameters**
-
-| Name     | Type                                 | Mandatory | Description                                     |
-|----------|--------------------------------------|-----------|-------------------------------------------------|
-| callback | AsyncCallback<Array<CameraFormat\>\> | Yes       | Callback used to return the supported video formats. |
-
-**Return values**
-
-none
-
-**Example**
-
-```
-cameraInput.getSupportedVideoFormats((err, videoFormats) => {
-    if (err) {
-        console.error('Failed to get the supported video formats. ${err.message}');
-        return;
-    }
-    console.log('Callback returned with supported video formats : ' + videoFormats.length);
-})
-```
-
-### getSupportedVideoFormats\(\): Promise<Array<CameraFormat\>\>;
-
-**System Capabilities:**
-
-SystemCapability.Multimedia.Camera.Core
-
-**Description**
-
-Gets supported formats for video recording. This method uses a promise to return the supported video format.
-
-**Parameters**
-
-none
-
-**Return values**
-
-| Type                           | Description                                       |
-|--------------------------------|---------------------------------------------------|
-| Promise<Array<CameraFormat\>\> | Promise used to return supported video formats.   |
-
-**Example**
-
-```
-cameraInput.getSupportedVideoFormats().then((videoFormats) => {
-    console.log('Promise returned with supported video formats.' + videoFormats.length);
 })
 ```
 
@@ -717,10 +452,6 @@ Checks whether the device has flash light. This method uses an asynchronous call
 | Name     | Type                    | Mandatory | Description                                        |
 |----------|-------------------------|-----------|----------------------------------------------------|
 | callback | AsyncCallback<boolean\> | Yes       | Callback used to return the flash light support status |
-
-**Return values**
-
-none
 
 **Example**
 
@@ -743,10 +474,6 @@ SystemCapability.Multimedia.Camera.Core
 **Description**
 
 Checks whether the device has flash light. This method uses a promise to return the result.
-
-**Parameters**
-
-none
 
 **Return values**
 
@@ -778,10 +505,6 @@ Checks whether a specified flash mode is supported. This method uses an asynchro
 |-----------|------------------------|-----------|----------------------------------------------------|
 | flashMode | <a href="#sec_FlashMode">FlashMode</a>             | Yes       | Flash mode                                         |
 | callback  | AsyncCallback<boolean\> | Yes       | Callback used to return the device flash support status |
-
-**Return values**
-
-none
 
 **Example**
 
@@ -844,10 +567,6 @@ Note: Before setting the flash mode, check the support for the flash light (<a h
 | flashMode | <a href="#sec_FlashMode">FlashMode</a>             | Yes       | Flash mode             |
 | callback  | AsyncCallback<void\> | Yes       | Callback used to return the result         |
 
-**Return values**
-
-none
-
 **Example**
 
 ```
@@ -887,7 +606,7 @@ Note: Before setting the flash mode, check the support for the flash light (<a h
 **Example**
 
 ```
-cameraInput.setFlashMode(flashMode).then() => {
+cameraInput.setFlashMode(flashMode).then(() => {
     console.log('Promise returned with the successful execution of setFlashMode.');
 })
 ```
@@ -907,10 +626,6 @@ Gets current flash mode. This method uses an asynchronous callback to return the
 | Name      | Type                      | Mandatory | Description                                    |
 |-----------|---------------------------|-----------|------------------------------------------------|
 | callback  | AsyncCallback<FlashMode\> | Yes       | Callback used to return the current flash mode |
-
-**Return values**
-
-none
 
 **Example**
 
@@ -934,10 +649,6 @@ SystemCapability.Multimedia.Camera.Core
 
 Gets current flash mode. This method uses a promise to return the result.
 
-**Parameters**
-
-none
-
 **Return values**
 
 | Type                  | Description                                       |
@@ -947,7 +658,7 @@ none
 **Example**
 
 ```
-cameraInput.getFlashMode().then(flashMode) => {
+cameraInput.getFlashMode().then((flashMode) => {
     console.log('Promise returned with current flash mode : ' + flashMode);
 })
 ```
@@ -968,10 +679,6 @@ Checks whether a specified focus mode is supported. This method uses an asynchro
 |-----------|------------------------|-----------|----------------------------------------------------|
 | afMode    | <a href="#sec_FocusMode">FocusMode</a>  | Yes       | Focus mode                        |
 | callback  | AsyncCallback<boolean\> | Yes       | Callback used to return the device focus support status |
-
-**Return values**
-
-none
 
 **Example**
 
@@ -1034,10 +741,6 @@ Note: Before setting the focus mode, check focus mode support (<a href="#sec_isF
 | afMode    | <a href="#sec_FocusMode">FocusMode</a> | Yes       | Focus mode         |
 | callback  | AsyncCallback<void\>   | Yes       | Callback used to return the result |
 
-**Return values**
-
-none
-
 **Example**
 
 ```
@@ -1077,7 +780,7 @@ Note: Before setting the focus mode, check focus mode support (<a href="#sec_isF
 **Example**
 
 ```
-cameraInput.setFocusMode(afMode).then() => {
+cameraInput.setFocusMode(afMode).then(() => {
     console.log('Promise returned with the successful execution of setFocusMode.');
 })
 ```
@@ -1097,10 +800,6 @@ Gets the current focus mode. This method uses an asynchronous callback to return
 | Name      | Type                      | Mandatory | Description                                    |
 |-----------|---------------------------|-----------|------------------------------------------------|
 | callback  | AsyncCallback<FocusMode\> | Yes       | Callback used to return the current focus mode |
-
-**Return values**
-
-none
 
 **Example**
 
@@ -1124,10 +823,6 @@ SystemCapability.Multimedia.Camera.Core
 
 Gets the current focus mode. This method uses a promise to return the result.
 
-**Parameters**
-
-none
-
 **Return values**
 
 | Type                  | Description                                       |
@@ -1137,7 +832,7 @@ none
 **Example**
 
 ```
-cameraInput.getFocusMode().then(afMode) => {
+cameraInput.getFocusMode().then((afMode) => {
     console.log('Promise returned with current focus mode : ' + afMode);
 })
 ```
@@ -1158,15 +853,10 @@ Gets the zoom ratios of all zoom values. This method uses an asynchronous callba
 |----------|--------------------------------|-----------|-------------------------------------------------|
 | callback | AsyncCallback<Array<number\>\> | Yes       | Callback used to return the zoom ratio range |
 
-
-**Return values**
-
-none
-
 **Example**
 
 ```
-cameraInput.getZoomRatioRange(err, zoomRatioRange) => {
+cameraInput.getZoomRatioRange((err, zoomRatioRange) => {
     if (err) {
         console.error('Failed to get the zoom ratio range. ${err.message}');
         return;
@@ -1184,10 +874,6 @@ SystemCapability.Multimedia.Camera.Core
 **Description**
 
 Gets the zoom ratios of all zoom values. This method uses a promise to return the result.
-
-**Parameters**
-
-none
 
 **Return values**
 
@@ -1219,10 +905,6 @@ Sets a zoom ratio. This method uses an asynchronous callback to return the resul
 |-----------|------------------------|-----------|------------------------------------|
 | zoomRatio | number                 | Yes       | Zoom ratio                         |
 | callback  | AsyncCallback<void\>   | Yes       | Callback used to return the result |
-
-**Return values**
-
-none
 
 **Example**
 
@@ -1261,7 +943,7 @@ Sets a zoom ratio. This method uses a promise to return the result.
 **Example**
 
 ```
-cameraInput.setZoomRatio(zoomRatio).then() => {
+cameraInput.setZoomRatio(zoomRatio).then(() => {
     console.log('Promise returned with the successful execution of setZoomRatio.');
 })
 ```
@@ -1281,10 +963,6 @@ Gets current zoom ratio value. This method uses an asynchronous callback to retu
 | Name      | Type                      | Mandatory | Description                                          |
 |-----------|---------------------------|-----------|------------------------------------------------------|
 | callback  | AsyncCallback<number\>    | Yes       | Callback used to return the current zoom ratio value |
-
-**Return values**
-
-none
 
 **Example**
 
@@ -1308,10 +986,6 @@ SystemCapability.Multimedia.Camera.Core
 
 Gets current zoom ratio value. This method uses a promise to return the result.
 
-**Parameters**
-
-none
-
 **Return values**
 
 | Type                  | Description                                       |
@@ -1321,7 +995,7 @@ none
 **Example**
 
 ```
-cameraInput.getZoomRatio().then(zoomRatio) => {
+cameraInput.getZoomRatio().then((zoomRatio) => {
     console.log('Promise returned with current zoom ratio : ' + zoomRatio);
 })
 ```
@@ -1341,10 +1015,6 @@ Releases this **CameraInput** instance. This method uses an asynchronous callbac
 | Name     | Type                 | Mandatory | Description                        |
 |----------|----------------------|-----------|------------------------------------|
 | callback | AsyncCallback<void\> | Yes       | Callback used to return the result |
-
-**Return values**
-
-none
 
 **Example**
 
@@ -1367,10 +1037,6 @@ SystemCapability.Multimedia.Camera.Core
 **Description**
 
 Releases this **CameraInput** instance. This method uses a promise to return the result.
-
-**Parameters**
-
-none
 
 **Return values**
 
@@ -1403,10 +1069,6 @@ Listens for focus state changes. This method uses a callback to get focus state 
 | type     | string                 | Yes       | Name of the event to listen for.                    |
 | callback | Callback<FocusState\>  | Yes       | Callback used to get the focus state change.    |
 
-**Return value**
-
-None
-
 **Example**
 
 ```
@@ -1432,10 +1094,6 @@ Listens for **CameraInput** errors. This method uses a callback to get errors.
 | type     | string                 | Yes       | Name of the event to listen for.                    |
 | callback | Callback<CameraInputError\> | Yes  | Callback used to get the camera input errors.   |
 
-**Return value**
-
-None
-
 **Example**
 
 ```
@@ -1448,24 +1106,31 @@ cameraInput.on('error', (cameraInputError) => {
 
 Enumerates the flash modes.
 
+**System Capabilities:**
+
+SystemCapability.Multimedia.Camera.Core
+
 | Name                   | Default value | Description            |
 |------------------------|---------------|------------------------|
-| FLASH_MODE_CLOSE       | 0             | Flash mode close <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core      |
-| FLASH_MODE_OPEN        | 1             | Flash mode open  <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core      |
-| FLASH_MODE_AUTO        | 2             | Flash mode auto  <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core      |
-| FLASH_MODE_ALWAYS_OPEN | 3             | Flash mode always open <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core |
+| FLASH_MODE_CLOSE       | 0             | Flash mode close       |
+| FLASH_MODE_OPEN        | 1             | Flash mode open        |
+| FLASH_MODE_AUTO        | 2             | Flash mode auto        |
+| FLASH_MODE_ALWAYS_OPEN | 3             | Flash mode always open |
 
 ## FocusMode <a name="sec_FocusMode"></a>
 
 Enumerates the focus modes.
 
+**System Capabilities:**
+
+SystemCapability.Multimedia.Camera.Core
+
 | Name                       | Default value | Description                |
 |----------------------------|---------------|----------------------------|
-| FOCUS_MODE_MANUAL          | 0             | Focus mode manual <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core         |
-| FOCUS_MODE_CONTINUOUS_AUTO | 1             | Focus mode continuous auto <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core|
-| FOCUS_MODE_AUTO            | 2             | Focus mode auto <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core           |
-| FOCUS_MODE_LOCKED          | 3             | Focus mode locked  <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core        |
-
+| FOCUS_MODE_MANUAL          | 0             | Focus mode manual          |
+| FOCUS_MODE_CONTINUOUS_AUTO | 1             | Focus mode continuous auto |
+| FOCUS_MODE_AUTO            | 2             | Focus mode auto            |
+| FOCUS_MODE_LOCKED          | 3             | Focus mode locked          |
 
 ## createCaptureSession\(context: Context, callback: AsyncCallback<CaptureSession\>\): void;
 
@@ -1484,14 +1149,10 @@ Creates a **CaptureSession** instance. This method uses an asynchronous callback
 | context  | Context                        | Yes       | Application context                                 |
 | callback | AsyncCallback<CaptureSession\> | Yes       | Callback used to return the CaptureSession instance |
 
-**Return values**
-
-none
-
 **Example**
 
 ```
-captureSession.createCaptureSession(context), (err, captureSession) => {
+captureSession.createCaptureSession((context), (err, captureSession) => {
     if (err) {
         console.error('Failed to create the CaptureSession instance. ${err.message}');
         return;
@@ -1550,10 +1211,6 @@ Starts configuration for this CaptureSession instance. This method uses an async
 |----------|----------------------|-----------|----------------------------------------------|
 | callback | AsyncCallback<void\> | Yes       | Callback used to return the result |
 
-**Return values**
-
-none
-
 **Example**
 
 ```
@@ -1575,10 +1232,6 @@ SystemCapability.Multimedia.Camera.Core
 **Description**
 
 Starts configuration for this CaptureSession instance. This method uses a promise to return the result.
-
-**Parameters**
-
-none
 
 **Return values**
 
@@ -1611,10 +1264,6 @@ Commits the configuration for this CaptureSession instance. This method uses an 
 |----------|---------------------|-----------|----------------------------------------------|
 | callback | AsyncCallback<void\> | Yes       | Callback used to return the result |
 
-**Return values**
-
-none
-
 **Example**
 
 ```
@@ -1636,10 +1285,6 @@ SystemCapability.Multimedia.Camera.Core
 **Description**
 
 Commits the configuration for this CaptureSession instance. This method uses a promise to return the result.
-
-**Parameters**
-
-none
 
 **Return values**
 
@@ -1671,10 +1316,6 @@ Add a CameraInput instance to this CaptureSession instance. This method uses an 
 |-------------|----------------------|-----------|---------------------------------------------|
 | cameraInput | CameraInput          | Yes       | CameraInput instance to add                 |
 | callback    | AsyncCallback<void\> | Yes       | Callback used to return the result          |
-
-**Return values**
-
-none
 
 **Example**
 
@@ -1735,10 +1376,6 @@ Add a PreviewOutput instance to this CaptureSession instance. This method uses a
 | previewOutput | PreviewOutput        | Yes       | PreviewOutput instance to add       |
 | callback      | AsyncCallback<void\> | Yes       | Callback used to return the result  |
 
-**Return values**
-
-none
-
 **Example**
 
 ```
@@ -1797,10 +1434,6 @@ Add a PhotoOutput instance to this CaptureSession instance. This method uses an 
 |---------------|---------------------|-----------|-------------------------------------|
 | photoOutput   | PhotoOutput         | Yes       | PhotoOutput instance to add         |
 | callback      | AsyncCallback<void\> | Yes       | Callback used to return the result |
-
-**Return values**
-
-none
 
 **Example**
 
@@ -1861,10 +1494,6 @@ Add a VideoOutput instance to this CaptureSession instance. This method uses an 
 | videoOutput   | VideoOutput         | Yes       | VideoOutput instance to add         |
 | callback      | AsyncCallback<void\> | Yes       | Callback used to return the result |
 
-**Return values**
-
-none
-
 **Example**
 
 ```
@@ -1924,11 +1553,6 @@ Removes a **CameraInput** instance from this **CaptureSession** instance. This m
 | cameraInput | CameraInput          | Yes       | CameraInput instance to remove     |
 | callback    | AsyncCallback<void\> | Yes       | Callback used to return the result |
 
-
-**Return values**
-
-none
-
 **Example**
 
 ```
@@ -1987,10 +1611,6 @@ Removes a **PreviewOutput** instance from this **CaptureSession** instance. This
 |---------------|----------------------|-----------|------------------------------------|
 | previewOutput | PreviewOutput        | Yes       | PreviewOutput instance to remove   |
 | callback      | AsyncCallback<void\> | Yes       | Callback used to return the result |
-
-**Return values**
-
-none
 
 **Example**
 
@@ -2053,10 +1673,6 @@ Removes a **PhotoOutput** instance from this **CaptureSession** instance. This m
 | photoOutput   | PhotoOutput          | Yes       | PhotoOutput instance to remove     |
 | callback      | AsyncCallback<void\> | Yes       | Callback used to return the result |
 
-**Return values**
-
-none
-
 **Example**
 
 ```
@@ -2118,10 +1734,6 @@ Removes a **VideoOutput** instance from this **CaptureSession** instance. This m
 | videoOutput   | VideoOutput          | Yes       | VideoOutput instance to remove     |
 | callback      | AsyncCallback<void\> | Yes       | Callback used to return the result |
 
-**Return values**
-
-none
-
 **Example**
 
 ```
@@ -2182,10 +1794,6 @@ Starts this **CaptureSession** instance. This method uses an asynchronous callba
 |----------|----------------------|-----------|----------------------------------------------|
 | callback | AsyncCallback<void\> | Yes       | Callback used to return the result |
 
-**Return values**
-
-none
-
 **Example**
 
 ```
@@ -2207,10 +1815,6 @@ SystemCapability.Multimedia.Camera.Core
 **Description**
 
 Starts this **CaptureSession** instance. This method uses a promise to return the result.
-
-**Parameters**
-
-none
 
 **Return values**
 
@@ -2243,10 +1847,6 @@ Stops this **CaptureSession** instance. This method uses an asynchronous callbac
 |----------|----------------------|-----------|------------------------------------|
 | callback | AsyncCallback<void\> | Yes       | Callback used to return the result |
 
-**Return values**
-
-none
-
 **Example**
 
 ```
@@ -2268,10 +1868,6 @@ SystemCapability.Multimedia.Camera.Core
 **Description**
 
 Stops this **CaptureSession** instance. This method uses a promise to return the result.
-
-**Parameters**
-
-none
 
 **Return values**
 
@@ -2303,10 +1899,6 @@ Releases this **CaptureSession** instance. This method uses an asynchronous call
 |----------|----------------------|-----------|------------------------------------|
 | callback | AsyncCallback<void\> | Yes       | Callback used to return the result |
 
-**Return values**
-
-none
-
 **Example**
 
 ```
@@ -2328,10 +1920,6 @@ SystemCapability.Multimedia.Camera.Core
 **Description**
 
 Releases this **CaptureSession** instance. This method uses a promise to return the result.
-
-**Parameters**
-
-none
 
 **Return values**
 
@@ -2364,10 +1952,6 @@ Listens for **CaptureSession** errors. This method uses a callback to get errors
 | type     | string                 | Yes       | Name of the event to listen for.                    |
 | callback | Callback<CaptureSessionError\> | Yes  | Callback used to get the capture session errors. |
 
-**Return value**
-
-None
-
 **Example**
 
 ```
@@ -2393,14 +1977,10 @@ Creates a **PreviewOutput** instance. This method uses an asynchronous callback 
 | surfaceId  | string                        | Yes       | Surface ID received from XComponent view           |
 | callback   | AsyncCallback<PreviewOutput\> | Yes       | Callback used to return the PreviewOutput instance |
 
-**Return values**
-
-none
-
 **Example**
 
 ```
-camera.createPreviewOutput(surfaceId), (err, previewOutput) => {
+camera.createPreviewOutput((surfaceId), (err, previewOutput) => {
     if (err) {
         console.error('Failed to create the PreviewOutput instance. ${err.message}');
         return;
@@ -2459,10 +2039,6 @@ Releases this **PreviewOutput** instance. This method uses an asynchronous callb
 |----------|----------------------|-----------|----------------------------------------------|
 | callback | AsyncCallback<void\> | Yes       | Callback used to return the result |
 
-**Return values**
-
-none
-
 **Example**
 
 ```
@@ -2484,9 +2060,6 @@ SystemCapability.Multimedia.Camera.Core
 **Description**
 
 Releases this **PreviewOutput** instance. This method uses a promise to return the result.
-
-**Parameters**
-none
 
 **Return values**
 
@@ -2520,10 +2093,6 @@ Listens for preview frame start events. This method uses a callback to get the e
 | type     | string            | Yes       | Name of the event to listen for.   |
 | callback | Callback<void\>   | Yes       | Callback used to return the result |
 
-**Return value**
-
-None
-
 **Example**
 
 ```
@@ -2548,10 +2117,6 @@ Listens for preview frame end event. This method uses a callback to get the even
 | :------- | :---------------- | :-------- | :----------------------------------|
 | type     | string            | Yes       | Name of the event to listen for.   |
 | callback | Callback<void\>   | Yes       | Callback used to return the result |
-
-**Return value**
-
-None
 
 **Example**
 
@@ -2578,10 +2143,6 @@ Listens for **PreviewOutput** errors. This method uses a callback to get errors.
 | type     | string                 | Yes       | Name of the event to listen for.                    |
 | callback | Callback<PreviewOutputError\> | Yes  | Callback used to get the preview output errors. |
 
-**Return value**
-
-None
-
 **Example**
 
 ```
@@ -2607,14 +2168,10 @@ Creates a **PhotoOutput** instance. This method uses an asynchronous callback to
 | surfaceId  | string                        | Yes       | Surface ID received from ImageReceiver             |
 | callback   | AsyncCallback<PhotoOutput\>   | Yes       | Callback used to return the PhotoOutput instance   |
 
-**Return values**
-
-none
-
 **Example**
 
 ```
-camera.createPhotoOutput(surfaceId), (err, photoOutput) => {
+camera.createPhotoOutput((surfaceId), (err, photoOutput) => {
     if (err) {
         console.error('Failed to create the PhotoOutput instance. ${err.message}');
         return;
@@ -2656,42 +2213,58 @@ camera.createPhotoOutput(surfaceId).then((photoOutput) => {
 
 Enumerates the image rotation angles.
 
+**System Capabilities:**
+
+SystemCapability.Multimedia.Camera.Core
+
 | Name         | Default Value | Description                            |
 |--------------|---------------|----------------------------------------|
-| ROTATION_0   | 0             | The capture image rotates 0 degrees <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core  |
-| ROTATION_90  | 90            | The capture image rotates 90 degrees <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core |
-| ROTATION_180 | 180           | The capture image rotates 180 degrees <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core |
-| ROTATION_270 | 270           | The capture image rotates 270 degrees <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core|
+| ROTATION_0   | 0             | The capture image rotates 0 degrees    |
+| ROTATION_90  | 90            | The capture image rotates 90 degrees   |
+| ROTATION_180 | 180           | The capture image rotates 180 degrees  |
+| ROTATION_270 | 270           | The capture image rotates 270 degrees  |
 
 
 ## Location
 
 Defines the location of a captured image.
 
+**System Capabilities:**
+
+SystemCapability.Multimedia.Camera.Core
+
 | Name      | Type   | Access       | Description |
 |-----------|--------|--------------|-------------|
-| latitude  | number | read / write | Latitude <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core   |
-| longitude | number | read / write | Longitude <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core   |
+| latitude  | number | read / write | Latitude    |
+| longitude | number | read / write | Longitude   |
 
 ## QualityLevel
 
 Enumerates the image quality levels.
 
+**System Capabilities:**
+
+SystemCapability.Multimedia.Camera.Core
+
 | Name                 | Default value | Description          |
 |----------------------|---------------|----------------------|
-| QUALITY_LEVEL_HIGH   | 0             | High image quality <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core  |
-| QUALITY_LEVEL_MEDIUM | 1             | Medium image quality <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core |
-| QUALITY_LEVEL_LOW    | 2             | Low image quality <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core   |
+| QUALITY_LEVEL_HIGH   | 0             | High image quality   |
+| QUALITY_LEVEL_MEDIUM | 1             | Medium image quality |
+| QUALITY_LEVEL_LOW    | 2             | Low image quality    |
 
 
 ## PhotoCaptureSetting
 
 Defines the settings for image capture.
 
+**System Capabilities:**
+
+SystemCapability.Multimedia.Camera.Core
+
 | Name     | Type          | Mandatory | Description         |
 |----------|---------------|-----------|---------------------|
-| quality  | QualityLevel  | Optional  | Photo image quality <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core|
-| rotation | ImageRotation | Optional  | Photo rotation <br/>System Capabilities: SystemCapability.Multimedia.Camera.Core     |
+| quality  | QualityLevel  | Optional  | Photo image quality |
+| rotation | ImageRotation | Optional  | Photo rotation      |
 
 
 ## PhotoOutput
@@ -2713,10 +2286,6 @@ Captures a photo. This method uses an asynchronous callback to return the result
 | Name     | Type                | Mandatory | Description                                  |
 |----------|---------------------|-----------|----------------------------------------------|
 | callback | AsyncCallback<void\> | Yes       | Callback used to return the result |
-
-**Return values**
-
-none
 
 **Example**
 
@@ -2746,10 +2315,6 @@ Captures a photo with the specified capture settings. This method uses an asynch
 |----------|----------------------|-----------|----------------------------------------------|
 | setting  | PhotoCaptureSetting  | Yes       | Photo capture settings                       |
 | callback | AsyncCallback<void\> | Yes       | Callback used to return the result |
-
-**Return values**
-
-none
 
 **Example**
 
@@ -2810,10 +2375,6 @@ Releases this **PhotoOutput** instance. This method uses an asynchronous callbac
 |----------|----------------------|-----------|----------------------------------------------|
 | callback | AsyncCallback<void\> | Yes       | Callback used to return the result |
 
-**Return values**
-
-none
-
 **Example**
 
 ```
@@ -2835,9 +2396,6 @@ SystemCapability.Multimedia.Camera.Core
 **Description**
 
 Releases this **PhotoOutput** instance. This method uses a promise to return the result.
-
-**Parameters**
-none
 
 **Return values**
 
@@ -2871,10 +2429,6 @@ Listens for photo capture start events. This method uses a callback to get the e
 | type     | string                 | Yes       | Name of the event to listen for.                |
 | callback | Callback<number\>      | Yes       | Callback used to get the capture ID.            |
 
-**Return value**
-
-None
-
 **Example**
 
 ```
@@ -2899,10 +2453,6 @@ Listens for frame shutter events. This method uses a callback to get the event i
 | :------- | :--------------------- | :-------- | :-----------------------------------------------|
 | type     | string                 | Yes       | Name of the event to listen for.                |
 | callback | Callback<FrameShutterInfo\> | Yes   | Callback used to get the frame shutter information.|
-
-**Return value**
-
-None
 
 **Example**
 
@@ -2930,10 +2480,6 @@ Listens for photo capture end events. This method uses a callback to get the eve
 | type     | string                 | Yes       | Name of the event to listen for.                 |
 | callback | Callback<CaptureEndInfo\> | Yes    | Callback used to get the capture end information |
 
-**Return value**
-
-None
-
 **Example**
 
 ```
@@ -2960,10 +2506,6 @@ Listens for **PhotoOutput** errors. This method uses a callback to get errors.
 | type     | string                 | Yes       | Name of the event to listen for.                |
 | callback | Callback<PhotoOutputError\> | Yes  | Callback used to get the photo output errors.   |
 
-**Return value**
-
-None
-
 **Example**
 
 ```
@@ -2989,14 +2531,10 @@ Creates a **VideoOutput** instance. This method uses an asynchronous callback to
 | surfaceId  | string                        | Yes       | Surface ID received from VideoRecorder             |
 | callback   | AsyncCallback<VideoOutput\>   | Yes       | Callback used to return the VideoOutput instance   |
 
-**Return values**
-
-none
-
 **Example**
 
 ```
-camera.createVideoOutput(surfaceId), (err, videoOutput) => {
+camera.createVideoOutput((surfaceId), (err, videoOutput) => {
     if (err) {
         console.error('Failed to create the VideoOutput instance. ${err.message}');
         return;
@@ -3054,10 +2592,6 @@ Starts the video output. This method uses an asynchronous callback to return the
 |----------|----------------------|-----------|----------------------------------------------|
 | callback | AsyncCallback<void\> | Yes       | Callback used to return the result |
 
-**Return values**
-
-none
-
 **Example**
 
 ```
@@ -3079,9 +2613,6 @@ SystemCapability.Multimedia.Camera.Core
 **Description**
 
 Starts the video output. This method uses a promise to return the result.
-
-**Parameters**
-none
 
 **Return values**
 
@@ -3114,10 +2645,6 @@ Stops the video output. This method uses an asynchronous callback to return the 
 |----------|----------------------|-----------|----------------------------------------------|
 | callback | AsyncCallback<void\> | Yes       | Callback used to return the result |
 
-**Return values**
-
-none
-
 **Example**
 
 ```
@@ -3139,9 +2666,6 @@ SystemCapability.Multimedia.Camera.Core
 **Description**
 
 Stops the video output. This method uses a promise to return the result.
-
-**Parameters**
-none
 
 **Return values**
 
@@ -3173,10 +2697,6 @@ Releases this VideoOutput instance. This method uses an asynchronous callback to
 |----------|----------------------|-----------|----------------------------------------------|
 | callback | AsyncCallback<void\> | Yes       | Callback used to return the result |
 
-**Return values**
-
-none
-
 **Example**
 
 ```
@@ -3198,10 +2718,6 @@ SystemCapability.Multimedia.Camera.Core
 **Description**
 
 Releases this VideoOutput instance. This method uses a promise to return the result.
-
-**Parameters**
-
-none
 
 **Return values**
 
@@ -3235,10 +2751,6 @@ Listens for video frame start events. This method uses a callback to get the eve
 | type     | string            | Yes       | Name of the event to listen for.       |
 | callback | Callback<void\>   | Yes       | Callback used to return the result |
 
-**Return value**
-
-None
-
 **Example**
 
 ```
@@ -3258,10 +2770,6 @@ Listens for video frame end events. This method uses a callback to get the event
 | type     | string            | Yes       | Name of the event to listen for.   |
 | callback | Callback<void\>   | Yes       | Callback used to return the result |
 
-**Return value**
-
-None
-
 **Example**
 
 ```
@@ -3280,10 +2788,6 @@ Listens for **VideoOutput** errors. This method uses a callback to get errors.
 | :------- | :--------------------- | :-------- | :-----------------------------------------------|
 | type     | string                 | Yes       | Name of the event to listen for.                |
 | callback | Callback<VideoOutputError\> | Yes  | Callback used to get the video output errors.   |
-
-**Return value**
-
-None
 
 **Example**
 
