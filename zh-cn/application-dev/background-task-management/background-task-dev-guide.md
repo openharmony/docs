@@ -125,7 +125,7 @@ ohos.permission.KEEP_BACKGROUND_RUNNING
 
 ## 开发步骤
 
-1. 在config.json文件中配置长时任务权限
+1. 在config.json文件中配置长时任务权限和后台模式类型。其中ability类型为service
 
     ```json
     "module": {
