@@ -510,7 +510,7 @@ while(temp != undefined) {
 
 ### forEach
 
-forEach(callbackfn: (value: V, key?: K, map?: LightWeightMap<K, V>) => void, thisArg?: Object): void
+forEach(callbackfn: (value?: V, key?: K, map?: LightWeightMap<K, V>) => void, thisArg?: Object): void
 
 Uses a callback to traverse the entries in this container and obtain their position indexes.
 
@@ -569,7 +569,7 @@ while(temp != undefined) {
 
 ### toString
 
-toString(): string
+toString(): String
 
 Concatenates the entries in this container into a string and returns the string.
 
@@ -577,7 +577,7 @@ Concatenates the entries in this container into a string and returns the string.
 
   | Type| Description|
   | -------- | -------- |
-  | string | Returns a string.|
+  | String | Returns a string.|
 
 **Example**
 

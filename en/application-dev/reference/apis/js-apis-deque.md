@@ -154,7 +154,6 @@ deque.insertEnd(4);
 deque.insertFront(5);
 deque.insertFront(2);
 deque.insertFront(4);
-deque.popLast();
 let result = deque.popLast();
 ```
 

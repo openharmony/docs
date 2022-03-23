@@ -27,16 +27,10 @@ SystemCapability.Utils.Lang
 
 ### constructor
 
-constructor(head?: NodeObj&lt;T&gt;, tail?: NodeObj&lt;T&gt;)
+constructor()
 
 A constructor used to create a **LinkedList** instance.
 
-**Parameters**
-
-| Name| Type| Readable| Writable| Description|
-| -------- | -------- | -------- | -------- | -------- |
-| head | NodeObj&lt;T&gt; | Yes| No| Node object, including **element**, **next**, and **prev**.|
-| tail | NodeObj&lt;T&gt; | Yes| No| Node object, including **element**, **next**, and **prev**.|
 
 **Example**
 
@@ -300,7 +294,7 @@ let result = linkedList.removeFirst();
 
 ### removeLast
 
-removeLst(): T
+removeLast(): T
 
 Removes the last entry from this container.
 
