@@ -600,13 +600,13 @@ Defines the network type.
 
 | Name                | Value  | Description                                                        |
 | -------------------- | ---- | ------------------------------------------------------------ |
-| NETWORK_TYPE_UNKNOWN | 0    | Unknown network                                              |
-| NETWORK_TYPE_GSM     | 1    | GSM network   |
-| NETWORK_TYPE_CDMA    | 2    | CDMA network           |
-| NETWORK_TYPE_WCDMA   | 3    | WCDMA network |
-| NETWORK_TYPE_TDSCDMA | 4    | TD-SCDMA network|
-| NETWORK_TYPE_LTE     | 5    | LTE network                      |
-| NETWORK_TYPE_NR      | 6    | 5G NR network                              |
+| NETWORK_TYPE_UNKNOWN | 0    | Unknown network.                                              |
+| NETWORK_TYPE_GSM     | 1    | GSM network.   |
+| NETWORK_TYPE_CDMA    | 2    | CDMA network.           |
+| NETWORK_TYPE_WCDMA   | 3    | WCDMA network. |
+| NETWORK_TYPE_TDSCDMA | 4    | TD-SCDMA network.|
+| NETWORK_TYPE_LTE     | 5    | LTE network.                      |
+| NETWORK_TYPE_NR      | 6    | 5G NR network.                              |
 
 ## NetworkState
 

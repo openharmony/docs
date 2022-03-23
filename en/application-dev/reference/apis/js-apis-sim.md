@@ -15,7 +15,7 @@ import sim from '@ohos.telephony.sim';
 
 isSimActive\(slotId: number, callback: AsyncCallback<boolean\>\): void
 
-Checks whether the SIM card in the specified slot is activated. This function uses an asynchronous callback to return the result.
+Checks whether the SIM card in the specified slot is activated. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Communication.CoreService
 
@@ -23,7 +23,7 @@ Checks whether the SIM card in the specified slot is activated. This function us
 
 | Name  | Type                       | Mandatory| Description                                  |
 | -------- | --------------------------- | ---- | -------------------------------------- |
-| slotId   | number                      | Yes  | Card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
+| slotId   | number                      | Yes  | Card slot ID. The options are as follows:<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result.                            |
 
 **Example**
@@ -39,7 +39,7 @@ sim.isSimActive(0, (err, data) => {
 
 isSimActive\(slotId: number\): Promise<boolean\>
 
-Checks whether the SIM card in the specified slot is activated. This function uses a promise to return the result.
+Checks whether the SIM card in the specified slot is activated. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Communication.CoreService
 
@@ -47,9 +47,9 @@ Checks whether the SIM card in the specified slot is activated. This function us
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| slotId | number | Yes  | Card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
+| slotId | number | Yes  | Card slot ID. The options are as follows:<br>- **0**: card slot 1<br>- **1**: card slot 2|
 
-**Return Value**
+**Return value**
 
 | Type                 | Description                              |
 | --------------------- | ---------------------------------- |
@@ -71,7 +71,7 @@ promise.then(data => {
 
 getDefaultVoiceSlotId\(callback: AsyncCallback<number\>\): void
 
-Obtains the default slot ID of the SIM card that provides voice services. This function uses an asynchronous callback to return the result.
+Obtains the default slot ID of the SIM card that provides voice services. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Communication.CoreService
 
@@ -94,11 +94,11 @@ sim.getDefaultVoiceSlotId((err, data) => {
 
 getDefaultVoiceSlotId\(\): Promise<number\>
 
-Obtains the default slot ID of the SIM card that provides voice services. This function uses a promise to return the result.
+Obtains the default slot ID of the SIM card that provides voice services. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Communication.CoreService
 
-**Return Value**
+**Return value**
 
 | Type             | Description                                   |
 | ----------------- | --------------------------------------- |
@@ -119,7 +119,7 @@ promise.then(data => {
 
 hasOperatorPrivileges(slotId: number, callback: AsyncCallback\<boolean\>): void
 
-Checks whether the application (caller) has been granted the operator permission. This function uses an asynchronous callback to return the result. 
+Checks whether the application (caller) has been granted the operator permission. This API uses an asynchronous callback to return the result. 
 
 **System capability**: SystemCapability.Communication.CoreService
 
@@ -127,7 +127,7 @@ Checks whether the application (caller) has been granted the operator permission
 
 | Name  | Type                    | Mandatory| Description                                    |
 | -------- | ------------------------ | ---- | ---------------------------------------- |
-| slotId   | number                   | Yes  | Card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
+| slotId   | number                   | Yes  | Card slot ID. The options are as follows:<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.                              |
 
 **Example**
@@ -140,9 +140,9 @@ sim.hasOperatorPrivileges(0, (err, data) => {
 
 ## sim.hasOperatorPrivileges<sup>7+</sup>
 
-hasOperatorPrivileges(slotId: number): Promise<boolean>
+hasOperatorPrivileges(slotId: number): Promise<boolean\>
 
-Checks whether the application (caller) has been granted the operator permission. This function uses a promise to return the result. 
+Checks whether the application (caller) has been granted the operator permission. This API uses a promise to return the result. 
 
 **System capability**: SystemCapability.Communication.CoreService
 
@@ -150,9 +150,9 @@ Checks whether the application (caller) has been granted the operator permission
 
 | Name| Type  | Mandatory| Description                                    |
 | ------ | ------ | ---- | ---------------------------------------- |
-| slotId | number | Yes  | Card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
+| slotId | number | Yes  | Card slot ID. The options are as follows:<br>- **0**: card slot 1<br>- **1**: card slot 2|
 
-**Return Value**
+**Return value**
 
 | Type              | Description                                                       |
 | :----------------- | :---------------------------------------------------------- |
@@ -173,7 +173,7 @@ promise.then(data => {
 
 getISOCountryCodeForSim\(slotId: number, callback: AsyncCallback<string\>\): void
 
-Obtains the ISO country code of the SIM card in the specified slot. This function uses an asynchronous callback to return the result.
+Obtains the ISO country code of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Communication.CoreService
 
@@ -181,7 +181,7 @@ Obtains the ISO country code of the SIM card in the specified slot. This functio
 
 | Name  | Type                   | Mandatory| Description                                    |
 | -------- | ----------------------- | ---- | ---------------------------------------- |
-| slotId   | number                  | Yes  | Card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2  |
+| slotId   | number                  | Yes  | Card slot ID. The options are as follows:<br>- **0**: card slot 1<br>- **1**: card slot 2  |
 | callback | AsyncCallback\<string\> | Yes  | Callback used to return the result, which is a country code, for example, **CN** (China).|
 
 **Example**
@@ -197,7 +197,7 @@ sim.getISOCountryCodeForSim(0, (err, data) => {
 
 getISOCountryCodeForSim\(slotId: number\): Promise<string\>
 
-Obtains the ISO country code of the SIM card in the specified slot. This function uses a promise to return the result.
+Obtains the ISO country code of the SIM card in the specified slot. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Communication.CoreService
 
@@ -205,9 +205,9 @@ Obtains the ISO country code of the SIM card in the specified slot. This functio
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| slotId | number | Yes  | Card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
+| slotId | number | Yes  | Card slot ID. The options are as follows:<br>- **0**: card slot 1<br>- **1**: card slot 2|
 
-**Return Value**
+**Return value**
 
 | Type             | Description                                                        |
 | ----------------- | ------------------------------------------------------------ |
@@ -229,7 +229,7 @@ promise.then(data => {
 
 getSimOperatorNumeric\(slotId: number, callback: AsyncCallback<string\>\): void
 
-Obtains the public land mobile network (PLMN) ID of the SIM card in the specified slot. This function uses an asynchronous callback to return the result.
+Obtains the public land mobile network (PLMN) ID of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Communication.CoreService
 
@@ -237,7 +237,7 @@ Obtains the public land mobile network (PLMN) ID of the SIM card in the specifie
 
 | Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| slotId   | number                  | Yes  | Card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
+| slotId   | number                  | Yes  | Card slot ID. The options are as follows:<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | callback | AsyncCallback\<string\> | Yes  | Callback used to return the result.                            |
 
 **Example**
@@ -253,7 +253,7 @@ sim.getSimOperatorNumeric(0, (err, data) => {
 
 getSimOperatorNumeric\(slotId: number\): Promise<string\>
 
-Obtains the PLMN ID of the SIM card in the specified slot. This function uses a promise to return the result.
+Obtains the PLMN ID of the SIM card in the specified slot. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Communication.CoreService
 
@@ -261,9 +261,9 @@ Obtains the PLMN ID of the SIM card in the specified slot. This function uses a 
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| slotId | number | Yes  | Card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
+| slotId | number | Yes  | Card slot ID. The options are as follows:<br>- **0**: card slot 1<br>- **1**: card slot 2|
 
-**Return Value**
+**Return value**
 
 | Type             | Description                                            |
 | ----------------- | ------------------------------------------------ |
@@ -285,7 +285,7 @@ promise.then(data => {
 
 getSimSpn\(slotId: number, callback: AsyncCallback<string\>\): void
 
-Obtains the service provider name (SPN) of the SIM card in the specified slot. This function uses an asynchronous callback to return the result. 
+Obtains the service provider name (SPN) of the SIM card in the specified slot. This API uses an asynchronous callback to return the result. 
 
 **System capability**: SystemCapability.Communication.CoreService
 
@@ -293,7 +293,7 @@ Obtains the service provider name (SPN) of the SIM card in the specified slot. T
 
 | Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| slotId   | number                  | Yes  | Card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
+| slotId   | number                  | Yes  | Card slot ID. The options are as follows:<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | callback | AsyncCallback\<string\> | Yes  | Callback used to return the result.                            |
 
 **Example**
@@ -309,7 +309,7 @@ sim.getSimSpn(0, (err, data) => {
 
 getSimSpn\(slotId: number\): Promise<string\>
 
-Obtains the SPN of the SIM card in the specified slot. This function uses a promise to return the result. 
+Obtains the SPN of the SIM card in the specified slot. This API uses a promise to return the result. 
 
 **System capability**: SystemCapability.Communication.CoreService
 
@@ -317,9 +317,9 @@ Obtains the SPN of the SIM card in the specified slot. This function uses a prom
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| slotId | number | Yes  | Card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
+| slotId | number | Yes  | Card slot ID. The options are as follows:<br>- **0**: card slot 1<br>- **1**: card slot 2|
 
-**Return Value**
+**Return value**
 
 | Type             | Description                                     |
 | ----------------- | ----------------------------------------- |
@@ -341,7 +341,7 @@ promise.then(data => {
 
 getSimState\(slotId: number, callback: AsyncCallback<SimState\>\): void
 
-Obtains the status of the SIM card in the specified slot. This function uses an asynchronous callback to return the result.
+Obtains the status of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Communication.CoreService
 
@@ -349,7 +349,7 @@ Obtains the status of the SIM card in the specified slot. This function uses an 
 
 | Name  | Type                                  | Mandatory| Description                                  |
 | -------- | -------------------------------------- | ---- | -------------------------------------- |
-| slotId   | number                                 | Yes  | Card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
+| slotId   | number                                 | Yes  | Card slot ID. The options are as follows:<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | callback | AsyncCallback\<[SimState](#simState)\> | Yes  | Callback used to return the result. For details, see [SimState](#simState). |
 
 **Example**
@@ -365,7 +365,7 @@ sim.getSimState(0, (err, data) => {
 
 getSimState\(slotId: number\): Promise<SimState\>
 
-Obtains the status of the SIM card in the specified slot. This function uses a promise to return the result.
+Obtains the status of the SIM card in the specified slot. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Communication.CoreService
 
@@ -373,9 +373,9 @@ Obtains the status of the SIM card in the specified slot. This function uses a p
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| slotId | number | Yes  | Card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
+| slotId | number | Yes  | Card slot ID. The options are as follows:<br>- **0**: card slot 1<br>- **1**: card slot 2|
 
-**Return Value**
+**Return value**
 
 | Type                            | Description                                      |
 | -------------------------------- | ------------------------------------------ |
@@ -396,7 +396,7 @@ promise.then(data => {
 
 getCardType\(slotId: number, callback: AsyncCallback<CardType\>\): void
 
-Obtains the type of the SIM card in the specified slot. This function uses an asynchronous callback to return the result.
+Obtains the type of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Communication.CoreService
 
@@ -404,7 +404,7 @@ Obtains the type of the SIM card in the specified slot. This function uses an as
 
 | Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| slotId   | number                  | Yes  | Card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
+| slotId   | number                  | Yes  | Card slot ID. The options are as follows:<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | callback | AsyncCallback\<[CardType](#cardtype7)\> | Yes  | Callback used to return the result.                            |
 
 **Example**
@@ -420,7 +420,7 @@ sim.getCardType(0, (err, data) => {
 
 getCardType\(slotId: number\): Promise<CardType\>
 
-Obtains the type of the SIM card in the specified slot. This function uses a promise to return the result.
+Obtains the type of the SIM card in the specified slot. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Communication.CoreService
 
@@ -428,9 +428,9 @@ Obtains the type of the SIM card in the specified slot. This function uses a pro
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| slotId | number | Yes  | Card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
+| slotId | number | Yes  | Card slot ID. The options are as follows:<br>- **0**: card slot 1<br>- **1**: card slot 2|
 
-**Return Value**
+**Return value**
 
 | Type             | Description                                                        |
 | ----------------- | ------------------------------------------------------------ |
@@ -452,7 +452,7 @@ promise.then(data => {
 
 hasSimCard\(slotId: number, callback: AsyncCallback<boolean\>\): void
 
-Checks whether the SIM card in the specified slot is installed. This function uses an asynchronous callback to return the result.
+Checks whether the SIM card in the specified slot is installed. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Communication.CoreService
 
@@ -460,7 +460,7 @@ Checks whether the SIM card in the specified slot is installed. This function us
 
 | Name  | Type                       | Mandatory| Description                                  |
 | -------- | --------------------------- | ---- | -------------------------------------- |
-| slotId   | number                      | Yes  | Card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
+| slotId   | number                      | Yes  | Card slot ID. The options are as follows:<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result.                            |
 
 **Example**
@@ -476,7 +476,7 @@ sim.hasSimCard(0, (err, data) => {
 
 hasSimCard\(slotId: number\): Promise<boolean\>
 
-Checks whether the SIM card in the specified slot is installed. This function uses a promise to return the result.
+Checks whether the SIM card in the specified slot is installed. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Communication.CoreService
 
@@ -484,9 +484,9 @@ Checks whether the SIM card in the specified slot is installed. This function us
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| slotId | number | Yes  | Card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
+| slotId | number | Yes  | Card slot ID. The options are as follows:<br>- **0**: card slot 1<br>- **1**: card slot 2|
 
-**Return Value**
+**Return value**
 
 | Type                 | Description                              |
 | --------------------- | ---------------------------------- |
@@ -512,7 +512,7 @@ Obtains the number of card slots.
 
 **System capability**: SystemCapability.Communication.CoreService
 
-**Return Value**
+**Return value**
 
 | Type             | Description                                                        |
 | ----------------- | ------------------------------------------------------------ |
@@ -557,4 +557,4 @@ Enumerates card types.
 |CU_DUAL_MODE_CARD | 42 | China Unicom dual-mode card|
 |DUAL_MODE_TELECOM_LTE_CARD | 43 | China Telecom dual-mode LTE card|
 |DUAL_MODE_UG_CARD | 50 | Dual-mode card (UMTS+GSM)|
-|SINGLE_MODE_ISIM_CARD | 60 | Single-card (ISIM)|
+|SINGLE_MODE_ISIM_CARD<sup>8+</sup> | 60 | Single-card (ISIM)|

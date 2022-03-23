@@ -18,7 +18,7 @@
   - [应用开发包结构说明](quick-start/package-structure.md)
   - [资源文件的分类](quick-start/basic-resource-file-categories.md)
 - 开发
-  - [Ability开发](ability/Readme-CN.md)
+  - Ability开发
     - [Ability框架概述](ability/ability-brief.md)
     - FA模型
       - [FA模型综述](ability/fa-brief.md)
@@ -35,7 +35,7 @@
     - 其他
       - [WantAgent使用指导](ability/wantagent.md)
       - [Ability助手使用指导](ability/ability-assistant-guidelines.md)
-  - [UI开发](ui/Readme-CN.md)
+  - UI开发
     - [方舟开发框架（ArkUI）概述](ui/arkui-overview.md)
     - 基于JS扩展的类Web开发范式
       - [概述](ui/ui-js-overview.md)

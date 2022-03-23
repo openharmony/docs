@@ -195,7 +195,7 @@ let result = treeMap.getLastKey();
 
 setAll(map: TreeMap<K, V>): void
 
-将一个treemap中的所有元素组添加到另一个treeMap中。
+将一个TreeMap中的所有元素组添加到另一个TreeMap中。
 
 **参数：**
 
@@ -218,7 +218,7 @@ treeMap.setAll(map);
 
 set(key: K, value: V): Object
 
-向treemap中添加一组数据。
+向容器中添加一组数据。
 
 **参数：**
 
@@ -330,7 +330,7 @@ let result = treeMap.getHigherKey("sdfs");
 
 replace(key: K, newValue: V): boolean
 
-对TreeMap中一组数据进行更新（替换）。
+对容器中一组数据进行更新（替换）。
 
 **参数：**
 
@@ -358,7 +358,7 @@ let result = treeMap.replace("sdfs", 357);
 
 clear(): void
 
-清除TreeMap中的所有元素，并把length置为0。
+清除容器中的所有元素，并把length置为0。
 
 **示例：**
 

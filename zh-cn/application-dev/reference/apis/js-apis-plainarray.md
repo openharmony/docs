@@ -416,7 +416,7 @@ plainArray.clear();
 
 ### forEach
 
-forEach(callbackfn: (value: T, index?: number, PlainArray?: PlainArray<T>) => void, thisArg?: Object): void
+forEach(callbackfn: (value: T, index?: number, PlainArray?: PlainArray&lt;T&gt;) => void, thisArg?: Object): void
 
 通过回调函数来遍历实例对象上的元素以及元素对应的下标。
 
@@ -432,7 +432,7 @@ callbackfn的参数说明：
 | -------- | -------- | -------- | -------- |
 | value | T | 是 | 当前遍历到的元素键值对的值。 |
 | index | number | 否 | 当前遍历到的元素键值对的键。 |
-| plainArray | PlainArray<T> | 否 | 当前调用forEach方法的实例对象。 |
+| PlainArray | PlainArray&lt;T&gt;| 否 | 当前调用forEach方法的实例对象。 |
 
 **示例：**
 
@@ -456,7 +456,7 @@ plainArray.forEach((value, key) => {
 
 | 类型 | 说明 |
 | -------- | -------- |
-| IterableIterator<[number, T]> | 返回一个迭代器。 |
+| IterableIterator&lt;[number, T]&gt; | 返回一个迭代器。 |
 
 **示例：**
 

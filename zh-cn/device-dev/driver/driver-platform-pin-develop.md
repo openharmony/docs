@@ -1,21 +1,12 @@
-# PIN<a name="title_PinDevelop"></a>
+# PIN
 
--   [概述](#section1_PinDevelop)
-    -   [功能简介](#section2_PinDevelop)
-    -   [基本概念](#section3_PinDevelop) 
-    -   [运作机制](#section4_PinDevelop) 
-    -   [约束与限制](#section5_PinDevelop)
--   [使用指导](#section6_PinDevelop)
-    -   [场景介绍](#section7_PinDevelop)
-    -   [接口说明](#section8_PinDevelop) 
-    -   [开发步骤](#section9_PinDevelop)
 
-## 概述 <a name="section1_PinDevelop"></a>
+## 概述
 
-### 功能简介<a name="section2_PinDevelop"></a>
+### 功能简介
 PIN即管脚控制器，用于统一管理各SoC厂商管脚资源，对外提供管脚复用功能。
 
-### 基本概念<a name="section3_PinDevelop"></a>
+### 基本概念
 
 PIN是一个软件层面的概念，目的是为了统一各SoC厂商PIN管脚管理，对外提供管脚复用功能，配置PIN管脚的电气特性。
 
@@ -27,26 +18,26 @@ PIN是一个软件层面的概念，目的是为了统一各SoC厂商PIN管脚�
 
   由于芯片自身的引脚数量有限，无法满足日益增多的外接需求。此时可以通过软件层面的寄存器设置，让引脚工作在不同的状态，从而实现相同引脚完成不同功能的目的。
 
-### 运作机制<a name="section4_PinDevelop"></a>
+### 运作机制
 
-在HDF框架中，PIN模块暂不支持用户态，所以不需要发布服务，接口适配模式采用无服务模式（如图1所示），用于不需要在用户态提供API的设备类型，或者没有用户态和内核区分的OS系统，其关联方式是DevHandle直接指向设备对象内核态地址（DevHandle是一个void类型指针）。
+在HDF框架中，PIN模块暂不支持用户态，所以不需要发布服务，接口适配模式采用无服务模式（如[图1](#无服务模式结构图)所示），用于不需要在用户态提供API的设备类型，或者没有用户态和内核区分的OS系统，其关联方式是DevHandle直接指向设备对象内核态地址（DevHandle是一个void类型指针）。
 
 PIN模块各分层作用：接口层提供获取PIN管脚、设置PIN管脚推拉方式、获取PIN管脚推拉方式、设置PIN管脚推拉强度、获取PIN管脚推拉强度、设置PIN管脚功能、获取PIN管脚功能、释放PIN管脚的接口。核心层主要提供PIN管脚资源匹配，PIN管脚控制器的添加、移除以及管理的能力，通过钩子函数与适配层交互。适配层主要是将钩子函数的功能实例化，实现具体的功能。
 
 **图 1**  无服务模式结构图
-![image1](figures/无服务模式结构图.png)
+![无服务模式结构图](figures/无服务模式结构图.png)
 
-### 约束与限制<a name="section5_PinDevelop"></a>
+### 约束与限制
 
- PIN模块目前仅支持轻量和小型系统内核（LiteOS）。
+PIN模块目前仅支持轻量和小型系统内核（LiteOS）。
 
-## 开发指导<a name="section6_PinDevelop"></a>
+## 开发指导
 
-### 场景介绍<a name="section7_PinDevelop"></a>
+### 场景介绍
 
 PIN模块主要用于管脚资源管理。在各SoC厂商对接HDF框架时，需要来适配PIN驱动。
 
-### 接口说明<a name="section8_PinDevelop"></a>
+### 接口说明
 
 通过以下PinCntlrMethod中的函数调用PIN驱动对应的函数。
 PinCntlrMethod定义：
@@ -73,7 +64,7 @@ struct PinCntlrMethod {
 | SetPinFunc | **cntlr**：结构体指针，核心层Pin控制器；<br/>**index**：uint32_t变量，管脚索引号；<br/>**funcName**：char指针常量，传入Pin管脚功能； | 无 | HDF_STATUS相关状态 | PIN设置管脚功能 |
 | GetPinFunc | **cntlr**：结构体指针，核心层Pin控制器；<br/>**index**：uint32_t变量，管脚索引号； | **funcName**：char双重指针常量，传出Pin管脚功能； | HDF_STATUS相关状态 | PIN获取管脚功能 |
 
-### 开发步骤 <a name="section9_PinDevelop"></a>
+### 开发步骤
 
 PIN模块适配包含以下四个步骤：
 
@@ -85,7 +76,7 @@ PIN模块适配包含以下四个步骤：
 1. **实例化驱动入口：**
 
    - 实例化HdfDriverEntry结构体成员。
-   驱动开发首先需要实例化驱动入口，驱动入口必须为HdfDriverEntry（在 hdf_device_desc.h 中定义）类型的全局变量，且moduleName要和device_info.hcs中保持一致。
+     驱动开发首先需要实例化驱动入口，驱动入口必须为HdfDriverEntry（在 hdf_device_desc.h 中定义）类型的全局变量，且moduleName要和device_info.hcs中保持一致。
 
    - 调用HDF_INIT将HdfDriverEntry实例化对象注册到HDF框架中。
      一般在加载驱动时HDF会先调用Init函数加载该驱动。当Init调用异常时，HDF框架会调用Release释放驱动资源并退出。
@@ -292,7 +283,7 @@ PIN模块适配包含以下四个步骤：
         HdfDeviceObject这个是整个驱动对外暴露的接口参数，具备HCS配置文件的信息。
 
         返回值：
-        HDF\_STATUS相关状态  （下表为部分展示，如需使用其他状态，可见/drivers/framework/include/utils/hdf\_base.h中HDF\_STATUS 定义）。
+        HDF\_STATUS相关状态（下表为部分展示，如需使用其他状态，可见/drivers/framework/include/utils/hdf\_base.h中HDF\_STATUS 定义）。
    
         | **状态(值)**           | **问题描述**   |
         | ---------------------- | -------------- |

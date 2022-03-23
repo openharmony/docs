@@ -1,4 +1,4 @@
-# Socket
+# Socket Connection
 
 >![](public_sys-resources/icon-note.gif) **NOTE:**
 >
