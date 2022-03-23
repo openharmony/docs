@@ -7,12 +7,10 @@
    - [DataAbility开发指导](fa-dataability.md)
    - [FormAbility开发指导](fa-formability.md)
  - Stage模型
-   - [Stage模型综述](stage-brief.md)
-   - [Ability开发指导](stage-ability.md)
    - [ServiceExtensionAbility开发指导](stage-serviceextension.md)
-   - [FormExtensionAbility开发指导](stage-formextension.md)
    - [应用迁移开发指导](stage-ability-continuation.md)
    - [Call调用开发指导](stage-call.md)
  - 其他
    - [WantAgent使用指导](wantagent.md)
    - [Ability助手使用指导](ability-assistant-guidelines.md)
+   - [测试框架使用指导](ability-delegator.md)
