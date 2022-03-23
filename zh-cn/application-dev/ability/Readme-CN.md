@@ -11,7 +11,7 @@
    - [Ability开发指导](stage-ability.md)
    - [ServiceExtensionAbility开发指导](stage-serviceextension.md)
    - [FormExtensionAbility开发指导](stage-formextension.md)
-   - [应用迁移开发指导](stage-ability-continuation.md)
+   - [跨端迁移开发指导](stage-ability-continuation.md)
    - [Call调用开发指导](stage-call.md)
  - 其他
    - [WantAgent使用指导](wantagent.md)
