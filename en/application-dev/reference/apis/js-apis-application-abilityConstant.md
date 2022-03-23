@@ -1,9 +1,5 @@
 # AbilityConstant
 
-- [导入模块](#导入模块)
-- [属性](#属性)
-
-
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > The initial APIs of this module are supported since API version 9.
 
