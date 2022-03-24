@@ -638,6 +638,112 @@ requestEnableLocation() : Promise&lt;boolean&gt;
   ```
 
 
+## geolocation.enableLocation
+
+enableLocation(callback: AsyncCallback&lt;boolean&gt;) : void;
+
+打开位置服务，使用callback回调异步返回结果。
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
+**需要权限**：ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+- 参数：
+    | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;boolean&gt; | 是 | 用来接收位置服务状态的回调。 |
+
+
+- 示例：
+  
+  ```
+  geolocation.enableLocation((err, data) => {
+      console.log('enableLocation: ' + err + " data: " + data);
+  });
+  ```
+
+
+## geolocation.enableLocation
+
+enableLocation() : Promise&lt;boolean&gt;
+
+打开位置服务，使用Promise方式异步返回结果。
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
+**需要权限**：ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+- 返回值：
+    | 参数名 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;boolean&gt; | 返回位置服务是否可用。 |
+
+
+- 示例：
+  
+  ```
+  geolocation.enableLocation().then((result) => {
+      console.log('promise, enableLocation: ' + result);
+  });
+  ```
+
+## geolocation.disableLocation
+
+disableLocation(callback: AsyncCallback&lt;boolean&gt;) : void;
+
+打开位置服务，使用callback回调异步返回结果。
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
+**需要权限**：ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+- 参数：
+    | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;boolean&gt; | 是 | 用来接收位置服务状态的回调。 |
+
+
+- 示例：
+  
+  ```
+  geolocation.disableLocation((err, data) => {
+      console.log('disableLocation: ' + err + " data: " + data);
+  });
+  ```
+
+
+## geolocation.disableLocation
+
+disableLocation() : Promise&lt;boolean&gt;
+
+打开位置服务，使用Promise方式异步返回结果。
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
+**需要权限**：ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+- 返回值：
+    | 参数名 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;boolean&gt; | 返回位置服务是否可用。 |
+
+
+- 示例：
+  
+  ```
+  geolocation.disableLocation().then((result) => {
+      console.log('promise, disableLocation: ' + result);
+  });
+  ```
+
 ## geolocation.isGeoServiceAvailable
 
 isGeoServiceAvailable(callback: AsyncCallback&lt;boolean&gt;) : void
@@ -961,6 +1067,8 @@ isLocationPrivacyConfirmed(type : LocationPrivacyType, callback: AsyncCallback&l
 
 查询用户是否同意定位服务隐私申明，是否同意启用定位服务。只有系统应用才能调用。
 
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
 **需要权限**：ohos.permission.LOCATION
 
 **系统能力**：SystemCapability.Location.Location.Core
@@ -985,6 +1093,8 @@ isLocationPrivacyConfirmed(type : LocationPrivacyType, callback: AsyncCallback&l
 isLocationPrivacyConfirmed(type : LocationPrivacyType,) : Promise&lt;boolean&gt;;
 
 查询用户是否同意定位服务隐私申明，是否同意启用定位服务。只有系统应用才能调用。
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -1015,6 +1125,8 @@ setLocationPrivacyConfirmStatus(type : LocationPrivacyType, isConfirmed: boolean
 
 设置用户勾选定位服务隐私申明的状态，记录用户是否同意启用定位服务。只有系统应用才能调用。
 
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
 **需要权限**：ohos.permission.LOCATION
 
 **系统能力**：SystemCapability.Location.Location.Core
@@ -1040,6 +1152,8 @@ setLocationPrivacyConfirmStatus(type : LocationPrivacyType, isConfirmed: boolean
 setLocationPrivacyConfirmStatus(type : LocationPrivacyType, isConfirmed : boolean) : Promise&lt;boolean&gt;;
 
 设置用户勾选定位服务隐私申明的状态，记录用户是否同意启用定位服务。只有系统应用才能调用。
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
 
 **需要权限**：ohos.permission.LOCATION
 
