@@ -29,21 +29,35 @@ TextClock(options?: {timeZoneOffset?: number, contorller?: TextClockController})
 | ------ | -------- | -------- | ------------------------------------------------------------ |
 | format | string   | 'hhmmss' | 设置显示时间格式，如“yyyy/mm/dd”、“yyyy-mm-dd”等。支持的时间格式化字符串：<ul><li>yyyy（年份）</li><li>mm（英文月份简写）</li><li>mmm（英文月份简写）</li><li>mmmm（英文月份全称）</li><li>dd（英文星期简写）</li><li>ddd（英文星期简写）</li><li>dddd（英文星期全称）</li><li>HH（24小时制）</li><li>hh（12小时制）</li><li>MM/mm（分钟）</li><li>SS/ss（秒）</li></ul> |
 
-## TextClockController
-
-TextClock容器组件的控制器，可以将此对象绑定至TextClock组件，然后通过它控制文本时钟状态的启动与停止。
-
-| 接口名称                                         | 功能描述                                                     |
-| -------------------------------------------- | ------------------------------------------------------------ |
-| start() | 启动文本时钟。 |
-| stop() | 停止文本时钟。 |
-
-
 ## 事件
 
 | 名称                                         | 功能描述                                                     |
 | -------------------------------------------- | ------------------------------------------------------------ |
 | onDateChange(event: (value: number) => void) | 提供时间变化回调,该事件最小回调间隔为秒。<br /> value: Unix Time Stamp，即自1970年1月1日（UTC）起经过的毫秒数。 |
+
+## TextClockController
+
+TextClock容器组件的控制器，可以将此对象绑定至TextClock组件，然后通过它控制文本时钟状态的启动与停止。
+
+### 导入对象
+
+```
+controller: TextClockController = new TextClockController()
+
+```
+
+### start
+
+start()
+
+启动文本时钟。
+
+### stop
+
+stop()
+
+停止文本时钟。
+
 
 ## 示例
 

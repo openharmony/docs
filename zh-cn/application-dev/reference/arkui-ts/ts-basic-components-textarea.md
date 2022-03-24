@@ -48,15 +48,6 @@ TextArea(value?:{placeholder?: string controller?: TextAreaController})
   | End | 水平对齐尾部。 | 
 
 
-### TextAreaController<sup>8+</sup>
-
-TextArea组件的控制器，通过它操作TextArea组件。
-
-| 接口名称 | 功能描述 | 
-| -------- | -------- |
-| caretPosition(value:&nbsp;number):&nbsp;void | 设置输入光标的位置。<br/>value：从字符串开始到光标所在位置的字符长度。 | 
-
-
 ## 事件
 
 | 名称 | 功能描述 | 
@@ -65,6 +56,28 @@ TextArea组件的控制器，通过它操作TextArea组件。
 | onCopy<sup>8+</sup>(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 长按输入框内部区域弹出剪贴板后，点击剪切板复制按钮，触发回调。<br/>value：复制的文本内容。 | 
 | onCut<sup>8+</sup>(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 长按输入框内部区域弹出剪贴板后，点击剪切板剪切按钮，触发回调。<br/>value：剪切的文本内容。 | 
 | onPaste<sup>8+</sup>(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 长按输入框内部区域弹出剪贴板后，点击剪切板粘贴按钮，触发回调。<br/>value：粘贴的文本内容。 | 
+
+## TextAreaController<sup>8+</sup>
+
+TextArea组件的控制器，通过它操作TextArea组件。
+
+### 导入对象
+
+```
+controller: TextAreaController = new TextAreaController()
+
+```
+
+### caretPosition<sup>8+</sup>
+
+caretPosition(value: number): void
+
+设置输入光标的位置。
+
+- 参数
+  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 | 
+  | -------- | -------- | -------- | -------- | -------- |
+  | value | number | 是 | - | 从字符串开始到光标所在位置的字符长度。 | 
 
 
 ## 示例

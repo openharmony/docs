@@ -28,18 +28,6 @@ TextTimer(options: { isCountDown?: boolean, count?: number, controller?: TextTim
   | count | number | 否 | 60000 | 倒计时时间（isCountDown为true时生效），单位为毫秒。<br/>-&nbsp;count&lt;=0时，使用默认值为倒计时初始值。<br/>-&nbsp;count&gt;0时，count值为倒计时初始值。 | 
   | controller | [TextTimerController](#texttimercontroller) | 否 | null | TextTimer控制器。 | 
 
-
-### TextTimerController
-
-TextTimer组件的控制器，用于控制文本计时器。
-
-| 接口名称 | 功能描述 | 
-| -------- | -------- |
-| start() | 计时开始。 | 
-| pause() | 计时暂停。 | 
-| reset() | 重置计时器。 | 
-
-
 ## 属性
 
 | 名称 | 参数类型 | 默认值 | 描述 | 
@@ -54,18 +42,48 @@ TextTimer组件的控制器，用于控制文本计时器。
 | onTimer(callback:&nbsp;(utc:&nbsp;number,&nbsp;elapsedTime:&nbsp;number)&nbsp;=&gt;&nbsp;void) | 时间文本发生变化时触发。<br/>utc：当前显示的时间，单位为毫秒。<br/>elapsedTime：计时器经过的时间，单位为毫秒。 | 
 
 
+## TextTimerController
+
+TextTimer组件的控制器，用于控制文本计时器。
+
+### 导入对象
+
+```
+textTimerController: TextTimerController = new TextTimerController()
+
+```
+
+### start
+
+start()
+
+计时开始。
+
+### pause
+
+pause()
+
+计时暂停。
+
+### reset
+
+reset()
+
+重置计时器。
+
+
 ## 示例
 
 ```
 @Entry
 @Component
 struct TextTimerExample {
-  myTimerController: TextTimerController = new TextTimerController()
+  textTimerController: TextTimerController = new TextTimerController()
   @State format: string = 'hh:mm:ss.ms'
 
   build() {
     Column() {
-      TextTimer({controller: this.myTimerController})
+      TextTimer({controller: this.textTimerController})
         .format(this.format)
         .fontColor(Color.Black)
         .fontSize(50)
@@ -74,13 +92,13 @@ struct TextTimerExample {
         })
       Row() {
         Button("start").onClick(() => {
-          this.myTimerController.start();
+          this.textTimerController.start();
         });
         Button("pause").onClick(() => {
-          this.myTimerController.pause();
+          this.textTimerController.pause();
         });
         Button("reset").onClick(() => {
-          this.myTimerController.reset();
+          this.textTimerController.reset();
         });
       }
     }

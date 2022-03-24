@@ -60,18 +60,75 @@ Video(value: VideoOptions)
 | onUpdate(event?:&nbsp;{&nbsp;time:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void | 播放进度变化时触发该事件，单位为s，更新时间间隔为250ms。 | 
 
 
-### VideoController
+## VideoController
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 一个VideoController对象可以控制一个或多个video。
+一个VideoController对象可以控制一个或多个video。
 
-| 接口名称 | 描述 |
-| -------- | -------- |
-| start()&nbsp;:&nbsp;void | 开始播放。 |
-| pause()&nbsp;:&nbsp;void | 暂停播放。 |
-| stop()&nbsp;:&nbsp;void | 停止播放。 |
-| setCurrentTime(value:&nbsp;number) | 指定视频播放的进度位置。 |
-| setCurrentTime(value:&nbsp;number,&nbsp;seekMode:&nbsp;SeekMode | 指定视频播放的进度位置，并指定跳转模式。 |
+
+### 导入对象
+
+```
+controller: VideoController = new VideoController();
+```
+
+
+### start
+
+start(): void
+
+开始播放。
+
+### pause
+
+pause(): void
+
+暂停播放。
+
+### stop
+
+stop(): void
+
+停止播放。
+
+### setCurrentTime
+
+setCurrentTime(value: number)
+
+指定视频播放的进度位置。
+
+- 参数
+  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 | 
+  | -------- | -------- | -------- | -------- | -------- |
+  | value | number | 是 | - | 视频播放进度位置。 |
+
+### requestFullscreen
+
+requestFullscreen(value: boolean)
+
+请求全屏播放。
+
+- 参数
+  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 | 
+  | -------- | -------- | -------- | -------- | -------- |
+  | value | number | 是 | false | 是否全屏播放。 |
+
+### exitFullscreen
+
+exitFullscreen()
+
+退出全屏播放。
+
+### setCurrentTime<sup>8+</sup>
+
+setCurrentTime(value: number, seekMode: SeekMode)
+
+指定视频播放的进度位置，并指定跳转模式。
+
+- 参数
+  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 | 
+  | -------- | -------- | -------- | -------- | -------- |
+  | value | number | 是 | - | 视频播放进度位置。 |
+  | seekMode | SeekMode | 是 | - | 跳转模式。 |
 
 - SeekMode<sup>8+</sup>类型接口说明
   | 名称 | 描述 | 
@@ -80,6 +137,7 @@ Video(value: VideoOptions)
   | NextKeyframe | 跳转到后一个最近的关键帧。 | 
   | ClosestKeyframe | 跳转到最近的关键帧。 | 
   | Accurate | 精准跳转，不论是否为关键帧。 | 
+
 
 
 ## 示例
@@ -93,7 +151,7 @@ struct VideoCreateComponent {
   @State currentProgressRates: number = 1;
   @State autoPlays: boolean = false;
   @State controlsss: boolean = true;
-  myVideoController: VideoController = new VideoController();
+  controller: VideoController = new VideoController();
   @State startStaus: boolean = true;
   build() {
     Column() {
@@ -101,7 +159,7 @@ struct VideoCreateComponent {
         src: this.srcs,
         previewUri: this.previewUris, 
         currentProgressRate: this.currentProgressRates,
-        controller: this.myVideoController
+        controller: this.controller
       }).width(700).height(500)
         .autoPlay(this.autoPlays)
         .controls(this.controlsss)
@@ -151,19 +209,19 @@ struct VideoCreateComponent {
 
       Row() {
         Button("start").onClick(() => {
-          this.myVideoController.start();
+          this.controller.start();
         });
         Button("pause").onClick(() => {
-          this.myVideoController.pause();
+          this.controller.pause();
         });
         Button("stop").onClick(() => {
-          this.myVideoController.stop();
+          this.controller.stop();
         });
       }
 
       Row() {
         Button("setCurrentTime").onClick(() => {
-          this.myVideoController.setCurrentTime(9, SeekMode.Accurate);
+          this.controller.setCurrentTime(9, SeekMode.Accurate);
         });
       }
     }
