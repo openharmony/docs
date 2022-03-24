@@ -18,9 +18,9 @@ getMediaLibrary(context: Context): MediaLibrary
 
 **参数：** 
 
-| 参数名     | 类型      | 必填   | 说明                                       |
-| ------- | ------- | ---- | ---------------------------------------- |
-| context | Context | 是    | API7以下接口可不传此参数，API 8以上接口此参数是必填参数，传入Ability实例的context，获取媒体库 |
+| 参数名  | 类型    | 必填                                  | 说明                       |
+| ------- | ------- | ------------------------------------- | -------------------------- |
+| context | Context | 否<sup>6-7</sup> <br/>是<sup>8+</sup> | 传入Ability实例的Context。 |
 
 **返回值：**
 
@@ -2019,10 +2019,10 @@ getFileAssets(options: MediaFetchOptions, callback: AsyncCallback&lt;FetchFileRe
 
 **参数**：
 
-| 参数       | 类型                                       | 必填   | 说明                       |
-| -------- | ---------------------------------------- | ---- | ------------------------ |
-| options  | [MediaFetchOptions](#mediafetchoptions8) | 是    | 媒体检索选项                   |
-| callback | AsyncCallback<[FetchFileResult](#fetchfileresult8)> | 是    | 异步返回FetchFileResult之后的回调 |
+| 参数     | 类型                                                | 必填 | 说明                                |
+| -------- | --------------------------------------------------- | ---- | ----------------------------------- |
+| options  | [MediaFetchOptions](#mediafetchoptions8)            | 是   | 媒体检索选项。                      |
+| callback | AsyncCallback<[FetchFileResult](#fetchfileresult8)> | 是   | 异步返回FetchFileResult之后的回调。 |
 
 **示例**：
 
@@ -2045,7 +2045,7 @@ async function example() {
 
  getFileAssets(options?: MediaFetchOptions): Promise&lt;FetchFileResult&gt;
 
-按照检索条件获取相册中的文件。此方法使用异步回调来返回文件结果集。
+按照检索条件获取相册中的文件。此方法使用异步Promise来返回文件结果集。
 
 **需要权限**：ohos.permission.READ_MEDIA
 
@@ -2053,15 +2053,15 @@ async function example() {
 
 **参数**：
 
-| 参数      | 类型                                       | 必填   | 说明     |
-| ------- | ---------------------------------------- | ---- | ------ |
-| options | [MediaFetchOptions](#mediafetchoptions8) | 否    | 媒体检索选项 |
+| 参数    | 类型                                     | 必填 | 说明           |
+| ------- | ---------------------------------------- | ---- | -------------- |
+| options | [MediaFetchOptions](#mediafetchoptions8) | 否   | 媒体检索选项。 |
 
 **返回值**：
 
-| 类型                                       | 说明                  |
-| ---------------------------------------- | ------------------- |
-| Promise<[FetchFileResult](#fetchfileresult8)> | 返回FetchFileResult对象 |
+| 类型                                          | 说明                      |
+| --------------------------------------------- | ------------------------- |
+| Promise<[FetchFileResult](#fetchfileresult8)> | 返回FetchFileResult对象。 |
 
 **示例**：
 
