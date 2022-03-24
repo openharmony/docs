@@ -329,7 +329,7 @@ static void CodecDriverRelease(struct HdfDeviceObject *device)
 }
 ```
 
-#### HCS配置流程
+#### HCS配置流程<a name="section4115"></a>
 
 hcs中配置驱动节点、加载顺序、服务名称等。hcs语法可参考HDF框架的[配置管理](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/driver/driver-hdf-manage.md)。
 
@@ -820,7 +820,7 @@ HDF_INIT(g_tfa9879DriverEntry);
 
 #### HCS配置流程
 
-配置过程可参考Codec驱动开发实例[HCS配置流程](#HCS配置流程)章节。
+配置过程可参考Codec驱动开发实例[HCS配置流程](#section4115)章节。
 
 
 
@@ -944,7 +944,7 @@ HDF_INIT(g_platformDriverEntry);
 
 #### HCS配置流程
 
-配置过程可参考Codec驱动开发实例[HCS配置流程](#HCS配置流程)章节。
+配置过程可参考Codec驱动开发实例[HCS配置流程](#section4115)章节。
 
 
 
@@ -1120,7 +1120,7 @@ HDF_INIT(g_daiDriverEntry);
 
 #### HCS配置流程
 
-配置过程可参考Codec驱动开发实例[HCS配置流程](#HCS配置流程)章节。
+配置过程可参考Codec驱动开发实例[HCS配置流程](#section4115)章节。
 
 
 
