@@ -24,12 +24,12 @@ PinchGesture(options?: { fingers?: number, distance?: number })
 
 | 名称 | 功能描述 | 
 | -------- | -------- | 
-| onActionStart((event?:&nbsp;PinchGestureEvent)&nbsp;=&gt;&nbsp;void) | Pinch手势识别成功回调。 | 
-| onActionUpdate((event?:&nbsp;PinchGestureEvent)&nbsp;=&gt;&nbsp;void) | Pinch手势移动过程中回调。 | 
-| onActionEnd((event?:&nbsp;PinchGestureEvent)&nbsp;=&gt;&nbsp;void) | Pinch手势识别成功，手指抬起后触发回调。 | 
+| onActionStart((event?:&nbsp;GestureEvent)&nbsp;=&gt;&nbsp;void) | Pinch手势识别成功回调。 | 
+| onActionUpdate((event?:&nbsp;GestureEvent)&nbsp;=&gt;&nbsp;void) | Pinch手势移动过程中回调。 | 
+| onActionEnd((event?:&nbsp;GestureEvent)&nbsp;=&gt;&nbsp;void) | Pinch手势识别成功，手指抬起后触发回调。 | 
 | onActionCancel(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | Pinch手势识别成功，接收到触摸取消事件触发回调。 | 
 
-- PinchGestureEvent<sup>8+</sup>对象说明
+- GestureEvent对象中与Pinch手势相关的属性
   | 属性名称 | 属性类型 | 描述 | 
   | -------- | -------- | -------- |
   | scale | number | 缩放比例，用于PinchGesture手势触发场景。 | 
@@ -53,10 +53,10 @@ struct PinchGestureExample {
     .scale({ x: this.scale, y: this.scale, z: this.scale })
     .gesture(
       PinchGesture()
-        .onActionStart((event: PinchGestureEvent) => {
+        .onActionStart((event: GestureEvent) => {
           console.info('Pinch start')
         })
-        .onActionUpdate((event: PinchGestureEvent) => {
+        .onActionUpdate((event: GestureEvent) => {
           this.scale = event.scale
         })
         .onActionEnd(() => {

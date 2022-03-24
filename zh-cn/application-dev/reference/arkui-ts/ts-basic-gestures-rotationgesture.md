@@ -24,12 +24,12 @@ RotationGesture(options?: { fingers?: number, angle?: number })
 
 | 名称 | 功能描述 | 
 | -------- | -------- |
-| onActionStart((event?:&nbsp;RotationGestureEvent)&nbsp;=&gt;&nbsp;void) | Rotation手势识别成功回调。 | 
-| onActionUpdate((event?:&nbsp;RotationGestureEvent)&nbsp;=&gt;&nbsp;void) | Rotation手势移动过程中回调。 | 
-| onActionEnd((event?:&nbsp;RotationGestureEvent)&nbsp;=&gt;&nbsp;void) | Rotation手势识别成功，手指抬起后触发回调。 | 
+| onActionStart((event?:&nbsp;GestureEvent)&nbsp;=&gt;&nbsp;void) | Rotation手势识别成功回调。 | 
+| onActionUpdate((event?:&nbsp;GestureEvent)&nbsp;=&gt;&nbsp;void) | Rotation手势移动过程中回调。 | 
+| onActionEnd((event?:&nbsp;GestureEvent)&nbsp;=&gt;&nbsp;void) | Rotation手势识别成功，手指抬起后触发回调。 | 
 | onActionCancel(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | Rotation手势识别成功，接收到触摸取消事件触发回调。 | 
 
-- RotationGestureEvent<sup>8+</sup>对象说明
+- GestureEvent对象中与Rotation手势相关的属性
   | 属性名称 | 属性类型 | 描述 | 
   | -------- | -------- | -------- |
   | angle | number | 旋转角度。 | 
@@ -51,10 +51,10 @@ struct RotationGestureExample {
     .margin(80).rotate({ x:1, y:2, z:3, angle: this.angle })
     .gesture(
       RotationGesture()
-        .onActionStart((event: RotationGestureEvent) => {
+        .onActionStart((event: GestureEvent) => {
           console.log('Rotation start')
         })
-        .onActionUpdate((event: RotationGestureEvent) => {
+        .onActionUpdate((event: GestureEvent) => {
           this.angle = event.angle
         })
         .onActionEnd(() => {
