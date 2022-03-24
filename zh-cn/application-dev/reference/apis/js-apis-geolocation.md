@@ -12,19 +12,15 @@
 import geolocation from '@ohos.geolocation';
 ```
 
-
-## 权限
-
-ohos.permission.LOCATION
-
-ohos.permission.LOCATION_IN_BACKGROUND
-
-
 ## geolocation.on('locationChange')
 
 on(type: 'locationChange', request: LocationRequest, callback: Callback&lt;Location&gt;) : void
 
 开启位置变化订阅，并发起定位请求。
+
+**需要权限**：ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Core
 
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 |
@@ -32,6 +28,7 @@ on(type: 'locationChange', request: LocationRequest, callback: Callback&lt;Locat
   | type | string | 是 | 设置事件类型。type为“locationChange”，表示位置变化。 |
   | request | LocationRequest | 是 | 设置位置请求参数。 |
   | callback | Callback&lt;[Location](#location)&gt; | 是 | 接收位置变化状态变化监听。 |
+
 
 - 示例：
   
@@ -50,11 +47,16 @@ off(type: 'locationChange', callback?: Callback&lt;Location&gt;) : void
 
 关闭位置变化订阅，并删除对应的定位请求。
 
+**需要权限**：ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Core
+
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“locationChange”，表示位置变化。 |
   | callback | Callback&lt;[Location](#location)&gt; | 否 | 接收位置变化状态变化监听。 |
+
 
 - 示例：
   
@@ -74,11 +76,16 @@ on(type: 'locationServiceState', callback: Callback&lt;boolean&gt;) : void
 
 订阅位置服务状态变化。
 
+**需要权限**：ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Core
+
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“locationServiceState”，表示位置服务状态。 |
   | callback | Callback&lt;boolean&gt; | 是 | 接收位置服务状态变化监听。 |
+
 
 - 示例：
   
@@ -96,11 +103,16 @@ off(type: 'locationServiceState', callback?: Callback&lt;boolean&gt;) : void;
 
 取消订阅位置服务状态变化。
 
+**需要权限**：ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Core
+
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“locationServiceState”，表示位置服务状态。 |
   | callback | Callback&lt;boolean&gt; | 否 | 接收位置服务状态变化监听。 |
+
 
 - 示例：
   
@@ -113,11 +125,15 @@ off(type: 'locationServiceState', callback?: Callback&lt;boolean&gt;) : void;
   ```
 
 
-## geolocation.on('cachedGnssLocationsReporting')
+## geolocation.on('cachedGnssLocationsReporting')<sup>8+</sup>
 
 on(type: 'cachedGnssLocationsReporting', request: CachedGnssLocationsRequest, callback: Callback&lt;Array&lt;Location&gt;&gt;) : void;
 
 订阅缓存GNSS定位结果上报事件。
+
+**需要权限**：ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Gnss
 
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 |
@@ -125,6 +141,7 @@ on(type: 'cachedGnssLocationsReporting', request: CachedGnssLocationsRequest, ca
   | type | string | 是 | 设置事件类型。type为“cachedGnssLocationsReporting”，表示GNSS缓存定位结果上报。 |
   | request | CachedGnssLocationsRequest | 是 | GNSS缓存功能配置参数 |
   | callback | Callback&lt;boolean&gt; | 是 | 接收GNSS缓存位置上报。 |
+
 
 - 示例：
   
@@ -137,17 +154,22 @@ on(type: 'cachedGnssLocationsReporting', request: CachedGnssLocationsRequest, ca
   ```
 
 
-## geolocation.off('cachedGnssLocationsReporting')
+## geolocation.off('cachedGnssLocationsReporting')<sup>8+</sup>
 
 off(type: 'cachedGnssLocationsReporting', callback?: Callback&lt;Array&lt;Location&gt;&gt;) : void;
 
 取消订阅缓存GNSS定位结果上报事件。
+
+**需要权限**：ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Gnss
 
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“cachedGnssLocationsReporting”，表示GNSS缓存定位结果上报。 |
   | callback | Callback&lt;boolean&gt; | 否 | 接收GNSS缓存位置上报。 |
+
 
 - 示例：
   
@@ -161,17 +183,22 @@ off(type: 'cachedGnssLocationsReporting', callback?: Callback&lt;Array&lt;Locati
   ```
 
 
-## geolocation.on('gnssStatusChange')
+## geolocation.on('gnssStatusChange')<sup>8+</sup>
 
 on(type: 'gnssStatusChange', callback: Callback&lt;SatelliteStatusInfo&gt;) : void;
 
 订阅GNSS卫星状态信息上报事件。
+
+**需要权限**：ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Gnss
 
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“gnssStatusChange”，表示订阅GNSS卫星状态信息上报。 |
   | callback | Callback&lt;SatelliteStatusInfo&gt; | 是 | 接收GNSS卫星状态信息上报。 |
+
 
 - 示例：
   
@@ -183,11 +210,15 @@ on(type: 'gnssStatusChange', callback: Callback&lt;SatelliteStatusInfo&gt;) : vo
   ```
 
 
-## geolocation.off('gnssStatusChange')
+## geolocation.off('gnssStatusChange')<sup>8+</sup>
 
 off(type: 'gnssStatusChange', callback?: Callback&lt;SatelliteStatusInfo&gt;) : void;
 
 取消订阅GNSS卫星状态信息上报事件。
+
+**需要权限**：ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Gnss
 
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 |
@@ -206,17 +237,22 @@ off(type: 'gnssStatusChange', callback?: Callback&lt;SatelliteStatusInfo&gt;) : 
   ```
 
 
-## geolocation.on('nmeaMessageChange')
+## geolocation.on('nmeaMessageChange')<sup>8+</sup>
 
 on(type: 'nmeaMessageChange', callback: Callback&lt;string&gt;) : void;
 
 订阅GNSS NMEA信息上报事件。
+
+**需要权限**：ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Gnss
 
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“nmeaMessageChange”，表示订阅GNSS&nbsp;NMEA信息上报。 |
   | callback | Callback&lt;string&gt; | 是 | 接收GNSS&nbsp;NMEA信息上报。 |
+
 
 - 示例：
   
@@ -228,17 +264,22 @@ on(type: 'nmeaMessageChange', callback: Callback&lt;string&gt;) : void;
   ```
 
 
-## geolocation.off('nmeaMessageChange')
+## geolocation.off('nmeaMessageChange')<sup>8+</sup>
 
 off(type: 'nmeaMessageChange', callback?: Callback&lt;string&gt;) : void;
 
 取消订阅GNSS NMEA信息上报事件。
+
+**需要权限**：ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Gnss
 
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“nmeaMessageChange”，表示订阅GNSS&nbsp;NMEA信息上报。 |
   | callback | Callback&lt;string&gt; | 否 | 接收GNSS&nbsp;NMEA信息上报。 |
+
 
 - 示例：
   
@@ -251,11 +292,15 @@ off(type: 'nmeaMessageChange', callback?: Callback&lt;string&gt;) : void;
   ```
 
 
-## geolocation.on('fenceStatusChange')
+## geolocation.on('fenceStatusChange')<sup>8+</sup>
 
 on(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent) : void;
 
 添加一个围栏，并订阅地理围栏事件。
+
+**需要权限**：ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Geofence
 
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 |
@@ -263,6 +308,7 @@ on(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent) : void;
   | type | string | 是 | 设置事件类型。type为“fenceStatusChange”，表示订阅围栏事件上报。 |
   | request | GeofenceRequest | 是 | 围栏的配置参数。 |
   | want | WantAgent | 是 | 用于接收地理围栏事件上报（进出围栏）。 |
+
 
 - 示例：
   
@@ -313,11 +359,15 @@ on(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent) : void;
   ```
 
 
-## geolocation.off('fenceStatusChange')
+## geolocation.off('fenceStatusChange')<sup>8+</sup>
 
 off(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent) : void;
 
 删除一个围栏，并取消订阅该围栏事件。
+
+**需要权限**：ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Geofence
 
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 |
@@ -383,6 +433,9 @@ getCurrentLocation(request: CurrentLocationRequest, callback: AsyncCallback&lt;L
 
 获取当前位置，使用callback回调异步返回结果。
 
+**需要权限**：ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Core
 
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 |
@@ -409,6 +462,9 @@ getCurrentLocation(request?: CurrentLocationRequest) : Promise&lt;Location&gt;
 
 获取当前位置，使用Promise方式异步返回结果。
 
+**需要权限**：ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Core
 
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 |
@@ -419,6 +475,7 @@ getCurrentLocation(request?: CurrentLocationRequest) : Promise&lt;Location&gt;
     | 参数名 | 说明 |
   | -------- | -------- |
   | Promise&lt;[Location](#location)&gt; | 返回位置信息。 |
+
 
 - 示例：
   
@@ -436,10 +493,15 @@ getLastLocation(callback: AsyncCallback&lt;Location&gt;) : void
 
 获取上一次位置，使用callback回调异步返回结果。
 
+**需要权限**：ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Core
+
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;[Location](#location)&gt; | 是 | 用来接收上次位置的回调。 |
+
 
 - 示例：
   
@@ -456,10 +518,15 @@ getLastLocation() : Promise&lt;Location&gt;
 
 获取上一次位置，使用Promise方式异步返回结果。
 
+**需要权限**：ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Core
+
 - 返回值：
     | 参数名 | 说明 |
   | -------- | -------- |
   | Promise&lt;[Location](#location)&gt; | 返回上次位置信息。 |
+
 
 - 示例：
   
@@ -477,11 +544,15 @@ isLocationEnabled(callback: AsyncCallback&lt;boolean&gt;) : void
 
 判断位置服务是否已经打开，使用callback回调异步返回结果。
 
+**需要权限**：ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Core
 
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;boolean&gt; | 是 | 用来接收位置服务状态的回调。 |
+
 
 - 示例：
   
@@ -497,6 +568,10 @@ isLocationEnabled(callback: AsyncCallback&lt;boolean&gt;) : void
 isLocationEnabled() : Promise&lt;boolean&gt;
 
 判断位置服务是否已经开启，使用Promise方式异步返回结果。
+
+**需要权限**：ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Core
 
 - 返回值：
     | 参数名 | 说明 |
@@ -519,11 +594,15 @@ requestEnableLocation(callback: AsyncCallback&lt;boolean&gt;) : void
 
 请求打开位置服务，使用callback回调异步返回结果。
 
+**需要权限**：ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Core
 
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;boolean&gt; | 是 | 用来接收位置服务状态的回调。 |
+
 
 - 示例：
   
@@ -540,10 +619,15 @@ requestEnableLocation() : Promise&lt;boolean&gt;
 
 请求打开位置服务，使用Promise方式异步返回结果。
 
+**需要权限**：ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Core
+
 - 返回值：
     | 参数名 | 说明 |
   | -------- | -------- |
   | Promise&lt;boolean&gt; | 返回位置服务是否可用。 |
+
 
 - 示例：
   
@@ -554,16 +638,127 @@ requestEnableLocation() : Promise&lt;boolean&gt;
   ```
 
 
+## geolocation.enableLocation
+
+enableLocation(callback: AsyncCallback&lt;boolean&gt;) : void;
+
+打开位置服务，使用callback回调异步返回结果。
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
+**需要权限**：ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+- 参数：
+    | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;boolean&gt; | 是 | 用来接收位置服务状态的回调。 |
+
+
+- 示例：
+  
+  ```
+  geolocation.enableLocation((err, data) => {
+      console.log('enableLocation: ' + err + " data: " + data);
+  });
+  ```
+
+
+## geolocation.enableLocation
+
+enableLocation() : Promise&lt;boolean&gt;
+
+打开位置服务，使用Promise方式异步返回结果。
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
+**需要权限**：ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+- 返回值：
+    | 参数名 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;boolean&gt; | 返回位置服务是否可用。 |
+
+
+- 示例：
+  
+  ```
+  geolocation.enableLocation().then((result) => {
+      console.log('promise, enableLocation: ' + result);
+  });
+  ```
+
+## geolocation.disableLocation
+
+disableLocation(callback: AsyncCallback&lt;boolean&gt;) : void;
+
+打开位置服务，使用callback回调异步返回结果。
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
+**需要权限**：ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+- 参数：
+    | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;boolean&gt; | 是 | 用来接收位置服务状态的回调。 |
+
+
+- 示例：
+  
+  ```
+  geolocation.disableLocation((err, data) => {
+      console.log('disableLocation: ' + err + " data: " + data);
+  });
+  ```
+
+
+## geolocation.disableLocation
+
+disableLocation() : Promise&lt;boolean&gt;
+
+打开位置服务，使用Promise方式异步返回结果。
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
+**需要权限**：ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+- 返回值：
+    | 参数名 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;boolean&gt; | 返回位置服务是否可用。 |
+
+
+- 示例：
+  
+  ```
+  geolocation.disableLocation().then((result) => {
+      console.log('promise, disableLocation: ' + result);
+  });
+  ```
+
 ## geolocation.isGeoServiceAvailable
 
 isGeoServiceAvailable(callback: AsyncCallback&lt;boolean&gt;) : void
 
 判断（逆）地理编码服务状态，使用callback回调异步返回结果。
 
+**需要权限**：ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Geocoder
+
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;boolean&gt; | 是 | 用来接收地理编码服务状态的回调。 |
+
 
 - 示例：
   
@@ -580,10 +775,15 @@ isGeoServiceAvailable() : Promise&lt;boolean&gt;
 
 判断（逆）地理编码服务状态，使用Promise方式异步返回结果。
 
+**需要权限**：ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Geocoder
+
 - 返回值：
     | 参数名 | 说明 |
   | -------- | -------- |
   | Promise&lt;boolean&gt; | 返回地理编码服务是否可用的状态。 |
+
 
 - 示例：
   
@@ -600,6 +800,10 @@ isGeoServiceAvailable() : Promise&lt;boolean&gt;
 getAddressesFromLocation(request: ReverseGeoCodeRequest, callback: AsyncCallback&lt;Array&lt;GeoAddress&gt;&gt;) : void
 
 调用逆地理编码服务，将坐标转换为地理描述，使用callback回调异步返回结果。
+
+**需要权限**：ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Geocoder
 
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 |
@@ -622,6 +826,10 @@ getAddressesFromLocation(request: ReverseGeoCodeRequest, callback: AsyncCallback
 getAddressesFromLocation(request: ReverseGeoCodeRequest) : Promise&lt;Array&lt;GeoAddress&gt;&gt;;
 
 调用逆地理编码服务，将坐标转换为地理描述，使用Promise方式异步返回结果。
+
+**需要权限**：ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Geocoder
 
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 |
@@ -649,11 +857,16 @@ getAddressesFromLocationName(request: GeoCodeRequest, callback: AsyncCallback&lt
 
 调用地理编码服务，将地理描述转换为具体坐标，使用callback回调异步返回结果。
 
+**需要权限**：ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Geocoder
+
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | request | [GeoCodeRequest](#geocoderequest) | 是 | 设置地理编码请求的相关参数。 |
   | callback | AsyncCallback&lt;Array&lt;[GeoAddress](#geoaddress)&gt;&gt; | 是 | 设置接收地理编码请求的回调参数。 |
+
 
 - 示例：
   
@@ -670,6 +883,10 @@ getAddressesFromLocationName(request: GeoCodeRequest, callback: AsyncCallback&lt
 getAddressesFromLocationName(request: GeoCodeRequest) : Promise&lt;Array&lt;GeoAddress&gt;&gt;
 
 调用地理编码服务，将地理描述转换为具体坐标，使用Promise方式异步返回结果。
+
+**需要权限**：ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Geocoder
 
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 |
@@ -692,11 +909,15 @@ getAddressesFromLocationName(request: GeoCodeRequest) : Promise&lt;Array&lt;GeoA
 
 
 
-## geolocation.getCachedGnssLocationsSize
+## geolocation.getCachedGnssLocationsSize<sup>8+</sup>
 
 getCachedGnssLocationsSize(callback: AsyncCallback&lt;number&gt;) : void;
 
 获取GNSS芯片缓存位置的个数。
+
+**需要权限**：ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Gnss
 
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 |
@@ -712,11 +933,15 @@ getCachedGnssLocationsSize(callback: AsyncCallback&lt;number&gt;) : void;
   ```
 
 
-## geolocation.getCachedGnssLocationsSize
+## geolocation.getCachedGnssLocationsSize<sup>8+</sup>
 
 getCachedGnssLocationsSize() : Promise&lt;number&gt;;
 
 获取GNSS芯片缓存位置的个数。
+
+**需要权限**：ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Gnss
 
 - 返回值：
     | 参数名 | 说明 |
@@ -732,11 +957,15 @@ getCachedGnssLocationsSize() : Promise&lt;number&gt;;
   ```
 
 
-## geolocation.flushCachedGnssLocations
+## geolocation.flushCachedGnssLocations<sup>8+</sup>
 
 flushCachedGnssLocations(callback: AsyncCallback&lt;boolean&gt;) : void;
 
 读取并清空GNSS芯片所有缓存位置。
+
+**需要权限**：ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Gnss
 
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 |
@@ -752,11 +981,15 @@ flushCachedGnssLocations(callback: AsyncCallback&lt;boolean&gt;) : void;
   ```
 
 
-## geolocation.flushCachedGnssLocations
+## geolocation.flushCachedGnssLocations<sup>8+</sup>
 
 flushCachedGnssLocations() : Promise&lt;boolean&gt;;
 
 读取并清空GNSS芯片所有缓存位置。
+
+**需要权限**：ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Gnss
 
 - 返回值：
     | 参数名 | 说明 |
@@ -772,11 +1005,15 @@ flushCachedGnssLocations() : Promise&lt;boolean&gt;;
   ```
 
 
-## geolocation.sendCommand
+## geolocation.sendCommand<sup>8+</sup>
 
 sendCommand(command: LocationCommand, callback: AsyncCallback&lt;boolean&gt;) : void;
 
 给位置服务子系统的各个部件发送扩展命令。只有系统应用才能调用。
+
+**需要权限**：ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Core
 
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 |
@@ -794,11 +1031,15 @@ sendCommand(command: LocationCommand, callback: AsyncCallback&lt;boolean&gt;) : 
   ```
 
 
-## geolocation.sendCommand
+## geolocation.sendCommand<sup>8+</sup>
 
 sendCommand(command: LocationCommand) : Promise&lt;boolean&gt;;
 
 给位置服务子系统的各个部件发送扩展命令。只有系统应用才能调用。
+
+**需要权限**：ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Core
 
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 |
@@ -820,11 +1061,17 @@ sendCommand(command: LocationCommand) : Promise&lt;boolean&gt;;
   ```
 
 
-## geolocation.isLocationPrivacyConfirmed
+## geolocation.isLocationPrivacyConfirmed<sup>8+</sup>
 
 isLocationPrivacyConfirmed(type : LocationPrivacyType, callback: AsyncCallback&lt;boolean&gt;) : void;
 
 查询用户是否同意定位服务隐私申明，是否同意启用定位服务。只有系统应用才能调用。
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
+**需要权限**：ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Core
 
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 |
@@ -841,11 +1088,17 @@ isLocationPrivacyConfirmed(type : LocationPrivacyType, callback: AsyncCallback&l
   ```
 
 
-## geolocation.isLocationPrivacyConfirmed
+## geolocation.isLocationPrivacyConfirmed<sup>8+</sup>
 
 isLocationPrivacyConfirmed(type : LocationPrivacyType,) : Promise&lt;boolean&gt;;
 
 查询用户是否同意定位服务隐私申明，是否同意启用定位服务。只有系统应用才能调用。
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
+**需要权限**：ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Core
 
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 |
@@ -866,11 +1119,17 @@ isLocationPrivacyConfirmed(type : LocationPrivacyType,) : Promise&lt;boolean&gt;
   ```
 
 
-## geolocation.setLocationPrivacyConfirmStatus
+## geolocation.setLocationPrivacyConfirmStatus<sup>8+</sup>
 
 setLocationPrivacyConfirmStatus(type : LocationPrivacyType, isConfirmed: boolean, callback: AsyncCallback&lt;boolean&gt;) : void;
 
 设置用户勾选定位服务隐私申明的状态，记录用户是否同意启用定位服务。只有系统应用才能调用。
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
+**需要权限**：ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Core
 
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 |
@@ -888,11 +1147,17 @@ setLocationPrivacyConfirmStatus(type : LocationPrivacyType, isConfirmed: boolean
   ```
 
 
-## geolocation.setLocationPrivacyConfirmStatus
+## geolocation.setLocationPrivacyConfirmStatus<sup>8+</sup>
 
 setLocationPrivacyConfirmStatus(type : LocationPrivacyType, isConfirmed : boolean) : Promise&lt;boolean&gt;;
 
 设置用户勾选定位服务隐私申明的状态，记录用户是否同意启用定位服务。只有系统应用才能调用。
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
+**需要权限**：ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Core
 
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 |
@@ -919,6 +1184,10 @@ setLocationPrivacyConfirmStatus(type : LocationPrivacyType, isConfirmed : boolea
 
 位置请求中位置信息优先级设置。
 
+**需要权限**：ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Core
+
 | 名称 | 默认值 | 说明 |
 | -------- | -------- | -------- |
 | UNSET | 0x200 | 表示未设置优先级。 |
@@ -930,6 +1199,11 @@ setLocationPrivacyConfirmStatus(type : LocationPrivacyType, isConfirmed : boolea
 ## LocationRequestScenario
 
   位置请求中定位场景设置。
+
+**需要权限**：ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Core
+
 | 名称 | 默认值 | 说明 |
 | -------- | -------- | -------- |
 | UNSET | 0x300 | 表示未设置场景信息。 |
@@ -943,6 +1217,10 @@ setLocationPrivacyConfirmStatus(type : LocationPrivacyType, isConfirmed : boolea
 ## GeoLocationErrorCode
 
 位置服务中的错误码信息。
+
+**需要权限**：ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Core
 
 | 名称 | 默认值 | 说明 |
 | -------- | -------- | -------- |
@@ -959,6 +1237,10 @@ setLocationPrivacyConfirmStatus(type : LocationPrivacyType, isConfirmed : boolea
 
 逆地理编码请求接口。
 
+**需要权限**：ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Geocoder
+
 | 名称 | 参数类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | locale | string | 否 | 指定位置描述信息的语言，“zh”代表中文，“en”代表英文。 |
@@ -970,6 +1252,10 @@ setLocationPrivacyConfirmStatus(type : LocationPrivacyType, isConfirmed : boolea
 ## GeoCodeRequest
 
 地理编码请求接口。
+
+**需要权限**：ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Geocoder
 
 | 名称 | 参数类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -985,6 +1271,10 @@ setLocationPrivacyConfirmStatus(type : LocationPrivacyType, isConfirmed : boolea
 ## GeoAddress
 
 地理编码类型。
+
+**需要权限**：ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Geocoder
 
 | 名称 | 参数类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -1012,6 +1302,10 @@ setLocationPrivacyConfirmStatus(type : LocationPrivacyType, isConfirmed : boolea
 
 位置信息请求类型。
 
+**需要权限**：ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Core
+
 | 名称 | 参数类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | priority | [LocationRequestPriority](#locationrequestpriority) | 否 | 表示优先级信息。 |
@@ -1025,6 +1319,10 @@ setLocationPrivacyConfirmStatus(type : LocationPrivacyType, isConfirmed : boolea
 
 当前位置信息请求类型。
 
+**需要权限**：ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Core
+
 | 名称 | 参数类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | priority | [LocationRequestPriority](#locationrequestpriority) | 否 | 表示优先级信息。 |
@@ -1033,9 +1331,13 @@ setLocationPrivacyConfirmStatus(type : LocationPrivacyType, isConfirmed : boolea
 | timeoutMs | number | 否 | 表示超时时间，单位是毫秒，最小为1000毫秒。 |
 
 
-## SatelliteStatusInfo
+## SatelliteStatusInfo<sup>8+</sup>
 
 卫星状态信息。
+
+**需要权限**：ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Gnss
 
 | 名称 | 参数类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -1047,9 +1349,13 @@ setLocationPrivacyConfirmStatus(type : LocationPrivacyType, isConfirmed : boolea
 | carrierFrequencies | Array&lt;number&gt; | 是 | 表示载波频率。 |
 
 
-## CachedGnssLocationsRequest
+## CachedGnssLocationsRequest<sup>8+</sup>
 
 请求订阅GNSS缓存位置上报功能接口的配置参数。
+
+**需要权限**：ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Gnss
 
 | 名称 | 参数类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -1057,9 +1363,13 @@ setLocationPrivacyConfirmStatus(type : LocationPrivacyType, isConfirmed : boolea
 | wakeUpCacheQueueFull | boolean | 是 | true表示GNSS芯片底层缓存队列满之后会主动唤醒AP芯片，并把缓存位置上报给应用。<br/>false表示GNSS芯片底层缓存队列满之后不会主动唤醒AP芯片，会把缓存位置直接丢弃。 |
 
 
-## Geofence
+## Geofence<sup>8+</sup>
 
 GNSS围栏的配置参数。目前只支持圆形围栏。
+
+**需要权限**：ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Geofence
 
 | 名称 | 参数类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -1069,9 +1379,13 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 | expiration | number | 是 | 围栏存活的时间，单位是毫秒。 |
 
 
-## GeofenceRequest
+## GeofenceRequest<sup>8+</sup>
 
 请求添加GNSS围栏消息中携带的参数，包括定位优先级、定位场景和围栏信息。
+
+**需要权限**：ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Geofence
 
 | 名称 | 参数类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -1080,9 +1394,13 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 | geofence | Geofence | 是 | 表示围栏信息。 |
 
 
-## LocationPrivacyType
+## LocationPrivacyType<sup>8+</sup>
 
 定位服务隐私协议类型。
+
+**需要权限**：ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Core
 
 | 名称 | 默认值 | 说明 |
 | -------- | -------- | -------- |
@@ -1091,9 +1409,13 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 | CORE_LOCATION | 2 | 开启网络定位时弹出的隐私协议。 |
 
 
-## LocationCommand
+## LocationCommand<sup>8+</sup>
 
 扩展命令结构体。
+
+**需要权限**：ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Core
 
 | 名称 | 参数类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -1104,6 +1426,10 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 ## Location
 
 位置信息类型。
+
+**需要权限**：ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Core
 
 | 名称 | 参数类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
