@@ -567,7 +567,7 @@ setFlashMode(flashMode: FlashMode): Promise<void\>
 **示例：**
 
 ```
-cameraInput.setFlashMode((flashMode).then() => {
+cameraInput.setFlashMode(flashMode).then(() => {
     console.log('Promise returned with the successful execution of setFlashMode.');
 })
 ```
