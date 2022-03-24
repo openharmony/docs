@@ -14,36 +14,40 @@ import display from '@ohos.display';
 
 Provides the state of a display.
 
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
 | Name| Default Value| Description|
 | -------- | -------- | -------- |
-| STATE_UNKNOWN | 0 | Unknown. <br/>**System capabilities**: SystemCapability.WindowManager.WindowManager.Core|
-| STATE_OFF | 1 | The display is shut down. <br/>**System capabilities**: SystemCapability.WindowManager.WindowManager.Core|
-| STATE_ON | 2 | The display is powered on. <br/>**System capabilities**: SystemCapability.WindowManager.WindowManager.Core|
-| STATE_DOZE | 3 | The display is in sleep mode. <br/>**System capabilities**: SystemCapability.WindowManager.WindowManager.Core|
-| STATE_DOZE_SUSPEND | 4 | The display is in sleep mode, and the CPU is suspended. <br/>**System capabilities**: SystemCapability.WindowManager.WindowManager.Core|
-| STATE_VR | 5 | The display is in VR mode. <br/>**System capabilities**: SystemCapability.WindowManager.WindowManager.Core|
-| STATE_ON_SUSPEND | 6 | The display is powered on, and the CPU is suspended. <br/>**System capabilities**: SystemCapability.WindowManager.WindowManager.Core|
+| STATE_UNKNOWN | 0 | Unknown.|
+| STATE_OFF | 1 | The display is shut down.|
+| STATE_ON | 2 | The display is powered on.|
+| STATE_DOZE | 3 | The display is in sleep mode.|
+| STATE_DOZE_SUSPEND | 4 | The display is in sleep mode, and the CPU is suspended.|
+| STATE_VR | 5 | The display is in VR mode.|
+| STATE_ON_SUSPEND | 6 | The display is powered on, and the CPU is suspended.|
 
 
 ## Display
 
 Describes the attributes of a display.
 
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| id | number | Yes| No| ID of the display. <br/>**System capabilities**: SystemCapability.WindowManager.WindowManager.Core|
-| name | string | Yes| No| Name of the display. <br/>**System capabilities**: SystemCapability.WindowManager.WindowManager.Core|
-| alive | boolean | Yes| No| Whether the display is alive. <br/>**System capabilities**: SystemCapability.WindowManager.WindowManager.Core|
-| state | [DisplayState](#DisplayState) | Yes| No| State of the display. <br/>**System capabilities**: SystemCapability.WindowManager.WindowManager.Core|
-| refreshRate | number | Yes| No| Refresh rate of the display. <br/>**System capabilities**: SystemCapability.WindowManager.WindowManager.Core|
-| rotation | number | Yes| No| Screen rotation angle of the display. <br/>**System capabilities**: SystemCapability.WindowManager.WindowManager.Core|
-| width | number | Yes| No| Width of the display, in pixels. <br/>**System capabilities**: SystemCapability.WindowManager.WindowManager.Core|
-| height | number | Yes| No| Height of the display, in pixels. <br/>**System capabilities**: SystemCapability.WindowManager.WindowManager.Core|
-| densityDPI | number | Yes| No| Screen density of the display, in DPI. <br/>**System capabilities**: SystemCapability.WindowManager.WindowManager.Core|
-| densityPixels | number | Yes| No| Screen density of the display, in pixels. <br/>**System capabilities**: SystemCapability.WindowManager.WindowManager.Core|
-| scaledDensity | number | Yes| No| Scaling factor for fonts displayed on the display. <br/>**System capabilities**: SystemCapability.WindowManager.WindowManager.Core|
-| xDPI | number | Yes| No| Exact physical dots per inch of the screen in the horizontal direction. <br/>**System capabilities**: SystemCapability.WindowManager.WindowManager.Core|
-| yDPI | number | Yes| No| Exact physical dots per inch of the screen in the vertical direction. <br/>**System capabilities**: SystemCapability.WindowManager.WindowManager.Core|
+| id | number | Yes| No| ID of the display.|
+| name | string | Yes| No| Name of the display.|
+| alive | boolean | Yes| No| Whether the display is alive.|
+| state | [DisplayState](#DisplayState) | Yes| No| State of the display.|
+| refreshRate | number | Yes| No| Refresh rate of the display.|
+| rotation | number | Yes| No| Screen rotation angle of the display.|
+| width | number | Yes| No| Width of the display, in pixels.|
+| height | number | Yes| No| Height of the display, in pixels.|
+| densityDPI | number | Yes| No| Screen density of the display, in DPI.|
+| densityPixels | number | Yes| No| Screen density of the display, in pixels.|
+| scaledDensity | number | Yes| No| Scaling factor for fonts displayed on the display.|
+| xDPI | number | Yes| No| Exact physical dots per inch of the screen in the horizontal direction.|
+| yDPI | number | Yes| No| Exact physical dots per inch of the screen in the vertical direction.|
 
 
 ## display.getDefaultDisplay
@@ -82,7 +86,7 @@ Obtains the default display object.
 
 - Return value
 
-  | Type| Description|
+  | Type                              | Description                                          |
   | ---------------------------------- | ---------------------------------------------- |
   | Promise&lt;[Display](#Display)&gt; | Promise used to return the default display object.|
 
@@ -107,9 +111,9 @@ Obtains all the display objects.
 
 - Parameters
 
-  | Name| Type| Mandatory| Description|
+  | Name  | Type                                                | Mandatory| Description                           |
   | -------- | ---------------------------------------------------- | ---- | ------------------------------- |
-  | callback | AsyncCallback&lt;Array&lt;[Display](Display)&gt;&gt; | Yes| Callback used to return all the display objects.|
+  | callback | AsyncCallback&lt;Array&lt;[Display](Display)&gt;&gt; | Yes  | Callback used to return all the display objects.|
 
 - Example
 
@@ -133,7 +137,7 @@ Obtains all the display objects.
 
 - Return value
 
-  | Type| Description|
+  | Type                                           | Description                                                   |
   | ----------------------------------------------- | ------------------------------------------------------- |
   | Promise&lt;Array&lt;[Display](#Display)&gt;&gt; | Promise used to return an array containing all the display objects.|
 
@@ -159,7 +163,7 @@ Enables listening.
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Listening type. The available values are as follows: <br/>-&nbsp;**add**: listening for whether a display is added <br/>-&nbsp;**remove**: listening for whether a display is removed <br/>-&nbsp;**change**: listening for whether a display is changed|
+  | type | string | Yes| Listening type. The available values are as follows:<br>-&nbsp;**add**: listening for whether a display is added<br>-&nbsp;**remove**: listening for whether a display is removed<br>-&nbsp;**change**: listening for whether a display is changed|
   | callback | Callback&lt;number&gt; | Yes| Callback used to return the ID of the display.|
 
 - Example
@@ -183,7 +187,7 @@ Disables listening.
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Listening type. The available values are as follows: <br/>-&nbsp;**add**: listening for whether a display is added <br/>-&nbsp;**remove**: listening for whether a display is removed <br/>-&nbsp;**change**: listening for whether a display is changed|
+  | type | string | Yes| Listening type. The available values are as follows:<br>-&nbsp;**add**: listening for whether a display is added<br>-&nbsp;**remove**: listening for whether a display is removed<br>-&nbsp;**change**: listening for whether a display is changed|
   | callback | Callback&lt;number&gt; | No| Callback used to return the ID of the display.|
 
 - Example

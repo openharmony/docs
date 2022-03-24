@@ -13,33 +13,40 @@ import screenshot from '@ohos.screenshot';
 
 Describes screenshot options.
 
-| Name| Type| Mandatory| Description|
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+
+| Name    | Type         | Mandatory| Description                                                        |
 | ---------- | ------------- | ---- | ------------------------------------------------------------ |
-| screenRect | [Rect](#Rect) | No| Region of the screen to capture. If this parameter is null, the full screen will be captured. <br/>**System capabilities**: SystemCapability.WindowManager.WindowManager.Core|
-| imageSize  | [Size](#Size) | No| Size of the screen region to capture. If this parameter is null, the full screen will be captured. <br/>**System capabilities**: SystemCapability.WindowManager.WindowManager.Core|
-| rotation   | number        | No| Rotation angle of the screenshot. The value can be **0**, **90**, **180**, or **270**. The default value is **0**. <br/>**System capabilities**: SystemCapability.WindowManager.WindowManager.Core|
+| screenRect | [Rect](#Rect) | No  | Region of the screen to capture. If this parameter is null, the full screen will be captured.|
+| imageSize  | [Size](#Size) | No  | Size of the screen region to capture. If this parameter is null, the full screen will be captured.|
+| rotation   | number        | No  | Rotation angle of the screenshot. Currently, the value can be **0** only. The default value is **0**.|
 
 
 ## Rect
 
 Describes the region of the screen to capture.
 
-| Name| Type| Mandatory| Description|
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+| Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| left   | number | Yes| Left boundary of the screen region to capture. <br/>**System capabilities**: SystemCapability.WindowManager.WindowManager.Core|
-| top    | number | Yes| Top boundary of the screen region to capture. <br/>**System capabilities**: SystemCapability.WindowManager.WindowManager.Core|
-| width  | number | Yes| Width of the screen region to capture. <br/>**System capabilities**: SystemCapability.WindowManager.WindowManager.Core|
-| height | number | Yes| Height of the screen region to capture. <br/>**System capabilities**: SystemCapability.WindowManager.WindowManager.Core|
+| left   | number | Yes  | Left boundary of the screen region to capture.|
+| top    | number | Yes  | Top boundary of the screen region to capture.|
+| width  | number | Yes  | Width of the screen region to capture.|
+| height | number | Yes  | Height of the screen region to capture.|
 
 
 ## Size
 
 Describes the size of the screen region to capture.
 
-| Name| Type| Mandatory| Description|
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+| Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| width  | number | Yes| Width of the screen region to capture. <br/>**System capabilities**: SystemCapability.WindowManager.WindowManager.Core|
-| height | number | Yes| Height of the screen region to capture. <br/>**System capabilities**: SystemCapability.WindowManager.WindowManager.Core|
+| width  | number | Yes  | Width of the screen region to capture.|
+| height | number | Yes  | Height of the screen region to capture.|
 
 ## screenshot.save
 
@@ -53,10 +60,10 @@ Takes a screenshot and saves it as a **PixelMap** object. This method uses a cal
 
 - Parameters
 
-  | Name| Type| Mandatory| Description|
+  | Name  | Type                                   | Mandatory| Description                                                        |
   | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-  | options  | [ScreenshotOptions](#ScreenshotOptions) | No| Screenshot options, which consist of **screenRect**, **imageSize**, and **rotation**. You need to set these parameters.|
-  | callback | AsyncCallback&lt;image.PixelMap&gt;     | Yes| Callback used to return a **PixelMap** object.|
+  | options  | [ScreenshotOptions](#ScreenshotOptions) | No  | Screenshot options, which consist of **screenRect**, **imageSize**, and **rotation**. You need to set these parameters.|
+  | callback | AsyncCallback&lt;image.PixelMap&gt;     | Yes  | Callback used to return a **PixelMap** object.                                  |
 
 - Example
 
@@ -93,13 +100,13 @@ Takes a screenshot and saves it as a **PixelMap** object. This method uses a pro
 
 - Parameters
 
-  | Name| Type| Mandatory| Description|
+  | Name | Type                                   | Mandatory| Description                                                        |
   | ------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-  | options | [ScreenshotOptions](#ScreenshotOptions) | No| Screenshot options, which consist of **screenRect**, **imageSize**, and **rotation**. You need to set these parameters.|
+  | options | [ScreenshotOptions](#ScreenshotOptions) | No  | Screenshot options, which consist of **screenRect**, **imageSize**, and **rotation**. You need to set these parameters.|
 
 - Return value
 
-  | Type| Description|
+  | Type                         | Description                                           |
   | ----------------------------- | ----------------------------------------------- |
   | Promise&lt;image.PixelMap&gt; | Promise used to return an **image.PixelMap** object.|
 
