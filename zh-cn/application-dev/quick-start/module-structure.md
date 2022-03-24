@@ -204,7 +204,7 @@ hap包的配置信息，该标签下的配置只对当前hap包生效。
 | srcEntrance         | 该标签表示hap所对应的入口js代码路径，标签值为字符串（最长为127字节）。 | 字符串     | 该标签可缺省。                        |
 | description         | 该标签标识hap包的描述信息，标签值是是字符串类型或对描述内容的资源索引，以支持多语言。 | 字符串     | 该标签可缺省，缺省值为空。            |
 | process             | 该标签标识hap的进程名，标签值为字符串类型（最长为31个字节）。如果在hap标签下配置了process，该应用的所有ability都运行在该进程中。 | 字符串     | 可缺省，缺省为hap的名称。             |
-| mainElement         | 该标签标识hap的入口ability名称或者extension名称。只有配置为mainElement的ability或者extension才允许在服务中心露出。创建OpenHarmony原子化服务时，该标签不可缺省。 | 字符串     | 鸿蒙应用下，该标签可缺省。            |
+| mainElement         | 该标签标识hap的入口ability名称或者extension名称。只有配置为mainElement的ability或者extension才允许在服务中心露出。创建OpenHarmony原子化服务时，该标签不可缺省。 | 字符串     | OpenHarmony应用下，该标签可缺省。     |
 | deviceTypes         | 该标签标识hap可以运行在哪类设备上，标签值采用字符串数组的表示，系统预定义的设备类型见表4。<br />与syscap不同的是，deviceTypes是以设备类型为粒度，而syscap是以设备能力(例如蓝牙、wifi)为粒度。 | 字符串数组 | 该标签不可缺省，可以为空值。          |
 | deliveryWithInstall | 该标签标识当前hap是否在用户主动安装的时候安装，true表示主动安装时安装，false表示主动安装时不安装。 | 布尔值     | 该标签不可缺省。                      |
 | installationFree    | 表示当前HAP是否支持免安装特性。所有Hap包都需要配置不可缺省。<br/>true：表示支持免安装特性，且符合免安装约束。<br/>false：表示不支持免安装特性。<br/><br/>当entry.hap该字段配置为true时，与该entry.hap相关的所有feature.hap该字段也需要配置为ture。<br/>当entry.hap该字段配置为false时，与该entry.hap相关的各feature.hap该字段可按业务需求配置ture或false。 | 布尔值     | 该标签不可缺省。                      |
@@ -329,7 +329,7 @@ abilities描述ability的配置信息，标签值为数组类型。
 | metadata        | 该标签表示ability的元信息。metadata参考[metadata对象内部结构](#metadata对象内部结构)。 | 数组       | 该标签可缺省，缺省值为空。                                   |
 | visible         | 该标签标识ability是否可以被其它应用调用，为布尔类型，true表示可以被其它应用调用， false表示不可以被其它应用调用。 | 布尔值     | 该标签可缺省，缺省值为false。                                |
 | continuable     | 该标签标识ability是否可以迁移，为布尔类型，true表示可以被迁移， false表示不可以被迁移。 | 布尔值     | 该标签可缺省，缺省值为false。                                |
-| skills          | 该标签标识ability能够接收的意图的特征集，为数组格式。<br />配置规则： entry包可以配置多个具有入口能力的skills标签（配置了action.system.home和entity.system.home）的ability，其中第一个配置了skills标签的ability中的label和icon作为鸿蒙服务或应用的label和icon。<br/>鸿蒙服务的Feature包不能配置具有入口能力的skills标签。<br/>鸿蒙应用的Feature包可以配置具有入口能力的skills标签。 <br />skills内部结构参考[skills对象内部结构](#skills对象内部结构)。 | 数组       | 该标签可缺省，缺省值为空。                                   |
+| skills          | 该标签标识ability能够接收的意图的特征集，为数组格式。<br />配置规则： entry包可以配置多个具有入口能力的skills标签（配置了action.system.home和entity.system.home）的ability，其中第一个配置了skills标签的ability中的label和icon作为OpenHarmony服务或应用的label和icon。<br/>OpenHarmony服务的Feature包不能配置具有入口能力的skills标签。<br/>OpenHarmony应用的Feature包可以配置具有入口能力的skills标签。 <br />skills内部结构参考[skills对象内部结构](#skills对象内部结构)。 | 数组       | 该标签可缺省，缺省值为空。                                   |
 | backgroundModes | 该标签标识ability长时任务集合。指定用于满足特定类型的长时任务。<br />长时任务类型有如下：<br/>dataTransfer：通过网络/对端设备进行数据下载、备份、分享、传输等业务。<br/>audioPlayback：音频输出业务。<br/>audioRecording：音频输入业务。<br/>location：定位、导航业务。<br/>bluetoothInteraction：蓝牙扫描、连接、传输业务（穿戴）。<br/>multiDeviceConnection：多设备互联业务。<br/>wifiInteraction：Wifi扫描、连接、传输业务（克隆 多屏）。<br/>voip：音视频电话，VOIP业务。<br/>taskKeeping：计算业务。 <br/> | 字符串     | 可缺省，缺省为空。                                           |
 
 abilities示例
@@ -460,7 +460,7 @@ skills示例
 | type        | 该标签标识extensionAbility的类型，取值为form、workScheduler、inputMethod、service、accessibility、dataShare、fileShare、staticSubscriber、wallpaper其中之一。 | 字符串     | 该标签不可缺省。              |
 | permissions | 该标签标识被其它应用的ability调用时需要申请的权限的集合，字符串数组类型，每个数组元素为一个权限名称，通常采用反向域名方式表示（最大255字节），可以是系统预定义的权限，也可以是该应用自定义的权限。如果是后者，需与defPermissions标签中定义的某个权限的name标签值一致。 | 字符串数组 | 该标签可缺省，缺省值为空。    |
 | uri         | 该标签标识ability提供的数据uri，为字符数组类型（最大长度255），用反向域名的格式表示。该标签在type为dataShare类型的extensionAbility时，不可缺省。 | 字符串     | 该标签可缺省，缺省值为空。    |
-| skills      | 该标签标识ability能够接收的意图的特征集，为数组格式。<br />配置规则： entry包可以配置多个具有入口能力的skills标签（配置了action.system.home和entity.system.home）的ability，其中第一个配置了skills标签的ability中的label和icon作为鸿蒙服务或应用的label和icon。<br/>鸿蒙服务的Feature包不能配置具有入口能力的skills标签。<br/>鸿蒙应用的Feature包可以配置具有入口能力的skills标签。 <br />skills内部结构参考[skills对象内部结构](#skills对象内部结构)。 | 数组       | 该标签可缺省，缺省值为空。    |
+| skills      | 该标签标识ability能够接收的意图的特征集，为数组格式。<br />配置规则： entry包可以配置多个具有入口能力的skills标签（配置了action.system.home和entity.system.home）的ability，其中第一个配置了skills标签的ability中的label和icon作为OpenHarmony服务或应用的label和icon。<br/>OpenHarmony服务的Feature包不能配置具有入口能力的skills标签。<br/>OpenHarmony应用的Feature包可以配置具有入口能力的skills标签。 <br />skills内部结构参考[skills对象内部结构](#skills对象内部结构)。 | 数组       | 该标签可缺省，缺省值为空。    |
 | metadata    | 该标签表示extensionAbility的元信息。metadata内部结构参考[metadata对象内部结构](#metadata对象内部结构)。 | 对象       | 该标签可缺省，缺省值为空。    |
 | visible     | 该标签标识extensionAbility是否可以被其它应用调用，为布尔类型。true表示可以被其它应用调用， false表示不可以被其它应用调用。 |            | 该标签可缺省，缺省值为false。 |
 
@@ -532,7 +532,7 @@ forms标签表示卡片的配置，form卡片是可以嵌入桌面上并接收�
 
 2. metadata中指定form信息，其中：
    	  name：指定form的名称。使用ohos.extability.form作为form信息的标识。
-   	  resource：指定form信息的资源位置。
+      	  resource：指定form信息的资源位置。
 
 表11 forms对象的内部结构说明
 
