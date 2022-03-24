@@ -25,7 +25,7 @@ shutdownDevice(reason: string): void
 
 此接口为系统接口，三方应用不支持调用。
 
-**需要权限：** ohos.permission.SHUTDOWN
+**需要权限：** ohos.permission.REBOOT
 
 **参数：**
 
@@ -47,7 +47,7 @@ rebootDevice(reason: string): void
 
 重启设备。
 
-**需要权限：** ohos.permission.REBOOT（重启权限）、ohos.permission.REBOOT_UPDATER（重启并进入updater模式的权限）
+**需要权限：** ohos.permission.REBOOT（重启权限）、ohos.permission.REBOOT_RECOVERY（重启并进入recovery或者updater模式的权限）
 
 **参数：**
 
@@ -71,7 +71,7 @@ isScreenOn(callback: AsyncCallback&lt;boolean&gt;): void
 
 **参数：**
 
-| 参数名    | 类型                           | 必填   | 说明                                       |
+| 参数名      | 类型                           | 必填   | 说明                                       |
 | -------- | ---------------------------- | ---- | ---------------------------------------- |
 | callback | AsyncCallback&lt;boolean&gt; | 是    | 指定的callback回调方法，用于获取返回值。<br/>callback返回值：亮屏返回true，灭屏返回false。 |
 
