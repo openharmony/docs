@@ -31,4 +31,4 @@
     - [Component Reference (TypeScript-based Declarative Development Paradigm)](reference/arkui-ts/Readme-EN.md)
     - [APIs](reference/apis/Readme-EN.md)
 - Contribution
-    - [How to Contribute](../contribute/ContributingDocuments.md)
+    - [How to Contribute](../contribute/documentation-contribution.md)
