@@ -107,16 +107,16 @@ createRunningLock(name: string, type: RunningLockType, callback: AsyncCallback&l
 **示例：**
 
 ```
-runningLock.createRunningLock("running_lock_test", runningLock.RunningLockType.BACKGROUND)
-.then(runninglock => {
-    var used = runninglock.isUsed();
-    console.info('runninglock is used: ' + used);
-    runninglock.lock(500);
-    used = runninglock.isUsed();
-    console.info('after lock runninglock is used ' + used);
-})
-.catch(error => {
-    console.log('create runningLock test error: ' + error);
+runningLock.createRunningLock("running_lock_test", runningLock.RunningLockType.BACKGROUND, (error, lockIns) => {
+    if (typeof error === "undefined") {
+        console.log('create runningLock test error: ' + error);
+    } else {
+        var used = lockIns.isUsed();
+        console.info('runninglock is used: ' + used);
+        lockIns.lock(500);
+        used = lockIns.isUsed();
+        console.info('after lock runninglock is used ' + used);
+    }
 })
 ```
 
@@ -172,9 +172,9 @@ lock(timeout: number): void
 
 **参数：**
 
-| 参数名     | 类型     | 必填   | 说明                   |
-| ------- | ------ | ---- | -------------------- |
-| timeout | number | 否    | 锁定和持有RunningLock的时长。 |
+| 参数名     | 类型     | 必填   | 说明                         |
+| ------- | ------ | ---- | -------------------------- |
+| timeout | number | 否    | 锁定和持有RunningLock的时长，单位：毫秒。 |
 
 **示例：**
 
