@@ -14,7 +14,7 @@ Hi3516DV300支持烧录标准系统，其烧录方式包括USB烧录、网口烧
 
 同一种烧录方式（如网口烧录），在Windows和Linux环境下的烧录操作完全一致，区别仅在于DevEco Device Tool环境搭建不同。
 
-下方以Linux系统下，网口烧录方式为例进行OpenHarmony标准系统烧录，其他两种烧录方式请参照[Hi3516DV300烧录指导](https://device.harmonyos.com/cn/docs/ide/user-guides/hi3516_upload-0000001052148681)。
+下方以Linux系统下，USB烧录方式为例进行OpenHarmony标准系统烧录，其他两种烧录方式请参照[Hi3516DV300烧录指导](https://device.harmonyos.com/cn/docs/ide/user-guides/hi3516_upload-0000001052148681)。
 
 ## 前提条件<a name="section1956213516576"></a>
 
@@ -31,7 +31,7 @@ Hi3516DV300支持烧录标准系统，其烧录方式包括USB烧录、网口烧
     ![](figures/hisilicon-arm-linux.png)
 
 
-## 使用网口烧录<a name="section14587120161217"></a>
+## 使用USB口烧录<a name="section14587120161217"></a>
 
 1.  请连接好电脑和待烧录开发板，需要同时连接串口和USB口，具体可参考[Hi3516DV300开发板介绍](https://device.harmonyos.com/cn/docs/documentation/guide/quickstart-lite-introduction-hi3516-0000001152041033)[Hi3516DV300开发板介绍](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/quick-start/quickstart-lite-introduction-hi3516.md)。
 2.  查看并记录对应的串口号。
