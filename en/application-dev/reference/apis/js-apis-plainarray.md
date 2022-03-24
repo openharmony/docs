@@ -416,7 +416,7 @@ plainArray.clear();
 
 ### forEach
 
-forEach(callbackfn: (value: T, key?: number, PlainArray?: PlainArray<number, T>) => void, thisArg?: Object): void
+forEach(callbackfn: (value?: T, index?: number, PlainArray?: PlainArray<T>) => void, thisArg?: Object): void
 
 Uses a callback to traverse the entries in this container and obtain their position indexes.
 
@@ -431,8 +431,8 @@ callbackfn
 | Name| Type | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | T | Yes| Value of the entry that is currently traversed.|
-| key | number | Yes| Key of the entry that is currently traversed.|
-| plainArray | PlainArray<number, T> | No| Instance that invokes the **forEach** API.|
+| index | number | Yes| Key of the entry that is currently traversed.|
+| plainArray | PlainArray<T> | No| Instance that invokes the **forEach** API.|
 
 **Example**
 

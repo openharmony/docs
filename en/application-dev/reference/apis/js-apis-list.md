@@ -27,15 +27,10 @@ SystemCapability.Utils.Lang
 
 ### constructor
 
-constructor(head?: NodeObj&lt;T&gt;)
+constructor()
 
 A constructor used to create a **List** instance.
 
-**Parameters**
-
-| Name| Value Type | Readable| Description|
-| -------- | -------- | -------- | -------- |
-| head | NodeObj&lt;T&gt; | Yes| Node object, including **element** and **next**.|
 
 **Example**
 
@@ -106,7 +101,7 @@ Checks whether this container has the specified entry.
 
 | Name| Value Type | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| element | T | Yes| Entry to query.|
+| element | T | Yes| Entry to check.|
 
 **Return value**
 
@@ -465,6 +460,7 @@ list.clear();
 
 ### set
 set(index: number, element: T): T
+
 Replaces an entry at the specified position in this container with a given entry.
 
 **Parameters**

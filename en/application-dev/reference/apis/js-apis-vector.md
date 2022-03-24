@@ -569,6 +569,7 @@ let result = vector.toSting();
 ### copyToArray
 
 copyToArray(array: Array&lt;T&gt;): void
+
 Copies entries in this container into an array to overwrite elements of the same position indexes.
 
 **Parameters**

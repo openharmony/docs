@@ -319,7 +319,7 @@ let result = hashMap.replace("sdfs", 357);
 
 ### forEach
 
-forEach(callbackfn: (value: V, key?: K, map?: HashMap<K, V>) => void, thisArg?: Object): void
+forEach(callbackfn: (value?: V, key?: K, map?: HashMap<K, V>) => void, thisArg?: Object): void
 
 Uses a callback to traverse the entries in this container and obtain their position indexes.
 

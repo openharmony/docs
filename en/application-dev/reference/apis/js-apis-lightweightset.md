@@ -160,7 +160,7 @@ Checks whether this container has the specified key.
 let lightWeightSet = new LightWeightSet();
 let result = lightWeightSet.has(123);
 lightWeightSet.add(123);
-let result = lightWeightSet.has(123);
+result = lightWeightSet.has(123);
 ```
 
 
@@ -188,7 +188,7 @@ Checks whether this container contains objects of the same type as the specified
 let lightWeightSet = new LightWeightSet();
 lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 lightWeightSet.add("sdfs");
-let obj = {"Ahfbrgrbgnutfodgorrogorgrogofdfdf", "sdfs"};
+let obj = ["Ahfbrgrbgnutfodgorrogorgrogofdfdf", "sdfs"];
 let result = lightWeightSet.equal(obj);
 ```
 
@@ -223,7 +223,7 @@ Obtains the position index of the entry with the specified key in this container
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| key | T | Yes| Key of the entry to query.|
+| key| T | Yes| Key of the entry to query.|
 
 **Return value**
 
@@ -251,7 +251,7 @@ Removes an entry of the specified key from this container.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| key | T | Yes| Key of the entry to remove.|
+| key| T | Yes| Key of the entry to remove.|
 
 **Return value**
 
@@ -414,7 +414,7 @@ while(index < lightWeightSet.length) {
 
 ### forEach
 
-forEach(callbackfn: (value: T, key?: T, set?: LightWeightSet&lt;T&gt;) => void, thisArg?: Object): void
+forEach(callbackfn: (value?: T, key?: T, set?: LightWeightSet&lt;T&gt;) => void, thisArg?: Object): void
 
 Uses a callback to traverse the entries in this container and obtain their position indexes.
 
@@ -429,7 +429,7 @@ callbackfn
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | T | Yes| Value of the entry that is currently traversed.|
-| key | T | No| Key of the entry that is currently traversed (same as **value**).|
+| key| T | No| Key of the entry that is currently traversed (same as **value**).|
 | set | LightWeightSet&lt;T&gt; | No| Instance that invokes the **forEach** method.|
 
 **Example**
