@@ -65,9 +65,9 @@ The OpenHarmony system has a built-in KeyStore (KS) file named **OpenHarmony.p12
 
 The usage of hapsigner varies depending on whether an application signing certificate is available. 
 
-- If no application signing certificate is available:
+- If no application signing certificate is available:<br/>
   You need to generate a key pair, generate an application signing certificate, sign the profile, and sign the application.
-- If an application signing certification is available:
+- If an application signing certification is available:<br/>
   You need to sign the profile, and use the application signing certificate and the local KS file (containing the corresponding key) to sign the application.
 
 ### Usage
@@ -351,9 +351,6 @@ The command parameters are described as follows:
          ├── -outFile          # Signed file to generate. It is mandatory.
          ├── -keyPwd           # Key password, which must be the actual key password.
          ├── -keystorePwd      # KS password, which must be the actual KS password. 
-
- 
-
 
 
 ## FAQs
