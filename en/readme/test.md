@@ -678,7 +678,7 @@ Before executing test cases, you need to modify the configuration based on the d
     <testcase>true</testcase>
   </build>
   <environment>
-    <!-- Configure the IP address and port number of the remote server to support connection to the device through the HarmonyOS Device Connector (HDC).-->
+    <!-- Configure the IP address and port number of the remote server to support connection to the device through the OpenHarmony Device Connector (HDC).-->
     <device type="usb-hdc">
       <ip></ip>
       <port></port>
