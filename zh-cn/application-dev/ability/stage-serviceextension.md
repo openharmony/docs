@@ -1,38 +1,28 @@
 # ServiceExtensionAbility开发指导
 
-## 基本概念
+## 场景介绍
 ExtensionAbility，是Stage模型中新增的扩展组件的基类，一般用于处理无界面的任务，生命周期较简单，没有前后台生命周期。ServiceExtensionAbility是ExtensionAbility的扩展类。
 
 开发者可以自定义类继承ServiceExtensionAbility，通过重写基类中相关生命周期方法，来做初始化、连接中、断开连接时相关业务逻辑操作。
-ServiceExtensionAbility中相关生命周期说明如下：
 
-   - onCreate()
+## 接口说明
 
-     首次调用startAbility、connectAbility时触发，开发者可以进行初始化操作。
-
-   - onRequest()
-
-     每次调用startAbility都会触发，首次调用时startId为1，重复调用startAbility递增。
-     
-   - onConnect()
-
-     调用connectAbility触发，重复调用不会再次触发，除非调用disconnectAbility解除绑定后再调用；onConnect返回一个进程通信类RemoteObject。
-     
-   - onDisconnect()
-
-     调用disconnectAbility触发，Extension如果是用connectAbility拉起的，并且已经没有其他应用绑定这个Extension，则会触发onDestroy生命周期销毁组件。
-     
-   - onDestroy()
-
-     调用停止当前ability接口terminateSelf会触发。 
+**表1** ServiceExtensionAbility中相关生命周期功能介绍
+|接口名|描述|
+|:------|:------|
+|onCreate|首次调用startAbility、connectAbility时触发，开发者可以进行初始化操作。|
+|onRequest|每次调用startAbility都会触发，首次调用时startId为1，重复调用startAbility递增。|
+|onConnect|调用connectAbility触发，重复调用不会再次触发，除非调用disconnectAbility解除绑定后再调用；onConnect返回一个进程通信类RemoteObject。|
+|onDisconnect|调用disconnectAbility触发，Extension如果是用connectAbility拉起的，并且已经没有其他应用绑定这个Extension，则会触发onDestroy生命周期销毁组件。|
+|onDestroy|调用停止当前ability接口terminateSelf会触发。|
 
 
 ## 约束与限制
 
-- ServiceExtensionAbility使用和拉起都必须要有系统权限，鸿蒙系统当前不支持三方应用创建、使用和拉起后台应用功能。
+- 鸿蒙系统当前不支持三方应用创建ServiceExtensionAbility。
 
 
-## 启动ServiceExtensionAbility
+## 开发步骤
 
 1.创建ServiceExtensionAbility
 

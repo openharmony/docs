@@ -1,31 +1,25 @@
 # ServiceAbility开发指导
 
-## Service Ability基本概念
+## 场景介绍
 基于Service模板的Ability（以下简称“Service”）主要用于后台运行任务（如执行音乐播放、文件下载等），但不提供用户交互界面。Service可由其他应用或Ability启动，即使用户切换到其他应用，Service仍将在后台继续运行。
 
-## 创建Service<a name="section17436202895812"></a>
+## 接口说明
 
-1. Service也是一种Ability，Ability为Service提供了以下生命周期方法，开发者可以重写这些方法，来添加其他Ability请求与Service Ability交互时的处理方法。
+**表1** Service中相关生命周期功能介绍
+|接口名|描述|
+|:------|:------|
+|onStart|该方法在创建Service的时候调用，用于Service的初始化。在Service的整个生命周期只会调用一次，调用时传入的Want应为空。|
+|onCommand|在Service创建完成之后调用，该方法在客户端每次启动该Service时都会调用，开发者可以在该方法中做一些调用统计、初始化类的操作。|
+|onConnect|在Ability和Service连接时调用。|
+|onDisconnect|在Ability与绑定的Service断开连接时调用。|
+|onStop|在Service销毁时调用。Service应通过实现此方法来清理任何资源，如关闭线程、注册的侦听器等。|
 
-   - onStart()
+## 开发步骤
 
-     该方法在创建Service的时候调用，用于Service的初始化。在Service的整个生命周期只会调用一次，调用时传入的Want应为空。
+### 创建Service<a name="section17436202895812"></a>
 
-   - onCommand()
+1.Service也是一种Ability，Ability为Service提供了以下生命周期方法，开发者可以重写这些方法，来添加其他Ability请求与Service Ability交互时的处理方法。
 
-     在Service创建完成之后调用，该方法在客户端每次启动该Service时都会调用，开发者可以在该方法中做一些调用统计、初始化类的操作。
-
-   - onConnect()
-
-     在Ability和Service连接时调用，该方法返回IRemoteObject对象，开发者可以在该回调函数中生成对应Service的IPC通信通道，以便Ability与Service交互。Ability可以多次连接同一个Service，系统会缓存该Service的IPC通信对象，只有第一个客户端连接Service时，系统才会调用Service的onConnect方法来生成IRemoteObject对象，而后系统会将同一个IRemoteObject对象传递至其他连接同一个Service的所有客户端，而无需再次调用onConnect方法。
-
-   - onDisconnect()
-
-     在Ability与绑定的Service断开连接时调用。
-
-   - onStop()
-
-     在Service销毁时调用。Service应通过实现此方法来清理任何资源，如关闭线程、注册的侦听器等。
 
    创建Service的代码示例如下：
 
@@ -49,7 +43,7 @@
    }
    ```
 
-2.  注册Service。
+2.注册Service。
 
     Service也需要在应用配置文件config.json中进行注册，注册类型type需要设置为service。
 
@@ -73,7 +67,7 @@
     
 
 
-## 启动Service<a name="section944219415599"></a>
+### 启动Service<a name="section944219415599"></a>
 
 Ability为开发者提供了startAbility()方法来启动另外一个Ability。因为Service也是Ability的一种，开发者同样可以通过将Want传递给该方法来启动Service。
 
@@ -103,11 +97,11 @@ var promise = await featureAbility.startAbility(
 
 - 停止Service
 
-  Service一旦创建就会一直保持在后台运行，除非必须回收内存资源，否则系统不会停止或销毁Service。开发者可以在Service中通过terminateAbility()停止本Service或在其他Ability调用stopAbility()来停止Service。
+  Service一旦创建就会一直保持在后台运行，除非必须回收内存资源，否则系统不会停止或销毁Service。开发者可以在Service中通过terminateSelf()停止本Service或在其他Ability调用stopAbility()来停止Service。
 
   
 
-## 连接本地Service<a name="section126857614018"></a>
+### 连接本地Service<a name="section126857614018"></a>
 
 如果Service需要与Page Ability或其他应用的Service Ability进行交互，则须创建用于连接的Connection。Service支持其他Ability通过connectAbility()方法与其进行连接。
 
@@ -186,7 +180,7 @@ export default {
 }
 ```
 
-## 连接远程Service<a name="section126857614019"></a>
+### 连接远程Service<a name="section126857614019"></a>
 
 如果Service需要与Page Ability或其他应用的Service Ability进行跨设备交互，则须创建用于连接的Connection。Service支持其他Ability通过connectAbility()方法与其进行跨设备连接。
 
