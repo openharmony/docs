@@ -1140,7 +1140,7 @@ var options = {
 var result = huks.abort(handle, options);
 ```
 
-##  HuksParam
+## HuksParam
 
 调用接口使用的options中的properties数组中的param。
 
@@ -1151,7 +1151,7 @@ var result = huks.abort(handle, options);
 | tag    | HuksTag                             | 是   | 标签       |
 | value  | boolean\|number\|bigint\|Uint8Array | 是   | 标签对应值 |
 
-##  HuksOptions
+## HuksOptions
 
 调用接口使用的options。
 
@@ -1162,7 +1162,7 @@ var result = huks.abort(handle, options);
 | properties | Array\<HuksParam> | 否   | 属性,存HuksParam的数组。 |
 | inData     | Uint8Array        | 否   | 输入数据。               |
 
-##  HuksHandle
+## HuksHandle
 
 huks Handle结构体。
 
@@ -1175,7 +1175,7 @@ huks Handle结构体。
 | token | Uint8Array | 否 | 预留字段 |
 
 
-##  HuksResult
+## HuksResult
 
 调用接口返回的result。
 

@@ -2,8 +2,8 @@
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
->
-> 蓝牙模块提供了基础的传统蓝牙能力以及BLE的扫描、广播等功能。
+
+蓝牙模块提供了基础的传统蓝牙能力以及BLE的扫描、广播等功能。
 
 
 ## 导入模块
@@ -216,9 +216,9 @@ getProfileConnState(profileId: ProfileId): ProfileConnectionState
 
 **返回值：**
 
-| 类型                                       | 说明            |
-| ---------------------------------------- | ------------- |
-| [ProfileConnectionState](#ProfileConnectionState) | profile的连接状态。 |
+| 类型                                              | 说明                |
+| ------------------------------------------------- | ------------------- |
+| [ProfileConnectionState](#profileconnectionstate) | profile的连接状态。 |
 
 **示例：**
 
@@ -1240,10 +1240,10 @@ getDeviceState(device: string): ProfileConnectionState
 
 **返回值：**
 
-|                                          |                 |
-| ---------------------------------------- | --------------- |
-| 类型                                       | 说明              |
-| [ProfileConnectionState](#profileconnectionState) | 返回profile的连接状态。 |
+|                                                   |                         |
+| ------------------------------------------------- | ----------------------- |
+| 类型                                              | 说明                    |
+| [ProfileConnectionState](#profileconnectionstate) | 返回profile的连接状态。 |
 
 
 ## A2dpSourceProfile
@@ -3116,10 +3116,10 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称       | 参数类型                                     | 可读   | 可写   | 说明                               |
-| -------- | ---------------------------------------- | ---- | ---- | -------------------------------- |
-| deviceId | string                                   | 是    | 否    | 表示远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
-| state    | [ProfileConnectionState](#profileconnectionState) | 是    | 是    | 表示BLE连接状态的枚举。                    |
+| 名称     | 参数类型                                          | 可读 | 可写 | 说明                                          |
+| -------- | ------------------------------------------------- | ---- | ---- | --------------------------------------------- |
+| deviceId | string                                            | 是   | 否   | 表示远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
+| state    | [ProfileConnectionState](#profileconnectionstate) | 是   | 是   | 表示BLE连接状态的枚举。                       |
 
 
 ## ProfileConnectionState
@@ -3285,10 +3285,10 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称       | 参数类型                                     | 可读   | 可写   | 说明                  |
-| -------- | ---------------------------------------- | ---- | ---- | ------------------- |
-| deviceId | string                                   | 是    | 否    | 表示蓝牙设备地址。           |
-| state    | [ProfileConnectionState](#ProfileConnectionState) | 是    | 否    | 表示蓝牙设备的profile连接状态。 |
+| 名称     | 参数类型                                          | 可读 | 可写 | 说明                            |
+| -------- | ------------------------------------------------- | ---- | ---- | ------------------------------- |
+| deviceId | string                                            | 是   | 否   | 表示蓝牙设备地址。              |
+| state    | [ProfileConnectionState](#profileconnectionstate) | 是   | 否   | 表示蓝牙设备的profile连接状态。 |
 
 
 ## DeviceClass<sup>8+</sup><a name="DeviceClass"></a>

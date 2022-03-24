@@ -278,7 +278,7 @@ on\(type: 'cellularDataConnectionStateChange', callback: Callback\<{ state: Data
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 蜂窝数据链路连接状态事件                                     |
-| callback | Callback\<{ state: [DataConnectState](js-apis-telephony-data.md#dataconnectState), network: [RatType](js-apis-radio.md#radiotechnology) }\> | 是   | 回调函数，参考data的[DataConnectState](js-apis-telephony-data.md#dataconnectstate)，radio的[RadioTechnology](js-apis-radio.md#radiotechnology)。 |
+| callback | Callback\<{ state: [DataConnectState](js-apis-telephony-data.md#dataconnectstate), network: [RatType](js-apis-radio.md#radiotechnology) }\> | 是   | 回调函数，参考data的[DataConnectState](js-apis-telephony-data.md#dataconnectstate)，radio的[RadioTechnology](js-apis-radio.md#radiotechnology)。 |
 
 **示例：**
 
@@ -303,7 +303,7 @@ on\(type: 'cellularDataConnectionStateChange', options: { slotId: number }, call
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 蜂窝数据链路连接状态事件                                     |
 | slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                       |
-| callback | Callback\<{ state: [DataConnectState](js-apis-telephony-data.md#dataconnectState), network: [RatType](js-apis-radio.md#radiotechnology) }\> | 是   | 回调函数，参考data的[DataConnectState](js-apis-telephony-data.md#dataconnectstate)，radio的[RadioTechnology](js-apis-radio.md#radiotechnology)。 |
+| callback | Callback\<{ state: [DataConnectState](js-apis-telephony-data.md#dataconnectstate), network: [RatType](js-apis-radio.md#radiotechnology) }\> | 是   | 回调函数，参考data的[DataConnectState](js-apis-telephony-data.md#dataconnectstate)，radio的[RadioTechnology](js-apis-radio.md#radiotechnology)。 |
 
 **示例：**
 
@@ -331,7 +331,7 @@ off\(type: 'cellularDataConnectionStateChange',  callback?: Callback\<{ state: D
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 蜂窝数据链路连接状态事件                                     |
-| callback | Callback\<{ state: [DataConnectState](js-apis-telephony-data.md#dataconnectState), network: [RatType](js-apis-radio.md#radiotechnology) }\> | 否   | 回调函数，参考data的[DataConnectState](js-apis-telephony-data.md#dataconnectstate)，radio的[RadioTechnology](js-apis-radio.md#radiotechnology)。 |
+| callback | Callback\<{ state: [DataConnectState](js-apis-telephony-data.md#dataconnectstate), network: [RatType](js-apis-radio.md#radiotechnology) }\> | 否   | 回调函数，参考data的[DataConnectState](js-apis-telephony-data.md#dataconnectstate)，radio的[RadioTechnology](js-apis-radio.md#radiotechnology)。 |
 
 **示例：**
 

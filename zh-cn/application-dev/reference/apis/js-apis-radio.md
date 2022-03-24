@@ -173,7 +173,7 @@ getNetworkSelectionMode\(slotId: number, callback: AsyncCallback<NetworkSelectio
 | 参数名   | 类型                                                         | 必填 | 说明                                   |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
 | slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback\<[NetworkSelectionMode](#networkselectionMode)\> | 是   | 回调函数。                             |
+| callback | AsyncCallback\<[NetworkSelectionMode](#networkselectionmode)\> | 是   | 回调函数。                             |
 
 **示例：**
 
@@ -622,7 +622,7 @@ promise.then(data => {
 | isRoaming         | boolean               | 是否处于漫游状态。 |
 | regState          | [RegState](#regstate) | 设备的网络注册状态。 |
 | cfgTech<sup>8+</sup> | [RadioTechnology](#radiotechnology) | 设备的无线接入技术。 |
-| nsaState          | [NsaState](#nsaState) | 设备的NSA网络注册状态。 |
+| nsaState          | [NsaState](#nsastate) | 设备的NSA网络注册状态。 |
 | isCaActive        | boolean               | CA的状态。 |
 | isEmergency       | boolean               | 此设备是否只允许拨打紧急呼叫。 |
 

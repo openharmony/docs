@@ -671,10 +671,10 @@ getRawFileDescriptor(path: string, callback: AsyncCallback&lt;RawFileDescriptor&
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
-| 参数名      | 类型                                       | 必填   | 说明                               |
-| -------- | ---------------------------------------- | ---- | -------------------------------- |
-| path     | string                                   | 是    | rawfile文件路径                      |
-| callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor8+</sup)&gt; | 是    | 异步回调，用于返回获取的rawfile文件的descriptor |
+| 参数名   | 类型                                                         | 必填 | 说明                                            |
+| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------- |
+| path     | string                                                       | 是   | rawfile文件路径                                 |
+| callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | 是   | 异步回调，用于返回获取的rawfile文件的descriptor |
 
 **示例：** 
   ```

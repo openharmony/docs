@@ -85,7 +85,7 @@ let ws = webSocket.createWebSocket();
 
 ## WebSocket
 
-在调用WebSocket的方法前，需要先通过[webSocket.createWebSocket](#webSocketcreatewebsocket)创建一个WebSocket。
+在调用WebSocket的方法前，需要先通过[webSocket.createWebSocket](#websocketcreatewebsocket)创建一个WebSocket。
 
 ### connect
 

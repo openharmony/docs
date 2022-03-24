@@ -2649,7 +2649,7 @@ on(type: 'stateChange', callback: Callback<AudioState\>): void
 | 参数名   | 类型                       | 必填 | 说明                                        |
 | :------- | :------------------------- | :--- | :------------------------------------------ |
 | type     | string                     | 是   | 事件回调类型，支持的事件为：'stateChange'。 |
-| callback | [AudioState](#AudioState8) | 是   | 返回监听的状态。                            |
+| callback | [AudioState](#audiostate8) | 是   | 返回监听的状态。                            |
 
 **示例：**
 
