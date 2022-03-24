@@ -95,14 +95,12 @@
 
 ```
 import window from '@ohos.window';
-.onClick(async () => {
-    try {
-      const win = await window.getTopWindow()
-      await win.setFullScreen(true)
-    } catch (err) {
-      console.log(`setFullScreen fail, code = ${err.code}`)
-    }
-})
+try {
+  const win = await window.getTopWindow()
+  await win.setFullScreen(true)
+} catch (err) {
+  console.log(`setFullScreen fail, code = ${err.code}`)
+}
 ```
 
 完整[示例工程](https://gitee.com/openharmony/windowmanager/tree/master/AppDemo/window/immersive)。
