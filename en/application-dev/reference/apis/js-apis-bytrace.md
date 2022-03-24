@@ -1,7 +1,7 @@
 # Performance Tracing
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> - The APIs of this module are no longer maintained since API version 8. It is recommended that you use the APIs of [hiTraceMeter](js-apis-hitracemeter.md) instead.  
+> - The APIs of this module are no longer maintained since API version 8. It is recommended that you use the APIs of [hiTraceMeter](js-apis-hitracemeter.md) instead.
 > - The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -12,16 +12,14 @@ import bytrace from '@ohos.bytrace';
 ```
 
 
-## System Capabilities
-
-SystemCapability.Developtools.Bytrace
-
 
 ## bytrace.startTrace
 
 startTrace(name: string, taskId: number, expectedTime?: number): void
 
 Starts a trace task. **expectedTime** is an optional parameter, which specifies the expected duration of the trace.
+
+**System capability**: SystemCapability.Developtools.Bytrace
 
 **Parameters**
 
@@ -47,6 +45,8 @@ bytrace.startTrace("myTestFunc", 1, 5); // The expected duration of the trace is
 finishTrace(name: string, taskId: number): void
 
 Stops a trace task.
+
+**System capability**: SystemCapability.Developtools.Bytrace
 
 **Parameters**
 
@@ -89,15 +89,17 @@ bytrace.finishTrace("myTestFunc", 1);
 
 ## bytrace.traceByValue
 
-traceByValue(name: string, value: number): void
+traceByValue(name: string, count: number): void
 
 Traces the value changes of a variable.
+
+**System capability**: SystemCapability.Developtools.Bytrace
 
 **Parameters**
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | name | string | Yes| Name of the variable.|
-| value | number | Yes| Value of the variable.|
+| count | number | Yes| Value of the variable.|
 
 **Example**
 
