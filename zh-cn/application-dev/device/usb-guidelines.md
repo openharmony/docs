@@ -113,9 +113,9 @@ USB设备可作为Host设备连接Device设备进行数据传输。开发示例�
    var pipe = usb.connectDevice(deviceList[0]);
    /*
     打开对应接口，在设备信息（deviceList）中选取对应的interface。
-   interface为设备配置中的一个接口。
+   interface1为设备配置中的一个接口。
    */
-   usb.claimInterface(pipe , interface, true); 
+   usb.claimInterface(pipe , interface1, true); 
    ```
 
 4. 数据传输。
@@ -150,6 +150,6 @@ USB设备可作为Host设备连接Device设备进行数据传输。开发示例�
 
 5. 释放接口，关闭设备。
    ```
-   usb.releaseInterface(pipe, interface);
+   usb.releaseInterface(pipe, interface1);
    usb.closePipe(pipe);
    ```
