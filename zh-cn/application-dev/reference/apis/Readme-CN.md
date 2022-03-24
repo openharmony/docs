@@ -73,7 +73,7 @@
     - [系统属性](js-apis-system-parameter.md)
     - [设备管理](js-apis-device-manager.md)
     - [窗口](js-apis-window.md)
-    - [显示设备属性](js-apis-display.md)
+    - [屏幕属性](js-apis-display.md)
     - [升级](js-apis-update.md) 
     - [USB管理](js-apis-usb.md)
     - [位置服务](js-apis-geolocation.md)
