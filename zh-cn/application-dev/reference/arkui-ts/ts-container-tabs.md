@@ -35,15 +35,6 @@ Tabs(value: {barPosition?: BarPosition, index?: number, controller?: [TabsContro
   | End | vertical属性方法设置为true时，页签位于容器右侧；vertical属性方法设置为false时，页签位于容器底部。 | 
 
 
-### TabsController
-
-Tabs组件的控制器，用于控制Tabs组件进行页签切换。
-
-| 接口名称 | 功能描述 | 
-| -------- | -------- |
-| changeIndex(value:&nbsp;number):&nbsp;void | 控制Tabs切换到指定页签，index:&nbsp;页签在Tabs里的索引值，索引值从0开始。 | 
-
-
 ## 属性
 
 不支持触摸热区设置。
@@ -69,6 +60,28 @@ Tabs组件的控制器，用于控制Tabs组件进行页签切换。
 | 名称 | 功能描述 | 
 | -------- | -------- |
 | onChange(callback:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;void) | Tab页签切换后触发的事件。 | 
+
+## TabsController
+
+Tabs组件的控制器，用于控制Tabs组件进行页签切换。
+
+### 导入对象
+
+```
+controller: TabsController = new TabsController()
+
+```
+
+### changeIndex
+
+changeIndex(value: number): void
+
+控制Tabs切换到指定页签。
+
+- 参数
+  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 | 
+  | -------- | -------- | -------- | -------- | -------- |
+  | value | number | 是 | - | 页签在Tabs里的索引值，索引值从0开始。 |
 
 
 ## 示例
