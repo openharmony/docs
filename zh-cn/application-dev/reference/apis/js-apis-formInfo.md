@@ -30,9 +30,9 @@ SystemCapability.Ability.Form
 | abilityName | 只读     | string               | 表示卡片所属的Ability名称                       |
 | name        | 只读     | string               | 表示卡片名称                                 |
 | description | 只读     | string               | 表示卡片描述   |
-| type        | 只读     | [FormType](#enum-formtype)             | 表示卡片类型，当前支持JS卡片 |
+| type        | 只读     | [FormType](#formtype)             | 表示卡片类型，当前支持JS卡片 |
 | jsComponentName      | 只读     | string               | 表示js卡片的组件名               |
-| colorMode  | 只读     | [ColorMode](#enum-colormode) | 表示卡片颜色模式                                       |
+| colorMode  | 只读     | [ColorMode](#colormode) | 表示卡片颜色模式                                       |
 | isDefault    | 只读     | boolean      | 表示是否是默认卡片                              |
 | updateEnabled  | 只读     | boolean               | 表示卡片是否使能更新                    |
 | formVisibleNotify  | 只读     | string               | 表示卡片是否使能可见通知            |
@@ -44,9 +44,9 @@ SystemCapability.Ability.Form
 | supportDimensions    | 只读     | Array&lt;number&gt;      | 表示卡片支持的规格                 |
 | customizeData    | 只读     | {[key: string]: [value: string]}      | 表示卡片用户数据          |
 
-## enum FormType
+## FormType
 
-支持的卡片类型
+枚举，支持的卡片类型。
 
 **系统能力：**
 
@@ -56,9 +56,9 @@ SystemCapability.Ability.Form
 | ----------- | ---- | ------------ |
 | JS      | 1    | 卡片类型为JS   |
 
-## enum ColorMode
+## ColorMode
 
-卡片支持的颜色模式
+枚举，卡片支持的颜色模式。
 
 **系统能力：**
 
@@ -72,7 +72,7 @@ SystemCapability.Ability.Form
 
 ## FormStateInfo
 
-卡片状态信息
+卡片状态信息。
 
 **系统能力：**
 
@@ -80,12 +80,12 @@ SystemCapability.Ability.Form
 
 | 名称        | 读写属性 | 类型                 | 描述                                                         |
 | ----------- | -------- | -------------------- | ------------------------------------------------------------ |
-| formState  | 只读     | [FormState](#enum-formstate)               | 表示卡片状态                           |
+| formState  | 只读     | [FormState](#formstate)               | 表示卡片状态                           |
 | want  | 只读     | Want               | Want文本内容    |
 
-##  enum FormState
+##  FormState
 
-卡片状态
+枚举，卡片状态。
 
 **系统能力：**
 
@@ -97,9 +97,9 @@ SystemCapability.Ability.Form
 | DEFAULT     | 0   | 默认状态   |
 | READY      | 1   | 就绪状态   |
 
-##  enum FormParam
+##  FormParam
 
-卡片参数
+枚举，卡片参数。
 
 **系统能力：**
 

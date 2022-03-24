@@ -2096,8 +2096,7 @@ async function example() {
 
 
 
-MediaType
----------
+## MediaType
 
 枚举，媒体类型。
 
@@ -2110,8 +2109,7 @@ MediaType
 | VIDEO | 2    | 视频   |
 | AUDIO | 3    | 音频   |
 
-FileKey
--------
+## FileKey
 
 枚举，文件关键信息。
 
@@ -2139,8 +2137,7 @@ FileKey
 | ALBUM_ID      | bucket_id           | 文件所归属的相册编号                       |
 | ALBUM_NAME    | bucket_display_name | 文件所归属相册名称                        |
 
-DirectoryType
--------------
+## DirectoryType
 
 枚举，目录类型。
 
@@ -2155,8 +2152,7 @@ DirectoryType
 | DIR_DOCUMENTS | 4    | 表示文档路径       |
 | DIR_DOWNLOAD  | 5    | 表示下载路径       |
 
-DeviceType
------------
+## DeviceType
 
 枚举，设备类型。
 

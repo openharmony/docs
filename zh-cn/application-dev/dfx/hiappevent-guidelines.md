@@ -57,7 +57,6 @@
                }).catch((err) => {
                    console.error(`failed to write event because ${err.code}`);
                });
-           });
    
            // 3.配置应用打点开关
            hiAppEvent.configure({

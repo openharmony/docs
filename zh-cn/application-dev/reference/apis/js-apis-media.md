@@ -10,7 +10,7 @@
 - 音频播放（[AudioPlayer](#audioplayer)）
 - 视频播放（[VideoPlayer](#videoplayer8)）
 - 音频录制（[AudioRecorder](#audiorecorder)）
-- 视频录制（[VideoRecorder](#videoRecorder9)）
+- 视频录制（[VideoRecorder](#videorecorder9)）
 
 后续将提供以下功能：DataSource音视频播放、音视频编解码、容器封装解封装、媒体能力查询等功能。
 
@@ -2487,7 +2487,7 @@ videoRecorder.on('error', (error) => {      							// 设置'error'事件回调
 | audioSampleRate  | number                                       | 是   | 音频采样率。     |
 | fileFormat       | [ContainerFormatType](#containerformattype8) | 是   | 文件的容器格式。 |
 | videoBitrate     | number                                       | 是   | 视频编码比特率。 |
-| videoCodec       | [CodecMimeType](#CodecMimeType8)             | 是   | 视频编码格式。   |
+| videoCodec       | [CodecMimeType](#codecmimetype8)             | 是   | 视频编码格式。   |
 | videoFrameWidth  | number                                       | 是   | 录制视频帧的宽。 |
 | videoFrameHeight | number                                       | 是   | 录制视频帧的高。 |
 | videoFrameRate   | number                                       | 是   | 录制视频帧率。   |

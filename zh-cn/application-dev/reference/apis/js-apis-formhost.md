@@ -725,10 +725,10 @@ SystemCapability.Ability.Form
 
 **参数：**
 
-  | 参数名 | 类型    | 必填 | 说明    |
-  | ------ | ------ | ---- | ------- |
-  | want | [Want](js-apis-featureAbility.md#want) | 是   | 查询卡片状态时携带的want信息 |
-  | callback | AsyncCallback&lt;[FormStateInfo](./js-apis-formInfo.md#formstateinfo)&gt; | 是 | callback形式返回卡片状态 |
+| 参数名 | 类型    | 必填 | 说明    |
+| ------ | ------ | ---- | ------- |
+| want | [Want](js-apis-featureAbility.md#want) | 是   | 查询卡片状态时携带的want信息 |
+| callback | AsyncCallback&lt;[FormStateInfo](js-apis-formInfo.md#formstateinfo)&gt; | 是 | callback形式返回卡片状态 |
 
 **示例：**
 
@@ -761,7 +761,7 @@ function acquireFormState(formIds: Array&ltstring&gt): Promise&lt;formInfo.FormS
 
 | 类型          | 说明                                |
 | :------------ | :---------------------------------- |
-| Promise&lt;[FormStateInfo](./js-apis-formInfo.md#formstateinfo)&gt; | Promise实例，用于返回卡片状态 |
+| Promise&lt;[FormStateInfo](js-apis-formInfo.md#formstateinfo)&gt; | Promise实例，用于返回卡片状态 |
 
 **系统能力：**
 

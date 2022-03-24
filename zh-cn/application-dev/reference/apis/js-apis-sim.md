@@ -350,7 +350,7 @@ getSimState\(slotId: number, callback: AsyncCallback<SimState\>\): void
 | 参数名   | 类型                                   | 必填 | 说明                                   |
 | -------- | -------------------------------------- | ---- | -------------------------------------- |
 | slotId   | number                                 | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback\<[SimState](#simState)\> | 是   | 回调函数。参考[SimState](#simState)。  |
+| callback | AsyncCallback\<[SimState](#simstate)\> | 是   | 回调函数。参考[SimState](#simstate)。  |
 
 **示例：**
 
@@ -379,7 +379,7 @@ getSimState\(slotId: number\): Promise<SimState\>
 
 | 类型                             | 说明                                       |
 | -------------------------------- | ------------------------------------------ |
-| Promise\<[SimState](#simState)\> | 以Promise形式返回获取指定卡槽的SIM卡状态。 |
+| Promise\<[SimState](#simstate)\> | 以Promise形式返回获取指定卡槽的SIM卡状态。 |
 
 **示例：**
 

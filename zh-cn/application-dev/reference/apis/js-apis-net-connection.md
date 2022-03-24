@@ -893,7 +893,7 @@ connection.getDefaultNet().then(function (netHandle) {
 | linkUpBandwidthKbps   | number                             | 上行（设备到网络）带宽。 |
 | linkDownBandwidthKbps | number                             | 下行（网络到设备）带宽。 |
 | networkCap            | Array<[NetCap](#netcap)>           | 网络具体能力。           |
-| bearerTypes           | Array<[NetBearType](#netbearType)> | 网络类型。               |
+| bearerTypes           | Array<[NetBearType](#netbeartype)> | 网络类型。               |
 
 ## NetCap
 
