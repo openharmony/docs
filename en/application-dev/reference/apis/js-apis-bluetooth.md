@@ -153,7 +153,7 @@ Sets the name of the local Bluetooth device.
 
 | Name | Type    | Mandatory  | Description                   |
 | ---- | ------ | ---- | --------------------- |
-| name | string | Yes   | Bluetooth name to set. It cannot exceed 248 bytes.|
+| name | string | Yes   | Bluetooth device name to set. It cannot exceed 248 bytes.|
 
 **Return value**
 
@@ -979,7 +979,7 @@ Obtains a profile object.
 
 | Name      | Type       | Mandatory  | Description                                   |
 | --------- | --------- | ---- | ------------------------------------- |
-| ProfileId | profileId | Yes   | ID of the target profile, for example, **PROFILE_A2DP_SOURCE**.|
+| ProfileId | profileId | Yes   | ID of the profile to obtain, for example, **PROFILE_A2DP_SOURCE**.|
 
 **Return value**
 
@@ -1265,7 +1265,7 @@ Sets up an Advanced Audio Distribution Profile (A2DP) connection.
 
 | Name   | Type    | Mandatory  | Description     |
 | ------ | ------ | ---- | ------- |
-| device | string | Yes   | Address of the remote device.|
+| device | string | Yes   | Address of the remote device to connect.|
 |
 
 **Return value**
@@ -1297,7 +1297,7 @@ Disconnects an A2DP connection.
 
 | Name   | Type    | Mandatory  | Description     |
 | ------ | ------ | ---- | ------- |
-| device | string | Yes   | Address of the remote device.|
+| device | string | Yes   | Address of the remote device to disconnect.|
 |
 
 **Return value**
@@ -1357,7 +1357,7 @@ Unsubscribes from the A2DP connection status change events.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates an A2DP connection state change event.|
-| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | Yes   | Callback invoked to return the A2DP connection state change event.                              |
+| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | Yes   | Callback used to return the A2DP connection state change event.                              |
 
 **Return value**
 
@@ -1385,7 +1385,7 @@ Obtains the playing status of a device.
 
 | Name   | Type    | Mandatory  | Description     |
 | ------ | ------ | ---- | ------- |
-| device | string | Yes   | Address of the remote device.|
+| device | string | Yes   | Address of the target device.|
 
 **Return value**
 
@@ -1421,7 +1421,7 @@ Sets up a Hands-free Profile (HFP) connection of a device.
 
 | Name   | Type    | Mandatory  | Description     |
 | ------ | ------ | ---- | ------- |
-| device | string | Yes   | Address of the remote device.|
+| device | string | Yes   | Address of the target device.|
 |
 
 **Return value**
@@ -1453,7 +1453,7 @@ Disconnects the HFP connection of a device.
 
 | Name   | Type    | Mandatory  | Description     |
 | ------ | ------ | ---- | ------- |
-| device | string | Yes   | Address of the remote device.|
+| device | string | Yes   | Address of the target device.|
 |
 
 **Return value**
@@ -1482,8 +1482,8 @@ Subscribes to the HFP connection status change events.
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates an A2DP connection state change event.|
-| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | Yes   | Callback invoked to return the A2DP connection state change event.                              |
+| type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates an HFP connection state change event.|
+| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | Yes   | Callback invoked to return the HFP connection state change event.                              |
 
 **Return value**
 
@@ -1511,8 +1511,8 @@ Unsubscribes from the HFP connection status change events.
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates an A2DP connection state change event.|
-| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | Yes   | Callback invoked to return the A2DP connection state change event.                              |
+| type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates an HFP connection state change event.|
+| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | Yes   | Callback used to return the HFP connection state change event.                              |
 
 **Return value**
 
@@ -1984,7 +1984,7 @@ Subscribes to the descriptor read request events.
 | Name     | Type                                      | Mandatory  | Description                               |
 | -------- | ---------------------------------------- | ---- | --------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **descriptorRead** indicates a descriptor read request event.|
-| callback | Callback&lt;[DescriptorReadReq](#descriptorreadreq)&gt; | Yes   | Callback invoked to return a characteristic read request from the GATT client.       |
+| callback | Callback&lt;[DescriptorReadReq](#descriptorreadreq)&gt; | Yes   | Callback invoked to return a descriptor read request event from the GATT client.       |
 
 **Return value**
 
@@ -2061,7 +2061,7 @@ Subscribes to the descriptor write request events.
 | Name     | Type                                      | Mandatory  | Description                                |
 | -------- | ---------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **descriptorWrite** indicates a descriptor write request event.|
-| callback | Callback&lt;[DescriptorWriteReq](#descriptorwritereq)&gt; | Yes   | Callback invoked to return a characteristic write request from the GATT client.        |
+| callback | Callback&lt;[DescriptorWriteReq](#descriptorwritereq)&gt; | Yes   | Callback invoked to return a descriptor write request from the GATT client.        |
 
 **Return value**
 
@@ -3058,6 +3058,7 @@ Defines the parameters of the **CharacteristicWriteReq** event received by the s
 | descriptorUuid     | string | Yes   | No   | UUID of the descriptor, for example, **00002902-0000-1000-8000-00805f9b34fb**.|
 | characteristicUuid | string | Yes   | No   | UUID of the characteristic, for example, **00002a11-0000-1000-8000-00805f9b34fb**.|
 | serviceUuid        | string | Yes   | No   | UUID of the service, for example, **00001888-0000-1000-8000-00805f9b34fb**.|
+
 
 ## DescriptorReadReq
 
