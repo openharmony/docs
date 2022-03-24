@@ -44,7 +44,7 @@ web组件不跟随转场动画。一个页面仅支持一个web组件。
 ```
 
 ```
-<!-- xxx.js -->
+// xxx.js
 export default {
     reloadWeb() {
         this.$element('web').reload()
