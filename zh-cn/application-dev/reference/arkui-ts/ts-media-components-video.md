@@ -60,21 +60,6 @@ Video(value: VideoOptions)
 | onUpdate(event?:&nbsp;{&nbsp;time:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void | 播放进度变化时触发该事件，单位为s，更新时间间隔为250ms。 | 
 
 
-### VideoController
-
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 一个VideoController对象可以控制一个或多个video。
-
-| 接口名称 | 描述 |
-| -------- | -------- |
-| start()&nbsp;:&nbsp;void | 开始播放。 |
-| pause()&nbsp;:&nbsp;void | 暂停播放。 |
-| stop()&nbsp;:&nbsp;void | 停止播放。 |
-| setCurrentTime(value:&nbsp;number) | 指定视频播放的进度位置。 |
-| setCurrentTime(value:&nbsp;number,&nbsp;seekMode:&nbsp;SeekMode | 指定视频播放的进度位置，并指定跳转模式。 |
-
-
-
 ## VideoController
 
 一个VideoController对象可以控制一个或多个video。
