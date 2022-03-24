@@ -1,33 +1,34 @@
 # Application Development
 
 - [Application Development Overview](application-dev-guide.md)
-- Learn About OpenHarmony
-  - [OpenHarmony Project](../OpenHarmony-Overview.md)
-  - [Glossary ](../device-dev/glossary/glossary.md)
-  - [OpenHarmony Release Notes](../release-notes/Readme.md)
-- Quick Start
-  - [Getting Started with Application Development](quick-start/Readme-EN.md)
-  - [Directory Structure](quick-start/package-structure.md)
--   Development
-    - [ArkUI](ui/Readme-EN.md)
-    - Basic Functions
-      - [Agent-Powered Scheduled Reminders](background-agent-scheduled-reminder/Readme-EN.md)
-      - [Background Task Management](background-task-management/Readme-EN.md)
-      - [WebGL](webgl/Readme-EN.md)
-      - [Media](media/Readme-EN.md)
-      - [Security](security/Readme-EN.md)
-      - [Connectivity](connectivity/Readme-EN.md)
-      - [Data Management](database/Readme-EN.md)
-      - [Device](device/Readme-EN.md)
-      - [DFX](dfx/Readme-EN.md)
-      - [Window Manager](windowmanager/Readme-EN.md)
--   Tools
-    - [DevEco Studio \(OpenHarmony\) User Guide](quick-start/deveco-studio-user-guide-for-openharmony.md)
--   Hands-On Tutorials
+- About OpenHarmony
+    - [OpenHarmony Project](../OpenHarmony-Overview.md)
+    - [Glossary](../device-dev/glossary/glossary.md)
+    - [OpenHarmony Release Notes](../release-notes/Readme.md)
+- Getting Started
+    - [Getting Started with Application Development](quick-start/Readme-EN.md)
+    - [Directory Structure](quick-start/package-structure.md)
+- Development
+    - [UI Development](ui/Readme-EN.md)
+    - Basic Feature Development
+       - [Window Manager](windowmanager/Readme-EN.md)
+       - [WebGL](webgl/Readme-EN.md)
+       - [Media](media/Readme-EN.md)
+       - [Security](security/Readme-EN.md)
+       - [Connectivity](connectivity/Readme-EN.md)
+       - [Data Management](database/Readme-EN.md)
+       - [Agent-Powered Scheduled Reminders](background-agent-scheduled-reminder/Readme-EN.md)
+       - [Background Task Management](background-task-management/Readme-EN.md)
+       - [Device Management](device/Readme-EN.md)
+       - [Device Usage Statistics](device-usage-statistics/Readme-EN.md)
+       - [DFX](dfx/Readme-EN.md)
+- Tools
+    - [DevEco Studio (OpenHarmony) User Guide](quick-start/deveco-studio-user-guide-for-openharmony.md)
+- Hands-On Tutorials
     - [Samples](https://gitee.com/openharmony/app_samples/blob/master/README.md)
--   API References
-    - [Compent Reference (JavaScript-based Web-like Development Paradigm)](reference/arkui-js/Readme-EN.md)
-    - [Compent Reference (TypeScript-based Declarative Development Paradigm)](reference/arkui-ts/Readme-EN.md)
+- API References
+    - [Component Reference (JavaScript-based Web-like Development Paradigm)](reference/arkui-js/Readme-EN.md)
+    - [Component Reference (TypeScript-based Declarative Development Paradigm)](reference/arkui-ts/Readme-EN.md)
     - [APIs](reference/apis/Readme-EN.md)
--   Contribution
-    - [How to Contribute](../contribute/documentation-contribution.md)
+- Contribution
+    - [How to Contribute](../contribute/ContributingDocuments.md)
