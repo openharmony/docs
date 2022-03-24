@@ -415,7 +415,6 @@
     - [应用权限管理开发指导](subsystems/subsys-security-rightmanagement.md)
     - [IPC通信鉴权开发指导](subsystems/subsys-security-communicationverify.md)
     - [设备安全等级管理开发指导](subsystems/subsys-security-devicesecuritylevel.md)
-    - [密钥管理开发指导](subsystems/subsys-security-huks.md)
   - 启动恢复
     - [启动恢复子系统概述](subsystems/subsys-boot-overview.md)
     - [init启动引导组件](subsystems/subsys-boot-init.md)
