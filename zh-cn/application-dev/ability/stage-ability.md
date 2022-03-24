@@ -164,7 +164,7 @@ context.startAbility(want, options).then((data) => {
 ```
 
 ### 跨设备启动Ability
-应用可以通过`this.context`获取Ability实例的上下文，获取进而使用AbilityContext中的StartAbility相关接口跨设备启动Ability，所需的对端设备deviceId可通过DeviceManager获取。跨设备启动Ability需在组网认证，并指定对端设备deviceId，具体获取接口参照[DeviceManager](https://gitee.com/openharmony/device_manager/blob/master/README_zh.md)。具体示例代码如下：
+跨设备场景下，需指定对端设备deviceId，具体获取接口参照[DeviceManager](https://gitee.com/openharmony/device_manager/blob/master/README_zh.md)。具体示例代码如下：
 ```ts
 let context = this.context
 var want = {
