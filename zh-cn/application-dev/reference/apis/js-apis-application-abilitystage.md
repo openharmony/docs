@@ -94,6 +94,8 @@ onConfigurationUpdated(config: Configuration): void;
 
 指示有关上下文的配置信息。
 
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
 | 属性名      | 类型                        | 说明                                                         |
 | ----------- | --------------------------- | ------------------------------------------------------------ |
-| context  | [AbilityStageContext](js-apis-featureAbility.md) | 在启动能力阶段进行初始化时回调。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core |
+| context  | [AbilityStageContext](js-apis-featureAbility.md) | 在启动能力阶段进行初始化时回调。 |

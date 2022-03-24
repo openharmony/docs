@@ -509,9 +509,11 @@ function onConnectCallback(element, remote){
 
 获取错误代码。
 
+**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
+
 | 变量                          | 值   | 说明                                                         |
 | ----------------------------- | ---- | ------------------------------------------------------------ |
-| INVALID_PARAMETER         | -1    | 无效的参数。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel |
+| INVALID_PARAMETER         | -1    | 无效的参数。 |
 
 
 

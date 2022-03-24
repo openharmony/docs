@@ -665,11 +665,7 @@ getWindow(callback: AsyncCallback\<window.Window>): void
 **示例：**
 
 ```javascript
-<<<<<<< HEAD
 featureAbility.getWindow()
-=======
-        featureAbility.getWindow()
->>>>>>> 45a0d5bbd5a373948e44b76b9e7eeb3239fe94e7
 ```
 
 ## featureAbility.getWindow<sup>7+</sup>
@@ -689,15 +685,9 @@ getWindow(): Promise\<window.Window>;
 **示例：**
 
 ```javascript
-<<<<<<< HEAD
 featureAbility.getWindow().then((data) => {
-  console.info("=============getWindowPromise========== " +           JSON.stringify(data)); 
+  console.info("=============getWindowPromise========== " +  JSON.stringify(data)); 
 });
-=======
-        featureAbility.getWindow().then((data) => {
-            console.info("=============getWindowPromise========== " + JSON.stringify(data));
-        });     
->>>>>>> 45a0d5bbd5a373948e44b76b9e7eeb3239fe94e7
 ```
 
 ## ConnectOptions.onConnect<sup>7+</sup>
@@ -841,13 +831,15 @@ var connId = featureAbility.connectAbility(
 featureAbility.AbilityWindowConfiguration.WINDOW_MODE_UNDEFINED
 ```
 
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.FAModel
+
 | 名称                                       | 参数   | 描述                                       |
 | ---------------------------------------- | ---- | ---------------------------------------- |
-| WINDOW_MODE_UNDEFINED<sup>7+</sup>       | 0    | 未定义。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel |
-| WINDOW_MODE_FULLSCREEN<sup>7+</sup>      | 1    | 全屏。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel |
-| WINDOW_MODE_SPLIT_PRIMARY<sup>7+</sup>   | 100  | 分屏主屏。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel |
-| WINDOW_MODE_SPLIT_SECONDARY<sup>7+</sup> | 101  | 分屏次屏。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel |
-| WINDOW_MODE_FLOATING<sup>7+</sup>        | 102  | 悬浮窗。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel |
+| WINDOW_MODE_UNDEFINED<sup>7+</sup>       | 0    | 未定义。 |
+| WINDOW_MODE_FULLSCREEN<sup>7+</sup>      | 1    | 全屏。    |
+| WINDOW_MODE_SPLIT_PRIMARY<sup>7+</sup>   | 100  | 分屏主屏。 |
+| WINDOW_MODE_SPLIT_SECONDARY<sup>7+</sup> | 101  | 分屏次屏。 |
+| WINDOW_MODE_FLOATING<sup>7+</sup>        | 102  | 悬浮窗。 |
 
 
 ## AbilityStartSetting
@@ -862,34 +854,40 @@ abilityStartSetting属性是一个定义为[key: string]: any的对象，key对�
 featureAbility.AbilityStartSetting.BOUNDS_KEY
 ```
 
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.FAModel
+
 | 名称                           | 参数              | 描述                                       |
 | ---------------------------- | --------------- | ---------------------------------------- |
-| BOUNDS_KEY<sup>7+</sup>      | "abilityBounds" | 窗口显示大小属性的名称。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel |
-| WINDOW_MODE_KEY<sup>7+</sup> | "windowMode"    | 窗口显示模式属性的名称。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel |
-| DISPLAY_ID_KEY<sup>7+</sup>  | "displayId"     | 窗口显示设备ID属性的名称。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel |
+| BOUNDS_KEY<sup>7+</sup>      | "abilityBounds" | 窗口显示大小属性的名称。 |
+| WINDOW_MODE_KEY<sup>7+</sup> | "windowMode"    | 窗口显示模式属性的名称。|
+| DISPLAY_ID_KEY<sup>7+</sup>  | "displayId"     | 窗口显示设备ID属性的名称。 |
 
 ## ErrorCode
 
 获取错误代码。
 
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.FAModel
+
 | 变量                             | 值    | 说明                                       |
 | ------------------------------ | ---- | ---------------------------------------- |
-| NO_ERROR<sup>7+</sup>          | 0    | 没有错误。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel |
-| INVALID_PARAMETER<sup>7+</sup> | -1   | 无效的参数。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel |
-| ABILITY_NOT_FOUND<sup>7+</sup> | -2   | 找不到能力。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel |
-| PERMISSION_DENY<sup>7+</sup>   | -3   | 拒绝许可。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel |
+| NO_ERROR<sup>7+</sup>          | 0    | 没有错误。 |
+| INVALID_PARAMETER<sup>7+</sup> | -1   | 无效的参数。 |
+| ABILITY_NOT_FOUND<sup>7+</sup> | -2   | 找不到能力。 |
+| PERMISSION_DENY<sup>7+</sup>   | -3   | 拒绝许可。 |
 
 
 ## DataAbilityOperationType
 
 指示数据的操作类型。
 
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.FAModel
+
 | 变量                       | 值    | 说明                                       |
 | ------------------------ | ---- | ---------------------------------------- |
-| TYPE_INSERT<sup>7+</sup> | 1    | 插入类型。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel |
-| TYPE_UPDATE<sup>7+</sup> | 2    | 修改类型。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel |
-| TYPE_DELETE<sup>7+</sup> | 3    | 删除类型。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel |
-| TYPE_ASSERT<sup>7+</sup> | 4    | 声明类型。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel |
+| TYPE_INSERT<sup>7+</sup> | 1    | 插入类型。 |
+| TYPE_UPDATE<sup>7+</sup> | 2    | 修改类型。 |
+| TYPE_DELETE<sup>7+</sup> | 3    | 删除类型。 |
+| TYPE_ASSERT<sup>7+</sup> | 4    | 声明类型。 |
 
 
 
