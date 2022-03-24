@@ -20,7 +20,7 @@ import huks from '@ohos.security.huks'
 
 | 名称                       | 值    | 说明 |
 | -------------------------- | ----- | ---- |
-| HUKS_SUCCESS | 0     |表示成功。表示当前设备连接的充电器类型。|
+| HUKS_SUCCESS | 0     |表示成功。|
 | HUKS_FAILURE | -1    |表示失败。|
 | HUKS_ERROR_BAD_STATE | -2    |表示错误的状态。|
 | HUKS_ERROR_INVALID_ARGUMENT | -3    |表示无效的数据。|

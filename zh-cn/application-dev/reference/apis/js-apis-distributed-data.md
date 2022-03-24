@@ -779,8 +779,8 @@ getPosition(): number
         }).catch((err) => {
             console.log('getResultSet fail ' + err);
         });
-        const positon = resultSet.getPosition();
-        console.log("getPosition " + positon);
+        const position = resultSet.getPosition();
+        console.log("getPosition " + position);
     } catch (e) {
         console.log("GetPosition fail " + e);
     }

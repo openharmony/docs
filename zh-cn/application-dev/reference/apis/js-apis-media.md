@@ -250,13 +250,13 @@ Codec MIME类型枚举。
 | MD_KEY_TRACK_INDEX       | "track_index"   | 表示轨道序号，其对应键值类型为number。                       |
 | MD_KEY_TRACK_TYPE        | "track_type"    | 表示轨道类型，其对应键值类型为number，参考[MediaType](#mediatype8)。 |
 | MD_KEY_CODEC_MIME        | "codec_mime"    | 表示codec_mime类型，其对应键值类型为string。                 |
-| MD_KEY_DURATION          | "duration"      | 表示媒体时长，其对应键值类型为number，单位为ms。             |
-| MD_KEY_BITRATE           | "bitrate"       | 表示比特率，其对应键值类型为number，单位为bps。              |
-| MD_KEY_WIDTH             | "width"         | 表示视频宽度，其对应键值类型为number，单位为像素。           |
-| MD_KEY_HEIGHT            | "height"        | 表示视频高度，其对应键值类型为number，单位为像素。           |
-| MD_KEY_FRAME_RATE        | "frame_rate"    | 表示视频帧率，其对应键值类型为number，单位为100fps。         |
+| MD_KEY_DURATION          | "duration"      | 表示媒体时长，其对应键值类型为number，单位为毫秒（ms）。     |
+| MD_KEY_BITRATE           | "bitrate"       | 表示比特率，其对应键值类型为number，单位为比特率（bps）。    |
+| MD_KEY_WIDTH             | "width"         | 表示视频宽度，其对应键值类型为number，单位为像素（px）。     |
+| MD_KEY_HEIGHT            | "height"        | 表示视频高度，其对应键值类型为number，单位为像素（px）。     |
+| MD_KEY_FRAME_RATE        | "frame_rate"    | 表示视频帧率，其对应键值类型为number，单位为100帧每秒（100fps）。 |
 | MD_KEY_AUD_CHANNEL_COUNT | "channel_count" | 表示声道数，其对应键值类型为number。                         |
-| MD_KEY_AUD_SAMPLE_RATE   | "sample_rate"   | 表示采样率，其对应键值类型为number，单位为HZ。               |
+| MD_KEY_AUD_SAMPLE_RATE   | "sample_rate"   | 表示采样率，其对应键值类型为number，单位为赫兹（Hz）。       |
 
 ## BufferingInfoType<sup>8+</sup>
 
@@ -264,12 +264,12 @@ Codec MIME类型枚举。
 
 **系统能力：** 以下各项对应的系统能力均为 SystemCapability.Multimedia.Media.Core。
 
-| 名称              | 值   | 说明                       |
-| ----------------- | ---- | -------------------------- |
-| BUFFERING_START   | 1    | 表示开始缓存。             |
-| BUFFERING_END     | 2    | 表示结束缓存。             |
-| BUFFERING_PERCENT | 3    | 表示缓存百分比。           |
-| CACHED_DURATION   | 4    | 表示缓存时长，单位为毫秒。 |
+| 名称              | 值   | 说明                             |
+| ----------------- | ---- | -------------------------------- |
+| BUFFERING_START   | 1    | 表示开始缓存。                   |
+| BUFFERING_END     | 2    | 表示结束缓存。                   |
+| BUFFERING_PERCENT | 3    | 表示缓存百分比。                 |
+| CACHED_DURATION   | 4    | 表示缓存时长，单位为毫秒（ms）。 |
 
 ## AudioPlayer
 
@@ -367,9 +367,9 @@ seek(timeMs: number): void
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明                           |
-| ------ | ------ | ---- | ------------------------------ |
-| timeMs | number | 是   | 指定的跳转时间节点，单位毫秒。 |
+| 参数名 | 类型   | 必填 | 说明                                 |
+| ------ | ------ | ---- | ------------------------------------ |
+| timeMs | number | 是   | 指定的跳转时间节点，单位毫秒（ms）。 |
 
 **示例：**
 
@@ -1026,10 +1026,10 @@ seek(timeMs: number, callback: AsyncCallback\<number>): void
 
 **参数：**
 
-| 参数名   | 类型     | 必填 | 说明                           |
-| -------- | -------- | ---- | ------------------------------ |
-| timeMs   | number   | 是   | 指定的跳转时间节点，单位毫秒。 |
-| callback | function | 是   | 跳转到指定播放位置的回调方法。 |
+| 参数名   | 类型     | 必填 | 说明                                 |
+| -------- | -------- | ---- | ------------------------------------ |
+| timeMs   | number   | 是   | 指定的跳转时间节点，单位毫秒（ms）。 |
+| callback | function | 是   | 跳转到指定播放位置的回调方法。       |
 
 **示例：**
 
@@ -1053,11 +1053,11 @@ seek(timeMs: number, mode:SeekMode, callback: AsyncCallback\<number>): void
 
 **参数：**
 
-| 参数名   | 类型                   | 必填 | 说明                           |
-| -------- | ---------------------- | ---- | ------------------------------ |
-| timeMs   | number                 | 是   | 指定的跳转时间节点，单位毫秒。 |
-| mode     | [SeekMode](#seekmode8) | 是   | 跳转模式。                     |
-| callback | function               | 是   | 跳转到指定播放位置的回调方法。 |
+| 参数名   | 类型                   | 必填 | 说明                                 |
+| -------- | ---------------------- | ---- | ------------------------------------ |
+| timeMs   | number                 | 是   | 指定的跳转时间节点，单位毫秒（ms）。 |
+| mode     | [SeekMode](#seekmode8) | 是   | 跳转模式。                           |
+| callback | function               | 是   | 跳转到指定播放位置的回调方法。       |
 
 **示例：**
 
@@ -1081,10 +1081,10 @@ seek(timeMs: number, mode?:SeekMode): Promise\<number>
 
 **参数：**
 
-| 参数名 | 类型                   | 必填 | 说明                           |
-| ------ | ---------------------- | ---- | ------------------------------ |
-| timeMs | number                 | 是   | 指定的跳转时间节点，单位毫秒。 |
-| mode   | [SeekMode](#seekmode8) | 否   | 跳转模式。                     |
+| 参数名 | 类型                   | 必填 | 说明                                 |
+| ------ | ---------------------- | ---- | ------------------------------------ |
+| timeMs | number                 | 是   | 指定的跳转时间节点，单位毫秒（ms）。 |
+| mode   | [SeekMode](#seekmode8) | 否   | 跳转模式。                           |
 
 **返回值：**
 

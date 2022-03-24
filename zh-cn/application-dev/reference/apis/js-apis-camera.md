@@ -240,11 +240,11 @@ createCameraInput(position: CameraPosition, type: CameraType, callback: AsyncCal
 
 **参数：**
 
-| 名称           | 类型                                        | 必填 | 说明                                |
-| -------------- | ------------------------------------------- | ---- | ----------------------------------- |
-| cameraPosition | [CameraPosition](#cameraposition)           | 是   | 相机位置。                          |
-| cameraType     | [CameraType](#cameratype)                   | 是   | 相机类型。                          |
-| callback       | AsyncCallback<[CameraInput](#camerainput)\> | 是   | 回调函数，用于获取CameraInput实例。 |
+| 名称     | 类型                                        | 必填 | 说明                                |
+| -------- | ------------------------------------------- | ---- | ----------------------------------- |
+| position | [CameraPosition](#cameraposition)           | 是   | 相机位置。                          |
+| type     | [CameraType](#cameratype)                   | 是   | 相机类型。                          |
+| callback | AsyncCallback<[CameraInput](#camerainput)\> | 是   | 回调函数，用于获取CameraInput实例。 |
 
 **示例：**
 
@@ -268,10 +268,10 @@ createCameraInput(position: CameraPosition, type: CameraType): Promise<CameraInp
 
 **参数：**
 
-| 名称           | 类型                              | 必填 | 说明       |
-| -------------- | --------------------------------- | ---- | ---------- |
-| cameraPosition | [CameraPosition](#cameraposition) | 是   | 相机位置。 |
-| cameraType     | [CameraType](#cameratype)         | 是   | 相机类型。 |
+| 名称     | 类型                              | 必填 | 说明       |
+| -------- | --------------------------------- | ---- | ---------- |
+| position | [CameraPosition](#cameraposition) | 是   | 相机位置。 |
+| type     | [CameraType](#cameratype)         | 是   | 相机类型。 |
 
 **返回值：**
 
@@ -297,10 +297,10 @@ on(type: 'cameraStatus', callback: AsyncCallback<CameraStatusInfo\>): void
 
 **参数：**
 
-| 名称     | 类型                                                  | 必填 | 说明                                 |
-| :------- | :---------------------------------------------------- | :--- | :----------------------------------- |
-| type     | string                                                | 是   | 监听事件。                           |
-| callback | AsyncCallback<[CameraStatusInfo](#camerastatusinfo)\> | 是   | 回调函数，用于获取相机状态变化信息。 |
+| 名称     | 类型                                                  | 必填 | 说明                                                 |
+| :------- | :---------------------------------------------------- | :--- | :--------------------------------------------------- |
+| type     | string                                                | 是   | 监听事件，固定为'cameraStatus'，即相机状态变化事件。 |
+| callback | AsyncCallback<[CameraStatusInfo](#camerastatusinfo)\> | 是   | 回调函数，用于获取相机状态变化信息。                 |
 
 **示例：**
 
@@ -1014,10 +1014,10 @@ on(type: 'error', callback: ErrorCallback<CameraInputError\>): void
 
 **参数：**
 
-| 名称     | 类型                             | 必填 | 说明                      |
-| :------- | :------------------------------- | :--- | :------------------------ |
-| type     | string                           | 是   | 监听事件，固定为'error'。 |
-| callback | ErrorCallback<CameraInputError\> | 是   | 回调函数，用于获取结果。  |
+| 名称     | 类型                             | 必填 | 说明                                            |
+| :------- | :------------------------------- | :--- | :---------------------------------------------- |
+| type     | string                           | 是   | 监听事件，固定为'error'，即CamerInput错误事件。 |
+| callback | ErrorCallback<CameraInputError\> | 是   | 回调函数，用于获取结果。                        |
 
 **示例：**
 
@@ -1823,10 +1823,10 @@ on(type: 'error', callback: ErrorCallback<CaptureSessionError\>): void
 
 **参数：**
 
-| 名称     | 类型                                | 必填 | 说明                         |
-| :------- | :---------------------------------- | :--- | :--------------------------- |
-| type     | string                              | 是   | 监听事件，固定为'error'。    |
-| callback | ErrorCallback<CaptureSessionError\> | 是   | 回调函数，用于获取错误信息。 |
+| 名称     | 类型                                | 必填 | 说明                                          |
+| :------- | :---------------------------------- | :--- | :-------------------------------------------- |
+| type     | string                              | 是   | 监听事件，固定为'error'，即拍照会话错误事件。 |
+| callback | ErrorCallback<CaptureSessionError\> | 是   | 回调函数，用于获取错误信息。                  |
 
 **示例：**
 
@@ -2000,10 +2000,10 @@ on(type: 'error', callback: ErrorCallback<PreviewOutputError\>): void
 
 **参数：**
 
-| 名称     | 类型                               | 必填 | 说明                         |
-| :------- | :--------------------------------- | :--- | :--------------------------- |
-| type     | string                             | 是   | 监听事件，固定为'error'。    |
-| callback | ErrorCallback<PreviewOutputError\> | 是   | 回调函数，用于获取错误信息。 |
+| 名称     | 类型                               | 必填 | 说明                                          |
+| :------- | :--------------------------------- | :--- | :-------------------------------------------- |
+| type     | string                             | 是   | 监听事件，固定为'error'，即预览输出错误事件。 |
+| callback | ErrorCallback<PreviewOutputError\> | 是   | 回调函数，用于获取错误信息。                  |
 
 **示例：**
 
@@ -2323,10 +2323,10 @@ on(type: 'error', callback: ErrorCallback<PhotoOutputError\>): void
 
 **参数：**
 
-| 名称     | 类型                             | 必填 | 说明                         |
-| :------- | :------------------------------- | :--- | :--------------------------- |
-| type     | string                           | 是   | 监听事件，固定为'error'。    |
-| callback | ErrorCallback<PhotoOutputError\> | 是   | 回调函数，用于获取错误信息。 |
+| 名称     | 类型                             | 必填 | 说明                                      |
+| :------- | :------------------------------- | :--- | :---------------------------------------- |
+| type     | string                           | 是   | 监听事件，固定为'error'，即拍照错误事件。 |
+| callback | ErrorCallback<PhotoOutputError\> | 是   | 回调函数，用于获取错误信息。              |
 
 **示例：**
 
@@ -2379,9 +2379,9 @@ createVideoOutput(surfaceId: string): Promise<VideoOutput\>
 
 **返回值：**
 
-| 类型                  | 说明                                   |
-| --------------------- | -------------------------------------- |
-| Promise<PhotoOutput\> | 使用Promise的方式获取VideoOutput实例。 |
+| 类型                                  | 说明                                   |
+| ------------------------------------- | -------------------------------------- |
+| Promise<[VideoOutput](#videooutput)\> | 使用Promise的方式获取VideoOutput实例。 |
 
 **示例：**
 
@@ -2597,10 +2597,10 @@ on(type: 'error', callback: ErrorCallback<VideoOutputError\>): void
 
 **参数：**
 
-| 名称     | 类型                        | 必填 | 说明                         |
-| :------- | :-------------------------- | :--- | :--------------------------- |
-| type     | string                      | 是   | 监听事件，固定为'error'。    |
-| callback | Callback<VideoOutputError\> | 是   | 回调函数，用于获取错误信息。 |
+| 名称     | 类型                        | 必填 | 说明                                          |
+| :------- | :-------------------------- | :--- | :-------------------------------------------- |
+| type     | string                      | 是   | 监听事件，固定为'error'，即视频输出错误事件。 |
+| callback | Callback<VideoOutputError\> | 是   | 回调函数，用于获取错误信息。                  |
 
 **示例：**
 
