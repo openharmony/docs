@@ -24,20 +24,22 @@
   import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
   import bundle from '@ohos.bundle'
 
-  var permissionNameUser = "ohos.permission.ALPHA";
-  var bundleFlag = 0;
-  var tokenID = undefined;
-  var userID = 100;
-  var appInfo = await bundle.getApplicationInfo('ohos.acts.security.access_token.normal', bundleFlag, userID);
-  tokenID = appInfo.accessTokenId;
-  console.log("AccessTokenTest accessTokenId:" + appInfo.accessTokenId + ", name:" + appInfo.name
-      + ", bundleName:" + appInfo.bundleName)
-  var atManager = abilityAccessCtrl.createAtManager();
-  var result = await atManager.verifyAccessToken(tokenID, permissionNameUser);
-  if (result == abilityAccessCtrl.GrantStatus.PERMISSION_GRANTED) {
-      // 执行操作
-  } else {
-      // 申请动态授权，使用接口：requestPermissionsFromUser
+  async requestPermission() {
+    var permissionNameUser = "ohos.permission.ALPHA";
+    var bundleFlag = 0;
+    var tokenID = undefined;
+    var userID = 100;
+    var appInfo = await bundle.getApplicationInfo('ohos.acts.security.access_token.normal', bundleFlag, userID);
+    tokenID = appInfo.accessTokenId;
+    console.log("AccessTokenTest accessTokenId:" + appInfo.accessTokenId + ", name:" + appInfo.name
+        + ", bundleName:" + appInfo.bundleName)
+    var atManager = abilityAccessCtrl.createAtManager();
+    var result = await atManager.verifyAccessToken(tokenID, permissionNameUser);
+    if (result == abilityAccessCtrl.GrantStatus.PERMISSION_GRANTED) {
+        // 执行操作
+    } else {
+        // 申请动态授权，使用接口：requestPermissionsFromUser
+    }
   }
 
 ```
