@@ -136,7 +136,7 @@ Button('Ok', { type: ButtonType.Normal, stateEffect: true })
   
   @Entry
   @Component
-  struct ButtonExample {
+  struct ButtonCase1 {
     build() {
       List({ space: 4 }) {
         ListItem() {
