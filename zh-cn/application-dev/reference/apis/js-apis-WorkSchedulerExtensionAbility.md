@@ -11,16 +11,20 @@ import WorkSchedulerExtensionAbility from '@ohos.WorkSchedulerExtensionAbility'
 ```
 
 ## WorkSchedulerExtensionAbility.onWorkStart
-- **系统能力**：
-SystemCapability.ResourceSchedule.WorkScheduler
 
-- **接口**：
-onWorkStart(workInfo: WorkInfo);
+onWorkStart(work: workScheduler.WorkInfo): void
 
-- **说明**：
 延迟任务调度开始回调。
 
-- **示例**：
+**系统能力：** SystemCapability.ResourceSchedule.WorkScheduler
+
+**参数**：
+
+| 参数名  | 类型                    | 必填   | 说明             |
+| ---- | --------------------- | ---- | -------------- |
+| work | [workScheduler.WorkInfo](js-apis-workScheduler.md#workinfo) | 是    | 指示要添加到执行队列的工作。 |
+
+**示例：** 
 
   ```
     export default class MyWorkSchedulerExtensionAbility extends WorkSchedulerExtensionAbility {
@@ -31,16 +35,21 @@ onWorkStart(workInfo: WorkInfo);
   ```
 
 ## WorkSchedulerExtensionAbility.onWorkStop
-- **系统能力**：
-SystemCapability.ResourceSchedule.WorkScheduler
 
-- **接口**：
-onWorkStop(workInfo: WorkInfo);
+onWorkStop(work: workScheduler.WorkInfo)
 
-- **说明**：
 延迟任务调度结束回调。
 
-- **示例**：
+**系统能力：** SystemCapability.ResourceSchedule.WorkScheduler
+
+**参数**：
+
+| 参数名  | 类型                    | 必填   | 说明             |
+| ---- | --------------------- | ---- | -------------- |
+| work | [workScheduler.WorkInfo](js-apis-workScheduler.md#workinfo) | 是    | 指示要添加到执行队列的工作。 |
+
+
+**示例：** 
 
   ```
     export default class MyWorkSchedulerExtensionAbility extends WorkSchedulerExtensionAbility {
