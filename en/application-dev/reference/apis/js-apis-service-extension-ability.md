@@ -1,7 +1,7 @@
-# ServiceExtension
+# ServiceExtensionAbility
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> The initial APIs of this module are supported since API 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 Provides APIs related to **ServiceExtension**.
@@ -10,13 +10,13 @@ Provides APIs related to **ServiceExtension**.
 ## Modules to Import
 
 ```
-import ServiceExtension from '@ohos.application.ServiceExtension';
+import ServiceExtension from '@ohos.application.ServiceExtensionAbility';
 ```
 
 
 ## Required Permissions
 
-None
+None.
 
 
 ## Attributes
@@ -26,7 +26,7 @@ None
 | context | [ServiceExtensionContext](js-apis-service-extension-context.md)  | Yes| No| Service extension context, which is inherited from **ExtensionContext**.<br>**System capability**: SystemCapability.Ability.AbilityRuntime.Core| 
 
 
-## onCreate
+## ServiceExtensionAbility.onCreate
 
 onCreate(want: Want): void;
 
@@ -51,7 +51,7 @@ Called when an extension is created to initialize the service logic.
   ```
 
 
-## onDestroy
+## ServiceExtensionAbility.onDestroy
 
 onDestroy(): void;
 
@@ -70,7 +70,7 @@ Called when this extension is destroyed to clear resources.
   ```
 
 
-## onRequest
+## ServiceExtensionAbility.onRequest
 
 onRequest(want: Want, startId: number): void;
 
@@ -96,7 +96,7 @@ Called after **onCreate** is invoked when an ability is started by calling **sta
   ```
 
 
-## onConnect
+## ServiceExtensionAbility.onConnect
 
 onConnect(want: Want): rpc.RemoteObject;
 
@@ -136,7 +136,7 @@ Called after **onCreate** is invoked when an ability is started by calling **con
   ```
 
 
-## onDisconnect
+## ServiceExtensionAbility.onDisconnect
 
 onDisconnect(want: Want): void;
 
