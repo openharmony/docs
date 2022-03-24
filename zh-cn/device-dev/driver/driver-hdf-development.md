@@ -107,7 +107,7 @@ HDF框架以组件化的驱动模型作为核心设计思路，为开发者提�
        }
        config("public") {  #定义依赖的头文件配置
            include_dirs = [
-		   "xxx/xxx/xxx", #依赖的头文件目录
+               "xxx/xxx/xxx", #依赖的头文件目录
            ]
        }
        ```
@@ -116,10 +116,10 @@ HDF框架以组件化的驱动模型作为核心设计思路，为开发者提�
 
        ```
        group("liteos") {
-              public_deps = [ ":$module_name" ]
-                  deps = [
-                     "xxx/xxx",   #新增模块BUILD.gn所在的目录，目录结构相对于/drivers/adapter/khdf/liteos
-                 ]
+           public_deps = [ ":$module_name" ]
+           deps = [
+               "xxx/xxx",   #新增模块BUILD.gn所在的目录，目录结构相对于/drivers/adapter/khdf/liteos
+           ]
        }
        ```
 
@@ -214,6 +214,25 @@ HDF框架以组件化的驱动模型作为核心设计思路，为开发者提�
         #include "device_info/device_info.hcs"
         #include "sample/sample_config.hcs"
         ```
+
+4. 用户态驱动服务启动配置
+
+   用户态需要把驱动服务配置到文件drivers/adapter/uhdf2/host/hdf_devhostmusl.cfg中，如下：
+
+   ```
+   {
+       "name" : "sample_host", //驱动服务进程名字，和device_info.hcs中配置的hostName对应
+       "dynamic" : true, //动态加载，目前驱动服务只支持动态加载，即由hdf_devmgr在初始化时调用init模块接口启动
+       "path" : ["/vendor/bin/hdf_devhost"],//hdf_devhost所在的目录
+       "uid" : "sample_host",//进程的用户ID
+       "gid" : ["sample_host"],//进程的组ID
+       "caps" : ["DAC_OVERRIDE", "DAC_READ_SEARCH"]//进程的Linux capabilities配置
+   }
+   ```
+
+   进程的用户ID在文件base/startup/init_lite/services/etc/passwd中配置，进程的组ID在文件base/startup/init_lite/services/etc/group中配置，进程用户ID和组ID配置参考：[系统服务用户组添加方法](https://gitee.com/openharmony/startup_init_lite/wikis)。
+
+
 
 
 
