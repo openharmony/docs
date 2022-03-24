@@ -1,5 +1,4 @@
 - [设备开发导读](device-dev-guide.md)
-
 - 快速开始
 
   - 轻量和小型系统入门
@@ -345,37 +344,149 @@
       - [AUDIO](driver/driver-peripherals-audio-des.md)
       - [USB](driver/driver-peripherals-usb-des.md)
       - [CAMERA](driver/driver-peripherals-camera-des.md)
-  - [编译构建](subsystems/subsys-build.md)
+  - 编译构建
+    - [轻量和小型系统编译构建指导](subsystems/subsys-build-mini-lite.md)
+    - [标准系统编译构建指导](subsystems/subsys-build-standard-large.md)
+    - [构建系统编码规范和最佳实践指导](subsystems/subsys-build-gn-coding-style-and-best-practice.md)
+    - [编译构建Kconfig可视化配置指导](subsystems/subsys-build-gn-kconfig-visual-config-guid.md)
   - [分布式远程启动](subsystems/subsys-remote-start.md)
-  - [图形图像](subsystems/subsys-graphics.md)
-  - [媒体](subsystems/subsys-multimedia.md)
-  - [公共基础](subsystems/subsys-utils.md)
-  - [AI框架](subsystems/subsys-aiframework.md)
-  - [数据管理](subsystems/subsys-data.md)
-  - [Sensor服务](subsystems/subsys-sensor.md)
-  - [USB服务](subsystems/subsys-usbservice.md)
-  - [用户程序框架](subsystems/subsys-application-framework.md)
+  - 图形图像
+    - [图形图像概述](subsystems/subsys-graphics-overview.md)
+    - [容器类组件开发指导](subsystems/subsys-graphics-container-guide.md)
+    - [布局容器类组件开发指导](subsystems/subsys-graphics-layout-guide.md)
+    - [普通组件开发指导](subsystems/subsys-graphics-common-guide.md)
+    - [动画开发指导](subsystems/subsys-graphics-animation-guide.md)
+  - 媒体
+    - [相机](subsystems/subsys-multimedia-camera.md)
+      - [相机开发概述](subsystems/subsys-multimedia-camera-overview.md)
+      - [拍照开发指导](subsystems/subsys-multimedia-camera-photo-guide.md)
+      - [录像开发指导](subsystems/subsys-multimedia-camera-record-guide.md)
+      - [预览开发指导](subsystems/subsys-multimedia-camera-preview-guide.md)
+    - [音视频](subsystems/subsys-multimedia-video.md)
+      - [音视频开发概述](subsystems/subsys-multimedia-video-overview.md)
+      - [音视频播放开发指导](subsystems/subsys-multimedia-video-play-guide.md)
+      - [音视频录制开发指导](subsystems/subsys-multimedia-video-record-guide.md)
+  - 公共基础
+    - [公共基础库概述](subsystems/subsys-utils-overview.md)
+    - [公共基础库开发指导](subsystems/subsys-utils-guide.md)
+    - [公共基础库常见问题](subsystems/subsys-utils-faqs.md)
+  - AI框架
+    - [AI引擎框架开发指南](subsystems/subsys-aiframework-guide.md)
+    - [搭建环境](subsystems/subsys-aiframework-envbuild.md)
+    - [技术规范](subsystems/subsys-aiframework-tech.md)
+      - [代码管理规范](subsystems/subsys-aiframework-tech-codemanage.md)
+      - [命名规范](subsystems/subsys-aiframework-tech-name.md)
+      - [接口开发规范](subsystems/subsys-aiframework-tech-interface.md)
+    - [开发指导](subsystems/subsys-aiframework-devguide.md)
+      - [SDK开发过程](subsystems/subsys-aiframework-devguide-sdk.md)
+      - [插件的开发过程](subsystems/subsys-aiframework-devguide-plugin.md)
+      - [配置文件的开发过程](subsystems/subsys-aiframework-devguide-conf.md)
+    - [开发示例](subsystems/subsys-aiframework-demo.md)
+      - [唤醒词识别SDK的开发示例](subsystems/subsys-aiframework-demo-sdk.md)
+      - [唤醒词识别插件的开发示例](subsystems/subsys-aiframework-demo-plugin.md)
+      - [唤醒词识别配置文件的开发示例](subsystems/subsys-aiframework-demo-conf.md)
+  - 数据管理
+    - [关系型数据库](subsystems/subsys-data-relational-database.md)
+      - [关系型数据库概述](subsystems/subsys-data-relational-database-overview.md)
+      - [关系型数据库开发指导](subsystems/subsys-data-relational-database-guide.md)
+    - [轻量级数据存储](subsystems/subsys-data-storage.md)
+      - [轻量级数据存储概述](subsystems/subsys-data-storage-overview.md)
+      - [轻量级数据存储开发指导](subsystems/subsys-data-storage-guide.md)
+  - Sensor服务
+    - [Sensor服务子系概述](subsystems/subsys-sensor-overview.md)
+    - [Sensor服务子系使用指导](subsystems/subsys-sensor-guide.md)
+    - [Sensor服务子系使用实例](subsystems/subsys-sensor-demo.md)
+  - USB服务子系统
+    - [USB服务子系统概述](subsystems/subsys-usbservice-overview.md)
+    - [USB服务子系统使用指导](subsystems/subsys-usbservice-guide.md)
+    - [USB服务子系统使用实例](subsystems/subsys-usbservice-demo.md)
+  - 用户程序框架
+    - [概述](subsystems/subsys-application-framework-overview.md)
+    - [搭建环境](subsystems/subsys-application-framework-envbuild.md)
+    - [开发指导](subsystems/subsys-application-framework-guide.md)
+    - [开发实例](subsystems/subsys-application-framework-demo.md)
   - [OTA升级](subsystems/subsys-ota-guide.md)
-  - [电话服务](subsystems/subsys-tel.md)
-  - [安全](subsystems/subsys-security.md)
-  - [启动恢复](subsystems/subsys-boot.md)
-  - [DFX](subsystems/subsys-dfx.md)
+  - 电话服务
+    - [电话服务概述](subsystems/subsys-tel-overview.md)
+    - [电话服务开发指导](subsystems/subsys-tel-guide.md)
+  - 安全
+    - [概述](subsystems/subsys-security-overview.md)
+    - [应用验签开发指导](subsystems/subsys-security-sigverify.md)
+    - [应用权限管理开发指导](subsystems/subsys-security-rightmanagement.md)
+    - [IPC通信鉴权开发指导](subsystems/subsys-security-communicationverify.md)
+    - [设备安全等级管理开发指导](subsystems/subsys-security-devicesecuritylevel.md)
+    - [密钥管理开发指导](subsystems/subsys-security-huks.md)
+  - 启动恢复
+    - [启动恢复子系统概述](subsystems/subsys-boot-overview.md)
+    - [init启动引导组件](subsystems/subsys-boot-init.md)
+    - [appspawn应用孵化组件](subsystems/subsys-boot-appspawn.md)
+    - [appspawn标准系统应用孵化组件](subsystems/subsys-boot-appspawn-standard.md)
+    - [bootstrap服务启动组件](subsystems/subsys-boot-bootstrap.md)
+    - [syspara系统属性组件](subsystems/subsys-boot-syspara.md)
+    - [常见问题](subsystems/subsys-boot-faqs.md)
+    - [参考](subsystems/subsys-boot-ref.md)
+  - DFX
+    - [DFX概述](subsystems/subsys-dfx-overview.md)
+    - [HiLog开发指导](subsystems/subsys-dfx-hilog-rich.md)
+    - [HiLog\_Lite开发指导](subsystems/subsys-dfx-hilog-lite.md)
+    - [HiTrace开发指导](subsystems/subsys-dfx-hitrace.md)
+    - [HiCollie开发指导](subsystems/subsys-dfx-hicollie.md)
+    - [HiSysEvent开发指导](subsystems/subsys-dfx-hisysevent.md)
+      - [HiSysEvent打点配置指导](subsystems/subsys-dfx-hisysevent-logging-config.md)
+      - [HiSysEvent打点指导](subsystems/subsys-dfx-hisysevent-logging.md)
+      - [HiSysEvent订阅指导](subsystems/subsys-dfx-hisysevent-listening.md)
+      - [HiSysEvent查询指导](subsystems/subsys-dfx-hisysevent-query.md)
+      - [HiSysEvent工具使用指导](subsystems/subsys-dfx-hisysevent-tool.md)
 
 - 专题
   - HPM Part
     - [HPM Part介绍](hpm-part/hpm-part-about.md)
     - [HPM Part开发指导](hpm-part/hpm-part-development.md)
     - [HPM Part参考](hpm-part/hpm-part-reference.md)
-  
+
 - 设备开发示例
 
-  - [轻量和小型系统设备开发示例](guide/device-lite.md)
-  - [标准系统设备开发示例](guide/device-lite.md)
+  - 轻量和小型系统设备
+    - WLAN连接类产品
+      - [LED外设控制](guide/device-wlan-led-control.md)
+      - [集成三方SDK](guide/device-wlan-sdk.md)
+    - 无屏摄像头类产品
+      - 摄像头控制
+        - [概述](guide/device-iotcamera-control-overview.md)
+        - 示例开发
+          - [拍照开发指导](guide/device-iotcamera-control-demo-photodevguide.md)
+          - [录像开发指导](guide/device-iotcamera-control-demo-videodevguide.md)
+        - [应用实例](guide/device-iotcamera-control-example.md)
+    - 带屏摄像头类产品
+      - 屏幕和摄像头控制
+        - [概述](guide/device-camera-control-overview.md)
+        - 示例开发
+          - [拍照开发指导](guide/device-camera-control-demo-photoguide.md)
+          - [录像开发指导](guide/device-camera-control-demo-videoguide.md)
+          - [预览开发指导](guide/device-camera-control-demo-previewguide.md)
+        - [应用实例](guide/device-camera-control-example.md)
+      - 视觉应用开发
+        - [概述](guide/device-camera-visual-overview.md)
+        - [开发准备](guide/device-camera-visual-prepare.md)
+        - [添加页面](guide/device-camera-visual-addpage.md)
+        - [开发首页](guide/device-camera-visual-firstpage.md)
+        - [开发详情页](guide/device-camera-visual-details.md)
+        - [调试打包](guide/device-camera-visual-debug.md)
+        - [真机运行](guide/device-camera-visual-run.md)
+        - [常见问题](guide/device-camera-visual-faqs.md)
+  - 标准系统设备
+    - [时钟应用开发指导](guide/device-clock-guide.md)
+    - [平台驱动开发示例](guide/device-driver-demo.md)
+    - [外设驱动开发示例](guide/device-outerdriver-demo.md)
 
 - 调测
 
   - [测试用例开发](subsystems/subsys-testguide-test.md)
-  - [调测工具](subsystems/subsys-toolchain.md)
+  - 调测工具
+    - 研发工具链
+      - [bytrace使用指导](subsystems/subsys-toolchain-bytrace-guide.md)
+      - [hdc\_std 使用指导](subsystems/subsys-toolchain-hdc-guide.md)
+      - [hiperf 使用指南](subsystems/subsys-toolchain-hiperf.md)
 
 - XTS认证
 
