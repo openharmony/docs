@@ -70,7 +70,7 @@ Button有三种可选类型，分别为Capsule（胶囊类型）、Circle（圆�
 
   
   ```
-  Button('圆角', { type: ButtonType.Normal })
+  Button('circle border', { type: ButtonType.Normal })
     .borderRadius(20)
   ```
 
@@ -81,7 +81,7 @@ Button有三种可选类型，分别为Capsule（胶囊类型）、Circle（圆�
 
   
   ```
-  Button('文本样式', { type: ButtonType.Normal })
+  Button('font style', { type: ButtonType.Normal })
     .fontSize(20)
     .fontColor(Color.Red)
     .fontWeight(800)
@@ -94,7 +94,7 @@ Button有三种可选类型，分别为Capsule（胶囊类型）、Circle（圆�
 
   
   ```
-  Button('背景颜色').backgroundColor(0xF55A42)
+  Button('background color').backgroundColor(0xF55A42)
   ```
 
   ![zh-cn_image_0000001235146483](figures/zh-cn_image_0000001235146483.png)
@@ -179,7 +179,7 @@ Button('Ok', { type: ButtonType.Normal, stateEffect: true })
       Column() {
         TextInput({ placeholder: 'input your username' }).margin({ top: 20 })
         TextInput({ placeholder: 'input your password' }).type(InputType.Password).margin({ top: 20 })
-        Button('注册').width(300).margin({ top: 20 })
+        Button('Register').width(300).margin({ top: 20 })
       }.padding(20)
     }
   }
