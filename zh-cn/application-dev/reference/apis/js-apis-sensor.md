@@ -1745,7 +1745,7 @@ getGeomagneticField(locationOptions: LocationOptions, timeMillis: number, callba
 
 **示例：** 
 ```
-sensor.getGeomagneticField([80, 0, 0], {'timeMillis':1580486400000}, function(err, data)  {
+sensor.getGeomagneticField([80, 0, 0], 1580486400000, function(err, data)  {
     if (err) {
         console.error('Operation failed. Error code: ' + err.code + '; message: ' + err.message);
         return;
@@ -1776,7 +1776,7 @@ getGeomagneticField(locationOptions: LocationOptions, timeMillis: number): Promi
 
 **返回值：** 
   ```
-  const promise = sensor.getGeomagneticField([80, 0, 0], {'timeMillis':1580486400000});
+  const promise = sensor.getGeomagneticField([80, 0, 0], 1580486400000);
       promise.then((data) => {
           console.info('sensor_getGeomagneticField_promise x: ' + data.x + ',y: ' + data.y + ',z: ' +
   	             data.z + ',geomagneticDip: ' + data.geomagneticDip + ',deflectionAngle: ' + data.deflectionAngle +

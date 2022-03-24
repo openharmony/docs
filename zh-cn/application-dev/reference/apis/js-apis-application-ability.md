@@ -16,11 +16,13 @@ import Ability from '@ohos.application.Ability';
 
 ## 属性
 
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.AbilityCore
+
 | 名称 | 参数类型 | 可读 | 可写 | 说明 | 
 | -------- | -------- | -------- | -------- | -------- |
-| context | [AbilityContext](js-apis-ability-context.md) | 是 | 否 | 上下文。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore | 
-| launchWant | [Want](js-apis-featureAbility.md#Want类型说明) | 是 | 否 | Ability启动时的参数。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore | 
-| lastRequestWant | [Want](js-apis-featureAbility.md#Want类型说明) | 是 | 否 | Ability最后请求时的参数。 <br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore| 
+| context | [AbilityContext](js-apis-ability-context.md) | 是 | 否 | 上下文。 | 
+| launchWant | [Want](js-apis-featureAbility.md#Want类型说明) | 是 | 否 | Ability启动时的参数。 | 
+| lastRequestWant | [Want](js-apis-featureAbility.md#Want类型说明) | 是 | 否 | Ability最后请求时的参数。| 
 
 
 ## Ability.onCreate

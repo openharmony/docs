@@ -21,9 +21,11 @@ import DataShareExtensionAbility from '@ohos.application.DataShareExtensionAbili
 
 ## 属性
 
+**系统能力**：SystemCapability.DistributedDataManager.DataShare.Provider
+
 | 名称 | 可读 | 可写 | 参数类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- | -------- | -------- |
-| context | 是 | 否 | ExtensionContext | 否 | 指示数据共享扩展能力上下文。<br/>**系统能力**：SystemCapability.DistributedDataManager.DataShare.Provider | 
+| context | 是 | 否 | ExtensionContext | 否 | 指示数据共享扩展能力上下文。| 
 
 
 ## DataShareExtensionAbility.onCreate
