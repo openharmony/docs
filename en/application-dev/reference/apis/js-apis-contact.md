@@ -398,7 +398,7 @@ Queries my card. This API uses an asynchronous callback to return the result.
 
 queryMyCard(attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): void
 
-Queries my card based on the specified specified contact attributes. This API uses an asynchronous callback to return the result.
+Queries my card based on the specified contact attributes. This API uses an asynchronous callback to return the result.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -429,7 +429,7 @@ Queries my card based on the specified specified contact attributes. This API us
 
 queryMyCard(attrs?: ContactAttributes): Promise&lt;Contact&gt;
 
-Queries my card based on the specified specified contact attributes. This API uses a promise to return the result.
+Queries my card based on the specified contact attributes. This API uses a promise to return the result.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
