@@ -23,9 +23,9 @@ shutdownDevice(reason: string): void
 
 Shuts down the system.
 
-**Required permission:** ohos.permission.SHUTDOWN
+This is a system API and cannot be called by third-party applications.
 
-**Note:** This is a system API and it is used only for system applications.
+**Required permission:** ohos.permission.SHUTDOWN
 
 **Parameters**
 
@@ -71,7 +71,7 @@ Checks the screen status of the current device.
 
 **Parameters**
 
-| Type      | Type                          | Mandatory  | Description                                      |
+| Name   | Type                          | Mandatory  | Description                                      |
 | -------- | ---------------------------- | ---- | ---------------------------------------- |
 | callback | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to obtain the return value.<br>Return value: The value **true** indicates that the screen is on, and the value **false** indicates the opposite.|
 
@@ -97,7 +97,7 @@ Checks the screen status of the current device.
 **Return Value**
 | Type                    | Description                                     |
 | ---------------------- | --------------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to obtain the return value. <br/>Return value: The value **true** indicates that the screen is on, and the value **false** indicates the opposite.|
+| Promise&lt;boolean&gt; | Promise used to asynchronously obtain the return value. <br/>Return value: The value **true** indicates that the screen is on, and the value **false** indicates the opposite.|
 
 **Example**
 
