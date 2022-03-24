@@ -12,15 +12,15 @@ import mediaLibrary from '@ohos.multimedia.medialibrary';
 
 getMediaLibrary(context: Context): MediaLibrary
 
-获取媒体库的实例，用于访问和修改用户的个人数据信息。
+获取媒体库的实例，用于访问和修改用户等个人媒体数据信息（如音频、视频、图片、文档等）。
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
 **参数：** 
 
-| 参数名     | 类型      | 必填   | 说明                                       |
-| ------- | ------- | ---- | ---------------------------------------- |
-| context | Context | 是    | API7以下接口可不传此参数，API 8以上接口此参数是必填参数，传入Ability实例的context，获取媒体库 |
+| 参数名  | 类型    | 必填                                  | 说明                       |
+| ------- | ------- | ------------------------------------- | -------------------------- |
+| context | Context | 否<sup>6-7</sup> <br/>是<sup>8+</sup> | 传入Ability实例的Context。 |
 
 **返回值：**
 
@@ -1600,15 +1600,15 @@ async function example() {
 
 getFirstObject(): Promise&lt;FileAsset&gt;
 
-获取文件检索结果中的第一个文件资产。此方法使用返回FileAsset。
+获取文件检索结果中的第一个文件资产。此方法使用Promise方式返回FileAsset。
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
 **返回值**：
 
-| 类型                                      | 说明                   |
-| --------------------------------------- | -------------------- |
-| Promise&lt;[FileAsset](#fileasset8)&gt; | Promise方式返回FileAsset |
+| 类型                                    | 说明                       |
+| --------------------------------------- | -------------------------- |
+| Promise&lt;[FileAsset](#fileasset8)&gt; | Promise方式返回FileAsset。 |
 
 **示例**：
 
@@ -1712,9 +1712,9 @@ getLastObject(callback: AsyncCallback&lt;FileAsset&gt;): void
 
 **参数**：
 
-| 参数       | 类型                                       | 必填   | 说明                 |
-| -------- | ---------------------------------------- | ---- | ------------------ |
-| callback | AsyncCallback&lt;[FileAsset](#fileasset8)&gt; | 是    | 异步返回FileAsset之后的回调 |
+| 参数名   | 类型                                          | 必填 | 说明                        |
+| -------- | --------------------------------------------- | ---- | --------------------------- |
+| callback | AsyncCallback&lt;[FileAsset](#fileasset8)&gt; | 是   | 异步返回FileAsset之后的回调 |
 
 **示例**：
 
@@ -1778,7 +1778,7 @@ getPositionObject(index: number, callback: AsyncCallback&lt;FileAsset&gt;): void
 
 **参数**：
 
-| 参数       | 类型                                       | 必填   | 说明                 |
+| 参数名       | 类型                                       | 必填   | 说明                 |
 | -------- | ---------------------------------------- | ---- | ------------------ |
 | index    | number                                   | 是    | 要获取的文件的索引，从0开始     |
 | callback | AsyncCallback&lt;[FileAsset](#fileasset8)&gt; | 是    | 异步返回FileAsset之后的回调 |
@@ -1817,7 +1817,7 @@ getPositionObject(index: number): Promise&lt;FileAsset&gt;
 
 **参数**：
 
-| 参数    | 类型     | 必填   | 说明             |
+| 参数名    | 类型     | 必填   | 说明             |
 | ----- | ------ | ---- | -------------- |
 | index | number | 是    | 要获取的文件的索引，从0开始 |
 
@@ -1861,7 +1861,7 @@ getAllObject(callback: AsyncCallback&lt;Array&lt;FileAsset&gt;&gt;): void
 
 **参数**：
 
-| 参数       | 类型                                       | 必填   | 说明                   |
+| 参数名       | 类型                                       | 必填   | 说明                   |
 | -------- | ---------------------------------------- | ---- | -------------------- |
 | callback | AsyncCallback<Array<[FileAsset](#fileasset8)>> | 是    | 异步返回FileAsset列表之后的回调 |
 
@@ -1925,7 +1925,7 @@ async function example() {
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
 
-| 名称           | 参数型    | 可读   | 可写   | 说明      |
+| 名称           | 类型    | 可读   | 可写   | 说明      |
 | ------------ | ------ | ---- | ---- | ------- |
 | albumId      | number | 是    | 否    | 相册编号    |
 | albumName    | string | 是    | 是    | 相册名称    |
@@ -1947,9 +1947,9 @@ commitModify(callback: AsyncCallback&lt;void&gt;): void
 
 **参数**：
 
-| 参数       | 类型                        | 必填   | 说明    |
-| -------- | ------------------------- | ---- | ----- |
-| callback | AsyncCallback&lt;void&gt; | 是    | 回调返回空 |
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调返回空 |
 
 **示例**：
 
@@ -2019,10 +2019,10 @@ getFileAssets(options: MediaFetchOptions, callback: AsyncCallback&lt;FetchFileRe
 
 **参数**：
 
-| 参数       | 类型                                       | 必填   | 说明                       |
-| -------- | ---------------------------------------- | ---- | ------------------------ |
-| options  | [MediaFetchOptions](#mediafetchoptions8) | 是    | 媒体检索选项                   |
-| callback | AsyncCallback<[FetchFileResult](#fetchfileresult8)> | 是    | 异步返回FetchFileResult之后的回调 |
+| 参数名   | 类型                                                | 必填 | 说明                                |
+| -------- | --------------------------------------------------- | ---- | ----------------------------------- |
+| options  | [MediaFetchOptions](#mediafetchoptions8)            | 是   | 媒体检索选项。                      |
+| callback | AsyncCallback<[FetchFileResult](#fetchfileresult8)> | 是   | 异步返回FetchFileResult之后的回调。 |
 
 **示例**：
 
@@ -2045,7 +2045,7 @@ async function example() {
 
  getFileAssets(options?: MediaFetchOptions): Promise&lt;FetchFileResult&gt;
 
-按照检索条件获取相册中的文件。此方法使用异步回调来返回文件结果集。
+按照检索条件获取相册中的文件。此方法使用异步Promise来返回文件结果集。
 
 **需要权限**：ohos.permission.READ_MEDIA
 
@@ -2053,15 +2053,15 @@ async function example() {
 
 **参数**：
 
-| 参数      | 类型                                       | 必填   | 说明     |
-| ------- | ---------------------------------------- | ---- | ------ |
-| options | [MediaFetchOptions](#mediafetchoptions8) | 否    | 媒体检索选项 |
+| 参数名  | 类型                                     | 必填 | 说明           |
+| ------- | ---------------------------------------- | ---- | -------------- |
+| options | [MediaFetchOptions](#mediafetchoptions8) | 否   | 媒体检索选项。 |
 
 **返回值**：
 
-| 类型                                       | 说明                  |
-| ---------------------------------------- | ------------------- |
-| Promise<[FetchFileResult](#fetchfileresult8)> | 返回FetchFileResult对象 |
+| 类型                                          | 说明                      |
+| --------------------------------------------- | ------------------------- |
+| Promise<[FetchFileResult](#fetchfileresult8)> | 返回FetchFileResult对象。 |
 
 **示例**：
 
@@ -2102,12 +2102,12 @@ async function example() {
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
 
-| 名称    | 默认值  | 描述   |
-| ----- | ---- | ---- |
-| FILE  | 0    | 文件   |
-| IMAGE | 1    | 图片   |
-| VIDEO | 2    | 视频   |
-| AUDIO | 3    | 音频   |
+| 名称  | 默认值 | 说明 |
+| ----- | ------ | ---- |
+| FILE  | 0      | 文件 |
+| IMAGE | 1      | 图片 |
+| VIDEO | 2      | 视频 |
+| AUDIO | 3      | 音频 |
 
 ## FileKey
 
@@ -2115,27 +2115,27 @@ async function example() {
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
 
-| 名称            | 默认值                 | 描述                               |
-| ------------- | ------------------- | -------------------------------- |
-| ID            | file_id             | 文件编号                             |
-| RELATIVE_PATH | relative_path       | 相对公共目录路径                         |
-| DISPLAY_NAME  | display_name        | 显示名字                             |
-| PARENT        | parent              | 父目录id                            |
-| MIME_TYPE     | mime_type           | 文件扩展属性                           |
-| MEDIA_TYPE    | media_type          | 媒体类型                             |
-| SIZE          | size                | 文件大小（单位：字节）                      |
-| DATE_ADDED    | date_added          | 添加日期（添加文件时间到1970年1月1日的秒数值）       |
-| DATE_MODIFIED | date_modified       | 修改日期（修改文件时间到1970年1月1日的秒数值）       |
-| DATE_TAKEN    | date_taken          | 拍摄日期（文件拍照时间到1970年1月1日的秒数值）       |
-| TITLE         | title               | 文件标题                             |
-| ARTIST        | artist              | 作者                               |
-| AUDIOALBUM    | audio_album         | 专辑                               |
-| DURATION      | duration            | 持续时间（单位：秒）                       |
-| WIDTH         | width               | 图片宽度（单位：像素）                      |
-| HEIGHT        | height              | 图片高度（单位：像素）                      |
+| 名称          | 默认值              | 说明                                                       |
+| ------------- | ------------------- | ---------------------------------------------------------- |
+| ID            | file_id             | 文件编号                                                   |
+| RELATIVE_PATH | relative_path       | 相对公共目录路径                                           |
+| DISPLAY_NAME  | display_name        | 显示名字                                                   |
+| PARENT        | parent              | 父目录id                                                   |
+| MIME_TYPE     | mime_type           | 文件扩展属性                                               |
+| MEDIA_TYPE    | media_type          | 媒体类型                                                   |
+| SIZE          | size                | 文件大小（单位：字节）                                     |
+| DATE_ADDED    | date_added          | 添加日期（添加文件时间到1970年1月1日的秒数值）             |
+| DATE_MODIFIED | date_modified       | 修改日期（修改文件时间到1970年1月1日的秒数值）             |
+| DATE_TAKEN    | date_taken          | 拍摄日期（文件拍照时间到1970年1月1日的秒数值）             |
+| TITLE         | title               | 文件标题                                                   |
+| ARTIST        | artist              | 作者                                                       |
+| AUDIOALBUM    | audio_album         | 专辑                                                       |
+| DURATION      | duration            | 持续时间（单位：秒）                                       |
+| WIDTH         | width               | 图片宽度（单位：像素）                                     |
+| HEIGHT        | height              | 图片高度（单位：像素）                                     |
 | ORIENTATION   | orientation         | 图片显示方向，即顺时针旋转角度，如0，90，180。（单位：度） |
-| ALBUM_ID      | bucket_id           | 文件所归属的相册编号                       |
-| ALBUM_NAME    | bucket_display_name | 文件所归属相册名称                        |
+| ALBUM_ID      | bucket_id           | 文件所归属的相册编号                                       |
+| ALBUM_NAME    | bucket_display_name | 文件所归属相册名称                                         |
 
 ## DirectoryType
 
@@ -2143,14 +2143,14 @@ async function example() {
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
 
-| 名称            | 默认值  | 描述           |
-| ------------- | ---- | ------------ |
-| DIR_CAMERA    | 0    | 表示Camera文件路径 |
-| DIR_VIDEO     | 1    | 表示视频路径       |
-| DIR_IMAGE     | 2    | 表示图片路径       |
-| DIR_AUDIO     | 3    | 表示音频路径       |
-| DIR_DOCUMENTS | 4    | 表示文档路径       |
-| DIR_DOWNLOAD  | 5    | 表示下载路径       |
+| 名称          | 默认值 | 说明               |
+| ------------- | ------ | ------------------ |
+| DIR_CAMERA    | 0      | 表示Camera文件路径 |
+| DIR_VIDEO     | 1      | 表示视频路径       |
+| DIR_IMAGE     | 2      | 表示图片路径       |
+| DIR_AUDIO     | 3      | 表示音频路径       |
+| DIR_DOCUMENTS | 4      | 表示文档路径       |
+| DIR_DOWNLOAD  | 5      | 表示下载路径       |
 
 ## DeviceType
 
@@ -2158,15 +2158,15 @@ async function example() {
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
 
-| 名称           | 默认值  | 描述    |
-| ------------ | ---- | ----- |
-| TYPE_UNKNOWN | 0    | 未识别设备 |
-| TYPE_LAPTOP  | 1    | 笔记本电脑 |
-| TYPE_PHONE   | 2    | 手机    |
-| TYPE_TABLET  | 3    | 平板电脑  |
-| TYPE_WATCH   | 4    | 智能手表  |
-| TYPE_CAR     | 5    | 车载设备  |
-| TYPE_TV      | 6    | 电视设备  |
+| 名称         | 默认值 | 说明       |
+| ------------ | ------ | ---------- |
+| TYPE_UNKNOWN | 0      | 未识别设备 |
+| TYPE_LAPTOP  | 1      | 笔记本电脑 |
+| TYPE_PHONE   | 2      | 手机       |
+| TYPE_TABLET  | 3      | 平板电脑   |
+| TYPE_WATCH   | 4      | 智能手表   |
+| TYPE_CAR     | 5      | 车载设备   |
+| TYPE_TV      | 6      | 电视设备   |
 
 ## MediaFetchOptions<sup>8+</sup>
 
