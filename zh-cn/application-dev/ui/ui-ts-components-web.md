@@ -153,31 +153,31 @@ struct WebComponent {
 ```
 ## 场景示例
 
-​该场景实现了Web组件中视频的动态播放。首先在HTML页面内嵌入视频资源，再使用Web组件的控制器调用onActive和onInactive方法激活和暂停页面渲染。页面消失时，Web组件停止渲染，视频暂停播放；页面显示时，激活Web组件，视频继续播放。
+该场景实现了Web组件中视频的动态播放。首先在HTML页面内嵌入视频资源，再使用Web组件的控制器调用onActive和onInactive方法激活和暂停页面渲染。点击onInactive按钮，Web页面停止渲染，视频暂停播放；点击onActive按钮，激活Web组件，视频继续播放。
 
   ```
   // xxx.ets
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController();
-    build() {
-      Column() {
-        Web({ src: $rawfile('index.html'), controller: this.controller })
-        .fileAccess(true)
+@Entry
+@Component
+struct WebComponent {
+  controller: WebController = new WebController();
+  build() {
+    Column() {
+      Row() {
+        Button('onActive').onClick(() => {
+          console.info("Web Component onActive");
+          this.controller.onActive();
+        })
+        Button('onInactive').onClick(() => {
+          console.info("Web Component onInactive");
+          this.controller.onInactive();
+        })
       }
-    }
-
-    onPageHide() {
-      // 页面消失时调用
-      this.controller.onInactive();
-    }
-
-    onPageShow() {
-      // 页面显示时调用
-      this.controller.onActive();
+      Web({ src: $rawfile('index.html'), controller: this.controller })
+        .fileAccess(true)
     }
   }
+}
   ```
 
   ```
