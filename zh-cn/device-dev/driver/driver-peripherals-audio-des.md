@@ -1,55 +1,7 @@
 # AUDIO
 
-- **[Audio驱动概述](#section1000)**
 
-- **[Audio驱动框架介绍](#section2000)**
-
-- **[Audio驱动开发](#section3000)**
-
-    - **[Audio ADM模块框架介绍](#section3100)**
-        - [启动流程](#section3111)
-        - [播放流程](#section3112)
-        - [控制流程](#section3113)
-
-    - **[Audio驱动开发步骤](#section3200)**
-        - [已有平台开发](#section3221)
-        - [新平台开发](#section3222)
-
-- **[Audio驱动开发实例](#section4000)**
-    - [Codec驱动开发实例](#section4100)
-        - [Codec数据结构填充](#section4111)
-        - [codecDevice和codecDai设备初始化](#section4112)
-        - [Codec操作函数集实现](#section4113)
-        - [Codec注册绑定到HDF](#section4114)
-        - [HCS配置流程](#section4115)
-    - [Accessory驱动开发实例](#section4200)
-        - [Accessory数据结构填充](#section4221)
-        - [accessoryDevice和accessoryDai设备初始化](#section4222)
-        - [Accessory操作函数集实现](#section4223)
-        - [Accessory注册绑定到HDF](#section4224)
-        - [HCS配置流程](#section4225)
-    - [Platform驱动开发实例](#section4300)
-        - [Platform数据结构填充](#section4331)
-        - [dmaDevice设备初始化](#section4332)
-        - [DMA操作函数集实现](#section4333)
-        - [Platform注册绑定到HDF](#section4334)
-        - [HCS配置流程](#section4335)
-    - [Dai驱动开发实例](#section4400)
-        - [Dai数据结构填充](#section4441)
-        - [daiDevice设备初始化](#section4442)
-        - [Dai操作函数集实现](#section4443)
-        - [Dai注册绑定到HDF](#section4444)
-        - [HCS配置流程](#section4445)
-    - [Makefile中添加编译配置](#section4500)
-    - [源码结构与目录](#section4600)
-
-- **[使用HAL的开发步骤与实例](#section5000)**
-    - [HAL模块使用步骤](#section5100)
-    - [HAL使用实例](#section5200)
-
-- **[总结](#section9999)**
-
-# Audio驱动概述<a name="section1000"></a>
+## Audio驱动概述
 
 多媒体系统是物联网设备开发中不可缺少的一部分，Audio作为其中重要的一个模块，Audio驱动模型的构建显得尤为重要。
 
@@ -57,9 +9,10 @@
 
 
 
-# Audio驱动框架介绍<a name="section2000"></a>
+## Audio驱动框架介绍<a name="section2000"></a>
 
 Audio驱动框架基于[HDF驱动框架](https://device.harmonyos.com/cn/docs/documentation/guide/driver-hdf-overview-0000001051715456)实现。Audio驱动架构组成：
+
 ![](figures/Audio框架图.png)
 
 驱动架构主要由以下几部分组成。
@@ -73,11 +26,11 @@ Audio驱动框架基于[HDF驱动框架](https://device.harmonyos.com/cn/docs/do
 - Platform Drivers : 驱动适配层。
 - SAPM(Smart Audio Power Manager) : 电源管理模块，对整个ADM电源进行功耗策略优化。
 
-# Audio驱动开发<a name="section3000"></a>
+## Audio驱动开发
 
 以下将基于Audio驱动框架，并以Hi3516DV300平台为例，介绍相关驱动开发的具体步骤。
 
-## Audio ADM模块框架介绍<a name="section3100"></a>
+### Audio ADM模块框架介绍
 Audio驱动对HDI层提供三个服务hdf_audio_render、hdf_audio_capture、hdf_audio_control。开发板dev目录下 驱动服务节点如下：
 
 ```c
@@ -103,7 +56,7 @@ hdf_audio_codec_dev1
 - codec_service_1 : accessory 服务（特指smartPA）
 - dsp_service_0 : dsp 服务（可选项）
 
-### 启动流程<a name="section3111"></a>
+#### 启动流程
 
 ![](figures/ADM启动流程图.png)
 
@@ -117,8 +70,10 @@ hdf_audio_codec_dev1
 
 5. 将初始化成功的音频设备添加到cardManager链表。
 
-### 播放流程<a name="section3112"></a>
+#### 播放流程
+
 ![=](figures/ADM播放流程图.png)
+
 1. 播放音频时，Interface Lib层通过播放流服务下发Render Open指令，Audio Stream Dispatch服务收到指令后分别调用各模块的函数接口对指令进行下发。
 
 2. Interface Lib层通过控制服务下发通路选择指令，Control Dispatch控制服务收到指令后调用Dai模块接口设置通路。
@@ -133,16 +88,16 @@ hdf_audio_codec_dev1
 
 7. Interface Lib层通过播放流服务下发Render Close指令，Audio Stream Dispatch服务收到指令后调用Platform AudioRenderClose对已申请资源进行释放。
 
-### 控制流程<a name="section3113"></a>
+#### 控制流程
 
 ![](figures/ADM控制流程图.png)
 
 1. 设置音量，首先Interface Lib层通过控制服务下发获取音量范围指令，Control Dispatch控制服务收到指令后进行解析，并调用Codec模块Get函数，获取可设置音量的范围。
 2. Interface Lib层通过控制服务下发设置音量指令，Control Dispatch控制服务收到指令后进行解析，并调用Codec模块Set函数设置音量。
 
-## Audio驱动开发步骤<a name="section3200"></a>
+### Audio驱动开发步骤
 
-### 已有平台开发<a name="section3221"></a>
+#### 已有平台开发
 
 ADM适配已有平台(Hi3516DV300)Codec或Accessory（Smart PA）的驱动开发流程：
 
@@ -152,10 +107,9 @@ ADM适配已有平台(Hi3516DV300)Codec或Accessory（Smart PA）的驱动开发
 
 - 如果新添加Codec或Smart PA和已适配Codec或Smart PA的工作流程相同则不需要实现Codec或Smart PA的操作函数集和配置编译文件。
 
-
 - 进行编译调试验证。
 
-### 新平台开发<a name="section3222"></a>
+#### 新平台开发
 
 ADM适配新平台Audio驱动开发流程：
 
@@ -173,13 +127,13 @@ Audio驱动需要将Audio相关的Codec（可选）、Dai、DMA、DSP（可选�
 
 
 
-# Audio驱动开发实例<a name="section4000"></a>
+## Audio驱动开发实例
 
 代码路径：drivers/peripheral/audio
 
 下面以Hi3516DV300为例，介绍audio的codec驱动、accessory驱动、dai驱动、platform驱动开发步骤。
 
-## Codec驱动开发实例<a name="section4100"></a>
+### Codec驱动开发实例
 代码路径：drivers/peripheral/audio/chipsets/hi3516dv300/codec
 
 codec驱动开发主要包含如下几个重要步骤：
@@ -188,7 +142,7 @@ codec驱动开发主要包含如下几个重要步骤：
 3. 注册绑定到HDF框架
 4. 配置HCS和Makefile
 
-### Codec数据结构填充<a name="section4111"></a>
+#### Codec数据结构填充
 
 Codec模块需要填充如下3个结构体：
 
@@ -216,7 +170,7 @@ struct DaiData g_codecDaiData = {
 };
 ```
 
-### codecDevice和codecDai设备初始化<a name="section4112"></a>
+#### codecDevice和codecDai设备初始化
 
 CodecDeviceInit将完成AIAO的设置、寄存器默认值初始化、g_audioControls插入到controls链、电源管理初始化、通路选择设置等。
 
@@ -264,7 +218,7 @@ int32_t CodecDaiDeviceInit(struct AudioCard *card, const struct DaiDevice *devic
 }
 ```
 
-### Codec操作函数集实现<a name="section4113"></a>
+#### Codec操作函数集实现
 
 codec模块当前封装了OSAL读写寄存器的Read、Write函数。
 
@@ -317,7 +271,7 @@ int32_t CodecDaiHwParams(const struct AudioCard *card, const struct AudioPcmHwPa
 }
 ```
 
-### Codec注册绑定到HDF<a name="section4114"></a>
+#### Codec注册绑定到HDF
 
 此处依赖HDF框架的驱动实现方式，具体流程可参考[HDF驱动框架](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/driver/driver-hdf.md)指导。
 
@@ -375,7 +329,7 @@ static void CodecDriverRelease(struct HdfDeviceObject *device)
 }
 ```
 
-### HCS配置流程<a name="section4115"></a>
+#### HCS配置流程
 
 hcs中配置驱动节点、加载顺序、服务名称等。hcs语法可参考HDF框架的[配置管理](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/driver/driver-hdf-manage.md)。
 
@@ -657,7 +611,7 @@ int32_t CodecDeviceInit(struct AudioCard *audioCard, struct CodecDevice *codec)
 
 
 
-## Accessory驱动开发实例<a name="section4200"></a>
+### Accessory驱动开发实例
 代码路径：drivers/peripheral/audio/chipsets/tfa9879/accessory
 
 SmartPA归属于Accessory驱动的一种，开发步骤类似于codec：
@@ -666,7 +620,7 @@ SmartPA归属于Accessory驱动的一种，开发步骤类似于codec：
 3. 注册绑定到HDF框架
 4. 配置HCS和Makefile。
 
-### Accessory数据结构填充<a name="section4221"></a>
+#### Accessory数据结构填充
 
 Accessory模块需要填充如下3个结构体：
 
@@ -695,7 +649,7 @@ struct DaiData g_tfa9879DaiData = {
 };
 ```
 
-### accessoryDevice和accessoryDai设备初始化<a name="section4222"></a>
+#### accessoryDevice和accessoryDai设备初始化
 
 设备初始化入口函数为Tfa9879DeviceInit，其中主要包括设置SmartPA I2C设备地址，获取配置数据、初始化（含重置）设备寄存器和绑定控制功能配置到控制链表中，当前Demo实现中也包括了Hi3516DV300设备的相关寄存器初始化，如初始化GPIO引脚等。
 
@@ -746,7 +700,7 @@ int32_t AccessoryI2cReadWrite(struct AudioAddrConfig *regAttr, uint16_t rwFlag)
 }
 ```
 
-### Accessory操作函数集实现<a name="section4223"></a>
+#### Accessory操作函数集实现
 
 AccessoryDeviceRegRead和AccessoryDeviceRegWrite 2个回调函数中，调用I2C读写寄存器公用函数AccessoryI2cReadWrite，读写控制寄存器的值。
 
@@ -823,7 +777,7 @@ int32_t Tfa9879DaiHwParams(const struct AudioCard *card, const struct AudioPcmHw
 }
 ```
 
-### Accessory注册绑定到HDF<a name="section4224"></a>
+#### Accessory注册绑定到HDF
 
 此处依赖HDF框架的驱动实现方式，具体流程可参考[HDF驱动框架](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/driver/driver-hdf.md)。
 
@@ -864,13 +818,13 @@ struct HdfDriverEntry g_tfa9879DriverEntry = {
 HDF_INIT(g_tfa9879DriverEntry);
 ```
 
-### HCS配置流程<a name="section4225"></a>
+#### HCS配置流程
 
-配置过程可参考Codec驱动开发实例[HCS配置流程](#section4115)章节。
+配置过程可参考Codec驱动开发实例[HCS配置流程](#HCS配置流程)章节。
 
 
 
-## Platform驱动开发实例<a name="section4300"></a>
+### Platform驱动开发实例
 代码路径：drivers/peripheral/audio/chipsets/hi3516dv300/soc
 
 在Audio驱动开发中，platform为DMA驱动的适配。platform驱动开发主要包含如下几个重要步骤：
@@ -879,7 +833,7 @@ HDF_INIT(g_tfa9879DriverEntry);
 3. 注册绑定到HDF框架
 4. 配置HCS和Makefile
 
-### Platform数据结构填充<a name="section4331"></a>
+#### Platform数据结构填充
 
 Platform模块需要填充如下2个结构体：
 
@@ -907,7 +861,7 @@ struct PlatformData g_platformData = {
 };
 ```
 
-### dmaDevice设备初始化<a name="section4332"></a>
+#### dmaDevice设备初始化
 
 设备初始化入口函数为AudioDmaDeviceInit，其中主要包括设置3516平台特有的AIAO初始化等。
 
@@ -927,7 +881,7 @@ int32_t AudioDmaDeviceInit(const struct AudioCard *card, const struct PlatformDe
 }
 ```
 
-### DMA操作函数集实现<a name="section4333"></a>
+#### DMA操作函数集实现
 
 Dma设备操作函数集，包含了DMA通用接口的封装。如通用接口不能满足开发要求，可自行实现新的DMA回调函数。
 
@@ -944,7 +898,7 @@ int32_t Hi3516DmaResume(const struct PlatformData *data);
 int32_t Hi3516DmaPointer(struct PlatformData *data, uint32_t *pointer);
 ```
 
-### Platform注册绑定到HDF<a name="section4334"></a>
+#### Platform注册绑定到HDF
 
 此处依赖HDF框架的驱动实现方式，具体流程可参考[HDF驱动框架](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/driver/driver-hdf.md)。
 
@@ -988,13 +942,13 @@ struct HdfDriverEntry g_platformDriverEntry = {
 HDF_INIT(g_platformDriverEntry);
 ```
 
-### HCS配置流程<a name="section4335"></a>
+#### HCS配置流程
 
-配置过程可参考Codec驱动开发实例[HCS配置流程](#section4115)章节。
+配置过程可参考Codec驱动开发实例[HCS配置流程](#HCS配置流程)章节。
 
 
 
-## Dai驱动开发实例<a name="section4400"></a>
+### Dai驱动开发实例
 代码路径：drivers/peripheral/audio/chipsets/hi3516dv300/soc
 
 Dai驱动开发主要包含如下几个重要步骤：
@@ -1003,7 +957,7 @@ Dai驱动开发主要包含如下几个重要步骤：
 3. 注册绑定到HDF框架
 4. 配置HCS和Makefile
 
-### Dai数据结构填充<a name="section4441"></a>
+#### Dai数据结构填充
 
 Dai模块需要填充如下2个结构体：
 
@@ -1026,7 +980,7 @@ struct DaiData g_daiData = {
 };
 ```
 
-### daiDevice设备初始化<a name="section4442"></a>
+#### daiDevice设备初始化
 
 设备初始化入口函数为DaiDeviceInit，其中主要包括设置dai的配置信息初始化，添加到Controls等。
 
@@ -1049,7 +1003,7 @@ int32_t DaiDeviceInit(struct AudioCard *audioCard, const struct DaiDevice *dai)
 }
 ```
 
-### Dai操作函数集实现<a name="section4443"></a>
+#### Dai操作函数集实现
 
 AudioDeviceReadReg和AudioDeviceWriteReg在3516平台均未使用，作为接口预留。
 
@@ -1108,7 +1062,7 @@ int32_t DaiStartup(const struct AudioCard *card, const struct DaiDevice *device)
 }
 ```
 
-### Dai注册绑定到HDF<a name="section4444"></a>
+#### Dai注册绑定到HDF
 
 此处依赖HDF框架的驱动实现方式，具体流程可参考[HDF驱动框架](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/driver/driver-hdf.md)。
 
@@ -1164,13 +1118,13 @@ struct HdfDriverEntry g_daiDriverEntry = {
 HDF_INIT(g_daiDriverEntry);
 ```
 
-### HCS配置流程<a name="section4445"></a>
+#### HCS配置流程
 
-配置过程可参考Codec驱动开发实例[HCS配置流程](#section4115)章节。
+配置过程可参考Codec驱动开发实例[HCS配置流程](#HCS配置流程)章节。
 
 
 
-## Makefile中添加编译配置<a name="section4500"></a>
+### Makefile中添加编译配置
 
 添加新增文件到对应的config中，将其编译链接到内核镜像。
 
@@ -1211,7 +1165,7 @@ $(KHDF_AUDIO_HI3516DV300_DIR)/soc/src/hi3516_dma_adapter.c
 
 
 
-## 源码结构与目录<a name="section4600"></a>
+### 源码结构与目录
 
 实现驱动接口头文件中的函数。以Hi3516为例，目录架构如下：
 
@@ -1291,10 +1245,10 @@ vendor/hisilicon/hispark_taurus/
 
 
 
-# 使用HAL的开发步骤与实例<a name="section5000"></a>
+## 使用HAL的开发步骤与实例
 代码路径：drivers/peripheral/audio/hal
 
-## HAL模块使用步骤<a name="section5100"></a>
+### HAL模块使用步骤
 
 ![](figures/HAL流程图.png)
 
@@ -1316,7 +1270,7 @@ vendor/hisilicon/hispark_taurus/
 
     3. manager->UnloadAdapter();
 
-## HAL使用实例<a name="section5200"></a>
+### HAL使用实例
 
 ```c
 #include <string.h>
@@ -1404,6 +1358,6 @@ static void *hal_main()
 
  
 
-# 总结<a name="section9999"></a>
+## 总结
 
 以上就是基于Audio驱动框架进行移植开发过程中，所涉及的所有关键适配点。重点介绍了 Audio驱动适配方法、HDI层接口使用方法。开发者可以根据不同芯片进行适配，方便简单。希望通过本次的文档，您能初步掌握基于HDF框架的Audio驱动开发。
