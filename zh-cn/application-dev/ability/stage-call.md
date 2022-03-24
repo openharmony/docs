@@ -134,6 +134,30 @@ context.startAbilityByCall({
     console.error(TAG + 'get caller failed with ' + error)
 })
 ```
+在跨设备场景下，需指定对端设备deviceId，具体获取接口参照[DeviceManager](https://gitee.com/openharmony/device_manager/blob/master/README_zh.md)。应用开发者根据实际需要做相应处理。具体示例代码如下：
+```ts
+let TAG = '[MainAbility] '
+var caller = undefined
+let context = this.context
+
+context.startAbilityByCall({
+    deviceId: "remoteDeviceId",
+    bundleName: 'com.samples.CallApplication',
+    abilityName: 'CalleeAbility'
+}).then((data) => {
+    if (data != null) {
+        caller = data
+        console.log(TAG + 'get remote caller success')
+        // 注册caller的release监听
+        caller.onRelease((msg) => {
+            console.log(TAG + 'remote caller onRelease is called ' + msg)
+        })
+        console.log(TAG + 'remote caller register OnRelease succeed')
+    }
+}).catch((error) => {
+    console.error(TAG + 'get remote caller failed with ' + error)
+})
+```
 3. 发送约定序列化数据
 向被调用端发送Sequenceable数据有两种方式，一种是不带返回值，一种是获取被调用端返回的数据，method以及序列化数据需要与被调用端协商一致。如下示例调用Call接口，向Calee被调用端发送数据。具体示例代码如下：
 ```ts

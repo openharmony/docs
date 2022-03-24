@@ -163,11 +163,37 @@ context.startAbility(want, options).then((data) => {
 })
 ```
 
+### 跨设备启动Ability
+跨设备场景下，需指定对端设备deviceId，具体获取接口参照[DeviceManager](https://gitee.com/openharmony/device_manager/blob/master/README_zh.md)。具体示例代码如下：
+```ts
+let context = this.context
+var want = {
+    "deviceId": "remoteDeviceId",
+    "bundleName": "com.example.MyApplication",
+    "abilityName": "MainAbility"
+};
+context.startAbility(want).then((data) => {
+    console.log("Succeed to start remote ability with data: " + JSON.stringify(data))
+}).catch((error) => {
+    console.error("Failed to start remote ability with error: "+ JSON.stringify(error))
+})
+```
+
 ### 应用向用户申请授权
 应用需要某些权限如存储、位置信息、访问日历时，需要向用户申请授权。具体示例代码如下：
 ```ts
 let context = this.context
 let permissions = ohos.permission.READ_CALENDAR
+context.requestPermissionsFromUser(permissions).then((data) => {
+    console.log("Succeed to request permission from user with data: "+ JSON.stringify(data))
+}).catch((error) => {
+    console.log("Failed to request permission from user with error: "+ JSON.stringify(error))
+})
+```
+在跨设备场景下，需要向用户申请数据同步的权限。具体示例代码如下：
+```ts
+let context = this.context
+let permissions = ohos.permission.DISTRIBUTED_DATASYNC
 context.requestPermissionsFromUser(permissions).then((data) => {
     console.log("Succeed to request permission from user with data: "+ JSON.stringify(data))
 }).catch((error) => {
