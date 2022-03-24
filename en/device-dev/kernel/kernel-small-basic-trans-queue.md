@@ -156,6 +156,7 @@ The preceding figure illustrates how to write data to the tail node only. Writin
 >-   The input parameter  **timeOut**  in the queue interface function is relative time.
 >-   **LOS\_QueueReadCopy**,  **LOS\_QueueWriteCopy**, and  **LOS\_QueueWriteHeadCopy**  are a group of APIs that must be used together.  **LOS\_QueueRead**,  **LOS\_QueueWrite**, and  **LOS\_QueueWriteHead**  are a group of APIs that must be used together.
 >-   As  **LOS\_QueueWrite**,  **LOS\_QueueWriteHead**, and  **LOS\_QueueRead**  are used to manage data addresses, you must ensure that the memory directed by the pointer obtained by calling  **LOS\_QueueRead**  is not modified or released abnormally when the queue is being read. Otherwise, unpredictable results may occur.
+>-   If the input parameter bufferSize in **LOS\_QueueRead**and**LOS\_QueueReadCopy** is less than the actual length of the message, the message will be truncated.
 >-   **LOS\_QueueWrite**,  **LOS\_QueueWriteHead**, and  **LOS\_QueueRead**  are called to manage data addresses, which means that the actual data read or written is pointer data. Therefore, before using these APIs, ensure that the message node size is the pointer length during queue creation, to avoid waste and read failures.
 
 ## Development Example<a name="section27132341285"></a>
