@@ -70,14 +70,12 @@
    ```
    {
        "module": {
-           "reqPermissions": [{
+           "reqPermissions": [
                "name": "ohos.permission.LOCATION",
                "reason": "$string:reason_description",
                "usedScene": {
                    "ability": ["com.myapplication.LocationAbility"],
                    "when": "inuse"
-               }, {
-               ...
                }
            ]
        }
