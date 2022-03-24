@@ -36,10 +36,10 @@ For details about how to create an Xcomponent, see [Xcomponent Creation](#Xcompo
 import media from '@ohos.multimedia.media'
 import fileIO from '@ohos.fileio'
 
-let videoPlayer = undefined; // Used to store instances created by calling the createVideoPlayer method.
+let videoPlayer = undefined; // Used to store instances created by calling the createVideoPlayer API.
 let surfaceID = undefined; // Used to save the surface ID returned by the Xcomponent interface.
 
-// The LoadXcomponent() method is used to obtain the surface ID and save it to the **surfaceID** variable. This method is automatically called when the Xcomponent is loaded.
+// The LoadXcomponent() API is used to obtain the surface ID and save it to the **surfaceID** variable. This API is automatically called when the Xcomponent is loaded.
 LoadXcomponent() {
 	surfaceID = this.$element('Xcomponent').getXComponentSurfaceId();
     console.info('LoadXcomponent surfaceID is' + surfaceID);
@@ -170,10 +170,10 @@ surfaceID = undefined;
 import media from '@ohos.multimedia.media'
 import fileIO from '@ohos.fileio'
 
-let videoPlayer = undefined; // Used to store instances created by calling the createVideoPlayer method.
+let videoPlayer = undefined; // Used to store instances created by calling the createVideoPlayer API.
 let surfaceID = undefined; // Used to save the surface ID returned by the Xcomponent interface.
 
-// The LoadXcomponent() method is used to obtain the surface ID and save it to the **surfaceID** variable. This method is automatically called when the Xcomponent is loaded.
+// The LoadXcomponent() API is used to obtain the surface ID and save it to the **surfaceID** variable. This API is automatically called when the Xcomponent is loaded.
 LoadXcomponent() {
 	surfaceID = this.$element('Xcomponent').getXComponentSurfaceId();
     console.info('LoadXcomponent surfaceID is' + surfaceID);
@@ -256,10 +256,10 @@ await videoPlayer.play().then(() => {
 import media from '@ohos.multimedia.media'
 import fileIO from '@ohos.fileio'
 
-let videoPlayer = undefined; // Used to store instances created by calling the createVideoPlayer method.
+let videoPlayer = undefined; // Used to store instances created by calling the createVideoPlayer API.
 let surfaceID = undefined; // Used to save the surface ID returned by the Xcomponent interface.
 
-// The LoadXcomponent() method is used to obtain the surface ID and save it to the **surfaceID** variable. This method is automatically called when the Xcomponent is loaded.
+// The LoadXcomponent() API is used to obtain the surface ID and save it to the **surfaceID** variable. This API is automatically called when the Xcomponent is loaded.
 LoadXcomponent() {
 	surfaceID = this.$element('Xcomponent').getXComponentSurfaceId();
     console.info('LoadXcomponent surfaceID is' + surfaceID);
@@ -377,10 +377,10 @@ await videoPlayer.play().then(() => {
 import media from '@ohos.multimedia.media'
 import fileIO from '@ohos.fileio'
 
-let videoPlayer = undefined; // Used to store instances created by calling the createVideoPlayer method.
+let videoPlayer = undefined; // Used to store instances created by calling the createVideoPlayer API.
 let surfaceID = undefined; // Used to save the surface ID returned by the Xcomponent interface.
 
-// The LoadXcomponent() method is used to obtain the surface ID and save it to the **surfaceID** variable. This method is automatically called when the Xcomponent is loaded.
+// The LoadXcomponent() API is used to obtain the surface ID and save it to the **surfaceID** variable. This API is automatically called when the Xcomponent is loaded.
 LoadXcomponent() {
 	surfaceID = this.$element('Xcomponent').getXComponentSurfaceId();
     console.info('LoadXcomponent surfaceID is' + surfaceID);
@@ -462,12 +462,13 @@ await videoPlayer.play().then(() => {
 
 ### Xcomponent Creation
 
-```js
 The Xcomponent is used to obtain the surface ID during video playback. You need to create an xxx.hml file and add the following code to the xxx.hml file, where xxx is the same as that in the xxx.js file:
+
+```js
 <xcomponent id = 'Xcomponent'
-	  if = "{{isFlush}}" // Refresh the surface ID. To enable automatic loading of the Xcomponent and obtain the new surface ID, assign **false** to **isFlush** and then assign **true** to **isFlush**.
+      if = "{{isFlush}}" // Refresh the surface ID. To enable automatic loading of the Xcomponent and obtain the new surface ID, assign **false** to **isFlush** and then assign **true** to **isFlush**.
       type = 'surface'
-	  onload = 'LoadXcomponent' // Default interface for loading the Xcomponent.
+      onload = 'LoadXcomponent' // Default interface for loading the Xcomponent.
       style = "width:720px;height:480px;border-color:red;border-width:5px;"> // Set the window width, height, and other attributes.
 </xcomponent>
 ```

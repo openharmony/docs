@@ -20,7 +20,7 @@ For details about the APIs used for audio playback, see [js-apis-media.md](../re
 
 ### Full-Process Scenario
 
-The full audio playback process includes creating an instance, setting the URI, playing audio, seeking to the playback position, setting the volume, pausing playback, obtaining track information, stopping playback, resetting resources, and releasing resources.
+The full audio playback process includes creating an instance, setting the URI, playing audio, seeking to the playback position, setting the volume, pausing playback, obtaining track information, stopping playback, resetting the player, and releasing resources.
 
 For details about the **src** media source input types supported by **AudioPlayer**, see the [src attribute](../reference/apis/js-apis-media.md#audioplayer_attributes).
 
@@ -82,7 +82,7 @@ function printfDescription(obj) {
 // 1. Create an audioPlayer instance.
 let audioPlayer = media.createAudioPlayer();
 SetCallBack(audioPlayer);                          // Set the event callbacks.
-// 2. Set the URI of the audio file.
+// 2. Set the URI of the audio file selected by the user.
 let fdPath = 'fd://'
 let path = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp3';
 await fileIO.open(path).then(fdNumber) => {
@@ -95,8 +95,8 @@ await fileIO.open(path).then(fdNumber) => {
 });
 
 audioPlayer.src = fdPath;                         // Set the src attribute and trigger the 'dataLoad' event callback.
-// 3. Play the audio.
-audioPlayer.play();                               // The play() method can be invoked only after the 'dataLoad' event callback is complete. The 'play' event callback is triggered.
+// 3. Play the audio file.
+audioPlayer.play();                               // The play() API can be invoked only after the 'dataLoad' event callback is complete. The 'play' event callback is triggered.
 // 4. Seek to the playback position.
 audioPlayer.seek(30000);                          // Trigger the 'timeUpdate' event callback, and seek to 30000 ms for playback.
 // 5. Set the volume.
@@ -113,9 +113,9 @@ audioPlayer.getTrackDescription((error, arrlist) => {  // Obtain the audio track
         console.log(`audio getTrackDescription fail, error:${error.message}`);
     }
 });
-// 8. Stop playback.
+// 8. Stop the playback.
 audioPlayer.stop();                              // Trigger the 'stop' event callback.
-// 9. Reset the playback resources.
+// 9. Reset the player.
 audioPlayer.reset();                             // Trigger the 'reset' event callback, and reconfigure the src attribute to switch to the next song.
 // 10. Release the resource.
 audioPlayer.release();                           // Release the AudioPlayer instance.
@@ -131,7 +131,7 @@ import fileIO from '@ohos.fileio'
 function SetCallBack(audioPlayer) {
     audioPlayer.on('dataLoad', () => {              // Set the 'dataLoad' event callback, which is triggered when the src attribute is set successfully.
         console.info('audio set source success');
-        audioPlayer.play();                         // Call the play() method to start the playback and trigger the 'play' event callback.
+        audioPlayer.play();                         // Call the play() API to start the playback and trigger the 'play' event callback.
     });
     audioPlayer.on('play', () => {                  // Set the 'play' event callback.
         console.info('audio play success');
@@ -169,7 +169,7 @@ import fileIO from '@ohos.fileio'
 function SetCallBack(audioPlayer) {
     audioPlayer.on('dataLoad', () => {              // Set the 'dataLoad' event callback, which is triggered when the src attribute is set successfully.
         console.info('audio set source success');
-        audioPlayer.play();                         // Call the play() method to start the playback and trigger the 'play' event callback.
+        audioPlayer.play();                         // Call the play() API to start the playback and trigger the 'play' event callback.
     });
     audioPlayer.on('play', () => {                  // Set the 'play' event callback.
         console.info('audio play success');
@@ -222,7 +222,7 @@ import fileIO from '@ohos.fileio'
 function SetCallBack(audioPlayer) {
     audioPlayer.on('dataLoad', () => {              // Set the 'dataLoad' event callback, which is triggered when the src attribute is set successfully.
         console.info('audio set source success');
-        audioPlayer.play();                         // Call the play() method to start the playback and trigger the 'play' event callback.
+        audioPlayer.play();                         // Call the play() API to start the playback and trigger the 'play' event callback.
     });
     audioPlayer.on('play', () => {                  // Set the 'play' event callback.
         console.info('audio play success');
