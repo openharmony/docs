@@ -10,8 +10,6 @@
 
 ## 导入模块
 
-使用前需导入ElementName和image
-
 
 ```
 import { ElementName } from '../bundle/elementName';

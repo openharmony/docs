@@ -9,7 +9,7 @@ missionManager模块提供系统任务管理能力，开发者可以对系统任
 
 
 ## 导入模块
- 
+
 
 ```
 import missionManager from '@ohos.application.missionManager'
@@ -390,9 +390,10 @@ unlockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void;
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | missionId | number | 是 | 任务ID。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| missionId | number | 是 | 任务ID。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 执行结果回调函数。 |
 
 **示例：**
 
@@ -620,7 +621,7 @@ moveMissionToFront(missionId: number, options: StartOptions, callback: AsyncCall
 
 moveMissionToFront(missionId: number, options?: StartOptions): Promise&lt;void&gt;;
 
-把指定任务id的任务切到前台，以promise的方式返回。
+把指定任务id的任务切到前台，同时指定任务切换到前台时的启动参数，例如窗口模式、设备ID等，以promise的方式返回。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 

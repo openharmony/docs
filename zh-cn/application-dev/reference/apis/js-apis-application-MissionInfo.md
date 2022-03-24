@@ -9,8 +9,6 @@ Ability对应的任务信息。
 
 ## 导入模块
 
-使用前需导入Want
-
 
 ```
 import Want from '@ohos.application.Want';
