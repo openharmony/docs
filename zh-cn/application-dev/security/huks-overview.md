@@ -14,7 +14,7 @@ HUKS（OpenHarmony Universal KeyStore）向应用提供密钥库能力，包括�
 
 HUKS对密钥的使用主要通过Init、Update、Finish操作来实现。
 
-- **Iit操作**：读取密钥，并为其创建Session Id返回给调用者。
+- **Init操作**：读取密钥，并为其创建Session Id返回给调用者。
 
 - **Udate操作**：根据Init操作获取的Session Id对数据进行分段update处理。
 
