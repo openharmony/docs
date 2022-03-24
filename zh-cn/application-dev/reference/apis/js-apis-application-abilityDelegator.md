@@ -44,7 +44,7 @@ var monitor = {
 }
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.addAbilityMonitor(monitor, (err : any) => {
+abilityDelegator.addAbilityMonitor(monitor, (err) => {
     console.info("addAbilityMonitor callback");
 });
 ```
@@ -123,7 +123,7 @@ var monitor = {
 }
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.removeAbilityMonitor(monitor, (err : any) => {
+abilityDelegator.removeAbilityMonitor(monitor, (err) => {
     console.info("removeAbilityMonitor callback");
 });
 ```
@@ -202,7 +202,7 @@ var monitor = {
 }
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.waitAbilityMonitor(monitor, (err : any, data : any) => {
+abilityDelegator.waitAbilityMonitor(monitor, (err, data) => {
     console.info("waitAbilityMonitor callback");
 });
 ```
@@ -241,7 +241,7 @@ var monitor = {
 }
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.waitAbilityMonitor(monitor, timeout, (err : any, data : any) => {
+abilityDelegator.waitAbilityMonitor(monitor, timeout, (err, data) => {
     console.info("waitAbilityMonitor callback");
 });
 ```
@@ -343,7 +343,7 @@ var abilityDelegator;
 var ability;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.getCurrentTopAbility((err : any, data : any) => {
+abilityDelegator.getCurrentTopAbility((err, data) => {
     console.info("getCurrentTopAbility callback");
     ability = data;
     var state = abilityDelegator.getAbilityState(ability);
@@ -374,7 +374,7 @@ var abilityDelegator;
 var ability;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.getCurrentTopAbility((err : any, data : any) => {
+abilityDelegator.getCurrentTopAbility((err, data) => {
     console.info("getCurrentTopAbility callback");
     ability = data;
 });
@@ -436,7 +436,7 @@ var want = {
 };
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.startAbility(want, (err : any, data : any) => {
+abilityDelegator.startAbility(want, (err, data) => {
     console.info("startAbility callback");
 });
 ```
@@ -502,10 +502,10 @@ var abilityDelegator;
 var ability;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.getCurrentTopAbility((err : any, data : any) => {
+abilityDelegator.getCurrentTopAbility((err, data) => {
     console.info("getCurrentTopAbility callback");
     ability = data;
-    abilityDelegator.doAbilityForeground(ability, (err : any, data : any) => {
+    abilityDelegator.doAbilityForeground(ability, (err, data) => {
         console.info("doAbilityForeground callback");
     });
 });
@@ -540,7 +540,7 @@ var abilityDelegator;
 var ability;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.getCurrentTopAbility((err : any, data : any) => {
+abilityDelegator.getCurrentTopAbility((err, data) => {
     console.info("getCurrentTopAbility callback");
     ability = data;
     abilityDelegator.doAbilityForeground(ability).then((data : any) => {
@@ -573,10 +573,10 @@ var abilityDelegator;
 var ability;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.getCurrentTopAbility((err : any, data : any) => {
+abilityDelegator.getCurrentTopAbility((err, data) => {
     console.info("getCurrentTopAbility callback");
     ability = data;
-    abilityDelegator.doAbilityBackground(ability, (err : any, data : any) => {
+    abilityDelegator.doAbilityBackground(ability, (err, data) => {
         console.info("doAbilityBackground callback");
     });
 });
@@ -611,10 +611,10 @@ var abilityDelegator;
 var ability;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.getCurrentTopAbility((err : any, data : any) => {
+abilityDelegator.getCurrentTopAbility((err, data) => {
     console.info("getCurrentTopAbility callback");
     ability = data;
-    abilityDelegator.doAbilityBackground(ability).then((data : any) => {
+    abilityDelegator.doAbilityBackground(ability).then((data) => {
         console.info("doAbilityBackground promise");
     });
 });
@@ -644,7 +644,7 @@ var abilityDelegator;
 var msg = "msg";
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.print(msg, (err : any) => {
+abilityDelegator.print(msg, (err) => {
     console.info("print callback");
 });
 ```
@@ -707,7 +707,7 @@ var abilityDelegator;
 var cmd = "cmd";
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.executeShellCommand(cmd, (err : any, data : any) => {
+abilityDelegator.executeShellCommand(cmd, (err, data) => {
     console.info("executeShellCommand callback");
 });
 ```
@@ -738,7 +738,7 @@ var cmd = "cmd";
 var timeout = 100;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.executeShellCommand(cmd, timeout, (err : any, data : any) => {
+abilityDelegator.executeShellCommand(cmd, timeout, (err, data) => {
     console.info("executeShellCommand callback");
 });
 ```
