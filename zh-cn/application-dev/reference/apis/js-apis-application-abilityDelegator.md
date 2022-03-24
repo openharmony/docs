@@ -7,7 +7,7 @@
 ## 导入模块
 
 ```js
-import { AbilityDelegator } from './application/abilityDelegator'
+import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
 ```
 
 
@@ -44,7 +44,7 @@ var monitor = {
 }
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.addAbilityMonitor(monitor, (err) => {
+abilityDelegator.addAbilityMonitor(monitor, (err : any) => {
     console.info("addAbilityMonitor callback");
 });
 ```
@@ -86,7 +86,7 @@ var monitor = {
 }
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.addAbilityMonitor(monitor).then((void) => {
+abilityDelegator.addAbilityMonitor(monitor).then(() => {
     console.info("addAbilityMonitor promise");
 });
 ```
@@ -123,7 +123,7 @@ var monitor = {
 }
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.removeAbilityMonitor(monitor, (err) => {
+abilityDelegator.removeAbilityMonitor(monitor, (err : any) => {
     console.info("removeAbilityMonitor callback");
 });
 ```
@@ -165,7 +165,7 @@ var monitor = {
 }
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.removeAbilityMonitor(monitor).then((void) => {
+abilityDelegator.removeAbilityMonitor(monitor).then(() => {
     console.info("removeAbilityMonitor promise");
 });
 ```
@@ -185,7 +185,7 @@ waitAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<Ability>): 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | monitor  | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor) | 是   | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor)实例 |
-| callback | AsyncCallback\<Ability>                                      | 是   | 表示指定的回调方法                                           |
+| callback | AsyncCallback\<[Ability](js-apis-application-ability.md#Ability)> | 是   | 表示指定的回调方法                                           |
 
 **示例：**
 
@@ -202,7 +202,7 @@ var monitor = {
 }
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.waitAbilityMonitor(monitor, (err, data) => {
+abilityDelegator.waitAbilityMonitor(monitor, (err : any, data : any) => {
     console.info("waitAbilityMonitor callback");
 });
 ```
@@ -223,7 +223,7 @@ waitAbilityMonitor(monitor: AbilityMonitor, timeout: number, callback: AsyncCall
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | monitor  | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor) | 是   | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor)实例 |
 | timeout  | number                                                       | 是   | 最大等待时间，单位毫秒                                       |
-| callback | AsyncCallback\<Ability>                                      | 是   | 表示指定的回调方法                                           |
+| callback | AsyncCallback\<[Ability](js-apis-application-ability.md#Ability)> | 是   | 表示指定的回调方法                                           |
 
 **示例：**
 
@@ -241,7 +241,7 @@ var monitor = {
 }
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.waitAbilityMonitor(monitor, timeout, (err, data) => {
+abilityDelegator.waitAbilityMonitor(monitor, timeout, (err : any, data : any) => {
     console.info("waitAbilityMonitor callback");
 });
 ```
@@ -265,9 +265,9 @@ waitAbilityMonitor(monitor: AbilityMonitor, timeout?: number): Promise\<Ability>
 
 **返回值：**
 
-| 类型           | 说明                       |
-| -------------- | -------------------------- |
-| Promise\<void> | 以Promise形式返回Ability。 |
+| 类型                                                        | 说明                       |
+| ----------------------------------------------------------- | -------------------------- |
+| Promise\<[Ability](js-apis-application-ability.md#Ability)> | 以Promise形式返回Ability。 |
 
 **示例：**
 
@@ -284,7 +284,7 @@ var monitor = {
 }
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.waitAbilityMonitor(monitor).then((data) => {
+abilityDelegator.waitAbilityMonitor(monitor).then((data : any) => {
     console.info("waitAbilityMonitor promise");
 });
 ```
@@ -326,9 +326,9 @@ getAbilityState(ability: Ability): number
 
 **参数：**
 
-| 参数名  | 类型    | 必填 | 说明            |
-| ------- | ------- | ---- | --------------- |
-| ability | Ability | 是   | 指定Ability对象 |
+| 参数名  | 类型                                              | 必填 | 说明            |
+| ------- | ------------------------------------------------- | ---- | --------------- |
+| ability | [Ability](js-apis-application-ability.md#Ability) | 是   | 指定Ability对象 |
 
 **返回值：**
 
@@ -343,7 +343,7 @@ var abilityDelegator;
 var ability;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.getCurrentTopAbility((err, data) => {
+abilityDelegator.getCurrentTopAbility((err : any, data : any) => {
     console.info("getCurrentTopAbility callback");
     ability = data;
     var state = abilityDelegator.getAbilityState(ability);
@@ -363,9 +363,9 @@ getCurrentTopAbility(callback: AsyncCallback\<Ability>): void
 
 **参数：**
 
-| 参数名   | 类型                    | 必填 | 说明               |
-| -------- | ----------------------- | ---- | ------------------ |
-| callback | AsyncCallback\<Ability> | 是   | 表示指定的回调方法 |
+| 参数名   | 类型                                                         | 必填 | 说明               |
+| -------- | ------------------------------------------------------------ | ---- | ------------------ |
+| callback | AsyncCallback\<[Ability](js-apis-application-ability.md#Ability)> | 是   | 表示指定的回调方法 |
 
 **示例：**
 
@@ -374,7 +374,7 @@ var abilityDelegator;
 var ability;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.getCurrentTopAbility((err, data) => {
+abilityDelegator.getCurrentTopAbility((err : any, data : any) => {
     console.info("getCurrentTopAbility callback");
     ability = data;
 });
@@ -392,9 +392,9 @@ getCurrentTopAbility(): Promise\<Ability>
 
 **返回值：**
 
-| 类型              | 说明                                   |
-| ----------------- | -------------------------------------- |
-| Promise\<Ability> | 以Promise形式返回当前应用顶部ability。 |
+| 类型                                                        | 说明                                   |
+| ----------------------------------------------------------- | -------------------------------------- |
+| Promise\<[Ability](js-apis-application-ability.md#Ability)> | 以Promise形式返回当前应用顶部ability。 |
 
 **示例：**
 
@@ -403,7 +403,7 @@ var abilityDelegator;
 var ability;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.getCurrentTopAbility().then((data) => {
+abilityDelegator.getCurrentTopAbility().then((data : any) => {
     console.info("getCurrentTopAbility promise");
     ability = data;
 });
@@ -436,7 +436,7 @@ var want = {
 };
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.startAbility(want, (err, data) => {
+abilityDelegator.startAbility(want, (err : any, data : any) => {
     console.info("startAbility callback");
 });
 ```
@@ -473,7 +473,7 @@ var want = {
 };
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.startAbility(want).then((data) => {
+abilityDelegator.startAbility(want).then((data: any) => {
     console.info("startAbility promise");
 });
 ```
@@ -502,10 +502,10 @@ var abilityDelegator;
 var ability;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.getCurrentTopAbility((err, data) => {
+abilityDelegator.getCurrentTopAbility((err : any, data : any) => {
     console.info("getCurrentTopAbility callback");
     ability = data;
-    abilityDelegator.doAbilityForeground(ability, (err, data) => {
+    abilityDelegator.doAbilityForeground(ability, (err : any, data : any) => {
         console.info("doAbilityForeground callback");
     });
 });
@@ -540,10 +540,10 @@ var abilityDelegator;
 var ability;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.getCurrentTopAbility((err, data) => {
+abilityDelegator.getCurrentTopAbility((err : any, data : any) => {
     console.info("getCurrentTopAbility callback");
     ability = data;
-    abilityDelegator.doAbilityForeground(ability).then((data) => {
+    abilityDelegator.doAbilityForeground(ability).then((data : any) => {
         console.info("doAbilityForeground promise");
     });
 });
@@ -573,10 +573,10 @@ var abilityDelegator;
 var ability;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.getCurrentTopAbility((err, data) => {
+abilityDelegator.getCurrentTopAbility((err : any, data : any) => {
     console.info("getCurrentTopAbility callback");
     ability = data;
-    abilityDelegator.doAbilityBackground(ability, (err, data) => {
+    abilityDelegator.doAbilityBackground(ability, (err : any, data : any) => {
         console.info("doAbilityBackground callback");
     });
 });
@@ -611,10 +611,10 @@ var abilityDelegator;
 var ability;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.getCurrentTopAbility((err, data) => {
+abilityDelegator.getCurrentTopAbility((err : any, data : any) => {
     console.info("getCurrentTopAbility callback");
     ability = data;
-    abilityDelegator.doAbilityBackground(ability).then((data) => {
+    abilityDelegator.doAbilityBackground(ability).then((data : any) => {
         console.info("doAbilityBackground promise");
     });
 });
@@ -644,7 +644,7 @@ var abilityDelegator;
 var msg = "msg";
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.print(msg, (err) => {
+abilityDelegator.print(msg, (err : any) => {
     console.info("print callback");
 });
 ```
@@ -707,7 +707,7 @@ var abilityDelegator;
 var cmd = "cmd";
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.executeShellCommand(cmd, (err,data) => {
+abilityDelegator.executeShellCommand(cmd, (err : any, data : any) => {
     console.info("executeShellCommand callback");
 });
 ```
@@ -738,7 +738,7 @@ var cmd = "cmd";
 var timeout = 100;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.executeShellCommand(cmd, timeout, (err,data) => {
+abilityDelegator.executeShellCommand(cmd, timeout, (err : any, data : any) => {
     console.info("executeShellCommand callback");
 });
 ```
@@ -774,7 +774,7 @@ var cmd = "cmd";
 var timeout = 100;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.executeShellCommand(cmd, timeout).then((data) => {
+abilityDelegator.executeShellCommand(cmd, timeout).then((data : any) => {
     console.info("executeShellCommand promise");
 });
 ```
