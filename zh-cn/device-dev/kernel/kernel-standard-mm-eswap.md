@@ -3,7 +3,7 @@
 
 ## 基本概念
 
-ESwap(Enhanced Swap)提供了自定义新增存储分区作为内存交换分区的能力，并创建了一个常驻进程zswapd将压缩后的匿名页加密换出到ESwap存储分区，从而能完全的空出一块可用内存，以此来达到维持Memavailable水线的目标。同时，配合这个回收机制，在整个内存框架上进行改进，优化匿名页和文件页的回收效率，并且使两者的回收比例更加合理以避免过度回收导致的refault问题造成卡顿现象。
+ESwap(Enhanced Swap)提供了自定义新增存储分区作为内存交换分区的能力，并创建了一个常驻进程zswapd将[ZRAM](https://www.kernel.org/doc/html/latest/admin-guide/blockdev/zram.html)压缩后的匿名页加密换出到ESwap存储分区，从而能完全的空出一块可用内存，以此来达到维持Memavailable水线的目标。同时，配合这个回收机制，在整个内存框架上进行改进，优化匿名页和文件页的回收效率，并且使两者的回收比例更加合理以避免过度回收导致的refault问题造成卡顿现象。
 
 
 ## ZRAM与ESwap配置指导
@@ -79,8 +79,10 @@ ESwap(Enhanced Swap)提供了自定义新增存储分区作为内存交换分区
 
 1. 初始化ZRAM
 
+	设置ZRAM与ESwap的交互方式，并配置ZRAM的大小。
+
 	```Bash
-	// 打开ZRAM到eswap的换入换出功能，该步骤必须要在配置ZRAM大小之前。
+	// 打开ZRAM到ESwap的换入换出功能，该步骤必须要在配置ZRAM大小之前。
 	echo readwrite > /sys/block/zram0/group
 	// 配置ZRAM的大小，具体大小需根据产品及需求调整，此处设置为512MB。
 	echo 512M > /sys/block/zram0/disksize
@@ -94,6 +96,8 @@ ESwap(Enhanced Swap)提供了自定义新增存储分区作为内存交换分区
 	> - readwrite：表示打开ZRAM到eswap的换入换出功能。
 
 2. 使能ZRAM
+
+	启用ZRAM设备为交换分区并将其使能。
 
 	```Bash
 	mkswap /dev/block/zram0
