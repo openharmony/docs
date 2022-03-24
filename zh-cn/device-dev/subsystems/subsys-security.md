@@ -10,5 +10,3 @@
 
 -   **[设备安全等级管理开发指导](subsys-security-devicesecuritylevel.md)**
 
--   **[密钥管理开发指导](subsys-security-huks.md)**
-
