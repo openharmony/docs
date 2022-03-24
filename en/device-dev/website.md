@@ -1,5 +1,3 @@
-# Device
-
 - [Device Development Guide](device-dev-guide.md)
 - Quick Start
   - Mini and Small Systems
