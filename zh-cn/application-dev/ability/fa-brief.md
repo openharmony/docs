@@ -1,7 +1,7 @@
 # FA模型综述
 
 ## 整体架构
-鸿蒙用户程序的开发本质上就是开发Ability，OpenHarmony系统也是通过调度Ability，通过系统提供的一致性调度契约对Ability进行生命周期管理，从而实现对用户程序的调度。FA模型中Ability分为PageAbility、ServiceAbility和DataAbility三种类型。其中PageAbility具备ArkUI的Ability，是用户具体可见并可以交互的Ability实例；ServiceAbility也是Ability一种，但是没有UI，提供其他Ability调用自定义的服务，在后台运行；DataAbility也是没有UI，提供其他Ability进行数据的增删查服务，在后台运行。
+OpenHarmony用户程序的开发本质上就是开发Ability，OpenHarmony系统也是通过调度Ability，通过系统提供的一致性调度契约对Ability进行生命周期管理，从而实现对用户程序的调度。FA模型中Ability分为PageAbility、ServiceAbility和DataAbility三种类型。其中PageAbility具备ArkUI的Ability，是用户具体可见并可以交互的Ability实例；ServiceAbility也是Ability一种，但是没有UI，提供其他Ability调用自定义的服务，在后台运行；DataAbility也是没有UI，提供其他Ability进行数据的增删查服务，在后台运行。
 
 ## 应用包结构
 **应用包结构如下图所示：**
