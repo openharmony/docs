@@ -719,8 +719,8 @@ distroFilter示例：
     "screenWindow": {
         "policy": "include",
         "value": ["454*454","466*466"]
-    }，
-    “screenDensity”:{
+    },
+    "screenDensity":{
     	"policy": "exclude",
     	"value": ["ldpi","xldpi"]
 	},

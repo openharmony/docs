@@ -10,10 +10,10 @@ Ability的上下文环境，继承自Context。
 ## 使用说明
 
 
-​在使用AbilityContext的功能前，需要通过Ability子类实例获取。
+在使用AbilityContext的功能前，需要通过Ability子类实例获取。
 
 
-  
+
 ```js
 import Ability from '@ohos.application.Ability'
 class MainAbility extends Ability {
@@ -250,7 +250,7 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
 
   ```js
   this.context.terminateSelf((err) => {
-      console.log('terminateSelf result:' + JSON.stringfy(err));
+      console.log('terminateSelf result:' + JSON.stringify(err));
   });
   ```
 
@@ -273,9 +273,9 @@ terminateSelf(): Promise&lt;void&gt;;
 
   ```js
   this.context.terminateSelf(want).then((data) => {
-      console.log('success:' + JSON.stringfy(data));
+      console.log('success:' + JSON.stringify(data));
   }).catch((error) => {
-      console.log('failed:' + JSON.stringfy(error));
+      console.log('failed:' + JSON.stringify(error));
   });
   ```
 
@@ -404,7 +404,7 @@ requestPermissionsFromUser(permissions: Array&lt;string&gt;, requestCallback: As
     
   ```
   this.context.requestPermissionsFromUser(permissions,(result) => {
-      console.log('requestPermissionsFromUserresult:' + JSON.stringfy(result));
+      console.log('requestPermissionsFromUserresult:' + JSON.stringify(result));
   });
   ```
 
@@ -433,9 +433,9 @@ requestPermissionsFromUser(permissions: Array&lt;string&gt;) : Promise&lt;Permis
     
   ```
   this.context.requestPermissionsFromUser(permissions).then((data) => {
-      console.log('success:' + JSON.stringfy(data));
+      console.log('success:' + JSON.stringify(data));
   }).catch((error) => {
-      console.log('failed:' + JSON.stringfy(error));
+      console.log('failed:' + JSON.stringify(error));
   });
   ```
 
@@ -459,7 +459,7 @@ setMissionLabel(label: string, callback:AsyncCallback&lt;void&gt;): void;
     
   ```js
   this.context.setMissionLabel("test",(result) => {
-      console.log('requestPermissionsFromUserresult:' + JSON.stringfy(result));
+      console.log('requestPermissionsFromUserresult:' + JSON.stringify(result));
   });
   ```
 
@@ -488,9 +488,9 @@ setMissionLabel(label: string): Promise&lt;void&gt;
     
   ```js
   this.context.setMissionLabel("test").then((data) => {
-      console.log('success:' + JSON.stringfy(data));
+      console.log('success:' + JSON.stringify(data));
   }).catch((error) => {
-      console.log('failed:' + JSON.stringfy(error));
+      console.log('failed:' + JSON.stringify(error));
   });
   ```
 

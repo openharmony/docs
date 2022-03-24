@@ -62,32 +62,31 @@ featureAbility.startAbility({
     entities: [""],
     type: "",
     options: {
-      // indicates the grant to perform read operations on the URI
+      // Grant the permission to perform read operations on the URI.
       authReadUriPermission: true,
-      // indicates the grant to perform write operations on the URI
+      // Grant the permission to perform write operations on the URI.
       authWriteUriPermission: true,
-      // support forward intent result to origin ability
+      // support forwarding the intent result to the ability.
       abilityForwardResult: true,
-      // used for marking the ability start-up is triggered by continuation
+      // Enable abiligy continuation.
       abilityContinuation: true,
-      // specifies whether a component does not belong to ohos
+      // Specify that a component does not belong to ohos.
       notOhosComponent: true,
-      // specifies whether an ability is started
+      // Specify that an ability is started.
       abilityFormEnabled: true,
-      // indicates the grant for possible persisting on the URI.
+      // Grant the permission for possible persisting on the URI.
       authPersistableUriPermission: true,
-      // indicates the grant for possible persisting on the URI.
+      // Grant the permission for possible persisting on the prefix URI.
       authPrefixUriPermission: true,
-      // support distributed scheduling system start up multiple devices
+      // Support distributed scheduling system startup on multiple devices.
       abilitySliceMultiDevice: true,
-      // indicates that an ability using the service template is started regardless of whether the
-      // host application has been started.
+      // A service ability is started regardless of whether the host application has been started.
       startForegroundAbility: true,
-      // install the specified ability if it's not installed.
+      // Install the specified ability if it is not installed.
       installOnDemand: true,
-      // return result to origin ability slice
+      // Return the result to the ability slice.
       abilitySliceForwardResult: true,
-      // install the specified ability with background mode if it's not installed.
+      // Install the specified ability with background mode if it is not installed.
       installWithBackgroundMode: true
     },
     deviceId: "",
