@@ -21,10 +21,12 @@ import StartOptions from '@ohos.application.StartOptions';
 
 ## 属性
 
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.AbilityCore
+
 | 名称 | 可读 | 可写 | 参数类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- | -------- | -------- |
-| windowMode | 是 | 否 | number | 否 | 窗口模式。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore | 
-| displayId | 是 | 否 | number | 否 | 显示ID。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore | 
+| windowMode | 是 | 否 | number | 否 | 窗口模式。 | 
+| displayId | 是 | 否 | number | 否 | 显示ID。 | 
  
 
 

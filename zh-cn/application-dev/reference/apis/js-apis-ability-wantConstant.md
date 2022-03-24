@@ -16,7 +16,7 @@ import wantConstant from '@ohos.ability.wantConstant'
 
 **系统能力**：SystemCapability.Ability.AbilityBase
 
-## 权限列表
+权限列表。
 
 | 系统公共事件宏      | 系统公共事件名称          | 订阅者所需权限     |
 | ------------ | ------------------ | ---------------------- |
@@ -52,7 +52,7 @@ import wantConstant from '@ohos.ability.wantConstant'
 
 **系统能力**：SystemCapability.Ability.AbilityBase
 
-## 权限列表
+权限列表。
 
 | 系统公共事件宏      | 系统公共事件名称          | 订阅者所需权限     |
 | ------------ | ------------------ | ---------------------- |
