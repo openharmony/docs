@@ -19,7 +19,7 @@ ExtensionAbility，是Stage模型中新增的扩展组件的基类，一般用�
 
 ## 约束与限制
 
-- 鸿蒙系统当前不支持三方应用创建ServiceExtensionAbility。
+- OpenHarmony当前不支持三方应用创建ServiceExtensionAbility。
 
 
 ## 开发步骤

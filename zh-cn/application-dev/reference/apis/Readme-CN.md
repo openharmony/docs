@@ -28,7 +28,7 @@
     - [轻量级存储<sup>9+</sup>](js-apis-data-preferences.md)
     - [轻量级存储](js-apis-data-storage.md)
     - [分布式数据管理](js-apis-distributed-data.md)
-    - [分布式对象](js-apis-data-distributedobject.md)
+    - [分布式数据对象](js-apis-data-distributedobject.md)
     - [关系型数据库](js-apis-data-rdb.md)
     - [结果集](js-apis-data-resultset.md)
     - [DataAbility 谓词](js-apis-data-ability.md)
