@@ -106,36 +106,53 @@ ohos.permission.KEEP_BACKGROUND_RUNNING
 | function stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): void;<br/>function stopBackgroundRunning(context: Context): Promise&lt;void&gt;; | 停止后台长时任务的运行 |
 
 
-其中，wantAgent的信息详见（[WantAgent](../reference/apis/js-apis-notification.md#WantAgent接口)）
+其中，wantAgent的信息详见（[WantAgent](../reference/apis/js-apis-wantAgent.md)）
 
 **表4** 后台模式类型
 
-| 参数名 | id值 | 描述 |
-| -------- | -------- | -------- |
-| DATA_TRANSFER           | 1 | 数据传输 |
-| AUDIO_PLAYBACK          | 2 | 音频播放 |
-| AUDIO_RECORDING         | 3 | 录音 |
-| LOCATION                | 4 | 定位导航 |
-| BLUETOOTH_INTERACTION   | 5 | 蓝牙相关 |
-| MULTI_DEVICE_CONNECTION | 6 | 多设备互联 |
-| WIFI_INTERACTION        | 7 | WLAN相关（系统保留） |
-| VOIP                    | 8 | 音视频通话（系统保留） |
-| TASK_KEEPING            | 9 | 计算任务（仅供PC使用） |
+| 参数名 | id值 | 描述 | 配置项 |
+| -------- | -------- | -------- | -------- |
+| DATA_TRANSFER           | 1 | 数据传输 | dataTransfer |
+| AUDIO_PLAYBACK          | 2 | 音频播放 | audioPlayback |
+| AUDIO_RECORDING         | 3 | 录音 | audioRecording |
+| LOCATION                | 4 | 定位导航 | location |
+| BLUETOOTH_INTERACTION   | 5 | 蓝牙相关 | bluetoothInteraction |
+| MULTI_DEVICE_CONNECTION | 6 | 多设备互联 | multiDeviceConnection |
+| WIFI_INTERACTION        | 7 | WLAN相关（系统保留） | wifiInteraction |
+| VOIP                    | 8 | 音视频通话（系统保留） | voip |
+| TASK_KEEPING            | 9 | 计算任务（仅供PC使用） | taskKeeping |
 
 
 ## 开发步骤
 
-1. 在config.json文件中配置长时任务权限
+1. 在config.json文件中配置长时任务权限和后台模式类型，其中ability类型为service。
 
     ```json
     "module": {
-        "package": "com.example.myapplication",
-        ...,
-        "reqPermissions": [
-            {
-            "name": "ohos.permission.KEEP_BACKGROUND_RUNNING"
-            }
-        ]
+      "package": "com.example.myapplication",
+      
+      "abilities": [
+      
+        {
+          "backgroundModes": [
+            "dataTransfer",
+            "location",
+            
+          ],
+          
+          "type": "service"
+        }
+      ],
+      "defPermissions": [
+        {
+          "name": "ohos.permission.KEEP_BACKGROUND_RUNNING"
+        }
+      ],
+      "reqPermissions": [
+        {
+          "name": "ohos.permission.KEEP_BACKGROUND_RUNNING"
+        }
+      ]
     }
     ```
 
