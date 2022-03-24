@@ -1,11 +1,9 @@
-图片处理
-==========
+# 图片处理
 
 > **说明：**
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
- 导入模块
----------
+## 导入模块
 
 ```
 import image from '@ohos.multimedia.image';
@@ -663,7 +661,7 @@ imageSourceApi.getImageProperty("BitsPerSample",property,(error,data) => {})
 
 ### createPixelMap<sup>7+</sup>
 
-createPixelMap(options?: DecodingOptions): Promise<PixelMap>;
+createPixelMap(options?: DecodingOptions): Promise\<PixelMap>
 
 通过图片解码参数创建PixelMap对象。
 
@@ -671,10 +669,15 @@ createPixelMap(options?: DecodingOptions): Promise<PixelMap>;
 
 **参数：**
 
-| 名称          | 类型                                  | 必填 | 说明                       |
-| ------------- | ------------------------------------- | ---- | -------------------------- |
-| options       | [DecodingOptions](#decodingoptions7)  | 否   | 解码参数。                 |
-| AsyncCallback | AsyncCallback<[PixelMap](#pixelmap7)> | 是   | 通过回调返回PixelMap对象。 |
+| 名称    | 类型                                 | 必填 | 说明       |
+| ------- | ------------------------------------ | ---- | ---------- |
+| options | [DecodingOptions](#decodingoptions7) | 否   | 解码参数。 |
+
+**返回值：**
+
+| 类型                             | 说明                  |
+| -------------------------------- | --------------------- |
+| Promise\<[PixelMap](#pixelmap7)> | 异步返回Promise对象。 |
 
 **示例：**
 
@@ -685,7 +688,7 @@ imageSourceApi.createPixelMap().then(pixelmap => {})
 
 ### createPixelMap<sup>7+</sup>
 
-createPixelMap(callback: AsyncCallback<PixelMap>): void;
+createPixelMap(callback: AsyncCallback\<PixelMap>): void
 
 通过默认参数创建PixelMap对象，使用callback形式返回结果。
 
@@ -705,9 +708,9 @@ imageSourceApi.createPixelMap(pixelmap => {})
 
 ### createPixelMap<sup>7+</sup>
 
-createPixelMap(options: DecodingOptions, callback: AsyncCallback<PixelMap>): void;
+createPixelMap(options: DecodingOptions, callback: AsyncCallback\<PixelMap>): void
 
-通过图片解码参数创建pixelmap对象。
+通过图片解码参数创建PixelMap对象。
 
 **系统能力：** SystemCapability.Multimedia.Image
 
