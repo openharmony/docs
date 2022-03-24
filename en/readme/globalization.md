@@ -71,11 +71,11 @@ The directory structure of the Globalization subsystem for the standard system i
 
 **Globalization subsystem**
 
-global\_i18n\_lite
+[global\_i18n\_lite](https://gitee.com/openharmony/global_i18n_lite)
 
-global\_i18n\_standard
+[global\_i18n\_standard](https://gitee.com/openharmony/global_i18n_standard)
 
-global\_resmgr\_lite
+[global\_resmgr\_lite](https://gitee.com/openharmony/global_resmgr_lite)
 
-global\_resmgr\_standard
+[global\_resmgr\_standard](https://gitee.com/openharmony/global_resmgr_standard)
 
