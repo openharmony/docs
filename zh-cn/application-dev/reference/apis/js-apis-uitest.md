@@ -316,7 +316,7 @@ isBefore(by:By):By;
 **示例：**
 
 ```
-let by = BY.isBefore(by.text('123')) //使用静态构造器BY创建by对象，指定目标控件位于给出的特征属性控件之前
+let by = BY.isBefore(BY.text('123')) //使用静态构造器BY创建by对象，指定目标控件位于给出的特征属性控件之前
 ```
 
 ### By.isAfter
@@ -344,7 +344,7 @@ isAfter(by:By):By;
 **示例：**
 
 ```
-let by = BY.isAfter(by.text('123')) //使用静态构造器BY创建by对象，指定目标控件位于给出的特征属性控件之后
+let by = BY.isAfter(BY.text('123')) //使用静态构造器BY创建by对象，指定目标控件位于给出的特征属性控件之后
 ```
 
 ## UiComponent
@@ -365,7 +365,11 @@ click():Promise<void>;
 **示例：**
 
 ```
-await button.click()
+async function demo() {
+    let driver = UiDriver.create()
+    let button = await driver.findComponent(BY.type('button'))
+    await button.click()
+}
 ```
 
 ### UiComponent.doubleClick
@@ -381,7 +385,11 @@ doubleClick():Promise<void>;
 **示例：**
 
 ```
-await buttont.doubleClick()
+async function demo() {
+    let driver = UiDriver.create()
+    let button = await driver.findComponent(BY.type('button'))
+    await buttont.doubleClick()
+}
 ```
 
 ### UiComponent.longClick
@@ -397,7 +405,11 @@ longClick():Promise<void>;
 **示例：**
 
 ```
-await button.longClick()
+async function demo() {
+    let driver = UiDriver.create()
+    let button = await driver.findComponent(BY.type('button'))
+    await button.longClick()
+}
 ```
 
 ### UiComponent.getId
@@ -419,7 +431,11 @@ getId():Promise<number>;
 **示例：**
 
 ```
-let num = await button.getId()
+async function demo() {
+    let driver = UiDriver.create()
+    let button = await driver.findComponent(BY.type('button'))
+    let num = await button.getId()
+}
 ```
 
 ### UiComponent.getKey
@@ -441,7 +457,11 @@ getKey():Promise<string>;
 **示例：**
 
 ```
-let str_key = await button.getKey()
+async function demo() {
+    let driver = UiDriver.create()
+    let button = await driver.findComponent(BY.type('button'))
+    let str_key = await button.getKey()
+}
 ```
 
 ### UiComponent.getText
@@ -463,7 +483,11 @@ getText():Promise<string>;
 **示例：**
 
 ```
-let text = await button.getText()
+async function demo() {
+    let driver = UiDriver.create()
+    let button = await driver.findComponent(BY.type('button'))
+    let text = await button.getText()
+}
 ```
 
 ### UiComponent.getType
@@ -485,7 +509,11 @@ getType():Promise<string>;
 **示例：**
 
 ```
-let type =await button.getType()
+async function demo() {
+    let driver = UiDriver.create()
+    let button = await driver.findComponent(BY.type('button'))
+    let type = await button.getType()
+}
 ```
 
 ### UiComponent.isClickable
@@ -507,11 +535,16 @@ isClickable():Promise<bool>;
 **示例：**
 
 ```
-if(await button.isClickable())
-	console.info('This button can be Clicked')
-else
-	console.info('This button can not be Clicked')
-
+async function demo() {
+    let driver = UiDriver.create()
+    let button = await driver.findComponent(BY.type('button'))
+    if(await button.isClickable()) {
+        console.info('This button can be Clicked')
+    }
+    else{
+        console.info('This button can not be Clicked')
+    }
+}
 ```
 
 ### UiComponent.isScrollable
@@ -533,10 +566,16 @@ isScrollable():Promise<bool>;
 **示例：**
 
 ```
-if(await scrollBar.isScrollable())
-	console.info('This scrollBar can be operated')
-else
-	console.info('This scrollBar can not be operated')
+async function demo() {
+    let driver = UiDriver.create()
+    let scrollBar = await driver.findComponent(BY.scrollable(true))
+    if(await scrollBar.isScrollable()) {
+        console.info('This scrollBar can be operated')
+    }
+    else{
+        console.info('This scrollBar can not be operated')
+    }
+}
 ```
 
 
@@ -559,10 +598,17 @@ isEnabled():Promise<bool>;
 **示例：**
 
 ```
-if(await button.isEnabled())
-	console.info('This button can be operated')
-else
-	console.info('This button can not be operated')
+async function demo() {
+    let driver = UiDriver.create()
+    let button = await driver.findComponent(BY.type('button'))
+    if(await button.isEnabled()) {
+        console.info('This button can be operated')
+    }
+    else{
+        console.info('This button can not be operated')
+    }
+}
+
 ```
 
 ### UiComponent.isFocused
@@ -584,10 +630,16 @@ isFocused():Promise<bool>;
 **示例：**
 
 ```
-if(await button.isFocused())
-	console.info('This button is focused')
-else
-	console.info('This button is not focused')
+async function demo() {
+    let driver = UiDriver.create()
+    let button = await driver.findComponent(BY.type('button'))
+    if(await button.isFocused()) {
+        console.info('This button is focused')
+	}
+    else{
+        console.info('This button is not focused')
+	}
+}
 ```
 
 ### UiComponent.isSelected
@@ -609,10 +661,16 @@ isSelected():Promise<bool>;
 **示例：**
 
 ```
-if(await button.isSelected())
-	console.info('This button is selected')
-else
-	console.info('This button is not selected')
+async function demo() {
+    let driver = UiDriver.create()
+    let button = await driver.findComponent(BY.type('button'))
+    if(await button.isSelected()) {
+        console.info('This button is selected')
+	}
+    else{
+        console.info('This button is not selected')
+    }
+}
 ```
 
 ### UiComponent.inputText
@@ -634,7 +692,11 @@ inputText(text: string):Promise<void>;
 **示例：**
 
 ```
-await button.inputText('next page')
+async function demo() {
+    let driver = UiDriver.create()
+    let button = await driver.findComponent(BY.type('button'))
+    await button.inputText('next page')
+}
 ```
 
 ### UiComponent.scrollSearch
@@ -662,7 +724,11 @@ scrollSearch(by:By):Promise<UiComponent>;
 **示例：**
 
 ```
-let button = await scrollBar.scrollSearch(By.text('next page'))
+async function demo() {
+    let driver = UiDriver.create()
+    let scrollBar = await driver.findComponent(BY.scrollable(true))
+    let button = await scrollBar.scrollSearch(BY.text('next page'))
+}
 ```
 
 ## UiDriver
@@ -689,7 +755,9 @@ static create():UiDriver;
 **示例：**
 
 ```
-let driver = UiDriver.create()
+async function demo() {
+    let driver = UiDriver.create()
+}
 ```
 
 ### UiDriver.delayMs
@@ -711,7 +779,10 @@ UiDriver对象在给定的时间内延时。
 **示例：**
 
 ```
-await UiDriver.delayMs(1000)
+async function demo() {
+    let driver = UiDriver.create()
+    await driver.delayMs(1000)
+}
 ```
 
 ### UiDriver.findComponent
@@ -739,7 +810,10 @@ findComponent(by:By):Promise<UiComponent>;
 **示例：**
 
 ```
-let button = await UiDriver.findComponent(By.text('next page'))
+async function demo() {
+    let driver = UiDriver.create()
+    let button = await driver.findComponent(BY.text('next page'))
+}
 ```
 
 ### UiDriver.findComponents
@@ -767,7 +841,10 @@ findComponents(by:By):Promise<Array<UiComponent>>;
 **示例：**
 
 ```
-let <Array<button>> = await UiDriver.findComponents(By.text('next page'))
+async function demo() {
+    let driver = UiDriver.create()
+    let buttonList = await driver.findComponents(BY.text('next page'))
+}
 ```
 
 ### UiDriver.assertComponentExist   
@@ -789,7 +866,10 @@ assertComponentExist(by:By):Promise<void>;
 **示例：**
 
 ```
-await assertComponentExist(By.text('next page'))
+async function demo() {
+    let driver = UiDriver.create()
+    await driver.assertComponentExist(BY.text('next page'))
+}
 ```
 
 ### UiDriver.pressBack
@@ -805,7 +885,10 @@ UiDriver对象进行点击BACK键的操作。
 **示例：**
 
 ```
-UiDriver.pressBack()
+async function demo() {
+    let driver = UiDriver.create()
+    await driver.pressBack()
+}
 ```
 
 ### UiDriver.triggerKey
@@ -827,7 +910,10 @@ UiDriver对象采取如下操作：通过key值找到对应键并点击。
 **示例：**
 
 ```
-await UiDriver.triggerKey(123)
+async function demo() {
+    let driver = UiDriver.create()
+    await driver.triggerKey(123)
+}
 ```
 
 ### UiDriver.click
@@ -849,7 +935,10 @@ UiDriver对象采取如下操作：在目标坐标点单击。
 **示例：**
 
 ```
-await UiDriver.click(100,100)
+async function demo() {
+    let driver = UiDriver.create()
+    await driver.click(100,100)
+}
 ```
 
 ### UiDriver.doubleClick
@@ -871,7 +960,10 @@ UiDriver对象采取如下操作：在目标坐标点双击。
 **示例：**
 
 ```
-await UiDriver.doubleClick(100,100)
+async function demo() {
+    let driver = UiDriver.create()
+    await driver.doubleClick(100,100)
+}
 ```
 
 ### UiDriver.longClick
@@ -893,7 +985,10 @@ UiDriver对象采取如下操作：在目标坐标点长按下鼠标左键。
 **示例：**
 
 ```
-await UiDriver.longClick(100,100)
+async function demo() {
+    let driver = UiDriver.create()
+    await driver.longClick(100,100)
+}
 ```
 
 ### UiDriver.swipe
@@ -916,7 +1011,10 @@ UiDriver对象采取如下操作：从给出的起始坐标点滑向给出的目
 **示例：**
 
 ```
-await UiDriver.swipe(100,100,200,200)
+async function demo() {
+    let driver = UiDriver.create()
+    await driver.swipe(100,100,200,200)
+}
 ```
 
 ### UiDriver.screenCap
@@ -938,6 +1036,9 @@ UiDriver对象采取如下操作：捕获当前屏幕，并保存为PNG格式的
 **示例：**
 
 ```
-await UiDriver.screenCap('/local/tmp/')
+async function demo() {
+    let driver = UiDriver.create()
+    await driver.screenCap('/local/tmp/')
+}
 ```
 
