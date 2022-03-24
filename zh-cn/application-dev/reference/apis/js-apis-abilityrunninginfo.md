@@ -32,7 +32,7 @@ abilitymanager.getAbilityRunningInfos((err,data) => {
 | uid | number | 是 | 否 | 用户ID。  | 
 | processName | string | 是 | 否 | 进程名称。  | 
 | startTime | number | 是 | 否 | Ability启动时间。  | 
-| abilityState | [abilityManager.AbilityState](#abilitymanager-abilitystate) | 是 | 否 | Ability状态。  | 
+| abilityState | [abilityManager.AbilityState](##abilitymanagerabilitystate) | 是 | 否 | Ability状态。  | 
 
 
 ## abilityManager.AbilityState
