@@ -18,14 +18,14 @@ Obtains a **MediaLibrary** instance, which is used to access and modify personal
 
 **Parameters**
 
-| Name | Type   | Mandatory| Description                                                        |
-| ------- | ------- | ---- | ------------------------------------------------------------ |
-| context | Context | Yes  | Context of the ability. This parameter is optional for API version 7 and earlier versions, but mandatory for API version 8 and later versions.|
+| Name    | Type     | Mandatory  | Description                                      |
+| ------- | ------- | ---- | ---------------------------------------- |
+| context | Context | Yes   | Context of the ability. This parameter is optional for API version 7 and earlier versions, but mandatory for API version 8 and later versions.|
 
 **Return value**
 
-| Type                         | Description      |
-| ----------------------------- | :--------- |
+| Type                           | Description   |
+| ----------------------------- | :---- |
 | [MediaLibrary](#medialibrary) | **MediaLibrary** instance.|
 
 **Example**
@@ -51,10 +51,10 @@ Obtains file assets (also called files). This API uses an asynchronous callback 
 
 **Parameters**
 
-| Name  | Type                                               | Mandatory| Description                             |
-| -------- | --------------------------------------------------- | ---- | --------------------------------- |
-| options  | [MediaFetchOptions](#mediafetchoptions8)            | Yes  | Options for fetching the files.                     |
-| callback | AsyncCallback<[FetchFileResult](#fetchfileresult8)> | Yes  | Asynchronous callback of **FetchFileResult**.|
+| Name     | Type                                      | Mandatory  | Description                      |
+| -------- | ---------------------------------------- | ---- | ------------------------ |
+| options  | [MediaFetchOptions](#mediafetchoptions8) | Yes   | Options for fetching the files.                  |
+| callback | AsyncCallback<[FetchFileResult](#fetchfileresult8)> | Yes   | Asynchronous callback of **FetchFileResult**.|
 
 **Example**
 
@@ -88,14 +88,14 @@ Obtains file assets. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name | Type                                    | Mandatory| Description        |
-| ------- | ---------------------------------------- | ---- | ------------ |
-| options | [MediaFetchOptions](#mediafetchoptions8) | Yes  | Options for fetching the files.|
+| Name    | Type                                      | Mandatory  | Description    |
+| ------- | ---------------------------------------- | ---- | ------ |
+| options | [MediaFetchOptions](#mediafetchoptions8) | Yes   | Options for fetching the files.|
 
 **Return value**
 
-| Type                                | Description          |
-| ------------------------------------ | -------------- |
+| Type                                  | Description     |
+| ------------------------------------ | ------- |
 | [FetchFileResult](#fetchfileresult8) | Result set of the file retrieval operation.|
 
 **Example**
@@ -124,10 +124,10 @@ Subscribes to the media library changes. This API uses an asynchronous callback 
 
 **Parameters**
 
-| Name  | Type                | Mandatory| Description                                                        |
-| -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| type     | string               | Yes  | Media type.<br>'deviceChange': registered device change<br>'albumChange': album change<br>'imageChange': image file change<br>'audioChange': audio file change<br>'videoChange': video file change<br>'fileChange': file change<br>'remoteFileChange': file change on the registered device|
-| callback | callback&lt;void&gt; | Yes  | Void callback.                                                  |
+| Name     | Type                  | Mandatory  | Description                                      |
+| -------- | -------------------- | ---- | ---------------------------------------- |
+| type     | string               | Yes   | Media type.<br>'deviceChange': registered device change<br>'albumChange': album change<br>'imageChange': image file change<br>'audioChange': audio file change<br>'videoChange': video file change<br>'fileChange': file change<br>'remoteFileChange': file change on the registered device|
+| callback | callback&lt;void&gt; | Yes   | Void callback.                                   |
 
 **Example**
 
@@ -146,10 +146,10 @@ Unsubscribes from the media library changes. This API uses an asynchronous callb
 
 **Parameters**
 
-| Name  | Type                | Mandatory| Description                                                        |
-| -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| type     | string               | Yes  | Media type.<br>'deviceChange': registered device change<br>'albumChange': album change<br>'imageChange': image file change<br>'audioChange': audio file change<br>'videoChange': video file change<br>'fileChange': file change<br>'remoteFileChange': file change on the registered device|
-| callback | callback&lt;void&gt; | No  | Void callback.                                                  |
+| Name     | Type                  | Mandatory  | Description                                      |
+| -------- | -------------------- | ---- | ---------------------------------------- |
+| type     | string               | Yes   | Media type.<br>'deviceChange': registered device change<br>'albumChange': album change<br>'imageChange': image file change<br>'audioChange': audio file change<br>'videoChange': video file change<br>'fileChange': file change<br>'remoteFileChange': file change on the registered device|
+| callback | callback&lt;void&gt; | No   | Void callback.                                   |
 
 **Example**
 
@@ -171,12 +171,12 @@ Creates a media asset. This API uses an asynchronous callback to return the resu
 
 **Parameters**
 
-| Name      | Type                                   | Mandatory| Description                                                        |
-| ------------ | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| mediaType    | [MediaType](#mediatype)                 | Yes  | Media type.                                                    |
-| displayName  | string                                  | Yes  | Display file name.                                                  |
-| relativePath | string                                  | Yes  | Path for storing the file. You can use [getPublicDirectory](#getpublicdirectory8) to obtain the paths for storing different types of files.|
-| callback     | AsyncCallback<[FileAsset](#fileasset8)> | Yes  | Asynchronous callback for **FileAsset**.                         |
+| Name         | Type                                     | Mandatory  | Description                                      |
+| ------------ | --------------------------------------- | ---- | ---------------------------------------- |
+| mediaType    | [MediaType](#mediatype)                 | Yes   | Media type.                                    |
+| displayName  | string                                  | Yes   | Display file name.                                   |
+| relativePath | string                                  | Yes   | Path for storing the file. You can use [getPublicDirectory](#getpublicdirectory8) to obtain the paths for storing different types of files.|
+| callback     | AsyncCallback<[FileAsset](#fileasset8)> | Yes   | Asynchronous callback for **FileAsset**.                  |
 
 **Example**
 
@@ -208,16 +208,16 @@ Creates a media asset. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name      | Type                   | Mandatory| Description                                                        |
-| ------------ | ----------------------- | ---- | ------------------------------------------------------------ |
-| mediaType    | [MediaType](#mediatype) | Yes  | Media type.                                                    |
-| displayName  | string                  | Yes  | Display file name.                                                  |
-| relativePath | string                  | Yes  | Relative path. You can use [getPublicDirectory](#getpublicdirectory8) to obtain the relative path of the level-1 directory of different types of media files.|
+| Name         | Type                     | Mandatory  | Description                                      |
+| ------------ | ----------------------- | ---- | ---------------------------------------- |
+| mediaType    | [MediaType](#mediatype) | Yes   | Media type.                                    |
+| displayName  | string                  | Yes   | Display file name.                                   |
+| relativePath | string                  | Yes   | Relative path. You can use [getPublicDirectory](#getpublicdirectory8) to obtain the relative path of the level-1 directory of different types of media files.|
 
 **Return value**
 
-| Type                    | Description             |
-| ------------------------ | ----------------- |
+| Type                      | Description           |
+| ------------------------ | ------------- |
 | [FileAsset](#fileasset8) | Media data (FileAsset).|
 
 **Example**
@@ -246,10 +246,10 @@ Obtains a public directory. This API uses an asynchronous callback to return the
 
 **Parameters**
 
-| Name  | Type                           | Mandatory| Description                     |
-| -------- | ------------------------------- | ---- | ------------------------- |
-| type     | [DirectoryType](#directorytype) | Yes  | Type of the public directory.             |
-| callback | AsyncCallback&lt;string&gt;     | Yes  | Callback used to return the public directory.|
+| Name     | Type                             | Mandatory  | Description               |
+| -------- | ------------------------------- | ---- | ----------------- |
+| type     | [DirectoryType](#directorytype) | Yes   | Type of the public directory.           |
+| callback | AsyncCallback&lt;string&gt;     | Yes   | Callback used to return the public directory.|
 
 **Example**
 
@@ -274,14 +274,14 @@ Obtains a public directory. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name| Type                           | Mandatory| Description        |
-| ------ | ------------------------------- | ---- | ------------ |
-| type   | [DirectoryType](#directorytype) | Yes  | Type of the public directory.|
+| Name | Type                             | Mandatory  | Description    |
+| ---- | ------------------------------- | ---- | ------ |
+| type | [DirectoryType](#directorytype) | Yes   | Type of the public directory.|
 
 **Return value**
 
-| Type           | Description            |
-| --------------- | ---------------- |
+| Type             | Description      |
+| --------------- | -------- |
 | Promise<string> | Promise used to return the public directory.|
 
 **Example**
@@ -310,10 +310,10 @@ Obtains the albums. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name  | Type                                        | Mandatory| Description                       |
-| -------- | -------------------------------------------- | ---- | --------------------------- |
-| options  | [MediaFetchOptions](#mediafetchoptions8)     | Yes  | Options for fetching the albums.               |
-| callback | AsyncCallback&lt;Array<[Album](#album8)>&gt; | Yes  | Callback used to return the albums.|
+| Name     | Type                                      | Mandatory  | Description              |
+| -------- | ---------------------------------------- | ---- | ---------------- |
+| options  | [MediaFetchOptions](#mediafetchoptions8) | Yes   | Options for fetching the albums.          |
+| callback | AsyncCallback&lt;Array<[Album](#album8)>&gt; | Yes   | Callback used to return the albums.|
 
 **Example**
 
@@ -345,14 +345,14 @@ Obtains the albums. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name | Type                                    | Mandatory| Description        |
-| ------- | ---------------------------------------- | ---- | ------------ |
-| options | [MediaFetchOptions](#mediafetchoptions8) | Yes  | Options for fetching the albums.|
+| Name    | Type                                      | Mandatory  | Description    |
+| ------- | ---------------------------------------- | ---- | ------ |
+| options | [MediaFetchOptions](#mediafetchoptions8) | Yes   | Options for fetching the albums.|
 
 **Return value**
 
-| Type                            | Description         |
-| -------------------------------- | ------------- |
+| Type                              | Description       |
+| -------------------------------- | --------- |
 | Promise<Array<[Album](#album8)>> | Promise used to return the albums.|
 
 **Example**
@@ -380,9 +380,9 @@ Call this API when you no longer need to use the APIs in the **MediaLibrary** in
 
 **Parameters**
 
-| Name  | Type                     | Mandatory| Description                |
-| -------- | ------------------------- | ---- | -------------------- |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the execution result.|
+| Name     | Type                       | Mandatory  | Description        |
+| -------- | ------------------------- | ---- | ---------- |
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the execution result.|
 
 **Example**
 
@@ -404,8 +404,8 @@ Call this API when you no longer need to use the APIs in the **MediaLibrary** in
 
 **Return value**
 
-| Type               | Description                             |
-| ------------------- | --------------------------------- |
+| Type                 | Description                  |
+| ------------------- | -------------------- |
 | Promise&lt;void&gt; | Promise used to return the execution result.|
 
 **Example**
@@ -427,10 +427,10 @@ This API is defined but not implemented in OpenHarmony 3.1 Release. It will be a
 
 **Parameters**
 
-| Name  | Type                                 | Mandatory| Description                                       |
-| -------- | ------------------------------------- | ---- | ------------------------------------------- |
-| option   | [MediaAssetOption](#mediaassetoption) | Yes  | Media asset option.                             |
-| callback | AsyncCallback&lt;string&gt;           | Yes  | Callback used to return the URI that stores the media asset.|
+| Name     | Type                                   | Mandatory  | Description                     |
+| -------- | ------------------------------------- | ---- | ----------------------- |
+| option   | [MediaAssetOption](#mediaassetoption) | Yes   | Media asset option.                |
+| callback | AsyncCallback&lt;string&gt;           | Yes   | Callback used to return the URI that stores the media asset.|
 
 **Example**
 
@@ -463,14 +463,14 @@ This API is defined but not implemented in OpenHarmony 3.1 Release. It will be a
 
 **Parameters**
 
-| Name| Type                                 | Mandatory| Description          |
-| ------ | ------------------------------------- | ---- | -------------- |
-| option | [MediaAssetOption](#mediaassetoption) | Yes  | Media asset option.|
+| Name   | Type                                   | Mandatory  | Description     |
+| ------ | ------------------------------------- | ---- | ------- |
+| option | [MediaAssetOption](#mediaassetoption) | Yes   | Media asset option.|
 
 **Return value**
 
-| Type                 | Description                                          |
-| --------------------- | ---------------------------------------------- |
+| Type                   | Description                          |
+| --------------------- | ---------------------------- |
 | Promise&lt;string&gt; | Promise used to return the URI that stores the media asset.|
 
 **Example**
@@ -502,11 +502,11 @@ This API is defined but not implemented in OpenHarmony 3.1 Release. It will be a
 
 **Parameters**
 
-| Name  | Type                     | Mandatory| Description                                               |
-| -------- | ------------------------- | ---- | --------------------------------------------------- |
-| images   | Array&lt;string&gt;       | Yes  | URIs of the images to preview. The value can start with either **https://** or **dataability://**.|
-| index    | number                    | Yes  | Index of the first image to preview.                               |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the image preview result. If the preview fails, an error message is returned.                 |
+| Name     | Type                       | Mandatory  | Description                                      |
+| -------- | ------------------------- | ---- | ---------------------------------------- |
+| images   | Array&lt;string&gt;       | Yes   | URIs of the images to preview. The value can start with either **https://** or **dataability://**.|
+| index    | number                    | Yes   | Index of the first image to preview.                              |
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the image preview result. If the preview fails, an error message is returned.                       |
 
 **Example**
 
@@ -515,10 +515,12 @@ let images = [
     "dataability:///media/external/images/media/50",
     "dataability:///media/external/images/media/55"
 ];
+/* Online image usage mode
 let images = [
     "https://media.xxxx.com/image1.jpg",
     "https://media.xxxx.com/image2.jpg"
 ];
+*/
 let index = 1;
 mediaLibrary.getMediaLibrary().startImagePreview(images, index, (err) => {
     if (err) {
@@ -542,10 +544,10 @@ This API is defined but not implemented in OpenHarmony 3.1 Release. It will be a
 
 **Parameters**
 
-| Name  | Type                     | Mandatory| Description                                               |
-| -------- | ------------------------- | ---- | --------------------------------------------------- |
-| images   | Array&lt;string&gt;       | Yes  | URIs of the images to preview. The value can start with either **https://** or **dataability://**.|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the image preview result. If the preview fails, an error message is returned.                 |
+| Name     | Type                       | Mandatory  | Description                                      |
+| -------- | ------------------------- | ---- | ---------------------------------------- |
+| images   | Array&lt;string&gt;       | Yes   | URIs of the images to preview. The value can start with either **https://** or **dataability://**.|
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the image preview result. If the preview fails, an error message is returned.                       |
 
 **Example**
 
@@ -554,10 +556,12 @@ let images = [
     "dataability:///media/external/images/media/50",
     "dataability:///media/external/images/media/55"
 ];
+/* Online image usage mode
 let images = [
     "https://media.xxxx.com/image1.jpg",
     "https://media.xxxx.com/image2.jpg"
 ];
+*/
 mediaLibrary.getMediaLibrary().startImagePreview(images, (err) => {
     if (err) {
         console.log("An error occurred when previewing the images.");
@@ -580,15 +584,15 @@ This API is defined but not implemented in OpenHarmony 3.1 Release. It will be a
 
 **Parameters**
 
-| Name| Type               | Mandatory| Description                                               |
-| ------ | ------------------- | ---- | --------------------------------------------------- |
-| images | Array&lt;string&gt; | Yes  | URIs of the images to preview. The value can start with either **https://** or **dataability://**.|
-| index  | number              | No  | Index of the first image to preview. If this parameter is not specified, the default value **0** is used.              |
+| Name   | Type                 | Mandatory  | Description                                      |
+| ------ | ------------------- | ---- | ---------------------------------------- |
+| images | Array&lt;string&gt; | Yes   | URIs of the images to preview. The value can start with either **https://** or **dataability://**.|
+| index  | number              | No   | Index of the first image to preview. If this parameter is not specified, the default value **0** is used.                     |
 
 **Return value**
 
-| Type               | Description                                                   |
-| ------------------- | ------------------------------------------------------- |
+| Type                 | Description                             |
+| ------------------- | ------------------------------- |
 | Promise&lt;void&gt; | Promise used to return the image preview result. If the preview fails, an error message is returned.|
 
 **Example**
@@ -598,10 +602,12 @@ let images = [
     "dataability:///media/external/images/media/50",
     "dataability:///media/external/images/media/55"
 ];
+/* Online image usage mode
 let images = [
     "https://media.xxxx.com/image1.jpg",
     "https://media.xxxx.com/image2.jpg"
 ];
+*/
 let index = 1;
 mediaLibrary.getMediaLibrary().startImagePreview(images, index).then(() => {
     console.log("Succeeded in previewing the images.");
@@ -623,10 +629,10 @@ This API is defined but not implemented in OpenHarmony 3.1 Release. It will be a
 
 **Parameters**
 
-| Name  | Type                                    | Mandatory| Description                                                   |
-| -------- | ---------------------------------------- | ---- | ------------------------------------------------------- |
-| option   | [MediaSelectOption](#mediaselectoption)  | Yes  | Media selection option.                                         |
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes  | Callback used to return the list of URIs (starting with **dataability://**) that store the selected media assets.|
+| Name     | Type                                      | Mandatory  | Description                                  |
+| -------- | ---------------------------------------- | ---- | ------------------------------------ |
+| option   | [MediaSelectOption](#mediaselectoption)  | Yes   | Media selection option.                             |
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the list of URIs (starting with **dataability://**) that store the selected media assets.|
 
 **Example**
 
@@ -658,14 +664,14 @@ This API is defined but not implemented in OpenHarmony 3.1 Release. It will be a
 
 **Parameters**
 
-| Name| Type                                   | Mandatory| Description          |
-| ------ | --------------------------------------- | ---- | -------------- |
-| option | [MediaSelectOption](#mediaselectoption) | Yes  | Media selection option.|
+| Name   | Type                                     | Mandatory  | Description     |
+| ------ | --------------------------------------- | ---- | ------- |
+| option | [MediaSelectOption](#mediaselectoption) | Yes   | Media selection option.|
 
 **Return value**
 
-| Type                              | Description                                                        |
-| ---------------------------------- | ------------------------------------------------------------ |
+| Type                                | Description                                      |
+| ---------------------------------- | ---------------------------------------- |
 | Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the list of URIs (starting with **dataability://**) that store the selected media assets.|
 
 **Example**
@@ -692,29 +698,29 @@ Provides APIs for encapsulating file asset attributes.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
-| Name        | Type                   | Readable| Writable| Description                                                  |
-| ------------ | ----------------------- | ---- | ---- | ------------------------------------------------------ |
-| id           | number                  | Yes  | No  | File asset ID.                                          |
-| uri          | string                  | Yes  | No  | File asset URI, for example, dataability:///media/image/2.        |
-| mimeType     | string                  | Yes  | No  | Extended file attributes.                                          |
-| mediaType    | [MediaType](#mediatype) | Yes  | No  | Media type.                                              |
-| displayName  | string                  | Yes  | Yes  | Display file name, including the file name extension.                                |
-| title        | string                  | Yes  | Yes  | Title in the file.                                              |
-| relativePath | string                  | Yes  | Yes  | Relative public directory of the file.                                      |
-| parent       | number                  | Yes  | No  | Parent directory ID.                                              |
-| size         | number                  | Yes  | No  | File size, in bytes.                                |
-| dateAdded    | number                  | Yes  | No  | Date when the file was added. (The value is the number of seconds elapsed since the Epoch time.)        |
-| dateModified | number                  | Yes  | No  | Date when the file was modified. (The value is the number of seconds elapsed since the Epoch time.)        |
-| dateTaken    | number                  | Yes  | No  | Date when the file (photo) was taken. (The value is the number of seconds elapsed since the Epoch time.)        |
-| artist       | string                  | Yes  | No  | Artist of the file.                                                  |
-| audioAlbum   | string                  | Yes  | No  | Audio album.                                                  |
-| width        | number                  | Yes  | No  | Image width, in pixels.                                |
-| height       | number                  | Yes  | No  | Image height, in pixels.                                |
-| orientation  | number                  | Yes  | Yes  | Image display direction (clockwise rotation angle, for example, 0, 90, or 180, in degrees).|
-| duration     | number                  | Yes  | No  | Duration, in seconds.                                  |
-| albumId      | number                  | Yes  | No  | ID of the album to which the file belongs.                                  |
-| albumUri     | string                  | Yes  | No  | URI of the album to which the file belongs.                                     |
-| albumName    | string                  | Yes  | No  | Name of the album to which the file belongs.                                    |
+| Name          | Type                     | Readable  | Writable  | Description                                     |
+| ------------ | ----------------------- | ---- | ---- | --------------------------------------- |
+| id           | number                  | Yes   | No   | File asset ID.                                 |
+| uri          | string                  | Yes   | No   | File asset URI, for example, dataability:///media/image/2.|
+| mimeType     | string                  | Yes   | No   | Extended file attributes.                                 |
+| mediaType    | [MediaType](#mediatype) | Yes   | No   | Media type.                                   |
+| displayName  | string                  | Yes   | Yes   | Display file name, including the file name extension.                            |
+| title        | string                  | Yes   | Yes   | Title in the file.                                   |
+| relativePath | string                  | Yes   | Yes   | Relative public directory of the file.                               |
+| parent       | number                  | Yes   | No   | Parent directory ID.                                  |
+| size         | number                  | Yes   | No   | File size, in bytes.                            |
+| dateAdded    | number                  | Yes   | No   | Date when the file was added. (The value is the number of seconds elapsed since the Epoch time.)             |
+| dateModified | number                  | Yes   | No   | Date when the file was modified. (The value is the number of seconds elapsed since the Epoch time.)             |
+| dateTaken    | number                  | Yes   | No   | Date when the file (photo) was taken. (The value is the number of seconds elapsed since the Epoch time.)             |
+| artist       | string                  | Yes   | No   | Artist of the file.                                     |
+| audioAlbum   | string                  | Yes   | No   | Audio album.                                     |
+| width        | number                  | Yes   | No   | Image width, in pixels.                            |
+| height       | number                  | Yes   | No   | Image height, in pixels.                            |
+| orientation  | number                  | Yes   | Yes   | Image display direction (clockwise rotation angle, for example, 0, 90, or 180, in degrees).        |
+| duration     | number                  | Yes   | No   | Duration, in seconds.                             |
+| albumId      | number                  | Yes   | No   | ID of the album to which the file belongs.                             |
+| albumUri     | string                  | Yes   | No   | URI of the album to which the file belongs.                             |
+| albumName    | string                  | Yes   | No   | Name of the album to which the file belongs.                              |
 
 
 ### isDirectory<sup>8+</sup>
@@ -729,9 +735,9 @@ Checks whether this file asset is a directory. This API uses an asynchronous cal
 
 **Parameters**
 
-| Name  | Type                        | Mandatory| Description                         |
-| -------- | ---------------------------- | ---- | ----------------------------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return whether the file asset is a directory.|
+| Name     | Type                          | Mandatory  | Description                 |
+| -------- | ---------------------------- | ---- | ------------------- |
+| callback | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return whether the file asset is a directory.|
 
 **Example**
 
@@ -764,8 +770,8 @@ Checks whether this file asset is a directory. This API uses a promise to return
 
 **Return value**
 
-| Type                  | Description                                    |
-| ---------------------- | ---------------------------------------- |
+| Type                    | Description                          |
+| ---------------------- | ---------------------------- |
 | Promise&lt;boolean&gt; | Promise used to return whether the file asset is a directory.|
 
 **Example**
@@ -801,9 +807,9 @@ Commits the modification of this file asset to the database. This API uses an as
 
 **Parameters**
 
-| Name  | Type                     | Mandatory| Description      |
-| -------- | ------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Void callback.|
+| Name     | Type                       | Mandatory  | Description   |
+| -------- | ------------------------- | ---- | ----- |
+| callback | AsyncCallback&lt;void&gt; | Yes   | Void callback.|
 
 **Example**
 
@@ -837,8 +843,8 @@ Commits the modification of this file asset to the database. This API uses a pro
 
 **Return value**
 
-| Type               | Description         |
-| ------------------- | ------------- |
+| Type                 | Description        |
+| ------------------- | ---------- |
 | Promise&lt;void&gt; | Void promise.|
 
 **Example**
@@ -871,10 +877,10 @@ Opens this file asset. This API uses an asynchronous callback to return the resu
 
 **Parameters**
 
-| Name  | Type                       | Mandatory| Description                                                    |
-| -------- | --------------------------- | ---- | -------------------------------------------------------- |
-| mode     | string                      | Yes  | Mode of opening the file, for example, **r** (read-only), **w** (write-only), and **rw** (read-write).|
-| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the file handle.                                        |
+| Name     | Type                         | Mandatory  | Description                                 |
+| -------- | --------------------------- | ---- | ----------------------------------- |
+| mode     | string                      | Yes   | Mode of opening the file, for example, **r** (read-only), **w** (write-only), and **rw** (read-write).|
+| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the file handle.                           |
 
 **Example**
 
@@ -906,14 +912,14 @@ Opens this file asset. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                                    |
-| ------ | ------ | ---- | -------------------------------------------------------- |
-| mode   | string | Yes  | Mode of opening the file, for example, **r** (read-only), **w** (write-only), and **rw** (read-write).|
+| Name | Type    | Mandatory  | Description                                 |
+| ---- | ------ | ---- | ----------------------------------- |
+| mode | string | Yes   | Mode of opening the file, for example, **r** (read-only), **w** (write-only), and **rw** (read-write).|
 
 **Return value**
 
-| Type                 | Description               |
-| --------------------- | ------------------- |
+| Type                   | Description           |
+| --------------------- | ------------- |
 | Promise&lt;number&gt; | Promise used to return the file handle.|
 
 **Example**
@@ -946,10 +952,10 @@ Closes this file asset. This API uses an asynchronous callback to return the res
 
 **Parameters**
 
-| Name  | Type                     | Mandatory| Description      |
-| -------- | ------------------------- | ---- | ---------- |
-| fd       | number                    | Yes  | File descriptor.|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Void callback.|
+| Name     | Type                       | Mandatory  | Description   |
+| -------- | ------------------------- | ---- | ----- |
+| fd       | number                    | Yes   | File descriptor.|
+| callback | AsyncCallback&lt;void&gt; | Yes   | Void callback.|
 
 **Example**
 
@@ -987,14 +993,14 @@ Closes this file asset. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description      |
-| ------ | ------ | ---- | ---------- |
-| fd     | number | Yes  | File descriptor.|
+| Name | Type    | Mandatory  | Description   |
+| ---- | ------ | ---- | ----- |
+| fd   | number | Yes   | File descriptor.|
 
 **Return value**
 
-| Type               | Description         |
-| ------------------- | ------------- |
+| Type                 | Description        |
+| ------------------- | ---------- |
 | Promise&lt;void&gt; | Void promise.|
 
 **Example**
@@ -1034,9 +1040,9 @@ Obtains the thumbnail of this file asset. This API uses an asynchronous callback
 
 **Parameters**
 
-| Name  | Type                               | Mandatory| Description                    |
-| -------- | ----------------------------------- | ---- | ------------------------ |
-| callback | AsyncCallback&lt;image.PixelMap&gt; | Yes  | Callback used to return the pixel map of the thumbnail.|
+| Name     | Type                                 | Mandatory  | Description              |
+| -------- | ----------------------------------- | ---- | ---------------- |
+| callback | AsyncCallback&lt;image.PixelMap&gt; | Yes   | Callback used to return the pixel map of the thumbnail.|
 
 **Example**
 
@@ -1069,10 +1075,10 @@ Obtains the thumbnail of this file asset, with the thumbnail size passed. This A
 
 **Parameters**
 
-| Name  | Type                               | Mandatory| Description                    |
-| -------- | ----------------------------------- | ---- | ------------------------ |
-| size     | [Size](#size8)                      | Yes  | Size of the thumbnail.              |
-| callback | AsyncCallback&lt;image.PixelMap&gt; | Yes  | Callback used to return the pixel map of the thumbnail.|
+| Name     | Type                                 | Mandatory  | Description              |
+| -------- | ----------------------------------- | ---- | ---------------- |
+| size     | [Size](#size8)                      | Yes   | Size of the thumbnail.           |
+| callback | AsyncCallback&lt;image.PixelMap&gt; | Yes   | Callback used to return the pixel map of the thumbnail.|
 
 **Example**
 
@@ -1105,14 +1111,14 @@ Obtains the thumbnail of this file asset, with the thumbnail size passed. This A
 
 **Parameters**
 
-| Name| Type          | Mandatory| Description      |
-| ------ | -------------- | ---- | ---------- |
-| size   | [Size](#size8) | No  | Size of the thumbnail.|
+| Name | Type            | Mandatory  | Description   |
+| ---- | -------------- | ---- | ----- |
+| size | [Size](#size8) | No   | Size of the thumbnail.|
 
 **Return value**
 
-| Type                         | Description                       |
-| ----------------------------- | --------------------------- |
+| Type                           | Description                   |
+| ----------------------------- | --------------------- |
 | Promise&lt;image.PixelMap&gt; | Promise to return the pixel map of the thumbnail.|
 
 **Example**
@@ -1146,10 +1152,10 @@ Favorites or unfavorites this file asset. This API uses an asynchronous callback
 
 **Parameters**
 
-| Name    | Type                     | Mandatory| Description                                                      |
-| ---------- | ------------------------- | ---- | ---------------------------------------------------------- |
-| isFavorite | boolean                   | Yes  | Whether to favorite or unfavorite the file. The value **true** means to favorite the file, and **false** means to unfavorite the file.|
-| callback   | AsyncCallback&lt;void&gt; | Yes  | Void callback.                                                |
+| Name       | Type                       | Mandatory  | Description                                |
+| ---------- | ------------------------- | ---- | ---------------------------------- |
+| isFavorite | boolean                   | Yes   | Whether to favorite or unfavorite the file. The value **true** means to favorite the file, and **false** means to unfavorite the file.|
+| callback   | AsyncCallback&lt;void&gt; | Yes   | Void callback.                             |
 
 **Example**
 
@@ -1182,14 +1188,14 @@ Favorites or unfavorites this file asset. This API uses a promise to return the 
 
 **Parameters**
 
-| Name    | Type   | Mandatory| Description                                                      |
-| ---------- | ------- | ---- | ---------------------------------------------------------- |
-| isFavorite | boolean | Yes  | Whether to favorite or unfavorite the file. The value **true** means to favorite the file, and **false** means to unfavorite the file.|
+| Name       | Type     | Mandatory  | Description                                |
+| ---------- | ------- | ---- | ---------------------------------- |
+| isFavorite | boolean | Yes   | Whether to favorite or unfavorite the file. The value **true** means to favorite the file, and **false** means to unfavorite the file.|
 
 **Return value**
 
-| Type               | Description         |
-| ------------------- | ------------- |
+| Type                 | Description        |
+| ------------------- | ---------- |
 | Promise&lt;void&gt; | Void promise.|
 
 **Example**
@@ -1225,9 +1231,9 @@ Checks whether this file asset is favorited. This API uses an asynchronous callb
 
 **Parameters**
 
-| Name  | Type                        | Mandatory| Description                  |
-| -------- | ---------------------------- | ---- | ---------------------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return whether the file asset is favorited.|
+| Name     | Type                          | Mandatory  | Description         |
+| -------- | ---------------------------- | ---- | ----------- |
+| callback | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return whether the file asset is favorited.|
 
 **Example**
 
@@ -1264,8 +1270,8 @@ Checks whether this file asset is favorited. This API uses a promise to return t
 
 **Return value**
 
-| Type                  | Description                         |
-| ---------------------- | ----------------------------- |
+| Type                    | Description                |
+| ---------------------- | ------------------ |
 | Promise&lt;boolean&gt; | Promise used to return whether the file asset is favorited.|
 
 **Example**
@@ -1303,10 +1309,10 @@ Files in the trash are not actually deleted. You can set **isTrash** to **false*
 
 **Parameters**
 
-| Name  | Type                     | Mandatory| Description              |
-| -------- | ------------------------- | ---- | ------------------ |
-| isTrash  | boolean                   | Yes  | Whether to move the file asset to the trash. The value **true** means to move the file asset to the trash, and **false** means the opposite.|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Void callback.        |
+| Name     | Type                       | Mandatory  | Description       |
+| -------- | ------------------------- | ---- | --------- |
+| isTrash  | boolean                   | Yes   | Whether to move the file asset to the trash. The value **true** means to move the file asset to the trash, and **false** means the opposite.|
+| callback | AsyncCallback&lt;void&gt; | Yes   | Void callback.    |
 
 **Example**
 
@@ -1342,14 +1348,14 @@ Files in the trash are not actually deleted. You can set **isTrash** to **false*
 
 **Parameters**
 
-| Name | Type   | Mandatory| Description              |
-| ------- | ------- | ---- | ------------------ |
-| isTrash | boolean | Yes  | Whether to move the file asset to the trash. The value **true** means to move the file asset to the trash, and **false** means the opposite.|
+| Name    | Type     | Mandatory  | Description       |
+| ------- | ------- | ---- | --------- |
+| isTrash | boolean | Yes   | Whether to move the file asset to the trash. The value **true** means to move the file asset to the trash, and **false** means the opposite.|
 
 **Return value**
 
-| Type               | Description         |
-| ------------------- | ------------- |
+| Type                 | Description        |
+| ------------------- | ---------- |
 | Promise&lt;void&gt; | Void promise.|
 
 **Example**
@@ -1385,9 +1391,9 @@ Checks whether this file asset is in the trash. This API uses an asynchronous ca
 
 **Parameters**
 
-| Name  | Type                        | Mandatory| Description                          |
-| -------- | ---------------------------- | ---- | ------------------------------ |
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return whether the file asset is in the trash. If the file asset is in the trash, **true** will be returned; otherwise, **false** will be returned.|
+| Name     | Type                          | Mandatory  | Description             |
+| -------- | ---------------------------- | ---- | --------------- |
+| callback | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return whether the file asset is in the trash. If the file asset is in the trash, **true** will be returned; otherwise, **false** will be returned.|
 
 **Example**
 
@@ -1429,8 +1435,8 @@ Checks whether this file asset is in the trash. This API uses a promise to retur
 
 **Return value**
 
-| Type               | Description                             |
-| ------------------- | --------------------------------- |
+| Type                 | Description                  |
+| ------------------- | -------------------- |
 | Promise&lt;void&gt; | Promise used to return whether the file asset is in the trash. If the file asset is in the trash, **true** will be returned; otherwise, **false** will be returned.|
 
 **Example**
@@ -1468,8 +1474,8 @@ Obtains the total number of files in the result set.
 
 **Return value**
 
-| Type  | Description            |
-| ------ | ---------------- |
+| Type    | Description      |
+| ------ | -------- |
 | number | Total number of files.|
 
 **Example**
@@ -1497,8 +1503,8 @@ Checks whether the cursor is in the last row of the result set.
 
 **Return value**
 
-| Type   | Description                                                       |
-| ------- | ----------------------------------------------------------- |
+| Type     | Description                                |
+| ------- | ---------------------------------- |
 | boolean | Returns **true** if the cursor is in the last row of the result set; returns *false** otherwise.|
 
 **Example**
@@ -1564,9 +1570,9 @@ Obtains the first file asset in the result set. This API uses an asynchronous ca
 
 **Parameters**
 
-| Name  | Type                                         | Mandatory| Description                                       |
-| -------- | --------------------------------------------- | ---- | ------------------------------------------- |
-| callback | AsyncCallback&lt;[FileAsset](#fileasset8)&gt; | Yes  | Callback used to return the first file asset.|
+| Name     | Type                                      | Mandatory  | Description                        |
+| -------- | ---------------------------------------- | ---- | -------------------------- |
+| callback | AsyncCallback&lt;[FileAsset](#fileasset8)&gt; | Yes   | Callback used to return the first file asset.|
 
 **Example**
 
@@ -1600,8 +1606,8 @@ Obtains the first file asset in the result set. This API uses a promise to retur
 
 **Return value**
 
-| Type                                   | Description                    |
-| --------------------------------------- | ------------------------ |
+| Type                                     | Description                  |
+| --------------------------------------- | -------------------- |
 | Promise&lt;[FileAsset](#fileasset8)&gt; | Promise used to return the file asset.|
 
 **Example**
@@ -1636,9 +1642,9 @@ Obtains the next file asset in the result set. This API uses an asynchronous cal
 
 **Parameters**
 
-| Name   | Type                                         | Mandatory| Description                                     |
-| --------- | --------------------------------------------- | ---- | ----------------------------------------- |
-| callbacke | AsyncCallback&lt;[FileAsset](#fileasset8)&gt; | Yes  | Callback used to return the next file asset.|
+| Name      | Type                                      | Mandatory  | Description                       |
+| --------- | ---------------------------------------- | ---- | ------------------------- |
+| callbacke | AsyncCallback&lt;[FileAsset](#fileasset8)&gt; | Yes   | Callback used to return the next file asset.|
 
 **Example**
 
@@ -1674,8 +1680,8 @@ Obtains the next file asset in the result set. This API uses a promise to return
 
 **Return value**
 
-| Type                                   | Description             |
-| --------------------------------------- | ----------------- |
+| Type                                     | Description           |
+| --------------------------------------- | ------------- |
 | Promise&lt;[FileAsset](#fileasset8)&gt; | Promise used to return the next file asset.|
 
 **Example**
@@ -1706,9 +1712,9 @@ Obtains the last file asset in the result set. This API uses an asynchronous cal
 
 **Parameters**
 
-| Name    | Type                                         | Mandatory| Description                       |
-| -------- | --------------------------------------------- | ---- | --------------------------- |
-| callback | AsyncCallback&lt;[FileAsset](#fileasset8)&gt; | Yes  | Callback used to return the last file asset.|
+| Name      | Type                                      | Mandatory  | Description                |
+| -------- | ---------------------------------------- | ---- | ------------------ |
+| callback | AsyncCallback&lt;[FileAsset](#fileasset8)&gt; | Yes   | Callback used to return the last file asset.|
 
 **Example**
 
@@ -1742,8 +1748,8 @@ Obtains the last file asset in the result set. This API uses a promise to return
 
 **Return value**
 
-| Type                                   | Description             |
-| --------------------------------------- | ----------------- |
+| Type                                     | Description           |
+| --------------------------------------- | ------------- |
 | Promise&lt;[FileAsset](#fileasset8)&gt; | Promise used to return the next file asset.|
 
 **Example**
@@ -1772,10 +1778,10 @@ Obtains a file asset with the specified index in the result set. This API uses a
 
 **Parameters**
 
-| Name    | Type                                         | Mandatory| Description                       |
-| -------- | --------------------------------------------- | ---- | --------------------------- |
-| index    | number                                        | Yes  | Index of the file asset to obtain. The value starts from **0**.|
-| callback | AsyncCallback&lt;[FileAsset](#fileasset8)&gt; | Yes  | Callback used to return the last file asset.|
+| Name      | Type                                      | Mandatory  | Description                |
+| -------- | ---------------------------------------- | ---- | ------------------ |
+| index    | number                                   | Yes   | Index of the file asset to obtain. The value starts from **0**.    |
+| callback | AsyncCallback&lt;[FileAsset](#fileasset8)&gt; | Yes   | Callback used to return the last file asset.|
 
 **Example**
 
@@ -1811,14 +1817,14 @@ Obtains a file asset with the specified index in the result set. This API uses a
 
 **Parameters**
 
-| Name | Type  | Mandatory| Description                       |
-| ----- | ------ | ---- | --------------------------- |
-| index | number | Yes  | Index of the file asset to obtain. The value starts from **0**.|
+| Name   | Type    | Mandatory  | Description            |
+| ----- | ------ | ---- | -------------- |
+| index | number | Yes   | Index of the file asset to obtain. The value starts from **0**.|
 
 **Return value**
 
-| Type                                   | Description             |
-| --------------------------------------- | ----------------- |
+| Type                                     | Description           |
+| --------------------------------------- | ------------- |
 | Promise&lt;[FileAsset](#fileasset8)&gt; | Promise used to return the next file asset.|
 
 **Example**
@@ -1855,9 +1861,9 @@ Obtains all the file assets in the result set. This API uses an asynchronous cal
 
 **Parameters**
 
-| Name    | Type                                          | Mandatory| Description                           |
-| -------- | ---------------------------------------------- | ---- | ------------------------------- |
-| callback | AsyncCallback<Array<[FileAsset](#fileasset8)>> | Yes  | Callback used to return the file assets.|
+| Name      | Type                                      | Mandatory  | Description                  |
+| -------- | ---------------------------------------- | ---- | -------------------- |
+| callback | AsyncCallback<Array<[FileAsset](#fileasset8)>> | Yes   | Callback used to return the file assets.|
 
 **Example**
 
@@ -1891,8 +1897,8 @@ Obtains all the file assets in the result set. This API uses a promise to return
 
 **Return value**
 
-| Type                                    | Description                 |
-| ---------------------------------------- | --------------------- |
+| Type                                      | Description             |
+| ---------------------------------------- | --------------- |
 | Promise<Array<[FileAsset](#fileasset8)>> | Promise used to return the file assets.|
 
 **Example**
@@ -1919,15 +1925,15 @@ Provides APIs to implement a physical album.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
-| Name        | Type| Readable| Writable| Description          |
-| ------------ | ------ | ---- | ---- | -------------- |
-| albumId      | number | Yes  | No  | Album ID.      |
-| albumName    | string | Yes  | Yes  | Album name.      |
-| albumUri     | string | Yes  | No  | Album URI.       |
-| dateModified | number | Yes  | No  | Date when the album was modified.      |
-| count        | number | Yes  | No  | Number of files in the album.|
-| relativePath | string | Yes  | No  | Relative path of the album.      |
-| coverUri     | string | Yes  | No  | URI of the cover file of the album.   |
+| Name          | Type   | Readable  | Writable  | Description     |
+| ------------ | ------ | ---- | ---- | ------- |
+| albumId      | number | Yes   | No   | Album ID.   |
+| albumName    | string | Yes   | Yes   | Album name.   |
+| albumUri     | string | Yes   | No   | Album URI.  |
+| dateModified | number | Yes   | No   | Date when the album was modified.   |
+| count        | number | Yes   | No   | Number of files in the album.|
+| relativePath | string | Yes   | No   | Relative path of the album.   |
+| coverUri     | string | Yes   | No   | URI of the cover file of the album.|
 
 ### commitModify<sup>8+</sup>
 
@@ -1941,9 +1947,9 @@ Commits the modification of the album attributes to the database. This API uses 
 
 **Parameters**
 
-| Name    | Type                     | Mandatory| Description      |
-| -------- | ------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Void callback.|
+| Name      | Type                       | Mandatory  | Description   |
+| -------- | ------------------------- | ---- | ----- |
+| callback | AsyncCallback&lt;void&gt; | Yes   | Void callback.|
 
 **Example**
 
@@ -1978,8 +1984,8 @@ Commits the modification of the album attributes to the database. This API uses 
 
 **Return value**
 
-| Type               | Description             |
-| ------------------- | ----------------- |
+| Type                 | Description          |
+| ------------------- | ------------ |
 | Promise&lt;void&gt; | Void promise.|
 
 **Example**
@@ -2013,10 +2019,10 @@ Obtains the file assets in this album. This API uses an asynchronous callback to
 
 **Parameters**
 
-| Name    | Type                                               | Mandatory| Description                             |
-| -------- | --------------------------------------------------- | ---- | --------------------------------- |
-| options  | [MediaFetchOptions](#mediafetchoptions8)            | Yes  | Options for fetching the files.                     |
-| callback | AsyncCallback<[FetchFileResult](#fetchfileresult8)> | Yes  | Callback used to return the file assets.|
+| Name      | Type                                      | Mandatory  | Description                      |
+| -------- | ---------------------------------------- | ---- | ------------------------ |
+| options  | [MediaFetchOptions](#mediafetchoptions8) | Yes   | Options for fetching the files.                  |
+| callback | AsyncCallback<[FetchFileResult](#fetchfileresult8)> | Yes   | Callback used to return the file assets.|
 
 **Example**
 
@@ -2047,14 +2053,14 @@ Obtains the file assets in this album. This API uses a promise to return the res
 
 **Parameters**
 
-| Name   | Type                                    | Mandatory| Description        |
-| ------- | ---------------------------------------- | ---- | ------------ |
-| options | [MediaFetchOptions](#mediafetchoptions8) | No  | Options for fetching the files.|
+| Name     | Type                                      | Mandatory  | Description    |
+| ------- | ---------------------------------------- | ---- | ------ |
+| options | [MediaFetchOptions](#mediafetchoptions8) | No   | Options for fetching the files.|
 
 **Return value**
 
-| Type                                         | Description                   |
-| --------------------------------------------- | ----------------------- |
+| Type                                      | Description                 |
+| ---------------------------------------- | ------------------- |
 | Promise<[FetchFileResult](#fetchfileresult8)> | Promise used to return the file assets.|
 
 **Example**
@@ -2081,12 +2087,12 @@ Describes information about a registered device.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
-| Name      | Type      | Readable| Writable| Description            |
-| ---------- | ---------- | ---- | ---- | ---------------- |
-| deviceName | string     | Yes  | No  | Name of the registered device.  |
-| networkId  | string     | Yes  | No  | Network ID of the registered device.|
-| deviceType | DeviceType | Yes  | No  | Type of the registered device.        |
-| isOnline   | boolean    | Yes  | No  | Whether the registered device is online.        |
+| Name        | Type        | Readable  | Writable  | Description       |
+| ---------- | ---------- | ---- | ---- | --------- |
+| deviceName | string     | Yes   | No   | Name of the registered device.  |
+| networkId  | string     | Yes   | No   | Network ID of the registered device.|
+| deviceType | DeviceType | Yes   | No   | Type of the registered device.     |
+| isOnline   | boolean    | Yes   | No   | Whether the registered device is online.     |
 
 
 
@@ -2097,12 +2103,12 @@ Enumerates media types.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
-| Name | Default Value | Description|
-| ----- | ------ | ---- |
-| FILE  | 0      | File.|
-| IMAGE | 1      | Image.|
-| VIDEO | 2      | Video.|
-| AUDIO | 3      | Audio.|
+| Name   | Default Value  | Description  |
+| ----- | ---- | ---- |
+| FILE  | 0    | File.  |
+| IMAGE | 1    | Image.  |
+| VIDEO | 2    | Video.  |
+| AUDIO | 3    | Audio.  |
 
 FileKey
 -------
@@ -2111,27 +2117,27 @@ Enumerates key file information.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
-| Name         | Default Value              | Description                                                      |
-| ------------- | ------------------- | ---------------------------------------------------------- |
-| ID            | file_id             | File ID.                                                  |
-| RELATIVE_PATH | relative_path       | Relative public directory of the file.                                          |
-| DISPLAY_NAME  | display_name        | Display file name.                                                  |
-| PARENT        | parent              | Parent directory ID.                                                  |
-| MIME_TYPE     | mime_type           | Extended file attributes.                                              |
-| MEDIA_TYPE    | media_type          | Media type.                                                  |
-| SIZE          | size                | File size, in bytes.                                    |
-| DATE_ADDED    | date_added          | Date when the file was added. (The value is the number of seconds elapsed since the Epoch time.)            |
-| DATE_MODIFIED | date_modified       | Date when the file was modified. (The value is the number of seconds elapsed since the Epoch time.)            |
-| DATE_TAKEN    | date_taken          | Date when the file (photo) was taken. (The value is the number of seconds elapsed since the Epoch time.)            |
-| TITLE         | title               | Title in the file.                                                  |
-| ARTIST        | artist              | Artist of the file.                                                      |
-| AUDIOALBUM    | audio_album         | Audio album.                                                      |
-| DURATION      | duration            | Duration, in seconds.                                      |
-| WIDTH         | width               | Image width, in pixels.                                    |
-| HEIGHT        | height              | Image height, in pixels.                                    |
+| Name           | Default Value                 | Description                              |
+| ------------- | ------------------- | -------------------------------- |
+| ID            | file_id             | File ID.                            |
+| RELATIVE_PATH | relative_path       | Relative public directory of the file.                        |
+| DISPLAY_NAME  | display_name        | Display file name.                            |
+| PARENT        | parent              | Parent directory ID.                           |
+| MIME_TYPE     | mime_type           | Extended file attributes.                          |
+| MEDIA_TYPE    | media_type          | Media type.                            |
+| SIZE          | size                | File size, in bytes.                     |
+| DATE_ADDED    | date_added          | Date when the file was added. (The value is the number of seconds elapsed since the Epoch time.)      |
+| DATE_MODIFIED | date_modified       | Date when the file was modified. (The value is the number of seconds elapsed since the Epoch time.)      |
+| DATE_TAKEN    | date_taken          | Date when the file (photo) was taken. (The value is the number of seconds elapsed since the Epoch time.)      |
+| TITLE         | title               | Title in the file.                            |
+| ARTIST        | artist              | Artist of the file.                              |
+| AUDIOALBUM    | audio_album         | Audio album.                              |
+| DURATION      | duration            | Duration, in seconds.                      |
+| WIDTH         | width               | Image width, in pixels.                     |
+| HEIGHT        | height              | Image height, in pixels.                     |
 | ORIENTATION   | orientation         | Image display direction (clockwise rotation angle, for example, 0, 90, and 180, in degrees).|
-| ALBUM_ID      | bucket_id           | ID of the album to which the file belongs.                                      |
-| ALBUM_NAME    | bucket_display_name | Name of the album to which the file belongs.                                        |
+| ALBUM_ID      | bucket_id           | ID of the album to which the file belongs.                      |
+| ALBUM_NAME    | bucket_display_name | Name of the album to which the file belongs.                       |
 
 DirectoryType
 -------------
@@ -2140,14 +2146,14 @@ Enumerates directory types.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
-| Name         | Default Value | Description              |
-| ------------- | ------ | ------------------ |
-| DIR_CAMERA    | 0      | Directory of camera files.|
-| DIR_VIDEO     | 1      | Directory of video files.      |
-| DIR_IMAGE     | 2      | Directory of image files.      |
-| DIR_AUDIO     | 3      | Directory of audio files.      |
-| DIR_DOCUMENTS | 4      | Directory of documents.      |
-| DIR_DOWNLOAD  | 5      | Download directory.      |
+| Name           | Default Value  | Description          |
+| ------------- | ---- | ------------ |
+| DIR_CAMERA    | 0    | Directory of camera files.|
+| DIR_VIDEO     | 1    | Directory of video files.      |
+| DIR_IMAGE     | 2    | Directory of image files.      |
+| DIR_AUDIO     | 3    | Directory of audio files.      |
+| DIR_DOCUMENTS | 4    | Directory of documents.      |
+| DIR_DOWNLOAD  | 5    | Download directory.      |
 
 DeviceType
 -----------
@@ -2156,15 +2162,15 @@ Enumerates device types.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
-| Name        | Default Value | Description      |
-| ------------ | ------ | ---------- |
-| TYPE_UNKNOWN | 0      | Unknown.|
-| TYPE_LAPTOP  | 1      | Laptop.|
-| TYPE_PHONE   | 2      | Phone.      |
-| TYPE_TABLET  | 3      | Tablet.  |
-| TYPE_WATCH   | 4      | Smart watch.  |
-| TYPE_CAR     | 5      | Vehicle-mounted device.  |
-| TYPE_TV      | 6      | TV.  |
+| Name          | Default Value  | Description   |
+| ------------ | ---- | ----- |
+| TYPE_UNKNOWN | 0    | Unknown.|
+| TYPE_LAPTOP  | 1    | Laptop.|
+| TYPE_PHONE   | 2    | Phone.   |
+| TYPE_TABLET  | 3    | Tablet. |
+| TYPE_WATCH   | 4    | Smart watch. |
+| TYPE_CAR     | 5    | Vehicle-mounted device. |
+| TYPE_TV      | 6    | TV. |
 
 ## MediaFetchOptions<sup>8+</sup>
 
@@ -2172,23 +2178,23 @@ Describes options for fetching media files.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
-| Name         | Type               | Readable| Writable| Mandatory| Description                                                        |
-| ------------- | ------------------- | ---- | ---- | ---- | ------------------------------------------------------------ |
-| selections    | string              | Yes  | Yes  | Yes  | Conditions for fetching files. The enumerated values in [FileKey](#filekey) are used as the column names of the conditions. Example:<br>selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ? OR' +mediaLibrary.FileKey.MEDIA_TYPE + '= ?',|
-| selectionArgs | Array&lt;string&gt; | Yes  | Yes  | Yes  | Value of the condition, which corresponds to the value of the condition column in **selections**.<br>Example:<br>selectionArgs: [mediaLibrary.MediaType.IMAGE.toString(), mediaLibrary.MediaType.VIDEO.toString()], |
-| order         | string              | Yes  | Yes  | No  | Sorting mode of the search results, which can be ascending or descending. The enumerated values in [FileKey](#filekey) are used as the columns for sorting the search results. Example:<br>Ascending: order: mediaLibrary.FileKey.DATE_ADDED + " AESC"<br>Descending: order: mediaLibrary.FileKey.DATE_ADDED + " DESC"|
-| uri           | string              | Yes  | Yes  | No  | File URI.                                                     |
-| networkId     | string              | Yes  | Yes  | No  | Network ID of the registered device.                                              |
-| extendArgs    | string              | Yes  | Yes  | No  | Extended parameters for fetching the files. Currently, no extended parameters are available.                        |
+| Name           | Type                 | Readable  | Writable  | Mandatory  | Description                                      |
+| ------------- | ------------------- | ---- | ---- | ---- | ---------------------------------------- |
+| selections    | string              | Yes   | Yes   | Yes   | Conditions for fetching files. The enumerated values in [FileKey](#filekey) are used as the column names of the conditions. Example:<br>selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ? OR' +mediaLibrary.FileKey.MEDIA_TYPE + '= ?',|
+| selectionArgs | Array&lt;string&gt; | Yes   | Yes   | Yes   | Value of the condition, which corresponds to the value of the condition column in **selections**.<br>Example:<br>selectionArgs: [mediaLibrary.MediaType.IMAGE.toString(), mediaLibrary.MediaType.VIDEO.toString()], |
+| order         | string              | Yes   | Yes   | No   | Sorting mode of the search results, which can be ascending or descending. The enumerated values in [FileKey](#filekey) are used as the columns for sorting the search results. Example:<br>Ascending: order: mediaLibrary.FileKey.DATE_ADDED + " AESC"<br>Descending: order: mediaLibrary.FileKey.DATE_ADDED + " DESC"|
+| uri           | string              | Yes   | Yes   | No   | File URI.                                   |
+| networkId     | string              | Yes   | Yes   | No   | Network ID of the registered device.                                |
+| extendArgs    | string              | Yes   | Yes   | No   | Extended parameters for fetching the files. Currently, no extended parameters are available.                      |
 
 ## Size<sup>8+</sup>
 
 Describes the image size.
 
-| Name  | Type  | Readable| Writable| Description            |
-| ------ | ------ | ---- | ---- | ---------------- |
-| width  | number | Yes  | Yes  | Image width, in pixels.|
-| height | number | Yes  | Yes  | Image height, in pixels.|
+| Name    | Type    | Readable  | Writable  | Description      |
+| ------ | ------ | ---- | ---- | -------- |
+| width  | number | Yes   | Yes   | Image width, in pixels.|
+| height | number | Yes   | Yes   | Image height, in pixels.|
 
 ## MediaAssetOption
 
@@ -2199,11 +2205,11 @@ This API is defined but not implemented in OpenHarmony 3.1 Release. It will be a
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
 
-| Name        | Type  | Mandatory| Description                                                        |
-| ------------ | ------ | ---- | ------------------------------------------------------------ |
-| src          | string | Yes  | URI of the media library.                                           |
-| mimeType     | string | Yes  | Multipurpose Internet Mail Extensions (MIME) type of the media.<br>Example: 'image/\*' and 'video/\*'.|
-| relativePath | string | No  | Custom path for storing media assets. If this parameter is unspecified, media assets are stored in the default path. For example, if you set this parameter to **imageDir/image2/**, the media assets will be stored in **default/imageDir/image2/**, where **default** represents the default path.|
+| Name          | Type    | Mandatory  | Description                                      |
+| ------------ | ------ | ---- | ---------------------------------------- |
+| src          | string | Yes   | URI of the media library.                              |
+| mimeType     | string | Yes   | Multipurpose Internet Mail Extensions (MIME) type of the media.<br>Example: 'image/\*' and 'video/\*'.|
+| relativePath | string | No   | Custom path for storing media assets. If this parameter is unspecified, media assets are stored in the default path. For example, if you set this parameter to **imageDir/image2/**, the media assets will be stored in **default/imageDir/image2/**, where **default** represents the default path.|
 
 ## MediaSelectOption
 
@@ -2213,7 +2219,7 @@ This API is defined but not implemented in OpenHarmony 3.1 Release. It will be a
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
-| Name | Type  | Mandatory| Description                          |
-| ----- | ------ | ---- | ------------------------------ |
-| type  | string | Yes  | Media type, which can be **image** and **video**.|
-| count | number | Yes  | Maximum number of media assets that can be selected.            |
+| Name   | Type    | Mandatory  | Description                  |
+| ----- | ------ | ---- | -------------------- |
+| type  | string | Yes   | Media type, which can be **image** and **video**.|
+| count | number | Yes   | Maximum number of media assets that can be selected.           |
