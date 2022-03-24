@@ -185,7 +185,7 @@ runningLock.createRunningLock("running_lock_test", runningLock.RunningLockType.B
     console.info('create runningLock success')
 })
 .catch(error => {
-    console.log('Lock runningLock test error: ' + error)
+    console.log('create runningLock test error: ' + error)
 });
 ```
 
@@ -204,10 +204,10 @@ unlock(): void
 runningLock.createRunningLock("running_lock_test", runningLock.RunningLockType.BACKGROUND)
 .then(runningLock => {
     runningLock.unlock()
-    console.info('unLock runningLock success')
+    console.info('create and unLock runningLock success')
 })
 .catch(error => {
-    console.log('unLock runningLock test error: ' + error)
+    console.log('create runningLock test error: ' + error)
 });
 ```
 
