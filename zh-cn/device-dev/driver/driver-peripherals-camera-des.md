@@ -135,7 +135,7 @@ Camera驱动的开发过程主要包含以下步骤：
 
 2. **初始化Host服务**
 
-    　步骤1中提到的HdfCameraHostDriverBind接口提供了CameraServiceDispatch和CameraHostStubInstance的注册。这两个接口一个是远端调用CameraHost的方法，如OpenCamera()，SetFlashlight()等，另外一个是Camera设备的初始化，在开机时被调用。
+    步骤1中提到的HdfCameraHostDriverBind接口提供了CameraServiceDispatch和CameraHostStubInstance的注册。这两个接口一个是远端调用CameraHost的方法，如OpenCamera()，SetFlashlight()等，另外一个是Camera设备的初始化，在开机时被调用。
 
    ```
    int HdfCameraHostDriverBind(HdfDeviceObject *deviceObject)
