@@ -1,9 +1,11 @@
-# 图片处理
+图片处理
+==========
 
 > **说明：**
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-## 导入模块
+ 导入模块
+---------
 
 ```
 import image from '@ohos.multimedia.image';
@@ -34,8 +36,6 @@ createPixelMap(colors: ArrayBuffer, options: InitializetionOptions): Promise\<Pi
 ```js
 image.createPixelMap(Color, opts)
             .then((pixelmap) => {
-            expect(pixelmap !== null).assertTrue()
-                done()
             })
 ```
 
@@ -59,8 +59,6 @@ createPixelMap(colors: ArrayBuffer, opts: InitializetionOptions) callback: Async
 
 ```js
 image.createPixelMap(Color, opts, (pixelmap) => {
-                expect(pixelmap !== null).assertTrue()
-                done()
             })
 ```
 
@@ -98,25 +96,10 @@ readPixelsToBuffer(dst: ArrayBuffer): Promise\<void>
 
 ```js
 pixelmap.readPixelsToBuffer(readBuffer).then(() => {
-                    var bufferArr = new Uint8Array(readBuffer)
-                    var res = true
-                    for (var i = 0; i < bufferArr.length; i++) {
-                        if (res) {
-                            if (bufferArr[i] !== 0) {
-                                res = false
-                                console.info('TC_020 Success')
-                                expect(true).assertTrue()
-                                done()
-                                break
-                            }
-                        }
-                    }
-                    if (res) {
-                        console.info('TC_020 buffer is all empty')
-                        expect(false).assertTrue()
-                        done()
-                    }
-                })
+                        //符合条件则进入 
+                }).catch(error => {
+                //不符合条件则进入
+            })
 ```
 
 ### readPixelsToBuffer<sup>7+</sup>
@@ -138,24 +121,6 @@ readPixelsToBuffer(dst: ArrayBuffer, callback: AsyncCallback\<void>): void
 
 ```js
 pixelmap.readPixelsToBuffer(readBuffer, () => {
-                var bufferArr = new Uint8Array(readBuffer)
-                var res = true
-                for (var i = 0; i < bufferArr.length; i++) {
-                    if (res) {
-                        if (bufferArr[i] !== 0) {
-                            res = false
-                            console.info('TC_020-1 Success')
-                            expect(true).assertTrue()
-                            done()
-                            break
-                        }
-                    }
-                }
-                if (res) {
-                    console.info('TC_020-1 buffer is all empty')
-                    expect(false).assertTrue()
-                    done()
-                }
             })
 ```
 
@@ -183,28 +148,10 @@ readPixels(area: PositionArea): Promise\<void>
 
 ```js
 pixelmap.readPixels(area).then((data) => {
-                        if(data !== null){
-                        var bufferArr = new Uint8Array(area.pixels);
-                        var res = true;
-                        for (var i = 0; i < bufferArr.length; i++) {
-                            console.info('TC_021 buffer ' + bufferArr[i]);
-                            if(res) {
-                                if (bufferArr[i] == 0) {
-                                    res = false;
-                                    console.info('TC_021 Success');
-                                    expect(true).assertTrue();
-                                    done();
-                                    break;
-                                }
-                            }
-                        }
-                        if (res) {
-                            console.info('TC_021 buffer is all empty');
-                            expect(false).assertTrue()
-                            done();
-                        }
-                    }
-                })
+                  //符合条件则进入      
+                }).catch(error => {
+                //不符合条件则进入
+            })
 ```
 
 ### readPixels<sup>7+</sup>
@@ -225,29 +172,29 @@ readPixels(area: PositionArea, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-pixelmap.readPixels(area,(data) => {
-            if(data !== null) {
-                var bufferArr = new Uint8Array(area.pixels);
-                var res = true;
-                for (var i = 0; i < bufferArr.length; i++) {
-                    console.info('TC_021-1 buffer ' + bufferArr[i]);
-                    if(res) {
-                        if(bufferArr[i] == 0) {
-                            res = false;
-                            console.info('TC_021-1 Success');
-                            expect(true).assertTrue();
-                            done();
-                            break;
-                        }
-                    }
-                }
+let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+image.createPixelMap(color, opts, (err, pixelmap) => {
+     if(pixelmap == undefined){
+          console.info('createPixelMap failed');
+          expect(false).assertTrue();
+          done();
+      }else{
+          const area = { pixels: new ArrayBuffer(8),
+                    offset: 0,
+                    stride: 8,
+                    region: { size: { height: 1, width: 2 }, x: 0, y: 0 }}
+           pixelmap.readPixels(area, () => {
+               console.info('readPixels success');
+           })
+      }
+})
 ```
 
 ### writePixels<sup>7+</sup>
 
 writePixels(area: PositionArea): Promise\<void>
 
-将Pixelmap写入指定区域内，使用Promise形式返回写入结果。
+将PixelMap写入指定区域内，使用Promise形式返回写入结果。
 
 **系统能力：** SystemCapability.Multimedia.Image
 
@@ -266,18 +213,46 @@ writePixels(area: PositionArea): Promise\<void>
 **示例：**
 
 ```js
-pixelMap.writePixels(area).then(() => {
-    console.log("Succeeded in writing pixels.");
-}).catch((err) => {
-    console.error("Failed to write pixels.");
-});
+const color = new ArrayBuffer(96);
+let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+image.createPixelMap(color, opts)
+    .then( pixelmap => {
+        if (pixelmap == undefined) {
+            console.info('createPixelMap failed');
+            expect(false).assertTrue()
+            done();
+        }
+        const area = { pixels: new ArrayBuffer(8),
+            offset: 0,
+            stride: 8,
+            region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
+        }
+        var bufferArr = new Uint8Array(area.pixels);
+        for (var i = 0; i < bufferArr.length; i++) {
+            bufferArr[i] = i + 1;
+        }
+
+        pixelmap.writePixels(area).then(() => {
+            const readArea = { pixels: new ArrayBuffer(8),
+                offset: 0,
+                stride: 8,
+                // region.size.width + x < opts.width, region.size.height + y < opts.height
+                region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
+            }        
+        })
+    })
+    .catch(error => {
+        console.log('error: ' + error);
+        expect().assertFail();
+        done();
+    })
 ```
 
 ### writePixels<sup>7+</sup>
 
 writePixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
-将Pixelmap写入指定区域内，使用callback形式返回写入结果。
+将PixelMap写入指定区域内，使用callback形式返回写入结果。
 
 **系统能力：** SystemCapability.Multimedia.Image
 
@@ -305,7 +280,7 @@ pixelmap.writePixels(area, () => {
 
 writeBufferToPixels(src: ArrayBuffer): Promise\<void>
 
-读取缓冲区中的图片数据，结果写入Pixelmap中，使用Promise形式返回。
+读取缓冲区中的图片数据，结果写入PixelMap中，使用Promise形式返回。
 
 **系统能力：** SystemCapability.Multimedia.Image
 
@@ -335,7 +310,7 @@ pixelMap.writeBufferToPixels(colorBuffer).then(() => {
 
 writeBufferToPixels(src: ArrayBuffer, callback: AsyncCallback\<void>): void
 
-读取缓冲区中的图片数据，结果写入Pixelmap中，使用callback形式返回。
+读取缓冲区中的图片数据，结果写入PixelMap中，使用callback形式返回。
 
 **系统能力：** SystemCapability.Multimedia.Image
 
@@ -399,19 +374,7 @@ getImageInfo(callback: AsyncCallback\<ImageInfo>): void
 **示例:**
 
 ```js
-pixelmap.getImageInfo((imageInfo) => {
-                if (imageInfo !== null) {
-                    console.info('TC_024-1 imageInfo is ready')
-                    expect(imageInfo.size.height == 4).assertTrue()
-                    expect(imageInfo.size.width == 6).assertTrue()
-                    expect(imageInfo.pixelFormat == 1).assertTrue()
-                    done()
-                } else {
-                    console.info('TC_024-1 imageInfo is empty')
-                    expect(false).assertTrue()
-                    done()
-                }
-            })
+pixelmap.getImageInfo((imageInfo) => {})
 ```
 
 ### getBytesNumberPerRow<sup>7+</sup>
@@ -431,11 +394,7 @@ getBytesNumberPerRow(): number
 **示例：**
 
 ```js
-pixelmap.getBytesNumberPerRow().then((num) => {
-          console.info('TC_025 num is ' + num)
-          expect(num == expectNum).assertTrue()
-          done()
-        })
+rowCount = pixelmap.getBytesNumberPerRow()
 ```
 
 ### getPixelBytesNumber<sup>7+</sup>
@@ -455,18 +414,14 @@ getPixelBytesNumber(): number
 **示例：**
 
 ```js
-pixelmap.getPixelBytesNumber().then((num) => {
-          console.info('TC_026 num is ' + num)
-          expect(num == expectNum).assertTrue()
-          done()
-        })
+pixelBytesNumber = pixelmap.getPixelBytesNumber()
 ```
 
 ### release<sup>7+</sup>
 
 release():Promise\<void>
 
-释放Pixelmap对象，使用Promise形式返回释放结果。
+释放PixelMap对象，使用Promise形式返回释放结果。
 
 **系统能力：** SystemCapability.Multimedia.Image
 
@@ -479,16 +434,15 @@ release():Promise\<void>
 **示例：**
 
 ```js
-pixelmap.release()
-        expect(true).assertTrue()
-        done()
+ pixelmap.release().then(() => { })
+            .catch(error => {})
 ```
 
 ### release<sup>7+</sup>
 
 release(callback: AsyncCallback\<void>): void
 
-释放Pixelmap对象，使用callback形式返回释放结果。
+释放PixelMap对象，使用callback形式返回释放结果。
 
 **系统能力：** SystemCapability.Multimedia.Image
 
@@ -501,11 +455,7 @@ release(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-pixelmap.release(()=>{
-                expect(true).assertTrue();
-                console.log('TC_027-1 success');
-                done();
-            })   
+pixelmap.release(()=>{ })   
 ```
 
 ## image.createImageSource
@@ -524,9 +474,9 @@ createImageSource(uri: string): ImageSource
 
 **返回值：**
 
-| 类型                        | 说明                                    |
-| --------------------------- | --------------------------------------- |
-| [ImageSource](#imagesource) | 返回ImageSource类实例，失败时返回null。 |
+| 类型                        | 说明                                         |
+| --------------------------- | -------------------------------------------- |
+| [ImageSource](#imagesource) | 返回ImageSource类实例，失败时返回undefined。 |
 
 **示例：**
 
@@ -550,9 +500,9 @@ createImageSource(fd: number): ImageSource
 
 **返回值：**
 
-| 类型                        | 说明                                    |
-| --------------------------- | --------------------------------------- |
-| [ImageSource](#imagesource) | 返回ImageSource类实例，失败时返回null。 |
+| 类型                        | 说明                                         |
+| --------------------------- | -------------------------------------------- |
+| [ImageSource](#imagesource) | 返回ImageSource类实例，失败时返回undefined。 |
 
 **示例：**
 
@@ -588,20 +538,7 @@ getImageInfo(index: number, callback: AsyncCallback\<ImageInfo>): void
 **示例：**
 
 ```js
-it('TC_046', 0, async function (done) {
-        const imageSourceApi = image.createImageSource('/sdcard/test.jpg');
-        if (imageSourceApi == null) {
-            console.info('TC_046 create image source failed');
-            expect(false).assertTrue();
-            done();
-        } else {
-            imageSourceApi.getImageInfo(0,(error, imageInfo) => {
-                console.info('TC_046 imageInfo');
-                expect(imageInfo !== null).assertTrue();
-                done();
-            })
-        }
-    })
+imageSourceApi.getImageInfo(0,(error, imageInfo) => {})
 ```
 
 ### getImageInfo
@@ -621,11 +558,7 @@ getImageInfo(callback: AsyncCallback\<ImageInfo>): void
 **示例：**
 
 ```js
-imageSourceApi.getImageInfo(imageInfo => {
-                console.info('TC_045 imageInfo');
-                expect(imageInfo !== null).assertTrue();
-                done();
-            })
+imageSourceApi.getImageInfo(imageInfo => {})
 ```
 
 ### getImageInfo
@@ -652,11 +585,8 @@ getImageInfo(index?: number): Promise\<ImageInfo>
 
 ```js
 imageSourceApi.getImageInfo(0)
-            .then(imageInfo => {
-                console.info('TC_047 imageInfo');
-                expect(imageInfo !== null).assertTrue();
-                done();
-            })
+            .then(imageInfo => {})
+			.catch(error => {})
 ```
 
 ### getImageProperty<sup>7+</sup>
@@ -683,7 +613,9 @@ getImageProperty(key:string, options?: GetImagePropertyOptions): Promise\<string
 **示例：**
 
 ```js
-const w = imageSourceApi.getImageProperty("ImageWidth")
+imageSourceApi.getImageProperty("BitsPerSample")
+            .then(data => {})
+            .catch(error => {})
 ```
 
 ### getImageProperty<sup>7+</sup>
@@ -704,7 +636,7 @@ getImageProperty(key:string, callback: AsyncCallback\<string>): void
 **示例：**
 
 ```js
-const w = imageSourceApi.getImageProperty("ImageWidth",w=>{})
+imageSourceApi.getImageProperty("BitsPerSample",(error,data) => {})
 ```
 
 ### getImageProperty<sup>7+</sup>
@@ -726,14 +658,14 @@ getImageProperty(key:string, options: GetImagePropertyOptions, callback: AsyncCa
 **示例：**
 
 ```js
- imageSourceApi.getImageProperty("ImageWidth",PropertyOptions,(w)=>{})
+imageSourceApi.getImageProperty("BitsPerSample",property,(error,data) => {})
 ```
 
 ### createPixelMap<sup>7+</sup>
 
-createPixelMap(index: number, options: DecodingOptions, callback: AsyncCallback\<PixelMap>): void
+createPixelMap(options?: DecodingOptions): Promise<PixelMap>;
 
-通过图片解码参数创建Pixelmap对象，使用callback形式返回结果。
+通过图片解码参数创建PixelMap对象。
 
 **系统能力：** SystemCapability.Multimedia.Image
 
@@ -741,23 +673,39 @@ createPixelMap(index: number, options: DecodingOptions, callback: AsyncCallback\
 
 | 名称          | 类型                                  | 必填 | 说明                       |
 | ------------- | ------------------------------------- | ---- | -------------------------- |
-| options       | [DecodingOptions](#decodingoptions7)  | 是   | 解码参数。                 |
-| index         | number                                | 是   | 图片索引。                 |
+| options       | [DecodingOptions](#decodingoptions7)  | 否   | 解码参数。                 |
 | AsyncCallback | AsyncCallback<[PixelMap](#pixelmap7)> | 是   | 通过回调返回PixelMap对象。 |
 
 **示例：**
 
 ```js
-imageSourceApi.createPixelMap().then(pixelmap => {
-                console.info('TC_050-11 createPixelMap ');
-                expect(pixelmap !== null ).assertTrue();
-                done();
-            })
+imageSourceApi.createPixelMap().then(pixelmap => {})
+    						.catch(error => {})
 ```
 
 ### createPixelMap<sup>7+</sup>
 
-createPixelMap(options: DecodingOptions, callback: AsyncCallback\<PixelMap>): void
+createPixelMap(callback: AsyncCallback<PixelMap>): void;
+
+通过默认参数创建PixelMap对象，使用callback形式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Image
+
+**参数：**
+
+| 名称     | 类型                                  | 必填 | 说明                       |
+| -------- | ------------------------------------- | ---- | -------------------------- |
+| callback | AsyncCallback<[PixelMap](#pixelmap7)> | 是   | 通过回调返回PixelMap对象。 |
+
+**示例：**
+
+```js
+imageSourceApi.createPixelMap(pixelmap => {})
+```
+
+### createPixelMap<sup>7+</sup>
+
+createPixelMap(options: DecodingOptions, callback: AsyncCallback<PixelMap>): void;
 
 通过图片解码参数创建pixelmap对象。
 
@@ -773,53 +721,7 @@ createPixelMap(options: DecodingOptions, callback: AsyncCallback\<PixelMap>): vo
 **示例：**
 
 ```js
-let decodingOptions = {
-                sampleSize:1,
-                editable: true, 
-                desiredSize:{ width:1, height:2},
-                rotateDegrees:10,
-                desiredPixelFormat:1,
-                desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
-            };
-            imageSourceApi.createPixelMap(0,decodingOptions, pixelmap => {
-                console.info('TC_050-1 createPixelMap ');
-                expect(pixelmap !== null ).assertTrue();
-                done();
-            })
-```
-
-### createPixelMap<sup>7+</sup>
-
-createPixelMap(opts: DecodingOptions, callback: AsyncCallback\<PixelMap>): void
-
-通过图片解码参数创建pixelmap对象。
-
-**系统能力：** SystemCapability.Multimedia.Image
-
-**参数：**
-
-| 名称     | 类型                                  | 必填 | 说明                       |
-| -------- | ------------------------------------- | ---- | -------------------------- |
-| opts     | [DecodingOptions](#decodingoptions7)  | 是   | 解码参数。                 |
-| callback | AsyncCallback<[PixelMap](#pixelmap7)> | 是   | 通过回调返回PixelMap对象。 |
-
-**示例：**
-
-```js
-let decodingOptions = {
-                sampleSize:1,
-                editable: true, 
-                desiredSize:{ width:1, height:2},
-                rotateDegrees:10,
-                desiredPixelFormat:1,
-                desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
-                index:1
-            };
-            imageSourceApi.createPixelMap(decodingOptions, pixelmap => {
-                console.info('TC_050-1 createPixelMap ');
-                expect(pixelmap !== null ).assertTrue();
-                done();
-            })    
+imageSourceApi.createPixelMap(decodingOptions, pixelmap => {})    
 ```
 
 ### release
@@ -839,12 +741,7 @@ release(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-imageSourceApi.release(() => {
-                console.info('TC_044-1 Success');
-                expect(true).assertTrue();
-                done();
-            })
-        }
+imageSourceApi.release(() => {})
 ```
 
 ### release
@@ -864,11 +761,7 @@ release(): Promise\<void>
 **示例：**
 
 ```js
- imageSourceApi.release(() => {
-                console.info('TC_044-1 Success');
-                expect(true).assertTrue();
-                done();
-            })
+imageSourceApi.release().then(()=>{ }).catch(error => {})
 ```
 
 ## image.createImagePacker
@@ -921,11 +814,7 @@ packing(source: ImageSource, option: PackingOption, callback: AsyncCallback<Arra
 
 ```js
 let packOpts = { format:["image/jpeg"], quality:98 }
-                imagePackerApi.packing(imageSourceApi, packOpts, data => {
-                    console.info('TC_062-1 finished');
-                    expect(data !== null).assertTrue();
-                    done();
-                })
+imagePackerApi.packing(imageSourceApi, packOpts, data => {})
 ```
 
 ### packing
@@ -953,12 +842,62 @@ packing(source: ImageSource, option: PackingOption): Promise<Array\<number>>
 
 ```js
 let packOpts = { format:["image/jpeg"], quality:98 }
-                imagePackerApi.packing(imageSourceApi, packOpts)
-                .then( data => {
-                    console.info('TC_062 finished');
-                    expect(data !== null).assertTrue();
-                    done();
-                })
+imagePackerApi.packing(imageSourceApi, packOpts)
+    .then( data => { })
+	.catch(error => {})
+```
+
+### packing
+
+packing(source: PixelMap, option: PackingOption, callback: AsyncCallback<ArrayBuffer>): void;
+
+图片压缩或重新打包，使用callback形式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Image
+
+**参数：**
+
+| 参数名   | 类型                            | 必填 | 说明                               |
+| -------- | ------------------------------- | ---- | ---------------------------------- |
+| source   | [PixelMap](#pixelmap)           | 是   | 打包的PixelMap资源。               |
+| option   | [PackingOption](#packingoption) | 是   | 设置打包参数。                     |
+| callback | AsyncCallback<ArrayBuffer>      | 是   | 获取图片打包回调，返回打包后数据。 |
+
+**示例：**
+
+```js
+let packOpts = { format:["image/jpeg"], quality:98 }
+imagePackerApi.packing(pixelMapApi, packOpts, data => {})
+```
+
+### packing
+
+packing(source: PixelMap, option: PackingOption): Promise<Array\<number>>
+
+图片压缩或重新打包，使用Promise形式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Image
+
+**参数：**
+
+| 参数名 | 类型                            | 必填 | 说明           |
+| ------ | ------------------------------- | ---- | -------------- |
+| source | [PixelMap](#pixelmap)           | 是   | 打包的PixelMap源。 |
+| option | [PackingOption](#packingoption) | 是   | 设置打包参数。 |
+
+**返回值：**
+
+| 类型                    | 说明                                          |
+| :---------------------- | :-------------------------------------------- |
+| Promise<Array\<number>> | Promise实例，用于异步获取压缩或打包后的数据。 |
+
+**示例：**
+
+```js
+let packOpts = { format:["image/jpeg"], quality:98 }
+imagePackerApi.packing(pixelMapApi, packOpts)
+    .then( data => { })
+	.catch(error => {})
 ```
 
 ### release
@@ -978,10 +917,7 @@ release(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-imagePackerApi.release(()=>{
-            console.info('TC_063-1 release');
-            expect(true).assertTrue();
-            done();
+imagePackerApi.release(()=>{})
 ```
 
 ### release
@@ -1001,10 +937,8 @@ release(): Promise\<void>
 **示例：**
 
 ```js
-imagePackerApi.release();
- console.info('TC_063 release');
- expect(true).assertTrue();
- done();
+ imagePackerApi.release().then(()=>{
+            }).catch((error)=>{}) 
 ```
 
 ## PositionArea<sup>7+</sup>
@@ -1013,12 +947,12 @@ imagePackerApi.release();
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image
 
-| 名称   | 类型               | 可读 | 可写 | 说明                 |
-| ------ | ------------------ | ---- | ---- | -------------------- |
-| pixels | ArrayBuffer        | 是   | 否   | 像素。               |
-| offset | number             | 是   | 否   | 偏移量。             |
-| stride | number             | 是   | 否   | 像素间距。           |
-| region | [Region](#region8) | 是   | 否   | 区域，按照区域读写。 |
+| 名称   | 类型               | 可读 | 可写 | 说明                                                         |
+| ------ | ------------------ | ---- | ---- | ------------------------------------------------------------ |
+| pixels | ArrayBuffer        | 是   | 否   | 像素。                                                       |
+| offset | number             | 是   | 否   | 偏移量。                                                     |
+| stride | number             | 是   | 否   | 像素间距，stride >= region.size.width*4。                     |
+| region | [Region](#region8) | 是   | 否   | 区域，按照区域读写。写入的区域宽度加X坐标不能大于原图的宽度，写入的区域高度加Y坐标不能大于原图的高度 |
 
 ## ImageInfo
 
@@ -1053,7 +987,7 @@ imagePackerApi.release();
 | RGBA_8888 | 3      | 格式为RGBA_8888。 |
 | RGB_565   | 2      | 格式为RGB_565。   |
 
-## AlphaType<sup>8+</sup>
+## AlphaType<sup>9+</sup>
 
 枚举，透明度。
 
@@ -1066,7 +1000,7 @@ imagePackerApi.release();
 | PREMUL   | 2      | RGB前乘alpha。          |
 | UNPREMUL | 3      | RGB不前乘alpha。        |
 
-## ScaleMode<sup>8+</sup>
+## ScaleMode<sup>9+</sup>
 
 枚举，缩略值。
 
@@ -1083,10 +1017,10 @@ imagePackerApi.release();
 
 | 名称        | 类型                               | 可读 | 可写 | 说明           |
 | ----------- | ---------------------------------- | ---- | ---- | -------------- |
-| alphaType   | [AlphaType](#alphatype8)           | 是   | 是   | 透明度。       |
+| alphaType<sup>9+</sup>   | [AlphaType](#alphatype9)           | 是   | 是   | 透明度。       |
 | editable    | boolean                            | 是   | 是   | 是否可编辑。   |
 | pixelFormat | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 像素格式。     |
-| scaleMode   | [ScaleMode](#scalemode8)           | 是   | 是   | 缩略值。       |
+| scaleMode<sup>9+</sup>   | [ScaleMode](#scalemode9)           | 是   | 是   | 缩略值。       |
 | size        | [Size](#size)                      | 是   | 是   | 创建图片大小。 |
 
 ## DecodingOptions<sup>7+</sup>
@@ -1111,11 +1045,11 @@ imagePackerApi.release();
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image
 
-| 名称 | 类型          | 可读 | 可写 | 说明       |
-| ---- | ------------- | ---- | ---- | ---------- |
-| size | [Size](#size) | 是   | 是   | 区域大小。 |
-| x    | number        | 是   | 是   | 区域坐标。 |
-| y    | number        | 是   | 是   | 区域坐标。 |
+| 名称 | 类型          | 可读 | 可写 | 说明         |
+| ---- | ------------- | ---- | ---- | ------------ |
+| size | [Size](#size) | 是   | 是   | 区域大小。   |
+| x    | number        | 是   | 是   | 区域横坐标。 |
+| y    | number        | 是   | 是   | 区域纵坐标。 |
 
 ## PackingOption
 
@@ -1143,6 +1077,8 @@ imagePackerApi.release();
 
 枚举，Exif（Exchangeable image file format）图片信息。
 
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image
+
 | 名称              | 默认值            | 说明                 |
 | ----------------- | ----------------- | -------------------- |
 | BITS_PER_SAMPLE   | "BitsPerSample"   | 每个像素字节数。     |
@@ -1153,3 +1089,4 @@ imagePackerApi.release();
 | GPS_LONGITUDE     | "GPSLongitude"    | 图片经度。           |
 | GPS_LATITUDE_REF  | "GPSLatitudeRef"  | 纬度引用，例如N或S。 |
 | GPS_LONGITUDE_REF | "GPSLongitudeRef" | 经度引用，例如W或E。 |
+
