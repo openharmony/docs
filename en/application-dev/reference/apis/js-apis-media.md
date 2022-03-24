@@ -10,7 +10,7 @@ This subsystem offers various media services covering audio and video, which pro
 - Audio playback ([AudioPlayer](#audioplayer))
 - Video playback ([VideoPlayer](#videoplayer8))
 - Audio recording ([AudioRecorder](#audiorecorder))
-- Video recording ([VideoRecorder](#videoRecorder9))
+- Video recording ([VideoRecorder](#videorecorder9))
 
 The following capabilities will be provided in later versions: data source audio/video playback, audio/video encoding and decoding, container encapsulation and decapsulation, and media capability query.
 
@@ -2487,7 +2487,7 @@ Describes the video recording profile.
 | audioSampleRate  | number                                       | Yes  | Audio sampling rate.    |
 | fileFormat       | [ContainerFormatType](#containerformattype8) | Yes  | Container format of a file.|
 | videoBitrate     | number                                       | Yes  | Video encoding bit rate.|
-| videoCodec       | [CodecMimeType](#CodecMimeType8)             | Yes  | Video encoding format.  |
+| videoCodec       | [CodecMimeType](#codecmimetype8)             | Yes  | Video encoding format.  |
 | videoFrameWidth  | number                                       | Yes  | Width of the recorded video frame.|
 | videoFrameHeight | number                                       | Yes  | Height of the recorded video frame.|
 | videoFrameRate   | number                                       | Yes  | Video frame rate.  |
