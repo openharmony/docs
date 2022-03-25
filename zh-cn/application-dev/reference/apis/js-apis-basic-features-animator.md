@@ -97,7 +97,7 @@ update(options: AnimatorOptions): void
 
 **示例：**
 ```
-animator.update(options)；
+animator.update(options);
 ```
 
 ### play
@@ -110,7 +110,7 @@ play(): void
 
 **示例：**
 ```
-animator.play()；
+animator.play();
 ```
 
 ### finish
@@ -123,7 +123,7 @@ finish(): void
 
 **示例：**
 ```
-animator.finish()；
+animator.finish();
 ```
 
 ### pause
@@ -136,7 +136,7 @@ pause(): void
 
 **示例：**
 ```
-animator.pause()；
+animator.pause();
 ```
 
 ### cancel
@@ -149,7 +149,7 @@ cancel(): void
 
 **示例：**
 ```
-animator.cancel()；
+animator.cancel();
 ```
 
 ### reverse
@@ -162,7 +162,7 @@ reverse(): void
 
 **示例：**
 ```
-animator.reverse()；
+animator.reverse();
 ```
 
 ### onframe
@@ -180,7 +180,7 @@ onframe: (progress: number) => void
 
 **示例：**
 ```
-animator.onframe()；
+animator.onframe();
 ```
 
 ### onfinish
@@ -193,7 +193,7 @@ onfinish: () => void
 
 **示例：**
 ```
-animator.onfinish()；
+animator.onfinish();
 ```
 
 ### oncancel
@@ -206,7 +206,7 @@ oncancel: () => void
 
 **示例：**
 ```
-animator.oncancel()；
+animator.oncancel();
 ```
 
 ### onrepeat
@@ -217,7 +217,7 @@ onrepeat: () => void
 
 **示例：**
 ```
-animator.onrepeat()；
+animator.onrepeat();
 ```
 
 动画将重复。

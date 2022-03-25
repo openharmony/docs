@@ -48,7 +48,7 @@ ohos.permission.MANAGE_BLUETOOTH
       console.log('call bluetooth.startBLEScan success.');
     },
     fail(code, data) {
-      console.log('call bluetooth.startBLEScan failed, code: ${code}, data: ${data}.`);
+      console.log('call bluetooth.startBLEScan failed, code: ${code}, data: ${data}.');
     },
     complete() {
       console.log('call bluetooth.startBLEScan complete.');
@@ -82,7 +82,7 @@ ohos.permission.MANAGE_BLUETOOTH
       console.log('call bluetooth.stopBLEScan success.');
     },
     fail(data, code) {
-      console.log(`call bluethooth.stopBLEScan fail, code: ${code}, data: ${data}.`);
+      console.log('call bluethooth.stopBLEScan fail, code: ${code}, data: ${data}.');
     },
     complete() {
       console.log('call bluethooth.stopBLEScan complete.');
@@ -138,7 +138,7 @@ ohos.permission.MANAGE_BLUETOOTH
       });
     },
     fail(code, data) {
-      console.log('Failed to start BLE device scan, code: ${code}, data: ${data}`);
+      console.log('Failed to start BLE device scan, code: ${code}, data: ${data}');
     }
   });
   ```

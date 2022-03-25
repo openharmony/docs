@@ -254,7 +254,7 @@
         - [传感器开发概述](device/sensor-overview.md)
         - [传感器开发指导](device/sensor-guidelines.md)
       - 振动
-        - [振动开发概述](device/vibrator-guidelines.md)
+        - [振动开发概述](device/vibrator-overview.md)
         - [振动开发指导](device/vibrator-guidelines.md)
     - 设备使用信息统计
       - [设备使用信息统计概述](device-usage-statistics/device-usage-statistics-overview.md)
