@@ -97,7 +97,7 @@
    以下为监听对象数据变更的代码示例。
    
    ```js
-   changeCallback : function (sessionId, changeData) {
+   function changeCallback(sessionId, changeData) {
         console.info("change" + sessionId);
    
         if (changeData != null && changeData != undefined) {
@@ -147,7 +147,7 @@
 8. 监听分布式对象的上下线。可以监听对端分布式数据对象的上下线。
    以下为访问对象的代码示例：
    ```js
-    statusCallback : function (sessionId, networkid, status) {
+    function statusCallback(sessionId, networkid, status) {
       this.response += "status changed " + sessionId + " " + status + " " + networkId;
     }
    
