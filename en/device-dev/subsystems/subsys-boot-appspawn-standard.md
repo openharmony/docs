@@ -89,7 +89,7 @@ After being started by the init process, the appspawn process waits for inter-pr
 
 ### Available APIs<a name="section56901555914"></a>
 
-**Table 2**  Field description
+**Table 2**  Available APIs
 <table><thead align="left"><tr id="row6650142913713"><th class="cellrowborder" valign="top" width="39.489999999999995%" id="mcps1.2.3.1.1"><p id="p17650112914379"><a name="p17650112914379"></a><a name="p17650112914379"></a>Field</p>
 </th>
 <th class="cellrowborder" valign="top" width="60.51%" id="mcps1.2.3.1.2"><p id="p865032916376"><a name="p865032916376"></a><a name="p865032916376"></a>Description</p>
