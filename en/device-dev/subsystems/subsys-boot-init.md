@@ -4,7 +4,7 @@
 
   The init module starts key service processes during system startup. If you would like to add a system service that automatically starts upon system startup, you can add a configuration file named in the **xxx.cfg** format. The system automatically analyzes the **.cfg** file and starts the corresponding service.
 
-- Configuration File of the init Module<a name="section56901555917"></a>
+- Configuration file of the init module<a name="section56901555917"></a>
 
    The configuration file of the init module, that is, **init.cfg**, contains service names, executable file paths, permissions, and other information of all key system services that need to be started by the init process. The file can be found in **/etc/** after burning is complete. The file is in JSON format, and its size cannot exceed 100 KB.
 
@@ -12,7 +12,7 @@
 
   If you need to add a key service to a module, you can also add the **.cfg** file of the module. During compilation, copy the file to the **/system/etc/init** directory. The init process will parse the **.cfg** file and starts the corresponding service.
 
-- init Service Startup Control (for Standard System or Higher)<a name="section56901555918"></a>
+- init service startup control (for standard system or higher)<a name="section56901555918"></a>
 
   The init process classifies services into three types based on service configurations and starts the services in different phases.
 
@@ -44,7 +44,7 @@
     },
 
   ```
-- init Service Parallel Service Control (for Standard System or Higher)<a name="section56901555919"></a>
+- init parallel service control (for standard system or higher)<a name="section56901555919"></a>
 
   The init module provides the parallel service processing function, which allows services to execute jobs in different phases.
 
@@ -52,7 +52,7 @@
   - **on-stop**: a job executed when the service is stopped.
   - **on-restart**: a job executed when the service is restarted.
 
-- init On-Demand Startup (for Standard System or Higher)<a name="section56901555920"></a>
+- init on-demand startup (for standard system or higher)<a name="section56901555920"></a>
 
   Services managed by the init process can be started on demand. Such services are not automatically started during system startup. Instead, they are started by the init process only when a certain event occurs. Typical events that trigger service startup are as follows: Messages are sent over the socket listened by the init process. The samgr process receives a request from the client and needs to start the SA service.
 
@@ -70,7 +70,7 @@
   - Hot-swap service process on-demand startup
     <br> &emsp; The hot-swap service process can be started to process hot swap events based on system parameter changes.
 
-- Enhanced init Process Startup and Recycling<a name="section56901555921"></a>
+- Enhanced init process startup and recycling<a name="section56901555921"></a>
 
   The CPU core binding, priority, MAC address, and AccessToken information of the service process can be configured in the configuration file during process startup.
 
@@ -79,9 +79,9 @@
   - Support of AccessToken setting for service processes and distributed capability setting for system service processes (through modification of the **.cfg** file)
   - Support of the suppression mechanism for service processes (through modification of the **.cfg** file)
 
-- init FD Proxy (for Standard System or Higher)<a name="section56901555922"></a>
+- init fd proxy (for standard system or higher)<a name="section56901555922"></a>
 
-  FD proxy is an extended mechanism for on-demand startup. It can ensure that the fd state handle is not lost before the service process exits. Specifically, a service process sends the fd to the init process before it exits, and then reclaims the fd from the init process when it is started again.
+  fd proxy is an extended mechanism for on-demand startup. It can ensure that the fd state handle is not lost before the service process exits. Specifically, a service process sends the fd to the init process before it exits, and then reclaims the fd from the init process when it is started again.
 
   This mechanism is implemented using the API provided by the init process. Before a service process exits, it can call the related API to send the fd to the init process over the socket that supports IPC communication. After the service process is restarted, the init process returns the corresponding fd handle to it in the same way.
 
@@ -145,7 +145,7 @@
     </tr>
     <tr id="row181100162813"><td class="cellrowborder" valign="top" width="13.4%" headers="mcps1.2.3.1.1 "><p id="p3811804281"><a name="p3811804281"></a><a name="p3811804281"></a>post-init</p>
     </td>
-    <td class="cellrowborder" valign="top" width="86.6%" headers="mcps1.2.3.1.2 "><p id="p18116016285"><a name="p18116016285"></a><a name="p18116016285"></a>Job that is finally executed. Operations (for example, mounting the device after the driver initialization) required after the process startup are executed in this job. A single job can hold a maximum of 30 commands (Only **start**, **mkdir**, **chmod**, **chown**, **mount**, and **loadcfg** are supported currently). The command name and parameters (128 bytes or less) must be separated by only one space.</p>
+    <td class="cellrowborder" valign="top" width="86.6%" headers="mcps1.2.3.1.2 "><p id="p18116016285"><a name="p18116016285"></a><a name="p18116016285"></a>Job that is finally executed. Operations (for example, mounting the device after the driver initialization) required after the process startup are executed in this job. A single job can hold a maximum of 30 commands (Only <strong>start</strong>, <strong>mkdir</strong>, <strong>chmod</strong>, <strong>chown</strong>, <strong>mount</strong>, and <strong>loadcfg</strong> are supported currently). The command name and parameters (128 bytes or less) must be separated by only one space.</p>
     </td>
     </tr>
     </tbody>
@@ -290,7 +290,7 @@
     </tr>
     <tr id="row386110321155"><td class="cellrowborder" valign="top" width="16.64%" headers="mcps1.2.3.1.1 "><p id="p14861113212156"><a name="p14861113212156"></a><a name="p14861113212156"></a>importance</p>
     </td>
-    <td class="cellrowborder" valign="top" width="83.36%" headers="mcps1.2.3.1.2 "><p id="p166448210816"><a name="p166448210816"></a><a name="p166448210816"></a>Standard system:<br>Priority of a service process. The value ranges from **-20** to **19**.<br>Small system:<br>**0**: non-critical process<br>**1**: critical process</p>
+    <td class="cellrowborder" valign="top" width="83.36%" headers="mcps1.2.3.1.2 "><p id="p166448210816"><a name="p166448210816"></a><a name="p166448210816"></a>Standard system:<br>Priority of a service process. The value ranges from <strong>-20</strong> to <strong>19</strong>.<br>Small system:<br><strong>0</strong>: non-critical process<br><strong>1</strong>: critical process</p>
     </td>
     </tr>
     <tr id="row1689310618179"><td class="cellrowborder" valign="top" width="16.64%" headers="mcps1.2.3.1.1 "><p id="p108931367177"><a name="p108931367177"></a><a name="p108931367177"></a>caps</p>
@@ -301,9 +301,9 @@
     </tr>
     <tr id="row1689310618179"><td class="cellrowborder" valign="top" width="16.64%" headers="mcps1.2.3.1.1 "><p id="p108931367177"><a name="p108931367177"></a><a name="p108931367177"></a>critical</p>
     </td>
-    <td class="cellrowborder" valign="top" width="83.36%" headers="mcps1.2.3.1.2 "><p id="p489313618173"><a name="p489313618173"></a><a name="p489313618173"></a>Whether to enable system restarting when a critical service fails to be restarted for a specified number of times. If this field is enabled, the critical service will be started in M seconds. If the restarting fails for N times, the system will be restarted. The default value of N is **4** and that of M is **20**. (Only for standard system or higher. Configuration: [0, 2, 10], in int array.)<a name="section56901555917"></a><a name="section56901555917"></a></p>
-    <p id="p8572182712811"><a name="p8572182712811"></a><a name="p8572182712811"></a>**0*: enable</p>
-    <p id="p11861032111517"><a name="p11861032111517"></a><a name="p11861032111517"></a>**1*: disable</p>
+    <td class="cellrowborder" valign="top" width="83.36%" headers="mcps1.2.3.1.2 "><p id="p489313618173"><a name="p489313618173"></a><a name="p489313618173"></a>Whether to enable system restarting when a critical service fails to be restarted for a specified number of times. If this field is enabled, the critical service will be started in M seconds. If the restarting fails for N times, the system will be restarted. The default value of N is <strong>4</strong> and that of M is <strong>20</strong>. (Only for standard system or higher. Configuration: [0, 2, 10], in int array.)<a name="section56901555917"></a><a name="section56901555917"></a></p>
+    <p id="p8572182712811"><a name="p8572182712811"></a><a name="p8572182712811"></a><strong>0</strong>: enable</p>
+    <p id="p11861032111517"><a name="p11861032111517"></a><a name="p11861032111517"></a><strong>1</strong>: disable</p>
     </td>
     </tr>
     </tr>
@@ -321,7 +321,7 @@
     </tr>
     <tr id="row1689310618179"><td class="cellrowborder" valign="top" width="16.64%" headers="mcps1.2.3.1.1 "><p id="p108931367177"><a name="p108931367177"></a><a name="p108931367177"></a>apl</p>
     </td>
-    <td class="cellrowborder" valign="top" width="83.36%" headers="mcps1.2.3.1.2 "><p id="p489313618173"><a name="p489313618173"></a><a name="p489313618173"></a>Ability privilege level: **system_core**, **normal**, or **system_basic**. The default value is **system_core**. (Only for the standard system or higher).<a name="section56901555917"></a><a name="section56901555917"></a></p>
+    <td class="cellrowborder" valign="top" width="83.36%" headers="mcps1.2.3.1.2 "><p id="p489313618173"><a name="p489313618173"></a><a name="p489313618173"></a>Ability privilege level: <strong>system_core</strong>, <strong>normal</strong>, or <strong>system_basic</strong>. The default value is <strong>system_core</strong>. (Only for the standard system or higher).<a name="section56901555917"></a><a name="section56901555917"></a></p>
     </td>
     </tr>
     <tr id="row1689310618179"><td class="cellrowborder" valign="top" width="16.64%" headers="mcps1.2.3.1.1 "><p id="p108931367177"><a name="p108931367177"></a><a name="p108931367177"></a>start-mode</p>
@@ -432,4 +432,4 @@ After the configuration is complete, compile the package to burn the board.
      &emsp; &emsp; The kernel log is printed by the init process. After a code review on the init process, it is found that **ondemand** is not configured for the service.
 
   &emsp; **Solution** <br>
-     &emsp; &emsp; Correct the service configuration in the **.cfg"" file as follows: "ondemand" : true
+     &emsp; &emsp; Correct the service configuration in the **.cfg** file as follows: "ondemand" : true
