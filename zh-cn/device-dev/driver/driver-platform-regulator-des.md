@@ -26,7 +26,7 @@
    * 静态：不需要改变电压电流，只需要开关电源，通常在bootloader、firmware、kernel board阶段被设置。
    * 动态：根据操作需求改变电压电流。
 
-- PMI（Power Management Ic）
+- PMIC（Power Management IC）
 
    电源管理芯片，内含多个电源甚至其他子系统。 
 
