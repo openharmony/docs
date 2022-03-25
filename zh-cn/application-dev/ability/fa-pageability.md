@@ -114,7 +114,7 @@ featureAbility.startAbility({
 );
 ```
 ### 启动远程PageAbility(当前仅对系统应用开放)
-备注：由于DeviceManager getTrustedDeviceListSync接口仅对系统应用开放，当前启动远程PageAbility仅支持系统应用
+>说明：由于DeviceManager getTrustedDeviceListSync接口仅对系统应用开放，当前启动远程PageAbility仅支持系统应用
 
 * 导入模块
 
