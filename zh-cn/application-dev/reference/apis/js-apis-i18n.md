@@ -117,6 +117,8 @@ setSystemLanguage(language: string): boolean
 
 设置系统语言。
 
+**需要权限**：ohos.permission.UPDATE_CONFIGURATION
+
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：** 
@@ -203,6 +205,8 @@ setSystemRegion(region: string): boolean
 
 设置系统区域。
 
+**需要权限**：ohos.permission.UPDATE_CONFIGURATION
+
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：** 
@@ -245,6 +249,8 @@ getSystemLocale(): string
 setSystemLocale(locale: string): boolean
 
 设置系统Locale。
+
+**需要权限**：ohos.permission.UPDATE_CONFIGURATION
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -1283,6 +1289,8 @@ set24HourClock(option: boolean): boolean
 
 修改系统时间的24小时制设置。
 
+**需要权限**：ohos.permission.UPDATE_CONFIGURATION
+
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：** 
@@ -1307,6 +1315,8 @@ set24HourClock(option: boolean): boolean
 addPreferredLanguage(language: string, index?: number): boolean
 
 在系统偏好语言列表中的指定位置添加偏好语言。
+
+**需要权限**：ohos.permission.UPDATE_CONFIGURATION
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -1335,6 +1345,8 @@ addPreferredLanguage(language: string, index?: number): boolean
 removePreferredLanguage(index: number): boolean
 
 删除系统偏好语言列表中指定位置的偏好语言。
+
+**需要权限**：ohos.permission.UPDATE_CONFIGURATION
 
 **系统能力**：SystemCapability.Global.I18n
 
