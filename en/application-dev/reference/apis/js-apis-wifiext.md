@@ -1,7 +1,7 @@
 # WLAN
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
-> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.<br/>
 The APIs described in this document are used only for non-universal products, such as routers.
 
 
