@@ -158,6 +158,16 @@ context.startAbilityByCall({
     console.error(TAG + 'get remote caller failed with ' + error)
 })
 ```
+在跨设备场景下，需要向用户申请数据同步的权限。具体示例代码如下：
+```ts
+let context = this.context
+let permissions = ohos.permission.DISTRIBUTED_DATASYNC
+context.requestPermissionsFromUser(permissions).then((data) => {
+    console.log("Succeed to request permission from user with data: "+ JSON.stringify(data))
+}).catch((error) => {
+    console.log("Failed to request permission from user with error: "+ JSON.stringify(error))
+})
+```
 3. 发送约定序列化数据
 向被调用端发送Sequenceable数据有两种方式，一种是不带返回值，一种是获取被调用端返回的数据，method以及序列化数据需要与被调用端协商一致。如下示例调用Call接口，向Calee被调用端发送数据。具体示例代码如下：
 ```ts
