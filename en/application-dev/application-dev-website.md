@@ -20,7 +20,7 @@
       - [Page Ability Development](ability/fa-pageability.md)
       - [Service Ability Development](ability/fa-serviceability.md)
       - [Data Ability Development](ability/fa-dataability.md)
-      - [Form Ability Development](ability/fa-formability.md)
+      - [FA Widget Development](ability/fa-formability.md)
 
     - Other
       - [Ability Assistant Usage](ability/ability-assistant-guidelines.md)
