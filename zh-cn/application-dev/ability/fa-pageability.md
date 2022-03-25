@@ -113,26 +113,88 @@ featureAbility.startAbility({
 },
 );
 ```
-### 启动远程PageAbility
+### 启动远程PageAbility(当前仅对系统应用开放)
 
 * 导入模块
 
 ```
 import featureAbility from '@ohos.ability.featureAbility'
+import deviceManager from '@ohos.distributedHardware.deviceManager';
 ```
 
 * 示例
-
-```javascript
-var promise = await featureAbility.startAbility({
-    want:
-    {
-        deviceId: this.deviceId,
-        bundleName: "com.example.test",
-        abilityName: "com.example.test.MainAbility",
-    },
+```ts
+function onStartRemoteAbility() {
+  console.info('onStartRemoteAbility begin');
+  var params;
+  var wantValue = {
+    bundleName: 'ohos.samples.etsDemo',
+    abilityName: 'ohos.samples.etsDemo.RemoteAbility',
+    deviceId: getRemoteDeviceId(),
+    parameters: params
+  };
+  console.info('onStartRemoteAbility want=' + JSON.stringify(wantValue));
+  featureAbility.startAbility({
+    want: wantValue
+  }).then((data) => {
+    console.info('onStartRemoteAbility finished, ' + JSON.stringify(data));
+  });
+  console.info('onStartRemoteAbility end');
 }
-);
+```
+从DeviceManager获取deviceId，具体示例代码如下：
+```ts
+import deviceManager from '@ohos.distributedHardware.deviceManager';
+var dmClass;
+function getRemoteDeviceId() {
+    if (typeof dmClass === 'object' && dmClass != null) {
+        var list = dmClass.getTrustedDeviceListSync();
+        if (typeof (list) == 'undefined' || typeof (list.length) == 'undefined') {
+            console.log("MainAbility onButtonClick getRemoteDeviceId err: list is null");
+            return;
+        }
+        console.log("MainAbility onButtonClick getRemoteDeviceId success:" + list[0].deviceId);
+        return list[0].deviceId;
+    } else {
+        console.log("MainAbility onButtonClick getRemoteDeviceId err: dmClass is null");
+    }
+}
+```
+在跨设备场景下，需要向用户申请数据同步的权限。具体示例代码如下：
+```ts
+import accessControl from "@ohos.abilityAccessCtrl";
+import bundle from '@ohos.bundle';
+async function RequestPermission() {
+  console.info('RequestPermission begin');
+  let array: Array<string> = ["ohos.permission.DISTRIBUTED_DATASYNC"];
+  var bundleFlag = 0;
+  var tokenID = undefined;
+  var userID = 100;
+  var appInfo = await bundle.getApplicationInfo('ohos.samples.etsDemo', bundleFlag, userID);
+  tokenID = appInfo.accessTokenId;
+  var atManager = abilityAccessCtrl.createAtManager();
+  let requestPermissions: Array<string> = [];
+  for (let i = 0;i < array.length; i++) {
+    var result = await atManager.verifyAccessToken(tokenID, array[i]);
+    console.info("verifyAccessToken result:" + JSON.stringify(result));
+    if (result == abilityAccessCtrl.GrantStatus.PERMISSION_GRANTED) {
+    } else {
+      requestPermissions.push(array[i]);
+    }
+  }
+  console.info("requestPermissions:" + JSON.stringify(requestPermissions));
+  if (requestPermissions.length == 0 || requestPermissions == []) {
+    return;
+  }
+  let context = featureAbility.getContext();
+  context.requestPermissionsFromUser(requestPermissions, 1, (data)=>{
+    console.info("data:" + JSON.stringify(data));
+    console.info("data requestCode:" + data.requestCode);
+    console.info("data permissions:" + data.permissions);
+    console.info("data authResults:" + data.authResults);
+  });
+  console.info('RequestPermission end');
+}
 ```
 ### 生命周期接口说明
 **表2** 生命周期回调函数介绍

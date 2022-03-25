@@ -163,12 +163,12 @@ context.startAbility(want, options).then((data) => {
 })
 ```
 
-### 跨设备启动Ability
-跨设备场景下，需指定对端设备deviceId，具体获取接口参照[DeviceManager](https://gitee.com/openharmony/device_manager/blob/master/README_zh.md)。具体示例代码如下：
+### 跨设备启动Ability(当前仅对系统应用开放)
+跨设备场景下，需指定对端设备deviceId，具体示例代码如下：
 ```ts
 let context = this.context
 var want = {
-    "deviceId": "remoteDeviceId",
+    "deviceId": getRemoteDeviceId(),
     "bundleName": "com.example.MyApplication",
     "abilityName": "MainAbility"
 };
@@ -177,6 +177,23 @@ context.startAbility(want).then((data) => {
 }).catch((error) => {
     console.error("Failed to start remote ability with error: "+ JSON.stringify(error))
 })
+```
+从DeviceManager获取指定设备的deviceId，具体示例代码如下：
+```ts
+import deviceManager from '@ohos.distributedHardware.deviceManager';
+function getRemoteDeviceId() {
+    if (typeof dmClass === 'object' && dmClass != null) {
+        var list = dmClass.getTrustedDeviceListSync();
+        if (typeof (list) == 'undefined' || typeof (list.length) == 'undefined') {
+            console.log("MainAbility onButtonClick getRemoteDeviceId err: list is null");
+            return;
+        }
+        console.log("MainAbility onButtonClick getRemoteDeviceId success:" + list[0].deviceId);
+        return list[0].deviceId;
+    } else {
+        console.log("MainAbility onButtonClick getRemoteDeviceId err: dmClass is null");
+    }
+}
 ```
 
 ### 应用向用户申请授权
