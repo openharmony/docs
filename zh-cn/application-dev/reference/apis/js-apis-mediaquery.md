@@ -80,16 +80,18 @@ off(type: 'change', callback?: Callback&lt;MediaQueryResult&gt;): void
 
 - 示例
   ```
-  listener = mediaquery.matchMediaSync('(orientation: landscape)'); //监听横屏事件
-  onPortrait(mediaQueryResult) {
-      if (mediaQueryResult.matches) {
-          // do something here
-      } else {
-          // do something here
-      }
-  }
-  listener.on('change', onPortrait) // 注册回调
-  listener.off('change', onPortrait) // 去注册回调
+    import mediaquery from '@ohos.mediaquery'
+    
+    let listener = mediaquery.matchMediaSync('(orientation: landscape)'); //监听横屏事件
+    function onPortrait(mediaQueryResult) {
+        if (mediaQueryResult.matches) {
+            // do something here
+        } else {
+            // do something here
+        }
+    }
+    this.listener.on('change', this.onPortrait) // 注册回调
+    this.listener.off('change', this.onPortrait) // 去注册回调
   ```
 
 
@@ -141,5 +143,3 @@ struct MediaQueryExample {
   }
 }
 ```
-
-![zh-cn_image_0000001174422920](figures/zh-cn_image_0000001174422920.gif)
