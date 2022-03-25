@@ -164,6 +164,7 @@ context.startAbility(want, options).then((data) => {
 ```
 
 ### 跨设备启动Ability(当前仅对系统应用开放)
+>说明：由于DeviceManager的getTrustedDeviceListSync接口仅对系统应用开放，当前跨设备启动Ability仅支持系统应用
 跨设备场景下，需指定对端设备deviceId，具体示例代码如下：
 ```ts
 let context = this.context
@@ -178,7 +179,7 @@ context.startAbility(want).then((data) => {
     console.error("Failed to start remote ability with error: "+ JSON.stringify(error))
 })
 ```
-从DeviceManager获取指定设备的deviceId，getTrustedDeviceListSync接口仅对系统应用开放。具体示例代码如下：
+从DeviceManager获取指定设备的deviceId。具体示例代码如下：
 ```ts
 import deviceManager from '@ohos.distributedHardware.deviceManager';
 function getRemoteDeviceId() {
