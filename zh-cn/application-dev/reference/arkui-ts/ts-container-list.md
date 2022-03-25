@@ -119,5 +119,3 @@ struct ListExample {
 ```
 
 ![zh-cn_image_0000001174264378](figures/zh-cn_image_0000001174264378.gif)
-
-◤otherprops:internal:◢
