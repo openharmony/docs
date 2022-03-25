@@ -1733,23 +1733,23 @@ off(type: 'activate' | 'activating', name: string, callback?: Callback&lt;number
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount。
 
-| 参数名            | 类型                                                         | 必填 | 说明                              |
-| ----------------- | ------------------------------------------------------------ | ---- | --------------------------------- |
-| localId           | number                                                       | 是   | 系统帐号ID。                      |
-| localName         | string                                                       | 是   | 系统帐号名称。                    |
-| type              | [OsAccountType](#osaccounttype)                              | 是   | 系统帐号类型                      |
-| constraints       | Array&lt;string&gt;                                          | 否   | 系统帐号[约束](#系统帐号约束列表) |
-| isVerified        | boolean                                                      | 是   | 帐号是否锁屏                      |
-| photo             | string                                                       | 否   | 系统帐号头像                      |
-| createTime        | number                                                       | 是   | 系统帐号创建时间                  |
-| lastLoginTime     | number                                                       | 否   | 系统帐号最后一次登录时间          |
-| serialNumber      | number                                                       | 是   | 系统帐号SN码                      |
-| isActived         | boolean                                                      | 是   | 系统帐号激活状态                  |
-| isCreateCompleted | boolean                                                      | 是   | 系统帐号创建是否完整              |
-| distributedInfo   | [distributedAccount.DistributedInfo](js-apis-distributed-account.md) | 否   | 分布式帐号信息                    |
-| domainInfo        | [DomainAccountInfo](#domainaccountinfo)                      | 否   | 域帐号信息                        |
+| 参数名                         | 类型                                                         | 必填 | 说明                              |
+| ------------------------------ | ------------------------------------------------------------ | ---- | --------------------------------- |
+| localId                        | number                                                       | 是   | 系统帐号ID。                      |
+| localName                      | string                                                       | 是   | 系统帐号名称。                    |
+| type                           | [OsAccountType](#osaccounttype)                              | 是   | 系统帐号类型                      |
+| constraints                    | Array&lt;string&gt;                                          | 否   | 系统帐号[约束](#系统帐号约束列表) |
+| isVerified<sup>8+</sup>        | boolean                                                      | 是   | 帐号是否锁屏                      |
+| photo<sup>8+</sup>             | string                                                       | 否   | 系统帐号头像                      |
+| createTime<sup>8+</sup>        | number                                                       | 是   | 系统帐号创建时间                  |
+| lastLoginTime<sup>8+</sup>     | number                                                       | 否   | 系统帐号最后一次登录时间          |
+| serialNumber<sup>8+</sup>      | number                                                       | 是   | 系统帐号SN码                      |
+| isActived<sup>8+</sup>         | boolean                                                      | 是   | 系统帐号激活状态                  |
+| isCreateCompleted<sup>8+</sup> | boolean                                                      | 是   | 系统帐号创建是否完整              |
+| distributedInfo                | [distributedAccount.DistributedInfo](js-apis-distributed-account.md) | 否   | 分布式帐号信息                    |
+| domainInfo<sup>8+</sup>        | [DomainAccountInfo](#domainaccountinfo)                      | 否   | 域帐号信息                        |
 
-## DomainAccountInfo
+## DomainAccountInfo<sup>8+</sup>
 
 域帐号信息。
 
