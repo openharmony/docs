@@ -161,7 +161,7 @@ function getRemoteDeviceId() {
 在跨设备场景下，需要向用户申请数据同步的权限。具体示例代码如下：
 ```ts
 async function RequestPermission() {
-  console.info('[dmsDemo] RequestPermission begin');
+  console.info('RequestPermission begin');
   let array: Array<string> = ["ohos.permission.DISTRIBUTED_DATASYNC"];
   var bundleFlag = 0;
   var tokenID = undefined;
@@ -172,24 +172,24 @@ async function RequestPermission() {
   let requestPermissions: Array<string> = [];
   for (let i = 0;i < array.length; i++) {
     var result = await atManager.verifyAccessToken(tokenID, array[i]);
-    console.info("[dmsDemo] verifyAccessToken result:" + JSON.stringify(result));
+    console.info("verifyAccessToken result:" + JSON.stringify(result));
     if (result == abilityAccessCtrl.GrantStatus.PERMISSION_GRANTED) {
     } else {
       requestPermissions.push(array[i]);
     }
   }
-  console.info("[dmsDemo] requestPermissions:" + JSON.stringify(requestPermissions));
+  console.info("requestPermissions:" + JSON.stringify(requestPermissions));
   if (requestPermissions.length == 0 || requestPermissions == []) {
     return;
   }
   let context = featureAbility.getContext();
   context.requestPermissionsFromUser(requestPermissions, 1, (data)=>{
-    console.info("[dmsDemo] data:" + JSON.stringify(data));
-    console.info("[dmsDemo] data requestCode:" + data.requestCode);
-    console.info("[dmsDemo] data permissions:" + data.permissions);
-    console.info("[dmsDemo] data authResults:" + data.authResults);
+    console.info("data:" + JSON.stringify(data));
+    console.info("data requestCode:" + data.requestCode);
+    console.info("data permissions:" + data.permissions);
+    console.info("data authResults:" + data.authResults);
   });
-  console.info('[dmsDemo] RequestPermission end');
+  console.info('RequestPermission end');
 }
 ```
 ### 生命周期接口说明
