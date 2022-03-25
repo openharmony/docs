@@ -248,7 +248,7 @@
    promise.then(() => {
        console.info("setDistributedTables success.")
    }).catch((err) => {
-       console.info("setDistributedTables failed."")
+       console.info("setDistributedTables failed.")
    })
    ```
 
