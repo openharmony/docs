@@ -54,12 +54,12 @@ PanGestureOptions(options?: { fingers?: number, direction?: PanDirection, distan
 
 | 名称 | 功能描述 | 
 | -------- | -------- | 
-| onActionStart(callback:&nbsp;(event?:&nbsp;PanGestureEvent)&nbsp;=&gt;&nbsp;void) | Pan手势识别成功回调。 | 
-| onActionUpdate(callback:&nbsp;(event?:&nbsp;PanGestureEvent)&nbsp;=&gt;&nbsp;void) | Pan手势移动过程中回调。 | 
-| onActionEnd(callback:&nbsp;(event?:&nbsp;PanGestureEvent)&nbsp;=&gt;&nbsp;void) | Pan手势识别成功，手指抬起后触发回调。 | 
+| onActionStart(callback:&nbsp;(event?:&nbsp;GestureEvent)&nbsp;=&gt;&nbsp;void) | Pan手势识别成功回调。 | 
+| onActionUpdate(callback:&nbsp;(event?:&nbsp;GestureEvent)&nbsp;=&gt;&nbsp;void) | Pan手势移动过程中回调。 | 
+| onActionEnd(callback:&nbsp;(event?:&nbsp;GestureEvent)&nbsp;=&gt;&nbsp;void) | Pan手势识别成功，手指抬起后触发回调。 | 
 | onActionCancel(callback:&nbsp;()&nbsp;=&gt;&nbsp;void) | Pan手势识别成功，接收到触摸取消事件触发回调。 | 
 
-- PanGestureEvent<sup>8+</sup>对象说明
+- GestureEvent对象中与Pan手势相关的属性
   | 属性名称 | 属性类型 | 描述 | 
   | -------- | -------- | -------- |
   | offsetX | number | 手势事件偏移量，单位为vp。 | 
@@ -83,10 +83,10 @@ struct PanGestureExample {
     .translate({ x: this.offsetX, y: this.offsetY, z: 5 })
     .gesture(
       PanGesture({})
-        .onActionStart((event: PanGestureEvent) => {
+        .onActionStart((event: GestureEvent) => {
           console.info('Pan start')
         })
-        .onActionUpdate((event: PanGestureEvent) => {
+        .onActionUpdate((event: GestureEvent) => {
           this.offsetX = event.offsetX
           this.offsetY = event.offsetY
         })

@@ -25,11 +25,11 @@ LongPressGesture(options?: { fingers?: number, repeat?: boolean, duration?: numb
 
 | 名称 | 功能描述 | 
 | -------- | -------- | 
-| onAction((event?:&nbsp;LongPressGestureEvent)&nbsp;=&gt;&nbsp;void) | LongPress手势识别成功回调。 | 
-| onActionEnd((event?:&nbsp;LongPressGestureEvent)&nbsp;=&gt;&nbsp;void) | LongPress手势识别成功，手指抬起后触发回调。 | 
+| onAction((event?:&nbsp;GestureEvent)&nbsp;=&gt;&nbsp;void) | LongPress手势识别成功回调。 | 
+| onActionEnd((event?:&nbsp;GestureEvent)&nbsp;=&gt;&nbsp;void) | LongPress手势识别成功，手指抬起后触发回调。 | 
 | onActionCancel(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | LongPress手势识别成功，接收到触摸取消事件触发回调。 | 
 
-- LongPressGestureEvent<sup>8+</sup>对象说明
+- GestureEvent对象中与LongPress手势相关的属性
   | 属性名称 | 属性类型 | 描述 | 
   | -------- | -------- | -------- |
   | repeat | boolean | 事件是否为重复触发事件。 | 
@@ -51,7 +51,7 @@ struct LongPressGestureExample {
     .gesture(
       LongPressGesture({ repeat: true })
         //长按动作存在会连续触发
-        .onAction((event: LongPressGestureEvent) => {
+        .onAction((event: GestureEvent) => {
           if (event.repeat) { this.count++ }
         })
         //长按动作一结束触发
