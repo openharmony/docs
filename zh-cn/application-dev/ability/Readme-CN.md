@@ -8,6 +8,7 @@
    - [DataAbility开发指导](fa-dataability.md)
    - [FA卡片开发指导](fa-formability.md)
  - Stage模型
+   - [Stage模型综述](stage-brief.md)
    - [Ability开发指导](stage-ability.md)
    - [ServiceExtensionAbility开发指导](stage-serviceextension.md)
    - [跨端迁移开发指导](stage-ability-continuation.md)
