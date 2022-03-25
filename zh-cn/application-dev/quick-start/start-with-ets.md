@@ -147,7 +147,7 @@
 页面间的导航可以通过页面路由router来实现。页面路由router根据页面uri找到目标页面，从而实现跳转。使用页面路由请导入router模块。
 
 1. **第一个页面跳转到第二个页面。**
-   在第一个页面中，跳转按钮绑定onClick方法，点击按钮时跳转到第二页。“**index.ets**”文件的示例如下：
+   在第一个页面中，跳转按钮绑定onClick事件，点击按钮时跳转到第二页。“**index.ets**”文件的示例如下：
 
    
    ```
@@ -176,7 +176,7 @@
            .backgroundColor('#0D9FFB')
            .width('40%')
            .height('5%')
-           // 跳转按钮绑定onClicke方法，点击按钮时跳转到第二页
+           // 跳转按钮绑定onClick事件，点击按钮时跳转到第二页
            .onClick(()=>{
              router.push({uri:'pages/second'})
            })
@@ -189,7 +189,7 @@
    ```
 
 2. **第二个页面返回到第一个页面。**
-   在第二个页面中，返回按钮绑定onClick方法，点击按钮时返回到第一页。“**second.ets**”文件的示例如下：
+   在第二个页面中，返回按钮绑定onClick事件，点击按钮时返回到第一页。“**second.ets**”文件的示例如下：
 
    
    ```
@@ -216,7 +216,7 @@
                    .backgroundColor('#0D9FFB')
                    .width('40%')
                    .height('5%')
-                   // 返回按钮绑定onClicke方法，点击按钮时返回到第一页
+                   // 返回按钮绑定onClick事件，点击按钮时返回到第一页
                    .onClick(()=>{
                        router.back()
                    })
