@@ -60,7 +60,7 @@
 
 资源引用类型，用于设置组件属性的值。
 
-可以通过$r或者$rawfile创建Resource类型对象，详见[资源访问](ts-media-resource-type.md)。
+可以通过$r或者$rawfile创建Resource类型对象，详见[资源访问](ts-application-resource-access.md)。
 
 - $r('belonging.type.name')
   belonging：系统资源或者应用资源，相应的取值为'sys'和'app'；
