@@ -145,4 +145,25 @@ authenticator.execute('FACE_ONLY', 'S1', (err, result) => {
 	}
 })
 ```
+### 设备间的SysCap差异如何产生的
 
+设备的SysCap因产品解决方案厂商拼装的部件组合不同而不同，整体流程如下图：
+
+![SysCap_Overview](figures/SysCap_Overview.jpg)
+
+1、一套OpenHarmony源码由可选和必选部件集组成，不同的部件为对外体现的系统能力不同，即部件与SysCap之间映射关系。
+
+2、发布归一化的SDK，API与SysCap之间存在映射关系。
+
+3、产品解决方案厂商按硬件能力和产品诉求，可按需拼装部件。
+
+4、产品配置的部件可以是OpenHarmony的部件，也可以时三方开发的私有部件，由于部件与SysCap间存在映射，所有拼装后即可得到该产品的SysCap集合。
+
+
+5、SysCap集编码生成PCID(Product Compatibility ID)对SysCap差异做对应处理，保证在不同设备上的兼容性。lity ID， 产品兼容性标识)，应用开发者可将PCID导入IDE得到某个产品的SysCap。
+
+6、部署到设备上的系统参数中包含了SysCap集，系统提供了native的接口和应用接口，可供系统内的部件和应用查询某个SysCap是否存在。
+
+7、应用开发过程中，应用必要的SysCap将被编码成RPCID（Required Product Compatibility ID），并写入应用安装包中。应用安装时，包管理器将解码RPCID得到应用需要的SysCap，与设备当前具备的SysCap比较，若应用要求的SysCap都被满足，则安装成功。
+
+8、应用运行时，可通过canIUse接口查询设备的SysCap，保证在不同设备上的兼容性。
