@@ -9,7 +9,7 @@
 
 
 
-## Audio驱动框架介绍<a name="section2000"></a>
+## Audio驱动框架介绍
 
 Audio驱动框架基于[HDF驱动框架](https://device.harmonyos.com/cn/docs/documentation/guide/driver-hdf-overview-0000001051715456)实现。Audio驱动架构组成：
 
