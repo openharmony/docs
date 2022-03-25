@@ -54,7 +54,7 @@
    var options = {
      properties: properties
    }
-   var resultA = await huks.generateKey(alias, options);
+   var resultA = huks.generateKey(alias, options);
    ```
 
 3. 使用Init接口进行init操作。
@@ -75,13 +75,19 @@
      value: huks.HksKeyPurpose.HKS_KEY_PURPOSE_AGREE
    };
    properties[2] = {
-     tag: huks.HksTag.HKS_TAG_KEY_SIZE
+     tag: huks.HksTag.HKS_TAG_KEY_SIZE,
      value: huks.HksKeySize.HKS_DH_KEY_SIZE_4096
    };
    var options = {
      properties: properties
    };
-   huks.init(alias, options, function (err, data){}); 
+   huks.init(alias, options, function(err, data) {
+       if (err.code !== 0) {
+           console.log("test init err information: " + JSON.stringify(err));
+       } else {
+           console.log(`test init data: ${JSON.stringify(data)}`);
+       }
+   })
    ```
    
 4. 使用Update接口进行update操作。
@@ -101,13 +107,13 @@
      value: huks.HksKeyPurpose.HKS_KEY_PURPOSE_AGREE
    };
    properties[2] = {
-     tag: huks.HksTag.HKS_TAG_KEY_SIZE
+     tag: huks.HksTag.HKS_TAG_KEY_SIZE,
      value: huks.HksKeySize.HKS_DH_KEY_SIZE_4096
    };
    var options = {
      properties: properties
    };
-   huks.update(handle, options, function (err, data){}); 
+   var result = huks.update(handle, options)
    ```
    
 5. 使用Finish接口进行finish操作。
@@ -127,13 +133,13 @@
      value: huks.HksKeyPurpose.HKS_KEY_PURPOSE_AGREE
    };
    properties[2] = {
-     tag: huks.HksTag.HKS_TAG_KEY_SIZE
+     tag: huks.HksTag.HKS_TAG_KEY_SIZE,
      value: huks.HksKeySize.HKS_DH_KEY_SIZE_4096
    };
    var options = {
      properties: properties
    };
-   huks.finish(handle, options, function (err, data){}); 
+   var result = huks.finish(handle, options) 
    ```
 
 
