@@ -207,6 +207,7 @@ function onFailedCallback(code){
 目标Service的Want需要包含远程deviceId，该远程deviceId可通过deviceManager获取,具体示例代码如下：
 
 ```ts
+import deviceManager from '@ohos.distributedHardware.deviceManager';
 function getRemoteDeviceId() {
     if (typeof dmClass === 'object' && dmClass != null) {
         var list = dmClass.getTrustedDeviceListSync();
