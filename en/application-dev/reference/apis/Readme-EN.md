@@ -18,12 +18,14 @@
 - Media
     -   [Audio Management](js-apis-audio.md)
     -   [Media](js-apis-media.md)
+    -   [Image Processing](js-apis-image.md)
+    -   [Camera](js-apis-camera.md)
 - Security
     -   [User Authentication](js-apis-useriam-userauth.md)
     -   [Access Control](js-apis-abilityAccessCtrl.md)
 - Data Management
     -   [Lightweight Storage<sup>9+</sup>](js-apis-data-preferences.md)
-	-   [Lightweight Storage](js-apis-data-storage.md)
+    -   [Lightweight Storage](js-apis-data-storage.md)
     -   [Distributed Data Management](js-apis-distributed-data.md)
     -   [Relational Database](js-apis-data-rdb.md)
     -   [Result Set](js-apis-data-resultset.md)
@@ -76,8 +78,6 @@
     -   [Application Context](js-apis-basic-features-app-context.md)
     -   [Console Logs](js-apis-basic-features-logs.md)
     -   [Page Routing](js-apis-basic-features-routes.md)
-    -   [Pop-up Window](js-apis-basic-features-pop-up.md)
-    -   [Application Configuration](js-apis-basic-features-configuration.md)
     -   [Timer](js-apis-basic-features-timer.md)
     -   [Setting the System Time](js-apis-system-time.md)
     -   [Animation](js-apis-basic-features-animator.md)
