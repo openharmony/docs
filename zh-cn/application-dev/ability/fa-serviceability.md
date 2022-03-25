@@ -180,7 +180,7 @@ export default {
 }
 ```
 
-### 连接远程Service<a name="section126857614019"></a>
+### 连接远程Service<a name="section126857614019"></a>(当前仅对系统应用开放)
 
 如果Service需要与Page Ability或其他应用的Service Ability进行跨设备交互，则须创建用于连接的Connection。Service支持其他Ability通过connectAbility()方法与其进行跨设备连接。
 
@@ -188,7 +188,7 @@ export default {
 
 创建连接远程Service回调实例的代码示例如下：
 
-```javascript
+```ts
 var mRemote;
 function onConnectCallback(element, remote){
     console.log('ConnectRemoteAbility onConnect Callback')
@@ -204,17 +204,33 @@ function onFailedCallback(code){
 }
 ```
 
-目标Service的Want需要包含远程deviceId，该远程deviceId可通过deviceManager获取。
+目标Service的Want需要包含远程deviceId，该远程deviceId可通过deviceManager获取,具体示例代码如下：
+
+```ts
+function getRemoteDeviceId() {
+    if (typeof dmClass === 'object' && dmClass != null) {
+        var list = dmClass.getTrustedDeviceListSync();
+        if (typeof (list) == 'undefined' || typeof (list.length) == 'undefined') {
+            console.log("MainAbility onButtonClick getRemoteDeviceId err: list is null");
+            return;
+        }
+        console.log("MainAbility onButtonClick getRemoteDeviceId success:" + list[0].deviceId);
+        return list[0].deviceId;
+    } else {
+        console.log("MainAbility onButtonClick getRemoteDeviceId err: dmClass is null");
+    }
+}
+```
 
 连接远程Service的代码示例如下：
 
-```javascript
+```ts
 import featureAbility from '@ohos.ability.featureability';
 var connId = featureAbility.connectAbility(
     {
-        deviceId: deviceId,
-        bundleName: "com.jstest.serviceability",
-        abilityName: "com.jstest.serviceability.MainAbility",
+        deviceId: getRemoteDeviceId(),
+        bundleName: "ohos.samples.etsDemo",
+        abilityName: "ohos.samples.etsDemo.ServiceAbility",
     },
     {
         onConnect: onConnectCallback,
@@ -223,12 +239,47 @@ var connId = featureAbility.connectAbility(
     },
 );
 ```
+在跨设备场景下，需要向用户申请数据同步的权限。具体示例代码如下：
+
+```ts
+async function RequestPermission() {
+  console.info('RequestPermission begin');
+  let array: Array<string> = ["ohos.permission.DISTRIBUTED_DATASYNC"];
+  var bundleFlag = 0;
+  var tokenID = undefined;
+  var userID = 100;
+  var appInfo = await bundle.getApplicationInfo('ohos.samples.etsDemo', bundleFlag, userID);
+  tokenID = appInfo.accessTokenId;
+  var atManager = abilityAccessCtrl.createAtManager();
+  let requestPermissions: Array<string> = [];
+  for (let i = 0;i < array.length; i++) {
+    var result = await atManager.verifyAccessToken(tokenID, array[i]);
+    console.info("verifyAccessToken result:" + JSON.stringify(result));
+    if (result == abilityAccessCtrl.GrantStatus.PERMISSION_GRANTED) {
+    } else {
+      requestPermissions.push(array[i]);
+    }
+  }
+  console.info("requestPermissions:" + JSON.stringify(requestPermissions));
+  if (requestPermissions.length == 0 || requestPermissions == []) {
+    return;
+  }
+  let context = featureAbility.getContext();
+  context.requestPermissionsFromUser(requestPermissions, 1, (data)=>{
+    console.info("data:" + JSON.stringify(data));
+    console.info("data requestCode:" + data.requestCode);
+    console.info("data permissions:" + data.permissions);
+    console.info("data authResults:" + data.authResults);
+  });
+  console.info('RequestPermission end');
+}
+```
 
 同时，Service侧也需要在onConnect()时返回IRemoteObject，从而定义与Service进行通信的接口。onConnect()需要返回一个IRemoteObject对象，OpenHarmony提供了IRemoteObject的默认实现，用户可以通过继承rpc.RemoteObject来创建自定义的实现类。
 
 Service侧把自身的实例返回给调用侧的代码示例如下：
 
-```javascript
+```ts
 import rpc from "@ohos.rpc";
 
 var mMyStub;
