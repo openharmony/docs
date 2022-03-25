@@ -147,11 +147,11 @@ Enumerates the WLAN security types.
 
 | **Name**| **Default Value**| **Description**|
 | -------- | -------- | -------- |
-| WIFI_SEC_TYPE_INVALID | 0 | Invalid security type|
-| WIFI_SEC_TYPE_OPEN | 1 | Open security type|
-| WIFI_SEC_TYPE_WEP | 2 | Wired Equivalent Privacy (WEP)|
-| WIFI_SEC_TYPE_PSK | 3 | Pre-shared key (PSK)|
-| WIFI_SEC_TYPE_SAE | 4 | Simultaneous Authentication of Equals (SAE)|
+| WIFI_SEC_TYPE_INVALID | 0 | Invalid security type |
+| WIFI_SEC_TYPE_OPEN | 1 | Open security type |
+| WIFI_SEC_TYPE_WEP | 2 | Wired Equivalent Privacy (WEP) |
+| WIFI_SEC_TYPE_PSK | 3 | Pre-shared key (PSK) |
+| WIFI_SEC_TYPE_SAE | 4 | Simultaneous Authentication of Equals (SAE) |
 
 
 ## wifi.addUntrustedConfig<sup>7+</sup>
@@ -186,7 +186,7 @@ Represents the WLAN configuration.
 | bssid | string | Read only| BSSID of the hotspot.|
 | preSharedKey | string | Read only| Private key of the hotspot.|
 | isHiddenSsid | boolean | Read only| Whether to hide the network.|
-| securityType | [WifiSecurityType](#WifiSecurityType) | Read only| Security type|
+| securityType | [WifiSecurityType](#WifiSecurityType) | Read only| Security type. |
 
 
 ## wifi.addUntrustedConfig<sup>7+</sup>
@@ -443,13 +443,13 @@ Represents IP information.
 
 | **Name**| **Type**| **Readable/Writable**| **Description**|
 | -------- | -------- | -------- | -------- |
-| ipAddress | number | Read only| IP address|
-| gateway | number | Read only| Gateway|
-| netmask | number | Read only| Subnet mask|
-| primaryDns | number | Read only| IP address of the preferred DNS server|
-| secondDns | number | Read only| IP address of the alternate DNS server|
-| serverIp | number | Read only| IP address of the DHCP server|
-| leaseDuration | number | Read only| Lease duration of the IP address|
+| ipAddress | number | Read only| IP address. |
+| gateway | number | Read only| Gateway. |
+| netmask | number | Read only| Subnet mask. |
+| primaryDns | number | Read only| IP address of the preferred DNS server. |
+| secondDns | number | Read only| IP address of the alternate DNS server. |
+| serverIp | number | Read only| IP address of the DHCP server. |
+| leaseDuration | number | Read only| Lease duration of the IP address. |
 
 
 ## wifi.getCountryCode<sup>7+</sup>
