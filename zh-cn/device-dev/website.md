@@ -1,3 +1,4 @@
+# OpenHarmony设备开发文档
 - [设备开发导读](device-dev-guide.md)
 - 快速开始
 
@@ -10,7 +11,7 @@
       - [使用安装包方式搭建编译环境](quick-start/quickstart-lite-package-environment.md)
       - [使用Docker方式搭建编译环境](quick-start/quickstart-lite-docker-environment.md)
       - [常见问题](quick-start/quickstart-lite-env-setup-faqs.md)
-    - 运行“Hello World”
+    - 运行Hello World
       - Hi3861开发板
         - [安装开发板环境](quick-start/quickstart-lite-steps-hi3861-setting.md)
         - [新建应用程序](quick-start/quickstart-lite-steps-hi3861-application-framework.md)
@@ -41,7 +42,7 @@
     - [标准系统入门简介](quick-start/quickstart-standard-overview.md)
     - [标准系统开发环境准备（仅Hi3516需要）](quick-start/quickstart-standard-env-setup.md)
     - [获取源码](quick-start/quickstart-standard-sourcecode-acquire.md)
-    - 运行“Hello World”
+    - 运行Hello World
       - Hi3516开发板
         - [创建应用程序](quick-start/quickstart-standard-running-hi3516-create.md)
         - [编译](quick-start/quickstart-standard-running-hi3516-build.md)
