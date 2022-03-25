@@ -1046,7 +1046,7 @@ on(type: "hotspotStateChange", callback: Callback&lt;number&gt;): void
   ohos.permission.GET_WIFI_INFO
 
 - 系统能力：
-  SystemCapability.Communication.WiFi.AP
+  SystemCapability.Communication.WiFi.AP.Core
 
 - 参数
   | **参数名** | **类型** | **必填** | **说明** |
@@ -1073,7 +1073,7 @@ off(type: "hotspotStateChange", callback?: Callback&lt;number&gt;): void
   ohos.permission.GET_WIFI_INFO
 
 - 系统能力：
-  SystemCapability.Communication.WiFi.AP
+  SystemCapability.Communication.WiFi.AP.Core
 
 - 参数
   | **参数名** | **类型** | **必填** | **说明** |
