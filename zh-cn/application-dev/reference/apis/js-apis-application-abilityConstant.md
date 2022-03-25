@@ -13,7 +13,7 @@
 
 ## 导入模块
 
-  
+
 ```js
 import AbilityConstant from '@ohos.application.AbilityConstant';
 ```
@@ -42,7 +42,7 @@ import AbilityConstant from '@ohos.application.AbilityConstant';
 | CONTINUATION           | 3    | 继续。 |
 
 
-## AbilityConstant.LaunchReason
+## AbilityConstant.LastExitReason
 
 上次退出原因的类型。
 

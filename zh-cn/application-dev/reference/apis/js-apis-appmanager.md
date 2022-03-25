@@ -9,7 +9,7 @@ App管理。
 
 ## 导入模块
 
-  
+
 ```js
 import app from '@ohos.application.appManager';
 ```
@@ -69,7 +69,7 @@ static isRunningInStabilityTest(): Promise&lt;boolean&gt;
 
 isRamConstrainedDevice(): Promise\<boolean>;
 
-它是ram受限设备吗。
+查询是否为ram受限设备。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -93,7 +93,7 @@ isRamConstrainedDevice(): Promise\<boolean>;
 
 isRamConstrainedDevice(callback: AsyncCallback\<boolean>): void;
 
-它是ram受限设备吗。
+查询是否为ram受限设备。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
