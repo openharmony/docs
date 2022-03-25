@@ -102,7 +102,7 @@ getDevice(deviceId: number, callback: AsyncCallback&lt;InputDeviceData&gt;): voi
 
 ```
 export default {
-    InputDeviceData {
+    InputDeviceData: {
         deviceId : 0,
         name : "NA",
         sources : Array,
@@ -138,7 +138,7 @@ function getDevice(deviceId: number): Promise<InputDeviceData>
 
 ```
 export default {
-    InputDeviceData {
+    InputDeviceData: {
         deviceId : 0,
         name : "NA",
         sources : Array,
