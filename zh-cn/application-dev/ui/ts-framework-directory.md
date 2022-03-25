@@ -11,7 +11,7 @@ FA应用的eTS模块(entry/src/main)的典型开发目录结构如下：
 **目录结构中文件分类如下：**
 
 
-- .ets结尾的eTS（extended TypeScript）文件，这个文件用于描述UI布局、样式、事件交互和页面逻辑。
+.ets结尾的eTS（extended TypeScript）文件，这个文件用于描述UI布局、样式、事件交互和页面逻辑。
 
 
 **各个文件夹和文件的作用：**
@@ -26,4 +26,6 @@ FA应用的eTS模块(entry/src/main)的典型开发目录结构如下：
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 
+> - 资源目录resources文件夹位于src/main下，此目录下资源文件的详细规范以及子目录结构规范参看[资源文件的分类](../quick-start/basic-resource-file-categories.md)。
+>
 > - 页面支持导入TypeScript和JavaScript文件。
