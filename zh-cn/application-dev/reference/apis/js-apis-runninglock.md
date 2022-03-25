@@ -170,6 +170,8 @@ lock(timeout: number): void
 
 **系统能力：** SystemCapability.PowerManager.PowerManager.Core
 
+**需要权限：** ohos.permission.RUNNING_LOCK
+
 **参数：**
 
 | 参数名     | 类型     | 必填   | 说明                         |
@@ -197,6 +199,8 @@ unlock(): void
 释放Runninglock锁。
 
 **系统能力：** SystemCapability.PowerManager.PowerManager.Core
+
+**需要权限：** ohos.permission.RUNNING_LOCK
 
 **示例：**
 
