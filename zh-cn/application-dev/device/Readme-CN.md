@@ -11,5 +11,5 @@
   - [传感器开发概述](sensor-overview.md)
   - [传感器开发指导](sensor-guidelines.md)
 - 振动
-  - [振动开发概述](vibrator-guidelines.md)
+  - [振动开发概述](vibrator-overview.md)
   - [振动开发指导](vibrator-guidelines.md)
