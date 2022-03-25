@@ -282,35 +282,47 @@ Service侧把自身的实例返回给调用侧的代码示例如下：
 ```ts
 import rpc from "@ohos.rpc";
 
-var mMyStub;
-export default {
-    onStart(want) {
-        class MyStub extends rpc.RemoteObject{
-            constructor(des) {
-                if (typeof des === 'string') {
-                    super(des);
-                }
-                return null;
-            }
-            onRemoteRequest(code, message, reply, option) {
-            }
+class FirstServiceAbilityStub extends rpc.RemoteObject{
+    constructor(des) {
+        if (typeof des === 'string') {
+            super(des);
+        } else {
+            return null;
         }
-        mMyStub = new MyStub("ServiceAbility-test");
-    },
-    onCommand(want, restart, startId) {
-        console.log('ServiceAbility onCommand');
-    },
-    onConnect(want) {
-        console.log('ServiceAbility OnConnect');
-        return mMyStub;
-    },
-    onDisconnect() {
-        console.log('ServiceAbility OnDisConnect');
+    }
+    onRemoteRequest(code, data, reply, option) {
+    }
+}
+
+export default {
+    onStart() {
+        console.info('ServiceAbility onStart');
     },
     onStop() {
-        console.log('ServiceAbility onStop');
+        console.info('ServiceAbility onStop');
     },
-}
+    onConnect(want) {
+        console.log("ServiceAbility onConnect");
+        try {
+            let value = JSON.stringify(want);
+            console.log("ServiceAbility want:" + value);
+        } catch(error) {
+            console.log("ServiceAbility error:" + error);
+        }
+        return new FirstServiceAbilityStub("first ts service stub");
+    },
+    onDisconnect(want) {
+        console.log("ServiceAbility onDisconnect");
+        let value = JSON.stringify(want);
+        console.log("ServiceAbility want:" + value);
+    },
+    onCommand(want, startId) {
+        console.info('ServiceAbility onCommand');
+        let value = JSON.stringify(want);
+        console.log("ServiceAbility want:" + value);
+        console.log("ServiceAbility startId:" + startId);
+    }
+};
 ```
 
 ## 开发实例
@@ -324,3 +336,13 @@ export default {
 在ServiceAbility目录中的service.ts文件创建一个本地Service。
 
 在MainAbility目录中封装了启动、连接本地Services的流程。
+
+针对跨设备serviceAbility开发，有以下示例工程可供参考：
+
+- [DMS](https://gitee.com/openharmony/app_samples/tree/master/ability/DMS)
+
+本示例DMS中：
+
+在ServiceAbility目录中的service.ts文件创建一个远程Service。
+
+在RemoteAbility目录中封装了连接远程Services的流程。
