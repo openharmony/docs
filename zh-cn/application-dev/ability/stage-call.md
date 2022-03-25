@@ -134,6 +134,8 @@ context.startAbilityByCall({
     console.error(TAG + 'get caller failed with ' + error)
 })
 ```
+获取远程Caller通信(当前仅对系统应用开放)
+备注：由于DeviceManager getTrustedDeviceListSync接口仅对系统应用开放，当前连接远程Service仅支持系统应用
 在跨设备场景下，需指定对端设备deviceId。具体示例代码如下：
 ```ts
 let TAG = '[MainAbility] '
@@ -158,7 +160,7 @@ context.startAbilityByCall({
     console.error(TAG + 'get remote caller failed with ' + error)
 })
 ```
-从DeviceManager获取指定设备的deviceId，getTrustedDeviceListSync接口仅对系统应用开放。具体示例代码如下：
+从DeviceManager获取指定设备的deviceId。具体示例代码如下：
 ```ts
 import deviceManager from '@ohos.distributedHardware.deviceManager';
 var dmClass;
