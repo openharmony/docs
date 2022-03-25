@@ -26,16 +26,16 @@ Caller及Callee功能如下：具体的API详见[接口文档](https://gitee.com
 ### 创建Callee被调用端
 Callee被调用端，需要实现指定方法的数据接收回调函数、数据的序列化及反序列化方法。在需要接收数据期间，通过on接口注册监听，无需接收数据时通过off接口解除监听。
 1. 配置Ability的启动模式
-   
-   配置module.json5，将Callee被调用端所在的Ability配置为单实例"singleton"。
-   
-   |Json字段|字段说明|
-   |:------|:------|
-   |"launchType"|Ability的启动模式，设置为"singleton"类型 |
-   
-   Ability配置标签示例如下：
-   ```json
-   "abilities":[{
+
+  配置module.json5，将Callee被调用端所在的Ability配置为单实例"singleton"。
+
+|Json字段|字段说明|
+|:------|:------|
+|"launchType"|Ability的启动模式，设置为"singleton"类型 |
+
+Ability配置标签示例如下：
+```json
+"abilities":[{
     "name": ".CalleeAbility",
     "srcEntrance": "./ets/CalleeAbility/CalleeAbility.ts",
     "launchType": "singleton",
@@ -43,46 +43,44 @@ Callee被调用端，需要实现指定方法的数据接收回调函数、数�
     "icon": "$media:icon",
     "label": "$string:CalleeAbility_label",
     "visible": true
-   }]
-   ```
-   
+}]
+```
 2. 导入Ability模块
-   ```
-   import Ability from '@ohos.application.Ability'
-   ```
-   
+```
+import Ability from '@ohos.application.Ability'
+```
 3. 定义约定的序列化数据
-   调用端及被调用端发送接收的数据格式需协商一致，如下示例约定数据由number和string组成。具体示例代码如下：
-   ```ts
-   export class MySequenceable {
+
+  调用端及被调用端发送接收的数据格式需协商一致，如下示例约定数据由number和string组成。具体示例代码如下：
+```ts
+export class MySequenceable {
     num: number = 0
     str: String = ""
-   
+
     constructor(num, string) {
         this.num = num
         this.str = string
     }
-   
+
     marshalling(messageParcel) {
         messageParcel.writeInt(this.num)
         messageParcel.writeString(this.str)
         return true
     }
-   
+
     unmarshalling(messageParcel) {
         this.num = messageParcel.readInt()
         this.str = messageParcel.readString()
         return true
     }
-   }
-   ```
-   
+}
+```
 4. 实现Callee.on监听及Callee.off解除监听
-   
-   被调用端Callee的监听函数注册时机, 取决于应用开发者。注册监听之前的数据不会被处理，取消监听之后的数据不会被处理。如下示例在Ability的onCreate注册'CalleeSortMethod'监听，在onDestroy取消监听，收到序列化数据后对字符串排序后返回，应用开发者根据实际需要做相应处理。具体示例代码如下：
-   ```ts
-   let TAG = '[CalleeAbility] '
-   let method = 'CalleeSortMethod'
+
+  被调用端Callee的监听函数注册时机, 取决于应用开发者。注册监听之前的数据不会被处理，取消监听之后的数据不会被处理。如下示例在Ability的onCreate注册'CalleeSortMethod'监听，在onDestroy取消监听，收到序列化数据后对字符串排序后返回，应用开发者根据实际需要做相应处理。具体示例代码如下：
+```ts
+let TAG = '[CalleeAbility] '
+let method = 'CalleeSortMethod'
 
 function CalleeSortFunc(data) {
     let receiveData = new MySequenceable(0, '')
@@ -108,24 +106,24 @@ export default class CalleeAbility extends Ability {
         }
     }
 }
-   ```
+```
 
 ### 访问Callee被调用端
 1. 导入Ability模块
-   ```
+```
 import Ability from '@ohos.application.Ability'
-   ```
-
+```
 2. 获取Caller通信接口
-   
-   Ability的context属性实现了startAbilityByCall方法，用于获取指定通用组件的Caller通信接口。如下示例通过`this.context`获取Ability实例的context属性，使用startAbilityByCall拉起Callee被调用端并获取Caller通信接口，注册Caller的onRelease监听。应用开发者根据实际需要做相应处理。具体示例代码如下：
-   ```ts
+
+  Ability的context属性实现了startAbilityByCall方法，用于获取指定通用组件的Caller通信接口。如下示例通过`this.context`获取Ability实例的context属性，使用startAbilityByCall拉起Callee被调用端并获取Caller通信接口，注册Caller的onRelease监听。应用开发者根据实际需要做相应处理。具体示例代码如下：
+```ts
 let TAG = '[MainAbility] '
 var caller = undefined
 let context = this.context
+
 context.startAbilityByCall({
-bundleName: 'com.samples.CallApplication',
-abilityName: 'CalleeAbility'
+    bundleName: 'com.samples.CallApplication',
+    abilityName: 'CalleeAbility'
 }).then((data) => {
     if (data != null) {
         caller = data
@@ -136,21 +134,21 @@ abilityName: 'CalleeAbility'
         })
         console.log(TAG + 'caller register OnRelease succeed')
     }
-   }).catch((error) => {
+}).catch((error) => {
     console.error(TAG + 'get caller failed with ' + error)
-   })
-   ```
-
-   在跨设备场景下，需指定对端设备deviceId。应用开发者 根据实际需要做相应处理。具体示例代码如下：
-   ```ts
+})
+```
+在跨设备场景下，需指定对端设备deviceId。应用开发者 根据实际需要做相应处理。具体示例代码如下：
+```ts
 let TAG = '[MainAbility] '
 var caller = undefined
 let context = this.context
+
 context.startAbilityByCall({
     deviceId: getRemoteDeviceId(),
     bundleName: 'com.samples.CallApplication',
     abilityName: 'CalleeAbility'
-   }).then((data) => {
+}).then((data) => {
     if (data != null) {
         caller = data
         console.log(TAG + 'get remote caller success')
@@ -160,13 +158,12 @@ context.startAbilityByCall({
         })
         console.log(TAG + 'remote caller register OnRelease succeed')
     }
-   }).catch((error) => {
+}).catch((error) => {
     console.error(TAG + 'get remote caller failed with ' + error)
-   })
-   ```
-
-   从DeviceManager获取指定设备的deviceId，具体示例代码如下：
-   ```ts
+})
+```
+从DeviceManager获取指定设备的deviceId，具体示例代码如下：
+```ts
 import deviceManager from '@ohos.distributedHardware.deviceManager';
 var dmClass;
 function getRemoteDeviceId() {
@@ -182,11 +179,9 @@ function getRemoteDeviceId() {
         console.log("MainAbility onButtonClick getRemoteDeviceId err: dmClass is null");
     }
 }
-   ```
-
-   在跨设备场景下，需要向用户申请数据同步的权限。具体示例代码如下：
-
-   ```ts
+```
+在跨设备场景下，需要向用户申请数据同步的权限。具体示例代码如下：
+```ts
 let context = this.context
 let permissions = ohos.permission.DISTRIBUTED_DATASYNC
 context.requestPermissionsFromUser(permissions).then((data) => {
@@ -194,26 +189,24 @@ context.requestPermissionsFromUser(permissions).then((data) => {
 }).catch((error) => {
     console.log("Failed to request permission from user with error: "+ JSON.stringify(error))
 })
-   ```
-
+```
 3. 发送约定序列化数据
-   
-   向被调用端发送Sequenceable数据有两种方式，一种是不带返回值，一种是获取被调用端返回的数据，method以及序列化数据需要与被调用端协商一致。如下示例调用Call接口，向Calee被调用端发送数据。具体示例代码如下：
-   ```ts
-   let method = 'CalleeSortMethod'
-   let msg = new MySequenceable(1, 'call_str')
-   caller.call(method, msg).then(() => {
+向被调用端发送Sequenceable数据有两种方式，一种是不带返回值，一种是获取被调用端返回的数据，method以及序列化数据需要与被调用端协商一致。如下示例调用Call接口，向Calee被调用端发送数据。具体示例代码如下：
+```ts
+let method = 'CalleeSortMethod'
+let msg = new MySequenceable(1, 'call_str')
+caller.call(method, msg).then(() => {
         console.log(TAG + 'caller call succeed')
     }).catch((error) => {
     console.error(TAG + 'caller call failed with ' + error)
-   })
-   ```
-   
-   如下示例调用CallWithResult接口，向Calee被调用端发送待处理的数据，并将method方法处理完毕的数据赋值给callback。具体示例代码如下：
-   ```ts
-   let method = 'CalleeSortMethod'
-   let msg = new MySequenceable(1, sortString)
-   caller.callWithResult(method, msg)
+})
+```
+
+如下示例调用CallWithResult接口，向Calee被调用端发送待处理的数据，并将method方法处理完毕的数据赋值给callback。具体示例代码如下：
+```ts
+let method = 'CalleeSortMethod'
+let msg = new MySequenceable(1, sortString)
+caller.callWithResult(method, msg)
     .then((data) => {
         let resultMsg = new MySequenceable(0, '')
         data.readSequenceable(resultMsg)
@@ -221,20 +214,19 @@ context.requestPermissionsFromUser(permissions).then((data) => {
         console.log(TAG + 'caller result is [' + resultMsg.num + ',' + resultMsg.str + ']')
     }).catch((error) => {
     console.error(TAG + 'caller callWithResult failed with ' + error)
-   })
-   ```
+})
+```
 4. 释放Caller通信接口
-   
-   Caller不再使用后，应用开发者可以通过release接口释放Caller。具体示例代码如下：
-   ```ts
-   try {
+Caller不再使用后，应用开发者可以通过release接口释放Caller。具体示例代码如下：
+```ts
+try {
     caller.release()
     caller = undefined
     console.log(TAG + 'caller release succeed')
-   } catch (error) {
+} catch (error) {
     console.error(TAG + 'caller release failed with ' + error)
-   }
-   ```
+}
+```
 
 ## 开发实例
 针对Stage模型本地Call功能开发，有以下示例工程可供参考：
