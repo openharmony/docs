@@ -156,7 +156,7 @@
 页面间的导航可以通过[页面路由router](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/ui-js-building-ui-routes.md)来实现。页面路由router根据页面uri找到目标页面，从而实现跳转。使用页面路由请导入router模块。
 
 1. **第一个页面跳转到第二个页面。**
-   在第一个页面中，跳转按钮绑定onClick方法，点击按钮时跳转到第二页。“**index.js**”示例如下：
+   在第一个页面中，跳转按钮绑定onclick方法，点击按钮时跳转到第二页。“**index.js**”示例如下：
 
    
    ```
@@ -172,7 +172,7 @@
    ```
 
 2. **第二个页面返回到第一个页面。**
-   在第二个页面中，返回按钮绑定onClick方法，点击按钮时返回到第二页。“**second.js**”示例如下：
+   在第二个页面中，返回按钮绑定back方法，点击按钮时返回到第一页。“**second.js**”示例如下：
 
    
    ```
