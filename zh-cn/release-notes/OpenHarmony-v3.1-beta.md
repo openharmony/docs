@@ -175,8 +175,8 @@ _[Changelog](api-change/v3.1-beta/changelog-v3.1-beta.md)_
 | [eTS分布式数据管理](https://gitee.com/openharmony/app_samples/tree/master/data/eTSKvStore) | 本示例展示了在eTS中分布式数据管理的使用，包括KVManager对象实例的创建和KVStore数据流转的使用。 | eTS |
 | [轻量级数据存储](https://gitee.com/openharmony/app_samples/tree/master/data/eTSLiteStorage) | 轻量级数据存储主要提供轻量级Key-Value操作，支持本地应用存储少量数据。本示例通过对购物车商品的添加和删除并保存退出的操作，使得再次打开应用时依然可以保留退出前的购物车信息，体现了轻量级存储在保存轻量级数据时的作用。 | eTS |
 | [Ets进程信息](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/EtsProcess) | 本示例展示了在eTS中如何获取进程信息和启动一个子进程运行一段shell，包括当前系统运行时间、获取进程当前工作目录、更改进程当前工作目录、发送signal到指定的进程、启动一个子进程、关闭子进程、退出当前系统的功能。 | eTS |
-| [Ets运行锁](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/eTSRunninglock) | 本示例展示了阻止系统休眠的运行锁功能，通过黑白色壁纸模拟息屏、亮屏状态，来展示系统的休眠状态，从而对运行锁的功能进行测试，使得该运行锁在打开后可以阻止系统休眠。 | eTS |
-| [字符串编解码](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/StringCodec) | 本示例对字符串进行了特定格式的输出，对错误码的内容进行了文本输出，对字符串的编码和解码做了演示结果。 | eTS |
+| [Ets运行锁](https://gitee.com/openharmony/app_samples/tree/master/common/eTSRunninglock) | 本示例展示了阻止系统休眠的运行锁功能，通过黑白色壁纸模拟息屏、亮屏状态，来展示系统的休眠状态，从而对运行锁的功能进行测试，使得该运行锁在打开后可以阻止系统休眠。 | eTS |
+| [字符串编解码](https://gitee.com/openharmony/app_samples/tree/master/Util/eTSUtilStringCodec) | 本示例对字符串进行了特定格式的输出，对错误码的内容进行了文本输出，对字符串的编码和解码做了演示结果。 | eTS |
 | [Js音频播放和管理](https://gitee.com/openharmony/app_samples/tree/master/media/JsAudioPlayer) | 本示例展示了JS音频播放的使用方法，以及音频的音量大小设置。 | JS |
 | [JsVideo](https://gitee.com/openharmony/app_samples/tree/master/media/JsVideo) | 本示例使用JS&nbsp;UI中的&lt;video/&gt;组件，实现视频播放。可以通过video自带的控制栏进行播放、暂停等操作。 | JS |
 | [测试打点](https://gitee.com/openharmony/app_samples/tree/master/DFX/JsDotTest) | 本示例展示了测试打点功能，包括应用打点与性能打点两部分。 | JS |
