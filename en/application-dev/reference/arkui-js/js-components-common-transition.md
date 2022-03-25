@@ -1,96 +1,46 @@
-# Transition Styles<a name="EN-US_TOPIC_0000001127125110"></a>
+# Transition Styles
+
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> Supported since API version 4. Updates will be marked with a superscript to indicate their earliest API version.
+
+## Transition of Shared Elements
 
 
-## Transition of Shared Elements<a name="section1884520391817"></a>
+### Attributes
 
-### Attributes<a name="section179214816810"></a>
+| Name| Type| Default Value| Description|
+| -------- | -------- | -------- | -------- |
+| shareid | string | -| Used for the transition of shared elements and takes effect only when it is configured.**list-item**, **image**, **text**, **button**, and **label** components are supported for the transition of shared elements.|
 
-<a name="table82912285910"></a>
 
-<table><thead align="left"><tr id="row529115281090"><th class="cellrowborder" valign="top" width="15.370000000000001%" id="mcps1.1.5.1.1"><p id="p9291182819919"><a name="p9291182819919"></a><a name="p9291182819919"></a>Name</p>
-</th>
-<th class="cellrowborder" valign="top" width="12.920000000000002%" id="mcps1.1.5.1.2"><p id="p62914282912"><a name="p62914282912"></a><a name="p62914282912"></a>Type</p>
-</th>
-<th class="cellrowborder" valign="top" width="16.41%" id="mcps1.1.5.1.3"><p id="p32927280919"><a name="p32927280919"></a><a name="p32927280919"></a>Default Value</p>
-</th>
-<th class="cellrowborder" valign="top" width="55.300000000000004%" id="mcps1.1.5.1.4"><p id="p129213284914"><a name="p129213284914"></a><a name="p129213284914"></a>Description</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row22926284912"><td class="cellrowborder" valign="top" width="15.370000000000001%" headers="mcps1.1.5.1.1 "><p id="p329212281397"><a name="p329212281397"></a><a name="p329212281397"></a>shareid</p>
-</td>
-<td class="cellrowborder" valign="top" width="12.920000000000002%" headers="mcps1.1.5.1.2 "><p id="p929217284919"><a name="p929217284919"></a><a name="p929217284919"></a>string</p>
-</td>
-<td class="cellrowborder" valign="top" width="16.41%" headers="mcps1.1.5.1.3 "><p id="p629219281491"><a name="p629219281491"></a><a name="p629219281491"></a>N/A</p>
-</td>
-<td class="cellrowborder" valign="top" width="55.300000000000004%" headers="mcps1.1.5.1.4 "><p id="p102929286918"><a name="p102929286918"></a><a name="p102929286918"></a>Used for the transition of shared elements and takes effect only when it is configured. <strong id="b159773615015"><a name="b159773615015"></a><a name="b159773615015"></a>list-item</strong>, <strong id="b7597036606"><a name="b7597036606"></a><a name="b7597036606"></a>image</strong>, <strong id="b14597153611017"><a name="b14597153611017"></a><a name="b14597153611017"></a>text</strong>, <strong id="b4597183614014"><a name="b4597183614014"></a><a name="b4597183614014"></a>button</strong>, <strong id="b115983361506"><a name="b115983361506"></a><a name="b115983361506"></a>label</strong> components are supported for the transition of shared elements.</p>
-</td>
-</tr>
-</tbody>
-</table>
+### Styles
 
-### Styles<a name="section416125511818"></a>
+| Name| Type| Default Value| Description|
+| -------- | -------- | -------- | -------- |
+| shared-transition-effect | string | exchange | Entry style of a shared element during transition.<br>-&nbsp;**exchange** (default): The source page element is moved to the position of the target page element and is zoomed in or out properly.<br>-&nbsp;**static**: The position of the target page element remains unchanged. You can configure the opacity animation. Currently, only the static effect configured on the target page takes effect.|
+| shared-transition-name | string | - | During the transition, the style configured on the target page takes effect preferentially. This style is used to configure the animation effect of shared elements. The animation effect is an animation sequence defined by **@keyframes** supporting transform and opacity animations. If the effect of shared elements conflicts with the custom animation, the latter is used.|
+| shared-transition-timing-function | string | friction | During the transition, the style configured on the target page takes effect preferentially. This style defines the difference curve during the transition of shared elements. If it is not configured, the friction curve is used.|
 
-<a name="table479613353912"></a>
-<table><thead align="left"><tr id="row679619351695"><th class="cellrowborder" valign="top" width="26.780000000000005%" id="mcps1.1.5.1.1"><p id="p379673515915"><a name="p379673515915"></a><a name="p379673515915"></a>Name</p>
-</th>
-<th class="cellrowborder" valign="top" width="15.480000000000002%" id="mcps1.1.5.1.2"><p id="p379613510916"><a name="p379613510916"></a><a name="p379613510916"></a>Type</p>
-</th>
-<th class="cellrowborder" valign="top" width="15.480000000000002%" id="mcps1.1.5.1.3"><p id="p479623512916"><a name="p479623512916"></a><a name="p479623512916"></a>Default Value</p>
-</th>
-<th class="cellrowborder" valign="top" width="42.260000000000005%" id="mcps1.1.5.1.4"><p id="p779753510912"><a name="p779753510912"></a><a name="p779753510912"></a>Description</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row157971351895"><td class="cellrowborder" valign="top" width="26.780000000000005%" headers="mcps1.1.5.1.1 "><p id="p1479716351794"><a name="p1479716351794"></a><a name="p1479716351794"></a>shared-transition-effect</p>
-</td>
-<td class="cellrowborder" valign="top" width="15.480000000000002%" headers="mcps1.1.5.1.2 "><p id="p137971935390"><a name="p137971935390"></a><a name="p137971935390"></a>string</p>
-</td>
-<td class="cellrowborder" valign="top" width="15.480000000000002%" headers="mcps1.1.5.1.3 "><p id="p20797135992"><a name="p20797135992"></a><a name="p20797135992"></a>exchange</p>
-</td>
-<td class="cellrowborder" valign="top" width="42.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p197971335193"><a name="p197971335193"></a><a name="p197971335193"></a>Entry style of a shared element during transition.</p>
-<a name="ul27978351494"></a><a name="ul27978351494"></a><ul id="ul27978351494"><li><strong id="b1213145515110"><a name="b1213145515110"></a><a name="b1213145515110"></a>exchange</strong> (default): The source page element is moved to the position of the target page element and is zoomed in or out properly.</li><li><strong id="b17991612320"><a name="b17991612320"></a><a name="b17991612320"></a>static</strong>: The position of the target page element remains unchanged. You can configure the transparency animation. Currently, only the static effect configured on the target page takes effect.</li></ul>
-</td>
-</tr>
-<tr id="row17797123514918"><td class="cellrowborder" valign="top" width="26.780000000000005%" headers="mcps1.1.5.1.1 "><p id="p67971135595"><a name="p67971135595"></a><a name="p67971135595"></a>shared-transition-name</p>
-</td>
-<td class="cellrowborder" valign="top" width="15.480000000000002%" headers="mcps1.1.5.1.2 "><p id="p1479783510920"><a name="p1479783510920"></a><a name="p1479783510920"></a>string</p>
-</td>
-<td class="cellrowborder" valign="top" width="15.480000000000002%" headers="mcps1.1.5.1.3 "><p id="p5797153514916"><a name="p5797153514916"></a><a name="p5797153514916"></a>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="42.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p1779714351097"><a name="p1779714351097"></a><a name="p1779714351097"></a>During the transition, the style configured on the target page takes effect preferentially. This style is used to configure the animation effect of shared elements. The animation effect is an animation sequence defined by @keyframes supporting transform and transparency animations. If the effect of the shared element conflicts with the custom animation, the latter is used.</p>
-</td>
-</tr>
-<tr id="row079715351598"><td class="cellrowborder" valign="top" width="26.780000000000005%" headers="mcps1.1.5.1.1 "><p id="p079714350916"><a name="p079714350916"></a><a name="p079714350916"></a>shared-transition-timing-function</p>
-</td>
-<td class="cellrowborder" valign="top" width="15.480000000000002%" headers="mcps1.1.5.1.2 "><p id="p879714351498"><a name="p879714351498"></a><a name="p879714351498"></a>string</p>
-</td>
-<td class="cellrowborder" valign="top" width="15.480000000000002%" headers="mcps1.1.5.1.3 "><p id="p1079718351991"><a name="p1079718351991"></a><a name="p1079718351991"></a>friction</p>
-</td>
-<td class="cellrowborder" valign="top" width="42.260000000000005%" headers="mcps1.1.5.1.4 "><p id="p37974351492"><a name="p37974351492"></a><a name="p37974351492"></a>During the transition, the style configured on the target page takes effect preferentially. This property defines the difference curve during the transition of shared elements. If this parameter is not configured, the friction curve is used by default.</p>
-</td>
-</tr>
-</tbody>
-</table>
 
-### Important Notes<a name="section181291131395"></a>
+### Important Notes
 
-1. If shared element transition style and customized page transition style are both configured, the latter is used.
+1. If the shared element transition style and custom page transition style are both configured, the latter is used.
 
-2. The exchange effect of the shared element is similar to the transition shown in the following figure.
+2. The exchange effect of shared elements is similar to the transition shown below.
 
-**Figure  1**  Default transition effect of shared elements<a name="fig85705915913"></a>  
-![](figures/default-transition-effect-of-shared-elements.png "default-transition-effect-of-shared-elements")
+**Figure 1** Default transition effect of shared elements
+![en-us_image_0000001238424309](figures/en-us_image_0000001238424309.png)
 
-3. The shared element animation does not take effect for the border and background color of the element.
+3. The animation of a shared element does not take effect for the border and background color of the element.
 
 4. During the transition of a shared element, the page element is hidden. Therefore, the animation style and function set for the page element are invalid.
 
-5. During the dynamic change of  **shareid**<sup>5+</sup>, if the  **shareid**  value in component A is overwritten by that in component B, the shared element effect of component A becomes ineffective and will not be restored even if the  **shareid**  value is changed in component B.
+5. During the dynamic change of **shareid**<sup>5+</sup>, if the **shareid** value in component A is overwritten by that in component B, the shared element effect of component A becomes ineffective and will not be restored even if the **shareid** value is changed in component B.
 
-### Example<a name="section11396118910"></a>
 
-Page A jumps to Page B. The shared element is  **image**, and the  **shareid**  is "shareImage".
+### Example
+
+In the example below, where **PageA** jumps to **PageB**, the shared element is **image**, and the **shareid** is "shareImage".
 
 ```
 <!-- PageA -->
@@ -98,10 +48,8 @@ Page A jumps to Page B. The shared element is  **image**, and the  **shareid**  
 <div>
   <list>
     <list-item type="description">
-      <div>
-        <image src="item.jpg" shareid="shareImage" onclick="jump" class="shared-transition-style"></image>
-        <text onclick="jump">Click on picture to Jump to ths details</text>
-      </div>
+      <image src="item.jpg" shareid="shareImage" onclick="jump" class="shared-transition-style"></image>
+      <text onclick="jump">Click on picture to Jump to ths details</text>
     </list-item>
   </list>
 </div>
@@ -161,40 +109,23 @@ export default {
 }
 ```
 
-## Card Transition<a name="section765051220203"></a>
 
->![](../../public_sys-resources/icon-note.gif) **NOTE:** 
->Card transitions are not available when other transitions \(including shared element transitions and custom transitions\) are used.
+## Card Transition
 
-### Styles<a name="section1242474714118"></a>
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> Card transitions are not available when other transitions (including shared element transitions and custom transitions) are used.
 
-<a name="table12840103417146"></a>
-<table><thead align="left"><tr id="row584013348142"><th class="cellrowborder" valign="top" width="25%" id="mcps1.1.5.1.1"><p id="p384019348141"><a name="p384019348141"></a><a name="p384019348141"></a>Name</p>
-</th>
-<th class="cellrowborder" valign="top" width="13.969999999999999%" id="mcps1.1.5.1.2"><p id="p3840334171415"><a name="p3840334171415"></a><a name="p3840334171415"></a>Type</p>
-</th>
-<th class="cellrowborder" valign="top" width="28.410000000000004%" id="mcps1.1.5.1.3"><p id="p3840173441413"><a name="p3840173441413"></a><a name="p3840173441413"></a>Default Value</p>
-</th>
-<th class="cellrowborder" valign="top" width="32.62%" id="mcps1.1.5.1.4"><p id="p7840203461411"><a name="p7840203461411"></a><a name="p7840203461411"></a>Description</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row15840143471416"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.1.5.1.1 "><p id="p168401934161410"><a name="p168401934161410"></a><a name="p168401934161410"></a>transition-effect</p>
-</td>
-<td class="cellrowborder" valign="top" width="13.969999999999999%" headers="mcps1.1.5.1.2 "><p id="p16840134161418"><a name="p16840134161418"></a><a name="p16840134161418"></a>string</p>
-</td>
-<td class="cellrowborder" valign="top" width="28.410000000000004%" headers="mcps1.1.5.1.3 "><p id="p1484033413147"><a name="p1484033413147"></a><a name="p1484033413147"></a>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="32.62%" headers="mcps1.1.5.1.4 "><p id="p6840173431412"><a name="p6840173431412"></a><a name="p6840173431412"></a>Whether a component on the current page displays the transition effect during a card transition. Available values are as follows:</p>
-<a name="ul188401834121413"></a><a name="ul188401834121413"></a><ul id="ul188401834121413"><li><strong id="b11897457195815"><a name="b11897457195815"></a><a name="b11897457195815"></a>unfold</strong>: The component will move upwards by one card height if the component locates above the card tapped by users, or move downwards by one card height if the component locates below the card.</li><li><strong id="b4547119463"><a name="b4547119463"></a><a name="b4547119463"></a>none</strong>: No transition effect is displayed.</li></ul>
-</td>
-</tr>
-</tbody>
-</table>
 
-### Example<a name="section13120105991118"></a>
+### Styles
 
-The  **source\_page**  has a title area on the top and a card list. Users can tap a card to switch to the  **target\_page**.
+| Name| Type| Default Value| Description|
+| -------- | -------- | -------- | -------- |
+| transition-effect | string | - | Whether a component on the current page displays the transition effect during a card transition. Available values are as follows:<br>-&nbsp;**unfold**: The component will move upwards by one card height if the component is located above the card tapped by the user, or move downwards by one card height if the component is located below the card.<br>-&nbsp;**none**: No transition effect is displayed.|
+
+
+### Example
+
+The **source_page** has a title area on the top and a card list. Users can tap a card to switch to the **target_page**.
 
 ```
 <!-- source_page -->
@@ -275,74 +206,174 @@ export default {
 }
 ```
 
-![](figures/form-transfer.gif)
-
-## Page Transition Styles<a name="section0565021620"></a>
-
-### Styles<a name="section11765348111217"></a>
-
-<a name="table98161918171415"></a>
-<table><thead align="left"><tr id="row1681631813148"><th class="cellrowborder" valign="top" width="25%" id="mcps1.1.5.1.1"><p id="p1581731891415"><a name="p1581731891415"></a><a name="p1581731891415"></a>Name</p>
-</th>
-<th class="cellrowborder" valign="top" width="13.969999999999999%" id="mcps1.1.5.1.2"><p id="p8817141811410"><a name="p8817141811410"></a><a name="p8817141811410"></a>Type</p>
-</th>
-<th class="cellrowborder" valign="top" width="28.410000000000004%" id="mcps1.1.5.1.3"><p id="p1081721851418"><a name="p1081721851418"></a><a name="p1081721851418"></a>Default Value</p>
-</th>
-<th class="cellrowborder" valign="top" width="32.62%" id="mcps1.1.5.1.4"><p id="p18176188145"><a name="p18176188145"></a><a name="p18176188145"></a>Description</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row2081761831417"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.1.5.1.1 "><p id="p88171218191412"><a name="p88171218191412"></a><a name="p88171218191412"></a>transition-enter</p>
-</td>
-<td class="cellrowborder" valign="top" width="13.969999999999999%" headers="mcps1.1.5.1.2 "><p id="p5817101841414"><a name="p5817101841414"></a><a name="p5817101841414"></a>string</p>
-</td>
-<td class="cellrowborder" valign="top" width="28.410000000000004%" headers="mcps1.1.5.1.3 "><p id="p1817191813146"><a name="p1817191813146"></a><a name="p1817191813146"></a>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="32.62%" headers="mcps1.1.5.1.4 "><p id="p1581715188146"><a name="p1581715188146"></a><a name="p1581715188146"></a>Related to @keyframes, which supports transform and transparent animations. For details, see <a href="js-components-common-animation.md#t48a722bba37a44c883ed4e046a4cf82e">Table 2</a>.</p>
-</td>
-</tr>
-<tr id="row9817151815148"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.1.5.1.1 "><p id="p1381771818142"><a name="p1381771818142"></a><a name="p1381771818142"></a>transition-exit</p>
-</td>
-<td class="cellrowborder" valign="top" width="13.969999999999999%" headers="mcps1.1.5.1.2 "><p id="p181741871413"><a name="p181741871413"></a><a name="p181741871413"></a>string</p>
-</td>
-<td class="cellrowborder" valign="top" width="28.410000000000004%" headers="mcps1.1.5.1.3 "><p id="p118174184144"><a name="p118174184144"></a><a name="p118174184144"></a>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="32.62%" headers="mcps1.1.5.1.4 "><p id="p4817121818148"><a name="p4817121818148"></a><a name="p4817121818148"></a>Related to @keyframes, which supports transform and transparent animations. For details, see <a href="js-components-common-animation.md#t48a722bba37a44c883ed4e046a4cf82e">Table 2</a>.</p>
-</td>
-</tr>
-<tr id="row281791813147"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.1.5.1.1 "><p id="p1781761810144"><a name="p1781761810144"></a><a name="p1781761810144"></a>transition-duration</p>
-</td>
-<td class="cellrowborder" valign="top" width="13.969999999999999%" headers="mcps1.1.5.1.2 "><p id="p118171318121420"><a name="p118171318121420"></a><a name="p118171318121420"></a>string</p>
-</td>
-<td class="cellrowborder" valign="top" width="28.410000000000004%" headers="mcps1.1.5.1.3 "><p id="p1881716183145"><a name="p1881716183145"></a><a name="p1881716183145"></a>Follows the default page transition time of the device.</p>
-</td>
-<td class="cellrowborder" valign="top" width="32.62%" headers="mcps1.1.5.1.4 "><p id="p118179184142"><a name="p118179184142"></a><a name="p118179184142"></a>The unit can be s or ms. The default unit is ms. If no value is specified, the default value is used.</p>
-</td>
-</tr>
-<tr id="row28178189141"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.1.5.1.1 "><p id="p138173184141"><a name="p138173184141"></a><a name="p138173184141"></a>transition-timing-function</p>
-</td>
-<td class="cellrowborder" valign="top" width="13.969999999999999%" headers="mcps1.1.5.1.2 "><p id="p1081813181141"><a name="p1081813181141"></a><a name="p1081813181141"></a>string</p>
-</td>
-<td class="cellrowborder" valign="top" width="28.410000000000004%" headers="mcps1.1.5.1.3 "><p id="p281871817146"><a name="p281871817146"></a><a name="p281871817146"></a>friction</p>
-</td>
-<td class="cellrowborder" valign="top" width="32.62%" headers="mcps1.1.5.1.4 "><p id="p5818118101412"><a name="p5818118101412"></a><a name="p5818118101412"></a>Speed curve of executing transition animation for smoother transition. For details about the parameters, see the description of the valid values of <strong id="b208543341576"><a name="b208543341576"></a><a name="b208543341576"></a>animation-timing-function</strong> in <a href="js-components-common-animation.md">Animation Styles</a>.</p>
-</td>
-</tr>
-</tbody>
-</table>
-
-### Important Notes<a name="section16968142012132"></a>
-
-1.  When you set a customized transition, set the background color of the page to an opaque color. Otherwise, the transition effect can be harsh.
-2.  The  **transition-enter**  and  **transition-exit**  parameters can be configured separately. The default parameters are used if they are not configured.
-3.  Notes on the  **transition-enter**  and  **transition-exit**  parameters:
-    1.  In the push scenario, enter the animation described by  **transition-enter**  of the  **Page2.js**  application in the page stack; enter the animation described by  **transition-exit**  of the  **Page1.js**  application in the second position of the page stack.
-
-        ![](figures/en-us_image_0000001193704354.png)
-
-    2.  In the back scenario, exit the animation described by  **transition-enter**  of the  **Page2.js**  application in the page stack and play the animation in reverse sequence; exit the animation described by  **transition-exit**  of the Page1.js application in the second position of the page stack and play the animation in reverse sequence.
-
-        ![](figures/en-us_image_0000001238184345.png)
+![en-us_image_0000001193544358](figures/en-us_image_0000001193544358.gif)
 
 
+## Page Transition Styles
 
+
+### Styles
+
+| Name| Type| Default Value| Description|
+| -------- | -------- | -------- | -------- |
+| transition-enter | string | - | Works with **@keyframes** and supports transform and opacity animations. For details, see [Attributes available for the @keyframes rule](../arkui-js/js-components-common-animation.md).|
+| transition-exit | string | - | Works with **@keyframes** and supports transform and opacity animations. For details, see [Attributes available for the @keyframes rule](../arkui-js/js-components-common-animation.md).|
+| transition-duration | string | Follows the default page transition time of the device| The unit can be s or ms. The default unit is ms. If no value is specified, the default value is used. |
+| transition-timing-function | string | friction | Speed curve of the transition animation, which makes the animation more fluent. For details, see the description of **animation-timing-function **in [Animation Styles](../arkui-js/js-components-common-animation.md).|
+
+
+### Important Notes
+
+1. When defining a custom transition, set the page background color to an opaque color. Otherwise, the transition effect can be harsh.
+
+2. The **transition-enter** and **transition-exit** styles can be configured separately. The default settings are used if they are not configured.
+
+3. Notes on the **transition-enter** and **transition-exit** styles:
+
+   a. In the push scenario, the animation defined by **transition-enter** is used for entering the **Page2.js** in the page stack; the animation defined by **transition-exit** is used for entering the **Page1.js** in the page stack.
+   ![en-us_image_0000001193704354](figures/en-us_image_0000001193704354.png)
+
+   b. In the back scenario, the animation defined by **transition-enter** is used for exiting the **Page2.js** in the page stack, with the animation played in reverse sequence; the animation defined by **transition-exit** is used for exiting the **Page1.js** in the page stack, with the animation played in reverse sequence.
+   ![en-us_image_0000001238184345](figures/en-us_image_0000001238184345.png)
+
+### Example
+
+**Page1** has an opaque box. When you tap the box, **Page2** is displayed. When you tap the box on **Page2**, **Page1** is displayed.
+
+1. Page1
+
+   ```
+   <!-- xxx.hml -->
+   <div class="container">
+       <text>index</text>
+       <div class="move_page" onclick="jump"></div>
+   </div>
+   ```
+
+   ```
+   <!-- xxx.js -->
+   import router from '@system.router';
+   export default {
+       data: {
+   
+       },
+       jump() {
+           router.push({
+               uri:'pages/transition2/transition2'
+           })
+       }
+   }
+   ```
+
+   ```
+   <!-- xxx.css -->
+   .container {
+       flex-direction: column;
+       justify-content: center;
+       align-items: center;
+       width: 100%;
+       height: 100%;
+   }
+   .move_page {
+       width: 100px;
+       height: 100px;
+       background-color: #72d3fa;
+       transition-enter: go_page;
+       transition-exit: exit_page;
+       transition-duration: 5s;
+       transition-timing-function: friction;
+   }
+   
+   @keyframes go_page {
+       from {
+           opacity: 0;
+           transform: translate(0px) rotate(60deg) scale(1.0);
+       }
+   
+       to {
+           opacity: 1;
+           transform: translate(100px) rotate(360deg) scale(1.0);
+       }
+   }
+   @keyframes exit_page {
+       from {
+           opacity: 1;
+           transform: translate(200px) rotate(60deg) scale(2);
+       }
+   
+       to {
+           opacity: 0;
+           transform: translate(200px) rotate(360deg) scale(2);
+       }
+   }
+   ```
+
+   
+
+2. Page2
+
+   ```
+   <!-- xxx.hml -->
+   <div class="container">
+       <text>transition</text>
+       <div class="move_page" onclick="jumpBack"></div>
+   </div
+   ```
+
+   ```
+   <!-- xxx.js -->
+   import router from '@system.router';
+   export default {
+       data: {
+   
+       },
+       jumpBack() {
+           router.back()
+       }
+   }
+   ```
+
+   ```
+   <!-- xxx.css -->
+   .container {
+       flex-direction: column;
+       justify-content: center;
+       align-items: center;
+       width: 100%;
+       height: 100%;
+   }
+   
+   .move_page {
+       width: 100px;
+       height: 100px;
+       background-color: #f172fa;
+       transition-enter: go_page;
+       transition-exit: exit_page;
+       transition-duration: 5s;
+       transition-timing-function: ease;
+   }
+   
+   @keyframes go_page {
+       from {
+           opacity: 0;
+           transform:translate(100px) rotate(0deg) scale(1.0);
+       }
+       to {
+           opacity: 1;
+           transform:translate(100px) rotate(180deg) scale(2.0);
+       }
+   }
+   
+   @keyframes exit_page {
+       from {
+           opacity: 1;
+           transform: translate(0px) rotate(60deg) scale(1);
+       }
+       to {
+           opacity: 0;
+           transform: translate(0px) rotate(360deg) scale(1);
+       }
+   }
+   ```
+   
+   ![transition](figures/transition.gif)
