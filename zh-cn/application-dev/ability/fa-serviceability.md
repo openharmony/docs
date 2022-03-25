@@ -46,7 +46,7 @@
 2.注册Service。
 
     Service也需要在应用配置文件config.json中进行注册，注册类型type需要设置为service。
-
+    
     ```javascript
     {
         "module": {
@@ -64,17 +64,18 @@
     }
     ```
 
-    
+
+​    
 
 
 ### 启动Service<a name="section944219415599"></a>
 
 Ability为开发者提供了startAbility()方法来启动另外一个Ability。因为Service也是Ability的一种，开发者同样可以通过将Want传递给该方法来启动Service。
 
-开发者可以通过构造包含BundleName与AbilityName的Want对象来设置目标Service信息。参数的含义如下：
+开发者可以通过构造包含bundleName与abilityName的Want对象来设置目标Service信息。参数的含义如下：
 
-- BundleName：表示包名称。
-- AbilityName：表示待启动的Ability名称。
+- bundleName：表示包名称。
+- abilityName：表示待启动的Ability名称。
 
 启动本地设备Service的代码示例如下：
 
@@ -95,7 +96,9 @@ var promise = await featureAbility.startAbility(
   - 如果Service尚未运行，则系统会先调用onStart()来初始化Service，再回调Service的onCommand()方法来启动Service。
   - 如果Service正在运行，则系统会直接回调Service的onCommand()方法来启动Service。
 
-- 停止Service
+
+
+### 停止Service
 
   Service一旦创建就会一直保持在后台运行，除非必须回收内存资源，否则系统不会停止或销毁Service。开发者可以在Service中通过terminateSelf()停止本Service或在其他Ability调用stopAbility()来停止Service。
 

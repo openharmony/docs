@@ -880,9 +880,9 @@ getApplicationContext(): Context
 
 **返回值：**
 
-| 参数            | 类型      | 说明                      |
-| --------------- | ------------------------- |------    |
-| Context |  Context |返回应用版本信息。 |
+| 类型      | 说明   |
+| --------- |------ |
+|  Context |返回应用上下文信息。 |
 
 **示例：**
 
@@ -908,7 +908,7 @@ var context = featureAbility.getContext().getApplicationContext();
 | ----------- | -------- | -------------- | ---- | ------------------ |
 | requestCode | 只读     | number         | 是   | 用户传入的请求代码。 |
 | permissions | 只读     | Array\<string> | 是   | 用户传入的权限。     |
-| authResults | 只读     | Array\<number> | 是   | 求权限的结果。      |
+| authResults | 只读     | Array\<number> | 是   | 请求权限的结果。    |
 
 ## HapModuleInfo
 
