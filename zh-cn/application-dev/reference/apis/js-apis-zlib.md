@@ -125,7 +125,7 @@ zlib.unzipFile(inFile, outFile, options).then((data) => {
 
 ## Options对象可选参数说明
 
-| 参数                        |                                                              |
+| 参数                        | 说明                                                         |
 | --------------------------- | ------------------------------------------------------------ |
 | level?: CompressLeve        | [参考zip.CompressLevel枚举定义](#zip.CompressLevel压缩等级可选参数说明) |
 | memLevel?: MemLevel         | [参考zip.MemLevel枚举定义](#zip.MemLevel可选参数说明)        |
@@ -133,8 +133,9 @@ zlib.unzipFile(inFile, outFile, options).then((data) => {
 
 ## zip.MemLevel可选参数说明
 
-| MEM_LEVEL_MIN     | zip 接口在压缩过程中最小使用内存 |
+| 参数                        | 说明                                                         |
 | ----------------- | -------------------------------- |
+| MEM_LEVEL_MIN     | zip 接口在压缩过程中最小使用内存 |
 | MEM_LEVEL_MAX     | zip 接口在压缩过程中最大使用内存 |
 | MEM_LEVEL_DEFAULT | zip 接口在压缩过程中默认使用内存 |
 
@@ -154,7 +155,7 @@ zlib.unzipFile(inFile, outFile, options).then((data) => {
 | COMPRESS_STRATEGY_DEFAULT_STRATEGY : 0 | 常规数据策略             |
 | COMPRESS_STRATEGY_FILTERED : 1         | 过滤器产生的数据压缩策略 |
 | COMPRESS_STRATEGY_HUFFMAN_ONLY : 2     | 霍夫曼编码格式压缩策略   |
-| OMPRESS_STRATEGY_RLE : 3               | 游标编码压缩策略         |
+| COMPRESS_STRATEGY_RLE : 3              | 游标编码压缩策略         |
 | COMPRESS_STRATEGY_FIXED : 4            | 固定的压缩策略           |
 
 ## zip.ErrorCode接口返回值参数说明
