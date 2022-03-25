@@ -134,7 +134,8 @@ context.startAbilityByCall({
     console.error(TAG + 'get caller failed with ' + error)
 })
 ```
-在跨设备场景下，需指定对端设备deviceId，具体获取接口参照[DeviceManager](https://gitee.com/openharmony/device_manager/blob/master/README_zh.md)。应用开发者根据实际需要做相应处理。具体示例代码如下：
+   在跨设备场景下，需指定对端设备deviceId，具体获取接口参照[DeviceManager](https://gitee.com/openharmony/device_manager/blob/master/README_zh.md)。应用开发者 
+   根据实际需要做相应处理。具体示例代码如下：
 ```ts
 let TAG = '[MainAbility] '
 var caller = undefined
@@ -158,7 +159,7 @@ context.startAbilityByCall({
     console.error(TAG + 'get remote caller failed with ' + error)
 })
 ```
-在跨设备场景下，需要向用户申请数据同步的权限。具体示例代码如下：
+   在跨设备场景下，需要向用户申请数据同步的权限。具体示例代码如下：
 ```ts
 let context = this.context
 let permissions = ohos.permission.DISTRIBUTED_DATASYNC
