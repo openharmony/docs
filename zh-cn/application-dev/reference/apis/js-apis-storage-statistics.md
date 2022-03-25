@@ -3,7 +3,7 @@
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 >
 > - 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> - 此接口为系统接口，三方应用不支持调用。
+> - 本模块接口为系统接口，三方应用不支持调用。
 
 ## 导入模块
 
@@ -126,7 +126,7 @@ getFreeSizeOfVolume(volumeUuid: string, callback:AsyncCallback&lt;number&gt;):vo
   });
   ```
 
-## storagestatistics.getBundleStats
+## storagestatistics.getBundleStats<sup>9+</sup>
 
 getBundleStats(packageName: string): Promise&lt;BundleStats&gt;
 
@@ -157,7 +157,7 @@ getBundleStats(packageName: string): Promise&lt;BundleStats&gt;
   });
   ```
 
-## storagestatistics.getBundleStats
+## storagestatistics.getBundleStats<sup>9+</sup>
 
 getBundleStats(packageName: string,  callback: AsyncCallback&lt;BundleStats&gt;): void
 
