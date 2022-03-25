@@ -122,7 +122,7 @@ createAudioRecorder(): AudioRecorder
 **示例：**
 
 ```js
-let audiorecorder = media.createAudioRecorder(); 
+let audiorecorder = media.createAudioRecorder();
 ```
 
 ## media.createVideoRecorder<sup>9+</sup>
@@ -238,6 +238,8 @@ Codec MIME类型枚举。
 | AUDIO_AAC    | "audio/mp4a-latm"     | 表示音频/mp4a-latm类型。 |
 | AUDIO_VORBIS | 'audio/vorbis'        | 表示音频/vorbis类型。    |
 | AUDIO_FLAC   | 'audio/flac'          | 表示音频/flac类型。      |
+| AUDIO_AMR_NB | 'audio/3gpp'          | 表示音频/amr_nb类型。    |
+| AUDIO_AMR_WB | 'audio/amr-wb'        | 表示音频/amr_wb类型。    |
 
 ## MediaDescriptionKey<sup>8+</sup>
 
@@ -1895,7 +1897,7 @@ let videoConfig = {
 // asyncallback
 let videoRecorder = null;
 let events = require('events');
-let eventEmitter = new events.EventEmitter();                              
+let eventEmitter = new events.EventEmitter();
 
 eventEmitter.on('prepare', () => {
     videoRecorder.prepare(videoConfig, (err) => {
