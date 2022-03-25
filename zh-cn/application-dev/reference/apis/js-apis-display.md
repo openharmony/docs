@@ -67,7 +67,7 @@ getDefaultDisplay(callback: AsyncCallback&lt;Display&gt;): void
   ```
   var displayClass = null;
   display.getDefaultDisplay((err, data) => {
-      if (err) {
+      if (err.code) {
           console.error('Failed to obtain the default display object. Code:  ' + JSON.stringify(err));
           return;
       }
@@ -119,7 +119,7 @@ getAllDisplay(callback: AsyncCallback&lt;Array&lt;Display&gt;&gt;): void
 
   ```
   display.getAllDisplay((err, data) => {
-      if (err) {
+      if (err.code) {
           console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
           return;
       }
