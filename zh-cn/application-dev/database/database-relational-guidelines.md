@@ -248,7 +248,7 @@
    promise.then(() => {
        console.info("setDistributedTables success.")
    }).catch((err) => {
-       console.info("setDistributedTables failed."")
+       console.info("setDistributedTables failed.")
    })
    ```
 
@@ -263,7 +263,7 @@
     let predicate = new data_rdb.RdbPredicates('test')
     predicate.inDevices(['12345678abcde'])
     let promise = rdbStore.sync(rdb.SyncMode.SYNC_MODE_PUSH, predicate)
-    promise.then(result) {
+    promise.then((result) => {
         console.log('sync done.')
         for (let i = 0; i < result.length; i++) {
             console.log('device=' + result[i][0] + ' status=' + result[i][1])
