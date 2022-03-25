@@ -55,9 +55,6 @@ getMediaLibrary(): MediaLibrary
 **示例：**
 
 ```js
-import featureAbility from '@ohos.ability.featureAbility';
-
-var context = featureAbility.getContext()
 var media = mediaLibrary.getMediaLibrary();
 ```
 
