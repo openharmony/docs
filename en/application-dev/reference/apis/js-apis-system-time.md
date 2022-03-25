@@ -1,355 +1,466 @@
-# Setting the System Time<a name="EN-US_TOPIC_0000001173920874"></a>
+# Setting the System Time
 
->![](../../public_sys-resources/icon-note.gif) **NOTE:** 
->The APIs of this module are supported since API version 7.
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
-## Modules to Import<a name="s56d19203690d4782bfc74069abb6bd71"></a>
+## Modules to Import
 
+  
 ```
 import systemTime from '@ohos.systemTime';
 ```
 
-## systemTime.setTime<a name="section982814256"></a>
 
-setTime\(time : number, callback : AsyncCallback<void\>\) : void
+## systemTime.setTime
 
-Set the system time. You must have the ohos.permission.SET\_TIME permission. The value is returned in callback mode.
+setTime(time : number, callback : AsyncCallback&lt;void&gt;) : void
 
--   Parameters
+Sets the system time. This API uses an asynchronous callback to return the result.
 
-    <a name="table69661135912"></a>
-    <table><thead align="left"><tr id="row149668318915"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p7966738914"><a name="p7966738914"></a><a name="p7966738914"></a>Name</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="28.110000000000003%" id="mcps1.1.5.1.2"><p id="p296713699"><a name="p296713699"></a><a name="p296713699"></a>Type</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="10.31%" id="mcps1.1.5.1.3"><p id="p196718315911"><a name="p196718315911"></a><a name="p196718315911"></a>Mandatory</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="46.760000000000005%" id="mcps1.1.5.1.4"><p id="p9967231197"><a name="p9967231197"></a><a name="p9967231197"></a>Description</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row99671533914"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p970454863617"><a name="p970454863617"></a><a name="p970454863617"></a>time</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="28.110000000000003%" headers="mcps1.1.5.1.2 "><p id="p638105118361"><a name="p638105118361"></a><a name="p638105118361"></a>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="10.31%" headers="mcps1.1.5.1.3 "><p id="p10368918379"><a name="p10368918379"></a><a name="p10368918379"></a>Yes</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="46.760000000000005%" headers="mcps1.1.5.1.4 "><p id="p1824111117261"><a name="p1824111117261"></a><a name="p1824111117261"></a>Timestamp to set, in milliseconds</p>
-    </td>
-    </tr>
-    <tr id="row18967831393"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p23472045113613"><a name="p23472045113613"></a><a name="p23472045113613"></a>callback</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="28.110000000000003%" headers="mcps1.1.5.1.2 "><p id="p228635433615"><a name="p228635433615"></a><a name="p228635433615"></a>AsyncCallback&lt;void&gt;</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="10.31%" headers="mcps1.1.5.1.3 "><p id="p149671932919"><a name="p149671932919"></a><a name="p149671932919"></a>Yes</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="46.760000000000005%" headers="mcps1.1.5.1.4 "><p id="p19675312911"><a name="p19675312911"></a><a name="p19675312911"></a>Callback used to process the received return value</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+**Required permissions**: ohos.permission.SET_TIME
 
--   Example
+**System capability**: SystemCapability.Miscservices.Time
 
-    ```
-    // Set the date and time to 2021-01-20 02:36:25.
-    var time = 1611081385000;
-    systemTime.setTime(time, (error, data) => {
-        if (error) {
-            console.error(`failed to systemTime.setTime because ` + JSON.stringify(error));
-            return;
-        }
-        console.log(`success to systemTime.setTime: ` + JSON.stringify(data));
-    });
-    ```
+- **Parameters**
+    | Name| Type| Mandatory| Description| 
+  | -------- | -------- | -------- | -------- |
+  | time | number | Yes| Timestamp to set, in milliseconds.| 
+  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to process the received return value.| 
+
+- Example
+    
+  ```
+  // Set the system time to 2021-01-20 02:36:25.
+  var time = 1611081385000;
+  systemTime.setTime(time, (error, data) => {
+      if (error) {
+          console.error(`failed to systemTime.setTime because ` + JSON.stringify(error));
+          return;
+      }
+      console.log(`systemTime.setTime success data : ` + JSON.stringify(data));
+  });
+  ```
 
 
-## systemTime.setTime<a name="section31619318454"></a>
+## systemTime.setTime
 
-setTime\(time : number\) : Promise<void\>
+setTime(time : number) : Promise&lt;void&gt;
 
-Set the system time. You must have the ohos.permission.SET\_TIME permission. The value is returned in promise mode.
+Sets the system time. This API uses a promise to return the result.
 
--   Parameters
+**Required permissions**: ohos.permission.SET_TIME
 
-    <a name="table26921924204918"></a>
-    <table><thead align="left"><tr id="row19692102424918"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p9692224194911"><a name="p9692224194911"></a><a name="p9692224194911"></a>Name</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="14.729999999999999%" id="mcps1.1.5.1.2"><p id="p1769214247491"><a name="p1769214247491"></a><a name="p1769214247491"></a>Type</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="9.16%" id="mcps1.1.5.1.3"><p id="p46927245491"><a name="p46927245491"></a><a name="p46927245491"></a>Mandatory</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="61.29%" id="mcps1.1.5.1.4"><p id="p6692324174910"><a name="p6692324174910"></a><a name="p6692324174910"></a>Description</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row4692192484915"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p0689153917498"><a name="p0689153917498"></a><a name="p0689153917498"></a>time</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="14.729999999999999%" headers="mcps1.1.5.1.2 "><p id="p08115441499"><a name="p08115441499"></a><a name="p08115441499"></a>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="9.16%" headers="mcps1.1.5.1.3 "><p id="p19671336916"><a name="p19671336916"></a><a name="p19671336916"></a>Yes</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="61.29%" headers="mcps1.1.5.1.4 "><p id="p26461059194919"><a name="p26461059194919"></a><a name="p26461059194919"></a>Timestamp to set, in milliseconds</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+**System capability**: SystemCapability.Miscservices.Time
 
+- **Parameters**
+    | Name| Type| Mandatory| Description| 
+  | -------- | -------- | -------- | -------- |
+  | time | number | Yes| Timestamp to set, in milliseconds.| 
 
--   Return values
+- Return value
+    | Type| Description| 
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise used to return the result.| 
 
-    <a name="table16391145317913"></a>
-    <table><thead align="left"><tr id="row2391145319910"><th class="cellrowborder" valign="top" width="20.45%" id="mcps1.1.3.1.1"><p id="p13911353991"><a name="p13911353991"></a><a name="p13911353991"></a>Type</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="79.55%" id="mcps1.1.3.1.2"><p id="p193911531395"><a name="p193911531395"></a><a name="p193911531395"></a>Description</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row1339114531391"><td class="cellrowborder" valign="top" width="20.45%" headers="mcps1.1.3.1.1 "><p id="p128951812478"><a name="p128951812478"></a><a name="p128951812478"></a>Promise&lt;void&gt;</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="79.55%" headers="mcps1.1.3.1.2 "><p id="p863645294616"><a name="p863645294616"></a><a name="p863645294616"></a>Callback returned in promise mode</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
-
--   Example
-
-    ```
-    // Set the date and time to 2021-01-20 02:36:25.
-    var time = 1611081385000;
-    systemTime.setTime(time).then((data) => {
-        console.log(`success to systemTime.setTime: ` + JSON.stringify(data));
-    }).catch((error) => {
-        console.error(`failed to systemTime.setTime because ` + JSON.stringify(error));
-    });
-    ```
+- Example
+    
+  ```
+  // Set the system time to 2021-01-20 02:36:25.
+  var time = 1611081385000;
+  systemTime.setTime(time).then((data) => {
+      console.log(`systemTime.setTime success data : ` + JSON.stringify(data));
+  }).catch((error) => {
+      console.error(`failed to systemTime.setTime because ` + JSON.stringify(error));
+  });
+  ```
 
 
-## systemTime.setDate<a name="section2771164881119"></a>
+## systemTime.getCurrentTime<sup>8+</sup>
 
-setDate\(date: Date, callback: AsyncCallback<void\>\): void
+getCurrentTime(isNano?: boolean, callback: AsyncCallback&lt;number&gt;): void
 
-Set the system date. You must have the ohos.permission.SET\_TIME permission. The value is returned in callback mode.
+Obtains the time elapsed since the Unix epoch. This API uses an asynchronous callback to return the result.
 
--   Parameters
+**System capability**: SystemCapability.Miscservices.Time
 
-    <a name="table1681904211503"></a>
-    <table><thead align="left"><tr id="row3819154212503"><th class="cellrowborder" valign="top" width="14.46841745582349%" id="mcps1.1.5.1.1"><p id="p1082034265013"><a name="p1082034265013"></a><a name="p1082034265013"></a>Name</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="25.9982427023333%" id="mcps1.1.5.1.2"><p id="p9820242105016"><a name="p9820242105016"></a><a name="p9820242105016"></a>Type</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="12.301083666894465%" id="mcps1.1.5.1.3"><p id="p682018424506"><a name="p682018424506"></a><a name="p682018424506"></a>Mandatory</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="47.232256174948745%" id="mcps1.1.5.1.4"><p id="p178200429507"><a name="p178200429507"></a><a name="p178200429507"></a>Description</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row12820742105011"><td class="cellrowborder" valign="top" width="14.46841745582349%" headers="mcps1.1.5.1.1 "><p id="p79671633910"><a name="p79671633910"></a><a name="p79671633910"></a>date</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="25.9982427023333%" headers="mcps1.1.5.1.2 "><p id="p11967433914"><a name="p11967433914"></a><a name="p11967433914"></a>Date</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="12.301083666894465%" headers="mcps1.1.5.1.3 "><p id="p1162123785218"><a name="p1162123785218"></a><a name="p1162123785218"></a>Yes</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="47.232256174948745%" headers="mcps1.1.5.1.4 "><p id="p69671631796"><a name="p69671631796"></a><a name="p69671631796"></a>Target date</p>
-    </td>
-    </tr>
-    <tr id="row482024265019"><td class="cellrowborder" valign="top" width="14.46841745582349%" headers="mcps1.1.5.1.1 "><p id="p39671131590"><a name="p39671131590"></a><a name="p39671131590"></a>callback</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="25.9982427023333%" headers="mcps1.1.5.1.2 "><p id="p126051952172518"><a name="p126051952172518"></a><a name="p126051952172518"></a>AsyncCallback&lt;void&gt;</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="12.301083666894465%" headers="mcps1.1.5.1.3 "><p id="p1882214210506"><a name="p1882214210506"></a><a name="p1882214210506"></a>Yes</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="47.232256174948745%" headers="mcps1.1.5.1.4 "><p id="p1822104212508"><a name="p1822104212508"></a><a name="p1822104212508"></a>Callback used to process the received return value</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+- **Parameters**
+    | Name| Type| Mandatory| Description| 
+  | -------- | -------- | -------- | -------- |
+  | isNano | boolean | No| Whether nanoseconds or milliseconds will be returned. If the value is **true**, nanoseconds will be returned. Otherwise, milliseconds will be returned.| 
+  | callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the time.| 
 
--   Example
-
-    ```
-    var data = new Date("October 13, 2020 11:13:00");
-    systemTime.setDate(data,(error, data) => {       
-        if (error) {            
-        console.error('SystemTimePlugin setDate failed because ' + JSON.stringify(error));           
-        return;       
-    }        
-        console.info('SystemTimePlugin setDate success data : ' + JSON.stringify(data));    
-    });
-    ```
+- Example
+    
+  ```
+  systemTime.getCurrentTime(true, (error, data) => {
+      if (error) {
+          console.error(`failed to systemTime.getCurrentTime because ` + JSON.stringify(error));
+          return;
+      }
+      console.log(`systemTime.getCurrentTime success data : ` + JSON.stringify(data));
+  });
+  ```
 
 
-## systemTime.setDate<a name="section596619465012"></a>
+## systemTime.getCurrentTime<sup>8+</sup>
 
-setDate\(date: Date\): Promise<void\>
+getCurrentTime(isNano?: boolean): Promise&lt;number&gt;
 
-Set the system date. You must have the ohos.permission.SET\_TIME permission. The value is returned in promise mode.
+Obtains the time elapsed since the Unix epoch. This API uses a promise to return the result.
 
--   Parameters
+**System capability**: SystemCapability.Miscservices.Time
 
-    <a name="table3305192618117"></a>
-    <table><thead align="left"><tr id="row33061262012"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p1230611261715"><a name="p1230611261715"></a><a name="p1230611261715"></a>Name</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="14.729999999999999%" id="mcps1.1.5.1.2"><p id="p430652616111"><a name="p430652616111"></a><a name="p430652616111"></a>Type</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="9.16%" id="mcps1.1.5.1.3"><p id="p0306112616110"><a name="p0306112616110"></a><a name="p0306112616110"></a>Mandatory</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="61.29%" id="mcps1.1.5.1.4"><p id="p930614264120"><a name="p930614264120"></a><a name="p930614264120"></a>Description</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row63069263118"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p7306226219"><a name="p7306226219"></a><a name="p7306226219"></a>date</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="14.729999999999999%" headers="mcps1.1.5.1.2 "><p id="p430615264118"><a name="p430615264118"></a><a name="p430615264118"></a>Date</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="9.16%" headers="mcps1.1.5.1.3 "><p id="p592475219117"><a name="p592475219117"></a><a name="p592475219117"></a>Yes</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="61.29%" headers="mcps1.1.5.1.4 "><p id="p830610266114"><a name="p830610266114"></a><a name="p830610266114"></a>Target date</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+- **Parameters**
+    | Name| Type| Mandatory| Description| 
+  | -------- | -------- | -------- | -------- |
+  | isNano | boolean | No| Whether nanoseconds or milliseconds will be returned. If the value is **true**, nanoseconds will be returned. Otherwise, milliseconds will be returned.| 
 
--   Return values
+- Return value
+    | Type| Description| 
+  | -------- | -------- |
+  | Promise&lt;number&gt; | Promise used to return the time.| 
 
-    <a name="table03077266115"></a>
-    <table><thead align="left"><tr id="row163079261911"><th class="cellrowborder" valign="top" width="22.03%" id="mcps1.1.3.1.1"><p id="p63077261313"><a name="p63077261313"></a><a name="p63077261313"></a>Type</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="77.97%" id="mcps1.1.3.1.2"><p id="p153071826219"><a name="p153071826219"></a><a name="p153071826219"></a>Description</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row130714268115"><td class="cellrowborder" valign="top" width="22.03%" headers="mcps1.1.3.1.1 "><p id="p73929531797"><a name="p73929531797"></a><a name="p73929531797"></a>Promise&lt;void&gt;</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="77.97%" headers="mcps1.1.3.1.2 "><p id="p1699815101432"><a name="p1699815101432"></a><a name="p1699815101432"></a>Callback returned in promise mode</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
-
--   Example
-
-    ```
-    var data = new Date("October 13, 2020 11:13:00"); 
-    systemTime.setDate(data).then((value) => {        
-        console.log(`SystemTimePlugin success to systemTime.setDate: ` + JSON.stringify(value));    
-    }).catch((error) => {        
-        console.error(`SystemTimePlugin failed to systemTime.setDate because: ` + JSON.stringify(error));
-    });
-    ```
+- Example
+    
+  ```
+  systemTime.getCurrentTime().then((data) => {
+      console.log(`systemTime.getCurrentTime success data : ` + JSON.stringify(data));
+  }).catch((error) => {
+      console.error(`failed to systemTime.getCurrentTime because ` + JSON.stringify(error));
+  });
+  ```
 
 
-## systemTime.setTimezone<a name="section1412025610420"></a>
+## systemTime.getRealActiveTime<sup>8+</sup>
 
-setTimezone\(timezone: string, callback: AsyncCallback<void\>\): void
+getRealActiveTime(isNano?: boolean, callback: AsyncCallback&lt;number&gt;): void
 
-Set the system time zone. You must have the ohos.permission.SET\_TIME\_ZONE permission. The value is returned in callback mode.
+Obtains the time elapsed since system start, excluding the deep sleep time. This API uses an asynchronous callback to return the result.
 
--   Parameters
+**System capability**: SystemCapability.Miscservices.Time
 
-    <a name="table1176953158"></a>
-    <table><thead align="left"><tr id="row8176165312517"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p141768531055"><a name="p141768531055"></a><a name="p141768531055"></a>Name</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="28.48%" id="mcps1.1.5.1.2"><p id="p01761953355"><a name="p01761953355"></a><a name="p01761953355"></a>Type</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="12.35%" id="mcps1.1.5.1.3"><p id="p31763533511"><a name="p31763533511"></a><a name="p31763533511"></a>Mandatory</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="44.35%" id="mcps1.1.5.1.4"><p id="p171763531510"><a name="p171763531510"></a><a name="p171763531510"></a>Description</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row191761753752"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p1906202016614"><a name="p1906202016614"></a><a name="p1906202016614"></a>timezone</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="28.48%" headers="mcps1.1.5.1.2 "><p id="p17176145315519"><a name="p17176145315519"></a><a name="p17176145315519"></a>string</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="12.35%" headers="mcps1.1.5.1.3 "><p id="p141772531456"><a name="p141772531456"></a><a name="p141772531456"></a>Yes</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="44.35%" headers="mcps1.1.5.1.4 "><p id="p81778538510"><a name="p81778538510"></a><a name="p81778538510"></a>System time zone</p>
-    </td>
-    </tr>
-    <tr id="row5706122620610"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p47071326467"><a name="p47071326467"></a><a name="p47071326467"></a>callback</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="28.48%" headers="mcps1.1.5.1.2 "><p id="p1870710261061"><a name="p1870710261061"></a><a name="p1870710261061"></a>AsyncCallback&lt;void&gt;</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="12.35%" headers="mcps1.1.5.1.3 "><p id="p197072262618"><a name="p197072262618"></a><a name="p197072262618"></a>Yes</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="44.35%" headers="mcps1.1.5.1.4 "><p id="p1670792610618"><a name="p1670792610618"></a><a name="p1670792610618"></a>Callback used to process the received return value</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+- **Parameters**
+    | Name| Type| Mandatory| Description| 
+  | -------- | -------- | -------- | -------- |
+  | isNano | boolean | No| Whether nanoseconds or milliseconds will be returned. If the value is **true**, nanoseconds will be returned. Otherwise, milliseconds will be returned.| 
+  | callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the time.| 
 
--   Example
-
-    ```
-    systemTime.setTimezone('Asia/Shanghai', (error, data) => {       
-        if (error) {          
-            console.error('SystemTimePlugin setTimezone failed because ' + JSON.stringify(error));          
-            return;       
-        }       
-        console.info('SystemTimePlugin setTimezone success data : ' + JSON.stringify(data)); 
-    });
-    ```
+- Example
+    
+  ```
+  systemTime.getRealActiveTime(true, (error, data) => {
+      if (error) {
+          console.error(`failed to systemTime.getRealActiveTimebecause ` + JSON.stringify(error));
+          return;
+      }
+      console.log(`systemTime.getRealActiveTime success data : ` + JSON.stringify(data));
+  });
+  ```
 
 
-## systemTime.setTimezone<a name="section8580990917"></a>
+## systemTime.getRealActiveTime<sup>8+</sup>
 
-setTimezone\(timezone: string\): Promise<void\>
+getRealActiveTime(isNano?: boolean): Promise&lt;number&gt;
 
-Set the system time zone. You must have the ohos.permission.SET\_TIME\_ZONE permission. The value is returned in promise mode.
+Obtains the time elapsed since system start, excluding the deep sleep time. This API uses a promise to return the result.
 
--   Parameters
+**System capability**: SystemCapability.Miscservices.Time
 
-    <a name="table9229203416911"></a>
-    <table><thead align="left"><tr id="row42307349918"><th class="cellrowborder" valign="top" width="14.82%" id="mcps1.1.5.1.1"><p id="p142309343913"><a name="p142309343913"></a><a name="p142309343913"></a>Name</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="14.729999999999999%" id="mcps1.1.5.1.2"><p id="p142307348918"><a name="p142307348918"></a><a name="p142307348918"></a>Type</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="9.16%" id="mcps1.1.5.1.3"><p id="p623003414912"><a name="p623003414912"></a><a name="p623003414912"></a>Mandatory</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="61.29%" id="mcps1.1.5.1.4"><p id="p62301342917"><a name="p62301342917"></a><a name="p62301342917"></a>Description</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row92301342914"><td class="cellrowborder" valign="top" width="14.82%" headers="mcps1.1.5.1.1 "><p id="p192303349914"><a name="p192303349914"></a><a name="p192303349914"></a>timezone</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="14.729999999999999%" headers="mcps1.1.5.1.2 "><p id="p172305341790"><a name="p172305341790"></a><a name="p172305341790"></a>string</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="9.16%" headers="mcps1.1.5.1.3 "><p id="p178271541012"><a name="p178271541012"></a><a name="p178271541012"></a>Yes</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="61.29%" headers="mcps1.1.5.1.4 "><p id="p11915237106"><a name="p11915237106"></a><a name="p11915237106"></a>System time zone</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+- **Parameters**
+    | Name| Type| Mandatory| Description| 
+  | -------- | -------- | -------- | -------- |
+  | isNano | boolean | No| Whether nanoseconds or milliseconds will be returned. If the value is **true**, nanoseconds will be returned. Otherwise, milliseconds will be returned.| 
 
--   Return values
+- Return value
+    | Type| Description| 
+  | -------- | -------- |
+  | Promise&lt;number&gt; | Promise used to return the time.| 
 
-    <a name="table182311434691"></a>
-    <table><thead align="left"><tr id="row1123118341890"><th class="cellrowborder" valign="top" width="23.05%" id="mcps1.1.3.1.1"><p id="p1523213413910"><a name="p1523213413910"></a><a name="p1523213413910"></a>Type</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="76.95%" id="mcps1.1.3.1.2"><p id="p1523243415918"><a name="p1523243415918"></a><a name="p1523243415918"></a>Description</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row73921953298"><td class="cellrowborder" valign="top" width="23.05%" headers="mcps1.1.3.1.1 "><p id="p15305153761717"><a name="p15305153761717"></a><a name="p15305153761717"></a>Promise&lt;void&gt;</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="76.95%" headers="mcps1.1.3.1.2 "><p id="p780206191118"><a name="p780206191118"></a><a name="p780206191118"></a>Callback returned in promise mode</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
-
--   Example
-
-    ```
-    systemTime.setTimezone('Asia/Shanghai').then((data) => {        
-        console.log(`SystemTimePlugin success to systemTime.setTimezone: ` + JSON.stringify(data));     
-    }).catch((error) => {        
-        console.error(`SystemTimePlugin failed to systemTime.setTimezone because: ` + JSON.stringify(error));    
-    });
-    ```
+- Example
+    
+  ```
+  systemTime.getCurrentTime().then((data) => {
+      console.log(`systemTime.getRealActiveTime success data : ` + JSON.stringify(data));
+  }).catch((error) => {
+      console.error(`failed to systemTime.getRealActiveTime because ` + JSON.stringify(error));
+  });
+  ```
 
 
+## systemTime.getRealTime<sup>8+</sup>
+
+getRealTime(callback: AsyncCallback&lt;number&gt;): void
+
+Obtains the time elapsed since system start, including the deep sleep time. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Miscservices.Time
+
+- **Parameters**
+    | Name| Type| Mandatory| Description| 
+  | -------- | -------- | -------- | -------- |
+  | isNano | boolean | No| Whether nanoseconds or milliseconds will be returned. If the value is **true**, nanoseconds will be returned. Otherwise, milliseconds will be returned.| 
+  | callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the time.| 
+
+- Example
+    
+  ```
+  systemTime.getRealTime(true, (error, data) => {
+      if (error) {
+          console.error(`failed to systemTime.getRealTime because ` + JSON.stringify(error));
+          return;
+      }
+      console.log(`systemTime.getRealTime success data: ` + JSON.stringify(data));
+  });
+  ```
+
+
+## systemTime.getRealTime<sup>8+</sup>
+
+getRealTime(): Promise&lt;number&gt;
+
+Obtains the time elapsed since system start, including the deep sleep time. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Miscservices.Time
+
+- **Parameters**
+    | Name| Type| Mandatory| Description| 
+  | -------- | -------- | -------- | -------- |
+  | isNano | boolean | No| Whether nanoseconds or milliseconds will be returned. If the value is **true**, nanoseconds will be returned. Otherwise, milliseconds will be returned.| 
+
+- Return value
+    | Type| Description| 
+  | -------- | -------- |
+  | Promise&lt;number&gt; | Promise used to return the time.| 
+
+- Example
+    
+  ```
+  systemTime.getRealTime().then((data) => {
+      console.log(`systemTime.getRealTime success data: ` + JSON.stringify(data));
+  }).catch((error) => {
+      console.error(`failed to systemTime.getRealTime because ` + JSON.stringify(error));
+  });
+  ```
+
+
+## systemTime.setDate
+
+setDate(date: Date, callback: AsyncCallback&lt;void&gt;): void
+
+Sets the system date. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.SET_TIME
+
+**System capability**: SystemCapability.Miscservices.Time
+
+- **Parameters**
+    | Name| Type| Mandatory| Description| 
+  | -------- | -------- | -------- | -------- |
+  | date | Date | Yes| Target date to set.| 
+  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to process the received return value.| 
+
+- Example
+    
+  ```
+  var data = new Date("October 13, 2020 11:13:00");
+  systemTime.setDate(data,(error, data) => {       
+      if (error) {            
+      console.error('failed to systemTime.setDate because ' + JSON.stringify(error));           
+      return;       
+  }        
+      console.info('systemTime.setDate success data : ' + JSON.stringify(data));    
+  });
+  ```
+
+
+## systemTime.setDate
+
+setDate(date: Date): Promise&lt;void&gt;
+
+Sets the system date. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.SET_TIME
+
+**System capability**: SystemCapability.Miscservices.Time
+
+- **Parameters**
+    | Name| Type| Mandatory| Description| 
+  | -------- | -------- | -------- | -------- |
+  | date | Date | Yes| Target date to set.| 
+
+- Return value
+    | Type| Description| 
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise used to return the result.| 
+
+- Example
+    
+  ```
+  var data = new Date("October 13, 2020 11:13:00"); 
+  systemTime.setDate(data).then((value) => {        
+      console.log(`systemTime.setDate success data : ` + JSON.stringify(value));    
+  }).catch((error) => {        
+      console.error(`failed to systemTime.setDate because: ` + JSON.stringify(error));
+  });
+  ```
+
+
+## systemTime.getDate<sup>8+</sup>
+
+getDate(callback: AsyncCallback&lt;Date&gt;): void
+
+Obtains the current system date. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Miscservices.Time
+
+- **Parameters**
+    | Name| Type| Mandatory| Description| 
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;Date&gt; | Yes| Callback used to return the current system date.| 
+
+- Example
+    
+  ```
+  systemTime.getDate((error, data) => {
+      if (error) {
+          console.error(`failed to systemTime.getDate because ` + JSON.stringify(error));
+          return;
+      }
+      console.log(`systemTime.getDate success data : ` + JSON.stringify(data));
+  });
+  ```
+
+
+## systemTime.getDate<sup>8+</sup>
+
+getDate(): Promise&lt;Date&gt;
+
+Obtains the current system date. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Miscservices.Time
+
+- Return value
+    | Type| Description| 
+  | -------- | -------- |
+  | Promise&lt;Date&gt; | Promise used to return the current system date.| 
+
+- Example
+    
+  ```
+  systemTime.getDate().then((data) => {
+      console.log(`systemTime.getDate success data : ` + JSON.stringify(data));
+  }).catch((error) => {
+      console.error(`failed to systemTime.getDate because ` + JSON.stringify(error));
+  });
+  ```
+
+
+## systemTime.setTimezone
+
+setTimezone(timezone: string, callback: AsyncCallback&lt;void&gt;): void
+
+Sets the system time zone. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.SET_TIME_ZONE
+
+**System capability**: SystemCapability.Miscservices.Time
+
+- **Parameters**
+    | Name| Type| Mandatory| Description| 
+  | -------- | -------- | -------- | -------- |
+  | timezone | string | Yes| System time zone to set.| 
+  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to process the received return value.| 
+
+- Example
+    
+  ```
+  systemTime.setTimezone('Asia/Shanghai', (error, data) => {       
+      if (error) {          
+          console.error('failed to systemTime.setTimezone because ' + JSON.stringify(error));         
+          return;       
+      }       
+      console.info('SystemTimePlugin systemTime.setTimezone success data : ' + JSON.stringify(data)); 
+  });
+  ```
+
+
+## systemTime.setTimezone
+
+setTimezone(timezone: string): Promise&lt;void&gt;
+
+Sets the system time zone. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.SET_TIME_ZONE
+
+**System capability**: SystemCapability.Miscservices.Time
+
+- **Parameters**
+    | Name| Type| Mandatory| Description| 
+  | -------- | -------- | -------- | -------- |
+  | timezone | string | Yes| System time zone to set.| 
+
+- Return value
+    | Type| Description| 
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise used to return the result.| 
+
+- Example
+    
+  ```
+  systemTime.setTimezone('Asia/Shanghai').then((data) => {        
+      console.log(`systemTime.setTimezone success data : ` + JSON.stringify(data));     
+  }).catch((error) => {        
+      console.error(`failed to systemTime.setTimezone because: ` + JSON.stringify(error));    
+  });
+  ```
+
+
+## systemTime.getTimezone<sup>8+</sup>
+
+getTimezone(callback: AsyncCallback&lt;string&gt;): void
+
+Obtains the system time zone. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Miscservices.Time
+
+- **Parameters**
+    | Name| Type| Mandatory| Description| 
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;string&gt; | Yes| Callback used to return the system time zone.| 
+
+- Example
+    
+  ```
+  systemTime.getTimezone((error, data) => {
+      if (error) {
+          console.error(`failed to systemTime.getTimezone because ` + JSON.stringify(error));
+          return;
+      }
+      console.log(`systemTime.getTimezone success data : ` + JSON.stringify(data));
+  });
+  ```
+
+
+## systemTime.getTimezone<sup>8+</sup>
+
+getTimezone(): Promise&lt;string&gt;
+
+Obtains the system time zone. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Miscservices.Time
+
+- Return value
+    | Type| Description| 
+  | -------- | -------- |
+  | Promise&lt;string&gt; | Promise used to return the system time zone.| 
+
+- Example
+    
+  ```
+  systemTime.getTimezone().then((data) => {
+      console.log(`systemTime.getTimezone success data : ` + JSON.stringify(data));
+  }).catch((error) => {
+      console.error(`failed to systemTime.getTimezone because ` + JSON.stringify(error));
+  });
+  ```
