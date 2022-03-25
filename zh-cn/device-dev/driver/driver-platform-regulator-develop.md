@@ -1,54 +1,43 @@
-# REGULATOR
+# Regulator
 
-- [概述](#1)
-    - [功能简介](#2)
-    - [基本概念](#3)
-    - [运作机制](#4)
-    - [约束与限制](#5)  
-- [开发指导](#6)
-    - [场景介绍](#7)
-    - [接口说明](#8)
-    - [开发步骤](#9)
 
-## 概述<a name="1"></a>
+## 概述
 
-### 功能简介<a name="2"></a>
+### 功能简介
 
-REGULATOR模块用于控制系统中某些设备的电压/电流供应。
+Regulator模块用于控制系统中某些设备的电压/电流供应。
 
-### 基本概念<a name="3"></a>
+### 基本概念
 
-REGULATOR模块用于控制系统中某些设备的电压/电流供应。在嵌入式系统（尤其是手机）中，控制耗电量很重要，直接影响到电池的续航时间。所以，如果系统中某一个模块暂时不需要使用，就可以通过REGULATOR关闭其电源供应；或者降低提供给该模块的电压、电流大小。
+Regulator模块用于控制系统中某些设备的电压/电流供应。在嵌入式系统（尤其是手机）中，控制耗电量很重要，直接影响到电池的续航时间。所以，如果系统中某一个模块暂时不需要使用，就可以通过Regulator关闭其电源供应；或者降低提供给该模块的电压、电流大小。
 
-### 运作机制<a name="4"></a>
+### 运作机制
 
-在HDF框架中，REGULATOR模块接口适配模式采用统一服务模式，这需要一个设备服务来作为REGULATOR模块的管理器，统一处理外部访问，这会在配置文件中有所体现。统一服务模式适合于同类型设备对象较多的情况，如REGULATOR可能同时具备十几个控制器，采用独立服务模式需要配置更多的设备节点，且服务会占据内存资源。
+在HDF框架中，Regulator模块接口适配模式采用统一服务模式，这需要一个设备服务来作为Regulator模块的管理器，统一处理外部访问，这会在配置文件中有所体现。统一服务模式适合于同类型设备对象较多的情况，如Regulator可能同时具备十几个控制器，采用独立服务模式需要配置更多的设备节点，且服务会占据内存资源。
 
-REGULATOR模块各分层的作用为：接口层提供打开设备，写入数据，关闭设备接口的能力。核心层主要提供绑定设备、初始化设备以及释放设备的能力。适配层实现其他具体的功能。
+Regulator模块各分层的作用为：接口层提供打开设备，写入数据，关闭设备接口的能力。核心层主要提供绑定设备、初始化设备以及释放设备的能力。适配层实现其他具体的功能。
 
 ![](../public_sys-resources/icon-note.gif) 说明：核心层可以调用接口层的函数，也可以通过钩子函数调用适配层函数，从而使得适配层间接的可以调用接口层函数，但是不可逆转接口层调用适配层函数。
 
-图 1 统一服务模式结构图
+**图 1** 统一服务模式结构图
 
 ![image1](figures/统一服务模式结构图.png)
 
 
 
+### 约束与限制
 
+Regulator模块当前仅支持轻量和小型系统内核（LiteOS）。
 
-### 约束与限制<a name="5"></a>
+## 开发指导
 
- REGULATOR模块当前仅支持轻量和小型系统内核（LiteOS） 。
+### 场景介绍
 
-## 开发指导<a name="6"></a>
+Regulator模块用于控制系统中某些设备的电压/电流供应。
 
-### 场景介绍<a name="7"></a>
+### 接口说明
 
-REGULATOR模块用于控制系统中某些设备的电压/电流供应。
-
-### 接口说明<a name="8"></a>
-
-通过以下RegulatorMethod中的函数调用REGULATOR驱动对应的函数。
+通过以下RegulatorMethod中的函数调用Regulator驱动对应的函数。
 
 RegulatorMethod定义：
 
@@ -70,25 +59,24 @@ struct RegulatorMethod {
 
 **表 1**  RegulatorMethod 结构体成员的回调函数功能说明
 
-<a name="table27410339187"></a>
 
 | 成员函数     | 入参                                                         | 返回值             | 功能             |
 | ------------ | ------------------------------------------------------------ | ------------------ | ---------------- |
-| open         | **node**：结构体指针，核心层regulator节点；                  | HDF_STATUS相关状态 | 打开设备         |
-| close        | **node**：结构体指针，核心层regulator节点；                  | HDF_STATUS相关状态 | 关闭设备         |
-| release      | **node**：结构体指针，核心层regulator节点；                  | HDF_STATUS相关状态 | 释放设备句柄     |
-| enable       | **node**：结构体指针，核心层regulator节点；                  | HDF_STATUS相关状态 | 使能             |
-| disable      | **node**：结构体指针，核心层regulator节点；                  | HDF_STATUS相关状态 | 禁用             |
-| forceDisable | **node**：结构体指针，核心层regulator节点；                  | HDF_STATUS相关状态 | 强制禁用         |
-| setVoltage   | **node**：结构体指针，核心层regulator节点； **minUv**：uint32_t变量，最小电压； **maxUv**：uint32_t变量，最大电压； | HDF_STATUS相关状态 | 设置输出电压范围 |
-| getVoltage   | **node**：结构体指针，核心层regulator节点； **voltage**：uint32_t指针，传出电压值； | HDF_STATUS相关状态 | 获取电压         |
-| setCurrent   | **node**：结构体指针，核心层regulator节点； **minUa**：uint32_t变量，最小电流； **maxUa**：uint32_t变量，最大电流； | HDF_STATUS相关状态 | 设置输出电流范围 |
-| getCurrent   | **node**：结构体指针，核心层regulator节点； **regCurrent**：uint32_t指针，传出电流值； | HDF_STATUS相关状态 | 获取电流         |
-| getStatus    | **node**：结构体指针，核心层regulator节点； **status**：uint32_t指针，传出状态值； | HDF_STATUS相关状态 | 获取设备状态     |
+| open         | **node**：结构体指针，核心层Regulator节点；                  | HDF_STATUS相关状态 | 打开设备         |
+| close        | **node**：结构体指针，核心层Regulator节点；                  | HDF_STATUS相关状态 | 关闭设备         |
+| release      | **node**：结构体指针，核心层Regulator节点；                  | HDF_STATUS相关状态 | 释放设备句柄     |
+| enable       | **node**：结构体指针，核心层Regulator节点；                  | HDF_STATUS相关状态 | 使能             |
+| disable      | **node**：结构体指针，核心层Regulator节点；                  | HDF_STATUS相关状态 | 禁用             |
+| forceDisable | **node**：结构体指针，核心层Regulator节点；                  | HDF_STATUS相关状态 | 强制禁用         |
+| setVoltage   | **node**：结构体指针，核心层Regulator节点；<br>**minUv**：uint32_t变量，最小电压；<br>**maxUv**：uint32_t变量，最大电压； | HDF_STATUS相关状态 | 设置输出电压范围 |
+| getVoltage   | **node**：结构体指针，核心层Regulator节点；<br>**voltage**：uint32_t指针，传出电压值； | HDF_STATUS相关状态 | 获取电压         |
+| setCurrent   | **node**：结构体指针，核心层Regulator节点；<br>**minUa**：uint32_t变量，最小电流；<br>**maxUa**：uint32_t变量，最大电流； | HDF_STATUS相关状态 | 设置输出电流范围 |
+| getCurrent   | **node**：结构体指针，核心层Regulator节点；<br>**regCurrent**：uint32_t指针，传出电流值； | HDF_STATUS相关状态 | 获取电流         |
+| getStatus    | **node**：结构体指针，核心层Regulator节点；<br>**status**：uint32_t指针，传出状态值； | HDF_STATUS相关状态 | 获取设备状态     |
 
-### 开发步骤<a name="9"></a>
+### 开发步骤
 
-REGULATOR模块适配包含以下四个步骤：
+Regulator模块适配包含以下四个步骤：
 
 - 实例化驱动入口。
 - 配置属性文件。
@@ -118,18 +106,18 @@ REGULATOR模块适配包含以下四个步骤：
 
      deviceNode信息与驱动入口注册相关，器件属性值与核心层RegulatorNode成员的默认值或限制范围有密切关系。
 
-     由于采用了统一服务模式，device_info.hcs文件中第一个设备节点必须为REGULATOR管理器，其各项参数必须如下设置：
+     由于采用了统一服务模式，device_info.hcs文件中第一个设备节点必须为Regulator管理器，其各项参数必须如下设置：
 
      | 成员名          | 值                                                           |
      | --------------- | ------------------------------------------------------------ |
      | policy          | 具体配置为0，不发布服务                                      |
      | priority        | 驱动启动优先级（0-200），值越大优先级越低,，优先级相同则不保证device的加载顺序。 |
      | permission      | 驱动权限                                                     |
-     | moduleName      | 固定为 HDF_PLATFORM_REGULATOR_MANAGER                        |
+     | moduleName      | 固定为HDF_PLATFORM_REGULATOR_MANAGER                        |
      | serviceName     | 固定为HDF_PLATFORM_REGULATOR_MANAGER                         |
      | deviceMatchAttr | 没有使用，可忽略                                             |
 
-     从第二个节点开始配置具体REGULATOR控制器信息，此节点并不表示某一路REGULATOR控制器，而是代表一个资源性质设备，用于描述一类REGULATOR控制器的信息。本例只有一个REGULATOR设备，如有多个设备，则需要在device_info文件增加deviceNode信息，以及在regulator\_config文件中增加对应的器件属性。
+     从第二个节点开始配置具体Regulator控制器信息，此节点并不表示某一路Regulator控制器，而是代表一个资源性质设备，用于描述一类Regulator控制器的信息。本例只有一个Regulator设备，如有多个设备，则需要在device_info文件增加deviceNode信息，以及在regulator\_config文件中增加对应的器件属性。
 
     - device_info.hcs 配置参考。
 
@@ -140,9 +128,9 @@ REGULATOR模块适配包含以下四个步骤：
            hostName = "platform_host";
            priority = 50;
            device_regulator :: device {
-               device0 :: deviceNode {	//为每一个REGULATOR控制器配置一个HDF设备节点，存在多个时添加，否则不用
-                   policy = 1;			// 2:用户态可见,1:内核态可见,0:不需要发布服务
-                   priority = 50;		// 驱动启动优先级
+               device0 :: deviceNode {	//为每一个Regulator控制器配置一个HDF设备节点，存在多个时添加，否则不用
+                   policy = 1;	        // 2:用户态可见,1:内核态可见,0:不需要发布服务
+                   priority = 50;	// 驱动启动优先级
                    permission = 0644;	// 驱动创建设备节点权限
                    /*【必要】用于指定驱动名称，需要与期望的驱动Entry中的moduleName一致；*/
                    moduleName = "HDF_PLATFORM_REGULATOR_MANAGER";		
@@ -165,49 +153,49 @@ REGULATOR模块适配包含以下四个步骤：
 
     - regulator\_config.hcs 配置参考。
 
-        ```
-        root {
-            platform {
-                regulator_config {
-                match_attr = "linux_regulator_adapter";
-                template regulator_controller {    //【必要】模板配置，继承该模板的节点如果使用模板中的默认值，则节点字段可以缺省
-                    device_num = 1;
-                    name = "";
-                    devName = "regulator_adapter_consumer01";
-                    supplyName = "";
-                    mode = 1;
-                    minUv = 0;
-                    maxUv = 20000;
-                    minUa = 0;
-                    maxUa = 0;
-                    }
-                controller_0x130d0000 :: regulator_controller {
-                    device_num = 1;
-                    name = "regulator_adapter_1";
-                    devName = "regulator_adapter_consumer01";
-                    supplyName = "virtual-regulator-hdf-adapter";
-                    mode = 1;
-                    minUv = 1000;
-                    maxUv = 50000;
-                    minUa = 0;
-                    maxUa = 0;
-                    }
-                          /*每个Regulator控制器对应一个controller节点，如存在多个Regulator控制器，请依次添加对应的controller节点。*/
-                controller_0x130d0001 :: regulator_controller {
-                    device_num = 1;
-                    name = "regulator_adapter_2";
-                    devName = "regulator_adapter_consumer01";
-                    supplyName = "virtual2-regulator-hdf-adapter";
-                    mode = 2;
-                    minUv = 0;
-                    maxUv = 0;
-                    minUa = 1000;
-                    maxUa = 50000;
-                    }
-                }
-            }
-        }
-        ```
+      ```
+      root {
+          platform {
+              regulator_config {
+              match_attr = "linux_regulator_adapter";
+              template regulator_controller {    //【必要】模板配置，继承该模板的节点如果使用模板中的默认值，则节点字段可以缺省
+                  device_num = 1;
+                  name = "";
+                  devName = "regulator_adapter_consumer01";
+                  supplyName = "";
+                  mode = 1;
+                  minUv = 0;
+                  maxUv = 20000;
+                  minUa = 0;
+                  maxUa = 0;
+                  }
+              controller_0x130d0000 :: regulator_controller {
+                  device_num = 1;
+                  name = "regulator_adapter_1";
+                  devName = "regulator_adapter_consumer01";
+                  supplyName = "virtual-regulator-hdf-adapter";
+                  mode = 1;
+                  minUv = 1000;
+                  maxUv = 50000;
+                  minUa = 0;
+                  maxUa = 0;
+                  }
+              /*每个Regulator控制器对应一个controller节点，如存在多个Regulator控制器，请依次添加对应的controller节点。*/
+              controller_0x130d0001 :: regulator_controller {
+                  device_num = 1;
+                  name = "regulator_adapter_2";
+                  devName = "regulator_adapter_consumer01";
+                  supplyName = "virtual2-regulator-hdf-adapter";
+                  mode = 2;
+                  minUv = 0;
+                  maxUv = 0;
+                  minUa = 1000;
+                  maxUa = 50000;
+                  }
+              }
+          }
+      }
+      ```
 
 3.  **实例化核心层接口函数：**
     
@@ -256,7 +244,7 @@ REGULATOR模块适配包含以下四个步骤：
     - 实例化RegulatorNode成员RegulatorMethod，其他成员在Init函数中初始化。
     
       ```c
-        // regulator_virtual.c 中的示例：钩子函数的填充
+      // regulator_virtual.c 中的示例：钩子函数的填充
       static struct RegulatorMethod g_method = {
           .enable = VirtualRegulatorEnable,
           .disable = VirtualRegulatorDisable,
@@ -272,59 +260,60 @@ REGULATOR模块适配包含以下四个步骤：
     
     - Init函数参考
     
-        入参：
+       入参：
     
-        HdfDeviceObject 是整个驱动对外暴露的接口参数，具备 HCS 配置文件的信息。
+       HdfDeviceObject 是整个驱动对外暴露的接口参数，具备 HCS 配置文件的信息。
         
-        返回值：
+       返回值：
         
-        HDF\_STATUS相关状态  （下表为部分展示，如需使用其他状态，可见//drivers/framework/include/utils/hdf\_base.h中HDF\_STATUS 定义）。
+       HDF\_STATUS相关状态（下表为部分展示，如需使用其他状态，可见//drivers/framework/include/utils/hdf\_base.h中HDF\_STATUS 定义）。
         
-        **表 2**  HDF\_STATUS相关状态
+       **表 2**  HDF\_STATUS相关状态
     
-    | 状态(值)               | 问题描述       |
-    | ---------------------- | -------------- |
-    | HDF_ERR_INVALID_OBJECT | 控制器对象非法 |
-    | HDF_ERR_MALLOC_FAIL    | 内存分配失败   |
-    | HDF_ERR_INVALID_PARAM  | 参数非法       |
-    | HDF_ERR_IO             | I/O 错误       |
-    | HDF_SUCCESS            | 初始化成功     |
-    | HDF_FAILURE            | 初始化失败     |
+       | 状态(值)               | 问题描述       |
+       | ---------------------- | -------------- |
+       | HDF_ERR_INVALID_OBJECT | 控制器对象非法 |
+       | HDF_ERR_MALLOC_FAIL    | 内存分配失败   |
+       | HDF_ERR_INVALID_PARAM  | 参数非法       |
+       | HDF_ERR_IO             | I/O 错误       |
+       | HDF_SUCCESS            | 初始化成功     |
+       | HDF_FAILURE            | 初始化失败     |
     
-     函数说明：
+       函数说明：
     
-     初始化自定义结构体和RegulatorNode成员，并通过调用核心层RegulatorNodeAdd函数挂载Regulator控制器。
+       初始化自定义结构体和RegulatorNode成员，并通过调用核心层RegulatorNodeAdd函数挂载Regulator控制器。
     
-      ```c
-    static int32_t VirtualRegulatorInit(struct HdfDeviceObject *device)
-    {
-          int32_t ret;
-          const struct DeviceResourceNode *childNode = NULL;
-          ...
-          DEV_RES_NODE_FOR_EACH_CHILD_NODE(device->property, childNode) {
-          ret = VirtualRegulatorParseAndInit(device, childNode);//【必要】实现见下
-          ...
-          }
-          ...
-    }
+
+       ```c
+       static int32_t VirtualRegulatorInit(struct HdfDeviceObject *device)
+       {
+           int32_t ret;
+           const struct DeviceResourceNode *childNode = NULL;
+           ...
+           DEV_RES_NODE_FOR_EACH_CHILD_NODE(device->property, childNode) {
+           ret = VirtualRegulatorParseAndInit(device, childNode);//【必要】实现见下
+           ...
+           }
+           ...
+       }
     
-    static int32_t VirtualRegulatorParseAndInit(struct HdfDeviceObject *device, const struct DeviceResourceNode *node)
-    {
-          int32_t ret;
-          struct RegulatorNode *regNode = NULL;
-          (void)device;
+       static int32_t VirtualRegulatorParseAndInit(struct HdfDeviceObject *device, const struct DeviceResourceNode *node)
+       {
+           int32_t ret;
+           struct RegulatorNode *regNode = NULL;
+           (void)device;
     
-          regNode = (struct RegulatorNode *)OsalMemCalloc(sizeof(*regNode));//加载HCS文件
-          ...
-          ret = VirtualRegulatorReadHcs(regNode, node);//读取HCS文件信息
-          ...
-          regNode->priv = (void *)node;    //实例化节点
-          regNode->ops = &g_method;        //实例化ops
+           regNode = (struct RegulatorNode *)OsalMemCalloc(sizeof(*regNode));//加载HCS文件
+           ...
+           ret = VirtualRegulatorReadHcs(regNode, node);//读取HCS文件信息
+           ...
+           regNode->priv = (void *)node;    //实例化节点
+           regNode->ops = &g_method;        //实例化ops
     
-          ret = RegulatorNodeAdd(regNode); //挂载节点
-          ...
-    }
-      ```
+           ret = RegulatorNodeAdd(regNode); //挂载节点
+           ...
+       }
+       ```
     
     -   Release 函数参考
         
