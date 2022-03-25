@@ -798,7 +798,7 @@ getAllAccessibleAccounts(callback: AsyncCallback&lt;Array&lt;AppAccountInfo&gt;&
 
 获取全部应用已授权帐号信息。
 
-**需要权限：** ohos.permission.GET_ACCOUNTS_PRIVILEGED，仅系统应用可用。
+**需要权限：** ohos.permission.GET_ALL_APP_ACCOUNTS，仅系统应用可用。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -824,7 +824,7 @@ getAllAccessibleAccounts(): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 
 获取全部应用已授权帐号信息。
 
-**需要权限：** ohos.permission.GET_ACCOUNTS_PRIVILEGED，仅系统应用可用。
+**需要权限：** ohos.permission.GET_ALL_APP_ACCOUNTS，仅系统应用可用。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -851,7 +851,7 @@ getAllAccounts(owner: string, callback: AsyncCallback&lt;Array&lt;AppAccountInfo
 
 获取指定应用全部帐号信息。
 
-**需要权限：** ohos.permission.GET_ACCOUNTS_PRIVILEGED，仅系统应用可用。
+**需要权限：** ohos.permission.GET_ALL_APP_ACCOUNTS，仅系统应用可用。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -879,7 +879,7 @@ getAllAccounts(owner: string): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 
 获取指定应用全部帐号信息。
 
-**需要权限：** ohos.permission.GET_ACCOUNTS_PRIVILEGED，仅系统应用可用。
+**需要权限：** ohos.permission.GET_ALL_APP_ACCOUNTS，仅系统应用可用。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
