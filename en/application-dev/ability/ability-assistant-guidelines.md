@@ -71,16 +71,17 @@ The ability assistant is pre-installed in the device environment. You can direct
 
   Prints ability related information.
 
-  | Name                  | Description                              |
-  | ---------------------- | -------------------------------------- |
-  | -h/--help              | Help information.                            |
-  | -a/--all               | Ability information in all missions.          |
-  | -s/--stack \<number>   | Ability information in a specified mission stack.    |
-  | -m/--mission \<number> | Ability information in a specified mission.          |
-  | -l/--stack-list        | Mission list in each mission stack.|
-  | -u/--ui                | System UI ability information.               |
-  | -e/--serv              | Service ability information.                 |
-  | -d/--data              | Data ability information.                    |
+  | Name             | Level-2 Parameter            | Description                                                    |
+  | ----------------- | -------------------- | ------------------------------------------------------------ |
+  | -h/--help         | -                    | Prints help information.                                                  |
+  | -a/--all          | -                    | Prints ability information in all missions.                                |
+  | -l/--mission-list | type (All logs are printed if this parameter is left unspecified.)| Prints mission stack information.<br>The following values are available for **type**:<br>NORMAL <br>DEFAULT_STANDARD<br>DEFAULT_SINGLE<br>LAUNCHER |
+  | -e/--extension    | elementName          | Prints extended component information.                                          |
+  | -u/--userId       | UserId               | Prints stack information of a specified user ID. This parameter must be used together with other parameters. Example commands: aa **dump -a -u 100** and **aa dump -d -u 100**.|
+  | -d/--data         |                      | Prints Data ability information.                                          |
+  | -i/--ability      | AbilityRecord ID     | Prints detailed information about a specified ability.                                     |
+  | -c/--client       |                      | Prints detailed ability information. This parameter must be used together with other parameters. Example commands: **aa dump -a -c** and **aa dump -i 21 -c**.|
+  
 
   **Method**
 
