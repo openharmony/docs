@@ -127,6 +127,13 @@
             - [自定义组件生命周期回调函数](ts-custom-component-lifecycle-callbacks.md)
             - [组件创建和重新初始化示例](ts-component-creation-re-initialization.md)
         - [语法糖](ts-syntactic-sugar.md)
+    - 常见组件开发指导
+        - [Button开发指导](ui-ts-basic-components-button.md)
+        - [Web开发指导](ui-ts-components-web.md)
+    - 常见布局开发指导
+        - [弹性布局](ui-ts-layout-flex.md)
+        - [栅格布局](ui-ts-layout-grid-container.md)
+        - [媒体查询](ui-ts-layout-mediaquery.md)
     - 体验声明式UI
         - [创建声明式UI工程](ui-ts-creating-project.md)
         - [初识Component](ui-ts-components.md)
