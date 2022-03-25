@@ -24,10 +24,10 @@
 
 FA卡片开发，即基于[FA模型](fa-brief.md)的卡片提供方开发，主要涉及如下功能逻辑：
 
-- 卡片生命周期回调函数FormAbility开发。
+- 开发卡片生命周期回调函数FormAbility。
 - 创建卡片数据FormBindingData对象。
 - 通过FormProvider更新卡片。
-- 卡片页面开发。
+- 开发卡片页面。
 
 ## 接口说明
 
@@ -164,7 +164,7 @@ Form需要在应用配置文件config.json中进行配置。
   | scheduledUpdateTime | 表示卡片的定点刷新的时刻，采用24小时制，精确到分钟。         | 字符串     | 可缺省，缺省值为“0:0”。  |
   | updateDuration      | 表示卡片定时刷新的更新周期，单位为30分钟，取值为自然数。<br />当取值为0时，表示该参数不生效。<br />当取值为正整数N时，表示刷新周期为30*N分钟。 | 数值       | 可缺省，缺省值为“0”。    |
   | formConfigAbility   | 表示用于调整卡片的设施或活动的名称。                         | 字符串     | 可缺省，缺省值为空。     |
-  | formVisibleNotify   | 标识是否允许卡片使用卡片可见性通知                           | 字符串     | 可缺省，缺省值为空。     |
+  | formVisibleNotify   | 标识是否允许卡片使用卡片可见性通知。                         | 字符串     | 可缺省，缺省值为空。     |
   | jsComponentName     | 表示JS卡片的Component名称。字符串最大长度为127字节。仅当卡片类型为JS卡片时，需要配置该标签。 | 字符串     | 否                       |
   | metaData            | 表示卡片的自定义信息，包含customizeData数组标签。            | 对象       | 可缺省，缺省值为空。     |
   | customizeData       | 表示自定义的卡片信息。                                       | 对象数组   | 可缺省，缺省值为空。     |

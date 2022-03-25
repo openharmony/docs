@@ -61,6 +61,12 @@ SystemCapability.Ability.Form
   | formId | string | 是   | 卡片标识                               |
   | minute | number | 是   | 指定多久之后更新，单位分钟，大于等于5     |
 
+**返回值：**
+
+  | 类型          | 说明                              |
+  | ------------- | ---------------------------------- |
+  | Promise\<void> |Promise实例，用于获取异步返回结果。      |
+
 **示例：**
 
   ```js
@@ -117,6 +123,12 @@ SystemCapability.Ability.Form
   | ------ | ---------------------------------------------------------------------- | ---- | ---------------- |
   | formId | string                                                                 | 是   | 请求更新的卡片标识 |
   | formBindingData | [FormBindingData](js-apis-formbindingdata.md#formbindingdata) | 是   | 用于更新的数据    |
+
+**返回值：**
+
+| 类型           | 说明                                |
+| -------------- | ----------------------------------- |
+| Promise\<void> | Promise实例，用于获取异步返回结果。 |
 
 **示例：**
 

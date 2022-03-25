@@ -16,13 +16,12 @@
 
 ## 开发步骤
 
-### 创建Service<a name="section17436202895812"></a>
+### 创建Service
 
-1.Service也是一种Ability，Ability为Service提供了以下生命周期方法，开发者可以重写这些方法，来添加其他Ability请求与Service Ability交互时的处理方法。
-
-
+1. Service也是一种Ability，Ability为Service提供了以下生命周期方法，开发者可以重写这些方法，来添加其他Ability请求与Service Ability交互时的处理方法。
+   
    创建Service的代码示例如下：
-
+   
    ```javascript
    export default {
        onStart(want) {
@@ -43,11 +42,11 @@
    }
    ```
 
-2.注册Service。
+2. 注册Service。
 
-    Service也需要在应用配置文件config.json中进行注册，注册类型type需要设置为service。
-    
-    ```javascript
+   Service也需要在应用配置文件config.json中进行注册，注册类型type需要设置为service。
+   
+   ```javascript
     {
         "module": {
             "abilities": [         
@@ -62,13 +61,11 @@
         }
         ...
     }
-    ```
+   ```
 
 
-​    
 
-
-### 启动Service<a name="section944219415599"></a>
+### 启动Service
 
 Ability为开发者提供了startAbility()方法来启动另外一个Ability。因为Service也是Ability的一种，开发者同样可以通过将Want传递给该方法来启动Service。
 
@@ -92,9 +89,9 @@ var promise = await featureAbility.startAbility(
 ); 
 ```
 
-- 执行上述代码后，Ability将通过startAbility() 方法来启动Service。
-  - 如果Service尚未运行，则系统会先调用onStart()来初始化Service，再回调Service的onCommand()方法来启动Service。
-  - 如果Service正在运行，则系统会直接回调Service的onCommand()方法来启动Service。
+执行上述代码后，Ability将通过startAbility() 方法来启动Service。
+- 如果Service尚未运行，则系统会先调用onStart()来初始化Service，再回调Service的onCommand()方法来启动Service。
+- 如果Service正在运行，则系统会直接回调Service的onCommand()方法来启动Service。
 
 
 
@@ -104,7 +101,7 @@ var promise = await featureAbility.startAbility(
 
   
 
-### 连接本地Service<a name="section126857614018"></a>
+### 连接本地Service
 
 如果Service需要与Page Ability或其他应用的Service Ability进行交互，则须创建用于连接的Connection。Service支持其他Ability通过connectAbility()方法与其进行连接。
 
@@ -183,7 +180,7 @@ export default {
 }
 ```
 
-### 连接远程Service<a name="section126857614019"></a>(当前仅对系统应用开放)
+### 连接远程Service（当前仅对系统应用开放）
 
 如果Service需要与Page Ability或其他应用的Service Ability进行跨设备交互，则须创建用于连接的Connection。Service支持其他Ability通过connectAbility()方法与其进行跨设备连接。
 
