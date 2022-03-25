@@ -22,7 +22,7 @@ OpenHarmony通过ANS（Advanced Notification Service，通知系统服务）对�
 
 系统应用还支持通知相关配置，如使能开关、配置参数由系统配置发起请求，发送到ANS存储到内存和数据库。
 
-![1648113187545](.\figures\notification.png)
+![1648113187545](figures/notification.png)
 
 
 
