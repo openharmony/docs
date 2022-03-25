@@ -327,7 +327,7 @@ export default {
 
 ## 开发实例
 
-针对serviceAbility开发，有以下示例工程可供参考：
+### 针对serviceAbility开发，有以下示例工程可供参考：
 
 - [eTSServiceAbility](https://gitee.com/openharmony/app_samples/tree/master/ability/eTSServiceAbility)
 
@@ -337,7 +337,8 @@ export default {
 
 在MainAbility目录中封装了启动、连接本地Services的流程。
 
-针对跨设备serviceAbility开发，有以下示例工程可供参考：
+
+### 针对跨设备serviceAbility开发，有以下示例工程可供参考：
 
 - [DMS](https://gitee.com/openharmony/app_samples/tree/master/ability/DMS)
 
