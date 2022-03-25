@@ -21,7 +21,7 @@ enableHotspot(): boolean;
   ohos.permission.MANAGE_WIFI_HOTSPOT_EXT
 
 - 系统能力：
-  SystemCapability.Communication.WiFi.HotspotExt
+  SystemCapability.Communication.WiFi.AP.Extension
 
 - 返回值：
   | **类型** | **说明** |
@@ -39,7 +39,7 @@ disableHotspot(): boolean;
   ohos.permission.MANAGE_WIFI_HOTSPOT_EXT
 
 - 系统能力：
-  SystemCapability.Communication.WiFi.HotspotExt
+  SystemCapability.Communication.WiFi.AP.Extension
 
 - 返回值：
   | **类型** | **说明** |
@@ -57,7 +57,7 @@ getSupportedPowerModel(): Promise&lt;Array&lt;PowerModel&gt;&gt;
   ohos.permission.GET_WIFI_INFO
 
 - 系统能力：
-  SystemCapability.Communication.WiFi.HotspotExt
+  SystemCapability.Communication.WiFi.AP.Extension
 
 - 返回值：
   | 类型 | 说明 |
@@ -86,7 +86,7 @@ getSupportedPowerModel(callback: AsyncCallback&lt;Array&lt;PowerModel&gt;&gt;): 
   ohos.permission.GET_WIFI_INFO
 
 - 系统能力：
-  SystemCapability.Communication.WiFi.HotspotExt
+  SystemCapability.Communication.WiFi.AP.Extension
 
 - 参数
   | 参数名 | 类型 | 必填 | 说明 |
@@ -104,7 +104,7 @@ getPowerModel(): Promise&lt;PowerModel&gt;
   ohos.permission.GET_WIFI_INFO
 
 - 系统能力：
-  SystemCapability.Communication.WiFi.HotspotExt
+  SystemCapability.Communication.WiFi.AP.Extension
 
 - 返回值：
   | 类型 | 说明 |
@@ -122,7 +122,7 @@ getPowerModel(callback: AsyncCallback&lt;PowerModel&gt;): void
   ohos.permission.GET_WIFI_INFO
 
 - 系统能力：
-  SystemCapability.Communication.WiFi.HotspotExt
+  SystemCapability.Communication.WiFi.AP.Extension
 
 - 参数
   | 参数名 | 类型 | 必填 | 说明 |
@@ -140,7 +140,7 @@ setPowerModel(model: PowerModel) : boolean;
   ohos.permission.MANAGE_WIFI_HOTSPOT_EXT
 
 - 系统能力：
-  SystemCapability.Communication.WiFi.HotspotExt
+  SystemCapability.Communication.WiFi.AP.Extension
 
 - 参数
   | 参数名 | 类型 | 必填 | 说明 |
