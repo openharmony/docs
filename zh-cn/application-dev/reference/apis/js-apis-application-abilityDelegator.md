@@ -20,7 +20,7 @@ addAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<void>): void
 
 添加AbilityMonitor实例（callback形式）
 
-**系统能力：**SystemCapability.Ability.AbilityRuntime.Core
+**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -222,7 +222,7 @@ waitAbilityMonitor(monitor: AbilityMonitor, timeout: number, callback: AsyncCall
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | monitor  | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor) | 是   | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor)实例 |
-| timeout  | number                                                       | 是   | 最大等待时间，单位毫秒                                       |
+| timeout  | number                                                       | 是   | 最大等待时间，单位毫秒（ms）                                 |
 | callback | AsyncCallback\<[Ability](js-apis-application-ability.md#Ability)> | 是   | 表示指定的回调方法                                           |
 
 **示例：**
@@ -252,7 +252,7 @@ abilityDelegator.waitAbilityMonitor(monitor, timeout, (err, data) => {
 
 waitAbilityMonitor(monitor: AbilityMonitor, timeout?: number): Promise\<Ability>
 
-等待与AbilityMonitor实例匹配的ability到达OnCreate生命周期，并返回ability实例（promise形式）
+设置等待时间，等待与AbilityMonitor实例匹配的ability到达OnCreate生命周期，并返回ability实例（promise形式）
 
 **系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
@@ -261,7 +261,7 @@ waitAbilityMonitor(monitor: AbilityMonitor, timeout?: number): Promise\<Ability>
 | 参数名  | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | monitor | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor) | 是   | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor)实例 |
-| timeout | number                                                       | 否   | 最大等待时间，单位毫秒                                       |
+| timeout | number                                                       | 否   | 最大等待时间，单位毫秒（ms）                                 |
 
 **返回值：**
 
@@ -718,17 +718,17 @@ abilityDelegator.executeShellCommand(cmd, (err, data) => {
 
 executeShellCommand(cmd: string, timeoutSecs: number, callback: AsyncCallback\<ShellCmdResult>): void
 
-执行指定的shell命令（callback形式）
+指定超时时间，并执行指定的shell命令（callback形式）
 
 **系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
-| 参数名      | 类型                                                         | 必填 | 说明               |
-| ----------- | ------------------------------------------------------------ | ---- | ------------------ |
-| cmd         | string                                                       | 是   | shell命令字符串    |
-| timeoutSecs | number                                                       | 是   | 设定时间，单位秒   |
-| callback    | AsyncCallback\<[ShellCmdResult](js-apis-application-shellCmdResult.md#ShellCmdResult)> | 是   | 表示指定的回调方法 |
+| 参数名      | 类型                                                         | 必填 | 说明                          |
+| ----------- | ------------------------------------------------------------ | ---- | ----------------------------- |
+| cmd         | string                                                       | 是   | shell命令字符串               |
+| timeoutSecs | number                                                       | 是   | 设定命令超时时间，单位秒（s） |
+| callback    | AsyncCallback\<[ShellCmdResult](js-apis-application-shellCmdResult.md#ShellCmdResult)> | 是   | 表示指定的回调方法            |
 
 **示例：**
 
@@ -749,16 +749,16 @@ abilityDelegator.executeShellCommand(cmd, timeout, (err, data) => {
 
 executeShellCommand(cmd: string, timeoutSecs: number): Promise\<ShellCmdResult>
 
-执行指定的shell命令（promise形式）
+指定超时时间，并执行指定的shell命令（promise形式）
 
 **系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
-| 参数名      | 类型   | 必填 | 说明             |
-| ----------- | ------ | ---- | ---------------- |
-| cmd         | string | 是   | shell命令字符串  |
-| timeoutSecs | number | 否   | 设定时间，单位秒 |
+| 参数名      | 类型   | 必填 | 说明                          |
+| ----------- | ------ | ---- | ----------------------------- |
+| cmd         | string | 是   | shell命令字符串               |
+| timeoutSecs | number | 否   | 设定命令超时时间，单位秒（s） |
 
 **返回值：**
 
