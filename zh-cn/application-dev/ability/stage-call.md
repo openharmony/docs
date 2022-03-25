@@ -141,7 +141,7 @@ var caller = undefined
 let context = this.context
 
 context.startAbilityByCall({
-    deviceId: "remoteDeviceId",
+    deviceId: "getRemoteDeviceId()",
     bundleName: 'com.samples.CallApplication',
     abilityName: 'CalleeAbility'
 }).then((data) => {
