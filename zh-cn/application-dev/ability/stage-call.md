@@ -160,6 +160,8 @@ context.startAbilityByCall({
 ```
 从DeviceManager获取指定设备的deviceId，具体示例代码如下：
 ```ts
+import deviceManager from '@ohos.distributedHardware.deviceManager';
+var dmClass;
 function getRemoteDeviceId() {
     if (typeof dmClass === 'object' && dmClass != null) {
         var list = dmClass.getTrustedDeviceListSync();
