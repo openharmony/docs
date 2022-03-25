@@ -33,11 +33,11 @@ IDE文档中介绍，待IDE文档上库补充链接。
 
 ## TestRunner介绍
 
-TestRunner是测试框架测试流程入口类，当测试流程启动时，系统会调用TestRunner内相关接口，开发者需要派生该类，并重写onPrepare、onRun方法。IDE在创建应用模板时会初始化一个默认TestRunner，并在onRun方法启动默认的TestAbility。开发者也可以修改TestAbility测试代码内容，也可以修改默认的TestRunner内onPrepare、onRun方法，自行实现测试代码。具体详细内容请参考TestRunnerAPI接口说明[TestRunner](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-testRunner.md)。
+TestRunner是测试框架测试流程入口类，当测试流程启动时，系统会调用TestRunner内相关接口，开发者需要派生该类，并重写onPrepare、onRun方法。IDE在创建应用模板时会初始化一个默认TestRunner，并在onRun方法启动默认的TestAbility。开发者也可以修改TestAbility测试代码内容，也可以修改默认的TestRunner内onPrepare、onRun方法，自行实现测试代码。具体详细内容请参考TestRunnerAPI接口说明[TestRunner](../reference/apis/js-apis-testRunner.md)。
 
 ## AbilityMonitor介绍
 
-AbilityMonitor是测试框架提供用来绑定并监听Ability类，开发者可以使用AbilityMonitor绑定Ability，并将AbilityMonitor添加到监听列表。绑定后Ability的创建、生命周期变化等会触发AbilityMonitor内相关回调函数，开发者可以在对应回调函数内进行测试验证。具体详细内容请参考AbilityMonitor API接口说明[AbilityMonitor](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-application-abilityMonitor.md)。
+AbilityMonitor是测试框架提供用来绑定并监听Ability类，开发者可以使用AbilityMonitor绑定Ability，并将AbilityMonitor添加到监听列表。绑定后Ability的创建、生命周期变化等会触发AbilityMonitor内相关回调函数，开发者可以在对应回调函数内进行测试验证。具体详细内容请参考AbilityMonitor API接口说明[AbilityMonitor](../reference/apis/js-apis-application-abilityMonitor.md)。
 
 **示例**
 
@@ -112,7 +112,7 @@ abilityDelegator.startAbility(want, (err, data) => {
 
 ### 调度Ability生命周期
 
-AbilityDelegator提供对Ability生命周期进行显示调度，支持Foreground、Background，配合AbilityMonitor中对Ability生命周期监听方法，可以完整的测试Ability生命周期变化。具体详细内容请参考AbilityDelegator API接口说明[AbilityDelegator](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-application-abilityDelegator.md#abilitydelegator)。
+AbilityDelegator提供对Ability生命周期进行显示调度，支持Foreground、Background，配合AbilityMonitor中对Ability生命周期监听方法，可以完整的测试Ability生命周期变化。具体详细内容请参考AbilityDelegator API接口说明[AbilityDelegator](../reference/apis/js-apis-application-abilityDelegator.md)。
 
 ### 执行shellCMD命令
 
