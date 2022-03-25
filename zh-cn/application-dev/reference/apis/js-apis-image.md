@@ -39,7 +39,7 @@ image.createPixelMap(Color, opts)
 
 ## image.createPixelMap<sup>8+</sup>
 
-createPixelMap(colors: ArrayBuffer, opts: InitializetionOptions) callback: AsyncCallback\<PixelMap>): void
+createPixelMap(colors: ArrayBuffer, options: InitializetionOptions, callback: AsyncCallback\<PixelMap>): void
 
 通过属性创建PixelMap，通过回调函数返回结果。
 
@@ -799,7 +799,7 @@ const imagePackerApi = image.createImagePacker();
 
 ### packing
 
-packing(source: ImageSource, option: PackingOption, callback: AsyncCallback<Array\<number>>): void
+packing(source: ImageSource, option: PackingOption, callback: AsyncCallback<Array\<ArrayBuffer>>): void
 
 图片压缩或重新打包，使用callback形式返回结果。
 
@@ -807,11 +807,11 @@ packing(source: ImageSource, option: PackingOption, callback: AsyncCallback<Arra
 
 **参数：**
 
-| 参数名   | 类型                            | 必填 | 说明                               |
-| -------- | ------------------------------- | ---- | ---------------------------------- |
-| source   | [ImageSource](#imagesource)     | 是   | 打包的图片源。                     |
-| option   | [PackingOption](#packingoption) | 是   | 设置打包参数。                     |
-| callback | AsyncCallback<Array\<number>>   | 是   | 获取图片打包回调，返回打包后数据。 |
+| 参数名   | 类型                               | 必填 | 说明                               |
+| -------- | ---------------------------------- | ---- | ---------------------------------- |
+| source   | [ImageSource](#imagesource)        | 是   | 打包的图片源。                     |
+| option   | [PackingOption](#packingoption)    | 是   | 设置打包参数。                     |
+| callback | AsyncCallback<Array\<ArrayBuffer>> | 是   | 获取图片打包回调，返回打包后数据。 |
 
 **示例：**
 
@@ -822,7 +822,7 @@ imagePackerApi.packing(imageSourceApi, packOpts, data => {})
 
 ### packing
 
-packing(source: ImageSource, option: PackingOption): Promise<Array\<number>>
+packing(source: ImageSource, option: PackingOption): Promise<Array\<ArrayBuffer>>
 
 图片压缩或重新打包，使用Promise形式返回结果。
 
@@ -837,9 +837,9 @@ packing(source: ImageSource, option: PackingOption): Promise<Array\<number>>
 
 **返回值：**
 
-| 类型                    | 说明                                          |
-| :---------------------- | :-------------------------------------------- |
-| Promise<Array\<number>> | Promise实例，用于异步获取压缩或打包后的数据。 |
+| 类型                         | 说明                                          |
+| :--------------------------- | :-------------------------------------------- |
+| Promise<Array\<ArrayBuffer>> | Promise实例，用于异步获取压缩或打包后的数据。 |
 
 **示例：**
 
@@ -852,7 +852,7 @@ imagePackerApi.packing(imageSourceApi, packOpts)
 
 ### packing
 
-packing(source: PixelMap, option: PackingOption, callback: AsyncCallback<ArrayBuffer>): void;
+packing(source: PixelMap, option: PackingOption, callback: AsyncCallback\<ArrayBuffer>): void
 
 图片压缩或重新打包，使用callback形式返回结果。
 
@@ -864,7 +864,7 @@ packing(source: PixelMap, option: PackingOption, callback: AsyncCallback<ArrayBu
 | -------- | ------------------------------- | ---- | ---------------------------------- |
 | source   | [PixelMap](#pixelmap)           | 是   | 打包的PixelMap资源。               |
 | option   | [PackingOption](#packingoption) | 是   | 设置打包参数。                     |
-| callback | AsyncCallback<ArrayBuffer>      | 是   | 获取图片打包回调，返回打包后数据。 |
+| callback | AsyncCallback\<ArrayBuffer>     | 是   | 获取图片打包回调，返回打包后数据。 |
 
 **示例：**
 
@@ -875,7 +875,7 @@ imagePackerApi.packing(pixelMapApi, packOpts, data => {})
 
 ### packing
 
-packing(source: PixelMap, option: PackingOption): Promise<Array\<number>>
+packing(source: PixelMap, option: PackingOption): Promise<Array\<ArrayBuffer>>
 
 图片压缩或重新打包，使用Promise形式返回结果。
 
@@ -890,9 +890,9 @@ packing(source: PixelMap, option: PackingOption): Promise<Array\<number>>
 
 **返回值：**
 
-| 类型                    | 说明                                          |
-| :---------------------- | :-------------------------------------------- |
-| Promise<Array\<number>> | Promise实例，用于异步获取压缩或打包后的数据。 |
+| 类型                         | 说明                                          |
+| :--------------------------- | :-------------------------------------------- |
+| Promise<Array\<ArrayBuffer>> | Promise实例，用于异步获取压缩或打包后的数据。 |
 
 **示例：**
 

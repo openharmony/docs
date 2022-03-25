@@ -8,7 +8,7 @@
 import mediaLibrary from '@ohos.multimedia.medialibrary';
 ```
 
-## mediaLibrary.getMediaLibrary
+## mediaLibrary.getMediaLibrary<sup>8+</sup>
 
 getMediaLibrary(context: Context): MediaLibrary
 
@@ -18,9 +18,9 @@ getMediaLibrary(context: Context): MediaLibrary
 
 **参数：** 
 
-| 参数名  | 类型    | 必填                                  | 说明                       |
-| ------- | ------- | ------------------------------------- | -------------------------- |
-| context | Context | 否<sup>6-7</sup> <br/>是<sup>8+</sup> | 传入Ability实例的Context。 |
+| 参数名  | 类型    | 必填 | 说明                       |
+| ------- | ------- | ---- | -------------------------- |
+| context | Context | 是   | 传入Ability实例的Context。 |
 
 **返回值：**
 
@@ -36,9 +36,34 @@ import featureAbility from '@ohos.ability.featureAbility';
 var context = featureAbility.getContext()
 var media = mediaLibrary.getMediaLibrary(context);
 ```
+## mediaLibrary.getMediaLibrary
+
+getMediaLibrary(): MediaLibrary
+
+获取媒体库的实例，用于访问和修改用户等个人媒体数据信息（如音频、视频、图片、文档等）。
+
+> **说明**： 从API Version 8开始，该接口不再维护，推荐使用新接口[mediaLibrary.getMediaLibrary<sup>8+</sup>](medialibrarygetmedialibrary8)。
+
+**系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
+
+**返回值：**
+
+| 类型                          | 说明       |
+| ----------------------------- | :--------- |
+| [MediaLibrary](#medialibrary) | 媒体库实例 |
+
+**示例：**
+
+```js
+import featureAbility from '@ohos.ability.featureAbility';
+
+var context = featureAbility.getContext()
+var media = mediaLibrary.getMediaLibrary();
+```
+
 ## MediaLibrary
 
-### getFileAssets<sup>8+</sup>
+### getFileAssets<sup>7+</sup>
 
 
 getFileAssets(options: MediaFetchOptions, callback: AsyncCallback&lt;FetchFileResult&gt;): void 
@@ -51,10 +76,10 @@ getFileAssets(options: MediaFetchOptions, callback: AsyncCallback&lt;FetchFileRe
 
 **参数：**
 
-| 参数名      | 类型                                       | 必填   | 说明                       |
-| -------- | ---------------------------------------- | ---- | ------------------------ |
-| options  | [MediaFetchOptions](#mediafetchoptions8) | 是    | 文件获取选项                   |
-| callback | AsyncCallback<[FetchFileResult](#fetchfileresult8)> | 是    | 异步获取FetchFileResult之后的回调 |
+| 参数名   | 类型                                                | 必填 | 说明                              |
+| -------- | --------------------------------------------------- | ---- | --------------------------------- |
+| options  | [MediaFetchOptions](#mediafetchoptions7)            | 是   | 文件获取选项                      |
+| callback | AsyncCallback<[FetchFileResult](#fetchfileresult7)> | 是   | 异步获取FetchFileResult之后的回调 |
 
 **示例：**
 
@@ -76,7 +101,7 @@ mediaLibrary.getFileAssets(imagesfetchOp, (error, fetchFileResult) => {
     }
 });
 ```
-### getFileAssets<sup>8+</sup>
+### getFileAssets<sup>7+</sup>
 
 getFileAssets(options: MediaFetchOptions): Promise&lt;FetchFileResult&gt;
 
@@ -88,15 +113,15 @@ getFileAssets(options: MediaFetchOptions): Promise&lt;FetchFileResult&gt;
 
 **参数：**
 
-| 参数名     | 类型                                       | 必填   | 说明     |
-| ------- | ---------------------------------------- | ---- | ------ |
-| options | [MediaFetchOptions](#mediafetchoptions8) | 是    | 文件检索选项 |
+| 参数名  | 类型                                     | 必填 | 说明         |
+| ------- | ---------------------------------------- | ---- | ------------ |
+| options | [MediaFetchOptions](#mediafetchoptions7) | 是   | 文件检索选项 |
 
 **返回值**
 
-| 类型                                   | 说明      |
-| ------------------------------------ | ------- |
-| [FetchFileResult](#fetchfileresult8) | 文件数据结果集 |
+| 类型                                 | 说明           |
+| ------------------------------------ | -------------- |
+| [FetchFileResult](#fetchfileresult7) | 文件数据结果集 |
 
 **示例：**
 
@@ -171,12 +196,12 @@ createAsset(mediaType: MediaType, displayName: string, relativePath: string, cal
 
 **参数：**
 
-| 参数名          | 类型                                      | 必填   | 说明                                       |
-| ------------ | --------------------------------------- | ---- | ---------------------------------------- |
-| mediaType    | [MediaType](#mediatype)                 | 是    | 媒体类型                                     |
-| displayName  | string                                  | 是    | 展示文件名                                    |
-| relativePath | string                                  | 是    | 文件保存路径，可以通过[getPublicDirectory](#getpublicdirectory8)获取不同类型文件的保存路径 |
-| callback     | AsyncCallback<[FileAsset](#fileasset8)> | 是    | 异步获取媒体数据FileAsset之后的回调                   |
+| 参数名       | 类型                                    | 必填 | 说明                                                         |
+| ------------ | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| mediaType    | [MediaType](#mediatype8)                | 是   | 媒体类型                                                     |
+| displayName  | string                                  | 是   | 展示文件名                                                   |
+| relativePath | string                                  | 是   | 文件保存路径，可以通过[getPublicDirectory](#getpublicdirectory8)获取不同类型文件的保存路径 |
+| callback     | AsyncCallback<[FileAsset](#fileasset7)> | 是   | 异步获取媒体数据FileAsset之后的回调                          |
 
 **示例：**
 
@@ -208,17 +233,17 @@ createAsset(mediaType: MediaType, displayName: string, relativePath: string): Pr
 
 **参数：**
 
-| 参数名          | 类型                      | 必填   | 说明                                       |
-| ------------ | ----------------------- | ---- | ---------------------------------------- |
-| mediaType    | [MediaType](#mediatype) | 是    | 媒体类型                                     |
-| displayName  | string                  | 是    | 展示文件名                                    |
-| relativePath | string                  | 是    | 相对路径，可以通过getPublicDirectory获取不同类型媒体文件的一层目录的relative path |
+| 参数名       | 类型                     | 必填 | 说明                                                         |
+| ------------ | ------------------------ | ---- | ------------------------------------------------------------ |
+| mediaType    | [MediaType](#mediatype8) | 是   | 媒体类型                                                     |
+| displayName  | string                   | 是   | 展示文件名                                                   |
+| relativePath | string                   | 是   | 相对路径，可以通过getPublicDirectory获取不同类型媒体文件的一层目录的relative path |
 
 **返回值**
 
-| 类型                       | 说明            |
-| ------------------------ | ------------- |
-| [FileAsset](#fileasset8) | 媒体数据FileAsset |
+| 类型                     | 说明              |
+| ------------------------ | ----------------- |
+| [FileAsset](#fileasset7) | 媒体数据FileAsset |
 
 **示例：**
 
@@ -246,10 +271,10 @@ getPublicDirectory(type: DirectoryType, callback: AsyncCallback&lt;string&gt;): 
 
 **参数：**
 
-| 参数名      | 类型                              | 必填   | 说明                |
-| -------- | ------------------------------- | ---- | ----------------- |
-| type     | [DirectoryType](#directorytype) | 是    | 公共目录类型            |
-| callback | AsyncCallback&lt;string&gt;     | 是    | callback 返回公共目录路径 |
+| 参数名   | 类型                             | 必填 | 说明                      |
+| -------- | -------------------------------- | ---- | ------------------------- |
+| type     | [DirectoryType](#directorytype8) | 是   | 公共目录类型              |
+| callback | AsyncCallback&lt;string&gt;      | 是   | callback 返回公共目录路径 |
 
 **示例：**
 
@@ -274,15 +299,15 @@ getPublicDirectory(type: DirectoryType): Promise&lt;string&gt;
 
 **参数：**
 
-| 参数名  | 类型                              | 必填   | 说明     |
-| ---- | ------------------------------- | ---- | ------ |
-| type | [DirectoryType](#directorytype) | 是    | 公共目录类型 |
+| 参数名 | 类型                             | 必填 | 说明         |
+| ------ | -------------------------------- | ---- | ------------ |
+| type   | [DirectoryType](#directorytype8) | 是   | 公共目录类型 |
 
 **返回值：**
 
-| 类型              | 说明       |
-| --------------- | -------- |
-| Promise<string> | 返回公共目录路径 |
+| 类型             | 说明             |
+| ---------------- | ---------------- |
+| Promise\<string> | 返回公共目录路径 |
 
 **示例：**
 
@@ -298,7 +323,7 @@ async function example() {
 }
 ```
 
-### getAlbums<sup>8+</sup>
+### getAlbums<sup>7+</sup>
 
 getAlbums(options: MediaFetchOptions, callback: AsyncCallback<Array&lt;Album&gt;>): void
 
@@ -310,10 +335,10 @@ getAlbums(options: MediaFetchOptions, callback: AsyncCallback<Array&lt;Album&gt;
 
 **参数**
 
-| 参数名      | 类型                                       | 必填   | 说明               |
-| -------- | ---------------------------------------- | ---- | ---------------- |
-| options  | [MediaFetchOptions](#mediafetchoptions8) | 是    | 相册获取条件           |
-| callback | AsyncCallback&lt;Array<[Album](#album8)>&gt; | 是    | 异步获取Album列表之后的回调 |
+| 参数名   | 类型                                         | 必填 | 说明                        |
+| -------- | -------------------------------------------- | ---- | --------------------------- |
+| options  | [MediaFetchOptions](#mediafetchoptions7)     | 是   | 相册获取条件                |
+| callback | AsyncCallback&lt;Array<[Album](#album7)>&gt; | 是   | 异步获取Album列表之后的回调 |
 
 **示例：**
 
@@ -333,7 +358,7 @@ mediaLibrary.getAlbums(AlbumNoArgsfetchOp, (err, albumList) => {
 })
 ```
 
-### getAlbums<sup>8+</sup>
+### getAlbums<sup>7+</sup>
 
 getAlbums(options: MediaFetchOptions): Promise<Array&lt;Album&gt;>
 
@@ -345,15 +370,15 @@ getAlbums(options: MediaFetchOptions): Promise<Array&lt;Album&gt;>
 
 **参数：**
 
-| 参数名     | 类型                                       | 必填   | 说明     |
-| ------- | ---------------------------------------- | ---- | ------ |
-| options | [MediaFetchOptions](#mediafetchoptions8) | 是    | 相册获取条件 |
+| 参数名  | 类型                                     | 必填 | 说明         |
+| ------- | ---------------------------------------- | ---- | ------------ |
+| options | [MediaFetchOptions](#mediafetchoptions7) | 是   | 相册获取条件 |
 
 **返回值：**
 
-| 类型                               | 说明        |
-| -------------------------------- | --------- |
-| Promise<Array<[Album](#album8)>> | 返回Album列表 |
+| 类型                             | 说明          |
+| -------------------------------- | ------------- |
+| Promise<Array<[Album](#album7)>> | 返回Album列表 |
 
 **示例：**
 
@@ -690,7 +715,7 @@ mediaLibrary.getMediaLibrary().startMediaSelect(option).then((value) => {
 
   ```
 
-## FileAsset<sup>8+</sup>
+## FileAsset<sup>7+</sup>
 
 提供封装文件属性的方法。
 
@@ -698,29 +723,29 @@ mediaLibrary.getMediaLibrary().startMediaSelect(option).then((value) => {
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
 
-| 名称           | 类型                      | 可读   | 可写   | 说明                                      |
-| ------------ | ----------------------- | ---- | ---- | --------------------------------------- |
-| id           | number                  | 是    | 否    | 文件资源编号                                  |
-| uri          | string                  | 是    | 否    | 文件资源uri（如：dataability:///media/image/2) |
-| mimeType     | string                  | 是    | 否    | 文件扩展属性                                  |
-| mediaType    | [MediaType](#mediatype) | 是    | 否    | 媒体类型                                    |
-| displayName  | string                  | 是    | 是    | 显示文件名，包含后缀名                             |
-| title        | string                  | 是    | 是    | 文件标题                                    |
-| relativePath | string                  | 是    | 是    | 相对公共目录路径                                |
-| parent       | number                  | 是    | 否    | 父目录id                                   |
-| size         | number                  | 是    | 否    | 文件大小（单位：字节）                             |
-| dateAdded    | number                  | 是    | 否    | 添加日期（添加文件时间到1970年1月1日的秒数值）              |
-| dateModified | number                  | 是    | 否    | 修改日期（修改文件时间到1970年1月1日的秒数值）              |
-| dateTaken    | number                  | 是    | 否    | 拍摄日期（文件拍照时间到1970年1月1日的秒数值）              |
-| artist       | string                  | 是    | 否    | 作者                                      |
-| audioAlbum   | string                  | 是    | 否    | 专辑                                      |
-| width        | number                  | 是    | 否    | 图片宽度（单位：像素）                             |
-| height       | number                  | 是    | 否    | 图片高度（单位：像素）                             |
-| orientation  | number                  | 是    | 是    | 图片显示方向（顺时针旋转角度，如0，90，180  单位：度）         |
-| duration     | number                  | 是    | 否    | 持续时间（单位：秒）                              |
-| albumId      | number                  | 是    | 否    | 文件所归属的相册编号                              |
-| albumUri     | string                  | 是    | 否    | 文件所归属相册uri                              |
-| albumName    | string                  | 是    | 否    | 文件所归属相册名称                               |
+| 名称                      | 类型                     | 可读 | 可写 | 说明                                                   |
+| ------------------------- | ------------------------ | ---- | ---- | ------------------------------------------------------ |
+| id                        | number                   | 是   | 否   | 文件资源编号                                           |
+| uri                       | string                   | 是   | 否   | 文件资源uri（如：dataability:///media/image/2)         |
+| mimeType                  | string                   | 是   | 否   | 文件扩展属性                                           |
+| mediaType<sup>8+</sup>    | [MediaType](#mediatype8) | 是   | 否   | 媒体类型                                               |
+| displayName               | string                   | 是   | 是   | 显示文件名，包含后缀名                                 |
+| title                     | string                   | 是   | 是   | 文件标题                                               |
+| relativePath<sup>8+</sup> | string                   | 是   | 是   | 相对公共目录路径                                       |
+| parent<sup>8+</sup>       | number                   | 是   | 否   | 父目录id                                               |
+| size                      | number                   | 是   | 否   | 文件大小（单位：字节）                                 |
+| dateAdded                 | number                   | 是   | 否   | 添加日期（添加文件时间到1970年1月1日的秒数值）         |
+| dateModified              | number                   | 是   | 否   | 修改日期（修改文件时间到1970年1月1日的秒数值）         |
+| dateTaken                 | number                   | 是   | 否   | 拍摄日期（文件拍照时间到1970年1月1日的秒数值）         |
+| artist<sup>8+</sup>       | string                   | 是   | 否   | 作者                                                   |
+| audioAlbum<sup>8+</sup>   | string                   | 是   | 否   | 专辑                                                   |
+| width                     | number                   | 是   | 否   | 图片宽度（单位：像素）                                 |
+| height                    | number                   | 是   | 否   | 图片高度（单位：像素）                                 |
+| orientation               | number                   | 是   | 是   | 图片显示方向（顺时针旋转角度，如0，90，180  单位：度） |
+| duration<sup>8+</sup>     | number                   | 是   | 否   | 持续时间（单位：秒）                                   |
+| albumId                   | number                   | 是   | 否   | 文件所归属的相册编号                                   |
+| albumUri<sup>8+</sup>     | string                   | 是   | 否   | 文件所归属相册uri                                      |
+| albumName                 | string                   | 是   | 否   | 文件所归属相册名称                                     |
 
 
 ### isDirectory<sup>8+</sup>
@@ -1460,11 +1485,11 @@ async function example() {
 }
 ```
 
-## FetchFileResult<sup>8+</sup>
+## FetchFileResult<sup>7+</sup>
 
 文件检索结果集。
 
-### getCount<sup>8+</sup>
+### getCount<sup>7+</sup>
 
 getCount(): number
 
@@ -1493,7 +1518,7 @@ async function example() {
 }
 ```
 
-### isAfterLast<sup>8+</sup>
+### isAfterLast<sup>7+</sup>
 
 isAfterLast(): boolean
 
@@ -1536,7 +1561,7 @@ async function example() {
 }
 ```
 
-### close<sup>8+</sup>
+### close<sup>7+</sup>
 
 close(): void
 
@@ -1560,7 +1585,7 @@ async function example() {
 }
 ```
 
-### getFirstObject<sup>8+</sup>
+### getFirstObject<sup>7+</sup>
 
 getFirstObject(callback: AsyncCallback&lt;FileAsset&gt;): void
 
@@ -1570,9 +1595,9 @@ getFirstObject(callback: AsyncCallback&lt;FileAsset&gt;): void
 
 **参数**：
 
-| 参数名      | 类型                                       | 必填   | 说明                         |
-| -------- | ---------------------------------------- | ---- | -------------------------- |
-| callback | AsyncCallback&lt;[FileAsset](#fileasset8)&gt; | 是    | 异步获取结果集中第一个FileAsset完成后的回调 |
+| 参数名   | 类型                                          | 必填 | 说明                                        |
+| -------- | --------------------------------------------- | ---- | ------------------------------------------- |
+| callback | AsyncCallback&lt;[FileAsset](#fileasset7)&gt; | 是   | 异步获取结果集中第一个FileAsset完成后的回调 |
 
 **示例**：
 
@@ -1596,7 +1621,7 @@ async function example() {
 }
 ```
 
-### getFirstObject<sup>8+</sup>
+### getFirstObject<sup>7+</sup>
 
 getFirstObject(): Promise&lt;FileAsset&gt;
 
@@ -1608,7 +1633,7 @@ getFirstObject(): Promise&lt;FileAsset&gt;
 
 | 类型                                    | 说明                       |
 | --------------------------------------- | -------------------------- |
-| Promise&lt;[FileAsset](#fileasset8)&gt; | Promise方式返回FileAsset。 |
+| Promise&lt;[FileAsset](#fileasset7)&gt; | Promise方式返回FileAsset。 |
 
 **示例**：
 
@@ -1630,7 +1655,7 @@ async function example() {
 }
 ```
 
-### getNextObject<sup>8+</sup>
+### getNextObject<sup>7+</sup>
 
  getNextObject(callback: AsyncCallback&lt;FileAsset&gt;): void
 
@@ -1642,9 +1667,9 @@ async function example() {
 
 **参数**：
 
-| 参数名       | 类型                                       | 必填   | 说明                        |
-| --------- | ---------------------------------------- | ---- | ------------------------- |
-| callbacke | AsyncCallback&lt;[FileAsset](#fileasset8)&gt; | 是    | 异步返回结果集中下一个FileAsset之后的回调 |
+| 参数名    | 类型                                          | 必填 | 说明                                      |
+| --------- | --------------------------------------------- | ---- | ----------------------------------------- |
+| callbacke | AsyncCallback&lt;[FileAsset](#fileasset7)&gt; | 是   | 异步返回结果集中下一个FileAsset之后的回调 |
 
 **示例**：
 
@@ -1668,7 +1693,7 @@ async function example() {
 }
 ```
 
-### getNextObject<sup>8+</sup>
+### getNextObject<sup>7+</sup>
 
  getNextObject(): Promise&lt;FileAsset&gt;
 
@@ -1680,9 +1705,9 @@ async function example() {
 
 **返回值**：
 
-| 类型                                      | 说明            |
-| --------------------------------------- | ------------- |
-| Promise&lt;[FileAsset](#fileasset8)&gt; | 返回FileAsset对象 |
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| Promise&lt;[FileAsset](#fileasset7)&gt; | 返回FileAsset对象 |
 
 **示例**：
 
@@ -1702,7 +1727,7 @@ async function example() {
 }
 ```
 
-### getLastObject<sup>8+</sup>
+### getLastObject<sup>7+</sup>
 
 getLastObject(callback: AsyncCallback&lt;FileAsset&gt;): void
 
@@ -1714,7 +1739,7 @@ getLastObject(callback: AsyncCallback&lt;FileAsset&gt;): void
 
 | 参数名   | 类型                                          | 必填 | 说明                        |
 | -------- | --------------------------------------------- | ---- | --------------------------- |
-| callback | AsyncCallback&lt;[FileAsset](#fileasset8)&gt; | 是   | 异步返回FileAsset之后的回调 |
+| callback | AsyncCallback&lt;[FileAsset](#fileasset7)&gt; | 是   | 异步返回FileAsset之后的回调 |
 
 **示例**：
 
@@ -1738,7 +1763,7 @@ async function example() {
 }
 ```
 
-### getLastObject<sup>8+</sup>
+### getLastObject<sup>7+</sup>
 
 getLastObject(): Promise&lt;FileAsset&gt;
 
@@ -1748,9 +1773,9 @@ getLastObject(): Promise&lt;FileAsset&gt;
 
 **返回值**：
 
-| 类型                                      | 说明            |
-| --------------------------------------- | ------------- |
-| Promise&lt;[FileAsset](#fileasset8)&gt; | 返回FileAsset对象 |
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| Promise&lt;[FileAsset](#fileasset7)&gt; | 返回FileAsset对象 |
 
 **示例**：
 
@@ -1768,7 +1793,7 @@ async function example() {
 }
 ```
 
-### getPositionObject<sup>8+</sup>
+### getPositionObject<sup>7+</sup>
 
 getPositionObject(index: number, callback: AsyncCallback&lt;FileAsset&gt;): void
 
@@ -1781,7 +1806,7 @@ getPositionObject(index: number, callback: AsyncCallback&lt;FileAsset&gt;): void
 | 参数名       | 类型                                       | 必填   | 说明                 |
 | -------- | ---------------------------------------- | ---- | ------------------ |
 | index    | number                                   | 是    | 要获取的文件的索引，从0开始     |
-| callback | AsyncCallback&lt;[FileAsset](#fileasset8)&gt; | 是    | 异步返回FileAsset之后的回调 |
+| callback | AsyncCallback&lt;[FileAsset](#fileasset7)&gt; | 是    | 异步返回FileAsset之后的回调 |
 
 **示例**：
 
@@ -1805,7 +1830,7 @@ async function example() {
 }
 ```
 
-### getPositionObject<sup>8+</sup>
+### getPositionObject<sup>7+</sup>
 
 getPositionObject(index: number): Promise&lt;FileAsset&gt;
 
@@ -1823,9 +1848,9 @@ getPositionObject(index: number): Promise&lt;FileAsset&gt;
 
 **返回值**：
 
-| 类型                                      | 说明            |
-| --------------------------------------- | ------------- |
-| Promise&lt;[FileAsset](#fileasset8)&gt; | 返回FileAsset对象 |
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| Promise&lt;[FileAsset](#fileasset7)&gt; | 返回FileAsset对象 |
 
 **示例**：
 
@@ -1849,7 +1874,7 @@ async function example() {
 }
 ```
 
-### getAllObject<sup>8+</sup>
+### getAllObject<sup>7+</sup>
 
 getAllObject(callback: AsyncCallback&lt;Array&lt;FileAsset&gt;&gt;): void
 
@@ -1863,7 +1888,7 @@ getAllObject(callback: AsyncCallback&lt;Array&lt;FileAsset&gt;&gt;): void
 
 | 参数名       | 类型                                       | 必填   | 说明                   |
 | -------- | ---------------------------------------- | ---- | -------------------- |
-| callback | AsyncCallback<Array<[FileAsset](#fileasset8)>> | 是    | 异步返回FileAsset列表之后的回调 |
+| callback | AsyncCallback<Array<[FileAsset](#fileasset7)>> | 是    | 异步返回FileAsset列表之后的回调 |
 
 **示例**：
 
@@ -1887,7 +1912,7 @@ async function example() {
 }
 ```
 
-### getAllObject<sup>8+</sup>
+### getAllObject<sup>7+</sup>
 
 getAllObject(): Promise&lt;Array&lt;FileAsset&gt;&gt;
 
@@ -1897,9 +1922,9 @@ getAllObject(): Promise&lt;Array&lt;FileAsset&gt;&gt;
 
 **返回值**：
 
-| 类型                                       | 说明              |
-| ---------------------------------------- | --------------- |
-| Promise<Array<[FileAsset](#fileasset8)>> | 返回FileAsset对象列表 |
+| 类型                                     | 说明                  |
+| ---------------------------------------- | --------------------- |
+| Promise<Array<[FileAsset](#fileasset7)>> | 返回FileAsset对象列表 |
 
 **示例**：
 
@@ -1917,7 +1942,7 @@ async function example() {
 }
 ```
 
-## Album<sup>8+</sup>
+## Album<sup>7+</sup>
 
 实体相册
 
@@ -1927,13 +1952,13 @@ async function example() {
 
 | 名称           | 类型    | 可读   | 可写   | 说明      |
 | ------------ | ------ | ---- | ---- | ------- |
-| albumId      | number | 是    | 否    | 相册编号    |
-| albumName    | string | 是    | 是    | 相册名称    |
-| albumUri     | string | 是    | 否    | 相册Uri   |
+| albumId | number | 是    | 否    | 相册编号    |
+| albumName | string | 是    | 是    | 相册名称    |
+| albumUri<sup>8+</sup> | string | 是    | 否    | 相册Uri   |
 | dateModified | number | 是    | 否    | 修改日期    |
-| count        | number | 是    | 否    | 相册中文件数量 |
-| relativePath | string | 是    | 否    | 相对路径    |
-| coverUri     | string | 是    | 否    | 封面文件Uri |
+| count<sup>8+</sup> | number | 是    | 否    | 相册中文件数量 |
+| relativePath<sup>8+</sup> | string | 是    | 否    | 相对路径    |
+| coverUri<sup>8+</sup> | string | 是    | 否    | 封面文件Uri |
 
 ### commitModify<sup>8+</sup>
 
@@ -2007,7 +2032,7 @@ async function example() {
 }
 ```
 
-### getFileAssets<sup>8+</sup>
+### getFileAssets<sup>7+</sup>
 
 getFileAssets(options: MediaFetchOptions, callback: AsyncCallback&lt;FetchFileResult&gt;): void
 
@@ -2021,8 +2046,8 @@ getFileAssets(options: MediaFetchOptions, callback: AsyncCallback&lt;FetchFileRe
 
 | 参数名   | 类型                                                | 必填 | 说明                                |
 | -------- | --------------------------------------------------- | ---- | ----------------------------------- |
-| options  | [MediaFetchOptions](#mediafetchoptions8)            | 是   | 媒体检索选项。                      |
-| callback | AsyncCallback<[FetchFileResult](#fetchfileresult8)> | 是   | 异步返回FetchFileResult之后的回调。 |
+| options  | [MediaFetchOptions](#mediafetchoptions7)            | 是   | 媒体检索选项。                      |
+| callback | AsyncCallback<[FetchFileResult](#fetchfileresult7)> | 是   | 异步返回FetchFileResult之后的回调。 |
 
 **示例**：
 
@@ -2041,7 +2066,7 @@ async function example() {
 }
 ```
 
-### getFileAssets<sup>8+</sup>
+### getFileAssets<sup>7+</sup>
 
  getFileAssets(options?: MediaFetchOptions): Promise&lt;FetchFileResult&gt;
 
@@ -2055,13 +2080,13 @@ async function example() {
 
 | 参数名  | 类型                                     | 必填 | 说明           |
 | ------- | ---------------------------------------- | ---- | -------------- |
-| options | [MediaFetchOptions](#mediafetchoptions8) | 否   | 媒体检索选项。 |
+| options | [MediaFetchOptions](#mediafetchoptions7) | 否   | 媒体检索选项。 |
 
 **返回值**：
 
 | 类型                                          | 说明                      |
 | --------------------------------------------- | ------------------------- |
-| Promise<[FetchFileResult](#fetchfileresult8)> | 返回FetchFileResult对象。 |
+| Promise<[FetchFileResult](#fetchfileresult7)> | 返回FetchFileResult对象。 |
 
 **示例**：
 
@@ -2087,16 +2112,16 @@ async function example() {
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
 
-| 名称         | 类型         | 可读   | 可写   | 说明        |
-| ---------- | ---------- | ---- | ---- | --------- |
-| deviceName | string     | 是    | 否    | 注册设备的名称   |
-| networkId  | string     | 是    | 否    | 注册设备的网络ID |
-| deviceType | DeviceType | 是    | 否    | 设备类型      |
-| isOnline   | boolean    | 是    | 否    | 是否在线      |
+| 名称       | 类型                       | 可读 | 可写 | 说明             |
+| ---------- | -------------------------- | ---- | ---- | ---------------- |
+| deviceName | string                     | 是   | 否   | 注册设备的名称   |
+| networkId  | string                     | 是   | 否   | 注册设备的网络ID |
+| deviceType | [DeviceType](#devicetype8) | 是   | 否   | 设备类型         |
+| isOnline   | boolean                    | 是   | 否   | 是否在线         |
 
 
 
-## MediaType
+## MediaType<sup>8+</sup>
 
 枚举，媒体类型。
 
@@ -2109,7 +2134,7 @@ async function example() {
 | VIDEO | 2      | 视频 |
 | AUDIO | 3      | 音频 |
 
-## FileKey
+## FileKey<sup>8+</sup>
 
 枚举，文件关键信息。
 
@@ -2137,7 +2162,7 @@ async function example() {
 | ALBUM_ID      | bucket_id           | 文件所归属的相册编号                                       |
 | ALBUM_NAME    | bucket_display_name | 文件所归属相册名称                                         |
 
-## DirectoryType
+## DirectoryType<sup>8+</sup>
 
 枚举，目录类型。
 
@@ -2152,7 +2177,7 @@ async function example() {
 | DIR_DOCUMENTS | 4      | 表示文档路径       |
 | DIR_DOWNLOAD  | 5      | 表示下载路径       |
 
-## DeviceType
+## DeviceType<sup>8+</sup>
 
 枚举，设备类型。
 
@@ -2168,20 +2193,20 @@ async function example() {
 | TYPE_CAR     | 5      | 车载设备   |
 | TYPE_TV      | 6      | 电视设备   |
 
-## MediaFetchOptions<sup>8+</sup>
+## MediaFetchOptions<sup>7+</sup>
 
 检索条件。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
 
-| 名称            | 类型                  | 可读   | 可写   | 必填   | 说明                                       |
-| ------------- | ------------------- | ---- | ---- | ---- | ---------------------------------------- |
-| selections    | string              | 是    | 是    | 是    | 检索条件，使用[FileKey](#filekey)中的枚举值作为检索条件的列名。示例：<br />selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ? OR' +mediaLibrary.FileKey.MEDIA_TYPE + '= ?‘, |
-| selectionArgs | Array&lt;string&gt; | 是    | 是    | 是    | 检索条件的值，对应selections中检索条件列的值。<br />示例：<br />selectionArgs: [mediaLibrary.MediaType.IMAGE.toString(), mediaLibrary.MediaType.VIDEO.toString()], |
-| order         | string              | 是    | 是    | 否    | 检索结果排序方式，使用[FileKey](#filekey)中的枚举值作为检索结果排序的列，可以用升序或降序排列。示例：<br />升序排列：order: mediaLibrary.FileKey.DATE_ADDED + " AESC"<br />降序排列：order: mediaLibrary.FileKey.DATE_ADDED + " DESC" |
-| uri           | string              | 是    | 是    | 否    | 文件URI                                    |
-| networkId     | string              | 是    | 是    | 否    | 注册设备网络ID                                 |
-| extendArgs    | string              | 是    | 是    | 否    | 扩展的检索参数，目前没有扩展检索参数                       |
+| 名称                    | 类型                | 可读 | 可写 | 必填 | 说明                                                         |
+| ----------------------- | ------------------- | ---- | ---- | ---- | ------------------------------------------------------------ |
+| selections              | string              | 是   | 是   | 是   | 检索条件，使用[FileKey](#filekey8)中的枚举值作为检索条件的列名。示例：<br />selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ? OR' +mediaLibrary.FileKey.MEDIA_TYPE + '= ?‘, |
+| selectionArgs           | Array&lt;string&gt; | 是   | 是   | 是   | 检索条件的值，对应selections中检索条件列的值。<br />示例：<br />selectionArgs: [mediaLibrary.MediaType.IMAGE.toString(), mediaLibrary.MediaType.VIDEO.toString()], |
+| order<sup>8+</sup>      | string              | 是   | 是   | 否   | 检索结果排序方式，使用[FileKey](#filekey8)中的枚举值作为检索结果排序的列，可以用升序或降序排列。示例：<br />升序排列：order: mediaLibrary.FileKey.DATE_ADDED + " AESC"<br />降序排列：order: mediaLibrary.FileKey.DATE_ADDED + " DESC" |
+| uri<sup>8+</sup>        | string              | 是   | 是   | 否   | 文件URI                                                      |
+| networkId<sup>8+</sup>  | string              | 是   | 是   | 否   | 注册设备网络ID                                               |
+| extendArgs<sup>8+</sup> | string              | 是   | 是   | 否   | 扩展的检索参数，目前没有扩展检索参数                         |
 
 ## Size<sup>8+</sup>
 

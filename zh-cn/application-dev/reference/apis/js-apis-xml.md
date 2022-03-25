@@ -329,6 +329,8 @@ that.parse(options);
 
 xml解析选项。
 
+### 属性
+
 | 名称 | 参数类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | supportDoctype | boolean | 否 | 是否忽略Doctype&nbsp;,&nbsp;默认false。 |
@@ -336,7 +338,6 @@ xml解析选项。
 | tagValueCallbackFunction | (name:&nbsp;string,&nbsp;value:&nbsp;string)=&gt;&nbsp;boolean | 否 | 获取tagValue回调函数。 |
 | attributeValueCallbackFunction | (name:&nbsp;string,&nbsp;value:&nbsp;string)=&gt;&nbsp;boolean | 否 | 获取attributeValue回调函数。 |
 | tokenValueCallbackFunction | (eventType:&nbsp;[EventType](#eventtype),&nbsp;value:&nbsp;[ParseInfo](#parseinfo))=&gt;&nbsp;boolean | 否 | 获取tokenValue回调函数。 |
-
 
 ## ParseInfo
 
