@@ -168,7 +168,7 @@ context.startAbility(want, options).then((data) => {
 ```ts
 let context = this.context
 var want = {
-    "deviceId": "getRemoteDeviceId()",
+    "deviceId": getRemoteDeviceId(),
     "bundleName": "com.example.MyApplication",
     "abilityName": "MainAbility"
 };
