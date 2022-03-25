@@ -144,6 +144,8 @@ function onStartRemoteAbility() {
 ```
 从DeviceManager获取deviceId，具体示例代码如下：
 ```ts
+import deviceManager from '@ohos.distributedHardware.deviceManager';
+var dmClass;
 function getRemoteDeviceId() {
     if (typeof dmClass === 'object' && dmClass != null) {
         var list = dmClass.getTrustedDeviceListSync();
@@ -160,6 +162,8 @@ function getRemoteDeviceId() {
 ```
 在跨设备场景下，需要向用户申请数据同步的权限。具体示例代码如下：
 ```ts
+import accessControl from "@ohos.abilityAccessCtrl";
+import bundle from '@ohos.bundle';
 async function RequestPermission() {
   console.info('RequestPermission begin');
   let array: Array<string> = ["ohos.permission.DISTRIBUTED_DATASYNC"];
