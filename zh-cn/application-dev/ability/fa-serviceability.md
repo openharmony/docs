@@ -184,7 +184,7 @@ export default {
 ```
 
 ### 连接远程Service<a name="section126857614019"></a>(当前仅对系统应用开放)
->说明：由于DeviceManager getTrustedDeviceListSync接口仅对系统应用开放，当前连接远程Service仅支持系统应用
+>说明：由于DeviceManager的getTrustedDeviceListSync接口仅对系统应用开放，当前连接远程Service仅支持系统应用
 
 如果Service需要与Page Ability或其他应用的Service Ability进行跨设备交互，则须创建用于连接的Connection。Service支持其他Ability通过connectAbility()方法与其进行跨设备连接。
 
