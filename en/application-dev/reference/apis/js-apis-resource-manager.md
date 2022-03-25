@@ -1,4 +1,4 @@
-# Resource Management
+Resource Management
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -18,12 +18,12 @@ Obtains the **ResourceManager** object of this application. This method uses a c
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-- **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[ResourceManager](#resourcemanager)&gt; | Yes| Callback used to return the **ResourceManager** object obtained.|
+**Parameters**
+| Name     | Type                                      | Mandatory  | Description                           |
+| -------- | ---------------------------------------- | ---- | ----------------------------- |
+| callback | AsyncCallback&lt;[ResourceManager](#resourcemanager)&gt; | Yes   | Callback used to return the **ResourceManager** object obtained.|
 
-- Example
+**Example**
   ```
   resourceManager.getResourceManager((error, mgr) => {
       if (error != null) {
@@ -49,13 +49,13 @@ Obtains the **ResourceManager** object of an application. This method uses an as
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-- **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | bundleName | string | Yes| Bundle name of the target application.|
-  | callback | AsyncCallback&lt;[ResourceManager](#resourcemanager)&gt; | Yes| Callback used to return the **ResourceManager** object obtained.|
+**Parameters**
+| Name       | Type                                      | Mandatory  | Description                           |
+| ---------- | ---------------------------------------- | ---- | ----------------------------- |
+| bundleName | string                                   | Yes   | Bundle name of the target application.                |
+| callback   | AsyncCallback&lt;[ResourceManager](#resourcemanager)&gt; | Yes   | Callback used to return the **ResourceManager** object obtained.|
 
-- Example
+**Example**
   ```
   resourceManager.getResourceManager("com.example.myapplication", (error, mgr) => {
   });
@@ -70,12 +70,12 @@ Obtains the **ResourceManager** object of this application. This method uses a p
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;[ResourceManager](#resourcemanager)&gt; | Promise used to return the **ResourceManager** object obtained.|
+**Return value**
+| Type                                      | Description               |
+| ---------------------------------------- | ----------------- |
+| Promise&lt;[ResourceManager](#resourcemanager)&gt; | Promise used to return the **ResourceManager** object obtained.|
 
-- Example
+**Example**
   ```
   resourceManager.getResourceManager().then(mgr => {
       mgr.getString(0x1000000, (error, value) => {
@@ -99,22 +99,22 @@ Obtains the **ResourceManager** object of an application. This method uses a pro
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-- **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | bundleName | string | Yes| Bundle name of the target application.|
+**Parameters**
+| Name       | Type    | Mandatory  | Description           |
+| ---------- | ------ | ---- | ------------- |
+| bundleName | string | Yes   | Bundle name of the target application.|
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;[ResourceManager](#resourcemanager)&gt; | Promise used to return the **ResourceManager** object obtained.|
+**Return value**
+| Type                                      | Description                |
+| ---------------------------------------- | ------------------ |
+| Promise&lt;[ResourceManager](#resourcemanager)&gt; | Promise used to return the **ResourceManager** object obtained.|
 
-- Example
+**Example**
   ```
   resourceManager.getResourceManager("com.example.myapplication").then(mgr => {
-  
+
   }).catch(error => {
-  
+
   });
   ```
 
@@ -123,72 +123,82 @@ Obtains the **ResourceManager** object of an application. This method uses a pro
 
 Enumerates the screen directions.
 
-| Name| Default Value| Description|
-| -------- | -------- | -------- |
-| DIRECTION_VERTICAL | 0 | Portrait<br>**System capability**: SystemCapability.Global.ResourceManager|
-| DIRECTION_HORIZONTAL | 1 | Landscape<br>**System capability**: SystemCapability.Global.ResourceManager|
+**System capability**: SystemCapability.Global.ResourceManager
+
+| Name                  | Default Value | Description  |
+| -------------------- | ---- | ---- |
+| DIRECTION_VERTICAL   | 0    | Portrait  |
+| DIRECTION_HORIZONTAL | 1    | Landscape  |
 
 
 ## DeviceType
 
 Enumerates the device types.
 
-| Name| Default Value| Description|
-| -------- | -------- | -------- |
-| DEVICE_TYPE_PHONE | 0x00 | Mobile phone.<br>**System capability**: SystemCapability.Global.ResourceManager|
-| DEVICE_TYPE_TABLET | 0x01 | Tablet.<br>**System capability**: SystemCapability.Global.ResourceManager|
-| DEVICE_TYPE_CAR | 0x02 | Automobile.<br>**System capability**: SystemCapability.Global.ResourceManager|
-| DEVICE_TYPE_PC | 0x03 | Computer.<br>**System capability**: SystemCapability.Global.ResourceManager|
-| DEVICE_TYPE_TV | 0x04 | TV.<br>**System capability**: SystemCapability.Global.ResourceManager|
-| DEVICE_TYPE_WEARABLE | 0x06 | Wearable.<br>**System capability**: SystemCapability.Global.ResourceManager|
+**System capability**: SystemCapability.Global.ResourceManager
+
+| Name                  | Default Value | Description  |
+| -------------------- | ---- | ---- |
+| DEVICE_TYPE_PHONE    | 0x00 | Mobile phone.  |
+| DEVICE_TYPE_TABLET   | 0x01 | Tablet.  |
+| DEVICE_TYPE_CAR      | 0x02 | Automobile.  |
+| DEVICE_TYPE_PC       | 0x03 | Computer.  |
+| DEVICE_TYPE_TV       | 0x04 | TV.  |
+| DEVICE_TYPE_WEARABLE | 0x06 | Wearable.  |
 
 
 ## ScreenDensity
 
 Enumerates the screen density types.
 
-| Name| Default Value| Description|
-| -------- | -------- | -------- |
-| SCREEN_SDPI | 120 | Screen density with small-scale dots per inch (SDPI).<br>**System capability**: SystemCapability.Global.ResourceManager|
-| SCREEN_MDPI | 160 | Screen density with medium-scale dots per inch (MDPI).<br>**System capability**: SystemCapability.Global.ResourceManager|
-| SCREEN_LDPI | 240 | Screen density with large-scale dots per inch (LDPI).<br>**System capability**: SystemCapability.Global.ResourceManager|
-| SCREEN_XLDPI | 320 | Screen density with extra-large-scale dots per inch (XLDPI).<br>**System capability**: SystemCapability.Global.ResourceManager|
-| SCREEN_XXLDPI | 480 | Screen density with extra-extra-large-scale dots per inch (XXLDPI).<br>**System capability**: SystemCapability.Global.ResourceManager|
-| SCREEN_XXXLDPI | 640 | Screen density with extra-extra-extra-large-scale dots per inch (XXXLDPI).<br>**System capability**: SystemCapability.Global.ResourceManager|
+**System capability**: SystemCapability.Global.ResourceManager
+
+| Name            | Default Value | Description        |
+| -------------- | ---- | ---------- |
+| SCREEN_SDPI    | 120  | Screen density with small-scale dots per inch (SDPI).  |
+| SCREEN_MDPI    | 160  | Screen density with medium-scale dots per inch (MDPI).  |
+| SCREEN_LDPI    | 240  | Screen density with large-scale dots per inch (LDPI).  |
+| SCREEN_XLDPI   | 320  | Screen density with extra-large-scale dots per inch (XLDPI). |
+| SCREEN_XXLDPI  | 480  | Screen density with extra-extra-large-scale dots per inch (XXLDPI). |
+| SCREEN_XXXLDPI | 640  | Screen density with extra-extra-extra-large-scale dots per inch (XXXLDPI).|
 
 
 ## Configuration
 
 Defines the device configuration.
 
+**System capability**: SystemCapability.Global.ResourceManager
 
-| Name| Type| Readable| Writable| Description|
-| -------- | -------- | -------- | -------- | -------- |
-| direction | [Direction](#direction) | Yes| No| Screen direction of the device.<br>**System capability**: SystemCapability.Global.ResourceManager|
-| locale | string | Yes| No| Current system language.<br>**System capability**: SystemCapability.Global.ResourceManager|
+
+| Name       | Type                   | Readable  | Writable  | Description      |
+| --------- | ----------------------- | ---- | ---- | -------- |
+| direction | [Direction](#direction) | Yes   | No   | Screen direction of the device.|
+| locale    | string                  | Yes   | No   | Current system language.  |
 
 
 ## DeviceCapability
 
 Defines the device capability.
 
+**System capability**: SystemCapability.Global.ResourceManager
 
-| Name| Type| Readable| Writable| Description|
-| -------- | -------- | -------- | -------- | -------- |
-| screenDensity | [ScreenDensity](#screendensity) | Yes| No| Screen density of the device.<br>**System capability**: SystemCapability.Global.ResourceManager|
-| deviceType | [DeviceType](#devicetype) | Yes| No| Type of the device.<br>**System capability**: SystemCapability.Global.ResourceManager|
+
+| Name           | Type                           | Readable  | Writable  | Description      |
+| ------------- | ------------------------------- | ---- | ---- | -------- |
+| screenDensity | [ScreenDensity](#screendensity) | Yes   | No   | Screen density of the device.|
+| deviceType    | [DeviceType](#devicetype)       | Yes   | No   | Type of the device.  |
 
 
 ## RawFileDescriptor<sup>8+</sup>
 
-Defines the descriptor information of the raw file.
-<br/>**System capability**: SystemCapability.Global.ResourceManager
+Defines the descriptor information of the raw file.<br>
+**System capability**: SystemCapability.Global.ResourceManager
 
-| Name| Type| Description|
-| -------- | -------- | -------- |
-| fd | number | Descriptor of a raw file.|
-| offset | number | Offset to the start position of the raw file.|
-| length | number | Length of the raw file.|
+| Name    | Type    | Description                |
+| ------ | ------ | ------------------ |
+| fd     | number | Descriptor of a raw file.|
+| offset | number | Offset to the start position of the raw file.     |
+| length | number | Length of the raw file.      |
 
 
 ## ResourceManager
@@ -197,7 +207,7 @@ Defines the capability of accessing application resources.
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
 > - The methods involved in **ResourceManager** are applicable only to the TypeScript-based declarative development paradigm.
-> 
+>
 > - Resource files are defined in the **resources** directory of the project. You can obtain the resource ID using **$r(resource address).id**, for example, **$r('app.string.test').id**.
 
 
@@ -209,13 +219,13 @@ Obtains the string corresponding to the specified resource ID. This method uses 
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-- **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | resId | number | Yes| Resource ID.|
-  | callback | AsyncCallback&lt;string&gt; | Yes| Callback used to return the string obtained.|
+**Parameters**
+| Name     | Type                         | Mandatory  | Description             |
+| -------- | --------------------------- | ---- | --------------- |
+| resId    | number                      | Yes   | Resource ID.          |
+| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the string obtained.|
 
-- Example
+**Example**
   ```
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getString($r('app.string.test').id, (error, value) => {
@@ -237,17 +247,17 @@ Obtains the string corresponding to the specified resource ID. This method uses 
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-- **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | resId | number | Yes| Resource ID.|
+**Parameters**
+| Name  | Type    | Mandatory  | Description   |
+| ----- | ------ | ---- | ----- |
+| resId | number | Yes   | Resource ID.|
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;string&gt; | Promise used to return the string obtained.|
+**Return value**
+| Type                   | Description         |
+| --------------------- | ----------- |
+| Promise&lt;string&gt; | Promise used to return the string obtained.|
 
-- Example
+**Example**
   ```
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getString($r('app.string.test').id).then(value => {
@@ -267,13 +277,13 @@ Obtains the array of strings corresponding to the specified resource ID. This me
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-- **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | resId | number | Yes| Resource ID.|
-  | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes| Callback used to return the obtained array of strings.|
+**Parameters**
+| Name     | Type                                      | Mandatory  | Description               |
+| -------- | ---------------------------------------- | ---- | ----------------- |
+| resId    | number                                   | Yes   | Resource ID.            |
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the obtained array of strings.|
 
-- Example
+**Example**
   ```
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getStringArray($r('app.strarray.test').id, (error, value) => {
@@ -295,17 +305,17 @@ Obtains the array of strings corresponding to the specified resource ID. This me
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-- **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | resId | number | Yes| Resource ID.|
+**Parameters**
+| Name  | Type    | Mandatory  | Description   |
+| ----- | ------ | ---- | ----- |
+| resId | number | Yes   | Resource ID.|
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the array of strings obtained.|
+**Return value**
+| Type                                | Description           |
+| ---------------------------------- | ------------- |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the array of strings obtained.|
 
-- Example
+**Example**
   ```
   resourceManager.getResourceManager((error, mgr) => {
        mgr.getStringArray($r('app.strarray.test').id).then(value => {
@@ -325,13 +335,13 @@ Obtains the content of the media file corresponding to the specified resource ID
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-- **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | resId | number | Yes| Resource ID.|
-  | callback | AsyncCallback&lt;Uint8Array&gt; | Yes| Callback used to return the content of the media file obtained.|
+**Parameters**
+| Name     | Type                             | Mandatory  | Description                |
+| -------- | ------------------------------- | ---- | ------------------ |
+| resId    | number                          | Yes   | Resource ID.             |
+| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the content of the media file obtained.|
 
-- Example
+**Example**
   ```
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getMedia($r('app.media.test').id, (error, value) => {
@@ -353,17 +363,17 @@ Obtains the content of the media file corresponding to the specified resource ID
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-- **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | resId | number | Yes| Resource ID.|
+**Parameters**
+| Name  | Type    | Mandatory  | Description   |
+| ----- | ------ | ---- | ----- |
+| resId | number | Yes   | Resource ID.|
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;Uint8Array&gt; | Promise used to return the content of the media file obtained.|
+**Return value**
+| Type                       | Description            |
+| ------------------------- | -------------- |
+| Promise&lt;Uint8Array&gt; | Promise used to return the content of the media file obtained.|
 
-- Example
+**Example**
   ```
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getMedia($r('app.media.test').id).then(value => {
@@ -383,13 +393,13 @@ Obtains the Base64 code of the image corresponding to the specified resource ID.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-- **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | resId | number | Yes| Resource ID.|
-  | callback | AsyncCallback&lt;string&gt; | Yes| Callback used to return the Base64 code of the image obtained.|
+**Parameters**
+| Name     | Type                         | Mandatory  | Description                      |
+| -------- | --------------------------- | ---- | ------------------------ |
+| resId    | number                      | Yes   | Resource ID.                   |
+| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the Base64 code of the image obtained.|
 
-- Example
+**Example**
   ```
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getMediaBase64($r('app.media.test').id, (error, value) => {
@@ -411,17 +421,17 @@ Obtains the Base64 code of the image corresponding to the specified resource ID.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-- **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | resId | number | Yes| Resource ID.|
+**Parameters**
+| Name  | Type    | Mandatory  | Description   |
+| ----- | ------ | ---- | ----- |
+| resId | number | Yes   | Resource ID.|
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;string&gt; | Promise used to return the Base64 code of the image obtained.|
+**Return value**
+| Type                   | Description                  |
+| --------------------- | -------------------- |
+| Promise&lt;string&gt; | Promise used to return the Base64 code of the image obtained.|
 
-- Example
+**Example**
   ```
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getMediaBase64($r('app.media.test').id).then(value => {
@@ -441,12 +451,12 @@ Obtains the device configuration. This method uses an asynchronous callback to r
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-- **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[Configuration](#configuration)&gt; | Yes| Callback used to return the obtained device configuration.|
+**Parameters**
+| Name     | Type                                      | Mandatory  | Description                       |
+| -------- | ---------------------------------------- | ---- | ------------------------- |
+| callback | AsyncCallback&lt;[Configuration](#configuration)&gt; | Yes   | Callback used to return the obtained device configuration.|
 
-- Example
+**Example**
   ```
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getConfiguration((error, value) => {
@@ -468,12 +478,12 @@ Obtains the device configuration. This method uses a promise to return the resul
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;[Configuration](#configuration)&gt; | Promise used to return the device configuration.|
+**Return value**
+| Type                                      | Description              |
+| ---------------------------------------- | ---------------- |
+| Promise&lt;[Configuration](#configuration)&gt; | Promise used to return the device configuration.|
 
-- Example
+**Example**
   ```
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getConfiguration().then(value => {
@@ -493,12 +503,12 @@ Obtains the device capability. This method uses an asynchronous callback to retu
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-- **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[DeviceCapability](#devicecapability)&gt; | Yes| Callback used to return the obtained device capability.|
+**Parameters**
+| Name     | Type                                      | Mandatory  | Description                          |
+| -------- | ---------------------------------------- | ---- | ---------------------------- |
+| callback | AsyncCallback&lt;[DeviceCapability](#devicecapability)&gt; | Yes   | Callback used to return the obtained device capability.|
 
-- Example
+**Example**
   ```
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getDeviceCapability((error, value) => {
@@ -520,12 +530,12 @@ Obtains the device capability. This method uses a promise to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;[DeviceCapability](#devicecapability)&gt; | Promise used to return the obtained device capability.|
+**Return value**
+| Type                                      | Description                 |
+| ---------------------------------------- | ------------------- |
+| Promise&lt;[DeviceCapability](#devicecapability)&gt; | Promise used to return the obtained device capability.|
 
-- Example
+**Example**
   ```
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getDeviceCapability().then(value => {
@@ -545,14 +555,14 @@ Obtains the specified number of singular-plural strings corresponding to the spe
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-- **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | resId | number | Yes| Resource ID.|
-  | num | number | Yes| Number that determines the plural or singular form.|
-  | callback | AsyncCallback&lt;string&gt; | Yes| Callback used to return the singular-plural string obtained.|
+**Parameters**
+| Name     | Type                         | Mandatory  | Description                             |
+| -------- | --------------------------- | ---- | ------------------------------- |
+| resId    | number                      | Yes   | Resource ID.                          |
+| num      | number                      | Yes   | Number that determines the plural or singular form.                            |
+| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the singular-plural string obtained.|
 
-- Example
+**Example**
   ```
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getPluralString($r("app.plural.test").id, 1, (error, value) => {
@@ -574,18 +584,18 @@ Obtains the specified number of singular-plural strings corresponding to the spe
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-- **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | resId | number | Yes| Resource ID.|
-  | num | number | Yes| Number that determines the plural or singular form.|
+**Parameters**
+| Name  | Type    | Mandatory  | Description   |
+| ----- | ------ | ---- | ----- |
+| resId | number | Yes   | Resource ID.|
+| num   | number | Yes   | Number that determines the plural or singular form.  |
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;string&gt; | Promise used to return the singular-plural string obtained.|
+**Return value**
+| Type                   | Description                       |
+| --------------------- | ------------------------- |
+| Promise&lt;string&gt; | Promise used to return the singular-plural string obtained.|
 
-- Example
+**Example**
   ```
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getPluralString($r("app.plural.test").id, 1).then(value => {
@@ -604,13 +614,13 @@ Obtains the content of the raw file in the specified path. This method uses an a
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-- **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | path | string | Yes| Path of the raw file.|
-  | callback | AsyncCallback&lt;Uint8Array&gt; | Yes| Callback used to return the raw file content, in byte arrays.|
+**Parameters**
+| Name     | Type                             | Mandatory  | Description                     |
+| -------- | ------------------------------- | ---- | ----------------------- |
+| path     | string                          | Yes   | Path of the raw file.            |
+| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the raw file content, in byte arrays.|
 
-- Example
+**Example**
   ```
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getRawFile("test.xml", (error, value) => {
@@ -631,17 +641,17 @@ Obtains the content of the raw file in the specified path. This method uses a pr
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-- **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | path | string | Yes| Path of the raw file.|
+**Parameters**
+| Name | Type    | Mandatory  | Description         |
+| ---- | ------ | ---- | ----------- |
+| path | string | Yes   | Path of the raw file.|
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;Uint8Array&gt; | Promise used to return the raw file content, in byte arrays.|
+**Return value**
+| Type                       | Description         |
+| ------------------------- | ----------- |
+| Promise&lt;Uint8Array&gt; | Promise used to return the raw file content, in byte arrays.|
 
-- Example
+**Example**
   ```
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getRawFile("test.xml").then(value => {
@@ -660,13 +670,13 @@ Obtains the descriptor of the raw file in the specified path. This method uses a
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-- **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | path | string | Yes| Path of the raw file.|
-  | callback | AsyncCallback&lt;[RawFileDescriptor](#RawFileDescriptor<sup>8+</sup>)&gt; | Yes| Callback used to return the raw file descriptor.|
+**Parameters**
+| Name     | Type                                      | Mandatory  | Description                              |
+| -------- | ---------------------------------------- | ---- | -------------------------------- |
+| path     | string                                   | Yes   | Path of the raw file.                     |
+| callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor8+</sup)&gt; | Yes   | Callback used to return the raw file descriptor.|
 
-- Example
+**Example**
   ```
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getRawFileDescriptor("test.xml", (error, value) => {
@@ -689,17 +699,17 @@ Obtains the descriptor of the raw file in the specified path. This method uses a
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-- **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | path | string | Yes| Path of the raw file.|
+**Parameters**
+| Name | Type    | Mandatory  | Description         |
+| ---- | ------ | ---- | ----------- |
+| path | string | Yes   | Path of the raw file.|
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;[RawFileDescriptor](#RawFileDescriptor<sup>8+</sup>)&gt; | Promise used to return the raw file descriptor.|
+**Return value**
+| Type                                      | Description                 |
+| ---------------------------------------- | ------------------- |
+| Promise&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | Promise used to return the raw file descriptor.|
 
-- Example
+**Example**
   ```
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getRawFileDescriptor("test.xml").then(value => {
@@ -720,13 +730,13 @@ Closes the descriptor of the raw file in the specified path. This method uses an
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-- **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | path | string | Yes| Path of the raw file.|
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+**Parameters**
+| Name     | Type                       | Mandatory  | Description         |
+| -------- | ------------------------- | ---- | ----------- |
+| path     | string                    | Yes   | Path of the raw file.|
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.       |
 
-- Example
+**Example**
   ```
   resourceManager.getResourceManager((error, mgr) => {
       mgr.closeRawFileDescriptor("test.xml", (error, value) => {
@@ -745,17 +755,17 @@ Closes the descriptor of the raw file in the specified path. This method uses a 
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-- **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | path | string | Yes| Path of the raw file.|
+**Parameters**
+| Name | Type    | Mandatory  | Description         |
+| ---- | ------ | ---- | ----------- |
+| path | string | Yes   | Path of the raw file.|
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;void&gt; | No value is returned.|
+**Return value**
+| Type                 | Description  |
+| ------------------- | ---- |
+| Promise&lt;void&gt; | No value is returned.|
 
-- Example
+**Example**
   ```
   resourceManager.getResourceManager((error, mgr) => {
       mgr.closeRawFileDescriptor("test.xml").then(value => {
@@ -768,13 +778,13 @@ Closes the descriptor of the raw file in the specified path. This method uses a 
 
 ### release<sup>7+</sup>
 
-release();
+release()
 
 Releases the created **resourceManager**.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-- Example
+**Example**
   ```
   resourceManager.getResourceManager((error, mgr) => {
       mgr.release((error, value) => {
