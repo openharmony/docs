@@ -39,8 +39,8 @@ function isLastWorkTimeOut(workId: number): Promise<boolean>;| 获取上次任�
 workId | 延迟任务Id（必填）|number
 bundleName | 延迟任务包名（必填）|string
 abilityName | 延迟任务回调通知的组件名（必填）|string
-networkType | 网络条件 | NetworkType
-isCharging | 是否充电 | bool
+networkType | 网络类型 | NetworkType
+isCharging | 是否充电 | boolean
 chargerType | 充电类型 | ChargingType
 batteryLevel | 电量| number
 batteryStatus| 电池状态|    BatteryStatus
