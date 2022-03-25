@@ -1,4 +1,4 @@
-# Form Ability Development
+# FA Widget Development
 
 ## Widget Overview
 A Form ability presents a widget, which is a set of UI components used to display important information or operations for an application. It provides users with direct access to a desired application service, without requiring them to open the application.

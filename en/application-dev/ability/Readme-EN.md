@@ -5,6 +5,6 @@
    - [Page Ability Development](fa-pageability.md)
    - [Service Ability Development](fa-serviceability.md)
    - [Data Ability Development](fa-dataability.md)
-   - [Form Ability Development](fa-formability.md)
+   - [FA Widget Development](fa-formability.md)
  - Other
    - [Ability Assistant Usage](ability-assistant-guidelines.md)
