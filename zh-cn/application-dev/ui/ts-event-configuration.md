@@ -13,7 +13,7 @@
   ```
 
 
-- 使用匿名函数表达式配置组件的事件方法，要求使用**bind**，以确保函数体中的this引用包含的组件：
+- 使用匿名函数表达式配置组件的事件方法，要求使用bind，以确保函数体中的this引用包含的组件：
   ```
   // Counter is a private data variable defined in the component.
   Button('add counter')
