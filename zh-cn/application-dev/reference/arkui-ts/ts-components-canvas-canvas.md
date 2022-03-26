@@ -24,11 +24,11 @@ Canvas(context: CanvasRenderingContext2D)
 
 ## 属性
 
-支持[通用属性](ts-universal-attributes.md)。
+支持[通用属性](ts-universal-attributes-index.md)。
 
 ## 事件
 
-除支持[通用事件](ts-universal-events.md)外，还支持如下事件：
+除支持[通用事件](ts-universal-events-index.md)外，还支持如下事件：
 
 | 名称                          | 参数 | 描述                                     |
 | ----------------------------- | ---- | ---------------------------------------- |
