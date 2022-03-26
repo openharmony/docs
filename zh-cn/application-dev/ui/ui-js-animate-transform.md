@@ -565,8 +565,8 @@ transform可以设置多个值并且多个值可同时设置，下面案例中�
 ![zh-cn_image_0000001220554911](figures/zh-cn_image_0000001220554911.gif)
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 1. 当设置多个transform时，后续的transform值会把前面的覆盖掉。若想同时使用多个动画样式可用复合写法，例：transform: scale(1) rotate(0) translate(0,0)。
+> - 当设置多个transform时，后续的transform值会把前面的覆盖掉。若想同时使用多个动画样式可用复合写法，例：transform: scale(1) rotate(0) translate(0,0)。
 > 
-> 2. transform进行复合写法时，变化样式内多个样式值顺序的不同会呈现不一样的动画效果。
+> - transform进行复合写法时，变化样式内多个样式值顺序的不同会呈现不一样的动画效果。
 > 
-> 3. transform属性设置的样式值要一一对应，若前后不对应，则该动画不生效。若设置多个样式值则只会呈现出已对应值的动画效果。
+> - transform属性设置的样式值要一一对应，若前后不对应，则该动画不生效。若设置多个样式值则只会呈现出已对应值的动画效果。
