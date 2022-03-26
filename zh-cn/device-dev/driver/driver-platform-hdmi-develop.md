@@ -94,7 +94,7 @@ struct HdmiCntlrOps {
 | tmdsModeSet              | **cntlr**: 结构体指针，核心层HDMI控制器;<br />**mode**:TMDS模式 | 无                                     | 无 | 设置TMDS模式                                      |
 |tmdsConfigSet|**cntlr**: 结构体指针，核心层HDMI控制器;<br />**mode**: TMDS参数|无|HDF_STATUS相关状态|配置TMDS参数|
 |infoFrameEnable|**cntlr**: 结构体指针，核心层HDMI控制器;<br />**infoFrameType**: packet类型<br />**enable**: bool，使能/去使能|无|无|使能/去使能infoFrame|
-|infoFrameSend|**cntlr**: 结构体指针，核心层HDMI控制器;<br />**infoFrameType**: packet类型<br />**data**: infoFrame数据<br />**len**:数据长度|无|HDF_STATUS相关状态|发送inforFrame|
+|infoFrameSend|**cntlr**: 结构体指针，核心层HDMI控制器;<br />**infoFrameType**: packet类型<br />**data**: infoFrame数据<br />**len**:数据长度|无|HDF_STATUS相关状态|发送infoFrame|
 |cecMsgSend|**cntlr**: 结构体指针，核心层HDMI控制器;<br />**msg**: CEC消息|无|HDF_STATUS相关状态|发送CEC消息|
 |audioPathEnable|**cntlr**: 结构体指针，核心层HDMI控制器;<br />**enable**: bool，使能/去使能|无|无|使能/去使能audio通路|
 |audioPathSet|**cntlr**: 结构体指针，核心层HDMI控制器;<br />**config**: 配置信息|无|无|设置audio通路配置信息|
