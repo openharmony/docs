@@ -325,7 +325,7 @@ Listens for camera status changes. This method uses a callback to get camera sta
 
 | Name     | Type                   | Mandatory | Description                                          |
 | :------- | :--------------------- | :-------- | :--------------------------------------------------- |
-| type     | string                 | Yes       | Name of the event to listen for, it should be 'cameraStatus', which is  the camera status event.   |
+| type     | string                 | Yes       | Name of the event to listen for. It should be 'cameraStatus', which is  the camera status event.   |
 | callback | Callback<CameraStatusInfo\> | Yes  | Callback used to get the camera status change. |
 
 **Example**
@@ -1091,7 +1091,7 @@ Listens for **CameraInput** errors. This method uses a callback to get errors.
 
 | Name     | Type                   | Mandatory | Description                                     |
 | :------- | :--------------------- | :-------- | :-----------------------------------------------|
-| type     | string                 | Yes       | Name of the event to listen for, it should be 'error',which is the CameraInputError event                |
+| type     | string                 | Yes       | Name of the event to listen for. It should be 'error', which is the CameraInputError event.                |
 | callback | Callback<CameraInputError\> | Yes  | Callback used to get the camera input errors.   |
 
 **Example**
@@ -1949,7 +1949,7 @@ Listens for **CaptureSession** errors. This method uses a callback to get errors
 
 | Name     | Type                   | Mandatory | Description                                     |
 | :------- | :--------------------- | :-------- | :-----------------------------------------------|
-| type     | string                 | Yes       | Name of the event to listen for, it should be 'error',which is the CaptureSessionError event                    |
+| type     | string                 | Yes       | Name of the event to listen for. It should be 'error', which is the CaptureSessionError event.                    |
 | callback | Callback<CaptureSessionError\> | Yes  | Callback used to get the capture session errors. |
 
 **Example**
@@ -2140,7 +2140,7 @@ Listens for **PreviewOutput** errors. This method uses a callback to get errors.
 
 | Name     | Type                   | Mandatory | Description                                     |
 | :------- | :--------------------- | :-------- | :-----------------------------------------------|
-| type     | string                 | Yes       | Name of the event to listen for, it should be 'error',which is the PreviewOutputError event                    |
+| type     | string                 | Yes       | Name of the event to listen for. It should be 'error', which is the PreviewOutputError event.                    |
 | callback | Callback<PreviewOutputError\> | Yes  | Callback used to get the preview output errors. |
 
 **Example**
@@ -2503,7 +2503,7 @@ Listens for **PhotoOutput** errors. This method uses a callback to get errors.
 
 | Name     | Type                   | Mandatory | Description                                     |
 | :------- | :--------------------- | :-------- | :-----------------------------------------------|
-| type     | string                 | Yes       | Name of the event to listen for, it should be 'error',which is the PhotoOutputError event                |
+| type     | string                 | Yes       | Name of the event to listen for. It should be 'error', which is the PhotoOutputError event.                |
 | callback | Callback<PhotoOutputError\> | Yes  | Callback used to get the photo output errors.   |
 
 **Example**
@@ -2786,7 +2786,7 @@ Listens for **VideoOutput** errors. This method uses a callback to get errors.
 
 | Name     | Type                   | Mandatory | Description                                     |
 | :------- | :--------------------- | :-------- | :-----------------------------------------------|
-| type     | string                 | Yes       | Name of the event to listen for, it should be 'error',which is the VideoOutputError event                |
+| type     | string                 | Yes       | Name of the event to listen for. It should be 'error', which is the VideoOutputError event.                |
 | callback | Callback<VideoOutputError\> | Yes  | Callback used to get the video output errors.   |
 
 **Example**
