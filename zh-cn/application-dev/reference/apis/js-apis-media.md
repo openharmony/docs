@@ -238,8 +238,6 @@ Codec MIME类型枚举。
 | AUDIO_AAC    | "audio/mp4a-latm"     | 表示音频/mp4a-latm类型。 |
 | AUDIO_VORBIS | 'audio/vorbis'        | 表示音频/vorbis类型。    |
 | AUDIO_FLAC   | 'audio/flac'          | 表示音频/flac类型。      |
-| AUDIO_AMR_NB | 'audio/3gpp'          | 表示音频/amr_nb类型。    |
-| AUDIO_AMR_WB | 'audio/amr-wb'        | 表示音频/amr_wb类型。    |
 
 ## MediaDescriptionKey<sup>8+</sup>
 
@@ -1811,6 +1809,9 @@ audioRecorder.prepare();                                                  // pre
 
 ## AudioEncoder
 
+> **说明：**
+> 从 API Version 8 开始废弃，建议使用[CodecMimeType](#codecmimetype8)替代。
+
 表示音频编码格式的枚举。
 
 **系统能力：** 以下各项对应的系统能力均为 SystemCapability.Multimedia.Media.AudioRecorder。
@@ -1825,6 +1826,9 @@ audioRecorder.prepare();                                                  // pre
 
 
 ## AudioOutputFormat
+
+> **说明：**
+> 从 API Version 8 开始废弃，建议使用[ContainerFormatType ](#containerformattype8)替代。
 
 表示音频封装格式的枚举。
 
