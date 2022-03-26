@@ -538,4 +538,5 @@
 针对创建简单视图，有以下示例工程可供参考：
 
 - [eTSBuildCommonView](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/eTSBuildCommonView)
+
   本示例为构建了简单页面展示食物番茄的图片和营养信息，主要为了展示简单页面的Stack布局和Flex布局。
