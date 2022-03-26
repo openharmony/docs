@@ -42,7 +42,7 @@ queryOsAccountDistributedInfo(callback: AsyncCallback&lt;DistributedInfo&gt;): v
 
 获取分布式帐号信息，使用callback回调异步返回结果。
 
-需要权限：ohos.permission.MANAGE_LOCAL_ACCOUNTS，该权限仅供系统应用使用。
+需要权限：ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.DISTRIBUTED_DATASYNC，该权限仅供系统应用使用。
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -65,7 +65,7 @@ queryOsAccountDistributedInfo(): Promise&lt;DistributedInfo&gt;
 
 获取分布式帐号信息，使用Promise方式异步返回结果。
 
-需要权限：ohos.permission.MANAGE_LOCAL_ACCOUNTS，该权限仅供系统应用使用。
+需要权限：ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.DISTRIBUTED_DATASYNC，该权限仅供系统应用使用。
 
 - 返回值：
   | 类型 | 说明 |

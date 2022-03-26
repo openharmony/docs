@@ -52,6 +52,8 @@ activateOsAccount(localId: number, callback: AsyncCallback&lt;void&gt;): void
 
 此接口为系统接口，三方应用不支持调用。
 
+**需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION
+
 **系统能力：** SystemCapability.Account.OsAccount
 
 **参数：**
@@ -77,6 +79,8 @@ activateOsAccount(localId: number): Promise&lt;void&gt;
 激活指定系统帐号，使用Promise方式异步返回结果。
 
 此接口为系统接口，三方应用不支持调用。
+
+**需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -158,7 +162,7 @@ isOsAccountActived(localId: number, callback: AsyncCallback&lt;boolean&gt;): voi
 
 判断指定系统帐号是否处于激活状态，使用callback回调异步返回结果。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS、ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -186,7 +190,7 @@ isOsAccountActived(localId: number): Promise&lt;boolean&gt;
 
 判断指定系统帐号是否处于激活状态，使用Promise方式异步返回结果。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS、ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -357,6 +361,8 @@ isOsAccountVerified(localId: number, callback: AsyncCallback&lt;boolean&gt;): vo
 
 检查指定系统帐号是否已验证，使用callback回调异步返回结果。
 
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+
 **系统能力：** SystemCapability.Account.OsAccount
 
 **参数：**
@@ -381,6 +387,8 @@ isOsAccountVerified(localId: number, callback: AsyncCallback&lt;boolean&gt;): vo
 isOsAccountVerified(localId?: number): Promise&lt;boolean&gt;
 
 检查指定系统帐号是否已验证，使用Promise方式异步返回结果。
+
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -556,6 +564,8 @@ setOsAccountName(localId: number, localName: string, callback: AsyncCallback&lt;
 
 此接口为系统接口，三方应用不支持调用。
 
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+
 **系统能力：** SystemCapability.Account.OsAccount
 
 **参数：**
@@ -584,6 +594,8 @@ setOsAccountName(localId: number, localName: string): Promise&lt;void&gt;
 设置指定系统帐号的帐号名，使用Promise方式异步返回结果。 
 
 此接口为系统接口，三方应用不支持调用。
+
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1250,7 +1262,7 @@ queryOsAccountById(localId: number, callback: AsyncCallback&lt;OsAccountInfo&gt;
 
 此接口为系统接口，三方应用不支持调用。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS、ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1280,7 +1292,7 @@ queryOsAccountById(localId: number): Promise&lt;OsAccountInfo&gt;
 
 此接口为系统接口，三方应用不支持调用。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS、ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1363,7 +1375,7 @@ getDistributedVirtualDeviceId(callback: AsyncCallback&lt;string&gt;): void
 
 获取分布式虚拟设备ID，使用callback回调异步返回结果。
 
-**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
+**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC 或 ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1389,7 +1401,7 @@ getDistributedVirtualDeviceId(): Promise&lt;string&gt;
 
 获取分布式虚拟设备ID，使用Promise方式异步返回结果。
 
-**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
+**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC 或 ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
 **系统能力：** SystemCapability.Account.OsAccount
 

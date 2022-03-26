@@ -77,6 +77,8 @@ Activates an OS account. This method uses a promise to return the result.
 
 This is a system API and cannot be called by third-party applications.
 
+**Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION
+
 **System capability**: SystemCapability.Account.OsAccount
 
 **Parameters**
@@ -157,7 +159,7 @@ isOsAccountActived(localId: number, callback: AsyncCallback&lt;boolean&gt;): voi
 
 Checks whether an OS account is activated. This method uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS and ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS or ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -185,7 +187,7 @@ isOsAccountActived(localId: number): Promise&lt;boolean&gt;
 
 Checks whether an OS account is activated. This method uses a promise to return the result.
 
-**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS and ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS or ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -356,6 +358,8 @@ isOsAccountVerified(localId: number, callback: AsyncCallback&lt;boolean&gt;): vo
 
 Checks whether an OS account has been verified. This method uses an asynchronous callback to return the result.
 
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS or ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+
 **System capability**: SystemCapability.Account.OsAccount
 
 **Parameters**
@@ -380,6 +384,8 @@ Checks whether an OS account has been verified. This method uses an asynchronous
 isOsAccountVerified(localId?: number): Promise&lt;boolean&gt;
 
 Checks whether an OS account has been verified. This method uses a promise to return the result.
+
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS or ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -555,6 +561,8 @@ Sets a name for an OS account. This method uses an asynchronous callback to retu
 
 This is a system API and cannot be called by third-party applications.
 
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
+
 **System capability**: SystemCapability.Account.OsAccount
 
 **Parameters**
@@ -583,6 +591,8 @@ setOsAccountName(localId: number, localName: string): Promise&lt;void&gt;
 Sets a name for an OS account. This method uses a promise to return the result.
 
 This is a system API and cannot be called by third-party applications.
+
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -1249,7 +1259,7 @@ Obtains information about an OS account. This method uses an asynchronous callba
 
 This is a system API and cannot be called by third-party applications.
 
-**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS and ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS or ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -1279,7 +1289,7 @@ Obtains information about an OS account. This method uses a promise to return th
 
 This is a system API and cannot be called by third-party applications.
 
-**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS and ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS or ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -1362,7 +1372,7 @@ getDistributedVirtualDeviceId(callback: AsyncCallback&lt;string&gt;): void
 
 Obtains the ID of this distributed virtual device. This method uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
+**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC or ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -1388,7 +1398,7 @@ getDistributedVirtualDeviceId(): Promise&lt;string&gt;
 
 Obtains the ID of this distributed virtual device. This method uses a promise to return the result.
 
-**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
+**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC or ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -1737,24 +1747,24 @@ Defines information about an OS account.
 | localName         | string                                                       | Yes  | OS account name.                   |
 | type              | [OsAccountType](#osaccounttype)                              | Yes  | OS account type.                     |
 | constraints       | Array&lt;string&gt;                                          | No  | [Constraints](#constraints) on the OS account.|
-| isVerified        | boolean                                                      | Yes  | Whether the OS account is verified.                     |
-| photo             | string                                                       | No  | Profile photo of the OS account.                     |
-| createTime        | number                                                       | Yes  | Time when the OS account was created.                 |
-| lastLoginTime     | number                                                       | No  | Last login time of the OS account.         |
-| serialNumber      | number                                                       | Yes  | SN of the OS account.                     |
-| isActived         | boolean                                                      | Yes  | Whether the OS account is activated.                 |
-| isCreateCompleted | boolean                                                      | Yes  | Whether the OS account information is complete.             |
+| isVerified<sup>8+</sup>        | boolean                                                      | Yes  | Whether the OS account is verified.                     |
+| photo<sup>8+</sup>             | string                                                       | No  | Profile photo of the OS account.                     |
+| createTime<sup>8+</sup>        | number                                                       | Yes  | Time when the OS account was created.                 |
+| lastLoginTime<sup>8+</sup>     | number                                                       | No  | Last login time of the OS account.         |
+| serialNumber<sup>8+</sup>      | number                                                       | Yes  | SN of the OS account.                     |
+| isActived<sup>8+</sup>         | boolean                                                      | Yes  | Whether the OS account is activated.                 |
+| isCreateCompleted<sup>8+</sup> | boolean                                                      | Yes  | Whether the OS account information is complete.             |
 | distributedInfo   | [distributedAccount.DistributedInfo](js-apis-distributed-account.md) | No  | Distributed account information.                   |
-| domainInfo        | [DomainAccountInfo](#domainaccountinfo)                      | No  | Domain account information.                       |
+| domainInfo<sup>8+</sup>        | [DomainAccountInfo](#domainaccountinfo)                      | No  | Domain account information.                       |
 
-## DomainAccountInfo
+## DomainAccountInfo<sup>8+</sup>
 Domain account information.
 
 **System capability**: SystemCapability.Account.OsAccount
 
 | Name     | Type  | Mandatory| Description      |
 | ----------- | ------ | ---- | ---------- |
-| domain      | string | Yes  | Domain name.    |
+| domain     | string | Yes  | Domain name.    |
 | accountName | string | Yes  | Domain account name.|
 
 ## Constraints
