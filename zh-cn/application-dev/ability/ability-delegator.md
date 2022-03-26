@@ -1,13 +1,19 @@
 # 测试框架使用指导
 
-Delegator测试框架是OpenHarmony提供的一套开发者应用自测试框架，旨在为开发者提供针对应用的自测试环境。开发者可以通过delegator类启动对应Ability，并通过Delegator类提供的能力对Ability进行生命周期切换和监听，同时支持shellCMD输入和测试结果打印显示等功能。	
+## 概述
+Delegator测试框架是OpenHarmony提供的一套开发者应用自测试框架，旨在为开发者提供针对应用的自测试环境。开发者可以通过delegator类启动对应Ability，并通过Delegator类提供的能力对Ability进行生命周期切换和监听，同时支持shellCMD输入和测试结果打印显示等功能。
+
+## 约束与限制
+
+测试框架相关接口只能在测试hap包中使用，只有通过`aa test`命令或者IDE启动测试环境后相关接口才能生效。
+
 
 ## 测试框架启动
 
-测试框架启动有两种方式，方式一：通过aa test命令启动，方式二：通过IDE启动。
+测试框架启动有两种方式，方式一：通过`aa test`命令启动，方式二：通过IDE启动。
 ### aa test启动
 
-开发者可通过 aa test 命令启动启动测试框架，开发者可以自行指定使用的runner以及runner所在hap包的package name/module name，具体命令示例如下:
+开发者可通过 `aa test` 命令启动启动测试框架，开发者可以自行指定使用的runner以及runner所在hap包的package name/module name，具体命令示例如下:
 
 **FA模型：**
 
@@ -24,12 +30,12 @@ aa test -m com.example.myapplicationfaets -s unittest OpenHarmonyTestRunner -s c
 | -p              | 是       | TestRunner所在hap包的package name，FA模型使用。              |
 | -m              | 是       | TestRunner所在hap包的module name，stage模型使用。            |
 | -s unittest     | 是       | 启用的TestRunner名称，TestRunner名称和文件名需要保持一致。   |
-| -w              | 否       | 测试用例超时时间，如果未指定，测试框架会一直等待测试代码调用finishTest才退出。 |
-| -s <key><value> | 否       | 支持以key-value的方式输入任何参数，输入的参数可通过AbilityDelegatorArgs.parameters以key-value的方式获取。 |
+| -w              | 否       | 测试用例超时时间，单位为秒，如果未指定，测试框架会一直等待测试代码调用finishTest才退出。 |
+| -s <key><value> | 否       | 支持以key-value的方式输入任何参数，输入的参数可通过AbilityDelegatorArgs.parameters以key-value的方式获取。示例：-s classname myTest，key为classname，value为myTest。 |
 
 ### IDE启动
 
-IDE文档中介绍，待IDE文档上库补充链接。
+IDE启动相关介绍见 [IDE指导网址](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-openharmony-test-framework-0000001263160453#section1034420367508)。
 
 ## TestRunner介绍
 

@@ -122,7 +122,7 @@ createAudioRecorder(): AudioRecorder
 **示例：**
 
 ```js
-let audiorecorder = media.createAudioRecorder(); 
+let audiorecorder = media.createAudioRecorder();
 ```
 
 ## media.createVideoRecorder<sup>9+</sup>
@@ -545,24 +545,24 @@ on(type: 'play' | 'pause' | 'stop' | 'reset' | 'dataLoad' | 'finish' | 'volumeCh
 ```js
 let audioPlayer = media.createAudioPlayer();  //创建一个音频播放实例
 audioPlayer.on('dataLoad', () => {            //设置'dataLoad'事件回调，src属性设置成功后，触发此回调
-	console.info('audio set source success');
+    console.info('audio set source success');
     audioPlayer.play();                       //开始播放，并触发'play'事件回调
 });
 audioPlayer.on('play', () => {                //设置'play'事件回调
-	console.info('audio play success');
+    console.info('audio play success');
     audioPlayer.seek(30000);                  //调用seek方法，并触发'timeUpdate'事件回调
 });
 audioPlayer.on('pause', () => {               //设置'pause'事件回调
-	console.info('audio pause success');
+    console.info('audio pause success');
     audioPlayer.stop();                       //停止播放，并触发'stop'事件回调
 });
 audioPlayer.on('reset', () => {               //设置'reset'事件回调
-	console.info('audio reset success');
+    console.info('audio reset success');
     audioPlayer.release();                    //释放播放实例资源
     audioPlayer = undefined;
 });
 audioPlayer.on('timeUpdate', (seekDoneTime) => {  //设置'timeUpdate'事件回调
-	if (typeof(seekDoneTime) == "undefined") {
+    if (typeof(seekDoneTime) == "undefined") {
         console.info('audio seek fail');
         return;
     }
@@ -570,15 +570,15 @@ audioPlayer.on('timeUpdate', (seekDoneTime) => {  //设置'timeUpdate'事件回�
     audioPlayer.setVolume(0.5);                //设置音量为50%，并触发'volumeChange'事件回调
 });
 audioPlayer.on('volumeChange', () => {         //设置'volumeChange'事件回调
-	console.info('audio volumeChange success');
+    console.info('audio volumeChange success');
     audioPlayer.pause();                       //暂停播放，并触发'pause'事件回调
 });
 audioPlayer.on('finish', () => {               //设置'finish'事件回调
-	console.info('audio play finish');
+    console.info('audio play finish');
     audioPlayer.stop();                        //停止播放，并触发'stop'事件回调
 });
 audioPlayer.on('error', (error) => {           //设置'error'事件回调
-	console.info(`audio error called, errName is ${error.name}`);
+    console.info(`audio error called, errName is ${error.name}`);
     console.info(`audio error called, errCode is ${error.code}`);
     console.info(`audio error called, errMessage is ${error.message}`);
 });
@@ -644,7 +644,7 @@ on(type: 'error', callback: ErrorCallback): void
 
 ```js
 audioPlayer.on('error', (error) => {      //设置'error'事件回调
-	console.info(`audio error called, errName is ${error.name}`);      //打印错误类型名称
+    console.info(`audio error called, errName is ${error.name}`);      //打印错误类型名称
     console.info(`audio error called, errCode is ${error.code}`);      //打印错误码
     console.info(`audio error called, errMessage is ${error.message}`);//打印错误类型详细描述
 });
@@ -704,9 +704,9 @@ setDisplaySurface(surfaceId: string, callback: AsyncCallback\<void>): void
 
 ```js
 videoPlayer.setDisplaySurface(surfaceId, (err) => {
-	if (typeof (err) == 'undefined') {
-		console.info('setDisplaySurface success!');
-	} else {
+    if (typeof (err) == 'undefined') {
+        console.info('setDisplaySurface success!');
+    } else {
         console.info('setDisplaySurface fail!');
     }
 });
@@ -764,9 +764,9 @@ prepare(callback: AsyncCallback\<void>): void
 
 ```js
 videoPlayer.prepare((err) => {
-	if (typeof (err) == 'undefined') {
-		console.info('prepare success!');
-	} else {
+    if (typeof (err) == 'undefined') {
+        console.info('prepare success!');
+    } else {
         console.info('prepare fail!');
     }
 });
@@ -818,9 +818,9 @@ play(callback: AsyncCallback\<void>): void;
 
 ```js
 videoPlayer.play((err) => {
-	if (typeof (err) == 'undefined') {
-		console.info('play success!');
-	} else {
+    if (typeof (err) == 'undefined') {
+        console.info('play success!');
+    } else {
         console.info('play fail!');
     }
 });
@@ -872,9 +872,9 @@ pause(callback: AsyncCallback\<void>): void
 
 ```js
 videoPlayer.pause((err) => {
-	if (typeof (err) == 'undefined') {
-		console.info('pause success!');
-	} else {
+    if (typeof (err) == 'undefined') {
+        console.info('pause success!');
+    } else {
         console.info('pause fail!');
     }
 });
@@ -926,9 +926,9 @@ stop(callback: AsyncCallback\<void>): void
 
 ```js
 videoPlayer.stop((err) => {
-	if (typeof (err) == 'undefined') {
-		console.info('stop success!');
-	} else {
+    if (typeof (err) == 'undefined') {
+        console.info('stop success!');
+    } else {
         console.info('stop fail!');
     }
 });
@@ -980,9 +980,9 @@ reset(callback: AsyncCallback\<void>): void
 
 ```js
 videoPlayer.reset((err) => {
-	if (typeof (err) == 'undefined') {
-		console.info('reset success!');
-	} else {
+    if (typeof (err) == 'undefined') {
+        console.info('reset success!');
+    } else {
         console.info('reset fail!');
     }
 });
@@ -1035,9 +1035,9 @@ seek(timeMs: number, callback: AsyncCallback\<number>): void
 
 ```js
 videoPlayer.seek((seekTime, err) => {
-	if (typeof (err) == 'undefined') {
-		console.info('seek success!');
-	} else {
+    if (typeof (err) == 'undefined') {
+        console.info('seek success!');
+    } else {
         console.info('seek fail!');
     }
 });
@@ -1063,9 +1063,9 @@ seek(timeMs: number, mode:SeekMode, callback: AsyncCallback\<number>): void
 
 ```js
 videoPlayer.seek((seekTime, seekMode, err) => {
-	if (typeof (err) == 'undefined') {
-		console.info('seek success!');
-	} else {
+    if (typeof (err) == 'undefined') {
+        console.info('seek success!');
+    } else {
         console.info('seek fail!');
     }
 });
@@ -1129,9 +1129,9 @@ setVolume(vol: number, callback: AsyncCallback\<void>): void
 
 ```js
 videoPlayer.setVolume((vol, err) => {
-	if (typeof (err) == 'undefined') {
-		console.info('setVolume success!');
-	} else {
+    if (typeof (err) == 'undefined') {
+        console.info('setVolume success!');
+    } else {
         console.info('setVolume fail!');
     }
 });
@@ -1189,9 +1189,9 @@ release(callback: AsyncCallback\<void>): void
 
 ```js
 videoPlayer.release((err) => {
-	if (typeof (err) == 'undefined') {
-		console.info('release success!');
-	} else {
+    if (typeof (err) == 'undefined') {
+        console.info('release success!');
+    } else {
         console.info('release fail!');
     }
 });
@@ -1324,9 +1324,9 @@ setSpeed(speed:number, callback: AsyncCallback\<number>): void
 
 ```js
 videoPlayer.setSpeed((speed:number, err) => {
-	if (typeof (err) == 'undefined') {
-		console.info('setSpeed success!');
-	} else {
+    if (typeof (err) == 'undefined') {
+        console.info('setSpeed success!');
+    } else {
         console.info('setSpeed fail!');
     }
 });
@@ -1385,7 +1385,7 @@ on(type: 'playbackCompleted', callback: Callback\<void>): void
 
 ```js
 videoPlayer.on('playbackCompleted', () => {
-	console.info('playbackCompleted success!');
+    console.info('playbackCompleted success!');
 });
 ```
 
@@ -1432,7 +1432,7 @@ on(type: 'startRenderFrame', callback: Callback\<void>): void
 
 ```js
 videoPlayer.on('startRenderFrame', () => {
-	console.info('startRenderFrame success!');
+    console.info('startRenderFrame success!');
 });
 ```
 
@@ -1479,7 +1479,7 @@ on(type: 'error', callback: ErrorCallback): void
 
 ```js
 videoPlayer.on('error', (error) => {      // 设置'error'事件回调
-	console.info(`video error called, errName is ${error.name}`);      // 打印错误类型名称
+    console.info(`video error called, errName is ${error.name}`);      // 打印错误类型名称
     console.info(`video error called, errCode is ${error.code}`);      // 打印错误码
     console.info(`video error called, errMessage is ${error.message}`);// 打印错误类型详细描述
 });
@@ -1723,7 +1723,7 @@ on(type: 'prepare' | 'start' | 'pause' | 'resume' | 'stop' | 'release' | 'reset'
 **示例：**
 
 ```js
-let audiorecorder = media.createAudioRecorder();  								// 创建一个音频录制实例
+let audiorecorder = media.createAudioRecorder();                                  // 创建一个音频录制实例
 let audioRecorderConfig = {
     audioEncoder : media.AudioEncoder.AAC_LC, ,
     audioEncodeBitRate : 22050,
@@ -1733,34 +1733,34 @@ let audioRecorderConfig = {
     uri : 'fd://xx',                                                            // 文件需先由调用者创建，并给予适当的权限
     location : { latitude : 30, longitude : 130},
 }
-audioRecorder.on('error', (error) => {             								// 设置'error'事件回调
-	console.info(`audio error called, errName is ${error.name}`);
+audioRecorder.on('error', (error) => {                                             // 设置'error'事件回调
+    console.info(`audio error called, errName is ${error.name}`);
     console.info(`audio error called, errCode is ${error.code}`);
     console.info(`audio error called, errMessage is ${error.message}`);
 });
-audioRecorder.on('prepare', () => {              								// 设置'prepare'事件回调
+audioRecorder.on('prepare', () => {                                              // 设置'prepare'事件回调
     console.log('prepare success');
-    audioRecorder.start();                       								// 开始录制，并触发'start'事件回调
+    audioRecorder.start();                                                       // 开始录制，并触发'start'事件回调
 });
-audioRecorder.on('start', () => {    		     								// 设置'start'事件回调
+audioRecorder.on('start', () => {                                                 // 设置'start'事件回调
     console.log('audio recorder start success');
 });
-audioRecorder.on('pause', () => {    		     								// 设置'pause'事件回调
+audioRecorder.on('pause', () => {                                                 // 设置'pause'事件回调
     console.log('audio recorder pause success');
 });
-audioRecorder.on('resume', () => {    		     								// 设置'resume'事件回调
+audioRecorder.on('resume', () => {                                                 // 设置'resume'事件回调
     console.log('audio recorder resume success');
 });
-audioRecorder.on('stop', () => {    		     								// 设置'stop'事件回调
+audioRecorder.on('stop', () => {                                                 // 设置'stop'事件回调
     console.log('audio recorder stop success');
 });
-audioRecorder.on('release', () => {    		     								// 设置'release'事件回调
+audioRecorder.on('release', () => {                                                 // 设置'release'事件回调
     console.log('audio recorder release success');
 });
-audioRecorder.on('reset', () => {    		     								// 设置'reset'事件回调
+audioRecorder.on('reset', () => {                                                 // 设置'reset'事件回调
     console.log('audio recorder reset success');
 });
-audioRecorder.prepare(audioRecorderConfig)       								// 设置录制参数 ，并触发'prepare'事件回调
+audioRecorder.prepare(audioRecorderConfig)                                       // 设置录制参数 ，并触发'prepare'事件回调
 ```
 
 ### on('error')
@@ -1781,12 +1781,12 @@ on(type: 'error', callback: ErrorCallback): void
 **示例：**
 
 ```js
-audioRecorder.on('error', (error) => {      							// 设置'error'事件回调
-	console.info(`audio error called, errName is ${error.name}`);       // 打印错误类型名称
+audioRecorder.on('error', (error) => {                                  // 设置'error'事件回调
+    console.info(`audio error called, errName is ${error.name}`);       // 打印错误类型名称
     console.info(`audio error called, errCode is ${error.code}`);       // 打印错误码
     console.info(`audio error called, errMessage is ${error.message}`); // 打印错误类型详细描述
 });
-audioRecorder.prepare();  												// prepare不设置参数，触发'error'事件
+audioRecorder.prepare();                                                  // prepare不设置参数，触发'error'事件
 ```
 
 ## AudioRecorderConfig
@@ -1807,7 +1807,10 @@ audioRecorder.prepare();  												// prepare不设置参数，触发'error'�
 | audioEncoderMime      | [CodecMimeType](#codecmimetype8)        | 否   | 音频编码格式。                                               |
 
 
-## AudioEncoder
+## AudioEncoder<sup>(deprecated)</sup>
+
+> **说明：**
+> 从 API Version 8 开始废弃，建议使用[CodecMimeType](#codecmimetype8)替代。
 
 表示音频编码格式的枚举。
 
@@ -1822,7 +1825,10 @@ audioRecorder.prepare();  												// prepare不设置参数，触发'error'�
 | HE_AAC  | 4      | HE_AAC（High-Efficiency Advanced&nbsp;Audio&nbsp;Coding）编码格式。<br/>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
 
 
-## AudioOutputFormat
+## AudioOutputFormat<sup>(deprecated)</sup>
+
+> **说明：**
+> 从 API Version 8 开始废弃，建议使用[ContainerFormatType ](#containerformattype8)替代。
 
 表示音频封装格式的枚举。
 
@@ -1856,7 +1862,7 @@ prepare(config: VideoRecorderConfig, callback: AsyncCallback\<void>): void;
 
 异步方式进行视频录制的参数设置。通过注册回调函数获取返回值。
 
-**需要权限：** ohos.permission.MICROPHONE，ohos.permission.CAMERA
+**需要权限：** ohos.permission.MICROPHONE
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -1895,7 +1901,7 @@ let videoConfig = {
 // asyncallback
 let videoRecorder = null;
 let events = require('events');
-let eventEmitter = new events.EventEmitter();                              
+let eventEmitter = new events.EventEmitter();
 
 eventEmitter.on('prepare', () => {
     videoRecorder.prepare(videoConfig, (err) => {
@@ -2011,7 +2017,7 @@ getInputSurface(callback: AsyncCallback\<string>): void;
 
 ```js
 // asyncallback
-let surfaceID = null;   											// 传递给外界的surfaceID
+let surfaceID = null;                                               // 传递给外界的surfaceID
 videoRecorder.getInputSurface((err, surfaceId) => {
     if (typeof (err) == 'undefined') {
         console.info('getInputSurface success');
@@ -2044,7 +2050,7 @@ getInputSurface(): Promise\<string>;
 
 ```js
 // promise
-let surfaceID = null;   											// 传递给外界的surfaceID
+let surfaceID = null;                                               // 传递给外界的surfaceID
 await videoRecorder.getInputSurface().then((surfaceId) => {
     console.info('getInputSurface success');
     surfaceID = surfaceId;
@@ -2413,8 +2419,8 @@ on(type: 'error', callback: ErrorCallback): void
 **示例：**
 
 ```js
-videoRecorder.on('error', (error) => {      							// 设置'error'事件回调
-	console.info(`audio error called, errName is ${error.name}`);       // 打印错误类型名称
+videoRecorder.on('error', (error) => {                                  // 设置'error'事件回调
+    console.info(`audio error called, errName is ${error.name}`);       // 打印错误类型名称
     console.info(`audio error called, errCode is ${error.code}`);       // 打印错误码
     console.info(`audio error called, errMessage is ${error.message}`); // 打印错误类型详细描述
 });

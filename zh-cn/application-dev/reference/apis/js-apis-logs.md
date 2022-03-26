@@ -1,15 +1,5 @@
 # 日志打印
 
-
-## 导入模块
-
-无需导入。
-
-## 权限列表
-
-无
-
-
 ## console.debug
 
 debug(message: string): void

@@ -1,4 +1,4 @@
-# Canvas开发指导
+# Canvas对象
 
 
 Canvas组件提供画布，用于自定义绘制图形。具体用法请参考[CanvasRenderingContext2D对象](../reference/arkui-js/js-components-canvas-canvasrenderingcontext2d.md)。
@@ -34,7 +34,7 @@ canvas{
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > - Canvas组件默认背景色与父组件的背景色一致。
-> 
+>
 > - Canvas默认宽高为width: 300px，height: 150px。
 
 

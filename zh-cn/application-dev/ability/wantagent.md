@@ -39,7 +39,7 @@ var wantAgentInfo = {
             parameters: {}
         }
     ],
-    operationType: OperationType.START_ABILITIE,
+    operationType: OperationType.START_ABILITY,
     requestCode: 0,
     wantAgentFlags:[WantAgentFlags.CONSTANT_FLAG]
 }
@@ -66,11 +66,7 @@ wantAgent.getWantAgent(wantAgentInfo, (err, wantAgentObj) => {
 var triggerInfo = {
     code:0
 }
-wantAgent.trigger(wantAgentObj, triggerInfo, (err, completeData) => {
-    if (err.code) {
-        console.error("[WantAgent]trigger err=" + JSON.stringify(err))
-    } else {
-        console.log("[WantAgent]getWantAgent success, completeData: ",  + JSON.stringify(completeData))
-    }
+wantAgent.trigger(wantAgentObj, triggerInfo, (completeData) => {
+    console.log("[WantAgent]getWantAgent success, completeData: ",  + JSON.stringify(completeData))
 })
 ```

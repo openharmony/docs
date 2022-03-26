@@ -190,7 +190,7 @@ export default {
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 >
-> - tabs子组件仅支持一个[\<tab-bar>](../reference/arkui-js/js-components-container-tab-bar.md)和一个\[<tab-content>](../reference/arkui-js/js-components-container-tab-content.md)。
+> tabs子组件仅支持一个[\<tab-bar>](../reference/arkui-js/js-components-container-tab-bar.md)和一个[\<tab-content>](../reference/arkui-js/js-components-container-tab-content.md)。
 
 
 ## 场景示例

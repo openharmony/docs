@@ -24,7 +24,7 @@
    ![zh-cn_image_0000001214128687](figures/zh-cn_image_0000001214128687.png)
 
 2. 食物图片展示。
-   创建Image组件，指定Image组件的url，Image组件和Text组件都是必选构造参数组件。为了让Text组件在Image组件上方显示，所以要先声明Image组件。图片资源放在resources下的rawfile文件夹内，引用rawfile下资源时使用“$rawfile('filename')”的形式**，**filename为rawfile目录下的文件相对路径。当前$rawfile仅支持Image控件引用图片资源。
+   创建Image组件，指定Image组件的url，Image组件和Text组件都是必选构造参数组件。为了让Text组件在Image组件上方显示，所以要先声明Image组件。图片资源放在resources下的rawfile文件夹内，引用rawfile下资源时使用“$rawfile('filename')”的形式，filename为rawfile目录下的文件相对路径。当前$rawfile仅支持Image控件引用图片资源。
    ```
    @Entry
    @Component
@@ -538,4 +538,5 @@
 针对创建简单视图，有以下示例工程可供参考：
 
 - [eTSBuildCommonView](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/eTSBuildCommonView)
+
   本示例为构建了简单页面展示食物番茄的图片和营养信息，主要为了展示简单页面的Stack布局和Flex布局。

@@ -87,7 +87,15 @@ Ability assistant（Ability助手，简称为aa）是实现应用、原子化服
   ```
   aa dump -a
   ```
-  
+  ![aa-dump-a](figures/aa-dump-a.png)
+  ```
+  aa dump -l
+  ```
+  ![aa-dump-l](figures/aa-dump-l.png)
+  ```
+  aa dump -i 12
+  ```
+![aa-dump-i](figures/aa-dump-i.png)
 - **force-stop**
 
   通过bundle name强制停止一个进程。

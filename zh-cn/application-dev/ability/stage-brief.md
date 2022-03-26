@@ -29,7 +29,7 @@
 
 ![stageconcept](figures/stageconcept.png)
 
--  **HAP**：即HarmonyAbilityPackage，OpenHarmony应用编译、分发、加载的基本单位，也成为module，每个HAP都有一个应用内唯一的名称，成为moduleName；
+-  **HAP**：即HarmonyAbilityPackage，OpenHarmony应用编译、分发、加载的基本单位，也称为module，每个HAP都有一个应用内唯一的名称，成为moduleName；
 -  **Bundle**：通过appid标识的OpenHarmony应用，Bundle可以包含多个HAP，每个应用都有一个bundleName，但是bundleName并不能唯一标识一个应用，appid中包含bundleName以及其他的更多信息，能够唯一标识一个应用；
 -  **AbilityStage**：对应HAP的运行期类，在HAP首次加载到进程中时创建，运行期开发者可见；
 -  **Application**：对应Bundle的运行期类，运行期开发者不可见；

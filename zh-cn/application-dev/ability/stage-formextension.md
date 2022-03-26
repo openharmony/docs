@@ -145,7 +145,7 @@ Form需要在应用配置文件module.json中进行配置。
   | icon        | 表示extensionAbility的图标资源文件的索引。                   | 字符串     | 可缺省，缺省值为空。 |
   | label       | 表示extensionAbility的标签信息，即extensionAbility对外显示的文字描述信息。取值可以是描述性内容，也可以是标识label的资源索引。 | 字符串     | 可缺省，缺省值为空。 |
   | type        | 表示extensionAbility的类型。取值form、service等              | 字符串     | 否                   |
-  | permissions | 表示其他应用的Ability调用此Ability时需要申请的权限。通常采用反向域名格式，取值可以是系统预定义的权限，也可以是开发者自定义的权限。 | 字符串数组 | 可缺省，缺省值为空。 |
+  | permissions | 表示其他应用的Ability调用此Ability时需要申请的权限。         | 字符串数组 | 可缺省，缺省值为空。 |
   | metadata    | 表示extensionAbility的元信息。用于描述extensionAbility的配置信息。 | 对象       | 可缺省，缺省值为空   |
 
   对于FormExtensionAbility来说，type需要配置为form，并且需要填写metadata元信息，用于配置卡片的具体信息。
@@ -166,14 +166,16 @@ Form需要在应用配置文件module.json中进行配置。
   }]
      ```
 
-- 卡片profile模块，卡片metadata元信息，内部字段结构说明：
+- 卡片profile模块。在 FormExtensionAbility 的元信息中，需要使用 ohos.extension.form 指定的资源文件的路径，如使用  $profile:form_config 指定开发视图的 resources/base/profile/ 目录下的 form_config.json 作为卡片profile配置文件。
 
+  内部字段结构说明：
+  
   | 属性名称            | 含义                                                         | 数据类型   | 是否可缺省               |
   | ------------------- | ------------------------------------------------------------ | ---------- | ------------------------ |
   | name                | 表示卡片的类名。字符串最大长度为127字节。                    | 字符串     | 否                       |
   | description         | 表示卡片的描述。取值可以是描述性内容，也可以是对描述性内容的资源索引，以支持多语言。字符串最大长度为255字节。 | 字符串     | 可缺省，缺省为空。       |
   | src                 | 表示卡片对应的UI代码的完整路径。                             | 字符串     | 否                       |
-  | window              |                                                              |            |                          |
+  | window              | 用于定义与显示窗口相关的配置。                               | 对象       | 可缺省                   |
   | isDefault           | 表示该卡片是否为默认卡片，每个Ability有且只有一个默认卡片。<br />true：默认卡片。<br />false：非默认卡片。 | 布尔值     | 否                       |
   | colorMode           | 表示卡片的主题样式，取值范围如下：<br />auto：自适应。<br />dark：深色主题。<br />light：浅色主题。 | 字符串     | 可缺省，缺省值为“auto”。 |
   | supportDimensions   | 表示卡片支持的外观规格，取值范围：<br />1 * 2：表示1行2列的二宫格。<br />2 * 2：表示2行2列的四宫格。<br />2 * 4：表示2行4列的八宫格。<br />4 * 4：表示4行4列的十六宫格。 | 字符串数组 | 否                       |
@@ -186,7 +188,7 @@ Form需要在应用配置文件module.json中进行配置。
   | metaData            | 表示卡片的自定义信息，包含customizeData数组标签。            | 对象       | 可缺省，缺省值为空。     |
 
      配置示例如下：
-
+  
      ```json
   {
       "forms": [{

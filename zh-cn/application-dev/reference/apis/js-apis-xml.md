@@ -329,9 +329,8 @@ that.parse(options);
 
 xml解析选项。
 
-### 属性
 
-| 名称 | 参数类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | supportDoctype | boolean | 否 | 是否忽略Doctype&nbsp;,&nbsp;默认false。 |
 | ignoreNameSpace | boolean | 否 | 是否忽略NameSpace，默认false。 |

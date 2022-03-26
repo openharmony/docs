@@ -1,6 +1,5 @@
 # Ability开发
  - [Ability框架概述](ability-brief.md)
-
  - FA模型
    - [FA模型综述](fa-brief.md)
    - [PageAbility开发指导](fa-pageability.md)
@@ -15,5 +14,6 @@
    - [Call调用开发指导](stage-call.md)
    - [Stage卡片开发指导](stage-formextension.md)
  - 其他
+   - [WantAgent开发指导](wantagent.md)
    - [Ability助手使用指导](ability-assistant-guidelines.md)
    - [测试框架使用指导](ability-delegator.md)

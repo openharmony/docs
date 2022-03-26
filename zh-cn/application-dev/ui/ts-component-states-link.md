@@ -1,21 +1,21 @@
 # @Link
 
-**@Link**装饰的变量可以和父组件的**@State**变量建立双向数据绑定：
+@Link装饰的变量可以和父组件的@State变量建立双向数据绑定：
 
 
-- **支持多种类型：@Link**变量的值与**@State**变量的类型相同，即class、number、string、boolean或这些类型的数组；
+- 支持多种类型：@Link变量的值与@State变量的类型相同，即class、number、string、boolean或这些类型的数组；
 
-- **私有：**仅在组件内访问；
+- 私有：仅在组件内访问；
 
-- **单个数据源：**初始化**@Link**变量的父组件的变量必须是**@State**变量；
+- 单个数据源：初始化@Link变量的父组件的变量必须是@State变量；
 
-- **双向通信：**子组件对**@Link**变量的更改将同步修改父组件的**@State**变量；
+- 双向通信：子组件对@Link变量的更改将同步修改父组件的@State变量；
 
-- **创建自定义组件时需要将变量的引用传递给@Link变量：**在创建组件的新实例时，必须使用命名参数初始化所有**@Link**变量。**@Link**变量可以使用**@State**变量或**@Link**变量的引用进行初始化，**@State**变量可以通过'**$**'操作符创建引用。
+- 创建自定义组件时需要将变量的引用传递给@Link变量：在创建组件的新实例时，必须使用命名参数初始化所有@Link变量。@Link变量可以使用@State变量或@Link变量的引用进行初始化，@State变量可以通过'$'操作符创建引用。
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> **@Link**变量不能在组件内部进行初始化。
+> ![icon-note.gif](public_sys-resources/icon-note.gif) 说明：
+> @Link变量不能在组件内部进行初始化。
 
 
 ## 简单类型示例
@@ -48,7 +48,7 @@ struct PlayButton {
 }
 ```
 
-**@Link**语义是从'**$**'操作符引出，即**$isPlaying**是**this.isPlaying**内部状态的双向数据绑定。当您单击**PlayButton**时，PlayButton 的**Image**组件和**Text**组件将同时进行刷新。
+@Link语义是从'$'操作符引出，即$isPlaying是this.isPlaying内部状态的双向数据绑定。当您单击PlayButton时，PlayButton 的Image组件和Text组件将同时进行刷新。
 
 
 ## 复杂类型示例
@@ -88,7 +88,7 @@ struct Child {
 }
 ```
 
-在上面的示例中，点击**Button1**和**Button2**更改父组件中显示的文本项目列表。
+在上面的示例中，点击Button1和Button2更改父组件中显示的文本项目列表。
 
 
 ## @Link、@State和@Prop结合使用示例
@@ -127,8 +127,8 @@ struct ChildB {
 }
 ```
 
-上述示例中，ParentView包含ChildA和ChildB两个子组件，ParentView的状态变量**counter**分别初始化ChildA和ChildB。
+上述示例中，ParentView包含ChildA和ChildB两个子组件，ParentView的状态变量counter分别初始化ChildA和ChildB。
 
-- ChildB使用**@Link**建立双向状态绑定。当**ChildB**修改**counterRef**状态变量值时，该更改将同步到**ParentView**和**ChildA**共享；
+- ChildB使用@Link建立双向状态绑定。当ChildB修改counterRef状态变量值时，该更改将同步到ParentView和ChildA共享；
 
-- ChildA使用**@Prop**建立从**ParentView**到自身的单向状态绑定。当**ChildA**修改状态时，**ChildA**将重新渲染，但该更改不会传达给**ParentView**和**ChildB**。
+- ChildA使用@Prop建立从ParentView到自身的单向状态绑定。当ChildA修改状态时，ChildA将重新渲染，但该更改不会传达给ParentView和ChildB。

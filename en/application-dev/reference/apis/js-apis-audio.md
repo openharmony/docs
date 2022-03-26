@@ -143,7 +143,7 @@ Obtains an **AudioCapturer** instance. This API uses an asynchronous callback to
 **Parameters:**
 | Name       | Type                                            | Mandatory | Description                                          |
 | :--------- | :---------------------------------------------- | :-------- | :--------------------------------------------------- |
-| options    | [AudioCapturerOptions](#AudioCapturerOptions)   | Yes       | Capturer configurations.                             |
+| options    | [AudioCapturerOptions](#audiocaptureroptions8)   | Yes       | Capturer configurations.                             |
 | callback   | AsyncCallback<[AudioCapturer](#audiocapturer8)> | Yes       | Callback used to return the audio capturer instance. |
 
 **Example:**
@@ -189,7 +189,7 @@ Obtains an **AudioCapturer** instance. This API uses a promise to return the cap
 **Parameters:**
 | Name       | Type                                          | Mandatory | Description                 |
 | :--------- | :-------------------------------------------- | :-------- | :-------------------------- |
-| options    | [AudioCapturerOptions](#AudioCapturerOptions) | Yes       | Capturer configurations.    |
+| options    | [AudioCapturerOptions](#audiocaptureroptions8) | Yes       | Capturer configurations.    |
 
 **Return value:**
 
@@ -516,6 +516,32 @@ Describes audio renderer configuration options.
 | streamInfo    | [AudioStreamInfo](#audiostreaminfo8)      | Yes       | Stream information.   |
 | rendererInfo  | [AudioRendererInfo](#audiorendererinfo8)  | Yes       | Renderer information. |
 
+## AudioCapturerInfo<sup>8+</sup><a name="audiocapturerinfo"></a>
+
+Describes audio capturer information.
+
+**System capability:** SystemCapability.Multimedia.Audio.Core
+
+**Parameters:**
+
+| Name            | Type                       | Mandatory | Description           |
+| :---------------| :------------------------- | :-------- | :-------------------- |
+| source          | [SourceType](#sourcetype)  | Yes       | Audio source type.    |
+| capturerFlags   | number                     | Yes       | Audio capturer flags. |
+
+## AudioCapturerOptions<sup>8+</sup>
+
+Describes audio capturer configuration options.
+
+**System capability:** SystemCapability.Multimedia.Audio.Capturer
+
+**Parameters:**
+
+| Name          | Type                                      | Mandatory | Description           |
+| :------------ | :-----------------------------------------| :-------- | :-------------------- |
+| streamInfo    | [AudioStreamInfo](#audiostreaminfo8)      | Yes       | Stream information.   |
+| capturerInfo  | [AudioCapturerInfo](#audiocapturerinfo8)  | Yes       | Capturer information. |
+
 ## InterruptEvent<sup>9+</sup>
 
 Describes the interrupt event received by the app when playback is interrupted.
@@ -556,7 +582,7 @@ This API is defined but not implemented in OpenHarmony 3.1 Release. It will be a
 | ---------- | ------------------------------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | actionType | [InterruptActionType](#interruptactiontype) | Yes       | Event return type. TYPE_ACTIVATED is the audio interrupt activated event, and TYPE_INTERRUPT is the audio interrupt event.                                         |
 | type       | [InterruptType](#interrupttype)             | No        | Interrupt event type.                                                                                                                                  |
-| hint       | [InterruptHint](interrupthint)              | No        | Interrupt event prompts.                                                                                                                               |
+| hint       | [InterruptHint](#interrupthint)              | No        | Interrupt event prompts.                                                                                                                               |
 | activated  | boolean                                     | No        | Acquire/release focus. true indicates that the focus acquisition/release is successful, and false indicates that the focus acquisition/release fails.  |
 
 ## VolumeEvent<sup>8+</sup>
@@ -584,8 +610,8 @@ Describes the device change type and device information.
 
 | Name                | Type                                              | Mandatory | Description         |
 | :------------------ | :------------------------------------------------ | :-------- | :------------------ |
-| type                | [DeviceChangeType](#DeviceChangeType)             | Yes       | Device change type. |
-| deviceDescriptors   | [AudioDeviceDescriptors](#AudioDeviceDescriptors) | Yes       | Device information. |
+| type                | [DeviceChangeType](#devicechangetype)             | Yes       | Device change type. |
+| deviceDescriptors   | [AudioDeviceDescriptors](#audiodevicedescriptors) | Yes       | Device information. |
 
 
 ## DeviceChangeType
@@ -598,21 +624,6 @@ Enumerates device change types.
 | :--------------------- | :------------ | :-------------------- |
 | CONNECT                | 0             | Device connection.    |
 | DISCONNECT             | 1             | Device disconnection. |
-
-
-## AudioCapturerInfo<sup>8+</sup><a name="audiocapturerinfo"></a>
-
-Describes audio capturer information.
-
-**System capability:** SystemCapability.Multimedia.Audio.Core
-
-**Parameters:**
-
-| Name            | Type                       | Mandatory | Description           |
-| :---------------| :------------------------- | :-------- | :-------------------- |
-| source          | [SourceType](#sourcetype)  | Yes       | Audio source type.    |
-| capturerFlags   | number                     | Yes       | Audio capturer flags. |
-
 
 ## SourceType<sup>8+</sup><a name="sourcetype"></a>
 
@@ -1614,7 +1625,7 @@ Subscribes to device change events. When a device is connected/disconnected, reg
 | Name     | Type                                                | Mandatory | Description                                                                                                                                     |
 | :------- | :-------------------------------------------------- | :---------| :---------------------------------------------------------------------------------------------------------------------------------------------- |
 | type     | string                                              | Yes       | Type of the event to subscribe to. The value 'deviceChange' means the device change event, which is triggered when a device change is detected. |
-| callback | Callback<[DeviceChangeAction](#DeviceChangeAction)> | Yes       | Callback used to obtain the device update details.                                                                                              |
+| callback | Callback<[DeviceChangeAction](#devicechangeaction)> | Yes       | Callback used to obtain the device update details.                                                                                              |
 
 **Example:**
 
@@ -1642,7 +1653,7 @@ This API is defined but not implemented in OpenHarmony 3.1 Release. It will be a
 | Name     | Type                                                | Mandatory | Description                                                                                                                                         |
 | :------- | :-------------------------------------------------- | :---------| :-------------------------------------------------- |
 | type     | string                                              | Yes       | Type of the event to unsubscribe from.              |
-| callback | Callback<[DeviceChangeAction](#DeviceChangeAction)> | Yes       | Callback used to obtain the device update details.  |
+| callback | Callback<[DeviceChangeAction](#devicechangeaction)> | No        | Callback used to obtain the device update details.  |
 
 **Example:**
 
@@ -2701,7 +2712,7 @@ Subscribes to state change events.
 | Name     | Type                       | Mandatory | Description                                                                              |
 | :------- | :------------------------- | :-------- | :--------------------------------------------------------------------------------------- |
 | type     | string                     | Yes       | Type of the event to subscribe to. The value 'stateChange' means the state change event. |
-| callback | [AudioState](#AudioState8) | Yes       | Callback used to return the state change.                                                |
+| callback | [AudioState](#audiostate8) | Yes       | Callback used to return the state change.                                                |
 
 **Example:**
 
@@ -2751,7 +2762,7 @@ Obtains the capturer information provided while creating a capturer instance. Th
 
 | Name     | Type                                                     | Mandatory | Description                                       |
 | :------- | :------------------------------------------------------- | :-------- | :------------------------------------------------ |
-| callback | AsyncCallback<[AudioCapturerInfo](#audioCapturerInfo)\>  | Yes       | Callback used to return the capturer information. |
+| callback | AsyncCallback<[AudioCapturerInfo](#audiocapturerinfo)\>  | Yes       | Callback used to return the capturer information. |
 
 **Example:**
 
@@ -2812,7 +2823,7 @@ Obtains the capturer stream information. This API uses an asynchronous callback 
 
 | Name     | Type                                                         | Mandatory | Description                                     |
 | :------- | :----------------------------------------------------------- | :-------- | :---------------------------------------------- |
-| callback | AsyncCallback<[AudioStreamInfo](#AudioRendererOptions8)\>    | Yes       | Callback used to return the stream information. |
+| callback | AsyncCallback<[AudioStreamInfo](#audiostreaminfo8)\>    | Yes       | Callback used to return the stream information. |
 
 **Example:**
 
@@ -2842,7 +2853,7 @@ Obtains the capturer stream information. This API uses a promise to return the r
 
 | Type                                                  | Description                                      |
 | :---------------------------------------------------- | :----------------------------------------------- |
-| Promise<[AudioStreamInfo](#AudioRendererOptions8)\>   | Promise used to return the stream information.   |
+| Promise<[AudioStreamInfo](#audiostreaminfo8)\>   | Promise used to return the stream information.   |
 
 **Example:**
 
@@ -3058,7 +3069,6 @@ Reads the buffer from the audio capturer. This API uses an asynchronous callback
 audioCapturer.read(bufferSize, true, async(err, buffer) => {
     if (!err) {
         console.log("Success in reading the buffer data");
-        var number = fileio.writeSync(fd, buffer);
     }
 };
 ```
@@ -3311,7 +3321,7 @@ Subscribes to state change events.
 | Name     | Type                       | Mandatory | Description                                                                              |
 | :------- | :------------------------- | :-------- | :--------------------------------------------------------------------------------------- |
 | type     | string                     | Yes       | Type of the event to subscribe to. The value 'stateChange' means the state change event. |
-| callback | [AudioState](#AudioState8) | Yes       | Callback used to return the state change.                                                |
+| callback | [AudioState](#audiostate8) | Yes       | Callback used to return the state change.                                                |
 
 **Example:**
 

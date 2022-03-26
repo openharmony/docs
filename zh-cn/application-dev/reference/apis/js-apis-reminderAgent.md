@@ -11,16 +11,13 @@ import reminderAgent from'@ohos.reminderAgent';
 ```
 
 
-## 权限
-
-ohos.permission.PUBLISH_AGENT_REMINDER
-
-
 ## reminderAgent.publishReminder
 
 publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback&lt;number&gt;): void
 
 发布一个后台代理提醒，使用callback方式实现异步调用。
+
+**需要权限**： ohos.permission.PUBLISH_AGENT_REMINDER
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
@@ -69,7 +66,7 @@ publishReminder(reminderReq: ReminderRequest): Promise&lt;number&gt;
 **示例**：
   ```
   export default {
-      data: 
+      data:
           {timer: {
               reminderType: reminderAgent.ReminderType.REMINDER_TYPE_TIMER,
               triggerTimeInSeconds: 3
@@ -205,7 +202,7 @@ getValidReminders(): Promise&lt;Array&lt;ReminderRequest&gt;&gt;
 **示例**：
 
 ```
-reminderAgent.getValidReminders().then((reminders) => {    
+reminderAgent.getValidReminders().then((reminders) => {
     for (let i = 0; i < reminders.length; i++) {
         console.log("getValidReminders = " + reminders[i]);
         console.log("getValidReminders, reminderType = " + reminders[i].reminderType);
@@ -248,7 +245,7 @@ cancelAllReminders(callback: AsyncCallback&lt;void&gt;): void
 **示例**：
 
 ```
-reminderAgent.cancelAllReminders((err, data) =>{ 
+reminderAgent.cancelAllReminders((err, data) =>{
     console.log("do next")})
 ```
 

@@ -1,6 +1,6 @@
 # @Extend
 
-**@Extend**装饰器将新的属性函数添加到内置组件上，如**Text**、**Column**、**Button**等。通过**\@Extend**装饰器可以快速定义并复用组件的自定义样式。
+@Extend装饰器将新的属性函数添加到内置组件上，如Text、Column、Button等。通过@Extend装饰器可以快速定义并复用组件的自定义样式。
 
 
 ```

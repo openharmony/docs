@@ -26,10 +26,12 @@ class MainAbility extends Ability {
 
 ## 属性
 
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+
 | 名称 | 参数类型 | 可读 | 可写 | 说明 | 
 | -------- | -------- | -------- | -------- | -------- |
-| abilityInfo | AbilityInfo | 是 | 否 | Abilityinfo相关信息 <br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core| 
-| currentHapModuleInfo | HapModuleInfo | 是 | 否 | 当前hap包的信息 <br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core| 
+| abilityInfo | AbilityInfo | 是 | 否 | Abilityinfo相关信息 | 
+| currentHapModuleInfo | HapModuleInfo | 是 | 否 | 当前hap包的信息 | 
 
 
 ## AbilityContext.startAbility

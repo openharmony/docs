@@ -29,7 +29,7 @@ Ability生命周期是Ability被调度到INACTIVE、ACTIVE、BACKGROUND等各个
 
 ![fa-pageAbility-lifecycle](figures/fa-pageAbility-lifecycle.png)
 
-PageAbility提供命周期回调，开发者可以在`app.js/app.ets`中重写生命周期相关回调函数 。
+PageAbility提供命周期回调，开发者可以在`app.js/app.ets`中重写生命周期相关回调函数 。目前`app.js`环境中仅支持onCreate和onDestroy回调，`app.ets`环境支持全量生命周期回调。
 
 ## 开发指导
 ### featureAbility接口说明
@@ -116,8 +116,8 @@ PageAbility提供命周期回调，开发者可以在`app.js/app.ets`中重写�
   },
   );
 ```
-
 ### 启动远程PageAbility（当前仅对系统应用开放）
+>说明：由于DeviceManager的getTrustedDeviceListSync接口仅对系统应用开放，当前启动远程PageAbility仅支持系统应用
 
 **导入模块**
 
@@ -130,8 +130,8 @@ PageAbility提供命周期回调，开发者可以在`app.js/app.ets`中重写�
 ```ts
   function onStartRemoteAbility() {
   console.info('onStartRemoteAbility begin');
-  var params;
-  var wantValue = {
+  let params;
+  let wantValue = {
     bundleName: 'ohos.samples.etsDemo',
     abilityName: 'ohos.samples.etsDemo.RemoteAbility',
     deviceId: getRemoteDeviceId(),
@@ -150,10 +150,10 @@ PageAbility提供命周期回调，开发者可以在`app.js/app.ets`中重写�
 从DeviceManager获取`deviceId`，具体示例代码如下：
 ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
-  var dmClass;
+  let dmClass;
   function getRemoteDeviceId() {
     if (typeof dmClass === 'object' && dmClass != null) {
-        var list = dmClass.getTrustedDeviceListSync();
+        let list = dmClass.getTrustedDeviceListSync();
         if (typeof (list) == 'undefined' || typeof (list.length) == 'undefined') {
             console.log("MainAbility onButtonClick getRemoteDeviceId err: list is null");
             return;
@@ -168,20 +168,20 @@ PageAbility提供命周期回调，开发者可以在`app.js/app.ets`中重写�
 
 在跨设备场景下，需要向开发者申请数据同步的权限。具体示例代码如下：
 ```ts
-  import accessControl from "@ohos.abilityAccessCtrl";
+  import abilityAccessCtrl from "@ohos.abilityAccessCtrl";
   import bundle from '@ohos.bundle';
   async function RequestPermission() {
   console.info('RequestPermission begin');
   let array: Array<string> = ["ohos.permission.DISTRIBUTED_DATASYNC"];
-  var bundleFlag = 0;
-  var tokenID = undefined;
-  var userID = 100;
-  var appInfo = await bundle.getApplicationInfo('ohos.samples.etsDemo', bundleFlag, userID);
+  let bundleFlag = 0;
+  let tokenID = undefined;
+  let userID = 100;
+  let  appInfo = await bundle.getApplicationInfo('ohos.samples.etsDemo', bundleFlag, userID);
   tokenID = appInfo.accessTokenId;
-  var atManager = abilityAccessCtrl.createAtManager();
+  let atManager = abilityAccessCtrl.createAtManager();
   let requestPermissions: Array<string> = [];
   for (let i = 0;i < array.length; i++) {
-    var result = await atManager.verifyAccessToken(tokenID, array[i]);
+    let result = await atManager.verifyAccessToken(tokenID, array[i]);
     console.info("verifyAccessToken result:" + JSON.stringify(result));
     if (result == abilityAccessCtrl.GrantStatus.PERMISSION_GRANTED) {
     } else {

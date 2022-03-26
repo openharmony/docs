@@ -2,7 +2,7 @@
 
 
 
-@Styles装饰器将新的属性函数添加到基本组件上，如**Text**、**Column**、**Button**等。当前@Styles仅支持[通用属性](../reference/arkui-ts/ts-universal-attributes.md)。通过@Styles装饰器可以快速定义并复用组件的自定义样式。
+@Styles装饰器将新的属性函数添加到基本组件上，如Text、Column、Button等。当前@Styles仅支持[通用属性](../reference/arkui-ts/ts-universal-attributes-index.md)。通过@Styles装饰器可以快速定义并复用组件的自定义样式。
 
 @Styles可以定义在组件内或组件外，在组件外定义时需带上function关键字，组件内定义时不需要。
 

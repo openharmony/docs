@@ -1,6 +1,6 @@
 # 条件渲染
 
-使用**if/else**进行条件渲染。
+使用if/else进行条件渲染。
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**

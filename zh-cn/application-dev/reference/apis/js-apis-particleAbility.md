@@ -190,6 +190,8 @@ startBackgroundRunning(id: number, request: NotificationRequest, callback: Async
 
 向系统申请长时任务，使用callback形式返回结果，建议使用新接口[backgroundTaskManager.startBackgroundRunning](js-apis-backgroundTaskManager.md#backgroundtaskmanagerstartbackgroundrunning8)。
 
+**需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
+
 **系统能力**：SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
 **参数：**
@@ -249,6 +251,8 @@ wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
 ## particleAbility.startBackgroundRunning
 
 startBackgroundRunning(id: number, request: NotificationRequest): Promise&lt;void&gt;
+
+**需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
 
 **系统能力**：SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
@@ -382,6 +386,17 @@ connectAbility(request: Want, options:ConnectOptions): number
 | ------- | -------------- | ---- | ---------------------------- |
 | request | [Want](#want)           | 是   | 表示被连接的ServiceAbility。 |
 | options | ConnectOptions | 是   | 被指定的回调方法。           |
+
+
+**ConnectOptions类型说明：**
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+
+| 名称           | 读写属性 | 类型       | 必填   | 描述                        |
+| ------------ | ---- | -------- | ---- | ------------------------- |
+| onConnect    | 只读   | function | 是    | 连接成功时的回调函数。               |
+| onDisconnect | 只读   | function | 是    | 连接失败时的回调函数。               |
+| onFailed     | 只读   | function | 是    | ConnectAbility调用失败时的回调函数。 |
 
 **示例**：
 

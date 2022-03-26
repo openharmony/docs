@@ -267,7 +267,7 @@ quadraticCurveTo(cpx: number, cpy: number, x: number ,y: number): void
 
 ## arc
 
-arc(x: number, y: number, radius: number, startAngle: number, endAngle: number, anticlockwise?: number): void
+arc(x: number, y: number, radius: number, startAngle: number, endAngle: number, anticlockwise?: boolean): void
 
 绘制弧线路径。
 

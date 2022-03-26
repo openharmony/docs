@@ -1,6 +1,6 @@
 # @CustomDialog
 
-**@CustomDialog**装饰器用于装饰自定义弹窗。
+@CustomDialog装饰器用于装饰自定义弹窗。
 
 
 ```

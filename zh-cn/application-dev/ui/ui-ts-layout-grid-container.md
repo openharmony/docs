@@ -54,7 +54,7 @@
 ```
 GridContainer({ columns: 6, gutter: 10, margin: 20 }) {}
 ```
-栅格容器不设置参数，或者sizeType设置为SizeType.Auto时使用默认的栅格系统定义（参考  [系统栅格定义](#grid_system_define)），如：
+栅格容器不设置参数，或者sizeType设置为SizeType.Auto时使用默认的栅格系统定义，如：
 
 ```
 GridContainer() {}

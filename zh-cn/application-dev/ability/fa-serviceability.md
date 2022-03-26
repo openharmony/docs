@@ -78,7 +78,7 @@ Ability为开发者提供了startAbility()方法来启动另外一个Ability。�
 
 ```javascript
 import featureAbility from '@ohos.ability.featureability';
-var promise = await featureAbility.startAbility(
+let promise = await featureAbility.startAbility(
     {
         want:
         {
@@ -110,10 +110,28 @@ var promise = await featureAbility.startAbility(
 创建连接本地Service回调实例的代码示例如下：
 
 ```javascript
-var mRemote;
+let mRemote;
 function onConnectCallback(element, remote){
-    console.log('ConnectAbility onConnect Callback')
+    console.log('onConnectLocalService onConnectDone element: ' + element);
+    console.log('onConnectLocalService onConnectDone remote: ' + remote);
     mRemote = remote;
+    if (mRemote == null) {
+      prompt.showToast({
+        message: "onConnectLocalService not connected yet"
+      });
+      return;
+    }
+    let option = new rpc.MessageOption();
+    let data = new rpc.MessageParcel();
+    let reply = new rpc.MessageParcel();
+    data.writeInt(1);
+    data.writeInt(99);
+    await mRemote.sendRequest(1, data, reply, option);
+    let msg = reply.readInt();
+    prompt.showToast({
+      message: "onConnectLocalService connect result: " + msg,
+      duration: 3000
+    });
 }
 
 function onDisconnectCallback(element){
@@ -129,7 +147,7 @@ function onFailedCallback(code){
 
 ```javascript
 import featureAbility from '@ohos.ability.featureability';
-var connId = featureAbility.connectAbility(
+let connId = featureAbility.connectAbility(
     {
         bundleName: "com.jstest.serviceability",
         abilityName: "com.jstest.serviceability.MainAbility",
@@ -149,7 +167,7 @@ Service侧把自身的实例返回给调用侧的代码示例如下：
 ```javascript
 import rpc from "@ohos.rpc";
 
-var mMyStub;
+let mMyStub;
 export default {
     onStart(want) {
         class MyStub extends rpc.RemoteObject{
@@ -160,6 +178,16 @@ export default {
                 return null;
             }
             onRemoteRequest(code, message, reply, option) {
+                console.log("ServiceAbility onRemoteRequest called");
+                if (code === 1) {
+                    let op1 = data.readInt();
+                    let op2 = data.readInt();
+                    console.log("op1 = " + op1 + ", op2 = " + op2);
+                    reply.writeInt(op1 + op2);
+                } else {
+                    console.log("ServiceAbility unknown request code");
+                }
+                return true;
             }
         }
         mMyStub = new MyStub("ServiceAbility-test");
@@ -180,7 +208,8 @@ export default {
 }
 ```
 
-### 连接远程Service（当前仅对系统应用开放）
+### 连接远程Service<a name="section126857614019"></a>（当前仅对系统应用开放）
+>说明：由于DeviceManager的getTrustedDeviceListSync接口仅对系统应用开放，当前连接远程Service仅支持系统应用
 
 如果Service需要与Page Ability或其他应用的Service Ability进行跨设备交互，则须创建用于连接的Connection。Service支持其他Ability通过connectAbility()方法与其进行跨设备连接。
 
@@ -189,10 +218,28 @@ export default {
 创建连接远程Service回调实例的代码示例如下：
 
 ```ts
-var mRemote;
+let mRemote;
 function onConnectCallback(element, remote){
-    console.log('ConnectRemoteAbility onConnect Callback')
+    console.log('onConnectLocalService onConnectDone element: ' + element);
+    console.log('onConnectLocalService onConnectDone remote: ' + remote);
     mRemote = remote;
+    if (mRemote == null) {
+      prompt.showToast({
+        message: "onConnectLocalService not connected yet"
+      });
+      return;
+    }
+    let option = new rpc.MessageOption();
+    let data = new rpc.MessageParcel();
+    let reply = new rpc.MessageParcel();
+    data.writeInt(1);
+    data.writeInt(99);
+    await mRemote.sendRequest(1, data, reply, option);
+    let msg = reply.readInt();
+    prompt.showToast({
+      message: "onConnectLocalService connect result: " + msg,
+      duration: 3000
+    });
 }
 
 function onDisconnectCallback(element){
@@ -208,10 +255,10 @@ function onFailedCallback(code){
 
 ```ts
 import deviceManager from '@ohos.distributedHardware.deviceManager';
-var dmClass;
+let dmClass;
 function getRemoteDeviceId() {
     if (typeof dmClass === 'object' && dmClass != null) {
-        var list = dmClass.getTrustedDeviceListSync();
+        let list = dmClass.getTrustedDeviceListSync();
         if (typeof (list) == 'undefined' || typeof (list.length) == 'undefined') {
             console.log("MainAbility onButtonClick getRemoteDeviceId err: list is null");
             return;
@@ -228,7 +275,7 @@ function getRemoteDeviceId() {
 
 ```ts
 import featureAbility from '@ohos.ability.featureability';
-var connId = featureAbility.connectAbility(
+let connId = featureAbility.connectAbility(
     {
         deviceId: getRemoteDeviceId(),
         bundleName: "ohos.samples.etsDemo",
@@ -244,20 +291,20 @@ var connId = featureAbility.connectAbility(
 在跨设备场景下，需要向用户申请数据同步的权限。具体示例代码如下：
 
 ```ts
-import accessControl from "@ohos.abilityAccessCtrl";
+import abilityAccessCtrl from "@ohos.abilityAccessCtrl";
 import bundle from '@ohos.bundle';
 async function RequestPermission() {
   console.info('RequestPermission begin');
   let array: Array<string> = ["ohos.permission.DISTRIBUTED_DATASYNC"];
-  var bundleFlag = 0;
-  var tokenID = undefined;
-  var userID = 100;
-  var appInfo = await bundle.getApplicationInfo('ohos.samples.etsDemo', bundleFlag, userID);
+  let bundleFlag = 0;
+  let tokenID = undefined;
+  let userID = 100;
+  let appInfo = await bundle.getApplicationInfo('ohos.samples.etsDemo', bundleFlag, userID);
   tokenID = appInfo.accessTokenId;
-  var atManager = abilityAccessCtrl.createAtManager();
+  let atManager = abilityAccessCtrl.createAtManager();
   let requestPermissions: Array<string> = [];
   for (let i = 0;i < array.length; i++) {
-    var result = await atManager.verifyAccessToken(tokenID, array[i]);
+    let result = await atManager.verifyAccessToken(tokenID, array[i]);
     console.info("verifyAccessToken result:" + JSON.stringify(result));
     if (result == abilityAccessCtrl.GrantStatus.PERMISSION_GRANTED) {
     } else {
@@ -295,6 +342,16 @@ class FirstServiceAbilityStub extends rpc.RemoteObject{
         }
     }
     onRemoteRequest(code, data, reply, option) {
+        console.log("ServiceAbility onRemoteRequest called");
+        if (code === 1) {
+            let op1 = data.readInt();
+            let op2 = data.readInt();
+            console.log("op1 = " + op1 + ", op2 = " + op2);
+            reply.writeInt(op1 + op2);
+        } else {
+            console.log("ServiceAbility unknown request code");
+        }
+        return true;
     }
 }
 

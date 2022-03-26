@@ -204,6 +204,8 @@ getPermissionFlags(tokenID: number, permissionName: string): Promise&lt;number&g
 
 获取指定应用的指定权限的flag，使用Promise方式异步返回结果。
 
+**需要权限：** ohos.permission.GET_SENSITIVE_PERMISSIONS or GRANT_SENSITIVE_PERMISSIONS or REVOKE_SENSITIVE_PERMISSIONS
+
 **系统能力：** SystemCapability.Security.AccessToken
 
 **参数：**

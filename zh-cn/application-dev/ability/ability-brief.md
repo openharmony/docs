@@ -5,7 +5,7 @@
 ​        Ability框架模型结构具有两种形态：
 
 - 第一种形态为FA模型。API 8及其更早版本的应用程序只能使用FA模型进行开发。 FA模型将Ability分为FA（Feature Ability）和PA（Particle Ability）两种类型，其中FA支持Page Ability，PA支持Service Ability、Data Ability、以及FormAbility；
-- 第二种形态为Stage模型。从API 9开始，Ability框架引入了Stage模型作为第二种应用形态，Stage模型将Ability分为PageAbility和ExtensionAbility两大类，其中ExtensionAbility又被扩展为ServiceExtensionAbility、FormExtensionAbility、DataShareExtensionAbility等等一系列ExtensionAbility，以便满足更多的使用场景。
+- 第二种形态为Stage模型。从API 9开始，Ability框架引入了Stage模型作为第二种应用形态，Stage模型将Ability分为Ability和ExtensionAbility两大类，其中ExtensionAbility又被扩展为ServiceExtensionAbility、FormExtensionAbility、DataShareExtensionAbility等等一系列ExtensionAbility，以便满足更多的使用场景。
 
 ​        Stage模型的设计，主要是为了方便开发者更加方便地开发出分布式环境下的复杂应用。下表给出了两种模型在设计上的差异：
 
@@ -17,9 +17,9 @@
 | 包描述文件     | 使用config.json描述HAP包和组件信息，组件必须使用固定的文件名。 | 使用module.json描述HAP包和组件信息，可以指定入口文件名。 |
 | 组件           | 提供PageAbility(页面展示)，ServiceAbility(服务)，DataAbility(数据分享), FormAbility(卡片)。 | 提供Ability(页面展示)、Extension(基于场景的服务扩展)。   |
 
-​        对于开发者而言，两种模型的主要区别在于：
+​        除了上述设计上的差异外，对于开发者而言，两种模型的主要区别在于：
 
-* Ability类型存在差异，接口使用上也存在一定的区别；
+* Ability类型存在差异；
 
   ![favsstage](figures/favsstage.png)
 
@@ -27,6 +27,5 @@
 
   ![lifecycle](figures/lifecycle.png)
 
-* 应用的配置文件及应用包的结构存在差异，这些差异将体现在通过IDE生成的应用包中。
 
 ​        两种模型的基本介绍，详见[FA模型综述](fa-brief.md)及[Stage模型综述](stage-brief.md)。

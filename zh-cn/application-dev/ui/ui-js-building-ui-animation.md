@@ -56,6 +56,7 @@
 
 
 **图1** 静态动画效果图
+
 ![zh-cn_image_0000001071134933](figures/zh-cn_image_0000001071134933.png)
 
 
@@ -157,4 +158,5 @@ export default {
 ```
 
 **图2** 连续动画效果图
+
 ![zh-cn_image_0000001063148757](figures/zh-cn_image_0000001063148757.gif)
