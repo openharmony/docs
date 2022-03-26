@@ -303,7 +303,7 @@ static int32_t CodecDriverBind(struct HdfDeviceObject *device)
 }
 ```
 
-CodecDriverInit：获取codecServive名字和私有寄存器配置，并通过AudioRegisterCodec插入到链表中。
+CodecDriverInit：获取codecService名字和私有寄存器配置，并通过AudioRegisterCodec插入到链表中。
 
 ```c
 static int32_t CodecDriverInit(struct HdfDeviceObject *device)
