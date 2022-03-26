@@ -164,7 +164,7 @@ context.startAbility(want, options).then((data) => {
 })
 ```
 
-### 跨设备启动Ability(当前仅对系统应用开放)
+### 跨设备启动Ability（当前仅对系统应用开放）
 >说明：由于DeviceManager的getTrustedDeviceListSync接口仅对系统应用开放，当前跨设备启动Ability仅支持系统应用
 跨设备场景下，需指定对端设备deviceId，具体示例代码如下：
 ```ts
