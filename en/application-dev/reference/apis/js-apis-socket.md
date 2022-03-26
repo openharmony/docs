@@ -563,7 +563,7 @@ Enables listening for error events of the UDPSocket connection. This API uses an
 **Example**
 
 ```
-let udp = socket.constructUDPSocketInstance()
+let udp = socket.constructUDPSocketInstance();
 udp.on('error', err => {
 	console.log("on error, err:" + JSON.stringify(err))
 });
@@ -591,7 +591,7 @@ Disables listening for error events of the UDPSocket connection. This API uses a
 **Example**
 
 ```
-let udp = socket.constructUDPSocketInstance()
+let udp = socket.constructUDPSocketInstance();
 let callback = err =>{
 	console.log("on error, err:" + JSON.stringify(err));
 }

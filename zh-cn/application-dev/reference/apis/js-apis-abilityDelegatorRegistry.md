@@ -14,15 +14,17 @@ import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry
 
 ## AbilityLifecycleState
 
-Ability生命周期状态
+Ability生命周期状态。
 
-| 名称          | 值   | 说明                                                         |
-| ------------- | ---- | ------------------------------------------------------------ |
-| UNINITIALIZED | 0    | 表示无效状态。<br/>**系统能力** ：SystemCapability.Ability.AbilityRuntime.Core |
-| CREATE        | 1    | 表示Ability处于已创建状态。<br/>**系统能力** ：SystemCapability.Ability.AbilityRuntime.Core |
-| FOREGROUND    | 2    | 表示Ability处于前台状态。<br/>**系统能力** ：SystemCapability.Ability.AbilityRuntime.Core |
-| BACKGROUND    | 3    | 表示Ability处于后台状态。<br/>**系统能力** ：SystemCapability.Ability.AbilityRuntime.Core |
-| DESTROY       | 4    | 表示Ability处于已销毁状态。<br/>**系统能力** ：SystemCapability.Ability.AbilityRuntime.Core |
+**系统能力** ：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+
+| 名称          | 值   | 说明                        |
+| ------------- | ---- | --------------------------- |
+| UNINITIALIZED | 0    | 表示无效状态。              |
+| CREATE        | 1    | 表示Ability处于已创建状态。 |
+| FOREGROUND    | 2    | 表示Ability处于前台状态。   |
+| BACKGROUND    | 3    | 表示Ability处于后台状态。   |
+| DESTROY       | 4    | 表示Ability处于已销毁状态。 |
 
 
 
@@ -38,7 +40,7 @@ getAbilityDelegator(): AbilityDelegator
 
 | 类型                                                         | 说明                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [AbilityDelegator](js-apis-application-abilityDelegator.md#AbilityDelegator) | [AbilityDelegator](js-apis-application-abilityDelegator.md#AbilityDelegator)对象。可有用来调度测试框架相关功能。 |
+| [AbilityDelegator](js-apis-application-abilityDelegator.md#AbilityDelegator) | [AbilityDelegator](js-apis-application-abilityDelegator.md#AbilityDelegator)对象。可以用来调度测试框架相关功能。 |
 
 **示例：**
 

@@ -40,7 +40,7 @@
 
    * 配置应用启动类型
 
-     迁移当前只支持多实例应用，需要在在module.json5中配置launchType字段为standard
+     迁移当前只支持多实例应用，需要在在module.json5中配置launchType字段为standard。
 
    ```javascript
    "launchType": "standard"
@@ -59,7 +59,7 @@
        },
    ```
    
-   这个权限需要在应用首次启动的时候弹窗让用户授予，可以通过在ability的onWindowStageCreate中添加如下代码实现
+   这个权限需要在应用首次启动的时候弹窗让用户授予，可以通过在ability的onWindowStageCreate中添加如下代码实现：
    
    ```javascript
    requestPermissions = async () => {

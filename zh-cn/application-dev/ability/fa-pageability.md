@@ -2,13 +2,13 @@
 
 ## 概述
 ### 功能简介
-PageAbility是具备ArkUI的Ability，是用户具体可见并可以交互的Ability实例，开发者通过IDE创建Ability时，IDE会自动创建相关模板代码。PageAbility相关能力通过单例featureAbility暴露，生命周期相关回调通过app.js/app.ets中回调函数暴露。
+PageAbility是具备ArkUI实现的Ability，是开发者具体可见并可以交互的Ability实例，开发者通过IDE创建Ability时，IDE会自动创建相关模板代码。PageAbility相关能力通过单例featureAbility暴露，生命周期相关回调通过app.js/app.ets中回调函数暴露。
 
 ### PageAbility的生命周期
 
-**Ability生命周期介绍**（Ability Life Cycle）是Ability被调度到INACTIVE、ACTIVE、BACKGROUND等各个状态的统称（主要涉及PageAbility类型和ServiceAbility类型的Ability）。
+**Ability生命周期介绍**（Ability Life Cycle）：
 
-**PageAbility生命周期流转如下图所示**
+Ability生命周期是Ability被调度到INACTIVE、ACTIVE、BACKGROUND等各个状态的统称。PageAbility生命周期流转如下图所示：
 
 ![PageAbility-Lifecycle](figures/page-ability-lifecycle.png)
 
@@ -23,13 +23,13 @@ PageAbility是具备ArkUI的Ability，是用户具体可见并可以交互的Abi
 
   - **ACTIVE**：前台激活状态，表示当前窗口已显示，并获取焦点。
 
-  - **BACKGROUND**: 后台状态，表示当前Ability退到后台，Ability在被销毁后由BACKGROUND状态进入INITIAL状态，或者重新被激活后由BACKGROUND状态进入ACTIVE状态。
+  - **BACKGROUND**：后台状态，表示当前Ability退到后台，Ability在被销毁后由BACKGROUND状态进入INITIAL状态，或者重新被激活后由BACKGROUND状态进入ACTIVE状态。
 
-**PageAbility生命周期回调如下图所示：**
+**PageAbility生命周期回调与生命周期状态的关系如下图所示：**
 
 ![fa-pageAbility-lifecycle](figures/fa-pageAbility-lifecycle.png)
 
-PageAbility提供命周期回调，开发者可以在  app.js/app.ets 中重写生相关命周期函数 。
+PageAbility提供命周期回调，开发者可以在`app.js/app.ets`中重写生命周期相关回调函数 。
 
 ## 开发指导
 ### featureAbility接口说明
@@ -46,16 +46,17 @@ PageAbility提供命周期回调，开发者可以在  app.js/app.ets 中重写�
 
 ### 启动本地PageAbility
 
-* 导入模块
+**导入模块**
 
+```js
+  import featureAbility from '@ohos.ability.featureAbility'
 ```
-import featureAbility from '@ohos.ability.featureAbility'
-```
-* 示例
+
+**示例**
 
 ```javascript
-import featureAbility from '@ohos.ability.featureAbility'
-featureAbility.startAbility({
+  import featureAbility from '@ohos.ability.featureAbility'
+  featureAbility.startAbility({
   want:
   {
     action: "",
@@ -94,14 +95,16 @@ featureAbility.startAbility({
     abilityName: "com.example.startability.MainAbility",
     uri: ""
   },
-},
-);
+  },
+  );
 ```
-want参数也可以使用parameters参数，使用key-value的方式输入。
-* 示例
+
+`want`参数也可以使用parameters参数，使用key-value的方式输入。
+**示例**
+
 ```javascript
-import featureAbility from '@ohos.ability.featureAbility'
-featureAbility.startAbility({
+  import featureAbility from '@ohos.ability.featureAbility'
+  featureAbility.startAbility({
     want:
     {
         bundleName: "com.example.startability",
@@ -110,21 +113,22 @@ featureAbility.startAbility({
             abilityName: "com.example.startability.MainAbility"
         }
     },
-},
-);
+  },
+  );
 ```
-### 启动远程PageAbility(当前仅对系统应用开放)
+### 启动远程PageAbility（当前仅对系统应用开放）
+>说明：由于DeviceManager的getTrustedDeviceListSync接口仅对系统应用开放，当前启动远程PageAbility仅支持系统应用
 
-* 导入模块
+**导入模块**
 
 ```
-import featureAbility from '@ohos.ability.featureAbility'
-import deviceManager from '@ohos.distributedHardware.deviceManager';
+  import featureAbility from '@ohos.ability.featureAbility'
+  import deviceManager from '@ohos.distributedHardware.deviceManager';
 ```
 
-* 示例
+**示例**
 ```ts
-function onStartRemoteAbility() {
+  function onStartRemoteAbility() {
   console.info('onStartRemoteAbility begin');
   var params;
   var wantValue = {
@@ -140,13 +144,14 @@ function onStartRemoteAbility() {
     console.info('onStartRemoteAbility finished, ' + JSON.stringify(data));
   });
   console.info('onStartRemoteAbility end');
-}
+  }
 ```
-从DeviceManager获取deviceId，具体示例代码如下：
+
+从DeviceManager获取`deviceId`，具体示例代码如下：
 ```ts
-import deviceManager from '@ohos.distributedHardware.deviceManager';
-var dmClass;
-function getRemoteDeviceId() {
+  import deviceManager from '@ohos.distributedHardware.deviceManager';
+  var dmClass;
+  function getRemoteDeviceId() {
     if (typeof dmClass === 'object' && dmClass != null) {
         var list = dmClass.getTrustedDeviceListSync();
         if (typeof (list) == 'undefined' || typeof (list.length) == 'undefined') {
@@ -158,13 +163,14 @@ function getRemoteDeviceId() {
     } else {
         console.log("MainAbility onButtonClick getRemoteDeviceId err: dmClass is null");
     }
-}
+  }
 ```
-在跨设备场景下，需要向用户申请数据同步的权限。具体示例代码如下：
+
+在跨设备场景下，需要向开发者申请数据同步的权限。具体示例代码如下：
 ```ts
-import accessControl from "@ohos.abilityAccessCtrl";
-import bundle from '@ohos.bundle';
-async function RequestPermission() {
+  import accessControl from "@ohos.abilityAccessCtrl";
+  import bundle from '@ohos.bundle';
+  async function RequestPermission() {
   console.info('RequestPermission begin');
   let array: Array<string> = ["ohos.permission.DISTRIBUTED_DATASYNC"];
   var bundleFlag = 0;
@@ -194,22 +200,24 @@ async function RequestPermission() {
     console.info("data authResults:" + data.authResults);
   });
   console.info('RequestPermission end');
-}
+  }
 ```
+
 ### 生命周期接口说明
 **表2** 生命周期回调函数介绍
 
 | 接口名       | 描述                                                         |
 | ------------ | ------------------------------------------------------------ |
-| onShow()     | Ability由后台不可见状态切换到前台可见状态调用onShow方法，此时用户在屏幕可以看到该Ability |
-| onHide()     | Ability由前台切换到后台不可见状态时调用onHide方法，此时用户在屏幕看不到该Ability。 |
+| onShow()     | Ability由后台不可见状态切换到前台可见状态调用onShow方法，此时开发者在屏幕可以看到该Ability |
+| onHide()     | Ability由前台切换到后台不可见状态时调用onHide方法，此时开发者在屏幕看不到该Ability。 |
 | onDestroy()  | 应用退出，销毁Ability对象前调用onDestroy方法，开发者可以在该方法里做一些回收资源、清空缓存等应用退出前的准备工作。 |
 | onCreate()   | Ability第一次启动创建Ability时调用onCreate方法，开发者可以在该方法里做一些应用初始化工作。 |
 | onInactive() | Ability失去焦点时调用onInactive方法，Ability在进入后台状态时会先失去焦点，再进入后台。 |
 | onActive()   | Ability切换到前台，并且已经获取焦点时调用onActive方法。      |
 
-* 示例
-开发者需要重写app.js/app.ets 中相关生命周期回调函数，IDE模板默认生成onCreate()和onDestroy()方法，其他方法需要开发者自行实现。
+**示例**
+开发者需要重写`app.js/app.ets`中相关生命周期回调函数，IDE模板默认生成`onCreate()`和`onDestroy()`方法，其他方法需要开发者自行实现。
+
 ```javascript
 export default {
   onCreate() {
@@ -235,6 +243,6 @@ export default {
 ### 开发实例
 针对pageAbility开发，有以下示例工程可供参考：
 
-- [DMS](https://gitee.com/openharmony/app_samples/tree/master/ability/DMS)
+[DMS](https://gitee.com/openharmony/app_samples/tree/master/ability/DMS)
 
 在本示例中完整展示了启动本地Ability、启动远程Ability的使用方法。

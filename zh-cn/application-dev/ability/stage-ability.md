@@ -11,7 +11,7 @@ Stage模型是基于API version 9的应用开发模型，对此模型的介绍�
 - 应用迁移，详见[应用迁移开发指导](stage-ability-continuation.md)。
 
 ## 接口说明
-AbilityStage功能如下：AbilityStage类，拥有context属性，具体的API详见[接口文档](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-application-abilitystage.md)。
+AbilityStage功能如下（AbilityStage类，拥有context属性，具体的API详见[接口文档](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-application-abilitystage.md)）：
 
 **表1** AbilityStage API接口功能介绍
 |接口名|描述|
@@ -20,7 +20,7 @@ AbilityStage功能如下：AbilityStage类，拥有context属性，具体的API�
 |string onAcceptWant(want: Want)|启动指定Ability时被调用。|
 |void onConfigurationUpdated(config: Configuration)|全局配置发生变更时被调用。|
 
-Ability功能如下：Ability类，具体的API详见[接口文档](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-application-ability.md)。
+Ability功能如下（bility类，具体的API详见[接口文档](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-application-ability.md)）：
 
 **表2** Ability API接口功能介绍
 |接口名|描述|
@@ -53,57 +53,58 @@ Ability类拥有context属性，context属性为AbilityContext类，AbilityConte
 ## 开发步骤
 ### 创建Page Ability应用
 创建Stage模型的Page Ability应用，需实现AbilityStage接口及Ability生命周期接口，并使用窗口提供的方法设置页面。具体示例代码如下：
-1. 导入AbilityStage模块
-```
-import AbilityStage from "@ohos.application.AbilityStage"
-```
-2. 实现AbilityStage接口
-```ts
-export default class MyAbilityStage extends AbilityStage {
+1. 导入AbilityStage模块。
+   ```
+   import AbilityStage from "@ohos.application.AbilityStage"
+   ```
+2. 实现AbilityStage接口。
+   ```ts
+   export default class MyAbilityStage extends AbilityStage {
     onCreate() {
         console.log("MyAbilityStage onCreate")
     }
-}
-```
-3. 导入Ability模块
-```
-import Ability from '@ohos.application.Ability'
-```
-4. 实现Ability生命周期接口
-在`onWindowStageCreate(windowStage)`中通过loadContent接口设置应用要加载的页面，window接口的使用详见[窗口开发指导](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/windowmanager/window-guidelines.md/)。
-```ts
-export default class MainAbility extends Ability {
+   }
+   ```
+3. 导入Ability模块。
+   ```js
+   import Ability from '@ohos.application.Ability'
+   ```
+4. 实现Ability生命周期接口。
+   
+   在`onWindowStageCreate(windowStage)`中通过loadContent接口设置应用要加载的页面，window接口的使用详见[窗口开发指导](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/windowmanager/window-guidelines.md/)。
+   ```ts
+   export default class MainAbility extends Ability {
     onCreate(want, launchParam) {
         console.log("MainAbility onCreate")
     }
-
+   
     onDestroy() {
         console.log("MainAbility onDestroy")
     }
-
+   
     onWindowStageCreate(windowStage) {
         console.log("MainAbility onWindowStageCreate")
-
+   
         windowStage.loadContent("pages/index").then((data) => {
             console.log("MainAbility load content succeed with data: " + JSON.stringify(data))
         }).catch((error) => {
             console.error("MainAbility load content failed with error: "+ JSON.stringify(error))
         })
     }
-
+   
     onWindowStageDestroy() {
         console.log("MainAbility onWindowStageDestroy")
     }
-
+   
     onForeground() {
         console.log("MainAbility onForeground")
     }
-
+   
     onBackground() {
         console.log("MainAbility onBackground")
     }
-}
-```
+   }
+   ```
 ### 获取AbilityStage及Ability的配置信息
 AbilityStage类及Ability类均拥有context属性，应用可以通过`this.context`获取Ability实例的上下文，进而获取详细的配置信息。如下示例展示了AbilityStage通过context属性获取包代码路径、hap包名、ability名以及系统语言的方法。具体示例代码如下：
 ```ts
@@ -163,7 +164,8 @@ context.startAbility(want, options).then((data) => {
 })
 ```
 
-### 跨设备启动Ability(当前仅对系统应用开放)
+### 跨设备启动Ability（当前仅对系统应用开放）
+>说明：由于DeviceManager的getTrustedDeviceListSync接口仅对系统应用开放，当前跨设备启动Ability仅支持系统应用
 跨设备场景下，需指定对端设备deviceId，具体示例代码如下：
 ```ts
 let context = this.context
@@ -178,7 +180,7 @@ context.startAbility(want).then((data) => {
     console.error("Failed to start remote ability with error: "+ JSON.stringify(error))
 })
 ```
-从DeviceManager获取指定设备的deviceId，具体示例代码如下：
+从DeviceManager获取指定设备的deviceId。具体示例代码如下：
 ```ts
 import deviceManager from '@ohos.distributedHardware.deviceManager';
 function getRemoteDeviceId() {

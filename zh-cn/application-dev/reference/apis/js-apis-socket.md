@@ -563,7 +563,7 @@ on\(type: 'error', callback: ErrorCallback\): void
 **示例：**
 
 ```
-let udp = socket.constructUDPSocketInstance()
+let udp = socket.constructUDPSocketInstance();
 udp.on('error', err => {
 	console.log("on error, err:" + JSON.stringify(err))
 });
@@ -591,7 +591,7 @@ off\(type: 'error', callback?: ErrorCallback\): void
 **示例：**
 
 ```
-let udp = socket.constructUDPSocketInstance()
+let udp = socket.constructUDPSocketInstance();
 let callback = err =>{
 	console.log("on error, err:" + JSON.stringify(err));
 }

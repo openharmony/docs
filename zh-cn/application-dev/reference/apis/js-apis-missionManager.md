@@ -98,6 +98,12 @@ unregisterMissionListener(listenerId: number): Promise&lt;void&gt;;
   | -------- | -------- | -------- | -------- |
   | listenerId | number | 是 | 系统任务状态监听方法的index值，和监听方法一一对应，由registerMissionListener方法返回。 |
 
+**返回值：**
+
+  | 类型 | 说明 | 
+  | -------- | -------- |
+  | Promise&lt;void&gt; | promise方式返回执行结果。 | 
+
 **示例：**
 
   ```js
@@ -168,7 +174,7 @@ getMissionInfo(deviceId: string, missionId: number): Promise&lt;MissionInfo&gt;;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | [MissionInfo](js-apis-application-MissionInfo.md) | 任务信息。 |
+  | Promise&lt;[MissionInfo](js-apis-application-MissionInfo.md)&gt; | 任务信息。 |
 
 **示例：**
 
@@ -362,6 +368,12 @@ lockMission(missionId: number): Promise&lt;void&gt;;
   | -------- | -------- | -------- | -------- |
   | missionId | number | 是 | 任务ID。 |
 
+**返回值：**
+
+  | 类型 | 说明 | 
+  | -------- | -------- |
+  | Promise&lt;void&gt; | promise方式返回执行结果。 | 
+
 **示例：**
 
   ```js
@@ -426,6 +438,12 @@ unlockMission(missionId: number): Promise&lt;void&gt;;
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | missionId | number | 是 | 任务ID。 |
+
+**返回值：**
+
+  | 类型 | 说明 | 
+  | -------- | -------- |
+  | Promise&lt;void&gt; | promise方式返回执行结果。 | 
 
 **示例：**
 
@@ -495,6 +513,12 @@ clearMission(missionId: number): Promise&lt;void&gt;;
   | -------- | -------- | -------- | -------- |
   | missionId | number | 是 | 任务ID。 |
 
+**返回值：**
+
+  | 类型 | 说明 | 
+  | -------- | -------- |
+  | Promise&lt;void&gt; | promise方式返回执行结果。 | 
+
 **示例：**
 
   ```js
@@ -539,6 +563,12 @@ clearAllMissions(): Promise&lt;void&gt;;
 清理所有未锁定的任务，以promise的方式返回。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
+
+**返回值：**
+
+  | 类型 | 说明 | 
+  | -------- | -------- |
+  | Promise&lt;void&gt; | promise方式返回执行结果。 | 
 
 **示例：**
 
@@ -632,6 +662,12 @@ moveMissionToFront(missionId: number, options?: StartOptions): Promise&lt;void&g
   | missionId | number | 是 | 任务ID。 |
   | options | StartOptions | 否 | 启动参数选项，用于指定任务切到前台时的窗口模式，设备ID等。 |
 
+**返回值：**
+
+  | 类型 | 说明 | 
+  | -------- | -------- |
+  | Promise&lt;void&gt; | promise方式返回执行结果。 | 
+
 **示例：**
 
   ```js
@@ -648,3 +684,20 @@ moveMissionToFront(missionId: number, options?: StartOptions): Promise&lt;void&g
     console.log(err);
   });
   ```
+
+## MissionInfo
+
+表示Ability对应任务信息的枚举。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase
+
+| 名称 | 参数类型 | 可读 | 可写 | 说明 | 
+| -------- | -------- | -------- | -------- | -------- |
+| missionId | number | 是 | 是 | 表示任务ID。| 
+| runningState | number | 是 | 是 | 表示运行状态。 | 
+| lockedState | boolean | 是 | 是 | 表示锁定状态。 | 
+| timestamp | string | 是 | 是 | 表示任务的最近创建或更新时间。 | 
+| want | [Want](js-apis-featureAbility.md#want) | 是 | 是 | 表示任务的Want信息。 | 
+| label | string | 是 | 是 | 表示任务的标签。 | 
+| iconPath | string | 是 | 是 | 表示任务的图标路径。 | 
+| continuable | boolean | 是 | 是 | 表示任务是否可以继续。 | 

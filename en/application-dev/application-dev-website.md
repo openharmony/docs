@@ -1,20 +1,30 @@
-# OpenHarmony Application Development Documentation
-
 - [Application Development Overview](application-dev-guide.md)
 - Quick Start
-  - [Getting Started with Application Development](quick-start/Readme-EN.md)
+  - Getting Started with Application Development
     - DevEco Studio (OpenHarmony) User Guide
       - [Overview](quick-start/deveco-studio-overview.md)
       - [Version Change History](quick-start/deveco-studio-release-notes.md)
       - [Configuring the OpenHarmony SDK](quick-start/configuring-openharmony-sdk.md)
-      - [Creating an OpenHarmony Project](quick-start/create-openharmony-project.md)
+      - Creating an OpenHarmony Project
         - [Using the Project Wizard to Create a Project](quick-start/use-wizard-to-create-project.md)
         - [Importing a Sample to Create a Project](quick-start/import-sample-to-create-project.md)
       - [Configuring the OpenHarmony App Signature](quick-start/configuring-openharmony-app-signature.md)
       - [Installing and Running Your OpenHarmony App](quick-start/installing-openharmony-app.md)
   - [Directory Structure](quick-start/package-structure.md)
+  - [Resource File Categories](quick-start/basic-resource-file-categories.md)
 - Development
-  - UI
+  - [Ability Development](ability/Readme-EN.md)
+    - [Ability Framework Overview](ability/ability-brief.md)
+    - FA Model
+      - [FA Model Overview](ability/fa-brief.md)
+      - [Page Ability Development](ability/fa-pageability.md)
+      - [Service Ability Development](ability/fa-serviceability.md)
+      - [Data Ability Development](ability/fa-dataability.md)
+      - [FA Widget Development](ability/fa-formability.md)
+
+    - Other
+      - [Ability Assistant Usage](ability/ability-assistant-guidelines.md)
+  - [UI]](ui/Readme-EN.md)
     - JavaScript-based Web-Like Development Paradigm
       - [Overview](ui/ui-js-overview.md)
       - Framework
@@ -41,17 +51,19 @@
         - [Defining Events](ui/ui-js-building-ui-event.md)
         - [Defining Page Routes](ui/ui-js-building-ui-routes.md)
       - Common Component Development Guidelines
+        - Container Components
+          - [List](ui/ui-js-components-list.md)
+          - [Dialog](ui/ui-js-components-dialog.md)
+          - [Form](ui/ui-js-components-form.md)
+          - [Stepper](ui/ui-js-components-stepper.md)
+          - [Tabs](ui/ui-js-component-tabs.md)
+        - Basic Components
         - [Text](ui/ui-js-components-text.md)
         - [Input](ui/ui-js-components-input.md)
         - [Button](ui/ui-js-components-button.md)
-        - [List](ui/ui-js-components-list.md)
         - [Picker](ui/ui-js-components-picker.md)
-        - [Dialog](ui/ui-js-components-dialog.md)
-        - [Form](ui/ui-js-components-form.md)
-        - [Stepper](ui/ui-js-components-stepper.md)
-        - [Tabs](ui/ui-js-component-tabs.md)
         - [Image](ui/ui-js-components-images.md)
-      - Animation Development Guidelines
+       - Animation Development Guidelines
         - CSS Animation
           - [Defining Attribute Style Animations](ui/ui-js-animate-attribute-style.md)
           - [Defining Animations with the transform Attribute](ui/ui-js-animate-transform.md)
@@ -124,12 +136,16 @@
         - [Building a Food Category Grid Layout](ui/ui-ts-building-category-grid-layout.md)
         - [Implementing Page Redirection and Data Transmission](ui/ui-ts-page-redirection-data-transmission.md)
   - Basic Functions
-    - Agent-Powered Scheduled Reminders
-      - [Overview](background-agent-scheduled-reminder/background-agent-scheduled-reminder-overview.md)
-      - [Development Guidelines](background-agent-scheduled-reminder/background-agent-scheduled-reminder-guide.md)
-    - Background Task Management
-      - [Background Task Management Overview](background-task-management/background-task-overview.md)
-      - [Background Task Management Development](background-task-management/background-task-dev-guide.md)
+    - Window Manager
+      - Window
+        - [Window Overview](windowmanager/window-overview.md)
+        - [Window Development](windowmanager/window-guidelines.md)
+      - Display
+        - [Display Overview](windowmanager/display-overview.md)
+        - [Display Development](windowmanager/display-guidelines.md)
+      - Screenshot
+        - [Screenshot Overview](windowmanager/screenshot-overview.md)
+        - [Screenshot Development](windowmanager/screenshot-guidelines.md)
     - WebGL
       - [WebGL Overview](webgl/webgl-overview.md)
       - [WebGL Development](webgl/webgl-guidelines.md)
@@ -143,10 +159,14 @@
       - Video
         - [Video Playback Development](media/video-playback.md)
         - [Video Recording Development](media/video-recorder.md)
+      - Image
+        - [Image Development](media/image.md)
     - Security
       - User Authentication
         - [User Authentication Overview](security/userauth-overview.md)
         - [User Authentication Development](security/userauth-guidelines.md)
+      - hapsigner
+        - [hapsigner Guide](security/hapsigntool-guidelines.md)
     - Connectivity
       - IPC & RPC
         - [IPC & RPC Overview](connectivity/ipc-rpc-overview.md)
@@ -162,6 +182,12 @@
       - Lightweight Data Store
         - [Lightweight Data Store Overview](database/database-preference-overview.md)
         - [Lightweight Data Store Development](database/database-preference-guidelines.md)
+    - Agent-Powered Scheduled Reminders
+      - [Overview](background-agent-scheduled-reminder/background-agent-scheduled-reminder-overview.md)
+      - [Development Guidelines](background-agent-scheduled-reminder/background-agent-scheduled-reminder-guide.md)
+    - Background Task Management
+      - [Background Task Management Overview](background-task-management/background-task-overview.md)
+      - [Background Task Management Development](background-task-management/background-task-dev-guide.md)
     - Device
       - USB Service
         - [USB Service Overview](device/usb-overview.md)
@@ -170,10 +196,22 @@
         - [Location Overview](device/device-location-overview.md)
         - [Obtaining Device Location Information](device/device-location-info.md)
         - [Geocoding and Reverse Geocoding Capabilities](device/device-location-geocoding.md)
+      - Sensor
+        - [Sensor Overview](device/sensor-overview.md)
+        - [Sensor Development](device/sensor-guidelines.md)
+    - Device Usage Statistics
+      - [Device Usage Statistics Overview](device-usage-statistics/device-usage-statistics-overview.md)
+      - [Device Usage Statistics Development](device-usage-statistics/device-usage-statistics-dev-guide.md)
     - DFX
       - Application Event Logging
         - [Overview of Application Event Logging](dfx/hiappevent-overview.md)
         - [Development Guidelines on Application Event Logging](dfx/hiappevent-guidelines.md)
+      - Performance Tracing
+        - [Overview of Performance Tracing](dfx/hitracemeter-overview.md)
+        - [Development of Performance Tracing](dfx/hitracemeter-guidelines.md)
+      - Distributed Call Chain Tracing
+        - [Overview of Distributed Call Chain Tracing](dfx/hitracechain-overview.md)
+        - [Development of Distributed Call Chain Tracing](dfx/hitracechain-guidelines.md)
 - Tools
   - DevEco Studio (OpenHarmony) User Guide
     - [Overview](quick-start/deveco-studio-overview.md)
@@ -186,8 +224,8 @@
   - [Samples](https://gitee.com/openharmony/app_samples/blob/master/README.md)
 - API References
   - Compent Reference (JavaScript-based Web-like Development Paradigm)
-    - [Components](reference/arkui-js/js-components.md)
-      - [Common](reference/arkui-js/js-components-common.md)
+    - Components
+      - Common
         - [Universal Attributes](reference/arkui-js/js-components-common-attributes.md)
         - [Universal Styles](reference/arkui-js/js-components-common-styles.md)
         - [Universal Events](reference/arkui-js/js-components-common-events.md)
@@ -197,7 +235,7 @@
         - [Transition Styles](reference/arkui-js/js-components-common-transition.md)
         - [Custom Font Styles](reference/arkui-js/js-components-common-customizing-font.md)
         - [Atomic Layout](reference/arkui-js/js-components-common-atomic-layout.md)
-      - [Container Component](reference/arkui-js/js-components-container.md)
+      - Container Components
         - [badge](reference/arkui-js/js-components-container-badge.md)
         - [dialog](reference/arkui-js/js-components-container-dialog.md)
         - [div](reference/arkui-js/js-components-container-div.md)
@@ -215,7 +253,7 @@
         - [tabs](reference/arkui-js/js-components-container-tabs.md)
         - [tab-bar](reference/arkui-js/js-components-container-tab-bar.md)
         - [tab-content](reference/arkui-js/js-components-container-tab-content.md)
-      - [Basic Components](reference/arkui-js/js-components-basic.md)
+      - Basic Components
         - [button](reference/arkui-js/js-components-basic-button.md)
         - [chart](reference/arkui-js/js-components-basic-chart.md)
         - [divider](reference/arkui-js/js-components-basic-divider.md)
@@ -243,9 +281,10 @@
         - [toolbar](reference/arkui-js/js-components-basic-toolbar.md)
         - [toolbar-item](reference/arkui-js/js-components-basic-toolbar-item.md)
         - [toggle](reference/arkui-js/js-components-basic-toggle.md)
-      - [Media Components](reference/arkui-js/js-components-media.md)
+        - [web](reference/arkui-js/js-components-basic-web.md)
+      - Media Components
         - [video](reference/arkui-js/js-components-media-video.md)
-      - [Canvas Components](reference/arkui-js/js-components-canvas.md)
+      - Canvas Components
         - [canvas](reference/arkui-js/js-components-canvas-canvas.md)
         - [CanvasRenderingContext2D](reference/arkui-js/js-components-canvas-canvasrenderingcontext2d.md)
         - [Image](reference/arkui-js/js-components-canvas-image.md)
@@ -255,12 +294,12 @@
         - [ImageBitmap](reference/arkui-js/js-components-canvas-imagebitmap.md)
         - [OffscreenCanvas](reference/arkui-js/js-components-canvas-offscreencanvas.md)
         - [OffscreenCanvasRenderingContext2D](reference/arkui-js/js-offscreencanvasrenderingcontext2d.md)
-      - [Grid](reference/arkui-js/js-components-grid.md)
+      - Grid
         - [Basic Concepts](reference/arkui-js/js-components-grid-basic-concepts.md)
         - [grid-container](reference/arkui-js/js-components-grid-container.md)
         - [grid-row](reference/arkui-js/js-components-grid-row.md)
         - [grid-col](reference/arkui-js/js-components-grid-col.md)
-      - [SVG Components](reference/arkui-js/js-svg.md)
+      - SVG Components
         - [Universal Attributes](reference/arkui-js/js-components-svg-common-attributes.md)
         - [svg](reference/arkui-js/js-components-svg.md)
         - [rect](reference/arkui-js/js-components-svg-rect.md)
@@ -276,25 +315,28 @@
         - [animate](reference/arkui-js/js-components-svg-animate.md)
         - [animateMotion](reference/arkui-js/js-components-svg-animatemotion.md)
         - [animateTransform](reference/arkui-js/js-components-svg-animatetransform.md)
-    - [Custom Components](reference/arkui-js/js-components-custom.md)
+    - Custom Components
       - [Basic Usage](reference/arkui-js/js-components-custom-basic-usage.md)
       - [Custom Events](reference/arkui-js/js-components-custom-events.md)
       - [props](reference/arkui-js/js-components-custom-props.md)
       - [Event Parameter](reference/arkui-js/js-components-custom-event-parameter.md)
       - [slot](reference/arkui-js/js-components-custom-slot.md)
       - [Lifecycle Definition](reference/arkui-js/js-components-custom-lifecycle.md)
-    - [Appendix](reference/arkui-js/js-appendix.md)
+    - Appendix
       - [Type Attributes](reference/arkui-js/js-appendix-types.md)
   - Compent Reference (TypeScript-based Declarative Development Paradigm)
-    - [Components](reference/arkui-ts/ts-components.md)
-      - [Universal Components](reference/arkui-ts/ts-universal-components.md)
-        - [Universal Events](reference/arkui-ts/ts-universal-events.md)
+    - Components
+      - Universal Components
+        - Universal Events
           - [Click Event](reference/arkui-ts/ts-universal-events-click.md)
           - [Touch](reference/arkui-ts/ts-universal-events-touch.md)
           - [Show/Hide Event](reference/arkui-ts/ts-universal-events-show-hide.md)
+          - [Drag/Drop Event](reference/arkui-ts/ts-universal-events-drag-drop.md)
           - [Key Event](reference/arkui-ts/ts-universal-events-key.md)
+          - [Focus Event](reference/arkui-ts/ts-universal-focus-event.md)
+          - [Mouse Event](reference/arkui-ts/ts-universal-mouse-key.md)
           - [Component Area Change Event](reference/arkui-ts/ts-universal-events-component-area-change.md)
-        - [Universal Attributes](reference/arkui-ts/ts-universal-attributes.md)
+        - Universal Attributes
           - [Size](reference/arkui-ts/ts-universal-attributes-size.md)
           - [Location](reference/arkui-ts/ts-universal-attributes-location.md)
           - [Layout Constraints](reference/arkui-ts/ts-universal-attributes-layout-constraints.md)
@@ -314,11 +356,15 @@
           - [Gradient Color](reference/arkui-ts/ts-universal-attributes-gradient-color.md)
           - [Popup Control](reference/arkui-ts/ts-universal-attributes-popup.md)
           - [Menu Control](reference/arkui-ts/ts-universal-attributes-menu.md)
-          - [Click Control](reference/arkui-ts/ts-universal-attributes-touchable.md)
-          - [Touch Target](reference/arkui-ts/ts-universal-attributes-response-region.md)
-        - [Gesture Processing](reference/arkui-ts/ts-gesture-processing.md)
+          - [Click Control](reference/arkui-ts/ts-universal-attributes-click.md)
+          - [Focus Control](reference/arkui-ts/ts-universal-attributes-focus.md)
+          - [Hover Effect](reference/arkui-ts/ts-universal-attributes-hover-effect.md)
+          - [Component ID](reference/arkui-ts/ts-universal-attributes-component-id.md)
+          - [Touch Target](reference/arkui-ts/ts-universal-attributes-touch-target.md)
+          - [Polymorphic Style](reference/arkui-ts/ts-universal-attributes-polymorphic-style.md)
+        - Gesture Processing
           - [Gesture Binding Methods](reference/arkui-ts/ts-gesture-settings.md)
-          - [Basic Gestures](reference/arkui-ts/ts-basic-gestures.md)
+          - Basic Gestures
             - [TapGesture](reference/arkui-ts/ts-basic-gestures-tapgesture.md)
             - [LongPressGesture](reference/arkui-ts/ts-basic-gestures-longpressgesture.md)
             - [PanGesture](reference/arkui-ts/ts-basic-gestures-pangesture.md)
@@ -326,18 +372,21 @@
             - [RotationGesture](reference/arkui-ts/ts-basic-gestures-rotationgesture.md)
             - [SwipeGesture](reference/arkui-ts/ts-basic-gestures-swipegesture.md)
           - [Combined Gestures](reference/arkui-ts/ts-combined-gestures.md)
-      - [Basic Components](reference/arkui-ts/ts-basic-components.md)
+      - Basic Components
         - [Blank](reference/arkui-ts/ts-basic-components-blank.md)
         - [Button](reference/arkui-ts/ts-basic-components-button.md)
+        - [Checkbox](reference/arkui-ts/ts-basic-components-checkbox.md)
+        - [CheckboxGroup](reference/arkui-ts/ts-basic-components-checkboxgroup.md)
         - [DataPanel](reference/arkui-ts/ts-basic-components-datapanel.md)
+        - [DatePicker](reference/arkui-ts/ts-basic-components-datepicker.md)
         - [Divider](reference/arkui-ts/ts-basic-components-divider.md)
-        - [Gauge](reference/arkui-ts/ts-basic-components-gauge.md)
         - [Image](reference/arkui-ts/ts-basic-components-image.md)
         - [ImageAnimator](reference/arkui-ts/ts-basic-components-imageanimator.md)
         - [LoadingProgress](reference/arkui-ts/ts-basic-components-loadingprogress.md)
         - [Marquee](reference/arkui-ts/ts-basic-components-marquee.md)
         - [Progress](reference/arkui-ts/ts-basic-components-progress.md)
         - [QRCode](reference/arkui-ts/ts-basic-components-qrcode.md)
+        - [Radio](reference/arkui-ts/ts-basic-components-radio.md)
         - [Rating](reference/arkui-ts/ts-basic-components-rating.md)
         - [Select](reference/arkui-ts/ts-basic-components-select.md)
         - [Slider](reference/arkui-ts/ts-basic-components-slider.md)
@@ -345,9 +394,11 @@
         - [Text](reference/arkui-ts/ts-basic-components-text.md)
         - [TextArea](reference/arkui-ts/ts-basic-components-textarea.md)
         - [TextInput](reference/arkui-ts/ts-basic-components-textinput.md)
+        - [TextTimer](reference/arkui-ts/ts-basic-components-texttimer.md)
         - [Toggle](reference/arkui-ts/ts-basic-components-toggle.md)
         - [TextClock](reference/arkui-ts/ts-basic-components-textclock.md)
-      - [Container Components](reference/arkui-ts/ts-components-container.md)
+        - [Web](reference/arkui-ts/ts-basic-components-web.md)
+      - Container Components
         - [AlphabetIndexer](reference/arkui-ts/ts-container-alphabet-indexer.md)
         - [Badge](reference/arkui-ts/ts-container-badge.md)
         - [Column](reference/arkui-ts/ts-container-column.md)
@@ -366,46 +417,52 @@
         - [RowSplit](reference/arkui-ts/ts-container-rowsplit.md)
         - [Scroll](reference/arkui-ts/ts-container-scroll.md)
         - [ScrollBar](reference/arkui-ts/ts-container-scrollbar.md)
+        - [SideBarContainer](reference/arkui-ts/ts-container-sidebarcontainer.md)
         - [Stack](reference/arkui-ts/ts-container-stack.md)
         - [Swiper](reference/arkui-ts/ts-container-swiper.md)
         - [Tabs](reference/arkui-ts/ts-container-tabs.md)
         - [TabContent](reference/arkui-ts/ts-container-tabcontent.md)
         - [Refresh](reference/arkui-ts/ts-container-refresh.md)
-      - [Drawing Components](reference/arkui-ts/ts-drawing-components.md)
+      - Media Components
+        - [Video](reference/arkui-ts/ts-media-components-video.md)
+      - Drawing Components
         - [Circle](reference/arkui-ts/ts-drawing-components-circle.md)
         - [Ellipse](reference/arkui-ts/ts-drawing-components-ellipse.md)
         - [Line](reference/arkui-ts/ts-drawing-components-line.md)
         - [Polyline](reference/arkui-ts/ts-drawing-components-polyline.md)
         - [Polygon](reference/arkui-ts/ts-drawing-components-polygon.md)
-      - [Path](reference/arkui-ts/ts-drawing-components-path.md)
+        - [Path](reference/arkui-ts/ts-drawing-components-path.md)
         - [Rect](reference/arkui-ts/ts-drawing-components-rect.md)
         - [Shape](reference/arkui-ts/ts-drawing-components-shape.md)
-      - [Canvas Components](reference/arkui-ts/ts-components-canvas.md)
+      - Canvas Components
         - [Canvas](reference/arkui-ts/ts-components-canvas-canvas.md)
         - [CanvasRenderingContext2D](reference/arkui-ts/ts-canvasrenderingcontext2d.md)
         - [OffscreenCanvasRenderingConxt2D](reference/arkui-ts/ts-offscreencanvasrenderingcontext2d.md)
         - [Lottie](reference/arkui-ts/ts-components-canvas-lottie.md)
         - [Path2D](reference/arkui-ts/ts-components-canvas-path2d.md)
-      - [CanvasGradient](reference/arkui-ts/ts-components-canvas-canvasgradient.md)
+        - [CanvasGradient](reference/arkui-ts/ts-components-canvas-canvasgradient.md)
         - [ImageBitmap](reference/arkui-ts/ts-components-canvas-imagebitmap.md)
         - [ImageData](reference/arkui-ts/ts-components-canvas-imagedata.md)
-    - [Animation](reference/arkui-ts/ts-animation.md)
+    - Animation
       - [Attribute Animation](reference/arkui-ts/ts-animatorproperty.md)
       - [Explicit Animation](reference/arkui-ts/ts-explicit-animation.md)
-      - [Transition Animation](reference/arkui-ts/ts-transition-animation.md)
+      - Transition Animation
         - [Page Transition](reference/arkui-ts/ts-page-transition-animation.md)
         - [Component Transition](reference/arkui-ts/ts-transition-animation-component.md)
         - [Transition of Shared Elements](reference/arkui-ts/ts-transition-animation-shared-elements.md)
       - [Motion Path Animation](reference/arkui-ts/ts-motion-path-animation.md)
       - [Matrix Transformation](reference/arkui-ts/ts-matrix-transformation.md)
       - [Interpolation Calculation](reference/arkui-ts/ts-interpolation-calculation.md)
-    - [Global UI Methods](reference/arkui-ts/ts-global-ui-methods.md)
-      - [Alert Dialog Box](reference/arkui-ts/ts-methods-alert-dialog-box.md)
-      - [Custom Dialog box](reference/arkui-ts/ts-methods-custom-dialog-box.md)
+    - Global UI Methods
       - [Image Cache](reference/arkui-ts/ts-methods-image-cache.md)
-      - [Media Query](reference/arkui-ts/ts-methods-media-query.md)
-      - [List Selection Dialog Box](reference/arkui-ts/ts-methods-action-sheet.md)
-    - [Appendix](reference/arkui-ts/ts-appendix.md)
+      - Dialog Box
+        - [Alert Dialog Box](reference/arkui-ts/ts-methods-alert-dialog-box.md)
+        - [Action Sheet](reference/arkui-ts/ts-methods-action-sheet.md)
+        - [Custom Dialog Box](reference/arkui-ts/ts-methods-custom-dialog-box.md)
+        - [Date Picker Dialog Box](reference/arkui-ts/ts-methods-datepicker-dialog.md)
+        - [Text Picker Dialog Box](reference/arkui-ts/ts-methods-textpicker-dialog.md)
+      - [Menu](reference/arkui-ts/ts-methods-menu.md)
+    - Appendix
       - [Built-in Enums](reference/arkui-ts/ts-appendix-enums.md)
   - APIs
     - Ability Framework
@@ -426,11 +483,13 @@
     - Media
       - [Audio Management](reference/apis/js-apis-audio.md)
       - [Media](reference/apis/js-apis-media.md)
+      - [Image Processing](reference/apis/js-apis-image.md)
+      - [Camera](reference/apis/js-apis-camera.md)
     - Security
       - [User Authentication](reference/apis/js-apis-useriam-userauth.md)
       - [Access Control](reference/apis/js-apis-abilityAccessCtrl.md)
     - Data Management
-      - [Lightweight Storage (deprecated since 8)](reference/apis/js-apis-data-storage.md)
+      - [Lightweight Storage](reference/apis/js-apis-data-preferences.md)
       - [Distributed Data Management](reference/apis/js-apis-distributed-data.md)
       - [Relational Database](reference/apis/js-apis-data-rdb.md)
       - [Result Set](reference/apis/js-apis-data-resultset.md)
@@ -444,6 +503,7 @@
       - [App Storage Statistics](reference/apis/js-apis-storage-statistics.md)
       - [Volume Management](reference/apis/js-apis-volumemanager.md)
     - Account Management
+      - [OS Account Management](reference/apis/js-apis-osAccount.md)
       - [Distributed Account Management](reference/apis/js-apis-distributed-account.md)
       - [App Account Management](reference/apis/js-apis-appAccount.md)
     - Telephony Service
@@ -451,8 +511,13 @@
       - [SMS](reference/apis/js-apis-sms.md)
       - [SIM Management](reference/apis/js-apis-sim.md)
       - [Radio](reference/apis/js-apis-radio.md)
-      - [observer](reference/apis/js-apis-observer.md)
+      - [Observer](reference/apis/js-apis-observer.md)
       - [Cellular Data](reference/apis/js-apis-telephony-data.md)
+    - Network Management
+      - [Network Connection Management](js-apis-net-connection.md)
+      - [Socket Connection](js-apis-socket.md)
+      - [WebSocket Connection](js-apis-webSocket.md)
+      - [Data Request](js-apis-http.md)
     - Network and Connectivity
       - [WLAN](reference/apis/js-apis-wifi.md)
       - [Bluetooth](reference/apis/js-apis-bluetooth.md)
@@ -477,14 +542,13 @@
       - [Application Context](reference/apis/js-apis-basic-features-app-context.md)
       - [Console Logs](reference/apis/js-apis-basic-features-logs.md)
       - [Page Routing](reference/apis/js-apis-basic-features-routes.md)
-      - [Pop-up Window](reference/apis/js-apis-basic-features-pop-up.md)
-      - [Application Configuration](reference/apis/js-apis-basic-features-configuration.md)
       - [Timer](reference/apis/js-apis-basic-features-timer.md)
       - [Setting the System Time](reference/apis/js-apis-system-time.md)
       - [Animation](reference/apis/js-apis-basic-features-animator.md)
       - [WebGL](reference/apis/js-apis-webgl.md)
       - [WebGL2](reference/apis/js-apis-webgl2.md)
       - [Screenshot](reference/apis/js-apis-screenshot.md)
+      - [Accessibility](reference/apis/js-apis-accessibility.md)
     - DFX
       - [HiAppEvent](reference/apis/js-apis-hiappevent.md)
       - [Performance Tracing](reference/apis/js-apis-hitracemeter.md)
@@ -515,3 +579,5 @@
       - [Nonlinear Container TreeSet](reference/apis/js-apis-treeset.md)
       - [Nonlinear Container LightWeightMap](reference/apis/js-apis-lightweightmap.md)
       - [Nonlinear Container LightWeightSet](reference/apis/js-apis-lightweightset.md)
+    - Custom Management
+      - [Configuration Policy](reference/apis/js-apis-config-policy.md)

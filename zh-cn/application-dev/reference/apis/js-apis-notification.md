@@ -188,7 +188,7 @@ Notification.cancel(0, "label", cancelCallback)
 
 cancel(id：number, label?: string): Promise\<void\>
 
-取消与指定id相匹配的已发布通知,label可以指定也可以不指定（Promise形式）。
+取消与指定id相匹配的已发布通知，label可以指定也可以不指定（Promise形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -648,7 +648,7 @@ Notification.removeAllSlots(removeAllCallBack)
 
 removeAllSlots(): Promise\<void\>
 
-删除所有通知通道(Promise形式）。
+删除所有通知通道（Promise形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 

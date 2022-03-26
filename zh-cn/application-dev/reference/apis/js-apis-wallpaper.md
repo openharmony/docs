@@ -16,7 +16,7 @@ import wallpaper from '@ohos.wallpaper';
 
 定义壁纸类型。
 
-**系统能力**: 以下各项对应的系统能力均为SystemCapability.Miscservices.Wallpaper。
+**系统能力**: 以下各项对应的系统能力均为SystemCapability.MiscServices.Wallpaper。
 
   | 名称 | 说明 | 
 | -------- | -------- |
@@ -30,7 +30,7 @@ getColors(wallpaperType: WallpaperType, callback: AsyncCallback&lt;Array&lt;Rgba
 
 获取指定类型壁纸的主要颜色信息。
 
-**系统能力**: SystemCapability.Miscservices.Wallpaper
+**系统能力**: SystemCapability.MiscServices.Wallpaper
 
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 | 
@@ -57,7 +57,7 @@ getColors(wallpaperType: WallpaperType): Promise&lt;Array&lt;RgbaColor&gt;&gt;
 
 获取指定类型壁纸的主要颜色信息。
 
-**系统能力**: SystemCapability.Miscservices.Wallpaper
+**系统能力**: SystemCapability.MiscServices.Wallpaper
 
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 | 
@@ -86,7 +86,7 @@ getId(wallpaperType: WallpaperType, callback: AsyncCallback&lt;number&gt;): void
 
 获取指定类型壁纸的ID。
 
-**系统能力**: SystemCapability.Miscservices.Wallpaper
+**系统能力**: SystemCapability.MiscServices.Wallpaper
 
 - 参数
     | 参数名 | 类型 | 必填 | 说明 | 
@@ -113,7 +113,7 @@ getId(wallpaperType: WallpaperType): Promise&lt;number&gt;
 
 获取指定类型壁纸的ID。
 
-**系统能力**: SystemCapability.Miscservices.Wallpaper
+**系统能力**: SystemCapability.MiscServices.Wallpaper
 
 
 - 参数：
@@ -143,7 +143,7 @@ getMinHeight(callback: AsyncCallback&lt;number&gt;): void
 
 获取壁纸的最小高度值。
 
-**系统能力**: SystemCapability.Miscservices.Wallpaper
+**系统能力**: SystemCapability.MiscServices.Wallpaper
 
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 | 
@@ -169,7 +169,7 @@ getMinHeight(): Promise&lt;number&gt;
 
 获取壁纸的最小高度值。
 
-**系统能力**: SystemCapability.Miscservices.Wallpaper
+**系统能力**: SystemCapability.MiscServices.Wallpaper
 
 
 - 返回值：
@@ -194,7 +194,7 @@ getMinWidth(callback: AsyncCallback&lt;number&gt;): void
 
 获取壁纸的最小宽度值。
 
-**系统能力**: SystemCapability.Miscservices.Wallpaper
+**系统能力**: SystemCapability.MiscServices.Wallpaper
 
 
 - 参数：
@@ -221,7 +221,7 @@ getMinWidth(): Promise&lt;number&gt;
 
 获取壁纸的最小宽度值。
 
-**系统能力**: SystemCapability.Miscservices.Wallpaper
+**系统能力**: SystemCapability.MiscServices.Wallpaper
 
 - 返回值：
     | 类型 | 说明 | 
@@ -245,7 +245,7 @@ isChangePermitted(callback: AsyncCallback&lt;boolean&gt;): void
 
 是否允许应用改变当前用户的壁纸。
 
-**系统能力**: SystemCapability.Miscservices.Wallpaper
+**系统能力**: SystemCapability.MiscServices.Wallpaper
 
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 | 
@@ -271,7 +271,7 @@ isChangePermitted(): Promise&lt;boolean&gt;
 
 是否允许应用改变当前用户的壁纸。
 
-**系统能力**: SystemCapability.Miscservices.Wallpaper
+**系统能力**: SystemCapability.MiscServices.Wallpaper
 
 - 返回值：
     | 类型 | 说明 | 
@@ -295,7 +295,7 @@ isOperationAllowed(callback: AsyncCallback&lt;boolean&gt;): void
 
 是否允许用户设置壁纸。
 
-**系统能力**: SystemCapability.Miscservices.Wallpaper
+**系统能力**: SystemCapability.MiscServices.Wallpaper
 
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 | 
@@ -321,7 +321,7 @@ isOperationAllowed(): Promise&lt;boolean&gt;
 
 是否允许用户设置壁纸。
 
-**系统能力**: SystemCapability.Miscservices.Wallpaper
+**系统能力**: SystemCapability.MiscServices.Wallpaper
 
 - 返回值：
     | 类型 | 说明 | 
@@ -347,7 +347,7 @@ reset(wallpaperType: WallpaperType, callback: AsyncCallback&lt;void&gt;): void
 
 **需要权限**：ohos.permission.SET_WALLPAPER
 
-**系统能力**: SystemCapability.Miscservices.Wallpaper
+**系统能力**: SystemCapability.MiscServices.Wallpaper
 
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 | 
@@ -376,7 +376,7 @@ reset(wallpaperType: WallpaperType): Promise&lt;void&gt;
 
 **需要权限：**ohos.permission.SET_WALLPAPER
 
-**系统能力**: SystemCapability.Miscservices.Wallpaper
+**系统能力**: SystemCapability.MiscServices.Wallpaper
 
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 | 
@@ -407,7 +407,7 @@ setWallpaper(source: string | image.PixelMap, wallpaperType: WallpaperType, call
 
 **需要权限:** ohos.permission.SET_WALLPAPER
 
-**系统能力**: SystemCapability.Miscservices.Wallpaper
+**系统能力**: SystemCapability.MiscServices.Wallpaper
 
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 |
@@ -460,7 +460,7 @@ setWallpaper(source: string | image.PixelMap, wallpaperType: WallpaperType): Pro
 
 **需要权限**：ohos.permission.SET_WALLPAPER
 
-**系统能力**: SystemCapability.Miscservices.Wallpaper
+**系统能力**: SystemCapability.MiscServices.Wallpaper
 
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 |
@@ -511,7 +511,7 @@ getFile(wallpaperType: WallpaperType, callback: AsyncCallback&lt;number&gt;): vo
 
 **需要权限**：ohos.permission.SET_WALLPAPER、ohos.permission.READ_USER_STORAGE
 
-**系统能力**: SystemCapability.Miscservices.Wallpaper
+**系统能力**: SystemCapability.MiscServices.Wallpaper
 
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 | 
@@ -538,7 +538,7 @@ getFile(wallpaperType: WallpaperType): Promise&lt;number&gt;
 
 **需要权限：** ohos.permission.SET_WALLPAPER、ohos.permission.READ_USER_STORAGE
 
-**系统能力**: SystemCapability.Miscservices.Wallpaper
+**系统能力**: SystemCapability.MiscServices.Wallpaper
 
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 | 
@@ -567,7 +567,7 @@ on(type: 'colorChange', callback: (colors: Array&lt;RgbaColor&gt;, wallpaperType
 
 订阅壁纸颜色变化结果上报事件。
 
-**系统能力**: SystemCapability.Miscservices.Wallpaper
+**系统能力**: SystemCapability.MiscServices.Wallpaper
 
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 |
@@ -591,7 +591,7 @@ off(type: 'colorChange', callback?: (colors: Array&lt;RgbaColor&gt;, wallpaperTy
 
 取消订阅壁纸颜色变化结果上报事件。
 
-**系统能力**: SystemCapability.Miscservices.Wallpaper
+**系统能力**: SystemCapability.MiscServices.Wallpaper
 
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 | 
@@ -615,7 +615,7 @@ off(type: 'colorChange', callback?: (colors: Array&lt;RgbaColor&gt;, wallpaperTy
 
 ## RgbaColor
 
-**系统能力**: 以下各项对应的系统能力均为SystemCapability.Miscservices.Wallpaper。
+**系统能力**: 以下各项对应的系统能力均为SystemCapability.MiscServices.Wallpaper。
 
   | 名称 | 参数类型 | 可读 | 可写 | 说明 | 
 | -------- | -------- | -------- | -------- | -------- |
