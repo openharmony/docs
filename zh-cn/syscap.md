@@ -6,7 +6,7 @@
 
 SysCap，全称SystemCapability，即系统能力，指操作系统中每一个相对独立的特性，如蓝牙，WIFI，NFC，摄像头等，都是系统能力之一。每个系统能力对应多个 API，这些 API 绑定在一起，随着目标设备是否支持该系统能力共同存在或消失，也会随着 IDE 一起提供给开发者做联想。
 
-![image-20220315083649299](figures/image-20220315083649299.png)
+![image-20220326064841782](figures/image-20220326064841782.png)
 
 
 
@@ -16,16 +16,16 @@ SysCap，全称SystemCapability，即系统能力，指操作系统中每一个�
 支持能力集描述的是设备能力，要求能力集描述的是应用能力。若应用A的要求能力集是设备N的支持能力集的子集，则应用A可分发到设备N上安装运行，否则不能分发。
 联想能力集是该应用开发时，IDE 可联想的 API 所在的系统能力集合。
 
-![image-20220315083735158](figures/image-20220315083735158.png)
+![image-20220326064913834](figures/image-20220326064913834.png)
 
 
 
 ### 设备与支持能力集
 
 每个设备根据其硬件能力，对应不同的支持能力集。
-鸿蒙 SDK 将设备分为两组，爆款设备和自定义设备，爆款设备的支持能力集由鸿蒙定义，自定义设备由设备厂商给出。
+SDK 将设备分为两组，爆款设备和自定义设备，爆款设备的支持能力集由 OpenHarmony 来定义，自定义设备由设备厂商给出。
 
-![image-20220315083759247](figures/image-20220315083759247.png)
+![image-20220326064955505](figures/image-20220326064955505.png)
 
 
 
@@ -33,11 +33,19 @@ SysCap，全称SystemCapability，即系统能力，指操作系统中每一个�
 
 SDK 提供全量的 API 给 IDE，IDE 通过开发者的项目支持的设备，找到该设备的支持能力集，筛选支持能力集包含的 API 提供给开发者做联想。
 
-![image-20220315083828100](figures/image-20220315083828100.png)
+![image-20220326065043006](figures/image-20220326065043006.png)
 
 
 
 ## SysCap开发指导
+
+### PCID导入
+
+创建新工程时，默认能够生成 syscap.json 文件，且支持多个 PCID 的导入。导入的 PCID 解码后输出的 syscap 会被写入 syscap.json 文件中。
+
+在工程目录右键后选择 Import Product Compatibility ID，即可上传 PCID 文件并导入至 syscap.json 中。
+
+
 
 ### 配置联想能力集和要求能力集
 
@@ -57,7 +65,7 @@ IDE 会根据创建的工程所支持的设置自动配置联想能力集和要�
 		],
 		custom: [             /*厂家自定义设备*/
 			{
-				"美的油烟机": [
+				"某自定义设备": [
 					"SystemCapability.Communication.SoftBus.Core",
 					...
 				]
@@ -84,7 +92,7 @@ IDE 会根据创建的工程所支持的设置自动配置联想能力集和要�
 
 默认应用的联想能力集、要求系统能力集和设备的支持系统能力集相等，开发者修改要求能力集需要慎重。
 
-![image-20220315083920902](figures/image-20220315083920902.png)
+![image-20220326065124911](figures/image-20220326065124911.png)
 
 
 
@@ -92,7 +100,7 @@ IDE 会根据创建的工程所支持的设置自动配置联想能力集和要�
 
 默认应用的联想能力集是多个设备支持能力集的并集，要求能力集则是交集。
 
-![image-20220315084017037](figures/image-20220315084017037.png)
+![image-20220326065201867](figures/image-20220326065201867.png)
 
 
 
@@ -145,25 +153,26 @@ authenticator.execute('FACE_ONLY', 'S1', (err, result) => {
 	}
 })
 ```
+
+
 ### 设备间的SysCap差异如何产生的
 
 设备的SysCap因产品解决方案厂商拼装的部件组合不同而不同，整体流程如下图：
 
-![SysCap_Overview](figures/SysCap_Overview.jpg)
+![image-20220326072448840](figures/image-20220326072448840.png)
 
-1、一套OpenHarmony源码由可选和必选部件集组成，不同的部件为对外体现的系统能力不同，即部件与SysCap之间映射关系。
+1、一套 OpenHarmony 源码由可选和必选部件集组成，不同的部件为对外体现的系统能力不同，即部件与 SysCap 之间映射关系。
 
-2、发布归一化的SDK，API与SysCap之间存在映射关系。
+2、发布归一化的 SDK，API 与 SysCap 之间存在映射关系。
 
 3、产品解决方案厂商按硬件能力和产品诉求，可按需拼装部件。
 
-4、产品配置的部件可以是OpenHarmony的部件，也可以时三方开发的私有部件，由于部件与SysCap间存在映射，所有拼装后即可得到该产品的SysCap集合。
+4、产品配置的部件可以是 OpenHarmony 的部件，也可以时三方开发的私有部件，由于部件与SysCap间存在映射，所有拼装后即可得到该产品的SysCap集合。
 
+5、SysCap集编码生成 PCID (Product Compatibility ID)对 SysCap 差异做对应处理，保证在不同设备上的兼容性。lity ID， 产品兼容性标识)，应用开发者可将 PCID 导入 IDE 得到某个产品的 SysCap。PCID 会随镜像烧录至设备中。
 
-5、SysCap集编码生成PCID(Product Compatibility ID)对SysCap差异做对应处理，保证在不同设备上的兼容性。lity ID， 产品兼容性标识)，应用开发者可将PCID导入IDE得到某个产品的SysCap。
+6、部署到设备上的系统参数中包含了 SysCap 集，系统提供了native的接口和应用接口，可供系统内的部件和应用查询某个 SysCap 是否存在。
 
-6、部署到设备上的系统参数中包含了SysCap集，系统提供了native的接口和应用接口，可供系统内的部件和应用查询某个SysCap是否存在。
+7、应用开发过程中，应用必要的 SysCap 将被编码成 RPCID（Required Product Compatibility ID），并写入应用安装包中。应用安装时，包管理器将解码 RPCID 得到应用需要的 SysCap，与设备当前具备的 SysCap 比较，若应用要求的 SysCap 都被满足，则安装成功。
 
-7、应用开发过程中，应用必要的SysCap将被编码成RPCID（Required Product Compatibility ID），并写入应用安装包中。应用安装时，包管理器将解码RPCID得到应用需要的SysCap，与设备当前具备的SysCap比较，若应用要求的SysCap都被满足，则安装成功。
-
-8、应用运行时，可通过canIUse接口查询设备的SysCap，保证在不同设备上的兼容性。
+8、应用运行时，可通过 canIUse 接口查询设备的 SysCap，保证在不同设备上的兼容性。
