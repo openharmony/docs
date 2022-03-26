@@ -11,15 +11,17 @@ OpenHarmony系统中的分布式数据服务模块为开发者提供下面几种
 
 **表1** 分布式数据服务关键API功能介绍
 
-| 功能分类 | 接口名称 | 描述 |
-| -------- | -------- | -------- |
-| 分布式数据库创建。 | createKVManager(config:&nbsp;KVManagerConfig,&nbsp;callback:&nbsp;AsyncCallback&lt;KVManager&gt;):&nbsp;void<br/>createKVManager(config:&nbsp;KVManagerConfig):&nbsp;Promise&lt;KVManager&gt; | 创建一个KVManager对象实例，用于管理数据库对象。 |
-| getKVStore&lt;T&nbsp;extends&nbsp;KVStore&gt;(storeId:&nbsp;string,&nbsp;options:&nbsp;Options,&nbsp;callback:&nbsp;AsyncCallback&lt;T&gt;):&nbsp;void<br/>getKVStore&lt;T&nbsp;extends&nbsp;KVStore&gt;(storeId:&nbsp;string,&nbsp;options:&nbsp;Options):&nbsp;Promise&lt;T&gt; | 指定Options和storeId，创建并获取KVStore数据库。 |
-| 分布式数据增、删、改、查。 | put(key:&nbsp;string,&nbsp;value:&nbsp;Uint8Array&nbsp;\|&nbsp;string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;boolean,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void<br/>put(key:&nbsp;string,&nbsp;value:&nbsp;Uint8Array&nbsp;\|&nbsp;string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;boolean):&nbsp;Promise&lt;void&gt; | 插入和更新数据。 |
-| delete(key:&nbsp;string,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void<br/>delete(key:&nbsp;string):&nbsp;Promise&lt;void&gt; | 删除数据。 |
-| get(key:&nbsp;string,&nbsp;callback:&nbsp;AsyncCallback&lt;Uint8Array&nbsp;\|&nbsp;string&nbsp;\|&nbsp;boolean&nbsp;\|&nbsp;number&gt;):&nbsp;void<br/>get(key:&nbsp;string):&nbsp;Promise&lt;Uint8Array&nbsp;\|&nbsp;string&nbsp;\|&nbsp;boolean&nbsp;\|&nbsp;number&gt; | 查询数据。 |
-| 订阅分布式数据变化。 | on(event:&nbsp;'dataChange',&nbsp;type:&nbsp;SubscribeType,&nbsp;observer:&nbsp;Callback&lt;ChangeNotification&gt;):&nbsp;void<br/>on(event:&nbsp;'syncComplete',&nbsp;syncCallback:&nbsp;Callback&lt;Array&lt;[string,&nbsp;number]&gt;&gt;):&nbsp;void | 订阅数据库中数据的变化。 |
-| 分布式数据同步。 | sync(deviceIdList:&nbsp;string[],&nbsp;mode:&nbsp;SyncMode,&nbsp;allowedDelayMs?:&nbsp;number):&nbsp;void | 在手动模式下，触发数据库同步。 |
+| 功能分类                   | 接口名称                                                     | 描述                                            |
+| -------------------------- | ------------------------------------------------------------ | ----------------------------------------------- |
+| 分布式数据库创建。         | createKVManager(config:&nbsp;KVManagerConfig,&nbsp;callback:&nbsp;AsyncCallback&lt;KVManager&gt;):&nbsp;void<br/>createKVManager(config:&nbsp;KVManagerConfig):&nbsp;Promise&lt;KVManager> | 创建一个KVManager对象实例，用于管理数据库对象。 |
+| 分布式数据库创建。         | getKVStore&lt;T&nbsp;extends&nbsp;KVStore&gt;(storeId:&nbsp;string,&nbsp;options:&nbsp;Options,&nbsp;callback:&nbsp;AsyncCallback&lt;T&gt;):&nbsp;void<br/>getKVStore&lt;T&nbsp;extends&nbsp;KVStore&gt;(storeId:&nbsp;string,&nbsp;options:&nbsp;Options):&nbsp;Promise&lt;T&gt; | 指定Options和storeId，创建并获取KVStore数据库。 |
+| 分布式数据增、删、改、查。 | put(key:&nbsp;string,&nbsp;value:&nbsp;Uint8Array&nbsp;\|&nbsp;string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;boolean,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void<br/>put(key:&nbsp;string,&nbsp;value:&nbsp;Uint8Array&nbsp;\|&nbsp;string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;boolean):&nbsp;Promise&lt;void> | 插入和更新数据。                                |
+| 分布式数据增、删、改、查。 | delete(key:&nbsp;string,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void<br/>delete(key:&nbsp;string):&nbsp;Promise&lt;void> | 删除数据。                                      |
+| 分布式数据增、删、改、查。 | get(key:&nbsp;string,&nbsp;callback:&nbsp;AsyncCallback&lt;Uint8Array&nbsp;\|&nbsp;string&nbsp;\|&nbsp;boolean&nbsp;\|&nbsp;number&gt;):&nbsp;void<br/>get(key:&nbsp;string):&nbsp;Promise&lt;Uint8Array&nbsp;\|&nbsp;string&nbsp;\|&nbsp;boolean&nbsp;\|&nbsp;number> | 查询数据。                                      |
+| 订阅分布式数据变化。       | on(event:&nbsp;'dataChange',&nbsp;type:&nbsp;SubscribeType,&nbsp;observer:&nbsp;Callback&lt;ChangeNotification&gt;):&nbsp;void<br/>on(event:&nbsp;'syncComplete',&nbsp;syncCallback:&nbsp;Callback&lt;Array&lt;[string,&nbsp;number]&gt;&gt;):&nbsp;void | 订阅数据库中数据的变化。                        |
+| 分布式数据同步。           | sync(deviceIdList:&nbsp;string[],&nbsp;mode:&nbsp;SyncMode,&nbsp;allowedDelayMs?:&nbsp;number):&nbsp;void | 在手动模式下，触发数据库同步。                  |
+
+
 
 
 ## 开发步骤

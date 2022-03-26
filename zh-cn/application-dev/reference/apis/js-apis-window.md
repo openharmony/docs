@@ -160,11 +160,13 @@ import window from '@ohos.window';
 | DEFAULT    | 0      | 默认色域模式。 |
 | WIDE_GAMUT | 1      | 广色域模式。   |
 
-## window.create<sup>7</sup><a name="window-create"></a>
+## window.create<sup>7+</sup>
 
 create(id: string, type: WindowType, callback: AsyncCallback&lt;Window&gt;): void
 
 创建子窗口，使用callback方式作为异步方法。
+
+从API version 8开始，此接口废弃，推荐使用[window.create<sup>8+</sup>](#windowcreate8)接口。
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
@@ -191,11 +193,13 @@ create(id: string, type: WindowType, callback: AsyncCallback&lt;Window&gt;): voi
   });
   ```
 
-## window.create<sup>7</sup>
+## window.create<sup>7+</sup>
 
 create(id: string, type: WindowType): Promise&lt;Window&gt;
 
 创建子窗口，使用Promise方式作为异步方法。
+
+从API version 8开始，此接口废弃，推荐使用[window.create<sup>8+</sup>](#windowcreate8)接口。
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
@@ -523,7 +527,7 @@ off(type: 'systemBarTintChange', callback?: Callback&lt;SystemBarTintState &gt;)
 
 ## Window
 
-下列API示例中都需使用[getTopWindow()](#window-gettopwindow)、[create()](#window-create)、[find()](#window-find)等先获取到Window实例，再通过此实例调用对应方法。
+下列API示例中都需使用[getTopWindow()](#window-gettopwindow)、[create()](#windowcreate7)、[find()](#window-find)等先获取到Window实例，再通过此实例调用对应方法。
 
 ### hide<sup>7+</sup>
 

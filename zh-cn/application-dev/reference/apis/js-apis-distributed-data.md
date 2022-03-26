@@ -26,7 +26,6 @@ createKVManager(config: KVManagerConfig, callback: AsyncCallback&lt;KVManager&gt
 | config | [KVManagerConfig](#kvmanagerconfig) | 是  | 提供KVManager实例的配置信息，包括调用方的包名和用户信息。 |
 | callback | AsyncCallback&lt;[KVManager](#kvmanager)&gt; | 是  | KVManager实例创建时调用的回调，返回KVManager对象实例。 |
 
-
 **示例**：
 
     let kvManager;
@@ -573,7 +572,7 @@ off(event: 'distributedDataServiceDie', deathCallback?: Callback&lt;void&gt;): v
 | autoSync  | boolean | 否 |设置数据库文件是否自动同步，默认不自动同步。     |
 | kvStoreType | [KVStoreType](#kvstoretype) | 否 |设置要创建的数据库类型，默认为多设备协同数据库。 |
 | securityLevel | [SecurityLevel](#securitylevel) | 否 |设置数据库安全级别，默认不设置安全级别。  |
-| schema | [schema](#Schema<sup>8+</sup>) | 否 | 设置定义存储在数据库中的值。 |
+| schema<sup>8+</sup> | [Schema](#schema8) | 否 | 设置定义存储在数据库中的值。 |
 
 
 ## KVStoreType
@@ -629,7 +628,7 @@ KVStore常量。
 
 | 名称  | 类型 | 说明                    |
 | ---   | ----  | ----------------------- |
-| root<sup>8+</sup>  | [FieldNode](#FieldNode) | 表示json根对象  |
+| root<sup>8+</sup>  | [FieldNode](#fieldnode8) | 表示json根对象  |
 | indexes<sup>8+</sup>  | Array<string> | 表示json类型的字符串数组。  |
 | mode<sup>8+</sup>  | number | 表示Schema的模式。  |
 | skip<sup>8+</sup>  | number |  Schema的跳跃大小。  |
@@ -651,7 +650,7 @@ constructor()
 | 名称  | 类型 | 说明                    |
 | ---   | ----  | ----------------------- |
 | nullable<sup>8+</sup>  | boolean | 表示数据库字段是否可以为空。   |
-| default<sup>8+</sup>  | string | 表示fieldnode的默认值。 |
+| default<sup>8+</sup>  | string | 表示Fieldnode的默认值。 |
 | type<sup>8+</sup>  | number | 表示值。 |
 
 ### constructor<sup>8+</sup> ###
@@ -664,9 +663,9 @@ constructor(name: string)
 
 **参数**：
 
-| 参数名  | 参数类型 | 必填  | 说明                    |
-| -----  | ------  | ----  | ----------------------- |
-| name  | string  | 是    | FieldNode的值。  
+| 参数名 | 参数类型 | 必填 | 说明            |
+| ------ | -------- | ---- | --------------- |
+| name   | string   | 是   | FieldNode的值。 |
 
 ### appendChild<sup>8+</sup> ###
 
@@ -680,7 +679,7 @@ appendChild(child: FieldNode): boolean
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| child  | [FieldNode](#FieldNode)  | 是    | 要附加的域节点。   |
+| child  | [FieldNode](#fieldnode8) | 是    | 要附加的域节点。   |
 
 
 **返回值**：
@@ -2985,7 +2984,7 @@ get(key: string, callback: AsyncCallback&lt;Uint8Array | string | boolean | numb
 
 ### get
 
-get(key: string): Promise&lt;Uint8Array | string | boolean | number&gt
+get(key: string): Promise&lt;Uint8Array | string | boolean | number>
 
 获取指定键的值，并通过Promise方式返回，此方法为异步方法。
 
@@ -3252,7 +3251,7 @@ getResultSet(keyPrefix: string, callback: AsyncCallback&lt;KvStoreResultSet&gt;)
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | keyPrefix  |string   | 是    |表示要匹配的键前缀。 |
-| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)&gt;   | 是    |表示要匹配的键前缀。 |
+| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)&gt;   | 是    |回调函数。 |
 
 **示例**
 
@@ -5075,7 +5074,7 @@ sync(deviceIdList: string[], mode: SyncMode, allowedDelayMs?: number): void
 
 ### on<sup>8+</sup> ###
 
-on(event: 'syncComplete', syncCallback: Callback&lt;Arrary&lt;[string, number]&gt;&gt;): void
+on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
 订阅同步完成事件回调通知，该方法为同步方法。
 
@@ -5086,9 +5085,10 @@ on(event: 'syncComplete', syncCallback: Callback&lt;Arrary&lt;[string, number]&g
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | event    |'syncComplete'      | 是    |同步完成时触发的事件名。 |
-| syncCallback            |Callback<Arrary&lt;<[string, number]&gt; | 是    |用于向调用方发送同步结果的回调。  |
+| syncCallback            |Callback<Array&lt;<[string, number]&gt; | 是    |用于向调用方发送同步结果的回调。  |
 
 **示例**
+
     ```
     const KEY_TEST_FLOAT_ELEMENT = 'key_test_float';
     const VALUE_TEST_FLOAT_ELEMENT = 321.12;
@@ -5120,7 +5120,7 @@ off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | event         |'syncComplete'                           | 是    |同步完成时触发的事件名。 |
-| syncCallback  |Callback<Arrary&lt;[string, number]&gt;&gt; | 否    |用于向调用方发送同步结果的回调。  |
+| syncCallback  |Callback<Array&lt;[string, number]&gt;&gt; | 否    |用于向调用方发送同步结果的回调。  |
 
 
 **示例**

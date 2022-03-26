@@ -1,4 +1,4 @@
-# 上传下载
+# e上传下载
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
@@ -445,7 +445,7 @@ on(type: 'progress', callback:(receivedSize: number, totalSize: number) =&gt; vo
   ```
   request.download({ url: 'https://xxxx/xxxx.hap' }, (err, data)=> {    
       if (err) {        
-          console.error('Fail to request download. Cause:' + err);
+          console.error('Failed to request download. Cause:' + err);
           return;
       }    
       downloadTask = data;    
@@ -485,7 +485,7 @@ off(type: 'progress', callback?: (receivedSize: number, totalSize: number) =&gt;
   ```
   request.download({ url: 'https://xxxx/xxxx.hap' }, (err, data)=> {    
       if (err) {        
-          console.error('Fail to request download. Cause:' + err);
+          console.error('Failed to request download. Cause:' + err);
           return;
       }
       downloadTask = data;    
@@ -497,11 +497,11 @@ off(type: 'progress', callback?: (receivedSize: number, totalSize: number) =&gt;
   ```
 
 
-### on('complete')<sup>7+</sup>
+### on('complete'|'pause'|'remove')<sup>7+</sup>
 
-on(type: 'complete', callback:() =&gt; void): void
+on(type: 'complete'|'pause'|'remove', callback:() =&gt; void): void
 
-开启下载任务完成监听，异步方法，使用callback形式返回。
+开启下载任务相关的监听，异步方法，使用callback形式返回。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -510,15 +510,15 @@ on(type: 'complete', callback:() =&gt; void): void
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 订阅的事件类型，取值为'complete'（下载任务完成）。 |
-  | callback | function | 是 | 下载完成的回调函数。 |
+  | type | string | 是 | 订阅的事件类型。<br>- 取值为'complete'，表示下载任务完成；<br/>- 取值为'pause'，表示下载任务暂停；<br/>- 取值为'remove'，表示下载任务移除。 |
+  | callback | function | 是 | 回调函数。 |
 
 - 示例：
   
   ```
   request.download({ url: 'https://xxxx/xxxx.hap' }, (err, data)=> {    
       if (err) {        
-          console.error('Fail to request download. Cause:' + err);
+          console.error('Failed to request download. Cause:' + err);
           return;   
       }    
       downloadTask= data;    
@@ -530,11 +530,11 @@ on(type: 'complete', callback:() =&gt; void): void
   ```
 
 
-### off('complete')<sup>7+</sup>
+### off('complete'|'pause'|'remove')<sup>7+</sup>
 
-off(type: 'complete', callback?:() =&gt; void): void
+off(type: 'complete'|'pause'|'remove', callback?:() =&gt; void): void
 
-取消下载任务完成监听，异步方法，使用callback形式返回。
+取消下载任务相关的监听，异步方法，使用callback形式返回。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -543,15 +543,15 @@ off(type: 'complete', callback?:() =&gt; void): void
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 取消订阅的事件类型，取值为'complete'（下载任务完成）。 |
-  | callback | function | 否 | 取消下载完成的回调函数。 |
+  | type | string | 是 | 取消订阅的事件类型。<br/>- 取值为'complete'，表示下载任务完成；<br/>- 取值为'pause'，表示下载任务暂停；<br/>- 取值为'remove'，表示下载任务移除。 |
+  | callback | function | 否 | 回调函数。 |
 
 - 示例：
   
   ```
   request.download({ url: 'https://xxxx/xxxx.hap' }, (err, data)=> {    
       if (err) {        
-          console.error('Fail to request download. Cause:' + JSON.stringify(err));
+          console.error('Failed to request download. Cause:' + JSON.stringify(err));
           return;
      }    
       downloadTask = data;
@@ -590,7 +590,7 @@ on(type: 'fail', callback: (err: number) =&gt; void): void
   ```
   request.download({ url: 'https://xxxx/xxxx.hap' }, (err, data)=> {    
       if (err) {        
-          console.error('Fail to request download. Cause:' + err);
+          console.error('Failed to request download. Cause:' + err);
           return;
       }    
       downloadTask = data;    
@@ -629,144 +629,13 @@ off(type: 'fail', callback?: (err: number) =&gt; void): void
   ```
   request.download({ url: 'https://xxxx/xxxx.hap' }, (err, data)=> {    
       if (err) {        
-          console.error('Fail to request download. Cause:' + err);
+          console.error('Failed to request download. Cause:' + err);
           return;
       }    
       downloadTask = data;       
       downloadTask.off('fail', function callBack(err) {
           console.info('Download task failed. Cause:' + err);
       } 
-  );
-  });
-  ```
-
-
-### on('pause')<sup>7+</sup>
-
-on(type: 'pause', callback:() =&gt; void): void
-
-开启下载任务暂停监听，异步方法，使用callback形式返回结果。
-
-**需要权限**：ohos.permission.INTERNET
-
-**系统能力**: SystemCapability.MiscServices.Download
-
-- 参数：
-    | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 订阅的事件类型，取值为'pause'（下载暂停）。 |
-  | callback | function | 是 | 下载暂停的回调函数。 |
-
-- 示例：
-  
-  ```
-  request.download({ url: 'https://xxxx/xxxx.hap' }, (err, data)=> {    
-      if (err) {        
-          console.error('Failed to pause the download task. Cause:' + err);
-          return;
-      }    
-      downloadTask = data;    
-      downloadTask.on('pause', function callBack() {
-          console.info('Download task paused.');
-      }
-  );
-  });
-  ```
-
-
-### off('pause')<sup>7+</sup>
-
-off(type: 'pause', callback?:() =&gt; void): void
-
-取消下载任务暂停监听，异步方法，使用callback形式返回结果。
-
-**需要权限**：ohos.permission.INTERNET
-
-**系统能力**: SystemCapability.MiscServices.Download
-
-- 参数：
-    | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 取消订阅的事件类型，取值为'pause'（下载暂停）。 |
-  | callback | function | 否 | 取消下载暂停的回调函数。 |
-
-- 示例：
-  
-  ```
-  request.download({ url: 'https://xxxx/xxxx.hap' }, (err, data)=> {    
-      if (err) {        
-          console.error('Failed to pause the download task. Cause:' + err);
-          return;
-      }    
-      downloadTask = data;    
-      downloadTask.off('pause', function callBack() {
-          console.info('Download task paused.');
-      }
-  );
-  });
-  ```
-
-
-### on('remove')<sup>7+</sup>
-
-on(type: 'remove', callback:() =&gt; void): void
-
-开启下载任务移除监听，异步方法，使用callback形式返回结果。
-
-**需要权限**：ohos.permission.INTERNET
-
-**系统能力**: SystemCapability.MiscServices.Download
-
-- 参数：
-    | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 订阅的事件类型，取值为'remove'（下载任务移除）。 |
-  | callback | function | 是 | 下载移除的回调函数。 |
-
-- 示例:
-  
-  ```
-  request.download({ url: 'https://xxxx/xxxx.hap' }, (err, data)=> {    
-      if (err) {        
-          console.error('Failed to remove the download task. Cause:' + err);
-          return;
-      }    
-      downloadTask = data;    
-      downloadTask.on('remove', function callBack() {
-          console.info('Download task removed.');
-      }
-  );
-  });
-  ```
-
-
-### off('remove')<sup>7+</sup>
-
-off(type: 'remove', callback?:() =&gt; void): void
-
-取消下载任务移除监听，异步方法，使用callback形式返回结果。
-
-**需要权限**：ohos.permission.INTERNET
-
-**系统能力**: SystemCapability.MiscServices.Download
-
-- 参数：
-    | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 取消订阅的事件类型，取值为'remove'（下载任务移除）。 |
-  | callback | function | 否 | 取消下载移除的回调函数。 |
-
-- 示例：
-  
-  ```
-  request.download({ url: 'https://xxxx/xxxx.hap' }, (err, data)=> {    
-      if (err) {        
-          console.error('Failed to remove the download task. Cause:' + JSON.stringify(err));    
-      }    
-      downloadTask = data;    
-      downloadTask.off('remove', function callBack() {
-          console.info('Download task removed.');
-      }
   );
   });
   ```
@@ -853,7 +722,7 @@ query(): Promise&lt;DownloadInfo&gt;
   
   ```
   downloadTask.query().then((downloadInfo) => {    
-      console.info('Download task queried. Data:' + JSON.stringfy(downloadInfo))
+      console.info('Download task queried. Data:' + JSON.stringify(downloadInfo))
   }) .catch((err) => {
       console.error('Failed to query the download task. Cause:' + err)
   });

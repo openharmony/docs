@@ -19,7 +19,7 @@ import pasteboard from '@ohos.pasteboard';
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| MAX_RECORD_NUM&nbsp;<sup>7+</sup> | number | 是 | 否 | 单个PasteData中所能包含的Record的数量上限。 |
+| MAX_RECORD_NUM<sup>7+</sup> | number | 是 | 否 | 单个PasteData中所能包含的Record的数量上限。 |
 | MIMETYPE_TEXT_HTML<sup>7+</sup> | string | 是 | 否 | HTML&nbsp;text文本的MIME类型定义。 |
 | MIMETYPE_TEXT_WANT<sup>7+</sup> | string | 是 | 否 | Want的MIME类型定义。 |
 | MIMETYPE_TEXT_PLAIN<sup>7+</sup> | string | 是 | 否 | Plain&nbsp;text文本的MIME类型定义。 |
@@ -35,14 +35,14 @@ createPlainTextData(text:string): PasteData
 **系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **参数**
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | text | string | 是 | 纯文本数据。 | 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| text | string | 是 | 纯文本数据。 |
 
 **返回值**
-  | 类型 | 说明 | 
-  | -------- | -------- |
-  | [PasteData](#pastedata) | 包含此内容的剪贴板内容对象。 | 
+| 类型 | 说明 |
+| -------- | -------- |
+| [PasteData](#pastedata) | 包含此内容的剪贴板内容对象。 |
 
 **示例**
 
@@ -60,14 +60,14 @@ createHtmlData(htmlText:string): PasteData
 **系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **参数**
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | htmlText | string | 是 | 待保存的HTML文本内容。 | 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| htmlText | string | 是 | 待保存的HTML文本内容。 |
 
 **返回值**
-  | 类型 | 说明 | 
-  | -------- | -------- |
-  | [PasteData](#pastedata) | 包含此内容的剪贴板内容对象。 | 
+| 类型 | 说明 |
+| -------- | -------- |
+| [PasteData](#pastedata) | 包含此内容的剪贴板内容对象。 |
 
 **示例**
 
@@ -86,14 +86,14 @@ createWantData(want:Want): PasteData
 **系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **参数**
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | want | [Want](js-apis-featureAbility.md#want) | 是 | 待保存的Want内容。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-featureAbility.md#want) | 是 | 待保存的Want内容。 |
 
 **返回值**
-  | 类型 | 说明 | 
-  | -------- | -------- |
-  | [PasteData](#pastedata) | 包含此内容的剪贴板内容对象。 | 
+| 类型 | 说明 |
+| -------- | -------- |
+| [PasteData](#pastedata) | 包含此内容的剪贴板内容对象。 |
 
 **示例**
 
@@ -115,14 +115,14 @@ createUriData(uri:string): PasteData
 **系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **参数**
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | uri | string | 是 | 待保存的URI内容。 | 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| uri | string | 是 | 待保存的URI内容。 |
 
 **返回值**
-  | 类型 | 说明 | 
-  | -------- | -------- |
-  | [PasteData](#pastedata) | 包含此内容的剪贴板内容对象。 | 
+| 类型 | 说明 |
+| -------- | -------- |
+| [PasteData](#pastedata) | 包含此内容的剪贴板内容对象。 |
 
 **示例**
 
@@ -140,14 +140,14 @@ createPlainTextRecord(text:string): PasteDataRecord
 **系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **参数**
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | text | string | 是 | 纯文本内容。 | 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| text | string | 是 | 纯文本内容。 |
 
 **返回值**
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | [PasteDataRecord](#pastedatarecord7) | 一条新建的纯文本内容条目。 |
+| 类型 | 说明 |
+| -------- | -------- |
+| [PasteDataRecord](#pastedatarecord7) | 一条新建的纯文本内容条目。 |
 
 **示例**
 
@@ -165,14 +165,14 @@ createHtmlTextRecord(htmlText:string): PasteDataRecord
 **系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **参数**
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | htmlText | string | 是 | 文本内容。 | 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| htmlText | string | 是 | 文本内容。 |
 
 **返回值**
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | [PasteDataRecord](#pastedatarecord7) | 一条新建的HTML内容条目。 |
+| 类型 | 说明 |
+| -------- | -------- |
+| [PasteDataRecord](#pastedatarecord7) | 一条新建的HTML内容条目。 |
 
 **示例**
 
@@ -191,14 +191,14 @@ createWantRecord(want:Want): PasteDataRecord
 **系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **参数**
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | want | [Want](js-apis-featureAbility.md#want) | 是 | Want类型数据。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-featureAbility.md#want) | 是 | Want类型数据。 |
 
 **返回值**
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | [PasteDataRecord](#pastedatarecord7) | 一条新建的Want内容条目 |
+| 类型 | 说明 |
+| -------- | -------- |
+| [PasteDataRecord](#pastedatarecord7) | 一条新建的Want内容条目 |
 
 **示例**
 
@@ -220,14 +220,14 @@ createUriRecord(uri:string): PasteDataRecord
 **系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **参数**
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | uri | string | 是 | URI内容。 | 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| uri | string | 是 | URI内容。 |
 
 **返回值**
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | [PasteDataRecord](#pastedatarecord7) | 一条新建的URI内容条目。 |
+| 类型 | 说明 |
+| -------- | -------- |
+| [PasteDataRecord](#pastedatarecord7) | 一条新建的URI内容条目。 |
 
 **示例**
 
@@ -242,13 +242,13 @@ createUriRecord(uri:string): PasteDataRecord
 
 **系统能力**: 以下各项对应的系统能力均为SystemCapability.MiscServices.Pasteboard。
 
-  | 名称 | 参数类型 | 可读 | 可写 | 说明 | 
+| 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| additions | {[key:&nbsp;string]:&nbsp;object} | 是 | 是 | 设置的其他附加属性数据。 | 
-| mimeTypes | Array&lt;string&gt; | 是 | 否 | 剪贴板内容条目的数据类型,&nbsp;非重复的类型列表。 | 
-| tag | string | 是 | 是 | 用户自定义标签。 | 
-| timestamp | number | 是 | 否 | 剪贴板数据的写入时间戳（毫秒）。 | 
-| localOnly | boolean | 是 | 是 | 配置剪贴板内容的“仅在本地”标志位。<br/>-&nbsp;默认情况为true。<br/>-&nbsp;配置为true时，表示内容仅在本地，不会在设备之间传递。<br/>-&nbsp;配置为false时，表示内容将在设备间传递。 | 
+| additions | {[key:&nbsp;string]:&nbsp;object} | 是 | 是 | 设置的其他附加属性数据。 |
+| mimeTypes | Array&lt;string&gt; | 是 | 否 | 剪贴板内容条目的数据类型,&nbsp;非重复的类型列表。 |
+| tag | string | 是 | 是 | 用户自定义标签。 |
+| timestamp | number | 是 | 否 | 剪贴板数据的写入时间戳（毫秒）。 |
+| localOnly | boolean | 是 | 是 | 配置剪贴板内容的“仅在本地”标志位。<br/>-&nbsp;默认情况为true。<br/>-&nbsp;配置为true时，表示内容仅在本地，不会在设备之间传递。<br/>-&nbsp;配置为false时，表示内容将在设备间传递。 |
 
 
 ## PasteDataRecord<sup>7+</sup>
@@ -278,9 +278,9 @@ convertToText(): Promise&lt;string&gt;
 **系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **返回值**
-  | 类型 | 说明 | 
-  | -------- | -------- |
-  | Promise&lt;void&gt; | 异步回调函数，调用成功则返回强制转换的文本内容，调用失败则返回error信息。 | 
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | 异步回调函数，调用成功则返回强制转换的文本内容，调用失败则返回error信息。 |
 
 **示例**
 
@@ -303,9 +303,9 @@ convertToText(callback: AsyncCallback&lt;string&gt;): void
 **系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **参数**
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;string&gt; | 是 | 回调函数，调用成功则返回强制转换的文本内容，调用失败则返回error信息。 | 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;string&gt; | 是 | 回调函数，调用成功则返回强制转换的文本内容，调用失败则返回error信息。 |
 
 **示例**
 
@@ -340,9 +340,9 @@ getPrimaryText(): string
 
 
 **返回值**
-  | 类型 | 说明 | 
-  | -------- | -------- |
-  | string | 纯文本内容。 | 
+| 类型 | 说明 |
+| -------- | -------- |
+| string | 纯文本内容。 |
 
 **示例**
 
@@ -361,9 +361,9 @@ getPrimaryHtml(): string
 **系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **返回值**
-  | 类型 | 说明 | 
-  | -------- | -------- |
-  | string | HTML文本数据。 | 
+| 类型 | 说明 |
+| -------- | -------- |
+| string | HTML文本数据。 |
 
 **示例**
 
@@ -383,9 +383,9 @@ getPrimaryWant(): Want
 **系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **返回值**
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | [Want](js-apis-featureAbility.md#want) | Want对象内容。 |
+| 类型 | 说明 |
+| -------- | -------- |
+| [Want](js-apis-featureAbility.md#want) | Want对象内容。 |
 
 **示例**
 
@@ -408,9 +408,9 @@ getPrimaryUri(): string
 **系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **返回值**
-  | 类型 | 说明 | 
-  | -------- | -------- |
-  | string | URI文本内容。 | 
+| 类型 | 说明 |
+| -------- | -------- |
+| string | URI文本内容。 |
 
 **示例**
 
@@ -431,9 +431,9 @@ addTextRecord(text: string): void
 **系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **参数**
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | text | string | 是 | 纯文本内容。 | 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| text | string | 是 | 纯文本内容。 |
 
 **示例**
 
@@ -454,9 +454,9 @@ addHtmlRecord(htmlText: string): void
 **系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **参数**
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | htmlText | string | 是 | HTML格式的文本内容。 | 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| htmlText | string | 是 | HTML格式的文本内容。 |
 
 **示例**
 
@@ -478,9 +478,9 @@ addWantRecord(want: Want): void
 **系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **参数**
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | want | [Want](js-apis-featureAbility.md#want) | 是 | Want对象内容。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-featureAbility.md#want) | 是 | Want对象内容。 |
 
 **示例**
 
@@ -505,9 +505,9 @@ addUriRecord(uri: string): void
 **系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **参数**
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | uri | string | 是 | URI文本内容。 | 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| uri | string | 是 | URI文本内容。 |
 
 **示例**
 
@@ -528,9 +528,9 @@ addRecord(record: PasteDataRecord): void
 **系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **参数**
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | record | [PasteDataRecord](#pastedatarecord7) | 是 | 待添加的条目。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| record | [PasteDataRecord](#pastedatarecord7) | 是 | 待添加的条目。 |
 
 **示例**
 
@@ -553,9 +553,9 @@ getMimeTypes(): Array&lt;string&gt;
 **系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **返回值**
-  | 类型 | 说明 | 
-  | -------- | -------- |
-  | Array&lt;string&gt; | 非重复的类型列表。 | 
+| 类型 | 说明 |
+| -------- | -------- |
+| Array&lt;string&gt; | 非重复的类型列表。 |
 
 **示例**
 
@@ -574,9 +574,9 @@ getPrimaryMimeType(): string
 **系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **返回值**
-  | 类型 | 说明 | 
-  | -------- | -------- |
-  | string | 首个条目的数据类型。 | 
+| 类型 | 说明 |
+| -------- | -------- |
+| string | 首个条目的数据类型。 |
 
 **示例**
 
@@ -595,9 +595,9 @@ getProperty(): PasteDataProperty
 **系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **返回值**
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | [PasteDataProperty](#pastedataproperty7) | 属性描述对象。 |
+| 类型 | 说明 |
+| -------- | -------- |
+| [PasteDataProperty](#pastedataproperty7) | 属性描述对象。 |
 
 **示例**
 
@@ -616,14 +616,14 @@ getRecordAt(index: number): PasteDataRecord
 **系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **参数**
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | index | number | 是 | 指定条目的下标。 | 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| index | number | 是 | 指定条目的下标。 |
 
 **返回值**
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | [PasteDataRecord](#pastedatarecord7) | 指定下标的条目。 |
+| 类型 | 说明 |
+| -------- | -------- |
+| [PasteDataRecord](#pastedatarecord7) | 指定下标的条目。 |
 
 **示例**
 
@@ -642,9 +642,9 @@ getRecordCount(): number
 **系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **返回值**
-  | 类型 | 说明 | 
-  | -------- | -------- |
-  | number | 条目的个数。 | 
+| 类型 | 说明 |
+| -------- | -------- |
+| number | 条目的个数。 |
 
 **示例**
 
@@ -663,9 +663,9 @@ getTag(): string
 **系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **返回值**
-  | 类型 | 说明 | 
-  | -------- | -------- |
-  | string | 获取用户自定义的标签内容，如果没有设置用户自定义的标签内容将返回空。 | 
+| 类型 | 说明 |
+| -------- | -------- |
+| string | 获取用户自定义的标签内容，如果没有设置用户自定义的标签内容将返回空。 |
 
 **示例**
 
@@ -684,14 +684,14 @@ hasMimeType(mimeType: string): boolean
 **系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **参数**
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | mimeType | string | 是 | 待查询的数据类型。 | 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| mimeType | string | 是 | 待查询的数据类型。 |
 
 **返回值**
-  | 类型 | 说明 | 
-  | -------- | -------- |
-  | boolean | 有指定的数据类型返回true，否则返回false。 | 
+| 类型 | 说明 |
+| -------- | -------- |
+| boolean | 有指定的数据类型返回true，否则返回false。 |
 
 **示例**
 
@@ -710,14 +710,14 @@ removeRecordAt(index: number): boolean
 **系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **参数**
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | index | number | 是 | 指定的下标。 | 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| index | number | 是 | 指定的下标。 |
 
 **返回值**
-  | 类型 | 说明 | 
-  | -------- | -------- |
-  | boolean | 成功移除返回true，失败返回false。 | 
+| 类型 | 说明 |
+| -------- | -------- |
+| boolean | 成功移除返回true，失败返回false。 |
 
 **示例**
 
@@ -736,15 +736,15 @@ replaceRecordAt(index: number, record: PasteDataRecord): boolean
 **系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **参数**
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | index | number | 是 | 指定的下标。 |
-  | record | [PasteDataRecord](#pastedatarecord7) | 是 | 替换后的条目。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| index | number | 是 | 指定的下标。 |
+| record | [PasteDataRecord](#pastedatarecord7) | 是 | 替换后的条目。 |
 
 **返回值**
-  | 类型 | 说明 | 
-  | -------- | -------- |
-  | boolean | 成功替换返回true，失败返回false。 | 
+| 类型 | 说明 |
+| -------- | -------- |
+| boolean | 成功替换返回true，失败返回false。 |
 
 **示例**
 
@@ -764,9 +764,9 @@ getSystemPasteboard(): SystemPasteboard
 **系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **返回值**
-  | 类型 | 说明 | 
-  | -------- | -------- |
-  | [SystemPasteboard](#systempasteboard) | 系统剪切板对象。 | 
+| 类型 | 说明 |
+| -------- | -------- |
+| [SystemPasteboard](#systempasteboard) | 系统剪切板对象。 |
 
 **示例**
 
@@ -786,17 +786,17 @@ var systemPasteboard = pasteboard.getSystemPasteboard();
 
 ### setPasteData
 
-setPasteData(pasteData:PasteData, callback:AsyncCallback&lt;void&gt;): void
+setPasteData(data:PasteData, callback:AsyncCallback&lt;void&gt;): void
 
 将数据写入系统剪切板，并使用callback方式返回结果。
 
 **系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **参数**
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | pasteData | [PasteData](#pastedata) | 是 | PasteData对象。 | 
-  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，表示是否成功将数据写入系统剪切板。 | 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| data | [PasteData](#pastedata) | 是 | PasteData对象。 |
+| callback | AsyncCallback&lt;void> | 是 | 回调函数，表示是否成功将数据写入系统剪切板。 |
 
 **示例**
 
@@ -815,21 +815,21 @@ setPasteData(pasteData:PasteData, callback:AsyncCallback&lt;void&gt;): void
 
 ### setPasteData
 
-setPasteData(pasteData:PasteData): Promise&lt;void&gt;
+setPasteData(data:PasteData): Promise&lt;void&gt;
 
 将数据写入系统剪切板，并使用Promise异步方式返回结果。
 
 **系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **参数**
-  | 参数名 | 类型 | 说明 | 
-  | -------- | -------- | -------- |
-  | pasteData | [PasteData](#pastedata) | PasteData对象。 | 
+| 参数名 | 类型 | 说明 |
+| -------- | -------- | -------- |
+| data | [PasteData](#pastedata) | PasteData对象。 |
 
 **返回值**
-  | 类型 | 说明 | 
-  | -------- | -------- |
-  | Promise&lt;void&gt; | 异步回调函数，表示是否成功将数据写入系统剪切板。 | 
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | 异步回调函数，表示是否成功将数据写入系统剪切板。 |
 
 **示例**
 
@@ -853,9 +853,9 @@ getPasteData( callback:AsyncCallback&lt;PasteData&gt;): void
 **系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **参数**
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[PasteData](#pastedata)&gt; | 是 | 回调函数，返回系统剪切板数据。 | 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;[PasteData](#pastedata)&gt; | 是 | 回调函数，返回系统剪切板数据。 |
 
 **示例**
 
@@ -880,9 +880,9 @@ getPasteData(): Promise&lt;PasteData&gt;
 **系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **返回值**
-  | 类型 | 说明 | 
-  | -------- | -------- |
-  | Promise&lt;[PasteData](#pastedata)&gt; | 异步回调函数，调返回系统剪切板数据。 | 
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;[PasteData](#pastedata)&gt; | 异步回调函数，调返回系统剪切板数据。 |
 
 **示例**
 
@@ -905,10 +905,10 @@ on(type:  'update', callback: () =&gt;void ): void
 **系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **参数**
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 取值为'update'，表示系统剪贴板内容变化事件。 | 
-  | callback | function | 是 | 剪贴板中内容变化时触发的用户程序的回调。 | 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 取值为'update'，表示系统剪贴板内容变化事件。 |
+| callback | function | 是 | 剪贴板中内容变化时触发的用户程序的回调。 |
 
 **示例**
 
@@ -923,17 +923,17 @@ on(type:  'update', callback: () =&gt;void ): void
 
 ### off('update')<sup>7+</sup>
 
-off(type:  'update', callback？: () =&gt;void ): void
+off(type:  'update', callback?: () =&gt;void ): void
 
 取消订阅系统剪贴板内容变化事件。
 
 **系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **参数**
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 取值为'update'，表示系统剪贴板内容变化事件。 | 
-  | callback | function | 否 | 剪贴板中内容变化时触发的用户程序的回调。 | 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 取值为'update'，表示系统剪贴板内容变化事件。 |
+| callback | function | 否 | 剪贴板中内容变化时触发的用户程序的回调。 |
 
 **示例**
 
@@ -951,9 +951,9 @@ hasPasteData(callback:  AsyncCallback&lt;boolean&gt;): void
 **系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **参数**
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | 是 | 返回为true表示系统剪切板中有内容，返回false表示系统剪切板中没有内容。 | 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;boolean&gt; | 是 | 返回为true表示系统剪切板中有内容，返回false表示系统剪切板中没有内容。 |
 
 **示例**
 
@@ -977,9 +977,9 @@ hasPasteData():  Promise&lt;boolean&gt;
 **系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **返回值**
-  | 类型 | 说明 | 
-  | -------- | -------- |
-  | Promise&lt;boolean&gt; | 返回为true表示系统剪切板中有内容，返回false表示系统剪切板中没有内容。 | 
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;boolean&gt; | 返回为true表示系统剪切板中有内容，返回false表示系统剪切板中没有内容。 |
 
 **示例**
 
@@ -1001,9 +1001,9 @@ clear(callback:  AsyncCallback&lt;void&gt;): void
 **系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **参数**
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，表示是否成功清空系统剪切板内容。 | 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，表示是否成功清空系统剪切板内容。 |
 
 **示例**
 
@@ -1028,9 +1028,9 @@ clear():  Promise&lt;void&gt;
 
 **返回值**
 
-  | 类型 | 说明 | 
-  | -------- | -------- |
-  | Promise&lt;void&gt; | 异步回调函数，表示是否成功清空系统剪切板内容。 | 
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | 异步回调函数，表示是否成功清空系统剪切板内容。 |
 
 **示例**
 
