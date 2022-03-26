@@ -3000,7 +3000,6 @@ read(size: number, isBlockingRead: boolean, callback: AsyncCallback<ArrayBuffer\
 audioCapturer.read(bufferSize, true, async(err, buffer) => {
     if (!err) {
         console.log("Success in reading the buffer data");
-        var number = fileio.writeSync(fd, buffer);
     }
 };
 ```
