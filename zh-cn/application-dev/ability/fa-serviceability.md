@@ -110,10 +110,28 @@ var promise = await featureAbility.startAbility(
 创建连接本地Service回调实例的代码示例如下：
 
 ```javascript
-var mRemote;
+let mRemote;
 function onConnectCallback(element, remote){
-    console.log('ConnectAbility onConnect Callback')
+    console.log('onConnectLocalService onConnectDone element: ' + element);
+    console.log('onConnectLocalService onConnectDone remote: ' + remote);
     mRemote = remote;
+    if (mRemote == null) {
+      prompt.showToast({
+        message: "onConnectLocalService not connected yet"
+      });
+      return;
+    }
+    let option = new rpc.MessageOption();
+    let data = new rpc.MessageParcel();
+    let reply = new rpc.MessageParcel();
+    data.writeInt(1);
+    data.writeInt(99);
+    await mRemote.sendRequest(1, data, reply, option);
+    let msg = reply.readInt();
+    prompt.showToast({
+      message: "onConnectLocalService connect result: " + msg,
+      duration: 3000
+    });
 }
 
 function onDisconnectCallback(element){
@@ -160,6 +178,16 @@ export default {
                 return null;
             }
             onRemoteRequest(code, message, reply, option) {
+                console.log("ServiceAbility onRemoteRequest called");
+                if (code === 1) {
+                    let op1 = data.readInt();
+                    let op2 = data.readInt();
+                    console.log("op1 = " + op1 + ", op2 = " + op2);
+                    reply.writeInt(op1 + op2);
+                } else {
+                    console.log("ServiceAbility unknown request code");
+                }
+                return true;
             }
         }
         mMyStub = new MyStub("ServiceAbility-test");
@@ -190,10 +218,28 @@ export default {
 创建连接远程Service回调实例的代码示例如下：
 
 ```ts
-var mRemote;
+let mRemote;
 function onConnectCallback(element, remote){
-    console.log('ConnectRemoteAbility onConnect Callback')
+    console.log('onConnectLocalService onConnectDone element: ' + element);
+    console.log('onConnectLocalService onConnectDone remote: ' + remote);
     mRemote = remote;
+    if (mRemote == null) {
+      prompt.showToast({
+        message: "onConnectLocalService not connected yet"
+      });
+      return;
+    }
+    let option = new rpc.MessageOption();
+    let data = new rpc.MessageParcel();
+    let reply = new rpc.MessageParcel();
+    data.writeInt(1);
+    data.writeInt(99);
+    await mRemote.sendRequest(1, data, reply, option);
+    let msg = reply.readInt();
+    prompt.showToast({
+      message: "onConnectLocalService connect result: " + msg,
+      duration: 3000
+    });
 }
 
 function onDisconnectCallback(element){
@@ -209,7 +255,7 @@ function onFailedCallback(code){
 
 ```ts
 import deviceManager from '@ohos.distributedHardware.deviceManager';
-var dmClass;
+let dmClass;
 function getRemoteDeviceId() {
     if (typeof dmClass === 'object' && dmClass != null) {
         var list = dmClass.getTrustedDeviceListSync();
@@ -245,7 +291,7 @@ var connId = featureAbility.connectAbility(
 在跨设备场景下，需要向用户申请数据同步的权限。具体示例代码如下：
 
 ```ts
-import accessControl from "@ohos.abilityAccessCtrl";
+import abilityAccessCtrl from "@ohos.abilityAccessCtrl";
 import bundle from '@ohos.bundle';
 async function RequestPermission() {
   console.info('RequestPermission begin');
@@ -296,6 +342,16 @@ class FirstServiceAbilityStub extends rpc.RemoteObject{
         }
     }
     onRemoteRequest(code, data, reply, option) {
+        console.log("ServiceAbility onRemoteRequest called");
+        if (code === 1) {
+            let op1 = data.readInt();
+            let op2 = data.readInt();
+            console.log("op1 = " + op1 + ", op2 = " + op2);
+            reply.writeInt(op1 + op2);
+        } else {
+            console.log("ServiceAbility unknown request code");
+        }
+        return true;
     }
 }
 
