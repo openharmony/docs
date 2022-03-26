@@ -15,7 +15,7 @@ import pasteboard from '@ohos.pasteboard';
 
 ## 属性
 
-**系统能力**: 以下各项对应的系统能力均为SystemCapability.Miscservices.Pasteboard。
+**系统能力**: 以下各项对应的系统能力均为SystemCapability.MiscServices.Pasteboard。
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -32,7 +32,7 @@ createPlainTextData(text:string): PasteData
 
 构建一个纯文本剪贴板内容对象。
 
-**系统能力**: SystemCapability.Miscservices.Pasteboard
+**系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **参数**
   | 参数名 | 类型 | 必填 | 说明 | 
@@ -57,7 +57,7 @@ createHtmlData(htmlText:string): PasteData
 
 构建一个html文本剪贴板内容对象。
 
-**系统能力**: SystemCapability.Miscservices.Pasteboard
+**系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **参数**
   | 参数名 | 类型 | 必填 | 说明 | 
@@ -83,7 +83,7 @@ createWantData(want:Want): PasteData
 
 构建一个want剪贴板内容对象。
 
-**系统能力**: SystemCapability.Miscservices.Pasteboard
+**系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **参数**
   | 参数名 | 类型 | 必填 | 说明 |
@@ -112,7 +112,7 @@ createUriData(uri:string): PasteData
 
 构建一个URI剪贴板内容对象。
 
-**系统能力**: SystemCapability.Miscservices.Pasteboard
+**系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **参数**
   | 参数名 | 类型 | 必填 | 说明 | 
@@ -137,7 +137,7 @@ createPlainTextRecord(text:string): PasteDataRecord
 
 创建一条文本类型的内容条目。
 
-**系统能力**: SystemCapability.Miscservices.Pasteboard
+**系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **参数**
   | 参数名 | 类型 | 必填 | 说明 | 
@@ -162,7 +162,7 @@ createHtmlTextRecord(htmlText:string): PasteDataRecord
 
 创建一条HTML内容的条目。
 
-**系统能力**: SystemCapability.Miscservices.Pasteboard
+**系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **参数**
   | 参数名 | 类型 | 必填 | 说明 | 
@@ -188,7 +188,7 @@ createWantRecord(want:Want): PasteDataRecord
 
 创建一条Want内容条目。
 
-**系统能力**: SystemCapability.Miscservices.Pasteboard
+**系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **参数**
   | 参数名 | 类型 | 必填 | 说明 |
@@ -217,7 +217,7 @@ createUriRecord(uri:string): PasteDataRecord
 
 创建一条URI内容的条目。
 
-**系统能力**: SystemCapability.Miscservices.Pasteboard
+**系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **参数**
   | 参数名 | 类型 | 必填 | 说明 | 
@@ -240,7 +240,7 @@ createUriRecord(uri:string): PasteDataRecord
 
 定义了剪贴板中所有内容条目的属性，包含时间戳、数据类型以及一些附加数据等。
 
-**系统能力**: 以下各项对应的系统能力均为SystemCapability.Miscservices.Pasteboard。
+**系统能力**: 以下各项对应的系统能力均为SystemCapability.MiscServices.Pasteboard。
 
   | 名称 | 参数类型 | 可读 | 可写 | 说明 | 
 | -------- | -------- | -------- | -------- | -------- |
@@ -258,7 +258,7 @@ createUriRecord(uri:string): PasteDataRecord
 
 ### 属性
 
-**系统能力**: 以下各项对应的系统能力均为SystemCapability.Miscservices.Pasteboard。
+**系统能力**: 以下各项对应的系统能力均为SystemCapability.MiscServices.Pasteboard。
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -275,7 +275,7 @@ convertToText(): Promise&lt;string&gt;
 
 实例方法，将一个PasteData中的内容强制转换为文本内容，并使用Promise异步方式返回结果。
 
-**系统能力**: SystemCapability.Miscservices.Pasteboard
+**系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **返回值**
   | 类型 | 说明 | 
@@ -300,7 +300,7 @@ convertToText(callback: AsyncCallback&lt;string&gt;): void
 
 实例方法，将一个PasteData中的内容强制转换为文本内容，并使用callback方式返回结果。
 
-**系统能力**: SystemCapability.Miscservices.Pasteboard
+**系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **参数**
   | 参数名 | 类型 | 必填 | 说明 | 
@@ -325,7 +325,7 @@ convertToText(callback: AsyncCallback&lt;string&gt;): void
 
 在调用PasteData的接口前，需要先获取一个PasteData对象。
 
-**系统能力**: SystemCapability.Miscservices.Pasteboard
+**系统能力**: SystemCapability.MiscServices.Pasteboard
 
 
 ### getPrimaryText
@@ -336,7 +336,7 @@ getPrimaryText(): string
 
 获取首个条目的纯文本内容。
 
-**系统能力**: SystemCapability.Miscservices.Pasteboard
+**系统能力**: SystemCapability.MiscServices.Pasteboard
 
 
 **返回值**
@@ -358,7 +358,7 @@ getPrimaryHtml(): string
 
 获取首个条目的HTML文本内容。
 
-**系统能力**: SystemCapability.Miscservices.Pasteboard
+**系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **返回值**
   | 类型 | 说明 | 
@@ -380,7 +380,7 @@ getPrimaryWant(): Want
 
 获取首个条目的Want对象内容。
 
-**系统能力**: SystemCapability.Miscservices.Pasteboard
+**系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **返回值**
   | 类型 | 说明 |
@@ -405,7 +405,7 @@ getPrimaryUri(): string
 
 获取首个条目的URI文本内容。
 
-**系统能力**: SystemCapability.Miscservices.Pasteboard
+**系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **返回值**
   | 类型 | 说明 | 
@@ -428,7 +428,7 @@ addTextRecord(text: string): void
 
 剪贴板内容中添加的条目达到数量上限128后，后续的添加操作无效。
 
-**系统能力**: SystemCapability.Miscservices.Pasteboard
+**系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **参数**
   | 参数名 | 类型 | 必填 | 说明 | 
@@ -451,7 +451,7 @@ addHtmlRecord(htmlText: string): void
 
 剪贴板内容中添加的条目达到数量上限128后，后续的添加操作无效。
 
-**系统能力**: SystemCapability.Miscservices.Pasteboard
+**系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **参数**
   | 参数名 | 类型 | 必填 | 说明 | 
@@ -475,7 +475,7 @@ addWantRecord(want: Want): void
 
 剪贴板内容中添加的条目达到数量上限128后，后续的添加操作无效。
 
-**系统能力**: SystemCapability.Miscservices.Pasteboard
+**系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **参数**
   | 参数名 | 类型 | 必填 | 说明 |
@@ -502,7 +502,7 @@ addUriRecord(uri: string): void
 
 剪贴板内容中添加的条目达到数量上限128后，后续的添加操作无效。
 
-**系统能力**: SystemCapability.Miscservices.Pasteboard
+**系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **参数**
   | 参数名 | 类型 | 必填 | 说明 | 
@@ -525,7 +525,7 @@ addRecord(record: PasteDataRecord): void
 
 剪贴板内容中添加的条目达到数量上限128后，后续的添加操作无效。
 
-**系统能力**: SystemCapability.Miscservices.Pasteboard
+**系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **参数**
   | 参数名 | 类型 | 必填 | 说明 |
@@ -550,7 +550,7 @@ getMimeTypes(): Array&lt;string&gt;
 
 获取剪贴板中[PasteDataProperty](#pastedataproperty7)的mimeTypes列表，当剪贴板内容为空时，返回列表为空。
 
-**系统能力**: SystemCapability.Miscservices.Pasteboard
+**系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **返回值**
   | 类型 | 说明 | 
@@ -571,7 +571,7 @@ getPrimaryMimeType(): string
 
 获取首个条目的数据类型。
 
-**系统能力**: SystemCapability.Miscservices.Pasteboard
+**系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **返回值**
   | 类型 | 说明 | 
@@ -592,7 +592,7 @@ getProperty(): PasteDataProperty
 
 获取属性描述对象。
 
-**系统能力**: SystemCapability.Miscservices.Pasteboard
+**系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **返回值**
   | 类型 | 说明 |
@@ -613,7 +613,7 @@ getRecordAt(index: number): PasteDataRecord
 
 获取指定下标的条目。
 
-**系统能力**: SystemCapability.Miscservices.Pasteboard
+**系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **参数**
   | 参数名 | 类型 | 必填 | 说明 | 
@@ -639,7 +639,7 @@ getRecordCount(): number
 
 获取剪贴板中条目的个数。
 
-**系统能力**: SystemCapability.Miscservices.Pasteboard
+**系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **返回值**
   | 类型 | 说明 | 
@@ -660,7 +660,7 @@ getTag(): string
 
 获取用户自定义的标签内容，如果没有设置用户自定义的标签内容将返回空。
 
-**系统能力**: SystemCapability.Miscservices.Pasteboard
+**系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **返回值**
   | 类型 | 说明 | 
@@ -681,7 +681,7 @@ hasMimeType(mimeType: string): boolean
 
 检查内容中是否有指定的数据类型。
 
-**系统能力**: SystemCapability.Miscservices.Pasteboard
+**系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **参数**
   | 参数名 | 类型 | 必填 | 说明 | 
@@ -707,7 +707,7 @@ removeRecordAt(index: number): boolean
 
 移除指定下标的条目。
 
-**系统能力**: SystemCapability.Miscservices.Pasteboard
+**系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **参数**
   | 参数名 | 类型 | 必填 | 说明 | 
@@ -733,7 +733,7 @@ replaceRecordAt(index: number, record: PasteDataRecord): boolean
 
 替换指定下标的条目。
 
-**系统能力**: SystemCapability.Miscservices.Pasteboard
+**系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **参数**
   | 参数名 | 类型 | 必填 | 说明 |
@@ -761,7 +761,7 @@ getSystemPasteboard(): SystemPasteboard
 
 获取系统剪切板。
 
-**系统能力**: SystemCapability.Miscservices.Pasteboard
+**系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **返回值**
   | 类型 | 说明 | 
@@ -790,7 +790,7 @@ setPasteData(pasteData:PasteData, callback:AsyncCallback&lt;void&gt;): void
 
 将数据写入系统剪切板，并使用callback方式返回结果。
 
-**系统能力**: SystemCapability.Miscservices.Pasteboard
+**系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **参数**
   | 参数名 | 类型 | 必填 | 说明 | 
@@ -819,7 +819,7 @@ setPasteData(pasteData:PasteData): Promise&lt;void&gt;
 
 将数据写入系统剪切板，并使用Promise异步方式返回结果。
 
-**系统能力**: SystemCapability.Miscservices.Pasteboard
+**系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **参数**
   | 参数名 | 类型 | 说明 | 
@@ -850,7 +850,7 @@ getPasteData( callback:AsyncCallback&lt;PasteData&gt;): void
 
 读取系统剪切板内容，并使用callback方式返回结果。
 
-**系统能力**: SystemCapability.Miscservices.Pasteboard
+**系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **参数**
   | 参数名 | 类型 | 必填 | 说明 | 
@@ -877,7 +877,7 @@ getPasteData(): Promise&lt;PasteData&gt;
 
 读取系统剪切板内容，并使用Promise异步方式返回结果。
 
-**系统能力**: SystemCapability.Miscservices.Pasteboard
+**系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **返回值**
   | 类型 | 说明 | 
@@ -902,7 +902,7 @@ on(type:  'update', callback: () =&gt;void ): void
 
 订阅系统剪贴板内容变化事件，当系统剪贴板中内容变化时触发用户程序的回调。
 
-**系统能力**: SystemCapability.Miscservices.Pasteboard
+**系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **参数**
   | 参数名 | 类型 | 必填 | 说明 | 
@@ -927,7 +927,7 @@ off(type:  'update', callback？: () =&gt;void ): void
 
 取消订阅系统剪贴板内容变化事件。
 
-**系统能力**: SystemCapability.Miscservices.Pasteboard
+**系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **参数**
   | 参数名 | 类型 | 必填 | 说明 | 
@@ -948,7 +948,7 @@ hasPasteData(callback:  AsyncCallback&lt;boolean&gt;): void
 
 判断系统剪切板中是否有内容，并使用callback异步方式返回结果。
 
-**系统能力**: SystemCapability.Miscservices.Pasteboard
+**系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **参数**
   | 参数名 | 类型 | 必填 | 说明 | 
@@ -974,7 +974,7 @@ hasPasteData():  Promise&lt;boolean&gt;
 
 判断系统剪切板中是否有内容，并使用Promise异步方式返回结果。
 
-**系统能力**: SystemCapability.Miscservices.Pasteboard
+**系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **返回值**
   | 类型 | 说明 | 
@@ -998,7 +998,7 @@ clear(callback:  AsyncCallback&lt;void&gt;): void
 
 清空系统剪切板内容，并使用callback异步方式返回结果。
 
-**系统能力**: SystemCapability.Miscservices.Pasteboard
+**系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **参数**
   | 参数名 | 类型 | 必填 | 说明 | 
@@ -1024,7 +1024,7 @@ clear():  Promise&lt;void&gt;
 
 清空系统剪切板内容，并使用Promise异步方式返回结果。
 
-**系统能力**: SystemCapability.Miscservices.Pasteboard
+**系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **返回值**
 

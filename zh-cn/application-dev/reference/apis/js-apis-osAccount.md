@@ -1794,8 +1794,8 @@ off(type: 'activate' | 'activating', name: string, callback?: Callback&lt;number
 | constraint.control.apps | 禁止在设置或启动模块中修改应用程序 |
 | constraint.physical.media | 禁止装载物理外部介质 |
 | constraint.microphone | 禁止使用麦克风 |
-| constraint.microphone.unmute | 禁止调整麦克风音量 |
-| constraint.volume.adjust | 禁止调整主卷 |
+| constraint.microphone.unmute | 禁止取消麦克风静音 |
+| constraint.volume.adjust | 禁止调整音量 |
 | constraint.calls.outgoing | 禁止拨打外呼电话 |
 | constraint.sms.use | 禁止发送或接收短信 |
 | constraint.fun | 禁止享受乐趣 |
@@ -1813,7 +1813,7 @@ off(type: 'activate' | 'activating', name: string, callback?: Callback&lt;number
 | constraint.os.account.set.icon | 禁止修改用户头像 |
 | constraint.wallpaper.set | 禁止设置壁纸 |
 | constraint.oem.unlock | 禁止启用oem解锁 |
-| constraint.device.unmute | 禁止对设备的主卷静音 |
+| constraint.device.unmute | 禁止取消设备静音 |
 | constraint.password.unified | 禁止托管配置文件与主用户进行统一锁屏质询 |
 | constraint.autofill | 禁止使用自动填充服务 |
 | constraint.content.capture | 禁止捕获用户屏幕 |

@@ -6,11 +6,11 @@
 
 ### 入门
 
-[入门部分](quick-start/Readme-CN.md)，可以帮助开发者了解应用开发的基本方法。
+[入门部分](quick-start/Readme-CN.md)可以帮助开发者了解应用开发的基本方法。
 
 这一部分包含了IDE工具DevEco Studio的基本使用方法，以及快速构建首个应用的快速入门。
 
-此外，还在此部分详述了OpenHarmony应用包的包结构，以及资源文件的使用指导。
+此外，还在此部分详述了OpenHarmony应用程序的包结构，以及资源文件的使用指导。
 
 ### 开发
 
@@ -21,7 +21,7 @@
 - 应用程序的框架：[Ability开发](ability/Readme-CN.md)
 - UI的框架：[UI开发](ui/Readme-CN.md)
 
-所有应用都应该在这两个框架下填充和完善功能内容。
+所有应用都应该在这两个框架的基础之上进行功能的开发。
 
 在此基础上，还提供了如下功能的开发指导：
 - [窗口管理](windowmanager/Readme-CN.md)

@@ -81,45 +81,95 @@ requestFullWindow(options?: RequestFullWindowOptions): void
   }
  ```
 
-## app.setImageCacheCount
+## app.setImageCacheCount<sup>7+</sup>
 
 setImageCacheCount(value: number): void
 
-设置解码图像计数的图像缓存容量。如果未设置，应用程序将不会缓存任何解码图像。
+设置内存中缓存解码后图片的数量上限，提升再次加载同源图片的加载速度。如果不设置则默认为0，不进行缓存。缓存采用内置的LRU策略，新图片加载后，如果超过缓存上限，会删除最久未再次加载的缓存。建议根据应用内存需求，设置合理缓存数量，数字过大可能导致内存使用过高。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | number | 否 | 解码图像计数的值容量。 |
+| value | number | 否 | 内存中解码后图片的缓存数量。 |
 
-## app.setImageRawDataCacheSize
+**示例：**
+
+  ```
+  // app.ets
+  import app from '@system.app';
+  
+  export default {
+      onCreate() { 
+          app.setImageCacheCount(100)    // 设置解码后图片内存缓存上限为100张
+          console.info('Application onCreate')
+      },
+      onDestroy() {
+          console.info('Application onDestroy')
+      },
+  }
+  ```
+
+## app.setImageRawDataCacheSize<sup>7+</sup>
 
 setImageRawDataCacheSize(value: number): void
 
-在解码前设置原始图像数据大小的图像缓存容量（以字节为单位）。如果未设置，应用程序将不会缓存任何原始图像数据。
+设置内存中缓存解码前图片数据的大小上限，单位为字节，提升再次加载同源图片的加载速度。如果不设置则默认为0，不进行缓存。缓存采用内置的LRU策略，新图片加载后，如果解码前数据超过缓存上限，会删除最久未再次加载的图片数据缓存。建议根据应用内存需求，设置合理缓存上限，过大可能导致应用内存使用过高。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | number | 否 | 原始图像数据大小的值容量（以字节为单位）。 |
+| value | number | 否 | 内存中解码前图片数据的缓存大小，单位为字节。 |
 
+**示例：**
 
-## app.setImageFileCacheSize
+  ```
+  // app.ets
+  import app from '@system.app';
+  
+  export default {
+      onCreate() {
+          app.setImageRawDataCacheSize(104,857,600) // 设置解码前图片数据内存缓存上限为100MB
+          console.info('Application onCreate')
+      },
+      onDestroy() {
+          console.info('Application onDestroy')
+      },
+  }
+  ```
+
+## app.setImageFileCacheSize<sup>7+</sup>
 
 setImageFileCacheSize(value: number): void
 
-在解码前设置磁盘上的图像文件缓存大小（以字节为单位）。如果未设置，应用程序将在磁盘上缓存100MB图像文件。
+设置图片文件缓存的大小上限，单位为字节，提升再次加载同源图片的加载速度，特别是对网络图源、缩略图会有较明显提升。如果不设置则默认为100MB。缓存采用内置的LRU策略，新图片加载后，如果超过文件缓存上限，会按照时间由远到近删除缓存图片文件直到缓存图片大小满足缓存上限。建议根据应用实际需求，设置合理文件缓存上限，数字过大可能导致磁盘空间占用过高。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | number | 否 | 原始图像数据大小的值容量（以字节为单位）。 |
+| value | number | 否 | 图片文件的缓存大小，单位为字节。 |
+
+**示例：**
+
+  ```
+  // app.ets
+  import app from '@system.app';
+  
+  export default {  
+      onCreate() {    
+          app.setImageFileCacheSize(209,715,200) // 设置图片文件数据缓存上限为200MB   
+          console.info('Application onCreate')
+      },  
+      onDestroy() {
+          console.info('Application onDestroy')
+      },
+  }
+  ```
 
 ## AppResponse
 
