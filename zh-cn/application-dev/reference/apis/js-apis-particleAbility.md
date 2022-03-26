@@ -190,6 +190,8 @@ startBackgroundRunning(id: number, request: NotificationRequest, callback: Async
 
 向系统申请长时任务，使用callback形式返回结果，建议使用新接口[backgroundTaskManager.startBackgroundRunning](js-apis-backgroundTaskManager.md#backgroundtaskmanagerstartbackgroundrunning8)。
 
+**需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
+
 **系统能力**：SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
 **参数：**
@@ -249,6 +251,8 @@ wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
 ## particleAbility.startBackgroundRunning
 
 startBackgroundRunning(id: number, request: NotificationRequest): Promise&lt;void&gt;
+
+**需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
 
 **系统能力**：SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 

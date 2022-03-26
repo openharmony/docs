@@ -226,8 +226,6 @@ stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): vo
 
 向系统申请取消长时任务，使用callback形式返回结果。
 
-**需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
-
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
 **参数**：
@@ -258,8 +256,6 @@ backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext(), callbac
 stopBackgroundRunning(context: Context): Promise&lt;void&gt;
 
 向系统申请取消长时任务，使用promise形式返回结果。
-
-**需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
