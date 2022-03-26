@@ -56,7 +56,7 @@ queryOsAccountDistributedInfo\(callback: AsyncCallback<DistributedInfo\>\): void
 
 Obtains distributed account information. This method uses an asynchronous callback to return the result.
 
-The  **ohos.permission.MANAGE\_LOCAL\_ACCOUNTS**  permission is required. This permission is intended for system applications only.
+The  **ohos.permission.MANAGE\_LOCAL\_ACCOUNTS or ohos.permission.DISTRIBUTED\_DATASYNC**  permission is required. This permission is intended for system applications only.
 
 -   Parameters
 
@@ -101,7 +101,7 @@ queryOsAccountDistributedInfo\(\): Promise<DistributedInfo\>
 
 Obtains distributed account information. This method uses a promise to return the result asynchronously.
 
-The  **ohos.permission.MANAGE\_LOCAL\_ACCOUNTS**  permission is required. This permission is intended for system applications only.
+The  **ohos.permission.MANAGE\_LOCAL\_ACCOUNTS or ohos.permission.DISTRIBUTED\_DATASYNC**  permission is required. This permission is intended for system applications only.
 
 -   Return values
 
