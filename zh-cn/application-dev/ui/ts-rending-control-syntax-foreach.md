@@ -1,6 +1,6 @@
 # 循环渲染
 
-开发框架提供**循环渲染（**ForEach组件）来迭代数组，并为每个数组项创建相应的组件。**ForEach**定义如下：
+开发框架提供循环渲染（ForEach组件）来迭代数组，并为每个数组项创建相应的组件。ForEach定义如下：
 
 
 ```
@@ -18,19 +18,19 @@ ForEach(
 ForEach(arr: any[],itemGenerator: (item: any, index?: number) =&gt; void, keyGenerator?: (item: any, index?: number) =&gt; string):void
 
 
-**表1** 参数说明
+表1 参数说明
 
 | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 | 
 | -------- | -------- | -------- | -------- | -------- |
-| arr | any[] | 是 | - | 必须是数组，允许空数组，空数组场景下不会创建子组件。同时允许设置返回值为数组类型的函数，例如arr.slice(1,&nbsp;3)，设置的函数不得改变包括数组本身在内的任何状态变量，如**Array.splice**、**Array.sort**或**Array.reverse**这些改变原数组的函数。 | 
-| itemGenerator | (item:&nbsp;any,&nbsp;index?:&nbsp;number)&nbsp;=&gt;&nbsp;void | 是 | - | 生成子组件的lambda函数，为给定数组项生成一个或多个子组件，单个组件和子组件列表必须括在大括号“**{....}**”中。 | 
+| arr | any[] | 是 | - | 必须是数组，允许空数组，空数组场景下不会创建子组件。同时允许设置返回值为数组类型的函数，例如arr.slice(1,&nbsp;3)，设置的函数不得改变包括数组本身在内的任何状态变量，如Array.splice、Array.sort或Array.reverse这些改变原数组的函数。 | 
+| itemGenerator | (item:&nbsp;any,&nbsp;index?:&nbsp;number)&nbsp;=&gt;&nbsp;void | 是 | - | 生成子组件的lambda函数，为给定数组项生成一个或多个子组件，单个组件和子组件列表必须括在大括号“{....}”中。 | 
 | keyGenerator | (item:&nbsp;any,&nbsp;index?:&nbsp;number)&nbsp;=&gt;&nbsp;string | 否 | - | 匿名参数，用于给定数组项生成唯一且稳定的键值。当子项在数组中的位置更改时，子项的键值不得更改，当数组中的子项被新项替换时，被替换项的键值和新项的键值必须不同。键值生成器的功能是可选的，但是，为了使开发框架能够更好地识别数组更改，提高性能，建议提供。如将数组反向时，如果没有提供键值生成器，则ForEach中的所有节点都将重建。 | 
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > - 必须在容器组件内使用；
 > 
-> - 生成的子组件允许在**ForEach**的父容器组件中，允许子组件生成器函数中包含**if/else**条件渲染，同时也允许**ForEach**包含在**if/else**条件渲染语句中；
+> - 生成的子组件允许在ForEach的父容器组件中，允许子组件生成器函数中包含if/else条件渲染，同时也允许ForEach包含在if/else条件渲染语句中；
 > 
 > - 子项生成器函数的调用顺序不一定和数组中的数据项相同，在开发过程中不要假设子项生成器和键值生成器函数是否执行以及执行顺序。如下示例可能无法正常工作：
 >   ```
