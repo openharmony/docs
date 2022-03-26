@@ -370,7 +370,7 @@ vendor/hisilicon/hispark_taurus/hdf_config/
 
 ```c
 root {
-    platfrom {
+    platform {
         ...
         controller_0x120c1001 :: card_controller {
             //配置私有数据属性名称，与device_info.hcs中的deviceMatchAttr对应
@@ -433,7 +433,7 @@ ctrlParamsSeqConfig：控制功能寄存器配置组，其中item与controlsConf
 
 ```c
  root {
-    platfrom {
+    platform {
         template codec_controller {
             match_attr = "";
             serviceName = "";
