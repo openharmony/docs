@@ -3058,7 +3058,6 @@ Reads the buffer from the audio capturer. This API uses an asynchronous callback
 audioCapturer.read(bufferSize, true, async(err, buffer) => {
     if (!err) {
         console.log("Success in reading the buffer data");
-        var number = fileio.writeSync(fd, buffer);
     }
 };
 ```

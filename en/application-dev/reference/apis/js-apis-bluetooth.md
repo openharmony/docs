@@ -1311,7 +1311,7 @@ Disconnects an A2DP connection.
 
 ```js
 let a2dpSrc = bluetooth.getProfile(PROFILE_A2DP_SOURCE);
-let boolean ret = a2dpSrc.disconnect('XX:XX:XX:XX:XX:XX');
+let ret = a2dpSrc.disconnect('XX:XX:XX:XX:XX:XX');
 ```
 
 
