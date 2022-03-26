@@ -1,9 +1,5 @@
 # LCD<a name="ZH-CN_TOPIC_0000001052857284"></a>
 
--   [概述](#section141575391542)
--   [接口说明](#section53793327396)
--   [开发步骤](#section12394223125615)
--   [开发实例](#section7441155155813)
 
 ## 概述<a name="section141575391542"></a>
 
@@ -164,9 +160,9 @@ LCD器件驱动示例如下：
 #define HORIZONTAL_BACK_PORCH     20
 #define HORIZONTAL_FRONT_PORCH    20
 #define HORIZONTAL_SYNC_WIDTH     10
-#define VERTIACL_BACK_PORCH       14
-#define VERTIACL_FRONT_PORCH      16
-#define VERTIACL_SYNC_WIDTH       2
+#define VERTICAL_BACK_PORCH       14
+#define VERTICAL_FRONT_PORCH      16
+#define VERTICAL_SYNC_WIDTH       2
 #define FRAME_RATE                60
 
 /* Panel Info结构体结构体 */
@@ -305,9 +301,9 @@ static struct PanelInfo g_panelInfo = {
     .hbp = HORIZONTAL_BACK_PORCH,       /* horizontal back porch */
     .hfp = HORIZONTAL_FRONT_PORCH,      /* horizontal front porch */
     .hsw = HORIZONTAL_SYNC_WIDTH,       /* horizontal sync width */
-    .vbp = VERTIACL_BACK_PORCH,         /* vertiacl back porch */
-    .vfp = VERTIACL_FRONT_PORCH,        /* vertiacl front porch */
-    .vsw = VERTIACL_SYNC_WIDTH,         /* vertiacl sync width */
+    .vbp = VERTICAL_BACK_PORCH,         /* vertical back porch */
+    .vfp = VERTICAL_FRONT_PORCH,        /* vertical front porch */
+    .vsw = VERTICAL_SYNC_WIDTH,         /* vertical sync width */
     .frameRate = FRAME_RATE,            /* frame rate */
     .intfType = MIPI_DSI,               /* panel interface type */
     .intfSync = OUTPUT_USER,            /* output timming type */
