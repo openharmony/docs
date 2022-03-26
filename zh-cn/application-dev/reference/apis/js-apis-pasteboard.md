@@ -167,7 +167,7 @@ createHtmlTextRecord(htmlText:string): PasteDataRecord
 **参数**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| htmlText | string | 是 | 文本内容。 |
+| htmlText | string | 是 | HTML内容。 |
 
 **返回值**
 | 类型 | 说明 |
