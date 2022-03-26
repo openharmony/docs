@@ -262,11 +262,11 @@ Creates a **CameraInput** instance with the specified camera position and camera
 
 **Parameters**
 
-| Name           | Type                       | Mandatory | Description                                       |
-|----------------|----------------------------|-----------|---------------------------------------------------|
-| cameraPosition | CameraPosition             | Yes       | Camera position                                   |
-| cameraType     | CameraType                 | Yes       | Camera type                                       |
-| callback       | AsyncCallback<CameraInput\> | Yes       | Callback used to return the CameraInput instance |
+| Name     | Type                        | Mandatory | Description                                       |
+|----------|-----------------------------|-----------|---------------------------------------------------|
+| position | CameraPosition              | Yes       | Camera position                                   |
+| type     | CameraType                  | Yes       | Camera type                                       |
+| callback | AsyncCallback<CameraInput\> | Yes       | Callback used to return the CameraInput instance |
 
 **Example**
 
@@ -292,10 +292,10 @@ Creates a **CameraInput** instance with the specified camera position and camera
 
 **Parameters**
 
-| Name           | Type                       | Mandatory | Description                            |
-|----------------|----------------------------|-----------|----------------------------------------|
-| cameraPosition | CameraPosition             | Yes       | Camera position                        |
-| cameraType     | CameraType                 | Yes       | Camera type                            |
+| Name     | Type                       | Mandatory | Description                            |
+|----------|----------------------------|-----------|----------------------------------------|
+| position | CameraPosition             | Yes       | Camera position                        |
+| type     | CameraType                 | Yes       | Camera type                            |
 
 **Return values**
 
@@ -325,8 +325,8 @@ Listens for camera status changes. This method uses a callback to get camera sta
 
 | Name     | Type                   | Mandatory | Description                                          |
 | :------- | :--------------------- | :-------- | :--------------------------------------------------- |
-| type     | string                 | Yes       | Name of the event to listen for.                         |
-| callback | Callback<CameraStatusInfo\> | Yes  | Callback used to get the camera status change. |
+| type     | string                 | Yes       | Camera status event.                                 |
+| callback | Callback<CameraStatusInfo\> | Yes  | Callback used to get the camera status change.       |
 
 **Example**
 
@@ -1091,7 +1091,7 @@ Listens for **CameraInput** errors. This method uses a callback to get errors.
 
 | Name     | Type                   | Mandatory | Description                                     |
 | :------- | :--------------------- | :-------- | :-----------------------------------------------|
-| type     | string                 | Yes       | Name of the event to listen for.                    |
+| type     | string                 | Yes       | Camera input error event.                       |
 | callback | Callback<CameraInputError\> | Yes  | Callback used to get the camera input errors.   |
 
 **Example**
@@ -1949,7 +1949,7 @@ Listens for **CaptureSession** errors. This method uses a callback to get errors
 
 | Name     | Type                   | Mandatory | Description                                     |
 | :------- | :--------------------- | :-------- | :-----------------------------------------------|
-| type     | string                 | Yes       | Name of the event to listen for.                    |
+| type     | string                 | Yes       | Capture session error event.                    |
 | callback | Callback<CaptureSessionError\> | Yes  | Callback used to get the capture session errors. |
 
 **Example**
@@ -2140,7 +2140,7 @@ Listens for **PreviewOutput** errors. This method uses a callback to get errors.
 
 | Name     | Type                   | Mandatory | Description                                     |
 | :------- | :--------------------- | :-------- | :-----------------------------------------------|
-| type     | string                 | Yes       | Name of the event to listen for.                    |
+| type     | string                 | Yes       | Preview output error event.                     |
 | callback | Callback<PreviewOutputError\> | Yes  | Callback used to get the preview output errors. |
 
 **Example**
@@ -2503,7 +2503,7 @@ Listens for **PhotoOutput** errors. This method uses a callback to get errors.
 
 | Name     | Type                   | Mandatory | Description                                     |
 | :------- | :--------------------- | :-------- | :-----------------------------------------------|
-| type     | string                 | Yes       | Name of the event to listen for.                |
+| type     | string                 | Yes       | Photo output error event.                       |
 | callback | Callback<PhotoOutputError\> | Yes  | Callback used to get the photo output errors.   |
 
 **Example**
@@ -2561,9 +2561,9 @@ Creates a **VideoOutput** instance. This method uses a promise to return the Vid
 
 **Return values**
 
-| Type                    | Description                                     |
-|-------------------------|-------------------------------------------------|
-| Promise<PhotoOutput\>   | Promise used to return the VideoOutput instance |
+| Type                                  | Description                                     |
+|---------------------------------------|-------------------------------------------------|
+| Promise<[VideoOutput](#videooutput)\> | Promise used to return the VideoOutput instance |
 
 **Example**
 
@@ -2786,7 +2786,7 @@ Listens for **VideoOutput** errors. This method uses a callback to get errors.
 
 | Name     | Type                   | Mandatory | Description                                     |
 | :------- | :--------------------- | :-------- | :-----------------------------------------------|
-| type     | string                 | Yes       | Name of the event to listen for.                |
+| type     | string                 | Yes       | Video output error event.                       |
 | callback | Callback<VideoOutputError\> | Yes  | Callback used to get the video output errors.   |
 
 **Example**
