@@ -40,7 +40,7 @@ RowSplit()
 struct RowSplitExample {
   build() {
     Column() {
-      Text('The secant line can be dragged').fontSize(9).fontColor(0xCCCCCC).width('90%')
+      Text('The second line can be dragged').fontSize(9).fontColor(0xCCCCCC).width('90%')
       RowSplit() {
         Text('1').width('10%').height(100).backgroundColor(0xF5DEB3).textAlign(TextAlign.Center)
         Text('2').width('10%').height(100).backgroundColor(0xD2B48C).textAlign(TextAlign.Center)
