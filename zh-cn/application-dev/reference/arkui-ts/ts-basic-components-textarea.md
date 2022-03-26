@@ -25,12 +25,12 @@ TextArea(value?:{placeholder?: string controller?: TextAreaController})
   | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
   | -------- | -------- | -------- | -------- | -------- |
   | placeholder | string | 否 | - | 无输入时的提示文本。 |
-  | controller<sup>8+</sup> | [TextAreaController](#textareacontroller<sup>8+</sup) | 否 | - | 设置TextArea控制器。 |
+  | controller<sup>8+</sup> | [TextAreaController](#textareacontroller) | 否 | - | 设置TextArea控制器。 |
 
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes.md)外，还支持以下属性：
+除支持[通用属性](ts-universal-attributes-index.md)外，还支持以下属性：
 
 | 名称 | 参数类型 | 默认值 | 描述 |
 | -------- | -------- | -------- | -------- |
