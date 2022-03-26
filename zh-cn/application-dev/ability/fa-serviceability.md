@@ -78,7 +78,7 @@ Ability为开发者提供了startAbility()方法来启动另外一个Ability。�
 
 ```javascript
 import featureAbility from '@ohos.ability.featureability';
-var promise = await featureAbility.startAbility(
+let promise = await featureAbility.startAbility(
     {
         want:
         {
@@ -147,7 +147,7 @@ function onFailedCallback(code){
 
 ```javascript
 import featureAbility from '@ohos.ability.featureability';
-var connId = featureAbility.connectAbility(
+let connId = featureAbility.connectAbility(
     {
         bundleName: "com.jstest.serviceability",
         abilityName: "com.jstest.serviceability.MainAbility",
@@ -167,7 +167,7 @@ Service侧把自身的实例返回给调用侧的代码示例如下：
 ```javascript
 import rpc from "@ohos.rpc";
 
-var mMyStub;
+let mMyStub;
 export default {
     onStart(want) {
         class MyStub extends rpc.RemoteObject{
@@ -258,7 +258,7 @@ import deviceManager from '@ohos.distributedHardware.deviceManager';
 let dmClass;
 function getRemoteDeviceId() {
     if (typeof dmClass === 'object' && dmClass != null) {
-        var list = dmClass.getTrustedDeviceListSync();
+        let list = dmClass.getTrustedDeviceListSync();
         if (typeof (list) == 'undefined' || typeof (list.length) == 'undefined') {
             console.log("MainAbility onButtonClick getRemoteDeviceId err: list is null");
             return;
@@ -275,7 +275,7 @@ function getRemoteDeviceId() {
 
 ```ts
 import featureAbility from '@ohos.ability.featureability';
-var connId = featureAbility.connectAbility(
+let connId = featureAbility.connectAbility(
     {
         deviceId: getRemoteDeviceId(),
         bundleName: "ohos.samples.etsDemo",
@@ -296,15 +296,15 @@ import bundle from '@ohos.bundle';
 async function RequestPermission() {
   console.info('RequestPermission begin');
   let array: Array<string> = ["ohos.permission.DISTRIBUTED_DATASYNC"];
-  var bundleFlag = 0;
-  var tokenID = undefined;
-  var userID = 100;
-  var appInfo = await bundle.getApplicationInfo('ohos.samples.etsDemo', bundleFlag, userID);
+  let bundleFlag = 0;
+  let tokenID = undefined;
+  let userID = 100;
+  let appInfo = await bundle.getApplicationInfo('ohos.samples.etsDemo', bundleFlag, userID);
   tokenID = appInfo.accessTokenId;
-  var atManager = abilityAccessCtrl.createAtManager();
+  let atManager = abilityAccessCtrl.createAtManager();
   let requestPermissions: Array<string> = [];
   for (let i = 0;i < array.length; i++) {
-    var result = await atManager.verifyAccessToken(tokenID, array[i]);
+    let result = await atManager.verifyAccessToken(tokenID, array[i]);
     console.info("verifyAccessToken result:" + JSON.stringify(result));
     if (result == abilityAccessCtrl.GrantStatus.PERMISSION_GRANTED) {
     } else {
