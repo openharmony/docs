@@ -383,6 +383,17 @@ connectAbility(request: Want, options:ConnectOptions): number
 | request | [Want](#want)           | 是   | 表示被连接的ServiceAbility。 |
 | options | ConnectOptions | 是   | 被指定的回调方法。           |
 
+
+**ConnectOptions类型说明：**
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+
+| 名称           | 读写属性 | 类型       | 必填   | 描述                        |
+| ------------ | ---- | -------- | ---- | ------------------------- |
+| onConnect    | 只读   | function | 是    | 连接成功时的回调函数。               |
+| onDisconnect | 只读   | function | 是    | 连接失败时的回调函数。               |
+| onFailed     | 只读   | function | 是    | ConnectAbility调用失败时的回调函数。 |
+
 **示例**：
 
 ```js
