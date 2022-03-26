@@ -1807,7 +1807,7 @@ audioRecorder.prepare();                                                  // pre
 | audioEncoderMime      | [CodecMimeType](#codecmimetype8)        | 否   | 音频编码格式。                                               |
 
 
-## AudioEncoder
+## AudioEncoder<sup>(deprecated)</sup>
 
 > **说明：**
 > 从 API Version 8 开始废弃，建议使用[CodecMimeType](#codecmimetype8)替代。
@@ -1825,7 +1825,7 @@ audioRecorder.prepare();                                                  // pre
 | HE_AAC  | 4      | HE_AAC（High-Efficiency Advanced&nbsp;Audio&nbsp;Coding）编码格式。<br/>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
 
 
-## AudioOutputFormat
+## AudioOutputFormat<sup>(deprecated)</sup>
 
 > **说明：**
 > 从 API Version 8 开始废弃，建议使用[ContainerFormatType ](#containerformattype8)替代。
