@@ -15,7 +15,7 @@
     - HDMI读取EDID：读取Sink端原始的EDID数据
     - HDMI热插拔：注册/注销热插拔回调函数
 
-### 基本概念>
+### 基本概念
 
 HDMI是Hitachi、Panasonic、Philips、Silicon Image、Sony、Thomson、Toshiba共同发布的一款音视频传输协议。传输过程遵循TMDS（Transition Minimized Differential Signaling）协议。
 
