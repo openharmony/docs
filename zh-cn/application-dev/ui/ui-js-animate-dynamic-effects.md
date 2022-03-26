@@ -1,7 +1,7 @@
 # 动画动效
 
 
-通过设置插值器来实现动画效果。具体用法请参考[动画](../reference/apis/js-apis-basic-features-animator.md)。
+通过设置插值器来实现动画效果。
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 从API Version 6 开始支持。
@@ -86,7 +86,7 @@ export default {
 
 ## 添加动画事件和调用接口
 
-animator支持事件和接口，可以通过添加frame、cancel、repeat、finish事件和调用update、play、pause、cancel、reverse、finish接口自定义动画效果。animator支持的事件和接口具体见[动画中的createAnimator](../reference/apis/js-apis-basic-features-animator.md)。
+animator支持事件和接口，可以通过添加frame、cancel、repeat、finish事件和调用update、play、pause、cancel、reverse、finish接口自定义动画效果。animator支持的事件和接口具体见动画中的createAnimator。
 
 ```
 <!-- xxx.hml -->

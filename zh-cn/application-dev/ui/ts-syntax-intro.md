@@ -3,7 +3,7 @@
 本节定义了基于TS扩展的声明式开发范式的核心机制和功能。讲述了声明式UI描述、组件化机制、UI状态管理、渲染控制语法和语法糖。
 
 
-本节为应用开发人员开发UI提供了参考规范。有关组件的详细信息，请参考[组件说明](../reference/arkui-ts/ts-components.md)。
+本节为应用开发人员开发UI提供了参考规范。有关组件的详细信息，请参考组件说明。
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**

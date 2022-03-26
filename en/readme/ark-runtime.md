@@ -2,7 +2,7 @@
 
 ## Introduction<a name="section11660541593"></a>
 
-ARK is a unified programming platform developed by Huawei. Its key components include a compiler, toolchain, and runtime. ARK supports compilation and execution of high-level programming languages on the multiple hardware platform and accelerates the execution of the OpenHarmony operating system and its applications and services on mobile phones, PCs, tablets, TVs, automobiles, and smart wearables. The ARK-JS open sourced this time provides the capability of compiling and running the JavaScript \(JS\) language on the standard system of OpenHarmony.
+ARK is a unified programming platform developed. Its key components include a compiler, toolchain, and runtime. ARK supports compilation and execution of high-level programming languages on the multiple hardware platform and accelerates the execution of the OpenHarmony operating system and its applications and services on mobile phones, PCs, tablets, TVs, automobiles, and smart wearables. The ARK-JS open sourced this time provides the capability of compiling and running the JavaScript \(JS\) language on the standard system of OpenHarmony.
 
 The ARK-JS consists of two parts: JS compiler toolchain and JS runtime. The JS compiler toolchain compiles JS source code into ARK bytecodes. The JS runtime executes the generated ARK bytecodes. Unless otherwise specified, bytecodes refer to ARK bytecodes in this document.
 
