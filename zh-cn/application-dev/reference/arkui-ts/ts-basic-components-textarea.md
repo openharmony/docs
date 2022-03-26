@@ -25,7 +25,7 @@ TextArea(value?:{placeholder?: string controller?: TextAreaController})
   | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
   | -------- | -------- | -------- | -------- | -------- |
   | placeholder | string | 否 | - | 无输入时的提示文本。 |
-  | controller<sup>8+</sup> | [TextAreaController](#textareacontroller) | 否 | - | 设置TextArea控制器。 |
+  | controller<sup>8+</sup> | [TextAreaController](textareacontroller8) | 否 | - | 设置TextArea控制器。 |
 
 
 ## 属性
