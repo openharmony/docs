@@ -187,7 +187,7 @@ function getRemoteDeviceId() {
 在跨设备场景下，需要向用户申请数据同步的权限。具体示例代码如下：
 ```ts
 let context = this.context
-let permissions = ohos.permission.DISTRIBUTED_DATASYNC
+let permissions: Array<string> = ['ohos.permission.DISTRIBUTED_DATASYNC']
 context.requestPermissionsFromUser(permissions).then((data) => {
     console.log("Succeed to request permission from user with data: "+ JSON.stringify(data))
 }).catch((error) => {

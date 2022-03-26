@@ -199,7 +199,16 @@ function getRemoteDeviceId() {
 ```
 
 ### 应用向用户申请授权
-应用需要某些权限如存储、位置信息、访问日历时，需要向用户申请授权。具体示例代码如下：
+应用需要某些权限如存储、位置信息、访问日历时，需要向用户申请授权。明确需要申请的权限后，在`module.json`中添加待申请的权限，同时通过接口`requestPermissionsFromUser`以动态弹窗的方式向用户申请授权。以访问日历为例，具体示例代码如下：
+module.json的修改：
+```json
+"requestPermissions": [
+    {
+    "name": "ohos.permission.READ_CALENDAR"
+    }
+]
+```
+通过动态弹窗向用户申请授权：
 ```ts
 let context = this.context
 let permissions: Array<string> = ['ohos.permission.READ_CALENDAR']
