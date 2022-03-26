@@ -73,6 +73,7 @@
         - [TextInput](ts-basic-components-textinput.md)
         - [TextPicker](ts-basic-components-textpicker.md)
         - [TextTimer](ts-basic-components-texttimer.md)
+        - [TimePicker](ts-basic-components-timepicker.md)
         - [Toggle](ts-basic-components-toggle.md)
         - [TextClock](ts-basic-components-textclock.md)
         - [Web](ts-basic-components-web.md)
@@ -143,6 +144,7 @@
         - [Action Sheet](ts-methods-action-sheet.md)
         - [Custom Dialog Box](ts-methods-custom-dialog-box.md)
         - [Date Picker Dialog Box](ts-methods-datepicker-dialog.md)
+        - [Time Picker Dialog Box](ts-methods-timepicker-dialog.md)
         - [Text Picker Dialog Box](ts-methods-textpicker-dialog.md)
     - [Menu](ts-methods-menu.md)
 - Appendix
