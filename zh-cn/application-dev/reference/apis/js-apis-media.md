@@ -1862,7 +1862,7 @@ prepare(config: VideoRecorderConfig, callback: AsyncCallback\<void>): void;
 
 异步方式进行视频录制的参数设置。通过注册回调函数获取返回值。
 
-**需要权限：** ohos.permission.MICROPHONE，ohos.permission.CAMERA
+**需要权限：** ohos.permission.MICROPHONE
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
