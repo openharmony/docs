@@ -935,17 +935,6 @@ The correct method is to delete unnecessary code directly. If necessary, conside
 
 Here, commenting out refers to the removal of code from compilation without actually deleting it. This is done by using /* */, //, #if 0, #ifdef NEVER_DEFINED, and so on.
 
-### <a name="a4-4-1"></a>Rec 4.4.1 Delivered code cannot contain a TODO/TBD/FIXME comment.
-TODO/TBD comments are used to describe required improvements and supplements.
-FIXME comments are used to describe defects that need fixing.
-They should have a standardized style, which facilitates text search. Example:
-
-```cpp
-// TODO(<author-name>): XX
-// FIXME: XX
-```
-
-
 # <a name="c5"></a>5 Header Files
 ## <a name="c5-1"></a> Header File Responsibility
 A header file is an external interface of a module or file. The design of a header file shows most of the system design.
