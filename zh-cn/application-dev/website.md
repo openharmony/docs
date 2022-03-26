@@ -88,6 +88,7 @@
           - [Qrcode开发指导](ui/ui-js-components-qrcode.md)
           - [Search开发指导](ui/ui-js-components-search.md)
         - Canvas开发指导
+          - [Canvas对象](ui-js-components-canvas.md)
           - [CanvasRenderingContext2D对象](ui/ui-js-components-canvasrenderingcontext2d.md)
           - [Path2D对象](ui/ui-js-components-path2d.md)
           - [OffscreenCanvas对象](ui/ui-js-components-offscreencanvas.md)
@@ -517,8 +518,6 @@
       - [矩阵变换](reference/arkui-ts/ts-matrix-transformation.md)
       - [插值计算](reference/arkui-ts/ts-interpolation-calculation.md)
     - 全局UI方法
-      - [图片缓存](reference/arkui-ts/ts-methods-image-cache.md)
-      - [媒体查询](reference/arkui-ts/ts-methods-media-query.md)
       - 弹窗
         - [警告弹窗](reference/arkui-ts/ts-methods-alert-dialog-box.md)
         - [列表选择弹窗](reference/arkui-ts/ts-methods-action-sheet.md)
@@ -526,8 +525,7 @@
         - [日期时间选择弹窗](reference/arkui-ts/ts-methods-datepicker-dialog.md)
         - [文本选择弹窗](reference/arkui-ts/ts-methods-textpicker-dialog.md)
       - [菜单](reference/arkui-ts/ts-methods-menu.md)
-    - 附录
-      - [文档中涉及到的内置枚举值](reference/arkui-ts/ts-appendix-enums.md)
+    - [文档中涉及到的内置枚举值](reference/arkui-ts/ts-appendix-enums.md)
   - 接口参考
     - Ability框架
       - [FeatureAbility模块](reference/apis/js-apis-featureAbility.md)

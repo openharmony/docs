@@ -2,7 +2,7 @@
 
 - 组件
     - 通用
-        - 通用事件
+        - [通用事件](ts-universal-events-index.md)
             - [点击事件](ts-universal-events-click.md)
             - [触摸事件](ts-universal-events-touch.md)
             - [挂载卸载事件](ts-universal-events-show-hide.md)
@@ -11,7 +11,7 @@
             - [焦点事件](ts-universal-focus-event.md)
             - [鼠标事件](ts-universal-mouse-key.md)
             - [组件区域变化事件](ts-universal-component-area-change-event.md)
-        - 通用属性
+        - [通用属性](ts-universal-attributes-index.md)
             - [尺寸设置](ts-universal-attributes-size.md)
             - [位置设置](ts-universal-attributes-location.md)
             - [布局约束](ts-universal-attributes-layout-constraints.md)
@@ -58,28 +58,29 @@
         - [Gauge](ts-basic-components-gauge.md)
         - [Image](ts-basic-components-image.md)
         - [ImageAnimator](ts-basic-components-imageanimator.md)
-        - [Marquee](ts-basic-components-marquee.md)
         - [LoadingProgress](ts-basic-components-loadingprogress.md)
+        - [Marquee](ts-basic-components-marquee.md)
+        - [PatternLock](ts-basic-components-patternlock.md)
+        - [PluginComponent](ts-basic-components-plugincomponent.md)
         - [Progress](ts-basic-components-progress.md)
         - [QRCode](ts-basic-components-qrcode.md)
         - [Radio](ts-basic-components-radio.md)
         - [Rating](ts-basic-components-rating.md)
+        - [RichText](ts-basic-components-richtext.md)
         - [Search](ts-basic-components-search.md)
         - [Select](ts-basic-components-select.md)
         - [Slider](ts-basic-components-slider.md)
         - [Span](ts-basic-components-span.md)
         - [Text](ts-basic-components-text.md)
         - [TextArea](ts-basic-components-textarea.md)
+        - [TextClock](ts-basic-components-textclock.md)
         - [TextInput](ts-basic-components-textinput.md)
         - [TextPicker](ts-basic-components-textpicker.md)
         - [TextTimer](ts-basic-components-texttimer.md)
         - [TimePicker](ts-basic-components-timepicker.md)
         - [Toggle](ts-basic-components-toggle.md)
-        - [TextClock](ts-basic-components-textclock.md)
         - [Web](ts-basic-components-web.md)
-        - [RichText](ts-basic-components-richtext.md)
         - [Xcomponent](ts-basic-components-xcomponent.md)
-        - [PluginComponent](ts-basic-components-plugincomponent.md)
     - 容器组件
         - [AlphabetIndexer](ts-container-alphabet-indexer.md)
         - [Badge](ts-container-badge.md)
@@ -95,18 +96,18 @@
         - [Navigator](ts-container-navigator.md)
         - [Navigation](ts-basic-components-navigation.md)
         - [Panel](ts-container-panel.md)
+        - [Refresh](ts-container-refresh.md)
         - [Row](ts-container-row.md)
         - [RowSplit](ts-container-rowsplit.md)
         - [Scroll](ts-container-scroll.md)
         - [ScrollBar](ts-basic-components-scrollbar.md)
         - [SideBarContainer](ts-container-sidebarcontainer.md)
         - [Stack](ts-container-stack.md)
+        - [Stepper](ts-basic-components-stepper.md)
+        - [StepperItem](ts-basic-components-stepperitem.md)
         - [Swiper](ts-container-swiper.md)
         - [Tabs](ts-container-tabs.md)
         - [TabContent](ts-container-tabcontent.md)
-        - [Refresh](ts-container-refresh.md)
-        - [Stepper](ts-basic-components-stepper.md)
-        - [StepperItem](ts-basic-components-stepperitem.md)
     - 媒体组件
         - [Video](ts-media-components-video.md)
     - 绘制组件
@@ -138,7 +139,6 @@
     - [矩阵变换](ts-matrix-transformation.md)
     - [插值计算](ts-interpolation-calculation.md)
 - 全局UI方法
-    - [图片缓存](ts-methods-image-cache.md)
     - 弹窗
         - [警告弹窗](ts-methods-alert-dialog-box.md)
         - [列表选择弹窗](ts-methods-action-sheet.md)
@@ -147,5 +147,4 @@
         - [时间选择弹窗](ts-methods-timepicker-dialog.md)
         - [文本选择弹窗](ts-methods-textpicker-dialog.md)
     - [菜单](ts-methods-menu.md)
-- 附录
-    - [文档中涉及到的内置枚举值](ts-appendix-enums.md)
+- [文档中涉及到的内置枚举值](ts-appendix-enums.md)

@@ -2915,7 +2915,7 @@ read(): Promise&lt;Dirent&gt;
 
 - 示例：
   ```js
-  let dir = fileio.opendirSync(dpath);
+  let dir = fileio.opendirSync(path);
   dir.read().then(function (dirent){
       console.info("read successfully:"+ dirent.name);
   }).catch(function(err){
@@ -2939,7 +2939,7 @@ read(callback: AsyncCallback&lt;Dirent&gt;): void
 
 - 示例：
   ```js
-  let dir = fileio.opendirSync(dpath);
+  let dir = fileio.opendirSync(path);
   dir.read(function (err, dirent) {
       if (!err) {
           // do something
@@ -2964,7 +2964,7 @@ readSync(): Dirent
 
 - 示例：
   ```js
-  let dir = fileio.opendirSync(dpath);
+  let dir = fileio.opendirSync(path);
   let dirent = dir.readSync();
   ```
 
@@ -2979,7 +2979,7 @@ closeSync(): void
 
 - 示例：
   ```js
-  let dir = fileio.opendirSync(dpath);
+  let dir = fileio.opendirSync(path);
   dir.closeSync();
   ```
 
@@ -3012,7 +3012,7 @@ isBlockDevice(): boolean
 
 - 示例：
   ```js
-  let dir = fileio.opendirSync(dpath);
+  let dir = fileio.opendirSync(path);
   let isBLockDevice = dir.readSync().isBlockDevice();
   ```
 
@@ -3032,7 +3032,7 @@ isCharacterDevice(): boolean
 
 - 示例：
   ```js
-  let dir = fileio.opendirSync(dpath);
+  let dir = fileio.opendirSync(path);
   let isCharacterDevice = dir.readSync().isCharacterDevice(); 
   ```
 
@@ -3052,7 +3052,7 @@ isDirectory(): boolean
 
 - 示例：
   ```js
-  let dir = fileio.opendirSync(dpath);
+  let dir = fileio.opendirSync(path);
   let isDirectory = dir.readSync().isDirectory(); 
   ```
 
@@ -3072,7 +3072,7 @@ isFIFO(): boolean
 
 - 示例：
   ```js
-  let dir = fileio.opendirSync(dpath);
+  let dir = fileio.opendirSync(path);
   let isFIFO = dir.readSync().isFIFO(); 
   ```
 
@@ -3092,7 +3092,7 @@ isFile(): boolean
 
 - 示例：
   ```js
-  let dir = fileio.opendirSync(dpath);
+  let dir = fileio.opendirSync(path);
   let isFile = dir.readSync().isFile(); 
   ```
 
@@ -3132,6 +3132,6 @@ isSymbolicLink(): boolean
 
 - 示例：
   ```js
-  let dir = fileio.opendirSync(dpath);
+  let dir = fileio.opendirSync(path);
   let isSymbolicLink = dir.readSync().isSymbolicLink();
   ```
