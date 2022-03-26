@@ -1,13 +1,13 @@
 # @Preview
 
-用**@Preview**装饰的自定义组件可以在DevEco Studio的预览器上进行预览，加载页面时，将创建并呈现**@Preview**装饰的自定义组件。
+用@Preview装饰的自定义组件可以在DevEco Studio的预览器上进行预览，加载页面时，将创建并呈现@Preview装饰的自定义组件。
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 在单个源文件中，最多可以使用**@Preview**装饰一个自定义组件。
+> 在单个源文件中，最多可以使用@Preview装饰一个自定义组件。
 
 
-**@Preview**的用法如下：
+@Preview的用法如下：
 
 
 ```
