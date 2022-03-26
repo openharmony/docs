@@ -24,7 +24,7 @@
    ![zh-cn_image_0000001214128687](figures/zh-cn_image_0000001214128687.png)
 
 2. 食物图片展示。
-   创建Image组件，指定Image组件的url，Image组件和Text组件都是必选构造参数组件。为了让Text组件在Image组件上方显示，所以要先声明Image组件。图片资源放在resources下的rawfile文件夹内，引用rawfile下资源时使用“$rawfile('filename')”的形式**，**filename为rawfile目录下的文件相对路径。当前$rawfile仅支持Image控件引用图片资源。
+   创建Image组件，指定Image组件的url，Image组件和Text组件都是必选构造参数组件。为了让Text组件在Image组件上方显示，所以要先声明Image组件。图片资源放在resources下的rawfile文件夹内，引用rawfile下资源时使用“$rawfile('filename')”的形式，filename为rawfile目录下的文件相对路径。当前$rawfile仅支持Image控件引用图片资源。
    ```
    @Entry
    @Component
