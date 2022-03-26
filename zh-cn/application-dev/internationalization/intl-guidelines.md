@@ -44,7 +44,7 @@
    ```
 
 4. 最小化区域信息
-     调用minimize方法来最大化区域信息，即当存在脚本与地区信息时，对其进行删除。
+     调用minimize方法来最小化区域信息，即当存在脚本与地区信息时，对其进行删除。
      
    ```
    var minimizedLocale = localeObj.minimize();
@@ -61,7 +61,7 @@
 | 模块 | 接口名称 | 描述 |
 | -------- | -------- | -------- |
 | ohos.intl | constructor()<sup>8+</sup> | 创建日期时间格式化对象。 |
-| ohos.intl | constructor(locale:&nbsp;string&nbsp;\|&nbsp;Array,&nbsp;options?:&nbsp;DateTimeOptions) | 创建日期时间格式化对象，并设置提供的Locale和格式化相关属性。 |
+| ohos.intl | constructor(locale:&nbsp;string&nbsp;\|&nbsp;Array&lt;string&gt;,&nbsp;options?:&nbsp;DateTimeOptions) | 创建日期时间格式化对象，并设置提供的Locale和格式化相关属性。 |
 | ohos.intl | format(date:&nbsp;Date):&nbsp;string | 依据DateTimeFormat对象的Locale及其他格式化属性，计算日期时间的格式化表示。 |
 | ohos.intl | formatRange(startDate:&nbsp;Date,&nbsp;endDate:&nbsp;Date):&nbsp;string | 依据DateTimeFormat对象的Locale及其他格式化属性，计算时间段的格式化表示。 |
 | ohos.intl | resolvedOptions():&nbsp;DateTimeOptions | 获取DateTimeFormat对象的相关属性。 |
@@ -119,7 +119,7 @@
 | 模块 | 接口名称 | 描述 |
 | -------- | -------- | -------- |
 | ohos.intl | constructor()<SUP>8+</SUP> | 创建数字格式化对象。 |
-| ohos.intl | constructor(locale:&nbsp;string&nbsp;\|&nbsp;Array,&nbsp;options?:&nbsp;NumberOptions) | 创建数字格式化对象，并设置提供的locale和格式化相关属性。 |
+| ohos.intl | constructor(locale:&nbsp;string&nbsp;\|&nbsp;Array&lt;string&gt;,&nbsp;options?:&nbsp;NumberOptions) | 创建数字格式化对象，并设置提供的locale和格式化相关属性。 |
 | ohos.intl | format(number:&nbsp;number):&nbsp;string | 依据NumberFormat对象的Locale及其他格式化属性，计算数字的格式化表示。 |
 | ohos.intl | resolvedOptions():&nbsp;NumberOptions | 获取NumberFormat对象的相关属性。 |
 
@@ -167,7 +167,7 @@
 | 模块 | 接口名称 | 描述 |
 | -------- | -------- | -------- |
 | ohos.intl | constructor()<sup>8+</sup> | 创建排序对象。 |
-| ohos.intl | constructor(locale:&nbsp;string&nbsp;\|&nbsp;Array,&nbsp;options?:&nbsp;CollatorOptions)<sup>8+</sup> | 创建排序对象，并设置提供的locale和其他相关属性。 |
+| ohos.intl | constructor(locale:&nbsp;string&nbsp;\|&nbsp;Array&lt;string&gt;,&nbsp;options?:&nbsp;CollatorOptions)<sup>8+</sup> | 创建排序对象，并设置提供的locale和其他相关属性。 |
 | ohos.intl | compare(first:&nbsp;string,&nbsp;second:&nbsp;string):&nbsp;number<sup>8+</sup> | 依据排序对象的Locale及其属性，计算两个字符串的比较结果。 |
 | ohos.intl | resolvedOptions():&nbsp;CollatorOptions<sup>8+</sup> | 获取排序对象的相关属性。 |
 
@@ -215,7 +215,7 @@
 | 模块 | 接口名称 | 描述 |
 | -------- | -------- | -------- |
 | ohos.intl | constructor()<sup>8+</sup> | 创建单复数对象。 |
-| ohos.intl | constructor(locale:&nbsp;string&nbsp;\|&nbsp;Array,&nbsp;options?:&nbsp;PluralRulesOptions)<sup>8+</sup> | 创建单复数对象，并设置提供的locale和其他相关属性。 |
+| ohos.intl | constructor(locale:&nbsp;string&nbsp;\|&nbsp;Array&lt;string&gt;,&nbsp;options?:&nbsp;PluralRulesOptions)<sup>8+</sup> | 创建单复数对象，并设置提供的locale和其他相关属性。 |
 | ohos.intl | select(n:&nbsp;number):&nbsp;string<sup>8+</sup> | 依据单复数对象的Locale及其他格式化属性，计算数字的单复数类别。 |
 
 
@@ -254,9 +254,9 @@
 | 模块 | 接口名称 | 描述 |
 | -------- | -------- | -------- |
 | ohos.intl | constructor()<sup>8+</sup> | 创建相对时间格式化对象。 |
-| ohos.intl | constructor(locale:&nbsp;string&nbsp;\|&nbsp;Array,&nbsp;options?:&nbsp;RelativeTimeFormatInputOptions)<sup>8+</sup> | 创建相对时间格式化对象，并设置提供的locale和格式化相关属性。 |
+| ohos.intl | constructor(locale:&nbsp;string&nbsp;\|&nbsp;Array&lt;string&gt;,&nbsp;options?:&nbsp;RelativeTimeFormatInputOptions)<sup>8+</sup> | 创建相对时间格式化对象，并设置提供的locale和格式化相关属性。 |
 | ohos.intl | format(value:&nbsp;number,&nbsp;unit:&nbsp;string):&nbsp;string<sup>8+</sup> | 依据相对时间格式化对象的Locale及其他格式化属性，计算相对时间的格式化表示。 |
-| ohos.intl | formatToParts(value:&nbsp;number,&nbsp;unit:&nbsp;string):&nbsp;Array<sup>8+</sup> | 依据相对时间格式化对象的Locale及其他格式化属性，返回相对时间格式化表示的各个部分。 |
+| ohos.intl | formatToParts(value:&nbsp;number,&nbsp;unit:&nbsp;string):&nbsp;Array&lt;object&gt;<sup>8+</sup> | 依据相对时间格式化对象的Locale及其他格式化属性，返回相对时间格式化表示的各个部分。 |
 | ohos.intl | resolvedOptions():&nbsp;RelativeTimeFormatResolvedOptions<sup>8+</sup> | 获取相对时间格式化对象的相关属性。 |
 
 
@@ -270,7 +270,7 @@
    var relativeTimeFormat = new intl.RelativeTimeFormat();
    ```
 
-     另一种方法是使用开发者提供的Locale和格式化参数来创建数字格式化对象。其中，格式化参数是可选的，完整的参数列表参见[ RelativeTimeFormatInputOptions](../reference/apis/js-apis-intl.md)。
+     另一种方法是使用开发者提供的Locale和格式化参数来创建相对时间格式化对象。其中，格式化参数是可选的，完整的参数列表参见[ RelativeTimeFormatInputOptions](../reference/apis/js-apis-intl.md)。
    
    ```
    var relativeTimeFormat = new intl.RelativeTimeFormat("zh-CN", {numeric: "always", style: "long"};
@@ -294,7 +294,7 @@
    var formatResult = relativeTimeFormat.formatToParts(number, unit);
    ```
 
-4. 相对时间格式化对象的相关属性
+4. 访问相对时间格式化对象的相关属性
      RelativeTimeFormat的resolvedOptions方法会返回一个对象，该对象包含了RelativeTimeFormat对象的所有相关属性及其值，完整的属性列表参见[ RelativeTimeFormatResolvedOptions](../reference/apis/js-apis-intl.md)。
      
    ```
