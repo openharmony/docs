@@ -573,15 +573,19 @@ off(method: string): void;
 
 (msg: string): void;
 
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
 | 名称 | 参数类型 | 可读 | 可写 | 说明 | 
 | -------- | -------- | -------- | -------- | -------- |
-| (msg: string) | function | 是 | 否 | 调用者注册的侦听器函数接口的原型。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore | 
+| (msg: string) | function | 是 | 否 | 调用者注册的侦听器函数接口的原型。 | 
  
 
  ## CaleeCallBack
 
 (indata: rpc.MessageParcel): rpc.Sequenceable;
 
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
 | 名称 | 参数类型 | 可读 | 可写 | 说明 | 
 | -------- | -------- | -------- | -------- | -------- |
-| (indata: rpc.MessageParcel) | rpc.Sequenceable | 是 | 否 | 被调用方注册的消息侦听器函数接口的原型。<br/>**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore | 
+| (indata: rpc.MessageParcel) | rpc.Sequenceable | 是 | 否 | 被调用方注册的消息侦听器函数接口的原型。 | 

@@ -24,7 +24,7 @@ import Want from '@ohos.application.Want';
 | abilityName  | 只读     | string               | 否   | 表示待启动的Ability名称。如果在Want中同时指定了BundleName和AbilityName，则Want可以直接匹配到指定的Ability。 |
 | uri          | 只读     | string               | 否   | 表示Uri描述。如果在Want中指定了Uri，则Want将匹配指定的Uri信息，包括scheme, schemeSpecificPart, authority和path信息。 |
 | type         | 只读     | string               | 否   | 表示MIME type类型描述，比如："text/plain" 、 "image/*"等。   |
-| flags        | 只读     | number               | 否   | 表示处理Want的方式。默认传数字，具体参考：[flags说明](#flags说明)。 |
+| flags        | 只读     | number               | 否   | 表示处理Want的方式。默认传数字，具体参考：[flags说明](js-apis-featureAbility.md#flags说明)。 |
 | action      | 只读     | string               | 否   | 表示action选项描述。                           |
 | parameters   | 只读     | {[key: string]: any} | 否   | 表示WantParams描述。                                       |
 | entities    | 只读     | Array\<string>       | 否   | 表示entities相关描述。                                    |                              |
