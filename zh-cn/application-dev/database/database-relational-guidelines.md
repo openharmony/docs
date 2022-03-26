@@ -26,54 +26,46 @@
 
 - **新增**
   
-
-  
   关系型数据库提供了插入数据的接口，通过ValuesBucket输入要存储的数据，通过返回值判断是否插入成功，插入成功时返回最新插入数据所在的行号，失败时则返回-1。
   
   **表2** 数据库插入API
   
   | 类名 | 接口名 | 描述 |
-| -------- | -------- | -------- |
+  | -------- | -------- | -------- |
   | RdbStore | insert(name:&nbsp;string,&nbsp;values:&nbsp;ValuesBucket,&nbsp;callback:&nbsp;AsyncCallback&lt;number&gt;):void | 向目标表中插入一行数据，结果以callback形式返回。<br/>-&nbsp;name：指定的目标表名。<br/>-&nbsp;values：表示要插入到表中的数据行。<br/>-&nbsp;callback：指定callback回调函数。如果操作成功，返回行ID；否则返回-1。 |
   | RdbStore | insert(name:&nbsp;string,&nbsp;values:&nbsp;ValuesBucket):&nbsp;Promise&lt;number&gt; | 向目标表中插入一行数据，结果以Promise形式返回。<br/>-&nbsp;name：指定的目标表名。<br/>-&nbsp;values：表示要插入到表中的数据行。 |
   
 - **更新**
-  
-
   
   调用更新接口，传入要更新的数据，并通过RdbPredicates指定更新条件。该接口的返回值表示更新操作影响的行数。如果更新失败，则返回0。
   
   **表3** 数据库更新API
   
   | 类名 | 接口名 | 描述 |
-| -------- | -------- | -------- |
+  | -------- | -------- | -------- |
   | RdbStore | update(values:&nbsp;ValuesBucket,&nbsp;rdbPredicates:&nbsp;RdbPredicates,&nbsp;callback:&nbsp;AsyncCallback&lt;number&gt;):void | 根据RdbPredicates的指定实例对象更新数据库中的数据，结果以callback形式返回。<br/>-&nbsp;values：以ValuesBucket存储的要更新的数据。<br/>-&nbsp;rdbPredicates：表示RdbPredicates的实例对象指定的更新条件。<br/>-&nbsp;callback：指定的callback回调方法。返回受影响的行数。 |
   | RdbStore | update(values:&nbsp;ValuesBucket,&nbsp;rdbPredicates:&nbsp;RdbPredicates):&nbsp;Promise | 根据RdbPredicates的指定实例对象更新数据库中的数据，结果以Promise形式返回。<br/>-&nbsp;values：以ValuesBucket存储的要更新的数据。<br/>-&nbsp;rdbPredicates：表示RdbPredicates的实例对象指定的更新条件。 |
   
-- **删除**
-  
-
+- **删除** 
   
   调用删除接口，通过RdbPredicates指定删除条件。该接口的返回值表示删除的数据行数，可根据此值判断是否删除成功。如果删除失败，则返回0。
   
   **表4** 数据库删除API
   
   | 类名 | 接口名 | 描述 |
-| -------- | -------- | -------- |
+  | -------- | -------- | -------- |
   | RdbStore | delete(rdbPredicates:&nbsp;RdbPredicates,&nbsp;callback:&nbsp;AsyncCallback&lt;number&gt;):void | 根据rdbPredicates的指定实例对象从数据库中删除数据，结果以callback形式返回。<br/>-&nbsp;rdbPredicates：RdbPredicates的实例对象指定的删除条件。<br/>-&nbsp;callback：指定callback回调函数。返回受影响的行数。 |
   | RdbStore | delete(rdbPredicates:&nbsp;RdbPredicates):&nbsp;Promise | 根据rdbPredicates的指定实例对象从数据库中删除数据，结果以Promise形式返回。<br/>-&nbsp;rdbPredicates：RdbPredicates的实例对象指定的删除条件。 |
   
-- **查询**
-  
+- **查询** 
 
-  
   关系型数据库提供了两种查询数据的方式：
 
   - 直接调用查询接口。使用该接口，会将包含查询条件的谓词自动拼接成完整的SQL语句进行查询操作，无需用户传入原生的SQL语句。
   - 执行原生的SQL语句进行查询操作。
-  
+
   **表5** 数据库查询API
-  
+
   | 类名 | 接口名 | 描述 |
   | -------- | -------- | -------- |
   | RdbStore | query(rdbPredicates:&nbsp;RdbPredicates,&nbsp;columns:&nbsp;Array,&nbsp;callback:&nbsp;AsyncCallback&lt;ResultSet&gt;):&nbsp;void | 根据指定条件查询数据库中的数据，结果以callback形式返回。<br/>-&nbsp;rdbPredicates：表示RdbPredicates的实例对象指定的查询条件。<br/>-&nbsp;columns：表示要查询的列。如果值为空，则查询应用于所有列。<br/>-&nbsp;callback：指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
