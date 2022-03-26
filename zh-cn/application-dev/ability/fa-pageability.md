@@ -29,7 +29,7 @@ Ability生命周期是Ability被调度到INACTIVE、ACTIVE、BACKGROUND等各个
 
 ![fa-pageAbility-lifecycle](figures/fa-pageAbility-lifecycle.png)
 
-PageAbility提供命周期回调，开发者可以在`app.js/app.ets`中重写生命周期相关回调函数 。
+PageAbility提供命周期回调，开发者可以在`app.js/app.ets`中重写生命周期相关回调函数 。目前`app.js`环境中仅支持onCreate和onDestroy回调，`app.ets`环境支持全量生命周期回调。
 
 ## 开发指导
 ### featureAbility接口说明

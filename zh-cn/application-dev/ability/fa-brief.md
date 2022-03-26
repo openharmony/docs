@@ -26,6 +26,8 @@ Ability框架在API 8及更早版本使用FA模型。FA模型中Ability分为Pag
 其他类型Ability的生命周期可参考PageAbility生命周期去除前后台切换以及`onShow`的部分进行理解。
 开发者可以在 `app.js/app.ets` 中重写生命周期函数，在对应的生命周期函数内处理应用相应逻辑。
 
+目前`app.js`环境中仅支持onCreate和onDestroy回调，`app.ets`环境支持全量生命周期回调。
+
 
 ## 进程线程模型
 应用独享独立进程，Ability独享独立线程，应用进程在Ability第一次启动时创建，并为启动的Ability创建线程，应用启动后再启动应用内其他Ability，会为每一个Ability创建相应的线程。每个Ability绑定一个独立的JSRuntime实例，因此Ability之间是隔离的。
