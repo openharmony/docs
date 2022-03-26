@@ -127,7 +127,7 @@ repo forall -c 'git lfs pull'
 
 ## 更新说明<a name="section175225345334"></a>
 
-本版本完全继承了OpenHarmony v1.1.2 LTS的所有特性，并在OpenHarmony v1.1.2 LTS版本的基础上，新增了轻量设备可以在windows环境下的编译版本的特性（请参考[windows开发环境准备](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/quick-start/quickstart-lite-env-setup-windows.md)）。
+本版本完全继承了OpenHarmony v1.1.2 LTS的所有特性，并在OpenHarmony v1.1.2 LTS版本的基础上，新增了轻量设备可以在windows环境下的编译版本的特性（请参考[windows开发环境准备](https://device.harmonyos.com/cn/docs/documentation/guide/ide-install-windows-0000001050164976)）。
 
 **表 3**  特性更新说明
 
