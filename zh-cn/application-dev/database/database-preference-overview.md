@@ -10,7 +10,7 @@
 
 - **非关系型数据库**
 
-  区别于关系数据库，不保证遵循ACID（Atomic、Consistency、Isolation及Durability）特性，不采用关系模型来组织数据，数据之间无关系。
+  区别于关系数据库，不保证遵循ACID（Atomicity, Consistency, Isolation and Durability）特性，不采用关系模型来组织数据，数据之间无关系。
 
 ## 运作机制
 
