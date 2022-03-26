@@ -191,11 +191,6 @@ repo forall -c 'git lfs pull'
 <td class="cellrowborder" valign="top" width="86.41%"><p id="p10661920202920"><a name="p10661920202920"></a><a name="p10661920202920"></a>OsMountRootfs启动失败</p>
 </td>
 </tr>
-<tr id="row234311215276"><td class="cellrowborder" valign="top" width="13.59%"><p id="p15191121102819"><a name="p15191121102819"></a><a name="p15191121102819"></a><a href="https://gitee.com/openharmony/third_party_curl/issues/I44ZXW?from=project-issue" target="_blank" rel="noopener noreferrer">I44ZXW</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="86.41%"><p id="p196616205294"><a name="p196616205294"></a><a name="p196616205294"></a>openharmony_1.0.1_release分支上的curl组件从7.69.1版本更新到7.78.0版本</p>
-</td>
-</tr>
 <tr id="row334482119275"><td class="cellrowborder" valign="top" width="13.59%"><p id="p319271112813"><a name="p319271112813"></a><a name="p319271112813"></a><a href="https://gitee.com/openharmony/kernel_liteos_m/issues/I48FKQ?from=project-issue" target="_blank" rel="noopener noreferrer">I48FKQ</a></p>
 </td>
 <td class="cellrowborder" valign="top" width="86.41%"><p id="p2662122011293"><a name="p2662122011293"></a><a name="p2662122011293"></a>osEventFlagsGet传NULL时应该返回0</p>
