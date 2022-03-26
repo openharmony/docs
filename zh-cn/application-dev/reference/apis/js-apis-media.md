@@ -238,8 +238,6 @@ Codec MIME类型枚举。
 | AUDIO_AAC    | "audio/mp4a-latm"     | 表示音频/mp4a-latm类型。 |
 | AUDIO_VORBIS | 'audio/vorbis'        | 表示音频/vorbis类型。    |
 | AUDIO_FLAC   | 'audio/flac'          | 表示音频/flac类型。      |
-| AUDIO_AMR_NB | 'audio/3gpp'          | 表示音频/amr_nb类型。    |
-| AUDIO_AMR_WB | 'audio/amr-wb'        | 表示音频/amr_wb类型。    |
 
 ## MediaDescriptionKey<sup>8+</sup>
 
@@ -1809,7 +1807,10 @@ audioRecorder.prepare();                                                  // pre
 | audioEncoderMime      | [CodecMimeType](#codecmimetype8)        | 否   | 音频编码格式。                                               |
 
 
-## AudioEncoder
+## AudioEncoder<sup>(deprecated)</sup>
+
+> **说明：**
+> 从 API Version 8 开始废弃，建议使用[CodecMimeType](#codecmimetype8)替代。
 
 表示音频编码格式的枚举。
 
@@ -1824,7 +1825,10 @@ audioRecorder.prepare();                                                  // pre
 | HE_AAC  | 4      | HE_AAC（High-Efficiency Advanced&nbsp;Audio&nbsp;Coding）编码格式。<br/>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
 
 
-## AudioOutputFormat
+## AudioOutputFormat<sup>(deprecated)</sup>
+
+> **说明：**
+> 从 API Version 8 开始废弃，建议使用[ContainerFormatType ](#containerformattype8)替代。
 
 表示音频封装格式的枚举。
 
@@ -1858,7 +1862,7 @@ prepare(config: VideoRecorderConfig, callback: AsyncCallback\<void>): void;
 
 异步方式进行视频录制的参数设置。通过注册回调函数获取返回值。
 
-**需要权限：** ohos.permission.MICROPHONE，ohos.permission.CAMERA
+**需要权限：** ohos.permission.MICROPHONE
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
