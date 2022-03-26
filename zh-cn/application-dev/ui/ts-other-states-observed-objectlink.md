@@ -3,9 +3,9 @@
 本章将引入两个新的装饰符@Observed和@ObjectLink：
 
 
-- **@Observed**应用于类，表示该类中的数据变更被UI页面管理，例如：@Observed class ClassA {}。
+- @Observed应用于类，表示该类中的数据变更被UI页面管理，例如：@Observed class ClassA {}。
 
-- **@ObjectLink**应用于被@Observed所装饰类的对象，例如：@ObjectLink a: ClassA。
+- @ObjectLink应用于被@Observed所装饰类的对象，例如：@ObjectLink a: ClassA。
 
 
 ## 引入动机

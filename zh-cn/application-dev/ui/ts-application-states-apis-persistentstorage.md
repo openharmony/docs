@@ -1,6 +1,6 @@
 # 持久化数据管理
 
-方舟开发框架通过**PersistentStorage**类提供了一些静态方法用来管理应用持久化数据，可以将特定标记的持久化数据链接到AppStorage中，并由AppStorage接口访问对应持久化数据，或者通过@StorageLink装饰器来访问对应key的变量。
+方舟开发框架通过PersistentStorage类提供了一些静态方法用来管理应用持久化数据，可以将特定标记的持久化数据链接到AppStorage中，并由AppStorage接口访问对应持久化数据，或者通过@StorageLink装饰器来访问对应key的变量。
 
 
 | 方法 | 参数说明 | 返回值 | 定义 | 

@@ -1,16 +1,6 @@
 # 定时器
 
 
-## 导入模块
-
-无需导入。
-
-
-## 权限列表
-
-无
-
-
 ## setTimeout
 
 setTimeout(handler[,delay[,…args]]): number

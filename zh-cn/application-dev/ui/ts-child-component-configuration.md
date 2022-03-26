@@ -1,10 +1,10 @@
 # 子组件配置
 
 
-对于支持子组件配置的组件，例如容器组件，在**“{ ... }”**里为组件添加子组件的UI描述。**Column**、**Row**、**Stack**、**Button**、**Grid**和**List**组件都是容器组件。
+对于支持子组件配置的组件，例如容器组件，在“{ ... }”里为组件添加子组件的UI描述。Column、Row、Stack、Button、Grid和List组件都是容器组件。
 
 
-- 以下是简单的**Column**示例：
+- 以下是简单的Column示例：
   ```
   Column() {
       Text('Hello')

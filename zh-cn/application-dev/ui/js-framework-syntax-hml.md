@@ -184,7 +184,7 @@ Touch触摸类事件支持捕获，捕获阶段位于冒泡阶段之前，捕获
       <!-- 绑定事件回调函数，但阻止事件向下传递。5+ -->
       <div grab:touchstart.capture="touchstartfunc"></div>
   </div>
-```
+  ```
   
   ```
   // xxx.js
@@ -215,6 +215,7 @@ Touch触摸类事件支持捕获，捕获阶段位于冒泡阶段之前，捕获
     <text>{{index}}.{{value.name}}</text>
   </div>
 </div>
+
 ```
 
 ```

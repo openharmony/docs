@@ -82,5 +82,4 @@ export default {
 
 运行效果如下图所示：
 
-**图1** 页面路由效果
 ![zh-cn_image_0000001070707559](figures/zh-cn_image_0000001070707559.png)
