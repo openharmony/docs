@@ -27,7 +27,8 @@ Data提供方可以自定义数据的增、删、改、查，以及文件打开�
 ## 开发步骤
 ### 创建Data
 
-1. 需要实现Data中Insert、Query、Update、Delete接口的业务内容。保证能够满足数据库存储业务的基本需求。BatchInsert与ExecuteBatch接口已经在系统中实现遍历逻辑，依赖Insert、Query、Update、Delete接口逻辑,来实现数据的批量处理。
+1. 需要实现Data中Insert、Query、Update、Delete接口的业务内容。保证能够满足数据库存储业务的基本需求。BatchInsert与ExecuteBatch接口已经在系统中实现遍历逻辑，依赖Insert、Query、Update、Delete接口逻辑，来实现数据的批量处理。
+
     创建Data的代码示例如下：
 
    ```javascript
@@ -111,7 +112,10 @@ Data提供方可以自定义数据的增、删、改、查，以及文件打开�
 
 #### DataAbility接口开发指导
 
+
 1. 创建工具接口类对象。
+
+   工具接口类对象DataAbilityHelper相关接口可参考[DataAbilityHelper模块](../reference/apis/js-apis-dataAbilityHelper.md)。
    ```js
    // 作为参数传递的Uri,与config中定义的Uri的区别是多了一个"/",是因为作为参数传递的uri中,在第二个与第三个"/"中间,存在一个DeviceID的参数
    var urivar = "dataability:///com.ix.DataAbility"
