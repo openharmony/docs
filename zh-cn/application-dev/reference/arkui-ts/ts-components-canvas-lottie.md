@@ -371,7 +371,7 @@ setDirection(direction: AnimationDirection): void
 
 ## AnimationItem.goToAndStop
 
-goToAndStop(value: number, isFrame: boolean): void
+goToAndStop(value: number, isFrame?: boolean): void
 
 设置动画停止在指定帧或时间进度。
 
@@ -393,7 +393,7 @@ goToAndStop(value: number, isFrame: boolean): void
 
 ## AnimationItem.goToAndPlay
 
-goToAndPlay(value: number, isFrame: boolean): void
+goToAndPlay(value: number, isFrame: boolean, name?: string): void
 
 设置动画从指定帧或时间进度开始播放。
 

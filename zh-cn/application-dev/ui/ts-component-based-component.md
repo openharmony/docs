@@ -12,7 +12,7 @@
 - 数据驱动更新：由状态变量的数据驱动，实现UI自动更新。
 
 
-对组件化的深入描述，请参考[深入理解组件化](ts-a-deep-dive-into-component.md)。
+对组件化的深入描述，请参考深入理解组件化。
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**

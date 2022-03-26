@@ -36,9 +36,9 @@ ImageAnimator()
 | iterations | number | 1 | 否 | 默认播放一次，设置为-1时表示无限次播放。 | 
 
 - AnimationStatus枚举说明
-  | **名称** | **描述** | 
+  | 名称 | 描述 | 
   | -------- | -------- |
-  | Initial | 动画初始状态**。** | 
+  | Initial | 动画初始状态。 | 
   | Running | 动画处于播放状态。 | 
   | Paused | 动画处于暂停状态。 | 
   | Stopped | 动画处于停止状态。 | 

@@ -257,17 +257,40 @@ export default {
     ],
     lineOps: {
      //x轴参数设置
-      xAxis: {        min: 0,        max: 20,        display: false,      },
+      xAxis: {
+        min: 0,
+        max: 20,
+        display: false,
+      },
      //y轴参数设置
-      yAxis: {        min: 0,        max: 1000,        display: false,      },
+      yAxis: {
+        min: 0,
+        max: 1000,
+        display: false,
+      },
      //数据序列参数设置
       series: {
         //线样式设置
-        lineStyle: {          width: "5px",          smooth: true,        },
+        lineStyle: {
+          width: "5px",
+          smooth: true,
+        },
         //线最前端位置白点的样式和大小
-        headPoint: {          shape: "circle",          size: 20,          strokeWidth: 5,          fillColor: '#ffffff',          strokeColor: '#007aff',          display: true,        },
+        headPoint: {
+          shape: "circle",
+          size: 20,
+          strokeWidth: 5,
+          fillColor: '#ffffff',
+          strokeColor: '#007aff',
+          display: true,
+        },
         //设置屏幕显示满时，是否需要重头开始绘制
-        loop: {          margin: 2,          gradient: true        }      }    },
+        loop: {
+          margin: 2,
+          gradient: true
+        }
+      }
+    },
   },
 }
 ```

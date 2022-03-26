@@ -22,7 +22,7 @@
 
 ## 样式
 
-除支持[组件通用样式](../arkui-js/js-components-common-styles.md)外，还支持如下样式：
+除支持组件[通用样式](../arkui-js/js-components-common-styles.md)外，还支持如下样式：
 
 | 名称 | 类型 | 默认值 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -59,7 +59,7 @@
 
 ## 方法
 
-除支持[通用方法](../reference/arkui-js/js-components-common-methods.md)外，还支持如下方法：
+除支持[通用方法](js-components-common-methods.md)外，还支持如下方法：
 
 | 名称 | 参数 | 返回值 | 描述 |
 | -------- | -------- | -------- | -------- |
