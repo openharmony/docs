@@ -127,7 +127,7 @@ repo forall -c 'git lfs pull'
 
 ## 更新说明<a name="section175225345334"></a>
 
-本版本完全继承了OpenHarmony v1.1.2 LTS的所有特性，并在OpenHarmony v1.1.2 LTS版本的基础上，新增了轻量设备可以在windows环境下的编译版本的特性（请参考[windows开发环境准备](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/quick-start/quickstart-lite-env-setup-windows.md)）。
+本版本完全继承了OpenHarmony v1.1.2 LTS的所有特性，并在OpenHarmony v1.1.2 LTS版本的基础上，新增了轻量设备可以在windows环境下的编译版本的特性（请参考[windows开发环境准备](https://device.harmonyos.com/cn/docs/documentation/guide/ide-install-windows-0000001050164976)）。
 
 **表 3**  特性更新说明
 
@@ -189,11 +189,6 @@ repo forall -c 'git lfs pull'
 <tr id="row73421521112712"><td class="cellrowborder" valign="top" width="13.59%"><p id="p819116112288"><a name="p819116112288"></a><a name="p819116112288"></a><a href="https://gitee.com/openharmony/kernel_liteos_a/issues/I43WLG?from=project-issue" target="_blank" rel="noopener noreferrer">I43WLG</a></p>
 </td>
 <td class="cellrowborder" valign="top" width="86.41%"><p id="p10661920202920"><a name="p10661920202920"></a><a name="p10661920202920"></a>OsMountRootfs启动失败</p>
-</td>
-</tr>
-<tr id="row234311215276"><td class="cellrowborder" valign="top" width="13.59%"><p id="p15191121102819"><a name="p15191121102819"></a><a name="p15191121102819"></a><a href="https://gitee.com/openharmony/third_party_curl/issues/I44ZXW?from=project-issue" target="_blank" rel="noopener noreferrer">I44ZXW</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="86.41%"><p id="p196616205294"><a name="p196616205294"></a><a name="p196616205294"></a>openharmony_1.0.1_release分支上的curl组件从7.69.1版本更新到7.78.0版本</p>
 </td>
 </tr>
 <tr id="row334482119275"><td class="cellrowborder" valign="top" width="13.59%"><p id="p319271112813"><a name="p319271112813"></a><a name="p319271112813"></a><a href="https://gitee.com/openharmony/kernel_liteos_m/issues/I48FKQ?from=project-issue" target="_blank" rel="noopener noreferrer">I48FKQ</a></p>

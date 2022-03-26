@@ -322,7 +322,7 @@ API变更请参考：
 <td class="cellrowborder" valign="top" width="86.85000000000001%" headers="mcps1.2.3.1.2 "><p id="p8128184191914"><a name="p8128184191914"></a><a name="p8128184191914"></a>【媒体子系统】cameraActs 用例执行时，找不到相机配置文件，初始失败</p>
 </td>
 </tr>
-<tr id="row851624131915"><td class="cellrowborder" valign="top" width="13.15%" headers="mcps1.2.3.1.1 "><p id="p1412814111917"><a name="p1412814111917"></a><a name="p1412814111917"></a><a href="https://gitee.com/openharmony/community/issues/I3EGUX" target="_blank" rel="noopener noreferrer">I3EGUX</a></p>
+<tr id="row851624131915"><td class="cellrowborder" valign="top" width="13.15%" headers="mcps1.2.3.1.1 "><p id="p1412814111917"><a name="p1412814111917"></a><a name="p1412814111917"></a><a href="https://gitee.com/openharmony/release-management/issues/I3EGUX" target="_blank" rel="noopener noreferrer">I3EGUX</a></p>
 </td>
 <td class="cellrowborder" valign="top" width="86.85000000000001%" headers="mcps1.2.3.1.2 "><p id="p161282419194"><a name="p161282419194"></a><a name="p161282419194"></a>【可靠性问题】反复reset，出现一次KIdle进程crash，系统挂死无法启动</p>
 </td>
@@ -332,7 +332,7 @@ API变更请参考：
 <td class="cellrowborder" valign="top" width="86.85000000000001%" headers="mcps1.2.3.1.2 "><p id="p2128841121919"><a name="p2128841121919"></a><a name="p2128841121919"></a>【流水线问题】高概率出现：uname无响应，然后执行reset也无响应</p>
 </td>
 </tr>
-<tr id="row051182419198"><td class="cellrowborder" valign="top" width="13.15%" headers="mcps1.2.3.1.1 "><p id="p20128204114190"><a name="p20128204114190"></a><a name="p20128204114190"></a><a href="https://gitee.com/openharmony/community/issues/I3EQJA" target="_blank" rel="noopener noreferrer">I3EQJA</a></p>
+<tr id="row051182419198"><td class="cellrowborder" valign="top" width="13.15%" headers="mcps1.2.3.1.1 "><p id="p20128204114190"><a name="p20128204114190"></a><a name="p20128204114190"></a><a href="https://gitee.com/openharmony/kernel_liteos_a/issues/I3EQJA" target="_blank" rel="noopener noreferrer">I3EQJA</a></p>
 </td>
 <td class="cellrowborder" valign="top" width="86.85000000000001%" headers="mcps1.2.3.1.2 "><p id="p1112813418191"><a name="p1112813418191"></a><a name="p1112813418191"></a>【文件系统】cat /proc/mounts功能不可用</p>
 </td>
