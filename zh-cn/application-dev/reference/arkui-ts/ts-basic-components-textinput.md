@@ -25,7 +25,7 @@ TextInput(value?:{placeholder?: string controller?: TextInputController})
   | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
   | -------- | -------- | -------- | -------- | -------- |
   | placeholder | string | 否 | - | 无输入时的提示文本。 |
-  | controller<sup>8+</sup> | [TextInputController](#textinputcontrollersup8sup) | 否 | - | 设置TextInput控制器。 |
+  | controller<sup>8+</sup> | [TextInputController](#textinputcontroller8) | 否 | - | 设置TextInput控制器。 |
 
 
 ## 属性
@@ -60,26 +60,6 @@ TextInput(value?:{placeholder?: string controller?: TextInputController})
   | InputType.Number | 纯数字输入模式。 | 
 
 
-### TextInputController<sup>8+</sup>
-
-TextInput组件的控制器。
-
-#### 导入对象
-```
-controller: TextInputController = new TextInputController()
-```
-#### controller.caretPosition
-
-caretPosition(value:&nbsp;number): void
-
-设置光标移动到指定位置。
-- 参数
-
-  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
-  | -------- | -------- |-------- |-------- |-------- |
-  | value | number |是 | - |设置输入光标的位置。<br/>value：从字符串开始到光标所在位置的字符长度。 |
-
-
 ## 事件
 
 | 名称 | 功能描述 | 
@@ -91,6 +71,25 @@ caretPosition(value:&nbsp;number): void
 | onCopy<sup>8+</sup>(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 长按输入框内部区域弹出剪贴板后，点击剪切板复制按钮，触发回调。<br/>value：复制的文本内容。 | 
 | onCut<sup>8+</sup>(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 长按输入框内部区域弹出剪贴板后，点击剪切板剪切按钮，触发回调。<br/>value：剪切的文本内容。 | 
 | onPaste<sup>8+</sup>(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 长按输入框内部区域弹出剪贴板后，点击剪切板粘贴按钮，触发回调。<br/>value：粘贴的文本内容。 | 
+
+### TextInputController<sup>8+</sup>
+
+TextInput组件的控制器。
+
+#### 导入对象
+```
+controller: TextInputController = new TextInputController()
+```
+#### caretPosition
+
+caretPosition(value:&nbsp;number): void
+
+设置光标移动到指定位置。
+- 参数
+
+  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
+  | -------- | -------- |-------- |-------- |-------- |
+  | value | number |是 | - |设置输入光标的位置。<br/>value：从字符串开始到光标所在位置的字符长度。 |
 
 
 ## 示例
