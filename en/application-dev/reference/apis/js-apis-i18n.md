@@ -67,7 +67,7 @@ Obtains the localized script for the specified country.
   ```
 
 
-## i18n.isRTL<sup>8+</sup>
+## i18n.isRTL<sup>7+</sup>
 
 isRTL(locale: string): boolean
 
@@ -1258,7 +1258,7 @@ Checks whether the position specified by the offset is a text boundary. If **tru
   ```
 
 
-## i18n.is24HourClock<sup>8+</sup>
+## i18n.is24HourClock<sup>7+</sup>
 
 is24HourClock(): boolean
 
@@ -1277,7 +1277,7 @@ Checks whether the 24-hour clock is used.
   ```
 
 
-## i18n.set24HourClock<sup>8+</sup>
+## i18n.set24HourClock<sup>7+</sup>
 
 set24HourClock(option: boolean): boolean
 
@@ -1394,7 +1394,7 @@ Obtains the first language in the preferred language list.
   ```
 
 
-## i18n.getTimeZone<sup>8+</sup>
+## i18n.getTimeZone<sup>7+</sup>
 
 getTimeZone(zoneID?: string): TimeZone
 
