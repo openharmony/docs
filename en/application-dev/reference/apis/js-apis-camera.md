@@ -1949,7 +1949,7 @@ Listens for **CaptureSession** errors. This method uses a callback to get errors
 
 | Name     | Type                   | Mandatory | Description                                     |
 | :------- | :--------------------- | :-------- | :-----------------------------------------------|
-| type     | string                 | Yes       | Name of the event to listen for. It should be 'error', which is the CaptureSessionError event.                    |
+| type     | string                 | Yes       | Capture session error event.                    |
 | callback | Callback<CaptureSessionError\> | Yes  | Callback used to get the capture session errors. |
 
 **Example**
