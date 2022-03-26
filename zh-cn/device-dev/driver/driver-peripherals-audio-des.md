@@ -763,7 +763,7 @@ int32_t Tfa9879DaiHwParams(const struct AudioCard *card, const struct AudioPcmHw
     (void)card;
 	...
 	// 匹配采样率
-    ret = AcessoryDeviceFrequencyParse(param->rate, &frequency);
+    ret = AccessoryDeviceFrequencyParse(param->rate, &frequency);
 	...
 	// 匹配位宽
     ret = Tfa9879FormatParse(param->format, &bitWidth);
