@@ -477,7 +477,7 @@ enterpriseDeviceManager.setEnterpriseInfo(wantTemp, enterpriseInfo)
 
 setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo): Promise&lt;boolean&gt;
 
-设置设备管理员应用的企业信息，使用callback形式返回是否设置成功。
+设置设备管理员应用的企业信息，使用Promise形式返回是否设置成功。
 
 **系统能力：**
 SystemCapability.Customation.EnterpriseDeviceManager
@@ -487,7 +487,7 @@ SystemCapability.Customation.EnterpriseDeviceManager
 | 参数名         | 类型                                           | 必填 | 说明                     |
 | -------------- | ---------------------------------------------- | ---- | ------------------------ |
 | admin          | [Want](js-apis-featureAbility.md#Want类型说明) | 是   | 设备管理员应用           |
-| enterpriseInfo | [EnterpriseInfo](#EnterpriseInfo)              | 是   | 设备管理员应用的厂商信息 |
+| enterpriseInfo | [EnterpriseInfo](#EnterpriseInfo)              | 是   | 设备管理员应用的企业信息 |
 
 **返回值：**
 
