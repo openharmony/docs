@@ -130,7 +130,7 @@ PageAbility提供命周期回调，开发者可以在`app.js/app.ets`中重写�
 ```ts
   function onStartRemoteAbility() {
   console.info('onStartRemoteAbility begin');
-  var params;
+  let params;
   var wantValue = {
     bundleName: 'ohos.samples.etsDemo',
     abilityName: 'ohos.samples.etsDemo.RemoteAbility',
@@ -150,7 +150,7 @@ PageAbility提供命周期回调，开发者可以在`app.js/app.ets`中重写�
 从DeviceManager获取`deviceId`，具体示例代码如下：
 ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
-  var dmClass;
+  let dmClass;
   function getRemoteDeviceId() {
     if (typeof dmClass === 'object' && dmClass != null) {
         var list = dmClass.getTrustedDeviceListSync();
@@ -168,7 +168,7 @@ PageAbility提供命周期回调，开发者可以在`app.js/app.ets`中重写�
 
 在跨设备场景下，需要向开发者申请数据同步的权限。具体示例代码如下：
 ```ts
-  import accessControl from "@ohos.abilityAccessCtrl";
+  import abilityAccessCtrl from "@ohos.abilityAccessCtrl";
   import bundle from '@ohos.bundle';
   async function RequestPermission() {
   console.info('RequestPermission begin');
