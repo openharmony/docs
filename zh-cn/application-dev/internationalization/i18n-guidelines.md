@@ -89,15 +89,15 @@
 | 模块 | 接口名称 | 描述 |
 | -------- | -------- | -------- |
 | ohos.i18n | getCalendar(locale:&nbsp;string,&nbsp;type?:&nbsp;string):&nbsp;Calendar<sup>8+</sup> | 获取指定locale和type的日历对象。 |
-| ohos.i18n | setTime(date:&nbsp;Date)<sup>8+</sup> | 设置日历对象内部的时间日期。 |
-| ohos.i18n | setTime(time:&nbsp;number)<sup>8+</sup> | 设置日历对象内部的时间日期。 |
-| ohos.i18n | set(year:&nbsp;number,&nbsp;month:&nbsp;number,&nbsp;date:&nbsp;number,&nbsp;hour?:&nbsp;number,&nbsp;minute?:&nbsp;number,&nbsp;second?:&nbsp;number)<sup>8+</sup> | 设置日历对象的年、月、日、时、分、秒。 |
-| ohos.i18n | setTimeZone(timezone:&nbsp;string)<sup>8+</sup> | 设置日历对象的时区。 |
+| ohos.i18n | setTime(date:&nbsp;Date): void<sup>8+</sup> | 设置日历对象内部的时间日期。 |
+| ohos.i18n | setTime(time:&nbsp;number): void<sup>8+</sup> | 设置日历对象内部的时间日期。 |
+| ohos.i18n | set(year:&nbsp;number,&nbsp;month:&nbsp;number,&nbsp;date:&nbsp;number,&nbsp;hour?:&nbsp;number,&nbsp;minute?:&nbsp;number,&nbsp;second?:&nbsp;number): void<sup>8+</sup> | 设置日历对象的年、月、日、时、分、秒。 |
+| ohos.i18n | setTimeZone(timezone:&nbsp;string): void<sup>8+</sup> | 设置日历对象的时区。 |
 | ohos.i18n | getTimeZone():&nbsp;string<sup>8+</sup> | 获取日历对象的时区。 |
 | ohos.i18n | getFirstDayOfWeek():&nbsp;number<sup>8+</sup> | 获取日历对象的一周起始日。 |
-| ohos.i18n | setFirstDayOfWeek(value:&nbsp;number)<sup>8+</sup> | 设置日历对象的一周起始日。 |
+| ohos.i18n | setFirstDayOfWeek(value:&nbsp;number): void<sup>8+</sup> | 设置日历对象的一周起始日。 |
 | ohos.i18n | getMinimalDaysInFirstWeek():&nbsp;number<sup>8+</sup> | 获取一年中第一周的最小天数。 |
-| ohos.i18n | setMinimalDaysInFirstWeek(value:&nbsp;number)<sup>8+</sup> | 设置一年中第一周的最小天数。 |
+| ohos.i18n | setMinimalDaysInFirstWeek(value:&nbsp;number): void<sup>8+</sup> | 设置一年中第一周的最小天数。 |
 | ohos.i18n | getDisplayName(locale:&nbsp;string):&nbsp;string<sup>8+</sup> | 获取日历对象的本地化表示。 |
 | ohos.i18n | isWeekend(date?:&nbsp;Date):&nbsp;boolean<sup>8+</sup> | 判断给定的日期是否在日历中是周末。 |
 
