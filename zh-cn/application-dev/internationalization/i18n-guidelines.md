@@ -251,7 +251,7 @@
 | -------- | -------- | -------- |
 | ohos.i18n | getInstance(locale?:&nbsp;string):&nbsp;IndexUtil<sup>8+</sup> | 实例化字母表索引对象。 |
 | ohos.i18n | getIndexList():&nbsp;Array&lt;string&gt;<sup>8+</sup> | 获取当前Locale的索引列表。 |
-| ohos.i18n | addLocale(locale:&nbsp;string)<sup>8+</sup> | 将新的Locale对应的索引加入当前索引列表。 |
+| ohos.i18n | addLocale(locale:&nbsp;string): void<sup>8+</sup> | 将新的Locale对应的索引加入当前索引列表。 |
 | ohos.i18n | getIndex(text:&nbsp;string):&nbsp;string<sup>8+</sup> | 获取text对应的索引。 |
 
 
@@ -298,7 +298,7 @@
 | 模块 | 接口名称 | 描述 |
 | -------- | -------- | -------- |
 | ohos.i18n | getLineInstance(locale:&nbsp;string):&nbsp;BreakIterator<sup>8+</sup> | 实例化断行对象。 |
-| ohos.i18n | setLineBreakText(text:&nbsp;string)<sup>8+</sup> | 设置要处理的文本。 |
+| ohos.i18n | setLineBreakText(text:&nbsp;string): void<sup>8+</sup> | 设置要处理的文本。 |
 | ohos.i18n | getLineBreakText():&nbsp;string<sup>8+</sup> | 获取要处理的文本。 |
 | ohos.i18n | current():&nbsp;number<sup>8+</sup> | 获取当前断行对象在处理文本的位置。 |
 | ohos.i18n | first():&nbsp;number<sup>8+</sup> | 将断行对象设置到第一个可断句的分割点。 |
