@@ -51,6 +51,7 @@
             - [Qrcode开发指导](ui-js-components-qrcode.md)
             - [Search开发指导](ui-js-components-search.md)
         - Canvas开发指导
+            - [Canvas对象](ui-js-components-canvas.md)
             - [CanvasRenderingContext2D对象](ui-js-components-canvasrenderingcontext2d.md)
             - [Path2D对象](ui-js-components-path2d.md)
             - [OffscreenCanvas对象](ui-js-components-offscreencanvas.md)
