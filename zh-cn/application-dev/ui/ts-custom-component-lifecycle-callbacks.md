@@ -7,8 +7,8 @@
 
 | 函数名 | 描述 |
 | -------- | -------- |
-| aboutToAppear | 函数在创建自定义组件的新实例后，在执行其**build**函数之前执行。允许在**aboutToAppear**函数中改变状态变量，更改将在后续执行build函数中生效。 |
-| aboutToDisappear | 函数在自定义组件析构消耗之前执行。不允许在**aboutToDisappear**函数中改变状态变量，特别是**@Link**变量的修改可能会导致应用程序行为不稳定。 |
+| aboutToAppear | 函数在创建自定义组件的新实例后，在执行其build函数之前执行。允许在aboutToAppear函数中改变状态变量，更改将在后续执行build函数中生效。 |
+| aboutToDisappear | 函数在自定义组件析构消耗之前执行。不允许在aboutToDisappear函数中改变状态变量，特别是@Link变量的修改可能会导致应用程序行为不稳定。 |
 | onPageShow | 页面显示时触发一次，包括路由过程、应用进入前后台等场景，仅@Entry修饰的自定义组件生效。 |
 | onPageHide | 页面消失时触发一次，包括路由过程、应用进入前后台等场景，仅@Entry修饰的自定义组件生效。 |
 | onBackPress | 当用户点击返回按钮时触发，仅\@Entry修饰的自定义组件生效。<br/>-&nbsp;返回true表示页面自己处理返回逻辑,&nbsp;不进行页面路由。<br/>-&nbsp;返回false表示使用默认的返回逻辑。<br/>-&nbsp;不返回值会作为false处理。 |
@@ -49,6 +49,6 @@ struct CountDownTimerComponent {
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> - 允许在生命周期函数中使用**Promise**和异步回调函数，比如网络资源获取，定时器设置等；
+> - 允许在生命周期函数中使用Promise和异步回调函数，比如网络资源获取，定时器设置等；
 > 
-> - 不允许在生命周期函数中使用**async await**。
+> - 不允许在生命周期函数中使用async await。
