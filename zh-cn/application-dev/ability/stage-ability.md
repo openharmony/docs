@@ -11,7 +11,7 @@ Stage模型是基于API version 9的应用开发模型，对此模型的介绍�
 - 应用迁移，详见[应用迁移开发指导](stage-ability-continuation.md)。
 
 ## 接口说明
-AbilityStage功能如下（AbilityStage类，拥有context属性，具体的API详见[接口文档](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-application-abilitystage.md)）：
+AbilityStage功能如下（AbilityStage类，拥有context属性，具体的API详见[接口文档](../reference/apis/js-apis-application-abilitystage.md)）：
 
 **表1** AbilityStage API接口功能介绍
 |接口名|描述|
@@ -20,7 +20,7 @@ AbilityStage功能如下（AbilityStage类，拥有context属性，具体的API�
 |string onAcceptWant(want: Want)|启动指定Ability时被调用。|
 |void onConfigurationUpdated(config: Configuration)|全局配置发生变更时被调用。|
 
-Ability功能如下（bility类，具体的API详见[接口文档](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-application-ability.md)）：
+Ability功能如下（Ability类，具体的API详见[接口文档](../reference/apis/js-apis-application-ability.md)）：
 
 **表2** Ability API接口功能介绍
 |接口名|描述|
@@ -34,7 +34,7 @@ Ability功能如下（bility类，具体的API详见[接口文档](https://gitee
 |void onNewWant(want: Want)|Ability回调，Ability的启动模式设置为单例时被调用。|
 |void onConfigurationUpdated(config: Configuration)|Ability回调，Ability的系统配置更新时被调用。|
 
-Ability类拥有context属性，context属性为AbilityContext类，AbilityContext类拥有abilityInfo、currentHapModuleInfo等属性，具体的API详见[接口文档](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-ability-context.md)。
+Ability类拥有context属性，context属性为AbilityContext类，AbilityContext类拥有abilityInfo、currentHapModuleInfo等属性，具体的API详见[接口文档](../reference/apis/js-apis-ability-context.md)。
 
 **表3** AbilityContext API接口功能介绍
 |接口名|描述|
@@ -70,36 +70,36 @@ Ability类拥有context属性，context属性为AbilityContext类，AbilityConte
    import Ability from '@ohos.application.Ability'
    ```
 4. 实现Ability生命周期接口。
-   
-   在`onWindowStageCreate(windowStage)`中通过loadContent接口设置应用要加载的页面，window接口的使用详见[窗口开发指导](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/windowmanager/window-guidelines.md/)。
+
+   在`onWindowStageCreate(windowStage)`中通过loadContent接口设置应用要加载的页面，window接口的使用详见[窗口开发指导](../windowmanager/window-guidelines.md)。
    ```ts
    export default class MainAbility extends Ability {
     onCreate(want, launchParam) {
         console.log("MainAbility onCreate")
     }
-   
+
     onDestroy() {
         console.log("MainAbility onDestroy")
     }
-   
+
     onWindowStageCreate(windowStage) {
         console.log("MainAbility onWindowStageCreate")
-   
+
         windowStage.loadContent("pages/index").then((data) => {
             console.log("MainAbility load content succeed with data: " + JSON.stringify(data))
         }).catch((error) => {
             console.error("MainAbility load content failed with error: "+ JSON.stringify(error))
         })
     }
-   
+
     onWindowStageDestroy() {
         console.log("MainAbility onWindowStageDestroy")
     }
-   
+
     onForeground() {
         console.log("MainAbility onForeground")
     }
-   
+
     onBackground() {
         console.log("MainAbility onBackground")
     }
@@ -202,7 +202,7 @@ function getRemoteDeviceId() {
 应用需要某些权限如存储、位置信息、访问日历时，需要向用户申请授权。具体示例代码如下：
 ```ts
 let context = this.context
-let permissions = ohos.permission.READ_CALENDAR
+let permissions: Array<string> = ['ohos.permission.READ_CALENDAR']
 context.requestPermissionsFromUser(permissions).then((data) => {
     console.log("Succeed to request permission from user with data: "+ JSON.stringify(data))
 }).catch((error) => {
@@ -212,7 +212,7 @@ context.requestPermissionsFromUser(permissions).then((data) => {
 在跨设备场景下，需要向用户申请数据同步的权限。具体示例代码如下：
 ```ts
 let context = this.context
-let permissions = ohos.permission.DISTRIBUTED_DATASYNC
+let permissions: Array<string> = ['ohos.permission.DISTRIBUTED_DATASYNC']
 context.requestPermissionsFromUser(permissions).then((data) => {
     console.log("Succeed to request permission from user with data: "+ JSON.stringify(data))
 }).catch((error) => {
@@ -221,7 +221,7 @@ context.requestPermissionsFromUser(permissions).then((data) => {
 ```
 
 ### 系统环境变化通知给AbilityStage及Ability
-全局配置，比如系统语言和颜色模式发生变化时，通过onConfigurationUpdated接口通知给AbilityStage和Ability。如下示例展示了AbilityStage的onConfigurationUpdated回调实现，系统语言和颜色模式发生变化时触发该回调。具体示例代码如下：
+全局配置，比如系统语言和颜色模式发生变化时，通过`onConfigurationUpdated`接口通知给AbilityStage和Ability。系统应用可以通过`updateConfiguration`接口更新系统语言和颜色模式。如下示例展示了AbilityStage的`onConfigurationUpdated`回调实现，系统语言和颜色模式发生变化时触发该回调。具体示例代码如下：
 ```ts
 import Ability from '@ohos.application.Ability'
 import ConfigurationConstant from '@ohos.application.ConfigurationConstant'
@@ -234,7 +234,7 @@ export default class MyAbilityStage extends AbilityStage {
 }
 ```
 
-如下示例展示了Ability的onConfigurationUpdated回调实现，系统语言、颜色模式以及Display相关的参数，比如方向、Density，发生变化时触发该回调。具体示例代码如下：
+如下示例展示了Ability的`onConfigurationUpdated`回调实现，系统语言、颜色模式以及Display相关的参数，比如方向、Density，发生变化时触发该回调。具体示例代码如下：
 ```ts
 import Ability from '@ohos.application.Ability'
 import ConfigurationConstant from '@ohos.application.ConfigurationConstant'
@@ -253,6 +253,6 @@ export default class MainAbility extends Ability { {
 ## 开发实例
 针对Stage模型Ability开发，有以下示例工程可供参考：
 
-[eTSStageCallAbility]()
+[eTSStageCallAbility](https://gitee.com/openharmony/app_samples/tree/master/ability/eTSStageCallAbility)
 
-本示例eTSStageCallAbility中，在Application目录的AbilityStage.ts中实现AbilityStage的接口，在MainAbility目录实现Ability的接口并设置"pages/index"中的内容为Ability的界面，在SecondAbility目录实现另一个Ability并设置"pages/second"为Ability的界面。支持MainAbility启动SecondAbility。
+本示例eTSStageCallAbility中，在Application目录的AbilityStage.ts中实现AbilityStage的接口，在MainAbility目录实现Ability的接口并设置"pages/index"为Ability的页面，在CaleeAbility目录实现另一个Ability并设置"pages/second"为Ability的页面。支持MainAbility启动CaleeAbility。
