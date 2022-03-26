@@ -9,6 +9,6 @@
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > - 所有示例都以TypeScript (TS)语言为例，请遵循相应语言的语法要求。
 > 
-> - 示例中的**Image**、**Button**、**Text**、**Divider**、**Row**和**Column**等组件是UI框架中预置的组件控件，仅用于解释UI描述规范。
+> - 示例中的Image、Button、Text、Divider、Row和Column等组件是UI框架中预置的组件控件，仅用于解释UI描述规范。
 > 
 > - 通用属性方法和事件方法通常支持所有组件，而组件内的属性方法和事件方法仅对当前组件有效。
