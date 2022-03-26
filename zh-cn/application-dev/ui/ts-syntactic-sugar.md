@@ -54,7 +54,7 @@ struct MyComponent {
 | @ObjectLink | 被@Observed所装饰类的对象 | 装饰的状态数据被修改时，在父组件或者其他兄弟组件内与它关联的状态数据所在的组件都会更新UI。 |
 | @Consume | 基本数据类型，类，数组 | @Consume装饰的变量在感知到@Provide装饰的变量更新后，会触发当前自定义组件的重新渲染。 |
 | @Provide | 基本数据类型，类，数组 | @Provide作为数据的提供方，可以更新其子孙节点的数据，并触发页面渲染。 |
-| @Watch | 被@State,&nbsp;@Prop,&nbsp;@Link,&nbsp;@ObjectLink,&nbsp;@Provide,&nbsp;@Consume,&nbsp;@StorageProp，&nbsp;@StorageLink中任意一个装饰的变量 | @Watch用于监听状态变量的变化，应用可以注册回调方法。 |
+| @Watch | 被@State,&nbsp;@Prop,&nbsp;@Link,&nbsp;@ObjectLink,&nbsp;<br>@Provide,&nbsp;@Consume,&nbsp;@StorageProp，&nbsp;@StorageLink中任意一个装饰的变量 | @Watch用于监听状态变量的变化，应用可以注册回调方法。 |
 
 
 ## 链式调用
