@@ -9,6 +9,7 @@
     - [Getting Started with Application Development](quick-start/Readme-EN.md)
     - [Directory Structure](quick-start/package-structure.md)
 - Development
+    - [Ability Development](ability/Readme-EN.md)
     - [UI Development](ui/Readme-EN.md)
     - Basic Feature Development
        - [Window Manager](windowmanager/Readme-EN.md)
