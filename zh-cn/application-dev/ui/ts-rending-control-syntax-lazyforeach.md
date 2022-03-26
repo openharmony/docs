@@ -1,6 +1,6 @@
 # 数据懒加载
 
-开发框架提供**数据懒加载**（LazyForEach组件）从提供的数据源中按需迭代数据，并在每次迭代过程中创建相应的组件。**LazyForEach**定义如下：
+开发框架提供数据懒加载（LazyForEach组件）从提供的数据源中按需迭代数据，并在每次迭代过程中创建相应的组件。LazyForEach定义如下：
 
 
 ```
@@ -34,16 +34,16 @@ interface DataChangeListener {
 
 LazyForEach(dataSource: IDataSource, itemGenerator: (item: any) =&gt; void, keyGenerator?: (item: any) =&gt; string):void
 
-**表1** 参数说明
+表1 参数说明
 
 | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
 | -------- | -------- | -------- | -------- | -------- |
 | dataSource | IDataSource | 是 | - | 实现IDataSource接口的对象，需要开发者实现相关接口。 |
-| itemGenerator | (item:&nbsp;any)&nbsp;=&gt;&nbsp;void | 是 | - | 生成子组件的lambda函数，为给定数组项生成一个或多个子组件，单个组件和子组件列表必须括在大括号“**{....}**”中。 |
+| itemGenerator | (item:&nbsp;any)&nbsp;=&gt;&nbsp;void | 是 | - | 生成子组件的lambda函数，为给定数组项生成一个或多个子组件，单个组件和子组件列表必须括在大括号“{....}”中。 |
 | keyGenerator | (item:&nbsp;any)&nbsp;=&gt;&nbsp;string | 否 | - | 匿名函数，用于键值生成，为给定数组项生成唯一且稳定的键值。当子项在数组中的位置更改时，子项的键值不得更改，当数组中的子项被新项替换时，被替换项的键值和新项的键值必须不同。键值生成器的功能是可选的，但是，为了使开发框架能够更好地识别数组更改，提高性能，建议提供。如将数组反向时，如果没有提供键值生成器，则LazyForEach中的所有节点都将重建。 |
 
 
-**表2** IDataSource类型说明
+表2 IDataSource类型说明
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -53,7 +53,7 @@ LazyForEach(dataSource: IDataSource, itemGenerator: (item: any) =&gt; void, keyG
 | unregisterDataChangeListener(listener:DataChangeListener):&nbsp;void | 注销改变数据的控制器。 |
 
 
-**表3** DataChangeListener类型说明
+表3 DataChangeListener类型说明
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -71,11 +71,11 @@ LazyForEach(dataSource: IDataSource, itemGenerator: (item: any) =&gt; void, keyG
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > - 数据懒加载必须在容器组件内使用，且仅有List、Grid以及Swiper组件支持数据的懒加载（即只加载可视部分以及其前后少量数据用于缓冲），其他组件仍然是一次加载所有的数据；
 > 
-> - **LazyForEach**在每次迭代中，必须且只允许创建一个子组件；
+> - LazyForEach在每次迭代中，必须且只允许创建一个子组件；
 > 
-> - 生成的子组件必须允许在**LazyForEach**的父容器组件中；
+> - 生成的子组件必须允许在LazyForEach的父容器组件中；
 > 
-> - 允许**LazyForEach**包含在**if/else**条件渲染语句中，不允许**LazyForEach**中出现**if/else**条件渲染语句；
+> - 允许LazyForEach包含在if/else条件渲染语句中，不允许LazyForEach中出现if/else条件渲染语句；
 > 
 > - 为了高性能渲染，通过DataChangeListener对象的onDataChange方法来更新UI时，仅itemGenerator中的UI描述的组件内使用了状态变量时，才会触发组件刷新；
 > 
