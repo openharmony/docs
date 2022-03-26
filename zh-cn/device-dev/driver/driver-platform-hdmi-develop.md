@@ -1,24 +1,15 @@
 # HDMI 
 
-- [概述](#1)
-    - [功能简介](#2)
-    - [基本概念](#3)
-    - [运作机制](#4)
-    - [约束与限制](#5)  
-- [开发指导](#6)
-    - [场景介绍](#7)
-    - [接口说明](#8)
-    - [开发步骤](#9)
 
 ## 概述 <a name="1"></a>
 
 ### 功能简介<a name="2"></a>
 
-HDMI（High-Definition Multiface Interface），即高清多媒体接口，主要用于DVD、机顶盒等音视频source到TV、显示器等sink设备的传输。
+HDMI（High Definition Multimedia Interface），即高清多媒体接口，主要用于DVD、机顶盒等音视频source到TV、显示器等Sink设备的传输。
 
 ### 基本概念<a name="3"></a>
 
-HDMI（High-Definition Multiface Interface）是Hitachi、Panasonic、Philips、SiliconImage、Sony、Thomson、Toshiba共同发布的一款音视频传输协议。传输过程遵循TMDS（Transition Minimized Differential Signaling）协议。
+HDMI是Hitachi、Panasonic、Philips、Silicon Image、Sony、Thomson、Toshiba共同发布的一款音视频传输协议。传输过程遵循TMDS（Transition Minimized Differential Signaling）协议。
 
 - TMDS（Transition Minimized Differential signal）：过渡调制差分信号，也被称为最小化传输差分信号，用于发送音频、视频及各种辅助数据。
 
