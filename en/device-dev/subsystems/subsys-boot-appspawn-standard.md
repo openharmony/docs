@@ -62,7 +62,7 @@ After being started by the init process, the appspawn process waits for inter-pr
 </tr>
 <tr id="row187625816314"><td class="cellrowborder" valign="top" width="39.489999999999995%" headers="mcps1.2.3.1.1 "><p id="p188771758833"><a name="p188771758833"></a><a name="p188771758833"></a>gidTable</p>
 </td>
-<td class="cellrowborder" valign="top" width="60.51%" headers="mcps1.2.3.1.2 "><p id="p187716587310"><a name="p187716587310"></a><a name="p187716587310"></a>Information about the application process group to be started. Its length is specified by **gidCount**. A maximum of 64 process groups are supported. The value must be a positive number.</p>
+<td class="cellrowborder" valign="top" width="60.51%" headers="mcps1.2.3.1.2 "><p id="p187716587310"><a name="p187716587310"></a><a name="p187716587310"></a>Information about the application process group to be started. Its length is specified by <strong>gidCount</strong>. A maximum of 64 process groups are supported. The value must be a positive number.</p>
 </td>
 </tr>
 <tr id="row187625816314"><td class="cellrowborder" valign="top" width="39.489999999999995%" headers="mcps1.2.3.1.1 "><p id="p188771758833"><a name="p188771758833"></a><a name="p188771758833"></a>gidCount</p>
@@ -89,8 +89,8 @@ After being started by the init process, the appspawn process waits for inter-pr
 
 ### Available APIs<a name="section56901555914"></a>
 
-**Table 2**  Available APIs
-<table><thead align="left"><tr id="row6650142913713"><th class="cellrowborder" valign="top" width="39.489999999999995%" id="mcps1.2.3.1.1"><p id="p17650112914379"><a name="p17650112914379"></a><a name="p17650112914379"></a>Field</p>
+**Table 2**  API description
+<table><thead align="left"><tr id="row6650142913713"><th class="cellrowborder" valign="top" width="39.489999999999995%" id="mcps1.2.3.1.1"><p id="p17650112914379"><a name="p17650112914379"></a><a name="p17650112914379"></a>API</p>
 </th>
 <th class="cellrowborder" valign="top" width="60.51%" id="mcps1.2.3.1.2"><p id="p865032916376"><a name="p865032916376"></a><a name="p865032916376"></a>Description</p>
 </th>
