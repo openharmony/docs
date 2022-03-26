@@ -3,9 +3,7 @@
 > **说明：**
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-## Support
-
-权限列表。
+## 权限列表
 
 | 系统公共事件宏      | 系统公共事件名称          | 订阅者所需权限     |
 | ------------ | ------------------ | ---------------------- |
@@ -210,7 +208,7 @@ publish(event: string, options: CommonEventPublishData, callback: AsyncCallback\
 | 名称     | 读写属性 | 类型                   | 必填 | 描述                   |
 | -------- | -------- | ---------------------- | ---- | ---------------------- |
 | event    | 只读     | string                 | 是   | 表示要发布的公共事件。  |
-| options  | 只读     | [CommonEventPublishData](#commoneventpublishdata) | 是   | 表示发布公共事件的属性。 |
+| options  | 只读     | [CommonEventPublishData](./js-apis-commonEventPublishData.md) | 是   | 表示发布公共事件的属性。 |
 | callback | 只读     | AsyncCallback\<void>   | 是   | 表示被指定的回调方法。  |
 
 **示例：**
@@ -290,7 +288,7 @@ publishAsUser(event: string, userId: number, options: CommonEventPublishData, ca
 | -------- | -------- | ---------------------- | ---- | ---------------------- |
 | event    | 只读     | string                 | 是   | 表示要发布的公共事件。  |
 | userId | 只读 | number | 是 | 表示指定向该用户ID发送此公共事件。 |
-| options  | 只读     | [CommonEventPublishData](#commoneventpublishdata) | 是   | 表示发布公共事件的属性。 |
+| options  | 只读     | [CommonEventPublishData](./js-apis-commonEventPublishData.md) | 是   | 表示发布公共事件的属性。 |
 | callback | 只读     | AsyncCallback\<void>   | 是   | 表示被指定的回调方法。  |
 
 **示例：**
@@ -333,8 +331,8 @@ createSubscriber(subscribeInfo: CommonEventSubscribeInfo, callback: AsyncCallbac
 
 | 名称          | 读写属性 | 类型                                                         | 必填 | 描述                       |
 | ------------- | -------- | ------------------------------------------------------------ | ---- | -------------------------- |
-| subscribeInfo | 只读     | [CommonEventSubscribeInfo](#commoneventsubscribeinfo)        | 是   | 表示订阅信息。             |
-| callback      | 只读     | AsyncCallback\<[CommonEventSubscriber](#commoneventsubscriber)> | 是   | 表示创建订阅者的回调方法。 |
+| subscribeInfo | 只读     | [CommonEventSubscribeInfo](./js-apis-commonEventSubscribeInfo.md)        | 是   | 表示订阅信息。             |
+| callback      | 只读     | AsyncCallback\<[CommonEventSubscriber](./js-apis-commonEventSubscriber.md)> | 是   | 表示创建订阅者的回调方法。 |
 
 **示例：**
 
@@ -375,12 +373,12 @@ createSubscriber(subscribeInfo: CommonEventSubscribeInfo): Promise\<CommonEventS
 
 | 名称          | 读写属性 | 类型                                                  | 必填 | 描述           |
 | ------------- | -------- | ----------------------------------------------------- | ---- | -------------- |
-| subscribeInfo | 只读     | [CommonEventSubscribeInfo](#commoneventsubscribeinfo) | 是   | 表示订阅信息。 |
+| subscribeInfo | 只读     | [CommonEventSubscribeInfo](./js-apis-commonEventSubscribeInfo.md) | 是   | 表示订阅信息。 |
 
 **返回值：**
 | 类型                                                      | 说明             |
 | --------------------------------------------------------- | ---------------- |
-| Promise\<[CommonEventSubscriber](#commoneventsubscriber)> | 返回订阅者对象。 |
+| Promise\<[CommonEventSubscriber](./js-apis-commonEventSubscriber.md)> | 返回订阅者对象。 |
 
 **示例：**
 
@@ -415,8 +413,8 @@ subscribe(subscriber: CommonEventSubscriber, callback: AsyncCallback\<CommonEven
 
 | 名称       | 读写属性 | 类型                                                | 必填 | 描述                             |
 | ---------- | -------- | --------------------------------------------------- | ---- | -------------------------------- |
-| subscriber | 只读     | [CommonEventSubscriber](#commoneventsubscriber)     | 是   | 表示订阅者对象。                 |
-| callback   | 只读     | AsyncCallback\<[CommonEventData](#commoneventdata)> | 是   | 表示接收公共事件数据的回调函数。 |
+| subscriber | 只读     | [CommonEventSubscriber](./js-apis-commonEventSubscriber.md)     | 是   | 表示订阅者对象。                 |
+| callback   | 只读     | AsyncCallback\<[CommonEventData](./js-apis-commonEventData.md)> | 是   | 表示接收公共事件数据的回调函数。 |
 
 **示例：**
 
@@ -453,7 +451,7 @@ function CreateSubscriberCallBack(err, commonEventSubscriber) {
 CommonEvent.createSubscriber(subscribeInfo, CreateSubscriberCallBack);
 ```
 
- 
+
 
 ## CommonEvent.unsubscribe
 
