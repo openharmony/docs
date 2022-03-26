@@ -30,7 +30,7 @@ TextInput(value?:{placeholder?: string controller?: TextInputController})
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes.md)外，还支持以下属性：
+除支持[通用属性](ts-universal-attributes-index.md)外，还支持以下属性：
 
 | 名称 | 参数类型 | 默认值 | 描述 |
 | -------- | -------- | -------- | -------- |
