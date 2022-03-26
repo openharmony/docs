@@ -497,7 +497,7 @@ bundle.getAllApplicationInfo(bundleFlags, (err, data) => {
 
 getAbilityInfo(bundleName: string, abilityName: string): Promise\<AbilityInfo>
 
-以异步方法根据给定的意图获取Ability信息，使用Promise形式返回结果。
+通过包名称和abilityName获取Ability信息，使用Promise形式返回结果。
 
 **需要权限：**
 
@@ -511,8 +511,8 @@ SystemCapability.BundleManager.BundleFramework
 
 | 名称          | 类型     | 必填   | 描述               |
 | ----------- | ------ | ---- | ---------------- |
-| bundleName  | string | 是    | 要查询的应用程序包名称。     |
-| abilityName | string | 是    | 表示待查询的Ability名称。 |
+| bundleName  | string | 是    | 应用程序包名。     |
+| abilityName | string | 是    | Ability名称。 |
 
 **返回值：**
 
@@ -537,7 +537,7 @@ bundle.getAbilityInfo(bundleName, abilityName)
 
 getAbilityInfo(bundleName: string, abilityName: string, callback: AsyncCallback\<AbilityInfo>): void;
 
-以异步方法根据给定的意图获取Ability信息，使用callback形式返回结果。
+通过包名称和abilityName获取Ability信息，使用callback形式返回结果。
 
 **需要权限：**
 
@@ -549,10 +549,10 @@ SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
-| 名称          | 类型                          | 必填   | 描述                         |
-| ----------- | --------------------------- | ---- | -------------------------- |
-| bundleName  | string                      | 是    | 要查询的应用程序包名称。               |
-| abilityName | string                      | 是    | 表示待查询的Ability名称。           |
+| 名称         | 类型     | 必填   | 描述            |
+| ----------- | ------------ | ---- | ---------------- |
+| bundleName  | string | 是    | 应用程序包名。     |
+| abilityName | string | 是    | Ability名称。 |
 | callback    | AsyncCallback\<AbilityInfo> | 是    | 程序启动作为入参的回调函数，返回Ability信息。 |
 
 **示例：**
@@ -573,7 +573,7 @@ bundle.getAbilityInfo(bundleName, abilityName, (err, data) => {
 
 getAbilityLabel(bundleName: string, abilityName: string): Promise\<string>
 
-以异步方法根据给定的意图获取应用名称，使用Promise形式返回结果。
+通过包名称和abilityName获取应用名称，使用Promise形式返回结果。
 
 **需要权限：**
 
@@ -587,8 +587,8 @@ SystemCapability.BundleManager.BundleFramework
 
 | 名称          | 类型     | 必填   | 描述               |
 | ----------- | ------ | ---- | ---------------- |
-| bundleName  | string | 是    | 要查询的应用程序包名称。     |
-| abilityName | string | 是    | 表示待查询的Ability名称。 |
+| bundleName  | string | 是    | 应用程序包名。     |
+| abilityName | string | 是    | Ability名称。 |
 
 **返回值：**
 
@@ -613,7 +613,7 @@ bundle.getAbilityLabel(bundleName, abilityName)
 
 getAbilityLabel(bundleName: string, abilityName: string, callback : AsyncCallback\<string>): void
 
-以异步方法根据给定的意图获取应用名称，使用callback形式返回结果。
+通过包名称和abilityName获取应用名称，使用callback形式返回结果。
 
 **需要权限：**
 
@@ -627,9 +627,9 @@ SystemCapability.BundleManager.BundleFramework
 
 | 名称          | 类型                     | 必填   | 描述               |
 | ----------- | ---------------------- | ---- | ---------------- |
-| bundleName  | string                 | 是    | 要查询的应用程序包名称。     |
-| abilityName | string                 | 是    | 表示待查询的Ability名称。 |
-| callback    | AsyncCallback\<string> | 是    | 返回应用名称信息。        |
+| bundleName  | string                 | 是    | 应用程序包名。     |
+| abilityName | string                 | 是    | Ability名称。 |
+| callback    | AsyncCallback\<string> | 是    | 程序启动作为入参的回调函数，返回应用名称信息。        |
 
 **示例：**
 
@@ -1593,8 +1593,8 @@ ExtensionAbility的类型
 | 名称         | 类型   | 说明   |
 | ---------- | ---- | ---- |
 | AUTO_MODE  | -1   | 自动模式 |
-| DARK_MODE  | 0    | 夜间模式 |
-| LIGHT_MODE | 1    | 灯光模式 |
+| DARK_MODE  | 0    | 黑色模式 |
+| LIGHT_MODE | 1    | 亮度模式 |
 
 
 ## GrantStatus
