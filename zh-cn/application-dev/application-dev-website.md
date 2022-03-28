@@ -1,22 +1,17 @@
 - [应用开发导读](application-dev-guide.md)
+
 - 快速开始
-  - 应用开发快速入门
-    - DevEco Studio（OpenHarmony）使用指南
-      - [概述](quick-start/deveco-studio-overview.md)
-      - [版本变更说明](quick-start/deveco-studio-release-notes.md)
-      - [配置OpenHarmony SDK](quick-start/configuring-openharmony-sdk.md)
-      - 创建OpenHarmony工程
-        - [使用工程向导创建新工程](quick-start/use-wizard-to-create-project.md)
-        - [通过导入Sample方式创建新工程](quick-start/import-sample-to-create-project.md)
-      - [配置OpenHarmony应用签名信息](quick-start/configuring-openharmony-app-signature.md)
-      - [安装运行OpenHarmony应用](quick-start/installing-openharmony-app.md)
-    - 快速入门
-      - [前言](quick-start/start-overview.md)
-      - [使用eTS语言开发](quick-start/start-with-ets.md)
-      - [使用JS语言开发（传统代码方式）](quick-start/start-with-js.md)
-      - [使用JS语言开发（低代码方式）](quick-start/start-with-js-low-code.md)
-  - [应用开发包结构说明](quick-start/package-structure.md)
-  - [资源文件的分类](quick-start/basic-resource-file-categories.md)
+  
+  - 快速入门
+    - [前言](quick-start/start-overview.md)
+    - [使用eTS语言开发](quick-start/start-with-ets.md)
+    - [使用JS语言开发（传统代码方式）](quick-start/start-with-js.md)
+    - [使用JS语言开发（低代码方式）](quick-start/start-with-js-low-code.md)
+  
+  - 开发基础知识
+    - [应用开发包结构说明](quick-start/package-structure.md)
+    - [资源文件的分类](quick-start/basic-resource-file-categories.md)
+  
 - 开发
   - [Ability开发](ability/Readme-CN.md)
     - [Ability框架概述](ability/ability-brief.md)
@@ -264,17 +259,14 @@
       - [国际化开发概述](internationalization/international-overview.md)
       - [Intl开发指导](internationalization/intl-guidelines.md)
       - [I18n开发指导](internationalization/i18n-guidelines.md)
+  
 - 工具
-  - DevEco Studio（OpenHarmony）使用指南
-    - [概述](quick-start/deveco-studio-overview.md)
-    - [版本变更说明](quick-start/deveco-studio-release-notes.md)
-    - [配置OpenHarmony SDK](quick-start/configuring-openharmony-sdk.md)
-    - [创建OpenHarmony工程](quick-start/create-openharmony-project.md)
-    - [配置OpenHarmony应用签名信息](quick-start/configuring-openharmony-app-signature.md)
-    - [安装运行OpenHarmony应用](quick-start/installing-openharmony-app.md)
+  - [DevEco Studio（OpenHarmony）使用指南](quick-start/deveco-studio-user-guide-for-openharmony.md)
+  
 - 示例教程
   - [示例代码](https://gitee.com/openharmony/app_samples/blob/master/README_zh.md)
   - [Codelabs](https://gitee.com/openharmony/codelabs/blob/master/README.md)
+  
 - API参考
   - 组件参考（基于JS扩展的类Web开发范式）
     - 组件
@@ -507,8 +499,6 @@
       - [矩阵变换](reference/arkui-ts/ts-matrix-transformation.md)
       - [插值计算](reference/arkui-ts/ts-interpolation-calculation.md)
     - 全局UI方法
-      - [图片缓存](reference/arkui-ts/ts-methods-image-cache.md)
-      - [媒体查询](reference/arkui-ts/ts-methods-media-query.md)
       - 弹窗
         - [警告弹窗](reference/arkui-ts/ts-methods-alert-dialog-box.md)
         - [列表选择弹窗](reference/arkui-ts/ts-methods-action-sheet.md)
@@ -595,13 +585,13 @@
       - [位置服务](reference/apis/js-apis-geolocation.md)
     - 基本功能
       - [应用上下文](reference/apis/js-apis-system-app.md)
-      - [日志打印](reference/apis/js-apis-basic-features-logs.md)
+      - [日志打印](reference/apis/js-apis-logs.md)
       - [页面路由](reference/apis/js-apis-system-router.md)
       - [弹窗](reference/apis/js-apis-system-prompt.md)
       - [应用配置](reference/apis/js-apis-system-configuration.md)
-      - [定时器](reference/apis/js-apis-basic-features-timer.md)
+      - [定时器](reference/apis/js-apis-timer.md)
       - [设置系统时间](reference/apis/js-apis-system-time.md)
-      - [动画](reference/apis/js-apis-basic-features-animator.md)
+      - [动画](reference/apis/js-apis-animator.md)
       - [WebGL](reference/apis/js-apis-webgl.md)
       - [WebGL2](reference/apis/js-apis-webgl2.md)
       - [屏幕截图](reference/apis/js-apis-screenshot.md)
