@@ -1,15 +1,5 @@
 - [Application Development Overview](application-dev-guide.md)
 - Quick Start
-  - Getting Started with Application Development
-    - DevEco Studio (OpenHarmony) User Guide
-      - [Overview](quick-start/deveco-studio-overview.md)
-      - [Version Change History](quick-start/deveco-studio-release-notes.md)
-      - [Configuring the OpenHarmony SDK](quick-start/configuring-openharmony-sdk.md)
-      - Creating an OpenHarmony Project
-        - [Using the Project Wizard to Create a Project](quick-start/use-wizard-to-create-project.md)
-        - [Importing a Sample to Create a Project](quick-start/import-sample-to-create-project.md)
-      - [Configuring the OpenHarmony App Signature](quick-start/configuring-openharmony-app-signature.md)
-      - [Installing and Running Your OpenHarmony App](quick-start/installing-openharmony-app.md)
   - [Directory Structure](quick-start/package-structure.md)
   - [Resource File Categories](quick-start/basic-resource-file-categories.md)
 - Development
@@ -24,7 +14,7 @@
 
     - Other
       - [Ability Assistant Usage](ability/ability-assistant-guidelines.md)
-  - [UI]](ui/Readme-EN.md)
+  - [UI](ui/Readme-EN.md)
     - JavaScript-based Web-Like Development Paradigm
       - [Overview](ui/ui-js-overview.md)
       - Framework
@@ -213,13 +203,7 @@
         - [Overview of Distributed Call Chain Tracing](dfx/hitracechain-overview.md)
         - [Development of Distributed Call Chain Tracing](dfx/hitracechain-guidelines.md)
 - Tools
-  - DevEco Studio (OpenHarmony) User Guide
-    - [Overview](quick-start/deveco-studio-overview.md)
-    - [Version Change History](quick-start/deveco-studio-release-notes.md)
-    - [Configuring the OpenHarmony SDK](quick-start/configuring-openharmony-sdk.md)
-    - [Creating an OpenHarmony Project](quick-start/create-openharmony-project.md)
-    - [Configuring the OpenHarmony App Signature](quick-start/configuring-openharmony-app-signature.md)
-    - [Installing and Running Your OpenHarmony App](quick-start/installing-openharmony-app.md)
+  - [DevEco Studio (OpenHarmony) User Guide](quick-start/deveco-studio-user-guide-for-openharmony.md)
 - Hands-On Tutorials
   - [Samples](https://gitee.com/openharmony/app_samples/blob/master/README.md)
 - API References
