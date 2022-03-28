@@ -63,7 +63,7 @@ ExtensionAbility，是Stage模型中新增的扩展组件的基类，一般用�
 
 需要在应用配置文件module.json中进行注册，注册类型type需要设置为service。
 
-**config.json配置样例**
+**module.json配置样例**
 
 ```json
 "extensionAbilities":[{
