@@ -63,7 +63,7 @@ getCameraManager(context: Context): Promise<CameraManager\>
 **示例：**
 
 ```
-camera.getCameraManager(context).then((cameraManger) => {
+camera.getCameraManager(context).then((cameraManager) => {
     console.log('Promise returned with the CameraManager instance.');
 })
 ```
