@@ -86,10 +86,17 @@ C++
     } // namespace OHOS
     
     // Invoke the query callback API to obtain system events.
-    auto queryCallBack = std::make_shared<HiSysEventToolQuery>();
-    struct QueryArg args(clientCmdArg.beginTime, clientCmdArg.endTime, clientCmdArg.maxEvents);
-    std::vector<QueryRule> mRules;
-    HiSysEventManager::QueryHiSysEvent(args, mRules, queryCallBack);
+    std::shared_ptr<HiSysEventToolQuery> queryCallBack = nullptr;
+    try {
+        queryCallBack = std::make_shared<HiSysEventToolQuery>();
+    } catch(...) {
+        // Catch exception thrown by make_shared
+    }
+    if (queryCallBack != nullptr) {
+        struct QueryArg args(clientCmdArg.beginTime, clientCmdArg.endTime, clientCmdArg.maxEvents);
+        std::vector<QueryRule> rules;
+        HiSysEventManager::QueryHiSysEvent(args, rules, queryCallBack);
+    }
     ```
 
 2.  Modify the **BUILD.gn** file.
