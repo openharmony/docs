@@ -1,4 +1,4 @@
-资源管理
+#资源管理
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -671,10 +671,10 @@ getRawFileDescriptor(path: string, callback: AsyncCallback&lt;RawFileDescriptor&
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
-| 参数名   | 类型                                                         | 必填 | 说明                                            |
-| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------- |
-| path     | string                                                       | 是   | rawfile文件路径                                 |
-| callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | 是   | 异步回调，用于返回获取的rawfile文件的descriptor |
+| 参数名      | 类型                                       | 必填   | 说明                               |
+| -------- | ---------------------------------------- | ---- | -------------------------------- |
+| path     | string                                   | 是    | rawfile文件路径                      |
+| callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | 是    | 异步回调，用于返回获取的rawfile文件的descriptor |
 
 **示例：** 
   ```

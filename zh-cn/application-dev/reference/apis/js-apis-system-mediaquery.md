@@ -2,7 +2,9 @@
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 本模块首批接口从API version 3开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> - 从API Version 7 开始，该接口不再维护，推荐使用新接口['@ohos.mediaquery](js-apis-mediaquery.md)'。
+> - 本模块首批接口从API version 3开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
 ## 导入模块
@@ -23,14 +25,14 @@ matchMedia(condition: string): MediaQueryList
 
 **参数：** 
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| condition | string | 是 | 用于查询的条件。 |
+| 参数名       | 类型     | 必填   | 说明       |
+| --------- | ------ | ---- | -------- |
+| condition | string | 是    | 用于查询的条件。 |
 
 **返回值：**
 
-| 参数类型 | 说明 |
-| -------- | -------- |
+| 参数类型           | 说明                                       |
+| -------------- | ---------------------------------------- |
 | MediaQueryList | 表示创建MediaQueryList对象的属性，详情见下表 MediaQueryList说明。 |
 
 **示例：**
@@ -49,9 +51,9 @@ export default {
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 参数类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| matches | boolean | 是 | 匹配结果。 |
+| 名称      | 参数类型    | 必填   | 说明    |
+| ------- | ------- | ---- | ----- |
+| matches | boolean | 是    | 匹配结果。 |
 
 ## MediaQueryList
 
@@ -61,10 +63,10 @@ export default {
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 参数类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| media | string | 否 | 序列化媒体查询条件，该参数为只读。 |
-| matches | boolean | 是 | 匹配结果。 |
+| 名称      | 参数类型    | 必填   | 说明                |
+| ------- | ------- | ---- | ----------------- |
+| media   | string  | 否    | 序列化媒体查询条件，该参数为只读。 |
+| matches | boolean | 是    | 匹配结果。             |
 
 ### onchange
 
@@ -76,9 +78,9 @@ matches状态变化时的执行函数。
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| matches | boolean | 是 | matches状态变化时值。 |
+| 参数名     | 类型      | 必填   | 说明             |
+| ------- | ------- | ---- | -------------- |
+| matches | boolean | 是    | matches状态变化时值。 |
 
 
 ### MediaQueryList.addListener
@@ -91,9 +93,9 @@ addListener(callback: (event: MediaQueryEvent) => void): void
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| callback | (event: MediaQueryEvent) => void | 是 | 匹配条件发生变化的响应函数。 |
+| 参数名      | 类型                               | 必填   | 说明             |
+| -------- | -------------------------------- | ---- | -------------- |
+| callback | (event: MediaQueryEvent) => void | 是    | 匹配条件发生变化的响应函数。 |
 
 **示例：**
 
@@ -112,9 +114,9 @@ removeListener(callback: (event: MediaQueryEvent) => void): void
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| callback | (event: MediaQueryEvent) => void) | 是 | 匹配条件发生变化的响应函数。 |
+| 参数名      | 类型                                | 必填   | 说明             |
+| -------- | --------------------------------- | ---- | -------------- |
+| callback | (event: MediaQueryEvent) => void) | 是    | 匹配条件发生变化的响应函数。 |
 
 **示例：**
 
