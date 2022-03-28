@@ -668,7 +668,7 @@ createGroup(config: WifiP2PConfig): boolean;
 
 | 参数名 | 类型 | 读写属性 | 说明 |
 | -------- | -------- | -------- | -------- |
-| deviceAddress | string | 只读 | 设备名称。 |
+| deviceAddress | string | 只读 | 设备地址。 |
 | netId | number | 只读 | 网络ID。创建群组时-1表示创建临时组，-2表示创建永久组。 |
 | passphrase | string | 只读 | 群组密钥。 |
 | groupName | string | 只读 | 群组名称。 |
