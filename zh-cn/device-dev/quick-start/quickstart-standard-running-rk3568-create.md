@@ -1,32 +1,33 @@
-# 创建应用程序<a name="ZH-CN_TOPIC_0000001234205905"></a>
+# 编写“Hello World”程序<a name="ZH-CN_TOPIC_0000001260983173"></a>
 
-下方将通过修改源码的方式展示如何在单板上运行第一个应用程序，其中包括新建应用程序、编译、烧写、运行等步骤，最终输出“Hello World！”。
+下方将展示如何在单板上运行第一个应用程序，其中包括新建应用程序、编译、烧写、运行等步骤，最终输出“Hello World！”。
 
-这里演示新建examples子系统，添加hello部件以及该部件下的helloworld模块。
+## 示例目录<a name="section1731810561374"></a>
 
 示例完整目录如下。
 
 ```
-applications/standard/hello
-├── helloworld
-│   ├── BUILD.gn
-│   ├── include
+applications/sample/hello
+│   │── BUILD.gn
+│   │── include
 │   │   └── helloworld.h
-│   └── src
-│       └── helloworld.c
-├── ohos.build
+│   │── src
+│   │   └── helloworld.c
+│   └── bundle.json
 build
-├── subsystem_config.json
+└── subsystem_config.json
 productdefine/common
 └── products
     └── rk3568.json
 ```
 
-下方为新建应用程序步骤，请在[获取源码](quickstart-standard-sourcecode-acquire.md)章节下载的源码目录中进行下述操作：
+## 开发步骤<a name="section6771191495218"></a>
 
-1.  新建目录及源码。
+请在源码目录中通过以下步骤创建“Hello World”应用程序：
 
-    新建applications/standard/hello/helloworld/src/helloworld.c目录及文件，代码如下所示，用户可以自定义修改打印内容（例如：修改World为OHOS）。其中helloworld.h包含字符串打印函数HelloPrint的声明。当前应用程序可支持标准C及C++的代码开发。
+1.  创建目录，编写业务代码。
+
+    新建applications/sample/hello/src/helloworld.c目录及文件，代码如下所示，用户可以自定义修改打印内容（例如：修改World为OH）。其中helloworld.h包含字符串打印函数HelloPrint的声明。当前应用程序可支持标准C及C++的代码开发。
 
     ```
     #include <stdio.h>
@@ -46,7 +47,7 @@ productdefine/common
     }
     ```
 
-    再添加头文件applications/standard/hello/helloworld/include/helloworld.h，代码如下所示。
+    再添加头文件applications/sample/hello/include/helloworld.h，代码如下所示。
 
     ```
     #ifndef HELLOWORLD_H
@@ -68,7 +69,7 @@ productdefine/common
     ```
 
 2.  新建编译组织文件。
-    1.  新建applications/standard/hello/helloworld/BUILD.gn文件，内容如下所示：
+    1.  新建applications/sample/hello/BUILD.gn文件，内容如下所示：
 
         ```
         import("//build/ohos.gni")  # 导入编译模板
@@ -85,44 +86,59 @@ productdefine/common
           ldflags = []
           configs = []
           deps =[]    # 部件内部依赖
-        
           part_name = "hello"    # 所属部件名称，必选
           install_enable = true  # 是否默认安装（缺省默认不安装），可选
         }
         ```
 
-    2.  新建applications/standard/hello/ohos.build文件，添加hello部件描述，内容如下所示。
+    2.  新建applications/sample/hello/bundle.json文件，添加sample部件描述，内容如下所示。
 
         ```
         {
-          "subsystem": "examples",
-          "parts": {
-            "hello": {
-              "version": "1.0.0",
-              "variants": [
-                "wearable",
-                "phone"
-              ],
-              "module_list": [
-                "//applications/standard/hello:helloworld"
-              ],
-               "inner_kits": [],
-               "test_list": []
+            "name": "@ohos/hello",
+            "description": "Hello world example.",
+            "version": "3.1",
+            "license": "Apache License 2.0",
+            "publishAs": "code-segment",
+            "segment": {
+                "destPath": "applications/sample/hello"
+            },
+            "dirs": {},
+            "scripts": {},
+            "component": {
+                "name": "hello",
+                "subsystem": "sample",
+                "syscap": [],
+                "features": [],
+                "adapted_system_type": [ "mini", "small", "standard" ],
+                "rom": "10KB",
+                "ram": "10KB",
+                "deps": {
+                    "components": [],
+                    "third_party": []
+                },
+                "build": {
+                    "sub_component": [
+                        "//applications/sample/hello:helloworld"
+                    ],
+                    "inner_kits": [],
+                    "test": []
+                }
             }
-          }
         }
         ```
 
-        ohos.build文件包含两个部分，第一部分subsystem说明该子系统的名称，parts定义该子系统包含的部件，要添加一个部件，需要把该部件对应的内容添加进parts中去。添加的时候需要指明该部件包含的模块module\_list，假如有提供给其它部件的接口，需要在inner\_kits中说明，假如有测试用例，需要在test\_list中说明，inner\_kits与test\_list没有也可以不添加。
+        bundle.json文件包含两个部分，第一部分描述该部件所属子系统的信息，第二部分component则定义该部件构建相关配置。添加的时候需要指明该部件包含的模块sub\_component，假如有提供给其它部件的接口，需要在inner\_kits中说明，假如有测试用例，需要在test中说明，inner\_kits与test没有也可以不添加。
 
 3.  修改子系统配置文件。
 
-    在build/subsystem_config.json中添加examples子系统配置。
+    在build/subsystem\_config.json中添加新建的子系统的配置。
+
     ```
-    "examples": {
-      "path": "applications/standard/hello",
-      "name": "examples"
-    },
+    "sample": {
+        "path": "applications/sample/hello",
+        "name": "sample"
+      },
     ```
 
 4.  修改产品配置文件。
@@ -132,7 +148,7 @@ productdefine/common
     ```
         "usb:usb_manager_native":{},
         "applications:prebuilt_hap":{},
-        "examples:hello":{},
+        "sample:hello":{},
         "wpa_supplicant-2.9:wpa_supplicant-2.9":{},
     ```
 
