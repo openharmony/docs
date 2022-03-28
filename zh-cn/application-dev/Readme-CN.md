@@ -3,7 +3,7 @@
 - [应用开发导读](application-dev-guide.md)
 - 了解OpenHarmony
     - [了解OpenHarmony开源项目](../OpenHarmony-Overview_zh.md)
-    - [术语](../device-dev/glossary/glossary.md)
+    - [术语](../glossary.md)
     - [版本说明](../release-notes/Readme.md)
 - 快速开始
     - [应用开发快速入门](quick-start/Readme-CN.md)

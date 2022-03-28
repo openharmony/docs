@@ -3,7 +3,7 @@
 - [设备开发导读](device-dev-guide.md) 
 - 了解OpenHarmony
   - [了解OpenHarmony开源项目](../OpenHarmony-Overview_zh.md) 
-  - [术语](glossary/glossary.md) 
+  - [术语](../glossary.md) 
   - [版本说明](../release-notes/Readme.md) 
 - 快速开始
   - [轻量和小型系统快速入门](quick-start/quickstart-lite.md) 	
