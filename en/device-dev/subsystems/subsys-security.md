@@ -2,6 +2,8 @@
 
 -   **[Overview](subsys-security-overview.md)**
 
+-   **[Development on Application Signature Verification](subsys-security-sigverify.md)**
+
 -   **[Development on Application Signature Verification] (subsys-security-sigverify.md)**
 
 -   **[Development on Application Permission Management](subsys-security-rightmanagement.md)**
