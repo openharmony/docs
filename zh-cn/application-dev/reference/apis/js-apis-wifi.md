@@ -235,7 +235,7 @@ removeUntrustedConfig(config: WifiDeviceConfig): Promise&lt;boolean&gt;
 
 removeUntrustedConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;boolean&gt;): void
 
-添加不可信网络配置，使用callback方式作为异步方法。
+移除不可信网络配置，使用callback方式作为异步方法。
 
 - 需要权限：
   ohos.permission.SET_WIFI_INFO
@@ -589,7 +589,7 @@ getCurrentGroup(callback: AsyncCallback&lt;WifiP2pGroupInfo&gt;): void
 | deviceAddress | string | 只读 | 设备MAC地址。 |
 | primaryDeviceType | string | 只读 | 主设备类型。 |
 | deviceStatus | [P2pDeviceStatus](#P2pDeviceStatus) | 只读 | 设备状态。 |
-| groupCapabilitys | number | 只读 | 群组能力。 |
+| groupCapabilities | number | 只读 | 群组能力。 |
 
 ## P2pDeviceStatus<sup>8+</sup>
 
