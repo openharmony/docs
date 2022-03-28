@@ -37,7 +37,7 @@ OpenHarmony传感器包含如下四个模块：Sensor API、Sensor Framework、S
 
   **图1** OpenHarmony传感器
 
-![zh-cn_image_0000001199027515](figures\zh-cn_image_0000001199027515.png)
+![zh-cn_image_0000001199027515](figures/zh-cn_image_0000001199027515.png)
 
 - Sensor API：提供传感器的基础API，主要包含查询传感器列表，订阅/取消传感器的数据、执行控制命令等，简化应用开发。
 
