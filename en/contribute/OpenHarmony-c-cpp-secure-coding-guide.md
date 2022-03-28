@@ -1736,7 +1736,7 @@ An incorrect format string may cause memory damage or abnormal program terminati
 ## Ensure that the format parameter is not controlled by external data when a formatted input/output function is called
 
 **\[Description]**   
-When a formatted function is called, the **format** parameter provided or concatenated by external data will cause a string formatting vulnerability. Take the formatted output function of the C standard library as an example. When the **format** parameter is externally controllable, an attacker can use the %n convertor to write an integer to a specified address, use the %x or %d convertor to view the stack or register content, or use the %s convertor to cause process crashes or other issues.
+When a formatted function is called, the **format** parameter provided or concatenated by external data will cause a string formatting vulnerability. Take the formatted output function of the C standard library as an example. When the **format** parameter is externally controllable, an attacker can use the %n converter to write an integer to a specified address, use the %x or %d converter to view the stack or register content, or use the %s converter to cause process crashes or other issues.
 
 Common formatted functions are as follows:
 
