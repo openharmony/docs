@@ -24,7 +24,7 @@
             - [添加容器](ui-js-building-ui-layout-external-container.md)
         - [添加交互](ui-js-building-ui-interactions.md)
         - [动画](ui-js-building-ui-animation.md)
-        - [事件](ui-js-building-ui-event.md)
+        - [手势事件](ui-js-building-ui-event.md)
         - [页面路由](ui-js-building-ui-routes.md)
     - 常见组件开发指导
         - 容器组件

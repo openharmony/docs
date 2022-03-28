@@ -60,6 +60,7 @@
         -   [toolbar](js-components-basic-toolbar.md)
         -   [toolbar-item](js-components-basic-toolbar-item.md)
         -   [toggle](js-components-basic-toggle.md)
+        -   [web](js-components-basic-web.md)
 
     -   [Media Components](js-components-media.md)
         -   [video](js-components-media-video.md)
