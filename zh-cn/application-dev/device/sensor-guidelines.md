@@ -82,52 +82,40 @@
   
    ```
    import sensor from "@ohos.sensor"
-   sensor.on(sensor.sensorType,function(error,data){
-       if (error) {//调用失败，打印error.code和error.message
-           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
-           return;
-       };
+   sensor.on(sensor.sensorType,function(data){
           console.info("Subscription succeeded. data = "+ data);//调用成功，打印对应传感器的数据
      }
    );
    ```
-
+   
    以SensorType为SENSOR_TYPE_ID_ACCELEROMETER为例展示运行结果，持续监听传感器接口的结果如下图所示：
-
+   
    ![zh-cn_image_0000001241693881](figures/zh-cn_image_0000001241693881.png)
 
 3. 注销传感器数据监听。
   
    ```
    import sensor from "@ohos.sensor"
-   sensor.off(sensor.sensorType,function(error) {
-       if (error) {//注销失败，返回error.code和error.message
-           console.error("Failed to unsubscribe from acceleration sensor data. Error code: " + error.code + "; message: " + error.message);
-           return;
-       };
+   sensor.off(sensor.sensorType,function() {
        console.info("Succeeded in unsubscribing from acceleration sensor data.");//注销成功，返回打印结果
      }
    );
    ```
-
+   
    以SensorType为SENSOR_TYPE_ID_ACCELEROMETER为例展示运行结果，注销传感器成功结果如下图所示：
-
+   
    ![zh-cn_image_0000001196654004](figures/zh-cn_image_0000001196654004.png)
 
 4. 获取一次传感器数据变化。
   
    ```
    import sensor from "@ohos.sensor"
-   sensor.once(sensor.sensorType,function(error, data) {
-       if (error) {//获取数据失败，返回error.code和error.message
-           console.error("Failed to obtain data. Error code: " + error.code + "; message: " + error.message);
-           return;
-       };
+   sensor.once(sensor.sensorType,function(data) {
            console.info("Data obtained successfully. data="+data);//获取数据成功，打印对应传感器的数据
      }
    );
    ```
-
+   
    以SensorType为SENSOR_TYPE_ID_ACCELEROMETER为例展示运行结果，获取数据成功日志如下图所示：
-
+   
    ![zh-cn_image_0000001241733907](figures/zh-cn_image_0000001241733907.png)
