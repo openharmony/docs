@@ -25,7 +25,7 @@ createFormBindingData(obj?: Object | string): FormBindingData
 
 | 参数名 | 类型           | 必填 | 说明                                                         |
 | ------ | -------------- | ---- | ------------------------------------------------------------ |
-| obj    | Object或string | 否   | js卡片要展示的数据。可以是包含若干键值对的Object或者 json 格式的字符串。 |
+| obj    | Object或string | 否   | js卡片要展示的数据。可以是包含若干键值对的Object或者 json 格式的字符串。其中图片数据以"formImages"作为标识，内容为图片标识与图片文件描述符的键值对{"formImages": {"key1": fd1, "key2": fd2}} |
 
 
 **返回值：**
@@ -38,7 +38,11 @@ createFormBindingData(obj?: Object | string): FormBindingData
 **示例：**
 
   ```js
-  let obj = {"temperature": "21°"};
+  let fd = fileio.openSync(path);
+  let obj = {
+      "temperature": "21°",
+      "formImages": {"image": fd}
+  };
   let formBindingDataObj = formBindingData.createFormBindingData(obj);
   ```
 
@@ -46,10 +50,9 @@ createFormBindingData(obj?: Object | string): FormBindingData
 
 FormBindingData相关描述。
 
-**系统能力**：SystemCapability.Ability.Form 
+**系统能力**：SystemCapability.Ability.Form
 
-| 名称 | 可读 | 可写 | 参数类型 | 必填 | 说明 | 
+| 名称 | 可读 | 可写 | 参数类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- | -------- | -------- |
-| data | 是 | 否 | Object | 是 | js卡片要展示的数据。可以是包含若干键值对的Object或者 json 格式的字符串。| 
+| data | 是 | 否 | Object | 是 | js卡片要展示的数据。可以是包含若干键值对的Object或者 json 格式的字符串。|
 
- 
