@@ -105,17 +105,17 @@
           - [Custom Component Lifecycle Callbacks](ui/ts-custom-component-lifecycle-callbacks.md)
           - [Example: Component Creation and Re-Initialization](ui/ts-component-creation-re-initialization.md)
         - Syntactic Sugar
-          -   **[@Decorator](ts-syntactic-sugar-decorator.md)**  
+          -  [@Decorator](ts-syntactic-sugar-decorator.md)
         
-          -   **[Chain Call](ts-syntactic-sugar-chaining.md)**  
+          -  [Chain Call](ts-syntactic-sugar-chaining.md)
         
-          -   **[struct](ts-syntactic-sugar-struct.md)**  
+          -  [struct](ts-syntactic-sugar-struct.md)
         
-          -   **[Instantiating a struct Without the new Keyword](ts-instantiating-a-struct-without-new-keyword.md)**  
+          -  [Instantiating a struct Without the new Keyword](ts-instantiating-a-struct-without-new-keyword.md)
         
-          -   **[Using a Separate Line for New Component](ts-using-a-separate-line-for-new-component.md)**  
+          -  [Using a Separate Line for New Component](ts-using-a-separate-line-for-new-component.md)
         
-          -   **[Restrictions on Using TypeScript for Generators](ts-restrictions-for-generators.md)**  
+          -  [Restrictions on Using TypeScript for Generators](ts-restrictions-for-generators.md)
       - Experiencing the Declarative UI
         - [Creating a Declarative UI Project](ui/ui-ts-creating-project.md)
         - [Getting to Know Components](ui/ui-ts-components.md)
