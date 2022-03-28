@@ -16,13 +16,13 @@ import {UiDriver,BY,MatchPattern} from '@ohos.uitest'
 The UiTest framework provides a wide range of UI component feature description APIs in the **By** class to filter and match components.
 The API capabilities provided by the **By** class exhibit the following features:
 
-1.Allows one or more attributes as the match conditions. For example, you can specify both the **text** and **id** attributes to find the target component.
+- Allows one or more attributes as the match conditions. For example, you can specify both the **text** and **id** attributes to find the target component.
 
-2.Provides multiple match patterns for component attributes.
+- Provides multiple match patterns for component attributes.
 
-3.Supports absolute positioning and relative positioning for components. APIs such as **isBefore** and **isAfter** can be used to specify the features of adjacent components to assist positioning.
+- Supports absolute positioning and relative positioning for components. APIs such as **isBefore** and **isAfter** can be used to specify the features of adjacent components to assist positioning.
 
-All APIs provided in the **By** class are synchronous. You are advised to use the static constructor **BY** to create a **By** object in chain mode, for example, **BY.text('123').type('button')**.
+  All APIs provided in the **By** class are synchronous. You are advised to use the static constructor **BY** to create a **By** object in chain mode, for example, **BY.text('123').type('button')**.
 
 ### enum MatchPattern
 
@@ -92,7 +92,8 @@ Specifies the key attribute of the target component.
 **Example**
 
 ```
-let by = BY.key('123') // Use the static constructor BY to create a By object and specify the key attribute of the target component.
+let by = BY.key('123') // Use the static constructor BY to create a By object and specify the key attribute
+of the target component.
 ```
 
 
@@ -121,7 +122,8 @@ Specifies the ID property of the target component.
 **Example**
 
 ```
-let by = BY.id(123) // Use the static constructor BY to create a By object and specify the ID attribute of the target component.
+let by = BY.id(123) // Use the static constructor BY to create a By object and specify the ID attribute
+of the target component.
 ```
 
 
@@ -208,7 +210,8 @@ Specifies the scrollable attribute of the target component.
 **Example**
 
 ```
-let by = BY.scrollable(true) // Use the static constructor BY to create a By object and specify the scrollable attribute of the target component.
+let by = BY.scrollable(true) // Use the static constructor BY to create a By object and specify the scrollable attribute 
+of the target component.
 ```
 
 ### By.enabled
@@ -236,7 +239,8 @@ Specifies the enable attribute of the target component.
 **Example**
 
 ```
-let by = BY.enabled(true) // Use the static constructor BY to create a By object and specify the enable attribute of the target component.
+let by = BY.enabled(true) // Use the static constructor BY to create a By object and specify the enable attribute 
+of the target component.
 ```
 
 ### By.focused
@@ -264,7 +268,8 @@ Specifies the focused attribute of the target component.
 **Example**
 
 ```
-let by = BY.enabled(true) // Use the static constructor BY to create a By object and specify the focused attribute of the target component.
+let by = BY.enabled(true) // Use the static constructor BY to create a By object and specify the focused attribute 
+of the target component.
 ```
 
 ### By.selected
@@ -292,7 +297,8 @@ Specifies the selected attribute of the target component.
 **Example**
 
 ```
-let by = BY.selected(true) // Use the static constructor BY to create a By object and specify the selected attribute of the target component.
+let by = BY.selected(true) // Use the static constructor BY to create a By object and specify the selected attribute 
+of the target component.
 ```
 
 ### By.isBefore
@@ -320,7 +326,8 @@ Specifies the attributes of the component before which the target component is l
 **Example**
 
 ```
-let by = BY.isBefore(by.text('123')) // Use the static constructor BY to create a By object and specify the attributes of the component before which the target component is located.
+let by = BY.isBefore(BY.text('123')) // Use the static constructor BY to create a By object and specify the attributes 
+of the component before which the target component is located.
 ```
 
 ### By.isAfter
@@ -337,7 +344,7 @@ Specifies the attributes of the component after which the target component is lo
 
 | Name| Type| Mandatory| Description          |
 | ------ | ---- | ---- | -------------- |
-| by     | By   | Yes  | Attributes of the component after which the target component is located.|
+| by     | By   | Yes  | Attributes of the component before which the target component is located.|
 
 **Return value**
 
@@ -348,7 +355,8 @@ Specifies the attributes of the component after which the target component is lo
 **Example**
 
 ```
-let by = BY.isAfter(by.text('123')) // Use the static constructor BY to create a By object and specify the attributes of the component after which the target component is located.
+let by = BY.isAfter(BY.text('123')) // Use the static constructor BY to create a By object and specify the attributes 
+of the component after which the target component is located.
 ```
 
 ## UiComponent
@@ -369,7 +377,11 @@ Clicks this component.
 **Example**
 
 ```
-await button.click()
+async function demo() {
+    let driver = UiDriver.create()
+    let button = await driver.findComponent(BY.type('button'))
+    await button.click()
+}
 ```
 
 ### UiComponent.doubleClick
@@ -385,7 +397,11 @@ Double-clicks this component.
 **Example**
 
 ```
-await buttont.doubleClick()
+async function demo() {
+    let driver = UiDriver.create()
+    let button = await driver.findComponent(BY.type('button'))
+    await buttont.doubleClick()
+}
 ```
 
 ### UiComponent.longClick
@@ -401,7 +417,11 @@ Long-clicks this component.
 **Example**
 
 ```
-await button.longClick()
+async function demo() {
+    let driver = UiDriver.create()
+    let button = await driver.findComponent(BY.type('button'))
+    await button.longClick()
+}
 ```
 
 ### UiComponent.getId
@@ -423,7 +443,11 @@ Obtains the ID of this component.
 **Example**
 
 ```
-let num = await button.getId()
+async function demo() {
+    let driver = UiDriver.create()
+    let button = await driver.findComponent(BY.type('button'))
+    let num = await button.getId()
+}
 ```
 
 ### UiComponent.getKey
@@ -445,7 +469,11 @@ Obtains the key of this component.
 **Example**
 
 ```
-let str_key = await button.getKey()
+async function demo() {
+    let driver = UiDriver.create()
+    let button = await driver.findComponent(BY.type('button'))
+    let str_key = await button.getKey()
+}
 ```
 
 ### UiComponent.getText
@@ -467,7 +495,11 @@ Obtains the text information of this component.
 **Example**
 
 ```
-let text = await button.getText()
+async function demo() {
+    let driver = UiDriver.create()
+    let button = await driver.findComponent(BY.type('button'))
+    let text = await button.getText()
+}
 ```
 
 ### UiComponent.getType
@@ -489,7 +521,11 @@ Obtains the type of this component.
 **Example**
 
 ```
-let type =await button.getType()
+async function demo() {
+    let driver = UiDriver.create()
+    let button = await driver.findComponent(BY.type('button'))
+    let type = await button.getType()
+}
 ```
 
 ### UiComponent.isClickable
@@ -511,11 +547,16 @@ Obtains the clickable status of this component.
 **Example**
 
 ```
-if(await button.isClickable())
-	console.info('This button can be Clicked')
-else
-	console.info('This button can not be Clicked')
-
+async function demo() {
+    let driver = UiDriver.create()
+    let button = await driver.findComponent(BY.type('button'))
+    if(await button.isClickable()) {
+        console.info('This button can be Clicked')
+    }
+    else{
+        console.info('This button can not be Clicked')
+    }
+}
 ```
 
 ### UiComponent.isScrollable
@@ -537,10 +578,16 @@ Obtains the scrollable status of this component.
 **Example**
 
 ```
-if(await scrollBar.isScrollable())
-	console.info('This scrollBar can be operated')
-else
-	console.info('This scrollBar can not be operated')
+async function demo() {
+    let driver = UiDriver.create()
+    let scrollBar = await driver.findComponent(BY.scrollable(true))
+    if(await scrollBar.isScrollable()) {
+        console.info('This scrollBar can be operated')
+    }
+    else{
+        console.info('This scrollBar can not be operated')
+    }
+}
 ```
 
 
@@ -563,10 +610,17 @@ Obtains the enable status of this component.
 **Example**
 
 ```
-if(await button.isEnabled())
-	console.info('This button can be operated')
-else
-	console.info('This button can not be operated')
+async function demo() {
+    let driver = UiDriver.create()
+    let button = await driver.findComponent(BY.type('button'))
+    if(await button.isEnabled()) {
+        console.info('This button can be operated')
+    }
+    else{
+        console.info('This button can not be operated')
+    }
+}
+
 ```
 
 ### UiComponent.isFocused
@@ -588,10 +642,16 @@ Obtains the focused status of this component.
 **Example**
 
 ```
-if(await button.isFocused())
-	console.info('This button is focused')
-else
-	console.info('This button is not focused')
+async function demo() {
+    let driver = UiDriver.create()
+    let button = await driver.findComponent(BY.type('button'))
+    if(await button.isFocused()) {
+        console.info('This button is focused')
+	}
+    else{
+        console.info('This button is not focused')
+	}
+}
 ```
 
 ### UiComponent.isSelected
@@ -613,10 +673,16 @@ Obtains the selected status of this component.
 **Example**
 
 ```
-if(await button.isSelected())
-	console.info('This button is selected')
-else
-	console.info('This button is not selected')
+async function demo() {
+    let driver = UiDriver.create()
+    let button = await driver.findComponent(BY.type('button'))
+    if(await button.isSelected()) {
+        console.info('This button is selected')
+	}
+    else{
+        console.info('This button is not selected')
+    }
+}
 ```
 
 ### UiComponent.inputText
@@ -638,7 +704,11 @@ Enters text into this component (available for text boxes).
 **Example**
 
 ```
-await button.inputText('next page')
+async function demo() {
+    let driver = UiDriver.create()
+    let button = await driver.findComponent(BY.type('button'))
+    await button.inputText('next page')
+}
 ```
 
 ### UiComponent.scrollSearch
@@ -666,7 +736,11 @@ Scrolls on this component to search for the target component (available for list
 **Example**
 
 ```
-let button = await scrollBar.scrollSearch(By.text('next page'))
+async function demo() {
+    let driver = UiDriver.create()
+    let scrollBar = await driver.findComponent(BY.scrollable(true))
+    let button = await scrollBar.scrollSearch(BY.text('next page'))
+}
 ```
 
 ## UiDriver
@@ -693,7 +767,9 @@ Creates a **UiDriver** object and returns the object created. This API is a stat
 **Example**
 
 ```
-let driver = UiDriver.create()
+async function demo() {
+    let driver = UiDriver.create()
+}
 ```
 
 ### UiDriver.delayMs
@@ -715,7 +791,10 @@ Delays this **UiDriver** object within the specified duration.
 **Example**
 
 ```
-await UiDriver.delayMs(1000)
+async function demo() {
+    let driver = UiDriver.create()
+    await driver.delayMs(1000)
+}
 ```
 
 ### UiDriver.findComponent
@@ -743,7 +822,10 @@ Searches this **UiDriver** object for the target component that has the given at
 **Example**
 
 ```
-let button = await UiDriver.findComponent(By.text('next page'))
+async function demo() {
+    let driver = UiDriver.create()
+    let button = await driver.findComponent(BY.text('next page'))
+}
 ```
 
 ### UiDriver.findComponents
@@ -760,7 +842,7 @@ Searches this **UiDriver** object for all components that match the given attrib
 
 | Name| Type| Mandatory| Description              |
 | ------ | ---- | ---- | ------------------ |
-| by     | By   | Yes  | Attributes of the target components.|
+| by     | By   | Yes  | Attributes of the target component.|
 
 **Return value**
 
@@ -771,7 +853,10 @@ Searches this **UiDriver** object for all components that match the given attrib
 **Example**
 
 ```
-let <Array<button>> = await UiDriver.findComponents(By.text('next page'))
+async function demo() {
+    let driver = UiDriver.create()
+    let buttonList = await driver.findComponents(BY.text('next page'))
+}
 ```
 
 ### UiDriver.assertComponentExist   
@@ -793,7 +878,10 @@ Asserts that a component that matches the given attributes exists on the current
 **Example**
 
 ```
-await assertComponentExist(By.text('next page'))
+async function demo() {
+    let driver = UiDriver.create()
+    await driver.assertComponentExist(BY.text('next page'))
+}
 ```
 
 ### UiDriver.pressBack
@@ -809,7 +897,10 @@ Presses the Back button on this **UiDriver** object.
 **Example**
 
 ```
-UiDriver.pressBack()
+async function demo() {
+    let driver = UiDriver.create()
+    await driver.pressBack()
+}
 ```
 
 ### UiDriver.triggerKey
@@ -831,7 +922,10 @@ Triggers the key of this **UiDriver** object that matches the given key code.
 **Example**
 
 ```
-await UiDriver.triggerKey(123)
+async function demo() {
+    let driver = UiDriver.create()
+    await driver.triggerKey(123)
+}
 ```
 
 ### UiDriver.click
@@ -853,7 +947,10 @@ Clicks a specific point of this **UiDriver** object based on the given coordinat
 **Example**
 
 ```
-await UiDriver.click(100,100)
+async function demo() {
+    let driver = UiDriver.create()
+    await driver.click(100,100)
+}
 ```
 
 ### UiDriver.doubleClick
@@ -875,7 +972,10 @@ Double-clicks a specific point of this **UiDriver** object based on the given co
 **Example**
 
 ```
-await UiDriver.doubleClick(100,100)
+async function demo() {
+    let driver = UiDriver.create()
+    await driver.doubleClick(100,100)
+}
 ```
 
 ### UiDriver.longClick
@@ -897,7 +997,10 @@ Long-clicks a specific point of this **UiDriver** object based on the given coor
 **Example**
 
 ```
-await UiDriver.longClick(100,100)
+async function demo() {
+    let driver = UiDriver.create()
+    await driver.longClick(100,100)
+}
 ```
 
 ### UiDriver.swipe
@@ -920,7 +1023,10 @@ Swipes from the start point to the end point of this **UiDriver** object based o
 **Example**
 
 ```
-await UiDriver.swipe(100,100,200,200)
+async function demo() {
+    let driver = UiDriver.create()
+    await driver.swipe(100,100,200,200)
+}
 ```
 
 ### UiDriver.screenCap
@@ -942,5 +1048,8 @@ Captures the current screen of this **UiDriver** object and saves it as a PNG im
 **Example**
 
 ```
-await UiDriver.screenCap('/local/tmp/')
+async function demo() {
+    let driver = UiDriver.create()
+    await driver.screenCap('/local/tmp/')
+}
 ```
