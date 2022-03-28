@@ -32,11 +32,7 @@ The PWM APIs provide a set of functions for operating a PWM device, including th
 
 <table border="0" cellpadding="0" cellspacing="0" width="800" style="border-collapse:
  collapse;table-layout:fixed;width:700pt">
- <colgroup><col class="xl65" width="300" style="mso-width-source:userset;mso-width-alt:13728;
- width:300pt">
- <col width="250" style="mso-width-source:userset;mso-width-alt:13216;width:250pt">
- <col width="300" style="mso-width-source:userset;mso-width-alt:28352;width:300pt">
- </colgroup><tbody><tr height="19" style="height:14.25pt">
+<tbody><tr height="19" style="height:14.25pt">
   <td height="19" class="xl66" width="300" style="height:14.25pt;width:300pt">Category</td>
   <td class="xl67" width="250" style="width:250pt">API</td>
   <td class="xl67" width="300" style="width:300pt">Description</td>
@@ -81,18 +77,11 @@ The PWM APIs provide a set of functions for operating a PWM device, including th
   <td height="19" style="height:14.25pt">PwmGetConfig</td>
   <td>Obtains PWM device parameters.</td>
  </tr>
- <!--[if supportMisalignedColumns]-->
- <tr height="0" style="display:none">
-  <td width="429" style="width:322pt"></td>
-  <td width="413" style="width:310pt"></td>
-  <td width="886" style="width:665pt"></td>
- </tr>
- <!--[endif]-->
 </tbody></table>
 
 
 
->![](W:\doc\docs\en\device-dev\public_sys-resources\icon-note.gif) **NOTE:**
+>![](../public_sys-resources/icon-note.gif) **NOTE:**
 >The PWM module can be used in kernel mode but not in user mode.
 
 ## Usage Guidelines<a name="section3_PWM_des"></a>
