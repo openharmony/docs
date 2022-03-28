@@ -17,7 +17,7 @@
 | -------- | -------- |
 |getRdbStore(config:&nbsp;StoreConfig,&nbsp;version:&nbsp;number,&nbsp;callback:&nbsp;AsyncCallback&lt;RdbStore&gt;):&nbsp;void | 获得一个相关的RdbStore，操作关系型数据库，用户可以根据自己的需求配置RdbStore的参数，然后通过RdbStore调用相关接口可以执行相关的数据操作，结果以callback形式返回。<br/>-&nbsp;config：与此RDB存储相关的数据库配置。<br/>-&nbsp;version：数据库版本。<br/>-&nbsp;callback：指定callback回调函数。返回一个RdbStore。 |
 |getRdbStore(config:&nbsp;StoreConfig,&nbsp;version:&nbsp;number):&nbsp;Promise&lt;RdbStore&gt; | 获得一个相关的RdbStore，操作关系型数据库，用户可以根据自己的需求配置RdbStore的参数，然后通过RdbStore调用相关接口可以执行相关的数据操作，结果以Promise形式返回。<br/>-&nbsp;config：与此RDB存储相关的数据库配置。<br/>-&nbsp;version：数据库版本。 |
-|deleteRdbStore(name:&nbsp;string,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | 删除数据库，结果以callback形式返回。<br/>-&nbsp;name：数据库名称。<br/>-&nbsp;callback：指定callback回调函数。如果数据库已删除，则为true；否则返回false。 |
+|deleteRdbStore(name:&nbsp;string,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | 删除数据库，结果以callback形式返回。<br/>-&nbsp;name：数据库名称。<br/>-&nbsp;callback：指定callback回调函数。 |
 | deleteRdbStore(name:&nbsp;string):&nbsp;Promise&lt;void&gt; | 使用指定的数据库文件配置删除数据库，结果以Promise形式返回。<br/>-&nbsp;name：数据库名称。 |
 
 ### 数据库的增删改查
