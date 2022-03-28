@@ -48,7 +48,6 @@ struct DatePickerDialogExample01 {
           onAccept: (value: DatePickerResult) => {
             this.selectedDate.setFullYear(value.year, value.month, value.day)
             console.info("DatePickerDialog:onAccept()" + JSON.stringify(value))
-            }
           },
           onCancel: () => {
             console.info("DatePickerDialog:onCancel()")
@@ -82,7 +81,6 @@ struct DatePickerDialogExample02 {
           onAccept: (value: DatePickerResult) => {
             this.selectedDate.setFullYear(value.year, value.month, value.day)
             console.info("DatePickerDialog:onAccept()" + JSON.stringify(value))
-            }
           },
           onCancel: () => {
             console.info("DatePickerDialog:onCancel()")
