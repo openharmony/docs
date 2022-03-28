@@ -684,82 +684,13 @@ netConnection.unregister(function (error) {
 | ------ | ------ | ------------------------- |
 | netId  | number | 网络ID，必须大于等于100。 |
 
-### bindSocket
-
-bindSocket(socketParam: TCPSocket | UDPSocket, callback: AsyncCallback&lt;void&gt;): void
-
-将TCPSocket或UDPSocket绑定到当前网络，使用callback方式作为异步方法。
-
-**系统能力**：SystemCapability.Communication.NetManager.Core
-
-**参数：**
-| 参数名      | 类型                      | 必填 | 说明             |
-| ----------- | ------------------------- | ---- | ---------------- |
-| socketParam | TCPSocket \| UDPSocket    | 是   | TCPSocket或UDPSocket对象。 |
-| callback    | AsyncCallback&lt;void&gt; | 是   | 回调函数。       |
-
-**示例：**
-
-```
-// 绑定TCPSocket
-connection.getDefaultNet().then(function (netHandle) {
-    let tcpSocket = socket.constructTCPSocketInstance()
-    netHandle.bindSocket(tcpSocket, (function (error) {
-        console.log(JSON.stringify(error))
-    }))
-})
-// 绑定UDPSocket
-connection.getDefaultNet().then(function (netHandle) {
-    let udpSocket = socket.constructUDPSocketInstance()
-    netHandle.bindSocket(udpSocket, (function (error) {
-        console.log(JSON.stringify(error))
-    }))
-})
-```
-
-
-### bindSocket
-
-bindSocket(socketParam: TCPSocket | UDPSocket): Promise&lt;void&gt;
-
-将TCPSocket或UDPSocket绑定到当前网络，使用promise方式作为异步方法。
-
-**系统能力**：SystemCapability.Communication.NetManager.Core
-
-**参数：**
-| 参数名      | 类型                                                         | 必填 | 说明                                                         |
-| ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| socketParam | TCPSocket \| UDPSocket    | 是   | TCPSocket或UDPSocket对象。 |
-
-**返回值：**
-| 类型                | 说明                        |
-| ------------------- | --------------------------- |
-| Promise&lt;void&gt; | 以Promise形式返回执行结果。 |
-
-**示例：**
-
-```
-// 绑定TCPSocket
-connection.getDefaultNet().then(function (netHandle) {
-    let tcpSocket = socket.constructTCPSocketInstance()
-    netHandle.bindSocket(tcpSocket).then(function () {
-        console.log("bind socket success")
-    })
-})
-// 绑定UDPSocket
-connection.getDefaultNet().then(function (netHandle) {
-    let udpSocket = socket.constructUDPSocketInstance()
-    netHandle.bindSocket(udpSocket).then(function () {
-        console.log("bind socket success")
-    })
-})
-```
-
 ### getAddressesByName
 
 getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): void
 
 使用对应网络解析主机名以获取所有IP地址，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.GET_NETWORK_INFO
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -787,6 +718,8 @@ connection.getDefaultNet().then(function (netHandle) {
 getAddressesByName(host: string): Promise\<Array\<NetAddress>>
 
 使用对应网络解析主机名以获取所有IP地址，使用Promise方式作为异步方法。
+
+**需要权限**：ohos.permission.GET_NETWORK_INFO
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -819,6 +752,8 @@ getAddressByName(host: string, callback: AsyncCallback\<NetAddress>): void
 
 使用对应网络解析主机名以获取第一个IP地址，使用callback方式作为异步方法。
 
+**需要权限**：ohos.permission.GET_NETWORK_INFO
+
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
 **参数：**
@@ -845,6 +780,8 @@ connection.getDefaultNet().then(function (netHandle) {
 getAddressByName(host: string): Promise\<NetAddress>
 
 使用对应网络解析主机名以获取第一个IP地址，使用Promise方式作为异步方法。
+
+**需要权限**：ohos.permission.GET_NETWORK_INFO
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
