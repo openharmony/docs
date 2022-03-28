@@ -729,7 +729,30 @@ groupBy(fields: Array&lt;string&gt;): DataAbilityPredicates
   predicates.groupBy(["AGE", "NAME"])
   ```
 
+### indexedBy
 
+
+indexedBy(field: string): DataAbilityPredicates
+
+
+配置谓词以指定索引列。
+
+
+- 参数：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | indexName | string | 是 | 索引列的名称。 |
+
+- 返回值：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | [DataAbilityPredicates](#dataabilitypredicates) | 返回具有指定索引列的谓词。 |
+
+- 示例：
+  ```
+  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
+  predicates.indexedBy("SALARY_INDEX")
+  ```
 
 
 ### in
