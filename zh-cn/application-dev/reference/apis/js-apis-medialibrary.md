@@ -1149,15 +1149,19 @@ getThumbnail(size?: Size): Promise&lt;image.PixelMap&gt;
 async function example() {
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
-      selections: fileKeyObj.MEDIA_TYPE + '= ?',
-      selectionArgs: [imageType.toString()],
-      order: fileKeyObj.DATE_ADDED + " DESC",
-      extendArgs: "",
+        selections: fileKeyObj.MEDIA_TYPE + '= ?',
+        selectionArgs: [imageType.toString()],
+        order: fileKeyObj.DATE_ADDED + " DESC",
+        extendArgs: "",
     };
     const fetchFileResult = await media.getFileAssets(getImageOp);
     const asset = await fetchFileResult.getFirstObject();
-    asset.getThumbnail(size, (err, pixelmap) => {
+    asset.getThumbnail(size)
+    .then((pixelmap) => {
         console.info('mediaLibraryTest : getThumbnail Successfull '+ pixelmap);
+    })
+    .catch((err) => {
+        console.info('mediaLibraryTest : getThumbnail fail'+ err);
     });
 }
 ```
