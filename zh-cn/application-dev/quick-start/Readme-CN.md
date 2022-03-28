@@ -1,7 +1,7 @@
 # 入门
 
 - 快速入门
-    - [前言](start-overview.md)
+    - [开发准备](start-overview.md)
     - [使用eTS语言开发](start-with-ets.md)
     - [使用JS语言开发（传统代码方式）](start-with-js.md)
     - [使用JS语言开发（低代码方式）](start-with-js-low-code.md)
