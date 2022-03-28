@@ -387,7 +387,7 @@ Checks whether an app account allows application data synchronization. This meth
 
 ### setAccountCredential
 
-setAccountCredential(name: string, credentialType: string, credential: string,callback: AsyncCallback&lt;void&gt;): void
+setAccountCredential(name: string, credentialType: string, credential: string callback: AsyncCallback&lt;void&gt;): void
 
 Sets a credential for an app account. This method uses an asynchronous callback to return the result.
 
