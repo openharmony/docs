@@ -6,7 +6,7 @@
 OpenHarmony相机驱动框架模型对上实现相机HDI（Hardware Device Interface）接口，对下实现相机Pipeline模型，管理相机各个硬件设备。
 该驱动框架模型内部分为三层，依次为HDI实现层、框架层和适配层，各层基本概念如下：
 
-+ HDI实现层：对上实现OHOS（OpenHarmony Operation System）相机标准南向接口。
++ HDI实现层：实现OHOS（OpenHarmony Operation System）相机标准南向接口。
 + 框架层：对接HDI实现层的控制、流的转发，实现数据通路的搭建，管理相机各个硬件设备等功能。
 + 适配层：屏蔽底层芯片和OS（Operation System）差异，支持多平台适配。
 
@@ -20,9 +20,9 @@ Camera模块主要包含服务、设备的初始化，数据通路的搭建，�
 
 1. 系统启动时创建CameraDeviceHost进程。进程创建后，首先枚举底层设备，创建（也可以通过配置表创建）管理设备树的DeviceManager类及其内部各个底层设备的对象，创建对应的CameraHost类实例并且将其注册到UHDF服务中，方便上层通过UHDF服务获取底层CameraDeviceHost的服务，从而操作底层设备。
 
-2. Service通过CameraDeviceHost服务获取CameraHost实例，CameraHost可以获取底层的Camera能力，打开手电筒、调用Open接口打开Camera创建连接、创建DeviceManager（负责底层硬件模块上电）、创建CameraDevice（向上提供设备控制接口）。创建CameraDevice时会实例化PipelineCore的各个子模块，其中StreamPiplineCore负责创建Pipeline，MetaQueueManager负责上报meta。
+2. Service通过CameraDeviceHost服务获取CameraHost实例，CameraHost可以获取底层的Camera能力，打开手电筒、调用Open接口打开Camera创建连接、创建DeviceManager（负责底层硬件模块上电）、创建CameraDevice（向上提供设备控制接口）。创建CameraDevice时会实例化PipelineCore的各个子模块，其中StreamPipelineCore负责创建Pipeline，MetaQueueManager负责上报metaData。
 
-3. Service通过底层的CameraDevice配置流、创建Stream类。StreamPipelineStrategy模块通过上层下发的模式和查询配置表创建对应流的Node连接方式，StreamPipelineBuilder模块创建Node实例并且连接返回该Pipline给StreamPipelineDispatcher。StreamPipelineDispatcher提供统一的Pipline调用管理。
+3. Service通过CameraDevice模块配置流、创建Stream类。StreamPipelineStrategy模块通过上层下发的模式和查询配置表创建对应流的Node连接方式，StreamPipelineBuilder模块创建Node实例并且连接返回该Pipeline给StreamPipelineDispatcher。StreamPipelineDispatcher提供统一的Pipeline调用管理。
 
 4. Service通过Stream控制整个流的操作，AttachBufferQueue接口将从显示模块申请的BufferQueue下发到底层，由CameraDeviceDriverModel自行管理buffer，当Capture接口下发命令后，底层开始向上传递buffer。Pipeline的IspNode依次从BufferQueue获取指定数量buffer，然后下发到底层ISP（Image Signal Processor，图像信号处理器）硬件，ISP填充完之后将buffer传递给CameraDeviceDriverModel，CameraDeviceDriverModel通过循环线程将buffer填充到已经创建好的Pipeline中，各个Node处理后通过回调传递给上层，同时buffer返回BufferQueue等待下一次下发。
 
@@ -30,7 +30,7 @@ Camera模块主要包含服务、设备的初始化，数据通路的搭建，�
 
 6. Service通过CameraDevice的UpdateSettings接口向下发送CaptureSetting参数，CameraDeviceDriverModel通过StreamPipelineDispatcher模块向各个Node转发，StartStreamingCapture和Capture接口携带的CaptureSetting通过StreamPipelineDispatcher模块向该流所属的Node转发。
 
-7. Service通过EnableResult和DisableResult接口控制底层meta的上报。如果需要底层meta上报，pipeline会创建CameraDeviceDriverModel内部的一个Bufferqueue用来收集和传递meta，根据StreamPipelineStrategy模块查询配置表并通过StreamPipelineBuilder创建和连接Node，MetaQueueManager下发buffer至底层，底层相关Node填充数据，MetaQueueManager模块再调用上层回调传递给上层。
+7. Service通过EnableResult和DisableResult接口控制底层metaData的上报。如果需要底层metaData上报，pipeline会创建CameraDeviceDriverModel内部的一个Bufferqueue用来收集和传递metaData，根据StreamPipelineStrategy模块查询配置表并通过StreamPipelineBuilder创建和连接Node，MetaQueueManager下发buffer至底层，底层相关Node填充数据，MetaQueueManager模块再调用上层回调传递给上层。
 
 8. Service调用CameraDevice的Close接口，CameraDevice调用对应的DeviceManager模块对各个硬件下电；如果此时在Ipp的SubPipeline中存在OfflineStream，则需要保留OfflineStream，直到执行完毕。
 
@@ -256,7 +256,7 @@ Camera驱动的开发过程主要包含以下步骤：
        }
        CamRetCode ret = cameraDevice->SetCallback(callback);
        if (ret != NO_ERROR) {
-           CAMERA_LOGW("set camera device callback faild.");
+           CAMERA_LOGW("set camera device callback failed.");
            return ret;
        }
        CameraHostConfig *config = CameraHostConfig::GetInstance();
@@ -297,10 +297,10 @@ Camera驱动的开发过程主要包含以下步骤：
            CAMERA_LOGW("input callback is null.");
            return INVALID_ARGUMENT;
        }
-       spCameraDeciceCallback_ = callback;
+       spCameraDeviceCallback_ = callback;
        if (spStreamOperator_ == nullptr) {
            // 这里new了一个spStreamOperator对象传递给调用者，以便对stream进行各种操作。
-           spStreamOperator_ = new(std::nothrow) StreamOperatorImpl(spCameraDeciceCallback_, shared_from_this());
+           spStreamOperator_ = new(std::nothrow) StreamOperatorImpl(spCameraDeviceCallback_, shared_from_this());
            if (spStreamOperator_ == nullptr) {
                CAMERA_LOGW("create stream operator failed.");
                return DEVICE_ERROR;
@@ -310,7 +310,7 @@ Camera驱动的开发过程主要包含以下步骤：
        streamOperator = ismOperator_;
    
        spStreamOperator_->SetRequestCallback([this](){
-           cameraDeciceCallback_->OnError(REQUEST_TIMEOUT, 0);
+           spCameraDeviceCallback_->OnError(REQUEST_TIMEOUT, 0);
        });
    }
    ```
@@ -325,7 +325,7 @@ Camera驱动的开发过程主要包含以下步骤：
        int width_;  // 数据流宽
        int height_; // 数据流高
        int format_; // 数据流格式，如PIXEL_FMT_YCRCB_420_SP
-       int datasapce_; 
+       int dataSpace_; 
        StreamIntent intent_; // StreamIntent 如PREVIEW
        bool tunneledMode_;
        OHOS::sptr<OHOS::IBufferProducer> bufferQueue_; // 数据流bufferQueue可用streamCustomer->CreateProducer()接口创建
@@ -474,7 +474,7 @@ Camera驱动的开发过程主要包含以下步骤：
 
 在/drivers/peripheral/camera/hal/init目录下有一个关于Camera的demo，开机后会在/system/bin下生成可执行文件ohos_camera_demo，该demo可以完成Ｃamera的预览，拍照等基础功能。下面我们就以此demo为例讲述怎样用HDI接口去编写预览PreviewOn()和拍照CaptureON()的用例，可参考[ohos_camera_demo](https://gitee.com/openharmony/drivers_peripheral/tree/master/camera/hal/init)。
 
-1. 在main函数中构造一个Hos3516Demo对象，该对象中有对Ｃamera初始化、启停流、释放等控制的方法。下面mainDemo->InitSensors()函数为初始化CameraHost，mainDemo->InitCameraDevice()函数为初始化CameraDevice。
+1. 在main函数中构造一个mainDemo 对象，该对象中有对Ｃamera初始化、启停流、释放等控制的方法。下面mainDemo->InitSensors()函数为初始化CameraHost，mainDemo->InitCameraDevice()函数为初始化CameraDevice。
 
    ```
    int main(int argc, char** argv)
