@@ -167,9 +167,9 @@ authenticator.execute('FACE_ONLY', 'S1', (err, result) => {
 
 3、产品解决方案厂商按硬件能力和产品诉求，可按需拼装部件。
 
-4、产品配置的部件可以是 OpenHarmony 的部件，也可以时三方开发的私有部件，由于部件与SysCap间存在映射，所有拼装后即可得到该产品的SysCap集合。
+4、产品配置的部件可以是 OpenHarmony 的部件，也可以是三方开发的私有部件，由于部件与SysCap间存在映射，所有拼装后即可得到该产品的SysCap集合。
 
-5、SysCap集编码生成 PCID (Product Compatibility ID)对 SysCap 差异做对应处理，保证在不同设备上的兼容性。lity ID， 产品兼容性标识)，应用开发者可将 PCID 导入 IDE 得到某个产品的 SysCap。PCID 会随镜像烧录至设备中。
+5、SysCap集编码生成 PCID (Product Compatibility ID， 产品兼容性标识)，应用开发者可将 PCID 导入 IDE解码成SysCap ，开发时对设备的SysCap差异做兼容性处理。
 
 6、部署到设备上的系统参数中包含了 SysCap 集，系统提供了native的接口和应用接口，可供系统内的部件和应用查询某个 SysCap 是否存在。
 
