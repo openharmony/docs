@@ -41,9 +41,11 @@ SDK 提供全量的 API 给 IDE，IDE 通过开发者的项目支持的设备，
 
 ### PCID导入
 
-创建新工程时，默认能够生成 syscap.json 文件，且支持多个 PCID 的导入。导入的 PCID 解码后输出的 syscap 会被写入 syscap.json 文件中。
+DevEco Studio 工程支持 PCID 的导入。导入的 PCID 文件解码后输出的 syscap 会被写入 syscap.json 文件中。
 
 在工程目录右键后选择 Import Product Compatibility ID，即可上传 PCID 文件并导入至 syscap.json 中。
+
+![20220329-103626](figures/20220329-103626.gif)
 
 
 
