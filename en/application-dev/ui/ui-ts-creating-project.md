@@ -61,7 +61,7 @@ Before creating a project, you need to install DevEco Studio. For details, see  
 
     ![](figures/en-us_image_0000001148858818.png)
 
-    Before the installation, you must configure an application signature. For details, see  [Configuring the OpenHarmony App Signature](../quick-start/configuring-openharmony-app-signature.md). After the installation is complete, click the  **Run**  icon on the screen to open the application.  **Hello World**  is displayed in the center of the screen.
+    Before the installation, you must configure an application signature. For details, see  [Configuring the OpenHarmony App Signature](https://developer.harmonyos.com/en/docs/documentation/doc-guides/ohos-debugging-and-running-0000001263040487#section17660437768). After the installation is complete, click the  **Run**  icon on the screen to open the application.  **Hello World**  is displayed in the center of the screen.
 
     ![](figures/en-us_image_0000001158896538.png)
 
