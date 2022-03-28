@@ -61,6 +61,6 @@
 8. 应用安装到手机上运行应用。将手机连接电脑，等IDE识别到物理设备后，点击Run 'entry'按钮。
    ![zh-cn_image_0000001148858818](figures/zh-cn_image_0000001148858818.png)
 
-   在安装之前，需要配置应用签名，[配置应用签名教程](../quick-start/configuring-openharmony-app-signature.md)。安装成功后，点击屏幕上的Run图标打开应用，可以看到居中加粗显示的“Hello World”。
+   在安装之前，需要[配置应用签名](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-debugging-and-running-0000001263040487#section17660437768)。安装成功后，点击屏幕上的Run图标打开应用，可以看到居中加粗显示的“Hello World”。
 
    ![zh-cn_image_0000001158896538](figures/zh-cn_image_0000001158896538.png)

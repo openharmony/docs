@@ -1,23 +1,18 @@
 # OpenHarmony应用开发文档
 - [应用开发导读](application-dev-guide.md)
+
 - 快速开始
-  - 应用开发快速入门
-    - DevEco Studio（OpenHarmony）使用指南
-      - [概述](quick-start/deveco-studio-overview.md)
-      - [版本变更说明](quick-start/deveco-studio-release-notes.md)
-      - [配置OpenHarmony SDK](quick-start/configuring-openharmony-sdk.md)
-      - 创建OpenHarmony工程
-        - [使用工程向导创建新工程](quick-start/use-wizard-to-create-project.md)
-        - [通过导入Sample方式创建新工程](quick-start/import-sample-to-create-project.md)
-      - [配置OpenHarmony应用签名信息](quick-start/configuring-openharmony-app-signature.md)
-      - [安装运行OpenHarmony应用](quick-start/installing-openharmony-app.md)
-    - 快速入门
-      - [前言](quick-start/start-overview.md)
-      - [使用eTS语言开发](quick-start/start-with-ets.md)
-      - [使用JS语言开发（传统代码方式）](quick-start/start-with-js.md)
-      - [使用JS语言开发（低代码方式）](quick-start/start-with-js-low-code.md)
-  - [应用开发包结构说明](quick-start/package-structure.md)
-  - [资源文件的分类](quick-start/basic-resource-file-categories.md)
+  
+  - 快速入门
+    - [前言](quick-start/start-overview.md)
+    - [使用eTS语言开发](quick-start/start-with-ets.md)
+    - [使用JS语言开发（传统代码方式）](quick-start/start-with-js.md)
+    - [使用JS语言开发（低代码方式）](quick-start/start-with-js-low-code.md)
+  
+  - 开发基础知识
+    - [应用开发包结构说明](quick-start/package-structure.md)
+    - [资源文件的分类](quick-start/basic-resource-file-categories.md)
+  
 - 开发
   - Ability开发
     - [Ability框架概述](ability/ability-brief.md)
@@ -88,7 +83,7 @@
           - [Qrcode开发指导](ui/ui-js-components-qrcode.md)
           - [Search开发指导](ui/ui-js-components-search.md)
         - Canvas开发指导
-          - [Canvas对象](ui-js-components-canvas.md)
+          - [Canvas对象](ui/ui-js-components-canvas.md)
           - [CanvasRenderingContext2D对象](ui/ui-js-components-canvasrenderingcontext2d.md)
           - [Path2D对象](ui/ui-js-components-path2d.md)
           - [OffscreenCanvas对象](ui/ui-js-components-offscreencanvas.md)
@@ -275,17 +270,14 @@
       - [国际化开发概述](internationalization/international-overview.md)
       - [Intl开发指导](internationalization/intl-guidelines.md)
       - [I18n开发指导](internationalization/i18n-guidelines.md)
+  
 - 工具
-  - DevEco Studio（OpenHarmony）使用指南
-    - [概述](quick-start/deveco-studio-overview.md)
-    - [版本变更说明](quick-start/deveco-studio-release-notes.md)
-    - [配置OpenHarmony SDK](quick-start/configuring-openharmony-sdk.md)
-    - [创建OpenHarmony工程](quick-start/create-openharmony-project.md)
-    - [配置OpenHarmony应用签名信息](quick-start/configuring-openharmony-app-signature.md)
-    - [安装运行OpenHarmony应用](quick-start/installing-openharmony-app.md)
+  - [DevEco Studio（OpenHarmony）使用指南](quick-start/deveco-studio-user-guide-for-openharmony.md)
+  
 - 示例教程
   - [示例代码](https://gitee.com/openharmony/app_samples/blob/master/README_zh.md)
   - [Codelabs](https://gitee.com/openharmony/codelabs/blob/master/README.md)
+  
 - API参考
   - 组件参考（基于JS扩展的类Web开发范式）
     - 组件
@@ -611,10 +603,10 @@
       - [升级](reference/apis/js-apis-update.md)
       - [USB管理](reference/apis/js-apis-usb.md)
       - [位置服务](reference/apis/js-apis-geolocation.md)
-      - [输入设备](js-apis-inputdevice.md)
-      - [组合按键](js-apis-inputconsumer.md)
-      - [输入监听](js-apis-inputmonitor.md)
-      - [事件注入](js-apis-inputeventclient.md)
+      - [输入设备](reference/apis/js-apis-inputdevice.md)
+      - [组合按键](reference/apis/js-apis-inputconsumer.md)
+      - [输入监听](reference/apis/js-apis-inputmonitor.md)
+      - [事件注入](reference/apis/js-apis-inputeventclient.md)
     - 基本功能
       - [应用上下文](reference/apis/js-apis-system-app.md)
       - [日志打印](reference/apis/js-apis-logs.md)

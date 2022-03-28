@@ -76,7 +76,7 @@ ATM(AccessTokenManager)是OpenHarmony上基于AccessToken构建的统一的应�
 
 默认情况下，应用的APL等级都为normal等级，如果应用需要将自身的APL等级声明为system_basic及以上的APL等级，需要进行以下步骤：
 - 申请应用市场审核并通过。
-- 开发应用安装包时，需要修改应用的profile文件，在文件的"apl"字段声明应用的APL等级，并使用profile签名工具生成证书。具体签名流程可以查看页面[配置OpenHarmony应用签名信息](../quick-start/configuring-openharmony-app-signature.md)。
+- 开发应用安装包时，需要修改应用的profile文件，在文件的"apl"字段声明应用的APL等级，并使用profile签名工具生成证书。具体签名流程可以查看页面[配置OpenHarmony应用签名信息](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-debugging-and-running-0000001263040487#section17660437768)。
 
 ### 权限等级说明
 
@@ -173,7 +173,7 @@ ACL方式的工作流程可以参考[ACL方式使用说明](#ACL方式使用说�
 **ACL申请方式须知**
 
 * 申请应用市场审核并通过。
-* 开发应用安装包时，需要修改应用的profile文件，在文件的"acl"字段声明目标的访问控制列表，并使用profile签名工具生成证书。具体签名流程可以查看页面[配置OpenHarmony应用签名信息](../quick-start/configuring-openharmony-app-signature.md)。
+* 开发应用安装包时，需要修改应用的profile文件，在文件的"acl"字段声明目标的访问控制列表，并使用profile签名工具生成证书。具体签名流程可以查看页面[配置OpenHarmony应用签名信息](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-debugging-and-running-0000001263040487#section17660437768)。
 
 ## 权限定义列表
 

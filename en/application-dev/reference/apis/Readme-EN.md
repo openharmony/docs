@@ -58,6 +58,7 @@
     -   [WLAN](js-apis-wifi.md)  
     -   [Bluetooth](js-apis-bluetooth.md)
     -   [RPC](js-apis-rpc.md)
+    -   [Upload and Download](js-apis-request.md)
 - Device Management
     -   [Sensor](js-apis-sensor.md)
     -   [Vibrator](js-apis-vibrator.md)
@@ -80,6 +81,8 @@
     -   [Page Routing](js-apis-basic-features-routes.md)
     -   [Timer](js-apis-basic-features-timer.md)
     -   [Setting the System Time](js-apis-system-time.md)
+    -   [Wallpaper](js-apis-wallpaper.md)
+    -   [Pasteboard](js-apis-pasteboard.md)
     -   [Animation](js-apis-basic-features-animator.md)
     -   [WebGL](js-apis-webgl.md)
     -   [WebGL2](js-apis-webgl2.md)
