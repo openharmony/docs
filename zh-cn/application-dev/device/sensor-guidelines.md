@@ -82,8 +82,8 @@
   
    ```
    import sensor from "@ohos.sensor"
-   sensor.on(sensor.sensorType,function(data){
-          console.info("Subscription succeeded. data = "+ data);//调用成功，打印对应传感器的数据
+   sensor.on(sensor.sensorType.SENSOR_TYPE_ACCELEROMETER,function(data){
+          console.info("Subscription succeeded. data = " + data);//调用成功，打印对应传感器的数据
      }
    );
    ```
@@ -96,7 +96,7 @@
   
    ```
    import sensor from "@ohos.sensor"
-   sensor.off(sensor.sensorType,function() {
+   sensor.off(sensor.sensorType.SENSOR_TYPE_ACCELEROMETER,function() {
        console.info("Succeeded in unsubscribing from acceleration sensor data.");//注销成功，返回打印结果
      }
    );
@@ -110,8 +110,8 @@
   
    ```
    import sensor from "@ohos.sensor"
-   sensor.once(sensor.sensorType,function(data) {
-           console.info("Data obtained successfully. data="+data);//获取数据成功，打印对应传感器的数据
+   sensor.once(sensor.sensorType.SENSOR_TYPE_ACCELEROMETER,function(data) {
+           console.info("Data obtained successfully. data=" + data);//获取数据成功，打印对应传感器的数据
      }
    );
    ```
