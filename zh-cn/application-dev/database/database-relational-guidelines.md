@@ -201,9 +201,10 @@
    
    const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " + "name TEXT NOT NULL, " + "age INTEGER, " + "salary REAL, " + "blobType BLOB)";
    const STORE_CONFIG = {name: "rdbstore.db",}
-   
-   let rdbStore = await data_rdb.getRdbStore(STORE_CONFIG, 1);
-   await rdbStore.executeSql(CREATE_TABLE_TEST);
+   data_rdb.getRdbStore(STORE_CONFIG, 1, function (err, rdbStore) {
+       rdbStore.executeSql(SQL_CREATE_TABLE)
+       console.info('create table done.')
+   })
    ```
 
 2. 插入数据。
@@ -228,16 +229,16 @@
    ```
    let predicates = new data_rdb.RdbPredicates("test");
    predicates.equalTo("name", "Tom")
-   let resultSet = await rdbStore.query(predicates)
-   
-   resultSet.goToFirstRow()
-   const id = await resultSet.getLong(resultSet.getColumnIndex("id"))
-   const name = await resultSet.getString(resultSet.getColumnIndex("name"))
-   const age = await resultSet.getLong(resultSet.getColumnIndex("age"))
-   const salary = await resultSet.getDouble(resultSet.getColumnIndex("salary"))
-   const blobType = await resultSet.getBlob(resultSet.getColumnIndex("blobType"))
-   
-   resultSet.close()
+   let promisequery = rdbStore.query(predicates)
+       promisequery.then((resultSet) => {
+       resultSet.goToFirstRow()
+       const id = resultSet.getLong(resultSet.getColumnIndex("id"))
+       const name = resultSet.getString(resultSet.getColumnIndex("name"))
+       const age = resultSet.getLong(resultSet.getColumnIndex("age"))
+       const salary = resultSet.getDouble(resultSet.getColumnIndex("salary"))
+       const blobType = resultSet.getBlob(resultSet.getColumnIndex("blobType"))
+       resultSet.close()
+   })
    ```
 
 4. 设置分布式同步表。
