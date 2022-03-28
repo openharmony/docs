@@ -8,7 +8,7 @@ The event logging function helps applications log various information generated 
 
 JS application event logging APIs are provided by the **hiAppEvent** module.
 
-**APIs for event logging:**
+**APIs for Event Logging**
 
 | API                                                          | Return Value   | Description                                                  |
 | ------------------------------------------------------------ | -------------- | ------------------------------------------------------------ |
@@ -17,7 +17,7 @@ JS application event logging APIs are provided by the **hiAppEvent** module.
 
 When an asynchronous callback is used, the return value can be processed directly in the callback. When a promise is used, the return value can also be processed in the promise in a similar way. For details about the result codes, see [Event Verification Result Codes](hiappevent-overview.md#Event Verification Result Codes).
 
-**APIs for event logging configuration:**
+**APIs for Event Logging Configuration**
 
 | API                            | Return Value | Description                                                  |
 | ------------------------------ | ------------ | ------------------------------------------------------------ |
