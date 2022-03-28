@@ -25,9 +25,9 @@
   - [编译构建](subsystems/subsys-build.md) 
   - [分布式远程启动](subsystems/subsys-remote-start.md)
   - [图形图像](subsystems/subsys-graphics.md)	
-  -  [媒体](subsystems/subsys-multimedia.md)	
-  -  [公共基础](subsystems/subsys-utils.md)	
-  -  [AI框架](subsystems/subsys-aiframework.md)	
+  - [媒体](subsystems/subsys-multimedia.md)	
+  - [公共基础](subsystems/subsys-utils.md)	
+  - [AI框架](subsystems/subsys-aiframework.md)	
   - [数据管理](subsystems/subsys-data.md)
   - [Sensor服务](subsystems/subsys-sensor.md)
   - [USB服务](subsystems/subsys-usbservice.md)
@@ -40,10 +40,10 @@
 - 专题开发
   - [HPM Part](hpm-part/Readme-CN.md) 	 	
 - 设备开发示例	 
-  -  [轻量和小型系统设备开发示例](guide/device-lite.md) 	
-  - [标准系统设备开发示例](guide/device-lite.md) 
+  - [轻量和小型系统设备开发示例](guide/device-lite.md) 	
+  - [标准系统设备开发示例](guide/device-standard.md) 
 - 调测
-  -  [测试用例开发](subsystems/subsys-testguide-test.md)	
+  - [测试用例开发](subsystems/subsys-testguide-test.md)	
   - [调测工具](subsystems/subsys-toolchain.md) 
 - XTS认证	
   - [XTS认证](subsystems/subsys-xts-guide.md)	

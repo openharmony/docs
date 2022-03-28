@@ -44,7 +44,7 @@ interface为deviceList中device的interface。
 ```
 srvClient.BulkTransfer(pipe, endpoint, vdata, timeout);
 ```
-pipe为打开设备后的数据传输通道，endpoint为device中数据传输的端点，vdata是需要传输或读取的二进制数据块，timeout为传输超时时长.
+pipe为打开设备后的数据传输通道，endpoint为device中数据传输的端点，vdata是需要传输或读取的二进制数据块，timeout为传输超时时长。
 
 7.  关闭设备
 

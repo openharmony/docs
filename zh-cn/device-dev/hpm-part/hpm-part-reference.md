@@ -157,22 +157,22 @@ Part的全生命周期管理，可以通过hpm命令工具进行操作，hpm的�
 | -------- | -------- | -------- |
 | 版本查询 | hpm&nbsp;-V或hpm&nbsp;--version | 查看hpm-cli版本号。 | 
 | 帮助查询 | hpm&nbsp;-h或hpm&nbsp;--version | 查看命令列表及帮助。 | 
-| hpm&nbsp;-h | 查看命令帮助。 | 
+|| hpm&nbsp;-h | 查看命令帮助。 | 
 | 创建 | hpm&nbsp;init&nbsp;bundle | 创建Part工程。 | 
-| hpm&nbsp;init&nbsp;-t&nbsp;template | 根据模板创建脚手架工程。 | 
+|| hpm&nbsp;init&nbsp;-t&nbsp;template | 根据模板创建脚手架工程。 | 
 | 安装 | hpm&nbsp;install或hpm&nbsp;i | 安装bundle.json中依赖的Part。 | 
-| hpm&nbsp;install&nbsp;bundle\@version | 安装指定Part版本。 | 
+|| hpm&nbsp;install&nbsp;bundle\@version | 安装指定Part版本。 | 
 | 卸载 | hpm&nbsp;uninstall&nbsp;bundle | 删除depedencies依赖的Part。 | 
-| hpm&nbsp;remove或hpm&nbsp;rm&nbsp;bundlename | 删除depedencies依赖的Part。 | 
+|| hpm&nbsp;remove或hpm&nbsp;rm&nbsp;bundlename | 删除depedencies依赖的Part。 | 
 | 查看 | hpm&nbsp;list或者hpm&nbsp;ls | 显示当前HPM&nbsp;Part的依赖树。 | 
-| hpm&nbsp;dependencies | 生成当前HPM&nbsp;Part依赖关系数据（在hpm&nbsp;ui也集成了该命令的调用，可以图形化的展示） | 
+|| hpm&nbsp;dependencies | 生成当前HPM&nbsp;Part依赖关系数据（在hpm&nbsp;ui也集成了该命令的调用，可以图形化的展示） | 
 | 搜索 | hpm&nbsp;search&nbsp;name | 搜索Bundle，--json，可以以json格式输出&nbsp;-type&nbsp;可以设置搜索Bundle的类型，包括part、distribution、code-segment三种。 | 
 | 设置hpm配置项 | hpm&nbsp;config&nbsp;set&nbsp;key&nbsp;value | 设置配置值，如服务器地址，网络代理。 | 
-| hpm&nbsp;config&nbsp;delete&nbsp;key | 删除配置。 | 
+|| hpm&nbsp;config&nbsp;delete&nbsp;key | 删除配置。 | 
 | 更新 | hpm&nbsp;update | 更新当前Part依赖的Part的版本。 | 
-| hpm&nbsp;check-update | 检查依赖的Part版本是否有更新。 | 
+|| hpm&nbsp;check-update | 检查依赖的Part版本是否有更新。 | 
 | 编译 | hpm&nbsp;build | 编译HPM&nbsp;Part。 | 
-| hpm&nbsp;dist | 针对发行版（distribution），发行版编译构建（依赖bundle.json的scripts中的dist脚本）。 | 
+|| hpm&nbsp;dist | 针对发行版（distribution），发行版编译构建（依赖bundle.json的scripts中的dist脚本）。 | 
 | 打包 | hpm&nbsp;pack | 本地Part打包依赖。 | 
 | 烧录 | hpm&nbsp;run&nbsp;flash | 烧录固件（依赖bundle.json的scripts中的flash脚本）。 | 
 | 发布 | hpm&nbsp;publish | 发布Part，发布的Part在仓库中必须唯一，且版本唯一（需要账号登录）。 | 
