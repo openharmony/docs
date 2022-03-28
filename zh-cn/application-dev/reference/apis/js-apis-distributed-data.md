@@ -562,6 +562,8 @@ off(event: 'distributedDataServiceDie', deathCallback?: Callback&lt;void&gt;): v
 
 用于提供创建数据库的配置信息。
 
+**autoSync权限校验**： ohos.permission.DISTRIBUTED_DATASYNC。
+
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.DistributedDataManager.KVStore.Core。
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
@@ -569,7 +571,7 @@ off(event: 'distributedDataServiceDie', deathCallback?: Callback&lt;void&gt;): v
 | createIfMissing  | boolean | 否 | 当数据库文件不存在时是否创建数据库，默认创建。     |
 | encrypt  | boolean | 否 |设置数据库文件是否加密，默认不加密。     |
 | backup  | boolean | 否 |设置数据库文件是否备份，默认备份。     |
-| autoSync  | boolean | 否 |设置数据库文件是否自动同步，默认不自动同步。自动同步需要权限：ohos.permission.DISTRIBUTED_DATASYNC     |
+| autoSync  | boolean | 否 |设置数据库文件是否自动同步，默认不自动同步。     |
 | kvStoreType | [KVStoreType](#kvstoretype) | 否 |设置要创建的数据库类型，默认为多设备协同数据库。 |
 | securityLevel | [SecurityLevel](#securitylevel) | 否 |设置数据库安全级别，默认不设置安全级别。  |
 | schema<sup>8+</sup> | [Schema](#schema8) | 否 | 设置定义存储在数据库中的值。 |
@@ -3787,7 +3789,8 @@ off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&
 sync(deviceIdList: string[], mode: SyncMode, allowedDelayMs?: number): void
 
 在手动模式下，触发数据库同步，此方法为同步方法。
-需要权限：ohos.permission.DISTRIBUTED_DATASYNC
+
+**权限校验**： ohos.permission.DISTRIBUTED_DATASYNC。
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
@@ -5040,7 +5043,8 @@ removeDeviceData(deviceId: string): Promise&lt;void&gt;
 sync(deviceIdList: string[], mode: SyncMode, allowedDelayMs?: number): void
 
 在手动模式下，触发数据库同步，此方法为同步方法。
-需要权限：ohos.permission.DISTRIBUTED_DATASYNC
+
+**权限校验**： ohos.permission.DISTRIBUTED_DATASYNC。
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
