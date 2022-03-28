@@ -1,6 +1,6 @@
 # WantAgent开发指导
 ### 简介
-wantAgent封装了一个指定行为的意图，可以通过wantAgent.trigger接口主动触发，也可以通过与通知绑定被动触发。
+wantAgent 封装了一个指定行为的意图，可以通过wantAgent.trigger接口主动触发，也可以通过与通知绑定被动触发。
 
 具体的行为包括：启动ability和发布公共事件。
 
