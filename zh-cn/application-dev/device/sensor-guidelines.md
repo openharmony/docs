@@ -67,17 +67,9 @@
          "when":"inuse"
        }
      },
-     {
-        "name":"ohos.permission.VIBRATE",
-        "reason"":"", 
-        "usedScene":{
-         "ability": [".MainAbility"],
-         "when":"inuse"
-       }
-     },
    ]
    ```
-
+   
 2. 持续监听传感器数据变化。
   
    ```
