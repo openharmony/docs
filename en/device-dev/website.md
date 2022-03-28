@@ -1,3 +1,4 @@
+# OpenHarmony Device Development Documentation
 - [Device Development Guide](device-dev-guide.md)
 - Quick Start
   - Mini and Small Systems
@@ -309,7 +310,7 @@
       - [Development Guidelines on Photographing](subsystems/subsys-multimedia-camera-photo-guide.md)
       - [Development Guidelines on Video Recording](subsystems/subsys-multimedia-camera-record-guide.md)
       - [Development Guidelines on Previewing](subsystems/subsys-multimedia-camera-preview-guide.md)
-    - Audio/Video
+    - Audio and Video
       - [Overview](subsystems/subsys-multimedia-video-overview.md)
       - [Development Guidelines on Media Playback](subsystems/subsys-multimedia-video-play-guide.md)
       - [Development Guidelines on Media Recording](subsystems/subsys-multimedia-video-record-guide.md)
