@@ -12,7 +12,7 @@
 
 |接口名 | 描述|
 |:------ | :------|
-| onContinue(wantParams : {[key: string]: any}): OnContinueResult | 迁移**发起端**在该回调中保存迁移所需要的数据，同时返回是否同意迁移：0表示同意，拒绝返回相应错误码。 |
+| onContinue(wantParam : {[key: string]: any}): OnContinueResult | 迁移**发起端**在该回调中保存迁移所需要的数据，同时返回是否同意迁移：0表示同意，拒绝返回相应错误码。 |
 | onCreate(want: Want，param：LaunchParam): void | 迁移**目标端**在该回调中完成数据恢复，并触发页面恢复。 |
 | **enum** OnContinueResult | onContinue的返回值类型：AGREE表示同意；REJECT表示拒绝；MISMATCH表示版本不匹配 |
 
@@ -36,7 +36,7 @@
    "continuable": true
    ```
 
-   
+
 
    * 配置应用启动类型
 
@@ -45,22 +45,22 @@
    ```javascript
    "launchType": "standard"
    ```
-   
-   
+
+
 
    * 申请分布式权限
-   
+
      支持跨端迁移的应用需要在module.json5申请分布式权限 DISTRIBUTED_DATASYNC。
-   
+
    ```javascript
    "requestPermissions": [
        {
            "name": "ohos.permission.DISTRIBUTED_DATASYNC"
        },
    ```
-   
+
    这个权限需要在应用首次启动的时候弹窗让用户授予，可以通过在ability的onWindowStageCreate中添加如下代码实现：
-   
+
    ```javascript
    requestPermissions = async () => {
        let permissions: Array<string> = [
@@ -97,20 +97,20 @@
        }
    }
    ```
-   
-   
+
+
 
 2. 实现onContinue接口
 
    onContinue接口在**发起端**被调用，主要用于在迁移发起时，通知开发者保存控件状态变量和内存中数据，准备迁移。当应用准备完成后，需要返回OnContinueResult.AGREE(0)表示同意迁移，否则返回相应的错误码拒绝迁移。如果不实现该接口，系统将默认为拒绝迁移。
 
    导入模块
-   
+
    ```javascript
    import Ability from '@ohos.application.Ability';
    import AbilityConstant from '@ohos.application.AbilityConstant';
    ```
-   
+
    - 要实现迁移，此接口必须实现并返回AGREE，否则默认为拒绝迁移。
 
 
@@ -126,20 +126,20 @@
     }
    ```
 
-   
+
 
 3. 在onCreate接口中实现迁移逻辑
 
    onCreate接口在迁移**目标端**被调用，在目标端ability被拉起时，通知开发者同步已保存的内存数据和控件状态，完成后触发页面的恢复。如果不实现该接口中迁移相关逻辑，ability将会作为普通的启动方式拉起，无法恢复页面。
 
    - 远端设备上，在onCreate中根据launchReason判断该次启动是否为迁移LaunchReason.CONTINUATION
-   
-   
+
+
    - 完成数据恢复后，开发者需要调用**restoreWindowStage**来触发页面恢复。
-   
-   
+
+
    * 示例
-   
+
    ```javascript
        onCreate(want, launchParam) {
            Logger.info(`MainAbility onCreate ${AbilityConstant.LaunchReason.CONTINUATION}`)
@@ -148,14 +148,14 @@
                let input = want.parameters.input // get user data from want params
                AppStorage.SetOrCreate<string>('ContinueInput', input)
                Logger.info(`onCreate for continuation sessionId:  ${this.sessionId}`)
-   
+
                this.contentStorage = new ContentStorage();
                this.context.restoreWindowStage(this.contentStorage);
            }
        }
    ```
-   
-   
+
+
 
 ### 迁移数据
 
@@ -165,18 +165,18 @@
 
    迁移场景中，分布式对象（distributedDataObject）主要用于将本机内存数据同步到目标设备。
 
-   - 发起端在onContinue中，将待迁移的数据存入分布式对象中，然后设置好session id，并通过wantParams将session id传到远端设备。
+   - 发起端在onContinue中，将待迁移的数据存入分布式对象中，然后设置好session id，并通过wantParam将session id传到远端设备。
 
     ```javascript
       import Ability from '@ohos.application.Ability';
       import distributedObject from '@ohos.data.distributedDataObject';
-     
+
       var g_object = distributedObject.createDistributedObject({name:undefined});
-     
+
       export default class MainAbility extends Ability {
           contentStorage : ContenStorage
           sessionId : string;
-   
+
        onContinue(wantParam : {[key: string]: any}) {
            Logger.info("onContinue using distributedObject")
            this.sessionId = distributedObject.genSessionId();
@@ -187,44 +187,44 @@
            wantParam["session"] = this.sessionId;
            return AbilityConstant.OnContinueResult.AGREE
        }
-   
+
     ```
 
    - 目标设备在onCreate中，取出发起端传过来的session id，建立分布式对象并关联该session id，这样就能实现分布式对象的同步。需要注意的是，在调用restoreWindowStage之前，迁移需要的分布式对象必须全部关联完，保证能够获取到正确的数据。
-   
+
    ```javascript
       import Ability from '@ohos.application.Ability';
       import distributedObject from '@ohos.data.distributedDataObject';
-      
+
       var g_object = distributedObject.createDistributedObject({name:undefined});
-      
+
       export default class MainAbility extends Ability {
           contentStorage : ContentStorage
           sessionId : string;
-      
+
           statusCallback(sessionId, networkid, status) {
               Logger.info(`continuation object status change, sessionId: ${sessionId}, status: ${status}, g_object.name: ${g_object.name}`)
           }
-          
+
           onCreate(want, launchParam) {
               Logger.info(`MainAbility onCreate ${AbilityConstant.LaunchReason.CONTINUATION}`)
               if (launchParam.launchReason == AbilityConstant.LaunchReason.CONTINUATION) {
                   // get distributed data object session id from want params
                   this.sessionId = want.parameters.session
                   Logger.info(`onCreate for continuation sessionId:  ${this.sessionId}`)
-   
+
                   g_object.on("status", this.statusCallback);
                   // set session id, so it will sync data from remote device
                   g_object.setSessionId(this.sessionId);
-          
+
                   this.contentStorage = new ContentStorage();
                   this.context.restoreWindowStage(this.contentStorage);
               }
           }
       }
    ```
-   
-   
+
+
 
 以上完整的示例见sample
 

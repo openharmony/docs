@@ -15,7 +15,7 @@ Caller及Callee功能如下：具体的API详见[接口文档](../reference/apis
 |接口名|描述|
 |:------|:------|
 |Promise<Caller> startAbilityByCall(want: Want)|获取指定通用组件的Caller通信接口，拉起指定通用组件并将其切换到后台。|
-|void on(method: string, callback: CaleeCallBack)|Callee.on，通用组件Callee注册method对应的callback方法。|
+|void on(method: string, callback: CalleeCallBack)|Callee.on，通用组件Callee注册method对应的callback方法。|
 |void off(method: string)|Callee.off，通用组件Callee去注册method的callback方法。|
 |Promise<void> call(method: string, data: rpc.Sequenceable)|Caller.call，向通用组件Callee发送约定序列化数据。|
 |Promise<rpc.MessageParcel> callWithResult(method: string, data: rpc.Sequenceable)|Caller.callWithResult，向通用组件Callee发送约定序列化数据, 并将返回的约定序列化数据带回。|
@@ -196,7 +196,7 @@ context.requestPermissionsFromUser(permissions).then((data) => {
 ```
 3. 发送约定序列化数据
 
-向被调用端发送Sequenceable数据有两种方式，一种是不带返回值，一种是获取被调用端返回的数据，method以及序列化数据需要与被调用端协商一致。如下示例调用Call接口，向Calee被调用端发送数据。具体示例代码如下：
+向被调用端发送Sequenceable数据有两种方式，一种是不带返回值，一种是获取被调用端返回的数据，method以及序列化数据需要与被调用端协商一致。如下示例调用Call接口，向Callee被调用端发送数据。具体示例代码如下：
 ```ts
 const MSG_SEND_METHOD: string = 'CallSendMsg'
 async onButtonCall() {
@@ -209,7 +209,7 @@ async onButtonCall() {
 }
 ```
 
-如下示例调用CallWithResult接口，向Calee被调用端发送待处理的数据`originMsg`，并将'CallSendMsg'方法处理完毕的数据赋值给`backMsg`。具体示例代码如下：
+如下示例调用CallWithResult接口，向Callee被调用端发送待处理的数据`originMsg`，并将'CallSendMsg'方法处理完毕的数据赋值给`backMsg`。具体示例代码如下：
 ```ts
 const MSG_SEND_METHOD: string = 'CallSendMsg'
 originMsg: string = ''
@@ -247,4 +247,4 @@ try {
 
 [eTSStageCallAbility](https://gitee.com/openharmony/app_samples/tree/master/ability/eTSStageCallAbility)
 
-本示例eTSStageCallAbility中，在Application目录的AbilityStage.ts中实现AbilityStage的接口，在MainAbility目录实现Ability的接口并设置"pages/index"为Ability的页面，在CaleeAbility目录实现Ability的接口、Callee被调用端，设置"pages/second"为Ability的页面。MainAbility作为调用端，CalleeAbility作为被调用端。MainAbility拉起CalleeAbility，获取Caller通信接口后，支持用户输入字符串，做序列化处理后传递给CaleeAbility处理，CaleeAbility根据收到的数据做页面刷新并返回结果给MainAbility。
+本示例eTSStageCallAbility中，在Application目录的AbilityStage.ts中实现AbilityStage的接口，在MainAbility目录实现Ability的接口并设置"pages/index"为Ability的页面，在CalleeAbility目录实现Ability的接口、Callee被调用端，设置"pages/second"为Ability的页面。MainAbility作为调用端，CalleeAbility作为被调用端。MainAbility拉起CalleeAbility，获取Caller通信接口后，支持用户输入字符串，做序列化处理后传递给CalleeAbility处理，CalleeAbility根据收到的数据做页面刷新并返回结果给MainAbility。
