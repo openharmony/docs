@@ -1,11 +1,13 @@
-# FA Widget Development
+# Stage Widget Development
 
 ## Widget Overview
+
 A widget is a set of UI components used to display important information or operations for an application. It provides users with direct access to a desired application service, without requiring them to open the application.
 
-A widget displays brief information about an application on the UI of another application (host application, currently system applications only) and provides basic interactive features such as opening a UI page or sending a message. The widget client is responsible for displaying the widget.
+A widget displays brief information about an application on the UI of another application (host application, currently system applications only) and provides basic interactive features such as opening a UI page or sending a message. The widget client is responsible for displaying the service widget.
 
 Basic concepts:
+
 - Widget provider
   The widget provider is an atomic service that provides the content to be displayed. It controls the display content, component layout, and component click events of a widget.
 - Widget client
@@ -20,20 +22,20 @@ You only need to develop widget content as the widget provider. The system autom
 
 The widget provider controls the widget content to display, component layout, and click events bound to components.
 
-## Scenario
+## When to Use
 
-Form ability development refers to the development conducted by the widget provider based on the [Feature Ability (FA) model](fa-brief.md). As a widget provider, you need to carry out the following operations:
+Stage ability development refers to the development conducted by the widget provider based on the [stage model](stage-brief.md). As a widget provider, you need to carry out the following operations:
 
-- Develop the lifecycle callbacks in **LifecycleForm**.
+- Develop the lifecycle callback functions in **FormExtension**.
 - Create a **FormBindingData** object.
 - Update a widget through **FormProvider**.
 - Develop the widget UI page.
 
 ## Available APIs
 
-The table below describes the lifecycle callbacks provided **LifecycleForm**.
+The **FormExtension** class has the **context** attribute. For details on the APIs provided by the **FormExtension** class, see [FormExtension](../reference/apis/js-apis-formextension.md).
 
-**Table 1** LifecycleForm APIs
+**Table 1** FormExtension APIs
 
 | API                                                      | Description                                        |
 | :----------------------------------------------------------- | :------------------------------------------- |
@@ -43,11 +45,20 @@ The table below describes the lifecycle callbacks provided **LifecycleForm**.
 | onVisibilityChange(newStatus: { [key: string]: number }): void | Called to notify the widget provider of the change of widget visibility.        |
 | onEvent(formId: string, message: string): void               | Called to instruct the widget provider to receive and process the widget event.      |
 | onDestroy(formId: string): void                              | Called to notify the widget provider that a **Form** instance (widget) has been destroyed.          |
-| onAcquireFormState?(want: Want): formInfo.FormState          | Called when the widget provider receives the status query result of a specified widget.      |
+| onConfigurationUpdated(config: Configuration): void;         | Called when the configuration of the environment where the ability is running is updated.                      |
+
+The **context** attribute of the **FormExtension** class inherits from the **FormExtensionContext** class. For details about the APIs provided by the **FormExtensionContext** class, see [FormExtensionContext](../reference/apis/js-apis-formextensioncontext.md).
+
+**Table 2** FormExtensionContext APIs
+
+| API                                                      | Description                     |
+| :----------------------------------------------------------- | :------------------------ |
+| updateForm(formId: string, formBindingData: formBindingData.FormBindingData, callback: AsyncCallback\<void>): void | Updates a widget. This method uses a callback to return the result.   |
+| updateForm(formId: string, formBindingData: formBindingData.FormBindingData): Promise\<void> | Updates a widget. This method uses a promise to return the result.|
 
 For details about the **FormProvider** APIs, see [FormProvider](../reference/apis/js-apis-formprovider.md).
 
-**Table 2** FormProvider APIs
+**Table 3** FormProvider APIs
 
 | API                                                      | Description                                             |
 | :----------------------------------------------------------- | :------------------------------------------------ |
@@ -58,22 +69,23 @@ For details about the **FormProvider** APIs, see [FormProvider](../reference/api
 
 ## How to Develop
 
-### Creating LifecycleForm
+### Creating a Form Extension
 
-To create a widget in the FA model, you need to implement the lifecycles of **LifecycleForm**. The sample code is as follows:
+To create a widget in the stage model, you need to implement the lifecycle callback functions of **FormExtension**. The sample code is as follows:
 
 1. Import the required modules.
 
    ```javascript
+   import FormExtension from '@ohos.application.FormExtension'
    import formBindingData from '@ohos.application.formBindingData'
    import formInfo from '@ohos.application.formInfo'
    import formProvider from '@ohos.application.formProvider'
    ```
-   
-2. Implement the lifecycle callbacks of **LifecycleForm**.
+
+2. Implement the lifecycle callback functions of **FormExtension**.
 
    ```javascript
-   export default {
+   export default class FormAbility extends FormExtension {
        onCreate(want) {
            console.log('FormAbility onCreate');
            // Persistently store widget information for subsequent use, such as widget instance retrieval and update.
@@ -83,11 +95,11 @@ To create a widget in the FA model, you need to implement the lifecycles of **Li
            };
            let formData = formBindingData.createFormBindingData(obj);
            return formData;
-       },
+       }
        onCastToNormal(formId) {
            // Called when the widget client converts the temporary widget into a normal one. The widget provider should do something to respond to the conversion.
            console.log('FormAbility onCastToNormal');
-       },
+       }
        onUpdate(formId) {
            // To support scheduled update, periodic update, or update requested by the widget client for a widget, override this method for data update.
            console.log('FormAbility onUpdate');
@@ -99,103 +111,104 @@ To create a widget in the FA model, you need to implement the lifecycles of **Li
            formProvider.updateForm(formId, formData).catch((error) => {
                console.log('FormAbility updateForm, error:' + JSON.stringify(error));
            });
-       },
+       }
        onVisibilityChange(newStatus) {
            // Called when the widget client initiates an event about visibility changes. The widget provider should do something to respond to the notification.
            console.log('FormAbility onVisibilityChange');
-       },
+       }
        onEvent(formId, message) {
            // If the widget supports event triggering, override this method and implement the trigger.
            console.log('FormAbility onEvent');
-       },
+       }
        onDestroy(formId) {
            // Delete widget data.
            console.log('FormAbility onDestroy');
-       },
+       }
        onAcquireFormState(want) {
            console.log('FormAbility onAcquireFormState');
            return formInfo.FormState.READY;
-       },
+       }
    }
    ```
 
 ### Configuring config.json for the Form Ability
 
-Configure the **config.json** file for the **Form** ability.
+Configure the **module.json** file for the **Form** ability.
 
-- The **js** module in the **config.json** file provides the JavaScript resources of the **Form** ability. The internal field structure is described as follows:
+- The internal field structure of the **extensionAbility** module is described as follows:
 
-  | Field| Description                                                         | Data Type| Default              |
-  | -------- | ------------------------------------------------------------ | -------- | ------------------------ |
-  | name     | Name of a JavaScript component. The default value is **default**.   | String  | No                      |
-  | pages    | Route information about all pages in the JavaScript component, including the page path and page name. The value is an array, in which each element represents a page. The first element in the array represents the home page of the JavaScript FA.| Array    | No                      |
-  | window   | Window-related configurations.                              | Object    | Yes                  |
-  | type     | Type of the JavaScript component. Available values are as follows:<br>**normal**: indicates that the JavaScript component is an application instance.<br>**form**: indicates that the JavaScript component is a widget instance.| String  | Yes (initial value: **normal**)|
-  | mode     | Development mode of the JavaScript component.                                      | Object    | Yes (initial value: left empty)      |
+  | Field   | Description                                                        | Data Type  | Default          |
+  | ----------- | ------------------------------------------------------------ | ---------- | -------------------- |
+  | name        | Name of an extension ability.                  | String    | No                  |
+  | srcEntrance | JS code path of the extension ability.    | String    | No                  |
+  | description | Description of the extension ability. The value can be a string or a resource index to descriptions in multiple languages.| String    | Yes (initial value: left empty)|
+  | icon        | Index of the extension ability icon file.                  | String    | Yes (initial value: left empty)|
+  | label       | Descriptive information about the extension ability presented externally. The value can be a string or a resource index to the description.| String    | Yes (initial value: left empty)|
+  | type        | Type of the extension ability. The value can be **form** or **service**.             | String    | No                  |
+  | permissions | Permissions required for abilities of another application to call the current ability.        | String array| Yes (initial value: left empty)|
+  | metadata    | Metadata of the extension ability. It describes the configuration information of the extension ability.| Object      | Yes (initial value: left empty)  |
+
+  For a Form Extension ability, set **type** to **form** and **metadata** to the widget details.
 
   A configuration example is as follows:
 
-  ```json
-     "js": [{
-         "name": "widget",
-         "pages": ["pages/index/index"],
-         "window": {
-             "designWidth": 720,
-             "autoDesignWidth": true
-         },
-         "type": "form"
-     }]
-  ```
+     ```json
+  "extensionAbilities": [{
+      "name": "FormAbility",
+      "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+      "label": "$string:form_FormAbility_label",
+      "description": "$string:form_FormAbility_desc",
+      "type": "form",
+      "metadata": [{
+          "name": "ohos.extension.form",
+          "resource": "$profile:form_config"
+      }]
+  }]
+     ```
 
-- The **abilities** module in the **config.json** file corresponds to the **LifecycleForm** of the widget. The internal field structure is described as follows:
+- Configure the widget profile module. In the metadata of the Form Extension ability, the resource file path specified by **ohos.extension.form** must be used. For example, **$profile:form_config** means that **form_config.json** in the **resources/base/profile/** directory of the development view is used as the widget profile.
 
-  | Field           | Description                                                         | Data Type  | Default              |
+  The internal field structure is described as follows:
+  
+  | Field           | Description                                                        | Data Type  | Default              |
   | ------------------- | ------------------------------------------------------------ | ---------- | ------------------------ |
   | name                | Class name of the widget. The value is a string with a maximum of 127 bytes.                   | String    | No                      |
   | description         | Description of the widget. The value can be a string or a resource index to descriptions in multiple languages. The value is a string with a maximum of 255 bytes.| String    | Yes (initial value: left empty)      |
+  | src                 | Full path of the UI code corresponding to the widget.                            | String    | No                      |
+  | window              | Window-related configurations.                              | Object      | Yes                  |
   | isDefault           | Whether the widget is a default one. Each ability has only one default widget.<br>**true**: The widget is the default one.<br>**false**: The widget is not the default one.| Boolean    | No                      |
-  | type                | Type of the widget. Available values are as follows:<br>**JS**: indicates a JavaScript-programmed widget.            | String    | No                      |
   | colorMode           | Color mode of the widget. Available values are as follows:<br>**auto**: The widget adopts the auto-adaptive color mode.<br>**dark**: The widget adopts the dark color mode.<br>**light**: The widget adopts the light color mode.| String    | Yes (initial value: **auto**)|
   | supportDimensions   | Grid styles supported by the widget. Available values are as follows:<br>1 * 2: indicates a grid with one row and two columns.<br>2 * 2: indicates a grid with two rows and two columns.<br>2 * 4: indicates a grid with two rows and four columns.<br>4 * 4: indicates a grid with four rows and four columns.| String array| No                      |
   | defaultDimension    | Default grid style of the widget. The value must be available in the **supportDimensions** array of the widget.| String    | No                      |
   | updateEnabled       | Whether the widget can be updated periodically. Available values are as follows:<br>**true**: The widget can be updated periodically, depending on the update way you select, either at a specified interval (**updateDuration**) or at the scheduled time (**scheduledUpdateTime**). **updateDuration** is preferentially recommended.<br>**false**: The widget cannot be updated periodically.| Boolean  | No                      |
   | scheduledUpdateTime | Scheduled time to update the widget. The value is in 24-hour format and accurate to minute.        | String    | Yes (initial value: **0:0**) |
   | updateDuration      | Interval to update the widget. The value is a natural number, in the unit of 30 minutes.<br>If the value is **0**, this field does not take effect.<br>If the value is a positive integer ***N***, the interval is calculated by multiplying ***N*** and 30 minutes.| Number      | Yes (initial value: **0**)   |
-  | formConfigAbility   | Indicates the link to a specific page of the application. The value is a URI.                       | String    | Yes (initial value: left empty)    |
-  | formVisibleNotify   | Whether the widget is allowed to use the widget visibility notification.                        | String    | Yes (initial value: left empty)    |
-  | jsComponentName     | Component name of the widget. The value is a string with a maximum of 127 bytes.        | String    | No                      |
+  | formConfigAbility   | Name of the facility or activity used to adjust a widget.                        | String    | Yes (initial value: left empty)    |
+  | formVisibleNotify   | Whether the widget is allowed to use the widget visibility notification.                          | String    | Yes (initial value: left empty)    |
   | metaData            | Metadata of the widget. This field contains the array of the **customizeData** field.           | Object      | Yes (initial value: left empty)    |
-  | customizeData       | Custom information about the widget.                                      | Object array  | Yes (initial value: left empty)    |
-  
-  A configuration example is as follows:
 
-  ```json
-     "abilities": [{
-         "name": "FormAbility",
-         "description": "This is a FormAbility",
-         "formsEnabled": true,
-         "icon": "$media:icon",
-         "label": "$string:form_FormAbility_label",
-         "srcPath": "FormAbility",
-         "type": "service",
-         "srcLanguage": "ets",
-         "formsEnabled": true,
-         "forms": [{
-             "colorMode": "auto",
-             "defaultDimension": "2*2",
-             "description": "This is a widget.",
-             "formVisibleNotify": true,
-             "isDefault": true,
-             "jsComponentName": "widget",
-             "name": "widget",
-             "scheduledUpdateTime": "10:30",
-             "supportDimensions": ["2*2"],
-             "type": "JS",
-             "updateDuration": 1,
-             "updateEnabled": true
-          }]
-     }]
-  ```
+     A configuration example is as follows:
+  
+     ```json
+  {
+      "forms": [{
+          "name": "widget",
+          "description": "This is a service widget.",
+          "src": "./js/widget/pages/index/index",
+          "window": {
+              "autoDesignWidth": true,
+              "designWidth": 720
+          },
+          "isDefault": true,
+          "colorMode": "auto",
+          "supportDimensions": ["2*2"],
+          "defaultDimension": "2*2",
+          "updateEnabled": true,
+          "scheduledUpdateTime": "10:30",
+          "updateDuration": 1
+      }]
+  }
+     ```
 
 
 ### Widget Data Persistence
@@ -247,7 +260,7 @@ You can use HML, CSS, and JSON to develop the UI page for a JavaScript-programme
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > Currently, only the JavaScript-based web-like development paradigm can be used to develop the widget UI.
 
-   - HML:
+   - hml:
    ```html
    <div class="container">
        <stack>
@@ -262,7 +275,7 @@ You can use HML, CSS, and JSON to develop the UI page for a JavaScript-programme
    </div>
    ```
 
-   - CSS:
+   - css:
 
    ```css
 .container {
@@ -303,7 +316,7 @@ You can use HML, CSS, and JSON to develop the UI page for a JavaScript-programme
 }
    ```
 
-   - JSON:
+   - json:
    ```json
    {
      "data": {
