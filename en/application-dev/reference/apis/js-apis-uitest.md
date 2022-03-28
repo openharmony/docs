@@ -22,7 +22,7 @@ The API capabilities provided by the **By** class exhibit the following features
 
 - Supports absolute positioning and relative positioning for components. APIs such as **isBefore** and **isAfter** can be used to specify the features of adjacent components to assist positioning.
 
-  All APIs provided in the **By** class are synchronous. You are advised to use the static constructor **BY** to create a **By** object in chain mode, for example, **BY.text('123').type('button')**.
+All APIs provided in the **By** class are synchronous. You are advised to use the static constructor **BY** to create a **By** object in chain mode, for example, **BY.text('123').type('button')**.
 
 ### enum MatchPattern
 
@@ -63,7 +63,8 @@ Specifies the text attribute of the target component. Multiple match patterns ar
 **Example**
 
 ```
-let by = BY.text('123') // Use the static constructor BY to create a By object and specify the text attribute of the target component.
+let by = BY.text('123') // Use the static constructor BY to create a By object and specify the text attribute 
+                           of the target component.
 ```
 
 
@@ -93,7 +94,7 @@ Specifies the key attribute of the target component.
 
 ```
 let by = BY.key('123') // Use the static constructor BY to create a By object and specify the key attribute
-of the target component.
+                          of the target component.
 ```
 
 
@@ -123,7 +124,7 @@ Specifies the ID property of the target component.
 
 ```
 let by = BY.id(123) // Use the static constructor BY to create a By object and specify the ID attribute
-of the target component.
+                       of the target component.
 ```
 
 
@@ -152,7 +153,8 @@ Specifies the type property of the target component.
 **Example**
 
 ```
-let by = BY.type('button') // Use the static constructor BY to create a By object and specify the type attribute of the target component.
+let by = BY.type('button') // Use the static constructor BY to create a By object and specify the type attribute 
+                              of the target component.
 ```
 
 
@@ -181,7 +183,8 @@ Specifies the clickable attribute of the target component.
 **Example**
 
 ```
-let by = BY.clickable(true) // Use the static constructor BY to create a By object and specify the clickable attribute of the target component.
+let by = BY.clickable(true) // Use the static constructor BY to create a By object and specify the clickable attribute 
+                               of the target component.
 ```
 
 
@@ -211,7 +214,7 @@ Specifies the scrollable attribute of the target component.
 
 ```
 let by = BY.scrollable(true) // Use the static constructor BY to create a By object and specify the scrollable attribute 
-of the target component.
+                                of the target component.
 ```
 
 ### By.enabled
@@ -240,7 +243,7 @@ Specifies the enable attribute of the target component.
 
 ```
 let by = BY.enabled(true) // Use the static constructor BY to create a By object and specify the enable attribute 
-of the target component.
+                             of the target component.
 ```
 
 ### By.focused
@@ -269,7 +272,7 @@ Specifies the focused attribute of the target component.
 
 ```
 let by = BY.enabled(true) // Use the static constructor BY to create a By object and specify the focused attribute 
-of the target component.
+                             of the target component.
 ```
 
 ### By.selected
@@ -298,7 +301,7 @@ Specifies the selected attribute of the target component.
 
 ```
 let by = BY.selected(true) // Use the static constructor BY to create a By object and specify the selected attribute 
-of the target component.
+                              of the target component.
 ```
 
 ### By.isBefore
@@ -327,7 +330,7 @@ Specifies the attributes of the component before which the target component is l
 
 ```
 let by = BY.isBefore(BY.text('123')) // Use the static constructor BY to create a By object and specify the attributes 
-of the component before which the target component is located.
+                                        of the component before which the target component is located.
 ```
 
 ### By.isAfter
@@ -356,7 +359,7 @@ Specifies the attributes of the component after which the target component is lo
 
 ```
 let by = BY.isAfter(BY.text('123')) // Use the static constructor BY to create a By object and specify the attributes 
-of the component after which the target component is located.
+                                       of the component after which the target component is located.
 ```
 
 ## UiComponent
