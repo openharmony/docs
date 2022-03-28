@@ -1,7 +1,7 @@
 # Internationalization – intl
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> - The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > 
 > - This module contains standard i18n APIs, which are defined in ECMA 402.
 
@@ -389,9 +389,9 @@ Provides the device capability.
 | unit | string | Yes| Yes| Unit name, for example, **meter**, **inch**, or **hectare**.|
 | unitDisplay | string | Yes| Yes| Unit display format. The value can be **long**, **short**, or **medium**.|
 | unitUsage | string | Yes| Yes| Unit usage scenario. The value can be any of the following: **default**, **area-land-agricult**, **area-land-commercl**, **area-land-residntl**, **length-person**, **length-person-small**, **length-rainfall**, **length-road**, **length-road-small**, **length-snowfall**, **length-vehicle**, **length-visiblty**, **length-visiblty-small**, **length-person-informal**, **length-person-small-informal**, **length-road-informal**, **speed-road-travel**, **speed-wind**, **temperature-person**, **temperature-weather**, **volume-vehicle-fuel**.|
-| signDisplay | string | Yes| Yes| Number sign display format. The value can be **auto**, **never**, always**, or **expectZero**.|
+| signDisplay | string | Yes| Yes| Number sign display format. The value can be **auto**, **never**, **always**, or **expectZero**.|
 | compactDisplay | string | Yes| Yes| Compact display format. The value can be **long** or **short**.|
-| notation | string | Yes| Yes| Number formatting specification. The value can be **standard**, **scientific**, engineering**, or **compact**.|
+| notation | string | Yes| Yes| Number formatting specification. The value can be **standard**, **scientific**, **engineering**, or **compact**.|
 | localeMatcher | string | Yes| Yes| Locale matching algorithm. The value can be **lookup** or **best fit**.|
 | style | string | Yes| Yes| Number display format. The value can be **decimal**, **currency**, **percent**, or **unit**.|
 | numberingSystem | string | Yes| Yes| Numbering system for the locale. The value can be any of the following: **adlm**, **ahom**, **arab**, **arabext**, **bali**, **beng**, **bhks**, **brah**, **cakm**, **cham**, **deva**, **diak**, **fullwide**, **gong**, **gonm**, **gujr**, **guru**, **hanidec**, **hmng**, **hmnp**, **java**, **kali**, **khmr**, **knda**, **lana**, **lanatham**, **laoo**, **latn**, **lepc**, **limb**, **mathbold**, **mathdbl**, **mathmono**, **mathsanb**, **mathsans**, **mlym**, **modi**, **mong**, **mroo**, **mtei**, **mymr**, **mymrshan**, **mymrtlng**, **newa**, **nkoo**, **olck**, **orya**, **osma**, **rohg**, **saur**, **segment**, **shrd**, **sind**, **sinh**, **sora**, **sund**, **takr**, **talu**, **tamldec**, **telu**, **thai**, **tibt**, **tirh**, **vaii**, **wara**, **wcho**.|
