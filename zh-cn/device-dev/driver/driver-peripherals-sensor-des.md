@@ -1,4 +1,4 @@
-# SENSOR
+# Sensor
  
 
 ## 概述
@@ -545,7 +545,7 @@ void HdfSensorTest::SetUpTestCase()
 {
     g_sensorDev = NewSensorInterfaceInstance();
     if (g_sensorDev == nullptr) {
-        printf("test sensorHdi get Module instace failed\n\r");
+        printf("test sensorHdi get Module instance failed\n\r");
     }
 }
 /* 用例资源释放 */

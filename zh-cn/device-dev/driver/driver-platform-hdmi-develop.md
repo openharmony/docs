@@ -1,24 +1,15 @@
 # HDMI 
 
-- [概述](#1)
-    - [功能简介](#2)
-    - [基本概念](#3)
-    - [运作机制](#4)
-    - [约束与限制](#5)  
-- [开发指导](#6)
-    - [场景介绍](#7)
-    - [接口说明](#8)
-    - [开发步骤](#9)
 
-## 概述 <a name="1"></a>
+## 概述 
 
-### 功能简介<a name="2"></a>
+### 功能简介
 
-HDMI（High-Definition Multiface Interface），即高清多媒体接口，主要用于DVD、机顶盒等音视频source到TV、显示器等sink设备的传输。
+HDMI（High Definition Multimedia Interface），即高清多媒体接口，主要用于DVD、机顶盒等音视频source到TV、显示器等Sink设备的传输。
 
-### 基本概念<a name="3"></a>
+### 基本概念
 
-HDMI（High-Definition Multiface Interface）是Hitachi、Panasonic、Philips、SiliconImage、Sony、Thomson、Toshiba共同发布的一款音视频传输协议。传输过程遵循TMDS（Transition Minimized Differential Signaling）协议。
+HDMI是Hitachi、Panasonic、Philips、Silicon Image、Sony、Thomson、Toshiba共同发布的一款音视频传输协议。传输过程遵循TMDS（Transition Minimized Differential Signaling）协议。
 
 - TMDS（Transition Minimized Differential signal）：过渡调制差分信号，也被称为最小化传输差分信号，用于发送音频、视频及各种辅助数据。
 
@@ -30,25 +21,25 @@ HDMI（High-Definition Multiface Interface）是Hitachi、Panasonic、Philips、
 - HDCP（High-bandwidth Digital Content Protection）：即高带宽数字内容保护技术，当用户对高清晰信号进行非法复制时，该技术会进行干扰，降低复制出来的影像的质量，从而对内容进行保护。
 
 
-### 运作机制<a name="4"></a>
+### 运作机制
 
-在HDF框架中，HDMI的接口适配模式采用独立服务模式（如[图1](#fig1)），在这种模式下，每一个设备对象会独立发布一个设备服务来处理外部访问，设备管理器收到API的访问请求之后，通过提取该请求的参数，达到调用实际设备对象的相应内部方法的目的。独立服务模式可以直接借助HDFDeviceManager的服务管理能力，但需要为每个设备单独配置设备节点，增加内存占用率。
+在HDF框架中，HDMI的接口适配模式采用独立服务模式（如图1），在这种模式下，每一个设备对象会独立发布一个设备服务来处理外部访问，设备管理器收到API的访问请求之后，通过提取该请求的参数，达到调用实际设备对象的相应内部方法的目的。独立服务模式可以直接借助HDFDeviceManager的服务管理能力，但需要为每个设备单独配置设备节点，增加内存占用率。
 
- **图 1**  HDMI独立服务模式<a name="fig1"></a> 
+ **图 1**  HDMI独立服务模式 
 
 ![image1](figures/独立服务模式结构图.png)
 
-### 约束与限制<a name="5"></a>
+### 约束与限制
 
 HDMI模块当前仅支持轻量和小型系统内核（LiteOS） 。
 
-## 开发指导 <a name="6"></a>
+## 开发指导
 
-### 场景介绍 <a name="7"></a>
+### 场景介绍
 
 HDMI具有体积小，传输速率高，传输带宽宽，兼容性好，能同时传输无压缩音视频信号等优点。与传统的全模拟接口相比，HDMI不但增加了设备间接线的便捷性，还提供了一些HDMI特有的智能化功能，可用于小体积设备进行高质量音视频传输的场景。
 
-### 接口说明 <a name="8"></a>
+### 接口说明
 
 HdmiCntlrOps定义：
 ```c
@@ -103,7 +94,7 @@ struct HdmiCntlrOps {
 | tmdsModeSet              | **cntlr**: 结构体指针，核心层HDMI控制器;<br />**mode**:TMDS模式 | 无                                     | 无 | 设置TMDS模式                                      |
 |tmdsConfigSet|**cntlr**: 结构体指针，核心层HDMI控制器;<br />**mode**: TMDS参数|无|HDF_STATUS相关状态|配置TMDS参数|
 |infoFrameEnable|**cntlr**: 结构体指针，核心层HDMI控制器;<br />**infoFrameType**: packet类型<br />**enable**: bool，使能/去使能|无|无|使能/去使能infoFrame|
-|infoFrameSend|**cntlr**: 结构体指针，核心层HDMI控制器;<br />**infoFrameType**: packet类型<br />**data**: infoFrame数据<br />**len**:数据长度|无|HDF_STATUS相关状态|发送inforFrame|
+|infoFrameSend|**cntlr**: 结构体指针，核心层HDMI控制器;<br />**infoFrameType**: packet类型<br />**data**: infoFrame数据<br />**len**:数据长度|无|HDF_STATUS相关状态|发送infoFrame|
 |cecMsgSend|**cntlr**: 结构体指针，核心层HDMI控制器;<br />**msg**: CEC消息|无|HDF_STATUS相关状态|发送CEC消息|
 |audioPathEnable|**cntlr**: 结构体指针，核心层HDMI控制器;<br />**enable**: bool，使能/去使能|无|无|使能/去使能audio通路|
 |audioPathSet|**cntlr**: 结构体指针，核心层HDMI控制器;<br />**config**: 配置信息|无|无|设置audio通路配置信息|
@@ -128,7 +119,7 @@ struct HdmiCntlrOps {
 |hdrTimerSet|**cntlr**: 结构体指针，核心层HDMI控制器;<br />**config**: timer配置信息|无|无|设置HDR相关的timer配置信息|
 
 
-### 开发步骤 <a name="9"></a>
+### 开发步骤
 
 HDMI模块适配的三个环节是配置属性文件，实例化驱动入口以及实例化HDMI控制器对象。
 

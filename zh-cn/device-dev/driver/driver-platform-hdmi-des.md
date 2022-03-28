@@ -1,21 +1,11 @@
-# HDMI<a name="1"></a>
+# HDMI
 
--   [概述](#section1)
-    -   [功能简介](#section2)
-    -   [基本概念](#section3)
-    -   [运作机制](#section4)
-    -   [约束与限制](#section5)
--   [使用指导](#section6)
-    -   [场景介绍](#section7)
-    -   [接口说明](#section8)
-    -   [开发步骤](#section9)
-    -   [使用实例](#section10)
 
-## 概述<a name="section1"></a>
+## 概述
 
-### 功能简介<a name="section2"></a>
+### 功能简介
 
-- HDMI（High-Definition Multiface Interface），即高清多媒体接口，主要用于DVD、机顶盒等音视频Source到TV、显示器等Sink设备的传输。
+- HDMI（High Definition Multimedia Interface），即高清多媒体接口，主要用于DVD、机顶盒等音视频Source到TV、显示器等Sink设备的传输。
 - HDMI以主从方式工作，通常有一个Source端和一个Sink端。
 - HDMI接口定义了完成HDMI传输的通用方法集合，包括：
 
@@ -25,9 +15,9 @@
     - HDMI读取EDID：读取Sink端原始的EDID数据
     - HDMI热插拔：注册/注销热插拔回调函数
 
-### 基本概念<a name="section3"></a>
+### 基本概念
 
-HDMI（High-Definition Multiface Interface）是Hitachi、Panasonic、Philips、SiliconImage、Sony、Thomson、Toshiba共同发布的一款音视频传输协议。传输过程遵循TMDS（Transition Minimized Differential Signaling）协议。
+HDMI是Hitachi、Panasonic、Philips、Silicon Image、Sony、Thomson、Toshiba共同发布的一款音视频传输协议。传输过程遵循TMDS（Transition Minimized Differential Signaling）协议。
 
 - TMDS（Transition Minimized Differential signal）：过渡调制差分信号，也被称为最小化传输差分信号，用于发送音频、视频及各种辅助数据。
 - DDC（Display Data Channel）：显示数据通道，发送端与接收端可利用DDC通道得知彼此的发送与接收能力，但HDMI仅需单向获知接收端（显示器）的能力。
@@ -36,29 +26,30 @@ HDMI（High-Definition Multiface Interface）是Hitachi、Panasonic、Philips、
 - HDCP（High-bandwidth Digital Content Protection）：即高带宽数字内容保护技术，当用户对高清晰信号进行非法复制时，该技术会进行干扰，降低复制出来的影像的质量，从而对内容进行保护。
 - EDID（Extended Display Identification Data）：扩展显示标识数据， 通常存储在显示器的固件中，标识供应商信息、EDID版本信息、最大图像大小、颜色设置、厂商预设置、频率范围的限制以及显示器名和序列号的字符串。
 
-### 运作机制<a name="section4"></a>
+### 运作机制
 
 HDMI的Source端提供+5V和GND，用于DDC和CEC通信。通过DDC通道，Source端可以读取Sink端的各项参数，如接受能力等；CEC为可选通道，用于同步Source端与Sink端的控制信号，改善用户体验。TMDS通道有四组差分信号，TMDS Clock Channel为TMDS提供时钟信号，其余三组传输音视频数据及各种辅助数据；HDP为热插拔检测端口，当有Sink端接入时，Source端会通过中断服务程序进行响应。
 
-HDMI物理连接如[图1](#fig1)所示：  
-**图 1**  HDMI物理连线示意图<a name="fig1"></a>  
+HDMI物理连接如图1所示： 
+ 
+**图 1**  HDMI物理连线示意图
+  
 ![](figures/HDMI物理连线示意图.png "HDMI物理连线示意图")
 
-### 约束与限制<a name="section5"></a>
+### 约束与限制
 
 HDMI模块当前仅支持轻量和小型系统内核（LiteOS） 。
 
-## 使用指导<a name="section6"></a>
+## 使用指导
 
-### 场景介绍<a name="section7"></a>
+### 场景介绍
 
 HDMI具有体积小，传输速率高，传输带宽宽，兼容性好，能同时传输无压缩音视频信号等优点。与传统的全模拟接口相比，HDMI不但增加了设备间接线的便捷性，还提供了一些HDMI特有的智能化功能，可用于小体积设备进行高质量音视频传输的场景。
 
-### 接口说明<a name="section8"></a>
+### 接口说明
 
 **表 1**  HDMI驱动API接口功能介绍
 
-<a name="table1"></a>
 
 | 接口名                        | 描述                       |
 | ----------------------------- | -------------------------- |
@@ -76,11 +67,12 @@ HDMI具有体积小，传输速率高，传输带宽宽，兼容性好，能同�
 | HdmiRegisterHpdCallbackFunc   | 注册HDMI热插拔检测回调函数 |
 | HdmiUnregisterHpdCallbackFunc | 注销HDMI热插拔检测回调函数 |
 
-### 开发步骤<a name="section9"></a>
+### 开发步骤
 
-使用HDMI设备的一般流程如[图2](#fig2)所示。
+使用HDMI设备的一般流程如图2所示。
 
-**图 2**  HDMI设备使用流程图<a name="fig2"></a>  
+**图 2**  HDMI设备使用流程图
+  
 ![](figures/HDMI使用流程图.png "HDMI使用流程图")
 
 #### 打开HDMI控制器
@@ -92,8 +84,6 @@ DevHandle HdmiOpen(int16_t number);
 ```
 
 **表 2**  HdmiOpen参数和返回值描述
-
-<a name="table2"></a>
 
 | 参数       | 参数描述             |
 | ---------- | -------------------- |
@@ -122,8 +112,6 @@ int32_t HdmiRegisterHpdCallbackFunc(DevHandle handle, struct HdmiHpdCallbackInfo
 ```
 
 **表 3**  HdmiRegisterHpdCallbackFunc参数和返回值描述
-
-<a name="table3"></a>
 
 | 参数       | 参数描述           |
 | ---------- | ------------------ |
@@ -172,8 +160,6 @@ int32_t HdmiReadSinkEdid(DevHandle handle, uint8_t *buffer, uint32_t len);
 
 **表 4**  HdmiReadSinkEdid参数和返回值描述
 
-<a name="table4"></a>
-
 | 参数       | 参数描述               |
 | ---------- | ---------------------- |
 | handle     | HDMI控制器句柄         |
@@ -203,7 +189,6 @@ int32_t HdmiSetAudioAttribute(DevHandle handle, struct HdmiAudioAttr *attr);
 
 **表 5**  HdmiSetAudioAttribute参数和返回值描述
 
-<a name="table5"></a>
 
 | 参数   | 参数描述       |
 | ------ | -------------- |
@@ -238,7 +223,6 @@ int32_t HdmiSetVideoAttribute(DevHandle handle, struct HdmiVideoAttr *attr);
 
 **表 6**  HdmiSetVideoAttribute参数和返回值描述
 
-<a name="table6"></a>
 
 | 参数       | 参数描述       |
 | ---------- | -------------- |
@@ -272,7 +256,6 @@ int32_t HdmiSetHdrAttribute(DevHandle handle, struct HdmiHdrAttr *attr);
 
 **表 7**  HdmiSetHdrAttribute参数和返回值描述
 
-<a name="table7"></a>
 
 | 参数       | 参数描述       |
 | ---------- | -------------- |
@@ -307,7 +290,6 @@ int32_t HdmiAvmuteSet(DevHandle handle, bool enable);
 
 **表 8**  HdmiAvmuteSet参数和返回值描述
 
-<a name="table8"></a>
 
 | 参数       | 参数描述          |
 | ---------- | ----------------- |
@@ -336,7 +318,6 @@ int32_t HdmiDeepColorSet(DevHandle handle, enum HdmiDeepColor color);
 
 **表 9**  HdmiDeepColorSet参数和返回值描述
 
-<a name="table9"></a>
 
 | 参数       | 参数描述       |
 | ---------- | -------------- |
@@ -365,7 +346,6 @@ int32_t HdmiDeepColorGet(DevHandle handle, enum HdmiDeepColor *color);
 
 **表 10**  HdmiDeepColorGet参数和返回值描述
 
-<a name="table10"></a>
 
 | 参数       | 参数描述       |
 | ---------- | -------------- |
@@ -395,7 +375,6 @@ int32_t HdmiStart(DevHandle handle);
 
 **表 11**  HdmiStart参数和返回值描述
 
-<a name="table11"></a>
 
 | 参数       | 参数描述       |
 | ---------- | -------------- |
@@ -423,7 +402,6 @@ int32_t HdmiStop(DevHandle handle);
 
 **表 12**  HdmiStop参数和返回值描述
 
-<a name="table12"></a>
 
 | 参数       | 参数描述       |
 | ---------- | -------------- |
@@ -451,7 +429,6 @@ int32_t HdmiUnregisterHpdCallbackFunc(DevHandle handle);
 
 **表 13**  HdmiUnregisterHpdCallbackFunc参数和返回值描述
 
-<a name="table13"></a>
 
 | 参数       | 参数描述       |
 | ---------- | -------------- |
@@ -479,7 +456,6 @@ void HdmiClose(DevHandle handle);
 
 **表 14**  HdmiClose参数和返回值描述
 
-<a name="table14"></a>
 
 | 参数       | 参数描述       |
 | ---------- | -------------- |
@@ -491,7 +467,7 @@ void HdmiClose(DevHandle handle);
 HdmiClose(hdmiHandle);
 ```
 
-### 使用实例<a name="section10"></a>
+### 使用实例
 
 本例程以操作开发板上的HDMI设备为例，详细展示HDMI接口的完整使用流程。
 

@@ -1,4 +1,4 @@
-# AUDIO
+# Audio
 
 
 ## Audio驱动概述
@@ -303,7 +303,7 @@ static int32_t CodecDriverBind(struct HdfDeviceObject *device)
 }
 ```
 
-CodecDriverInit：获取codecServive名字和私有寄存器配置，并通过AudioRegisterCodec插入到链表中。
+CodecDriverInit：获取codecService名字和私有寄存器配置，并通过AudioRegisterCodec插入到链表中。
 
 ```c
 static int32_t CodecDriverInit(struct HdfDeviceObject *device)
@@ -370,7 +370,7 @@ vendor/hisilicon/hispark_taurus/hdf_config/
 
 ```c
 root {
-    platfrom {
+    platform {
         ...
         controller_0x120c1001 :: card_controller {
             //配置私有数据属性名称，与device_info.hcs中的deviceMatchAttr对应
@@ -433,7 +433,7 @@ ctrlParamsSeqConfig：控制功能寄存器配置组，其中item与controlsConf
 
 ```c
  root {
-    platfrom {
+    platform {
         template codec_controller {
             match_attr = "";
             serviceName = "";
@@ -763,7 +763,7 @@ int32_t Tfa9879DaiHwParams(const struct AudioCard *card, const struct AudioPcmHw
     (void)card;
 	...
 	// 匹配采样率
-    ret = AcessoryDeviceFrequencyParse(param->rate, &frequency);
+    ret = AccessoryDeviceFrequencyParse(param->rate, &frequency);
 	...
 	// 匹配位宽
     ret = Tfa9879FormatParse(param->format, &bitWidth);
