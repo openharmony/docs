@@ -166,7 +166,7 @@ PageAbility提供命周期回调，开发者可以在`app.js/app.ets`中重写�
   }
 ```
 
-在跨设备场景下，需要向开发者申请数据同步的权限。具体示例代码如下：
+在跨设备场景下，需要向用户申请数据同步的权限。具体示例代码如下：
 ```ts
   import abilityAccessCtrl from "@ohos.abilityAccessCtrl";
   import bundle from '@ohos.bundle';
@@ -208,8 +208,8 @@ PageAbility提供命周期回调，开发者可以在`app.js/app.ets`中重写�
 
 | 接口名       | 描述                                                         |
 | ------------ | ------------------------------------------------------------ |
-| onShow()     | Ability由后台不可见状态切换到前台可见状态调用onShow方法，此时开发者在屏幕可以看到该Ability |
-| onHide()     | Ability由前台切换到后台不可见状态时调用onHide方法，此时开发者在屏幕看不到该Ability。 |
+| onShow()     | Ability由后台不可见状态切换到前台可见状态调用onShow方法，此时用户在屏幕可以看到该Ability |
+| onHide()     | Ability由前台切换到后台不可见状态时调用onHide方法，此时用户在屏幕看不到该Ability。 |
 | onDestroy()  | 应用退出，销毁Ability对象前调用onDestroy方法，开发者可以在该方法里做一些回收资源、清空缓存等应用退出前的准备工作。 |
 | onCreate()   | Ability第一次启动创建Ability时调用onCreate方法，开发者可以在该方法里做一些应用初始化工作。 |
 | onInactive() | Ability失去焦点时调用onInactive方法，Ability在进入后台状态时会先失去焦点，再进入后台。 |
