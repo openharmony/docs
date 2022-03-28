@@ -10,7 +10,7 @@ Vibrator属于控制类小器件，主要包含以下四个模块：Vibrator API
 
   **图1** 控制类小器件中的Vibrator
 
-![zh-cn_image_0000001152988366](C:\Users\Administrator\Pictures\Saved Pictures\zh-cn_image_0000001152988366.png)
+![zh-cn_image_0000001152988366](D:\docs\docs\zh-cn\application-dev\device\figures\zh-cn_image_0000001152988366.png)
 
 - Vibrator API：提供振动器基础的API，主要包含振动器的列表查询，振动器的振动器效果查询，触发/关闭振动器等接口。
 
