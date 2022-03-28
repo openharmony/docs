@@ -17,7 +17,7 @@
 | -------- | -------- |
 |getRdbStore(config:&nbsp;StoreConfig,&nbsp;version:&nbsp;number,&nbsp;callback:&nbsp;AsyncCallback&lt;RdbStore&gt;):&nbsp;void | 获得一个相关的RdbStore，操作关系型数据库，用户可以根据自己的需求配置RdbStore的参数，然后通过RdbStore调用相关接口可以执行相关的数据操作，结果以callback形式返回。<br/>-&nbsp;config：与此RDB存储相关的数据库配置。<br/>-&nbsp;version：数据库版本。<br/>-&nbsp;callback：指定callback回调函数。返回一个RdbStore。 |
 |getRdbStore(config:&nbsp;StoreConfig,&nbsp;version:&nbsp;number):&nbsp;Promise&lt;RdbStore&gt; | 获得一个相关的RdbStore，操作关系型数据库，用户可以根据自己的需求配置RdbStore的参数，然后通过RdbStore调用相关接口可以执行相关的数据操作，结果以Promise形式返回。<br/>-&nbsp;config：与此RDB存储相关的数据库配置。<br/>-&nbsp;version：数据库版本。 |
-|deleteRdbStore(name:&nbsp;string,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | 删除数据库，结果以callback形式返回。<br/>-&nbsp;name：数据库名称。<br/>-&nbsp;callback：指定callback回调函数。如果数据库已删除，则为true；否则返回false。 |
+|deleteRdbStore(name:&nbsp;string,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | 删除数据库，结果以callback形式返回。<br/>-&nbsp;name：数据库名称。<br/>-&nbsp;callback：指定callback回调函数。 |
 | deleteRdbStore(name:&nbsp;string):&nbsp;Promise&lt;void&gt; | 使用指定的数据库文件配置删除数据库，结果以Promise形式返回。<br/>-&nbsp;name：数据库名称。 |
 
 ### 数据库的增删改查
@@ -201,9 +201,10 @@
    
    const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " + "name TEXT NOT NULL, " + "age INTEGER, " + "salary REAL, " + "blobType BLOB)";
    const STORE_CONFIG = {name: "rdbstore.db",}
-   
-   let rdbStore = await data_rdb.getRdbStore(STORE_CONFIG, 1);
-   await rdbStore.executeSql(CREATE_TABLE_TEST);
+   data_rdb.getRdbStore(STORE_CONFIG, 1, function (err, rdbStore) {
+       rdbStore.executeSql(SQL_CREATE_TABLE)
+       console.info('create table done.')
+   })
    ```
 
 2. 插入数据。
@@ -228,16 +229,16 @@
    ```
    let predicates = new data_rdb.RdbPredicates("test");
    predicates.equalTo("name", "Tom")
-   let resultSet = await rdbStore.query(predicates)
-   
-   resultSet.goToFirstRow()
-   const id = await resultSet.getLong(resultSet.getColumnIndex("id"))
-   const name = await resultSet.getString(resultSet.getColumnIndex("name"))
-   const age = await resultSet.getLong(resultSet.getColumnIndex("age"))
-   const salary = await resultSet.getDouble(resultSet.getColumnIndex("salary"))
-   const blobType = await resultSet.getBlob(resultSet.getColumnIndex("blobType"))
-   
-   resultSet.close()
+   let promisequery = rdbStore.query(predicates)
+       promisequery.then((resultSet) => {
+       resultSet.goToFirstRow()
+       const id = resultSet.getLong(resultSet.getColumnIndex("id"))
+       const name = resultSet.getString(resultSet.getColumnIndex("name"))
+       const age = resultSet.getLong(resultSet.getColumnIndex("age"))
+       const salary = resultSet.getDouble(resultSet.getColumnIndex("salary"))
+       const blobType = resultSet.getBlob(resultSet.getColumnIndex("blobType"))
+       resultSet.close()
+   })
    ```
 
 4. 设置分布式同步表。

@@ -84,7 +84,10 @@
    读取指定文件，将数据加载到Storage实例，用于数据操作。
    ```
    var context = featureAbility.getContext()
-   var path = await context.getFilesDir()
+   context.getFilesDir().then(() => {
+    console.info("======================>getFilesDirPromsie====================>");
+   });
+
    let promise = dataStorage.getStorage(path + '/mystore')
    ```
 
