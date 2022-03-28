@@ -2126,10 +2126,10 @@ async function example() {
 
 | 名称  | 默认值 | 说明 |
 | ----- | ------ | ---- |
-| FILE  | 0      | 文件 |
-| IMAGE | 1      | 图片 |
-| VIDEO | 2      | 视频 |
-| AUDIO | 3      | 音频 |
+| FILE  | 1      | 文件 |
+| IMAGE | 3      | 图片 |
+| VIDEO | 4      | 视频 |
+| AUDIO | 5      | 音频 |
 
 ## FileKey<sup>8+</sup>
 
