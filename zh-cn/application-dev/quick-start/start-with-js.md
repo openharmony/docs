@@ -19,20 +19,20 @@
 ## JS工程项目文件
 
 - **entry**：OpenHarmony工程模块，编译构建生成一个Hap包。
-  - **src &gt; main &gt; js**：用于存放js源码。
-  - **src &gt; main &gt; js &gt; MainAbility**：应用/服务的入口。
-  - **src &gt; main &gt; js &gt; MainAbility &gt; i18n**：用于配置不同语言场景资源内容，比如应用文本词条、图片路径等资源。
-  - **src &gt; main &gt; js &gt; MainAbility &gt; pages**：MainAbility包含的页面。
-  - **src &gt; main &gt; js &gt; MainAbility &gt; app.js**：承载Ability生命周期。
+  - **src &gt; main &gt; js** ：用于存放js源码。
+  - **src &gt; main &gt; js &gt; MainAbility** ：应用/服务的入口。
+  - **src &gt; main &gt; js &gt; MainAbility &gt; i18n** ：用于配置不同语言场景资源内容，比如应用文本词条、图片路径等资源。
+  - **src &gt; main &gt; js &gt; MainAbility &gt; pages** ：MainAbility包含的页面。
+  - **src &gt; main &gt; js &gt; MainAbility &gt; app.js** ：承载Ability生命周期。
 
-  - **src &gt; main &gt; resources**：用于存放应用/服务所用到的资源文件，如图形、多媒体、字符串、布局文件等。
-  - **src &gt; main &gt; config.json**：模块配置文件。主要包含HAP包的配置信息、应用在具体设备上的配置信息以及应用的全局配置信息。
-  - **build-profile.json5**：模块的模块信息 、编译信息配置项，包括 buildOption target配置等。
-  - **hvigorfile.js**：模块级编译构建任务脚本，开发者可以自定义相关任务和代码实现。
+  - **src &gt; main &gt; resources** ：用于存放应用/服务所用到的资源文件，如图形、多媒体、字符串、布局文件等。
+  - **src &gt; main &gt; config.json** ：模块配置文件。主要包含HAP包的配置信息、应用在具体设备上的配置信息以及应用的全局配置信息。
+  - **build-profile.json5** ：模块的模块信息 、编译信息配置项，包括 buildOption target配置等。
+  - **hvigorfile.js** ：模块级编译构建任务脚本，开发者可以自定义相关任务和代码实现。
 
-- **build-profile.json5**：应用级配置信息，包括签名、产品配置等。
+- **build-profile.json5** ：应用级配置信息，包括签名、产品配置等。
 
-- **hvigorfile.js**：应用级编译构建任务脚本。
+- **hvigorfile.js** ：应用级编译构建任务脚本。
 
 
 ## 构建第一个页面
