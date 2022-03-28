@@ -24,7 +24,7 @@
 
 ## 场景介绍
 
-Stage卡片开发，即基于[Stage模型综述](stage-brief.md)的卡片提供方开发，主要涉及如下功能逻辑：
+Stage卡片开发，即基于[Stage模型](stage-brief.md)的卡片提供方开发，主要涉及如下功能逻辑：
 
 - 卡片生命周期回调函数FormExtension开发。
 - 创建卡片数据FormBindingData对象。
@@ -124,9 +124,8 @@ FormProvider类具体的API详见[接口文档](../reference/apis/js-apis-formpr
            // 删除卡片实例数据
            console.log('FormAbility onDestroy');
        }
-       onAcquireFormState(want) {
-           console.log('FormAbility onAcquireFormState');
-           return formInfo.FormState.READY;
+       onConfigurationUpdated(config) {
+           console.log('FormAbility onConfigurationUpdated, config:' + JSON.stringify(config));
        }
    }
    ```
@@ -183,7 +182,7 @@ Form需要在应用配置文件module.json中进行配置。
   | updateEnabled       | 表示卡片是否支持周期性刷新，取值范围：<br />true：表示支持周期性刷新，可以在定时刷新（updateDuration）和定点刷新（scheduledUpdateTime）两种方式任选其一，优先选择定时刷新。<br />false：表示不支持周期性刷新。 | 布尔类型   | 否                       |
   | scheduledUpdateTime | 表示卡片的定点刷新的时刻，采用24小时制，精确到分钟。         | 字符串     | 可缺省，缺省值为“0:0”。  |
   | updateDuration      | 表示卡片定时刷新的更新周期，单位为30分钟，取值为自然数。<br />当取值为0时，表示该参数不生效。<br />当取值为正整数N时，表示刷新周期为30*N分钟。 | 数值       | 可缺省，缺省值为“0”。    |
-  | formConfigAbility   | 表示用于调整卡片的设施或活动的名称。                         | 字符串     | 可缺省，缺省值为空。     |
+  | formConfigAbility   | 表示卡片的配置跳转链接，采用URI格式。                        | 字符串     | 可缺省，缺省值为空。     |
   | formVisibleNotify   | 标识是否允许卡片使用卡片可见性通知                           | 字符串     | 可缺省，缺省值为空。     |
   | metaData            | 表示卡片的自定义信息，包含customizeData数组标签。            | 对象       | 可缺省，缺省值为空。     |
 
@@ -205,7 +204,8 @@ Form需要在应用配置文件module.json中进行配置。
           "defaultDimension": "2*2",
           "updateEnabled": true,
           "scheduledUpdateTime": "10:30",
-          "updateDuration": 1
+          "updateDuration": 1,
+          "formConfigAbility": "ability://ohos.samples.FormApplication.MainAbility"
       }]
   }
      ```
@@ -338,3 +338,11 @@ Form需要在应用配置文件module.json中进行配置。
 最终可以得到，如下卡片：
 
 ![fa-form-example](figures/fa-form-example.png)
+
+## 开发实例
+
+针对Stage模型卡片提供方的开发，有以下示例工程可供参考：
+
+[eTSFormExtAbility](https://gitee.com/openharmony/app_samples/tree/master/ability/eTSFormExtAbility)
+
+本示例eTSFormExtAbility提供了一张卡片。用户可以通过桌面或者自己开发的卡片使用方，进行卡片的创建、更新和删除等操作。并且本示例通过轻量级数据存储实现了卡片信息的持久化。
