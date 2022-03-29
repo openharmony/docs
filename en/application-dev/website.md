@@ -106,15 +106,15 @@
           - [Example: Component Creation and Re-Initialization](ui/ts-component-creation-re-initialization.md)
         - Syntactic Sugar
           -  [@Decorator](ts-syntactic-sugar-decorator.md)
-        
+
           -  [Chain Call](ts-syntactic-sugar-chaining.md)
-        
+
           -  [struct](ts-syntactic-sugar-struct.md)
-        
+
           -  [Instantiating a struct Without the new Keyword](ts-instantiating-a-struct-without-new-keyword.md)
-        
+
           -  [Using a Separate Line for New Component](ts-using-a-separate-line-for-new-component.md)
-        
+
           -  [Restrictions on Using TypeScript for Generators](ts-restrictions-for-generators.md)
       - Experiencing the Declarative UI
         - [Creating a Declarative UI Project](ui/ui-ts-creating-project.md)
@@ -279,8 +279,7 @@
       - [Event Parameter](reference/arkui-js/js-components-custom-event-parameter.md)
       - [slot](reference/arkui-js/js-components-custom-slot.md)
       - [Lifecycle Definition](reference/arkui-js/js-components-custom-lifecycle.md)
-    - Appendix
-      - [Type Attributes](reference/arkui-js/js-appendix-types.md)
+    - [Type Attributes](reference/arkui-js/js-appendix-types.md)
   - Compent Reference (TypeScript-based Declarative Development Paradigm)
     - Components
       - Universal Components
@@ -401,8 +400,7 @@
       - [Image Cache](reference/arkui-ts/ts-methods-image-cache.md)
       - [Media Query](reference/arkui-ts/ts-methods-media-query.md)
       - [List Selection Dialog Box](reference/arkui-ts/ts-methods-action-sheet.md)
-    - Appendix
-      - [Built-in Enums](reference/arkui-ts/ts-appendix-enums.md)
+    - [Built-in Enums](reference/arkui-ts/ts-appendix-enums.md)
   - APIs
     - Ability Framework
       - [FeatureAbility Module](reference/apis/js-apis-featureAbility.md)

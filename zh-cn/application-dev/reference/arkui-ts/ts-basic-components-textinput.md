@@ -22,55 +22,55 @@
 TextInput(value?:{placeholder?: string controller?: TextInputController})
 
 - 参数
-  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
-  | -------- | -------- | -------- | -------- | -------- |
-  | placeholder | string | 否 | - | 无输入时的提示文本。 |
-  | controller<sup>8+</sup> | [TextInputController](#textinputcontroller8) | 否 | - | 设置TextInput控制器。 |
+  | 参数名                     | 参数类型                                     | 必填   | 默认值  | 参数描述            |
+  | ----------------------- | ---------------------------------------- | ---- | ---- | --------------- |
+  | placeholder             | string                                   | 否    | -    | 无输入时的提示文本。      |
+  | controller<sup>8+</sup> | [TextInputController](#textinputcontroller8) | 否    | -    | 设置TextInput控制器。 |
 
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-index.md)外，还支持以下属性：
+除支持通用属性外，还支持以下属性：
 
-| 名称 | 参数类型 | 默认值 | 描述 |
-| -------- | -------- | -------- | -------- |
-| type | InputType | InputType.Normal | 设置输入框类型。 |
-| placeholderColor | Color | - | 设置placeholder颜色。 |
-| placeholderFont | {<br/>size?:&nbsp;Length,<br/>weight?:&nbsp;number\|[FontWeight](ts-universal-attributes-text-style.md),<br/>family?:&nbsp;string,<br/>style?:&nbsp;[FontStyle](ts-universal-attributes-text-style.md)<br/>} | - | 设置placeholder文本样式：<br/>-&nbsp;size:&nbsp;设置文本尺寸，Length为number类型时，使用fp单位。<br/>-&nbsp;weight:&nbsp;设置文本的字体粗细，number类型取值[100,&nbsp;900]，取值间隔为100，默认为400，取值越大，字体越粗。<br/>-&nbsp;family:&nbsp;设置文本的字体列表。使用多个字体，使用','进行分割，优先级按顺序生效。例如：'Arial,&nbsp;sans-serif'。<br/>-&nbsp;style:&nbsp;设置文本的字体样式。 |
-| enterKeyType | EnterKeyType                                                 | EnterKeyType.Done | 设置输入法回车键类型。 |
-| caretColor | Color | - | 设置输入框光标颜色。 |
-| maxLength | number | - | 设置文本的最大输入字符数。 |
-| inputFilter<sup>8+</sup> | {<br/>value:&nbsp;[ResourceStr](../../ui/ts-types.md)<sup>8+</sup>,<br/>error?:&nbsp;(value:&nbsp;string)<br/>} | - | 正则表达式，满足表达式的输入允许显示，不满足正则表达式的输入被忽略。仅支持单个字符匹配，不支持字符串匹配。例如：^(?=.\*\d)(?=.\*[a-z])(?=.\*[A-Z]).{8,10}$，8到10位的强密码不支持过滤。<br/>-&nbsp;value：设置正则表达式。<br/>-&nbsp;error：正则匹配失败时，返回被忽略的内容。 |
+| 名称                       | 参数类型                                     | 默认值               | 描述                                       |
+| ------------------------ | ---------------------------------------- | ----------------- | ---------------------------------------- |
+| type                     | InputType                                | InputType.Normal  | 设置输入框类型。                                 |
+| placeholderColor         | Color                                    | -                 | 设置placeholder颜色。                         |
+| placeholderFont          | {<br/>size?:&nbsp;Length,<br/>weight?:&nbsp;number\|[FontWeight](ts-universal-attributes-text-style.md),<br/>family?:&nbsp;string,<br/>style?:&nbsp;[FontStyle](ts-universal-attributes-text-style.md)<br/>} | -                 | 设置placeholder文本样式：<br/>-&nbsp;size:&nbsp;设置文本尺寸，Length为number类型时，使用fp单位。<br/>-&nbsp;weight:&nbsp;设置文本的字体粗细，number类型取值[100,&nbsp;900]，取值间隔为100，默认为400，取值越大，字体越粗。<br/>-&nbsp;family:&nbsp;设置文本的字体列表。使用多个字体，使用','进行分割，优先级按顺序生效。例如：'Arial,&nbsp;sans-serif'。<br/>-&nbsp;style:&nbsp;设置文本的字体样式。 |
+| enterKeyType             | EnterKeyType                             | EnterKeyType.Done | 设置输入法回车键类型。                              |
+| caretColor               | Color                                    | -                 | 设置输入框光标颜色。                               |
+| maxLength                | number                                   | -                 | 设置文本的最大输入字符数。                            |
+| inputFilter<sup>8+</sup> | {<br/>value:&nbsp;[ResourceStr](../../ui/ts-types.md)<sup>8+</sup>,<br/>error?:&nbsp;(value:&nbsp;string)<br/>} | -                 | 正则表达式，满足表达式的输入允许显示，不满足正则表达式的输入被忽略。仅支持单个字符匹配，不支持字符串匹配。例如：^(?=.\*\d)(?=.\*[a-z])(?=.\*[A-Z]).{8,10}$，8到10位的强密码不支持过滤。<br/>-&nbsp;value：设置正则表达式。<br/>-&nbsp;error：正则匹配失败时，返回被忽略的内容。 |
 
 - EnterKeyType枚举说明
-  | 名称 | 描述 | 
-  | -------- | -------- |
-  | EnterKeyType.Go | 显示Go文本。 | 
-  | EnterKeyType.Search | 显示为搜索样式。 | 
-  | EnterKeyType.Send | 显示为发送样式。 | 
-  | EnterKeyType.Next | 显示为下一个样式。 | 
-  | EnterKeyType.Done | 标准样式。 | 
+  | 名称                  | 描述        |
+  | ------------------- | --------- |
+  | EnterKeyType.Go     | 显示Go文本。   |
+  | EnterKeyType.Search | 显示为搜索样式。  |
+  | EnterKeyType.Send   | 显示为发送样式。  |
+  | EnterKeyType.Next   | 显示为下一个样式。 |
+  | EnterKeyType.Done   | 标准样式。     |
 
 - InputType枚举说明
-  | 名称 | 描述 | 
-  | -------- | -------- |
-  | InputType.Normal | 基本输入模式。 | 
-  | InputType.Password | 密码输入模式。 | 
-  | InputType.Email | e-mail地址输入模式。 | 
-  | InputType.Number | 纯数字输入模式。 | 
+  | 名称                 | 描述            |
+  | ------------------ | ------------- |
+  | InputType.Normal   | 基本输入模式。       |
+  | InputType.Password | 密码输入模式。       |
+  | InputType.Email    | e-mail地址输入模式。 |
+  | InputType.Number   | 纯数字输入模式。      |
 
 
 ## 事件
 
-| 名称 | 功能描述 | 
-| -------- | -------- |
-| onChange(value:&nbsp;string)&nbsp;=&gt;&nbsp;void | 输入发生变化时，触发回调。 | 
-| onSubmit(callback:&nbsp;(enterKey:&nbsp;EnterKeyType)&nbsp;=&gt;&nbsp;void) | 回车键或者软键盘回车键触发该回调，参数为当前软键盘回车键类型。 | 
-| onEditChanged(callback:&nbsp;(isEditing:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)<sup>(deprecated) </sup> | 输入状态变化时，触发回调。 | 
-| onEditChange(callback:&nbsp;(isEditing:&nbsp;boolean)&nbsp;=&gt;&nbsp;void) <sup>8+</sup>| 输入状态变化时，触发回调。 | 
-| onCopy<sup>8+</sup>(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 长按输入框内部区域弹出剪贴板后，点击剪切板复制按钮，触发回调。<br/>value：复制的文本内容。 | 
-| onCut<sup>8+</sup>(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 长按输入框内部区域弹出剪贴板后，点击剪切板剪切按钮，触发回调。<br/>value：剪切的文本内容。 | 
-| onPaste<sup>8+</sup>(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 长按输入框内部区域弹出剪贴板后，点击剪切板粘贴按钮，触发回调。<br/>value：粘贴的文本内容。 | 
+| 名称                                       | 功能描述                                     |
+| ---------------------------------------- | ---------------------------------------- |
+| onChange(value:&nbsp;string)&nbsp;=&gt;&nbsp;void | 输入发生变化时，触发回调。                            |
+| onSubmit(callback:&nbsp;(enterKey:&nbsp;EnterKeyType)&nbsp;=&gt;&nbsp;void) | 回车键或者软键盘回车键触发该回调，参数为当前软键盘回车键类型。          |
+| onEditChanged(callback:&nbsp;(isEditing:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)<sup>(deprecated) </sup> | 输入状态变化时，触发回调。                            |
+| onEditChange(callback:&nbsp;(isEditing:&nbsp;boolean)&nbsp;=&gt;&nbsp;void) <sup>8+</sup> | 输入状态变化时，触发回调。                            |
+| onCopy<sup>8+</sup>(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 长按输入框内部区域弹出剪贴板后，点击剪切板复制按钮，触发回调。<br/>value：复制的文本内容。 |
+| onCut<sup>8+</sup>(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 长按输入框内部区域弹出剪贴板后，点击剪切板剪切按钮，触发回调。<br/>value：剪切的文本内容。 |
+| onPaste<sup>8+</sup>(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 长按输入框内部区域弹出剪贴板后，点击剪切板粘贴按钮，触发回调。<br/>value：粘贴的文本内容。 |
 
 ### TextInputController<sup>8+</sup>
 
@@ -87,9 +87,9 @@ caretPosition(value:&nbsp;number): void
 设置光标移动到指定位置。
 - 参数
 
-  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
-  | -------- | -------- |-------- |-------- |-------- |
-  | value | number |是 | - |设置输入光标的位置。<br/>value：从字符串开始到光标所在位置的字符长度。 |
+  | 参数名   | 参数类型   | 必填   | 默认值  | 参数描述                                     |
+  | ----- | ------ | ---- | ---- | ---------------------------------------- |
+  | value | number | 是    | -    | 设置输入光标的位置。<br/>value：从字符串开始到光标所在位置的字符长度。 |
 
 
 ## 示例

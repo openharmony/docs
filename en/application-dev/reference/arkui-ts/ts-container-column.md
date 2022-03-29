@@ -24,24 +24,24 @@ Column(value:{space?: Length})
 
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
-  | -------- | -------- | -------- | -------- | -------- |
-  | space | Length | No | 0 | Space between any two adjacent child components in the vertical layout. | 
+    | Name  | Type   | Mandatory | Default Value | Description                              |
+    | ----- | ------ | --------- | ------------- | ---------------------------------------- |
+    | space | Length | No        | 0             | Space between any two adjacent child components in the vertical layout. |
 
 
 ## Attributes
 
-| Name | Type | Default Value | Description |
-| -------- | -------- | -------- | -------- |
-| alignItems | HorizontalAlign | HorizontalAlign.Center | Alignment mode of child components in the horizontal direction. |
-| justifyContent<sup>8+</sup> | [FlexAlign](ts-container-flex.md) | FlexAlign.Start | Alignment mode of child components in the vertical direction. |
+| Name                        | Type                              | Default Value          | Description                              |
+| --------------------------- | --------------------------------- | ---------------------- | ---------------------------------------- |
+| alignItems                  | HorizontalAlign                   | HorizontalAlign.Center | Alignment mode of child components in the horizontal direction. |
+| justifyContent<sup>8+</sup> | [FlexAlign](ts-container-flex.md) | FlexAlign.Start        | Alignment mode of child components in the vertical direction. |
 
 - HorizontalAlign enums
-    | Name | Description | 
-  | -------- | -------- |
-  | Start | Aligned with the start edge in the same direction as the language in use. | 
-  | Center | Center alignment. This is the default alignment mode. | 
-  | End | Aligned with the end edge in the same direction as the language in use. | 
+    | Name   | Description                              |
+    | ------ | ---------------------------------------- |
+    | Start  | Aligned with the start edge in the same direction as the language in use. |
+    | Center | Center alignment. This is the default alignment mode. |
+    | End    | Aligned with the end edge in the same direction as the language in use. |
 
 
 ## Example
@@ -86,4 +86,4 @@ struct ColumnExample {
 }
 ```
 
-![](figures/column.png)
+![](figures/Column.png)
