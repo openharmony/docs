@@ -503,6 +503,7 @@ setWallpaper(source: string | image.PixelMap, wallpaperType: WallpaperType): Pro
       console.error(`failed to createPixelMap because: ` + JSON.stringify(error));
   });
   ```
+
 ## wallpaper.getFile<sup>8+</sup>
 
 getFile(wallpaperType: WallpaperType, callback: AsyncCallback&lt;number&gt;): void
@@ -530,6 +531,7 @@ getFile(wallpaperType: WallpaperType, callback: AsyncCallback&lt;number&gt;): vo
       console.log(`success to getFile: ` + JSON.stringify(data));
   });
   ```
+
 ## wallpaper.getFile<sup>8+</sup>
 
 getFile(wallpaperType: WallpaperType): Promise&lt;number&gt;
