@@ -219,8 +219,8 @@
           - [Magic Key](kernel/kernel-small-debug-shell-magickey.md)
           - [User-Space Exception Information](kernel/kernel-small-debug-shell-error.md)
         - [Trace](kernel/kernel-small-debug-trace.md)
-        - [perf](kernel/kernel-mini-memory-perf)
-        - [LMS](kernel/kernel-small-memory-lms)
+        - [perf](kernel/kernel-mini-memory-perf.md)
+        - [LMS](kernel/kernel-small-memory-lms.md)
         - Process Commissioning
           - [CPUP](kernel/kernel-small-debug-process-cpu.md)
         - Memory Debugging
