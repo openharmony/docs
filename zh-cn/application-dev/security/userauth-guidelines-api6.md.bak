@@ -1,7 +1,7 @@
 # 用户认证开发指导
 
 > **说明：**
-> 该开发指导匹配@ohos.userIAM.userAuth API Version 6开始支持的接口。对应接口已在API Version 8废弃，建议使用[新接口](userauth-guidelines-api8.md)。
+> 该开发指导匹配@ohos.userIAM.userAuth API Version 6开始支持的接口。对应接口已在API Version 8废弃，建议使用[新接口](#userauth-guidelines-api8.md)。
 
 ## 场景介绍
 
