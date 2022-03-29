@@ -21,7 +21,7 @@ Start another ability through a **WantAgent**.
 import wantAgent from '@ohos.wantAgent';
 ```
 
-2. Create a **WantAgentInfo** object. For details about the data types and parameters of **WantAgentInfo**, see [WantAgent Module](../reference/apis/js-apis-wantAgent.md#WantAgentInfo).
+2. Create a **WantAgentInfo** object. For details about the data types and parameters of **WantAgentInfo**, see [WantAgent Module](../reference/apis/js-apis-wantAgent.md#wantagentinfo).
 
 ```javascript
 private wantAgentObj = null	// Save the WantAgent object created. It will be used to complete the trigger operations.
