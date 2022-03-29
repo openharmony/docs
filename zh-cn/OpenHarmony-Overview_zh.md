@@ -128,6 +128,7 @@ OpenHarmony支持如下几种系统类型：
 以下为OpenHarmony中相关的子系统简介，详细介绍见子系统Readme文档，入口：[https://gitee.com/openharmony/docs/tree/master/zh-cn/readme](https://gitee.com/openharmony/docs/tree/master/zh-cn/readme)。
 
 <a name="table18981149155318"></a>
+
 <table><thead align="left"><tr id="row69811925313"><th class="cellrowborder" valign="top" width="11.148885111488852%" id="mcps1.1.4.1.1"><p id="p9143172718537"><a name="p9143172718537"></a><a name="p9143172718537"></a>子系 统</p>
 </th>
 <th class="cellrowborder" valign="top" width="80.49195080491951%" id="mcps1.1.4.1.2"><p id="p6143122775319"><a name="p6143122775319"></a><a name="p6143122775319"></a>简 介</p>
@@ -346,8 +347,8 @@ OpenHarmony支持如下几种系统类型：
 
 ## 快速入门<a name="section44681652104210"></a>
 
-- 设备开发快速入门：[device-dev/quick-start/Readme-CN.md](device-dev/quick-start/Readme-CN.md)
-- 应用开发快速入门：[application-dev/quick-start/Readme-CN.md](application-dev/quick-start/Readme-CN.md)
+- [设备开发快速入门](device-dev/quick-start/quickstart-lite-overview.md)
+- [应用开发快速入门](application-dev/quick-start/start-overview.md)
 
 
 

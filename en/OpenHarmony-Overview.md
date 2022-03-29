@@ -333,6 +333,9 @@ The following table describes the subsystems of OpenHarmony. For details about t
 
 For details, see  [device-dev/quick-start/Readme-EN.md](device-dev/quick-start/Readme-EN.md).
 
+- [Getting Started for Device Development](device-dev/quick-start/quickstart-lite-overview.md)
+- [Getting Started for Application Development](application-dev/quick-start/start-overview.md)
+
 ## Code Repository Addresses<a name="section107651249181914"></a>
 
 OpenHarmony project:  [https://gitee.com/openharmony](https://gitee.com/openharmony)
