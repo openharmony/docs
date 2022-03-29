@@ -2,17 +2,17 @@
 - [应用开发导读](application-dev-guide.md)
 
 - 快速开始
-  
+
   - 快速入门
     - [前言](quick-start/start-overview.md)
     - [使用eTS语言开发](quick-start/start-with-ets.md)
     - [使用JS语言开发（传统代码方式）](quick-start/start-with-js.md)
     - [使用JS语言开发（低代码方式）](quick-start/start-with-js-low-code.md)
-  
+
   - 开发基础知识
     - [应用开发包结构说明](quick-start/package-structure.md)
     - [资源文件的分类](quick-start/basic-resource-file-categories.md)
-  
+
 - 开发
   - Ability开发
     - [Ability框架概述](ability/ability-brief.md)
@@ -270,14 +270,14 @@
       - [国际化开发概述](internationalization/international-overview.md)
       - [Intl开发指导](internationalization/intl-guidelines.md)
       - [I18n开发指导](internationalization/i18n-guidelines.md)
-  
+
 - 工具
   - [DevEco Studio（OpenHarmony）使用指南](quick-start/deveco-studio-user-guide-for-openharmony.md)
-  
+
 - 示例教程
   - [示例代码](https://gitee.com/openharmony/app_samples/blob/master/README_zh.md)
   - [Codelabs](https://gitee.com/openharmony/codelabs/blob/master/README.md)
-  
+
 - API参考
   - 组件参考（基于JS扩展的类Web开发范式）
     - 组件
@@ -378,8 +378,7 @@
       - [事件参数](reference/arkui-js/js-components-custom-event-parameter.md)
       - [slot插槽](reference/arkui-js/js-components-custom-slot.md)
       - [生命周期定义](reference/arkui-js/js-components-custom-lifecycle.md)
-    - 附录
-      - [类型说明](reference/arkui-js/js-appendix-types.md)
+    - [类型说明](reference/arkui-js/js-appendix-types.md)
   - 组件参考（基于TS扩展的声明式开发范式）
     - 组件
       - 通用
@@ -451,6 +450,8 @@
         - [Search](reference/arkui-ts/ts-basic-components-search.md)
         - [Select](reference/arkui-ts/ts-basic-components-select.md)
         - [Slider](reference/arkui-ts/ts-basic-components-slider.md)
+        - [Stepper](reference/arkui-ts/ts-basic-components-stepper.md)
+        - [StepperItem](reference/arkui-ts/ts-basic-components-stepperitem.md)
         - [Span](reference/arkui-ts/ts-basic-components-span.md)
         - [Text](reference/arkui-ts/ts-basic-components-text.md)
         - [TextArea](reference/arkui-ts/ts-basic-components-textarea.md)
@@ -484,8 +485,6 @@
         - [ScrollBar](reference/arkui-ts/ts-basic-components-scrollbar.md)
         - [SideBarContainer](reference/arkui-ts/ts-container-sidebarcontainer.md)
         - [Stack](reference/arkui-ts/ts-container-stack.md)
-        - [Stepper](reference/arkui-ts/ts-basic-components-stepper.md)
-        - [StepperItem](reference/arkui-ts/ts-basic-components-stepperitem.md)
         - [Swiper](reference/arkui-ts/ts-container-swiper.md)
         - [Tabs](reference/arkui-ts/ts-container-tabs.md)
         - [TabContent](reference/arkui-ts/ts-container-tabcontent.md)

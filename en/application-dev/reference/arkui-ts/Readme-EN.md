@@ -2,7 +2,7 @@
 
 - Components
     - Universal Components
-        - [Universal Events](ts-universal-event-index.md)
+        - Universal Events
             - [Click Event](ts-universal-events-click.md)
             - [Touch Event](ts-universal-events-touch.md)
             - [Show/Hide Event](ts-universal-events-show-hide.md)
@@ -11,7 +11,7 @@
             - [Focus Event](ts-universal-focus-event.md)
             - [Mouse Event](ts-universal-mouse-key.md)
             - [Component Area Change Event](ts-universal-component-area-change-event.md)
-        - [Universal Attributes](ts-universal-attributes-index.md)
+        - Universal Attributes
             - [Size](ts-universal-attributes-size.md)
             - [Location](ts-universal-attributes-location.md)
             - [Layout Constraints](ts-universal-attributes-layout-constraints.md)
@@ -139,7 +139,6 @@
     - [Matrix Transformation](ts-matrix-transformation.md)
     - [Interpolation Calculation](ts-interpolation-calculation.md)
 - Global UI Methods
-    - [Image Cache](ts-methods-image-cache.md)
     - Pop-up Window
         - [Alert Dialog Box](ts-methods-alert-dialog-box.md)
         - [Action Sheet](ts-methods-action-sheet.md)

@@ -306,8 +306,7 @@
       - [Event Parameter](reference/arkui-js/js-components-custom-event-parameter.md)
       - [slot](reference/arkui-js/js-components-custom-slot.md)
       - [Lifecycle Definition](reference/arkui-js/js-components-custom-lifecycle.md)
-    - Appendix
-      - [Type Attributes](reference/arkui-js/js-appendix-types.md)
+    - [Type Attributes](reference/arkui-js/js-appendix-types.md)
   - Compent Reference (TypeScript-based Declarative Development Paradigm)
     - Components
       - Universal Components
@@ -364,24 +363,34 @@
         - [DataPanel](reference/arkui-ts/ts-basic-components-datapanel.md)
         - [DatePicker](reference/arkui-ts/ts-basic-components-datepicker.md)
         - [Divider](reference/arkui-ts/ts-basic-components-divider.md)
+        - [Gauge](reference/arkui-ts/ts-basic-components-gauge.md)
         - [Image](reference/arkui-ts/ts-basic-components-image.md)
         - [ImageAnimator](reference/arkui-ts/ts-basic-components-imageanimator.md)
         - [LoadingProgress](reference/arkui-ts/ts-basic-components-loadingprogress.md)
         - [Marquee](reference/arkui-ts/ts-basic-components-marquee.md)
+        - [PatternLock](reference/arkui-ts/ts-basic-components-patternlock.md)
+        - [PluginComponent](reference/arkui-ts/ts-basic-components-plugincomponent.md)
         - [Progress](reference/arkui-ts/ts-basic-components-progress.md)
         - [QRCode](reference/arkui-ts/ts-basic-components-qrcode.md)
         - [Radio](reference/arkui-ts/ts-basic-components-radio.md)
         - [Rating](reference/arkui-ts/ts-basic-components-rating.md)
+        - [RichText](reference/arkui-ts/ts-basic-components-richtext.md)
+        - [Search](reference/arkui-ts/ts-basic-components-search.md)
         - [Select](reference/arkui-ts/ts-basic-components-select.md)
         - [Slider](reference/arkui-ts/ts-basic-components-slider.md)
         - [Span](reference/arkui-ts/ts-basic-components-span.md)
+        - [Stepper](reference/arkui-ts/ts-basic-components-stepper.md)
+        - [StepperItem](reference/arkui-ts/ts-basic-components-stepperitem.md)
         - [Text](reference/arkui-ts/ts-basic-components-text.md)
         - [TextArea](reference/arkui-ts/ts-basic-components-textarea.md)
-        - [TextInput](reference/arkui-ts/ts-basic-components-textinput.md)
-        - [TextTimer](reference/arkui-ts/ts-basic-components-texttimer.md)
-        - [Toggle](reference/arkui-ts/ts-basic-components-toggle.md)
         - [TextClock](reference/arkui-ts/ts-basic-components-textclock.md)
+        - [TextInput](reference/arkui-ts/ts-basic-components-textinput.md)
+        - [TextPicker](reference/arkui-ts/ts-basic-components-textpicker.md)
+        - [TextTimer](reference/arkui-ts/ts-basic-components-texttimer.md)
+        - [TimePicker](reference/arkui-ts/ts-basic-components-timepicker.md)
+        - [Toggle](reference/arkui-ts/ts-basic-components-toggle.md)
         - [Web](reference/arkui-ts/ts-basic-components-web.md)
+        - [Xcomponent](reference/arkui-ts/ts-basic-components-xcomponent.md)
       - Container Components
         - [AlphabetIndexer](reference/arkui-ts/ts-container-alphabet-indexer.md)
         - [Badge](reference/arkui-ts/ts-container-badge.md)
@@ -397,6 +406,7 @@
         - [Navigator](reference/arkui-ts/ts-container-navigator.md)
         - [Navigation](reference/arkui-ts/ts-container-navigation.md)
         - [Panel](reference/arkui-ts/ts-container-panel.md)
+        - [Refresh](reference/arkui-ts/ts-container-refresh.md)
         - [Row](reference/arkui-ts/ts-container-row.md)
         - [RowSplit](reference/arkui-ts/ts-container-rowsplit.md)
         - [Scroll](reference/arkui-ts/ts-container-scroll.md)
@@ -406,7 +416,6 @@
         - [Swiper](reference/arkui-ts/ts-container-swiper.md)
         - [Tabs](reference/arkui-ts/ts-container-tabs.md)
         - [TabContent](reference/arkui-ts/ts-container-tabcontent.md)
-        - [Refresh](reference/arkui-ts/ts-container-refresh.md)
       - Media Components
         - [Video](reference/arkui-ts/ts-media-components-video.md)
       - Drawing Components
@@ -438,7 +447,6 @@
       - [Matrix Transformation](reference/arkui-ts/ts-matrix-transformation.md)
       - [Interpolation Calculation](reference/arkui-ts/ts-interpolation-calculation.md)
     - Global UI Methods
-      - [Image Cache](reference/arkui-ts/ts-methods-image-cache.md)
       - Dialog Box
         - [Alert Dialog Box](reference/arkui-ts/ts-methods-alert-dialog-box.md)
         - [Action Sheet](reference/arkui-ts/ts-methods-action-sheet.md)
@@ -446,8 +454,7 @@
         - [Date Picker Dialog Box](reference/arkui-ts/ts-methods-datepicker-dialog.md)
         - [Text Picker Dialog Box](reference/arkui-ts/ts-methods-textpicker-dialog.md)
       - [Menu](reference/arkui-ts/ts-methods-menu.md)
-    - Appendix
-      - [Built-in Enums](reference/arkui-ts/ts-appendix-enums.md)
+    - [Built-in Enums](reference/arkui-ts/ts-appendix-enums.md)
   - APIs
     - Ability Framework
       - [FeatureAbility Module](reference/apis/js-apis-featureAbility.md)
