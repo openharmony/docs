@@ -194,9 +194,6 @@
       - Sensor
         - [Sensor Overview](device/sensor-overview.md)
         - [Sensor Development](device/sensor-guidelines.md)
-      - Sensor
-        - [Sensor Overview](device/sensor-overview.md)
-        - [Sensor Development](device/sensor-guidelines.md)
       - Vibrator
         - [vibrator-Overview.md](device/vibrator-overview.md)
         - [Vibrator Development](device/vibrator-guidelines.md)

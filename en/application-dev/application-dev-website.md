@@ -49,11 +49,11 @@
           - [Stepper](ui/ui-js-components-stepper.md)
           - [Tabs](ui/ui-js-component-tabs.md)
         - Basic Components
-        - [Text](ui/ui-js-components-text.md)
-        - [Input](ui/ui-js-components-input.md)
-        - [Button](ui/ui-js-components-button.md)
-        - [Picker](ui/ui-js-components-picker.md)
-        - [Image](ui/ui-js-components-images.md)
+          - [Text](ui/ui-js-components-text.md)
+          - [Input](ui/ui-js-components-input.md)
+          - [Button](ui/ui-js-components-button.md)
+          - [Picker](ui/ui-js-components-picker.md)
+          - [Image](ui/ui-js-components-images.md)
        - Animation Development Guidelines
         - CSS Animation
           - [Defining Attribute Style Animations](ui/ui-js-animate-attribute-style.md)
@@ -190,9 +190,6 @@
         - [Location Overview](device/device-location-overview.md)
         - [Obtaining Device Location Information](device/device-location-info.md)
         - [Geocoding and Reverse Geocoding Capabilities](device/device-location-geocoding.md)
-      - Sensor
-        - [Sensor Overview](device/sensor-overview.md)
-        - [Sensor Development](device/sensor-guidelines.md)
       - Sensor
         - [Sensor Overview](device/sensor-overview.md)
         - [Sensor Development](device/sensor-guidelines.md)
