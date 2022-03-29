@@ -1,7 +1,7 @@
-#  TypeScript-based Declarative Development Paradigm
+#  JavaScript-based Web-like Development Paradigm
 
--   [Components](js-components.md)
-    -   [Common](js-components-common.md)
+-   Components
+    -   Common
         -   [Universal Attributes](js-components-common-attributes.md)
         -   [Universal Styles](js-components-common-styles.md)
         -   [Universal Events](js-components-common-events.md)
@@ -13,7 +13,7 @@
         -   [Custom Font Styles](js-components-common-customizing-font.md)
         -   [Atomic Layout](js-components-common-atomic-layout.md)
 
-    -   [Container Component](js-components-container.md)
+    -   Container Component
         -   [badge](js-components-container-badge.md)
         -   [dialog](js-components-container-dialog.md)
         -   [div](js-components-container-div.md)
@@ -32,7 +32,7 @@
         -   [tab-bar](js-components-container-tab-bar.md)
         -   [tab-content](js-components-container-tab-content.md)
 
-    -   [Basic Components](js-components-basic.md)
+    -   Basic Components
         -   [button](js-components-basic-button.md)
         -   [chart](js-components-basic-chart.md)
         -   [divider](js-components-basic-divider.md)
@@ -62,10 +62,10 @@
         -   [toggle](js-components-basic-toggle.md)
         -   [web](js-components-basic-web.md)
 
-    -   [Media Components](js-components-media.md)
+    -   Media Components
         -   [video](js-components-media-video.md)
 
-    -   [Canvas Components](js-components-canvas.md)
+    -   Canvas Components
         -   [canvas](js-components-canvas-canvas.md)
         -   [CanvasRenderingContext2D](js-components-canvas-canvasrenderingcontext2d.md)
         -   [Image](js-components-canvas-image.md)
@@ -76,13 +76,13 @@
         -   [OffscreenCanvas](js-components-canvas-offscreencanvas.md)
         -   [OffscreenCanvasRenderingContext2D](js-offscreencanvasrenderingcontext2d.md)
 
-    -   [Grid](js-components-grid.md)
+    -   Grid
         -   [Basic Concepts](js-components-grid-basic-concepts.md)
         -   [grid-container](js-components-grid-container.md)
         -   [grid-row](js-components-grid-row.md)
         -   [grid-col](js-components-grid-col.md)
 
-    -   [SVG Components](js-svg.md)
+    -   SVG Components
         -   [Universal Attributes](js-components-svg-common-attributes.md)
         -   [svg](js-components-svg.md)
         -   [rect](js-components-svg-rect.md)
@@ -99,14 +99,12 @@
         -   [animateMotion](js-components-svg-animatemotion.md)
         -   [animateTransform](js-components-svg-animatetransform.md)
 
--   [Custom Components](js-components-custom.md)
+-   Custom Components
     -   [Basic Usage](js-components-custom-basic-usage.md)
     -   [Custom Events](js-components-custom-events.md)
     -   [props](js-components-custom-props.md)
     -   [Event Parameter](js-components-custom-event-parameter.md)
     -   [slot](js-components-custom-slot.md)
     -   [Lifecycle Definition](js-components-custom-lifecycle.md)
-
--   [Appendix](js-appendix.md)
-    -   [Type Attributes](js-appendix-types.md)
+-   [Type Attributes](js-appendix-types.md)
 
