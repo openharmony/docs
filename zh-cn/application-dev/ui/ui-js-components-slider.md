@@ -17,8 +17,6 @@ Slider为滑动条组件，用来快速调节音量、亮度等。具体用法�
 </div>
 ```
 
-
-
 ```
 /* xxx.css */
 .container {
@@ -119,6 +117,8 @@ Slider组件通过color、selected-color、block-color样式分别为滑动条�
 ```
 /* xxx.css */
 .container {
+  width: 100%;
+  height: 100%; 
   flex-direction: column;
   justify-content: center;
   align-items: center;

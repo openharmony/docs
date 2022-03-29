@@ -395,7 +395,10 @@ export default {
       this.ctx.fillRect(100, 100, 400, 300);
     }else if(e.newValue == 'value3'){
       this.ctx.clearRect(0,0,600,500);
-      let gradient = this.ctx.createLinearGradient(100,100, 400,400);      gradient.addColorStop(0.0, 'red');      gradient.addColorStop(0.5, 'white');      gradient.addColorStop(1, '#17ea35');
+      let gradient = this.ctx.createLinearGradient(100,100, 400,400);             
+      gradient.addColorStop(0.0, 'red');    
+      gradient.addColorStop(0.5, 'white');    
+      gradient.addColorStop(1, '#17ea35');
       // 设置绘制阴影时的模糊级别
       this.ctx.shadowBlur = 30;
       // 绘制阴影时的阴影颜色
@@ -405,9 +408,13 @@ export default {
     }else if(e.newValue == 'value4'){
       this.ctx.clearRect(0,0,600,500);
       this.ctx.clearRect(0,0,600,500);
-      let gradient = this.ctx.createRadialGradient(300,250,20,300,250,200);      gradient.addColorStop(0.0, 'red');      gradient.addColorStop(0.5, 'white');      gradient.addColorStop(1, '#17ea35');
+      let gradient = this.ctx.createRadialGradient(300,250,20,300,250,200);      
+      gradient.addColorStop(0.0, 'red');     
+      gradient.addColorStop(0.5, 'white');     
+      gradient.addColorStop(1, '#17ea35');
       // 设置绘制阴影时的模糊级别
-      this.ctx.shadowBlur = 30;      this.ctx.shadowOffsetY = 30;
+      this.ctx.shadowBlur = 30;     
+      this.ctx.shadowOffsetY = 30;
       // 绘制阴影时的阴影颜色
       this.ctx.shadowColor = 'rgb(23, 1, 1)';
       this.ctx.fillStyle = gradient;

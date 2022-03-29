@@ -60,7 +60,10 @@ Canvas组件设置宽（width）、高（height）、背景色（background-colo
   background-color: #F1F3F5;
 }
 canvas{
-  width: 500px;  height: 500px;  background-color: #fdfdfd;  border: 5px solid red;
+  width: 500px;
+  height: 500px;  
+  background-color: #fdfdfd;  
+  border: 5px solid red;
 }
 ```
 
@@ -83,9 +86,29 @@ Canvas添加长按事件，长按后可获取Canvas组件的dataUrl值（toDataU
 
 
 ```
-/* xxx.css */.container{  flex-direction: column;  justify-content: center;  align-items: center;  background-color: #F1F3F5;}canvas{  width: 500px;  height: 500px;  background-color: #fdfdfd;  border: 5px solid red;
-  margin-bottom: 50px;
-}.content{  border: 5px solid blue;  padding: 10px;  width: 90%;  height: 400px;  overflow: scroll;}
+/* xxx.css */
+.container{
+  width:100%;
+  height:100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #F1F3F5;
+  }
+  canvas{  
+    width: 500px;  
+    height: 500px;
+    background-color: #fdfdfd;
+    border: 5px solid red;
+    margin-bottom: 50px;
+}
+.content{
+  border: 5px solid blue;
+  padding: 10px;
+  width: 90%;
+  height: 400px; 
+  overflow: scroll;
+}
 ```
 
 
@@ -99,7 +122,9 @@ export default {
     porc:'open',
   },
   onShow(){
-    let el = this.$refs.canvas1    let ctx = el.getContext("2d")    ctx.strokeRect(100,100,300,300)
+    let el = this.$refs.canvas1;
+    let ctx = el.getContext("2d"); 
+    ctx.strokeRect(100,100,300,300);
   },
   getUrl(){
     let el = this.$refs.canvas1

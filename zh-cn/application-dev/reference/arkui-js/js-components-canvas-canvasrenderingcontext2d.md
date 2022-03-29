@@ -12,10 +12,12 @@
   <div>
     <canvas ref="canvas1" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
     <input type="button" style="width: 180px; height: 60px;" value="fillStyle" onclick="handleClick" />
-    &lt;input type="button" style="width: 180px; height: 60px;" value="fillStyle" onclick="antialias" /&gt;</div>
+    <input type="button" style="width: 180px; height: 60px;" value="fillStyle" onclick="antialias">
+  </div>
   ```
-
-  ```
+```
+  
+```
   // xxx.js
   export default {
     handleClick() {
@@ -27,9 +29,14 @@
     },
     antialias() {
       const el = this.$refs.canvas1;
-      const ctx = el.getContext('2d', { antialias: true });    ctx.beginPath();    ctx.arc(100, 75, 50, 0, 6.28);    ctx.stroke();  }}
+      const ctx = el.getContext('2d', { antialias: true });
+      ctx.beginPath();   ]
+      ctx.arc(100, 75, 50, 0, 6.28);
+      ctx.stroke(); 
+      }
+    }
   ```
-
+  
 - 示意图（关闭抗锯齿）
   ![zh-cn_image_0000001214837333](figures/zh-cn_image_0000001214837333.png)
 
@@ -62,7 +69,7 @@
 
 ### fillStyle
 
-```
+  ```
 <!-- xxx.hml -->
 <div>
   <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
@@ -260,9 +267,7 @@ export default {
     ctx.moveTo(140, 10);
     ctx.lineTo(140, 160);
     ctx.stroke();
-
     ctx.font = '18px sans-serif';    
-
   // Show the different textAlign values
     ctx.textAlign = 'start';      
     ctx.fillText('textAlign=start', 140, 60);        
@@ -300,9 +305,7 @@ export default {
     ctx.moveTo(0, 120);
     ctx.lineTo(400, 120);
     ctx.stroke();
-
     ctx.font = '20px sans-serif';
-
     ctx.textBaseline = 'top'; 
     ctx.fillText('Top', 10, 120); 
     ctx.textBaseline = 'bottom'; 
@@ -339,7 +342,7 @@ export default {
     ctx.globalAlpha = 0.4;
     ctx.fillStyle = 'rgb(0,0,255)'; 
     ctx.fillRect(50, 50, 50, 50);
- 
+
   }
 }
 ```
@@ -389,7 +392,7 @@ export default {
   | xor | 使用异或操作对新绘制内容与现有绘制内容进行融合。 |
 
 - 示例
-  ```
+```
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
@@ -423,7 +426,7 @@ export default {
 
 ### shadowBlur
 
-```
+  ```
 <!-- xxx.hml -->
 <div>
   <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
@@ -571,7 +574,7 @@ fillRect(x: number, y: number, width:number, height: number): void
   | height | number | 指定矩形的高度。 |
 
 - 示例
-  ```
+```
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
@@ -1740,8 +1743,8 @@ createImageData(width: number, height: number, imageData: Object): Object
     onShow() {
       const el =this.$refs.canvas;
       const ctx = el.getContext('2d');
-      imageData = ctx.createImageData(50, 100);  // Create ImageData with 50px width and 100px height
-      newImageData = ctx.createImageData(imageData);  // Create ImageData using the input imageData
+      var imageData = ctx.createImageData(50, 100);  // Create ImageData with 50px width and 100px height
+      var newImageData = ctx.createImageData(imageData);  // Create ImageData using the input imageData
     }
   }
   ```
@@ -1777,8 +1780,8 @@ getImageData(sx: number, sy: number, sw: number, sh: number): Object
   //xxx.js
   export default {
     onShow() {
-      var test = this.$element('getImageData')
-      var ctx = test.getContext('2d');
+      const test = this.$element('getImageData')
+      const ctx = test.getContext('2d');
       var imageData = ctx.getImageData(0, 0, 280, 300);
     }
   }
@@ -1813,8 +1816,8 @@ putImageData(imageData: Object, dx: number, dy: number, dirtyX: number, dirtyY: 
   //xxx.js
   export default {
     onShow() {
-      var test = this.$element('getImageData')
-      var ctx = test.getContext('2d');
+      const test = this.$element('getImageData')
+      const ctx = test.getContext('2d');
       var imgData = ctx.createImageData(100, 100);
       for (var i = 0; i < imgData.data.length; i += 4) {
         imgData.data[i + 0] = 255;
@@ -1922,7 +1925,7 @@ transferFromImageBitmap(bitmap: ImageBitmap): void
       var offscreen = new OffscreenCanvas(500,500);
       var offscreenCanvasCtx = offscreen.getContext("2d");
       offscreenCanvasCtx.fillRect(0, 0, 200, 200); 
-  
+
       var bitmap = offscreen.transferToImageBitmap();
       canvas.transferFromImageBitmap(bitmap);
     }
@@ -1930,3 +1933,5 @@ transferFromImageBitmap(bitmap: ImageBitmap): void
   ```
 
   ![zh-cn_image_0000001168984882](figures/zh-cn_image_0000001168984882.png)
+
+  ```

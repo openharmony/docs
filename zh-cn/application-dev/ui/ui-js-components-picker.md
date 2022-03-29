@@ -17,6 +17,8 @@ Picker是滑动选择器组件，类型支持普通选择器、日期选择器�
 ```
 /* index.css */
 .container {
+  width: 100%;
+  height: 100%; 
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -42,6 +44,8 @@ Picker是滑动选择器组件，类型支持普通选择器、日期选择器�
 ```
 /* index.css */
 .container {
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -86,6 +90,8 @@ Picker的hours属性定义时间的展现格式，可选类型有12小时制和2
 ```
 /* index.css */
 .container {
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -121,6 +127,8 @@ Picker的hours属性定义时间的展现格式，可选类型有12小时制和2
 ```
 /* index.css */
 .container {
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
