@@ -168,7 +168,7 @@
 
    
    ```
-   import router from '@system.router'
+   import router from '@system.router';
    
    export default {
        onclick: function () {
@@ -184,7 +184,7 @@
 
    
    ```
-   import router from '@system.router'
+   import router from '@system.router';
    
    export default {
        back: function () {
