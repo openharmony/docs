@@ -1,8 +1,11 @@
 # 页面路由
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> - 本模块首批接口从API version 3开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
 > - 从API Version 8 开始，该接口不再维护，推荐使用新接口['@ohos.router'](js-apis-router.md)。
+>
+>
+> - 本模块首批接口从API version 3开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
 ## 导入模块
@@ -22,9 +25,9 @@ push(options: RouterOptions): void
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| options | [RouterOptions](#routeroptions) | 是 | 页面路由参数，详细请参考RouterOptions。|
+| 参数名     | 类型                              | 必填   | 说明                         |
+| ------- | ------------------------------- | ---- | -------------------------- |
+| options | [RouterOptions](#routeroptions) | 是    | 页面路由参数，详细请参考RouterOptions。 |
 
 **示例：**
 
@@ -76,9 +79,9 @@ replace(options: RouterOptions): void
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| options | [RouterOptions](#routeroptions) | 是 | 页面路由参数，详细请参考RouterOptions。|
+| 参数名     | 类型                              | 必填   | 说明                         |
+| ------- | ------------------------------- | ---- | -------------------------- |
+| options | [RouterOptions](#routeroptions) | 是    | 页面路由参数，详细请参考RouterOptions。 |
 
 **示例：**
 
@@ -119,9 +122,9 @@ back(options?: BackRouterOptions): void
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| options | [BackRouterOptions](#backrouteroptions) | 是 | 详细请参考BackRouterOptions。|
+| 参数名     | 类型                                      | 必填   | 说明                      |
+| ------- | --------------------------------------- | ---- | ----------------------- |
+| options | [BackRouterOptions](#backrouteroptions) | 是    | 详细请参考BackRouterOptions。 |
 
 **示例：**
 
@@ -191,9 +194,9 @@ getParams(): ParamsInterface
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
-| [ParamsInterface](#paramsinterface) | 详细请参见ParamsInterface。|
+| 类型                                  | 说明                    |
+| ----------------------------------- | --------------------- |
+| [ParamsInterface](#paramsinterface) | 详细请参见ParamsInterface。 |
 
 ## router.clear
 
@@ -223,8 +226,8 @@ getLength(): string
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
+| 类型     | 说明                 |
+| ------ | ------------------ |
 | string | 页面数量，页面栈支持最大数值是32。 |
 
 **示例：**
@@ -248,9 +251,9 @@ getState(): RouterState
 
 **返回值：**
 
-| 参数类型 | 说明 |
-| -------- | -------- |
-| [RouterState](#routerstate) | 详细请参见RouterState。|
+| 参数类型                        | 说明                |
+| --------------------------- | ----------------- |
+| [RouterState](#routerstate) | 详细请参见RouterState。 |
 
 **示例：**
 
@@ -275,9 +278,9 @@ enableAlertBeforeBackPage(options: EnableAlertBeforeBackPageOptions): void
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| options | [EnableAlertBeforeBackPageOptions](#enableAlertbeforebackpageoptions6) | 是 | 详细请参见EnableAlertBeforeBackPageOptions。 |
+| 参数名     | 类型                                       | 必填   | 说明                                     |
+| ------- | ---------------------------------------- | ---- | -------------------------------------- |
+| options | [EnableAlertBeforeBackPageOptions](#enableAlertbeforebackpageoptions6) | 是    | 详细请参见EnableAlertBeforeBackPageOptions。 |
 
 **示例：**
 
@@ -307,9 +310,9 @@ disableAlertBeforeBackPage(options?: DisableAlertBeforeBackPageOptions): void
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| options | [DisableAlertBeforeBackPageOptions](#disablealertbeforebackpageoptions6) | 否 | 详细请参见DisableAlertBeforeBackPageOptions。 |
+| 参数名     | 类型                                       | 必填   | 说明                                      |
+| ------- | ---------------------------------------- | ---- | --------------------------------------- |
+| options | [DisableAlertBeforeBackPageOptions](#disablealertbeforebackpageoptions6) | 否    | 详细请参见DisableAlertBeforeBackPageOptions。 |
 
 **示例：**
 
@@ -334,10 +337,10 @@ export default {
 
 **系统能力：**  以下各项对应的系统能力均为SystemCapability.ArkUI.ArkUI.Lite
 
-| 名称 | 参数类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| uri | string | 是 | 目标页面的uri，可以是以下的两种格式：<br/>1. 页面的绝对路径，由config.json文件中的页面列表提供。例如：<br/>- pages/index/index<br/> -pages/detail/detail<br/>2. 特定路径。如果URI为斜杠（/），则显示主页。 |
-| params | Object | 否 | 跳转时要同时传递到目标页面的数据，跳转到目标页面后，参数可以在页面中直接使用，如this.data1(data1为跳转时params参数中的key值)。如果目标页面中已有该字段，则其值会被传入的字段值覆盖。 |
+| 名称     | 参数类型   | 必填   | 说明                                       |
+| ------ | ------ | ---- | ---------------------------------------- |
+| uri    | string | 是    | 目标页面的uri，可以是以下的两种格式：<br/>1. 页面的绝对路径，由config.json文件中的页面列表提供。例如：<br/>- pages/index/index<br/> -pages/detail/detail<br/>2. 特定路径。如果URI为斜杠（/），则显示主页。 |
+| params | Object | 否    | 跳转时要同时传递到目标页面的数据，跳转到目标页面后，参数可以在页面中直接使用，如this.data1(data1为跳转时params参数中的key值)。如果目标页面中已有该字段，则其值会被传入的字段值覆盖。 |
 
 
 ## BackRouterOptions
@@ -346,10 +349,10 @@ export default {
 
 **系统能力：**  以下各项对应的系统能力有所不同，详见下表。
 
-| 名称 | 参数类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| uri | string | 否 | 返回到指定uri的界面，如果页面栈上没有uri页面，则不响应该情况。如果uri未设置，则返回上一页。 <br>**系统能力：** SystemCapability.ArkUI.ArkUI.Full|
-| params | Object | 否 | 跳转时要同时传递到目标页面的数据。 <br>**系统能力：** SystemCapability.ArkUI.ArkUI.Lite|
+| 名称     | 参数类型   | 必填   | 说明                                       |
+| ------ | ------ | ---- | ---------------------------------------- |
+| uri    | string | 否    | 返回到指定uri的界面，如果页面栈上没有uri页面，则不响应该情况。如果uri未设置，则返回上一页。 <br>**系统能力：** SystemCapability.ArkUI.ArkUI.Full |
+| params | Object | 否    | 跳转时要同时传递到目标页面的数据。 <br>**系统能力：** SystemCapability.ArkUI.ArkUI.Lite |
 
 ## RouterState
 
@@ -357,11 +360,11 @@ export default {
 
 **系统能力：**  以下各项对应的系统能力均为SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 参数类型 | 必填 | 说明 |
-| -------- | -------- | -------- |-------- |
-| index | number | 是 | 表示当前页面在页面栈中的索引。从栈底到栈顶，index从1开始递增。 |
-| name | string | 是 | 表示当前页面的名称，即对应文件名。 |
-| path | string | 是 | 表示当前页面的路径。 |
+| 名称    | 参数类型   | 必填   | 说明                                 |
+| ----- | ------ | ---- | ---------------------------------- |
+| index | number | 是    | 表示当前页面在页面栈中的索引。从栈底到栈顶，index从1开始递增。 |
+| name  | string | 是    | 表示当前页面的名称，即对应文件名。                  |
+| path  | string | 是    | 表示当前页面的路径。                         |
 
 ## EnableAlertBeforeBackPageOptions<sup>6+</sup>
 
@@ -369,12 +372,12 @@ export default {
 
 **系统能力：**  以下各项对应的系统能力均为SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 参数类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| message | string | 是 | 询问对话框内容。 |
-| success | (errMsg: string) => void | 否 | 弹出对话框时调用，errMsg表示返回信息。 |
-| fail | (errMsg: string) => void | 否 | 接口调用失败的回调函数，errMsg表示返回信息。 |
-| complete | () => void | 否 | 接口调用结束的回调函数。 |
+| 名称       | 参数类型                     | 必填   | 说明                        |
+| -------- | ------------------------ | ---- | ------------------------- |
+| message  | string                   | 是    | 询问对话框内容。                  |
+| success  | (errMsg: string) => void | 否    | 弹出对话框时调用，errMsg表示返回信息。    |
+| fail     | (errMsg: string) => void | 否    | 接口调用失败的回调函数，errMsg表示返回信息。 |
+| complete | () => void               | 否    | 接口调用结束的回调函数。              |
 
 ## DisableAlertBeforeBackPageOptions<sup>6+</sup>
 
@@ -382,14 +385,14 @@ export default {
 
 **系统能力：**  以下各项对应的系统能力均为SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 参数类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| success | (errMsg: string) => void | 否 | 弹出对话框时调用，errMsg表示返回信息。 |
-| fail | (errMsg: string) => void | 否 | 接口调用失败的回调函数，errMsg表示返回信息。|
-| complete | () => void | 否 | 接口调用结束的回调函数。 |
+| 名称       | 参数类型                     | 必填   | 说明                        |
+| -------- | ------------------------ | ---- | ------------------------- |
+| success  | (errMsg: string) => void | 否    | 弹出对话框时调用，errMsg表示返回信息。    |
+| fail     | (errMsg: string) => void | 否    | 接口调用失败的回调函数，errMsg表示返回信息。 |
+| complete | () => void               | 否    | 接口调用结束的回调函数。              |
 
 ## ParamsInterface
 
-| 名称 | 参数类型 | 说明 |
-| -------- | -------- | -------- |
-| [key: string] | Object| 路由参数列表。 |
+| 名称            | 参数类型   | 说明      |
+| ------------- | ------ | ------- |
+| [key: string] | Object | 路由参数列表。 |
