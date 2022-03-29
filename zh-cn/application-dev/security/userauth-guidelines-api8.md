@@ -1,10 +1,10 @@
 # 用户认证开发指导
 
+> **说明：**该开发指导匹配@ohos.userIAM.userAuth API Version 8开始支持的接口。
+
 ## 场景介绍
 
 当前用户认证支持2D人脸识别、3D人脸识别，可应用于设备解锁、应用登录、支付等身份认证场景。
-
-此文档适用于用户认证API8接口的开发指导。
 
 ## 接口说明
 
@@ -39,67 +39,67 @@ userIAM_userAuth模块提供了用户认证的相关方法，包括检测认证�
 2. （可选）获取认证器的版本信息，代码示例如下：
 
    ```js
-  let auth = new userIAM_userAuth.UserAuth();
-     let version = auth.getVersion();
-     console.info("auth version = " + version);
+   let auth = new userIAM_userAuth.UserAuth();
+   let version = auth.getVersion();
+   console.info("auth version = " + version);
    ```
-   
+
 3. 根据指定的认证类型、认证等级，检测当前设备是否支持相应的认证能力，代码示例如下：
 
    ```js
-     let auth = new userIAM_userAuth.UserAuth();
-     let checkCode = auth.getAvailableStatus(userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1);
-     if (checkCode == userIAM_userAuth.ResultCode.SUCCESS) {
-         console.info("check auth support success");
-         // 此处添加支持指定类型认证的逻辑
-     } else {
-         console.error("check auth support fail, code = " + checkCode);
-         // 此处添加不支持指定类型认证的逻辑
-     }
+   let auth = new userIAM_userAuth.UserAuth();
+   let checkCode = auth.getAvailableStatus(userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1);
+   if (checkCode == userIAM_userAuth.ResultCode.SUCCESS) {
+       console.info("check auth support success");
+       // 此处添加支持指定类型认证的逻辑
+   } else {
+       console.error("check auth support fail, code = " + checkCode);
+       // 此处添加不支持指定类型认证的逻辑
+   }
    ```
 
 4. 执行认证操作，代码示例如下：
 
    ```js
-     let auth = new userIAM_userAuth.UserAuth();
-     auth.auth(null, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1, {
-         onResult: (result, extraInfo) => {
-             try {
-                 console.info("auth onResult result = " + result);
-                 console.info("auth onResult extraInfo = " + JSON.stringify(extraInfo));
-                 if (result == 'SUCCESS') {
-                     // 此处添加认证成功逻辑
-                 }  else {
-                     // 此处添加认证失败逻辑
-                 }
-             } catch (e) {
-                 console.info("auth onResult error = " + e);
-             }
-         },
-   
-         onAcquireInfo: (module, acquire, extraInfo) => {
-             try {
-                 console.info("auth onAcquireInfo module = " + module);
-                 console.info("auth onAcquireInfo acquire = " + acquire);
-                 console.info("auth onAcquireInfo extraInfo = " + JSON.stringify(extraInfo));
-             } catch (e) {
-                 console.info("auth onAcquireInfo error = " + e);
-             }
-         }
-     });
+   let auth = new userIAM_userAuth.UserAuth();
+   auth.auth(null, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1, {
+       onResult: (result, extraInfo) => {
+           try {
+               console.info("auth onResult result = " + result);
+               console.info("auth onResult extraInfo = " + JSON.stringify(extraInfo));
+               if (result == 'SUCCESS') {
+                   // 此处添加认证成功逻辑
+               }  else {
+                   // 此处添加认证失败逻辑
+               }
+           } catch (e) {
+               console.info("auth onResult error = " + e);
+           }
+       },
+
+       onAcquireInfo: (module, acquire, extraInfo) => {
+           try {
+               console.info("auth onAcquireInfo module = " + module);
+               console.info("auth onAcquireInfo acquire = " + acquire);
+               console.info("auth onAcquireInfo extraInfo = " + JSON.stringify(extraInfo));
+           } catch (e) {
+               console.info("auth onAcquireInfo error = " + e);
+           }
+       }
+   });
    ```
 
 5. 认证过程中取消认证，代码示例如下：
 
    ```js
-     // contextId可通过auth接口获取，此处直接定义
-     let contextId = new Uint8Array([0, 1, 2, 3, 4, 5, 6, 7]);
-     let cancelCode = auth.cancel(contextId);
-     if (cancelCode == userIAM_userAuth.ResultCode.SUCCESS) {
-         console.info("cancel auth success");
-     } else {
-         console.error("cancel auth fail");
-     }
+   // contextId可通过auth接口获取，此处直接定义
+   let contextId = new Uint8Array([0, 1, 2, 3, 4, 5, 6, 7]);
+   let cancelCode = auth.cancel(contextId);
+   if (cancelCode == userIAM_userAuth.ResultCode.SUCCESS) {
+       console.info("cancel auth success");
+   } else {
+       console.error("cancel auth fail");
+   }
    ```
 
 
