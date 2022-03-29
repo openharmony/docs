@@ -3,30 +3,57 @@
 
 使用安装包方式搭建Ubuntu编译环境步骤如下：
 
-1.  安装必要的库和工具：编译所需的必要工具和库（如打包、镜像制作等）
-2.  安装hb：OpenHarmony编译构建命令行工具
-3.  安装LLVM\(仅OpenHarmony\_v1.x分支/标签需要\)
+1.  安装必要的库和工具：编译所需的必要工具和库（如打包、镜像制作等）。
+2.  执行prebuilts。
+3.  安装hb：OpenHarmony编译构建命令行工具。
+4.  安装LLVM\(仅OpenHarmony\_v1.x分支/标签需要\)。
 
 想要详细了解OpenHarmony编译构建模块功能的开发者可参考[编译构建使用指南](../subsystems/subsys-build-mini-lite.md)。
 
 ## 安装必要的库和工具<a name="section108201740181219"></a>
 
-使用如下apt-get命令安装编译所需的必要的库和工具：
+1. 使用如下apt-get命令安装后续操作所需的库和工具：
+     
+   ```
+   sudo apt-get update && sudo apt-get install binutils binutils-dev git git-lfs gnupg flex bison gperf build-essential zip curl zlib1g-dev gcc-multilib g++-multilib gcc-arm-linux-gnueabi libc6-dev-i386 libc6-dev-amd64 lib32ncurses5-dev x11proto-core-dev libx11-dev lib32z1-dev ccache libgl1-mesa-dev libxml2-utils xsltproc unzip m4 bc gnutls-bin python3.8 python3-pip ruby genext2fs device-tree-compiler make libffi-dev e2fsprogs pkg-config perl openssl libssl-dev libelf-dev libdwarf-dev u-boot-tools mtd-utils cpio doxygen liblz4-tool openjdk-8-jre gcc g++ texinfo dosfstools mtools default-jre default-jdk libncurses5 apt-utils wget scons python3.8-distutils tar rsync git-core libxml2-dev lib32z-dev grsync xxd libglib2.0-dev libpixman-1-dev kmod jfsutils reiserfsprogs xfsprogs squashfs-tools pcmciautils quota ppp libtinfo-dev libtinfo5 libncurses5-dev libncursesw5 libstdc++6 gcc-arm-none-eabi vim ssh locales
+   ```
 
+   > ![](../public_sys-resources/icon-note.gif) **说明：**
+   > 以上安装命令适用于Ubuntu18.04，其他版本请根据安装包名称采用对应的安装命令。其中：
+   > 
+   > - Python要求安装Python 3.8及以上版本，此处以Python 3.8为例。
+   > 
+   > - java要求java8及以上版本，此处以java8为例。
+
+2. 将python 3.8设置为默认python版本。
+   查看python 3.8的位置：
+
+     
+   ```
+   which python3.8
+   ```
+
+     将python和python3切换为python3.8：
+     
+   ```
+   sudo update-alternatives --install /usr/bin/python python {python3.8 路径} 1    #{python3.8 路径}为上一步查看的python3.8的位置
+   sudo update-alternatives --install /usr/bin/python3 python3 {python3.8 路径} 1   #{python3.8 路径}为上一步查看的python3.8的位置
+   ```
+
+## 执行prebuilts
+
+在源码根目录下执行prebuilts脚本，安装编译器及二进制工具。
+  
 ```
-sudo apt-get install build-essential gcc g++ make libffi-dev e2fsprogs pkg-config flex bison perl bc openssl libssl-dev libelf-dev libc6-dev-amd64 binutils binutils-dev libdwarf-dev u-boot-tools mtd-utils gcc-arm-linux-gnueabi cpio device-tree-compiler libncurses5 libncurses5-dev libncursesw5 openjdk-8-jre default-jre default-jdk python3.8 python3-pip
-``` 
->![](../public_sys-resources/icon-note.gif) **说明：** 
->以上安装命令适用于Ubuntu18.04，其他版本请根据安装包名称采用对应的安装命令。其中：
->- Python要求安装Python 3.8及以上版本，此处以Python 3.8为例。
->- java要求java8及以上版本，此处以java8为例。
+bash build/prebuilts_download.sh
+```
 
 ## 安装hb<a name="section15794154618411"></a>
 
-1.  运行如下命令安装hb
+1.  运行如下命令安装hb并更新至最新版本
 
     ```
-    python3 -m pip install --user ohos-build
+    pip3 install --user build/lite
     ```
 
 2.  设置环境变量
