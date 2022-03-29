@@ -67,7 +67,7 @@ You can override the lifecycle callbacks provided by the Page ability in the **a
       authReadUriPermission: true,
       // Grant the permission to perform write operations on the URI.
       authWriteUriPermission: true,
-      // Support forwarding the intent result to the ability.
+      // Support forwarding the Want result to the ability.
       abilityForwardResult: true,
       // Enable abiligy continuation.
       abilityContinuation: true,

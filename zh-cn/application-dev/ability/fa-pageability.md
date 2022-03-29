@@ -69,7 +69,7 @@ PageAbility提供命周期回调，开发者可以在`app.js/app.ets`中重写�
       authReadUriPermission: true,
       // Grant the permission to perform write operations on the URI.
       authWriteUriPermission: true,
-      // support forwarding the intent result to the ability.
+      // support forwarding the Want result to the ability.
       abilityForwardResult: true,
       // Enable abiligy continuation.
       abilityContinuation: true,
