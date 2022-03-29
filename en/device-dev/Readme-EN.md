@@ -14,19 +14,19 @@
   - [Third-Party Library Porting Guide for Mini and Small Systems](porting/porting-thirdparty.md)
   - [Mini System SoC Porting Guide](porting/porting-minichip.md)
   - [Small System SoC Porting Guide](porting/porting-smallchip.md)
-  	 [Standard System SoC Porting Guide](porting/standard-system-porting-guide.md)	 	
+  - [Standard System SoC Porting Guide](porting/standard-system-porting-guide.md)	 	
 - Subsystem Development
   - Kernel
     - [Kernel for the Mini System](kernel/kernel-mini.md)
     - [Kernel for the Small System](kernel/kernel-small.md)
     - [Kernel for the Standard System](kernel/kernel-standard.md)
-  		[Driver](driver/Readme-EN.md)	
+  - [Driver](driver/Readme-EN.md)	
   - [Compilation and Building](subsystems/subsys-build.md)
   - [Distributed Remote Startup](subsystems/subsys-remote-start.md)
-  	 [Graphics](subsystems/subsys-graphics.md)	
-  	 [Multimedia](subsystems/subsys-multimedia.md)	
+  - [Graphics](subsystems/subsys-graphics.md)	
+  - [Multimedia](subsystems/subsys-multimedia.md)	
   - [Utils](subsystems/subsys-utils.md)
-  	 [AI Framework](subsystems/subsys-aiframework.md)	
+  - [AI Framework](subsystems/subsys-aiframework.md)	
   - [Data Management](subsystems/subsys-data.md)
   - [Sensor](subsystems/subsys-sensor.md)
   - [USB](subsystems/subsys-usbservice.md)
@@ -38,19 +38,18 @@
   - [DFX](subsystems/subsys-dfx.md)
 - Featured Topics
   - [HPM Part](hpm-part/Readme-EN.md) 	 	
-		Device Development Examples	 
-  	 [Mini- and Small-System Devices](guide/device-lite.md)	
-  - [Standard-System Devices](guide/device-standard.md)
+  - Device Development Examples	 
+    - [Mini- and Small-System Devices](guide/device-lite.md)	
+    - [Standard-System Devices](guide/device-standard.md)
 - Debugging
   - [Test Subsystem](subsystems/subsys-testguide-test.md)	
   - [R&D Tools](subsystems/subsys-toolchain.md)
-		XTS Certification	
-  	 [XTS](subsystems/subsys-xts-guide.md)	
+- XTS Certification	
+  - [XTS](subsystems/subsys-xts-guide.md)	
 - Tools
   - [Docker Environment](get-code/gettools-acquire.md)
   - [IDE](get-code/gettools-ide.md)
-
-		Hands-On Tutorials	
+- Hands-On Tutorials	
   - [Samples](https://gitee.com/openharmony/app_samples/blob/master/README.md) 
   - [Codelabs](https://gitee.com/openharmony/codelabs/blob/master/README.md)  
 - References
