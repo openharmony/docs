@@ -4,11 +4,11 @@
 
 HiLog is the log system of OpenHarmony that provides logging for the system framework, services, and applications to record information on user operations and system running status.
 
-This development guide is applicable to Standard-System Devices \(reference memory ≥ 128 MB\).
+This development guide is applicable to standard-system devices \(reference memory ≥ 128 MB\).
 
 ## Available APIs<a name="section6748124155012"></a>
 
-**Table  1**  Description of C++ and C APIs
+**Table  1**  List of C++ and C APIs
 
 <a name="table94501354193619"></a>
 <table><thead align="left"><tr id="row954285483614"><th class="cellrowborder" valign="top" width="18.258174182581744%" id="mcps1.2.4.1.1"><p id="p16542254203611"><a name="p16542254203611"></a><a name="p16542254203611"></a><strong id="b17542185414366"><a name="b17542185414366"></a><a name="b17542185414366"></a>C++</strong></p>
