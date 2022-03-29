@@ -1532,10 +1532,10 @@ rename(oldPath: string, newPath: string): Promise&lt;void&gt;
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 参数：
-  | 参数名     | 类型     | 必填   | 说明           |
-  | ------- | ------ | ---- | ------------ |
-  | oldPath | string | 是    | 目标文件的当前绝对路径。 |
-  | Newpath | String | 是    | 目标文件的新绝对路径。  |
+  | 参数名  | 类型   | 必填 | 说明                     |
+  | ------- | ------ | ---- | ------------------------ |
+  | oldPath | string | 是   | 目标文件的当前绝对路径。 |
+  | newPath | String | 是   | 目标文件的新绝对路径。   |
 
 - 返回值：
   | 类型                  | 说明                           |
@@ -1544,7 +1544,7 @@ rename(oldPath: string, newPath: string): Promise&lt;void&gt;
 
 - 示例：
   ```js
-  fileio.rename(oldPath, Newpath).then(function() {
+  fileio.rename(oldPath, newPath).then(function() {
       console.info("rename successfully");
   }).catch(function(err){
       console.info("rename failed with error:"+ err);
@@ -1563,13 +1563,13 @@ rename(oldPath: string, newPath: string, callback: AsyncCallback&lt;void&gt;): v
 - 参数：
   | 参数名      | 类型                        | 必填   | 说明            |
   | -------- | ------------------------- | ---- | ------------- |
-  | oldpath  | string                    | 是    | 目标文件的当前绝对路径。  |
-  | Newpath  | String                    | 是    | 目标文件的新绝对路径。   |
+  | oldPath  | string                    | 是    | 目标文件的当前绝对路径。  |
+  | newPath  | String                    | 是    | 目标文件的新绝对路径。   |
   | Callback | AsyncCallback&lt;void&gt; | 是    | 异步重命名文件之后的回调。 |
 
 - 示例：
   ```js
-  fileio.rename(oldpath, Newpath, function(err){
+  fileio.rename(oldPath, newPath, function(err){
   });
   ```
 
@@ -1586,11 +1586,11 @@ renameSync(oldPath: string, newPath: string): void
   | 参数名     | 类型     | 必填   | 说明           |
   | ------- | ------ | ---- | ------------ |
   | oldPath | string | 是    | 目标文件的当前绝对路径。 |
-  | Newpath | String | 是    | 目标文件的新绝对路径。  |
+  | newPath | String | 是    | 目标文件的新绝对路径。  |
 
 - 示例：
   ```js
-  fileio.renameSync(oldpath, newpath);
+  fileio.renameSync(oldPath, newPath);
   ```
 
 
