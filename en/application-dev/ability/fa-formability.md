@@ -3,20 +3,20 @@
 ## Widget Overview
 A widget is a set of UI components used to display important information or operations for an application. It provides users with direct access to a desired application service, without requiring them to open the application.
 
-A widget displays brief information about an application on the UI of another application (host application, currently system applications only) and provides basic interactive features such as opening a UI page or sending a message. The widget client is responsible for displaying the widget.
+A widget displays brief information about an application on the UI of another application (host application, currently system applications only) and provides basic interactive features such as opening a UI page or sending a message. The widget host is responsible for displaying the widget.
 
 Basic concepts:
 - Widget provider
   The widget provider is an atomic service that provides the content to be displayed. It controls the display content, component layout, and component click events of a widget.
-- Widget client
-  The widget client is an application that displays the widget content and controls the position where the widget is displayed in the host application.
+- Widget host
+  The widget host is an application that displays the widget content and controls the position where the widget is displayed in the host application.
 - Widget Manager
   The Widget Manager is a resident agent that manages widgets added to the system and provides functions such as periodic widget update.
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> The widget client and provider do not keep running all the time. The Widget Manager starts the widget provider to obtain widget information when a widget is added, deleted, or updated.
+> The widget host and provider do not keep running all the time. The Widget Manager starts the widget provider to obtain widget information when a widget is added, deleted, or updated.
 
-You only need to develop widget content as the widget provider. The system automatically handles the work done by the widget client and Widget Manager.
+You only need to develop widget content as the widget provider. The system automatically handles the work done by the widget host and Widget Manager.
 
 The widget provider controls the widget content to display, component layout, and click events bound to components.
 
@@ -85,11 +85,11 @@ To create a widget in the FA model, you need to implement the lifecycles of **Li
            return formData;
        },
        onCastToNormal(formId) {
-           // Called when the widget client converts the temporary widget into a normal one. The widget provider should do something to respond to the conversion.
+           // Called when the widget host converts the temporary widget into a normal one. The widget provider should do something to respond to the conversion.
            console.log('FormAbility onCastToNormal');
        },
        onUpdate(formId) {
-           // To support scheduled update, periodic update, or update requested by the widget client for a widget, override this method for data update.
+           // To support scheduled update, periodic update, or update requested by the widget host for a widget, override this method for data update.
            console.log('FormAbility onUpdate');
            let obj = {
                "title": "titleOnUpdate",
@@ -101,7 +101,7 @@ To create a widget in the FA model, you need to implement the lifecycles of **Li
            });
        },
        onVisibilityChange(newStatus) {
-           // Called when the widget client initiates an event about visibility changes. The widget provider should do something to respond to the notification.
+           // Called when the widget host initiates an event about visibility changes. The widget provider should do something to respond to the notification.
            console.log('FormAbility onVisibilityChange');
        },
        onEvent(formId, message) {
@@ -233,13 +233,13 @@ You should override **onDestroy** to delete widget data.
 
 For details about the persistence method, see [Lightweight Data Store Development](../database/database-preference-guidelines.md).
 
-Note that the **Want** passed by the widget client to the widget provider contains a temporary flag, indicating whether the requested widget is a temporary one.
+Note that the **Want** passed by the widget host to the widget provider contains a temporary flag, indicating whether the requested widget is a temporary one.
 
-Normal widget: a widget that will be persistently used by the widget client
+Normal widget: a widget that will be persistently used by the widget host
 
-Temporary widget: a widget that is temporarily used by the widget client
+Temporary widget: a widget that is temporarily used by the widget host
 
-Data of a temporary widget is not persistently stored. If the widget framework is killed and restarted, data of a temporary widget will be deleted. However, the widget provider is not notified of which widget is deleted, and still keeps the data. Therefore, the widget provider should implement data clearing. In addition, the widget client may convert a temporary widget into a normal one. If the conversion is successful, the widget provider should process the widget ID and store the data persistently. This prevents the widget provider from deleting persistent data when clearing temporary widgets.
+Data of a temporary widget is not persistently stored. If the widget framework is killed and restarted, data of a temporary widget will be deleted. However, the widget provider is not notified of which widget is deleted, and still keeps the data. Therefore, the widget provider should implement data clearing. In addition, the widget host may convert a temporary widget into a normal one. If the conversion is successful, the widget provider should process the widget ID and store the data persistently. This prevents the widget provider from deleting persistent data when clearing temporary widgets.
 
 ### Developing the Widget UI Page
 You can use HML, CSS, and JSON to develop the UI page for a JavaScript-programmed widget.
