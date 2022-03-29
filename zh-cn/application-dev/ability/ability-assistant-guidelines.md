@@ -1,6 +1,6 @@
 # Ability助手使用指导
 
-Ability assistant（Ability助手，简称为aa）是实现应用、原子化服务及测试用例启动功能，为开发者提供基本的调试及测试应用的工具。通过该工具，开发者可以在hdc shell中，发出命令以执行各种系统操作，比如启动Ability、强制停止进程、打印Ability相关信息等。
+Ability assistant（Ability助手，简称为aa）是实现应用、原子化服务、及测试用例启动功能的工具，为开发者提供基本的应用调试和测试的能力。通过该工具，开发者可以在hdc shell中，发送命令以执行各种系统操作，比如启动Ability、强制停止进程、打印Ability相关信息等。
 
 ## 开发指导
 
@@ -87,15 +87,15 @@ Ability assistant（Ability助手，简称为aa）是实现应用、原子化服
   ```
   aa dump -a
   ```
-  ![aa-dump-a](figures/aa-dump-a.png)
+  ![aa-dump-a](figures/aa-dump-a.PNG)
   ```
   aa dump -l
   ```
-  ![aa-dump-l](figures/aa-dump-l.png)
+  ![aa-dump-l](figures/aa-dump-l.PNG)
   ```
   aa dump -i 12
   ```
-![aa-dump-i](figures/aa-dump-i.png)
+  ![aa-dump-i](figures/aa-dump-i.PNG)
 - **force-stop**
 
   通过bundle name强制停止一个进程。
