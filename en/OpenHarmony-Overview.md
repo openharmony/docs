@@ -331,8 +331,8 @@ The following table describes the subsystems of OpenHarmony. For details about t
 
 ## Getting Started<a name="section44681652104210"></a>
 
-- Device development: [device-dev/quick-start/Readme.md](device-dev/quick-start/Readme.md)
-- Application development: [application-dev/quick-start/Readme.md](application-dev/quick-start/Readme.md)
+- Device development: [device-dev/quick-start/Readme.md](device-dev/quick-start/Readme-EN.md)
+- Application development: [application-dev/quick-start/Readme.md](application-dev/quick-start/Readme-EN.md)
 
 ## Code Repository Addresses<a name="section107651249181914"></a>
 
