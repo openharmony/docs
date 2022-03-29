@@ -6,7 +6,7 @@
 
 ### 入门
 
-[入门部分](quick-start/start-overview.md)可以帮助开发者了解应用开发的基本方法。
+[入门部分](quick-start/Readme-CN.md)可以帮助开发者了解应用开发的基本方法。
 
 这一部分包含了IDE工具DevEco Studio的基本使用方法，以及快速构建首个应用的快速入门。
 
@@ -18,23 +18,23 @@
 
 首先，提供了支撑OpenHarmony应用的两个重要框架：
 
-- 应用程序的框架：[Ability开发](ability/ability-brief.md)
-- UI的框架：[UI开发](ui/arkui-overview.md)
+- 应用程序的框架：[Ability开发](ability/Readme-CN.md)
+- UI的框架：[UI开发](ui/Readme-CN.md)
 
 所有应用都应该在这两个框架的基础之上进行功能的开发。
 
 在此基础上，还提供了如下功能的开发指导：
-- [窗口管理](windowmanager/window-overview.md)
-- [WebGL](webgl/webgl-overview.md)
-- [媒体](media/audio-overview.md)
-- [安全](security/userauth-overview.md)
-- [网络与连接](connectivity/ipc-rpc-overview.md)
-- [数据管理](database/database-mdds-overview.md)
-- [后台代理提醒](background-agent-scheduled-reminder/background-agent-scheduled-reminder-overview.md)
-- [后台任务管理](background-task-management/background-task-overview.md)
-- [设备管理](device/usb-overview.md)
-- [设备使用信息统计](device-usage-statistics/device-usage-statistics-overview.md)
-- [DFX](dfx/hiappevent-overview.md)
+- [窗口管理](windowmanager/Readme-CN.md)
+- [WebGL](webgl/Readme-CN.md)
+- [媒体](media/Readme-CN.md)
+- [安全](security/Readme-CN.md)
+- [网络与连接](connectivity/Readme-CN.md)
+- [数据管理](database/Readme-CN.md)
+- [后台代理提醒](background-agent-scheduled-reminder/Readme-CN.md)
+- [后台任务管理](background-task-management/Readme-CN.md)
+- [设备管理](device/Readme-CN.md)
+- [设备使用信息统计](device-usage-statistics/Readme-CN.md)
+- [DFX](dfx/Readme-CN.md)
 
 ### 工具
 
@@ -50,6 +50,12 @@ DevEco Studio工具是OpenHarmony应用开发的推荐IDE工具。
 API参考提供了OpenHarmony全量组件和接口的参考文档，可以帮助开发者快速查找到指定接口的详细描述和调用方法。
 
 内容包括：
--   [组件参考（基于JS扩展的类Web开发范式）](reference/arkui-js/js-components-common-attribute.md)
--   [组件参考（基于TS扩展的声明式开发范式）](reference/arkui-ts/ts-universal-events-click.md)
--   [接口参考](reference/apis/js-apis-DataUriUtils.md)
+-   [组件参考（基于JS扩展的类Web开发范式）](reference/arkui-js/Readme-CN.md)
+-   [组件参考（基于TS扩展的声明式开发范式）](reference/arkui-ts/Readme-CN.md)
+-   [接口参考](reference/apis/Readme-CN.md)
+
+
+### Readme
+
+如果需要了解各子系统的原理和基本信息，可以参考“[docs/zh-cn/readme](../readme)”目录中各子系统readme的介绍。
+
