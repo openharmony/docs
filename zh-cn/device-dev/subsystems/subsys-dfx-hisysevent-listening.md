@@ -103,18 +103,25 @@ HiSysEvent提供了跨进程订阅机制，开发者可以通过注册订阅接�
     通过HiSysEventManager类提供的AddEventListener接口注册回调对象，完成对HiSysEvent的订阅：
 
     ```
-    auto demoListener = std::make_shared<DemoListener>();
-    // 事件标签规则订阅，规则类型为默认的全词匹配类型
-    ListenerRule tagRule("dfx");
-    // 事件标签规则订阅，规则类型为正则匹配类型
-    ListenerRule regRule("dfx.*", RuleType::REGULAR);
-    // 事件领域及事件名称规则订阅，规则类型为前缀匹配类型
-    ListenerRule domainNameRule("HIVIEWDFX", "APP_USAGE", RuleType::PREFIX);
-    std::vector<ListenerRule> sysRules;
-    sysRules.push_back(tagRule);
-    sysRules.push_back(regRule);
-    sysRules.push_back(domainNameRule);
-    HiSysEventManager::AddEventListener(demoListener, sysRules);
+    std::shared_ptr<DemoListener> demoListener = nullptr;
+    try {
+        demoListener = std::make_shared<DemoListener>();
+    } catch(...) {
+        // 智能指针获取失败异常处理
+    }
+    if (demoListener != nullptr) {
+        // 事件标签规则订阅，规则类型为默认的全词匹配类型
+        ListenerRule tagRule("dfx");
+        // 事件标签规则订阅，规则类型为正则匹配类型
+        ListenerRule regRule("dfx.*", RuleType::REGULAR);
+        // 事件领域及事件名称规则订阅，规则类型为前缀匹配类型
+        ListenerRule domainNameRule("HIVIEWDFX", "APP_USAGE", RuleType::PREFIX);
+        std::vector<ListenerRule> sysRules;
+        sysRules.push_back(tagRule);
+        sysRules.push_back(regRule);
+        sysRules.push_back(domainNameRule);
+        HiSysEventManager::AddEventListener(demoListener, sysRules);
+    }
     ```
 
 2.  编译配置

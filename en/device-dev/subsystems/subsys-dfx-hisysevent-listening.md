@@ -101,18 +101,25 @@ C++
     Call the **AddEventListener** API of the **HiSysEventManager** class to add a listener for system events.
 
     ```
-    auto demoListener = std::make_shared<DemoListener>();
-    // Add a ListenerRule object based on the event tag, with RuleType left unspecified (in this case, ruleType is defaulted to WHOLE_WORD).
-    ListenerRule tagRule("dfx");
-    // Add a ListenerRule object based on the event tag, with RuleType set as REGULAR.
-    ListenerRule regRule("dfx.*", RuleType::REGULAR);
-    // Add a ListenerRule object based on the event domain and event name, with RuleType set as PREFIX.
-    ListenerRule domainNameRule("HIVIEWDFX", "APP_USAGE", RuleType::PREFIX);
-    std::vector<ListenerRule> sysRules;
-    sysRules.push_back(tagRule);
-    sysRules.push_back(regRule);
-    sysRules.push_back(domainNameRule);
-    HiSysEventManager::AddEventListener(demoListener, sysRules);
+    std::shared_ptr<DemoListener> demoListener = nullptr;
+    try {
+        demoListener = std::make_shared<DemoListener>();
+    } catch(...) {
+        // Catch exception thrown by make_shared
+    }
+    if (demoListener != nullptr) {
+        // Add a ListenerRule object based on the event tag, with RuleType left unspecified (in this case, ruleType is defaulted to WHOLE_WORD).
+        ListenerRule tagRule("dfx");
+        // Add a ListenerRule object based on the event tag, with RuleType set as REGULAR.
+        ListenerRule regRule("dfx.*", RuleType::REGULAR);
+        // Add a ListenerRule object based on the event domain and event name, with RuleType set as PREFIX.
+        ListenerRule domainNameRule("HIVIEWDFX", "APP_USAGE", RuleType::PREFIX);
+        std::vector<ListenerRule> sysRules;
+        sysRules.push_back(tagRule);
+        sysRules.push_back(regRule);
+        sysRules.push_back(domainNameRule);
+        HiSysEventManager::AddEventListener(demoListener, sysRules);
+    }
     ```
 
 2.  Configure the **BUILD.gn** file.
