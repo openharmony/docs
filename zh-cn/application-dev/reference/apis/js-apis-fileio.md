@@ -1376,9 +1376,9 @@ readTextSync(filePath: string, options?: {
   | options  | Object | 否    | 支持如下选项：<br/>-&nbsp;position，number类型，表示期望读取文件的位置。可选，默认从当前位置开始读取。<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;encoding，string类型，当数据是&nbsp;string&nbsp;类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'，仅支持&nbsp;'utf-8'。 |
 
 - 返回值：
-  | 类型                    | 说明         |
-  | --------------------- | ---------- |
-  | Promise&lt;string&gt; | 返回读取文件的内容。 |
+  | 类型   | 说明                 |
+  | ------ | -------------------- |
+  | string | 返回读取文件的内容。 |
 
 - 示例：
   ```js
@@ -1532,10 +1532,10 @@ rename(oldPath: string, newPath: string): Promise&lt;void&gt;
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 参数：
-  | 参数名     | 类型     | 必填   | 说明           |
-  | ------- | ------ | ---- | ------------ |
-  | oldPath | string | 是    | 目标文件的当前绝对路径。 |
-  | Newpath | String | 是    | 目标文件的新绝对路径。  |
+  | 参数名  | 类型   | 必填 | 说明                     |
+  | ------- | ------ | ---- | ------------------------ |
+  | oldPath | string | 是   | 目标文件的当前绝对路径。 |
+  | newPath | String | 是   | 目标文件的新绝对路径。   |
 
 - 返回值：
   | 类型                  | 说明                           |
@@ -1544,7 +1544,7 @@ rename(oldPath: string, newPath: string): Promise&lt;void&gt;
 
 - 示例：
   ```js
-  fileio.rename(oldPath, Newpath).then(function() {
+  fileio.rename(oldPath, newPath).then(function() {
       console.info("rename successfully");
   }).catch(function(err){
       console.info("rename failed with error:"+ err);
@@ -1563,13 +1563,13 @@ rename(oldPath: string, newPath: string, callback: AsyncCallback&lt;void&gt;): v
 - 参数：
   | 参数名      | 类型                        | 必填   | 说明            |
   | -------- | ------------------------- | ---- | ------------- |
-  | oldpath  | string                    | 是    | 目标文件的当前绝对路径。  |
-  | Newpath  | String                    | 是    | 目标文件的新绝对路径。   |
+  | oldPath  | string                    | 是    | 目标文件的当前绝对路径。  |
+  | newPath  | String                    | 是    | 目标文件的新绝对路径。   |
   | Callback | AsyncCallback&lt;void&gt; | 是    | 异步重命名文件之后的回调。 |
 
 - 示例：
   ```js
-  fileio.rename(oldpath, Newpath, function(err){
+  fileio.rename(oldPath, newPath, function(err){
   });
   ```
 
@@ -1586,11 +1586,11 @@ renameSync(oldPath: string, newPath: string): void
   | 参数名     | 类型     | 必填   | 说明           |
   | ------- | ------ | ---- | ------------ |
   | oldPath | string | 是    | 目标文件的当前绝对路径。 |
-  | Newpath | String | 是    | 目标文件的新绝对路径。  |
+  | newPath | String | 是    | 目标文件的新绝对路径。  |
 
 - 示例：
   ```js
-  fileio.renameSync(oldpath, newpath);
+  fileio.renameSync(oldPath, newPath);
   ```
 
 
