@@ -384,7 +384,7 @@
       - [HiSysEvent Query](subsystems/subsys-dfx-hisysevent-query.md)
       - [HiSysEvent Tool Usage](subsystems/subsys-dfx-hisysevent-tool.md)
 - Featured Topics
-  - HPM Bundle
+  - HPM Part
     - [Development Specifications](bundles/bundles-standard-rules.md)
     - Development Guidelines
       - [Bundle Development](bundles/bundles-guide-overview.md)
