@@ -1,4 +1,4 @@
-# OpenHarmony<a name="EN-US_TOPIC_0000001158661243"></a>
+# OpenHarmony
 
 ## Introduction<a name="section1270210396435"></a>
 
@@ -331,7 +331,8 @@ The following table describes the subsystems of OpenHarmony. For details about t
 
 ## Getting Started<a name="section44681652104210"></a>
 
-For details, see  [device-dev/quick-start/Readme-EN.md](device-dev/quick-start/Readme-EN.md).
+- Device development: [device-dev/quick-start/Readme.md](device-dev/quick-start/Readme.md)
+- Application development: [application-dev/quick-start/Readme.md](application-dev/quick-start/Readme.md)
 
 ## Code Repository Addresses<a name="section107651249181914"></a>
 
@@ -374,4 +375,3 @@ Website:
 Email:
 
 contact@openharmony.io
-
