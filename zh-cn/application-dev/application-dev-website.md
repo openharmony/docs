@@ -585,6 +585,10 @@
       - [升级](reference/apis/js-apis-update.md)
       - [USB管理](reference/apis/js-apis-usb.md)
       - [位置服务](reference/apis/js-apis-geolocation.md)
+      - [输入设备](reference/apis/js-apis-inputdevice.md)
+      - [组合按键](reference/apis/js-apis-inputconsumer.md)
+      - [输入监听](reference/apis/js-apis-inputmonitor.md)
+      - [事件注入](reference/apis/js-apis-inputeventclient.md)
     - 基本功能
       - [应用上下文](reference/apis/js-apis-system-app.md)
       - [日志打印](reference/apis/js-apis-logs.md)
