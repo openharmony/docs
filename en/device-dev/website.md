@@ -385,15 +385,9 @@
       - [HiSysEvent Tool Usage](subsystems/subsys-dfx-hisysevent-tool.md)
 - Featured Topics
   - HPM Part
-    - [Development Specifications](bundles/bundles-standard-rules.md)
-    - Development Guidelines
-      - [Bundle Development](bundles/bundles-guide-overview.md)
-      - [Preparations](bundles/bundles-guide-prepare.md)
-      - [Bundle Development](bundles/bundles-guide-develop.md)
-    - HPM User Guide
-      - [Introduction](bundles/bundles-demo-hpmdescription.md)
-      - [Preparations](bundles/bundles-demo-environment.md)
-      - [Development Example](bundles/bundles-demo-devsample.md)
+    - [HPM Part Overview](hpm-part/hpm-part-about.md)
+    - [HPM Part Development](hpm-part/hpm-part-development.md)
+    - [HPM Part Reference](hpm-part/hpm-part-reference.md)
 - Device Development Examples
   - [Mini- and Small-System Devices](guide/device-lite.md)
     - [WLAN-connected Products](guide/device-wlan.md)
