@@ -11,30 +11,28 @@ import reminderAgent from'@ohos.reminderAgent';
 ```
 
 
-## Required Permissions
-
-ohos.permission.PUBLISH_AGENT_REMINDER
-
-
 ## reminderAgent.publishReminder
 
 publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback&lt;number&gt;): void
 
 Publishes an agent-powered reminder. This API uses an asynchronous callback to return the result.
 
-- System capability
+**Required permissions**: ohos.permission.PUBLISH_AGENT_REMINDER
 
-  SystemCapability.Notification.ReminderAgent
+**System capability**: SystemCapability.Notification.ReminderAgent
 
-- Parameters
+**Parameters**
+
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | reminderReq | [ReminderRequest](#reminderrequest) | Yes| Reminder to be published.|
   | callback | AsyncCallback&lt;number&gt; | Yes| Asynchronous callback used to return the published reminder's ID.|
 
-- Example
+**Example**
   ```
-  export default {    data: {timer: {
+  export default {
+      data: {
+          timer: {
               reminderType: reminderAgent.ReminderType.REMINDER_TYPE_TIMER,
               triggerTimeInSeconds: 3
           }
@@ -53,23 +51,23 @@ publishReminder(reminderReq: ReminderRequest): Promise&lt;number&gt;
 
 Publishes an agent-powered reminder. This API uses a promise callback to return the result.
 
-- System capability
+**System capability**: SystemCapability.Notification.ReminderAgent
 
-  SystemCapability.Notification.ReminderAgent
-
-- Parameters
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | reminderReq | [ReminderRequest](#reminderrequest) | Yes| Reminder to be published.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | Promise&lt;number&gt; | Promise used to return the published reminder's ID.|
 
-- Example
+**Example**
   ```
-  export default {    data: {timer: {
+  export default {
+      data:
+          {timer: {
               reminderType: reminderAgent.ReminderType.REMINDER_TYPE_TIMER,
               triggerTimeInSeconds: 3
           }
@@ -89,22 +87,21 @@ cancelReminder(reminderId: number, callback: AsyncCallback&lt;void&gt;): void
 
 Cancels the reminder with the specified ID. This API uses an asynchronous callback to return the cancellation result.
 
-- System capability
+**System capability**: SystemCapability.Notification.ReminderAgent
 
-  SystemCapability.Notification.ReminderAgent
-
-- Parameters
+**Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | reminderId | number | Yes| ID of the reminder to cancel.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Asynchronous callback used to return the result.|
 
-- Example
+**Example**
 
 ```
 export default {
-    cancel() {        reminderAgent.cancelReminder(1, (err, data) => {
+    cancel() {
+        reminderAgent.cancelReminder(1, (err, data) => {
             console.log("do next");
         });
     }
@@ -118,23 +115,21 @@ cancelReminder(reminderId: number): Promise&lt;void&gt;
 
 Cancels the reminder with the specified ID. This API uses a promise to return the cancellation result.
 
-- System capability
+**System capability**: SystemCapability.Notification.ReminderAgent
 
-  SystemCapability.Notification.ReminderAgent
-
-- Parameters
+**Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | reminderId | number | Yes| ID of the reminder to cancel.|
 
-- Return value
+**Return value**
 
 | Type| Description|
 | -------- | -------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
 
-- Example
+**Example**
 
 ```
 export default {
@@ -153,17 +148,15 @@ getValidReminders(callback: AsyncCallback&lt;Array&lt;ReminderRequest&gt;&gt;): 
 
 Obtains all valid (not yet expired) reminders set by the current application. This API uses an asynchronous callback to return the reminders.
 
-- System capability
+**System capability**: SystemCapability.Notification.ReminderAgent
 
-  SystemCapability.Notification.ReminderAgent
-
-- Parameters
+**Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | callback | AsyncCallback&lt;Array&lt;[ReminderRequest](#reminderrequest)&gt;&gt; | Yes| Asynchronous callback used to return an array of all valid reminders set by the current application.|
 
-- Example
+**Example**
 
 ```
 reminderAgent.getValidReminders((err, reminders) => {
@@ -198,20 +191,18 @@ getValidReminders(): Promise&lt;Array&lt;ReminderRequest&gt;&gt;
 
 Obtains all valid (not yet expired) reminders set by the current application. This API uses a promise to return the reminders.
 
-- System capability
+**System capability**: SystemCapability.Notification.ReminderAgent
 
-  SystemCapability.Notification.ReminderAgent
-
-- Return value
+**Return value**
 
 | Type| Description|
 | -------- | -------- |
 | Promise&lt;Array&lt;[ReminderRequest](#reminderrequest)&gt;&gt; | Promise used to return an array of all valid reminders set by the current application.|
 
-- Example
+**Example**
 
 ```
-reminderAgent.getValidReminders().then((reminders) => {    
+reminderAgent.getValidReminders().then((reminders) => {
     for (let i = 0; i < reminders.length; i++) {
         console.log("getValidReminders = " + reminders[i]);
         console.log("getValidReminders, reminderType = " + reminders[i].reminderType);
@@ -243,20 +234,18 @@ cancelAllReminders(callback: AsyncCallback&lt;void&gt;): void
 
 Cancels all reminders set by the current application. This API uses an asynchronous callback to return the cancellation result.
 
-- System capability
+**System capability**: SystemCapability.Notification.ReminderAgent
 
-  SystemCapability.Notification.ReminderAgent
-
-- Parameters
+**Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | callback | AsyncCallback&lt;void&gt; | Yes| Asynchronous callback used to return the result.|
 
-- Example
+**Example**
 
 ```
-reminderAgent.cancelAllReminders((err, data) =>{ 
+reminderAgent.cancelAllReminders((err, data) =>{
     console.log("do next")})
 ```
 
@@ -267,17 +256,15 @@ cancelAllReminders(): Promise&lt;void&gt;
 
 Cancels all reminders set by the current application. This API uses a promise to return the cancellation result.
 
-- System capability
+**System capability**: SystemCapability.Notification.ReminderAgent
 
-  SystemCapability.Notification.ReminderAgent
-
-- Return value
+**Return value**
 
 | Type| Description|
 | -------- | -------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
 
-- Example
+**Example**
 
 ```
 reminderAgent.cancelAllReminders().then(() => {
@@ -291,18 +278,16 @@ addNotificationSlot(slot: NotificationSlot, callback: AsyncCallback&lt;void&gt;)
 
 Adds a reminder notification slot. This API uses an asynchronous callback to return the result.
 
-- System capability
+**System capability**: SystemCapability.Notification.ReminderAgent
 
-  SystemCapability.Notification.ReminderAgent
-
-- Parameters
+**Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | slot | [NotificationSlot](js-apis-notification.md#notificationslot) | Yes| Reminder notification slot to add.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Asynchronous callback used to return the result.|
 
-- Example
+**Example**
 
 ```
 export default {    data: {        mySlot: {
@@ -324,23 +309,21 @@ addNotificationSlot(slot: NotificationSlot): Promise&lt;void&gt;
 
 Adds a reminder notification slot. This API uses a promise to return the result.
 
-- System capability
+**System capability**: SystemCapability.Notification.ReminderAgent
 
-  SystemCapability.Notification.ReminderAgent
-
-- Parameters
+**Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | slot | [NotificationSlot](js-apis-notification.md#notificationslot) | Yes| Reminder notification slot to add.|
 
-- Return value
+**Return value**
 
 | Type| Description|
 | -------- | -------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
 
-- Example
+**Example**
 
 ```
 export default {    data: {        mySlot: {
@@ -362,18 +345,16 @@ removeNotificationSlot(slotType: notification.SlotType, callback: AsyncCallback&
 
 Removes a notification slot of a specified type. This API uses an asynchronous callback to return the result.
 
-- System capability
+**System capability**: SystemCapability.Notification.ReminderAgent
 
-  SystemCapability.Notification.ReminderAgent
-
-- Parameters
+**Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | slotType | [notification.SlotType](js-apis-notification.md#slottype) | Yes| Type of the reminder notification slot to remove.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Asynchronous callback used to return the result.|
 
-- Example
+**Example**
 
 ```
 export default {
@@ -391,23 +372,21 @@ removeNotificationSlot(slotType: notification.SlotType): Promise&lt;void&gt;
 
 Removes a notification slot of a specified type. This API uses a promise to return the result.
 
-- System capability
+**System capability**: SystemCapability.Notification.ReminderAgent
 
-  SystemCapability.Notification.ReminderAgent
-
-- Parameters
+**Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | slotType | [notification.SlotType](js-apis-notification.md#slottype) | Yes| Type of the reminder notification slot to remove.|
 
-- Return value
+**Return value**
 
 | Type| Description|
 | -------- | -------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
 
-- Example
+**Example**
 
 ```
 export default {
@@ -423,7 +402,7 @@ export default {
 
 Enumerates button types.
 
-- **System capability**: SystemCapability.Notification.ReminderAgent
+**System capability**: SystemCapability.Notification.ReminderAgent
 
 | Name| Default Value| Description|
 | -------- | -------- | -------- |
@@ -435,7 +414,7 @@ Enumerates button types.
 
 Enumerates reminder types.
 
-- **System capability**: SystemCapability.Notification.ReminderAgent
+**System capability**: SystemCapability.Notification.ReminderAgent
 
 | Name| Default Value| Description|
 | -------- | -------- | -------- |
@@ -448,7 +427,7 @@ Enumerates reminder types.
 
 Defines a button displayed in the reminder notification.
 
-- **System capability**: SystemCapability.Notification.ReminderAgent
+**System capability**: SystemCapability.Notification.ReminderAgent
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -460,7 +439,7 @@ Defines a button displayed in the reminder notification.
 
 Sets the package and ability that are redirected to when the reminder notification is clicked.
 
-- **System capability**: SystemCapability.Notification.ReminderAgent
+**System capability**: SystemCapability.Notification.ReminderAgent
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -472,7 +451,7 @@ Sets the package and ability that are redirected to when the reminder notificati
 
 Sets the name of the target package and ability to start automatically when the reminder arrives and the device is not in use. If the device is in use, a notification will be displayed.
 
-- **System capability**: SystemCapability.Notification.ReminderAgent
+**System capability**: SystemCapability.Notification.ReminderAgent
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -484,7 +463,7 @@ Sets the name of the target package and ability to start automatically when the 
 
 Defines the reminder to publish.
 
-- **System capability**: SystemCapability.Notification.ReminderAgent
+**System capability**: SystemCapability.Notification.ReminderAgent
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -509,7 +488,7 @@ ReminderRequestCalendar extends ReminderRequest
 
 Defines a reminder for a calendar event.
 
-- **System capability**: SystemCapability.Notification.ReminderAgent
+**System capability**: SystemCapability.Notification.ReminderAgent
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -524,9 +503,9 @@ ReminderRequestAlarm extends ReminderRequest
 
 Defines a reminder for an alarm.
 
-- **System capability**: SystemCapability.Notification.ReminderAgent
+**System capability**: SystemCapability.Notification.ReminderAgent
 
-| Name| Type| Mandatory| Description:|
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | hour | number | Yes| Hour portion of the reminder time.|
 | minute | number | Yes| Minute portion of the reminder time.|
@@ -539,7 +518,7 @@ ReminderRequestTimer extends ReminderRequest
 
 Defines a reminder for a scheduled timer.
 
-- **System capability**: SystemCapability.Notification.ReminderAgent
+**System capability**: SystemCapability.Notification.ReminderAgent
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -550,7 +529,7 @@ Defines a reminder for a scheduled timer.
 
 Sets the time information for a calendar reminder.
 
-- **System capability**: SystemCapability.Notification.ReminderAgent
+**System capability**: SystemCapability.Notification.ReminderAgent
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
