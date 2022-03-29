@@ -40,7 +40,6 @@ struct TimePickerDialogExample01 {
         TimePickerDialog.show({
           useMilitaryTime: this.isUseMilitaryTime,
           onAccept: (value: TimePickerResult) => {
-            this.selectedDate.setHours(value.hour, value.minute, value.second)
             console.info("TimePickerDialog:onAccept()" + JSON.stringify(value))
           },
           onCancel: () => {
@@ -69,7 +68,6 @@ struct TimePickerDialogExample02 {
         TimePickerDialog.show({
           useMilitaryTime: this.isUseMilitaryTime,
           onAccept: (value: TimePickerResult) => {
-            this.selectedDate.setHours(value.hour, value.minute, value.second)
             console.info("TimePickerDialog:onAccept()" + JSON.stringify(value))
           },
           onCancel: () => {
