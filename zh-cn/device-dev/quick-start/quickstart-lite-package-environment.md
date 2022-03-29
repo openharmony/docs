@@ -50,10 +50,10 @@ bash build/prebuilts_download.sh
 
 ## 安装hb<a name="section15794154618411"></a>
 
-1.  运行如下命令安装hb
+1.  运行如下命令安装hb并更新至最新版本
 
     ```
-    python3 -m pip install --user ohos-build
+    pip3 install --user build/lite
     ```
 
 2.  设置环境变量
