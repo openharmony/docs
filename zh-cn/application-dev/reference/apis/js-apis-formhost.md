@@ -51,15 +51,21 @@ deleteForm(formId: string): Promise&lt;void&gt;;
 
 删除指定的卡片。调用此方法后，应用程序将无法使用该卡片，卡片管理器服务不再保留有关该卡片的信息。
 
+**系统能力：**
+
+SystemCapability.Ability.Form
+
 **参数：**
 
   | 参数名 | 类型    | 必填 | 说明    |
   | ------ | ------ | ---- | ------- |
   | formId | string | 是   | 卡片标识 |
 
-**系统能力：**
+**返回值：**
 
-SystemCapability.Ability.Form
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;void&gt; | 返回一个Promise，包含接口的结果 |
 
 **参数：**
 
@@ -144,6 +150,11 @@ SystemCapability.Ability.Form
   | formId         | string  | 是   | 卡片标识     |
   | isReleaseCache | boolean | 否   | 是否释放缓存 |
 
+**返回值：**
+
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;void&gt; | 返回一个Promise，包含接口的结果 |
 
 **示例：**
 
@@ -188,15 +199,21 @@ requestForm(formId: string): Promise&lt;void&gt;;
 
 请求卡片更新。
 
+**系统能力：**
+
+SystemCapability.Ability.Form
+
 **参数：**
 
   | 参数名 | 类型    | 必填 | 说明    |
   | ------ | ------ | ---- | ------- |
   | formId | string | 是   | 卡片标识 |
 
-**系统能力：**
+**返回值：**
 
-SystemCapability.Ability.Form
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;void&gt; | 返回一个Promise，包含接口的结果 |
 
 **示例：**
 
@@ -241,15 +258,21 @@ castTempForm(formId: string): Promise&lt;void&gt;;
 
 将指定的临时卡片转换为普通卡片。
 
+**系统能力：**
+
+SystemCapability.Ability.Form
+
 **参数：**
 
   | 参数名 | 类型    | 必填 | 说明    |
   | ------ | ------ | ---- | ------- |
   | formId | string | 是   | 卡片标识 |
 
-**系统能力：**
+**返回值：**
 
-SystemCapability.Ability.Form
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;void&gt; | 返回一个Promise，包含接口的结果 |
 
 **示例：**
 
@@ -294,15 +317,21 @@ notifyVisibleForms(formId: string): Promise&lt;void&gt;;
 
 向卡片框架发送通知以使指定的卡片可见。该方法调用成功后，会调用onVisibilityChange通知卡片提供方。
 
+**系统能力：**
+
+SystemCapability.Ability.Form
+
 **参数：**
 
   | 参数名 | 类型    | 必填 | 说明    |
   | ------ | ------ | ---- | ------- |
   | formId | string | 是   | 卡片标识 |
 
-**系统能力：**
+**返回值：**
 
-SystemCapability.Ability.Form
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;void&gt; | 返回一个Promise，包含接口的结果 |
 
 **示例：**
 
@@ -347,15 +376,21 @@ notifyInvisibleForms(formId: string): Promise&lt;void&gt;;
 
 向卡片框架发送通知以使指定的卡片不可见。该方法调用成功后，会调用onVisibilityChange通知卡片提供方。
 
+**系统能力：**
+
+SystemCapability.Ability.Form
+
 **参数：**
 
   | 参数名 | 类型    | 必填 | 说明    |
   | ------ | ------ | ---- | ------- |
   | formId | string | 是   | 卡片标识 |
 
-**系统能力：**
+**返回值：**
 
-SystemCapability.Ability.Form
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;void&gt; | 返回一个Promise，包含接口的结果 |
 
 **示例：**
 
@@ -400,15 +435,21 @@ enableFormsUpdate(formId: string): Promise&lt;void&gt;;
 
 向卡片框架发送通知以使指定的卡片可以更新。该方法调用成功后，卡片刷新状态设置为使能，卡片可以接收来自卡片提供方的更新。
 
+**系统能力：**
+
+SystemCapability.Ability.Form
+
 **参数：**
 
   | 参数名 | 类型    | 必填 | 说明    |
   | ------ | ------ | ---- | ------- |
   | formId | string | 是   | 卡片标识 |
 
-**系统能力：**
+**返回值：**
 
-SystemCapability.Ability.Form
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;void&gt; | 返回一个Promise，包含接口的结果 |
 
 **示例：**
 
@@ -453,15 +494,21 @@ disableFormsUpdate(formId: string): Promise&lt;void&gt;;
 
 向卡片框架发送通知以使指定的卡片不可以更新。该方法调用成功后，卡片刷新状态设置为去使能，卡片不可以接收来自卡片提供方的更新。
 
+**系统能力：**
+
+SystemCapability.Ability.Form
+
 **参数：**
 
   | 参数名 | 类型    | 必填 | 说明    |
   | ------ | ------ | ---- | ------- |
   | formId | string | 是   | 卡片标识 |
 
-**系统能力：**
+**返回值：**
 
-SystemCapability.Ability.Form
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;void&gt; | 返回一个Promise，包含接口的结果 |
 
 **示例：**
 
@@ -508,6 +555,12 @@ isSystemReady(): Promise&lt;void&gt;;
 **系统能力：**
 
 SystemCapability.Ability.Form
+
+**返回值：**
+
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;void&gt; | 返回一个Promise，包含接口的结果 |
 
 **示例：**
 
@@ -627,7 +680,7 @@ SystemCapability.Ability.Form
 
 getFormsInfo(bundleName: string, moduleName?: string): Promise&lt;Array&lt;FormInfo&gt;&gt;;
 
-获取设备上所有应用提供的卡片信息。
+获取设备上指定应用程序提供的卡片信息。
 
 **系统能力：**
 
@@ -688,6 +741,10 @@ function deleteInvalidForms(formIds: Array&ltstring&gt): Promise&lt;number&gt;;
 
 根据列表删除应用程序的无效卡片。
 
+**系统能力：**
+
+SystemCapability.Ability.Form
+
 **参数：**
 
   | 参数名 | 类型    | 必填 | 说明    |
@@ -699,10 +756,6 @@ function deleteInvalidForms(formIds: Array&ltstring&gt): Promise&lt;number&gt;;
 | 类型          | 说明                                |
 | :------------ | :---------------------------------- |
 | Promise&lt;number&gt; | Promise实例，用于获取异步返回删除的卡片个数 |
-
-**系统能力：**
-
-SystemCapability.Ability.Form
 
 **示例：**
 
@@ -747,9 +800,9 @@ SystemCapability.Ability.Form
 
 ## acquireFormState
 
-function acquireFormState(formIds: Array&ltstring&gt): Promise&lt;formInfo.FormStateInfo&gt;;
+function acquireFormState(want: Want): Promise&lt;FormStateInfo&gt;;
 
-根据列表删除应用程序的无效卡片。
+获取卡片状态。
 
 **参数：**
 
@@ -784,7 +837,7 @@ SystemCapability.Ability.Form
 
 on(type: "formUninstall", callback: Callback&lt;string&gt;): void;
 
-获取卡片状态
+订阅卡片卸载事件。
 
 **系统能力：**
 
@@ -811,7 +864,7 @@ SystemCapability.Ability.Form
 
 off(type: "formUninstall", callback: Callback&lt;string&gt;): void;
 
-获取卡片状态
+取消订阅卡片卸载事件。
 
 **系统能力：**
 
@@ -880,6 +933,12 @@ SystemCapability.Ability.Form
   | formIds | Array&lt;string&gt; | 是   | 卡片标识列表 |
   | isVisible | boolean | 是   | 是否可见 |
 
+**返回值：**
+
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;void&gt; | 返回一个Promise，包含接口的结果 |
+
 **示例：**
 
   ```js
@@ -934,6 +993,12 @@ SystemCapability.Ability.Form
   | ------ | ------ | ---- | ------- |
   | formIds | Array&lt;string&gt; | 是   | 卡片标识列表 |
   | isEnableUpdate | boolean | 是   | 是否使能更新 |
+
+**返回值：**
+
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;void&gt; | 返回一个Promise，包含接口的结果 |
 
 **示例：**
 
