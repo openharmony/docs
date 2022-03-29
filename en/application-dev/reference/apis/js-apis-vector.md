@@ -528,6 +528,7 @@ vector.increaseCapacityTo(8);
 ```
 
 ### trimToCurrentLength
+
 trimToCurrentLength(): void
 
 Trims the capacity of this container into its current length.
