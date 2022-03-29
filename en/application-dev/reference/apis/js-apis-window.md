@@ -160,11 +160,13 @@ Describes the color gamut mode.
 | DEFAULT    | 0      | Default color gamut mode.|
 | WIDE_GAMUT | 1      | Wide color gamut mode.  |
 
-## window.create<sup>7</sup><a name="window-create"></a>
+## window.create<sup>7+</sup>
 
 create(id: string, type: WindowType, callback: AsyncCallback&lt;Window&gt;): void
 
 Creates a subwindow. This API uses an asynchronous callback to return the result.
+
+This API is discarded since API version 8. You are advised to use [window.create<sup>8+</sup>](#windowcreate8) instead.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -191,11 +193,13 @@ Creates a subwindow. This API uses an asynchronous callback to return the result
   });
   ```
 
-## window.create<sup>7</sup>
+## window.create<sup>7+</sup>
 
 create(id: string, type: WindowType): Promise&lt;Window&gt;
 
 Creates a subwindow. This API uses a promise to return the result.
+
+This API is discarded since API version 8. You are advised to use [window.create<sup>8+</sup>](#windowcreate8) instead.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -523,7 +527,7 @@ This is a system API and cannot be called by third-party applications.
 
 ## Window
 
-In the following API examples, you must use [getTopWindow()](#window-gettopwindow), [create()](#window-create), or [find()](#window-find) to obtain a **Window** instance and then call a method in this instance.
+In the following API examples, you must use [getTopWindow()](#window-gettopwindow), [create()](#windowcreate7), or [find()](#window-find) to obtain a **Window** instance and then call a method in this instance.
 
 ### hide<sup>7+</sup>
 
