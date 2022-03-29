@@ -38,11 +38,9 @@ userIAM_userAuth模块提供了用户认证的相关方法，包括获取认证�
 
    ```js
    let authenticator = userIAM_userAuth.getAuthenticator();
-   authenticator.execute("FACE_ONLY", "S2").then((code)=>{
-       authenticator.off("tip", tipCallback);
+   authenticator.execute("FACE_ONLY", "S2").then((code) => {
        console.info("auth success");
-   }).catch((code)=>{
-       authenticator.off("tip", tipCallback);
+   }).catch((code) => {
        console.error("auth fail, code = " + code);
    });
    ```
