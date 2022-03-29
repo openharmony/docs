@@ -1,10 +1,13 @@
-# Adding a Container<a name="EN-US_TOPIC_0000001062990841"></a>
+# Adding a Container
 
-To assemble the basic elements of a page, you need a container component. The  **<div\>**,  **<list\>**, and  **<tabs\>**  components are commonly used for laying out page elements. You can use  **<div\>**  as the container in a page with simple layout.  **<div\>**  supports a variety of child components required to build the page.
 
-## <List\><a name="section1875054932714"></a>
+To assemble the basic elements of a page, you need a container component. The &lt;div&gt;, &lt;list&gt;, and &lt;tabs&gt; components are commonly used for laying out page elements. You can use &lt;div&gt; as the container in a page with simple layout. &lt;div&gt; supports a variety of child components required to build the page.
 
-If you use  **<div\>**  repeatedly to render a complex page, frame freezing may occur. In this case, use the  **<list\>**  component instead of  **<div\>**  to lay out list items, which provides a smooth list scrolling. Note that  **<list\>**  supports only  **<list-item\>**  as it child components. The following is an example:
+
+## &lt;List&gt;
+
+If you use &lt;div&gt; repeatedly to render a complex page, frame freezing may occur. In this case, use the &lt;list&gt; component instead of &lt;div&gt; to lay out list items, which provides a smooth list scrolling. **NOTE** that &lt;list&gt; supports only &lt;list-item&gt; as it child components. The following is an example:
+
 
 ```
 <!-- xxx.hml -->
@@ -15,6 +18,7 @@ If you use  **<div\>**  repeatedly to render a complex page, frame freezing may 
 </list>
 ```
 
+
 ```
 /* xxx.css */
 .desc-text {
@@ -22,6 +26,7 @@ If you use  **<div\>**  repeatedly to render a complex page, frame freezing may 
   font-size: 35.4px;
 }
 ```
+
 
 ```
 // xxx.js
@@ -32,11 +37,13 @@ export default {
 }
 ```
 
-To shorten the sample code, the list contains only one  **<list-item\>**  component that holds only one  **<text\>**  component. In practice, a  **<list\>**  has multiple  **<list-item\>**  components, and a  **<list-item\>**  has multiple child components.
+To shorten the sample code, the list contains only one &lt;list-item&gt; component that holds only one &lt;text&gt; component. In practice, a &lt;list&gt; has multiple &lt;list-item&gt; components, and a &lt;list-item&gt; has multiple child components.
 
-## <Tabs\><a name="section91861363535"></a>
 
-If your page needs to be dynamically loaded, use the  **<tabs\>**  component. This component supports the change event, which is triggered after tab switching. A  **<tabs\>**  component can hold only one  **<tab-bar\>**  and one  **<tab-content\>**. The following is an example:
+## &lt;Tabs&gt;
+
+If your page needs to be dynamically loaded, use the &lt;tabs&gt; component. This component supports the change event, which is triggered after tab switching. A &lt;tabs&gt; component can hold only one &lt;tab-bar&gt; and one &lt;tab-content&gt;. The following is an example:
+
 
 ```
 <!-- xxx.hml -->
@@ -54,6 +61,7 @@ If your page needs to be dynamically loaded, use the  **<tabs\>**  component. Th
 </tabs>
 ```
 
+
 ```
 // xxx.js
 export default {
@@ -65,5 +73,4 @@ export default {
 }
 ```
 
-The  **<tab-content\>**  component is used to display the tab content, which vertically fills the remaining space of the  **<tabs\>**  component by default. 
-
+The &lt;tab-content&gt; component is used to display the tab content, which vertically fills the remaining space of the &lt;tabs&gt; component by default. 

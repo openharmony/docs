@@ -1,13 +1,19 @@
-# Rules for Accessing Application Code Files<a name="EN-US_TOPIC_0000001158261215"></a>
+# Rules for Accessing Application Code Files
+
 
 The application code files can be accessed in the following ways:
 
--   Use a relative path to reference the code file. For example, if the upper-level directory is  **../common/utils/utils.ets**, use  **./common/utils/utils.ets**  for the current directory.
--   Use the root path of the current module to reference the code file, for example,  **common/utils/utils.ets**.
--   Store common code files in the  **common**  directory.
 
-## Example<a name="section14151172218568"></a>
+- Use a relative path to reference the code file. For example, if the upper-level directory is ../common/utils/utils.ets, use ./common/utils/utils.ets for the current directory.
 
+- Use the root path of the current module to reference the code file, for example, common/utils/utils.ets.
+
+- Store common code files in the common directory.
+
+
+## Example
+
+  
 ```
 import { FoodData, FoodList } from "../common/utils/utils.ets";
 
@@ -29,6 +35,7 @@ struct FoodCategoryList {
 
 Example for importing a code file:
 
+  
 ```
 //common/utils/utils.ets
 
@@ -64,4 +71,3 @@ export struct FoodList {
   }
 }
 ```
-

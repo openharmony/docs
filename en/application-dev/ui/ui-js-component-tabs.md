@@ -1,16 +1,19 @@
-# Tabs<a name="EN-US_TOPIC_0000001157214240"></a>
+# &lt;tabs&gt; Development
 
-The  **<tabs\>**  component is a common UI component for navigation. It allows quick access to different functions of an app. For details, see  [tabs](../reference/arkui-js/js-components-container-tabs.md).
 
-## Creating Tabs<a name="section1820920264"></a>
+The &lt;tabs&gt; component is a common UI component for navigation. It allows quick access to different functions of an app. For details, see [tabs](../reference/arkui-js/js-components-container-tabs.md).
 
-Create a  **<tabs\>**  component in the  **.hml**  file under  **pages/index**.
+
+## Creating Tabs
+
+Create a &lt;tabs&gt; component in the .hml file under pages/index.
+
 
 ```
 <!-- index.hml -->
 <div class="container" >
   <tabs>
-    <tab-bar>
+   <tab-bar>
       <text>item1</text>
       <text>item2</text>
     </tab-bar>
@@ -25,6 +28,7 @@ Create a  **<tabs\>**  component in the  **.hml**  file under  **pages/index**.
   </tabs>
 </div>
 ```
+
 
 ```
 /* xxx.css */
@@ -42,11 +46,13 @@ Create a  **<tabs\>**  component in the  **.hml**  file under  **pages/index**.
 }
 ```
 
-![](figures/3-9.gif)
+![en-us_image_0000001223287676](figures/en-us_image_0000001223287676.gif)
 
-## Setting the Tabs Orientation<a name="section1696313408199"></a>
 
-By default, the active tab of a  **<tabs\>**  component is the one with the specified  **index**. To show the  **<tabs\>**  vertically, set the  **vertical**  attribute to  **true**.
+## Setting the Tabs Orientation
+
+By default, the active tab of a &lt;tabs&gt; component is the one with the specified index. To show the &lt;tabs&gt; vertically, set the vertical attribute to true.
+
 
 ```
 <!-- index.hml -->
@@ -68,9 +74,10 @@ By default, the active tab of a  **<tabs\>**  component is the one with the spec
 </div>
 ```
 
-![](figures/29.gif)
+![en-us_image_0000001222967756](figures/en-us_image_0000001222967756.gif)
 
-Set the  **mode**  attribute to enable the child components of the  **<tab-bar\>**  to be evenly distributed. Set the  **scrollable**  attribute to disable scrolling of the  **<tab-content\>**.
+Set the mode attribute to enable the child components of the <tab-bar> to be evenly distributed. Set the scrollable attribute to disable scrolling of the <tab-content>.
+
 
 ```
 <!-- index.hml -->
@@ -92,11 +99,12 @@ Set the  **mode**  attribute to enable the child components of the  **<tab-bar\>
 </div>
 ```
 
-![](figures/30.gif)
+![en-us_image_0000001267647857](figures/en-us_image_0000001267647857.gif)
 
-## Setting the Style<a name="section482815298502"></a>
 
-Set the background color, border, and tab-content layout of the  **<tabs\>**  component.
+## Setting the Style
+
+  Set the background color, border, and tab-content layout of the &lt;tabs&gt; component.
 
 ```
 <!-- index.hml -->
@@ -118,17 +126,18 @@ Set the background color, border, and tab-content layout of the  **<tabs\>**  co
 </div>
 ```
 
+
 ```
 /* xxx.css */
 .container {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  background-color:#F1F3F5;
+ background-color:#F1F3F5;
 }
 .tabs{
   margin-top: 20px;
-  border: 1px solid #2262ef;
+ border: 1px solid #2262ef;
   width: 99%;
   padding: 10px;
 }
@@ -141,16 +150,17 @@ Set the background color, border, and tab-content layout of the  **<tabs\>**  co
   margin-top: 10px;
   height: 300px;
   color: blue;   
-  justify-content: center;
-  align-items: center;
+  justify-content: center;  align-items: center;
 }
 ```
 
-![](figures/31.gif)
+![en-us_image_0000001267767857](figures/en-us_image_0000001267767857.gif)
 
-## Displaying the Tab Index<a name="section331041121215"></a>
 
-Add the  **change**  event for the  **<tabs\>**  component to display the index of the current tab after tab switching.
+## Displaying the Tab Index
+
+Add the change event for the &lt;tabs&gt; component to display the index of the current tab after tab switching.
+
 
 ```
 <!-- index.hml -->
@@ -172,6 +182,7 @@ Add the  **change**  event for the  **<tabs\>**  component to display the index 
 </div>
 ```
 
+
 ```
 /* index.js */
 import prompt from '@system.prompt';
@@ -184,17 +195,19 @@ export default {
 }
 ```
 
-![](figures/32.gif)
+![en-us_image_0000001222807772](figures/en-us_image_0000001222807772.gif)
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
->
->-   A  **<tabs\>**  can wrap at most one  [**<tab-bar\>**](../reference/arkui-js/js-components-container-tab-bar.md)  and at most one  [**<tab-content\>**](../reference/arkui-js/js-components-container-tab-content.md).
 
-## Example Scenario<a name="section1117302718531"></a>
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
+> - A &lt;tabs&gt; can wrap at most one [<tab-bar>](../reference/arkui-js/js-components-container-tab-bar.md) and at most one [<tab-content>](../reference/arkui-js/js-components-container-tab-content.md).
+
+
+## Example Scenario
 
 In this example, you can switch between tabs and the active tab has the title text in red with an underline below.
 
-Use the  **<tabs\>**,  **<tab-bar\>**, and  **<tab-content\>**  components to implement tab switching. Then define the arrays and attributes. Add the  **change**  event to change the attribute values in the arrays so that the active tab has a different font color and an underline.
+Use the &lt;tabs&gt;, <tab-bar>, and <tab-content> components to implement tab switching. Then define the arrays and attributes. Add the change event to change the attribute values in the arrays so that the active tab has a different font color and an underline.
+
 
 ```
 <!-- index.hml -->
@@ -224,10 +237,11 @@ Use the  **<tabs\>**,  **<tab-bar\>**, and  **<tab-content\>**  components to im
 </div>
 ```
 
+
 ```
 /* xxx.css */
 .container{
-  background-color:#F1F3F5;
+background-color:#F1F3F5;
 }
 .tab_bar {
   width: 100%;
@@ -255,6 +269,7 @@ Use the  **<tabs\>**,  **<tab-bar\>**, and  **<tab-content\>**  components to im
   width: 160px;
 }
 ```
+
 
 ```
 /* index.js */
@@ -299,5 +314,4 @@ export default {
 }
 ```
 
-![](figures/33.gif)
-
+![en-us_image_0000001267607885](figures/en-us_image_0000001267607885.gif)

@@ -1,7 +1,22 @@
-# @Watch<a name="EN-US_TOPIC_0000001177658253"></a>
+# @Watch
 
-The application can register a callback through  **@Watch**. This callback is triggered when a variable decorated by any of the following decorators changes:  **@State**,  **@Prop**,  **@Link**,  **@ObjectLink**,  **@Provide**,  **@Consume**,  **@StorageProp**, and  **@StorageLink**. The variables in  **@Watch**  must be enclosed in  **""**.
 
+@Watch is used to listen for changes of state variables. The syntax structure is as follows:
+
+
+  
+```
+@State @Watch("onChanged") count : number = 0
+```
+
+
+As shown above, add an @Watch decorator to the target state variable to register an onChanged callback. When the state variable count is changed, the onChanged callback will be triggered.
+
+
+@Watch can be used to listen for changes of variables decorated by @State, @Prop, @Link, @ObjectLink, @Provide, @Consume, @StorageProp, or @StorageLink.
+
+
+  
 ```
 @Entry
 @Component
@@ -12,7 +27,7 @@ struct CompA {
     updateTotal() : number {
         let sum = 0;
         this.shopBasket.forEach((i) => { sum += i; });
-        // calculate new total shop basket value and apply discount if over 100RMB
+        // Calculate the total amount of items in the shopping basket. If the amount exceeds CNY100, the specified discount will be applied.
         this.totalPurchase = (sum < 100) ? sum : 0.9 * sum;
         return this.totalPurchase;
     }
@@ -31,4 +46,3 @@ struct CompA {
     }
 }
 ```
-

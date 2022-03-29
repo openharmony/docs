@@ -3,35 +3,35 @@
 
 ## Resource Definition
 
-Application resources are defined by in the project's **resources** directory, which is organized as follows:
+Application resources are defined by in the project's resources directory, which is organized as follows:
 
-- Level-1: **base** sub-directory, qualifiers sub-directories, and **rawfile** sub-directory
-  - The **base** sub-directory is a default directory. If no qualifiers sub-directories in the **resources** directory of the application match the device status, the resource file in the **base** sub-directory will be automatically referenced.
+- Level-1: base sub-directory, qualifiers sub-directories, and rawfile sub-directory
+  - The base sub-directory is a default directory. If no qualifiers sub-directories in the resources directory of the application match the device status, the resource file in the base sub-directory will be automatically referenced.
   - You need to create qualifiers sub-directories on your own. The name of a qualifiers sub-directory consists of one or more qualifiers that represent the application scenarios or device characteristics, covering the mobile country code (MCC), mobile network code (MNC), language, script, country or region, screen orientation, device type, color mode, and screen density. The qualifiers are separated using underscores (_) or hyphens (-).
-  - When the resources in the **rawfile** sub-directory are referenced, resource files will not be matched based on the device status. You can directly store resource files in the **rawfile** sub-directory.
+  - When the resources in the rawfile sub-directory are referenced, resource files will not be matched based on the device status. You can directly store resource files in the rawfile sub-directory.
 
 - Level-2: resource sub-directories
   - Resource sub-directories store basic elements such as character strings, colors, and floating point numbers, and resource files such as media files.
   - Supported files and resource types are listed in the table below:
-       | File&nbsp;Name | Resource&nbsp;Type | 
+       | File Name | Resource Type | 
      | -------- | -------- |
-     | color.json | Color&nbsp;resource. | 
-     | float.json | Resources&nbsp;such&nbsp;as&nbsp;spacing,&nbsp;rounded&nbsp;corners,&nbsp;and&nbsp;fonts. | 
-     | string.json | String&nbsp;resource. | 
-     | plural.json | String&nbsp;resource. | 
-     | media&nbsp;directory | Image&nbsp;resource. | 
+     | color.json | Color resource. | 
+     | float.json | Resources such as spacing, rounded corners, and fonts. | 
+     | string.json | String resource. | 
+     | plural.json | String resource. | 
+     | media directory | Image resource. | 
 
 
 ## Referencing Resources
 
-To reference an application resource in a project, use the **"$r('app.type.name')"** format. **app** indicates the resource defined in the **resources** directory of the application. **type** indicates the resource type (or the location where the resource is stored). The value can be **color**, **float**, **string**, **plural**, or **media**. **name** indicates the resource name, which you set when defining the resource.
+To reference an application resource in a project, use the "$r('app.type.name')" format. app indicates the resource defined in the resources directory of the application. type indicates the resource type (or the location where the resource is stored). The value can be color, float, string, plural, or media. name indicates the resource name, which you set when defining the resource.
 
-When referencing resources in the **rawfile** sub-directory, use the **"$rawfile('filename')"** format. Currently, **$rawfile** allows only the **&lt;Image&gt;** component to reference image resources. In the format, **filename** indicates the relative path of a file in the **rawfile** directory, and the file name must contain the file name extension. Note that the relative path cannot start with a slash (/).
+When referencing resources in the rawfile sub-directory, use the "$rawfile('filename')" format. Currently, $rawfile allows only the <Image> component to reference image resources. In the format, filename indicates the relative path of a file in the rawfile directory, and the file name must contain the file name extension. **NOTE** that the relative path cannot start with a slash (/).
 
 
 ## Example
 
-Some custom resources in the **base** sub-directory are as follows:
+Some custom resources in the base sub-directory are as follows:
 
 
 ```
@@ -49,7 +49,7 @@ Some custom resources in the **base** sub-directory are as follows:
                └─ newTest.png  
 ```
 
-The content of the **color.json** file is as follows:
+The content of the color.json file is as follows:
 
 
 ```
@@ -67,7 +67,7 @@ The content of the **color.json** file is as follows:
 }
 ```
 
-The content of the **float.json** file is as follows:
+The content of the float.json file is as follows:
 
 
 ```
@@ -85,7 +85,7 @@ The content of the **float.json** file is as follows:
 }
 ```
 
-The content of the **string.json** file is as follows:
+The content of the string.json file is as follows:
 
 
 ```
@@ -107,7 +107,7 @@ The content of the **string.json** file is as follows:
 }
 ```
 
-The content of the **plural.json** file is as follows:
+The content of the plural.json file is as follows:
 
 
 ```
@@ -130,7 +130,7 @@ The content of the **plural.json** file is as follows:
 }
 ```
 
-  In the **ets** file, you can use the resources defined in the **resources** directory.
+  In the ets file, you can use the resources defined in the resources directory.
 
 ```
 Text($r('app.string.string_hello'))

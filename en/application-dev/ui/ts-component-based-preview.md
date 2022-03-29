@@ -1,13 +1,14 @@
-# @Preview<a name="EN-US_TOPIC_0000001124516048"></a>
+# @Preview
 
-Custom components decorated by  **@Preview**  can be previewed in the Previewer of DevEco Studio. When the page is loaded, the custom components decorated by  **@Preview**  are created and displayed.
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
->In a source file, at most one custom component can be decorated by  **@Preview**.
+Custom components decorated by @Preview can be previewed in the Previewer of DevEco Studio. When the page is loaded, the custom components decorated by @Preview are created and displayed.
 
-## Example<a name="section2270154810523"></a>
 
-Example of using  **@Preview**:
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
+> In a source file, at most one custom component can be decorated by @Preview.
+
+
+Example of using @Preview:
 
 ```
 // Display only Hello Component1 on the PC preview. The content under MyComponent is displayed on the real device.
@@ -57,4 +58,3 @@ struct Component2 {
     }
 }
 ```
-

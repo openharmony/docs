@@ -1,19 +1,21 @@
-# Input<a name="EN-US_TOPIC_0000001202854309"></a>
+# <input> Development
 
-The  **<input\>**  component provides an interactive way to receive user input of various types, including  **date**,  **checkbox**, and  **button**. For details, see  [input](../reference/arkui-js/js-components-basic-input.md).
 
-## Creating an <input\> Component<a name="section119721242413"></a>
+The <input> component provides an interactive way to receive user input of various types, including date, checkbox, and button. For details, see [input](../reference/arkui-js/js-components-basic-input.md).
 
-Create an  **<input\>**  component in the  **.hml**  file under  **pages/index**.
+
+## Creating an <input> Component
+
+Create an <input> component in the .hml file under pages/index.
+
 
 ```
 <!-- xxx.hml -->
 <div class="container">       
-  <input type="text">         
-    Please enter the content
-  </input>
+  <input type="text">             Please enter the content  </input>
 </div>
 ```
+
 
 ```
 /* xxx.css */
@@ -25,11 +27,13 @@ Create an  **<input\>**  component in the  **.hml**  file under  **pages/index**
 }
 ```
 
-![](figures/2.png)
+![en-us_image_0000001222807768](figures/en-us_image_0000001222807768.png)
 
-## Setting the Input Type<a name="section34344913465"></a>
 
-Set the  **type**  attribute of the  **<input\>**  component to  **button**,  **date**, or any of the supported values.
+## Setting the Input Type
+
+Set the type attribute of the <input> component to button, date, or any of the supported values.
+
 
 ```
 <!-- xxx.hml -->
@@ -50,6 +54,7 @@ Set the  **type**  attribute of the  **<input\>**  component to  **button**,  **
   </div>
 </div>
 ```
+
 
 ```
 /* xxx.css */
@@ -83,6 +88,7 @@ Set the  **type**  attribute of the  **<input\>**  component to  **button**,  **
 }
 ```
 
+
 ```
 // xxx.js
 export default {
@@ -92,15 +98,19 @@ export default {
 }
 ```
 
-![](figures/18.gif)
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
->-   For wearables, the input type can only be  **button**,  **radio**, or  **checkbox**.
->-   The settings of  **checked**  take effect only when the input type is set to  **checkbox**  or  **radio**. The default value of  **checked**  is  **false**.
+![en-us_image_0000001223287672](figures/en-us_image_0000001223287672.gif)
 
-## Event Binding<a name="section44031114173719"></a>
 
-Add the  **search**  and  **translate**  events to the  **<input\>**  component.
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
+> - For wearables, the input type can only be button, radio, or checkbox.
+> 
+> - The settings of checked take effect only when the input type is set to checkbox or radio. The default value of checked is false.
+
+
+## Event Binding
+
+  Add the search and translate events to the <input> component.
 
 ```
 <!-- xxx.hml -->
@@ -112,6 +122,7 @@ Add the  **search**  and  **translate**  events to the  **<input\>**  component.
   <input class="input" type="text" ontranslate="translate" placeholder="translate"> </input>
 </div>
 ```
+
 
 ```
 /* xxx.css */
@@ -134,6 +145,7 @@ text{
 }
 ```
 
+
 ```
 // xxx.js
 import prompt from '@system.prompt'
@@ -153,11 +165,13 @@ export default {
 }
 ```
 
-![](figures/36.gif)
+![en-us_image_0000001267647853](figures/en-us_image_0000001267647853.gif)
 
-## Setting the Input Error Message<a name="section4314164631810"></a>
 
-Add the  **showError**  method to the  **<input\>**  component to display an error message in the event of incorrect input.
+## Setting the Input Error Message
+
+Add the showError method to the <input> component to display an error message in the event of incorrect input.
+
 
 ```
 <!-- xxx.hml -->
@@ -167,6 +181,7 @@ Add the  **showError**  method to the  **<input\>**  component to display an err
   <input class="button" type="button" value="Submit" onclick="buttonClick"></input>
 </div>
 ```
+
 
 ```
 /* xxx.css */
@@ -187,6 +202,7 @@ Add the  **showError**  method to the  **<input\>**  component to display an err
 }
 ```
 
+
 ```
 // xxx.js
 import prompt from '@system.prompt' 
@@ -203,13 +219,9 @@ import prompt from '@system.prompt'
    }, 
    buttonClick(e){ 
      if(this.value.length > 6){ 
-       this.$element("input").showError({ 
-         error:  'Up to 6 characters are allowed.' 
-        }); 
+       this.$element("input").showError({        error:  'Up to 6 characters are allowed.'       }); 
       }else if(this.value.length == 0){ 
-        this.$element("input").showError({ 
-          error:this.value + 'This field cannot be left empty.' 
-        }); 
+        this.$element("input").showError({         error:this.value + 'This field cannot be left empty.'       }); 
       }else{ 
         prompt.showToast({ 
           message: "success " 
@@ -219,15 +231,18 @@ import prompt from '@system.prompt'
  }
 ```
 
-![](figures/19.gif)
+![en-us_image_0000001223127708](figures/en-us_image_0000001223127708.gif)
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
->
->-   This method is available when the input type is set to  **text**,  **email**,  **date**,  **time**,  **number**, or  **password**.
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
+> - This method is available when the input type is set to text, email, date, time, number, or password.
 
-## Example Scenario<a name="section85617733119"></a>
 
-Enter information by using the  **<input\>**  component of the type that suits your needs.
+## Example Scenario
+
+
+Enter information by using the <input> component of the type that suits your needs.
+
+
 
 ```
 <!-- xxx.hml -->
@@ -257,6 +272,8 @@ Enter information by using the  **<input\>**  component of the type that suits y
 </div>
 ```
 
+
+
 ```
 /* xxx.css */
 .container { 
@@ -285,6 +302,8 @@ label {
 }
 ```
 
+
+
 ```
 // xxx.js
 import prompt from '@system.prompt';
@@ -301,5 +320,5 @@ export default {
 }     
 ```
 
-![](figures/4.gif)
 
+![en-us_image_0000001222807760](figures/en-us_image_0000001222807760.gif)

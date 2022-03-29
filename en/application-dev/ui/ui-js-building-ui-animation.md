@@ -1,16 +1,21 @@
-# Developing Animations<a name="EN-US_TOPIC_0000001063908646"></a>
+# Developing Animations
 
-Animations are classified into  [Static Animation](#section456613911492)  and  [Continuous Animation](#section17836125204914).
 
-## Static Animation<a name="section456613911492"></a>
+Animations are classified into [Static Animation](#static-animation) and [Continuous Animation](#continuous-animation).
+
+
+## Static Animation
 
 The transform attributes are the core of the static animation. A static animation can transform in the following three ways and only once in each way at a time:
 
--   **translate**: Moves a specified component horizontally or vertically.
--   **scale**: Scales a specified component horizontally or vertically to the required scale.
--   **rotate**: Rotates a specified component by a specified angle along the horizontal axis, vertical axis, or center point.
+- translate: Moves a specified component horizontally or vertically.
 
-For more information, see  [Component Methods](../reference/arkui-js/js-components-common-methods.md). The following is an example:
+- scale: Scales a specified component horizontally or vertically to the required scale.
+
+- rotate: Rotates a specified component by a specified angle along the horizontal axis, vertical axis, or center point.
+
+For more information, see [Component Methods](../reference/arkui-js/js-components-common-methods.md). The following is an example:
+
 
 ```
 <!-- xxx.hml -->
@@ -20,6 +25,7 @@ For more information, see  [Component Methods](../reference/arkui-js/js-componen
   <text class="scale">hello</text>
 </div>
 ```
+
 
 ```
 /* xxx.css */
@@ -51,22 +57,30 @@ For more information, see  [Component Methods](../reference/arkui-js/js-componen
 }
 ```
 
-**Figure  1**  Static animation<a name="fig454415020219"></a>  
-![](figures/static-animation.png "static-animation")
 
-## Continuous Animation<a name="section17836125204914"></a>
+  figure1 Static animation
+  
+  ![en-us_image_0000001223127724](figures/en-us_image_0000001223127724.png)
+
+
+## Continuous Animation
 
 The static animation has only the start and end states. To set the transition state and conversion effect, use continuous animations.
 
 The core of a continuous animation is animation attributes, which define the start and end states of the animation and the curve of time and speed. Animation attributes can implement the following effects:
 
--   **animation-name**: Background color, opacity, width, height, and transformation type applied to the element after the animation is executed
--   **animation-delay**  and  **animation-duration**: Element delay and duration after the animation is executed
--   **animation-timing-function**: Speed curve of an animation, which makes the animation more fluent
--   **animation-iteration-count**: Number of animation playback times
--   **animation-fill-mode**: Whether to restore the initial state after the animation is executed
+- animation-name: Background color, opacity, width, height, and transformation type applied to the element after the animation is executed
 
-To use the animation attributes, you need to define a @keyframes rule in the  **.css**  file, set the animation transition effect in @keyframes, and invoke the effect through a style class in the  **.hml**  file. The following is an example for  **animation-name**:
+- animation-delay and animation-duration: Element delay and duration after the animation is executed
+
+- animation-timing-function: Speed curve of an animation, which makes the animation more fluent
+
+- animation-iteration-count: Number of animation playback times
+
+- animation-fill-mode: Whether to restore the initial state after the animation is executed
+
+To use the animation attributes, you need to define a @keyframes rule in the .css file, set the animation transition effect in @keyframes, and invoke the effect through a style class in the .hml file. The following is an example for animation-name:
+
 
 ```
 <!-- xxx.hml -->
@@ -81,6 +95,7 @@ To use the animation attributes, you need to define a @keyframes rule in the  **
   <input class="button" type="button" name="" value="show" onclick="showAnimation"/>
 </div>
 ```
+
 
 ```
 /* xxx.css */
@@ -131,6 +146,7 @@ To use the animation attributes, you need to define a @keyframes rule in the  **
 }
 ```
 
+
 ```
 // xxx.js
 export default {
@@ -147,6 +163,6 @@ export default {
 }
 ```
 
-**Figure  2**  Continuous animation effect<a name="fig1173091112515"></a>  
-![](figures/continuous-animation-effect.gif "continuous-animation-effect")
-
+  figure2 Continuous animation effect
+  
+  ![en-us_image_0000001223287696](figures/en-us_image_0000001223287696.gif)

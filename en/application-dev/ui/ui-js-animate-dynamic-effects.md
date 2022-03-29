@@ -1,13 +1,17 @@
-# Animation Effect<a name="EN-US_TOPIC_0000001217007973"></a>
+# Animation Effect
 
-You can set the interpolator to implement the animation effect. For details, see  [Animation](../reference/apis/js-apis-basic-features-animator.md).
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
->This feature is supported since API version 6.
+You can set the interpolator to implement the animation effect. For details, see [Animation](../reference/apis/js-apis-basic-features-animator.md).
 
-## Creating an Animation Object<a name="section2124172032912"></a>
 
-Use  **createAnimator**  to create an  **animation**  object and set the  **animation**  attributes by using the  options parameter.
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
+> This feature is supported since API version 6.
+
+
+## Creating an Animation Object
+
+Use createAnimator to create an animation object and set the animation attributes by using the options parameter.
+
 
 ```
 <!-- xxx.hml -->
@@ -19,6 +23,7 @@ Use  **createAnimator**  to create an  **animation**  object and set the  **anim
   </div>
 </div>
 ```
+
 
 ```
 /* xxx.css */
@@ -39,6 +44,7 @@ button{
   margin-left: 260px;
 }
 ```
+
 
 ```
 /* xxx.js */
@@ -72,16 +78,20 @@ export default {
 }
 ```
 
-![](figures/22.gif)
+![en-us_image_0000001267887885](figures/en-us_image_0000001267887885.gif)
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
->-   When you use  **createAnimator**  to create an animation object, you must pass the  **options**  parameter.
->-   **begin**  indicates the start point of the animation interpolation. If it is not set, the default value  **0**  is used.
->-   **end**  indicates the end point of the animation interpolation. If it is not set, the default value  **1**  is used.
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
+> - When you use createAnimator to create an animation object, you must pass the options parameter.
+> 
+> - begin indicates the start point of the animation interpolation. If it is not set, the default value 0 is used.
+> 
+> - end indicates the end point of the animation interpolation. If it is not set, the default value 1 is used.
 
-## Adding Animation Events and Calling Methods<a name="section123951438112912"></a>
 
-The  **animator**  supports events and methods, which you can use to customize the animation effect. Events include  **frame**,  **cancel**,  **repeat**, and  **finish**. Methods include  **update**,  **play**,  **pause**,  **cancel**,  **reverse**, and  **finish**. For details about the supported events and methods, see  [animator supported events and  animator supported APIs](../reference/apis/js-apis-basic-features-animator.md).
+## Adding Animation Events and Calling Methods
+
+The animator supports events and methods, which you can use to customize the animation effect. Events include frame, cancel, repeat, and finish. Methods include update, play, pause, cancel, reverse, and finish. For details about the supported events and methods, see [animator supported events and animator supported APIs](../reference/apis/js-apis-basic-features-animator.md).
+
 
 ```
 <!-- xxx.hml -->
@@ -105,6 +115,7 @@ The  **animator**  supports events and methods, which you can use to customize t
   </div>
 </div>
 ```
+
 
 ```
 /* xxx.css */
@@ -147,6 +158,7 @@ button{
   left: 120px;
 }
 ```
+
 
 ```
 /* xxx.js */
@@ -230,8 +242,7 @@ export default {
 }
 ```
 
-![](figures/1-18.gif)
+![en-us_image_0000001223287724](figures/en-us_image_0000001223287724.gif)
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
->When calling the  **update**  method, you can use it to update the animation parameters. The input parameters are the same as those of  **createAnimator**.
-
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
+> When calling the update method, you can use it to update the animation parameters. The input parameters are the same as those of createAnimator.
