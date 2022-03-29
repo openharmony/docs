@@ -136,6 +136,7 @@ let result = treeSet.getLastValue();
 
 
 ### add
+
 add(value: T): boolean
 
 Adds an entry to this container.
@@ -162,7 +163,7 @@ let result = treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 
 ### remove
 
-remove(value: T): boolean;
+remove(value: T): boolean
 
 Removes the entry with the specified key from this container.
 
@@ -335,7 +336,7 @@ while(temp != undefined) {
 
 ### forEach
 
-forEach(callbackfn: (value: T, key?: T, set?: TreeSet&lt;T&gt;) => void, thisArg?: Object): void
+forEach(callbackfn: (value?: T, key?: T, set?: TreeSet&lt;T&gt;) => void, thisArg?: Object): void
 
 Uses a callback to traverse the entries in this container and obtain their position indexes.
 
@@ -349,7 +350,7 @@ Uses a callback to traverse the entries in this container and obtain their posit
 callbackfn
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | T | Yes| Value of the entry that is currently traversed.|
+| value | T | No| Value of the entry that is currently traversed.|
 | key | T | No| Key of the entry that is currently traversed (same as **value**).|
 | set | TreeSet&lt;T&gt; | No| Instance that invokes the **forEach** method.|
 

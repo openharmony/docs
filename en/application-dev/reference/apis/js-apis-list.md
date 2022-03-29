@@ -60,7 +60,7 @@ Adds an entry at the end of this container.
 **Example**
 
 ```
-let list = new List;
+let list = new List();
 let result = list.add("a");
 let result1 = list.add(1);
 let b = [1, 2, 3];
@@ -160,7 +160,7 @@ Obtains the index of the last occurrence of the specified entry in this containe
 
 | Name| Value Type | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| element | T | Yes| Entry to query.|
+| element | T | Yes| Entry to obtain.|
 
 **Return value**
 
@@ -192,7 +192,7 @@ Obtains the index of the first occurrence of the specified entry in this contain
 
 | Name| Value Type | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| element | T | Yes| Entry to query.|
+| element | T | Yes| Entry to obtain.|
 
 **Return value**
 
@@ -310,6 +310,7 @@ let result = list.remove(2);
 ```
 
 ### replaceAllElements
+
 replaceAllElements(callbackfn: (value: T, index?: number, list?: List&lt;T&gt;) => T,
 thisArg?: Object): void
 
@@ -347,6 +348,7 @@ list.replaceAllElements((value, index) => {
 ```
 
 ### forEach
+
 forEach(callbackfn: (value: T, index?: number, List?: List&lt;T&gt;) => void,
 thisArg?: Object): void
 
@@ -382,6 +384,7 @@ list.forEach((value, index) => {
 ```
 
 ### sort
+
 sort(comparator: (firstValue: T, secondValue: T) => number): void
 
 Sorts entries in this container.
@@ -412,6 +415,7 @@ list.sort(a, (b => b - a));
 ```
 
 ### getSubList
+
 getSubList(fromIndex: number, toIndex: number): List&lt;T&gt;
 
 Obtains entries within a range in this container, including the entry at the start position but not that at the end position, and returns these entries as a new **List** instance.
@@ -443,6 +447,7 @@ let result2 = list.subList(2, 6);
 ```
 
 ### clear
+
 clear(): void
 
 Clears this container and sets its length to **0**.
@@ -459,6 +464,7 @@ list.clear();
 ```
 
 ### set
+
 set(index: number, element: T): T
 
 Replaces an entry at the specified position in this container with a given entry.
@@ -489,6 +495,7 @@ list.set(2, "b");
 ```
 
 ### convertToArray
+
 convertToArray(): Array&lt;T&gt;
 
 Converts this container into an array.
@@ -511,6 +518,7 @@ let result = list.convertToArray();
 ```
 
 ### isEmpty
+
 isEmpty(): boolean
 
 Checks whether this container is empty (contains no entry).
@@ -547,7 +555,7 @@ Obtains the first entry in this container.
 **Example**
 
 ```
-let list = new Vector();
+let list = new List();
 list.add(2);
 list.add(4);
 list.add(5);
@@ -570,7 +578,7 @@ Obtains the last entry in this container.
 **Example**
 
 ```
-let list = new Vector();
+let list = new List();
 list.add(2);
 list.add(4);
 list.add(5);
@@ -580,7 +588,7 @@ let result = list.getLast();
 
 ### [Symbol.iterator]
 
-[Symbol.iterator]\(): IterableIterator&lt;T&gt;;
+[Symbol.iterator]\(): IterableIterator&lt;T&gt;
 
 
 Obtains an iterator, each item of which is a JavaScript object.
