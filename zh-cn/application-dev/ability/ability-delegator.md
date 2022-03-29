@@ -10,7 +10,11 @@ Delegator测试框架是OpenHarmony提供的一套开发者应用自测试框架
 
 ## 测试框架启动
 
-测试框架启动有两种方式，方式一：通过`aa test`命令启动，方式二：通过IDE启动。
+测试框架启动有两种方式：
+
+- 方式一：通过`aa test`命令启动。
+- 方式二：通过IDE启动。
+
 ### aa test启动
 
 开发者可通过 `aa test` 命令启动启动测试框架，开发者可以自行指定使用的runner以及runner所在hap包的package name/module name，具体命令示例如下:
