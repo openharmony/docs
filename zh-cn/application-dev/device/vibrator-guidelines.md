@@ -61,7 +61,7 @@
   
    ```
    import vibrator from "@ohos.vibrator"
-   vibrator.vibrate(duration: number).then((error)=>{
+   vibrator.vibrate(1000).then((error)=>{
        if(error){//调用失败，打印error.code和error.message
           console.log("Promise return failed.error.code"+error.code+"error.message"+error.message);  
        }else{//调用成功,设备开始振动
@@ -74,11 +74,11 @@
   
    ```
    import vibrator from "@ohos.vibrator"
-   vibrator.stop(stopMode: VibratorStopMode).then((error)=>{
+   vibrator.stop(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PREET).then((error)=>{
       if(error){//调用失败，打印error.code和error.message
-          console.log(“Promise return failed.error.code”+error.code+“error.message”+error.message);
+          console.log("Promise return failed.error.code"+error.code+"error.message"+error.message);
       }else{//调用成功，设备停止振动
-          Console.log(“Promise returned to indicate successful.”);
+          Console.log("Promise returned to indicate successful.");
       };
    })
    ```
