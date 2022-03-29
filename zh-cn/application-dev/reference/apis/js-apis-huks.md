@@ -91,21 +91,21 @@ import huks from '@ohos.security.huks'
 
 ## HuksKeyPurpose
 
-表示密钥（密钥对）用途。
+表示密钥用途。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Security.Huks。
 
-| 名称                     | 值   | 说明                                       |
-| ------------------------ | ---- | ------------------------------------------ |
-| HUKS_KEY_PURPOSE_ENCRYPT | 1    | 表示密钥（密钥对）用于对明文进行加密操作。 |
-| HUKS_KEY_PURPOSE_DECRYPT | 2    | 表示密钥（密钥对）用于对密文进行解密操作。 |
-| HUKS_KEY_PURPOSE_SIGN    | 4    | 表示密钥对用于对数据进行签名。             |
-| HUKS_KEY_PURPOSE_VERIFY  | 8    | 表示密钥对用于验证签名后的数据。           |
-| HUKS_KEY_PURPOSE_DERIVE  | 16   | 表示密钥用于派生密钥。                     |
-| HUKS_KEY_PURPOSE_WRAP    | 32   | 表示密钥用于加密导入。                     |
-| HUKS_KEY_PURPOSE_UNWRAP  | 64   | 表示密钥加密导出。                         |
-| HUKS_KEY_PURPOSE_MAC     | 128  | 表示密钥用于生成mac消息验证码。            |
-| HUKS_KEY_PURPOSE_AGREE   | 256  | 表示密钥对用于进行密钥协商。               |
+| 名称                     | 值   | 说明                             |
+| ------------------------ | ---- | -------------------------------- |
+| HUKS_KEY_PURPOSE_ENCRYPT | 1    | 表示密钥用于对明文进行加密操作。 |
+| HUKS_KEY_PURPOSE_DECRYPT | 2    | 表示密钥用于对密文进行解密操作。 |
+| HUKS_KEY_PURPOSE_SIGN    | 4    | 表示密钥用于对数据进行签名。     |
+| HUKS_KEY_PURPOSE_VERIFY  | 8    | 表示密钥用于验证签名后的数据。   |
+| HUKS_KEY_PURPOSE_DERIVE  | 16   | 表示密钥用于派生密钥。           |
+| HUKS_KEY_PURPOSE_WRAP    | 32   | 表示密钥用于加密导入。           |
+| HUKS_KEY_PURPOSE_UNWRAP  | 64   | 表示密钥加密导出。               |
+| HUKS_KEY_PURPOSE_MAC     | 128  | 表示密钥用于生成mac消息验证码。  |
+| HUKS_KEY_PURPOSE_AGREE   | 256  | 表示密钥用于进行密钥协商。       |
 
 ## HuksKeyDigest
 
@@ -155,30 +155,30 @@ import huks from '@ohos.security.huks'
 
 ## HuksKeySize
 
-表示密钥（密钥对）长度。
+表示密钥长度。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Security.Huks。
 
-| 名称                         | 值   | 说明                                         |
-| ---------------------------- | ---- | -------------------------------------------- |
-| HUKS_RSA_KEY_SIZE_512        | 512  | 表示使用RSA算法的密钥对长度为512bit。        |
-| HUKS_RSA_KEY_SIZE_768        | 768  | 表示使用RSA算法的密钥对长度为768bit。        |
-| HUKS_RSA_KEY_SIZE_1024       | 1024 | 表示使用RSA算法的密钥对长度为1024bit。       |
-| HUKS_RSA_KEY_SIZE_2048       | 2048 | 表示使用RSA算法的密钥对长度为2048bit。       |
-| HUKS_RSA_KEY_SIZE_3072       | 3072 | 表示使用RSA算法的密钥对长度为3072bit。       |
-| HUKS_RSA_KEY_SIZE_4096       | 4096 | 表示使用RSA算法的密钥对长度为4096bit。       |
-| HUKS_ECC_KEY_SIZE_224        | 224  | 表示使用ECC算法的密钥对长度为224bit。        |
-| HUKS_ECC_KEY_SIZE_256        | 256  | 表示使用ECC算法的密钥对长度为256bit。        |
-| HUKS_ECC_KEY_SIZE_384        | 384  | 表示使用ECC算法的密钥对长度为384bit。        |
-| HUKS_ECC_KEY_SIZE_521        | 521  | 表示使用ECC算法的密钥对长度为521bit。        |
-| HUKS_AES_KEY_SIZE_128        | 128  | 表示使用AES算法的密钥长度为128bit。          |
-| HUKS_AES_KEY_SIZE_192        | 196  | 表示使用AES算法的密钥长度为196bit。          |
-| HUKS_AES_KEY_SIZE_256        | 256  | 表示使用AES算法的密钥长度为256bit。          |
-| HUKS_AES_KEY_SIZE_512        | 512  | 表示使用AES算法的密钥长度为512bit。          |
-| HUKS_CURVE25519_KEY_SIZE_256 | 256  | 表示使用CURVE25519算法的密钥对长度为256bit。 |
-| HUKS_DH_KEY_SIZE_2048        | 2048 | 表示使用DH算法的密钥对长度为2048bit。        |
-| HUKS_DH_KEY_SIZE_3072        | 3072 | 表示使用DH算法的密钥对长度为3072bit。        |
-| HUKS_DH_KEY_SIZE_4096        | 4096 | 表示使用DH算法的密钥对长度为4096bit。        |
+| 名称                         | 值   | 说明                                       |
+| ---------------------------- | ---- | ------------------------------------------ |
+| HUKS_RSA_KEY_SIZE_512        | 512  | 表示使用RSA算法的密钥长度为512bit。        |
+| HUKS_RSA_KEY_SIZE_768        | 768  | 表示使用RSA算法的密钥长度为768bit。        |
+| HUKS_RSA_KEY_SIZE_1024       | 1024 | 表示使用RSA算法的密钥长度为1024bit。       |
+| HUKS_RSA_KEY_SIZE_2048       | 2048 | 表示使用RSA算法的密钥长度为2048bit。       |
+| HUKS_RSA_KEY_SIZE_3072       | 3072 | 表示使用RSA算法的密钥长度为3072bit。       |
+| HUKS_RSA_KEY_SIZE_4096       | 4096 | 表示使用RSA算法的密钥长度为4096bit。       |
+| HUKS_ECC_KEY_SIZE_224        | 224  | 表示使用ECC算法的密钥长度为224bit。        |
+| HUKS_ECC_KEY_SIZE_256        | 256  | 表示使用ECC算法的密钥长度为256bit。        |
+| HUKS_ECC_KEY_SIZE_384        | 384  | 表示使用ECC算法的密钥长度为384bit。        |
+| HUKS_ECC_KEY_SIZE_521        | 521  | 表示使用ECC算法的密钥长度为521bit。        |
+| HUKS_AES_KEY_SIZE_128        | 128  | 表示使用AES算法的密钥长度为128bit。        |
+| HUKS_AES_KEY_SIZE_192        | 196  | 表示使用AES算法的密钥长度为196bit。        |
+| HUKS_AES_KEY_SIZE_256        | 256  | 表示使用AES算法的密钥长度为256bit。        |
+| HUKS_AES_KEY_SIZE_512        | 512  | 表示使用AES算法的密钥长度为512bit。        |
+| HUKS_CURVE25519_KEY_SIZE_256 | 256  | 表示使用CURVE25519算法的密钥长度为256bit。 |
+| HUKS_DH_KEY_SIZE_2048        | 2048 | 表示使用DH算法的密钥长度为2048bit。        |
+| HUKS_DH_KEY_SIZE_3072        | 3072 | 表示使用DH算法的密钥长度为3072bit。        |
+| HUKS_DH_KEY_SIZE_4096        | 4096 | 表示使用DH算法的密钥长度为4096bit。        |
 
 ## HuksKeyAlg
 
@@ -254,14 +254,14 @@ import huks from '@ohos.security.huks'
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Security.Huks。
 
 
-| 名称                  | 值      | 说明                              |
-| --------------------- | ------- | --------------------------------- |
-| HUKS_TAG_TYPE_INVALID | 0 << 28 | 表示非法的Tag类型。               |
-| HUKS_TAG_TYPE_INT     | 1 << 28 | 表示该Tag的数据类型为number。     |
-| HUKS_TAG_TYPE_UINT    | 2 << 28 | 表示该Tag的数据类型为number。     |
-| HUKS_TAG_TYPE_ULONG   | 3 << 28 | 表示该Tag的数据类型为bigint。     |
-| HUKS_TAG_TYPE_BOOL    | 4 << 28 | 表示该Tag的数据类型为boolean。    |
-| HUKS_TAG_TYPE_BYTES   | 5 << 28 | 表示该Tag的数据类型为Uint8Array。 |
+| 名称                  | 值      | 说明                                    |
+| --------------------- | ------- | --------------------------------------- |
+| HUKS_TAG_TYPE_INVALID | 0 << 28 | 表示非法的Tag类型。                     |
+| HUKS_TAG_TYPE_INT     | 1 << 28 | 表示该Tag的数据类型为int类型的number。  |
+| HUKS_TAG_TYPE_UINT    | 2 << 28 | 表示该Tag的数据类型为uint类型的number。 |
+| HUKS_TAG_TYPE_ULONG   | 3 << 28 | 表示该Tag的数据类型为bigint。           |
+| HUKS_TAG_TYPE_BOOL    | 4 << 28 | 表示该Tag的数据类型为boolean。          |
+| HUKS_TAG_TYPE_BYTES   | 5 << 28 | 表示该Tag的数据类型为Uint8Array。       |
 
 ## HuksTag
 
@@ -273,15 +273,15 @@ import huks from '@ohos.security.huks'
 | -------------------------------------- | ---------------------------------------- | -------------------------------------- |
 | HUKS_TAG_INVALID                       | HuksTagType.HUKS_TAG_TYPE_INVALID \| 0   | 表示非法的Tag。                        |
 | HUKS_TAG_ALGORITHM                     | HUKS_TAG_TYPE_UINT \| 1                  | 表示算法的Tag。                        |
-| HUKS_TAG_PURPOSE                       | HuksTagType.HUKS_TAG_TYPE_UINT \| 2      | 表示密钥（密钥对）用途的Tag。          |
-| HUKS_TAG_KEY_SIZE                      | HuksTagType.HUKS_TAG_TYPE_UINT \| 3      | 表示密钥（密钥对）长度的Tag。          |
+| HUKS_TAG_PURPOSE                       | HuksTagType.HUKS_TAG_TYPE_UINT \| 2      | 表示密钥用途的Tag。                    |
+| HUKS_TAG_KEY_SIZE                      | HuksTagType.HUKS_TAG_TYPE_UINT \| 3      | 表示密钥长度的Tag。                    |
 | HUKS_TAG_DIGEST                        | HuksTagType.HUKS_TAG_TYPE_UINT \| 4      | 表示摘要算法的Tag。                    |
 | HUKS_TAG_PADDING                       | HuksTagType.HUKS_TAG_TYPE_UINT \| 5      | 表示补齐算法的Tag。                    |
 | HUKS_TAG_BLOCK_MODE                    | HuksTagType.HUKS_TAG_TYPE_UINT \| 6      | 表示加密模式的Tag。                    |
 | HUKS_TAG_KEY_TYPE                      | HuksTagType.HUKS_TAG_TYPE_UINT \| 7      | 表示密钥类型的Tag。                    |
-| HUKS_TAG_ASSOCIATED_DATA               | HuksTagType.HUKS_TAG_TYPE_BYTES \| 8     | 表示表示附加身份验证数据的Tag。        |
-| HUKS_TAG_NONCE                         | HuksTagType.HUKS_TAG_TYPE_BYTES \| 9     | 表示表示密钥偏移量的Tag。              |
-| HUKS_TAG_IV                            | HuksTagType.HUKS_TAG_TYPE_BYTES \| 10    | 表示表示密钥偏移量的Tag。              |
+| HUKS_TAG_ASSOCIATED_DATA               | HuksTagType.HUKS_TAG_TYPE_BYTES \| 8     | 表示附加身份验证数据的Tag。            |
+| HUKS_TAG_NONCE                         | HuksTagType.HUKS_TAG_TYPE_BYTES \| 9     | 表示密钥加解密的字段。                 |
+| HUKS_TAG_IV                            | HuksTagType.HUKS_TAG_TYPE_BYTES \| 10    | 表示密钥初始化的向量。                 |
 | HUKS_TAG_INFO                          | HuksTagType.HUKS_TAG_TYPE_BYTES \| 11    | 表示密钥派生时的info。                 |
 | HUKS_TAG_SALT                          | HuksTagType.HUKS_TAG_TYPE_BYTES \| 12    | 表示密钥派生时的盐值。                 |
 | HUKS_TAG_PWD                           | HuksTagType.HUKS_TAG_TYPE_BYTES \| 13    | 表示密钥派生时的password。             |
@@ -352,7 +352,7 @@ import huks from '@ohos.security.huks'
 
 generateKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void
 
-生成密钥（密钥对），使用Callback回调异步返回结果。
+生成密钥，使用Callback回调异步返回结果。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Security.Huks。
 
@@ -403,7 +403,7 @@ huks.generateKey(alias, options, function (err, data){});
 
 generateKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 
-生成密钥（密钥对），使用Promise方式异步返回结果。
+生成密钥，使用Promise方式异步返回结果。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Security.Huks。
 
@@ -528,9 +528,9 @@ getSdkVersion(options: HuksOptions) : string
 
 **返回值：**
 
-| 类型   | 说明                                                         |
-| ------ | ------------------------------------------------------------ |
-| string | 返回sdk版本。<br/>**系统能力**：SystemCapability.Security.Huks |
+| 类型   | 说明          |
+| ------ | ------------- |
+| string | 返回sdk版本。 |
 
 **示例：**
 
@@ -545,7 +545,7 @@ var result = huks.getSdkVersion(emptyOptions);
 
 importKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void
 
-导入密钥对，使用Callback方式回调异步返回结果 。
+导入密钥，使用Callback方式回调异步返回结果 。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Security.Huks。
 
@@ -593,7 +593,7 @@ huks.importKey(keyAlias, options, function (err, data){});
 
 importKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 
-导入密钥对，使用Promise方式异步返回结果。
+导入密钥，使用Promise方式异步返回结果。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Security.Huks。
 
@@ -646,7 +646,7 @@ var result = huks.importKey(keyAlias, options);
 
 exportKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void
 
-导出密钥对，使用Callback方式回调异步返回的结果。
+导出密钥，使用Callback方式回调异步返回的结果。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Security.Huks。
 
@@ -672,7 +672,7 @@ huks.exportKey(keyAlias, emptyOptions, function (err, data){});
 
 exportKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 
-导出密钥对，使用Promise方式回调异步返回的结果。
+导出密钥，使用Promise方式回调异步返回的结果。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Security.Huks。
 
@@ -687,7 +687,7 @@ exportKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 
 | 类型                                | 说明                                                         |
 | ----------------------------------- | ------------------------------------------------------------ |
-| Promise\<[HuksResult](#huksresult)> | 返回HUKS_SUCCESS时表示接口使用成功，其他时为错误。outData：返回从密钥中导出的公钥。<br/>**系统能力**：SystemCapability.Security.Huks |
+| Promise\<[HuksResult](#huksresult)> | 返回HUKS_SUCCESS时表示接口使用成功，其他时为错误。outData：返回从密钥中导出的公钥。 |
 
 **示例：**
 
@@ -713,7 +713,7 @@ getKeyProperties(keyAlias: string, options: HuksOptions, callback: AsyncCallback
 | -------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | keyAlias | string                                    | 是   | 密钥别名，应与所用密钥生成时使用的别名相同。                 |
 | options  | [HuksOptions](#huksoptions)               | 是   | 空对象（此处传空即可）。                                     |
-| callback | AsyncCallback\<[HuksResult](#huksresult)> | 是   | errorCode：返回HUKS_SUCCESS时表示接口使用成功，其他时为错误properties：返回值为从生成key时传入的别名。中导出的生成密钥时所需参数。 |
+| callback | AsyncCallback\<[HuksResult](#huksresult)> | 是   | errorCode：返回HUKS_SUCCESS时表示接口使用成功，其他时为错误。 |
 
 **示例：**
 
@@ -737,14 +737,14 @@ getKeyProperties(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 
 | 参数名   | 类型        | 必填 | 说明                                                         |
 | -------- | ----------- | ---- | ------------------------------------------------------------ |
-| keyAlias | string      | 是   | 密钥别名，应与所用密钥生成时使用的别名相同。<br/>**系统能力**：SystemCapability.Security.Huks |
-| options  | [HuksOptions](#huksoptions) | 是   | 空对象（此处传空即可）。<br/>**系统能力**：SystemCapability.Security.Huks |
+| keyAlias | string      | 是   | 密钥别名，应与所用密钥生成时使用的别名相同。 |
+| options  | [HuksOptions](#huksoptions) | 是   | 空对象（此处传空即可）。 |
 
 **返回值：**
 
 | 类型               | 说明                                                         |
 | ------------------ | ------------------------------------------------------------ |
-| Promise\<[HuksResult](#huksoptions)> | errorCode：返回HUKS_SUCCESS时表示接口使用成功，其他时为错误。properties：返回值为从生成key时传入的别名。中导出的生成密钥时所需参数。<br/>**系统能力**：SystemCapability.Security.Huks |
+| Promise\<[HuksResult](#huksoptions)> | errorCode：返回HUKS_SUCCESS时表示接口使用成功，其他时为错误。properties：返回值为从生成key时传入的别名。中导出的生成密钥时所需参数。 |
 
 **示例：**
 
@@ -818,7 +818,7 @@ var result = huks.isKeyExist(keyAlias, emptyOptions);
 
 init(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksHandle>) : void
 
-init操作接口，使用Callback回调异步返回结果 。
+init操作密钥接口，使用Callback回调异步返回结果 。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Security.Huks。
 
@@ -863,7 +863,7 @@ huks.init(alias, options, function(err, data) {
 
 init(keyAlias: string, options: HuksOptions) : Promise\<HuksHandle>
 
-init操作接口，使用Promise方式异步返回结果。
+init操作密钥接口，使用Promise方式异步返回结果。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Security.Huks。
 
@@ -913,7 +913,7 @@ huks.init(alias, options).then((data) => {
 
 update(handle: number, token?: Uint8Array, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void
 
-update操作接口，使用Callback回调异步返回结果 。
+update操作密钥接口，使用Callback回调异步返回结果 。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Security.Huks。
 
@@ -952,7 +952,7 @@ huks.update(handle, options, function (err, data){});
 
 update(handle: number, token?: Uint8Array, options: HuksOptions) : Promise\<HuksResult>
 
-update操作接口，使用Promise方式异步返回结果。
+update操作密钥接口，使用Promise方式异步返回结果。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Security.Huks。
 
@@ -991,7 +991,7 @@ var result = huks.update(handle, options)
 
 finish(handle: number, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void
 
-finish操作接口，使用Callback回调异步返回结果 。
+finish操作密钥接口，使用Callback回调异步返回结果 。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Security.Huks。
 
@@ -1029,7 +1029,7 @@ huks.finish(handle, options, function (err, data){});
 
 finish(handle: number, options: HuksOptions) : Promise\<HuksResult>
 
-finish操作接口，使用Promise方式异步返回结果。
+finish操作密钥接口，使用Promise方式异步返回结果。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Security.Huks。
 
@@ -1068,7 +1068,7 @@ var result = huks.finish(handle, options)
 
 abort(handle: number, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void
 
-abort操作接口，使用Callback回调异步返回结果 。
+abort操作密钥接口，使用Callback回调异步返回结果 。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Security.Huks。
 
@@ -1106,7 +1106,7 @@ huks.abort(handle, options, function (err, data){});
 
 abort(handle: number, options: HuksOptions) : Promise\<HuksResult>;
 
-abort操作接口，使用Promise方式异步返回结果。
+abort操作密钥接口，使用Promise方式异步返回结果。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Security.Huks。
 
