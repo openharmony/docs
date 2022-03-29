@@ -6,25 +6,22 @@
 
 
 1. 打开DevEco Studio，点击Create Project。如果已有一个工程，则点击File &gt; New &gt; New project。
+
    ![zh-cn_image_0000001168956332](figures/zh-cn_image_0000001168956332.png)
 
 2. 
-   进入选择ability template界面，选择[Standard]Empty Ability。
+   进入选择Ability Template界面，选择Empty Ability。
 
    ![zh-cn_image_0000001168059158](figures/zh-cn_image_0000001168059158.png)
 
-3. 
-   安装OpenHarmony SDK。
-
-   ![zh-cn_image_0000001213462329](figures/zh-cn_image_0000001213462329.png)
-
-4. 进入配置工程界面，将工程名字改为HealthyDiet，Project Type选择Application，Device Type选择Phone，Language选择eTS，选择兼容API Version 7。DevEco Studio会默认将工程保存在C盘，如果要更改工程保存位置，点击Save Location的文件夹图标，自行指定工程创建位置。配置完成后点击Finish。
-   
+4. 进入配置工程界面，将工程名字改为HealthyDiet，Project Type选择Application，Compile API选择8，UI Syntax选择eTS。DevEco Studio会默认将工程保存在C盘，如果要更改工程保存位置，点击Save Location的文件夹图标，自行指定工程创建位置。配置完成后点击Finish。
+  
 
    ![zh-cn_image_0000001167746622](figures/zh-cn_image_0000001167746622.png)
 
 5. 工程创建完成后，打开app.ets。
    app.ets提供了应用生命周期的接口：onCreate和onDestroy，分别在应用创建之初和应用被销毁时调用。在app.ets里可以声明全局变量，并且声明的数据和方法是整个应用共享的。
+   
    ```
    export default {
        onCreate() {
@@ -35,7 +32,7 @@
        },
    }
    ```
-
+   
 6. 在工程导航栏里，打开index.ets。该页面展示了当前的UI描述，声明式UI框架会自动生成一个组件化的struct，这个struct遵循Builder接口声明，在build方法里面声明当前的布局和组件。
    ```
    @Entry
