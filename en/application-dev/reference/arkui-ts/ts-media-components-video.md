@@ -15,25 +15,25 @@ The **&lt;Video&gt;** component does not support any child component.
 
 ## APIs
 
-Video(value: VideoOption)
+Video(value: VideoOptions)
 
-- VideoOption attributes
+- VideoOptions attributes
     | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
   | src | string | No | - | Path of the video source. |
   | currentProgressRate | number \| PlaybackSpeed<sup>8+</sup> | No | 1.0 \| PlaybackSpeed.Speed_Forward_1_00_X | Video playback speed.<br/>> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>> The value of the number type can only be **0.75**, **1.0**, **1.25**, **1.75**, or **2.0**.<br/>> <br/>>  |
-  | previewUri | string \| PixelMap<sup>8+</sup> \|[Resource](../../ui/ts-types.md) | No | - | Path of the preview image. |
+  | previewUri | string \| PixelMap<sup>8+</sup> \|[Resource](../../ui/ts-types.md#Resource-Type) | No | - | Path of the preview image. |
   | controller | [VideoController](#videocontroller) | No | - | Controller. |
 
 
 - PlaybackSpeed<sup>8+</sup>
-    | Name | Description | 
+    | Name | Description |
   | -------- | -------- |
-  | Speed_Forward_0_75_X | 0.75x playback speed. | 
-  | Speed_Forward_1_00_X | 1x playback speed. | 
-  | Speed_Forward_1_25_X | 1.25x playback speed. | 
-  | Speed_Forward_1_75_X | 1.75x playback speed. | 
-  | Speed_Forward_2_00_X | 2x playback speed. | 
+  | Speed_Forward_0_75_X | 0.75x playback speed. |
+  | Speed_Forward_1_00_X | 1x playback speed. |
+  | Speed_Forward_1_25_X | 1.25x playback speed. |
+  | Speed_Forward_1_75_X | 1.75x playback speed. |
+  | Speed_Forward_2_00_X | 2x playback speed. |
 
 
 ## Attributes
@@ -49,16 +49,16 @@ Video(value: VideoOption)
 
 ## Events
 
-  | Name | Description | 
+| Name | Description |
 | -------- | -------- |
-| onStart() =&gt; void | Triggered when the video is played. | 
-| onPause() =&gt; void | Triggered when the video playback is paused. | 
-| onFinish() =&gt; void | Triggered when the video playback is finished. | 
+| onStart() =&gt; void | Triggered when the video is played. |
+| onPause() =&gt; void | Triggered when the video playback is paused. |
+| onFinish() =&gt; void | Triggered when the video playback is finished. |
 | onError() =&gt; void | Triggered when the video playback fails. |
-| onPrepared(event?: { duration: number }) =&gt; void | Triggered when video preparation is complete. The video duration (in seconds) is obtained from **duration**. | 
-| onSeeking(event?: { time: number }) =&gt; void | Triggered to report the time (in seconds) when the progress bar is being dragged. | 
-| onSeeked(event?: { time: number }) =&gt; void | Triggered to report the playback time (in seconds) when the user finishes dragging the progress bar. | 
-| onUpdate(event?: { time: number }) =&gt; void | Triggered once per 250 ms when the playback progress changes. The unit of the current playback time is second. | 
+| onPrepared(event?: { duration: number }) =&gt; void | Triggered when video preparation is complete. The video duration (in seconds) is obtained from **duration**. |
+| onSeeking(event?: { time: number }) =&gt; void | Triggered to report the time (in seconds) when the progress bar is being dragged. |
+| onSeeked(event?: { time: number }) =&gt; void | Triggered to report the playback time (in seconds) when the user finishes dragging the progress bar. |
+| onUpdate(event?: { time: number }) =&gt; void | Triggered once per 250 ms when the playback progress changes. The unit of the current playback time is second. |
 
 
 ### VideoController
@@ -66,21 +66,21 @@ Video(value: VideoOption)
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > A **VideoController** object can control one or more videos.
 
-  | Name | Description | 
+| Name | Description |
 | -------- | -------- |
-| start() : void | Starts playback. | 
-| pause() : void | Pauses playback. | 
-| stop() : void | Stops playback. | 
-| setCurrentTime(value: number) | Sets the video playback position. | 
+| start() : void | Starts playback. |
+| pause() : void | Pauses playback. |
+| stop() : void | Stops playback. |
+| setCurrentTime(value: number) | Sets the video playback position. |
 | setCurrentTime(value: number, seekMode: SeekMode)<sup>8+</sup> | Sets the video playback position with the specified seek mode. |
 
 - SeekMode<sup>8+</sup>
-    | Name | Description | 
+    | Name | Description |
   | -------- | -------- |
-  | PreviousKeyframe | Seeks to the nearest previous keyframe. | 
-  | NextKeyframe | Seeks to the nearest next keyframe. | 
-  | ClosestKeyframe | Seeks to the nearest keyframe. | 
-  | Accurate | Seeks to a specific frame, regardless of whether the frame is a keyframe. | 
+  | PreviousKeyframe | Seeks to the nearest previous keyframe. |
+  | NextKeyframe | Seeks to the nearest next keyframe. |
+  | ClosestKeyframe | Seeks to the nearest keyframe. |
+  | Accurate | Seeks to a specific frame, regardless of whether the frame is a keyframe. |
 
 
 ## Example
