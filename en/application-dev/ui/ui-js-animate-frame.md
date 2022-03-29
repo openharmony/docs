@@ -1,11 +1,13 @@
-# Animation Frame<a name="EN-US_TOPIC_0000001217286541"></a>
+# Animation Frame
 
-## Requesting an Animation Frame<a name="section1280411399304"></a>
 
-Use the  **requestAnimationFrame**  method to request frames on a one-by-one basis. This method accepts a callback as an argument.
+## Requesting an Animation Frame
 
-When  **runframe**  calls  **requestAnimationFrame**, the  **step**  callback with the  **timestamp**  parameter is passed, and this  **timestamp**  iss assigned to  **startTime**. When the difference between the  **timestamp**  and  **startTime**  is less than the specified value,  **requestAnimationFrame**  is called again, and the animation stops.
+Use the requestAnimationFrame method to request frames on a one-by-one basis. This method accepts a callback as an argument.
 
+When runframe calls requestAnimationFrame, the step callback with the timestamp parameter is passed, and this timestamp iss assigned to startTime. When the difference between the timestamp and startTime is less than the specified value, requestAnimationFrame is called again, and the animation stops.
+
+  
 ```
 <!-- xxx.hml -->
 <div class="container">
@@ -25,6 +27,7 @@ When  **runframe**  calls  **requestAnimationFrame**, the  **step**  callback wi
 </div>
 ```
 
+  
 ```
 /* xxx.css */
 .container {
@@ -39,6 +42,7 @@ button{
 }
 ```
 
+  
 ```
 /* xxx.js */
 export default {
@@ -93,15 +97,17 @@ export default {
 }
 ```
 
-![](figures/3333.gif)
+![en-us_image_0000001267767877](figures/en-us_image_0000001267767877.gif)
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
->When invoking the callback, the  **requestAnimationFrame**  method passes the timestamp as the first parameter, which indicates the time when  **requestAnimationFrame**  starts to execute the callback.
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
+> When invoking the callback, the requestAnimationFrame method passes the timestamp as the first parameter, which indicates the time when requestAnimationFrame starts to execute the callback.
 
-## Canceling an Animation Frame<a name="section13657493110"></a>
 
-Use the  **cancelAnimationFrame**  method to cancel frames on a one-by-one basis. When this method is called, the animation frame request sent through  **requestAnimationFrame**  will be canceled.
+## Canceling an Animation Frame
 
+Use the cancelAnimationFrame method to cancel frames on a one-by-one basis. When this method is called, the animation frame request sent through requestAnimationFrame will be canceled.
+
+  
 ```
 <!-- xxx.hml -->
 <div class="container">
@@ -121,6 +127,7 @@ Use the  **cancelAnimationFrame**  method to cancel frames on a one-by-one basis
 </div>
 ```
 
+  
 ```
 /* xxx.css */
 .container {
@@ -135,6 +142,7 @@ button{
 }
 ```
 
+  
 ```
 /* xxx.js */
 export default {
@@ -181,8 +189,7 @@ export default {
 }
 ```
 
-![](figures/4444.gif)
+![en-us_image_0000001223127740](figures/en-us_image_0000001223127740.gif)
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
->When  **cancelAnimationFrame**  is called, a parameter that indicates an ID must be passed.
-
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
+> When cancelAnimationFrame is called, a parameter that indicates an ID must be passed.

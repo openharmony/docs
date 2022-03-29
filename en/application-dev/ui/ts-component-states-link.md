@@ -1,17 +1,26 @@
-# @Link<a name="EN-US_TOPIC_0000001110948894"></a>
+# @Link
 
-Two-way binding can be established between the  **@Link**  decorated variable and the  **@State**  decorated variable of the parent component. The  **@Link**  data has the following features:
 
--   **Support for multiple types**: The value of the  **@Link**  decorated variable can be of the same type as the  **@State**  decorated variable; that is, the value can be of the following types:  **class**,  **number**,  **string**,  **boolean**, or arrays of these types.
--   **Private**: Data is accessed only within the component.
--   **Single data source**: The variable of the parent component for initializing the  **@Link**  decorated variable must be the  **@State**  decorated variable.
--   **Two-way binding**: When a child component changes the  **@Link**  decorated variable, the  **@State**  decorated variable of its parent component is also changed.
--   **Support for initialization with the variable reference passed to the @Link decorated variable**: When creating a new instance of the component, you must use the naming parameter to initialize all  **@Link**  decorated variables. The  **@Link**  decorated variable can be initialized by using the reference of the  **@State**  or  **@Link**  decorated variable. Wherein, the  **@State**  decorated variable can be referenced using the '**$**' operator.
+Two-way binding can be established between the @Link decorated variable and the @State decorated variable of the parent component. The @Link data has the following features:
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
->The  **@Link**  decorated variable cannot be initialized within the component.
 
-## Simple Type Example<a name="section19793192619582"></a>
+- Support for multiple types: The value of the @Link decorated variable can be of the same type as the @State decorated variable; that is, the value can be of the following types: class, number, string, boolean, or arrays of these types.
+
+- Private: Data is accessed only within the component.
+
+- Single data source: The variable of the parent component for initializing the @Link decorated variable must be the @State decorated variable.
+
+- Two-way binding: When a child component changes the @Link decorated variable, the @State decorated variable of its parent component is also changed.
+
+- Support for initialization with the variable reference passed to the @Link decorated variable: When creating a new instance of the component, you must use the naming parameter to initialize all @Link decorated variables. The @Link decorated variable can be initialized by using the reference of the @State or @Link decorated variable. Wherein, the @State decorated variable can be referenced using the '$' operator.
+
+
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
+> The @Link decorated variable cannot be initialized within the component.
+
+
+## Simple Type Example
+
 
 ```
 @Entry
@@ -41,9 +50,11 @@ struct PlayButton {
 }
 ```
 
-The  **@Link**  semantics are derived from the '**$**' operator. In other words,  **$isPlaying**  is the two-way binding of the internal state  **this.isPlaying**. When you click  **PlayButton**, the  **<Image\>**  and  **<Text\>**  components of  **PlayButton**  are refreshed at the same time.
+The @Link semantics are derived from the '$' operator. In other words, $isPlaying is the two-way binding of the internal state this.isPlaying. When you click PlayButton, the &lt;Image&gt; and &lt;Text&gt; components of PlayButton are refreshed at the same time.
 
-## Complex Type Example<a name="section2921131712010"></a>
+
+## Complex Type Example
+
 
 ```
 @Entry
@@ -80,9 +91,11 @@ struct Child {
 }
 ```
 
-In the example above, click  **Button1**  and  **Button2**  to change the list of text items displayed in the parent component.
+In the example above, click Button1 and Button2 to change the list of text items displayed in the parent component.
 
-## Example of Using @Link, @State, and @Prop Together<a name="section17490315415"></a>
+
+## Example of Using @Link, @State, and @Prop Together
+
 
 ```
 @Entry
@@ -118,8 +131,8 @@ struct ChildB {
 }
 ```
 
-In the preceding example,  **ParentView**  contains two child components:  **ChildA**  and  **ChildB**. They are initialized by the state variable  **counter**  of  **ParentView**.
+In the preceding example, ParentView contains two child components: ChildA and ChildB. They are initialized by the state variable counter of ParentView.
 
--   **ChildB**  uses  **@Link**  to establish two-way state binding. When the value of the  **counterRef**  state variable is changed in  **ChildB**, the change is synchronized to  **ParentView**  and  **ChildA**.
--   **ChildA**  uses  **@Prop**  to establish one-way state binding from  **ParentView**  to itself. When  **ChildA**  changes the state, it is re-rendered, but the change is not updated to  **ParentView**  or  **ChildB**.
+- ChildB uses @Link to establish two-way state binding. When the value of the counterRef state variable is changed in ChildB, the change is synchronized to ParentView and ChildA.
 
+- ChildA uses @Prop to establish one-way state binding from ParentView to itself. When ChildA changes the state, it is re-rendered, but the change is not updated to ParentView or ChildB.

@@ -1,31 +1,28 @@
-# @Component<a name="EN-US_TOPIC_0000001157388849"></a>
+# @Component
 
-A struct decorated by  **@Component**  has the component-based capability and can serve as an independent component. This type of component is also called a custom component.
 
-This component can be combined with other components. It describes the UI structure by implementing the  **build**  method, which must comply with the  **Builder**  API constraints. The API definition is as follows:
+A struct decorated by @Component has the componentization capability and can serve as an independent component. This type of component is also called a custom component, and its UI structure is described in the build method. Custom components have the following features:
 
-```
-interface Builder {
-    build: () => void
-}
-```
 
-Custom components have the following features:
+- Composability: Custom components can be used with preset or other components, as well as common attributes and methods.
 
--   **Composability:**  Custom components can be used with preset or other components, as well as common attributes and methods.
--   **Reusable:**  Custom components can be reused by other components and used as different instances in different parent components or containers.
--   **Lifecycle:**  Custom components provide callbacks for service logic processing throughout the lifecycle.
--   **Data-driven update:**  The UI of custom components can be automatically updated based on the status data.
+- Reusable: Custom components can be reused by other components and used as different instances in different parent components or containers.
 
-The component lifecycle mainly involves two callbacks,  **aboutToAppear**  and  **aboutToDisappear**  . For details, see  [Custom Component Lifecycle Callbacks](ts-custom-component-lifecycle-callbacks.md).
+- Lifecycle: Custom components provide callbacks for service logic processing throughout the lifecycle.
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
->-   Components must comply with the preceding  **Builder**  API constraints. Other components are combined in declarative mode in the internal  **build**  method. The  **build**  method is called when a component is created or updated for the first time.
->-   Custom constructors are prohibited for components.
+- Data-driven update: The UI of custom components can be automatically updated based on the data of state variables.
 
-## Example<a name="section84921442616"></a>
 
-The following code illustrates how to create a custom component named  **MyComponent**:
+For details about componentization, see [About @Component](ts-function-build.md).
+
+
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
+> - The build method must be defined for a custom component.
+> 
+> - Custom constructors are prohibited for custom components.
+
+
+The following code illustrates how to create a custom component named MyComponent:
 
 ```
 @Component
@@ -39,9 +36,11 @@ struct MyComponent {
 }
 ```
 
-The  **build**  method of  **MyComponent**  is executed during initial rendering. When the component status changes, the  **build**  method will be executed again.
 
-The following code illustrates how to use  **MyComponent**:
+The build method of MyComponent is executed during initial rendering. When the component status changes, the build method will be executed again.
+
+
+The following code illustrates how to use MyComponent:
 
 ```
 @Component
@@ -56,7 +55,8 @@ struct ParentComponent {
 }
 ```
 
-**MyComponent**  can be embedded multiple times and can be nested in different components, as shown in the code below:
+
+MyComponent can be applied multiple times and reused in different components, as shown in the code below:
 
 ```
 @Component
@@ -85,4 +85,3 @@ struct ParentComponent {
     }
 }
 ```
-

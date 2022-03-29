@@ -1,8 +1,10 @@
-# Adding a Comment<a name="EN-US_TOPIC_0000001063470826"></a>
+# Adding a Comment
+
 
 After a user enters a comment and clicks the submit button, the content is displayed in the comment area. The user can click the delete button to delete the current comment and enter another comment again.
 
-To set such a comment area on a page, you need to associate a click event with  **<div\>**,  **<text\>**, and  **<input\>**. You can use the  **<input\>**  component to obtain the comment entered by a user, use the  **<text\>**  component to display the comment, and use  **commentText**  to mark the  **<text\>**  component \(controlled by the  **if**  attribute\). Associate the click event with the  **<text\>**  component that contains  **Done**  and  **Delete**  to update the  **commentText**  and  **inputValue**. The following is an example:
+
+To set such a comment area on a page, you need to associate a click event with &lt;div&gt;, &lt;text&gt;, and &lt;input&gt;. You can use the &lt;input&gt; component to obtain the comment entered by a user, use the &lt;text&gt; component to display the comment, and use commentText to mark the &lt;text&gt; component (controlled by the if attribute). Associate the click event with the &lt;text&gt; component that contains Done and Delete to update the commentText and inputValue. The following is an example:
 
 ```
 <!-- xxx.hml -->
@@ -18,6 +20,8 @@ To set such a comment area on a page, you need to associate a click event with  
   </div>
 </div>
 ```
+
+
 
 ```
 /* xxx.css */
@@ -60,6 +64,8 @@ To set such a comment area on a page, you need to associate a click event with  
 }
 ```
 
+
+
 ```
 // xxx.js
 export default {
@@ -75,4 +81,3 @@ export default {
   },
 }
 ```
-

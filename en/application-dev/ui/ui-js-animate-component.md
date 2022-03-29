@@ -1,10 +1,13 @@
-# Component Animation<a name="EN-US_TOPIC_0000001171528146"></a>
+# Component Animation
 
-Create and run an animation shortcut on the component. For details, see  [Universal Methods](../reference/arkui-js/js-components-common-methods.md).
 
-## Obtaining an Animation Object<a name="section662542112713"></a>
+Create and run an animation shortcut on the component. For details, see [Universal Methods](../reference/arkui-js/js-components-common-methods.md).
 
-Call the  **animate**  method to obtain an  **animation**  object, which supports animation attributes, methods, and events.
+
+## Obtaining an Animation Object
+
+Call the animate method to obtain an animation object, which supports animation attributes, methods, and events.
+
 
 ```
 <!-- xxx.hml -->
@@ -12,6 +15,7 @@ Call the  **animate**  method to obtain an  **animation**  object, which support
   <div id="content" class="box" onclick="Show"></div>
 </div>
 ```
+
 
 ```
 /* xxx.css */
@@ -28,6 +32,7 @@ Call the  **animate**  method to obtain an  **animation**  object, which support
   margin-top: 30px;
 }
 ```
+
 
 ```
 /* xxx.js */
@@ -57,15 +62,17 @@ export default {
 }
 ```
 
-![](figures/1-14.gif)
+![en-us_image_0000001222807812](figures/en-us_image_0000001222807812.gif)
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
->-   When using the  **animate**  method, you must pass the  keyframes  and  options  parameters.
->-   If  **animate**  is called multiple times and the  **replace**  policy is used, parameters passed to the last call will take effect.
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
+> - When using the animate method, you must pass the keyframes and options parameters.
+> - If animate is called multiple times and the replace policy is used, parameters passed to the last call will take effect.
 
-## Setting Animation Parameters<a name="section36079502817"></a>
 
-After obtaining an  **animation**  object, you can set its style working on the component by using the  keyframes  parameter.
+## Setting Animation Parameters
+
+After obtaining an animation object, you can set its style working on the component by using the keyframes parameter.
+
 
 ```
 <!-- xxx.hml -->
@@ -73,6 +80,7 @@ After obtaining an  **animation**  object, you can set its style working on the 
    <div id="content" class="box" onclick="Show"></div>
 </div>
 ```
+
 
 ```
 /* xxx.css */
@@ -89,6 +97,7 @@ After obtaining an  **animation**  object, you can set its style working on the 
   margin-top: 30px;
 }
 ```
+
 
 ```
 /* xxx.js */
@@ -134,13 +143,15 @@ export default {
 }
 ```
 
-![](figures/1-15.gif)
+![en-us_image_0000001267647897](figures/en-us_image_0000001267647897.gif)
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
->-   The sequence of  **translate**,  **scale**, and  **rotate**  affects the animation effect.
->-   **transformOrigin**  works only for  **scale**  and  **rotate**.
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
+> - The sequence of translate, scale, and rotate affects the animation effect.
+> 
+> - transformOrigin works only for scale and rotate.
 
 Set the animation attributes by using the options parameter.
+
 
 ```
 <!-- xxx.hml -->
@@ -148,6 +159,7 @@ Set the animation attributes by using the options parameter.
    <div id="content" class="box" onclick="Show"></div>
 </div>
 ```
+
 
 ```
 /* xxx.css */
@@ -165,6 +177,7 @@ Set the animation attributes by using the options parameter.
 }
 ```
 
+
 ```
 /* xxx.js */
 export default {
@@ -174,13 +187,7 @@ export default {
   onInit() {
   },
   onShow() {
-    var options = {
-      duration: 1500,
-      easing: 'ease-in',
-      delay: 5,
-      iterations: 2,
-      direction: 'normal',
-    };
+    var options = {      duration: 1500,      easing: 'ease-in',      delay: 5,      iterations: 2,      direction: 'normal',    };
     var frames = [
       {
         transform: {
@@ -201,18 +208,24 @@ export default {
 }
 ```
 
-![](figures/3-16.gif)
+![en-us_image_0000001222967796](figures/en-us_image_0000001222967796.gif)
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
->**direction**: mode of playing the animation.
->**normal**: plays the animation in forward loop mode.
->**reverse**: plays the animation in reverse loop mode.
->**alternate**: plays the animation in alternating loop mode. When the animation is played for an odd number of times, the playback is in forward direction. When the animation is played for an even number of times, the playback is in reverse direction.
->**alternate-reverse**: plays the animation in reverse alternating loop mode. When the animation is played for an odd number of times, the playback is in reverse direction. When the animation is played for an even number of times, the playback is in forward direction.
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
+> direction: mode of playing the animation.
+> 
+> normal: plays the animation in forward loop mode.
+> 
+> reverse: plays the animation in reverse loop mode.
+> 
+> alternate: plays the animation in alternating loop mode. When the animation is played for an odd number of times, the playback is in forward direction. When the animation is played for an even number of times, the playback is in reverse direction.
+> 
+> alternate-reverse: plays the animation in reverse alternating loop mode. When the animation is played for an odd number of times, the playback is in reverse direction. When the animation is played for an even number of times, the playback is in forward direction.
 
-## Adding an Event and Calling a Method<a name="section950105162810"></a>
 
-Animation objects support animation events and methods. You can achieve the intended animation by adding  **start**  and  **cancel**  events and calling the  **play**,  **pause**,  **rewind**, and  **stop**  methods.
+## Adding an Event and Calling a Method
+
+Animation objects support animation events and methods. You can achieve the intended animation by adding start and cancel events and calling the play, pause, rewind, and stop methods.
+
 
 ```
 <!-- xxx.hml -->
@@ -229,6 +242,7 @@ Animation objects support animation events and methods. You can achieve the inte
    </div>
 </div>
 ```
+
 
 ```
 /* xxx.css */
@@ -261,6 +275,7 @@ button{
   left: 120px;
 }
 ```
+
 
 ```
 /* xxx.js */
@@ -336,9 +351,10 @@ export default {
 }
 ```
 
-![](figures/111-17.gif)
+![en-us_image_0000001223127752](figures/en-us_image_0000001223127752.gif)
 
-Change the animation status by changing the  **playStat**  attribute.
+Change the animation status by changing the playStat attribute.
+
 
 ```
 <!-- xxx.hml -->
@@ -353,6 +369,7 @@ Change the animation status by changing the  **playStat**  attribute.
   </div>
 </div>
 ```
+
 
 ```
 /* xxx.css */
@@ -385,6 +402,7 @@ button{
   top: 75%;
 }
 ```
+
 
 ```
 /* xxx.js */
@@ -463,5 +481,4 @@ export default {
 }
 ```
 
-![](figures/1111.gif)
-
+![en-us_image_0000001267607921](figures/en-us_image_0000001267607921.gif)

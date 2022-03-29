@@ -1,7 +1,10 @@
-# ForEach<a name="EN-US_TOPIC_0000001110788996"></a>
+# ForEach
 
-The development framework provides  **ForEach**  to iterate arrays and create components for each array item.  **ForEach**  is defined as follows:
 
+The development framework provides ForEach to iterate arrays and create components for each array item. ForEach is defined as follows:
+
+
+  
 ```
 ForEach(
     arr: any[], // Array to be iterated
@@ -10,28 +13,48 @@ ForEach(
 )
 ```
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
->-   Loop rendering uses  **ForEach**  to automatically generate child components from the provided array.
->-   **ForEach**  must be used in container components.
->-   The first parameter must be an array. An empty array is allowed. If an array is empty, no child component is created. You can set the functions whose return values are of the array type, for example,  **arr.slice \(1, 3\)**. The set functions cannot change any state variables including the array itself, such as  **Array.splice**,  **Array.sort**, and  **Array.reverse**.
->-   The second parameter is used to generate the lambda function of the child components. It generates one or more child components for a given array item. A single component and its child component list must be contained in the braces \(\{...\}\).
->-   The third parameter is optional and used as an anonymous function for key value generation. It generates a unique and stable key value for a given array item. When the position of a subitem in the array is changed, the key value of the subitem cannot be changed. When a subitem in the array is replaced with a new item, the key value of the current item must be different from the key value of the new item. The key-value generator is optional. However, for performance reasons, it is strongly recommended that the generator be provided, so that the development framework can better identify array changes. If the array is reversed while no key-value generator is provided, all nodes in  **ForEach**  will be rebuilt.
->-   The generated child components must be allowed in the parent container component of  **ForEach**. The child component generator function can contain the  **if/else**  conditional statement. In addition,  **ForEach**  can be contained in the  **if/else**  conditional statement.
->-   The calling sequence of subitem generator functions may be different from that of the data items in the array. During the development, do not assume whether the subitem generator and key value generator functions are executed and the execution sequence. The following is an example of incorrect usage:
->    ```
->    ForEach(anArray, item => {Text(`${++counter}. item.label`)})
->    ```
->    Below is an example of correct usage:
->    ```
->    ForEach(anArray.map((item1, index1) => { return { i: index1 + 1, data: item1 }; }), 
->            item => Text(`${item.i}. item.data.label`),
->            item => item.data.id.toString())
->    ```
 
-## Example<a name="section155489126613"></a>
+## ForEach
+
+
+ForEach(arr: any[],itemGenerator: (item: any, index?: number) => void, keyGenerator?: (item: any, index?: number) => string):void
+
+
+  Table1 Parameters
+
+| Name | Type | Mandatory | Default Value | Description | 
+| -------- | -------- | -------- | -------- | -------- |
+| arr | any[] | Yes | - | Must be an array. An empty array is allowed. If an array is empty, no child component is created. You can set the functions whose return values are of the array type, for example, arr.slice (1, 3). The set functions cannot change any state variables including the array itself, such as Array.splice, Array.sort, and Array.reverse. | 
+| itemGenerator | (item: any, index?: number) => void | Yes | - | Used to generate the lambda function of the child components. It generates one or more child components for a given array item. A single component and its child component list must be contained in braces ({...}) | 
+| keyGenerator | (item: any, index?: number) => string | No | - | Used as an anonymous parameter for generating a unique and stable key value for a given array item. When the position of a subitem in the array is changed, the key value of the subitem cannot be changed. When a subitem in the array is replaced with a new item, the key value of the current item must be different from that of the new item. This key-value generator is optional. However, for performance reasons, it is strongly recommended that the key-value generator be provided, so that the development framework can better identify array changes. If the array is reversed while no key-value generator is provided, all nodes in ForEach will be rebuilt. | 
+
+
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
+> - ForEach must be used in container components.
+> 
+> - The generated child components are allowed in the parent container component of ForEach. The child component generator function can contain the if/else conditional statement, and the if/else conditional statement can contain ForEach.
+> 
+> - The calling sequence of subitem generator functions may be different from that of the data items in the array. During the development, do not assume whether the subitem generator and key value generator functions are executed and the execution sequence. The following is an example of incorrect usage:
+>     
+>   ```
+>   ForEach(anArray, item => {Text(`${++counter}. item.label`)})
+>   ```
+> 
+>   Below is an example of correct usage:
+> 
+>     
+>   ```
+>   ForEach(anArray.map((item1, index1) => { return { i: index1 + 1, data: item1 }; }), 
+>           item => Text(`${item.i}. item.data.label`),
+>           item => item.data.id.toString())
+>   ```
+
+
+## Example
 
 The following is an example of a simple-type array:
 
+  
 ```
 @Entry
 @Component
@@ -57,8 +80,8 @@ struct MyComponent {
 }
 ```
 
-The following is an example of a complex-type array:
-
+  The following is an example of a complex-type array:
+  
 ```
 class Month {
   year: number
@@ -121,4 +144,3 @@ struct Calendar1 {
   }
 }
 ```
-

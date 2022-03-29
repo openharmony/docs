@@ -1,19 +1,21 @@
-# Picker<a name="EN-US_TOPIC_0000001155695748"></a>
+# &lt;picker&gt; Development
 
-The  **<picker\>**  component supports common, date, time, data and time, and multi-column text selectors. For details, see  [picker](../reference/arkui-js/js-components-basic-picker.md).
 
-## Creating a <picker\> Component<a name="section19696122895318"></a>
+The &lt;picker&gt; component supports common, date, time, data and time, and multi-column text selectors. For details, see [picker](../reference/arkui-js/js-components-basic-picker.md).
 
-Create a  **<picker\>**  component in the  **.hml**  file under  **pages/index**.
+
+## Creating a &lt;picker&gt; Component
+
+Create a &lt;picker&gt; component in the .hml file under pages/index.
+
 
 ```
 <!-- index.hml -->
 <div class="container">
-  <picker>
-    picker
-  </picker>
+  <picker>    picker  </picker>
 <div>
 ```
+
 
 ```
 /* index.css */
@@ -25,11 +27,13 @@ Create a  **<picker\>**  component in the  **.hml**  file under  **pages/index**
 }
 ```
 
-![](figures/20211008-184455(welinkpc).gif)
+![en-us_image_0000001223287716](figures/en-us_image_0000001223287716.gif)
 
-## Setting the Picker Type<a name="section78391556183"></a>
 
-Set the  **type**  attribute of the  **<picker\>**  component. For example, set it to  **date**.
+## Setting the Picker Type
+
+Set the type attribute of the &lt;picker&gt; component. For example, set it to date.
+
 
 ```
 <!-- index.hml -->
@@ -38,6 +42,7 @@ Set the  **type**  attribute of the  **<picker\>**  component. For example, set 
   <picker id="picker_date" type="date" value="{{datevalue}}" lunarswitch="true" start="2002-2-5" end="2030-6-5" class="pickerdate"></picker>
 </div>
 ```
+
 
 ```
 /* index.css */
@@ -52,6 +57,7 @@ Set the  **type**  attribute of the  **<picker\>**  component. For example, set 
 }
 ```
 
+
 ```
 // xxx.js
 export default {
@@ -63,15 +69,18 @@ export default {
 }
 ```
 
-![](figures/20211217-130837(welinkpc).gif)
+![en-us_image_0000001267647893](figures/en-us_image_0000001267647893.gif)
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
->-   When setting the value range of a common selector, you must use the data binding mode.
->-   The  **lunarswitch**  attribute of the date selector is only supported on phones and tablets.
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
+> - When setting the value range of a common selector, you must use the data binding mode.
+> 
+> - The lunarswitch attribute of the date selector is only supported on phones and tablets.
 
-## Setting the Time Format<a name="section1971415321217"></a>
 
-Set the  **hours**  attribute to specify the time format used by the time selector. Available values include  **12**  and  **24**, indicating the 12-hour format and 24-hour format, respectively.
+## Setting the Time Format
+
+Set the hours attribute to specify the time format used by the time selector. Available values include 12 and 24, indicating the 12-hour format and 24-hour format, respectively.
+
 
 ```
 <!-- index.hml -->
@@ -80,6 +89,7 @@ Set the  **hours**  attribute to specify the time format used by the time select
   <picker id="picker_time" type="time" value="24-hour format" hours="24" onchange="timeonchange"  class="pickertime"></picker>
 </div>
 ```
+
 
 ```
 /* index.css */
@@ -96,15 +106,18 @@ Set the  **hours**  attribute to specify the time format used by the time select
 }
 ```
 
-![](figures/25.gif)
+![en-us_image_0000001222807808](figures/en-us_image_0000001222807808.gif)
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
->-   When  **hours**  is set to  **12**, the time is displayed in 12-hour format and distinguished by a.m. and p.m.
->-   When  **hours**  is set to  **24**, the time is displayed in 24-hour format.
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
+> - When hours is set to 12, the time is displayed in 12-hour format and distinguished by a.m. and p.m.
+> 
+> - When hours is set to 24, the time is displayed in 24-hour format.
 
-## Adding Response Events<a name="section20659132323820"></a>
 
-To confirm and cancel selection, add  **change**  and  **cancel**  events.
+## Adding Response Events
+
+To confirm and cancel selection, add change and cancel events.
+
 
 ```
 <!-- index.hml -->
@@ -113,6 +126,7 @@ To confirm and cancel selection, add  **change**  and  **cancel**  events.
      {{multitextselect}}" onchange="multitextonchange" oncancel="multitextoncancel" class="pickermuitl"></picker>
 </div>
 ```
+
 
 ```
 /* index.css */
@@ -130,6 +144,7 @@ To confirm and cancel selection, add  **change**  and  **cancel**  events.
   letter-spacing:15px;
 }
 ```
+
 
 ```
 // xxx.js
@@ -150,11 +165,13 @@ export default {
 }
 ```
 
-![](figures/26.gif)
+![en-us_image_0000001223127748](figures/en-us_image_0000001223127748.gif)
 
-## Example Scenario<a name="section36086283455"></a>
 
-Implement a health check-in application by using the  **<picker\>**  component.
+## Example Scenario
+
+
+Implement a health check-in application by using the &lt;picker&gt; component.
 
 ```
 <!-- index.hml -->
@@ -277,5 +294,5 @@ export default {
 }
 ```
 
-![](figures/qqqq.gif)
 
+![en-us_image_0000001267887877](figures/en-us_image_0000001267887877.gif)

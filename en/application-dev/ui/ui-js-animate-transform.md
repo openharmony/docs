@@ -1,11 +1,14 @@
-# Defining Animations with the transform Attribute<a name="EN-US_TOPIC_0000001171687726"></a>
+# Defining Animations with the transform Attribute
 
-Set the  **transform**  attribute for component rotation, scaling, translation, and skewing.
 
-## Designing Static Animation<a name="section82321901242"></a>
+Set the transform attribute for component rotation, scaling, translation, and skewing.
 
-Create a square and rotate it by 90 degrees to form a rhombus. Cover the lower part of the rhombus with a rectangle to form a roof. Set the  **translate**  attribute of the rectangle to the coordinate \(150px, -150px\) to form a door, use the  **position**  attribute to translate the horizontal and vertical axes to the specified coordinates of the parent component \(square\), set the  **scale**  attribute to scale up the parent and child components together to determine the window size, and use the  **skewX**  attribute to skew the component and set the coordinate  **translate\(200px,-830px\)**  to form a chimney.
 
+## Designing Static Animation
+
+Create a square and rotate it by 90 degrees to form a rhombus. Cover the lower part of the rhombus with a rectangle to form a roof. Set the translate attribute of the rectangle to the coordinate (150px, -150px) to form a door, use the position attribute to translate the horizontal and vertical axes to the specified coordinates of the parent component (square), set the scale attribute to scale up the parent and child components together to determine the window size, and use the skewX attribute to skew the component and set the coordinate translate(200px,-830px) to form a chimney.
+
+  
 ```
 <!-- xxx.hml -->
 <div class="container">
@@ -21,6 +24,7 @@ Create a square and rotate it by 90 degrees to form a rhombus. Cover the lower p
 </div>
 ```
 
+  
 ```
 /* xxx.css */
 .container {
@@ -86,12 +90,14 @@ Create a square and rotate it by 90 degrees to form a rhombus. Cover the lower p
 }
 ```
 
-![](figures/111-13.png)
+![en-us_image_0000001267887841](figures/en-us_image_0000001267887841.png)
 
-## Designing Translation Animation<a name="section1212234417247"></a>
+
+## Designing Translation Animation
 
 Decrease the y-coordinate over a time frame to make the ball bounce back. Gradually decrease the bounce height until it drops to 0. An animation where the ball falls is hereby created.
 
+  
 ```
 <!-- xxx.hml -->
 <div class="container">
@@ -100,6 +106,7 @@ Decrease the y-coordinate over a time frame to make the ball bounce back. Gradua
 </div>
 ```
 
+  
 ```
 /* xxx.css */
 .container {
@@ -162,12 +169,14 @@ Decrease the y-coordinate over a time frame to make the ball bounce back. Gradua
 }
 ```
 
-![](figures/q2.gif)
+![en-us_image_0000001222967760](figures/en-us_image_0000001222967760.gif)
 
-## Designing Rotation Animation<a name="section74101411112517"></a>
 
-Set the rotation center around an element in different  **transform-origin**  positions. Of the  **rotate3d**  values, the first three values are the rotation vectors of the x-axis, y-axis, and z-axis, respectively; the fourth value is the rotation angle, which can be a negative value to indicate that the rotation is performed counterclockwise.
+## Designing Rotation Animation
 
+Set the rotation center around an element in different transform-origin positions. Of the rotate3d values, the first three values are the rotation vectors of the x-axis, y-axis, and z-axis, respectively; the fourth value is the rotation angle, which can be a negative value to indicate that the rotation is performed counterclockwise.
+
+  
 ```
 <!-- xxx.hml -->
 <div class="container">
@@ -187,6 +196,7 @@ Set the rotation center around an element in different  **transform-origin**  po
 </div>
 ```
 
+  
 ```
 /* xxx.css */
 .container {
@@ -292,17 +302,19 @@ Set the rotation center around an element in different  **transform-origin**  po
 }
 ```
 
-![](figures/d2.gif)
+![en-us_image_0000001222807776](figures/en-us_image_0000001222807776.gif)
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
->**transform-origin**  specifies the origin of an element's transformation. If only one value is set, the other value is  **50%**. If both values are set, the first value indicates the position on the x-axis, and the second value indicates the position on the y-axis.
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
+> transform-origin specifies the origin of an element's transformation. If only one value is set, the other value is 50%. If both values are set, the first value indicates the position on the x-axis, and the second value indicates the position on the y-axis.
 
-## Designing Scaling Animation<a name="section137551633132519"></a>
 
-This example implements a ripple animation with the  **scale**  attribute. Here is the overall procedure: First, use the positioning function to determine the coordinates of the element's position. Then, create multiple components to achieve the overlapping effect. After that, set the  **opacity**  attribute to hide or display the components. To scale and hide/display a component at the same time, set both the  **scale**  and  **opacity**  attributes. Finally, set different animation durations for different components to achieve the diffusion effect.
+## Designing Scaling Animation
 
-Set the scaling values for the x-axis, y-axis, and z-axis in  **scale3d**  to implement the animation.
+This example implements a ripple animation with the scale attribute. Here is the overall procedure: First, use the positioning function to determine the coordinates of the element's position. Then, create multiple components to achieve the overlapping effect. After that, set the opacity attribute to hide or display the components. To scale and hide/display a component at the same time, set both the scale and opacity attributes. Finally, set different animation durations for different components to achieve the diffusion effect.
 
+Set the scaling values for the x-axis, y-axis, and z-axis in scale3d to implement the animation.
+
+  
 ```
 <!-- xxx.hml -->
 <div class="container">
@@ -318,6 +330,7 @@ Set the scaling values for the x-axis, y-axis, and z-axis in  **scale3d**  to im
 </div>
 ```
 
+  
 ```
 /* xxx.css */
 .container {
@@ -333,14 +346,12 @@ Set the scaling values for the x-axis, y-axis, and z-axis in  **scale3d**  to im
   height: 100px;
   border-radius: 50px;
   background:linear-gradient(#dcaec1, #d3a8e3);
-  z-index: 1;
-  position: absolute;
+  z-index: 1;  position: absolute;
 }
 .ripple{
   margin-top: 400px;
   margin-left: 40%;
-  position: absolute;
-  z-index: 0;
+  position: absolute;  z-index: 0;
   width: 100px;
   height: 100px;
   border-radius: 50px;
@@ -406,15 +417,17 @@ text{
 }
 ```
 
-![](figures/d3.gif)
+![en-us_image_0000001267887837](figures/en-us_image_0000001267887837.gif)
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
->After the  **transform**  attributes are set, the child element changes with the parent element. Value changing of other attributes \(such as  **height**  and  **width**\) of the parent element will not affect the child element.
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
+> After the transform attributes are set, the child element changes with the parent element. Value changing of other attributes (such as height and width) of the parent element will not affect the child element.
 
-## Setting matrix<a name="section114961910132614"></a>
 
-The  **matrix**  attribute defines a transformation matrix with six input parameters:  **scaleX**,  **skewY**,  **skewX**,  **scaleY**,  **translateX**, and  **translateY**. In the following example,  **matrix**  is set to  **matrix\(1,0,0,1,0,200\)**  to skew and translate the component.
+## Setting matrix
 
+The matrix attribute defines a transformation matrix with six input parameters: scaleX, skewY, skewX, scaleY, translateX, and translateY. In the following example, matrix is set to matrix(1,0,0,1,0,200) to skew and translate the component.
+
+  
 ```
 <!-- xxx.hml -->
 <div class="container">
@@ -422,6 +435,7 @@ The  **matrix**  attribute defines a transformation matrix with six input parame
 </div>
 ```
 
+  
 ```
 /* xxx.css */
 .container{
@@ -451,12 +465,14 @@ The  **matrix**  attribute defines a transformation matrix with six input parame
 }
 ```
 
-![](figures/q3.gif)
+![en-us_image_0000001267767853](figures/en-us_image_0000001267767853.gif)
 
-## Integrating transform Attributes<a name="section20503152610"></a>
 
-You can set multiple  **transform**  attributes at the same time to apply different transformations to a component. The following example applies the  **scale**,  **translate**, and  **rotate**  attributes simultaneously.
+## Integrating transform Attributes
 
+You can set multiple transform attributes at the same time to apply different transformations to a component. The following example applies the scale, translate, and rotate attributes simultaneously.
+
+  
 ```
 <!-- xxx.hml -->
 <div class="container">
@@ -468,6 +484,7 @@ You can set multiple  **transform**  attributes at the same time to apply differ
 </div>
 ```
 
+  
 ```
 /* xxx.css */
 .container{
@@ -514,8 +531,7 @@ You can set multiple  **transform**  attributes at the same time to apply differ
 /* Use change1 and change2 for comparison. */
 @keyframes change1{
   0%{
-    transform: translate(0,0);
-    transform: rotate(0deg)
+    transform: translate(0,0);    transform: rotate(0deg)
   }
   100%{
     transform: translate(0,500px);
@@ -559,10 +575,11 @@ You can set multiple  **transform**  attributes at the same time to apply differ
 }
 ```
 
-![](figures/d4.gif)
+![en-us_image_0000001223127712](figures/en-us_image_0000001223127712.gif)
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
->1.  When multiple  **transform**  attributes are set, the later one overwrites the previous one. To apply multiple transform styles at the same time, use the shorthand notation; that is, write multiple style values in one  **transform**, for example,  **transform: scale\(1\) rotate\(0\) translate\(0,0\)**.
->2.  When using the shorthand notion, note that the animation effect varies according to the sequence of the style values.
->3.  The style values in the  **transform**  attribute used when the animation starts and ends must be in one-to-one mapping. Only the styles that have value mappings are played.
-
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
+> 1. When multiple transform attributes are set, the later one overwrites the previous one. To apply multiple transform styles at the same time, use the shorthand notation; that is, write multiple style values in one transform, for example, transform: scale(1) rotate(0) translate(0,0).
+> 
+> 2. When using the shorthand notion, **NOTE** that the animation effect varies according to the sequence of the style values.
+> 
+> 3. The style values in the transform attribute used when the animation starts and ends must be in one-to-one mapping. Only the styles that have value mappings are played.

@@ -1,7 +1,10 @@
-# @CustomDialog<a name="EN-US_TOPIC_0000001192355895"></a>
+# @CustomDialog
 
-The  **@CustomDialog**  decorator is used to decorate custom pop-up dialog boxes.
 
+The @CustomDialog decorator is used to decorate custom pop-up dialog boxes.
+
+
+  
 ```
 // custom-dialog-demo.ets
 @CustomDialog
@@ -46,4 +49,3 @@ struct CustomDialogUser {
     }
 }
 ```
-

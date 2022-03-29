@@ -4,7 +4,7 @@
 System resources include colors, rounded corners, fonts, spacing, character strings, and images. By using system resources, you can develop different applications with the same visual style.
 
 
-To reference a system resource, use the **"$r('sys.type.resource_id')"** format. Wherein: **sys** indicates a system resource; **type** indicates the resource type, which can be **color**, **float**, **string**, or **media**; **resource_id** indicates the resource ID, which is determined when the system resource is provided. For details about available system resource IDs.
+To reference a system resource, use the "$r('sys.type.resource_id')" format. Wherein: sys indicates a system resource; type indicates the resource type, which can be color, float, string, or media; resource_id indicates the resource ID, which is determined when the system resource is provided. For details about available system resource IDs.
 
 ```
 Text('Hello')

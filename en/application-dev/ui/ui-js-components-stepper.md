@@ -1,19 +1,22 @@
-# Stepper<a name="EN-US_TOPIC_0000001156894290"></a>
+# &lt;stepper&gt; Development
 
-When multiple steps are required to complete a task, you can use the  **<stepper\>**  component to navigate your users through the whole process. For details, see  [stepper](../reference/arkui-js/js-components-container-stepper.md).
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
->This component is supported since API version 5.
+When multiple steps are required to complete a task, you can use the &lt;stepper&gt; component to navigate your users through the whole process. For details, see [stepper](../reference/arkui-js/js-components-container-stepper.md).
 
-## Creating a <stepper\> Component<a name="section1820920264"></a>
 
-Create a  **<stepper\>**  component in the  **.hml**  file under  **pages/index**.
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
+> This component is supported since API version 5.
+
+
+## Creating a &lt;stepper&gt; Component
+
+Create a &lt;stepper&gt; component in the .hml file under pages/index.
+
 
 ```
 <!-- index.hml -->
 <div class="container"> 
- <stepper>    
-   <stepper-item>     
+ <stepper>    <stepper-item>     
      <text>Step 1</text>
    </stepper-item> 
    <stepper-item>     
@@ -22,6 +25,7 @@ Create a  **<stepper\>**  component in the  **.hml**  file under  **pages/index*
  </stepper> 
 </div>
 ```
+
 
 ```
 /* xxx.css */
@@ -38,11 +42,13 @@ text{
 }
 ```
 
-![](figures/2-7.gif)
+![en-us_image_0000001223287656](figures/en-us_image_0000001223287656.gif)
 
-## Setting the Index<a name="section1696313408199"></a>
 
-Set  **index**  to the index value of the step that you want to display by default.
+## Setting the Index
+
+Set index to the index value of the step that you want to display by default.
+
 
 ```
 <!-- index.hml -->
@@ -61,6 +67,7 @@ Set  **index**  to the index value of the step that you want to display by defau
 </div>
 ```
 
+
 ```
 /* index.css */
 .container {
@@ -74,9 +81,10 @@ text{
 }
 ```
 
-![](figures/10.gif)
+![en-us_image_0000001267767837](figures/en-us_image_0000001267767837.gif)
 
-Set the  **label**  attribute to customize the button text for the  **<stepper-item\>**.
+Set the label attribute to customize the button text for the &lt;stepper-item&gt;.
+
 
 ```
 <!-- index.hml -->
@@ -98,6 +106,7 @@ Set the  **label**  attribute to customize the button text for the  **<stepper-i
 </div>
 ```
 
+
 ```
 /* index.css */
 .container {
@@ -111,14 +120,12 @@ text{
 }
 ```
 
+
 ```
 /* index.js */
 export default { 
   data: {
-    label_1:{
-      nextLabel: 'NEXT',
-      status: 'normal'
-    },
+    label_1:{      nextLabel: 'NEXT',      status: 'normal'    },
     label_2:{
       prevLabel: 'BACK',
       nextLabel: 'NEXT',
@@ -133,11 +140,12 @@ export default {
 }
 ```
 
-![](figures/11-8.gif)
+![en-us_image_0000001267767841](figures/en-us_image_0000001267767841.gif)
 
-## Setting the Style<a name="section482815298502"></a>
 
-By default, the  **<stepper\>**  component fills entire space of its container. The sample code below shows how to set the border and background color using the  **border**  and  **background-color**  attributes.
+## Setting the Style
+
+  By default, the &lt;stepper&gt; component fills entire space of its container. The sample code below shows how to set the border and background color using the border and background-color attributes.
 
 ```
 <!-- index.hml -->
@@ -152,6 +160,7 @@ By default, the  **<stepper\>**  component fills entire space of its container. 
 </div>
 ```
 
+
 ```
 /* index.css */
 .container {
@@ -165,8 +174,7 @@ By default, the  **<stepper\>**  component fills entire space of its container. 
   height: 300px;
 }
 .stepperClass{
-  border:1px solid silver ;
-  background-color: white;
+  border:1px solid silver ;  background-color: white;
 }
 text{
   width: 100%;
@@ -175,14 +183,16 @@ text{
 }
 ```
 
-![](figures/02.png)
+![en-us_image_0000001223287668](figures/en-us_image_0000001223287668.png)
 
-## Adding Events<a name="section331041121215"></a>
 
-The  **<stepper\>**  component supports the  **finish**,  **change**,  **next**,  **back**, and  **skip**  events.
+## Adding Events
 
--   When the  **change**  and  **next**  or  **back**  events exist at the same time, the  **next**  or  **back**  event is executed before the  **change**  event.
--   Before resetting the  **index**  attribute, you must remove the current value. Otherwise, the value change cannot be detected.
+The &lt;stepper&gt; component supports the finish, change, next, back, and skip events.
+
+- When the change and next or back events exist at the same time, the next or back event is executed before the change event.
+
+- Before resetting the index attribute, you must remove the current value. Otherwise, the value change cannot be detected.
 
 ```
 <!-- index.hml -->
@@ -204,6 +214,7 @@ The  **<stepper\>**  component supports the  **finish**,  **change**,  **next**,
   </div>
 </div>
 ```
+
 
 ```
 /* xxx.css */
@@ -230,6 +241,7 @@ button{
   margin-top: 20px;
 }
 ```
+
 
 ```
 /* index.js */
@@ -272,13 +284,15 @@ export default {
 }
 ```
 
-![](figures/37.gif)
+![en-us_image_0000001267607869](figures/en-us_image_0000001267607869.gif)
 
-## Example Scenario<a name="section1117302718531"></a>
+
+## Example Scenario
 
 Select the options displayed on the page. Your selection will be shown in real time. Click the next button to dynamically change the font color and font size on the page.
 
-Use the  **<stepper\>**  component to navigate through the steps. Create a  [**<toggle\>**](../reference/arkui-js/js-components-basic-toggle.md)  component to implement the functions of selection and displaying the selection result. Then use the  [**<select\>**](../reference/arkui-js/js-components-basic-select.md)  component to dynamically change the font color or size of the selected options.
+Use the &lt;stepper&gt; component to navigate through the steps. Create a [&lt;toggle&gt;](../reference/arkui-js/js-components-basic-toggle.md) component to implement the functions of selection and displaying the selection result. Then use the [&lt;select&gt;](../reference/arkui-js/js-components-basic-select.md) component to dynamically change the font color or size of the selected options.
+
 
 ```
 <div class="container">
@@ -321,6 +335,7 @@ Use the  **<stepper\>**  component to navigate through the steps. Create a  [**<
 </div>
 ```
 
+
 ```
 /* xxx.css */
 .container {
@@ -339,6 +354,7 @@ Use the  **<stepper\>**  component to navigate through the steps. Create a  [**<
   margin-top: 30px;
 }
 ```
+
 
 ```
 /* index.js */
@@ -382,5 +398,4 @@ export default {
 }
 ```
 
-![](figures/28.gif)
-
+![en-us_image_0000001267887817](figures/en-us_image_0000001267887817.gif)

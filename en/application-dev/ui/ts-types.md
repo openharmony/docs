@@ -4,33 +4,33 @@
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| Length | string&nbsp;\|&nbsp;number | Length unit. If the input is a number, use **vp**. If the input is a string, explicitly specify the unit, for example, **'10px'**, or specify the length in percentage, for example, **'100%'**.|
+| Length | string \| number | Length unit. If the input is a number, use vp. If the input is a string, explicitly specify the unit, for example, '10px', or specify the length in percentage, for example, '100%'.|
 
 
 ## Angle Type
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| Angle | string&nbsp;\|&nbsp;number | Angle unit. If the input is a number, use **deg**. If the input is a string, explicitly specify the unit, which can be either of the following: <br/>-&nbsp;deg, as in **'100deg'** <br/>-&nbsp;rad, as in **'3.14rad'** |
+| Angle | string \| number | Angle unit. If the input is a number, use deg. If the input is a string, use either of the following angle units:<br>- deg: for example, '100deg'<br>- rad: for example, '3.14rad' |
 
 
 ## Point Type
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| Point | [Length,&nbsp;Length] | Coordinates of a point. The first value is the x-axis coordinate, and the second value is the y-axis coordinate.|
+| Point | [Length, Length] | Coordinates of a point. The first value is the x-axis coordinate, and the second value is the y-axis coordinate.|
 
 
 ## Color Type
 
-The **Color** used by the component attribute method is described as follows:
+The Color type used by component attribute methods is described as follows:
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| Color | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Color | Color information. If the input is a string, use **rgb** or **rgba** to specify the color. If the input is a number, use Hex format to specify the color. If the input is a **Color" enum, use a color value to specify the color. <br/>-&nbsp;'rgb(255,&nbsp;255,&nbsp;255)' <br/>-&nbsp;'rgba(255,&nbsp;255,&nbsp;255,&nbsp;1.0)' <br/>-&nbsp;Hex format: 0xrrggbb, 0xaarrggbb, '\#FFFFFF' <br/>-&nbsp;Enum: Color.Black, Color.White|
+| Color | string \| number \| Color | Color information. If the input is a string, use rgb or rgba to specify the color. If the input is a number, use Hex format to specify the color. If the input is a Color enum, use a color value to specify the color.<br>- 'rgb(255, 255, 255)'<br>- 'rgba(255, 255, 255, 1.0)'<br>- Hex format: 0xrrggbb, 0xaarrggbb, '\#FFFFFF'<br>- Enum: Color.Black, Color.White |
 
 
-The supported **Color** enums are described as follows:
+The supported Color enums are described as follows:
 
 
 | Color| Value| Illustration|
@@ -49,55 +49,60 @@ The supported **Color** enums are described as follows:
 
 ## ColorStop Type
 
-**ColorStop** is used to describe the progressive color stop.
+ColorStop is used to describe the progressive color stop.
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| ColorStop | [Color,&nbsp;number] | Type of the progressive color stop. The first parameter specifies the color value, and the second parameter specifies the ratio of 0 to 1.|
+| ColorStop | [Color, number] | Type of the progressive color stop. The first parameter specifies the color value, and the second parameter specifies the ratio of 0 to 1.|
 
 
 ## Resource Type
 
-Resource reference type, which is used to set the value of a component attribute.
+The Resource type is used to reference resources for setting the value of a component attribute.
 
-You can use **$r** or **$rawfile** to create a **Resource** object. For details, see [Resource Access](ts-media-resource-type.md).
+You can use $r or $rawfile to create a Resource object. For details, see [Resource Access](ts-application-resource-access.md).
 
 - $r('belonging.type.name')
-  **belonging**: system or application resource. The value can be **'sys'** or **'app'**.
+  belonging: system or application resource. The value can be 'sys' or 'app'.
 
-  **type**: resource type, which can be **'color'**, **'float'**, **'string'**, or **'media'**.
+  type: resource type, which can be 'color', 'float', 'string', or 'media'.
 
-  **name**: resource name, which is determined during resource definition.
+  name: resource name, which is determined during resource definition.
 
 - $rawfile('filename')
-  **filename**: name of the file in **resources/rawfile** of the project.
+  filename: name of the file in resources/rawfile of the project.
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| Resource | {<br/>readonly&nbsp;id:&nbsp;[number];<br/>readonly&nbsp;type:&nbsp;[number];<br/>readonly&nbsp;params?:&nbsp;any[];<br/>} | **id**: resource ID. <br/>**type**: resource type (enumerated value). <br/>**params**: optional parameters. <br/>After a **Resource** object is created using **$r** or **$rawfile**, modifying attribute values of the object is prohibited.|
+| Resource | {<br>readonly id: [number];<br>readonly type: [number];<br>readonly params?: any[];<br>} | id: resource ID.<br>type: resource type (enumerated value).<br>params: optional parameters.<br>After a Resource object is created using $r or $rawfile, modifying attribute values of the object is prohibited.|
 
 
-## ResourceStr<sup>8+</sup>
-
-| Name| Type| Description|
-| -------- | -------- | -------- |
-| ResourceStr | string&nbsp;\|&nbsp;[Resource](#resourcetype) | Resource string.|
-
-
-## Resource Color<sup>8+</sup>
+## ResourceStr Type<sup>8+</sup>
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| ResourceColor | Color&nbsp;\|&nbsp;number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](#resourcetype) | Resource color.|
+| ResourceStr | string \| Resource| Resource string.|
 
 
-## Custom Builder<sup>8+</sup>
-
-You can use **CustomBuilder** to define custom UI descriptions in component attribute methods.
+## ResourceColor Type<sup>8+</sup>
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| CustomBuilder | ()&nbsp;=&gt;&nbsp;any | Builder of component attribute methods for defining custom UI descriptions. This type of method must be decorated by **@Builder**. For details, see [@Builder](ts-component-based-builder.md).|
+| ResourceColor | Color \| number \| string \| Resource | Resource color.|
+
+## Font Type<sup>8+</sup>
+
+| Name| Type| Description|
+| -------- | -------- | -------- |
+| Font | {<br>size?: Length;<br>weight?: FontWeight \| number  \| string;<br>family?: string  \| Resource;<br>style?: FontStyle;<br>} | Text style.<br>size: font size. For the number type, use the unit fp.<br>weight: font weight. For the number type, the value ranges from 100 to 900, at an interval of 100. The default value is 400. A larger value indicates a larger font weight.<br>family: font family. Use commas (,) to separate multiple fonts. The priority of the fonts is the sequence in which they are placed. An example value is 'Arial, sans-serif'.<br>style: font style.|
+
+## CustomBuilder Type<sup>8+</sup>
+
+You can use CustomBuilder to define custom UI descriptions in component attribute methods.
+
+| Name| Type| Description|
+| -------- | -------- | -------- |
+| CustomBuilder | () => any | Builder of component attribute methods for defining custom UI descriptions. This type of method must be decorated by @Builder. For details, see [@Builder](ts-component-based-builder.md).|
 
 
 ## Example

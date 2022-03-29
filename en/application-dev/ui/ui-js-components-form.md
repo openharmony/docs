@@ -1,22 +1,25 @@
-# Form<a name="EN-US_TOPIC_0000001201655789"></a>
+# &lt;form&gt; Development
 
-The  **<form\>**  component allows the content in  [**<input\>**](../reference/arkui-js/js-components-basic-input.md)  components to be submitted and reset. For details, see  [form](../reference/arkui-js/js-components-container-form.md).
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
->This component is supported since API version 6.
+The &lt;form&gt; component allows the content in [&lt;input&gt;](../reference/arkui-js/js-components-basic-input.md)components to be submitted and reset. For details, see [form](../reference/arkui-js/js-components-container-form.md).
 
-## Creating a <form\> Component<a name="section1688401116367"></a>
 
-Create a  **<form\>**  component in the  **.hml**  file under  **pages/index**.
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
+> This component is supported since API version 6.
+
+
+## Creating a &lt;form&gt; Component
+
+  Create a &lt;form&gt; component in the .hml file under pages/index.
 
 ```
 <!-- xxx.hml -->
 <div class="container">
-  <form> 
-    <input type="text" style="width:80%"></input>
+  <form>  <input type="text" style="width:80%"></input>
   </form>
 </div>
 ```
+
 
 ```
 /* xxx.css */
@@ -28,11 +31,12 @@ Create a  **<form\>**  component in the  **.hml**  file under  **pages/index**.
 }
 ```
 
-![](figures/11.png)
+![en-us_image_0000001267887873](figures/en-us_image_0000001267887873.png)
 
-## Zooming In or Out on a Form<a name="section462755916266"></a>
 
-To implement the zoom effect after a form is clicked, add the  **click-effect**  attribute to the  **<form\>**  component. For values of  **click-effect**, see  [Universal Attributes](../reference/arkui-js/js-components-common-attributes.md).
+## Zooming In or Out on a Form
+
+  To implement the zoom effect after a form is clicked, add the click-effect attribute to the &lt;form&gt; component. For values of click-effect, see [Universal Attributes](../reference/arkui-js/js-components-common-attributes.md).
 
 ```
 <!-- xxx.hml -->
@@ -43,9 +47,11 @@ To implement the zoom effect after a form is clicked, add the  **click-effect** 
 </div>
 ```
 
-## Setting the Form Style<a name="section17276142315293"></a>
 
-Add the  **background-color**  and  **border**  attributes.
+## Setting the Form Style
+
+
+Add the background-color and border attributes.
 
 ```
 /* xxx.css */
@@ -62,11 +68,13 @@ Add the  **background-color**  and  **border**  attributes.
 }
 ```
 
-![](figures/7.gif)
 
-## Adding Response Events<a name="section1587614482301"></a>
+![en-us_image_0000001267607913](figures/en-us_image_0000001267607913.gif)
 
-To submit or reset a form, add the  **submit**  and  **reset**  events.
+
+## Adding Response Events
+
+  To submit or reset a form, add the submit and reset events.
 
 ```
 <!-- xxx.hml -->
@@ -88,6 +96,7 @@ To submit or reset a form, add the  **submit**  and  **reset**  events.
 </div>
 ```
 
+
 ```
 /* xxx.js */
 import prompt from '@system.prompt';
@@ -105,13 +114,16 @@ export default{
 }
 ```
 
-![](figures/8-6.gif)
 
-## Example Scenario<a name="section54252520379"></a>
+![en-us_image_0000001267767885](figures/en-us_image_0000001267767885.gif)
+
+
+## Example Scenario
 
 Select an option and submit or reset the form data.
 
-Create  [**<input\>**](../reference/arkui-js/js-components-basic-input.md)  components, set their  **type**  attribute to  **checkbox**  and  **radio**, and use the  **onsubmit**  and  **onreset**  events of the  **<form\>**  component to submit and reset the form data.
+Create [&lt;input&gt;](../reference/arkui-js/js-components-basic-input.md) (en-us_topic_0000001173324647.xml) components, set their type attribute to checkbox and radio, and use the onsubmit and onreset events of the &lt;form&gt; component to submit and reset the form data.
+
 
 ```
 <!-- xxx.hml -->
@@ -148,6 +160,7 @@ Create  [**<input\>**](../reference/arkui-js/js-components-basic-input.md)  comp
 </div>
 ```
 
+
 ```
 /* index.css */
 .container {
@@ -164,6 +177,7 @@ label{
   font-size: 20px;
 }
 ```
+
 
 ```
 /* xxx.js */
@@ -182,5 +196,4 @@ export default {
 }
 ```
 
-![](figures/9.gif)
-
+![en-us_image_0000001222967788](figures/en-us_image_0000001222967788.gif)
