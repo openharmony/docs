@@ -12,7 +12,7 @@ The Power Manager module provides APIs for rebooting and shutting down the syste
 import power from '@ohos.power';
 ```
 
-## System Capabilities
+## System Capability
 
 SystemCapability.PowerManager.PowerManager.Core
 
@@ -25,7 +25,7 @@ Shuts down the system.
 
 This is a system API and cannot be called by third-party applications.
 
-**Required permission:** ohos.permission.SHUTDOWN
+**Required permission**: ohos.permission.REBOOT
 
 **Parameters**
 
@@ -45,9 +45,9 @@ console.info('power_shutdown_device_test success')
 
 rebootDevice(reason: string): void
 
-Restarts the device.
+Reboots the system.
 
-**Required permission:** ohos.permission.REBOOT (to reboot) or ohos.permission.REBOOT_UPDATER (to reboot and enter the updater mode)
+**Required permission**: ohos.permission.REBOOT (to reboot) or ohos.permission.REBOOT_RECOVERY (to reboot and enter the recovery or updater mode)
 
 **Parameters**
 
@@ -71,7 +71,7 @@ Checks the screen status of the current device.
 
 **Parameters**
 
-| Name   | Type                          | Mandatory  | Description                                      |
+| Name     | Type                          | Mandatory  | Description                                      |
 | -------- | ---------------------------- | ---- | ---------------------------------------- |
 | callback | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to obtain the return value.<br>Return value: The value **true** indicates that the screen is on, and the value **false** indicates the opposite.|
 
@@ -94,10 +94,10 @@ isScreenOn(): Promise&lt;boolean&gt;
 
 Checks the screen status of the current device.
 
-**Return Value**
+**Return value**
 | Type                    | Description                                     |
 | ---------------------- | --------------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to asynchronously obtain the return value. <br/>Return value: The value **true** indicates that the screen is on, and the value **false** indicates the opposite.|
+| Promise&lt;boolean&gt; | Promise used to obtain the return value. <br/>Return value: The value **true** indicates that the screen is on, and the value **false** indicates the opposite.|
 
 **Example**
 
