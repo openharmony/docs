@@ -34,7 +34,7 @@ userIAM_userAuth模块提供了用户认证的相关方法，包括获取认证�
    let auth = userIAM_userAuth.getAuthenticator();
    ```
 
-4. 执行认证操作，代码示例如下：
+2. 执行认证操作，代码示例如下：
 
    ```js
    let authenticator = userIAM_userAuth.getAuthenticator();
