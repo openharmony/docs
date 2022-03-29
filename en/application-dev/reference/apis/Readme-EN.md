@@ -80,6 +80,7 @@
     -   [Console Logs](js-apis-basic-features-logs.md)
     -   [Page Routing](js-apis-basic-features-routes.md)
     -   [Timer](js-apis-basic-features-timer.md)
+    -   [Screen Lock Management](js-apis-screen-lock.md)
     -   [Setting the System Time](js-apis-system-time.md)
     -   [Wallpaper](js-apis-wallpaper.md)
     -   [Pasteboard](js-apis-pasteboard.md)
