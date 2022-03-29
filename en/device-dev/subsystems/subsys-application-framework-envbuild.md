@@ -2,6 +2,7 @@
 
 -   Development board: Hi3516D V300
 
--   [Download the source code](../get-code/sourcecode-acquire.md)
--   [Build the application framework](../../readme/bundle-management.md).
+-   Download the source code
+
+-   Build the application framework
 
