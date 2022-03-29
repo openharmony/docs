@@ -19,25 +19,25 @@
 ## JS工程项目文件
 
 - **entry**：OpenHarmony工程模块，编译构建生成一个Hap包。
-  - **src &gt; main &gt; js**：用于存放js源码。
-  - **src &gt; main &gt; js &gt; MainAbility**：应用/服务的入口。
-  - **src &gt; main &gt; js &gt; MainAbility &gt; i18n**：用于配置不同语言场景资源内容，比如应用文本词条、图片路径等资源。
-  - **src &gt; main &gt; js &gt; MainAbility &gt; pages**：MainAbility包含的页面。
-  - **src &gt; main &gt; js &gt; MainAbility &gt; app.js**：承载Ability生命周期。
+  - **src &gt; main &gt; js** ：用于存放js源码。
+  - **src &gt; main &gt; js &gt; MainAbility** ：应用/服务的入口。
+  - **src &gt; main &gt; js &gt; MainAbility &gt; i18n** ：用于配置不同语言场景资源内容，比如应用文本词条、图片路径等资源。
+  - **src &gt; main &gt; js &gt; MainAbility &gt; pages** ：MainAbility包含的页面。
+  - **src &gt; main &gt; js &gt; MainAbility &gt; app.js** ：承载Ability生命周期。
 
-  - **src &gt; main &gt; resources**：用于存放应用/服务所用到的资源文件，如图形、多媒体、字符串、布局文件等。
-  - **src &gt; main &gt; config.json**：模块配置文件。主要包含HAP包的配置信息、应用在具体设备上的配置信息以及应用的全局配置信息。
-  - **build-profile.json5**：模块的模块信息 、编译信息配置项，包括 buildOption target配置等。
-  - **hvigorfile.js**：模块级编译构建任务脚本，开发者可以自定义相关任务和代码实现。
+  - **src &gt; main &gt; resources** ：用于存放应用/服务所用到的资源文件，如图形、多媒体、字符串、布局文件等。
+  - **src &gt; main &gt; config.json** ：模块配置文件。主要包含HAP包的配置信息、应用/服务在具体设备上的配置信息以及应用/服务的全局配置信息。
+  - **build-profile.json5** ：模块的模块信息 、编译信息配置项，包括 buildOption target配置等。
+  - **hvigorfile.js** ：模块级编译构建任务脚本，开发者可以自定义相关任务和代码实现。
 
-- **build-profile.json5**：应用级配置信息，包括签名、产品配置等。
+- **build-profile.json5** ：应用级配置信息，包括签名、产品配置等。
 
-- **hvigorfile.js**：应用级编译构建任务脚本。
+- **hvigorfile.js** ：应用级编译构建任务脚本。
 
 
 ## 构建第一个页面
 
-1. **文本组件。**
+1. **使用文本组件。**
    工程同步完成后，在“**Project**”窗口，点击“**entry &gt; src &gt;main &gt; js &gt; MainAbility &gt; pages&gt; index**”，打开“**index.hml**”文件，设置Text组件内容。“**index.hml**”文件的示例如下：
 
    
@@ -65,7 +65,7 @@
    ```
 
 3. **设置页面样式。**
-   在“**Project**”窗口，点击“**entry &gt; src &gt;main &gt; js &gt; MainAbility &gt; pages&gt; index**”，打开“**index.css**”文件，可以对页面中文本、按钮设置宽高、字体大小、间距等样式。“**index.css**”文件的示例如下：
+   在“**Project**”窗口，点击“**entry &gt; src &gt; main &gt; js &gt; MainAbility &gt; pages&gt; index**”，打开“**index.css**”文件，可以对页面中文本、按钮设置宽高、字体大小、间距等样式。“**index.css**”文件的示例如下：
 
    
    ```
@@ -98,7 +98,8 @@
    }
    ```
 
-4. **在编辑窗口右上角的侧边工具栏，点击Previewer，打开预览器。**第一个页面效果如下图所示：
+4. **在编辑窗口右上角的侧边工具栏，点击Previewer，打开预览器。** 第一个页面效果如下图所示：
+
 
    ![zh-cn_image_0000001216084724](figures/zh-cn_image_0000001216084724.png)
 
@@ -167,7 +168,7 @@
 
    
    ```
-   import router from '@system.router'
+   import router from '@system.router';
    
    export default {
        onclick: function () {
@@ -183,7 +184,7 @@
 
    
    ```
-   import router from '@system.router'
+   import router from '@system.router';
    
    export default {
        back: function () {
@@ -192,7 +193,8 @@
    }
    ```
 
-3. **打开index文件夹下的任意一个文件，点击预览器中的**![zh-cn_image_0000001262339067](figures/zh-cn_image_0000001262339067.png)**按钮进行刷新。**效果如下图所示：
+3. **打开index文件夹下的任意一个文件，点击预览器中的** ![zh-cn_image_0000001262339067](figures/zh-cn_image_0000001262339067.png) **按钮进行刷新。** 效果如下图所示：
+
    ![zh-cn_image_0000001216269940](figures/zh-cn_image_0000001216269940.png)
 
 
@@ -200,10 +202,11 @@
 
 1. 将搭载OpenHarmony标准系统的开发板与电脑连接。
 
-2. 点击**File &gt;Project Structure** &gt; **Project &gt;  Signing Configs**界面勾选“**Automatically generate signing**”，等待自动签名完成即可，点击“**OK**”。如下图所示：
+2. 点击**File &gt; Project Structure** &gt; **Project &gt; Signing Configs**界面勾选“**Automatically generate signing**”，等待自动签名完成即可，点击“**OK**”。如下图所示：
    ![zh-cn_image_0000001223557290](figures/zh-cn_image_0000001223557290.png)
 
 3. 在编辑窗口右上角的工具栏，点击![zh-cn_image_0000001217047316](figures/zh-cn_image_0000001217047316.png)按钮运行。效果如下图所示：
+
    ![zh-cn_image_0000001217527892](figures/zh-cn_image_0000001217527892.png)
 
 恭喜您已经使用JS语言开发（传统代码方式）完成了第一个OpenHarmony应用，快来[探索更多的OpenHarmony功能](../application-dev-guide.md)吧。

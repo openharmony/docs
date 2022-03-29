@@ -4,7 +4,7 @@ Lightweight storage provides applications with data processing capability and al
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
-> The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version. <br/>The APIs of this module are no longer maintained since API Version 9. You are advised to use [@ohos.data.preferences](js-apis-data-preferences.md).
+> The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
 
 
 ## Modules to Import
@@ -45,7 +45,7 @@ Reads a file and loads the data to the **Storage** instance in synchronous mode.
   ```
   import dataStorage from '@ohos.data.storage'
   import featureAbility from '@ohos.ability.featureAbility'
-
+  
   var context = featureAbility.getContext()
   var path = await context.getFilesDir()
   let storage = dataStorage.getStorageSync(path + '/mystore')
@@ -72,7 +72,7 @@ Reads a file and loads the data to the **Storage** instance. This method uses an
   ```
   import dataStorage from '@ohos.data.storage'
   import featureAbility from '@ohos.ability.featureAbility'
-
+  
   var context = featureAbility.getContext()
   var path = await context.getFilesDir()
   dataStorage.getStorage(path + '/mystore', function (err, storage) {
@@ -108,7 +108,7 @@ Reads a file and loads the data to the **Storage** instance. This method uses a 
   ```
   import dataStorage from '@ohos.data.storage'
   import featureAbility from '@ohos.ability.featureAbility'
-
+  
   var context = featureAbility.getContext()
   var path = await context.getFilesDir()
   let promisegetSt = dataStorage.getStorage(path + '/mystore')
