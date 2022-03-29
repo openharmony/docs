@@ -26,7 +26,7 @@
   - **src &gt; main &gt; ets &gt; MainAbility &gt; pages** ：MainAbility包含的页面。
   - **src &gt; main &gt; ets &gt; MainAbility &gt; app.ets** ：承载Ability生命周期。
   - **src &gt; main &gt; resources** ：用于存放应用/服务所用到的资源文件，如图形、多媒体、字符串、布局文件等。
-  - **src &gt; main &gt; config.json** ：模块配置文件。主要包含HAP包的配置信息、应用在具体设备上的配置信息以及应用的全局配置信息。
+  - **src &gt; main &gt; config.json** ：模块配置文件。主要包含HAP包的配置信息、应用/服务在具体设备上的配置信息以及应用/服务的全局配置信息。
   - **build-profile.json5** ：模块的模块信息 、编译信息配置项，包括 buildOption target配置等。
   - **hvigorfile.js** ：模块级编译构建任务脚本，开发者可以自定义相关任务和代码实现。
 
@@ -37,7 +37,7 @@
 
 ## 构建第一个页面
 
-1. **文本组件。**
+1. **使用文本组件。**
    工程同步完成后，在“**Project**”窗口，点击“**entry &gt; src &gt; main &gt; ets &gt; MainAbility &gt; pages**”，打开“**index.ets**”文件，可以看到页面由Text组件组成。“**index.ets**”文件的示例如下：
 
    
@@ -98,7 +98,8 @@
    }
    ```
 
-3. **在编辑窗口右上角的侧边工具栏，点击Previewer，打开预览器。**第一个页面效果如下图所示：
+3. **在编辑窗口右上角的侧边工具栏，点击Previewer，打开预览器。** 第一个页面效果如下图所示：
+
    ![zh-cn_image_0000001216239356](figures/zh-cn_image_0000001216239356.png)
 
 
@@ -235,7 +236,8 @@
    }
    ```
 
-3. **打开index.ets文件，点击预览器中的**![zh-cn_image_0000001262219043](figures/zh-cn_image_0000001262219043.png)**按钮进行刷新。**效果如下图所示：
+3. **打开index.ets文件，点击预览器中的** ![zh-cn_image_0000001262219043](figures/zh-cn_image_0000001262219043.png) **按钮进行刷新。** 效果如下图所示：
+
    ![zh-cn_image_0000001260684127](figures/zh-cn_image_0000001260684127.png)
 
 
@@ -247,6 +249,7 @@
    ![zh-cn_image_0000001268077317](figures/zh-cn_image_0000001268077317.png)
 
 3. 在编辑窗口右上角的工具栏，点击![zh-cn_image_0000001262206247](figures/zh-cn_image_0000001262206247.png)按钮运行。效果如下图所示：
+
    ![zh-cn_image_0000001217526428](figures/zh-cn_image_0000001217526428.png)
 
 恭喜您已经使用eTS语言开发完成了第一个OpenHarmony应用，快来[探索更多的OpenHarmony功能](../application-dev-guide.md)吧。
