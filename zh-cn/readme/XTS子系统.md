@@ -17,7 +17,7 @@
 
 ## 简介<a name="section465982318513"></a>
 
-XTS子系统是OpenHarmony生态认证测试套件的集合，当前包括acts（application compatibility test suite）应用兼容性测试套件，后续会拓展dcts（device compatibility test suite）设备兼容性测试套件等。
+XTS子系统是OpenHarmony兼容性测试套件的集合，当前包括acts（application compatibility test suite）应用兼容性测试套件，后续会拓展dcts（device compatibility test suite）设备兼容性测试套件等。
 
 XTS子系统当前包括acts与tools软件包：
 
