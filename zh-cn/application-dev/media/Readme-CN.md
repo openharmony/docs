@@ -9,7 +9,5 @@
 - 视频
 
   - [视频播放开发指导](video-playback.md)
-  - [视频录制开发指导](video-recorder.md)
-
 - 图片
   - [图片开发指导](image.md)
