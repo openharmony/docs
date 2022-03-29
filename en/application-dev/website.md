@@ -49,11 +49,11 @@
           - [Stepper](ui/ui-js-components-stepper.md)
           - [Tabs](ui/ui-js-component-tabs.md)
         - Basic Components
-        - [Text](ui/ui-js-components-text.md)
-        - [Input](ui/ui-js-components-input.md)
-        - [Button](ui/ui-js-components-button.md)
-        - [Picker](ui/ui-js-components-picker.md)
-        - [Image](ui/ui-js-components-images.md)
+          - [Text](ui/ui-js-components-text.md)
+          - [Input](ui/ui-js-components-input.md)
+          - [Button](ui/ui-js-components-button.md)
+          - [Picker](ui/ui-js-components-picker.md)
+          - [Image](ui/ui-js-components-images.md)
        - Animation Development Guidelines
         - CSS Animation
           - [Defining Attribute Style Animations](ui/ui-js-animate-attribute-style.md)
