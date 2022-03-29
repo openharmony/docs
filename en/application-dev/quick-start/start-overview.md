@@ -28,13 +28,13 @@ For DevEco Studio V2.2 Beta1 and later versions, both the traditional coding mod
 
 ### Ability
 
-An [ability](../ability/ability-brief.md) is an abstraction of a capability that an application can provide. The **Ability** class is an essential component to OpenHarmony applications. An application may provide various capabilities, and so it can have multiple abilities. These abilities can be deployed together or independently from each other.
+An ability is an abstraction of a capability that an application can provide. The **Ability** class is an essential component to OpenHarmony applications. An application may provide various capabilities, and so it can have multiple abilities. These abilities can be deployed together or independently from each other.
 
 Abilities are classified into two types: [Feature Ability (FA)](../../glossary.md#f) and [Particle Ability (PA)](../../glossary.md#p). Each type has their respective templates for different capabilities. FAs support only the Page template (also called the [Page ability](../ability/fa-pageability.md)), which is used to provide the capability of interacting with users. A Page ability consists of one or more pages. The figure below shows the relationship between a Page ability and pages.
 
 ![en-us_image_0000001215206886](figures/en-us_image_0000001215206886.png)
 
-This document provides a Page ability instance with two pages. For more information about ability development, see [Ability Development](../ability/Readme-EN.md).
+This document provides a Page ability instance with two pages. For more information about ability development, see [Ability Development](../ability/ability-brief.md).
 
 
 ## Tool Preparation

@@ -96,6 +96,7 @@
    ```
 
 3. On the toolbar in the upper right corner of the editing window, click **Previewer** to open the Previewer. Below is how the first page looks on the Previewer.
+   
    ![en-us_image_0000001216239356](figures/en-us_image_0000001216239356.png)
 
 

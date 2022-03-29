@@ -24,9 +24,9 @@ You can develop applications or services in the low-code approach using either o
 
 1. Open DevEco Studio, choose **File** &gt; **New** &gt; **Create Project**, select **Empty Ability**, and click **Next**.
    ![en-us_image_0000001268198893](figures/en-us_image_0000001268198893.png)
-
 2. Go to the project configuration page, select **Enable Super Visual**, set **UI Syntax** to **JS**, and retain the default values for other parameters.
-   ![en-us_image_0000001223717294](figures/en-us_image_0000001223717294.png)
+
+  ![en-us_image_0000001223717294](figures/en-us_image_0000001223717294.png)
 
 3. Click **Finish**. DevEco Studio will automatically generate the sample code and resources that match your project type. Wait until the project is created.
 
@@ -116,6 +116,7 @@ You can implement page redirection through the [page router](../ui/ui-js-buildin
      ```
    
    - In the index.visual file, select the **Button** component on the canvas. In the **Attributes &amp; Styles** area, click ![en-us_image_0000001215388136](figures/en-us_image_0000001215388136.png)**Events** and set **Click** to **onclick**.
+     
      ![en-us_image_0000001223722586](figures/en-us_image_0000001223722586.png)
 
 2. Implement redirection from the second page to the first page.
