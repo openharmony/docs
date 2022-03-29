@@ -4,11 +4,11 @@
 ### 功能简介<a name="2"></a>
 
 OpenHarmony相机驱动框架模型对上实现相机HDI（Hardware Device Interface）接口，对下实现相机Pipeline模型，管理相机各个硬件设备。
-该驱动框架模型内部分为三层，依次为HDI实现层、框架层和适配层，各层基本概念如下：
+该驱动框架模型内部分为三层，依次为HDI实现层、框架层和设备适配层，各层基本概念如下：
 
 + HDI实现层：实现OHOS（OpenHarmony Operation System）相机标准南向接口。
 + 框架层：对接HDI实现层的控制、流的转发，实现数据通路的搭建，管理相机各个硬件设备等功能。
-+ 适配层：屏蔽底层芯片和OS（Operation System）差异，支持多平台适配。
++ 设备适配层：屏蔽底层芯片和OS（Operation System）差异，支持多平台适配。
 
 ### 运作机制<a name="3"></a>
 
@@ -16,9 +16,9 @@ Camera模块主要包含服务、设备的初始化，数据通路的搭建，�
 
 **图 1**  基于HDF驱动框架的Camera驱动模型　
 
-　　　　![](figures/Camera模块驱动模型.png)
+　　　　　　　　![](figures/Camera模块驱动模型.png)
 
-1. 系统启动时创建CameraDeviceHost进程。进程创建后，首先枚举底层设备，创建（也可以通过配置表创建）管理设备树的DeviceManager类及其内部各个底层设备的对象，创建对应的CameraHost类实例并且将其注册到UHDF服务中，方便上层通过UHDF服务获取底层CameraDeviceHost的服务，从而操作底层设备。
+1. 系统启动时创建camera_host进程。进程创建后，首先枚举底层设备，创建（也可以通过配置表创建）管理设备树的DeviceManager类及其内部各个底层设备的对象，创建对应的CameraHost类实例并且将其注册到UHDF服务中，方便相机服务层通过UHDF服务获取底层CameraDeviceHost的服务，从而操作硬件设备。
 
 2. Service通过CameraDeviceHost服务获取CameraHost实例，CameraHost可以获取底层的Camera能力，打开手电筒、调用Open接口打开Camera创建连接、创建DeviceManager（负责底层硬件模块上电）、创建CameraDevice（向上提供设备控制接口）。创建CameraDevice时会实例化PipelineCore的各个子模块，其中StreamPipelineCore负责创建Pipeline，MetaQueueManager负责上报metaData。
 
@@ -472,15 +472,15 @@ Camera驱动的开发过程主要包含以下步骤：
 
 ### 开发实例<a name = "8"></a>
 
-在/drivers/peripheral/camera/hal/init目录下有一个关于Camera的demo，开机后会在/system/bin下生成可执行文件ohos_camera_demo，该demo可以完成Ｃamera的预览，拍照等基础功能。下面我们就以此demo为例讲述怎样用HDI接口去编写预览PreviewOn()和拍照CaptureON()的用例，可参考[ohos_camera_demo](https://gitee.com/openharmony/drivers_peripheral/tree/master/camera/hal/init)。
+在/drivers/peripheral/camera/hal/init目录下有一个关于Camera的demo，开机后会在/vendor/bin下生成可执行文件ohos_camera_demo，该demo可以完成Ｃamera的预览，拍照等基础功能。下面我们就以此demo为例讲述怎样用HDI接口去编写预览PreviewOn()和拍照CaptureON()的用例，可参考[ohos_camera_demo](https://gitee.com/openharmony/drivers_peripheral/tree/master/camera/hal/init)。
 
-1. 在main函数中构造一个mainDemo 对象，该对象中有对Ｃamera初始化、启停流、释放等控制的方法。下面mainDemo->InitSensors()函数为初始化CameraHost，mainDemo->InitCameraDevice()函数为初始化CameraDevice。
+1. 在main函数中构造一个CameraDemo 对象，该对象中有对Ｃamera初始化、启停流、释放等控制的方法。下面mainDemo->InitSensors()函数为初始化CameraHost，mainDemo->InitCameraDevice()函数为初始化CameraDevice。
 
    ```
    int main(int argc, char** argv)
    {
        RetCode rc = RC_OK;
-       auto mainDemo = std::make_shared<Hos3516Demo>();
+       auto mainDemo = std::make_shared<CameraDemo>();
        rc = mainDemo->InitSensors(); // 初始化CameraHost
        if (rc == RC_ERROR) {
            CAMERA_LOGE("main test: mainDemo->InitSensors() error\n");
@@ -508,7 +508,7 @@ Camera驱动的开发过程主要包含以下步骤：
    初始化CameraHost函数实现如下，这里调用了HDI接口ICameraHost::Get()去获取demoCameraHost，并对其设置回调函数。
 
    ```
-   RetCode Hos3516Demo::InitSensors()
+   RetCode CameraDemo::InitSensors()
    {
        demoCameraHost_ = ICameraHost::Get(DEMO_SERVICE_NAME);
        if (demoCameraHost_ == nullptr) {
@@ -525,7 +525,7 @@ Camera驱动的开发过程主要包含以下步骤：
    初始化CameraDevice函数实现如下，这里调用了GetCameraIds(cameraIds_)，GetCameraAbility(cameraId, ability_)，OpenCamera(cameraIds_.front(), callback, demoCameraDevice_)等接口实现了demoCameraHost的获取。
 
    ```
-   RetCode Hos3516Demo::InitCameraDevice()
+   RetCode CameraDemo::InitCameraDevice()
    {
        (void)demoCameraHost_->GetCameraIds(cameraIds_);
        const std::string cameraId = cameraIds_.front();
@@ -540,7 +540,7 @@ Camera驱动的开发过程主要包含以下步骤：
 2. PreviewOn()接口包含配置流、开启预览流和启动Capture动作。该接口执行完成后Camera预览通路已经开始运转并开启了两路流，一路流是preview，另外一路流是capture或者video，两路流中仅对preview流进行capture动作。
 
    ```
-   static RetCode PreviewOn(int mode, const std::shared_ptr<Hos3516Demo>& mainDemo)
+   static RetCode PreviewOn(int mode, const std::shared_ptr<CameraDemo>& mainDemo)
    {
         rc = mainDemo->StartPreviewStream(); // 配置preview流
         if (mode == 0) {
@@ -557,7 +557,7 @@ Camera驱动的开发过程主要包含以下步骤：
    StartCaptureStream()、StartVideoStream()和StartPreviewStream()接口都会调用CreateStream()接口，只是传入的参数不同。
 
    ```
-   RetCode Hos3516Demo::StartVideoStream()
+   RetCode CameraDemo::StartVideoStream()
    {
        RetCode rc = RC_OK;
        if (isVideoOn_ == 0) {
@@ -571,7 +571,7 @@ Camera驱动的开发过程主要包含以下步骤：
    CreateStream()方法调用HDI接口去配置和创建流，首先调用HDI接口去获取StreamOperation对象，然后创建一个StreamInfo。调用CreateStreams()和CommitStreams()实际创建流并配置流。
 
    ```
-   RetCode Hos3516Demo::CreateStreams(const int streamIdSecond, StreamIntent intent)
+   RetCode CameraDemo::CreateStreams(const int streamIdSecond, StreamIntent intent)
    {
        std::vector<std::shared_ptr<StreamInfo>> streamInfos;
        std::vector<std::shared_ptr<StreamInfo>>().swap(streamInfos);
@@ -617,7 +617,7 @@ Camera驱动的开发过程主要包含以下步骤：
    CaptureON()接口调用streamOperator的Capture()方法获取Ｃamera数据并轮转buffer，拉起一个线程接收相应类型的数据。
 
    ```
-   RetCode Hos3516Demo::CaptureON(const int streamId, const int captureId, CaptureMode mode)
+   RetCode CameraDemo::CaptureON(const int streamId, const int captureId, CaptureMode mode)
    {
        std::shared_ptr<Camera::CaptureInfo> captureInfo = std::make_shared<Camera::CaptureInfo>(); // 创建并填充CaptureInfo
        captureInfo->streamIds_ = {streamId};
@@ -644,7 +644,7 @@ Camera驱动的开发过程主要包含以下步骤：
 3. ManuList()函数从控制台通过fgets()接口获取字符，不同字符所对应demo支持的功能不同，并打印出该demo所支持功能的菜单。
 
    ```
-   static void ManuList(const std::shared_ptr<Hos3516Demo>& mainDemo,
+   static void ManuList(const std::shared_ptr<CameraDemo>& mainDemo,
        const int argc, char** argv)
    {
        int idx, c;
