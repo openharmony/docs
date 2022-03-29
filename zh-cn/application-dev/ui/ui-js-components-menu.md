@@ -260,12 +260,12 @@ export default {
       {name: "black", checked:false},
     ],
   },
-  toggleClick(index){   
-    for(let i=0;i<this.togglesList.length;i++){     
-      if(i == index){        
+  toggleClick(index) {   
+    for(let i=0;i<this.togglesList.length;i++) {     
+      if (i == index) {        
       this.color = this.togglesList[index].name;        
       this.togglesList[i].checked = true;      
-      }else{        
+      }else {        
         this.togglesList[i].checked = false;      
       }    
     }  

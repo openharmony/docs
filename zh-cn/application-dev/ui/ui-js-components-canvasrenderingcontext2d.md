@@ -274,7 +274,7 @@ export default {
       this.ctx.setLineDash([0,0]);
       // 画具有边框的矩形
       this.ctx.strokeRect(200, 150, 200, 200);
-    }else if(e.newValue == 'value2'){
+    }else if (e.newValue == 'value2'){
       this.ctx.clearRect(0,0,600,500);
       this.ctx.lineWidth = 30;
       this.ctx.strokeStyle = '#0000ff';
@@ -283,12 +283,12 @@ export default {
       this.ctx.arc(300, 250, 150,0,6.28);
       //进行边框绘制
       this.ctx.stroke();
-    }else if(e.newValue == 'value3'){
+    }else if (e.newValue == 'value3'){
       this.ctx.clearRect(0,0,600,500);
       this.ctx.lineWidth = 5;
       this.ctx.setLineDash([5,5]);
       this.ctx.strokeRect(200, 150, 200, 200);
-    }else if(e.newValue == 'value4'){
+    }else if (e.newValue == 'value4'){
       this.ctx.clearRect(0,0,600,500);
       // 画一个有填充颜色的矩形
       this.ctx.fillStyle = '#0000ff';

@@ -15,9 +15,8 @@
     <input type="button" style="width: 180px; height: 60px;" value="fillStyle" onclick="antialias">
   </div>
   ```
-```
-  
-```
+
+  ```
   // xxx.js
   export default {
     handleClick() {
@@ -71,10 +70,11 @@
 
   ```
 <!-- xxx.hml -->
+
 <div>
   <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
 </div>
-```
+  ```
 
 ```
 //xxx.js
@@ -110,6 +110,7 @@ export default {
     ctx.strokeRect(25, 25, 85, 105);
   }
 }
+
 ```
 
 ![zh-cn_image_0000001166484430](figures/zh-cn_image_0000001166484430.png)
@@ -267,20 +268,21 @@ export default {
     ctx.moveTo(140, 10);
     ctx.lineTo(140, 160);
     ctx.stroke();
-    ctx.font = '18px sans-serif';    
-  // Show the different textAlign values
-    ctx.textAlign = 'start';      
-    ctx.fillText('textAlign=start', 140, 60);        
-    ctx.textAlign = 'end';      
-    ctx.fillText('textAlign=end', 140, 80);  
-    ctx.textAlign = 'left';      
+    ctx.font = '18px sans-serif'; 
+    // Show the different textAlign values
+    ctx.textAlign = 'start'; 
+    ctx.fillText('textAlign=start', 140, 60);
+    ctx.textAlign = 'end';
+    ctx.fillText('textAlign=end', 140, 80);
+    ctx.textAlign = 'left'; 
     ctx.fillText('textAlign=left', 140, 100);
-    ctx.textAlign = 'center';     
-    ctx.fillText('textAlign=center',140, 120);              
-    ctx.textAlign = 'right';      
+    ctx.textAlign = 'center'; 
+    ctx.fillText('textAlign=center',140, 120);
+    ctx.textAlign = 'right';
     ctx.fillText('textAlign=right',140, 140);
   }
 }
+
 ```
 
 
@@ -397,7 +399,7 @@ export default {
   <div>
     <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
   </div>
-  ```
+```
 
   ```
   //xxx.js
@@ -431,7 +433,7 @@ export default {
 <div>
   <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
 </div>
-```
+  ```
 
 ```
 //xxx.js
@@ -579,7 +581,7 @@ fillRect(x: number, y: number, width:number, height: number): void
   <div>
     <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
   </div>
-  ```
+```
 
   ```
   //xxx.js
@@ -1934,4 +1936,6 @@ transferFromImageBitmap(bitmap: ImageBitmap): void
 
   ![zh-cn_image_0000001168984882](figures/zh-cn_image_0000001168984882.png)
 
+  ```
+  
   ```
