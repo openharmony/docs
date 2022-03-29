@@ -35,7 +35,7 @@ OpenHarmony_v1.x_release: OpenHarmony v1.1.4 LTS. [Learn more](en/release-notes/
 
 ## Third-Party Open-Source Software and License Notice
 
-3rd-Party-License: [Third-Party Open-Source Software and License Notice](contribute/third-party-open-source-software-and-license-notice.md)
+3rd-Party-License: [Third-Party Open-Source Software and License Notice](en-us/contribute/third-party-open-source-software-and-license-notice.md)
 
 ## How to Contribute
 
