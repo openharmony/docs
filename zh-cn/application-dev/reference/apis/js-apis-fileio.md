@@ -1376,9 +1376,9 @@ readTextSync(filePath: string, options?: {
   | options  | Object | 否    | 支持如下选项：<br/>-&nbsp;position，number类型，表示期望读取文件的位置。可选，默认从当前位置开始读取。<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;encoding，string类型，当数据是&nbsp;string&nbsp;类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'，仅支持&nbsp;'utf-8'。 |
 
 - 返回值：
-  | 类型                    | 说明         |
-  | --------------------- | ---------- |
-  | Promise&lt;string&gt; | 返回读取文件的内容。 |
+  | 类型   | 说明                 |
+  | ------ | -------------------- |
+  | string | 返回读取文件的内容。 |
 
 - 示例：
   ```js
