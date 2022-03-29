@@ -34,7 +34,7 @@ In addition, OpenHarmony provides a series of optional system components that ca
 
 | Topic | Development&nbsp;Scenario | Documents |
 | -------- | -------- | -------- |
-| About&nbsp;OpenHarmony | Getting&nbsp;familiar&nbsp;with&nbsp;OpenHarmony | -&nbsp;[About&nbsp;OpenHarmony](https://gitee.com/openharmony)<br/>-&nbsp;[Glossary](../glossary.md) |
+| About&nbsp;OpenHarmony | Getting&nbsp;familiar&nbsp;with&nbsp;OpenHarmony | -&nbsp;[About&nbsp;OpenHarmony](https://gitee.com/openharmony)<br/>-&nbsp;[Glossary](glossary/glossary.md) |
 | Development&nbsp;resources | Preparing&nbsp;for&nbsp;your&nbsp;development | -&nbsp;[Obtaining&nbsp;Source&nbsp;Code](get-code/sourcecode-acquire.md)<br/>-&nbsp;[Tool&nbsp;Acquisition](get-code/gettools-acquire.md) |
 | Quick&nbsp;start | Getting&nbsp;started&nbsp;with&nbsp;setup,&nbsp;build,<br/>&nbsp;burning,&nbsp;debugging,&nbsp;and<br/>&nbsp;running&nbsp;of&nbsp;OpenHarmony | [Mini&nbsp;and&nbsp;Small&nbsp;Systems](quick-start/quickstart-lite-overview.md)) |
 | Basic&nbsp;capabilities | Using&nbsp;basic&nbsp;capabilities&nbsp;of<br/>&nbsp;OpenHarmony | -&nbsp;[Kernel&nbsp;for&nbsp;Mini&nbsp;Systems](kernel/kernel-mini-overview.md)<br/>-&nbsp;[Kernel&nbsp;for&nbsp;Small&nbsp;Systems](kernel/kernel-small-overview.md)<br/>-&nbsp;[Drivers](driver/driver-hdf-overview.md)<br/>-&nbsp;[Subsystems](subsystems/subsys-build-mini-lite.md)<br/>-&nbsp;[Security&nbsp;Guidelines](security/security-guidelines-overall.md)<br/>-&nbsp;[Privacy&nbsp;Protection](security/security-privacy-protection.md) |
@@ -48,7 +48,7 @@ In addition, OpenHarmony provides a series of optional system components that ca
 
 | Topic | Development&nbsp;Scenario | Documents |
 | -------- | -------- | -------- |
-| About&nbsp;OpenHarmony | Getting&nbsp;familiar&nbsp;with&nbsp;OpenHarmony | -&nbsp;[About&nbsp;OpenHarmony](https://gitee.com/openharmony/docs/blob/master/en/OpenHarmony-Overview.md)<br/>-&nbsp;[Glossary](../glossary.md) |
+| About&nbsp;OpenHarmony | Getting&nbsp;familiar&nbsp;with&nbsp;OpenHarmony | -&nbsp;[About&nbsp;OpenHarmony](https://gitee.com/openharmony/docs/blob/master/en/OpenHarmony-Overview.md)<br/>-&nbsp;[Glossary](glossary/glossary.md) |
 | Development&nbsp;resources | Preparing&nbsp;for&nbsp;your&nbsp;development | -&nbsp;[Obtaining&nbsp;Source&nbsp;Code](get-code/sourcecode-acquire.md)<br/>-&nbsp;[Tool&nbsp;Acquisition](get-code/gettools-acquire.md) |
 | Quick&nbsp;start | Getting&nbsp;started&nbsp;with&nbsp;setup,&nbsp;build,<br/>&nbsp;burning,&nbsp;debugging,&nbsp;and<br/>&nbsp;running&nbsp;of&nbsp;OpenHarmony | [Standard&nbsp;System](quick-start/quickstart-standard-overview.md) |
 | Basic&nbsp;capabilities | Using&nbsp;basic&nbsp;capabilities&nbsp;of&nbsp;OpenHarmony | -&nbsp;[Kernel&nbsp;for&nbsp;Standard&nbsp;Systems](kernel/kernel-standard-overview.md)<br/>-&nbsp;[Drivers](driver/driver-hdf-overview.md)<br/>-&nbsp;[Subsystems](subsystems/subsys-build-standard-large.md)<br/>-&nbsp;[Security&nbsp;Guidelines](security/security-guidelines-overall.md)<br/>-&nbsp;[Privacy&nbsp;Protection](security/security-privacy-protection.md) |
