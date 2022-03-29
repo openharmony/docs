@@ -98,7 +98,7 @@ userIAM_userAuth模块提供了用户认证的相关方法，包括检测认证�
    let contextId = auth.auth(null, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1, {
        onResult: (result, extraInfo) => {
            console.info("auth onResult result = " + result);
-    },
+       },
 
        onAcquireInfo: (module, acquire, extraInfo) => {
            console.info("auth onAcquireInfo module = " + module);
