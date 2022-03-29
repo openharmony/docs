@@ -111,7 +111,7 @@ OpenHarmony低代码开发方式具有丰富的UI界面编辑功能，遵循[JS�
      
      export default {     
          onclick() {         
-             router.push ({             
+             router.push({             
                  uri:'pages/second/second', // 指定要跳转的页面         
              })     
          } 
@@ -134,7 +134,7 @@ OpenHarmony低代码开发方式具有丰富的UI界面编辑功能，遵循[JS�
       
       export default {     
           back() {         
-              router.back ()     
+              router.back()     
           } 
       }
       ```
