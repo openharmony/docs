@@ -15,6 +15,7 @@
     - Other
       - [Ability Assistant Usage](ability/ability-assistant-guidelines.md)
   - [UI](ui/Readme-EN.md)
+    - [ArkUI Overview](arkui-overview.md)
     - JavaScript-based Web-Like Development Paradigm
       - [Overview](ui/ui-js-overview.md)
       - Framework
@@ -58,6 +59,7 @@
           - [Defining Attribute Style Animations](ui/ui-js-animate-attribute-style.md)
           - [Defining Animations with the transform Attribute](ui/ui-js-animate-transform.md)
           - [Defining Animations with the background-position Attribute](ui/ui-js-animate-background-position-style.md)
+          - [Defining Animations for SVG Components](ui/ui-js-animate-svg.md)
         - JS Animation
           - [Component Animation](ui/ui-js-animate-component.md)
           - Interpolator Animation
@@ -72,6 +74,8 @@
           - [Rules for Accessing Application Code Files](ui/ts-framework-file-access-rules.md)
         - ["js" Tag](ui/ts-framework-js-tag.md)
         - Resource Access
+          - [Accessing Application Resources](ui/ts-application-resource-access.md)
+          - [Accessing System Resources](ui/ts-system-resource-access.md)
           - [Media Resource Types](ui/ts-media-resource-type.md)
         - [Pixel Units](ui/ts-pixel-units.md)
         - [Types](ui/ts-types.md)
@@ -189,6 +193,12 @@
       - Sensor
         - [Sensor Overview](device/sensor-overview.md)
         - [Sensor Development](device/sensor-guidelines.md)
+      - Sensor
+        - [Sensor Overview](device/sensor-overview.md)
+        - [Sensor Development](device/sensor-guidelines.md)
+      - Vibrator
+        - [vibrator-Overview.md](device/vibrator-overview.md)
+        - [Vibrator Development](device/vibrator-guidelines.md)
     - Device Usage Statistics
       - [Device Usage Statistics Overview](device-usage-statistics/device-usage-statistics-overview.md)
       - [Device Usage Statistics Development](device-usage-statistics/device-usage-statistics-dev-guide.md)
@@ -318,7 +328,7 @@
           - [Key Event](reference/arkui-ts/ts-universal-events-key.md)
           - [Focus Event](reference/arkui-ts/ts-universal-focus-event.md)
           - [Mouse Event](reference/arkui-ts/ts-universal-mouse-key.md)
-          - [Component Area Change Event](reference/arkui-ts/ts-universal-events-component-area-change.md)
+          - [Component Area Change Event](reference/arkui-ts/ts-universal-component-area-change-event.md)
         - Universal Attributes
           - [Size](reference/arkui-ts/ts-universal-attributes-size.md)
           - [Location](reference/arkui-ts/ts-universal-attributes-location.md)
@@ -404,13 +414,13 @@
         - [List](reference/arkui-ts/ts-container-list.md)
         - [ListItem](reference/arkui-ts/ts-container-listitem.md)
         - [Navigator](reference/arkui-ts/ts-container-navigator.md)
-        - [Navigation](reference/arkui-ts/ts-container-navigation.md)
+        - [Navigation](reference/arkui-ts/ts-basic-components-navigation.md)
         - [Panel](reference/arkui-ts/ts-container-panel.md)
         - [Refresh](reference/arkui-ts/ts-container-refresh.md)
         - [Row](reference/arkui-ts/ts-container-row.md)
         - [RowSplit](reference/arkui-ts/ts-container-rowsplit.md)
         - [Scroll](reference/arkui-ts/ts-container-scroll.md)
-        - [ScrollBar](reference/arkui-ts/ts-container-scrollbar.md)
+        - [ScrollBar](reference/arkui-ts/ts-basic-components-scrollbar.md)
         - [SideBarContainer](reference/arkui-ts/ts-container-sidebarcontainer.md)
         - [Stack](reference/arkui-ts/ts-container-stack.md)
         - [Swiper](reference/arkui-ts/ts-container-swiper.md)
@@ -530,12 +540,12 @@
       - [USB](reference/apis/js-apis-usb.md)
       - [Location](reference/apis/js-apis-geolocation.md)
     - Basic Features
-      - [Application Context](reference/apis/js-apis-basic-features-app-context.md)
-      - [Console Logs](reference/apis/js-apis-basic-features-logs.md)
-      - [Page Routing](reference/apis/js-apis-basic-features-routes.md)
-      - [Timer](reference/apis/js-apis-basic-features-timer.md)
+      - [Application Context](reference/apis/js-apis-system-app.md)
+      - [Console Logs](reference/apis/js-apis-logs.md)
+      - [Page Routing](reference/apis/js-apis-system-router.md)
+      - [Timer](reference/apis/js-apis-timer.md)
       - [Setting the System Time](reference/apis/js-apis-system-time.md)
-      - [Animation](reference/apis/js-apis-basic-features-animator.md)
+      - [Animation](reference/apis/js-apis-animator.md)
       - [WebGL](reference/apis/js-apis-webgl.md)
       - [WebGL2](reference/apis/js-apis-webgl2.md)
       - [Screenshot](reference/apis/js-apis-screenshot.md)
