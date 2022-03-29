@@ -87,7 +87,7 @@ In addition, OpenHarmony provides a series of optional system components that ca
 </td>
 <td class="cellrowborder" valign="top" width="35.61356135613561%" headers="mcps1.2.4.1.2 "><p id="p45798376158"><a name="p45798376158"></a><a name="p45798376158"></a>Contributing components to <span id="text207913212498"><a name="text207913212498"></a><a name="text207913212498"></a>OpenHarmony</span></p>
 </td>
-<td class="cellrowborder" valign="top" width="35.91359135913591%" headers="mcps1.2.4.1.3 "><a name="ul957919379156"></a><a name="ul957919379156"></a><ul id="ul957919379156"><li><a href="bundles/bundles-standard-rules.md">HPM Bundle Development Specifications</a></li><li><a href="bundles/bundles-guide.md">HPM Bundle Development Guidelines</a></li><li><a href="bundles/bundles-demo.md">HPM Bundle Development Example</a></li></ul>
+<td class="cellrowborder" valign="top" width="35.91359135913591%" headers="mcps1.2.4.1.3 "><a name="ul957919379156"></a><a name="ul957919379156"></a><ul id="ul957919379156"><li><a href="hpm-part/hpm-part-about.md">HPM Part Overview</a></li><li><a href="hpm-part/hpm-part-development.md">HPM Part Development</a></li><li><a href="hpm-part/hpm-part-reference.md">HPM Part Reference</a></li></ul>
 </td>
 </tr>
 <tr id="row260193701512"><td class="cellrowborder" valign="top" width="28.472847284728473%" headers="mcps1.2.4.1.1 "><p id="p95794372155"><a name="p95794372155"></a><a name="p95794372155"></a>Reference</p>
@@ -157,7 +157,7 @@ In addition, OpenHarmony provides a series of optional system components that ca
 </td>
 <td class="cellrowborder" valign="top" width="36.053605360536054%" headers="mcps1.2.4.1.2 "><p id="p1469115335113"><a name="p1469115335113"></a><a name="p1469115335113"></a>Contributing components to <span id="text1180831622"><a name="text1180831622"></a><a name="text1180831622"></a>OpenHarmony</span></p>
 </td>
-<td class="cellrowborder" valign="top" width="36.07360736073608%" headers="mcps1.2.4.1.3 "><a name="ul44949625110"></a><a name="ul44949625110"></a><ul id="ul44949625110"><li><a href="bundles/bundles-standard-rules.md">HPM Bundle Development Specifications</a></li><li><a href="bundles/bundles-guide.md">HPM Bundle Development Guidelines</a></li><li><a href="bundles/bundles-demo.md">HPM Bundle Development Example</a></li></ul>
+<td class="cellrowborder" valign="top" width="36.07360736073608%" headers="mcps1.2.4.1.3 "><a name="ul44949625110"></a><a name="ul44949625110"></a><ul id="ul44949625110"><a href="hpm-part/hpm-part-about.md">HPM Part Overview</a></li><li><a href="hpm-part/hpm-part-development.md">HPM Part Development</a></li><li><a href="hpm-part/hpm-part-reference.md">HPM Part Reference</a></li></ul>
 </td>
 </tr>
 <tr id="row1170153125110"><td class="cellrowborder" valign="top" width="27.872787278727873%" headers="mcps1.2.4.1.1 "><p id="p16701253195118"><a name="p16701253195118"></a><a name="p16701253195118"></a>Reference</p>
