@@ -6,8 +6,14 @@
     - [术语](../glossary.md)
     - [版本说明](../release-notes/Readme.md)
 - 快速开始
-    - [应用开发快速入门](quick-start/Readme-CN.md)
-    - [应用开发包结构说明](quick-start/package-structure.md)
+    - 快速入门
+        - [前言](quick-start/start-overview.md)
+        - [使用eTS语言开发](quick-start/start-with-ets.md)
+        - [使用JS语言开发（传统代码方式）](quick-start/start-with-js.md)
+        - [使用JS语言开发（低代码方式）](quick-start/start-with-js-low-code.md)
+    - 开发基础知识
+        - [应用开发包结构说明](quick-start/package-structure.md)
+        - [资源文件的分类](quick-start/basic-resource-file-categories.md)
 - 开发
     - [Ability开发](ability/Readme-CN.md)
     - [UI开发](ui/Readme-CN.md)
