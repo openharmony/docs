@@ -11,7 +11,7 @@
   - 开发基础知识
     - [应用开发包结构说明](quick-start/package-structure.md)
     - [资源文件的分类](quick-start/basic-resource-file-categories.md)
-  
+
 - 开发
   - [Ability开发](ability/Readme-CN.md)
     - [Ability框架概述](ability/ability-brief.md)
@@ -259,14 +259,14 @@
       - [国际化开发概述](internationalization/international-overview.md)
       - [Intl开发指导](internationalization/intl-guidelines.md)
       - [I18n开发指导](internationalization/i18n-guidelines.md)
-  
+
 - 工具
   - [DevEco Studio（OpenHarmony）使用指南](quick-start/deveco-studio-user-guide-for-openharmony.md)
-  
+
 - 示例教程
   - [示例代码](https://gitee.com/openharmony/app_samples/blob/master/README_zh.md)
   - [Codelabs](https://gitee.com/openharmony/codelabs/blob/master/README.md)
-  
+
 - API参考
   - 组件参考（基于JS扩展的类Web开发范式）
     - 组件
@@ -590,6 +590,10 @@
       - [升级](reference/apis/js-apis-update.md)
       - [USB管理](reference/apis/js-apis-usb.md)
       - [位置服务](reference/apis/js-apis-geolocation.md)
+      - [输入设备](reference/apis/js-apis-inputdevice.md)
+      - [组合按键](reference/apis/js-apis-inputconsumer.md)
+      - [输入监听](reference/apis/js-apis-inputmonitor.md)
+      - [事件注入](reference/apis/js-apis-inputeventclient.md)
     - 基本功能
       - [应用上下文](reference/apis/js-apis-system-app.md)
       - [日志打印](reference/apis/js-apis-logs.md)
