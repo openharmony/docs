@@ -82,7 +82,7 @@
    ```js
    //发起方
    var local_object = distributedObject.createDistributedObject({name:"jack", age:18, isVis:true, 
-       parent:{mother:"jack mom",father:"jack Dad"},[{mother:"jack mom"}, {father:"jack Dad"}]};
+       parent:{mother:"jack mom",father:"jack Dad"},list:[{mother:"jack mom"}, {father:"jack Dad"}]});
    local_object.setSessionId(sessionId);
    
    //被拉起方
