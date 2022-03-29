@@ -29,7 +29,7 @@ OpenHarmony通过CES（Common Event Service，公共事件服务）为应用程�
 import commonEvent from '@ohos.commonEvent';
 ```
 
-2. 创建订阅者信息，详细的订阅者信息数据类型及包含的参数请见[CommonEventSubscrubeInfo文档](../reference/apis/js-apis-commonEventSubscribeInfo.md)介绍。
+2. 创建订阅者信息，详细的订阅者信息数据类型及包含的参数请见[CommonEventSubscribeInfo文档](../reference/apis/js-apis-commonEvent.md#commoneventsubscribeinfo)介绍。
 
 ```javascript
 private subscriber = null	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
@@ -55,7 +55,7 @@ commonEvent.createSubscriber(subscribeInfo, (err, subscriber) => {
 })
 ```
 
-4. 创建订阅回调函数，订阅回调函数会在接收到事件时触发。订阅回调函数返回的data内包含了公共事件的名称、发布者携带的数据等信息，公共事件数据的详细参数和数据类型请见[CommonEventData文档](../reference/apis/js-apis-commonEventData.md)介绍。
+4. 创建订阅回调函数，订阅回调函数会在接收到事件时触发。订阅回调函数返回的data内包含了公共事件的名称、发布者携带的数据等信息，公共事件数据的详细参数和数据类型请见[CommonEventData文档](../reference/apis/js-apis-commonEvent.md#commoneventdata)介绍。
 
 ```javascript
 //订阅公共事件回调
@@ -113,7 +113,7 @@ commonEvent.publish("event", (err) => {
 import commonEvent from '@ohos.commonEvent'
 ```
 
-2. 定义发布事件时需要指定的发布信息，发布信息所包含的详细参数及其参数类型请见[CommonEventPublishData文档](../reference/apis/js-apis-commonEventPublishData.md)介绍。
+2. 定义发布事件时需要指定的发布信息，发布信息所包含的详细参数及其参数类型请见[CommonEventPublishData文档](../reference/apis/js-apis-commonEvent.md#commoneventpublishdata)介绍。
 
 ```javascript
 //公共事件相关信息
