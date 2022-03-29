@@ -24,7 +24,6 @@
     -   [User Authentication](js-apis-useriam-userauth.md)
     -   [Access Control](js-apis-abilityAccessCtrl.md)
 - Data Management
-    -   [Lightweight Storage<sup>9+</sup>](js-apis-data-preferences.md)
     -   [Lightweight Storage](js-apis-data-storage.md)
     -   [Distributed Data Management](js-apis-distributed-data.md)
     -   [Relational Database](js-apis-data-rdb.md)
@@ -80,6 +79,7 @@
     -   [Console Logs](js-apis-basic-features-logs.md)
     -   [Page Routing](js-apis-basic-features-routes.md)
     -   [Timer](js-apis-basic-features-timer.md)
+    -   [Screen Lock Management](js-apis-screen-lock.md)
     -   [Setting the System Time](js-apis-system-time.md)
     -   [Wallpaper](js-apis-wallpaper.md)
     -   [Pasteboard](js-apis-pasteboard.md)
