@@ -8,7 +8,7 @@
 
 完整版的接口定义请参考API接口说明文件：[屏幕属性](../reference/apis/js-apis-display.md)。
 
-### 开发步骤
+## 开发步骤
 
 通过`getDefaultDisplay(): Promise<Display>`来获取当前默认的`Display`对象，具体代码示例可参考：
 
