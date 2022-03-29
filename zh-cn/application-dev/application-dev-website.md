@@ -1,13 +1,13 @@
 - [应用开发导读](application-dev-guide.md)
 
 - 快速开始
-  
+
   - 快速入门
     - [前言](quick-start/start-overview.md)
     - [使用eTS语言开发](quick-start/start-with-ets.md)
     - [使用JS语言开发（传统代码方式）](quick-start/start-with-js.md)
     - [使用JS语言开发（低代码方式）](quick-start/start-with-js-low-code.md)
-  
+
   - 开发基础知识
     - [应用开发包结构说明](quick-start/package-structure.md)
     - [资源文件的分类](quick-start/basic-resource-file-categories.md)
@@ -367,8 +367,7 @@
       - [事件参数](reference/arkui-js/js-components-custom-event-parameter.md)
       - [slot插槽](reference/arkui-js/js-components-custom-slot.md)
       - [生命周期定义](reference/arkui-js/js-components-custom-lifecycle.md)
-    - 附录
-      - [类型说明](reference/arkui-js/js-appendix-types.md)
+    - [类型说明](reference/arkui-js/js-appendix-types.md)
   - 组件参考（基于TS扩展的声明式开发范式）
     - 组件
       - 通用
@@ -425,24 +424,33 @@
         - [DataPanel](reference/arkui-ts/ts-basic-components-datapanel.md)
         - [DatePicker](reference/arkui-ts/ts-basic-components-datepicker.md)
         - [Divider](reference/arkui-ts/ts-basic-components-divider.md)
+        - [Gauge](reference/arkui-ts/ts-basic-components-gauge.md)
         - [Image](reference/arkui-ts/ts-basic-components-image.md)
         - [ImageAnimator](reference/arkui-ts/ts-basic-components-imageanimator.md)
         - [LoadingProgress](reference/arkui-ts/ts-basic-components-loadingprogress.md)
+        - [Marquee](reference/arkui-ts/ts-basic-components-marquee.md)
+        - [PatternLock](reference/arkui-ts/ts-basic-components-patternlock.md)
+        - [PluginComponent](reference/arkui-ts/ts-basic-components-pluginComponent.md)
         - [Progress](reference/arkui-ts/ts-basic-components-progress.md)
         - [QRCode](reference/arkui-ts/ts-basic-components-qrcode.md)
         - [Radio](reference/arkui-ts/ts-basic-components-radio.md)
         - [Rating](reference/arkui-ts/ts-basic-components-rating.md)
+        - [RichText](reference/arkui-ts/ts-basic-components-richtext.md)
+        - [Search](reference/arkui-ts/ts-basic-components-search.md)
         - [Select](reference/arkui-ts/ts-basic-components-select.md)
         - [Slider](reference/arkui-ts/ts-basic-components-slider.md)
+        - [Stepper](reference/arkui-ts/ts-basic-components-stepper.md)
+        - [StepperItem](reference/arkui-ts/ts-basic-components-stepperitem.md)
         - [Span](reference/arkui-ts/ts-basic-components-span.md)
         - [Text](reference/arkui-ts/ts-basic-components-text.md)
         - [TextArea](reference/arkui-ts/ts-basic-components-textarea.md)
         - [TextInput](reference/arkui-ts/ts-basic-components-textinput.md)
         - [TextPicker](reference/arkui-ts/ts-basic-components-textpicker.md)
         - [TextTimer](reference/arkui-ts/ts-basic-components-texttimer.md)
+        - [TimePicker](reference/arkui-ts/ts-basic-components-timepicker.md)
         - [Toggle](reference/arkui-ts/ts-basic-components-toggle.md)
-        - [TextClock](reference/arkui-ts/ts-basic-components-textclock.md)
         - [Web](reference/arkui-ts/ts-basic-components-web.md)
+        - [Xcomponent](reference/arkui-ts/ts-basic-components-xcomponent.md)
       - 容器组件
         - [AlphabetIndexer](reference/arkui-ts/ts-container-alphabet-indexer.md)
         - [Badge](reference/arkui-ts/ts-container-badge.md)
@@ -458,6 +466,7 @@
         - [Navigator](reference/arkui-ts/ts-container-navigator.md)
         - [Navigation](reference/arkui-ts/ts-basic-components-navigation.md)
         - [Panel](reference/arkui-ts/ts-container-panel.md)
+        - [Refresh](reference/arkui-ts/ts-container-refresh.md)
         - [Row](reference/arkui-ts/ts-container-row.md)
         - [RowSplit](reference/arkui-ts/ts-container-rowsplit.md)
         - [Scroll](reference/arkui-ts/ts-container-scroll.md)
@@ -467,7 +476,6 @@
         - [Swiper](reference/arkui-ts/ts-container-swiper.md)
         - [Tabs](reference/arkui-ts/ts-container-tabs.md)
         - [TabContent](reference/arkui-ts/ts-container-tabcontent.md)
-        - [Refresh](reference/arkui-ts/ts-container-refresh.md)
       - 媒体组件
         - [Video](reference/arkui-ts/ts-media-components-video.md)
       - 绘制组件
@@ -506,8 +514,7 @@
         - [日期时间选择弹窗](reference/arkui-ts/ts-methods-datepicker-dialog.md)
         - [文本选择弹窗](reference/arkui-ts/ts-methods-textpicker-dialog.md)
       - [菜单](reference/arkui-ts/ts-methods-menu.md)
-    - 附录
-      - [文档中涉及到的内置枚举值](reference/arkui-ts/ts-appendix-enums.md)
+    - [文档中涉及到的内置枚举值](reference/arkui-ts/ts-appendix-enums.md)
   - 接口参考
     - Ability框架
       - [FeatureAbility模块](reference/apis/js-apis-featureAbility.md)

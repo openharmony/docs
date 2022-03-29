@@ -2,7 +2,7 @@
 
 - 组件
     - 通用
-        - [通用事件](ts-universal-events-index.md)
+        - 通用事件
             - [点击事件](ts-universal-events-click.md)
             - [触摸事件](ts-universal-events-touch.md)
             - [挂载卸载事件](ts-universal-events-show-hide.md)
@@ -11,7 +11,7 @@
             - [焦点事件](ts-universal-focus-event.md)
             - [鼠标事件](ts-universal-mouse-key.md)
             - [组件区域变化事件](ts-universal-component-area-change-event.md)
-        - [通用属性](ts-universal-attributes-index.md)
+        - 通用属性
             - [尺寸设置](ts-universal-attributes-size.md)
             - [位置设置](ts-universal-attributes-location.md)
             - [布局约束](ts-universal-attributes-layout-constraints.md)

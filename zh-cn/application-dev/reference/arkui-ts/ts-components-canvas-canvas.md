@@ -18,21 +18,21 @@ Canvas(context: CanvasRenderingContext2D)
 
 - 参数
 
-  | 参数名  | 参数类型                                                   | 必填 | 默认值 | 参数描述                         |
-  | ------- | ---------------------------------------------------------- | ---- | ------ | -------------------------------- |
-  | context | [CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md) | 是   | -      | 见CanvasRenderingContext2D对象。 |
+  | 参数名     | 参数类型                                     | 必填   | 默认值  | 参数描述                         |
+  | ------- | ---------------------------------------- | ---- | ---- | ---------------------------- |
+  | context | [CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md) | 是    | -    | 见CanvasRenderingContext2D对象。 |
 
 ## 属性
 
-支持[通用属性](ts-universal-attributes-index.md)。
+支持通用属性。
 
 ## 事件
 
-除支持[通用事件](ts-universal-events-index.md)外，还支持如下事件：
+除支持通用事件外，还支持如下事件：
 
-| 名称                          | 参数 | 描述                                     |
-| ----------------------------- | ---- | ---------------------------------------- |
-| onReady(callback: () => void) | 无   | 画布组件的事件回调，可以在此时进行绘制。 |
+| 名称                            | 参数   | 描述                   |
+| ----------------------------- | ---- | -------------------- |
+| onReady(callback: () => void) | 无    | 画布组件的事件回调，可以在此时进行绘制。 |
 
 ## 示例
 
