@@ -60,6 +60,16 @@ In addition to [universal attributes](ts-universal-attributes.md), the following
   | InputType.Email | Email address input mode. |
   | InputType.Number | Digit input mode. |
 
+## Events
+
+| Name                                                      | Description                                                  |
+| --------------------------------------------------------- | ------------------------------------------------------------ |
+| onChange(value: string) =&gt; void                        | Triggered when the input changes.                            |
+| onSubmit(callback: (enterKey: EnterKeyType) =&gt; void)   | Triggered when the Enter key on the physical or soft keyboard is pressed. |
+| onEditChanged(callback: (isEditing: boolean) =&gt; void)  | Triggered when the input status changes.                     |
+| onCopy<sup>8+</sup>(callback:(value: string) =&gt; void)  | Triggered when the copy button on the pasteboard, which displays when the text box is long pressed, is clicked.<br/>**value**: text to be copied. |
+| onCut<sup>8+</sup>(callback:(value: string) =&gt; void)   | Triggered when the cut button on the pasteboard, which displays when the text box is long pressed, is clicked.<br/>**value**: text to be cut. |
+| onPaste<sup>8+</sup>(callback:(value: string) =&gt; void) | Triggered when the paste button on the pasteboard, which displays when the text box is long pressed, is clicked.<br/>**value**: text to be pasted. |
 
 ### TextInputController<sup>8+</sup>
 
@@ -78,7 +88,7 @@ controller: TextInputController = new TextInputController()
 ```
 
 
-### controller.createPosition
+### caretPosition
 
 caretPosition(value: number): void
 
@@ -88,18 +98,6 @@ Sets the cursor in a specified position.
     | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
   | value | number | Yes | - | Position of the input cursor.<br/>**value**: indicates the length from the start of the string to the position where the input cursor is located. |
-
-
-## Events
-
-| Name | Description |
-| -------- | -------- |
-| onChange(value: string) =&gt; void | Triggered when the input changes. |
-| onSubmit(callback: (enterKey: EnterKeyType) =&gt; void) | Triggered when the Enter key on the physical or soft keyboard is pressed. |
-| onEditChanged(callback: (isEditing: boolean) =&gt; void) | Triggered when the input status changes. |
-| onCopy<sup>8+</sup>(callback:(value: string) =&gt; void) | Triggered when the copy button on the pasteboard, which displays when the text box is long pressed, is clicked.<br/>**value**: text to be copied. |
-| onCut<sup>8+</sup>(callback:(value: string) =&gt; void) | Triggered when the cut button on the pasteboard, which displays when the text box is long pressed, is clicked.<br/>**value**: text to be cut. |
-| onPaste<sup>8+</sup>(callback:(value: string) =&gt; void) | Triggered when the paste button on the pasteboard, which displays when the text box is long pressed, is clicked.<br/>**value**: text to be pasted. |
 
 
 ## Example
