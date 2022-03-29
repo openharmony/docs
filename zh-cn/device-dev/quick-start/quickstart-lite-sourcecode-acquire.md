@@ -1,7 +1,5 @@
 # 获取源码<a name="ZH-CN_TOPIC_0000001177086414"></a>
 
--   [前提条件](#section21887149017)
--   [操作步骤](#section349724435812)
 
 ## 前提条件<a name="section21887149017"></a>
 
@@ -49,6 +47,6 @@
 
 -   **OpenHarmony发布版本代码获取**
 
-    OpenHarmony发布版本获取源码方式请参考[Release-Notes](../get-code/../../release-notes/Readme.md)。
+    OpenHarmony发布版本获取源码方式请参考[Release-Notes](../get-code/../../release-notes/OpenHarmony-v3.0.2-LTS.md)。
 
 
