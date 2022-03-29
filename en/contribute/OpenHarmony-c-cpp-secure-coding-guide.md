@@ -2383,7 +2383,7 @@ size_t pathSize = 0;
 
 pathSize = (size_t)PATH_MAX;
 
-if (VerifyPathSize(pathSize) == true) {
+if (VerifyPathSize(pathSize)) {
     canonicalFilename = (char *)malloc(pathSize);
 
     if (canonicalFilename == NULL) {
@@ -2397,7 +2397,7 @@ if (realpathRes == NULL) {
     ... // Error handling
 }
 
-if (VerifyFile(realpathRes) == false) {
+if (VerifyFile(realpathRes)) {
     ... // Error handling
 }
 
@@ -3030,7 +3030,7 @@ if (file == NULL) {
 }
 
 if (IS_ERR(file)) {
-	printk("Error occured while opening file %s, exiting ...\n", MY_FILE);
+	printk("Error occurred while opening file %s, exiting ...\n", MY_FILE);
 	return 0;
 }
 
