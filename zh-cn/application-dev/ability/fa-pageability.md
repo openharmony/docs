@@ -2,28 +2,30 @@
 
 ## 概述
 ### 功能简介
-PageAbility是具备ArkUI实现的Ability，是开发者具体可见并可以交互的Ability实例，开发者通过IDE创建Ability时，IDE会自动创建相关模板代码。PageAbility相关能力通过单例featureAbility暴露，生命周期相关回调通过app.js/app.ets中回调函数暴露。
+PageAbility是具备ArkUI实现的Ability，是开发者具体可见并可以交互的Ability实例。开发者通过IDE创建Ability时，IDE会自动创建相关模板代码。PageAbility相关能力通过单独的featureAbility实现，生命周期相关回调则通过app.js/app.ets中各个回调函数实现。
 
 ### PageAbility的生命周期
 
-**Ability生命周期介绍**（Ability Life Cycle）：
+**PageAbility生命周期介绍**（Ability Life Cycle）：
 
-Ability生命周期是Ability被调度到INACTIVE、ACTIVE、BACKGROUND等各个状态的统称。PageAbility生命周期流转如下图所示：
+PageAbility生命周期是PageAbility被调度到INACTIVE、ACTIVE、BACKGROUND等各个状态的统称。
+
+PageAbility生命周期流转如下图所示：
 
 ![PageAbility-Lifecycle](figures/page-ability-lifecycle.png)
 
 
 **Ability生命周期状态说明：**
 
-  - **UNINITIALIZED**：未初始状态，为临时状态，Ability被创建后会由UNINITIALIZED状态进入INITIAL状态。
+  - **UNINITIALIZED**：未初始状态，为临时状态，PageAbility被创建后会由UNINITIALIZED状态进入INITIAL状态。
 
-  - **INITIAL**：初始化状态，也表示停止状态，表示当前Ability未运行，Ability被启动后由INITIAL态进入INACTIVE状态。
+  - **INITIAL**：初始化状态，也表示停止状态，表示当前PageAbility未运行，PageAbility被启动后由INITIAL态进入INACTIVE状态。
 
   - **INACTIVE**：失去焦点状态，表示当前窗口已显示但是无焦点状态。
 
   - **ACTIVE**：前台激活状态，表示当前窗口已显示，并获取焦点。
 
-  - **BACKGROUND**：后台状态，表示当前Ability退到后台，Ability在被销毁后由BACKGROUND状态进入INITIAL状态，或者重新被激活后由BACKGROUND状态进入ACTIVE状态。
+  - **BACKGROUND**：后台状态，表示当前PageAbility退到后台，PageAbility在被销毁后由BACKGROUND状态进入INITIAL状态，或者重新被激活后由BACKGROUND状态进入ACTIVE状态。
 
 **PageAbility生命周期回调与生命周期状态的关系如下图所示：**
 
@@ -100,6 +102,7 @@ PageAbility提供命周期回调，开发者可以在`app.js/app.ets`中重写�
 ```
 
 `want`参数也可以使用parameters参数，使用key-value的方式输入。
+
 **示例**
 
 ```javascript
@@ -148,6 +151,7 @@ PageAbility提供命周期回调，开发者可以在`app.js/app.ets`中重写�
 ```
 
 从DeviceManager获取`deviceId`，具体示例代码如下：
+
 ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
   let dmClass;
@@ -167,6 +171,7 @@ PageAbility提供命周期回调，开发者可以在`app.js/app.ets`中重写�
 ```
 
 在跨设备场景下，需要向用户申请数据同步的权限。具体示例代码如下：
+
 ```ts
   import abilityAccessCtrl from "@ohos.abilityAccessCtrl";
   import bundle from '@ohos.bundle';
@@ -204,6 +209,7 @@ PageAbility提供命周期回调，开发者可以在`app.js/app.ets`中重写�
 ```
 
 ### 生命周期接口说明
+
 **表2** 生命周期回调函数介绍
 
 | 接口名       | 描述                                                         |
@@ -216,6 +222,7 @@ PageAbility提供命周期回调，开发者可以在`app.js/app.ets`中重写�
 | onActive()   | Ability切换到前台，并且已经获取焦点时调用onActive方法。      |
 
 **示例**
+
 开发者需要重写`app.js/app.ets`中相关生命周期回调函数，IDE模板默认生成`onCreate()`和`onDestroy()`方法，其他方法需要开发者自行实现。
 
 ```javascript

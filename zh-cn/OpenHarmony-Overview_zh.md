@@ -195,7 +195,7 @@ OpenHarmony支持如下几种系统类型：
 </tr>
 <tr id="row1982159115313"><td class="cellrowborder" align="left" valign="top" width="11.148885111488852%" headers="mcps1.1.4.1.1 "><p id="p14307173571315"><a name="p14307173571315"></a><a name="p14307173571315"></a>升级服务</p>
 </td>
-<td class="cellrowborder" align="left" valign="top" width="80.49195080491951%" headers="mcps1.1.4.1.2 "><p id="p887484183"><a name="p887484183"></a><a name="p887484183"></a>可支持OpenHarmony设备的OTA(Over The Air)升级。</p>
+<td class="cellrowborder" align="left" valign="top" width="80.49195080491951%" headers="mcps1.1.4.1.2 "><p id="p887484183"><a name="p887484183"></a><a name="p887484183"></a>可支持OpenHarmony设备的OTA（Over The Air）升级。</p>
 </td>
 <td class="cellrowborder" valign="top" width="8.35916408359164%" headers="mcps1.1.4.1.3 "><p id="p10550164995117"><a name="p10550164995117"></a><a name="p10550164995117"></a>标准系统</p>
 </td>
@@ -301,7 +301,7 @@ OpenHarmony支持如下几种系统类型：
 </tr>
 <tr id="row1449910380242"><td class="cellrowborder" valign="top" width="11.148885111488852%" headers="mcps1.1.4.1.1 "><p id="p238324932415"><a name="p238324932415"></a><a name="p238324932415"></a>分布式软总线</p>
 </td>
-<td class="cellrowborder" valign="top" width="80.49195080491951%" headers="mcps1.1.4.1.2 "><p id="p17499153862420"><a name="p17499153862420"></a><a name="p17499153862420"></a>分布式软总线旨在为OpenHarmony系统提供跨进程或跨设备的通信能力，主要包含软总线和进程间通信两部分。其中，软总线为应用和系统提供近场设备间分布式通信的能力，提供不区分通信方式的设备发现，连接，组网和传输功能；而进程间通信则提供不区分设备内或设备间的进程间通信能力。</p>
+<td class="cellrowborder" valign="top" width="80.49195080491951%" headers="mcps1.1.4.1.2 "><p id="p17499153862420"><a name="p17499153862420"></a><a name="p17499153862420"></a>分布式软总线旨在为OpenHarmony系统提供跨进程或跨设备的通信能力，主要包含软总线和进程间通信两部分。其中，软总线为应用和系统提供近场设备间分布式通信的能力，提供不区分通信方式的设备发现，连接，组网和传输功能；而进程间通信则提供了对设备内或设备间无差别的进程间通信能力。</p>
 </td>
 <td class="cellrowborder" valign="top" width="8.35916408359164%" headers="mcps1.1.4.1.3 "><p id="p5499183812418"><a name="p5499183812418"></a><a name="p5499183812418"></a>所有系统</p>
 </td>
