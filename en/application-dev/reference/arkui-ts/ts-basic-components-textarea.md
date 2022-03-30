@@ -31,7 +31,7 @@ TextArea(value?:{placeholder?: string controller?: TextAreaController})
 
 ## Attributes
 
-In addition to [universal attributes](ts-universal-attributes.md), the following attributes are supported.
+In addition to [universal attributes](ts-universal-attributes-index.md), the following attributes are supported.
 
 | Name | Type | Default Value | Description |
 | -------- | -------- | -------- | -------- |

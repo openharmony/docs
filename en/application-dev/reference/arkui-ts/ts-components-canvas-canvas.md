@@ -30,16 +30,16 @@ Canvas(context: CanvasRenderingContext2D)
 
 ## Attributes
 
-[Universal attributes](ts-universal-attributes-size.md) are supported.
+[Universal attributes]( ts-universal-attributes-index.md) are supported.
 
 
 ## Events
 
-In addition to [universal events](ts-universal-events-click.md), the following events are supported.
+In addition to [universal events](ts-universal-events-index.md), the following events are supported.
 
-  | Name | Parameter | Description | 
+| Name | Parameter | Description |
 | -------- | -------- | -------- |
-| onReady(callback: () =&gt; void) | None | Triggered when . | 
+| onReady(callback: () =&gt; void) | None | Triggered when . |
 
 
 ## Example
