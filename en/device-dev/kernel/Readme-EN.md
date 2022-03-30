@@ -177,4 +177,6 @@
   - [Enhanced Kernel Features](kernel-standard-enhanced-features.md)
             - [Memory Management](kernel-standard-mm.md)
                 - [Enhanced SWAP](kernel-standard-mm-eswap.md)
-            
+            - [Task Scheduling](kernel-standard-sched.md)
+                - [Related Thread Group](kernel-standard-sched-rtg.md)
+                - [Lightweight CPU Isolation](kernel-standard-sched-cpuisolation.md)         
