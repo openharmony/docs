@@ -27,7 +27,7 @@ createKVManager(config: KVManagerConfig, callback: AsyncCallback&lt;KVManager&gt
 | callback | AsyncCallback&lt;[KVManager](#kvmanager)&gt; | 是  | KVManager实例创建时调用的回调，返回KVManager对象实例。 |
 
 **示例**：
-
+    ```
     let kvManager;
     try {
         const kvManagerConfig = {
@@ -48,6 +48,7 @@ createKVManager(config: KVManagerConfig, callback: AsyncCallback&lt;KVManager&gt
     } catch (e) {
         console.log("An unexpected error occurred. Error:" + e);
     }
+    ```
 
 ## distributedData.createKVManager
 
@@ -70,7 +71,7 @@ createKVManager(config: KVManagerConfig): Promise&lt;KVManager&gt;
 | Promise&lt;[KVManager](#kvmanager)&gt; | 指定的Promise回调方法，返回创建的KVManager对象实例。 |
 
 **示例**：
-
+    ```
     let kvManager;
     try {
         const kvManagerConfig = {
@@ -89,7 +90,7 @@ createKVManager(config: KVManagerConfig): Promise&lt;KVManager&gt;
     } catch (e) {
         console.log("An unexpected error occurred. Error:" + e);
     }
-
+    ```
 
 ## KVManagerConfig
 
@@ -2088,7 +2089,7 @@ put(key: string, value: Uint8Array | string | number | boolean, callback: AsyncC
 | -----  | ------  | ----  | ----------------------- |
 | key    | string  | 是    |要添加数据的key，不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。   |
 | value  | Uint8Array \| string \| number \| boolean | 是    |要添加数据的value，支持Uint8Array、number 、 string 、boolean，Uint8Array、string 的长度不大于[MAX_VALUE_LENGTH](#constants)。   |
-| callback | AsyncCallback&lt;void> | 是    |回调函数。   |
+| callback | AsyncCallback&lt;void&gt; | 是    |回调函数。   |
 
 **示例**
 
@@ -2984,7 +2985,7 @@ get(key: string, callback: AsyncCallback&lt;Uint8Array | string | boolean | numb
 
 ### get
 
-get(key: string): Promise&lt;Uint8Array | string | boolean | number>
+get(key: string): Promise&lt;Uint8Array | string | boolean | number&gt;
 
 获取指定键的值，并通过Promise方式返回，此方法为异步方法。
 
