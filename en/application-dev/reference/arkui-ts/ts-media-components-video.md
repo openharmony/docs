@@ -22,7 +22,7 @@ Video(value: VideoOptions)
   | -------- | -------- | -------- | -------- | -------- |
   | src | string | No | - | Path of the video source. |
   | currentProgressRate | number \| PlaybackSpeed<sup>8+</sup> | No | 1.0 \| PlaybackSpeed.Speed_Forward_1_00_X | Video playback speed.<br/>> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>> The value of the number type can only be **0.75**, **1.0**, **1.25**, **1.75**, or **2.0**.<br/>> <br/>>  |
-  | previewUri | string \| PixelMap<sup>8+</sup> \|[Resource](../../ui/ts-types.md#Resource-Type) | No | - | Path of the preview image. |
+  | previewUri | string \| PixelMap<sup>8+</sup> \|[Resource](../../ui/ts-types.md#resourcetype) | No | - | Path of the preview image. |
   | controller | [VideoController](#videocontroller) | No | - | Controller. |
 
 
