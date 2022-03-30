@@ -535,10 +535,10 @@ UART模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
                 if (port->physBase != 0) {
                     OsalIoUnmap((void *)port->physBase);//地址反映射
                 }
-                (void)OsalMemFree(port);
+                OsalMemFree(port);
                 udd->private = NULL;
             }
-            (void)OsalMemFree(udd);//释放UartDriverData
+            OsalMemFree(udd);//释放UartDriverData
             host->priv = NULL;
         }
         ```

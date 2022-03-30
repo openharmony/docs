@@ -69,9 +69,9 @@ struct MipiDsiCntlrMethod { // 核心层结构体的成员函数
 </tr>
 <tr id="row793312013010"><td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.1 "><p id="p13933120708"><a name="p13933120708"></a><a name="p13933120708"></a>getCmd</p>
 </td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.2 "><p id="p199331906010"><a name="p199331906010"></a><a name="p199331906010"></a>cntlr: 结构体指针，MipiDsi控制器 ;</p>
+<td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.2 "><p id="p199331906010"><a name="p199331906010"></a><a name="p199331906010"></a>cntlr：结构体指针，MipiDsi控制器；</br>cmd：传入的命令描述结构体指针；</br>readLen：读取的数据大小；</p>
 </td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.3 "><p id="p139331001602"><a name="p139331001602"></a><a name="p139331001602"></a>cmd: 结构体指针,用于传出指令值;</p>
+<td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.3 "><p id="p139331001602"><a name="p139331001602"></a><a name="p139331001602"></a>out：结构体指针，用于存储读取的数据。</p>
 </td>
 <td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.4 "><p id="p993390900"><a name="p993390900"></a><a name="p993390900"></a>HDF_STATUS相关状态</p>
 </td>
