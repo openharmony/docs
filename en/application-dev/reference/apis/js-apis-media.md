@@ -2455,7 +2455,7 @@ Describes the video recording parameters.
 | profile         | [VideoRecorderProfile](#videorecorderprofile9) | Yes  | Video recording profile.                                         |
 | rotation        | number                                         | No  | Rotation angle of the recorded video.                                        |
 | location        | [Location](#location)                          | No  | Geographical location of the recorded video.                                        |
-| url             | string                                         | Yes  | Video output URL. Supported: fd://xx&nbsp;(fd&nbsp;number)<br>![](figures/zh-cn_image_url.png) <br>The file must be created by the caller and granted with proper permissions.|
+| url             | string                                         | Yes  | Video output URL. Supported: fd://xx&nbsp;(fd&nbsp;number)<br>![](figures/en-us_image_url.png) <br>The file must be created by the caller and granted with proper permissions. |
 
 ## AudioSourceType<sup>9+</sup>
 

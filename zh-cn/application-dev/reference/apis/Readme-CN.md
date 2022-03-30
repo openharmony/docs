@@ -3,7 +3,7 @@
 - Ability框架
 
   - [@ohos.ability.dataUriUtils (DataUriUtils模块)](js-apis-DataUriUtils.md)
-  - [@ohos.ability.errorCode (ErrorCode)](js-apis-ability-errorcode.md)
+  - [@ohos.ability.errorCode (ErrorCode)](js-apis-ability-errorCode.md)
   - [@ohos.ability.wantConstant (wantConstant)](js-apis-ability-wantConstant.md)
   - [@ohos.application.Ability (Ability)](js-apis-application-ability.md)
   - [@ohos.application.AbilityConstant (AbilityConstant)](js-apis-application-abilityConstant.md)
@@ -92,7 +92,7 @@
 
   - [@ohos.backgroundTaskManager (后台任务管理)](js-apis-backgroundTaskManager.md)
   - [@ohos.workScheduler (延迟任务调度)](js-apis-workScheduler.md)
-  - [@ohos.WorkSchedulerExtensionAbility (延迟任务调度回调)](js-apis-workScheduler.md)
+  - [@ohos.WorkSchedulerExtensionAbility (延迟任务调度回调)](js-apis-WorkSchedulerExtensionAbility.md)
 
 - 定制管理
 
@@ -246,4 +246,3 @@
   - [@system.storage (数据存储)](js-apis-system-storage.md)
   - [@system.vibrator (振动)](js-apis-system-vibrate.md)
   - [console (日志打印)](js-apis-logs.md)
-
