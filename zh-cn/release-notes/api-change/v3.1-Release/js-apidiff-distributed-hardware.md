@@ -1,4 +1,4 @@
-# JS API Diff
+# 分布式硬件子系统JS API变更
 
 OpenHarmony 3.1 LTS版本相较于OpenHarmony 3.1 Beta版本的API变更如下:
 
