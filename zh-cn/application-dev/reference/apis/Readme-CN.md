@@ -83,12 +83,9 @@
 - 资源调度
 
   - [@ohos.backgroundTaskManager (后台任务管理)](js-apis-backgroundTaskManager.md)
-  - [@ohos.workScheduler (延迟任务调度)](js-apis-workScheduler.md)
-  - [@ohos.WorkSchedulerExtensionAbility (延迟任务调度回调)](js-apis-workScheduler.md)
 - 定制管理
 
   - [@ohos.configPolicy (配置策略)](js-apis-config-policy.md)
-  - [@ohos.enterpriseDeviceManager (企业设备管理)](js-apis-enterprise-device-manager.md)
 - 安全
 
   - [@ohos.abilityAccessCtrl (访问控制管理)](js-apis-abilityAccessCtrl.md)
@@ -201,7 +198,7 @@
   - [@ohos.application.testRunner (TestRunner)](js-apis-testRunner.md)
   - [@ohos.uitest (UiTest)](js-apis-uitest.md)
 - 已停止维护的接口
-  
+
   - [@ohos.bytrace (性能打点)](js-apis-bytrace.md)
   - [@ohos.data.storage (轻量级存储)](js-apis-data-storage.md)
   - [@system.app (应用上下文)](js-apis-system-app.md)

@@ -37,11 +37,11 @@
     -   [Public File Access and Management](js-apis-filemanager.md)
     -   [App Storage Statistics](js-apis-storage-statistics.md)
     -   [Volume Management](js-apis-volumemanager.md)
--   Account Management
+- Account Management
     -   [OS Account Management](js-apis-osAccount.md)
     -   [Distributed Account Management](js-apis-distributed-account.md)
     -   [App Account Management](js-apis-appAccount.md)
--   Telephony Service
+- Telephony Service
     -   [Call](js-apis-call.md)
     -   [SMS](js-apis-sms.md)
     -   [SIM Management](js-apis-sim.md)
