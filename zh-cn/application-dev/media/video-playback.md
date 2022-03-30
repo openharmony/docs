@@ -35,7 +35,7 @@
 
 ## 开发步骤
 
-详细API含义可参考：[js-apis-media.md](../reference/apis/js-apis-media.md)
+详细API含义可参考：[媒体服务API文档VideoPlayer](../reference/apis/js-apis-media.md)
 
 ### 全流程场景
 
