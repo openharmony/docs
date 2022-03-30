@@ -1,13 +1,13 @@
-# Window Overview
+# 窗口开发概述
 
-The Window Manager subsystem provides basic capabilities of window and display management. It is the basis for UI display.
-The Window Manager subsystem enables multiple applications to use the same physical screen for display and interaction. For each application, you need to design the interaction interface in the fixed window area. A window acts as a display container of the application interface, and the Window Manager subsystem organizes the interaction interfaces into a form visible to end users.
+**窗口子系统**提供窗口管理和Display管理的基础能力，是系统图形界面显示所需的基础子系统。
+窗口系统的作用，是提供一种机制，让多个应用界面复用同一块物理屏幕进行显示和交互。每个应用程序中，需要实现固定窗口区域内的交互界面设计，窗口作用应用界面的显示容器，而窗口系统负责将这些交互界面组织成最终用户见到的形态。
 
-## Basic Concepts
+## 基本概念
 
 
-** Immersive**: The colors of the application interface, status bar, and navigation bar are the same to achieve the visual integrity.
+**沉浸式**：应用窗口跟状态栏与导航栏颜色一致，视觉上融合。
 
-## Working Principles
+## 运作机制
 
-To display a UI on a screen, the application and system need to request a window object from the Window Manager subsystem. This object generally represents a rectangular area on the screen and has attributes such as the position, width, height, and overlay layer. The object also loads the root node of the UI framework in the interface. The UI of the application is loaded and displayed in the window through the root node.
+为了将图形界面显示在屏幕上，应用和系统需要向窗口系统申请窗口对象，这通常代表了屏幕上一块矩形区域，具有位置、宽高、和叠加层次等属性。同时，窗口对象也负责加载界面中UI框架的根节点，应用程序的UI界面就通过这个根节点在窗口中加载显示。
