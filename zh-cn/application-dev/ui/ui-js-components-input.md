@@ -17,6 +17,8 @@ Input是交互式组件，用于接收用户数据。其类型可设置为日期
 ```
 /* xxx.css */
 .container {
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -54,6 +56,8 @@ Input是交互式组件，用于接收用户数据。其类型可设置为日期
 ```
 /* xxx.css */
 .container {
+  width: 100%;
+  height: 100%;
   align-items: center;
   flex-direction: column;
   justify-content: center;
@@ -120,6 +124,7 @@ export default {
 /* xxx.css */
 .content {
   width: 100%;
+  height: 100%;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -176,6 +181,7 @@ export default {
 /* xxx.css */
 .content {
   width: 100%;
+  height: 100%;
   flex-direction: column;
   align-items: center;
   justify-content: center;

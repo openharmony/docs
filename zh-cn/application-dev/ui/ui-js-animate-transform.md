@@ -25,6 +25,8 @@
 ```
 /* xxx.css */
 .container {
+  width:100%;
+  height:100%;
   background-color:#F1F3F5;
   align-items: center;
   flex-direction: column;
@@ -105,6 +107,8 @@
 ```
 /* xxx.css */
 .container {
+  width:100%;
+  height:100%;
   background-color:#F1F3F5;
   display: flex;
   justify-content: center;

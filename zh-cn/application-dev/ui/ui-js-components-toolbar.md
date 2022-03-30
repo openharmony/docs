@@ -23,6 +23,8 @@ Toolbar为页面工具栏组件，用于展示针对当前界面的操作选项�
 ```
 /* xxx.css */
 .container {
+  width: 100%;
+  height: 100%; 
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -44,7 +46,12 @@ toolbar-item{
 <!-- xxx.hml -->
 <div class="container">
   <toolbar>
-    <toolbar-item value="item1"></toolbar-item>    <toolbar-item value="item2"></toolbar-item>    <toolbar-item value="item3"></toolbar-item>    <toolbar-item value="item4"></toolbar-item>    <toolbar-item value="item5"></toolbar-item>    <toolbar-item value="item6"></toolbar-item>
+    <toolbar-item value="item1"></toolbar-item>    
+    <toolbar-item value="item2"></toolbar-item>    
+    <toolbar-item value="item3"></toolbar-item>    
+    <toolbar-item value="item4"></toolbar-item>    
+    <toolbar-item value="item5"></toolbar-item>    
+    <toolbar-item value="item6"></toolbar-item>
   </toolbar>
 </div>
 ```
@@ -53,6 +60,8 @@ toolbar-item{
 ```
 /* xxx.css */
 .container {
+  width: 100%;
+  height: 100%; 
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -92,6 +101,7 @@ toolbar-item{
   background-color: #F1F3F5;
   flex-direction: column;
   width: 100%;
+  height: 100%; 
   justify-content: center;
   align-items: center;
 }
@@ -131,6 +141,7 @@ toolbar-item{
   background-color: #F1F3F5;   
   flex-direction: column;
   width: 100%;
+  height: 100%; 
   justify-content: center;
   align-items: center;
 }

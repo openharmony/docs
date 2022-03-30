@@ -13,7 +13,8 @@ Form是一个表单容器，支持容器内[Input](../reference/arkui-js/js-comp
 ```
 <!-- xxx.hml -->
 <div class="container">
-  <form>  <input type="text" style="width:80%"></input>
+  <form style="width: 100%; height: 20%">  
+    <input type="text" style="width:80%"></input>
   </form>
 </div>
 ```
@@ -21,6 +22,8 @@ Form是一个表单容器，支持容器内[Input](../reference/arkui-js/js-comp
 ```
 /* xxx.css */
 .container {
+  width:100%;
+  height:100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -59,9 +62,8 @@ Form是一个表单容器，支持容器内[Input](../reference/arkui-js/js-comp
   background-color: #F1F3F5;
 }
 .formClass{
-  width: 80%;
-  padding: 10px;
-  border: 1px solid #c3d3e7;
+  width: 100%;
+  height: 20%;
 }
 ```
 
@@ -72,24 +74,44 @@ Form是一个表单容器，支持容器内[Input](../reference/arkui-js/js-comp
 ## 添加响应事件
 
 为Form组件添加submit和reset事件，来提交表单内容或重置表单选项。
+
 ```
 <!-- xxx.hml -->
-<div class="container" style="background-color:#F1F3F5;">
-  <form onsubmit='onSubmit' onreset='onReset' style="justify-content: center; align-items: center;text-align: center;">
-    <div style="flex-direction: column;justify-content: center;align-self: center;">
-      <div style="justify-content: center; align-items: center;">
-        <label>Option 1</label>
-        <input type='radio' name='radioGroup' value='radio1'></input>
-        <label>Option 2</label>
-        <input type='radio' name='radioGroup' value='radio2'></input>
-      </div>
-      <div style="margin-top: 30px;justify-content: center; align-items: center;">
-        <input type="submit" value="Submit" style="width:100px; margin-right:20px;" ></input>
-        <input type="reset" value="Reset" style="width:100px;"></input>
-      </div>
+<div class="container">
+  <form onsubmit='onSubmit' onreset='onReset' class="form">
+    <div style="width: 100%;justify-content: center;">
+      <label>Option 1</label>
+      <input type='radio' name='radioGroup' value='radio1'></input>
+      <label>Option 2</label>
+      <input type='radio' name='radioGroup' value='radio2'></input>
+    </div>
+    <div style="width: 100%;justify-content: center;">
+      <input type="submit" value="Submit" style="width:100px; margin-right:20px;" >   
+      </input>
+      <input type="reset" value="Reset" style="width:100px;"></input>
+    </div>
     </div> 
   </form>
 </div>
+```
+
+```
+/* index.css */
+.container{
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  justify-items: center
+  align-items: center;
+  background-color: #F1F3F5;
+}
+.form{
+  width: 100%;
+  height: 30%;
+  flex-direction: column;
+  justify-items: center
+  align-items: center;
+}
 ```
 
 ```

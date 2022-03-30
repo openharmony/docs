@@ -14,7 +14,8 @@
 ```
 <!-- index.hml -->
 <div class="container"> 
- <stepper>    <stepper-item>     
+ <stepper>    
+   <stepper-item>     
      <text>Step 1</text>
    </stepper-item> 
    <stepper-item>     
@@ -27,6 +28,8 @@
 ```
 /* xxx.css */
 .container {
+  width:100%;
+  height:100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -66,6 +69,8 @@ text{
 ```
 /* index.css */
 .container {
+  width:100%;
+  height:100%;
   flex-direction: column;
   background-color:#F1F3F5;
 }
@@ -102,7 +107,9 @@ text{
 
 ```
 /* index.css */
-.container {
+.container {  
+  width:100%;
+  height:100%;
   flex-direction: column;
   background-color:#F1F3F5;
 }
@@ -154,6 +161,8 @@ Stepper组件默认填充父容器，通过border和background-color设置边框
 ```
 /* index.css */
 .container {
+  width:100%;
+  height:100%;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -208,6 +217,8 @@ Stepper分别添加finish，change，next，back，skip事件。
 ```
 /* xxx.css */
 .doc-page {
+  width:100%;
+  height:100%;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -325,6 +336,8 @@ export default {
 ```
 /* xxx.css */
 .container {
+  width:100%;
+  height:100%;
   flex-direction: column;
   align-items: center;
   justify-content: center;
