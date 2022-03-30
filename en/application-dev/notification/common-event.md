@@ -13,7 +13,7 @@ Each application can subscribe to common events as required. After your applicat
 ## Common Event Subscription Development
 
 ### When to Use
-You can create a subscriber object to subscribe to a common event to obtain the parameters passed in the event. Certain system common events require specific permissions to subscribe to. For details, see [Required Permissions](../reference/apis/js-apis-commonEvent.md##required-permissions).
+You can create a subscriber object to subscribe to a common event to obtain the parameters passed in the event. Certain system common events require specific permissions to subscribe to. For details, see [Required Permissions](../reference/apis/js-apis-commonEvent.md#required-permissions).
 
 ### Available APIs
 | API                                                                                         | Description|
