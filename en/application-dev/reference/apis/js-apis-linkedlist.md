@@ -176,7 +176,7 @@ let result = linkedList.get(2);
 
 ### getLastIndexOf
 
-getLastIndexOf(element: T): number;
+getLastIndexOf(element: T): number
 
 Obtains the index of the last occurrence of the specified entry in this container.
 
@@ -404,11 +404,10 @@ let result = linkedList.removeLastFound(4);
 ```
 
 ### clone
+
 clone(): LinkedList&lt;T&gt;
 
-Clones this container and returns a copy.
-
-The modification to the copy does not affect the original instance.
+Clones this container and returns a copy. The modification to the copy does not affect the original instance.
 
 **Return value**
 
@@ -428,6 +427,7 @@ let result = linkedList.clone();
 ```
 
 ### forEach
+
 forEach(callbackfn: (value: T, index?: number, LinkedList?: LinkedList&lt;T&gt;) => void,
 thisArg?: Object): void
 
@@ -462,6 +462,7 @@ linkedList.forEach((value, index) => {
 ```
 
 ### clear
+
 clear(): void
 
 Clears this container and sets its length to **0**.
@@ -478,6 +479,7 @@ linkedList.clear();
 ```
 
 ### set
+
 set(index: number, element: T): T
 
 Replaces an entry at the specified position in this container with a given entry.
@@ -507,6 +509,7 @@ let result = linkedList.set(2, "b");
 ```
 
 ### convertToArray
+
 convertToArray(): Array&lt;T&gt;
 
 Converts this container into an array.
@@ -575,7 +578,7 @@ linkedList.getLast();
 
 ### [Symbol.iterator]
 
-[Symbol.iterator]\(): IterableIterator&lt;T&gt;;
+[Symbol.iterator]\(): IterableIterator&lt;T&gt;
 
 
 Obtains an iterator, each item of which is a JavaScript object.
