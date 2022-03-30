@@ -1,6 +1,6 @@
 # Window Development
 
-# When to Use
+## When to Use
 The interface layer of the window runs in the application process. It loads the page layout and provides APIs.
 By calling these APIs, you can create and destroy a window, set the position and size of a window, and enter the immersive mode (full-screen mode).
 
@@ -22,7 +22,7 @@ For details about the APIs, see [Window](https://gitee.com/openharmony/docs/blob
 ### Creating a Main Window
 
 Currently, the main window is automatically created when the application is started. The declaration period, hiding, and destruction of the main window are managed by the application.
-###Creating a Subwindow
+### Creating a Subwindow
 You can call **create** to create a subwindow. The sample code is as follows:
 
 ```
@@ -87,22 +87,18 @@ After a window object is obtained, you can call **hide** and **destroy** to hide
 
 ### Enabling the Full-Screen Mode
 
-After a window object is obtained,
-
-- call **setFullScreen** to enable the full-screen mode for the window.
+After a window object is obtained, you can call **setFullScreen** to enable the full-screen mode for the window.
 
 The sample code is as follows:
 
 ```
 import window from '@ohos.window';
-.onClick(async () => {
-    try {
-      const win = await window.getTopWindow()
-      await win.setFullScreen(true)
-    } catch (err) {
-      console.log(`setFullScreen fail, code = ${err.code}`)
-    }
-})
+try {
+  const win = await window.getTopWindow()
+  await win.setFullScreen(true)
+} catch (err) {
+  console.log(`setFullScreen fail, code = ${err.code}`)
+}
 ```
 
 For the complete code, see [immersive](https://gitee.com/openharmony/windowmanager/tree/master/AppDemo/window/immersive).
