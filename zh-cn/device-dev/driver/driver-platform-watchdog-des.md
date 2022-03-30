@@ -541,12 +541,12 @@ static int32_t TestCaseWatchdog(void)
 
     /* 接下来持续不喂狗，使得看门狗计时器超时 */
     for (i = 0; i < WATCHDOG_TEST_FEED_TIME; i++) {
-        HDF_LOGE("%s: watiting dog buck %d times... \n", __func__, i);
+        HDF_LOGE("%s: watiting dog back %d times... \n", __func__, i);
         OsalSleep(1);
     }
 
     /* 当不喂狗时间到达之前设定的超时时间的时候，系统会发生复位，理论上观察不到此日志的打印 */
-    HDF_LOGE("%s: dog has't buck!!! \n", __func__, i);
+    HDF_LOGE("%s: dog hasn't back!!! \n", __func__, i);
     WatchdogClose(handle);
     return -1;
 }
