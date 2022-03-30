@@ -112,7 +112,7 @@ The sensor driver model also provides certain driver development APIs that need 
 | void ReadSensorData(void) | Reads sensor data.|
 
 
-For details about the interface implementation, see [How to Develop](#How-to-Develop).
+For details about the interface implementation, see "How to Develop" below.
 
 ### How to Develop
 1. Develop the acceleration sensor abstract driver. Specifically, implement the **Bind**, **Init**, **Release**, and **Dispatch** functions.
