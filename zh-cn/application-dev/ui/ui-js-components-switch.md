@@ -44,6 +44,8 @@ Switch为开关选择器，切换开启或关闭状态。具体用法请参考[S
 ```
 /* xxx.css */
 .container {
+  width: 100%;
+  height: 100%; 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -53,7 +55,7 @@ switch{
   // 选中时的字体颜色
   texton-color: #002aff;
   // 未选中时的字体颜色
-textoff-color: silver;
+  textoff-color: silver;
   text-padding: 20px; 
   font-size: 50px;
 }
@@ -114,6 +116,8 @@ export default {
 ```
 /* xxx.css */
 .container {
+  width: 100%;
+  height: 100%; 
   background-color: #F1F3F5;
   flex-direction: column;
   padding: 50px;

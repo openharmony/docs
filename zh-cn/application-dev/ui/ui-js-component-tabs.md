@@ -230,12 +230,16 @@ export default {
 ```
 /* xxx.css */
 .container{
+width: 100%;
+height: 100%;
 background-color:#F1F3F5;
 }
 .tab_bar {
   width: 100%;
+  height: 150px;
 }
 .tab_item {
+  height: 30%;
   flex-direction: column;
   align-items: center;
 }
@@ -302,4 +306,4 @@ export default {
 }
 ```
 
-![zh-cn_image_0000001163228602](figures/zh-cn_image_0000001163228602.gif)
+![zh-cn_image_tab](figures\zh-cn_image_tab.gif)

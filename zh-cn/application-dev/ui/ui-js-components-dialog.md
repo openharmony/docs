@@ -9,7 +9,7 @@ Dialog组件用于创建自定义弹窗，通常用来展示用户当前需要�
 ```
 <!-- xxx.hml -->
 <div class="doc-page">
-  <dialog class="dialogClass" id="dialogId"><div class="content">
+  <dialog class="dialogClass" id="dialogId"><div class="content" dragable="ture">
       <text>this is a dialog</text>
     </div>
   </dialog>
@@ -20,6 +20,8 @@ Dialog组件用于创建自定义弹窗，通常用来展示用户当前需要�
 ```
 /* xxx.css */
 .doc-page {
+  width:100%;
+  height:100%;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -83,6 +85,8 @@ export default {
 ```
 /* xxx.css */
 .doc-page {
+  width:100%;
+  height:100%;
   flex-direction: column;
   align-items: center;
   justify-content: center;
