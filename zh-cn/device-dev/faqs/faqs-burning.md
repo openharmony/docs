@@ -84,7 +84,7 @@
 
 2.  根据USB烧写步骤烧写U-boot文件。
 
-    按照[Hi3516系列USB烧写步骤](https://device.harmonyos.com/cn/docs/ide/user-guides/hi3516_upload-0000001052148681)/[Hi3518系列USB烧写步骤](https://device.harmonyos.com/cn/docs/ide/user-guides/hi3518_upload-0000001057313128)中描述的USB烧写方法，选择对应单板的U-boot文件进行烧写。
+    按照[Hi3516系列USB烧写步骤](../quick-start/quickstart-lite-steps-hi3516-burn.md)/[Hi3518系列USB烧写步骤](../quick-start/quickstart-lite-steps-hi3518-burn.md)中描述的USB烧写方法，选择对应单板的U-boot文件进行烧写。
 
 3.  烧写完成后，登录串口如下图所示。
 

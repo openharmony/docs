@@ -255,7 +255,7 @@
 
 ## 签名打包<a name="section10601181101516"></a>
 
-代码编写完成后，在真机设备上运行应用，需要先对应用进行签名，然后再进行打包，具体操作请参考[签名打包指导](../../application-dev/quick-start/configuring-openharmony-app-signature.md)。
+代码编写完成后，在真机设备上运行应用，需要先对应用进行签名，然后再进行打包，具体操作请参考[签名打包指导]( https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-debugging-and-running-0000001263040487#section17660437768)。
 
 ## 真机运行<a name="section092721731511"></a>
 
