@@ -1,25 +1,25 @@
-# Documentation Contribution<a name="EN-US_TOPIC_0000001053069234"></a>
+# Documentation Contribution
 
 You are welcome to make contributions to OpenHarmony documentation, in any of the methods provided below. You can help us improve the existing documents or submit new, original content.
 
 Excellent contributors will be awarded and the contributions will be publicized in the developer community.
 
--   [Contribution Methods](#section5723203852414)
+-   [Contribution Methods](#contribution-methods)
 -   [Writing Instructions](writing-instructions.md)
 
-## Content Copyright<a name="section87752266272"></a>
+## Content Copyright
 
 The content and images submitted by you must be original and must not infringe others' intellectual property rights.
 
 OpenHarmony has the right to modify the adopted content according to the community regulations and specifications.
 
-## License<a name="section460934180"></a>
+## License
 
 [Creative Commons License version 4.0](https://creativecommons.org/licenses/by/4.0/legalcode)
 
-## Contribution Methods<a name="section5723203852414"></a>
+## Contribution Methods<a name = contribution-methods></a>
 
-### Submitting Issues for Existing Documents<a name="section133341053162416"></a>
+### Submitting Issues for Existing Documents
 
 Your feedback matters. Submit issues and leave as detailed information as possible, so we can better fix the issues and improve our documents.
 
@@ -35,7 +35,7 @@ Your feedback matters. Submit issues and leave as detailed information as possib
 >-   Search the list of existing issues to see if any related or similar issues have been submitted.
 >-   If an issue is associated with another issue or a pull request (PR), you can use its full URL or the combination of the number sign (#) and PR number to reference it.
 
-### Editing Existing Documents<a name="section1433285372417"></a>
+### Editing Existing Documents
 
 You can perform the following steps to modify or supplement a file:
 
@@ -48,7 +48,7 @@ You can perform the following steps to modify or supplement a file:
 
     Signed-off-by: user.name &lt;user.email&gt; // Note that *user.name* and *user.email* must be the same as those used for DCO signing.
 
-![](figures/Signed-off-by-example.png.png)
+![](figures/Signed-off-by-example.png)
 
     The Docs team will review your edits and update the file accordingly.
 
@@ -61,7 +61,7 @@ To help developers efficiently use each release, OpenHarmony provides related do
 
 You are welcome to contribute documents to the release. For details, see [Writing Documents for a Release](docs-release-process.md).
 
-### Sharing Experience<a name="section12616152517159"></a>
+### Sharing Experience
 
 You are welcome to share your experience and expertise with other developers to help them get started. For example, you can contribute tutorials and FAQs by using the following templates:
 
