@@ -16,7 +16,7 @@ During audio recording, audio signals are captured, encoded, and saved to files.
 
 ## How to Develop
 
-For details about the APIs used for audio recording, see [js-apis-media.md](../reference/apis/js-apis-media.md).
+For details about the APIs, see [AudioRecorder in the Media API](../reference/apis/js-apis-media.md).
 
 ### Full-Process Scenario
 
@@ -127,7 +127,7 @@ import mediaLibrary from '@ohos.multimedia.mediaLibrary'
 
 let testFdNumber;
 
-function SetCallBack(audioPlayer) {
+function SetCallBack(audioRecorder) {
     audioRecorder.on('prepare', () => {              								// Set the 'prepare' event callback.
         console.log('prepare success');    
         // The recording page is ready. You can click the Record button to start recording.
