@@ -12,5 +12,5 @@
   - [hapsigntool Development](hapsigntool-guidelines.md)
   
 - Access Control  
-  - [Access Token Overview](accesstoken-overview.md)
-  - [Access Token Development](accesstoken-guidelines.md)
+  - [Access Control Overview](accesstoken-overview.md)
+  - [Access Control Development](accesstoken-guidelines.md)
