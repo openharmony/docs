@@ -72,7 +72,7 @@ Enhanced Swap (ESwap) allows a custom partition to serve as a swap partition and
 	```
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif)**NOTE**<br/>
+> ![icon-note.gif](../public_sys-resources/icon-note.gif)**NOTE**<br/>
 > Enable ESwap before zram is enabled. If ESwap is not used, you can enable zram only. If a device does not have the storage device for swap-out or have the corresponding storage partition created, you can enable ZRAM to reclaim memory using **zswapd**.
 
 ### Enabling zram
@@ -88,7 +88,7 @@ Enhanced Swap (ESwap) allows a custom partition to serve as a swap partition and
 	echo 512M > /sys/block/zram0/disksize
 	```
 
-	> ![icon-note.gif](public_sys-resources/icon-note.gif)**NOTE**<br/>
+	> ![icon-note.gif](../public_sys-resources/icon-note.gif)**NOTE**<br/>
 	> The parameters and functions of **/sys/block/zram0/group** are as follows:
 	>
 	> - **disable**: disables the function.
@@ -115,7 +115,7 @@ Enhanced Swap (ESwap) allows a custom partition to serve as a swap partition and
 	echo force_disable > /proc/sys/kernel/hyperhold/enable
 	```
 
-	> ![icon-note.gif](public_sys-resources/icon-note.gif)**NOTE**<br/>
+	> ![icon-note.gif](../public_sys-resources/icon-note.gif)**NOTE**<br/>
 	> The difference of the two commands is as follows:
 	>
 	> - **disable**: If there is no data in the ESwap partition, disable ESwap. Otherwise, changes ESwap to read-only mode.
@@ -143,7 +143,7 @@ ESwap provides APIs to control swap-in and swap-out policies and record the curr
 |          | [stat](#stat) | Checks the real-time status of ESwap.|
 |          | [zswapd_vmstat_show](#zswapd_vmstat_show) | Records events during the zswapd running.|
 
-> ![icon-caution.gif](public_sys-resources/icon-caution.gif)**CAUTION**<br/>
+> ![icon-caution.gif](../public_sys-resources/icon-caution.gif)**CAUTION**<br/>
 > Only **avail_buffers** proactively wakes up zswapd because the buffer waterline is adjusted. Other control APIs do not proactively wake up zswapd, but their configuration takes effect only after zswapd is woken up.
 
 The APIs are described as follows:
