@@ -80,7 +80,7 @@ Declare the Service Extension ability in the **module.json** file by setting its
 
 The following sample is provided to help you better understand how to develop a Service Extension ability:
 
-- [ServiceExtensionAbility]()
+- [ServiceExtensionAbility](https://gitee.com/openharmony/app_samples/tree/master/ability/eTSServiceExtAbility)
 
 This **ServiceExtensionAbility** sample shows how to:
 
