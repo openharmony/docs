@@ -34,7 +34,7 @@ Abilities are classified into two types: [Feature Ability (FA)](../../glossary.m
 
 ![en-us_image_0000001215206886](figures/en-us_image_0000001215206886.png)
 
-This document provides a Page ability instance with two pages. For more information about ability development, see [Ability Development](../ability/ability-brief.md).
+This document provides a Page ability instance with two pages. For more information about ability development, see [Ability Development](../ability/fa-brief.md).
 
 
 ## Tool Preparation

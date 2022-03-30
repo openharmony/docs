@@ -34,7 +34,7 @@ Ability可以分为[FA（Feature Ability）](../../glossary.md#f)和[PA（Partic
 
 ![zh-cn_image_0000001215206886](figures/zh-cn_image_0000001215206886.png)
 
-快速入门提供了一个含有两个页面的Page Ability实例。更多Ability的开发内容及指导，请参见[Ability开发](../ability/ability-brief.md)。
+快速入门提供了一个含有两个页面的Page Ability实例。更多Ability的开发内容及指导，请参见[Ability开发](../ability/fa-brief.md)。
 
 
 ## 工具准备

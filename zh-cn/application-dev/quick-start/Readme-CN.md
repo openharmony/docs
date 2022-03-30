@@ -8,4 +8,5 @@
 - 开发基础知识
     - [包结构说明](package-structure.md)
     - [资源文件的分类](basic-resource-file-categories.md)
+    - [SysCap说明](syscap.md)
 
