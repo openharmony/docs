@@ -14,6 +14,7 @@ You must extend **AbilityContext** to implement this module.
 
 
 ## Attributes
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
   | Name| Type| Readable| Writable| Description| 

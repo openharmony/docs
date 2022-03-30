@@ -1,8 +1,8 @@
 # missionManager
 
 
-> **NOTE**
-> The initial APIs of this module are supported since API version 8.
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 Provides mission management. You can use the APIs to lock, unlock, and clear missions, and switch a mission to the foreground.
@@ -18,7 +18,7 @@ import missionManager from '@ohos.application.missionManager'
 
 ## missionManager.registerMissionListener
 
-function registerMissionListener(listener: MissionListener): number;
+registerMissionListener(listener: MissionListener): number;
 
 Registers a listener to observe the mission status.
 
@@ -53,7 +53,7 @@ Registers a listener to observe the mission status.
 
 ## missionManager.unregisterMissionListener
 
-function unregisterMissionListener(listenerId: number, callback: AsyncCallback&lt;void&gt;): void;
+unregisterMissionListener(listenerId: number, callback: AsyncCallback&lt;void&gt;): void;
 
 Unregisters a mission status listener. This API uses an asynchronous callback to return the result.
 
@@ -86,7 +86,7 @@ Unregisters a mission status listener. This API uses an asynchronous callback to
 
 ## missionManager.unregisterMissionListener
 
-function unregisterMissionListener(listenerId: number): Promise&lt;void&gt;;
+unregisterMissionListener(listenerId: number): Promise&lt;void&gt;;
 
 Unregisters a mission status listener. This API uses a promise to return the result.
 
@@ -97,6 +97,12 @@ Unregisters a mission status listener. This API uses a promise to return the res
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | listenerId | number | Yes| Index of the mission status listener to unregister. Each listener has a unique index, which is returned by **registerMissionListener**.|
+
+**Return value**
+
+  | Type| Description| 
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise used to return the result.| 
 
 **Example**
 
@@ -110,7 +116,7 @@ Unregisters a mission status listener. This API uses a promise to return the res
     console.log("registerMissionListener")
     var listenerid = missionManager.registerMissionListener(listener);
 
-    await missionManager.unregisterMissionListener(listenerid).catch(function (err){
+    missionManager.unregisterMissionListener(listenerid).catch(function (err){
       console.log(err);
     });
   ```
@@ -118,7 +124,7 @@ Unregisters a mission status listener. This API uses a promise to return the res
 
 ## missionManager.getMissionInfo
 
-function getMissionInfo(deviceId: string, missionId: number, callback: AsyncCallback&lt;MissionInfo&gt;): void;
+getMissionInfo(deviceId: string, missionId: number, callback: AsyncCallback&lt;MissionInfo&gt;): void;
 
 Obtains the information of a given mission. This API uses an asynchronous callback to return the result.
 
@@ -130,7 +136,7 @@ Obtains the information of a given mission. This API uses an asynchronous callba
   | -------- | -------- | -------- | -------- |
   | deviceId | string | Yes| Device ID. It is a null string by default for the local device.|
   | missionId | number | Yes| Mission ID.|
-  | callback | AsyncCallback&lt;MissionInfo&gt; | Yes| Callback used to return the mission information obtained.|
+  | callback | AsyncCallback&lt;[MissionInfo](#missioninfo)&gt; | Yes| Callback used to return the mission information obtained.|
 
 **Example**
 
@@ -145,13 +151,13 @@ Obtains the information of a given mission. This API uses an asynchronous callba
   	console.log("mission.timestamp = " + mission.timestamp);
   	console.log("mission.label = " + mission.label);
   	console.log("mission.iconPath = " + mission.iconPath);
-  }
+  });
   ```
 
 
 ## missionManager.getMissionInfo
 
-function getMissionInfo(deviceId: string, missionId: number): Promise&lt;MissionInfo&gt;;
+getMissionInfo(deviceId: string, missionId: number): Promise&lt;MissionInfo&gt;;
 
 Obtains the information of a given mission. This API uses a promise to return the result.
 
@@ -168,14 +174,14 @@ Obtains the information of a given mission. This API uses a promise to return th
 
   | Type| Description|
   | -------- | -------- |
-  | [MissionInfo](js-apis-application-MissionInfo.md) | Promise used to return the mission information obtained.|
+  | Promise&lt;[MissionInfo](#missioninfo)&gt; | Promise used to return the mission information obtained.|
 
 **Example**
 
   ```js
   import missionManager from '@ohos.application.missionManager'
 
-  var mission = await missionManager.getMissionInfo("", id).catch(function (err){
+  var mission = missionManager.getMissionInfo("", id).catch(function (err){
       console.log(err);
   });
   ```
@@ -183,7 +189,7 @@ Obtains the information of a given mission. This API uses a promise to return th
 
 ## missionManager.getMissionInfos
 
-function getMissionInfos(deviceId: string, numMax: number, callback: AsyncCallback&lt;Array&lt;MissionInfo&gt;&gt;): void;
+getMissionInfos(deviceId: string, numMax: number, callback: AsyncCallback&lt;Array&lt;MissionInfo&gt;&gt;): void;
 
 Obtains information of all missions. This API uses an asynchronous callback to return the result.
 
@@ -195,7 +201,7 @@ Obtains information of all missions. This API uses an asynchronous callback to r
   | -------- | -------- | -------- | -------- |
   | deviceId | string | Yes| Device ID. It is a null string by default for the local device.|
   | numMax | number | Yes| Maximum number of missions whose information can be obtained.|
-  | callback | AsyncCallback&lt;Array&lt;[MissionInfo](js-apis-application-MissionInfo.md)&gt;&gt; | Yes| Callback used to return the array of mission information obtained.|
+  | callback | AsyncCallback&lt;Array&lt;[MissionInfo](#missioninfo)&gt;&gt; | Yes| Callback used to return the array of mission information obtained.|
 
 **Example**
 
@@ -212,7 +218,7 @@ Obtains information of all missions. This API uses an asynchronous callback to r
 
 ## missionManager.getMissionInfos
 
-function getMissionInfos(deviceId: string, numMax: number): Promise&lt;Array&lt;MissionInfo&gt;&gt;;
+getMissionInfos(deviceId: string, numMax: number): Promise&lt;Array&lt;MissionInfo&gt;&gt;;
 
 Obtains information of all missions. This API uses a promise to return the result.
 
@@ -229,14 +235,14 @@ Obtains information of all missions. This API uses a promise to return the resul
 
   | Type| Description|
   | -------- | -------- |
-  | Array&lt;MissionInfo&gt; | Promise used to return the array of mission information obtained.|
+  | Promise&lt;Array&lt;[MissionInfo](#missioninfo)&gt;&gt; | Promise used to return the array of mission information obtained.|
 
 **Example**
 
   ```js
   import missionManager from '@ohos.application.missionManager'
 
-  var allMissions = await missionManager.getMissionInfos("", 10).catch(function (err){
+  var allMissions = missionManager.getMissionInfos("", 10).catch(function (err){
       console.log(err);
   });
   ```
@@ -244,7 +250,7 @@ Obtains information of all missions. This API uses a promise to return the resul
 
 ## missionManager.getMissionSnapShot
 
-function getMissionSnapShot(deviceId: string, missionId: number, callback: AsyncCallback&lt;MissionSnapshot&gt;): void;
+getMissionSnapShot(deviceId: string, missionId: number, callback: AsyncCallback&lt;MissionSnapshot&gt;): void;
 
 Obtains the snapshot of a given mission. This API uses an asynchronous callback to return the result.
 
@@ -279,7 +285,7 @@ Obtains the snapshot of a given mission. This API uses an asynchronous callback 
 
 ## missionManager.getMissionSnapShot
 
-function getMissionSnapShot(deviceId: string, missionId: number): Promise&lt;MissionSnapshot&gt;;
+getMissionSnapShot(deviceId: string, missionId: number): Promise&lt;MissionSnapshot&gt;;
 
 Obtains the snapshot of a given mission. This API uses a promise to return the result.
 
@@ -296,20 +302,20 @@ Obtains the snapshot of a given mission. This API uses a promise to return the r
 
   | Type| Description|
   | -------- | -------- |
-  | MissionSnapshot | Promise used to return the snapshot information obtained.|
+  | Promise&lt;[MissionSnapshot](js-apis-application-MissionSnapshot.md)&gt; | Promise used to return the snapshot information obtained.|
 
 **Example**
 
   ```js
   import missionManager from '@ohos.application.missionManager'
 
-  var allMissions = await missionManager.getMissionInfos("", 10).catch(function (err){
+  var allMissions = missionManager.getMissionInfos("", 10).catch(function (err){
     console.log(err);
   });
   console.log("size = " + allMissions.length);
   console.log("missions = " + JSON.stringify(allMissions));
   var id = allMissions[0].missionId;
-  var snapshot = await missionManager.getMissionSnapShot("", id).catch(function (err){
+  var snapshot = missionManager.getMissionSnapShot("", id).catch(function (err){
     console.log(err);
   });
   ```
@@ -317,7 +323,7 @@ Obtains the snapshot of a given mission. This API uses a promise to return the r
 
 ## missionManager.lockMission
 
-function lockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void;
+lockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void;
 
 Locks a given mission. This API uses an asynchronous callback to return the result.
 
@@ -350,7 +356,7 @@ Locks a given mission. This API uses an asynchronous callback to return the resu
 
 ## missionManager.lockMission
 
-function lockMission(missionId: number): Promise&lt;void&gt;;
+lockMission(missionId: number): Promise&lt;void&gt;;
 
 Locks a given mission. This API uses a promise to return the result.
 
@@ -362,19 +368,25 @@ Locks a given mission. This API uses a promise to return the result.
   | -------- | -------- | -------- | -------- |
   | missionId | number | Yes| Mission ID.|
 
+**Return value**
+
+  | Type| Description| 
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise used to return the result.| 
+
 **Example**
 
   ```js
   import missionManager from '@ohos.application.missionManager'
 
-  var allMissions = await missionManager.getMissionInfos("", 10).catch(function (err){
+  var allMissions = missionManager.getMissionInfos("", 10).catch(function (err){
     console.log(err);
   });
   console.log("size = " + allMissions.length);
   console.log("missions = " + JSON.stringify(allMissions));
   var id = allMissions[0].missionId;
 
-  await missionManager.lockMission(id).catch(function (err){
+  missionManager.lockMission(id).catch(function (err){
       console.log(err);
   });
   ```
@@ -382,7 +394,7 @@ Locks a given mission. This API uses a promise to return the result.
 
 ## missionManager.unlockMission
 
-function unlockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void;
+unlockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void;
 
 Unlocks a given mission. This API uses an asynchronous callback to return the result.
 
@@ -390,9 +402,10 @@ Unlocks a given mission. This API uses an asynchronous callback to return the re
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | missionId | number | Yes| Mission ID.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| missionId | number | Yes| Mission ID.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
 
@@ -414,7 +427,7 @@ Unlocks a given mission. This API uses an asynchronous callback to return the re
 
 ## missionManager.unlockMission
 
-function unlockMission(missionId: number): Promise&lt;void&gt;;
+unlockMission(missionId: number): Promise&lt;void&gt;;
 
 Unlocks a given mission. This API uses a promise to return the result.
 
@@ -426,22 +439,28 @@ Unlocks a given mission. This API uses a promise to return the result.
   | -------- | -------- | -------- | -------- |
   | missionId | number | Yes| Mission ID.|
 
+**Return value**
+
+  | Type| Description| 
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise used to return the result.| 
+
 **Example**
 
   ```js
   import missionManager from '@ohos.application.missionManager'
 
-  var allMissions = await missionManager.getMissionInfos("", 10).catch(function (err){
+  var allMissions = missionManager.getMissionInfos("", 10).catch(function (err){
     console.log(err);
   });
   console.log("size = " + allMissions.length);
   console.log("missions = " + JSON.stringify(allMissions));
   var id = allMissions[0].missionId;
 
-  await missionManager.lockMission(id).catch(function (err){
+  missionManager.lockMission(id).catch(function (err){
       console.log(err);
   });
-  await missionManager.unlockMission(id).catch(function (err){
+  missionManager.unlockMission(id).catch(function (err){
       console.log(err);
   });
   ```
@@ -449,7 +468,7 @@ Unlocks a given mission. This API uses a promise to return the result.
 
 ## missionManager.clearMission
 
-function clearMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void;
+clearMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void;
 
 Clears a given mission, regardless of whether it is locked. This API uses an asynchronous callback to return the result.
 
@@ -482,7 +501,7 @@ Clears a given mission, regardless of whether it is locked. This API uses an asy
 
 ## missionManager.clearMission
 
-function clearMission(missionId: number): Promise&lt;void&gt;;
+clearMission(missionId: number): Promise&lt;void&gt;;
 
 Clears a given mission, regardless of whether it is locked. This API uses a promise to return the result.
 
@@ -494,19 +513,25 @@ Clears a given mission, regardless of whether it is locked. This API uses a prom
   | -------- | -------- | -------- | -------- |
   | missionId | number | Yes| Mission ID.|
 
+**Return value**
+
+  | Type| Description| 
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise used to return the result.| 
+
 **Example**
 
   ```js
   import missionManager from '@ohos.application.missionManager'
 
-  var allMissions = await missionManager.getMissionInfos("", 10).catch(function (err){
+  var allMissions = missionManager.getMissionInfos("", 10).catch(function (err){
     console.log(err);
   });
   console.log("size = " + allMissions.length);
   console.log("missions = " + JSON.stringify(allMissions));
   var id = allMissions[0].missionId;
 
-  await missionManager.clearMission(id).catch(function (err){
+  missionManager.clearMission(id).catch(function (err){
     console.log(err);
   });
   ```
@@ -514,7 +539,7 @@ Clears a given mission, regardless of whether it is locked. This API uses a prom
 
 ## missionManager.clearAllMissions
 
-function clearAllMissions(callback: AsyncCallback&lt;void&gt;): void;
+clearAllMissions(callback: AsyncCallback&lt;void&gt;): void;
 
 Clears all unlocked missions. This API uses an asynchronous callback to return the result.
 
@@ -533,17 +558,23 @@ Clears all unlocked missions. This API uses an asynchronous callback to return t
 
 ## missionManager.clearAllMissions
 
-function clearAllMissions(): Promise&lt;void&gt;;
+clearAllMissions(): Promise&lt;void&gt;;
 
 Clears all unlocked missions. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
+**Return value**
+
+  | Type| Description| 
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise used to return the result.| 
+
 **Example**
 
   ```js
   import missionManager from '@ohos.application.missionManager'
-  await missionManager.clearAllMissions().catch(function (err){
+  missionManager.clearAllMissions().catch(function (err){
     console.log(err);
   });
   ```
@@ -551,7 +582,7 @@ Clears all unlocked missions. This API uses a promise to return the result.
 
 ## missionManager.moveMissionToFront
 
-function moveMissionToFront(missionId: number, callback: AsyncCallback&lt;void&gt;): void;
+moveMissionToFront(missionId: number, callback: AsyncCallback&lt;void&gt;): void;
 
 Switches a given mission to the foreground. This API uses an asynchronous callback to return the result.
 
@@ -584,7 +615,7 @@ Switches a given mission to the foreground. This API uses an asynchronous callba
 
 ## missionManager.moveMissionToFront
 
-function moveMissionToFront(missionId: number, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void;
+moveMissionToFront(missionId: number, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void;
 
 Switches a given mission to the foreground, with the startup parameters for the switch specified, such as the window mode and device ID. This API uses an asynchronous callback to return the result.
 
@@ -618,9 +649,9 @@ Switches a given mission to the foreground, with the startup parameters for the 
 
 ## missionManager.moveMissionToFront
 
-function moveMissionToFront(missionId: number, options?: StartOptions): Promise&lt;void&gt;;
+moveMissionToFront(missionId: number, options?: StartOptions): Promise&lt;void&gt;;
 
-Switches a given mission to the foreground. This API uses a promise to return the result.
+Switches a given mission to the foreground, with the startup parameters for the switch specified, such as the window mode and device ID. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
@@ -631,19 +662,42 @@ Switches a given mission to the foreground. This API uses a promise to return th
   | missionId | number | Yes| Mission ID.|
   | options | StartOptions | No| Startup parameters, which are used to specify the window mode and device ID for switching the mission to the foreground.|
 
+**Return value**
+
+  | Type| Description| 
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise used to return the result.| 
+
 **Example**
 
   ```js
   import missionManager from '@ohos.application.missionManager'
 
-  var allMissions = await missionManager.getMissionInfos("", 10).catch(function (err){
+  var allMissions = missionManager.getMissionInfos("", 10).catch(function (err){
     console.log(err);
   });
   console.log("size = " + allMissions.length);
   console.log("missions = " + JSON.stringify(allMissions));
   var id = allMissions[0].missionId;
 
-  await missionManager.moveMissionToFront(id).catch(function (err){
+  missionManager.moveMissionToFront(id).catch(function (err){
     console.log(err);
   });
   ```
+
+## MissionInfo
+
+Describes the mission information.
+
+**System capability**: SystemCapability.Ability.AbilityBase
+
+| Name| Type| Readable| Writable| Description| 
+| -------- | -------- | -------- | -------- | -------- |
+| missionId | number | Yes| Yes| Mission ID.| 
+| runningState | number | Yes| Yes| Running state of the mission.| 
+| lockedState | boolean | Yes| Yes| Locked state of the mission.| 
+| timestamp | string | Yes| Yes| Latest time when the mission was created or updated.| 
+| want | [Want](js-apis-featureAbility.md#want) | Yes| Yes| **Want** information of the mission.| 
+| label | string | Yes| Yes| Label of the mission.| 
+| iconPath | string | Yes| Yes| Path of the mission icon.| 
+| continuable | boolean | Yes| Yes| Whether the mission is continuable.| 
