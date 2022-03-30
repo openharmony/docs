@@ -1,8 +1,11 @@
 # Page Routing
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> - The initial APIs of this module are supported since API version 3. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
 > - The APIs of this module are no longer maintained since API version 8. You are advised to use ['@ohos.router'](js-apis-router.md) instead.
+>
+>
+> - The initial APIs of this module are supported since API version 3. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 ## Modules to Import
@@ -22,9 +25,9 @@ Navigates to a specified page in the application.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| options | [RouterOptions](#routeroptions) | Yes| Page routing parameters. For details, see **RouterOptions**.|
+| Name    | Type                             | Mandatory  | Description                        |
+| ------- | ------------------------------- | ---- | -------------------------- |
+| options | [RouterOptions](#routeroptions) | Yes   | Page routing parameters. For details, see **RouterOptions**.|
 
 **Example**
 
@@ -76,9 +79,9 @@ Replaces the current page with another one in the application and destroys the c
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| options | [RouterOptions](#routeroptions) | Yes| Page routing parameters. For details, see **RouterOptions**.|
+| Name    | Type                             | Mandatory  | Description                        |
+| ------- | ------------------------------- | ---- | -------------------------- |
+| options | [RouterOptions](#routeroptions) | Yes   | Page routing parameters. For details, see **RouterOptions**.|
 
 **Example**
 
@@ -119,9 +122,9 @@ Returns to the previous page or a specified page.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| options | [BackRouterOptions](#backrouteroptions) | Yes| For details, see **BackRouterOptions**.|
+| Name    | Type                                     | Mandatory  | Description                     |
+| ------- | --------------------------------------- | ---- | ----------------------- |
+| options | [BackRouterOptions](#backrouteroptions) | Yes   | For details, see **BackRouterOptions**.|
 
 **Example**
 
@@ -191,8 +194,8 @@ Obtains parameter information about the current page.
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
+| Type                                 | Description                   |
+| ----------------------------------- | --------------------- |
 | [ParamsInterface](#paramsinterface) | For details, see **ParamsInterface**.|
 
 ## router.clear
@@ -223,8 +226,8 @@ Obtains the number of pages in the current stack.
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
+| Type    | Description                |
+| ------ | ------------------ |
 | string | Number of pages in the stack. The maximum value is **32**.|
 
 **Example**
@@ -248,8 +251,8 @@ Obtains state information about the current page.
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
+| Type                       | Description               |
+| --------------------------- | ----------------- |
 | [RouterState](#routerstate) | For details, see **RouterState**.|
 
 **Example**
@@ -275,9 +278,9 @@ Enables the display of a confirm dialog box before returning to the previous pag
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| options | [EnableAlertBeforeBackPageOptions](#enableAlertbeforebackpageoptions6) | Yes| For details, see **EnableAlertBeforeBackPageOptions**.|
+| Name    | Type                                      | Mandatory  | Description                                    |
+| ------- | ---------------------------------------- | ---- | -------------------------------------- |
+| options | [EnableAlertBeforeBackPageOptions](#enableAlertbeforebackpageoptions6) | Yes   | For details, see **EnableAlertBeforeBackPageOptions**.|
 
 **Example**
 
@@ -307,9 +310,9 @@ Disables the display of a confirm dialog box before returning to the previous pa
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| options | [DisableAlertBeforeBackPageOptions](#disablealertbeforebackpageoptions6) | No| For details, see **DisableAlertBeforeBackPageOptions**.|
+| Name    | Type                                      | Mandatory  | Description                                     |
+| ------- | ---------------------------------------- | ---- | --------------------------------------- |
+| options | [DisableAlertBeforeBackPageOptions](#disablealertbeforebackpageoptions6) | No   | For details, see **DisableAlertBeforeBackPageOptions**.|
 
 **Example**
 
@@ -334,10 +337,10 @@ Defines the page routing parameters.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Lite
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| uri | string | Yes| URI of the destination page, in either of the following formats:<br>1. Absolute path, which is provided by the **pages** list in the **config.json** file. Example:<br>- pages/index/index<br> -pages/detail/detail<br>2. Specific path. If the URI is a slash (/), the home page is displayed.|
-| params | Object | No| Data that needs to be passed to the destination page during redirection. After the destination page is displayed, it can use the passed data, for example, **this.data1** (**data1** is a key in **params**). If there is the same key (for example, **data1**) on the destination page, the passed **data1** value will replace the original value on the destination page.|
+| Name    | Type  | Mandatory  | Description                                      |
+| ------ | ------ | ---- | ---------------------------------------- |
+| uri    | string | Yes   | URI of the destination page, in either of the following formats:<br>1. Absolute path, which is provided by the **pages** list in the **config.json** file. Example:<br>- pages/index/index<br> -pages/detail/detail<br>2. Specific path. If the URI is a slash (/), the home page is displayed.|
+| params | Object | No   | Data that needs to be passed to the destination page during redirection. After the destination page is displayed, it can use the passed data, for example, **this.data1** (**data1** is a key in **params**). If there is the same key (for example, **data1**) on the destination page, the passed **data1** value will replace the original value on the destination page.|
 
 
 ## BackRouterOptions
@@ -346,10 +349,10 @@ Defines the parameters for routing back.
 
 **System capability**: The items in the table below require different system capabilities. For details, see the table.
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| uri | string | No| URI of the page to return to. If the specified page does not exist in the page stack, the application does not respond. If this parameter is not set, the application returns to the previous page.<br>**System capability**: SystemCapability.ArkUI.ArkUI.Full|
-| params | Object | No| Data that needs to be passed to the destination page during redirection.<br>**System capability**: SystemCapability.ArkUI.ArkUI.Lite|
+| Name    | Type  | Mandatory  | Description                                      |
+| ------ | ------ | ---- | ---------------------------------------- |
+| uri    | string | No   | URI of the page to return to. If the specified page does not exist in the page stack, the application does not respond. If this parameter is not set, the application returns to the previous page.<br>**System capability**: SystemCapability.ArkUI.ArkUI.Full|
+| params | Object | No   | Data that needs to be passed to the destination page during redirection.<br>**System capability**: SystemCapability.ArkUI.ArkUI.Lite|
 
 ## RouterState
 
@@ -357,11 +360,11 @@ Defines the page state.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- |-------- |
-| index | number | Yes| Index of the current page in the stack. The index starts from 1 from the bottom to the top of the stack.|
-| name | string | Yes| Name of the current page, that is, the file name.|
-| path | string | Yes| Path of the current page.|
+| Name   | Type  | Mandatory  | Description                                |
+| ----- | ------ | ---- | ---------------------------------- |
+| index | number | Yes   | Index of the current page in the stack. The index starts from 1 from the bottom to the top of the stack.|
+| name  | string | Yes   | Name of the current page, that is, the file name.                 |
+| path  | string | Yes   | Path of the current page.                        |
 
 ## EnableAlertBeforeBackPageOptions<sup>6+</sup>
 
@@ -369,12 +372,12 @@ Defines the **EnableAlertBeforeBackPage** parameters.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| message | string | Yes| Content displayed in the confirm dialog box.|
-| success | (errMsg: string) => void | No| Called when a dialog box is displayed. **errMsg** indicates the returned information.|
-| fail | (errMsg: string) => void | No| Called when the API fails to be called. **errMsg** indicates the returned information.|
-| complete | () => void | No| Called when the API call is complete.|
+| Name      | Type                    | Mandatory  | Description                       |
+| -------- | ------------------------ | ---- | ------------------------- |
+| message  | string                   | Yes   | Content displayed in the confirm dialog box.                 |
+| success  | (errMsg: string) => void | No   | Called when a dialog box is displayed. **errMsg** indicates the returned information.   |
+| fail     | (errMsg: string) => void | No   | Called when the API fails to be called. **errMsg** indicates the returned information.|
+| complete | () => void               | No   | Called when the API call is complete.             |
 
 ## DisableAlertBeforeBackPageOptions<sup>6+</sup>
 
@@ -382,14 +385,14 @@ Define the **DisableAlertBeforeBackPage** parameters.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| success | (errMsg: string) => void | No| Called when a dialog box is displayed. **errMsg** indicates the returned information.|
-| fail | (errMsg: string) => void | No| Called when the API fails to be called. **errMsg** indicates the returned information.|
-| complete | () => void | No| Called when the API call is complete.|
+| Name      | Type                    | Mandatory  | Description                       |
+| -------- | ------------------------ | ---- | ------------------------- |
+| success  | (errMsg: string) => void | No   | Called when a dialog box is displayed. **errMsg** indicates the returned information.   |
+| fail     | (errMsg: string) => void | No   | Called when the API fails to be called. **errMsg** indicates the returned information.|
+| complete | () => void               | No   | Called when the API call is complete.             |
 
 ## ParamsInterface
 
-| Name| Type| Description|
-| -------- | -------- | -------- |
-| [key: string] | Object| List of routing parameters.|
+| Name           | Type  | Description     |
+| ------------- | ------ | ------- |
+| [key: string] | Object | List of routing parameters.|
