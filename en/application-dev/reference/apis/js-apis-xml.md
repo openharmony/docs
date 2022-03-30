@@ -329,6 +329,7 @@ that.parse(options);
 
 Defines the XML parsing options.
 
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | supportDoctype | boolean | No| Whether to ignore **Doctype**. The default value is **false**.|
@@ -336,7 +337,6 @@ Defines the XML parsing options.
 | tagValueCallbackFunction | (name:&nbsp;string,&nbsp;value:&nbsp;string)=&gt;&nbsp;boolean | No| Callback used to return **tagValue**.|
 | attributeValueCallbackFunction | (name:&nbsp;string,&nbsp;value:&nbsp;string)=&gt;&nbsp;boolean | No| Callback used to return **attributeValue**.|
 | tokenValueCallbackFunction | (eventType:&nbsp;[EventType](#eventtype),&nbsp;value:&nbsp;[ParseInfo](#parseinfo))=&gt;&nbsp;boolean | No| Callback used to return **tokenValue**.|
-
 
 ## ParseInfo
 
