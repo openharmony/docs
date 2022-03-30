@@ -120,7 +120,7 @@
           ],
     ```
 
-4.  修改单板配置文件。
+5.  修改单板配置文件。
     
     修改文件vendor/hisilicon/hispark_pegasus/config.json，新增hello\_world\_app组件的条目，如下所示代码片段为applications子系统配置，“##start##”和“##end##”之间为新增条目（“##start##”和“##end##”仅用来标识位置，添加完配置后删除这两行）：
 
