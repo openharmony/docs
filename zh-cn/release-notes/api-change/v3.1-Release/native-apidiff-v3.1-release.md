@@ -4,7 +4,7 @@ OpenHarmony 3.1 Release相较于OpenHarmony 3.0 LTS版本的API变更如下:
 
 ## 标准系统接口变更
 
-- [ ] | 模块名称 | 接口名称                                                     | 变更类型 | 变更说明                                        |
+  | 模块名称 | 接口名称                                                     | 变更类型 | 变更说明                                        |
   | -------- | ------------------------------------------------------------ | -------- | ----------------------------------------------- |
   | 图形-drawing | OH_Drawing_FontCollection* OH_Drawing_CreateFontCollection(void) | 新增     | 创建OH_Drawing_FontCollection                   |
   | 图形-drawing | void OH_Drawing_DestroyFontCollection(OH_Drawing_FontCollection*) | 新增     | 释放被OH_Drawing_FontCollection对象占据的内存   |
