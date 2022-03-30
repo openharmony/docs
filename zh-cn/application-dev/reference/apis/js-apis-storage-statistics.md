@@ -130,7 +130,7 @@ getFreeSizeOfVolume(volumeUuid: string, callback:AsyncCallback&lt;number&gt;):vo
 
 getBundleStats(packageName: string): Promise&lt;BundleStats&gt;
 
-异步获取应用存储状态，以promise方式返回。
+异步获取应用存储数据，以promise方式返回。
 
 **系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
 
@@ -161,7 +161,7 @@ getBundleStats(packageName: string): Promise&lt;BundleStats&gt;
 
 getBundleStats(packageName: string,  callback: AsyncCallback&lt;BundleStats&gt;): void
 
-异步获取应用存储状态，以callback方式返回。
+异步获取应用存储数据，以callback方式返回。
 
 **系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
 
