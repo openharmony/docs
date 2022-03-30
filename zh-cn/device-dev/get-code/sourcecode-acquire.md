@@ -32,7 +32,7 @@ OpenHarmony当前为开发者提供了以下4种获取源码的方式，开发�
 
 ### 前提条件<a name="section102871547153314"></a>
 
-1.  注册码云gitee账号。
+1.  注册码云gitee帐号。
 2.  注册码云SSH公钥，请参考[码云帮助中心](https://gitee.com/help/articles/4191)。
 3.  安装[git客户端](https://git-scm.com/book/zh/v2/%E8%B5%B7%E6%AD%A5-%E5%AE%89%E8%A3%85-Git)和[git-lfs](https://gitee.com/vcs-all-in-one/git-lfs?_from=gitee_search#downloading)并配置用户信息。
 
@@ -53,7 +53,6 @@ OpenHarmony当前为开发者提供了以下4种获取源码的方式，开发�
 
 ### 操作步骤<a name="section429012478331"></a>
 
-**获取轻量/小型/标准系统源码**
 
 >![](../public_sys-resources/icon-note.gif) **说明：** 
 >Master主干为开发分支，开发者可通过Master主干获取最新特性。发布版本代码相对比较稳定，开发者可基于发布版本代码进行商用功能开发。
@@ -135,8 +134,8 @@ OpenHarmony当前为开发者提供了以下4种获取源码的方式，开发�
     2.  点击「直接下载」，将发行版下载到本地。
     3.  点击「定制组件」，将对发行版包含的组件进行定制（添加/删除）。
 
-    **图 2**  发行版示例<a name="fig142484411121"></a>  
-    ![](figure/发行版示例.png "发行版示例")
+        **图 2**  发行版示例<a name="fig142484411121"></a>  
+        ![](figure/发行版示例.png "发行版示例")
 
 3.  定制组件。
     1.  进入发行版的定制页面，如下图所示。
@@ -244,65 +243,65 @@ OpenHarmony当前为开发者提供了以下4种获取源码的方式，开发�
 <td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.4 "><p id="p13415149133914"><a name="p13415149133914"></a><a name="p13415149133914"></a><strong id="b8415114953915"><a name="b8415114953915"></a><a name="b8415114953915"></a>SHA256校验码</strong></p>
 </td>
 </tr>
-<tr id="row18518114121312"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.1 "><p id="p4437184283419"><a name="p4437184283419"></a><a name="p4437184283419"></a>全量代码Beta版本（标准、轻量和小型系统）</p>
+<tr id="row18518114121312"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.1 "><p id="p4437184283419"><a name="p4437184283419"></a><a name="p4437184283419"></a>全量代码Release版本（标准、轻量和小型系统）</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.2 "><p id="p15437144213345"><a name="p15437144213345"></a><a name="p15437144213345"></a>3.1 Beta</p>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.2 "><p id="p15437144213345"><a name="p15437144213345"></a><a name="p15437144213345"></a>3.1 Release</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.3 "><p id="p64379420343"><a name="p64379420343"></a><a name="p64379420343"></a><a href="https://repo.huaweicloud.com/harmonyos/os/3.1-Beta/code-v3.1-Beta.tar.gz" target="_blank" rel="noopener noreferrer">站点</a></p>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.3 "><p id="p64379420343"><a name="p64379420343"></a><a name="p64379420343"></a><a href="https://repo.huaweicloud.com/harmonyos/os/3.1-Release/code-v3.1-Release.tar.gz" target="_blank" rel="noopener noreferrer">站点</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.4 "><p id="p13437842103414"><a name="p13437842103414"></a><a name="p13437842103414"></a><a href="https://repo.huaweicloud.com/harmonyos/os/3.1-Beta/code-v3.1-Beta.tar.gz.sha256" target="_blank" rel="noopener noreferrer">SHA256校验码</a></p>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.4 "><p id="p13437842103414"><a name="p13437842103414"></a><a name="p13437842103414"></a><a href="https://repo.huaweicloud.com/harmonyos/os/3.1-Release/code-v3.1-Release.tar.gz.sha256" target="_blank" rel="noopener noreferrer">SHA256校验码</a></p>
 </td>
 </tr>
 <tr id="row461814235717"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.1 "><p id="p0618124216579"><a name="p0618124216579"></a><a name="p0618124216579"></a>Hi3516标准系统解决方案（二进制）</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.2 "><p id="p156181142145714"><a name="p156181142145714"></a><a name="p156181142145714"></a>3.1 Beta</p>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.2 "><p id="p156181142145714"><a name="p156181142145714"></a><a name="p156181142145714"></a>3.1 Release</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.3 "><p id="p16619174275717"><a name="p16619174275717"></a><a name="p16619174275717"></a><a href="https://repo.huaweicloud.com/harmonyos/os/3.1-Beta/standard_hi3516.tar.gz" target="_blank" rel="noopener noreferrer">站点</a></p>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.3 "><p id="p16619174275717"><a name="p16619174275717"></a><a name="p16619174275717"></a><a href="https://repo.huaweicloud.com/harmonyos/os/3.1-Release/standard_hi3516.tar.gz" target="_blank" rel="noopener noreferrer">站点</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.4 "><p id="p79771324121813"><a name="p79771324121813"></a><a name="p79771324121813"></a><a href="https://repo.huaweicloud.com/harmonyos/os/3.1-Beta/standard_hi3516.tar.gz.sha256" target="_blank" rel="noopener noreferrer">SHA256校验码</a></p>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.4 "><p id="p79771324121813"><a name="p79771324121813"></a><a name="p79771324121813"></a><a href="https://repo.huaweicloud.com/harmonyos/os/3.1-Release/standard_hi3516.tar.gz.sha256" target="_blank" rel="noopener noreferrer">SHA256校验码</a></p>
 </td>
 </tr>
 <tr id="row162201392319"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.1 "><p id="p2220191315"><a name="p2220191315"></a><a name="p2220191315"></a>RK3568标准系统解决方案（二进制）</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.2 "><p id="p6220191312"><a name="p6220191312"></a><a name="p6220191312"></a>3.1 Beta</p>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.2 "><p id="p6220191312"><a name="p6220191312"></a><a name="p6220191312"></a>3.1 Release</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.3 "><p id="p522019916317"><a name="p522019916317"></a><a name="p522019916317"></a><a href="https://repo.huaweicloud.com/harmonyos/os/3.1-Beta/standard_rk3568.tar.gz" target="_blank" rel="noopener noreferrer">站点</a></p>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.3 "><p id="p522019916317"><a name="p522019916317"></a><a name="p522019916317"></a><a href="https://repo.huaweicloud.com/harmonyos/os/3.1-Release/standard_rk3568.tar.gz" target="_blank" rel="noopener noreferrer">站点</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.4 "><p id="p18742268187"><a name="p18742268187"></a><a name="p18742268187"></a><a href="https://repo.huaweicloud.com/harmonyos/os/3.1-Beta/standard_rk3568.tar.gz.sha256" target="_blank" rel="noopener noreferrer">SHA256校验码</a></p>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.4 "><p id="p18742268187"><a name="p18742268187"></a><a name="p18742268187"></a><a href="https://repo.huaweicloud.com/harmonyos/os/3.1-Release/standard_rk3568.tar.gz.sha256" target="_blank" rel="noopener noreferrer">SHA256校验码</a></p>
 </td>
 </tr>
 <tr id="row148666201519"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.1 "><p id="p18867820165113"><a name="p18867820165113"></a><a name="p18867820165113"></a>Hi3861解决方案（二进制）</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.2 "><p id="p108671520115118"><a name="p108671520115118"></a><a name="p108671520115118"></a>3.1 Beta</p>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.2 "><p id="p108671520115118"><a name="p108671520115118"></a><a name="p108671520115118"></a>3.1 Release</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.3 "><p id="p19867202085113"><a name="p19867202085113"></a><a name="p19867202085113"></a><a href="https://repo.huaweicloud.com/harmonyos/os/3.1-Beta/hispark_pegasus.tar.gz" target="_blank" rel="noopener noreferrer">站点</a></p>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.3 "><p id="p19867202085113"><a name="p19867202085113"></a><a name="p19867202085113"></a><a href="https://repo.huaweicloud.com/harmonyos/os/3.1-Release/hispark_pegasus.tar.gz" target="_blank" rel="noopener noreferrer">站点</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.4 "><p id="p193613276183"><a name="p193613276183"></a><a name="p193613276183"></a><a href="https://repo.huaweicloud.com/harmonyos/os/3.1-Beta/hispark_pegasus.tar.gz.sha256" target="_blank" rel="noopener noreferrer">SHA256校验码</a></p>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.4 "><p id="p193613276183"><a name="p193613276183"></a><a name="p193613276183"></a><a href="https://repo.huaweicloud.com/harmonyos/os/3.1-Release/hispark_pegasus.tar.gz.sha256" target="_blank" rel="noopener noreferrer">SHA256校验码</a></p>
 </td>
 </tr>
 <tr id="row6114461545"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.1 "><p id="p630312351557"><a name="p630312351557"></a><a name="p630312351557"></a>Hi3516解决方案-LiteOS（二进制）</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.2 "><p id="p1612646125413"><a name="p1612646125413"></a><a name="p1612646125413"></a>3.1 Beta</p>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.2 "><p id="p1612646125413"><a name="p1612646125413"></a><a name="p1612646125413"></a>3.1 Release</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.3 "><p id="p8123467546"><a name="p8123467546"></a><a name="p8123467546"></a><a href="https://repo.huaweicloud.com/harmonyos/os/3.1-Beta/hispark_taurus.tar.gz" target="_blank" rel="noopener noreferrer">站点</a></p>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.3 "><p id="p8123467546"><a name="p8123467546"></a><a name="p8123467546"></a><a href="https://repo.huaweicloud.com/harmonyos/os/3.1-Release/hispark_taurus.tar.gz" target="_blank" rel="noopener noreferrer">站点</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.4 "><p id="p197721270187"><a name="p197721270187"></a><a name="p197721270187"></a><a href="https://repo.huaweicloud.com/harmonyos/os/3.1-Beta/hispark_taurus.tar.gz.sha256" target="_blank" rel="noopener noreferrer">SHA256校验码</a></p>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.4 "><p id="p197721270187"><a name="p197721270187"></a><a name="p197721270187"></a><a href="https://repo.huaweicloud.com/harmonyos/os/3.1-Release/hispark_taurus.tar.gz.sha256" target="_blank" rel="noopener noreferrer">SHA256校验码</a></p>
 </td>
 </tr>
 <tr id="row152143765612"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.1 "><p id="p530833917567"><a name="p530833917567"></a><a name="p530833917567"></a>Hi3516解决方案-Linux（二进制）</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.2 "><p id="p19213372563"><a name="p19213372563"></a><a name="p19213372563"></a>3.1 Beta</p>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.2 "><p id="p19213372563"><a name="p19213372563"></a><a name="p19213372563"></a>3.1 Release</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.3 "><p id="p1921337205612"><a name="p1921337205612"></a><a name="p1921337205612"></a><a href="https://repo.huaweicloud.com/harmonyos/os/3.1-Beta/hispark_taurus_linux.tar.gz" target="_blank" rel="noopener noreferrer">站点</a></p>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.3 "><p id="p1921337205612"><a name="p1921337205612"></a><a name="p1921337205612"></a><a href="https://repo.huaweicloud.com/harmonyos/os/3.1-Release/hispark_taurus_linux.tar.gz" target="_blank" rel="noopener noreferrer">站点</a></p>
 </td>
-<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.4 "><p id="p14441122810188"><a name="p14441122810188"></a><a name="p14441122810188"></a><a href="https://repo.huaweicloud.com/harmonyos/os/3.1-Beta/hispark_taurus_linux.tar.gz.sha256" target="_blank" rel="noopener noreferrer">SHA256校验码</a></p>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.4 "><p id="p14441122810188"><a name="p14441122810188"></a><a name="p14441122810188"></a><a href="https://repo.huaweicloud.com/harmonyos/os/3.1-Release/hispark_taurus_linux.tar.gz.sha256" target="_blank" rel="noopener noreferrer">SHA256校验码</a></p>
 </td>
 </tr>
 <tr id="row1663285502319"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.1 "><p id="p1961810962416"><a name="p1961810962416"></a><a name="p1961810962416"></a>RELEASE-NOTES</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.2 "><p id="p146331255172318"><a name="p146331255172318"></a><a name="p146331255172318"></a>3.1 Beta</p>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.2 "><p id="p146331255172318"><a name="p146331255172318"></a><a name="p146331255172318"></a>3.1 Release</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.3 "><p id="p18800131862419"><a name="p18800131862419"></a><a name="p18800131862419"></a><a href="https://gitee.com/openharmony/docs/tree/OpenHarmony-3.1-Beta/zh-cn/release-notes/OpenHarmony-v3.1-beta.md" target="_blank" rel="noopener noreferrer">站点</a></p>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.3 "><p id="p18800131862419"><a name="p18800131862419"></a><a name="p18800131862419"></a><a href="https://gitee.com/openharmony/docs/tree/OpenHarmony-3.1-Release/zh-cn/release-notes/OpenHarmony-v3.1-Release.md" target="_blank" rel="noopener noreferrer">站点</a></p>
 </td>
 <td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.4 "><p id="p8633855132314"><a name="p8633855132314"></a><a name="p8633855132314"></a>-</p>
 </td>
@@ -328,7 +327,10 @@ OpenHarmony当前为开发者提供了以下4种获取源码的方式，开发�
 </tbody>
 </table>
 
-## 获取方式4：从github镜像仓库获取\(每天UTC时间23点同步\)<a name="section23448418360"></a>
+## 获取方式4：从github镜像仓库获取<a name="section23448418360"></a>
+
+>![](../public_sys-resources/icon-note.gif) **说明：** 
+> 镜像仓库每日23:00（UTC +8:00）同步。
 
 方式一（推荐）：通过repo + ssh下载（需注册公钥，请参考[GitHub帮助中心](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)）。
 
@@ -431,4 +433,3 @@ repo forall -c 'git lfs pull'
 </tr>
 </tbody>
 </table>
-
