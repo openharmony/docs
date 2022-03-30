@@ -2455,7 +2455,7 @@ getDeviceRemindType(callback: AsyncCallback\<DeviceRemindType\>): void
 
 | 参数名   | 类型                               | 必填 | 说明                       |
 | -------- | --------------------------------- | ---- | -------------------------- |
-| callback | AsyncCallback\<[DeviceRemindType](#deviceremindtypesup8sup)\> | 是   | 获取通知的提醒方式的回调函数。 |
+| callback | AsyncCallback\<[DeviceRemindType](#deviceremindtype8)\> | 是   | 获取通知的提醒方式的回调函数。 |
 
 **示例：**
 
@@ -2481,7 +2481,7 @@ getDeviceRemindType(): Promise\<DeviceRemindType\>
 
 | 类型               | 说明            |
 | ------------------ | --------------- |
-| Promise\<[DeviceRemindType](#deviceremindtypesup8sup)\> | Promise方式返回通知的提醒方式的结果。 |
+| Promise\<[DeviceRemindType](#deviceremindtype8)\> | Promise方式返回通知的提醒方式的结果。 |
 
 **示例：**
 
@@ -2743,7 +2743,7 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 ### onEnabledNotificationChanged<sup>8+</sup>
 
-onEnabledNotificationChanged?:(callbackData: [EnabledNotificationCallbackData](#enablednotificationcallbackdatasup8sup))
+onEnabledNotificationChanged?:(callbackData: [EnabledNotificationCallbackData](#enablednotificationcallbackdata8))
 
 监听应用通知使能变化。
 
@@ -2753,7 +2753,7 @@ onEnabledNotificationChanged?:(callbackData: [EnabledNotificationCallbackData](#
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------------ | ------------------------ | ---- | -------------------------- |
-| callback | AsyncCallback\<[EnabledNotificationCallbackData](#enablednotificationcallbackdatasup8sup)\> | 是 | 回调返回监听到的应用信息。 |
+| callback | AsyncCallback\<[EnabledNotificationCallbackData](#enablednotificationcallbackdata8)\> | 是 | 回调返回监听到的应用信息。 |
 
 **示例：**
 
@@ -2900,7 +2900,7 @@ Notification.subscribe(subscriber, subscribeCallback);
 | title     | 是  | 是  | string                                          | 是   | 按钮标题。                  |
 | wantAgent | 是  | 是  | WantAgent                                       | 是   | 点击按钮时触发的WantAgent。 |
 | extras    | 是  | 是  | { [key: string]: any }                          | 否   | 按钮扩展信息。              |
-| userInput<sup>9+</sup> | 是  | 是  | [NotificationUserInput](#notificationuserinputsup8sup) | 否   | 用户输入对象实例。          |
+| userInput<sup>9+</sup> | 是  | 是  | [NotificationUserInput](#notificationuserinput8) | 否   | 用户输入对象实例。          |
 
 
 ## NotificationBasicContent
@@ -3025,12 +3025,12 @@ Notification.subscribe(subscriber, subscribeCallback);
 | hashCode              | 是  | 否  | string                                        | 否   | 通知唯一标识。               |
 | classification        | 是  | 是  | string                                        | 否   | 通知分类。                   |
 | groupName<sup>8+</sup>| 是  | 是  | string                                        | 否   | 组通知名称。                 |
-| template<sup>8+</sup> | 是  | 是  | [NotificationTemplate](#notificationtemplatesup8sup) | 否   | 通知模板。                   |
+| template<sup>8+</sup> | 是  | 是  | [NotificationTemplate](#notificationtemplate8) | 否   | 通知模板。                   |
 | isRemoveAllowed<sup>8+</sup> | 是  | 否  | boolean                                | 否   | 通知是否能被移除。                   |
 | source<sup>8+</sup>   | 是  | 否  | number                                        | 否   | 通知源。                   |
-| distributedOption<sup>8+</sup>   | 是  | 是  | [DistributedOptions](#distributedoptionssup8sup)                 | 否   | 分布式通知的选项。          |
+| distributedOption<sup>8+</sup>   | 是  | 是  | [DistributedOptions](#distributedoptions8)                 | 否   | 分布式通知的选项。          |
 | deviceId<sup>8+</sup> | 是  | 否  | string                                        | 否   | 通知源的deviceId。          |
-| notificationFlags<sup>8+</sup> | 是  | 否  | [NotificationFlags](#notificationflagssup8sup)                    | 否   | 获取NotificationFlags。          |
+| notificationFlags<sup>8+</sup> | 是  | 否  | [NotificationFlags](#notificationflags8)                    | 否   | 获取NotificationFlags。          |
 
 
 ## DistributedOptions<sup>8+</sup>
