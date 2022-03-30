@@ -17,6 +17,8 @@ Button是按钮组件，其类型包括胶囊按钮、圆形按钮、文本按�
 ```
 /* xxx.css */
 .container {
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -44,6 +46,8 @@ Button是按钮组件，其类型包括胶囊按钮、圆形按钮、文本按�
 ```
 /* xxx.css */
 .container {  
+  width: 100%;
+  height: 100%;
   background-color: #F1F3F5;
   flex-direction: column;
   align-items: center;
@@ -106,6 +110,8 @@ Button是按钮组件，其类型包括胶囊按钮、圆形按钮、文本按�
 ```
 /* xxx.css */
 .container { 
+  width: 100%;
+  height: 100%;
   background-color: #F1F3F5;  
   flex-direction: column;
   align-items: center;

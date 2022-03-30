@@ -9,13 +9,15 @@ Image是图片组件，用来渲染展示图片。具体用法请参考[Image AP
 ```
 <!-- index.hml -->
 <div class="container">
-  <image src="common/images/bg-tv.jpg"> </image>
+  <image style="height: 30%;" src="common/images/bg-tv.jpg"> </image>
 </div>
 ```
 
 ```
 /* xxx.css */
 .container {
+  width: 100%;
+  height: 100%; 
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -45,15 +47,15 @@ Image是图片组件，用来渲染展示图片。具体用法请参考[Image AP
   flex-direction: column;
   align-items: center;
   justify-content: center;
-background-color:#F1F3F5;
+  background-color:#F1F3F5;
 }
 image{
-  width: 80%;  height: 500px;
+  width: 80%;  
+  height: 500px;
   border: 5px solid saddlebrown;
   border-radius: 20px;
   object-fit: contain;
   match-text-direction:true;
-
 }
 ```
 
@@ -69,10 +71,13 @@ image{
 <div class="page-container">
   <list>
     <list-item class="item-container" for="{{list}}">
-      <image class="testimage" src="{{url[$idx]}}" style="object-fit: {{fit}};"></image>
-      <div class="text-container">
-        <text style="font-size: 32px;color:#7b68ee;">image{{$idx}}</text>
-        <text style="font-size: 23px;color: orange;font-style: italic;">content</text>
+      <div>
+        <image class="testimage" src="{{url[$idx]}}" style="object-fit: {{fit}};">  
+        </image>
+        <div class="text-container">
+          <text style="font-size: 32px;color:#7b68ee;">image{{$idx}}</text>
+          <text style="font-size: 23px;color: orange;font-style: italic;">content</text>
+        </div>
       </div>
     </list-item>
   </list>
@@ -235,7 +240,10 @@ export default {
   justify-content: space-between;
 }
 .testimage {
-  width: 100%;  height: 400px;   object-fit: scale-down;  border-radius: 20px;}
+  width: 100%;  height: 400px;   
+  object-fit: scale-down;  
+  border-radius: 20px;
+}
 ```
 
 ```

@@ -108,8 +108,8 @@ GridContainer() {
 struct GridContainerExample {
   build() {
     Column({ space: 5 }) {
-      GridContainer({ columns: 6, sizeType: SizeType.Auto, gutter: 10, margin: 20 }) {
-        Row() {
+      GridContainer({ columns: 6 }) {
+        Flex({justifyContent:FlexAlign.SpaceAround}) {
           Text('1')
             .useSizeType({
               xs: { span: 2, offset: 0 },
@@ -120,18 +120,18 @@ struct GridContainerExample {
             .height(100).backgroundColor(0x4682B4).textAlign(TextAlign.Center)
           Text('2')
             .useSizeType({
-              xs: { span: 2, offset: 2 },
-              sm: { span: 2, offset: 2 },
-              md: { span: 4, offset: 1 },
-              lg: { span: 4, offset: 1 },
+              xs: { span: 2, offset: 0 },
+              sm: { span: 2, offset: 0 },
+              md: { span: 4, offset: 0 },
+              lg: { span: 4, offset: 0 },
             })
             .height(100).backgroundColor(0x46F2B4).textAlign(TextAlign.Center)
           Text('3')   
             .useSizeType({
-              xs: { span: 2, offset: 4 },
-              sm: { span: 2, offset: 4 },
-              md: { span: 1, offset: 5 },
-              lg: { span: 1, offset: 5 },
+              xs: { span: 2, offset: 0 },
+              sm: { span: 2, offset: 0 },
+              md: { span: 1, offset: 0 },
+              lg: { span: 1, offset: 0 },
             })
             .height(100).backgroundColor(0x46A2B4).textAlign(TextAlign.Center)
         }

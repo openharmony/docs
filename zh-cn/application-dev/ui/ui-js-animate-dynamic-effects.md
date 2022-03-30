@@ -25,6 +25,8 @@
 ```
 /* xxx.css */
 .container {
+  width:100%;
+  height:100%;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -90,7 +92,7 @@ animator支持事件和接口，可以通过添加frame、cancel、repeat、fini
 
 ```
 <!-- xxx.hml -->
-<div style="flex-direction: column;align-items: center;">
+<div style="flex-direction: column;align-items: center;width: 100%;height: 100%;">
   <div style="width:200px;height: 200px;margin-top: 100px;background: linear-gradient(#b30d29, #dcac1b);
   transform: scale({{scaleVal}});"></div>
   <div style="width: {{DivWidth}};height: {{DivHeight}};margin-top: 200px;
@@ -113,11 +115,6 @@ animator支持事件和接口，可以通过添加frame、cancel、repeat、fini
 
 ```
 /* xxx.css */
-.container {
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
 button{
   width: 200px;
 }
@@ -128,7 +125,7 @@ button{
   justify-content: space-between;
   margin-top: 150px;
   position: fixed;
-  top: 55%;
+  top: 52%;
   left: 120px;
 }
 .row1{

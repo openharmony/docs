@@ -25,6 +25,8 @@
 ```
 /* xxx.css */
 .container{
+  width: 100%;
+  height: 100%; 
   flex-direction: column;
   background-color: #F1F3F5;
   align-items: center;
@@ -65,6 +67,8 @@
 ```
 /* xxx.css */
 .container{
+  width: 100%;
+  height: 100%; 
   flex-direction: column;
   background-color: #F1F3F5;
   align-items: center;
@@ -115,6 +119,8 @@ option{
 ```
 /* xxx.css */
 .container{
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   background-color: #F1F3F5;
   width: 100%;
@@ -254,7 +260,16 @@ export default {
       {name: "black", checked:false},
     ],
   },
-  toggleClick(index){    for(let i=0;i<this.togglesList.length;i++){      if(i == index){        this.color = this.togglesList[index].name        this.togglesList[i].checked = true;      }else{        this.togglesList[i].checked = false;      }    }  },
+  toggleClick(index) {   
+    for(let i=0;i<this.togglesList.length;i++) {     
+      if (i == index) {        
+      this.color = this.togglesList[index].name;        
+      this.togglesList[i].checked = true;      
+      }else {        
+        this.togglesList[i].checked = false;      
+      }    
+    }  
+  },
   select(e) {
     this.width = e.value * 100;
     this.height = e.value * 100;

@@ -10,7 +10,8 @@ List是用来显示列表的组件，包含一系列相同宽度的列表项，�
 ```
 <!-- index.hml -->
 <div class="container"> 
- <list>    <list-item class="listItem"></list-item>
+ <list>    
+   <list-item class="listItem"></list-item>
    <list-item class="listItem"></list-item>
    <list-item class="listItem"></list-item>
    <list-item class="listItem"></list-item>
@@ -21,6 +22,8 @@ List是用来显示列表的组件，包含一系列相同宽度的列表项，�
 ```
 /* xxx.css */
 .container {
+  width:100%;
+  height:100%;
   flex-direction: column;
   align-items: center;
   background-color: #F1F3F5;
@@ -191,6 +194,7 @@ export default {
 ![zh-cn_image_0000001162911958](figures/zh-cn_image_0000001162911958.gif)
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>
 > - groupcollapse和groupexpand事件仅支持list-item-group组件使用。
 
 
