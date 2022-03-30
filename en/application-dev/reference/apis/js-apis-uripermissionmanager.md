@@ -1,7 +1,7 @@
-# UriPermissionManager
+# uriPermissionManager
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> The initial APIs of this module are supported since API 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 Implements URI permission management.
@@ -11,11 +11,11 @@ Implements URI permission management.
 
   
 ```
-import UriPermissionManager from '@@ohos.application.UriPermissionManager';
+import uriPermissionManager from '@ohos.application.uriPermissionManager';
 ```
 
 
-## verifyUriPermission
+## uriPermissionManager.verifyUriPermission
 
 verifyUriPermission(uri: string, flag: wantConstant.Flags, accessTokenId: number, callback: AsyncCallback&lt;number&gt;): void
 
@@ -25,15 +25,16 @@ Checks whether an application has the permission specified by **flag** for an UR
 
 SystemCapability.Ability.AbilityRuntime.Core
 
-- Parameters
-    | Name| Type| Mandatory| Description| 
+**Parameters**
+
+  | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
   | uri | string | Yes| URI of a file, for example, **fileshare:///com.samples.filesharetest.FileShare/person/10**.| 
   | flag | wantConstant.Flags | Yes| Read or write permission on the file specified by the URI.| 
   | accessTokenId | number | Yes| Unique ID of an application, which is obtained through the **BundleManager** API.| 
   | callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the check result. The value **0** means that the application has the specified permission, and **-1** means the opposite.| 
 
-- Example
+**Example**
     
   ```
   let uri = "fileshare:///com.samples.filesharetest.FileShare/person/10"
@@ -43,7 +44,7 @@ SystemCapability.Ability.AbilityRuntime.Core
   ```
 
 
-## verifyUriPermission
+## uriPermissionManager.verifyUriPermission
 
 verifyUriPermission(uri: string, flag: wantConstant.Flags, accessTokenId: number): Promise&lt;number&gt;
 
@@ -53,19 +54,21 @@ Checks whether an application has the permission specified by **flag** for an UR
 
 SystemCapability.Ability.AbilityRuntime.Core
 
-- Parameters
-    | Name| Type| Mandatory| Description| 
+**Parameters**
+
+  | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
   | uri | string | Yes| URI of a file, for example, **fileshare:///com.samples.filesharetest.FileShare/person/10**.| 
   | flag | wantConstant.Flags | Yes| Read or write permission on the file specified by the URI.| 
   | accessTokenId | number | Yes| Unique ID of an application, which is obtained through the **BundleManager** API.| 
 
-- Return value
-    | Type| Description| 
+**Return value**
+
+  | Type| Description| 
   | -------- | -------- |
   | Promise&lt;number&gt; | Promise used to return the check result. The value **0** means that the application has the specified permission, and **-1** means the opposite.| 
 
-- Example
+**Example**
     
   ```
   let uri = "fileshare:///com.samples.filesharetest.FileShare/person/10"
