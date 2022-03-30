@@ -415,17 +415,17 @@ AI业务子系统是OpenHarmony提供原生的分布式AI能力的子系统。�
 
 ## 涉及仓<a name="section10492183517430"></a>
 
-AI子系统
+[AI子系统](https://gitee.com/openharmony/docs/blob/master/zh-cn/readme/AI%E4%B8%9A%E5%8A%A1%E5%AD%90%E7%B3%BB%E7%BB%9F.md)
 
-ai_engine
+[ai_engine](https://gitee.com/openharmony/ai_engine)
 
 依赖仓：
 
-build\_lite
+[build\_lite](https://gitee.com/openharmony/build_lite/blob/master/README_zh.md)
 
-distributedschedule\_services\_samgr\_lite
+[distributedschedule\_samgr\_lite](https://gitee.com/openharmony/distributedschedule_samgr_lite/blob/master/README_zh.md)
 
-startup\_init\_lite
+[startup\_init\_lite](https://gitee.com/openharmony/startup_init_lite/blob/master/README_zh.md)
 
 ## AI引擎开发导航<a name="section6808423133718"></a>
 

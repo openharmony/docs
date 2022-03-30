@@ -15,21 +15,21 @@ None
 
 ## Attributes
 
-  | Name | Type | Default Value | Description | 
+| Name | Type | Default Value | Description |
 | -------- | -------- | -------- | -------- |
-| stateStyle | StateStyles | - | Sets the styles of a component for different states. | 
+| stateStyles | StateStyles | - | Styles of a component for different states. |
 
 - StateStyles<sup>8+</sup>
-    | Name | Type | Mandatory | Default Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | normal | ()=&gt;void | No | - | Style of the component when stateless. | 
-  | pressed | ()=&gt;void | No | - | Style of the component in the pressed state. | 
-  | disabled | ()=&gt;void | No | - | Style of the component in disabled state. | 
+  | normal | ()=&gt;void | No | - | Style of the component when stateless. |
+  | pressed | ()=&gt;void | No | - | Style of the component in the pressed state. |
+  | disabled | ()=&gt;void | No | - | Style of the component in disabled state. |
 
 
 ## Example
 
-  
+
 ```
 @Entry
 @Component

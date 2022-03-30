@@ -49,7 +49,7 @@ Inserts an entry at the front of this container.
 **Example**
 
 ```
-let deque = new Deque;
+let deque = new Deque();
 deque.insertFront("a");
 deque.insertFront(1);
 let b = [1, 2, 3];
@@ -73,7 +73,7 @@ Inserts an entry at the end of this container.
 **Example**
 
 ```
-let deque = new Deque;
+let deque = new Deque();
 deque.insertEnd("a");
 deque.insertEnd(1);
 let b = [1, 2, 3];

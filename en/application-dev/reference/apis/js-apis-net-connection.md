@@ -893,7 +893,7 @@ Defines the network capability set.
 | linkUpBandwidthKbps   | number                             | Uplink (from the device to the network) bandwidth.|
 | linkDownBandwidthKbps | number                             | Downlink (from the network to the device) bandwidth.|
 | networkCap            | Array<[NetCap](#netcap)>           | Network capability.          |
-| bearerTypes           | Array<[NetBearType](#netbearType)> | Network type.              |
+| bearerTypes           | Array<[NetBearType](#netbeartype)> | Network type.              |
 
 ## NetCap
 

@@ -55,8 +55,7 @@ In this example, an application event is logged after the application startup ex
                }).catch((err) => {
                    console.error(`failed to write event because ${err.code}`);
                });
-           });
-   
+    
            // 3. Set the application event logging switch.
            hiAppEvent.configure({
                disable: true

@@ -170,9 +170,9 @@ You can set a USB device as a host to connect to a device for data transfer. The
     var pipe = usb.connectDevice(deviceList[0]);
     /*
     Claim the corresponding interface from deviceList.
-    interface must be one present in the device configuration.
+    interface1 must be one present in the device configuration.
     */
-    usb.claimInterface(pipe , interface, true); 
+    usb.claimInterface(pipe , interface1, true);
     ```
 
 4.  Perform data transfer.

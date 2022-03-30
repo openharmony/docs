@@ -16,7 +16,7 @@ AudioRenderer提供了渲染音频文件和控制播放的接口，开发者可�
 
 ### 异步操作
 
-为保证UI线程不被阻塞，大部分AudioRenderer调用都是异步的。对于每个API均提供了callback函数和Promise函数，以下示例均采用Promise函数，更多方式可参考[js-apis-audio](../reference/apis/js-apis-audio.md#audiorenderer8)。
+为保证UI线程不被阻塞，大部分AudioRenderer调用都是异步的。对于每个API均提供了callback函数和Promise函数，以下示例均采用Promise函数，更多方式可参考[音频管理API文档AudioRenderer](../reference/apis/js-apis-audio.md#audiorenderer8)。
 
 ## 开发步骤
 

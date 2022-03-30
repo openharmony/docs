@@ -278,7 +278,7 @@ Registers an observer for connection status change events of the cellular data l
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes  | Connection status change event of the cellular data link.                                    |
-| callback | Callback\<{ state: [DataConnectState](js-apis-telephony-data.md#dataconnectState), network: [RatType](js-apis-radio.md#radiotechnology) }\> | Yes  | Callback used to return the result. For details, see [DataConnectState](js-apis-telephony-data.md#dataconnectstate) and [RadioTechnology](js-apis-radio.md#radiotechnology).|
+| callback | Callback\<{ state: [DataConnectState](js-apis-telephony-data.md#dataconnectstate), network: [RatType](js-apis-radio.md#radiotechnology) }\> | Yes  | Callback used to return the result. For details, see [DataConnectState](js-apis-telephony-data.md#dataconnectstate) and [RadioTechnology](js-apis-radio.md#radiotechnology).|
 
 **Example**
 
@@ -303,7 +303,7 @@ Registers an observer for connection status change events of the cellular data l
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes  | Connection status change event of the cellular data link.                                    |
 | slotId   | number                                                       | Yes  | Card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2                      |
-| callback | Callback\<{ state: [DataConnectState](js-apis-telephony-data.md#dataconnectState), network: [RatType](js-apis-radio.md#radiotechnology) }\> | Yes  | Callback used to return the result. For details, see [DataConnectState](js-apis-telephony-data.md#dataconnectstate) and [RadioTechnology](js-apis-radio.md#radiotechnology).|
+| callback | Callback\<{ state: [DataConnectState](js-apis-telephony-data.md#dataconnectstate), network: [RatType](js-apis-radio.md#radiotechnology) }\> | Yes  | Callback used to return the result. For details, see [DataConnectState](js-apis-telephony-data.md#dataconnectstate) and [RadioTechnology](js-apis-radio.md#radiotechnology).|
 
 **Example**
 
@@ -331,7 +331,7 @@ Unregisters the observer for connection status change events of the cellular dat
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes  | Connection status change event of the cellular data link.                                    |
-| callback | Callback\<{ state: [DataConnectState](js-apis-telephony-data.md#dataconnectState), network: [RatType](js-apis-radio.md#radiotechnology) }\> | No  | Callback used to return the result. For details, see [DataConnectState](js-apis-telephony-data.md#dataconnectstate) and [RadioTechnology](js-apis-radio.md#radiotechnology).|
+| callback | Callback\<{ state: [DataConnectState](js-apis-telephony-data.md#dataconnectstate), network: [RatType](js-apis-radio.md#radiotechnology) }\> | No  | Callback used to return the result. For details, see [DataConnectState](js-apis-telephony-data.md#dataconnectstate) and [RadioTechnology](js-apis-radio.md#radiotechnology).|
 
 **Example**
 

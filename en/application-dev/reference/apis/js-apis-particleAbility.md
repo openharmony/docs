@@ -17,7 +17,7 @@ import particleAbility from '@ohos.ability.particleAbility'
 
 startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<void>): void
 
-Starts a particle ability. This API uses an asynchronous callback to return the result.
+Starts a Particle ability. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -60,7 +60,7 @@ particleAbility.startAbility(
 
 startAbility(parameter: StartAbilityParameter): Promise\<void>;
 
-Starts a particle ability. This API uses a promise to return the result.
+Starts a Particle ability. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -107,7 +107,7 @@ particleAbility.startAbility(
 
 terminateSelf(callback: AsyncCallback\<void>): void
 
-Terminates this particle ability. This API uses an asynchronous callback to return the result.
+Terminates this Particle ability. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -134,7 +134,7 @@ particleAbility.terminateSelf(
 
 terminateSelf(): Promise\<void>
 
-Terminates this particle ability. This API uses a promise to return the result.
+Terminates this Particle ability. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -188,7 +188,9 @@ particleAbility.acquireDataAbilityHelper(uri)
 
 startBackgroundRunning(id: number, request: NotificationRequest, callback: AsyncCallback&lt;void&gt;): void;
 
-Requests a continuous task from the system. This API uses an asynchronous callback to return the result. (This method is of API 7 and will be deprecated. Use the counterpart in API 8.)
+Requests a continuous task from the system. This API uses an asynchronous callback to return the result. You are advised to use the new API [backgroundTaskManager.startBackgroundRunning](js-apis-backgroundTaskManager.md#backgroundtaskmanagerstartbackgroundrunning8).
+
+**Required permissions**: ohos.permission.KEEP_BACKGROUND_RUNNING
 
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
@@ -250,9 +252,11 @@ wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
 
 startBackgroundRunning(id: number, request: NotificationRequest): Promise&lt;void&gt;
 
+**Required permissions**: ohos.permission.KEEP_BACKGROUND_RUNNING
+
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
-Requests a continuous task from the system. This API uses a promise to return the result. (This method is of API 7 and will be deprecated. Use the counterpart in API 8.)
+Requests a continuous task from the system. This API uses a promise to return the result. You are advised to use the new API [backgroundTaskManager.startBackgroundRunning](js-apis-backgroundTaskManager.md#backgroundtaskmanagerstartbackgroundrunning8-1).
 
 **Parameters**
 
@@ -313,7 +317,7 @@ wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
 
 cancelBackgroundRunning(callback: AsyncCallback&lt;void&gt;): void;
 
-Requests to cancel a continuous task from the system. This API uses an asynchronous callback to return the result. (This method is of API 7 and will be deprecated. Use the counterpart in API 8.)
+Requests to cancel a continuous task from the system. This API uses an asynchronous callback to return the result. You are advised to use the new API [backgroundTaskManager.stopBackgroundRunning](js-apis-backgroundTaskManager.md#backgroundtaskmanagerstopbackgroundrunning8).
 
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
@@ -344,7 +348,7 @@ particleAbility.cancelBackgroundRunning(callback);
 
 cancelBackgroundRunning(): Promise&lt;void&gt;;
 
-Requests to cancel a continuous task from the system. This API uses a promise to return the result. (This method is of API 7 and will be deprecated. Use the counterpart in API 8.)
+Requests a continuous task from the system. This API uses a promise to return the result. You are advised to use the new API [backgroundTaskManager.stopBackgroundRunning](js-apis-backgroundTaskManager.md#backgroundtaskmanagerstopbackgroundrunning8-1).
 
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
@@ -382,6 +386,17 @@ Connects this ability to a specific Service ability. This API uses a callback to
 | ------- | -------------- | ---- | ---------------------------- |
 | request | [Want](js-apis-featureAbility.md#want)  | Yes  | Service ability to connect.|
 | options | ConnectOptions | Yes  | Callback used to return the result.          |
+
+
+ConnectOptions
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+| Name          | Readable/Writable| Type      | Mandatory  | Description                       |
+| ------------ | ---- | -------- | ---- | ------------------------- |
+| onConnect    | Read only  | function | Yes   | Callback invoked when the connection is successful.              |
+| onDisconnect | Read only  | function | Yes   | Callback invoked when the connection fails.              |
+| onFailed     | Read only  | function | Yes   | Callback invoked when **connectAbility** fails to be called.|
 
 **Example**
 
@@ -509,11 +524,8 @@ function onConnectCallback(element, remote){
 
 Enumerates error codes.
 
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
+
 | Name                         | Value  | Description                                                        |
 | ----------------------------- | ---- | ------------------------------------------------------------ |
-| INVALID_PARAMETER         | -1    | Invalid parameter.<br>**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel|
-
-
-
-
-  
+| INVALID_PARAMETER         | -1    | Invalid parameter.|

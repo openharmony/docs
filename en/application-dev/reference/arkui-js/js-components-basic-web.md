@@ -3,6 +3,9 @@ The **\<web>** component displays web page content.
 >![](../../public_sys-resources/icon-note.gif) **NOTE**
 >   This component is supported since API version 6. Updates will be marked with a superscript to indicate their earliest API version.
 
+## Required Permissions
+ohos.permission.INTERNET, required only for accessing online web pages.
+
 ## Constraints
 The **\<web>** component does not follow the transition animation. A page allows only one **\<web>** component.
 
@@ -44,7 +47,7 @@ The following methods are supported.
 ```
 
 ```
-<!-- xxx.js -->
+// xxx.js
 export default {
     reloadWeb() {
         this.$element('web').reload()

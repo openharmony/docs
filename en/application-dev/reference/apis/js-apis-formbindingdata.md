@@ -25,7 +25,7 @@ Creates a **FormBindingData** object.
 
 | Name| Type          | Mandatory| Description                                                        |
 | ------ | -------------- | ---- | ------------------------------------------------------------ |
-| obj    | Object or string| No  | Data to be displayed on the JS service widget. The value can be an object containing multiple key-value pairs or a string in JSON format.|
+| obj    | Object or string| No  | Data to be displayed on the JS service widget. The value can be an object containing multiple key-value pairs or a string in JSON format. The image data is identified by "formImages", and the content is multiple key-value pairs, each of which consists of an image identifier and image file descriptor. The final format is {"formImages": {"key1": fd1, "key2": fd2}}.|
 
 
 **Return value**
@@ -38,20 +38,20 @@ Creates a **FormBindingData** object.
 **Example**
 
   ```js
-  let obj = {"temperature": "21°"};
+  let fd = fileio.openSync(path);
+  let obj = {
+      "temperature": "21°",
+      "formImages": {"image": fd}
+  };
   let formBindingDataObj = formBindingData.createFormBindingData(obj);
   ```
 
-## formBindingData.FormBindingData
-
-data: Object
+## Attributes
 
 Describes a **FormBindingData** object.
 
 **System capability**: SystemCapability.Ability.Form
 
-**Parameters**
-
-| Name| Type          | Description                                                        |
-| ---- | -------------- | ------------------------------------------------------------ |
-| data  | Object or string| Data to be displayed on the JS service widget. The value can be an object containing multiple key-value pairs or a string in JSON format.|
+| Name| Readable| Writable| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- | -------- | -------- |
+| data | Yes| No| Object | Yes| Data to be displayed on the JS service widget. The value can be an object containing multiple key-value pairs or a string in JSON format.|
