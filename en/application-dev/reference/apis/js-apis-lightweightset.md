@@ -1,7 +1,7 @@
 # Nonlinear Container LightWeightSet 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 ## Modules to Import
@@ -428,7 +428,7 @@ Uses a callback to traverse the entries in this container and obtain their posit
 callbackfn
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | T | Yes| Value of the entry that is currently traversed.|
+| value | T | No| Value of the entry that is currently traversed.|
 | key| T | No| Key of the entry that is currently traversed (same as **value**).|
 | set | LightWeightSet&lt;T&gt; | No| Instance that invokes the **forEach** method.|
 
