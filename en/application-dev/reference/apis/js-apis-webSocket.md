@@ -85,7 +85,7 @@ let ws = webSocket.createWebSocket();
 
 ## WebSocket
 
-Defines a **WebSocket** object. Before invoking WebSocket APIs, you need to call [webSocket.createWebSocket](#webSocketcreatewebsocket) to create a **WebSocket** object.
+Defines a **WebSocket** object. Before invoking WebSocket APIs, you need to call [webSocket.createWebSocket](#websocketcreatewebsocket) to create a **WebSocket** object.
 
 ### connect
 

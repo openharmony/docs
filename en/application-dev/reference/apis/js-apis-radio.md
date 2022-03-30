@@ -173,7 +173,7 @@ Obtains the network selection mode of the SIM card in the specified slot. This A
 | Name  | Type                                                        | Mandatory| Description                                  |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
 | slotId   | number                                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| callback | AsyncCallback\<[NetworkSelectionMode](#networkselectionMode)\> | Yes  | Callback used to return the result.                            |
+| callback | AsyncCallback\<[NetworkSelectionMode](#networkselectionmode)\> | Yes  | Callback used to return the result.                            |
 
 **Example**
 
@@ -622,7 +622,7 @@ Defines the network registration status.
 | isRoaming         | boolean               | Whether the user is roaming.|
 | regState          | [RegState](#regstate) | Network registration status of the device.|
 | cfgTech<sup>8+</sup> | [RadioTechnology](#radiotechnology) | RAT of the device.|
-| nsaState          | [NsaState](#nsaState) | NSA network registration status of the device.|
+| nsaState          | [NsaState](#nsastate) | NSA network registration status of the device.|
 | isCaActive        | boolean               | CA status.|
 | isEmergency       | boolean               | Whether only emergency calls are allowed.|
 
