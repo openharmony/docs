@@ -1,4 +1,4 @@
-# 元能力子系统JS API
+# 元能力子系统JS API变更
 
 OpenHarmony 3.1 Release版本相较于OpenHarmony 3.0 LTS版本，元能力子系统的API变更如下:
 
