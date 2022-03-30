@@ -1,19 +1,19 @@
 - [Application Development Overview](application-dev-guide.md)
+
 - Quick Start
   - [Directory Structure](quick-start/package-structure.md)
   - [Resource File Categories](quick-start/basic-resource-file-categories.md)
+  
 - Development
   - [Ability Development](ability/Readme-EN.md)
-    - [Ability Framework Overview](ability/ability-brief.md)
-    - FA Model
-      - [FA Model Overview](ability/fa-brief.md)
-      - [Page Ability Development](ability/fa-pageability.md)
-      - [Service Ability Development](ability/fa-serviceability.md)
-      - [Data Ability Development](ability/fa-dataability.md)
-      - [FA Widget Development](ability/fa-formability.md)
-
+    - [FA Model Overview](ability/fa-brief.md)
+    - [Page Ability Development](ability/fa-pageability.md)
+    - [Service Ability Development](ability/fa-serviceability.md)
+    - [Data Ability Development](ability/fa-dataability.md)
+    - [FA Widget Development](ability/fa-formability.md)
     - Other
       - [Ability Assistant Usage](ability/ability-assistant-guidelines.md)
+    
   - [UI](ui/Readme-EN.md)
     - [ArkUI Overview](arkui-overview.md)
     - JavaScript-based Web-Like Development Paradigm
@@ -129,6 +129,7 @@
         - [Building a Food Category List Layout](ui/ui-ts-building-category-list-layout.md)
         - [Building a Food Category Grid Layout](ui/ui-ts-building-category-grid-layout.md)
         - [Implementing Page Redirection and Data Transmission](ui/ui-ts-page-redirection-data-transmission.md)
+    
   - Basic Functions
     - Window Manager
       - Window
@@ -209,10 +210,13 @@
       - Distributed Call Chain Tracing
         - [Overview of Distributed Call Chain Tracing](dfx/hitracechain-overview.md)
         - [Development of Distributed Call Chain Tracing](dfx/hitracechain-guidelines.md)
+  
 - Tools
   - [DevEco Studio (OpenHarmony) User Guide](quick-start/deveco-studio-user-guide-for-openharmony.md)
+  
 - Hands-On Tutorials
   - [Samples](https://gitee.com/openharmony/app_samples/blob/master/README.md)
+  
 - API References
   - Compent Reference (JavaScript-based Web-like Development Paradigm)
     - Components
