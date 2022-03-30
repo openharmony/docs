@@ -10,7 +10,7 @@ Hi3516DV300作为新一代行业专用Smart HD IP摄像机SOC，集成新一代I
 **图 1**  Hi3516单板正面外观图<a name="fig11402183715219"></a>  
 
 
-![](figures/3516正面.png)
+![](figures/Hi3516单板正面外观图.png)
 
 ## 开发板规格<a name="section15192203316533"></a>
 
