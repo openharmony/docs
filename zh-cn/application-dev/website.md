@@ -1,6 +1,5 @@
 # OpenHarmony应用开发文档
 - [应用开发导读](application-dev-guide.md)
-
 - 快速开始
 
   - 快速入门
@@ -8,11 +7,10 @@
     - [使用eTS语言开发](quick-start/start-with-ets.md)
     - [使用JS语言开发（传统代码方式）](quick-start/start-with-js.md)
     - [使用JS语言开发（低代码方式）](quick-start/start-with-js-low-code.md)
-
   - 开发基础知识
     - [应用开发包结构说明](quick-start/package-structure.md)
     - [资源文件的分类](quick-start/basic-resource-file-categories.md)
-
+    - [SysCap说明](quick-start/syscap.md)
 - 开发
   - Ability开发
     - [FA模型综述](ability/fa-brief.md)
@@ -262,14 +260,11 @@
       - [国际化开发概述](internationalization/international-overview.md)
       - [Intl开发指导](internationalization/intl-guidelines.md)
       - [I18n开发指导](internationalization/i18n-guidelines.md)
-
 - 工具
   - [DevEco Studio（OpenHarmony）使用指南](quick-start/deveco-studio-user-guide-for-openharmony.md)
-
 - 示例教程
   - [示例代码](https://gitee.com/openharmony/app_samples/blob/master/README_zh.md)
   - [Codelabs](https://gitee.com/openharmony/codelabs/blob/master/README.md)
-
 - API参考
   - 组件参考（基于JS扩展的类Web开发范式）
     - 组件
