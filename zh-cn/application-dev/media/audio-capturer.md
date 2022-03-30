@@ -8,6 +8,8 @@ AudioCapturer提供了用于获取原始音频文件的方法。开发者可以�
 
 在进行应用开发的过程中，建议开发者通过on('stateChange')方法订阅AudioCapturer的状态变更。因为针对AudioCapturer的某些操作，仅在音频采集器在固定状态时才能执行。如果应用在音频采集器处于错误状态时执行操作，系统可能会抛出异常或生成其他未定义的行为。
 
+详细API含义可参考：[音频管理API文档AudioCapturer](../reference/apis/js-apis-audio.md)
+
 ## 开发步骤
 
 1. 使用createAudioCapturer()创建一个AudioCapturer实例。

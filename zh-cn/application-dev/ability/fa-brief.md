@@ -1,4 +1,4 @@
-# FA模型综述
+# Ability综述
 
 ## 整体架构
 OpenHarmony用户程序的开发本质上就是开发Ability。OpenHarmony系统是通过对Ability调度，结合系统提供的一致性调度契约对Ability进行生命周期管理，从而实现对用户程序的调度。

@@ -1,20 +1,22 @@
 # OpenHarmony Application Development Documentation
 - [Application Development Overview](application-dev-guide.md)
+
 - Quick Start
   - [Directory Structure](quick-start/package-structure.md)
   - [Resource File Categories](quick-start/basic-resource-file-categories.md)
+  
 - Development
   - [Ability Development](ability/Readme-EN.md)
-    - [Ability Framework Overview](ability/ability-brief.md)
-    - FA Model
-      - [FA Model Overview](ability/fa-brief.md)
-      - [Page Ability Development](ability/fa-pageability.md)
-      - [Service Ability Development](ability/fa-serviceability.md)
-      - [Data Ability Development](ability/fa-dataability.md)
-      - [FA Widget Development](ability/fa-formability.md)
-
+    
+    - [FA Model Overview](ability/fa-brief.md)
+    - [Page Ability Development](ability/fa-pageability.md)
+    - [Service Ability Development](ability/fa-serviceability.md)
+    - [Data Ability Development](ability/fa-dataability.md)
+    - [FA Widget Development](ability/fa-formability.md)
+    
     - Other
       - [Ability Assistant Usage](ability/ability-assistant-guidelines.md)
+    
   - [UI](ui/Readme-EN.md)
     - [ArkUI Overview](arkui-overview.md)
     - JavaScript-based Web-Like Development Paradigm
@@ -130,6 +132,7 @@
         - [Building a Food Category List Layout](ui/ui-ts-building-category-list-layout.md)
         - [Building a Food Category Grid Layout](ui/ui-ts-building-category-grid-layout.md)
         - [Implementing Page Redirection and Data Transmission](ui/ui-ts-page-redirection-data-transmission.md)
+    
   - Basic Functions
     - Window Manager
       - Window
@@ -210,10 +213,13 @@
       - Distributed Call Chain Tracing
         - [Overview of Distributed Call Chain Tracing](dfx/hitracechain-overview.md)
         - [Development of Distributed Call Chain Tracing](dfx/hitracechain-guidelines.md)
+  
 - Tools
   - [DevEco Studio (OpenHarmony) User Guide](quick-start/deveco-studio-user-guide-for-openharmony.md)
+  
 - Hands-On Tutorials
   - [Samples](https://gitee.com/openharmony/app_samples/blob/master/README.md)
+  
 - API References
   - Compent Reference (JavaScript-based Web-like Development Paradigm)
     - Components
@@ -376,6 +382,7 @@
         - [ImageAnimator](reference/arkui-ts/ts-basic-components-imageanimator.md)
         - [LoadingProgress](reference/arkui-ts/ts-basic-components-loadingprogress.md)
         - [Marquee](reference/arkui-ts/ts-basic-components-marquee.md)
+        - [Navigation](reference/arkui-ts/ts-basic-components-navigation.md)
         - [PatternLock](reference/arkui-ts/ts-basic-components-patternlock.md)
         - [PluginComponent](reference/arkui-ts/ts-basic-components-plugincomponent.md)
         - [Progress](reference/arkui-ts/ts-basic-components-progress.md)
@@ -383,6 +390,7 @@
         - [Radio](reference/arkui-ts/ts-basic-components-radio.md)
         - [Rating](reference/arkui-ts/ts-basic-components-rating.md)
         - [RichText](reference/arkui-ts/ts-basic-components-richtext.md)
+        - [ScrollBar](reference/arkui-ts/ts-basic-components-scrollbar.md)
         - [Search](reference/arkui-ts/ts-basic-components-search.md)
         - [Select](reference/arkui-ts/ts-basic-components-select.md)
         - [Slider](reference/arkui-ts/ts-basic-components-slider.md)
@@ -412,13 +420,11 @@
         - [List](reference/arkui-ts/ts-container-list.md)
         - [ListItem](reference/arkui-ts/ts-container-listitem.md)
         - [Navigator](reference/arkui-ts/ts-container-navigator.md)
-        - [Navigation](reference/arkui-ts/ts-basic-components-navigation.md)
         - [Panel](reference/arkui-ts/ts-container-panel.md)
         - [Refresh](reference/arkui-ts/ts-container-refresh.md)
         - [Row](reference/arkui-ts/ts-container-row.md)
         - [RowSplit](reference/arkui-ts/ts-container-rowsplit.md)
         - [Scroll](reference/arkui-ts/ts-container-scroll.md)
-        - [ScrollBar](reference/arkui-ts/ts-basic-components-scrollbar.md)
         - [SideBarContainer](reference/arkui-ts/ts-container-sidebarcontainer.md)
         - [Stack](reference/arkui-ts/ts-container-stack.md)
         - [Swiper](reference/arkui-ts/ts-container-swiper.md)
