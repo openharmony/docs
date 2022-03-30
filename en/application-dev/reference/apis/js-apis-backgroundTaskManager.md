@@ -56,6 +56,7 @@ Obtains the remaining duration before the application is suspended. This API use
   | callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the remaining duration before the application is suspended, in milliseconds.|
 
 **Example**
+
   ```js
   let id = 1;
   backgroundTaskManager.getRemainingDelayTime(id, (err, res) => {
@@ -127,12 +128,12 @@ Requests a continuous task from the system. This API uses an asynchronous callba
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | context | [Context](js-apis-Context.md) | Yes| Application context.|
-  | bgMode | [BackgroundMode](#backgroundmode8) | Yes| Background mode requested.|
-  | wantAgent | [WantAgent](js-apis-notification.md#WantAgent)| Yes| Notification parameter, which is used to specify the target page that is redirected to when a continuous task notification is clicked.|
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| context | [Context](js-apis-Context.md) | Yes| Application context.|
+| bgMode | [BackgroundMode](#backgroundmode8) | Yes| Background mode requested.|
+| wantAgent | [WantAgent](js-apis-wantAgent.md) | Yes| Notification parameter, which is used to specify the target page that is redirected to when a continuous task notification is clicked.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
 ```js
@@ -178,13 +179,13 @@ Requests a continuous task from the system. This API uses a promise to return th
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
 **Parameters**
-  
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | context | [Context](js-apis-Context.md) | Yes| Application context.|
-  | bgMode | [BackgroundMode](#backgroundmode8) | Yes| Background mode requested.|
-  | wantAgent | [WantAgent](js-apis-notification.md#WantAgent)| Yes| Notification parameter, which is used to specify the target page when a continuous task notification is clicked.|
-  
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| context | [Context](js-apis-Context.md) | Yes| Application context.|
+| bgMode | [BackgroundMode](#backgroundmode8) | Yes| Background mode requested.|
+| wantAgent | [WantAgent](js-apis-wantAgent.md) | Yes| Notification parameter, which is used to specify the target page when a continuous task notification is clicked.|
+
 **Return value**
   | Type          | Description                     |
   | -------------- | ------------------------- |
@@ -225,8 +226,6 @@ stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): vo
 
 Requests to cancel a continuous task. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.KEEP_BACKGROUND_RUNNING
-
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
 **Parameters**
@@ -257,8 +256,6 @@ backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext(), callbac
 stopBackgroundRunning(context: Context): Promise&lt;void&gt;
 
 Requests to cancel a continuous task. This API uses a promise to return the result.
-
-**Required permissions**: ohos.permission.KEEP_BACKGROUND_RUNNING
 
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
