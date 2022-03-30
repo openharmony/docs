@@ -208,8 +208,8 @@
         - [关系型数据库概述](database/database-relational-overview.md)
         - [关系型数据库开发指导](database/database-relational-guidelines.md)
       - 轻量级数据存储
-        - [轻量级数据存储概述](database/database-preference-overview.md)
-        - [轻量级数据存储开发指导](database/database-preference-guidelines.md)
+        - [轻量级数据存储概述](database/database-storage-overview.md)
+        - [轻量级数据存储开发指导](database/database-storage-guidelines.md)
       - 分布式数据对象
         - [分布式数据对象概述](database/database-distributedobject-overview.md)
         - [分布式数据对象开发指导](database/database-distributedobject-guidelines.md)
@@ -533,7 +533,7 @@
       - [访问控制](reference/apis/js-apis-abilityAccessCtrl.md)
       - [通用密钥库系统](reference/apis/js-apis-huks.md)
     - 数据管理
-      - [轻量级存储](reference/apis/js-apis-data-preferences.md)
+      - [轻量级存储](reference/apis/js-apis-data-storage.md)
       - [分布式数据管理](reference/apis/js-apis-distributed-data.md)
       - [关系型数据库](reference/apis/js-apis-data-rdb.md)
       - [结果集](reference/apis/js-apis-data-resultset.md)
