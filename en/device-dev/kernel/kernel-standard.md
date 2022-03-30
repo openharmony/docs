@@ -1,9 +1,10 @@
 # Kernel for Standard Systems
 
--   **[Linux Kernel Overview](kernel-standard-overview.md)**  
 
--   **[Guidelines for Using Patches on OpenHarmony Development Boards](kernel-standard-patch.md)**  
+- **[Linux Kernel Overview](kernel-standard-overview.md)**
 
--   **[Guidelines for Compiling and Building the Linux Kernel](kernel-standard-build.md)**  
+- **[Applying Patches on Development Boards](kernel-standard-patch.md)**
 
+- **[Compiling and Building the Linux Kernel](kernel-standard-build.md)**
 
+- **[Enhanced Kernel Features] (kernel-standard-enhanced-features.md)**
