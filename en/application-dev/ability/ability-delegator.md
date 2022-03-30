@@ -10,7 +10,11 @@ The APIs provided by the test framework can be used only in the test HAP. They t
 
 ## Starting the Test Framework
 
-The test framework can be started by running the **aa test** command or using the IDE.
+The test framework can be started in either of the following ways:
+
+- Method 1: Run the **aa test** command.
+- Method 2: Use the IDE.
+
 ### Running aa test
 
 You can run the **aa test** command to start the test framework. You can specify the **TestRunner** to be used and the package name or module name of the HAP where the **TestRunner** is located.

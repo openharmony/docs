@@ -2,28 +2,30 @@
 
 ## Overview
 ### Concepts
-The Page ability implements the ArkUI and provides the capability of interacting with users. When you create an ability in the integrated development environment (IDE), the IDE automatically creates template code. The capabilities related to the Page ability are exposed through the singleton **featureAbility**, and the lifecycle callbacks are exposed through the callbacks in **app.js/app.ets**.
+The Page ability implements the ArkUI and provides the capability of interacting with users. When you create an ability in the integrated development environment (IDE), the IDE automatically creates template code. The capabilities related to the Page ability are implemented through the **featureAbility**, and the lifecycle callbacks are implemented through the callbacks in **app.js/app.ets**.
 
 ### Page Ability Lifecycle
 
-**Ability Lifecycle**
+**Ability lifecycle**
 
-The ability lifecycle is a general term for all states of an ability, such as **INACTIVE**, **ACTIVE**, and **BACKGROUND**. The following figure shows the lifecycle state transition of the Page ability.
+The Page ability lifecycle is a general term for all states of a Page ability, such as **INACTIVE**, **ACTIVE**, and **BACKGROUND**.
+
+The following figure shows the lifecycle state transition of the Page ability.
 
 ![PageAbility-Lifecycle](figures/page-ability-lifecycle.png)
 
 
 Description of ability lifecycle states:
 
-  - **UNINITIALIZED**: The ability is not initialized. This is a temporary state. An ability changes directly to the **INITIAL** state upon its creation.
+  - **UNINITIALIZED**: The Page ability is not initialized. This is a temporary state. A Page ability changes directly to the **INITIAL** state upon its creation.
 
-  - **INITIAL**: This state refers to the initial or stopped state. The ability in this state is not running. The ability enters the **INACTIVE** state after it is started.
+  - **INITIAL**: This state refers to the initial or stopped state. The Page ability in this state is not running. The Page ability enters the **INACTIVE** state after it is started.
 
   - **INACTIVE**: The ability is visible but does not gain focus.
 
   - **ACTIVE**: The ability runs in the foreground and gains focus.
 
-  - **BACKGROUND**: The ability returns to the background. After being re-activated, the ability enters the **ACTIVE** state. After being destroyed, the ability enters the **INITIAL** state.
+  - **BACKGROUND**: The Page ability returns to the background. After being re-activated, the Page ability enters the **ACTIVE** state. After being destroyed, the Page ability enters the **INITIAL** state.
 
 **The following figure shows the relationship between lifecycle callbacks and lifecycle states of the Page ability.**
 
@@ -100,6 +102,7 @@ You can override the lifecycle callbacks provided by the Page ability in the **a
 ```
 
 You can also include **parameters** in the **want** parameter and set its value in the key-value format.
+
 **Example**
 
 ```javascript
@@ -148,6 +151,7 @@ You can also include **parameters** in the **want** parameter and set its value 
 ```
 
 Obtain **deviceId** from **DeviceManager**. The sample code is as follows:
+
 ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
   let dmClass;
@@ -167,6 +171,7 @@ Obtain **deviceId** from **DeviceManager**. The sample code is as follows:
 ```
 
 In the cross-device scenario, the application must also apply for the data synchronization permission from end users. The sample code is as follows:
+
 ```ts
   import abilityAccessCtrl from "@ohos.abilityAccessCtrl";
   import bundle from '@ohos.bundle';
@@ -204,6 +209,7 @@ In the cross-device scenario, the application must also apply for the data synch
 ```
 
 ### Lifecycle APIs
+
 **Table 2** Lifecycle callbacks
 
 | API      | Description                                                        |
@@ -216,6 +222,7 @@ In the cross-device scenario, the application must also apply for the data synch
 | onActive()   | Called when the ability is switched to the foreground and gains focus.     |
 
 **Example**
+
 You need to override the lifecycle callbacks in **app.js/app.ets**. The IDE template generates **onCreate()** and **onDestroy()** by default. You need to override the other callbacks.
 
 ```javascript

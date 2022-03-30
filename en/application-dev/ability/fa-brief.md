@@ -1,19 +1,32 @@
 # FA Model Overview
 
 ## Overall Architecture
-The development of an OpenHarmony application is essentially the development of one or more abilities. By scheduling abilities and managing their lifecycle, OpenHarmony implements application scheduling. In the FA model, three types of abilities are provided: Page, Service, and Data. The Page ability has the ArkUI and therefore provides the capability of interacting with users. The Service ability does not have a UI. It runs in the background and provides custom services for other abilities to invoke. The Data ability does not have a UI. It also runs in the background and enables other abilities to insert, delete, and query data.
+The development of an OpenHarmony application is essentially the development of one or more abilities. By scheduling abilities and managing their lifecycle, OpenHarmony implements application scheduling.
+
+The Feature Ability (FA) model applies to application development using API 8 and earlier versions. In this model, there are Page, Service, Data, and Form abilities.  
+- The Page ability implements the ArkUI and provides the capability of interacting with users.
+- The Service ability does not have a UI. It runs in the background and provides custom services for other abilities to invoke. 
+- The Data ability does not have a UI. It also runs in the background and enables other abilities to insert, delete, and query data.
+- The Form ability provides a widget, which is a UI display mode.
 
 ## Application Package Structure
 **The following figure shows the application package structure.**
+
 ![fa-package-info](figures/fa-package-info.png)
+
+For details about the application package structure, see [Description of the Application Package Structure Configuration File](../quick-start/package-structure.md).
 
 ## Lifecycle
 
+Among all abilities, the Page ability has the most complex lifecycle, because it has a UI and is the interaction entry of applications.
 **The following figure shows the lifecycle of the Page ability.**
 
 ![fa-pageAbility-lifecycle](figures/fa-pageAbility-lifecycle.png)
 
-You can override lifecycle functions in **app.js/app.ets** to process application logic.
+The other abilities do not involve the foreground/background switchover and the **onShow** callback.
+You can override the lifecycle callbacks in **app.js/app.ets** to process application logic.
+
+Currently, the **app.js** file provides only the **onCreate** and **onDestroy** callbacks, and the **app.ets** file provides the full lifecycle callbacks.
 
 
 ## Process and Thread Model
