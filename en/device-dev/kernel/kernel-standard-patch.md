@@ -1,4 +1,4 @@
-# Guidelines for Using Patches on OpenHarmony Development Boards<a name="EN-US_TOPIC_0000001081980461"></a>
+# Applying Patches on Development Boards<a name="EN-US_TOPIC_0000001081980461"></a>
 
 1.  Apply the HDF patches.
 
