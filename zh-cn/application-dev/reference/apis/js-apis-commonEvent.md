@@ -537,7 +537,7 @@ getCode(callback: AsyncCallback\<number>): void
 ```js
 var subscriber;	//创建成功的订阅者对象
 
-//设置有序公共事件的结果数据回调
+//获取有序公共事件的结果代码回调
 function getCodeCallback(err, Code) {
     if (err.code) {
         console.error("getCode failed " + JSON.stringify(err));
@@ -594,7 +594,7 @@ setCode(code: number, callback: AsyncCallback\<void>): void
 ```js
 var subscriber;	//创建成功的订阅者对象
 
-//设置有序公共事件的结果数据回调
+//设置有序公共事件的结果代码回调
 function setCodeCallback(err) {
     if (err.code) {
         console.error("setCode failed " + JSON.stringify(err));
@@ -656,7 +656,7 @@ getData(callback: AsyncCallback\<string>): void
 ```js
 var subscriber;	//创建成功的订阅者对象
 
-//设置有序公共事件的结果数据回调
+//获取有序公共事件的结果数据回调
 function getDataCallback(err, Data) {
     if (err.code) {
         console.error("getData failed " + JSON.stringify(err));
@@ -777,7 +777,7 @@ setCodeAndData(code: number, data: string, callback:AsyncCallback\<void>): void
 ```js
 var subscriber;	//创建成功的订阅者对象
 
-//设置有序公共事件的结果数据回调
+//设置有序公共事件的结果代码和结果数据回调
 function setCodeDataCallback(err) {
     if (err.code) {
         console.error("setCodeAndData failed " + JSON.stringify(err));
@@ -842,7 +842,7 @@ isOrderedCommonEvent(callback: AsyncCallback\<boolean>): void
 ```js
 var subscriber;	//创建成功的订阅者对象
 
-//设置有序公共事件的结果数据回调
+//获取当前公共事件是否为有序事件的回调
 function isOrderedCallback(err, isOrdered) {
     if (err.code) {
         console.error("isOrderedCommonEvent failed " + JSON.stringify(err));
@@ -902,7 +902,7 @@ isStickyCommonEvent(callback: AsyncCallback\<boolean>): void
 ```js
 var subscriber;	//创建成功的订阅者对象
 
-//设置有序公共事件的结果数据回调
+//获取当前公共事件是否为粘性事件的回调
 function isStickyCallback(err, isSticky) {
     if (err.code) {
         console.error("isStickyCommonEvent failed " + JSON.stringify(err));
@@ -960,7 +960,7 @@ abortCommonEvent(callback: AsyncCallback\<void>): void
 ```js
 var subscriber;	//创建成功的订阅者对象
 
-//设置有序公共事件的结果数据回调
+//取消当前有序公共事件的回调
 function abortCallback(err) {
     if (err.code) {
         console.error("abortCommonEvent failed " + JSON.stringify(err));
@@ -1016,7 +1016,7 @@ clearAbortCommonEvent(callback: AsyncCallback\<void>): void
 ```js
 var subscriber;	//创建成功的订阅者对象
 
-//设置有序公共事件的结果数据回调
+//清除当前公共事件取消状态的回调
 function clearAbortCallback(err) {
     if (err.code) {
         console.error("clearAbortCommonEvent failed " + JSON.stringify(err));
@@ -1072,7 +1072,7 @@ getAbortCommonEvent(callback: AsyncCallback\<boolean>): void
 ```js
 var subscriber;	//创建成功的订阅者对象
 
-//设置有序公共事件的结果数据回调
+//获取当前有序公共事件是否取消的回调
 function getAbortCallback(err, AbortCommonEvent) {
     if (err.code) {
         console.error("getAbortCommonEvent failed " + JSON.stringify(err));
@@ -1128,7 +1128,7 @@ getSubscribeInfo(callback: AsyncCallback\<CommonEventSubscribeInfo>): void
 ```js
 var subscriber;	//创建成功的订阅者对象
 
-//设置有序公共事件的结果数据回调
+//获取订阅者信息回调
 function getSubscribeInfoCallback(err, SubscribeInfo) {
     if (err.code) {
         console.error("getSubscribeInfo failed " + JSON.stringify(err));
@@ -1165,11 +1165,11 @@ subscriber.getSubscribeInfo().then((SubscribeInfo) => {
 });
 ```
 
-### finishCommonEvent
+### finishCommonEvent<sup>9+</sup>
 
 finishCommonEvent(callback: AsyncCallback\<void\>): void
 
-结束当前已排序的公共事件（callback形式）。
+结束当前有序公共事件（callback形式）。
 
 **系统能力**：SystemCapability.Notification.CommonEvent
 
@@ -1177,25 +1177,29 @@ finishCommonEvent(callback: AsyncCallback\<void\>): void
 
 | 参数名   | 类型                  | 必填 | 描述                              |
 | -------- | -------------------- | ---- | -------------------------------- |
-| callback | AsyncCallback\<void> | 是   | 表示排序的公共事件结束后的回调函数。 |
+| callback | AsyncCallback\<void> | 是   | 表示有序公共事件结束后的回调函数。 |
 
 **示例：**
 
 ```js
 var subscriber; //创建成功的订阅者对象
 
+//结束当前有序公共事件的回调
 function finishCommonEventCallback() {
-  console.log("--------- finishCommonEventCallback ----------");
+  if (err.code) {
+        console.error("finishCommonEvent failed " + JSON.stringify(err));
+    } else {
+        console.info("FinishCommonEvent");
+    }
 }
-
 subscriber.finishCommonEvent(finishCommonEventCallback);
 ```
 
-### finishCommonEvent
+### finishCommonEvent<sup>9+</sup>
 
 finishCommonEvent(): Promise\<void\>
 
-结束当前已排序的公共事件（Promise形式）。
+结束当前有序公共事件（Promise形式）。
 
 **系统能力**：SystemCapability.Notification.CommonEvent
 
@@ -1210,10 +1214,11 @@ finishCommonEvent(): Promise\<void\>
 ```js
 var subscriber;	//创建成功的订阅者对象
 
-subscriber.finishCommonEvent()
-  .then(() => {
-    console.info("--------- finishCommonEventCallback ----------");
-  })
+subscriber.finishCommonEvent().then(() => {
+    console.info("FinishCommonEvent");
+}).catch((err) => {
+    console.error("finishCommonEvent failed " + JSON.stringify(err));
+});
 ```
 
 ## CommonEventData
