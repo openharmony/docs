@@ -8,19 +8,19 @@
 import mediaLibrary from '@ohos.multimedia.medialibrary';
 ```
 
-## mediaLibrary.getMediaLibrary
+## mediaLibrary.getMediaLibrary<sup>8+</sup>
 
 getMediaLibrary(context: Context): MediaLibrary
 
-Obtains a **MediaLibrary** instance, which is used to access and modify personal data of users.
+Obtains a **MediaLibrary** instance, which is used to access and modify personal media data such as audios, videos, images, and documents.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
 **Parameters**
 
-| Name    | Type     | Mandatory  | Description                                      |
-| ------- | ------- | ---- | ---------------------------------------- |
-| context | Context | Yes   | Context of the ability. This parameter is optional for API version 7 and earlier versions, but mandatory for API version 8 and later versions.|
+| Name | Type   | Mandatory| Description                      |
+| ------- | ------- | ---- | -------------------------- |
+| context | Context | Yes  | Context of the ability.|
 
 **Return value**
 
@@ -36,9 +36,31 @@ import featureAbility from '@ohos.ability.featureAbility';
 var context = featureAbility.getContext()
 var media = mediaLibrary.getMediaLibrary(context);
 ```
+## mediaLibrary.getMediaLibrary
+
+getMediaLibrary(): MediaLibrary
+
+Obtains a **MediaLibrary** instance, which is used to access and modify personal media data such as audios, videos, images, and documents.
+
+> **Note**: This API is no longer maintained since API version 8. You are advised to use [mediaLibrary.getMediaLibrary<sup>8+</sup>](#medialibrarygetmedialibrary8) instead.
+
+**System capability**: SystemCapability.Multimedia.MediaLibrary.Core
+
+**Return value**
+
+| Type                         | Description      |
+| ----------------------------- | :--------- |
+| [MediaLibrary](#medialibrary) | **MediaLibrary** instance.|
+
+**Example**
+
+```js
+var media = mediaLibrary.getMediaLibrary();
+```
+
 ## MediaLibrary
 
-### getFileAssets<sup>8+</sup>
+### getFileAssets<sup>7+</sup>
 
 
 getFileAssets(options: MediaFetchOptions, callback: AsyncCallback&lt;FetchFileResult&gt;): void 
@@ -51,10 +73,10 @@ Obtains file assets (also called files). This API uses an asynchronous callback 
 
 **Parameters**
 
-| Name     | Type                                      | Mandatory  | Description                      |
-| -------- | ---------------------------------------- | ---- | ------------------------ |
-| options  | [MediaFetchOptions](#mediafetchoptions8) | Yes   | Options for fetching the files.                  |
-| callback | AsyncCallback<[FetchFileResult](#fetchfileresult8)> | Yes   | Asynchronous callback of **FetchFileResult**.|
+| Name  | Type                                               | Mandatory| Description                             |
+| -------- | --------------------------------------------------- | ---- | --------------------------------- |
+| options  | [MediaFetchOptions](#mediafetchoptions7)            | Yes  | Options for fetching the files.                     |
+| callback | AsyncCallback<[FetchFileResult](#fetchfileresult7)> | Yes  | Asynchronous callback of **FetchFileResult**.|
 
 **Example**
 
@@ -76,7 +98,7 @@ mediaLibrary.getFileAssets(imagesfetchOp, (error, fetchFileResult) => {
     }
 });
 ```
-### getFileAssets<sup>8+</sup>
+### getFileAssets<sup>7+</sup>
 
 getFileAssets(options: MediaFetchOptions): Promise&lt;FetchFileResult&gt;
 
@@ -88,15 +110,15 @@ Obtains file assets. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name    | Type                                      | Mandatory  | Description    |
-| ------- | ---------------------------------------- | ---- | ------ |
-| options | [MediaFetchOptions](#mediafetchoptions8) | Yes   | Options for fetching the files.|
+| Name | Type                                    | Mandatory| Description        |
+| ------- | ---------------------------------------- | ---- | ------------ |
+| options | [MediaFetchOptions](#mediafetchoptions7) | Yes  | Options for fetching the files.|
 
 **Return value**
 
-| Type                                  | Description     |
-| ------------------------------------ | ------- |
-| [FetchFileResult](#fetchfileresult8) | Result set of the file retrieval operation.|
+| Type                                | Description          |
+| ------------------------------------ | -------------- |
+| [FetchFileResult](#fetchfileresult7) | Result set of the file retrieval operation.|
 
 **Example**
 
@@ -171,12 +193,12 @@ Creates a media asset. This API uses an asynchronous callback to return the resu
 
 **Parameters**
 
-| Name         | Type                                     | Mandatory  | Description                                      |
-| ------------ | --------------------------------------- | ---- | ---------------------------------------- |
-| mediaType    | [MediaType](#mediatype)                 | Yes   | Media type.                                    |
-| displayName  | string                                  | Yes   | Display file name.                                   |
-| relativePath | string                                  | Yes   | Path for storing the file. You can use [getPublicDirectory](#getpublicdirectory8) to obtain the paths for storing different types of files.|
-| callback     | AsyncCallback<[FileAsset](#fileasset8)> | Yes   | Asynchronous callback for **FileAsset**.                  |
+| Name      | Type                                   | Mandatory| Description                                                        |
+| ------------ | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| mediaType    | [MediaType](#mediatype8)                | Yes  | Media type.                                                    |
+| displayName  | string                                  | Yes  | Display file name.                                                  |
+| relativePath | string                                  | Yes  | Path for storing the file. You can use [getPublicDirectory](#getpublicdirectory8) to obtain the paths for storing different types of files.|
+| callback     | AsyncCallback<[FileAsset](#fileasset7)> | Yes  | Asynchronous callback for **FileAsset**.                         |
 
 **Example**
 
@@ -208,17 +230,17 @@ Creates a media asset. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name         | Type                     | Mandatory  | Description                                      |
-| ------------ | ----------------------- | ---- | ---------------------------------------- |
-| mediaType    | [MediaType](#mediatype) | Yes   | Media type.                                    |
-| displayName  | string                  | Yes   | Display file name.                                   |
-| relativePath | string                  | Yes   | Relative path. You can use [getPublicDirectory](#getpublicdirectory8) to obtain the relative path of the level-1 directory of different types of media files.|
+| Name      | Type                    | Mandatory| Description                                                        |
+| ------------ | ------------------------ | ---- | ------------------------------------------------------------ |
+| mediaType    | [MediaType](#mediatype8) | Yes  | Media type.                                                    |
+| displayName  | string                   | Yes  | Display file name.                                                  |
+| relativePath | string                   | Yes  | Relative path. You can use [getPublicDirectory](#getpublicdirectory8) to obtain the relative path of the level-1 directory of different types of media files.|
 
 **Return value**
 
-| Type                      | Description           |
-| ------------------------ | ------------- |
-| [FileAsset](#fileasset8) | Media data (FileAsset).|
+| Type                    | Description             |
+| ------------------------ | ----------------- |
+| [FileAsset](#fileasset7) | Media data (FileAsset).|
 
 **Example**
 
@@ -246,10 +268,10 @@ Obtains a public directory. This API uses an asynchronous callback to return the
 
 **Parameters**
 
-| Name     | Type                             | Mandatory  | Description               |
-| -------- | ------------------------------- | ---- | ----------------- |
-| type     | [DirectoryType](#directorytype) | Yes   | Type of the public directory.           |
-| callback | AsyncCallback&lt;string&gt;     | Yes   | Callback used to return the public directory.|
+| Name  | Type                            | Mandatory| Description                     |
+| -------- | -------------------------------- | ---- | ------------------------- |
+| type     | [DirectoryType](#directorytype8) | Yes  | Type of the public directory.             |
+| callback | AsyncCallback&lt;string&gt;      | Yes  | Callback used to return the public directory.|
 
 **Example**
 
@@ -274,15 +296,15 @@ Obtains a public directory. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name | Type                             | Mandatory  | Description    |
-| ---- | ------------------------------- | ---- | ------ |
-| type | [DirectoryType](#directorytype) | Yes   | Type of the public directory.|
+| Name| Type                            | Mandatory| Description        |
+| ------ | -------------------------------- | ---- | ------------ |
+| type   | [DirectoryType](#directorytype8) | Yes  | Type of the public directory.|
 
 **Return value**
 
-| Type             | Description      |
-| --------------- | -------- |
-| Promise<string> | Promise used to return the public directory.|
+| Type            | Description            |
+| ---------------- | ---------------- |
+| Promise\<string> | Promise used to return the public directory.|
 
 **Example**
 
@@ -298,7 +320,7 @@ async function example() {
 }
 ```
 
-### getAlbums<sup>8+</sup>
+### getAlbums<sup>7+</sup>
 
 getAlbums(options: MediaFetchOptions, callback: AsyncCallback<Array&lt;Album&gt;>): void
 
@@ -310,10 +332,10 @@ Obtains the albums. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name     | Type                                      | Mandatory  | Description              |
-| -------- | ---------------------------------------- | ---- | ---------------- |
-| options  | [MediaFetchOptions](#mediafetchoptions8) | Yes   | Options for fetching the albums.          |
-| callback | AsyncCallback&lt;Array<[Album](#album8)>&gt; | Yes   | Callback used to return the albums.|
+| Name  | Type                                        | Mandatory| Description                       |
+| -------- | -------------------------------------------- | ---- | --------------------------- |
+| options  | [MediaFetchOptions](#mediafetchoptions7)     | Yes  | Options for fetching the albums.               |
+| callback | AsyncCallback&lt;Array<[Album](#album7)>&gt; | Yes  | Callback used to return the albums.|
 
 **Example**
 
@@ -333,7 +355,7 @@ mediaLibrary.getAlbums(AlbumNoArgsfetchOp, (err, albumList) => {
 })
 ```
 
-### getAlbums<sup>8+</sup>
+### getAlbums<sup>7+</sup>
 
 getAlbums(options: MediaFetchOptions): Promise<Array&lt;Album&gt;>
 
@@ -345,15 +367,15 @@ Obtains the albums. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name    | Type                                      | Mandatory  | Description    |
-| ------- | ---------------------------------------- | ---- | ------ |
-| options | [MediaFetchOptions](#mediafetchoptions8) | Yes   | Options for fetching the albums.|
+| Name | Type                                    | Mandatory| Description        |
+| ------- | ---------------------------------------- | ---- | ------------ |
+| options | [MediaFetchOptions](#mediafetchoptions7) | Yes  | Options for fetching the albums.|
 
 **Return value**
 
-| Type                              | Description       |
-| -------------------------------- | --------- |
-| Promise<Array<[Album](#album8)>> | Promise used to return the albums.|
+| Type                            | Description         |
+| -------------------------------- | ------------- |
+| Promise<Array<[Album](#album7)>> | Promise used to return the albums.|
 
 **Example**
 
@@ -690,7 +712,7 @@ mediaLibrary.getMediaLibrary().startMediaSelect(option).then((value) => {
 
   ```
 
-## FileAsset<sup>8+</sup>
+## FileAsset<sup>7+</sup>
 
 Provides APIs for encapsulating file asset attributes.
 
@@ -698,29 +720,29 @@ Provides APIs for encapsulating file asset attributes.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
-| Name          | Type                     | Readable  | Writable  | Description                                     |
-| ------------ | ----------------------- | ---- | ---- | --------------------------------------- |
-| id           | number                  | Yes   | No   | File asset ID.                                 |
-| uri          | string                  | Yes   | No   | File asset URI, for example, dataability:///media/image/2.|
-| mimeType     | string                  | Yes   | No   | Extended file attributes.                                 |
-| mediaType    | [MediaType](#mediatype) | Yes   | No   | Media type.                                   |
-| displayName  | string                  | Yes   | Yes   | Display file name, including the file name extension.                            |
-| title        | string                  | Yes   | Yes   | Title in the file.                                   |
-| relativePath | string                  | Yes   | Yes   | Relative public directory of the file.                               |
-| parent       | number                  | Yes   | No   | Parent directory ID.                                  |
-| size         | number                  | Yes   | No   | File size, in bytes.                            |
-| dateAdded    | number                  | Yes   | No   | Date when the file was added. (The value is the number of seconds elapsed since the Epoch time.)             |
-| dateModified | number                  | Yes   | No   | Date when the file was modified. (The value is the number of seconds elapsed since the Epoch time.)             |
-| dateTaken    | number                  | Yes   | No   | Date when the file (photo) was taken. (The value is the number of seconds elapsed since the Epoch time.)             |
-| artist       | string                  | Yes   | No   | Artist of the file.                                     |
-| audioAlbum   | string                  | Yes   | No   | Audio album.                                     |
-| width        | number                  | Yes   | No   | Image width, in pixels.                            |
-| height       | number                  | Yes   | No   | Image height, in pixels.                            |
-| orientation  | number                  | Yes   | Yes   | Image display direction (clockwise rotation angle, for example, 0, 90, or 180, in degrees).        |
-| duration     | number                  | Yes   | No   | Duration, in seconds.                             |
-| albumId      | number                  | Yes   | No   | ID of the album to which the file belongs.                             |
-| albumUri     | string                  | Yes   | No   | URI of the album to which the file belongs.                             |
-| albumName    | string                  | Yes   | No   | Name of the album to which the file belongs.                              |
+| Name                     | Type                    | Readable| Writable| Description                                                  |
+| ------------------------- | ------------------------ | ---- | ---- | ------------------------------------------------------ |
+| id                        | number                   | Yes  | No  | File asset ID.                                          |
+| uri                       | string                   | Yes  | No  | File asset URI, for example, dataability:///media/image/2.        |
+| mimeType                  | string                   | Yes  | No  | Extended file attributes.                                          |
+| mediaType<sup>8+</sup>    | [MediaType](#mediatype8) | Yes  | No  | Media type.                                              |
+| displayName               | string                   | Yes  | Yes  | Display file name, including the file name extension.                                |
+| title                     | string                   | Yes  | Yes  | Title in the file.                                              |
+| relativePath<sup>8+</sup> | string                   | Yes  | Yes  | Relative public directory of the file.                                      |
+| parent<sup>8+</sup>       | number                   | Yes  | No  | Parent directory ID.                                              |
+| size                      | number                   | Yes  | No  | File size, in bytes.                                |
+| dateAdded                 | number                   | Yes  | No  | Date when the file was added. (The value is the number of seconds elapsed since the Epoch time.)        |
+| dateModified              | number                   | Yes  | No  | Date when the file was modified. (The value is the number of seconds elapsed since the Epoch time.)        |
+| dateTaken                 | number                   | Yes  | No  | Date when the file (photo) was taken. (The value is the number of seconds elapsed since the Epoch time.)        |
+| artist<sup>8+</sup>       | string                   | Yes  | No  | Artist of the file.                                                  |
+| audioAlbum<sup>8+</sup>   | string                   | Yes  | No  | Audio album.                                                  |
+| width                     | number                   | Yes  | No  | Image width, in pixels.                                |
+| height                    | number                   | Yes  | No  | Image height, in pixels.                                |
+| orientation               | number                   | Yes  | Yes  | Image display direction (clockwise rotation angle, for example, 0, 90, or 180, in degrees).|
+| duration<sup>8+</sup>     | number                   | Yes  | No  | Duration, in seconds.                                  |
+| albumId                   | number                   | Yes  | No  | ID of the album to which the file belongs.                                  |
+| albumUri<sup>8+</sup>     | string                   | Yes  | No  | URI of the album to which the file belongs.                                     |
+| albumName                 | string                   | Yes  | No  | Name of the album to which the file belongs.                                    |
 
 
 ### isDirectory<sup>8+</sup>
@@ -1127,15 +1149,19 @@ Obtains the thumbnail of this file asset, with the thumbnail size passed. This A
 async function example() {
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
-      selections: fileKeyObj.MEDIA_TYPE + '= ?',
-      selectionArgs: [imageType.toString()],
-      order: fileKeyObj.DATE_ADDED + " DESC",
-      extendArgs: "",
+        selections: fileKeyObj.MEDIA_TYPE + '= ?',
+        selectionArgs: [imageType.toString()],
+        order: fileKeyObj.DATE_ADDED + " DESC",
+        extendArgs: "",
     };
     const fetchFileResult = await media.getFileAssets(getImageOp);
     const asset = await fetchFileResult.getFirstObject();
-    asset.getThumbnail(size, (err, pixelmap) => {
+    asset.getThumbnail(size)
+    .then((pixelmap) => {
         console.info('mediaLibraryTest : getThumbnail Successfull '+ pixelmap);
+    })
+    .catch((err) => {
+        console.info('mediaLibraryTest : getThumbnail fail'+ err);
     });
 }
 ```
@@ -1460,11 +1486,11 @@ async function example() {
 }
 ```
 
-## FetchFileResult<sup>8+</sup>
+## FetchFileResult<sup>7+</sup>
 
 Implements the result set of the file retrieval operation.
 
-### getCount<sup>8+</sup>
+### getCount<sup>7+</sup>
 
 getCount(): number
 
@@ -1493,7 +1519,7 @@ async function example() {
 }
 ```
 
-### isAfterLast<sup>8+</sup>
+### isAfterLast<sup>7+</sup>
 
 isAfterLast(): boolean
 
@@ -1536,7 +1562,7 @@ async function example() {
 }
 ```
 
-### close<sup>8+</sup>
+### close<sup>7+</sup>
 
 close(): void
 
@@ -1560,7 +1586,7 @@ async function example() {
 }
 ```
 
-### getFirstObject<sup>8+</sup>
+### getFirstObject<sup>7+</sup>
 
 getFirstObject(callback: AsyncCallback&lt;FileAsset&gt;): void
 
@@ -1570,9 +1596,9 @@ Obtains the first file asset in the result set. This API uses an asynchronous ca
 
 **Parameters**
 
-| Name     | Type                                      | Mandatory  | Description                        |
-| -------- | ---------------------------------------- | ---- | -------------------------- |
-| callback | AsyncCallback&lt;[FileAsset](#fileasset8)&gt; | Yes   | Callback used to return the first file asset.|
+| Name  | Type                                         | Mandatory| Description                                       |
+| -------- | --------------------------------------------- | ---- | ------------------------------------------- |
+| callback | AsyncCallback&lt;[FileAsset](#fileasset7)&gt; | Yes  | Callback used to return the first file asset.|
 
 **Example**
 
@@ -1596,7 +1622,7 @@ async function example() {
 }
 ```
 
-### getFirstObject<sup>8+</sup>
+### getFirstObject<sup>7+</sup>
 
 getFirstObject(): Promise&lt;FileAsset&gt;
 
@@ -1606,9 +1632,9 @@ Obtains the first file asset in the result set. This API uses a promise to retur
 
 **Return value**
 
-| Type                                     | Description                  |
-| --------------------------------------- | -------------------- |
-| Promise&lt;[FileAsset](#fileasset8)&gt; | Promise used to return the file asset.|
+| Type                                   | Description                      |
+| --------------------------------------- | -------------------------- |
+| Promise&lt;[FileAsset](#fileasset7)&gt; | Promise used to return the file asset.|
 
 **Example**
 
@@ -1630,7 +1656,7 @@ async function example() {
 }
 ```
 
-### getNextObject<sup>8+</sup>
+### getNextObject<sup>7+</sup>
 
  getNextObject(callback: AsyncCallback&lt;FileAsset&gt;): void
 
@@ -1642,9 +1668,9 @@ Obtains the next file asset in the result set. This API uses an asynchronous cal
 
 **Parameters**
 
-| Name      | Type                                      | Mandatory  | Description                       |
-| --------- | ---------------------------------------- | ---- | ------------------------- |
-| callbacke | AsyncCallback&lt;[FileAsset](#fileasset8)&gt; | Yes   | Callback used to return the next file asset.|
+| Name   | Type                                         | Mandatory| Description                                     |
+| --------- | --------------------------------------------- | ---- | ----------------------------------------- |
+| callbacke | AsyncCallback&lt;[FileAsset](#fileasset7)&gt; | Yes  | Callback used to return the next file asset.|
 
 **Example**
 
@@ -1668,7 +1694,7 @@ async function example() {
 }
 ```
 
-### getNextObject<sup>8+</sup>
+### getNextObject<sup>7+</sup>
 
  getNextObject(): Promise&lt;FileAsset&gt;
 
@@ -1680,9 +1706,9 @@ Obtains the next file asset in the result set. This API uses a promise to return
 
 **Return value**
 
-| Type                                     | Description           |
-| --------------------------------------- | ------------- |
-| Promise&lt;[FileAsset](#fileasset8)&gt; | Promise used to return the next file asset.|
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+| Promise&lt;[FileAsset](#fileasset7)&gt; | Promise used to return the next file asset.|
 
 **Example**
 
@@ -1702,7 +1728,7 @@ async function example() {
 }
 ```
 
-### getLastObject<sup>8+</sup>
+### getLastObject<sup>7+</sup>
 
 getLastObject(callback: AsyncCallback&lt;FileAsset&gt;): void
 
@@ -1712,9 +1738,9 @@ Obtains the last file asset in the result set. This API uses an asynchronous cal
 
 **Parameters**
 
-| Name      | Type                                      | Mandatory  | Description                |
-| -------- | ---------------------------------------- | ---- | ------------------ |
-| callback | AsyncCallback&lt;[FileAsset](#fileasset8)&gt; | Yes   | Callback used to return the last file asset.|
+| Name  | Type                                         | Mandatory| Description                       |
+| -------- | --------------------------------------------- | ---- | --------------------------- |
+| callback | AsyncCallback&lt;[FileAsset](#fileasset7)&gt; | Yes  | Callback used to return the last file asset.|
 
 **Example**
 
@@ -1738,7 +1764,7 @@ async function example() {
 }
 ```
 
-### getLastObject<sup>8+</sup>
+### getLastObject<sup>7+</sup>
 
 getLastObject(): Promise&lt;FileAsset&gt;
 
@@ -1748,9 +1774,9 @@ Obtains the last file asset in the result set. This API uses a promise to return
 
 **Return value**
 
-| Type                                     | Description           |
-| --------------------------------------- | ------------- |
-| Promise&lt;[FileAsset](#fileasset8)&gt; | Promise used to return the next file asset.|
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+| Promise&lt;[FileAsset](#fileasset7)&gt; | Promise used to return the next file asset.|
 
 **Example**
 
@@ -1768,7 +1794,7 @@ async function example() {
 }
 ```
 
-### getPositionObject<sup>8+</sup>
+### getPositionObject<sup>7+</sup>
 
 getPositionObject(index: number, callback: AsyncCallback&lt;FileAsset&gt;): void
 
@@ -1781,7 +1807,7 @@ Obtains a file asset with the specified index in the result set. This API uses a
 | Name      | Type                                      | Mandatory  | Description                |
 | -------- | ---------------------------------------- | ---- | ------------------ |
 | index    | number                                   | Yes   | Index of the file asset to obtain. The value starts from **0**.    |
-| callback | AsyncCallback&lt;[FileAsset](#fileasset8)&gt; | Yes   | Callback used to return the last file asset.|
+| callback | AsyncCallback&lt;[FileAsset](#fileasset7)&gt; | Yes   | Callback used to return the last file asset.|
 
 **Example**
 
@@ -1805,7 +1831,7 @@ async function example() {
 }
 ```
 
-### getPositionObject<sup>8+</sup>
+### getPositionObject<sup>7+</sup>
 
 getPositionObject(index: number): Promise&lt;FileAsset&gt;
 
@@ -1823,9 +1849,9 @@ Obtains a file asset with the specified index in the result set. This API uses a
 
 **Return value**
 
-| Type                                     | Description           |
-| --------------------------------------- | ------------- |
-| Promise&lt;[FileAsset](#fileasset8)&gt; | Promise used to return the next file asset.|
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+| Promise&lt;[FileAsset](#fileasset7)&gt; | Promise used to return the next file asset.|
 
 **Example**
 
@@ -1849,7 +1875,7 @@ async function example() {
 }
 ```
 
-### getAllObject<sup>8+</sup>
+### getAllObject<sup>7+</sup>
 
 getAllObject(callback: AsyncCallback&lt;Array&lt;FileAsset&gt;&gt;): void
 
@@ -1863,7 +1889,7 @@ Obtains all the file assets in the result set. This API uses an asynchronous cal
 
 | Name      | Type                                      | Mandatory  | Description                  |
 | -------- | ---------------------------------------- | ---- | -------------------- |
-| callback | AsyncCallback<Array<[FileAsset](#fileasset8)>> | Yes   | Callback used to return the file assets.|
+| callback | AsyncCallback<Array<[FileAsset](#fileasset7)>> | Yes   | Callback used to return the file assets.|
 
 **Example**
 
@@ -1887,7 +1913,7 @@ async function example() {
 }
 ```
 
-### getAllObject<sup>8+</sup>
+### getAllObject<sup>7+</sup>
 
 getAllObject(): Promise&lt;Array&lt;FileAsset&gt;&gt;
 
@@ -1897,9 +1923,9 @@ Obtains all the file assets in the result set. This API uses a promise to return
 
 **Return value**
 
-| Type                                      | Description             |
-| ---------------------------------------- | --------------- |
-| Promise<Array<[FileAsset](#fileasset8)>> | Promise used to return the file assets.|
+| Type                                    | Description                 |
+| ---------------------------------------- | --------------------- |
+| Promise<Array<[FileAsset](#fileasset7)>> | Promise used to return the file assets.|
 
 **Example**
 
@@ -1917,7 +1943,7 @@ async function example() {
 }
 ```
 
-## Album<sup>8+</sup>
+## Album<sup>7+</sup>
 
 Provides APIs to implement a physical album.
 
@@ -1927,13 +1953,13 @@ Provides APIs to implement a physical album.
 
 | Name          | Type   | Readable  | Writable  | Description     |
 | ------------ | ------ | ---- | ---- | ------- |
-| albumId      | number | Yes   | No   | Album ID.   |
-| albumName    | string | Yes   | Yes   | Album name.   |
-| albumUri     | string | Yes   | No   | Album URI.  |
+| albumId | number | Yes   | No   | Album ID.   |
+| albumName | string | Yes   | Yes   | Album name.   |
+| albumUri<sup>8+</sup> | string | Yes   | No   | Album URI.  |
 | dateModified | number | Yes   | No   | Date when the album was modified.   |
-| count        | number | Yes   | No   | Number of files in the album.|
-| relativePath | string | Yes   | No   | Relative path of the album.   |
-| coverUri     | string | Yes   | No   | URI of the cover file of the album.|
+| count<sup>8+</sup> | number | Yes   | No   | Number of files in the album.|
+| relativePath<sup>8+</sup> | string | Yes   | No   | Relative path of the album.   |
+| coverUri<sup>8+</sup> | string | Yes   | No   | URI of the cover file of the album.|
 
 ### commitModify<sup>8+</sup>
 
@@ -1947,9 +1973,9 @@ Commits the modification of the album attributes to the database. This API uses 
 
 **Parameters**
 
-| Name      | Type                       | Mandatory  | Description   |
-| -------- | ------------------------- | ---- | ----- |
-| callback | AsyncCallback&lt;void&gt; | Yes   | Void callback.|
+| Name  | Type                     | Mandatory| Description      |
+| -------- | ------------------------- | ---- | ---------- |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Void callback.|
 
 **Example**
 
@@ -2007,7 +2033,7 @@ async function example() {
 }
 ```
 
-### getFileAssets<sup>8+</sup>
+### getFileAssets<sup>7+</sup>
 
 getFileAssets(options: MediaFetchOptions, callback: AsyncCallback&lt;FetchFileResult&gt;): void
 
@@ -2019,10 +2045,10 @@ Obtains the file assets in this album. This API uses an asynchronous callback to
 
 **Parameters**
 
-| Name      | Type                                      | Mandatory  | Description                      |
-| -------- | ---------------------------------------- | ---- | ------------------------ |
-| options  | [MediaFetchOptions](#mediafetchoptions8) | Yes   | Options for fetching the files.                  |
-| callback | AsyncCallback<[FetchFileResult](#fetchfileresult8)> | Yes   | Callback used to return the file assets.|
+| Name  | Type                                               | Mandatory| Description                               |
+| -------- | --------------------------------------------------- | ---- | ----------------------------------- |
+| options  | [MediaFetchOptions](#mediafetchoptions7)            | Yes  | Options for fetching the files.                     |
+| callback | AsyncCallback<[FetchFileResult](#fetchfileresult7)> | Yes  | Callback used to return the file assets.|
 
 **Example**
 
@@ -2041,7 +2067,7 @@ async function example() {
 }
 ```
 
-### getFileAssets<sup>8+</sup>
+### getFileAssets<sup>7+</sup>
 
  getFileAssets(options?: MediaFetchOptions): Promise&lt;FetchFileResult&gt;
 
@@ -2053,15 +2079,15 @@ Obtains the file assets in this album. This API uses a promise to return the res
 
 **Parameters**
 
-| Name     | Type                                      | Mandatory  | Description    |
-| ------- | ---------------------------------------- | ---- | ------ |
-| options | [MediaFetchOptions](#mediafetchoptions8) | No   | Options for fetching the files.|
+| Name | Type                                    | Mandatory| Description          |
+| ------- | ---------------------------------------- | ---- | -------------- |
+| options | [MediaFetchOptions](#mediafetchoptions7) | No  | Options for fetching the files.|
 
 **Return value**
 
-| Type                                      | Description                 |
-| ---------------------------------------- | ------------------- |
-| Promise<[FetchFileResult](#fetchfileresult8)> | Promise used to return the file assets.|
+| Type                                         | Description                     |
+| --------------------------------------------- | ------------------------- |
+| Promise<[FetchFileResult](#fetchfileresult7)> | Promise used to return the file assets.|
 
 **Example**
 
@@ -2087,105 +2113,101 @@ Describes information about a registered device.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
-| Name        | Type        | Readable  | Writable  | Description       |
-| ---------- | ---------- | ---- | ---- | --------- |
-| deviceName | string     | Yes   | No   | Name of the registered device.  |
-| networkId  | string     | Yes   | No   | Network ID of the registered device.|
-| deviceType | DeviceType | Yes   | No   | Type of the registered device.     |
-| isOnline   | boolean    | Yes   | No   | Whether the registered device is online.     |
+| Name      | Type                      | Readable| Writable| Description            |
+| ---------- | -------------------------- | ---- | ---- | ---------------- |
+| deviceName | string                     | Yes  | No  | Name of the registered device.  |
+| networkId  | string                     | Yes  | No  | Network ID of the registered device.|
+| deviceType | [DeviceType](#devicetype8) | Yes  | No  | Type of the registered device.        |
+| isOnline   | boolean                    | Yes  | No  | Whether the registered device is online.        |
 
 
 
-MediaType
----------
+## MediaType<sup>8+</sup>
 
 Enumerates media types.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
-| Name   | Default Value  | Description  |
-| ----- | ---- | ---- |
-| FILE  | 0    | File.  |
-| IMAGE | 1    | Image.  |
-| VIDEO | 2    | Video.  |
-| AUDIO | 3    | Audio.  |
+| Name | Default Value | Description|
+| ----- | ------ | ---- |
+| FILE  | 1      | File.|
+| IMAGE | 3      | Image.|
+| VIDEO | 4      | Video.|
+| AUDIO | 5      | Audio.|
 
-FileKey
--------
+## FileKey<sup>8+</sup>
 
 Enumerates key file information.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
-| Name           | Default Value                 | Description                              |
-| ------------- | ------------------- | -------------------------------- |
-| ID            | file_id             | File ID.                            |
-| RELATIVE_PATH | relative_path       | Relative public directory of the file.                        |
-| DISPLAY_NAME  | display_name        | Display file name.                            |
-| PARENT        | parent              | Parent directory ID.                           |
-| MIME_TYPE     | mime_type           | Extended file attributes.                          |
-| MEDIA_TYPE    | media_type          | Media type.                            |
-| SIZE          | size                | File size, in bytes.                     |
-| DATE_ADDED    | date_added          | Date when the file was added. (The value is the number of seconds elapsed since the Epoch time.)      |
-| DATE_MODIFIED | date_modified       | Date when the file was modified. (The value is the number of seconds elapsed since the Epoch time.)      |
-| DATE_TAKEN    | date_taken          | Date when the file (photo) was taken. (The value is the number of seconds elapsed since the Epoch time.)      |
-| TITLE         | title               | Title in the file.                            |
-| ARTIST        | artist              | Artist of the file.                              |
-| AUDIOALBUM    | audio_album         | Audio album.                              |
-| DURATION      | duration            | Duration, in seconds.                      |
-| WIDTH         | width               | Image width, in pixels.                     |
-| HEIGHT        | height              | Image height, in pixels.                     |
+| Name         | Default Value              | Description                                                      |
+| ------------- | ------------------- | ---------------------------------------------------------- |
+| ID            | file_id             | File ID.                                                  |
+| RELATIVE_PATH | relative_path       | Relative public directory of the file.                                          |
+| DISPLAY_NAME  | display_name        | Display file name.                                                  |
+| PARENT        | parent              | Parent directory ID.                                                  |
+| MIME_TYPE     | mime_type           | Extended file attributes.                                              |
+| MEDIA_TYPE    | media_type          | Media type.                                                  |
+| SIZE          | size                | File size, in bytes.                                    |
+| DATE_ADDED    | date_added          | Date when the file was added. (The value is the number of seconds elapsed since the Epoch time.)            |
+| DATE_MODIFIED | date_modified       | Date when the file was modified. (The value is the number of seconds elapsed since the Epoch time.)            |
+| DATE_TAKEN    | date_taken          | Date when the file (photo) was taken. (The value is the number of seconds elapsed since the Epoch time.)            |
+| TITLE         | title               | Title in the file.                                                  |
+| ARTIST        | artist              | Artist of the file.                                                      |
+| AUDIOALBUM    | audio_album         | Audio album.                                                      |
+| DURATION      | duration            | Duration, in seconds.                                      |
+| WIDTH         | width               | Image width, in pixels.                                    |
+| HEIGHT        | height              | Image height, in pixels.                                    |
 | ORIENTATION   | orientation         | Image display direction (clockwise rotation angle, for example, 0, 90, and 180, in degrees).|
-| ALBUM_ID      | bucket_id           | ID of the album to which the file belongs.                      |
-| ALBUM_NAME    | bucket_display_name | Name of the album to which the file belongs.                       |
+| ALBUM_ID      | bucket_id           | ID of the album to which the file belongs.                                      |
+| ALBUM_NAME    | bucket_display_name | Name of the album to which the file belongs.                                        |
 
-DirectoryType
--------------
+## DirectoryType<sup>8+</sup>
 
 Enumerates directory types.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
-| Name           | Default Value  | Description          |
-| ------------- | ---- | ------------ |
-| DIR_CAMERA    | 0    | Directory of camera files.|
-| DIR_VIDEO     | 1    | Directory of video files.      |
-| DIR_IMAGE     | 2    | Directory of image files.      |
-| DIR_AUDIO     | 3    | Directory of audio files.      |
-| DIR_DOCUMENTS | 4    | Directory of documents.      |
-| DIR_DOWNLOAD  | 5    | Download directory.      |
+| Name         | Default Value | Description              |
+| ------------- | ------ | ------------------ |
+| DIR_CAMERA    | 0      | Directory of camera files.|
+| DIR_VIDEO     | 1      | Directory of video files.      |
+| DIR_IMAGE     | 2      | Directory of image files.      |
+| DIR_AUDIO     | 3      | Directory of audio files.      |
+| DIR_DOCUMENTS | 4      | Directory of documents.      |
+| DIR_DOWNLOAD  | 5      | Download directory.      |
 
-DeviceType
------------
+## DeviceType<sup>8+</sup>
 
 Enumerates device types.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
-| Name          | Default Value  | Description   |
-| ------------ | ---- | ----- |
-| TYPE_UNKNOWN | 0    | Unknown.|
-| TYPE_LAPTOP  | 1    | Laptop.|
-| TYPE_PHONE   | 2    | Phone.   |
-| TYPE_TABLET  | 3    | Tablet. |
-| TYPE_WATCH   | 4    | Smart watch. |
-| TYPE_CAR     | 5    | Vehicle-mounted device. |
-| TYPE_TV      | 6    | TV. |
+| Name        | Default Value | Description      |
+| ------------ | ------ | ---------- |
+| TYPE_UNKNOWN | 0      | Unknown.|
+| TYPE_LAPTOP  | 1      | Laptop.|
+| TYPE_PHONE   | 2      | Phone.      |
+| TYPE_TABLET  | 3      | Tablet.  |
+| TYPE_WATCH   | 4      | Smart watch.  |
+| TYPE_CAR     | 5      | Vehicle-mounted device.  |
+| TYPE_TV      | 6      | TV.  |
 
-## MediaFetchOptions<sup>8+</sup>
+## MediaFetchOptions<sup>7+</sup>
 
 Describes options for fetching media files.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
-| Name           | Type                 | Readable  | Writable  | Mandatory  | Description                                      |
-| ------------- | ------------------- | ---- | ---- | ---- | ---------------------------------------- |
-| selections    | string              | Yes   | Yes   | Yes   | Conditions for fetching files. The enumerated values in [FileKey](#filekey) are used as the column names of the conditions. Example:<br>selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ? OR' +mediaLibrary.FileKey.MEDIA_TYPE + '= ?',|
-| selectionArgs | Array&lt;string&gt; | Yes   | Yes   | Yes   | Value of the condition, which corresponds to the value of the condition column in **selections**.<br>Example:<br>selectionArgs: [mediaLibrary.MediaType.IMAGE.toString(), mediaLibrary.MediaType.VIDEO.toString()], |
-| order         | string              | Yes   | Yes   | No   | Sorting mode of the search results, which can be ascending or descending. The enumerated values in [FileKey](#filekey) are used as the columns for sorting the search results. Example:<br>Ascending: order: mediaLibrary.FileKey.DATE_ADDED + " AESC"<br>Descending: order: mediaLibrary.FileKey.DATE_ADDED + " DESC"|
-| uri           | string              | Yes   | Yes   | No   | File URI.                                   |
-| networkId     | string              | Yes   | Yes   | No   | Network ID of the registered device.                                |
-| extendArgs    | string              | Yes   | Yes   | No   | Extended parameters for fetching the files. Currently, no extended parameters are available.                      |
+| Name                   | Type               | Readable| Writable| Mandatory| Description                                                        |
+| ----------------------- | ------------------- | ---- | ---- | ---- | ------------------------------------------------------------ |
+| selections              | string              | Yes  | Yes  | Yes  | Conditions for fetching files. The enumerated values in [FileKey](#filekey8) are used as the column names of the conditions. Example:<br>selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ? OR' +mediaLibrary.FileKey.MEDIA_TYPE + '= ?',|
+| selectionArgs           | Array&lt;string&gt; | Yes  | Yes  | Yes  | Value of the condition, which corresponds to the value of the condition column in **selections**.<br>Example:<br>selectionArgs: [mediaLibrary.MediaType.IMAGE.toString(), mediaLibrary.MediaType.VIDEO.toString()], |
+| order<sup>8+</sup>      | string              | Yes  | Yes  | No  | Sorting mode of the search results, which can be ascending or descending. The enumerated values in [FileKey](#filekey8) are used as the columns for sorting the search results. Example:<br>Ascending: order: mediaLibrary.FileKey.DATE_ADDED + " AESC"<br>Descending: order: mediaLibrary.FileKey.DATE_ADDED + " DESC"|
+| uri<sup>8+</sup>        | string              | Yes  | Yes  | No  | File URI.                                                     |
+| networkId<sup>8+</sup>  | string              | Yes  | Yes  | No  | Network ID of the registered device.                                              |
+| extendArgs<sup>8+</sup> | string              | Yes  | Yes  | No  | Extended parameters for fetching the files. Currently, no extended parameters are available.                        |
 
 ## Size<sup>8+</sup>
 
