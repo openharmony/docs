@@ -4,7 +4,7 @@ You are welcome to make contributions to OpenHarmony documentation, in any of th
 
 Excellent contributors will be awarded and the contributions will be publicized in the developer community.
 
--   [Contribution Methods](#contributionmethods)
+-   [Contribution Methods](#contribution-methods)
 -   [Writing Instructions](writing-instructions.md)
 
 ## Content Copyright
@@ -17,7 +17,7 @@ OpenHarmony has the right to modify the adopted content according to the communi
 
 [Creative Commons License version 4.0](https://creativecommons.org/licenses/by/4.0/legalcode)
 
-## Contribution Methods
+## Contribution Methods<a name = contribution-methods></a>
 
 ### Submitting Issues for Existing Documents
 
