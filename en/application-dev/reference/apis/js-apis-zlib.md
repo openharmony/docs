@@ -3,7 +3,10 @@
 ## Constraints
 None
 ## Modules to Import
-import zlib from '@ohos.zlib'
+
+```javascript
+import zlib from '@ohos.zlib';
+```
 ## zlib.zipFile
 zipFile(inFile:string, outFile:string, options: Options): Promise<void>;
 Zips a file. This API uses a promise to return the result.
@@ -134,7 +137,7 @@ zlib.unzipFile(inFile, outFile, options).then((data) => {
 | MEM_LEVEL_MAX     | Maximum memory used by the **zip** API during compression.|
 | MEM_LEVEL_DEFAULT | Default memory used by the **zip** API during compression.|
 
-## Zip.CompressLevel
+## zip.CompressLevel
 
 | Name                                   | Description             |
 | --------------------------------------- | ----------------- |
@@ -143,7 +146,7 @@ zlib.unzipFile(inFile, outFile, options).then((data) => {
 | COMPRESS_LEVEL_BEST_COMPRESSION :9      | Compression level 9 that gives the best compression.     |
 | COMPRESS_LEVEL_DEFAULT_COMPRESSION : -1| Default compression level.     |
 
-## Zip.CompressStrategy
+## zip.CompressStrategy
 
 | Name                                  | Description                    |
 | -------------------------------------- | ------------------------ |
