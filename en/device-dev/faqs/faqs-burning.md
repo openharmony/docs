@@ -78,7 +78,7 @@
 
 2.  Burn the U-Boot file by following the procedures for burning a U-Boot file over USB.
 
-    Select the U-Boot files of corresponding development boards for burning by referring to  [Programming Flash Memory on the Hi3516](https://device.harmonyos.com/en/docs/ide/user-guides/hi3516_upload-0000001052148681)/[Programming Flash Memory on the Hi3518](https://device.harmonyos.com/en/docs/ide/user-guides/hi3518_upload-0000001057313128)
+    Select the U-Boot files of corresponding development boards for burning by referring to  [Programming Flash Memory on the Hi3516](../quick-start/quickstart-lite-steps-hi3516-running.md)/[Programming Flash Memory on the Hi3518](../quick-start/quickstart-lite-steps-hi3518-running.md)
 
 3.  Log in to the serial port after the burning is complete.
 
