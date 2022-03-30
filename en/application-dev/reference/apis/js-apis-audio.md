@@ -434,18 +434,6 @@ Enumerates the interrupt types.
 | INTERRUPT_TYPE_BEGIN | 1             | Audio playback interruption started. |
 | INTERRUPT_TYPE_END   | 2             | Audio playback interruption ended.   |
 
-
-## InterruptForceType<sup>9+</sup>
-
-Enumerates the interrupt force types.
-
-**System capability:** SystemCapability.Multimedia.Audio.Renderer
-
-| Name            | Default Value | Description                                |
-| :-------------- | :------------ | :----------------------------------------- |
-| INTERRUPT_FORCE | 0             | Forced action taken by system.             |
-| INTERRUPT_SHARE | 1             | App can choose to take action or ignore.   |
-
 ## InterruptHint
 
 Enumerates the interrupt hints.
@@ -541,20 +529,6 @@ Describes audio capturer configuration options.
 | :------------ | :-----------------------------------------| :-------- | :-------------------- |
 | streamInfo    | [AudioStreamInfo](#audiostreaminfo8)      | Yes       | Stream information.   |
 | capturerInfo  | [AudioCapturerInfo](#audiocapturerinfo8)  | Yes       | Capturer information. |
-
-## InterruptEvent<sup>9+</sup>
-
-Describes the interrupt event received by the app when playback is interrupted.
-
-**System capability:** SystemCapability.Multimedia.Audio.Renderer
-
-**Parameters:**
-
-| Name      | Type                                          | Mandatory | Description                                                       |
-| :-------- | :-------------------------------------------- | :-------- | :---------------------------------------------------------------- |
-| eventType | [InterruptType](#interrupttype)               | Yes       | Whether the interruption has started or finished.                 |
-| forceType | [InterruptForceType](#interruptforcetype9)    | Yes       | Whether the action is taken by system or to be taken by the app.  |
-| hintType  | [InterruptHint](#interrupthint)               | Yes       | Type of action.                                                   |
 
 ## AudioInterrupt
 
@@ -2557,52 +2531,6 @@ audioRenderer.getRenderRate().then((renderRate) => {
     console.log('getRenderRate: ' + renderRate);
 }).catch((err) => {
     console.log('ERROR: '+err.message);
-});
-```
-
-
-### on('interrupt')<sup>9+</sup>
-
-on(type: 'interrupt', callback: Callback\<InterruptEvent>): void
-
-Subscribes to audio interrupt events. This API uses a callback to get interrupt events. The interrupt event is triggered when audio rendering is interrupted.
-
-**System capability:** SystemCapability.Multimedia.Audio.Renderer
-
-**Parameters:**
-
-| Name     | Type                                          | Mandatory | Description                                     |
-| :------- | :-------------------------------------------- | :-------- | :---------------------------------------------- |
-| type     | string                                        | Yes       | Type of the playback event to subscribe to.     |
-| callback | Callback<[InterruptEvent](#interruptevent9)\> | Yes       | Callback used to listen for interrupt callback. |
-
-**Example:**
-
-```
-audioRenderer.on('interrupt', (interruptEvent) => {
-    if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_FORCE) {
-        switch (interruptEvent.hintType) {
-            case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
-                console.log('Force paused. Stop writing');
-                isPlay = false;
-                break;
-            case audio.InterruptHint.INTERRUPT_HINT_STOP:
-                console.log('Force stopped. Stop writing');
-                isPlay = false;
-                break;
-        }
-    } else if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_SHARE) {
-         switch (interruptEvent.hintType) {
-            case audio.InterruptHint.INTERRUPT_HINT_RESUME:
-                console.log('Resume force paused renderer or ignore');
-                startRenderer();
-                break;
-            case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
-                console.log('Choose to pause or ignore');
-                pauseRenderer();
-                break;
-        }
-    }
 });
 ```
 
