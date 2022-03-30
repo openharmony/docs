@@ -1,29 +1,29 @@
-# 窗口开发指导
+# Window Development
 
-## 场景介绍
-窗口的接口层在应用进程运行，负责对页面布局的加载，和提供应用程序接口。
-通过调用窗口接口可以实现窗口创建与销毁，窗口的位置、大小布局，以及进入沉浸式等。
+## When to Use
+The interface layer of the window runs in the application process. It loads the page layout and provides APIs.
+By calling these APIs, you can create and destroy a window, set the position and size of a window, and enter the immersive mode (full-screen mode).
 
-## 接口说明
-窗口开放的能力如下：Window类，具体的API详见[接口文档](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-window.md)。
+## Available APIs
+For details about the APIs, see [Window](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-window.md).
 
-**表1** 窗口主要接口API
+**Table 1** Main window APIs
 
-| 接口名                                                       | 描述                                           |
+| API                                                      | Description                                          |
 | :----------------------------------------------------------- | :--------------------------------------------- |
-| create(id: string, type: WindowType, callback: AsyncCallback\<Window>): void | 创建子窗口。                                   |
-| moveTo(x: number, y: number): Promise\<void>                 | 移动窗口位置，x值为正表示右移，y为正表示下移。 |
-| resetSize(width: number, height: number): Promise\<void>     | 改变当前窗口大小。                             |
-| hide(): Promise\<void>                                       | 隐藏当前窗口。                                 |
-| destroy(): Promise\<void>                                    | 销毁当前窗口。                                 |
+| create(id: string, type: WindowType, callback: AsyncCallback\<Window>): void | Creates a subwindow.                                  |
+| moveTo(x: number, y: number): Promise\<void>                 | Moves the window position. A positive value of **x** indicates that the window moves to the right, and a positive value of **y** indicates that the window moves downwards.|
+| resetSize(width: number, height: number): Promise\<void>     | Changes the window size.                            |
+| hide(): Promise\<void>                                       | Hides the window.                                |
+| destroy(): Promise\<void>                                    | Destroys the window.                                |
 
-## 开发步骤
+## How to Develop
 
-### 创建主窗口
+### Creating a Main Window
 
-在当前模型下，应用启动时会自动创建主窗口，由应用管理窗口的声明周期，隐藏及销毁由应用管理。
-### 创建子窗口
-当前可以通过`create`接口创建子窗口。具体示例代码如下：
+Currently, the main window is automatically created when the application is started. The declaration period, hiding, and destruction of the main window are managed by the application.
+### Creating a Subwindow
+You can call **create** to create a subwindow. The sample code is as follows:
 
 ```
  import window from '@ohos.window';
@@ -37,9 +37,9 @@
  });
 ```
 
-### 获取窗口对象
+### Obtaining a Window Object
 
-- 应用内可以通过`getTopWindow`来获取当前应用内最后显示的窗口。具体示例代码如下：
+- Call **getTopWindow** to obtain the top window of the application. The sample code is as follows:
 
 ```
  var windowClass = null;
@@ -52,7 +52,7 @@
  })
 ```
 
-- 应用内也可以通过`Find`来获取已经创建的子窗口。具体示例代码如下：
+- You can also call **find** to obtain created subwindows in the application. The sample code is as follows:
 
 ```
  var windowClass = null;
@@ -65,9 +65,9 @@
  });
 ```
 
-### 窗口的隐藏和销毁
+### Hiding and Destroying a Window
 
-在已经获取到窗口对象的前提下，可以调用`hide`、`destroy`来隐藏和销毁已经创建的窗口对象。具体示例代码如下：
+After a window object is obtained, you can call **hide** and **destroy** to hide and destroy the window object, respectively. The sample code is as follows:
 
 ```
  let promise = windowClass.hide();
@@ -85,11 +85,11 @@
  })
 ```
 
-### 设置沉浸式窗口
+### Enabling the Full-Screen Mode
 
-在已经获取到应用窗口对象的前提下，调用`setFullScreen`来设置窗口进入全屏沉浸式。
+After a window object is obtained, you can call **setFullScreen** to enable the full-screen mode for the window.
 
-示例代码如下：
+The sample code is as follows:
 
 ```
 import window from '@ohos.window';
@@ -101,5 +101,4 @@ try {
 }
 ```
 
-完整[示例工程](https://gitee.com/openharmony/windowmanager/tree/master/AppDemo/window/immersive)。
-
+For the complete code, see [immersive](https://gitee.com/openharmony/windowmanager/tree/master/AppDemo/window/immersive).
