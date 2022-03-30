@@ -26,7 +26,7 @@ In this section, we will develop an infographic food details page, by building c
    ![en-us_image_0000001222967780](figures/en-us_image_0000001222967780.png)
 
 2. Display food pictures.
-     Create an &lt;Image&gt; component and specify a URL for it. The &lt;Image&gt; and &lt;Text&gt; components are mandatory. To display the &lt;Text&gt; component above the &lt;Image&gt; component, you need to declare the &lt;Image&gt; component first. Image resources are stored in the rawfile folder in resources. When referencing the resources in the rawfile folder, use the $rawfile('_filename_ loaded) format, where filename indicates the relative path of the file in the rawfile folder. Currently, $rawfile only allows the &lt;Image&gt; component to reference image resources.
+     Create an &lt;Image&gt; component and specify a URL for it. The &lt;Image&gt; and &lt;Text&gt; components are mandatory. To display the &lt;Text&gt; component above the &lt;Image&gt; component, you need to declare the &lt;Image&gt; component first. Image resources are stored in the rawfile folder in resources. When referencing the resources in the rawfile folder, use the  \```"$rawfile('filename')"```  format, where filename indicates the relative path of the file in the rawfile folder. Currently, $rawfile only allows the &lt;Image&gt; component to reference image resources.
      
    ```
    @Entry
@@ -54,7 +54,7 @@ In this section, we will develop an infographic food details page, by building c
 
    ![en-us_image_0000001222807784](figures/en-us_image_0000001222807784.png)
 
-   You can then can reference the application resource in the $r('app.type.name') format, that is, $r('app.media.Tomato').
+   You can then can reference the application resource in the  \``` "$r('app.type.name') "\```  format, that is, $r('app.media.Tomato').
 
    
    ```
@@ -76,11 +76,12 @@ In this section, we will develop an infographic food details page, by building c
 
 4. Set the width and height of the image, and set the objectFit attribute of the image to ImageFit.Contain, which means to keep the aspect ratio of the image to ensure that the image is completely displayed within the boundary.
      If the image fills the entire screen, the possible causes are as follows:
+   
    1. The width and height of the image are not set.
    
-   2. The default attribute of objectFit of the image is ImageFit.Cover, that is, the image is zoomed in or zoomed out to fill the entire display boundary with the aspect ratio locked.
-
-     
+2. The default attribute of objectFit of the image is ImageFit.Cover, that is, the image is zoomed in or zoomed out to fill the entire display boundary with the aspect ratio locked.
+   
+   
    ```
    @Entry
    @Component
@@ -96,10 +97,10 @@ In this section, we will develop an infographic food details page, by building c
        }
      }
    }
-   ```
-
-   ![en-us_image_0000001223127732](figures/en-us_image_0000001223127732.png)
-
+```
+   
+![en-us_image_0000001223127732](figures/en-us_image_0000001223127732.png)
+     
 5. Set the food image and name layout. Set the alignment mode of the stack to bottom alignment. By default, the stack is center aligned. Set alignContent to Alignment.BottomStart. Similar to FontWeight, Alignment is a built-in enumeration type provided by the framework.
   
    ```
@@ -125,7 +126,7 @@ In this section, we will develop an infographic food details page, by building c
    1. By using the built-in enumeration value of Color provided by the framework. For example, backgroundColor(Color.Red) indicates that the background color is set to red.
    2. By using the parameter of the string type. The supported color formats are rgb, rgba, and HEX. For example, you can set the background color to blue by setting backgroundColor(??\#0000FF??) and set the background color to white by setting backgroundColor(??rgb(255, 255, 255)??).
 
-     
+   
    ```
    @Entry
    @Component
@@ -150,7 +151,7 @@ In this section, we will develop an infographic food details page, by building c
    1. When the parameter is set to Length, the outer margins of the four edges are specified. For example, margin(20) indicates that the outer margins of the top, right, bottom, and left edges are all 20.
    2. {top?: Length, right?: Length, bottom?: Length, left?:Length} specifies the margins of the four edges. For example, margin({ left: 26, bottom: 17.4 }) indicates that the left margin is 26 and the bottom margin is 17.4.
 
-     
+   
    ```
    @Entry
    @Component
