@@ -61,6 +61,12 @@ SystemCapability.Ability.Form
   | formId | string | Yes  | ID of a widget.                              |
   | minute | number | Yes  | Refresh interval, in minutes. The value must be greater than or equal to 5.    |
 
+**Return value**
+
+  | Type         | Description                             |
+  | ------------- | ---------------------------------- |
+  | Promise\<void> |Promise used to return the result.     |
+
 **Example**
 
   ```js
@@ -117,6 +123,12 @@ SystemCapability.Ability.Form
   | ------ | ---------------------------------------------------------------------- | ---- | ---------------- |
   | formId | string                                                                 | Yes  | ID of the widget to update.|
   | formBindingData | [FormBindingData](js-apis-formbindingdata.md#formbindingdata) | Yes  | Data to be used for the update.   |
+
+**Return value**
+
+| Type          | Description                               |
+| -------------- | ----------------------------------- |
+| Promise\<void> | Promise used to return the result.|
 
 **Example**
 
