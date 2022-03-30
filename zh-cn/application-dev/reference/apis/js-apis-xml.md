@@ -25,10 +25,10 @@ XmlSerializer的构造函数。
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| buffer | ArrayBuffer&nbsp;\|&nbsp;DataView | 是 | 用于接收写入xml信息的ArrayBuffer或DataView内存。 |
-| encoding | string | 否 | 编码格式。 |
+| 参数名      | 类型                                | 必填   | 说明                                  |
+| -------- | --------------------------------- | ---- | ----------------------------------- |
+| buffer   | ArrayBuffer&nbsp;\|&nbsp;DataView | 是    | 用于接收写入xml信息的ArrayBuffer或DataView内存。 |
+| encoding | string                            | 否    | 编码格式。                               |
 
 **示例：**
 
@@ -47,10 +47,10 @@ setAttributes(name: string, value: string): void
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| name | string | 是 | 属性的key值。 |
-| value | string | 是 | 属性的value值。 |
+| 参数名   | 类型     | 必填   | 说明         |
+| ----- | ------ | ---- | ---------- |
+| name  | string | 是    | 属性的key值。   |
+| value | string | 是    | 属性的value值。 |
 
 **示例：**
 
@@ -68,9 +68,9 @@ addEmptyElement(name: string): void
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| name | string | 是 | 该空元素的元素名。 |
+| 参数名  | 类型     | 必填   | 说明        |
+| ---- | ------ | ---- | --------- |
+| name | string | 是    | 该空元素的元素名。 |
 
 **示例：**
 
@@ -102,9 +102,9 @@ startElement(name: string): void
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| name | string | 是 | 当前元素的元素名。 |
+| 参数名  | 类型     | 必填   | 说明        |
+| ---- | ------ | ---- | --------- |
+| name | string | 是    | 当前元素的元素名。 |
 
 **示例：**
 
@@ -142,10 +142,10 @@ setNamespace(prefix: string, namespace: string): void
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| prefix | string | 是 | 当前元素及其子元素的前缀。 |
-| namespace | string | 是 | 当前元素及其子元素的命名空间。 |
+| 参数名       | 类型     | 必填   | 说明              |
+| --------- | ------ | ---- | --------------- |
+| prefix    | string | 是    | 当前元素及其子元素的前缀。   |
+| namespace | string | 是    | 当前元素及其子元素的命名空间。 |
 
 **示例：**
 
@@ -166,9 +166,9 @@ setComment(text: string): void
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| text | string | 是 | 当前元素的注释内容。 |
+| 参数名  | 类型     | 必填   | 说明         |
+| ---- | ------ | ---- | ---------- |
+| text | string | 是    | 当前元素的注释内容。 |
 
 **示例：**
 
@@ -189,9 +189,9 @@ setCDATA(text: string): void
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| text | string | 是 | CDATA属性的内容。 |
+| 参数名  | 类型     | 必填   | 说明          |
+| ---- | ------ | ---- | ----------- |
+| text | string | 是    | CDATA属性的内容。 |
 
 **示例：**
 
@@ -210,9 +210,9 @@ setText(text: string): void
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| text | string | 是 | text属性的内容。 |
+| 参数名  | 类型     | 必填   | 说明         |
+| ---- | ------ | ---- | ---------- |
+| text | string | 是    | text属性的内容。 |
 
 **示例：**
 
@@ -234,9 +234,9 @@ setDocType(text: string): void
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| text | string | 是 | DocType属性的内容。 |
+| 参数名  | 类型     | 必填   | 说明            |
+| ---- | ------ | ---- | ------------- |
+| text | string | 是    | DocType属性的内容。 |
 
 **示例：**
 
@@ -258,10 +258,10 @@ constructor(buffer: ArrayBuffer | DataView, encoding?: string)
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| buffer | ArrayBuffer&nbsp;\|&nbsp;DataView | 是 | 含有xml文本信息的ArrayBuffer或者DataView。 |
-| encoding | string | 否 | 编码格式（仅支持utf-8）。 |
+| 参数名      | 类型                                | 必填   | 说明                               |
+| -------- | --------------------------------- | ---- | -------------------------------- |
+| buffer   | ArrayBuffer&nbsp;\|&nbsp;DataView | 是    | 含有xml文本信息的ArrayBuffer或者DataView。 |
+| encoding | string                            | 否    | 编码格式（仅支持utf-8）。                  |
 
 **示例：**
 
@@ -291,9 +291,9 @@ parse(option: ParseOptions): void
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| option | [ParseOptions](#parseoptions) | 是 | 用户控制以及获取解析信息的选项。 |
+| 参数名    | 类型                            | 必填   | 说明               |
+| ------ | ----------------------------- | ---- | ---------------- |
+| option | [ParseOptions](#parseoptions) | 是    | 用户控制以及获取解析信息的选项。 |
 
 **示例：**
 
@@ -330,13 +330,13 @@ that.parse(options);
 xml解析选项。
 
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| supportDoctype | boolean | 否 | 是否忽略Doctype&nbsp;,&nbsp;默认false。 |
-| ignoreNameSpace | boolean | 否 | 是否忽略NameSpace，默认false。 |
-| tagValueCallbackFunction | (name:&nbsp;string,&nbsp;value:&nbsp;string)=&gt;&nbsp;boolean | 否 | 获取tagValue回调函数。 |
-| attributeValueCallbackFunction | (name:&nbsp;string,&nbsp;value:&nbsp;string)=&gt;&nbsp;boolean | 否 | 获取attributeValue回调函数。 |
-| tokenValueCallbackFunction | (eventType:&nbsp;[EventType](#eventtype),&nbsp;value:&nbsp;[ParseInfo](#parseinfo))=&gt;&nbsp;boolean | 否 | 获取tokenValue回调函数。 |
+| 名称                             | 类型                                       | 必填   | 说明                               |
+| ------------------------------ | ---------------------------------------- | ---- | -------------------------------- |
+| supportDoctype                 | boolean                                  | 否    | 是否忽略Doctype&nbsp;,&nbsp;默认false。 |
+| ignoreNameSpace                | boolean                                  | 否    | 是否忽略NameSpace，默认false。           |
+| tagValueCallbackFunction       | (name:&nbsp;string,&nbsp;value:&nbsp;string)=&gt;&nbsp;boolean | 否    | 获取tagValue回调函数。                  |
+| attributeValueCallbackFunction | (name:&nbsp;string,&nbsp;value:&nbsp;string)=&gt;&nbsp;boolean | 否    | 获取attributeValue回调函数。            |
+| tokenValueCallbackFunction     | (eventType:&nbsp;[EventType](#eventtype),&nbsp;value:&nbsp;[ParseInfo](#parseinfo))=&gt;&nbsp;boolean | 否    | 获取tokenValue回调函数。                |
 
 ## ParseInfo
 
@@ -351,8 +351,8 @@ getColumnNumber(): number
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
+| 类型     | 说明      |
+| ------ | ------- |
 | number | 返回当前列号。 |
 
 
@@ -364,8 +364,8 @@ getDepth(): number
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
+| 类型     | 说明         |
+| ------ | ---------- |
 | number | 返回元素的当前深度。 |
 
 
@@ -377,8 +377,8 @@ getLineNumber(): number
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
+| 类型     | 说明      |
+| ------ | ------- |
 | number | 返回当前行号。 |
 
 
@@ -390,8 +390,8 @@ getName(): string
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
+| 类型     | 说明        |
+| ------ | --------- |
 | string | 返回当前元素名称。 |
 
 
@@ -403,8 +403,8 @@ getNamespace(): string
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
+| 类型     | 说明           |
+| ------ | ------------ |
 | string | 返回当前元素的命名空间。 |
 
 
@@ -416,8 +416,8 @@ getPrefix(): string
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
+| 类型     | 说明        |
+| ------ | --------- |
 | string | 返回当前元素前缀。 |
 
 
@@ -429,8 +429,8 @@ getText(): string
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
+| 类型     | 说明           |
+| ------ | ------------ |
 | string | 返回当前事件的文本内容。 |
 
 
@@ -442,8 +442,8 @@ isEmptyElementTag(): boolean
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
+| 类型      | 说明               |
+| ------- | ---------------- |
 | boolean | 返回true，当前元素为空元素。 |
 
 
@@ -455,8 +455,8 @@ isWhitespace(): boolean
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
+| 类型      | 说明                    |
+| ------- | --------------------- |
 | boolean | 返回true，当前文本事件仅包含空格字符。 |
 
 
@@ -467,8 +467,8 @@ getAttributeCount(): number
 获取当前开始标记的属性数。
 
 **返回值：**
-| 类型 | 说明 |
-| -------- | -------- |
+| 类型     | 说明          |
+| ------ | ----------- |
 | number | 当前开始标记的属性数。 |
 
 
@@ -476,16 +476,16 @@ getAttributeCount(): number
 
 事件枚举。
 
-| 名称 | 枚举值 | 说明 |
-| -------- | -------- | -------- |
-| START_DOCUMENT | 0 | 启动文件事件。 |
-| END_DOCUMENT | 1 | 结束文件事件。 |
-| START_TAG | 2 | 启动标签事件。 |
-| END_TAG | 3 | 结束标签事件。 |
-| TEXT | 4 | 文本事件。 |
-| CDSECT | 5 | CDATA事件。 |
-| COMMENT | 6 | XML注释事件。 |
-| DOCDECL | 7 | XML文档类型声明事件。 |
-| INSTRUCTION | 8 | XML处理指令声明事件。 |
-| ENTITY_REFERENCE | 9 | 实体引用事件。 |
-| WHITESPACE | 10 | 空白事件。 |
+| 名称               | 枚举值  | 说明           |
+| ---------------- | ---- | ------------ |
+| START_DOCUMENT   | 0    | 启动文件事件。      |
+| END_DOCUMENT     | 1    | 结束文件事件。      |
+| START_TAG        | 2    | 启动标签事件。      |
+| END_TAG          | 3    | 结束标签事件。      |
+| TEXT             | 4    | 文本事件。        |
+| CDSECT           | 5    | CDATA事件。     |
+| COMMENT          | 6    | XML注释事件。     |
+| DOCDECL          | 7    | XML文档类型声明事件。 |
+| INSTRUCTION      | 8    | XML处理指令声明事件。 |
+| ENTITY_REFERENCE | 9    | 实体引用事件。      |
+| WHITESPACE       | 10   | 空白事件。        |
