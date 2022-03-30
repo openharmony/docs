@@ -1,7 +1,7 @@
 # AbilityContext
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> The initial APIs of this module are supported since API 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 Implements the ability context. This module is inherited from **Context**.
@@ -13,7 +13,7 @@ Implements the ability context. This module is inherited from **Context**.
 Before using the **AbilityContext** module, you must define a child class that inherits from **Ability**.
 
 
-  
+
 ```js
 import Ability from '@ohos.application.Ability'
 class MainAbility extends Ability {
@@ -26,10 +26,12 @@ class MainAbility extends Ability {
 
 ## Attributes
 
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
 | Name| Type| Readable| Writable| Description| 
 | -------- | -------- | -------- | -------- | -------- |
-| abilityInfo | AbilityInfo | Yes| No| Ability information.<br>**System capability**: SystemCapability.Ability.AbilityRuntime.Core| 
-| currentHapModuleInfo | HapModuleInfo | Yes| No| Information about the current HAP.<br>**System capability**: SystemCapability.Ability.AbilityRuntime.Core| 
+| abilityInfo | AbilityInfo | Yes| No| Ability information.| 
+| currentHapModuleInfo | HapModuleInfo | Yes| No| Information about the current HAP.| 
 
 
 ## AbilityContext.startAbility
@@ -250,7 +252,7 @@ Terminates this ability. This API uses a callback to return the result.
 
   ```js
   this.context.terminateSelf((err) => {
-      console.log('terminateSelf result:' + JSON.stringfy(err));
+      console.log('terminateSelf result:' + JSON.stringify(err));
   });
   ```
 
@@ -273,9 +275,9 @@ Terminates this ability. This API uses a promise to return the result.
 
   ```js
   this.context.terminateSelf(want).then((data) => {
-      console.log('success:' + JSON.stringfy(data));
+      console.log('success:' + JSON.stringify(data));
   }).catch((error) => {
-      console.log('failed:' + JSON.stringfy(error));
+      console.log('failed:' + JSON.stringify(error));
   });
   ```
 
@@ -404,7 +406,7 @@ Requests permissions from the user by displaying a pop-up window. This API uses 
     
   ```
   this.context.requestPermissionsFromUser(permissions,(result) => {
-      console.log('requestPermissionsFromUserresult:' + JSON.stringfy(result));
+      console.log('requestPermissionsFromUserresult:' + JSON.stringify(result));
   });
   ```
 
@@ -433,9 +435,9 @@ Requests permissions from the user by displaying a pop-up window. This API uses 
     
   ```
   this.context.requestPermissionsFromUser(permissions).then((data) => {
-      console.log('success:' + JSON.stringfy(data));
+      console.log('success:' + JSON.stringify(data));
   }).catch((error) => {
-      console.log('failed:' + JSON.stringfy(error));
+      console.log('failed:' + JSON.stringify(error));
   });
   ```
 
@@ -459,7 +461,7 @@ Sets the label of the ability displayed in the task. This API uses a callback to
     
   ```js
   this.context.setMissionLabel("test",(result) => {
-      console.log('requestPermissionsFromUserresult:' + JSON.stringfy(result));
+      console.log('requestPermissionsFromUserresult:' + JSON.stringify(result));
   });
   ```
 
@@ -488,8 +490,8 @@ Sets the label of the ability displayed in the task. This API uses a promise to 
     
   ```js
   this.context.setMissionLabel("test").then((data) => {
-      console.log('success:' + JSON.stringfy(data));
+      console.log('success:' + JSON.stringify(data));
   }).catch((error) => {
-      console.log('failed:' + JSON.stringfy(error));
+      console.log('failed:' + JSON.stringify(error));
   });
   ```

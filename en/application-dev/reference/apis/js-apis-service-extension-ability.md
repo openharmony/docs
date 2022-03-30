@@ -21,9 +21,11 @@ None.
 
 ## Attributes
 
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
 | Name| Type| Readable| Writable| Description| 
 | -------- | -------- | -------- | -------- | -------- |
-| context | [ServiceExtensionContext](js-apis-service-extension-context.md)  | Yes| No| Service extension context, which is inherited from **ExtensionContext**.<br>**System capability**: SystemCapability.Ability.AbilityRuntime.Core| 
+| context | [ServiceExtensionContext](js-apis-service-extension-context.md)  | Yes| No| Service extension context, which is inherited from **ExtensionContext**.| 
 
 
 ## ServiceExtensionAbility.onCreate

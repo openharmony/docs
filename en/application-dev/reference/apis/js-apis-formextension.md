@@ -17,9 +17,11 @@ None
 
 ## Attributes
 
+**System capability**: SystemCapability.Ability.Form
+
 | Name   | Type                                               | Readable| Writable| Description                                               |
 | ------- | ------------------------------------------------------- | ---- | ---- | --------------------------------------------------- |
-| context | [FormExtensionContext](js-apis-formextensioncontext.md) | Yes  | No  | Context of the **FormExtension**. This class is inherited from **ExtensionContext**.<br>**System capability**: SystemCapability.Ability.Form|
+| context | [FormExtensionContext](js-apis-formextensioncontext.md) | Yes  | No  | Context of the **FormExtension**. This class is inherited from **ExtensionContext**.|
 
 ## onCreate
 

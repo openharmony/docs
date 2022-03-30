@@ -1,7 +1,7 @@
 # AbilityConstant
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> The initial APIs of this module are supported since API version 9.
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 Provides parameters related to ability launch.
@@ -9,7 +9,7 @@ Provides parameters related to ability launch.
 
 ## Modules to Import
 
-  
+
 ```js
 import AbilityConstant from '@ohos.application.AbilityConstant';
 ```
@@ -17,40 +17,48 @@ import AbilityConstant from '@ohos.application.AbilityConstant';
 
 ## Attributes
 
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
 | Name| Type| Readable| Writable| Description| 
 | -------- | -------- | -------- | -------- | -------- |
-| launchReason | LaunchReason| Yes| Yes| Ability launch reason.<br>**System capability**: SystemCapability.Ability.AbilityRuntime.Core| 
-| lastExitReason | LastExitReason | Yes| Yes| Reason for the last exit.<br>**System capability**: SystemCapability.Ability.AbilityRuntime.Core| 
+| launchReason | LaunchReason| Yes| Yes| Ability launch reason.| 
+| lastExitReason | LastExitReason | Yes| Yes| Reason for the last exit.| 
 
 ## AbilityConstant.LaunchReason
 
 Enumerates ability launch reasons.
 
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
 | Name                         | Value  | Description                                                        |
 | ----------------------------- | ---- | ------------------------------------------------------------ |
-| UNKNOWN          | 0    | Unknown reason.<br>**System capability**: SystemCapability.Ability.AbilityRuntime.Core|
-| START_ABILITY          | 1    | Ability startup.<br>**System capability**: SystemCapability.Ability.AbilityRuntime.Core|
-| CALL | 2    | Call.<br>**System capability**: SystemCapability.Ability.AbilityRuntime.Core|
-| CONTINUATION           | 3    | Ability continuation.<br>**System capability**: SystemCapability.Ability.AbilityRuntime.Core|
+| UNKNOWN          | 0    | Unknown reason.|
+| START_ABILITY          | 1    | Ability startup.|
+| CALL | 2    | Call.|
+| CONTINUATION           | 3    | Ability continuation.|
 
 
-## AbilityConstant.LaunchReason
+## AbilityConstant.LastExitReason
 
 Enumerates reasons for the last exit.
 
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
 | Name                         | Value  | Description                                                        |
 | ----------------------------- | ---- | ------------------------------------------------------------ |
-| UNKNOWN          | 0    | Unknown reason.<br>**System capability**: SystemCapability.Ability.AbilityRuntime.Core|
-| ABILITY_NOT_RESPONDING          | 1    | The ability does not respond.<br>**System capability**: SystemCapability.Ability.AbilityRuntime.Core|
-| NORMAL | 2    | Normal status.<br>**System capability**: SystemCapability.Ability.AbilityRuntime.Core|
+| UNKNOWN          | 0    | Unknown reason.|
+| ABILITY_NOT_RESPONDING          | 1    | The ability does not respond.|
+| NORMAL | 2    | Normal status.|
 
 
 ## AbilityConstant.OnContinueResult 
 
 Enumerates ability continuation results.
 
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
 | Name                         | Value  | Description                                                        |
 | ----------------------------- | ---- | ------------------------------------------------------------ |
-| AGREE           | 0    | Continuation agreed.<br>**System capability**: SystemCapability.Ability.AbilityRuntime.Core|
-| REJECT           | 1    | Continuation denied.<br>**System capability**: SystemCapability.Ability.AbilityRuntime.Core|
-| MISMATCH  | 2    | Mismatch.<br>**System capability**: SystemCapability.Ability.AbilityRuntime.Core|
+| AGREE           | 0    | Continuation agreed.|
+| REJECT           | 1    | Continuation denied.|
+| MISMATCH  | 2    | Mismatch.|

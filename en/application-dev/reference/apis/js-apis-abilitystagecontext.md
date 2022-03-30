@@ -25,6 +25,7 @@ class MyAbilityStage extends AbilityStage {
 
 
 ## Attributes
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 | Name| Type| Readable| Writable| Description| 

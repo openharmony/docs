@@ -94,6 +94,8 @@ Called when the global configuration is updated.
 
 Describes the configuration information about the context.
 
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
 | Name     | Type                       | Description                                                        |
 | ----------- | --------------------------- | ------------------------------------------------------------ |
-| context  | [AbilityStageContext](js-apis-featureAbility.md) | Called when initialization is performed during ability startup.<br>**System capability**: SystemCapability.Ability.AbilityRuntime.Core|
+| context  | [AbilityStageContext](js-apis-featureAbility.md) | Called when initialization is performed during ability startup.|

@@ -1,7 +1,7 @@
 # Ability
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> The APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 Manages the ability lifecycle and context.
@@ -16,11 +16,13 @@ import Ability from '@ohos.application.Ability';
 
 ## Attributes
 
+**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+
 | Name| Type| Readable| Writable| Description| 
 | -------- | -------- | -------- | -------- | -------- |
-| context | [AbilityContext](js-apis-ability-context.md) | Yes| No| Context of an ability.<br>**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore| 
-| launchWant | [Want](js-apis-featureAbility.md#Want)| Yes| No| Parameters for starting the ability.<br>**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore| 
-| lastRequestWant | [Want](js-apis-featureAbility.md#Want)| Yes| No| Parameters used when the ability was started last time.<br>**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore| 
+| context | [AbilityContext](js-apis-ability-context.md) | Yes| No| Context of an ability.| 
+| launchWant | [Want](js-apis-featureAbility.md#Want)| Yes| No| Parameters for starting the ability.| 
+| lastRequestWant | [Want](js-apis-featureAbility.md#Want)| Yes| No| Parameters used when the ability was started last time.| 
 
 
 ## Ability.onCreate
@@ -245,7 +247,7 @@ Called when the configuration of the environment where the ability is running is
 
   | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
-  | config | [Configuration](#section188911144124715) | Yes| New configuration.| 
+  | config | [Configuration](js-apis-configuration.md) | Yes| New configuration.| 
 
 **Example**
     
@@ -363,7 +365,6 @@ Sends sequenceable data to the target ability and obtains the sequenceable data 
         this.name = name;
         this.str = str;
       }
-      constructor() {}
       marshalling(messageParcel) {
           messageParcel.writeInt(this.num);
           messageParcel.writeString(this.str);
@@ -380,7 +381,6 @@ Sends sequenceable data to the target ability and obtains the sequenceable data 
   var method = 'call_Function';
   var caller;
   export default class MainAbility extends Ability {
-      onWindowStageCreate(windowStage) {
       onWindowStageCreate(windowStage) {
         this.context.startAbilityByCall({
             bundleName: "com.example.myservice",
@@ -573,15 +573,19 @@ Unregisters a caller notification callback, which is invoked when the target abi
 
 (msg: string): void;
 
+**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+
 | Name| Type| Readable| Writable| Description| 
 | -------- | -------- | -------- | -------- | -------- |
-| (msg: string) | function | Yes| No| Prototype of the listener function interface registered by the caller.<br>**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore | 
+| (msg: string) | function | Yes| No| Prototype of the listener function interface registered by the caller.| 
  
 
  ## CaleeCallBack
 
 (indata: rpc.MessageParcel): rpc.Sequenceable;
 
+**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+
 | Name| Type| Readable| Writable| Description| 
 | -------- | -------- | -------- | -------- | -------- |
-| (indata: rpc.MessageParcel) | rpc.Sequenceable | Yes| No| Prototype of the message listener function interface registered by the callee.<br>**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore | 
+| (indata: rpc.MessageParcel) | rpc.Sequenceable | Yes| No| Prototype of the message listener function interface registered by the callee.| 

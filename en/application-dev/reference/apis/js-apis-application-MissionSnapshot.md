@@ -1,16 +1,14 @@
 # MissionSnapshot
 
 
-> **NOTE**
-> The initial APIs of this module are supported since API 8.
+> ![icon-note.gif](public_sys-resources/icon-note.gif)**NOTE**
+> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 Provides snapshot of a mission.
 
 
 ## Modules to Import
-
-Import ElementName and image before use.
 
 
 ```
