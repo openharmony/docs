@@ -26,7 +26,7 @@ Starts a Particle ability. This API uses an asynchronous callback to return the 
 
 | Name     | Type                                           | Mandatory| Description             |
 | --------- | ----------------------------------------------- | ---- | ----------------- |
-| parameter | [StartAbilityParameter](#startabilityparameter) | Yes  | Ability to start.|
+| parameter | [StartAbilityParameter](js-apis-featureAbility.md#startabilityparameter) | Yes  | Ability to start.|
 | callback  | AsyncCallback\<void>                            | Yes  | Callback used to return the result. |
 
 **Example**
@@ -69,7 +69,7 @@ Starts a Particle ability. This API uses a promise to return the result.
 
 | Name     | Type                                           | Mandatory| Description             |
 | --------- | ----------------------------------------------- | ---- | ----------------- |
-| parameter | [StartAbilityParameter](#startabilityparameter) | Yes  | Ability to start.|
+| parameter | [StartAbilityParameter](js-apis-featureAbility.md#startabilityparameter) | Yes  | Ability to start.|
 
 **Return value**
 
@@ -384,7 +384,7 @@ Connects this ability to a specific Service ability. This API uses a callback to
 
 | Name   | Type          | Mandatory| Description                        |
 | ------- | -------------- | ---- | ---------------------------- |
-| request | [Want](#want)           | Yes  | Service ability to connect.|
+| request | [Want](js-apis-featureAbility.md#want)  | Yes  | Service ability to connect.|
 | options | ConnectOptions | Yes  | Callback used to return the result.          |
 
 

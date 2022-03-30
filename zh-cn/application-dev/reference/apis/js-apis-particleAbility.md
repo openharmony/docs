@@ -26,7 +26,7 @@ startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<void>): 
 
 | 名称      | 类型                                            | 必填 | 描述              |
 | --------- | ----------------------------------------------- | ---- | ----------------- |
-| parameter | [StartAbilityParameter](#startabilityparameter) | 是   | 指示启动的ability |
+| parameter | [StartAbilityParameter](js-apis-featureAbility.md#startabilityparameter) | 是   | 指示启动的ability |
 | callback  | AsyncCallback\<void>                            | 是   | 被指定的回调方法  |
 
 **示例：**
@@ -69,7 +69,7 @@ startAbility(parameter: StartAbilityParameter): Promise\<void>;
 
 | 名称      | 类型                                            | 必填 | 描述              |
 | --------- | ----------------------------------------------- | ---- | ----------------- |
-| parameter | [StartAbilityParameter](#startabilityparameter) | 是   | 指示启动的ability |
+| parameter | [StartAbilityParameter](js-apis-featureAbility.md#startabilityparameter) | 是   | 指示启动的ability |
 
 **返回值：**
 
@@ -384,7 +384,7 @@ connectAbility(request: Want, options:ConnectOptions): number
 
 | 名称    | 类型           | 必填 | 描述                         |
 | ------- | -------------- | ---- | ---------------------------- |
-| request | [Want](#want)           | 是   | 表示被连接的ServiceAbility。 |
+| request | [Want](js-apis-featureAbility.md#want)           | 是   | 表示被连接的ServiceAbility。 |
 | options | ConnectOptions | 是   | 被指定的回调方法。           |
 
 

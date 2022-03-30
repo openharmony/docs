@@ -2075,7 +2075,7 @@ put(key: string, value: Uint8Array | string | number | boolean, callback: AsyncC
 | -----  | ------  | ----  | ----------------------- |
 | key    | string  | 是    |要添加数据的key，不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。   |
 | value  | Uint8Array \| string \| number \| boolean | 是    |要添加数据的value，支持Uint8Array、number 、 string 、boolean，Uint8Array、string 的长度不大于[MAX_VALUE_LENGTH](#constants)。   |
-| callback | AsyncCallback&lt;void> | 是    |回调函数。   |
+| callback | AsyncCallback&lt;void&gt; | 是    |回调函数。   |
 
 **示例**
 
@@ -2967,7 +2967,7 @@ try {
 
 ### get
 
-get(key: string): Promise&lt;Uint8Array | string | boolean | number>
+get(key: string): Promise&lt;Uint8Array | string | boolean | number&gt;
 
 获取指定键的值，并通过Promise方式返回，此方法为异步方法。
 
