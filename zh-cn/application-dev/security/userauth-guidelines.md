@@ -1,7 +1,7 @@
 # 用户认证开发指导
 
 > **说明：**
-> 该开发指导匹配@ohos.userIAM.userAuth API Version 8开始支持的接口。
+> 该开发指导需匹配API Version 8或以上版本的SDK使用。
 
 ## 场景介绍
 
@@ -99,7 +99,7 @@ userIAM_userAuth模块提供了用户认证的相关方法，包括检测认证�
        onResult: (result, extraInfo) => {
            console.info("auth onResult result = " + result);
        },
-
+   
        onAcquireInfo: (module, acquire, extraInfo) => {
            console.info("auth onAcquireInfo module = " + module);
        }

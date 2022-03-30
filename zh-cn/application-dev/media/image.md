@@ -6,7 +6,7 @@
 
 ## 接口说明
 
-详细API含义请参考[js-apis-image.md](../reference/apis/js-apis-image.md)
+详细API含义请参考：[图片处理API文档](../reference/apis/js-apis-image.md)
 
 ## 开发步骤
 
