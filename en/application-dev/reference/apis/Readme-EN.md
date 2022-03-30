@@ -36,7 +36,6 @@
     -   [Environment](js-apis-environment.md)
     -   [Public File Access and Management](js-apis-filemanager.md)
     -   [App Storage Statistics](js-apis-storage-statistics.md)
-    -   [Volume Management](js-apis-volumemanager.md)
 - Account Management
     -   [OS Account Management](js-apis-osAccount.md)
     -   [Distributed Account Management](js-apis-distributed-account.md)
