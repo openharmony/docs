@@ -29,11 +29,11 @@ Creates a component that can automatically display the navigation bar, title, an
 
 | Name | Type | Default Value | Description |
 | -------- | -------- | -------- | -------- |
-| title | string \| [Custom Builder](../../ui/ts-types.md) | - | Page title. |
+| title | string \| [CustomBuilder](../../ui/ts-types.md)<sup>8+</sup> | - | Page title. |
 | subtitle | string | - | Subtitle of the page. |
-| menus | Array&lt;NavigationMenuItem&gt; \| [Custom Builder](../../ui/ts-types.md) | - | Menu in the upper right corner of the page. |
+| menus | Array&lt;NavigationMenuItem&gt; \| [CustomBuilder](../../ui/ts-types.md)<sup>8+</sup> | - | Menu in the upper right corner of the page. |
 | titleMode | NavigationTitleMode | NavigationTitleMode.Free | Display mode of the page title bar. |
-| toolBar | {<br/>items:[<br/>Object<br/>] }<br/>\| [Custom Builder](../../ui/ts-types.md) | - | Content of the toolbar.<br/>**items**: all items on the toolbar. |
+| toolBar | {<br/>items:[<br/>Object<br/>] }<br/>\| [CustomBuilder](../../ui/ts-types.md)<sup>8+</sup> | - | Content of the toolbar.<br/>**items**: all items on the toolbar. |
 | hideToolBar | boolean | false | Whether to hide the toolbar.<br/>**true**: Hide the toolbar.<br/>**false**: Show the toolbar. |
 | hideTitleBar | boolean | false | Whether to hide the title bar. |
 | hideBackButton | boolean | false | Whether to hide the back button. |
@@ -67,7 +67,7 @@ Creates a component that can automatically display the navigation bar, title, an
 
 | Name | Description |
 | -------- | -------- |
-| onTitleModeChanged(callback: (titleMode: NavigationTitleMode) =&gt; void) | Triggered when **titleMode** is set to **NavigationTitleMode.Free** and the title bar mode changes as content scrolls. |
+| onTitleModeChange(callback:&nbsp;(titleMode:&nbsp;NavigationTitleMode)&nbsp;=&gt;&nbsp;void) | Triggered when **titleMode** is set to **NavigationTitleMode.Free** and the title bar mode changes as content scrolls. |
 
 
 ## Example
@@ -140,7 +140,7 @@ struct NavigationExample {
       .titleMode(NavigationTitleMode.Free)
       .hideTitleBar(false)
       .hideBackButton(false)
-      .onTitleModeChanged((titleModel: NavigationTitleMode) => {
+      .onTitleModeChange((titleModel: NavigationTitleMode) => {
         console.log('titleMode')
       })
       .toolBar({ items: [

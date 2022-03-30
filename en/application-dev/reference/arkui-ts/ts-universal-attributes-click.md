@@ -2,7 +2,7 @@
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
+> This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Required Permissions
@@ -13,14 +13,14 @@ None
 ## Attributes
 
 
-  | **Name** | **Type** | **Default Value** | **Description** | 
+| **Name** | **Type** | **Default Value** | **Description** |
 | -------- | -------- | -------- | -------- |
-| touchable | boolean | true | Whether the current component is touchable. | 
+| touchable | boolean | true | Whether the current component is touchable. |
 
 
 ## Example
 
-  
+
 ```
 @Entry
 @Component
