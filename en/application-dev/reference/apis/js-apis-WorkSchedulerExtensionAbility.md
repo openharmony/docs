@@ -11,16 +11,20 @@ import WorkSchedulerExtensionAbility from '@ohos.WorkSchedulerExtensionAbility'
 ```
 
 ## WorkSchedulerExtensionAbility.onWorkStart
-- **System capability**
-SystemCapability.ResourceSchedule.WorkScheduler
 
-- **API**
-onWorkStart(workInfo: WorkInfo);
+onWorkStart(work: workScheduler.WorkInfo): void
 
-- **Description**
 Triggered when the Work Scheduler task starts.
 
-- **Example**
+**System capability**: SystemCapability.ResourceSchedule.WorkScheduler
+
+**Parameters**
+
+| Name | Type                   | Mandatory  | Description            |
+| ---- | --------------------- | ---- | -------------- |
+| work | [workScheduler.WorkInfo](js-apis-workScheduler.md#workinfo) | Yes   | Task to be added to the execution queue.|
+
+**Example**
 
   ```
     export default class MyWorkSchedulerExtensionAbility extends WorkSchedulerExtensionAbility {
@@ -31,16 +35,21 @@ Triggered when the Work Scheduler task starts.
   ```
 
 ## WorkSchedulerExtensionAbility.onWorkStop
-- **System capability**
-SystemCapability.ResourceSchedule.WorkScheduler
 
-- **API**
-onWorkStop(workInfo: WorkInfo);
+onWorkStop(work: workScheduler.WorkInfo)
 
-- **Description**
 Triggered when the Work Scheduler task stops.
 
-- **Example**
+**System capability**: SystemCapability.ResourceSchedule.WorkScheduler
+
+**Parameters**
+
+| Name | Type                   | Mandatory  | Description            |
+| ---- | --------------------- | ---- | -------------- |
+| work | [workScheduler.WorkInfo](js-apis-workScheduler.md#workinfo) | Yes   | Task to be added to the execution queue.|
+
+
+**Example**
 
   ```
     export default class MyWorkSchedulerExtensionAbility extends WorkSchedulerExtensionAbility {
