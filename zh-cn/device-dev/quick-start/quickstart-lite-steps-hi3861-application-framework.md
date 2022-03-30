@@ -1,12 +1,12 @@
 # 新建应用程序<a name="ZH-CN_TOPIC_0000001216535387"></a>
 
-下方将通过修改源码的方式展示如何编写简单程序，输出“Hello world.”。请在[获取源码](quickstart-lite-sourcecode-acquire.md)章节下载的源码目录中进行下述操作。
+下方将通过修改源码的方式展示如何编写简单程序，输出“Hello world”。请在下载的源码目录中进行下述操作。
 
 1.  <a name="li5479332115116"></a>确定目录结构。
 
     开发者编写业务时，务必先在./applications/sample/wifi-iot/app路径下新建一个目录（或一套目录结构），用于存放业务源码文件。
-
-    例如：在app下新增业务my\_first\_app，其中hello\_world.c为业务代码，BUILD.gn为编译脚本，具体规划目录结构如下：
+    
+    例如：在app下新增业务my_first_app，其中hello_world.c为业务代码，BUILD.gn为编译脚本，具体规划目录结构如下：
 
     ```
     .
@@ -14,15 +14,15 @@
         └── sample
             └── wifi-iot
                 └── app
-                    │── my_first_app
-                    │  │── hello_world.c
-                    │  └── BUILD.gn
-                    └── BUILD.gn
-    ```
+                    └── my_first_app
+                      │── hello_world.c
+                      └── BUILD.gn
+     ```
 
 2.  编写业务代码。
 
     新建./applications/sample/wifi-iot/app/my\_first\_app下的hello\_world.c文件，在hello\_world.c中新建业务入口函数HelloWorld，并实现业务逻辑。并在代码最下方，使用OpenHarmony启动恢复模块接口SYS\_RUN\(\)启动业务。（SYS\_RUN定义在ohos\_init.h文件中）
+
 
     ```
     #include <stdio.h>
@@ -57,21 +57,82 @@
     -   sources中指定静态库.a所依赖的.c文件及其路径，若路径中包含"//"则表示绝对路径（此处为代码根路径），若不包含"//"则表示相对路径。
     -   include\_dirs中指定source所需要依赖的.h文件路径。
 
-4.  编写模块BUILD.gn文件，指定需参与构建的特性模块。
 
-    配置./applications/sample/wifi-iot/app/BUILD.gn文件，在features字段中增加索引，使目标模块参与编译。features字段指定业务模块的路径和目标，以my\_first\_app举例，features字段配置如下。
+4.  添加新组件。
+
+    修改文件build/lite/components/applications.json，添加组件hello\_world\_app的配置，如下所示为applications.json文件片段，“##start##”和“##end##”之间为新增配置（“##start##”和“##end##”仅用来标识位置，添加完配置后删除这两行）：
 
     ```
-    import("//build/lite/config/component/lite_component.gni")
+    {
+        "components": [
+        {
+          "component": "camera_sample_communication",
+          "description": "Communication related samples.",
+          "optional": "true",
+          "dirs": [
+             "applications/sample/camera/communication"
+          ],
+          "targets": [
+            "//applications/sample/camera/communication:sample"
+          ],
+          "rom": "",
+          "ram": "",
+          "output": [],
+          "adapted_kernel": [ "liteos_a" ],
+          "features": [],
+          "deps": {
+            "components": [],
+            "third_party": []
+          }
+        },
+    ##start##
+        {
+          "component": "hello_world_app",
+          "description": "hello world samples.",
+          "optional": "true",
+          "dirs": [
+            "applications/sample/wifi-iot/app/my_first_app"
+          ],
+          "targets": [
+            "//applications/sample/wifi-iot/app/my_first_app:myapp"
+          ],
+          "rom": "",
+          "ram": "",
+          "output": [],
+          "adapted_kernel": [ "liteos_m" ],
+          "features": [],
+          "deps": {
+            "components": [],
+            "third_party": []
+          }
+        },
+    ##end##
+        {
+          "component": "camera_sample_app",
+          "description": "Camera related samples.",
+          "optional": "true",
+          "dirs": [
+            "applications/sample/camera/launcher",
+            "applications/sample/camera/cameraApp",
+            "applications/sample/camera/setting",
+            "applications/sample/camera/gallery",
+            "applications/sample/camera/media"
+          ],
+    ```
+
+5.  修改单板配置文件。
     
-    lite_component("app") {
-        features = [
-            "my_first_app:myapp",
-        ]
-    }
+    修改文件vendor/hisilicon/hispark_pegasus/config.json，新增hello\_world\_app组件的条目，如下所示代码片段为applications子系统配置，“##start##”和“##end##”之间为新增条目（“##start##”和“##end##”仅用来标识位置，添加完配置后删除这两行）：
+
     ```
-
-    -   my\_first\_app是相对路径，指向./applications/sample/wifi-iot/app/my\_first\_app/BUILD.gn。
-    -   myapp是目标，指向./applications/sample/wifi-iot/app/my\_first\_app/BUILD.gn中的static\_library\("myapp"\)。
-
+          {
+            "subsystem": "applications",
+            "components": [
+    ##start##
+              { "component": "hello_world_app", "features":[] },
+    ##end##
+              { "component": "wifi_iot_sample_app", "features":[] }
+            ]
+          },
+    ```
 
