@@ -1,27 +1,49 @@
-# 编译<a name="ZH-CN_TOPIC_0000001171615520"></a>
-
-下方将介绍如何使用Hi3516开发板进行编译。使用安装包方式与docker方式搭建Ubuntu编译环境，编译步骤相同。
-
-1.  请进入源码根目录，执行如下命令进行编译：
-
-    >![](../public_sys-resources/icon-note.gif) **说明：** 
-    >如果使用Docker方式搭建编译环境，请在[获取Docker环境](quickstart-lite-docker-environment.md#section15666113905015)中进入的Docker构建环境中，执行如下命令进行编译。
-
-    ```
-    hb set(设置编译路径)
-    .（选择当前路径）
-    选择ipcamera_hispark_taurus并回车
-    hb build -f（执行编译）
-    ```
-
-    **图 1**  Hi3516编译设置图例-Docker方式<a name="fig1355483082115"></a>  
-    ![](figures/Hi3516编译设置图例-Docker方式.png "Hi3516编译设置图例-Docker方式")
-
-2.  编译结束后，出现“ipcamera\_hispark\_taurus build success”字样，则证明构建成功。
-
-    >![](../public_sys-resources/icon-notice.gif) **须知：** 
-    >烧录相关文件获取路径：
-    >结果文件：out/hispark\_taurus/ipcamera\_hispark\_taurus。
-    >U-boot文件：device/hisilicon/hispark\_taurus/sdk\_liteos/uboot/out/boot/u-boot-hi3516dv300.bin。
+# 编译
 
 
+OpenHarmony支持hb和build.sh两种编译方式。此处介绍hb方式，build.sh脚本编译方式请参考[使用build.sh脚本编译源码](../quick-start/quickstart-lite-reference.md#使用buildsh脚本编译源码)。
+
+
+请进入源码根目录，执行如下命令进行编译：
+
+
+1. 设置编译路径。
+     
+   ```
+   hb set
+   ```
+
+2. 选择当前路径。
+     
+   ```
+   .
+   ```
+
+3. 在hisilicon下选择ipcamera_hispark_taurus并回车。
+
+4. 执行编译。
+   > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+   > - 单独编译一个部件（例如hello），可使用“hb build -T _目标名称_”进行编译。
+   > 
+   > - 增量编译整个产品，可使用“hb build”进行编译。
+   > 
+   > - 完整编译整个产品，可使用“hb build -f”进行编译。
+   > 
+   > 此处以完整编译整个产品为例进行说明。
+
+     
+   ```
+   hb build -f
+   ```
+
+     
+     **图1** Hi3516编译设置图例
+     ![zh-cn_image_0000001215744208](figures/zh-cn_image_0000001215744208.png)
+
+5. 编译结束后，出现“build success”字样，则证明构建成功。
+   > ![icon-notice.gif](public_sys-resources/icon-notice.gif) **须知：**
+   > 烧录相关文件获取路径：
+   > 
+   > - 编译结果文件及日志文件：out/hispark_taurus/ipcamera_hispark_taurus。
+   > 
+   > - U-boot文件：device/hisilicon/hispark_taurus/sdk_liteos/uboot/out/boot/u-boot-hi3516dv300.bin。

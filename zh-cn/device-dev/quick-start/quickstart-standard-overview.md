@@ -1,23 +1,30 @@
-# 标准系统入门简介<a name="ZH-CN_TOPIC_0000001188365096"></a>
+# 标准系统入门概述
 
--   [快速入门流程](#section7825218111517)
 
-开发者可通过本文快速掌握OpenHarmony标准系统的环境搭建、编译、烧录、运行等操作。标准系统的开发有以下两种方法：
+## 简介
 
--   使用Windows环境进行开发和烧录，使用Linux环境进行编译。
--   统一使用Linux环境进行开发、编译和烧录。
+OpenHarmony标准系统适用于参考内存≥128MiB的设备。通过本文，开发者可以快速熟悉OpenHarmony标准系统的环境搭建、编译、烧录、调测以及运行“Hello World”等。
 
-因目前Windows系统不支持编译，暂时无法全部使用Windows环境进行开发，开发者可根据使用习惯选择合适的开发方法。
 
-本文将介绍第二种方法，**所有操作均在Linux环境下进行**。
+## 开发环境
 
-## 快速入门流程<a name="section7825218111517"></a>
+因当前OpenHarmony不支持在Windows下进行编译，标准系统的开发有以下两种方法，开发者可根据使用习惯进行选择：
 
-标准系统快速入门流程如下图所示，其中编译源码环节可根据实际情况选择docker方式或安装包方式其中一种即可。
+- 用Linux环境进行开发、编译和烧录。
 
->![](../public_sys-resources/icon-note.gif) **说明：** 
->Docker环境已经封装了相关编译工具，开发者在使用该Docker环境时可以省去Ubuntu编译环境及开发板环境的的搭建操作。
+- 用Windows环境进行开发和烧录，使用Linux环境进行编译。
 
-**图 1**  标准系统快速入门流程<a name="fig20982640223"></a>  
-![](figures/标准系统快速入门流程.png "标准系统快速入门流程")
+本文将介绍第一种方法，相关操作均在Linux环境下进行。使用第二种方式的开发者可参考[Deveco Device Tool使用指导](https://device.harmonyos.com/cn/docs/documentation/guide/service_introduction-0000001050166905)。
 
+
+## 开发板
+
+本文选取了两款典型开发板：Hi3516DV300、RK3516，并基于上述两款开发板进行开发介绍。开发板的具体外观和规格可参见[本文附录](../quick-start/quickstart-standard-board-introduction-hi3516.md)，开发者可根据需要自行购买开发板。
+
+
+## 开发流程
+
+标准系统快速入门流程如下图所示。
+
+  **图1** 标准系统快速入门开发流程
+  ![zh-cn_image_0000001218442216](figures/zh-cn_image_0000001218442216.png)

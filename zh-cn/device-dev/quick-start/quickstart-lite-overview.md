@@ -1,23 +1,30 @@
-# 轻量与小型系统入门概述<a name="ZH-CN_TOPIC_0000001216935335"></a>
+# 轻量与小型系统入门概述
 
-OpenHarmony轻量和小型系统适用于内存较小的IOT设备。通过本文，开发者可以快速熟悉OpenHarmony轻量和小型系统的环境搭建、编译、烧录、调测以及运行“Hello World”等。
 
-轻量和小型系统的开发有以下两种方法：
+## 简介
 
--   用Windows环境进行开发和烧录，使用Linux环境进行编译。
--   统一使用Linux环境进行开发、编译和烧录。
+OpenHarmony轻量和小型系统适用于内存较小的IOT设备。本文通过运行一个“Hello World”，可以让开发者快速熟悉OpenHarmony轻量和小型系统的环境搭建、编译、烧录、调测以及运行等。
 
-因目前Windows系统不支持编译，暂时无法全部使用Windows环境进行开发，开发者可根据使用习惯选择合适的开发方法。
 
-本文将介绍第二种方法，下方所有操作均在Linux环境下进行。
+## 开发环境
 
-本文选取了三款典型开发板：Hi3861 WLAN模组、Hi3516DV300、Hi3518EV300，并基于上述三款开发板进行开发介绍。开发板的具体外观和规格可参见[本文附录](quickstart-lite-introduction-hi3861.md#section19352114194115)，开发者可根据需要自行购买的开发板。
+因当前OpenHarmony不支持在Windows下进行编译，标准系统的开发有以下两种方法，开发者可根据使用习惯进行选择：
 
-轻量和小型系统快速入门流程如下图所示，其中搭建编译环境环节可根据实际情况选择Docker方式或安装包方式其中一种即可。
+- 用Linux环境进行开发、编译和烧录。
 
->![](../public_sys-resources/icon-note.gif) **说明：** 
->Docker环境已经封装了相关编译工具，开发者在使用该Docker环境时可以省去Ubuntu编译环境及开发板环境的的搭建操作。
+- 用Windows环境进行开发和烧录，使用Linux环境进行编译。
 
-**图 1**  轻量和小型系统快速入门流程<a name="fig642616212336"></a>  
-![](figures/轻量和小型系统快速入门流程.png "轻量和小型系统快速入门流程")
+本文将介绍第一种方法，相关操作均在Linux环境下进行。使用第二种方式的开发者可参考[Deveco Device Tool使用指导](https://device.harmonyos.com/cn/docs/documentation/guide/service_introduction-0000001050166905)。
 
+
+## 开发板
+
+本文基于以下两款典型开发板进行开发介绍 ：Hi3861 WLAN模组、Hi3516DV300。开发板的具体外观和规格可参见[本文附录](../quick-start/quickstart-lite-board-introduction.md)，开发者可根据需要自行购买开发板。
+
+
+## 开发流程
+
+轻量和小型系统快速入门流程如下图所示。
+
+  **图1** 轻量和小型系统快速入门开发流程
+  ![zh-cn_image_0000001218438670](figures/zh-cn_image_0000001218438670.png)
