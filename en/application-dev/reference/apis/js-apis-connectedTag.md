@@ -61,7 +61,7 @@ Reads the content of this active tag. This method uses a promise to return the r
 - Example
   ```
   import connectedTag from '@ohos.connectedTag';
-
+  
   connectedTag.readNdefTag().then(result => {
       console.log("promise recv ndef response: " + result);
   });
@@ -151,7 +151,7 @@ Writes data to this active tag. This method uses an asynchronous callback to ret
           console.error(`failed to write event because ${err.code}`);
           return;
       }
-
+  
       // Data is written to the tag.
       console.log(`success to write event: ${value}`);
   });
@@ -176,8 +176,8 @@ Registers the NFC field strength state events.
 - Enumerates the field strength states.
   | **Value**| **Description**|
   | -------- | -------- |
-  | 0 | NFC disconnected.|
-  | 1 | NFC connected.|
+  | 0 | Field off. |
+  | 1 | Field on. |
 
 
 ## connectedTag.off('notify')
@@ -219,5 +219,5 @@ Enumerates the NFC states.
 
 | Name| Default Value| Description|
 | -------- | -------- | -------- |
-| NFC_RF_LEAVE | 0 | NFC disconnected.|
-| NFC_RF_ENTER | 1 | NFC connected.|
+| NFC_RF_LEAVE | 0 | Field off. |
+| NFC_RF_ENTER | 1 | Field on. |
