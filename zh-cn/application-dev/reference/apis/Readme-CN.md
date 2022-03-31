@@ -191,7 +191,7 @@
   - [@system.bluetooth (蓝牙)](js-apis-system-bluetooth.md)
   - [@system.brightness (屏幕亮度)](js-apis-system-brightness.md)
   - [@system.configuration (应用配置)](js-apis-system-configuration.md)
-  - [@system.device (设备信息)](js-apis-system-deviceinfo.md)
+  - [@system.device (设备信息)](js-apis-system-device.md)
   - [@system.fetch (数据请求)](js-apis-system-fetch.md)
   - [@system.file (文件存储)](js-apis-system-file.md)
   - [@system.geolocation (地理位置)](js-apis-system-location.md)

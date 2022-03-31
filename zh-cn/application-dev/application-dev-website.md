@@ -1,6 +1,5 @@
 # OpenHarmony应用开发文档
 - [应用开发导读](application-dev-guide.md)
-
 - 快速开始
 
   - 快速入门
@@ -8,12 +7,10 @@
     - [使用eTS语言开发](quick-start/start-with-ets.md)
     - [使用JS语言开发（传统代码方式）](quick-start/start-with-js.md)
     - [使用JS语言开发（低代码方式）](quick-start/start-with-js-low-code.md)
-
   - 开发基础知识
     - [应用开发包结构说明](quick-start/package-structure.md)
     - [资源文件的分类](quick-start/basic-resource-file-categories.md)
     - [SysCap说明](quick-start/syscap.md)
-
 - 开发
   - Ability开发
     - [FA模型综述](ability/fa-brief.md)
@@ -263,14 +260,11 @@
       - [国际化开发概述](internationalization/international-overview.md)
       - [Intl开发指导](internationalization/intl-guidelines.md)
       - [I18n开发指导](internationalization/i18n-guidelines.md)
-
 - 工具
   - [DevEco Studio（OpenHarmony）使用指南](quick-start/deveco-studio-user-guide-for-openharmony.md)
-
 - 示例教程
   - [示例代码](https://gitee.com/openharmony/app_samples/blob/master/README_zh.md)
   - [Codelabs](https://gitee.com/openharmony/codelabs/blob/master/README.md)
-
 - API参考
   - 组件参考（基于JS扩展的类Web开发范式）
     - 组件
@@ -539,18 +533,18 @@
       - [@ohos.ability.particleAbility (particleAbility模块)](reference/apis/js-apis-particleAbility.md)
       - [@ohos.application.Want (Want)](reference/apis/js-apis-application-Want.md)
       - [@ohos.wantAgent (WantAgent模块)](reference/apis/js-apis-wantAgent.md)
-      - ability/[dataAbilityHelper (DataAbilityHelper模块)](reference/apis/js-apis-dataAbilityHelper.md)
-      - app/[context (Context模块)](reference/apis/js-apis-Context.md)
-      - application/[abilityDelegator (AbilityDelegator)](reference/apis/js-apis-application-abilityDelegator.md)
-      - application/[abilityDelegatorArgs (AbilityDelegatorArgs)](reference/apis/js-apis-application-abilityDelegatorArgs.md)
-      - application/[AbilityRunningInfo (AbilityRunningInfo)](reference/apis/js-apis-abilityrunninginfo.md)
-      - application/[ExtensionContext (ExtensionContext)](reference/apis/js-apis-extension-context.md)
-      - application/[ExtensionRunningInfo (ExtensionRunningInfo)](reference/apis/js-apis-extensionrunninginfo.md)
-      - application/[FormExtensionContext (FormExtensionContext)](reference/apis/js-apis-formextensioncontext.md)
-      - application/[MissionSnapshot (MissionSnapshot)](reference/apis/js-apis-application-MissionSnapshot.md)
-      - application/[ProcessRunningInfo (ProcessRunningInfo)](reference/apis/js-apis-processrunninginfo.md)
-      - application/[ServiceExtensionContext (ServiceExtensionContext)](reference/apis/js-apis-service-extension-context.md) 
-      - application/[shellCmdResult (ShellCmdResult)](reference/apis/js-apis-application-shellCmdResult.md)
+      - [dataAbilityHelper (DataAbilityHelper模块)](reference/apis/js-apis-dataAbilityHelper.md)
+      - [context (Context模块)](reference/apis/js-apis-Context.md)
+      - [abilityDelegator (AbilityDelegator)](reference/apis/js-apis-application-abilityDelegator.md)
+      - [abilityDelegatorArgs (AbilityDelegatorArgs)](reference/apis/js-apis-application-abilityDelegatorArgs.md)
+      - [AbilityRunningInfo (AbilityRunningInfo)](reference/apis/js-apis-abilityrunninginfo.md)
+      - [ExtensionContext (ExtensionContext)](reference/apis/js-apis-extension-context.md)
+      - [ExtensionRunningInfo (ExtensionRunningInfo)](reference/apis/js-apis-extensionrunninginfo.md)
+      - [FormExtensionContext (FormExtensionContext)](reference/apis/js-apis-formextensioncontext.md)
+      - [MissionSnapshot (MissionSnapshot)](reference/apis/js-apis-application-MissionSnapshot.md)
+      - [ProcessRunningInfo (ProcessRunningInfo)](reference/apis/js-apis-processrunninginfo.md)
+      - [ServiceExtensionContext (ServiceExtensionContext)](reference/apis/js-apis-service-extension-context.md) 
+      - [shellCmdResult (ShellCmdResult)](reference/apis/js-apis-application-shellCmdResult.md)
     - 公共事件与通知
     
       - [@ohos.commonEvent (公共事件模块)](reference/apis/js-apis-commonEvent.md)
@@ -605,7 +599,7 @@
       - [@ohos.data.rdb (关系型数据库)](reference/apis/js-apis-data-rdb.md)
       - [@ohos.settings (设置数据项名称)](reference/apis/js-apis-settings.md)
       - [@ohos.data.storage (轻量级存储)](reference/apis/js-apis-data-storage.md)
-      - data/rdb/[resultSet (结果集)](reference/apis/js-apis-data-resultset.md)
+      - [resultSet (结果集)](reference/apis/js-apis-data-resultset.md)
     - 文件管理
     
       - [@ohos.environment (目录环境能力)](reference/apis/js-apis-environment.md)
@@ -711,7 +705,7 @@
       - [@system.bluetooth (蓝牙)](reference/apis/js-apis-system-bluetooth.md)
       - [@system.brightness (屏幕亮度)](reference/apis/js-apis-system-brightness.md)
       - [@system.configuration (应用配置)](reference/apis/js-apis-system-configuration.md)
-      - [@system.device (设备信息)](reference/apis/js-apis-system-deviceinfo.md)
+      - [@system.device (设备信息)](reference/apis/js-apis-system-device.md)
       - [@system.fetch (数据请求)](reference/apis/js-apis-system-fetch.md)
       - [@system.file (文件存储)](reference/apis/js-apis-system-file.md)
       - [@system.geolocation (地理位置)](reference/apis/js-apis-system-location.md)
