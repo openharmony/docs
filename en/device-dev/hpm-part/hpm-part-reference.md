@@ -157,22 +157,22 @@ You can use the hpm-cli tool to manage the lifecycle of an HPM Part. The followi
 | -------- | -------- | -------- |
 | Querying version information| **hpm -V** or **hpm --version**| Displays the version of the hpm-cli tool.| 
 | Querying help information| **hpm -h** or **hpm --version**| Displays the command list and help information.| 
-| hpm&nbsp;-h | Displays command help information.| 
+|| hpm&nbsp;-h | Displays command help information.| 
 | Creating a project| hpm&nbsp;init&nbsp;bundle | Creates an HPM Part project.| 
-| hpm&nbsp;init&nbsp;-t&nbsp;template | Creates a scaffolding project from a template.| 
+|| hpm&nbsp;init&nbsp;-t&nbsp;template | Creates a scaffolding project from a template.| 
 | Installing HPM Parts| **hpm install** or **hpm i**| Installs dependent HPM Parts in the bundle.json file.| 
-| hpm&nbsp;install&nbsp;bundle\@version | Installs HPM Parts of a specified version.| 
+|| hpm&nbsp;install&nbsp;bundle\@version | Installs HPM Parts of a specified version.| 
 | Uninstalling HPM Parts| hpm&nbsp;uninstall&nbsp;bundle | Uninstalls dependent HPM Parts.| 
-| **hpm remove** or **hpm rm bundlename**| Uninstalls dependent HPM Parts.| 
+|| **hpm remove** or **hpm rm bundlename**| Uninstalls dependent HPM Parts.| 
 | Viewing information| **hpm list** or **hpm ls**| Displays the dependency tree of the HPM part.| 
-| hpm&nbsp;dependencies | Generates the dependency relationship data of the HPM Part. (This command is also integrated in the **hpm ui** command. After you run the hpm ui command, a hpm UI is displayed with the dependencies.)| 
+|| hpm&nbsp;dependencies | Generates the dependency relationship data of the HPM Part. (This command is also integrated in the **hpm ui** command. After you run the hpm ui command, a hpm UI is displayed with the dependencies.)| 
 | Searching for HPM Parts| hpm&nbsp;search&nbsp;name | Searches for HPM Parts. **--json** is used to specify the search result in JSON format, and **-type** is used to set the target type, which can be **part**, **distribution**, or **code-segment**.| 
 | Setting HPM configuration items| hpm&nbsp;config&nbsp;set&nbsp;key&nbsp;value | Sets configuration items, such as the server address and network proxy.| 
-| hpm&nbsp;config&nbsp;delete&nbsp;key | Deletes configurations.| 
+|| hpm&nbsp;config&nbsp;delete&nbsp;key | Deletes configurations.| 
 | Updating HPM Part versions| hpm&nbsp;update | Updates the versions of dependent HPM Parts.| 
-| hpm&nbsp;check-update | Checks whether version updates are available to dependent HPM Parts.| 
+|| hpm&nbsp;check-update | Checks whether version updates are available to dependent HPM Parts.| 
 | Building| hpm&nbsp;build | Builds an HPM Part.| 
-| hpm&nbsp;dist | Builds a distribution. The build depends on the **dist** script in **scripts** of **bundle.json**.| 
+|| hpm&nbsp;dist | Builds a distribution. The build depends on the **dist** script in **scripts** of **bundle.json**.| 
 | Packing | hpm&nbsp;pack | Packs dependencies of local HPM Parts.| 
 | Burning| hpm&nbsp;run&nbsp;flash | Burns the firmware. The firmware burning depends on the **flash** script in **scripts** of **bundle.json**.| 
 | Publishing| hpm&nbsp;publish | Publishes an HPM Part, which must be unique in the repository and has a unique version. (An account is required for login.)| 
@@ -242,7 +242,7 @@ HPM Part dependencies (including indirect dependencies) can be displayed by runn
 ```
 $ hpm list
 +--demo@1.0.0
-| +--@huawei/media@1.0.2
+| +--@example/media@1.0.2
 | +--@demo/sport_hi3518ev300_liteos_a@1.0.0
 | | +--@demo/app@4.0.1
 | | | +--@demo/build@4.0.1
