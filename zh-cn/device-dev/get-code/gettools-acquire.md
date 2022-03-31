@@ -13,8 +13,7 @@ OpenHarmony为开发者提供了两种Docker环境，以帮助开发者快速完
 
 | 系统类型 | 运行平台 | Docker镜像仓库 | 标签 | 
 | -------- | -------- | -------- | -------- |
-| 轻量和小型系统（独立Docker环境） | Ubuntu/Windows | swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker | 1.0.0 | 
-| 标准系统（独立Docker环境） | Ubuntu | swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard | 1.0.0 | 
+| 轻量和小型系统/标准系统（独立Docker环境） | Ubuntu/Windows | swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker | 1.0.0 | 
 | 轻量和小型系统（HPM Docker环境） | Ubuntu/Windows | swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker | 0.0.3 | 
 
 
