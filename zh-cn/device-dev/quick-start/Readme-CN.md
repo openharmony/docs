@@ -1,47 +1,45 @@
-# quick-start
-
-- 快速入门   
-    - 轻量和小型系统快速入门
-        - [轻量与小型系统入门概述](quickstart-ide-lite-overview.md)
-        - 准备轻量与小型系统环境
-            - [搭建系统环境](quickstart-ide-lite-env-system.md)
-            - [获取源码](quickstart-ide-lite-sourcecode-acquire.md)
-        - [创建源码工程](quickstart-ide-lite-create-project.md)
-        - 运行Hello World
-            - Hi3861开发板
-                - [编写“Hello World”程序](quickstart-ide-lite-steps-hi3861-application-framework.md)
-                - [编译](quickstart-ide-lite-steps-hi3861-building.md)
-                - [烧录](quickstart-ide-lite-steps-hi3861-burn.md)
-                - [联网](quickstart-ide-lite-steps-hi3861-netconfig.md)
-                - [调试验证](quickstart-ide-lite-steps-hi3861-debug.md)
-                - [运行](quickstart-ide-lite-steps-hi3816-running.md)
-            - Hi3516开发板
-                - [编写“Hello World”程序](quickstart-ide-lite-steps-hi3516-application-framework.md)
-                - [编译](quickstart-ide-lite-steps-hi3516-building.md)
-                - [烧录](quickstart-ide-lite-steps-hi3516-burn.md)
-                - [运行](quickstart-ide-lite-steps-hi3516-running.md)
-        - 附录
-            - 开发板介绍
-                - [Hi3861开发板介绍](quickstart-ide-lite-introduction-hi3861.md)
-                - [Hi3516开发板介绍](quickstart-ide-lite-introduction-hi3516.md)
-   - 标准系统入门
-        - [标准系统入门概述](quickstart-ide-standard-overview.md)
-        - 准备标准系统环境
-            - [搭建系统环境](quickstart-ide-standard-env-system.md)
-            - [获取源码](quickstart-ide-standard-sourcecode-acquire.md)
-        - [创建源码工程](quickstart-ide-standard-create-project.md)
-        - 运行“Hello World”
-            - Hi3516开发板
-                - [编写“Hello World”程序](quickstart-ide-standard-running-hi3516-create.md)
-                - [编译](quickstart-ide-standard-running-hi3516-build.md)
-                - [烧录](quickstart-ide-standard-running-hi3516-burning.md)
-                - [运行](quickstart-ide-standard-running-hi3516-running.md)
-            - RK3568开发板
-                - [编写“Hello World”程序](quickstart-ide-standard-running-rk3568-create.md)
-                - [编译](quickstart-ide-standard-running-rk3568-build.md)
-                - [烧录](quickstart-ide-standard-running-rk3568-burning.md)
-                - [运行](quickstart-ide-standard-running-rk3568-running.md)
-        - 附录
-            - 开发板介绍
-                - [Hi3516开发板介绍](quickstart-ide-standard-board-introduction-hi3516.md)
-                - [RK3568开发板介绍](quickstart-ide-standard-board-introduction-rk3568.md)
+# 快速入门 
+- 轻量和小型系统快速入门
+    - [轻量与小型系统入门概述](quickstart-ide-lite-overview.md)
+    - 准备轻量与小型系统环境
+        - [搭建系统环境](quickstart-ide-lite-env-system.md)
+        - [获取源码](quickstart-ide-lite-sourcecode-acquire.md)
+    - [创建源码工程](quickstart-ide-lite-create-project.md)
+    - 运行Hello World
+        - Hi3861开发板
+            - [编写“Hello World”程序](quickstart-ide-lite-steps-hi3861-application-framework.md)
+            - [编译](quickstart-ide-lite-steps-hi3861-building.md)
+            - [烧录](quickstart-ide-lite-steps-hi3861-burn.md)
+            - [联网](quickstart-ide-lite-steps-hi3861-netconfig.md)
+            - [调试验证](quickstart-ide-lite-steps-hi3861-debug.md)
+            - [运行](quickstart-ide-lite-steps-hi3816-running.md)
+        - Hi3516开发板
+            - [编写“Hello World”程序](quickstart-ide-lite-steps-hi3516-application-framework.md)
+            - [编译](quickstart-ide-lite-steps-hi3516-building.md)
+            - [烧录](quickstart-ide-lite-steps-hi3516-burn.md)
+            - [运行](quickstart-ide-lite-steps-hi3516-running.md)
+    - 附录
+        - 开发板介绍
+            - [Hi3861开发板介绍](quickstart-ide-lite-introduction-hi3861.md)
+            - [Hi3516开发板介绍](quickstart-ide-lite-introduction-hi3516.md)
+- 标准系统入门
+    - [标准系统入门概述](quickstart-ide-standard-overview.md)
+    - 准备标准系统环境
+        - [搭建系统环境](quickstart-ide-standard-env-system.md)
+        - [获取源码](quickstart-ide-standard-sourcecode-acquire.md)
+    - [创建源码工程](quickstart-ide-standard-create-project.md)
+    - 运行“Hello World”
+        - Hi3516开发板
+            - [编写“Hello World”程序](quickstart-ide-standard-running-hi3516-create.md)
+            - [编译](quickstart-ide-standard-running-hi3516-build.md)
+            - [烧录](quickstart-ide-standard-running-hi3516-burning.md)
+            - [运行](quickstart-ide-standard-running-hi3516-running.md)
+        - RK3568开发板
+            - [编写“Hello World”程序](quickstart-ide-standard-running-rk3568-create.md)
+            - [编译](quickstart-ide-standard-running-rk3568-build.md)
+            - [烧录](quickstart-ide-standard-running-rk3568-burning.md)
+            - [运行](quickstart-ide-standard-running-rk3568-running.md)
+    - 附录
+        - 开发板介绍
+            - [Hi3516开发板介绍](quickstart-ide-standard-board-introduction-hi3516.md)
+            - [RK3568开发板介绍](quickstart-ide-standard-board-introduction-rk3568.md)
