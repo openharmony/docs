@@ -202,7 +202,7 @@ _[Changelog](api-change/v3.1-Release/changelog-v3.1-release.md)_
 
 ### Samples
 
-**表2 **新增Samples
+**表4 ** 新增Samples
 
 | 子系统 | 名称 | 简介 | 开发语言 |
 | -------- | -------- | -------- | -------- |
@@ -230,7 +230,7 @@ _[Changelog](api-change/v3.1-Release/changelog-v3.1-release.md)_
 
 ## 修复缺陷列表
 
-**表4** 修复缺陷ISSUE列表
+**表5** 修复缺陷ISSUE列表
 
 | ISSUE单 | 问题描述 |
 | -------- | -------- |
