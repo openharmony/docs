@@ -28,7 +28,7 @@
 
 **可能原因**
 
-被init启动的服务都有一个叫做“importance”的属性（详见[第2章表3](../subsystems/subsys-boot-init.md)第二章节表3描述）。
+被init启动的服务都有一个叫做“importance”的属性（详见[第2章表3](../subsystems/subsys-boot-init.md)描述）。
 
 - 当该属性为0时，表示若当前服务进程退出，init不需要重启单板。
 
