@@ -95,12 +95,15 @@
        ![zh-cn_image_0000001193983334](figures/zh-cn_image_0000001193983334.png)
 
 5. 在以下界面点击**Next**，进行软件下载和安装。
+
    ![zh-cn_image_0000001239634067](figures/zh-cn_image_0000001239634067.png)
 
 6. 继续等待DevEco Device Tool安装向导自动安装DevEco Device Tool插件，直至安装完成，点击**Finish**，关闭DevEco Device Tool安装向导。
+
    ![zh-cn_image_0000001239650137](figures/zh-cn_image_0000001239650137.png)
 
 7. 打开Visual Studio Code，进入DevEco Device Tool工具界面。至此，DevEco Device Tool Windows开发环境安装完成。
+
    ![zh-cn_image_0000001225760456](figures/zh-cn_image_0000001225760456.png)
 
 
@@ -145,18 +148,23 @@
 ### 远程连接Ubuntu环境
 
 1. 打开Windows系统的Visual Studio Code，点击![zh-cn_image_0000001238760373](figures/zh-cn_image_0000001238760373.png)，在REMOTE EXOPLORER页面点击+按钮。
+
    ![zh-cn_image_0000001215878922](figures/zh-cn_image_0000001215878922.png)
 
 2. 在弹出的SSH连接命令输入框中输入“ssh _username_\@_ip_address_”，其中ip_address为要连接的远程计算机的IP地址，username为登录远程计算机的帐号。
+
    ![zh-cn_image_0000001215879750](figures/zh-cn_image_0000001215879750.png)
 
 3. 在弹出的输入框中，选择SSH configuration文件，选择默认的第一选项即可。
+
    ![zh-cn_image_0000001260519729](figures/zh-cn_image_0000001260519729.png)
 
 4. 在SSH TARGETS中，找到远程计算机，点击![zh-cn_image_0000001194080414](figures/zh-cn_image_0000001194080414.png)，打开远程计算机。
+
    ![zh-cn_image_0000001215720398](figures/zh-cn_image_0000001215720398.png)
 
 5. 在弹出的输入框中，选择**Linux**，然后在选择**Continue**，然后输入登录远程计算机的密码，连接远程计算机 。
+
    ![zh-cn_image_0000001215897530](figures/zh-cn_image_0000001215897530.png)
 
    连接成功后，等待在远程计算机.vscode-server文件夹下自动安装插件，安装完成后，根据界面提示在Windows系统下重新加载Visual Studio Code，便可以在Windows的DevEco Device Tool界面进行源码开发、编译、烧录等操作。
