@@ -202,7 +202,7 @@ _[Changelog](api-change/v3.1-Release/changelog-v3.1-release.md)_
 
 ### Samples
 
-**表4 ** 新增Samples
+**表4** 新增Samples
 
 | 子系统 | 名称 | 简介 | 开发语言 |
 | -------- | -------- | -------- | -------- |
@@ -211,7 +211,6 @@ _[Changelog](api-change/v3.1-Release/changelog-v3.1-release.md)_
 | 设备管理 | [系统电源管理](https://gitee.com/he-jianhua/app_samples/tree/master/common/eTSPowerManager) | 本示例展示了关机、重启以及检测亮灭屏状态的功能。 | eTS |
 | 设备管理 | [传感器](https://gitee.com/openharmony/app_samples/tree/master/device/eTSSenSor) | 本示例采用了传感器接口中的方向传感器，实现了指南针的效果。 | eTS |
 | 设备管理 | [设备管理](https://gitee.com/openharmony/app_samples/tree/master/device/eTSDeviceManager) | 本示例展示了在eTS中DeviceManager接口的使用，包括获取授信设备列表，设备扫描，设备认证，设备状态订阅。 | eTS |
-| 帐号管理 | [分布式帐号管理](https://gitee.com/he-jianhua/app_samples/tree/master/Account/eTSDistributeAccount) | 本示例主要演示了分布式帐号的登录、退出登录、注销等操作。 | eTS |
 | 帐号管理 | [应用帐号管理](https://gitee.com/openharmony/app_samples/tree/master/Account/eTSAppAccountManager) | 本示例选择应用进行注册/登录，并设置帐号相关信息，简要说明应用帐号管理相关功能。 | eTS |
 | ArkUI | [web](https://gitee.com/he-jianhua/app_samples/tree/master/ETSUI/eTSWeb) | 本示例主要展示了web的功能页面。 | eTS |
 | ArkUI | [拖拽](https://gitee.com/he-jianhua/app_samples/tree/master/ETSUI/eTSDrag) | 本示例主要展示了拖拽操作的功能。 | eTS |
