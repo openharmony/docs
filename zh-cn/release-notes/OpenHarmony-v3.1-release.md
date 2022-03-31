@@ -192,9 +192,6 @@ _[JS API 差异报告](api-change/v3.1-Release/js-apidiff-v3.1-release.md)_
 _[Native API差异报告](api-change/v3.1-Release/native-apidiff-v3.1-release.md)_
 
 
-_[Changelog](api-change/v3.1-Release/changelog-v3.1-release.md)_
-
-
 ### 芯片及开发板适配
 
 芯片及开发板适配状态请参考[SIG-Devboard](https://gitee.com/openharmony/community/blob/master/sig/sig-devboard/sig_devboard_cn.md)信息。
@@ -250,4 +247,4 @@ _[Changelog](api-change/v3.1-Release/changelog-v3.1-release.md)_
 | [I4UUFR](https://gitee.com/openharmony/third_party_e2fsprogs/issues/I4UUFR) | 本地编译构建Hi3516开发板版本镜像 | 编译Hi3516版本时偶现编译失败，重新下载代码可恢复。 | 2022-04-30 |
 | [I4RJU8](https://e.gitee.com/open_harmony/issues/list?issue=I4RJU8) | Hi3516标准系统camera&nbsp;预览黑屏 | 影响标准系统Hi3516&nbsp;camera预览功能。 | 2022-05-30 |
 | [I4Z3G9](https://e.gitee.com/open_harmony/issues/list?issue=I4Z3G9) | 【图形子系统】【RK3568】打开沉浸式主窗口和在主窗口上打开辅助窗口出现闪屏 | 打开沉浸式主窗口和在主窗口上打开辅助窗口出现闪屏，影响体验。 | 2022-04-15 |
-| [I50EBB](https://gitee.com/openharmony/docs/issues/I50EBB?from=project-issue) | 【Hi3516烧录】标准系统Hi3516镜像无法通过IDE烧录 | 仅在IDE版本上Ubuntu环境烧录不成功。<br/>**规避方案：**通过remote方式在Windows上烧录。<br/>**后续方案：**<br/>改成Windows+Ubuntu混合模式，在Windows界面操作远程的Ubuntu开发、编译、调试；烧录自动回传到Windows上进行。 | 2022-04-30 |
+| [I50EBB](https://gitee.com/openharmony/docs/issues/I50EBB?from=project-issue) | 【Hi3516烧录】标准系统Hi3516镜像无法通过IDE烧录 | 仅在IDE版本上Ubuntu环境烧录不成功。<br/>**规避方案：** 通过remote方式在Windows上烧录。<br/>**后续方案：**<br/>改成Windows+Ubuntu混合模式，在Windows界面操作远程的Ubuntu开发、编译、调试；烧录自动回传到Windows上进行。 | 2022-04-30 |
