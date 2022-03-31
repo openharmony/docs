@@ -21,7 +21,7 @@ None
     | Name    | Type                       | Mandatory| Default Value| Description      |
     | ---------- | ------------------------------- | ---- | ------ | -------------- |
     | src        | string                          | Yes  | -      | Address of a web page resource.|
-    | controller | [WebController](#WebController) | No  | -      | Controller.      |
+    | controller | [WebController](#webcontroller) | No  | -      | Controller.      |
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
@@ -34,11 +34,11 @@ None
 | Name             | Type                                                    | Default Value        | Description                                                        |
 | ----------------- | ------------------------------------------------------------ | -------------- | ------------------------------------------------------------ |
 | domStorageAccess  | boolean                                                      | false          | Whether to enable the DOM Storage API permission. By default, the permission is disabled.|
-| fileAccess        | boolean                                                      | true           | Whether to enable in-application rawfile access through [$rawfile(filepath/filename)](../../ui/ts-application-resource-access.md). By default, this feature is enabled.|
+| fileAccess        | boolean                                                      | true           | Whether to enable in-application rawfile access through [$rawfile(filepath/filename)](../../ui/ts-application-resource-access.md#referencing-resources). By default, this feature is enabled.|
 | imageAccess       | boolean                                                      | true           | Whether to enable automatic image loading. By default, this feature is enabled.                    |
 | javaScriptProxy   | { <br>  object: object, <br> name: string, <br> methodList: Array\<string\>, <br> controller: WebController <br>} | -              | JavaScript object to be injected into the window. Methods of this object can be invoked in the window. The parameters in this attribute cannot be updated.<br> **object** indicates the object to be registered. Methods can be declared, but not attributes. The parameters and return value can only be of the string, number, or Boolean type.<br> **name** indicates the name of the object to be registered, which is the same as that invoked in the window. After registration, the window can use this name to access the JavaScript object at the application side.<br> **methodList** indicates the methods of the JavaScript object to be registered at the application side.<br> **controller** indicates the controller.|
 | javaScriptAccess  | boolean                                                      | true           | Whether JavaScript scripts can be executed. By default, JavaScript scripts can be executed.              |
-| mixedMode         | [MixedMode](#MixedMode)                                      | MixedMode.None | Whether to enable loading of HTTP and HTTPS hybrid content can be loaded. By default, this feature is disabled.|
+| mixedMode         | MixedMode                                                    | MixedMode.None | Whether to enable loading of HTTP and HTTPS hybrid content can be loaded. By default, this feature is disabled.|
 | onlineImageAccess | boolean                                                      | true           | Whether to enable access to online images through HTTP and HTTPS. By default, this feature is enabled.|
 | zoomAccess        | boolean                                                      | true           | Whether to enable zoom gestures. By default, zoom gestures are enabled.                |
 
@@ -59,13 +59,13 @@ Universal events are not supported.
 
 | Name                                                        | Description                                                    |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| onAlert(callback: (event?: { url: string; message: string; result: [JsResult](#JsResult) }) => boolean) | <p>Triggered when **alert()** is invoked to display an alert dialog box on the web page.<br>If the callback returns **false**, the default dialog box is displayed. If the callback returns **true**, a system application can invoke the system dialog box capability (allows only the confirm operation) and invoke the **JsResult** API to notify the **\<Web>** component of the user's operation.<br>**url**: URL of the web page where the dialog box is displayed.<br>**message**: information displayed in the dialog box.<br>**JsResult**: notifies the **\<Web>** component of the user's operation.</p> |
-| onBeforeUnload(callback: (event?: { url: string; message: string; result: [JsResult](#JsResult) }) => boolean) | <p>Triggered when the current page is about to exit after the user refreshes or closes the page.<br>If the callback returns **false**, the default dialog box is displayed. If the callback returns **true**, a system application can invoke the system dialog box capability (allows the confirm and cancel operations) and invoke the **JsResult** API to notify the **\<Web>** component of the user's operation.<br>**url**: URL of the web page where the dialog box is displayed.<br>**message**: information displayed in the dialog box.<br>**JsResult**: notifies the **\<Web>** component of the user's operation.</p> |
-| onConfirm(callback: (event?: { url: string; message: string; result: [JsResult](#JsResult) }) => boolean) | <p>Triggered when **confirm()** is invoked to display a confirmation dialog box on the web page.<br>If the callback returns **false**, the default dialog box is displayed. If the callback returns **true**, a system application can invoke the system dialog box capability (allows the confirm and cancel operations) and invoke the **JsResult** API to notify the **\<Web>** component of the user's operation.<br>**url**: URL of the web page where the dialog box is displayed.<br>**message**: information displayed in the dialog box.<br>**JsResult**: notifies the **\<Web>** component of the user's operation.</p> |
-| onConsole(callback: (event?: { message: [ConsoleMessage](#ConsoleMessage) }) => boolean) | <p>Triggered when the host application is notified of a JavaScript console message.<br>**message**: console message.</p> |
+| onAlert(callback: (event?: { url: string; message: string; result: [JsResult](#jsresult) }) => boolean) | <p>Triggered when **alert()** is invoked to display an alert dialog box on the web page.<br>If the callback returns **false**, the default dialog box is displayed. If the callback returns **true**, a system application can invoke the system dialog box capability (allows only the confirm operation) and invoke the **JsResult** API to notify the **\<Web>** component of the user's operation.<br>**url**: URL of the web page where the dialog box is displayed.<br>**message**: information displayed in the dialog box.<br>**JsResult**: notifies the **\<Web>** component of the user's operation.</p> |
+| onBeforeUnload(callback: (event?: { url: string; message: string; result: [JsResult](#jsresult) }) => boolean) | <p>Triggered when the current page is about to exit after the user refreshes or closes the page.<br>If the callback returns **false**, the default dialog box is displayed. If the callback returns **true**, a system application can invoke the system dialog box capability (allows the confirm and cancel operations) and invoke the **JsResult** API to notify the **\<Web>** component of the user's operation.<br>**url**: URL of the web page where the dialog box is displayed.<br>**message**: information displayed in the dialog box.<br>**JsResult**: notifies the **\<Web>** component of the user's operation.</p> |
+| onConfirm(callback: (event?: { url: string; message: string; result: [JsResult](#jsresult) }) => boolean) | <p>Triggered when **confirm()** is invoked to display a confirmation dialog box on the web page.<br>If the callback returns **false**, the default dialog box is displayed. If the callback returns **true**, a system application can invoke the system dialog box capability (allows the confirm and cancel operations) and invoke the **JsResult** API to notify the **\<Web>** component of the user's operation.<br>**url**: URL of the web page where the dialog box is displayed.<br>**message**: information displayed in the dialog box.<br>**JsResult**: notifies the **\<Web>** component of the user's operation.</p> |
+| onConsole(callback: (event?: { message: [ConsoleMessage](#consolemessage) }) => boolean) | <p>Triggered when the host application is notified of a JavaScript console message.<br>**message**: console message.</p> |
 | onDownloadStart(callback: (event?: { url: string, userAgent: string, contentDisposition: string, mimetype: string, contentLength: number }) => void) | <p>Triggered when a download task starts on the web page.<br>**url**: URL for the download task.<br>**userAgent**: name of the user agent (UA) for the download task.<br>**contentDisposition**: Content-Disposition response header returned by the server, which may be empty.<br>**mimetype**: content media type (MIME) returned by the server.<br>**contentLength**: length of the file returned by the server.</p> |
-| onErrorReceive(callback: (event?: { request: [WebResourceRequest](#WebResourceError), error: [WebResourceError](#WebResourceError) }) => void) | <p>Triggered when an error occurs during web page loading.<br>For best results, simplify the implementation logic in the callback.<br>**request**: encapsulation of a web page request.<br>**error**: encapsulation of a web page resource loading error.</p> |
-| onHttpErrorReceive(callback: (event?: { request: [WebResourceRequest](#WebResourceError), response: [WebResourceResponse](#WebResourceResponse) }) => void) | <p>Triggered when an HTTP error (the response code is greater than or equal to 400) occurs during web page resource loading.<br>**request**: encapsulation of a web page request.<br>**response**: encapsulation of a web page response.</p>|
+| onErrorReceive(callback: (event?: { request: [WebResourceRequest](#webresourceerror), error: [WebResourceError](#webresourceerror) }) => void) | <p>Triggered when an error occurs during web page loading.<br>For better results, simplify the implementation logic in the callback.<br>**request**: encapsulation of a web page request.<br>**error**: encapsulation of a web page resource loading error.</p> |
+| onHttpErrorReceive(callback: (event?: { request: [WebResourceRequest](#webresourceerror), response: [WebResourceResponse](#webresourceresponse) }) => void) | <p>Triggered when an HTTP error (the response code is greater than or equal to 400) occurs during web page resource loading.<br>**request**: encapsulation of a web page request.<br>**response**: encapsulation of a web page response.</p>|
 | onPageBegin(callback: (event?: { url: string }) => void)     | <p>Triggered when the web page starts to be loaded. This API is triggered only for the main frame content, and not for the iframe or frameset content.<br>**url**: URL of the page.</p> |
 | onPageEnd(callback: (event?: { url: string }) => void)       | <p>Triggered when the web page loading is complete. This API is triggered only for the main frame content.<br>**url**: URL of the page.</p> |
 | onProgressChange(callback: (event?: { newProgress: number }) => void) | <p>Triggered when the web page loading progress changes.<br>**newProgress**: new loading progress. The value is an integer ranging from 0 to 100.</p> |
@@ -118,7 +118,7 @@ Represents the result returned to the **\<Web>** component to indicate the opera
 
   | Name                                              | Description                                |
   | ------------------------------------------------------ | ---------------------------------------- |
-  | getRequestHeader(): Array\<[Header](#Header)\> | Obtains the information about the resource request header.                    |
+  | getRequestHeader(): Array\<[Header](#header)\> | Obtains the information about the resource request header.                    |
   | getRequestUrl(): string                                | Obtains the URL of the resource request.                 |
   | isMainFrame(): boolean                                 | Checks whether the resource request is in the main frame.             |
   | isRedirect(): boolean                                  | Checks whether the resource request is redirected by the server.        |
@@ -146,12 +146,12 @@ Describes the request/response header object returned by the **\<Web>** componen
   | getResponseCode(): number            | Obtains the status code of the resource response.          |
   | getResponseData(): string            | Obtains the data in the resource response.              |
   | getResponseEncoding(): string        | Obtains the encoding of the resource response.            |
-  | getResponseHeader(): Array\<[Header](#Header)\> | Obtains the resource response header.                |
+  | getResponseHeader(): Array\<[Header](#header)\> | Obtains the resource response header.                |
   | getResponseMimeType(): string        | Obtains the media (MIME) type of the resource response.|
 
 ## WebController
 
-Defines a **webController** to control the behavior or obtain the configuration information of the **\<Web>** component.
+Defines a **WebController** to control the behavior of the **\<Web>** component. A **WebController** can control only one **\<Web>** component, and the APIs in the **WebController** can be invoked only after it has been bound to the target **\<Web>** component.
 
 ### Creating an Object
 
@@ -238,9 +238,9 @@ loadData(options: { data: string, mimeType: string, encoding: string, baseUrl?: 
 
 Loads data. If **baseUrl** is empty, the specified character string will be loaded using the data protocol.
 
-If **baseUrl** is set to a data URL, the encoded character string will be loaded by the **\<Web>** component using the data protocol.
+If **baseUrl** is set to a data URL, the encoded string will be loaded by the **\<Web>** component using the data protocol.
 
-If **baseUrl** is set to an HTTP or HTTPS URL, the encoded character string will be loaded by the **\<Web>** component as non-encoded string in a manner similar to **loadUrl**.
+If **baseUrl** is set to an HTTP or HTTPS URL, the encoded string will be processed by the **\<Web>** component as a non-encoded string in a manner similar to **loadUrl**.
 
 - options
 
@@ -267,7 +267,7 @@ Objects injected through **registerJavaScriptProxy** are still valid on a new pa
   | Name | Type                             | Mandatory| Default Value| Description             |
   | ------- | ------------------------------------- | ---- | ------ | --------------------- |
   | url     | string                                | Yes  | -      | URL to load.     |
-  | headers | Array\<[Header](#Header)\> | No  | []     | Additional HTTP request header of the URL.|
+  | headers | Array\<[Header](#header)\> | No  | []     | Additional HTTP request header of the URL.|
 
 ### onActive
 
