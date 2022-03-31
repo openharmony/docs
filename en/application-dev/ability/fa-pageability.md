@@ -33,6 +33,19 @@ Description of ability lifecycle states:
 
 You can override the lifecycle callbacks provided by the Page ability in the **app.js/app.ets** file. Currently, the **app.js** file provides only the **onCreate** and **onDestroy** callbacks, and the **app.ets** file provides the full lifecycle callbacks.
 
+### Launch Type
+The ability supports three launch types: singleton, multi-instance, and instance-specific.
+The **launchType** item in the **config.json** file is used to specify the launch type.
+
+| Launch Type    | Description    |Description            |
+| ----------- | -------  |---------------- |
+| stand       | Multi-instance  | A new instance is started each time an ability starts.|
+| singleton   | Singleton  | Only one instance exists in the system. If an instance already exists when an ability is started, that instance is reused.|
+| specified   | Instance-specific| The internal service of an ability determines whether to create multiple instances during running.|
+
+By default, **stand** is used.
+
+
 ## Development Guidelines
 ### Available APIs
 
@@ -69,7 +82,7 @@ You can override the lifecycle callbacks provided by the Page ability in the **a
       authReadUriPermission: true,
       // Grant the permission to perform write operations on the URI.
       authWriteUriPermission: true,
-      // Support forwarding the Want result to the ability.
+      // support forwarding the Want result to the ability.
       abilityForwardResult: true,
       // Enable abiligy continuation.
       abilityContinuation: true,

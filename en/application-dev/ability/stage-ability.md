@@ -10,6 +10,18 @@ The stage model is an application development model introduced in API version 9.
 - Connect to and disconnect from the Service ability. For details, see [Service Extension Ability Development](stage-serviceextension.md).
 - Continue the application on another device. For details, see [Ability Continuation Development](stage-ability-continuation.md).
 
+### Launch Type
+The ability supports three launch types: singleton, multi-instance, and instance-specific.
+The **launchType** item in the **module.json** file is used to specify the launch type.
+
+| Launch Type    | Description    |Description            |
+| ----------- | -------  |---------------- |
+| stand       | Multi-instance  | A new instance is started each time an ability starts.|
+| singleton   | Singleton  | Only one instance exists in the system. If an instance already exists when an ability is started, that instance is reused.|
+| specified   | Instance-specific| The internal service of an ability determines whether to create multiple instances during running.|
+
+By default, **stand** is used.
+
 ## Available APIs
 The table below describes the APIs provided by the **AbilityStage** class, which has the **context** attribute. For details about the APIs, see [AbilityStage](../reference/apis/js-apis-application-abilitystage.md).
 
