@@ -52,7 +52,7 @@ OpenHarmony也提供了一系列可选的系统组件，方便设备开发者按
 | -------- | -------- | -------- |
 | 了解OpenHarmony | 整体认知OpenHarmony | -&nbsp;[OpenHarmony概述](https://gitee.com/openharmony)<br/>-&nbsp;[术语](../glossary.md) |
 | 获取开发资源 | 准备开发前相关资源 | -&nbsp;[获取源码](get-code/sourcecode-acquire.md)<br/>-&nbsp;[获取工具](get-code/gettools-acquire.md) |
-| 快速入门 | 快速熟悉OpenHarmony环境搭建、编译、烧录、调测、运行。 | [标准系统快速入门](quick-start/quickstart-standard.md) |
+| 快速入门 | 快速熟悉OpenHarmony环境搭建、编译、烧录、调测、运行。 | [标准系统快速入门](quick-start/quickstart-standard-overview.md) |
 | 基础能力使用 | 使用OpenHarmony提供的基础能力 | -&nbsp;[内核开发指南](kernel/kernel-standard.md)<br/>-&nbsp;[驱动开发指南](driver/driver-hdf-overview.md)<br/>-&nbsp;[子系统开发指南](subsystems/subsys-build-standard-large.md)<br/>-&nbsp;[安全指南](security/security-guidelines-overall.md)<br/>-&nbsp;[隐私保护](security/security-privacy-protection.md) |
 | 进阶开发 | 结合系统能力开发智能设备 | -&nbsp;[时钟应用开发指导](guide/device-clock-guide.md)<br/>-&nbsp;[平台驱动开发示例](guide/device-driver-demo.md)<br/>-&nbsp;[外设驱动开发示例](guide/device-outerdriver-demo.md) |
 | 移植适配 | 对三方库进行移植适配 | -&nbsp;[标准系统芯片移植指导](porting/standard-system-porting-guide.md)<br/>-&nbsp;[一种快速移植OpenHarmony&nbsp;Linux内核的方法](porting/porting-linux-kernel.md) |
