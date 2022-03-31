@@ -1,7 +1,7 @@
 # Getting Started with JavaScript in the Traditional Coding Approach
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **Note：**
-> For best possible results, use [DevEco Studio V3.0.0.900 Beta3](https://developer.harmonyos.com/cn/develop/deveco-studio#download_beta) for your development.
+> For best possible results, use [DevEco Studio V3.0.0.900 Beta3](https://developer.harmonyos.com/cn/develop/deveco-studio#download_beta_openharmony) for your development.
 
 
 ## Creating a JavaScript Project
