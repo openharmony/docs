@@ -156,7 +156,7 @@ OpenHarmony当前为开发者提供了以下4种获取源码的方式，开发�
 
 为了获得更好的下载性能，您可以选择从以下站点的镜像库获取源码或者对应的解决方案。
 
-本部分只提供OpenHarmony Master最新版本和LTS最新版本的获取源码方式， 其他版本获取源码方式以及具体版本信息请参考[Release-Notes](../../release-notes/Readme.md)。
+本部分只提供OpenHarmony LTS最新版本和最新发布版本的源码获取方式， 其他版本获取源码方式以及具体版本信息请参考[Release-Notes](../../release-notes/Readme.md)。
 
 **表 1**  获取源码路径
 
