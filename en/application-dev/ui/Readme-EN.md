@@ -1,4 +1,4 @@
-# UI
+# UI Development
 
 - [ArkUI Overview](arkui-overview.md)
 - JavaScript-based Web-like Development Paradigm
@@ -27,16 +27,19 @@
         - [Defining Events](ui-js-building-ui-event.md)
         - [Defining Page Routes](ui-js-building-ui-routes.md)
     - Common Component Development Guidelines
-        - [&lt;text&gt; Development](ui-js-components-text.md)
-        -   [&lt;input&gt; Development](ui-js-components-input.md)
-        -   [&lt;button&gt; Development](ui-js-components-button.md)
-        -   [&lt;list&gt; Development](ui-js-components-list.md)
-        -   [&lt;picker&gt; Development](ui-js-components-picker.md)
-        -   [&lt;dialog&gt; Development](ui-js-components-dialog.md)
-        -   [&lt;form&gt; Development](ui-js-components-form.md)
-        -   [&lt;stepper&gt; Development](ui-js-components-stepper.md)
-        -   [&lt;tabs&gt; Development](ui-js-component-tabs.md)
-        -   [&lt;image&gt; Development](ui-js-components-images.md)
+        - Container Components
+            - [&lt;list&gt; Development](ui-js-components-list.md)
+            - [&lt;dialog&gt; Development](ui-js-components-dialog.md)
+            - [&lt;form&gt; Development](ui-js-components-form.md)
+            - [&lt;stepper&gt; Development](ui-js-components-stepper.md)
+            - [&lt;tabs&gt; Development](ui-js-component-tabs.md)
+
+        - Basic Components
+            - [&lt;text&gt; Development](ui-js-components-text.md)
+            - [&lt;input&gt; Development](ui-js-components-input.md)
+            - [&lt;button&gt; Development](ui-js-components-button.md)
+            - [&lt;picker&gt; Development](ui-js-components-picker.md)
+            - [&lt;image&gt; Development](ui-js-components-images.md)
     - Animation Development Guidelines
         - CSS Animation
             - [Defining Attribute Style Animations](ui-js-animate-attribute-style.md)
