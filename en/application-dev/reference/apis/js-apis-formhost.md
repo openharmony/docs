@@ -51,17 +51,23 @@ deleteForm(formId: string): Promise&lt;void&gt;;
 
 Deletes a widget. This API uses a promise to return the result. After this API is called, the application can no longer use the widget, and the Widget Manager will not retain the widget information.
 
+**System capability**:
+
+SystemCapability.Ability.Form
+
 **Parameters**
 
   | Name| Type   | Mandatory| Description   |
   | ------ | ------ | ---- | ------- |
   | formId | string | Yes  | ID of a widget.|
 
-**System capability**:
+**Return value**
 
-SystemCapability.Ability.Form
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.|
 
-**Example**
+**Parameters**
 
   ```js
   var formId = "12400633174999288";
@@ -144,6 +150,11 @@ SystemCapability.Ability.Form
   | formId         | string  | Yes  | ID of a widget.    |
   | isReleaseCache | boolean | No  | Whether to release the cache.|
 
+**Return value**
+
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.|
 
 **Example**
 
@@ -188,15 +199,21 @@ requestForm(formId: string): Promise&lt;void&gt;;
 
 Requests a widget update. This API uses a promise to return the result.
 
+**System capability**
+
+SystemCapability.Ability.Form
+
 **Parameters**
 
   | Name| Type   | Mandatory| Description   |
   | ------ | ------ | ---- | ------- |
   | formId | string | Yes  | ID of a widget.|
 
-**System capability**:
+**Return value**
 
-SystemCapability.Ability.Form
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.|
 
 **Example**
 
@@ -239,7 +256,11 @@ SystemCapability.Ability.Form
 
 castTempForm(formId: string): Promise&lt;void&gt;;
 
-Converts a temporary widget to a normal one. This API uses a promise to return the result. 
+Converts a temporary widget to a normal one. This API uses a promise to return the result.
+
+**System capability**:
+
+SystemCapability.Ability.Form
 
 **Parameters**
 
@@ -247,9 +268,11 @@ Converts a temporary widget to a normal one. This API uses a promise to return t
   | ------ | ------ | ---- | ------- |
   | formId | string | Yes  | ID of a widget.|
 
-**System capability**:
+**Return value**
 
-SystemCapability.Ability.Form
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.|
 
 **Example**
 
@@ -294,15 +317,21 @@ notifyVisibleForms(formId: string): Promise&lt;void&gt;;
 
 Instructs the widget framework to make a widget visible. This API uses a promise to return the result. After this API is called, **onVisibilityChange** is invoked to notify the widget provider.
 
+**System capability**:
+
+SystemCapability.Ability.Form
+
 **Parameters**
 
   | Name| Type   | Mandatory| Description   |
   | ------ | ------ | ---- | ------- |
   | formId | string | Yes  | ID of a widget.|
 
-**System capability**:
+**Return value**
 
-SystemCapability.Ability.Form
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.|
 
 **Example**
 
@@ -347,15 +376,21 @@ notifyInvisibleForms(formId: string): Promise&lt;void&gt;;
 
 Instructs the widget framework to make a widget invisible. This API uses a promise to return the result. After this API is called, **onVisibilityChange** is invoked to notify the widget provider.
 
+**System capability**:
+
+SystemCapability.Ability.Form
+
 **Parameters**
 
   | Name| Type   | Mandatory| Description   |
   | ------ | ------ | ---- | ------- |
   | formId | string | Yes  | ID of a widget.|
 
-**System capability**:
+**Return value**
 
-SystemCapability.Ability.Form
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.|
 
 **Example**
 
@@ -400,15 +435,21 @@ enableFormsUpdate(formId: string): Promise&lt;void&gt;;
 
 Instructs the widget framework to make a widget to be updatable. This API uses a promise to return the result. After this API is called, the widget is in the enabled state and can receive updates from the widget provider.
 
+**System capability**:
+
+SystemCapability.Ability.Form
+
 **Parameters**
 
   | Name| Type   | Mandatory| Description   |
   | ------ | ------ | ---- | ------- |
   | formId | string | Yes  | ID of a widget.|
 
-**System capability**:
+**Return value**
 
-SystemCapability.Ability.Form
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.|
 
 **Example**
 
@@ -453,15 +494,21 @@ disableFormsUpdate(formId: string): Promise&lt;void&gt;;
 
 Instructs the widget framework to make a widget not to be updatable. This API uses a promise to return the result. After this API is called, the widget is in the disabled state and cannot receive updates from the widget provider.
 
+**System capability**:
+
+SystemCapability.Ability.Form
+
 **Parameters**
 
   | Name| Type   | Mandatory| Description   |
   | ------ | ------ | ---- | ------- |
   | formId | string | Yes  | ID of a widget.|
 
-**System capability**:
+**Return value**
 
-SystemCapability.Ability.Form
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.|
 
 **Example**
 
@@ -508,6 +555,12 @@ Checks whether the system is ready. This API uses a promise to return the result
 **System capability**:
 
 SystemCapability.Ability.Form
+
+**Return value**
+
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.|
 
 **Example**
 
@@ -686,7 +739,11 @@ SystemCapability.Ability.Form
 
 function deleteInvalidForms(formIds: Array&ltstring&gt): Promise&lt;number&gt;;
 
-Deletes invalid widgets from the list. This API uses a promise to return the result. 
+Deletes invalid widgets from the list. This API uses a promise to return the result.
+
+**System capability**:
+
+SystemCapability.Ability.Form
 
 **Parameters**
 
@@ -699,10 +756,6 @@ Deletes invalid widgets from the list. This API uses a promise to return the res
 | Type         | Description                               |
 | :------------ | :---------------------------------- |
 | Promise&lt;number&gt; | Promise used to return the number of widgets deleted.|
-
-**System capability**:
-
-SystemCapability.Ability.Form
 
 **Example**
 
@@ -747,7 +800,7 @@ SystemCapability.Ability.Form
 
 ## acquireFormState
 
-function acquireFormState(formIds: Array&ltstring&gt): Promise&lt;formInfo.FormStateInfo&gt;;
+function acquireFormState(want: Want): Promise&lt;FormStateInfo&gt;;
 
 Obtains the widget state. This API uses a promise to return the result.
 
@@ -784,7 +837,7 @@ SystemCapability.Ability.Form
 
 on(type: "formUninstall", callback: Callback&lt;string&gt;): void;
 
-Subscribes to the widget state changes. This API uses a callback to return the result.
+Subscribes to widget uninstall events.
 
 **System capability**:
 
@@ -811,7 +864,7 @@ SystemCapability.Ability.Form
 
 off(type: "formUninstall", callback: Callback&lt;string&gt;): void;
 
-Unsubscribes from the widget state changes. This API uses a callback to return the result.
+Unsubscribes from widget uninstall events.
 
 **System capability**:
 
@@ -880,6 +933,12 @@ SystemCapability.Ability.Form
   | formIds | Array&lt;string&gt; | Yes  | List of widget IDs.|
   | isVisible | boolean | Yes  | Whether to be visible.|
 
+**Return value**
+
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.|
+
 **Example**
 
   ```js
@@ -934,6 +993,12 @@ SystemCapability.Ability.Form
   | ------ | ------ | ---- | ------- |
   | formIds | Array&lt;string&gt; | Yes  | List of widget IDs.|
   | isEnableUpdate | boolean | Yes  | Whether to enable update.|
+
+**Return value**
+
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.|
 
 **Example**
 
