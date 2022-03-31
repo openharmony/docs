@@ -1,7 +1,7 @@
 # 日志打印
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 从API Version 7 开始，该接口不再维护，推荐使用新接口['@ohos.hilog](js-apis-hilog.md)'。
+> 从API Version 7 开始，该接口不再维护，推荐使用新接口[`@ohos.hilog`](js-apis-hilog.md)'。
 
 ## console.debug
 
