@@ -39,7 +39,7 @@ This document provides a Page ability instance with two pages. For more informat
 
 ## Tool Preparation
 
-1. Install the latest version of [DevEco Studio](https://developer.harmonyos.com/cn/develop/deveco-studio#download_beta).
+1. Install the latest version of [DevEco Studio](https://developer.harmonyos.com/cn/develop/deveco-studio#download_beta_openharmony).
 
 2. Install DevEco Studio and configure the development environment. For details, see [Configuring the OpenHarmony SDK](https://developer.harmonyos.com/en/docs/documentation/doc-guides/ohos-setting-up-environment-0000001263160443).
 
