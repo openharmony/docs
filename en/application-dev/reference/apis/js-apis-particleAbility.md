@@ -384,7 +384,7 @@ Connects this ability to a specific Service ability. This API uses a callback to
 
 | Name   | Type          | Mandatory| Description                        |
 | ------- | -------------- | ---- | ---------------------------- |
-| request | [Want](js-apis-featureAbility.md#want)  | Yes  | Service ability to connect.|
+| request | [Want](js-apis-featureAbility.md#want)           | Yes  | Service ability to connect.|
 | options | ConnectOptions | Yes  | Callback used to return the result.          |
 
 
