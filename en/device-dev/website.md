@@ -34,6 +34,7 @@
     - [Burning Images](quick-start/quickstart-standard-burn.md)
     - [Running an Image](quick-start/quickstart-standard-running.md)
     - [FAQs](quick-start/quickstart-standard-faqs.md)
+- [Obtaining Source Code](get-code/sourcecode-acquire.md)
 - Compatibility and Security
   - [Privacy Protection](security/security-privacy-protection.md)
   - [Security Guidelines](security/security-guidelines-overall.md)

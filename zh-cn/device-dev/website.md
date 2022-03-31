@@ -57,6 +57,8 @@
       - [Hi3516开发板介绍](quick-start/quickstart-standard-appendix-hi3516.md)
       - [RK3568开发板介绍](quick-start/quickstart-standard-appendix-rk3568.md)
 
+- [获取源码](get-code/sourcecode-acquire.md)
+
 - 兼容性与安全
 
   - [隐私保护](security/security-privacy-protection.md)
