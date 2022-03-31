@@ -43,7 +43,7 @@
 - **可能原因2**
   usr/bin目录下没有python软链接
 
-  ![zh-cn_image_0000001216297084](figures/zh-cn_image_0000001216297084.png)
+  ![zh-cn_image_0000001226922322](figures/zh-cn_image_0000001226922322.png)
 
 - **解决办法**
   请运行以下命令添加软链接：
@@ -58,13 +58,13 @@
 
   例：
 
-  ![zh-cn_image_0000001216617056](figures/zh-cn_image_0000001216617056.png)
+  ![zh-cn_image_0000001271562453](figures/zh-cn_image_0000001271562453.png)
 
 
 ## 编译构建过程中，提示找不到“python3”
 
 - **现象描述**
-  ![zh-cn_image_0000001216777016](figures/zh-cn_image_0000001216777016.png)
+  ![zh-cn_image_0000001226602414](figures/zh-cn_image_0000001226602414.png)
 
 - **可能原因**
   没有装python3。
@@ -152,7 +152,7 @@
 
   通过网页[https://pypi.org/project/pycrypto/#files](https://pypi.org/project/pycrypto/#files)，下载源码。
 
-  ![zh-cn_image_0000001261256889](figures/zh-cn_image_0000001261256889.png)
+  ![zh-cn_image_0000001227082334](figures/zh-cn_image_0000001227082334.png)
 
   将源码放置在Linux服务器中，解压，并安装“python3 setup.py install”。
 

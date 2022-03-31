@@ -4,7 +4,7 @@
 OpenHarmony支持hb和build.sh两种编译方式。此处介绍hb方式，build.sh脚本编译方式请参考[使用build.sh脚本编译源码](../quick-start/quickstart-standard-reference.md#使用buildsh脚本编译源码)。
 
 
-请进入源码根目录，执行如下命令进行编译：
+在Ubuntu环境下进入源码根目录，执行如下命令进行编译：
 
 
 1. 设置编译路径。
@@ -38,7 +38,7 @@ OpenHarmony支持hb和build.sh两种编译方式。此处介绍hb方式，build.
 
      
      **图1** RK3568编译设置图例
-     ![zh-cn_image_0000001216583294](figures/zh-cn_image_0000001216583294.png)
+     ![zh-cn_image_0000001226922302](figures/zh-cn_image_0000001226922302.png)
 
 5. 编译结束后，出现“rk3568 build success”字样，则证明构建成功。
    > ![icon-notice.gif](public_sys-resources/icon-notice.gif) **须知：**

@@ -1,158 +1,136 @@
 # 编写“Hello World”程序
 
 
-下方将展示如何在单板上运行第一个应用程序，其中包括新建应用程序、编译、烧写、运行等步骤，最终输出“Hello World！”。
+下方将通过修改源码的方式展示如何编写简单程序，输出“Hello world”。请在下载的源码目录中进行下述操作。
 
 
-## 示例目录
+1. 确定目录结构。
+   开发者编写业务时，务必先在./applications/sample/wifi-iot/app路径下新建一个目录（或一套目录结构），用于存放业务源码文件。
 
-示例完整目录如下：
+   例如：在app下新增业务my_first_app，其中hello_world.c为业务代码，BUILD.gn为编译脚本，具体规划目录结构如下：
 
-  
-```
-applications/sample/hello
-│── BUILD.gn
-│── include
-│   └── helloworld.h
-│── src
-│   └── helloworld.c
-├── bundle.json
-│
-│── test
-│   └── moduletest
-│   └── unittest
-│
-productdefine/common
-└── products
-    └── wifi-iot.json
-```
+     
+   ```
+   .
+   └── applications
+       └── sample
+           └── wifi-iot
+               └── app
+                   └── my_first_app
+                     │── hello_world.c
+                     └── BUILD.gn
+   ```
 
-
-## 开发步骤
-
-请在源码目录中通过以下步骤创建“Hello World”应用程序：
-
-
-1. 创建目录，编写业务代码。
-   新建applications/sample/hello/src/helloworld.c目录及文件，代码如下所示，用户可以自定义修改打印内容（例如：修改World为OH）。其中helloworld.h包含字符串打印函数HelloPrint的声明。当前应用程序可支持标准C及C++的代码开发。
-
+2. 编写业务代码。
+     新建./applications/sample/wifi-iot/app/my_first_app下的hello_world.c文件，在hello_world.c中新建业务入口函数HelloWorld，并实现业务逻辑。并在代码最下方，使用OpenHarmony启动恢复模块接口SYS_RUN()启动业务。（SYS_RUN定义在ohos_init.h文件中）
      
    ```
    #include <stdio.h>
-   #include "helloworld.h"
+   #include "ohos_init.h"
+   #include "ohos_types.h"
    
-   int main(int argc, char **argv)
+   void HelloWorld(void)
    {
-       HelloPrint();
-       return 0;
+       printf("[DEMO] Hello world.\n");
    }
-   
-   void HelloPrint()
-   {
-       printf("\n\n");
-       printf("\n\t\tHello World!\n");
-       printf("\n\n");
-   }
+   SYS_RUN(HelloWorld);
    ```
 
-   再添加头文件applications/sample/hello/include/helloworld.h，代码如下所示。
+3. 编写用于将业务构建成静态库的BUILD.gn文件。
+   新建./applications/sample/wifi-iot/app/my_first_app下的BUILD.gn文件，并完成如下配置。
+
+   如[ERROR:Invalid link:zh-cn_topic_0000001226954584.xml#xref7209204195912,link:#li5479332115116](#li5479332115116)所述，BUILD.gn文件由三部分内容（目标、源文件、头文件路径）构成，需由开发者完成填写。
 
      
    ```
-   #ifndef HELLOWORLD_H
-   #define HELLOWORLD_H
-   #ifdef __cplusplus
-   #if __cplusplus
-   extern "C" {
-   #endif
-   #endif
-   
-   void HelloPrint();
-   
-   #ifdef __cplusplus
-   #if __cplusplus
+   static_library("myapp") {
+       sources = [
+           "hello_world.c"
+       ]
+       include_dirs = [
+           "//utils/native/lite/include"
+       ]
    }
-   #endif
-   #endif
-   #endif // HELLOWORLD_H
    ```
 
-2. 新建编译组织文件。
-   1. 新建applications/sample/hello/BUILD.gn文件，内容如下所示：
-         
-       ```
-       import("//build/ohos.gni")  # 导入编译模板
-       ohos_executable("helloworld") { # 可执行模块
-         sources = [       # 模块源码
-           "src/helloworld.c"
-         ]
-         include_dirs = [  # 模块依赖头文件目录
-           "include" 
-         ]
-         cflags = []
-         cflags_c = []
-         cflags_cc = []
-         ldflags = []
-         configs = []
-         deps =[]    # 部件内部依赖
-       
-         part_name = "sample"    # 所属部件名称，必选
-         install_enable = true  # 是否默认安装（缺省默认不安装），可选
-       }
-       ```
-   2. 新建applications/sample/bundle.json文件，添加sample部件描述，内容如下所示。
-         
-       ```
+   - static_library中指定业务模块的编译结果，为静态库文件libmyapp.a，开发者根据实际情况完成填写。
+   - sources中指定静态库.a所依赖的.c文件及其路径，若路径中包含"//"则表示绝对路径（此处为代码根路径），若不包含"//"则表示相对路径。
+   - include_dirs中指定source所需要依赖的.h文件路径。
+
+4. 添加新组件。
+   修改文件**build/lite/components/applications.json**，添加组件hello_world_app的配置，如下所示为applications.json文件片段，"\#\#start\#\#"和"\#\#end\#\#"之间为新增配置（"\#\#start\#\#"和"\#\#end\#\#"仅用来标识位置，添加完配置后删除这两行）：
+
+     
+   ```
+   {
+     "components": [
        {
-           "name": "@ohos/hello",
-           "description": "Hello world example.",
-           "version": "3.1",
-           "license": "Apache License 2.0",
-           "publishAs": "code-segment",
-           "segment": {
-               "destPath": "applications/sample/hello"
-           },
-           "dirs": {},
-           "scripts": {},
-           "component": {
-               "name": "hello",
-               "subsystem": "applications",
-               "syscap": [],
-               "features": [],
-               "adapted_system_type": [
-                   "mini",
-                   "small",
-                   "standard"
-               ],
-               "rom": "10KB",
-               "ram": "10KB",
-               "deps": {
-                   "components": [],
-                   "third_party": []
-               },
-               "build": {
-                   "sub_component": [
-                       "//applications/sample/hello:helloworld"
-                   ],
-                   "inner_kits": [],
-                   "test": [
-                       "//applications/sample/hello/test:moduletest",
-                       "//applications/sample/hello/test:unittest"
-                   ]
-               }
-           }
-       }
-       ```
+         "component": "camera_sample_communication",
+         "description": "Communication related samples.",
+         "optional": "true",
+         "dirs": [
+           "applications/sample/camera/communication"
+         ],
+         "targets": [
+           "//applications/sample/camera/communication:sample"
+         ],
+         "rom": "",
+         "ram": "",
+         "output": [],
+         "adapted_kernel": [ "liteos_a" ],
+         "features": [],
+         "deps": {
+           "components": [],
+           "third_party": []
+         }
+       },
+   ##start##
+       {
+         "component": "hello_world_app",
+         "description": "hello world samples.",
+         "optional": "true",
+         "dirs": [
+           "applications/sample/wifi-iot/app/my_first_app"
+         ],
+         "targets": [
+           "//applications/sample/wifi-iot/app/my_first_app:myapp"
+         ],
+         "rom": "",
+         "ram": "",
+         "output": [],
+         "adapted_kernel": [ "liteos_m" ],
+         "features": [],
+         "deps": {
+           "components": [],
+           "third_party": []
+         }
+       },
+   ##end##
+       {
+         "component": "camera_sample_app",
+         "description": "Camera related samples.",
+         "optional": "true",
+         "dirs": [
+           "applications/sample/camera/launcher",
+           "applications/sample/camera/cameraApp",
+           "applications/sample/camera/setting",
+           "applications/sample/camera/gallery",
+           "applications/sample/camera/media"
+         ],
+   ```
 
-       bundle.json文件包含两个部分，第一部分说明该子系统的名称，component定义该子系统包含的部件，要添加一个部件，需要把该部件对应的内容添加进component中去。添加的时候需要指明该部件包含的模块sub_component，假如有提供给其它部件的接口，需要在inner_kits中说明，假如有测试用例，需要在test中说明，inner_kits与test没有也可以不添加。
-
-3. 修改产品配置文件。
-   在productdefine\common\products\wifi-iot.json中添加对应的hello部件，直接添加到原有部件后即可。
+5. 修改单板配置文件。
+   修改文件**vendor/hisilicon/hispark_pegasus/config.json**，新增hello_world_app组件的条目，如下所示代码片段为applications子系统配置，"\#\#start\#\#"和"\#\#end\#\#"之间为新增条目（"\#\#start\#\#"和"\#\#end\#\#"仅用来标识位置，添加完配置后删除这两行）：
 
      
    ```
-       "usb:usb_manager_native":{},
-       "applications:prebuilt_hap":{},
-       "applications:hello":{},
-       "wpa_supplicant-2.9:wpa_supplicant-2.9":{},
+         {
+           "subsystem": "applications",
+           "components": [
+   ##start##
+             { "component": "hello_world_app", "features":[] },
+   ##end##
+             { "component": "wifi_iot_sample_app", "features":[] }
+           ]
+         },
    ```

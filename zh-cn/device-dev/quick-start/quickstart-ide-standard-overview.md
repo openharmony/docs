@@ -7,22 +7,23 @@ OpenHarmony标准系统适用于参考内存≥128MiB的设备。通过本文，
 
 考虑到开发者的开发习惯，OpenHarmony为开发者提供了以下两种入门指导：
 
-- 完全采用IDE（Deveco Device Tool）进行一站式开发，编译依赖工具的安装及编译、烧录、运行都通过IDE进行操作。
+- IDE方式：完全采用IDE（Deveco Device Tool）进行一站式开发，编译依赖工具的安装及编译、烧录、运行都通过IDE进行操作。
 
-- 通过命令行进行编译依赖工具的下载安装，编译操作也通过命令实现。烧录、运行等操作使用IDE。
+- 安装包方式：通过命令行进行编译依赖工具的下载安装，编译操作也通过命令实现。烧录、运行等操作使用IDE。
+  OpenHarmony还为开发者提供了[Docker环境](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/get-code/gettools-acquire.md)，在很大程度上简化了编译前的环境配置，习惯使用安装包方式的开发者也可以选择Docker环境进行编译 。
 
-本文采用Deveco Device Tool进行一站式开发介绍，习惯使用命令行的开发者可参考[标准系统快速入门（命令行方式）](../quick-start/quickstart-standard-overview.md)。
+本文采用Deveco Device Tool进行一站式开发介绍，习惯使用命令行的开发者可参考[ERROR:Invalid link:zh-cn_topic_0000001226602226.xml#xref218584416405,link:zh-cn_topic_0000001260903187.xml](zh-cn_topic_0000001260903187.xml)。
 
 
 ## 开发环境
 
-因当前OpenHarmony不支持在Windows下进行编译，标准系统的开发有以下两种方法，开发者可根据使用习惯进行选择：
+开发者通常习惯采用Windows+Ubuntu环境进行OpenHarmony开发：
 
-- 用Linux环境进行开发、编译和烧录。
+- Windows：用于源码开发、烧录等。
 
-- 用Windows环境进行开发和烧录，使用Linux环境进行编译。
+- Ubuntu：用于源码编译。
 
-本文将介绍第一种方法，相关操作均在Linux环境下进行。使用第二种方式的开发者可参考[Deveco Device Tool使用指导](https://device.harmonyos.com/cn/docs/documentation/guide/service_introduction-0000001050166905)。
+本文将介绍如何基于Windows+Ubuntu环境进行OpenHarmony的开发。
 
 
 ## 开发板
@@ -35,4 +36,4 @@ OpenHarmony标准系统适用于参考内存≥128MiB的设备。通过本文，
 标准系统快速入门流程如下图所示：
 
   **图1** 标准系统快速入门开发流程
-  ![zh-cn_image_0000001262773229](figures/zh-cn_image_0000001262773229.png)
+  ![zh-cn_image_0000001271562257](figures/zh-cn_image_0000001271562257.png)

@@ -7,7 +7,7 @@
   点击烧写并选择串口后，出现Error: Opening COMxx: Access denied。
 
     **图1** 打开串口失败图
-    ![zh-cn_image_0000001261257243](figures/zh-cn_image_0000001261257243.png)
+    ![zh-cn_image_0000001271202461](figures/zh-cn_image_0000001271202461.png)
 
 - **可能原因**
   串口已经被占用。
@@ -16,15 +16,15 @@
 
 1. 按图依次选择下拉框，查找带有serial-xx的终端。
      **图2** 查找是否存在占用串口的终端
-     ![zh-cn_image_0000001261017289](figures/zh-cn_image_0000001261017289.png)
+     ![zh-cn_image_0000001271202473](figures/zh-cn_image_0000001271202473.png)
 
 2. 点击标号中的垃圾桶图标，关闭串口。
      **图3** 关闭串口终端
-     ![zh-cn_image_0000001261337297](figures/zh-cn_image_0000001261337297.png)
+     ![zh-cn_image_0000001271202469](figures/zh-cn_image_0000001271202469.png)
 
 3. 重新点击烧写，选择串口并开始烧写程序。
      **图4** 重新启动烧写任务
-     ![zh-cn_image_0000001216457428](figures/zh-cn_image_0000001216457428.png)
+     ![zh-cn_image_0000001271562449](figures/zh-cn_image_0000001271562449.png)
 
 
 ## Windows电脑与单板网络连接失败
@@ -33,7 +33,7 @@
   点击烧写并选择串口后，无法获取文件。
 
     **图5** 网络不通，单板无法获取文件图
-    ![zh-cn_image_0000001261137233](figures/zh-cn_image_0000001261137233.png)
+    ![zh-cn_image_0000001226922306](figures/zh-cn_image_0000001226922306.png)
 
 - **可能原因**
   单板网络与Windows电脑不联通。
@@ -46,19 +46,19 @@
 
 2. 点击Windows防火墙。
      **图6** 网络防火墙设置图
-     ![zh-cn_image_0000001216297444](figures/zh-cn_image_0000001216297444.png)
+     ![zh-cn_image_0000001227082322](figures/zh-cn_image_0000001227082322.png)
 
 3. 点击“允许应用通过防火墙”。
      **图7** 防火墙和网络保护界面图
-     ![zh-cn_image_0000001216617412](figures/zh-cn_image_0000001216617412.png)
+     ![zh-cn_image_0000001271202457](figures/zh-cn_image_0000001271202457.png)
 
 4. 查找Visual Studio Code应用。
      **图8** 查找Visual Studio Code应用图
-     ![zh-cn_image_0000001216777374](figures/zh-cn_image_0000001216777374.png)
+     ![zh-cn_image_0000001271562445](figures/zh-cn_image_0000001271562445.png)
 
 5. 勾选Visual Studio Code的专用和公用网络的访问权限。
      **图9** 允许Visual Studio Code应用访问网络
-     ![zh-cn_image_0000001261257245](figures/zh-cn_image_0000001261257245.png)
+     ![zh-cn_image_0000001271442273](figures/zh-cn_image_0000001271442273.png)
 
 
 ## 烧写失败

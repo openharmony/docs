@@ -8,11 +8,11 @@
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
    > 如果出现安装pip组件失败，可参考[修改Python源的方法](https://device.harmonyos.com/cn/docs/documentation/guide/ide-set-python-source-0000001227639986)进行修改，完成尝试重新安装。
 
-   ![zh-cn_image_0000001265652869](figures/zh-cn_image_0000001265652869.png)
+   ![zh-cn_image_0000001227277128](figures/zh-cn_image_0000001227277128.png)
 
    工具链自动安装完成后如下图所示。
 
-   ![zh-cn_image_0000001220852754](figures/zh-cn_image_0000001220852754.png)
+   ![zh-cn_image_0000001227757036](figures/zh-cn_image_0000001227757036.png)
 
 3. 在“hi3516dv300”配置页签中，设置源码的编译类型**build_type**，默认为“debug“类型，请根据需要进行修改。然后点击**Save**按钮进行保存。
    ![zh-cn_image_0000001221172710](figures/zh-cn_image_0000001221172710.png)

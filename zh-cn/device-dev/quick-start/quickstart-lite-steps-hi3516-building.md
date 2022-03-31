@@ -38,7 +38,7 @@ OpenHarmony支持hb和build.sh两种编译方式。此处介绍hb方式，build.
 
      
      **图1** Hi3516编译设置图例
-     ![zh-cn_image_0000001215744208](figures/zh-cn_image_0000001215744208.png)
+     ![zh-cn_image_0000001271594749](figures/zh-cn_image_0000001271594749.png)
 
 5. 编译结束后，出现“build success”字样，则证明构建成功。
    > ![icon-notice.gif](public_sys-resources/icon-notice.gif) **须知：**
@@ -46,4 +46,4 @@ OpenHarmony支持hb和build.sh两种编译方式。此处介绍hb方式，build.
    > 
    > - 编译结果文件及日志文件：out/hispark_taurus/ipcamera_hispark_taurus。
    > 
-   > - U-boot文件：device/hisilicon/hispark_taurus/sdk_liteos/uboot/out/boot/u-boot-hi3516dv300.bin。
+   > - U-boot文件：device/board/hisilicon/hispark_taurus/uboot/out/boot/u-boot-hi3516dv300.bin。

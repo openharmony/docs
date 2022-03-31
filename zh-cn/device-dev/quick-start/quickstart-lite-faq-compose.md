@@ -43,7 +43,7 @@
 - **可能原因2**
   usr/bin目录下没有python软链接
 
-  ![zh-cn_image_0000001216297084](figures/zh-cn_image_0000001216297084.png)
+  ![zh-cn_image_0000001271354745](figures/zh-cn_image_0000001271354745.png)
 
 - **解决办法**
   请运行以下命令添加软链接：
@@ -58,13 +58,13 @@
 
   例：
 
-  ![zh-cn_image_0000001216617056](figures/zh-cn_image_0000001216617056.png)
+  ![zh-cn_image_0000001227114636](figures/zh-cn_image_0000001227114636.png)
 
 
 ## 编译构建过程中，提示找不到“python3”
 
 - **现象描述**
-  ![zh-cn_image_0000001216777016](figures/zh-cn_image_0000001216777016.png)
+  ![zh-cn_image_0000001227114640](figures/zh-cn_image_0000001227114640.png)
 
 - **可能原因**
   没有装python3。
@@ -152,7 +152,7 @@
 
   通过网页[https://pypi.org/project/pycrypto/#files](https://pypi.org/project/pycrypto/#files)，下载源码。
 
-  ![zh-cn_image_0000001261256889](figures/zh-cn_image_0000001261256889.png)
+  ![zh-cn_image_0000001226794696](figures/zh-cn_image_0000001226794696.png)
 
   将源码放置在Linux服务器中，解压，并安装“python3 setup.py install”。
 
@@ -179,7 +179,7 @@
 
   通过网页[https://pypi.org/project/ecdsa/#files](https://pypi.org/project/ecdsa/#files)，下载安装包。
 
-  ![zh-cn_image_0000001261016931](figures/zh-cn_image_0000001261016931.png)
+  ![zh-cn_image_0000001271594753](figures/zh-cn_image_0000001271594753.png)
 
   将安装包放置Linux服务器中，并安装“pip3 install ecdsa-0.15-py2.py3-none-any.whl”。
 
@@ -206,7 +206,7 @@
 
   通过网页[https://pypi.org/project/six/#files](https://pypi.org/project/six/#files)，下载安装包。
 
-  ![zh-cn_image_0000001261336945](figures/zh-cn_image_0000001261336945.png)
+  ![zh-cn_image_0000001271474573](figures/zh-cn_image_0000001271474573.png)
 
   将源码放置在Linux服务器中，并安装“pip3 install six-1.14.0-py2.py3-none-any.whl”。
 

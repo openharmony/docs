@@ -3,16 +3,16 @@
 
 ## 启动系统
 
-烧录完成后通过以下步骤启动系统：
+烧录完成后在Windows下通过以下步骤启动系统：
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 初次烧写标准系统，需要完成以下配置，后续烧写或者启动，可以跳过以下操作。
 
 1. 在DevEco Device Tool中，点击Monitor，打开串口工具。
-   ![zh-cn_image_0000001216423310](figures/zh-cn_image_0000001216423310.png)
+   ![zh-cn_image_0000001226762374](figures/zh-cn_image_0000001226762374.png)
 
 2. 重启开发板，在倒计时结束前，按任意键进入系统。
-   ![zh-cn_image_0000001270808457](figures/zh-cn_image_0000001270808457.gif)
+   ![zh-cn_image_0000001271442265](figures/zh-cn_image_0000001271442265.gif)
 
 3. 通过以下两条命令设置启动参数。
      
@@ -25,7 +25,7 @@
    setenv bootcmd 'mmc read 0x0 0x82000000 0x800 0x4800; bootm 0x82000000'
    ```
 
-   ![zh-cn_image_0000001216263338](figures/zh-cn_image_0000001216263338.png)
+   ![zh-cn_image_0000001271322437](figures/zh-cn_image_0000001271322437.png)
 
 4. 保存参数设置。
      
@@ -33,7 +33,7 @@
    save
    ```
 
-   ![zh-cn_image_0000001261103121](figures/zh-cn_image_0000001261103121.png)
+   ![zh-cn_image_0000001271562437](figures/zh-cn_image_0000001271562437.png)
 
 5. 重启开发板，完成系统启动。
      
@@ -41,14 +41,14 @@
    reset
    ```
 
-   ![zh-cn_image_0000001216423308](figures/zh-cn_image_0000001216423308.png)
+   ![zh-cn_image_0000001226762378](figures/zh-cn_image_0000001226762378.png)
 
 
 ## 运行“Hello World”
 
 设备启动后打开串口工具，在任意目录下输入命令helloworld后回车，界面打印“Hello World！”，程序运行成功。
 
-![zh-cn_image_0000001263341577](figures/zh-cn_image_0000001263341577.png)
+![zh-cn_image_0000001226602398](figures/zh-cn_image_0000001226602398.png)
 
 
 ## 下一步
