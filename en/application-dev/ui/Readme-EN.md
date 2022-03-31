@@ -24,7 +24,7 @@
             - [Adding a Container](ui-js-building-ui-layout-external-container.md)
         - [Adding Interactions](ui-js-building-ui-interactions.md)
         - [Developing Animations](ui-js-building-ui-animation.md)
-        - [Defining Events](ui-js-building-ui-event.md)
+        - [Defining Gesture Events](ui-js-building-ui-event.md)
         - [Defining Page Routes](ui-js-building-ui-routes.md)
     - Common Component Development Guidelines
         - Container Components
@@ -108,7 +108,12 @@
             - [Component Creation and Re-initialization](ts-component-creation-re-initialization.md)
         - [About Syntactic Sugar](ts-syntactic-sugar.md)
     - Common Component Development Guidelines
-        - [&lt;web&gt; Development](ui-ts-components-web.md)
+        - [Button](ui-ts-basic-components-button.md)
+        - [Web](ui-ts-components-web.md)
+    - Common Layout Development Guidelines
+        - [Flex Layout](ui-ts-layout-flex.md)
+        - [Grid Layout](ui-ts-layout-grid-container.md)
+        - [Media Query](ui-ts-layout-mediaquery.md)
     - Experiencing the Declarative UI
         - [Creating a Declarative UI Project](ui-ts-creating-project.md)
         - [Getting to Know Components](ui-ts-components.md)
