@@ -2,6 +2,8 @@
 
 -   **[ADC](driver-platform-adc-des.md)**  
 
+-   **[DAC](driver-platform-dac-des.md)**  
+
 -   **[GPIO](driver-platform-gpio-des.md)**  
 
 -   **[HDMI](driver-platform-hdmi-des.md)**  
