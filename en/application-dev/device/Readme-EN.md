@@ -11,5 +11,5 @@
   - [Sensor Overview](sensor-overview.md)
   - [Sensor Development](sensor-guidelines.md)
 - Vibrator
-  - [vibrator-Overview.md](vibrator-overview.md)
+  - [Vibrator Overview](vibrator-overview.md)
   - [Vibrator Development](vibrator-guidelines.md)
