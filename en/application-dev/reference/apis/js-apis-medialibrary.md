@@ -968,7 +968,7 @@ close(fd: number, callback: AsyncCallback&lt;void&gt;): void
 
 Closes this file asset. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.READ_MEDIA ('r' enabled) and ohos.permission.WRITE_MEDIA ('w' enabled)
+**Required permissions**: ohos.permission.READ_MEDIA (when **mode** is set to **r**) and ohos.permission.WRITE_MEDIA (when **mode** is set to **w**)
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -1009,7 +1009,7 @@ close(fd: number): Promise&lt;void&gt;
 
 Closes this file asset. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.READ_MEDIA ('r' enabled) and ohos.permission.WRITE_MEDIA ('w' enabled)
+**Required permissions**: ohos.permission.READ_MEDIA (when **mode** is set to **r**) and ohos.permission.WRITE_MEDIA (when **mode** is set to **w**)
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -2128,7 +2128,7 @@ Enumerates media types.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
-| Name | Default Value | Description|
+| Name | Default Value| Description|
 | ----- | ------ | ---- |
 | FILE  | 1      | File.|
 | IMAGE | 3      | Image.|
@@ -2141,7 +2141,7 @@ Enumerates key file information.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
-| Name         | Default Value              | Description                                                      |
+| Name         | Default Value             | Description                                                      |
 | ------------- | ------------------- | ---------------------------------------------------------- |
 | ID            | file_id             | File ID.                                                  |
 | RELATIVE_PATH | relative_path       | Relative public directory of the file.                                          |
@@ -2169,7 +2169,7 @@ Enumerates directory types.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
-| Name         | Default Value | Description              |
+| Name         | Default Value| Description              |
 | ------------- | ------ | ------------------ |
 | DIR_CAMERA    | 0      | Directory of camera files.|
 | DIR_VIDEO     | 1      | Directory of video files.      |
@@ -2184,7 +2184,7 @@ Enumerates device types.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
-| Name        | Default Value | Description      |
+| Name        | Default Value| Description      |
 | ------------ | ------ | ---------- |
 | TYPE_UNKNOWN | 0      | Unknown.|
 | TYPE_LAPTOP  | 1      | Laptop.|
