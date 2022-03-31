@@ -12,7 +12,7 @@ Stage模型是基于API version 9的应用开发模型，对此模型的介绍�
 
 ### 启动模式
 ability支持单实例、多实例和指定实例3种启动模式。
-在config.json或module.json中通过launchType配置项，可以配置具体的启动模式，其中：
+在module.json中通过launchType配置项，可以配置具体的启动模式，其中：
 
 | 启动模式     | 描述     |说明             |
 | ----------- | -------  |---------------- |

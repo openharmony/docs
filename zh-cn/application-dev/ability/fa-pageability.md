@@ -35,7 +35,7 @@ PageAbility提供命周期回调，开发者可以在`app.js/app.ets`中重写�
 
 ### 启动模式
 ability支持单实例、多实例和指定实例3种启动模式。
-在config.json或module.json中通过launchType配置项，可以配置具体的启动模式，其中：
+在config.json中通过launchType配置项，可以配置具体的启动模式，其中：
 
 | 启动模式     | 描述     |说明             |
 | ----------- | -------  |---------------- |
