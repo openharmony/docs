@@ -1,11 +1,11 @@
-# Hi3516开发板<a name="ZH-CN_TOPIC_0000001188686298"></a>
-
--   **[创建应用程序](quickstart-standard-running-hi3516-create.md)**  
-
--   **[源码编译](quickstart-standard-running-hi3516-build.md)**  
-
--   **[镜像烧录](quickstart-standard-running-hi3516-burn.md)**  
-
--   **[镜像运行](quickstart-standard-running-hi3516-run.md)**  
+# Hi3516开发板
 
 
+
+- **[编写“Hello World”程序](quickstart-standard-running-hi3516-create.md)**
+
+- **[编译](quickstart-standard-running-hi3516-build.md)**
+
+- **[烧录](quickstart-standard-running-hi3516-burning.md)**
+
+- **[运行](quickstart-standard-running-hi3516-running.md)**
