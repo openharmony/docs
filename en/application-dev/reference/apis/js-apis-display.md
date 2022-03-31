@@ -67,7 +67,7 @@ Obtains the default display object.
   ```
   var displayClass = null;
   display.getDefaultDisplay((err, data) => {
-      if (err) {
+      if (err.code) {
           console.error('Failed to obtain the default display object. Code:  ' + JSON.stringify(err));
           return;
       }
@@ -119,7 +119,7 @@ Obtains all the display objects.
 
   ```
   display.getAllDisplay((err, data) => {
-      if (err) {
+      if (err.code) {
           console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
           return;
       }
