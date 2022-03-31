@@ -15,12 +15,15 @@
    ![zh-cn_image_0000001227757036](figures/zh-cn_image_0000001227757036.png)
 
 3. 在“hi3516dv300”配置页签中，设置源码的编译类型**build_type**，默认为“debug“类型，请根据需要进行修改。然后点击**Save**按钮进行保存。
+
    ![zh-cn_image_0000001221172710](figures/zh-cn_image_0000001221172710.png)
 
 4. 在“PROJECT TASKS”中，点击对应开发板下的**Build**按钮，执行编译。
+
    ![zh-cn_image_0000001265772913](figures/zh-cn_image_0000001265772913.png)
 
 5. 等待编译完成，在**TERMINAL**窗口输出“SUCCESS”，编译完成。
+
    ![zh-cn_image_0000001221012766](figures/zh-cn_image_0000001221012766.png)
 
    编译完成后，可以在工程的**out**目录下，查看编译生成的文件，用于后续的[Hi3516DV300开发板烧录](https://device.harmonyos.com/cn/docs/documentation/guide/ide-hi3516-upload-0000001052148681)。
