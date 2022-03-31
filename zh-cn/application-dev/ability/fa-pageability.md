@@ -33,6 +33,19 @@ PageAbility生命周期流转如下图所示：
 
 PageAbility提供命周期回调，开发者可以在`app.js/app.ets`中重写生命周期相关回调函数 。目前`app.js`环境中仅支持onCreate和onDestroy回调，`app.ets`环境支持全量生命周期回调。
 
+### 启动模式
+ability支持单实例、多实例和指定实例3种启动模式。
+在config.json或module.json中通过launchType配置项，可以配置具体的启动模式，其中：
+
+| 启动模式     | 描述     |说明             |
+| ----------- | -------  |---------------- |
+| stand       | 多实例   | 每次startAbility都会启动一个新的实例 |
+| singleton   | 单实例   | 系统中只存在唯一一个实例，startAbility时，如果已存在，则复用系统中的唯一一个实例 |
+| specified   | 指定实例 | 运行时由ability内部业务决定是否创建多实例 |
+
+缺省情况下是stand模式。
+
+
 ## 开发指导
 ### featureAbility接口说明
 
