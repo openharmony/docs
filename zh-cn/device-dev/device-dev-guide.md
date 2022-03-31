@@ -39,7 +39,7 @@ OpenHarmony也提供了一系列可选的系统组件，方便设备开发者按
 | -------- | -------- | -------- |
 | 了解OpenHarmony | 整体认知OpenHarmony | -&nbsp;[OpenHarmony概述](https://gitee.com/openharmony)<br/>-&nbsp;[术语](../glossary.md) |
 | 获取开发资源 | 准备开发前相关资源 | -&nbsp;[获取源码](get-code/sourcecode-acquire.md)<br/>-&nbsp;[获取工具](get-code/gettools-acquire.md) |
-| 快速入门 | 快速熟悉OpenHarmony环境搭建、编译、烧录、调测、运行。 | [轻量和小型系统快速入门](quick-start/quickstart-lite.md) |
+| 快速入门 | 快速熟悉OpenHarmony环境搭建、编译、烧录、调测、运行。 | [轻量和小型系统快速入门](quick-start/quickstart-lite-overview.md) |
 | 基础能力使用 | 使用OpenHarmony提供的基础能力 | -&nbsp;[轻量系统内核开发指南](kernel/kernel-mini-overview.md)<br/>-&nbsp;[小型系统内核开发指南](kernel/kernel-small-overview.md)<br/>-&nbsp;[驱动开发指南](driver/driver-hdf-overview.md)<br/>-&nbsp;[子系统开发指南](subsystems/subsys-build-mini-lite.md)<br/>-&nbsp;[安全指南](security/security-guidelines-overall.md)<br/>-&nbsp;[隐私保护](security/security-privacy-protection.md) |
 | 进阶开发 | 结合系统能力开发智能设备 | -&nbsp;[WLAN连接类产品](guide/device-wlan-led-control.md)<br/>-&nbsp;[无屏摄像头类产品](guide/device-iotcamera-control-overview.md)<br/>-&nbsp;[带屏摄像头类产品](guide/device-camera-control-overview.md) |
 | 移植适配 | -&nbsp;针对特定芯片做移植适配<br/>-&nbsp;对三方库进行移植适配 | -&nbsp;[轻量系统芯片移植指导](porting/oem_transplant_chip_prepare_knows.md)<br/>-&nbsp;[小型系统芯片移植指导](porting/porting-smallchip-prepare-needs.md)<br/>-&nbsp;[轻量和小型系统三方库移植指导](porting/porting-thirdparty-overview.md) |
