@@ -874,7 +874,7 @@ SystemCapability.Ability.Form
 
   | Name| Type   | Mandatory| Description   |
   | ------ | ------ | ---- | ------- |
-  | type | string | Yes  | Type of event to subscribe to. The value **formUninstall** indicates a widget uninstallation event.|
+  | type | string | Yes  | Type of event to unsubscribe from. The value **formUninstall** indicates a widget uninstallation event.|
   | callback | Callback&lt;string&gt; | Yes| Callback used to return the result.|
 
 **Example**
