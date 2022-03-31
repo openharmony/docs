@@ -32,16 +32,6 @@ OpenHarmony为开发者提供了两种Docker环境，以帮助开发者快速完
 </td>
 <td class="cellrowborder" valign="top" width="15.69156915691569%" headers="mcps1.2.6.1.5 "><p id="p143320173017"><a name="p143320173017"></a><a name="p143320173017"></a>1.0.0</p>
 </td>
-</tr>
-<tr id="row998612174129"><td class="cellrowborder" valign="top" headers="mcps1.2.6.1.1 "><p id="p1998617172126"><a name="p1998617172126"></a><a name="p1998617172126"></a>标准系统</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.6.1.2 "><p id="p1598641741215"><a name="p1598641741215"></a><a name="p1598641741215"></a>Ubuntu</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.6.1.3 "><p id="p552616549297"><a name="p552616549297"></a><a name="p552616549297"></a>swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.6.1.4 "><p id="p1633303300"><a name="p1633303300"></a><a name="p1633303300"></a>1.0.0</p>
-</td>
-</tr>
 <tr id="row5986201731214"><td class="cellrowborder" align="center" valign="top" width="15.831583158315832%" headers="mcps1.2.6.1.1 "><p id="p136981216143"><a name="p136981216143"></a><a name="p136981216143"></a>HPM Docker环境</p>
 </td>
 <td class="cellrowborder" valign="top" width="13.97139713971397%" headers="mcps1.2.6.1.2 "><p id="p969831161416"><a name="p969831161416"></a><a name="p969831161416"></a>轻量和小型系统</p>
