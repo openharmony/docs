@@ -20,9 +20,22 @@ Note: Video playback requires hardware capabilities such as display, audio, and 
 2. The third-party application transfers the surface ID to the VideoPlayer JS.
 3. The media service flushes the frame data to the surface buffer.
 
+## Compatibility
+
+You are advised to use the mainstream playback formats and resolutions, rather than custom or abnormal streams to avoid playback failure, frame freezing, and artifacts. The system is not affected by incompatibility issues. If such an error occurs, you can exit stream playback mode.
+
+The table below lists the mainstream playback formats and resolutions.
+
+| Video Container Specification|                     Specification Description                     |               Resolution              |
+| :----------: | :-----------------------------------------------: | :--------------------------------: |
+|     mp4      | Video format: H.264/MPEG-2/MPEG-4/H.263; audio format: AAC/MP3| Mainstream resolutions, such as 1080p, 720p, 480p, and 270p|
+|     mkv      | Video format: H.264/MPEG-2/MPEG-4/H.263; audio format: AAC/MP3| Mainstream resolutions, such as 1080p, 720p, 480p, and 270p|
+|      ts      |   Video format: H.264/MPEG-2/MPEG-4; audio format: AAC/MP3   | Mainstream resolutions, such as 1080p, 720p, 480p, and 270p|
+|     webm     |          Video format: VP8; audio format: VORBIS          | Mainstream resolutions, such as 1080p, 720p, 480p, and 270p|
+
 ## How to Develop
 
-For details about the APIs used for video playback, see [js-apis-media.md](../reference/apis/js-apis-media.md).
+For details about the APIs, see [VideoPlayer in the Media API](../reference/apis/js-apis-media.md).
 
 ### Full-Process Scenario
 
