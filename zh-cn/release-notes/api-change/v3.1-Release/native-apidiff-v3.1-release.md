@@ -204,6 +204,9 @@ OpenHarmony 3.1 Release相较于OpenHarmony 3.0 LTS版本的API变更如下:
   | Node-API | [Node-API](https://gitee.com/openharmony/docs/blob/2844f08105b08115f6f5694e9f7552e2f1fe3c12/zh-cn/application-dev/reference/native-lib/third_party_napi/napi.md) | 新增 | NAPI组件对Node-API的接口进行了重新实现，新增支持Node-API标准库中的部分接口 |
 | EGL | [EGL标准](https://github.com/KhronosGroup/EGL-Registry/tree/main/api/EGL/) | 新增 | 新增EGL接口 |
 | GLES3 | [GLES3标准](https://github.com/KhronosGroup/OpenGL-Registry/tree/main/api/GLES3/) | 新增 | 新增OpenGLES3.0接口 |
+| 标准C++库 | [libc++标准](https://libcxx.llvm.org/) | 新增 | 新增标准C++库接口 |
+| 标准C库 | [libc、libm、libdl](https://zh.cppreference.com/w/c/header)组合实现C11标准C库 | 新增 | 新增标准C库接口 |
+
 
 
 
