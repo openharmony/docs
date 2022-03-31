@@ -33,8 +33,9 @@ Text是文本组件，用于呈现一段文本信息。具体用法请参考[Tex
 
 - 添加文本样式
 
+  设置color、font-size、allow-scale、word-spacing、text-valign属性分别为文本添加颜色、大小、缩放、文本之间的间距和文本在垂直方向的对齐方式。 
 
-    设置color、font-size、allow-scale、word-spacing、text-valign属性分别为文本添加颜色、大小、缩放、文本之间的间距和文本在垂直方向的对齐方式。 
+
 
 ```
 <!-- xxx.hml -->
@@ -126,7 +127,7 @@ text{
  **说明：**
 
 -  text-overflow样式需要与max-lines样式配套使用，设置了最大行数的情况下生效。
-- max-lines属性设置文本最多可以展示的行数。
+-  max-lines属性设置文本最多可以展示的行数。
 
 
 ​    ![zh-cn_image_0000001163656706](figures/zh-cn_image_0000001163656706.png)
@@ -186,7 +187,7 @@ text{
 
 - Text组件支持[Span](../reference/arkui-js/js-components-basic-span.md)子组件
 
-  
+
     ```
     <!-- xxx.hml -->
     <div class="container" style="justify-content: center; align-items: center;flex-direction: column;background-color: #F1F3F5;  width: 100%;height: 100%;">
@@ -201,16 +202,16 @@ text{
       </text>
     </div>
     ```
-    
-    
+
+
     ![zh-cn_image_0000001163372568](figures/zh-cn_image_0000001163372568.png)
-    
-    
+
+
     > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
     > - 当使用Span子组件组成文本段落时，如果Span属性样式异常（例如：font-weight设置为1000），将导致文本段落显示异常。
-    > 
+    >
     > - 在使用Span子组件时，注意Text组件内不能存在文本内容，如果存在文本内容也只会显示子组件Span里的内容。
-    
+
 
 ## 场景示例
 
