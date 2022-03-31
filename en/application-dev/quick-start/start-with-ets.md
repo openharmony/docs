@@ -3,7 +3,7 @@
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **Note：**
 > To use eTS, your DevEco Studio must be V3.0.0.601 Beta1 or later.
 > 
-> For best possible results, use [DevEco Studio V3.0.0.900 Beta3](https://developer.harmonyos.com/cn/develop/deveco-studio#download_beta) for your development.
+> For best possible results, use [DevEco Studio V3.0.0.900 Beta3](https://developer.harmonyos.com/cn/develop/deveco-studio#download_beta_openharmony) for your development.
 
 
 ## Creating an eTS Project

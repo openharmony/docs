@@ -3,7 +3,7 @@
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **Note：**
 > This feature will be available in DevEco Studio V2.2 Beta1 and later versions.
 > 
-> For best possible results, use [DevEco Studio V3.0.0.900 Beta3](https://developer.harmonyos.com/cn/develop/deveco-studio#download_beta) for your development.
+> For best possible results, use [DevEco Studio V3.0.0.900 Beta3](https://developer.harmonyos.com/cn/develop/deveco-studio#download_beta_openharmony) for your development.
 
 
 On the OpenHarmony low-code development pages, you can design your app UI in an efficient, intuitive manner, with a wide array of UI editing features complying with [JS Development Specifications](../reference/apis).

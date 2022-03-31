@@ -880,9 +880,9 @@ Obtains the context of the application.
 
 **Return value**
 
-| Parameters           | Type     | Description                     |
-| --------------- | ------------------------- |------    |
-| Context |  Context |Application context.|
+| Type     | Description  |
+| --------- |------ |
+|  Context |Application context.|
 
 **Example**
 
@@ -908,7 +908,7 @@ var context = featureAbility.getContext().getApplicationContext();
 | ----------- | -------- | -------------- | ---- | ------------------ |
 | requestCode | Read-only    | number         | Yes  | Request code passed.|
 | permissions | Read-only    | Array\<string> | Yes  | Permissions requested.    |
-| authResults | Read-only    | Array\<number> | Yes  | Permission request result.     |
+| authResults | Read-only    | Array\<number> | Yes  | Permission request result.   |
 
 ## HapModuleInfo
 

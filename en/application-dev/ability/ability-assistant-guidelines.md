@@ -87,15 +87,15 @@ The ability assistant is pre-installed in the device environment. You can direct
   ```
   aa dump -a
   ```
-  ![aa-dump-a](figures/aa-dump-a.png)
+  ![aa-dump-a](figures/aa-dump-a.PNG)
   ```
   aa dump -l
   ```
-  ![aa-dump-l](figures/aa-dump-l.png)
+  ![aa-dump-l](figures/aa-dump-l.PNG)
   ```
   aa dump -i 12
   ```
-![aa-dump-i](figures/aa-dump-i.png)
+  ![aa-dump-i](figures/aa-dump-i.PNG)
 - **force-stop**
 
   Forcibly stops a process based on the bundle name.

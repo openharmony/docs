@@ -1,7 +1,7 @@
 # 设备信息
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> - 从API Version 6开始，该接口不再维护，推荐使用新接口['@ohos.deviceInfo'](js-apis-device-info.md)进行设备信息查询。
+> - 从API Version 6开始，该接口不再维护，推荐使用新接口[`@ohos.deviceInfo`](js-apis-device-info.md)进行设备信息查询。
 > 
 > - 本模块首批接口从API version 3开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
@@ -49,7 +49,7 @@ success返回值：
 | screenShape<sup>4+</sup> | string | 屏幕形状。可取值：<br/>-&nbsp;rect：方形屏；<br/>-&nbsp;circle：圆形屏。 |
 | apiVersion<sup>4+</sup> | number | 系统API版本号。 |
 | releaseType<sup>4+</sup> | string | 版本发布类型，值为类型+版本号，如Beta1。<br/>类型可能值有：<br/>-&nbsp;Canary：同一apiVersion下，canary版本之间保持API兼容，beta版本不对canary版本兼容。<br/>-&nbsp;Beta：同一apiVersion下，beta版本之间保持API兼容，release版本不对beta版本兼容。<br/>-&nbsp;Release：release版本会保持5个API版本兼容。 |
-| deviceType<sup>4+</sup> | string | 设备类型，可能值有：<br/>-&nbsp;phone：智能手机<br/>-&nbsp;tablet：平板<br/>-&nbsp;tv：智慧屏<br/>-&nbsp;wearable：智能穿戴<br/>-&nbsp;liteWearable：轻量级智能穿戴<br/>-&nbsp;ar：增强现实<br/>-&nbsp;vr：虚拟现实<br/>-&nbsp;earphones：耳机<br/>-&nbsp;pc：个人计算机<br/>-&nbsp;speaker：音箱<br/>-&nbsp;smartVision：智能视觉设备<br/>-&nbsp;linkIoT：联接类模组 |
+| deviceType<sup>4+</sup> | string | 设备类型。 |
 
 fail返回错误代码：
 

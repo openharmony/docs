@@ -314,7 +314,7 @@ isEmergencyPhoneNumber\(phoneNumber: string, options: EmergencyNumberOptions, ca
 | 参数名      | 类型                         | 必填 | 说明                                                         |
 | ----------- | ---------------------------- | ---- | ------------------------------------------------------------ |
 | phoneNumber | string                       | 是   | 电话号码。                                                   |
-| options     | EmergencyNumberOptions       | 是   | 手机参数，参考[EmergencyNumberOptions](#emergencynumberoptions7)。 |
+| options     | EmergencyNumberOptions       | 是   | 电话号码参数，参考[EmergencyNumberOptions](#emergencynumberoptions7)。 |
 | callback    | AsyncCallback&lt;boolean&gt; | 是   | 回调函数，返回判断是否是紧急电话号码的结果：<br/>- true：是紧急电话号码。<br/>- false：不是紧急电话号码。 |
 
 **示例：**
@@ -339,7 +339,7 @@ isEmergencyPhoneNumber\(phoneNumber: string, options?: EmergencyNumberOptions\):
 | 参数名      | 类型                   | 必填 | 说明                                                         |
 | ----------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | phoneNumber | string                 | 是   | 电话号码。                                                   |
-| options     | EmergencyNumberOptions | 是   | 手机参数，参考[EmergencyNumberOptions](#emergencynumberoptions7)。 |
+| options     | EmergencyNumberOptions | 是   | 电话号码参数，参考[EmergencyNumberOptions](#emergencynumberoptions7)。 |
 
 **返回值：**
 
@@ -449,7 +449,7 @@ formatPhoneNumberToE164\(phoneNumber: string, countryCode: string, callback: Asy
 
 将电话号码格式化为E.164表示形式，使用callback方式作为异步方法。
 
-需要格式化的电话号码需要与传入国家码相匹配，如中国手机号需要传入国家码CN，否则格式化后的手机号为null。
+需要格式化的电话号码需要与传入国家码相匹配，如中国电话号码需要传入国家码CN，否则格式化后的电话号码为null。
 
 支持所有国家码。
 
@@ -480,7 +480,7 @@ formatPhoneNumberToE164\(phoneNumber: string, countryCode: string\): Promise<str
 
 将电话号码格式化为E.164表示形式，使用promise方式作为异步方法。
 
-需要格式化的手机号码需要与传入国家码相匹配，如中国手机号需要传入国家码CN，否则格式化后的手机号为null。
+需要格式化的电话号码需要与传入国家码相匹配，如中国电话号码需要传入国家码CN，否则格式化后的电话号码为null。
 
 支持所有国家码。
 

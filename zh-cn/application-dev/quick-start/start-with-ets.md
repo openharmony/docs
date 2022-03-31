@@ -4,7 +4,7 @@
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 请使用**DevEco Studio V3.0.0.601 Beta1**及更高版本。
 > 
-> 为确保运行效果，本文以使用**DevEco Studio V3.0.0.900 Beta3**版本为例，点击[此处](https://developer.harmonyos.com/cn/develop/deveco-studio#download_beta)获取下载链接。
+> 为确保运行效果，本文以使用**DevEco Studio V3.0.0.900 Beta3**版本为例，点击[此处](https://developer.harmonyos.com/cn/develop/deveco-studio#download_beta_openharmony)获取下载链接。
 
 
 ## 创建eTS工程

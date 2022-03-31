@@ -325,3 +325,11 @@ You can use HML, CSS, and JSON to develop the UI page for a JavaScript-programme
 Now you've got a widget shown below.
 
 ![fa-form-example](figures/fa-form-example.png)
+
+## Development Example
+
+The following sample is provided to help you better understand how to develop a widget on the FA model:
+
+[eTSFormAbility](https://gitee.com/openharmony/app_samples/tree/master/ability/eTSFormAbility)
+
+This **eTSFormAbility** sample provides a widget. Users can create, update, and delete widgets on the home screen of their phones or by using their own widget host. This sample also implements widget information persistence by using lightweight data storage.
