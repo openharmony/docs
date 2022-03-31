@@ -156,7 +156,7 @@ OpenHarmony当前为开发者提供了以下4种获取源码的方式，开发�
 
 为了获得更好的下载性能，您可以选择从以下站点的镜像库获取源码或者对应的解决方案。
 
-本部分只提供OpenHarmony Master最新版本和LTS最新版本的获取源码方式， 其他版本获取源码方式以及具体版本信息请参考[Release-Notes](../../release-notes/Readme.md)。
+本部分只提供OpenHarmony LTS最新版本和最新发布版本的源码获取方式， 其他版本获取源码方式以及具体版本信息请参考[Release-Notes](../../release-notes/Readme.md)。
 
 **表 1**  获取源码路径
 
@@ -234,7 +234,7 @@ OpenHarmony当前为开发者提供了以下4种获取源码的方式，开发�
 <td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.4 "><p id="p039662242117"><a name="p039662242117"></a><a name="p039662242117"></a>-</p>
 </td>
 </tr>
-<tr id="row573719239393"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.1 "><p id="p104146493390"><a name="p104146493390"></a><a name="p104146493390"></a><strong id="b12414104919398"><a name="b12414104919398"></a><a name="b12414104919398"></a>Master版本源码</strong></p>
+<tr id="row573719239393"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.1 "><p id="p104146493390"><a name="p104146493390"></a><a name="p104146493390"></a><strong id="b12414104919398"><a name="b12414104919398"></a><a name="b12414104919398"></a>最新发布版本源码</strong></p>
 </td>
 <td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.2 "><p id="p194141849163919"><a name="p194141849163919"></a><a name="p194141849163919"></a><strong id="b441494913918"><a name="b441494913918"></a><a name="b441494913918"></a>版本信息</strong></p>
 </td>
