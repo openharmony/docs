@@ -8,7 +8,7 @@ In this section, we will develop an infographic food details page, by building c
 
 1. Create a food name.
      Delete the code of the build method in the project template, create a &lt;Stack&gt; component, and place the &lt;Text&gt; component in the braces of the &lt;Stack&gt; component so that the &lt;Text&gt; component becomes a child component of the &lt;Stack&gt; component. A &lt;Stack&gt; component consists of one or more child components. The latter child component overwrites the former one.
-     
+
    ```
    @Entry
    @Component
@@ -26,8 +26,8 @@ In this section, we will develop an infographic food details page, by building c
    ![en-us_image_0000001222967780](figures/en-us_image_0000001222967780.png)
 
 2. Display food pictures.
-     Create an &lt;Image&gt; component and specify a URL for it. The &lt;Image&gt; and &lt;Text&gt; components are mandatory. To display the &lt;Text&gt; component above the &lt;Image&gt; component, you need to declare the &lt;Image&gt; component first. Image resources are stored in the rawfile folder in resources. When referencing the resources in the rawfile folder, use the  \```"$rawfile('filename')"```  format, where filename indicates the relative path of the file in the rawfile folder. Currently, $rawfile only allows the &lt;Image&gt; component to reference image resources.
-     
+     Create an &lt;Image&gt; component and specify a URL for it. The &lt;Image&gt; and &lt;Text&gt; components are mandatory. To display the &lt;Text&gt; component above the &lt;Image&gt; component, you need to declare the &lt;Image&gt; component first. Image resources are stored in the rawfile folder in resources. When referencing the resources in the rawfile folder, use the `"$rawfile('filename')"`  format, where filename indicates the relative path of the file in the rawfile folder. Currently, `$rawfile` only allows the &lt;Image&gt; component to reference image resources.
+
    ```
    @Entry
    @Component
@@ -54,9 +54,9 @@ In this section, we will develop an infographic food details page, by building c
 
    ![en-us_image_0000001222807784](figures/en-us_image_0000001222807784.png)
 
-   You can then can reference the application resource in the  \``` "$r('app.type.name') "\```  format, that is, $r('app.media.Tomato').
+   You can then can reference the application resource in the ` "$r('app.type.name')"`  format, that is, `$r('app.media.Tomato')`.
 
-   
+
    ```
    @Entry
    @Component
@@ -74,14 +74,10 @@ In this section, we will develop an infographic food details page, by building c
    }
    ```
 
-4. Set the width and height of the image, and set the objectFit attribute of the image to ImageFit.Contain, which means to keep the aspect ratio of the image to ensure that the image is completely displayed within the boundary.
-     If the image fills the entire screen, the possible causes are as follows:
-   
-   1. The width and height of the image are not set.
-   
-2. The default attribute of objectFit of the image is ImageFit.Cover, that is, the image is zoomed in or zoomed out to fill the entire display boundary with the aspect ratio locked.
-   
-   
+4. Set the width and height of the image, and set the objectFit attribute of the image to ImageFit.Contain, which means to keep the aspect ratio of the image to ensure that the image is completely displayed within the boundary.If the image fills the entire screen, the possible causes are as follows:
+     1. The width and height of the image are not set.
+     2. The default attribute of objectFit of the image is ImageFit.Cover, that is, the image is zoomed in or zoomed out to fill the entire display boundary with the aspect ratio locked.
+
    ```
    @Entry
    @Component
@@ -97,13 +93,13 @@ In this section, we will develop an infographic food details page, by building c
        }
      }
    }
-```
-   
+   ```
+
 ![en-us_image_0000001223127732](figures/en-us_image_0000001223127732.png)
-     
+​     
 5. Set the food image and name layout. Set the alignment mode of the stack to bottom alignment. By default, the stack is center aligned. Set alignContent to Alignment.BottomStart. Similar to FontWeight, Alignment is a built-in enumeration type provided by the framework.
-  
-   ```
+
+```
    @Entry
    @Component
    struct MyComponent {
@@ -118,7 +114,7 @@ In this section, we will develop an infographic food details page, by building c
        }
      }
    }
-   ```
+```
 
    ![en-us_image_0000001267647873](figures/en-us_image_0000001267647873.png)
 
@@ -126,7 +122,7 @@ In this section, we will develop an infographic food details page, by building c
    1. By using the built-in enumeration value of Color provided by the framework. For example, backgroundColor(Color.Red) indicates that the background color is set to red.
    2. By using the parameter of the string type. The supported color formats are rgb, rgba, and HEX. For example, you can set the background color to blue by setting backgroundColor(??\#0000FF??) and set the background color to white by setting backgroundColor(??rgb(255, 255, 255)??).
 
-   
+
    ```
    @Entry
    @Component
@@ -151,7 +147,7 @@ In this section, we will develop an infographic food details page, by building c
    1. When the parameter is set to Length, the outer margins of the four edges are specified. For example, margin(20) indicates that the outer margins of the top, right, bottom, and left edges are all 20.
    2. {top?: Length, right?: Length, bottom?: Length, left?:Length} specifies the margins of the four edges. For example, margin({ left: 26, bottom: 17.4 }) indicates that the left margin is 26 and the bottom margin is 17.4.
 
-   
+
    ```
    @Entry
    @Component
@@ -176,7 +172,7 @@ In this section, we will develop an infographic food details page, by building c
 8. Adjust the structure between components and semanticize component names. Create the FoodDetail page entry component, create a column in FoodDetail, and set the alignment to alignItems(HorizontalAlign.Center). Change the name of the MyComponent component to FoodImageDisplay, which is a child component of the FoodDetail component.
    A column is a container component whose child components are vertically arranged. It is a linear layout in essence. Therefore, only the alignment in the cross axis direction can be set.
 
-   
+
    ```
    @Component
    struct FoodImageDisplay {
@@ -193,7 +189,7 @@ In this section, we will develop an infographic food details page, by building c
        .backgroundColor('#FFedf2f5')
      }
    }
-   
+
    @Entry
    @Component
    struct FoodDetail {
@@ -212,7 +208,7 @@ In this section, we will develop an infographic food details page, by building c
 You can use the Flex layout to build a food composition table. In this way you do not need to worry about the width and height calculation. The size of different cells can be flexibly set based on the proportion.
 
 1. Create a ContentTable component as a child component of the FoodDetail component.
-  
+
    ```
    @Component
    struct FoodImageDisplay {
@@ -229,12 +225,12 @@ You can use the Flex layout to build a food composition table. In this way you d
        .backgroundColor('#FFedf2f5')
      }
    }
-   
+
    @Component
    struct ContentTable {
      build() {}
    }
-   
+
    @Entry
    @Component
    struct FoodDetail {
@@ -255,7 +251,7 @@ You can use the Flex layout to build a food composition table. In this way you d
 
    In the following example, code of FoodImageDisplay is omitted, and only code of ContentTable is provided.
 
-   
+
    ```
    @Component
    struct ContentTable {
@@ -273,7 +269,7 @@ You can use the Flex layout to build a food composition table. In this way you d
        .padding({ top: 30, right: 30, left: 30 })
      }
    }
-   
+
    @Entry
    @Component
    struct FoodDetail {
@@ -290,7 +286,7 @@ You can use the Flex layout to build a food composition table. In this way you d
    ![en-us_image_0000001267767869](figures/en-us_image_0000001267767869.png)
 
 3. Adjust the layout and set the proportion (layoutWeight) of each part. Set the proportion of the category name to 1, and the total proportion of content name and content value to 2. The content name and content value are in a same Flex, and the content name occupies all remaining space flexGrow(1).
-  
+
    ```
    @Component
    struct FoodImageDisplay {
@@ -307,7 +303,7 @@ You can use the Flex layout to build a food composition table. In this way you d
        .backgroundColor('#FFedf2f5')
      }
    }
-   
+
    @Component
    struct ContentTable {
      build() {
@@ -329,7 +325,7 @@ You can use the Flex layout to build a food composition table. In this way you d
        .padding({ top: 30, right: 30, left: 30 })
      }
    }
-   
+
    @Entry
    @Component
    struct FoodDetail {
@@ -348,7 +344,7 @@ You can use the Flex layout to build a food composition table. In this way you d
 4. Create the Nutrient class in a similar process. Nutrition consists of four parts: Protein, Fat, Carbohydrates, and VitaminC. The names of the last three parts are omitted in the table and represented by spaces.
    Set FlexDirection.Column, FlexAlign.SpaceBetween, and ItemAlign.Start.
 
-   
+
    ```
    @Component
    struct ContentTable {
@@ -429,7 +425,7 @@ You can use the Flex layout to build a food composition table. In this way you d
        .padding({ top: 30, right: 30, left: 30 })
      }
    }
-   
+
    @Entry
    @Component
    struct FoodDetail {
@@ -450,7 +446,7 @@ You can use the Flex layout to build a food composition table. In this way you d
 
    Declare the IngredientItem method decorated by @Builder in ContentTable to declare the UI descriptions for the category name, content name, and content value.
 
-   
+
    ```
    @Component
    struct ContentTable {
@@ -478,7 +474,7 @@ You can use the Flex layout to build a food composition table. In this way you d
 
    When the IngredientItem API is called in the build method of ContentTable, this needs to be used to invoke the method in the scope of the component to distinguish the global method call.
 
-   
+
    ```
    @Component
    struct ContentTable {
@@ -499,7 +495,7 @@ You can use the Flex layout to build a food composition table. In this way you d
 
    The overall code of the ContentTable component is as follows:
 
-   
+
    ```
    @Component
    struct ContentTable {
@@ -519,7 +515,7 @@ You can use the Flex layout to build a food composition table. In this way you d
          .layoutWeight(2)
        }
      }
-   
+       
      build() {
        Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Start }) {
          this.IngredientItem('Calories', 'Calories', '17kcal')
@@ -532,7 +528,7 @@ You can use the Flex layout to build a food composition table. In this way you d
        .padding({ top: 30, right: 30, left: 30 })
      }
    }
-   
+
    @Entry
    @Component
    struct FoodDetail {
@@ -557,3 +553,7 @@ The following sample is provided to help you better understand how to use build 
 - [eTSBuildCommonView](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/eTSBuildCommonView)
 
   This sample shows how to build a common view to display the picture of tomatoes and nutrition information, with the stack layout and flex layout.
+
+   ```
+
+   ```
