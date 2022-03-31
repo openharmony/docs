@@ -22,7 +22,7 @@ OpenHarmony为开发者提供了两种Docker环境，以帮助开发者快速完
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1798661751216"><td class="cellrowborder" rowspan="2" align="center" valign="top" width="15.831583158315832%" headers="mcps1.2.6.1.1 "><p id="p1898631791213"><a name="p1898631791213"></a><a name="p1898631791213"></a>独立 Docker环境</p>
+<tbody><tr id="row1798661751216"><td class="cellrowborder" valign="top" width="15.831583158315832%" headers="mcps1.2.6.1.1 "><p id="p1898631791213"><a name="p1898631791213"></a><a name="p1898631791213"></a>独立 Docker环境</p>
 </td>
 <td class="cellrowborder" valign="top" width="13.97139713971397%" headers="mcps1.2.6.1.2 "><p id="p1598617177128"><a name="p1598617177128"></a><a name="p1598617177128"></a>轻量和小型系统</p>
 </td>
