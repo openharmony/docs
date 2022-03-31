@@ -82,7 +82,7 @@ By default, **stand** is used.
       authReadUriPermission: true,
       // Grant the permission to perform write operations on the URI.
       authWriteUriPermission: true,
-      // support forwarding the Want result to the ability.
+      // Support forwarding the Want result to the ability.
       abilityForwardResult: true,
       // Enable abiligy continuation.
       abilityContinuation: true,
