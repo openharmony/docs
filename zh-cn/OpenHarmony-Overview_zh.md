@@ -308,7 +308,7 @@ OpenHarmony支持如下几种系统类型：
 </tr>
 <tr id="row1733413367244"><td class="cellrowborder" valign="top" width="11.148885111488852%" headers="mcps1.1.4.1.1 "><p id="p1238318490244"><a name="p1238318490244"></a><a name="p1238318490244"></a>XTS</p>
 </td>
-<td class="cellrowborder" valign="top" width="80.49195080491951%" headers="mcps1.1.4.1.2 "><p id="p2334113611248"><a name="p2334113611248"></a><a name="p2334113611248"></a>XTS是OpenHarmony生态认证测试套件的集合，当前包括acts（application compatibility test suite）应用兼容性测试套，后续会拓展dcts（device compatibility test suite）设备兼容性测试套等。</p>
+<td class="cellrowborder" valign="top" width="80.49195080491951%" headers="mcps1.1.4.1.2 "><p id="p2334113611248"><a name="p2334113611248"></a><a name="p2334113611248"></a>XTS是OpenHarmony兼容性测试套件的集合，当前包括acts（application compatibility test suite）应用兼容性测试套，后续会拓展dcts（device compatibility test suite）设备兼容性测试套等。</p>
 </td>
 <td class="cellrowborder" valign="top" width="8.35916408359164%" headers="mcps1.1.4.1.3 "><p id="p03341936102418"><a name="p03341936102418"></a><a name="p03341936102418"></a>所有系统</p>
 </td>
