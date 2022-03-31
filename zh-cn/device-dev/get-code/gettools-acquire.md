@@ -75,8 +75,7 @@ hb set
 > - Hi3861：wifiiot_hispark_pegasus\@hisilicon
 > 
 > - Hi3516：ipcamera_hispark_taurus\@hisilicon
-> 
-> - Hi3518：ipcamera_hispark_aries\@hisilicon
+
 
 1. 选择ipcamera_hispark_taurus\@hisilicon并回车。
 
@@ -94,13 +93,13 @@ hb set
 1. 获取Docker镜像。
      
    ```
-   docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:1.0.0
+   docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker:1.0.0
    ```
 
 2. 进入源码根目录执行如下命令，从而进入Docker构建环境。
      
    ```
-   docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:1.0.0
+   docker run -it -v $(pwd):/home/openharmony swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker:1.0.0
    ```
 
 ### 编译源码（标准系统）
