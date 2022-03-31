@@ -16,12 +16,14 @@
    > 该操作仅在远程模式（Windows+Ubuntu混合开发环境）中需要设置，如果采用本地模式（Windows开发环境或Ubuntu开发环境），则请跳过该步骤。
 
 3. 在DevEco Device Tool中，点击QUICK ACCESS &gt; DevEco Home &gt; Device，查看并记录对应的串口号。
+
    ![zh-cn_image_0000001216516128](figures/zh-cn_image_0000001216516128.png)
 
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
    > 如果对应的串口异常，请根据[Hi3516DV300/Hi3518EV300开发板串口驱动安装指导](https://device.harmonyos.com/cn/docs/documentation/guide/hi3516_hi3518-drivers-0000001050743695)安装USB转串口的驱动程序。
 
 4. 在QUICK ACCESS &gt; DevEco Home &gt; Projects中，点击**Settings**打开工程配置界面。
+
    ![zh-cn_image_0000001198566364](figures/zh-cn_image_0000001198566364.png)
 
 5. 在“hi3516dv300”页签，设置烧录选项，包括upload_partitions、upload_port和upload_protocol。
@@ -50,6 +52,7 @@
    ![zh-cn_image_0000001267231481](figures/zh-cn_image_0000001267231481.png)
 
 9. 在终端窗口显示如下提示信息时，按住复位键，插拔USB线，最后松开复位键启动烧录。
+
    ![zh-cn_image_0000001114129426](figures/zh-cn_image_0000001114129426.png)
 
    启动烧录后，界面提示如下信息时，表示烧录成功。
