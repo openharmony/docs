@@ -22,16 +22,16 @@
 
 ## Available APIs
 
-  | Module | API | Description | 
+| Module| API| Description|
 | -------- | -------- | -------- |
-| ohos.sensor | sensor.on(sensorType,callback:AsyncCallback&lt;Response&gt;):void | Subscribes to data changes of a type of sensor. | 
-| ohos.sensor | sensor.once(sensorType,callback:AsyncCallback&lt;Response&gt;):void | Subscribes to only one data change of a type of sensor. | 
-| ohos.sensor | sensor.off(sensorType,callback:AsyncCallback&lt;void&gt;):void | Unsubscribes from sensor data changes. | 
+| ohos.sensor | sensor.on(sensorType, callback:AsyncCallback&lt;Response&gt;): void | Subscribes to data changes of a type of sensor.|
+| ohos.sensor | sensor.once(sensorType, callback:AsyncCallback&lt;Response&gt;): void | Subscribes to only one data change of a type of sensor.|
+| ohos.sensor | sensor.off(sensorType, callback:AsyncCallback&lt;void&gt;): void | Unsubscribes from sensor data changes.|
 
 
 ## How to Develop
 
-1. To obtain data from a type of sensor, configure the request permissions in the **config.json** file.
+1. To obtain data from a type of sensor, configure the request permissions in the **config.json** file.  
   
    ```
    "reqPermissions":[
@@ -67,67 +67,47 @@
          "when":"inuse"
        }
      },
-     {
-        "name":"ohos.permission.VIBRATE",
-        "reason"":"", 
-        "usedScene":{
-         "ability": [".MainAbility"],
-         "when":"inuse"
-       }
-     },
    ]
    ```
-
+   
 2. Subscribe to data changes of a type of sensor.
   
    ```
    import sensor from "@ohos.sensor"
-   sensor.on(type:sensorType,function(error,data){
-       if (error) {// The call fails, and error.code and error.message are printed.
-           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
-           return;
-       };
+   sensor.on(sensor.sensorType.SENSOR_TYPE_ACCELEROMETER,function(data){
           console.info("Subscription succeeded. data = "+ data);// The call is successful, and the obtained sensor data is printed.
      }
    );
    ```
-
+   
    The following figure shows the successful call result when **SensorType** is **SENSOR_TYPE_ID_ACCELEROMETER**.
-
+   
    ![en-us_image_0000001241693881](figures/en-us_image_0000001241693881.png)
 
 3. Unsubscribe from sensor data changes.
   
    ```
    import sensor from "@ohos.sensor"
-   sensor.off(type:sensorType,function(error) {
-       if (error) {// The unsubscription fails, and error.code and error.message are printed.
-           console.error("Failed to unsubscribe from acceleration sensor data. Error code: " + error.code + "; message: " + error.message);
-           return;
-       };
+   sensor.off(sensor.sensorType.SENSOR_TYPE_ACCELEROMETER,function() {
        console.info("Succeeded in unsubscribing from acceleration sensor data.");// The unsubscription is successful, and the result is printed.
      }
    );
    ```
-
+   
    The following figure shows the successful call result when **SensorType** is **SENSOR_TYPE_ID_ACCELEROMETER**.
-
+   
    ![en-us_image_0000001196654004](figures/en-us_image_0000001196654004.png)
 
 4. Subscribe to only one data change of a type of sensor.
   
    ```
    import sensor from "@ohos.sensor"
-   sensor.once(tyep:sensorType,function(error, data) {
-       if (error) {// The call fails, and error.code and error.message are printed.
-           console.error("Failed to obtain data. Error code: " + error.code + "; message: " + error.message);
-           return;
-       };
-           console.info("Data obtained successfully. data="+data);// The call is successful, and the obtained sensor data is printed.
+   sensor.once(sensor.sensorType.SENSOR_TYPE_ACCELEROMETER,function(data) {
+           console.info("Data obtained successfully. data=" + data);// The call is successful, and the obtained sensor data is printed.
      }
    );
    ```
-
+   
    The following figure shows the successful call result when **SensorType** is **SENSOR_TYPE_ID_ACCELEROMETER**.
-
+   
    ![en-us_image_0000001241733907](figures/en-us_image_0000001241733907.png)

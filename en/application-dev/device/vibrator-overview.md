@@ -6,10 +6,11 @@ The vibrator service opens up the latest capabilities of the vibrator hardware t
 
 ## Working Principles
 
-The vibrator is a Misc device that consists of four modules: Vibrator API, Vibrator Framework, Vibrator Service, and HD_IDL.
+The vibrator is a Misc device that consists of four modules: Vibrator API, Vibrator Framework, Vibrator Service, and HDF layer.
 
-  **Figure1** Vibrator in Misc devices
-  ![en-us_image_0000001180249428](figures/en-us_image_0000001180249428.png)
+  **Figure 1** Vibrator in Misc devices
+
+![0752d302-aeb9-481a-bb8f-e5524eb61eeb](figures/0752d302-aeb9-481a-bb8f-e5524eb61eeb.png)
 
 - Vibrator API: provides basic vibrator APIs, including the APIs for querying the vibrator list, querying the vibrator by effect, and triggering and stopping vibration.
 
@@ -17,9 +18,9 @@ The vibrator is a Misc device that consists of four modules: Vibrator API, Vibra
 
 - Vibrator Service: manages services of vibrators.
 
-- HD_IDL: adapts to different devices.
+- HDF layer: adapts to different devices.
 
 
 ## Constraints
 
-When using a vibrator, you need to declare and obtain the **ohos.permission.VIBRATE** permission first so that you can control the vibration effect.
+When using a vibrator, you must declare the **ohos.permission.VIBRATE** permission before you can control the vibration effect. The sensitivity level of this permission is **system_grant**.
