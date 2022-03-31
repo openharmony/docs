@@ -4,7 +4,7 @@
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 该特性在**DevEco Studio V2.2 Beta1**及更高版本中支持。
 > 
-> 为确保运行效果，本文以使用**DevEco Studio V3.0.0.900 Beta3**版本为例，点击[此处](https://developer.harmonyos.com/cn/develop/deveco-studio#download_beta)获取下载链接。
+> 为确保运行效果，本文以使用**DevEco Studio V3.0.0.900 Beta3**版本为例，点击[此处](https://developer.harmonyos.com/cn/develop/deveco-studio#download_beta_openharmony)获取下载链接。
 
 
 OpenHarmony低代码开发方式具有丰富的UI界面编辑功能，遵循[JS开发规范](../reference/apis)，通过可视化界面开发方式快速构建布局，可有效降低用户的上手成本并提升用户构建UI界面的效率。
