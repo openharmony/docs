@@ -4,13 +4,13 @@
 
 在应用开发的文档中，您可以获取到如下几方面的内容：
 
-### 入门
+### 快速开始
 
-[入门部分](quick-start/start-overview.md)可以帮助开发者了解应用开发的基本方法。
+[快速开始](quick-start/start-overview.md)可以帮助开发者了解应用开发的基本方法。
 
-这一部分包含了IDE工具DevEco Studio的基本使用方法，以及快速构建首个应用的快速入门。
+这一部分包含了快速构建首个应用的快速入门，以及开发OpenHarmony应用所必备的基础知识。
 
-此外，还在此部分详述了OpenHarmony应用程序的包结构，以及资源文件的使用指导。
+开发的基础知识包含了OpenHarmony应用程序的包结构配置文件说明，以及资源文件的使用指导。
 
 ### 开发
 
@@ -18,7 +18,7 @@
 
 首先，提供了支撑OpenHarmony应用的两个重要框架：
 
-- 应用程序的框架：[Ability开发](ability/fa-brief.md)
+- 应用程序的框架：[Ability开发](ability/ability-brief.md)
 - UI的框架：[UI开发](ui/arkui-overview.md)
 
 所有应用都应该在这两个框架的基础之上进行功能的开发。

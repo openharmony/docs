@@ -192,9 +192,6 @@ _[JS API 差异报告](api-change/v3.1-Release/js-apidiff-v3.1-release.md)_
 _[Native API差异报告](api-change/v3.1-Release/native-apidiff-v3.1-release.md)_
 
 
-_[Changelog](api-change/v3.1-Release/changelog-v3.1-release.md)_
-
-
 ### 芯片及开发板适配
 
 芯片及开发板适配状态请参考[SIG-Devboard](https://gitee.com/openharmony/community/blob/master/sig/sig-devboard/sig_devboard_cn.md)信息。
