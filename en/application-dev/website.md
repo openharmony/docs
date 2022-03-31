@@ -149,9 +149,9 @@
       - Audio
         - [Audio Overview](media/audio-overview.md)
         - [Audio Playback Development](media/audio-playback.md)
-        - [Audio Playback Development Using AudioRenderer](media/audio-renderer.md)
+        - [Audio Rendering Development](media/audio-renderer.md)
         - [Audio Recording Development](media/audio-recorder.md)
-        - [Audio Recorder Development Using AudioCapturer](media/audio-capturer)
+        - [Audio Capture Development](media/audio-capturer)
       - Video
         - [Video Playback Development](media/video-playback.md)
         - [Video Recording Development](media/video-recorder.md)
