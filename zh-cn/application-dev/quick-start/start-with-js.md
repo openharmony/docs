@@ -38,7 +38,7 @@
 ## 构建第一个页面
 
 1. **使用文本组件。**
-   工程同步完成后，在“**Project**”窗口，点击“**entry &gt; src &gt;main &gt; js &gt; MainAbility &gt; pages&gt; index**”，打开“**index.hml**”文件，设置Text组件内容。“**index.hml**”文件的示例如下：
+   工程同步完成后，在“**Project**”窗口，点击“**entry &gt; src &gt; main &gt; js &gt; MainAbility &gt; pages&gt; index**”，打开“**index.hml**”文件，设置Text组件内容。“**index.hml**”文件的示例如下：
 
    
    ```
