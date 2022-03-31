@@ -1,5 +1,5 @@
 # 快速入门 
-- 轻量和小型系统快速入门
+- 轻量和小型系统入门
     - [轻量与小型系统入门概述](quickstart-ide-lite-overview.md)
     - 准备轻量与小型系统环境
         - [搭建系统环境](quickstart-ide-lite-env-system.md)
