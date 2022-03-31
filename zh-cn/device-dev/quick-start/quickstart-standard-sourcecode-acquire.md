@@ -15,7 +15,7 @@
 4.  安装码云repo工具，可以执行如下命令。
 
     ```
-    curl -s https://gitee.com/oschina/repo/raw/fork_flow/repo-py3 > /usr/local/bin/repo  #如果没有权限，可下载至其他目录，并将其配置到环境变量中
+    curl https://gitee.com/oschina/repo/raw/fork_flow/repo-py3 -o /usr/local/bin/repo  #如果没有权限，可下载至其他目录，并将其配置到环境变量中
     chmod a+x /usr/local/bin/repo
     pip3 install -i https://repo.huaweicloud.com/repository/pypi/simple requests
     ```
