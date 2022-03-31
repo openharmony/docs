@@ -396,7 +396,7 @@ The DAC module adaptation procedure is as follows:
         
           Return value
         
-          –
+          This function returns no value.
         
           Function description:
         
