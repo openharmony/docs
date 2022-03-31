@@ -8,7 +8,7 @@ An application can obtain the default display object or all display objects by c
 
 For details about the APIs, see [Display](../reference/apis/js-apis-display.md).
 
-### How to Develop
+## How to Develop
 
 Call **getDefaultDisplay(): Promise<Display>** to obtain the default display object. An example code snippet is as follows:
 
