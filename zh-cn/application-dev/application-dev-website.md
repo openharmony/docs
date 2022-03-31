@@ -552,23 +552,23 @@
       - [@ohos.application.uriPermissionManager (uriPermissionManager)](reference/apis/js-apis-uripermissionmanager.md)
       - [@ohos.application.Want (Want)](reference/apis/js-apis-application-Want.md)
       - [@ohos.wantAgent (WantAgent模块)](reference/apis/js-apis-wantAgent.md)
-      - ability/[dataAbilityHelper (DataAbilityHelper模块)](reference/apis/js-apis-dataAbilityHelper.md)
-      - app/[context (Context模块)](reference/apis/js-apis-Context.md)
-      - application/[AbilityContext (AbilityContext)](reference/apis/js-apis-ability-context.md)
-      - application/[abilityDelegator (AbilityDelegator)](reference/apis/js-apis-application-abilityDelegator.md)
-      - application/[abilityDelegatorArgs (AbilityDelegatorArgs)](reference/apis/js-apis-application-abilityDelegatorArgs.md)
-      - application/[abilityMonitor (AbilityMonitor)](reference/apis/js-apis-application-abilityMonitor.md)
-      - application/[AbilityRunningInfo (AbilityRunningInfo)](reference/apis/js-apis-abilityrunninginfo.md)
-      - application/[AbilityStageContext (AbilityStageContext)](reference/apis/js-apis-abilitystagecontext.md)
-      - application/[Context (Context)](reference/apis/js-apis-application-context.md)
-      - application/[ExtensionContext (ExtensionContext)](reference/apis/js-apis-extension-context.md)
-      - application/[ExtensionRunningInfo (ExtensionRunningInfo)](reference/apis/js-apis-extensionrunninginfo.md)
-      - application/[FormExtensionContext (FormExtensionContext)](reference/apis/js-apis-formextensioncontext.md)
-      - application/[MissionSnapshot (MissionSnapshot)](reference/apis/js-apis-application-MissionSnapshot.md)
-      - application/[PermissionRequestResult (PermissionRequestResult)](reference/apis/js-apis-permissionrequestresult.md)
-      - application/[ProcessRunningInfo (ProcessRunningInfo)](reference/apis/js-apis-processrunninginfo.md)
-      - application/[ServiceExtensionContext (ServiceExtensionContext)](reference/apis/js-apis-service-extension-context.md) 
-      - application/[shellCmdResult (ShellCmdResult)](reference/apis/js-apis-application-shellCmdResult.md)
+      - [dataAbilityHelper (DataAbilityHelper模块)](reference/apis/js-apis-dataAbilityHelper.md)
+      - [context (Context模块)](reference/apis/js-apis-Context.md)
+      - [AbilityContext (AbilityContext)](reference/apis/js-apis-ability-context.md)
+      - [abilityDelegator (AbilityDelegator)](reference/apis/js-apis-application-abilityDelegator.md)
+      - [abilityDelegatorArgs (AbilityDelegatorArgs)](reference/apis/js-apis-application-abilityDelegatorArgs.md)
+      - [abilityMonitor (AbilityMonitor)](reference/apis/js-apis-application-abilityMonitor.md)
+      - [AbilityRunningInfo (AbilityRunningInfo)](reference/apis/js-apis-abilityrunninginfo.md)
+      - [AbilityStageContext (AbilityStageContext)](reference/apis/js-apis-abilitystagecontext.md)
+      - [Context (Context)](reference/apis/js-apis-application-context.md)
+      - [ExtensionContext (ExtensionContext)](reference/apis/js-apis-extension-context.md)
+      - [ExtensionRunningInfo (ExtensionRunningInfo)](reference/apis/js-apis-extensionrunninginfo.md)
+      - [FormExtensionContext (FormExtensionContext)](reference/apis/js-apis-formextensioncontext.md)
+      - [MissionSnapshot (MissionSnapshot)](reference/apis/js-apis-application-MissionSnapshot.md)
+      - [PermissionRequestResult (PermissionRequestResult)](reference/apis/js-apis-permissionrequestresult.md)
+      - [ProcessRunningInfo (ProcessRunningInfo)](reference/apis/js-apis-processrunninginfo.md)
+      - [ServiceExtensionContext (ServiceExtensionContext)](reference/apis/js-apis-service-extension-context.md) 
+      - [shellCmdResult (ShellCmdResult)](reference/apis/js-apis-application-shellCmdResult.md)
   
     - 公共事件与通知
   
@@ -576,7 +576,7 @@
       - [@ohos.events.emitter (Emitter)](reference/apis/js-apis-emitter.md)
       - [@ohos.notification (Notification模块)](reference/apis/js-apis-notification.md)
       - [@ohos.reminderAgent (后台代理提醒)](reference/apis/js-apis-reminderAgent.md)
-      - application/[EventHub (EventHub)](reference/apis/js-apis-eventhub.md)
+      - [EventHub (EventHub)](reference/apis/js-apis-eventhub.md)
   
     - 应用程序包管理
   
@@ -638,7 +638,7 @@
       - [@ohos.data.preferences (轻量级存储)](reference/apis/js-apis-data-preferences.md)
       - [@ohos.data.rdb (关系型数据库)](reference/apis/js-apis-data-rdb.md)
       - [@ohos.settings (设置数据项名称)](reference/apis/js-apis-settings.md)
-      - data/rdb/[resultSet (结果集)](reference/apis/js-apis-data-resultset.md)
+      - [resultSet (结果集)](reference/apis/js-apis-data-resultset.md)
   
     - 文件管理
   
@@ -755,7 +755,7 @@
       - [@system.bluetooth (蓝牙)](reference/apis/js-apis-system-bluetooth.md)
       - [@system.brightness (屏幕亮度)](reference/apis/js-apis-system-brightness.md)
       - [@system.configuration (应用配置)](reference/apis/js-apis-system-configuration.md)
-      - [@system.device (设备信息)](reference/apis/js-apis-system-deviceinfo.md)
+      - [@system.device (设备信息)](reference/apis/js-apis-system-device.md)
       - [@system.fetch (数据请求)](reference/apis/js-apis-system-fetch.md)
       - [@system.file (文件存储)](reference/apis/js-apis-system-file.md)
       - [@system.geolocation (地理位置)](reference/apis/js-apis-system-location.md)

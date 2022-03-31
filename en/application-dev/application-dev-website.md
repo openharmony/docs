@@ -496,23 +496,23 @@
       - [@ohos.application.uriPermissionManager](reference/apis/js-apis-uripermissionmanager.md)
       - [@ohos.application.Want](reference/apis/js-apis-application-Want.md)
       - [@ohos.wantAgent](reference/apis/js-apis-wantAgent.md)
-      - ability/[dataAbilityHelper](reference/apis/js-apis-dataAbilityHelper.md)
-      - app/[context](reference/apis/js-apis-Context.md)
-      - application/[AbilityContext](reference/apis/js-apis-ability-context.md)
-      - application/[abilityDelegator](reference/apis/js-apis-application-abilityDelegator.md)
-      - application/[abilityDelegatorArgs](reference/apis/js-apis-application-abilityDelegatorArgs.md)
-      - application/[abilityMonitor](reference/apis/js-apis-application-abilityMonitor.md)
-      - application/[AbilityRunningInfo](reference/apis/js-apis-abilityrunninginfo.md)
-      - application/[AbilityStageContext](reference/apis/js-apis-abilitystagecontext.md)
-      - application/[Context](reference/apis/js-apis-application-context.md)
-      - application/[ExtensionContext](reference/apis/js-apis-extension-context.md)
-      - application/[ExtensionRunningInfo](reference/apis/js-apis-extensionrunninginfo.md)
-      - application/[FormExtensionContext](reference/apis/js-apis-formextensioncontext.md)
-      - application/[MissionSnapshot](reference/apis/js-apis-application-MissionSnapshot.md)
-      - application/[PermissionRequestResult](reference/apis/js-apis-permissionrequestresult.md)
-      - application/[ProcessRunningInfo](reference/apis/js-apis-processrunninginfo.md)
-      - application/[ServiceExtensionContext](reference/apis/js-apis-service-extension-context.md) 
-      - application/[shellCmdResult](reference/apis/js-apis-application-shellCmdResult.md)
+      - [dataAbilityHelper](reference/apis/js-apis-dataAbilityHelper.md)
+      - [context](reference/apis/js-apis-Context.md)
+      - [AbilityContext](reference/apis/js-apis-ability-context.md)
+      - [abilityDelegator](reference/apis/js-apis-application-abilityDelegator.md)
+      - [abilityDelegatorArgs](reference/apis/js-apis-application-abilityDelegatorArgs.md)
+      - [abilityMonitor](reference/apis/js-apis-application-abilityMonitor.md)
+      - [AbilityRunningInfo](reference/apis/js-apis-abilityrunninginfo.md)
+      - [AbilityStageContext](reference/apis/js-apis-abilitystagecontext.md)
+      - [Context](reference/apis/js-apis-application-context.md)
+      - [ExtensionContext](reference/apis/js-apis-extension-context.md)
+      - [ExtensionRunningInfo](reference/apis/js-apis-extensionrunninginfo.md)
+      - [FormExtensionContext](reference/apis/js-apis-formextensioncontext.md)
+      - [MissionSnapshot](reference/apis/js-apis-application-MissionSnapshot.md)
+      - [PermissionRequestResult](reference/apis/js-apis-permissionrequestresult.md)
+      - [ProcessRunningInfo](reference/apis/js-apis-processrunninginfo.md)
+      - [ServiceExtensionContext](reference/apis/js-apis-service-extension-context.md) 
+      - [shellCmdResult](reference/apis/js-apis-application-shellCmdResult.md)
     
     - Common Event and Notification
     
@@ -520,7 +520,7 @@
       - [@ohos.events.emitter](reference/apis/js-apis-emitter.md)
       - [@ohos.notification](reference/apis/js-apis-notification.md)
       - [@ohos.reminderAgent](reference/apis/js-apis-reminderAgent.md)
-      - application/[EventHub](reference/apis/js-apis-eventhub.md)
+      - [EventHub](reference/apis/js-apis-eventhub.md)
     
     - Bundle Management
     
@@ -578,7 +578,7 @@
       - [@ohos.data.preferences](reference/apis/js-apis-data-preferences.md)
       - [@ohos.data.rdb](reference/apis/js-apis-data-rdb.md)
       - [@ohos.settings](reference/apis/js-apis-settings.md)
-      - data/rdb/[resultSet](reference/apis/js-apis-data-resultset.md)
+      - [resultSet](reference/apis/js-apis-data-resultset.md)
     
     - File Management
     
