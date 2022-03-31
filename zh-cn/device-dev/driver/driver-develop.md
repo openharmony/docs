@@ -1,31 +1,25 @@
-# 平台驱动开发<a name="ZH-CN_TOPIC_0000001160769576"></a>
+# 平台驱动开发
 
--   **[ADC](driver-platform-adc-develop.md)**  
 
--   **[DAC](driver-platform-dac-develop.md)**  
 
--   **[GPIO](driver-platform-gpio-develop.md)**  
+- **[ADC](driver-platform-adc-develop.md)**
 
--   **[HDMI](driver-platform-hdmi-develop.md)**  
+- **[GPIO](driver-platform-gpio-develop.md)**
 
--   **[I2C](driver-platform-i2c-develop.md)**  
+- **[I2C](driver-platform-i2c-develop.md)**
 
--   **[I3C](driver-platform-i3c-develop.md)**  
+- **[MIPI DSI](driver-platform-mipidsi-develop.md)**
 
--   **[MIPI-CSI](driver-platform-mipicsi-develop.md)**  
+- **[MMC](driver-platform-mmc-develop.md)**
 
--   **[MIPI-DSI](driver-platform-mipidsi-develop.md)**  
+- **[PWM](driver-platform-pwm-develop.md)**
 
--   **[MMC](driver-platform-mmc-develop.md)**  
+- **[RTC](driver-platform-rtc-develop.md)**
 
--   **[PWM](driver-platform-pwm-develop.md)**  
+- **[SDIO](driver-platform-sdio-develop.md)**
 
--   **[RTC](driver-platform-rtc-develop.md)**  
+- **[SPI](driver-platform-spi-develop.md)**
 
--   **[SDIO](driver-platform-sdio-develop.md)**  
+- **[UART](driver-platform-uart-develop.md)**
 
--   **[SPI](driver-platform-spi-develop.md)**  
-
--   **[UART](driver-platform-uart-develop.md)**  
-
--   **[WatchDog](driver-platform-watchdog-develop.md)**  
+- **[WatchDog](driver-platform-watchdog-develop.md)**

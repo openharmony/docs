@@ -1,84 +1,70 @@
-# TOUCHSCREEN<a name="ZH-CN_TOPIC_0000001052857350"></a>
-
--   [概述](#section175431838101617)
--   [接口说明](#section105459441659)
--   [开发步骤](#section65745222184)
--   [开发实例](#section263714411191)
-    -   [设备描述配置](#section18249155619195)
-    -   [板级配置及器件私有配置](#section3571192072014)
-    -   [添加器件驱动](#section6356758162015)
+# Touchscreen
 
 
-## 概述<a name="section175431838101617"></a>
+## 概述
 
--   **Touchscreen驱动主要任务**
+- **Touchscreen驱动主要任务**
+  Touchscreen驱动用于驱动触摸屏使其正常工作，该驱动主要完成如下工作：对触摸屏驱动IC进行上电、配置硬件管脚并初始化其状态、注册中断、配置通信接口（I2C或SPI）、设定Input相关配置、下载及更新固件等操作。
 
-    Touchscreen驱动用于驱动触摸屏使其正常工作，该驱动主要完成如下工作：对触摸屏驱动IC进行上电、配置硬件管脚并初始化其状态、注册中断、配置通信接口（I2C或SPI）、设定Input相关配置、下载及更新固件等操作。
+- **Touchscreen驱动模型说明**
+  本节主要介绍基于Input驱动模型开发Touchscreen器件驱动，Input模型整体的框架如下图所示。
 
+  Input驱动模型基于HDF驱动框架、Platform接口、OSAL接口进行开发，向上对接规范化的驱动接口HDI（Hardware Driver Interface）层，通过Input-HDI层对外提供硬件能力，即上层Input Service可以通过HDI接口层获取相应的驱动能力，进而操控Touchscreen等输入设备。
 
--   **Touchscreen驱动层次说明**
+  **图1** 基于HDF驱动框架的Input驱动模型
 
-    本节主要介绍基于Input驱动模型开发touchscreen器件驱动，Input模型整体的框架如[图1](#fig6251184817261)。
+  ![zh-cn_image_0000001123742904](figures/zh-cn_image_0000001123742904.png)
 
-    Input驱动模型基于HDF驱动框架、Platform接口、OSAL接口进行开发，向上对接规范化的驱动接口HDI（Hardware Driver Interface）层，通过Input-HDI层对外提供硬件能力，即上层Input service可以通过HDI接口层获取相应的驱动能力，进而操控touchscreen等输入设备。
+- **Input驱动模型介绍**
 
+  Input驱动模型核心部分由设备管理层、公共驱动层、器件驱动层组成。器件产生的数据借助平台数据通道能力从内核传递到用户态，驱动模型通过配置文件适配不同器件及硬件平台，提高开发者的器件驱动开发效率。如下部分为模型各部分的说明：
 
-**图 1**  基于HDF驱动框架的Input驱动模型<a name="fig6251184817261"></a>  
-![](figures/基于HDF驱动框架的input驱动模型.png "基于HDF驱动框架的input驱动模型")
+  - Input设备管理：为各类输入设备驱动提供Input设备的注册、注销接口，同时统一管理Input设备列表。
+  - Input平台驱动：指各类Input设备的公共抽象驱动（例如触摸屏的公共驱动），负责对板级硬件进行初始化、硬件中断处理、向manager注册Input设备等。
+  - Input器件驱动：指各器件厂家的差异化驱动，通过适配平台驱动预留的差异化接口，实现器件驱动开发量最小化。
+  - Input数据通道：提供一套通用的数据上报通道，各类别的Input设备驱动均可用此通道上报Input事件。
+  - Input配置解析：负责对Input设备的板级配置及器件私有配置进行解析及管理。
 
--   **Input驱动模型介绍**
+- **基于HDF驱动框架开发器件驱动的优势**
 
-    Input驱动模型核心部分由设备管理层、公共驱动层、器件驱动层组成。器件产生的数据借助平台数据通道能力从内核传递到用户态，驱动模型通过配置文件适配不同器件及硬件平台，提高开发者的器件驱动开发效率。如下部分为模型各部分的说明：
-
-    - Input设备管理：为各类输入设备驱动提供Input设备的注册、注销接口，同时统一管理Input设备列表。
-
-    - Input平台驱动：指各类Input设备的公共抽象驱动（例如触摸屏的公共驱动），负责对板级硬件进行初始化、硬件中断处理、向manager注册Input设备等。
-
-    - Input器件驱动：指各器件厂家的差异化驱动，通过适配平台驱动预留的差异化接口，实现器件驱动开发量最小化。
-
-    - Input数据通道：提供一套通用的数据上报通道，各类别的Input设备驱动均可用此通道上报Input事件。
-
-    - Input配置解析：负责对Input设备的板级配置及器件私有配置进行解析及管理。
+  在HDF（Hardware Driver Foundation）[驱动管理框架](../driver/driver-hdf-development.md)的基础上，Input驱动模型调用OSAL接口层和Platform接口层提供的基础接口进行开发，包括bus通信接口、操作系统原生接口（memory、lock、thread、timer等）。由于OSAL接口和Platform接口屏蔽了芯片平台差异，所以基于Input驱动模型实现的Touchscreen驱动可以进行跨平台、跨OS迁移，以便逐步实现驱动的一次开发，多端部署。
 
 
--   **基于HDF驱动框架开发器件驱动的优势**
-
-    在HDF（Hardware Driver Foundation）[驱动管理框架](driver-hdf-development.md)的基础上，Input驱动模型调用OSAL接口层和Platfom接口层提供的基础接口进行开发，包括bus通信接口、操作系统原生接口（memory、lock、thread、timer等）。由于OSAL接口和Platform接口屏蔽了芯片平台差异，所以基于Input驱动模型实现的touchscreen驱动可以进行跨平台、跨OS迁移，以便逐步实现驱动的一次开发，多端部署。
-
-
-## 接口说明<a name="section105459441659"></a>
+## 接口说明
 
 Touchscreen器件的硬件接口相对简单，根据PIN脚的属性，可以简单分为如下三类:
 
--   电源接口
--   IO控制接口
--   通信接口
+- 电源接口
 
-**图 2**  Touchscreen器件常用管脚<a name="fig1290384314416"></a>  
-![](figures/Touchscreen器件常用管脚.png "Touchscreen器件常用管脚")
+- IO控制接口
+
+- 通信接口
+
+  **图2** Touchscreen器件常用管脚
+
+  ![zh-cn_image_0000001192846991](figures/zh-cn_image_0000001192846991.png)
 
 如上图所示的三类接口，分别做简要说明如下：
 
-1.  **电源接口**
-    -   LDO\_1P8：1.8V数字电路
-    -   LDO\_3P3：3.3V模拟电路
+1. **电源接口**
+   - LDO_1P8：1.8V数字电路
+   - LDO_3P3：3.3V模拟电路
+      通常情况下，Touchscreenreen驱动IC和LCD驱动IC是相互分离的，这种情况下，Touchscreen驱动IC一般同时需要1.8V和3.3V两路供电。随着芯片演进，业内已有Touchscreen驱动IC和LCD驱动IC集成在一颗IC中的芯片案例，对Touchscreen而言，只需要关注1.8V供电即可，其内部需要的3.3V电源，会在驱动IC内部从LCD的VSP电源（典型值5.5V）中分出来。
 
-        通常情况下，touchscreen驱动IC和LCD驱动IC是相互分离的，这种情况下，touchscreen驱动IC一般同时需要1.8V和3.3V两路供电。随着芯片演进，业内已有touchscreen驱动IC和LCD驱动IC集成在一颗IC中的芯片案例，对touchscreen而言，只需要关注1.8V供电即可，其内部需要的3.3V电源，会在驱动IC内部从LCD的VSP电源（典型值5.5V）中分出来。
+2. **IO控制接口**
+   - Reset：reset管脚，用于在系统休眠、唤醒时，由主机侧对驱动IC进行复位操作。
+   - INT：中断管脚，需要在驱动初始化时，配置为输入上拉状态。在驱动IC检测到外部触摸信号后，通过操作中断管脚来触发中断，器件驱动则会在中断处理函数中进行报点数据读取等操作。
 
-2.  **IO控制接口**
-    -   Reset：reset管脚，用于在系统休眠、唤醒时，由主机侧对驱动IC进行复位操作。
-    -   INT：中断管脚，需要在驱动初始化时，配置为输入上拉状态。在驱动IC检测到外部触摸信号后，通过操作中断管脚来触发中断，器件驱动则会在中断处理函数中进行报点数据读取等操作。
-
-3.  **通信接口**
-    -   I2C：由于touchscreen的报点数据量相对较少，所以一般选用I2C方式传输数据。I2C的具体协议及对应操作接口，可以参考Platform接口层中的[“I2C”使用指南](driver-platform-i2c-des.md#section5361140416)。
-    -   SPI：部分厂商，由于需要传递的数据不止报点坐标，而是需要获取基础容值，数据量较大，所以会选用SPI通信方式。SPI的具体协议及对应操作接口，可以参考Platform接口层中的[“SPI” 使用指南](driver-platform-spi-des.md#section193356154511)。
+3. **通信接口**
+   - I2C：由于Touchscreen的报点数据量相对较少，所以一般选用I2C方式传输数据。I2C的具体协议及对应操作接口，可以参考Platform接口层中的[“I2C”使用指南](../driver/driver-platform-i2c-des.md#概述)。
+   - SPI：部分厂商，由于需要传递的数据不止报点坐标，而是需要获取基础容值，数据量较大，所以会选用SPI通信方式。SPI的具体协议及对应操作接口，可以参考Platform接口层中的[“SPI” 使用指南](../driver/driver-platform-spi-des.md#概述)。
 
 
-## 开发步骤<a name="section65745222184"></a>
+## 开发步骤
 
-Input驱动模型是基于HDF框架、Platform接口和OSAL接口开发，不区分操作系统和芯片平台，为touchscreen等输入器件提供统一的驱动开发架构。
+Input驱动模型是基于HDF框架、Platform接口和OSAL接口开发，不区分操作系统和芯片平台，为Touchscreen等输入器件提供统一的驱动开发架构。
 
-如下以touchscreen器件驱动为例，说明Input驱动模型的完整加载流程：
+如下以Touchscreen器件驱动为例，说明Input驱动模型的完整加载流程：
 
 （1）设备描述配置：由开发者参考已有模板进行设备描述配置，包括驱动加载顺序、板级硬件信息、器件私有数据信息等。
 
@@ -94,26 +80,25 @@ Input驱动模型是基于HDF框架、Platform接口和OSAL接口开发，不区
 
 请参考如下相关步骤：
 
-1.  设备描述配置
+1. 设备描述配置
+   目前Input驱动基于HDF驱动框架编写，驱动的加载启动由HDF驱动管理框架统一处理。首先需要在对应的配置文件中，将驱动信息注册进去，如是否加载、加载优先级，此后HDF驱动框架会逐一启动注册过的驱动模块。驱动的相关配置请参考[HDF驱动框架配置指导](../driver/driver-hdf-development.md#驱动开发步骤)。
 
-    目前Input驱动基于HDF驱动框架编写，驱动的加载启动由HDF驱动管理框架统一处理。首先需要在对应的配置文件中，将驱动信息注册进去，如是否加载、加载优先级，此后HDF驱动框架会逐一启动注册过的驱动模块。驱动的相关配置请参考[HDF驱动框架配置指导](driver-hdf-development.md#section1969312275533)。
+2. 板级配置及Touchscreen器件私有配置
+   配置对应的IO管脚功能，例如对单板上为Touchscreen设计预留的I2C Pin脚，需设置对应的寄存器，使其选择I2C的通信功能。
 
-2.  板级配置及Touchscreen器件私有配置
-
-    配置对应的IO管脚功能，例如对单板上为touchscreen设计预留的I2C Pin脚，需设置对应的寄存器，使其选择I2C的通信功能。
-
-3.  实现器件差异化适配接口
-
-    根据硬件单板设计的通信接口，使用Platform接口层提供的管脚操作接口配置对应的复位管脚、中断管脚以及电源操作，对于GPIO的操作，可参考[GPIO操作接口指导](driver-platform-gpio-des.md#section1635911016188)
+3. 实现器件差异化适配接口
+   根据硬件单板设计的通信接口，使用Platform接口层提供的管脚操作接口配置对应的复位管脚、中断管脚以及电源操作，对于GPIO的操作，可参考[GPIO操作接口指导](../driver/driver-platform-gpio-des.md#概述)
 
 
-## 开发实例<a name="section263714411191"></a>
+## 开发实例
 
-本实例提供touchscreen驱动开发示例，并简要对具体关键点进行开发说明。
+本实例提供Touchscreen驱动开发示例，并简要对具体关键点进行开发说明。
 
-### 设备描述配置<a name="section18249155619195"></a>
 
-如下配置主要包含Input驱动模型各模块层级信息，具体原理可参考[HDF驱动开发指南](driver-hdf-development.md)，HDF框架依据该配置信息实现对Input模型各模块的依次加载等。
+### 设备描述配置
+
+如下配置主要包含Input驱动模型各模块层级信息，具体原理可参考[HDF驱动开发指南](../driver/driver-hdf-development.md)，HDF框架依据该配置信息实现对Input模型各模块的依次加载等。
+
 
 ```
 input :: host {
@@ -156,9 +141,11 @@ input :: host {
 }
 ```
 
-### 板级配置及器件私有配置<a name="section3571192072014"></a>
+
+### 板级配置及器件私有配置
 
 如下配置包含板级硬件配置及器件私有数据配置，实际业务开发时，可根据具体需求增删及修改如下配置文件信息。
+
 
 ```
 root {
@@ -245,9 +232,11 @@ root {
 }
 ```
 
-### 添加器件驱动<a name="section6356758162015"></a>
+
+### 添加器件驱动
 
 在器件驱动中，主要实现了平台预留的差异化接口，以器件数据获取及解析进行示例说明。具体开发过程，需要根据实际使用的单板及器件进行适配。
+
 
 ```
 /* 将从器件中读取到的报点数据解析为坐标 */
@@ -402,4 +391,3 @@ struct HdfDriverEntry g_touchSampleChipEntry = {
 
 HDF_INIT(g_touchSampleChipEntry);
 ```
-

@@ -1,15 +1,14 @@
-# HDF开发实例<a name="ZH-CN_TOPIC_0000001052451677"></a>
+# HDF开发实例
 
--   [添加配置](#section27261067111)
--   [编写驱动代码](#section177988005)
--   [编写用户程序和驱动交互代码](#section6205173816412)
 
 下面基于HDF框架，提供一个完整的样例，包含配置文件的添加，驱动代码的实现以及用户态程序和驱动交互的流程。
 
-## 添加配置<a name="section27261067111"></a>
 
-在HDF框架的配置文件（例如vendor/hisilicon/xxx/hdf_config/device\_info）中添加该驱动的配置信息，如下所示：
+## 添加配置
 
+在HDF框架的配置文件（例如vendor/hisilicon/xxx/hdf_config/device_info）中添加该驱动的配置信息，如下所示：
+
+  
 ```
 root {
     device_info {
@@ -46,10 +45,12 @@ root {
 }
 ```
 
-## 编写驱动代码<a name="section177988005"></a>
 
-基于HDF框架编写的sample驱动代码如下(编译参考 [驱动开发](driver-hdf-development.md))：
+## 编写驱动代码
 
+基于HDF框架编写的sample驱动代码如下（编译参考[驱动开发](../driver/driver-hdf-development.md)）：
+
+  
 ```
 #include <fcntl.h>
 #include <sys/stat.h>
@@ -118,10 +119,12 @@ struct HdfDriverEntry g_sampleDriverEntry = {
 HDF_INIT(g_sampleDriverEntry);
 ```
 
-## 编写用户程序和驱动交互代码<a name="section6205173816412"></a>
 
-基于HDF框架编写的用户态程序和驱动交互的代码如下(代码可以放在目录drivers/adapter/uhdf下面编译，build.gn可以参考drivers/framework/sample/platform/uart/dev/build.gn)：
+## 编写用户程序和驱动交互代码
 
+基于HDF框架编写的用户态程序和驱动交互的代码如下（代码可以放在目录drivers/adapter/uhdf下面编译，build.gn可以参考drivers/framework/sample/platform/uart/dev/build.gn）：
+
+  
 ```
 #include <fcntl.h>
 #include <sys/stat.h>
@@ -229,10 +232,13 @@ int main()
 }
 ```
 
->![](../public_sys-resources/icon-note.gif) **说明：** 
->用户态应用程序使用了HDF框架中的消息发送接口，因此在编译用户态程序的过程中需要依赖HDF框架对外提供的hdf\_core和osal的动态库，在gn编译文件中添加如下依赖项：
->deps = \[
->"//drivers/adapter/uhdf/manager:hdf\_core",
->"//drivers/adapter/uhdf/posix:hdf\_posix\_osal",
->\]
-
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 用户态应用程序使用了HDF框架中的消息发送接口，因此在编译用户态程序的过程中需要依赖HDF框架对外提供的hdf_core和osal的动态库，在gn编译文件中添加如下依赖项：
+> 
+> deps = [
+> 
+> "//drivers/adapter/uhdf/manager:hdf_core",
+> 
+> "//drivers/adapter/uhdf/posix:hdf_posix_osal",
+> 
+> ]
