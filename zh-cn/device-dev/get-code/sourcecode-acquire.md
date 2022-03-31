@@ -234,7 +234,7 @@ OpenHarmony当前为开发者提供了以下4种获取源码的方式，开发�
 <td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.4 "><p id="p039662242117"><a name="p039662242117"></a><a name="p039662242117"></a>-</p>
 </td>
 </tr>
-<tr id="row573719239393"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.1 "><p id="p104146493390"><a name="p104146493390"></a><a name="p104146493390"></a><strong id="b12414104919398"><a name="b12414104919398"></a><a name="b12414104919398"></a>Master版本源码</strong></p>
+<tr id="row573719239393"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.1 "><p id="p104146493390"><a name="p104146493390"></a><a name="p104146493390"></a><strong id="b12414104919398"><a name="b12414104919398"></a><a name="b12414104919398"></a>最新发布版本源码</strong></p>
 </td>
 <td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.2 "><p id="p194141849163919"><a name="p194141849163919"></a><a name="p194141849163919"></a><strong id="b441494913918"><a name="b441494913918"></a><a name="b441494913918"></a>版本信息</strong></p>
 </td>
