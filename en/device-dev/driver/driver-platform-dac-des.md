@@ -46,7 +46,7 @@ The DAC module is divided into the following layers:
 
 **Figure 1** Unified service mode
 
-![Unified service mode](figures/Unified_service_mode.png "DAC unified service mode")
+![Unified service mode](figures/unified_service_mode.png "DAC unified service mode")
 
 ### Constraints
 
@@ -74,8 +74,9 @@ The table below describes the APIs of the DAC module. For more details, see API 
 
 The figure below illustrates the process of using a DAC device.
 
-**Figure 2** Process of using a DAC device 
-![Process of using a DAC](figures/process_of_using_DAC.png "Process of using a DAC")
+**Figure 2** Process of using a DAC device
+ 
+![Process of using a DAC](figures/process_of_using_DAC.png"Process of using a DAC")
 
 #### Opening a DAC Device
 
