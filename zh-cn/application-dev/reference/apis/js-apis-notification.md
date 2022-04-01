@@ -185,7 +185,7 @@ Notification.cancel(0, "label", cancelCallback)
 
 ## Notification.cancel
 
-cancel(id：number, label?：string): Promise\<void\>
+cancel(id：number, label?: string): Promise\<void\>
 
 取消与指定id相匹配的已发布通知，label可以指定也可以不指定（Promise形式）。
 
@@ -2109,7 +2109,7 @@ Notification.supportDoNotDisturbMode().then((data) => {
 
 isSupportTemplate(templateName: string, callback: AsyncCallback\<boolean\>): void
 
-查询模板是否存在。
+查询模板是否存在（Callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2137,7 +2137,7 @@ Notification.isSupportTemplate(templateName, isSupportTemplateCallback);
 
 isSupportTemplate(templateName: string): Promise\<boolean\>
 
-查询模板是否存在。
+查询模板是否存在（Promise形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2169,7 +2169,7 @@ Notification.isSupportTemplate(templateName).then((data) => {
 
 requestEnableNotification(callback: AsyncCallback\<void\>): void
 
-应用请求通知使能。
+应用请求通知使能（Callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2195,7 +2195,7 @@ Notification.requestEnabledNotification(requestEnabledNotificationCallback);
 
 requestEnableNotification(): Promise\<void\>
 
-应用请求通知使能。
+应用请求通知使能（Promise形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2213,7 +2213,7 @@ Notification.requestEnableNotification()
 
 enableDistributed(enable: boolean, callback: AsyncCallback\<void\>): void
 
-设置设备是否支持分布式通知。
+设置设备是否支持分布式通知（Callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2242,7 +2242,7 @@ Notification.enableDistributed(enable, enabledNotificationCallback);
 
 enableDistributed(enable: boolean): Promise\<void>
 
-设置设备是否支持分布式通知。
+设置设备是否支持分布式通知（Promise形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2268,7 +2268,7 @@ Notification.enableDistributed(enable)
 
 isDistributedEnabled(callback: AsyncCallback\<boolean>): void
 
-获取设备是否支持分布式通知。
+获取设备是否支持分布式通知（Callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2294,7 +2294,7 @@ Notification.enableDistributed(isDistributedEnabledCallback);
 
 isDistributedEnabled(): Promise\<boolean>
 
-获取设备是否支持分布式通知。
+获取设备是否支持分布式通知（Promise形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2318,7 +2318,7 @@ Notification.isDistributedEnabled()
 
 enableDistributedByBundle(bundle: BundleOption, enable: boolean, callback: AsyncCallback\<void>): void
 
-根据应用的包设置应用程序是否支持分布式通知。
+根据应用的包设置应用程序是否支持分布式通知（Callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2352,7 +2352,7 @@ Notification.enableDistributedByBundle(bundle, enable, enableDistributedByBundle
 
 根据bundleenableDistributedByBundle(bundle: BundleOption, enable: boolean): Promise<void>
 
-根据应用的包设置应用程序是否支持分布式通知。
+根据应用的包设置应用程序是否支持分布式通知（Promise形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2382,7 +2382,7 @@ Notification.enableDistributedByBundle(bundle, enable)
 
 isDistributedEnabledByBundle(bundle: BundleOption, callback: AsyncCallback\<boolean>): void
 
-根据应用的包获取应用程序是否支持分布式通知。
+根据应用的包获取应用程序是否支持分布式通知（Callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2413,7 +2413,7 @@ Notification.enableDistributedByBundle(bundle, isDistributedEnabledByBundleCallb
 
 isDistributedEnabledByBundle(bundle: BundleOption): Promise\<boolean>
 
-根据应用的包获取应用程序是否支持分布式通知。
+根据应用的包获取应用程序是否支持分布式通知（Promise形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2447,7 +2447,7 @@ Notification.isDistributedEnabledByBundle(bundle)
 
 getDeviceRemindType(callback: AsyncCallback\<DeviceRemindType\>): void
 
-获取通知的提醒方式。
+获取通知的提醒方式（Callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2473,7 +2473,7 @@ Notification.getDeviceRemindType(getDeviceRemindTypeCallback);
 
 getDeviceRemindType(): Promise\<DeviceRemindType\>
 
-获取通知的提醒方式。
+获取通知的提醒方式（Promise形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2852,9 +2852,9 @@ Notification.subscribe(subscriber, subscribeCallback);
 | --------------------------------- | ----------- | ------------------ |
 | LEVEL_NONE                        | 0           | 表示关闭通知功能。     |
 | LEVEL_MIN                         | 1           | 启用通知功能，但通知不启用。   |
-| LEVEL_LOW                         | 2           | 通知和通止功能都启用。     |
-| LEVEL_DEFAULT                     | 3           | 通知和通止功能都启用。     |
-| LEVEL_HIGH                        | 4           | 通知和通止功能都启用。     |
+| LEVEL_LOW                         | 2           | 通知和通知功能都启用。 |
+| LEVEL_DEFAULT                     | 3           | 通知和通知功能都启用。   |
+| LEVEL_HIGH                        | 4           | 通知和通知功能都启用。   |
 
 
 ## BundleOption
