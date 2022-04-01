@@ -1,118 +1,67 @@
-# I2C<a name="ZH-CN_TOPIC_0000001206171515"></a>
-
--   [概述](#section5361140416)
--   [接口说明](#section545869122317)
--   [使用指导](#section1695201514281)
-    -   [使用流程](#section1338373417288)
-    -   [打开I2C控制器](#section13751110132914)
-    -   [进行I2C通信](#section9202183372916)
-    -   [关闭I2C控制器](#section19481164133018)
-
--   [使用实例](#section5302202015300)
-
-## 概述<a name="section5361140416"></a>
-
--   I2C\(Inter Integrated Circuit\)总线是由Philips公司开发的一种简单、双向二线制同步串行总线。
--   I2C以主从方式工作，通常有一个主设备和一个或者多个从设备，主从设备通过SDA\(SerialData\)串行数据线以及SCL\(SerialClock\)串行时钟线两根线相连，如[图1 ](#fig1135561232714)所示。
-
--   I2C数据的传输必须以一个起始信号作为开始条件，以一个结束信号作为传输的停止条件。数据传输以字节为单位，高位在前，逐个bit进行传输。
--   I2C总线上的每一个设备都可以作为主设备或者从设备，而且每一个设备都会对应一个唯一的地址，当主设备需要和某一个从设备通信时，通过广播的方式，将从设备地址写到总线上，如果某个从设备符合此地址，将会发出应答信号，建立传输。
-
--   I2C接口定义了完成I2C传输的通用方法集合，包括：
-
-    -   I2C控制器管理:  打开或关闭I2C控制器
-    -   I2C消息传输：通过消息传输结构体数组进行自定义传输
-
-    **图 1**  I2C物理连线示意图<a name="fig1135561232714"></a>  
-    ![](figures/I2C物理连线示意图.png "I2C物理连线示意图")
+# I2C
 
 
-## 接口说明<a name="section545869122317"></a>
+## 概述
 
-**表 1**  I2C驱动API接口功能介绍
+- I2C（Inter Integrated Circuit）总线是由Philips公司开发的一种简单、双向二线制同步串行总线。
 
-<a name="table1731550155318"></a>
-<table><thead align="left"><tr id="row4419501537"><th class="cellrowborder" valign="top" width="18.63%" id="mcps1.2.4.1.1"><p id="p641050105320"><a name="p641050105320"></a><a name="p641050105320"></a>功能分类</p>
-</th>
-<th class="cellrowborder" valign="top" width="28.03%" id="mcps1.2.4.1.2"><p id="p54150165315"><a name="p54150165315"></a><a name="p54150165315"></a>接口名</p>
-</th>
-<th class="cellrowborder" valign="top" width="53.339999999999996%" id="mcps1.2.4.1.3"><p id="p941150145313"><a name="p941150145313"></a><a name="p941150145313"></a>描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row34145016535"><td class="cellrowborder" rowspan="2" valign="top" width="18.63%" headers="mcps1.2.4.1.1 "><p id="p229610227124"><a name="p229610227124"></a><a name="p229610227124"></a>I2C控制器管理接口</p>
-</td>
-<td class="cellrowborder" valign="top" width="28.03%" headers="mcps1.2.4.1.2 "><p id="p19389143041518"><a name="p19389143041518"></a><a name="p19389143041518"></a>I2cOpen</p>
-</td>
-<td class="cellrowborder" valign="top" width="53.339999999999996%" headers="mcps1.2.4.1.3 "><p id="p8738101941716"><a name="p8738101941716"></a><a name="p8738101941716"></a>打开I2C控制器</p>
-</td>
-</tr>
-<tr id="row5632152611414"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p143890309153"><a name="p143890309153"></a><a name="p143890309153"></a>I2cClose</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p573815197171"><a name="p573815197171"></a><a name="p573815197171"></a>关闭I2C控制器</p>
-</td>
-</tr>
-<tr id="row15108165391412"><td class="cellrowborder" valign="top" width="18.63%" headers="mcps1.2.4.1.1 "><p id="p91084533141"><a name="p91084533141"></a><a name="p91084533141"></a>I2c消息传输接口</p>
-</td>
-<td class="cellrowborder" valign="top" width="28.03%" headers="mcps1.2.4.1.2 "><p id="p13901730101511"><a name="p13901730101511"></a><a name="p13901730101511"></a>I2cTransfer</p>
-</td>
-<td class="cellrowborder" valign="top" width="53.339999999999996%" headers="mcps1.2.4.1.3 "><p id="p12738111912171"><a name="p12738111912171"></a><a name="p12738111912171"></a>自定义传输</p>
-</td>
-</tr>
-</tbody>
-</table>
+- I2C以主从方式工作，通常有一个主设备和一个或者多个从设备，主从设备通过SDA（SerialData）串行数据线以及SCL（SerialClock）串行时钟线两根线相连，如图1所示。
 
->![](../public_sys-resources/icon-note.gif) **说明：** 
->本文涉及的所有接口，仅限内核态使用，不支持在用户态使用。
+- I2C数据的传输必须以一个起始信号作为开始条件，以一个结束信号作为传输的停止条件。数据传输以字节为单位，高位在前，逐个bit进行传输。
 
-## 使用指导<a name="section1695201514281"></a>
+- I2C总线上的每一个设备都可以作为主设备或者从设备，而且每一个设备都会对应一个唯一的地址，当主设备需要和某一个从设备通信时，通过广播的方式，将从设备地址写到总线上，如果某个从设备符合此地址，将会发出应答信号，建立传输。
 
-### 使用流程<a name="section1338373417288"></a>
+- I2C接口定义了完成I2C传输的通用方法集合，包括：
+  - I2C控制器管理:  打开或关闭I2C控制器
+  - I2C消息传输：通过消息传输结构体数组进行自定义传输
 
-使用I2C设备的一般流程如[图2](#fig183017194234)所示。
+    **图1** I2C物理连线示意图
 
-**图 2**  I2C设备使用流程图<a name="fig183017194234"></a>  
-![](figures/I2C设备使用流程图.png "I2C设备使用流程图")
+    ![zh-cn_image_0000001160653004](figures/zh-cn_image_0000001160653004.png)
 
-### 打开I2C控制器<a name="section13751110132914"></a>
+
+## 接口说明
+
+  **表1** I2C驱动API接口功能介绍
+
+| 功能分类 | 接口描述 | 
+| -------- | -------- |
+| I2C控制器管理接口 | -&nbsp;I2cOpen：打开I2C控制器<br/>-&nbsp;I2cClose：关闭I2C控制器 | 
+| I2C消息传输接口 | I2cTransfer：自定义传输 | 
+
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 本文涉及的所有接口，仅限内核态使用，不支持在用户态使用。
+
+
+## 使用指导
+
+
+### 使用流程
+
+使用I2C设备的一般流程如下图所示。
+
+  **图2** I2C设备使用流程图
+
+  ![zh-cn_image_0000001206291495](figures/zh-cn_image_0000001206291495.png)
+
+
+### 打开I2C控制器
 
 在进行I2C通信前，首先要调用I2cOpen打开I2C控制器。
 
-DevHandle I2cOpen\(int16\_t number\);
+DevHandle I2cOpen(int16_t number);
 
-**表 2**  I2cOpen参数和返回值描述
+  **表2** I2cOpen参数和返回值描述
 
-<a name="table7603619123820"></a>
-<table><thead align="left"><tr id="row1060351914386"><th class="cellrowborder" valign="top" width="20.66%" id="mcps1.2.3.1.1"><p id="p14603181917382"><a name="p14603181917382"></a><a name="p14603181917382"></a><strong id="b16510829133012"><a name="b16510829133012"></a><a name="b16510829133012"></a>参数</strong></p>
-</th>
-<th class="cellrowborder" valign="top" width="79.34%" id="mcps1.2.3.1.2"><p id="p36031519183819"><a name="p36031519183819"></a><a name="p36031519183819"></a><strong id="b65222293309"><a name="b65222293309"></a><a name="b65222293309"></a>参数描述</strong></p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row1960431983813"><td class="cellrowborder" valign="top" width="20.66%" headers="mcps1.2.3.1.1 "><p id="p3604719123817"><a name="p3604719123817"></a><a name="p3604719123817"></a>number</p>
-</td>
-<td class="cellrowborder" valign="top" width="79.34%" headers="mcps1.2.3.1.2 "><p id="p221392414442"><a name="p221392414442"></a><a name="p221392414442"></a>I2C控制器号</p>
-</td>
-</tr>
-<tr id="row11410612183019"><td class="cellrowborder" valign="top" width="20.66%" headers="mcps1.2.3.1.1 "><p id="p460381915385"><a name="p460381915385"></a><a name="p460381915385"></a><strong id="b4349113243013"><a name="b4349113243013"></a><a name="b4349113243013"></a>返回值</strong></p>
-</td>
-<td class="cellrowborder" valign="top" width="79.34%" headers="mcps1.2.3.1.2 "><p id="p96031619153812"><a name="p96031619153812"></a><a name="p96031619153812"></a><strong id="b63502322308"><a name="b63502322308"></a><a name="b63502322308"></a>返回值描述</strong></p>
-</td>
-</tr>
-<tr id="row15410111273017"><td class="cellrowborder" valign="top" width="20.66%" headers="mcps1.2.3.1.1 "><p id="p1060418195389"><a name="p1060418195389"></a><a name="p1060418195389"></a>NULL</p>
-</td>
-<td class="cellrowborder" valign="top" width="79.34%" headers="mcps1.2.3.1.2 "><p id="p760471912388"><a name="p760471912388"></a><a name="p760471912388"></a>打开I2C控制器失败</p>
-</td>
-</tr>
-<tr id="row1241081213303"><td class="cellrowborder" valign="top" width="20.66%" headers="mcps1.2.3.1.1 "><p id="p5604719133811"><a name="p5604719133811"></a><a name="p5604719133811"></a>设备句柄</p>
-</td>
-<td class="cellrowborder" valign="top" width="79.34%" headers="mcps1.2.3.1.2 "><p id="p3604181933818"><a name="p3604181933818"></a><a name="p3604181933818"></a>打开的I2C控制器设备句柄</p>
-</td>
-</tr>
-</tbody>
-</table>
+| **参数** | **参数描述** | 
+| -------- | -------- |
+| number | I2C控制器号 | 
+| **返回值** | **返回值描述** | 
+| NULL | 打开I2C控制器失败 | 
+| 设备句柄 | 打开的I2C控制器设备句柄 | 
 
 假设系统中存在8个I2C控制器，编号从0到7，那么我们现在获取3号控制器
+
 
 ```
 DevHandle i2cHandle = NULL;  /* I2C控制器句柄 /
@@ -125,55 +74,26 @@ if (i2cHandle == NULL) {
 }
 ```
 
-### 进行I2C通信<a name="section9202183372916"></a>
+
+### 进行I2C通信
 
 消息传输
 
-int32\_t I2cTransfer\(DevHandle handle, struct I2cMsg \*msgs, int16\_t count\);
+int32_t I2cTransfer(DevHandle handle, struct I2cMsg \*msgs, int16_t count);
 
-**表 3**  I2cTransfer参数和返回值描述
+  **表3** I2cTransfer参数和返回值描述
 
-<a name="table1934414174212"></a>
-<table><thead align="left"><tr id="row1134415176216"><th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.1"><p id="p13295152320217"><a name="p13295152320217"></a><a name="p13295152320217"></a><strong id="b17389641205115"><a name="b17389641205115"></a><a name="b17389641205115"></a>参数</strong></p>
-</th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.2"><p id="p1295112352115"><a name="p1295112352115"></a><a name="p1295112352115"></a><strong id="b19401541175118"><a name="b19401541175118"></a><a name="b19401541175118"></a>参数描述</strong></p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row5344101702113"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p19295132382111"><a name="p19295132382111"></a><a name="p19295132382111"></a>handle</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p1051172572919"><a name="p1051172572919"></a><a name="p1051172572919"></a>I2C控制器设备句柄</p>
-</td>
-</tr>
-<tr id="row17344171722117"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p9295122332113"><a name="p9295122332113"></a><a name="p9295122332113"></a>msgs</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p202951238218"><a name="p202951238218"></a><a name="p202951238218"></a>待传输数据的消息结构体数组</p>
-</td>
-</tr>
-<tr id="row45812466213"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p1659246112117"><a name="p1659246112117"></a><a name="p1659246112117"></a>count</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p259124622119"><a name="p259124622119"></a><a name="p259124622119"></a>消息数组长度</p>
-</td>
-</tr>
-<tr id="row04701426105110"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p17295142322113"><a name="p17295142322113"></a><a name="p17295142322113"></a><strong id="b2159044145115"><a name="b2159044145115"></a><a name="b2159044145115"></a>返回值</strong></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p142959232211"><a name="p142959232211"></a><a name="p142959232211"></a><strong id="b16160044135114"><a name="b16160044135114"></a><a name="b16160044135114"></a>返回值描述</strong></p>
-</td>
-</tr>
-<tr id="row74701226125110"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p929532313211"><a name="p929532313211"></a><a name="p929532313211"></a>正整数</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p829512237217"><a name="p829512237217"></a><a name="p829512237217"></a>成功传输的消息结构体数目</p>
-</td>
-</tr>
-<tr id="row204701126195115"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p12958234217"><a name="p12958234217"></a><a name="p12958234217"></a>负数</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p1295192312112"><a name="p1295192312112"></a><a name="p1295192312112"></a>执行失败</p>
-</td>
-</tr>
-</tbody>
-</table>
+| **参数** | **参数描述** | 
+| -------- | -------- |
+| handle | I2C控制器设备句柄 | 
+| msgs | 待传输数据的消息结构体数组 | 
+| count | 消息数组长度 | 
+| **返回值** | **返回值描述** | 
+| 正整数 | 成功传输的消息结构体数目 | 
+| 负数 | 执行失败 | 
 
 I2C传输消息类型为I2cMsg，每个传输消息结构体表示一次读或写，通过一个消息数组，可以执行若干次的读写组合操作。
+
 
 ```
 int32_t ret;
@@ -196,57 +116,53 @@ if (ret != 2) {
 }
 ```
 
->![](../public_sys-resources/icon-caution.gif) **注意：** 
->-   I2cMsg结构体中的设备地址不包含读写标志位，读写信息由flags成员变量的读写控制位传递。
->-   本函数不对消息结构体个数count做限制，其最大个数度由具体I2C控制器决定。
->-   本函数也不对每个消息结构体中的数据长度做限制，同样由具体I2C控制器决定。
->-   本函数可能会引起系统休眠，不允许在中断上下文调用
+> ![icon-caution.gif](public_sys-resources/icon-caution.gif) **注意：**
+> - I2cMsg结构体中的设备地址不包含读写标志位，读写信息由flags成员变量的读写控制位传递。
+> 
+> - 本函数不对消息结构体个数count做限制，其最大个数度由具体I2C控制器决定。
+> 
+> - 本函数也不对每个消息结构体中的数据长度做限制，同样由具体I2C控制器决定。
+> 
+> - 本函数可能会引起系统休眠，不允许在中断上下文调用
 
-### 关闭I2C控制器<a name="section19481164133018"></a>
+
+### 关闭I2C控制器
 
 I2C通信完成之后，需要关闭I2C控制器，关闭函数如下所示：
 
-void I2cClose\(DevHandle handle\); 
+void I2cClose(DevHandle handle); 
 
-**表 4**  I2cClose参数和返回值描述
+  **表4** I2cClose参数和返回值描述
 
-<a name="table72517953115"></a>
-<table><thead align="left"><tr id="row1525793312"><th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.1"><p id="p115402031153111"><a name="p115402031153111"></a><a name="p115402031153111"></a>参数</p>
-</th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.2"><p id="p65406313319"><a name="p65406313319"></a><a name="p65406313319"></a>参数描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row1926109193116"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p105419317318"><a name="p105419317318"></a><a name="p105419317318"></a>handle</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p1213245577"><a name="p1213245577"></a><a name="p1213245577"></a>I2C控制器设备句柄</p>
-</td>
-</tr>
-</tbody>
-</table>
+| 参数 | 参数描述 | 
+| -------- | -------- |
+| handle | I2C控制器设备句柄 | 
+
 
 ```
 I2cClose(i2cHandle); /* 关闭I2C控制器 */
 ```
 
-## 使用实例<a name="section5302202015300"></a>
+
+## 使用实例
 
 本例程以操作开发板上的I2C设备为例，详细展示I2C接口的完整使用流程。
 
 本例拟对Hi3516DV300某开发板上TouchPad设备进行简单的寄存器读写访问，基本硬件信息如下：
 
--   SOC：hi3516dv300。
+- SOC：hi3516dv300。
 
--   Touch IC：I2C地址为0x38, IC内部寄存器位宽为1字节。
+- Touch IC：I2C地址为0x38, IC内部寄存器位宽为1字节。
 
--   原理图信息：TouchPad设备挂接在3号I2C控制器下；IC的复位管脚为3号GPIO。
+- 原理图信息：TouchPad设备挂接在3号I2C控制器下；IC的复位管脚为3号GPIO。
 
 本例程首先对Touch IC进行复位操作（开发板上电默认会给TouchIC供电，本例程不考虑供电），然后对其内部寄存器进行随机读写，测试I2C通路是否正常。
 
->![](../public_sys-resources/icon-note.gif) **说明：** 
->本例程重点在于展示I2C设备访问流程，并验证I2C通路，所以对于设备寄存器读写值不做关注，读写寄存器导致的行为由设备自身决定。
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 本例程重点在于展示I2C设备访问流程，并验证I2C通路，所以对于设备寄存器读写值不做关注，读写寄存器导致的行为由设备自身决定。
 
 示例如下：
+
 
 ```
 #include "i2c_if.h"          /* I2C标准接口头文件 */
@@ -420,4 +336,3 @@ static int32_t TestCaseI2c(void)
     return ret;
 }
 ```
-

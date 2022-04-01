@@ -1,17 +1,5 @@
 # 环境搭建常见问题<a name="ZH-CN_TOPIC_0000001215650793"></a>
 
--   [轻量和小型系统](#section1742119306399)
-    -   [安装hb过程中，出现乱码、段错误](#section36351051193919)
-    -   [安装hb过程中，提示"cannot import 'sysconfig' from 'distutils'"](#section48221013144011)
-    -   [安装hb过程中，提示"module 'platform' has no attribute 'linux\_distribution'"](#section10307193044111)
-    -   [安装hb过程中，提示"Could not find a version that satisfies the requirement ohos-build"](#section8692735427)
-    -   [安装python3过程中，提示“configure: error: no acceptable C compiler found in $PATH”](#section870082884217)
-    -   [安装python3过程中，提示“-bash: make: command not found”](#section198707170455)
-    -   [安装python3过程中，提示“zlib not available”](#section85401445204518)
-    -   [安装python3过程中，提示“No module named '\_ctypes'”](#section12202694460)
-    -   [安装 kconfiglib时，遇到lsb\_release错误](#section5803174135115)
-    -   [Linux编译服务器终端输入不识别的命令时提示“ImportError: No module named apt\_pkg”](#section510820516515)
-
 
 ## 轻量和小型系统<a name="section1742119306399"></a>
 

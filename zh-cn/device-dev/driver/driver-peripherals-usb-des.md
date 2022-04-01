@@ -1,410 +1,176 @@
-# USB<a name="ZH-CN_TOPIC_0000001228574475"></a>
-
--   [概述](#section127mcpsimp)
-    -   [接口说明](#section141mcpsimp)
-
--   [开发指导](#section581mcpsimp)
-    -   [Host DDK API驱动开发步骤](#section584mcpsimp)
-    -   [Host RAW API驱动开发步骤](#section594mcpsimp)
-    -   [Device DDK API驱动开发步骤](#section600mcpsimp)
-
--   [开发实例](#section607mcpsimp)
-    -   [Host DDK API驱动开发](#section609mcpsimp)
-    -   [Host RAW API驱动开发](#section612mcpsimp)
-    -   [Device DDK API驱动开发](#section615mcpsimp)
+# USB
 
 
-## 概述<a name="section127mcpsimp"></a>
+## 概述
 
 USB Host部分，主要包括协议封装、设备管理、驱动安装与卸载等。
 
 USB Device部分，支持USB功能设备的开发，提供USB设备相关功能，主要包括设备管理、配置管理、IO管理，实现USB功能设备创建、配置、数据通信等。
 
-USB Host驱动模型如下图1所示：
+  USB Host和Device驱动模型如下图所示：
 
-**图 1**  USB Host驱动模型图<a name="fig1649563542917"></a>  
-![](figures/USB-Host驱动模型图.png "USB-Host驱动模型图")
+  **图1** USB Host驱动模型图
 
-**图 2**  USB Device驱动模型图<a name="fig8847615103013"></a>  
-![](figures/USB-Device驱动模型图.png "USB-Device驱动模型图")
+  ![zh-cn_image_0000001183058868](figures/zh-cn_image_0000001183058868.png)
+
+  
+  **图2** USB Device驱动模型图
+
+  ![zh-cn_image_0000001183218992](figures/zh-cn_image_0000001183218992.png)
 
 USB驱动模型对外开放的API接口能力如下：
 
--   Usb Host DDK提供给用户态可直接调用的驱动能力接口，按照功能分类三大类：DDK初始化类、对interface对象操作类、对request对象操作类，可以提供DDK初始化、interface绑定和释放，打开和关闭操作，request的申请和释放，同步和异步传输等。
--   Usb Deivce DDK提供设备管理、IO管理、配置管理，主要功能有：创建和删除设备、获取和打开接口、同步和异步传输等。
+- Usb Host DDK提供给用户态可直接调用的驱动能力接口，按照功能分类三大类：DDK初始化类、对interface对象操作类、对request对象操作类，可以提供DDK初始化、interface绑定和释放，打开和关闭操作，request的申请和释放，同步和异步传输等。
 
-### 接口说明<a name="section141mcpsimp"></a>
+- Usb Device DDK提供设备管理、IO管理、配置管理，主要功能有：创建和删除设备、获取和打开接口、同步和异步传输等。
 
-USB驱动模型Host侧开放的API接口功能，参考[图1](#fig1649563542917)。
 
-**表 1**  USB驱动模型Host侧开放的API接口功能介绍
+### 接口说明
 
-<a name="table11474102882612"></a>
-<table><thead align="left"><tr id="row1147413289268"><th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.2.4.1.1"><p id="p1966391682713"><a name="p1966391682713"></a><a name="p1966391682713"></a>头文件</p>
-</th>
-<th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.2.4.1.2"><p id="p166313167274"><a name="p166313167274"></a><a name="p166313167274"></a>接口名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.2.4.1.3"><p id="p1066341602710"><a name="p1066341602710"></a><a name="p1066341602710"></a>功能描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row1275799122710"><td class="cellrowborder" rowspan="16" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.1 "><p id="p4725109162716"><a name="p4725109162716"></a><a name="p4725109162716"></a>usb_ddk_interface.h</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.2 "><p id="p17725698274"><a name="p17725698274"></a><a name="p17725698274"></a>int32_t UsbInitHostSdk(struct UsbSession **session);</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.3 "><p id="p27252992712"><a name="p27252992712"></a><a name="p27252992712"></a>USB主机端驱动开发工具包初始化</p>
-</td>
-</tr>
-<tr id="row775779172719"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p14725149172712"><a name="p14725149172712"></a><a name="p14725149172712"></a>int32_t UsbExitHostSdk(const struct UsbSession *session);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p172549192711"><a name="p172549192711"></a><a name="p172549192711"></a>USB主机端驱动开发工具包退出</p>
-</td>
-</tr>
-<tr id="row975769172712"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p167251791278"><a name="p167251791278"></a><a name="p167251791278"></a>const struct UsbInterface *UsbClaimInterface(const struct UsbSession *session, uint8_t busNum, uint8_t usbAddr, uint8_t interfaceIndex);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p187255962716"><a name="p187255962716"></a><a name="p187255962716"></a>获取USB接口对象</p>
-</td>
-</tr>
-<tr id="row97577920273"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p16725497276"><a name="p16725497276"></a><a name="p16725497276"></a>int UsbReleaseInterface(const struct UsbInterface *interfaceObj);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p117251894270"><a name="p117251894270"></a><a name="p117251894270"></a>释放USB接口对象</p>
-</td>
-</tr>
-<tr id="row67574982718"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p872514915277"><a name="p872514915277"></a><a name="p872514915277"></a>int UsbAddOrRemoveInterface(const struct UsbSession *session, uint8_t busNum, uint8_t usbAddr, uint8_t interfaceIndex, UsbInterfaceStatus status);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p157251914278"><a name="p157251914278"></a><a name="p157251914278"></a>增加移除接口</p>
-</td>
-</tr>
-<tr id="row47576942720"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p572517916275"><a name="p572517916275"></a><a name="p572517916275"></a>UsbInterfaceHandle *UsbOpenInterface(const struct UsbInterface *interfaceObj);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p67254915272"><a name="p67254915272"></a><a name="p67254915272"></a>打开USB对象接口</p>
-</td>
-</tr>
-<tr id="row197579952713"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p472514912712"><a name="p472514912712"></a><a name="p472514912712"></a>int32_t UsbCloseInterface(const UsbInterfaceHandle *interfaceHandle);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p67251095276"><a name="p67251095276"></a><a name="p67251095276"></a>关闭USB接口对象</p>
-</td>
-</tr>
-<tr id="row15757894278"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p5725169192717"><a name="p5725169192717"></a><a name="p5725169192717"></a>int32_t UsbSelectInterfaceSetting(const UsbInterfaceHandle *interfaceHandle, uint8_t settingIndex, struct UsbInterface **interfaceObj);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p6725109112720"><a name="p6725109112720"></a><a name="p6725109112720"></a>设置可选配置</p>
-</td>
-</tr>
-<tr id="row107579932715"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p11725199182715"><a name="p11725199182715"></a><a name="p11725199182715"></a>int32_t UsbGetPipeInfo(const UsbInterfaceHandle *interfaceHandle, uint8_t settingIndex, uint8_t pipeId, struct UsbPipeInfo *pipeInfo);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p107261298272"><a name="p107261298272"></a><a name="p107261298272"></a>获取指定可选设置的管道信息</p>
-</td>
-</tr>
-<tr id="row27577992716"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p8726890275"><a name="p8726890275"></a><a name="p8726890275"></a>int32_t UsbClearInterfaceHalt(const UsbInterfaceHandle *interfaceHandle, uint8_t pipeAddress);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p177261797274"><a name="p177261797274"></a><a name="p177261797274"></a>清除指定索引的管道状态</p>
-</td>
-</tr>
-<tr id="row1757189172714"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p1726998273"><a name="p1726998273"></a><a name="p1726998273"></a>struct UsbRequest *UsbAllocRequest(const UsbInterfaceHandle *interfaceHandle, int isoPackets, int length);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p1272617982713"><a name="p1272617982713"></a><a name="p1272617982713"></a>分配请求对象</p>
-</td>
-</tr>
-<tr id="row07579911279"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p187261911279"><a name="p187261911279"></a><a name="p187261911279"></a>int UsbFreeRequest(const struct UsbRequest *request);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p177271592271"><a name="p177271592271"></a><a name="p177271592271"></a>释放请求对象</p>
-</td>
-</tr>
-<tr id="row075759142715"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p3727896271"><a name="p3727896271"></a><a name="p3727896271"></a>int UsbSubmitRequestAsync(const struct UsbRequest *request);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p372714942718"><a name="p372714942718"></a><a name="p372714942718"></a>发送异步请求</p>
-</td>
-</tr>
-<tr id="row1475718919272"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p1727698272"><a name="p1727698272"></a><a name="p1727698272"></a>int32_t UsbFillRequest(const struct UsbRequest *request, const UsbInterfaceHandle *interfaceHandle, const struct UsbRequestParams *params);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p872713910270"><a name="p872713910270"></a><a name="p872713910270"></a>填充请求</p>
-</td>
-</tr>
-<tr id="row117576932710"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p9727291278"><a name="p9727291278"></a><a name="p9727291278"></a>sint UsbCancelRequest(const struct UsbRequest *request);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p37271897276"><a name="p37271897276"></a><a name="p37271897276"></a>取消异步请求</p>
-</td>
-</tr>
-<tr id="row1475714912715"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p2727698275"><a name="p2727698275"></a><a name="p2727698275"></a>int UsbSubmitRequestSync(const struct UsbRequest *request);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p87279914277"><a name="p87279914277"></a><a name="p87279914277"></a>发送同步请求</p>
-</td>
-</tr>
-<tr id="row11756097274"><td class="cellrowborder" rowspan="27" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.1 "><p id="p12727179132710"><a name="p12727179132710"></a><a name="p12727179132710"></a>usb_raw_api.h</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.2 "><p id="p11727391272"><a name="p11727391272"></a><a name="p11727391272"></a>int UsbRawInit(struct UsbSession **session);</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.3 "><p id="p1572711919272"><a name="p1572711919272"></a><a name="p1572711919272"></a>USB驱动开发工具包专家模式初始化</p>
-</td>
-</tr>
-<tr id="row1575629182713"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p372711918279"><a name="p372711918279"></a><a name="p372711918279"></a>int UsbRawExit(const struct UsbSession *session);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p372710942717"><a name="p372710942717"></a><a name="p372710942717"></a>USB驱动开发工具包专家模式退出</p>
-</td>
-</tr>
-<tr id="row5756999270"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p8727291277"><a name="p8727291277"></a><a name="p8727291277"></a>UsbRawHandle *UsbRawOpenDevice(const struct UsbSession *session, uint8_t busNum, uint8_t usbAddr);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p1772719972717"><a name="p1772719972717"></a><a name="p1772719972717"></a>打开USB设备对象</p>
-</td>
-</tr>
-<tr id="row117561292270"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p772709122715"><a name="p772709122715"></a><a name="p772709122715"></a>int UsbRawCloseDevice(const UsbRawHandle *devHandle);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p1372715902711"><a name="p1372715902711"></a><a name="p1372715902711"></a>关闭USB设备对象</p>
-</td>
-</tr>
-<tr id="row775689182714"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p197272918272"><a name="p197272918272"></a><a name="p197272918272"></a>int UsbRawSendControlRequest(const struct UsbRawRequest *request, const UsbRawHandle *devHandle, const struct UsbControlRequestData *requestData);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p272715932717"><a name="p272715932717"></a><a name="p272715932717"></a>执行同步控制传输</p>
-</td>
-</tr>
-<tr id="row3756179132714"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p1727296276"><a name="p1727296276"></a><a name="p1727296276"></a>int UsbRawSendBulkRequest(const struct UsbRawRequest *request, const UsbRawHandle *devHandle, const struct UsbRequestData *requestData);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p872789162713"><a name="p872789162713"></a><a name="p872789162713"></a>执行同步批量传输</p>
-</td>
-</tr>
-<tr id="row27568916276"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p1072719992711"><a name="p1072719992711"></a><a name="p1072719992711"></a>int UsbRawSendInterruptRequest(const struct UsbRawRequest *request, const UsbRawHandle *devHandle, const struct UsbRequestData *requestData);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p117271895271"><a name="p117271895271"></a><a name="p117271895271"></a>执行同步中断传输</p>
-</td>
-</tr>
-<tr id="row14756149112710"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p772711917274"><a name="p772711917274"></a><a name="p772711917274"></a>int UsbRawGetConfigDescriptor(const UsbRawDevice *rawDev, uint8_t configIndex, struct UsbRawConfigDescriptor **config);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p472714912710"><a name="p472714912710"></a><a name="p472714912710"></a>获取给定设备指定ID的设备配置描述符</p>
-</td>
-</tr>
-<tr id="row1775614902711"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p37277942718"><a name="p37277942718"></a><a name="p37277942718"></a>void UsbRawFreeConfigDescriptor(const struct UsbRawConfigDescriptor *config);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p772759162711"><a name="p772759162711"></a><a name="p772759162711"></a>释放配置描述符内存空间</p>
-</td>
-</tr>
-<tr id="row9756119182711"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p3727699274"><a name="p3727699274"></a><a name="p3727699274"></a>int UsbRawGetConfiguration(const UsbRawHandle *devHandle, int *config);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p13728109192717"><a name="p13728109192717"></a><a name="p13728109192717"></a>获取当前激活配置</p>
-</td>
-</tr>
-<tr id="row37567922714"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p1872849162718"><a name="p1872849162718"></a><a name="p1872849162718"></a>int UsbRawSetConfiguration(const UsbRawHandle *devHandle, int config);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p87280914277"><a name="p87280914277"></a><a name="p87280914277"></a>设置当前激活配置</p>
-</td>
-</tr>
-<tr id="row1775612982711"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p127283902712"><a name="p127283902712"></a><a name="p127283902712"></a>int UsbRawGetDescriptor(const struct UsbRawRequest *request, const UsbRawHandle *devHandle, const struct UsbRawDescriptorParam *param, const unsigned char *data);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p17728209122710"><a name="p17728209122710"></a><a name="p17728209122710"></a>获取描述符信息</p>
-</td>
-</tr>
-<tr id="row97564992719"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p1672849122712"><a name="p1672849122712"></a><a name="p1672849122712"></a>UsbRawDevice *UsbRawGetDevice(const UsbRawHandle *devHandle);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p472879202719"><a name="p472879202719"></a><a name="p472879202719"></a>由设备句柄获取设备指针</p>
-</td>
-</tr>
-<tr id="row1075612922718"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p172814982715"><a name="p172814982715"></a><a name="p172814982715"></a>int UsbRawGetDeviceDescriptor(const UsbRawDevice *rawDev, struct UsbDeviceDescriptor *desc);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p8728139172715"><a name="p8728139172715"></a><a name="p8728139172715"></a>获取给定设备的USB设备描述符</p>
-</td>
-</tr>
-<tr id="row117561919273"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p072820912714"><a name="p072820912714"></a><a name="p072820912714"></a>int UsbRawClaimInterface(const UsbRawHandle *devHandle, int interfaceNumber);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p972817914279"><a name="p972817914279"></a><a name="p972817914279"></a>声明给定设备句柄上的接口</p>
-</td>
-</tr>
-<tr id="row87561920275"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p2728191276"><a name="p2728191276"></a><a name="p2728191276"></a>int UsbRawReleaseInterface(const UsbRawHandle *devHandle, int interfaceNumber);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p8728159102710"><a name="p8728159102710"></a><a name="p8728159102710"></a>释放之前声明的接口</p>
-</td>
-</tr>
-<tr id="row375679152710"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p137281192274"><a name="p137281192274"></a><a name="p137281192274"></a>int UsbRawResetDevice(const UsbRawHandle *devHandle);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p107281992272"><a name="p107281992272"></a><a name="p107281992272"></a>复位设备</p>
-</td>
-</tr>
-<tr id="row14756109152719"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p137288914273"><a name="p137288914273"></a><a name="p137288914273"></a>struct UsbRawRequest *UsbRawAllocRequest(const UsbRawHandle *devHandle, int isoPackets, int length);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p27281797274"><a name="p27281797274"></a><a name="p27281797274"></a>分配一个带有指定数量的同步包描述符的传输请求</p>
-</td>
-</tr>
-<tr id="row07560932714"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p2072810912713"><a name="p2072810912713"></a><a name="p2072810912713"></a>int UsbRawFreeRequest(const struct UsbRawRequest *request);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p17281917278"><a name="p17281917278"></a><a name="p17281917278"></a>释放之前分配的传输请求</p>
-</td>
-</tr>
-<tr id="row1775615952717"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p1872810915274"><a name="p1872810915274"></a><a name="p1872810915274"></a>int UsbRawFillBulkRequest(const struct UsbRawRequest *request, const UsbRawHandle *devHandle, const struct UsbRawFillRequestData *fillData);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p117281090271"><a name="p117281090271"></a><a name="p117281090271"></a>填充批量传输请求所需信息</p>
-</td>
-</tr>
-<tr id="row675659172716"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p1272820962719"><a name="p1272820962719"></a><a name="p1272820962719"></a>int UsbRawFillControlSetup(const unsigned char *setup, const struct UsbControlRequestData *requestData);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p177281299278"><a name="p177281299278"></a><a name="p177281299278"></a>填充控制传输设置包所需信息</p>
-</td>
-</tr>
-<tr id="row97563912271"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p1372817914277"><a name="p1372817914277"></a><a name="p1372817914277"></a>int UsbRawFillControlRequest(const struct UsbRawRequest *request, const UsbRawHandle *devHandle, const struct UsbRawFillRequestData *fillData);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p1372815952715"><a name="p1372815952715"></a><a name="p1372815952715"></a>填充控制传输请求所需信息</p>
-</td>
-</tr>
-<tr id="row117561932712"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p172899112714"><a name="p172899112714"></a><a name="p172899112714"></a>int UsbRawFillInterruptRequest(const struct UsbRawRequest *request, const UsbRawHandle *devHandle, const struct UsbRawFillRequestData *fillData);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p19728092271"><a name="p19728092271"></a><a name="p19728092271"></a>填充中断传输请求所需信息</p>
-</td>
-</tr>
-<tr id="row075617917271"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p072829132714"><a name="p072829132714"></a><a name="p072829132714"></a>int UsbRawFillIsoRequest(const struct UsbRawRequest *request, const UsbRawHandle *devHandle, const struct UsbRawFillRequestData *fillData);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p107281913275"><a name="p107281913275"></a><a name="p107281913275"></a>填充同步传输（Isochronous Transfers）请求所需信息</p>
-</td>
-</tr>
-<tr id="row87564917271"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p16728129152712"><a name="p16728129152712"></a><a name="p16728129152712"></a>int UsbRawSubmitRequest(const struct UsbRawRequest *request);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p187299922718"><a name="p187299922718"></a><a name="p187299922718"></a>提交一个传输请求</p>
-</td>
-</tr>
-<tr id="row975659192711"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p15729099278"><a name="p15729099278"></a><a name="p15729099278"></a>int UsbRawCancelRequest(const struct UsbRawRequest *request);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p872912911274"><a name="p872912911274"></a><a name="p872912911274"></a>取消一个传输请求</p>
-</td>
-</tr>
-<tr id="row1675519932712"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p1472929182710"><a name="p1472929182710"></a><a name="p1472929182710"></a>int UsbRawHandleRequests(const UsbRawHandle *devHandle);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p572929102710"><a name="p572929102710"></a><a name="p572929102710"></a>传输请求事件完成处理</p>
-</td>
-</tr>
-</tbody>
-</table>
+USB驱动模型Host侧开放的API接口功能，参考USB Host驱动模型图。
 
-USB驱动模型Device侧开放的API接口功能，参考[图2](#fig8847615103013)。
+  **表1** usb_ddk_interface.h
 
-**表 2**  USB驱动模型Device侧开放的API接口功能介绍
+| 接口名称 | 功能描述 | 
+| -------- | -------- |
+| int32_t&nbsp;UsbInitHostSdk(struct&nbsp;UsbSession&nbsp;\*\*session); | USB主机端驱动开发工具包初始化 | 
+| int32_t&nbsp;UsbExitHostSdk(const&nbsp;struct&nbsp;UsbSession<br/>\*session); | USB主机端驱动开发工具包退出 | 
+| const&nbsp;struct&nbsp;UsbInterface&nbsp;\*UsbClaimInterface(const<br/>struct&nbsp;UsbSession&nbsp;\*session,&nbsp;uint8_t&nbsp;busNum,&nbsp;uint8_t<br/>usbAddr,&nbsp;uint8_t&nbsp;interfaceIndex); | 获取USB接口对象 | 
+| int&nbsp;UsbReleaseInterface(const&nbsp;struct&nbsp;UsbInterface<br/>\*interfaceObj); | 释放USB接口对象 | 
+| int&nbsp;UsbAddOrRemoveInterface(const&nbsp;struct&nbsp;UsbSession<br/>\*session,&nbsp;uint8_t&nbsp;busNum,&nbsp;uint8_t&nbsp;usbAddr,&nbsp;uint8_t<br/>interfaceIndex,&nbsp;UsbInterfaceStatus&nbsp;status); | 增加移除接口 | 
+| UsbInterfaceHandle&nbsp;\*UsbOpenInterface(const&nbsp;struct<br/>UsbInterface&nbsp;\*interfaceObj); | 打开USB对象接口 | 
+| int32_t&nbsp;UsbCloseInterface(const&nbsp;UsbInterfaceHandle<br/>\*interfaceHandle); | 关闭USB接口对象 | 
+| int32_t&nbsp;UsbSelectInterfaceSetting(const<br/>UsbInterfaceHandle&nbsp;\*interfaceHandle,&nbsp;uint8_t<br/>settingIndex,&nbsp;struct&nbsp;UsbInterface&nbsp;\*\*interfaceObj); | 设置可选配置 | 
+| int32_t&nbsp;UsbGetPipeInfo(const&nbsp;UsbInterfaceHandle<br/>\*interfaceHandle,&nbsp;uint8_t&nbsp;settingIndex,&nbsp;uint8_t&nbsp;pipeId,<br/>struct&nbsp;UsbPipeInfo&nbsp;\*pipeInfo); | 获取指定可选设置的管道信息 | 
+| int32_t&nbsp;UsbClearInterfaceHalt(const<br/>UsbInterfaceHandle&nbsp;\*interfaceHandle,&nbsp;uint8_t<br/>pipeAddress); | 清除指定索引的管道状态 | 
+| struct&nbsp;UsbRequest&nbsp;\*UsbAllocRequest(const<br/>UsbInterfaceHandle&nbsp;\*interfaceHandle,&nbsp;int&nbsp;isoPackets<br/>,&nbsp;int&nbsp;length); | 分配请求对象 | 
+| int&nbsp;UsbFreeRequest(const&nbsp;struct&nbsp;UsbRequest<br/>\*request); | 释放请求对象 | 
+| int&nbsp;UsbSubmitRequestAsync(const&nbsp;struct&nbsp;UsbRequest<br/>\*request); | 发送异步请求 | 
+| int32_t&nbsp;UsbFillRequest(const&nbsp;struct&nbsp;UsbRequest<br/>\*request,&nbsp;const&nbsp;UsbInterfaceHandle&nbsp;\*interfaceHandle,<br/>const&nbsp;struct&nbsp;UsbRequestParams&nbsp;\*params); | 填充请求 | 
+| sint&nbsp;UsbCancelRequest(const&nbsp;struct&nbsp;UsbRequest<br/>\*request); | 取消异步请求 | 
+| int&nbsp;UsbSubmitRequestSync(const&nbsp;struct&nbsp;UsbRequest<br/>\*request); | 发送同步请求 | 
 
-<a name="table1172315391272"></a>
-<table><thead align="left"><tr id="row207231239162719"><th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.2.4.1.1"><p id="p1472363915270"><a name="p1472363915270"></a><a name="p1472363915270"></a>头文件</p>
-</th>
-<th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.2.4.1.2"><p id="p672313910271"><a name="p672313910271"></a><a name="p672313910271"></a>头文件</p>
-</th>
-<th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.2.4.1.3"><p id="p524922814284"><a name="p524922814284"></a><a name="p524922814284"></a>功能描述</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row1526165392716"><td class="cellrowborder" rowspan="3" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.1 "><p id="p143125320275"><a name="p143125320275"></a><a name="p143125320275"></a>usbfn_device.h</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.2 "><p id="p1644533274"><a name="p1644533274"></a><a name="p1644533274"></a>const struct UsbFnDevice *UsbFnCreateDevice(const char *udcName, const struct UsbFnDescriptorData *descriptor);</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.3 "><p id="p241853152716"><a name="p241853152716"></a><a name="p241853152716"></a>创建Usb设备</p>
-</td>
-</tr>
-<tr id="row11261453112717"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p741553102715"><a name="p741553102715"></a><a name="p741553102715"></a>int UsbFnRemoveDevice(struct UsbFnDevice *fnDevice);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p5435318271"><a name="p5435318271"></a><a name="p5435318271"></a>删除Usb设备</p>
-</td>
-</tr>
-<tr id="row126205320278"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p9425362716"><a name="p9425362716"></a><a name="p9425362716"></a>const struct UsbFnDevice *UsbFnGetDevice(const char *udcName);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p54135392719"><a name="p54135392719"></a><a name="p54135392719"></a>获取Usb设备</p>
-</td>
-</tr>
-<tr id="row326125314279"><td class="cellrowborder" rowspan="6" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.1 "><p id="p144653142719"><a name="p144653142719"></a><a name="p144653142719"></a>usbfn_interface.h</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.2 "><p id="p941453112713"><a name="p941453112713"></a><a name="p941453112713"></a>int UsbFnStartRecvInterfaceEvent(struct UsbFnInterface *interface, uint32_t eventMask, UsbFnEventCallback callback, void *context);</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.3 "><p id="p1341530277"><a name="p1341530277"></a><a name="p1341530277"></a>开始接受Event事件</p>
-</td>
-</tr>
-<tr id="row172613534273"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p124153152713"><a name="p124153152713"></a><a name="p124153152713"></a>int UsbFnStopRecvInterfaceEvent(struct UsbFnInterface *interface);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p1441532271"><a name="p1441532271"></a><a name="p1441532271"></a>停止接受Event事件</p>
-</td>
-</tr>
-<tr id="row1026653142717"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p24185317276"><a name="p24185317276"></a><a name="p24185317276"></a>UsbFnInterfaceHandle UsbFnOpenInterface(struct UsbFnInterface *interface);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p142537274"><a name="p142537274"></a><a name="p142537274"></a>打开一个接口</p>
-</td>
-</tr>
-<tr id="row226195362720"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p114175382715"><a name="p114175382715"></a><a name="p114175382715"></a>int UsbFnCloseInterface(UsbFnInterfaceHandle handle);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p124453132715"><a name="p124453132715"></a><a name="p124453132715"></a>关闭一个接口</p>
-</td>
-</tr>
-<tr id="row12605311277"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p3565313278"><a name="p3565313278"></a><a name="p3565313278"></a>int UsbFnGetInterfacePipeInfo(struct UsbFnInterface *interface, uint8_t pipeId, struct UsbFnPipeInfo *info);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p054536274"><a name="p054536274"></a><a name="p054536274"></a>获取管道信息</p>
-</td>
-</tr>
-<tr id="row19261153132716"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p1958532275"><a name="p1958532275"></a><a name="p1958532275"></a>int UsbFnSetInterfaceProp(const struct UsbFnInterface *interface, const char *name, const char *value);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p9516538277"><a name="p9516538277"></a><a name="p9516538277"></a>设置自定义属性</p>
-</td>
-</tr>
-<tr id="row3261853202716"><td class="cellrowborder" rowspan="8" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.1 "><p id="p65453192711"><a name="p65453192711"></a><a name="p65453192711"></a>usbfn_request.h</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.2 "><p id="p3520539276"><a name="p3520539276"></a><a name="p3520539276"></a>struct UsbFnRequest *UsbFnAllocCtrlRequest(UsbFnInterfaceHandle handle, uint32_t len);</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.3 "><p id="p5514538278"><a name="p5514538278"></a><a name="p5514538278"></a>申请一个控制请求</p>
-</td>
-</tr>
-<tr id="row18261253112716"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p85115312277"><a name="p85115312277"></a><a name="p85115312277"></a>struct UsbFnRequest *UsbFnAllocRequest(UsbFnInterfaceHandle handle, uint8_t pipe, uint32_t len);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p105105342716"><a name="p105105342716"></a><a name="p105105342716"></a>申请一个数据请求</p>
-</td>
-</tr>
-<tr id="row82665320272"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p1461538279"><a name="p1461538279"></a><a name="p1461538279"></a>int UsbFnFreeRequest(struct UsbFnRequest *req);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p26165372718"><a name="p26165372718"></a><a name="p26165372718"></a>释放一个请求</p>
-</td>
-</tr>
-<tr id="row162610537275"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p261653192714"><a name="p261653192714"></a><a name="p261653192714"></a>int UsbFnSubmitRequestAsync(struct UsbFnRequest *req);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p361253112718"><a name="p361253112718"></a><a name="p361253112718"></a>发送异步请求</p>
-</td>
-</tr>
-<tr id="row1326253122711"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p4611536275"><a name="p4611536275"></a><a name="p4611536275"></a>int UsbFnSubmitRequestSync(struct UsbFnRequest *req, uint32_t timeout);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p06853112710"><a name="p06853112710"></a><a name="p06853112710"></a>发送同步请求</p>
-</td>
-</tr>
-<tr id="row15265539272"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p177453102712"><a name="p177453102712"></a><a name="p177453102712"></a>int UsbFnCancelRequest(struct UsbFnRequest *req);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p13725312275"><a name="p13725312275"></a><a name="p13725312275"></a>取消请求</p>
-</td>
-</tr>
-</tbody>
-</table>
+  **表2** usb_raw_api.h
 
-## 开发指导<a name="section581mcpsimp"></a>
+| 接口名称 | 功能描述 | 
+| -------- | -------- |
+| int&nbsp;UsbRawInit(struct&nbsp;UsbSession&nbsp;\*\*session); | USB驱动开发工具包专家模式初始化 | 
+| int&nbsp;UsbRawExit(const&nbsp;struct&nbsp;UsbSession&nbsp;\*session); | USB驱动开发工具包专家模式退出 | 
+| UsbRawHandle&nbsp;\*UsbRawOpenDevice(const&nbsp;struct<br/>UsbSession&nbsp;\*session,&nbsp;uint8_t&nbsp;busNum,&nbsp;uint8_t<br/>usbAddr); | 打开USB设备对象 | 
+| int&nbsp;UsbRawCloseDevice(const&nbsp;UsbRawHandle<br/>\*devHandle); | 关闭USB设备对象 | 
+| int&nbsp;UsbRawSendControlRequest(const&nbsp;struct<br/>UsbRawRequest&nbsp;\*request,&nbsp;const&nbsp;UsbRawHandle<br/>\*devHandle,&nbsp;const&nbsp;struct&nbsp;UsbControlRequestData<br/>\*requestData); | 执行同步控制传输 | 
+| int&nbsp;UsbRawSendBulkRequest(const&nbsp;struct<br/>UsbRawRequest&nbsp;\*request,&nbsp;const&nbsp;UsbRawHandle<br/>\*devHandle,&nbsp;const&nbsp;struct&nbsp;UsbRequestData<br/>\*requestData); | 执行同步批量传输 | 
+| int&nbsp;UsbRawSendInterruptRequest(const&nbsp;struct<br/>UsbRawRequest&nbsp;\*request,&nbsp;const&nbsp;UsbRawHandle<br/>\*devHandle,&nbsp;const&nbsp;struct&nbsp;UsbRequestData<br/>\*requestData); | 执行同步中断传输 | 
+| int&nbsp;UsbRawGetConfigDescriptor(const&nbsp;UsbRawDevice<br/>\*rawDev,&nbsp;uint8_t&nbsp;configIndex,&nbsp;struct<br/>UsbRawConfigDescriptor&nbsp;\*\*config); | 获取给定设备指定ID的设备配置描述符 | 
+| void&nbsp;UsbRawFreeConfigDescriptor(const&nbsp;struct<br/>UsbRawConfigDescriptor&nbsp;\*config); | 释放配置描述符内存空间 | 
+| int&nbsp;UsbRawGetConfiguration(const&nbsp;UsbRawHandle<br/>\*devHandle,&nbsp;int&nbsp;\*config); | 获取当前激活配置 | 
+| int&nbsp;UsbRawSetConfiguration(const&nbsp;UsbRawHandle<br/>\*devHandle,&nbsp;int&nbsp;config); | 设置当前激活配置 | 
+| int&nbsp;UsbRawGetDescriptor(const&nbsp;struct&nbsp;UsbRawRequest<br/>\*request,&nbsp;const&nbsp;UsbRawHandle&nbsp;\*devHandle,&nbsp;const&nbsp;struct<br/>UsbRawDescriptorParam&nbsp;\*param,&nbsp;const&nbsp;unsigned&nbsp;char<br/>\*data); | 获取描述符信息 | 
+| UsbRawDevice&nbsp;\*UsbRawGetDevice(const&nbsp;UsbRawHandle<br/>\*devHandle); | 由设备句柄获取设备指针 | 
+| int&nbsp;UsbRawGetDeviceDescriptor(const&nbsp;UsbRawDevice<br/>\*rawDev,&nbsp;struct<br/>UsbDeviceDescriptor&nbsp;\*desc); | 获取给定设备的USB设备描述符 | 
+| int&nbsp;UsbRawClaimInterface(const&nbsp;UsbRawHandle<br/>\*devHandle,&nbsp;int<br/>interfaceNumber); | 声明给定设备句柄上的接口 | 
+| int&nbsp;UsbRawReleaseInterface(const&nbsp;UsbRawHandle<br/>\*devHandle,&nbsp;in<br/>t&nbsp;interfaceNumber); | 释放之前声明的接口 | 
+| int&nbsp;UsbRawResetDevice(const&nbsp;UsbRawHandle<br/>\*devHandle); | 复位设备 | 
+| struct&nbsp;UsbRawRequest&nbsp;\*UsbRawAllocRequest(const<br/>UsbRawHandle<br/>\*devHandle,&nbsp;int&nbsp;isoPackets,&nbsp;int&nbsp;length); | 分配一个带有指定数量的同步包描述符的传输请求 | 
+| int&nbsp;UsbRawFreeRequest(const&nbsp;struct&nbsp;UsbRawRequest<br/>\*request); | 释放之前分配的传输请求 | 
+| int&nbsp;UsbRawFillBulkRequest(const&nbsp;struct&nbsp;UsbRawRequest<br/>\*request,&nbsp;const&nbsp;UsbRawHandle&nbsp;\*devHandle,&nbsp;const&nbsp;struct<br/>UsbRawFillRequestData&nbsp;\*fillData); | 填充批量传输请求所需信息 | 
+| int&nbsp;UsbRawFillControlSetup(const&nbsp;unsigned&nbsp;char&nbsp;\*setup,<br/>const&nbsp;struct&nbsp;UsbControlRequestData&nbsp;\*requestData); | 填充控制传输设置包所需信息 | 
+| int&nbsp;UsbRawFillControlRequest(const&nbsp;struct&nbsp;UsbRawRequest<br/>\*request,&nbsp;const&nbsp;UsbRawHandle&nbsp;\*devHandle,&nbsp;const&nbsp;struct<br/>UsbRawFillRequestData&nbsp;\*fillData); | 填充控制传输请求所需信息 | 
+| int&nbsp;UsbRawFillInterruptRequest(const&nbsp;struct&nbsp;UsbRawRequest<br/>\*request,&nbsp;const&nbsp;UsbRawHandle&nbsp;\*devHandle,&nbsp;const&nbsp;struct<br/>UsbRawFillRequestData&nbsp;\*fillData); | 填充中断传输请求所需信息 | 
+| int&nbsp;UsbRawFillIsoRequest(const&nbsp;struct&nbsp;UsbRawRequest<br/>\*request,&nbsp;const&nbsp;UsbRawHandle&nbsp;\*devHandle,&nbsp;const&nbsp;struct<br/>UsbRawFillRequestData&nbsp;\*fillData); | 填充同步传输（Isochronous&nbsp;Transfers）请求所需信息 | 
+| int&nbsp;UsbRawSubmitRequest(const&nbsp;struct&nbsp;UsbRawRequest<br/>\*request); | 提交一个传输请求 | 
+| int&nbsp;UsbRawCancelRequest(const&nbsp;struct&nbsp;UsbRawRequest<br/>\*request); | 取消一个传输请求 | 
+| int&nbsp;UsbRawHandleRequests(const&nbsp;UsbRawHandle<br/>\*devHandle); | 传输请求事件完成处理 | 
+
+USB驱动模型Device侧开放的API接口功能，参考USB Device驱动模型图。
+
+  **表3** usbfn_device.h
+
+| 接口名称 | 功能描述 | 
+| -------- | -------- |
+| const&nbsp;struct&nbsp;UsbFnDevice&nbsp;\*UsbFnCreateDevice(const<br/>char&nbsp;\*udcName,&nbsp;const&nbsp;struct&nbsp;UsbFnDescriptorData<br/>\*descriptor); | 创建Usb设备 | 
+| int&nbsp;UsbFnRemoveDevice(struct&nbsp;UsbFnDevice<br/>\*fnDevice); | 删除Usb设备 | 
+| const&nbsp;struct&nbsp;UsbFnDevice&nbsp;\*UsbFnGetDevice(const&nbsp;char<br/>\*udcName); | 获取Usb设备 | 
+
+  **表4** usbfn_interface.h
+
+| 接口名称 | 功能描述 | 
+| -------- | -------- |
+| int&nbsp;UsbFnStartRecvInterfaceEvent(struct<br/>UsbFnInterface&nbsp;\*interface,&nbsp;uint32_t&nbsp;eventMask,<br/>UsbFnEventCallback&nbsp;callback,&nbsp;void&nbsp;\*context); | 开始接受Event事件 | 
+| int&nbsp;UsbFnStopRecvInterfaceEvent(struct<br/>UsbFnInterface&nbsp;\*interface); | 停止接受Event事件 | 
+| UsbFnInterfaceHandle&nbsp;UsbFnOpenInterface(struct&nbsp;UsbFnInterface&nbsp;\*interface); | 打开一个接口 | 
+| int&nbsp;UsbFnCloseInterface(UsbFnInterfaceHandle&nbsp;handle); | 关闭一个接口 | 
+| int&nbsp;UsbFnGetInterfacePipeInfo(struct&nbsp;UsbFnInterface<br/>\*interface,&nbsp;uint8_t&nbsp;pipeId,&nbsp;struct&nbsp;UsbFnPipeInfo&nbsp;\*info); | 获取管道信息 | 
+| int&nbsp;UsbFnSetInterfaceProp(const&nbsp;struct&nbsp;UsbFnInterface<br/>\*interface,&nbsp;const&nbsp;char&nbsp;\*name,&nbsp;const&nbsp;char&nbsp;\*value); | 设置自定义属性 | 
+
+  **表5** usbfn_request.h
+
+| 接口名称 | 功能描述 | 
+| -------- | -------- |
+| struct&nbsp;UsbFnRequest<br/>\*UsbFnAllocCtrlRequest(UsbFnInterfaceHandle&nbsp;handle,<br/>uint32_t&nbsp;len); | 申请一个控制请求 | 
+| struct&nbsp;UsbFnRequest&nbsp;\*UsbFnAllocRequest(UsbFnInterfaceHandle&nbsp;handle,<br/>uint8_t&nbsp;pipe,&nbsp;uint32_t&nbsp;len); | 申请一个数据请求 | 
+| int&nbsp;UsbFnFreeRequest(struct&nbsp;UsbFnRequest&nbsp;\*req); | 释放一个请求 | 
+| int&nbsp;UsbFnSubmitRequestAsync(struct&nbsp;UsbFnRequest<br/>\*req); | 发送异步请求 | 
+| int&nbsp;UsbFnSubmitRequestSync(struct&nbsp;UsbFnRequest<br/>\*req,&nbsp;uint32_t&nbsp;timeout); | 发送同步请求 | 
+| int&nbsp;UsbFnCancelRequest(struct&nbsp;UsbFnRequest&nbsp;\*req); | 取消请求 | 
+
+
+## 开发步骤
 
 USB驱动是基于HDF框架、PLATFORM和OSAL基础接口进行开发，不区分操作系统和芯片平台，为不同USB器件提供统一的驱动模型。本篇开发指导以串口为例，分别介绍USB Host和USB Device驱动开发。
 
-### 开发步骤<a name="section583mcpsimp"></a>
 
-### Host DDK API驱动开发步骤<a name="section584mcpsimp"></a>
+### Host DDK API驱动开发步骤
 
-1.  驱动匹配表配置。
-2.  初始化Host DDK。
-3.  待步骤2初始化完后获取UsbInterface接口对象。
-4.  打开步骤3获取到的UsbInterface接口对象，获取相应接口的UsbInterfaceHandle对象。
-5.  根据步骤4获取到的UsbInterfaceHandle对象，获取指定索引为pipeIndex的pipeInfo信息。
-6.  为步骤4获取到的UsbInterfaceHandle预先分配待发送的IO Request对象。
-7.  根据输入参数params填充步骤6预先分配的IO Request。
-8.  提交IO Request对象，可以选择同步或异步两种模式。
+1. 驱动匹配表配置。
 
-### Host RAW API驱动开发步骤<a name="section594mcpsimp"></a>
+2. 初始化Host DDK。
 
-1.  驱动匹配表配置。
-2.  初始化Host RAW，并打开USB设备，然后获取描述符，通过描述符获取接口、端点信息。
-3.  分配Request，并根据传输类型使用相应接口对Request进行填充。
-4.  提交IO Request对象，可以选择同步或异步两种模式。
+3. 待步骤2初始化完后获取UsbInterface接口对象。
 
-### Device DDK API驱动开发步骤<a name="section600mcpsimp"></a>
+4. 打开步骤3获取到的UsbInterface接口对象，获取相应接口的UsbInterfaceHandle对象。
 
-1.  构造描述符。
-2.  创建设备，使用步骤1构造的描述符实例化一个USB设备。
-3.  根据创建的设备获取接口（UsbFnDeviceGetInterface），获取Pipe信息（UsbFnInterfaceGetPipeInfo），打开接口获取Handle（UsbFnInterfaceOpen），根据Handle和Pipe号获取Request（UsbFnRequestAlloc）。
-4.  接收Event事件（UsbFnInterfaceStartRecvEvent）如Enable、Setup等事件，回调函数（UsbFnEventCallback）中对Event事件做出响应。
-5.  收发数据，可以选择同步异步发送模式。
+5. 根据步骤4获取到的UsbInterfaceHandle对象，获取指定索引为pipeIndex的pipeInfo信息。
 
-## 开发实例<a name="section607mcpsimp"></a>
+6. 为步骤4获取到的UsbInterfaceHandle预先分配待发送的IO Request对象。
+
+7. 根据输入参数params填充步骤6预先分配的IO Request。
+
+8. 提交IO Request对象，可以选择同步或异步两种模式。
+
+
+### Host RAW API驱动开发步骤
+
+1. 驱动匹配表配置。
+
+2. 初始化Host RAW，并打开USB设备，然后获取描述符，通过描述符获取接口、端点信息。
+
+3. 分配Request，并根据传输类型使用相应接口对Request进行填充。
+
+4. 提交IO Request对象，可以选择同步或异步两种模式。
+
+
+### Device DDK API驱动开发步骤
+
+1. 构造描述符。
+
+2. 创建设备，使用步骤1构造的描述符实例化一个USB设备。
+
+3. 根据创建的设备获取接口（UsbFnDeviceGetInterface），获取Pipe信息（UsbFnInterfaceGetPipeInfo），打开接口获取Handle（UsbFnInterfaceOpen），根据Handle和Pipe号获取Request（UsbFnRequestAlloc）。
+
+4. 接收Event事件（UsbFnInterfaceStartRecvEvent）如Enable、Setup等事件，回调函数（UsbFnEventCallback）中对Event事件做出响应。
+
+5. 收发数据，可以选择同步异步发送模式。
+
+
+## 开发实例
 
 本实例提供USB串口驱动开发示例，并简要对具体关键点进行开发说明。
 
-### Host DDK API驱动开发<a name="section609mcpsimp"></a>
 
+### Host DDK API驱动开发
+
+  
 ```
 root {
     module = "usb_pnp_device";
@@ -492,7 +258,7 @@ static int SerialCtrlMsg(struct AcmDevice *acm, uint8_t request,
     controlParams.request = request;
     controlParams.target = USB_REQUEST_TARGET_INTERFACE;
     controlParams.reqType = USB_REQUEST_TYPE_CLASS;
-    controlParams.directon = USB_REQUEST_DIR_TO_DEVICE;
+    controlParams.direction = USB_REQUEST_DIR_TO_DEVICE;
     controlParams.value = value;
     controlParams.index = index;
     controlParams.data = buf;
@@ -660,7 +426,7 @@ static int AcmAllocReadRequests(struct AcmDevice *acm)
         readParams.requestType = USB_REQUEST_PARAMS_DATA_TYPE;
         readParams.timeout = USB_CTRL_SET_TIMEOUT;
         readParams.dataReq.numIsoPackets = 0;
-        readParams.dataReq.directon = (acm->dataInPipe->pipeDirection >> USB_PIPE_DIR_OFFSET) & 0x1;
+        readParams.dataReq.direction = (acm->dataInPipe->pipeDirection >> USB_PIPE_DIR_OFFSET) & 0x1;
         readParams.dataReq.length = acm->readSize;
         ret = UsbFillRequest(acm->readReq[i], InterfaceIdToHandle(acm, acm->dataInPipe->interfaceId), &readParams);    //填充待发送的readReq对象
         if (HDF_SUCCESS != ret) {
@@ -692,7 +458,7 @@ static int AcmAllocNotifyRequest(struct AcmDevice *acm)
     intParams.requestType = USB_REQUEST_PARAMS_DATA_TYPE;
     intParams.timeout = USB_CTRL_SET_TIMEOUT;
     intParams.dataReq.numIsoPackets = 0;
-    intParams.dataReq.directon = (acm->intPipe->pipeDirection >> USB_PIPE_DIR_OFFSET) & DIRECTION_MASK;
+    intParams.dataReq.direction = (acm->intPipe->pipeDirection >> USB_PIPE_DIR_OFFSET) & DIRECTION_MASK;
     intParams.dataReq.length = acm->intSize;
     ret = UsbFillRequest(acm->notifyReq, InterfaceIdToHandle(acm, acm->intPipe->interfaceId), &intParams);    //填充预先分配的中断IO Request
     if (HDF_SUCCESS != ret) {
@@ -1019,8 +785,10 @@ struct HdfDriverEntry g_usbSerialDriverEntry = {
 HDF_INIT(g_usbSerialDriverEntry);
 ```
 
-### Host RAW API驱动开发<a name="section612mcpsimp"></a>
 
+### Host RAW API驱动开发
+
+  
 ```
 root {
     module = "usb_pnp_device";
@@ -1453,10 +1221,12 @@ struct HdfDriverEntry g_usbSerialRawDriverEntry = {
 HDF_INIT(g_usbSerialRawDriverEntry);
 ```
 
-### Device DDK API驱动开发<a name="section615mcpsimp"></a>
 
-USB ACM设备核心代码路径为drivers/peripheral/usb/gadget/function/acm/cdcacm.c，其使用示例如下所示，首先根据描述符创建设备，然后获取接口，打开接口，获取Pipe信息，接收Event事件，接着进行USB通信（读写等），设备卸载时候，关闭接口，停止Event接收，删除设备。
+### Device DDK API驱动开发
 
+USB ACM设备核心代码路径为drivers\peripheral\usb\gadget\function\acm\cdcacm.c，其使用示例如下所示，首先根据描述符创建设备，然后获取接口，打开接口，获取Pipe信息，接收Event事件，接着进行USB通信（读写等），设备卸载时候，关闭接口，停止Event接收，删除设备。
+
+  
 ```
 1、创建设备
 static int32_t AcmCreateFuncDevice(struct UsbAcmDevice *acm,
@@ -1548,4 +1318,3 @@ int32_t ret;
     return ret;
 }
 ```
-

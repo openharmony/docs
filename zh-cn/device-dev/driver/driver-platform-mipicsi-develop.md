@@ -1,15 +1,11 @@
-# MIPI-CSI<a name="title_MIPI_CSIDevelop"></a>
-
-- [概述](#section1_MIPI_CSIDevelop)
-- [接口说明](#section2_MIPI_CSIDevelop)
-- [开发步骤](#section3_MIPI_CSIDevelop)
-- [开发实例](#section4_MIPI_CSIDevelop)
+# MIPI CSI
 
 ## 概述 <a name="section1_MIPI_CSIDevelop"></a>
 
-CSI（Camera Serial Interface）是由MIPI（Mobile Industry Processor Interface ）联盟下Camera工作组指定的接口标准。在HDF框架中，MIPI-CSI的接口适配模式采用无服务模式，用于不需要在用户态提供API的设备类型，或者没有用户态和内核区分的OS系统，MIPI-CSI的接口关联方式是DevHandle直接指向设备对象内核态地址（DevHandle是一个void类型指针）。
+CSI（Camera Serial Interface）是由MIPI（Mobile Industry Processor Interface ）联盟下Camera工作组指定的接口标准。在HDF框架中，MIPI CSI的接口适配模式采用无服务模式，用于不需要在用户态提供API的设备类型，或者没有用户态和内核区分的OS系统，MIPI CSI的接口关联方式是DevHandle直接指向设备对象内核态地址（DevHandle是一个void类型指针）。
 
 图 1 无服务模式结构图
+
 ![image1](figures/无服务模式结构图.png)
 
 ## 接口说明 <a name="section2_MIPI_CSIDevelop"></a>
@@ -35,7 +31,7 @@ struct MipiCsiCntlrMethod {
 表1 MipiCsiCntlrMethod成员的回调函数功能说明
 | 成员函数           | 入参                                                         | 出参 | 返回状态           | 功能                       |
 | ------------------ | ------------------------------------------------------------ | ---- | ------------------ | -------------------------- |
-| setComboDevAttr    | **cntlr**：结构体指针，MipiCsi控制器 ;<br>**pAttr**：结构体指针，MIPI-CSI相应配置结构体指针 | 无   | HDF_STATUS相关状态 | 写入MIPI-CSI配置           |
+| setComboDevAttr    | **cntlr**：结构体指针，MipiCsi控制器 ;<br>**pAttr**：结构体指针，MIPI CSI相应配置结构体指针 | 无   | HDF_STATUS相关状态 | 写入MIPI CSI配置           |
 | setPhyCmvmode      | **cntlr**：结构体指针，MipiCsi控制器 ;<br>**devno**：uint8_t，设备编号;<br>**cmvMode**：枚举类型，共模电压模式参数 | 无   | HDF_STATUS相关状态 | 设置共模电压模式           |
 | setExtDataType     | **cntlr**：结构体指针，MipiCsi控制器 ;<br>**dataType**：结构体指针，定义YUV和原始数据格式以及位深度 | 无   | HDF_STATUS相关状态 | 设置YUV和RAW数据格式和位深 |
 | setHsMode          | **cntlr**：结构体指针，MipiCsi控制器 ;<br>**laneDivideMode**：枚举类型，lane模式参数 | 无   | HDF_STATUS相关状态 | 设置MIPI RX的Lane分布     |
@@ -50,7 +46,7 @@ struct MipiCsiCntlrMethod {
 
 ## 开发步骤 <a name="section3_MIPI_CSIDevelop"></a>
 
-MIPI-CSI模块适配的三个环节是配置属性文件、实例化驱动入、以及实例化核心层接口函数。
+MIPI CSI模块适配的三个环节是配置属性文件、实例化驱动入、以及实例化核心层接口函数。
 
 1. **实例化驱动入口：**   
    - 实例化HdfDriverEntry结构体成员。
@@ -107,7 +103,7 @@ MIPI-CSI模块适配的三个环节是配置属性文件、实例化驱动入、
 
    一般在加载驱动时HDF框架会先调用Bind函数，再调用Init函数加载该驱动。当Init调用异常时，HDF框架会调用Release释放驱动资源并退出。
 
-- MIPI-CSI驱动入口参考
+- MIPI CSI驱动入口参考
 
   ```c 
   struct HdfDriverEntry g_mipiCsiDriverEntry = {
@@ -123,7 +119,7 @@ MIPI-CSI模块适配的三个环节是配置属性文件、实例化驱动入、
 
 - 自定义结构体参考 
 
-  > 从驱动的角度看，自定义结构体是参数和数据的载体，一般来说，config文件中的数值也会用来初始化结构体成员，本例的mipicsi器件属性在源文件中，故基本成员结构与MipiCsiCntlr无太大差异。
+  从驱动的角度看，自定义结构体是参数和数据的载体，一般来说，config文件中的数值也会用来初始化结构体成员，本例的mipicsi器件属性在源文件中，故基本成员结构与MipiCsiCntlr无太大差异。
 
   ```c
   typedef struct {
@@ -199,23 +195,25 @@ MIPI-CSI模块适配的三个环节是配置属性文件、实例化驱动入、
 
 - **Init函数参考**
 
-  > **入参：** 
-  > HdfDeviceObject 是整个驱动对外暴露的接口参数，具备 HCS 配置文件的信息
-  >
-  > **返回值：**
-  > HDF_STATUS相关状态 （下表为部分展示，如需使用其他状态，可见//drivers/framework/include/utils/hdf_base.h中HDF_STATUS 定义）
-  >
-  > | 状态(值)               |   问题描述   |
-  > | :--------------------- | :----------: |
-  > | HDF_ERR_INVALID_OBJECT |   无效对象   |
-  > | HDF_ERR_MALLOC_FAIL    | 内存分配失败 |
-  > | HDF_ERR_INVALID_PARAM  |   无效参数   |
-  > | HDF_ERR_IO             |   I/O 错误   |
-  > | HDF_SUCCESS            |   执行成功   |
-  > | HDF_FAILURE            |   执行失败   |
-  >
-  > **函数说明：**
-  > MipiCsiCntlrMethod的实例化对象的挂载，调用MipiCsiRegisterCntlr，以及其他厂商自定义初始化操作。
+   **入参：** 
+   HdfDeviceObject 是整个驱动对外暴露的接口参数，具备 HCS 配置文件的信息
+  
+   **返回值：**
+   HDF_STATUS相关状态 （下表为部分展示，如需使用其他状态，可见//drivers/framework/include/utils/hdf_base.h中HDF_STATUS 定义）
+
+  
+   | 状态(值)               |   问题描述   |
+   | :--------------------- | :----------: |
+   | HDF_ERR_INVALID_OBJECT |   无效对象   |
+   | HDF_ERR_MALLOC_FAIL    | 内存分配失败 |
+   | HDF_ERR_INVALID_PARAM  |   无效参数   |
+   | HDF_ERR_IO             |   I/O 错误   |
+   | HDF_SUCCESS            |   执行成功   |
+   | HDF_FAILURE            |   执行失败   |
+  
+   **函数说明：**
+   MipiCsiCntlrMethod的实例化对象的挂载，调用MipiCsiRegisterCntlr，以及其他厂商自定义初始化操作。
+
 
   ```c 
   static int32_t Hi35xxMipiCsiInit(struct HdfDeviceObject *device)
@@ -282,14 +280,14 @@ MIPI-CSI模块适配的三个环节是配置属性文件、实例化驱动入、
 
 - **Release函数参考**
 
-  > **入参：** 
-  > HdfDeviceObject 是整个驱动对外暴露的接口参数，具备 HCS 配置文件的信息。
-  >
-  > **返回值：**
-  > 无
-  >
-  > **函数说明：**
-  > 该函数需要在驱动入口结构体中赋值给Release接口，当HDF框架调用Init函数初始化驱动失败时，可以调用Release释放驱动资源，该函数中需包含释放内存和删除控制器等操作。所有强制转换获取相应对象的操作**前提**是在Init函数中具备对应赋值的操作。
+   **入参：** 
+   HdfDeviceObject 是整个驱动对外暴露的接口参数，具备 HCS 配置文件的信息。
+  
+   **返回值：**
+   无
+  
+   **函数说明：**
+   该函数需要在驱动入口结构体中赋值给Release接口，当HDF框架调用Init函数初始化驱动失败时，可以调用Release释放驱动资源，该函数中需包含释放内存和删除控制器等操作。所有强制转换获取相应对象的操作**前提**是在Init函数中具备对应赋值的操作。
 
   ```c
   static void Hi35xxMipiCsiRelease(struct HdfDeviceObject *device)
