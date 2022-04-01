@@ -14,8 +14,8 @@ None
 
 
 | **Name** | **Type** | **Default Value** | **Description** |
-| -------- | -------- | -------- | -------- |
-| touchable | boolean | true | Whether the current component is touchable. |
+| --------  | -------- | -------- | -------- |
+| touchable | boolean  | true     | Whether the current component is touchable. |
 
 
 ## Example

@@ -15,12 +15,12 @@ addPath(path: Object): void
 Adds a path to this path.
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | path | Object | Yes | null | Path to be added to this path. | 
+  | path | Object | Yes | null | Path to be added to this path. |
 
 - Example
-    
+  
   ```
   @Entry
   @Component
@@ -58,7 +58,7 @@ closePath(): void
 Moves the current point of the path back to the start point of the path, and draws a straight line between the current point and the start point. If the shape has already been closed or has only one point, this method does nothing.
 
 - Example
-    
+  
   ```
   @Entry
   @Component
@@ -97,13 +97,13 @@ moveTo(x: number, y: number): void
 Moves the current coordinate point of the path to the target point, without drawing a line during the movement.
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | x | number | Yes | 0 | X-coordinate of the target point. | 
-  | y | number | Yes | 0 | Y-coordinate of the target point. | 
+  | x | number | Yes | 0 | X-coordinate of the target point. |
+  | y | number | Yes | 0 | Y-coordinate of the target point. |
 
 - Example
-    
+  
   ```
   @Entry
   @Component
@@ -142,13 +142,13 @@ lineTo(x: number, y: number): void
 Draws a straight line from the current point to the target point.
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | x | number | Yes | 0 | X-coordinate of the target point. | 
-  | y | number | Yes | 0 | Y-coordinate of the target point. | 
+  | x | number | Yes | 0 | X-coordinate of the target point. |
+  | y | number | Yes | 0 | Y-coordinate of the target point. |
 
 - Example
-    
+  
   ```
   @Entry
   @Component
@@ -188,17 +188,17 @@ bezierCurveTo(cp1x: number, cp1y: number, cp2x: number, cp2y: number, x: number,
 Draws a cubic bezier curve on the canvas.
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | cp1x | number | Yes | 0 | X-coordinate of the first parameter of the bezier curve. | 
-  | cp1y | number | Yes | 0 | Y-coordinate of the first parameter of the bezier curve. | 
-  | cp2x | number | Yes | 0 | X-coordinate of the second parameter of the bezier curve. | 
-  | cp2y | number | Yes | 0 | Y-coordinate of the second parameter of the bezier curve. | 
-  | x | number | Yes | 0 | X-coordinate of the end point on the bezier curve. | 
-  | y | number | Yes | 0 | Y-coordinate of the end point on the bezier curve. | 
+  | cp1x | number | Yes | 0 | X-coordinate of the first parameter of the bezier curve. |
+  | cp1y | number | Yes | 0 | Y-coordinate of the first parameter of the bezier curve. |
+  | cp2x | number | Yes | 0 | X-coordinate of the second parameter of the bezier curve. |
+  | cp2y | number | Yes | 0 | Y-coordinate of the second parameter of the bezier curve. |
+  | x | number | Yes | 0 | X-coordinate of the end point on the bezier curve. |
+  | y | number | Yes | 0 | Y-coordinate of the end point on the bezier curve. |
 
 - Example
-    
+  
   ```
   @Entry
   @Component
@@ -234,15 +234,15 @@ quadraticCurveTo(cpx: number, cpy: number, x: number ,y: number): void
 Draws a quadratic curve on the canvas.
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | cpx | number | Yes | 0 | X-coordinate of the bezier curve parameter. | 
-  | cpy | number | Yes | 0 | Y-coordinate of the bezier curve parameter. | 
-  | x | number | Yes | 0 | X-coordinate of the end point on the bezier curve. | 
-  | y | number | Yes | 0 | Y-coordinate of the end point on the bezier curve. | 
+  | cpx | number | Yes | 0 | X-coordinate of the bezier curve parameter. |
+  | cpy | number | Yes | 0 | Y-coordinate of the bezier curve parameter. |
+  | x | number | Yes | 0 | X-coordinate of the end point on the bezier curve. |
+  | y | number | Yes | 0 | Y-coordinate of the end point on the bezier curve. |
 
 - Example
-    
+  
   ```
   @Entry
   @Component
@@ -274,22 +274,22 @@ Draws a quadratic curve on the canvas.
 
 ## arc
 
-arc(x: number, y: number, radius: number, startAngle: number, endAngle: number, anticlockwise?: number): void
+arc(x: number, y: number, radius: number, startAngle: number, endAngle: number, anticlockwise?:  boolean): void
 
 Draws an arc on the canvas.
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | x | number | Yes | 0 | X-coordinate of the center point of the arc. | 
-  | y | number | Yes | 0 | Y-coordinate of the center point of the arc. | 
-  | radius | number | Yes | 0 | Radius of the arc. | 
-  | startAngle | number | Yes | 0 | Start radian of the arc. | 
-  | endAngle | number | Yes | 0 | End radian of the arc. | 
-  | anticlockwise | boolean | No | false | Whether to draw the arc counterclockwise. | 
+  | x | number | Yes | 0 | X-coordinate of the center point of the arc. |
+  | y | number | Yes | 0 | Y-coordinate of the center point of the arc. |
+  | radius | number | Yes | 0 | Radius of the arc. |
+  | startAngle | number | Yes | 0 | Start radian of the arc. |
+  | endAngle | number | Yes | 0 | End radian of the arc. |
+  | anticlockwise | boolean | No | false | Whether to draw the arc counterclockwise. |
 
 - Example
-    
+  
   ```
   @Entry
   @Component
@@ -324,16 +324,16 @@ arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): void
 Draws an arc based on the radius and points on the arc.
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | x1 | number | Yes | 0 | X-coordinate of the first point on the arc. | 
-  | y1 | number | Yes | 0 | Y-coordinate of the first point on the arc. | 
-  | x2 | number | Yes | 0 | X-coordinate of the second point on the arc. | 
-  | y2 | number | Yes | 0 | Y-coordinate of the second point on the arc. | 
-  | radius | number | Yes | 0 | Radius of the arc. | 
+  | x1 | number | Yes | 0 | X-coordinate of the first point on the arc. |
+  | y1 | number | Yes | 0 | Y-coordinate of the first point on the arc. |
+  | x2 | number | Yes | 0 | X-coordinate of the second point on the arc. |
+  | y2 | number | Yes | 0 | Y-coordinate of the second point on the arc. |
+  | radius | number | Yes | 0 | Radius of the arc. |
 
 - Example
-    
+  
   ```
   @Entry
   @Component
@@ -369,19 +369,19 @@ ellipse(x: number, y: number, radiusX: number, radiusY: number, rotation: number
 Draws an ellipse in the specified rectangular region.
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | x | number | Yes | 0 | X-coordinate of the ellipse center. | 
-  | y | number | Yes | 0 | Y-coordinate of the ellipse center. | 
-  | radiusX | number | Yes | 0 | Ellipse radius on the x-axis. | 
-  | radiusY | number | Yes | 0 | Ellipse radius on the y-axis. | 
-  | rotation | number | Yes | 0 | Rotation angle of the ellipse, in radians. | 
-  | startAngle | number | Yes | 0 | Angle of the start point for drawing the ellipse, in radians. | 
-  | endAngle | number | Yes | 0 | Angle of the end point for drawing the ellipse, in radians. | 
-  | anticlockwise | number | No | 0 | Whether to draw the ellipse in the counterclockwise direction. The value **0** means to draw the ellipse in the clockwise direction, and **1** means to draw the ellipse in the counterclockwise direction. This parameter is optional. The default value is **0**. | 
+  | x | number | Yes | 0 | X-coordinate of the ellipse center. |
+  | y | number | Yes | 0 | Y-coordinate of the ellipse center. |
+  | radiusX | number | Yes | 0 | Ellipse radius on the x-axis. |
+  | radiusY | number | Yes | 0 | Ellipse radius on the y-axis. |
+  | rotation | number | Yes | 0 | Rotation angle of the ellipse, in radians. |
+  | startAngle | number | Yes | 0 | Angle of the start point for drawing the ellipse, in radians. |
+  | endAngle | number | Yes | 0 | Angle of the end point for drawing the ellipse, in radians. |
+  | anticlockwise | number | No | 0 | Whether to draw the ellipse in the counterclockwise direction. The value **0** means to draw the ellipse in the clockwise direction, and **1** means to draw the ellipse in the counterclockwise direction. This parameter is optional. The default value is **0**. |
 
 - Example
-    
+  
   ```
   @Entry
   @Component
@@ -417,15 +417,15 @@ rect(x: number, y: number, width: number, height: number): void
 Creates a rectangle.
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | x | number | Yes | 0 | X-coordinate of the upper left corner of the rectangle. | 
-  | y | number | Yes | 0 | Y-coordinate of the upper left corner of the rectangle. | 
-  | width | number | Yes | 0 | Width of the rectangle. | 
-  | height | number | Yes | 0 | Height of the rectangle. | 
+  | x | number | Yes | 0 | X-coordinate of the upper left corner of the rectangle. |
+  | y | number | Yes | 0 | Y-coordinate of the upper left corner of the rectangle. |
+  | width | number | Yes | 0 | Width of the rectangle. |
+  | height | number | Yes | 0 | Height of the rectangle. |
 
 - Example
-    
+  
   ```
   @Entry
   @Component

@@ -10,7 +10,7 @@ The **CustomDialogController** class is used to display a custom dialog box.
 
 ## APIs
 
-CustomDialogController(value:{builder: CustomDialog, cancel?: () =&gt; void, autoCancel?: boolean})
+CustomDialogController(value:{builder: CustomDialog, cancel?: () =&gt; void,  autoCancel?: boolean, alignment?: DialogAlignment, offset?: Offset, customStyle?: boolean}) 
 
 
 - Parameters
