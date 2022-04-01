@@ -6,7 +6,7 @@ The documents are carefully organized as follows:
 
 ### Getting Started
 
-[Here](quick-start/start-overview.md) you can learn how to better prepare yourself for application development.
+[Here](quick-start/Readme-EN.md) you can learn how to better prepare yourself for application development.
 
 Browse the documents on how to use DevEco Studio and how to quickly build your first application.
 
@@ -18,23 +18,23 @@ To facilitate your application development, we provide development guidelines fo
 
 First thing first, familiarize yourself with the two cornerstone frameworks in OpenHarmony applications:
 
-- Application framework: [Ability Development](ability/ability-brief.md)
-- UI framework: [UI Development](ui/arkui-overview.md)
+- Application framework: [Ability Development](ability/Readme-EN.md)
+- UI framework: [UI Development](ui/Readme-EN.md)
 
 All applications should be developed on top of these frameworks.
 
 Then, equip yourself for developing the key features, with the following guidelines:
-- [Window Manager](windowmanager/window-overview.md)
-- [WebGL](webgl/webgl-overview.md)
-- [Media](media/audio-overview.md)
-- [Security](security/userauth-overview.md)
-- [Connectivity](connectivity/ipc-rpc-overview.md)
-- [Data Management](database/database-mdds-overview.md)
-- [Agent-Powered Scheduled Reminders](background-agent-scheduled-reminder/background-agent-scheduled-reminder-overview.md)
-- [Background Task Management](background-task-management/background-task-overview.md)
-- [Device](device/usb-overview.md)
-- [Device Usage Statistics](device-usage-statistics/device-usage-statistics-overview.md)
-- [DFX](dfx/hiappevent-overview.md)
+- [Window Manager](windowmanager/Readme-EN.md)
+- [WebGL](webgl/Readme-EN.md)
+- [Media](media/Readme-EN.md)
+- [Security](security/Readme-EN.md)
+- [Connectivity](connectivity/Readme-EN.md)
+- [Data Management](database/Readme-EN.md)
+- [Agent-Powered Scheduled Reminders](background-agent-scheduled-reminder/Readme-EN.md)
+- [Background Task Management](background-task-management/Readme-EN.md)
+- [Device Management](device/Readme-EN.md)
+- [Device Usage Statistics](device-usage-statistics/Readme-EN.md)
+- [DFX](dfx/Readme-EN.md)
 
 ### Tools
 
@@ -50,6 +50,11 @@ To make you better understand how functions work together and jumpstart your app
 API references encompass all components and APIs available in OpenHarmony, helping you use and integrate APIs more effectively.
 
 They are organized as follows:
--   [Component Reference (JavaScript-based Web-like Development Paradigm)](reference/arkui-js/js-components-common-attribute.md)
--   [Component Reference (TypeScript-based Declarative Development Paradigm)](reference/arkui-ts/ts-universal-events-click.md)
--   [API Reference](reference/apis/js-apis-DataUriUtils.md)
+-   [Component Reference (JavaScript-based Web-like Development Paradigm)](reference/arkui-js/Readme-EN.md)
+-   [Component Reference (TypeScript-based Declarative Development Paradigm)](reference/arkui-ts/Readme-EN.md)
+-   [API Reference](reference/apis/Readme-EN.md)
+
+
+### Readme
+
+For details about the principles and basic information of each subsystem, see the README file in [docs/en/readme](../readme).
