@@ -20,7 +20,7 @@ Sets the system time. This API uses an asynchronous callback to return the resul
 
 **Required permissions**: ohos.permission.SET_TIME
 
-**System capability**: SystemCapability.Miscservices.Time
+**System capability**: SystemCapability.MiscServices.Time
 
 - **Parameters**
     | Name| Type| Mandatory| Description| 
@@ -51,7 +51,7 @@ Sets the system time. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.SET_TIME
 
-**System capability**: SystemCapability.Miscservices.Time
+**System capability**: SystemCapability.MiscServices.Time
 
 - **Parameters**
     | Name| Type| Mandatory| Description| 
@@ -82,7 +82,7 @@ getCurrentTime(isNano?: boolean, callback: AsyncCallback&lt;number&gt;): void
 
 Obtains the time elapsed since the Unix epoch. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Miscservices.Time
+**System capability**: SystemCapability.MiscServices.Time
 
 - **Parameters**
     | Name| Type| Mandatory| Description| 
@@ -109,7 +109,7 @@ getCurrentTime(isNano?: boolean): Promise&lt;number&gt;
 
 Obtains the time elapsed since the Unix epoch. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.Miscservices.Time
+**System capability**: SystemCapability.MiscServices.Time
 
 - **Parameters**
     | Name| Type| Mandatory| Description| 
@@ -138,7 +138,7 @@ getRealActiveTime(isNano?: boolean, callback: AsyncCallback&lt;number&gt;): void
 
 Obtains the time elapsed since system start, excluding the deep sleep time. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Miscservices.Time
+**System capability**: SystemCapability.MiscServices.Time
 
 - **Parameters**
     | Name| Type| Mandatory| Description| 
@@ -165,7 +165,7 @@ getRealActiveTime(isNano?: boolean): Promise&lt;number&gt;
 
 Obtains the time elapsed since system start, excluding the deep sleep time. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.Miscservices.Time
+**System capability**: SystemCapability.MiscServices.Time
 
 - **Parameters**
     | Name| Type| Mandatory| Description| 
@@ -194,7 +194,7 @@ getRealTime(callback: AsyncCallback&lt;number&gt;): void
 
 Obtains the time elapsed since system start, including the deep sleep time. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Miscservices.Time
+**System capability**: SystemCapability.MiscServices.Time
 
 - **Parameters**
     | Name| Type| Mandatory| Description| 
@@ -221,7 +221,7 @@ getRealTime(): Promise&lt;number&gt;
 
 Obtains the time elapsed since system start, including the deep sleep time. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.Miscservices.Time
+**System capability**: SystemCapability.MiscServices.Time
 
 - **Parameters**
     | Name| Type| Mandatory| Description| 
@@ -252,7 +252,7 @@ Sets the system date. This API uses an asynchronous callback to return the resul
 
 **Required permissions**: ohos.permission.SET_TIME
 
-**System capability**: SystemCapability.Miscservices.Time
+**System capability**: SystemCapability.MiscServices.Time
 
 - **Parameters**
     | Name| Type| Mandatory| Description| 
@@ -282,7 +282,7 @@ Sets the system date. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.SET_TIME
 
-**System capability**: SystemCapability.Miscservices.Time
+**System capability**: SystemCapability.MiscServices.Time
 
 - **Parameters**
     | Name| Type| Mandatory| Description| 
@@ -312,7 +312,7 @@ getDate(callback: AsyncCallback&lt;Date&gt;): void
 
 Obtains the current system date. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Miscservices.Time
+**System capability**: SystemCapability.MiscServices.Time
 
 - **Parameters**
     | Name| Type| Mandatory| Description| 
@@ -338,7 +338,7 @@ getDate(): Promise&lt;Date&gt;
 
 Obtains the current system date. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.Miscservices.Time
+**System capability**: SystemCapability.MiscServices.Time
 
 - Return value
     | Type| Description| 
@@ -364,7 +364,7 @@ Sets the system time zone. This API uses an asynchronous callback to return the 
 
 **Required permissions**: ohos.permission.SET_TIME_ZONE
 
-**System capability**: SystemCapability.Miscservices.Time
+**System capability**: SystemCapability.MiscServices.Time
 
 - **Parameters**
     | Name| Type| Mandatory| Description| 
@@ -393,7 +393,7 @@ Sets the system time zone. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.SET_TIME_ZONE
 
-**System capability**: SystemCapability.Miscservices.Time
+**System capability**: SystemCapability.MiscServices.Time
 
 - **Parameters**
     | Name| Type| Mandatory| Description| 
@@ -422,7 +422,7 @@ getTimezone(callback: AsyncCallback&lt;string&gt;): void
 
 Obtains the system time zone. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Miscservices.Time
+**System capability**: SystemCapability.MiscServices.Time
 
 - **Parameters**
     | Name| Type| Mandatory| Description| 
@@ -448,7 +448,7 @@ getTimezone(): Promise&lt;string&gt;
 
 Obtains the system time zone. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.Miscservices.Time
+**System capability**: SystemCapability.MiscServices.Time
 
 - Return value
     | Type| Description| 
