@@ -9,7 +9,7 @@
 
 ### 轻量和小型系统
 
-- [hb安装过程中出现乱码、段错误](../faqs/faqs-environment-building.md#hb安装过程中出现乱码段错误)
+- [hb安装过程中出现乱码、段错误](../faqs/faqs-environment-building.md#hb安装过程中出现乱码、段错误)
 
 - [hb安装过程中提示"cannot import 'sysconfig' from 'distutils'"](../faqs/faqs-environment-building.md#hb安装过程中提示cannot-import-sysconfig-from-distutils)
 
