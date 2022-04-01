@@ -158,6 +158,9 @@ HDF框架以组件化的驱动模型作为核心设计思路，为开发者提�
               template host {       // host模板，继承该模板的节点（如下sample_host）如果使用模板中的默认值，则节点字段可以缺省
                   hostName = "";
                   priority = 100;
+                  uid = "";        // 用户态进程uid，缺省为空，会被配置为hostName的定义值，即普通用户
+                  gid = "";        // 用户态进程gid，缺省为空，会被配置为hostName的定义值，即普通用户组
+                  caps = [""];     // 用户态进程Linux capabilities配置，缺省为空，需要业务模块按照业务需要进行配置
                   template device {
                       template deviceNode {
                           policy = 0;
@@ -173,6 +176,7 @@ HDF框架以组件化的驱动模型作为核心设计思路，为开发者提�
               sample_host :: host{
                   hostName = "host0";    // host名称，host节点是用来存放某一类驱动的容器
                   priority = 100;        // host启动优先级（0-200），值越大优先级越低，建议默认配100，优先级相同则不保证host的加载顺序
+                  caps = ["DAC_OVERRIDE", "DAC_READ_SEARCH"];   // 用户态进程Linux capabilities配置
                   device_sample :: device {        // sample设备节点
                       device0 :: deviceNode {      // sample驱动的DeviceNode节点
                           policy = 1;              // policy字段是驱动服务发布的策略，在驱动服务管理章节有详细介绍
@@ -188,6 +192,18 @@ HDF框架以组件化的驱动模型作为核心设计思路，为开发者提�
           }
       }
       ```
+      说明：
+
+      uid、gid、caps等配置项是用户态驱动的启动配置，内核态不用配置。
+
+      根据进程权限最小化设计原则，业务模块uid、gid不用配置，如上面的sample_host，使用普通用户权限，即uid和gid被定义为hostName的定义值。
+
+      如果普通用户权限不能满足业务要求，需要把uid、gid定义为system或者root权限时，请找安全专家进行评审。
+
+      进程的uid在文件base/startup/init_lite/services/etc/passwd中配置，进程的gid在文件base/startup/init_lite/services/etc/group中配置，进程uid和gid配置参考：[系统服务用户组添加方法](https://gitee.com/openharmony/startup_init_lite/wikis)。
+
+      caps值：比如业务模块要配置CAP_DAC_OVERRIDE，此处需要填写 caps = ["DAC_OVERRIDE"]，不能填写为caps = ["CAP_DAC_OVERRIDE"]。
+
    - 驱动私有配置信息（可选）
       如果驱动有私有配置，则可以添加一个驱动的配置文件，用来填写一些驱动的默认配置信息，HDF框架在加载驱动的时候，会将对应的配置信息获取并保存在HdfDeviceObject 中的property里面，通过Bind和Init（参考步骤1）传递给驱动，驱动的配置信息示例如下：
 
