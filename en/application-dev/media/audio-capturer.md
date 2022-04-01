@@ -1,4 +1,4 @@
-# Audio Recorder Development Using AudioCapturer
+# Audio Capture Development
 
 ---
 ## ***Note***:
@@ -41,7 +41,7 @@ Here's an example of how to use AudioCapturer to capture a raw audio file.
 
 2. (Optional) Subscribe to audio capturer state change events using the **on('stateChange')** API.
    If an application wants to take some action based on the state updates in capturer, the application can subscribe to the state change event.
-   There are more events that applications can subscribe to, such as 'markReach' and 'periodReach'. Refer to [**js-apis-audio.md**](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-audio.md) for more details.
+   There are more events that applications can subscribe to, such as 'markReach' and 'periodReach'. Refer to [Audio](../reference/apis/js-apis-audio.md) for more details.
    ```
     audioCapturer.on('stateChange',(state) => {
     console.info('AudioCapturerLog: Changed State to : ' + state)
@@ -149,4 +149,4 @@ That is, the AudioCapturer has an internal state that the application must alway
 The system may throw an error/exception or generate other undefined behaviour if the application performs an operation while capturer is in an improper state.
 
 ## **Other APIs**
-See [**js-apis-audio.md**](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-audio.md) for more useful APIs like **getAudioTime**, **getCapturerInfo** and **getStreamInfo**.
+See [AudioCapturer in the Audio API](../reference/apis/js-apis-audio.md) for more useful APIs like **getAudioTime**, **getCapturerInfo** and **getStreamInfo**.

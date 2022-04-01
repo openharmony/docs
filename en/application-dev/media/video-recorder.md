@@ -16,7 +16,7 @@ During video recording, audio and video signals are captured, encoded, and saved
 
 ## How to Develop
 
-For details about the APIs used for video recording, see [js-apis-media.md](../reference/apis/js-apis-media.md).
+For details about the APIs used for video recording, see [VideoRecorder in the Media API](../reference/apis/js-apis-media.md).
 
 ### Full-Process Scenario
 
