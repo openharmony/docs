@@ -293,7 +293,7 @@ The following table describes the subsystems of OpenHarmony. For details about t
 </tr>
 <tr id="row1733413367244"><td class="cellrowborder" valign="top" width="11.111111111111112%" headers="mcps1.1.4.1.1 "><p id="p1238318490244"><a name="p1238318490244"></a><a name="p1238318490244"></a>XTS</p>
 </td>
-<td class="cellrowborder" valign="top" width="80.80808080808082%" headers="mcps1.1.4.1.2 "><p id="p2334113611248"><a name="p2334113611248"></a><a name="p2334113611248"></a>Provides a set of OpenHarmony certification test suites, including the currently supported application compatibility test suite (ACTS) and the device compatibility test suite (DCTS) that will be supported in the future.</p>
+<td class="cellrowborder" valign="top" width="80.80808080808082%" headers="mcps1.1.4.1.2 "><p id="p2334113611248"><a name="p2334113611248"></a><a name="p2334113611248"></a>Provides a set of OpenHarmony compatibility test suites, including the currently supported application compatibility test suite (ACTS) and the device compatibility test suite (DCTS) that will be supported in the future.</p>
 </td>
 <td class="cellrowborder" valign="top" width="8.080808080808081%" headers="mcps1.1.4.1.3 "><p id="p03341936102418"><a name="p03341936102418"></a><a name="p03341936102418"></a>All systems</p>
 </td>
