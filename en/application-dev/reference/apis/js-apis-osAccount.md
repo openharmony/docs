@@ -29,6 +29,7 @@ Obtains an **AccountManager** instance.
   ```
 
 ## OsAccountType
+
 Enumerates OS account types.
 
 **System capability**: SystemCapability.Account.OsAccount
@@ -50,6 +51,8 @@ activateOsAccount(localId: number, callback: AsyncCallback&lt;void&gt;): void
 Activates an OS account. This method uses an asynchronous callback to return the result.
 
 This is a system API and cannot be called by third-party applications.
+
+**Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -488,7 +491,7 @@ This is a system API and cannot be called by third-party applications.
 
 setOsAccountConstraints(localId: number, constraints: Array&lt;string&gt;, enable: boolean,callback: AsyncCallback&lt;void&gt;): void
 
-Sets or removes constraints for an OS account.
+Sets or removes constraints for an OS account. This method uses an asynchronous callback to return the result.
 
 This is a system API and cannot be called by third-party applications.
 
@@ -519,7 +522,7 @@ This is a system API and cannot be called by third-party applications.
 
 setOsAccountConstraints(localId: number, constraints: Array&lt;string&gt;, enable: boolean): Promise&lt;void&gt;
 
-Sets or removes constraints for an OS account.
+Sets or removes constraints for an OS account. This method uses a promise to return the result.
 
 This is a system API and cannot be called by third-party applications.
 
@@ -1737,16 +1740,17 @@ This is a system API and cannot be called by third-party applications.
   ```
 
 ## OsAccountInfo
+
 Defines information about an OS account.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-| Name           | Type                                                        | Mandatory| Description                             |
-| ----------------- | ------------------------------------------------------------ | ---- | --------------------------------- |
-| localId           | number                                                       | Yes  | ID of the target OS account.                     |
-| localName         | string                                                       | Yes  | OS account name.                   |
-| type              | [OsAccountType](#osaccounttype)                              | Yes  | OS account type.                     |
-| constraints       | Array&lt;string&gt;                                          | No  | [Constraints](#constraints) on the OS account.|
+| Name                        | Type                                                        | Mandatory| Description                             |
+| ------------------------------ | ------------------------------------------------------------ | ---- | --------------------------------- |
+| localId                        | number                                                       | Yes  | ID of the target OS account.                     |
+| localName                      | string                                                       | Yes  | OS account name.                   |
+| type                           | [OsAccountType](#osaccounttype)                              | Yes  | OS account type.                     |
+| constraints                    | Array&lt;string&gt;                                          | No  | [Constraints](#constraints) on the OS account.|
 | isVerified<sup>8+</sup>        | boolean                                                      | Yes  | Whether the OS account is verified.                     |
 | photo<sup>8+</sup>             | string                                                       | No  | Profile photo of the OS account.                     |
 | createTime<sup>8+</sup>        | number                                                       | Yes  | Time when the OS account was created.                 |
@@ -1754,17 +1758,18 @@ Defines information about an OS account.
 | serialNumber<sup>8+</sup>      | number                                                       | Yes  | SN of the OS account.                     |
 | isActived<sup>8+</sup>         | boolean                                                      | Yes  | Whether the OS account is activated.                 |
 | isCreateCompleted<sup>8+</sup> | boolean                                                      | Yes  | Whether the OS account information is complete.             |
-| distributedInfo   | [distributedAccount.DistributedInfo](js-apis-distributed-account.md) | No  | Distributed account information.                   |
+| distributedInfo                | [distributedAccount.DistributedInfo](js-apis-distributed-account.md) | No  | Distributed account information.                   |
 | domainInfo<sup>8+</sup>        | [DomainAccountInfo](#domainaccountinfo)                      | No  | Domain account information.                       |
 
 ## DomainAccountInfo<sup>8+</sup>
+
 Domain account information.
 
 **System capability**: SystemCapability.Account.OsAccount
 
 | Name     | Type  | Mandatory| Description      |
 | ----------- | ------ | ---- | ---------- |
-| domain     | string | Yes  | Domain name.    |
+| domain      | string | Yes  | Domain name.    |
 | accountName | string | Yes  | Domain account name.|
 
 ## Constraints
@@ -1801,8 +1806,8 @@ Domain account information.
 | constraint.control.apps | A user is not allowed to modify apps in **Settings** or the boot module.|
 | constraint.physical.media | A user is not allowed to mount external physical media.|
 | constraint.microphone | A user is not allowed to use microphones.|
-| constraint.microphone.unmute | A user is not allowed to adjust the microphone volume.|
-| constraint.volume.adjust | A user is not allowed to adjust the device's global volume.|
+| constraint.microphone.unmute | A user is not allowed to unmute the microphone.|
+| constraint.volume.adjust | A user is not allowed to adjust the volume.|
 | constraint.calls.outgoing | A user is not allowed to make outgoing calls.|
 | constraint.sms.use | A user is not allowed to send or receive SMS messages.|
 | constraint.fun | A user is not allowed to have entertainment.|
@@ -1820,7 +1825,7 @@ Domain account information.
 | constraint.os.account.set.icon | A user is not allowed to change their icon.|
 | constraint.wallpaper.set | A user is not allowed to set a wallpaper.|
 | constraint.oem.unlock | A user is not allowed to enable OEM unlock.|
-| constraint.device.unmute | A user is not allowed to mute the device's global volume.|
+| constraint.device.unmute | A user is not allowed to unmute the device.|
 | constraint.password.unified | The managed profile is not allowed to have unified lock screen challenge with the primary user.|
 | constraint.autofill | A user is not allowed to use the autofill service.|
 | constraint.content.capture | Capturing the content of a user's screen is prohibited.|
