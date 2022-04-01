@@ -156,7 +156,7 @@ You must install **Node.js** and HPM on your local PC. The installation procedur
 
 To ensure the download performance, you are advised to download the source code or the corresponding solution from the image library of the respective site listed in the table below.
 
-The table below provides only the sites for downloading the latest OpenHarmony master and LTS code. For details about how to obtain the source code of earlier versions, see the [Release-Notes](../../release-notes/Readme.md). 
+The table below provides only the sites for downloading the latest OpenHarmony LTS code. For details about how to obtain the source code of earlier versions, see the [Release-Notes](../../release-notes/Readme.md). 
 
 **Table 1**  Sites for acquiring source code 
 
@@ -234,7 +234,7 @@ The table below provides only the sites for downloading the latest OpenHarmony m
 <td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.4 "><p id="p039662242117"><a name="p039662242117"></a><a name="p039662242117"></a>-</p>
 </td>
 </tr>
-<tr id="row573719239393"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.1 "><p id="p104146493390"><a name="p104146493390"></a><a name="p104146493390"></a><strong id="b12414104919398"><a name="b12414104919398"></a><a name="b12414104919398"></a>Master Code</strong></p>
+<tr id="row573719239393"><td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.1 "><p id="p104146493390"><a name="p104146493390"></a><a name="p104146493390"></a><strong id="b12414104919398"><a name="b12414104919398"></a><a name="b12414104919398"></a>Latest Release Code</strong></p>
 </td>
 <td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.2 "><p id="p194141849163919"><a name="p194141849163919"></a><a name="p194141849163919"></a><strong id="b441494913918"><a name="b441494913918"></a><a name="b441494913918"></a>Version Information</strong></p>
 </td>
