@@ -75,9 +75,9 @@
 ```
 <!-- xxx.hml -->
 <div class="container">
-  <image src="common/images/hw_right.png" style="width: 300px; height: 300px; object-fit:{{fit}}; object-position: center center; border: 1px solid red;">
+  <image src="common/images/example.png" style="width: 300px; height: 300px; object-fit:{{fit}}; object-position: center center; border: 1px solid red;">
   </image>
-  &lt;select class="selects" onchange="change_fit"&gt;&lt;option for="{{fits}}" value="{{$item}}"&gt;{{$item}}&lt;/option&gt;&lt;/select&gt;
+  <select class="selects" onchange="change_fit"><option for="{{fits}}" value="{{$item}}">{{$item}}</option></select>
 </div>
 ```
 
@@ -87,12 +87,11 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  
 }
 .selects{
   margin-top: 20px;
   width:300px;
-  border:1px solid \#808080;
+  border:1px solid #808080;
   border-radius: 10px;
 }
 ```
