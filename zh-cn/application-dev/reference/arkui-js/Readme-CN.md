@@ -94,6 +94,7 @@
         - [animateTransform](js-components-svg-animatetransform.md)
 - 自定义组件
     - [基本用法](js-components-custom-basic-usage.md)
+    - [继承样式](js-components-custom-style.md)
     - [自定义事件](js-components-custom-events.md)
     - [Props](js-components-custom-props.md)
     - [事件参数](js-components-custom-event-parameter.md)
