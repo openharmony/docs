@@ -7,7 +7,7 @@
 > 为确保运行效果，本文以使用**DevEco Studio V3.0.0.900 Beta3**版本为例，点击[此处](https://developer.harmonyos.com/cn/develop/deveco-studio#download_beta_openharmony)获取下载链接。
 
 
-OpenHarmony低代码开发方式具有丰富的UI界面编辑功能，遵循[JS开发规范](../reference/apis)，通过可视化界面开发方式快速构建布局，可有效降低用户的上手成本并提升用户构建UI界面的效率。
+OpenHarmony低代码开发方式具有丰富的UI界面编辑功能，遵循JS开发规范，通过可视化界面开发方式快速构建布局，可有效降低用户的上手成本并提升用户构建UI界面的效率。
 
 
 使用低代码开发应用或服务有以下两种开发方式：
