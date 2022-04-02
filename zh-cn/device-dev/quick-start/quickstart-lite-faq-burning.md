@@ -8,6 +8,7 @@
   点击烧写并选择串口后，出现Error: Opening COMxx: Access denied。
 
     **图1** 打开串口失败图
+
     ![zh-cn_image_0000001226634728](figures/zh-cn_image_0000001226634728.png)
 
 - **可能原因**
@@ -109,7 +110,7 @@
 
   修改串口号。
 
-  请查看设备管理器，确认连接单板的串口与终端中连接串口是否一致，若不一致，请按[串口访问失败的步骤](#烧写选择串口后提示error-opening-comxx-access-denied)修改串口号。
+  请查看设备管理器，确认连接单板的串口与终端中连接串口是否一致，若不一致，请按“烧写选择串口后提示“Error: Opening COMxx: Access denied””修改串口号。
 
 - **可能原因2**
 
