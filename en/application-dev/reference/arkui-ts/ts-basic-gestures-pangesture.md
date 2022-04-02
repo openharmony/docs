@@ -55,12 +55,12 @@ PanGestureOptions(options?: { fingers?: number, direction?: PanDirection, distan
 
 | Name | Description |
 | -------- | -------- |
-| onActionStart(callback: (event?: PanGestureEvent) =&gt; void) | Callback for the pan gestures reorganization event. |
-| onActionUpdate(callback: (event?: PanGestureEvent) =&gt; void) | Callback invoked when a pan gesture is recognized. |
-| onActionEnd(callback: (event?: PanGestureEvent) =&gt; void) | Callback invoked when the finger used for a pan gesture is lift. |
+| onActionStart(callback: (event?: GestureEvent) =&gt; void) | Callback for the pan gestures reorganization event. |
+| onActionUpdate(callback: (event?: GestureEvent) =&gt; void) | Callback invoked when a pan gesture is recognized. |
+| onActionEnd(callback: (event?: GestureEvent) =&gt; void) | Callback invoked when the finger used for a pan gesture is lift. |
 | onActionCancel(callback: () =&gt; void) | Callback invoked when a tap cancellation event is received after a pan gesture is recognized. |
 
-- PanGestureEvent<sup>8+</sup> attributes
+- GestureEvent attributes related to the pan gesture  
     | Name | Type | Description |
   | -------- | -------- | -------- |
   | offsetX | number | Offset of the gesture event, in vp. |
@@ -85,10 +85,10 @@ struct PanGestureExample {
     .translate({ x: this.offsetX, y: this.offsetY, z: 5 })
     .gesture(
       PanGesture({})
-        .onActionStart((event: PanGestureEvent) => {
+        .onActionStart((event: GestureEvent) => {
           console.info('Pan start')
         })
-        .onActionUpdate((event: PanGestureEvent) => {
+        .onActionUpdate((event: GestureEvent) => {
           this.offsetX = event.offsetX
           this.offsetY = event.offsetY
         })

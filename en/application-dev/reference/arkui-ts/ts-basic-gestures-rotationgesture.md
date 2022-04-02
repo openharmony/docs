@@ -15,25 +15,25 @@ None
 RotationGesture(options?: { fingers?: number, angle?: number })
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | fingers | number | No | 2 | Minimum number of fingers to trigger a rotation. The value ranges from 2 to 5. | 
-  | angle | number | No | 1.0 | Minimum degree that can trigger the rotation gesture. | 
+  | fingers | number | No | 2 | Minimum number of fingers to trigger a rotation. The value ranges from 2 to 5. |
+  | angle | number | No | 1.0 | Minimum degree that can trigger the rotation gesture. |
 
 
 ## Events
 
-  | Name | Description | 
+| Name | Description |
 | -------- | -------- |
-| onActionStart((event?: RotationGestureEvent) =&gt; void) | Callback invoked when a rotation gesture is recognized. | 
-| onActionUpdate((event?: RotationGestureEvent) =&gt; void) | Callback invoked during the movement of the rotation gesture. | 
-| onActionEnd((event?: RotationGestureEvent) =&gt; void) | Callback invoked when the finger used for the rotation gesture is lift. | 
-| onActionCancel(event: () =&gt; void) | Callback invoked when a tap cancellation event is received after the rotation gesture is recognized. | 
+| onActionStart((event?: GestureEvent) =&gt; void) | Callback invoked when a rotation gesture is recognized. |
+| onActionUpdate((event?: GestureEvent) =&gt; void) | Callback invoked during the movement of the rotation gesture. |
+| onActionEnd((event?: GestureEvent) =&gt; void) | Callback invoked when the finger used for the rotation gesture is lift. |
+| onActionCancel(event: () =&gt; void) | Callback invoked when a tap cancellation event is received after the rotation gesture is recognized. |
 
-- RotationGestureEvent<sup>8+</sup> attributes
-    | Name | Type | Description | 
+-  GestureEvent attributes related to the rotation gesture  
+    | Name | Type | Description |
   | -------- | -------- | -------- |
-  | angle | number | Rotation angle. | 
+  | angle | number | Rotation angle. |
 
 
 ## Example
@@ -53,10 +53,10 @@ struct RotationGestureExample {
     .margin(80).rotate({ x:1, y:2, z:3, angle: this.angle })
     .gesture(
       RotationGesture()
-        .onActionStart((event: RotationGestureEvent) => {
+        .onActionStart((event: GestureEvent) => {
           console.log('Rotation start')
         })
-        .onActionUpdate((event: RotationGestureEvent) => {
+        .onActionUpdate((event: GestureEvent) => {
           this.angle = event.angle
         })
         .onActionEnd(() => {
