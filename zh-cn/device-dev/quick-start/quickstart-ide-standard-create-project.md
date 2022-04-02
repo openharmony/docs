@@ -21,9 +21,9 @@
 
 5. 在Import Project界面，选择**Product**后，会自动填充对应的MCU、Board、company和kernel信息，然后**ohosVersion**选择对应的OpenHarmony源码版本。下图以导入Hi3516DV300为例进行展示 。
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-   > Hi3516DV300开发板Product选择“Hi3516DV300”。
+   > - Hi3516DV300开发板Product选择“Hi3516DV300”。
    > 
-   > RK3568开发板Product选择“rk3568”。
+   > - RK3568开发板Product选择“rk3568”。
 
    ![zh-cn_image_0000001271448821](figures/zh-cn_image_0000001271448821.png)
 

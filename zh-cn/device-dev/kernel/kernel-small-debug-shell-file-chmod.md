@@ -1,11 +1,5 @@
 # chmod
 
-- [命令功能](#命令功能)
-- [命令格式](#命令格式)
-- [参数说明](#参数说明)
-- [使用指南](#使用指南)
-- [使用实例](#使用实例)
-- [输出说明](#输出说明)
 
 ## 命令功能
 
@@ -19,7 +13,7 @@ chmod [_mode_] [_filename_]
 
 ## 参数说明
 
-**表1** 参数说明
+  **表1** 参数说明
 
 | 参数 | 参数说明 | 取值范围 | 
 | -------- | -------- | -------- |
@@ -36,18 +30,19 @@ chmod [_mode_] [_filename_]
 
 ## 使用实例
 
-举例：修改hello-harmony.txt 文件权限为644和777。
+举例：修改hello-openharmony.txt 文件权限为644和777。
 
 
 ## 输出说明
 
-**示例:**修改/dev目录下 hello-harmony.txt 文件的权限
+**示例:**修改/dev目录下 hello-openharmony.txt 文件的权限
 
+  
 ```
-OHOS:/dev$ chmod 644 hello-harmony.txt
-OHOS:/dev$ ll hello-harmony.txt
--rw-r--r-- 0 0 0 0 1970-01-01 00:00 hello-harmony.txt
-OHOS:/dev$ chmod 777 hello-harmony.txt
-OHOS:/dev$ ll hello-harmony.txt
--rwxrwxrwx 0 0 0 0 1970-01-01 00:00 hello-harmony.txt
+OHOS:/dev$ chmod 644 hello-openharmony.txt
+OHOS:/dev$ ll hello-openharmony.txt
+-rw-r--r-- 0 0 0 0 1970-01-01 00:00 hello-openharmony.txt
+OHOS:/dev$ chmod 777 hello-openharmony.txt
+OHOS:/dev$ ll hello-openharmony.txt
+-rwxrwxrwx 0 0 0 0 1970-01-01 00:00 hello-openharmony.txt
 ```

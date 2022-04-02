@@ -1,24 +1,5 @@
 # 外设驱动开发示例<a name="ZH-CN_TOPIC_0000001157063303"></a>
 
--   [概述](#section86753818426)
-    -   [硬件资源简介](#section123071189431)
-    -   [Input模型简介](#section53684425430)
-
--   [环境搭建](#section661075474418)
--   [TouchScreen器件驱动开发](#section15233162984520)
-    -   [配置设备描述信息](#section16761205604515)
-    -   [配置Touchscreen器件信息](#section156331030144617)
-    -   [适配器件私有驱动](#section17127331595)
-
--   [编译及烧录](#section16465031164711)
--   [调试验证](#section62577313482)
--   [Input模型工作流程解析](#section1578569154917)
-    -   [私有配置信息解析](#section1310113815495)
-    -   [管理驱动层初始化及注册驱动至HDF框架](#section614512119500)
-    -   [公共驱动层初始化及注册驱动至HDF框架](#section16194201755019)
-    -   [器件驱动层初始化及注册驱动至HDF框架](#section1090743312505)
-    -   [具体调用逻辑串联函数](#section81801147529)
-
 
 ## 概述<a name="section86753818426"></a>
 
@@ -40,7 +21,7 @@ Input驱动模型核心部分由设备管理层、公共驱动层、器件驱动
 
 此外，Input模型预先实现了数据通道以及设备配置信息解析等函数。
 
-关于Input模型的详细介绍请参考《[Touchscreen开发概述](../driver/driver-peripherals-touch-des.md#section175431838101617)》。
+关于Input模型的详细介绍请参考《[Touchscreen开发概述](../driver/driver-peripherals-touch-des.md#概述)》。
 
 ## 环境搭建<a name="section661075474418"></a>
 

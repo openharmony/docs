@@ -1,10 +1,5 @@
 # 中断管理
 
-- [基本概念](#基本概念)
-- [接口说明](#接口说明)
-- [开发流程](#开发流程)
-- [编程实例](#编程实例)
-- [结果验证](#结果验证)
 
 ## 基本概念
 
@@ -40,27 +35,29 @@
 
 OpenHarmony LiteOS-M内核的中断模块提供下面几种功能，接口详细信息可以查看API参考。
 
-**表1** 中断模块接口
+  **表1** 创建、删除中断
 
-| 功能分类 | 接口名 | 描述 |
-| -------- | -------- | -------- |
-| 创建、删除中断 | LOS_HwiCreate | 中断创建，注册中断号、中断触发模式、中断优先级、中断处理程序。中断被触发时，会调用该中断处理程序。 |
-|  | LOS_HwiDelete | 根据指定的中断号，删除中断。 |
-| 打开、关闭中断 | LOS_IntUnLock | 开中断，使能当前处理器所有中断响应。 |
-|  | LOS_IntLock | 关中断，关闭当前处理器所有中断响应。 |
-|  | LOS_IntRestore | 恢复到使用LOS_IntLock、LOS_IntUnLock操作之前的中断状态。 |
-| 使能和屏蔽指定中断 | LOS_HwiDisable | 中断屏蔽。（通过设置寄存器，禁止CPU响应该中断） |
-|  | LOS_HwiEnable | 中断使能。（通过设置寄存器，允许CPU响应该中断） |
-| 设置中断优先级 | LOS_HwiSetPriority | 设置中断优先级。 |
-| 触发中断 | LOS_HwiTrigger | 触发中断。（通过写中断控制器的相关寄存器模拟外部中断） |
-| 清除中断寄存器状态 | LOS_HwiClear | 清除中断号对应的中断寄存器的状态位，此接口依赖中断控制器版本，非必需。 |
+| 接口名 | 描述 | 
+| -------- | -------- |
+| HalHwiCreate | 中断创建，注册中断号、中断触发模式、中断优先级、中断处理程序。中断被触发时，会调用该中断处理程序。 | 
+| HalHwiDelete | 根据指定的中断号，删除中断。 | 
+
+  **表2** 打开、关闭中断
+
+| 接口名 | 描述 | 
+| -------- | -------- |
+| LOS_IntUnLock | 开中断，使能当前处理器所有中断响应。 | 
+| LOS_IntLock | 关中断，关闭当前处理器所有中断响应。 | 
+| LOS_IntRestore | 恢复到使用LOS_IntLock、LOS_IntUnLock操作之前的中断状态。 | 
 
 
 ## 开发流程
 
-1. 调用中断创建接口LOS_HwiCreate创建中断。
-2. 调用中断触发接口LOS_HwiTrigger触发中断。
-3. 调用LOS_HwiDelete接口删除指定中断，此接口根据实际情况使用，判断是否需要删除中断。
+1. 调用中断创建接口HalHwiCreate创建中断。
+
+2. 调用TestHwiTrigger接口触发指定中断（该接口在测试套中定义，通过写中断控制器的相关寄存器模拟外部中断，一般的外设设备，不需要执行这一步）。
+
+3. 调用HalHwiDelete接口删除指定中断，此接口根据实际情况使用，判断是否需要删除中断。
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
@@ -85,6 +82,7 @@ OpenHarmony LiteOS-M内核的中断模块提供下面几种功能，接口详细
 
 代码实现如下，演示如何创建中断和删除中断，当指定的中断号HWI_NUM_TEST产生中断时，会调用中断处理函数：
 
+  
 ```
 #include "los_interrupt.h"
 
@@ -101,12 +99,10 @@ static UINT32 Example_Interrupt(VOID)
     UINT32 ret;
     HWI_PRIOR_T hwiPrio = 3;
     HWI_MODE_T mode = 0;
-    HwiIrqParam irqParam;
-    (void)memset_s(&irqParam, sizeof(HwiIrqParam), 0, sizeof(HwiIrqParam));
-    irqParam.pDevId = 0;
-
+    HWI_ARG_T arg = 0;
+  
     /*创建中断*/
-    ret = LOS_HwiCreate(HWI_NUM_TEST, hwiPrio, mode, (HWI_PROC_FUNC)HwiUsrIrq, &irqParam);
+    ret = HalHwiCreate(HWI_NUM_TEST, hwiPrio, mode, (HWI_PROC_FUNC)HwiUsrIrq, arg);
     if(ret == LOS_OK){
         printf("Hwi create success!\n");
     } else {
@@ -114,17 +110,11 @@ static UINT32 Example_Interrupt(VOID)
         return LOS_NOK;
     }
 
-    /*触发中断*/
-    ret = LOS_HwiTrigger(HWI_NUM_TEST);
-    if(ret == LOS_OK){
-        printf("Hwi trigger success!\n");
-    } else {
-        printf("Hwi trigger failed!\n");
-        return LOS_NOK;
-    }
+    /* 延时50个Ticks， 当有硬件中断发生时，会调用函数HwiUsrIrq*/
+    LOS_TaskDelay(50);
 
     /*删除中断*/
-    ret = LOS_HwiDelete(HWI_NUM_TEST);    
+    ret = HalHwiDelete(HWI_NUM_TEST);    
     if(ret == LOS_OK){
         printf("Hwi delete success!\n");
     } else {
@@ -141,9 +131,8 @@ static UINT32 Example_Interrupt(VOID)
 编译运行得到的结果为：
 
 
+  
 ```
 Hwi create success!
-in the func HwiUsrIrq 
-Hwi trigger success!
 Hwi delete success!
 ```

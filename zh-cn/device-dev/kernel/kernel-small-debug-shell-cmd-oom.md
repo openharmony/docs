@@ -1,11 +1,5 @@
 # oom
 
-- [命令功能](#命令功能)
-- [命令格式](#命令格式)
-- [参数说明](#参数说明)
-- [使用指南](#使用指南)
-- [使用实例](#使用实例)
-- [输出说明](#输出说明)
 
 ## 命令功能
 
@@ -27,7 +21,7 @@ oom -h | --help
 
 ## 参数说明
 
-**表1** 参数说明
+  **表1** 参数说明
 
 | 参数 | 参数说明 | 取值范围 | 
 | -------- | -------- | -------- |
@@ -39,7 +33,7 @@ oom -h | --help
 
 ## 使用指南
 
-参数缺省时，显示oom功能当前配置信息。
+  参数缺省时，显示oom功能当前配置信息。
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 当系统内存不足时，会打印出内存不足的提示信息。
 
@@ -57,6 +51,7 @@ oom -h | --help
 
 **示例1：**oom缺省打印配置信息
 
+  
 ```
 OHOS:/$ oom
 [oom] oom loop task status: enabled
@@ -67,6 +62,7 @@ OHOS:/$ oom
 
 系统内存不足时打印提示信息
 
+  
 ```
 T:20 Enter:IT MEM 00M 001
 [oom] OS is in low memory state
@@ -116,13 +112,14 @@ traceback 5 -- 1r = 0x20c4df50 fp = 0хb0b0b0b 1r in /1ib/libc.so - -> 0x62f50
 **示例2**：设置 oom 线程任务检查的时间间隔
 
 
+  
 ```
 OHOS:/$ oom -i 100
 [oom] set oom check interval (100)ms successful
 ```
 
 
-**表2** 输出说明
+  **表2** 输出说明
 
 | 输出 | 说明 | 
 | -------- | -------- |

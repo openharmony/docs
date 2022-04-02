@@ -1,6 +1,7 @@
-# 内核移植验证<a name="ZH-CN_TOPIC_0000001062953117"></a>
+# 内核移植验证
 
-在工程device目录下添加编译main.c示例程序文件，此示例程序的主要目的是：LOS\_KernelInit完成之后，创建两个任务，循环调度延时并打印日志信息，通过此方法可以验证系统是否可正常调度以及时钟是否正常。
+
+在工程device目录下添加编译main.c示例程序文件，此示例程序的主要目的是：LOS_KernelInit完成之后，创建两个任务，循环调度延时并打印日志信息，通过此方法可以验证系统是否可正常调度以及时钟是否正常。
 
 ```
 VOID TaskSampleEntry2(VOID) // 任务2的入口函数
@@ -55,5 +56,5 @@ LITE_OS_SEC_TEXT_INIT int main(void)
 }
 ```
 
-第一个任务运行正常后，说明最小系统的核心流程基本OK；由于xts用例框架对外依赖较多，主要是utils、bootstrap的链接脚本和编译框架，暂时无法支撑内核单独跑xts；此处略过内核测试套的测试，可以通过[XTS测试套](porting-chip-board-xts.md)来覆盖最小系统是否完整移植成功。
 
+第一个任务运行正常后，说明最小系统的核心流程基本OK；由于xts用例框架对外依赖较多，主要是utils、bootstrap的链接脚本和编译框架，暂时无法支撑内核单独跑xts；此处略过内核测试套的测试，可以通过[XTS测试套](../porting/porting-chip-board-xts.md)来覆盖最小系统是否完整移植成功。

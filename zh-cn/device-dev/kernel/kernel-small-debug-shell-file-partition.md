@@ -1,11 +1,5 @@
 # partition
 
-- [命令功能](#命令功能)
-- [命令格式](#命令格式)
-- [参数说明](#参数说明)
-- [使用指南](#使用指南)
-- [使用实例](#使用实例)
-- [输出说明](#输出说明)
 
 ## 命令功能
 
@@ -19,7 +13,7 @@ partition [_nand / spinor_]
 
 ## 参数说明
 
-**表1** 参数说明
+  **表1** 参数说明
 
 | 参数 | 参数说明 | 取值范围 | 
 | -------- | -------- | -------- |
@@ -43,6 +37,7 @@ partition [_nand / spinor_]
 
 查看spinor flash分区信息
 
+  
 ```
 OHOS # partition spinor
 spinor partition num:0,  blkdev name:/dev/spinorblk0, mountpt:/, startaddr:0x00500000, length:0x00a00000

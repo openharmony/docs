@@ -1,14 +1,11 @@
 # 接口调用方式
 
-- [示例代码](#示例代码)
-- [编译](#编译)
-- [调测信息](#调测信息)
-- [调用栈解析](#调用栈解析)
 
 ## 示例代码
 
 代码功能：显式调用调测模块的相关接口对用户代码进行内存校验。
 
+  
 ```
 #include <pthread.h>
 #include <stdlib.h>
@@ -40,6 +37,7 @@ int main()
 
 ## 编译
 
+  
 ```
 $ clang -o mem_check mem_check.c -funwind-tables -rdynamic -g -mfloat-abi=softfp -mcpu=cortex-a7 -mfpu=neon-vfpv4 -target arm-liteos --sysroot=/home/<user-name>/directory/out/hispark_taurus/ipcamera_hispark_taurus/sysroot $(clang -mfloat-abi=softfp -mcpu=cortex-a7 -mfpu=neon-vfpv4 -target arm-liteos -print-file-name=libunwind.a)
 ```
@@ -61,6 +59,7 @@ $ clang -o mem_check mem_check.c -funwind-tables -rdynamic -g -mfloat-abi=softfp
 
 ## 调测信息
 
+  
 ```
 OHOS # ./mem_check
 OHOS # 
@@ -115,12 +114,14 @@ Check heap integrity ok!
 
 提供parse_mem_info.sh脚本可以对调用栈进行解析，解析脚本存放的路径：kernel/liteos_a/tools/scripts/parse_memory/parse_mem_info.sh。利用脚本可以将相应的调测信息转换成具体的源码行号，如下命令所示，mem_debug.txt保存的是内存调测信息，elf1、elf2等文件是需要解析的elf文件。
 
+  
 ```
 $ ./parse_mem_info.sh mem_debug.txt elf1 elf2 elf3 ...
 ```
 
 例如：
 
+  
 ```
 $ ./parse_mem_info.sh mem_debug.txt mem_check
 Compiler is [gcc/llvm]: llvm

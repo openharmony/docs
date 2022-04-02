@@ -34,8 +34,7 @@
             - [LMS调测](kernel-mini-memory-lms.md)
         - 附录
             - [内核编码规范](kernel-mini-appx-code.md)
-            - 基本数据结构
-                - [双向链表](kernel-mini-appx-data-list.md)
+            - [基本数据结构](kernel-mini-appx-data-list.md)
             - 标准库支持
                 - [CMSIS支持](kernel-mini-appx-lib-cmsis.md)
                 - [POSIX支持](kernel-mini-appx-lib-posix.md)
@@ -148,11 +147,10 @@
                         - [tftp](kernel-small-debug-shell-net-tftp.md)
                 - [魔法键使用方法](kernel-small-debug-shell-magickey.md)
                 - [用户态异常信息说明](kernel-small-debug-shell-error.md)
-            - [Trace](kernel-small-debug-trace.md)
+            - [Trace调测](kernel-small-debug-trace.md)
             - [Perf调测](kernel-mini-memory-perf.md)
             - [LMS调测](kernel-small-memory-lms.md)
-            - 进程调测
-                - [CPU占用率](kernel-small-debug-process-cpu.md)
+            - [进程调测](kernel-small-debug-process-cpu.md)
             - 内核态内存调测
                 - [内存信息统计](kernel-small-debug-memory-info.md)
                 - [内存泄漏检测](kernel-small-debug-memory-leak.md)
@@ -165,10 +163,10 @@
                     - 使用说明
                         - [接口调用方式](kernel-small-debug-user-guide-use-api.md)
                         - [命令行参数方式](kernel-small-debug-user-guide-use-cli.md)
-                - [常见问题场景](kernel-small-debug-user-faqs.md)
+                - [常见问题](kernel-small-debug-user-faqs.md)
             - 其他内核调测手段
                 - [临终遗言](kernel-small-debug-trace-other-lastwords.md)
-                - [常见问题定位方法](kernel-small-debug-trace-other-faqs.md)
+                - [常见问题](kernel-small-debug-trace-other-faqs.md)
         - 附录
             - 基本数据结构
                 - [双向链表](kernel-small-apx-dll.md)
@@ -176,11 +174,10 @@
             - [标准库](kernel-small-apx-library.md)
     - 标准系统内核
         - [Linux内核概述](kernel-standard-overview.md)
-        - [开发板Patch使用指导](kernel-standard-patch.md)
+        - [OpenHarmony开发板Patch使用指导](kernel-standard-patch.md)
         - [Linux内核编译与构建指导](kernel-standard-build.md)
         - [内核增强特性](kernel-standard-enhanced-features.md)
-            - [内存管理](kernel-standard-mm.md)
-                - [Enhanced SWAP特性介绍](kernel-standard-mm-eswap.md)
-            - [任务调度](kernel-standard-sched.md)
-                - [关联线程组调度](kernel-standard-sched-rtg.md)
-                - [CPU轻量级隔离](kernel-standard-sched-cpuisolation.md)
+          - [Enhanced SWAP特性介绍](kernel-standard-mm-eswap.md)
+          - [任务调度](kernel-standard-sched.md)
+            - [关联线程组调度](kernel-standard-sched-rtg.md)
+            - [CPU轻量级隔离](kernel-standard-sched-cpuisolation.md)

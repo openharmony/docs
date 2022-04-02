@@ -1,13 +1,7 @@
 # 命令行参数方式
 
-- [示例代码](#示例代码)
-- [编译](#编译)
-- [使用mwatch参数命令](#使用mwatch参数命令)
-- [调用栈解析](#调用栈解析)
-- [使用mrecord参数命令](#使用mrecord参数命令)
 
 对用户态进程进行内存相关的检查时，除了接口调用方式还可以通过命令行方式进行内存统计、内存泄漏或内存完整性检查。
-
 
 ```
 --mwatch：初始化内存调测功能，注册信号。内存调测信息将从串口输出；
@@ -16,7 +10,6 @@
 
 
 在待调测的进程未退出时可使用信号机制获取对应信息:
-
 
 ```
 kill -35 <pid> # 查看线程级堆内存占用
@@ -28,6 +21,7 @@ kill -37 <pid> # 检查堆内存头节点是否完整
 ## 示例代码
 
 代码功能：构造内存问题利用命令行方式进行内存调测。
+
 
 ```
 #include <pthread.h>
@@ -57,6 +51,7 @@ int main()
 
 
 ## 使用mwatch参数命令
+
 
 ```
 OHOS # ./mem_check --mwatch // 利用task命令可以查到mem_check进程的pid为4
@@ -99,6 +94,7 @@ Check heap integrity ok!
 
 将调测信息保存至test.txt文件中，利用脚本进行解析，获取内存泄漏的具体行号。
 
+
 ```
 $ ./parse_mem_info.sh test.txt mem_check
 Compiler is [gcc/llvm]: llvm
@@ -125,11 +121,13 @@ Now using addr2line ...
 ## 使用mrecord参数命令
 
 1. 执行用户程序并指定记录内存调测信息的文件路径
+  
    ```
    OHOS # ./mem_check --mrecord /storage/check.txt
    ```
 
 2. 利用kill -35 &lt;pid&gt;统计内存信息，该信息将会输出到文件中，使用cat命令查看
+  
    ```
    OHOS # kill -35 4
    OHOS # Memory statistics information saved in /storage/pid(4)_check.txt
@@ -146,6 +144,7 @@ Now using addr2line ...
    ```
 
 3. 利用kill -36 &lt;pid&gt;校验内存完整性，该信息将会输出到文件中，使用cat命令查看
+  
    ```
    OHOS # kill -36 4
    OHOS # Leak check information saved in /storage/pid(4)_check.txt
@@ -178,6 +177,7 @@ Now using addr2line ...
    ```
 
 4. 利用kill -9 &lt;pid&gt;杀掉当前进程，进程退出后会默认校验内存完整性，该信息将会输出到文件中，使用cat命令查看
+  
    ```
    OHOS # kill -9 4
    OHOS # Leak check information saved in /storage/pid(4)_check.txt

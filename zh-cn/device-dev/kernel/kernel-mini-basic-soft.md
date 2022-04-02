@@ -1,15 +1,5 @@
 # 软件定时器
 
-- [基本概念](#基本概念)
-- [运行机制](#运行机制)
-  - [定时器状态](#定时器状态)
-  - [定时器模式](#定时器模式)
-- [接口说明](#接口说明)
-- [开发流程](#开发流程)
-- [编程实例](#编程实例)
-  - [实例描述](#实例描述)
-  - [示例代码](#示例代码)
-  - [结果验证](#结果验证)
 
 ## 基本概念
 
@@ -72,15 +62,13 @@ OpenHarmony LiteOS-M内核的软件定时器提供三类定时器机制：
 
 OpenHarmony LiteOS-M内核的软件定时器模块提供下面几种功能，接口详细信息可以查看API参考。
 
-**表1** 软件定时器接口
+  **表1** 软件定时器接口
 
-| 功能分类 | 接口名 | 描述 | 
-| -------- | -------- | -------- |
-| 创建、删除定时器 | LOS_SwtmrCreate | 创建定时器 | 
-| | LOS_SwtmrDelete | 删除定时器 | 
-| 启动、停止定时器 | LOS_SwtmrStart | 启动定时器 | 
-| | LOS_SwtmrStop | 停止定时器 | 
-| 获得软件定时器剩余Tick数 | LOS_SwtmrTimeGet | 获得软件定时器剩余Tick数 | 
+| 功能分类 | p接口描述 | 
+| -------- | -------- |
+| 创建、删除定时器 | -&nbsp;LOS_SwtmrCreate：创建定时器<br/>-&nbsp;LOS_SwtmrDelete：删除定时器 | 
+| 启动、停止定时器 | -&nbsp;LOS_SwtmrStart：启动定时器<br/>-&nbsp;LOS_SwtmrStop：停止定时器 | 
+| 获得软件定时器剩余Tick数 | LOS_SwtmrTimeGet：获得软件定时器剩余Tick数 | 
 
 
 ## 开发流程
@@ -142,6 +130,7 @@ OpenHarmony LiteOS-M内核的软件定时器模块提供下面几种功能，接
 
 代码实现如下：
 
+  
 ```
 #include "los_swtmr.h"
 
@@ -238,6 +227,7 @@ UINT32 Example_TaskEntry(VOID)
 
 编译烧录运行，输出结果如下：
 
+  
 ```
 create Timer1 success
 start Timer1 success

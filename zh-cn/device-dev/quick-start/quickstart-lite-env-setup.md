@@ -132,7 +132,7 @@
 
      
    ```
-   sudo ./devicetool-linux-tool-3.0.0.300.sh
+   sudo ./devicetool-linux-tool-3.0.0.400.sh
    ```
 
    安装完成后，当界面输出“Deveco Device Tool successfully installed.”时，表示DevEco Device Tool安装成功。
@@ -273,6 +273,7 @@
 > Master主干为开发分支，开发者可通过Master主干获取最新特性。发布分支代码相对比较稳定，开发者可基于发布分支代码进行商用功能开发。
 
 - **OpenHarmony主干代码获取**
+
     方式一（推荐）：通过repo + ssh下载（需注册公钥，请参考[码云帮助中心](https://gitee.com/help/articles/4191)）。
     
   ```
@@ -291,6 +292,7 @@
   ```
 
 - **OpenHarmony发布分支代码获取**
+
   OpenHarmony各个版本发布分支的源码获取方式请参考[Release-Notes](../../release-notes/Readme.md)。
 
 

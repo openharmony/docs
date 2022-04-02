@@ -1,13 +1,5 @@
 # CPU占用率
 
-- [基本概念](#基本概念)
-- [运行机制](#运行机制)
-- [接口说明](#接口说明)
-- [开发流程](#开发流程)
-- [编程实例](#编程实例)
-  - [实例描述](#实例描述)
-  - [示例代码](#示例代码)
-  - [结果验证](#结果验证)
 
 ## 基本概念
 
@@ -43,16 +35,13 @@ OpenHarmony  LiteOS-M提供以下两种CPU占用率的信息查询：
 
 ## 接口说明
 
-**表1** 功能列表
+  **表1** 功能列表
 
-| 功能分类 | 接口名 | 描述 | 
-| -------- | -------- | -------- |
-| 获取系统CPU占用率 | LOS_SysCpuUsage | 获取当前系统CPU占用率 | 
-| | LOS_HistorySysCpuUsage | 获取系统历史CPU占用率 | 
-| 获取任务CPU占用率 | LOS_TaskCpuUsage | 获取指定任务CPU占用率 | 
-| | LOS_HistoryTaskCpuUsage | 获取指定任务历史CPU占用率 | 
-| | LOS_AllCpuUsage | 获取所有任务CPU占用率 | 
-| 输出任务CPU占用率 | LOS_CpupUsageMonitor | 输出任务历史CPU占用率 | 
+| 功能分类 | 接口描述 | 
+| -------- | -------- |
+| 获取系统CPU占用率 | -&nbsp;LOS_SysCpuUsage：获取当前系统CPU占用率<br/>-&nbsp;LOS_HistorySysCpuUsage：获取系统历史CPU占用率 | 
+| 获取任务CPU占用率 | -&nbsp;LOS_TaskCpuUsage：获取指定任务CPU占用率<br/>-&nbsp;LOS_HistoryTaskCpuUsage：获取指定任务历史CPU占用率<br/>-&nbsp;LOS_HistoryTaskCpuUsage：获取指定任务历史CPU占用率 | 
+| 输出任务CPU占用率 | LOS_CpupUsageMonitor:输出任务历史CPU占用率 | 
 
 
 ## 开发流程
@@ -102,6 +91,7 @@ CPU占用率的典型开发流程：
 
 代码实现如下：
 
+  
 ```
 #include "los_task.h"
 #include "los_cpup.h" 
@@ -155,7 +145,8 @@ UINT32 ItCpupTest(VOID)
 
 ### 结果验证
 
-编译运行得到的结果为：
+  编译运行得到的结果为：
+  
 ```
 entry cpup test example 
 the current system cpu usage is : 1.5

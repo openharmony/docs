@@ -1,6 +1,7 @@
 # 内核通信机制
 
 
+
 - **[事件](kernel-small-basic-trans-event.md)**
 
 - **[信号量](kernel-small-basic-trans-semaphore.md)**

@@ -1,11 +1,5 @@
 # rm
 
-- [命令功能](#命令功能)
-- [命令格式](#命令格式)
-- [参数说明](#参数说明)
-- [使用指南](#使用指南)
-- [使用实例](#使用实例)
-- [输出说明](#输出说明)
 
 ## 命令功能
 
@@ -19,7 +13,7 @@ rm [_-fv_] _FILE or rm_ [_-rv_] [_PATH_ | _filename_]...
 
 ## 参数说明
 
-**表1** 参数说明
+  **表1** 参数说明
 
 | 参数 | 参数说明 | 取值范围 | 
 | -------- | -------- | -------- |
@@ -51,6 +45,7 @@ rm [_-fv_] _FILE or rm_ [_-rv_] [_PATH_ | _filename_]...
 
 **示例 1** 用 rm 命令删除文件 testfile
 
+  
 ```
 OHOS:/$ ls
 bin  etc  proc    storage  testfile  usr
@@ -63,6 +58,7 @@ dev  lib  sdcard  system   usr
 
 **示例 2** 用 rm -r 删除非空目录 testpath
 
+  
 ```
 OHOS:/$ ls
 bin  etc  proc    storage  testpath  usr

@@ -1,15 +1,5 @@
 # 信号量
 
-- [基本概念](#基本概念)
-- [运行机制](#运行机制)
-  - [信号量控制块](#信号量控制块)
-  - [信号量运作原理](#信号量运作原理)
-- [接口说明](#接口说明)
-- [开发流程](#开发流程)
-- [编程实例](#编程实例)
-  - [实例描述](#实例描述)
-  - [示例代码](#示例代码)
-  - [结果验证](#结果验证)
 
 ## 基本概念
 
@@ -33,6 +23,7 @@
 
 ### 信号量控制块
 
+  
 ```
 /**
  * 信号量控制块数据结构
@@ -42,7 +33,8 @@ typedef struct {
     UINT16            semType;          /* 信号量类型 */
     UINT16            semCount;         /* 信号量计数 */
     UINT16            semId;            /* 信号量索引号 */
-    LOS_DL_LIST       semList;          /* 用于插入阻塞于信号量的任务 */} LosSemCB;
+    LOS_DL_LIST       semList;          /* 用于插入阻塞于信号量的任务 */
+} LosSemCB;
 ```
 
 
@@ -60,19 +52,16 @@ typedef struct {
 
 信号量允许多个任务在同一时刻访问共享资源，但会限制同一时刻访问此资源的最大任务数目。当访问资源的任务数达到该资源允许的最大数量时，会阻塞其他试图获取该资源的任务，直到有任务释放该信号量。
 
-**图1** 轻量系统信号量运作示意图
-![zh-cn_image_0000001245051881](figures/zh-cn_image_0000001245051881.png)
+  **图1** 轻量系统信号量运作示意图
+  ![zh-cn_image_0000001245051881](figures/zh-cn_image_0000001245051881.png)
 
 
 ## 接口说明
 
-| 功能分类 | 接口名 | 描述 | 
-| -------- | -------- | -------- |
-| 创建/删除信号量 | LOS_SemCreate | 创建信号量，返回信号量ID | 
-| | LOS_BinarySemCreate | 创建二值信号量，其计数值最大为1 | 
-| | LOS_SemDelete | 删除指定的信号量 | 
-| 申请/释放信号量 | LOS_SemPend | 申请指定的信号量，并设置超时时间 | 
-| | LOS_SemPost | 释放指定的信号量 | 
+  | 功能分类 | 接口描述 | 
+| -------- | -------- |
+| 创建/删除信号量 | -&nbsp;LOS_SemCreate:创建信号量，返回信号量ID<br/>-&nbsp;LOS_BinarySemCreate:创建二值信号量，其计数值最大为1<br/>-&nbsp;LOS_SemDelete:删除指定的信号量 | 
+| 申请/释放信号量 | -&nbsp;LOS_SemPend:申请指定的信号量，并设置超时时间<br/>-&nbsp;LOS_SemPost:释放指定的信号量 | 
 
 
 ## 开发流程
@@ -97,7 +86,7 @@ typedef struct {
 
 本实例实现如下功能：
 
-1. 测试任务ExampleSem创建一个信号量，锁任务调度，创建两个任务ExampleSemTask1、ExampleSemTask2, ExampleSemTask2优先级高于ExampleSemTask1，两个任务中申请同一信号量，解锁任务调度后两任务阻塞，测试任务ExampleSem释放信号量。
+1. 测试任务ExampleSem创建一个信号量，锁任务调度。创建两个任务ExampleSemTask1和ExampleSemTask2, ExampleSemTask2优先级高于ExampleSemTask1。两个任务中申请同一信号量，解锁任务调度后两任务阻塞，测试任务ExampleSem释放信号量。
 
 2. ExampleSemTask2得到信号量，被调度，然后任务休眠20Tick，ExampleSemTask2延迟，ExampleSemTask1被唤醒。
 
@@ -112,6 +101,7 @@ typedef struct {
 
 示例代码如下：
 
+  
 ```
 #include "los_sem.h"
 #include "securec.h"
@@ -231,6 +221,7 @@ UINT32 ExampleSem(VOID)
 编译运行得到的结果为：
 
 
+  
 ```
 ExampleSemTask2 try get sem g_semId wait forever.
 ExampleSemTask2 get sem g_semId and then delay 20 ticks.

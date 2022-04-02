@@ -1,47 +1,103 @@
-# appspawn应用孵化组件<a name="ZH-CN_TOPIC_0000001063680582"></a>
+# appspawn应用孵化组件
 
-appspawn被init启动后，向IPC框架注册服务名称，之后等待接收进程间消息，根据消息解析结果启动应用服务并赋予其对应权限。
 
-appspawn注册的服务名称为“appspawn”，可通过包含“base\\startup\\appspawn\_lite\\services\\include\\appspawn\_service.h“头文件，获取服务名称对应的宏APPSPAWN\_SERVICE\_NAME定义。在安全子系统限制规则下，目前仅Ability Manager Service有权限可以向appspawn发送的进程间消息。
+## 概述
 
-appspawn接收的消息为json格式，如下所示：
+appspawn被init启动后，等待接收进程间消息，根据消息内容启动应用服务并赋予其对应权限。
 
-"\{\\"bundleName\\":\\"testvalid1\\",\\"identityID\\":\\"1234\\",\\"uID\\":1000,\\"gID\\":1000,\\"capability\\":\[0\]\}"
 
-**表 1**  字段说明
+## 功能简介
 
-<a name="table164915296372"></a>
-<table><thead align="left"><tr id="row6650142913713"><th class="cellrowborder" valign="top" width="39.489999999999995%" id="mcps1.2.3.1.1"><p id="p17650112914379"><a name="p17650112914379"></a><a name="p17650112914379"></a>字段名</p>
-</th>
-<th class="cellrowborder" valign="top" width="60.51%" id="mcps1.2.3.1.2"><p id="p865032916376"><a name="p865032916376"></a><a name="p865032916376"></a>说明</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row36506298373"><td class="cellrowborder" valign="top" width="39.489999999999995%" headers="mcps1.2.3.1.1 "><p id="p76501029113715"><a name="p76501029113715"></a><a name="p76501029113715"></a>bundleName</p>
-</td>
-<td class="cellrowborder" valign="top" width="60.51%" headers="mcps1.2.3.1.2 "><p id="p2650329183715"><a name="p2650329183715"></a><a name="p2650329183715"></a>即将启动的应用服务进程名，长度≥7字节，≤127字节。</p>
-</td>
-</tr>
-<tr id="row86501129183712"><td class="cellrowborder" valign="top" width="39.489999999999995%" headers="mcps1.2.3.1.1 "><p id="p2065010298379"><a name="p2065010298379"></a><a name="p2065010298379"></a>identityID</p>
-</td>
-<td class="cellrowborder" valign="top" width="60.51%" headers="mcps1.2.3.1.2 "><p id="p13650192963715"><a name="p13650192963715"></a><a name="p13650192963715"></a>AMS为新进程生成的标识符，由appspawn透传给新进程，长度≥1字节，≤24字节。</p>
-</td>
-</tr>
-<tr id="row13650329103719"><td class="cellrowborder" valign="top" width="39.489999999999995%" headers="mcps1.2.3.1.1 "><p id="p16501292377"><a name="p16501292377"></a><a name="p16501292377"></a>uID</p>
-</td>
-<td class="cellrowborder" valign="top" width="60.51%" headers="mcps1.2.3.1.2 "><p id="p186503291371"><a name="p186503291371"></a><a name="p186503291371"></a>即将启动的应用服务进程的uID，必须为正值。</p>
-</td>
-</tr>
-<tr id="row187625816314"><td class="cellrowborder" valign="top" width="39.489999999999995%" headers="mcps1.2.3.1.1 "><p id="p188771758833"><a name="p188771758833"></a><a name="p188771758833"></a>gID</p>
-</td>
-<td class="cellrowborder" valign="top" width="60.51%" headers="mcps1.2.3.1.2 "><p id="p187716587310"><a name="p187716587310"></a><a name="p187716587310"></a>即将启动的应用服务进程的gID，必须为正值。</p>
-</td>
-</tr>
-<tr id="row106508294373"><td class="cellrowborder" valign="top" width="39.489999999999995%" headers="mcps1.2.3.1.1 "><p id="p16501829183715"><a name="p16501829183715"></a><a name="p16501829183715"></a>capability</p>
-</td>
-<td class="cellrowborder" valign="top" width="60.51%" headers="mcps1.2.3.1.2 "><p id="p11650182953717"><a name="p11650182953717"></a><a name="p11650182953717"></a>即将启动的应用服务进程所需的capability权限，数量≤10个。</p>
-</td>
-</tr>
-</tbody>
-</table>
+- 安全控制  支持为app设置SELinux标签。
 
+- 应用进程控制
+  - 支持为app设置AccessToken。
+  - 支持重启前，appspawn停止后，可同时停止所有已孵化的app进程。
+
+- 冷启动
+    支持应用通过aa命令冷启动应用。
+    
+  ```
+  param set appspawn.cold.boot true // 打开冷启动状态
+  aa start -d 12345 -a $name -b $package -C 
+  参考：
+  aa start -d 12345 -a ohos.acts.startup.sysparam.function.MainAbility -b ohos.acts.startup.sysparam.function -C 
+  ```
+
+
+## 基本概念
+
+appspawn注册的服务名称为“appspawn”, appspawn 通过监听本地socket，接收来自客户端的请求消息。消息类型为AppProperty的结构体， 定义路径为：“base/startup/appspawn_standard/interfaces/innerkits/include/sclient_socket.h“。
+
+  **表1** 字段说明
+
+| 字段名 | 说明 | 
+| -------- | -------- |
+| processName | 即将启动的应用服务进程名，最大256字节。 | 
+| bundleName | 即将启动的应用程序包名，最大256字节。 | 
+| soPath | 应用程序指定的动态库的路径，最大256字节。 | 
+| uid | 即将启动的应用进程的uid，必须为正值。 | 
+| gid | 即将启动的应用进程的gid，必须为正值。 | 
+| gidTable | 即将启动的应用进程组信息，长度由gidCount指定，最大支持64个进程组，必须为正值。 | 
+| gidCount | 即将启动的应用进程组个数。 | 
+| accessTokenId | 应用进程权限控制的token&nbsp;id。 | 
+| apl | 应用进程权限控制的apl，最大32字节。 | 
+
+
+## 开发指导
+
+接口定义路径： “base/startup/appspawn_standard/interfaces/innerkits/include/client_socket.h“，表 2为接口说明。
+
+
+### 接口说明
+
+  **表2** 字段说明
+
+| 字段名 | 说明 | 
+| -------- | -------- |
+| CreateClient | 创建client。 | 
+| CloseClient | 关闭client。 | 
+| ConnectSocket | 向appspawn服务发起连接请求。 | 
+| WriteSocketMessage | 发送消息到appspawn服务。 | 
+| ReadSocketMessage | 接收来自appspawn服务的消息。 | 
+
+
+## 开发实例
+
+接口使用参考方式：
+
+  
+```
+std::shared_ptr<AppSpawn::ClientSocket> clientSocket = std::make_unique<AppSpawn::ClientSocket>("AppSpawn");
+    if (clientSocket == nullptr) {
+        return -1;
+    }
+    if (clientSocket->CreateClient() != ERR_OK) {
+        return -1;
+    }
+    if (clientSocket->ConnectSocket() != ERR_OK) {
+        return -1;;
+    }
+    // property 构造AppProperty
+    clientSocket->WriteSocketMessage((void *)&property, sizeof(AppSpawn::AppProperty));
+    // 读结果
+    int pid;
+    clientSocket->ReadSocketMessage((void *)&pid, sizeof(pid));
+    // 如果失败，返回pid如果小于等于0，则错误，否则返回应用的进程id
+```
+
+
+## 常见问题
+
+
+### 冷启动失败
+
+**现象描述**
+
+通过命令冷启动应用失败。
+
+**解决方法**
+
+1. 确认是否打开冷启动设置
+
+2. 确认冷启动命令是否正确

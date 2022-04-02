@@ -21,15 +21,15 @@ repo init -u https://gitee.com/openharmony-sig/manifest.git -b master -m devboar
 
 ## 芯片移植指导
 
-- [轻量系统芯片移植指导](porting-minichip.md)
-  - [移植准备](porting-chip-prepare.md)
-    - [移植须知](oem_transplant_chip_prepare_knows.md)
+- 轻量系统芯片移植指导
+  - 移植准备
+    - [移植须知](porting-chip-prepare-knows.md)
     - [编译构建适配流程](porting-chip-prepare-process.md)
-  - [内核移植](porting-chip-kernel.md)
+  - 内核移植
     - [移植概述](porting-chip-kernel-overview.md)
     - [内核基础适配](porting-chip-kernel-adjustment.md)
     - [内核移植验证](porting-chip-kernel-verify.md)
-  - [板级系统移植](porting-chip-board.md)
+  - 板级系统移植
     - [移植概述](porting-chip-board-overview.md)
     - [板级驱动适配](porting-chip-board-driver.md)
     - [HAL层实现](porting-chip-board-hal.md)
@@ -38,27 +38,26 @@ repo init -u https://gitee.com/openharmony-sig/manifest.git -b master -m devboar
     - [三方组件适配](porting-chip-board-bundle.md)
     - [XTS认证](porting-chip-board-xts.md)
   - [常见问题](porting-chip-faqs.md)
-- [小型系统芯片移植指导](porting-smallchip.md)
-  - [移植准备](porting-smallchip-prepare.md)
+- 小型系统芯片移植指导
+  - 移植准备
     - [移植须知](porting-smallchip-prepare-needs.md)
     - [编译构建](porting-smallchip-prepare-building.md)
-  - [移植内核](porting-smallchip-kernel.md)
+  - 移植内核
     - [LiteOS-A内核](porting-smallchip-kernel-a.md)
     - [Linux内核](porting-smallchip-kernel-linux.md)
-  - [驱动移植](porting-smallchip-driver.md)
+  - 驱动移植
     - [移植概述](porting-smallchip-driver-overview.md)
     - [平台驱动移植](porting-smallchip-driver-plat.md)
     - [器件驱动移植](porting-smallchip-driver-oom.md)
-- [标准系统芯片移植指导](standard-system-porting-guide.md)
-    - [标准系统移植指南](standard-system-porting-guide.md)
-    - [一种快速移植OpenHarmony Linux内核的方法](porting-linux-kernel.md)
-- [轻量和小型系统三方库移植指导](porting-thirdparty.md)
-    - [概述](porting-thirdparty-overview.md)
-    - [CMake方式组织编译的库移植](porting-thirdparty-cmake.md)
-    - [Makefile方式组织编译的库移植](porting-thirdparty-makefile.md)
+- 标准系统芯片移植指导
+  - [标准系统移植指南](standard-system-porting-guide.md)
+  - [一种快速移植OpenHarmony Linux内核的方法](porting-linux-kernel.md)
+- 轻量和小型系统三方库移植指导
+  - [概述](porting-thirdparty-overview.md)
+  - [CMake方式组织编译的库移植](porting-thirdparty-cmake.md)
+  - [Makefile方式组织编译的库移植](porting-thirdparty-makefile.md)
 
 ## 芯片移植案例
 
-- [轻量系统芯片移植案例](porting-minichip-cases.md)
-    - [带屏解决方案之恒玄芯片移植案例](porting-bes2600w-on-minisystem-display-demo.md)
+- [带屏解决方案之恒玄芯片移植案例](porting-bes2600w-on-minisystem-display-demo.md)
 

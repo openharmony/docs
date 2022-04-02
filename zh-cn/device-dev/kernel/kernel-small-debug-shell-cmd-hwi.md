@@ -1,11 +1,5 @@
 # hwi
 
-- [命令功能](#命令功能)
-- [命令格式](#命令格式)
-- [参数说明](#参数说明)
-- [使用指南](#使用指南)
-- [使用实例](#使用实例)
-- [输出说明](#输出说明)
 
 ## 命令功能
 
@@ -37,6 +31,7 @@ hwi
 ## 输出说明
 
 - 显示中断信息（LOSCFG_CPUP_INCLUDE_IRQ关闭）
+    
   ```
   OHOS # hwi
    InterruptNo     Count     Name
@@ -74,6 +69,7 @@ hwi
   ```
 
 - 显示中断信息（LOSCFG_CPUP_INCLUDE_IRQ打开）
+    
   ```
   OHOS # hwi
    InterruptNo      Count  ATime(us)   CPUUSE  CPUUSE10s  CPUUSE1s   Mode Name
@@ -110,7 +106,7 @@ hwi
           102:          0          0     0.0        0.0       0.0  normal SPI_HI35XX
   ```
 
-  **表1** 输出说明
+    **表1** 输出说明
   
   | 输出 | 说明 | 
   | -------- | -------- |

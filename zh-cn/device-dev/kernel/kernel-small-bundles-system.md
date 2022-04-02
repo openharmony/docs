@@ -1,10 +1,5 @@
 # 系统调用
 
-- [基本概念](#基本概念)
-- [运行机制](#运行机制)
-- [开发指导](#开发指导)
-  - [开发流程](#开发流程)
-  - [编程实例](#编程实例)
 
 ## 基本概念
 
@@ -13,9 +8,11 @@ OpenHarmony LiteOS-A实现了用户态与内核态的区分隔离，用户态程
 
 ## 运行机制
 
-如图1所示，用户程序通过调用System API（系统API，通常是系统提供的POSIX接口）进行内核资源访问与交互请求，POSIX接口内部会触发SVC/SWI异常，完成系统从用户态到内核态的切换，然后对接到内核的Syscall Handler（系统调用统一处理接口）进行参数解析，最终分发至具体的内核处理函数。
-**图1** 系统调用示意图
-![zh-cn_image_0000001132856572](figures/zh-cn_image_0000001132856572.png)
+  如图1所示，用户程序通过调用System API（系统API，通常是系统提供的POSIX接口）进行内核资源访问与交互请求，POSIX接口内部会触发SVC/SWI异常，完成系统从用户态到内核态的切换，然后对接到内核的Syscall Handler（系统调用统一处理接口）进行参数解析，最终分发至具体的内核处理函数。
+  
+  **图1** 系统调用示意图
+
+  ![zh-cn_image_0000001132856572](figures/zh-cn_image_0000001132856572.png)
 Syscall Handler的具体实现在kernel/liteos_a/syscall/los_syscall.c中OsArmA32SyscallHandle函数，在进入系统软中断异常时会调用此函数，并且按照kernel/liteos_a/syscall/syscall_lookup.h中的清单进行系统调用的入参解析，执行各系统调用最终对应的内核处理函数。
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
@@ -45,7 +42,8 @@ Syscall Handler的具体实现在kernel/liteos_a/syscall/los_syscall.c中OsArmA3
 **示例代码**：
 
 1. 在LibC库syscall.h.in中新增系统调用号
-   如下所示，其中__NR_new_syscall_sample为新增系统调用号：
+     如下所示，其中__NR_new_syscall_sample为新增系统调用号：
+     
    ```
    ...
    /* 当前现有的系统调用清单 */
@@ -74,6 +72,7 @@ Syscall Handler的具体实现在kernel/liteos_a/syscall/los_syscall.c中OsArmA3
    ```
 
 2. 在LibC库中新增用户态接口的声明与实现
+     
    ```
    #include "stdio_impl.h"
    #include "syscall.h"
@@ -90,6 +89,7 @@ Syscall Handler的具体实现在kernel/liteos_a/syscall/los_syscall.c中OsArmA3
 3. 在内核系统调用头文件中新增系统调用号
    如下所示，在third_party/musl/porting/liteos_a/kernel/include/bits/syscall.h文件中，__NR_new_syscall_sample为新增系统调用号。
 
+     
    ```
    ...
    /* 当前现有的系统调用清单 */
@@ -119,6 +119,7 @@ Syscall Handler的具体实现在kernel/liteos_a/syscall/los_syscall.c中OsArmA3
 
    在kernel/liteos_a/syscall/syscall_lookup.h中，增加一行SYSCALL_HAND_DEF(__NR_new_syscall_sample, SysNewSyscallSample, void, ARG_NUM_1)：
 
+     
    ```
    ...
    /* 当前现有的系统调用清单 */
@@ -136,6 +137,7 @@ Syscall Handler的具体实现在kernel/liteos_a/syscall/los_syscall.c中OsArmA3
 4. 在内核中新增内核该系统调用对应的处理函数
    如下所示，在kernel/liteos_a/syscall/los_syscall.h中，SysNewSyscallSample为新增系统调用的内核处理函数声明：
 
+     
    ```
    ...
    /* 当前现有的系统调用内核处理函数声明清单 */
@@ -150,7 +152,8 @@ Syscall Handler的具体实现在kernel/liteos_a/syscall/los_syscall.c中OsArmA3
    ...
    ```
 
-   新增的系统调用的内核处理函数实现如下：
+     新增的系统调用的内核处理函数实现如下：
+     
    ```
    include "los_printf.h"
    ...
@@ -169,6 +172,7 @@ Syscall Handler的具体实现在kernel/liteos_a/syscall/los_syscall.c中OsArmA3
 用户态程序调用newSyscallSample(10)接口，得到输出结果如下：
 
 
+  
 ```
 /* 用户态接口与内核态接口均有输出，证明系统调用已使能 */
 user mode: num = 10

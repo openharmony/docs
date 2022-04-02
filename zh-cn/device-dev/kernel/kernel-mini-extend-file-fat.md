@@ -1,13 +1,5 @@
 # FAT
 
-- [基本概念](#基本概念)
-- [开发指导](#开发指导)
-  - [驱动适配](#驱动适配)
-  - [开发流程](#开发流程)
-- [编程实例](#编程实例)
-  - [实例描述](#实例描述)
-  - [示例代码](#示例代码)
-  - [结果验证](#结果验证)
 
 ## 基本概念
 
@@ -27,6 +19,7 @@ FAT文件系统的使用需要底层MMC相关驱动的支持。在一个带MMC�
 
 2、新增fs_config.h文件，配置FS_MAX_SS（存储设备最大sector大小）、FF_VOLUME_STRS（分区名）等信息，例如：
 
+  
 ```
 #define FF_VOLUME_STRS     "system", "inner", "update", "user"
 #define FS_MAX_SS          512
@@ -90,7 +83,8 @@ FAT文件系统的使用需要底层MMC相关驱动的支持。在一个带MMC�
 
 - 系统已将MMC设备分区挂载到user目录
 
-代码实现如下：
+  代码实现如下：
+  
 ```
 #include <stdio.h>
 #include <string.h>
@@ -185,6 +179,7 @@ int FatfsTest(void)
 
 编译运行得到的结果为：
 
+  
 ```
 Hello OpenHarmony!
 ```

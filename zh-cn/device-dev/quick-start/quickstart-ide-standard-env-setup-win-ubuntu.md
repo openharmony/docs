@@ -58,7 +58,7 @@
 
      
    ```
-   sudo ./devicetool-linux-tool-3.0.0.300.sh
+   sudo ./devicetool-linux-tool-3.0.0.400.sh
    ```
 
    安装完成后，当界面输出“Deveco Device Tool successfully installed.”时，表示DevEco Device Tool安装成功。

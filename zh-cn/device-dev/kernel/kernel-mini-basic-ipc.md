@@ -1,6 +1,7 @@
 # 内核通信机制
 
 
+
 - **[事件](kernel-mini-basic-ipc-event.md)**
 
 - **[互斥锁](kernel-mini-basic-ipc-mutex.md)**

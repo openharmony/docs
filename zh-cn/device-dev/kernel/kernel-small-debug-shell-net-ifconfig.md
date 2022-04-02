@@ -1,11 +1,5 @@
 # ifconfig
 
-- [命令功能](#命令功能)
-- [命令格式](#命令格式)
-- [参数说明](#参数说明)
-- [使用指南](#使用指南)
-- [使用实例](#使用实例)
-- [输出说明](#输出说明)
 
 ## 命令功能
 
@@ -33,7 +27,7 @@ option:
 
 ## 参数说明
 
-**表1** 参数说明
+  **表1** 参数说明
 
 | 参数 | 参数说明 | 取值范围 | 
 | -------- | -------- | -------- |
@@ -72,6 +66,7 @@ option:
 ## 输出说明
 
 - **示例1：**设置网络参数
+    
   ```
   OHOS:/$ ifconfig eth0 192.168.100.31 netmask 255.255.255.0 gateway 192.168.100.1 hw ether 00:49:cb:6c:a1:31
   OHOS:/$ ifconfig
@@ -84,7 +79,7 @@ option:
 
   输出的各参数说明如下表所示：
 
-  **表2** 参数说明
+    **表2** 参数说明
   
   | 参数 | 说明 | 
   | -------- | -------- |
@@ -98,6 +93,7 @@ option:
   | Link&nbsp;UP/Down | 网卡连接状态。 | 
 
 - **示例2：**获取协议栈统计信息
+    
   ```
   OHOS # ifconfig -a
   RX packets:6922  errors:0        ip dropped:4312         link dropped:67         overrun:0       bytes:0 (0.0 B)
@@ -108,7 +104,7 @@ option:
 
   输出的各参数说明如下表所示：
 
-  **表3** ifconfig -a 参数说明
+    **表3** ifconfig -a 参数说明
   
   | 参数 | 说明 | 
   | -------- | -------- |
@@ -124,6 +120,7 @@ option:
   | TX&nbsp;bytes | IP层已正常发送或者转发的数据包的总长度。 | 
 
 - **示例3**：设置IPv6的地址信息
+    
   ```
   OHOS:/$ ifconfig eth0 inet6 add 2001:a:b:c:d:e:f:d
   NetifStatusCallback(eth0): nsc event: 0x8
@@ -143,6 +140,7 @@ option:
   ```
 
 - **示例4**：删除IPv6的地址信息
+    
   ```
   OHOS:/$ ifconfig eth0 inet6 del 2001:a:b:c:d:e:f:d
   NetifStatusCallback(eth0): nsc event: 0x200

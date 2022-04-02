@@ -1,10 +1,5 @@
 # 进程
 
-- [基本概念](#基本概念)
-- [运行机制](#运行机制)
-- [开发指导](#开发指导)
-  - [接口说明](#接口说明)
-  - [开发流程](#开发流程)
 
 ## 基本概念
 
@@ -34,8 +29,9 @@
 
 - 僵尸（Zombies）：进程运行结束，等待父进程回收其控制块资源。
 
-**图1** 进程状态迁移示意图
-![zh-cn_image_0000001219007317](figures/zh-cn_image_0000001219007317.png)
+  **图1** 进程状态迁移示意图
+
+  ![zh-cn_image_0000001219007317](figures/zh-cn_image_0000001219007317.png)
 
 **进程状态迁移说明：**
 
@@ -72,8 +68,9 @@ OpenHarmony 提供的进程模块主要用于实现用户态进程的隔离，�
 
 进程只是资源管理单元，实际运行是由进程内的各个线程完成的，不同进程内的线程相互切换时会进行进程空间的切换。
 
-**图2** 进程管理示意图
-![zh-cn_image_0000001199736949](figures/zh-cn_image_0000001199736949.png)
+  **图2** 进程管理示意图
+
+  ![zh-cn_image_0000001199736949](figures/zh-cn_image_0000001199736949.png)
 
 
 ## 开发指导
@@ -81,22 +78,16 @@ OpenHarmony 提供的进程模块主要用于实现用户态进程的隔离，�
 
 ### 接口说明
 
-**表1** 进程管理模块接口
+  **表1** 进程管理模块接口
 
-| 功能分类 | 接口**名称** | 描述 |
-| -------- | -------- | -------- |
-| 进程调度参数控制 | LOS_GetProcessScheduler | 获取指定进程的调度策略 |
-|  | LOS_SetProcessScheduler |设置指定进程的调度参数，包括优先级和调度策略|
-|  | LOS_GetProcessPriority |获取指定进程的优先级|
-|  | LOS_SetProcessPriority |设置指定进程的优先级|
-| 等待回收子进程 | LOS_Wait | 等待子进程结束并回收子进程 |
-| 进程组 | LOS_GetProcessGroupID | 获取指定进程的进程组ID |
-|  | LOS_GetCurrProcessGroupID |获取当前进程的进程组ID|
-| 获取进程ID | LOS_GetCurrProcessID | 获取当前进程的进程ID |
-| 用户及用户组 | LOS_GetUserID | 获取当前进程的用户ID |
-|  | LOS_GetGroupID |获取当前进程的用户组ID|
-|  | LOS_CheckInGroups |检查指定用户组ID是否在当前进程的用户组内|
-| 系统支持的最大进程数 | LOS_GetSystemProcessMaximum | 获取系统支持的最大进程数目 |
+| 功能分类 | 接口描述 | 
+| -------- | -------- |
+| 进程调度参数控制 | -&nbsp;LOS_GetProcessScheduler:获取指定进程的调度策略<br/>-&nbsp;LOS_SetProcessScheduler:设置指定进程的调度参数，包括优先级和调度策略 | 
+| 等待回收子进程 | LOS_Wait:等待子进程结束并回收子进程 | 
+| 进程组 | -&nbsp;LOS_GetProcessGroupID:获取指定进程的进程组ID<br/>-&nbsp;LOS_GetCurrProcessGroupID:获取当前进程的进程组ID | 
+| 获取进程ID | LOS_GetCurrProcessID:获取当前进程的进程ID | 
+| 用户及用户组 | -&nbsp;LOS_GetUserID:获取当前进程的用户ID<br/>-&nbsp;LOS_GetGroupID:获取当前进程的用户组ID<br/>-&nbsp;LOS_CheckInGroups:检查指定用户组ID是否在当前进程的用户组内 | 
+| 系统支持的最大进程数 | LOS_GetSystemProcessMaximum:获取系统支持的最大进程数目 | 
 
 
 ### 开发流程

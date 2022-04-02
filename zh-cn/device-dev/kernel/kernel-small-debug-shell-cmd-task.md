@@ -1,11 +1,5 @@
 # task
 
-- [命令功能](#命令功能)
-- [命令格式](#命令格式)
-- [参数说明](#参数说明)
-- [使用指南](#使用指南)
-- [使用实例](#使用实例)
-- [输出说明](#输出说明)
 
 ## 命令功能
 
@@ -19,7 +13,7 @@ task/task -a
 
 ## 参数说明
 
-**表1** 参数说明
+  **表1** 参数说明
 
 | 参数 | 参数说明 | 取值范围 | 
 | -------- | -------- | -------- |
@@ -40,6 +34,7 @@ task/task -a
 
 **示例：**查询任务部分信息
 
+  
 ```
 OHOS # task
   allCpu(%):    3.54 sys,  196.46 idle
@@ -52,6 +47,7 @@ OHOS # task
     6     1    6         0 Pending   0x688000 0x137000    0x11c518      0.0   media_server
     7     1    7         0 Pending   0x9d2000 0x103000     0xa1ddf      0.89  wms_server
     8     1    1      1000 Running   0x2bf000  0x8f000     0x2a8c6      0.0   shell
+    9     5    5       101 Pending  0x11ea000 0x2f9000    0x20429d      0.97  com.example.launcher
    11     1   11         0 Pending   0x4d4000 0x112000     0xe0ad7      0.0   deviceauth_service
    12     1   12         0 Pending   0x34f000  0xbd000     0x519ee      0.0   sensor_service
    13     1   13         2 Pending   0x34e000  0xb3000     0x523d9      0.0   ai_server
@@ -65,7 +61,7 @@ OHOS # task
     7    2  0x3  -1      Pending    0x4e20     0xa5c      0.0           0  PlatformWorkerThread
 ```
 
-**表2** 输出说明
+  **表2** 输出说明
 
 | 输出 | 说明 | 
 | -------- | -------- |
