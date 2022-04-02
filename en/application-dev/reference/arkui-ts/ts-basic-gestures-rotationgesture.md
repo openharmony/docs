@@ -30,7 +30,7 @@ RotationGesture(options?: { fingers?: number, angle?: number })
 | onActionEnd((event?: GestureEvent) =&gt; void) | Callback invoked when the finger used for the rotation gesture is lift. |
 | onActionCancel(event: () =&gt; void) | Callback invoked when a tap cancellation event is received after the rotation gesture is recognized. |
 
--  GestureEvent attributes related to the rotation gesture  
+- GestureEvent attributes related to the rotation gesture  
     | Name | Type | Description |
   | -------- | -------- | -------- |
   | angle | number | Rotation angle. |
