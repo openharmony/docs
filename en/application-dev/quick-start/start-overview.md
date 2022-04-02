@@ -23,7 +23,7 @@ ArkUI comes with two development paradigms: JavaScript-based web-like developmen
 | Web-like&nbsp;development&nbsp;paradigm | JavaScript | Data-driven | Applications&nbsp;and&nbsp;service&nbsp;widgets&nbsp;with&nbsp;simple&nbsp;UIs | Frontend&nbsp;web&nbsp;developers |
 | Declarative&nbsp;development&nbsp;paradigm | Extended&nbsp;TypeScript&nbsp;(eTS) | Data-driven | Applications&nbsp;involving&nbsp;technological&nbsp;sophistication&nbsp;and&nbsp;teamwork | Mobile&nbsp;application&nbsp;and&nbsp;system&nbsp;application&nbsp;developers |
 
-For DevEco Studio V2.2 Beta1 and later versions, both the traditional coding mode and the low-code mode are supported when the JS language is used for development. On the OpenHarmony low-code development pages, you can design your app UI in an efficient, intuitive manner, with a wide array of UI editing features complying with [JS Development Specifications](../reference/apis).
+For DevEco Studio V2.2 Beta1 and later versions, both the traditional coding mode and the low-code mode are supported when the JS language is used for development. On the OpenHarmony low-code development pages, you can design your app UI in an efficient, intuitive manner, with a wide array of UI editing features complying with JS Development Specifications.
 
 
 ### Ability
