@@ -131,33 +131,7 @@ var subscriber = {
 
 ### 通知发送
 
-通知发布前，先查询应用通知使能开关是否打开，新安装的应用使能默认是关闭状态。
-
-##### 开启通知使能
-
-先查询通知使能
-
-```js
-var bundle = {
-    bundle: "bundleName1",
-}
-Notification.isNotificationEnabled(bundle).then((data) => {
-	console.info("===>isNotificationEnabled success===>");
-});
-```
-
-若使能为false关闭状态，需要开启使能
-
-```js
-var bundle = {
-    bundle: "bundleName1",
-}
-Notification.enableNotification(bundle, true, async(err) => {
-    console.log("===>enableNotification success===>");
-});
-```
-
-
+通知发布前，先要确认通知发送使能是否开启，新安装的应用使能默认是关闭状态，需要到通知设置里开启。
 
 ##### 通知发布
 
@@ -170,7 +144,7 @@ Notification.enableNotification(bundle, true, async(err) => {
 var notificationRequest = {
   	id: 1,
   	content: {
-  		contentType: notify.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+  		contentType: Notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
   		normal: {
   			title: "test_title",
   			text: "test_text",
@@ -197,25 +171,18 @@ wantAgent使用详见[wantAgent开发文档](https://gitee.com/openharmony/docs/
 
 ```js
 import wantAgent from '@ohos.wantAgent';
-import { OperationType, Flags } from '@ohos.wantagent';
 
 //WantAgentInfo对象
 var wantAgentInfo = {
-    wants: [
-        {
-            deviceId: 'deviceId',
-            bundleName: 'com.example.myapplication',
-            abilityName: 'com.example.myapplication.MainAbility',
-            action: 'REMINDER_EVENT_REMOVE_NOTIFICATION',
-            entities: ['entity1'],
-            type: 'MIMETYPE',
-            uri: 'key={true,true,false}',
-            parameters: { myKey0: 1111 },
-        }
-    ],
-    operationType: OperationType.START_ABILITIES,
-    requestCode: 0,
-    wantAgentFlags:[Flags.UPDATE_PRESENT_FLAG]
+  wants: [
+    {
+      bundleName: 'ohos.samples.eTSNotification',
+      abilityName: 'ohos.samples.eTSNotification.MainAbility',
+    }
+  ],
+  operationType: wantAgent.OperationType.START_ABILITY,
+  requestCode: 0,
+  wantAgentFlags:[wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
 //wantAgent对象
@@ -241,7 +208,7 @@ wantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
 //构造NotificationRequest对象
 var notificationRequest = {
   content: {
-    contentType: notify.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+    contentType: Notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
     normal: {
       title: "AceApplication_Title",
       text: "AceApplication_Text",
@@ -251,7 +218,7 @@ var notificationRequest = {
   id: 1,
   label: 'TEST',
   wantAgent: WantAgent,
-  slotType: notify.SlotType.OTHER_TYPES,
+  slotType: Notification.SlotType.OTHER_TYPES,
   deliveryTime: new Date().getTime()
 }
 
@@ -284,9 +251,9 @@ Notification.cancel(1, "label", cancelCallback)
 
 针对通知开发，有以下示例工程可供参考：
 
-- notification
+- [Notification](https://gitee.com/openharmony/app_samples/tree/master/Notification/Notification)
 
-本示例展示了在eTS中如何使用Notification的接口完成通知订阅、取消订阅、发布通知、取消通知、查询和开启通知使能功能。
+本示例展示了在eTS中如何使用Notification的接口完成通知订阅、取消订阅、发布通知、取消通知功能。
 
 
 
