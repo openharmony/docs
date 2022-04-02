@@ -11,7 +11,7 @@ Custom components decorated by @Preview can be previewed in the Previewer of Dev
 Example of using @Preview:
 
 ```
-// Display only Hello Component1 on the PC preview. The content under MyComponent is displayed on the real device.
+// Display only Hello Component1 on the preview. The content under MyComponent is displayed on the real device.
 @Entry
 @Component
 struct MyComponent {

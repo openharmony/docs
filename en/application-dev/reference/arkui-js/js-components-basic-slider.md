@@ -76,7 +76,7 @@ In addition to the attributes in  [Universal Attributes](js-components-common-at
 <td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p id="p23951632105213"><a name="p23951632105213"></a><a name="p23951632105213"></a>No</p>
 </td>
 <td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="p83958323527"><a name="p83958323527"></a><a name="p83958323527"></a>Slider style. Available values are as follows:</p>
-<a name="ul742810911538"></a><a name="ul742810911538"></a><ul id="ul742810911538"><li><strong id="b6310165918435"><a name="b6310165918435"></a><a name="b6310165918435"></a>outset</strong>: The slider is on the sliding bar.</li><li><strong id="b144297112440"><a name="b144297112440"></a><a name="b144297112440"></a>inset</strong>: The slider is inside the sliding bar.<div class="note" id="note10509152215419"><a name="note10509152215419"></a><a name="note10509152215419"></a><span class="notetitle"> NOTE: </span><div class="notebody"><p id="p14509172218549"><a name="p14509172218549"></a><a name="p14509172218549"></a>This attribute is only supported on phones and tablets.</p>
+<a name="ul742810911538"></a><a name="ul742810911538"></a><ul id="ul742810911538"><li><strong id="b6310165918435"><a name="b6310165918435"></a><a name="b6310165918435"></a>outset</strong>: The slider is on the sliding bar.</li><li><strong id="b144297112440"><a name="b144297112440"></a><a name="b144297112440"></a>inset</strong>: The slider is inside the sliding bar.<div class="note" id="note10509152215419"><a name="note10509152215419"></a><a name="note10509152215419"></a><span class="notetitle"></span><div class="notebody"><p id="p14509172218549"><a name="p14509172218549"></a><a name="p14509172218549"></a></p>
 </div></div>
 </li></ul>
 </td>
@@ -90,7 +90,7 @@ In addition to the attributes in  [Universal Attributes](js-components-common-at
 <td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p id="p1139593235218"><a name="p1139593235218"></a><a name="p1139593235218"></a>No</p>
 </td>
 <td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="p639683265217"><a name="p639683265217"></a><a name="p639683265217"></a>Whether to display slider scales.</p>
-<div class="note" id="note8765635135413"><a name="note8765635135413"></a><a name="note8765635135413"></a><span class="notetitle"> NOTE: </span><div class="notebody"><p id="p576523535418"><a name="p576523535418"></a><a name="p576523535418"></a>This attribute is only supported on phones and tablets.</p>
+<div class="note" id="note8765635135413"><a name="note8765635135413"></a><a name="note8765635135413"></a><span class="notetitle"> </span><div class="notebody"><p id="p576523535418"><a name="p576523535418"></a><a name="p576523535418"></a></p>
 </div></div>
 </td>
 </tr>
@@ -103,7 +103,7 @@ In addition to the attributes in  [Universal Attributes](js-components-common-at
 <td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p id="p123962032185210"><a name="p123962032185210"></a><a name="p123962032185210"></a>No</p>
 </td>
 <td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="p16396133212520"><a name="p16396133212520"></a><a name="p16396133212520"></a>Whether a pop-up is displayed to show the percentage value on the slider.</p>
-<div class="note" id="note0708645135419"><a name="note0708645135419"></a><a name="note0708645135419"></a><span class="notetitle"> NOTE: </span><div class="notebody"><p id="p4708154510548"><a name="p4708154510548"></a><a name="p4708154510548"></a>This attribute is only supported on phones and tablets.</p>
+<div class="note" id="note0708645135419"><a name="note0708645135419"></a><a name="note0708645135419"></a><span class="notetitle"></span><div class="notebody"><p id="p4708154510548"><a name="p4708154510548"></a><a name="p4708154510548"></a></p>
 </div></div>
 </td>
 </tr>
@@ -158,7 +158,7 @@ In addition to the styles in  [Universal Styles](js-components-common-styles.md)
 <td class="cellrowborder" valign="top" width="15.578442155784424%" headers="mcps1.1.6.1.4 "><p id="p3970121745715"><a name="p3970121745715"></a><a name="p3970121745715"></a>No</p>
 </td>
 <td class="cellrowborder" valign="top" width="31.95680431956805%" headers="mcps1.1.6.1.5 "><p id="p12970817175710"><a name="p12970817175710"></a><a name="p12970817175710"></a>Slider color.</p>
-<div class="note" id="note29562075516"><a name="note29562075516"></a><a name="note29562075516"></a><span class="notetitle"> NOTE: </span><div class="notebody"><p id="p7956203555"><a name="p7956203555"></a><a name="p7956203555"></a>This attribute is only supported on phones, tablets, and wearables.</p>
+<div class="note" id="note29562075516"><a name="note29562075516"></a><a name="note29562075516"></a><span class="notetitle"> </span><div class="notebody"><p id="p7956203555"><a name="p7956203555"></a><a name="p7956203555"></a></p>
 </div></div>
 </td>
 </tr>

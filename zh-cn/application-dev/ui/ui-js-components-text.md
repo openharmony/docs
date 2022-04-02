@@ -10,7 +10,7 @@ Text是文本组件，用于呈现一段文本信息。具体用法请参考[Tex
 ```
 <!-- xxx.hml -->
 <div class="container" style="text-align: center;justify-content: center; align-items: center;">
-  <text>        Hello World    </text>
+  <text>Hello World</text>
 </div>
 ```
 
@@ -35,178 +35,175 @@ Text是文本组件，用于呈现一段文本信息。具体用法请参考[Tex
 
   设置color、font-size、allow-scale、word-spacing、text-valign属性分别为文本添加颜色、大小、缩放、文本之间的间距和文本在垂直方向的对齐方式。 
 
+  ```
+  <!-- xxx.hml -->
+  <div class="container" style="background-color:#F1F3F5;flex-direction: column;justify-content: center; align-items: center;">   
+    <text style="color: blueviolet; font-size: 40px; allow-scale:true"> 
+      This is a passage
+    </text>
+    <text style="color: blueviolet; font-size: 40px; margin-top: 20px; allow-scale:true;word-spacing: 20px;" >
+      This is a passage
+    </text>
+  </div> 
+  ```
 
+  ```
+  /* xxx.css */
+  .container {
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #F1F3F5;
+  }
+  ```
 
-```
-<!-- xxx.hml -->
-<div class="container" style="background-color:#F1F3F5;flex-direction: column;justify-content: center; align-items: center;">   
-  <text style="color: blueviolet; font-size: 40px; allow-scale:true"> 
-    This is a passage
-  </text>
-  <text style="color: blueviolet; font-size: 40px; margin-top: 20px; allow-scale:true;word-spacing: 20px;" >
-    This is a passage
-  </text>
-</div> 
-```
+  ![zh-cn_image_0000001220778205](figures/zh-cn_image_0000001220778205.png)
 
-```
-/* xxx.css */
-.container {
-  width: 100%;
-  height: 100%;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: #F1F3F5;
-}
-```
-
-
- ![zh-cn_image_0000001220778205](figures/zh-cn_image_0000001220778205.png)
 
 
 - 添加划线
 
-​    设置text-decoration和text-decoration-colo属性为文本添加划线和划线颜色，text-decoration枚举值请参考    Text自有样式。
+  设置text-decoration和text-decoration-colo属性为文本添加划线和划线颜色，text-decoration枚举值请参考    Text自有样式。
 
+  ```
+  <!-- xxx.hml -->
+  <div class="container" style="background-color:#F1F3F5;">
+    <text style="text-decoration:underline">
+      This is a passage
+    </text>
+    <text style="text-decoration:line-through;text-decoration-color: red">
+      This is a passage
+     </text>
+  </div>
+  ```
 
-    <!-- xxx.hml -->
-    <div class="container" style="background-color:#F1F3F5;">
-      <text style="text-decoration:underline">
-        This is a passage
-      </text>
-      <text style="text-decoration:line-through;text-decoration-color: red">
-        This is a passage
-       </text>
-    </div>
-```
-/* xxx.css */
-.container {
-  width: 100%;
-  height: 100%;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-text{
-  font-size: 50px;
-}
-```
+  ```
+  /* xxx.css */
+  .container {
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  text{
+    font-size: 50px;
+  }
+  ```
 
   ![zh-cn_image_0000001220856725](figures/zh-cn_image_0000001220856725.png)
 
 
+
 - 隐藏文本内容
 
-  当文本内容过多而显示不全时，添加text-overflow属性将隐藏内容以省略号的形式展现
+  当文本内容过多而显示不全时，添加text-overflow属性将隐藏内容以省略号的形式展现。
 
-```
-<!-- xxx.hml -->
-<div class="container">
-  <text class="text">
-    This is a passage
-  </text>
-</div>
-```
+  ```
+  <!-- xxx.hml -->
+  <div class="container">
+    <text class="text">
+      This is a passage
+    </text>
+  </div>
+  ```
 
-    /* xxx.css */
-    .container {
-      width: 100%;
-      height: 100%;
-      flex-direction: column;
-      align-items: center;
-      background-color: #F1F3F5;
-      justify-content: center; 
-    }
-    .text{
-      width: 200px;
-      max-lines: 1;
-      text-overflow:ellipsis;
-    }
+  ```
+  /* xxx.css */
+  .container {
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    background-color: #F1F3F5;
+    justify-content: center; 
+  }
+  .text{
+    width: 200px;
+    max-lines: 1;
+    text-overflow:ellipsis;
+  }
+  ```
 
- **说明：**
+  > **说明：**
+  > - text-overflow样式需要与max-lines样式配套使用，设置了最大行数的情况下生效。
+  > - max-lines属性设置文本最多可以展示的行数。
 
--  text-overflow样式需要与max-lines样式配套使用，设置了最大行数的情况下生效。
--  max-lines属性设置文本最多可以展示的行数。
 
-
-​    ![zh-cn_image_0000001163656706](figures/zh-cn_image_0000001163656706.png)
-
+  ​    ![zh-cn_image_0000001163656706](figures/zh-cn_image_0000001163656706.png)
 
 - 设置文本折行
 
-​      设置word-break属性对文本内容做断行处理，word-break枚举值请参考Text自有样式。
+  设置word-break属性对文本内容做断行处理，word-break枚举值请参考Text自有样式。
 
-```
-<!-- xxx.hml -->
-<div class="container">
-  <div class="content">
-    <text class="text1">
-      Welcome to the world
-    </text>
-      <text class="text2">
+  ```
+  <!-- xxx.hml -->
+  <div class="container">
+    <div class="content">
+      <text class="text1">
         Welcome to the world
       </text>
+        <text class="text2">
+          Welcome to the world
+        </text>
+    </div>
   </div>
-</div
-```
+  ```
+
+  ```
+  /* xxx.css */
+  .container {
+    background-color: #F1F3F5;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .content{
+    width: 50%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .text1{
+    height: 200px;
+    border:1px solid #1a1919;
+    margin-bottom: 50px;
+    text-align: center;
+    word-break: break-word;
+    font-size: 40px;
+  }
+  .text2{
+    height: 200px;
+    border:1px solid #0931e8;
+    text-align: center;
+    word-break: break-all;
+    font-size: 40px;
+  }
+  ```
 
 
-    /* xxx.css */
-    .container {
-      background-color: #F1F3F5;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-    .content{
-      width: 50%;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-    .text1{
-      height: 200px;
-      border:1px solid #1a1919;
-      margin-bottom: 50px;
-      text-align: center;
-      word-break: break-word;
-      font-size: 40px;
-    }
-    .text2{
-      height: 200px;
-      border:1px solid #0931e8;
-      text-align: center;
-      word-break: break-all;
-      font-size: 40px;
-    }
-
-
-​    ![zh-cn_image_0000001209033195](figures/zh-cn_image_0000001209033195.png)
-
+  ​    ![zh-cn_image_0000001209033195](figures/zh-cn_image_0000001209033195.png)
 
 - Text组件支持[Span](../reference/arkui-js/js-components-basic-span.md)子组件
 
+  ```
+  <!-- xxx.hml -->
+  <div class="container" style="justify-content: center; align-items: center;flex-direction: column;background-color: #F1F3F5;  width: 100%;height: 100%;">
+    <text style="font-size: 45px;">
+      This is a passage
+    </text>
+    <text style="font-size: 45px;">
+      <span style="color: aqua;">This </span><span style="color: #F1F3F5;">      1       
+      </span>   
+      <span style="color: blue;"> is a </span>    <span style="color: #F1F3F5;">      1    </span>    
+      <span style="color: red;">  passage </span>
+    </text>
+  </div>
+  ```
 
-    ```
-    <!-- xxx.hml -->
-    <div class="container" style="justify-content: center; align-items: center;flex-direction: column;background-color: #F1F3F5;  width: 100%;height: 100%;">
-      <text style="font-size: 45px;">
-        This is a passage
-      </text>
-      <text style="font-size: 45px;">
-        <span style="color: aqua;">This </span><span style="color: #F1F3F5;">      1       
-        </span>   
-        <span style="color: blue;"> is a </span>    <span style="color: #F1F3F5;">      1    </span>    
-        <span style="color: red;">  passage </span>
-      </text>
-    </div>
-    ```
-
-
-    ![zh-cn_image_0000001163372568](figures/zh-cn_image_0000001163372568.png)
-
-
+  ![zh-cn_image_0000001163372568](figures/zh-cn_image_0000001163372568.png)
     > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
     > - 当使用Span子组件组成文本段落时，如果Span属性样式异常（例如：font-weight设置为1000），将导致文本段落显示异常。
     >

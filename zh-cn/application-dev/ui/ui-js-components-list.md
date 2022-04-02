@@ -39,7 +39,7 @@ List是用来显示列表的组件，包含一系列相同宽度的列表项，�
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > - &lt;list-item-group&gt;是&lt;list&gt;的子组件，实现列表分组功能，不能再嵌套&lt;list&gt;，可以嵌套&lt;list-item&gt;。
-> 
+>
 > - &lt;list-item&gt;是&lt;list&gt;的子组件，展示列表的具体项。
 
 
@@ -112,7 +112,7 @@ List是用来显示列表的组件，包含一系列相同宽度的列表项，�
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > - indexer属性生效需要flex-direction属性配合设置为column，且columns属性设置为1。
-> 
+>
 > - indexer可以自定义索引表，自定义时"\#"必须要存在。
 
 
@@ -214,7 +214,7 @@ export default {
       <div class="container"> 
         <div class="in-container"> 
           <text class="name">{{$item.name}}</text> 
-          <text class="phone">18888888888</text> 
+          <text class="number">18888888888</text> 
         </div> 
       </div> 
     </list-item> 
@@ -247,7 +247,7 @@ export default {
   color: #000000;
   font-size: 39px;
 }
-.phone {
+.number {
   color: black;
   font-size: 25px;
 }
