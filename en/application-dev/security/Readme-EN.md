@@ -9,7 +9,7 @@
   - [HUKS Development](huks-guidelines.md)
   
 - hapsigntool  
-  - [hapsigntool Development](hapsigntool-guidelines.md)
+  - [hapsigntool Guide](hapsigntool-guidelines.md)
   
 - Access Control  
   - [Access Control Overview](accesstoken-overview.md)
