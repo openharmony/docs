@@ -305,7 +305,7 @@
     - [Development Guidelines on Common Components](subsystems/subsys-graphics-common-guide.md)
     - [Development Guidelines on Animators](subsystems/subsys-graphics-animation-guide.md)
   - Multimedia
-    - Camera
+    - [Camera](subsystems/subsys-multimedia-camera.md)
       - [Overview](subsystems/subsys-multimedia-camera-overview.md)
       - [Development Guidelines on Photographing](subsystems/subsys-multimedia-camera-photo-guide.md)
       - [Development Guidelines on Video Recording](subsystems/subsys-multimedia-camera-record-guide.md)
@@ -423,7 +423,7 @@
     - [Development Example for Peripheral Drivers](guide/device-outerdriver-demo.md)
 - Debugging
   - [Test Subsystem](subsystems/subsys-testguide-test.md)
-  - [R&D Tools](subsystems/subsys-toolchain.md)
+  - Debugging Tools
     - [bytrace Usage Guidelines](subsystems/subsys-toolchain-bytrace-guide.md)
     - [hdc_std Usage Guidelines](subsystems/subsys-toolchain-hdc-guide.md)
 - XTS Certification
