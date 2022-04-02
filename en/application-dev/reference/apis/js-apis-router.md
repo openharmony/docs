@@ -24,9 +24,9 @@ Navigates to a specified page in the application.
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | options | [RouterOptions](#routeroptions) | Yes| Page routing parameters.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| options | [RouterOptions](#routeroptions) | Yes| Page routing parameters.|
 
 
 **Example**
@@ -72,9 +72,9 @@ Replaces the current page with another one in the application and destroys the c
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | options | [RouterOptions](#routeroptions) | Yes| Description of the new page.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| options | [RouterOptions](#routeroptions) | Yes| Description of the new page.|
 
 **Example**
   ```
@@ -112,9 +112,9 @@ Returns to the previous page or a specified page.
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | options | [RouterOptions](#routeroptions) | Yes| Description of the page. The **url** parameter indicates the URL of the page to return to. If the specified page does not exist in the page stack, the application does not respond. If this parameter is not set, the application returns to the previous page.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| options | [RouterOptions](#routeroptions) | Yes| Description of the page. The **url** parameter indicates the URL of the page to return to. If the specified page does not exist in the page stack, the application does not respond. If this parameter is not set, the application returns to the previous page.|
 
 **Example**
   ```
@@ -190,9 +190,9 @@ getLength(): string
 Obtains the number of pages in the current stack.
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | string | Number of pages in the stack. The maximum value is **32**.|
+| Type| Description|
+| -------- | -------- |
+| string | Number of pages in the stack. The maximum value is **32**.|
 
 **Example**
   ```
@@ -222,11 +222,11 @@ Describes the page routing state.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-  | Name| Type| Description|
-  | -------- | -------- | -------- |
-  | index | number | Index of the current page in the stack.<br>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**NOTE**<br>>&nbsp;The index starts from 1 from the bottom to the top of the stack.|
-  | name | string | Name of the current page, that is, the file name.|
-  | path | string | Path of the current page.|
+| Name| Type| Description|
+| -------- | -------- | -------- |
+| index | number | Index of the current page in the stack.<br>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**NOTE**<br>>&nbsp;The index starts from 1 from the bottom to the top of the stack.|
+| name | string | Name of the current page, that is, the file name.|
+| path | string | Path of the current page.|
 
 **Example**
   ```
@@ -249,9 +249,9 @@ Enables the display of a confirm dialog box before returning to the previous pag
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | options | [EnableAlertOptions](#enablealertoptions) | Yes| Description of the dialog box.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| options | [EnableAlertOptions](#enablealertoptions) | Yes| Description of the dialog box.|
 
 **Example**
 
@@ -289,6 +289,7 @@ Disables the display of a confirm dialog box before returning to the previous pa
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Example**
+
   ```
   export default {    
     disableAlertBeforeBackPage() {        
@@ -310,6 +311,7 @@ Obtains the parameters passed from the page that initiates redirection to the cu
 | Type  | Description                              |
 | ------ | ---------------------------------- |
 | Object | Parameters passed from the page that initiates redirection to the current page.|
+
 
 **Example**
 

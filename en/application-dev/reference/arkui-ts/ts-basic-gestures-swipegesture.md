@@ -15,32 +15,32 @@ None
 SwipeGesture(value?: { fingers?: number; direction?: SwipeDirection; speed?: number })
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | fingers | number | No | 1 | Minimum number of fingers to trigger a swipe gesture. The value ranges from 1 to 10. | 
-  | direction | SwipeDirection | No | SwipeDirection.All | Swipe direction. | 
-  | speed | number | No | 100 | Minimum speed of the swipe gesture (100 vp/s). | 
+  | fingers | number | No | 1 | Minimum number of fingers to trigger a swipe gesture. The value ranges from 1 to 10. |
+  | direction | SwipeDirection | No | SwipeDirection.All | Swipe direction. |
+  | speed | number | No | 100 | Minimum speed of the swipe gesture (100 vp/s). |
 
 - SwipeDirection enums
-    | Name | Description | 
+    | Name | Description |
   | -------- | -------- |
-  | All | All directions. | 
-  | Horizontal | Horizontal direction. | 
-  | Vertical | Vertical direction. | 
+  | All | All directions. |
+  | Horizontal | Horizontal direction. |
+  | Vertical | Vertical direction. |
 
 
 ## Events
 
-  | Name | Description | 
+| Name | Description |
 | -------- | -------- |
-| onAction(callback:(event?: SwipeGestureEvent) =&gt; void) | Callback invoked when a swipe gesture is recognized. | 
+| onAction(callback:(event?: GestureEvent) =&gt; void) | Callback invoked when a swipe gesture is recognized. |
 
 
-- SwipeGestureEvent attributes
-    | Name | Type | Description | 
+- GestureEvent attributes related to the swipe gesture  
+    | Name | Type | Description |
   | -------- | -------- | -------- |
-  | angle | number | Angle of the swipe gesture. | 
-  | speed | number | Speed of the swipe gesture. | 
+  | angle | number | Angle of the swipe gesture. |
+  | speed | number | Speed of the swipe gesture. |
 
 
 ## Example
@@ -64,7 +64,7 @@ struct SwipeGestureExample {
     .rotate({x: 0, y: 0, z: 1, angle: this.rotateAngle})
     .gesture(
       SwipeGesture({fingers: 1, direction:SwipeDirection.Vertical})
-        .onAction((event: SwipeGestureEvent) => {
+        .onAction((event: GestureEvent) => {
           this.speed = event.speed
           this.rotateAngle = event.angle
       })
