@@ -185,7 +185,6 @@
 - 已停止维护的接口
 
   - [@ohos.bytrace (性能打点)](js-apis-bytrace.md)
-  - [@ohos.data.storage (轻量级存储)](js-apis-data-storage.md)
   - [@system.app (应用上下文)](js-apis-system-app.md)
   - [@system.battery (电量信息)](js-apis-system-battery.md)
   - [@system.bluetooth (蓝牙)](js-apis-system-bluetooth.md)
