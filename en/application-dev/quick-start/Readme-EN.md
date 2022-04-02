@@ -1,4 +1,4 @@
-# Basics
+# Quick Start
 
 -   Getting Started
     -   [Preparations](start-overview.md)
