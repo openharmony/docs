@@ -1,30 +1,26 @@
 # LCD<a name="ZH-CN_TOPIC_0000001052857284"></a>
 
--   [概述](#section141575391542)
--   [接口说明](#section53793327396)
--   [开发步骤](#section12394223125615)
--   [开发实例](#section7441155155813)
 
 ## 概述<a name="section141575391542"></a>
 
-LCD（Liquid Crystal Display）液晶显示驱动，对LCD进行上电，并通过接口初始化LCD内部寄存器，使LCD正常工作。Display驱动模型基于HDF（ Hardware Driver Foundation）[驱动框架](driver-hdf-overview.md)开发，实现跨OS、跨平台，为LCD硬件提供上下电功能、发送初始化序列功能，使LCD进入正常的工作模式，显示芯片平台侧的图像数据，基于HDF驱动框架的Display驱动模型如[图1](#fig69138814229)。
+LCD（Liquid Crystal Display）液晶显示驱动，对LCD进行上电，并通过接口初始化LCD内部寄存器，使LCD正常工作。Display驱动模型基于HDF（Hardware Driver Foundation）[驱动框架](driver-hdf-overview.md)开发，实现跨OS、跨平台，为LCD硬件提供上下电功能、发送初始化序列功能，使LCD进入正常的工作模式，显示芯片平台侧的图像数据，基于HDF驱动框架的Display驱动模型如[图1](#fig69138814229)。
 
 **图 1**  基于HDF驱动框架的Display驱动模型<a name="fig69138814229"></a>  
 ![](figures/基于HDF驱动框架的Display驱动模型.png "基于HDF驱动框架的Display驱动模型")
 
 **Display驱动模型介绍**
 
-Display驱动模型主要由平台驱动层、芯片平台适配层、LCD器件驱动层三部分组成。驱动模型基于HDF驱动框架开发，通过Platform层和OSAL层提供的接口，屏蔽内核形态的差异，使得器件驱动可以便利的迁移到不同OS及芯片平台。模型向上对接Display公共hal层，支撑HDI（Hardware Display Interface）接口的实现，通过Display-HDI对图形服务提供各类驱动能力接口。
+Display驱动模型主要由平台驱动层、芯片平台适配层、LCD器件驱动层三部分组成。驱动模型基于HDF驱动框架开发，通过Platform层和OSAL（Operating System Abstraction Layer）层提供的接口，屏蔽内核形态的差异，使得器件驱动可以便利的迁移到不同OS及芯片平台。模型向上对接Display公共HAL层，支撑HDI（Hardware Display Interface）接口的实现，通过Display-HDI对图形服务提供各类驱动能力接口。
 
--   Display平台驱动层：通过HDF提供的IOService数据通道，与公共Hal层对接，集中接收并处理各类上层调用指令。
--   SOC平台驱动适配层：借助此SOC适配层，实现Display驱动和SOC侧驱动解耦，主要完成芯片平台相关的参数配置，并传递平台驱动层的调用到器件驱动层。
+-   Display平台驱动层：通过HDF提供的IOService数据通道，与公共HAL层对接，集中接收并处理各类上层调用指令。
+-   SoC平台驱动适配层：借助此SoC适配层，实现Display驱动和SoC侧驱动解耦，主要完成芯片平台相关的参数配置，并传递平台驱动层的调用到器件驱动层。
 -   LCD器件驱动层：在器件驱动层中，主要实现和器件自身强相关的驱动适配接口，例如发送初始化序列、上下电、背光设置等。
 
 基于Display驱动模型开发LCD驱动，可以借助平台提供的各种能力及接口，较大程度的降低器件驱动的开发周期和难度，提升开发效率。
 
 ## 接口说明<a name="section53793327396"></a>
 
-LCD接口通常可分为MIPI DSI接口、TTL接口和LVDS接口，常用的是MIPI DSI接口和TTL接口，下面对常用的MIPI DSI接口和TTL接口作简要介绍。
+LCD接口通常可分为MIPI DSI（MIPI Display Serial Interface）接口、TTL（Transistor Transistor Logic）接口和LVDS（Low-Voltage Differential Signaling）接口，常用的是MIPI DSI接口和TTL接口，下面对常用的MIPI DSI接口和TTL接口作简要介绍。
 
 -   MIPI DSI接口
 
@@ -38,7 +34,7 @@ LCD接口通常可分为MIPI DSI接口、TTL接口和LVDS接口，常用的是MI
     **图 3**  TTL接口<a name="fig141611855635"></a>  
     ![](figures/TTL接口.png "TTL接口")
 
-    TTL（Transistor Transistor Logic）即晶体管-晶体管逻辑，TTL电平信号由TTL器件产生，TTL器件是数字集成电路的一大门类，它采用双极型工艺制造，具有高速度、低功耗和品种多等特点。
+    TTL即晶体管-晶体管逻辑，TTL电平信号由TTL器件产生，TTL器件是数字集成电路的一大门类，它采用双极型工艺制造，具有高速度、低功耗和品种多等特点。
 
     TTL接口是并行方式传输数据的接口，有数据信号、时钟信号和控制信号（行同步、帧同步、数据有效信号等），在控制信号控制下完成数据传输。通常TTL接口的LCD，内部寄存器读写需要额外的外设接口，比如SPI接口、I2C接口等。
 
@@ -48,7 +44,7 @@ LCD接口通常可分为MIPI DSI接口、TTL接口和LVDS接口，常用的是MI
 Display驱动模型基于HDF驱动框架、Platform接口及OSAL接口开发，可以做到不区分OS（LiteOS、Linux）和芯片平台（Hi35xx、Hi38xx、V3S等），为LCD器件提供统一的驱动模型。
 
 1.  添加LCD驱动相关的设备描述配置。
-2.  在SOC平台驱动适配层中适配对应的芯片平台驱动。
+2.  在SoC平台驱动适配层中适配对应的芯片平台驱动。
 3.  添加器件驱动，并在驱动入口函数Init中注册Panel驱动数据，驱动数据接口主要包括如下接口：
     -   LCD上下电
 
@@ -79,7 +75,7 @@ display :: host {
             serviceName = "hdf_disp";
         }
     }
-    /* SOC适配层驱动设备描述 */
+    /* SoC适配层驱动设备描述 */
     device_hi35xx_disp :: device {
         device0 :: deviceNode {
             policy = 0;
@@ -105,7 +101,7 @@ display :: host {
 }
 ```
 
-SOC适配层驱动，以Hi35xx系列芯片为例，需要在本层驱动中适配MIPI等和芯片平台相关的配置，示例如下：
+SoC适配层驱动，以Hi35xx系列芯片为例，需要在本层驱动中适配MIPI等和芯片平台相关的配置，示例如下：
 
 ```
 static int32_t MipiDsiInit(struct PanelInfo *info)
@@ -164,9 +160,9 @@ LCD器件驱动示例如下：
 #define HORIZONTAL_BACK_PORCH     20
 #define HORIZONTAL_FRONT_PORCH    20
 #define HORIZONTAL_SYNC_WIDTH     10
-#define VERTIACL_BACK_PORCH       14
-#define VERTIACL_FRONT_PORCH      16
-#define VERTIACL_SYNC_WIDTH       2
+#define VERTICAL_BACK_PORCH       14
+#define VERTICAL_FRONT_PORCH      16
+#define VERTICAL_SYNC_WIDTH       2
 #define FRAME_RATE                60
 
 /* Panel Info结构体结构体 */
@@ -305,9 +301,9 @@ static struct PanelInfo g_panelInfo = {
     .hbp = HORIZONTAL_BACK_PORCH,       /* horizontal back porch */
     .hfp = HORIZONTAL_FRONT_PORCH,      /* horizontal front porch */
     .hsw = HORIZONTAL_SYNC_WIDTH,       /* horizontal sync width */
-    .vbp = VERTIACL_BACK_PORCH,         /* vertiacl back porch */
-    .vfp = VERTIACL_FRONT_PORCH,        /* vertiacl front porch */
-    .vsw = VERTIACL_SYNC_WIDTH,         /* vertiacl sync width */
+    .vbp = VERTICAL_BACK_PORCH,         /* vertical back porch */
+    .vfp = VERTICAL_FRONT_PORCH,        /* vertical front porch */
+    .vsw = VERTICAL_SYNC_WIDTH,         /* vertical sync width */
     .frameRate = FRAME_RATE,            /* frame rate */
     .intfType = MIPI_DSI,               /* panel interface type */
     .intfSync = OUTPUT_USER,            /* output timming type */

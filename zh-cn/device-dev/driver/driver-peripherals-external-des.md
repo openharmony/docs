@@ -1,11 +1,5 @@
 # WLAN<a name="ZH-CN_TOPIC_0000001051643558"></a>
 
--   [概述](#section729758162218)
-    -   [WLAN驱动接口架构](#section178022416377)
-
--   [接口说明](#section7331102018815)
--   [开发步骤](#section15957746172412)
--   [开发实例](#section1395253612512)
 
 ## 概述<a name="section729758162218"></a>
 
@@ -14,9 +8,10 @@ WLAN是基于HDF（Hardware Driver Foundation）驱动框架开发的模块，�
 **图 1**  WLAN框架<a name="fig4415112614415"></a>  
 ![](figures/WLAN框架.png "WLAN框架")
 
-### WLAN驱动接口架构<a name="section178022416377"></a>
 
-WLAN模块有三部分对外开放的API接口，如[下图2](#fig1492411431166)所示：
+
+
+WLAN模块有三部分对外开放的API接口，如[图2](#fig1492411431166)所示：
 
 1. 对HDI层提供的能力接口。
 
@@ -425,7 +420,7 @@ HDF_INIT(g_hdfHisiChipEntry);
 #endif
 #include "wifi_mac80211_ops.h"
 #include "wal_cfg80211.h"
-#include "net_adpater.h"
+#include "net_adapter.h"
 #include "hdf_wlan_utils.h"
 
 #define HDF_LOG_TAG Hi3881Driver

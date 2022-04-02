@@ -1,26 +1,19 @@
-# TOUCHSCREEN<a name="ZH-CN_TOPIC_0000001052857350"></a>
+# Touchscreen<a name="ZH-CN_TOPIC_0000001052857350"></a>
 
--   [概述](#section175431838101617)
--   [接口说明](#section105459441659)
--   [开发步骤](#section65745222184)
--   [开发实例](#section263714411191)
-    -   [设备描述配置](#section18249155619195)
-    -   [板级配置及器件私有配置](#section3571192072014)
-    -   [添加器件驱动](#section6356758162015)
 
 
 ## 概述<a name="section175431838101617"></a>
 
--   **Touchscreen驱动主要任务**
+-   Touchscreen驱动主要任务
 
     Touchscreen驱动用于驱动触摸屏使其正常工作，该驱动主要完成如下工作：对触摸屏驱动IC进行上电、配置硬件管脚并初始化其状态、注册中断、配置通信接口（I2C或SPI）、设定Input相关配置、下载及更新固件等操作。
 
 
--   **Touchscreen驱动层次说明**
+-   Touchscreen驱动层次说明
 
-    本节主要介绍基于Input驱动模型开发touchscreen器件驱动，Input模型整体的框架如[图1](#fig6251184817261)。
+    本节主要介绍基于Input驱动模型开发Touchscreen器件驱动，Input模型整体的框架如[图1](#fig6251184817261)。
 
-    Input驱动模型基于HDF驱动框架、Platform接口、OSAL接口进行开发，向上对接规范化的驱动接口HDI（Hardware Driver Interface）层，通过Input-HDI层对外提供硬件能力，即上层Input service可以通过HDI接口层获取相应的驱动能力，进而操控touchscreen等输入设备。
+    Input驱动模型基于HDF驱动框架、Platform接口、OSAL接口进行开发，向上对接规范化的驱动接口HDI（Hardware Driver Interface）层，通过Input-HDI层对外提供硬件能力，即上层Input service可以通过HDI接口层获取相应的驱动能力，进而操控Touchscreen等输入设备。
 
 
 **图 1**  基于HDF驱动框架的Input驱动模型<a name="fig6251184817261"></a>  
@@ -43,7 +36,7 @@
 
 -   **基于HDF驱动框架开发器件驱动的优势**
 
-    在HDF（Hardware Driver Foundation）[驱动管理框架](driver-hdf-development.md)的基础上，Input驱动模型调用OSAL接口层和Platfom接口层提供的基础接口进行开发，包括bus通信接口、操作系统原生接口（memory、lock、thread、timer等）。由于OSAL接口和Platform接口屏蔽了芯片平台差异，所以基于Input驱动模型实现的touchscreen驱动可以进行跨平台、跨OS迁移，以便逐步实现驱动的一次开发，多端部署。
+    在HDF（Hardware Driver Foundation）[驱动管理框架](driver-hdf-development.md)的基础上，Input驱动模型调用OSAL接口层和Platform接口层提供的基础接口进行开发，包括bus通信接口、操作系统原生接口（memory、lock、thread、timer等）。由于OSAL接口和Platform接口屏蔽了芯片平台差异，所以基于Input驱动模型实现的Touchscreen驱动可以进行跨平台、跨OS迁移，以便逐步实现驱动的一次开发，多端部署。
 
 
 ## 接口说明<a name="section105459441659"></a>
@@ -63,22 +56,22 @@ Touchscreen器件的硬件接口相对简单，根据PIN脚的属性，可以简
     -   LDO\_1P8：1.8V数字电路
     -   LDO\_3P3：3.3V模拟电路
 
-        通常情况下，touchscreen驱动IC和LCD驱动IC是相互分离的，这种情况下，touchscreen驱动IC一般同时需要1.8V和3.3V两路供电。随着芯片演进，业内已有touchscreen驱动IC和LCD驱动IC集成在一颗IC中的芯片案例，对touchscreen而言，只需要关注1.8V供电即可，其内部需要的3.3V电源，会在驱动IC内部从LCD的VSP电源（典型值5.5V）中分出来。
+        通常情况下，Touchscreen驱动IC和LCD驱动IC是相互分离的，这种情况下，Touchscreen驱动IC一般同时需要1.8V和3.3V两路供电。随着芯片演进，业内已有Touchscreen驱动IC和LCD驱动IC集成在一颗IC中的芯片案例，对Touchscreen而言，只需要关注1.8V供电即可，其内部需要的3.3V电源，会在驱动IC内部从LCD的VSP电源（典型值5.5V）中分出来。
 
 2.  **IO控制接口**
     -   Reset：reset管脚，用于在系统休眠、唤醒时，由主机侧对驱动IC进行复位操作。
     -   INT：中断管脚，需要在驱动初始化时，配置为输入上拉状态。在驱动IC检测到外部触摸信号后，通过操作中断管脚来触发中断，器件驱动则会在中断处理函数中进行报点数据读取等操作。
 
 3.  **通信接口**
-    -   I2C：由于touchscreen的报点数据量相对较少，所以一般选用I2C方式传输数据。I2C的具体协议及对应操作接口，可以参考Platform接口层中的[“I2C”使用指南](driver-platform-i2c-des.md#section5361140416)。
+    -   I2C：由于Touchscreen的报点数据量相对较少，所以一般选用I2C方式传输数据。I2C的具体协议及对应操作接口，可以参考Platform接口层中的[“I2C”使用指南](driver-platform-i2c-des.md#section5361140416)。
     -   SPI：部分厂商，由于需要传递的数据不止报点坐标，而是需要获取基础容值，数据量较大，所以会选用SPI通信方式。SPI的具体协议及对应操作接口，可以参考Platform接口层中的[“SPI” 使用指南](driver-platform-spi-des.md#section193356154511)。
 
 
 ## 开发步骤<a name="section65745222184"></a>
 
-Input驱动模型是基于HDF框架、Platform接口和OSAL接口开发，不区分操作系统和芯片平台，为touchscreen等输入器件提供统一的驱动开发架构。
+Input驱动模型是基于HDF框架、Platform接口和OSAL接口开发，不区分操作系统和芯片平台，为Touchscreen等输入器件提供统一的驱动开发架构。
 
-如下以touchscreen器件驱动为例，说明Input驱动模型的完整加载流程：
+如下以Touchscreen器件驱动为例，说明Input驱动模型的完整加载流程：
 
 （1）设备描述配置：由开发者参考已有模板进行设备描述配置，包括驱动加载顺序、板级硬件信息、器件私有数据信息等。
 
@@ -100,7 +93,7 @@ Input驱动模型是基于HDF框架、Platform接口和OSAL接口开发，不区
 
 2.  板级配置及Touchscreen器件私有配置
 
-    配置对应的IO管脚功能，例如对单板上为touchscreen设计预留的I2C Pin脚，需设置对应的寄存器，使其选择I2C的通信功能。
+    配置对应的IO管脚功能，例如对单板上为Touchscreen设计预留的I2C Pin脚，需设置对应的寄存器，使其选择I2C的通信功能。
 
 3.  实现器件差异化适配接口
 
@@ -109,7 +102,7 @@ Input驱动模型是基于HDF框架、Platform接口和OSAL接口开发，不区
 
 ## 开发实例<a name="section263714411191"></a>
 
-本实例提供touchscreen驱动开发示例，并简要对具体关键点进行开发说明。
+本实例提供Touchscreen驱动开发示例，并简要对具体关键点进行开发说明。
 
 ### 设备描述配置<a name="section18249155619195"></a>
 
