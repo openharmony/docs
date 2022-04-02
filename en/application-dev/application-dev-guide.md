@@ -6,11 +6,11 @@ The documents are carefully organized as follows:
 
 ### Getting Started
 
-[Here](quick-start/start-overview.md) you can learn how to better prepare yourself for application development.
+[Here](quick-start/start-overview.md) you'll learn how to quickly get started with OpenHarmony application development.
 
-Browse the documents on how to use DevEco Studio and how to quickly build your first application.
+Browse the documents on the instructions for quickly building your first application and the basics about OpenHarmony applications.
 
-Don't forget to check out the package structure of OpenHarmony applications and resource file categories.
+Check out the development fundamentals, which comprise descriptions of the package structure configuration file for OpenHarmony applications and the instructions for use of resource files.
 
 ### Development
 
