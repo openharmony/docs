@@ -84,7 +84,7 @@
 
 2.  根据USB烧写步骤烧写U-boot文件。
 
-    按照[Hi3516系列USB烧写步骤](../quick-start/quickstart-lite-steps-hi3516-burn.md)/[Hi3518系列USB烧写步骤](../quick-start/quickstart-lite-steps-hi3518-burn.md)中描述的USB烧写方法，选择对应单板的U-boot文件进行烧写。
+    按照[Hi3516系列USB烧写步骤](../quick-start/quickstart-lite-steps-hi3516-burn.md)中描述的USB烧写方法，选择对应单板的U-boot文件进行烧写。
 
 3.  烧写完成后，登录串口如下图所示。
 

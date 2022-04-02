@@ -61,7 +61,7 @@
   - 轻量系统芯片移植指导
 
     - 移植准备
-      - [移植须知](porting/porting-chip-prepare-knows.md)
+      - [移植须知](porting/oem_transplant_chip_prepare_knows.md)
       - [编译构建适配流程](porting/porting-chip-prepare-process.md)
     - 内核移植
       - [移植概述](porting/porting-chip-kernel-overview.md)
