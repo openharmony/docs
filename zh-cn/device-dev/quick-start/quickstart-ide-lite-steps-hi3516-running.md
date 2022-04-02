@@ -12,12 +12,15 @@
    ![zh-cn_image_0000001226794644](figures/zh-cn_image_0000001226794644.png)
 
 2. 提示如下图中的重启开发板的提示信息时，重启开发板，然后在控制台输出“SUCCESS”表示设置成功。
+
    ![zh-cn_image_0000001227114584](figures/zh-cn_image_0000001227114584.png)
 
 3. 在任务栏点击**Monitor**按钮，启动串口工具。
+
    ![zh-cn_image_0000001271234705](figures/zh-cn_image_0000001271234705.png)
 
 4. 当界面打印回显信息，点击Enter按钮，直到界面显示OHOS \#信息，表示系统启动成功。
+
    ![zh-cn_image_0000001271594709](figures/zh-cn_image_0000001271594709.png)
 
 

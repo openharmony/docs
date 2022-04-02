@@ -40,9 +40,6 @@
             - [烧录](quickstart-ide-standard-running-rk3568-burning.md)
             - [运行](quickstart-ide-standard-running-rk3568-running.md)
     - 附录
-    	- 快速入门（安装包方式）
-            - [轻量和小型系统快速入门（安装包方式）](quickstart-docker-lite.md)
-            - [标准系统快速入门（安装包方式）](quickstart-standard-docker.md)
         - 开发板介绍
             - [Hi3516开发板介绍](quickstart-ide-standard-board-introduction-hi3516.md)
             - [RK3568开发板介绍](quickstart-ide-standard-board-introduction-rk3568.md)

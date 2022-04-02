@@ -5,6 +5,7 @@
 
 
 1. 确定目录结构。
+
    开发者编写业务时，务必先在./applications/sample/wifi-iot/app路径下新建一个目录（或一套目录结构），用于存放业务源码文件。
 
    例如：在app下新增业务my_first_app，其中hello_world.c为业务代码，BUILD.gn为编译脚本，具体规划目录结构如下：
@@ -22,6 +23,7 @@
    ```
 
 2. 编写业务代码。
+
      新建./applications/sample/wifi-iot/app/my_first_app下的hello_world.c文件，在hello_world.c中新建业务入口函数HelloWorld，并实现业务逻辑。并在代码最下方，使用OpenHarmony启动恢复模块接口SYS_RUN()启动业务。（SYS_RUN定义在ohos_init.h文件中）
      
    ```
@@ -37,9 +39,10 @@
    ```
 
 3. 编写用于将业务构建成静态库的BUILD.gn文件。
+
    新建./applications/sample/wifi-iot/app/my_first_app下的BUILD.gn文件，并完成如下配置。
 
-   如[ERROR:Invalid link:zh-cn_topic_0000001226794672.xml#xref7209204195912,link:#li5479332115116](#li5479332115116)所述，BUILD.gn文件由三部分内容（目标、源文件、头文件路径）构成，需由开发者完成填写。
+   如步骤1所述，BUILD.gn文件由三部分内容（目标、源文件、头文件路径）构成，需由开发者完成填写。
 
      
    ```
@@ -58,6 +61,7 @@
    - include_dirs中指定source所需要依赖的.h文件路径。
 
 4. 添加新组件。
+
    修改文件**build/lite/components/applications.json**，添加组件hello_world_app的配置，如下所示为applications.json文件片段，"\#\#start\#\#"和"\#\#end\#\#"之间为新增配置（"\#\#start\#\#"和"\#\#end\#\#"仅用来标识位置，添加完配置后删除这两行）：
 
      
@@ -120,6 +124,7 @@
    ```
 
 5. 修改单板配置文件。
+
    修改文件**vendor/hisilicon/hispark_pegasus/config.json**，新增hello_world_app组件的条目，如下所示代码片段为applications子系统配置，"\#\#start\#\#"和"\#\#end\#\#"之间为新增条目（"\#\#start\#\#"和"\#\#end\#\#"仅用来标识位置，添加完配置后删除这两行）：
 
      

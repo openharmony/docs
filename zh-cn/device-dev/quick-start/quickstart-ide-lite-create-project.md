@@ -21,9 +21,9 @@
 
 5. 在Import Project界面，选择**Product**后，会自动填充对应的MCU、Board、company和kernel信息，然后**ohosVersion**选择对应的OpenHarmony源码版本。下图以导入wifiiot_hispark_pegasus为例进行说明。
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-   > Hi3861开发板Product选择“wifiiot_hispark_pegasus”。
+   > - Hi3861开发板Product选择“wifiiot_hispark_pegasus”。
    > 
-   > Hi3516DV300开发板Product选择“ipcamera_hispark_taurus”。
+   > - Hi3516DV300开发板Product选择“ipcamera_hispark_taurus”。
 
    ![zh-cn_image_0000001271237241](figures/zh-cn_image_0000001271237241.png)
 
