@@ -49,3 +49,5 @@
   - [Audio](driver-peripherals-audio-des.md)
   - [USB](driver-peripherals-usb-des.md)
   - [Camera](driver-peripherals-camera-des.md)
+  - [Vibrator](driver-peripherals-vibrator-des.md)
+  - [Light](driver-peripherals-light-des.md)
