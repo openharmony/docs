@@ -101,9 +101,8 @@ export default {
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> - 智能穿戴仅支Input类型设置为button、radio、checkbox。
-> 
-> - 仅当Input类型为checkbox和radio时，当前组件是否选中的属性checked才生效，默认值为false。
+>
+> 仅当Input类型为checkbox和radio时，当前组件是否选中的属性checked才生效，默认值为false。
 
 
 ## 事件绑定

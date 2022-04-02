@@ -6,29 +6,29 @@ OpenHarmony系统传感器是应用访问底层硬件传感器的一种设备抽
 
 传感器是指用于侦测环境中所发生事件或变化，并将此消息发送至其他电子设备（如中央处理器）的设备，通常由敏感组件和转换组件组成。传感器是实现物联网智能化的重要基石，为实现全场景智慧化战略，支撑“1+8+N”产品需求，需要构筑统一的传感器管理框架，达到为各产品/业务提供低时延、低功耗的感知数据的目的。下面为传感器列表：
 
-| 传感器类型                              | 描述               | 说明                                                         | 主要用途                                 |
-| --------------------------------------- | ------------------ | ------------------------------------------------------------ | ---------------------------------------- |
-| SENSOR_TYPE_ACCELEROMETER               | 加速度传感器       | 测量三个物理轴（x、y&nbsp;和&nbsp;z）上，施加在设备上的加速度（包括重力加速度），单位&nbsp;:&nbsp;m/s2 | 检测运动状态                             |
-| SENSOR_TYPE_ACCELEROMETER_UNCALIBRATED  | 未校准加速度传感器 | 测量三个物理轴（x、y&nbsp;和&nbsp;z）上，施加在设备上的未校准的加速度（包括重力加速度），单位&nbsp;:&nbsp;m/s2 | 检测加速度偏差估值                       |
-| SENSOR_TYPE_LINEAR_ACCELERATION         | 线性加速度传感器   | 测量三个物理轴（x、y&nbsp;和&nbsp;z）上，施加在设备上的线性加速度（不包括重力加速度），单位&nbsp;:&nbsp;m/s2 | 检测每个单轴方向上的线性加速度           |
-| SENSOR_TYPE_GRAVITY                     | 重力传感器         | 测量三个物理轴（x、y&nbsp;和&nbsp;z）上，施加在设备上的重力加速度，单位&nbsp;:&nbsp;m/s2 | 测量重力大小                             |
-| SENSOR_TYPE_GYROSCOPE                   | 陀螺仪传感器       | 测量三个物理轴（x、y&nbsp;和&nbsp;z）上，设备的旋转角速度，单位&nbsp;:&nbsp;rad/s | 测量旋转的角速度                         |
-| SENSOR_TYPE_GYROSCOPE_UNCALIBRATED      | 未校准陀螺仪传感器 | 测量三个物理轴（x、y&nbsp;和&nbsp;z）上，设备的未校准旋转角速度，单位&nbsp;:&nbsp;rad/s | 测量旋转的角速度及偏差估值               |
-| SENSOR_TYPE_SIGNIFICANT_MOTION          | 大幅度动作传感器   | 测量三个物理轴（x、y&nbsp;和&nbsp;z）上，设备是否存在大幅度运动；如果取值为1则代表存在大幅度运动，取值为0则代表没有大幅度运动 | 用于检测设备是否存在大幅度运动           |
-| SENSOR_TYPE_PEDOMETER_DETECTION         | 计步器检测传感器   | 检测用户的计步动作；如果取值为1则代表用户产生了计步行走的动作；取值为0则代表用户没有发生运动 | 用于检测用户是否有计步的动作             |
-| SENSOR_TYPE_PEDOMETER                   | 计步器传感器       | 统计用户的行走步数                                           | 用于提供用户行走的步数数据               |
-| SENSOR_TYPE_AMBIENT_TEMPERATURE         | 环境温度传感器     | 测量环境温度，单位&nbsp;:&nbsp;摄氏度&nbsp;(°C)              | 测量环境温度                             |
-| SENSOR_TYPE_MAGNETIC_FIELD              | 磁场传感器         | 测量三个物理轴向（x、y、z）上，环境地磁场，单位&nbsp;:&nbsp;μT | 创建指南针                               |
-| SENSOR_TYPE_MAGNETIC_FIELD_UNCALIBRATED | 未校准磁场传感器   | 测量三个物理轴向（x、y、z）上，未校准环境地磁场，单位&nbsp;:&nbsp;μT | 测量地磁偏差估值                         |
-| SENSOR_TYPE_HUMIDITY                    | 湿度传感器         | 测量环境的相对湿度，以百分比&nbsp;(%)&nbsp;表示              | 监测露点、绝对湿度和相对湿度             |
-| SENSOR_TYPE_BAROMETER                   | 气压计传感器       | 测量环境气压，单位&nbsp;:&nbsp;hPa&nbsp;或&nbsp;mbar         | 测量环境气压                             |
-| SENSOR_TYPE_ORIENTATION                 | 方向传感器         | 测量设备围绕所有三个物理轴（x、y、z）旋转的角度值，单位：rad | 用于提供屏幕旋转的3个角度值              |
-| SENSOR_TYPE_ROTATION_VECTOR             | 旋转矢量传感器     | 测量设备旋转矢量，复合传感器：由加速度传感器、磁场传感器、陀螺仪传感器合成 | 检测设备相对于东北天坐标系的方向         |
-| SENSOR_TYPE_PROXIMITY                   | 接近光传感器       | 测量可见物体相对于设备显示屏的接近或远离状态                 | 通话中设备相对人的位置                   |
-| SENSOR_TYPE_AMBIENT_LIGHT               | 环境光传感器       | 测量设备周围光线强度，单位：lux                              | 自动调节屏幕亮度，检测屏幕上方是否有遮挡 |
-| SENSOR_TYPE_HEART_RATE                  | 心率传感器         | 测量用户的心率数值                                           | 用于提供用户的心率健康数据               |
-| SENSOR_TYPE_WEAR_DETECTION              | 佩戴检测传感器     | 检测用户是否佩戴                                             | 用于检测用户是否佩戴智能穿戴             |
-| SENSOR_TYPE_HALL                        | 霍尔传感器         | 测量设备周围是否存在磁力吸引                                 | 设备的皮套模式                           |
+| 传感器类型                                   | 描述        | 说明                                       | 主要用途                 |
+| --------------------------------------- | --------- | ---------------------------------------- | -------------------- |
+| SENSOR_TYPE_ACCELEROMETER               | 加速度传感器    | 测量三个物理轴（x、y&nbsp;和&nbsp;z）上，施加在设备上的加速度（包括重力加速度），单位&nbsp;:&nbsp;m/s2 | 检测运动状态               |
+| SENSOR_TYPE_ACCELEROMETER_UNCALIBRATED  | 未校准加速度传感器 | 测量三个物理轴（x、y&nbsp;和&nbsp;z）上，施加在设备上的未校准的加速度（包括重力加速度），单位&nbsp;:&nbsp;m/s2 | 检测加速度偏差估值            |
+| SENSOR_TYPE_LINEAR_ACCELERATION         | 线性加速度传感器  | 测量三个物理轴（x、y&nbsp;和&nbsp;z）上，施加在设备上的线性加速度（不包括重力加速度），单位&nbsp;:&nbsp;m/s2 | 检测每个单轴方向上的线性加速度      |
+| SENSOR_TYPE_GRAVITY                     | 重力传感器     | 测量三个物理轴（x、y&nbsp;和&nbsp;z）上，施加在设备上的重力加速度，单位&nbsp;:&nbsp;m/s2 | 测量重力大小               |
+| SENSOR_TYPE_GYROSCOPE                   | 陀螺仪传感器    | 测量三个物理轴（x、y&nbsp;和&nbsp;z）上，设备的旋转角速度，单位&nbsp;:&nbsp;rad/s | 测量旋转的角速度             |
+| SENSOR_TYPE_GYROSCOPE_UNCALIBRATED      | 未校准陀螺仪传感器 | 测量三个物理轴（x、y&nbsp;和&nbsp;z）上，设备的未校准旋转角速度，单位&nbsp;:&nbsp;rad/s | 测量旋转的角速度及偏差估值        |
+| SENSOR_TYPE_SIGNIFICANT_MOTION          | 大幅度动作传感器  | 测量三个物理轴（x、y&nbsp;和&nbsp;z）上，设备是否存在大幅度运动；如果取值为1则代表存在大幅度运动，取值为0则代表没有大幅度运动 | 用于检测设备是否存在大幅度运动      |
+| SENSOR_TYPE_PEDOMETER_DETECTION         | 计步器检测传感器  | 检测用户的计步动作；如果取值为1则代表用户产生了计步行走的动作；取值为0则代表用户没有发生运动 | 用于检测用户是否有计步的动作       |
+| SENSOR_TYPE_PEDOMETER                   | 计步器传感器    | 统计用户的行走步数                                | 用于提供用户行走的步数数据        |
+| SENSOR_TYPE_AMBIENT_TEMPERATURE         | 环境温度传感器   | 测量环境温度，单位&nbsp;:&nbsp;摄氏度&nbsp;(°C)      | 测量环境温度               |
+| SENSOR_TYPE_MAGNETIC_FIELD              | 磁场传感器     | 测量三个物理轴向（x、y、z）上，环境地磁场，单位&nbsp;:&nbsp;μT | 创建指南针                |
+| SENSOR_TYPE_MAGNETIC_FIELD_UNCALIBRATED | 未校准磁场传感器  | 测量三个物理轴向（x、y、z）上，未校准环境地磁场，单位&nbsp;:&nbsp;μT | 测量地磁偏差估值             |
+| SENSOR_TYPE_HUMIDITY                    | 湿度传感器     | 测量环境的相对湿度，以百分比&nbsp;(%)&nbsp;表示          | 监测露点、绝对湿度和相对湿度       |
+| SENSOR_TYPE_BAROMETER                   | 气压计传感器    | 测量环境气压，单位&nbsp;:&nbsp;hPa&nbsp;或&nbsp;mbar | 测量环境气压               |
+| SENSOR_TYPE_ORIENTATION                 | 方向传感器     | 测量设备围绕所有三个物理轴（x、y、z）旋转的角度值，单位：rad        | 用于提供屏幕旋转的3个角度值       |
+| SENSOR_TYPE_ROTATION_VECTOR             | 旋转矢量传感器   | 测量设备旋转矢量，复合传感器：由加速度传感器、磁场传感器、陀螺仪传感器合成    | 检测设备相对于东北天坐标系的方向     |
+| SENSOR_TYPE_PROXIMITY                   | 接近光传感器    | 测量可见物体相对于设备显示屏的接近或远离状态                   | 通话中设备相对人的位置          |
+| SENSOR_TYPE_AMBIENT_LIGHT               | 环境光传感器    | 测量设备周围光线强度，单位：lux                        | 自动调节屏幕亮度，检测屏幕上方是否有遮挡 |
+| SENSOR_TYPE_HEART_RATE                  | 心率传感器     | 测量用户的心率数值                                | 用于提供用户的心率健康数据        |
+| SENSOR_TYPE_WEAR_DETECTION              | 佩戴检测传感器   | 检测用户是否佩戴                                 | 用于检测用户是否佩戴智能穿戴       |
+| SENSOR_TYPE_HALL                        | 霍尔传感器     | 测量设备周围是否存在磁力吸引                           | 设备的皮套模式              |
 
 
 ## 运作机制
@@ -54,12 +54,12 @@ OpenHarmony传感器包含如下四个模块：Sensor API、Sensor Framework、S
 
     表7 传感器数据权限
 
-   | 传感器                       | 权限名                              | 敏感级别         | 权限描述                    |
-   | ------------------------- | -------------------------------- | ------------ | ----------------------- |
-   | 加速度传感器，加速度未校准传感器，线性加速度传感器 | ohos.permission.ACCELEROMETER    | system_grant | 允许订阅Motion组对应的加速度传感器的数据 |
-   | 陀螺仪传感器，陀螺仪未校准传感器          | ohos.permission.GYROSCOPE        | system_grant | 允许订阅Motion组对应的陀螺仪传感器的数据 |
-   | 计步器                       | ohos.permission.ACTIVITY_MOTION  | user_grant   | 允许订阅运动状态                |
-   | 心率计                       | ohos.permission.READ_HEALTH_DATA | user_grant   | 允许读取健康数据                |
+| 传感器                       | 权限名                              | 敏感级别         | 权限描述                    |
+| ------------------------- | -------------------------------- | ------------ | ----------------------- |
+| 加速度传感器，加速度未校准传感器，线性加速度传感器 | ohos.permission.ACCELEROMETER    | system_grant | 允许订阅Motion组对应的加速度传感器的数据 |
+| 陀螺仪传感器，陀螺仪未校准传感器          | ohos.permission.GYROSCOPE        | system_grant | 允许订阅Motion组对应的陀螺仪传感器的数据 |
+| 计步器                       | ohos.permission.ACTIVITY_MOTION  | user_grant   | 允许订阅运动状态                |
+| 心率计                       | ohos.permission.READ_HEALTH_DATA | user_grant   | 允许读取健康数据                |
 
 
 

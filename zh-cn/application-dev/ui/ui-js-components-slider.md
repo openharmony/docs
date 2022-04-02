@@ -91,10 +91,10 @@ Slider组件通过color、selected-color、block-color样式分别为滑动条�
 ![zh-cn_image_0000001179438692](figures/zh-cn_image_0000001179438692.gif)
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> mode属性为滑动条样式，仅在手机和平板上生效，可选值为：
-> 
+> mode属性为滑动条样式，可选值为：
+>
 > - outset：滑块在滑杆上；
-> 
+>
 > - inset：滑块在滑杆内。
 
 

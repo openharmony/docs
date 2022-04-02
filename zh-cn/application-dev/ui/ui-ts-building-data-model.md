@@ -20,7 +20,7 @@
      Seafood,
      Dessert
    }
-   
+
    let NextId = 0;
    class FoodData {
      id: string;
@@ -32,7 +32,7 @@
      fat: number;
      carbohydrates: number;
      vitaminC: number;
-   
+
      constructor(name: string, image: Resource, category: Category, calories: number, protein: number, fat: number, carbohydrates: number, vitaminC: number) {
        this.id = `${ NextId++ }`;
        this.name = name;
@@ -47,8 +47,8 @@
    }
    ```
 
-3. 存入食物图片资源。在resources &gt; phone &gt; media目录下存入食物图片资源，图片名称为食物名称。
-   
+3. 存入食物图片资源。在resources &gt;base&gt; media目录下存入食物图片资源，图片名称为食物名称。
+
 4. 创建食物资源数据。在model文件夹下创建FoodDataModels.ets，在该页面中声明食物成分数组FoodComposition。
    实际开发中，开发者可以自定义更多的数据资源，当食物资源很多时，建议使用数据懒加载LazyForEach。
 
@@ -63,7 +63,7 @@
    }
    // FoodDataModels.ets
    import { Category, FoodData } from './FoodData'
-   
+
    export function initializeOnStartup(): Array<FoodData> {
      let FoodDataArray: Array<FoodData> = []
      FoodComposition.forEach(item => {

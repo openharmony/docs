@@ -24,9 +24,9 @@
 
 除支持[通用属性](../arkui-js/js-components-common-attributes.md)外，还支持如下属性：
 
-| 名称 | 类型 | 默认值 | 必填 | 描述 |
-| -------- | -------- | -------- | -------- | -------- |
-| type | string | default | 否 | list-item-group类型，同一list支持多种type的list-item-group，相同type的list-item-group需要确保渲染后的视图布局也完全相同，当type固定时，使用show属性代替if属性，确保视图布局不变。 |
+| 名称   | 类型     | 默认值     | 必填   | 描述                                       |
+| ---- | ------ | ------- | ---- | ---------------------------------------- |
+| type | string | default | 否    | list-item-group类型，同一list支持多种type的list-item-group，相同type的list-item-group需要确保渲染后的视图布局也完全相同，当type固定时，使用show属性代替if属性，确保视图布局不变。 |
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 >
@@ -37,21 +37,21 @@
 
 除支持[通用样式](../arkui-js/js-components-common-styles.md)外，还支持如下样式：
 
-| 名称 | 类型 | 默认值 | 必填 | 描述 |
-| -------- | -------- | -------- | -------- | -------- |
-| flex-direction | string | row | 否 | flex容器主轴方向。可选项有：<br/>-&nbsp;column：垂直方向从上到下<br/>-&nbsp;row：水平方向从左到右 |
-| justify-content | string | flex-start | 否 | flex容器当前行的主轴对齐格式。可选项有：<br/>-&nbsp;flex-start：项目位于容器的开头。<br/>-&nbsp;flex-end：项目位于容器的结尾。<br/>-&nbsp;center：项目位于容器的中心。<br/>-&nbsp;space-between：项目位于各行之间留有空白的容器内。<br/>-&nbsp;space-around：项目位于各行之前、之间、之后都留有空白的容器内。<br/>-&nbsp;space-evenly<sup>5+</sup>:&nbsp;&nbsp;均匀排列每个元素，每个元素之间的间隔相等。 |
+| 名称              | 类型     | 默认值        | 必填   | 描述                                       |
+| --------------- | ------ | ---------- | ---- | ---------------------------------------- |
+| flex-direction  | string | row        | 否    | flex容器主轴方向。可选项有：<br/>-&nbsp;column：垂直方向从上到下<br/>-&nbsp;row：水平方向从左到右 |
+| justify-content | string | flex-start | 否    | flex容器当前行的主轴对齐格式。可选项有：<br/>-&nbsp;flex-start：项目位于容器的开头。<br/>-&nbsp;flex-end：项目位于容器的结尾。<br/>-&nbsp;center：项目位于容器的中心。<br/>-&nbsp;space-between：项目位于各行之间留有空白的容器内。<br/>-&nbsp;space-around：项目位于各行之前、之间、之后都留有空白的容器内。<br/>-&nbsp;space-evenly<sup>5+</sup>:&nbsp;&nbsp;均匀排列每个元素，每个元素之间的间隔相等。 |
 
 
 ## 事件
 
 除支持[通用事件](../arkui-js/js-components-common-events.md)外，还支持如下事件：
 
-| 名称 | 参数 | 描述 |
-| -------- | -------- | -------- |
-| groupclick | {&nbsp;groupid:&nbsp;string&nbsp;} | group点击事件。<br/>groupid：被点击的group的id。 |
+| 名称            | 参数                                 | 描述                                       |
+| ------------- | ---------------------------------- | ---------------------------------------- |
+| groupclick    | {&nbsp;groupid:&nbsp;string&nbsp;} | group点击事件。<br/>groupid：被点击的group的id。     |
 | groupcollapse | {&nbsp;groupid:&nbsp;string&nbsp;} | group收拢事件。<br/>groupid：收拢的group的id。<br/>当不输入参数或者groupid为空时收拢所有分组。 |
-| groupexpand | {&nbsp;groupid:&nbsp;string&nbsp;} | group展开事件。<br/>groupid：展开的group的id。<br/>当不输入参数或者groupid为空时展开所有分组。 |
+| groupexpand   | {&nbsp;groupid:&nbsp;string&nbsp;} | group展开事件。<br/>groupid：展开的group的id。<br/>当不输入参数或者groupid为空时展开所有分组。 |
 
 
 ## 方法
