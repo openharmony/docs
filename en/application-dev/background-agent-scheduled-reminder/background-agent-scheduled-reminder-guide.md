@@ -563,12 +563,12 @@ Publish a 10-second countdown reminder.
                 }
             ],
             wantAgent: {
-                pkgName: "com.example.phone",
-                abilityName: "com.example.phone.MainAbility"
+                pkgName: "com.example.device",
+                abilityName: "com.example.device.MainAbility"
             },
             maxScreenWantAgent: {
-                pkgName: "com.example.phone",
-                abilityName: "com.example.phone.MainAbility"
+                pkgName: "com.example.device",
+                abilityName: "com.example.device.MainAbility"
             },
             title: "this is title",
             content: "this is content",
@@ -625,12 +625,12 @@ calendar: {
         },
     ],
     wantAgent: {
-        pkgName: "com.example.phone",
-        abilityName: "com.example.phone.MainAbility"
+        pkgName: "com.example.device",
+        abilityName: "com.example.device.MainAbility"
     },
     maxScreenWantAgent: {
-        pkgName: "com.example.phone",
-        abilityName: "com.example.phone.MainAbility"
+        pkgName: "com.example.device",
+        abilityName: "com.example.device.MainAbility"
     },
     ringDuration: 5,
     snoozeTimes: 2,
@@ -663,12 +663,12 @@ alarm: {
         },
     ],
     wantAgent: {
-        pkgName: "com.example.phone",
-        abilityName: "com.example.phone.MainAbility"
+        pkgName: "com.example.device",
+        abilityName: "com.example.device.MainAbility"
     },
     maxScreenWantAgent: {
-        pkgName: "com.example.phone",
-        abilityName: "com.example.phone.MainAbility"
+        pkgName: "com.example.device",
+        abilityName: "com.example.device.MainAbility"
     },
     ringDuration: 5,
     snoozeTimes: 2,
