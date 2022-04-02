@@ -83,18 +83,19 @@
 
 **表8** DragEvent对象属性列表(继承BaseEvent)<sup>7+</sup>
 
-| 属性        | 类型     | 说明               |
-| --------- | ------ | ---------------- |
-| type      | string | 事件名称。            |
-| globalX   | number | 距离屏幕左上角坐标原点横向距离。 |
-| globalY   | number | 距离屏幕左上角坐标原点纵向距离。 |
-| timestamp | number | 时间戳。             |
+| 属性         | 类型         | 说明                             |
+| ------------ | ------------ | -------------------------------- |
+| type         | string       | 事件名称。                       |
+| globalX      | number       | 距离屏幕左上角坐标原点横向距离。 |
+| globalY      | number       | 距离屏幕左上角坐标原点纵向距离。 |
+| timestamp    | number       | 时间戳。                         |
+| dataTransfer | DataTransfer | DataTransfer对象。               |
 
-## 事件对象
+## **target对象**
 
 当组件触发事件后，事件回调函数默认会收到一个事件对象，通过该事件对象可以获取相应的信息。
 
-**target对象：**
+
 
 | 属性                   | 类型     | 说明                                       |
 | -------------------- | ------ | ---------------------------------------- |
@@ -119,3 +120,132 @@ export default {
   }
 }
 ```
+
+## **DataTransfer对象**
+
+在拖曳操作的过程中，我们可以用过dataTransfer对象来传输数据，以便在拖曳操作结束的时候对数据进行其他的操作。
+
+### ***clearData***
+
+###### clearData(key?: string): boolean
+
+删除与给定类型关联的数据。如果类型为空或未指定，则删除与所有类型关联的数据。如果指定类型的数据不存在，或者 data transfer 中不包含任何数据，则该方法不会产生任何效果。
+
+- ###### 参数：
+
+| 参数名 | 参数类型 | 必填 | 描述                                       |
+| ------ | -------- | ---- | ------------------------------------------ |
+| key    | string   | 否   | 有key值时清除指定key，为空时清除剪切板的值 |
+
+- ###### 返回值：boolean
+
+- ###### 示例：
+
+  ```js
+  dragEnd(e){
+      var isSuccess = e.dataTransfer.clearData('name');
+  }
+  ```
+
+### ***getData***
+
+###### getData(key: string): object
+
+检索给定类型的数据，如果该类型的数据不存在或 datatransfer不包含数据，则返回空字符串。
+
+- ###### 参数：
+
+| 参数名 | 参数类型 | 必填 | 描述                       |
+| ------ | -------- | ---- | -------------------------- |
+| key    | string   | 是   | 获取指定key所对应的value值 |
+
+- ###### 返回值：object
+
+- ###### 示例：
+
+  ```js
+  dragStart(e){
+      var person = new Object();
+      person.name = "list";
+      person.age = 21;
+      e.dataTransfer.setData('person', person);
+  },
+  dragEnd(e){
+      var result = e.dataTransfer.getData('person');
+  },
+  ```
+
+### ***setData***
+
+###### setData(key: string, value: object): boolean
+
+设置给定类型的数据。如果该类型的数据不存在，则将其添加到末尾，以便类型列表中的最后一项将是新的格式。如果该类型的数据已经存在，则在相同位置替换现有数据。
+
+- ###### 参数：
+
+| 参数名 | 参数类型 | 必填 | 描述                    |
+| ------ | -------- | ---- | ----------------------- |
+| key    | string   | 是   | 存储时作为剪切板的key   |
+| value  | object   | 是   | 存储时作为剪切板的value |
+
+- ###### 返回值：boolean
+
+- ###### 示例：
+
+  ```
+  //setData 可以是基本数据类型，也可以是对象类型
+  dragStart(e){
+      var isSetOk = e.dataTransfer.setData('name', 1);
+  }
+  或
+  dragStart(e){
+      var person = new Object();
+      person.name = "list";
+      person.age = 21;
+       var isSetOk = e.dataTransfer.setData('person', person);
+  }
+  ```
+
+### setDragImage
+
+###### setDragImage(pixelmap: Pixelmap, offsetX: number,offsetY: number): boolean
+
+用于设置自定义的拖动图像。
+
+- ###### 参数：
+
+| pixelmap | 参数类型 | 必填 | 描述                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| pixelmap | PixelMap | 是   | pixelmap为前端传入的图片资源，请参考[PixelMap对象](../apis/js-apis-image.md)。 |
+| offsetX  | number   | 是   | 相对于图片的横向偏移量                                       |
+| offsetY  | number   | 是   | 相对于图片的纵向偏移量                                       |
+
+- ###### 返回值：boolean
+
+- ###### 示例：
+
+  ```js
+  CreatePixelMap(){
+      let color=new ArrayBuffer(4*96*96);
+      var buffer=new Uint8Array(color);
+      for(var i=0;i<buffer.length;i++){
+          buffer[i]=(i+1)%255;
+      }
+      let opts={
+          alphaType:0,
+          editable:true,
+          pixelFormat:4,
+          scaleMode:1,
+          size:{height:96,width:96}
+      }
+      const promise=image.createPixelMap(color,opts);
+      promise.then((data)=>{
+          console.error('-----create pixmap has info message:'+JSON.stringify(data));
+          this.pixelMap=data;
+          this.pixelMapReader=data;
+      })
+  },
+  dragStart(e){
+      e.dataTransfer.setDragImage(this.pixelMapReader, 50, 50);
+  },
+  ```
