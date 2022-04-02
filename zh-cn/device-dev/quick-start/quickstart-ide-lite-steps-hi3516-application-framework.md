@@ -23,6 +23,7 @@ applications/sample/hello
 请在源码目录中通过以下步骤创建“Hello World”应用程序：
 
 1. 新建目录及源码。
+
    新建**applications/sample/hello/src/helloworld.c**目录及文件，代码如下所示，用户可以自定义修改打印内容（例如：修改OHOS为World）。当前应用程序可支持标准C及C++的代码开发。
 
      
@@ -40,6 +41,7 @@ applications/sample/hello
    ```
 
 2. 新建编译组织文件。
+
    新建**applications/sample/hello/BUILD.gn**文件，内容如下所示：
 
      
@@ -55,6 +57,7 @@ applications/sample/hello
    ```
 
 3. 添加新组件。
+
    修改文件**build/lite/components/applications.json**，添加组件hello_world_app的配置，如下所示为applications.json文件片段，"\#\#start\#\#"和"\#\#end\#\#"之间为新增配置（"\#\#start\#\#"和"\#\#end\#\#"仅用来标识位置，添加完配置后删除这两行）：
 
      
@@ -117,6 +120,7 @@ applications/sample/hello
    ```
 
 4. 修改单板配置文件。
+
    修改文件**vendor/hisilicon/hispark_taurus/config.json**，新增hello_world_app组件的条目，如下所示代码片段为applications子系统配置，"\#\#start\#\#"和"\#\#end\#\#"之间为新增条目（"\#\#start\#\#"和"\#\#end\#\#"仅用来标识位置，添加完配置后删除这两行）：
 
      

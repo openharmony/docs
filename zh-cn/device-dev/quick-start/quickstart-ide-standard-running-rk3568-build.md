@@ -2,6 +2,7 @@
 
 
 1. 在Projects中，点击**Settings**按钮，进入HH-SCDY200配置界面。
+
    ![zh-cn_image_0000001221036768](figures/zh-cn_image_0000001221036768.png)
 
 2. 在toolchain页签中，DevEco Device Tool会自动检测依赖的编译工具链是否完备，如果提示部分工具缺失，可点击**SetUp**按钮，自动安装所需工具链。
@@ -15,12 +16,15 @@
    ![zh-cn_image_0000001265676877](figures/zh-cn_image_0000001265676877.png)
 
 3. 在“hh_scdy200”配置页签中，设置源码的编译类型**build_type**，默认为"debug类型，请根据需要进行修改。然后点击**Save**按钮进行保存。
+
    ![zh-cn_image_0000001265956897](figures/zh-cn_image_0000001265956897.png)
 
 4. 在DevEco Device Tool界面的“PROJECT TASKS”中，点击对应开发板下的**Build**按钮，执行编译。
+
    ![zh-cn_image_0000001265516901](figures/zh-cn_image_0000001265516901.png)
 
 5. 等待编译完成，在**TERMINAL**窗口输出“SUCCESS”，编译完成。
+
    ![zh-cn_image_0000001222361042](figures/zh-cn_image_0000001222361042.png)
 
    编译完成后，可以在工程的**out**目录下，查看编译生成的文件，用于后续的[RK3568开发板烧录](https://device.harmonyos.com/cn/docs/documentation/guide/ide-rk3568-upload-0000001239220669)。

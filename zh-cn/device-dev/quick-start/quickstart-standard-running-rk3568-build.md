@@ -38,6 +38,7 @@ OpenHarmony支持hb和build.sh两种编译方式。此处介绍hb方式，build.
 
      
      **图1** RK3568编译设置图例
+
      ![zh-cn_image_0000001226922302](figures/zh-cn_image_0000001226922302.png)
 
 5. 编译结束后，出现“rk3568 build success”字样，则证明构建成功。
