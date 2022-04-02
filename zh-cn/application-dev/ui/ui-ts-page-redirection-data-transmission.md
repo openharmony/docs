@@ -50,7 +50,7 @@
 2. 点击FoodGridItem后跳转到FoodDetail页面。调用页面路由router模块的push接口，将FoodDetail页面推到路由栈中，实现页面跳转。使用router路由API接口，需要先引入router。
    ```
    import router from '@system.router'
-   
+
    @Component
    struct FoodGridItem {
      private foodItem: FoodData
@@ -69,11 +69,11 @@
 
    ![zh-cn_image_0000001169918548](figures/zh-cn_image_0000001169918548.gif)
 
-3. 在FoodDetail页面增加回到食物列表页面的图标。在resources &gt; phone &gt; media文件夹下存入回退图标Back.png。新建自定义组件PageTitle，包含后退的图标和Food Detail的文本，调用路由的router.back()接口，弹出路由栈最上面的页面，即返回上一级页面。
+3. 在FoodDetail页面增加回到食物列表页面的图标。在resources &gt; base &gt; media文件夹下存入回退图标Back.png。新建自定义组件PageTitle，包含后退的图标和Food Detail的文本，调用路由的router.back()接口，弹出路由栈最上面的页面，即返回上一级页面。
    ```
    // FoodDetail.ets
    import router from '@system.router'
-   
+
    @Component
    struct PageTitle {
        build() {
@@ -148,7 +148,7 @@
    ```
    // FoodDetail.ets
    import { FoodData } from '../model/FoodData'
-   
+
    @Entry
    @Component
    struct FoodDetail {
@@ -165,7 +165,7 @@
    @Component
    struct FoodDetail {
      private foodItem: FoodData = router.getParams().foodData
-   
+
      build() {
        ......
      }
@@ -193,7 +193,7 @@
            })
        }
    }
-   
+
    @Component
    struct FoodImageDisplay {
      private foodItem: FoodData
@@ -210,11 +210,11 @@
        .backgroundColor('#FFedf2f5')
      }
    }
-   
+
    @Component
    struct ContentTable {
      private foodItem: FoodData
-   
+
      @Builder IngredientItem(title:string, name: string, value: string) {
        Flex() {
          Text(title)
@@ -231,7 +231,7 @@
          .layoutWeight(2)
        }
      }
-   
+
      build() {
        Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Start }) {
          this.IngredientItem('Calories', 'Calories', this.foodItem.calories + 'kcal')
@@ -244,12 +244,12 @@
        .padding({ top: 30, right: 30, left: 30 })
      }
    }
-   
+
    @Entry
    @Component
    struct FoodDetail {
      private foodItem: FoodData = router.getParams().foodData
-   
+
      build() {
        Column() {
          Stack( { alignContent: Alignment.TopStart }) {

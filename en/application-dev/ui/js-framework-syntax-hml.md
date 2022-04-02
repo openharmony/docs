@@ -43,7 +43,7 @@ export default {
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
 > - To make the array data modification take effect, use the splice method to change array items.
-> 
+>
 > - ECMAScript 6 (ES6) syntax is not supported in HML.
 
 
@@ -58,7 +58,7 @@ Events can be written in the following formats:
 - funcName(a,b): function parameters, such as a and b, which can be constants, or variables defined in data in the .js file. Do not add the prefix this. to variables.
 
 - Example
-  
+
   ```
   <!-- xxx.hml -->
   <div class="container">
@@ -74,7 +74,7 @@ Events can be written in the following formats:
   </div>
   ```
 
-  
+
   ```
   // xxx.js
   export default {
@@ -93,7 +93,7 @@ Events can be written in the following formats:
   };
   ```
 
-  
+
   ```
   /* xxx.css */
   .container {
@@ -139,7 +139,7 @@ Bubbling event binding covers the following:
   > For details about bubbling events, see [Universal Events](../reference/arkui-js/js-components-common-events.md)
 
 - Example
-  
+
   ```
   <!-- xxx.hml -->
   <div>
@@ -157,8 +157,8 @@ Bubbling event binding covers the following:
       <div grab:click="clickfunc"></div>
   </div>
   ```
-  
-  
+
+
   ```
   // xxx.js
   export default {
@@ -185,7 +185,7 @@ Event capturing binding includes:
 - Bind an event callback, but stop the event from being captured during downward transfer: grab:{event}.capture.
 
 - Example
-  
+
   ```
   <!-- xxx.hml -->
   <div>
@@ -195,7 +195,7 @@ Event capturing binding includes:
   </div>
   ```
 
-  
+
   ```
   // xxx.js
   export default {
@@ -262,9 +262,9 @@ The for loop supports the following statements:
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
 > - Each element in the array must have the data attribute specified by tid. Otherwise, an exception may occur.
-> 
+>
 > - The attribute specified by tid in the array must be unique. Otherwise, performance loss occurs. In the above example, only id and name can be used as tid because they are unique fields.
-> 
+>
 > - The tid field does not support expressions.
 
 
@@ -278,8 +278,8 @@ There are two ways to implement conditional rendering: if-elif-else or show. In 
 <div class="container">
   <button class="btn" type="capsule" value="toggleShow" onclick="toggleShow"></button>
   <button class="btn" type="capsule" value="toggleDisplay" onclick="toggleDisplay"></button>
-  <text if="{{visible}}"> Hello-TV </text>
-  <text elif="{{display}}"> Hello-Wearable </text>
+  <text if="{{visible}}"> Hello-World1 </text>
+  <text elif="{{display}}"> Hello-World2 </text>
   <text else> Hello-World </text>
 </div>
 ```

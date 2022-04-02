@@ -43,15 +43,9 @@
    ![zh-cn_image_0000001168410342](figures/zh-cn_image_0000001168410342.png)
 
 3. 通过资源访问图片。
-   除指定图片路径外，也可以使用引用媒体资源符$r引用资源，需要遵循resources文件夹的资源限定词的规则。右键resources文件夹，点击New&gt;Resource Directory，选择Resource Type为Media（图片资源），选择资源限定词为Device-Phone（目前开发设备为手机）。
+   除指定图片路径外，也可以使用引用媒体资源符$r引用资源，需要遵循resources文件夹的资源限定词的规则。右键resources文件夹，点击New&gt;Resource Directory，选择Resource Type为Media（图片资源）。
 
-   ![zh-cn_image_0000001168570318](figures/zh-cn_image_0000001168570318.png)
-
-   点击OK后，resources文件夹下生成phone文件夹，phone文件夹下生成media文件夹，将Tomato.png放入media文件夹内。
-
-   ![zh-cn_image_0000001214330169](figures/zh-cn_image_0000001214330169.png)
-
-   就可以通过`$r('app.type.name')`的形式引用应用资源，即`$r('app.media.Tomato')`。
+   将Tomato.png放入media文件夹内。就可以通过`$r('app.type.name')`的形式引用应用资源，即`$r('app.media.Tomato')`。
 
    ```
    @Entry

@@ -39,7 +39,7 @@ Create a &lt;list&gt; component in the .hml file under pages/index.
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
 > - &lt;list-item-group&gt; is a child component of the &lt;list&gt; component and is used to group items in a list. It can have a &lt;list-item&gt; nested inside, but not &lt;list&gt;.
-> 
+>
 > - &lt;list-item&gt; is a child component of the &lt;list&gt; component and is used to display items in a list.
 
 
@@ -116,7 +116,7 @@ Set a custom indexer component to add an index bar at the right boundary of a li
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
 > - This indexer attribute is valid only when flex-direction is set to column and columns is set to 1.
-> 
+>
 > - You must include "\#" when using a customized indexer.
 
 
@@ -219,7 +219,7 @@ Search for contacts by using an alphabetical indexer.
       <div class="container"> 
         <div class="in-container"> 
           <text class="name">{{$item.name}}</text> 
-          <text class="phone">18888888888</text> 
+          <text class="number">18888888888</text> 
         </div> 
       </div> 
     </list-item> 
@@ -251,7 +251,7 @@ Search for contacts by using an alphabetical indexer.
   color: #000000;
   font-size: 39px;
 }
-.phone {
+.number {
   color: black;
   font-size: 25px;
 }
