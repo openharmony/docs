@@ -34,6 +34,7 @@
   - [I3C](driver-platform-i3c-des.md)
   - [MIPI CSI](driver-platform-mipicsi-des.md)
   - [MIPI DSI](driver-platform-mipidsi-des.md)
+  - [Pin](driver-platform-pin-des.md)
   - [PWM](driver-platform-pwm-des.md)
   - [Regulator](driver-platform-regulator-des.md)
   - [RTC](driver-platform-rtc-des.md)

@@ -266,7 +266,7 @@ A constructor used to create an **authenticator** object.
 
 getVersion() : number
 
-Obtains the authenticator version.
+Obtains the authentication executor version.
 
 **Required permissions**: ohos.permission.ACCESS_BIOMETRIC
 
@@ -276,7 +276,7 @@ Obtains the authenticator version.
 
 | Type  | Description                  |
 | ------ | ---------------------- |
-| number | Authenticator version obtained.|
+| number | Authentication executor version obtained.|
 
 **Example**
 
@@ -429,7 +429,7 @@ Obtains the authentication result.
 | Name   | Type                      | Mandatory| Description                                                        |
 | --------- | -------------------------- | ---- | ------------------------------------------------------------ |
 | result    | number                     | Yes  | Authentication result obtained. For details, see [ResultCode](#resultcode8).                  |
-| extraInfo | [AuthResult](#authresult8) | Yes  | Extended information, which varies depending on the authentication result.<br>If the authentication is successful, the user authentication token will be returned in **extraInfo**.<br>If the authentication fails, the remaining number of authentication times will be returned in **extraInfo**.<br>If the authenticator is locked, the freeze time will be returned in **extraInfo**.|
+| extraInfo | [AuthResult](#authresult8) | Yes  | Extended information, which varies depending on the authentication result.<br>If the authentication is successful, the user authentication token will be returned in **extraInfo**.<br>If the authentication fails, the remaining number of authentication times will be returned in **extraInfo**.<br>If the authentication executor is locked, the freeze time will be returned in **extraInfo**.|
 
 
 **Example**
@@ -477,8 +477,8 @@ Obtains the tip code information during authentication. This function is optiona
 
 | Name   | Type  | Mandatory| Description                          |
 | --------- | ------ | ---- | ------------------------------ |
-| module    | number | Yes  | Type of the authenticator.            |
-| acquire   | number | Yes  | Interaction information of the authenticator during the authentication process.|
+| module    | number | Yes  | Type of the authentication executor.            |
+| acquire   | number | Yes  | Interaction information of the authentication executor during the authentication process.|
 | extraInfo | any    | Yes  | Reserved field.                    |
 
 **Example**
@@ -543,7 +543,7 @@ Enumerates the operation results.
 | TRUST_LEVEL_NOT_SUPPORT | 6      | The authentication trust level is not supported.  |
 | BUSY                    | 7      | Indicates the busy state.          |
 | INVALID_PARAMETERS      | 8      | Invalid parameters are detected.          |
-| LOCKED                  | 9      | The authenticator is locked.      |
+| LOCKED                  | 9      | The authentication executor is locked.      |
 | NOT_ENROLLED            | 10     | The user has not entered the authentication information.|
 
 
