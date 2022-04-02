@@ -917,7 +917,7 @@ subscriber.isStickyCommonEvent(isStickyCallback);
 
 isStickyCommonEvent(): Promise\<boolean>
 
-检查当前公共事件是否为一个粘性事件（callback形式）。
+检查当前公共事件是否为一个粘性事件（Promise形式）。
 
 返回true代表是粘性公共事件，false代表不是粘性公共事件。
 
