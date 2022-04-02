@@ -25,19 +25,19 @@ Scroll(scroller?: Scroller)
 
 ## Attributes
 
-| Name | Type | Default Value | Description |
+| Name       | Type      | Default Value      | Description |
 | -------- | -------- | -------- | -------- |
-| scrollable | ScrollDirection | ScrollDirection.Vertical | Scroll method. |
-| scrollBar | [BarState](ts-appendix-enums.md#barstate-enums) | Auto | Scroll bar status. |
+| scrollable     | ScrollDirection   | ScrollDirection.Vertical | Scroll method. |
+| scrollBar      | [BarState](ts-appendix-enums.md#barstate-enums) | Auto | Scroll bar status. |
 | scrollBarColor | Color | - | Color of the scroll bar. |
 | scrollBarWidth | Length | - | Width of the scrollbar. |
 
 - ScrollDirection
-    | Name | Description | 
+  | Name       | Description |
   | -------- | -------- |
-  | Horizontal | Only horizontal scrolling is supported. | 
-  | Vertical | Only vertical scrolling is supported. | 
-  | None | Scrolling is disabled. | 
+  | Horizontal | Only horizontal scrolling is supported. |
+  | Vertical | Only vertical scrolling is supported. |
+  | None     | Scrolling is disabled. |
 
 
 ## Scroller
@@ -62,11 +62,11 @@ Scrolls to the specified position.
 
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | xOffset | Length | Yes | - | Horizontal scrolling offset. | 
-  | yOffset | Length | Yes | - | Vertical scrolling offset. | 
-  | animation | {<br/>duration: number,<br/>curve: Curve \|<br/>CubicBezier \|<br/>SpringCurve<br/>} | No |  | Animation configuration, which includes the following:<br/>- **duration**: scrolling duration.<br/>- **curve**: scrolling curve. | 
+  | xOffset | Length | Yes | - | Horizontal scrolling offset. |
+  | yOffset | Length | Yes | - | Vertical scrolling offset. |
+  | animation | {<br/>duration: number,<br/>curve: Curve \|<br/>CubicBezier \|<br/>SpringCurve<br/>} | No |  | Animation configuration, which includes the following:<br/>- **duration**: scrolling duration.<br/>- **curve**: scrolling curve. |
 
 
 ### scroller.scrollEdge
@@ -78,9 +78,9 @@ Scrolls to the edge of the container.
 
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | value | Edge | Yes | - | Edge position to scroll to. | 
+  | value | Edge | Yes | - | Edge position to scroll to. |
 
 
 ### scroller.scrollPage
@@ -90,7 +90,7 @@ scrollPage(value: { next: boolean, direction?: Axis }): void
 Scrolls to the next or previous page.
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
   | next | boolean | Yes | - | Whether to turn to the next page. The value **true** means to scroll to the next page, and the value **false** means to scroll to the previous page. |
 
@@ -104,9 +104,9 @@ Obtains the scrolling offset.
 
 
 - Return values
-    | Type | Description | 
+    | Type | Description |
   | -------- | -------- |
-  | {<br/>xOffset: number,<br/>yOffset: number<br/>} | **xOffset**: horizontal scrolling offset.<br/>**yOffset**: vertical scrolling offset. | 
+  | {<br/>xOffset: number,<br/>yOffset: number<br/>} | **xOffset**: horizontal scrolling offset.<br/>**yOffset**: vertical scrolling offset. |
 
 
 ### scroller.scrollToIndex
@@ -122,18 +122,18 @@ Scrolls to the specified index.
 
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | value | number | Yes | - | Index of the item to be scrolled to in the list. | 
+  | value | number | Yes | - | Index of the item to be scrolled to in the list. |
 
 
 ## Events
 
-  | Name | Description | 
+| Name | Description |
 | -------- | -------- |
-| onScroll(xOffset: number, yOffset: number) =&gt; void | Invoked to return the horizontal and vertical offsets during scrolling when the specified scroll event occurs. | 
-| onScrollEdge(side: Edge) =&gt; void | Callback for the event of scrolling to the edge. | 
-| onScrollEnd() =&gt; void | Invoked when scrolling stops. | 
+| onScroll(xOffset: number, yOffset: number) =&gt; void | Invoked to return the horizontal and vertical offsets during scrolling when the specified scroll event occurs. |
+| onScrollEdge(side: Edge) =&gt; void | Callback for the event of scrolling to the edge. |
+| onScrollEnd() =&gt; void | Invoked when scrolling stops. |
 
 
 ## Example
