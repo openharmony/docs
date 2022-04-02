@@ -203,23 +203,23 @@ _[Native API差异报告](api-change/v3.1-Release/native-apidiff-v3.1-release.md
 
 | 子系统 | 名称 | 简介 | 开发语言 |
 | -------- | -------- | -------- | -------- |
-| 电话服务 | [短信服务](https://gitee.com/openharmony/app_samples/tree/master/Telephony/eTSMessage) | 本示例展示了电话服务中发送短信的功能。 | eTS |
-| 电话服务 | [网络搜索](https://gitee.com/openharmony/app_samples/tree/master/Telephony/eTSRadioTech) | 本示例通过eTS来展示电话服务中网络搜索功能，包含无线接入技术、网络状态、选网模式、ISO国家码、信号强度信息列表及Radio是否打开。 | eTS |
-| 设备管理 | [系统电源管理](https://gitee.com/he-jianhua/app_samples/tree/master/common/eTSPowerManager) | 本示例展示了关机、重启以及检测亮灭屏状态的功能。 | eTS |
-| 设备管理 | [传感器](https://gitee.com/openharmony/app_samples/tree/master/device/eTSSenSor) | 本示例采用了传感器接口中的方向传感器，实现了指南针的效果。 | eTS |
-| 设备管理 | [设备管理](https://gitee.com/openharmony/app_samples/tree/master/device/eTSDeviceManager) | 本示例展示了在eTS中DeviceManager接口的使用，包括获取授信设备列表，设备扫描，设备认证，设备状态订阅。 | eTS |
-| 帐号管理 | [应用帐号管理](https://gitee.com/openharmony/app_samples/tree/master/Account/eTSAppAccountManager) | 本示例选择应用进行注册/登录，并设置帐号相关信息，简要说明应用帐号管理相关功能。 | eTS |
-| ArkUI | [web](https://gitee.com/he-jianhua/app_samples/tree/master/ETSUI/eTSWeb) | 本示例主要展示了web的功能页面。 | eTS |
-| ArkUI | [拖拽](https://gitee.com/he-jianhua/app_samples/tree/master/ETSUI/eTSDrag) | 本示例主要展示了拖拽操作的功能。 | eTS |
-| ArkUI | [动画](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/eTSArkUIAnimation) | 本示例通过点击按钮触发动画，向用户展示属性动画与显示动画的效果。 | eTS |
-| 数据管理 | [分布式数据库-结果集和谓词查询](https://gitee.com/openharmony/app_samples/tree/master/data/eTSDDMQuery) | 本示例展示了分布式数据管理中，如何通过构建query对象，&nbsp;查询kvstore中的数据，获取结果集。 | eTS |
-| 数据管理 | [关系型数据库](https://gitee.com/openharmony/app_samples/tree/master/data/eTSRdb) | 本示例展示了在eTS中关系型数据库的使用，包括增、删、改、查等操作。 | eTS |
-| 事件 | [后台代理提醒](https://gitee.com/openharmony/app_samples/tree/master/Notification/eTSAlarmClock) | 本示例通过模拟闹钟来展示后台代理提醒的使用方法。 | eTS |
-| 事件 | [事件通知](https://gitee.com/openharmony/app_samples/tree/master/Notification/eTSEmitter) | 本示例主要展示进程内事件通知，用户通过选择对应商品并提交订单后在订单列表显示所选商品。 | eTS |
-| 通信与连接 | [RPC通信](https://gitee.com/openharmony/app_samples/tree/master/Communication/eTSRPC) | 本示例展示了同一设备中前后台的数据交互，用户前台选择相应的商品与数目，后台计算出结果，回传给前台展示。 | eTS |
-| 通信与连接 | [WLAN](https://gitee.com/openharmony/app_samples/tree/master/Communication/eTSWlan) | 本示例展示了在eTS中WLAN的基本使用，包括禁用和启用WLAN、WLAN扫描和获取扫描结果、WLAN状态监听、WiFi连接状态监听、获取IP信息、获取国家码、判断设备是否支持WLAN相关特性。 | eTS |
-| 媒体服务 | [录音机Demo](https://gitee.com/openharmony/app_samples/tree/master/media/eTSRecorder) | 本示例展示媒体服务中音频录制和播放功能的使用。 | eTS |
-| 媒体服务 | [多媒体Demo](https://gitee.com/openharmony/app_samples/tree/master/media/eTSMultiMedia) | 本示例展示如何在eTS中调用相机拍照和录像，以及如何使用媒体库接口进行媒体文件的增、删、改、查操作。 | eTS |
+| 电话服务 | [短信服务](https://gitee.com/openharmony/app_samples/tree/master/Telephony/Message) | 本示例展示了电话服务中发送短信的功能。 | eTS |
+| 电话服务 | [网络搜索](https://gitee.com/openharmony/app_samples/tree/master/Telephony/RadioTech) | 本示例通过eTS来展示电话服务中网络搜索功能，包含无线接入技术、网络状态、选网模式、ISO国家码、信号强度信息列表及Radio是否打开。 | eTS |
+| 设备管理 | [系统电源管理](https://gitee.com/he-jianhua/app_samples/tree/master/common/PowerManager) | 本示例展示了关机、重启以及检测亮灭屏状态的功能。 | eTS |
+| 设备管理 | [传感器](https://gitee.com/openharmony/app_samples/tree/master/device/SenSor) | 本示例采用了传感器接口中的方向传感器，实现了指南针的效果。 | eTS |
+| 设备管理 | [设备管理](https://gitee.com/openharmony/app_samples/tree/master/device/DeviceManager) | 本示例展示了在eTS中DeviceManager接口的使用，包括获取授信设备列表，设备扫描，设备认证，设备状态订阅。 | eTS |
+| 帐号管理 | [应用帐号管理](https://gitee.com/openharmony/app_samples/tree/master/Account/AppAccountManager) | 本示例选择应用进行注册/登录，并设置帐号相关信息，简要说明应用帐号管理相关功能。 | eTS |
+| ArkUI | [web](https://gitee.com/he-jianhua/app_samples/tree/master/ETSUI/Web) | 本示例主要展示了web的功能页面。 | eTS |
+| ArkUI | [拖拽](https://gitee.com/he-jianhua/app_samples/tree/master/ETSUI/Drag) | 本示例主要展示了拖拽操作的功能。 | eTS |
+| ArkUI | [动画](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/ArkUIAnimation) | 本示例通过点击按钮触发动画，向用户展示属性动画与显示动画的效果。 | eTS |
+| 数据管理 | [分布式数据库-结果集和谓词查询](https://gitee.com/openharmony/app_samples/tree/master/data/DDMQuery) | 本示例展示了分布式数据管理中，如何通过构建query对象，&nbsp;查询kvstore中的数据，获取结果集。 | eTS |
+| 数据管理 | [关系型数据库](https://gitee.com/openharmony/app_samples/tree/master/data/Rdb) | 本示例展示了在eTS中关系型数据库的使用，包括增、删、改、查等操作。 | eTS |
+| 事件 | [后台代理提醒](https://gitee.com/openharmony/app_samples/tree/master/Notification/AlarmClock) | 本示例通过模拟闹钟来展示后台代理提醒的使用方法。 | eTS |
+| 事件 | [事件通知](https://gitee.com/openharmony/app_samples/tree/master/Notification/Emitter) | 本示例主要展示进程内事件通知，用户通过选择对应商品并提交订单后在订单列表显示所选商品。 | eTS |
+| 通信与连接 | [RPC通信](https://gitee.com/openharmony/app_samples/tree/master/Communication/RPC) | 本示例展示了同一设备中前后台的数据交互，用户前台选择相应的商品与数目，后台计算出结果，回传给前台展示。 | eTS |
+| 通信与连接 | [WLAN](https://gitee.com/openharmony/app_samples/tree/master/Communication/Wlan) | 本示例展示了在eTS中WLAN的基本使用，包括禁用和启用WLAN、WLAN扫描和获取扫描结果、WLAN状态监听、WiFi连接状态监听、获取IP信息、获取国家码、判断设备是否支持WLAN相关特性。 | eTS |
+| 媒体服务 | [录音机Demo](https://gitee.com/openharmony/app_samples/tree/master/media/Recorder) | 本示例展示媒体服务中音频录制和播放功能的使用。 | eTS |
+| 媒体服务 | [多媒体Demo](https://gitee.com/openharmony/app_samples/tree/master/media/MultiMedia) | 本示例展示如何在eTS中调用相机拍照和录像，以及如何使用媒体库接口进行媒体文件的增、删、改、查操作。 | eTS |
 
 请访问[Samples](https://gitee.com/openharmony/app_samples)仓了解更多信息。
 
