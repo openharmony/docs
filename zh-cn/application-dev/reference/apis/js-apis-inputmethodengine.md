@@ -27,7 +27,7 @@ import inputMethodEngine from '@ohos.inputMethodEngine';
 | PATTERN_NULL | number | 是 | 否 | 无特殊性编辑框。 |
 | PATTERN_TEXT | number | 是 | 否 | 文本编辑框。 |
 | PATTERN_NUMBER | number | 是 | 否 | 数字编辑框。 |
-| PATTERN_PHONE | number | 是 | 否 | 电话编辑框。 |
+| PATTERN_PHONE | number | 是 | 否 | 电话号码编辑框。 |
 | PATTERN_DATETIME | number | 是 | 否 | 日期编辑框。 |
 | PATTERN_EMAIL | number | 是 | 否 | 邮件编辑框。 |
 | PATTERN_URI | number | 是 | 否 | 超链接编辑框。 |
