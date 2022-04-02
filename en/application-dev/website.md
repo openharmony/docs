@@ -2,8 +2,14 @@
 
 - [Application Development Overview](application-dev-guide.md)
 - Quick Start
-  - [Directory Structure](quick-start/package-structure.md)
-  - [Resource File Categories](quick-start/basic-resource-file-categories.md)
+  - Getting Started
+    - [Preparations](quick-start/start-overview.md)
+    - [Getting Started with eTS](quick-start/start-with-ets.md)
+    - [Getting Started with JavaScript in the Traditional Coding Approach](quick-start/start-with-js.md)
+    - [Getting Started with JavaScript in the Low-Code Approach](quick-start/start-with-js-low-code.md)
+  - Development Fundamentals
+    - [Directory Structure](quick-start/package-structure.md)
+    - [Resource File Categories](quick-start/basic-resource-file-categories.md)
 - Development
   - [Ability Development](ability/Readme-EN.md)
     - [Ability Framework Overview](ability/ability-brief.md)
