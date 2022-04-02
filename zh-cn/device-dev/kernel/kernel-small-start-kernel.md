@@ -1,25 +1,22 @@
 # 内核态启动
 
-- [内核启动流程](#内核启动流程)
-- [编程样例](#编程样例)
-  - [实例描述](#实例描述)
 
 ## 内核启动流程
 
 内核启动流程包含汇编启动阶段和C语言启动阶段2部分，如图1所示。汇编启动阶段完成CPU初始设置，关闭dcache/icache，使能FPU及neon，设置MMU建立虚实地址映射，设置系统栈，清理bss段，调用C语言main函数等。C语言启动阶段包含OsMain函数及开始调度等，其中如上图所示，OsMain函数用于内核基础初始化和架构、板级初始化等，其整体由内核启动框架主导初始化流程，图中右边区域为启动框架中可接受外部模块注册启动的阶段，各个阶段的说明如下表1所示。
 
 
-**图1** 内核启动流程图
-![zh-cn_image_0000001153832492](figures/zh-cn_image_0000001153832492.png)
+  **图1** 内核启动流程图
+  ![zh-cn_image_0000001153832492](figures/zh-cn_image_0000001153832492.png)
 
 
-**表1** 启动框架层级
+  **表1** 启动框架层级
 
 | 层级 | 说明 | 
 | -------- | -------- |
 | LOS_INIT_LEVEL_EARLIEST | 最早期初始化<br/>说明：不依赖架构，单板以及后续模块会对其有依赖的纯软件模块初始化<br/>例如：Trace模块 | 
 | LOS_INIT_LEVEL_ARCH_EARLY | 架构早期初始化<br/>说明：架构相关，后续模块会对其有依赖的模块初始化，如启动过程中非必需的功能，建议放到LOS_INIT_LEVEL_ARCH层 | 
-| LOS_INIT_LEVEL_PLATFORM_EARLY | 平台早期初始化<br/>说明：单板平台、驱动相关，后续模块会对其有依赖的模块初始化，如启动过程中必需的功能，建议放到LOS_INIT_LEVEL_PLATFORM层 | 
+| LOS_INIT_LEVEL_PLATFORM_EARLY | 平台早期初始化<br/>说明：单板平台、驱动相关，后续模块会对其有依赖的模块初始化，如启动过程中必需的功能，建议放到LOS_INIT_LEVEL_PLATFORM层<br/>例如：uart模块 | 
 | LOS_INIT_LEVEL_KMOD_PREVM | 内存初始化前的内核模块初始化<br/>说明：在内存初始化之前需要使能的模块初始化 | 
 | LOS_INIT_LEVEL_VM_COMPLETE | 基础内存就绪后的初始化<br/>说明：此时内存初始化完毕，需要进行使能且不依赖进程间通讯机制与系统进程的模块初始化<br/>例如：共享内存功能 | 
 | LOS_INIT_LEVEL_ARCH | 架构后期初始化<br/>说明：架构拓展功能相关，后续模块会对其有依赖的模块初始化 | 
@@ -40,6 +37,7 @@
 **示例代码**
 
 
+  
 ```
 /* 内核启动框架头文件 */
 #include "los_init.h"
@@ -60,6 +58,7 @@ LOS_MODULE_INIT(OsSampleModInit, LOS_INIT_LEVEL_KMOD_EXTENDED);
 **结果验证**
 
 
+  
 ```
 main core booting up...
 OsSampleModInit SUCCESS!

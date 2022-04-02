@@ -1,12 +1,5 @@
 # 任务管理
 
-- [基本概念](#基本概念)
-  - [任务相关概念](#任务相关概念)
-  - [任务运行机制](#任务运行机制)
-- [接口说明](#接口说明)
-- [开发流程](#开发流程)
-- [编程实例](#编程实例)
-  - [结果验证](#结果验证)
 
 ## 基本概念
 
@@ -43,8 +36,9 @@ OpenHarmony LiteOS-M的任务模块可以给用户提供多个任务，实现任
 
 **任务状态迁移**
 
-**图1** 任务状态示意图
-![zh-cn_image_0000001200612002](figures/zh-cn_image_0000001200612002.png)
+  **图1** 任务状态示意图
+
+  ![zh-cn_image_0000001200612002](figures/zh-cn_image_0000001200612002.png)
 
 **任务状态迁移说明：**
 
@@ -107,36 +101,16 @@ OpenHarmony LiteOS-M的任务模块可以给用户提供多个任务，实现任
 
 OpenHarmony LiteOS-M内核的任务管理模块提供下面几种功能，接口详细信息可以查看API参考。
 
-**表1** 任务管理模块接口
+  **表1** 任务管理模块接口
 
-| 功能分类 | 接口名 | 描述 |
-| -------- | -------- | -------- |
-| 创建和删除任务 | LOS_TaskCreateOnly | 创建任务，并使该任务进入suspend状态，不对该任务进行调度。如果需要调度，可以调用LOS_TaskResume使该任务进入ready状态。 |
-|  | LOS_TaskCreate | 创建任务，并使该任务进入ready状态，如果就绪队列中没有更高优先级的任务，则运行该任务。 |
-|  | LOS_TaskDelete | 删除指定的任务。 |
-| 控制任务状态 | LOS_TaskResume | 恢复挂起的任务，使该任务进入ready状态。 |
-|  | LOS_TaskSuspend | 挂起指定的任务，然后切换任务。 |
-|  | LOS_TaskJoin | 挂起当前任务，等待指定任务运行结束并回收其任务控制块资源。 |
-| | LOS_TaskDetach | 修改任务的joinable属性为detach属性，detach属性的任务运行结束会自动回收任务控制块资源。 |
-|  | LOS_TaskDelay | 任务延时等待，释放CPU，等待时间到期后该任务会重新进入ready状态。传入参数为Tick数目。 |
-|  | LOS_Msleep | 传入参数为毫秒数，转换为Tick数目，调用LOS_TaskDelay。 |
-|  | LOS_TaskYield | 当前任务时间片设置为0，释放CPU，触发调度运行就绪任务队列中优先级最高的任务。 |
-| 控制任务调度 | LOS_TaskLock | 锁任务调度，但任务仍可被中断打断。 |
-|  | LOS_TaskUnlock | 解锁任务调度。 |
-|  | LOS_Schedule | 触发任务调度。 |
-| 控制任务优先级 | LOS_CurTaskPriSet | 设置当前任务的优先级。 |
-|  | LOS_TaskPriSet | 设置指定任务的优先级。 |
-|  | LOS_TaskPriGet | 获取指定任务的优先级。 |
-| 获取任务信息 | LOS_CurTaskIDGet | 获取当前任务的ID。 |
-|  | LOS_NextTaskIDGet | 获取任务就绪队列中优先级最高的任务的ID。 |
-|  | LOS_NewTaskIDGet | 等同LOS_NextTaskIDGet。 |
-|  | LOS_CurTaskNameGet | 获取当前任务的名称。 |
-|  | LOS_TaskNameGet | 获取指定任务的名称。 |
-|  | LOS_TaskStatusGet | 获取指定任务的状态。 |
-|  | LOS_TaskInfoGet | 获取指定任务的信息，包括任务状态、优先级、任务栈大小、栈顶指针SP、任务入口函数、已使用的任务栈大小等。 |
-|  | LOS_TaskIsRunning | 获取任务模块是否已经开始调度运行。 |
-| 任务信息维测 | LOS_TaskSwitchInfoGet | 获取任务切换信息，需要开启宏LOSCFG_BASE_CORE_EXC_TSK_SWITCH。 |
-| 回收任务栈资源 | LOS_TaskResRecycle | 回收所有待回收的任务栈资源。 |
+| 功能分类 | 接口描述 | 
+| -------- | -------- |
+| 创建和删除任务 | LOS_TaskCreateOnly：创建任务，并使该任务进入ready状态，如果就绪队列中没有更高优先级的任务，则运行该任务。<br/>LOS_TaskCreate：创建任务，并使该任务进入ready状态，如果就绪队列中没有更高优先级的任务，则运行该任务。<br/>LOS_TaskDelete：删除指定的任务。 | 
+| 控制任务状态 | LOS_TaskResume：恢复挂起的任务，使该任务进入ready状态。<br/>LOS_TaskSuspend：挂起指定的任务，然后切换任务。<br/>LOS_TaskJoin：挂起当前任务，等待指定任务运行结束并回收其任务控制块资源<br/>LOS_TaskDelay：任务延时等待，释放CPU，等待时间到期后该任务会重新进入ready状态。传入参数为Tick数目。<br/>LOS_Msleep：传入参数为毫秒数，转换为Tick数目，调用LOS_TaskDelay。<br/>LOS_TaskYield：当前任务时间片设置为0，释放CPU，触发调度运行就绪任务队列中优先级最高的任务。 | 
+| 控制任务调度 | LOS_TaskLock：锁任务调度，但任务仍可被中断打断。<br/>LOS_TaskUnlock：解锁任务调度。<br/>LOS_Schedule：触发任务调度。 | 
+| 控制任务优先级 | LOS_CurTaskPriSet：设置当前任务的优先级。<br/>LOS_TaskPriSet：设置指定任务的优先级。<br/>LOS_TaskPriGet：获取指定任务的优先级。 | 
+| 获取任务信息 | LOS_CurTaskIDGet：获取当前任务的ID。<br/>LOS_NextTaskIDGet：获取任务就绪队列中优先级最高的任务的ID。<br/>LOS_NewTaskIDGet：等同LOS_NextTaskIDGet。<br/>LOS_CurTaskNameGet：获取当前任务的名称。<br/>LOS_TaskNameGet：获取指定任务的名称。<br/>LOS_TaskStatusGet：获取指定任务的状态。<br/>LOS_TaskInfoGet：获取指定任务的信息，包括任务状态、优先级、任务栈大小、栈顶指针SP、任务入口函数、已使用的任务栈大小等。<br/>LOS_TaskIsRunning：获取任务模块是否已经开始调度运行。 | 
+| 任务信息维测 | LOS_TaskSwitchInfoGet：获取任务切换信息，需要开启宏LOSCFG_BASE_CORE_EXC_TSK_SWITCH。 | 
 
 
 ## 开发流程
@@ -187,6 +161,7 @@ OpenHarmony LiteOS-M内核的任务管理模块提供下面几种功能，接口
 
 本实例介绍基本的任务操作方法，包含2个不同优先级任务的创建、任务延时、任务锁与解锁调度、挂起和恢复等操作，阐述任务优先级调度的机制以及各接口的应用。示例代码如下：
 
+  
 ```
 UINT32 g_taskHiId;
 UINT32 g_taskLoId;
@@ -304,6 +279,7 @@ UINT32 Example_TskCaseEntry(VOID)
 
 编译运行得到的结果为：
 
+  
 ```
 LOS_TaskLock() Success!
 Example_TaskHi create Success!

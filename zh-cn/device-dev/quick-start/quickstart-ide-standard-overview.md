@@ -12,7 +12,7 @@ OpenHarmony标准系统适用于参考内存≥128MiB的设备。通过本文，
 - 安装包方式：通过命令行进行编译依赖工具的下载安装，编译操作也通过命令实现。烧录、运行等操作使用IDE。
   OpenHarmony还为开发者提供了[Docker环境](../get-code/gettools-acquire.md)，在很大程度上简化了编译前的环境配置，习惯使用安装包方式的开发者也可以选择Docker环境进行编译 。
 
-本文采用Deveco Device Tool进行一站式开发介绍，习惯使用命令行的开发者可参考[标准系统快速入门（安装包方式）](../quick-start/quickstart-standard-docker.md)。
+本文采用Deveco Device Tool进行一站式开发介绍，习惯使用命令行的开发者可参考[标准系统快速入门（安装包方式）](../quick-start/quickstart-standard-package-directory.md)。
 
 
 ## 开发环境

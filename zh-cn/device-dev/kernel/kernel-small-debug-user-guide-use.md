@@ -1,5 +1,6 @@
 # 使用说明
 
+
 编译OpenHarmony工程时默认编译的是debug版本，即libc库已经集成内存调测相关的接口实现，用户可以根据具体需要决定是否使能内存调测功能。
 
 
@@ -18,4 +19,3 @@
 - **[接口调用方式](kernel-small-debug-user-guide-use-api.md)**
 
 - **[命令行参数方式](kernel-small-debug-user-guide-use-cli.md)**
-

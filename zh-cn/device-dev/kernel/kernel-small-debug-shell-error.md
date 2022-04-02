@@ -1,8 +1,10 @@
 # 用户态异常信息说明
 
+
 用户态在运行过程中，可能由于各种原因出现用户态系统异常，异常信息如下所示：
 
 
+  
 ```
 ##################excFrom: User!####################
 prefetch_abort fault fsr:0x5, far:0x00000000
@@ -64,6 +66,7 @@ system memcheck over, all passed!
 
 
 1. 用户态异常基本信息：
+     
    ```
    prefetch_abort fault fsr:0x5, far:0x00000000
    Translation fault, section
@@ -77,6 +80,7 @@ system memcheck over, all passed!
    ```
 
 2. 寄存器相关信息。
+     
    ```
    pc    = 0x0 
    ulr   = 0x2000424 in /bin/shell ---> 0x424
@@ -98,12 +102,14 @@ system memcheck over, all passed!
    ```
 
 3. 调用栈信息。
+     
    ```
    ***backtrace begin***
    traceback 0 -- lr = 0x229123a4    fp = 0x0 lr in /lib/libc.so --> 0x213a4
    ```
 
 4. 进程线程基本信息。
+     
    ```
      PID  PPID PGID       UID  Status CPUUSE CPUUSE10s CPUUSE1s Policy Priority MTID TaskTotal   Mode  PName
        1    -1    1         0   Ready    0.0       0.0      0.0     RR       28   16         1   user  init                            

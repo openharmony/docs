@@ -1,8 +1,5 @@
 # JFFS2
 
-- [基本概念](#基本概念)
-- [运行机制](#运行机制)
-- [开发指导](#开发指导)
 
 ## 基本概念
 
@@ -38,11 +35,12 @@ OpenHarmony内核的JFFS2主要应用于NOR FLASH闪存，其特点是：可读�
 
 使用mkfs.jffs2工具，制作镜像默认命令如下。页大小默认为4KiB，eraseblock大小默认64KiB。若实际参数与下面不同时，修改相应参数。
 
+  
 ```
 ./mkfs.jffs2 -d rootfs/ -o rootfs.jffs2
 ```
 
-**表1** 指令含义表（更详细的介绍可以通过mkfs.jffs2 --help来查看）
+  **表1** 指令含义表（更详细的介绍可以通过mkfs.jffs2 --help来查看）
 
 | 指令 | 含义 | 
 | -------- | -------- |
@@ -62,12 +60,14 @@ OpenHarmony内核的JFFS2主要应用于NOR FLASH闪存，其特点是：可读�
 
 运行命令：
 
+  
 ```
 OHOS # mount /dev/spinorblk1 /jffs1 jffs2
 ```
 
 将从串口得到如下回应信息，表明挂载成功。
 
+  
 ```
 OHOS # mount /dev/spinorblk1 /jffs1 jffs2
 mount OK
@@ -81,12 +81,14 @@ mount OK
 
 运行命令：
 
+  
 ```
 OHOS # umount /jffs1
 ```
 
 将从串口得到如下回应信息，表明卸载成功。
 
+  
 ```
 OHOS # umount /jffs1
 umount ok

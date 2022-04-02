@@ -1,10 +1,5 @@
 # 时间管理
 
-- [基本概念](#基本概念)
-- [开发指导](#开发指导)
-  - [接口说明](#接口说明)
-  - [开发流程](#开发流程)
-  - [编程实例](#编程实例)
 
 ## 基本概念
 
@@ -30,14 +25,12 @@ OpenHarmony系统的时间管理模块提供时间转换、统计、延迟功能
 
 OpenHarmony LiteOS-A内核的时间管理提供下面几种功能，接口详细信息可以查看API参考。
 
-**表1** 时间管理相关接口说明
+  **表1** 时间管理相关接口说明
 
-| 功能分类 | 接口**名称** | 描述 |
-| -------- | -------- | -------- |
-| 时间转换 | LOS_MS2Tick | 毫秒转换成Tick |
-|  | LOS_Tick2MS |Tick转换成毫秒|
-| 时间统计 | LOS_TickCountGet | 获取当前Tick数 |
-|  | LOS_CyclePerTickGet |每个Tick的cycle数|
+| 功能分类 | 接口描述 | 
+| -------- | -------- |
+| 时间转换 | LOS_MS2Tick：毫秒转换成Tick<br/>LOS_Tick2MS：Tick转换成毫秒 | 
+| 时间统计 | LOS_TickCountGet：获取当前Tick数<br/>LOS_CyclePerTickGet：每个Tick的cycle数 | 
 
 
 ### 开发流程
@@ -64,7 +57,8 @@ OpenHarmony LiteOS-A内核的时间管理提供下面几种功能，接口详细
 
 **示例代码**
 
-时间转换：
+  时间转换：
+  
 ```
 VOID Example_TransformTime(VOID)
 {
@@ -79,6 +73,7 @@ VOID Example_TransformTime(VOID)
 
 时间统计和时间延迟：
 
+  
 ```
 VOID Example_GetTime(VOID)
 {
@@ -111,6 +106,7 @@ VOID Example_GetTime(VOID)
 
 时间转换：
 
+  
 ```
 uwTick = 10000 
 uwMs = 100
@@ -118,6 +114,7 @@ uwMs = 100
 
 时间统计和时间延迟：
 
+  
 ```
 LOS_CyclePerTickGet = 49500 
 LOS_TickCountGet = 5042

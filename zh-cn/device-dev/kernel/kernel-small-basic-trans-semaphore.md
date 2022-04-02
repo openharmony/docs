@@ -1,14 +1,5 @@
 # 信号量
 
-- [基本概念](#基本概念)
-- [运行机制](#运行机制)
-- [开发指导](#开发指导)
-  - [接口说明](#接口说明)
-  - [开发流程](#开发流程)
-  - [编程实例](#编程实例)
-  - [实例描述](#实例描述)
-  - [编程示例](#编程示例)
-  - [结果验证](#结果验证)
 
 ## 基本概念
 
@@ -31,8 +22,18 @@
 
 **信号量控制块**
 
+  
 ```
-/** * 信号量控制块数据结构*/typedefstruct {    UINT16            semStat;          /*信号量状态 */    UINT16            semType;          /*信号量类型 */    UINT16            semCount;         /*信号量计数 */    UINT16            semId;            /*信号量索引号 */    LOS_DL_LIST       semList;          /*用于插入阻塞于信号量的任务 */} LosSemCB;
+/**
+ * 信号量控制块数据结构
+ */
+typedef struct {
+    UINT16            semStat;          /* 信号量状态 */
+    UINT16            semType;          /* 信号量类型 */
+    UINT16            semCount;         /* 信号量计数 */
+    UINT16            semId;            /* 信号量索引号 */
+    LOS_DL_LIST       semList;          /* 用于插入阻塞于信号量的任务 */
+} LosSemCB;
 ```
 
 **信号量运作原理**
@@ -56,8 +57,8 @@
 
 运行示意图如下图所示:
 
-**图1** 小型系统信号量运作示意图
-![zh-cn_image_0000001132774752](figures/zh-cn_image_0000001132774752.png)
+  **图1** 小型系统信号量运作示意图
+  ![zh-cn_image_0000001132774752](figures/zh-cn_image_0000001132774752.png)
 
 
 ## 开发指导
@@ -65,15 +66,20 @@
 
 ### 接口说明
 
-**表1** 信号量模块接口
+  **表1** 创建/删除信号量
 
-| 功能分类 | 接口**名称** | 描述 |
-| -------- | -------- | -------- |
-| 创建/删除信号量 | LOS_SemCreate | 创建信号量，返回信号量ID |
-|  | LOS_BinarySemCreate |创建二值信号量，其计数值最大为1|
-|  | LOS_SemDelete |删除指定的信号量|
-| 申请/释放信号量 | LOS_SemPend | 申请指定的信号量，并设置超时时间 |
-|  | LOS_SemPost |释放指定的信号量|
+| 接口**名称** | 描述 | 
+| -------- | -------- |
+| LOS_SemCreate | 创建信号量，返回信号量ID | 
+| LOS_BinarySemCreate | 创建二值信号量，其计数值最大为1 | 
+| LOS_SemDelete | 删除指定的信号量 | 
+
+  **表2** 申请/释放信号量
+
+| 接口**名称** | 描述 | 
+| -------- | -------- |
+| LOS_SemPend | 申请指定的信号量，并设置超时时间 | 
+| LOS_SemPost | 释放指定的信号量 | 
 
 
 ### 开发流程
@@ -112,6 +118,7 @@
 
 示例代码如下：
 
+  
 ```
 #include "los_sem.h"
 #include "securec.h"
@@ -230,6 +237,7 @@ UINT32 ExampleSem(VOID)
 
 编译运行得到的结果为：
 
+  
 ```
 ExampleSemTask2 try get sem g_semId wait forever.
 ExampleSemTask2 get sem g_semId and then delay 20 ticks.

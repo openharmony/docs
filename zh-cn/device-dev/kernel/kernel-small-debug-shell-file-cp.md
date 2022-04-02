@@ -1,11 +1,5 @@
 # cp
 
-- [命令功能](#命令功能)
-- [命令格式](#命令格式)
-- [参数说明](#参数说明)
-- [使用指南](#使用指南)
-- [使用实例](#使用实例)
-- [输出说明](#输出说明)
 
 ## 命令功能
 
@@ -19,7 +13,7 @@ cp [_SOURCEFILE_] [_DESTFILE_]
 
 ## 参数说明
 
-**表1** 参数说明
+  **表1** 参数说明
 
 | 参数 | 参数说明 | 取值范围 | 
 | -------- | -------- | -------- |
@@ -48,22 +42,23 @@ cp [_SOURCEFILE_] [_DESTFILE_]
 
 ## 使用实例
 
-举例：cp hello-OHOS.txt hello-harmony.txt ./tmp/
+举例：cp hello-OHOS.txt hello-openharmony.txt ./tmp/
 
 
 ## 输出说明
 
 **示例:**同时拷贝两个文件至指定目录
 
+  
 ```
 OHOS:/$ ls
 bin  hello-OHOS.txt     proc     system    vendor
-dev  hello-harmony.txt  sdcard   userdata
+dev  hello-openharmony.txt  sdcard   userdata
 etc  lib                storage  usr
 OHOS:/$ mkdir tmp
-OHOS:/$ cp hello-OHOS.txt hello-harmony.txt tmp/
+OHOS:/$ cp hello-OHOS.txt hello-openharmony.txt tmp/
 OHOS:/$ ll tmp
 total 0
 -rwxrwxrwx 1 0 0 0 1979-12-31 00:00 hello-OHOS.txt*
--rwxrwxrwx 1 0 0 0 1979-12-31 00:00 hello-harmony.txt*
+-rwxrwxrwx 1 0 0 0 1979-12-31 00:00 hello-openharmony.txt*
 ```

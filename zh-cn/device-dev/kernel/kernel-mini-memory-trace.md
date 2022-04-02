@@ -1,13 +1,5 @@
 # Trace调测
 
-- [基本概念](#基本概念)
-- [运行机制](#运行机制)
-- [接口说明](#接口说明)
-- [开发指导](#开发指导)
-  - [开发流程](#开发流程)
-  - [编程实例](#编程实例)
-  - [示例代码](#示例代码)
-  - [结果验证](#结果验证)
 
 ## 基本概念
 
@@ -33,19 +25,15 @@ Trace提供2种工作模式，离线模式和在线模式。
 
 OpenHarmony LiteOS-M内核的Trace模块提供下面几种功能，接口详细信息可以查看API参考。
 
-**表1** Trace模块接口说明
+  **表1** Trace模块接口说明
 
-| 功能分类 | 接口名 | 描述 | 
-| -------- | -------- | -------- |
-| 启停控制 | LOS_TraceStart | 启动Trace | 
-| | LOS_TraceStop | 停止Trace | 
-| 操作Trace记录的数据 | LOS_TraceRecordDump | 输出Trace缓冲区数据 | 
-| | LOS_TraceRecordGet | 获取Trace缓冲区的首地址 | 
-| | LOS_TraceReset | 清除Trace缓冲区中的事件 | 
-| 过滤Trace记录的数据 | LOS_TraceEventMaskSet | 设置事件掩码，仅记录某些模块的事件 | 
-| 屏蔽某些中断号事件 | LOS_TraceHwiFilterHookReg | 注册过滤特定中断号事件的钩子函数 | 
-| 插桩函数 | LOS_TRACE_EASY | 简易插桩 | 
-| | LOS_TRACE | 标准插桩 | 
+| 功能分类 | 接口名 | 
+| -------- | -------- |
+| 启停控制 | -&nbsp;LOS_TraceStart：启动Trace<br/>-&nbsp;LOS_TraceStop：停止Trace | 
+| 操作Trace记录的数据 | -&nbsp;LOS_TraceRecordDump：输出Trace缓冲区数据<br/>-&nbsp;LOS_TraceRecordGet：获取Trace缓冲区的首地址<br/>-&nbsp;LOS_TraceReset：清除Trace缓冲区中的事件 | 
+| 过滤Trace记录的数据 | LOS_TraceEventMaskSet：设置事件掩码，仅记录某些模块的事件 | 
+| 屏蔽某些中断号事件 | LOS_TraceHwiFilterHookReg：注册过滤特定中断号事件的钩子函数 | 
+| 插桩函数 | LOS_TRACE_EASY:简易插桩<br/>LOS_TRACE:标准插桩 | 
 
 - 当用户需要针对自定义事件进行追踪时，可按规则在目标源代码中进行插桩，系统提供如下2种插桩接口：
   - LOS_TRACE_EASY(TYPE, IDENTITY, params...) 简易插桩。
@@ -53,45 +41,49 @@ OpenHarmony LiteOS-M内核的Trace模块提供下面几种功能，接口详细�
      - TYPE有效取值范围为[0, 0xF]，表示不同的事件类型，不同取值表示的含义由用户自定义。
      - IDENTITY类型UINTPTR，表示事件操作的主体对象。
      - Params类型UINTPTR，表示事件的参数。
-     - 示例：
+     - 对文件fd读写操作的简易插桩示例：
+          
         ```
-        假设需要新增对文件（fd1、fd2）读写操作的简易插桩,
-        自定义读操作为type：1， 写操作为type：2，则
-        在读fd1文件的适当位置插入：
-        LOS_TRACE_EASY(1, fd1, flag, size);
-        在读fd2文件的适当位置插入：
-        LOS_TRACE_EASY(1, fd2, flag, size);
-        在写fd1文件的适当位置插入：
-        LOS_TRACE_EASY(2, fd1, flag, size);
-        在写fd2文件的适当位置插入：
-        LOS_TRACE_EASY(2, fd2，flag, size);
+        /* 假设自定义读操作为type: 1, 写操作为type: 2 */
+        LOS_TRACE_EASY(1, fd, flag, size);  /* 在读fd文件的适当位置插入 */
+        LOS_TRACE_EASY(2, fd, flag, size);  /* 在写fd文件的适当位置插入 */
         ```
   - LOS_TRACE(TYPE, IDENTITY, params...) 标准插桩。
      - 相比简易插桩，支持动态过滤事件和参数裁剪，但使用上需要用户按规则来扩展。
      - TYPE用于设置具体的事件类型，可以在头文件los_trace.h中的enum LOS_TRACE_TYPE中自定义事件类型。定义方法和规则可以参考其他事件类型。
      - IDENTITY和Params的类型及含义同简易插桩。
      - 示例：
+          1. 定义FS模块的类型，即FS模块的事件掩码
+          
         ```
-        1.在enum LOS_TRACE_MASK中定义事件掩码，即模块级别的事件类型。
-          定义规范为TRACE_#MOD#_FLAG，#MOD#表示模块名。
-          例如:
-          TRACE_FS_FLAG = 0x4000
-        2.在enum LOS_TRACE_TYPE中定义具体事件类型。
-          定义规范为#TYPE# = TRACE_#MOD#_FLAG | NUMBER，
-          例如:
-          FS_READ  = TRACE_FS_FLAG | 0; // 读文件
-          FS_WRITE = TRACE_FS_FLAG | 1; // 写文件
-        3.定义事件参数。定义规范为#TYPE#_PARAMS(IDENTITY, parma1...) IDENTITY, ...
-          其中的#TYPE#就是上面2中的#TYPE#，
-          例如:
-          #define FS_READ_PARAMS(fp, fd, flag, size)    fp, fd, flag, size
-          宏定义的参数对应于Trace缓冲区中记录的事件参数，用户可对任意参数字段进行裁剪:
-          当定义为空时，表示不追踪该类型事件:
-          #define FS_READ_PARAMS(fp, fd, flag, size) // 不追踪文件读事件
-        4.在适当位置插入代码桩。
-          定义规范为LOS_TRACE(#TYPE#, #TYPE#_PARAMS(IDENTITY, parma1...))
-          LOS_TRACE(FS_READ, fp, fd, flag, size); // 读文件的代码桩,
-          #TYPE#之后的入参就是上面3中的FS_READ_PARAMS函数的入参
+        /* 在enum LOS_TRACE_MASK中定义, 定义规范为TRACE_#MOD#_FLAG, #MOD#表示模块名 */
+        TRACE_FS_FLAG = 0x4000
+        ```
+
+        2. 定义FS模块的具体事件类型
+
+          
+        ```
+        /* 定义规范为#TYPE# = TRACE_#MOD#_FLAG | NUMBER,  */
+        FS_READ  = TRACE_FS_FLAG | 0; /* 读文件 */
+        FS_WRITE = TRACE_FS_FLAG | 1; /* 写文件 */
+        ```
+
+        3. 定义事件参数
+
+          
+        ```
+        /* 定义规范为#TYPE#_PARAMS(IDENTITY, parma1...) IDENTITY, ... */
+        #define FS_READ_PARAMS(fp, fd, flag, size)  fp, fd, flag, size /* 宏定义的参数对应于Trace缓冲区中记录的事件参数，用户可对任意参数字段进行裁剪 */
+        #define FS_READ_PARAMS(fp, fd, flag, size)                     /* 当定义为空时，表示不追踪该类型事件 */
+        ```
+
+        4. 在目标代码中插桩
+
+          
+        ```
+        /* 定义规范为LOS_TRACE(#TYPE#, #TYPE#_PARAMS(IDENTITY, parma1...)) */
+        LOS_TRACE(FS_READ, fp, fd, flag, size); /* 读文件操作的代码桩 */
         ```
 
         > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
@@ -106,7 +98,8 @@ OpenHarmony LiteOS-M内核的Trace模块提供下面几种功能，接口详细�
 - Trace的典型操作流程为：LOS_TraceStart、 LOS_TraceStop、 LOS_TraceRecordDump.
 
 - 针对中断事件的Trace, 提供中断号过滤，用于解决某些场景下特定中断号频繁触发导致其他事件被覆盖的情况，用户可自定义中断过滤的规则，
-  示例如下：
+    示例如下：
+    
   ```
   BOOL Example_HwiNumFilter(UINT32 hwiNum)
   {
@@ -129,8 +122,8 @@ OpenHarmony LiteOS-M内核的Trace模块提供下面几种功能，接口详细�
 开启Trace调测的典型流程如下：
 
 1. 配置Trace模块相关宏。
-   需要在target_config.h头文件中修改配置：
-   | 配置项 | 含义 | 设置值 | 
+     需要在target_config.h头文件中修改配置：
+     | 配置项 | 含义 | 设置值 | 
    | -------- | -------- | -------- |
    | LOSCFG_KERNEL_TRACE | Trace模块的裁剪开关 | YES/NO | 
    | LOSCFG_RECORDER_MODE_OFFLINE | Trace工作模式为离线模式 | YES/NO | 
@@ -185,6 +178,7 @@ OpenHarmony LiteOS-M内核的Trace模块提供下面几种功能，接口详细�
 
 示例代码如下：
 
+  
 ```
 #include "los_trace.h"
 UINT32 g_traceTestTaskId;
@@ -235,6 +229,7 @@ UINT32 Example_Trace_test(VOID){
 
 输出结果如下：
 
+  
 ```
 ***TraceInfo begin***
 clockFreq = 50000000
@@ -263,6 +258,7 @@ Index   Time(cycles)      EventType      CurTask   Identity      params
 
 下面以序号为0的输出项为例，进行说明。
 
+  
 ```
 Index   Time(cycles)      EventType      CurTask   Identity      params
 0       0x366d5e88        0x45           0x1       0x0           0x1f         0x4
@@ -274,12 +270,13 @@ Index   Time(cycles)      EventType      CurTask   Identity      params
 
 - Identity和params的含义需要查看TASK_SWITCH_PARAMS宏定义：
 
+  
 ```
 #define TASK_SWITCH_PARAMS(taskId, oldPriority, oldTaskStatus, newPriority, newTaskStatus) \
 taskId, oldPriority, oldTaskStatus, newPriority, newTaskStatus
 ```
 
-因为\#TYPE\#_PARAMS(IDENTITY, parma1...) IDENTITY, ...，所以Identity为taskId（0x0），第一个参数为oldPriority（0x1f）
+  因为\#TYPE\#_PARAMS(IDENTITY, parma1...) IDENTITY, ...，所以Identity为taskId（0x0），第一个参数为oldPriority（0x1f）
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > params的个数由LOSCFG_TRACE_FRAME_MAX_PARAMS配置，默认为3，超出的参数不会被记录，用户应自行合理配置该值。
 

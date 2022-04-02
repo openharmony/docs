@@ -1,10 +1,5 @@
 # 读写锁
 
-- [基本概念](#基本概念)
-- [运行机制](#运行机制)
-- [开发指导](#开发指导)
-  - [接口说明](#接口说明)
-  - [开发流程](#开发流程)
 
 ## 基本概念
 
@@ -37,18 +32,15 @@
 
 ### 接口说明
 
-**表1** 读写锁模块接口
+  **表1** 读写锁模块接口
 
-| 功能分类 | 接口**名称** | 描述 |
-| -------- | -------- | -------- |
-| 读写锁的创建和删除 | LOS_RwlockInit | 创建读写锁 |
-|  | LOS_RwlockDestroy |删除指定的读写锁|
-| 读模式下的锁的申请 | LOS_RwlockRdLock | 申请指定的读模式下的锁 |
-|  | LOS_RwlockTryRdLock |尝试申请指定的读模式下的锁|
-| 写模式下的锁的申请 | LOS_RwlockWrLock | 申请指定的写模式下的锁 |
-|  | LOS_RwlockTryWrLock |尝试申请指定的写模式下的锁|
-| 读写锁的释放 | LOS_RwlockUnLock | 释放指定读写锁 |
-| 读写锁有效性判断 | LOS_RwlockIsValid | 判断读写锁有效性 |
+| 功能分类 | 接口描述 | 
+| -------- | -------- |
+| 读写锁的创建和删除 | -&nbsp;LOS_RwlockInit：创建读写锁<br/>-&nbsp;LOS_RwlockDestroy：删除指定的读写锁 | 
+| 读模式下的锁的申请 | -&nbsp;LOS_RwlockRdLock：申请指定的读模式下的锁<br/>-&nbsp;LOS_RwlockTryRdLock：尝试申请指定的读模式下的锁 | 
+| 写模式下的锁的申请 | -&nbsp;LOS_RwlockWrLock：申请指定的写模式下的锁<br/>-&nbsp;LOS_RwlockTryWrLock：尝试申请指定的写模式下的锁 | 
+| 读写锁的释放 | LOS_RwlockUnLock：释放指定读写锁 | 
+| 读写锁有效性判断 | LOS_RwlockIsValid：判断读写锁有效性 | 
 
 
 ### 开发流程

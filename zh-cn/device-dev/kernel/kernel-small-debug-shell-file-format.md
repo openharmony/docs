@@ -1,11 +1,5 @@
 # format
 
-- [命令功能](#命令功能)
-- [命令格式](#命令格式)
-- [参数说明](#参数说明)
-- [使用指南](#使用指南)
-- [使用实例](#使用实例)
-- [输出说明](#输出说明)
 
 ## 命令功能
 
@@ -19,13 +13,13 @@ format &lt;_dev_inodename_&gt; &lt;_sectors_&gt; &lt;_option_&gt; [_label_]
 
 ## 参数说明
 
-**表1** 参数说明
+  **表1** 参数说明
 
 | 参数 | 参数说明 | 
 | -------- | -------- |
 | dev_inodename | 设备名。 | 
 | sectors | 分配的单元内存或扇区大小，如果输入0表示参数为空。（取值必须为0或2的幂，fat32下最大值为128，取值0表示自动选择合适的簇大小，不同size的分区，可用的簇大小范围不同，错误的簇大小指定可能导致格式化失败）。 | 
-| option | 格式化选项，用来选择文件系统的类型，有如下几种参数选择：<br/>-&nbsp;0x01：FMT_FAT<br/>-&nbsp;0x02：FMT_FAT32<br/>-&nbsp;0x07：FMT_ANY<br/>-&nbsp;0x08：FMT_ERASE&nbsp;（USB不支持该选项）<br/>传入其他值皆为非法值，将由系统自动选择格式化方式。若格式化U盘时低格位为&nbsp;1，会出现错误打印。 | 
+| option | &nbsp;&nbsp;格式化选项，用来选择文件系统的类型，有如下几种参数选择：<br/>-&nbsp;0x01：FMT_FAT<br/>-&nbsp;0x02：FMT_FAT32<br/>-&nbsp;0x07：FMT_ANY<br/>-&nbsp;0x08：FMT_ERASE&nbsp;（USB不支持该选项）<br/>传入其他值皆为非法值，将由系统自动选择格式化方式。若格式化U盘时低格位为&nbsp;1，会出现错误打印。 | 
 | label | 该参数为可选参数，输入值应为字符串，用来指定卷标名。当输入字符串"null"时，则把之前设置的卷标名清空。 | 
 
 
@@ -47,6 +41,7 @@ format &lt;_dev_inodename_&gt; &lt;_sectors_&gt; &lt;_option_&gt; [_label_]
 
 **示例**:格式化mmc卡
 
+  
 ```
 OHOS # format /dev/mmcblk1 128 2
 Format to FAT32, 128 sectors per cluster.

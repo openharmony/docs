@@ -1,11 +1,5 @@
-# CPU占用率
+# 进程调测
 
-- [基本概念](#基本概念)
-- [运行机制](#运行机制)
-- [开发指导](#开发指导)
-  - [接口说明](#接口说明)
-  - [开发流程](#开发流程)
-  - [编程实例](#编程实例)
 
 ## 基本概念
 
@@ -54,15 +48,15 @@ OpenHarmony 提供以下四种CPU占用率的信息查询：
 
 ### 接口说明
 
-**表1** CPUP模块接口
+  **表1** CPUP模块接口
 
-| 功能分类 | 接口**名称** | 描述 |
+| 功能分类 | 接口**名称** | 描述 | 
 | -------- | -------- | -------- |
-| 系统CPU占用率 | LOS_HistorySysCpuUsage | 获取系统历史CPU占用率 |
-| 进程CPU占用率 | LOS_HistoryProcessCpuUsage | 获取指定进程历史CPU占用率 |
-|  | LOS_GetAllProcessCpuUsage |获取系统所有进程的历史CPU占用率|
-| 任务CPU占用率 | LOS_HistoryTaskCpuUsage | 获取指定任务历史CPU占用率 |
-| 中断CPU占用率 | LOS_GetAllIrqCpuUsage | 获取系统所有中断的历史CPU占用率 |
+| 系统CPU占用率 | LOS_HistorySysCpuUsage | 获取系统历史CPU占用率 | 
+| 进程CPU占用率 | LOS_HistoryProcessCpuUsage | 获取指定进程历史CPU占用率 | 
+| 进程CPU占用率 | LOS_GetAllProcessCpuUsage | 获取系统所有进程的历史CPU占用率 | 
+| 任务CPU占用率 | LOS_HistoryTaskCpuUsage | 获取指定任务历史CPU占用率 | 
+| 中断CPU占用率 | LOS_GetAllIrqCpuUsage | 获取系统所有中断的历史CPU占用率 | 
 
 
 ### 开发流程
@@ -110,6 +104,7 @@ CPU占用率的典型开发流程：
 
 代码实现如下：
 
+  
 ```
 #include "los_task.h"
 #include "los_cpup.h" 
@@ -156,6 +151,7 @@ UINT32 ItCpupTest(VOID)
 
 编译运行得到的结果为：
 
+  
 ```
 entry cpup test example
 the history system cpu usage in all time: 3.0

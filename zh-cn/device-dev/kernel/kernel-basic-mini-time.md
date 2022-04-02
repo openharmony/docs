@@ -1,5 +1,6 @@
 # 时间管理
 
+
 ## 基本概念
 
 时间管理以系统时钟为基础，给应用程序提供所有和时间有关的服务。
@@ -24,20 +25,22 @@ OpenHarmony LiteOS-M内核时间管理模块提供时间转换、统计功能。
 
 OpenHarmony LiteOS-M内核的时间管理提供下面几种功能，接口详细信息可以查看API参考。
 
-**表1** 时间管理接口
+​    **表1** 时间转换
 
-| 功能分类 | 接口名 | 描述 |
-| -------- | -------- | -------- |
-| 时间转换 | LOS_MS2Tick | 毫秒转换成Tick |
-|  | LOS_Tick2MS | Tick转化为毫秒 |
-|  | OsCpuTick2MS | Cycle数目转化为毫秒，使用2个UINT32类型的数值分别表示结果数值的高、低32位。 |
-|  | OsCpuTick2US | Cycle数目转化为微秒，使用2个UINT32类型的数值分别表示结果数值的高、低32位。 |
-| 时间统计 | LOS_SysClockGet | 获取系统时钟 |
-|  | LOS_TickCountGet | 获取自系统启动以来的Tick数 |
-|  | LOS_CyclePerTickGet | 获取每个Tick多少Cycle数 |
-|  | LOS_CurrNanosec |获取自系统启动以来的纳秒数|
-| 延时管理 | LOS_UDelay |以us为单位的忙等，但可以被优先级更高的任务抢占|
-|  | LOS_MDelay |以ms为单位的忙等，但可以被优先级更高的任务抢占|
+| 接口名 | 描述 |
+| -------- | -------- |
+| LOS_MS2Tick | 毫秒转换成Tick |
+| LOS_Tick2MS | Tick转化为毫秒 |
+| OsCpuTick2MS | Cycle数目转化为毫秒，使用2个UINT32类型的数值分别表示结果数值的高、低32位。 |
+| OsCpuTick2US | Cycle数目转化为微秒，使用2个UINT32类型的数值分别表示结果数值的高、低32位。 |
+
+  **表2** 时间统计
+
+| 接口名 | 描述 |
+| -------- | -------- |
+| LOS_SysClockGet | 获取系统时钟 |
+| LOS_TickCountGet | 获取自系统启动以来的Tick数 |
+| LOS_CyclePerTickGet | 获取每个Tick多少Cycle数 |
 
 
 ## 开发流程
@@ -78,6 +81,7 @@ OpenHarmony LiteOS-M内核的时间管理提供下面几种功能，接口详细
 
 时间转换：
 
+
 ```
 VOID Example_TransformTime(VOID)
 {
@@ -92,6 +96,7 @@ VOID Example_TransformTime(VOID)
 ```
 
 时间统计和时间延迟：
+
 
 ```
 VOID Example_GetTime(VOID)
@@ -124,12 +129,14 @@ VOID Example_GetTime(VOID)
 
 时间转换：
 
+
 ```
 tick = 1000
 ms = 1000
 ```
 
 时间统计和时间延迟：
+
 
 ```
 LOS_CyclePerTickGet = 495000 

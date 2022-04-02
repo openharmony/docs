@@ -1,9 +1,5 @@
 # Procfs
 
-- [基本概念](#基本概念)
-- [运行机制](#运行机制)
-- [开发指导](#开发指导)
-  - [编程实例](#编程实例)
 
 ## 基本概念
 
@@ -30,6 +26,7 @@ procfs文件的创建无法使用一般的文件系统接口，需要使用ProcM
 
 3.当写文件内容时，打印写入的内容
 
+  
 ```
 #include "proc_fs.h"
 
@@ -78,6 +75,7 @@ void HelloWorldInit(void)
 
 启动后在shell输入如下命令
 
+  
 ```
 OHOS # cat /proc/hello/world
 OHOS # Hello World!

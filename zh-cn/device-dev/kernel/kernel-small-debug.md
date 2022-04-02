@@ -1,15 +1,16 @@
 # 调测与工具
 
 
+
 - **[Shell](kernel-small-debug-shell.md)**
 
-- **[Trace](kernel-small-debug-trace.md)**
+- **[Trace调测](kernel-small-debug-trace.md)**
 
 - **[Perf调测](kernel-mini-memory-perf.md)**
 
 - **[LMS调测](kernel-small-memory-lms.md)**
 
-- **[进程调测](kernel-small-debug-process.md)**
+- **[进程调测](kernel-small-debug-process-cpu.md)**
 
 - **[内核态内存调测](kernel-small-debug-memory.md)**
 

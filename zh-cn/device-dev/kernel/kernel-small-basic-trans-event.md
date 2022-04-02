@@ -1,16 +1,5 @@
 # 事件
 
-- [基本概念](#基本概念)
-- [运行机制](#运行机制)
-  - [事件控制块](#事件控制块)
-  - [事件运作原理](#事件运作原理)
-- [开发指导](#开发指导)
-  - [接口说明](#接口说明)
-  - [开发流程](#开发流程)
-- [编程实例](#编程实例)
-  - [实例描述](#实例描述)
-  - [编程示例](#编程示例)
-  - [结果验证](#结果验证)
 
 ## 基本概念
 
@@ -42,6 +31,7 @@ OpenHarmony LiteOS-A的事件模块提供的事件，具有如下特点：
 
 ### 事件控制块
 
+  
 ```
 /**
   * 事件控制块数据结构
@@ -73,8 +63,8 @@ typedef struct tagEvent {
 
 **事件销毁**：销毁指定的事件控制块。
 
-**图1** 小型系统事件运作原理图
-![zh-cn_image_0000001180952545](figures/zh-cn_image_0000001180952545.png)
+  **图1** 小型系统事件运作原理图
+  ![zh-cn_image_0000001180952545](figures/zh-cn_image_0000001180952545.png)
 
 
 ## 开发指导
@@ -84,16 +74,15 @@ typedef struct tagEvent {
 
 OpenHarmony LiteOS-A内核的事件模块提供下面几种功能。
 
-**表1** 事件模块接口
+  **表1** 事件模块接口
 
-| 功能分类 | 接口**名称** | 描述 |
-| -------- | -------- | -------- |
-| 初始化事件 | LOS_EventInit | 初始化一个事件控制块 |
-| 读/写事件 | LOS_EventRead | 读取指定事件类型，超时时间为相对时间：单位为Tick |
-|  | LOS_EventWrite |写指定的事件类型|
-| 清除事件 | LOS_EventClear | 清除指定的事件类型 |
-| 校验事件掩码 | LOS_EventPoll | 根据用户传入的事件ID、事件掩码及读取模式，返回用户传入的事件是否符合预期 |
-| 销毁事件 | LOS_EventDestroy | 销毁指定的事件控制块 |
+| 功能分类 | 接口描述 | 
+| -------- | -------- |
+| 初始化事件 | LOS_EventInit:初始化一个事件控制块 | 
+| 读/写事件 | -&nbsp;LOS_EventRead：读取指定事件类型，超时时间为相对时间：单位为Tick<br/>-&nbsp;LOS_EventWrite:写指定的事件类型 | 
+| 清除事件 | LOS_EventClear:清除指定的事件类型 | 
+| 校验事件掩码 | -&nbsp;LOS_EventPoll:根据用户传入的事件ID、事件掩码及读取模式，返回用户传入的事件是否符合预期<br/>-&nbsp;LOS_EventDestroy:销毁指定的事件控制块 | 
+| 销毁事件 | LOS_EventDestroy:销毁指定的事件控制块 | 
 
 
 ### 开发流程
@@ -140,6 +129,7 @@ OpenHarmony LiteOS-A内核的事件模块提供下面几种功能。
 
 示例代码如下：
 
+  
 ```
 #include "los_event.h"
 #include "los_task.h"
@@ -224,6 +214,7 @@ UINT32 Example_EventEntry(VOID)
 
 编译运行得到的结果为：
 
+  
 ```
 Example_Event wait event 0x1 
 Example_TaskEntry write event.

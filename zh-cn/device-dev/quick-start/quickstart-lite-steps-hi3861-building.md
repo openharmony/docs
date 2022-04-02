@@ -1,7 +1,7 @@
 # 编译
 
 
-OpenHarmony支持hb和build.sh两种编译方式。此处介绍hb方式，build.sh脚本编译方式请参考[使用build.sh脚本编译源码](../quick-start/quickstart-lite-reference.md#使用buildsh脚本编译源码)。
+OpenHarmony支持hb和build.sh两种编译方式。此处介绍hb方式，build.sh脚本编译方式请参考[使用build.sh脚本编译源码](../quick-start/quickstart-lite-reference.md)。
 
 
 在Ubuntu环境下进入源码根目录，执行如下命令进行编译：
@@ -37,6 +37,7 @@ OpenHarmony支持hb和build.sh两种编译方式。此处介绍hb方式，build.
    ```
 
      **图1** Hi3861编译设置图例
+
      ![zh-cn_image_0000001226634716](figures/zh-cn_image_0000001226634716.png)
 
 5. 编译结束后，出现“build success”字样，则证明构建成功。

@@ -1,12 +1,5 @@
 # 踩内存检测
 
-- [基础概念](#基础概念)
-- [功能配置](#功能配置)
-- [开发指导](#开发指导)
-  - [开发流程](#开发流程)
-  - [编程实例](#编程实例)
-  - [示例代码](#示例代码)
-  - [结果验证](#结果验证)
 
 ## 基础概念
 
@@ -50,6 +43,7 @@ LOSCFG_BASE_MEM_NODE_INTEGRITY_CHECK：开关宏，默认关闭；若打开这�
 
 代码实现如下：
 
+  
 ```
 #include <stdio.h>
 #include <string.h>
@@ -72,6 +66,7 @@ void MemIntegrityTest(void)
 
 编译运行输出log如下：
 
+  
 ```
 [ERR][OsMemMagicCheckPrint], 2028, memory check error!
 memory used but magic num wrong, magic num = 0x00000000   /* 提示信息，检测到哪个字段被破坏了，用例构造了将下个节点的头4个字节清零，即魔鬼数字字段 */

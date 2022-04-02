@@ -1,15 +1,5 @@
-# Trace
+# Trace调测
 
-- [基本概念](#基本概念)
-- [运行机制](#运行机制)
-- [接口说明](#接口说明)
-  - [内核态](#内核态)
-  - [用户态](#用户态)
-- [开发指导](#开发指导)
-  - [内核态开发流程](#内核态开发流程)
-- [内核态编程实例](#内核态编程实例)
-- [内核态示例代码](#内核态示例代码)
-- [结果验证](#结果验证)
 
 ## 基本概念
 
@@ -38,19 +28,15 @@ Trace提供2种工作模式，离线模式和在线模式。
 
 LiteOS-A内核的Trace模块提供下面几种功能，接口详细信息可以查看[API](https://gitee.com/openharmony/kernel_liteos_a/blob/master/kernel/include/los_trace.h)参考。
 
-**表1** Trace模块接口说明
+  **表1** Trace模块接口说明
 
-| 功能分类 | 接口名 | 描述 |
-| -------- | -------- | -------- |
-| 启停控制 | LOS_TraceStart | 启动Trace |
-|  | LOS_TraceStop |停止Trace|
-| 操作Trace记录的数据 | LOS_TraceRecordDump | 输出Trace缓冲区数据 |
-|  | LOS_TraceRecordGet |获取Trace缓冲区的首地址|
-|  | LOS_TraceReset |清除Trace缓冲区中的事件|
-| 过滤Trace记录的数据 | LOS_TraceEventMaskSet | 设置事件掩码，仅记录某些模块的事件 |
-| 屏蔽某些中断号事件 | LOS_TraceHwiFilterHookReg | 注册过滤特定中断号事件的钩子函数 |
-| 插桩函数 | LOS_TRACE_EASY | 简易插桩 |
-|  | LOS_TRACE |标准插桩|
+| 功能分类 | 接口描述 |
+| -------- | -------- |
+| 启停控制 | LOS_TraceStart：启动Trace<br/>LOS_TraceStop：停止Trace |
+| 操作Trace记录的数据 | LOS_TraceRecordDump：输出Trace缓冲区数据<br/>LOS_TraceRecordGet：获取Trace缓冲区的首地址<br/>LOS_TraceReset：清除Trace缓冲区中的事件 |
+| 过滤Trace记录的数据 | LOS_TraceEventMaskSet：设置事件掩码，仅记录某些模块的事件 |
+| 屏蔽某些中断号事件 | LOS_TraceHwiFilterHookReg：注册过滤特定中断号事件的钩子函数 |
+| 插桩函数 | LOS_TRACE_EASY：简易插桩<br/>LOS_TRACE：标准插桩 |
 
 - 当用户需要针对自定义事件进行追踪时，可按规则在目标源代码中进行插桩，系统提供如下2种插桩接口：
   - LOS_TRACE_EASY(TYPE, IDENTITY, params...) 简易插桩。
@@ -58,7 +44,8 @@ LiteOS-A内核的Trace模块提供下面几种功能，接口详细信息可以�
      - TYPE有效取值范围为[0, 0xF]，表示不同的事件类型，不同取值表示的含义由用户自定义。
      - IDENTITY类型UINTPTR，表示事件操作的主体对象。
      - Params类型UINTPTR，表示事件的参数。
-        示例：
+          示例：
+          
         ```
         假设需要新增对文件（fd1、fd2）读写操作的简易插桩,
         自定义读操作为type：1， 写操作为type：2，则
@@ -75,7 +62,8 @@ LiteOS-A内核的Trace模块提供下面几种功能，接口详细信息可以�
      - 相比简易插桩，支持动态过滤事件和参数裁剪，但使用上需要用户按规则来扩展。
      - TYPE用于设置具体的事件类型，可以在头文件los_trace.h中的enum LOS_TRACE_TYPE中自定义事件类型。定义方法和规则可以参考其他事件类型。
      - IDENTITY和Params的类型及含义同简易插桩。
-        示例：
+          示例：
+          
         ```
         1.在enum LOS_TRACE_MASK中定义事件掩码，即模块级别的事件类型。
           定义规范为TRACE_#MOD#_FLAG，#MOD#表示模块名。
@@ -98,7 +86,7 @@ LiteOS-A内核的Trace模块提供下面几种功能，接口详细信息可以�
           LOS_TRACE(FS_READ, fp, fd, flag, size); // 读文件的代码桩,
           #TYPE#之后的入参就是上面3中的FS_READ_PARAMS函数的入参
         ```
-        
+     
         > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
         > 预置的Trace事件及参数均可以通过上述方式进行裁剪，参数详见kernel\include\los_trace.h。
 
@@ -111,7 +99,8 @@ LiteOS-A内核的Trace模块提供下面几种功能，接口详细信息可以�
 - Trace的典型操作流程为：LOS_TraceStart、 LOS_TraceStop、 LOS_TraceRecordDump.
 
 - 针对中断事件的Trace, 提供中断号过滤，用于解决某些场景下特定中断号频繁触发导致其他事件被覆盖的情况，用户可自定义中断过滤的规则，
-  示例如下：
+    示例如下：
+    
   ```
   BOOL Example_HwiNumFilter(UINT32 hwiNum)
   {
@@ -136,6 +125,7 @@ LiteOS-A内核的Trace模块提供下面几种功能，接口详细信息可以�
 
 - ioctl: 用户态Trace控制操作，包括
 
+  
 ```
 #define TRACE_IOC_MAGIC   'T'
 #define TRACE_START      _IO(TRACE_IOC_MAGIC, 1)
@@ -166,8 +156,8 @@ LiteOS-A内核的Trace模块提供下面几种功能，接口详细信息可以�
    | LOSCFG_RECORDER_MODE_OFFLINE | Trace&nbsp;work&nbsp;mode&nbsp;-&gt;Offline&nbsp;mode | Trace工作模式为离线模式 | YES/NO |
    | LOSCFG_RECORDER_MODE_ONLINE | Trace&nbsp;work&nbsp;mode&nbsp;-&gt;Online&nbsp;mode | Trace工作模式为在线模式 | YES/NO |
    | LOSCFG_TRACE_CLIENT_INTERACT | Enable&nbsp;Trace&nbsp;Client&nbsp;Visualization&nbsp;and&nbsp;Control | 使能与Trace&nbsp;IDE&nbsp;（dev&nbsp;tools）的交互，包括数据可视化和流程控制 | YES/NO |
-   | LOSCFG_TRACE_FRAME_CORE_MSG | Enable&nbsp;Record&nbsp;more&nbsp;extended&nbsp;content&nbsp;-&gt;Record&nbsp;cpuid,&nbsp;hardware&nbsp;interrupt&nbsp;status,&nbsp;task&nbsp;lock&nbsp;status | 记录CPUID、中断状态、锁任务状态 | YES/NO |
-   | LOSCFG_TRACE_FRAME_EVENT_COUNT | Enable&nbsp;Record&nbsp;more&nbsp;extended&nbsp;content&nbsp;-&gt;Record&nbsp;event&nbsp;count,&nbsp;which&nbsp;indicate&nbsp;the&nbsp;sequence&nbsp;of&nbsp;happend&nbsp;events | 记录事件的次序编号 | YES/NO |
+   | LOSCFG_TRACE_FRAME_CORE_MSG | Enable&nbsp;Record&nbsp;more&nbsp;extended&nbsp;content&nbsp;-<br>&gt;Record&nbsp;cpuid,&nbsp;hardware&nbsp;interrupt<br>&nbsp;status,&nbsp;task&nbsp;lock&nbsp;status | 记录CPUID、中断状态、锁任务状态 | YES/NO |
+   | LOSCFG_TRACE_FRAME_EVENT_COUNT | Enable&nbsp;Record&nbsp;more&nbsp;extended&nbsp;content<br>&nbsp;-&gt;Record&nbsp;event&nbsp;count,<br>&nbsp;which&nbsp;indicate&nbsp;the&nbsp;sequence&nbsp;of&nbsp;happend&nbsp;events | 记录事件的次序编号 | YES/NO |
    | LOSCFG_TRACE_FRAME_MAX_PARAMS | Record&nbsp;max&nbsp;params | 配置记录事件的最大参数个数 | INT |
    | LOSCFG_TRACE_BUFFER_SIZE | Trace&nbsp;record&nbsp;buffer&nbsp;size | 配置Trace的缓冲区大小 | INT |
 
@@ -214,6 +204,7 @@ LiteOS-A内核的Trace模块提供下面几种功能，接口详细信息可以�
 ## 内核态示例代码
 
 实例代码如下：
+
 
 ```
 #include "los_trace.h"
@@ -266,6 +257,7 @@ LOS_MODULE_INIT(Example_Trace_test, LOS_INIT_LEVEL_KMOD_EXTENDED);
 
 输出结果如下：
 
+
 ```
 ***TraceInfo begin***
 clockFreq = 50000000
@@ -293,6 +285,7 @@ Index   Time(cycles)      EventType      CurTask   Identity      params
 - params：表示的事件参数可查阅头文件los_trace.h中的\#TYPE\#_PARAMS。
 
 下面以序号为0的输出项为例，进行说明。
+
 
 ```
 Index   Time(cycles)      EventType      CurTask   Identity      params

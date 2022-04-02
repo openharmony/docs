@@ -1,8 +1,5 @@
 # Ramfs
 
-- [基本概念](#基本概念)
-- [运行机制](#运行机制)
-- [开发指导](#开发指导)
 
 ## 基本概念
 
@@ -18,24 +15,28 @@ RAMFS文件系统把所有的文件都放在 RAM 中，所以读/写操作发生
 
 挂载：
 
+  
 ```
 mount(NULL, "/dev/shm", "ramfs", 0, NULL)
 ```
 
 创建目录：
 
+  
 ```
 mkdir(pathname, mode)
 ```
 
 创建文件：
 
+  
 ```
 open(pathname, O_NONBLOCK | O_CREAT | O_RDWR, mode)
 ```
 
 读取目录：
 
+  
 ```
 dir = opendir(pathname) 
 ptr = readdir(dir)
@@ -44,18 +45,21 @@ closedir(dir)
 
 删除文件：
 
+  
 ```
 unlink(pathname)
 ```
 
 删除目录：
 
+  
 ```
 rmdir(pathname)
 ```
 
 去挂载：
 
+  
 ```
 umount("/dev/shm")
 ```

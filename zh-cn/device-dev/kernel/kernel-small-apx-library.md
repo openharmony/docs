@@ -1,22 +1,14 @@
 # 标准库
 
-- [标准库接口框架](#标准库接口框架)
-- [操作实例](#操作实例)
-- [与Linux标准库差异](#与linux标准库差异)
-  - [进程](#进程)
-  - [内存](#内存)
-  - [文件系统](#文件系统)
-  - [信号](#信号)
-  - [Time](#time)
 
 OpenHarmony内核使用musl libc库，支持标准POSIX接口，开发者可基于POSIX标准接口开发内核之上的组件及应用。
 
 
 ## 标准库接口框架
 
-**图1** POSIX接口框架
+  **图1** POSIX接口框架
 
-![zh-cn_image_0000001172904117](figures/zh-cn_image_0000001172904117.png)
+  ![zh-cn_image_0000001172904117](figures/zh-cn_image_0000001172904117.png)
 
 musl libc库支持POSIX标准，涉及的系统调用相关接口由OpenHarmony内核适配支持 ，以满足接口对外描述的功能要求。
 
@@ -27,6 +19,7 @@ musl libc库支持POSIX标准，涉及的系统调用相关接口由OpenHarmony�
 
 在本示例中，主线程创建了THREAD_NUM个子线程，每个子线程启动后等待被主线程唤醒，主线程成功唤醒所有子线程后，子线程继续执行直至生命周期结束，同时主线程通过pthread_join方法等待所有线程执行结束。
 
+  
 ```
 #include <stdio.h>
 #include <unistd.h>
@@ -229,6 +222,7 @@ mmap接口原型为：void \*mmap (void \*addr, size_t length, int prot, int fla
 Linux目前支持的情况如下：
 
 
+  
 ```
 int main(int argc, char *argv[])
 {
@@ -252,7 +246,8 @@ int main(int argc, char *argv[])
 ```
 
 
-OpenHarmony支持的情况如下：
+  OpenHarmony支持的情况如下：
+  
 ```
 int main(int argc, char *argv[])
 {

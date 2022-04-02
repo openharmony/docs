@@ -1,9 +1,5 @@
 # 轻量级进程间通信
 
-- [基本概念](#基本概念)
-- [运行机制](#运行机制)
-- [开发指导](#开发指导)
-  - [接口说明](#接口说明)
 
 ## 基本概念
 
@@ -22,15 +18,13 @@ LiteIPC中有两个主要概念，一个是ServiceManager，另一个是Service�
 
 ### 接口说明
 
-**表1** LiteIPC模块接口（仅LiteOS-A内部使用）
+  **表1** LiteIPC模块接口（仅LiteOS-A内部使用）
 
-| 功能分类 | 接口**名称** | 描述 |
-| -------- | -------- | -------- |
-| 模块初始化 | OsLiteIpcInit | 初始化LiteIPC模块 |
-| IPC消息内存池 | LiteIpcPoolInit | 初始化进程的IPC消息内存池 |
-|  | LiteIpcPoolReInit |重新初始化进程的IPC消息内存池|
-|  | LiteIpcPoolDelete |释放进程的IPC消息内存池|
-| Service管理 | LiteIpcRemoveServiceHandle | 删除指定的Service |
+| 功能分类 | 接口描述 | 
+| -------- | -------- |
+| 模块初始化 | OsLiteIpcInit：初始化LiteIPC模块 | 
+| IPC消息内存池 | -&nbsp;LiteIpcPoolInit：初始化进程的IPC消息内存池<br/>-&nbsp;LiteIpcPoolReInit：重新初始化进程的IPC消息内存池<br/>-&nbsp;LiteIpcPoolDelete：释放进程的IPC消息内存池 | 
+| Service管理 | LiteIpcRemoveServiceHandle：删除指定的Service | 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > LiteIPC模块接口都只在LiteOS-A内部使用。

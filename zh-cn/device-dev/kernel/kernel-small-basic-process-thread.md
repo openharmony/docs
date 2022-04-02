@@ -1,11 +1,5 @@
 # 任务
 
-- [基本概念](#基本概念)
-- [运行机制](#运行机制)
-- [开发指导](#开发指导)
-  - [接口说明](#接口说明)
-  - [开发流程](#开发流程)
-  - [编程实例](#编程实例)
 
 ## 基本概念
 
@@ -33,8 +27,9 @@ OpenHarmony 内核的任务一共有32个优先级(0-31)，最高优先级为0�
 
 - 退出（Exit）：任务运行结束，等待父任务回收其控制块资源。
 
-**图1** 任务状态迁移示意图
-![zh-cn_image_0000001173399977](figures/zh-cn_image_0000001173399977.png)
+  **图1** 任务状态迁移示意图
+
+  ![zh-cn_image_0000001173399977](figures/zh-cn_image_0000001173399977.png)
 
 **任务状态迁移说明：**
 
@@ -72,29 +67,16 @@ OpenHarmony 任务管理模块提供任务创建、任务延时、任务挂起�
 
 ### 接口说明
 
-| 功能分类 | 接口**名称** | 描述 |
-| -------- | -------- | -------- |
-| 任务的创建和删除 | LOS_TaskCreateOnly | 创建任务，并使该任务进入Init状态，不执行任务调度 |
-|  | LOS_TaskCreate |创建任务，并使该任务进入Ready状态，并调度|
-|  | LOS_TaskDelete |删除指定的任务|
-| 任务状态控制 | LOS_TaskResume | 恢复挂起的任务 |
-|  | LOS_TaskSuspend |挂起指定的任务|
-|  | LOS_TaskJoin |挂起当前任务，等待指定任务运行结束并回收其任务控制块资源|
-|  | LOS_TaskDetach |修改任务的joinable属性为detach属性，detach属性的任务运行结束会自动回收任务控制块资源|
-|  | LOS_TaskDelay |任务延时等待|
-|  | LOS_TaskYield |显式放权，调整调用任务优先级的任务调度顺序|
-| 任务调度的控制 | LOS_TaskLock | 锁任务调度 |
-|  | LOS_TaskUnlock |解锁任务调度|
-| 任务优先级的控制 | LOS_CurTaskPriSet | 设置当前任务的优先级 |
-|  | LOS_TaskPriSet |设置指定任务的优先级|
-|  | LOS_TaskPriGet |获取指定任务的优先级|
-| 任务信息获取 | LOS_CurTaskIDGet | 获取当前任务的ID |
-|  | LOS_TaskInfoGet |获取指定任务的信息|
-| 任务绑核操作 | LOS_TaskCpuAffiSet | 绑定指定任务到指定cpu上运行，仅在多核下使用 |
-|  | LOS_TaskCpuAffiGet |获取指定任务的绑核信息，仅在多核下使用|
-| 任务调度参数的控制 | LOS_GetTaskScheduler | 获取指定任务的调度策略 |
-|  | LOS_SetTaskScheduler |设置指定任务的调度参数，包括优先级和调度策略|
-| 系统支持的最大任务数 | LOS_GetSystemTaskMaximum | 获取系统支持的最大任务数目 |
+  | 功能分类 | 接口描述 | 
+| -------- | -------- |
+| 任务的创建和删除 | -&nbsp;LOS_TaskCreate：创建任务，并使该任务进入Init状态，不执行任务调度<br/>-&nbsp;LOS_TaskDelete：创建任务，并使该任务进入Ready状态，并调度<br/>-&nbsp;LOS_TaskDelete：删除指定的任务 | 
+| 任务状态控制 | -&nbsp;LOS_TaskResume：恢复挂起的任务<br/>-&nbsp;LOS_TaskSuspend：挂起指定的任务<br/>-&nbsp;LOS_TaskJoin：挂起当前任务，等待指定任务运行结束并回收其任务控制块资源<br/>-&nbsp;LOS_TaskDetach：修改任务的joinable属性为detach属性，detach属性的任务运行结束会自动回收任务控制块资源<br/>-&nbsp;LOS_TaskDelay：任务延时等待<br/>-&nbsp;LOS_TaskYield：显式放权，调整调用任务优先级的任务调度顺序 | 
+| 任务调度的控制 | -&nbsp;LOS_TaskLock：锁任务调度<br/>-&nbsp;LOS_TaskUnlock：解锁任务调度 | 
+| 任务优先级的控制 | -&nbsp;LOS_CurTaskPriSet：设置当前任务的优先级<br/>-&nbsp;LOS_TaskPriSet：设置指定任务的优先级<br/>-&nbsp;LOS_TaskPriGet：获取指定任务的优先级 | 
+| 任务信息获取 | -&nbsp;LOS_CurTaskIDGet：获取当前任务的ID<br/>-&nbsp;LOS_TaskInfoGet：获取指定任务的信息 | 
+| 任务绑核操作 | -&nbsp;LOS_TaskCpuAffiSet：绑定指定任务到指定cpu上运行，仅在多核下使用<br/>-&nbsp;LOS_TaskCpuAffiGet：获取指定任务的绑核信息，仅在多核下使用 | 
+| 任务调度参数的控制 | -&nbsp;LOS_GetTaskScheduler：获取指定任务的调度策略<br/>-&nbsp;LOS_SetTaskScheduler:设置指定任务的调度参数，包括优先级和调度策略 | 
+| 系统支持的最大任务数 | LOS_GetSystemTaskMaximum | 
 
 
 ### 开发流程
@@ -123,6 +105,7 @@ OpenHarmony 任务管理模块提供任务创建、任务延时、任务挂起�
 
 代码实现如下：
 
+  
 ```
 UINT32 g_taskLoID;
 UINT32 g_taskHiID; 
@@ -225,6 +208,7 @@ UINT32 ExampleTaskCaseEntry(VOID)
 
 编译运行得到的结果为：
 
+  
 ```
 LOS_TaskLock() Success!
 ExampleTaskHi create Success!

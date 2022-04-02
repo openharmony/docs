@@ -1,14 +1,11 @@
 # 适配新的文件系统
 
-- [基本概念](#基本概念)
-- [适配Mount接口](#适配mount接口)
-- [适配Lookup接口](#适配lookup接口)
-- [适配总结和注意事项](#适配总结和注意事项)
 
 ## 基本概念
 
 所谓对接VFS层，其实就是指实现VFS层定义的若干接口函数，可根据文件系统的特点和需要适配其中部分接口。一般情况下，支持文件读写，最小的文件系统适配看起来是这样的：
 
+  
 ```
 struct MountOps g_yourFsMountOps = {
     .Mount = YourMountMethod,
@@ -38,12 +35,14 @@ FSMAP_ENTRY(yourfs_fsmap, "your fs name", g_yourFsMountOps, TRUE, TRUE);  // 注
 
 Mount是文件系统第一个被调用的接口，该接口一般会读取驱动的参数，根据配置对文件系统的进行初始化，最后生成文件系统的root节点。Mount接口的定义如下：
 
+  
 ```
 int (*Mount)(struct Mount *mount, struct Vnode *blkDriver, const void *data);
 ```
 
 其中，第一个参数struct Mount \*mount是Mount点的信息，适配时需要填写的是下面的变量：
 
+  
 ```
 struct Mount {
     const struct MountOps *ops;        /* Mount相关的函数钩子 */
@@ -56,7 +55,8 @@ struct Mount {
 
 第三个参数const void \*data是mount命令传入的数据，可以根据文件系统的需要处理。
 
-下面以JFFS2为例，详细看一下mount接口是如何适配的：
+  下面以JFFS2为例，详细看一下mount接口是如何适配的：
+  
 ```
 int VfsJffs2Bind(struct Mount *mnt, struct Vnode *blkDriver, const void *data)
 {
@@ -137,6 +137,7 @@ const struct MountOps jffs_operations = {
 
 Lookup是查找文件的接口，它的函数原型是：
 
+  
 ```
 int (*Lookup)(struct Vnode *parent, const char *name, int len, struct Vnode **vnode);
 ```
@@ -145,6 +146,7 @@ int (*Lookup)(struct Vnode *parent, const char *name, int len, struct Vnode **vn
 
 这个接口适配起来思路很清晰，给了父节点的信息和文件名，实现从父目录中查询名字为name的文件这个功能，同样以JFFS2为例：
 
+  
 ```
 int VfsJffs2Lookup(struct Vnode *parentVnode, const char *path, int len, struct Vnode **ppVnode)
 {

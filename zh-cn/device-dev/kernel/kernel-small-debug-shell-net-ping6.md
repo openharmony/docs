@@ -1,11 +1,5 @@
 # ping6
 
-- [命令功能](#命令功能)
-- [命令格式](#命令格式)
-- [参数说明](#参数说明)
-- [使用指南](#使用指南)
-- [使用实例](#使用实例)
-- [输出说明](#输出说明)
 
 ## 命令功能
 
@@ -19,7 +13,7 @@ ping6 _[-c count] [-I interface / sourceAddress] destination_
 
 ## 参数说明
 
-**表1** 参数说明
+  **表1** 参数说明
 
 | 参数 | 参数说明 | 取值范围 | 
 | -------- | -------- | -------- |
@@ -52,6 +46,7 @@ ping6 _[-c count] [-I interface / sourceAddress] destination_
 ## 输出说明
 
 1. 输入ping6 2001:a:b:c:d:e:f:b
+     
    ```
    OHOS # ping6 2001:a:b:c:d:e:f:b PING 2001:A:B:C:D:E:F:B with 56 bytes of data.
    56 bytes from 2001:A:B:C:D:E:F:B : icmp_seq=1 time<1 ms
@@ -64,6 +59,7 @@ ping6 _[-c count] [-I interface / sourceAddress] destination_
    ```
 
 2. 输入 ping6 -c 3 2001:a:b:c:d:e:f:b   指定3次进行网络测试
+     
    ```
    OHOS # ping6 -c 3 2001:a:b:c:d:e:f:b    PING 2001:A:B:C:D:E:F:B with 56 bytes of data.
    56 bytes from 2001:A:B:C:D:E:F:B : icmp_seq=1 time<1 ms
@@ -75,6 +71,7 @@ ping6 _[-c count] [-I interface / sourceAddress] destination_
    ```
 
 3. 输入 ping6 -I eth0 2001:a:b:c:d:e:f:b  使用指定网卡接口eth0测试IPv6。
+     
    ```
    OHOS # ping6 -I eth0 2001:a:b:c:d:e:f:b PING 2001:A:B:C:D:E:F:B with 56 bytes of data.
    56 bytes from 2001:A:B:C:D:E:F:B : icmp_seq=1 time=10 ms
@@ -86,6 +83,7 @@ ping6 _[-c count] [-I interface / sourceAddress] destination_
    ```
 
 4. 输入 ping6 -I 2001:a:b:c:d:e:f:d 2001:a:b:c:d:e:f:b   使用指定的源IPv6地址2001:a:b:c:d:e:f:d进行测试。
+     
    ```
    OHOS # ping6 -I 2001:a:b:c:d:e:f:d 2001:a:b:c:d:e:f:b PING 2001:A:B:C:D:E:F:B with 56 bytes of data.
    56 bytes from 2001:A:B:C:D:E:F:B : icmp_seq=1 time<1 ms
