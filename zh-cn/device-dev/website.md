@@ -427,9 +427,9 @@
       - [HiSysEvent订阅指导](subsystems/subsys-dfx-hisysevent-listening.md)
       - [HiSysEvent查询指导](subsystems/subsys-dfx-hisysevent-query.md)
       - [HiSysEvent工具使用指导](subsystems/subsys-dfx-hisysevent-tool.md)
-    - [HiDumper开发指导](subsys-dfx-hidumper.md)
-    - [HiChecker开发指导](subsys-dfx-hichecker.md)
-    - [Faultlogger开发指导](subsys-dfx-faultlogger.md)
+    - [HiDumper开发指导](subsystems/subsys-dfx-hidumper.md)
+    - [HiChecker开发指导](subsystems/subsys-dfx-hichecker.md)
+    - [Faultlogger开发指导](subsystems/subsys-dfx-faultlogger.md)
 
 - 专题
   - HPM Part
