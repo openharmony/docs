@@ -49,7 +49,7 @@
                 - [Hi3516开发板介绍](quick-start/quickstart-ide-standard-board-introduction-hi3516.md)
                 - [RK3568开发板介绍](quick-start/quickstart-ide-standard-board-introduction-rk3568.md)
 
-- [获取源码](get-code/sourcecode-acquire.md)
+    - [获取源码](get-code/sourcecode-acquire.md)
 
 - 兼容性与安全
 
@@ -427,6 +427,9 @@
       - [HiSysEvent订阅指导](subsystems/subsys-dfx-hisysevent-listening.md)
       - [HiSysEvent查询指导](subsystems/subsys-dfx-hisysevent-query.md)
       - [HiSysEvent工具使用指导](subsystems/subsys-dfx-hisysevent-tool.md)
+    - [HiDumper开发指导](subsys-dfx-hidumper.md)
+    - [HiChecker开发指导](subsys-dfx-hichecker.md)
+    - [Faultlogger开发指导](subsys-dfx-faultlogger.md)
 
 - 专题
   - HPM Part
