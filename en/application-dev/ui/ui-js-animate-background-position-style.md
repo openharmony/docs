@@ -76,8 +76,5 @@ By changing the background-position attribute (where the first value is the posi
 ```
 
 
-![en-us_image_0000001267607873](figures/en-us_image_0000001267607873.gif)
-
-
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
 > The background-position attribute can only be used to move background images, but not the background color (background-color).
