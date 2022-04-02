@@ -227,7 +227,7 @@ CMake方式可通过指定工具链进行交叉编译，修改并编译该库，
 
 1.  搭建OpenHarmony环境
 
-    以hi3518ev300为例，编译出OpenHarmony镜像，烧写到开发板，参考[开发Hi3518第一个示例程序](../quick-start/quickstart-lite-steps-hi3518-running.md)。
+    以hi3516ev300为例，编译出OpenHarmony镜像，烧写到开发板，参考[开发Hi3516第一个示例程序](../quick-start/quickstart-ide-lite-steps-hi3516-running.md)。
 
     进入系统如下所示：
 
