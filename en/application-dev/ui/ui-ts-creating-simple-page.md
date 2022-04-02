@@ -46,13 +46,7 @@ In this section, we will develop an infographic food details page, by building c
    ![en-us_image_0000001267887861](figures/en-us_image_0000001267887861.png)
 
 3. Access images through resources.
-   In addition to specifying the image path, you can also use the media resource symbol $r to reference resources based on the resource qualifier rules in the resources folder. Right-click the resources folder, choose New &gt; Resource Directory, set Resource Type to Media (image resource), and set the resource qualifier to Device-Phone (currently, phones are used).
-
-   ![en-us_image_0000001267887853](figures/en-us_image_0000001267887853.png)
-
-   Click OK. The phone.media folder is generated in the resources folder. Place Tomato.png in the folder.
-
-   ![en-us_image_0000001222807784](figures/en-us_image_0000001222807784.png)
+   In addition to specifying the image path, you can also use the media resource symbol $r to reference resources based on the resource qualifier rules in the resources folder. Right-click the resources folder, choose New &gt; Resource Directory, set Resource Type to Media (image resource).Place Tomato.png in the media folder.
 
    You can then can reference the application resource in the ` "$r('app.type.name')"`  format, that is, `$r('app.media.Tomato')`.
 

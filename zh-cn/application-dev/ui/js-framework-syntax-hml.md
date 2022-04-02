@@ -39,7 +39,7 @@ export default {
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > - 针对数组内的数据修改，请使用splice方法生效数据绑定变更。
-> 
+>
 > - hml文件中的js表达式不支持ES6语法。
 
 
@@ -185,7 +185,7 @@ Touch触摸类事件支持捕获，捕获阶段位于冒泡阶段之前，捕获
       <div grab:touchstart.capture="touchstartfunc"></div>
   </div>
   ```
-  
+
   ```
   // xxx.js
   export default {
@@ -247,9 +247,9 @@ tid属性主要用来加速for循环的重渲染，旨在列表中的数据有�
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > - 数组中的每个元素必须存在tid指定的数据属性，否则运行时可能会导致异常。
-> 
+>
 > - 数组中被tid指定的属性要保证唯一性，如果不是则会造成性能损耗。比如，示例中只有id和name可以作为tid字段，因为它们属于唯一字段。
-> 
+>
 > - tid不支持表达式。
 
 
@@ -262,8 +262,8 @@ tid属性主要用来加速for循环的重渲染，旨在列表中的数据有�
 <div class="container">
   <button class="btn" type="capsule" value="toggleShow" onclick="toggleShow"></button>
   <button class="btn" type="capsule" value="toggleDisplay" onclick="toggleDisplay"></button>
-  <text if="{{visible}}"> Hello-TV </text>
-  <text elif="{{display}}"> Hello-Wearable </text>
+  <text if="{{visible}}"> Hello-world1 </text>
+  <text elif="{{display}}"> Hello-world2 </text>
   <text else> Hello-World </text>
 </div>
 ```

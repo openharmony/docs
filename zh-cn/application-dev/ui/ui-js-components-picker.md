@@ -70,9 +70,8 @@ export default {
 ![zh-cn_image_0000001189098638](figures/zh-cn_image_0000001189098638.gif)
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> - 普通选择器设置取值范围时，需要使用数据绑定的方式。
-> 
-> - 日期选择器的lunarswitch属性只支持手机和平板设备。
+>
+> 普通选择器设置取值范围时，需要使用数据绑定的方式。
 
 
 ## 设置时间展现格式
@@ -108,7 +107,7 @@ Picker的hours属性定义时间的展现格式，可选类型有12小时制和2
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > - hours属性为12：按照12小时制显示，用上午和下午进行区分；
-> 
+>
 > - hours属性为24：按照24小时制显示。
 
 

@@ -13,7 +13,7 @@ On the created page, we use various items to describe food, such as food names, 
 2. Define a food data storage model, FoodData, and an enum variable, Category. The FoodData class contains the food ID, name, category, image, calories, protein, fat, carbohydrates, and vitamin C attributes.
    The eTS programming language is an extension of the TS language and also supports the TS syntax.
 
-   
+
    ```
    enum Category  {
      Fruit,
@@ -22,7 +22,7 @@ On the created page, we use various items to describe food, such as food names, 
      Seafood,
      Dessert
    }
-   
+
    let NextId = 0;
    class FoodData {
      id: string;
@@ -34,7 +34,7 @@ On the created page, we use various items to describe food, such as food names, 
      fat: number;
      carbohydrates: number;
      vitaminC: number;
-   
+
      constructor(name: string, image: Resource, category: Category, calories: number, protein: number, fat: number, carbohydrates: number, vitaminC: number) {
        this.id = `${ NextId++ }`;
        this.name = name;
@@ -49,13 +49,13 @@ On the created page, we use various items to describe food, such as food names, 
    }
    ```
 
-3. Store food image resources in the resources > phone > media directory. Use food names as the image names.
-   
+3. Store food image resources in the resources > base > media directory. Use food names as the image names.
+
 4. Create food resource data. Create FoodDataModels.ets in the model folder and declare a food composition array, FoodComposition on the page.
    In this example, you can customize more data resources when needed. Use LazyForEach to load data if a large amount of food data is involved. 
 
 5. Create the initializeOnStartUp method to initialize the FoodData array. Export the FoodData class from FoodData.ets, and import FoodData and Category in FoodDataModels.ets.
-  
+
    ```
    // FoodData.ets
    export enum Category {
@@ -66,7 +66,7 @@ On the created page, we use various items to describe food, such as food names, 
    }
    // FoodDataModels.ets
    import { Category, FoodData } from './FoodData'
-   
+
    export function initializeOnStartup(): Array<FoodData> {
      let FoodDataArray: Array<FoodData> = []
      FoodComposition.forEach(item => {

@@ -92,7 +92,7 @@ In addition to the attributes in  [Universal Attributes](js-components-common-at
 <td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p id="p11802185153615"><a name="p11802185153615"></a><a name="p11802185153615"></a>No</p>
 </td>
 <td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="p118021351362"><a name="p118021351362"></a><a name="p118021351362"></a>Pull-down friction coefficient. The value ranges from <strong id="b7887020335"><a name="b7887020335"></a><a name="b7887020335"></a>0</strong> to <strong id="b81365257313"><a name="b81365257313"></a><a name="b81365257313"></a>100</strong>. A larger value indicates a more responsive component. For example, if a user pulls the component down 100 px, it will actually move 100 * <strong id="b2130757132018"><a name="b2130757132018"></a><a name="b2130757132018"></a>friction</strong>% px.</p>
-<div class="note" id="note204304260349"><a name="note204304260349"></a><a name="note204304260349"></a><span class="notetitle"> NOTE: </span><div class="notebody"><p id="p1343012264345"><a name="p1343012264345"></a><a name="p1343012264345"></a>This attribute is only supported on phones, tablets, and wearables.</p>
+<div class="note" id="note204304260349"><a name="note204304260349"></a><a name="note204304260349"></a><span class="notetitle"> </span><div class="notebody"><p id="p1343012264345"><a name="p1343012264345"></a><a name="p1343012264345"></a></p>
 </div></div>
 </td>
 </tr>

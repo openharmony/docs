@@ -72,7 +72,7 @@ In addition to the attributes in  [Universal Attributes](js-components-common-at
 <td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="p1455632813277"><a name="p1455632813277"></a><a name="p1455632813277"></a>Data structures used by <strong id="b1997913981710"><a name="b1997913981710"></a><a name="b1997913981710"></a>progress</strong>, <strong id="b991191118176"><a name="b991191118176"></a><a name="b991191118176"></a>loading</strong>, and <strong id="b962820295179"><a name="b962820295179"></a><a name="b962820295179"></a>rainbow</strong> charts.</p>
 <p id="p19327195813510"><a name="p19327195813510"></a><a name="p19327195813510"></a><strong id="b196601530164710"><a name="b196601530164710"></a><a name="b196601530164710"></a>DataSegment</strong> is available for <strong id="b1066083012472"><a name="b1066083012472"></a><a name="b1066083012472"></a>progress</strong> and <strong id="b16660143054719"><a name="b16660143054719"></a><a name="b16660143054719"></a>loading</strong> charts.</p>
 <p id="p14326258457"><a name="p14326258457"></a><a name="p14326258457"></a><strong id="b1044023344716"><a name="b1044023344716"></a><a name="b1044023344716"></a>Array&lt;<a href="#table2596183616210">DataSegment</a>&gt;</strong> is available for <strong id="b194405335477"><a name="b194405335477"></a><a name="b194405335477"></a>rainbow</strong> charts. A maximum of nine <strong id="b15441133114716"><a name="b15441133114716"></a><a name="b15441133114716"></a>DataSegment</strong> are supported in the array.</p>
-<div class="note" id="note74451328478"><a name="note74451328478"></a><a name="note74451328478"></a><span class="notetitle"> NOTE: </span><div class="notebody"><p id="p1744552174711"><a name="p1744552174711"></a><a name="p1744552174711"></a>This attribute is only supported on phones and tablets.</p>
+<div class="note" id="note74451328478"><a name="note74451328478"></a><a name="note74451328478"></a><span class="notetitle"> </span><div class="notebody"><p id="p1744552174711"><a name="p1744552174711"></a><a name="p1744552174711"></a></p>
 </div></div>
 </td>
 </tr>
@@ -85,7 +85,7 @@ In addition to the attributes in  [Universal Attributes](js-components-common-at
 <td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p id="p1820820719229"><a name="p1820820719229"></a><a name="p1820820719229"></a>No</p>
 </td>
 <td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="p92085712225"><a name="p92085712225"></a><a name="p92085712225"></a>Whether to enable the effects for <strong id="b7262163754711"><a name="b7262163754711"></a><a name="b7262163754711"></a>progress</strong> and <strong id="b12263437134715"><a name="b12263437134715"></a><a name="b12263437134715"></a>rainbow</strong> charts.</p>
-<div class="note" id="note15640931164717"><a name="note15640931164717"></a><a name="note15640931164717"></a><span class="notetitle"> NOTE: </span><div class="notebody"><p id="p2064014318476"><a name="p2064014318476"></a><a name="p2064014318476"></a>This attribute is only supported on phones and tablets.</p>
+<div class="note" id="note15640931164717"><a name="note15640931164717"></a><a name="note15640931164717"></a><span class="notetitle">  </span><div class="notebody"><p id="p2064014318476"><a name="p2064014318476"></a><a name="p2064014318476"></a></p>
 </div></div>
 </td>
 </tr>
@@ -98,7 +98,7 @@ In addition to the attributes in  [Universal Attributes](js-components-common-at
 <td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p id="p6133256124018"><a name="p6133256124018"></a><a name="p6133256124018"></a>No</p>
 </td>
 <td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="p181331564408"><a name="p181331564408"></a><a name="p181331564408"></a>Animation duration for expanding a <strong id="b538918433184"><a name="b538918433184"></a><a name="b538918433184"></a>rainbow</strong> chart, in milliseconds.</p>
-<div class="note" id="note12117134774716"><a name="note12117134774716"></a><a name="note12117134774716"></a><span class="notetitle"> NOTE: </span><div class="notebody"><p id="p12117124720471"><a name="p12117124720471"></a><a name="p12117124720471"></a>This attribute is only supported on phones and tablets.</p>
+<div class="note" id="note12117134774716"><a name="note12117134774716"></a><a name="note12117134774716"></a><span class="notetitle">  </span><div class="notebody"><p id="p12117124720471"><a name="p12117124720471"></a><a name="p12117124720471"></a></p>
 </div></div>
 </td>
 </tr>
