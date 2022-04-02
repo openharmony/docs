@@ -166,7 +166,7 @@ Files generated during building are stored in the  **out/{device_name}/**  direc
 
 ## HPM-based Docker Environment<a name="section485713518337"></a>
 
-**docker\_dist**  is a template component in the  [HPM](https://hpm.harmonyos.com/#/en/home)  system. It helps to quickly initialize an HPM project and use the Docker image to quickly build a distribution of OpenHarmony, greatly simplifying environment configurations needed for building. After configuring the Ubuntu and [hpm-cli](../bundles/hpm-part-development.md) development environments, perform the following steps to access the Docker environment:
+**docker\_dist**  is a template component in the  [HPM](https://hpm.harmonyos.com/#/en/home)  system. It helps to quickly initialize an HPM project and use the Docker image to quickly build a distribution of OpenHarmony, greatly simplifying environment configurations needed for building. After configuring the Ubuntu and hpm-cli development environments, perform the following steps to access the Docker environment:
 
 ### Setting Up the Docker Environment<a name="section3295842510"></a>
 
