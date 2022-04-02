@@ -2,7 +2,7 @@
 
 ## Introduction<a name="section465982318513"></a>
 
-The X test suite \(XTS\) subsystem contains a set of OpenHarmony certification test suites, including the currently supported application compatibility test suite \(ACTS\) and the device compatibility test suite \(DCTS\) that will be supported in the future.
+The X test suite \(XTS\) subsystem contains a set of OpenHarmony compatibility test suites, including the currently supported application compatibility test suite \(ACTS\) and the device compatibility test suite \(DCTS\) that will be supported in the future.
 
 This subsystem contains the ACTS and  **tools**  software package.
 
@@ -690,7 +690,7 @@ Install Python 3.7 or a later version on a Windows environment and ensure that t
     Wait until the test case is complete.
 
 
-1.  View test reports.
+3.  View test reports.
 
     Go to  **acts\\reports\\**, obtain the current execution record, and open  **summary\_report.html**  to view the test report.
 
