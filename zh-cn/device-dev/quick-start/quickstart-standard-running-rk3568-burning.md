@@ -6,7 +6,7 @@
 
 ### 导入源码
 
-在编译完成后，[保证Windows系统可以远程访问Ubuntu环境](../quick-start/quickstart-standard-env-setup.md#安装deveco-device-tool)的情况下，您还需要通过以下步骤导入源码后，方可进行烧录。
+在编译完成后，[保证Windows系统可以远程访问Ubuntu环境](../quick-start/quickstart-standard-env-setup.md)的情况下，您还需要通过以下步骤导入源码后，方可进行烧录。
 
 1. 打开DevEco Device Tool，进入Home页，点击**Import Project**打开工程。
 
@@ -66,11 +66,13 @@
    1. 在“hh_scdy200_loader”页签，在New Option选项中选择需要修改的项，例如partition_bin（烧录文件路径）、partition_addr（烧录文件起始地址）、partition_length（烧录文件分区长度）等。
 
        ![zh-cn_image_0000001224173270](figures/zh-cn_image_0000001224173270.png)
+
    2. 然后在Partition Options中，分别修改上述步骤中选择的修改项。
        > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
        > 在设置烧录分区起始地址和分区长度时，应根据实际待烧录文件的大小进行设置，要求设置的烧录分区大小，要大于待烧录文件的大小；同时，各烧录文件的分区地址设置不能出现重叠。
 
        ![zh-cn_image_0000001268653461](figures/zh-cn_image_0000001268653461.png)
+
    3. 按照相同的方法修改parameter、uboot、boot_linux、system、vendor和userdata的烧录文件信息。
 
 7. 所有的配置都修改完成后，在工程配置页签的顶部，点击**Save**进行保存。
