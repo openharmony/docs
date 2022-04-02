@@ -85,7 +85,6 @@ In addition to the attributes that are supported by  **CanvasRenderingContext2D*
     }
     ```
 
-    ![](figures/c3.png)
 
 
 ## Methods<a name="section47669296127"></a>

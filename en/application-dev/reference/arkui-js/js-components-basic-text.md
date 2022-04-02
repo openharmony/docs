@@ -339,11 +339,6 @@ Methods in  [Universal Methods](js-components-common-methods.md)  are supported.
   width: 400px;
   height: 400px;
   border: 20px;
-  border-image-source: url("/common/images/landscape.jpg");
-  border-image-slice: 20px;
-  border-image-width: 30px;
-  border-image-outset: 10px;
-  border-image-repeat: round;
 }
 .title {
   font-size: 80px;

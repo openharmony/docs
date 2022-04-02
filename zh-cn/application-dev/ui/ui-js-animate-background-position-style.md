@@ -79,8 +79,5 @@
 ```
 
 
-![zh-cn_image_0000001217008255](figures/zh-cn_image_0000001217008255.gif)
-
-
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > background-position仅支持背景图片的移动，不支持背景颜色（background-color）。
