@@ -52,7 +52,7 @@ OpenHarmony提供了九种后台模式，供需要在后台做长时任务的业
 | multiDeviceConnection | 分布式互联任务 | 正在运行分布式任务 |  |
 | wifiInteraction | WLAN传输 | 正在运行WLAN相关任务 | SystemApi，仅对System权限应用开放 |
 | voip | 音视频电话、VOIP | 正在运行通话相关任务 | SystemApi，仅对System权限应用开放 |
-| taskKeeping | 计算任务 | 正在运行计算任务 | PC特有，仅在PC申请生效 |
+| taskKeeping | 计算任务 | 正在运行计算任务 | 仅在特定设备生效 |
 
 ### 长时任务使用约束
 - 如果用户选择可感知业务（如播音、导航等），触发对应后台模式，在任务启动时，系统会强制弹出通知提醒用户。
