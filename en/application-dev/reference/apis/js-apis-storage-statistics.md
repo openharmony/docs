@@ -126,7 +126,7 @@ Asynchronously obtains the available space of the specified volume. This method 
   });
   ```
 
-## storagestatistics.getBundleStats
+## storagestatistics.getBundleStats<sup>9+</sup>
 
 getBundleStats(packageName: string): Promise&lt;BundleStats&gt;
 
@@ -157,7 +157,7 @@ Obtains the bundle status. This method uses a promise to return the result.
   });
   ```
 
-## storagestatistics.getBundleStats
+## storagestatistics.getBundleStats<sup>9+</sup>
 
 getBundleStats(packageName: string,  callback: AsyncCallback&lt;BundleStats&gt;): void
 
