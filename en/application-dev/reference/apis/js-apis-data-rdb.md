@@ -1,7 +1,6 @@
 # Relational Database
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
->
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -12,71 +11,112 @@
 import data_rdb from '@ohos.data.rdb'
 ```
 
-## System Capabilities
-SystemCapability.DistributedDataManager.RelationalStore.Core
-
 
 ## data_rdb.getRdbStore
 
 getRdbStore(context: Context, config: StoreConfig, version: number, callback: AsyncCallback&lt;RdbStore&gt;): void
 
-Obtains a relational database (RDB) store. You can set parameters for the RDB store based on service requirements, call APIs to perform data operations, and use a callback to return the result.
+Obtains a relational database (RDB) store. This method uses an asynchronous callback to return the result. You can set parameters for the RDB store based on service requirements and call APIs to perform data operations.
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | context | Context | Yes| Context of the app or functionality.|
-  | config | [StoreConfig](#storeconfig) | Yes| Configuration of the RDB store.|
-  | version | number | Yes| RDB store version.|
-  | callback | AsyncCallback&lt;[RdbStore](#rdbstore)&gt; | Yes| Callback invoked to return the RDB store obtained.|
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-- Example
-  ```
-  import Ability from '@ohos.application.Ability'
-  import data_rdb from '@ohos.data.rdb'
-  export default class MainAbility extends Ability {
-      const STORE_CONFIG = { name: "RdbTest.db"}
-      const SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)"
-      data_rdb.getRdbStore(this.context, STORE_CONFIG, 1, function (err, rdbStore) {
-          rdbStore.executeSql(SQL_CREATE_TABLE)
-          console.info(TAG + 'create table done.')
-      })
-  }
-  ```
+**Parameters**
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| context<sup>8+</sup> | Context | Yes| Context of the app or functionality.|
+| config | [StoreConfig](#storeconfig) | Yes| Configuration of the RDB store.|
+| version | number | Yes| RDB store version.|
+| callback | AsyncCallback&lt;[RdbStore](#rdbstore)&gt; | Yes| Callback invoked to return the RDB store obtained.|
+
+**Example**
+
+```
+import data_rdb from '@ohos.data.rdb'
+const STORE_CONFIG = { name: "RdbTest.db"}
+const SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)"
+data_rdb.getRdbStore(STORE_CONFIG, 1, function (err, rdbStore) {
+    rdbStore.executeSql(SQL_CREATE_TABLE)
+    console.info('create table done.')
+})
+```
+
+The sample code of API<sup>9</sup> is as follows:
+
+```
+import Ability from '@ohos.application.Ability'
+import data_rdb from '@ohos.data.rdb'
+export default class MainAbility extends Ability {
+    const STORE_CONFIG = { name: "RdbTest.db"}
+    const SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)"
+    data_rdb.getRdbStore(this.context, STORE_CONFIG, 1, function (err, rdbStore) {
+        rdbStore.executeSql(SQL_CREATE_TABLE)
+        console.info('create table done.')
+    })
+}
+```
 
 ## data_rdb.getRdbStore
 
 getRdbStore(context: Context, config: StoreConfig, version: number): Promise&lt;RdbStore&gt;
 
-Obtains an RDB store. You can set parameters for the RDB store based on service requirements, call APIs to perform data operations, and use a promise to return the result.
+Obtains an RDB store. This method uses a promise to return the result. You can set parameters for the RDB store based on service requirements and call APIs to perform data operations.
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | context | Context | Yes| Context of the app or functionality.|
-  | config | [StoreConfig](#storeconfig) | Yes| Configuration of the RDB store.|
-  | version | number | Yes| RDB store version.|
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;[RdbStore](#rdbstore)&gt; | Promise used to return the RDB store obtained.|
+**Parameters**
 
-- Example
-  ```
-  import Ability from '@ohos.application.Ability'
-  import data_rdb from '@ohos.data.rdb'
-  export default class MainAbility extends Ability {
-      const STORE_CONFIG = { name: "RdbTest.db" }
-      const SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)"
-      let promise = data_rdb.getRdbStore(this.context, STORE_CONFIG, 1);
-      promise.then(async (rdbStore) => {
-          await rdbStore.executeSql(SQL_CREATE_TABLE, null)
-      }).catch((err) => {
-          expect(null).assertFail();
-      })
-  }
-  ```
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| context<sup>8+</sup> | Context | Yes| Context of the app or functionality.|
+| config | [StoreConfig](#storeconfig) | Yes| Configuration of the RDB store.|
+| version | number | Yes| RDB store version.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;[RdbStore](#rdbstore)&gt; | Promise used to return the RDB store obtained.|
+
+**Example**
+
+```
+import data_rdb from '@ohos.data.rdb'
+const STORE_CONFIG = { name: "RdbTest.db" }
+const SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)"
+let promisegetRdb = data_rdb.getRdbStore(STORE_CONFIG, 1);
+promisegetRdb.then(async (rdbStore) => {
+    let promiseExecSql = rdbStore.executeSql(SQL_CREATE_TABLE, null)
+    promiseExecSql.then(() => {
+        console.info('executeSql creat done.')
+    }).catch((err) => {
+        console.log("executeSql creat err.")
+    })
+}).catch((err) => {
+    console.log("getRdbStore err.")
+})
+```
+
+The sample code of API<sup>9</sup> is as follows:
+
+```
+import Ability from '@ohos.application.Ability'
+import data_rdb from '@ohos.data.rdb'
+export default class MainAbility extends Ability {
+    const STORE_CONFIG = { name: "RdbTest.db" }
+    const SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)"
+    let promisegetRdb = data_rdb.getRdbStore(this.context, STORE_CONFIG, 1);
+    promisegetRdb.then(async (rdbStore) => {
+        let promiseExecSql = rdbStore.executeSql(SQL_CREATE_TABLE, null)
+        promiseExecSql.then(() => {
+            console.info('executeSql creat done.')
+        }).catch((err) => {
+            console.log("executeSql creat err.")
+        })
+    }).catch((err) => {
+        console.log("getRdbStore err.")
+    })
+}
+```
 
 ## data_rdb.deleteRdbStore
 
@@ -84,22 +124,34 @@ deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&g
 
 Deletes an RDB store. This method uses a callback to return the result. 
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | context | Context | Yes| Context of the app or functionality.|
-  | name | string | Yes| Name of the RDB store to delete.|
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result. If the RDB store is deleted, **true** will be returned. Otherwise, **false** will be returned.|
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-- Example
+**Parameters**
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| context<sup>8+</sup> | Context | Yes| Context of the app or functionality.|
+| name | string | Yes| Name of the RDB store to delete.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result.|
+
+**Example**
   ```
-  import Ability from '@ohos.application.Ability'
   import data_rdb from '@ohos.data.rdb'
-  export default class MainAbility extends Ability {
-      data_rdb.deleteRdbStore(this.context, "RdbTest.db", function (err, rdbStore) {
-          console.info(TAG + 'delete store done.')})
-  }
+  data_rdb.deleteRdbStore("RdbTest.db", function (err, rdbStore) {
+      console.info('delete store done.')
+  })
   ```
+
+The sample code of API<sup>9</sup> is as follows:
+
+```
+import Ability from '@ohos.application.Ability'
+import data_rdb from '@ohos.data.rdb'
+export default class MainAbility extends Ability {
+    data_rdb.deleteRdbStore(this.context, "RdbTest.db", function (err, rdbStore) {
+        console.info('delete store done.')
+    })
+}
+```
 
 ## data_rdb.deleteRdbStore
 
@@ -107,28 +159,44 @@ deleteRdbStore(context: Context, name: string): Promise&lt;void&gt;
 
 Deletes an RDB store. This method uses a promise to return the result.
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | context | Context | Yes| Context of the app or functionality.|
-  | name | string | Yes| Name of the RDB store to delete.|
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to return the result. If the RDB store is deleted, **true** will be returned. Otherwise, **false** will be returned.|
+**Parameters**
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| context<sup>8+</sup> | Context | Yes| Context of the app or functionality.|
+| name | string | Yes| Name of the RDB store to delete.|
 
-- Example
+**Return value**
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Example**
   ```
-  import Ability from '@ohos.application.Ability'
   import data_rdb from '@ohos.data.rdb'
-  export default class MainAbility extends Ability {
-      let promise = data_rdb.deleteRdbStore(this.context, "RdbTest.db")
-      promise.then(()=>{
-          console.info(TAG + 'delete store done.')
-      })
-  }
+  let promisedeleteRdb = data_rdb.deleteRdbStore("RdbTest.db")
+  promisedeleteRdb.then(()=>{
+      console.info('delete store done.')
+  }).catch((err) => {
+      console.log("deleteRdbStore err.")
+  })
   ```
+
+The sample code of API<sup>9</sup> is as follows:
+
+```
+import Ability from '@ohos.application.Ability'
+import data_rdb from '@ohos.data.rdb'
+export default class MainAbility extends Ability {
+    let promisedeleteRdb = data_rdb.deleteRdbStore(this.context, "RdbTest.db")
+    promisedeleteRdb.then(()=>{
+        console.info('delete store done.')
+    }).catch((err) => {
+        console.log("deleteRdbStore err.")
+    })
+}
+```
 
 ## RdbPredicates
 
@@ -142,55 +210,58 @@ constructor(name: string)
 
 A constructor used to create an **RdbPredicates** object.
 
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | name | string | Yes| Database table name.|
+**Parameters**
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| name | string | Yes| Database table name.|
 
-- Example
+**Example**
   ```
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   ```
 
-### inDevices
+### inDevices<sup>8+</sup>
 
-inDevices(devices: Array<string>): RdbPredicates;
+inDevices(devices: Array&lt;string&gt;): RdbPredicates
 
 
 Specifies a remote device on the network during distributed database synchronization.
 
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | devices | Array<string> | Yes| ID of the remote device to specify.|
+**Parameters**
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| devices | Array&lt;string&gt; | Yes| ID of the remote device to specify.|
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that matches the specified field.|
+**Return value**
+| Type| Description|
+| -------- | -------- |
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that matches the specified field.|
 
-- Example
+**Example**
   ```
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicate.inDevices(['12345678abcde'])
   ```
 
-### inAllDevices
+### inAllDevices<sup>8+</sup>
 
-inAllDevices(): RdbPredicates;
+inAllDevices(): RdbPredicates
 
 
 Connects to all remote devices on the network during distributed database synchronization.
 
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that matches the specified field.|
+**Return value**
+| Type| Description|
+| -------- | -------- |
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that matches the specified field.|
 
-- Example
+**Example**
   ```
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.inAllDevices()
@@ -203,19 +274,20 @@ equalTo(field: string, value: ValueType): RdbPredicates
 
 Sets the **RdbPredicates** to match the field with data type **ValueType** and value equal to the specified value.
 
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | field | string | Yes| Column name in the database table.|
-  | value | [ValueType](#valuetype) | Yes| Value to match the **RdbPredicates**.|
+**Parameters**
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| field | string | Yes| Column name in the database table.|
+| value | [ValueType](#valuetype) | Yes| Value to match the **RdbPredicates**.|
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that matches the specified field.|
+**Return value**
+| Type| Description|
+| -------- | -------- |
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that matches the specified field.|
 
-- Example
+**Example**
   ```
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.equalTo("NAME", "lisi")
@@ -229,19 +301,20 @@ notEqualTo(field: string, value: ValueType): RdbPredicates
 
 Sets the **RdbPredicates** to match the field with data type **ValueType** and value not equal to the specified value.
 
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | field | string | Yes| Column name in the database table.|
-  | value | [ValueType](#valuetype) | Yes| Value to match the **RdbPredicates**.|
+**Parameters**
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| field | string | Yes| Column name in the database table.|
+| value | [ValueType](#valuetype) | Yes| Value to match the **RdbPredicates**.|
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that matches the specified field.|
+**Return value**
+| Type| Description|
+| -------- | -------- |
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that matches the specified field.|
 
-- Example
+**Example**
   ```
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.notEqualTo("NAME", "lisi")
@@ -255,13 +328,14 @@ beginWrap(): RdbPredicates
 
 Adds a left parenthesis to the **RdbPredicates**.
 
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | [RdbPredicates](#rdbpredicates) | **RdbPredicates** with a left parenthesis.|
+**Return value**
+| Type| Description|
+| -------- | -------- |
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** with a left parenthesis.|
 
-- Example
+**Example**
   ```
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.equalTo("NAME", "lisi")
@@ -280,13 +354,14 @@ endWrap(): RdbPredicates
 
 Adds a right parenthesis to the **RdbPredicates**.
 
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | [RdbPredicates](#rdbpredicates) | **RdbPredicates** with a right parenthesis.|
+**Return value**
+| Type| Description|
+| -------- | -------- |
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** with a right parenthesis.|
 
-- Example
+**Example**
   ```
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.equalTo("NAME", "lisi")
@@ -305,13 +380,14 @@ or(): RdbPredicates
 
 Adds the OR condition to the **RdbPredicates**.
 
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | [RdbPredicates](#rdbpredicates) | **RdbPredicates** with the OR condition.|
+**Return value**
+| Type| Description|
+| -------- | -------- |
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** with the OR condition.|
 
-- Example
+**Example**
   ```
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.equalTo("NAME", "Lisa")
@@ -327,13 +403,14 @@ and(): RdbPredicates
 
 Adds the AND condition to the **RdbPredicates**.
 
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | [RdbPredicates](#rdbpredicates) | **RdbPredicates** with the AND condition.|
+**Return value**
+| Type| Description|
+| -------- | -------- |
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** with the AND condition.|
 
-- Example
+**Example**
   ```
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.equalTo("NAME", "Lisa")
@@ -344,24 +421,24 @@ Adds the AND condition to the **RdbPredicates**.
 
 ### contains
 
-contains(field: string, value: string): RdbPredicat
-
+contains(field: string, value: string): RdbPredicates
 
 Sets the **RdbPredicates** to match a string containing the specified value.
 
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | field | string | Yes| Column name in the database table.|
-  | value | string | Yes| Value to match the **RdbPredicates**.|
+**Parameters**
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| field | string | Yes| Column name in the database table.|
+| value | string | Yes| Value to match the **RdbPredicates**.|
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that matches the specified field.|
+**Return value**
+| Type| Description|
+| -------- | -------- |
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that matches the specified field.|
 
-- Example
+**Example**
   ```
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.contains("NAME", "os")
@@ -375,19 +452,20 @@ beginsWith(field: string, value: string): RdbPredicates
 
 Sets the **RdbPredicates** to match a string that starts with the specified value.
 
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | field | string | Yes| Column name in the database table.|
-  | value | string | Yes| Value to match the **RdbPredicates**.|
+**Parameters**
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| field | string | Yes| Column name in the database table.|
+| value | string | Yes| Value to match the **RdbPredicates**.|
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that matches the specified field.|
+**Return value**
+| Type| Description|
+| -------- | -------- |
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that matches the specified field.|
 
-- Example
+**Example**
   ```
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.beginsWith("NAME", "os")
@@ -401,19 +479,20 @@ endsWith(field: string, value: string): RdbPredicates
 
 Sets the **RdbPredicates** to match a string that ends with the specified value.
 
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | field | string | Yes| Column name in the database table.|
-  | value | string | Yes| Value to match the **RdbPredicates**.|
+**Parameters**
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| field | string | Yes| Column name in the database table.|
+| value | string | Yes| Value to match the **RdbPredicates**.|
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that matches the specified field.|
+**Return value**
+| Type| Description|
+| -------- | -------- |
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that matches the specified field.|
 
-- Example
+**Example**
   ```
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.endsWith("NAME", "se")
@@ -427,16 +506,17 @@ isNull(field: string): RdbPredicates
 
 Sets the **RdbPredicates** to match the field whose value is null.
 
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | field | string | Yes| Column name in the database table.|
+**Parameters**
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| field | string | Yes| Column name in the database table.|
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that matches the specified field.|
+**Return value**
+| Type| Description|
+| -------- | -------- |
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that matches the specified field.|
 
 - Example
   ```
@@ -452,18 +532,19 @@ isNotNull(field: string): RdbPredicates
 
 Sets the **RdbPredicates** to match the field whose value is not null.
 
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | field | string | Yes| Column name in the database table.|
+**Parameters**
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| field | string | Yes| Column name in the database table.|
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that matches the specified field.|
+**Return value**
+| Type| Description|
+| -------- | -------- |
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that matches the specified field.|
 
-- Example
+**Example**
   ```
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.isNotNull("NAME")
@@ -477,19 +558,20 @@ like(field: string, value: string): RdbPredicates
 
 Sets the **RdbPredicates** to match a string that is similar to the specified value.
 
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | field | string | Yes| Column name in the database table.|
-  | value | string | Yes| Value to match the **RdbPredicates**.|
+**Parameters**
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| field | string | Yes| Column name in the database table.|
+| value | string | Yes| Value to match the **RdbPredicates**.|
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that matches the specified field.|
+**Return value**
+| Type| Description|
+| -------- | -------- |
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that matches the specified field.|
 
-- Example
+**Example**
   ```
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.like("NAME", "%os%")
@@ -503,19 +585,20 @@ glob(field: string, value: string): RdbPredicates
 
 Sets the **RdbPredicates** to match the specified string.
 
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | field | string | Yes| Column name in the database table.|
-  | value | string | Yes| Value to match the **RdbPredicates**. <br>Wildcards are supported. ***** indicates zero, one, or multiple digits or characters. **?** indicates a single digit or character.|
+**Parameters**
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| field | string | Yes| Column name in the database table.|
+| value | string | Yes| Value to match the **RdbPredicates**.<br><br>Wildcards are supported. ***** indicates zero, one, or multiple digits or characters. **?** indicates a single digit or character.|
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that matches the specified field.|
+**Return value**
+| Type| Description|
+| -------- | -------- |
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that matches the specified field.|
 
-- Example
+**Example**
   ```
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.glob("NAME", "?h*g")
@@ -529,20 +612,21 @@ between(field: string, low: ValueType, high: ValueType): RdbPredicates
 
 Sets the **RdbPredicates** to match the field with data type **ValueType** and value within the specified range.
 
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | field | string | Yes| Column name in the database table.|
-  | low | [ValueType](#valuetype) | Yes| Minimum value to match the **RdbPredicates**.|
-  | high | [ValueType](#valuetype) | Yes| Maximum value to match the **RdbPredicates**.|
+**Parameters**
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| field | string | Yes| Column name in the database table.|
+| low | [ValueType](#valuetype) | Yes| Minimum value to match the **RdbPredicates**.|
+| high | [ValueType](#valuetype) | Yes| Maximum value to match the **RdbPredicates**.|
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that matches the specified field.|
+**Return value**
+| Type| Description|
+| -------- | -------- |
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that matches the specified field.|
 
-- Example
+**Example**
   ```
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.between("AGE", 10, 50)
@@ -556,20 +640,21 @@ notBetween(field: string, low: ValueType, high: ValueType): RdbPredicates
 
 Sets the **RdbPredicates** to match the field with data type **ValueType** and value out of the specified range.
 
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | field | string | Yes| Column name in the database table.|
-  | low | [ValueType](#valuetype) | Yes| Minimum value to match the **RdbPredicates**.|
-  | high | [ValueType](#valuetype) | Yes| Maximum value to match the **RdbPredicates**.|
+**Parameters**
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| field | string | Yes| Column name in the database table.|
+| low | [ValueType](#valuetype) | Yes| Minimum value to match the **RdbPredicates**.|
+| high | [ValueType](#valuetype) | Yes| Maximum value to match the **RdbPredicates**.|
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that matches the specified field.|
+**Return value**
+| Type| Description|
+| -------- | -------- |
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that matches the specified field.|
 
-- Example
+**Example**
   ```
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.notBetween("AGE", 10, 50)
@@ -578,24 +663,24 @@ Sets the **RdbPredicates** to match the field with data type **ValueType** and v
 
 ### greaterThan
 
-greaterThan(field: string, value: ValueType): RdbPredicatesgr
-
+greaterThan(field: string, value: ValueType): RdbPredicates
 
 Sets the **RdbPredicates** to match the field with data type **ValueType** and value greater than the specified value.
 
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | field | string | Yes| Column name in the database table.|
-  | value | [ValueType](#valuetype) | Yes| Value to match the **RdbPredicates**.|
+**Parameters**
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| field | string | Yes| Column name in the database table.|
+| value | [ValueType](#valuetype) | Yes| Value to match the **RdbPredicates**.|
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that matches the specified field.|
+**Return value**
+| Type| Description|
+| -------- | -------- |
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that matches the specified field.|
 
-- Example
+**Example**
   ```
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.greaterThan("AGE", 18)
@@ -609,19 +694,20 @@ lessThan(field: string, value: ValueType): RdbPredicates
 
 Sets the **RdbPredicates** to match the field with data type **ValueType** and value less than the specified value.
 
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | field | string | Yes| Column name in the database table.|
-  | value | [ValueType](#valuetype) | Yes| Value to match the **RdbPredicates**.|
+**Parameters**
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| field | string | Yes| Column name in the database table.|
+| value | [ValueType](#valuetype) | Yes| Value to match the **RdbPredicates**.|
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that matches the specified field.|
+**Return value**
+| Type| Description|
+| -------- | -------- |
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that matches the specified field.|
 
-- Example
+**Example**
   ```
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.lessThan("AGE", 20)
@@ -636,19 +722,20 @@ greaterThanOrEqualTo(field: string, value: ValueType): RdbPredicates
 
 Sets the **RdbPredicates** to match the field with data type **ValueType** and value greater than or equal to the specified value.
 
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | field | string | Yes| Column name in the database table.|
-  | value | [ValueType](#valuetype) | Yes| Value to match the **RdbPredicates**.|
+**Parameters**
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| field | string | Yes| Column name in the database table.|
+| value | [ValueType](#valuetype) | Yes| Value to match the **RdbPredicates**.|
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that matches the specified field.|
+**Return value**
+| Type| Description|
+| -------- | -------- |
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that matches the specified field.|
 
-- Example
+**Example**
   ```
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.greaterThanOrEqualTo("AGE", 18)
@@ -663,19 +750,20 @@ lessThanOrEqualTo(field: string, value: ValueType): RdbPredicates
 
 Sets the **RdbPredicates** to match the field with data type **ValueType** and value less than or equal to the specified value.
 
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | field | string | Yes| Column name in the database table.|
-  | value | [ValueType](#valuetype) | Yes| Value to match the **RdbPredicates**.|
+**Parameters**
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| field | string | Yes| Column name in the database table.|
+| value | [ValueType](#valuetype) | Yes| Value to match the **RdbPredicates**.|
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that matches the specified field.|
+**Return value**
+| Type| Description|
+| -------- | -------- |
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that matches the specified field.|
 
-- Example
+**Example**
   ```
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.lessThanOrEqualTo("AGE", 20)
@@ -690,18 +778,19 @@ orderByAsc(field: string): RdbPredicates
 
 Sets the **RdbPredicates** to match the column with values sorted in ascending order.
 
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | field | string | Yes| Column name in the database table.|
+**Parameters**
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| field | string | Yes| Column name in the database table.|
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that matches the specified field.|
+**Return value**
+| Type| Description|
+| -------- | -------- |
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that matches the specified field.|
 
-- Example
+**Example**
   ```
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.orderByAsc("NAME")
@@ -716,18 +805,19 @@ orderByDesc(field: string): RdbPredicates
 
 Sets the **RdbPredicates** to match the column with values sorted in descending order.
 
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | field | string | Yes| Column name in the database table.|
+**Parameters**
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| field | string | Yes| Column name in the database table.|
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that matches the specified field.|
+**Return value**
+| Type| Description|
+| -------- | -------- |
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that matches the specified field.|
 
-- Example
+**Example**
   ```
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.orderByDesc("AGE")
@@ -741,17 +831,24 @@ distinct(): RdbPredicates
 
 Sets the **RdbPredicates** to filter out duplicate records.
 
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that can filter out duplicate records.|
+**Return value**
+| Type| Description|
+| -------- | -------- |
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that can filter out duplicate records.|
 
-- Example
+**Example**
   ```
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.equalTo("NAME", "Rose").distinct("NAME")
-  rdbStore.query(predicates, ["NAME"])
+  let promisequery = rdbStore.query(predicates, ["NAME"])
+  promisequery.then((resultSet) => {
+      console.log("resultSet column names:" + resultSet.columnNames)
+      console.log("resultSet column count:" + resultSet.columnCount)
+  }).catch((err) => {
+      console.log("query err.")
+  })
   ```
 
 
@@ -762,18 +859,19 @@ limitAs(value: number): RdbPredicates
 
 Sets the **RdbPredicates** to specify the maximum number of records.
 
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | value | number | Yes| Maximum number of records.|
+**Parameters**
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value | number | Yes| Maximum number of records.|
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that specifies the maximum number of records.|
+**Return value**
+| Type| Description|
+| -------- | -------- |
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that specifies the maximum number of records.|
 
-- Example
+**Example**
   ```
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.equalTo("NAME", "Rose").limitAs(3)
@@ -787,18 +885,19 @@ offsetAs(rowOffset: number): RdbPredicates
 
 Sets the **RdbPredicates** to specify the start position of the returned result.
 
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | rowOffset | number | Yes| Number of rows to offset from the beginning. The value is a positive integer.|
+**Parameters**
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| rowOffset | number | Yes| Number of rows to offset from the beginning. The value is a positive integer.|
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that specifies the start position of the returned result.|
+**Return value**
+| Type| Description|
+| -------- | -------- |
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that specifies the start position of the returned result.|
 
-- Example
+**Example**
   ```
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.equalTo("NAME", "Rose").offsetAs(3)
@@ -812,18 +911,19 @@ groupBy(fields: Array&lt;string&gt;): RdbPredicates
 
 Sets the **RdbPredicates** to group rows that have the same value into summary rows.
 
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | fields | Array&lt;string&gt; | Yes| Names of columns to group.|
+**Parameters**
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| fields | Array&lt;string&gt; | Yes| Names of columns to group.|
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that groups rows with the same value.|
+**Return value**
+| Type| Description|
+| -------- | -------- |
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that groups rows with the same value.|
 
-- Example
+**Example**
   ```
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.groupBy(["AGE", "NAME"])
@@ -832,23 +932,24 @@ Sets the **RdbPredicates** to group rows that have the same value into summary r
 
 ### indexedBy
 
-indexedBy(indexName: string): RdbPredicates
-
+indexedBy(field: string): RdbPredicates
 
 Sets the **RdbPredicates** object to specify the index column.
 
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | indexName | string | Yes| Name of the index column.|
+**Parameters**
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| field | string | Yes| Name of the index column.|
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that specifies the index column.|
+**Return value**
 
-- Example
+| Type| Description|
+| -------- | -------- |
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that specifies the index column.|
+
+**Example**
   ```
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.indexedBy("SALARY_INDEX")
@@ -862,20 +963,21 @@ in(field: string, value: Array&lt;ValueType&gt;): RdbPredicates
 
 Sets the **RdbPredicates** to match the field with data type **Array&#60;ValueType&#62;** and value within the specified range.
 
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | field | string | Yes| Column name in the database table.|
-  | value | Array&lt;[ValueType](#valuetype)&gt; | Yes| Array of **ValueType**s to match.|
+**Parameters**
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| field | string | Yes| Column name in the database table.|
+| value | Array&lt;[ValueType](#valuetype)&gt; | Yes| Array of **ValueType**s to match.|
 
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that matches the specified field.|
+**Return value**
+| Type| Description|
+| -------- | -------- |
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that matches the specified field.|
 
-- Example
+**Example**
   ```
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.in("AGE", [18, 20])
@@ -889,20 +991,21 @@ notIn(field: string, value: Array&lt;ValueType&gt;): RdbPredicates
 
 Sets the **RdbPredicates** to match the field with data type **Array&#60;ValueType&#62;** and value out of the specified range.
 
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | field | string | Yes| Column name in the database table.|
-  | value | Array&lt;[ValueType](#valuetype)&gt; | Yes| Array of **ValueType**s to match.|
+**Parameters**
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| field | string | Yes| Column name in the database table.|
+| value | Array&lt;[ValueType](#valuetype)&gt; | Yes| Array of **ValueType**s to match.|
 
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that matches the specified field.|
+**Return value**
+| Type| Description|
+| -------- | -------- |
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that matches the specified field.|
 
-- Example
+**Example**
   ```
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.notIn("NAME", ["Lisa", "Rose"])
@@ -920,14 +1023,16 @@ insert(name: string, values: ValuesBucket, callback: AsyncCallback&lt;number&gt;
 
 Inserts a row of data into a table. This method uses a callback to return the result.
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | name | string | Yes| Name of the target table.|
-  | values | [ValuesBucket](#valuesbucket) | Yes| Row of data to insert.|
-  | callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the result. If the operation is successful, the row ID will be returned. Otherwise, **-1** will be returned.|
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-- Example
+**Parameters**
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| name | string | Yes| Name of the target table.|
+| values | [ValuesBucket](#valuesbucket) | Yes| Row of data to insert.|
+| callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the result. If the operation is successful, the row ID will be returned. Otherwise, **-1** will be returned.|
+
+**Example**
   ```
   const valueBucket = {
       "NAME": "Lisa",
@@ -936,8 +1041,8 @@ Inserts a row of data into a table. This method uses a callback to return the re
       "CODES": new Uint8Array([1, 2, 3, 4, 5]),
   }
   rdbStore.insert("EMPLOYEE", valueBucket, function (err, ret) {
-      expect(1).assertEqual(ret)
-      console.log(TAG + "insert first done: " + ret)})
+      console.log("insert first done: " + ret)
+  })
   ```
 
 
@@ -947,18 +1052,20 @@ insert(name: string, values: ValuesBucket):Promise&lt;number&gt;
 
 Inserts a row of data into a table. This method uses a promise to return the result.
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | name | string | Yes| Name of the target table.|
-  | values | [ValuesBucket](#valuesbucket) | Yes| Row of data to insert.|
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;number&gt; | Promise used to return the result. If the operation is successful, the row ID will be returned. Otherwise, **-1** will be returned.|
+**Parameters**
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| name | string | Yes| Name of the target table.|
+| values | [ValuesBucket](#valuesbucket) | Yes| Row of data to insert.|
 
-- Example
+**Return value**
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;number&gt; | Promise used to return the result. If the operation is successful, the row ID will be returned. Otherwise, **-1** will be returned.|
+
+**Example**
   ```
   const valueBucket = {
       "NAME": "Lisa",
@@ -966,10 +1073,12 @@ Inserts a row of data into a table. This method uses a promise to return the res
       "SALARY": 100.5,
       "CODES": new Uint8Array([1, 2, 3, 4, 5]),
   }
-  let promise = rdbStore.insert("EMPLOYEE", valueBucket)
-  promise.then(async (ret) => {
-      await console.log(TAG + "insert first done: " + ret)
-  }).catch((err) => {})
+  let promiseinsert = rdbStore.insert("EMPLOYEE", valueBucket)
+  promiseinsert.then(async (ret) => {
+      console.log("insert first done: " + ret)
+  }).catch((err) => {
+      console.log("insert err.")
+  })
   ```
 
 
@@ -979,14 +1088,16 @@ update(values: ValuesBucket, rdbPredicates: RdbPredicates, callback: AsyncCallba
 
 Updates data in the database based on the specified RdbPredicates object. This method uses a callback to return the result.
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | values | [ValuesBucket](#valuesbucket) | Yes| Data to update. The value specifies the row of data to be updated in the database. The key-value pair is associated with the column name in the target table.|
-  | rdbPredicates | [RdbPredicates](#rdbpredicates) | Yes| Row of data to insert.|
-  | callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the number of rows updated.|
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-- Example
+**Parameters**
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| values | [ValuesBucket](#valuesbucket) | Yes| Data to update. The value specifies the row of data to be updated in the database. The key-value pair is associated with the column name in the target table.|
+| rdbPredicates | [RdbPredicates](#rdbpredicates) | Yes| Row of data to insert.|
+| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the number of rows updated.|
+
+**Example**
   ```
   const valueBucket = {
       "NAME": "Rose",
@@ -997,7 +1108,7 @@ Updates data in the database based on the specified RdbPredicates object. This m
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.equalTo("NAME", "Lisa")
   rdbStore.update(valueBucket, predicates, function (err, ret) {
-      console.log(TAG + "updated row count: " + changedRows)})
+      console.log("updated row count: " + changedRows)})
   ```
 
 
@@ -1007,18 +1118,20 @@ update(values: ValuesBucket, rdbPredicates: RdbPredicates):Promise&lt;number&gt;
 
 Updates data in the database based on the specified RdbPredicates object. This method uses a promise to return the result.
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | values | [ValuesBucket](#valuesbucket) | Yes| Data to update. The value specifies the row of data to be updated in the database. The key-value pair is associated with the column name in the target table.|
-  | rdbPredicates | [RdbPredicates](#rdbpredicates) | Yes| Row of data to insert.|
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;number&gt; | Promise used to return the number of rows updated.|
+**Parameters**
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| values | [ValuesBucket](#valuesbucket) | Yes| Data to update. The value specifies the row of data to be updated in the database. The key-value pair is associated with the column name in the target table.|
+| rdbPredicates | [RdbPredicates](#rdbpredicates) | Yes| Row of data to insert.|
 
-- Example
+**Return value**
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;number&gt; | Promise used to return the number of rows updated.|
+
+**Example**
   ```
   const valueBucket = {
       "NAME": "Rose",
@@ -1028,10 +1141,12 @@ Updates data in the database based on the specified RdbPredicates object. This m
   }
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.equalTo("NAME", "Lisa")
-  let promise = rdbStore.update(valueBucket, predicates)
-  promise.then(async (ret) => {
-      await console.log(TAG + "updated row count: " + changedRows)
-  }).catch((err) => {})
+  let promiseupdate = rdbStore.update(valueBucket, predicates)
+  promiseupdate.then(async (ret) => {
+       console.log("updated row count: " + changedRows)
+  }).catch((err) => {
+      console.log("update err.")
+  })
   ```
 
 
@@ -1042,19 +1157,21 @@ delete(rdbPredicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void
 
 Deletes data from the database based on the specified RdbPredicates object. This method uses a callback to return the result.
 
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | rdbPredicates | [RdbPredicates](#rdbpredicates) | Yes| Conditions specified for deleting data.|
-  | callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the number of rows deleted.|
+**Parameters**
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| rdbPredicates | [RdbPredicates](#rdbpredicates) | Yes| Conditions specified for deleting data.|
+| callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the number of rows updated.|
 
-- Example
+**Example**
   ```
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.equalTo("NAME", "Lisa")
   rdbStore.delete(predicates, function (err, rows) {
-      console.log(TAG + "delete rows: " + rows)})
+      console.log("delete rows: " + rows)
+  })
   ```
 
 
@@ -1064,24 +1181,28 @@ delete(rdbPredicates: RdbPredicates):Promise&lt;number&gt;
 
 Deletes data from the database based on the specified RdbPredicates object. This method uses a promise to return the result.
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | rdbPredicates | [RdbPredicates](#rdbpredicates) | Yes| Conditions specified for deleting data.|
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;number&gt; | Promise used to return the number of rows deleted.|
+**Parameters**
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| rdbPredicates | [RdbPredicates](#rdbpredicates) | Yes| Conditions specified for deleting data.|
 
-- Example
+**Return value**
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;number&gt; | Promise used to return the number of rows updated.|
+
+**Example**
   ```
-  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-  predicates.equalTo("NAME", "Lisa")
-  let promise = rdbStore.delete(predicates)
-  promise.then((rows) => {
-      console.log(TAG + "delete rows: " + rows)
-  }).catch((err) => {})
+  let predicatesdelete = new data_rdb.RdbPredicates("EMPLOYEE")
+  predicatesdelete.equalTo("NAME", "Lisa")
+  let promisedelete = rdbStore.delete(predicates)
+  promisedelete.then((rows) => {
+      console.log("delete rows: " + rows)
+  }).catch((err) => {
+      console.log("delete err.")
+  })
   ```
 
 
@@ -1091,20 +1212,23 @@ query(rdbPredicates: RdbPredicates, columns: Array&lt;string&gt;, callback: Asyn
 
 Queries data in the database based on specified conditions. This method uses a callback to return the result.
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | rdbPredicates | [RdbPredicates](#rdbpredicates) | Yes| Query conditions specified by the **RdbPredicates** object.|
-  | columns | Array&lt;string&gt; | Yes| Columns to query. If this parameter is not specified, the query applies to all columns.|
-  | callback | AsyncCallback&lt;[ResultSet](js-apis-data-resultset.md)&gt; | Yes| Callback invoked to return the result. If the operation is successful, a **ResultSet** object will be returned.|
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-- Example
+**Parameters**
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| rdbPredicates | [RdbPredicates](#rdbpredicates) | Yes| Query conditions specified by the **RdbPredicates** object.|
+| columns | Array&lt;string&gt; | Yes| Columns to query. If this parameter is not specified, the query applies to all columns.|
+| callback | AsyncCallback&lt;[ResultSet](js-apis-data-resultset.md)&gt; | Yes| Callback invoked to return the result. If the operation is successful, a **ResultSet** object will be returned.|
+
+**Example**
   ```
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.equalTo("NAME", "Rose")
   rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"], function (err, resultSet) {
-      console.log(TAG + "resultSet column names:" + resultSet.columnNames)
-      console.log(TAG + "resultSet column count:" + resultSet.columnCount)})
+      console.log("resultSet column names:" + resultSet.columnNames)
+      console.log("resultSet column count:" + resultSet.columnCount)
+  })
   ```
 
 
@@ -1114,25 +1238,30 @@ query(rdbPredicates: RdbPredicates, columns?: Array&lt;string&gt;):Promise&lt;Re
 
 Queries data in the database based on specified conditions. This method uses a promise to return the result.
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | rdbPredicates | [RdbPredicates](#rdbpredicates) | Yes| Query conditions specified by the **RdbPredicates** object.|
-  | columns | Array&lt;string&gt; | No| Columns to query. If this parameter is not specified, the query applies to all columns.|
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;[ResultSet](../apis/js-apis-data-resultset.md)&gt; | Promise used to return the result. If the operation is successful, a **ResultSet** object will be returned.|
+**Parameters**
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| rdbPredicates | [RdbPredicates](#rdbpredicates) | Yes| Query conditions specified by the **RdbPredicates** object.|
+| columns | Array&lt;string&gt; | No| Columns to query. If this parameter is not specified, the query applies to all columns.|
 
-- Example
+**Return value**
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;[ResultSet](../apis/js-apis-data-resultset.md)&gt; | Promise used to return the result. If the operation is successful, a **ResultSet** object will be returned.|
+
+**Example**
   ```
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.equalTo("NAME", "Rose")
-  let promise = rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"])
-  promise.then((resultSet) => {
-      console.log(TAG + "resultSet column names:" + resultSet.columnNames)
-      console.log(TAG + "resultSet column count:" + resultSet.columnCount)})
+  let promisequery = rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"])
+  promisequery.then((resultSet) => {
+      console.log("resultSet column names:" + resultSet.columnNames)
+      console.log("resultSet column count:" + resultSet.columnCount)
+  }).catch((err) => {
+      console.log("query err.")
+  })
   ```
 
 
@@ -1142,18 +1271,21 @@ querySql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&
 
 Queries data in the RDB store using the specified SQL statement. This method uses a callback to return the result.
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | sql | string | Yes| SQL statement to run.|
-  | bindArgs | Array&lt;[ValueType](#valuetype)&gt; | Yes| Values of the parameters in the SQL statement.|
-  | callback | AsyncCallback&lt;[ResultSet](js-apis-data-resultset.md)&gt; | Yes| Callback invoked to return the result. If the operation is successful, a **ResultSet** object will be returned.|
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-- Example
+**Parameters**
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| sql | string | Yes| SQL statement to run.|
+| bindArgs | Array&lt;[ValueType](#valuetype)&gt; | Yes| Values of the parameters in the SQL statement.|
+| callback | AsyncCallback&lt;[ResultSet](js-apis-data-resultset.md)&gt; | Yes| Callback invoked to return the result. If the operation is successful, a **ResultSet** object will be returned.|
+
+**Example**
   ```
   rdbStore.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = ?", ['sanguo'], function (err, resultSet) {
-      console.log(TAG + "resultSet column names:" + resultSet.columnNames)
-      console.log(TAG + "resultSet column count:" + resultSet.columnCount)})
+      console.log("resultSet column names:" + resultSet.columnNames)
+      console.log("resultSet column count:" + resultSet.columnCount)
+  })
   ```
 
 
@@ -1163,23 +1295,28 @@ querySql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;ResultSet&gt
 
 Queries data in the RDB store using the specified SQL statement. This method uses a promise to return the result.
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | sql | string | Yes| SQL statement to run.|
-  | bindArgs | Array&lt;[ValueType](#valuetype)&gt; | No| Values of the parameters in the SQL statement.|
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;[ResultSet](../apis/js-apis-data-resultset.md)&gt; | Promise used to return the result. If the operation is successful, a **ResultSet** object will be returned.|
+**Parameters**
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| sql | string | Yes| SQL statement to run.|
+| bindArgs | Array&lt;[ValueType](#valuetype)&gt; | No| Values of the parameters in the SQL statement.|
 
-- Example
+**Return value**
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;[ResultSet](../apis/js-apis-data-resultset.md)&gt; | Promise used to return the result. If the operation is successful, a **ResultSet** object will be returned.|
+
+**Example**
   ```
-  let promise = rdbStore.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = ?", ['sanguo'])
-  promise.then((resultSet) => {
-      console.log(TAG + "resultSet column names:" + resultSet.columnNames)
-      console.log(TAG + "resultSet column count:" + resultSet.columnCount)})
+  let promisequerySql = rdbStore.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = ?", ['sanguo'])
+  promisequerySql.then((resultSet) => {
+      console.log("resultSet column names:" + resultSet.columnNames)
+      console.log("resultSet column count:" + resultSet.columnCount)
+  }).catch((err) => {
+      console.log("querySql err.")
+  })
   ```
 
 
@@ -1189,17 +1326,20 @@ executeSql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallbac
 
 Runs the SQL statement that contains the specified parameters but does not return a value. This method uses a callback to return the execution result.
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | sql | string | Yes| SQL statement to run.|
-  | bindArgs | Array&lt;[ValueType](#valuetype)&gt; | Yes| Values of the parameters in the SQL statement.|
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result.|
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-- Example
+**Parameters**
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| sql | string | Yes| SQL statement to run.|
+| bindArgs | Array&lt;[ValueType](#valuetype)&gt; | Yes| Values of the parameters in the SQL statement.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result.|
+
+**Example**
   ```
   rdbStore.executeSql("DELETE FROM EMPLOYEE", null, function () {
-      console.info(TAG + 'delete done.')})
+      console.info('delete done.')
+  })
   ```
 
 
@@ -1209,37 +1349,122 @@ executeSql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;void&gt;
 
 Runs the SQL statement that contains the specified parameters but does not return a value. This method uses a promise to return the execution result.
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | sql | string | Yes| SQL statement to run.|
-  | bindArgs | Array&lt;[ValueType](#valuetype)&gt; | No| Values of the parameters in the SQL statement.|
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to return the result.|
+**Parameters**
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| sql | string | Yes| SQL statement to run.|
+| bindArgs | Array&lt;[ValueType](#valuetype)&gt; | No| Values of the parameters in the SQL statement.|
 
-- Example
+**Return value**
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Example**
   ```
-  let promise = rdbStore.executeSql("DELETE FROM EMPLOYEE")
-  promise.then(() => {
-      console.info(TAG + 'delete done.')})
+  let promiseexecuteSql = rdbStore.executeSql("DELETE FROM EMPLOYEE")
+  promiseexecuteSql.then(() => {
+      console.info('delete done.')
+  }).catch((err) => {
+      console.log("executeSql err.")
+  })
   ```
 
-### setDistributedTables
+### beginTransaction<sup>8+</sup>
 
-setDistributedTables(tables: Array<string>, callback: AsyncCallback<void>): void;
+beginTransaction():void
+
+Starts the transaction before executing an SQL statement.
+
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**Example**
+```
+  rdbStore.beginTransaction()
+  const valueBucket = {
+      "name": "lisi",
+      "age": 18,
+      "salary": 100.5,
+      "blobType": new Uint8Array([1, 2, 3]),
+  }
+  rdbStore.insert("test", valueBucket, function (err, ret) {
+      console.log("insert done: " + ret)
+  })
+  rdbStore.commit()
+```
+
+
+### commit<sup>8+</sup>
+
+commit():void
+
+Commits the executed SQL statements.
+
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**Example**
+```
+  rdbStore.beginTransaction()
+  const valueBucket = {
+      "name": "lisi",
+      "age": 18,
+      "salary": 100.5,
+      "blobType": new Uint8Array([1, 2, 3]),
+  }
+
+  rdbStore.insert("test", valueBucket, function (err, ret) {
+      console.log("insert done: " + ret)
+  })
+  rdbStore.commit()
+```
+
+
+### rollBack<sup>8+</sup>
+
+rollBack():void;
+
+Rolls back the SQL statements that have been executed.
+
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**Example**
+```
+  try {
+      rdbStore.beginTransaction()
+      const valueBucket = {
+          "id": 1,
+          "name": "lisi",
+          "age": 18,
+          "salary": 100.5,
+          "blobType": new Uint8Array([1, 2, 3]),
+      }
+      rdbStore.insert("test", valueBucket, function (err, ret) {
+          console.log("insert done: " + ret)
+      })
+      rdbStore.commit()
+  } catch (e) {
+      rdbStore.rollBack()
+  }
+```
+
+
+### setDistributedTables<sup>8+</sup>
+
+setDistributedTables(tables: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 Sets a list of distributed tables. This method uses a callback to return the result.
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | tables | Array<string> | Yes| Names of the distributed tables to be set.|
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result.|
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-- Example
+**Parameters**
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| tables | Array&lt;string&gt; | Yes| Names of the distributed tables to set.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result.|
+
+**Example**
   ```
   rdbStore.setDistributedTables(["EMPLOYEE"], function (err) {
       if (err) {
@@ -1251,46 +1476,50 @@ Sets a list of distributed tables. This method uses a callback to return the res
   ```
 
 
-### setDistributedTables
+### setDistributedTables<sup>8+</sup>
 
- setDistributedTables(tables: Array<string>): Promise<void>;
+ setDistributedTables(tables: Array&lt;string&gt;): Promise&lt;void&gt;
 
 Sets a list of distributed tables. This method uses a promise to return the result.
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | tables | Array<string> | Yes| Names of the distributed tables to be set.|
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to return the result.|
+**Parameters**
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| tables | Array&lt;string&gt; | Yes| Names of the distributed tables to set.|
 
-- Example
+**Return value**
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Example**
   ```
-  let promise = rdbStore.setDistributedTables(["EMPLOYEE"])
-  promise.then(() => {
+  let promiseset = rdbStore.setDistributedTables(["EMPLOYEE"])
+  promiseset.then(() => {
       console.info("setDistributedTables success.")
   }).catch((err) => {
-      console.info("setDistributedTables failed."")
+      console.info("setDistributedTables failed.")
   })
   ```
 
-### obtainDistributedTableName
+### obtainDistributedTableName<sup>8+</sup>
 
-obtainDistributedTableName(device: string, table: string, callback: AsyncCallback<string>): void;
+obtainDistributedTableName(device: string, table: string, callback: AsyncCallback&lt;string&gt;): void
 
 Obtains the distributed table name for a remote device based on the local table name. The distributed table name is required when the database of a remote device is queried. This method uses a callback to return the result.
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | device | string | Yes| Remote device.|
-  | table | string | Yes| Local table name.|
-  | callback | AsyncCallback&lt;string&gt; | Yes| Callback invoked to return the result. If the operation succeeds, the distributed table name of the remote device is returned.|
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-- Example
+**Parameters**
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| device | string | Yes| Remote device.|
+| table | string | Yes| Local table name.|
+| callback | AsyncCallback&lt;string&gt; | Yes| Callback invoked to return the result. If the operation succeeds, the distributed table name of the remote device is returned.|
+
+**Example**
   ```
   rdbStore.obtainDistributedTableName(deviceId, "EMPLOYEE", function (err, tableName) {
       if (err) {
@@ -1302,47 +1531,51 @@ Obtains the distributed table name for a remote device based on the local table 
   ```
 
 
-### obtainDistributedTableName
+### obtainDistributedTableName<sup>8+</sup>
 
- obtainDistributedTableName(device: string, table: string): Promise<string>;
+ obtainDistributedTableName(device: string, table: string): Promise&lt;string&gt;
 
 Obtains the distributed table name for a remote device based on the local table name. The distributed table name is required when the database of a remote device is queried. This method uses a promise to return the result.
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | device | string | Yes| Remote device.|
-  | table | string | Yes| Local table name.|
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;string&gt; | Promise used to return the result. If the operation succeeds, the distributed table name of the remote device is returned.|
+**Parameters**
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| device | string | Yes| Remote device.|
+| table | string | Yes| Local table name.|
 
-- Example
+**Return value**
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;string&gt; | Promise used to return the result. If the operation succeeds, the distributed table name of the remote device is returned.|
+
+**Example**
   ```
-  let promise = rdbStore.obtainDistributedTableName(deviceId, "EMPLOYEE")
-  promise.then((tableName) => {
+  let promiseDistr = rdbStore.obtainDistributedTableName(deviceId, "EMPLOYEE")
+  promiseDistr.then((tableName) => {
       console.info('obtainDistributedTableName success, tableName=' + tableName)
   }).catch((err) => {
       console.info('obtainDistributedTableName failed.')
   })
   ```
 
-### sync
+### sync<sup>8+</sup>
 
-sync(mode: SyncMode, predicates: RdbPredicates, callback: AsyncCallback<Array<[string, number]>>): void;
+sync(mode: SyncMode, predicates: RdbPredicates, callback: AsyncCallback&lt;Array&lt;[string, number]&gt;&gt;): void
 
 Synchronizes data between devices. This method uses a callback to return the result.
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | mode | SyncMode | Yes| Data synchronization mode, which can be **push** or **pull**.|
-  | predicates | RdbPredicates | Yes| **RdbPredicates** object that specifies the data and devices to synchronize.|
-  | callback | AsyncCallback&lt;Array<[string, number]>&gt; | Yes| Callback invoked to send the synchronization result to the caller. <br>**string** indicates the device ID. <br>**number** indicates the synchronization status of each device. The value **0** indicates a successful synchronization. Other values indicate a synchronization failure. |
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-- Example
+**Parameters**
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| mode | [SyncMode](#syncmode8) | Yes| Data synchronization mode. The value can be **push** or **pull**.|
+| predicates | [RdbPredicates](#rdbpredicates) | Yes| **RdbPredicates** object that specifies the data and devices to synchronize.|
+| callback | AsyncCallback&lt;Array&lt;[string, number]&gt;&gt; | Yes| Callback invoked to send the synchronization result to the caller. <br>**string** indicates the device ID. <br>**number** indicates the synchronization status of each device. The value **0** indicates a successful synchronization. Other values indicate a synchronization failure. |
+
+**Example**
   ```
   let predicate = new rdb.RdbPredicates('EMPLOYEE')
   predicate.inDevices(['12345678abcde'])
@@ -1359,77 +1592,58 @@ Synchronizes data between devices. This method uses a callback to return the res
   ```
 
 
-### sync
+### sync<sup>8+</sup>
 
- sync(mode: SyncMode, predicates: RdbPredicates): Promise<Array<[string, number]>>;
+ sync(mode: SyncMode, predicates: RdbPredicates): Promise&lt;Array&lt;[string, number]&gt;&gt;
 
 Synchronizes data between devices. This method uses a promise to return the result.
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | mode | SyncMode | Yes| Data synchronization mode, which can be **push** or **pull**.|
-  | predicates | RdbPredicates | Yes| **RdbPredicates** object that specifies the data and devices to synchronize.|
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;Array<[string, number]>&gt; | Promise used to return the synchronization result to the caller. <br>**string** indicates the device ID. <br>**number** indicates the synchronization status of each device. The value **0** indicates a successful synchronization. Other values indicate a synchronization failure. |
+**Parameters**
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| mode | [SyncMode](#syncmode8) | Yes| Data synchronization mode. The value can be **push** or **pull**.|
+| predicates | [RdbPredicates](#rdbpredicates) | Yes| **RdbPredicates** object that specifies the data and devices to synchronize.|
 
-- Example
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;Array&lt;[string, number]&gt;&gt; | Promise used to return the synchronization result to the caller. <br>**string** indicates the device ID. <br>**number** indicates the synchronization status of each device. The value **0** indicates a successful synchronization. Other values indicate a synchronization failure. |
+
+**Example**
   ```
-  let predicate = new rdb.RdbPredicates('EMPLOYEE')
-  predicate.inDevices(['12345678abcde'])
-  let promise = rdbStore.sync(rdb.SyncMode.SYNC_MODE_PUSH, predicate)
-  promise.then(result) {
+  let predicatesync = new data_rdb.RdbPredicates('EMPLOYEE')
+  predicatesync.inDevices(['12345678abcde'])
+  let promisesync = rdbStore.sync(data_rdb.SyncMode.SYNC_MODE_PUSH, predicatesync)
+  promisesync.then((result) =>{
       console.log('sync done.')
       for (let i = 0; i < result.length; i++) {
           console.log('device=' + result[i][0] + ' status=' + result[i][1])
       }
-   }).catch((err) => {
-       console.log('sync failed')
-   })
+  }).catch((err) => {
+      console.log('sync failed')
+  })
   ```
 
-### on
+### on('dataChange')<sup>8+</sup>
 
-on(event: 'dataChange', type: SubscribeType, observer: Callback<Array<string>>): void;
+on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;string&gt;&gt;): void
 
 Registers an observer for this RDB store. When the data in the RDB store changes, a callback is invoked to return the data changes.
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | type | SubscribeType | Yes| Type defined in **SubscribeType**.|
-  | observer | Callback<Array<string>> | Yes| Observer that listens for the data changes in the RDB store.|
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-- Example
-  ```
-  function storeObserver(devices) {
-      for (let i = 0; i < devices.length; i++) {
-          console.log('device=' + device[i] + ' data changed')
-       }
-   }
-   try {
-       rdbStore.on('dataChange', rdb.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver)
-   } catch (err) {
-       console.log('register observer failed')
-   }
-  ```
+**Parameters**
 
-### off
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| event | string | Yes| The value is'dataChange', which indicates a data change event.|
+| type | [SubscribeType](#subscribetype8) | Yes| Type defined in **SubscribeType**.|
+| observer | Callback&lt;Array&lt;string&gt;&gt; | Yes| Observer that listens for the data changes in the RDB store.|
 
-off(event:'dataChange', type: SubscribeType, observer: Callback<Array<string>>): void;
-
-Deletes the specified observer of the RDB store. This method uses a callback to return the result.
-
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | type | SubscribeType | Yes| Type defined in **SubscribeType**.|
-  | observer | Callback<Array<string>> | Yes| Data change observer registered.|
-
-- Example
+**Example**
   ```
   function storeObserver(devices) {
       for (let i = 0; i < devices.length; i++) {
@@ -1437,7 +1651,38 @@ Deletes the specified observer of the RDB store. This method uses a callback to 
       }
   }
   try {
-      rdbStore.off('dataChange', rdb.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver)
+      rdbStore.on('dataChange', data_rdb.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver)
+  } catch (err) {
+      console.log('register observer failed')
+  }
+  ```
+
+### off('dataChange')<sup>8+</sup>
+
+off(event:'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;string&gt;&gt;): void
+
+Deletes the specified observer of the RDB store. This method uses a callback to return the result.
+
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| event | string | Yes| The value is'dataChange', which indicates a data change event.|
+| type | [SubscribeType](#subscribetype8)    | Yes| Type defined in **SubscribeType**.|
+| observer | Callback&lt;Array&lt;string&gt;&gt; | Yes| Data change observer registered.|
+
+**Example**
+
+  ```
+  function storeObserver(devices) {
+      for (let i = 0; i < devices.length; i++) {
+          console.log('device=' + device[i] + ' data changed')
+      }
+  }
+  try {
+      rdbStore.off('dataChange', data_rdb.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver)
   } catch (err) {
       console.log('unregister observer failed')
   }
@@ -1448,6 +1693,8 @@ Deletes the specified observer of the RDB store. This method uses a callback to 
 
 Manages the configuration of an RDB store.
 
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | name | string | Yes| Database file name.|
@@ -1456,6 +1703,8 @@ Manages the configuration of an RDB store.
 ## ValueType
 
 Defines the data types allowed.
+
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
 | Name| Description|
 | -------- | -------- |
@@ -1468,25 +1717,30 @@ Defines the data types allowed.
 
 Defines a bucket to store key-value pairs.
 
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | [key:&nbsp;string] | [ValueType](#valuetype)\|&nbsp;Uint8Array&nbsp;\|&nbsp;null | Yes| Defines a bucket to store key-value pairs.|
 
 
-## SyncMode
+## SyncMode<sup>8+</sup>
 
 Defines the database synchronization mode.
 
-| Name| Description|
-| -------- | -------- |
-| SYNC_MODE_PUSH | Data is pushed from a local device to a remote device.|
-| SYNC_MODE_PULL | Data is loaded from a remote device to a local device.|
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-## SubscribeType
+| Name      | Default Value| Description|
+| --------  | ----- |----- |
+| SYNC_MODE_PUSH | 0 | Data is pushed from a local device to a remote device.|
+| SYNC_MODE_PULL | 1 | Data is pulled from a remote device to a local device.|
+
+## SubscribeType<sup>8+</sup>
 
 Defines the subscription type.
 
-| Name| Description|
-| -------- | -------- |
-| SUBSCRIBE_TYPE_REMOTE | Subscribe to remote data changes.|
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+| Name     | Default Value| Description|
+| -------- | ----- |---- |
+| SUBSCRIBE_TYPE_REMOTE | 0 | Subscribe to remote data changes.|
