@@ -7,7 +7,7 @@ Stage模型是基于API version 9的应用开发模型，对此模型的介绍�
 - 应用向用户申请授权。
 - 系统环境变化通知给AbilityStage及Ability。
 - 通用组件Call功能，详见[Call调用开发指导](stage-call.md)。
-- 连接ServiceAbility，与ServiceAbility断开连接，详见[ServiceExtensionAbility开发指导](stage-serviceextension.md)。
+- 连接ServiceExtensionAbility，与ServiceExtensionAbility断开连接，详见[ServiceExtensionAbility开发指导](stage-serviceextension.md)。
 - 应用迁移，详见[应用迁移开发指导](stage-ability-continuation.md)。
 
 ### 启动模式
@@ -16,11 +16,11 @@ ability支持单实例、多实例和指定实例3种启动模式。
 
 | 启动模式     | 描述     |说明             |
 | ----------- | -------  |---------------- |
-| stand       | 多实例   | 每次startAbility都会启动一个新的实例 |
+| standard    | 多实例   | 每次startAbility都会启动一个新的实例 |
 | singleton   | 单实例   | 系统中只存在唯一一个实例，startAbility时，如果已存在，则复用系统中的唯一一个实例 |
 | specified   | 指定实例 | 运行时由ability内部业务决定是否创建多实例 |
 
-缺省情况下是stand模式。
+缺省情况下是standard模式。
 
 ## 接口说明
 AbilityStage功能如下（AbilityStage类，拥有context属性，具体的API详见[接口文档](../reference/apis/js-apis-application-abilitystage.md)）：
@@ -274,6 +274,6 @@ export default class MainAbility extends Ability { {
 ## 开发实例
 针对Stage模型Ability开发，有以下示例工程可供参考：
 
-[eTSStageCallAbility](https://gitee.com/openharmony/app_samples/tree/master/ability/eTSStageCallAbility)
+[StageCallAbility](https://gitee.com/openharmony/app_samples/tree/master/ability/StageCallAbility)
 
-本示例eTSStageCallAbility中，在Application目录的AbilityStage.ts中实现AbilityStage的接口，在MainAbility目录实现Ability的接口并设置"pages/index"为Ability的页面，在CalleeAbility目录实现另一个Ability并设置"pages/second"为Ability的页面。支持MainAbility启动CalleeAbility。
+本示例StageCallAbility中，在Application目录的AbilityStage.ts中实现AbilityStage的接口，在MainAbility目录实现Ability的接口并设置"pages/index"为Ability的页面，在CalleeAbility目录实现另一个Ability并设置"pages/second"为Ability的页面。支持MainAbility启动CalleeAbility。
