@@ -656,7 +656,7 @@ Exports a key. This method uses an asynchronous callback to return the result.
 | -------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | keyAlias | string                                    | Yes  | Key alias, which must be the same as the alias used when the key was generated.                |
 | options  | [HuksOptions](#huksoptions)               | Yes  | Empty object (leave this parameter empty).                                    |
-| callback | AsyncCallback\<[HuksResult](#huksresult)> | Yes  | Callback used to return the result. If the operation is successful, **HUKS_SUCCESS** will be returned. If the operation fails, an error code will be returned. For details about the error codes, see **HuksResult**.**outData** contains the public key exported.|
+| callback | AsyncCallback\<[HuksResult](#huksresult)> | Yes  | Callback used to return the result. If the operation is successful, **HUKS_SUCCESS** will be returned. If the operation fails, an error code will be returned. For details about the error codes, see **HuksResult**.<br/>**outData** contains the public key exported.|
 
 **Example**
 
@@ -687,7 +687,7 @@ Exports a key. This method uses a promise to return the result.
 
 | Type                               | Description                                                        |
 | ----------------------------------- | ------------------------------------------------------------ |
-| Promise\<[HuksResult](#huksresult)> | Promise used to return the result. If the operation is successful, **HUKS_SUCCESS** will be returned. If the operation fails, an error code will be returned. For details about the error codes, see **HuksResult**.**outData** contains the public key exported.|
+| Promise\<[HuksResult](#huksresult)> | Promise used to return the result. If the operation is successful, **HUKS_SUCCESS** will be returned. If the operation fails, an error code will be returned. For details about the error codes, see **HuksResult**.<br/>**outData** contains the public key exported.|
 
 **Example**
 
