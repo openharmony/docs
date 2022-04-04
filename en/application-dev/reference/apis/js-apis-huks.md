@@ -91,21 +91,21 @@ Enumerates error codes.
 
 ## HuksKeyPurpose
 
-Represents the purpose (usage) of a key or key pair.
+Represents the purpose (usage) of a key.
 
 **System capability**: SystemCapability.Security.Huks
 
-| Name                    | Value  | Description                                      |
-| ------------------------ | ---- | ------------------------------------------ |
-| HUKS_KEY_PURPOSE_ENCRYPT | 1    | The key (key pair) is used to encrypt the plaintext.|
-| HUKS_KEY_PURPOSE_DECRYPT | 2    | The key (key pair) is used to decrypt the ciphertext.|
-| HUKS_KEY_PURPOSE_SIGN    | 4    | The key pair is used to sign data.            |
-| HUKS_KEY_PURPOSE_VERIFY  | 8    | The key pair is used to verify signed data.          |
-| HUKS_KEY_PURPOSE_DERIVE  | 16   | The key is used to derive a key.                    |
-| HUKS_KEY_PURPOSE_WRAP    | 32   | The key is used for encrypted import.                    |
-| HUKS_KEY_PURPOSE_UNWRAP  | 64   | The key is exported in encrypted mode.                        |
-| HUKS_KEY_PURPOSE_MAC     | 128  | The key is used to generate a message authentication code (MAC).           |
-| HUKS_KEY_PURPOSE_AGREE   | 256  | The key pair is used for key agreement.              |
+| Name                    | Value  | Description                            |
+| ------------------------ | ---- | -------------------------------- |
+| HUKS_KEY_PURPOSE_ENCRYPT | 1    | The key is used to encrypt plain text.|
+| HUKS_KEY_PURPOSE_DECRYPT | 2    | The key is used to decrypt the cipher text.|
+| HUKS_KEY_PURPOSE_SIGN    | 4    | The key is used to sign data.    |
+| HUKS_KEY_PURPOSE_VERIFY  | 8    | The key is used to verify the signed data.  |
+| HUKS_KEY_PURPOSE_DERIVE  | 16   | The key is used to derive a key.          |
+| HUKS_KEY_PURPOSE_WRAP    | 32   | The key is used for encrypted import.          |
+| HUKS_KEY_PURPOSE_UNWRAP  | 64   | The key is exported in encrypted mode.              |
+| HUKS_KEY_PURPOSE_MAC     | 128  | The key is used to generate a message authentication code (MAC). |
+| HUKS_KEY_PURPOSE_AGREE   | 256  | The key is used for key agreement.      |
 
 ## HuksKeyDigest
 
@@ -155,30 +155,30 @@ Enumerates the cipher modes.
 
 ## HuksKeySize
 
-Enumerates the key (key pair) sizes.
+Represents the key length.
 
 **System capability**: SystemCapability.Security.Huks
 
-| Name                        | Value  | Description                                        |
-| ---------------------------- | ---- | -------------------------------------------- |
-| HUKS_RSA_KEY_SIZE_512        | 512  | Rivest-Shamir-Adleman (RSA) key pair of 512 bits.       |
-| HUKS_RSA_KEY_SIZE_768        | 768  | RSA key pair of 768 bits.       |
-| HUKS_RSA_KEY_SIZE_1024       | 1024 | RSA key pair of 1024 bits.      |
-| HUKS_RSA_KEY_SIZE_2048       | 2048 | RSA key pair of 2048 bits.      |
-| HUKS_RSA_KEY_SIZE_3072       | 3072 | RSA key pair of 3072 bits.      |
-| HUKS_RSA_KEY_SIZE_4096       | 4096 | RSA key pair of 4096 bits.      |
-| HUKS_ECC_KEY_SIZE_224        | 224  | ECC key pair of 224 bits.       |
-| HUKS_ECC_KEY_SIZE_256        | 256  | ECC key pair of 256 bits.       |
-| HUKS_ECC_KEY_SIZE_384        | 384  | ECC key pair of 384 bits.       |
-| HUKS_ECC_KEY_SIZE_521        | 521  | ECC key pair of 521 bits.       |
-| HUKS_AES_KEY_SIZE_128        | 128  | AES key of 128 bits.         |
-| HUKS_AES_KEY_SIZE_192        | 196  | AES key of 196 bits.         |
-| HUKS_AES_KEY_SIZE_256        | 256  | AES key of 256 bits.         |
-| HUKS_AES_KEY_SIZE_512        | 512  | AES key of 512 bits.         |
-| HUKS_CURVE25519_KEY_SIZE_256 | 256  | Curve25519 key pair of 256 bits.|
-| HUKS_DH_KEY_SIZE_2048        | 2048 | DH key pair of 2048 bits.       |
-| HUKS_DH_KEY_SIZE_3072        | 3072 | DH key pair of 3072 bits.       |
-| HUKS_DH_KEY_SIZE_4096        | 4096 | The DH key pair is 4096 bits.       |
+| Name                        | Value  | Description                                      |
+| ---------------------------- | ---- | ------------------------------------------ |
+| HUKS_RSA_KEY_SIZE_512        | 512  | Rivest-Shamir-Adleman (RSA) key of 512 bits.       |
+| HUKS_RSA_KEY_SIZE_768        | 768  | RSA key of 768 bits.       |
+| HUKS_RSA_KEY_SIZE_1024       | 1024 | RSA key of 1024 bits.      |
+| HUKS_RSA_KEY_SIZE_2048       | 2048 | RSA key of 2048 bits.      |
+| HUKS_RSA_KEY_SIZE_3072       | 3072 | RSA key of 3072 bits.      |
+| HUKS_RSA_KEY_SIZE_4096       | 4096 | RSA key of 4096 bits.      |
+| HUKS_ECC_KEY_SIZE_224        | 224  | ECC key of 224 bits.       |
+| HUKS_ECC_KEY_SIZE_256        | 256  | ECC key of 256 bits.       |
+| HUKS_ECC_KEY_SIZE_384        | 384  | ECC key of 384 bits.       |
+| HUKS_ECC_KEY_SIZE_521        | 521  | ECC key of 521 bits.       |
+| HUKS_AES_KEY_SIZE_128        | 128  | AES key of 128 bits.       |
+| HUKS_AES_KEY_SIZE_192        | 196  | AES key of 196 bits.       |
+| HUKS_AES_KEY_SIZE_256        | 256  | AES key of 256 bits.       |
+| HUKS_AES_KEY_SIZE_512        | 512  | AES key of 512 bits.       |
+| HUKS_CURVE25519_KEY_SIZE_256 | 256  | Curve25519 key of 256 bits.|
+| HUKS_DH_KEY_SIZE_2048        | 2048 | DH key of 2048 bits.       |
+| HUKS_DH_KEY_SIZE_3072        | 3072 | DH key of 3072 bits.       |
+| HUKS_DH_KEY_SIZE_4096        | 4096 | DH key of 4096 bits.       |
 
 ## HuksKeyAlg
 
@@ -254,14 +254,14 @@ Enumerates the tag data types.
 **System capability**: SystemCapability.Security.Huks
 
 
-| Name                 | Value     | Description                             |
-| --------------------- | ------- | --------------------------------- |
-| HUKS_TAG_TYPE_INVALID | 0 << 28 | Invalid tag type.              |
-| HUKS_TAG_TYPE_INT     | 1 << 28 | int.    |
-| HUKS_TAG_TYPE_UINT    | 2 << 28 | uint.    |
-| HUKS_TAG_TYPE_ULONG   | 3 << 28 | bigint.    |
-| HUKS_TAG_TYPE_BOOL    | 4 << 28 | Boolean.   |
-| HUKS_TAG_TYPE_BYTES   | 5 << 28 | Uint8Array.|
+| Name                 | Value     | Description                                   |
+| --------------------- | ------- | --------------------------------------- |
+| HUKS_TAG_TYPE_INVALID | 0 << 28 | Invalid tag type.                    |
+| HUKS_TAG_TYPE_INT     | 1 << 28 | Number of the int type. |
+| HUKS_TAG_TYPE_UINT    | 2 << 28 | Number of the uint type.|
+| HUKS_TAG_TYPE_ULONG   | 3 << 28 | bigint.          |
+| HUKS_TAG_TYPE_BOOL    | 4 << 28 | Boolean.         |
+| HUKS_TAG_TYPE_BYTES   | 5 << 28 | Uint8Array.      |
 
 ## HuksTag
 
@@ -273,15 +273,15 @@ Enumerates the tags used to invoke parameters.
 | -------------------------------------- | ---------------------------------------- | -------------------------------------- |
 | HUKS_TAG_INVALID                       | HuksTagType.HUKS_TAG_TYPE_INVALID \| 0   | Invalid tag.                       |
 | HUKS_TAG_ALGORITHM                     | HUKS_TAG_TYPE_UINT \| 1                  | Indicates the algorithm.                       |
-| HUKS_TAG_PURPOSE                       | HuksTagType.HUKS_TAG_TYPE_UINT \| 2      | Indicates the purpose (usage) of a key or key pair.         |
-| HUKS_TAG_KEY_SIZE                      | HuksTagType.HUKS_TAG_TYPE_UINT \| 3      | Indicates the key (key pair) length.         |
+| HUKS_TAG_PURPOSE                       | HuksTagType.HUKS_TAG_TYPE_UINT \| 2      | Indicates the purpose of a key.                   |
+| HUKS_TAG_KEY_SIZE                      | HuksTagType.HUKS_TAG_TYPE_UINT \| 3      | Indicates the key length.                   |
 | HUKS_TAG_DIGEST                        | HuksTagType.HUKS_TAG_TYPE_UINT \| 4      | Indicates the digest algorithm.                   |
 | HUKS_TAG_PADDING                       | HuksTagType.HUKS_TAG_TYPE_UINT \| 5      | Indicates the padding algorithm.                   |
 | HUKS_TAG_BLOCK_MODE                    | HuksTagType.HUKS_TAG_TYPE_UINT \| 6      | Indicates the cipher mode.                   |
 | HUKS_TAG_KEY_TYPE                      | HuksTagType.HUKS_TAG_TYPE_UINT \| 7      | Indicates the key type.                   |
-| HUKS_TAG_ASSOCIATED_DATA               | HuksTagType.HUKS_TAG_TYPE_BYTES \| 8     | Indicates the associated authentication data.       |
-| HUKS_TAG_NONCE                         | HuksTagType.HUKS_TAG_TYPE_BYTES \| 9     | Indicates the nonce.             |
-| HUKS_TAG_IV                            | HuksTagType.HUKS_TAG_TYPE_BYTES \| 10    | Indicates the IV.             |
+| HUKS_TAG_ASSOCIATED_DATA               | HuksTagType.HUKS_TAG_TYPE_BYTES \| 8     | Indicates the associated authentication data.           |
+| HUKS_TAG_NONCE                         | HuksTagType.HUKS_TAG_TYPE_BYTES \| 9     | Indicates the field for key encryption and decryption.                |
+| HUKS_TAG_IV                            | HuksTagType.HUKS_TAG_TYPE_BYTES \| 10    | Indicates the IV.                |
 | HUKS_TAG_INFO                          | HuksTagType.HUKS_TAG_TYPE_BYTES \| 11    | Indicates the information generated during key derivation.                |
 | HUKS_TAG_SALT                          | HuksTagType.HUKS_TAG_TYPE_BYTES \| 12    | Indicates the salt value used for key derivation.                |
 | HUKS_TAG_PWD                           | HuksTagType.HUKS_TAG_TYPE_BYTES \| 13    | Indicates the password used for key derivation.            |
@@ -352,7 +352,7 @@ Enumerates the tags used to invoke parameters.
 
 generateKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void
 
-Generates a key (key pair). This method uses an asynchronous callback to return the result.
+Generates a key. This method uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Security.Huks
 
@@ -362,7 +362,7 @@ Generates a key (key pair). This method uses an asynchronous callback to return 
 | -------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | keyAlias | string                                    | Yes  | Alias of the key.                                                       |
 | options  | [HuksOptions](#huksoptions)               | Yes  | Tags required for generating the key.                                    |
-| callback | AsyncCallback\<[HuksResult](#huksresult)> | Yes  | Callback used to return the result. If the operation is successful, **HUKS_SUCCESS** will be returned. If the operation fails, an error code will be returned. For details about the error codes, see **HuksResult**. |
+| callback | AsyncCallback\<[HuksResult](#huksresult)> | Yes  | Callback used to return the result. If the operation is successful, **HUKS_SUCCESS** will be returned. If the operation fails, an error code will be returned. For details about the error codes, see **HuksResult**.|
 
 **Example**
 
@@ -403,7 +403,7 @@ huks.generateKey(alias, options, function (err, data){});
 
 generateKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 
-Generates a key (key pair). This method uses a promise to return the result.
+Generates a key. This method uses a promise to return the result.
 
 **System capability**: SystemCapability.Security.Huks
 
@@ -418,7 +418,7 @@ Generates a key (key pair). This method uses a promise to return the result.
 
 | Type                               | Description                                              |
 | ----------------------------------- | -------------------------------------------------- |
-| Promise\<[HuksResult](#huksresult)> | Promise used to return the result. If the operation is successful, **HUKS_SUCCESS** will be returned. If the operation fails, an error code will be returned. For details about the error codes, see **HuksResult**. |
+| Promise\<[HuksResult](#huksresult)> | Promise used to return the result. If the operation is successful, **HUKS_SUCCESS** will be returned. If the operation fails, an error code will be returned. For details about the error codes, see **HuksResult**.|
 
 **Example**
 
@@ -469,7 +469,7 @@ Deletes a key. This method uses an asynchronous callback to return the result.
 | -------- | ----------------------------------------- | ---- | -------------------------------------------------- |
 | keyAlias | string                                    | Yes  | Key alias passed in when the key was generated.               |
 | options  | [HuksOptions](#huksoptions)               | Yes  | Empty object (leave this parameter empty).                          |
-| callback | AsyncCallback\<[HuksResult](#huksresult)> | Yes  | Callback used to return the result. If the operation is successful, **HUKS_SUCCESS** will be returned. If the operation fails, an error code will be returned. For details about the error codes, see **HuksResult**. |
+| callback | AsyncCallback\<[HuksResult](#huksresult)> | Yes  | Callback used to return the result. If the operation is successful, **HUKS_SUCCESS** will be returned. If the operation fails, an error code will be returned. For details about the error codes, see **HuksResult**.|
 
 **Example**
 
@@ -500,7 +500,7 @@ Deletes a key. This method uses a promise to return the result.
 
 | Type                               | Description                                              |
 | ----------------------------------- | -------------------------------------------------- |
-| Promise\<[HuksResult](#huksresult)> | Promise used to return the result. If the operation is successful, **HUKS_SUCCESS** will be returned. If the operation fails, an error code will be returned. For details about the error codes, see **HuksResult**. |
+| Promise\<[HuksResult](#huksresult)> | Promise used to return the result. If the operation is successful, **HUKS_SUCCESS** will be returned. If the operation fails, an error code will be returned. For details about the error codes, see **HuksResult**.|
 
 **Example**
 
@@ -528,9 +528,9 @@ Obtains the SDK version of the current system.
 
 **Return value**
 
-| Type  | Description                                                        |
-| ------ | ------------------------------------------------------------ |
-| string | SDK version obtained. |
+| Type  | Description         |
+| ------ | ------------- |
+| string | SDK version obtained.|
 
 **Example**
 
@@ -545,7 +545,7 @@ var result = huks.getSdkVersion(emptyOptions);
 
 importKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void
 
-Imports a key pair. This method uses an asynchronous callback to return the result.
+Imports a key. This method uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Security.Huks
 
@@ -555,7 +555,7 @@ Imports a key pair. This method uses an asynchronous callback to return the resu
 | -------- | ------------------------ | ---- | ------------------------------------------------- |
 | keyAlias | string                   | Yes  | Key alias, which is used to hold the key pair.|
 | options  | [HuksOptions](#huksoptions) | Yes  | Tags required for the import and key pair to import.|
-| callback | AsyncCallback\<[HuksResult](#huksresult)> | Yes  | Callback used to return the result. If the operation is successful, **HUKS_SUCCESS** will be returned. If the operation fails, an error code will be returned. For details about the error codes, see **HuksResult**. |
+| callback | AsyncCallback\<[HuksResult](#huksresult)> | Yes  | Callback used to return the result. If the operation is successful, **HUKS_SUCCESS** will be returned. If the operation fails, an error code will be returned. For details about the error codes, see **HuksResult**.|
 
 **Example**
 
@@ -593,7 +593,7 @@ huks.importKey(keyAlias, options, function (err, data){});
 
 importKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 
-Imports a key pair. This method uses a promise to return the result.
+Imports a key. This method uses a promise to return the result.
 
 **System capability**: SystemCapability.Security.Huks
 
@@ -608,7 +608,7 @@ Imports a key pair. This method uses a promise to return the result.
 
 | Type                               | Description                                              |
 | ----------------------------------- | -------------------------------------------------- |
-| Promise\<[HuksResult](#huksresult)> | Promise used to return the result. If the operation is successful, **HUKS_SUCCESS** will be returned. If the operation fails, an error code will be returned. For details about the error codes, see **HuksResult**. |
+| Promise\<[HuksResult](#huksresult)> | Promise used to return the result. If the operation is successful, **HUKS_SUCCESS** will be returned. If the operation fails, an error code will be returned. For details about the error codes, see **HuksResult**.|
 
 **Example**
 
@@ -646,7 +646,7 @@ var result = huks.importKey(keyAlias, options);
 
 exportKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void
 
-Exports a key pair. This method uses an asynchronous callback to return the result.
+Exports a key. This method uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Security.Huks
 
@@ -656,7 +656,7 @@ Exports a key pair. This method uses an asynchronous callback to return the resu
 | -------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | keyAlias | string                                    | Yes  | Key alias, which must be the same as the alias used when the key was generated.                |
 | options  | [HuksOptions](#huksoptions)               | Yes  | Empty object (leave this parameter empty).                                    |
-| callback | AsyncCallback\<[HuksResult](#huksresult)> | Yes  | Callback used to return the result. If the operation is successful, **HUKS_SUCCESS** will be returned. If the operation fails, an error code will be returned. For details about the error codes, see **HuksResult**. **outData** contains the public key exported. |
+| callback | AsyncCallback\<[HuksResult](#huksresult)> | Yes  | Callback used to return the result. If the operation is successful, **HUKS_SUCCESS** will be returned. If the operation fails, an error code will be returned. For details about the error codes, see **HuksResult**.**outData** contains the public key exported.|
 
 **Example**
 
@@ -672,7 +672,7 @@ huks.exportKey(keyAlias, emptyOptions, function (err, data){});
 
 exportKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 
-Exports a key pair. This method uses a promise to return the result.
+Exports a key. This method uses a promise to return the result.
 
 **System capability**: SystemCapability.Security.Huks
 
@@ -687,7 +687,7 @@ Exports a key pair. This method uses a promise to return the result.
 
 | Type                               | Description                                                        |
 | ----------------------------------- | ------------------------------------------------------------ |
-| Promise\<[HuksResult](#huksresult)> | Promise used to return the result. If the operation is successful, **HUKS_SUCCESS** will be returned. If the operation fails, an error code will be returned. For details about the error codes, see **HuksResult**.<br/> **outData** contains the public key exported. |
+| Promise\<[HuksResult](#huksresult)> | Promise used to return the result. If the operation is successful, **HUKS_SUCCESS** will be returned. If the operation fails, an error code will be returned. For details about the error codes, see **HuksResult**.**outData** contains the public key exported.|
 
 **Example**
 
@@ -713,7 +713,7 @@ Obtains key properties. This method uses an asynchronous callback to return the 
 | -------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | keyAlias | string                                    | Yes  | Key alias, which must be the same as the alias used when the key was generated.                |
 | options  | [HuksOptions](#huksoptions)               | Yes  | Empty object (leave this parameter empty).                                    |
-| callback | AsyncCallback\<[HuksResult](#huksresult)> | Yes  | Callback used to return the result. In **errorCode**, **HUKS_SUCCESS** will be returned if the operation is successful; an error code will be returned otherwise. |
+| callback | AsyncCallback\<[HuksResult](#huksresult)> | Yes  | Callback used to return the result. In **errorCode**, **HUKS_SUCCESS** will be returned if the operation is successful; an error code will be returned otherwise. For details about the error codes, see **HuksResult**.|
 
 **Example**
 
@@ -737,14 +737,14 @@ Obtains key properties. This method uses a promise to return the result.
 
 | Name  | Type       | Mandatory| Description                                                        |
 | -------- | ----------- | ---- | ------------------------------------------------------------ |
-| keyAlias | string      | Yes  | Key alias, which must be the same as the alias used when the key was generated. |
-| options  | [HuksOptions](#huksoptions) | Yes  | Empty object (leave this parameter empty). |
+| keyAlias | string      | Yes  | Key alias, which must be the same as the alias used when the key was generated.|
+| options  | [HuksOptions](#huksoptions) | Yes  | Empty object (leave this parameter empty).|
 
 **Return value**
 
 | Type              | Description                                                        |
 | ------------------ | ------------------------------------------------------------ |
-| Promise\<[HuksResult](#huksoptions)> | Promise used to return the result. In **errorCode**, **HUKS_SUCCESS** will be returned if the operation is successful; an error code will be returned otherwise. For details about the error codes, see **HuksResult**. |
+| Promise\<[HuksResult](#huksoptions)> | Promise used to return the result. In **errorCode**, **HUKS_SUCCESS** will be returned if the operation is successful; an error code will be returned otherwise. For details about the error codes, see **HuksResult**.|
 
 **Example**
 
@@ -991,7 +991,7 @@ var result = huks.update(handle, options)
 
 finish(handle: number, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void
 
-Completes the operation and then releases resources. This method uses an asynchronous callback to return the result.
+Completes the key operation and releases resources. This method uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Security.Huks
 
@@ -1029,7 +1029,7 @@ huks.finish(handle, options, function (err, data){});
 
 finish(handle: number, options: HuksOptions) : Promise\<HuksResult>
 
-Completes the operation and then releases resources. This method uses a promise to return the result.
+Completes the key operation and releases resources. This method uses a promise to return the result.
 
 **System capability**: SystemCapability.Security.Huks
 

@@ -7,7 +7,7 @@ On the basis of the SQLite database, the relational database (RDB) allows you to
 
 ## Available APIs
 
-**Creating and Deleting an RDB Store**
+### Creating or Deleting an RDB Store
 
 The following table describes the APIs available for creating and deleting an RDB store.
 
@@ -17,51 +17,55 @@ The following table describes the APIs available for creating and deleting an RD
 | -------- | -------- |
 |getRdbStore(config:&nbsp;StoreConfig,&nbsp;version:&nbsp;number,&nbsp;callback:&nbsp;AsyncCallback&lt;RdbStore&gt;):&nbsp;void | Obtains an RDB store. This method uses a callback to return the result. You can set parameters for the RDB store based on service requirements, and then call APIs to perform data operations.<br>-&nbsp;**config**: configuration of the RDB store.<br>-&nbsp;**version**: RDB version.<br>-&nbsp;**callback**: callback invoked to return the RDB store obtained.|
 |getRdbStore(config:&nbsp;StoreConfig,&nbsp;version:&nbsp;number):&nbsp;Promise&lt;RdbStore&gt; | Obtains an RDB store. This method uses a promise to return the result. You can set parameters for the RDB store based on service requirements, and then call APIs to perform data operations.<br>-&nbsp;**config**: configuration of the RDB store.<br>-&nbsp;**version**: RDB version.|
-|deleteRdbStore(name:&nbsp;string,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | Deletes an RDB store. This method uses a callback to return the result. <br>-&nbsp;**name**: RDB store to delete.<br>-&nbsp;**callback**: callback invoked to return the result. If the RDB store is deleted, **true** will be returned. Otherwise, **false** will be returned.|
+|deleteRdbStore(name:&nbsp;string,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | Deletes an RDB store. This method uses a callback to return the result. <br>-&nbsp;**name**: RDB store to delete.<br>-&nbsp;**callback**: callback invoked to return the result.|
 | deleteRdbStore(name:&nbsp;string):&nbsp;Promise&lt;void&gt; | Deletes an RDB store. This method uses a promise to return the result.<br>-&nbsp;**name**: RDB store to delete.|
 
-**Managing Data in an RDB Store**
+### Managing Data in an RDB Store
 
 The RDB provides APIs for inserting, deleting, updating, and querying data in the local RDB store.
 
-- **Inserting data**<br/>
+- **Inserting data**
+  
   The RDB provides APIs for inserting data through a **ValuesBucket** in a data table. If the data is inserted, the row ID of the data inserted will be returned; otherwise, **-1** will be returned.
-
+  
   **Table 2** APIs for inserting data
   
   | Class| API| Description|
   | -------- | -------- | -------- |
   | RdbStore | insert(name:&nbsp;string,&nbsp;values:&nbsp;ValuesBucket,&nbsp;callback:&nbsp;AsyncCallback&lt;number&gt;):void | Inserts a row of data into a table. This method uses a callback to return the result.<br>-&nbsp;**name**: name of the target table.<br>-&nbsp;**values**: data to be inserted into the table.<br>-&nbsp;**callback**: callback invoked to return the result. If the operation is successful, the row ID will be returned. Otherwise, **-1** will be returned.|
   | RdbStore | insert(name:&nbsp;string,&nbsp;values:&nbsp;ValuesBucket):&nbsp;Promise&lt;number&gt; | Inserts a row of data into a table. This method uses a promise to return the result.<br>-&nbsp;**name**: name of the target table.<br>-&nbsp;**values**: data to be inserted into the table.|
-
-- **Updating data**<br/>
+  
+- **Updating data**
+  
   Call the **update()** method to pass new data and specify the update conditions by using **RdbPredicates**. If the data is updated, the number of rows of the updated data will be returned; otherwise, **0** will be returned.
-
+  
   **Table 3** APIs for updating data
   
   | Class| API| Description|
   | -------- | -------- | -------- |
   | RdbStore | update(values:&nbsp;ValuesBucket,&nbsp;rdbPredicates:&nbsp;RdbPredicates,&nbsp;callback:&nbsp;AsyncCallback&lt;number&gt;):void | Updates data in the RDB store based on the specified **RdbPredicates** object. This method uses a callback to return the result.<br>-&nbsp;**values**: data to update, which is stored in a **ValuesBucket**.<br>-&nbsp;**rdbPredicates**: conditions for updating data.<br>-&nbsp;**callback**: callback invoked to return the number of rows updated.|
   | RdbStore | update(values:&nbsp;ValuesBucket,&nbsp;rdbPredicates:&nbsp;RdbPredicates):&nbsp;Promise | Updates data in the RDB store based on the specified **RdbPredicates** object. This method uses a promise to return the result.<br>-&nbsp;**values**: data to update, which is stored in a **ValuesBucket**.<br>-&nbsp;**rdbPredicates**: conditions for updating data.|
-
-- **Deleting data**<br/>
+  
+- **Deleting data**
+  
   Call the **delete()** method to delete data meeting the conditions specified by **RdbPredicates**. If the data is deleted, the number of rows of the deleted data will be returned; otherwise, **0** will be returned.
-
+  
   **Table 4** APIs for deleting data
   
   | Class| API| Description|
   | -------- | -------- | -------- |
   | RdbStore | delete(rdbPredicates:&nbsp;RdbPredicates,&nbsp;callback:&nbsp;AsyncCallback&lt;number&gt;):void | Deletes data from the RDB store based on the specified **RdbPredicates** object. This method uses a callback to return the result.<br>-&nbsp;**rdbPredicates**: conditions for deleting data.<br>-&nbsp;**callback**: callback invoked to return the number of rows deleted.|
   | RdbStore | delete(rdbPredicates:&nbsp;RdbPredicates):&nbsp;Promise | Deletes data from the RDB store based on the specified **RdbPredicates** object. This method uses a promise to return the result.<br>-&nbsp;**rdbPredicates**: conditions for deleting data.|
+  
+- **Querying data**
 
-- **Querying data**<br/>
   You can query data in an RDB store in either of the following ways:
 
   - Call the **query()** method to query data based on the predicates, without passing any SQL statement.
   - Run the native SQL statement.
 
   **Table 5** APIs for querying data
-  
+
   | Class| API| Description|
   | -------- | -------- | -------- |
   | RdbStore | query(rdbPredicates:&nbsp;RdbPredicates,&nbsp;columns:&nbsp;Array,&nbsp;callback:&nbsp;AsyncCallback&lt;ResultSet&gt;):&nbsp;void | Queries data in the RDB store based on the specified **RdbPredicates** object. This method uses a callback to return the result.<br>-&nbsp;**rdbPredicates**: conditions for querying data.<br>-&nbsp;**columns**: columns to query. If this parameter is not specified, the query applies to all columns.<br>-&nbsp;**callback**: callback invoked to return the result. If the operation is successful, a **ResultSet** object will be returned.|
@@ -69,7 +73,7 @@ The RDB provides APIs for inserting, deleting, updating, and querying data in th
   | RdbStore | querySql(sql:&nbsp;string,&nbsp;bindArgs:&nbsp;Array&lt;ValueType&gt;,&nbsp;callback:&nbsp;AsyncCallback&lt;ResultSet&gt;):void | Queries data in the RDB store using the specified SQL statement. This method uses a callback to return the result.<br>-&nbsp;**sql**: SQL statement.<br>-&nbsp;**bindArgs**: arguments in the SQL statement.<br>-&nbsp;**callback**: callback invoked to return the result. If the operation is successful, a **ResultSet** object will be returned.|
   | RdbStore | querySql(sql:&nbsp;string,&nbsp;bindArgs?:&nbsp;Array&lt;ValueType&gt;):Promise&lt;ResultSet&gt; | Queries data in the RDB store using the specified SQL statement. This method uses a promise to return the result.<br>-&nbsp;**sql**: SQL statement.<br>-&nbsp;**bindArgs**: arguments in the SQL statement.|
 
-**Using Predicates**
+### Using Predicates
 
 The RDB provides **RdbPredicates** for you to set database operation conditions.
 
@@ -108,12 +112,12 @@ The RDB provides **RdbPredicates** for you to set database operation conditions.
 | RdbPredicates | in(field:&nbsp;string,&nbsp;value:&nbsp;Array&lt;ValueType&gt;):&nbsp;RdbPredicates | Sets the **RdbPredicates** to match the field with data type **Array&#60;ValueType&#62;** and value within the specified range.<br>-&nbsp;**field**: column name in the database table.<br>-&nbsp;**value**: array of **ValueType** to match.<br>-&nbsp;**RdbPredicates**: returns a **RdbPredicates** object that matches the specified field.|
 | RdbPredicates | notIn(field:&nbsp;string,&nbsp;value:&nbsp;Array&lt;ValueType&gt;):&nbsp;RdbPredicates | Sets the **RdbPredicates** to match the field with data type **Array&#60;ValueType&#62;** and value out of the specified range.<br>-&nbsp;**field**: column name in the database table.<br>-&nbsp;**value**: array of **ValueType** to match.<br>-&nbsp;**RdbPredicates**: returns a **RdbPredicates** object that matches the specified field.|
 
-**Using the Result Set**
+### Using the Result Set
 
 A result set can be regarded as a row of data in the queried results. It allows you to traverse and access the data you have queried. The following table describes the external APIs of **ResultSet**.
 
-> ![icon-notice.gif](../public_sys-resources/icon-notice.gif) **NOTICE**<br/>
-> After a result set is used, you must call the **close()** method to close it explicitly.
+> ![icon-notice.gif](public_sys-resources/icon-notice.gif) **NOTICE**<br/>
+> After a result set is used, you must call the **close()** method to close it explicitly.**
 
 **Table 7** APIs for using the result set
 
@@ -133,26 +137,13 @@ A result set can be regarded as a row of data in the queried results. It allows 
 | ResultSet | isColumnNull(columnIndex:&nbsp;number):&nbsp;boolean | Checks whether the value in the specified column of the current row is null.|
 | ResultSet | close():&nbsp;void | Closes the result set.|
 
-**Changing the Encryption Key for an RDB Store**
 
-You can encrypt an RDB store.
 
-When creating an RDB store, you can add a key for security purposes. After that, the RDB store can be accessed only with the correct key. You can change the key but cannot delete it.
-
-Once an RDB store is created without a key, you can no longer add a key for it.
-
-**Table 8** APIs for changing the encryption key
-
-| Class| API| Description|
-| -------- | -------- | -------- |
-| RdbStore | changeEncryptKey(newEncryptKey:Uint8Array,&nbsp;callback:&nbsp;AsyncCallback&lt;number&gt;):void; | Changes the encryption key for this RDB store. This method uses a callback to return the result. If the operation is successful, **0** will be returned. Otherwise, a non-zero value will be returned.|
-| RdbStore | changeEncryptKey(newEncryptKey:Uint8Array):&nbsp;Promise&lt;number&gt;; | Changes the encryption key for this RDB store. This method uses a promise to return the result. If the operation is successful, **0** will be returned. Otherwise, a non-zero value will be returned.|
+### Setting Distributed Tables
 
 **Setting Distributed Tables**
 
-You can set a list of distributed tables for data operations across devices.
-
-**Table 9** APIs for setting distributed tables
+**Table 8** APIs for setting distributed tables
 
 | Class| API| Description|
 | -------- | -------- | -------- |
@@ -163,7 +154,7 @@ You can set a list of distributed tables for data operations across devices.
 
 You can obtain the distributed table name for a remote device based on the local table name. The distributed table name can be used to query the RDB store of the remote device.
 
-**Table 10** API for obtaining the distributed table name of a remote device
+**Table 9** API for obtaining the distributed table name of a remote device
 
 | Class| API| Description|
 | -------- | -------- | -------- |
@@ -172,17 +163,16 @@ You can obtain the distributed table name for a remote device based on the local
 
 **Synchronizing Data Between Devices**
 
-**Table 11** APIs for synchronizing data between devices
+**Table 10** APIs for synchronizing data between devices
 
 | Class| API| Description|
 | -------- | -------- | -------- |
 | RdbStore | sync(mode: SyncMode, predicates: RdbPredicates, callback: AsyncCallback<Array<[string, number]>>): void;| Synchronizes data between devices. This method uses a callback to return the result.<br>-&nbsp;**mode**: data synchronization mode.  **SYNC\_MODE\_PUSH** means to push data from the local device to a remote device. **SYNC\_MODE\_PULL** means to pull data from a remote device to the local device.<br>-&nbsp;**predicates**: data and devices to be synchronized.<br>-&nbsp;**callback**: callback invoked to return the result. In the result, **string** indicates the device ID, and **number** indicates the synchronization status of each device. The value **0** indicates a success, and other values indicate a failure.|
 | RdbStore | sync(mode: SyncMode, predicates: RdbPredicates): Promise<Array<[string, number]>>;| Synchronizes data between devices. This method uses a promise to return the result.<br>-&nbsp;**mode**: data synchronization mode.  **SYNC\_MODE\_PUSH** means to push data from the local device to a remote device. **SYNC\_MODE\_PULL** means to pull data from a remote device to the local device.<br>-&nbsp;**predicates**: data and devices to be synchronized. |
 
-
 **Registering an RDB Store Observer**
 
-**Table 12** API for registering an observer
+**Table 11** API for registering an observer
 
 | Class| API| Description|
 | -------- | -------- | -------- |
@@ -190,7 +180,7 @@ You can obtain the distributed table name for a remote device based on the local
 
 **Unregistering an RDB Store Observer**
 
-**Table 13** API for unregistering an observer
+**Table 12** API for unregistering an observer
 
 | Class| API| Description|
 | -------- | -------- | -------- |
@@ -211,9 +201,10 @@ You can obtain the distributed table name for a remote device based on the local
    
    const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " + "name TEXT NOT NULL, " + "age INTEGER, " + "salary REAL, " + "blobType BLOB)";
    const STORE_CONFIG = {name: "rdbstore.db",}
-   
-   let rdbStore = await data_rdb.getRdbStore(STORE_CONFIG, 1);
-   await rdbStore.executeSql(CREATE_TABLE_TEST);
+   data_rdb.getRdbStore(STORE_CONFIG, 1, function (err, rdbStore) {
+       rdbStore.executeSql(SQL_CREATE_TABLE)
+       console.info('create table done.')
+   })
    ```
 
 2. Insert data.
@@ -238,16 +229,16 @@ You can obtain the distributed table name for a remote device based on the local
    ```
    let predicates = new data_rdb.RdbPredicates("test");
    predicates.equalTo("name", "Tom")
-   let resultSet = await rdbStore.query(predicates)
-   
-   resultSet.goToFirstRow()
-   const id = await resultSet.getLong(resultSet.getColumnIndex("id"))
-   const name = await resultSet.getString(resultSet.getColumnIndex("name"))
-   const age = await resultSet.getLong(resultSet.getColumnIndex("age"))
-   const salary = await resultSet.getDouble(resultSet.getColumnIndex("salary"))
-   const blobType = await resultSet.getBlob(resultSet.getColumnIndex("blobType"))
-   
-   resultSet.close()
+   let promisequery = rdbStore.query(predicates)
+       promisequery.then((resultSet) => {
+       resultSet.goToFirstRow()
+       const id = resultSet.getLong(resultSet.getColumnIndex("id"))
+       const name = resultSet.getString(resultSet.getColumnIndex("name"))
+       const age = resultSet.getLong(resultSet.getColumnIndex("age"))
+       const salary = resultSet.getDouble(resultSet.getColumnIndex("salary"))
+       const blobType = resultSet.getBlob(resultSet.getColumnIndex("blobType"))
+       resultSet.close()
+   })
    ```
 
 4. Set the distributed tables to be synchronized.
@@ -261,7 +252,7 @@ You can obtain the distributed table name for a remote device based on the local
    promise.then(() => {
        console.info("setDistributedTables success.")
    }).catch((err) => {
-       console.info("setDistributedTables failed."")
+       console.info("setDistributedTables failed.")
    })
    ```
 
@@ -276,7 +267,7 @@ You can obtain the distributed table name for a remote device based on the local
     let predicate = new data_rdb.RdbPredicates('test')
     predicate.inDevices(['12345678abcde'])
     let promise = rdbStore.sync(rdb.SyncMode.SYNC_MODE_PUSH, predicate)
-    promise.then(result) {
+    promise.then((result) => {
         console.log('sync done.')
         for (let i = 0; i < result.length; i++) {
             console.log('device=' + result[i][0] + ' status=' + result[i][1])
