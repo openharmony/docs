@@ -116,7 +116,7 @@ The RDB provides **RdbPredicates** for you to set database operation conditions.
 
 A result set can be regarded as a row of data in the queried results. It allows you to traverse and access the data you have queried. The following table describes the external APIs of **ResultSet**.
 
-> ![icon-notice.gif](public_sys-resources/icon-notice.gif) **NOTICE**<br/>
+> ![icon-notice.gif](../public_sys-resources/icon-notice.gif) **NOTICE**<br/>
 > After a result set is used, you must call the **close()** method to close it explicitly.**
 
 **Table 7** APIs for using the result set
@@ -154,7 +154,7 @@ A result set can be regarded as a row of data in the queried results. It allows 
 
 You can obtain the distributed table name for a remote device based on the local table name. The distributed table name can be used to query the RDB store of the remote device.
 
-**Table 9** API for obtaining the distributed table name of a remote device
+**Table 9** APIs for obtaining the distributed table name of a remote device
 
 | Class| API| Description|
 | -------- | -------- | -------- |
