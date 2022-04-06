@@ -272,11 +272,3 @@ We have implemented the redirection and going back of the FoodCategoryList and F
      }
    }
    ```
-
-## Samples
-
-The following sample is provided to help you better understand how to define the page layout and connection:
-
-- [eTSDefiningPageLayoutAndConnection](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/eTSDefiningPageLayoutAndConnection)
-
-  This sample exemplifies the basic usage of the list layout, grid layout, and page routing, by building the food list page and food details page.

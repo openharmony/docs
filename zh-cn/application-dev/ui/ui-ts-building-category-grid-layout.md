@@ -19,7 +19,7 @@
        ......
      }
    }
-   
+
    @Component
    struct FoodCategory {
      private foodItems: FoodData[]
@@ -27,7 +27,7 @@
        ......
      }
    }
-   
+
    @Entry
    @Component
    struct FoodCategoryList {
@@ -45,7 +45,7 @@
    struct FoodCategoryList {
      private foodItems: FoodData[] = initializeOnStartup()
      private showList: boolean = false
-   
+
      build() {
        Stack() {
          if (this.showList) {
@@ -65,7 +65,7 @@
    struct FoodCategoryList {
      private foodItems: FoodData[] = initializeOnStartup()
      private showList: boolean = false
-   
+
      build() {
        Stack({ alignContent: Alignment.TopEnd }) {
          if (this.showList) {
@@ -92,7 +92,7 @@
    struct FoodCategoryList {
      private foodItems: FoodData[] = initializeOnStartup()
      @State private showList: boolean = false
-   
+
      build() {
        Stack({ alignContent: Alignment.TopEnd }) {
          if (this.showList) {
@@ -110,7 +110,7 @@
        }.height('100%')
      }
    }
-   
+
    ```
 
    点击切换图标，FoodList组件出现，再次点击，FoodList组件消失。
@@ -143,7 +143,7 @@
      private foodItems: FoodData[]
      build() {}
    }
-   
+
    @Component
    struct FoodCategory {
      private foodItems: FoodData[]
@@ -214,7 +214,7 @@
        .width('100%')
      }
    }
-   
+
    @Component
    struct FoodGrid {
      private foodItems: FoodData[]
@@ -242,43 +242,43 @@
    ![zh-cn_image_0000001170167520](figures/zh-cn_image_0000001170167520.gif)
 
 10. 创建展示蔬菜（Category.Vegetable）、水果（Category.Fruit）、坚果（Category.Nut）、海鲜（Category.SeaFood）和甜品（Category.Dessert）分类的页签。
-   ```
-   @Component
-   struct FoodCategory {
-     private foodItems: FoodData[]
-     build() {
-       Stack() {
-         Tabs() {
-           TabContent() {
-             FoodGrid({ foodItems: this.foodItems })
-           }.tabBar('All')
-   
-           TabContent() {
-             FoodGrid({ foodItems: this.foodItems.filter(item => (item.category === Category.Vegetable)) })
-           }.tabBar('Vegetable')
-   
-           TabContent() {
-             FoodGrid({ foodItems: this.foodItems.filter(item => (item.category === Category.Fruit)) })
-           }.tabBar('Fruit')
-   
-           TabContent() {
-             FoodGrid({ foodItems: this.foodItems.filter(item => (item.category === Category.Nut)) })
-           }.tabBar('Nut')
-   
-           TabContent() {
-             FoodGrid({ foodItems: this.foodItems.filter(item => (item.category === Category.Seafood)) })
-           }.tabBar('Seafood')
-   
-           TabContent() {
-             FoodGrid({ foodItems: this.foodItems.filter(item => (item.category === Category.Dessert)) })
-           }.tabBar('Dessert')
-         }
-         .barWidth(280)
-         .barMode(BarMode.Scrollable)
-       }
-     }
-   }
-   ```
+  ```
+  @Component
+  struct FoodCategory {
+    private foodItems: FoodData[]
+    build() {
+      Stack() {
+        Tabs() {
+          TabContent() {
+            FoodGrid({ foodItems: this.foodItems })
+          }.tabBar('All')
+
+          TabContent() {
+            FoodGrid({ foodItems: this.foodItems.filter(item => (item.category === Category.Vegetable)) })
+          }.tabBar('Vegetable')
+
+          TabContent() {
+            FoodGrid({ foodItems: this.foodItems.filter(item => (item.category === Category.Fruit)) })
+          }.tabBar('Fruit')
+
+          TabContent() {
+            FoodGrid({ foodItems: this.foodItems.filter(item => (item.category === Category.Nut)) })
+          }.tabBar('Nut')
+
+          TabContent() {
+            FoodGrid({ foodItems: this.foodItems.filter(item => (item.category === Category.Seafood)) })
+          }.tabBar('Seafood')
+
+          TabContent() {
+            FoodGrid({ foodItems: this.foodItems.filter(item => (item.category === Category.Dessert)) })
+          }.tabBar('Dessert')
+        }
+        .barWidth(280)
+        .barMode(BarMode.Scrollable)
+      }
+    }
+  }
+  ```
 
 11. 设置不同食物分类的Grid的行数和高度。因为不同分类的食物数量不同，所以不能用'1fr 1fr 1fr 1fr 1fr 1fr '常量来统一设置成6行。
       创建gridRowTemplate和HeightValue成员变量，通过成员变量设置Grid行数和高度。
