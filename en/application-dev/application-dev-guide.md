@@ -35,6 +35,7 @@ Then, equip yourself for developing the key features, with the following guideli
 - [Device](device/usb-overview.md)
 - [Device Usage Statistics](device-usage-statistics/device-usage-statistics-overview.md)
 - [DFX](dfx/hiappevent-overview.md)
+- [Internationalization](internationalization/international-overview.md)
 
 ### Tools
 

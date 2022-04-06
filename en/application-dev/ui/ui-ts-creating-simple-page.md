@@ -547,7 +547,3 @@ The following sample is provided to help you better understand how to use build 
 - [eTSBuildCommonView](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/eTSBuildCommonView)
 
   This sample shows how to build a common view to display the picture of tomatoes and nutrition information, with the stack layout and flex layout.
-
-   ```
-
-   ```

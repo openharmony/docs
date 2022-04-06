@@ -62,6 +62,7 @@ Before creating a project, you need to install DevEco Studio.
    ![en-us_image_0000001222807756](figures/en-us_image_0000001222807756.png)
 
 8. Install the application and run the application. Connect the device to the computer. After the IDE identifies the device, click Run'entry'.
+
    ![en-us_image_0000001267607865](figures/en-us_image_0000001267607865.png)
 
    Before the installation, you must configure an application signature. For details, see Configuring the OpenHarmony App Signature. After the installation is complete, click the Run icon on the screen to open the application. Hello World is displayed in the center of the screen.

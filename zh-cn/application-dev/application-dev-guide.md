@@ -35,6 +35,7 @@
 - [设备管理](device/usb-overview.md)
 - [设备使用信息统计](device-usage-statistics/device-usage-statistics-overview.md)
 - [DFX](dfx/hiappevent-overview.md)
+- [国际化](internationalization/international-overview.md)
 
 ### 工具
 
