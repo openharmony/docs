@@ -22,8 +22,8 @@
 
     - Other
       - [Ability Assistant Usage](ability/ability-assistant-guidelines.md)
-  - [UI](ui/Readme-EN.md)
-    - [ArkUI Overview](arkui-overview.md)
+  - UI
+    - [ArkUI Overview](ui/arkui-overview.md)
     - JavaScript-based Web-Like Development Paradigm
       - [Overview](ui/ui-js-overview.md)
       - Framework
