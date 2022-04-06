@@ -2,8 +2,8 @@
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
 >
-> - The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - This is a system API and cannot be called by third-party applications.
+> - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The APIs of this module are system APIs and cannot be called by third-party applications.
 
 ## Modules to Import
 
@@ -11,7 +11,7 @@
 import volumemanager from "@ohos.volumeManager";
 ```
 
-## volumemanager.getAllVolumes<sup>9+</sup>
+## volumemanager.getAllVolumes
 
 getAllVolumes(): Promise&lt;Array&lt;Volume&gt;&gt;
 
@@ -57,7 +57,7 @@ Asynchronously obtains information about all available volumes. This method uses
   ```
 
 
-## volumemanager.mount<sup>9+</sup>
+## volumemanager.mount
 
 mount(volumeId: string): Promise&lt;boolean&gt;
 
@@ -86,7 +86,7 @@ Asynchronously mounts a volume. This method uses a promise to return the result.
   });
   ```
 
-## volumemanager.mount<sup>9+</sup>
+## volumemanager.mount
 
 mount(volumeId: string, callback:AsyncCallback&lt;boolean&gt;):void
 
@@ -110,7 +110,7 @@ Asynchronously obtains the available space of the specified volume. This method 
   });
   ```
 
-## volumemanager.unmount<sup>9+</sup>
+## volumemanager.unmount
 
 unmount(volumeId: string): Promise&lt;boolean&gt;
 
@@ -139,7 +139,7 @@ Asynchronously unmounts a volume. This method uses a promise to return the resul
   });
   ```
 
-## volumemanager.unmount<sup>9+</sup>
+## volumemanager.unmount
 
 unmount(volumeId: string, callback:AsyncCallback&lt;boolean&gt;):void
 
@@ -163,7 +163,7 @@ Asynchronously unmounts a volume. This method uses a callback to return the resu
   });
   ```
 
-## Volume<sup>9+</sup>
+## Volume
 
 **System capability**: SystemCapability.FileManagement.StorageService.Volume
 
