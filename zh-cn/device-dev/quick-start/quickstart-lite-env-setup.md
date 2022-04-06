@@ -32,6 +32,7 @@
    > - Java要求java8及以上版本，此处以java8为例。
 
 2. 将python 3.8设置为默认python版本。
+
    查看python 3.8的位置：
 
      
@@ -39,7 +40,7 @@
    which python3.8
    ```
 
-     将python和python3切换为python3.8：
+   将python和python3切换为python3.8：
      
    ```
    sudo update-alternatives --install /usr/bin/python python {python3.8 路径} 1    #{python3.8 路径}为上一步查看的python3.8的位置
@@ -62,6 +63,7 @@
 2. 解压DevEco Device Tool压缩包，双击安装包程序，点击Next进行安装。
 
 3. 设置DevEco Device Tool的安装路径，建议安装到非系统盘符，点击**Next**。
+
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
    > 如果您已安装DevEco Device Tool 3.0 Beta2及以前的版本，则在安装新版本时，会先卸载旧版本，卸载过程中出现如下错误提示时，请点击“Ignore”继续安装，该错误不影响新版本的安装。
    > 
@@ -70,12 +72,16 @@
    ![zh-cn_image_0000001270076961](figures/zh-cn_image_0000001270076961.png)
 
 4. 根据安装向导提示，勾选要自动安装的软件。
+
    1. 在弹出VSCode installation confirm页面，勾选“Install VScode 1.62.2automatically”，点击**Next**。
+
        > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
        > 如果检测到Visual Studio Code已安装，且版本为1.62及以上，则会跳过该步骤。
 
        ![zh-cn_image_0000001237801283](figures/zh-cn_image_0000001237801283.png)
+
    2. 在弹出的Python select page选择“Download from Huawei mirror”，点击**Next**。
+
        > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
        > 如果系统已安装可兼容的Python版本（Python 3.8~3.9版本），可选择“Use one of compatible on your PC”。
 
@@ -115,6 +121,7 @@
 2. 下载[DevEco Device Tool 3.0 Release](https://device.harmonyos.com/cn/ide#download)Linux版本。
 
 3. 解压DevEco Device Tool软件包并对解压后的文件夹进行赋权。
+
    1. 进入DevEco Device Tool软件包目录，执行如下命令解压软件包，其中devicetool-linux-tool-3.0.0.400.zip为软件包名称，请根据实际进行修改。
          
        ```
@@ -127,6 +134,7 @@
        ```
 
 4. 执行如下命令，安装DevEco Device Tool，其中devicetool-linux-tool-3.0.0.400.sh请根据实际进行修改。
+
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
    > 安装过程中，会自动检查Python是否安装，且要求Python为3.8~3.9版本。如果不满足，则安装过程中会自动安装，提示“Do you want to continue?”，请输入“Y”后继续安装。
 
@@ -146,6 +154,7 @@
 ### 安装SSH服务并获取远程访问的IP地址
 
 1. 在Ubuntu系统中，打开终端工具，执行如下命令安装SSH服务。
+
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
    > 如果执行该命令失败，提示openssh-server和openssh-client依赖版本不同，请根据CLI界面提示信息，安装openssh-client相应版本后（例如：sudo apt-get install openssh-client=1:8.2p1-4），再重新执行该命令安装openssh-server。
 
@@ -219,9 +228,11 @@
    ![zh-cn_image_0000001271532317](figures/zh-cn_image_0000001271532317.png)
 
 2. 在Visual Studio Code中，点击远程连接的设置按钮，并选择打开config文件。
+
    ![zh-cn_image_0000001226034634](figures/zh-cn_image_0000001226034634.png)
 
 3. 在config配置文件中添加SSK Key文件信息，如下图所示，然后保存即可。
+
    ![zh-cn_image_0000001270356233](figures/zh-cn_image_0000001270356233.png)
 
 
