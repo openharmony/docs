@@ -1,9 +1,5 @@
 # UART<a name="ZH-CN_TOPIC_0000001222082257"></a>
 
--   [概述](#section1761881586154520)
--   [接口说明](#section752964871810)
--   [开发步骤](#section944397404154520)
--   [开发实例](#section774610224154520)
 
 ## 概述<a name="section1761881586154520"></a>
 
@@ -349,7 +345,7 @@ UART模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
 
         HdfDeviceObject 这个是整个驱动对外暴露的接口参数，具备 HCS 配置文件的信息。
 
-        **返回值：**
+        返回值：
 
         HDF\_STATUS相关状态 （下表为部分展示，如需使用其他状态，可见//drivers/framework/include/utils/hdf\_base.h中HDF\_STATUS 定义）。
 
@@ -425,7 +421,7 @@ UART模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
 
     -   Init函数参考
 
-        入参**：**
+        入参：
 
         HdfDeviceObject 是整个驱动对外暴露的接口参数，具备 HCS 配置文件的信息。
 
@@ -507,7 +503,7 @@ UART模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
 
         函数说明：
 
-        该函数需要在驱动入口结构体中赋值给 Release 接口， 当HDF框架调用Init函数初始化驱动失败时，可以调用 Release 释放驱动资源， 该函数中需包含释放内存和删除控制器等操作。所有强制转换获取相应对象的操作**前提**是在Init函数中具备对应赋值的操作。
+        该函数需要在驱动入口结构体中赋值给 Release 接口， 当HDF框架调用Init函数初始化驱动失败时，可以调用 Release 释放驱动资源， 该函数中需包含释放内存和删除控制器等操作。所有强制转换获取相应对象的操作前提是在Init函数中具备对应赋值的操作。
 
         ```
         void HdfUartDeviceRelease(struct HdfDeviceObject *device)
