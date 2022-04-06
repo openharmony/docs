@@ -174,7 +174,7 @@ if (this.subscriber != null) {
 
 针对公共事件开发，有以下示例工程可供参考：
 
-- [EtsCommonEvent](https://gitee.com/openharmony/app_samples/tree/master/ability/EtsCommonEvent)
+- [CommonEvent](https://gitee.com/openharmony/app_samples/tree/master/ability/CommonEvent)
 
 本示例展示了在eTS中如何使用CommonEvent的接口完成创建订阅者、订阅公共事件、发布公共事件、取消订阅的功能。
 
