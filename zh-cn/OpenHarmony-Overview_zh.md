@@ -361,9 +361,8 @@ OpenHarmony支持如下几种系统类型：
 
 ## 快速入门<a name="section44681652104210"></a>
 
-- [设备开发快速入门](device-dev/quick-start/quickstart-lite-overview.md)
-- [应用开发快速入门](application-dev/quick-start/start-overview.md)
-
+- 设备开发快速入门：[device-dev/quick-start/Readme-CN.md](device-dev/quick-start/Readme-CN.md)
+- 应用开发快速入门：[application-dev/quick-start/Readme-CN.md](application-dev/quick-start/Readme-CN.md)
 
 
 ## 代码仓地址<a name="section107651249181914"></a>
