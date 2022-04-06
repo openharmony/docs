@@ -72,7 +72,8 @@ kernel_version = "3.0.0"                --- Kernel version, which corresponds to
 3. Verify the `hb set` configuration:
 
    Run the `hb set` command, enter the project root directory, and press `Enter`. The `hb` command traverses all `config.json` files in the `//vendor/<product_company>/<product_name>` directory and provides product compilation options. In the `config.json` file, `product_name` indicates the product name, `device_company` and `board` are used to locate the `//device/board/<device_company>/<board>` directory and find the matching `<any_dir_name>/config.gni` file. If multiple file matches are found, it indicates that the board has been adapted to multiple kernels. In this case, `kernel_type` and `kernel_version` in the `config.json` file can be used to uniquely match the `config.gni` file and thereby determine the board with which kernel needs to be compiled and adapted. If the information shown below is displayed, the `hb set` configuration is correct.
-![hb set](figure/bes2600_hb_set.png)
+
+   ![hb set](figure/bes2600_hb_set.png)
 
 ​		You can run the `hb env` command to view the selected precompilation environment variables.
 
