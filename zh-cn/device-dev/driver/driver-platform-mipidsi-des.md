@@ -1,30 +1,21 @@
 # MIPI DSI<a name="ZH-CN_TOPIC_0000001160971534"></a>
 
--   [概述](#section16806142183217)
--   [接口说明](#section12720125432316)
--   [使用指导](#section037231715335)
-    -   [使用流程](#section49299119344)
-    -   [获取MIPI-DSI操作句柄](#section5126155683811)
-    -   [MIPI-DSI相应配置](#section201164274344)
-    -   [发送/回读控制指令](#section199401342173415)
-    -   [释放MIPI-DSI操作句柄](#section161011610357)
-
--   [使用实例](#section17470126123520)
 
 ## 概述<a name="section16806142183217"></a>
 
 -   DSI（Display Serial Interface）是由移动行业处理器接口联盟（Mobile Industry Processor Interface \(MIPI\) Alliance）制定的规范，旨在降低移动设备中显示控制器的成本。它以串行的方式发送像素数据或指令给外设\(通常是LCD或者类似的显示设备\)，或从外设中读取状态信息或像素信息；它定义了主机、图像数据源和目标设备之间的串行总线和通信协议。
 
--   MIPI-DSI具备高速模式和低速模式两种工作模式，全部数据通道都可以用于单向的高速传输，但只有第一个数据通道才可用于低速双向传输，从属端的状态信息、像素等是通过该数据通道返回。时钟通道专用于在高速传输数据的过程中传输同步时钟信号。
+-   MIPI DSI具备高速模式和低速模式两种工作模式，全部数据通道都可以用于单向的高速传输，但只有第一个数据通道才可用于低速双向传输，从属端的状态信息、像素等是通过该数据通道返回。时钟通道专用于在高速传输数据的过程中传输同步时钟信号。
 -   图1显示了简化的DSI接口。从概念上看，符合DSI的接口与基于DBI-2和DPI-2标准的接口具有相同的功能。它向外围设备传输像素或命令数据，并且可以从外围设备读取状态或像素信息。主要区别在于，DSI对所有像素数据、命令和事件进行序列化，而在传统接口中，这些像素数据、命令和事件通常需要附加控制信号才能在并行数据总线上传输。
 
     **图 1**  DSI发送、接收接口<a name="fig1122611461203"></a>  
+
     ![](figures/DSI发送-接收接口.png "DSI发送-接收接口")
 
 
 ## 接口说明<a name="section12720125432316"></a>
 
-**表 1**  MIPI-DSI API接口功能介绍
+**表 1**  MIPI DSI API接口功能介绍
 
 <a name="table4199102313245"></a>
 <table><thead align="left"><tr id="row1619910238244"><th class="cellrowborder" valign="top" width="26.619999999999997%" id="mcps1.2.4.1.1"><p id="p141991023182411"><a name="p141991023182411"></a><a name="p141991023182411"></a>功能分类</p>
@@ -35,52 +26,52 @@
 </th>
 </tr>
 </thead>
-<tbody><tr id="row15199023172414"><td class="cellrowborder" rowspan="2" valign="top" width="26.619999999999997%" headers="mcps1.2.4.1.1 "><p id="p919902312413"><a name="p919902312413"></a><a name="p919902312413"></a>设置/获取当前MIPI-DSI相关配置</p>
+<tbody><tr id="row15199023172414"><td class="cellrowborder" rowspan="2" valign="top" width="26.619999999999997%" headers="mcps1.2.4.1.1 "><p id="p919902312413"><a name="p919902312413"></a><a name="p919902312413"></a>设置/获取当前MIPI DSI相关配置</p>
 </td>
 <td class="cellrowborder" valign="top" width="28.910000000000004%" headers="mcps1.2.4.1.2 "><p id="p21995232243"><a name="p21995232243"></a><a name="p21995232243"></a>MipiDsiSetCfg</p>
 </td>
-<td class="cellrowborder" valign="top" width="44.47%" headers="mcps1.2.4.1.3 "><p id="p919911233240"><a name="p919911233240"></a><a name="p919911233240"></a>设置MIPI-DSI相关配置</p>
+<td class="cellrowborder" valign="top" width="44.47%" headers="mcps1.2.4.1.3 "><p id="p919911233240"><a name="p919911233240"></a><a name="p919911233240"></a>设置MIPI DSI相关配置</p>
 </td>
 </tr>
 <tr id="row171996232248"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p7199623152412"><a name="p7199623152412"></a><a name="p7199623152412"></a>MipiDsiGetCfg</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p1119919235248"><a name="p1119919235248"></a><a name="p1119919235248"></a>获取当前MIPI-DSI相关配置</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p1119919235248"><a name="p1119919235248"></a><a name="p1119919235248"></a>获取当前MIPI DSI相关配置</p>
 </td>
 </tr>
-<tr id="row91994239242"><td class="cellrowborder" rowspan="2" valign="top" width="26.619999999999997%" headers="mcps1.2.4.1.1 "><p id="p101998233245"><a name="p101998233245"></a><a name="p101998233245"></a>获取/释放MIPI-DSI操作句柄</p>
+<tr id="row91994239242"><td class="cellrowborder" rowspan="2" valign="top" width="26.619999999999997%" headers="mcps1.2.4.1.1 "><p id="p101998233245"><a name="p101998233245"></a><a name="p101998233245"></a>获取/释放MIPI DSI操作句柄</p>
 </td>
 <td class="cellrowborder" valign="top" width="28.910000000000004%" headers="mcps1.2.4.1.2 "><p id="p51991323112415"><a name="p51991323112415"></a><a name="p51991323112415"></a>MipiDsiOpen</p>
 </td>
-<td class="cellrowborder" valign="top" width="44.47%" headers="mcps1.2.4.1.3 "><p id="p11991623182415"><a name="p11991623182415"></a><a name="p11991623182415"></a>获取MIPI-DSI操作句柄</p>
+<td class="cellrowborder" valign="top" width="44.47%" headers="mcps1.2.4.1.3 "><p id="p11991623182415"><a name="p11991623182415"></a><a name="p11991623182415"></a>获取MIPI DSI操作句柄</p>
 </td>
 </tr>
 <tr id="row12199192352411"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p131991123172412"><a name="p131991123172412"></a><a name="p131991123172412"></a>MipiDsiClose</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p520062313249"><a name="p520062313249"></a><a name="p520062313249"></a>释放MIPI-DSI操作句柄</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p520062313249"><a name="p520062313249"></a><a name="p520062313249"></a>释放MIPI DSI操作句柄</p>
 </td>
 </tr>
-<tr id="row7200152382417"><td class="cellrowborder" rowspan="2" valign="top" width="26.619999999999997%" headers="mcps1.2.4.1.1 "><p id="p8200202312241"><a name="p8200202312241"></a><a name="p8200202312241"></a>设置MIPI-DSI进入Low power模式/High speed模式</p>
+<tr id="row7200152382417"><td class="cellrowborder" rowspan="2" valign="top" width="26.619999999999997%" headers="mcps1.2.4.1.1 "><p id="p8200202312241"><a name="p8200202312241"></a><a name="p8200202312241"></a>设置MIPI DSI进入Low power模式/High speed模式</p>
 </td>
 <td class="cellrowborder" valign="top" width="28.910000000000004%" headers="mcps1.2.4.1.2 "><p id="p6200192318247"><a name="p6200192318247"></a><a name="p6200192318247"></a>MipiDsiSetLpMode</p>
 </td>
-<td class="cellrowborder" valign="top" width="44.47%" headers="mcps1.2.4.1.3 "><p id="p16200192319240"><a name="p16200192319240"></a><a name="p16200192319240"></a>设置MIPI-DSI进入Low power模式</p>
+<td class="cellrowborder" valign="top" width="44.47%" headers="mcps1.2.4.1.3 "><p id="p16200192319240"><a name="p16200192319240"></a><a name="p16200192319240"></a>设置MIPI DSI进入Low power模式</p>
 </td>
 </tr>
 <tr id="row122001523182417"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p22009236249"><a name="p22009236249"></a><a name="p22009236249"></a>MipiDsiSetHsMode</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p22001423192418"><a name="p22001423192418"></a><a name="p22001423192418"></a>设置MIPI-DSI进入High speed模式</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p22001423192418"><a name="p22001423192418"></a><a name="p22001423192418"></a>设置MIPI DSI进入High speed模式</p>
 </td>
 </tr>
-<tr id="row52002237248"><td class="cellrowborder" rowspan="2" valign="top" width="26.619999999999997%" headers="mcps1.2.4.1.1 "><p id="p10200162332412"><a name="p10200162332412"></a><a name="p10200162332412"></a>MIPI-DSI发送/回读指令</p>
+<tr id="row52002237248"><td class="cellrowborder" rowspan="2" valign="top" width="26.619999999999997%" headers="mcps1.2.4.1.1 "><p id="p10200162332412"><a name="p10200162332412"></a><a name="p10200162332412"></a>MIPI DSI发送/回读指令</p>
 </td>
 <td class="cellrowborder" valign="top" width="28.910000000000004%" headers="mcps1.2.4.1.2 "><p id="p19200142315249"><a name="p19200142315249"></a><a name="p19200142315249"></a>MipiDsiTx</p>
 </td>
-<td class="cellrowborder" valign="top" width="44.47%" headers="mcps1.2.4.1.3 "><p id="p1020082319243"><a name="p1020082319243"></a><a name="p1020082319243"></a>MIPI-DSI发送相应指令的接口</p>
+<td class="cellrowborder" valign="top" width="44.47%" headers="mcps1.2.4.1.3 "><p id="p1020082319243"><a name="p1020082319243"></a><a name="p1020082319243"></a>MIPI DSI发送相应指令的接口</p>
 </td>
 </tr>
 <tr id="row6200162372416"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p18200112392417"><a name="p18200112392417"></a><a name="p18200112392417"></a>MipiDsiRx</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p9200102312249"><a name="p9200102312249"></a><a name="p9200102312249"></a>MIPI-DSI按期望长度回读的接口</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p9200102312249"><a name="p9200102312249"></a><a name="p9200102312249"></a>MIPI DSI按期望长度回读的接口</p>
 </td>
 </tr>
 </tbody>
@@ -93,14 +84,15 @@
 
 ### 使用流程<a name="section49299119344"></a>
 
-使用MIPI-DSI的一般流程如[图2](#fig129103491241)所示。
+使用MIPI DSI的一般流程如[图2](#fig129103491241)所示。
 
-**图 2**  MIPI-DSI使用流程图<a name="fig129103491241"></a>  
+**图 2**  MIPI DSI使用流程图<a name="fig129103491241"></a>  
+
 ![](figures/MIPI-DSI使用流程图.png)
 
-### 获取MIPI-DSI操作句柄<a name="section5126155683811"></a>
+### 获取MIPI DSI操作句柄<a name="section5126155683811"></a>
 
-在进行MIPI-DSI进行通信前，首先要调用MipiDsiOpen获取操作句柄，该函数会返回指定通道ID的操作句柄。
+在进行MIPI DSI进行通信前，首先要调用MipiDsiOpen获取操作句柄，该函数会返回指定通道ID的操作句柄。
 
 DevHandle MipiDsiOpen\(uint8\_t id\);
 
@@ -136,11 +128,11 @@ DevHandle MipiDsiOpen\(uint8\_t id\);
 </tbody>
 </table>
 
-假设系统中的MIPI-DSI通道为0，获取该通道操作句柄的示例如下：
+假设系统中的MIPI DSI通道为0，获取该通道操作句柄的示例如下：
 
 ```
 DevHandle mipiDsiHandle = NULL;  /* 设备句柄 */
-chnId = 0;      /* MIPI-DSI通道ID */
+chnId = 0;      /* MIPI DSI通道ID */
 
 /* 获取操作句柄 */
 mipiDsiHandle = MipiDsiOpen(chnId);
@@ -150,9 +142,9 @@ if (mipiDsiHandle == NULL) {
 }
 ```
 
-### MIPI-DSI相应配置<a name="section201164274344"></a>
+### MIPI DSI相应配置<a name="section201164274344"></a>
 
--   写入MIPI-DSI配置
+-   写入MIPI DSI配置
 
 int32\_t MipiDsiSetCfg\(DevHandle handle, struct MipiCfg \*cfg\);
 
@@ -172,7 +164,7 @@ int32\_t MipiDsiSetCfg\(DevHandle handle, struct MipiCfg \*cfg\);
 </tr>
 <tr id="row469145572817"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p46915519287"><a name="p46915519287"></a><a name="p46915519287"></a>cfg</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p76995518289"><a name="p76995518289"></a><a name="p76995518289"></a>MIPI-DSI相应配置buf 指针</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p76995518289"><a name="p76995518289"></a><a name="p76995518289"></a>MIPI DSI相应配置buf 指针</p>
 </td>
 </tr>
 <tr id="row16913554284"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p16955512812"><a name="p16955512812"></a><a name="p16955512812"></a><strong id="b17691155152810"><a name="b17691155152810"></a><a name="b17691155152810"></a>返回值</strong></p>
@@ -220,7 +212,7 @@ if (ret != 0) {
 }
 ```
 
--   获取当前MIPI-DSI的配置
+-   获取当前MIPI DSI的配置
 
 int32\_t MipiDsiGetCfg\(DevHandle handle, struct MipiCfg \*cfg\);
 
@@ -240,7 +232,7 @@ int32\_t MipiDsiGetCfg\(DevHandle handle, struct MipiCfg \*cfg\);
 </tr>
 <tr id="row1870155192815"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p137115572815"><a name="p137115572815"></a><a name="p137115572815"></a>cfg</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p771195522818"><a name="p771195522818"></a><a name="p771195522818"></a>MIPI-DSI相应配置buf 指针</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p771195522818"><a name="p771195522818"></a><a name="p771195522818"></a>MIPI DSI相应配置buf 指针</p>
 </td>
 </tr>
 <tr id="row12718555283"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p1871175515289"><a name="p1871175515289"></a><a name="p1871175515289"></a><strong id="b871185592819"><a name="b871185592819"></a><a name="b871185592819"></a>返回值</strong></p>
@@ -422,9 +414,9 @@ HdfFree(cmdRead->payload);
 HdfFree(cmdRead);
 ```
 
-### 释放MIPI-DSI操作句柄<a name="section161011610357"></a>
+### 释放MIPI DSI操作句柄<a name="section161011610357"></a>
 
-MIPI-DSI使用完成之后，需要释放操作句柄，释放句柄的函数如下所示：
+MIPI DSI使用完成之后，需要释放操作句柄，释放句柄的函数如下所示：
 
 void MipiDsiClose\(DevHandle handle\);
 
@@ -441,19 +433,19 @@ void MipiDsiClose\(DevHandle handle\);
 </thead>
 <tbody><tr id="row1926109193116"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p105419317318"><a name="p105419317318"></a><a name="p105419317318"></a>handle</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p132442255912"><a name="p132442255912"></a><a name="p132442255912"></a>MIPI-DSI操作句柄</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p132442255912"><a name="p132442255912"></a><a name="p132442255912"></a>MIPI DSI操作句柄</p>
 </td>
 </tr>
 </tbody>
 </table>
 
 ```
-MipiDsiClose(mipiHandle); /* 释放掉MIPI-DSI操作句柄 */
+MipiDsiClose(mipiHandle); /* 释放掉MIPI DSI操作句柄 */
 ```
 
 ## 使用实例<a name="section17470126123520"></a>
 
-MIPI-DSI完整的使用示例如下所示：
+MIPI DSI完整的使用示例如下所示：
 
 ```
 #include "hdf.h"
