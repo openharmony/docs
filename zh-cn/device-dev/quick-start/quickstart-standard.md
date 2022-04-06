@@ -2,6 +2,6 @@
 
 
 
-- **[标准系统快速入门-安装包](quickstart-standard-docker.md)**
+- **[标准系统快速入门-IDE](quickstart-standard-ide-directory.md)**
+- **[标准系统快速入门-安装包](quickstart-standard-package-directory.md)**
 
-- **[标准系统快速入门-IDE](quickstart-standard-ide.md)**
