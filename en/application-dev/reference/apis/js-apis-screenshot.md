@@ -18,8 +18,8 @@ Describes screenshot options.
 
 | Name    | Type         | Mandatory| Description                                                        |
 | ---------- | ------------- | ---- | ------------------------------------------------------------ |
-| screenRect | [Rect](#Rect) | No  | Region of the screen to capture. If this parameter is null, the full screen will be captured.|
-| imageSize  | [Size](#Size) | No  | Size of the screen region to capture. If this parameter is null, the full screen will be captured.|
+| screenRect | [Rect](#rect) | No  | Region of the screen to capture. If this parameter is null, the full screen will be captured.|
+| imageSize  | [Size](#size) | No  | Size of the screen region to capture. If this parameter is null, the full screen will be captured.|
 | rotation   | number        | No  | Rotation angle of the screenshot. Currently, the value can be **0** only. The default value is **0**.|
 
 
@@ -62,7 +62,7 @@ Takes a screenshot and saves it as a **PixelMap** object. This method uses a cal
 
   | Name  | Type                                   | Mandatory| Description                                                        |
   | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-  | options  | [ScreenshotOptions](#ScreenshotOptions) | No  | Screenshot options, which consist of **screenRect**, **imageSize**, and **rotation**. You need to set these parameters.|
+  | options  | [ScreenshotOptions](#screenshotoptions) | No  | Screenshot options, which consist of **screenRect**, **imageSize**, and **rotation**. You need to set these parameters.|
   | callback | AsyncCallback&lt;image.PixelMap&gt;     | Yes  | Callback used to return a **PixelMap** object.                                  |
 
 - Example
@@ -102,7 +102,7 @@ Takes a screenshot and saves it as a **PixelMap** object. This method uses a pro
 
   | Name | Type                                   | Mandatory| Description                                                        |
   | ------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-  | options | [ScreenshotOptions](#ScreenshotOptions) | No  | Screenshot options, which consist of **screenRect**, **imageSize**, and **rotation**. You need to set these parameters.|
+  | options | [ScreenshotOptions](#screenshotoptions) | No  | Screenshot options, which consist of **screenRect**, **imageSize**, and **rotation**. You need to set these parameters.|
 
 - Return value
 
