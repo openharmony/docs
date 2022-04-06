@@ -80,7 +80,7 @@ ExtensionAbility，是Stage模型中新增的扩展组件的基类，一般用�
 
 针对ServiceExtensionAbility开发，有以下示例工程可供参考：
 
-- [ServiceExtensionAbility](https://gitee.com/openharmony/app_samples/tree/master/ability/eTSServiceExtAbility)
+- [ServiceExtensionAbility](https://gitee.com/openharmony/app_samples/tree/master/ability/ServiceExtAbility)
 
 本示例ServiceExtensionAbility中：
 
