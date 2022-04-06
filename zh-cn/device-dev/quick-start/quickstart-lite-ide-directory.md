@@ -1,4 +1,4 @@
-##轻量和小型系统快速入门（IDE方式）
+## 轻量和小型系统快速入门（IDE方式）
 - [轻量与小型系统入门概述](quickstart-ide-lite-overview.md)
     - 准备轻量与小型系统环境
         - [搭建Windows+Ubuntu混合开发环境](quickstart-ide-lite-env-setup-win-ubuntu.md)
