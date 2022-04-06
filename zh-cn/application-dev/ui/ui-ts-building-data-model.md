@@ -7,6 +7,7 @@
 
 
 1. 新建model文件夹，在model目录下创建FoodData.ets。
+
    ![zh-cn_image_0000001195119619](figures/zh-cn_image_0000001195119619.png)
 
 2. 定义食物数据的存储模型FoodData和枚举变量Category，FoodData类包含食物id、名称（name）、分类（category）、图片（image）、热量（calories）、蛋白质（protein）、脂肪（fat）、碳水（carbohydrates）和维生素C（vitaminC）属性。

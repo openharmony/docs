@@ -35,6 +35,7 @@
 - [设备管理](device/Readme-CN.md)
 - [设备使用信息统计](device-usage-statistics/Readme-CN.md)
 - [DFX](dfx/Readme-CN.md)
+- [国际化](internationalization/Readme-CN.md)
 
 ### 工具
 
