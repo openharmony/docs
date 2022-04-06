@@ -38,7 +38,7 @@ import display from '@ohos.display';
 | id | number | 是 | 否 | 显示设备的id号。|
 | name | string | 是 | 否 | 显示设备的名称。|
 | alive | boolean | 是 | 否 | 显示设备是否启用。|
-| state | [DisplayState](#DisplayState) | 是 | 否 | 显示设备的状态。|
+| state | [DisplayState](#displaystate) | 是 | 否 | 显示设备的状态。|
 | refreshRate | number | 是 | 否 | 显示设备的刷新率。|
 | rotation | number | 是 | 否 | 显示设备的屏幕旋转角度。|
 | width | number | 是 | 否 | 显示设备的宽度，单位为像素。|
@@ -61,7 +61,7 @@ getDefaultDisplay(callback: AsyncCallback&lt;Display&gt;): void
 - 参数
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[Display](#Display)&gt; | 是 | 回调返回当前默认的display对象。 |
+  | callback | AsyncCallback&lt;[Display](#display)&gt; | 是 | 回调返回当前默认的display对象。 |
 
 - 示例
   ```
@@ -88,7 +88,7 @@ getDefaultDisplay(): Promise&lt;Display&gt;
 
   | 类型                               | 说明                                           |
   | ---------------------------------- | ---------------------------------------------- |
-  | Promise&lt;[Display](#Display)&gt; | 以Promise形式返回结果，返回默认的display对象。 |
+  | Promise&lt;[Display](#display)&gt; | 以Promise形式返回结果，返回默认的display对象。 |
 
 - 示例
 
@@ -113,7 +113,7 @@ getAllDisplay(callback: AsyncCallback&lt;Array&lt;Display&gt;&gt;): void
 
   | 参数名   | 类型                                                 | 必填 | 说明                            |
   | -------- | ---------------------------------------------------- | ---- | ------------------------------- |
-  | callback | AsyncCallback&lt;Array&lt;[Display](Display)&gt;&gt; | 是   | 回调返回当前所有的display对象。 |
+  | callback | AsyncCallback&lt;Array&lt;[Display](display)&gt;&gt; | 是   | 回调返回当前所有的display对象。 |
 
 - 示例
 
@@ -139,7 +139,7 @@ getAllDisplay(): Promise&lt;Array&lt;Display&gt;&gt;
 
   | 类型                                            | 说明                                                    |
   | ----------------------------------------------- | ------------------------------------------------------- |
-  | Promise&lt;Array&lt;[Display](#Display)&gt;&gt; | 以Promise形式返回结果，返回包含所有Display对象的Array。 |
+  | Promise&lt;Array&lt;[Display](#display)&gt;&gt; | 以Promise形式返回结果，返回包含所有Display对象的Array。 |
 
 - 示例
 
