@@ -18,8 +18,8 @@ import screenshot from '@ohos.screenshot';
 
 | 参数名     | 类型          | 必填 | 说明                                                         |
 | ---------- | ------------- | ---- | ------------------------------------------------------------ |
-| screenRect | [Rect](#Rect) | 否   | 表示截取图像的区域，不传值默认为全屏。|
-| imageSize  | [Size](#Size) | 否   | 表示截取图像的大小，不传值默认为全屏。|
+| screenRect | [Rect](#rect) | 否   | 表示截取图像的区域，不传值默认为全屏。|
+| imageSize  | [Size](#size) | 否   | 表示截取图像的大小，不传值默认为全屏。|
 | rotation   | number        | 否   | 表示截取图像的旋转角度，当前仅支持输入值为0，默认值为0。|
 
 
@@ -62,7 +62,7 @@ save(options?: ScreenshotOptions, callback: AsyncCallback&lt;image.PixelMap&gt;)
 
   | 参数名   | 类型                                    | 必填 | 说明                                                         |
   | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-  | options  | [ScreenshotOptions](#ScreenshotOptions) | 否   | 该类型的参数包含screenRect，imageSize，rotation三个参数，需要分别设置这三个参数。 |
+  | options  | [ScreenshotOptions](#screenshotoptions) | 否   | 该类型的参数包含screenRect，imageSize，rotation三个参数，需要分别设置这三个参数。 |
   | callback | AsyncCallback&lt;image.PixelMap&gt;     | 是   | 回调返回一个PixelMap对象。                                   |
 
 - 示例
@@ -102,7 +102,7 @@ save(options?: ScreenshotOptions): Promise&lt;image.PixelMap&gt;
 
   | 参数名  | 类型                                    | 必填 | 说明                                                         |
   | ------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-  | options | [ScreenshotOptions](#ScreenshotOptions) | 否   | 该类型的参数包含screenRect，imageSize，rotation三个参数，需要分别设置这三个参数。 |
+  | options | [ScreenshotOptions](#screenshotoptions) | 否   | 该类型的参数包含screenRect，imageSize，rotation三个参数，需要分别设置这三个参数。 |
 
 - 返回值
 
