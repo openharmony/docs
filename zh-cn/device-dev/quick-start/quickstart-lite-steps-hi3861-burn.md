@@ -13,6 +13,7 @@
    ![zh-cn_image_0000001171426014](figures/zh-cn_image_0000001171426014.png)
 
 2. 选择要导入的源码目录（需要访问Ubuntu下的源码目录），点击**Import**打开。
+
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
    > 工程存储路径不能包含中文字符、空格。如果工程存储路径包含中文字符或空格，可能导致编译失败。
 
@@ -40,6 +41,7 @@
 1. 请连接好电脑和待烧录开发板，需要连接USB口，具体可参考[Hi3861V100开发板介绍](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/quick-start/quickstart-lite-introduction-hi3861.md)。
 
 2. 在DevEco Device Tool中，选择REMOTE DEVELOPMENT &gt; Local PC，查看远程计算机（Ubuntu开发环境）与本地计算机（Windows开发环境）的连接状态。
+
    - 如果Local PC右边连接按钮为![zh-cn_image_0000001261315939](figures/zh-cn_image_0000001261315939.png)，则远程计算机与本地计算机为已连接状态，不需要执行其他操作。
    - 如果Local PC右边连接按钮为![zh-cn_image_0000001261515989](figures/zh-cn_image_0000001261515989.png)，则点击绿色连接进行按钮。
 
@@ -60,6 +62,7 @@
    ![zh-cn_image_0000001198943768](figures/zh-cn_image_0000001198943768.png)
 
 5. 在“hi3861”页签，设置烧录选项，包括upload_port、upload_protocol和upload_partitions。
+
    - upload_port：选择已查询的串口号。
    - upload_protocol：选择烧录协议，选择“hiburn-serial”。
    - upload_partitions：选择待烧录的文件，默认选择hi3861_app。
@@ -67,6 +70,7 @@
    ![zh-cn_image_0000001243704061](figures/zh-cn_image_0000001243704061.png)
 
 6. 检查待烧录文件的烧录信息，DevEco Device Tool已预置默认的烧录文件信息，可根据实际情况进行调整。
+
    在“hi3861_app”页签，在New Option选项中选择partition_bin（烧录文件路径），然后设置待烧录文件的地址。
 
    ![zh-cn_image_0000001260919759](figures/zh-cn_image_0000001260919759.png)

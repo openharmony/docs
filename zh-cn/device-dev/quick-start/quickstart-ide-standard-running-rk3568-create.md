@@ -97,6 +97,7 @@ productdefine/common
          install_enable = true  # 是否默认安装（缺省默认不安装），可选
        }
        ```
+
    2. 新建applications/sample/hello/bundle.json文件，添加sample部件描述，内容如下所示。
          
        ```

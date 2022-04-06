@@ -123,6 +123,7 @@
   若上述步骤依旧无法连接串口，可能由于单板U-boot损坏，按下述步骤烧写U-boot。
 
 1. 获取引导文件U-boot。
+
    > ![icon-notice.gif](public_sys-resources/icon-notice.gif) **须知：**
    > 单板的U-boot文件请在开源包中获取：
    > 

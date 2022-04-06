@@ -48,6 +48,7 @@ Hi3861 WLAN模组需要的工具如下表所示。
    ```
 
      **图1** SCons安装成功界面，版本要求3.0.4以上
+
      ![zh-cn_image_0000001271234749](figures/zh-cn_image_0000001271234749.png)
 
 
@@ -60,14 +61,18 @@ Hi3861 WLAN模组需要的工具如下表所示。
    ```
 
 2. 安装GUI menuconfig工具（Kconfiglib），建议安装Kconfiglib 13.2.0+版本，任选如下一种方式。
+
    - **命令行方式：**
         
       ```
       sudo pip3 install kconfiglib
       ```
    - **安装包方式：**
+
       1. 下载.whl文件（例如：kconfiglib-13.2.0-py2.py3-none-any.whl）。
+
           下载路径：“[https://pypi.org/project/kconfiglib#files](https://pypi.org/project/kconfiglib#files)”
+
       2. 运行如下命令，安装.whl文件。
             
           ```
@@ -75,7 +80,9 @@ Hi3861 WLAN模组需要的工具如下表所示。
           ```
 
 3. 安装pycryptodome，任选如下一种方式。
+
      安装升级文件签名依赖的Python组件包，包括：pycryptodome、six、ecdsa。安装ecdsa依赖six，请先安装six，再安装ecdsa。
+
    - **命令行方式：**
        
      ```
@@ -83,8 +90,11 @@ Hi3861 WLAN模组需要的工具如下表所示。
      ```
    
    - **安装包方式：**
+
      1. 下载.whl文件（例如：pycryptodome-3.9.9-cp38-cp38-manylinux1_x86_64.whl）。
-         下载路径：“[https://pypi.org/project/pycryptodome/#files](https://pypi.org/project/pycryptodome/#files)”。
+
+        下载路径：“[https://pypi.org/project/pycryptodome/#files](https://pypi.org/project/pycryptodome/#files)”。
+
      2. 运行如下命令，安装.whl文件。
            
          ```
@@ -92,14 +102,19 @@ Hi3861 WLAN模组需要的工具如下表所示。
          ```
 
 4. 安装six，任选如下一种方式。
+
    - **命令行方式：**
         
       ```
       sudo pip3 install six --upgrade --ignore-installed six
       ```
+
    - **安装包方式：**
+
       1. 下载.whl文件（例如：six-1.12.0-py2.py3-none-any.whl）。
-          下载路径：“[https://pypi.org/project/six/#files](https://pypi.org/project/six/#files)”
+
+         下载路径：“[https://pypi.org/project/six/#files](https://pypi.org/project/six/#files)”
+
       2. 运行如下命令，安装.whl文件。
             
           ```
@@ -107,14 +122,19 @@ Hi3861 WLAN模组需要的工具如下表所示。
           ```
 
 5. 安装ecdsa，任选如下一种方式。
+
    - **命令行方式：**
         
       ```
       sudo pip3 install ecdsa
       ```
+
    - **安装包方式：**
+
       1. 下载.whl文件（例如：ecdsa-0.14.1-py2.py3-none-any.whl）。
-          下载路径：“[https://pypi.org/project/ecdsa/#files](https://pypi.org/project/ecdsa/#files)”
+
+         下载路径：“[https://pypi.org/project/ecdsa/#files](https://pypi.org/project/ecdsa/#files)”
+
       2. 运行如下命令，安装.whl文件。
             
           ```
@@ -162,6 +182,7 @@ Hi3861 WLAN模组需要的工具如下表所示。
    ```
 
 7. 添加riscv-gcc-7.3.0补丁。
+
    访问gcc官方补丁链接[89411](https://gcc.gnu.org/git/?p=gcc.git;a=commitdiff;h=026216a753ef0a757a9e368a59fa667ea422cf09;hp=2a23a1c39fb33df0277abd4486a3da64ae5e62c2)，[86724](https://gcc.gnu.org/git/?p=gcc.git;a=blobdiff;f=gcc/graphite.h;h=be0a22b38942850d88feb159603bb846a8607539;hp=4e0e58c60ab83f1b8acf576e83330466775fac17;hb=b1761565882ed6a171136c2c89e597bc4dd5b6bf;hpb=fbd5f023a03f9f60c6ae36133703af5a711842a3)，按照补丁链接中要求的修改，手动将变更添加到对应的.c和.h文件中，注意由于patch版本与下载的gcc版本有所偏差，行数有可能对应不上，请自行查找patch中的关键字定位到对应行。
 
 8. 下载[GMP 6.1.2](https://gmplib.org/download/gmp/gmp-6.1.2.tar.bz2)，并解压安装。
@@ -207,6 +228,7 @@ Hi3861 WLAN模组需要的工具如下表所示。
     ```
 
 15. 设置环境变量。
+
     > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
     >   如果直接采用编译好的riscv32 gcc包，请先执行以下命令将压缩包解压到根目录：
     >   

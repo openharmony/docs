@@ -6,6 +6,7 @@
 Hi3861开发板是一片大约2cm\*5cm大小的开发板，是一款高度集成的2.4GHz WLAN SoC芯片，集成IEEE 802.11b/g/n基带和RF（Radio Frequency）电路。支持OpenHarmony，并配套提供开放、易用的开发和调试运行环境。
 
   **图1** Hi3861开发板外观图
+
   ![zh-cn_image_0000001226634692](figures/zh-cn_image_0000001226634692.png)
 
 另外，Hi3861开发板还可以通过与Hi3861底板连接，扩充自身的外设能力，底板如下图所示。
@@ -21,7 +22,8 @@ Hi3861开发板是一片大约2cm\*5cm大小的开发板，是一款高度集成
 - Hi3861芯片集成高性能32bit微处理器、硬件安全引擎以及丰富的外设接口，外设接口包括SPI（Synchronous Peripheral Interface）、UART（Universal Asynchronous Receiver &amp; Transmitter）、I2C（The Inter Integrated Circuit）、PWM（Pulse Width Modulation）、GPIO（General Purpose Input/Output）和多路ADC（Analog to Digital Converter），同时支持高速SDIO2.0（Secure Digital Input/Output）接口，最高时钟可达50MHz；芯片内置SRAM（Static Random Access Memory）和Flash，可独立运行，并支持在Flash上运行程序。
 
 - Hi3861芯片适用于智能家电等物联网智能终端领域。
-    **图3** Hi3861功能框图
+
+  **图3** Hi3861功能框图
     
   ![zh-cn_image_0000001271234729](figures/zh-cn_image_0000001271234729.png)
 

@@ -13,6 +13,7 @@
    ![zh-cn_image_0000001171426014](figures/zh-cn_image_0000001171426014.png)
 
 2. 选择要导入的源码目录（需要访问Ubuntu下的源码目录），点击**Import**打开。
+
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
    > 工程存储路径不能包含中文字符、空格。如果工程存储路径包含中文字符或空格，可能导致编译失败。
 
@@ -44,6 +45,7 @@
 2. 请连接好电脑和待烧录开发板，连接USB接口。
 
 3. 在DevEco Device Tool中，选择REMOTE DEVELOPMENT &gt; Local PC，查看远程计算机（Ubuntu开发环境）与本地计算机（Windows开发环境）的连接状态。
+
    - 如果Local PC右边连接按钮为![zh-cn_image_0000001261315939](figures/zh-cn_image_0000001261315939.png)，则远程计算机与本地计算机为已连接状态，不需要执行其他操作。
    - 如果Local PC右边连接按钮为![zh-cn_image_0000001261515989](figures/zh-cn_image_0000001261515989.png)，则点击绿色连接进行按钮。
 
@@ -57,17 +59,20 @@
    ![zh-cn_image_0000001239661509](figures/zh-cn_image_0000001239661509.png)
 
 5. 在“hh_scdy200”页签，设置烧录选项，包括upload_partitions和upload_protocol。
+
    - upload_partitions：选择待烧录的文件。
    - upload_protocol：选择烧录协议，固定选择“upgrade”。
 
    ![zh-cn_image_0000001194504874](figures/zh-cn_image_0000001194504874.png)
 
 6. 分别检查待烧录文件的烧录信息，DevEco Device Tool已预置默认的烧录文件信息，可根据实际情况进行调整。待烧录文件包括：loader、parameter、uboot、boot_linux、system、vendor和userdata。
+
    1. 在“hh_scdy200_loader”页签，在New Option选项中选择需要修改的项，例如partition_bin（烧录文件路径）、partition_addr（烧录文件起始地址）、partition_length（烧录文件分区长度）等。
 
        ![zh-cn_image_0000001224173270](figures/zh-cn_image_0000001224173270.png)
 
    2. 然后在Partition Options中，分别修改上述步骤中选择的修改项。
+
        > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
        > 在设置烧录分区起始地址和分区长度时，应根据实际待烧录文件的大小进行设置，要求设置的烧录分区大小，要大于待烧录文件的大小；同时，各烧录文件的分区地址设置不能出现重叠。
 
