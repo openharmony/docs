@@ -22,6 +22,7 @@ OpenHarmony支持hb和build.sh两种编译方式。此处介绍hb方式，build.
 3. 在built-in下选择rk3568并回车。
 
 4. 执行编译。
+
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
    > - 单独编译一个部件（例如hello），可使用“hb build -T _目标名称_”进行编译。
    > 
@@ -42,5 +43,6 @@ OpenHarmony支持hb和build.sh两种编译方式。此处介绍hb方式，build.
      ![zh-cn_image_0000001226922302](figures/zh-cn_image_0000001226922302.png)
 
 5. 编译结束后，出现“rk3568 build success”字样，则证明构建成功。
+
    > ![icon-notice.gif](public_sys-resources/icon-notice.gif) **须知：**
    > 编译结果文件及编译日志文件获取路径：out/rk3568。
