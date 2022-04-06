@@ -128,7 +128,7 @@ Permissions can be classified into the following types based on the authorizatio
 
     This type of permissions must be declared in the app installation package and authorized by users dynamically during the running of the app. The app has the permission only after user authorization.
 
-    For example, in the [Permission List] (#permissionlist), the permissions for the microphone and camera are user_grant and need user authorization.
+    For example, in the [Permission List](#permissionlist), the permissions for the microphone and camera are user_grant permissions. The list provides reasons for using the permissions.
 
     The user_grant permission list must also be presented on the details page of the app store.
 
