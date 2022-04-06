@@ -35,6 +35,7 @@ Then, equip yourself for developing the key features, with the following guideli
 - [Device Management](device/Readme-EN.md)
 - [Device Usage Statistics](device-usage-statistics/Readme-EN.md)
 - [DFX](dfx/Readme-EN.md)
+- [Internationalization](internationalization/Readme-EN.md)
 
 ### Tools
 
