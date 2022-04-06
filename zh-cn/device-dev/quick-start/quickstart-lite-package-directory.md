@@ -24,4 +24,5 @@
     - 开发板介绍
         - [Hi3861开发板介绍](quickstart-lite-introduction-hi3861.md)
         - [Hi3516开发板介绍](quickstart-lite-introduction-hi3516.md)
+    - [轻量和小型系统快速入门（IDE方式）](quickstart-lite-ide-directory.md)
     - [参考信息](quickstart-lite-reference.md)

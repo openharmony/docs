@@ -26,6 +26,7 @@
             - 开发板介绍
                 - [Hi3861开发板介绍](quick-start/quickstart-ide-lite-introduction-hi3861.md)
                 - [Hi3516开发板介绍](quick-start/quickstart-ide-lite-introduction-hi3516.md)
+            - [轻量和小型系统快速入门（安装包方式）](quick-start/quickstart-lite-package-directory.md)
     
     - 标准系统快速入门（IDE方式）
         - [标准系统入门概述](quick-start/quickstart-ide-standard-overview.md)
@@ -48,6 +49,7 @@
             - 开发板介绍
                 - [Hi3516开发板介绍](quick-start/quickstart-ide-standard-board-introduction-hi3516.md)
                 - [RK3568开发板介绍](quick-start/quickstart-ide-standard-board-introduction-rk3568.md)
+            - [标准系统快速入门（安装包方式）](quick-start/quickstart-standard-package-directory.md)
 
     - [获取源码](get-code/sourcecode-acquire.md)
 
@@ -61,7 +63,7 @@
   - 轻量系统芯片移植指导
 
     - 移植准备
-      - [移植须知](porting/oem_transplant_chip_prepare_knows.md)
+      - [移植须知](porting/porting-chip-prepare-knows.md)
       - [编译构建适配流程](porting/porting-chip-prepare-process.md)
     - 内核移植
       - [移植概述](porting/porting-chip-kernel-overview.md)
