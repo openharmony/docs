@@ -136,7 +136,7 @@ if (geolocation) {
 
 ### 不同设备相同能力的差异检查
 
-即使是相同的系统能力，在不同的设备下，也会有能力的差异。比如同是摄像头的能力，手机比手表要强很多。
+即使是相同的系统能力，在不同的设备下，也会有能力的差异。比如同是摄像头的能力，平板设备优于智能穿戴设备。
 
 ```
 import userAuth from '@ohos.userIAM.userAuth';
@@ -163,18 +163,18 @@ authenticator.execute('FACE_ONLY', 'S1', (err, result) => {
 
 ![image-20220326072448840](figures/image-20220326072448840.png)
 
-1、一套 OpenHarmony 源码由可选和必选部件集组成，不同的部件为对外体现的系统能力不同，即部件与 SysCap 之间映射关系。
+1. 一套 OpenHarmony 源码由可选和必选部件集组成，不同的部件为对外体现的系统能力不同，即部件与 SysCap 之间映射关系。
 
-2、发布归一化的 SDK，API 与 SysCap 之间存在映射关系。
+2. 发布归一化的 SDK，API 与 SysCap 之间存在映射关系。
 
-3、产品解决方案厂商按硬件能力和产品诉求，可按需拼装部件。
+3. 产品解决方案厂商按硬件能力和产品诉求，可按需拼装部件。
 
-4、产品配置的部件可以是 OpenHarmony 的部件，也可以是三方开发的私有部件，由于部件与SysCap间存在映射，所有拼装后即可得到该产品的SysCap集合。
+4. 产品配置的部件可以是 OpenHarmony 的部件，也可以是三方开发的私有部件，由于部件与SysCap间存在映射，所有拼装后即可得到该产品的SysCap集合。
 
-5、SysCap集编码生成 PCID (Product Compatibility ID， 产品兼容性标识)，应用开发者可将 PCID 导入 IDE解码成SysCap ，开发时对设备的SysCap差异做兼容性处理。
+5. SysCap集编码生成 PCID (Product Compatibility ID， 产品兼容性标识)，应用开发者可将 PCID 导入 IDE解码成SysCap ，开发时对设备的SysCap差异做兼容性处理。
 
-6、部署到设备上的系统参数中包含了 SysCap 集，系统提供了native的接口和应用接口，可供系统内的部件和应用查询某个 SysCap 是否存在。
+6. 部署到设备上的系统参数中包含了 SysCap 集，系统提供了native的接口和应用接口，可供系统内的部件和应用查询某个 SysCap 是否存在。
 
-7、应用开发过程中，应用必要的 SysCap 将被编码成 RPCID（Required Product Compatibility ID），并写入应用安装包中。应用安装时，包管理器将解码 RPCID 得到应用需要的 SysCap，与设备当前具备的 SysCap 比较，若应用要求的 SysCap 都被满足，则安装成功。
+7. 应用开发过程中，应用必要的 SysCap 将被编码成 RPCID（Required Product Compatibility ID），并写入应用安装包中。应用安装时，包管理器将解码 RPCID 得到应用需要的 SysCap，与设备当前具备的 SysCap 比较，若应用要求的 SysCap 都被满足，则安装成功。
 
-8、应用运行时，可通过 canIUse 接口查询设备的 SysCap，保证在不同设备上的兼容性。
+8. 应用运行时，可通过 canIUse 接口查询设备的 SysCap，保证在不同设备上的兼容性。
