@@ -1126,7 +1126,7 @@ HDF_INIT(g_daiDriverEntry);
 
 ### Makefile中添加编译配置
 
-添加新增文件到对应的config中，将其编译链接到内核镜像。
+添加新增文件到对应的Makefile中，将其编译链接到内核镜像。
 
 标准系统（linux）：drivers/adapter/khdf/linux/model/audio/Makefile
 
@@ -1246,6 +1246,11 @@ vendor/hisilicon/hispark_taurus/
 
 
 ## 使用HAL的开发步骤与实例
+HAL（Hardware Abstraction Layer）的核心功能说明如下:
+
+1. 提供Audio HDI接口供北向音频服务调用，实现音频服务的基本功能。
+2. 作为标准南向接口，保证南向OEM产商实现HDI-adapter的规范性，保证生态良性演进。
+
 代码路径：drivers/peripheral/audio/hal
 
 ### HAL模块使用步骤
