@@ -14,7 +14,9 @@ OpenHarmony LiteOS-A实现了用户态与内核态的区分隔离，用户态程
 ## 运行机制
 
 如图1所示，用户程序通过调用System API（系统API，通常是系统提供的POSIX接口）进行内核资源访问与交互请求，POSIX接口内部会触发SVC/SWI异常，完成系统从用户态到内核态的切换，然后对接到内核的Syscall Handler（系统调用统一处理接口）进行参数解析，最终分发至具体的内核处理函数。
+
 **图1** 系统调用示意图
+
 ![zh-cn_image_0000001132856572](figures/zh-cn_image_0000001132856572.png)
 Syscall Handler的具体实现在kernel/liteos_a/syscall/los_syscall.c中OsArmA32SyscallHandle函数，在进入系统软中断异常时会调用此函数，并且按照kernel/liteos_a/syscall/syscall_lookup.h中的清单进行系统调用的入参解析，执行各系统调用最终对应的内核处理函数。
 
