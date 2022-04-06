@@ -34,8 +34,7 @@
             - [LMS调测](kernel-mini-memory-lms.md)
         - 附录
             - [内核编码规范](kernel-mini-appx-code.md)
-            - 基本数据结构
-                - [双向链表](kernel-mini-appx-data-list.md)
+            - [双向链表](kernel-mini-appx-data-list.md)
             - 标准库支持
                 - [CMSIS支持](kernel-mini-appx-lib-cmsis.md)
                 - [POSIX支持](kernel-mini-appx-lib-posix.md)
@@ -179,8 +178,7 @@
         - [开发板Patch使用指导](kernel-standard-patch.md)
         - [Linux内核编译与构建指导](kernel-standard-build.md)
         - [内核增强特性](kernel-standard-enhanced-features.md)
-            - [内存管理](kernel-standard-mm.md)
-                - [Enhanced SWAP特性介绍](kernel-standard-mm-eswap.md)
+            - [Enhanced SWAP特性介绍](kernel-standard-mm-eswap.md)
             - [任务调度](kernel-standard-sched.md)
                 - [关联线程组调度](kernel-standard-sched-rtg.md)
                 - [CPU轻量级隔离](kernel-standard-sched-cpuisolation.md)

@@ -138,8 +138,7 @@
         - [LMS调测](kernel/kernel-mini-memory-lms.md)
       - 附录
         - [内核编码规范](kernel/kernel-mini-appx-code.md)
-        - 基本数据结构
-          - [双向链表](kernel/kernel-mini-appx-data-list.md)
+        - [双向链表](kernel/kernel-mini-appx-data-list.md)
         - 标准库支持
           - [CMSIS支持](kernel/kernel-mini-appx-lib-cmsis.md)
           - [POSIX支持](kernel/kernel-mini-appx-lib-posix.md)
