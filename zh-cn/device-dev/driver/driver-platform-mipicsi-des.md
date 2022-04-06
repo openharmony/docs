@@ -1,20 +1,5 @@
-# MIPI-CSI<a name="title_MIPI_CSIDes"></a>
+# MIPI CSI<a name="title_MIPI_CSIDes"></a>
 
--   [概述](#section1_MIPI_CSIDes)
-    -   [ComboDevAttr结构体](#section1.1_MIPI_CSIDes)
-    -   [ExtDataType结构体](#section1.2_MIPI_CSIDes)
-    -   [接口说明](#section1.3_MIPI_CSIDes)
-    
--   [使用指导](#section2_MIPI_CSIDes)
-    -   [使用流程](#section2.1_MIPI_CSIDes)
-    -   [获取MIPI-CSI控制器操作句柄](#section2.2_MIPI_CSIDes)
-    -   [MIPI-CSI相应配置](#section2.3_MIPI_CSIDes)
-    -   [复位/撤销复位sensor](#section2.4_MIPI_CSIDes)
-    -   [复位/撤销复位MIPI RX](#section2.5_MIPI_CSIDes)
-    -   [使能/关闭MIPI的时钟](#section2.6_MIPI_CSIDes)
-    -   [使能/关闭MIPI上的sensor时钟](#section2.7_MIPI_CSIDes)
-    -   [释放MIPI-CSI控制器操作句柄](#section2.8_MIPI_CSIDes)
--   [使用实例](#section3_MIPI_CSIDes)
 
 ## 概述<a name="section1_MIPI_CSIDes"></a>
 
@@ -57,14 +42,14 @@
 
 ### 接口说明<a name="section1.3_MIPI_CSIDes"></a>
 
-**表 3**  MIPI-CSI API接口功能介绍
+**表 3**  MIPI CSI API接口功能介绍
 
 <a name="table3_MIPI_CSIDes"></a>
 
   | 功能分类 | 接口名 | 
 | -------- | -------- |
-| 获取/释放MIPI-CSI控制器操作句柄 | MipiCsiOpen：获取MIPI-CSI控制器操作句柄<br/>MipiCsiClose：释放MIPI-CSI控制器操作句柄 | 
-| MIPI-CSI相应配置 | MipiCsiSetComboDevAttr：设置MIPI，CMOS或者LVDS相机的参数给控制器，参数包括工作模式，图像区域，图像深度，数据速率和物理通道等<br/>MipiCsiSetExtDataType(可选)：设置YUV和RAW数据格式和位深<br/>MipiCsiSetHsMode：设置MIPI&nbsp;RX的Lane分布。根据硬件连接的形式选择具体的mode<br/>MipiCsiSetPhyCmvmode：设置共模电压模式 | 
+| 获取/释放MIPI CSI控制器操作句柄 | MipiCsiOpen：获取MIPI CSI控制器操作句柄<br/>MipiCsiClose：释放MIPI CSI控制器操作句柄 | 
+| MIPI CSI相应配置 | MipiCsiSetComboDevAttr：设置MIPI，CMOS或者LVDS相机的参数给控制器，参数包括工作模式，图像区域，图像深度，数据速率和物理通道等<br/>MipiCsiSetExtDataType(可选)：设置YUV和RAW数据格式和位深<br/>MipiCsiSetHsMode：设置MIPI&nbsp;RX的Lane分布。根据硬件连接的形式选择具体的mode<br/>MipiCsiSetPhyCmvmode：设置共模电压模式 | 
 | 复位/撤销复位Sensor | MipiCsiResetSensor：复位Sensor<br/>MipiCsiUnresetSensor：撤销复位Sensor | 
 | 复位/撤销复位MIPI&nbsp;RX | MipiCsiResetRx：复位MIPI&nbsp;RX。不同的s32WorkingViNum有不同的enSnsType<br/>MipiCsiUnresetRx：撤销复位MIPI&nbsp;RX | 
 | 使能/关闭MIPI的时钟 | MipiCsiEnableClock：使能MIPI的时钟。根据上层函数电泳传递的enSnsType参数决定是用MIPI还是LVDS<br/>MipiCsiDisableClock：关闭MIPI设备的时钟 | 
@@ -75,16 +60,16 @@
 
 ### 使用流程<a name="section2.1_MIPI_CSIDes"></a>
 
-使用MIPI-CSI的一般流程如[图2](#fig2_MIPI_CSIDes)所示。
+使用MIPI CSI的一般流程如[图2](#fig2_MIPI_CSIDes)所示。
 
-**图 2**  MIPI-CSI使用流程图<a name="fig2_MIPI_CSIDes"></a>  
+**图 2**  MIPI CSI使用流程图<a name="fig2_MIPI_CSIDes"></a>  
 
 
 ![](figures/MIPI-CSI使用流程图.png)
 
-### 获取MIPI-CSI控制器操作句柄<a name="section2.2_MIPI_CSIDes"></a>
+### 获取MIPI CSI控制器操作句柄<a name="section2.2_MIPI_CSIDes"></a>
 
-在进行MIPI-CSI进行通信前，首先要调用MipiCsiOpen获取控制器操作句柄，该函数会返回指定通道ID的控制器操作句柄。
+在进行MIPI CSI进行通信前，首先要调用MipiCsiOpen获取控制器操作句柄，该函数会返回指定通道ID的控制器操作句柄。
 
 ```c
 DevHandle MipiCsiOpen(uint8_t id);
@@ -101,11 +86,11 @@ DevHandle MipiCsiOpen(uint8_t id);
 | NULL       | 获取失败                                        |
 | 设备句柄   | 获取到指令通道的控制器操作句柄，类型为DevHandle |
 
-假设系统中的MIPI-CSI通道为0，获取该通道控制器操作句柄的示例如下：
+假设系统中的MIPI CSI通道为0，获取该通道控制器操作句柄的示例如下：
 
 ```c
 DevHandle MipiCsiHandle = NULL;  /* 设备句柄 */
-id = 0;      /* MiPi-Csi通道ID */
+id = 0;      /* MIPI CSI通道ID */
 
 /* 获取控制器操作句柄 */
 MipiCsiHandle = MipiCsiOpen(id);
@@ -115,9 +100,9 @@ if (MipiCsiHandle == NULL) {
 }
 ```
 
-### MIPI-CSI相应配置<a name="section2.3_MIPI_CSIDes"></a>
+### MIPI CSI相应配置<a name="section2.3_MIPI_CSIDes"></a>
 
--   写入MIPI-CSI配置
+-   写入MIPI CSI配置
 
     ```c
     int32_t MipiCsiSetComboDevAttr(DevHandle handle, ComboDevAttr *pAttr);
@@ -130,7 +115,7 @@ if (MipiCsiHandle == NULL) {
     | 参数       | 参数描述                   |
     | ---------- | -------------------------- |
     | handle     | 控制器操作句柄             |
-    | pAttr      | MIPI-CSI相应配置结构体指针 |
+    | pAttr      | MIPI CSI相应配置结构体指针 |
     | **返回值** | **返回值描述**             |
     | 0          | 设置成功                   |
     | 负数       | 设置失败                   |
@@ -528,9 +513,9 @@ if (MipiCsiHandle == NULL) {
     }
     ```
 
-### 释放MIPI-CSI控制器操作句柄<a name="section2.8_MIPI_CSIDes"></a>
+### 释放MIPI CSI控制器操作句柄<a name="section2.8_MIPI_CSIDes"></a>
 
-MIPI-CSI使用完成之后，需要释放控制器操作句柄，释放句柄的函数如下所示：
+MIPI CSI使用完成之后，需要释放控制器操作句柄，释放句柄的函数如下所示：
 
 ```c
 void MipiCsiClose(DevHandle handle);
@@ -544,15 +529,15 @@ void MipiCsiClose(DevHandle handle);
 
  | 参数         | 参数描述                                         |
  | ------------ | ------------------------------------------------ |
- | handle       | MIPI-CSI控制器操作句柄                                  |
+ | handle       | MIPI CSI控制器操作句柄                                  |
 
 ```c
-MipiCsiClose(MIPIHandle); /* 释放掉MIPI-CSI控制器操作句柄 */
+MipiCsiClose(MIPIHandle); /* 释放掉MIPI CSI控制器操作句柄 */
 ```
 
 ## 使用实例<a name="section3_MIPI_CSIDes"></a>
 
-MIPI-CSI完整的使用示例如下所示：
+MIPI CSI完整的使用示例如下所示：
 
 ```c
 #include "hdf.h"
