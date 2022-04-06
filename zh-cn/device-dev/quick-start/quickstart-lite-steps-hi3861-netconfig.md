@@ -17,6 +17,7 @@
      ![zh-cn_image_0000001226794704](figures/zh-cn_image_0000001226794704.png)
 
 3. 在串口终端中，依次执行如下AT命令，启动STA模式，连接指定AP热点，并开启DHCP功能。
+
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
    > 开发板启动后，串口会打印测试用例信息，待测试用例信息打印完成后再执行AT指令，否则AT指令会被测试用例信息覆盖。
 
