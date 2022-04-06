@@ -434,6 +434,7 @@ You can use the Flex layout to build a food composition table. In this way you d
    ```
 
 5. Use the custom constructor @Builder to simplify the code. It can be found that the food groups in each food composition table are actually of the same UI structure.
+
    ![en-us_image_0000001223287704](figures/en-us_image_0000001223287704.png)
 
    Currently, all food groups are declared, resulting in code duplication and redundancy. You can use @Builder to build a custom method and abstract the same UI structure declaration. The @Builder decorated method and the build method for the @Component decorated component are used to declare some UI rendering structures and comply with the same eTS syntax. You can define one or more methods decorated by @Builder, but a component decorated by @Component can have only one build method.
