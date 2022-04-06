@@ -110,7 +110,7 @@
 
   修改串口号。
 
-  请查看设备管理器，确认连接单板的串口与终端中连接串口是否一致，若不一致，请按“烧写选择串口后提示“Error: Opening COMxx: Access denied”修改串口号。
+  请查看设备管理器，确认连接单板的串口与终端中连接串口是否一致，若不一致，请按“烧写选择串口后提示“Error: Opening COMxx: Access denied””修改串口号。
 
 - **可能原因2**
 
@@ -123,6 +123,7 @@
   若上述步骤依旧无法连接串口，可能由于单板U-boot损坏，按下述步骤烧写U-boot。
 
 1. 获取引导文件U-boot。
+
    > ![icon-notice.gif](public_sys-resources/icon-notice.gif) **须知：**
    > 单板的U-boot文件请在开源包中获取：
    > 
