@@ -20,7 +20,5 @@
     - 开发板介绍
         - [Hi3516开发板介绍](quickstart-standard-board-introduction-hi3516.md)
         - [RK3568开发板介绍](quickstart-standard-board-introduction-rk3568.md)
-    - 快速入门（IDE方式）
-        - [轻量和小型系统快速入门](quickstart-lite-ide-directory.md)
-        - [标准系统快速入门](quickstart-standard-ide-directory.md)
+    - [标准系统快速入门（IDE方式）](quickstart-standard-ide-directory.md)
     - [参考信息](quickstart-standard-reference.md)
