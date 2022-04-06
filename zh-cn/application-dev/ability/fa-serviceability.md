@@ -390,7 +390,8 @@ export default {
 
 ### 针对serviceAbility开发，有以下示例工程可供参考：
 
-- [eTSServiceAbility](https://gitee.com/openharmony/app_samples/tree/master/ability/eTSServiceAbility)
+- [eTSServiceAbility](https://gitee.com/openharmony/app_samples/tree/master/ability/ServiceAbility)
+
 
 本示例eTSServiceAbility中：
 
