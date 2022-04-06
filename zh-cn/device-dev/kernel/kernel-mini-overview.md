@@ -11,6 +11,7 @@ OpenHarmony LiteOS-M内核是面向IoT领域构建的轻量级物联网操作系
 OpenHarmony LiteOS-M内核架构包含硬件相关层以及硬件无关层，如下图所示，其中硬件相关层按不同编译工具链、芯片架构分类，提供统一的HAL（Hardware Abstraction Layer）接口，提升了硬件易适配性，满足AIoT类型丰富的硬件和编译工具链的拓展；其他模块属于硬件无关层，其中基础内核模块提供基础能力，扩展模块提供网络、文件系统等组件能力，还提供错误处理、调测等能力，KAL（Kernel Abstraction Layer）模块提供统一的标准接口。
 
 **图1** 内核架构图
+
 ![zh-cn_image_0000001199351155](figures/zh-cn_image_0000001199351155.png)
 
 
@@ -34,4 +35,5 @@ LiteOS-M已经支持ARM Cortex-M3、ARM Cortex-M4、ARM Cortex-M7、ARM Cortex-M
 在开发板配置文件target_config.h配置系统时钟、每秒Tick数，可以对任务、内存、IPC、异常处理模块进行裁剪配置。系统启动时，根据配置进行指定模块的初始化。内核启动流程包含外设初始化、系统时钟配置、内核初始化、操作系统启动等，详见内核启动流程。
 
 **图2** 内核启动流程
+
 ![zh-cn_image_0000001160338832](figures/zh-cn_image_0000001160338832.png)
