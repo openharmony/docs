@@ -1,6 +1,7 @@
 # Audio
 
-# Audio Driver Overview<a name="section1000"></a>
+
+## Audio Driver Overview
 
 A multimedia system is an indispensable part in Internet of Things (IoT) devices. Audio is an important module of the multimedia system, and building an audio driver model is particularly important in device development.
 
@@ -8,9 +9,10 @@ This document describes the audio driver architecture and functional modules and
 
 
 
-# Audio Driver Architecture<a name="section2000"></a>
+## Audio Driver Architecture
 
 The audio driver architecture is implemented based on the [HDF](https://device.harmonyos.com/en/docs/documentation/guide/driver-hdf-overview-0000001051715456). The audio driver architecture is as follows:
+
 ![](figures/Audio_architecture.png)
 
 The driver architecture consists of the following:
@@ -21,14 +23,14 @@ The driver architecture consists of the following:
 - Audio Stream Dispatch: dispatches the data from the Audio Interface Lib to the driver layer.
 
 - Card Manager: manages multiple audio adapters. Each audio adapter consists of the digital audio interface (DAI), platform, codec, accessory, DSP, and Smart Audio Power Manager (SAPM) modules.
-- Platform Drivers: implement driver adaptation.
+- Platform Drivers: driver adaptation layer.
 - SAPM: optimizes the power consumption policy of the ADM.
 
-# Audio Driver Development<a name="section3000"></a>
+## Audio Driver Development
 
 The following uses the Hi3516D V300 as an example to describe how to develop drivers based on the audio driver architecture.
 
-## Audio ADM Architecture<a name="section3100"></a>
+### Audio ADM Architecture
 The audio driver provides the **hdf_audio_render**, **hdf_audio_capture**, and **hdf_audio_control** services for the HDI layer. The driver service nodes in the **dev** directory of the development board are as follows:
 
 ```c
@@ -43,10 +45,10 @@ crw-rw---- 1 system system 248,   7 1970-01-01 00:00 hdf_audio_render     // Aud
 The audio adapters have the following driver services:
 
 hdf\_audio\_codec\_dev0
-- **dma\_service\_0**: direct memory access (DMA) service
-- **dai_service**: CPU DAI service
+- **dma\_service\_0**: direct memory access (DMA) service                 
+- **dai_service**: CPU DAI service             
 - **codec\_service\_0**: codec service (built-in codec)
-- **dsp\_service\_0**: DSP service (optional)
+- **dsp\_service\_0**: DSP service (optional)        
 
 hdf\_audio\_codec\_dev1
 - **dma\_service\_0**: DMA service
@@ -54,7 +56,7 @@ hdf\_audio\_codec\_dev1
 - **codec\_service\_1**: accessory service (SmartPA)
 - **dsp\_service\_0**: DSP service (optional)
 
-### Startup Process<a name="section3111"></a>
+#### Startup Process
 
 ![](figures/ADM_startup_flowchart.png)
 
@@ -68,8 +70,10 @@ hdf\_audio\_codec\_dev1
 
 5. The initialized audio devices are added to the cardManager linked list.
 
-### Playback Process<a name="section3112"></a>
+#### Playback Process
+
 ![=](figures/ADM_playback_flowchart.png)
+
 1. The Audio Interface Lib sends the **Render Open** instruction to the Audio Stream Dispatch service. The Audio Stream Dispatch service calls the API of each module to deliver the instruction.
 
 2. The Audio Interface Lib sends a path select instruction to the Control Dispatch service. The Control Dispatch service calls the DAI API to set the path.
@@ -84,52 +88,52 @@ hdf\_audio\_codec\_dev1
 
 7. The Audio Interface Lib sends the **Render Close** instruction to the Audio Stream Dispatch service. The Audio Stream Dispatch service calls the **Platform AudioRenderClose** API to release resources.
 
-### Control Process<a name="section3113"></a>
+#### Control Process
 
 ![](figures/ADM_control_flowchart.png)
 
 1. When the volume needs to be adjusted, the Audio Interface Lib sends an instruction for obtaining the volume range to the Control Dispatch service. The Control Dispatch service parses the instruction and calls **get()** of the codec module to obtain the volume range.
 2. The Audio Interface Lib sends an instruction for setting the volume to the Control Dispatch service. The Control Dispatch service parses the instruction and calls **Set()** of the codec module to set the volume.
 
-## Audio Driver Development Procedure<a name="section3200"></a>
+### Audio Driver Development Procedure
 
-### Development on an Adapted Platform<a name="section3221"></a>
+#### Development on an Adapted Platform
 
 The following figure shows the process for developing the codec or accessory (SmartPA) driver on a chip platform (Hi3516D V300) to which the ADM has adapted.
 
-![](figures/development_flowchart_1.png)
+![](figures/audio_development_flowchart_1.png)
 
-1. Add register information to the private HDF configuration source (HCS) of the codec or SmartPA based on the chip description.
+- Add register information to the private HDF configuration source (HCS) of the codec or SmartPA based on the chip description.
 
-   If the workflow of the newly added codec or SmartPA is the same as that of the existing codec or SmartPA, you do not need to implement the operation function set or configure the compilation file for the newly added codec or SmartPA.
+- If the workflow of the newly added codec or SmartPA is the same as that of the existing codec or SmartPA, you do not need to implement the operation function set or configure the compilation file for the newly added codec or SmartPA.
 
-2. Perform build, debugging, and testing.
+- Perform build, debugging, and testing.
 
-### Development on a New Platform<a name="section3222"></a>
+#### Development on a New Platform
 
 The following figure shows the driver development process if the ADM has not adapted to the platform.
 
-![](figures/development_flowchart_2.png)
+![](figures/audio_development_flowchart_2.png)
 
 The codec (optional), DAI, DMA, DSP (optional), and SmartPA (optional) modules of the audio adapter need to be adapted to the new platform.
 
-1. Add register information of each module driver to the private configuration file of the respective module according to the chip description.
+- Add register information of each module driver to the private configuration file of the respective module according to the chip description.
 
-2. Implement the operation function set of each module.
+- Implement the operation function set of each module.
 
-3. Modify the compilation file of the audio module.
+- Modify the compilation file of the audio module.
 
-4. Perform build, debugging, and testing.
+- Perform build, debugging, and testing.
 
 
 
-# Audio Driver Development Examples<a name="section4000"></a>
+## Audio Driver Development Examples
 
 Code path: **drivers/peripheral/audio**
 
 The following uses Hi3516D V300 as an example to describe how to develop the audio codec driver, accessory driver, DAI driver, and platform driver.
 
-## Codec Driver Development Example<a name="section4100"></a>
+### Codec Driver Development Example
 Code path: **drivers/peripheral/audio/chipsets/hi3516dv300/codec**
 
 The major steps for developing the codec driver are as follows:
@@ -138,7 +142,7 @@ The major steps for developing the codec driver are as follows:
 3. Register and bind the codec instance to the HDF.
 4. Configure the HCS and makefile.
 
-### Filling in Codec Data Structures<a name="section4111"></a>
+#### Filling in Codec Data Structures
 
 Fill in the following data structures for the codec module:
 
@@ -166,9 +170,9 @@ struct DaiData g_codecDaiData = {
 };
 ```
 
-### Initializing the Codec Device and Codec DAI Device<a name="section4112"></a>
+#### Initializing codecDevice and codecDai
 
-**CODECDeviceInit** sets audio input/audio output (AIAO), initializes registers, inserts **g_audioControls** into the controller linked list, initializes the power management, and selects a path.
+**CODECDeviceInit** sets audio input/audio output (AIAO), initializes registers, inserts **g_audioControls** into the control linked list, initializes the power management, and selects a path.
 
 ```c
 int32_t CodecDeviceInit(struct AudioCard *audioCard, struct CodecDevice *codec)
@@ -183,7 +187,7 @@ int32_t CodecDeviceInit(struct AudioCard *audioCard, struct CodecDevice *codec)
 	/* Initialize the codec registers of the Hi3516 platform. */
 	CodecRegDefaultInit(codec->devData->regCfgGroup);
   	...
-	/* Insert g_audioControls of the Hi3516 platform to the controller linked list. */
+	/* Insert g_audioControls of the Hi3516 platform to the controller linked list.*/
   	AudioAddControls(audioCard, codec->devData->controls, codec->devData->numControls);
   	...
 	/* Load the codec of the Hi3516 platform to the SAPM. */
@@ -214,7 +218,7 @@ int32_t CodecDaiDeviceInit(struct AudioCard *card, const struct DaiDevice *devic
 }
 ```
 
-### Implementing the Codec Operation Function Set<a name="section4113"></a>
+#### Implementing the Codec Operation Function Set
 
 The codec module is encapsulated with the **read()** and **write()** functions of the read and write registers at the operating system abstraction layer (OSAL).
 
@@ -267,7 +271,7 @@ int32_t CodecDaiHwParams(const struct AudioCard *card, const struct AudioPcmHwPa
 }
 ```
 
-### Registering and Binding Codec to HDF<a name="section4114"></a>
+#### Registering and Binding Codec to HDF
 
 This process depends on the driver implementation mode of the HDF. For details, see [HDF](https://gitee.com/openharmony/docs/blob/master/en/device-dev/driver/driver-hdf.md).
 
@@ -299,7 +303,7 @@ static int32_t CodecDriverBind(struct HdfDeviceObject *device)
 }
 ```
 
-**CodecDriverInit** obtains the codec service name and private register configuration, and inserts them into the linked list by using **AudioRegisterCodec**.
+**CodecDriverInit** obtains the **codecService** name and private register configuration, and inserts them into the linked list by using **AudioRegisterCodec**.
 
 ```c
 static int32_t CodecDriverInit(struct HdfDeviceObject *device)
@@ -325,7 +329,7 @@ static void CodecDriverRelease(struct HdfDeviceObject *device)
 }
 ```
 
-### Configuring HCS<a name="section4115"></a>
+#### Configuring HCS<a name="section4115"></a>
 
 Configure the driver node, loading sequence, and service name in the .hcs file. For details about the HCS syntax, see [Driver Configuration Management](https://gitee.com/openharmony/docs/blob/master/en/device-dev/driver/driver-hdf-manage.md) in the HDF.
 
@@ -339,7 +343,7 @@ Path of the small-system configuration file:
 
 **Configuring Codec Device Information in device_info.hcs**
 
-Add codec node configuration. Modify **moduleName** in the configuration file. The value must be the same as **moduleName** in the **HdfDriverEntry** structure. Generally, the value should present the hardware platform, for example, **moduleName = "CODEC_HI3516"**.
+Add codec node configuration. Modify **moduleName** in the configuration file. The value must be the same as **moduleName** in the **HdfDriverEntry** structure. Generally, the value should present the hardware platform. For example, moduleName = "CODEC_HI3516".
 
 The code snippet is as follows:
 
@@ -366,7 +370,7 @@ The code snippet is as follows:
 
 ```c
 root {
-    platfrom {
+    platform {
         ...
         controller_0x120c1001 :: card_controller {
             // Set the private data attribute name, which must be the same as deviceMatchAttr in device_info.hcs.
@@ -425,11 +429,11 @@ iface
 6: AIAO device
 ```
 
-**ctrlParamsSeqConfig**: control functionality register configuration. The sequence of the configuration items is the same as that in **controlsConfig**, indicating the register configuration corresponding to a functionality.
+**ctrlParamsSeqConfig**: control function register configuration. The **item** sequence corresponds to the **item** sequence in **controlsConfig**, indicating the register configuration corresponding to a function.
 
 ```c
  root {
-    platfrom {
+    platform {
         template codec_controller {
             match_attr = "";
             serviceName = "";
@@ -496,7 +500,7 @@ iface
                     0x20, 0x20, 16, 16, 0x0, 0xF, 0x1F, 0, 0,     //"Mic Left Gain"
                     0x20, 0x20, 24, 24, 0x0, 0xF, 0x1F, 0, 0,     // "Mic Right Gain"
                     0x2000, 0x2000, 16, 16, 0x0, 0x7, 0x7, 0, 0,  // "Render Channel Mode"
-                    0x1000, 0x1000, 16, 16, 0x0, 0x7, 0x7, 0, 0  // "Capture Channel Mode"
+                    0x1000, 0x1000, 16, 16, 0x0, 0x7, 0x7, 0, 0  //"Capture Channel Mode"
                 ];
 
                 /* After the upper layer delivers parameters, write audio-related data to registers.
@@ -607,7 +611,7 @@ int32_t CodecDeviceInit(struct AudioCard *audioCard, struct CodecDevice *codec)
 
 
 
-## Accessory Driver Development Example<a name="section4200"></a>
+### Accessory Driver Development Example
 Code path: **drivers/peripheral/audio/chipsets/tfa9879/accessory**
 
 SmartPA is a type of accessory driver. The SmartPA development procedure is similar to the codec development procedure.
@@ -616,13 +620,13 @@ SmartPA is a type of accessory driver. The SmartPA development procedure is simi
 3. Register and bind the accessory instance to the HDF.
 4. Configure the HCS and makefile.
 
-### Filling in Accessory Data Structures<a name="section4221"></a>
+#### Filling in Accessory Data Structures
 
 Fill in the following data structures for the accessory module:
 
 - **g_tfa9879Data**: operation function set of the accessory device. It contains the configuration in the .hcs file, and defines and maps the functions for initializing the accessory device and reading and writing registers.
 
-- **g_tfa9879DaiDeviceOps**: data set of the accessory device DAI. It defines and maps the operation set of the accessory device DAI.
+- **g_tfa9879DaiDeviceOps**: data set of the DAI of the accessory device. It defines and maps the operation set of the accessory device DAI.
 
 - **g_tfa9879DaiData**: data set of the DAI of the accessory device. It defines and maps the driver name, initialization, and operation set of the data access interface of the accessory device.
 
@@ -645,7 +649,7 @@ struct DaiData g_tfa9879DaiData = {
 };
 ```
 
-### Initializing the Accessory Device and Accessory DAI Device<a name="section4222"></a>
+#### Initializing accessoryDevice and accessoryDai
 
 As the entry function for device initialization, **Tfa9879DeviceInit** sets the address of the SmartPA I2C device, obtains configuration data, initializes (including resets) the device registers, and adds the control functionality to the controller linked list. The current demo also includes the initialization of the registers related to the Hi3516D V300 device, such as initialization of GPIO pins.
 
@@ -696,7 +700,7 @@ int32_t AccessoryI2cReadWrite(struct AudioAddrConfig *regAttr, uint16_t rwFlag)
 }
 ```
 
-### Implementing the Accessory Operation Function Set<a name="section4223"></a>
+#### Implementing the Accessory Operation Function Set
 
 The callbacks **AccessoryDeviceRegRead** and **AccessoryDeviceRegWrite** invoke **AccessoryI2cReadWrite** to read and write the control register values.
 
@@ -759,7 +763,7 @@ int32_t Tfa9879DaiHwParams(const struct AudioCard *card, const struct AudioPcmHw
     (void)card;
 	...
 	// Set the sampling rate.
-    ret = AcessoryDeviceFrequencyParse(param->rate, &frequency);
+    ret = AccessoryDeviceFrequencyParse(param->rate, &frequency);
 	...
 	// Set the bit width.
     ret = Tfa9879FormatParse(param->format, &bitWidth);
@@ -773,7 +777,7 @@ int32_t Tfa9879DaiHwParams(const struct AudioCard *card, const struct AudioPcmHw
 }
 ```
 
-### Registering and Binding Accessory to HDF<a name="section4224"></a>
+#### Registering and Binding Accessory to HDF
 
 This process depends on the driver implementation mode of the HDF. For details, see [HDF](https://gitee.com/openharmony/docs/blob/master/en/device-dev/driver/driver-hdf.md).
 
@@ -814,13 +818,13 @@ struct HdfDriverEntry g_tfa9879DriverEntry = {
 HDF_INIT(g_tfa9879DriverEntry);
 ```
 
-### Configuring HCS<a name="section4225"></a>
+#### Configuring HCS
 
 For details about the configuration process, see [Configuring HCS](#section4115) in **Codec Driver Development Example**.
 
 
 
-## Platform Driver Development Example<a name="section4300"></a>
+### Platform Driver Development Example
 Code path: **drivers/peripheral/audio/chipsets/hi3516dv300/soc**
 
 In audio driver development, the Platform module is configured to adapt to the DMA driver. The major steps for developing the platform driver are as follows:
@@ -829,7 +833,7 @@ In audio driver development, the Platform module is configured to adapt to the D
 3. Register and bind the platform instance to the HDF.
 4. Configure the HCS and makefile.
 
-### Filling in Platform Data Structures<a name="section4331"></a>
+#### Filling in Platform Data Structures
 
 Fill in the following structures for the platform module:
 
@@ -857,7 +861,7 @@ struct PlatformData g_platformData = {
 };
 ```
 
-### Initializing the DMA Device<a name="section4332"></a>
+#### Initializing dmaDevice
 
 **AudioDmaDeviceInit** initializes the DMA device, including setting the Hi3516 AIAO module.
 
@@ -877,7 +881,7 @@ int32_t AudioDmaDeviceInit(const struct AudioCard *card, const struct PlatformDe
 }
 ```
 
-### Implementing the DMA Operation Function Set<a name="section4333"></a>
+#### Implementing the DMA Operation Function Set
 
 The DMA device operation function set includes the encapsulation of DMA common APIs. If the common APIs cannot meet development requirements, you can implement new DMA callbacks.
 
@@ -894,7 +898,7 @@ int32_t Hi3516DmaResume(const struct PlatformData *data);
 int32_t Hi3516DmaPointer(struct PlatformData *data, uint32_t *pointer);
 ```
 
-### Registering and Binding Platform to HDF<a name="section4334"></a>
+#### Registering and Binding Platform to HDF
 
 This process depends on the driver implementation mode of the HDF. For details, see [HDF](https://gitee.com/openharmony/docs/blob/master/en/device-dev/driver/driver-hdf.md).
 
@@ -938,13 +942,13 @@ struct HdfDriverEntry g_platformDriverEntry = {
 HDF_INIT(g_platformDriverEntry);
 ```
 
-### Configuring HCS<a name="section4335"></a>
+#### Configuring HCS
 
 For details about the configuration process, see [Configuring HCS](#section4115) in **Codec Driver Development Example**.
 
 
 
-## DAI Driver Development Example<a name="section4400"></a>
+### DAI Driver Development Example
 Code path: **drivers/peripheral/audio/chipsets/hi3516dv300/soc**
 
 The major steps for developing the DAI driver are as follows:
@@ -953,7 +957,7 @@ The major steps for developing the DAI driver are as follows:
 3. Register and bind the DAI instance to the HDF.
 4. Configure the HCS and makefile.
 
-### Filling in DAI Data Structures<a name="section4441"></a>
+#### Filling in DAI Data Structures
 
 Fill in the following structures for the DAI module:
 
@@ -976,7 +980,7 @@ struct DaiData g_daiData = {
 };
 ```
 
-### Initializing the DAI Device<a name="section4442"></a>
+#### Initializing daiDevice
 
 **DaiDeviceInit** initializes DAI configuration and adds the information to the controller linked list.
 
@@ -999,7 +1003,7 @@ int32_t DaiDeviceInit(struct AudioCard *audioCard, const struct DaiDevice *dai)
 }
 ```
 
-### Implementing the DAI Operation Function Set<a name="section4443"></a>
+#### Implementing the DAI Operation Function Set
 
 **AudioDeviceReadReg** and **AudioDeviceWriteReg** are not used on the Hi3516 and are reserved.
 
@@ -1058,7 +1062,7 @@ int32_t DaiStartup(const struct AudioCard *card, const struct DaiDevice *device)
 }
 ```
 
-### Registering and Binding DAI to HDF<a name="section4444"></a>
+#### Registering and Binding DAI to HDF
 
 This process depends on the driver implementation mode of the HDF. For details, see [HDF](https://gitee.com/openharmony/docs/blob/master/en/device-dev/driver/driver-hdf.md).
 
@@ -1114,13 +1118,13 @@ struct HdfDriverEntry g_daiDriverEntry = {
 HDF_INIT(g_daiDriverEntry);
 ```
 
-### Configuring HCS<a name="section4445"></a>
+#### Configuring HCS
 
 For details about the configuration process, see [Configuring HCS](#section4115) in **Codec Driver Development Example**.
 
 
 
-## Adding Compilation Configuration to Makefile<a name="section4500"></a>
+### Adding Compilation Configuration to Makefile
 
 Add the newly added files to the **Makefile** file to link them to the kernel image.
 
@@ -1161,11 +1165,11 @@ $(KHDF_AUDIO_HI3516DV300_DIR)/soc/src/hi3516_dma_adapter.c
 
 
 
-## Source Code Structure and Directory<a name="section4600"></a>
+### Source Code Structure and Directory
 
 The development example implements the functions in the header file of the driver interface. The following uses Hi3516 as an example to describe the directory structure. 
 
-Path of the driver implementation sample code: **drivers/peripheral/audio/chipsets**
+Path of the driver implementation sample code: **drivers\peripheral\audio\chipsets\**
 
 ```
 ├── hi3516dv300
@@ -1241,10 +1245,10 @@ vendor/hisilicon/hispark_taurus/
 
 
 
-# HAL-based Development Procedure and Example<a name="section5000"></a>
+## HAL-based Development Procedure and Example
 Code path: **drivers/peripheral/audio/hal**
 
-## Development Procedure<a name="section5100"></a>
+### Development procedure
 
 ![](figures/HAL_flowchart.png)
 
@@ -1266,7 +1270,7 @@ Code path: **drivers/peripheral/audio/hal**
 
     3. manager->UnloadAdapter();
 
-## Development Example<a name="section5200"></a>
+### Development Example
 
 ```c
 #include <string.h>
@@ -1354,6 +1358,6 @@ static void *hal_main()
 
  
 
-# Summary<a name="section9999"></a>
+## Summary
 
-This document provides all the key adaptations involved in the driver development based on the audio driver architecture. It elaborates how to adapt the audio driver and use HDI APIs. You can easily develop your audio drivers based on the chip you use by referring to this document.
+This document provides all the key adaptations involved in the audio driver development. It elaborates how to adapt the audio driver and use HDI APIs. You can conduct development based on the chip you use. After reading this document, you will be able to master the audio driver development based on the HDF framework.
