@@ -12,6 +12,7 @@ libuv is a cross-platform library that implements asynchronous I/O based on even
 
 
 
-Implements cross-platform asynchronous I/O based on event loops.
+libuv implements cross-platform asynchronous I/O based on event loops.
 
-Supports standard lib interfaces.
+It supports standard lib interfaces.
+
