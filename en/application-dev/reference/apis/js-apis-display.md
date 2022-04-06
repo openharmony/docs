@@ -38,7 +38,7 @@ Describes the attributes of a display.
 | id | number | Yes| No| ID of the display.|
 | name | string | Yes| No| Name of the display.|
 | alive | boolean | Yes| No| Whether the display is alive.|
-| state | [DisplayState](#DisplayState) | Yes| No| State of the display.|
+| state | [DisplayState](#displaystate) | Yes| No| State of the display.|
 | refreshRate | number | Yes| No| Refresh rate of the display.|
 | rotation | number | Yes| No| Screen rotation angle of the display.|
 | width | number | Yes| No| Width of the display, in pixels.|
@@ -61,7 +61,7 @@ Obtains the default display object.
 - Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[Display](#Display)&gt; | Yes| Callback used to return the default display object.|
+  | callback | AsyncCallback&lt;[Display](#display)&gt; | Yes| Callback used to return the default display object.|
 
 - Example
   ```
@@ -88,7 +88,7 @@ Obtains the default display object.
 
   | Type                              | Description                                          |
   | ---------------------------------- | ---------------------------------------------- |
-  | Promise&lt;[Display](#Display)&gt; | Promise used to return the default display object.|
+  | Promise&lt;[Display](#display)&gt; | Promise used to return the default display object.|
 
 - Example
 
@@ -113,7 +113,7 @@ Obtains all the display objects.
 
   | Name  | Type                                                | Mandatory| Description                           |
   | -------- | ---------------------------------------------------- | ---- | ------------------------------- |
-  | callback | AsyncCallback&lt;Array&lt;[Display](Display)&gt;&gt; | Yes  | Callback used to return all the display objects.|
+  | callback | AsyncCallback&lt;Array&lt;[Display](#display)&gt;&gt; | Yes  | Callback used to return all the display objects.|
 
 - Example
 
@@ -139,7 +139,7 @@ Obtains all the display objects.
 
   | Type                                           | Description                                                   |
   | ----------------------------------------------- | ------------------------------------------------------- |
-  | Promise&lt;Array&lt;[Display](#Display)&gt;&gt; | Promise used to return an array containing all the display objects.|
+  | Promise&lt;Array&lt;[Display](#display)&gt;&gt; | Promise used to return an array containing all the display objects.|
 
 - Example
 
