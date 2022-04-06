@@ -1,9 +1,5 @@
 # WatchDog<a name="ZH-CN_TOPIC_0000001176922470"></a>
 
--   [概述](#section1315827527160117)
--   [接口说明](#section752964871810)
--   [开发步骤](#section477974542160117)
--   [开发实例](#section1832270347160117)
 
 ## 概述<a name="section1315827527160117"></a>
 
@@ -245,11 +241,11 @@ Watchdog模块适配HDF框架的三个环节是配置属性文件，实例化驱
 
     -   Init函数和Bind函数参考
 
-        入参**：**
+        入参：
 
         HdfDeviceObject :HDF框架给每一个驱动创建的设备对象，用来保存设备相关的私有数据和服务接口。
 
-        返回值**：**
+        返回值：
 
         HDF\_STATUS相关状态 （下表为部分展示，如需使用其他状态，可见//drivers/framework/include/utils/hdf\_base.h中HDF\_STATUS 定义）。
 
@@ -290,7 +286,7 @@ Watchdog模块适配HDF框架的三个环节是配置属性文件，实例化驱
         </tbody>
         </table>
 
-        函数说明**：**
+        函数说明：
 
         初始化自定义结构体对象，初始化WatchdogCntlr成员，调用核心层WatchdogCntlrAdd函数。
 
@@ -332,13 +328,13 @@ Watchdog模块适配HDF框架的三个环节是配置属性文件，实例化驱
 
         HdfDeviceObject :HDF框架给每一个驱动创建的设备对象，用来保存设备相关的私有数据和服务接口。
 
-        返回值**：**
+        返回值：
 
         无。
 
-        函数说明**：**
+        函数说明：
 
-        该函数需要在驱动入口结构体中赋值给Release，当HDF框架调用Init函数初始化驱动失败时，可以调用Release释放驱动资源。该函数中需包含释放内存和删除控制器等操作。所有强制转换获取相应对象的操作**前提**是在Init函数中具备对应赋值的操作。
+        该函数需要在驱动入口结构体中赋值给Release，当HDF框架调用Init函数初始化驱动失败时，可以调用Release释放驱动资源。该函数中需包含释放内存和删除控制器等操作。所有强制转换获取相应对象的操作前提是在Init函数中具备对应赋值的操作。
 
         ```
         static void Hi35xxWatchdogRelease(struct HdfDeviceObject *device)
