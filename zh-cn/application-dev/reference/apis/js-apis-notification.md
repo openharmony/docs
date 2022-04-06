@@ -2851,10 +2851,10 @@ Notification.subscribe(subscriber, subscribeCallback);
 | 名称                              | 值          | 说明               |
 | --------------------------------- | ----------- | ------------------ |
 | LEVEL_NONE                        | 0           | 表示关闭通知功能。     |
-| LEVEL_MIN                         | 1           | 启用通知功能，但通知不启用。   |
-| LEVEL_LOW                         | 2           | 通知和通知功能都启用。 |
-| LEVEL_DEFAULT                     | 3           | 通知和通知功能都启用。   |
-| LEVEL_HIGH                        | 4           | 通知和通知功能都启用。   |
+| LEVEL_MIN                         | 1           | 指示通知功能已启用，但状态栏中不显示通知图标，且没有横幅或提示音。 |
+| LEVEL_LOW                         | 2           | 指示通知功能已启用，且状态栏中显示通知图标，但没有横幅或提示音。 |
+| LEVEL_DEFAULT                     | 3           | 指示通知功能已启用，状态栏中显示通知图标，没有横幅但有提示音。 |
+| LEVEL_HIGH                        | 4           | 指示通知功能已启用，状态栏中显示通知图标，有横幅和提示音。 |
 
 
 ## BundleOption
@@ -3096,8 +3096,6 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 
 ## NotificationTemplate<sup>8+</sup>
-
-模板信息
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
