@@ -1,4 +1,4 @@
-## 标准系统快速入门
+## 标准系统快速入门（安装包方式）
 - [标准系统入门概述](quickstart-standard-overview.md)
 - [搭建标准系统环境](quickstart-standard-env-setup.md)
 - 运行“Hello World”
@@ -20,4 +20,7 @@
     - 开发板介绍
         - [Hi3516开发板介绍](quickstart-standard-board-introduction-hi3516.md)
         - [RK3568开发板介绍](quickstart-standard-board-introduction-rk3568.md)
+    - 快速入门（IDE方式）
+        - [轻量和小型系统快速入门](quickstart-lite-ide-directory.md)
+        - [标准系统快速入门](quickstart-standard-ide-directory.md)
     - [参考信息](quickstart-standard-reference.md)

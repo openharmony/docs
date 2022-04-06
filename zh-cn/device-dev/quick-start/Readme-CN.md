@@ -22,6 +22,9 @@
         - 开发板介绍
             - [Hi3861开发板介绍](quickstart-ide-lite-introduction-hi3861.md)
             - [Hi3516开发板介绍](quickstart-ide-lite-introduction-hi3516.md)
+        - 快速入门（安装包方式）
+            - [轻量和小型系统快速入门](quickstart-lite-package-directory.md)
+            - [标准系统快速入门](quickstart-standard-package-directory.md)
 - 标准系统快速入门
     - [标准系统入门概述](quickstart-ide-standard-overview.md)
     - 准备标准系统环境
