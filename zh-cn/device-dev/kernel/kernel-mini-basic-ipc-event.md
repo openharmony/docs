@@ -61,6 +61,7 @@ typedef struct tagEvent {
 **事件销毁**：销毁指定的事件控制块。
 
 **图1** 轻量系统事件运作原理图
+
 ![zh-cn_image_0000001200771972](figures/zh-cn_image_0000001200771972.png)
 
 
