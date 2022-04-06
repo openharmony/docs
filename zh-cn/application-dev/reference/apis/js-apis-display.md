@@ -113,7 +113,7 @@ getAllDisplay(callback: AsyncCallback&lt;Array&lt;Display&gt;&gt;): void
 
   | 参数名   | 类型                                                 | 必填 | 说明                            |
   | -------- | ---------------------------------------------------- | ---- | ------------------------------- |
-  | callback | AsyncCallback&lt;Array&lt;[Display](display)&gt;&gt; | 是   | 回调返回当前所有的display对象。 |
+  | callback | AsyncCallback&lt;Array&lt;[Display](#display)&gt;&gt; | 是   | 回调返回当前所有的display对象。 |
 
 - 示例
 
