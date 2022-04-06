@@ -5,7 +5,7 @@ The interface layer of the window runs in the application process. It loads the 
 By calling these APIs, you can create and destroy a window, set the position and size of a window, and enter the immersive mode (full-screen mode).
 
 ## Available APIs
-For details about the APIs, see [Window](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-window.md).
+For details about the APIs, see [Window](../reference/apis/js-apis-window.md).
 
 **Table 1** Main window APIs
 
