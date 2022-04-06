@@ -22,6 +22,7 @@ OpenHarmony支持hb和build.sh两种编译方式。此处介绍hb方式，build.
 3. 在hisilicon下选择ipcamera_hispark_taurus并回车。
 
 4. 执行编译。
+
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
    > - 单独编译一个部件（例如hello），可使用“hb build -T _目标名称_”进行编译。
    > 
