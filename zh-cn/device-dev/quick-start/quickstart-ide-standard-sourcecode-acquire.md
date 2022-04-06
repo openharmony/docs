@@ -48,7 +48,7 @@
 
 - **OpenHarmony主干代码获取**
 
-    方式一（推荐）：通过repo + ssh下载（需注册公钥，请参考[码云帮助中心](https://gitee.com/help/articles/4191)）。
+  方式一（推荐）：通过repo + ssh下载（需注册公钥，请参考[码云帮助中心](https://gitee.com/help/articles/4191)）。
     
   ```
   repo init -u git@gitee.com:openharmony/manifest.git -b master --no-repo-verify
