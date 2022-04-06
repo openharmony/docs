@@ -59,5 +59,6 @@ repo init -u https://gitee.com/openharmony-sig/manifest.git -b master -m devboar
 
 ## 芯片移植案例
 
-- [带屏解决方案之恒玄芯片移植案例](porting-bes2600w-on-minisystem-display-demo.md)
+- [轻量系统芯片移植案例](porting-minichip-cases.md)
+    - [带屏解决方案之恒玄芯片移植案例](porting-bes2600w-on-minisystem-display-demo.md)
 
