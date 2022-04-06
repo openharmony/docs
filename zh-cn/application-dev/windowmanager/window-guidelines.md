@@ -5,7 +5,7 @@
 通过调用窗口接口可以实现窗口创建与销毁，窗口的位置、大小布局，以及进入沉浸式等。
 
 ## 接口说明
-窗口开放的能力如下：Window类，具体的API详见[接口文档](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-window.md)。
+窗口开放的能力如下：Window类，具体的API详见[接口文档](../reference/apis/js-apis-window.md)。
 
 **表1** 窗口主要接口API
 
