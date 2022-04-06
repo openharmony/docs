@@ -180,7 +180,7 @@
       - 窗口
         - [窗口开发概述](windowmanager/window-overview.md)
         - [窗口开发指导](windowmanager/window-guidelines.md)
-      - 显示设备
+      - 屏幕属性
         - [屏幕属性开发概述](windowmanager/display-overview.md)
         - [屏幕属性开发指导](windowmanager/display-guidelines.md)
       - 屏幕截图
