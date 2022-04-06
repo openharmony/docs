@@ -233,18 +233,18 @@ create(id: string, type: WindowType): Promise&lt;Window&gt;
 
 create(ctx: Context, id: string, type: WindowType, callback: AsyncCallback&lt;Window&gt;): void
 
-当Context为[ServiceExtensionContext](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-service-extension-context.md)时，创建系统窗口，使用callback方式作为异步方法。
+当Context为[ServiceExtensionContext](js-apis-service-extension-context.md)时，创建系统窗口，使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
 - 参数
 
-  | 参数名   | 类型                                                         | 必填 | 说明                                                  |
-  | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------- |
-  | ctx      | [Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-Context.md) | 是   | 当前应用上下文信息, 为ServiceExtensionContext的基类。 |
-  | id       | string                                                       | 是   | 窗口id。                                              |
-  | type     | [WindowType](#windowtype)                                    | 是   | 窗口类型。                                            |
-  | callback | AsyncCallback&lt;[Window](#window)&gt;                       | 是   | 回调返回当前窗口对象。                                |
+  | 参数名   | 类型                                            | 必填 | 说明                   |
+  | -------- | ----------------------------------------------- | ---- | ---------------------- |
+  | ctx      | [Context](js-apis-service-extension-context.md) | 是   | 当前应用上下文信息。   |
+  | id       | string                                          | 是   | 窗口id。               |
+  | type     | [WindowType](#windowtype)                       | 是   | 窗口类型。             |
+  | callback | AsyncCallback&lt;[Window](#window)&gt;          | 是   | 回调返回当前窗口对象。 |
 
 - 示例
 
@@ -265,17 +265,17 @@ create(ctx: Context, id: string, type: WindowType, callback: AsyncCallback&lt;Wi
 
 create(ctx: Context, id: string, type: WindowType): Promise&lt;Window&gt;
 
-当Context为[ServiceExtensionContext](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-service-extension-context.md)时，创建系统窗口，使用Promise方式作为异步方法。
+当Context为[ServiceExtensionContext](js-apis-service-extension-context.md)时，创建系统窗口，使用Promise方式作为异步方法。
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
 - 参数
 
-  | 参数名 | 类型                                                         | 必填 | 说明                                                  |
-  | ------ | ------------------------------------------------------------ | ---- | ----------------------------------------------------- |
-  | ctx    | [Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-Context.md) | 是   | 当前应用上下文信息, 为ServiceExtensionContext的基类。 |
-  | id     | string                                                       | 是   | 窗口id。                                              |
-  | type   | [WindowType](#windowtype)                                    | 是   | 窗口类型。                                            |
+  | 参数名 | 类型                                            | 必填 | 说明                 |
+  | ------ | ----------------------------------------------- | ---- | -------------------- |
+  | ctx    | [Context](js-apis-service-extension-context.md) | 是   | 当前应用上下文信息。 |
+  | id     | string                                          | 是   | 窗口id。             |
+  | type   | [WindowType](#windowtype)                       | 是   | 窗口类型。           |
 
 - 返回值
 
@@ -423,10 +423,10 @@ getTopWindow(ctx: Context, callback: AsyncCallback&lt;Window&gt;): void
 
 - 参数
 
-  | 参数名   | 类型                                                         | 必填 | 说明                                   |
-  | -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
-  | ctx      | [Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-Context.md) | 是   | 当前应用上下文信息。                   |
-  | callback | AsyncCallback&lt;[Window](#window)&gt;                       | 是   | 回调返回当前应用内最后显示的窗口对象。 |
+  | 参数名   | 类型                                   | 必填 | 说明                                                         |
+  | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
+  | ctx      | Context                                | 是   | 当前应用上下文信息。API8的Context定义见[Context](js-apis-Context.md)。API9的Context定义见[Context](js-apis-ability-context.md)。 |
+  | callback | AsyncCallback&lt;[Window](#window)&gt; | 是   | 回调返回当前应用内最后显示的窗口对象。                       |
 
 - 示例
 
@@ -452,9 +452,9 @@ getTopWindow(ctx: Context): Promise&lt;Window&gt;
 
 - 参数
 
-  | 参数名 | 类型                                                         | 必填 | 说明                 |
-  | ------ | ------------------------------------------------------------ | ---- | -------------------- |
-  | ctx    | [Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-Context.md) | 是   | 当前应用上下文信息。 |
+  | 参数名 | 类型    | 必填 | 说明                                                         |
+  | ------ | ------- | ---- | ------------------------------------------------------------ |
+  | ctx    | Context | 是   | 当前应用上下文信息。API8的Context定义见[Context](js-apis-Context.md)。API9的Context定义见[Context](js-apis-ability-context.md)。 |
 
 - 返回值
 
