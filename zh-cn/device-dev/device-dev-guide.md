@@ -41,7 +41,7 @@ OpenHarmony也提供了一系列可选的系统组件，方便设备开发者按
 | 进阶开发 | 结合系统能力开发智能设备 | -&nbsp;[WLAN连接类产品](guide/device-wlan-led-control.md)<br/>-&nbsp;[无屏摄像头类产品](guide/device-iotcamera-control-overview.md)<br/>-&nbsp;[带屏摄像头类产品](guide/device-camera-control-overview.md) |
 | 移植适配 | -&nbsp;针对特定芯片做移植适配<br/>-&nbsp;对三方库进行移植适配 | -&nbsp;[轻量系统芯片移植指导](porting/porting-minichip.md)<br/>-&nbsp;[小型系统芯片移植指导](porting/porting-smallchip-prepare-needs.md)<br/>-&nbsp;[轻量和小型系统三方库移植指导](porting/porting-thirdparty-overview.md) |
 | 贡献组件 | 为OpenHarmony贡献功能组件 | -&nbsp;[HPM&nbsp;Part&nbsp;介绍](hpm-part/hpm-part-about.md)<br/>-&nbsp;[HPM&nbsp;Part&nbsp;开发指导](hpm-part/hpm-part-development.md)<br/>-&nbsp;[HPM&nbsp;Part&nbsp;参考](hpm-part/hpm-part-reference.md) |
-| 参考 | 开发参考 | -&nbsp;[API参考](https://gitee.com/link?target=https%3A%2F%2Fdevice.harmonyos.com%2Fcn%2Fdocs%2Fdevelop%2Fapiref%2Fjs-framework-file-0000000000611396)<br/>-&nbsp;[常见问题](faqs/faqs-overview.md) |
+| 参考 | 开发参考 | [常见问题](faqs/faqs-overview.md) |
 
 
 **表 2**  标准系统开发指导（参考内存≥128MB）
@@ -54,4 +54,4 @@ OpenHarmony也提供了一系列可选的系统组件，方便设备开发者按
 | 进阶开发 | 结合系统能力开发智能设备 | -&nbsp;[时钟应用开发指导](guide/device-clock-guide.md)<br/>-&nbsp;[平台驱动开发示例](guide/device-driver-demo.md)<br/>-&nbsp;[外设驱动开发示例](guide/device-outerdriver-demo.md) |
 | 移植适配 | 对三方库进行移植适配 | -&nbsp;[标准系统芯片移植指导](porting/standard-system-porting-guide.md)<br/>-&nbsp;[一种快速移植OpenHarmony&nbsp;Linux内核的方法](porting/porting-linux-kernel.md) |
 | 贡献组件 | 为OpenHarmony贡献功能组件 | -&nbsp;[HPM&nbsp;Part&nbsp;介绍](hpm-part/hpm-part-about.md)<br/>-&nbsp;[HPM&nbsp;Part&nbsp;开发指导](hpm-part/hpm-part-development.md)<br/>-&nbsp;[HPM&nbsp;Part&nbsp;参考](hpm-part/hpm-part-reference.md) |
-| 参考 | 开发参考 | -&nbsp;[API参考](https://gitee.com/link?target=https%3A%2F%2Fdevice.harmonyos.com%2Fcn%2Fdocs%2Fdevelop%2Fapiref%2Fjs-framework-file-0000000000611396)<br/>-&nbsp;[常见问题](faqs/faqs-overview.md) |
+| 参考 | 开发参考 | [常见问题](faqs/faqs-overview.md) |
