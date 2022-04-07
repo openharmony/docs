@@ -390,9 +390,10 @@ export default {
 
 ### The following sample is provided to help you better understand how to develop a Service ability:
 
-- [eTSServiceAbility](https://gitee.com/openharmony/app_samples/tree/master/ability/eTSServiceAbility)
+- [ServiceAbility](https://gitee.com/openharmony/app_samples/tree/master/ability/ServiceAbility)
 
-This **eTSServiceAbility** sample shows how to:
+
+This sample shows how to:
 
 Create a local Service ability in the **service.ts** file in the **ServiceAbility** directory.
 

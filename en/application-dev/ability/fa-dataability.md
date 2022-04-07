@@ -276,9 +276,9 @@ The basic dependency packages include:
 
 The following sample is provided to help you better understand how to develop a Data ability:
 
-- [eTSDataAbility](https://gitee.com/openharmony/app_samples/tree/master/ability/eTSDataAbility)
+- [DataAbility](https://gitee.com/openharmony/app_samples/tree/master/ability/DataAbility)
 
-This **eTSDataAbility** sample shows how to:
+This sample shows how to:
 
 Create a Data ability in the **data.ts** file in the **DataAbility** directory.
 
