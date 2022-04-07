@@ -301,7 +301,7 @@ OpenHarmony当前为开发者提供了以下4种获取源码的方式，开发�
 </td>
 <td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.2 "><p id="p146331255172318"><a name="p146331255172318"></a><a name="p146331255172318"></a>3.1 Release</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.3 "><p id="p18800131862419"><a name="p18800131862419"></a><a name="p18800131862419"></a><a href="https://gitee.com/openharmony/docs/tree/OpenHarmony-3.1-Release/zh-cn/release-notes/OpenHarmony-v3.1-Release.md" target="_blank" rel="noopener noreferrer">站点</a></p>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.3 "><p id="p18800131862419"><a name="p18800131862419"></a><a name="p18800131862419"></a><a href="https://gitee.com/openharmony/docs/blob/OpenHarmony-3.1-Release/zh-cn/release-notes/OpenHarmony-v3.1-release.md" target="_blank" rel="noopener noreferrer">站点</a></p>
 </td>
 <td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.4 "><p id="p8633855132314"><a name="p8633855132314"></a><a name="p8633855132314"></a>-</p>
 </td>
