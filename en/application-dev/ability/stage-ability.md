@@ -7,7 +7,7 @@ The stage model is an application development model introduced in API version 9.
 - Request certain permissions from end users.
 - Notify the ability stage and ability of environment configuration changes.
 - Call common components. For details, see [Call Development](stage-call.md).
-- Connect to and disconnect from the Service ability. For details, see [Service Extension Ability Development](stage-serviceextension.md).
+- Connect to and disconnect from the Service Extension ability. For details, see [Service Extension Ability Development](stage-serviceextension.md).
 - Continue the application on another device. For details, see [Ability Continuation Development](stage-ability-continuation.md).
 
 ### Launch Type
@@ -16,11 +16,11 @@ The **launchType** item in the **module.json** file is used to specify the launc
 
 | Launch Type    | Description    |Description            |
 | ----------- | -------  |---------------- |
-| stand       | Multi-instance  | A new instance is started each time an ability starts.|
+| standard    | Multi-instance  | A new instance is started each time an ability starts.|
 | singleton   | Singleton  | Only one instance exists in the system. If an instance already exists when an ability is started, that instance is reused.|
 | specified   | Instance-specific| The internal service of an ability determines whether to create multiple instances during running.|
 
-By default, **stand** is used.
+By default, **standard** is used.
 
 ## Available APIs
 The table below describes the APIs provided by the **AbilityStage** class, which has the **context** attribute. For details about the APIs, see [AbilityStage](../reference/apis/js-apis-application-abilitystage.md).
@@ -274,6 +274,6 @@ export default class MainAbility extends Ability { {
 ## Development Example
 The following sample is provided to help you better understand how to develop an ability on the stage model:
 
-[eTSStageCallAbility](https://gitee.com/openharmony/app_samples/tree/master/ability/eTSStageCallAbility)
+[StageCallAbility](https://gitee.com/openharmony/app_samples/tree/master/ability/StageCallAbility)
 
 In this sample, the **AbilityStage** APIs are implemented in the **AbilityStage.ts** file in the **Application** directory, the **Ability** APIs are implemented in the **MainAbility** directory, and **pages/index** is the pages of the ability. Another ability is implemented in the **CalleeAbility** directory, and its pages are the content configured in **pages/second**. The callee ability can be started from the main ability.
