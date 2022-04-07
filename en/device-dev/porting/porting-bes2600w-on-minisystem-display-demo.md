@@ -1,6 +1,6 @@
 
 
-# Mini-system Devices with Screens — Bestechnic SoC Porting Case
+# Mini-System Devices with Screens — Bestechnic SoC Porting Case
 
 This document exemplifies the porting procedure for a development board on a mini-system device with a screen – an intelligent switch panel. It uses the BES multi-modal V200Z-R development board powered by the Bestechnic BES2600W SoC as an example. Components such as `ace_engine_lite`, `graphic_ui`, `aafwk_lite`, `appexecfwk_lite`, and `HDF` are adapted based on the OpenHarmony LiteOS-M kernel. This example uses the board-SoC separation solution as the porting architecture, the Newlib C or Musl C library as the toolchain, and GN and Kconfig graphical configuration for LiteOS-M kernel compilation.
 
