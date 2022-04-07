@@ -39,7 +39,7 @@ Pulse width modulation (PWM) is a technology that digitally encodes analog signa
 | Setting PWM| -&nbsp;**PwmSetPeriod**: sets the PWM period.<br>-&nbsp;**PwmSetDuty**: sets the signal ON-state time.<br>-&nbsp;**PwmSetPolarity**: sets the PWM signal polarity.| 
 | Setting or obtaining PWM configuration| -&nbsp;**PwmSetConfig**: sets PWM device parameters.<br>-&nbsp;**PwmGetConfig**: obtains PWM device parameters.| 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+> ![icon-note.gif](../public_sys-resources/icon-note.gif) **NOTE**<br/>
 > All APIs described in this document can be called only in the kernel space.
 
 
