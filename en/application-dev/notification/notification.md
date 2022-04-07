@@ -131,33 +131,7 @@ var subscriber = {
 
 ### Publishing Notifications
 
-Before publishing a notification, check whether the notification feature is enabled for the respective application. By default, the feature is disabled for newly installed apps.
-
-##### Enabling Notification
-
-Check whether notification is enabled.
-
-```js
-var bundle = {
-    bundle: "bundleName1",
-}
-Notification.isNotificationEnabled(bundle).then((data) => {
-	console.info("===>isNotificationEnabled success===>");
-});
-```
-
-If the check result is **false**, notification is disabled. In this case, enable it.
-
-```js
-var bundle = {
-    bundle: "bundleName1",
-}
-Notification.enableNotification(bundle, true, async(err) => {
-    console.log("===>enableNotification success===>");
-});
-```
-
-
+Before publishing a notification, make sure the notification feature is enabled for your application. This feature is disabled by default and can be enabled in the notification settings.
 
 ##### Publishing Notifications
 
@@ -170,7 +144,7 @@ Normal Text Notification
 var notificationRequest = {
   	id: 1,
   	content: {
-  		contentType: notify.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+  		contentType: Notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
   		normal: {
   			title: "test_title",
   			text: "test_text",
@@ -197,25 +171,18 @@ For details about how to use **WantAgent**, see [WantAgent Development](https://
 
 ```js
 import wantAgent from '@ohos.wantAgent';
-import { OperationType, Flags } from '@ohos.wantagent';
 
 // WantAgentInfo object
 var wantAgentInfo = {
-    wants: [
-        {
-            deviceId: 'deviceId',
-            bundleName: 'com.example.myapplication',
-            abilityName: 'com.example.myapplication.MainAbility',
-            action: 'REMINDER_EVENT_REMOVE_NOTIFICATION',
-            entities: ['entity1'],
-            type: 'MIMETYPE',
-            uri: 'key={true,true,false}',
-            parameters: { myKey0: 1111 },
-        }
-    ],
-    operationType: OperationType.START_ABILITIES,
-    requestCode: 0,
-    wantAgentFlags:[Flags.UPDATE_PRESENT_FLAG]
+  wants: [
+    {
+      bundleName: 'ohos.samples.eTSNotification',
+      abilityName: 'ohos.samples.eTSNotification.MainAbility',
+    }
+  ],
+  operationType: wantAgent.OperationType.START_ABILITY,
+  requestCode: 0,
+  wantAgentFlags:[wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
 // WantAgent object
@@ -241,7 +208,7 @@ wantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
 // Create a NotificationRequest object.
 var notificationRequest = {
   content: {
-    contentType: notify.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+    contentType: Notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
     normal: {
       title: "AceApplication_Title",
       text: "AceApplication_Text",
@@ -251,7 +218,7 @@ var notificationRequest = {
   id: 1,
   label: 'TEST',
   wantAgent: WantAgent,
-  slotType: notify.SlotType.OTHER_TYPES,
+  slotType: Notification.SlotType.OTHER_TYPES,
   deliveryTime: new Date().getTime()
 }
 
@@ -279,11 +246,3 @@ Notification.cancel(1, "label", cancelCallback)
 ```
 
 
-
-## Development Example
-
-The following sample is provided to help you better understand how to develop notification functions:
-
-- notification
-
-This sample shows how to use **Notification** APIs in Extended TypeScript (eTS) to subscribe to, unsubscribe from, publish, and cancel notifications as well as enable the notification feature and check whether the feature is enabled.
