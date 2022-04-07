@@ -20,6 +20,8 @@ getInfo(): AppResponse
 
 获取当前应用配置文件中声明的信息。
 
+> **说明：** 从API Version 7开始，推荐使用[`@ohos.bundle`](js-apis-Bundle.md)。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Lite
 
 **返回值：**
@@ -45,6 +47,8 @@ terminate(): void
 
 退出当前Ability。
 
+> **说明：** 从API Version 7开始，推荐使用[`@ohos.ability.featureAbility`](js-apis-featureAbility.md)。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Lite
 
 **示例：**
@@ -62,6 +66,8 @@ requestFullWindow(options?: RequestFullWindowOptions): void
 请求应用以全窗口运行，FA在某些场景下（如半模态FA）会以非全窗口运行，调用该接口会从非全窗口切换为全窗口运行，如果已经以全窗口运行则该接口调用无效。
 
 此接口为系统接口，三方应用不支持调用。
+
+> **说明：** 从API Version 7开始，推荐使用[`@ohos.window`](js-apis-window.md)。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
