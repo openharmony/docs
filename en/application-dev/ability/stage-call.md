@@ -245,6 +245,6 @@ try {
 ## Development Example
 The following sample is provided to help you better understand how to develop an ability call in the stage model:
 
-[eTSStageCallAbility](https://gitee.com/openharmony/app_samples/tree/master/ability/eTSStageCallAbility)
+[StageCallAbility](https://gitee.com/openharmony/app_samples/tree/master/ability/StageCallAbility)
 
 In this sample, the **AbilityStage** APIs are implemented in the **AbilityStage.ts** file in the **Application** directory, the **Ability** APIs are implemented in the **MainAbility** directory, and **pages/index** is the pages of the ability. Another ability and callee are implemented in the **CalleeAbility** directory, and its pages are the content configured in **pages/second**. The **MainAbility** functions as the caller, and the **CalleeAbility** functions as the callee. After starting the **CalleeAbility**, the **MainAbility** obtains the caller interface, processes the string entered by the user, and transfers the processed string to the **CalleeAbility**. The **CalleeAbility** refreshes the page based on the received data and returns the result to the **MainAbility**.
