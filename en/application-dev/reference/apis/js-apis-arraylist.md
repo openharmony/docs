@@ -264,6 +264,7 @@ arrayList.removeByRange(2, 6);
 ```
 
 ### replaceAllElements
+
 replaceAllElements(callbackfn: (value: T, index?: number, arrlist?: ArrayList&lt;T&gt;) => T,
 thisArg?: Object): void
 
@@ -301,6 +302,7 @@ arrayList.replaceAllElements((value, index) => {
 ```
 
 ### forEach
+
 forEach(callbackfn: (value: T, index?: number, arrlist?: ArrayList&lt;T&gt;) => void,
 thisArg?: Object): void
 
@@ -335,6 +337,7 @@ arrayList.forEach((value, index) => {
 ```
 
 ### sort
+
 sort(comparator?: (firstValue: T, secondValue: T) => number): void
 
 Sorts entries in this container.
@@ -366,6 +369,7 @@ arrayList.sort();
 ```
 
 ### subArrayList
+
 subArrayList(fromIndex: number, toIndex: number): ArrayList&lt;T&gt;
 
 Obtains entries within a range in this container, including the entry at the start position but not that at the end position, and returns these entries as a new **ArrayList** instance.
@@ -397,6 +401,7 @@ let result3 = arrayList.subArrayList(2, 6);
 ```
 
 ### clear
+
 clear(): void
 
 Clears this container and sets its length to **0**.
@@ -413,6 +418,7 @@ arrayList.clear();
 ```
 
 ### clone
+
 clone(): ArrayList&lt;T&gt; 
 
 Clones this container and returns a copy. The modification to the copy does not affect the original instance.
@@ -436,6 +442,7 @@ let result = arrayList.clone();
 ```
 
 ### getCapacity
+
 getCapacity(): number
 
 Obtains the capacity of this container.
@@ -458,6 +465,7 @@ let result = arrayList.getCapacity();
 ```
 
 ### convertToArray
+
 convertToArray(): Array&lt;T&gt;
 
 Converts this container into an array.
@@ -480,6 +488,7 @@ let result = arrayList.convertToArray();
 ```
 
 ### isEmpty
+
 isEmpty(): boolean
 
 Checks whether this container is empty (contains no entry).
@@ -502,6 +511,7 @@ let result = arrayList.isEmpty();
 ```
 
 ### increaseCapacityTo
+
 increaseCapacityTo(newCapacity: number): void
 
 Increases the capacity of this container.
@@ -525,6 +535,7 @@ arrayList.increaseCapacityTo(8);
 ```
 
 ### trimToCurrentLength
+
 trimToCurrentLength(): void
 
 Trims the capacity of this container to its current length.

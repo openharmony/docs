@@ -241,7 +241,8 @@ let result = vector.remove(2);
 ```
 
 ### removeByRange
-removeByRange(fromIndex: number, toIndex: number): void;
+
+removeByRange(fromIndex: number, toIndex: number): void
 
 Removes from this container all of the entries within a range, including the entry at the start position but not that at the end position.
 
@@ -266,6 +267,7 @@ vector.removeByRange(2,6);
 ```
 
 ### replaceAllElements
+
 replaceAllElements(callbackfn: (value: T, index?: number, vector?: Vector&lt;T&gt;) => T,
 thisArg?: Object): void
 
@@ -303,8 +305,9 @@ vector.replaceAllElements((value, index) => {
 ```
 
 ### forEach
+
 forEach(callbackfn: (value: T, index?: number, vector?: Vector&lt;T&gt;) => void,
-thisArg?: Object): void;
+thisArg?: Object): void
 
 Uses a callback to traverse the entries in this container and obtain their position indexes.
 
@@ -338,6 +341,7 @@ vector.forEach((value, index) => {
 ```
 
 ### sort
+
 sort(comparator?: (firstValue: T, secondValue: T) => number): void
 
 Sorts entries in this container.
@@ -369,6 +373,7 @@ vector.sort();
 ```
 
 ### subVector
+
 subVector(fromIndex: number, toIndex: number): Vector&lt;T&gt;
 
 Obtains entries within a range in this container, including the entry at the start position but not that at the end position, and returns these entries as a new **Vector** instance.
@@ -401,6 +406,7 @@ let result2 = vector.subVector(2,6);
 ```
 
 ### clear
+
 clear(): void
 
 Clears all entries in this container and sets its length to **0**.
@@ -417,6 +423,7 @@ vector.clear();
 ```
 
 ### clone
+
 clone(): Vector&lt;T&gt;
 
 Clones this container and returns a copy. The modification to the copy does not affect the original instance.
@@ -439,6 +446,7 @@ let result = vector.clone();
 ```
 
 ### getCapacity
+
 getCapacity(): number
 
 Obtains the capacity of this container.
@@ -461,6 +469,7 @@ let result = vector.getCapacity();
 ```
 
 ### convertToArray
+
 convertToArray(): Array&lt;T&gt;
 
 Converts this container into an array.
@@ -483,6 +492,7 @@ let result = vector.convertToArray();
 ```
 
 ### isEmpty
+
 isEmpty(): boolean
 
 Checks whether this container is empty (contains no entries).
@@ -505,6 +515,7 @@ let result = vector.isEmpty();
 ```
 
 ### increaseCapacityTo
+
 increaseCapacityTo(newCapacity: number): void
 
 Increases the capacity of this container.
@@ -700,6 +711,7 @@ let result = vector.getIndexFrom(4, 3);
 ```
 
 ### setLength
+
 setLength(newSize: number): void
 
 Sets a new length for this container.
@@ -723,6 +735,7 @@ vector.setLength(2);
 ```
 
 ### get
+
 get(index: number): T 
 
 Obtains an entry at the specified position in this container.
@@ -750,6 +763,7 @@ Obtains an entry at the specified position in this container.
   let result = vector.get(2);
   ```
 ### set
+
 set(index: number, element: T): T
 
 Replaces an entry at the specified position in this container with a given entry.
