@@ -275,62 +275,62 @@ For details, see:
 </th>
 </tr>
 </thead>
-<tbody><tr id="row8846163911187"><td class="cellrowborder" valign="top" width="13.15%" headers="mcps1.2.3.1.1 "><p id="p18127341171919"><a name="p18127341171919"></a><a name="p18127341171919"></a><a href="https://e.gitee.com/open_harmony/unset_project?issue=I3I31W" target="_blank" rel="noopener noreferrer">I3I31W</a></p>
+<tbody><tr id="row8846163911187"><td class="cellrowborder" valign="top" width="13.15%" headers="mcps1.2.3.1.1 "><p id="p18127341171919"><a name="p18127341171919"></a><a name="p18127341171919"></a><a href="https://gitee.com/openharmony/kernel_liteos_a/issues/I3I31W" target="_blank" rel="noopener noreferrer">I3I31W</a></p>
 </td>
 <td class="cellrowborder" valign="top" width="86.85000000000001%" headers="mcps1.2.3.1.2 "><p id="p01271941121913"><a name="p01271941121913"></a><a name="p01271941121913"></a><strong id="b102791322122913"><a name="b102791322122913"></a><a name="b102791322122913"></a>ActsNFSTest.bin</strong> causes a kernel crash.</p>
 </td>
 </tr>
-<tr id="row1846113981818"><td class="cellrowborder" valign="top" width="13.15%" headers="mcps1.2.3.1.1 "><p id="p14127174118199"><a name="p14127174118199"></a><a name="p14127174118199"></a><a href="https://e.gitee.com/open_harmony/issues/list?issue=I3D49E" target="_blank" rel="noopener noreferrer">I3D49E</a></p>
+<tr id="row1846113981818"><td class="cellrowborder" valign="top" width="13.15%" headers="mcps1.2.3.1.1 "><p id="p14127174118199"><a name="p14127174118199"></a><a name="p14127174118199"></a><a href="https://gitee.com/openharmony/docs/issues/I3D49E" target="_blank" rel="noopener noreferrer">I3D49E</a></p>
 </td>
 <td class="cellrowborder" valign="top" width="86.85000000000001%" headers="mcps1.2.3.1.2 "><p id="p141271541131915"><a name="p141271541131915"></a><a name="p141271541131915"></a>The U-Boot path is incorrect.</p>
 </td>
 </tr>
-<tr id="row5846103901815"><td class="cellrowborder" valign="top" width="13.15%" headers="mcps1.2.3.1.1 "><p id="p181274412195"><a name="p181274412195"></a><a name="p181274412195"></a><a href="https://e.gitee.com/open_harmony/issues/list?issue=I3D71U" target="_blank" rel="noopener noreferrer">I3D71U</a></p>
+<tr id="row5846103901815"><td class="cellrowborder" valign="top" width="13.15%" headers="mcps1.2.3.1.1 "><p id="p181274412195"><a name="p181274412195"></a><a name="p181274412195"></a><a href="https://gitee.com/openharmony-retired/drivers_adapter_khdf_liteos/issues/I3D71U" target="_blank" rel="noopener noreferrer">I3D71U</a></p>
 </td>
 <td class="cellrowborder" valign="top" width="86.85000000000001%" headers="mcps1.2.3.1.2 "><p id="p131271341151912"><a name="p131271341151912"></a><a name="p131271341151912"></a>[Driver subsystem] During repeated system reset, there is a high possibility that the system is suspended after successful <strong id="b6105185413215"><a name="b6105185413215"></a><a name="b6105185413215"></a>hmac_main_init</strong> startup.</p>
 </td>
 </tr>
-<tr id="row48467394184"><td class="cellrowborder" valign="top" width="13.15%" headers="mcps1.2.3.1.1 "><p id="p812718412194"><a name="p812718412194"></a><a name="p812718412194"></a><a href="https://e.gitee.com/open_harmony/issues/list?issue=I3DGZW" target="_blank" rel="noopener noreferrer">I3DGZW</a></p>
+<tr id="row48467394184"><td class="cellrowborder" valign="top" width="13.15%" headers="mcps1.2.3.1.1 "><p id="p812718412194"><a name="p812718412194"></a><a name="p812718412194"></a><a href="https://gitee.com/openharmony/aafwk_aafwk_lite/issues/I3DGZW" target="_blank" rel="noopener noreferrer">I3DGZW</a></p>
 </td>
 <td class="cellrowborder" valign="top" width="86.85000000000001%" headers="mcps1.2.3.1.2 "><p id="p3127164121913"><a name="p3127164121913"></a><a name="p3127164121913"></a>[Application Framework subsystem] After the Hi3516 development board enters screen saver mode, a blue screen is displayed upon a tap on the touchscreen.</p>
 </td>
 </tr>
-<tr id="row984633901815"><td class="cellrowborder" valign="top" width="13.15%" headers="mcps1.2.3.1.1 "><p id="p1912812411199"><a name="p1912812411199"></a><a name="p1912812411199"></a><a href="https://e.gitee.com/open_harmony/issues/list?issue=I3DHIL" target="_blank" rel="noopener noreferrer">I3DHIL</a></p>
+<tr id="row984633901815"><td class="cellrowborder" valign="top" width="13.15%" headers="mcps1.2.3.1.1 "><p id="p1912812411199"><a name="p1912812411199"></a><a name="p1912812411199"></a><a href="https://gitee.com/openharmony/community/issues/I3DHIL" target="_blank" rel="noopener noreferrer">I3DHIL</a></p>
 </td>
 <td class="cellrowborder" valign="top" width="86.85000000000001%" headers="mcps1.2.3.1.2 "><p id="p1412854111192"><a name="p1412854111192"></a><a name="p1412854111192"></a>[System] The remaining space of the Hi3518 development board is insufficient, causing a failure in executing a large number of ACTS test cases.</p>
 </td>
 </tr>
-<tr id="row984623913181"><td class="cellrowborder" valign="top" width="13.15%" headers="mcps1.2.3.1.1 "><p id="p1128184171917"><a name="p1128184171917"></a><a name="p1128184171917"></a><a href="https://e.gitee.com/open_harmony/issues/list?issue=I3DU36" target="_blank" rel="noopener noreferrer">I3DU36</a></p>
+<tr id="row984623913181"><td class="cellrowborder" valign="top" width="13.15%" headers="mcps1.2.3.1.1 "><p id="p1128184171917"><a name="p1128184171917"></a><a name="p1128184171917"></a><a href="https://gitee.com/openharmony/appexecfwk_appexecfwk_lite/issues/I3DU36" target="_blank" rel="noopener noreferrer">I3DU36</a></p>
 </td>
 <td class="cellrowborder" valign="top" width="86.85000000000001%" headers="mcps1.2.3.1.2 "><p id="p17128104114191"><a name="p17128104114191"></a><a name="p17128104114191"></a>[Application Framework subsystem] The query command <strong id="b89711053112415"><a name="b89711053112415"></a><a name="b89711053112415"></a>ipcamera bm</strong> does not take effect.</p>
 </td>
 </tr>
-<tr id="row4846193919186"><td class="cellrowborder" valign="top" width="13.15%" headers="mcps1.2.3.1.1 "><p id="p16128174171917"><a name="p16128174171917"></a><a name="p16128174171917"></a><a href="https://e.gitee.com/open_harmony/issues/list?issue=I3EALU" target="_blank" rel="noopener noreferrer">I3EALU</a></p>
+<tr id="row4846193919186"><td class="cellrowborder" valign="top" width="13.15%" headers="mcps1.2.3.1.1 "><p id="p16128174171917"><a name="p16128174171917"></a><a name="p16128174171917"></a><a href="https://gitee.com/openharmony/multimedia_camera_lite/issues/I3EALU" target="_blank" rel="noopener noreferrer">I3EALU</a></p>
 </td>
 <td class="cellrowborder" valign="top" width="86.85000000000001%" headers="mcps1.2.3.1.2 "><p id="p8128184191914"><a name="p8128184191914"></a><a name="p8128184191914"></a>[Media subsystem] During the execution of the <strong id="b18542141872318"><a name="b18542141872318"></a><a name="b18542141872318"></a>cameraActs</strong> test case, the camera configuration file cannot be found and the initialization fails.</p>
 </td>
 </tr>
-<tr id="row851624131915"><td class="cellrowborder" valign="top" width="13.15%" headers="mcps1.2.3.1.1 "><p id="p1412814111917"><a name="p1412814111917"></a><a name="p1412814111917"></a><a href="https://e.gitee.com/open_harmony/issues/list?issue=I3EGUX" target="_blank" rel="noopener noreferrer">I3EGUX</a></p>
+<tr id="row851624131915"><td class="cellrowborder" valign="top" width="13.15%" headers="mcps1.2.3.1.1 "><p id="p1412814111917"><a name="p1412814111917"></a><a name="p1412814111917"></a><a href="https://gitee.com/openharmony/release-management/issues/I3EGUX" target="_blank" rel="noopener noreferrer">I3EGUX</a></p>
 </td>
 <td class="cellrowborder" valign="top" width="86.85000000000001%" headers="mcps1.2.3.1.2 "><p id="p161282419194"><a name="p161282419194"></a><a name="p161282419194"></a>[Reliability] When the KIdle process crashes once during repeated system reset, the system is suspended and cannot be started.</p>
 </td>
 </tr>
-<tr id="row1151162411915"><td class="cellrowborder" valign="top" width="13.15%" headers="mcps1.2.3.1.1 "><p id="p181280416199"><a name="p181280416199"></a><a name="p181280416199"></a><a href="https://e.gitee.com/open_harmony/issues/list?issue=I3EH4E" target="_blank" rel="noopener noreferrer">I3EH4E</a></p>
+<tr id="row1151162411915"><td class="cellrowborder" valign="top" width="13.15%" headers="mcps1.2.3.1.1 "><p id="p181280416199"><a name="p181280416199"></a><a name="p181280416199"></a><a href="https://gitee.com/openharmony/community/issues/I3EH4E" target="_blank" rel="noopener noreferrer">I3EH4E</a></p>
 </td>
 <td class="cellrowborder" valign="top" width="86.85000000000001%" headers="mcps1.2.3.1.2 "><p id="p2128841121919"><a name="p2128841121919"></a><a name="p2128841121919"></a>[Pipeline] There is a high probability that the system does not respond after the <strong id="b138341354112016"><a name="b138341354112016"></a><a name="b138341354112016"></a>uname</strong> and <strong id="b05351314112113"><a name="b05351314112113"></a><a name="b05351314112113"></a>reset</strong> commands are executed.</p>
 </td>
 </tr>
-<tr id="row051182419198"><td class="cellrowborder" valign="top" width="13.15%" headers="mcps1.2.3.1.1 "><p id="p20128204114190"><a name="p20128204114190"></a><a name="p20128204114190"></a><a href="https://e.gitee.com/open_harmony/issues/list?issue=I3EQJA" target="_blank" rel="noopener noreferrer">I3EQJA</a></p>
+<tr id="row051182419198"><td class="cellrowborder" valign="top" width="13.15%" headers="mcps1.2.3.1.1 "><p id="p20128204114190"><a name="p20128204114190"></a><a name="p20128204114190"></a><a href="https://gitee.com/openharmony/kernel_liteos_a/issues/I3EQJA" target="_blank" rel="noopener noreferrer">I3EQJA</a></p>
 </td>
 <td class="cellrowborder" valign="top" width="86.85000000000001%" headers="mcps1.2.3.1.2 "><p id="p1112813418191"><a name="p1112813418191"></a><a name="p1112813418191"></a>[File system] The <strong id="b13680836111015"><a name="b13680836111015"></a><a name="b13680836111015"></a>cat /proc/mounts</strong> command does not take effect.</p>
 </td>
 </tr>
-<tr id="row451132491912"><td class="cellrowborder" valign="top" width="13.15%" headers="mcps1.2.3.1.1 "><p id="p1012844171912"><a name="p1012844171912"></a><a name="p1012844171912"></a><a href="https://e.gitee.com/open_harmony/issues/list?issue=I3EQRC" target="_blank" rel="noopener noreferrer">I3EQRC</a></p>
+<tr id="row451132491912"><td class="cellrowborder" valign="top" width="13.15%" headers="mcps1.2.3.1.1 "><p id="p1012844171912"><a name="p1012844171912"></a><a name="p1012844171912"></a><a href="https://gitee.com/openharmony/kernel_liteos_a/issues/I3EQRC" target="_blank" rel="noopener noreferrer">I3EQRC</a></p>
 </td>
 <td class="cellrowborder" valign="top" width="86.85000000000001%" headers="mcps1.2.3.1.2 "><p id="p1612884110194"><a name="p1612884110194"></a><a name="p1612884110194"></a>The system crashes when three concurrent test processes are run during disk file mapping delay testing.</p>
 </td>
 </tr>
-<tr id="row551124141912"><td class="cellrowborder" valign="top" width="13.15%" headers="mcps1.2.3.1.1 "><p id="p1212854112194"><a name="p1212854112194"></a><a name="p1212854112194"></a><a href="https://e.gitee.com/open_harmony/issues/list?issue=I3HVL0" target="_blank" rel="noopener noreferrer">I3HVL0</a></p>
+<tr id="row551124141912"><td class="cellrowborder" valign="top" width="13.15%" headers="mcps1.2.3.1.1 "><p id="p1212854112194"><a name="p1212854112194"></a><a name="p1212854112194"></a></a><a href="https://gitee.com/openharmony/docs/issues/I3HVL0" target="_blank" rel="noopener noreferrer">I3HVL0</a></p>
 </td>
 <td class="cellrowborder" valign="top" width="86.85000000000001%" headers="mcps1.2.3.1.2 "><p id="p2128241151910"><a name="p2128241151910"></a><a name="p2128241151910"></a>The Hi3861 development board compilation fails and the error message "[OHOS ERROR] Fatal error: invalid -march= option:rv32imac" is displayed.</p>
 </td>

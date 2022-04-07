@@ -1144,12 +1144,7 @@ The following table lists the issues known in OpenHarmony 1.0, which have been r
 <td class="cellrowborder" valign="top" width="77.35%" headers="mcps1.2.3.1.2 "><p id="p1132775483917"><a name="p1132775483917"></a><a name="p1132775483917"></a>[Multimedia] During execution of the cameraActs case, the camera configuration file cannot be found, and the initialization fails.</p>
 </td>
 </tr>
-<tr id="row0342133417396"><td class="cellrowborder" valign="top" width="22.650000000000002%" headers="mcps1.2.3.1.1 "><p id="p153278540395"><a name="p153278540395"></a><a name="p153278540395"></a><a href="https://gitee.com/openharmony/drivers_adapter_khdf_liteos/issues/I3D71U" target="_blank" rel="noopener noreferrer">I3D71U</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="77.35%" headers="mcps1.2.3.1.2 "><p id="p93271254153915"><a name="p93271254153915"></a><a name="p93271254153915"></a>[Driver] When the system is reset repeatedly before it is started successfully by hmac_main_init, there is a high possibility that it would be suspended after the startup.</p>
-</td>
-</tr>
-<tr id="row8342934173920"><td class="cellrowborder" valign="top" width="22.650000000000002%" headers="mcps1.2.3.1.1 "><p id="p7328145410392"><a name="p7328145410392"></a><a name="p7328145410392"></a><a href="https://gitee.com/openharmony/community/issues/I3EGUX" target="_blank" rel="noopener noreferrer">I3EGUX</a></p>
+<tr id="row8342934173920"><td class="cellrowborder" valign="top" width="22.650000000000002%" headers="mcps1.2.3.1.1 "><p id="p7328145410392"><a name="p7328145410392"></a><a name="p7328145410392"></a><a href="https://gitee.com/openharmony/release-management/issues/I3EGUX" target="_blank" rel="noopener noreferrer">I3EGUX</a></p>
 </td>
 <td class="cellrowborder" valign="top" width="77.35%" headers="mcps1.2.3.1.2 "><p id="p9328654193918"><a name="p9328654193918"></a><a name="p9328654193918"></a>[Reliability] When the system is reset repeatedly, and the KIdle process crashes once, the system is suspended and cannot be started.</p>
 </td>
