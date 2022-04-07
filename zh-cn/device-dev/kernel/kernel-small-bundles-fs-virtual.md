@@ -32,10 +32,13 @@ OpenHarmony内核中，VFS框架是通过在内存中的树结构来实现的，
    Vnode通过哈希以及LRU机制进行管理。当系统启动后，对文件或目录的访问会优先从哈希链表中查找Vnode缓存，若缓存没有命中，则并从对应文件系统中搜索目标文件或目录，创建并缓存对应的Vnode。当Vnode缓存数量达到上限时，将淘汰长时间未访问的Vnode，其中挂载点Vnode与设备节点Vnode不参与淘汰。当前系统中Vnode的规格默认为512，该规格可以通过LOSCFG_MAX_VNODE_SIZE进行配置。Vnode数量过大，会造成较大的内存占用；Vnode数量过少，则会造成搜索性能下降。下图展示了Vnode的创建流程。
 
    **图1** Vnode创建流程
+
    ![zh-cn_image_0000001127393126](figures/zh-cn_image_0000001127393126.png)
 
 1. PathCache：PathCache是路径缓存，它通过哈希表存储，利用父节点Vnode的地址和子节点的文件名，可以从PathCache中快速查找到子节点对应的Vnode。下图展示了文件/目录的查找流程。
+   
    **图2** 文件查找流程
+
    ![zh-cn_image_0000001175795145](figures/zh-cn_image_0000001175795145.png)
 
 1. PageCache：PageCache是内核中文件的缓存。当前PageCache仅支持缓存二进制文件，在初次访问文件时通过mmap映射到内存中，下次再访问时，直接从PageCache中读取，可以提升对同一个文件的读写速度。另外基于PageCache可实现以文件为基底的进程间通信。
