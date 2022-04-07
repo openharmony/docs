@@ -72,7 +72,7 @@ Camera模块主要用以相机预览、拍照、视频流等场景下对相机�
   | 功能描述                       | 接口名称                                                     |
   | ------------------------------ | ------------------------------------------------------------ |
   | 设置ICameraHost回调接口        | CamRetCode SetCallback(const OHOS::sptr<ICameraHostCallback> &callback) |
-  | 获取当前可用的Camera设备ID列表 | CamRetCode GetCameraIds(std::vector<std::string> &cameraIds) |
+  | 获取当前可用的Camera设备ID列表 | CamRetCode GetCameraIds(std::vector\<std::string\> &cameraIds) |
   | 获取Camera设备能力集合         | CamRetCode GetCameraAbility(const std::string &cameraId,<br/>    std::shared_ptr<CameraAbility> &ability) |
   | 打开Camera设备                 | CamRetCode OpenCamera(const std::string &cameraId,<br/>    const OHOS::sptr<ICameraDeviceCallback> &callback,<br/>    OHOS::sptr<ICameraDevice> &device) |
   | 打开或关闭闪光灯               | CamRetCode SetFlashlight(const std::string &cameraId, bool &isEnable) |
@@ -96,12 +96,12 @@ Camera模块主要用以相机预览、拍照、视频流等场景下对相机�
 
   | 功能描述                         | 接口名称                                                     |
   | -------------------------------- | ------------------------------------------------------------ |
-  | 查询是否支持添加参数对应的流     | CamRetCode IsStreamsSupported(<br/>    OperationMode mode,<br/>    const std::shared_ptr<CameraStandard::CameraMetadata> &modeSetting,<br/>    const std::vector&ltstd::shared_ptr&ltStreamInfo&gt> &info,<br/>    StreamSupportType &type) |
+  | 查询是否支持添加参数对应的流     | CamRetCode IsStreamsSupported(<br/>    OperationMode mode,<br/>    const std::shared_ptr\<CameraStandard::CameraMetadata\> &modeSetting,<br/>    const std::vector&ltstd::shared_ptr&ltStreamInfo&gt> &info,<br/>    StreamSupportType &type) |
   | 创建流                           | CamRetCode CreateStreams(const std::vector<std::shared_ptr<StreamInfo>> &streamInfos) |
   | 释放流                           | CamRetCode ReleaseStreams(const std::vector<int> &streamIds) |
   | 配置流                           | CamRetCode CommitStreams(OperationMode mode,<br/>    const std::shared_ptr<CameraMetadata> &modeSetting) |
   | 获取流的属性                     | CamRetCode GetStreamAttributes(<br/>    std::vector<std::shared_ptr<StreamAttribute>> &attributes) |
-  | 绑定生产者句柄和指定流           | CamRetCode AttachBufferQueue(int streamId, const OHOS::sptr<OHOS::IBufferProducer> &producer) |
+  | 绑定生产者句柄和指定流           | CamRetCode AttachBufferQueue(int streamId, const OHOS::sptr\<OHOS::IBufferProducer\> &producer) |
   | 解除生产者句柄和指定流的绑定关系 | CamRetCode DetachBufferQueue(int streamId)                   |
   | 捕获图像                         | CamRetCode Capture(int captureId,<br/>    const std::shared_ptr<CaptureInfo> &info, bool isStreaming) |
   | 取消捕获                         | CamRetCode CancelCapture(int captureId)                      |
