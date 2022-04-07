@@ -35,7 +35,7 @@ The following figure shows the basic concepts in the stage model.
 -  **Application**: runtime class of a bundle, which is invisible to developers in the runtime.
 -  **Context**: provides various capabilities that can be invoked by developers during the runtime. The **Ability** and **ExtensionAbility** classes have their own context classes, which inherit the base class **Context**. The base class provides information such as the bundle name, module name, and path.
 -  **Ability**: provides lifecycle callback, holds the **AbilityContext** class, and supports component continuation and collaboration.
--  **ExtensionAbility**: general name of scenario-based service extension abilities. The system defines multiple scenario-based **ExtensionAbility** classes, each of which has its own **ExtensionAbilityContext**.
+-  **ExtensionAbility**: general name of scenario-based service extension abilities. The system defines multiple scenario-based **ExtensionAbility** classes, each of which has its own **ExtensionContext**.
 -  **WindowStage**: local window manager.
 -  **Window**: basic unit managed by the window manager. It has an ArkUI engine instance.
 - **ArkUI Page**: displays declarative ArkUI.
