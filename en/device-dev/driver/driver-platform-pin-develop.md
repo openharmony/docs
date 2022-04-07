@@ -23,10 +23,13 @@ Pin, as a software concept, provides APIs for uniformly managing the pins from d
 In the HDF, the pin module does not support the user mode and therefore does not need to publish services. It uses the service-free mode in interface adaptation. The service-free mode applies to the devices that do not provide user-mode APIs or the OS that does not distinguish the user mode and the kernel mode. The **DevHandle**, a void pointer, directly points to the kernel mode address of the device object.
 
 The pin module is divided into the following layers:
+
 - Interface layer: provides APIs for obtaining a pin, setting or obtaining the pull type, pull strength, and functions of a pin, and releasing a pin.
-- Core layer: provides the capabilities of matching pin resources and adding, removing, and managing pin controllers. The core layer interacts with the adaptation layer by using hooks. Adaptation layer: instantiates hooks to implement specific functions.
+- Core layer: provides the capabilities of matching pin resources and adding, removing, and managing pin controllers. The core layer interacts with the adaptation layer by using hooks.
+- Adaptation layer: instantiates hooks to implement specific functions.
 
 **Figure 1** Service-free mode
+
 ![](figures/service-free-mode.png)
 
 ### Constraints
