@@ -11,8 +11,8 @@
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas1" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
-    <input type="button" style="width: 180px; height: 60px;" value="fillStyle" onclick="handleClick" />
-    <input type="button" style="width: 180px; height: 60px;" value="fillStyle" onclick="antialias">
+    <input type="button" style="width: 180px; height: 60px;" value="handleClick" onclick="handleClick" />
+    <input type="button" style="width: 180px; height: 60px;" value="antialias" onclick="antialias" />
   </div>
   ```
 
@@ -29,7 +29,7 @@
     antialias() {
       const el = this.$refs.canvas1;
       const ctx = el.getContext('2d', { antialias: true });
-      ctx.beginPath();   ]
+      ctx.beginPath();   
       ctx.arc(100, 75, 50, 0, 6.28);
       ctx.stroke(); 
       }

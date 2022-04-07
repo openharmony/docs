@@ -155,6 +155,8 @@ Text是文本组件，用于呈现一段文本信息。具体用法请参考[Tex
   ```
   /* xxx.css */
   .container {
+    width: 100%;
+    height: 100%;
     background-color: #F1F3F5;
     flex-direction: column;
     align-items: center;
@@ -167,6 +169,7 @@ Text是文本组件，用于呈现一段文本信息。具体用法请参考[Tex
     justify-content: center;
   }
   .text1{
+    width: 100%;
     height: 200px;
     border:1px solid #1a1919;
     margin-bottom: 50px;
@@ -175,6 +178,7 @@ Text是文本组件，用于呈现一段文本信息。具体用法请参考[Tex
     font-size: 40px;
   }
   .text2{
+    width: 100%;
     height: 200px;
     border:1px solid #0931e8;
     text-align: center;
