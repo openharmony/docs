@@ -276,9 +276,9 @@ Data提供方可以自定义数据的增、删、改、查，以及文件打开�
 
 针对dataAbility开发，有以下示例工程可供参考：
 
-- [eTSDataAbility](https://gitee.com/openharmony/app_samples/tree/master/ability/DataAbility)
+- [DataAbility](https://gitee.com/openharmony/app_samples/tree/master/ability/DataAbility)
 
-本示例eTSDataAbility中：
+本示例DataAbility中：
 
 在DataAbility目录中的data.ts文件创建一个Data实例。
 
