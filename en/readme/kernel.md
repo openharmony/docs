@@ -1,5 +1,6 @@
 # Kernel<a name="EN-US_TOPIC_0000001077309884"></a>
 
+
 ## Introduction<a name="section11660541593"></a>
 
 OpenHarmony provides LiteOS and Linux for different levels of systems. LiteOS applies to mini and small systems. Linux applies to small and standard systems.
@@ -36,13 +37,13 @@ OpenHarmony provides LiteOS and Linux for different levels of systems. LiteOS ap
 
 ## LiteOS<a name="section6253122153515"></a>
 
-OpenHarmony LiteOS is a real-time OS kernel developed for IoT devices. It boasts lightweight features as the real-time operating system (RTOS) and is easy-to-use like Linux.
+The OpenHarmony LiteOS kernel is a real-time OS kernel developed for IoT devices. It is as lightweight as the real-time operating system (RTOS) and as easy-to-use as Linux.
 
-LiteOS provides basic kernel functions, such as process and thread scheduling, memory management, inter-process communication (IPC), and timer management.
+The  OpenHarmony LiteOS kernel provides basic functions, such as process and thread scheduling, memory management, inter-process communication (IPC) mechanism, and timer management.
 
-The LiteOS source code is stored in **kernel&#92;\_liteos&#92;\_a** and **kernel&#92;\_liteos&#92;\_m** repositories. The **kernel&#92;\_liteos&#92;\_a** repository stores kernel code for small and standard systems. The **kernel\\_liteos&#92;\_m** repository stores kernel code for mini systems. This document describes the **kernel&#92;\_liteos&#92;\_a** repository. Figure 1 shows the architecture of OpenHarmony LiteOS-A.
+The OpenHarmony LiteOS source code is stored in **kernel&#92;\_liteos&#92;\_a** and **kernel&#92;\_liteos&#92;\_m** repositories. The **kernel&#92;\_liteos&#92;\_a** repository stores kernel code for small and standard systems. The **kernel\\_liteos&#92;\_m** repository stores kernel code for mini systems. This document describes the **kernel&#92;\_liteos&#92;\_a** repository. The figure below shows the architecture of OpenHarmony LiteOS-A.
 
-**Figure 1** OpenHarmony LiteOS-A kernel architecture <a name="fig225412228353"></a>
+**Figure 1** OpenHarmony LiteOS-A kernel architecture <a name="fig225412228353"></a> 
 ![](figures/architecture-of-the-openharmony-liteos-cortex-a-kernel.png "OpenHarmony-LiteOS-A Kernel Architecture")
 
 ## Linux<a name="section143373618411"></a>
@@ -51,7 +52,7 @@ Evolved from the open-source Linux kernel LTS 4.19.y and 5.10.y, the OpenHarmony
 
 For more information about Linux LTS 4.19.y, visit the [official kernel website](https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/log/?h=linux-4.19.y).
 
-For more information about Linux LTS 5.10.y, visit the [official kernel website](https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/log/?h=linux-5.10.y).
+For more information about Linux LTS 5.10.y, visit the [official kernel website] (https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/log/?h=linux-5.10.y).
 
 During the build process, you can merge the driver code based on the chip platform and build the kernel image. All patches are licensed under GNU General Public License (GPL) 2.0.
 
@@ -208,6 +209,12 @@ LiteOS:
 [prebuilts\_lite\_sysroot](https://gitee.com/openharmony/prebuilts_lite_sysroot/blob/master/README.md)
 
 Linux:
+
+[kernel\_linux\_patches](https://gitee.com/openharmony/kernel_linux_patches/blob/master/README.md)
+
+[kernel\_linux\_config](https://gitee.com/openharmony/kernel_linux_config/blob/master/README.md)
+
+[kernel\_linux\_build](https://gitee.com/openharmony/kernel_linux_build/blob/master/README.md)
 
 [kernel\_linux\_4.19](https://gitee.com/openharmony/kernel_linux_4.19/blob/master/README)
 
