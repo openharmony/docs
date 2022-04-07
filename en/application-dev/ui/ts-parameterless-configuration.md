@@ -1,8 +1,7 @@
-# Parameterless Configuration<a name="EN-US_TOPIC_0000001157228859"></a>
+# Configuration Without Parameters
 
-If the API definition of a component does not contain mandatory parameters, you do not need to configure any content in the parentheses next to the component.
 
-For example, the following  **Divider**  component does not contain parameters:
+If the API definition of a component does not contain mandatory parameters, you do not need to configure any content in the parentheses next to the component. For example, the Divider component does not contain parameters:
 
 ```
 Column() {
@@ -11,4 +10,3 @@ Column() {
     Text('item 2')
 }
 ```
-

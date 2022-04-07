@@ -1,10 +1,13 @@
-# Button<a name="EN-US_TOPIC_0000001202654279"></a>
+# &lt;button&gt; Development
 
-The  **<button\>**  component can be used to set a capsule, circle, text, arc, or download button. For details, see  [button](../reference/arkui-js/js-components-basic-button.md).
 
-## Creating a <button\> Component<a name="section1483585710237"></a>
+The&lt;button&gt;component can be used to set a capsule, circle, text, arc, or download button. For details, see [button](../reference/arkui-js/js-components-basic-button.md).
 
-Create a  **<button\>**  component in the  **.hml**  file under  **pages/index**.
+
+## Creating a &lt;button&gt; Component
+
+Create a &lt;button&gt; component in the .hml file under pages/index.
+
 
 ```
 <!-- xxx.hml -->
@@ -12,6 +15,7 @@ Create a  **<button\>**  component in the  **.hml**  file under  **pages/index**
   <button  type="capsule" value="Capsule button"></button>
 </div>
 ```
+
 
 ```
 /* xxx.css */
@@ -23,11 +27,12 @@ Create a  **<button\>**  component in the  **.hml**  file under  **pages/index**
 }
 ```
 
-![](figures/3-2.png)
+![en-us_image_0000001267887821](figures/en-us_image_0000001267887821.png)
 
-## Setting the Button Type<a name="section1599710524112"></a>
 
-Set the  **type**  attribute of the  **<input\>**  component to  **button**,  **date**, or any of the supported values.
+## Setting the Button Type
+
+Set the type attribute of the &lt;input&gt; component to button, date, or any of the supported values.
 
 ```
 <!-- xxx.hml -->
@@ -61,15 +66,21 @@ Set the  **type**  attribute of the  **<input\>**  component to  **button**,  **
 }
 ```
 
-![](figures/05-3.png)
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
->-   For capsule buttons, border-related styles are not supported.
->-   For circle buttons, text-related styles are not supported.
->-   For text buttons, the text size is adaptive, and  **radius**,  **width**, and  **height**  cannot be set. The  **background-color**  style is not supported when the background is completely transparent.
->-   If the icon used by the  **<button\>**  component is from the cloud, you must declare the  **ohos.permission.INTERNET**  permission in the  **config.json**  file under the  **resources**  folder.
+![en-us_image_0000001222967744](figures/en-us_image_0000001222967744.png)
 
-Sample code for declaring the  **ohos.permission.INTERNET**  permission in the  **config.json**  file under the  **resources**  folder:
+
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
+> - For capsule buttons, border-related styles are not supported.
+> 
+> - For circle buttons, text-related styles are not supported.
+> 
+> - For text buttons, the text size is adaptive, and radius, width, and height cannot be set. The background-color style is not supported when the background is completely transparent.
+> 
+> - If the icon used by the&lt;button&gt;component is from the cloud, you must declare the ohos.permission.INTERNET permission in the config.json file under the resources folder.
+
+
+Sample code for declaring the ohos.permission.INTERNET permission in the config.json file under the resources folder:
 
 ```
 <!-- config.json -->
@@ -80,9 +91,11 @@ Sample code for declaring the  **ohos.permission.INTERNET**  permission in the  
 }
 ```
 
-## Showing the Download Progress<a name="section12724145171819"></a>
 
-Add the  **progress**  method to the  **<button\>**  component to display the download progress in real time.
+## Showing the Download Progress
+
+Add the progress method to the&lt;button&gt;component to display the download progress in real time.
+
 
 ```
 <!-- xxx.hml -->
@@ -90,6 +103,7 @@ Add the  **progress**  method to the  **<button\>**  component to display the do
   <button class="button download" type="download" id="download-btn" onclick="setProgress">{{downloadText}}</button>
 </div>
 ```
+
 
 ```
 /* xxx.css */
@@ -105,6 +119,7 @@ Add the  **progress**  method to the  **<button\>**  component to display the do
   background-color: #007dff;
 }
 ```
+
 
 ```
 // xxx.js
@@ -136,7 +151,7 @@ export default {
     clearInterval(this.intervalId);
     this.intervalId = null;
   },
-  setProgress(e) {
+ setProgress(e) {
     if(this.isPaused){
       prompt.showToast({
         message: "Download started"
@@ -154,13 +169,14 @@ export default {
 }
 ```
 
-![](figures/34.gif)
+![en-us_image_0000001223287652](figures/en-us_image_0000001223287652.gif)
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
 >
->-   The  **setProgress**  method supports only buttons of the download type.
+> The setProgress method supports only buttons of the download type.
 
-## Example Scenario<a name="section64731917115116"></a>
+
+## Example Scenario
 
 Switch between the button types for different types of text.
 
@@ -262,5 +278,5 @@ export default {
 }
 ```
 
-![](figures/21.gif)
 
+![en-us_image_0000001222967740](figures/en-us_image_0000001222967740.gif)

@@ -1,24 +1,27 @@
-# Configuration with Mandatory Parameters<a name="EN-US_TOPIC_0000001110948900"></a>
+# Configuration with Mandatory Parameters
 
-If the API definition of a component contains mandatory construction parameters, the parameters must be configured in the brackets  **\(\)**  next to the component. You can use constants to assign values to parameters.
+
+If the API definition of a component contains any mandatory parameter, set the parameters in the parentheses next to the component. Use constants to assign values to the parameters.
+
 
 Examples:
 
-Set the mandatory parameter  **src**  of the  **<Image\>**  component as follows:
 
-```
-Image('http://xyz/a.jpg')
-```
+- Set the mandatory parameter src of the &lt;Image&gt; component as follows:
+  
+  ```
+  Image('http://xyz/a.jpg')
+  ```
 
-Set the mandatory parameter  **content**  of the  **<Text\>**  component as follows:
 
-```
-Text('123')
-```
+- Set the mandatory parameter content of the &lt;Text&gt; component as follows:
+  
+  ```
+  Text('123')
+  ```
 
-You can also use variables or expressions to assign values to parameters. The result type returned by an expression must meet the parameter type requirements.
 
-To pass a variable or expression to construct the  **Image**  and  **Text**  components:
+You can also use variables or expressions to assign values to parameters. The result type returned by an expression must meet the parameter type requirements. For example, to pass a variable or expression to construct the Image and Text components:
 
 ```
 // imagePath, where imageUrl is a private data variable defined in the component.
@@ -29,4 +32,3 @@ Image('http://' + this.imageUrl)
 // features of the corresponding language. This specification is not limited.
 Text(`count: ${this.count}`)
 ```
-

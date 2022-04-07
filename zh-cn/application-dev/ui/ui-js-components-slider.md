@@ -17,8 +17,6 @@ Slider为滑动条组件，用来快速调节音量、亮度等。具体用法�
 </div>
 ```
 
-
-
 ```
 /* xxx.css */
 .container {
@@ -93,10 +91,10 @@ Slider组件通过color、selected-color、block-color样式分别为滑动条�
 ![zh-cn_image_0000001179438692](figures/zh-cn_image_0000001179438692.gif)
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> mode属性为滑动条样式，仅在手机和平板上生效，可选值为：
-> 
+> mode属性为滑动条样式，可选值为：
+>
 > - outset：滑块在滑杆上；
-> 
+>
 > - inset：滑块在滑杆内。
 
 
@@ -119,6 +117,8 @@ Slider组件通过color、selected-color、block-color样式分别为滑动条�
 ```
 /* xxx.css */
 .container {
+  width: 100%;
+  height: 100%; 
   flex-direction: column;
   justify-content: center;
   align-items: center;

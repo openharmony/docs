@@ -13,7 +13,7 @@ The Graphics subsystem mainly consists of user interface \(UI\) components, layo
 
 The related modules are described as follows:
 
--   View: provides application components, including UIView, UIViewGoup, UIButton, UILabel, UILabelButton, UIList, and UISlider.
+-   View: provides application components, including UIView, UIViewGroup, UIButton, UILabel, UILabelButton, UIList, and UISlider.
 -   Animator: defines functions for customizing animators.
 -   Layout: lays out components, including Flexlayout, GridLayout, and ListLayout.
 -   Transform: rotates, translates, or scales images.
@@ -98,7 +98,7 @@ The following figure shows the architecture of the Graphics subsystem.
 
     Provides multi-window capabilities.
 
--   Input Manger
+-   Input Manager
 
     Functions as the multimodal input module that receives input events.
 

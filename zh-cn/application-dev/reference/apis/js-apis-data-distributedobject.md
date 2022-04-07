@@ -63,6 +63,7 @@ genSessionId(): string
 ## DistributedObject
 
 表示一个分布式对象。
+
 ### setSessionId
 
 setSessionId(sessionId?: string): boolean
@@ -72,16 +73,19 @@ setSessionId(sessionId?: string): boolean
 **系统能力**：SystemCapability.DistributedDataManager.DataObject.DistributedObject。
 
 **参数：**
+
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | sessionId | string | 否 | 分布式对象在可信组网中的标识ID。如果要退出分布式组网，设置为""或不设置均可。 |
 
 **返回值：**
+
   | 类型 | 说明 |
   | -------- | -------- |
   | boolean | true：标识设置sessionId成功； <br>false：标识设置sessionId失败。 |
   
 **示例：**
+
   ```js
   import distributedObject from '@ohos.data.distributedDataObject'
   var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, 

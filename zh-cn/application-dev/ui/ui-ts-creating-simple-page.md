@@ -24,7 +24,7 @@
    ![zh-cn_image_0000001214128687](figures/zh-cn_image_0000001214128687.png)
 
 2. 食物图片展示。
-   创建Image组件，指定Image组件的url，Image组件和Text组件都是必选构造参数组件。为了让Text组件在Image组件上方显示，所以要先声明Image组件。图片资源放在resources下的rawfile文件夹内，引用rawfile下资源时使用“$rawfile('filename')”的形式，filename为rawfile目录下的文件相对路径。当前$rawfile仅支持Image控件引用图片资源。
+   创建Image组件，指定Image组件的url，Image组件和Text组件都是必选构造参数组件。为了让Text组件在Image组件上方显示，所以要先声明Image组件。图片资源放在resources下的rawfile文件夹内，引用rawfile下资源时使用`$rawfile('filename')`的形式，filename为rawfile目录下的文件相对路径。当前`$rawfile`仅支持Image控件引用图片资源。
    ```
    @Entry
    @Component
@@ -43,15 +43,9 @@
    ![zh-cn_image_0000001168410342](figures/zh-cn_image_0000001168410342.png)
 
 3. 通过资源访问图片。
-   除指定图片路径外，也可以使用引用媒体资源符$r引用资源，需要遵循resources文件夹的资源限定词的规则。右键resources文件夹，点击New&gt;Resource Directory，选择Resource Type为Media（图片资源），选择资源限定词为Device-Phone（目前开发设备为手机）。
+   除指定图片路径外，也可以使用引用媒体资源符$r引用资源，需要遵循resources文件夹的资源限定词的规则。右键resources文件夹，点击New&gt;Resource Directory，选择Resource Type为Media（图片资源）。
 
-   ![zh-cn_image_0000001168570318](figures/zh-cn_image_0000001168570318.png)
-
-   点击OK后，resources文件夹下生成phone.media文件夹。将Tomato.png放入该文件夹内。
-
-   ![zh-cn_image_0000001214330169](figures/zh-cn_image_0000001214330169.png)
-
-   就可以通过“$r('app.type.name')”的形式引用应用资源，即$r('app.media.Tomato')。
+   将Tomato.png放入media文件夹内。就可以通过`$r('app.type.name')`的形式引用应用资源，即`$r('app.media.Tomato')`。
 
    ```
    @Entry
@@ -73,7 +67,7 @@
 4. 设置Image宽高，并且将image的objectFit属性设置为ImageFit.Contain，即保持图片长宽比的情况下，使得图片完整地显示在边界内。
    如果Image填满了整个屏幕，原因如下：
    1. Image没有设置宽高。
-   
+
    2. Image的objectFit默认属性是ImageFit.Cover，即在保持长宽比的情况下放大或缩小，使其填满整个显示边界。
 
    ```
@@ -183,7 +177,7 @@
        .backgroundColor('#FFedf2f5')
      }
    }
-   
+
    @Entry
    @Component
    struct FoodDetail {
@@ -218,12 +212,12 @@
        .backgroundColor('#FFedf2f5')
      }
    }
-   
+
    @Component
    struct ContentTable {
      build() {}
    }
-   
+
    @Entry
    @Component
    struct FoodDetail {
@@ -261,7 +255,7 @@
        .padding({ top: 30, right: 30, left: 30 })
      }
    }
-   
+
    @Entry
    @Component
    struct FoodDetail {
@@ -294,7 +288,7 @@
        .backgroundColor('#FFedf2f5')
      }
    }
-   
+
    @Component
    struct ContentTable {
      build() {
@@ -316,7 +310,7 @@
        .padding({ top: 30, right: 30, left: 30 })
      }
    }
-   
+
    @Entry
    @Component
    struct FoodDetail {
@@ -415,7 +409,7 @@
        .padding({ top: 30, right: 30, left: 30 })
      }
    }
-   
+
    @Entry
    @Component
    struct FoodDetail {
@@ -502,7 +496,7 @@
          .layoutWeight(2)
        }
      }
-   
+
      build() {
        Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Start }) {
          this.IngredientItem('Calories', 'Calories', '17kcal')
@@ -515,7 +509,7 @@
        .padding({ top: 30, right: 30, left: 30 })
      }
    }
-   
+
    @Entry
    @Component
    struct FoodDetail {

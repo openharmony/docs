@@ -202,7 +202,7 @@ Methods in  [Universal Methods](js-components-common-methods.md)  are supported.
 ```
 <!-- xxx.hml -->
 <div class="container">
-  <image src="common/images/hw_right.png" style="width: 300px; height: 300px; object-fit:{{fit}}; object-position: center center; border: 1px solid red; ">
+  <image src="common/images/example.png" style="width: 300px; height: 300px; object-fit:{{fit}}; object-position: center center; border: 1px solid red; ">
   </image>
   <select class="selects" onchange="change_fit">
     <option for="{{fits}}" value="{{$item}}">{{$item}}</option>
@@ -240,5 +240,5 @@ export default {
 }
 ```
 
-![](figures/gif.gif)
+![](figures/example.gif)
 

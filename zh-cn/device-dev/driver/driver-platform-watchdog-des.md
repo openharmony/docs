@@ -1,23 +1,10 @@
-# WATCHDOG<a name="ZH-CN_TOPIC_0000001206372825"></a>
+# Watchdog<a name="ZH-CN_TOPIC_0000001206372825"></a>
 
--   [概述](#section14918241977)
--   [接口说明](#section1180575010271)
--   [使用指导](#section10103184312813)
-    -   [使用流程](#section10181195910815)
-    -   [打开看门狗设备](#section66089201107)
-    -   [获取看门狗状态](#section786624341011)
-    -   [设置超时时间](#section182386137111)
-    -   [获取超时时间](#section1883310371114)
-    -   [启动看门狗](#section82501405123)
-    -   [喂狗](#section3547530101211)
-    -   [停止看门狗](#section944595841217)
-    -   [关闭看门狗设备](#section96561824121311)
 
--   [使用实例](#section1724514523135)
 
 ## 概述<a name="section14918241977"></a>
 
-看门狗（watchdog），又叫看门狗计时器（watchdog timer），是一种硬件的计时设备，当系统的主程序发生某些错误时，导致未及时清除看门狗计时器的计时值，这时看门狗计时器就会对系统发出复位信号，使系统从悬停状态恢复到正常运作状态。
+看门狗（Watchdog），又叫看门狗计时器（Watchdog Timer），是一种硬件的计时设备，当系统的主程序发生某些错误时，导致未及时清除看门狗计时器的计时值，这时看门狗计时器就会对系统发出复位信号，使系统从悬停状态恢复到正常运作状态。
 
 ## 接口说明<a name="section1180575010271"></a>
 
@@ -541,12 +528,12 @@ static int32_t TestCaseWatchdog(void)
 
     /* 接下来持续不喂狗，使得看门狗计时器超时 */
     for (i = 0; i < WATCHDOG_TEST_FEED_TIME; i++) {
-        HDF_LOGE("%s: watiting dog buck %d times... \n", __func__, i);
+        HDF_LOGE("%s: watiting dog back %d times... \n", __func__, i);
         OsalSleep(1);
     }
 
     /* 当不喂狗时间到达之前设定的超时时间的时候，系统会发生复位，理论上观察不到此日志的打印 */
-    HDF_LOGE("%s: dog has't buck!!! \n", __func__, i);
+    HDF_LOGE("%s: dog hasn't back!!! \n", __func__, i);
     WatchdogClose(handle);
     return -1;
 }

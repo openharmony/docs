@@ -1,24 +1,9 @@
-# XTS认证用例开发指导<a name="ZH-CN_TOPIC_0000001126156429"></a>
+# XTS测评用例开发指导<a name="ZH-CN_TOPIC_0000001126156429"></a>
 
--   [简介](#section465982318513)
--   [系统类型](#section125090457443)
--   [目录](#section161941989596)
--   [约束](#section119744591305)
--   [使用说明](#section137768191623)
--   [用例开发指导](#section3695134065513)
-    -   [C语言用例开发编译指导（适用于轻量系统产品用例开发）](#section198193336544)
-    -   [C语言用例执行指导（适用于轻量系统产品用例开发）](#section13820233175418)
-    -   [C++语言用例开发编译指导（适用于小型系统、标准系统用例开发）](#section3822123311540)
-    -   [C++语言用例执行指导（适用于小型系统、标准系统用例开发）](#section128222336544)
-    -   [JS语言用例开发指导（适用于标准系统）](#section159801435165220)
-    -   [JS语言用例编译打包指导（适用于标准系统）](#section445519106559)
-
--   [全量编译指导（适用于标准系统）](#section1519992743415)
--   [全量用例执行指导（适用于小型系统、标准系统）](#section118149111426)
 
 ## 简介<a name="section465982318513"></a>
 
-XTS子系统是OpenHarmony生态认证测试套件的集合，当前包括acts（application compatibility test suite）应用兼容性测试套件，后续会拓展dcts（device compatibility test suite）设备兼容性测试套件等。
+XTS子系统是OpenHarmony兼容性测评套件的集合，当前包括acts（application compatibility test suite）应用兼容性测试套件，后续会拓展dcts（device compatibility test suite）设备兼容性测试套件等。
 
 XTS子系统当前包括acts与tools软件包：
 

@@ -1,22 +1,24 @@
-# Dialog<a name="EN-US_TOPIC_0000001201895755"></a>
+# &lt;dialog&gt; Development
 
-The  **<dialog\>**  component is custom pop-up container for showing critical information or calling for an action. For details, see  [dialog](../reference/arkui-js/js-components-container-dialog.md).
 
-## Creating a <dialog\> Component<a name="section174764398569"></a>
+The &lt;dialog&gt; component is custom pop-up container for showing critical information or calling for an action. For details, see [dialog](../reference/arkui-js/js-components-container-dialog.md).
 
-Create a  **<dialog\>**  component in the  **.hml**  file under  **pages/index**  and add  **<button\>**  components to trigger the  **<dialog\>**. The  **<dialog\>**  component supports only the  **width**,  **height**,  **margin**,  **margin-\[left|top|right|bottom\]**, and  **margin-\[start|end\]**  styles.
+
+## Creating a &lt;dialog&gt; Component
+
+  Create a &lt;dialog&gt; component in the .hml file under pages/index and add &lt;button&gt; components to trigger the &lt;dialog&gt;. The &lt;dialog&gt; component supports only the width, height, margin, margin-[left|top|right|bottom], and margin-[start|end] styles.
 
 ```
 <!-- xxx.hml -->
 <div class="doc-page">
-  <dialog class="dialogClass" id="dialogId">
-    <div class="content">
+  <dialog class="dialogClass" id="dialogId"><div class="content">
       <text>this is a dialog</text>
     </div>
   </dialog>
   <button value="click me" onclick="openDialog"></button>
 </div>
 ```
+
 
 ```
 /* xxx.css */
@@ -49,6 +51,7 @@ button{
 }
 ```
 
+
 ```
 /* xxx.js */
 export default {
@@ -59,11 +62,12 @@ export default {
 }
 ```
 
-![](figures/5-5.gif)
+![en-us_image_0000001267767893](figures/en-us_image_0000001267767893.gif)
 
-## Setting Dialog Box Response<a name="section15709114251818"></a>
 
-Add a  **cancel**  event that is triggered when a user touches a non-dialog area to cancel the pop-up dialog box. Add the  **show**  and  **close**  methods to display and close the dialog box, respectively.
+## Setting Dialog Box Response
+
+Add a cancel event that is triggered when a user touches a non-dialog area to cancel the pop-up dialog box. Add the show and close methods to display and close the dialog box, respectively.
 
 ```
 <!-- xxx.hml -->
@@ -125,16 +129,22 @@ export default {
 }
 ```
 
-![](figures/38.gif)
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
->-   This component supports only one child component.
->-   Attributes and styles of a  **<dialog\>**  component cannot be dynamically updated.
->-   The  **<dialog\>**  component does not support the  **focusable**  and  **click-effect**  attributes.
+![en-us_image_0000001223287720](figures/en-us_image_0000001223287720.gif)
 
-## Example Scenario<a name="section54252520379"></a>
 
-Use the  **<dialog\>**  component to implement a schedule. When the dialog box is open, use the  [**<textarea\>**](../reference/arkui-js/js-components-basic-textarea.md)  component to add an event and touch the OK button to obtain the current time and save the input text. The events in the calendar are displayed in a list.
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
+> - This component supports only one child component.
+> 
+> - Attributes and styles of a &lt;dialog&gt; component cannot be dynamically updated.
+> 
+> - The &lt;dialog&gt; component does not support the focusable and click-effect attributes.
+
+
+## Example Scenario
+
+
+Use the &lt;dialog&gt; component to implement a schedule. When the dialog box is open, use the [&lt;textarea&gt;](../reference/arkui-js/js-components-basic-textarea.md) component to add an event and touch the OK button to obtain the current time and save the input text. The events in the calendar are displayed in a list.
 
 ```
 <!-- xxx.hml -->
@@ -292,5 +302,5 @@ export default {
 }
 ```
 
-![](figures/6.gif)
 
+![en-us_image_0000001223127756](figures/en-us_image_0000001223127756.gif)

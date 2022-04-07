@@ -24,7 +24,6 @@
     -   [User Authentication](js-apis-useriam-userauth.md)
     -   [Access Control](js-apis-abilityAccessCtrl.md)
 - Data Management
-    -   [Lightweight Storage<sup>9+</sup>](js-apis-data-preferences.md)
     -   [Lightweight Storage](js-apis-data-storage.md)
     -   [Distributed Data Management](js-apis-distributed-data.md)
     -   [Relational Database](js-apis-data-rdb.md)
@@ -37,12 +36,11 @@
     -   [Environment](js-apis-environment.md)
     -   [Public File Access and Management](js-apis-filemanager.md)
     -   [App Storage Statistics](js-apis-storage-statistics.md)
-    -   [Volume Management](js-apis-volumemanager.md)
--   Account Management
+- Account Management
     -   [OS Account Management](js-apis-osAccount.md)
     -   [Distributed Account Management](js-apis-distributed-account.md)
     -   [App Account Management](js-apis-appAccount.md)
--   Telephony Service
+- Telephony Service
     -   [Call](js-apis-call.md)
     -   [SMS](js-apis-sms.md)
     -   [SIM Management](js-apis-sim.md)
@@ -58,6 +56,7 @@
     -   [WLAN](js-apis-wifi.md)  
     -   [Bluetooth](js-apis-bluetooth.md)
     -   [RPC](js-apis-rpc.md)
+    -   [Upload and Download](js-apis-request.md)
 - Device Management
     -   [Sensor](js-apis-sensor.md)
     -   [Vibrator](js-apis-vibrator.md)
@@ -79,7 +78,10 @@
     -   [Console Logs](js-apis-basic-features-logs.md)
     -   [Page Routing](js-apis-basic-features-routes.md)
     -   [Timer](js-apis-basic-features-timer.md)
+    -   [Screen Lock Management](js-apis-screen-lock.md)
     -   [Setting the System Time](js-apis-system-time.md)
+    -   [Wallpaper](js-apis-wallpaper.md)
+    -   [Pasteboard](js-apis-pasteboard.md)
     -   [Animation](js-apis-basic-features-animator.md)
     -   [WebGL](js-apis-webgl.md)
     -   [WebGL2](js-apis-webgl2.md)

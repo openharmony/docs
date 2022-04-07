@@ -24,7 +24,7 @@ The following is an example of the configuration file:
     "package": "com.example.myapplication.entrymodule",
     "name": ".MyApplication",
     "deviceType": [
-      "phone"
+      "default"
     ],
     "distro": {
       "deliveryWithInstall": true,

@@ -1,4 +1,4 @@
-Resource Management
+# Resource Management
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -19,9 +19,9 @@ Obtains the **ResourceManager** object of this application. This method uses a c
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
-| Name     | Type                                      | Mandatory  | Description                           |
-| -------- | ---------------------------------------- | ---- | ----------------------------- |
-| callback | AsyncCallback&lt;[ResourceManager](#resourcemanager)&gt; | Yes   | Callback used to return the **ResourceManager** object obtained.|
+| Name     | Type                                     | Mandatory | Description                              |
+| -------- | ---------------------------------------- | --------- | ---------------------------------------- |
+| callback | AsyncCallback&lt;[ResourceManager](#resourcemanager)&gt; | Yes       | Callback used to return the **ResourceManager** object obtained. |
 
 **Example**
   ```
@@ -50,10 +50,10 @@ Obtains the **ResourceManager** object of an application. This method uses an as
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
-| Name       | Type                                      | Mandatory  | Description                           |
-| ---------- | ---------------------------------------- | ---- | ----------------------------- |
-| bundleName | string                                   | Yes   | Bundle name of the target application.                |
-| callback   | AsyncCallback&lt;[ResourceManager](#resourcemanager)&gt; | Yes   | Callback used to return the **ResourceManager** object obtained.|
+| Name       | Type                                     | Mandatory | Description                              |
+| ---------- | ---------------------------------------- | --------- | ---------------------------------------- |
+| bundleName | string                                   | Yes       | Bundle name of the target application.   |
+| callback   | AsyncCallback&lt;[ResourceManager](#resourcemanager)&gt; | Yes       | Callback used to return the **ResourceManager** object obtained. |
 
 **Example**
   ```
@@ -71,9 +71,9 @@ Obtains the **ResourceManager** object of this application. This method uses a p
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Return value**
-| Type                                      | Description               |
-| ---------------------------------------- | ----------------- |
-| Promise&lt;[ResourceManager](#resourcemanager)&gt; | Promise used to return the **ResourceManager** object obtained.|
+| Type                                     | Description                              |
+| ---------------------------------------- | ---------------------------------------- |
+| Promise&lt;[ResourceManager](#resourcemanager)&gt; | Promise used to return the **ResourceManager** object obtained. |
 
 **Example**
   ```
@@ -100,14 +100,14 @@ Obtains the **ResourceManager** object of an application. This method uses a pro
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
-| Name       | Type    | Mandatory  | Description           |
-| ---------- | ------ | ---- | ------------- |
-| bundleName | string | Yes   | Bundle name of the target application.|
+| Name       | Type   | Mandatory | Description                            |
+| ---------- | ------ | --------- | -------------------------------------- |
+| bundleName | string | Yes       | Bundle name of the target application. |
 
 **Return value**
-| Type                                      | Description                |
-| ---------------------------------------- | ------------------ |
-| Promise&lt;[ResourceManager](#resourcemanager)&gt; | Promise used to return the **ResourceManager** object obtained.|
+| Type                                     | Description                              |
+| ---------------------------------------- | ---------------------------------------- |
+| Promise&lt;[ResourceManager](#resourcemanager)&gt; | Promise used to return the **ResourceManager** object obtained. |
 
 **Example**
   ```
@@ -125,10 +125,10 @@ Enumerates the screen directions.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-| Name                  | Default Value | Description  |
-| -------------------- | ---- | ---- |
-| DIRECTION_VERTICAL   | 0    | Portrait  |
-| DIRECTION_HORIZONTAL | 1    | Landscape  |
+| Name                 | Default Value | Description |
+| -------------------- | ------------- | ----------- |
+| DIRECTION_VERTICAL   | 0             | Portrait    |
+| DIRECTION_HORIZONTAL | 1             | Landscape   |
 
 
 ## DeviceType
@@ -137,14 +137,14 @@ Enumerates the device types.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-| Name                  | Default Value | Description  |
-| -------------------- | ---- | ---- |
-| DEVICE_TYPE_PHONE    | 0x00 | Mobile phone.  |
-| DEVICE_TYPE_TABLET   | 0x01 | Tablet.  |
-| DEVICE_TYPE_CAR      | 0x02 | Automobile.  |
-| DEVICE_TYPE_PC       | 0x03 | Computer.  |
-| DEVICE_TYPE_TV       | 0x04 | TV.  |
-| DEVICE_TYPE_WEARABLE | 0x06 | Wearable.  |
+| Name                 | Default Value | Description   |
+| -------------------- | ------------- | ------------- |
+| DEVICE_TYPE_PHONE    | 0x00          | Mobile phone. |
+| DEVICE_TYPE_TABLET   | 0x01          | Tablet.       |
+| DEVICE_TYPE_CAR      | 0x02          | Automobile.   |
+| DEVICE_TYPE_PC       | 0x03          | Computer.     |
+| DEVICE_TYPE_TV       | 0x04          | TV.           |
+| DEVICE_TYPE_WEARABLE | 0x06          | Wearable.     |
 
 
 ## ScreenDensity
@@ -153,14 +153,14 @@ Enumerates the screen density types.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-| Name            | Default Value | Description        |
-| -------------- | ---- | ---------- |
-| SCREEN_SDPI    | 120  | Screen density with small-scale dots per inch (SDPI).  |
-| SCREEN_MDPI    | 160  | Screen density with medium-scale dots per inch (MDPI).  |
-| SCREEN_LDPI    | 240  | Screen density with large-scale dots per inch (LDPI).  |
-| SCREEN_XLDPI   | 320  | Screen density with extra-large-scale dots per inch (XLDPI). |
-| SCREEN_XXLDPI  | 480  | Screen density with extra-extra-large-scale dots per inch (XXLDPI). |
-| SCREEN_XXXLDPI | 640  | Screen density with extra-extra-extra-large-scale dots per inch (XXXLDPI).|
+| Name           | Default Value | Description                              |
+| -------------- | ------------- | ---------------------------------------- |
+| SCREEN_SDPI    | 120           | Screen density with small-scale dots per inch (SDPI). |
+| SCREEN_MDPI    | 160           | Screen density with medium-scale dots per inch (MDPI). |
+| SCREEN_LDPI    | 240           | Screen density with large-scale dots per inch (LDPI). |
+| SCREEN_XLDPI   | 320           | Screen density with extra-large-scale dots per inch (XLDPI). |
+| SCREEN_XXLDPI  | 480           | Screen density with extra-extra-large-scale dots per inch (XXLDPI). |
+| SCREEN_XXXLDPI | 640           | Screen density with extra-extra-extra-large-scale dots per inch (XXXLDPI). |
 
 
 ## Configuration
@@ -170,10 +170,10 @@ Defines the device configuration.
 **System capability**: SystemCapability.Global.ResourceManager
 
 
-| Name       | Type                   | Readable  | Writable  | Description      |
-| --------- | ----------------------- | ---- | ---- | -------- |
-| direction | [Direction](#direction) | Yes   | No   | Screen direction of the device.|
-| locale    | string                  | Yes   | No   | Current system language.  |
+| Name      | Type                    | Readable | Writable | Description                     |
+| --------- | ----------------------- | -------- | -------- | ------------------------------- |
+| direction | [Direction](#direction) | Yes      | No       | Screen direction of the device. |
+| locale    | string                  | Yes      | No       | Current system language.        |
 
 
 ## DeviceCapability
@@ -183,10 +183,10 @@ Defines the device capability.
 **System capability**: SystemCapability.Global.ResourceManager
 
 
-| Name           | Type                           | Readable  | Writable  | Description      |
-| ------------- | ------------------------------- | ---- | ---- | -------- |
-| screenDensity | [ScreenDensity](#screendensity) | Yes   | No   | Screen density of the device.|
-| deviceType    | [DeviceType](#devicetype)       | Yes   | No   | Type of the device.  |
+| Name          | Type                            | Readable | Writable | Description                   |
+| ------------- | ------------------------------- | -------- | -------- | ----------------------------- |
+| screenDensity | [ScreenDensity](#screendensity) | Yes      | No       | Screen density of the device. |
+| deviceType    | [DeviceType](#devicetype)       | Yes      | No       | Type of the device.           |
 
 
 ## RawFileDescriptor<sup>8+</sup>
@@ -194,11 +194,11 @@ Defines the device capability.
 Defines the descriptor information of the raw file.<br>
 **System capability**: SystemCapability.Global.ResourceManager
 
-| Name    | Type    | Description                |
-| ------ | ------ | ------------------ |
-| fd     | number | Descriptor of a raw file.|
-| offset | number | Offset to the start position of the raw file.     |
-| length | number | Length of the raw file.      |
+| Name   | Type   | Description                              |
+| ------ | ------ | ---------------------------------------- |
+| fd     | number | Descriptor of a raw file.                |
+| offset | number | Offset to the start position of the raw file. |
+| length | number | Length of the raw file.                  |
 
 
 ## ResourceManager
@@ -220,10 +220,10 @@ Obtains the string corresponding to the specified resource ID. This method uses 
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
-| Name     | Type                         | Mandatory  | Description             |
-| -------- | --------------------------- | ---- | --------------- |
-| resId    | number                      | Yes   | Resource ID.          |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the string obtained.|
+| Name     | Type                        | Mandatory | Description                              |
+| -------- | --------------------------- | --------- | ---------------------------------------- |
+| resId    | number                      | Yes       | Resource ID.                             |
+| callback | AsyncCallback&lt;string&gt; | Yes       | Callback used to return the string obtained. |
 
 **Example**
   ```
@@ -248,14 +248,14 @@ Obtains the string corresponding to the specified resource ID. This method uses 
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
-| Name  | Type    | Mandatory  | Description   |
-| ----- | ------ | ---- | ----- |
-| resId | number | Yes   | Resource ID.|
+| Name  | Type   | Mandatory | Description  |
+| ----- | ------ | --------- | ------------ |
+| resId | number | Yes       | Resource ID. |
 
 **Return value**
-| Type                   | Description         |
-| --------------------- | ----------- |
-| Promise&lt;string&gt; | Promise used to return the string obtained.|
+| Type                  | Description                              |
+| --------------------- | ---------------------------------------- |
+| Promise&lt;string&gt; | Promise used to return the string obtained. |
 
 **Example**
   ```
@@ -278,10 +278,10 @@ Obtains the array of strings corresponding to the specified resource ID. This me
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
-| Name     | Type                                      | Mandatory  | Description               |
-| -------- | ---------------------------------------- | ---- | ----------------- |
-| resId    | number                                   | Yes   | Resource ID.            |
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the obtained array of strings.|
+| Name     | Type                                     | Mandatory | Description                              |
+| -------- | ---------------------------------------- | --------- | ---------------------------------------- |
+| resId    | number                                   | Yes       | Resource ID.                             |
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes       | Callback used to return the obtained array of strings. |
 
 **Example**
   ```
@@ -306,14 +306,14 @@ Obtains the array of strings corresponding to the specified resource ID. This me
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
-| Name  | Type    | Mandatory  | Description   |
-| ----- | ------ | ---- | ----- |
-| resId | number | Yes   | Resource ID.|
+| Name  | Type   | Mandatory | Description  |
+| ----- | ------ | --------- | ------------ |
+| resId | number | Yes       | Resource ID. |
 
 **Return value**
-| Type                                | Description           |
-| ---------------------------------- | ------------- |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the array of strings obtained.|
+| Type                               | Description                              |
+| ---------------------------------- | ---------------------------------------- |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the array of strings obtained. |
 
 **Example**
   ```
@@ -336,10 +336,10 @@ Obtains the content of the media file corresponding to the specified resource ID
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
-| Name     | Type                             | Mandatory  | Description                |
-| -------- | ------------------------------- | ---- | ------------------ |
-| resId    | number                          | Yes   | Resource ID.             |
-| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the content of the media file obtained.|
+| Name     | Type                            | Mandatory | Description                              |
+| -------- | ------------------------------- | --------- | ---------------------------------------- |
+| resId    | number                          | Yes       | Resource ID.                             |
+| callback | AsyncCallback&lt;Uint8Array&gt; | Yes       | Callback used to return the content of the media file obtained. |
 
 **Example**
   ```
@@ -364,14 +364,14 @@ Obtains the content of the media file corresponding to the specified resource ID
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
-| Name  | Type    | Mandatory  | Description   |
-| ----- | ------ | ---- | ----- |
-| resId | number | Yes   | Resource ID.|
+| Name  | Type   | Mandatory | Description  |
+| ----- | ------ | --------- | ------------ |
+| resId | number | Yes       | Resource ID. |
 
 **Return value**
-| Type                       | Description            |
-| ------------------------- | -------------- |
-| Promise&lt;Uint8Array&gt; | Promise used to return the content of the media file obtained.|
+| Type                      | Description                              |
+| ------------------------- | ---------------------------------------- |
+| Promise&lt;Uint8Array&gt; | Promise used to return the content of the media file obtained. |
 
 **Example**
   ```
@@ -394,10 +394,10 @@ Obtains the Base64 code of the image corresponding to the specified resource ID.
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
-| Name     | Type                         | Mandatory  | Description                      |
-| -------- | --------------------------- | ---- | ------------------------ |
-| resId    | number                      | Yes   | Resource ID.                   |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the Base64 code of the image obtained.|
+| Name     | Type                        | Mandatory | Description                              |
+| -------- | --------------------------- | --------- | ---------------------------------------- |
+| resId    | number                      | Yes       | Resource ID.                             |
+| callback | AsyncCallback&lt;string&gt; | Yes       | Callback used to return the Base64 code of the image obtained. |
 
 **Example**
   ```
@@ -422,14 +422,14 @@ Obtains the Base64 code of the image corresponding to the specified resource ID.
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
-| Name  | Type    | Mandatory  | Description   |
-| ----- | ------ | ---- | ----- |
-| resId | number | Yes   | Resource ID.|
+| Name  | Type   | Mandatory | Description  |
+| ----- | ------ | --------- | ------------ |
+| resId | number | Yes       | Resource ID. |
 
 **Return value**
-| Type                   | Description                  |
-| --------------------- | -------------------- |
-| Promise&lt;string&gt; | Promise used to return the Base64 code of the image obtained.|
+| Type                  | Description                              |
+| --------------------- | ---------------------------------------- |
+| Promise&lt;string&gt; | Promise used to return the Base64 code of the image obtained. |
 
 **Example**
   ```
@@ -452,9 +452,9 @@ Obtains the device configuration. This method uses an asynchronous callback to r
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
-| Name     | Type                                      | Mandatory  | Description                       |
-| -------- | ---------------------------------------- | ---- | ------------------------- |
-| callback | AsyncCallback&lt;[Configuration](#configuration)&gt; | Yes   | Callback used to return the obtained device configuration.|
+| Name     | Type                                     | Mandatory | Description                              |
+| -------- | ---------------------------------------- | --------- | ---------------------------------------- |
+| callback | AsyncCallback&lt;[Configuration](#configuration)&gt; | Yes       | Callback used to return the obtained device configuration. |
 
 **Example**
   ```
@@ -479,9 +479,9 @@ Obtains the device configuration. This method uses a promise to return the resul
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Return value**
-| Type                                      | Description              |
-| ---------------------------------------- | ---------------- |
-| Promise&lt;[Configuration](#configuration)&gt; | Promise used to return the device configuration.|
+| Type                                     | Description                              |
+| ---------------------------------------- | ---------------------------------------- |
+| Promise&lt;[Configuration](#configuration)&gt; | Promise used to return the device configuration. |
 
 **Example**
   ```
@@ -504,9 +504,9 @@ Obtains the device capability. This method uses an asynchronous callback to retu
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
-| Name     | Type                                      | Mandatory  | Description                          |
-| -------- | ---------------------------------------- | ---- | ---------------------------- |
-| callback | AsyncCallback&lt;[DeviceCapability](#devicecapability)&gt; | Yes   | Callback used to return the obtained device capability.|
+| Name     | Type                                     | Mandatory | Description                              |
+| -------- | ---------------------------------------- | --------- | ---------------------------------------- |
+| callback | AsyncCallback&lt;[DeviceCapability](#devicecapability)&gt; | Yes       | Callback used to return the obtained device capability. |
 
 **Example**
   ```
@@ -531,9 +531,9 @@ Obtains the device capability. This method uses a promise to return the result.
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Return value**
-| Type                                      | Description                 |
-| ---------------------------------------- | ------------------- |
-| Promise&lt;[DeviceCapability](#devicecapability)&gt; | Promise used to return the obtained device capability.|
+| Type                                     | Description                              |
+| ---------------------------------------- | ---------------------------------------- |
+| Promise&lt;[DeviceCapability](#devicecapability)&gt; | Promise used to return the obtained device capability. |
 
 **Example**
   ```
@@ -556,11 +556,11 @@ Obtains the specified number of singular-plural strings corresponding to the spe
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
-| Name     | Type                         | Mandatory  | Description                             |
-| -------- | --------------------------- | ---- | ------------------------------- |
-| resId    | number                      | Yes   | Resource ID.                          |
-| num      | number                      | Yes   | Number that determines the plural or singular form.                            |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the singular-plural string obtained.|
+| Name     | Type                        | Mandatory | Description                              |
+| -------- | --------------------------- | --------- | ---------------------------------------- |
+| resId    | number                      | Yes       | Resource ID.                             |
+| num      | number                      | Yes       | Number that determines the plural or singular form. |
+| callback | AsyncCallback&lt;string&gt; | Yes       | Callback used to return the singular-plural string obtained. |
 
 **Example**
   ```
@@ -585,15 +585,15 @@ Obtains the specified number of singular-plural strings corresponding to the spe
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
-| Name  | Type    | Mandatory  | Description   |
-| ----- | ------ | ---- | ----- |
-| resId | number | Yes   | Resource ID.|
-| num   | number | Yes   | Number that determines the plural or singular form.  |
+| Name  | Type   | Mandatory | Description                              |
+| ----- | ------ | --------- | ---------------------------------------- |
+| resId | number | Yes       | Resource ID.                             |
+| num   | number | Yes       | Number that determines the plural or singular form. |
 
 **Return value**
-| Type                   | Description                       |
-| --------------------- | ------------------------- |
-| Promise&lt;string&gt; | Promise used to return the singular-plural string obtained.|
+| Type                  | Description                              |
+| --------------------- | ---------------------------------------- |
+| Promise&lt;string&gt; | Promise used to return the singular-plural string obtained. |
 
 **Example**
   ```
@@ -615,10 +615,10 @@ Obtains the content of the raw file in the specified path. This method uses an a
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
-| Name     | Type                             | Mandatory  | Description                     |
-| -------- | ------------------------------- | ---- | ----------------------- |
-| path     | string                          | Yes   | Path of the raw file.            |
-| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the raw file content, in byte arrays.|
+| Name     | Type                            | Mandatory | Description                              |
+| -------- | ------------------------------- | --------- | ---------------------------------------- |
+| path     | string                          | Yes       | Path of the raw file.                    |
+| callback | AsyncCallback&lt;Uint8Array&gt; | Yes       | Callback used to return the raw file content, in byte arrays. |
 
 **Example**
   ```
@@ -642,14 +642,14 @@ Obtains the content of the raw file in the specified path. This method uses a pr
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
-| Name | Type    | Mandatory  | Description         |
-| ---- | ------ | ---- | ----------- |
-| path | string | Yes   | Path of the raw file.|
+| Name | Type   | Mandatory | Description           |
+| ---- | ------ | --------- | --------------------- |
+| path | string | Yes       | Path of the raw file. |
 
 **Return value**
-| Type                       | Description         |
-| ------------------------- | ----------- |
-| Promise&lt;Uint8Array&gt; | Promise used to return the raw file content, in byte arrays.|
+| Type                      | Description                              |
+| ------------------------- | ---------------------------------------- |
+| Promise&lt;Uint8Array&gt; | Promise used to return the raw file content, in byte arrays. |
 
 **Example**
   ```
@@ -671,10 +671,10 @@ Obtains the descriptor of the raw file in the specified path. This method uses a
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
-| Name     | Type                                      | Mandatory  | Description                              |
-| -------- | ---------------------------------------- | ---- | -------------------------------- |
-| path     | string                                   | Yes   | Path of the raw file.                     |
-| callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor8+</sup)&gt; | Yes   | Callback used to return the raw file descriptor.|
+| Name     | Type                                     | Mandatory | Description                              |
+| -------- | ---------------------------------------- | --------- | ---------------------------------------- |
+| path     | string                                   | Yes       | Path of the raw file.                    |
+| callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor8+</sup)&gt; | Yes       | Callback used to return the raw file descriptor. |
 
 **Example**
   ```
@@ -700,14 +700,14 @@ Obtains the descriptor of the raw file in the specified path. This method uses a
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
-| Name | Type    | Mandatory  | Description         |
-| ---- | ------ | ---- | ----------- |
-| path | string | Yes   | Path of the raw file.|
+| Name | Type   | Mandatory | Description           |
+| ---- | ------ | --------- | --------------------- |
+| path | string | Yes       | Path of the raw file. |
 
 **Return value**
-| Type                                      | Description                 |
-| ---------------------------------------- | ------------------- |
-| Promise&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | Promise used to return the raw file descriptor.|
+| Type                                     | Description                              |
+| ---------------------------------------- | ---------------------------------------- |
+| Promise&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | Promise used to return the raw file descriptor. |
 
 **Example**
   ```
@@ -731,10 +731,10 @@ Closes the descriptor of the raw file in the specified path. This method uses an
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
-| Name     | Type                       | Mandatory  | Description         |
-| -------- | ------------------------- | ---- | ----------- |
-| path     | string                    | Yes   | Path of the raw file.|
-| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.       |
+| Name     | Type                      | Mandatory | Description                         |
+| -------- | ------------------------- | --------- | ----------------------------------- |
+| path     | string                    | Yes       | Path of the raw file.               |
+| callback | AsyncCallback&lt;void&gt; | Yes       | Callback used to return the result. |
 
 **Example**
   ```
@@ -756,14 +756,14 @@ Closes the descriptor of the raw file in the specified path. This method uses a 
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
-| Name | Type    | Mandatory  | Description         |
-| ---- | ------ | ---- | ----------- |
-| path | string | Yes   | Path of the raw file.|
+| Name | Type   | Mandatory | Description           |
+| ---- | ------ | --------- | --------------------- |
+| path | string | Yes       | Path of the raw file. |
 
 **Return value**
-| Type                 | Description  |
-| ------------------- | ---- |
-| Promise&lt;void&gt; | No value is returned.|
+| Type                | Description           |
+| ------------------- | --------------------- |
+| Promise&lt;void&gt; | No value is returned. |
 
 **Example**
   ```

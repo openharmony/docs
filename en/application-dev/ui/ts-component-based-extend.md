@@ -1,6 +1,6 @@
-# @Extend<a name="EN-US_TOPIC_0000001134698822"></a>
+#  @Extend
 
-The  **@Extend**  decorator adds new attribute functions to preset components, such as  **<Text\>**,  **<Column\>**, and  **<Button\>**. You can use the  **@Extend**  decorator to quickly define and reuse the custom styles of a component.
+The @Extend decorator adds new attribute functions to preset components, such as &lt;Text&gt;, &lt;Column&gt;, and &lt;Button&gt;. You can use the @Extend decorator to quickly define and reuse the custom styles of a component.
 
 ```
 @Extend(Text) function fancy(fontSize: number) {
@@ -23,6 +23,4 @@ struct FancyUse {
 }
 ```
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
->The  **@Extend**  decorator cannot be used in the struct definition of a custom component.
-
+> ![img](public_sys-resources/icon-note.gif) **NOTE**: The @Extend decorator cannot be used in the struct definition of a custom component.

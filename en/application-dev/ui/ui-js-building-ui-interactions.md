@@ -1,18 +1,20 @@
-# Adding Interactions<a name="EN-US_TOPIC_0000001064068636"></a>
+# Adding Interactions
 
-You can make the UI interactive by binding events to components. This section describes how to bind  **<div\>**,  **<text\>**, and  **<image\>**  components to click events to build a thumb up button, as shown in the following figure.
+  You can make the UI interactive by binding events to components. This section describes how to bind &lt;div&gt;, &lt;text&gt;, and &lt;image&gt; components to click events to build a thumb up button, as shown in the following figure.
+  figure1 Thumb up button effect
 
-**Figure  1**  Thumb up button effect<a name="fig071716222515"></a>  
+![en-us_image_0000001267647901](figures/en-us_image_0000001267647901.gif)
 
 
-![](figures/zan.gif)
+The thumb up button is implemented by binding a click event to a &lt;div&gt; component. The &lt;div&gt; component contains an &lt;image&gt; component and a &lt;text&gt; component.
 
-The thumb up button is implemented by binding a click event to a  **<div\>**  component. The  **<div\>**  component contains an  **<image\>**  component and a  **<text\>**  component.
 
--   The  **<image\>**  component is used to display unselected and selected \(highlighted\) thumbs up images. The click event function alternately updates the paths of the images that are liked and not liked.
--   The  **<text\>**  component is used to display the number of thumbs up. The number is updated in the function of the click event.
+- The &lt;image&gt; component is used to display unselected and selected (highlighted) thumbs up images. The click event function alternately updates the paths of the images that are liked and not liked.
 
-The click event calls the  **likeClick\(\)**  function defined in the  **.js**  file. You can change the value of  **isPressed**  to update the image component. If the value of  **isPressed**  is  **true**, the number of thumbs up is incremented by 1. The  **likeClick\(\)**  function takes effect on the  **<div\>**  component in the  **.hml**  file. The style of each child component for the thumbs up button is set in the  **.css**  file. The following is an example:
+- The &lt;text&gt; component is used to display the number of thumbs up. The number is updated in the function of the click event.
+
+
+The click event calls the likeClick() function defined in the .js file. You can change the value of isPressed to update the image component. If the value of isPressed is true, the number of thumbs up is incremented by 1. The likeClick() function takes effect on the &lt;div&gt; component in the .hml file. The style of each child component for the thumbs up button is set in the .css file. The following is an example:
 
 ```
 <!-- xxx.hml -->
@@ -71,5 +73,5 @@ export default {
 }
 ```
 
- ArkUI also provides many form components, such as switches, tags, and pickers, for you to flexibly lay out pages and improve their interactions with users. For details, see  [Container Components](../reference/arkui-js/js-components-container.md).
 
+ArkUI also provides many form components, such as switches, tags, and pickers, for you to flexibly lay out pages and improve their interactions with users. For details, see Container Components.

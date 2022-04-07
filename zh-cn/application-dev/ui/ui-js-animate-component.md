@@ -104,7 +104,30 @@ export default {
     this.options = {
       duration: 4000,
     };
-    this.keyframes = [      {        transform: {          translate: '-120px -0px',          scale: 1,          rotate: 0        },        transformOrigin: '100px 100px',        offset: 0.0,        width: 200,        height: 200      },      {        transform: {          translate: '120px 0px',          scale: 1.5,          rotate: 90        },        transformOrigin: '100px 100px',        offset: 1.0,        width: 300,        height: 300      }    ];
+    this.keyframes = [
+    {
+      transform: {
+        translate: '-120px -0px',   
+        scale: 1,        
+        rotate: 0
+        },   
+        transformOrigin: '100px 100px',  
+        offset: 0.0, 
+        width: 200,  
+        height: 200   
+      }, 
+      {
+        transform: {      
+          translate: '120px 0px',     
+          scale: 1.5,     
+          rotate: 90   
+          },
+          transformOrigin: '100px 100px',
+          offset: 1.0,
+          width: 300,
+          height: 300   
+      }    
+    ];
   },
   Show() {
     this.animation = this.$element('content').animate(this.keyframes, this.options);

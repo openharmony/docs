@@ -19,6 +19,7 @@ Futex(Fast userspace mutex，用户态快速互斥锁)是内核提供的一种�
 当前哈希桶共有80个，0~63号桶用于存放私有锁（以虚拟地址进行哈希），64~79号桶用于存放共享锁（以物理地址进行哈希），私有/共享属性通过用户态锁的初始化以及Futex系统调用入参确定。
 
 **图1** Futex设计图
+
 ![zh-cn_image_0000001127535690](figures/zh-cn_image_0000001127535690.jpg)
 
 如图1，每个futex哈希桶中存放被futex_list串联起来的哈希值相同的futex node，每个futex node对应一个被挂起的task，node中key值唯一标识一把用户态锁，具有相同key值的node被queue_list串联起来表示被同一把锁阻塞的task队列。

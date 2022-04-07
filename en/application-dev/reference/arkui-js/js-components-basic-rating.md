@@ -58,7 +58,7 @@ In addition to the attributes in  [Universal Attributes](js-components-common-at
 <td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p id="p5738613465"><a name="p5738613465"></a><a name="p5738613465"></a>No</p>
 </td>
 <td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="p27381813364"><a name="p27381813364"></a><a name="p27381813364"></a>Step to increment the rating value.</p>
-<div class="note" id="note1249472985312"><a name="note1249472985312"></a><a name="note1249472985312"></a><span class="notetitle"> NOTE: </span><div class="notebody"><p id="p749462910531"><a name="p749462910531"></a><a name="p749462910531"></a>This attribute is only supported on phones and tablets.</p>
+<div class="note" id="note1249472985312"><a name="note1249472985312"></a><a name="note1249472985312"></a><span class="notetitle"> </span><div class="notebody"><p id="p749462910531"><a name="p749462910531"></a><a name="p749462910531"></a></p>
 </div></div>
 </td>
 </tr>

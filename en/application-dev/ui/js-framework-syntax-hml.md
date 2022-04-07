@@ -1,8 +1,11 @@
-# HML<a name="EN-US_TOPIC_0000001127284830"></a>
+# HML
 
-The OpenHarmony Markup Language \(HML\) is an HTML-like language that allows you to build pages based on components and events. Pages built using HML have advanced capabilities such as  logic control, data binding, event binding, loop rendering, and conditional rendering.
 
-## HML Page Structure<a name="section1062764791514"></a>
+The OpenHarmony Markup Language (HML) is an HTML-like language that allows you to build pages based on components and events. Pages built using HML have advanced capabilities such as logic control, data binding, event binding, loop rendering, and conditional rendering.
+
+
+## HML Page Structure
+
 
 ```
 <!-- xxx.hml -->
@@ -14,7 +17,9 @@ The OpenHarmony Markup Language \(HML\) is an HTML-like language that allows you
 </div>
 ```
 
-## Data Binding<a name="s8821c158917c48098219013e69129d1b"></a>
+
+## Data Binding
+
 
 ```
 <!-- xxx.hml -->
@@ -22,6 +27,7 @@ The OpenHarmony Markup Language \(HML\) is an HTML-like language that allows you
   <text> {{content[1]}} </text>
 </div>
 ```
+
 
 ```
 // xxx.js
@@ -35,167 +41,173 @@ export default {
 }
 ```
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
->-   To make the array data modification take effect, use the  **splice**  method to change array items.
->-   ECMAScript 6 \(ES6\) syntax is not supported in HML.
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
+> - To make the array data modification take effect, use the splice method to change array items.
+>
+> - ECMAScript 6 (ES6) syntax is not supported in HML.
 
-## Common Event Binding<a name="section193010312423"></a>
 
-Events are bound to components through  **'on'**  or  **'@'**. When a component triggers an event, the corresponding event processing function in the  **.js**  file is executed.
+## Common Event Binding
+
+Events are bound to components through 'on' or '@'. When a component triggers an event, the corresponding event processing function in the .js file is executed.
 
 Events can be written in the following formats:
 
--   **funcName**: name of the event callback, which is implemented by defining the corresponding function in the  **.js**  file.
--   **funcName\(a,b\)**: function parameters, such as  **a**  and  **b**, which can be constants, or variables defined in  **data**  in the  **.js**  file. Do not add the prefix  **this.**  to variables.
+- funcName: name of the event callback, which is implemented by defining the corresponding function in the .js file.
 
--   Example
+- funcName(a,b): function parameters, such as a and b, which can be constants, or variables defined in data in the .js file. Do not add the prefix this. to variables.
 
-    ```
-    <!-- xxx.hml -->
-    <div class="container">
-        <text class="title">{{count}}</text>
-        <div class="box">
-            <input type="button" class="btn" value="increase" onclick="increase" />
-            <input type="button" class="btn" value="decrease" @click="decrease" />
-        <!-- Pass additional parameters. -->
-            <input type="button" class="btn" value="double" @click="multiply(2)" />
-            <input type="button" class="btn" value="decuple" @click="multiply(10)" />
-            <input type="button" class="btn" value="square" @click="multiply(count)" />
-        </div>
-    </div>
-    ```
+- Example
 
-    ```
-    // xxx.js
-    export default {
-      data: {
-        count: 0
-      },
-      increase() {
-        this.count++;
-      },
-      decrease() {
-        this.count--;
-      },
-      multiply(multiplier) {
-        this.count = multiplier * this.count;
-      }
-    };
-    ```
+  ```
+  <!-- xxx.hml -->
+  <div class="container">
+      <text class="title">{{count}}</text>
+      <div class="box">
+          <input type="button" class="btn" value="increase" onclick="increase" />
+          <input type="button" class="btn" value="decrease" @click="decrease" />
+      <!-- Pass additional parameters. -->
+          <input type="button" class="btn" value="double" @click="multiply(2)" />
+          <input type="button" class="btn" value="decuple" @click="multiply(10)" />
+          <input type="button" class="btn" value="square" @click="multiply(count)" />
+      </div>
+  </div>
+  ```
 
-    ```
-    /* xxx.css */
-    .container {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        left: 0px;
-        top: 0px;
-        width: 454px;
-        height: 454px;
+
+  ```
+  // xxx.js
+  export default {
+    data: {
+      count: 0
+    },
+    increase() {
+      this.count++;
+    },
+    decrease() {
+      this.count--;
+    },
+    multiply(multiplier) {
+      this.count = multiplier * this.count;
     }
-    .title {
-        font-size: 30px;
-        text-align: center;
-        width: 200px;
-        height: 100px;
-    }
-    .box {
-        width: 454px;
-        height: 200px;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: wrap;
-    }
-    .btn {
-        width: 200px;
-        border-radius: 0;
-        margin-top: 10px;
-        margin-left: 10px;
-    }
-    ```
+  };
+  ```
 
 
-## Bubbling Event Binding<sup>5+</sup><a name="section368561455815"></a>
+  ```
+  /* xxx.css */
+  .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      left: 0px;
+      top: 0px;
+      width: 454px;
+      height: 454px;
+  }
+  .title {
+      font-size: 30px;
+      text-align: center;
+      width: 200px;
+      height: 100px;
+  }
+  .box {
+      width: 454px;
+      height: 200px;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+  }
+  .btn {
+      width: 200px;
+      border-radius: 0;
+      margin-top: 10px;
+      margin-left: 10px;
+  }
+  ```
+
+
+## Bubbling Event Binding<sup>5+</sup>
 
 Bubbling event binding covers the following:
 
--   Bind an event callback for event bubbling:  **on:\{event\}.bubble**.  **on:\{event\}**  is equivalent to  **on:\{event\}.bubble**.
--   Bind an event callback, but stop the event from bubbling upwards:  **grab:\{event\}.bubble**.  **grab:\{event\}**  is equivalent to  **grab:\{event\}.bubble**.
+- Bind an event callback for event bubbling: on:{event}.bubble. on:{event} is equivalent to on:{event}.bubble.
 
-    >![](../public_sys-resources/icon-note.gif) **NOTE:** 
-    >For details about bubbling events, see  [Universal Events](../reference/arkui-js/js-components-common-events.md).
+- Bind an event callback, but stop the event from bubbling upwards: grab:{event}.bubble. grab:{event} is equivalent to grab:{event}.bubble.
+  > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
+  > For details about bubbling events, see [Universal Events](../reference/arkui-js/js-components-common-events.md)
 
+- Example
 
--   Example
-
-    ```
-    <!-- xxx.hml -->
-    <div>
-       <!-- Bind an event callback for event bubbling.5+ -->
-        <div on:touchstart.bubble="touchstartfunc"></div>
-        <div on:touchstart="touchstartfunc"></div>
-        <!-- Bind an event callback, but stop the event from bubbling upwards. 5+ -->
-        <div grab:touchstart.bubble="touchstartfunc"></div>
-        <div grab:touchstart="touchstartfunc"></div>
-        <!-- Bind an event callback for event bubbling.6+ -->
-        <div on:click.bubble="clickfunc"></div>
-        <div on:click="clickfunc"></div>
-        <!-- Bindan event callback, but stop the event from bubbling upwards.6+ -->
-        <div grab:click.bubble="clickfunc"></div>
-        <div grab:click="clickfunc"></div>
-    </div>
-    ```
-
-    ```
-    // xxx.js
-    export default {
-        clickfunc: function(e) {
-            console.log(e);
-        },
-        touchstartfuc: function(e) {
-            console.log(e);
-        },
-    }
-    ```
+  ```
+  <!-- xxx.hml -->
+  <div>
+     <!-- Bind an event callback for event bubbling.5+ -->
+      <div on:touchstart.bubble="touchstartfunc"></div>
+      <div on:touchstart="touchstartfunc"></div>
+      <!-- Bind an event callback, but stop the event from bubbling upwards. 5+ -->
+      <div grab:touchstart.bubble="touchstartfunc"></div>
+      <div grab:touchstart="touchstartfunc"></div>
+      <!-- Bind an event callback for event bubbling.6+ -->
+      <div on:click.bubble="clickfunc"></div>
+      <div on:click="clickfunc"></div>
+      <!-- Bindan event callback, but stop the event from bubbling upwards.6+ -->
+      <div grab:click.bubble="clickfunc"></div>
+      <div grab:click="clickfunc"></div>
+  </div>
+  ```
 
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
->Events bound using a traditional statement \(such as  **onclick**\) will bubble only when the API version in use is 6 or later.
+  ```
+  // xxx.js
+  export default {
+      clickfunc: function(e) {
+          console.log(e);
+      },
+      touchstartfuc: function(e) {
+          console.log(e);
+      },
+  }
+  ```
 
-## Capturing Event Binding<sup>5+</sup><a name="section5527539989"></a>
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
+> Events bound using a traditional statement (such as onclick) will bubble only when the API version in use is 6 or later.
+
+## Capturing Event Binding<sup>5+</sup>
 
 Touch events can be captured. In the capture phase, which precedes the bubbling phase, an event starts from the parent component to the child component.
 
 Event capturing binding includes:
 
--   Bind an event callback for event capturing:  **on:\{event\}.capture**.
--   Bind an event callback, but stop the event from being captured during downward transfer:  **grab:\{event\}.capture**.
+- Bind an event callback for event capturing: on:{event}.capture.
 
--   Example
+- Bind an event callback, but stop the event from being captured during downward transfer: grab:{event}.capture.
 
-    ```
-    <!-- xxx.hml -->
-    <div>
-        <!-- Bind an event callback for event capturing.5+ -->
-        <div on:touchstart.capture="touchstartfunc"></div>
-        <!-- Bind an event callback, but stop the event from being captured during downward transfer.5+ -->
-        <div grab:touchstart.capture="touchstartfunc"></div>
-    </div>
-    ```
+- Example
 
-    ```
-    // xxx.js
-    export default {
-        touchstartfuc: function(e) {
-            console.log(e);
-        },
-    }
-    ```
+  ```
+  <!-- xxx.hml -->
+  <div>
+      <!-- Bind an event callback for event capturing.5+ -->    <div on:touchstart.capture="touchstartfunc"></div>
+      <!-- Bind an event callback, but stop the event from being captured during downward transfer.5+ -->
+      <div grab:touchstart.capture="touchstartfunc"></div>
+  </div>
+  ```
 
 
-## Loop Rendering<a name="sb777d6d807fa43fea9be400b2600425b"></a>
+  ```
+  // xxx.js
+  export default {
+      touchstartfuc: function(e) {
+          console.log(e);
+      },
+  }
+  ```
+
+
+## Loop Rendering
+
 
 ```
 <!-- xxx.hml -->
@@ -216,6 +228,7 @@ Event capturing binding includes:
 </div>
 ```
 
+
 ```
 // xxx.js
 export default {
@@ -235,35 +248,42 @@ export default {
 }
 ```
 
-The  **tid**  attribute accelerates the  **for**  loop and improves the re-rendering efficiency when data in a loop changes.
+The tid attribute accelerates the for loop and improves the re-rendering efficiency when data in a loop changes.
 
-The  **tid**  attribute specifies the unique ID of each element in the array. If it is not specified, the index of each element in the array is used as the ID. For example,  **tid="id"**  indicates that the  **id**  attribute of each element is its unique ID.
+The tid attribute specifies the unique ID of each element in the array. If it is not specified, the index of each element in the array is used as the ID. For example, tid="id" indicates that the id attribute of each element is its unique ID.
 
-The  **for**  loop supports the following statements:
+The for loop supports the following statements:
 
--   for="array":  **array**  is an array object, whose element variable is  **$item**  by default.
--   for="v in array":  **v**  is a custom element variable, whose index is  **$idx**  by default.
--   for="\(i, v\) in array":  **i**  indicates the element index, and  **v**  indicates the element variable. All elements of the array object will be looped through.
+- for="array": array is an array object, whose element variable is $item by default.
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
->-   Each element in the array must have the data attribute specified by  **tid**. Otherwise, an exception may occur.
->-   The attribute specified by  **tid**  in the array must be unique. Otherwise, performance loss occurs. In the above example, only  **id**  and  **name**  can be used as  **tid**  because they are unique fields.
->-   The  **tid**  field does not support expressions.
+- for="v in array": v is a custom element variable, whose index is $idx by default.
 
-## Conditional Rendering<a name="sf7f6eab2105a4030a1f34149417d6fc5"></a>
+- for="(i, v) in array": i indicates the element index, and v indicates the element variable. All elements of the array object will be looped through.
 
-There are two ways to implement conditional rendering:  **if-elif-else**  or  **show**. In  **if-elif-else**, when the  **if**  statement evaluates to  **false**, the component is not built in the VDOM and is not rendered. For  **show**, when show is  **false**, the component is not rendered but is built in the VDOM. In addition, the  **if-elif-else**  statements must be used in sibling nodes. Otherwise, the compilation fails. The following example uses both ways to implement conditional rendering:
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
+> - Each element in the array must have the data attribute specified by tid. Otherwise, an exception may occur.
+>
+> - The attribute specified by tid in the array must be unique. Otherwise, performance loss occurs. In the above example, only id and name can be used as tid because they are unique fields.
+>
+> - The tid field does not support expressions.
+
+
+## Conditional Rendering
+
+There are two ways to implement conditional rendering: if-elif-else or show. In if-elif-else, when the if statement evaluates to false, the component is not built in the VDOM and is not rendered. For show, when show is false, the component is not rendered but is built in the VDOM. In addition, the if-elif-else statements must be used in sibling nodes. Otherwise, the compilation fails. The following example uses both ways to implement conditional rendering:
+
 
 ```
 <!-- xxx.hml -->
 <div class="container">
   <button class="btn" type="capsule" value="toggleShow" onclick="toggleShow"></button>
   <button class="btn" type="capsule" value="toggleDisplay" onclick="toggleDisplay"></button>
-  <text if="{{visible}}"> Hello-TV </text>
-  <text elif="{{display}}"> Hello-Wearable </text>
+  <text if="{{visible}}"> Hello-World1 </text>
+  <text elif="{{display}}"> Hello-World2 </text>
   <text else> Hello-World </text>
 </div>
 ```
+
 
 ```
 /* xxx.css */
@@ -277,6 +297,7 @@ There are two ways to implement conditional rendering:  **if-elif-else**  or  **
   margin: 10px 0;
 }
 ```
+
 
 ```
 // xxx.js
@@ -294,7 +315,8 @@ export default {
 }
 ```
 
-In the optimized rendering \(**show**\), if  **show**  is  **true**, the node is rendered properly; if it is  **false**, the display style will be  **none**.
+In the optimized rendering (show), if show is true, the node is rendered properly; if it is false, the display style will be none.
+
 
 ```
 <!-- xxx.hml -->
@@ -303,6 +325,7 @@ In the optimized rendering \(**show**\), if  **show**  is  **true**, the node is
   <text show="{{visible}}" > Hello World </text>
 </div>
 ```
+
 
 ```
 /* xxx.css */
@@ -317,6 +340,7 @@ In the optimized rendering \(**show**\), if  **show**  is  **true**, the node is
 }
 ```
 
+
 ```
 // xxx.js
 export default {
@@ -329,12 +353,13 @@ export default {
 }
 ```
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
->Do not use  **for**  and  **if**  attributes at the same time in an element.
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
+> Do not use for and if attributes at the same time in an element.
 
-## Logic Control Block<a name="s185169def14340fcbb12c3375cb0f0bb"></a>
+## Logic Control Block
 
-**<block\>**  makes loop rendering and conditional rendering more flexible. A  **<block\>**  will not be compiled as a real component. Note that the  **<block\>**  tag supports only the  **for**  and  **if**  attributes.
+<block> makes loop rendering and conditional rendering more flexible. A <block> will not be compiled as a real component. **NOTE** that the <block> tag supports only the for and if attributes.
+
 
 ```
 <!-- xxx.hml -->
@@ -352,6 +377,7 @@ export default {
 </list>
 ```
 
+
 ```
 // xxx.js
 export default {
@@ -364,9 +390,10 @@ export default {
 }
 ```
 
-## Template Reference<a name="section1388145672114"></a>
+## Template Reference
 
-HML supports using elements to reference template files. For details, see  [Custom Components](../reference/arkui-js/js-components-custom.md).
+HML supports using elements to reference template files. For details, see Custom Components.
+
 
 ```
 <!-- template.hml -->
@@ -376,6 +403,7 @@ HML supports using elements to reference template files. For details, see  [Cust
 </div>
 ```
 
+
 ```
 <!-- index.hml -->
 <element name='comp' src='../../common/template.hml'></element>
@@ -383,4 +411,3 @@ HML supports using elements to reference template files. For details, see  [Cust
   <comp name="Tony" age="18"></comp>
 </div>
 ```
-

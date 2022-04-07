@@ -1,15 +1,12 @@
 # PWM<a name="ZH-CN_TOPIC_0000001222082217"></a>
 
--   [概述](#section1591602238164144)
--   [接口说明](#section752964871810)
--   [开发步骤](#section967396342164144)
--   [开发实例](#section1883877829164144)
 
 ## 概述<a name="section1591602238164144"></a>
 
 PWM（Pulse Width Modulator）即脉冲宽度调节器，在HDF框架中，PWM的接口适配模式采用独立服务模式，在这种模式下，每一个设备对象会独立发布一个设备服务来处理外部访问，设备管理器收到API的访问请求之后，通过提取该请求的参数，达到调用实际设备对象的相应内部方法的目的。独立服务模式可以直接借助HDFDeviceManager的服务管理能力，但需要为每个设备单独配置设备节点，增加内存占用。
 
 **图 1**  PWM独立服务模式结构图<a name="fig983655084219"></a>  
+
 ![](figures/独立服务模式结构图.png "PWM独立服务模式结构图")
 
 ## 接口说明<a name="section752964871810"></a>
@@ -115,8 +112,8 @@ PWM模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
     HDF_INIT(g_hdfPwm);
     ```
 
-2.  完成驱动入口注册之后，下一步请在device\_info.hcs文件中添加deviceNode信息，并在 pwm\_config.hcs 中配置器件属性。deviceNode信息与驱动入口注册相关，器件属性值与核心层PwmDev成员的默认值或限制范围有密切关系。 如有更多个器件信息，则需要在device\_info文件增加deviceNode信息，以及在pwm\_config文件中增加对应的器件属性**。**
-    -   device\_info.hcs 配置参考。
+2.  完成驱动入口注册之后，下一步请在device\_info.hcs文件中添加deviceNode信息，并在 pwm\_config.hcs 中配置器件属性。deviceNode信息与驱动入口注册相关，器件属性值与核心层PwmDev成员的默认值或限制范围有密切关系。 如有更多个器件信息，则需要在device\_info文件增加deviceNode信息，以及在pwm\_config文件中增加对应的器件属性。
+    -   device\_info.hcs 配置参考
 
         ```
         root {

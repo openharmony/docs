@@ -1,10 +1,11 @@
 # 了解OpenHarmony
 
 - [了解OpenHarmony开源项目](OpenHarmony-Overview_zh.md)
-- [术语](device-dev/glossary/glossary.md)
+- [术语](glossary.md)
 - 版本说明
   - OpenHarmony 3.x Releases
-    
+
+    -   [OpenHarmony v3.1 Release (2022-03-30)](release-notes/OpenHarmony-v3.1-release.md)       
     -   [OpenHarmony v3.1 Beta (2021-12-31)](release-notes/OpenHarmony-v3.1-beta.md)
     -   [OpenHarmony v3.0.1 LTS (2022-01-12)](release-notes/OpenHarmony-v3.0.1-LTS.md)
     -   [OpenHarmony v3.0 LTS (2021-09-30)](release-notes/OpenHarmony-v3.0-LTS.md)
@@ -33,4 +34,3 @@
   - [写作规范](contribute/写作规范.md)
   - [社区沟通与交流](contribute/社区沟通与交流.md)
   - [FAQ](contribute/FAQ.md)
-    

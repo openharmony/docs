@@ -1,22 +1,25 @@
-# List<a name="EN-US_TOPIC_0000001156015762"></a>
+# &lt;list&gt; Development
 
-The  **<list\>**  component provides a list container that presents a series of list items arranged in a column with the same width. Lists can be used for presenting the same type of data in a multiple and coherent row style. For details, see  [list](../reference/arkui-js/js-components-container-list.md).
 
-## Creating a <list\> Component<a name="section1994073214247"></a>
+The &lt;list&gt; component provides a list container that presents a series of list items arranged in a column with the same width. Lists can be used for presenting the same type of data in a multiple and coherent row style. For details, see [list](../reference/arkui-js/js-components-container-list.md).
 
-Create a  **<list\>**  component in the  **.hml**  file under  **pages/index**.
+
+## Creating a &lt;list&gt; Component
+
+Create a &lt;list&gt; component in the .hml file under pages/index.
+
 
 ```
 <!-- index.hml -->
 <div class="container"> 
- <list>        
-   <list-item class="listItem"></list-item>
+ <list>    <list-item class="listItem"></list-item>
    <list-item class="listItem"></list-item>
    <list-item class="listItem"></list-item>
    <list-item class="listItem"></list-item>
  </list>
 </div>
 ```
+
 
 ```
 /* xxx.css */
@@ -32,15 +35,18 @@ Create a  **<list\>**  component in the  **.hml**  file under  **pages/index**.
 }
 ```
 
-![](figures/5.png)
+![en-us_image_0000001223287680](figures/en-us_image_0000001223287680.png)
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
->-   **<list-item-group\>**  is a child component of the  **<list\>**  component and is used to group items in a list. It can have a  **<list-item\>**  nested inside, but not  **<list\>**.
->-   **<list-item\>**  is a child component of the  **<list\>**  component and is used to display items in a list.
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
+> - &lt;list-item-group&gt; is a child component of the &lt;list&gt; component and is used to group items in a list. It can have a &lt;list-item&gt; nested inside, but not &lt;list&gt;.
+>
+> - &lt;list-item&gt; is a child component of the &lt;list&gt; component and is used to display items in a list.
 
-## Adding a Scrollbar<a name="section178831773548"></a>
 
-To display a scrollbar on the right side of the screen, set  **scrollbar**  to  **on**. The side scrollbar can be used to scroll a long list or the screen up or down.
+## Adding a Scrollbar
+
+To display a scrollbar on the right side of the screen, set scrollbar to on. The side scrollbar can be used to scroll a long list or the screen up or down.
+
 
 ```
 <!-- index.hml -->
@@ -55,6 +61,7 @@ To display a scrollbar on the right side of the screen, set  **scrollbar**  to  
  </list>
 </div> 
 ```
+
 
 ```
 /* index.css */
@@ -74,11 +81,13 @@ To display a scrollbar on the right side of the screen, set  **scrollbar**  to  
 }
 ```
 
-![](figures/24.gif)
+![en-us_image_0000001223287684](figures/en-us_image_0000001223287684.gif)
 
-## Adding a Side Index Bar<a name="section592683718436"></a>
 
-Set a custom  **indexer**  component to add an index bar at the right boundary of a list. By default, an alphabetical indexer is used.
+## Adding a Side Index Bar
+
+Set a custom indexer component to add an index bar at the right boundary of a list. By default, an alphabetical indexer is used.
+
 
 ```
 <!-- index.hml -->
@@ -89,9 +98,10 @@ Set a custom  **indexer**  component to add an index bar at the right boundary o
 </div>
 ```
 
+
 ```
 /* index.css */
-.container {
+.container{
   flex-direction: column;
   background-color: #F1F3F5;
  } 
@@ -102,15 +112,18 @@ Set a custom  **indexer**  component to add an index bar at the right boundary o
 }
 ```
 
-![](figures/00.png)
+![en-us_image_0000001223127716](figures/en-us_image_0000001223127716.png)
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
->-   This  **indexer**  attribute is valid only when  **flex-direction**  is set to  **column**  and  **columns**  is set to  **1**.
->-   You must include  **"\#"**  when using a customized indexer.
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
+> - This indexer attribute is valid only when flex-direction is set to column and columns is set to 1.
+>
+> - You must include "\#" when using a customized indexer.
 
-## Collapsing or Expanding a List<a name="section940022183115"></a>
 
-To allow a  **<list\>**  component to collapse and expand, add  **groupcollapse**  and  **groupexpand**  events.
+## Collapsing or Expanding a List
+
+To allow a &lt;list&gt; component to collapse and expand, add groupcollapse and groupexpand events.
+
 
 ```
 <!-- index.hml -->
@@ -132,6 +145,7 @@ To allow a  **<list\>**  component to collapse and expand, add  **groupcollapse*
 </div>
 ```
 
+
 ```
 /* index.css */
 .doc-page {
@@ -151,6 +165,7 @@ margin-top:30px;
   width:100%;
 }
 ```
+
 
 ```
 // xxx.js
@@ -183,21 +198,18 @@ export default {
 }
 ```
 
-![](figures/8-4.gif)
+![en-us_image_0000001267887845](figures/en-us_image_0000001267887845.gif)
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
->
->-   The  **groupcollapse**  and  **groupexpand**  events can be used only by the  **list-item-group**  component.
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
+> - The groupcollapse and groupexpand events can be used only by the list-item-group component.
 
-## Example Scenario<a name="section1945019230211"></a>
+
+## Example Scenario
 
 Search for contacts by using an alphabetical indexer.
 
 ```
 <!-- index.hml -->
-```
-
-```
 <div class="doc-page"> 
   <text style="font-size: 35px; font-weight: 500; text-align: center; margin-top: 20px; margin-bottom: 20px;"> 
       <span>Contacts</span> 
@@ -207,7 +219,7 @@ Search for contacts by using an alphabetical indexer.
       <div class="container"> 
         <div class="in-container"> 
           <text class="name">{{$item.name}}</text> 
-          <text class="phone">18888888888</text> 
+          <text class="number">18888888888</text> 
         </div> 
       </div> 
     </list-item> 
@@ -239,7 +251,7 @@ Search for contacts by using an alphabetical indexer.
   color: #000000;
   font-size: 39px;
 }
-.phone {
+.number {
   color: black;
   font-size: 25px;
 }
@@ -294,5 +306,5 @@ export default {
  }
 ```
 
-![](figures/27.gif)
 
+![en-us_image_0000001267767861](figures/en-us_image_0000001267767861.gif)

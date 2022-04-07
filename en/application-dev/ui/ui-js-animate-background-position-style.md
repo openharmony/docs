@@ -1,6 +1,7 @@
-# Defining Animations with the background-position Attribute<a name="EN-US_TOPIC_0000001172006248"></a>
+# Defining Animations with the background-position Attribute
 
-By changing the  **background-position**  attribute \(where the first value is the position on the x-axis and the second value is the position on the y-axis\), you move a background image. If the background image goes beyond the respective component boundaries, the excess parts will not be displayed.
+
+By changing the background-position attribute (where the first value is the position on the x-axis and the second value is the position on the y-axis), you move a background image. If the background image goes beyond the respective component boundaries, the excess parts will not be displayed.
 
 ```
 <!-- xxx.hml -->
@@ -74,8 +75,6 @@ By changing the  **background-position**  attribute \(where the first value is t
 }
 ```
 
-![](figures/q8.gif)
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
->The  **background-position**  attribute can only be used to move background images, but not the background color \(**background-color**\).
-
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
+> The background-position attribute can only be used to move background images, but not the background color (background-color).

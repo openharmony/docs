@@ -1,8 +1,24 @@
-# LazyForEach<a name="EN-US_TOPIC_0000001136122422"></a>
+# LazyForEach
 
-The development framework provides the  **LazyForEach**  component to iterate data as required and create corresponding components during each iteration.  **LazyForEach**  is defined as follows:
+
+The development framework provides LazyForEach to iterate data from provided data sources and create corresponding components during each iteration. LazyForEach is defined as follows:
+
+
 
 ```
+LazyForEach(
+    dataSource: IDataSource,             // Data source to be iterated 
+    itemGenerator: (item: any) => void,  // child component generator
+    keyGenerator?: (item: any) => string // (optional) Unique key generator, which is recommended.
+): void
+
+interface IDataSource {
+    totalCount(): number;                                             // Get total count of data
+    getData(index: number): any;                                      // Get single data by index
+    registerDataChangeListener(listener: DataChangeListener): void;   // Register listener to listening data changes
+    unregisterDataChangeListener(listener: DataChangeListener): void; // Unregister listener
+}
+
 interface DataChangeListener {
     onDataReloaded(): void;                      // Called while data reloaded
     onDataAdded(index: number): void;            // Called while single data added
@@ -10,42 +26,75 @@ interface DataChangeListener {
     onDataDeleted(index: number): void;          // Called while single data deleted
     onDataChanged(index: number): void;          // Called while single data changed
 }
-interface IDataSource {
-    totalCount(): number;                                             // Get total count of data
-    getData(index: number): any;                                      // Get single data by index
-    registerDataChangeListener(listener: DataChangeListener): void;   // Register listener to listening data changes
-    unregisterDataChangeListener(listener: DataChangeListener): void; // Unregister listener
-}
-LazyForEach(
-    dataSource: IDataSource,             // Data source to be iterated 
-    itemGenerator: (item: any) => void,  // child component generator
-    keyGenerator?: (item: any) => string // (optional) Unique key generator, which is recommended.
-): void
 ```
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
->-   When data is updated through  **onDataChanged**  of  **LazyForEach**, if  **itemGenerator**  contains a fully static view \(that is, the view does not contain state variables\), the view will not be updated.
->-   **LazyForEach**  is used to automatically generate child components from the provided data source.
->-   **LazyForEach**  must be used in the container component. Only the  **<List\>**,  **<Grid\>**, and  **<Swiper\>**  components support on-demand data loading \(that is, only the visible part and a small amount of data before and after the visible part are loaded for caching\). For other components, all data is loaded at a time.
->-   The first parameter must be an object inherited from  **IDataSource**. You need to implement related APIs.
->-   The second parameter is used to generate the lambda function of the child components. It generates one or more child components for a given array item. A single component and its child component list must be contained in the braces \(\{...\}\).
->-   The third parameter is optional and used as an anonymous function for key value generation. It generates a unique and stable key value for a given array item. When the position of a subitem in the array is changed, the key value of the subitem cannot be changed. When a subitem in the array is replaced with a new item, the key value of the current item must be different from the key value of the new item. The key-value generator is optional. However, for performance reasons, it is strongly recommended that the generator be provided, so that the development framework can better identify array changes. If the array is reversed while no key-value generator is provided, all nodes in  **ForEach**  will be rebuilt.
->-   The generated child component must be allowed in the parent container component of  **LazyForEach**, so that  **LazyForEach**  can be included in the  **if/else**  conditional statement.
->-   **LazyForEach**  must create one and only one child component in each iteration.
->-   **ForEach**  cannot be used as a child component of  **LazyForEach**, and  **LazyForEach**  does not support nesting.
->-   The  **if/else**  conditional statement is not allowed in  **LazyForEach**.
->-   The calling sequence of the subitem generator function may be different from that of the data items in the data source. During the development, do not assume whether the subitem generator and key value generator functions are executed and the execution sequence. The following is an example of incorrect usage:
->    ```
->    ForEach(dataSource, item => {Text(`${++counter}. item.label`)})
->    ```
->    Below is an example of correct usage:
->    ```
->    ForEach(dataSource, 
->            item => Text(`${item.i}. item.data.label`)),
->            item => item.data.id.toString())
->    ```
 
-## Example<a name="section155489126613"></a>
+## APIs
+
+
+### LazyForEach
+
+LazyForEach(dataSource: IDataSource, itemGenerator: (item: any) => void, keyGenerator?: (item: any) => string):void
+
+  Table1 Parameters
+
+| Name | Type | Mandatory | Default Value | Description |
+| -------- | -------- | -------- | -------- | -------- |
+| dataSource | IDataSource | Yes | - | Object used to implement the IDataSource API. You need to implement related APIs. |
+| itemGenerator | (item: any) => void | Yes | - | Used to generate the lambda function of the child components. It generates one or more child components for a given array item. A single component and its child component list must be contained in the braces ({...}) |
+| keyGenerator | (item: any) => string | No | - | Used as an anonymous parameter for generating a unique and stable key value for a given array item. When the position of a subitem in the array is changed, the key value of the subitem cannot be changed. When a subitem in the array is replaced with a new item, the key value of the current item must be different from that of the new item. This key-value generator is optional. However, for performance reasons, it is strongly recommended that the key-value generator be provided, so that the development framework can better identify array changes. If the array is reversed while no key-value generator is provided, all nodes in LazyForEach will be rebuilt. |
+
+
+  Table2 Description of IDataSource
+
+| Name | Description |
+| -------- | -------- |
+| totalCount(): number | Obtains the total number of data records. |
+| getData(index: number): any | Obtains the data corresponding to the specified index. |
+| registerDataChangeListener(listener: DataChangeListener): void | Registers the data change listener. |
+| unregisterDataChangeListener(listener: DataChangeListener): void | Unregisters the data change listener. |
+
+
+  Table3 Description of DataChangeListener
+
+| Name | Description | 
+| -------- | -------- |
+| onDataReloaded(): void | Reloads all data. | 
+| onDataAdded(index: number): void | Notifies the component that data is added to the position indicated by the specified index. | 
+| onDataMoved(from: number, to: number): void | Notifies the component that data is moved from the from position to the to position. | 
+| onDataDeleted(index: number): void | Notifies the component that data is deleted from the position indicated by the specified index. | 
+| onDataChanged(index: number): void | Notifies the component that data in the position indicated by the specified index is changed. | 
+
+
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
+> - LazyForEach must be used in the container component. Only the &lt;List&gt;, &lt;Grid&gt;, and &lt;Swiper&gt; components support LazyForEach (that is, only the visible part and a small amount of data before and after the visible part are loaded for caching). For other components, all data is loaded at a time.
+> 
+> - LazyForEach must create one and only one child component in each iteration.
+> 
+> - The generated child component must be in the parent container component of LazyForEach.
+> 
+> - LazyForEach can be included in an if/else conditional statement, but cannot contain an if/else conditional statement.
+> 
+> - For the purpose of high-performance rendering, when the onDataChanged method of the DataChangeListener object is used to update the UI, the component update is triggered only when the state variable is used in the component specified in the UI description of itemGenerator.
+> 
+> - The calling sequence of the subitem generator function may be different from that of the data items in the data source. During the development, do not assume whether the subitem generator and key value generator functions are executed and the execution sequence. The following is an example of incorrect usage:
+>     
+>   ```
+>   LazyForEach(dataSource, item => {Text(`${++counter}. item.label`)})
+>   ```
+> 
+>   Below is an example of correct usage:
+> 
+>     
+>   ```
+>   LazyForEach(dataSource, 
+>           item => Text(`${item.i}. item.data.label`)),
+>           item => item.data.id.toString())
+>   ```
+
+
+## Example
+
 
 ```
 // Basic implementation of IDataSource to handle data listener
@@ -141,4 +190,3 @@ struct MyComponent {
     }
 }
 ```
-

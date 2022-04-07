@@ -12,7 +12,7 @@
   <div>
     <canvas ref="canvas1" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
     <input type="button" style="width: 180px; height: 60px;" value="fillStyle" onclick="handleClick" />
-    &lt;input type="button" style="width: 180px; height: 60px;" value="fillStyle" onclick="antialias" /&gt;</div>
+    <input type="button" style="width: 180px; height: 60px;" value="fillStyle" onclick="antialias" />;</div>
   ```
 
   ```
@@ -27,9 +27,14 @@
     },
     antialias() {
       const el = this.$refs.canvas1;
-      const ctx = el.getContext('2d', { antialias: true });    ctx.beginPath();    ctx.arc(100, 75, 50, 0, 6.28);    ctx.stroke();  }}
+      const ctx = el.getContext('2d', { antialias: true });   
+      ctx.beginPath();    
+    ctx.arc(100, 75, 50, 0, 6.28);    
+      ctx.stroke();
+    }
+  }
   ```
-
+  
 - 示意图（关闭抗锯齿）
   ![zh-cn_image_0000001214837333](figures/zh-cn_image_0000001214837333.png)
 
@@ -260,10 +265,8 @@ export default {
     ctx.moveTo(140, 10);
     ctx.lineTo(140, 160);
     ctx.stroke();
-
     ctx.font = '18px sans-serif';    
-
-  // Show the different textAlign values
+    // Show the different textAlign values
     ctx.textAlign = 'start';      
     ctx.fillText('textAlign=start', 140, 60);        
     ctx.textAlign = 'end';      
@@ -300,9 +303,7 @@ export default {
     ctx.moveTo(0, 120);
     ctx.lineTo(400, 120);
     ctx.stroke();
-
     ctx.font = '20px sans-serif';
-
     ctx.textBaseline = 'top'; 
     ctx.fillText('Top', 10, 120); 
     ctx.textBaseline = 'bottom'; 
@@ -339,7 +340,6 @@ export default {
     ctx.globalAlpha = 0.4;
     ctx.fillStyle = 'rgb(0,0,255)'; 
     ctx.fillRect(50, 50, 50, 50);
- 
   }
 }
 ```

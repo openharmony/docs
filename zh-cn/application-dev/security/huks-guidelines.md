@@ -9,8 +9,8 @@
 
 | 接口名                                                       | 描述             |
 | ------------------------------------------------------------ | ---------------- |
-| function generateKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback<HksResult>) : void; | 生成密钥/密钥对  |
-| function generateKey(keyAlias: string, options: HuksOptions) : Promise<HuksResult>; | 生成密钥/密钥对  |
+| function generateKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback<HksResult>) : void; | 生成密钥         |
+| function generateKey(keyAlias: string, options: HuksOptions) : Promise<HuksResult>; | 生成密钥         |
 | function exportKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback<HuksResult>) : void; | 导出公钥         |
 | function exportKey(keyAlias: string, options: HuksOptions) : Promise<HuksResult>; | 导出公钥         |
 | function isKeyExist(keyAlias: string, options: HuksOptions, callback: AsyncCallback<boolean>) : void; | 查询密钥是否存在 |
@@ -26,7 +26,7 @@
    import huks from '@ohos.security.huks'
    ```
 
-2. 使用generateKey接口生成密钥对。
+2. 使用generateKey接口生成密钥。
 
    keyAlias为生成的密钥别名，options为生成密钥时使用到的参数，需根据具体需要到的算法设定options中的参数。
 

@@ -21,7 +21,7 @@ getRoot(options? : {dev? : DevInfo}) : Promise&lt;FileInfo[]&gt;
 - 参数
   | 参数名 | 类型 | 必填 | 说明 |
   | --- | --- | --- | -- |
-  | dev | [DevInfo](#devinfo) | 否 | 设备名, 不填为默认值dev = {name: "local"}, 当前仅支持设备'local' |
+  | options | Object | 否 | 支持如下选项：<br/>-&nbsp;dev，[DevInfo](#devinfo)类型，不填默认dev = {name: "local"}, 当前仅支持设备'local' |
 
 - 返回值
 
@@ -31,17 +31,17 @@ getRoot(options? : {dev? : DevInfo}) : Promise&lt;FileInfo[]&gt;
 
 - 示例
 
-```js
-filemanager.getRoot().then((fileInfo) => {
-    if(Array.isArray(fileInfo)) {
-        for (var i = 0; i < fileInfo.length; i++) {
-            console.log(JSON.Stringify(fileInfo))
-        }
-    }
-}).catch((err) => {
-    console.log(err)
-});
-```
+  ```js
+  filemanager.getRoot().then((fileInfo) => {
+      if(Array.isArray(fileInfo)) {
+          for (var i = 0; i < fileInfo.length; i++) {
+              console.log(JSON.Stringify(fileInfo))
+          }
+      }
+  }).catch((err) => {
+      console.log(err)
+  });
+  ```
 
 ## filemanager.getRoot
 
@@ -55,20 +55,20 @@ getRoot(options? : {dev? : DevInfo}, callback : AsyncCallback&lt;FileInfo[]&gt;)
 
   | 参数名   | 类型                      | 必填 | 说明                          |
   | -------- | ------------------------- | ---- | ----------------------------- |
-  | dev      | [DevInfo](#devinfo)              | 否   | 设备名, 不填为默认值dev = {name: "local"}, 当前仅支持设备'local' |
+  | options | Object | 否 | 支持如下选项：<br/>-&nbsp;dev，[DevInfo](#devinfo)类型，不填默认dev = {name: "local"}, 当前仅支持设备'local' |
   | callback | AsyncCallback&lt;[FileInfo](#fileinfo)[]&gt; | 是   | 异步获取文件的信息之后的回调  |
 
 - 示例
 
-```js
-filemanager.getRoot((err, fileInfo) => {
-    if(Array.isArray(fileInfo)) {
-        for (var i = 0; i < fileInfo.length; i++) {
-            console.log(JSON.Stringify(fileInfo))
-        }
-    }
-})
-```
+  ```js
+  filemanager.getRoot((err, fileInfo) => {
+      if(Array.isArray(fileInfo)) {
+          for (var i = 0; i < fileInfo.length; i++) {
+              console.log(JSON.Stringify(fileInfo))
+          }
+      }
+  });
+  ```
 
 ## filemanager.listFile
 
@@ -81,12 +81,10 @@ listFile(path : string, type : string, options? : {dev? : DevInfo, offset? : num
 - 参数
   | 参数名 | 类型 | 必填 | 说明 |
   | --- | --- | --- | -- |
-  | type | string | 是 | 待查询文件类型, 支持以下类型 "file", "image", "audio", "video" |
   | path | string | 是 | 待查询目录uri |
-  | dev | [DevInfo](#devinfo) | 是 | 设备名, 不填为默认值dev = {name: "local"}, 当前仅支持设备'local' |
-  | offset | number | 否 | 待查询文件偏移 |
-  | count | number | 否 | 待查询文件个数 |
-
+  | type | string | 是 | 待查询文件类型, 支持以下类型 "file", "image", "audio", "video" |
+  | options | Object | 否 | 支持如下选项：<br/>-&nbsp;dev，[DevInfo](#devinfo)类型，不填默认dev = {name: "local"}, 当前仅支持设备'local'。<br/>-&nbsp;offset，number类型，待查询文件偏移个数。<br/>-&nbsp;count，number类型，待查询文件个数。 |
+  
 - 返回值
 
   | 类型 | 说明 |
@@ -100,21 +98,24 @@ listFile(path : string, type : string, options? : {dev? : DevInfo, offset? : num
   | 获取FMS服务失败 | No such process | 3 | 获取FMS服务失败 |
   | path对应uri不是相册、目录 | Not a directory | 20 | path对应uri不是相册、目录 |
 
-```js
-// 获取目录下所有文件
-// 通过listFile、getRoot获取的文件uri
-let media_path = file.uri
-filemanager.listFile(media_path, "file")
-.then((fileInfo) => {
-    if(Array.isArray(fileInfo)) {
-        for (var i = 0; i < fileInfo.length; i++) {
-            console.log(JSON.Stringify(fileInfo))
-        }
-    }
-}).catch((err) => {
-    console.log(err)
-})
-```
+- 示例
+
+  ```js
+  // 获取目录下所有文件
+  // 通过listFile、getRoot获取的文件uri
+  let media_path = file.uri
+  filemanager.listFile(media_path, "file")
+  .then((fileInfo) => {
+      if(Array.isArray(fileInfo)) {
+          for (var i = 0; i < fileInfo.length; i++) {
+              console.log(JSON.Stringify(fileInfo))
+          }
+      }
+  }).catch((err) => {
+      console.log(err)
+  });
+  ```
+
 ## filemanager.listFile
 
 listFile(path : string, type : string, options? : {dev? : DevInfo, offset? : number, count? : number}, callback : AsyncCallback&lt;FileInfo[]&gt;) : void
@@ -127,11 +128,9 @@ listFile(path : string, type : string, options? : {dev? : DevInfo, offset? : num
 
   | 参数名   | 类型                      | 必填 | 说明                                                         |
   | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-  | type     | string                    | 是   | 待查询文件类型, 支持以下类型 "file", "image", "audio", "video" |
   | path     | string                    | 是   | 待查询目录uri                                                |
-  | dev | [DevInfo](#devinfo) | 否 | 设备名, 不填为默认值dev = {name: "local"}, 当前仅支持设备'local' |
-  | offset | number | 否 | 待查询文件偏移 |
-  | count | number | 否 | 待查询文件个数 |
+  | type     | string                    | 是   | 待查询文件类型, 支持以下类型 "file", "image", "audio", "video" |
+  | options | Object | 否 | 支持如下选项：<br/>-&nbsp;dev，[DevInfo](#devinfo)类型，不填默认dev = {name: "local"}, 当前仅支持设备'local'。<br/>-&nbsp;offset，number类型，待查询文件偏移个数。<br/>-&nbsp;count，number类型，待查询文件个数。 |
   | callback | AsyncCallback&lt;[FileInfo](#fileinfo)[]&gt; | 是   | 异步获取文件的信息之后的回调                                 |
 - 异常
 
@@ -141,21 +140,23 @@ listFile(path : string, type : string, options? : {dev? : DevInfo, offset? : num
   | 获取FMS服务失败           | No such process           | 3      | 获取FMS服务失败           |
   | path对应uri不是相册、目录 | Not a directory           | 20     | path对应uri不是相册、目录 |
 
-```js
-// 通过listFile、getRoot获取的文件uri
-let media_path = file.uri
-filemanager.listFile(media_path, "file", (err, fileInfo) => {
-    if(Array.isArray(fileInfo)) {
-        for (var i = 0; i < fileInfo.length; i++) {
-            console.log(JSON.Stringify(fileInfo))
-        }
-    }
-})
-```
+- 示例
+
+  ```js
+  // 通过listFile、getRoot获取的文件uri
+  let media_path = file.uri
+  filemanager.listFile(media_path, "file", (err, fileInfo) => {
+      if(Array.isArray(fileInfo)) {
+          for (var i = 0; i < fileInfo.length; i++) {
+              console.log(JSON.Stringify(fileInfo))
+          }
+      }
+  });
+  ```
 
 ## filemanager.createFile
 
-filemanager.createFile(path : string, filename : string, options? : {dev? : DevInfo})  :   promise&lt;string&gt;
+filemanager.createFile(path : string, filename : string, options? : {dev? : DevInfo})  :   Promise&lt;string&gt;
 
 以异步方法创建文件到指定路径，返回文件uri。使用promise形式返回结果。
 
@@ -166,7 +167,7 @@ filemanager.createFile(path : string, filename : string, options? : {dev? : DevI
   | --- | --- | --- | -- |
   | filename | string | 是 | 待创建的文件名 |
   | path | string | 是 | 待保存目的相册uri |
-  | dev | [DevInfo](#devinfo) | 否 | 设备名, 不填为默认值dev = {name: "local"}, 当前仅支持设备'local' |
+  | options | Object | 否 | 支持如下选项：<br/>-&nbsp;dev，[DevInfo](#devinfo)类型，不填默认dev = {name: "local"}, 当前仅支持设备'local' |
 
 - 返回值
 
@@ -182,18 +183,20 @@ filemanager.createFile(path : string, filename : string, options? : {dev? : DevI
   | 获取FMS服务失败 | No such process | 3 | 获取FMS服务失败 |
   | path对应uri不是相册、目录 | Not a directory | 20 | path对应uri不是相册、目录 |
 
-```js
-// 创建文件，返回文件uri
-let media_path = file.uri // 通过listFile、getRoot获取的文件uri
-let name = "xxx.jpg" // 待保存文件的后缀
-filemanager.createFile(media_path, name)
-.then((uri) => {
-// 返回uri给应用
-})
-.catch((err) => {
-    console.log(err)
-})
-```
+- 示例
+
+  ```js
+  // 创建文件，返回文件uri
+  let media_path = file.uri // 通过listFile、getRoot获取的文件uri
+  let name = "xxx.jpg" // 待保存文件的后缀
+  filemanager.createFile(media_path, name)
+  .then((uri) => {
+  // 返回uri给应用
+  })
+  .catch((err) => {
+      console.log(err)
+  });
+  ```
 
 ## filemanager.createFile
 
@@ -209,7 +212,7 @@ createFile(path : string, filename: string, options? : {dev? : DevInfo}, callbac
   | -------- | ------------------------- | ---- | ----------------------------- |
   | filename | string                    | 是   | 待创建的文件名                |
   | path     | string                    | 是   | 待保存目的相册uri             |
-  | dev | [DevInfo](#devinfo) | 否 | 设备名, 不填为默认值dev = {name: "local"}, 当前仅支持设备'local' |
+  | options | Object | 否 | 支持如下选项：<br/>-&nbsp;dev，[DevInfo](#devinfo)类型，不填默认dev = {name: "local"}, 当前仅支持设备'local' |
   | callback | AsyncCallback&lt;[FileInfo](#fileinfo)[]&gt; | 是   | 异步获取文件的信息之后的回调  |
 
 - 异常
@@ -221,16 +224,18 @@ createFile(path : string, filename: string, options? : {dev? : DevInfo}, callbac
   | 获取FMS服务失败           | No such process           | 3      | 获取FMS服务失败           |
   | path对应uri不是相册、目录 | Not a directory           | 20     | path对应uri不是相册、目录 |
 
-```js
-// 创建文件，返回文件uri
-// 通过listFile、getRoot获取的文件uri
-let media_path = file.uri
-// 待保存文件的后缀
-let name = "xxx.jpg"
-filemanager.createFile(media_path, name, (err, uri) => {
-// 返回uri给应用
-})
-```
+- 示例
+
+  ```js
+  // 创建文件，返回文件uri
+  // 通过listFile、getRoot获取的文件uri
+  let media_path = file.uri
+  // 待保存文件的后缀
+  let name = "xxx.jpg"
+  filemanager.createFile(media_path, name, (err, uri) => {
+  // 返回uri给应用
+  });
+  ```
 
 ## FileInfo
 文件信息类型，通过getRoot, listFile等接口返回的类型。
@@ -249,12 +254,13 @@ filemanager.createFile(media_path, name, (err, uri) => {
 | modifiedTime | number | 是 | 否 | 媒体修改时间 |
 
 ## DevInfo
+
 设备类型，配置接口访问的设备类型。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.FileManagement.FileManagerService。
 
 ### 属性
 
-  | 参数名 | 类型 | 可读 | 可写 | 说明 |
-  | --- | -- | -- | -- | -- |
-  | name | string | 是 | 是 | 设备名称 |
+| 参数名 | 类型   | 可读 | 可写 | 说明     |
+| ------ | ------ | ---- | ---- | -------- |
+| name   | string | 是   | 是   | 设备名称 |

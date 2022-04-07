@@ -990,40 +990,14 @@ release(): Promise\<void>
 | RGBA_8888 | 3      | 格式为RGBA_8888。 |
 | RGB_565   | 2      | 格式为RGB_565。   |
 
-## AlphaType<sup>9+</sup>
-
-枚举，透明度。
-
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image
-
-| 名称     | 默认值 | 描述                    |
-| -------- | ------ | ----------------------- |
-| UNKNOWN  | 0      | 未知透明度。            |
-| OPAQUE   | 1      | 没有alpha或图片全透明。 |
-| PREMUL   | 2      | RGB前乘alpha。          |
-| UNPREMUL | 3      | RGB不前乘alpha。        |
-
-## ScaleMode<sup>9+</sup>
-
-枚举，缩略值。
-
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image
-
-| 名称            | 默认值 | 描述                                               |
-| --------------- | ------ | -------------------------------------------------- |
-| CENTER_CROP     | 1      | 缩放图像以填充目标图像区域并居中裁剪区域外的效果。 |
-| FIT_TARGET_SIZE | 2      | 图像适合目标尺寸的效果。                           |
-
 ## InitializationOptions<sup>8+</sup>
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image
 
 | 名称        | 类型                               | 可读 | 可写 | 说明           |
 | ----------- | ---------------------------------- | ---- | ---- | -------------- |
-| alphaType<sup>9+</sup>   | [AlphaType](#alphatype9)           | 是   | 是   | 透明度。       |
 | editable    | boolean                            | 是   | 是   | 是否可编辑。   |
 | pixelFormat | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 像素格式。     |
-| scaleMode<sup>9+</sup>   | [ScaleMode](#scalemode9)           | 是   | 是   | 缩略值。       |
 | size        | [Size](#size)                      | 是   | 是   | 创建图片大小。 |
 
 ## DecodingOptions<sup>7+</sup>

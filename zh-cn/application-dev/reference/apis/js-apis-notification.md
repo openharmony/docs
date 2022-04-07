@@ -185,7 +185,7 @@ Notification.cancel(0, "label", cancelCallback)
 
 ## Notification.cancel
 
-cancel(id：number, label?：string): Promise\<void\>
+cancel(id：number, label?: string): Promise\<void\>
 
 取消与指定id相匹配的已发布通知，label可以指定也可以不指定（Promise形式）。
 
@@ -2109,7 +2109,7 @@ Notification.supportDoNotDisturbMode().then((data) => {
 
 isSupportTemplate(templateName: string, callback: AsyncCallback\<boolean\>): void
 
-查询模板是否存在。
+查询模板是否存在（Callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2137,7 +2137,7 @@ Notification.isSupportTemplate(templateName, isSupportTemplateCallback);
 
 isSupportTemplate(templateName: string): Promise\<boolean\>
 
-查询模板是否存在。
+查询模板是否存在（Promise形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2169,7 +2169,7 @@ Notification.isSupportTemplate(templateName).then((data) => {
 
 requestEnableNotification(callback: AsyncCallback\<void\>): void
 
-应用请求通知使能。
+应用请求通知使能（Callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2195,7 +2195,7 @@ Notification.requestEnabledNotification(requestEnabledNotificationCallback);
 
 requestEnableNotification(): Promise\<void\>
 
-应用请求通知使能。
+应用请求通知使能（Promise形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2213,7 +2213,7 @@ Notification.requestEnableNotification()
 
 enableDistributed(enable: boolean, callback: AsyncCallback\<void\>): void
 
-设置设备是否支持分布式通知。
+设置设备是否支持分布式通知（Callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2242,7 +2242,7 @@ Notification.enableDistributed(enable, enabledNotificationCallback);
 
 enableDistributed(enable: boolean): Promise\<void>
 
-设置设备是否支持分布式通知。
+设置设备是否支持分布式通知（Promise形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2268,7 +2268,7 @@ Notification.enableDistributed(enable)
 
 isDistributedEnabled(callback: AsyncCallback\<boolean>): void
 
-获取设备是否支持分布式通知。
+获取设备是否支持分布式通知（Callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2294,7 +2294,7 @@ Notification.enableDistributed(isDistributedEnabledCallback);
 
 isDistributedEnabled(): Promise\<boolean>
 
-获取设备是否支持分布式通知。
+获取设备是否支持分布式通知（Promise形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2318,7 +2318,7 @@ Notification.isDistributedEnabled()
 
 enableDistributedByBundle(bundle: BundleOption, enable: boolean, callback: AsyncCallback\<void>): void
 
-根据应用的包设置应用程序是否支持分布式通知。
+根据应用的包设置应用程序是否支持分布式通知（Callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2352,7 +2352,7 @@ Notification.enableDistributedByBundle(bundle, enable, enableDistributedByBundle
 
 根据bundleenableDistributedByBundle(bundle: BundleOption, enable: boolean): Promise<void>
 
-根据应用的包设置应用程序是否支持分布式通知。
+根据应用的包设置应用程序是否支持分布式通知（Promise形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2382,7 +2382,7 @@ Notification.enableDistributedByBundle(bundle, enable)
 
 isDistributedEnabledByBundle(bundle: BundleOption, callback: AsyncCallback\<boolean>): void
 
-根据应用的包获取应用程序是否支持分布式通知。
+根据应用的包获取应用程序是否支持分布式通知（Callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2413,7 +2413,7 @@ Notification.enableDistributedByBundle(bundle, isDistributedEnabledByBundleCallb
 
 isDistributedEnabledByBundle(bundle: BundleOption): Promise\<boolean>
 
-根据应用的包获取应用程序是否支持分布式通知。
+根据应用的包获取应用程序是否支持分布式通知（Promise形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2447,7 +2447,7 @@ Notification.isDistributedEnabledByBundle(bundle)
 
 getDeviceRemindType(callback: AsyncCallback\<DeviceRemindType\>): void
 
-获取通知的提醒方式。
+获取通知的提醒方式（Callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2455,7 +2455,7 @@ getDeviceRemindType(callback: AsyncCallback\<DeviceRemindType\>): void
 
 | 参数名   | 类型                               | 必填 | 说明                       |
 | -------- | --------------------------------- | ---- | -------------------------- |
-| callback | AsyncCallback\<[DeviceRemindType](#deviceremindtypesup8sup)\> | 是   | 获取通知的提醒方式的回调函数。 |
+| callback | AsyncCallback\<[DeviceRemindType](#deviceremindtype8)\> | 是   | 获取通知的提醒方式的回调函数。 |
 
 **示例：**
 
@@ -2473,7 +2473,7 @@ Notification.getDeviceRemindType(getDeviceRemindTypeCallback);
 
 getDeviceRemindType(): Promise\<DeviceRemindType\>
 
-获取通知的提醒方式。
+获取通知的提醒方式（Promise形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2481,7 +2481,7 @@ getDeviceRemindType(): Promise\<DeviceRemindType\>
 
 | 类型               | 说明            |
 | ------------------ | --------------- |
-| Promise\<[DeviceRemindType](#deviceremindtypesup8sup)\> | Promise方式返回通知的提醒方式的结果。 |
+| Promise\<[DeviceRemindType](#deviceremindtype8)\> | Promise方式返回通知的提醒方式的结果。 |
 
 **示例：**
 
@@ -2743,7 +2743,7 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 ### onEnabledNotificationChanged<sup>8+</sup>
 
-onEnabledNotificationChanged?:(callbackData: [EnabledNotificationCallbackData](#enablednotificationcallbackdatasup8sup))
+onEnabledNotificationChanged?:(callbackData: [EnabledNotificationCallbackData](#enablednotificationcallbackdata8))
 
 监听应用通知使能变化。
 
@@ -2753,7 +2753,7 @@ onEnabledNotificationChanged?:(callbackData: [EnabledNotificationCallbackData](#
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------------ | ------------------------ | ---- | -------------------------- |
-| callback | AsyncCallback\<[EnabledNotificationCallbackData](#enablednotificationcallbackdatasup8sup)\> | 是 | 回调返回监听到的应用信息。 |
+| callback | AsyncCallback\<[EnabledNotificationCallbackData](#enablednotificationcallbackdata8)\> | 是 | 回调返回监听到的应用信息。 |
 
 **示例：**
 
@@ -2851,10 +2851,10 @@ Notification.subscribe(subscriber, subscribeCallback);
 | 名称                              | 值          | 说明               |
 | --------------------------------- | ----------- | ------------------ |
 | LEVEL_NONE                        | 0           | 表示关闭通知功能。     |
-| LEVEL_MIN                         | 1           | 启用通知功能，但通知不启用。   |
-| LEVEL_LOW                         | 2           | 通知和通止功能都启用。     |
-| LEVEL_DEFAULT                     | 3           | 通知和通止功能都启用。     |
-| LEVEL_HIGH                        | 4           | 通知和通止功能都启用。     |
+| LEVEL_MIN                         | 1           | 指示通知功能已启用，但状态栏中不显示通知图标，且没有横幅或提示音。 |
+| LEVEL_LOW                         | 2           | 指示通知功能已启用，且状态栏中显示通知图标，但没有横幅或提示音。 |
+| LEVEL_DEFAULT                     | 3           | 指示通知功能已启用，状态栏中显示通知图标，没有横幅但有提示音。 |
+| LEVEL_HIGH                        | 4           | 指示通知功能已启用，状态栏中显示通知图标，有横幅和提示音。 |
 
 
 ## BundleOption
@@ -2900,7 +2900,7 @@ Notification.subscribe(subscriber, subscribeCallback);
 | title     | 是  | 是  | string                                          | 是   | 按钮标题。                  |
 | wantAgent | 是  | 是  | WantAgent                                       | 是   | 点击按钮时触发的WantAgent。 |
 | extras    | 是  | 是  | { [key: string]: any }                          | 否   | 按钮扩展信息。              |
-| userInput<sup>9+</sup> | 是  | 是  | [NotificationUserInput](#notificationuserinputsup8sup) | 否   | 用户输入对象实例。          |
+| userInput<sup>9+</sup> | 是  | 是  | [NotificationUserInput](#notificationuserinput8) | 否   | 用户输入对象实例。          |
 
 
 ## NotificationBasicContent
@@ -3025,12 +3025,12 @@ Notification.subscribe(subscriber, subscribeCallback);
 | hashCode              | 是  | 否  | string                                        | 否   | 通知唯一标识。               |
 | classification        | 是  | 是  | string                                        | 否   | 通知分类。                   |
 | groupName<sup>8+</sup>| 是  | 是  | string                                        | 否   | 组通知名称。                 |
-| template<sup>8+</sup> | 是  | 是  | [NotificationTemplate](#notificationtemplatesup8sup) | 否   | 通知模板。                   |
+| template<sup>8+</sup> | 是  | 是  | [NotificationTemplate](#notificationtemplate8) | 否   | 通知模板。                   |
 | isRemoveAllowed<sup>8+</sup> | 是  | 否  | boolean                                | 否   | 通知是否能被移除。                   |
 | source<sup>8+</sup>   | 是  | 否  | number                                        | 否   | 通知源。                   |
-| distributedOption<sup>8+</sup>   | 是  | 是  | [DistributedOptions](#distributedoptionssup8sup)                 | 否   | 分布式通知的选项。          |
+| distributedOption<sup>8+</sup>   | 是  | 是  | [DistributedOptions](#distributedoptions8)                 | 否   | 分布式通知的选项。          |
 | deviceId<sup>8+</sup> | 是  | 否  | string                                        | 否   | 通知源的deviceId。          |
-| notificationFlags<sup>8+</sup> | 是  | 否  | [NotificationFlags](#notificationflagssup8sup)                    | 否   | 获取NotificationFlags。          |
+| notificationFlags<sup>8+</sup> | 是  | 否  | [NotificationFlags](#notificationflags8)                    | 否   | 获取NotificationFlags。          |
 
 
 ## DistributedOptions<sup>8+</sup>
@@ -3096,8 +3096,6 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 
 ## NotificationTemplate<sup>8+</sup>
-
-模板信息
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 

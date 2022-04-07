@@ -34,6 +34,7 @@
     - [Burning Images](quick-start/quickstart-standard-burn.md)
     - [Running an Image](quick-start/quickstart-standard-running.md)
     - [FAQs](quick-start/quickstart-standard-faqs.md)
+  - [Obtaining Source Code](get-code/sourcecode-acquire.md)
 - Compatibility and Security
   - [Privacy Protection](security/security-privacy-protection.md)
   - [Security Guidelines](security/security-guidelines-overall.md)
@@ -219,8 +220,8 @@
           - [Magic Key](kernel/kernel-small-debug-shell-magickey.md)
           - [User-Space Exception Information](kernel/kernel-small-debug-shell-error.md)
         - [Trace](kernel/kernel-small-debug-trace.md)
-        - [perf](kernel/kernel-mini-memory-perf)
-        - [LMS](kernel/kernel-small-memory-lms)
+        - [perf](kernel/kernel-mini-memory-perf.md)
+        - [LMS](kernel/kernel-small-memory-lms.md)
         - Process Commissioning
           - [CPUP](kernel/kernel-small-debug-process-cpu.md)
         - Memory Debugging
@@ -384,15 +385,9 @@
       - [HiSysEvent Tool Usage](subsystems/subsys-dfx-hisysevent-tool.md)
 - Featured Topics
   - HPM Bundle
-    - [Development Specifications](bundles/bundles-standard-rules.md)
-    - Development Guidelines
-      - [Bundle Development](bundles/bundles-guide-overview.md)
-      - [Preparations](bundles/bundles-guide-prepare.md)
-      - [Bundle Development](bundles/bundles-guide-develop.md)
-    - HPM User Guide
-      - [Introduction](bundles/bundles-demo-hpmdescription.md)
-      - [Preparations](bundles/bundles-demo-environment.md)
-      - [Development Example](bundles/bundles-demo-devsample.md)
+    - [HPM Part Overview](bundles/hpm-part-about.md)
+    - [HPM Part Development](bundles/hpm-part-development.md)
+    - [HPM Part Reference](bundles/hpm-part-reference.md)
 - Device Development Examples
   - [Mini- and Small-System Devices](guide/device-lite.md)
     - [WLAN-connected Products](guide/device-wlan.md)

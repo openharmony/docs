@@ -86,10 +86,17 @@ C++接口实例。
     } // namespace OHOS
     
     // 调用查询接口获取HiSysEvent事件
-    auto queryCallBack = std::make_shared<HiSysEventToolQuery>();
-    struct QueryArg args(clientCmdArg.beginTime, clientCmdArg.endTime, clientCmdArg.maxEvents);
-    std::vector<QueryRule> mRules;
-    HiSysEventManager::QueryHiSysEvent(args, mRules, queryCallBack);
+    std::shared_ptr<HiSysEventToolQuery> queryCallBack = nullptr;
+    try {
+        queryCallBack = std::make_shared<HiSysEventToolQuery>();
+    } catch (...) {
+        // 智能指针获取失败处理
+    }
+    if (queryCallBack != nullptr) {
+        struct QueryArg args(clientCmdArg.beginTime, clientCmdArg.endTime, clientCmdArg.maxEvents);
+        std::vector<QueryRule> rules;
+        HiSysEventManager::QueryHiSysEvent(args, rules, queryCallBack);
+    }
     ```
 
 2.  编译设置：

@@ -10,6 +10,7 @@
 根进程是系统第一个用户态进程，进程ID为1，它是所有用户态进程的祖先。
 
 **图1** 进程树示意图
+
 ![zh-cn_image_0000001178108019](figures/zh-cn_image_0000001178108019.png)
 
 
@@ -47,19 +48,6 @@ LITE_USER_SEC_ENTRY VOID OsUserInit(VOID *args)
 ## 用户态程序运行
 
 用户态程序常见编译方式有如下两种：
-1. [利用框架编译用户态进程](../quick-start/quickstart-standard-running-rk3568-create.md)。
-
-2. 手动编译
-   实例：
-   ```
-   clang --target=arm-liteos --sysroot=prebuilts/lite/sysroot -o helloworld helloworld.c
-   ```
-
-   **clang**：参考[LLVM安装指导](../quick-start/quickstart-lite-package-environment.md#安装llvm-仅openharmony_v1-x分支-标签需要-)安装LLVM编译器。
-
-   **--target**：--target=arm-liteos，指定编译平台为arm-liteos。
-
-   **--sysroot**：--sysroot=${YOUR_ROOT_PATH}/prebuilts/lite/sysroot，指定头文件以及依赖标准库搜索路径为prebuilts下的指定路径。
 
 用户态程序启动有如下常见方式：
 

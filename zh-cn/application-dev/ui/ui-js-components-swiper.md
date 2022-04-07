@@ -28,11 +28,16 @@ Swiper为滑动容器，提供切换显示子组件的能力。具体用法请�
 ```
 /* xxx.css */
 .container{
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   background-color: #F1F3F5;
   align-items: center;
   justify-content: center;
   width: 100%;
+}
+swiper{
+  height: 30%;
 }
 .item{
   width: 100%;
@@ -40,6 +45,7 @@ Swiper为滑动容器，提供切换显示子组件的能力。具体用法请�
 }
 text{
   width: 100%;
+  height: 100%;
   text-align: center;
   font-size: 50px;
   color: white;
@@ -84,11 +90,15 @@ Swiper组件当不开启循环播放（loop="false"）时添加自动播放属�
 ```
 /* xxx.css */
 .container{
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   background-color: #F1F3F5;
   align-items: center;
   justify-content: center;
-  width: 100%;
+}
+swiper{
+  height: 30%;
 }
 .item{
   width: 100%;
@@ -96,6 +106,7 @@ Swiper组件当不开启循环播放（loop="false"）时添加自动播放属�
 }
 text{
   width: 100%;
+  height: 100%;
   text-align: center;
   font-size: 50px;
   color: white;
@@ -138,11 +149,12 @@ text{
 ```
 /* xxx.css */
 .container{
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   background-color: #F1F3F5;
   align-items: center;
   justify-content: center;
-  width: 100%;
 }
 swiper{
   width:  500px;
@@ -205,11 +217,15 @@ text{
 ```
 /* xxx.css */
 .container{
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   background-color: #F1F3F5;
   align-items: center;
   justify-content: center;
-  width: 100%;
+}
+swiper{
+  height: 30%;
 }
 .item{
   width: 100%;
@@ -217,6 +233,7 @@ text{
 }
 text{
   width: 100%;
+  height: 100%;
   text-align: center;
   font-size: 50px;
   color: white;

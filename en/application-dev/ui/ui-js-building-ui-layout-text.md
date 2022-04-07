@@ -1,6 +1,9 @@
-# Adding Title and Paragraph Text<a name="EN-US_TOPIC_0000001063749052"></a>
+# Adding Title and Paragraph Text
 
-The  **<text\>**  component is most commonly used to display text in title and paragraph areas. You can set attributes and styles for a  **<text\>**  component and add the text to be displayed between the  **<text\>**  and  **</text\>**  tags. For details about the attributes and styles, see  [text](../reference/arkui-js/js-components-basic-text.md). The following is an example of adding title and paragraph text on a page:
+
+The &lt;text&gt; component is most commonly used to display text in title and paragraph areas. You can set attributes and styles for a &lt;text&gt; component and add the text to be displayed between the &lt;text&gt; and &lt;/text&gt; tags. For details about the attributes and styles, see [text](../reference/arkui-js/js-components-basic-text.md). The following is an example of adding title and paragraph text on a page:
+
+
 
 ```
 <!-- xxx.hml -->
@@ -10,6 +13,8 @@ The  **<text\>**  component is most commonly used to display text in title and p
   <text class="paragraph-text">{{paragraphSecond}}</text>
 </div>
 ```
+
+
 
 ```
 /* xxx.css */
@@ -31,6 +36,8 @@ The  **<text\>**  component is most commonly used to display text in title and p
 }
 ```
 
+
+
 ```
 // xxx.js
 export default {
@@ -41,4 +48,3 @@ export default {
   },
 }
 ```
-

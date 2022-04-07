@@ -40,21 +40,6 @@ data_rdb.getRdbStore(STORE_CONFIG, 1, function (err, rdbStore) {
 })
 ```
 
-API9的示例请参考如下代码：
-
-```
-import Ability from '@ohos.application.Ability'
-import data_rdb from '@ohos.data.rdb'
-export default class MainAbility extends Ability {
-    const STORE_CONFIG = { name: "RdbTest.db"}
-    const SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)"
-    data_rdb.getRdbStore(this.context, STORE_CONFIG, 1, function (err, rdbStore) {
-        rdbStore.executeSql(SQL_CREATE_TABLE)
-        console.info('create table done.')
-    })
-}
-```
-
 ## data_rdb.getRdbStore
 
 getRdbStore(context: Context, config: StoreConfig, version: number): Promise&lt;RdbStore&gt;
@@ -96,28 +81,6 @@ promisegetRdb.then(async (rdbStore) => {
 })
 ```
 
-API9的示例请参考如下代码：
-
-```
-import Ability from '@ohos.application.Ability'
-import data_rdb from '@ohos.data.rdb'
-export default class MainAbility extends Ability {
-    const STORE_CONFIG = { name: "RdbTest.db" }
-    const SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)"
-    let promisegetRdb = data_rdb.getRdbStore(this.context, STORE_CONFIG, 1);
-    promisegetRdb.then(async (rdbStore) => {
-        let promiseExecSql = rdbStore.executeSql(SQL_CREATE_TABLE, null)
-        promiseExecSql.then(() => {
-            console.info('executeSql creat done.')
-        }).catch((err) => {
-            console.log("executeSql creat err.")
-        })
-    }).catch((err) => {
-        console.log("getRdbStore err.")
-    })
-}
-```
-
 ## data_rdb.deleteRdbStore
 
 deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void
@@ -140,18 +103,6 @@ deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&g
       console.info('delete store done.')
   })
   ```
-
-API9的示例请参考如下代码：
-
-```
-import Ability from '@ohos.application.Ability'
-import data_rdb from '@ohos.data.rdb'
-export default class MainAbility extends Ability {
-    data_rdb.deleteRdbStore(this.context, "RdbTest.db", function (err, rdbStore) {
-        console.info('delete store done.')
-    })
-}
-```
 
 ## data_rdb.deleteRdbStore
 
@@ -182,21 +133,6 @@ deleteRdbStore(context: Context, name: string): Promise&lt;void&gt;
       console.log("deleteRdbStore err.")
   })
   ```
-
-API9的示例请参考如下代码：
-
-```
-import Ability from '@ohos.application.Ability'
-import data_rdb from '@ohos.data.rdb'
-export default class MainAbility extends Ability {
-    let promisedeleteRdb = data_rdb.deleteRdbStore(this.context, "RdbTest.db")
-    promisedeleteRdb.then(()=>{
-        console.info('delete store done.')
-    }).catch((err) => {
-        console.log("deleteRdbStore err.")
-    })
-}
-```
 
 ## RdbPredicates
 

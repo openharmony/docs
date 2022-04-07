@@ -1,27 +1,32 @@
-# Defining Events<a name="EN-US_TOPIC_0000001063300566"></a>
+# Defining Events
+
 
 Events mainly include gesture events for touchscreen devices.
 
-## Gesture Events<a name="section21104561094"></a>
 
-A gesture represents a semantic action \(for example, tap, drag, or longpress\) that can trigger one or more events. A gesture lifecycle may consist of multiple events from the start to the end of the gesture. Supported events:
+## Gesture Events
 
-**Touch**
+A gesture represents a semantic action (for example, tap, drag, or longpress) that can trigger one or more events. A gesture lifecycle may consist of multiple events from the start to the end of the gesture. Supported events:
 
--   **touchstart**: Triggered when the touch starts
--   **touchmove**: Triggered when the touch moves
--   **touchcancel**: Triggered when the touch is interrupted, for example, by an incoming call notification or pop-up message
--   **touchend**: Triggered when the touch ends
+  Touch
+- touchstart: Triggered when the touch starts
 
-**Click**
+- touchmove: Triggered when the touch moves
 
-**click**: Triggered when a user taps the screen quickly.
+- touchcancel: Triggered when the touch is interrupted, for example, by an incoming call notification or pop-up message
 
-**Longpress**
+- touchend: Triggered when the touch ends
 
-**longpress**: Triggered when a user keeps tapping the screen at the same position for a while.
+Click
+
+click: Triggered when a user taps the screen quickly.
+
+Longpress
+
+longpress: Triggered when a user keeps tapping the screen at the same position for a while.
 
 The following is an example:
+
 
 ```
 <!-- xxx.hml -->
@@ -47,6 +52,7 @@ The following is an example:
 </div>
 ```
 
+
 ```
 /* xxx.css */
 .container {
@@ -69,6 +75,7 @@ The following is an example:
   color: #ffffff;
 }
 ```
+
 
 ```
 // xxx.js
@@ -101,4 +108,3 @@ export default {
   },
 }
 ```
-

@@ -9,13 +9,15 @@ Image是图片组件，用来渲染展示图片。具体用法请参考[Image AP
 ```
 <!-- index.hml -->
 <div class="container">
-  <image src="common/images/bg-tv.jpg"> </image>
+  <image style="height: 30%;" src="common/images/bg-tv.jpg"> </image>
 </div>
 ```
 
 ```
 /* xxx.css */
 .container {
+  width: 100%;
+  height: 100%; 
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -45,95 +47,20 @@ Image是图片组件，用来渲染展示图片。具体用法请参考[Image AP
   flex-direction: column;
   align-items: center;
   justify-content: center;
-background-color:#F1F3F5;
+  background-color:#F1F3F5;
 }
 image{
-  width: 80%;  height: 500px;
+  width: 80%;  
+  height: 500px;
   border: 5px solid saddlebrown;
   border-radius: 20px;
   object-fit: contain;
   match-text-direction:true;
-
 }
 ```
 
 
 ![zh-cn_image_0000001163532072](figures/zh-cn_image_0000001163532072.png)
-
-
-## 显示多张图
-
-定义for循环展示多张图片，同时定义option选择图片的展示方式，选择方式请参考object-fit类型说明。
-```
-<!-- index.hml -->
-<div class="page-container">
-  <list>
-    <list-item class="item-container" for="{{list}}">
-      <image class="testimage" src="{{url[$idx]}}" style="object-fit: {{fit}};"></image>
-      <div class="text-container">
-        <text style="font-size: 32px;color:#7b68ee;">image{{$idx}}</text>
-        <text style="font-size: 23px;color: orange;font-style: italic;">content</text>
-      </div>
-    </list-item>
-  </list>
-  <div style="width: 100%;height:100px;justify-content: center;margin-top: 100px;flex-shrink: 0;">
-    <select id="slt2" style="border: 3px solid orange;color: orange;font-size: 40px;width:300px;height:160px;" onchange="setfit">
-      <option for="{{fit_list}}" value="{{$item}}" style="font-size: 36px;">{{$item}}</option>
-    </select>
-  </div>
-</div>
-```
-
-```
-/* xxx.css */
-.page-container {
-  flex-direction:column;
-  background-color:#F1F3F5;
-}
-.text-container {
-  width: 300px;
-  flex-direction: column;
-  justify-content: center;
-}
-.item-container {
-  flex-direction: row;
-  align-items: center;
-  justify-content:center;
-  margin-top:200px;
-}
-.testimage {
-  width: 175px;
-  height: 220px;
-  border: 5px solid #add8e6;
-  padding: 5px 5px 5px 5px;
-  margin: 5px 5px 5px 5px;
-}
-.testicon {
-  width: 50px;
-  height: 50px;
-  margin-left: 150px;
-  border-radius: 25px;
-  background-color: orange;
-}
-```
-
-```
-/* index.js */
-export default {
-  data: {
-    url:['common/images/bg-tv.jpg','common/images/img2.jpg'],
-    list:[0,1],
-    fit:'cover',
-    fit_list:['cover','contain','fill','none','scale-down']
-  },
-  setfit(e) {
-    this.fit = e.newValue
-  }
-}
-```
-
-
-![zh-cn_image_0000001208787005](figures/zh-cn_image_0000001208787005.gif)
 
 
 ## 加载图片
@@ -235,7 +162,10 @@ export default {
   justify-content: space-between;
 }
 .testimage {
-  width: 100%;  height: 400px;   object-fit: scale-down;  border-radius: 20px;}
+  width: 100%;  height: 400px;   
+  object-fit: scale-down;  
+  border-radius: 20px;
+}
 ```
 
 ```

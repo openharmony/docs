@@ -4,11 +4,9 @@
 
 图片开发的主要工作是将获取到的图片进行解码，将解码后的pixelmap编码成支持的格式，本文将对图片的解码、编码等场景开发进行介绍说明。
 
-## 接口说明
-
-详细API含义请参考[js-apis-image.md](../reference/apis/js-apis-image.md)
-
 ## 开发步骤
+
+详细API含义请参考：[图片处理API文档](../reference/apis/js-apis-image.md)
 
 ### 全流程场景
 

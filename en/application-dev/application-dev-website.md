@@ -1,20 +1,11 @@
+# Application Development
+
 - [Application Development Overview](application-dev-guide.md)
 - Quick Start
-  - Getting Started with Application Development
-    - DevEco Studio (OpenHarmony) User Guide
-      - [Overview](quick-start/deveco-studio-overview.md)
-      - [Version Change History](quick-start/deveco-studio-release-notes.md)
-      - [Configuring the OpenHarmony SDK](quick-start/configuring-openharmony-sdk.md)
-      - Creating an OpenHarmony Project
-        - [Using the Project Wizard to Create a Project](quick-start/use-wizard-to-create-project.md)
-        - [Importing a Sample to Create a Project](quick-start/import-sample-to-create-project.md)
-      - [Configuring the OpenHarmony App Signature](quick-start/configuring-openharmony-app-signature.md)
-      - [Installing and Running Your OpenHarmony App](quick-start/installing-openharmony-app.md)
   - [Directory Structure](quick-start/package-structure.md)
   - [Resource File Categories](quick-start/basic-resource-file-categories.md)
 - Development
-  - [Ability Development](ability/Readme-EN.md)
-    - [Ability Framework Overview](ability/ability-brief.md)
+  - Ability Development
     - FA Model
       - [FA Model Overview](ability/fa-brief.md)
       - [Page Ability Development](ability/fa-pageability.md)
@@ -24,7 +15,7 @@
 
     - Other
       - [Ability Assistant Usage](ability/ability-assistant-guidelines.md)
-  - [UI]](ui/Readme-EN.md)
+  - UI
     - JavaScript-based Web-Like Development Paradigm
       - [Overview](ui/ui-js-overview.md)
       - Framework
@@ -58,16 +49,17 @@
           - [Stepper](ui/ui-js-components-stepper.md)
           - [Tabs](ui/ui-js-component-tabs.md)
         - Basic Components
-        - [Text](ui/ui-js-components-text.md)
-        - [Input](ui/ui-js-components-input.md)
-        - [Button](ui/ui-js-components-button.md)
-        - [Picker](ui/ui-js-components-picker.md)
-        - [Image](ui/ui-js-components-images.md)
+          - [Text](ui/ui-js-components-text.md)
+          - [Input](ui/ui-js-components-input.md)
+          - [Button](ui/ui-js-components-button.md)
+          - [Picker](ui/ui-js-components-picker.md)
+          - [Image](ui/ui-js-components-images.md)
        - Animation Development Guidelines
         - CSS Animation
           - [Defining Attribute Style Animations](ui/ui-js-animate-attribute-style.md)
           - [Defining Animations with the transform Attribute](ui/ui-js-animate-transform.md)
           - [Defining Animations with the background-position Attribute](ui/ui-js-animate-background-position-style.md)
+          - [Defining Animations for SVG Components](ui/ui-js-animate-svg.md)
         - JS Animation
           - [Component Animation](ui/ui-js-animate-component.md)
           - Interpolator Animation
@@ -82,6 +74,8 @@
           - [Rules for Accessing Application Code Files](ui/ts-framework-file-access-rules.md)
         - ["js" Tag](ui/ts-framework-js-tag.md)
         - Resource Access
+          - [Accessing Application Resources](ui/ts-application-resource-access.md)
+          - [Accessing System Resources](ui/ts-system-resource-access.md)
           - [Media Resource Types](ui/ts-media-resource-type.md)
         - [Pixel Units](ui/ts-pixel-units.md)
         - [Types](ui/ts-types.md)
@@ -153,12 +147,11 @@
       - Audio
         - [Audio Overview](media/audio-overview.md)
         - [Audio Playback Development](media/audio-playback.md)
-        - [Audio Playback Development Using AudioRenderer](media/audio-renderer.md)
+        - [Audio Rendering Development](media/audio-renderer.md)
         - [Audio Recording Development](media/audio-recorder.md)
-        - [Audio Recorder Development Using AudioCapturer](media/audio-capturer)
+        - [Audio Capture Development](media/audio-capturer.md)
       - Video
         - [Video Playback Development](media/video-playback.md)
-        - [Video Recording Development](media/video-recorder.md)
       - Image
         - [Image Development](media/image.md)
     - Security
@@ -199,6 +192,9 @@
       - Sensor
         - [Sensor Overview](device/sensor-overview.md)
         - [Sensor Development](device/sensor-guidelines.md)
+      - Vibrator
+        - [Vibrator Overview](device/vibrator-overview.md)
+        - [Vibrator Development](device/vibrator-guidelines.md)
     - Device Usage Statistics
       - [Device Usage Statistics Overview](device-usage-statistics/device-usage-statistics-overview.md)
       - [Device Usage Statistics Development](device-usage-statistics/device-usage-statistics-dev-guide.md)
@@ -212,14 +208,12 @@
       - Distributed Call Chain Tracing
         - [Overview of Distributed Call Chain Tracing](dfx/hitracechain-overview.md)
         - [Development of Distributed Call Chain Tracing](dfx/hitracechain-guidelines.md)
+    - Internationalization
+      - [Overview](internationalization/international-overview.md)
+      - [Internationalization Development (intl)](internationalization/intl-guidelines.md)
+      - [Internationalization Development (i18n)](internationalization/i18n-guidelines.md)
 - Tools
-  - DevEco Studio (OpenHarmony) User Guide
-    - [Overview](quick-start/deveco-studio-overview.md)
-    - [Version Change History](quick-start/deveco-studio-release-notes.md)
-    - [Configuring the OpenHarmony SDK](quick-start/configuring-openharmony-sdk.md)
-    - [Creating an OpenHarmony Project](quick-start/create-openharmony-project.md)
-    - [Configuring the OpenHarmony App Signature](quick-start/configuring-openharmony-app-signature.md)
-    - [Installing and Running Your OpenHarmony App](quick-start/installing-openharmony-app.md)
+  - [DevEco Studio (OpenHarmony) User Guide](quick-start/deveco-studio-user-guide-for-openharmony.md)
 - Hands-On Tutorials
   - [Samples](https://gitee.com/openharmony/app_samples/blob/master/README.md)
 - API References
@@ -322,8 +316,7 @@
       - [Event Parameter](reference/arkui-js/js-components-custom-event-parameter.md)
       - [slot](reference/arkui-js/js-components-custom-slot.md)
       - [Lifecycle Definition](reference/arkui-js/js-components-custom-lifecycle.md)
-    - Appendix
-      - [Type Attributes](reference/arkui-js/js-appendix-types.md)
+    - [Type Attributes](reference/arkui-js/js-appendix-types.md)
   - Compent Reference (TypeScript-based Declarative Development Paradigm)
     - Components
       - Universal Components
@@ -335,7 +328,7 @@
           - [Key Event](reference/arkui-ts/ts-universal-events-key.md)
           - [Focus Event](reference/arkui-ts/ts-universal-focus-event.md)
           - [Mouse Event](reference/arkui-ts/ts-universal-mouse-key.md)
-          - [Component Area Change Event](reference/arkui-ts/ts-universal-events-component-area-change.md)
+          - [Component Area Change Event](reference/arkui-ts/ts-universal-component-area-change-event.md)
         - Universal Attributes
           - [Size](reference/arkui-ts/ts-universal-attributes-size.md)
           - [Location](reference/arkui-ts/ts-universal-attributes-location.md)
@@ -380,24 +373,36 @@
         - [DataPanel](reference/arkui-ts/ts-basic-components-datapanel.md)
         - [DatePicker](reference/arkui-ts/ts-basic-components-datepicker.md)
         - [Divider](reference/arkui-ts/ts-basic-components-divider.md)
+        - [Gauge](reference/arkui-ts/ts-basic-components-gauge.md)
         - [Image](reference/arkui-ts/ts-basic-components-image.md)
         - [ImageAnimator](reference/arkui-ts/ts-basic-components-imageanimator.md)
         - [LoadingProgress](reference/arkui-ts/ts-basic-components-loadingprogress.md)
         - [Marquee](reference/arkui-ts/ts-basic-components-marquee.md)
+        - [Navigation](reference/arkui-ts/ts-basic-components-navigation.md)
+        - [PatternLock](reference/arkui-ts/ts-basic-components-patternlock.md)
+        - [PluginComponent](reference/arkui-ts/ts-basic-components-plugincomponent.md)
         - [Progress](reference/arkui-ts/ts-basic-components-progress.md)
         - [QRCode](reference/arkui-ts/ts-basic-components-qrcode.md)
         - [Radio](reference/arkui-ts/ts-basic-components-radio.md)
         - [Rating](reference/arkui-ts/ts-basic-components-rating.md)
+        - [RichText](reference/arkui-ts/ts-basic-components-richtext.md)
+        - [ScrollBar](reference/arkui-ts/ts-basic-components-scrollbar.md)
+        - [Search](reference/arkui-ts/ts-basic-components-search.md)
         - [Select](reference/arkui-ts/ts-basic-components-select.md)
         - [Slider](reference/arkui-ts/ts-basic-components-slider.md)
         - [Span](reference/arkui-ts/ts-basic-components-span.md)
+        - [Stepper](reference/arkui-ts/ts-basic-components-stepper.md)
+        - [StepperItem](reference/arkui-ts/ts-basic-components-stepperitem.md)
         - [Text](reference/arkui-ts/ts-basic-components-text.md)
         - [TextArea](reference/arkui-ts/ts-basic-components-textarea.md)
-        - [TextInput](reference/arkui-ts/ts-basic-components-textinput.md)
-        - [TextTimer](reference/arkui-ts/ts-basic-components-texttimer.md)
-        - [Toggle](reference/arkui-ts/ts-basic-components-toggle.md)
         - [TextClock](reference/arkui-ts/ts-basic-components-textclock.md)
+        - [TextInput](reference/arkui-ts/ts-basic-components-textinput.md)
+        - [TextPicker](reference/arkui-ts/ts-basic-components-textpicker.md)
+        - [TextTimer](reference/arkui-ts/ts-basic-components-texttimer.md)
+        - [TimePicker](reference/arkui-ts/ts-basic-components-timepicker.md)
+        - [Toggle](reference/arkui-ts/ts-basic-components-toggle.md)
         - [Web](reference/arkui-ts/ts-basic-components-web.md)
+        - [Xcomponent](reference/arkui-ts/ts-basic-components-xcomponent.md)
       - Container Components
         - [AlphabetIndexer](reference/arkui-ts/ts-container-alphabet-indexer.md)
         - [Badge](reference/arkui-ts/ts-container-badge.md)
@@ -410,19 +415,17 @@
         - [GridItem](reference/arkui-ts/ts-container-griditem.md)
         - [List](reference/arkui-ts/ts-container-list.md)
         - [ListItem](reference/arkui-ts/ts-container-listitem.md)
-        - [Navigator](reference/arkui-ts/ts-container-navigator.md)
-        - [Navigation](reference/arkui-ts/ts-container-navigation.md)
+        - [Navigator](reference/arkui-ts/ts-container-navigator.md)     
         - [Panel](reference/arkui-ts/ts-container-panel.md)
+        - [Refresh](reference/arkui-ts/ts-container-refresh.md)
         - [Row](reference/arkui-ts/ts-container-row.md)
         - [RowSplit](reference/arkui-ts/ts-container-rowsplit.md)
         - [Scroll](reference/arkui-ts/ts-container-scroll.md)
-        - [ScrollBar](reference/arkui-ts/ts-container-scrollbar.md)
         - [SideBarContainer](reference/arkui-ts/ts-container-sidebarcontainer.md)
         - [Stack](reference/arkui-ts/ts-container-stack.md)
         - [Swiper](reference/arkui-ts/ts-container-swiper.md)
         - [Tabs](reference/arkui-ts/ts-container-tabs.md)
         - [TabContent](reference/arkui-ts/ts-container-tabcontent.md)
-        - [Refresh](reference/arkui-ts/ts-container-refresh.md)
       - Media Components
         - [Video](reference/arkui-ts/ts-media-components-video.md)
       - Drawing Components
@@ -454,7 +457,6 @@
       - [Matrix Transformation](reference/arkui-ts/ts-matrix-transformation.md)
       - [Interpolation Calculation](reference/arkui-ts/ts-interpolation-calculation.md)
     - Global UI Methods
-      - [Image Cache](reference/arkui-ts/ts-methods-image-cache.md)
       - Dialog Box
         - [Alert Dialog Box](reference/arkui-ts/ts-methods-alert-dialog-box.md)
         - [Action Sheet](reference/arkui-ts/ts-methods-action-sheet.md)
@@ -462,122 +464,201 @@
         - [Date Picker Dialog Box](reference/arkui-ts/ts-methods-datepicker-dialog.md)
         - [Text Picker Dialog Box](reference/arkui-ts/ts-methods-textpicker-dialog.md)
       - [Menu](reference/arkui-ts/ts-methods-menu.md)
-    - Appendix
-      - [Built-in Enums](reference/arkui-ts/ts-appendix-enums.md)
+    - [Built-in Enums](reference/arkui-ts/ts-appendix-enums.md)
   - APIs
     - Ability Framework
-      - [FeatureAbility Module](reference/apis/js-apis-featureAbility.md)
-      - [ParticleAbility Module](reference/apis/js-apis-particleAbility.md)
-      - [DataAbilityHelper Module](reference/apis/js-apis-dataAbilityHelper.md)
-      - [DataUriUtils Module](reference/apis/js-apis-DataUriUtils.md)
-      - [Bundle Module](reference/apis/js-apis-Bundle.md)
-      - [Context Module](reference/apis/js-apis-Context.md)
-    - Event Notification
-      - [CommonEvent Module](reference/apis/js-apis-commonEvent.md)
-      - [Notification Module](reference/apis/js-apis-notification.md)
-      - [Reminder Agent](reference/apis/js-apis-reminderAgent.md)
-    - Resource Management
-      - [Resource Manager](reference/apis/js-apis-resource-manager.md)
-      - [Internationalization (intl)](reference/apis/js-apis-intl.md)
-      - [Internationalization (i18n)](reference/apis/js-apis-i18n.md)
+
+      - [@ohos.ability.dataUriUtils](reference/apis/js-apis-DataUriUtils.md)
+      - [@ohos.application.Ability](reference/apis/js-apis-application-ability.md)
+      - [@ohos.application.AbilityConstant](reference/apis/js-apis-application-abilityConstant.md)
+      - [@ohos.application.AbilityStage ](reference/apis/js-apis-application-abilitystage.md)
+      - [@ohos.application.appManager](reference/apis/js-apis-appmanager.md)
+      - [@ohos.application.Configuration](reference/apis/js-apis-configuration.md)
+      - [@ohos.application.ConfigurationConstant](reference/apis/js-apis-configurationconstant.md)
+      - [@ohos.ability.featureAbility](reference/apis/js-apis-featureAbility.md)
+      - [@ohos.application.formBindingData](reference/apis/js-apis-formbindingdata.md)
+      - [@ohos.application.FormExtension](reference/apis/js-apis-formextension.md)
+      - [@ohos.application.missionManager](reference/apis/js-apis-missionManager.md)
+      - [@ohos.application.formProvider](reference/apis/js-apis-formprovider.md)
+      - [@ohos.ability.particleAbility](reference/apis/js-apis-particleAbility.md)
+      - [@ohos.application.ServiceExtensionAbility](reference/apis/js-apis-service-extension-ability.md)
+      - [@ohos.application.uriPermissionManager](reference/apis/js-apis-uripermissionmanager.md)
+      - [@ohos.wantAgent](reference/apis/js-apis-wantAgent.md)
+      - [dataAbilityHelper](reference/apis/js-apis-dataAbilityHelper.md)
+      - [context](reference/apis/js-apis-Context.md)
+      - [AbilityContext](reference/apis/js-apis-ability-context.md)
+      - [AbilityRunningInfo](reference/apis/js-apis-abilityrunninginfo.md)
+      - [AbilityStageContext](reference/apis/js-apis-abilitystagecontext.md)
+      - [Context](reference/apis/js-apis-application-context.md)
+      - [ExtensionContext](reference/apis/js-apis-extension-context.md)
+      - [ExtensionRunningInfo](reference/apis/js-apis-extensionrunninginfo.md)
+      - [FormExtensionContext](reference/apis/js-apis-formextensioncontext.md)
+      - [MissionSnapshot](reference/apis/js-apis-application-MissionSnapshot.md)
+      - [PermissionRequestResult](reference/apis/js-apis-permissionrequestresult.md)
+      - [ProcessRunningInfo](reference/apis/js-apis-processrunninginfo.md)
+      - [ServiceExtensionContext](reference/apis/js-apis-service-extension-context.md) 
+
+    - Common Event and Notification
+
+      - [@ohos.commonEvent](reference/apis/js-apis-commonEvent.md)
+      - [@ohos.events.emitter](reference/apis/js-apis-emitter.md)
+      - [@ohos.notification](reference/apis/js-apis-notification.md)
+      - [@ohos.reminderAgent](reference/apis/js-apis-reminderAgent.md)
+      - [EventHub](reference/apis/js-apis-eventhub.md)
+
+    - Bundle Management
+
+      - [@ohos.bundle](reference/apis/js-apis-Bundle.md)
+      - [@ohos.bundleState ](reference/apis/js-apis-deviceUsageStatistics.md)
+      - [@ohos.zlib](reference/apis/js-apis-zlib.md)
+
+    - UI Page
+
+      - [@ohos.animator](reference/apis/js-apis-animator.md)
+
+    - Graphics
+
+      - [@ohos.display ](reference/apis/js-apis-display.md)
+      - [@ohos.screenshot](reference/apis/js-apis-screenshot.md)
+      - [@ohos.window](reference/apis/js-apis-window.md)
+      - [webgl](reference/apis/js-apis-webgl.md)
+      - [webgl2](reference/apis/js-apis-webgl2.md)
+
     - Media
-      - [Audio Management](reference/apis/js-apis-audio.md)
-      - [Media](reference/apis/js-apis-media.md)
-      - [Image Processing](reference/apis/js-apis-image.md)
-      - [Camera](reference/apis/js-apis-camera.md)
-    - Security
-      - [User Authentication](reference/apis/js-apis-useriam-userauth.md)
-      - [Access Control](reference/apis/js-apis-abilityAccessCtrl.md)
-    - Data Management
-      - [Lightweight Storage](reference/apis/js-apis-data-preferences.md)
-      - [Distributed Data Management](reference/apis/js-apis-distributed-data.md)
-      - [Relational Database](reference/apis/js-apis-data-rdb.md)
-      - [Result Set](reference/apis/js-apis-data-resultset.md)
-      - [DataAbilityPredicates](reference/apis/js-apis-data-ability.md)
-      - [Settings](reference/apis/js-apis-settings.md)
-    - File Management
-      - [File Management](reference/apis/js-apis-fileio.md)
-      - [Statfs](reference/apis/js-apis-statfs.md)
-      - [Environment](reference/apis/js-apis-environment.md)
-      - [Public File Access and Management](reference/apis/js-apis-filemanager.md)
-      - [App Storage Statistics](reference/apis/js-apis-storage-statistics.md)
-      - [Volume Management](reference/apis/js-apis-volumemanager.md)
-    - Account Management
-      - [OS Account Management](reference/apis/js-apis-osAccount.md)
-      - [Distributed Account Management](reference/apis/js-apis-distributed-account.md)
-      - [App Account Management](reference/apis/js-apis-appAccount.md)
-    - Telephony Service
-      - [Call](reference/apis/js-apis-call.md)
-      - [SMS](reference/apis/js-apis-sms.md)
-      - [SIM Management](reference/apis/js-apis-sim.md)
-      - [Radio](reference/apis/js-apis-radio.md)
-      - [Observer](reference/apis/js-apis-observer.md)
-      - [Cellular Data](reference/apis/js-apis-telephony-data.md)
-    - Network Management
-      - [Network Connection Management](js-apis-net-connection.md)
-      - [Socket Connection](js-apis-socket.md)
-      - [WebSocket Connection](js-apis-webSocket.md)
-      - [Data Request](js-apis-http.md)
-    - Network and Connectivity
-      - [WLAN](reference/apis/js-apis-wifi.md)
-      - [Bluetooth](reference/apis/js-apis-bluetooth.md)
-      - [RPC](reference/apis/js-apis-rpc.md)
-    - Device Management
-      - [Sensor](reference/apis/js-apis-sensor.md)
-      - [Vibrator](reference/apis/js-apis-vibrator.md)
-      - [Brightness](reference/apis/js-apis-brightness.md)
-      - [Battery Info](reference/apis/js-apis-battery-info.md)
-      - [Power Management](reference/apis/js-apis-power.md)
-      - [Thermal Management](reference/apis/js-apis-thermal.md)
-      - [Running Lock](reference/apis/js-apis-runninglock.md)
-      - [Device Info](reference/apis/js-apis-device-info.md)
-      - [systemParameter](reference/apis/js-apis-system-parameter.md)
-      - [Device Management](reference/apis/js-apis-device-manager.md)
-      - [Window](reference/apis/js-apis-window.md)
-      - [Display](reference/apis/js-apis-display.md)
-      - [Update](reference/apis/js-apis-update.md)
-      - [USB](reference/apis/js-apis-usb.md)
-      - [Location](reference/apis/js-apis-geolocation.md)
-    - Basic Features
-      - [Application Context](reference/apis/js-apis-basic-features-app-context.md)
-      - [Console Logs](reference/apis/js-apis-basic-features-logs.md)
-      - [Page Routing](reference/apis/js-apis-basic-features-routes.md)
-      - [Timer](reference/apis/js-apis-basic-features-timer.md)
-      - [Setting the System Time](reference/apis/js-apis-system-time.md)
-      - [Animation](reference/apis/js-apis-basic-features-animator.md)
-      - [WebGL](reference/apis/js-apis-webgl.md)
-      - [WebGL2](reference/apis/js-apis-webgl2.md)
-      - [Screenshot](reference/apis/js-apis-screenshot.md)
-      - [Accessibility](reference/apis/js-apis-accessibility.md)
-    - DFX
-      - [HiAppEvent](reference/apis/js-apis-hiappevent.md)
-      - [Performance Tracing](reference/apis/js-apis-hitracemeter.md)
-      - [Fault Logger](reference/apis/js-apis-faultLogger.md)
-      - [Distributed Call Chain Tracing](reference/apis/js-apis-hitracechain.md)
-      - [HiLog](reference/apis/js-apis-hilog.md)
-      - [HiChecker](reference/apis/js-apis-hichecker.md)
-      - [HiDebug](reference/apis/js-apis-hidebug.md)
-    - Language Base Class Library
-      - [Obtaining Process Information](reference/apis/js-apis-process.md)
-      - [URL String Parsing](reference/apis/js-apis-url.md)
-      - [URI String Parsing](reference/apis/js-apis-uri.md)
-      - [Util](reference/apis/js-apis-util.md)
-      - [XML Parsing and Generation](reference/apis/js-apis-xml.md)
-      - [XML-to-JavaScript Conversion](reference/apis/js-apis-convertxml.md)
-      - [Worker Startup](reference/apis/js-apis-worker.md)
-      - [Linear Container ArrayList](reference/apis/js-apis-arraylist.md)
-      - [Linear Container Deque](reference/apis/js-apis-deque.md)
-      - [Linear Container List](reference/apis/js-apis-list.md)
-      - [Linear Container LinkedList](reference/apis/js-apis-linkedlist.md)
-      - [Linear Container Queue](reference/apis/js-apis-queue.md)
-      - [Linear Container Stack](reference/apis/js-apis-stack.md)
-      - [Linear Container Vector](reference/apis/js-apis-vector.md)
-      - [Nonlinear Container HashSet](reference/apis/js-apis-hashset.md)
-      - [Nonlinear Container HashMap](reference/apis/js-apis-hashmap.md)
-      - [Nonlinear Container PlainArray](reference/apis/js-apis-plainarray.md)
-      - [Nonlinear Container TreeMap](reference/apis/js-apis-treemap.md)
-      - [Nonlinear Container TreeSet](reference/apis/js-apis-treeset.md)
-      - [Nonlinear Container LightWeightMap](reference/apis/js-apis-lightweightmap.md)
-      - [Nonlinear Container LightWeightSet](reference/apis/js-apis-lightweightset.md)
+
+      - [@ohos.multimedia.audio](reference/apis/js-apis-audio.md)
+      - [@ohos.multimedia.image](reference/apis/js-apis-image.md)
+      - [@ohos.multimedia.media](reference/apis/js-apis-media.md)
+      - [@ohos.multimedia.medialibrary](reference/apis/js-apis-medialibrary.md)
+
+    - Resource Management
+      - [@ohos.i18n](reference/apis/js-apis-i18n.md)
+      - [@ohos.intl](reference/apis/js-apis-intl.md)
+      - [@ohos.resourceManager](reference/apis/js-apis-resource-manager.md)
+
+    - Resource Scheduling 
+
+      - [@ohos.backgroundTaskManager](reference/apis/js-apis-backgroundTaskManager.md)
+
     - Custom Management
-      - [Configuration Policy](reference/apis/js-apis-config-policy.md)
+
+      - [@ohos.configPolicy](reference/apis/js-apis-config-policy.md)
+
+    - Security
+
+      - [@ohos.abilityAccessCtrl](reference/apis/js-apis-abilityAccessCtrl.md)
+      - [@ohos.userIAM.userAuth ](reference/apis/js-apis-useriam-userauth.md)
+
+    - Data Management
+
+      - [@ohos.data.dataAbility ](reference/apis/js-apis-data-ability.md)
+      - [@ohos.data.distributedData](reference/apis/js-apis-distributed-data.md)
+      - [@ohos.data.distributedDataObject](reference/apis/js-apis-data-distributedobject.md)
+      - [@ohos.data.rdb](reference/apis/js-apis-data-rdb.md)
+      - [@ohos.settings](reference/apis/js-apis-settings.md)
+      - [resultSet](reference/apis/js-apis-data-resultset.md)
+
+    - File Management
+
+      - [@ohos.environment](reference/apis/js-apis-environment.md)
+      - [@ohos.fileio](reference/apis/js-apis-fileio.md)
+      - [@ohos.fileManager](reference/apis/js-apis-filemanager.md)
+      - [@ohos.statfs](reference/apis/js-apis-statfs.md)
+      - [@ohos.storageStatistics](reference/apis/js-apis-storage-statistics.md)
+
+    - Telephony Service
+
+      - [@ohos.contact](reference/apis/js-apis-contact.md)
+      - [@ohos.telephony.call](reference/apis/js-apis-call.md)
+      - [@ohos.telephony.observer](reference/apis/js-apis-observer.md)
+      - [@ohos.telephony.radio](reference/apis/js-apis-radio.md)
+      - [@ohos.telephony.sim](reference/apis/js-apis-sim.md)
+      - [@ohos.telephony.sms](reference/apis/js-apis-sms.md)
+      - [@ohos.telephony.data](reference/apis/js-apis-telephony-data.md)
+
+    - Network Management
+      - [@ohos.net.connection](reference/apis/js-apis-net-connection.md)
+      - [@ohos.net.http](reference/apis/js-apis-http.md)
+      - [@ohos.request](reference/apis/js-apis-request.md)
+      - [@ohos.net.socket](reference/apis/js-apis-socket.md)
+      - [@ohos.net.webSocket](reference/apis/js-apis-webSocket.md) 
+
+    - Connectivity
+
+      - [@ohos.bluetooth](reference/apis/js-apis-bluetooth.md)
+      - [@ohos.rpc](reference/apis/js-apis-rpc.md)
+      - [@ohos.wifi](reference/apis/js-apis-wifi.md)
+      - [@ohos.wifiext](reference/apis/js-apis-wifiext.md)
+
+    - Basic Features
+
+      - [@ohos.accessibility](reference/apis/js-apis-accessibility.md)
+      - [@ohos.faultLogger](reference/apis/js-apis-faultLogger.md)
+      - [@ohos.hiAppEvent](reference/apis/js-apis-hiappevent.md)
+      - [@ohos.hichecker](reference/apis/js-apis-hichecker.md)
+      - [@ohos.hidebug](reference/apis/js-apis-hidebug.md)
+      - [@ohos.hilog](reference/apis/js-apis-hilog.md)
+      - [@ohos.hiTraceChain](reference/apis/js-apis-hitracechain.md)
+      - [@ohos.hiTraceMeter](reference/apis/js-apis-hitracemeter.md)
+      - [@ohos.pasteboard](reference/apis/js-apis-pasteboard.md)
+      - [@ohos.screenLock](reference/apis/js-apis-screen-lock.md)
+      - [@ohos.systemTime](reference/apis/js-apis-system-time.md)
+      - [@ohos.wallpaper](reference/apis/js-apis-wallpaper.md)
+      - [Timer](reference/apis/js-apis-timer.md)
+
+    - Device Management
+
+      - [@ohos.batteryInfo ](reference/apis/js-apis-battery-info.md)
+      - [@ohos.brightness](reference/apis/js-apis-brightness.md)
+      - [@ohos.deviceInfo](reference/apis/js-apis-device-info.md)
+      - [@ohos.distributedHardware.deviceManager](reference/apis/js-apis-device-manager.md)
+      - [@ohos.geolocation](reference/apis/js-apis-geolocation.md)
+      - [@ohos.multimodalInput.inputConsumer](reference/apis/js-apis-inputconsumer.md)
+      - [@ohos.multimodalInput.inputDevice](reference/apis/js-apis-inputdevice.md)
+      - [@ohos.multimodalInput.inputMonitor](reference/apis/js-apis-inputmonitor.md)
+      - [@ohos.power](reference/apis/js-apis-power.md)
+      - [@ohos.runningLock](reference/apis/js-apis-runninglock.md)
+      - [@ohos.sensor](reference/apis/js-apis-sensor.md)
+      - [@ohos.systemParameter](reference/apis/js-apis-system-parameter.md)
+      - [@ohos.thermal](reference/apis/js-apis-thermal.md)
+      - [@ohos.update](reference/apis/js-apis-update.md)
+      - [@ohos.usb](reference/apis/js-apis-usb.md)
+      - [@ohos.vibrator](reference/apis/js-apis-vibrator.md)
+
+    - Account Management
+
+      - [@ohos.account.appAccount](reference/apis/js-apis-appAccount.md)
+      - [@ohos.account.distributedAccount](reference/apis/js-apis-distributed-account.md)
+      - [@ohos.account.osAccount](reference/apis/js-apis-osAccount.md)
+
+    - Language Base Class Library
+
+      - [@ohos.convertxml](reference/apis/js-apis-convertxml.md)
+      - [@ohos.process](reference/apis/js-apis-process.md)
+      - [@ohos.uri](reference/apis/js-apis-uri.md)
+      - [@ohos.url](reference/apis/js-apis-url.md)
+      - [@ohos.util](reference/apis/js-apis-util.md)
+      - [@ohos.util.ArrayList](reference/apis/js-apis-arraylist.md)
+      - [@ohos.util.Deque](reference/apis/js-apis-deque.md)
+      - [@ohos.util.HashMap](reference/apis/js-apis-hashmap.md)
+      - [@ohos.util.HashSet](reference/apis/js-apis-hashset.md)
+      - [@ohos.util.LightWeightMap](reference/apis/js-apis-lightweightmap.md)
+      - [@ohos.util.LightWeightSet](reference/apis/js-apis-lightweightset.md)
+      - [@ohos.util.LinkedList](reference/apis/js-apis-linkedlist.md)
+      - [@ohos.util.List](reference/apis/js-apis-list.md)
+      - [@ohos.util.PlainArray](reference/apis/js-apis-plainarray.md)
+      - [@ohos.util.Queue](reference/apis/js-apis-queue.md)
+      - [@ohos.util.Stack](reference/apis/js-apis-stack.md)
+      - [@ohos.util.TreeMap](reference/apis/js-apis-treemap.md)
+      - [@ohos.util.TreeSet](reference/apis/js-apis-treeset.md)
+      - [@ohos.util.Vector](reference/apis/js-apis-vector.md)
+      - [@ohos.worker](reference/apis/js-apis-worker.md)
+      - [@ohos.xml](reference/apis/js-apis-xml.md)
+
+    - APIs No Longer Maintained
+
+      - [@ohos.bytrace](reference/apis/js-apis-bytrace.md)
+      - [@ohos.data.storage](reference/apis/js-apis-data-storage.md)
+      - [@system.sensor](reference/apis/js-apis-system-sensor.md)
+      - [@system.vibrator](reference/apis/js-apis-system-vibrate.md)
+      - [console](reference/apis/js-apis-logs.md)

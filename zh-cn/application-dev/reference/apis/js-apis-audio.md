@@ -435,17 +435,6 @@ audio.createAudioRenderer(audioCapturerOptions).then((data) => {
 | INTERRUPT_TYPE_BEGIN | 1      | 音频播放中断事件开始。 |
 | INTERRUPT_TYPE_END   | 2      | 音频播放中断事件结束。 |
 
-## InterruptForceType<sup>9+</sup>
-
-枚举，强制打断类型。
-
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Renderer
-
-| 名称            | 默认值 | 描述                                 |
-| --------------- | ------ | ------------------------------------ |
-| INTERRUPT_FORCE | 0      | 由系统进行操作，强制打断音频播放。   |
-| INTERRUPT_SHARE | 1      | 由应用进行操作，可以选择打断或忽略。 |
-
 ## InterruptHint
 
 枚举，中断提示。
@@ -509,18 +498,6 @@ audio.createAudioRenderer(audioCapturerOptions).then((data) => {
 | ------------ | ---------------------------------------- | ---- | ---------------- |
 | streamInfo   | [AudioStreamInfo](#audiostreaminfo8)     | 是   | 表示音频流信息。 |
 | rendererInfo | [AudioRendererInfo](#audiorendererinfo8) | 是   | 表示渲染器信息。 |
-
-## InterruptEvent<sup>9+</sup>
-
-播放中断时，应用接收的中断事件。
-
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Renderer
-
-| 名称      | 类型                                       | 必填 | 说明                                 |
-| --------- | ------------------------------------------ | ---- | ------------------------------------ |
-| eventType | [InterruptType](#interrupttype)            | 是   | 中断事件类型，开始或是结束。         |
-| forceType | [InterruptForceType](#interruptforcetype9) | 是   | 操作是由系统执行或是由应用程序执行。 |
-| hintType  | [InterruptHint](#interrupthint)            | 是   | 中断提示。                           |
 
 ## AudioInterrupt
 
@@ -2495,51 +2472,6 @@ audioRenderer.getRenderRate().then((renderRate) => {
     console.log('getRenderRate: ' + renderRate);
 }).catch((err) => {
     console.log('ERROR: '+err.message);
-});
-```
-
-### on('interrupt')<sup>9+</sup>
-
-on(type: 'interrupt', callback: Callback\<InterruptEvent>): void
-
-监听音频中断事件。使用callback获取中断事件。
-
-**系统能力**: SystemCapability.Multimedia.Audio.Renderer
-
-**参数：**
-
-| 参数名   | 类型                                         | 必填 | 说明                                                         |
-| -------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                       | 是   | 事件回调类型，支持的事件为：'interrupt'（中断事件被触发，音频播放被中断。） |
-| callback | Callback<[InterruptEvent](#interruptevent9)> | 是   | 被监听的中断事件的回调。                                     |
-
-**示例：**
-
-```
-audioRenderer.on('interrupt', (interruptEvent) => {
-    if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_FORCE) {
-        switch (interruptEvent.hintType) {
-            case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
-                console.log('Force paused. Stop writing');
-                isPlay = false;
-                break;
-            case audio.InterruptHint.INTERRUPT_HINT_STOP:
-                console.log('Force stopped. Stop writing');
-                isPlay = false;
-                break;
-        }
-    } else if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_SHARE) {
-         switch (interruptEvent.hintType) {
-            case audio.InterruptHint.INTERRUPT_HINT_RESUME:
-                console.log('Resume force paused renderer or ignore');
-                startRenderer();
-                break;
-            case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
-                console.log('Choose to pause or ignore');
-                pauseRenderer();
-                break;
-        }
-    }
 });
 ```
 
