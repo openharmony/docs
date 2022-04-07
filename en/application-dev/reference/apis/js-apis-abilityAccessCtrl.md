@@ -1,4 +1,4 @@
-# Ability Access Control
+#  	Ability Access Control
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -204,6 +204,8 @@ getPermissionFlags(tokenID: number, permissionName: string): Promise&lt;number&g
 
 Obtains the flags of the specified permission of a given application. This API uses a promise to return the result.
 
+**Required permissions**: ohos.permission.GET_SENSITIVE_PERMISSIONS, GRANT_SENSITIVE_PERMISSIONS, or REVOKE_SENSITIVE_PERMISSIONS
+
 **System capability**: SystemCapability.Security.AccessToken
 
 **Parameters**
@@ -234,7 +236,7 @@ promise.then(data => {
 
 Enumerates the permission grant states.
 
-**System capability:** SystemCapability.Security.AccessToken
+**System capability**: SystemCapability.Security.AccessToken
 
 | Name                         | Default Value                 | Description                   |
 | ----------------------------- | ---------------------- | -----------------------  |
