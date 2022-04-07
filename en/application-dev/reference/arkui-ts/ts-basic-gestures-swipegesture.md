@@ -39,9 +39,10 @@ SwipeGesture(value?: { fingers?: number; direction?: SwipeDirection; speed?: num
 - GestureEvent attributes related to the swipe gesture  
     | Name | Type | Description |
   | -------- | -------- | -------- |
-  | angle | number | Angle of the swipe gesture. |
+  | angle | number | Angle of the swipe gesture.<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**NOTE**<br/>>&nbsp;Angle calculation method: After the swipe gesture is identified, a line connecting the two fingers is identified as the initial line. As the fingers swipe, the line between the fingers rotates. Based on the coordinates of the initial line's and current line's end points, an arc tangent function is used to calculate the respective included angle of the points relative to the horizontal direction. Rotation angle = arctan2(cy2-cy1,cx2-cx1) - arctan2(y2-y1,x2-x1). The initial line is used as the coordinate system. The clockwise rotation is 0 to 180 degrees, and the counter-clockwise rotation is –180 to 0 degrees. |
   | speed | number | Speed of the swipe gesture. |
 
+![en-us_image_0000001231374559](figures/en-us_image_0000001231374661.png)
 
 ## Example
 
@@ -73,4 +74,4 @@ struct SwipeGestureExample {
 }
 ```
 
-![en-us_image_0000001257138365](figures/en-us_image_0000001257138365.gif)
+![en-us_image_0000001231374559](figures/en-us_image_0000001231374559.gif)
