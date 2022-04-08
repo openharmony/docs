@@ -58,7 +58,7 @@ subsystem # Subsystem
 │
 ...
 ```
-> **Note:** Test cases are classified into common test cases and device-specific test cases. You are advised to place common test cases in the **common** directory and device-specific test cases in the directories of the related devices.
+> **NOTE:** Test cases are classified into common test cases and device-specific test cases. You are advised to place common test cases in the **common** directory and device-specific test cases in the directories of the related devices.
 
 ###  Writing Test Cases
 This test framework supports test cases written in multiple programming languages and provides different templates for different languages.
@@ -169,7 +169,7 @@ Example:
     	    // Set a teardown function, which will be called after each test case.
     	}
     	```
-	    > **Note**: When defining a test suite, ensure that the test suite name is the same as the target to build and uses the upper camel case style.
+	    > **NOTE**: When defining a test suite, ensure that the test suite name is the same as the target to build and uses the upper camel case style.
 
     5. Add implementation of the test cases, including test case comments and logic.
 	    ```
@@ -201,7 +201,7 @@ Example:
 	- *B* indicates the test case name, which is in the *Function*\_*No.* format. The *No.* is a three-digit number starting from **001**.
 	- *C* indicates the test case level. There are five test case levels: guard-control level 0 and non-guard-control level 1 to level 4. Of levels 1 to 4, a smaller value indicates a more important function verified by the test case.
 
-	    **Note**:
+	    **NOTE**:
 	- The expected result of each test case must have an assertion.
 	- The test case level must be specified.
 	- It is recommended that the test be implemented step by step according to the template.
@@ -372,7 +372,7 @@ The following provides templates for different languages for your reference.
     	```
     	module_output_path = "subsystem_examples/calculator"
     	```
-    	> **Note**: The output path is ***Part name*/*Module name***.
+    	> **NOTE**: The output path is ***Part name*/*Module name***.
     
     4. Configure the directories for dependencies.
     
@@ -383,7 +383,7 @@ The following provides templates for different languages for your reference.
     	  include_dirs = [ "../../../include" ]
     	}
     	```
-    	> **Note**: Generally, the dependency directories are configured here and directly referenced in the build script of the test case.
+    	> **NOTE**: Generally, the dependency directories are configured here and directly referenced in the build script of the test case.
     
     5. Set the output build file for the test cases.
     
@@ -406,7 +406,7 @@ The following provides templates for different languages for your reference.
     	}
     	```
 
-	    > **Note:** Set the test type based on actual requirements. The following test types are available:
+	    > **NOTE:** Set the test type based on actual requirements. The following test types are available:
     	> - **ohos_unittest**: unit test
     	> - **ohos_moduletest**: module test
     	> - **ohos_systemtest**: system test
@@ -423,7 +423,7 @@ The following provides templates for different languages for your reference.
     	  deps = [":CalculatorSubTest"]
     	}
     	```
-    	> **Note**: Grouping test cases by test type allows you to execute a specific type of test cases when required.
+    	> **NOTE**: Grouping test cases by test type allows you to execute a specific type of test cases when required.
     
 - **Test case build file example (JavaScript)**
 
@@ -462,7 +462,7 @@ The following provides templates for different languages for your reference.
     	```
     	module_output_path = "subsystem_examples/app_info"
     	```
-    	> **Note**: The output path is ***Part name*/*Module name***.
+    	> **NOTE**: The output path is ***Part name*/*Module name***.
     	
     4. Set the output build file for the test cases.
     
@@ -470,7 +470,7 @@ The following provides templates for different languages for your reference.
     	ohos_js_unittest("GetAppInfoJsTest") {
     	}
     	```
-    	> ![icon-note.gif](../public_sys-resources/icon-note.gif) **NOTE**<br/>
+    	> **NOTE**<br/>
     	>- Use the **ohos\_js\_unittest** template to define the JavaScript test suite. Pay attention to the difference between JavaScript and C++.
     	>- The file generated for the JavaScript test suite must be in .hap format and named after the test suite name defined here. The test suite name must end with **JsTest**.
     
@@ -554,7 +554,7 @@ The following provides templates for different languages for your reference.
     	  deps = [ ":GetAppInfoJsTest" ]
     	}
     	```
-    	> **Note**: Grouping test cases by test type allows you to execute a specific type of test cases when required.
+    	> **NOTE**: Grouping test cases by test type allows you to execute a specific type of test cases when required.
     
 #### Configuring ohos.build
 
@@ -575,7 +575,7 @@ Configure the part build file to associate with specific test cases.
     ]
  }
 ```
-> **Note**: **test_list** contains the test cases of the corresponding module.
+> **NOTE**: **test_list** contains the test cases of the corresponding module.
 
 ### Configuring Test Case Resources
 Test case resources include external file resources, such as image files, video files, and third-party libraries, required for test case execution.
@@ -601,7 +601,7 @@ Perform the following steps:
 	  resource_config_file = "//system/subsystem/partA/test/resource/calculator/ohos_test.xml"
 	}
 	```
-	>![icon-note.gif](../public_sys-resources/icon-note.gif) **NOTE**<br/>
+	>**NOTE**<br/>
 	>- **target_name** indicates the test suite name defined in the **BUILD.gn** file in the **test** directory.
 	>- **preparer** indicates the action to perform before the test suite is executed.
 	>- **src="res"** indicates that the test resources are in the **resource** directory under the **test** directory. 
@@ -656,7 +656,7 @@ Before executing test cases, you need to modify the configuration based on the d
   </NFS>
 </user_config>
 ```
->**Note**: If HDC is connected to the device before the test cases are executed, you only need to configure the device IP address and port number, and retain the default settings for other parameters.
+>**NOTE**: If HDC is connected to the device before the test cases are executed, you only need to configure the device IP address and port number, and retain the default settings for other parameters.
 
 ### Executing Test Cases on Windows
 #### Building Test Cases
@@ -667,7 +667,7 @@ Test cases cannot be built on Windows. You need to run the following command to 
 ```
 When the build is complete, the test cases are automatically saved in **out/hi3516dv300/packages/phone/images/tests**.
 
->**Note:** In the command, **Hi3516DV300** is the platform supported by the current version, and **make_test** indicates all test cases. You can set the build options based on requirements:
+>**NOTE:** In the command, **Hi3516DV300** is the platform supported by the current version, and **make_test** indicates all test cases. You can set the build options based on requirements:
 > -  --**product-name**: specifies the name of the product to build. It is mandatory.
 > - --**build-target**: specifies the target to build. It is optional. 
 
@@ -676,7 +676,7 @@ When the build is complete, the test cases are automatically saved in **out/hi35
 
 2. Copy **developertest** and **xdevice** from the Linux environment to the **Test** directory on Windows, and copy the test cases to the **testcase** directory.
 	
->**Note**: Port the test framework and test cases from the Linux environment to the Windows environment for subsequent execution.
+>**NOTE**: Port the test framework and test cases from the Linux environment to the Windows environment for subsequent execution.
 
 3. Modify the **user_config.xml** file.
 	```
@@ -689,7 +689,7 @@ When the build is complete, the test cases are automatically saved in **out/hi35
 	  <dir>D:\Test\testcase\tests</dir>
 	</test_cases>
 	```
-	>**Note**: `<testcase>` indicates whether to build test cases. `<dir>` indicates the path for searching for test cases.
+	>**NOTE**: `<testcase>` indicates whether to build test cases. `<dir>` indicates the path for searching for test cases.
 
 #### Executing Test Cases
 1. Start the test framework.
@@ -723,13 +723,13 @@ To enable test cases to be executed on a remote Linux server or a Linux VM, map 
 	hdc_std kill
 	hdc_std -m -s 0.0.0.0:8710
 	```
-	>**Note**: The IP address and port number are default values.
+	>**NOTE**: The IP address and port number are default values.
 
 2. On the HDC client, run the following command:
 	```
 	hdc_std -s xx.xx.xx.xx:8710 list targets
 	```
-	>**Note**: Enter the IP address of the device to test.
+	>**NOTE**: Enter the IP address of the device to test.
 
 #### Executing Test Cases
 1. Start the test framework.
@@ -764,7 +764,7 @@ You can obtain the test result in the following directory:
 ```
 test/developertest/reports/xxxx_xx_xx_xx_xx_xx
 ```
->**Note**: The folder for test reports is automatically generated.
+>**NOTE**: The folder for test reports is automatically generated.
 
 The folder contains the following files:
 | Type| Description|
