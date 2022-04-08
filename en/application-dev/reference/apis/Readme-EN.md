@@ -3,7 +3,7 @@
 - Ability Framework
 
   - [@ohos.ability.dataUriUtils](js-apis-DataUriUtils.md)
-  - [@ohos.ability.errorCode ](js-apis-ability-errorcode.md)
+  - [@ohos.ability.errorCode](js-apis-ability-errorCode.md)
   - [@ohos.ability.wantConstant](js-apis-ability-wantConstant.md)
   - [@ohos.application.Ability](js-apis-application-ability.md)
   - [@ohos.application.AbilityConstant](js-apis-application-abilityConstant.md)
@@ -63,7 +63,10 @@
 - UI Page
 
   - [@ohos.animator](js-apis-animator.md)
-  
+  - [@ohos.mediaquery](js-apis-mediaquery.md)
+  - [@ohos.prompt](js-apis-prompt.md)
+  - [@ohos.router](js-apis-router.md)
+
 - Graphics
 
   - [@ohos.display ](js-apis-display.md)
@@ -101,6 +104,7 @@
   - [@ohos.abilityAccessCtrl](js-apis-abilityAccessCtrl.md)
   - [@ohos.security.huks ](js-apis-huks.md)
   - [@ohos.userIAM.userAuth ](js-apis-useriam-userauth.md)
+  - [@system.cipher](js-apis-system-cipher.md)
   
 - Data Management
 
@@ -141,6 +145,7 @@
 - Connectivity
 
   - [@ohos.bluetooth](js-apis-bluetooth.md)
+  - [@ohos.connectedTag](js-apis-connectedTag.md)
   - [@ohos.rpc](js-apis-rpc.md)
   - [@ohos.wifi](js-apis-wifi.md)
   - [@ohos.wifiext](js-apis-wifiext.md)

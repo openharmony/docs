@@ -506,7 +506,7 @@
     - Ability Framework
 
       - [@ohos.ability.dataUriUtils](reference/apis/js-apis-DataUriUtils.md)
-      - [@ohos.ability.errorCode ](reference/apis/js-apis-ability-errorcode.md)
+      - [@ohos.ability.errorCode ](reference/apis/js-apis-ability-errorCode.md)
       - [@ohos.ability.wantConstant](reference/apis/js-apis-ability-wantConstant.md)
       - [@ohos.application.Ability](reference/apis/js-apis-application-ability.md)
       - [@ohos.application.AbilityConstant](reference/apis/js-apis-application-abilityConstant.md)
@@ -566,6 +566,9 @@
     - UI Page
 
       - [@ohos.animator](reference/apis/js-apis-animator.md)
+      - [@ohos.mediaquery](reference/apis/js-apis-mediaquery.md)
+      - [@ohos.prompt](reference/apis/js-apis-prompt.md)
+      - [@ohos.router](reference/apis/js-apis-router.md)
 
     - Graphics
 
@@ -604,6 +607,7 @@
       - [@ohos.abilityAccessCtrl](reference/apis/js-apis-abilityAccessCtrl.md)
       - [@ohos.security.huks ](reference/apis/js-apis-huks.md)
       - [@ohos.userIAM.userAuth ](reference/apis/js-apis-useriam-userauth.md)
+      - [@system.cipher](reference/apis/js-apis-system-cipher.md)
 
     - Data Management
 
@@ -644,6 +648,7 @@
     - Connectivity
 
       - [@ohos.bluetooth](reference/apis/js-apis-bluetooth.md)
+      - [@ohos.connectedTag](reference/apis/js-apis-connectedTag.md)
       - [@ohos.rpc](reference/apis/js-apis-rpc.md)
       - [@ohos.wifi](reference/apis/js-apis-wifi.md)
       - [@ohos.wifiext](reference/apis/js-apis-wifiext.md)
@@ -725,9 +730,20 @@
       - [@ohos.bytrace](reference/apis/js-apis-bytrace.md)
       - [@ohos.data.storage](reference/apis/js-apis-data-storage.md)
       - [@system.app](reference/apis/js-apis-system-app.md)
-      - [@system.bluetooth](reference/apis/js-apis-system-bluetooth.md)
+      - [@system.battery](reference/apis/js-apis-system-battery.md)
+      - [@system.brightness](reference/apis/js-apis-system-brightness.md)
+      - [@system.configuration](reference/apis/js-apis-system-configuration.md)
+      - [@system.device](reference/apis/js-apis-system-device.md)
+      - [@system.fetch](reference/apis/js-apis-system-fetch.md)
+      - [@system.file](reference/apis/js-apis-system-file.md)
+      - [@system.geolocation](reference/apis/js-apis-system-location.md)
       - [@system.mediaquery](reference/apis/js-apis-system-mediaquery.md)
+      - [@system.network](reference/apis/js-apis-system-network.md)
+      - [@system.package](reference/apis/js-apis-system-package.md)
+      - [@system.prompt](reference/apis/js-apis-system-prompt.md)
+      - [@system.request](reference/apis/js-apis-system-request.md)
       - [@system.router](reference/apis/js-apis-system-router.md)
       - [@system.sensor](reference/apis/js-apis-system-sensor.md)
+      - [@system.storage](reference/apis/js-apis-system-storage.md)
       - [@system.vibrator](reference/apis/js-apis-system-vibrate.md)
       - [console](reference/apis/js-apis-logs.md)
