@@ -51,12 +51,12 @@
         - [Defining Page Routes](ui/ui-js-building-ui-routes.md)
       - Common Component Development Guidelines
         - Container Components
-          - [list Development](ui/ui-js-components-list.md)
-          - [dialog Development](ui/ui-js-components-dialog.md)
-          - [form Development](ui/ui-js-components-form.md)
-          - [stepper Development](ui/ui-js-components-stepper.md)
-          - [tabs Development](ui/ui-js-component-tabs.md)
-          - [swiper Development](ui/ui-js-components-swiper.md)
+          - [List Development](ui/ui-js-components-list.md)
+          - [Dialog Development](ui/ui-js-components-dialog.md)
+          - [Form Development](ui/ui-js-components-form.md)
+          - [Stepper Development](ui/ui-js-components-stepper.md)
+          - [Tabs Development](ui/ui-js-component-tabs.md)
+          - [Swiper Development](ui/ui-js-components-swiper.md)
         - Basic Components
           - [Text Development](ui/ui-js-components-text.md)
           - [Input Development](ui/ui-js-components-input.md)
@@ -83,17 +83,17 @@
           - [Graph Drawing](ui/ui-js-components-svg-graphics.md)
           - [Path Drawing](ui/ui-js-components-svg-path.md)
           - [Text Drawing](ui/ui-js-components-svg-text.md)
-       - Animation Development Guidelines
-           - CSS Animation
-             - [Defining Attribute Style Animations](ui/ui-js-animate-attribute-style.md)
-             - [Defining Animations with the transform Attribute](ui/ui-js-animate-transform.md)
-             - [Defining Animations with the background-position Attribute](ui/ui-js-animate-background-position-style.md)
-             - [Defining Animations for SVG Components](ui/ui-js-animate-svg.md)
-           - JS Animation
-             - [Component Animation](ui/ui-js-animate-component.md)
-             - Interpolator Animation
-               - [Animation Effect](ui/ui-js-animate-dynamic-effects.md)
-               - [Animation Frame](ui/ui-js-animate-frame.md)
+      - Animation Development Guidelines
+        - CSS Animation
+          - [Defining Attribute Style Animations](ui/ui-js-animate-attribute-style.md)
+          - [Defining Animations with the transform Attribute](ui/ui-js-animate-transform.md)
+          - [Defining Animations with the background-position Attribute](ui/ui-js-animate-background-position-style.md)
+          - [Defining Animations for SVG Components](ui/ui-js-animate-svg.md)
+        - JS Animation
+          - [Component Animation](ui/ui-js-animate-component.md)
+          - Interpolator Animation
+            - [Animation Effect](ui/ui-js-animate-dynamic-effects.md)
+            - [Animation Frame](ui/ui-js-animate-frame.md)
       - [Custom Components](ui/ui-js-custom-components.md)
     - TypeScript-based Declarative Development Paradigm
       - [Overview](ui/ui-ts-overview.md)
