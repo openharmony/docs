@@ -145,7 +145,7 @@
 - Connectivity
 
   - [@ohos.bluetooth](js-apis-bluetooth.md)
-  - [@ohos.connectedTa](js-apis-connectedTag.md)
+  - [@ohos.connectedTag](js-apis-connectedTag.md)
   - [@ohos.rpc](js-apis-rpc.md)
   - [@ohos.wifi](js-apis-wifi.md)
   - [@ohos.wifiext](js-apis-wifiext.md)
