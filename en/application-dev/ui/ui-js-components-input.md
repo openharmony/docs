@@ -1,18 +1,20 @@
-# <input> Development
+# &lt;input&gt; Development
 
 
-The <input> component provides an interactive way to receive user input of various types, including date, checkbox, and button. For details, see [input](../reference/arkui-js/js-components-basic-input.md).
+The **&lt;input&gt;** component provides an interactive way to receive user input of various types, including **date**, **checkbox**, and **button**. For details, see [input](../reference/arkui-js/js-components-basic-input.md).
 
 
-## Creating an <input> Component
+## Creating an &lt;input&gt; Component
 
-Create an <input> component in the .hml file under pages/index.
+Create an **&lt;input&gt;** component in the .hml file under **pages/index**.
 
 
 ```
 <!-- xxx.hml -->
 <div class="container">       
-  <input type="text">             Please enter the content  </input>
+<input type="text">         
+    Please enter the content
+  </input>
 </div>
 ```
 
@@ -20,6 +22,8 @@ Create an <input> component in the .hml file under pages/index.
 ```
 /* xxx.css */
 .container {
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -32,7 +36,7 @@ Create an <input> component in the .hml file under pages/index.
 
 ## Setting the Input Type
 
-Set the type attribute of the <input> component to button, date, or any of the supported values.
+Set the **type** attribute of the **&lt;input&gt;** component to **button**, **date**, or any of the supported values.
 
 
 ```
@@ -59,6 +63,8 @@ Set the type attribute of the <input> component to button, date, or any of the s
 ```
 /* xxx.css */
 .container {
+  width: 100%;
+  height: 100%;
   align-items: center;
   flex-direction: column;
   justify-content: center;
@@ -102,15 +108,15 @@ export default {
 ![en-us_image_0000001223287672](figures/en-us_image_0000001223287672.gif)
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
-> - For wearables, the input type can only be button, radio, or checkbox.
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE:**
+> - For wearables, the input type can only be **button**, **radio**, or **checkbox**.
 > 
-> - The settings of checked take effect only when the input type is set to checkbox or radio. The default value of checked is false.
+> - The settings of **checked** take effect only when the input type is set to **checkbox** or **radio**. The default value of **checked** is **false**.
 
 
 ## Event Binding
 
-  Add the search and translate events to the <input> component.
+  Add the **search** and **translate** events to the **&lt;input&gt;** component.
 
 ```
 <!-- xxx.hml -->
@@ -128,6 +134,7 @@ export default {
 /* xxx.css */
 .content {
   width: 100%;
+  height: 100%;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -170,7 +177,7 @@ export default {
 
 ## Setting the Input Error Message
 
-Add the showError method to the <input> component to display an error message in the event of incorrect input.
+Add the **showError** method to the **&lt;input&gt;** component to display an error message in the event of incorrect input.
 
 
 ```
@@ -187,6 +194,7 @@ Add the showError method to the <input> component to display an error message in
 /* xxx.css */
 .content {
   width: 100%;
+  height: 100%;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -219,9 +227,13 @@ import prompt from '@system.prompt'
    }, 
    buttonClick(e){ 
      if(this.value.length > 6){ 
-       this.$element("input").showError({        error:  'Up to 6 characters are allowed.'       }); 
+       this.$element("input").showError({ 
+         error:  'Up to 6 characters are allowed.' 
+        }); 
       }else if(this.value.length == 0){ 
-        this.$element("input").showError({         error:this.value + 'This field cannot be left empty.'       }); 
+       this.$element("input").showError({ 
+          error:this.value + 'This field cannot be left empty.' 
+        }); 
       }else{ 
         prompt.showToast({ 
           message: "success " 
@@ -233,14 +245,14 @@ import prompt from '@system.prompt'
 
 ![en-us_image_0000001223127708](figures/en-us_image_0000001223127708.gif)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
-> - This method is available when the input type is set to text, email, date, time, number, or password.
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE:**
+> - This method is available when the input type is set to **text**, **email**, **date**, **time**, **number**, or **password**.
 
 
 ## Example Scenario
 
 
-Enter information by using the <input> component of the type that suits your needs.
+Enter information by using the **&lt;input&gt;** component of the type that suits your needs.
 
 
 

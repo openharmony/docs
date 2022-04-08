@@ -51,28 +51,49 @@
         - [Defining Page Routes](ui/ui-js-building-ui-routes.md)
       - Common Component Development Guidelines
         - Container Components
-          - [List](ui/ui-js-components-list.md)
-          - [Dialog](ui/ui-js-components-dialog.md)
-          - [Form](ui/ui-js-components-form.md)
-          - [Stepper](ui/ui-js-components-stepper.md)
-          - [Tabs](ui/ui-js-component-tabs.md)
+          - [&lt;list&gt; Development](ui/ui-js-components-list.md)
+          - [&lt;dialog&gt; Development](ui/ui-js-components-dialog.md)
+          - [&lt;form&gt; Development](ui/ui-js-components-form.md)
+          - [&lt;stepper&gt; Development](ui/ui-js-components-stepper.md)
+          - [&lt;tabs&gt; Development](ui/ui-js-component-tabs.md)
+          - [&lt;swiper&gt; Development](ui/ui-js-components-swiper.md)
         - Basic Components
-          - [Text](ui/ui-js-components-text.md)
-          - [Input](ui/ui-js-components-input.md)
-          - [Button](ui/ui-js-components-button.md)
-          - [Picker](ui/ui-js-components-picker.md)
-          - [Image](ui/ui-js-components-images.md)
+          - [&lt;text&gt; Development](ui/ui-js-components-text.md)
+          - [&lt;input&gt; Development](ui/ui-js-components-input.md)
+          - [&lt;button&gt; Development](ui/ui-js-components-button.md)
+          - [&lt;picker&gt; Development](ui/ui-js-components-picker.md)
+          - [&lt;image&gt; Development](ui/ui-js-components-images.md)
+          - [&lt;image-animator&gt; Development](ui/ui-js-components-image-animator.md)
+          - [&lt;rating&gt; Development](ui/ui-js-components-rating.md)
+          - [&lt;slider&gt; Development](ui/ui-js-components-slider.md)
+          - [&lt;chart&gt; Development](ui/ui-js-components-chart.md)
+          - [&lt;switch&gt; Development](ui/ui-js-components-switch.md)
+          - [&lt;toolbar&gt; Development](ui/ui-js-components-toolbar.md)
+          - [&lt;menu&gt; Development](ui/ui-js-components-menu.md)
+          - [&lt;marquee&gt; Development](ui/ui-js-components-marquee.md)
+          - [&lt;qrcode&gt; Development](ui/ui-js-components-qrcode.md)
+          - [&lt;search&gt; Development](ui/ui-js-components-search.md)
+        - &lt;canvas&gt; Development
+          - [CanvasRenderingContext2D](ui/ui-js-components-canvasrenderingcontext2d.md)
+          - [Path2D](ui/ui-js-components-path2d.md)
+          - [OffscreenCanvas](ui/ui-js-components-offscreencanvas.md)
+        - [&lt;grid-container&gt; Development](ui/ui-js-components-calendar.md)
+        - Svg
+          - [Basics](ui/ui-js-components-svg-overview.md)
+          - [Graph Drawing](ui/ui-js-components-svg-graphics.md)
+          - [Path Drawing](ui/ui-js-components-svg-path.md)
+          - [Text Drawing](ui/ui-js-components-svg-text.md)
        - Animation Development Guidelines
-        - CSS Animation
-          - [Defining Attribute Style Animations](ui/ui-js-animate-attribute-style.md)
-          - [Defining Animations with the transform Attribute](ui/ui-js-animate-transform.md)
-          - [Defining Animations with the background-position Attribute](ui/ui-js-animate-background-position-style.md)
-          - [Defining Animations for SVG Components](ui/ui-js-animate-svg.md)
-        - JS Animation
-          - [Component Animation](ui/ui-js-animate-component.md)
-          - Interpolator Animation
-            - [Animation Effect](ui/ui-js-animate-dynamic-effects.md)
-            - [Animation Frame](ui/ui-js-animate-frame.md)
+           - CSS Animation
+             - [Defining Attribute Style Animations](ui/ui-js-animate-attribute-style.md)
+             - [Defining Animations with the transform Attribute](ui/ui-js-animate-transform.md)
+             - [Defining Animations with the background-position Attribute](ui/ui-js-animate-background-position-style.md)
+             - [Defining Animations for SVG Components](ui/ui-js-animate-svg.md)
+           - JS Animation
+             - [Component Animation](ui/ui-js-animate-component.md)
+             - Interpolator Animation
+               - [Animation Effect](ui/ui-js-animate-dynamic-effects.md)
+               - [Animation Frame](ui/ui-js-animate-frame.md)
       - [Custom Components](ui/ui-js-custom-components.md)
     - TypeScript-based Declarative Development Paradigm
       - [Overview](ui/ui-ts-overview.md)
@@ -128,6 +149,13 @@
           - [Custom Component Lifecycle Callbacks](ui/ts-custom-component-lifecycle-callbacks.md)
           - [Example: Component Creation and Re-Initialization](ui/ts-component-creation-re-initialization.md)
         - [Syntactic Sugar](ui/ts-syntactic-sugar.md)
+      - Common Component Development Guidelines
+        - [Button](ui/ui-ts-basic-components-button.md)
+        - [Web](ui/ui-ts-components-web.md)
+      - Common Layout Development Guidelines
+        - [Flex Layout](ui/ui-ts-layout-flex.md)
+        - [Grid Layout](ui/ui-ts-layout-grid-container.md)
+        - [Media Query](ui/ui-ts-layout-mediaquery.md)
       - Experiencing the Declarative UI
         - [Creating a Declarative UI Project](ui/ui-ts-creating-project.md)
         - [Getting to Know Components](ui/ui-ts-components.md)

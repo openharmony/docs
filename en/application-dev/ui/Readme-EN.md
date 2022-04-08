@@ -33,13 +33,33 @@
             - [&lt;form&gt; Development](ui-js-components-form.md)
             - [&lt;stepper&gt; Development](ui-js-components-stepper.md)
             - [&lt;tabs&gt; Development](ui-js-component-tabs.md)
-
+            - [&lt;swiper&gt; Development](ui-js-components-swiper.md)
         - Basic Components
             - [&lt;text&gt; Development](ui-js-components-text.md)
             - [&lt;input&gt; Development](ui-js-components-input.md)
             - [&lt;button&gt; Development](ui-js-components-button.md)
             - [&lt;picker&gt; Development](ui-js-components-picker.md)
             - [&lt;image&gt; Development](ui-js-components-images.md)
+            - [&lt;image-animator&gt; Development](ui-js-components-image-animator.md)
+            - [&lt;rating&gt; Development](ui-js-components-rating.md)
+            - [&lt;slider&gt; Development](ui-js-components-slider.md)
+            - [&lt;chart&gt; Development](ui-js-components-chart.md)
+            - [&lt;switch&gt; Development](ui-js-components-switch.md)
+            - [&lt;toolbar&gt; Development](ui-js-components-toolbar.md)
+            - [&lt;menu&gt; Development](ui-js-components-menu.md)
+            - [&lt;marquee&gt; Development](ui-js-components-marquee.md)
+            - [&lt;qrcode&gt; Development](ui-js-components-qrcode.md)
+            - [&lt;search&gt; Development](ui-js-components-search.md)
+        - &lt;canvas&gt; Development
+            - [CanvasRenderingContext2D](ui-js-components-canvasrenderingcontext2d.md)
+            - [Path2D](ui-js-components-path2d.md)
+            - [OffscreenCanvas](ui-js-components-offscreencanvas.md)
+        - [&lt;grid-container&gt; Development](ui-js-components-calendar.md)
+        - Svg
+            - [Basics](ui-js-components-svg-overview.md)
+            - [Graph Drawing](ui-js-components-svg-graphics.md)
+            - [Path Drawing](ui-js-components-svg-path.md)
+            - [Text Drawing](ui-js-components-svg-text.md)
     - Animation Development Guidelines
         - CSS Animation
             - [Defining Attribute Style Animations](ui-js-animate-attribute-style.md)
