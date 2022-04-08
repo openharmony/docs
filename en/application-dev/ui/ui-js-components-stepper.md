@@ -1,28 +1,28 @@
 # &lt;stepper&gt; Development
 
 
-When multiple steps are required to complete a task, you can use the &lt;stepper&gt; component to navigate your users through the whole process. For details, see [stepper](../reference/arkui-js/js-components-container-stepper.md).
+When multiple steps are required to complete a task, you can use the **&lt;stepper&gt;** component to navigate your users through the whole process. For details, see [stepper](../reference/arkui-js/js-components-container-stepper.md).
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE:**
 > This component is supported since API version 5.
 
 
 ## Creating a &lt;stepper&gt; Component
 
-Create a &lt;stepper&gt; component in the .hml file under pages/index.
+Create a **&lt;stepper&gt;** component in the .hml file under **pages/index**.
 
 
 ```
 <!-- index.hml -->
 <div class="container"> 
- <stepper>    <stepper-item>     
+ <stepper><stepper-item>     
      <text>Step 1</text>
    </stepper-item> 
    <stepper-item>     
      <text>Step 2</text>
    </stepper-item> 
- </stepper> 
+</stepper>
 </div>
 ```
 
@@ -30,6 +30,8 @@ Create a &lt;stepper&gt; component in the .hml file under pages/index.
 ```
 /* xxx.css */
 .container {
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -47,7 +49,7 @@ text{
 
 ## Setting the Index
 
-Set index to the index value of the step that you want to display by default.
+Set **index** to the index value of the step that you want to display by default.
 
 
 ```
@@ -71,6 +73,8 @@ Set index to the index value of the step that you want to display by default.
 ```
 /* index.css */
 .container {
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   background-color:#F1F3F5;
 }
@@ -83,7 +87,7 @@ text{
 
 ![en-us_image_0000001267767837](figures/en-us_image_0000001267767837.gif)
 
-Set the label attribute to customize the button text for the &lt;stepper-item&gt;.
+Set the **label** attribute to customize the button text for the **&lt;stepper-item&gt;**.
 
 
 ```
@@ -110,6 +114,8 @@ Set the label attribute to customize the button text for the &lt;stepper-item&gt
 ```
 /* index.css */
 .container {
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   background-color:#F1F3F5;
 }
@@ -125,7 +131,10 @@ text{
 /* index.js */
 export default { 
   data: {
-    label_1:{      nextLabel: 'NEXT',      status: 'normal'    },
+   label_1:{
+      nextLabel: 'NEXT',
+      status: 'normal'
+    },
     label_2:{
       prevLabel: 'BACK',
       nextLabel: 'NEXT',
@@ -143,9 +152,9 @@ export default {
 ![en-us_image_0000001267767841](figures/en-us_image_0000001267767841.gif)
 
 
-## Setting the Style
+## Setting Styles
 
-  By default, the &lt;stepper&gt; component fills entire space of its container. The sample code below shows how to set the border and background color using the border and background-color attributes.
+  By default, the **&lt;stepper&gt;** component fills entire space of its container. The sample code below shows how to set the border and background color using the **border** and **background-color** attributes.
 
 ```
 <!-- index.hml -->
@@ -164,6 +173,8 @@ export default {
 ```
 /* index.css */
 .container {
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -174,7 +185,8 @@ export default {
   height: 300px;
 }
 .stepperClass{
-  border:1px solid silver ;  background-color: white;
+ border:1px solid silver;
+  background-color: white;
 }
 text{
   width: 100%;
@@ -188,12 +200,13 @@ text{
 
 ## Adding Events
 
-The &lt;stepper&gt; component supports the finish, change, next, back, and skip events.
+The **&lt;stepper&gt;** component supports the **finish**, **change**, **next**, **back**, and **skip** events.
 
-- When the change and next or back events exist at the same time, the next or back event is executed before the change event.
+- When the **change** and **next** or **back** events exist at the same time, the **next** or **back** event is executed before the **change** event.
 
-- Before resetting the index attribute, you must remove the current value. Otherwise, the value change cannot be detected.
+- Before resetting the **index** attribute, you must remove the current value. Otherwise, the value change cannot be detected.
 
+  
 ```
 <!-- index.hml -->
 <div class="container"  style="background-color:#F1F3F5;">
@@ -219,6 +232,8 @@ The &lt;stepper&gt; component supports the finish, change, next, back, and skip 
 ```
 /* xxx.css */
 .doc-page {
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -339,6 +354,8 @@ Use the &lt;stepper&gt; component to navigate through the steps. Create a [&lt;t
 ```
 /* xxx.css */
 .container {
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   align-items: center;
   justify-content: center;
