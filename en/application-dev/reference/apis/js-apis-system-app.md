@@ -1,7 +1,7 @@
 # Application Context
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> - The APIs of this module are no longer maintained since API version 7. You are advised to use the new APIs specified in the API descriptions.
+> - The APIs of this module are no longer maintained since API version 7. You are advised to use the new APIs
 > 
 > - The initial APIs of this module are supported since API version 3. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
@@ -19,6 +19,8 @@ import app from '@system.app';
 getInfo(): AppResponse
 
 Obtains the declared information in the **config.json** file of an application.
+
+> **Note: ** [`@ohos.bundle`](js-apis-Bundle.md) is recommended from API version 7.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Lite
 
@@ -45,6 +47,8 @@ terminate(): void
 
 Terminates the current ability.
 
+> **Note: ** [`@ohos.ability.featureAbility`](js-apis-featureAbility.md) is recommended from API version 7.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Lite
 
 **Example**
@@ -63,6 +67,8 @@ Requests the application to run in full window. You can call this API when the F
 
 This is a system API and cannot be called by third-party applications.
 
+> **Note: ** [`@ohos.window`](js-apis-window.md) is recommended from API version 7.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -79,7 +85,7 @@ This is a system API and cannot be called by third-party applications.
         duration: 200});    
     }
   }
- ```
+  ```
 
 ## app.setImageCacheCount<sup>7+</sup>
 
