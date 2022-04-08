@@ -151,16 +151,11 @@ The APIs are described as follows:
 ### avail_buffers
 
 The **avail_buffers** API sets the buffer range [min_avail_buffers, high_avail_buffers]. When the current buffer is less than the value of **min_avail_buffers**, zswapd will be woken up to reclaim anonymous pages. The expected amount of memory to reclaim is the difference between the value of **high_avail_buffers** and the current system buffer value. In fact, less memory is reclaimed due to reasons such as reclamation failure. 
-
 The parameters include the following:
-
 - **avail_buffers** indicates the expected buffer value. 
 - **free_swap_threshold** indicates the threshold of the free capacity of the swap partition. After zswapd is woken up to reclaim memory, press events, such as medium press and critical press, will be recorded based on the current system status and the settings of these two parameters. 
-
 You can proactively adjust the values to trigger zswapd reclamation. 
-
 Example:
-
 `echo 1000 950 1050 0 > /dev/memcg/memory.avail_buffers`
 
 Default value:
@@ -183,16 +178,12 @@ The values are all integers.
 ### zswapd_single_memcg_param
 
 The **zswapd_single_memcg_param** API sets the memcg configuration. The parameters include the following:
-
 - **score** indicates the current memcg reclamation priority. 
 - **ub_mem2zram_ratio** indicates the memory compression ratio to zram. 
 - **ub_zram2ufs_ratio** indicates the ratio of zram to ESwap. 
 - **refault_threshold** indicates the refault threshold. 
-
 You can modify the parameters to control zram compression and ESwap. 
-
 Example:
-
 `echo 60 10 50 > memory.zswapd_single_memcg_param`
 
 Default value:
@@ -217,9 +208,7 @@ The values are all integers.
 ### zram_wm_ratio
 
 The **zram_wm_ratio** API sets the zram swap-out waterline. When the size of the compressed anonymous page in the zram partition is greater than the total size of zram multiplied by **zram_wm_ratio**, the page is swapped out to the ESwap partition. The swap is performed after zswapd is woken up by the buffer waterline. The system defaults the value **0** as **37**. You can change the value as required.
-
 Example:
-
 `echo 30 > /dev/memcg/memory.zram_wm_ratio`
 
 Default value:
