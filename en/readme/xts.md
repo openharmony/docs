@@ -2,7 +2,7 @@
 
 ## Introduction<a name="section465982318513"></a>
 
-The X test suite \(XTS\) subsystem contains a set of OpenHarmony certification test suites, including the currently supported application compatibility test suite \(ACTS\) and the device compatibility test suite \(DCTS\) that will be supported in the future.
+The X test suite \(XTS\) subsystem contains a set of OpenHarmony compatibility test suites, including the currently supported application compatibility test suite \(ACTS\) and the device compatibility test suite \(DCTS\) that will be supported in the future.
 
 This subsystem contains the ACTS and  **tools**  software package.
 
