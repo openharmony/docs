@@ -1733,7 +1733,7 @@ audioRecorder.prepare();                                                  // pre
 | audioEncodeBitRate    | number                                  | 否   | 音频编码比特率，默认值为48000。                              |
 | audioSampleRate       | number                                  | 否   | 音频采集采样率，默认值为48000。                              |
 | numberOfChannels      | number                                  | 否   | 音频采集声道数，默认值为2。                                  |
-| format                | [AudioOutputFormat](#audiooutputformat) | 否   | 音量输出封装格式，默认设置为MPEG_4。                         |
+| format                | [AudioOutputFormat](#audiooutputformat) | 否   | 音频输出封装格式，默认设置为MPEG_4。                         |
 | location              | [Location](#location)                   | 否   | 音频采集的地理位置。                                         |
 | uri                   | string                                  | 是   | 音频输出URI：fd://xx&nbsp;(fd&nbsp;number)<br/>![zh-cn_image_0000001164217678](figures/zh-cn_image_url.png) <br/>文件需要由调用者创建，并赋予适当的权限。 |
 | audioEncoderMime      | [CodecMimeType](#codecmimetype8)        | 否   | 音频编码格式。                                               |
@@ -1750,11 +1750,11 @@ audioRecorder.prepare();                                                  // pre
 
 | 名称    | 默认值 | 说明                                                         |
 | ------- | ------ | ------------------------------------------------------------ |
-| DEFAULT | 0      | Default audio encoding format is AMR_NB。<br/>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
-| AMR_NB  | 1      | AMR-NB(Adaptive Multi Rate-Narrow Band Speech Codec) 编码格式。<br/>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
-| AMR_WB  | 2      | AMR-WB(Adaptive Multi Rate-Wide Band Speech Codec) 编码格式。<br/>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
+| DEFAULT | 0      | 默认编码格式。<br/>仅做接口定义，暂不支持使用。 |
+| AMR_NB  | 1      | AMR-NB(Adaptive Multi Rate-Narrow Band Speech Codec) 编码格式。<br/>仅做接口定义，暂不支持使用。 |
+| AMR_WB  | 2      | AMR-WB(Adaptive Multi Rate-Wide Band Speech Codec) 编码格式。<br/>仅做接口定义，暂不支持使用。 |
 | AAC_LC  | 3      | AAC-LC（Advanced&nbsp;Audio&nbsp;Coding&nbsp;Low&nbsp;Complexity）编码格式。 |
-| HE_AAC  | 4      | HE_AAC（High-Efficiency Advanced&nbsp;Audio&nbsp;Coding）编码格式。<br/>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
+| HE_AAC  | 4      | HE_AAC（High-Efficiency Advanced&nbsp;Audio&nbsp;Coding）编码格式。<br/>仅做接口定义，暂不支持使用。 |
 
 
 ## AudioOutputFormat<sup>(deprecated)</sup>
@@ -1768,10 +1768,10 @@ audioRecorder.prepare();                                                  // pre
 
 | 名称     | 默认值 | 说明                                                         |
 | -------- | ------ | ------------------------------------------------------------ |
-| DEFAULT  | 0      | 默认封装格式为MPEG-4。<br/>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
+| DEFAULT  | 0      | 默认封装格式为MPEG-4。<br/>仅做接口定义，暂不支持使用。 |
 | MPEG_4   | 2      | 封装为MPEG-4格式。                                           |
-| AMR_NB   | 3      | 封装为AMR_NB格式。<br/>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
-| AMR_WB   | 4      | 封装为AMR_WB格式。<br/>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
+| AMR_NB   | 3      | 封装为AMR_NB格式。<br/>仅做接口定义，暂不支持使用。 |
+| AMR_WB   | 4      | 封装为AMR_WB格式。<br/>仅做接口定义，暂不支持使用。 |
 | AAC_ADTS | 6      | 封装为ADTS（Audio&nbsp;Data&nbsp;Transport&nbsp;Stream）格式，是AAC音频的传输流格式。 |
 
 ## ContainerFormatType<sup>8+</sup>
