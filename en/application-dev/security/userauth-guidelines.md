@@ -37,7 +37,7 @@ The development procedure is as follows:
    let auth = new userIAM_userAuth.UserAuth();
    ```
 
-2. (Optional) Obtain the version information of the authenticated object. The sample code is as follows:
+2. (Optional) Obtain the version information of the authenticated object.
 
    ```js
    let auth = new userIAM_userAuth.UserAuth();
@@ -45,7 +45,7 @@ The development procedure is as follows:
    console.info("auth version = " + version);
    ```
 
-3. Check whether the device supports the authentication capabilities based on the specified authentication type and level. The sample code is as follows:
+3. Check whether the device supports the authentication capabilities based on the specified authentication type and level. 
 
    ```js
    let auth = new userIAM_userAuth.UserAuth();
@@ -59,7 +59,7 @@ The development procedure is as follows:
    }
    ```
 
-4. Perform the authentication. The sample code is as follows:
+4. Perform an authentication.
 
    ```js
    let auth = new userIAM_userAuth.UserAuth();
@@ -90,7 +90,7 @@ The development procedure is as follows:
    });
    ```
 
-5. Cancel authentication. The sample code is as follows:
+5. Cancel the authentication.
 
    ```js
    let auth = new userIAM_userAuth.UserAuth();
