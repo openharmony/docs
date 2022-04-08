@@ -1,4 +1,4 @@
-# Test Subsystem
+# Test 
 OpenHarmony provides a comprehensive auto-test framework for designing test cases. Detecting defects in the development process can improve code quality.
 
 This document describes how to use the OpenHarmony test framework.
@@ -48,17 +48,17 @@ subsystem # Subsystem
 │   │            
 │   ├── moduleB  # Module B
 │   ├── test               
-│   │   └── resource  # Dependency resources
+│   │   └── resource  # Dependency resources   
 │   │       ├── moduleA  # Module A
 │   │       │   ├── ohos_test.xml # Resource configuration file
-│   │       ... └── 1.txt  # Resource   
+│   │       ... └── 1.txt  # Resources  
 │   │            
 │   ├── ohos_build  # Build entry configuration
 │   ...
 │
 ...
 ```
-> **Note:** Test cases are classified into common test cases and device-specific test cases. You are advised to place common test cases in the **common** directory and device-specific test cases in the directories of the related devices.
+> **NOTE:** Test cases are classified into common test cases and device-specific test cases. You are advised to place common test cases in the **common** directory and device-specific test cases in the directories of the related devices.
 
 ###  Writing Test Cases
 This test framework supports test cases written in multiple programming languages and provides different templates for different languages.
@@ -75,20 +75,6 @@ Example:
 
 - Test case example
     ```
-    /*
-     * Copyright (c) 2021 XXXX Device Co., Ltd.
-     * Licensed under the Apache License, Version 2.0 (the "License");
-     * you may not use this file except in compliance with the License.
-     * You may obtain a copy of the License at
-     *
-     *     http://www.apache.org/licenses/LICENSE-2.0
-     *
-     * Unless required by applicable law or agreed to in writing, software
-     * distributed under the License is distributed on an "AS IS" BASIS,
-     * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-     * See the License for the specific language governing permissions and
-     * limitations under the License.
-     */
     
     #include "calculator.h"
     #include <gtest/gtest.h>
@@ -133,33 +119,20 @@ Example:
     {
         // Step 1 Call the function to obtain the result.
         int actual = Sub(4, 0);
-
+    
         // Step 2 Use an assertion to compare the obtained result with the expected result.
         EXPECT_EQ(4, actual);
     }
     ```
     The procedure is as follows:
     1. Add comment information to the test case file header.
-	    ```
-    	/*
-    	 * Copyright (c) 2021 XXXX Device Co., Ltd.
-    	 * Licensed under the Apache License, Version 2.0 (the "License");
-    	 * you may not use this file except in compliance with the License.
-    	 * You may obtain a copy of the License at
-    	 *
-    	 *     http://www.apache.org/licenses/LICENSE-2.0
-    	 *
-    	 * Unless required by applicable law or agreed to in writing, software
-    	 * distributed under the License is distributed on an "AS IS" BASIS,
-    	 * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    	 * See the License for the specific language governing permissions and
-    	 * limitations under the License.
-    	 */
-    	```
+
+        Enter the header comment in the standard format. For details, see [Code Specifications](https://gitee.com/openharmony/docs/blob/master/en/contribute/code-contribution.md).
+
     2. Add the test framework header file and namespace.
 	    ```
     	#include <gtest/gtest.h>
-    
+    	
     	using namespace testing::ext;
     	```
     3. Add the header file of the test class.
@@ -175,28 +148,28 @@ Example:
     	    void SetUp();
     	    void TearDown();
     	};
-    
+        
     	void CalculatorSubTest::SetUpTestCase(void)
     	{
     	    // Set a setup function, which will be called before all test cases.
     	}
-    
+        
     	void CalculatorSubTest::TearDownTestCase(void)
     	{
     	    // Set a teardown function, which will be called after all test cases.
     	}
-    
+        
     	void CalculatorSubTest::SetUp(void)
     	{
     	    // Set a setup function, which will be called before each test case.
     	}
-    
+        
     	void CalculatorSubTest::TearDown(void)
     	{
     	    // Set a teardown function, which will be called after each test case.
     	}
     	```
-	    > **Note**: When defining a test suite, ensure that the test suite name is the same as the target to build and uses the upper camel case style.
+	    > **NOTE**: When defining a test suite, ensure that the test suite name is the same as the target to build and uses the upper camel case style.
 
     5. Add implementation of the test cases, including test case comments and logic.
 	    ```
@@ -210,7 +183,7 @@ Example:
     	{
     	    // Step 1 Call the function to obtain the test result.
     	    int actual = Sub(4, 0);
-
+        
     	    // Step 2 Use an assertion to compare the obtained result with the expected result.
     	    EXPECT_EQ(4, actual);
     	}
@@ -228,18 +201,18 @@ Example:
 	- *B* indicates the test case name, which is in the *Function*\_*No.* format. The *No.* is a three-digit number starting from **001**.
 	- *C* indicates the test case level. There are five test case levels: guard-control level 0 and non-guard-control level 1 to level 4. Of levels 1 to 4, a smaller value indicates a more important function verified by the test case.
 
-	    **Note**:
+	    **NOTE**:
 	- The expected result of each test case must have an assertion.
 	- The test case level must be specified.
 	- It is recommended that the test be implemented step by step according to the template.
 	- The comment must contain the test case name, description, type, and requirement number, which are in the @tc.*xxx*: *value* format. The test case description must be in the @tc.xxx format. The test case type @tc.type can be any of the following:
 
-        | Test Case Type|Code|
+	    | Test Case Type|Code|
     	| ------------|------------|
-    	|Function test      |FUNC|
-        |Performance test      |PERF|
-        |Reliability test    |RELI|
-        |Security test      |SECU|
+    	|Function test     |FUNC|
+        |Performance test     |PERF|
+        |Reliability test   |RELI|
+        |Security test     |SECU|
         |Fuzz test      |FUZZ|	   
     
 
@@ -255,20 +228,6 @@ Example:
 
 - Test case example
     ```
-    /*
-     * Copyright (C) 2021 XXXX Device Co., Ltd.
-     * Licensed under the Apache License, Version 2.0 (the "License");
-     * you may not use this file except in compliance with the License.
-     * You may obtain a copy of the License at
-     *
-     *     http://www.apache.org/licenses/LICENSE-2.0
-     *
-     * Unless required by applicable law or agreed to in writing, software
-     * distributed under the License is distributed on an "AS IS" BASIS,
-     * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-     * See the License for the specific language governing permissions and
-     * limitations under the License.
-     */
     import app from '@system.app'
     
     import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
@@ -303,7 +262,7 @@ Example:
         it("appInfoTest001", 0, function () {
             // Step 1 Call the function to obtain the test result.
             var info = app.getInfo()
-
+    
             // Step 2 Use an assertion to compare the obtained result with the expected result.
             expect(info != null).assertEqual(true)
         })
@@ -311,26 +270,13 @@ Example:
     ```
     The procedure is as follows:
     1. Add comment information to the test case file header.
-	    ```
-    	/*
-    	 * Copyright (C) 2021 XXXX Device Co., Ltd.
-    	 * Licensed under the Apache License, Version 2.0 (the "License");
-    	 * you may not use this file except in compliance with the License.
-    	 * You may obtain a copy of the License at
-    	 *
-    	 *     http://www.apache.org/licenses/LICENSE-2.0
-    	 *
-    	 * Unless required by applicable law or agreed to in writing, software
-    	 * distributed under the License is distributed on an "AS IS" BASIS,
-    	 * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    	 * See the License for the specific language governing permissions and
-    	 * limitations under the License.
-    	 */
-    	```
+
+        Enter the header comment in the standard format. For details, see [Code Specifications](https://gitee.com/openharmony/docs/blob/master/en/contribute/code-contribution.md).
+
     2. Import the APIs and JSUnit test library to test.
 	    ```
     	import app from '@system.app'
-    
+    	
     	import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
     	```
     3. Define the test suite (test class).
@@ -367,7 +313,7 @@ Example:
     	 it("appInfoTest001", 0, function () {
     	    // Step 1 Call the function to obtain the test result.
             var info = app.getInfo()
-
+    	
             // Step 2 Use an assertion to compare the obtained result with the expected result.
             expect(info != null).assertEqual(true)
     	 })
@@ -381,7 +327,6 @@ The following provides templates for different languages for your reference.
 
 - **Test case build file example (C++)**
     ```
-    # Copyright (c) 2021 XXXX Device Co., Ltd.
     
     import("//build/test.gni")
     
@@ -413,12 +358,12 @@ The following provides templates for different languages for your reference.
       deps = [":CalculatorSubTest"]
     }
     ```
-    The build file is configured as follows:
+    The procedure is as follows:
 
     1. Add comment information for the file header.
-	    ```
-    	# Copyright (c) 2021 XXXX Device Co., Ltd.
-    	```
+
+        Enter the header comment in the standard format. For details, see [Code Specifications](https://gitee.com/openharmony/docs/blob/master/en/contribute/code-contribution.md).
+
     2. Import the build template.
 	    ```
     	import("//build/test.gni")
@@ -427,7 +372,7 @@ The following provides templates for different languages for your reference.
     	```
     	module_output_path = "subsystem_examples/calculator"
     	```
-    	> **Note**: The output path is ***Part name*/*Module name***.
+    	> **NOTE**: The output path is ***Part name*/*Module name***.
     
     4. Configure the directories for dependencies.
     
@@ -438,7 +383,7 @@ The following provides templates for different languages for your reference.
     	  include_dirs = [ "../../../include" ]
     	}
     	```
-    	> **Note**: Generally, the dependency directories are configured here and directly referenced in the build script of the test case.
+    	> **NOTE**: Generally, the dependency directories are configured here and directly referenced in the build script of the test case.
     
     5. Set the output build file for the test cases.
     
@@ -461,7 +406,7 @@ The following provides templates for different languages for your reference.
     	}
     	```
 
-	    > **Note:** Set the test type based on actual requirements. The following test types are available:
+	    > **NOTE:** Set the test type based on actual requirements. The following test types are available:
     	> - **ohos_unittest**: unit test
     	> - **ohos_moduletest**: module test
     	> - **ohos_systemtest**: system test
@@ -478,12 +423,11 @@ The following provides templates for different languages for your reference.
     	  deps = [":CalculatorSubTest"]
     	}
     	```
-    	> **Note**: Grouping test cases by test type allows you to execute a specific type of test cases when required.
+    	> **NOTE**: Grouping test cases by test type allows you to execute a specific type of test cases when required.
     
 - **Test case build file example (JavaScript)**
 
     ```
-    # Copyright (C) 2021 XXXX Device Co., Ltd.
     
     import("//build/test.gni")
     
@@ -505,10 +449,9 @@ The following provides templates for different languages for your reference.
     The procedure is as follows:
 
     1. Add comment information for the file header.
-    
-    	```
-    	# Copyright (C) 2021 XXXX Device Co., Ltd.
-    	```
+
+        Enter the header comment in the standard format. For details, see [Code Specifications](https://gitee.com/openharmony/docs/blob/master/en/contribute/code-contribution.md).
+
     2. Import the build template.
     
     	```
@@ -519,7 +462,7 @@ The following provides templates for different languages for your reference.
     	```
     	module_output_path = "subsystem_examples/app_info"
     	```
-    	> **Note**: The output path is ***Part name*/*Module name***.
+    	> **NOTE**: The output path is ***Part name*/*Module name***.
     	
     4. Set the output build file for the test cases.
     
@@ -527,7 +470,7 @@ The following provides templates for different languages for your reference.
     	ohos_js_unittest("GetAppInfoJsTest") {
     	}
     	```
-    	> **Note:**
+    	> **NOTE**<br/>
     	>- Use the **ohos\_js\_unittest** template to define the JavaScript test suite. Pay attention to the difference between JavaScript and C++.
     	>- The file generated for the JavaScript test suite must be in .hap format and named after the test suite name defined here. The test suite name must end with **JsTest**.
     
@@ -611,10 +554,10 @@ The following provides templates for different languages for your reference.
     	  deps = [ ":GetAppInfoJsTest" ]
     	}
     	```
-    	> **Note**: Grouping test cases by test type allows you to execute a specific type of test cases when required.
-
-#### Configuring ohos.build
+    	> **NOTE**: Grouping test cases by test type allows you to execute a specific type of test cases when required.
     
+#### Configuring ohos.build
+
 Configure the part build file to associate with specific test cases.
 ```
 "partA": {
@@ -632,7 +575,7 @@ Configure the part build file to associate with specific test cases.
     ]
  }
 ```
-> **Note**: **test_list** contains the test cases of the corresponding module.
+> **NOTE**: **test_list** contains the test cases of the corresponding module.
 
 ### Configuring Test Case Resources
 Test case resources include external file resources, such as image files, video files, and third-party libraries, required for test case execution.
@@ -658,11 +601,12 @@ Perform the following steps:
 	  resource_config_file = "//system/subsystem/partA/test/resource/calculator/ohos_test.xml"
 	}
 	```
-	>**Note:**
+	>**NOTE**<br/>
 	>- **target_name** indicates the test suite name defined in the **BUILD.gn** file in the **test** directory.
 	>- **preparer** indicates the action to perform before the test suite is executed.
-	>- **src="res"** indicates that the test resources are in the **resource** directory under the **test** directory.
-	>- **src="out"** indicates that the test resources are in the **out/release/$(part)** directory.
+	>- **src="res"** indicates that the test resources are in the **resource** directory under the **test** directory. 
+	>- **src="out"** indicates that the test resources are in the **out/release/$(*part*)** directory.
+
 ## Executing Test Cases
 Before executing test cases, you need to modify the configuration based on the device used.
 
@@ -712,7 +656,7 @@ Before executing test cases, you need to modify the configuration based on the d
   </NFS>
 </user_config>
 ```
->**Note**: If HDC is connected to the device before the test cases are executed, you only need to configure the device IP address and port number, and retain the default settings for other parameters.
+>**NOTE**: If HDC is connected to the device before the test cases are executed, you only need to configure the device IP address and port number, and retain the default settings for other parameters.
 
 ### Executing Test Cases on Windows
 #### Building Test Cases
@@ -721,9 +665,9 @@ Test cases cannot be built on Windows. You need to run the following command to 
 ```
 ./build.sh --product-name Hi3516DV300 --build-target make_test
 ```
-When the build is complete, the test cases are automatically saved in the **out/hi3516dv300/packages/phone/images/tests** directory.
+When the build is complete, the test cases are automatically saved in **out/hi3516dv300/packages/phone/images/tests**.
 
->**Note:** In the command, **Hi3516DV300** is the platform supported by the current version, and **make_test** indicates all test cases. You can set the build options based on requirements:
+>**NOTE:** In the command, **Hi3516DV300** is the platform supported by the current version, and **make_test** indicates all test cases. You can set the build options based on requirements:
 > -  --**product-name**: specifies the name of the product to build. It is mandatory.
 > - --**build-target**: specifies the target to build. It is optional. 
 
@@ -731,7 +675,8 @@ When the build is complete, the test cases are automatically saved in the **out/
 1. On Windows, create the **Test** directory in the test framework and then create the **testcase** directory in the **Test** directory.
 
 2. Copy **developertest** and **xdevice** from the Linux environment to the **Test** directory on Windows, and copy the test cases to the **testcase** directory.
->**Note**: Port the test framework and test cases from the Linux environment to the Windows environment for subsequent execution.
+	
+>**NOTE**: Port the test framework and test cases from the Linux environment to the Windows environment for subsequent execution.
 
 3. Modify the **user_config.xml** file.
 	```
@@ -740,11 +685,11 @@ When the build is complete, the test cases are automatically saved in the **out/
 	  <testcase>false</testcase>
 	</build>
 	<test_cases>
-	  <!-- The test cases are copied to the Windows environment. Change the test case output path to the path of the test cases in the Windows environment. -->
+	  <!-- The test cases are copied to the Windows environment. Change the test case output path to the path of the test cases in the Windows environment.-->
 	  <dir>D:\Test\testcase\tests</dir>
 	</test_cases>
 	```
-	>**Note**: `<testcase>` indicates whether to build test cases. `<dir>` indicates the path for searching for test cases.
+	>**NOTE**: `<testcase>` indicates whether to build test cases. `<dir>` indicates the path for searching for test cases.
 
 #### Executing Test Cases
 1. Start the test framework.
@@ -766,25 +711,25 @@ When the build is complete, the test cases are automatically saved in the **out/
 	-t [TESTTYPE]: specifies the test type, which can be UT, MST, ST, or PERF. This parameter is mandatory.
 	-tp [TESTPART]: specifies the part to test. This parameter can be used independently.
 	-tm [TESTMODULE]: specifies the module to test. This parameter must be used together with -tp.
-	-ts [TESTSUITE]: specifies the test suite. This parameter can be used independently.
-	-tc [TESTCASE]: specifies the test case. This parameter must be used together with -ts.
+	-ts [TESTSUITE]: specifies a test suite. This parameter can be used independently.
+	-tc [TESTCASE]: specifies a test case. This parameter must be used together with -ts.
 	You can run -h to display help information.
 	```
 ### Executing Test Cases on Linux
-#### Mapping Remote Port
+#### Mapping the Remote Port
 To enable test cases to be executed on a remote Linux server or a Linux VM, map the port to enable communication between the device and the remote server or VM. Configure port mapping as follows:
 1. On the HDC server, run the following commands:
 	```
 	hdc_std kill
 	hdc_std -m -s 0.0.0.0:8710
 	```
-	>**Note**: The IP address and port number are default values.
+	>**NOTE**: The IP address and port number are default values.
 
 2. On the HDC client, run the following command:
 	```
 	hdc_std -s xx.xx.xx.xx:8710 list targets
 	```
-	>**Note**: Enter the IP address of the device to test.
+	>**NOTE**: Enter the IP address of the device to test.
 
 #### Executing Test Cases
 1. Start the test framework.
@@ -806,8 +751,8 @@ To enable test cases to be executed on a remote Linux server or a Linux VM, map 
 	-t [TESTTYPE]: specifies the test type, which can be UT, MST, ST, or PERF. This parameter is mandatory.
 	-tp [TESTPART]: specifies the part to test. This parameter can be used independently.
 	-tm [TESTMODULE]: specifies the module to test. This parameter must be used together with -tp.
-	-ts [TESTSUITE]: specifies the test suite. This parameter can be used independently.
-	-tc [TESTCASE]: specifies the test case. This parameter must be used together with -ts.
+	-ts [TESTSUITE]: specifies a test suite. This parameter can be used independently.
+	-tc [TESTCASE]: specifies a test case. This parameter must be used together with -ts.
 	You can run -h to display help information.
 	```
 
@@ -819,7 +764,7 @@ You can obtain the test result in the following directory:
 ```
 test/developertest/reports/xxxx_xx_xx_xx_xx_xx
 ```
->**Note**: The folder for test reports is automatically generated.
+>**NOTE**: The folder for test reports is automatically generated.
 
 The folder contains the following files:
 | Type| Description|
