@@ -5,9 +5,17 @@
     - [OpenHarmony Project](../OpenHarmony-Overview.md)
     - [Glossary](../device-dev/glossary/glossary.md)
     - [OpenHarmony Release Notes](../release-notes/Readme.md)
-- Getting Started
-    - [Getting Started with Application Development](quick-start/Readme-EN.md)
-    - [Directory Structure](quick-start/package-structure.md)
+- Quick Start
+    - Getting Started
+        - [Preparations](start-overview.md)
+        - [Getting Started with eTS](start-with-ets.md)
+        - [Getting Started with JavaScript in the Traditional Coding Approach](start-with-js.md)
+        - [Getting Started with JavaScript in the Low-Code Approach](start-with-js-low-code.md)
+    - Development Fundamentals
+        - [Application Development Package Structure (FA Model)](package-structure.md)
+        - [Application Development Package Structure (Stage Model)](module-structure.md)
+        - [Resource File Categories](basic-resource-file-categories.md)
+        - [SysCap](syscap.md)
 - Development
     - [Ability Development](ability/Readme-EN.md)
     - [UI Development](ui/Readme-EN.md)
