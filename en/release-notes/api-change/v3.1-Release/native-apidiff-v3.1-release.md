@@ -201,7 +201,7 @@ This document describes the changes of APIs in OpenHarmony 3.1 Release when comp
 | Media - audio_standard| SLVolumeItf_<br>SLresult (*GetVolumeLevel) (<br>        SLVolumeItf self,<br>        SLmillibel *pLevel<br>    ); | Added    | Added the API for obtaining the volume level.           |
 | Media - audio_standard| SLVolumeItf_<br>SLresult (*GetMaxVolumeLevel) (<br>        SLVolumeItf  self,<br>        SLmillibel *pMaxLevel<br>    ); | Added    | Added the API for setting the maximum volume level.     |
   | LIBUV | [LIBUV](https://gitee.com/openharmony/docs/tree/master/en/application-dev/reference/native-lib/third_party_libuv)| Added| Added the LIBUV interface.|
-  | Node-API | [Node-API](https://gitee.com/openharmony/docs/tree/master/en/application-dev/reference/native-lib/third_party_napi/napi.md) | Added| The NAPI component re-implements the Node-API interface and supports some interfaces in the Node-API standard library.|
+  | Node-API | [Node-API](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/native-lib/third_party_napi/napi.md) | Added| The NAPI component re-implements the Node-API interface and supports some interfaces in the Node-API standard library.|
 | EGL | [EGL](https://github.com/KhronosGroup/EGL-Registry/tree/main/api/EGL/)| Added| Added the EGL interface.|
 | GLES3 | [GLES3](https://github.com/KhronosGroup/OpenGL-Registry/tree/main/api/GLES3/)| Added| Added the OpenGL ES 3.0 interface.|
 | C++ standard library| [libc++](https://libcxx.llvm.org/)| Added| Added the C++ standard library interface.|
