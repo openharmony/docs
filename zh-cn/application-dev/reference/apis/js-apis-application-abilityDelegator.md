@@ -34,7 +34,7 @@ addAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<void>): void
 ```js
 var abilityDelegator;
 
-function onAbilityCreateCallback() {
+function onAbilityCreateCallback(data) {
     console.info("onAbilityCreateCallback");
 }
 
@@ -76,7 +76,7 @@ addAbilityMonitor(monitor: AbilityMonitor): Promise\<void>
 ```js
 var abilityDelegator;
 
-function onAbilityCreateCallback() {
+function onAbilityCreateCallback(data) {
     console.info("onAbilityCreateCallback");
 }
 
@@ -113,7 +113,7 @@ removeAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<void>): v
 ```js
 var abilityDelegator;
 
-function onAbilityCreateCallback() {
+function onAbilityCreateCallback(data) {
     console.info("onAbilityCreateCallback");
 }
 
@@ -155,7 +155,7 @@ removeAbilityMonitor(monitor: AbilityMonitor): Promise\<void>
 ```js
 var abilityDelegator;
 
-function onAbilityCreateCallback() {
+function onAbilityCreateCallback(data) {
     console.info("onAbilityCreateCallback");
 }
 
@@ -192,7 +192,7 @@ waitAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<Ability>): 
 ```js
 var abilityDelegator;
 
-function onAbilityCreateCallback() {
+function onAbilityCreateCallback(data) {
     console.info("onAbilityCreateCallback");
 }
 
@@ -231,7 +231,7 @@ waitAbilityMonitor(monitor: AbilityMonitor, timeout: number, callback: AsyncCall
 var abilityDelegator;
 var timeout = 100;
 
-function onAbilityCreateCallback() {
+function onAbilityCreateCallback(data) {
     console.info("onAbilityCreateCallback");
 }
 
@@ -274,7 +274,7 @@ waitAbilityMonitor(monitor: AbilityMonitor, timeout?: number): Promise\<Ability>
 ```js
 var abilityDelegator;
 
-function onAbilityCreateCallback() {
+function onAbilityCreateCallback(data) {
     console.info("onAbilityCreateCallback");
 }
 
