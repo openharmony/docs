@@ -46,14 +46,14 @@ subsystem # Subsystem
 │   │       ├── moduletest  # Module test
 │   │       ...
 │   │            
-│   ├── moduleB  # Module B  
+│   ├── moduleB  # Module B
 │   ├── test               
 │   │   └── resource  # Dependency resources   
 │   │       ├── moduleA  # Module A
 │   │       │   ├── ohos_test.xml # Resource configuration file
 │   │       ... └── 1.txt  # Resources  
 │   │            
-│   ├── ohos_build  # Build entry configuration 
+│   ├── ohos_build  # Build entry configuration
 │   ...
 │
 ...
@@ -210,7 +210,7 @@ Example:
 	    | Test Case Type|Code|
     	| ------------|------------|
     	|Function test     |FUNC|
-        |Performance Test     |PERF|
+        |Performance test     |PERF|
         |Reliability test   |RELI|
         |Security test     |SECU|
         |Fuzz test      |FUZZ|	   
