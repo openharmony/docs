@@ -50,11 +50,11 @@
             - [Marquee Development](ui-js-components-marquee.md)
             - [Qrcode Development](ui-js-components-qrcode.md)
             - [Search Development](ui-js-components-search.md)
-        - canvas Development
+        - Canvas Development
             - [CanvasRenderingContext2D](ui-js-components-canvasrenderingcontext2d.md)
             - [Path2D](ui-js-components-path2d.md)
             - [OffscreenCanvas](ui-js-components-offscreencanvas.md)
-        - [Grid-Container Development](ui-js-components-calendar.md)
+        - [Grid-container Development](ui-js-components-calendar.md)
         - Svg
             - [Basics](ui-js-components-svg-overview.md)
             - [Graph Drawing](ui-js-components-svg-graphics.md)
