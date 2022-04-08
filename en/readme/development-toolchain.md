@@ -238,7 +238,7 @@ The <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 ">
 </tr>
 <tr id="row39752019225"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p89758162216"><a name="p89758162216"></a><a name="p89758162216"></a>app install<em id="i1397515112211"><a name="i1397515112211"></a><a name="i1397515112211"></a> </em>[-r/-d/-g]<em id="i1497514114225"><a name="i1497514114225"></a><a name="i1497514114225"></a> </em><em id="i1697517172212"><a name="i1697517172212"></a><a name="i1697517172212"></a>package</em></p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p8975181132218"><a name="p8975181132218"></a><a name="p8975181132218"></a>Install an OpenHarmony app.</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p8975181132218"><a name="p8975181132218"></a><a name="p8975181132218"></a>Installs an OpenHarmony app.</p>
 </td>
 </tr>
 <tr id="row179764152210"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p13976116221"><a name="p13976116221"></a><a name="p13976116221"></a>app install-multiple [-rdg] --hap <em id="i1497631152216"><a name="i1497631152216"></a><a name="i1497631152216"></a>path</em></p>
