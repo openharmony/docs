@@ -10,7 +10,7 @@ Lightweight storage provides applications with data processing capability and al
 ## Modules to Import
 
 ```
-import data_Preferences from '@ohos.data.preferences'
+import data_preferences from '@ohos.data.preferences'
 ```
 
 ## Attributes
@@ -23,7 +23,7 @@ import data_Preferences from '@ohos.data.preferences'
 | MAX_VALUE_LENGTH | string | Yes| No| Maximum length of a value of the string type. It is 8192 bytes.|
 
 
-## data_Preferences.getPreferences
+## data_preferences.getPreferences
 
 getPreferences(context: Context, name: string, callback: AsyncCallback&lt;Preferences&gt;): void
 
@@ -42,20 +42,32 @@ Reads a file and loads the data to the **Preferences** instance. This method use
 - Example
   ```
   import Ability from '@ohos.application.Ability'
-  import data_Preferences from '@ohos.data.preferences'
+  import data_preferences from '@ohos.data.preferences'
   var path = this.context.getDataBaseDir()
-  data_Preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
+  data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
       if (err) {
           console.info("Get the preferences failed, path: " + path + '/mystore')
           return;
       }
-      preferences.putSync('startup', 'auto')
-      preferences.flushSync()
+      preferences.put('startup', 'auto', function (err) {
+          if (err) {
+              console.info("Put the value of startup failed with err: " + err)
+              return
+          }
+          console.info("Put the value of startup successfully.")
+          preferences.flush(function (err) {
+              if (err) {
+                  console.info("Flush to file failed with err: " + err)
+                  return
+              }
+              console.info("Flushed to file successfully.")
+          })
+      })
   })
   ```
 
 
-## data_Preferences.getPreferences
+## data_preferences.getPreferences
 
 getPreferences(context: Context, name: string): Promise&lt;Preferences&gt;
 
@@ -77,19 +89,31 @@ Reads a file and loads the data to the **Preferences** instance. This method use
 - Example
   ```
   import Ability from '@ohos.application.Ability'
-  import data_Preferences from '@ohos.data.preferences'
+  import data_preferences from '@ohos.data.preferences'
   var path = this.context.getDataBaseDir()
-  let promisePre = data_Preferences.getPreferences(this.context, 'mystore')
+  let promisePre = data_preferences.getPreferences(this.context, 'mystore')
   promisePre.then((preferences) => {
-      preferences.putSync('startup', 'auto')
-      preferences.flushSync()
+      preferences.put('startup', 'auto', function (err) {
+          if (err) {
+              console.info("Put the value of startup failed with err: " + err)
+              return
+          }
+          console.info("Put the value of startup successfully.")
+          preferences.flush(function (err) {
+              if (err) {
+                  console.info("Flush to file failed with err: " + err)
+                  return
+              }
+              console.info("Flushed to file successfully.")
+          })
+      })
   }).catch((err) => {
       console.info("Get the preferences failed, path: " + path + '/mystore')
   })
   ```
 
 
-## data_Preferences.deletePreferences
+## data_preferences.deletePreferences
 
 deletePreferences(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -107,8 +131,8 @@ Removes the singleton **Preferences** instance of the specified file from the me
 - Example
   ```
   import Ability from '@ohos.application.Ability'
-  import data_Preferences from '@ohos.data.preferences'
-  data_Preferences.deletePreferences(this.context, 'mystore', function (err) {
+  import data_preferences from '@ohos.data.preferences'
+  data_preferences.deletePreferences(this.context, 'mystore', function (err) {
       if (err) {
           console.info("Deleted failed with err: " + err)
           return
@@ -118,7 +142,7 @@ Removes the singleton **Preferences** instance of the specified file from the me
   ```
 
 
-## data_Preferences.deletePreferences
+## data_preferences.deletePreferences
 
 deletePreferences(context: Context, name: string): Promise&lt;void&gt;
 
@@ -140,8 +164,8 @@ Removes the singleton **Preferences** instance of the specified file from the me
 - Example
   ```
   import Ability from '@ohos.application.Ability'
-  import data_Preferences from '@ohos.data.preferences'
-  let promisedelPre = data_Preferences.deletePreferences(this.context, 'mystore')
+  import data_preferences from '@ohos.data.preferences'
+  let promisedelPre = data_preferences.deletePreferences(this.context, 'mystore')
   promisedelPre.then(() => {
       console.info("Deleted successfully.")
   }).catch((err) => {
@@ -150,7 +174,7 @@ Removes the singleton **Preferences** instance of the specified file from the me
   ```
 
 
-## data_Preferences.removePreferencesFromCache
+## data_preferences.removePreferencesFromCache
 
 removePreferencesFromCache(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -170,8 +194,8 @@ This method uses an asynchronous callback to return the result.
 - Example
   ```
   import Ability from '@ohos.application.Ability'
-  import data_Preferences from '@ohos.data.preferences'
-  data_Preferences.removePreferencesFromCache(this.context, 'mystore', function (err) {
+  import data_preferences from '@ohos.data.preferences'
+  data_preferences.removePreferencesFromCache(this.context, 'mystore', function (err) {
       if (err) {
           console.info("Removed preferences from cache failed with err: " + err)
           return
@@ -181,7 +205,7 @@ This method uses an asynchronous callback to return the result.
   ```
 
 
-## data_Preferences.removePreferencesFromCache
+## data_preferences.removePreferencesFromCache
 
 removePreferencesFromCache(context: Context, name: string): Promise&lt;void&gt;
 
@@ -205,8 +229,8 @@ This method uses a promise to return the result.
 - Example
   ```
   import Ability from '@ohos.application.Ability'
-  import data_Preferences from '@ohos.data.preferences'
-  let promiserevPre = data_Preferences.removePreferencesFromCache(this.context, 'mystore')
+  import data_preferences from '@ohos.data.preferences'
+  let promiserevPre = data_preferences.removePreferencesFromCache(this.context, 'mystore')
   promiserevPre.then(() => {
       console.info("Removed preferences from cache successfully.")
   }).catch((err) => {
@@ -595,8 +619,20 @@ Subscribes to data changes. When the value of the subscribed key changes, a call
       console.info("The key of " + key + " changed.")
   }
   preferences.on('change', observer)
-  preferences.put('startup', 'auto')
-  preferences.flush()  // observer will be called.
+  preferences.put('startup', 'auto', function (err) {
+      if (err) {
+          console.info("Put the value of startup failed with err: " + err)
+          return
+      }
+      console.info("Put the value of startup successfully.")
+      preferences.flush(function (err) {
+          if (err) {
+              console.info("Flush to file failed with err: " + err)
+              return
+          }
+          console.info("Flushed to file successfully.")    // observer will be called.
+      })
+  })  
   ```
 
 
