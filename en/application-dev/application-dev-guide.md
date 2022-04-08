@@ -18,7 +18,7 @@ To facilitate your application development, we provide development guidelines fo
 
 First thing first, familiarize yourself with the two cornerstone frameworks in OpenHarmony applications:
 
-- Application framework: [Ability Development](ability/ability-brief.md)
+- Application framework: [Ability Development](ability/fa-brief.md)
 - UI framework: [UI Development](ui/arkui-overview.md)
 
 All applications should be developed on top of these frameworks.
@@ -51,6 +51,6 @@ To make you better understand how functions work together and jumpstart your app
 API references encompass all components and APIs available in OpenHarmony, helping you use and integrate APIs more effectively.
 
 They are organized as follows:
--   [Component Reference (JavaScript-based Web-like Development Paradigm)](reference/arkui-js/js-components-common-attribute.md)
+-   [Component Reference (JavaScript-based Web-like Development Paradigm)](reference/arkui-js/js-components-common-attributes.md)
 -   [Component Reference (TypeScript-based Declarative Development Paradigm)](reference/arkui-ts/ts-universal-events-click.md)
 -   [API Reference](reference/apis/js-apis-DataUriUtils.md)
