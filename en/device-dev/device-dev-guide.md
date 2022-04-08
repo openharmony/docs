@@ -41,7 +41,7 @@ In addition, OpenHarmony provides a wide array of system components that can be 
 | Advanced development| Developing smart devices based on system capabilities| -&nbsp;[WLAN-connected Products](guide/device-wlan-led-control.md)<br>-&nbsp;[Cameras Without a Screen](guide/device-iotcamera-control-overview.md)<br>-&nbsp;[Cameras with a Screen](guide/device-camera-control-overview.md) |
 | Porting and adaptation| -&nbsp;Porting and adapting OpenHarmony to an SoC<br>-&nbsp;Porting and adapting OpenHarmony to a third-party library| -&nbsp;[Mini System SoC Porting](porting/oem_transplant_chip_prepare_knows.md)<br>-&nbsp;[Small System SoC Porting](porting/porting-smallchip-prepare-needs.md)<br>-&nbsp;[Third-Party Library Porting for Mini and Small Systems](porting/porting-thirdparty-overview.md) |
 | Contributing components| Contributing components to OpenHarmony| -&nbsp;[HPM Part Overview](hpm-part/hpm-part-about.md)<br>-&nbsp;[HPM Part Development](hpm-part/hpm-part-development.md)<br>-&nbsp;[HPM Part Reference](hpm-part/hpm-part-reference.md) |
-| Reference| Referring to development specifications| -&nbsp;[API References](https://gitee.com/link?target=https%3A%2F%2Fdevice.harmonyos.com%2Fen%2Fdocs%2Fdevelop%2Fapiref%2Fjs-framework-file-0000000000616658)<br>-&nbsp;[FAQs](faqs/faqs-overview.md) |
+| Reference| Referring to development specifications| [FAQs](faqs/faqs-overview.md) |
 
 
 **Table 2** Standard system development guidelines (reference memory ≥ 128 MB)
@@ -54,4 +54,4 @@ In addition, OpenHarmony provides a wide array of system components that can be 
 | Advanced development| Developing smart devices based on system capabilities| -&nbsp;[Development Guidelines on Clock Apps](guide/device-clock-guide.md)<br>-&nbsp;[Development Example for Platform Drivers](guide/device-driver-demo.md)<br>-&nbsp;[Development Example for Peripheral Drivers](guide/device-outerdriver-demo.md) |
 | Porting and adaptation| Porting and adapting OpenHarmony to a third-party library| -&nbsp;[Standard System Porting Guide](porting/standard-system-porting-guide.md)<br>-&nbsp;[A Method for Rapidly Porting the OpenHarmony Linux Kernel](porting/porting-linux-kernel.md) |
 | Contributing components| Contributing components to OpenHarmony| -&nbsp;[HPM Part Overview](hpm-part/hpm-part-about.md)<br>-&nbsp;[HPM Part Development](hpm-part/hpm-part-development.md)<br>-&nbsp;[HPM Part Reference](hpm-part/hpm-part-reference.md) |
-| Reference| Referring to development specifications| -&nbsp;[API References](https://gitee.com/link?target=https%3A%2F%2Fdevice.harmonyos.com%2Fen%2Fdocs%2Fdevelop%2Fapiref%2Fjs-framework-file-0000000000616658)<br>-&nbsp;[FAQs](faqs/faqs-overview.md) |
+| Reference| Referring to development specifications| [FAQs](faqs/faqs-overview.md) |
