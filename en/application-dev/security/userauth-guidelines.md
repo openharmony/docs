@@ -1,102 +1,113 @@
 # User Authentication Development
 
+> ![icon-note.gif](../public_sys-resources/icon-note.gif) **NOTE**<br/>
+> This development guide applies to the SDK of API Version 8 or later.
+
 ## When to Use
 
-OpenHarmony supports 2D and 3D facial recognition that can be used for identity authentication during device unlocking, application login, and payment.
+2D and 3D facial recognition used in identity authentication scenarios such as device unlocking, application login, and payment
 
 ## Available APIs
 
-The  **userIAM\_userAuth**  module provides methods for checking the support for biometric authentication, and performing and canceling authentication. You can perform authentication based on biometric features such as facial characteristics. Before performing biometric authentication, check whether your device supports this capability, including the authentication type, security level, and whether local authentication is used. If biometric authentication is not supported, consider using another authentication type. The following table lists methods in the APIs available for biometric authentication.
+The userIAM_userAuth module provides methods for checking the support for user authentication, and performing and canceling authentication. You can perform authentication based on biometric features such as facial characteristics. For more details, see [API Reference](../reference/apis/js-apis-useriam-userauth.md).
 
-**Table  1**  Methods available for biometric authentication
+Before performing authentication, check whether the device supports user authentication, including the authentication type and level. If user authentication is not supported, consider using another authentication type. The following table lists the APIs available for user authentication.
 
-| Method                                                       | Description                                                  |
+**Table 1** APIs of user authentication
+
+| API                                                      | Description                                                    |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| getAuthenticator(): Authenticator                            | Obtains an **Authenticator** object for user authentication. <sup>6+</sup><br>Obtains an **Authenticator** object to check the device's capability of user authentication, perform or cancel user authentication, and obtain the tips generated in the authentication process. <sup>7+</sup> |
-| checkAvailability(type: AuthType, level: SecureLevel): number | Checks whether the device supports the specified authentication type and security level. |
-| execute(type: AuthType, level: SecureLevel, callback: AsyncCallback\<number>): void | Performs user authentication and returns the authentication result using an asynchronous callback. |
-| execute(type: AuthType, level: SecureLevel): Promise\<number> | Performs user authentication and returns the authentication result using a promise. |
-| cancel(): void                                               | Cancels the current authentication.                          |
-| on(type: "tip", callback: Callback\<Tip>): void              | Subscribes to the events of the specified type.              |
-| off(type: "tip", callback?: Callback\<Tip>): void            | Unsubscribes from the events of the specified type.          |
-
+| getVersion() : number                                        | Obtains the version information of an authentication object.                                    |
+| getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel) : number | Checks whether the device supports the specified authentication type and level.|
+| auth(challenge: Uint8Array, authType: UserAuthType, authTrustLevel: AuthTrustLevel, callback: IUserAuthCallback): Uint8Array | Performs user authentication. This method uses asynchronous callback to return the result.                |
+| cancelAuth(contextID : Uint8Array) : number                  | Cancels an authentication.                             |
 
 ## How to Develop
 
 Before starting the development, make the following preparations:
 
-1.  Add the  **ohos.permission.ACCESS\_BIOMETRIC**  permission declaration to the application permission file.
-2.  Add  **import userIAM\_userAuth from '@ohos.userIAM.userAuth'**  to the code file that provides biometric recognition.
+1. Add the ohos.permission.ACCESS_BIOMETRIC permission declaration to the application permission file.
+2. Add **import userIAM_userAuth from '@ohos.userIAM.userAuth'** to the code file.
 
 The development procedure is as follows:
 
-1.  Obtain an  **Authenticator**  singleton object. The sample code is as follows:
+1. Obtain an **Authenticator** singleton object. The sample code is as follows:
 
-    ```
-    let auth = userIAM_userAuth.getAuthenticator();
-    ```
+   ```js
+   let auth = new userIAM_userAuth.UserAuth();
+   ```
 
-2.  Check whether the device provides the authentication capability of the specified level.
+2. (Optional) Obtain the version information of the authenticated object. The sample code is as follows:
 
-    2D facial recognition supports authentication lower than S2, and 3D facial recognition supports authentication lower than S3. The sample code is as follows:
+   ```js
+   let auth = new userIAM_userAuth.UserAuth();
+   let version = auth.getVersion();
+   console.info("auth version = " + version);
+   ```
 
-    ```
-    let authenticator = userIAM_userAuth.getAuthenticator();
-    let checkCode = authenticator.checkAvailability("FACE_ONLY", "S2");
-    if (checkCode == userIAM_userAuth.CheckAvailabilityResult.SUPPORTED) {
-        console.info("check auth support success");
-    } else {
-        console.error("check auth support fail, code = " + checkCode);
-    }
-    ```
+3. Check whether the device supports the authentication capabilities based on the specified authentication type and level. The sample code is as follows:
 
-3.  \(Optional\) Subscribe to tip information. The sample code is as follows:
+   ```js
+   let auth = new userIAM_userAuth.UserAuth();
+   let checkCode = auth.getAvailableStatus(userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1);
+   if (checkCode == userIAM_userAuth.ResultCode.SUCCESS) {
+       console.info("check auth support success");
+       // Add the logic to be executed if the specified authentication type is supported.
+   } else {
+       console.error("check auth support fail, code = " + checkCode);
+       // Add the logic to be executed if the specified authentication type is not supported.
+   }
+   ```
 
-    ```
-    let authenticator = userIAM_userAuth.getAuthenticator();
-    let tipCallback = (tip)=>{
-        console.info("receive tip: errorCode(" + tip.errorCode + ") code(" + tip.tipCode +") event(" +
-            tip.tipEvent + ") info(" + tip.tipInfo + ")");
-    };
-    authenticator.on("tip", tipCallback);
-    ```
+4. Perform the authentication. The sample code is as follows:
 
-4.  Perform the authentication. The sample code is as follows:
+   ```js
+   let auth = new userIAM_userAuth.UserAuth();
+   auth.auth(null, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1, {
+       onResult: (result, extraInfo) => {
+           try {
+               console.info("auth onResult result = " + result);
+               console.info("auth onResult extraInfo = " + JSON.stringify(extraInfo));
+               if (result == 'SUCCESS') {
+                   // Add the logic to be executed when the authentication is successful.
+               }  else {
+                   // Add the logic to be executed when the authentication fails.
+               }
+           } catch (e) {
+               console.info("auth onResult error = " + e);
+           }
+       },
 
-    ```
-    let authenticator = userIAM_userAuth.getAuthenticator();
-    authenticator.execute("FACE_ONLY", "S2").then((code)=>{
-        authenticator.off("tip", tipCallback);
-        console.info("auth success");
-    }).catch((code)=>{
-        authenticator.off("tip", tipCallback);
-        console.error("auth fail, code = " + code);
-    });
-    ```
+       onAcquireInfo: (module, acquire, extraInfo) => {
+           try {
+               console.info("auth onAcquireInfo module = " + module);
+               console.info("auth onAcquireInfo acquire = " + acquire);
+               console.info("auth onAcquireInfo extraInfo = " + JSON.stringify(extraInfo));
+           } catch (e) {
+               console.info("auth onAcquireInfo error = " + e);
+           }
+       }
+   });
+   ```
 
-5.  \(Optional\) Unsubscribe from tip information if  you have subscribed to tip information you have subscribed to tip information.
+5. Cancel authentication. The sample code is as follows:
 
-    ```
-    let authenticator = userIAM_userAuth.getAuthenticator();
-    let tipCallback = (tip)=>{
-        console.info("receive tip: errorCode(" + tip.errorCode + ") code(" + tip.tipCode + ") event(" +
-            tip.tipEvent + ") info(" + tip.tipInfo + ")");
-    };
-    // Unsubscribe from a specified callback.
-    authenticator.off("tip", tipCallback);
-    // Unsubscribe from all callbacks.
-    authenticator.off("tip");
-    ```
-
-6.  Cancel authentication. The sample code is as follows:
-
-    ```
-    let authenticator = userIAM_userAuth.getAuthenticator();
-    let cancelCode = authenticator.cancel();
-    if (cancelCode == userIAM_userAuth.Result.SUCCESS) {
-        console.info("cancel auth success");
-    } else {
-        console.error("cancel auth fail");
-    }
-    ```
-
+   ```js
+   let auth = new userIAM_userAuth.UserAuth();
+   // Obtain contextId using auth().
+   let contextId = auth.auth(null, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1, {
+       onResult: (result, extraInfo) => {
+           console.info("auth onResult result = " + result);
+       },
+   
+       onAcquireInfo: (module, acquire, extraInfo) => {
+           console.info("auth onAcquireInfo module = " + module);
+       }
+   });
+   let cancelCode = auth.cancel(contextId);
+   if (cancelCode == userIAM_userAuth.ResultCode.SUCCESS) {
+       console.info("cancel auth success");
+   } else {
+       console.error("cancel auth fail");
+   }
+   ```
