@@ -69,6 +69,10 @@
 
     Hardware Driver Foundation，硬件驱动框架，用于提供统一外设访问能力和驱动开发、管理框架。
 
+- ### Hypium
+
+    Hyper Automation + ium 的组合词，OpenHarmony自动化测试框架名称，以超自动化测试为理想目标，ium意指稳定、可靠的测试框架能力底座。
+
 
 ## I
 
