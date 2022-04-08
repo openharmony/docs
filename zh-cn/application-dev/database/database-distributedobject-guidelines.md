@@ -33,7 +33,7 @@
 **表3** 分布式数据对象sessionId设置接口
 | 类名 | 接口名 | 描述 |
 | -------- | -------- | -------- |
-| DistributedDataObject | setSessionId(sessionId?: string): boolean | 为分布式数据对象设置sessionId <br>&nbsp;sessionId：如果指定sessionId，则退出指定分布式组网；如果不指定，则全部退出。|
+| DistributedDataObject | setSessionId(sessionId?: string): boolean | 为分布式数据对象设置sessionId <br>&nbsp;sessionId：分布式对象在可信组网中的标识ID。如果要退出分布式组网，设置为""或不设置均可。|
 
 ### 订阅数据变更
 
@@ -72,6 +72,7 @@
    ```js
    var local_object = distributedObject.createDistributedObject({name:undefined, age:undefined, isVis:true, 
                   parent:undefined, list:undefined});
+   var sessionId = distributedObject.genSessionId();
    ```
 
 
