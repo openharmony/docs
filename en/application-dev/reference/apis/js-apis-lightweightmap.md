@@ -524,8 +524,8 @@ Uses a callback to traverse the entries in this container and obtain their posit
 callbackfn
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | V | Yes| Value of the entry that is currently traversed.|
-| key | K | Yes| Key of the entry that is currently traversed.|
+| value | V | No| Value of the entry that is currently traversed.|
+| key | K | No| Key of the entry that is currently traversed.|
 | map | LightWeightMap<K, V> | No| Instance that invokes the **forEach** method.|
 
 **Example**
