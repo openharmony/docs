@@ -506,7 +506,7 @@
     - Ability Framework
 
       - [@ohos.ability.dataUriUtils](reference/apis/js-apis-DataUriUtils.md)
-      - [@ohos.ability.errorCode ](reference/apis/js-apis-ability-errorcode.md)
+      - [@ohos.ability.errorCode ](reference/apis/js-apis-ability-errorCode.md)
       - [@ohos.ability.wantConstant](reference/apis/js-apis-ability-wantConstant.md)
       - [@ohos.application.Ability](reference/apis/js-apis-application-ability.md)
       - [@ohos.application.AbilityConstant](reference/apis/js-apis-application-abilityConstant.md)
@@ -566,6 +566,9 @@
     - UI Page
 
       - [@ohos.animator](reference/apis/js-apis-animator.md)
+      - [@ohos.mediaquery](reference/apis/js-apis-mediaquery.md)
+      - [@ohos.prompt](reference/apis/js-apis-prompt.md)
+      - [@ohos.router](reference/apis/js-apis-router.md)
 
     - Graphics
 
@@ -604,6 +607,7 @@
       - [@ohos.abilityAccessCtrl](reference/apis/js-apis-abilityAccessCtrl.md)
       - [@ohos.security.huks ](reference/apis/js-apis-huks.md)
       - [@ohos.userIAM.userAuth ](reference/apis/js-apis-useriam-userauth.md)
+      - [@system.cipher](reference/apis/js-apis-system-cipher.md)
 
     - Data Management
 
@@ -644,6 +648,7 @@
     - Connectivity
 
       - [@ohos.bluetooth](reference/apis/js-apis-bluetooth.md)
+      - [@ohos.connectedTag](reference/apis/js-apis-connectedTag.md)
       - [@ohos.rpc](reference/apis/js-apis-rpc.md)
       - [@ohos.wifi](reference/apis/js-apis-wifi.md)
       - [@ohos.wifiext](reference/apis/js-apis-wifiext.md)
