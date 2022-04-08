@@ -1801,7 +1801,7 @@ audioRecorder.prepare();                                                  // pre
 | audioEncodeBitRate    | number                                  | 否   | 音频编码比特率，默认值为48000。                              |
 | audioSampleRate       | number                                  | 否   | 音频采集采样率，默认值为48000。                              |
 | numberOfChannels      | number                                  | 否   | 音频采集声道数，默认值为2。                                  |
-| format                | [AudioOutputFormat](#audiooutputformat) | 否   | 音量输出封装格式，默认设置为MPEG_4。                         |
+| format                | [AudioOutputFormat](#audiooutputformat) | 否   | 音频输出封装格式，默认设置为MPEG_4。                         |
 | location              | [Location](#location)                   | 否   | 音频采集的地理位置。                                         |
 | uri                   | string                                  | 是   | 音频输出URI：fd://xx&nbsp;(fd&nbsp;number)<br/>![zh-cn_image_0000001164217678](figures/zh-cn_image_url.png) <br/>文件需要由调用者创建，并赋予适当的权限。 |
 | audioEncoderMime      | [CodecMimeType](#codecmimetype8)        | 否   | 音频编码格式。                                               |
