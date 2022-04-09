@@ -1614,7 +1614,7 @@ decode(src: Uint8Array | string): Promise&lt;Uint8Array&gt;
   ```
 
 
-## Types<sup>8+</sup>
+## types<sup>8+</sup>
 
 
 ### constructor<sup>8+</sup>
@@ -1627,7 +1627,7 @@ Types的构造函数。
 
 **示例：**
   ```
-  var type = new util.Types();
+  var type = new util.types();
   ```
 
 
@@ -1651,7 +1651,7 @@ isAnyArrayBuffer(value: Object): boolean
 
 **示例：**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   var result = that.isAnyArrayBuffer(new ArrayBuffer([]));
   ```
 
@@ -1678,7 +1678,7 @@ ArrayBufferView辅助类型包括：Int8Array、Int16Array、Int32Array、Uint8A
 
 **示例：**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   var result = that.isArrayBufferView(new Int8Array([]));
   ```
 
@@ -1703,7 +1703,7 @@ isArgumentsObject(value: Object): boolean
 
 **示例：**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   function foo() {
       var result = that.isArgumentsObject(arguments);
   }
@@ -1731,7 +1731,7 @@ isArrayBuffer(value: Object): boolean
 
 **示例：**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   var result = that.isArrayBuffer(new ArrayBuffer([]));
   ```
 
@@ -1756,7 +1756,7 @@ isAsyncFunction(value: Object): boolean
 
 **示例：**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   var result = that.isAsyncFunction(async function foo() {});
   ```
 
@@ -1781,7 +1781,7 @@ isBooleanObject(value: Object): boolean
 
 **示例：**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   var result = that.isBooleanObject(new Boolean(true));
   ```
 
@@ -1806,7 +1806,7 @@ isBoxedPrimitive(value: Object): boolean
 
 **示例：**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   var result = that.isBoxedPrimitive(new Boolean(false));
   ```
 
@@ -1831,7 +1831,7 @@ isDataView(value: Object): boolean
 
 **示例：**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   const ab = new ArrayBuffer(20);
   var result = that.isDataView(new DataView(ab));
   ```
@@ -1857,7 +1857,7 @@ isDate(value: Object): boolean
 
 **示例：**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   var result = that.isDate(new Date());
   ```
 
@@ -1882,7 +1882,7 @@ isExternal(value: Object): boolean
 
 **示例：**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   const data = util.createExternalType();
   var result = that.isExternal(data);
   ```
@@ -1908,7 +1908,7 @@ isFloat32Array(value: Object): boolean
 
 **示例：**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   var result = that.isFloat32Array(new Float32Array());
   ```
 
@@ -1933,7 +1933,7 @@ isFloat64Array(value: Object): boolean
 
 **示例：**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   var result = that.isFloat64Array(new Float64Array());
   ```
 
@@ -1958,7 +1958,7 @@ isGeneratorFunction(value: Object): boolean
 
 **示例：**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   var result = that.isGeneratorFunction(function* foo() {});
   ```
 
@@ -1983,7 +1983,7 @@ isGeneratorObject(value: Object): boolean
 
 **示例：**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   function* foo() {}
   const generator = foo();
   var result = that.isGeneratorObject(generator);
@@ -2010,7 +2010,7 @@ isInt8Array(value: Object): boolean
 
 **示例：**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   var result = that.isInt8Array(new Int8Array([]));
   ```
 
@@ -2035,7 +2035,7 @@ isInt16Array(value: Object): boolean
 
 **示例：**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   var result = that.isInt16Array(new Int16Array([]));
   ```
 
@@ -2060,7 +2060,7 @@ isInt32Array(value: Object): boolean
 
 **示例：**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   var result = that.isInt32Array(new Int32Array([]));
   ```
 
@@ -2085,7 +2085,7 @@ isMap(value: Object): boolean
 
 **示例：**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   var result = that.isMap(new Map());
   ```
 
@@ -2110,7 +2110,7 @@ isMapIterator(value: Object): boolean
 
 **示例：**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   const map = new Map();
   var result = that.isMapIterator(map.keys());
   ```
@@ -2136,7 +2136,7 @@ isNativeError(value: Object): boolean
 
 **示例：**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   var result = that.isNativeError(new TypeError());
   ```
 
@@ -2161,7 +2161,7 @@ isNumberObject(value: Object): boolean
 
 **示例：**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   var result = that.isNumberObject(new Number(0));
   ```
 
@@ -2186,7 +2186,7 @@ isPromise(value: Object): boolean
 
 **示例：**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   var result = that.isPromise(Promise.resolve(1));
   ```
 
@@ -2211,7 +2211,7 @@ isProxy(value: Object): boolean
 
 **示例：**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   const target = {};
   const proxy = new Proxy(target, {});
   var result = that.isProxy(proxy);
@@ -2238,7 +2238,7 @@ isRegExp(value: Object): boolean
 
 **示例：**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   var result = that.isRegExp(new RegExp('abc'));
   ```
 
@@ -2263,7 +2263,7 @@ isSet(value: Object): boolean
 
 **示例：**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   var result = that.isSet(new Set());
   ```
 
@@ -2288,7 +2288,7 @@ isSetIterator(value: Object): boolean
 
 **示例：**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   const set = new Set();
   var result = that.isSetIterator(set.keys());
   ```
@@ -2314,7 +2314,7 @@ isStringObject(value: Object): boolean
 
 **示例：**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   var result = that.isStringObject(new String('foo'));
   ```
 
@@ -2339,7 +2339,7 @@ isSymbolObject(value: Object): boolean
 
 **示例：**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   const symbols = Symbol('foo');
   var result = that.isSymbolObject(Object(symbols));
   ```
@@ -2367,7 +2367,7 @@ TypedArray类型的辅助类型，包括Int8Array、Int16Array、Int32Array、Ui
 
 **示例：**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   var result = that.isTypedArray(new Float64Array([]));
   ```
 
@@ -2392,7 +2392,7 @@ isUint8Array(value: Object): boolean
 
 **示例：**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   var result = that.isUint8Array(new Uint8Array([]));
   ```
 
@@ -2417,7 +2417,7 @@ isUint8ClampedArray(value: Object): boolean
 
 **示例：**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   var result = that.isUint8ClampedArray(new Uint8ClampedArray([]));
   ```
 
@@ -2442,7 +2442,7 @@ isUint16Array(value: Object): boolean
 
 **示例：**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   var result = that.isUint16Array(new Uint16Array([]));
   ```
 
@@ -2467,7 +2467,7 @@ isUint32Array(value: Object): boolean
 
 **示例：**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   var result = that.isUint32Array(new Uint32Array([]));
   ```
 
@@ -2492,7 +2492,7 @@ isWeakMap(value: Object): boolean
 
 **示例：**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   var result = that.isWeakMap(new WeakMap());
   ```
 
@@ -2517,6 +2517,6 @@ isWeakSet(value: Object): boolean
 
 **示例：**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   var result = that.isWeakSet(new WeakSet());
   ```
