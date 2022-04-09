@@ -1,7 +1,7 @@
-# Getting Started<a name="EN-US_TOPIC_0000001157479389"></a>
-
--   **[Mini and Small Systems](quickstart-lite.md)**  
-
--   **[Standard System](quickstart-standard.md)**  
+# Getting Started
 
 
+
+- **[Getting Started with Mini and Small Systems](quickstart-lite.md)**
+
+- **[Getting Started with Standard System](quickstart-standard.md)**
