@@ -1156,7 +1156,7 @@ Notification.setSlotByBundle(bundle, notificationSlot, setSlotByBundleCallback);
 
 setSlotByBundle(bundle: BundleOption, slot: NotificationSlot): Promise\<void\>
 
-设定指定包的角标使能状态（Promise形式）。
+设定指定包的通知通道状态（Promise形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2851,10 +2851,10 @@ Notification.subscribe(subscriber, subscribeCallback);
 | 名称                              | 值          | 说明               |
 | --------------------------------- | ----------- | ------------------ |
 | LEVEL_NONE                        | 0           | 表示关闭通知功能。     |
-| LEVEL_MIN                         | 1           | 指示通知功能已启用，但状态栏中不显示通知图标，且没有横幅或提示音。 |
-| LEVEL_LOW                         | 2           | 指示通知功能已启用，且状态栏中显示通知图标，但没有横幅或提示音。 |
-| LEVEL_DEFAULT                     | 3           | 指示通知功能已启用，状态栏中显示通知图标，没有横幅但有提示音。 |
-| LEVEL_HIGH                        | 4           | 指示通知功能已启用，状态栏中显示通知图标，有横幅和提示音。 |
+| LEVEL_MIN                         | 1           | 表示通知功能已启用，但状态栏中不显示通知图标，且没有横幅或提示音。 |
+| LEVEL_LOW                         | 2           | 表示通知功能已启用，且状态栏中显示通知图标，但没有横幅或提示音。 |
+| LEVEL_DEFAULT                     | 3           | 表示通知功能已启用，状态栏中显示通知图标，没有横幅但有提示音。 |
+| LEVEL_HIGH                        | 4           | 表示通知功能已启用，状态栏中显示通知图标，有横幅和提示音。 |
 
 
 ## BundleOption
