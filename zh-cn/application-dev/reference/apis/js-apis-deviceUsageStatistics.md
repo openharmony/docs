@@ -403,6 +403,113 @@ queryCurrentBundleActiveStates(begin: number, end: number): Promise&lt;Array&lt;
     });
   ```
 
+## bundleState.getModuleUsageRecord<sup>本接口从API version 9开始支持</sup>
+
+getModuleUsageRecord(begin: number, end: number): Promise&lt;Array&lt;BundleActiveModuleInfo&gt;&gt;
+
+据maxNum，查询FA使用记录，使用Promise返回不超过maxNum条FA使用记录。
+
+**需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
+
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**参数**：
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | maxNum | number | 是 | 返回条目的最大数量。|
+
+**返回值**：
+
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;Array&lt;[BundleActiveModuleInfo](#bundleactivestate)&gt;&gt; | 指定的Promise回调方法。返回不超过maxNum条FA使用记录。|
+
+**示例**：
+
+  ```
+    bundleState.getModuleUsageRecord(this.maxNum).then( res => {
+        console.log('BUNDLE_ACTIVE getModuleUsageRecord promise succeeded');
+        for (let i = 0; i < res.length; i++) {
+            console.log('BUNDLE_ACTIVE getModuleUsageRecord promise number : ' + (i + 1));
+            console.log('BUNDLE_ACTIVE getModuleUsageRecord promise result ' + JSON.stringify(res[i]));
+        }
+    }).catch( err=> {
+        console.log('BUNDLE_ACTIVE getModuleUsageRecord promise failed, because: ' + err.code);
+    });
+  ```
+
+## bundleState.getModuleUsageRecord<sup>本接口从API version 9开始支持</sup>
+
+getModuleUsageRecord(begin: number, end: number): Promise&lt;Array&lt;BundleActiveModuleInfo&gt;&gt;
+
+据maxNum，查询FA使用记录，使用CallBack返回不超过maxNum条FA使用记录。
+
+**需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
+
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**参数**：
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | maxNum | number | 是 | 返回条目的最大数量。|
+  | callback | AsyncCallback&lt;Array&lt;[BundleActiveModuleInfo](#bundleactivestate)&gt;&gt; | 是 | 指定的CallBack回调方法。返回不超过maxNum条FA使用记录。|
+
+**示例**：
+
+  ```
+    bundleState.getModuleUsageRecord(this.maxNum,(err, res) => {
+        if(err) {
+            console.log('BUNDLE_ACTIVE getModuleUsageRecord callback failed, because: ' + err.code);
+        } else {
+            console.log('BUNDLE_ACTIVE getModuleUsageRecord callback succeeded.');
+                for (let i = 0; i < res.length; i++) {
+                    console.log('BUNDLE_ACTIVE getModuleUsageRecord callback number : ' + (i + 1));
+                    console.log('BUNDLE_ACTIVE getModuleUsageRecord callback result ' + JSON.stringify(res[i]));
+                }
+            }
+    });
+  ```
+
+## BundleActiveModuleInfo<sup>本接口从API version 9开始支持</sup>
+提供FA的使用信息。
+
+### 属性
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.UsageStatistics.App
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| deviceId | string | 是 | FA所属deviceId。|
+| bundleName | string | 是 | FA所属应用包名。|
+| moduleName | string | 是 | FA所属module名。|
+| abilityName | string | 是 | FA的MainAbility名。|
+| appLabelId | number | 是 | FA的应用labelId。|
+| labelId | number | 是 | FA所属module的labelId。|
+| descriptionId | number | 是 | FA的应用descriptionId。|
+| abilityLableId | number | 是 | FA的MainAbility labelId。|
+| abilityDescriptionId | number | 是 | FA的MainAbility descriptionId。|
+| abilityIconId | number | 是 | FA的MainAbility iconId。|
+| launchedCount | number | 是 | FA的启动次数。|
+| lastModuleUsedTime | number | 是 | FA的上一次使用时间。|
+| formRecords | Array<BundleActiveFormInfo> | 是 | FA中卡片的使用记录。|
+
+## BundleActiveFormInfo<sup>本接口从API version 9开始支持</sup>
+提供FA中卡片的使用记录。
+
+### 属性
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.UsageStatistics.App
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| formName | number | 是 | 卡片名称。|
+| formDimension | number | 是 | 卡片尺寸。|
+| formId | number | 是 | 卡片Id。|
+| formLastUsedTime | number | 是 | 卡片的上一次点击时间。|
+| count | number | 是 | 卡片的点击次数。|
+
 ## BundleStateInfo
 提供应用使用时长的具体信息。
 
