@@ -403,7 +403,7 @@ queryCurrentBundleActiveStates(begin: number, end: number): Promise&lt;Array&lt;
     });
   ```
 
-## bundleState.getModuleUsageRecord<sup>本接口从API version 9开始支持</sup>
+## bundleState.getModuleUsageRecord<sup>9</sup>
 
 getModuleUsageRecord(begin: number, end: number): Promise&lt;Array&lt;BundleActiveModuleInfo&gt;&gt;
 
@@ -439,7 +439,7 @@ getModuleUsageRecord(begin: number, end: number): Promise&lt;Array&lt;BundleActi
     });
   ```
 
-## bundleState.getModuleUsageRecord<sup>本接口从API version 9开始支持</sup>
+## bundleState.getModuleUsageRecord<sup>9</sup>
 
 getModuleUsageRecord(begin: number, end: number): Promise&lt;Array&lt;BundleActiveModuleInfo&gt;&gt;
 
@@ -472,7 +472,7 @@ getModuleUsageRecord(begin: number, end: number): Promise&lt;Array&lt;BundleActi
     });
   ```
 
-## BundleActiveModuleInfo<sup>本接口从API version 9开始支持</sup>
+## BundleActiveModuleInfo<sup>9</sup>
 提供FA的使用信息。
 
 ### 属性
@@ -495,7 +495,7 @@ getModuleUsageRecord(begin: number, end: number): Promise&lt;Array&lt;BundleActi
 | lastModuleUsedTime | number | 是 | FA的上一次使用时间。|
 | formRecords | Array<BundleActiveFormInfo> | 是 | FA中卡片的使用记录。|
 
-## BundleActiveFormInfo<sup>本接口从API version 9开始支持</sup>
+## BundleActiveFormInfo<sup>9</sup>
 提供FA中卡片的使用记录。
 
 ### 属性
