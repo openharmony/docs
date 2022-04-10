@@ -31,10 +31,10 @@ HDMI is an audio and video transmission protocol released by Hitachi, Panasonic,
 The HDMI source end provides +5 V and GND for DDC and CEC communication. Through the DDC, the source end obtains the sink end parameters, such as the RX capabilities. The CEC is optional. It is used to synchronize the control signals between the source and sink ends to improve user experience. There are four TMDS channels between the HDMI source and sink ends. The TMDS clock channel provides clock signals for TMDS, and the other three channels transmit audio, video, and auxiliary data. HPD is the hot plug detect port. When the sink end is connected, the source end responds by using an interrupt program.
 
 The figure below shows the HDMI physical connection.
- 
+
 **Figure 1** HDMI physical connection
-  
-![](figures/HDMIC_physical_connection.png "HDMI_physical_connection")
+
+![](figures/HDMI_physical_connection.png "HDMI_physical_connection")
 
 ### Constraints
 
@@ -72,7 +72,7 @@ HDMI features high transmission rate, wide transmission bandwidth, high compatib
 The figure below illustrates the process of using an HDMI device.
 
 **Figure 2** Process of using an HDMI device
-  
+
 ![](figures/HDMI_usage_flowchart.png "HDMI_usage_flowchart")
 
 #### Opening an HDMI Controller
@@ -260,7 +260,7 @@ int32_t HdmiSetHdrAttribute(DevHandle handle, struct HdmiHdrAttr *attr);
 | Parameter      | Description      |
 | ---------- | -------------- |
 | handle     | HDMI controller handle.|
-| attr       | Pinter to the HDR attributes       |
+| attr       | Pinter to the HDR attributes.     |
 | **Return Value**| **Description**|
 | 0          | The operation is successful.      |
 | Negative value      | The operation failed.      |
@@ -294,7 +294,7 @@ int32_t HdmiAvmuteSet(DevHandle handle, bool enable);
 | Parameter      | Description         |
 | ---------- | ----------------- |
 | handle     | HDMI controller handle.   |
-| enable     | Whether the AV mute feature is enabled.|
+| enable     | Whether to enable the AV mute feature.|
 | **Return Value**| **Description**   |
 | 0          | The operation is successful.         |
 | Negative value      | The operation failed.         |
