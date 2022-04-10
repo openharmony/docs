@@ -1,6 +1,7 @@
-# USB Usage Guidelines<a name="EN-US_TOPIC_0000001077367159"></a>
+# USB Usage<a name="EN-US_TOPIC_0000001077367159"></a>
 
-The following procedure uses bulk transfer as an example.
+
+The following uses bulk transfer as an example.
 
 ## Procedure<a name="section18816105182315"></a>
 
@@ -23,7 +24,7 @@ int32_t ret = g_usbClient.GetDevices(deviceList);
 int32_t ret = g_usbClient.RequestRight(device.GetName());
 ```
 
-4.  Open the USB device.
+4.  Opens a device.
 
 ```
 USBDevicePipe pip;
@@ -37,12 +38,15 @@ ret = g_usbClient.ClaimInterface(pip, interface, true);
 **interface** indicates an interface of the USB device in **deviceList**.
 ```
 
-6.  Transfer data.
+6.  Perform data transfer.
 
 ```
 srvClient.BulkTransfer(pipe, endpoint, vdata, timeout);
 ```
-**pipe** indicates the pipe for data transfer after the USB device is opened. **endpoint** indicates the endpoint for data transfer on the USB device. **vdata** indicates the binary data block to be transferred or read. **timeout** indicates the timeout duration of data transfer.
+- **pipe** indicates the pipe for data transfer of the USB device opened. 
+- **endpoint** indicates the endpoint for data transfer on the USB device. 
+- **vdata** indicates the binary data block to be transferred or read. 
+- **timeout** indicates the timeout duration of data transfer.
 
 7.  Close the USB device.
 
