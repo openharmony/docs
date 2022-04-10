@@ -24,7 +24,7 @@ int32_t ret = g_usbClient.GetDevices(deviceList);
 int32_t ret = g_usbClient.RequestRight(device.GetName());
 ```
 
-4.  Opens the USB device.
+4.  Open the USB device.
 
 ```
 USBDevicePipe pip;
