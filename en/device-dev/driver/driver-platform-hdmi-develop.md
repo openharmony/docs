@@ -40,8 +40,8 @@ Currently, the HDMI module supports only the kernels (LiteOS) of mini and small 
 HDMI features high transmission rate, wide transmission bandwidth, high compatibility, and can transmit uncompressed audio and video signals. Compared with the traditional full analog interface, HDMI simplifies connection between devices and provides HDMI-specific intelligent features, which are ideal for high-quality audio and video transmission of small-sized devices.
 
 ### Available APIs
-
-    **HdmiCntlrOps**:
+  **HdmiCntlrOps**:
+    
 ```c
 struct HdmiCntlrOps {
     void (*hardWareInit)(struct HdmiCntlr *cntlr);
@@ -95,7 +95,7 @@ struct HdmiCntlrOps {
 |tmdsConfigSet|**cntlr**: structure pointer to an HDMI controller at the core layer.<br>**mode**: TMDS parameters.|–|HDF_STATUS|Sets TMDS parameters.|
 |infoFrameEnable|**cntlr**: structure pointer to an HDMI controller at the core layer.<br>**infoFrameType**: packet type.<br>**enable**: whether to enable infoFrame.|–|–|Enables or disables infoFrame.|
 |infoFrameSend|**cntlr**: structure pointer to an HDMI controller at the core layer.<br>**infoFrameType**: packet type.<br>**data**: pointer to infoFrame data.<br>**len**: data length.|–|HDF_STATUS|Sends an infoFrame.|
-|cecMsgSend|**cntlr**: structure pointer to an HDMI controller at the core layer.<br>**msg**: pointer to the Consumer Electronics Control (CEC) message|–|HDF_STATUS|Sends a CEC message.|
+|cecMsgSend|**cntlr**: structure pointer to an HDMI controller at the core layer.<br>**msg**: pointer to the CEC message|–|HDF_STATUS|Sends a CEC message.|
 |audioPathEnable|**cntlr**: structure pointer to an HDMI controller at the core layer.<br>**enable**: whether to enable the audio path.|–|–|Enables or disables the audio path.|
 |audioPathSet|**cntlr**: structure pointer to an HDMI controller at the core layer.<br>**config**: pointer to the audio path configuration.|–|–|Sets the audio path.|
 |phyOutputEnable|**cntlr**: structure pointer to an HDMI controller at the core layer.<br>**enable**: whether to enable the physical layer output.|–|–|Enables or disables the physical layer output.|
@@ -234,7 +234,7 @@ The HDMI module adaptation involves the following steps:
 
     - Custom structure reference
 
-        > ![](../public_sys-resources/icon-note.gif) **NOTE**
+        > ![](../public_sys-resources/icon-note.gif) **NOTE**<br/>
         > To the driver, the custom structure carries parameters and data. The values in the **hdmi_config.hcs** file are read by the HDF, and structure members are initialized by **DeviceResourceIface**. Some important values (such as the device number and bus number) are also passed to the **HdmiCntlr** object at the core layer.
 
         ```c
@@ -413,5 +413,5 @@ The HDMI module adaptation involves the following steps:
         }
         ```
         
-        > ![](../public_sys-resources/icon-note.gif) **NOTE**
+        > ![](../public_sys-resources/icon-note.gif) **NOTE**<br/>
         > All forced conversion operations for obtaining the corresponding object can be successful only when the **Init()** function has the corresponding value assignment operations.
