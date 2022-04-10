@@ -3,7 +3,7 @@
 
 ## 版本概述
 
-当前版本在OpenHarmony 3.1 Beta的基础上，更新支持以下能力：
+当前版本在OpenHarmony 3.1 Beta的基础上，增强支持以下能力：
 
 **标准系统基础能力增强**
 
@@ -139,7 +139,7 @@ repo forall -c 'git lfs pull'
 
 ### 特性变更
 
-**表3** 版本新增特性表
+**表3** 版本特性变更表
 
 | 子系统名称 | 标准系统 | 轻量、小型系统 |
 | -------- | -------- | -------- |
@@ -148,14 +148,14 @@ repo forall -c 'git lfs pull'
 | 系统服务管理 | -&nbsp;新增系统服务状态监控功能。<br/>-&nbsp;增动态加载本地系统服务功能。<br/>-&nbsp;新增DeviceProfile增删改查及同步功能。<br/>-&nbsp;新增DeviceProfile事件注册功能。<br/>-&nbsp;新增迁移框架对分布式对象、应用栈信息迁移的能力。<br/>-&nbsp;新增跨设备oncall能力（跨设备启动FA能力）。<br/>-&nbsp;新增实时获取远端设备任务、快照信息能力。<br/>主要涉及如下需求：<br/>I4MBRV&nbsp;【samgr】系统服务状态监控<br/>I4MBRY&nbsp;【samgr】系统服务进程管理<br/>I4NY1T&nbsp;【device_profile】订阅profile信息变化<br/>I4NY1W&nbsp;【device_profile】向业务端提供同步profile能力<br/>I4NY1X&nbsp;【device_profile】提供查询远程设备profile记录功能<br/>I4OGD1&nbsp;【新增特性】【DMS】支持组件间跨设备的onCall调用<br/>I4OGCK&nbsp;【增强特性】框架等待分布式对象同步完成后返回迁移结果<br/>I4OGCL&nbsp;【增强特性】【框架】迁移数据保存<br/>I4OGCN&nbsp;【增强特性】【DMS】根据指定设备发起迁移能力，接收迁移结果<br/>I4OGCM&nbsp;【新增特性】【任务管理】提供获取实时任务接口 | I4TS0Z&nbsp;【新增】轻量系统samgr支持远程服务管理 |
 | 分布式硬件 | -&nbsp;新增分布式硬件子系统，包括分布式硬件管理框架、分布式相机，分布式屏幕三个代码仓。<br/>-&nbsp;完善设备管理功能，提供周边设备发现，上下线和PIN码认证等增强功能。<br/>主要涉及如下需求：<br/>I4PZE7&nbsp;【增强特性】支持周边不可信设备的发现<br/>I4PZDZ&nbsp;【增强特性】支持帐号无关设备的PIN码认证<br/>I4PZDY&nbsp;【增强特性】支持可信设备列表查询、上下线监听<br/>I4WVOC&nbsp;【新增特性】分布式硬件使能/去使能和动态加载<br/>I4WVMX&nbsp;【新增特性】分布式硬件接入管理<br/>I4WW6U&nbsp;【新增特性】支持分布式Screen的镜像/扩展显示 | I4XSUZ&nbsp;【新增特性】轻量系统支持设备管理基础功能 |
 | 电源子系统 | 对于标准系统：<br/>新增电源管理、电池管理、热管理、耗电统计的基本功能支持。<br/>主要涉及如下需求：<br/>I40IRO&nbsp;【电源管理】支持休眠和混合睡眠模式<br/>I412F4&nbsp;【电源管理】支持省电模式<br/>I4MBRL&nbsp;【电源管理】支持显示相关的能耗调节<br/>I4MBRM&nbsp;【电源管理】支持接近光控制锁，通话时通过接近光控制亮灭屏的特性<br/>I4OEOZ&nbsp;【电源管理】监控输入亮屏输入事件，并根据输入事件进行亮、灭屏<br/>I4OEQT&nbsp;【电源管理】不亮屏检测<br/>I4QGI0&nbsp;【电源管理】长按power&nbsp;Key弹出关机界面<br/>I410YD&nbsp;【电池管理】支持关机充电特性<br/>I410Y1&nbsp;【电池管理】电池温度异常关机保护<br/>I4GY9U&nbsp;【热管理】支持内核温控服务<br/>I4GYAF&nbsp;【热管理】支持用户层和服务温控服务<br/>I4GYBV&nbsp;【热管理】提供温升监控接口<br/>I4GYCD&nbsp;【耗电统计】支持软件耗电统计<br/>I4GYCN&nbsp;【耗电统计】支持硬件耗电统计<br/>I4GYDQ&nbsp;【耗电统计】支持耗电详情记录 | NA |
-| 帐号子系统 | -&nbsp;新增支持本地帐号（也称为系统帐号）的声明周期管理功能，包括本地帐号的创建、切换、删除、订阅、查询、修改等功能<br/>-&nbsp;新增分布式帐号ID派生和状态管理功能，在分布式帐号登录时派生唯一的帐号ID并将其与当前本地帐号唯一绑定，在分布式帐号登出或token失效时解除与本地帐号的绑定关系。<br/>-&nbsp;新增域帐号与本地帐号绑定功能，根据传入的域帐号信息自动创建本地帐号并与其唯一绑定。<br/>-&nbsp;新增本地帐号辅助管理工具：acm命令，可通过acm&nbsp;create/delete/switch/dump等命令对本地帐号进行增删改查，通过acm&nbsp;--help查看对应指令说明。<br/>I4JBFB&nbsp;支持分布式组网帐号状态管理<br/>I4JBEK&nbsp;支持分布式组网帐号ID的派生<br/>I4IU6N&nbsp;支持本地多用户基础信息管理<br/>I4IU5W&nbsp;支持os_account_standard部件本地多用户生命周期管理需求<br/>I4IU5G&nbsp;支持本地多用户辅助管理工具<br/>I4IU3V&nbsp;支持域帐户和本地用户关联<br/>I4IU3B&nbsp;支持本地多用户启动、停止、切换动作<br/>I4IU33&nbsp;支持本地多用户功能设置与内容修改 | NA |
+| 帐号子系统 | -&nbsp;新增支持本地帐号（也称为系统帐号）的生命周期管理功能，包括本地帐号的创建、切换、删除、订阅、查询、修改等功能<br/>-&nbsp;新增分布式帐号ID派生和状态管理功能，在分布式帐号登录时派生唯一的帐号ID并将其与当前本地帐号唯一绑定，在分布式帐号登出或token失效时解除与本地帐号的绑定关系。<br/>-&nbsp;新增域帐号与本地帐号绑定功能，根据传入的域帐号信息自动创建本地帐号并与其唯一绑定。<br/>-&nbsp;新增本地帐号辅助管理工具：acm命令，可通过acm&nbsp;create/delete/switch/dump等命令对本地帐号进行增删改查，通过acm&nbsp;--help查看对应指令说明。<br/>I4JBFB&nbsp;支持分布式组网帐号状态管理<br/>I4JBEK&nbsp;支持分布式组网帐号ID的派生<br/>I4IU6N&nbsp;支持本地多用户基础信息管理<br/>I4IU5W&nbsp;支持os_account_standard部件本地多用户生命周期管理需求<br/>I4IU5G&nbsp;支持本地多用户辅助管理工具<br/>I4IU3V&nbsp;支持域帐户和本地用户关联<br/>I4IU3B&nbsp;支持本地多用户启动、停止、切换动作<br/>I4IU33&nbsp;支持本地多用户功能设置与内容修改 | NA |
 | 内核子系统 | -&nbsp;新增内存管理功能增强特性，提高内存使用效率，包括CMA复用、内存共享接口，增强swap等。<br/>-&nbsp;新增进程调度功能增强特性，提高cpu资源的使用效率，增强滑动场景的资源供给，包括cpu热插拔及轻量级隔离，绘帧线程优先供给机制等。<br/>-&nbsp;支持最新的内核安全漏洞补丁修复，及其他安全增强机制，如支持tokenid配置及查询等。<br/>主要涉及如下需求：<br/>I4MBTN【新增特性】支持CMA复用特性<br/>I4MBTO【新增特性】支持内存占用分类查询<br/>I4LKQ0【新增特性】cpuset与cpu热插拔解耦<br/>I4QE9K【新增特性】提供内核态驱动与用户态之间、用户态与用户态之间的内核共享能力<br/>I4LRGQ【新增特性】OpenHarmony内核基线使能<br/>I4RXQ3【新增特性】内存管理基础特性<br/>I4TEGS【新增特性】F2FS末端性能优化<br/>I4SRVK【新增特性】支持CPU轻量级隔离特性<br/>I4SE2N【新增特性】支持按照用户维度进行内存资源管控的能力<br/>I4VMGZ【新增特性】支持基础FPS智能感知调度功能<br/>I4U089【新增特性】内核调度支持绘帧线程优先供给机制<br/>I4OWTZ【外部依赖】内核实现进程的tokenID设置 | NA |
 | 包管理子系统 | -&nbsp;新增对多HAP安装、隐式查询、多用户、权限管理的基本功能支持。<br/>-&nbsp;新增DBMS、跨设备同步等分布式能力的支持<br/>-&nbsp;新增zlib&nbsp;Native&nbsp;SDK支持<br/>主要涉及如下需求：<br/>I4MBSD【新增特性】支持多hap包安装<br/>I4MBSG【增强特性】安装包信息查询<br/>I4PKY7【新增特性】跨设备信息同步<br/>I4PKY8【新增特性】跨设备信息查询<br/>I4PKYK【增强特性】启动扫描<br/>I4PKYI【新增特性】提供清除数据的能力<br/>I4PKYM【新增特性】支持多用户创建<br/>I4QA3D【增强特性】新增zlib解压、压缩数据native接口<br/>I4SIH9【新增特性】应用申请权限管理 | NA |
 | 位置服务子系统 | -&nbsp;新增位置服务子系统，提供位置服务框架能力。<br/>-&nbsp;位置服务框架支持GNSS基本定位、GNSS围栏、GNSS&nbsp;Batching、网络定位能力、地理编码转换等能力框架服务。<br/>主要涉及如下需求：<br/>I4XXIH&nbsp;【location_gnss】供GNSS性能提升的相关辅助信息请求和注入能力<br/>I4XXIG&nbsp;【location_gnss】提供GNSS硬件功耗统计以及功耗优化能力<br/>I4XXIF【location_gnss】提供GNSS基本定位功能<br/>I4XXIC【location_gnss】提供GNSS&nbsp;Batching的能力<br/>I4XXIB【location_gnss】支持GNSS参数设置和信息上报功能<br/>I4XXI8【location_locator】支持位置服务的安全管理能力<br/>I4XXI7【location_locator】提供位置服务隐私的安全保障能力<br/>I4XXI5【location_locator】支持管理多个定位请求，支持多应用同时请求定位<br/>I4XXI4【location_locator】支持位置服务定位管理功能<br/>I4XXI3【location_geofence】支持GNSS芯片相关的地理围栏功能<br/>I4XXI0【location_geocode】支持经纬度和地址互相转换<br/>I4XXHZ【location_network】支持网络定位能力<br/>I4XXHW【location_gnss】支持GNSS辅助协议 | NA |
 | 基础通信子系统 | -&nbsp;新增WiFi&nbsp;STA、AP、P2P相关基本能力以及JS&nbsp;API，优化了STA、AP、P2P基本能力的连接体验。<br/>-&nbsp;新增蓝牙BR、SPP、BLE相关的能力以及JS&nbsp;API。<br/>主要涉及如下需求：<br/>**WiFi**：<br/>I4XXFG&nbsp;【新增特性】支持WiFi功耗统计以及功耗优化能力<br/>I4XXFF&nbsp;【新增特性】提供WiFi&nbsp;P2P基本能力<br/>I4XXFB【新增特性】支持P2P&nbsp;magiclink连接特性<br/>I4XXF7【新增特性】支持SoftAP&nbsp;5G及信道自动选择<br/>I4MBRI&nbsp;【新增特性】支持SoftAP基础特性<br/>I4MBRH【新增特性】支持STA基础特性<br/>**蓝牙**：<br/>I4XXGC【bluetooth_standard】支持蓝牙BR/EDR的基本能力<br/>I4XXFT【bluetooth_standard】提供A2DP&nbsp;profile相关能力以及JS&nbsp;API<br/>I4XXFP【bluetooth_standard】支持蓝牙BLE相关的基本能力<br/>I4XXFL【bluetooth_standard】支持蓝牙SPP能力，提供BR的数据传输能力<br/> | NA |
 | 元能力子系统 | -&nbsp;新增卡片能力、Zidl工具支持C++服务端客户端代码自动生成、元能力测试框架、命令行工具能力增强。<br/>-&nbsp;新增多用户能力、任务栈重构、部件化解耦、应用常驻进程、应用异常检测增强、环境变化通知能力。<br/>主要涉及如下需求：<br/>I4PCM4&nbsp;【新增特性】上下文提供应用/Hap包/组件信息查询能力<br/>I4PCPP&nbsp;【新增特性】上下文适配多用户<br/>I4PCPV&nbsp;【新增特性】提供指定用户启动组件的系统接口<br/>I4PCQP&nbsp;【新增特性】支持singleuser的运行模式<br/>I4PCQU&nbsp;【新增特性】启动初始化默认用户<br/>I4PCGY&nbsp;【增强特性】新增卡片开发基类<br/>I4PCH9&nbsp;【增强特性】通过配置文件配置服务卡片<br/>I4PCLL&nbsp;【新增特性】JS提供的应用级别上下文<br/>I4PCLN&nbsp;【新增特性】Abilty的状态恢复<br/>I4PCP1&nbsp;【新增特性】应用运行信息查询<br/>I4PCPG&nbsp;【增强特性】支持系统环境变化通知<br/>I4PCR8&nbsp;【增强特性】支持常驻进程开机启动<br/>I4PCV4&nbsp;【新增特性】支持任务切换<br/>I4PCVZ&nbsp;【新增特性】支持指定displayId启动Ability<br/>I4PCW3&nbsp;【增强特性】pendingwant机制支持跨设备启动通用组件<br/>I4PCH4&nbsp;【新增特性】卡片支持多用户<br/>I4PCM1&nbsp;【新增特性】提供ce/de级上下文<br/>I4PCVN&nbsp;【新增特性】支持任务快照获取和更新<br/>I4PPW6&nbsp;【增强特性】指定窗口模式启动组件<br/>I4PC3R&nbsp;【新增特性】提供卡片开发基础能力<br/>I4PQ0M&nbsp;【增强特性】上下文提供消息发送和监听能力<br/>II4PQ13&nbsp;【增强特性】上下文提供权限校验及权限申请接口<br/>I4PQ1E&nbsp;【增强特性】支持常驻进程异常恢复<br/>I4PQ1O&nbsp;【新增特性】支持NewWant<br/>I4PCPI&nbsp;【增强特性】支持系统环境查询<br/>I4PCRL&nbsp;【新增特性】测试框架整体功能<br/>I4PCVU&nbsp;【新增特性】通用组件call调用 | NA |
 | 无障碍软件服务子系统 | -&nbsp;新增界面信息交换机制内部实现；<br/>-&nbsp;新增无障碍配置信息读取。<br/>主要涉及如下需求：<br/>I4X2EM【新增特性&nbsp;信息交换机制】按键拦截<br/>I4X2EN【新增特性&nbsp;信息交换机制】支持上报窗口节点信息<br/>I4X2ET【新增特性&nbsp;信息交换机制】支持控件节点信息上报<br/>I4X2EV【新增特性&nbsp;信息交换机制】焦点查询<br/>I4X2EY【新增特性&nbsp;信息交换机制】无障碍事件列表<br/>I4X2EZ【新增特性&nbsp;信息交换机制】无障碍事件信息<br/>I4X2F0【新增特性&nbsp;信息交换机制】无障碍动作发起<br/>I4X2F1【新增特性&nbsp;信息交换机制】辅助应用列表查询<br/>I4X2F2【新增特性&nbsp;信息交换机制】辅助应用状态查询与监听<br/>I4X2F3【新增特性&nbsp;信息交换机制】手势模拟<br/>I4X2F4【新增特性&nbsp;信息交换机制】触摸拦截<br/>I4X2EO【新增特性&nbsp;无障碍服务管理】目标应用连接<br/>I4X2EP【新增特性&nbsp;无障碍服务管理】辅助应用连接<br/>I4X2ER【新增特性&nbsp;无障碍服务管理】辅助应用更新<br/>I4X2ES【新增特性&nbsp;无障碍服务管理】无障碍字幕配置 | NA |
-| 媒体子系统 | -&nbsp;新增支持本地基础音视频播放和录制能力，支持视频硬编解码，支持主流音视频codec与封装格式，并易于生态厂商扩展。<br/>-&nbsp;新增支持相机基础预览、拍摄、录像能力，及分布式相机预览、拍摄能力。<br/>主要涉及如下需求：<br/>I4WYPP【audio_standard部件】支持蓝牙音频播放<br/>I4WYK8【audio_standard部件】支持Opensles基础播放接口<br/>I4WYW4【增强特性】支持相机会话管理<br/>I4WYVE【增强特性】支持基础拍照模式下的拍照功能<br/>I4WZ8G【新增特性】图片基础解码框架<br/>I4X5E1【新增特性】支持视频软解功能<br/>I4X552【新增特性】支持本地音视频播放<br/>I4X5Q9【新增特性】分布式媒体库-缩略图同步<br/>I4X5L5【新增特性】基础媒体数据库 | NA |
+| 媒体子系统 | -&nbsp;新增支持本地基础音视频播放能力，支持视频硬编解码，支持主流音视频codec与封装格式，并易于生态厂商扩展。<br/>-&nbsp;新增支持相机基础预览、拍摄能力，及分布式相机能力。<br/>主要涉及如下需求：<br/>I4WYPP【audio_standard部件】支持蓝牙音频播放<br/>I4WYK8【audio_standard部件】支持Opensles基础播放接口<br/>I4WYW4【增强特性】支持相机会话管理<br/>I4WYVE【增强特性】支持基础拍照模式下的拍照功能<br/>I4WZ8G【新增特性】图片基础解码框架<br/>I4X5E1【新增特性】支持视频软解功能<br/>I4X552【新增特性】支持本地音视频播放<br/>I4X5Q9【新增特性】分布式媒体库-缩略图同步<br/>I4X5L5【新增特性】基础媒体数据库 | NA |
 | 图形子系统 | -&nbsp;构建了图形RenderService新渲染框架。<br/>-&nbsp;提供了2D/3D绘制能力支持。<br/>-&nbsp;支持新的动画框架。<br/>主要涉及如下需求：<br/>I4MBTY【render_service部件】【新增特性】新增UI框架渲染后端特性<br/>I4RKT3【composer部件】提供合成和送显的能力<br/>I4ZCGG【drawing部件】提供图形Native&nbsp;SDK能力<br/>I4RKSW【drawing部件】提供3D&nbsp;图形能力支持Native&nbsp;SDK能力<br/>I4MBTW【animation部件】提供基础动画框架 | NA |
 | 窗口子系统 | -&nbsp;构建了窗口管理新框架，提供更加灵活的窗口框架能力，支持全屏、分屏、窗口化形态，支持跨窗口拖拽能力。<br/>-&nbsp;提供了display管理能力，支持分屏，并增强亮灭屏管理能力。<br/>主要涉及如下需求：<br/>I4R308【增强特性】：提供应用窗口创建管理能力，单个应用的多个Ability实例可以创建多个主窗口<br/>I4R309【增强特性】：提供应用窗口创建管理能力，支持启动窗口时设定窗口显示策略；提供窗口显示策略状态给应用（分屏、全屏、自由窗口）<br/>I4R30D【新增特性】：应用主窗口支持自由窗口显示，平铺和层叠布局<br/>I4R9P0【新增规格】：增强特性：<br/>1.&nbsp;提供Display管理能力<br/>2.&nbsp;提供通过物理屏幕插入拔出创建和销毁Display的能力<br/>3.&nbsp;提供多Display映射管理能力<br/>I4ZEKH【新增特性】：支持亮屏灭屏流程：<br/>1.&nbsp;支持从电源管理发起的休眠、唤醒、亮屏、灭屏请求<br/>2.&nbsp;支持收到请求后调用Render&nbsp;Server接口实现对对应的亮屏、灭屏、调整屏幕亮度操作 | NA |
 | 网络管理子系统 | I4XXHU【增强特性】支持TCP/UDP&nbsp;Socket<br/>I4XXHT【增强特性】支持http&nbsp;1.1/https/http2<br/>I4XXHS【增强特性】支持对Wi-Fi/蜂窝网络连接的管理和切换<br/>I4XXHP【增强特性】支持DNS解析和配置<br/>I4XXHN【增强特性】支持网络连接状态查询和网络连接状态变化通知<br/>I4XXHH【wpa_supplicant】提供基于NL80211的wpa、p2p能力<br/>I4XXHG【wpa_supplicant】提供magiclink能力 | NA |
@@ -167,7 +167,7 @@ repo forall -c 'git lfs pull'
 | 语言编译运行时子系统 | -&nbsp;语言编译运行时：提供适应多端的基础JS工具链及运行时，端侧提供JS引擎支撑应用运行。<br/>-&nbsp;TS/JS公共基础库：TS/JS公共基础类库提供基础功能及TS/JS多线程能力<br/>-&nbsp;TS/JS/C/C++工具链：支持开发者开发调试调优的基本需求<br/>-&nbsp;Lite&nbsp;Actor：轻量化Actor模型，共享字节码及虚拟机内部基础设施，优化目前JS引擎的实现，优化内存占用、提升启动性能。<br/>-&nbsp;High&nbsp;Perf&nbsp;Partial&nbsp;GC：方舟GC支持并发标记、并行标记、懒清理，减少50%的GC停顿时间，改善用户体验。<br/>&nbsp;&nbsp;主要涉及如下需求：<br/>&nbsp;&nbsp;I4W7ZR【新增规格】内存管理分配回收功能/HPP&nbsp;GC性能调优<br/>&nbsp;&nbsp;I4P7F7【语言编译运行时，图形图像，DRF】Native&nbsp;SDK整体集成<br/>&nbsp;&nbsp;I4WWKK【增强特性】Actor轻量化1.0 | NA |
 | 升级服务子系统 | -&nbsp;升级服务子系统各部件的标准化<br/>-&nbsp;支持syscap机制<br/>主要涉及如下需求：<br/>I4WXHW【部件化专项】升级服务子系统部件标准化<br/>I4XXH6【SysCap】升级服务子系统支持SysCap机制 | NA |
 | Misc软件服务子系统 | -&nbsp;新增时间时区同步的支持管理能力的支持<br/>-&nbsp;新增对剪切板数据项进行进行查询、设置、删除、替换等能力的支持<br/>-&nbsp;新增对锁屏服务管理能力的支持<br/>-&nbsp;新增对静态壁纸管理能力的支持<br/>-&nbsp;新增对下载服务管理能力的支持<br/>主要涉及如下需求：<br/>I4U2WR&nbsp;新增特性：时间时区同步管理<br/>I4ZTTE【新增特性】剪贴板数据项-支持将剪贴板数据项强制转换为文本<br/>I4ZTTO【新增特性】剪贴板数据-支持增加获取、删除、替换剪贴板数据中的数据项；支持查询与设置剪贴板数据属性<br/>I4ZTTZ【新增特性】系统剪贴板-支持获取、清理、查询剪贴板的剪贴板数据；支持剪贴板内容变化通知<br/>I4ZTZC【新增特性】锁屏管理服务-支撑多用户场景<br/>I4ZTZT【新增特性】锁屏管理服务-支撑系统开机、亮灭屏场景<br/>I4ZU1S【新增特性】静态壁纸<br/>I4ZTXT【request部件】下载管理-支持新建、移除、修改、查询下载任务、支持暂停、恢复下载任务、支持监听下载任务进度、下载状态变更通知；下载管理服务，提供系统下载管理DataAbility，处理下载任务数据的持久化，提供系统下载管理服务，处理应用接口权限检查、执行http下载和处理下载异常 | NA |
-| 轻内核子系统 | NA | 对于小型系统：<br/>I4RD3H&nbsp;M核增加了signal、pipe、poll、select等POSIX接口<br/>I4Q9OQ&nbsp;支持Cortex-M55架构<br/>I4Q9F2&nbsp;支持动态加载机制<br/>I4RD2M&nbsp;内核部件化 |
+| 轻内核子系统 | NA | 对于轻量系统：<br/>I4RD3H&nbsp;M核增加了signal、pipe、poll、select等POSIX接口<br/>I4Q9OQ&nbsp;支持Cortex-M55架构<br/>I4Q9F2&nbsp;支持动态加载机制<br/>I4RD2M&nbsp;内核部件化 |
 | 文件管理子系统 | -&nbsp;支持基础文件系统ext4/f2fs能力及相关工具，支持分布式文件系统跨设备文件访问能力。<br/>-&nbsp;支持设备存储管理功能，包括文件加密、空间管理与统计、多用户空间管理、外卡挂载管理等能力。<br/>-&nbsp;增强应用数据保护，建立应用沙箱隔离机制；优化用户数据管理，包括用户数据沙箱隔离安全性增强、用户文件访问框架与接口。<br/>-&nbsp;基础文件操作API能力补齐，包括statfs占用空间统计、文件访问异步接口等能力。<br/>主要涉及如下需求：<br/>I4RDNG【新增特性】【local_file_system】支持ext4/f2fs等用户态工具的能力<br/>I4RFBD【新增特性】【local_file_system】支持fat/exfat/ntfs等可插拔文件系统能力<br/>I4TTN8【新增特性】支持分布式文件系统的基础功能<br/>I4TTNG【新增特性】支持数据分类设备分级，控制数据流转规格<br/>I4TTGR【新增特性】【storage_manager部件】文件加密特性使能<br/>I4TTHQ【新增特性】支持外部存储访问需求<br/>I4TTJN【新增特性】支持外卡设备相关事件分发特性<br/>I4TTJV【新增特性】支持卷信息查询和管理特性<br/>I4XXIR【新增特性】响应多用户创建删除，进行用户目录创建和删除<br/>I4XXIY【新增特性】支持应用占用空间统计特性<br/>I4SNSU【新增特性】支持应用沙箱隔离能力<br/>I4XXIX【新增特性】支持file&nbsp;picker需要的JS&nbsp;API文件接口需求<br/>I4MBS2【新增特性】支持statfs&nbsp;API能力需求 | NA |
 | 事件通知子系统 | -&nbsp;新增支持多用户。<br/>-&nbsp;新增支持分布式通知。<br/>-&nbsp;新增通知模板功能。<br/>主要涉及如下需求：<br/>I4PBOK&nbsp;【新增特性】通知支持多用户<br/>I4PBP7&nbsp;【新增特性】支持应用发送模板通知（调试能力）<br/>I4PBPE&nbsp;【新增特性】支持进度条通知<br/>I4PBPM&nbsp;【增强特性】分布式通知支持流控<br/>I4PBRM&nbsp;【新增特性】支持其他设备的通知点击后在本设备跳转<br/>I4PBRW&nbsp;【新增特性】支持设备级的分布式通知使能控制<br/>I4PBSE&nbsp;【新增特性】支持通知管理应用设置和查询应用级的分布式通知使能<br/>I4PBSP&nbsp;【新增特性】支持应用设置分布式通知能力是否使能<br/>I4PBT7&nbsp;【新增特性】分布式通知同步<br/>I4PBU3&nbsp;【新增特性】分布式通知联动取消<br/>I4PBUU&nbsp;【新增规格】&nbsp;支持通过config.json静态配置公共事件，支持通过wokscheduler静态拉起订阅者<br/>I4PBV9&nbsp;【新增规格】&nbsp;支持静态订阅者管控<br/>I4WTGK&nbsp;【新增特性】支持模板通知注册、查询和发送<br/>I4PBSZ&nbsp;【新增特性】根据设备状态决策通知是否提醒<br/>I4PBBV&nbsp;【新增特性】事件耗时调用<br/>I4PD0O&nbsp;【特性增强】通知发送使能能力增强<br/>I4PBQ1&nbsp;【增强特性】分布式通知能力支持dump命令<br/>I4PBR0&nbsp;【新增特性】支持其他设备的通知点击后在跨设备跳转<br/>I4PC2S&nbsp;【新增特性】公共事件支持多用户特性 | NA |
 | 泛Sensor服务子系统 | -&nbsp;新增常见传感器加速度、陀螺仪、霍尔等的数据上报。<br/>-&nbsp;新增马达振动的基本能力。<br/>-&nbsp;新增通用算法能力和地磁场算法能力。<br/>主要涉及如下需求：<br/>I4WWTG【miscdevice部件】Miscdevice支持周边依赖<br/>I4WWTF【sensor部件】Sensor支持周边依赖<br/>I4WWTD【sensor部件】支持通用的算法接口<br/>I4MBRQ【sensor部件】地磁场水平强度、总强度<br/>I4MBRP【sensor部件】地磁场偏角和倾角 | NA |
@@ -196,8 +196,9 @@ _[Native API差异报告](api-change/v3.1-Release/native-apidiff-v3.1-release.md
 
 芯片及开发板适配状态请参考[SIG-Devboard](https://gitee.com/openharmony/community/blob/master/sig/sig-devboard/sig_devboard_cn.md)信息。
 
+### Samples & Codelabs
 
-### Samples
+#### 新增Samples
 
 **表4** 新增Samples
 
@@ -219,14 +220,29 @@ _[Native API差异报告](api-change/v3.1-Release/native-apidiff-v3.1-release.md
 | 通信与连接 | [RPC通信](https://gitee.com/openharmony/app_samples/tree/master/Communication/RPC) | 本示例展示了同一设备中前后台的数据交互，用户前台选择相应的商品与数目，后台计算出结果，回传给前台展示。 | eTS |
 | 通信与连接 | [WLAN](https://gitee.com/openharmony/app_samples/tree/master/Communication/Wlan) | 本示例展示了在eTS中WLAN的基本使用，包括禁用和启用WLAN、WLAN扫描和获取扫描结果、WLAN状态监听、WiFi连接状态监听、获取IP信息、获取国家码、判断设备是否支持WLAN相关特性。 | eTS |
 | 媒体服务 | [录音机Demo](https://gitee.com/openharmony/app_samples/tree/master/media/Recorder) | 本示例展示媒体服务中音频录制和播放功能的使用。 | eTS |
-| 媒体服务 | [多媒体Demo](https://gitee.com/openharmony/app_samples/tree/master/media/MultiMedia) | 本示例展示如何在eTS中调用相机拍照和录像，以及如何使用媒体库接口进行媒体文件的增、删、改、查操作。 | eTS |
+| 媒体服务 | [多媒体Demo](https://gitee.com/openharmony/app_samples/tree/master/media/MultiMedia) | 本示例展示如何在eTS中调用相机拍照，以及如何使用媒体库接口进行媒体文件的增、删、改、查操作。 | eTS |
 
 请访问[Samples](https://gitee.com/openharmony/app_samples)仓了解更多信息。
+
+#### 新增Codelabs
+
+**表5** 新增Codelabs
+
+| 项目名称                                                     | 简介                                                         | 开发语言 |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | -------- |
+| [分布式鉴权](https://gitee.com/openharmony/codelabs/tree/master/Distributed/GameAuthOpenH) | 使用JS开发一个分布式游戏鉴权应用，介绍分布式拉起，设备管理器对象、显示设备属性接口能力的使用。 | JS       |
+| [分布式游戏手柄](https://gitee.com/openharmony/codelabs/tree/master/Distributed/HandleGameApplication) | 使用eTS开发一个手柄游戏，利用分布式能力，一个开发板作为手柄，一个开发板作为游戏端。 | eTS      |
+| [分布式亲子教育](https://gitee.com/openharmony/codelabs/tree/master/Distributed/OpenHarmonyPictureGame) | 使用RPC实现跨设备通讯，以及CommonEvent实现ServiceAbility与FA之间通讯，完成分布式拼图游戏。 | eTS      |
+| [分布式遥控器](https://gitee.com/openharmony/codelabs/tree/master/Distributed/RemoteControllerETS) | 使用eTS开发一个分布式遥控器，利用分布式能力，一个开发板作为TV端，一个开发板作为遥控器端。 | eTS      |
+| [音频录制应用](https://gitee.com/openharmony/codelabs/tree/master/Media/Audio_OH_ETS) | 使用媒体组件AudioRecorder收录当前音频、使用AudioPlayer播放录音的方法。 | eTS      |
+| [备忘录](https://gitee.com/openharmony/codelabs/tree/master/Data/NotePad_OH_ETS) | 使用eTS开发一个简易备忘录，支持新建、删除和收藏笔记功能，轻量级数据库持久化存储数据。 | eTS      |
+| [分布式邮件编辑](https://gitee.com/openharmony/codelabs/tree/master/Distributed/OHMailETS) | 使用eTS开发分布式邮件，利用分布式的能力，在相同局域网及帐号下，拉起另一个设备，实现邮件在不同设备下的编辑流转。 | eTS      |
+| [三方库](https://gitee.com/openharmony/codelabs/tree/master/ThirdPartyComponents/VCardDemo) | 介绍openHarmony中三方库vcard库使用：一款写入和读取特定格式的联系人数据(后缀名为vcard的文件)的OpenHarmony组件。 | eTS      |
 
 
 ## 修复缺陷列表
 
-**表5** 修复缺陷ISSUE列表
+**表6** 修复缺陷ISSUE列表
 
 | ISSUE单 | 问题描述 |
 | -------- | -------- |
@@ -239,7 +255,7 @@ _[Native API差异报告](api-change/v3.1-Release/native-apidiff-v3.1-release.md
 
 ## 遗留缺陷列表
 
-**表6** 遗留缺陷列表
+**表7** 遗留缺陷列表
 
 | ISSUE | 问题描述 | 影响 | 计划解决日期 |
 | -------- | -------- | -------- | -------- |
