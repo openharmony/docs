@@ -1246,6 +1246,11 @@ vendor/hisilicon/hispark_taurus/
 
 
 ## HAL-based Development Procedure and Example
+The Hardware Abstraction Layer (HAL) provides the following functions:
+
+1. Provides audio HDIs for audio services to implement basic audio features on applications.
+2. Provides standard interfaces for device developers to comply with the HDI adapter standards. This promises a healthy evolution of the ecosystem.
+
 Code path: **drivers/peripheral/audio/hal**
 
 ### Development procedure
