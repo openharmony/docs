@@ -35,23 +35,23 @@ Before developing an application that depends on the signature verification comp
 
 - Profile
 
-  The profile in this document refers to HarmonyAppProvision (profile for short). HarmonyAppProvision is in JSON format.
+  The profile in this document refers to HarmonyAppProvision, which is in JSON format.
 
-- Debugging application
+- Debug application
 
-  A debugging application is a HarmonyOS Ability Package (HAP) that is signed with a debugging certificate and profile obtained from the application market.
+  A debug application is an OpenHarmony Ability Package (HAP) that is signed with a debug certificate and profile obtained from the application store.
 
-- Released application
+- Release application
 
-  This application refers to a HAP that is signed with a distribution certificate and profile obtained from the application market, but has been released in the application market.
+  A release application is a HAP that is signed with a release certificate and profile obtained from the application store, and formally released in the application store.
 
 - OpenHarmony self-signed application
 
-  A self-signed application is one that has been signed with the signing certificate and profile issued by OpenHarmony's open-source root CA, which is composed of a certificate and a key.
+  A self-signed application is an application that is signed with the signing certificate and profile issued by OpenHarmony's open-source root CA, which is composed of a certificate and a key.
 
 
 ## Constraints
 
-- Only signatures of debug, release, and OpenHarmony self-signed applications can be verified.
+- Only signatures of the debug, release, and OpenHarmony self-signed applications can be verified.
 
-- To verify the signature of a debug application, the UDID of the device on which the debugging application is installed must be in the UDID list contained in the profile.
+- To verify the signature of a debug application, the UDID of the device on which the debug application is installed must be in the UDID list contained in the profile.

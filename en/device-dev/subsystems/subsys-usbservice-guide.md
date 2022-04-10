@@ -1,7 +1,7 @@
-# USB Usage<a name="EN-US_TOPIC_0000001077367159"></a>
+# USB Usage Guidelines<a name="EN-US_TOPIC_0000001077367159"></a>
 
 
-The following uses bulk transfer as an example.
+The following procedure uses bulk transfer as an example.
 
 ## Procedure<a name="section18816105182315"></a>
 
@@ -24,7 +24,7 @@ int32_t ret = g_usbClient.GetDevices(deviceList);
 int32_t ret = g_usbClient.RequestRight(device.GetName());
 ```
 
-4.  Opens a device.
+4.  Opens the USB device.
 
 ```
 USBDevicePipe pip;
@@ -38,7 +38,7 @@ ret = g_usbClient.ClaimInterface(pip, interface, true);
 **interface** indicates an interface of the USB device in **deviceList**.
 ```
 
-6.  Perform data transfer.
+6.  Transfer data.
 
 ```
 srvClient.BulkTransfer(pipe, endpoint, vdata, timeout);
