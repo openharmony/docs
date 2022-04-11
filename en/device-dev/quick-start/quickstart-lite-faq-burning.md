@@ -56,15 +56,15 @@
 
 1. Check whether the network cable is properly connected.
 
-2. Click Windows Firewall.
+2. Click **Windows Firewall**.
 
      **Figure 6** Network and firewall settings
 
      ![en-us_image_0000001226634732](figures/en-us_image_0000001226634732.png)
 
-3. Click **Firewall & network protection**, and on the displayed page, click **Allow applications to communicate through Windows Firewall**.
+3. Click **Firewall & network protection**, and on the displayed page, click **Allow an app through the firewall**.
 
-     **Figure 7** Firewall and network protection
+     **Figure 7** Firewall & network protection
 
      ![en-us_image_0000001271354749](figures/en-us_image_0000001271354749.png)
 
