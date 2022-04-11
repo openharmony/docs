@@ -20,7 +20,7 @@ master：最新开发版本。
 
 发布OpenHarmony 3.1 Release版本，[了解版本详情](zh-cn/release-notes/OpenHarmony-v3.1-release.md)。
 
-发布OpenHarmony 3.0 LTS版本，[了解版本详情](zh-cn/release-notes/OpenHarmony-v3.0-LTS.md)。该版本已更新至OpenHarmony 3.0.2 LTS，[了解版本详情](zh-cn/release-notes/OpenHarmony-v3.0.2-LTS.md)。
+发布OpenHarmony 3.0 LTS版本，[了解版本详情](zh-cn/release-notes/OpenHarmony-v3.0-LTS.md)。该版本已更新至OpenHarmony 3.0.3 LTS，[了解版本详情](zh-cn/release-notes/OpenHarmony-v3.0.3-LTS.md)。
 
 发布 OpenHarmony v2.2 Beta2版本，[了解版本详情](zh-cn/release-notes/OpenHarmony-v2.2-beta2.md)。
 
