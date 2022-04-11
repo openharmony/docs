@@ -207,7 +207,7 @@ import stats from '@ohos.bundleState';
     });
     ```
 
-8. 根据maxNum，查询FA使用记录，返回不超过maxNum条FA使用记录，config.json中需要配置权限：ohos.permission.BUNDLE_ACTIVE_INFO。
+8. 查询FA使用记录。返回数量最大不超过maxNum设置的值，config.json中需要配置权限：ohos.permission.BUNDLE_ACTIVE_INFO。
 
     ```js
     import stats from '@ohos.bundleState'

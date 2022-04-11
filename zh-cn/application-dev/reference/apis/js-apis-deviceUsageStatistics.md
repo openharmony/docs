@@ -59,7 +59,7 @@ isIdleState(bundleName: string): Promise&lt;boolean&gt;
 
 **示例**：
 
-  ```
+  ```js
     bundleState.isIdleState("com.ohos.camera").then( res => {
         console.log('BUNDLE_ACTIVE isIdleState promise succeeded, result: ' + JSON.stringify(res));
     }).catch( err => {
@@ -83,7 +83,7 @@ queryAppUsagePriorityGroup(callback: AsyncCallback&lt;number&gt;): void
 
 **示例**：
 
-  ```
+  ```js
     bundleState.queryAppUsagePriorityGroup((err, res) => {
         if (err) {
             console.log('BUNDLE_ACTIVE queryAppUsagePriorityGroup callback failed. because: ' + err.code);
@@ -109,7 +109,7 @@ queryAppUsagePriorityGroup(): Promise&lt;number&gt;
 
 **示例**：
 
-  ```
+  ```js
     bundleState.queryAppUsagePriorityGroup().then( res => {
         console.log('BUNDLE_ACTIVE queryAppUsagePriorityGroup promise succeeded. result: ' + JSON.stringify(res));
     }).catch( err => {
@@ -137,7 +137,7 @@ queryBundleStateInfos(begin: number, end: number, callback: AsyncCallback&lt;Bun
 
 **示例**：
 
-  ```
+  ```js
     bundleState.queryBundleStateInfos(0, 20000000000000, (err, res) => {
         if (err) {
             console.log('BUNDLE_ACTIVE queryBundleStateInfos callback failed, because: ' + err.code);
@@ -178,7 +178,7 @@ queryBundleStateInfos(begin: number, end: number): Promise&lt;BundleActiveInfoRe
 
 **示例**：
 
-  ```
+  ```js
     bundleState.queryBundleStateInfos(0, 20000000000000).then( res => {
         console.log('BUNDLE_ACTIVE queryBundleStateInfos promise success.');
         let i = 1;
@@ -213,7 +213,7 @@ queryBundleStateInfoByInterval(byInterval: IntervalType, begin: number, end: num
 
 **示例**：
 
-  ```
+  ```js
     bundleState.queryBundleStateInfoByInterval(0, 0, 20000000000000, (err, res) => {
         if (err) {
             console.log('BUNDLE_ACTIVE queryBundleStateInfoByInterval callback failed, because: ' + err.code);
@@ -253,7 +253,7 @@ queryBundleStateInfoByInterval(byInterval: IntervalType, begin: number, end: num
 
 **示例**：
 
-  ```
+  ```js
     bundleState.queryBundleStateInfoByInterval(0, 0, 20000000000000).then( res => {
         console.log('BUNDLE_ACTIVE queryBundleStateInfoByInterval promise success.');
         for (let i = 0; i < res.length; i++) {
@@ -285,7 +285,7 @@ queryBundleActiveStates(begin: number, end: number, callback: AsyncCallback&lt;A
 
 **示例**：
 
-  ```
+  ```js
     bundleState.queryBundleActiveStates(0, 20000000000000, (err, res) => {
         if (err) {
             console.log('BUNDLE_ACTIVE queryBundleActiveStates callback failed, because: ' + err.code);
@@ -324,7 +324,7 @@ queryBundleActiveStates(begin: number, end: number): Promise&lt;Array&lt;BundleA
 
 **示例**：
 
-  ```
+  ```js
     bundleState.queryBundleActiveStates(0, 20000000000000).then( res => {
         console.log('BUNDLE_ACTIVE queryBundleActiveStates promise success.');
         for (let i = 0; i < res.length; i++) {
@@ -354,7 +354,7 @@ queryCurrentBundleActiveStates(begin: number, end: number, callback: AsyncCallba
 
 **示例**：
 
-  ```
+  ```js
     bundleState.queryCurrentBundleActiveStates(0, 20000000000000, (err, res) => {
         if (err) {
             console.log('BUNDLE_ACTIVE queryCurrentBundleActiveStates callback failed, because: ' + err.code);
@@ -391,7 +391,7 @@ queryCurrentBundleActiveStates(begin: number, end: number): Promise&lt;Array&lt;
 
 **示例**：
 
-  ```
+  ```js
     bundleState.queryCurrentBundleActiveStates(0, 20000000000000).then( res => {
         console.log('BUNDLE_ACTIVE queryCurrentBundleActiveStates promise success.');
         for (let i = 0; i < res.length; i++) {
@@ -403,11 +403,11 @@ queryCurrentBundleActiveStates(begin: number, end: number): Promise&lt;Array&lt;
     });
   ```
 
-## bundleState.getModuleUsageRecord<sup>9</sup>
+## bundleState.getModuleUsageRecord<sup>9+</sup>
 
-getModuleUsageRecord(begin: number, end: number): Promise&lt;Array&lt;BundleActiveModuleInfo&gt;&gt;
+getModuleUsageRecord(maxNum: number): Promise&lt;Array&lt;BundleActiveModuleInfo&gt;&gt;
 
-据maxNum，查询FA使用记录，使用Promise返回不超过maxNum条FA使用记录。
+据maxNum，查询FA使用记录，使用Promise返回不超过maxNum条FA使用记录，maxNum最大为1000。
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -427,7 +427,7 @@ getModuleUsageRecord(begin: number, end: number): Promise&lt;Array&lt;BundleActi
 
 **示例**：
 
-  ```
+  ```js
     bundleState.getModuleUsageRecord(this.maxNum).then( res => {
         console.log('BUNDLE_ACTIVE getModuleUsageRecord promise succeeded');
         for (let i = 0; i < res.length; i++) {
@@ -439,11 +439,11 @@ getModuleUsageRecord(begin: number, end: number): Promise&lt;Array&lt;BundleActi
     });
   ```
 
-## bundleState.getModuleUsageRecord<sup>9</sup>
+## bundleState.getModuleUsageRecord<sup>9+</sup>
 
-getModuleUsageRecord(begin: number, end: number): Promise&lt;Array&lt;BundleActiveModuleInfo&gt;&gt;
+getModuleUsageRecord(maxNum: number): Promise&lt;Array&lt;BundleActiveModuleInfo&gt;&gt;
 
-据maxNum，查询FA使用记录，使用CallBack返回不超过maxNum条FA使用记录。
+查询FA使用记录。使用callback返回数量最大不超过maxNum设置的值，maxNum最大为1000。
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -458,7 +458,7 @@ getModuleUsageRecord(begin: number, end: number): Promise&lt;Array&lt;BundleActi
 
 **示例**：
 
-  ```
+  ```js
     bundleState.getModuleUsageRecord(this.maxNum,(err, res) => {
         if(err) {
             console.log('BUNDLE_ACTIVE getModuleUsageRecord callback failed, because: ' + err.code);
@@ -468,12 +468,12 @@ getModuleUsageRecord(begin: number, end: number): Promise&lt;Array&lt;BundleActi
                     console.log('BUNDLE_ACTIVE getModuleUsageRecord callback number : ' + (i + 1));
                     console.log('BUNDLE_ACTIVE getModuleUsageRecord callback result ' + JSON.stringify(res[i]));
                 }
-            }
+        }
     });
   ```
 
-## BundleActiveModuleInfo<sup>9</sup>
-提供FA的使用信息。
+## BundleActiveModuleInfo<sup>9+</sup>
+FA的使用信息的属性集合。
 
 ### 属性
 
@@ -495,8 +495,8 @@ getModuleUsageRecord(begin: number, end: number): Promise&lt;Array&lt;BundleActi
 | lastModuleUsedTime | number | 是 | FA的上一次使用时间。|
 | formRecords | Array<BundleActiveFormInfo> | 是 | FA中卡片的使用记录。|
 
-## BundleActiveFormInfo<sup>9</sup>
-提供FA中卡片的使用记录。
+## BundleActiveFormInfo<sup>9+</sup>
+FA卡片的使用信息的属性集合。
 
 ### 属性
 
