@@ -1818,11 +1818,11 @@ Enumerates the audio encoding formats.
 
 | Name   | Default Value| Description                                                        |
 | ------- | ------ | ------------------------------------------------------------ |
-| DEFAULT | 0      | Default audio encoding format, which is Adaptive Multi Rate-Narrow Band Speech Codec (AMR-NB).<br>This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.|
-| AMR_NB  | 1      | AMR-NB.<br>This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.|
-| AMR_WB  | 2      | Adaptive Multi Rate-Wide Band Speech Codec (AMR-WB).<br>This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.|
+| DEFAULT | 0      | Default encoding format.<br>This API is defined but not implemented yet.|
+| AMR_NB  | 1      | AMR-NB.<br>This API is defined but not implemented yet.|
+| AMR_WB  | 2      | Adaptive Multi Rate-Wide Band Speech Codec (AMR-WB).<br>This API is defined but not implemented yet.|
 | AAC_LC  | 3      | Advanced Audio Coding Low Complexity (AAC-LC).|
-| HE_AAC  | 4      | High-Efficiency Advanced&nbsp;Audio&nbsp;Coding (HE_AAC).<br>This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.|
+| HE_AAC  | 4      | High-Efficiency Advanced&nbsp;Audio&nbsp;Coding (HE_AAC).<br>This API is defined but not implemented yet.|
 
 
 ## AudioOutputFormat<sup>(deprecated)</sup>
@@ -1836,10 +1836,10 @@ Enumerates the audio output formats.
 
 | Name    | Default Value| Description                                                        |
 | -------- | ------ | ------------------------------------------------------------ |
-| DEFAULT  | 0      | Default encapsulation format, which is MPEG-4.<br>This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.|
+| DEFAULT  | 0      | Default encapsulation format.<br>This API is defined but not implemented yet.|
 | MPEG_4   | 2      | MPEG-4.                                          |
-| AMR_NB   | 3      | AMR_NB.<br>This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.|
-| AMR_WB   | 4      | AMR_WB.<br>This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.|
+| AMR_NB   | 3      | AMR_NB.<br>This API is defined but not implemented yet.|
+| AMR_WB   | 4      | AMR_WB.<br>This API is defined but not implemented yet.|
 | AAC_ADTS | 6      | Audio Data Transport Stream (ADTS), which is a transport stream format of AAC-based audio.|
 
 ## VideoRecorder<sup>9+</sup>
@@ -2455,7 +2455,7 @@ Describes the video recording parameters.
 | profile         | [VideoRecorderProfile](#videorecorderprofile9) | Yes  | Video recording profile.                                         |
 | rotation        | number                                         | No  | Rotation angle of the recorded video.                                        |
 | location        | [Location](#location)                          | No  | Geographical location of the recorded video.                                        |
-| url             | string                                         | Yes  | Video output URL. Supported: fd://xx&nbsp;(fd&nbsp;number)<br>![](figures/en-us_image_url.png) <br>The file must be created by the caller and granted with proper permissions. |
+| url             | string                                         | Yes  | Video output URL. Supported: fd://xx&nbsp;(fd&nbsp;number)<br>![](figures/en-us_image_url.png)<br>The file must be created by the caller and granted with proper permissions.|
 
 ## AudioSourceType<sup>9+</sup>
 
