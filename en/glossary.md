@@ -68,6 +68,10 @@
 - ### HDF
 
     Hardware Driver Foundation that allows unified access from peripheral devices and provides foundation for driver development and management.
+	
+- ### Hypium
+
+    Name of the OpenHarmony automatic test framework, which strives to implement hyper-automatic tests. Hypium is a blend of Hyper Automation and ium, where ium indicates a stable, reliable capability base of the test framework.
 
 
 ## I
@@ -95,6 +99,6 @@
     One of the two models in the ability framework, introduced since API 9. In the stage model, there are **Ability** and **ExtensionAbility**. The **ExtensionAbility** is further extended to **ServiceExtensionAbility**, **FormExtensionAbility**, **DataShareExtensionAbility**, and more.
 
 - ### System type
-    - Mini system: refers to a system running on the devices whose memory is greater than or equal to 128 KiB and that are equipped with only limited resources and MCU processors such as Arm Cortex-M and 32-bit RISC-V. This system provides rich short-distance connection capabilities and a bus for accessing peripherals. This system applies to smart home products such as LinkIoT module devices and sensors.
-    - Small system: refers to a system running on the devices whose memory is greater than or equal to 1 MiB and that are equipped with application processors such as Arm Cortex-A. This system provides higher security capabilities, standard graphics frameworks, and video encoding and decoding capabilities. This system applies to smart home products such as IP cameras, peephole cameras, and routers as well as smart travel products such as event data recorders (EDRs).
-    - Standard system: refers to a system running on the devices whose memory is greater than or equal to 128 MiB and that are equipped with application processors such as Arm Cortex-A. This system provides a complete application framework supporting the enhanced interaction, 3D GPU, hardware composer, diverse components, and rich animations. This system applies to high-end refrigerator displays.
+    - Mini system: a system running on the devices that come with MCU processors, such as Arm Cortex-M and 32-bit RISC-V, and memory greater than or equal to 128 KiB. This system provides rich short-distance connection capabilities and a bus for accessing peripherals. This system applies to smart home products such as LinkIoT module devices and sensors.
+    - Small system: a system running on the devices that come with application processors such as Arm Cortex-A and memory greater than or equal to 1 MiB. This system provides higher security capabilities, standard graphics frameworks, and video encoding and decoding capabilities. This system applies to smart home products such as IP cameras, peephole cameras, and routers as well as smart travel products such as event data recorders (EDRs).
+    - Standard system: a system running on the devices that come with application processors such as Arm Cortex-A and memory greater than or equal to 128 MiB. This system provides a complete application framework supporting the enhanced interaction, 3D GPU, hardware composer, diverse components, and rich animations. This system applies to high-end refrigerator displays.
