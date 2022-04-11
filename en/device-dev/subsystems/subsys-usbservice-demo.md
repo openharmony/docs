@@ -1,4 +1,4 @@
-# USB Usage Example<a name="EN-US_TOPIC_0000001092792986"></a>
+# USB Usage Demo<a name="EN-US_TOPIC_0000001092792986"></a>
 
 
 ```
@@ -183,5 +183,3 @@ int main(int argc, char **argv)
     return 0;
 }
 ```
-
-
