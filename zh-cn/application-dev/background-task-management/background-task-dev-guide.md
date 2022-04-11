@@ -120,7 +120,7 @@ ohos.permission.KEEP_BACKGROUND_RUNNING
 | MULTI_DEVICE_CONNECTION | 6 | 多设备互联 | multiDeviceConnection |
 | WIFI_INTERACTION        | 7 | WLAN相关（系统保留） | wifiInteraction |
 | VOIP                    | 8 | 音视频通话（系统保留） | voip |
-| TASK_KEEPING            | 9 | 计算任务（仅供PC使用） | taskKeeping |
+| TASK_KEEPING            | 9 | 计算任务（仅供特定设备使用） | taskKeeping |
 
 
 ## 开发步骤
