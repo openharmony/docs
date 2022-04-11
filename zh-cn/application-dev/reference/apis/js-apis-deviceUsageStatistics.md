@@ -407,7 +407,7 @@ queryCurrentBundleActiveStates(begin: number, end: number): Promise&lt;Array&lt;
 
 getModuleUsageRecord(maxNum: number): Promise&lt;Array&lt;BundleActiveModuleInfo&gt;&gt;
 
-据maxNum，查询FA使用记录，使用Promise返回不超过maxNum条FA使用记录，maxNum最大为1000。
+据maxNum，查询FA使用记录，使用Promise形式返回不超过maxNum条FA使用记录，maxNum最大为1000。
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -443,7 +443,7 @@ getModuleUsageRecord(maxNum: number): Promise&lt;Array&lt;BundleActiveModuleInfo
 
 getModuleUsageRecord(maxNum: number): Promise&lt;Array&lt;BundleActiveModuleInfo&gt;&gt;
 
-查询FA使用记录。使用callback返回数量最大不超过maxNum设置的值，maxNum最大为1000。
+查询FA使用记录。使用callback形式返回数量最大不超过maxNum设置的值，maxNum最大为1000。
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
