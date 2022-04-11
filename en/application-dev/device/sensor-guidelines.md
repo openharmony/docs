@@ -111,3 +111,15 @@
    The following figure shows the successful call result when **SensorType** is **SENSOR_TYPE_ID_ACCELEROMETER**.
    
    ![en-us_image_0000001241733907](figures/en-us_image_0000001241733907.png)
+
+   If the API fails to be called, you are advised to use the **try/catch** statement to capture error information that may occur in the code. Example:
+
+    ```
+    try {
+      sensor.once(sensor.sensorType.SENSOR_TYPE_ACCELEROMETER,function(data) {
+          console.info("Data obtained successfully. data=" + data);// The call is successful, and the obtained sensor data is printed.
+      });
+    } catch (error) {
+      console.error(error);
+    }
+    ```
