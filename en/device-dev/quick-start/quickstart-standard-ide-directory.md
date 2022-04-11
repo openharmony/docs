@@ -1,0 +1,22 @@
+## Getting Started with Standard System (IDE Mode)
+- [Standard System Overview](quickstart-ide-standard-overview.md)
+    - Environment Preparation
+        - [Setting Up the Windows+Ubuntu Hybrid Build Environment](quickstart-ide-standard-env-setup-win-ubuntu.md)
+        - [Obtaining Source Code](quickstart-ide-standard-sourcecode-acquire.md)
+    - [Creating a Source Code Project](quickstart-ide-standard-create-project.md)
+    - Running a Hello World Program
+        - Hi3516 Development Board
+            - [Writing a Hello World Program](quickstart-ide-standard-running-hi3516-create.md)
+            - [Building](quickstart-ide-standard-running-hi3516-build.md)
+            - [Burning](quickstart-ide-standard-running-hi3516-burning.md)
+            - [Running](quickstart-ide-standard-running-hi3516-running.md)
+        - RK3568 Development Board
+            - [Writing a Hello World Program](quickstart-ide-standard-running-rk3568-create.md)
+            - [Building](quickstart-ide-standard-running-rk3568-build.md)
+            - [Burning](quickstart-ide-standard-running-rk3568-burning.md)
+            - [Running](quickstart-ide-standard-running-rk3568-running.md)
+    - Appendix
+        - Introduction to Development Boards
+            - [Introduction to the Hi3516 Development Board](quickstart-ide-standard-board-introduction-hi3516.md)
+            - [Introduction to the RK3568 Development Board](quickstart-ide-standard-board-introduction-rk3568.md)
+        - [Getting Started with Mini and Small Systems (Installation Package Mode)](quickstart-lite-package-directory.md)

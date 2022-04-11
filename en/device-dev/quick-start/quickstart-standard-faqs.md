@@ -1,22 +1,10 @@
-# FAQs<a name="EN-US_TOPIC_0000001166804465"></a>
+# FAQs
 
-## What Should I Do If "ImportError: No module named apt\_pkg" Is Displayed During Compilation and Building?<a name="section32195464215"></a>
 
--   **Symptom**
 
-    The message "ImportError: No module named apt\_pkg" is displayed when an unidentifiable command is executed on the Linux server.
+- **[Fixing hb Installation Issues](quickstart-standard-faq-hb.md)**
 
--   **Possible Causes**
+- **[Fixing Compilation Issues](quickstart-standard-faq-compose.md)**
 
-    There is a compatibility issue of python3-apt.
-
--   **Solution**
-
-    Reinstall python3-apt.
-
-    ```
-    sudo apt-get remove  python3-apt
-    sudo apt-get install python3-apt
-    ```
-
+- **[Fixing Burning Issues](quickstart-standard-faq-burning.md)**
 
