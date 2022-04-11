@@ -33,7 +33,7 @@ Call setSessionId() to set the session ID for a distributed data object. The ses
 **Table 3** API for setting a session ID
 | Class| API| Description|
 | -------- | -------- | -------- |
-| DistributedDataObject | setSessionId(sessionId?: string): boolean | Sets a session ID for distributed data objects.|
+| DistributedDataObject | setSessionId(sessionId?: string): boolean | Sets a session ID for distributed data objects.<br>&nbsp;**sessionId**: ID of a distributed object in a trusted network. To remove a distributed data object from the network, set this parameter to "" or leave it empty.|
 
 ### Observing Data Changes
 
@@ -72,6 +72,7 @@ The following example shows how to implement a distributed data object synchroni
    ```js
    var local_object = distributedObject.createDistributedObject({name:undefined, age:undefined, isVis:true, 
                   parent:undefined, list:undefined});
+   var sessionId = distributedObject.genSessionId();
    ```
 
 
