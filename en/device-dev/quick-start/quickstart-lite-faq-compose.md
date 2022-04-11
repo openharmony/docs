@@ -15,20 +15,20 @@
 
   Reinstall python3-apt.
 
-    
+  
   ```
   sudo apt-get remove  python3-apt
   sudo apt-get install python3-apt
   ```
 
 
-## What should I do when the message indicating Python cannot be found is displayed during compilation and building?
+## What should I do if the message indicating Python cannot be found is displayed during compilation and building?
 
 - **Symptom**
 
   The following error occurs during compilation and building:
 
-    
+  
   ```
   -bash: /usr/bin/python: No such file or directory
   ```
@@ -41,7 +41,7 @@
 
   Run the following command to install Python. The following uses Python 3.8 as an example.
 
-    
+  
   ```
   sudo apt-get install python3.8
   ```
@@ -56,7 +56,7 @@
 
   Run the following commands to add a soft link:
 
-    
+  
   ```
   # cd /usr/bin/ 
   # which python3
@@ -69,7 +69,7 @@
   ![en-us_image_0000001227114636](figures/en-us_image_0000001227114636.png)
 
 
-## What should I do when the message indicating Python 3 cannot be found is displayed during compilation and building?
+## What should I do if the message indicating Python 3 cannot be found is displayed during compilation and building?
 
 - **Symptom**
 
@@ -83,19 +83,19 @@
 
   Run the following command to install Python 3:
 
-    
+  
   ```
   sudo apt-get install python3.8
   ```
 
 
-## What should I do when the message configure: error: no acceptable C compiler found in $PATH is displayed during Python 3 installation?
+## What should I do if the message "configure: error: no acceptable C compiler found in $PATH" is displayed during Python 3 installation?
 
 - **Symptom**
 
   The following error occurs during Python 3 installation:
 
-    
+  
   ```
   configure: error: no acceptable C compiler found in $PATH. See 'config.log' for more details
   ```
@@ -110,13 +110,13 @@
   2. After the installation, reinstall Python 3.
 
 
-## What should I do when the message -bash: make: command not found is displayed during Python 3 installation?
+## What should I do if the message "-bash: make: command not found is displayed" during Python 3 installation?
 
 - **Symptom**
 
   The following error occurs during Python 3 installation:
 
-    
+  
   ```
   -bash: make: command not found
   ```
@@ -131,13 +131,13 @@
   2. After the installation, reinstall Python 3.
 
 
-## What should I do when the message No module named '_ctypes' is displayed during Python 3 installation?
+## What should I do if the message "No module named '_ctypes'" is displayed during Python 3 installation?
 
 - **Symptom**
 
   The following error occurs during Python 3 installation:
 
-    
+  
   ```
   ModuleNotFoundError: No module named '_ctypes'
   ```
@@ -152,13 +152,13 @@
   2. After the installation, reinstall Python 3.
 
 
-## "No module named 'Crypto'" Displayed During the Build Process
+## What should I do if the message "No module named 'Crypto'" is displayed during the build process?
 
 - **Symptom**
 
   The following error occurs during compilation and building:
 
-    
+  
   ```
   ModuleNotFoundError: No module named 'Crypto'
   ```
@@ -182,13 +182,13 @@
   After the preceding installation is complete, rebuild an environment.
 
 
-## What should I do when the message No module named 'ecdsa' is displayed during compilation and building? (Hi3861)
+## What should I do if the message "No module named 'ecdsa'" is displayed during the build process? (Hi3861)
 
 - **Symptom**
 
   The following error occurs during compilation and building:
 
-    
+  
   ```
   ModuleNotFoundError: No module named 'ecdsa'
   ```
@@ -212,13 +212,13 @@
   After the preceding installation is complete, rebuild an environment.
 
 
-## What should I do when the message Could not find a version that satisfies the requirement six>=1.9.0 is displayed during compilation and building? (Hi3861)
+## What should I do if the message "Could not find a version that satisfies the requirement six>=1.9.0" is displayed during the build process? (Hi3861)
 
 - **Symptom**
 
   The following error occurs during compilation and building:
 
-    
+  
   ```
   Could not find a version that satisfies the requirement six>=1.9.0
   ```
@@ -242,13 +242,13 @@
   After the preceding installation is complete, rebuild an environment.
 
 
-## What should I do when the message cannot find -lgcc is displayed during compilation and building? (Hi3861)
+## What should I do if the message "cannot find -lgcc" is displayed during the build process? (Hi3861)
 
 - **Symptom**
 
   The following error occurs during compilation and building:
 
-    
+  
   ```
   riscv32-unknown-elf-ld: cannot find -lgcc
   ```
@@ -257,7 +257,7 @@
 
   The PATH is incorrectly written by **gcc_riscv32**. There is an extra slash (/).
 
-    
+  
   ```
   ~/gcc_riscv32/bin/:/data/toolchain/
   ```
@@ -266,7 +266,7 @@
 
   Modify the PATH by deleting the slash (/).
 
-    
+  
   ```
   ~/gcc_riscv32/bin:/data/toolchain/
   ```
@@ -278,7 +278,7 @@
 
   The following error occurs during **kconfiglib** installation:
 
-    
+  
   ```
   subprocess.CalledProcessError: Command '('lsb_release', '-a')' returned non-zero exit status 1.
   ```
