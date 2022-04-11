@@ -37,6 +37,10 @@
 
 详细API含义可参考：[媒体服务API文档VideoPlayer](../reference/apis/js-apis-media.md)
 
+*注意：按如下操作步骤就能正常播放视频，其中设置Surface需要在设置url和Prepare之间
+
+![zh-ch_image_video_state](figures/zh-ch_image_video_state.png)
+
 ### 全流程场景
 
 包含流程：创建实例，设置url，设置SurfaceId，准备播放视频，播放视频，暂停播放，获取轨道信息，跳转播放位置，设置音量，设置倍速，结束播放，重置，释放资源等流程。
