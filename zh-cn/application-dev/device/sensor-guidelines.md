@@ -1,40 +1,40 @@
-# 传感器开发指导
+# Sensor Development
 
 
-## 场景介绍
+## When to Use
 
-- 通过指南针传感器数据，感知用户设备当前的朝向，从而达到为用户指明方向的目的。
+- Data provided by the compass sensor denotes the current orientation of the user device, which helps your application accurately navigate for the user.
 
-- 通过接近光传感器数据，感知距离遮挡物的距离，使设备能够自动亮灭屏，达到防误触目的。
+- Data provided by the proximity sensor denotes the distance between the device and a visible object, which enables the device to automatically turn on or off its screen accordingly to prevent accidental touch on the screen.
 
-- 通过气压计传感器数据，准确的判断设备当前所处的海拔。
+- Data provided by the barometer sensor helps your application accurately determine the altitude of the device.
 
-- 通过环境光传感器数据，设备能够实现背光自动调节。
+- Data provided by the ambient light sensor helps your device automatically adjust its backlight.
 
-- 通过霍尔传感器数据，设备实现皮套功能等。
+- Data provided by the Hall effect sensor implements the smart cover mode of your device.
 
-- 通过心率传感器数据，感知用户当前的心率。
+- Data provided by the heart rate sensor helps your application track the health of a user.
 
-- 通过计步传感器数据，可以统计用户的步数。
+- Data provided by the pedometer sensor helps your application obtain the number steps a user has walked.
 
-- 通过佩戴检测传感器，可以检测用户是否佩戴。
+- Data provided by the wear detection sensor helps your application detect whether a user is wearing a wearable device.
 
 
-## 接口说明
+## Available APIs
 
-| 模块 | 接口名 | 描述 |
+| Module| API| Description|
 | -------- | -------- | -------- |
-| ohos.sensor | sensor.on(sensorType, callback:AsyncCallback&lt;Response&gt;): void | 持续监听传感器数据变化 |
-| ohos.sensor | sensor.once(sensorType, callback:AsyncCallback&lt;Response&gt;): void | 获取一次传感器数据变化 |
-| ohos.sensor | sensor.off(sensorType, callback:AsyncCallback&lt;void&gt;): void | 注销传感器数据的监听 |
+| ohos.sensor | sensor.on(sensorType, callback:AsyncCallback&lt;Response&gt;): void | Subscribes to data changes of a type of sensor.|
+| ohos.sensor | sensor.once(sensorType, callback:AsyncCallback&lt;Response&gt;): void | Subscribes to only one data change of a type of sensor.|
+| ohos.sensor | sensor.off(sensorType, callback:AsyncCallback&lt;void&gt;): void | Unsubscribes from sensor data changes.|
 
 
-## 开发步骤
+## How to Develop
 
-1. 获取设备上传感器的数据，需要在“config.json”里面进行配置请求权限。具体如下：
+1. To obtain data from a type of sensor, configure the request permissions in the **config.json** file.  
   
    ```
-   ”reqPermissions“:[
+   "reqPermissions":[
      {
         "name":"ohos.permission.ACCELEROMETER",
         "reason"":"", 
@@ -70,54 +70,54 @@
    ]
    ```
    
-2. 持续监听传感器数据变化。
+2. Subscribe to data changes of a type of sensor.
   
    ```
    import sensor from "@ohos.sensor"
    sensor.on(sensor.sensorType.SENSOR_TYPE_ACCELEROMETER,function(data){
-          console.info("Subscription succeeded. data = " + data);//调用成功，打印对应传感器的数据
+          console.info("Subscription succeeded. data = "+ data);// The call is successful, and the obtained sensor data is printed.
      }
    );
    ```
    
-   以SensorType为SENSOR_TYPE_ID_ACCELEROMETER为例展示运行结果，持续监听传感器接口的结果如下图所示：
+   The following figure shows the successful call result when **SensorType** is **SENSOR_TYPE_ID_ACCELEROMETER**.
    
-   ![zh-cn_image_0000001241693881](figures/zh-cn_image_0000001241693881.png)
+   ![en-us_image_0000001241693881](figures/en-us_image_0000001241693881.png)
 
-3. 注销传感器数据监听。
+3. Unsubscribe from sensor data changes.
   
    ```
    import sensor from "@ohos.sensor"
    sensor.off(sensor.sensorType.SENSOR_TYPE_ACCELEROMETER,function() {
-       console.info("Succeeded in unsubscribing from acceleration sensor data.");//注销成功，返回打印结果
+       console.info("Succeeded in unsubscribing from acceleration sensor data.");// The unsubscription is successful, and the result is printed.
      }
    );
    ```
    
-   以SensorType为SENSOR_TYPE_ID_ACCELEROMETER为例展示运行结果，注销传感器成功结果如下图所示：
+   The following figure shows the successful call result when **SensorType** is **SENSOR_TYPE_ID_ACCELEROMETER**.
    
-   ![zh-cn_image_0000001196654004](figures/zh-cn_image_0000001196654004.png)
+   ![en-us_image_0000001196654004](figures/en-us_image_0000001196654004.png)
 
-4. 获取一次传感器数据变化。
+4. Subscribe to only one data change of a type of sensor.
   
    ```
    import sensor from "@ohos.sensor"
    sensor.once(sensor.sensorType.SENSOR_TYPE_ACCELEROMETER,function(data) {
-           console.info("Data obtained successfully. data=" + data);//获取数据成功，打印对应传感器的数据
+           console.info("Data obtained successfully. data=" + data);// The call is successful, and the obtained sensor data is printed.
      }
    );
    ```
    
-   以SensorType为SENSOR_TYPE_ID_ACCELEROMETER为例展示运行结果，获取数据成功日志如下图所示：
+   The following figure shows the successful call result when **SensorType** is **SENSOR_TYPE_ID_ACCELEROMETER**.
    
-   ![zh-cn_image_0000001241733907](figures/zh-cn_image_0000001241733907.png)
+   ![en-us_image_0000001241733907](figures/en-us_image_0000001241733907.png)
 
-   若接口调用不成功，建议使用try/catch语句捕获代码中可能出现的错误信息。例如：
+   If the API fails to be called, you are advised to use the **try/catch** statement to capture error information that may occur in the code. Example:
 
     ```
     try {
       sensor.once(sensor.sensorType.SENSOR_TYPE_ACCELEROMETER,function(data) {
-          console.info("Data obtained successfully. data=" + data);//获取数据成功，打印对应传感器的数据
+          console.info("Data obtained successfully. data=" + data);// The call is successful, and the obtained sensor data is printed.
       });
     } catch (error) {
       console.error(error);
