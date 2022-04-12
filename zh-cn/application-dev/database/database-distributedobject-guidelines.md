@@ -148,11 +148,11 @@
 8. 监听分布式对象的上下线。可以监听对端分布式数据对象的上下线。
    以下为访问对象的代码示例：
    ```js
-    function statusCallback(sessionId, networkid, status) {
+    function statusCallback(sessionId, networkId, status) {
       this.response += "status changed " + sessionId + " " + status + " " + networkId;
     }
    
-    local_object.on("status", this.changeCallback);
+    local_object.on("status", this.statusCallback);
    ```
 9. 删除监听分布式对象的上下线。可以指定删除监听的上下线回调；也可以不指定，这将会删除该分布式数据对象的所有上下线回调。
    
