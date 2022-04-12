@@ -18,9 +18,9 @@ setTime(time : number, callback : AsyncCallback&lt;void&gt;) : void
 
 设置系统时间。
 
-**需要权限：**ohos.permission.SET_TIME
+**需要权限：** ohos.permission.SET_TIME
 
-**系统能力**: SystemCapability.Miscservices.Time
+**系统能力：** SystemCapability.Miscservices.Time
 
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 | 
@@ -49,9 +49,9 @@ setTime(time : number) : Promise&lt;void&gt;
 
 设置系统时间。
 
-**需要权限：**ohos.permission.SET_TIME
+**需要权限：** ohos.permission.SET_TIME
 
-**系统能力**: SystemCapability.MiscServices.Time
+**系统能力：** SystemCapability.MiscServices.Time
 
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 | 
@@ -82,7 +82,7 @@ getCurrentTime(isNano?: boolean, callback: AsyncCallback&lt;number&gt;): void
 
 获取自 Unix 纪元以来经过的时间，使用callback形式返回结果。
 
-**系统能力**: SystemCapability.MiscServices.Time
+**系统能力：** SystemCapability.MiscServices.Time
 
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 | 
@@ -109,7 +109,7 @@ getCurrentTime(isNano?: boolean): Promise&lt;number&gt;
 
 获取自 Unix 纪元以来经过的时间，使用Promise形式返回结果。
 
-**系统能力**: SystemCapability.MiscServices.Time
+**系统能力：** SystemCapability.MiscServices.Time
 
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 | 
@@ -138,7 +138,7 @@ getRealActiveTime(isNano?: boolean, callback: AsyncCallback&lt;number&gt;): void
 
 获取自系统启动以来经过的时间，不包括深度睡眠时间，使用callback形式返回结果。
 
-**系统能力**: SystemCapability.MiscServices.Time
+**系统能力：** SystemCapability.MiscServices.Time
 
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 | 
@@ -165,7 +165,7 @@ getRealActiveTime(isNano?: boolean): Promise&lt;number&gt;
 
 获取自系统启动以来经过的时间，不包括深度睡眠时间，使用Promise形式返回结果。
 
-**系统能力**: SystemCapability.MiscServices.Time
+**系统能力：** SystemCapability.MiscServices.Time
 
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 | 
@@ -194,7 +194,7 @@ getRealTime(callback: AsyncCallback&lt;number&gt;): void
 
 获取自系统启动以来经过的时间，包括深度睡眠时间，使用callback形式返回结果。
 
-**系统能力**: SystemCapability.MiscServices.Time
+**系统能力：** SystemCapability.MiscServices.Time
 
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 | 
@@ -221,7 +221,7 @@ getRealTime(): Promise&lt;number&gt;
 
 获取自系统启动以来经过的时间，包括深度睡眠时间，使用Promise形式返回结果。
 
-**系统能力**: SystemCapability.MiscServices.Time
+**系统能力：** SystemCapability.MiscServices.Time
 
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 | 
@@ -250,9 +250,9 @@ setDate(date: Date, callback: AsyncCallback&lt;void&gt;): void
 
 设置系统日期，使用callback形式返回结果。
 
-**需要权限：**ohos.permission.SET_TIME
+**需要权限：** ohos.permission.SET_TIME
 
-**系统能力**: SystemCapability.MiscServices.Time
+**系统能力：** SystemCapability.MiscServices.Time
 
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 | 
@@ -280,9 +280,9 @@ setDate(date: Date): Promise&lt;void&gt;
 
 设置系统日期，使用Promise形式返回结果。
 
-**需要权限：**ohos.permission.SET_TIME
+**需要权限：** ohos.permission.SET_TIME
 
-**系统能力**: SystemCapability.MiscServices.Time
+**系统能力：** SystemCapability.MiscServices.Time
 
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 | 
@@ -312,7 +312,7 @@ getDate(callback: AsyncCallback&lt;Date&gt;): void
 
 获取当前系统日期，使用callback形式返回结果。
 
-**系统能力**: SystemCapability.MiscServices.Time
+**系统能力：** SystemCapability.MiscServices.Time
 
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 | 
@@ -338,7 +338,7 @@ getDate(): Promise&lt;Date&gt;
 
 获取当前系统日期，使用Promise形式返回结果。
 
-**系统能力**: SystemCapability.MiscServices.Time
+**系统能力：** SystemCapability.MiscServices.Time
 
 - 返回值：
     | 类型 | 说明 | 
@@ -362,9 +362,9 @@ setTimezone(timezone: string, callback: AsyncCallback&lt;void&gt;): void
 
 设置系统时区。
 
-**需要权限：**ohos.permission.SET_TIME_ZONE
+**需要权限：** ohos.permission.SET_TIME_ZONE
 
-**系统能力**: SystemCapability.MiscServices.Time
+**系统能力：** SystemCapability.MiscServices.Time
 
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 | 
@@ -391,9 +391,9 @@ setTimezone(timezone: string): Promise&lt;void&gt;
 
 设置系统时区。
 
-**需要权限：**ohos.permission.SET_TIME_ZONE
+**需要权限：** ohos.permission.SET_TIME_ZONE
 
-**系统能力**: SystemCapability.MiscServices.Time
+**系统能力：** SystemCapability.MiscServices.Time
 
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 | 
@@ -422,7 +422,7 @@ getTimezone(callback: AsyncCallback&lt;string&gt;): void
 
 获取系统时区，使用callback形式返回结果。
 
-**系统能力**: SystemCapability.MiscServices.Time
+**系统能力：** SystemCapability.MiscServices.Time
 
 - 参数：
     | 参数名 | 类型 | 必填 | 说明 | 
@@ -448,7 +448,7 @@ getTimezone(): Promise&lt;string&gt;
 
 获取系统时区，使用Promise形式返回结果。
 
-**系统能力**: SystemCapability.MiscServices.Time
+**系统能力：** SystemCapability.MiscServices.Time
 
 - 返回值：
     | 类型 | 说明 | 
