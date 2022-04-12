@@ -11,7 +11,7 @@
 
     **图1** DSI发送、接收接口
 
-    ![zh-cn_image_0000001243192721](figures/zh-cn_image_0000001243192721.png)
+    ![image](figures/DSI发送-接收接口.png "DSI发送-接收接口")
 
 
 ## 接口说明
@@ -38,7 +38,7 @@
 
   **图2** MIPI DSI使用流程图
 
-  ![zh-cn_image_0000001198152838](figures/zh-cn_image_0000001198152838.png)
+  ![image](figures/MIPI-DSI使用流程图.png "MIPI-DSI使用流程图")
 
 
 ### 获取MIPI DSI操作句柄
