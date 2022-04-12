@@ -441,7 +441,7 @@ getRecentUsageModules(maxNum: number): Promise&lt;Array&lt;BundleActiveModuleInf
 
 ## bundleState.getRecentUsageModules<sup>9+</sup>
 
-getRecentUsageModules(maxNum: number): Promise&lt;Array&lt;BundleActiveModuleInfo&gt;&gt;
+getRecentUsageModules(maxNum: number, callback: AsyncCallback&lt;Array&lt;BundleActiveModuleInfo&gt;&gt;): void
 
 查询FA使用记录。使用callback形式返回数量最大不超过maxNum设置的值，maxNum最大为1000。
 
