@@ -7,8 +7,7 @@ SPI即串行外设接口（Serial Peripheral Interface），在HDF框架中，SP
 
   **图1** SPI独立服务模式结构图
 
-  ![zh-cn_image_0000001176603992](figures/zh-cn_image_0000001176603992.png)
-
+  ![image](figures/独立服务模式结构图.png "SPI独立服务模式结构图")
 
 ## 接口说明
 
