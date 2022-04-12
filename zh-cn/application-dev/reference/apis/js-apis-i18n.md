@@ -703,7 +703,7 @@ unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: string,
 | toUnit   | [UnitInfo](#unitinfo8) | 是    | 要转换为的单位。                                 |
 | value    | number                 | 是    | 要被转换的单位的数量值。                             |
 | locale   | string                 | 是    | 格式化时使用的区域参数，如：zh-Hans-CN。                |
-| style    | string                 | 否    | 格式化使用的风格，取值包括："long",&nbsp;"short",&nbsp;"medium"。 |
+| style    | string                 | 否    | 格式化使用的风格，取值包括："long",&nbsp;"short",&nbsp;"narrow"。 |
 
 **返回值：** 
 | 类型     | 说明                      |
