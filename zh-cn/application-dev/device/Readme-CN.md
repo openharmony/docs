@@ -1,5 +1,8 @@
 # 设备管理
 
+- 升级服务
+  - [示例服务器开发概述](sample_server_overview.md)
+  - [示例服务器开发指导](sample_server_guidelines.md)
 - USB服务
   - [USB服务开发概述](usb-overview.md)
   - [USB服务开发指导](usb-guidelines.md)
