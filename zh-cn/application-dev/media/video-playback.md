@@ -45,6 +45,8 @@ VideoPlayer支持的url媒体源输入类型可参考：[url属性说明](../ref
 
 Xcomponent创建方法可参考：[Xcomponent创建方法](#Xcomponent创建方法)
 
+*注意：SetSurface需要在设置url和Prepare之间
+
 ```js
 import media from '@ohos.multimedia.media'
 import fileIO from '@ohos.fileio'
