@@ -6,7 +6,6 @@
     -   [JS（含eTS） API参考](apis/Readme-CN.md)
     -   Native API
         -   [OpenHarmony Native API](./native-apis/Readme-CN.md)
-        -   [标准库](./third_party_libc/musl.md)
-        -   [Node_API](./third_party_napi/napi.md)
-
+        -   [标准库](native-lib/third_party_libc/musl.md)
+        -   [Node_API](native-lib/third_party_napi/napi.md)
 
