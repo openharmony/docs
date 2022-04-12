@@ -15,7 +15,7 @@ HC-GEN（HDF Configuration Generator）是HCS配置转换工具，可以将HDF�
 
   **图1** 配置使用流程图
 
-  ![zh-cn_image_0000001154105768](figures/zh-cn_image_0000001154105768.png)
+  ![配置使用流程](figures/配置使用流程图.png)
 
 HCS经过HC-GEN编译生成HCB文件，HDF驱动框架中的HCS Parser模块会从HCB文件中重建配置树，HDF驱动模块使用HCS Parser提供的配置读取接口获取配置内容。
 
@@ -394,6 +394,7 @@ options:
   -a          hcb align with four bytes
   -b          output binary output, default enable
   -t          output config in C language source file style
+  -m          output config in macro source file style
   -i          output binary hex dump in C language source file style
   -p <prefix> prefix of generated symbol name
   -d          decompile hcb to hcs
