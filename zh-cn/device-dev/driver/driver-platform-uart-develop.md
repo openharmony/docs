@@ -7,7 +7,7 @@ UART是通用异步收发传输器（Universal Asynchronous Receiver/Transmitter
 
   **图1** UART独立服务模式结构图
 
-  ![zh-cn_image_0000001176603980](figures/zh-cn_image_0000001176603980.png)
+  ![image](figures/独立服务模式结构图.png "UART独立服务模式结构图")
 
 
 ## 接口说明
