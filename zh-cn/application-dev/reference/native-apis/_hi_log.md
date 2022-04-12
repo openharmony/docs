@@ -104,13 +104,13 @@ DEBUG级别写日志，宏封装接口。
 
   | Name | Description | 
 | -------- | -------- |
-| type | 日志类型，三方应用日志类型为[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001232471312.xml#xref1241690359110741,link:zh-cn_topic_0000001232471312.xml#ggaf67907baa897e9fb84df0cb89795b87ca84f0546432a39b6f5e8a777d5cf667b5](#ggaf67907baa897e9fb84df0cb89795b87ca84f0546432a39b6f5e8a777d5cf667b5)。 | 
+| type | 日志类型，三方应用日志类型为LOG_APP。 | 
 | fmt | 格式化字符串，基于类printf格式的增强，支持隐私参数标识，即在格式字符串每个参数中符号后类型前增加{public}、{private}标识。 | 
 | ... | 与格式字符串里参数类型对应的参数列表，参数数目、参数类型必须与格式字符串中的标识一一对应。 | 
 
 **See also:**
 
-[ERROR:Invalid link:zh-cn_topic_0000001232471312.xml#xref1236273882110741,link:zh-cn_topic_0000001232471312.xml#gaed4b343058326b7f5dbcac6799025946](#gaed4b343058326b7f5dbcac6799025946)
+[OH_LOG_Print](#oh_log_print)
 
 
 ### OH_LOG_ERROR
@@ -130,13 +130,13 @@ ERROR级别写日志，宏封装接口。
 
   | Name | Description | 
 | -------- | -------- |
-| type | 日志类型，三方应用日志类型为[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001232471312.xml#xref1238901741110741,link:zh-cn_topic_0000001232471312.xml#ggaf67907baa897e9fb84df0cb89795b87ca84f0546432a39b6f5e8a777d5cf667b5](#ggaf67907baa897e9fb84df0cb89795b87ca84f0546432a39b6f5e8a777d5cf667b5)。 | 
+| type | 日志类型，三方应用日志类型为LOG_APP。 | 
 | fmt | 格式化字符串，基于类printf格式的增强，支持隐私参数标识，即在格式字符串每个参数中符号后类型前增加{public}、{private}标识。 | 
 | ... | 与格式字符串里参数类型对应的参数列表，参数数目、参数类型必须与格式字符串中的标识一一对应。 | 
 
 **See also:**
 
-[ERROR:Invalid link:zh-cn_topic_0000001232471312.xml#xref1115878060110741,link:zh-cn_topic_0000001232471312.xml#gaed4b343058326b7f5dbcac6799025946](#gaed4b343058326b7f5dbcac6799025946)
+[OH_LOG_Print](#oh_log_print)
 
 
 ### OH_LOG_FATAL
@@ -162,7 +162,7 @@ FATAL级别写日志，宏封装接口。
 
 **See also:**
 
-[ERROR:Invalid link:zh-cn_topic_0000001232471312.xml#xref1089905568110741,link:zh-cn_topic_0000001232471312.xml#gaed4b343058326b7f5dbcac6799025946](#gaed4b343058326b7f5dbcac6799025946)
+[OH_LOG_Print](#oh_log_print)
 
 
 ### OH_LOG_INFO
@@ -188,8 +188,7 @@ INFO级别写日志，宏封装接口。
 
 **See also:**
 
-[ERROR:Invalid link:zh-cn_topic_0000001232471312.xml#xref871872876110741,link:zh-cn_topic_0000001232471312.xml#gaed4b343058326b7f5dbcac6799025946](#gaed4b343058326b7f5dbcac6799025946)
-
+[OH_LOG_Print](#oh_log_print)
 
 ### OH_LOG_WARN
 
@@ -214,7 +213,7 @@ WARN级别写日志，宏封装接口。
 
 **See also:**
 
-[ERROR:Invalid link:zh-cn_topic_0000001232471312.xml#xref1438124158110741,link:zh-cn_topic_0000001232471312.xml#gaed4b343058326b7f5dbcac6799025946](#gaed4b343058326b7f5dbcac6799025946)
+[OH_LOG_Print](#oh_log_print)
 
 
 ## **Enumeration Type**
@@ -231,7 +230,19 @@ enum LogLevel
 
 日志级别。
 
-该枚举类型用于定义日志级别。各级别建议使用方式： DEBUG：比INFO级别更详细的流程记录，通过该级别的日志可以更详细地分析业务流程和定位分析问题。DEBUG级别的日志在正式发布版本中默认不会被打印，只有在调试版本或打开调试开关的情况下才会打印。 INFO：用来记录业务关键流程节点，可以还原业务的主要运行过程；用来记录非正常情况信息，但这些情况都是可以预期的(如无网络信号、登录失败等)。这些日志都应该由该业务内处于支配地位的模块来记录，避免在多个被调用的模块或低级函数中重复记录。 WARN：发生了较为严重的非预期情况，但是对用户影响不大，程序可以自动恢复或通过简单的操作就可以恢复的问题。 ERROR：程序或功能发生了错误，该错误会影响功能的正常运行或用户的正常使用，可以恢复但恢复代价较高，如重置数据等。 FATAL：重大致命异常，表明程序或功能即将崩溃，故障无法恢复。
+该枚举类型用于定义日志级别。
+
+各级别建议使用方式： 
+
+DEBUG：比INFO级别更详细的流程记录，通过该级别的日志可以更详细地分析业务流程和定位分析问题。DEBUG级别的日志在正式发布版本中默认不会被打印，只有在调试版本或打开调试开关的情况下才会打印。 
+
+INFO：用来记录业务关键流程节点，可以还原业务的主要运行过程；用来记录非正常情况信息，但这些情况都是可以预期的(如无网络信号、登录失败等)。这些日志都应该由该业务内处于支配地位的模块来记录，避免在多个被调用的模块或低级函数中重复记录。 
+
+WARN：发生了较为严重的非预期情况，但是对用户影响不大，程序可以自动恢复或通过简单的操作就可以恢复的问题。
+
+ERROR：程序或功能发生了错误，该错误会影响功能的正常运行或用户的正常使用，可以恢复但恢复代价较高，如重置数据等。 
+
+FATAL：重大致命异常，表明程序或功能即将崩溃，故障无法恢复。
 
   | Enumerator | Description | 
 | -------- | -------- |
