@@ -39,7 +39,7 @@ GPIO标准API通过GPIO管脚号来操作指定管脚，使用GPIO的一般流�
 
   **图1** GPIO使用流程图
 
-  ![zh-cn_image_0000001206291109](figures/zh-cn_image_0000001206291109.png)
+  ![image](figures/GPIO使用流程图.png "GPIO使用流程图")
 
 
 ### 确定GPIO管脚号
