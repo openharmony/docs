@@ -16,7 +16,7 @@
 
     **图1** SDIO的HOST-DEVICE连接示意图
 
-    ![zh-cn_image_0000001206092987](figures/zh-cn_image_0000001206092987.png)
+    ![image](figures/SDIO的HOST-DEVICE连接示意图.png "SDIO的HOST-DEVICE连接示意图")
 
 - SDIO接口定义了操作SDIO的通用方法集合，包括打开/关闭SDIO控制器、独占/释放HOST、使能/去使能设备、申请/释放中断、读写、获取/设置公共信息等。
 
@@ -49,7 +49,7 @@
 
   **图2** SDIO使用流程图
 
-  ![zh-cn_image_0000001206171539](figures/zh-cn_image_0000001206171539.png)
+  ![image](figures/SDIO使用流程图.png "SDIO使用流程图")
 
 
 ### 打开SDIO控制器
