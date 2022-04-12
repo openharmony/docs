@@ -387,7 +387,7 @@ resolvedOptions(): NumberOptions
 | currencySign             | string  | 是    | 是    | 货币单位的符号显示，取值包括：&nbsp;"symbol"，"narrowSymbol"，"code"，"name"&nbsp;。 |
 | currencyDisplay          | string  | 是    | 是    | 货币的显示方式，取值包括："symbol",&nbsp;"narrowSymbol",&nbsp;"code",&nbsp;"name"。 |
 | unit                     | string  | 是    | 是    | 单位名称，如："meter"，"inch"，“hectare”等。        |
-| unitDisplay              | string  | 是    | 是    | 单位的显示格式，取值包括："long",&nbsp;"short",&nbsp;"medium"。 |
+| unitDisplay              | string  | 是    | 是    | 单位的显示格式，取值包括："long",&nbsp;"short",&nbsp;"narrow"。 |
 | unitUsage                | string  | 是    | 是    | 单位的使用场景，取值包括："default",&nbsp;"area-land-agricult",&nbsp;"area-land-commercl",&nbsp;"area-land-residntl",&nbsp;"length-person",&nbsp;"length-person-small",&nbsp;"length-rainfall",&nbsp;"length-road",&nbsp;"length-road-small",&nbsp;"length-snowfall",&nbsp;"length-vehicle",&nbsp;"length-visiblty",&nbsp;"length-visiblty-small",&nbsp;"length-person-informal",&nbsp;"length-person-small-informal",&nbsp;"length-road-informal",&nbsp;"speed-road-travel",&nbsp;"speed-wind",&nbsp;"temperature-person",&nbsp;"temperature-weather",&nbsp;"volume-vehicle-fuel"。 |
 | signDisplay              | string  | 是    | 是    | 数字符号的显示格式，取值包括："auto",&nbsp;"never",&nbsp;"always",&nbsp;"expectZero"。 |
 | compactDisplay           | string  | 是    | 是    | 紧凑型的显示格式，取值包括："long",&nbsp;"short"。      |
