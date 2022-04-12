@@ -925,8 +925,6 @@ featureAbility.AbilityStartSetting.BOUNDS_KEY
 | action                           | 只读     | string               | 否   | 表示action选项描述。                                         |
 | parameters                       | 只读     | {[key: string]: any} | 否   | 表示WantParams描述。                                         |
 | entities                         | 只读     | Array\<string>       | 否   | 表示entities相关描述。                                       |
-| extensionAbilityName<sup>9+<sup> | 只读     | string               | 否   | Want中扩展能力名称的描述。                                   |
-| extensionAbilityType<sup>9+<sup> | 只读     | number               | 否   | Want中扩展能力类型的描述。                                   |
 
 ## flags说明
 
