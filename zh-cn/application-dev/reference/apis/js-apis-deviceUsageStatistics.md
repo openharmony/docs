@@ -403,9 +403,9 @@ queryCurrentBundleActiveStates(begin: number, end: number): Promise&lt;Array&lt;
     });
   ```
 
-## bundleState.getModuleUsageRecord<sup>9+</sup>
+## bundleState.getRecentUsageModules<sup>9+</sup>
 
-getModuleUsageRecord(maxNum: number): Promise&lt;Array&lt;BundleActiveModuleInfo&gt;&gt;
+getRecentUsageModules(maxNum: number): Promise&lt;Array&lt;BundleActiveModuleInfo&gt;&gt;
 
 据maxNum，查询FA使用记录，使用Promise形式返回不超过maxNum条FA使用记录，maxNum最大为1000。
 
@@ -428,20 +428,20 @@ getModuleUsageRecord(maxNum: number): Promise&lt;Array&lt;BundleActiveModuleInfo
 **示例**：
 
   ```js
-    bundleState.getModuleUsageRecord(this.maxNum).then( res => {
-        console.log('BUNDLE_ACTIVE getModuleUsageRecord promise succeeded');
+    bundleState.getRecentUsageModules(this.maxNum).then( res => {
+        console.log('BUNDLE_ACTIVE getRecentUsageModules promise succeeded');
         for (let i = 0; i < res.length; i++) {
-            console.log('BUNDLE_ACTIVE getModuleUsageRecord promise number : ' + (i + 1));
-            console.log('BUNDLE_ACTIVE getModuleUsageRecord promise result ' + JSON.stringify(res[i]));
+            console.log('BUNDLE_ACTIVE getRecentUsageModules promise number : ' + (i + 1));
+            console.log('BUNDLE_ACTIVE getRecentUsageModules promise result ' + JSON.stringify(res[i]));
         }
     }).catch( err=> {
-        console.log('BUNDLE_ACTIVE getModuleUsageRecord promise failed, because: ' + err.code);
+        console.log('BUNDLE_ACTIVE getRecentUsageModules promise failed, because: ' + err.code);
     });
   ```
 
-## bundleState.getModuleUsageRecord<sup>9+</sup>
+## bundleState.getRecentUsageModules<sup>9+</sup>
 
-getModuleUsageRecord(maxNum: number): Promise&lt;Array&lt;BundleActiveModuleInfo&gt;&gt;
+getRecentUsageModules(maxNum: number): Promise&lt;Array&lt;BundleActiveModuleInfo&gt;&gt;
 
 查询FA使用记录。使用callback形式返回数量最大不超过maxNum设置的值，maxNum最大为1000。
 
@@ -459,14 +459,14 @@ getModuleUsageRecord(maxNum: number): Promise&lt;Array&lt;BundleActiveModuleInfo
 **示例**：
 
   ```js
-    bundleState.getModuleUsageRecord(this.maxNum,(err, res) => {
+    bundleState.getRecentUsageModules(this.maxNum,(err, res) => {
         if(err) {
-            console.log('BUNDLE_ACTIVE getModuleUsageRecord callback failed, because: ' + err.code);
+            console.log('BUNDLE_ACTIVE getRecentUsageModules callback failed, because: ' + err.code);
         } else {
-            console.log('BUNDLE_ACTIVE getModuleUsageRecord callback succeeded.');
+            console.log('BUNDLE_ACTIVE getRecentUsageModules callback succeeded.');
                 for (let i = 0; i < res.length; i++) {
-                    console.log('BUNDLE_ACTIVE getModuleUsageRecord callback number : ' + (i + 1));
-                    console.log('BUNDLE_ACTIVE getModuleUsageRecord callback result ' + JSON.stringify(res[i]));
+                    console.log('BUNDLE_ACTIVE getRecentUsageModules callback number : ' + (i + 1));
+                    console.log('BUNDLE_ACTIVE getRecentUsageModules callback result ' + JSON.stringify(res[i]));
                 }
         }
     });
