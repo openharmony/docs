@@ -6,7 +6,8 @@
 WLAN是基于HDF（Hardware Driver Foundation）驱动框架开发的模块，该模块可实现跨操作系统迁移，自适应器件差异，模块化拼装编译等功能。各WLAN厂商驱动开发人员可根据WLAN模块提供的向下统一接口适配各自的驱动代码，实现如下能力：建立/关闭WLAN热点、扫描、关联WLAN热点等；对HDI层向上提供能力如下：设置MAC地址、设置发射功率、获取设备的MAC地址等。WLAN模块框架图如下：
 
   **图1** WLAN框架
-  ![zh-cn_image_0000001200092359](figures/zh-cn_image_0000001200092359.png)
+
+  ![image](figures/WLAN框架.png "WLAN框架")
 
 
 ### WLAN驱动接口架构
@@ -20,7 +21,8 @@ WLAN模块有三部分对外开放的API接口，如下图所示：
 3. 提供给各厂商实现的能力接口。
 
   **图2** WLAN模块开放能力分布图
-  ![zh-cn_image_0000001197807387](figures/zh-cn_image_0000001197807387.png)
+
+  ![image](figures/WLAN模块开放能力分布图.png "WLAN模块开放能力分布图")
 
 
 ## 接口说明
