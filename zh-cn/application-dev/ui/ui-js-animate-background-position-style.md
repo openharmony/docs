@@ -17,6 +17,7 @@
 ```
 /* xxx.css */
 .container {
+  height: 100%;
   background-color:#F1F3F5;
   display: flex;
   flex-direction: column;
@@ -81,3 +82,5 @@
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > background-position仅支持背景图片的移动，不支持背景颜色（background-color）。
+
+![zh-cn_image_background_img.gif](figures/zh-cn_image_background_img.gif)
