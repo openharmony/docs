@@ -403,11 +403,11 @@ queryCurrentBundleActiveStates(begin: number, end: number): Promise&lt;Array&lt;
     });
   ```
 
-## bundleState.getRecentUsageModules<sup>9+</sup>
+## bundleState.getRecentlyUsedModules<sup>9+</sup>
 
-getRecentUsageModules(maxNum: number): Promise&lt;Array&lt;BundleActiveModuleInfo&gt;&gt;
+getRecentlyUsedModules(maxNum: number): Promise&lt;Array&lt;BundleActiveModuleInfo&gt;&gt;
 
-据maxNum，查询FA使用记录，使用Promise形式返回不超过maxNum条FA使用记录，maxNum最大为1000。
+据maxNum，查询FA使用记录，使用Promise形式返回不超过maxNum条FA使用记录，FA使用记录由近及远排序，maxNum最大为1000。
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -428,22 +428,22 @@ getRecentUsageModules(maxNum: number): Promise&lt;Array&lt;BundleActiveModuleInf
 **示例**：
 
   ```js
-    bundleState.getRecentUsageModules(this.maxNum).then( res => {
-        console.log('BUNDLE_ACTIVE getRecentUsageModules promise succeeded');
+    bundleState.getRecentlyUsedModules(this.maxNum).then( res => {
+        console.log('BUNDLE_ACTIVE getRecentlyUsedModules promise succeeded');
         for (let i = 0; i < res.length; i++) {
-            console.log('BUNDLE_ACTIVE getRecentUsageModules promise number : ' + (i + 1));
-            console.log('BUNDLE_ACTIVE getRecentUsageModules promise result ' + JSON.stringify(res[i]));
+            console.log('BUNDLE_ACTIVE getRecentlyUsedModules promise number : ' + (i + 1));
+            console.log('BUNDLE_ACTIVE getRecentlyUsedModules promise result ' + JSON.stringify(res[i]));
         }
     }).catch( err=> {
-        console.log('BUNDLE_ACTIVE getRecentUsageModules promise failed, because: ' + err.code);
+        console.log('BUNDLE_ACTIVE getRecentlyUsedModules promise failed, because: ' + err.code);
     });
   ```
 
-## bundleState.getRecentUsageModules<sup>9+</sup>
+## bundleState.getRecentlyUsedModules<sup>9+</sup>
 
-getRecentUsageModules(maxNum: number, callback: AsyncCallback&lt;Array&lt;BundleActiveModuleInfo&gt;&gt;): void
+getRecentlyUsedModules(maxNum: number, callback: AsyncCallback&lt;Array&lt;BundleActiveModuleInfo&gt;&gt;): void
 
-查询FA使用记录。使用callback形式返回数量最大不超过maxNum设置的值，maxNum最大为1000。
+查询FA使用记录。使用CallBack形式返回数量最大不超过maxNum设置的值，FA使用记录由近及远排序，maxNum最大为1000。
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -459,14 +459,14 @@ getRecentUsageModules(maxNum: number, callback: AsyncCallback&lt;Array&lt;Bundle
 **示例**：
 
   ```js
-    bundleState.getRecentUsageModules(this.maxNum,(err, res) => {
+    bundleState.getRecentlyUsedModules(this.maxNum,(err, res) => {
         if(err) {
-            console.log('BUNDLE_ACTIVE getRecentUsageModules callback failed, because: ' + err.code);
+            console.log('BUNDLE_ACTIVE getRecentlyUsedModules callback failed, because: ' + err.code);
         } else {
-            console.log('BUNDLE_ACTIVE getRecentUsageModules callback succeeded.');
+            console.log('BUNDLE_ACTIVE getRecentlyUsedModules callback succeeded.');
                 for (let i = 0; i < res.length; i++) {
-                    console.log('BUNDLE_ACTIVE getRecentUsageModules callback number : ' + (i + 1));
-                    console.log('BUNDLE_ACTIVE getRecentUsageModules callback result ' + JSON.stringify(res[i]));
+                    console.log('BUNDLE_ACTIVE getRecentlyUsedModules callback number : ' + (i + 1));
+                    console.log('BUNDLE_ACTIVE getRecentlyUsedModules callback result ' + JSON.stringify(res[i]));
                 }
         }
     });
