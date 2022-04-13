@@ -142,7 +142,8 @@ Tabs默认展示索引为index的标签及内容。通过设置vertical属性使
   margin-top: 10px;
   height: 300px;
   color: blue;   
-  justify-content: center;  align-items: center;
+  justify-content: center;  
+  align-items: center;
 }
 ```
 
@@ -306,4 +307,4 @@ export default {
 }
 ```
 
-![zh-cn_image_tab](figures\zh-cn_image_tab.gif)
+![zh-cn_image_tab.gif](figures/zh-cn_image_tab.gif)

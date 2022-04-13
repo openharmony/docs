@@ -159,7 +159,11 @@ text{
 swiper{
   width:  500px;
   height: 500px;
-  border-radius: 250px;indicator-color: white;  indicator-selected-color: blue;  indicator-size: 40px;  indicator-top: 100px;
+  border-radius: 250px;
+  indicator-color: white;
+  indicator-selected-color: blue;
+  indicator-size: 40px;
+  indicator-top: 100px;
   overflow: hidden ;
 }
 .item{
@@ -330,7 +334,8 @@ swiper{
   transform: scale(0.5);
 }
 .actived{
-  transform: scale(1);border: 1px solid #b20937ea;
+  transform: scale(1);
+  border: 1px solid #b20937ea;
 }
 ```
 

@@ -117,6 +117,9 @@ Chart组件通过设置type属性定义图表t类型，如将图表设置为柱�
   justify-content: center;
   background-color: #F1F3F5;
 }
+.tab-bar{
+  background-color: #F1F3F5;
+}
 .chart-data {
   width: 700px;
   height: 600px;
@@ -494,6 +497,7 @@ export default {
     interval: null,
     title: "数据展示",
     allowScale: true,
+    dataLength: 30,
     barGroup: 3,
     lineData: null,
     lineOps: {

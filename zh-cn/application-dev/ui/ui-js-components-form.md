@@ -56,14 +56,18 @@ Form是一个表单容器，支持容器内[Input](../reference/arkui-js/js-comp
 ```
 /* xxx.css */
 .container {
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   background-color: #F1F3F5;
 }
 .formClass{
-  width: 100%;
-  height: 20%;
+  width: 80%;
+  height: 100px;
+  padding: 10px;
+  border: 1px solid #cccccc;
 }
 ```
 
@@ -85,12 +89,11 @@ Form是一个表单容器，支持容器内[Input](../reference/arkui-js/js-comp
       <label>Option 2</label>
       <input type='radio' name='radioGroup' value='radio2'></input>
     </div>
-    <div style="width: 100%;justify-content: center;">
-      <input type="submit" value="Submit" style="width:100px; margin-right:20px;" >   
+    <div style="width: 100%;justify-content: center; margin-top: 20px">
+      <input type="submit" value="Submit" style="width:120px; margin-right:20px;" >   
       </input>
-      <input type="reset" value="Reset" style="width:100px;"></input>
+      <input type="reset" value="Reset" style="width:120px;"></input>
     </div>
-    </div> 
   </form>
 </div>
 ```
@@ -101,15 +104,16 @@ Form是一个表单容器，支持容器内[Input](../reference/arkui-js/js-comp
   width: 100%;
   height: 100%;
   flex-direction: column;
-  justify-items: center
+  justify-items: center;
   align-items: center;
   background-color: #F1F3F5;
 }
 .form{
   width: 100%;
   height: 30%;
+  margin-top: 40%;
   flex-direction: column;
-  justify-items: center
+  justify-items: center;
   align-items: center;
 }
 ```

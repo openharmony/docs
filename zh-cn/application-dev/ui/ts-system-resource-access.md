@@ -8,13 +8,13 @@
 
 ```
 Text('Hello')
-    .fontColor($r('sys.color.id_color_emphasize'))
-    .fontSize($r('sys.float.id_text_size_headline1'))
-    .fontFamily($r('sys.string.id_text_font_family_medium'))
-    .backgroundColor($r('sys.color.id_color_palette_aux1'))
-Image($r('sys.media.ic_app'))
-    .border({color: $r('sys.color.id_color_palette_aux1'), radius: $r('sys.float.id_corner_radius_button'), width: 2})
-    .margin({top: $r('sys.float.id_elements_margin_horizontal_m'), bottom: $r('sys.float.id_elements_margin_horizontal_l')})
+    .fontColor($r('sys.color.ohos_id_color_emphasize'))
+    .fontSize($r('sys.float.ohos_id_text_size_headline1'))
+    .fontFamily($r('sys.string.ohos_id_text_font_family_medium'))
+    .backgroundColor($r('sys.color.ohos_id_color_palette_aux1'))
+Image($r('sys.media.ohos_app_icon'))
+    .border({color: $r('sys.color.ohos_id_color_palette_aux1'), radius: $r('sys.float.ohos_id_corner_radius_button'), width: 2})
+    .margin({top: $r('sys.float.ohos_id_elements_margin_horizontal_m'), bottom: $r('sys.float.ohos_id_elements_margin_horizontal_l')})
     .height(200)
     .width(300)
 ```
