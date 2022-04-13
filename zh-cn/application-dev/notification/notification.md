@@ -131,7 +131,19 @@ var subscriber = {
 
 ### 通知发送
 
-通知发布前，先要确认通知发送使能是否开启，新安装的应用使能默认是关闭状态，需要到通知设置里开启。
+##### 开启通知使能
+
+应用发布通知的使能开关默认是关闭的，所以应用发布通知前需要用户允许后才能发送。应用可以通过Notification.requestEnableNotification弹窗提醒用户允许发送通知。
+
+```js
+Notification.requestEnableNotification() .then((data) => {
+	console.info('===>requestEnableNotification success');
+}).catch((err) => {
+	console.error('===>requestEnableNotification failed because ' + JSON.stringify(err));
+});
+```
+
+
 
 ##### 通知发布
 
