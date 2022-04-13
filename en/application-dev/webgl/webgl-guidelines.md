@@ -7,36 +7,29 @@ WebGL helps you process graphics at the frontend, for example, drawing color gra
 
 ## Available APIs
 
-To use WebGL, you must import the following module:
+**Table 1** WebGL APIs
 
-
-```
-import webgl from "@ohos.webglnapi";
-```
-
-  **Table 1** WebGL APIs
-
-| API | Description | 
+| API| Description|
 | -------- | -------- |
-| canvas.getContext | Obtains&nbsp;the&nbsp;canvas&nbsp;context. | 
-| webgl.createBuffer():&nbsp;WebGLBuffer&nbsp;\|&nbsp;null | Creates&nbsp;and&nbsp;initializes&nbsp;a&nbsp;WebGL&nbsp;buffer. | 
-| webgl.bindBuffer(target:&nbsp;GLenum,&nbsp;buffer:&nbsp;WebGLBuffer&nbsp;\|&nbsp;null):&nbsp;void | Binds&nbsp;the&nbsp;WebGL&nbsp;buffer&nbsp;to&nbsp;the&nbsp;target. | 
-| webgl.bufferData(target:&nbsp;GLenum,&nbsp;srcData:&nbsp;ArrayBufferView,&nbsp;usage:&nbsp;GLenum,&nbsp;srcOffset:&nbsp;GLuint,&nbsp;length?:&nbsp;GLuint):&nbsp;void | Creates&nbsp;and&nbsp;initializes&nbsp;the&nbsp;WebGL&nbsp;buffer&nbsp;object's&nbsp;data&nbsp;store. | 
-| webgl.getAttribLocation(program:&nbsp;WebGLProgram,&nbsp;name:&nbsp;string):&nbsp;GLint | Obtains&nbsp;the&nbsp;address&nbsp;of&nbsp;the&nbsp;**attribute**&nbsp;variable&nbsp;in&nbsp;the&nbsp;shader&nbsp;from&nbsp;the&nbsp;given&nbsp;WebGLProgram. | 
-| webgl.vertexAttribPointer(index:&nbsp;GLuint,&nbsp;size:&nbsp;GLint,&nbsp;type:&nbsp;GLenum,&nbsp;normalized:&nbsp;GLboolean,&nbsp;stride:&nbsp;GLsizei,&nbsp;offset:&nbsp;GLintptr):&nbsp;void | Assigns&nbsp;a&nbsp;**Buffer**&nbsp;object&nbsp;to&nbsp;a&nbsp;variable. | 
-| webgl.enableVertexAttribArray(index:&nbsp;GLuint):&nbsp;void | Connects&nbsp;a&nbsp;variable&nbsp;to&nbsp;the&nbsp;**Buffer**&nbsp;object&nbsp;allocated&nbsp;to&nbsp;it. | 
-| webgl.clearColor(red:&nbsp;GLclampf,&nbsp;green:&nbsp;GLclampf,&nbsp;blue:&nbsp;GLclampf,&nbsp;alpha:&nbsp;GLclampf):&nbsp;void | Clears&nbsp;the&nbsp;specified&nbsp;color&nbsp;on&nbsp;the&nbsp;**&lt;canvas&gt;**&nbsp;component. | 
-| webgl.clear(mask:&nbsp;GLbitfield):&nbsp;void | Clears&nbsp;the&nbsp;**&lt;canvas&gt;**&nbsp;component. | 
-| webgl.drawArrays(mode:&nbsp;GLenum,&nbsp;first:&nbsp;GLint,&nbsp;count:&nbsp;GLsizei):&nbsp;void | Draws&nbsp;data. | 
-| webgl.flush():&nbsp;void | Flushes&nbsp;data&nbsp;to&nbsp;the&nbsp;GPU&nbsp;and&nbsp;clears&nbsp;the&nbsp;buffer. | 
-| webgl.createProgram():&nbsp;WebGLProgram&nbsp;\|&nbsp;null | Creates&nbsp;a&nbsp;**WebGLProgram**&nbsp;object. | 
+| canvas.getContext | Obtains the canvas context.|
+| webgl.createBuffer():&nbsp;WebGLBuffer&nbsp;\|&nbsp;null | Creates and initializes a WebGL buffer.|
+| webgl.bindBuffer(target:&nbsp;GLenum,&nbsp;buffer:&nbsp;WebGLBuffer&nbsp;\|&nbsp;null):&nbsp;void | Binds the WebGL buffer to the target.|
+| webgl.bufferData(target:&nbsp;GLenum,&nbsp;srcData:&nbsp;ArrayBufferView,&nbsp;usage:&nbsp;GLenum,&nbsp;srcOffset:&nbsp;GLuint,&nbsp;length?:&nbsp;GLuint):&nbsp;void | Creates and initializes the WebGL buffer object's data store.|
+| webgl.getAttribLocation(program:&nbsp;WebGLProgram,&nbsp;name:&nbsp;string):&nbsp;GLint | Obtains the address of the **attribute** variable in the shader from the given WebGLProgram.|
+| webgl.vertexAttribPointer(index:&nbsp;GLuint,&nbsp;size:&nbsp;GLint,&nbsp;type:&nbsp;GLenum,&nbsp;normalized:&nbsp;GLboolean,&nbsp;stride:&nbsp;GLsizei,&nbsp;offset:&nbsp;GLintptr):&nbsp;void | Assigns a **Buffer** object to a variable.|
+| webgl.enableVertexAttribArray(index:&nbsp;GLuint):&nbsp;void | Connects a variable to the **Buffer** object allocated to it.|
+| webgl.clearColor(red:&nbsp;GLclampf,&nbsp;green:&nbsp;GLclampf,&nbsp;blue:&nbsp;GLclampf,&nbsp;alpha:&nbsp;GLclampf):&nbsp;void | Clears the specified color on the **\<canvas>** component.|
+| webgl.clear(mask:&nbsp;GLbitfield):&nbsp;void | Clears the **\<canvas>** component.|
+| webgl.drawArrays(mode:&nbsp;GLenum,&nbsp;first:&nbsp;GLint,&nbsp;count:&nbsp;GLsizei):&nbsp;void | Draws data.|
+| webgl.flush():&nbsp;void | Flushes data to the GPU and clears the buffer.|
+| webgl.createProgram():&nbsp;WebGLProgram&nbsp;\|&nbsp;null | Creates a **WebGLProgram** object.|
 
 
 ## How to Develop
 
 The following describes how to draw a 2D image without using shaders and how to draw a color triangle using shaders.
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **Note：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > When using WebGL for development, use a real device to ensure the GUI display effect.
 
 
@@ -45,7 +38,6 @@ The following describes how to draw a 2D image without using shaders and how to 
 To draw a 2D image without using WebGL, that is, to implement CPU rather than GPU drawing, perform the following steps:
 
 1. Create a page layout in the **index.hml** file. The following is an example of the file content:
-   
    ```
    <div class="container">
        <canvas ref="canvas1" style="width : 400px; height : 200px; background-color : lightyellow;"></canvas>
@@ -54,7 +46,6 @@ To draw a 2D image without using WebGL, that is, to implement CPU rather than GP
    ```
 
 2. Set the page style in the **index.css** file. The following is an example of the file content:
-   
    ```
    .container {
        flex-direction: column;
@@ -72,7 +63,6 @@ To draw a 2D image without using WebGL, that is, to implement CPU rather than GP
    ```
 
 3. Edit the **index.js** file to add the 2D drawing logic code. The following is an example of the file content:
-   
    ```
    //index.js
    export default { // Native API interaction code
@@ -108,7 +98,7 @@ To draw a 2D image without using WebGL, that is, to implement CPU rather than GP
    }
    ```
 
-  **Figure 1** Effect of clicking the button to draw a 2D image
+**Figure 1** Effect of clicking the button to draw a 2D image
 
 ![en-us_image_0000001192269746](figures/en-us_image_0000001192269746.gif)
 
@@ -118,8 +108,7 @@ To draw a 2D image without using WebGL, that is, to implement CPU rather than GP
 To use WebGL to draw a color triangle (GPU drawing), perform the following steps:
 
 
-1. Create a page layout. The following is an example of the **index.hml** file:
-   
+1. Create a page layout in the **index.hml** file. The following is an example of the file content:
    ```
    <div class="container">
    <canvas ref="canvas1" style="width : 400px; height : 200px; background-color : lightyellow;"></canvas>
@@ -127,8 +116,7 @@ To use WebGL to draw a color triangle (GPU drawing), perform the following steps
    </div>
    ```
 
-2. Set the page style. The following is an example of the **index.css** file:
-   
+2. Set the page style in the **index.css** file. The following is an example of the file content:
    ```
    .container {
        flex-direction: column;
@@ -145,11 +133,9 @@ To use WebGL to draw a color triangle (GPU drawing), perform the following steps
    }
    ```
 
-3. Edit the JavaScript code file to add the logic code for drawing a color triangle. The following is an example of the **index.js** file:
-   
+3. Edit the JavaScript code file to add the logic code for drawing a color triangle. The following is an example of the file content:
    ```
    //index.js
-   import webgl from "@ohos.webglnapi"; // Import the WebGL module.
    
    // WebGL-related predefinition
    var gl = {
@@ -710,6 +696,6 @@ To use WebGL to draw a color triangle (GPU drawing), perform the following steps
    ```
 
 
-  **Figure 2** Effect of clicking the button to draw a color triangle
+**Figure 2** Effect of clicking the button to draw a color triangle
 
 ![en-us_image_0000001192429306](figures/en-us_image_0000001192429306.gif)

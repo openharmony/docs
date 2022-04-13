@@ -158,8 +158,8 @@
    
     以下为取消监听数据变更的代码示例：
    ```js
-   //删除上下线回调changeCallback
-   local_object.off("status", changeCallback);
+   //删除上下线回调statusCallback
+   local_object.off("status", statusCallback);
    //删除所有的上下线回调
    local_object.off("status");
    ```
