@@ -5,8 +5,7 @@ The Window Manager subsystem enables multiple applications to use the same physi
 
 ## Basic Concepts
 
-
-** Immersive**: The colors of the application interface, status bar, and navigation bar are the same to achieve the visual integrity.
+**Immersive : ** The colors of the application interface, status bar, and navigation bar are the same to achieve the visual integrity.
 
 ## Working Principles
 
