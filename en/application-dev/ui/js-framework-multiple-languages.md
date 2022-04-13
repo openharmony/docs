@@ -20,19 +20,19 @@ language[-script-region].json
 
 The following table describes the requirements for the qualifiers of resource file names.
 
-  Table1 Requirements for qualifier values
+Table 1 Requirements for qualifier values
 
-| Qualifier Type | Description and Value Range | 
+| Qualifier Type | Description and Value Range |
 | -------- | -------- |
-| Language | Indicates the language used by the device. The value consists of two or three lowercase letters, for example, zh indicates Chinese, en indicates English, and mai indicates Maithili.<br/>For details about the value range, refer to ISO 639 (codes for the representation of names of languages). | 
-| Script | Indicates the script type used by the device. The value starts with one uppercase letter followed by three lowercase letters, for example, Hans indicates simplified Chinese and Hant indicates traditional Chinese.<br/>For details about the value range, refer to ISO 15924 (codes for the representation of names of scripts). | 
-| Country/Region | Indicates the country or region where a user is located. The value consists of two or three uppercase letters or three digits, for example, CN indicates China and GB indicates the United Kingdom.<br/>For details about the value range, refer to ISO 3166-1 (codes for the representation of names of countries and their subdivisions). | 
+| Language | Indicates the language used by the device. The value consists of two or three lowercase letters, for example, zh indicates Chinese, en indicates English, and mai indicates Maithili.<br/>For details about the value range, refer to ISO 639 (codes for the representation of names of languages). |
+| Script | Indicates the script type used by the device. The value starts with one uppercase letter followed by three lowercase letters, for example, Hans indicates simplified Chinese and Hant indicates traditional Chinese.<br/>For details about the value range, refer to ISO 15924 (codes for the representation of names of scripts). |
+| Country/Region | Indicates the country or region where a user is located. The value consists of two or three uppercase letters or three digits, for example, CN indicates China and GB indicates the United Kingdom.<br/>For details about the value range, refer to ISO 3166-1 (codes for the representation of names of countries and their subdivisions). |
 
 If there is no resource file of the locale that matches the system language, content in the en-US.json file will be used by default.
 
 The format of the resource file content is as follows:
 
-  en-US.json
+**en-US.json**
 
 ```
 {
@@ -55,8 +55,7 @@ Different languages have different matching rules for singular and plural forms.
 
 The following example takes en-US.json and ar-AE.json as examples:
 
-
-en-US.json
+**en-US.json**
 
 
 ```
@@ -97,18 +96,18 @@ Multi-language syntax used on application development pages (including simple fo
 - Simple formatting
   Use the $t function to reference to resources of different locales. The $t function is available for both .hml and .js files. The system displays content based on a resource file path specified via $t and the specified resource file whose locale matches the current system language.
   
-    Table2 Simple formatting
+  Table 2 Simple formatting
   
   | Attribute | Type | Parameter | Mandatory | Description |
   | -------- | -------- | -------- | -------- | -------- |
   | $t | Function | See Table3 | Yes | Sets the parameters based on the system language, for example, this.$t('strings.hello'). |
 
-    Table3 $t function parameters
+  Table 3 $t function parameters
   
-  | Parameter | Type | Mandatory | Description | 
+  | Parameter | Type | Mandatory | Description |
   | -------- | -------- | -------- | -------- |
-  | path | string | Yes | Path of the language resource key | 
-  | params | Array\|Object | No | Content used to replace placeholders during runtime. There are two types of placeholders available:<br/>- Named placeholder, for example, {name}. The actual content must be of the object type, for example, $t('strings.object', { name: 'Hello world' }).<br/>- Digit placeholder, for example, {0}. The actual content must be of the array type, for example, $t('strings.array', ['Hello world']. | 
+  | path | string | Yes | Path of the language resource key |
+  | params | Array\|Object | No | Content used to replace placeholders during runtime. There are two types of placeholders available:<br/>- Named placeholder, for example, {name}. The actual content must be of the object type, for example, \```$t('strings.object', {name:'Hello world'})```.<br/>- Digit placeholder, for example, {0}. The actual content must be of the array type, for example, \```$t('strings.array', [Hello world']```. |
 
 - Example code for simple formatting
   
@@ -156,18 +155,18 @@ Multi-language syntax used on application development pages (including simple fo
   ```
 
 - Singular-plural formatting
-    Table4 Singular-plural formatting
+    Table 4 Singular-plural formatting
   
   | Attribute | Type | Parameter | Mandatory | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | $tc | Function | See Table 5. | Yes | Converts between the singular and plural forms based on the system language, for example, this.$tc('strings.people').<br/>> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:<br/>> The resource content is distinguished by the following JSON keys: zero, one, two, few, many, and other. |
+  | $tc | Function | See Table 5. | Yes | Converts between the singular and plural forms based on the system language, for example, this.$tc('strings.people').<br/>> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>> The resource content is distinguished by the following JSON keys: zero, one, two, few, many, and other. |
 
-    Table5 $tc function parameters
+  Table 5 $tc function parameters
   
-  | Parameter | Type | Mandatory | Description | 
+  | Parameter | Type | Mandatory | Description |
   | -------- | -------- | -------- | -------- |
-  | path | string | Yes | Path of the language resource key | 
-  | count | number | Yes | Number | 
+  | path | string | Yes | Path of the language resource key |
+  | count | number | Yes | Number |
 
 - Sample code for singular-plural formatting
   

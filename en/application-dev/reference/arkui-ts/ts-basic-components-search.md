@@ -31,7 +31,7 @@ Search(options?: { value?: string; placeholder?: string; icon?: string; controll
 | Name| Type| Default Value| Description|
 | -------- | -------- | -------- | -------- |
 | searchButton | string | –| Text on the search button located next to the search text box. By default, there is no search button.|
-| placeholderColor | [ResourceColor](../../ui/ts-types.md#ResourceColor) | - | Placeholder text color.|
+| placeholderColor | [ResourceColor](../../ui/ts-types.md) | - | Placeholder text color.|
 | placeholderFont | [Font](../../ui/ts-types.md) | - | Placeholder text style.|
 | textFont | [Font](../../ui/ts-types.md) | - | Text font for the search text box.|
 

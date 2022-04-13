@@ -12,43 +12,43 @@ None
 
 ## Events
 
-  | Name | Bubble Supported | Description | 
+| Name | Bubble Supported | Description |
 | -------- | -------- | -------- |
-| onClick(callback: (event?: ClickEvent) =&gt; void) | No | Called when a click event occurs. For details about the event parameters, see [ClickEvent](#clickevent). | 
+| onClick(callback: (event?: ClickEvent) =&gt; void) | No | Called when a click event occurs. For details about the event parameters, see [ClickEvent](#clickevent). |
 
 
 ### ClickEvent
 
-  | Name | Type | Description | 
+| Name | Type | Description |
 | -------- | -------- | -------- |
-| screenX | number | X coordinate of the click relative to the left edge of the screen. | 
-| screenY | number | Y coordinate of the click relative to the upper edge of the screen. | 
-| x | number | X coordinate of the click relative to the left edge of the component being clicked. | 
-| y | number | Y coordinate of the click relative to the upper edge of the component being clicked. | 
-| target<sup>8+</sup> | EventTarget | Target element that is clicked. | 
-| timestamp | number | Timestamp of the event. | 
+| screenX | number | X coordinate of the click relative to the left edge of the screen. |
+| screenY | number | Y coordinate of the click relative to the upper edge of the screen. |
+| x | number | X coordinate of the click relative to the left edge of the component being clicked. |
+| y | number | Y coordinate of the click relative to the upper edge of the component being clicked. |
+| target<sup>8+</sup> | EventTarget | Target element that is clicked. |
+| timestamp | number | Timestamp of the event. |
 
 - EventTarget<sup>8+</sup> attributes
 
-    | Name | Type | Description | 
+    | Name | Type | Description |
     | -------- | -------- | -------- |
-    | area | Area | Area information of the target element.| 
+    | area | Area | Area information of the target element.|
 
 - Area<sup>8+</sup> attributes
 
-    | Name | Type | Description | 
+    | Name | Type | Description |
     | -------- | -------- | -------- |
-    | width | number | Width of the target element, in vp. | 
-    | height | number | Height of the target element, in vp. | 
-    | pos | Position | Position of the upper left corner of the target element relative to that of the parent element. | 
-    | globalPos | Position | Position of the upper left corner of the target element relative to that of the page. | 
+    | width | number | Width of the target element, in vp. |
+    | height | number | Height of the target element, in vp. |
+    | position | Position | Position of the upper left corner of the target element relative to that of the parent element. |
+    | globalPosition | Position | Position of the upper left corner of the target element relative to that of the page. |
 
 - Position<sup>8+</sup> attributes
 
-    | Name | Type | Description | 
+    | Name | Type | Description |
     | -------- | -------- | -------- |
-    | x | number | X-coordinate, in vp. | 
-    | y | number | Y-coordinate, in vp. | 
+    | x | number | X-coordinate, in vp. |
+    | y | number | Y-coordinate, in vp. |
 
 
 ## Example

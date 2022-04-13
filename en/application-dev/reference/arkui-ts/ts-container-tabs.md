@@ -36,15 +36,6 @@ Tabs(value: {barPosition?: BarPosition, index?: number, controller?: [TabsContro
   | End | If the **vertical** attribute is set to **true**, the tab is on the right of the container. If the **vertical** attribute is set to **false**, the tab is at the bottom of the container. |
 
 
-### TabsController
-
-Defines a tab controller, which is used to control switching of tabs.
-
-| API | Description |
-| -------- | -------- |
-| changeIndex(value: number): void | Changes the index of a tab. The value starts from **0**. |
-
-
 ## Attributes
 
 Touch target configuration is not supported.
@@ -70,6 +61,27 @@ Touch target configuration is not supported.
 | Name | Description |
 | -------- | -------- |
 | onChange(callback: (index: number) =&gt; void) | Event triggered when a tab is switched. |
+
+## TabsController
+
+Defines a tab controller, which is used to control switching of tabs.
+### Objects to Import
+
+```
+controller: TabsController = new TabsController()
+
+```
+
+### changeIndex
+
+changeIndex(value: number): void
+
+Switches to the specified tab.
+
+- Parameters
+  | Name | Type | Mandatory | Default Value | Description |
+  | -------- | -------- | -------- | -------- | -------- |
+  | value | number | Yes | - | Index of a tab. The value starts from **0**. |
 
 
 ## Example

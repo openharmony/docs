@@ -20,9 +20,9 @@ This component can contain a single child component.
 
 ## APIs
 
-ScrollBar(value: ScrollBarOption)
+ScrollBar(value: ScrollBarOptions)
 
-- ScrollBarOption parameters
+- ScrollBarOptions parameters
     | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
   | scroller | [Scroller](ts-container-scroll.md#scroller) | Yes | - | Scroller, which can be bound to and control scrollable components. |

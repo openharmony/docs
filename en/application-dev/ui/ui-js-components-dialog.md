@@ -1,20 +1,21 @@
 # &lt;dialog&gt; Development
 
 
-The &lt;dialog&gt; component is custom pop-up container for showing critical information or calling for an action. For details, see [dialog](../reference/arkui-js/js-components-container-dialog.md).
+The **&lt;dialog&gt;** component is custom pop-up container for showing critical information or calling for an action. For details, see [dialog](../reference/arkui-js/js-components-container-dialog.md).
 
 
 ## Creating a &lt;dialog&gt; Component
 
-  Create a &lt;dialog&gt; component in the .hml file under pages/index and add &lt;button&gt; components to trigger the &lt;dialog&gt;. The &lt;dialog&gt; component supports only the width, height, margin, margin-[left|top|right|bottom], and margin-[start|end] styles.
+  Create a **&lt;dialog&gt;** component in the .hml file under **pages/index** and add **&lt;button&gt;** components to trigger the **&lt;dialog&gt;**. The **&lt;dialog&gt;** component supports only the **width**, **height**, **margin**, **margin-[left|top|right|bottom]**, and **margin-[start|end]** styles.
 
 ```
 <!-- xxx.hml -->
 <div class="doc-page">
-  <dialog class="dialogClass" id="dialogId"><div class="content">
+  <dialog class="dialogClass" id="dialogId">
+<div class="content" dragable="true">
       <text>this is a dialog</text>
     </div>
-  </dialog>
+</dialog>
   <button value="click me" onclick="openDialog"></button>
 </div>
 ```
@@ -23,6 +24,8 @@ The &lt;dialog&gt; component is custom pop-up container for showing critical inf
 ```
 /* xxx.css */
 .doc-page {
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -67,7 +70,9 @@ export default {
 
 ## Setting Dialog Box Response
 
-Add a cancel event that is triggered when a user touches a non-dialog area to cancel the pop-up dialog box. Add the show and close methods to display and close the dialog box, respectively.
+Add a **cancel** event that is triggered when a user touches a non-dialog area to cancel the pop-up dialog box. Add the **show** and **close** methods to display and close the dialog box, respectively.
+
+
 
 ```
 <!-- xxx.hml -->
@@ -82,9 +87,13 @@ Add a cancel event that is triggered when a user touches a non-dialog area to ca
 </div>
 ```
 
+
+
 ```
 /* xxx.css */
 .doc-page {
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -113,6 +122,8 @@ button{
 }
 ```
 
+
+
 ```
 /* xxx.js */
 import prompt from '@system.prompt';
@@ -133,18 +144,20 @@ export default {
 ![en-us_image_0000001223287720](figures/en-us_image_0000001223287720.gif)
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE:**
 > - This component supports only one child component.
 > 
-> - Attributes and styles of a &lt;dialog&gt; component cannot be dynamically updated.
+> - Attributes and styles of a **&lt;dialog&gt;** component cannot be dynamically updated.
 > 
-> - The &lt;dialog&gt; component does not support the focusable and click-effect attributes.
+> - The **&lt;dialog&gt;** component does not support the **focusable** and **click-effect** attributes.
 
 
 ## Example Scenario
 
 
-Use the &lt;dialog&gt; component to implement a schedule. When the dialog box is open, use the [&lt;textarea&gt;](../reference/arkui-js/js-components-basic-textarea.md) component to add an event and touch the OK button to obtain the current time and save the input text. The events in the calendar are displayed in a list.
+Use the **&lt;dialog&gt;** component to implement a schedule. When the dialog box is open, use the [**&lt;textarea&gt;**](../reference/arkui-js/js-components-basic-textarea.md) component to add an event and touch the OK button to obtain the current time and save the input text. The events in the calendar are displayed in a list.
+
+
 
 ```
 <!-- xxx.hml -->
@@ -179,6 +192,8 @@ Use the &lt;dialog&gt; component to implement a schedule. When the dialog box is
   </dialog>
 </div>
 ```
+
+
 
 ```
 /* xxx.css */
@@ -247,6 +262,8 @@ Use the &lt;dialog&gt; component to implement a schedule. When the dialog box is
   text-color: #1E90FF;
 }
 ```
+
+
 
 ```
 /* xxx.js */
