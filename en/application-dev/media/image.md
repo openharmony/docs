@@ -6,7 +6,7 @@ You can use image development APIs to decode images into pixel maps and encode t
 
 ## Available APIs
 
-For details about the APIs, see [js-apis-image.md](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-image.md).
+For details about the APIs, see [Image Processing](../reference/apis/js-apis-image.md).
 
 ## How to Develop
 
