@@ -1,80 +1,80 @@
-# Video Playback Development
+# 视频播放开发指导
 
-## When to Use
+## 场景介绍
 
-You can use video playback APIs to convert video data into visible signals, play the signals using output devices, and manage playback tasks. This document describes the following video playback development scenarios: full-process, normal playback, video switching, and loop playback.
+视频播放的主要工作是将视频数据转码并输出到设备进行播放，同时管理播放任务。本文将对视频播放全流程、视频切换、视频循环播放等场景开发进行介绍说明。
 
-**Figure 1** Video playback state transition
+**图1** 视频播放状态机
 
-![en-us_image_video_state_machine](figures/en-us_image_video_state_machine.png)
+![zh-ch_image_video_state_machine](figures/zh-ch_image_video_state_machine.png)
 
 
 
-**Figure 2** Layer 0 diagram of video playback
+**图2** 视频播放零层图
 
-![en-us_image_video_player](figures/en-us_image_video_player.png)
+![zh-ch_image_video_player](figures/zh-ch_image_video_player.png)
 
-Note: Video playback requires hardware capabilities such as display, audio, and codec.
+*注意：视频播放需要显示、音频、编解码等硬件能力。
 
-1. A third-party application obtains a surface ID from the XComponent.
-2. The third-party application transfers the surface ID to the VideoPlayer JS.
-3. The media service flushes the frame data to the surface buffer.
+1. 三方应用从Xcomponent组件获取surfaceID。
+2. 三方应用把surfaceID传递给VideoPlayer JS。
+3. 媒体服务把帧数据flush给surface buffer。
 
-## Compatibility
+## 兼容性说明
 
-You are advised to use the mainstream playback formats and resolutions, rather than custom or abnormal streams to avoid playback failure, frame freezing, and artifacts. The system is not affected by incompatibility issues. If such an error occurs, you can exit stream playback mode.
+推荐使用视频软件主流的播放格式和主流分辨率，不建议开发者自制非常或者异常码流，以免产生无法播放、卡住、花屏等兼容性问题。若发生此类问题不会影响系统，退出码流播放即可。
 
-The table below lists the mainstream playback formats and resolutions.
+主流的播放格式和主流分辨率如下：
 
-| Video Container Specification|                     Specification Description                     |               Resolution              |
+| 视频容器规格 |                     规格描述                      |               分辨率               |
 | :----------: | :-----------------------------------------------: | :--------------------------------: |
-|     mp4      | Video format: H.264/MPEG-2/MPEG-4/H.263; audio format: AAC/MP3| Mainstream resolutions, such as 1080p, 720p, 480p, and 270p|
-|     mkv      | Video format: H.264/MPEG-2/MPEG-4/H.263; audio format: AAC/MP3| Mainstream resolutions, such as 1080p, 720p, 480p, and 270p|
-|      ts      |   Video format: H.264/MPEG-2/MPEG-4; audio format: AAC/MP3   | Mainstream resolutions, such as 1080p, 720p, 480p, and 270p|
-|     webm     |          Video format: VP8; audio format: VORBIS          | Mainstream resolutions, such as 1080p, 720p, 480p, and 270p|
+|     mp4      | 视频格式：H264/MPEG2/MPEG4/H263 音频格式：AAC/MP3 | 主流分辨率，如1080P/720P/480P/270P |
+|     mkv      | 视频格式：H264/MPEG2/MPEG4/H263 音频格式：AAC/MP3 | 主流分辨率，如1080P/720P/480P/270P |
+|      ts      |   视频格式：H264/MPEG2/MPEG4 音频格式：AAC/MP3    | 主流分辨率，如1080P/720P/480P/270P |
+|     webm     |          视频格式：VP8 音频格式：VORBIS           | 主流分辨率，如1080P/720P/480P/270P |
 
-## How to Develop
+## 开发步骤
 
-For details about the APIs, see [VideoPlayer in the Media API](../reference/apis/js-apis-media.md).
+详细API含义可参考：[媒体服务API文档VideoPlayer](../reference/apis/js-apis-media.md)
 
-### Full-Process Scenario
+### 全流程场景
 
-The full video playback process includes creating an instance, setting the URL, setting the surface ID, preparing for video playback, playing video, pausing playback, obtaining track information, seeking to a playback position, setting the volume, setting the playback speed, stopping playback, resetting the playback configuration, and releasing resources.
+包含流程：创建实例，设置url，设置SurfaceId，准备播放视频，播放视频，暂停播放，获取轨道信息，跳转播放位置，设置音量，设置倍速，结束播放，重置，释放资源等流程。
 
-For details about the **url** media source input types supported by **VideoPlayer**, see the [url attribute](../reference/apis/js-apis-media.md#videoplayer_attributes).
+VideoPlayer支持的url媒体源输入类型可参考：[url属性说明](../reference/apis/js-apis-media.md#videoplayer_属性)
 
-For details about how to create an XComponent, see [XComponent Creation](#XComponent).
+Xcomponent创建方法可参考：[Xcomponent创建方法](#Xcomponent创建方法)
 
-*Note: **SetSurface** must be called after the URL is set but before **Prepare** is called.
+*注意：SetSurface需要在设置url和Prepare之间
 
 ```js
 import media from '@ohos.multimedia.media'
 import fileIO from '@ohos.fileio'
 
-let videoPlayer = undefined; // Used to store instances created by calling the createVideoPlayer API.
-let surfaceID = undefined; // Used to save the surface ID returned by the XComponent interface.
+let videoPlayer = undefined; // 用于保存createVideoPlayer创建的对象
+let surfaceID = undefined; // 用于保存Xcomponent接口返回的surfaceID
 
-// The LoadXcomponent() API is used to obtain the surface ID and save it to the **surfaceID** variable. This API is automatically called when the XComponent is loaded.
+// 调用Xcomponent的接口用于获取surfaceID，并保存在surfaceID变量中，该接口由XComponent组件默认加载，非主动调用
 LoadXcomponent() {
 	surfaceID = this.$element('Xcomponent').getXComponentSurfaceId();
     console.info('LoadXcomponent surfaceID is' + surfaceID);
 }
 
-// Report an error in the case of a function invocation failure.
+// 函数调用发生错误时用于上报错误信息
 function failureCallback(error) {
     console.info(`error happened,error Name is ${error.name}`);
     console.info(`error happened,error Code is ${error.code}`);
     console.info(`error happened,error Message is ${error.message}`);
 }
 
-// Report an error in the case of a function invocation exception.
+// 当函数调用发生异常时用于上报错误信息
 function catchCallback(error) {
     console.info(`catch error happened,error Name is ${error.name}`);
     console.info(`catch error happened,error Code is ${error.code}`);
     console.info(`catch error happened,error Message is ${error.message}`);
 }
 
-// Used to print the video track information.
+// 用于打印视频轨道信息
 function printfDescription(obj) {
     for (let item in obj) {
         let property = obj[item];
@@ -83,7 +83,7 @@ function printfDescription(obj) {
     }
 }
 
-// Call createVideoPlayer to create a VideoPlayer instance.
+// 调用createVideoPlayer接口返回videoPlayer实例对象
 await media.createVideoPlayer().then((video) => {
     if (typeof (video) != 'undefined') {
         console.info('createVideoPlayer success!');
@@ -93,7 +93,7 @@ await media.createVideoPlayer().then((video) => {
     }
 }, failureCallback).catch(catchCallback);
 
-// Set the FD (local playback) of the video file selected by the user.
+// 用户选择视频设置fd(本地播放)
 let fdPath = 'fd://'
 let path = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp4';
 await fileIO.open(path).then(fdNumber) => {
@@ -107,27 +107,27 @@ await fileIO.open(path).then(fdNumber) => {
 
 videoPlayer.url = fdPath;
 
-// Set the surface ID to display the video image.
+// 设置surfaceID用于显示视频画面
 await videoPlayer.setDisplaySurface(surfaceID).then(() => {
     console.info('setDisplaySurface success');
 }, failureCallback).catch(catchCallback);
 
-// Call the prepare interface to prepare for playback.
+// 调用prepare完成播放前准备工作
 await videoPlayer.prepare().then(() => {
     console.info('prepare success');
 }, failureCallback).catch(catchCallback);
 
-// Call the play interface to start playback.
+// 调用play接口正式开始播放
 await videoPlayer.play().then(() => {
     console.info('play success');
 }, failureCallback).catch(catchCallback);
 
-// Pause playback.
+// 暂停播放
 await videoPlayer.pause().then(() => {
     console.info('pause success');
 }, failureCallback).catch(catchCallback);
 
-// Use a promise to obtain the video track information.
+// 通过promise回调方式获取视频轨道信息
 let arrayDescription;
 await videoPlayer.getTrackDescription().then((arrlist) => {
     if (typeof (arrlist) != 'undefined') {
@@ -141,74 +141,74 @@ for (let i = 0; i < arrayDescription.length; i++) {
     printfDescription(arrayDescription[i]);
 }
 
-// Seek to the 50s position. For details about the input parameters, see the interface document.
+// 跳转播放时间到50s位置，具体入参意义请参考接口文档
 let seekTime = 50000;
 await videoPlayer.seek(seekTime, media.SeekMode._NEXT_SYNC).then((seekDoneTime) => {
     console.info('seek success');
 }, failureCallback).catch(catchCallback);
 
-// Set the volume. For details about the input parameters, see the interface document.
+// 音量设置接口，具体入参意义请参考接口文档
 let volume = 0.5;
 await videoPlayer.setVolume(volume).then(() => {
     console.info('setVolume success');
 }, failureCallback).catch(catchCallback);
 
-// Set the playback speed. For details about the input parameters, see the interface document.
+// 倍速设置接口，具体入参意义请参考接口文档
 let speed = media.PlaybackRateMode.SPEED_FORWARD_2_00_X;
 await videoPlayer.setSpeed(speed).then(() => {
     console.info('setSpeed success');
 }, failureCallback).catch(catchCallback);
 
-// Stop playback.
+// 结束播放
 await videoPlayer.stop().then(() => {
     console.info('stop success');
 }, failureCallback).catch(catchCallback);
 
-// Reset the playback configuration.
+// 重置播放配置
 await videoPlayer.reset().then(() => {
     console.info('reset success');
 }, failureCallback).catch(catchCallback);
 
-// Release playback resources.
+// 释放播放资源
 await videoPlayer.release().then(() => {
     console.info('release success');
 }, failureCallback).catch(catchCallback);
 
-// Set the related instances to undefined.
+// 相关对象置undefined
 videoPlayer = undefined;
 surfaceID = undefined;
 ```
 
-### Normal Playback Scenario
+### 正常播放场景
 
 ```js
 import media from '@ohos.multimedia.media'
 import fileIO from '@ohos.fileio'
 
-let videoPlayer = undefined; // Used to store instances created by calling the createVideoPlayer API.
-let surfaceID = undefined; // Used to save the surface ID returned by the XComponent interface.
+let videoPlayer = undefined; // 用于保存createVideoPlayer创建的对象
+let surfaceID = undefined; // 用于保存Xcomponent接口返回的surfaceID
 
-// The LoadXcomponent() API is used to obtain the surface ID and save it to the **surfaceID** variable. This API is automatically called when the XComponent is loaded.
+// 调用Xcomponent的接口用于获取surfaceID，并保存在surfaceID变量中，该接口由XComponent组件默认加载，非主动调用
 LoadXcomponent() {
 	surfaceID = this.$element('Xcomponent').getXComponentSurfaceId();
     console.info('LoadXcomponent surfaceID is' + surfaceID);
 }
 
-// Report an error in the case of a function invocation failure.
+// 函数调用发生错误时用于上报错误信息
 function failureCallback(error) {
     console.info(`error happened,error Name is ${error.name}`);
     console.info(`error happened,error Code is ${error.code}`);
     console.info(`error happened,error Message is ${error.message}`);
 }
 
-// Report an error in the case of a function invocation exception.
+// 当函数调用发生异常时用于上报错误信息
 function catchCallback(error) {
     console.info(`catch error happened,error Name is ${error.name}`);
     console.info(`catch error happened,error Code is ${error.code}`);
     console.info(`catch error happened,error Message is ${error.message}`);
 }
 
-// Set the 'playbackCompleted' event callback, which is triggered when the playback is complete.
+// 设置'playbackCompleted'事件回调，播放完成触发
 function SetCallBack(videoPlayer) {
 	videoPlayer.on('playbackCompleted', () => {
         console.info('video play finish');
@@ -222,7 +222,7 @@ function SetCallBack(videoPlayer) {
     });
 }
 
-// Call createVideoPlayer to create a VideoPlayer instance.
+// 调用createVideoPlayer接口返回videoPlayer实例对象
 await media.createVideoPlayer().then((video) => {
     if (typeof (video) != 'undefined') {
         console.info('createVideoPlayer success!');
@@ -232,10 +232,10 @@ await media.createVideoPlayer().then((video) => {
     }
 }, failureCallback).catch(catchCallback);
 
-// Set the event callbacks.
+// 设置事件回调
 SetCallBack(videoPlayer);
 
-// Set the FD (local playback) of the video file selected by the user.
+// 用户选择视频设置fd(本地播放)
 let fdPath = 'fd://'
 let path = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp4';
 await fileIO.open(path).then(fdNumber) => {
@@ -249,52 +249,52 @@ await fileIO.open(path).then(fdNumber) => {
 
 videoPlayer.url = fdPath;
 
-// Set the surface ID to display the video image.
+// 设置surfaceID用于显示视频画面
 await videoPlayer.setDisplaySurface(surfaceID).then(() => {
     console.info('setDisplaySurface success');
 }, failureCallback).catch(catchCallback);
 
-// Call the prepare interface to prepare for playback.
+// 调用prepare完成播放前准备工作
 await videoPlayer.prepare().then(() => {
     console.info('prepare success');
 }, failureCallback).catch(catchCallback);
 
-// Call the play interface to start playback.
+// 调用play接口正式开始播放
 await videoPlayer.play().then(() => {
     console.info('play success');
 }, failureCallback).catch(catchCallback);
 ```
 
-### Switching to the Next Video Clip
+### 切视频场景
 
 ```js
 import media from '@ohos.multimedia.media'
 import fileIO from '@ohos.fileio'
 
-let videoPlayer = undefined; // Used to store instances created by calling the createVideoPlayer API.
-let surfaceID = undefined; // Used to save the surface ID returned by the XComponent interface.
+let videoPlayer = undefined; // 用于保存createVideoPlayer创建的对象
+let surfaceID = undefined; // 用于保存Xcomponent接口返回的surfaceID
 
-// The LoadXcomponent() API is used to obtain the surface ID and save it to the **surfaceID** variable. This API is automatically called when the XComponent is loaded.
+// 调用Xcomponent的接口用于获取surfaceID，并保存在surfaceID变量中，该接口由XComponent组件默认加载，非主动调用
 LoadXcomponent() {
 	surfaceID = this.$element('Xcomponent').getXComponentSurfaceId();
     console.info('LoadXcomponent surfaceID is' + surfaceID);
 }
 
-// Report an error in the case of a function invocation failure.
+// 函数调用发生错误时用于上报错误信息
 function failureCallback(error) {
     console.info(`error happened,error Name is ${error.name}`);
     console.info(`error happened,error Code is ${error.code}`);
     console.info(`error happened,error Message is ${error.message}`);
 }
 
-// Report an error in the case of a function invocation exception.
+// 当函数调用发生异常时用于上报错误信息
 function catchCallback(error) {
     console.info(`catch error happened,error Name is ${error.name}`);
     console.info(`catch error happened,error Code is ${error.code}`);
     console.info(`catch error happened,error Message is ${error.message}`);
 }
 
-// Set the 'playbackCompleted' event callback, which is triggered when the playback is complete.
+// 设置'playbackCompleted'事件回调，播放完成触发
 function SetCallBack(videoPlayer) {
 	videoPlayer.on('playbackCompleted', () => {
         console.info('video play finish');
@@ -308,7 +308,7 @@ function SetCallBack(videoPlayer) {
     });
 }
 
-// Call createVideoPlayer to create a VideoPlayer instance.
+// 调用createVideoPlayer接口返回videoPlayer实例对象
 await media.createVideoPlayer().then((video) => {
     if (typeof (video) != 'undefined') {
         console.info('createVideoPlayer success!');
@@ -318,10 +318,10 @@ await media.createVideoPlayer().then((video) => {
     }
 }, failureCallback).catch(catchCallback);
 
-// Set the event callbacks.
+// 设置事件回调
 SetCallBack(videoPlayer);
 
-// Set the FD (local playback) of the video file selected by the user.
+// 用户选择视频设置fd(本地播放)
 let fdPath = 'fd://'
 let path = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp4';
 await fileIO.open(path).then(fdNumber) => {
@@ -335,28 +335,28 @@ await fileIO.open(path).then(fdNumber) => {
 
 videoPlayer.url = fdPath;
 
-// Set the surface ID to display the video image.
+// 设置surfaceID用于显示视频画面
 await videoPlayer.setDisplaySurface(surfaceID).then(() => {
     console.info('setDisplaySurface success');
 }, failureCallback).catch(catchCallback);
 
-// Call the prepare interface to prepare for playback.
+// 调用prepare完成播放前准备工作
 await videoPlayer.prepare().then(() => {
     console.info('prepare success');
 }, failureCallback).catch(catchCallback);
 
-// Call the play interface to start playback.
+// 调用play接口正式开始播放
 await videoPlayer.play().then(() => {
     console.info('play success');
 }, failureCallback).catch(catchCallback);
 
-// Send the instruction to switch to the next video clip after a period of time.
-// Reset the playback configuration.
+// 播放一段时间后，下发切视频指令
+// 重置播放配置
 await videoPlayer.reset().then(() => {
     console.info('reset success');
 }, failureCallback).catch(catchCallback);
 
-// Set the FD (local playback) of the video file selected by the user.
+// 用户选择视频设置fd(本地播放)
 let fdNextPath = 'fd://'
 let nextPath = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/02.mp4';
 await fileIO.open(nextPath).then(fdNumber) => {
@@ -370,52 +370,52 @@ await fileIO.open(nextPath).then(fdNumber) => {
 
 videoPlayer.url = fdNextPath;
 
-// Set the surface ID to display the video image.
+// 设置surfaceID用于显示视频画面
 await videoPlayer.setDisplaySurface(surfaceID).then(() => {
     console.info('setDisplaySurface success');
 }, failureCallback).catch(catchCallback);
 
-// Call the prepare interface to prepare for playback.
+// 调用prepare完成播放前准备工作
 await videoPlayer.prepare().then(() => {
     console.info('prepare success');
 }, failureCallback).catch(catchCallback);
 
-// Call the play interface to start playback.
+// 调用play接口正式开始播放
 await videoPlayer.play().then(() => {
     console.info('play success');
 }, failureCallback).catch(catchCallback);
 ```
 
-### Looping a Video Clip
+### 单个视频循环场景
 
 ```js
 import media from '@ohos.multimedia.media'
 import fileIO from '@ohos.fileio'
 
-let videoPlayer = undefined; // Used to store instances created by calling the createVideoPlayer API.
-let surfaceID = undefined; // Used to save the surface ID returned by the XComponent interface.
+let videoPlayer = undefined; // 用于保存createVideoPlayer创建的对象
+let surfaceID = undefined; // 用于保存Xcomponent接口返回的surfaceID
 
-// The LoadXcomponent() API is used to obtain the surface ID and save it to the **surfaceID** variable. This API is automatically called when the XComponent is loaded.
+// 调用Xcomponent的接口用于获取surfaceID，并保存在surfaceID变量中，该接口由XComponent组件默认加载，非主动调用
 LoadXcomponent() {
 	surfaceID = this.$element('Xcomponent').getXComponentSurfaceId();
     console.info('LoadXcomponent surfaceID is' + surfaceID);
 }
 
-// Report an error in the case of a function invocation failure.
+// 函数调用发生错误时用于上报错误信息
 function failureCallback(error) {
     console.info(`error happened,error Name is ${error.name}`);
     console.info(`error happened,error Code is ${error.code}`);
     console.info(`error happened,error Message is ${error.message}`);
 }
 
-// Report an error in the case of a function invocation exception.
+// 当函数调用发生异常时用于上报错误信息
 function catchCallback(error) {
     console.info(`catch error happened,error Name is ${error.name}`);
     console.info(`catch error happened,error Code is ${error.code}`);
     console.info(`catch error happened,error Message is ${error.message}`);
 }
 
-// Set the 'playbackCompleted' event callback, which is triggered when the playback is complete.
+// 设置'playbackCompleted'事件回调，播放完成触发
 function SetCallBack(videoPlayer) {
 	videoPlayer.on('playbackCompleted', () => {
         console.info('video play finish');
@@ -429,7 +429,7 @@ function SetCallBack(videoPlayer) {
     });
 }
 
-// Call createVideoPlayer to create a VideoPlayer instance.
+// 调用createVideoPlayer接口返回videoPlayer实例对象
 await media.createVideoPlayer().then((video) => {
     if (typeof (video) != 'undefined') {
         console.info('createVideoPlayer success!');
@@ -439,10 +439,10 @@ await media.createVideoPlayer().then((video) => {
     }
 }, failureCallback).catch(catchCallback);
 
-// Set the event callbacks.
+// 设置事件回调
 SetCallBack(videoPlayer);
 
-// Set the FD (local playback) of the video file selected by the user.
+// 用户选择视频设置fd(本地播放)
 let fdPath = 'fd://'
 let path = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp4';
 await fileIO.open(path).then(fdNumber) => {
@@ -456,34 +456,34 @@ await fileIO.open(path).then(fdNumber) => {
 
 videoPlayer.url = fdPath;
 
-// Set the surface ID to display the video image.
+// 设置surfaceID用于显示视频画面
 await videoPlayer.setDisplaySurface(surfaceID).then(() => {
     console.info('setDisplaySurface success');
 }, failureCallback).catch(catchCallback);
 
-// Call the prepare interface to prepare for playback.
+// 调用prepare完成播放前准备工作
 await videoPlayer.prepare().then(() => {
     console.info('prepare success');
 }, failureCallback).catch(catchCallback);
 
-// Set the loop playback attribute.
+// 设置循环播放属性
 videoPlayer.loop = true;
 
-// Call the play interface to start playback.
+// 调用play接口正式开始播放
 await videoPlayer.play().then(() => {
     console.info('play success');
 }, failureCallback).catch(catchCallback);
 ```
 
-### XComponent Creation
+### Xcomponent创建方法
 
-The XComponent is used to obtain the surface ID during video playback. You need to create an xxx.hml file and add the following code to the xxx.hml file, where xxx is the same as that in the xxx.js file:
+播放视频中获取surfaceID依赖了Xcomponent，需要创建一个和xxx.js同名的xxx.hml文件，xxx.hml里面需要添加如下代码：
 
 ```js
 <xcomponent id = 'Xcomponent'
-      if = "{{isFlush}}" // Refresh the surface ID. To enable automatic loading of the XComponent and obtain the new surface ID, assign **false** to **isFlush** and then assign **true** to **isFlush**.
+      if = "{{isFlush}}" // 刷新surfaceID，isFlush赋值false再赋值true为一次刷新，会主动再次加载LoadXcomponent获取新的surfaceID
       type = 'surface'
-      onload = 'LoadXcomponent' // Default interface for loading the XComponent.
-      style = "width:720px;height:480px;border-color:red;border-width:5px;"> // Set the window width, height, and other attributes.
-
+      onload = 'LoadXcomponent' // 默认加载接口
+      style = "width:720px;height:480px;border-color:red;border-width:5px;"> // 设置窗口宽高等属性
+</xcomponent>
 ```
