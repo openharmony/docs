@@ -51,5 +51,5 @@ Hi3861V100开发板支持串口烧录方式，在Windows下通过以下步骤进
    ![zh-cn_image_0000001198466090](figures/zh-cn_image_0000001198466090.png)
 
 10. 重新上电后，界面提示如下信息时，表示烧录成功。
-
-   ![zh-cn_image_0000001216761476](figures/zh-cn_image_0000001216761476.png)
+   
+    ![zh-cn_image_0000001216761476](figures/zh-cn_image_0000001216761476.png)
