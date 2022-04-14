@@ -88,21 +88,16 @@ createVideoPlayer(): Promise<[VideoPlayer](#videoplayer8)>
 ```js
 let videoPlayer
 
-function failureCallback(error) {
-    console.info(`video failureCallback, error:${error.message}`);
-}
-function catchCallback(error) {
-    console.info(`video catchCallback, error:${error.message}`);
-}
-
-await media.createVideoPlayer.then((video) => {
-    if (typeof(video) != 'undefined') {
+media.createVideoPlayer().then((video) => {
+   if (typeof(video) != 'undefined') {
        videoPlayer = video;
        console.info('video createVideoPlayer success');
    } else {
        console.info('video createVideoPlayer fail');
    }
-}, failureCallback).catch(catchCallback);
+}).catch((error) => {
+   console.info(`video catchCallback, error:${error.message}`);
+});
 ```
 
 ## media.createAudioRecorder
@@ -173,21 +168,16 @@ createVideoRecorder(): Promise<[VideoRecorder](#videorecorder9)>
 ```js
 let videoRecorder
 
-function failureCallback(error) {
-    console.info(`video failureCallback, error:${error.message}`);
-}
-function catchCallback(error) {
-    console.info(`video catchCallback, error:${error.message}`);
-}
-
-await media.createVideoRecorder.then((video) => {
+media.createVideoRecorder().then((video) => {
     if (typeof(video) != 'undefined') {
        videoRecorder = video;
        console.info('video createVideoRecorder success');
    } else {
        console.info('video createVideoRecorder fail');
    }
-}, failureCallback).catch(catchCallback);
+}).catch((error) => {
+   console.info(`video catchCallback, error:${error.message}`);
+});
 ```
 
 
@@ -482,20 +472,17 @@ function printfDescription(obj) {
         console.info('audio value is ' + property);
     }
 }
-function failureCallback(error) {
-    console.info(`audio failureCallback, error:${error.message}`);
-}
-function catchCallback(error) {
-    console.info(`audio catchCallback, error:${error.message}`);
-}
 
-await audioPlayer.getTrackDescription.then((arrlist) => {
+audioPlayer.getTrackDescription().then((arrlist) => {
     if (typeof (arrlist) != 'undefined') {
         arrayDescription = arrlist;
     } else {
         console.log('audio getTrackDescription fail');
     }
-}, failureCallback).catch(catchCallback);
+}).catch((error) => {
+   console.info(`audio catchCallback, error:${error.message}`);
+});
+
 for (let i = 0; i < arrayDescription.length; i++) {
     printfDescription(arrayDescription[i]);
 }
@@ -586,12 +573,12 @@ audioPlayer.on('error', (error) => {           //设置'error'事件回调
 // 用户选择视频设置fd(本地播放)
 let fdPath = 'fd://'
 let path = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp3';
-await fileIO.open(path).then(fdNumber) => {
+fileIO.open(path).then(fdNumber) => {
    fdPath = fdPath + '' + fdNumber;
    console.info('open fd sucess fd is' + fdPath);
 }, (err) => {
    console.info('open fd failed err is' + err);
-}),catch((err) => {
+}).catch((err) => {
    console.info('open fd failed err is' + err);
 });
 audioPlayer.src = fdPath;  //设置src属性，并触发'dataLoad'事件回调
@@ -735,15 +722,11 @@ setDisplaySurface(surfaceId: string): Promise\<void>
 **示例：**
 
 ```js
-function failureCallback(error) {
-    console.info(`video failureCallback, error:${error.message}`);
-}
-function catchCallback(error) {
-    console.info(`video catchCallback, error:${error.message}`);
-}
-await videoPlayer.setDisplaySurface(surfaceId).then(() => {
+videoPlayer.setDisplaySurface(surfaceId).then(() => {
     console.info('setDisplaySurface success');
-}, failureCallback).catch(catchCallback);
+}).catch((error) => {
+   console.info(`video catchCallback, error:${error.message}`);
+});
 ```
 
 ### prepare<sup>8+</sup>
@@ -789,15 +772,11 @@ prepare(): Promise\<void>
 **示例：**
 
 ```js
-function failureCallback(error) {
-    console.info(`video failureCallback, error:${error.message}`);
-}
-function catchCallback(error) {
-    console.info(`video catchCallback, error:${error.message}`);
-}
-await videoPlayer.prepare().then(() => {
+videoPlayer.prepare().then(() => {
     console.info('prepare success');
-}, failureCallback).catch(catchCallback);
+}).catch((error) => {
+   console.info(`video catchCallback, error:${error.message}`);
+});
 ```
 
 ### play<sup>8+</sup>
@@ -843,15 +822,11 @@ play(): Promise\<void>;
 **示例：**
 
 ```js
-function failureCallback(error) {
-    console.info(`video failureCallback, error:${error.message}`);
-}
-function catchCallback(error) {
-    console.info(`video catchCallback, error:${error.message}`);
-}
-await videoPlayer.play().then(() => {
+videoPlayer.play().then(() => {
     console.info('play success');
-}, failureCallback).catch(catchCallback);
+}).catch((error) => {
+   console.info(`video catchCallback, error:${error.message}`);
+});
 ```
 
 ### pause<sup>8+</sup>
@@ -897,15 +872,11 @@ pause(): Promise\<void>
 **示例：**
 
 ```js
-function failureCallback(error) {
-    console.info(`video failureCallback, error:${error.message}`);
-}
-function catchCallback(error) {
-    console.info(`video catchCallback, error:${error.message}`);
-}
-await videoPlayer.pause().then(() => {
+videoPlayer.pause().then(() => {
     console.info('pause success');
-}, failureCallback).catch(catchCallback);
+}).catch((error) => {
+   console.info(`video catchCallback, error:${error.message}`);
+});
 ```
 
 ### stop<sup>8+</sup>
@@ -951,15 +922,11 @@ stop(): Promise\<void>
 **示例：**
 
 ```js
-function failureCallback(error) {
-    console.info(`video failureCallback, error:${error.message}`);
-}
-function catchCallback(error) {
-    console.info(`video catchCallback, error:${error.message}`);
-}
-await videoPlayer.stop().then(() => {
+videoPlayer.stop().then(() => {
     console.info('stop success');
-}, failureCallback).catch(catchCallback);
+}).catch((error) => {
+   console.info(`video catchCallback, error:${error.message}`);
+});
 ```
 
 ### reset<sup>8+</sup>
@@ -1005,15 +972,11 @@ reset(): Promise\<void>
 **示例：**
 
 ```js
-function failureCallback(error) {
-    console.info(`video failureCallback, error:${error.message}`);
-}
-function catchCallback(error) {
-    console.info(`video catchCallback, error:${error.message}`);
-}
-await videoPlayer.reset().then(() => {
+videoPlayer.reset().then(() => {
     console.info('reset success');
-}, failureCallback).catch(catchCallback);
+}).catch((error) => {
+   console.info(`video catchCallback, error:${error.message}`);
+});
 ```
 
 ### seek<sup>8+</sup>
@@ -1095,19 +1058,17 @@ seek(timeMs: number, mode?:SeekMode): Promise\<number>
 **示例：**
 
 ```js
-function failureCallback(error) {
-    console.info(`video failureCallback, error:${error.message}`);
-}
-function catchCallback(error) {
-    console.info(`video catchCallback, error:${error.message}`);
-}
-await videoPlayer.seek(seekTime).then((seekDoneTime) => { // seekDoneTime表示seek完成后的时间点
+videoPlayer.seek(seekTime).then((seekDoneTime) => { // seekDoneTime表示seek完成后的时间点
     console.info('seek success');
-}, failureCallback).catch(catchCallback);
+}).catch((error) => {
+   console.info(`video catchCallback, error:${error.message}`);
+});
 
-await videoPlayer.seek(seekTime, seekMode).then((seekDoneTime) => {
+videoPlayer.seek(seekTime, seekMode).then((seekDoneTime) => {
     console.info('seek success');
-}, failureCallback).catch(catchCallback);
+}).catch((error) => {
+   console.info(`video catchCallback, error:${error.message}`);
+});
 ```
 
 ### setVolume<sup>8+</sup>
@@ -1160,15 +1121,11 @@ setVolume(vol: number): Promise\<void>
 **示例：**
 
 ```js
-function failureCallback(error) {
-    console.info(`video failureCallback, error:${error.message}`);
-}
-function catchCallback(error) {
-    console.info(`video catchCallback, error:${error.message}`);
-}
-await videoPlayer.setVolume(vol).then() => {
+videoPlayer.setVolume(vol).then() => {
     console.info('setVolume success');
-}, failureCallback).catch(catchCallback);
+}).catch((error) => {
+   console.info(`video catchCallback, error:${error.message}`);
+});
 ```
 
 ### release<sup>8+</sup>
@@ -1214,15 +1171,11 @@ release(): Promise\<void>
 **示例：**
 
 ```js
-function failureCallback(error) {
-    console.info(`video failureCallback, error:${error.message}`);
-}
-function catchCallback(error) {
-    console.info(`video catchCallback, error:${error.message}`);
-}
-await videoPlayer.release().then() => {
+videoPlayer.release().then() => {
     console.info('release success');
-}, failureCallback).catch(catchCallback);
+}).catch((error) => {
+   console.info(`video catchCallback, error:${error.message}`);
+});
 ```
 
 ### getTrackDescription<sup>8+</sup>
@@ -1285,21 +1238,17 @@ function printfDescription(obj) {
         console.info('video value is ' + property);
     }
 }
-function failureCallback(error) {
-    console.info(`video failureCallback, error:${error.message}`);
-}
-function catchCallback(error) {
-    console.info(`video catchCallback, error:${error.message}`);
-}
 
 let arrayDescription;
-await videoPlayer.getTrackDescription().then((arrlist) => {
+videoPlayer.getTrackDescription().then((arrlist) => {
     if (typeof (arrlist) != 'undefined') {
         arrayDescription = arrlist;
     } else {
         console.log('video getTrackDescription fail');
     }
-}, failureCallback).catch(catchCallback);
+}).catch((error) => {
+   console.info(`video catchCallback, error:${error.message}`);
+});
 for (let i = 0; i < arrayDescription.length; i++) {
     printfDescription(arrayDescription[i]);
 }
@@ -1355,15 +1304,11 @@ setSpeed(speed:number): Promise\<number>
 **示例：**
 
 ```js
-function failureCallback(error) {
-    console.info(`video failureCallback, error:${error.message}`);
-}
-function catchCallback(error) {
-    console.info(`video catchCallback, error:${error.message}`);
-}
-await videoPlayer.setSpeed(speed).then() => {
+videoPlayer.setSpeed(speed).then() => {
     console.info('setSpeed success');
-}, failureCallback).catch(catchCallback);
+}).catch((error) => {
+   console.info(`video catchCallback, error:${error.message}`);
+});
 ```
 
 ### on('playbackCompleted')<sup>8+</sup>
@@ -1973,23 +1918,19 @@ let videoConfig = {
 
 // promise
 let videoRecorder = null;
-await media.createVideoRecorder().then((recorder) => {
+media.createVideoRecorder().then((recorder) => {
     if (typeof (recorder) != 'undefined') {
         videoRecorder = recorder;
         console.info('createVideoRecorder success');
     } else {
         console.info('createVideoRecorder failed');
     }
-}, (err) => {
-    console.info('error hanppend message is ' + err.message);
 }).catch((err) => {
     console.info('catch err error message is ' + err.message);
 });
 
-await videoRecorder.prepare(videoConfig).then(() => {
+videoRecorder.prepare(videoConfig).then(() => {
     console.info('prepare success');
-}, (err) => {
-    console.info('prepare failed and error is ' + err.message);
 }).catch((err) => {
     console.info('prepare failed and catch error is ' + err.message);
 });
@@ -2051,11 +1992,9 @@ getInputSurface(): Promise\<string>;
 ```js
 // promise
 let surfaceID = null;                                               // 传递给外界的surfaceID
-await videoRecorder.getInputSurface().then((surfaceId) => {
+videoRecorder.getInputSurface().then((surfaceId) => {
     console.info('getInputSurface success');
     surfaceID = surfaceId;
-}, (err) => {
-    console.info('getInputSurface failed and error is ' + err.message);
 }).catch((err) => {
     console.info('getInputSurface failed and catch error is ' + err.message);
 });
@@ -2110,10 +2049,8 @@ start(): Promise\<void>;
 
 ```js
 // promise
-await videoRecorder.start().then(() => {
+videoRecorder.start().then(() => {
     console.info('start videorecorder success');
-}, (err) => {
-    console.info('start videorecorder failed and error is ' + err.message);
 }).catch((err) => {
     console.info('start videorecorder failed and catch error is ' + err.message);
 });
@@ -2168,10 +2105,8 @@ pause(): Promise\<void>;
 
 ```js
 // promise
-await videoRecorder.pause().then(() => {
+videoRecorder.pause().then(() => {
     console.info('pause videorecorder success');
-}, (err) => {
-    console.info('pause videorecorder failed and error is ' + err.message);
 }).catch((err) => {
     console.info('pause videorecorder failed and catch error is ' + err.message);
 });
@@ -2222,10 +2157,8 @@ resume(): Promise\<void>;
 
 ```js
 // promise
-await videoRecorder.resume().then(() => {
+videoRecorder.resume().then(() => {
     console.info('resume videorecorder success');
-}, (err) => {
-    console.info('resume videorecorder failed and error is ' + err.message);
 }).catch((err) => {
     console.info('resume videorecorder failed and catch error is ' + err.message);
 });
@@ -2280,10 +2213,8 @@ stop(): Promise\<void>;
 
 ```js
 // promise
-await videoRecorder.stop().then(() => {
+videoRecorder.stop().then(() => {
     console.info('stop videorecorder success');
-}, (err) => {
-    console.info('stop videorecorder failed and error is ' + err.message);
 }).catch((err) => {
     console.info('stop videorecorder failed and catch error is ' + err.message);
 });
@@ -2334,10 +2265,8 @@ release(): Promise\<void>;
 
 ```js
 // promise
-await videoRecorder.release().then(() => {
+videoRecorder.release().then(() => {
     console.info('release videorecorder success');
-}, (err) => {
-    console.info('release videorecorder failed and error is ' + err.message);
 }).catch((err) => {
     console.info('release videorecorder failed and catch error is ' + err.message);
 });
@@ -2392,10 +2321,8 @@ reset(): Promise\<void>;
 
 ```js
 // promise
-await videoRecorder.reset().then(() => {
+videoRecorder.reset().then(() => {
     console.info('reset videorecorder success');
-}, (err) => {
-    console.info('reset videorecorder failed and error is ' + err.message);
 }).catch((err) => {
     console.info('reset videorecorder failed and catch error is ' + err.message);
 });
