@@ -1,11 +1,13 @@
-# Hi3516<a name="EN-US_TOPIC_0000001128470852"></a>
-
--   **[Setting Up the Environment](quickstart-lite-steps-hi3516-setting.md)**  
-
--   **[Running a Hello OHOS Program](quickstart-lite-steps-hi3516-running.md)**  
-
--   **[Developing a Driver](quickstart-lite-steps-hi3516-program.md)**  
-
--   **[FAQs](quickstart-lite-steps-hi3516-faqs.md)**  
+# Hi3516 Development Board
 
 
+
+- **[Setting Up the Hi3516 Development Board Environment](quickstart-lite-steps-hi3516-setting.md)**
+
+- **[Writing a Hello World Program](quickstart-lite-steps-hi3516-application-framework.md)**
+
+- **[Building](quickstart-lite-steps-hi3516-building.md)**
+
+- **[Burning](quickstart-lite-steps-hi3516-burn.md)**
+
+- **[Running](quickstart-lite-steps-hi3516-running.md)**

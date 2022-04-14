@@ -1,0 +1,25 @@
+## Getting Started with Mini and Small Systems (IDE Mode)
+- [Mini and Small System Overview](quickstart-ide-lite-overview.md)
+    - Environment Preparation
+        - [Setting Up the Windows+Ubuntu Hybrid Build Environment](quickstart-ide-lite-env-setup-win-ubuntu.md)
+        - [Obtaining Source Code](quickstart-ide-lite-sourcecode-acquire.md)
+    - [Creating a Source Code Project](quickstart-ide-lite-create-project.md)
+    - Running a Hello World Program
+        - Hi3861 Development Board
+            - [Writing a Hello World Program](quickstart-ide-lite-steps-hi3861-application-framework.md)
+            - [Building](quickstart-ide-lite-steps-hi3861-building.md)
+            - [Burning](quickstart-ide-lite-steps-hi3861-burn.md)
+            - [Networking](quickstart-ide-lite-steps-hi3861-netconfig.md)
+            - [Debugging and Verification](quickstart-ide-lite-steps-hi3861-debug.md)
+            - [Running](quickstart-ide-lite-steps-hi3816-running.md)
+        - Hi3516 Development Board
+            - [Writing a Hello World Program](quickstart-ide-lite-steps-hi3516-application-framework.md)
+            - [Building](quickstart-ide-lite-steps-hi3516-building.md)
+            - [Burning](quickstart-ide-lite-steps-hi3516-burn.md)
+            - [Running](quickstart-ide-lite-steps-hi3516-running.md)
+    - Appendix
+        - Introduction to Development Boards
+            - [Introduction to the Hi3861 Development Board](quickstart-ide-lite-introduction-hi3861.md)
+            - [Introduction to the Hi3516 Development Board](quickstart-ide-lite-introduction-hi3516.md)
+
+        - [Getting Started with Mini and Small Systems (Installation Package Mode)](quickstart-lite-package-directory.md)

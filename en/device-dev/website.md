@@ -384,10 +384,10 @@
       - [HiSysEvent Query](subsystems/subsys-dfx-hisysevent-query.md)
       - [HiSysEvent Tool Usage](subsystems/subsys-dfx-hisysevent-tool.md)
 - Featured Topics
-  - HPM Bundle
-    - [HPM Part Overview](bundles/hpm-part-about.md)
-    - [HPM Part Development](bundles/hpm-part-development.md)
-    - [HPM Part Reference](bundles/hpm-part-reference.md)
+  - HPM Part
+    - [HPM Part Overview](hpm-part/hpm-part-about.md)
+    - [HPM Part Development](hpm-part/hpm-part-development.md)
+    - [HPM Part Reference](hpm-part/hpm-part-reference.md)
 - Device Development Examples
   - [Mini- and Small-System Devices](guide/device-lite.md)
     - [WLAN-connected Products](guide/device-wlan.md)

@@ -2,6 +2,8 @@
 
 -   **[ADC](driver-platform-adc-develop.md)**  
 
+-   **[DAC](driver-platform-dac-develop.md)**  
+
 -   **[GPIO](driver-platform-gpio-develop.md)**  
 
 -   **[HDMI](driver-platform-hdmi-develop.md)**
