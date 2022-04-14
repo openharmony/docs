@@ -20,7 +20,7 @@ This repository stores device and application development documents provided by 
 
  - OpenHarmony 3.0 LTS. [Learn more](en/release-notes/OpenHarmony-v3.0-LTS.md)
 
-   This version is upgraded to OpenHarmony 3.0.2 LTS. [Learn more](en/release-notes/OpenHarmony-v3.0.2-LTS.md)
+   This version is upgraded to OpenHarmony 3.0.3 LTS. [Learn more](en/release-notes/OpenHarmony-v3.0.3-LTS.md)
 
  - OpenHarmony 2.2 Beta2. [Learn more](en/release-notes/OpenHarmony-v2.2-beta2.md)
 
