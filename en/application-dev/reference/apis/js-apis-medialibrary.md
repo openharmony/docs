@@ -5,7 +5,7 @@
 
 ## Modules to Import
 ```
-import mediaLibrary from '@ohos.multimedia.medialibrary';
+import mediaLibrary from '@ohos.multimedia.mediaLibrary';
 ```
 
 ## mediaLibrary.getMediaLibrary<sup>8+</sup>
