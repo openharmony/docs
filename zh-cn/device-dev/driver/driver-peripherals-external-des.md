@@ -8,6 +8,19 @@ WLAN是基于HDF（Hardware Driver Foundation）驱动框架开发的模块，�
   **图1** WLAN框架
   ![zh-cn_image_0000001200092359](figures/zh-cn_image_0000001200092359.png)
 
+  **图2** WLAN Driver框架
+  ![zh-cn_image_0000001300092359](figures/zh-cn_image_0000001300092359.png)
+
+1.WLAN Message：该部件为每个服务单独提供业务接口，每个服务也可依赖其他服务形成组合业务接口，此模块支持在用户态、内核态和MCU环境运行，实现组件间的充分解耦。
+2.WLAN Configuration Core：WLAN相关的配置文件进行解析。
+3.AP：AP为WLAN终端提供外部接入入口的设备。
+4.STA：STA为接入WLAN系统的终端。
+5.Mac80211：定义底层驱动相关的MAC层接口。
+6.Bus：该驱动模块向上提供统一的总线抽象接口。通过向下调用Platform层提供的SDIO接口和封装适配USB、PCIE接口，屏蔽不同内核的差异；通过对不同类型的总线操作进行统一封装，屏蔽不同芯片差异，能够对不同芯片厂商提供完备的总线驱动能力，不同厂商共用此模块接口，从而使厂商的开发更为便捷和统一。
+7.NetDevice：用于建立专属网络设备，屏蔽不同OS的差异，对WiFi驱动提供统一接口，提供统一的HDF NetDevice数据结构，及其统一管理、注册、去注册能力；对接轻设备及富设备上的Linux的网络设备层。
+8.NetBuf：该部件为WLAN驱动提供Linux或者LiteOS原生的网络数据缓冲的统一数据结构的封装以及对网络数据的操作接口的封装。
+9.FlowCtl：流控模块。
+10.HCC-CFG：WLAN相关参数配置其中包括板级配置、驱动配置、Module配置。
 
 ### WLAN驱动接口架构
 
