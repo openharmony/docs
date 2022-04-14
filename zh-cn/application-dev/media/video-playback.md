@@ -43,7 +43,7 @@
 
 VideoPlayer支持的url媒体源输入类型可参考：[url属性说明](../reference/apis/js-apis-media.md#videoplayer_属性)
 
-Xcomponent创建方法可参考：[Xcomponent创建方法](#Xcomponent创建方法)
+Xcomponent创建方法可参考：[Xcomponent创建方法](#xcomponent创建方法)
 
 *注意：SetSurface需要在设置url和Prepare之间
 
