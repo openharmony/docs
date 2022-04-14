@@ -8,7 +8,8 @@ GPIO（General-purpose input/output）即通用型输入输出，在HDF框架中
 GPIO的接口适配模式采用无服务模式，用于不需要在用户态提供API的设备类型，或者没有用户态和内核区分的OS系统，其关联方式是DevHandle直接指向设备对象内核态地址（DevHandle是一个void类型指针）。
 
   **图1** GPIO无服务模式结构图
-  ![zh-cn_image_0000001176603952](figures/zh-cn_image_0000001176603952.png)
+
+  ![](figures/无服务模式结构图.png "GPIO无服务模式结构图")
 
 
 ## 接口说明

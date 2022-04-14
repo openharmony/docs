@@ -7,7 +7,7 @@
 
   **图1** Watchdog独立服务模式结构图
 
-  ![zh-cn_image_0000001177082396](figures/zh-cn_image_0000001177082396.png)
+  ![image](figures/独立服务模式结构图.png "Watchdog独立服务模式结构图")
 
 
 ## 接口说明
