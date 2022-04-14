@@ -96,4 +96,5 @@
 - [R&D Tools](subsys-toolchain.md)
   - [bytrace Usage Guidelines](subsys-toolchain-bytrace-guide.md)
   - [hdc\_std Usage Guidelines](subsys-toolchain-hdc-guide.md)
+  - [hiperf Usage Guidelines](subsys-toolchain-hiperf.md)
 - [XTS](subsys-xts-guide.md)
