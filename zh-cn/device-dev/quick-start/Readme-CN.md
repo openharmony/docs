@@ -1,5 +1,5 @@
 # 快速入门
-- 轻量和小型系统快速入门（IDE方式-推荐）
+- 轻量和小型系统快速入门（IDE方式，推荐）
     - [轻量与小型系统入门概述](quickstart-ide-lite-overview.md)
     - 准备轻量与小型系统环境
         - [搭建Windows+Ubuntu混合开发环境](quickstart-ide-lite-env-setup-win-ubuntu.md)
@@ -49,7 +49,7 @@
             - [Hi3861开发板介绍](quickstart-lite-introduction-hi3861.md)
             - [Hi3516开发板介绍](quickstart-lite-introduction-hi3516.md)
         - [参考信息](quickstart-lite-reference.md)
-- 标准系统快速入门（IDE方式-推荐）
+- 标准系统快速入门（IDE方式，推荐）
     - [标准系统入门概述](quickstart-ide-standard-overview.md)
     - 准备标准系统环境
         - [搭建Windows+Ubuntu混合开发环境](quickstart-ide-standard-env-setup-win-ubuntu.md)
