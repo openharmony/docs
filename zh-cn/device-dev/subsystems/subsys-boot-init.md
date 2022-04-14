@@ -110,15 +110,6 @@ init启动引导组件负责在系统启动阶段启动关键服务进程。 若
      - job：用户任意定义，可以通过trigger命令执行。
      - 控制job(仅标准系统以上提供)：按条件触发处理的能力。在job中可以设置触发条件，当对应的属性值满足设置的条件时，就会触发job执行。触发条件支持&amp;&amp;和||操作，可以根据不同的属性自行组合。
 
- -  DAC访问控制
-
-    属性的访问控制配置，模块可以根据需要对属性定义访问控制策略，并打包策略文件。Init在启动时加载该策略，在进程操作属性时，进行策略检查。属性策略参考了Linux 标准的DAC访问控制策略，基于用户、用户组控制对属性的读(4)、写(2)和watch(1)操作。属性dac配置文件需要保存在目录/etc/param（平台）、/vendor/etc/param（产品）。文件命名方式：subsystem-name.para.dac
-
-    如下所示：
-    ```
-    ohos.servicectrl.   system:root:0770
-    ```
-
  - bootchart 插件
 
    bootchart是一个用于linux启动过程性能分析的开源工具软件，在系统中自动收集CPU占用率、磁盘吞吐率、进程等信息，并以图形方式显示分析结果，可用作指导优化系统启动过程。
@@ -133,17 +124,26 @@ init启动引导组件负责在系统启动阶段启动关键服务进程。 若
 
     执行步骤：
     1，启动系统
-    2，执行命令行：begetctl bootchart enable
-    3，执行命令行行：begetctl bootchart start
-    4，执行命令行：begetctl bootchart stop
-    5，在/data/bootchart目录下导出如下文件：
+    2，修改/etc/init.cfg 文件，在“pre-init”任务中， "load_persist_params "命令后，添加"setparam init.bootchart.enabled 1"和"bootchart start" 命令并重启，修改如下：
+        "jobs" : [{
+            "name" : "pre-init",
+            "cmds" : [
+                ...
+                "load_persist_params ",
+                "setparam init.bootchart.enabled 1",
+                "bootchart start",
+                ...
+            ]
+        },
+    3，启动后，执行命令行：begetctl bootchart stop
+    4，在/data/bootchart目录下导出如下文件：
        header
        proc_diskstats.log
        proc_ps.log
        proc_stat.log
        并存放在bootchart文件夹
-    6，使用命令：tar -zcvf bootchart.tgz * 进行打包（只支持linux版本）并将该打包文件拷贝到linux：bootchart-master目录下
-    7、运行：
+    5，使用命令：tar -zcvf bootchart.tgz * 进行打包（只支持linux版本）并将该打包文件拷贝到linux：bootchart-master目录下
+    6，运行：
        在bootchart-master目录下运行
        python3 pybootchartgui.py -f pdf bootchart.tgz
 
