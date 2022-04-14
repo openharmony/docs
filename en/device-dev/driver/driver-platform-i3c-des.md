@@ -16,7 +16,7 @@ The I3C APIs provide a set of common functions for I3C transfer, including:
 -   Performing custom I3C message transfer by using a message array
 -   Requesting and releasing an IBI
 
-[Figure 1](#fig1) shows the I3C physical connection.
+[Figure 1](#fig1) shows the I3C physical connection.<br/>
 **Figure 1** I3C physical connection<a name="fig1"></a>
 ![](figures/I3C_physical_connection.png "I3C_physical_connection")
 
@@ -81,7 +81,7 @@ The I3C APIs provide a set of common functions for I3C transfer, including:
 
 
 
->![](../public_sys-resources/icon-note.gif) **NOTE**
+>![](../public_sys-resources/icon-note.gif) **NOTE**<br/>
 >
 >All functions described in this document can be called only in the kernel space.
 
@@ -89,7 +89,7 @@ The I3C APIs provide a set of common functions for I3C transfer, including:
 
 ### How to Use<a name="section4"></a>
 
-[Figure 2](#fig2) shows how I3C works.
+[Figure 2](#fig2) shows how I3C works.<br/>
 
 **Figure 2** How I3C works<a name="fig2"></a>
 ![](figures/I3C_usage_flowchart.png "I3C_usage_flowchart")
