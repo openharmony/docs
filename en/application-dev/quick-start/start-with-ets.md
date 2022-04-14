@@ -1,4 +1,4 @@
-# Getting Started with eTS
+# Getting Started with eTS in the Traditional Coding Approach
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **Note：**
 > To use eTS, your DevEco Studio must be V3.0.0.601 Beta1 or later.
@@ -247,4 +247,4 @@ You can implement page redirection through the page router, which finds the targ
 3. On the toolbar in the upper right corner of the editing window, click ![en-us_image_0000001262206247](figures/en-us_image_0000001262206247.png). The display effect is shown in the figure below.
    ![en-us_image_0000001217526428](figures/en-us_image_0000001217526428.png)
 
-Congratulations! You have finished developing your OpenHarmony application in eTS. To learn more about OpenHarmony, see [OpenHarmony Overview](../application-dev-guide.md)
+Congratulations! You have finished developing your OpenHarmony application in eTS in the traditional coding approach. To learn more about OpenHarmony, see [OpenHarmony Overview](../application-dev-guide.md)

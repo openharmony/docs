@@ -3,7 +3,7 @@
 - [Device Development Overview](device-dev-guide.md)
 - Learn About OpenHarmony
   - [OpenHarmony Community](../OpenHarmony-Overview.md) 
-  - [Glossary](glossary/glossary.md) 
+  - [Glossary](../glossary.md) 
   - [Release Notes](../release-notes/Readme.md) 
 - Quick Start
   - [Mini and Small Systems](quick-start/quickstart-lite.md)	
