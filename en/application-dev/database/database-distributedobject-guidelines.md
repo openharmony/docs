@@ -15,7 +15,7 @@ Call **createDistributedObject()** to create a distributed data object instance.
 **Table 1** API for creating a distributed data object instance
 | Package| API| Description| 
 | -------- | -------- | -------- |
-| ohos.data.distributedDataObject| createDistributedObject(source: object): DistributedObject | Creates a distributed data object instance for data operations.| 
+| ohos.data.distributedDataObject| createDistributedObject(source: object): DistributedObject | Creates a distributed data object instance for data operations.<br>- &nbsp;**source**: attributes of the **distributedObject** set.<br>- &nbsp;**DistributedObject**: returns the distributed object created.| 
 
 ### Generating a Session ID
 
@@ -33,7 +33,7 @@ Call setSessionId() to set the session ID for a distributed data object. The ses
 **Table 3** API for setting a session ID
 | Class| API| Description|
 | -------- | -------- | -------- |
-| DistributedDataObject | setSessionId(sessionId?: string): boolean | Sets a session ID for distributed data objects.|
+| DistributedDataObject | setSessionId(sessionId?: string): boolean | Sets a session ID for distributed data objects.<br>&nbsp;**sessionId**: ID of a distributed object in a trusted network. To remove a distributed data object from the network, set this parameter to "" or leave it empty.|
 
 ### Observing Data Changes
 
@@ -43,7 +43,7 @@ Call **on()** to subscribe to data changes of a distributed data object. When th
 | Class| API| Description| 
 | -------- | -------- | -------- |
 | DistributedDataObject| on(type: 'change', callback: Callback<{ sessionId: string, fields: Array&lt;string&gt; }>): void | Subscribes to data changes.| 
-| DistributedDataObject| off(type: 'change', callback?: Callback<{ sessionId: string, fields: Array&lt;string&gt; }>): void | Unsubscribes from data changes.|
+| DistributedDataObject| off(type: 'change', callback?: Callback<{ sessionId: string, fields: Array&lt;string&gt; }>): void | Unsubscribes from data changes. Callback used to return changes of the distributed object. If this parameter is not specified, all callbacks related to data changes will be unregistered.|
 
 ### Observing Online or Offline Status
 
@@ -72,6 +72,7 @@ The following example shows how to implement a distributed data object synchroni
    ```js
    var local_object = distributedObject.createDistributedObject({name:undefined, age:undefined, isVis:true, 
                   parent:undefined, list:undefined});
+   var sessionId = distributedObject.genSessionId();
    ```
 
 
@@ -82,13 +83,13 @@ The following example shows how to implement a distributed data object synchroni
    ```js
    // Local object
    var local_object = distributedObject.createDistributedObject({name:"jack", age:18, isVis:true, 
-       parent:{mother:"jack mom",father:"jack Dad"},[{mother:"jack mom"}, {father:"jack Dad"}]};
-   local_object.setsessionId(sessionId);
+       parent:{mother:"jack mom",father:"jack Dad"},list:[{mother:"jack mom"}, {father:"jack Dad"}]});
+   local_object.setSessionId(sessionId);
    
    // Remote object
    var remote_object = distributedObject.createDistributedObject({name:undefined, age:undefined, isVis:true, 
                   parent:undefined, list:undefined});
-   remote_object.setsessionId(sessionId);
+   remote_object.setSessionId(sessionId);
    // After obtaining that the device status goes online, the remote object synchronizes data. That is, name changes to jack and age to 18.
    ```
    
@@ -97,7 +98,7 @@ The following example shows how to implement a distributed data object synchroni
    The sample code is as follows:
    
    ```js
-   changeCallback : function (sessionId, changeData) {
+   function changeCallback(sessionId, changeData) {
         console.info("change" + sessionId);
    
         if (changeData != null && changeData != undefined) {
@@ -147,7 +148,7 @@ The following example shows how to implement a distributed data object synchroni
 8. Subscribe to the status (online/offline) changes of the distributed data object. A callback will be invoked to report the status change when the target distributed data object goes online or offline.
    The sample code is as follows:
    ```js
-    statusCallback : function (sessionId, networkId, status) {
+    function statusCallback(sessionId, networkId, status) {
       this.response += "status changed " + sessionId + " " + status + " " + networkId;
     }
    
@@ -157,12 +158,12 @@ The following example shows how to implement a distributed data object synchroni
    
     The sample code is as follows:
    ```js
-   // Unsubscribe from changeCallback.
-   local_object.off("status", changeCallback);
+   // Unsubscribe from statusCallback.
+   local_object.off("status", statusCallback);
    // unsubscribe from all status change callbacks.
    local_object.off("status");
    ```
-10. Remove the distributed data object from the synchronization network. After the distributed data object is removed from the network, the data changes on the local end will not be synchronized to the remote end.
+10. Remove a distributed data object from the synchronization network. After the distributed data object is removed from the network, the data changes on the local end will not be synchronized to the remote end.
 
      The sample code is as follows:
        ```js
