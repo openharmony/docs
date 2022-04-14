@@ -249,6 +249,11 @@
       - [Linux Kernel Overview](kernel/kernel-standard-overview.md)
       - [Applying Patches on OpenHarmony Development Boards](kernel/kernel-standard-patch.md)
       - [Guidelines for Building the Linux Kernel](kernel/kernel-standard-build.md)
+      - [Enhanced Kernel Features](kernel-standard-enhanced-features.md)  
+        - [Enhanced SWAP](kernel-standard-mm-eswap.md)
+        - [Task Scheduling](kernel-standard-sched.md)
+          - [Related Thread Group](kernel-standard-sched-rtg.md)
+          - [Lightweight CPU Isolation](kernel-standard-sched-cpuisolation.md)  
   - Driver
     - HDF
       - [HDF Overview](driver/driver-hdf-overview.md)
