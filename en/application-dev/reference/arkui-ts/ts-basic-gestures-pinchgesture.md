@@ -15,27 +15,27 @@ None
 PinchGesture(options?: { fingers?: number, distance?: number })
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | fingers | number | No | 2 | Minimum number of fingers to trigger a pinch. The value ranges from 2 to 5. | 
-  | distance | number | No | 3.0 | Minimum recognition distance, in vp. | 
+  | fingers | number | No | 2 | Minimum number of fingers to trigger a pinch. The value ranges from 2 to 5. |
+  | distance | number | No | 3.0 | Minimum recognition distance, in vp. |
 
 
 ## Events
 
-  | Name | Description | 
+| Name | Description |
 | -------- | -------- |
-| onActionStart((event?: PinchGestureEvent) =&gt; void) | Callback invoked when a pinch gesture is recognized. | 
-| onActionUpdate((event?: PinchGestureEvent) =&gt; void) | Callback invoked during the movement of a pinch gesture. | 
-| onActionEnd((event?: PinchGestureEvent) =&gt; void) | Callback invoked when the finger used for a pinch gesture is lift. | 
-| onActionCancel(event: () =&gt; void) | Callback invoked when a tap cancellation event is received after a pinch gesture is recognized. | 
+| onActionStart((event?: GestureEvent) =&gt; void) | Callback invoked when a pinch gesture is recognized. |
+| onActionUpdate((event?: GestureEvent) =&gt; void) | Callback invoked during the movement of a pinch gesture. |
+| onActionEnd((event?: GestureEvent) =&gt; void) | Callback invoked when the finger used for a pinch gesture is lift. |
+| onActionCancel(event: () =&gt; void) | Callback invoked when a tap cancellation event is received after a pinch gesture is recognized. |
 
-- PinchGestureEvent<sup>8+</sup> attributes
-    | Name | Type | Description | 
+- GestureEvent attributes related to the pinch gesture  
+    | Name | Type | Description |
   | -------- | -------- | -------- |
-  | scale | number | Scale ratio. This attribute is used for the pinch gesture. | 
-  | pinchCenterX | number | X-coordinate of the center of the pinch gesture, in px. | 
-  | pinchCenterY | number | Y-coordinate of the center of the pinch gesture, in px. | 
+  | scale | number | Scale ratio. This attribute is used for the pinch gesture. |
+  | pinchCenterX | number | X-coordinate of the center of the pinch gesture, in px. |
+  | pinchCenterY | number | Y-coordinate of the center of the pinch gesture, in px. |
 
 
 ## Example
@@ -55,10 +55,10 @@ struct PinchGestureExample {
     .scale({ x: this.scale, y: this.scale, z: this.scale })
     .gesture(
       PinchGesture()
-        .onActionStart((event: PinchGestureEvent) => {
+        .onActionStart((event: GestureEvent) => {
           console.info('Pinch start')
         })
-        .onActionUpdate((event: PinchGestureEvent) => {
+        .onActionUpdate((event: GestureEvent) => {
           this.scale = event.scale
         })
         .onActionEnd(() => {

@@ -12,22 +12,22 @@ None
 
 ## Attributes
 
-  | Name | Type | Default Value | Description | 
+| Name | Type | Default Value | Description |
 | -------- | -------- | -------- | -------- |
-| hoverEffect | HoverEffect | HoverEffect.Auto | Hover effect of the component in hover state. | 
+| hoverEffect | HoverEffect | HoverEffect.Auto | Hover effect of the component in hover state. |
 
 - HoverEffect enums
-    | Name | Description | 
+    | Name | Description |
   | -------- | -------- |
-  | Auto | Default hover effect. | 
-  | Scale | Scale effect. | 
-  | Board | Fade-in and fade-out effect. | 
-  | None | No effect. | 
+  | Auto | Default hover effect. |
+  | Scale | Scale effect. |
+  | Highlight | Fade-in and fade-out effect. |
+  | None | No effect. |
 
 
 ## Example
 
-  
+
 ```
 @Entry
 @Component
@@ -43,17 +43,17 @@ struct HoverExample {
           .position({ x: 40, y: 120 })
           .hoverEffect(HoverEffect.Scale)
           .onHover((isHover: boolean) => {
-            console.info('Scale' + isHover)
+            console.info('Scale isHover: ' + isHover)
             this.isHoverVal = isHover
           })
 
         Text('Board').fontSize(20).fontColor(Color.Gray).width('90%').position({ x: 0, y: 380 })
         Column()
           .width('80%').height(200).backgroundColor(Color.Gray)
-          .hoverEffect(HoverEffect.Board)
+          .hoverEffect(HoverEffect.Highlight)
           .position({ x: 40, y: 420 })
           .onHover((isHover: boolean) => {
-            console.info('HoverEffect.Board')
+            console.info('Highlight isHover: ' +isHover )
             this.isHoverVal = isHover
           })
       }

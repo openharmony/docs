@@ -11,11 +11,11 @@ None
 
 ## TextPickerDialog.show
 
-show(options: TextPickerDialogOption)
+show(options: TextPickerDialogOptions)
 
 Shows a text picker in the given settings.
 
-- TextPickerDialogOption parameters
+- TextPickerDialogOptions
   | Name| Type| Mandatory| Default Value| Description|
   | -------- | -------- | -------- | -------- | -------- |
   | range | string[] | Yes| - | Data selection range of the picker.|

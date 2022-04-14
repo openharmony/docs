@@ -25,9 +25,9 @@ RowSplit()
 
 ## Attributes
 
-  | Name | Type | Description | 
+| Name | Type | Description |
 | -------- | -------- | -------- |
-| resizeable | boolean | Whether the divider can be dragged. The default value is **false**. | 
+| resizeable | boolean | Whether the divider can be dragged. The default value is **false**. |
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > Similar to **&lt;RowSplit&gt;**, the divider of **&lt;RowSplit&gt;** can be dragged to a position that just fully holds a component.
@@ -35,14 +35,14 @@ RowSplit()
 
 ## Example
 
-  
+
 ```
 @Entry
 @Component
 struct RowSplitExample {
   build() {
     Column() {
-      Text('The secant line can be dragged').fontSize(9).fontColor(0xCCCCCC).width('90%')
+      Text('The second line can be dragged').fontSize(9).fontColor(0xCCCCCC).width('90%')
       RowSplit() {
         Text('1').width('10%').height(100).backgroundColor(0xF5DEB3).textAlign(TextAlign.Center)
         Text('2').width('10%').height(100).backgroundColor(0xD2B48C).textAlign(TextAlign.Center)

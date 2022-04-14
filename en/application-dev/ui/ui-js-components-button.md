@@ -1,12 +1,12 @@
 # &lt;button&gt; Development
 
 
-The&lt;button&gt;component can be used to set a capsule, circle, text, arc, or download button. For details, see [button](../reference/arkui-js/js-components-basic-button.md).
+The **&lt;button&gt;** component can be used to set a capsule, circle, text, arc, or download button. For details, see [button](../reference/arkui-js/js-components-basic-button.md).
 
 
-## Creating a &lt;button&gt; Component
+## Creating a &lt;button&gt; Component
 
-Create a &lt;button&gt; component in the .hml file under pages/index.
+Create a **&lt;button&gt;** component in the .hml file under **pages/index**.
 
 
 ```
@@ -20,6 +20,8 @@ Create a &lt;button&gt; component in the .hml file under pages/index.
 ```
 /* xxx.css */
 .container {
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -32,7 +34,9 @@ Create a &lt;button&gt; component in the .hml file under pages/index.
 
 ## Setting the Button Type
 
-Set the type attribute of the &lt;input&gt; component to button, date, or any of the supported values.
+Set the **type** attribute of the **&lt;input&gt;** component to **button**, **date**, or any of the supported values.
+
+
 
 ```
 <!-- xxx.hml -->
@@ -42,9 +46,13 @@ Set the type attribute of the &lt;input&gt; component to button, date, or any of
 </div>
 ```
 
+
+
 ```
 /* xxx.css */
 .container {  
+  width: 100%;
+  height: 100%;
   background-color: #F1F3F5;
   flex-direction: column;
   align-items: center;
@@ -70,17 +78,19 @@ Set the type attribute of the &lt;input&gt; component to button, date, or any of
 ![en-us_image_0000001222967744](figures/en-us_image_0000001222967744.png)
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE:**
 > - For capsule buttons, border-related styles are not supported.
 > 
 > - For circle buttons, text-related styles are not supported.
 > 
-> - For text buttons, the text size is adaptive, and radius, width, and height cannot be set. The background-color style is not supported when the background is completely transparent.
+> - For text buttons, the text size is adaptive, and **radius**, **width**, and **height** cannot be set. The **background-color** style is not supported when the background is completely transparent.
 > 
-> - If the icon used by the&lt;button&gt;component is from the cloud, you must declare the ohos.permission.INTERNET permission in the config.json file under the resources folder.
+> - If the icon used by the **&lt;button&gt;** component is from the cloud, you must declare the **ohos.permission.INTERNET** permission in the **config.json** file under the **resources** folder.
 
 
-Sample code for declaring the ohos.permission.INTERNET permission in the config.json file under the resources folder:
+Sample code for declaring the **ohos.permission.INTERNET** permission in the **config.json** file under the **resources** folder:
+
+
 
 ```
 <!-- config.json -->
@@ -94,7 +104,7 @@ Sample code for declaring the ohos.permission.INTERNET permission in the config.
 
 ## Showing the Download Progress
 
-Add the progress method to the&lt;button&gt;component to display the download progress in real time.
+Add the **progress** method to the **&lt;button&gt;** component to display the download progress in real time.
 
 
 ```
@@ -171,14 +181,15 @@ export default {
 
 ![en-us_image_0000001223287652](figures/en-us_image_0000001223287652.gif)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
->
-> The setProgress method supports only buttons of the download type.
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE:**
+> - The **setProgress** method supports only buttons of the download type.
 
 
 ## Example Scenario
 
 Switch between the button types for different types of text.
+
+
 
 ```
 <!-- xxx.hml -->
@@ -196,6 +207,8 @@ Switch between the button types for different types of text.
   </div>
 </div>
 ```
+
+
 
 ```
 /* xxx.css */
@@ -242,6 +255,8 @@ Switch between the button types for different types of text.
   background-color: #0598db;;
 }
 ```
+
+
 
 ```
 // xxx.js
