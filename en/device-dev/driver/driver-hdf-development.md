@@ -16,7 +16,7 @@ The figure below shows the HDF driver model.
 
 The HDF-based driver development involves driver implementation and configuration. The procedure is as follows:
 
-1. Implement a driver.
+1. Implement a driver.<br/>
    Write the driver code and register the driver entry with the HDF.
 
    - Writing the driver service code 
@@ -68,11 +68,11 @@ The HDF-based driver development involves driver implementation and configuratio
    HDF_INIT(g_sampleDriverEntry);
    ```
    
-2. Build the driver.
-   - LiteOS
+2. Build the driver.<br/>
+   - LiteOS<br/>
       Modify **makefile** and **BUILD.gn**.
 
-      - **makefile**:
+      - **makefile**:<br/>
          Use the **makefile** template provided by the HDF to compile the driver code.
 
          
@@ -93,7 +93,7 @@ The HDF-based driver development involves driver implementation and configuratio
          LIB_SUBDIRS    +=         # Directory in which the driver code makefile is located.
          ```
 
-      - **BUILD.gn**:
+      - **BUILD.gn**:<br/>
          Add **BUILD.gn**. The content of **BUILD.gn** is as follows:
 
          
@@ -126,7 +126,7 @@ The HDF-based driver development involves driver implementation and configuratio
                    ]
          }
          ```
-   - Linux
+   - Linux<br/>
       To define the driver control macro, add the **Kconfig** file to the driver directory **xxx** and add the path of the **Kconfig** file to **drivers/adapter/khdf/linux/Kconfig**.
 
       
@@ -148,12 +148,12 @@ The HDF-based driver development involves driver implementation and configuratio
       obj-y  += xxx.o
       ```
 
-3. Configure the driver.
+3. Configure the driver.<br/>
    The HDF Configuration Source (HCS) contains the source code of HDF configuration. For details about the HCS, see [Configuration Management](../driver/driver-hdf-manage.md).
 
    The driver configuration consists of the driver device description defined by the HDF and the private driver configuration.
 
-   - (Mandatory) Setting the driver device description
+   - (Mandatory) Setting the driver device description<br/>
       The HDF loads a driver based on the driver device description defined by the HDF. Therefore, the driver device description must be added to the **device_info.hcs** file defined by the HDF. The following is an example:
 
       
@@ -208,7 +208,7 @@ The HDF-based driver development involves driver implementation and configuratio
 
       
 
-   - (Optional) Setting driver private information
+   - (Optional) Setting driver private information<br/>
       If the driver has private configuration, add a driver configuration file to set default driver configuration. When loading the driver, the HDF obtains and saves the driver private information in **property** of **HdfDeviceObject**, and passes the information to the driver using **Bind()** and **Init()** (see step 1). 
    
       The following is an example of the driver private configuration:
@@ -255,5 +255,5 @@ The HDF-based driver development involves driver implementation and configuratio
 >
 >   If **preload** is set to **2 (DEVICE_PRELOAD_DISABLE)** , the driver is dynamically loaded instead of being loaded during the system boot process. When a user-mode process requests the driver service, the HDF attempts to dynamically load the driver if the driver service does not exist.  For more details, see [Driver Message Mechanism Management](driver-hdf-message-management.md).
 >
-> - Sequential loading (**preload** set to **0 (DEVICE_PRELOAD_ENABLE)**)
+> - Sequential loading (**preload** set to **0 (DEVICE_PRELOAD_ENABLE)**)<br/>
 >   In the configuration file, the **priority** fields (value range: 0 to 200) determines the loading sequence of a host and a driver. For drivers in different hosts, a smaller host priority value indicates a higher driver loading priority; for drivers in the same host, a smaller driver priority value indicates a higher driver loading priority.
