@@ -20,9 +20,9 @@
 | touchcancel              | TouchEvent | 手指触摸屏幕中动作被打断时触发该事件。                      | 是<sup>5+</sup> |
 | touchend                 | TouchEvent | 手指触摸结束离开屏幕时触发该事件。                        | 是<sup>5+</sup> |
 | click                    | -          | 点击动作触发该事件。                               | 是<sup>6+</sup> |
-| doubleclick<sup>7+</sup> | -          | 双击动作触发该事件                                | 否              |
-| longpress                | -          | 长按动作触发该事件。                               | 否              |
-| swipe<sup>5+</sup>       | SwipeEvent | 组件上快速滑动后触发该事件。<br/>> **说明：** SwipeEvent具体可参考表6 SwipeEvent 基础事件对象属性列表 | 否              |
+| doubleclick<sup>7+</sup> | -          | 双击动作触发该事件                                | 是<sup>9+</sup> |
+| longpress                | -          | 长按动作触发该事件。                               | 是<sup>9+</sup> |
+| swipe<sup>5+</sup>       | SwipeEvent | 组件上快速滑动后触发该事件。<br/>> **说明：** SwipeEvent具体可参考表6 SwipeEvent 基础事件对象属性列表 | 是<sup>9+</sup>  |
 | attached<sup>6+</sup>    | -          | 当前组件节点挂载在渲染树后触发。                         | 否              |
 | detached<sup>6+</sup>    | -          | 当前组件节点从渲染树中移除后触发。                        | 否              |
 | pinchstart<sup>7+</sup>  | PinchEvent | 手指开始执行捏合操作时触发该事件。<br/>> **说明：** PinchEvent具体可参考表7 PinchEvent 对象属性列表 | 否              |
