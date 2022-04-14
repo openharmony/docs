@@ -157,7 +157,7 @@ export default {
  setProgress(e) {
     if(this.isPaused){
       prompt.showToast({
-        message: "Download started"
+        message: "Started Ddownloading"
       })
       this.star();
       this.isPaused = false;
