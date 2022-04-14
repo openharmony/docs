@@ -12,7 +12,7 @@ init启动引导组件负责在系统启动阶段启动关键服务进程。 若
 
   各模块需要配置或添加关键服务时，可以在对应模块的cfg文件进行配置，编译过程会将配置后的文件拷贝到/system/etc/init目录下，单板中可在"/etc/init/"目录下查找到对应的cfg文件，
 
-- init服务启动控制(仅标准系统以上提供)
+- init服务启动控制(仅标准系统以上提供)<a name = "section56901555918">
 
   init会根据用户的服务配置，把服务分成三类，在不同的阶段进行启动。
 
@@ -49,7 +49,7 @@ init启动引导组件负责在系统启动阶段启动关键服务进程。 若
     },
   ```
 
-- init 按需启动(仅标准系统以上提供)
+- init 按需启动(仅标准系统以上提供) <a name="section56901555920">
 
   由init管理的服务支持按需启动，按需启动的服务不会在系统启动过程中主动被拉起，而是当某些事件发生时才会被init按需拉起，触发服务启动的事件可能是被init监听的相关socket有消息上报、samgr收到客户端的请求需要拉起SA服务等情况。
 
@@ -99,9 +99,10 @@ init启动引导组件负责在系统启动阶段启动关键服务进程。 若
 
   FD代持是按需启动的一个辅助扩展机制，按需启动进程可以保持退出前的fd状态句柄不丢失。按需启动进程退出前可将fd发送给init代持，再次启动后再从init获取fd。
 
-  init提供了相关接口供服务调用，服务进程退出前调用接口将fd通过支持IPC通信的socket发送给init代持，待该服务重新启动时，init将持有的该服务相关的fd句柄通过同样的方式返回给服务。相关接口参考：[init服务启动控制](#table14737791479)。
+  init提供了相关接口供服务调用，服务进程退出前调用接口将fd通过支持IPC通信的socket发送给init代持，待该服务重新启动时，init将持有的该服务相关的fd句柄通过同样的方式返回给服务。相关接口参考：[FD代持接口介绍](#table14737791479)。
 
 - init job
+
   init提供job能力，一个job就是一组命令的集合。job可以在init.cfg中配置，也可以在模块的自定义cfg中配置。init解析程序会把相同名字job的命令合并到一个job中。同一名字的job只能保证init.cfg中的命令优先执行，其他cfg间的命令执行顺序不保证。
 
   - 普通job：一般是init启动的固定阶段，如“pre-init“，”init“，”post-init“等，这类job在init启动的固定阶段执行。
@@ -296,7 +297,7 @@ init启动引导组件负责在系统启动阶段启动关键服务进程。 若
    |name|当前socket的命名，不要求必须与服务同名，与服务名同样须满足非空且长度<=32字节。|
    |family|socket所属的地址族，目前支持的为服务创建的socket有AF_UNIX和AF_NETLINK族。|
    |type|socket的类型，目前支持的类型有基于连接的SOCK_SEQPACKET和SOCK_STREAM，还有基于UDP无连接的SOCK_DGRAM。|
-   |protocol|socket通信遵循的协议类型，在无特殊需求的情况下，该值可配置为default缺省值，因为socket接口会自动根据socket地址族和类型选择合适的协议。此处除了default，还支持了NETLINK_KOBJECT_UEVENT协议类型。|
+   |protocol|socket通信遵循的协议类型，在无特殊需求的情况下，该值可配置为default缺省值，因为socket接口会自动根据socket地址族和类型选择合适的协议。此处除了default，并且支持NETLINK_KOBJECT_UEVENT协议类型。|
    |permissions|socket节点文件的权限。此项配置仅对如AF_UNIX地址族等有实体节点文件的socket类型有效。|
    |uid|socket节点文件的用户ID。此项配置仅对如AF_UNIX地址族等有实体节点文件的socket类型有效。|
    |gid|socket节点文件的组ID。此项配置仅对如AF_UNIX地址族等有实体节点文件的socket类型有效。|
