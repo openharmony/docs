@@ -8,7 +8,7 @@
 2. 给系统提供一种统一的定位标注，保证各模块各设备的布局一致性。
 3. 给应用提供一种灵活的间距调整方法，满足特殊场景布局调整的可能性。
 
-为实现栅格布局效果，声明式范式提供了[GridContainer](../reference/arkui-ts/)栅格容器组件，配合其子组件的通用属性useSizeType来实现栅格布局。
+为实现栅格布局效果，声明式范式提供了[GridContainer](../reference/arkui-ts/ts-container-gridcontainer.md)栅格容器组件，配合其子组件的通用属性useSizeType来实现栅格布局。
 
 ## 栅格系统
 
