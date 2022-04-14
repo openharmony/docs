@@ -160,11 +160,13 @@ Describes the color gamut mode.
 | DEFAULT    | 0      | Default color gamut mode.|
 | WIDE_GAMUT | 1      | Wide color gamut mode.  |
 
-## window.create<sup>7</sup><a name="window-create"></a>
+## window.create<sup>7+</sup>
 
 create(id: string, type: WindowType, callback: AsyncCallback&lt;Window&gt;): void
 
 Creates a subwindow. This API uses an asynchronous callback to return the result.
+
+This API is discarded since API version 8. You are advised to use [window.create<sup>8+</sup>](#windowcreate8) instead.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -191,11 +193,13 @@ Creates a subwindow. This API uses an asynchronous callback to return the result
   });
   ```
 
-## window.create<sup>7</sup>
+## window.create<sup>7+</sup>
 
 create(id: string, type: WindowType): Promise&lt;Window&gt;
 
 Creates a subwindow. This API uses a promise to return the result.
+
+This API is discarded since API version 8. You are advised to use [window.create<sup>8+</sup>](#windowcreate8) instead.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -229,18 +233,18 @@ Creates a subwindow. This API uses a promise to return the result.
 
 create(ctx: Context, id: string, type: WindowType, callback: AsyncCallback&lt;Window&gt;): void
 
-Creates a system window when the context is [ServiceExtensionContext](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-service-extension-context.md). This API uses an asynchronous callback to return the result.
+Creates a system window when the context is [ServiceExtensionContext](js-apis-service-extension-context.md). This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 - Parameters
 
-  | Name  | Type                                                        | Mandatory| Description                                                 |
-  | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------- |
-  | ctx      | [Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-Context.md) | Yes  | Current application context, which is the base class of **ServiceExtensionContext**.|
-  | id       | string                                                       | Yes  | Window ID.                                             |
-  | type     | [WindowType](#windowtype)                                    | Yes  | Window type.                                           |
-  | callback | AsyncCallback&lt;[Window](#window)&gt;                       | Yes  | Callback used to return the system window created.                               |
+  | Name  | Type                                           | Mandatory| Description                  |
+  | -------- | ----------------------------------------------- | ---- | ---------------------- |
+  | ctx      | [Context](js-apis-service-extension-context.md) | Yes  | Current application context.  |
+  | id       | string                                          | Yes  | Window ID.              |
+  | type     | [WindowType](#windowtype)                       | Yes  | Window type.            |
+  | callback | AsyncCallback&lt;[Window](#window)&gt;          | Yes  | Callback used to return the system window created.|
 
 - Example
 
@@ -261,17 +265,17 @@ Creates a system window when the context is [ServiceExtensionContext](https://gi
 
 create(ctx: Context, id: string, type: WindowType): Promise&lt;Window&gt;
 
-Creates a system window when the context is [ServiceExtensionContext](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-service-extension-context.md). This API uses a promise to return the result.
+Creates a system window when the context is [ServiceExtensionContext](js-apis-service-extension-context.md). This API uses a promise to return the result.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 - Parameters
 
-  | Name| Type                                                        | Mandatory| Description                                                 |
-  | ------ | ------------------------------------------------------------ | ---- | ----------------------------------------------------- |
-  | ctx    | [Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-Context.md) | Yes  | Current application context, which is the base class of **ServiceExtensionContext**.|
-  | id     | string                                                       | Yes  | Window ID.                                             |
-  | type   | [WindowType](#windowtype)                                    | Yes  | Window type.                                           |
+  | Name| Type                                           | Mandatory| Description                |
+  | ------ | ----------------------------------------------- | ---- | -------------------- |
+  | ctx    | [Context](js-apis-service-extension-context.md) | Yes  | Current application context.|
+  | id     | string                                          | Yes  | Window ID.            |
+  | type   | [WindowType](#windowtype)                       | Yes  | Window type.          |
 
 - Return value
 
@@ -419,10 +423,10 @@ Obtains the top window of the current application. This API uses an asynchronous
 
 - Parameters
 
-  | Name  | Type                                                        | Mandatory| Description                                  |
-  | -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
-  | ctx      | [Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-Context.md) | Yes  | Current application context.                  |
-  | callback | AsyncCallback&lt;[Window](#window)&gt;                       | Yes  | Callback used to return the top window obtained.|
+  | Name  | Type                                  | Mandatory| Description                                                        |
+  | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
+  | ctx      | [Context](js-apis-Context.md)   | Yes  | Current application context. |
+  | callback | AsyncCallback&lt;[Window](#window)&gt; | Yes  | Callback used to return the top window obtained.                      |
 
 - Example
 
@@ -448,9 +452,9 @@ Obtains the top window of the current application. This API uses a promise to re
 
 - Parameters
 
-  | Name| Type                                                        | Mandatory| Description                |
-  | ------ | ------------------------------------------------------------ | ---- | -------------------- |
-  | ctx    | [Context](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-Context.md) | Yes  | Current application context.|
+  | Name| Type   | Mandatory| Description                                                        |
+  | ------ | ------- | ---- | ------------------------------------------------------------ |
+  | ctx    | [Context](js-apis-Context.md) | Yes  | Current application context. |
 
 - Return value
 
@@ -523,7 +527,7 @@ This is a system API and cannot be called by third-party applications.
 
 ## Window
 
-In the following API examples, you must use [getTopWindow()](#window-gettopwindow), [create()](#window-create), or [find()](#window-find) to obtain a **Window** instance and then call a method in this instance.
+In the following API examples, you must use [getTopWindow()](#window-gettopwindow), [create()](#windowcreate7), or [find()](#window-find) to obtain a **Window** instance and then call a method in this instance.
 
 ### hide<sup>7+</sup>
 

@@ -45,7 +45,7 @@ let treeMap = new TreeMap();
 
 ### isEmpty
 
-isEmpty(): boolean;
+isEmpty(): boolean
 
 Checks whether this container is empty (contains no entry).
 
@@ -65,7 +65,7 @@ let result = treeMap.isEmpty();
 
 ### hasKey
 
-hasKey(key: K): boolean;
+hasKey(key: K): boolean
 
 Checks whether this container has the specified key.
 
@@ -73,7 +73,7 @@ Checks whether this container has the specified key.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| key | K | Yes| Key to query.|
+| key | K | Yes| Key to check.|
 
 **Return value**
 
@@ -101,7 +101,7 @@ Checks whether this container has the specified value.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | V | Yes| Value to query.|
+| value | V | Yes| Value to check.|
 
 **Return value**
 
@@ -149,7 +149,7 @@ let result = treeMap.get("sdfs");
 
 ### getFirstKey
 
-getFirstKey(): K;
+getFirstKey(): K
 
 Obtains the first key in this container.
 
@@ -171,7 +171,7 @@ let result = treeMap.getFirstKey();
 
 ### getLastKey
 
-getLastKey(): K;
+getLastKey(): K
 
 Obtains the last key in this container.
 
@@ -215,6 +215,7 @@ treeMap.setAll(map);
 
 
 ### set
+
 set(key: K, value: V): Object
 
 Adds an entry to this container.
@@ -242,7 +243,7 @@ treeMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 
 ### remove
 
-remove(key: K): V;
+remove(key: K): V
 
 Removes the entry with the specified key from this container.
 
@@ -326,6 +327,7 @@ let result = treeMap.getHigherKey("sdfs");
 ```
 
 ### replace
+
 replace(key: K, newValue: V): boolean
 
 Replaces an entry in this container.
@@ -424,7 +426,7 @@ while(temp != undefined) {
 
 ### forEach
 
-forEach(callbackfn: (value: V, key?: K, map?: TreeMap<K, V>) => void, thisArg?: Object): void
+forEach(callbackfn: (value?: V, key?: K, map?: TreeMap<K, V>) => void, thisArg?: Object): void
 
 Uses a callback to traverse the entries in this container and obtain their position indexes.
 
@@ -438,8 +440,8 @@ Uses a callback to traverse the entries in this container and obtain their posit
 callbackfn
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | V | Yes| Value of the entry that is currently traversed.|
-| key | K | Yes| Key of the entry that is currently traversed.|
+| value | V | No| Value of the entry that is currently traversed.|
+| key | K | No| Key of the entry that is currently traversed.|
 | map | TreeMap<K, V> | No| Instance that invokes the **forEach** method.|
 
 **Example**
@@ -484,7 +486,7 @@ while(temp != undefined) {
 
 ### [Symbol.iterator]
 
-[Symbol.iterator]\(): IterableIterator&lt;[K, V]&gt;;
+[Symbol.iterator]\(): IterableIterator&lt;[K, V]&gt;
 
 
 Obtains an iterator, each item of which is a JavaScript object.

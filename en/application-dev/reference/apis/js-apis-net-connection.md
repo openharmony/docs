@@ -684,82 +684,13 @@ Before invoking NetHandle APIs, call **getNetHandle** to obtain a **NetHandle** 
 | ------ | ------ | ------------------------- |
 | netId  | number | Network ID. The value must be greater than or equal to 100.|
 
-### bindSocket
-
-bindSocket(socketParam: TCPSocket | UDPSocket, callback: AsyncCallback&lt;void&gt;): void
-
-Binds a **TCPSocket** or **UDPSocket** object to the data network. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Communication.NetManager.Core
-
-**Parameters**
-| Name     | Type                     | Mandatory| Description            |
-| ----------- | ------------------------- | ---- | ---------------- |
-| socketParam | TCPSocket \| UDPSocket    | Yes  | **TCPSocket** or **UDPSocket** object.|
-| callback    | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.      |
-
-**Example**
-
-```
-// Bind the TCPSocket object.
-connection.getDefaultNet().then(function (netHandle) {
-    let tcpSocket = socket.constructTCPSocketInstance()
-    netHandle.bindSocket(tcpSocket, (function (error) {
-        console.log(JSON.stringify(error))
-    }))
-})
-// Bind the UDPSocket object.
-connection.getDefaultNet().then(function (netHandle) {
-    let udpSocket = socket.constructUDPSocketInstance()
-    netHandle.bindSocket(udpSocket, (function (error) {
-        console.log(JSON.stringify(error))
-    }))
-})
-```
-
-
-### bindSocket
-
-bindSocket(socketParam: TCPSocket | UDPSocket): Promise&lt;void&gt;
-
-Binds a **TCPSocket** or **UDPSocket** object to the data network. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Communication.NetManager.Core
-
-**Parameters**
-| Name     | Type                                                        | Mandatory| Description                                                        |
-| ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| socketParam | TCPSocket \| UDPSocket    | Yes  | **TCPSocket** or **UDPSocket** object.|
-
-**Return Value**
-| Type               | Description                       |
-| ------------------- | --------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
-
-**Example**
-
-```
-// Bind the TCPSocket object.
-connection.getDefaultNet().then(function (netHandle) {
-    let tcpSocket = socket.constructTCPSocketInstance()
-    netHandle.bindSocket(tcpSocket).then(function () {
-        console.log("bind socket success")
-    })
-})
-// Bind the UDPSocket object.
-connection.getDefaultNet().then(function (netHandle) {
-    let udpSocket = socket.constructUDPSocketInstance()
-    netHandle.bindSocket(udpSocket).then(function () {
-        console.log("bind socket success")
-    })
-})
-```
-
 ### getAddressesByName
 
 getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): void
 
 Resolves the host name by using the corresponding network to obtain all IP addresses. This API uses an asynchronous callback to return the result.
+
+**Required permission**: ohos.permission.GET_NETWORK_INFO
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
@@ -787,6 +718,8 @@ connection.getDefaultNet().then(function (netHandle) {
 getAddressesByName(host: string): Promise\<Array\<NetAddress>>
 
 Resolves the host name by using the corresponding network to obtain all IP addresses. This API uses a promise to return the result.
+
+**Required permission**: ohos.permission.GET_NETWORK_INFO
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
@@ -819,6 +752,8 @@ getAddressByName(host: string, callback: AsyncCallback\<NetAddress>): void
 
 Resolves the host name by using the corresponding network to obtain the first IP address. This API uses an asynchronous callback to return the result.
 
+**Required permission**: ohos.permission.GET_NETWORK_INFO
+
 **System capability**: SystemCapability.Communication.NetManager.Core
 
 **Parameters**
@@ -845,6 +780,8 @@ connection.getDefaultNet().then(function (netHandle) {
 getAddressByName(host: string): Promise\<NetAddress>
 
 Resolves the host name by using the corresponding network to obtain the first IP address. This API uses a promise to return the result.
+
+**Required permission**: ohos.permission.GET_NETWORK_INFO
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
@@ -893,7 +830,7 @@ Defines the network capability set.
 | linkUpBandwidthKbps   | number                             | Uplink (from the device to the network) bandwidth.|
 | linkDownBandwidthKbps | number                             | Downlink (from the network to the device) bandwidth.|
 | networkCap            | Array<[NetCap](#netcap)>           | Network capability.          |
-| bearerTypes           | Array<[NetBearType](#netbearType)> | Network type.              |
+| bearerTypes           | Array<[NetBearType](#netbeartype)> | Network type.              |
 
 ## NetCap
 

@@ -333,8 +333,8 @@ Uses a callback to traverse the entries in this container and obtain their posit
 callbackfn
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | V | Yes| Value of the entry that is currently traversed.|
-| key | K | Yes| Key of the entry that is currently traversed.|
+| value | V | No| Value of the entry that is currently traversed.|
+| key | K | No| Key of the entry that is currently traversed.|
 | map | HashMap<K, V> | No| Instance that invokes the **forEach** method.|
 
 **Example**
@@ -351,7 +351,7 @@ hashMap.forEach((value, key) => {
 
 ### entries
 
-entries(): IterableIterator<[K, V]>
+entries(): IterableIterator&lt;[K, V]&gt;
 
 Obtains an iterator that contains all the entries in this container.
 
@@ -359,7 +359,7 @@ Obtains an iterator that contains all the entries in this container.
 
 | Type| Description|
 | -------- | -------- |
-| IterableIterator<[K, V]> | Iterator obtained.|
+| IterableIterator&lt;[K, V]&gt; | Iterator obtained.|
 
 **Example**
 
@@ -387,7 +387,7 @@ Obtains an iterator, each item of which is a JavaScript object.
 
 | Type| Description|
 | -------- | -------- |
-| IterableIterator<[K, V]> | Iterator obtained.|
+| IterableIterator&lt;[K, V]&gt; | Iterator obtained.|
 
 **Example**
 ```

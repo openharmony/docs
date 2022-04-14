@@ -5,7 +5,7 @@
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
-This module provides common utility functions, such as **TextEncoder** and **TextDecoder** for string encoding and decoding, **RationalNumber** for rational number operations, **LruBuffer** for buffer management, **Scope** for range determination, **Base64** for Base64 encoding and decoding, and **Types** for checks of built-in object types.
+This module provides common utility functions, such as **TextEncoder** and **TextDecoder** for string encoding and decoding, **RationalNumber** for rational number operations, **LruBuffer** for buffer management, **Scope** for range determination, **Base64** for Base64 encoding and decoding, and **types** for checks of built-in object types.
 
 
 ## Modules to Import
@@ -1614,20 +1614,20 @@ Decodes the input content asynchronously.
   ```
 
 
-## Types<sup>8+</sup>
+## types<sup>8+</sup>
 
 
 ### constructor<sup>8+</sup>
 
 constructor()
 
-A constructor used to create a **Types** object.
+A constructor used to create a **types** object.
 
 **System capability**: SystemCapability.Utils.Lang
 
 **Example**
   ```
-  var type = new util.Types();
+  var type = new util.types();
   ```
 
 
@@ -1651,7 +1651,7 @@ Checks whether the input value is of the **ArrayBuffer** type.
 
 **Example**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   var result = that.isAnyArrayBuffer(new ArrayBuffer([]));
   ```
 
@@ -1678,7 +1678,7 @@ Checks whether the input value is of the **ArrayBufferView** type.
 
 **Example**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   var result = that.isArrayBufferView(new Int8Array([]));
   ```
 
@@ -1703,7 +1703,7 @@ Checks whether the input value is of the **arguments** type.
 
 **Example**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   function foo() {
       var result = that.isArgumentsObject(arguments);
   }
@@ -1731,7 +1731,7 @@ Checks whether the input value is of the **ArrayBuffer** type.
 
 **Example**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   var result = that.isArrayBuffer(new ArrayBuffer([]));
   ```
 
@@ -1756,7 +1756,7 @@ Checks whether the input value is an asynchronous function.
 
 **Example**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   var result = that.isAsyncFunction(async function foo() {});
   ```
 
@@ -1781,7 +1781,7 @@ Checks whether the input value is of the **Boolean** type.
 
 **Example**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   var result = that.isBooleanObject(new Boolean(true));
   ```
 
@@ -1806,7 +1806,7 @@ Checks whether the input value is of the **Boolean**, **Number**, **String**, or
 
 **Example**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   var result = that.isBoxedPrimitive(new Boolean(false));
   ```
 
@@ -1831,7 +1831,7 @@ Checks whether the input value is of the **DataView** type.
 
 **Example**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   const ab = new ArrayBuffer(20);
   var result = that.isDataView(new DataView(ab));
   ```
@@ -1857,7 +1857,7 @@ Checks whether the input value is of the **Date** type.
 
 **Example**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   var result = that.isDate(new Date());
   ```
 
@@ -1882,7 +1882,7 @@ Checks whether the input value is of the **native external** type.
 
 **Example**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   const data = util.createExternalType();
   var result = that.isExternal(data);
   ```
@@ -1908,7 +1908,7 @@ Checks whether the input value is of the **Float32Array** type.
 
 **Example**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   var result = that.isFloat32Array(new Float32Array());
   ```
 
@@ -1933,7 +1933,7 @@ Checks whether the input value is of the **Float64Array** type.
 
 **Example**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   var result = that.isFloat64Array(new Float64Array());
   ```
 
@@ -1958,7 +1958,7 @@ Checks whether the input value is a generator function.
 
 **Example**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   var result = that.isGeneratorFunction(function* foo() {});
   ```
 
@@ -1983,7 +1983,7 @@ Checks whether the input value is a generator object.
 
 **Example**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   function* foo() {}
   const generator = foo();
   var result = that.isGeneratorObject(generator);
@@ -2010,7 +2010,7 @@ Checks whether the input value is of the **Int8Array** type.
 
 **Example**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   var result = that.isInt8Array(new Int8Array([]));
   ```
 
@@ -2035,7 +2035,7 @@ Checks whether the input value is of the **Int16Array** type.
 
 **Example**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   var result = that.isInt16Array(new Int16Array([]));
   ```
 
@@ -2060,7 +2060,7 @@ Checks whether the input value is of the **Int32Array** type.
 
 **Example**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   var result = that.isInt32Array(new Int32Array([]));
   ```
 
@@ -2085,7 +2085,7 @@ Checks whether the input value is of the **Map** type.
 
 **Example**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   var result = that.isMap(new Map());
   ```
 
@@ -2110,7 +2110,7 @@ Checks whether the input value is of the **MapIterator** type.
 
 **Example**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   const map = new Map();
   var result = that.isMapIterator(map.keys());
   ```
@@ -2136,7 +2136,7 @@ Checks whether the input value is of the **Error** type.
 
 **Example**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   var result = that.isNativeError(new TypeError());
   ```
 
@@ -2161,7 +2161,7 @@ Checks whether the input value is a number object.
 
 **Example**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   var result = that.isNumberObject(new Number(0));
   ```
 
@@ -2186,7 +2186,7 @@ Checks whether the input value is a promise.
 
 **Example**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   var result = that.isPromise(Promise.resolve(1));
   ```
 
@@ -2211,7 +2211,7 @@ Checks whether the input value is a proxy.
 
 **Example**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   const target = {};
   const proxy = new Proxy(target, {});
   var result = that.isProxy(proxy);
@@ -2238,7 +2238,7 @@ Checks whether the input value is of the **RegExp** type.
 
 **Example**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   var result = that.isRegExp(new RegExp('abc'));
   ```
 
@@ -2263,7 +2263,7 @@ Checks whether the input value is of the **Set** type.
 
 **Example**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   var result = that.isSet(new Set());
   ```
 
@@ -2288,7 +2288,7 @@ Checks whether the input value is of the **SetIterator** type.
 
 **Example**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   const set = new Set();
   var result = that.isSetIterator(set.keys());
   ```
@@ -2314,7 +2314,7 @@ Checks whether the input value is a string object.
 
 **Example**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   var result = that.isStringObject(new String('foo'));
   ```
 
@@ -2339,7 +2339,7 @@ Checks whether the input value is a symbol object.
 
 **Example**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   const symbols = Symbol('foo');
   var result = that.isSymbolObject(Object(symbols));
   ```
@@ -2367,7 +2367,7 @@ Checks whether the input value is of the **TypedArray** type.
 
 **Example**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   var result = that.isTypedArray(new Float64Array([]));
   ```
 
@@ -2392,7 +2392,7 @@ Checks whether the input value is of the **Uint8Array** type.
 
 **Example**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   var result = that.isUint8Array(new Uint8Array([]));
   ```
 
@@ -2417,7 +2417,7 @@ Checks whether the input value is of the **Uint8ClampedArray** type.
 
 **Example**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   var result = that.isUint8ClampedArray(new Uint8ClampedArray([]));
   ```
 
@@ -2442,7 +2442,7 @@ Checks whether the input value is of the **Uint16Array** type.
 
 **Example**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   var result = that.isUint16Array(new Uint16Array([]));
   ```
 
@@ -2467,7 +2467,7 @@ Checks whether the input value is of the **Uint32Array** type.
 
 **Example**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   var result = that.isUint32Array(new Uint32Array([]));
   ```
 
@@ -2492,7 +2492,7 @@ Checks whether the input value is of the **WeakMap** type.
 
 **Example**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   var result = that.isWeakMap(new WeakMap());
   ```
 
@@ -2517,6 +2517,6 @@ Checks whether the input value is of the **WeakSet** type.
 
 **Example**
   ```
-  var that = new util.Types();
+  var that = new util.types();
   var result = that.isWeakSet(new WeakSet());
   ```

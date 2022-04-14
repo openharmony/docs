@@ -2,7 +2,7 @@
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > - The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> 
+>
 > - This module contains enhanced i18n APIs, which are not defined in ECMA 402.
 
 
@@ -21,19 +21,19 @@ Obtains the localized script for the specified language.
 
 **System capability**: SystemCapability.Global.I18n
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | language | string | Yes| Specified language.|
-  | locale | string | Yes| Locale ID.|
-  | sentenceCase | boolean | No| Whether to use sentence case for the localized script.|
+**Parameters**
+| Name         | Type     | Mandatory  | Description              |
+| ------------ | ------- | ---- | ---------------- |
+| language     | string  | Yes   | Specified language.           |
+| locale       | string  | Yes   | Locale ID.    |
+| sentenceCase | boolean | No   | Whether to use sentence case for the localized script.|
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | string | Localized script for the specified language.|
+**Return Value**
+| Type    | Description           |
+| ------ | ------------- |
+| string | Localized script for the specified language.|
 
-- Example
+**Example**
   ```
   i18n.getDisplayLanguage("zh", "en-GB", true);
   i18n.getDisplayLanguage("zh", "en-GB");
@@ -48,26 +48,26 @@ Obtains the localized script for the specified country.
 
 **System capability**: SystemCapability.Global.I18n
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | country | string | Yes| Specified country.|
-  | locale | string | Yes| Locale ID.|
-  | sentenceCase | boolean | No| Whether to use sentence case for the localized script.|
+**Parameters**
+| Name         | Type     | Mandatory  | Description              |
+| ------------ | ------- | ---- | ---------------- |
+| country      | string  | Yes   | Specified country.           |
+| locale       | string  | Yes   | Locale ID.    |
+| sentenceCase | boolean | No   | Whether to use sentence case for the localized script.|
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | string | Localized script for the specified country.|
+**Return Value**
+| Type    | Description           |
+| ------ | ------------- |
+| string | Localized script for the specified country.|
 
-- Example
+**Example**
   ```
   i18n.getDisplayCountry("zh-CN", "en-GB", true);
   i18n.getDisplayCountry("zh-CN", "en-GB");
   ```
 
 
-## i18n.isRTL<sup>8+</sup>
+## i18n.isRTL<sup>7+</sup>
 
 isRTL(locale: string): boolean
 
@@ -75,17 +75,17 @@ Checks whether the localized script for the specified language is displayed from
 
 **System capability**: SystemCapability.Global.I18n
 
-- Parameters
-  | Name| Type| Description|
-  | -------- | -------- | -------- |
-  | locale | string | Locale ID.|
+**Parameters**
+| Name   | Type    | Description     |
+| ------ | ------ | ------- |
+| locale | string | Locale ID.|
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | boolean | Returns **true** if the localized script is displayed from right to left; returns **false** otherwise.|
+**Return Value**
+| Type     | Description                                      |
+| ------- | ---------------------------------------- |
+| boolean | Returns **true** if the localized script is displayed from right to left; returns **false** otherwise.|
 
-- Example
+**Example**
   ```
   i18n.isRTL("zh-CN");// Since Chinese is not written from right to left, false is returned.
   i18n.isRTL("ar-EG");// Since Arabic is written from right to left, true is returned.
@@ -100,12 +100,12 @@ Obtains the system language.
 
 **System capability**: SystemCapability.Global.I18n
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | string | System language ID.|
+**Return Value**
+| Type    | Description     |
+| ------ | ------- |
+| string | System language ID.|
 
-- Example
+**Example**
   ```
   i18n.getSystemLanguage();
   ```
@@ -117,19 +117,21 @@ setSystemLanguage(language: string): boolean
 
 Sets the system language.
 
+**Required permission**: ohos.permission.UPDATE_CONFIGURATION
+
 **System capability**: SystemCapability.Global.I18n
 
-- Parameters
-  | Name| Type| Description|
-  | -------- | -------- | -------- |
-  | language | string | Language ID.|
+**Parameters**
+| Name     | Type    | Description   |
+| -------- | ------ | ----- |
+| language | string | Language ID.|
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+**Return Value**
+| Type     | Description                                   |
+| ------- | ------------------------------------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
-- Example
+**Example**
   ```
   i18n.setSystemLanguage('zh');
   ```
@@ -137,18 +139,18 @@ Sets the system language.
 
 ## i18n.getSystemLanguages
 
-getSystemLanguages(): Array<string>
+getSystemLanguages(): Array&lt;string&gt;
 
 Obtains the list of system languages.
 
 **System capability**: SystemCapability.Global.I18n
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | Array<string> | List of the IDs of system languages.|
+**Return Value**
+| Type                 | Description          |
+| ------------------- | ------------ |
+| Array&lt;string&gt; | List of the IDs of system languages.|
 
-- Example
+**Example**
   ```
   i18n.getSystemLanguages();
   ```
@@ -156,23 +158,23 @@ Obtains the list of system languages.
 
 ## i18n.getSystemCountries
 
-getSystemCountries(language: string): Array<string>
+getSystemCountries(language: string): Array&lt;string&gt;
 
 Obtains the list of countries and regions supported for the specified language.
 
 **System capability**: SystemCapability.Global.I18n
 
-- Parameters
-  | Name| Type| Description|
-  | -------- | -------- | -------- |
-  | language | string | Language ID.|
+**Parameters**
+| Name     | Type    | Description   |
+| -------- | ------ | ----- |
+| language | string | Language ID.|
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | Array<string> | List of the IDs of the countries and regions supported for the specified language.|
+**Return Value**
+| Type                 | Description          |
+| ------------------- | ------------ |
+| Array&lt;string&gt; | List of the IDs of the countries and regions supported for the specified language.|
 
-- Example
+**Example**
   ```
   i18n.getSystemCountries('zh');
   ```
@@ -186,12 +188,12 @@ Obtains the system region.
 
 **System capability**: SystemCapability.Global.I18n
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | string | System region ID.|
+**Return Value**
+| Type    | Description     |
+| ------ | ------- |
+| string | System region ID.|
 
-- Example
+**Example**
   ```
   i18n.getSystemRegion();
   ```
@@ -203,19 +205,21 @@ setSystemRegion(region: string): boolean
 
 Sets the system region.
 
+**Required permission**: ohos.permission.UPDATE_CONFIGURATION
+
 **System capability**: SystemCapability.Global.I18n
 
-- Parameters
-  | Name| Type| Description|
-  | -------- | -------- | -------- |
-  | region | string | Region ID.|
+**Parameters**
+| Name   | Type    | Description   |
+| ------ | ------ | ----- |
+| region | string | Region ID.|
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+**Return Value**
+| Type     | Description                                   |
+| ------- | ------------------------------------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
-- Example
+**Example**
   ```
   i18n.setSystemRegion();
   ```
@@ -229,12 +233,12 @@ Obtains the system locale.
 
 **System capability**: SystemCapability.Global.I18n
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | string | System locale ID.|
+**Return Value**
+| Type    | Description     |
+| ------ | ------- |
+| string | System locale ID.|
 
-- Example
+**Example**
   ```
   i18n.getSystemLocale();
   ```
@@ -246,19 +250,21 @@ setSystemLocale(locale: string): boolean
 
 Sets the system locale.
 
+**Required permission**: ohos.permission.UPDATE_CONFIGURATION
+
 **System capability**: SystemCapability.Global.I18n
 
-- Parameters
-  | Name| Type| Description|
-  | -------- | -------- | -------- |
-  | locale | string | System locale ID, for example, **zh-CN**.|
+**Parameters**
+| Name   | Type    | Description             |
+| ------ | ------ | --------------- |
+| locale | string | System locale ID, for example, **zh-CN**.|
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+**Return Value**
+| Type     | Description                                      |
+| ------- | ---------------------------------------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
-- Example
+**Example**
   ```
   i18n.setSystemLocale('zh-CN');
   ```
@@ -272,18 +278,18 @@ Checks whether the system language matches the specified region.
 
 **System capability**: SystemCapability.Global.I18n
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | language | string | Yes| Valid language ID, for example, **zh**.|
-  | region | string | No| Valid region ID, for example, **CN**.|
+**Parameters**
+| Name     | Type    | Mandatory  | Description           |
+| -------- | ------ | ---- | ------------- |
+| language | string | Yes   | Valid language ID, for example, **zh**.|
+| region   | string | No   | Valid region ID, for example, **CN**. |
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | boolean | Returns **true** if the system language matches the specified region; returns **false** otherwise.|
+**Return Value**
+| Type     | Description                                      |
+| ------- | ---------------------------------------- |
+| boolean | Returns **true** if the system language matches the specified region; returns **false** otherwise.|
 
-- Example
+**Example**
   ```
   i18n.isSuggested('zh', 'CN');
   ```
@@ -297,18 +303,18 @@ Obtains a **Calendar** object.
 
 **System capability**: SystemCapability.Global.I18n
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | locale | string | Yes| Valid locale value, for example, **zh-Hans-CN**.|
-  | type | string | No| Valid calendar type. Currently, the valid types are as follows: **buddhist**, **chinese**, **coptic**, **ethiopic**, **hebrew**, **gregory**, **indian**, **islamic\_civil**, **islamic\_tbla**, **islamic\_umalqura**, **japanese**, and **persian**. If this parameter is left unspecified, the default calendar type of the specified locale is used.|
+**Parameters**
+| Name   | Type    | Mandatory  | Description                                      |
+| ------ | ------ | ---- | ---------------------------------------- |
+| locale | string | Yes   | Valid locale value, for example, **zh-Hans-CN**.                |
+| type   | string | No   | Valid calendar type. Currently, the valid types are as follows: **buddhist**, **chinese**, **coptic**, **ethiopic**, **hebrew**, **gregory**, **indian**, **islamic\_civil**, **islamic\_tbla**, **islamic\_umalqura**, **japanese**, and **persian**. If this parameter is left unspecified, the default calendar type of the specified locale is used.|
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | [Calendar](#calendar8) | **Calendar** object.|
+**Return Value**
+| Type                    | Description   |
+| ---------------------- | ----- |
+| [Calendar](#calendar8) | **Calendar** object.|
 
-- Example
+**Example**
   ```
   i18n.getCalendar("zh-Hans", "gregory");
   ```
@@ -325,12 +331,12 @@ Sets the date for this **Calendar** object.
 
 **System capability**: SystemCapability.Global.I18n
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | date | Date | Yes| Date to be set for the **Calendar** object.|
+**Parameters**
+| Name | Type  | Mandatory  | Description               |
+| ---- | ---- | ---- | ----------------- |
+| date | Date | Yes   | Date to be set for the **Calendar** object.|
 
-- Example
+**Example**
   ```
   var calendar = I18n.getCalendar("en-US", "gregory");
   var date = new Date(2021, 10, 7, 8, 0, 0, 0);
@@ -346,12 +352,12 @@ Sets the date and time for this **Calendar** object. The value is represented by
 
 **System capability**: SystemCapability.Global.I18n
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | time | number | Yes| Number of milliseconds that have elapsed since the Unix epoch.|
+**Parameters**
+| Name | Type    | Mandatory  | Description                                      |
+| ---- | ------ | ---- | ---------------------------------------- |
+| time | number | Yes   | Number of milliseconds that have elapsed since the Unix epoch.|
 
-- Example
+**Example**
   ```
   var calendar = I18n.getCalendar("en-US", "gregory");
   calendar.setTime(10540800000);
@@ -366,17 +372,17 @@ Sets the year, month, day, hour, minute, and second for this **Calendar** object
 
 **System capability**: SystemCapability.Global.I18n
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | year | number | Yes| Year to set.|
-  | month | number | Yes| Month to set.|
-  | date | number | Yes| Day to set.|
-  | hour | number | No| Hour to set.|
-  | minute | number | No| Minute to set.|
-  | second | number | No| Second to set.|
+**Parameters**
+| Name   | Type    | Mandatory  | Description    |
+| ------ | ------ | ---- | ------ |
+| year   | number | Yes   | Year to set. |
+| month  | number | Yes   | Month to set. |
+| date   | number | Yes   | Day to set. |
+| hour   | number | No   | Hour to set.|
+| minute | number | No   | Minute to set.|
+| second | number | No   | Second to set. |
 
-- Example
+**Example**
   ```
   var calendar = i18n.getCalendar("zh-Hans");
   calendar.setTime(2021, 10, 1, 8, 0, 0); // set time to 2021.10.1 08:00:00
@@ -391,12 +397,12 @@ Sets the time zone of this **Calendar** object.
 
 **System capability**: SystemCapability.Global.I18n
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | timezone | string | Yes| Time zone, for example, **Asia/Shanghai**.|
+**Parameters**
+| Name     | Type    | Mandatory  | Description                       |
+| -------- | ------ | ---- | ------------------------- |
+| timezone | string | Yes   | Time zone, for example, **Asia/Shanghai**.|
 
-- Example
+**Example**
   ```
   var calendar = i18n.getCalendar("zh-Hans");
   calendar.setTimeZone("Asia/Shanghai");
@@ -411,12 +417,12 @@ Obtains the time zone of this **Calendar** object.
 
 **System capability**: SystemCapability.Global.I18n
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | string | Time zone of the **Calendar** object.|
+**Return Value**
+| Type    | Description        |
+| ------ | ---------- |
+| string | Time zone of the **Calendar** object.|
 
-- Example
+**Example**
   ```
   var calendar = i18n.getCalendar("zh-Hans");
   calendar.setTimeZone("Asia/Shanghai");
@@ -432,12 +438,12 @@ Obtains the start day of a week for this **Calendar** object.
 
 **System capability**: SystemCapability.Global.I18n
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | number | Start day of a week. The value **1** indicates Sunday, and the value **7** indicates Saturday.|
+**Return Value**
+| Type    | Description                   |
+| ------ | --------------------- |
+| number | Start day of a week. The value **1** indicates Sunday, and the value **7** indicates Saturday.|
 
-- Example
+**Example**
   ```
   var calendar = I18n.getCalendar("en-US", "gregory");
   calendar.getFirstDayOfWeek();
@@ -452,12 +458,12 @@ Sets the start day of a week for this **Calendar** object.
 
 **System capability**: SystemCapability.Global.I18n
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | value | number | No| Start day of a week. The value **1** indicates Sunday, and the value **7** indicates Saturday.|
+**Parameters**
+| Name  | Type    | Mandatory  | Description                   |
+| ----- | ------ | ---- | --------------------- |
+| value | number | No   | Start day of a week. The value **1** indicates Sunday, and the value **7** indicates Saturday.|
 
-- Example
+**Example**
   ```
   var calendar = i18n.getCalendar("zh-Hans");
   calendar.setFirstDayOfWeek(0);
@@ -472,12 +478,12 @@ Obtains the minimum number of days in the first week of a year.
 
 **System capability**: SystemCapability.Global.I18n
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | number | Minimum number of days in the first week of a year.|
+**Return Value**
+| Type    | Description          |
+| ------ | ------------ |
+| number | Minimum number of days in the first week of a year.|
 
-- Example
+**Example**
   ```
   var calendar = i18n.getCalendar("zh-Hans");
   calendar.getMinimalDaysInFirstWeek();
@@ -492,12 +498,12 @@ Sets the minimum number of days in the first week of a year.
 
 **System capability**: SystemCapability.Global.I18n
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | value | number | No| Minimum number of days in the first week of a year.|
+**Parameters**
+| Name  | Type    | Mandatory  | Description          |
+| ----- | ------ | ---- | ------------ |
+| value | number | No   | Minimum number of days in the first week of a year.|
 
-- Example
+**Example**
   ```
   var calendar = i18n.getCalendar("zh-Hans");
   calendar.setMinimalDaysInFirstWeek(3);
@@ -512,17 +518,17 @@ Obtains the value of the specified field in the **Calendar** object.
 
 **System capability**: SystemCapability.Global.I18n
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | field | string | Yes| Value of the specified field in the **Calendar** object. Currently, a valid field can be any of the following: **era**, **year**, **month**, **week\_of\_year**, **week\_of\_month**, **date**, **day\_of\_year**, **day\_of\_week**, **day\_of\_week\_in\_month**, **hour**, **hour\_of\_day**, **minute**, **second**, **millisecond**, **zone\_offset**, **dst\_offset**, **year\_woy**, **dow\_local**, **extended\_year**, **julian\_day**, **milliseconds\_in\_day**, **is\_leap\_month**.|
+**Parameters**
+| Name  | Type    | Mandatory  | Description                                      |
+| ----- | ------ | ---- | ---------------------------------------- |
+| field | string | Yes   | Value of the specified field in the **Calendar** object. Currently, a valid field can be any of the following: **era**, **year**, **month**, **week\_of\_year**, **week\_of\_month**, **date**, **day\_of\_year**, **day\_of\_week**, **day\_of\_week\_in\_month**, **hour**, **hour\_of\_day**, **minute**, **second**, **millisecond**, **zone\_offset**, **dst\_offset**, **year\_woy**, **dow\_local**, **extended\_year**, **julian\_day**, **milliseconds\_in\_day**, **is\_leap\_month**.|
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | number | Value of the specified field. For example, if the year in the internal date of this **Calendar** object is **1990**, the **get("year")** function will return **1990**.|
+**Return Value**
+| Type    | Description                                      |
+| ------ | ---------------------------------------- |
+| number | Value of the specified field. For example, if the year in the internal date of this **Calendar** object is **1990**, the **get("year")** function will return **1990**.|
 
-- Example
+**Example**
   ```
   var calendar = i18n.getCalendar("zh-Hans");
   calendar.setTime(2021, 10, 1, 8, 0, 0); // set time to 2021.10.1 08:00:00
@@ -538,17 +544,17 @@ Obtains the name of the **Calendar** object displayed for the specified locale.
 
 **System capability**: SystemCapability.Global.I18n
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | locale | string | Yes| Locale for which the name of the **Calendar** object is displayed. For example, if **locale** is **en-US**, the name of the Buddhist calendar will be **Buddhist Calendar**.|
+**Parameters**
+| Name   | Type    | Mandatory  | Description                                      |
+| ------ | ------ | ---- | ---------------------------------------- |
+| locale | string | Yes   | Locale for which the name of the **Calendar** object is displayed. For example, if **locale** is **en-US**, the name of the Buddhist calendar will be **Buddhist Calendar**.|
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | string | Name of the **Calendar** object displayed for the specified locale.|
+**Return Value**
+| Type    | Description                 |
+| ------ | ------------------- |
+| string | Name of the **Calendar** object displayed for the specified locale.|
 
-- Example
+**Example**
   ```
   var calendar = i18n.getCalendar("en-US", "buddhist");
   calendar.getDisplayName("zh"); // Obtain the name of the Buddhist calendar in zh.
@@ -563,17 +569,17 @@ Checks whether the specified date in this **Calendar** object is a weekend.
 
 **System capability**: SystemCapability.Global.I18n
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | date | Date | No| Specified date in this **Calendar** object. If this parameter is left unspecified, the system checks whether the current date in the **Calendar** object is a weekend.|
+**Parameters**
+| Name | Type  | Mandatory  | Description                                      |
+| ---- | ---- | ---- | ---------------------------------------- |
+| date | Date | No   | Specified date in this **Calendar** object. If this parameter is left unspecified, the system checks whether the current date in the **Calendar** object is a weekend.|
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | boolean | Returns **true** if the date is a weekend; returns **false** if the date is a weekday.|
+**Return Value**
+| Type     | Description                                 |
+| ------- | ----------------------------------- |
+| boolean | Returns **true** if the date is a weekend; returns **false** if the date is a weekday.|
 
-- Example
+**Example**
   ```
   var calendar = i18n.getCalendar("zh-Hans");
   calendar.setTime(2021, 11, 11, 8, 0, 0); // set time to 2021.11.11 08:00:00
@@ -595,12 +601,12 @@ Creates a **PhoneNumberFormat** object.
 **System capability**: SystemCapability.Global.I18n
 
 Parameters
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| country | string | Yes| Country or region to which the phone number to be formatted belongs.|
-| options | [PhoneNumberFormatOptions](#phonenumberformatoptions8) | No| Options of the **PhoneNumberFormat** object.|
+| Name    | Type                                      | Mandatory  | Description              |
+| ------- | ---------------------------------------- | ---- | ---------------- |
+| country | string                                   | Yes   | Country or region to which the phone number to be formatted belongs.|
+| options | [PhoneNumberFormatOptions](#phonenumberformatoptions8) | No   | Options of the **PhoneNumberFormat** object. |
 
-- Example
+**Example**
   ```
   var phoneNumberFormat= new i18n.PhoneNumberFormat("CN", {"type": "E164"});
   ```
@@ -614,17 +620,17 @@ Checks whether the format of the specified phone number is valid.
 
 **System capability**: SystemCapability.Global.I18n
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | number | string | Yes| Phone number to be checked.|
+**Parameters**
+| Name   | Type    | Mandatory  | Description       |
+| ------ | ------ | ---- | --------- |
+| number | string | Yes   | Phone number to be checked.|
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | boolean | Returns **true** if the phone number format is valid; returns **false** otherwise.|
+**Return Value**
+| Type     | Description                                   |
+| ------- | ------------------------------------- |
+| boolean | Returns **true** if the phone number format is valid; returns **false** otherwise.|
 
-- Example
+**Example**
   ```
   var phonenumberfmt = new i18n.PhoneNumberFormat("CN");
   phonenumberfmt.isValidNumber("15812312312");
@@ -639,17 +645,17 @@ Formats a phone number.
 
 **System capability**: SystemCapability.Global.I18n
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | number | string | Yes| Phone number to be formatted.|
+**Parameters**
+| Name   | Type    | Mandatory  | Description        |
+| ------ | ------ | ---- | ---------- |
+| number | string | Yes   | Phone number to be formatted.|
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | string | Formatted phone number.|
+**Return Value**
+| Type    | Description        |
+| ------ | ---------- |
+| string | Formatted phone number.|
 
-- Example
+**Example**
   ```
   var phonenumberfmt = new i18n.PhoneNumberFormat("CN");
   phonenumberfmt.format("15812312312");
@@ -662,9 +668,9 @@ Defines the options for this PhoneNumberFormat object.
 
 **System capability**: SystemCapability.Global.I18n
 
-| Name| Type| Readable| Writable| Description|
-| -------- | -------- | -------- | -------- | -------- |
-| type | string | Yes| Yes| Format type of a phone number. The value can be **E164**, **INTERNATIONAL**, **NATIONAL**, or **RFC3966**.|
+| Name  | Type  | Readable  | Writable  | Description                                      |
+| ---- | ------ | ---- | ---- | ---------------------------------------- |
+| type | string | Yes   | Yes   | Format type of a phone number. The value can be **E164**, **INTERNATIONAL**, **NATIONAL**, or **RFC3966**.|
 
 
 ## UnitInfo<sup>8+</sup>
@@ -673,10 +679,10 @@ Defines the measurement unit information.
 
 **System capability**: SystemCapability.Global.I18n
 
-| Name| Type| Readable| Writable| Description|
-| -------- | -------- | -------- | -------- | -------- |
-| unit | string | Yes| Yes| Name of the measurement unit, for example, **meter**, **inch**, or **cup**.|
-| measureSystem | string | Yes| Yes| Measurement system. The value can be **SI**, **US**, or **UK**.|
+| Name           | Type  | Readable  | Writable  | Description                                      |
+| ------------- | ------ | ---- | ---- | ---------------------------------------- |
+| unit          | string | Yes   | Yes   | Name of the measurement unit, for example, **meter**, **inch**, or **cup**.|
+| measureSystem | string | Yes   | Yes   | Measurement system. The value can be **SI**, **US**, or **UK**.|
 
 
 ## Util<sup>8+</sup>
@@ -690,21 +696,21 @@ Converts one measurement unit into another and formats the unit based on the spe
 
 **System capability**: SystemCapability.Global.I18n
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | fromUnit | [UnitInfo](#unitinfo8) | Yes| Measurement unit to be converted.|
-  | toUnit | [UnitInfo](#unitinfo8) | Yes| Measurement unit to be converted to.|
-  | value | number | Yes| Value of the measurement unit to be converted.|
-  | locale | string | Yes| Locale used for formatting, for example, **zh-Hans-CN**.|
-  | style | string | No| Style used for formatting. The value can be **long**, **short**, or **medium**.|
+**Parameters**
+| Name     | Type                    | Mandatory  | Description                                      |
+| -------- | ---------------------- | ---- | ---------------------------------------- |
+| fromUnit | [UnitInfo](#unitinfo8) | Yes   | Measurement unit to be converted.                                |
+| toUnit   | [UnitInfo](#unitinfo8) | Yes   | Measurement unit to be converted to.                                |
+| value    | number                 | Yes   | Value of the measurement unit to be converted.                            |
+| locale   | string                 | Yes   | Locale used for formatting, for example, **zh-Hans-CN**.               |
+| style    | string                 | No   | Style used for formatting. The value can be **long**, **short**, or **medium**.|
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | string | Character string obtained after formatting based on the measurement unit specified by **toUnit**.|
+**Return Value**
+| Type    | Description                     |
+| ------ | ----------------------- |
+| string | Character string obtained after formatting based on the measurement unit specified by **toUnit**.|
 
-- Example
+**Example**
   ```
   I18n.Util.unitConvert({unit: "cup", measureSystem: "US"}, {unit: "liter", measureSystem: "SI"}, 1000, "en-US", "long");
   ```
@@ -718,17 +724,17 @@ Creates an **IndexUtil** object.
 
 **System capability**: SystemCapability.Global.I18n
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | locale | string | No| A string containing locale information, including the language, optional script, and region.|
+**Parameters**
+| Name   | Type    | Mandatory  | Description                          |
+| ------ | ------ | ---- | ---------------------------- |
+| locale | string | No   | A string containing locale information, including the language, optional script, and region.|
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | [IndexUtil](#indexutil8) | **IndexUtil** object mapping to the specified locale.|
+**Return Value**
+| Type                      | Description                   |
+| ------------------------ | --------------------- |
+| [IndexUtil](#indexutil8) | **IndexUtil** object mapping to the specified locale.|
 
-- Example
+**Example**
   ```
   var indexUtil= i18n.IndexUtil.getInstance("zh-CN");
   ```
@@ -745,12 +751,12 @@ Obtains the index list for this **locale** object.
 
 **System capability**: SystemCapability.Global.I18n
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | Array&lt;string&gt; | Index list for this **locale** object.|
+**Return Value**
+| Type                 | Description                |
+| ------------------- | ------------------ |
+| Array&lt;string&gt; | Index list for this **locale** object.|
 
-- Example
+**Example**
   ```
   var indexUtil = i18n.getInstance("zh-CN");
   var indexList = indexUtil.getIndexList();
@@ -765,12 +771,12 @@ Adds the index of the new **locale** object to the index list.
 
 **System capability**: SystemCapability.Global.I18n
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | locale | string | Yes| A string containing locale information, including the language, optional script, and region.|
+**Parameters**
+| Name   | Type    | Mandatory  | Description                          |
+| ------ | ------ | ---- | ---------------------------- |
+| locale | string | Yes   | A string containing locale information, including the language, optional script, and region.|
 
-- Example
+**Example**
   ```
   var indexUtil = i18n.getInstance("zh-CN");
   indexUtil.addLocale("en-US");
@@ -785,17 +791,17 @@ Obtains the index of a text object.
 
 **System capability**: SystemCapability.Global.I18n
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | text | string | Yes| **text** object whose index is to be obtained.|
+**Parameters**
+| Name | Type    | Mandatory  | Description          |
+| ---- | ------ | ---- | ------------ |
+| text | string | Yes   | **text** object whose index is to be obtained.|
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | string | Index of the **text** object.|
+**Return Value**
+| Type    | Description         |
+| ------ | ----------- |
+| string | Index of the **text** object.|
 
-- Example
+**Example**
   ```
   var indexUtil= i18n.getInstance("zh-CN");
   indexUtil.getIndex("hi"); // Return h.
@@ -813,17 +819,17 @@ Checks whether the input character string is composed of digits.
 
 **System capability**: SystemCapability.Global.I18n
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | char | string | Yes| Input character.|
+**Parameters**
+| Name | Type    | Mandatory  | Description   |
+| ---- | ------ | ---- | ----- |
+| char | string | Yes   | Input character.|
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | boolean | Returns **true** if the input character is a digit; returns **false** otherwise.|
+**Return Value**
+| Type     | Description                                  |
+| ------- | ------------------------------------ |
+| boolean | Returns **true** if the input character is a digit; returns **false** otherwise.|
 
-- Example
+**Example**
   ```
   var isdigit = Character.isDigit("1"); // Return true.
   ```
@@ -837,17 +843,17 @@ Checks whether the input character is a space.
 
 **System capability**: SystemCapability.Global.I18n
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | char | string | Yes| Input character.|
+**Parameters**
+| Name | Type    | Mandatory  | Description   |
+| ---- | ------ | ---- | ----- |
+| char | string | Yes   | Input character.|
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | boolean | Returns **true** if the input character is a space; returns **false** otherwise.|
+**Return Value**
+| Type     | Description                                    |
+| ------- | -------------------------------------- |
+| boolean | Returns **true** if the input character is a space; returns **false** otherwise.|
 
-- Example
+**Example**
   ```
   var isspacechar = Character.isSpaceChar("a"); // Return false.
   ```
@@ -861,17 +867,17 @@ Checks whether the input character is a white space.
 
 **System capability**: SystemCapability.Global.I18n
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | char | string | Yes| Input character.|
+**Parameters**
+| Name | Type    | Mandatory  | Description   |
+| ---- | ------ | ---- | ----- |
+| char | string | Yes   | Input character.|
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | boolean | Returns **true** if the input character is a white space; returns **false** otherwise.|
+**Return Value**
+| Type     | Description                                    |
+| ------- | -------------------------------------- |
+| boolean | Returns **true** if the input character is a white space; returns **false** otherwise.|
 
-- Example
+**Example**
   ```
   var iswhitespace = Character.isWhitespace("a"); // Return false.
   ```
@@ -885,17 +891,17 @@ Checks whether the input character is of the right to left (RTL) language.
 
 **System capability**: SystemCapability.Global.I18n
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | char | string | Yes| Input character.|
+**Parameters**
+| Name | Type    | Mandatory  | Description   |
+| ---- | ------ | ---- | ----- |
+| char | string | Yes   | Input character.|
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | boolean | Returns **true** if the input character is of the RTL language; returns **false** otherwise.|
+**Return Value**
+| Type     | Description                                      |
+| ------- | ---------------------------------------- |
+| boolean | Returns **true** if the input character is of the RTL language; returns **false** otherwise.|
 
-- Example
+**Example**
   ```
   var isrtl = Character.isRTL("a"); // Return false.
   ```
@@ -909,17 +915,17 @@ Checks whether the input character is an ideographic character.
 
 **System capability**: SystemCapability.Global.I18n
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | char | string | Yes| Input character.|
+**Parameters**
+| Name | Type    | Mandatory  | Description   |
+| ---- | ------ | ---- | ----- |
+| char | string | Yes   | Input character.|
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | boolean | Returns **true** if the input character is an ideographic character; returns **false** otherwise.|
+**Return Value**
+| Type     | Description                                      |
+| ------- | ---------------------------------------- |
+| boolean | Returns **true** if the input character is an ideographic character; returns **false** otherwise.|
 
-- Example
+**Example**
   ```
   var isideograph = Character.isIdeograph("a"); // Return false.
   ```
@@ -933,17 +939,17 @@ Checks whether the input character is a letter.
 
 **System capability**: SystemCapability.Global.I18n
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | char | string | Yes| Input character.|
+**Parameters**
+| Name | Type    | Mandatory  | Description   |
+| ---- | ------ | ---- | ----- |
+| char | string | Yes   | Input character.|
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | boolean | Returns **true** if the input character is a letter; returns **false** otherwise.|
+**Return Value**
+| Type     | Description                                  |
+| ------- | ------------------------------------ |
+| boolean | Returns **true** if the input character is a letter; returns **false** otherwise.|
 
-- Example
+**Example**
   ```
   var isletter = Character.isLetter("a"); // Return true.
   ```
@@ -957,17 +963,17 @@ Checks whether the input character is a lowercase letter.
 
 **System capability**: SystemCapability.Global.I18n
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | char | string | Yes| Input character.|
+**Parameters**
+| Name | Type    | Mandatory  | Description   |
+| ---- | ------ | ---- | ----- |
+| char | string | Yes   | Input character.|
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | boolean | Returns **true** if the input character is a lowercase letter; returns **false** otherwise.|
+**Return Value**
+| Type     | Description                                      |
+| ------- | ---------------------------------------- |
+| boolean | Returns **true** if the input character is a lowercase letter; returns **false** otherwise.|
 
-- Example
+**Example**
   ```
   var islowercase = Character.isLowerCase("a"); // Return true.
   ```
@@ -981,17 +987,17 @@ Checks whether the input character is an uppercase letter.
 
 **System capability**: SystemCapability.Global.I18n
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | char | string | Yes| Input character.|
+**Parameters**
+| Name | Type    | Mandatory  | Description   |
+| ---- | ------ | ---- | ----- |
+| char | string | Yes   | Input character.|
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | boolean | Returns **true** if the input character is an uppercase letter; returns **false** otherwise.|
+**Return Value**
+| Type     | Description                                      |
+| ------- | ---------------------------------------- |
+| boolean | Returns **true** if the input character is an uppercase letter; returns **false** otherwise.|
 
-- Example
+**Example**
   ```
   var isuppercase = Character.isUpperCase("a"); // Return false.
   ```
@@ -1005,17 +1011,17 @@ Obtains the type of the input character string.
 
 **System capability**: SystemCapability.Global.I18n
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | char | string | Yes| Input character.|
+**Parameters**
+| Name | Type    | Mandatory  | Description   |
+| ---- | ------ | ---- | ----- |
+| char | string | Yes   | Input character.|
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | string | Type of the input character.|
+**Return Value**
+| Type    | Description         |
+| ------ | ----------- |
+| string | Type of the input character.|
 
-- Example
+**Example**
   ```
   var type = Character.getType("a");
   ```
@@ -1029,17 +1035,17 @@ Obtains a [BreakIterator](#breakiterator8) object for text segmentation.
 
 **System capability**: SystemCapability.Global.I18n
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | locale | string | Yes| Valid locale value, for example, **zh-Hans-CN**. The [BreakIterator](#breakiterator8) object segments text according to the rules of the specified locale.|
+**Parameters**
+| Name   | Type    | Mandatory  | Description                                      |
+| ------ | ------ | ---- | ---------------------------------------- |
+| locale | string | Yes   | Valid locale value, for example, **zh-Hans-CN**. The [BreakIterator](#breakiterator8) object segments text according to the rules of the specified locale.|
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | [BreakIterator](#breakiterator8) | [BreakIterator](#breakiterator8) object used for text segmentation.|
+**Return Value**
+| Type                              | Description         |
+| -------------------------------- | ----------- |
+| [BreakIterator](#breakiterator8) | [BreakIterator](#breakiterator8) object used for text segmentation.|
 
-- Example
+**Example**
   ```
   i18n.getLineInstance("en");
   ```
@@ -1056,12 +1062,12 @@ Sets the text to be processed by the [BreakIterator](#breakiterator8) object.
 
 **System capability**: SystemCapability.Global.I18n
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | text | string | Yes| Text to be processed by the **BreakIterator** object.|
+**Parameters**
+| Name | Type    | Mandatory  | Description                     |
+| ---- | ------ | ---- | ----------------------- |
+| text | string | Yes   | Text to be processed by the **BreakIterator** object.|
 
-- Example
+**Example**
   ```
   iterator = I18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
@@ -1076,12 +1082,12 @@ Obtains the text being processed by the [BreakIterator](#breakiterator8) object.
 
 **System capability**: SystemCapability.Global.I18n
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | string | Text being processed by the **BreakIterator** object.|
+**Return Value**
+| Type    | Description                    |
+| ------ | ---------------------- |
+| string | Text being processed by the **BreakIterator** object.|
 
-- Example
+**Example**
   ```
   iterator = I18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
@@ -1097,12 +1103,12 @@ Obtains the position of the [BreakIterator](#breakiterator8) object in the text 
 
 **System capability**: SystemCapability.Global.I18n
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | number | Position of the **BreakIterator** object in the text being processed.|
+**Return Value**
+| Type    | Description                         |
+| ------ | --------------------------- |
+| number | Position of the **BreakIterator** object in the text being processed.|
 
-- Example
+**Example**
   ```
   iterator = I18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
@@ -1118,12 +1124,12 @@ Puts the [BreakIterator](#breakiterator8) object to the first text boundary, whi
 
 **System capability**: SystemCapability.Global.I18n
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | number | Offset to the first text boundary of the processed text.|
+**Return Value**
+| Type    | Description               |
+| ------ | ----------------- |
+| number | Offset to the first text boundary of the processed text.|
 
-- Example
+**Example**
   ```
   iterator = I18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
@@ -1139,12 +1145,12 @@ Puts the [BreakIterator](#breakiterator8) object to the last text boundary, whic
 
 **System capability**: SystemCapability.Global.I18n
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | number | Offset of the last text boundary of the processed text.|
+**Return Value**
+| Type    | Description                |
+| ------ | ------------------ |
+| number | Offset of the last text boundary of the processed text.|
 
-- Example
+**Example**
   ```
   iterator = I18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
@@ -1160,17 +1166,17 @@ Moves the [BreakIterator](#breakiterator8) object backward by the specified numb
 
 **System capability**: SystemCapability.Global.I18n
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | index | number | No| Number of text boundaries by which the [BreakIterator](#breakiterator8) object is moved. A positive value indicates that the text boundary is moved backward, and a negative value indicates the opposite. If no index is specified, the index will be treated as **1**.|
+**Parameters**
+| Name  | Type    | Mandatory  | Description                                      |
+| ----- | ------ | ---- | ---------------------------------------- |
+| index | number | No   | Number of text boundaries by which the [BreakIterator](#breakiterator8) object is moved. A positive value indicates that the text boundary is moved backward, and a negative value indicates the opposite. If no index is specified, the index will be treated as **1**.|
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | number | Position of the [BreakIterator](#breakiterator8) object in the text after it is moved by the specified number of text boundaries. The value **-1** is returned if the position of the [BreakIterator](#breakiterator8) object is outside of the processed text after it is moved by the specified number of text boundaries.|
+**Return Value**
+| Type    | Description                                      |
+| ------ | ---------------------------------------- |
+| number | Position of the [BreakIterator](#breakiterator8) object in the text after it is moved by the specified number of text boundaries. The value **-1** is returned if the position of the [BreakIterator](#breakiterator8) object is outside of the processed text after it is moved by the specified number of text boundaries.|
 
-- Example
+**Example**
   ```
   iterator = I18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
@@ -1188,12 +1194,12 @@ Moves the [BreakIterator](#breakiterator8) object to the previous text boundary.
 
 **System capability**: SystemCapability.Global.I18n
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | number | Position of the [BreakIterator](#breakiterator8) object in the text after it is moved to the previous text boundary. The value **-1** is returned if the position of the [BreakIterator](#breakiterator8) object is outside of the processed text after it is moved by the specified number of text boundaries.|
+**Return Value**
+| Type    | Description                                      |
+| ------ | ---------------------------------------- |
+| number | Position of the [BreakIterator](#breakiterator8) object in the text after it is moved to the previous text boundary. The value **-1** is returned if the position of the [BreakIterator](#breakiterator8) object is outside of the processed text after it is moved by the specified number of text boundaries.|
 
-- Example
+**Example**
   ```
   iterator = I18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
@@ -1211,17 +1217,17 @@ Moves the [BreakIterator](#breakiterator8) object to the text boundary after the
 
 **System capability**: SystemCapability.Global.I18n
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | offset | number | Yes| Offset to the position before the text boundary to which the [BreakIterator](#breakiterator8) object is moved.|
+**Parameters**
+| Name   | Type    | Mandatory  | Description                                      |
+| ------ | ------ | ---- | ---------------------------------------- |
+| offset | number | Yes   | Offset to the position before the text boundary to which the [BreakIterator](#breakiterator8) object is moved.|
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | number | The value **-1** is returned if the text boundary to which the [BreakIterator](#breakiterator8) object is moved is outside of the processed text.|
+**Return Value**
+| Type    | Description                                      |
+| ------ | ---------------------------------------- |
+| number | The value **-1** is returned if the text boundary to which the [BreakIterator](#breakiterator8) object is moved is outside of the processed text.|
 
-- Example
+**Example**
   ```
   iterator = I18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
@@ -1239,17 +1245,17 @@ Checks whether the position specified by the offset is a text boundary. If **tru
 
 **System capability**: SystemCapability.Global.I18n
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | offset | number | Yes| Position to check.|
+**Parameters**
+| Name   | Type    | Mandatory  | Description         |
+| ------ | ------ | ---- | ----------- |
+| offset | number | Yes   | Position to check.|
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | boolean | Returns **true** if the position specified by the offset is a text boundary; returns **false** otherwise.|
+**Return Value**
+| Type     | Description                             |
+| ------- | ------------------------------- |
+| boolean | Returns **true** if the position specified by the offset is a text boundary; returns **false** otherwise.|
 
-- Example
+**Example**
   ```
   iterator = I18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
@@ -1258,7 +1264,7 @@ Checks whether the position specified by the offset is a text boundary. If **tru
   ```
 
 
-## i18n.is24HourClock<sup>8+</sup>
+## i18n.is24HourClock<sup>7+</sup>
 
 is24HourClock(): boolean
 
@@ -1266,36 +1272,38 @@ Checks whether the 24-hour clock is used.
 
 **System capability**: SystemCapability.Global.I18n
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | boolean | Returns **true** if the 24-hour clock is used; returns **false** otherwise.|
+**Return Value**
+| Type     | Description                                      |
+| ------- | ---------------------------------------- |
+| boolean | Returns **true** if the 24-hour clock is used; returns **false** otherwise.|
 
-- Example
+**Example**
   ```
   var is24HourClock = i18n.is24HourClock();
   ```
 
 
-## i18n.set24HourClock<sup>8+</sup>
+## i18n.set24HourClock<sup>7+</sup>
 
 set24HourClock(option: boolean): boolean
 
 Sets the 24-hour clock.
 
+**Required permission**: ohos.permission.UPDATE_CONFIGURATION
+
 **System capability**: SystemCapability.Global.I18n
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | option | boolean | Yes| Whether to enable the 24-hour clock. The value **true** means to enable the 24-hour clock, and the value **false** means the opposite.|
+**Parameters**
+| Name   | Type     | Mandatory  | Description                                      |
+| ------ | ------- | ---- | ---------------------------------------- |
+| option | boolean | Yes   | Whether to enable the 24-hour clock. The value **true** means to enable the 24-hour clock, and the value **false** means the opposite.|
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | boolean | Returns **true** if the 24-hour clock is enabled; returns **false** otherwise.|
+**Return Value**
+| Type     | Description                           |
+| ------- | ----------------------------- |
+| boolean | Returns **true** if the 24-hour clock is enabled; returns **false** otherwise.|
 
-- Example
+**Example**
   ```
   // Set the system time to the 24-hour clock.
   var success = I18n.set24HourClock(true);
@@ -1308,20 +1316,22 @@ addPreferredLanguage(language: string, index?: number): boolean
 
 Adds a preferred language to the specified position on the preferred language list.
 
+**Required permission**: ohos.permission.UPDATE_CONFIGURATION
+
 **System capability**: SystemCapability.Global.I18n
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | language | string | Yes| Preferred language to add.|
-  | index | number | No| Position to which the preferred language is added.|
+**Parameters**
+| Name     | Type    | Mandatory  | Description        |
+| -------- | ------ | ---- | ---------- |
+| language | string | Yes   | Preferred language to add. |
+| index    | number | No   | Position to which the preferred language is added.|
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | boolean | Returns **true** if the preferred language is successfully added; returns **false** otherwise.|
+**Return Value**
+| Type     | Description                           |
+| ------- | ----------------------------- |
+| boolean | Returns **true** if the preferred language is successfully added; returns **false** otherwise.|
 
-- Example
+**Example**
   ```
   // Add zh-CN to the preferred language list.
   var language = 'zh-CN';
@@ -1336,19 +1346,21 @@ removePreferredLanguage(index: number): boolean
 
 Deletes a preferred language from the specified position on the preferred language list.
 
+**Required permission**: ohos.permission.UPDATE_CONFIGURATION
+
 **System capability**: SystemCapability.Global.I18n
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | index | number | Yes| Position of the preferred language to delete.|
+**Parameters**
+| Name  | Type    | Mandatory  | Description                   |
+| ----- | ------ | ---- | --------------------- |
+| index | number | Yes   | Position of the preferred language to delete.|
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | boolean | Returns **true** if the preferred language is deleted; returns **false** otherwise.|
+**Return Value**
+| Type     | Description                           |
+| ------- | ----------------------------- |
+| boolean | Returns **true** if the preferred language is deleted; returns **false** otherwise.|
 
-- Example
+**Example**
   ```
   // Delete the first preferred language from the preferred language list.
   var index = 0;
@@ -1358,18 +1370,18 @@ Deletes a preferred language from the specified position on the preferred langua
 
 ## i18n.getPreferredLanguageList<sup>8+</sup>
 
-getPreferredLanguageList(): Array<string>
+getPreferredLanguageList(): Array&lt;string&gt;
 
 Obtains the list of preferred languages.
 
 **System capability**: SystemCapability.Global.I18n
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | Array<string> | List of preferred languages.|
+**Return Value**
+| Type                 | Description       |
+| ------------------- | --------- |
+| Array&lt;string&gt; | List of preferred languages.|
 
-- Example
+**Example**
   ```
   var preferredLanguageList = i18n.getPreferredLanguageList();
   ```
@@ -1383,18 +1395,18 @@ Obtains the first language in the preferred language list.
 
 **System capability**: SystemCapability.Global.I18n
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | string | First language in the preferred language list.|
+**Return Value**
+| Type    | Description            |
+| ------ | -------------- |
+| string | First language in the preferred language list.|
 
-- Example
+**Example**
   ```
   var firstPreferredLanguage = i18n.getFirstPreferredLanguage();
   ```
 
 
-## i18n.getTimeZone<sup>8+</sup>
+## i18n.getTimeZone<sup>7+</sup>
 
 getTimeZone(zoneID?: string): TimeZone
 
@@ -1402,17 +1414,17 @@ Obtains the **TimeZone** object corresponding to the specified time zone ID.
 
 **System capability**: SystemCapability.Global.I18n
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | zondID | string | No| Time zone ID.|
+**Parameters**
+| Name   | Type    | Mandatory  | Description   |
+| ------ | ------ | ---- | ----- |
+| zondID | string | No   | Time zone ID.|
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | TimeZone | **TimeZone** object corresponding to the time zone ID.|
+**Return Value**
+| Type      | Description          |
+| -------- | ------------ |
+| TimeZone | **TimeZone** object corresponding to the time zone ID.|
 
-- Example
+**Example**
   ```
   var timezone = i18n.getTimeZone();
   ```
@@ -1429,12 +1441,12 @@ Obtains the ID of the specified **TimeZone** object.
 
 **System capability**: SystemCapability.Global.I18n
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | string | Time zone ID corresponding to the **TimeZone** object.|
+**Return Value**
+| Type    | Description          |
+| ------ | ------------ |
+| string | Time zone ID corresponding to the **TimeZone** object.|
 
-- Example
+**Example**
   ```
   var timezone = i18n.getTimeZone();
   timezone.getID();
@@ -1449,18 +1461,18 @@ Obtains the representation of a **TimeZone** object in the specified locale.
 
 **System capability**: SystemCapability.Global.I18n
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | locale | string | No| System locale ID.|
-  | isDST | boolean | No| Whether to consider DST when obtaining the representation of the **TimeZone** object.|
+**Parameters**
+| Name   | Type     | Mandatory  | Description                  |
+| ------ | ------- | ---- | -------------------- |
+| locale | string  | No   | System locale ID.               |
+| isDST  | boolean | No   | Whether to consider DST when obtaining the representation of the **TimeZone** object.|
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | string | Representation of the **TimeZone** object in the specified locale.|
+**Return Value**
+| Type    | Description           |
+| ------ | ------------- |
+| string | Representation of the **TimeZone** object in the specified locale.|
 
-- Example
+**Example**
   ```
   var timezone = i18n.getTimeZone();
   timezone.getDisplayName("zh-CN", false);
@@ -1475,12 +1487,12 @@ Obtains the offset between the time zone represented by a **TimeZone** object an
 
 **System capability**: SystemCapability.Global.I18n
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | number | Offset between the time zone represented by the **TimeZone** object and the UTC time zone.|
+**Return Value**
+| Type    | Description                 |
+| ------ | ------------------- |
+| number | Offset between the time zone represented by the **TimeZone** object and the UTC time zone.|
 
-- Example
+**Example**
   ```
   var timezone = i18n.getTimeZone();
   timezone.getRawOffset();
@@ -1495,12 +1507,12 @@ Obtains the offset between the time zone represented by a **TimeZone** object an
 
 **System capability**: SystemCapability.Global.I18n
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | number | Offset between the time zone represented by the **TimeZone** object and the UTC time zone at a certain time point.|
+**Return Value**
+| Type    | Description                     |
+| ------ | ----------------------- |
+| number | Offset between the time zone represented by the **TimeZone** object and the UTC time zone at a certain time point.|
 
-- Example
+**Example**
   ```
   var timezone = i18n.getTimeZone();
   timezone.getOffset(1234567890);

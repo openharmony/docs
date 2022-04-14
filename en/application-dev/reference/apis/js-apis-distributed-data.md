@@ -26,29 +26,29 @@ Creates a **KVManager** object to manage key-value (KV) stores. This method uses
 | config | [KVManagerConfig](#kvmanagerconfig) | Yes | Configuration of the **KVManager** object, including the bundle name and user information of the caller.|
 | callback | AsyncCallback&lt;[KVManager](#kvmanager)&gt; | Yes | Callback invoked to return the **KVManager** object created.|
 
-
 **Example**
-
-    let kvManager;
-    try {
-        const kvManagerConfig = {
-            bundleName : 'com.example.datamanagertest',
-            userInfo : {
-                userId : '0',
-                userType : distributedData.UserType.SAME_USER_ID
-            }
+```
+let kvManager;
+try {
+    const kvManagerConfig = {
+        bundleName : 'com.example.datamanagertest',
+        userInfo : {
+            userId : '0',
+            userType : distributedData.UserType.SAME_USER_ID
         }
-        distributedData.createKVManager(kvManagerConfig, function (err, manager) {
-            if (err) {
-                console.log("createKVManager err: "  + JSON.stringify(err));
-                return;
-            }
-            console.log("createKVManager success");
-            kvManager = manager;
-        });
-    } catch (e) {
-        console.log("An unexpected error occurred. Error:" + e);
     }
+    distributedData.createKVManager(kvManagerConfig, function (err, manager) {
+        if (err) {
+            console.log("createKVManager err: "  + JSON.stringify(err));
+            return;
+        }
+        console.log("createKVManager success");
+        kvManager = manager;
+    });
+} catch (e) {
+    console.log("An unexpected error occurred. Error:" + e);
+}
+```
 
 ## distributedData.createKVManager
 
@@ -72,25 +72,26 @@ Creates a **KVManager** object to manage KV stores. This method uses a promise t
 
 **Example**
 
-    let kvManager;
-    try {
-        const kvManagerConfig = {
-            bundleName : 'com.example.datamanagertest',
-            userInfo : {
-                userId : '0',
-                userType : distributedData.UserType.SAME_USER_ID
-            }
+```
+let kvManager;
+try {
+    const kvManagerConfig = {
+        bundleName : 'com.example.datamanagertest',
+        userInfo : {
+            userId : '0',
+            userType : distributedData.UserType.SAME_USER_ID
         }
-        distributedData.createKVManager(kvManagerConfig).then((manager) => {
-            console.log("createKVManager success");
-            kvManager = manager;
-        }).catch((err) => {
-            console.log("createKVManager err: "  + JSON.stringify(err));
-        });
-    } catch (e) {
-        console.log("An unexpected error occurred. Error:" + e);
     }
-
+    distributedData.createKVManager(kvManagerConfig).then((manager) => {
+        console.log("createKVManager success");
+        kvManager = manager;
+    }).catch((err) => {
+        console.log("createKVManager err: "  + JSON.stringify(err));
+    });
+} catch (e) {
+    console.log("An unexpected error occurred. Error:" + e);
+}
+```
 
 ## KVManagerConfig
 
@@ -102,8 +103,6 @@ Provides configuration of the **KVManager** object, including the bundle name an
 | ----- | ------ | ------ | ------ |
 | userInfo | [UserInfo](#userinfo) | Yes | User information.|
 | bundleName | string | Yes | Bundle name.|
-
-
 
 ## UserInfo
 
@@ -132,8 +131,6 @@ Defines the user type.
 
 Creates a **KVManager** object to obtain KV store information. Before calling any method in **KVManager**, you must use **createKVManager** to create a **KVManager** object.
 
-
-
 ### getKVStore
 
 getKVStore&lt;T extends KVStore&gt;(storeId: string, options: Options, callback: AsyncCallback&lt;T&gt;): void
@@ -152,30 +149,30 @@ Creates and obtains a KV store. This method uses an asynchronous callback to ret
 
 **Example**
 
-    ```
-    let kvStore;
-    let kvManager;
-    try {
-        const options = {
-            createIfMissing : true,
-            encrypt : false,
-            backup : false,
-            autoSync : true,
-            kvStoreType : distributedData.KVStoreType.SINGLE_VERSION,
-            securityLevel : distributedData.SecurityLevel.S2,
-        };
-        kvManager.getKVStore('storeId', options, function (err, store) {
-            if (err) {
-                console.log("getKVStore err: "  + JSON.stringify(err));
-                return;
-            }
-            console.log("getKVStore success");
-            kvStore = store;
-        });
-    } catch (e) {
-        console.log("An unexpected error occurred. Error:" + e);
-    }
-    ```
+```
+let kvStore;
+let kvManager;
+try {
+    const options = {
+        createIfMissing : true,
+        encrypt : false,
+        backup : false,
+        autoSync : true,
+        kvStoreType : distributedData.KVStoreType.SINGLE_VERSION,
+        securityLevel : distributedData.SecurityLevel.S2,
+    };
+    kvManager.getKVStore('storeId', options, function (err, store) {
+        if (err) {
+            console.log("getKVStore err: "  + JSON.stringify(err));
+            return;
+        }
+        console.log("getKVStore success");
+        kvStore = store;
+    });
+} catch (e) {
+    console.log("An unexpected error occurred. Error:" + e);
+}
+```
 
 
 ### getKVStore
@@ -200,31 +197,30 @@ Creates and obtains a KV store. This method uses a promise to return the result.
 | -------------------------------------- | ------------------------ |
 | Promise&lt;T&gt; &lt;T extends KVStore&gt; | Promise used to return the KV store created.|
 
-
 **Example**
 
-  ```
-  let kvStore;
-  let kvManager;
-  try {
-      const options = {
-          createIfMissing : true,
-          encrypt : false,
-          backup : false,
-          autoSync : true,
-          kvStoreType : distributedData.KVStoreType.SINGLE_VERSION,
-          securityLevel : distributedData.SecurityLevel.S2,
-      };
-      kvManager.getKVStore('storeId', options).then((store) => {
-          console.log("getKVStore success");
-          kvStore = store;
-      }).catch((err) => {
-          console.log("getKVStore err: "  + JSON.stringify(err));
-      });
-  } catch (e) {
-      console.log("An unexpected error occurred. Error:" + e);
-  }
-  ```
+```
+let kvStore;
+let kvManager;
+try {
+    const options = {
+        createIfMissing : true,
+        encrypt : false,
+        backup : false,
+        autoSync : true,
+        kvStoreType : distributedData.KVStoreType.SINGLE_VERSION,
+        securityLevel : distributedData.SecurityLevel.S2,
+    };
+    kvManager.getKVStore('storeId', options).then((store) => {
+        console.log("getKVStore success");
+        kvStore = store;
+    }).catch((err) => {
+        console.log("getKVStore err: "  + JSON.stringify(err));
+    });
+} catch (e) {
+    console.log("An unexpected error occurred. Error:" + e);
+}
+```
 
 ### closeKVStore<sup>8+</sup> ###
 
@@ -244,33 +240,33 @@ Closes a KV store. This method uses an asynchronous callback to return the resul
 | kvStore  | [KVStore](#kvstore) | Yes  | KV store to close.     |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the KV store is closed, **true** will be returned. Otherwise, **false** will be returned.  |
 
-
 **Example**
 
-    ```
-    let kvStore;
-    let kvManager;
-    const options = {
-        createIfMissing : true,
-        encrypt : false,
-        backup : false,
-        autoSync : true,
-        kvStoreType : distributedData.KVStoreType.SINGLE_VERSION,
-        schema : '',
-        securityLevel : distributedData.SecurityLevel.S2,
-    }
-    try {
-        kvManager.getKVStore('storeId', options, async function (err, store) {
-            console.log('getKVStore success');
-            kvStore = store;
-            await kvManager.closeKVStore('appId', 'storeId', kvStore, function (err, data) {
-                console.log('closeKVStore success');
-            });
-        });
-    } catch (e) {
-        console.log('closeKVStore e ' + e);
-    }
-    ```
+```
+let kvStore;
+let kvManager;
+const options = {
+    createIfMissing : true,
+    encrypt : false,
+    backup : false,
+    autoSync : true,
+    kvStoreType : distributedData.KVStoreType.SINGLE_VERSION,
+    schema : '',
+    securityLevel : distributedData.SecurityLevel.S2,
+ }
+ try {
+    kvManager.getKVStore('storeId', options, async function (err, store) {
+    console.log('getKVStore success');
+    kvStore = store;
+    await kvManager.closeKVStore('appId', 'storeId', kvStore, function (err, data) {
+        console.log('closeKVStore success');
+    });
+    });
+} catch (e) {
+    console.log('closeKVStore e ' + e);
+}
+```
+
 
 ### closeKVStore<sup>8+</sup> ###
 
@@ -296,34 +292,34 @@ Closes a KV store. This method uses a promise to return the result.
 
 **Example**
 
-    ```
-    let kvManager;
-    let kvStore;
-    const options = {
-        createIfMissing : true,
-        encrypt : false,
-        backup : false,
-        autoSync : true,
-        kvStoreType : distributedData.KVStoreType.SINGLE_VERSION,
-        schema : '',
-        securityLevel : distributedData.SecurityLevel.S2,
-    }
-    try {
-        kvManager.getKVStore('storeId', options).then(async (store) => {
-            console.log('getKVStore success');
-            kvStore = store;
-            await kvManager.closeKVStore('appId', 'storeId', kvStore).then(() => {
-                console.log('closeKVStore success');
-            }).catch((err) => {
-                console.log('closeKVStore err ' + JSON.stringify(err));
-            });
-        }).catch((err) => {
-            console.log('CloseKVStore getKVStore err ' + JSON.stringify(err));
-        });
-    } catch (e) {
-        console.log('closeKVStore e ' + e);
-    }
-    ```
+```
+let kvManager;
+let kvStore;
+const options = {
+    createIfMissing : true,
+    encrypt : false,
+    backup : false,
+    autoSync : true,
+    kvStoreType : distributedData.KVStoreType.SINGLE_VERSION,
+    schema : '',
+    securityLevel : distributedData.SecurityLevel.S2,
+}
+ try {
+    kvManager.getKVStore('storeId', options).then(async (store) => {
+    console.log('getKVStore success');
+    kvStore = store;
+    await kvManager.closeKVStore('appId', 'storeId', kvStore).then(() => {
+        console.log('closeKVStore success');
+    }).catch((err) => {
+        console.log('closeKVStore err ' + JSON.stringify(err));
+    });
+    }).catch((err) => {
+        console.log('CloseKVStore getKVStore err ' + JSON.stringify(err));
+    });
+ } catch (e) {
+    console.log('closeKVStore e ' + e);
+}  
+```
 
 
 ### deleteKVStore<sup>8+</sup> ###
@@ -342,33 +338,32 @@ Deletes a KV store. This method uses an asynchronous callback to return the resu
 | storeId | string | Yes  | Unique identifier of the KV store to delete. The length cannot exceed the value of [MAX_STORE_ID_LENGTH](#constants).|
 | callback | AsyncCallback&lt;void&gt;  | Yes  | Callback used to return the result. If the KV store is deleted, **true** will be returned. Otherwise, **false** will be returned.  |
 
-
 **Example**
 
-    ```
-    let kvManager;
-    let kvStore;
-    const options = {
-        createIfMissing : true,
-        encrypt : false,
-        backup : false,
-        autoSync : true,
-        kvStoreType : distributedData.KVStoreType.SINGLE_VERSION,
-        schema : '',
-        securityLevel : distributedData.SecurityLevel.S2,
-    }
-    try {
-        kvManager.getKVStore('store', options, async function (err, store) {
-            console.log('getKVStore success');
-            kvStore = store;
-            await kvManager.deleteKVStore('appId', 'storeId', function (err, data) {
-                console.log('deleteKVStore success');
-            });
+```
+let kvManager;
+let kvStore;
+const options = {
+    createIfMissing : true,
+    encrypt : false,
+    backup : false,
+    autoSync : true,
+    kvStoreType : distributedData.KVStoreType.SINGLE_VERSION,
+    schema : '',
+    securityLevel : distributedData.SecurityLevel.S2,
+}
+try {
+    kvManager.getKVStore('store', options, async function (err, store) {
+        console.log('getKVStore success');
+        kvStore = store;
+        await kvManager.deleteKVStore('appId', 'storeId', function (err, data) {
+            console.log('deleteKVStore success');
         });
-    } catch (e) {
-        console.log('DeleteKVStore e ' + e);
-    }
-    ```
+    });
+} catch (e) {
+    console.log('DeleteKVStore e ' + e);
+}
+```
 
 ### deleteKVStore<sup>8+</sup> ###
 
@@ -394,34 +389,34 @@ Deletes a KV store. This method uses a promise to return the result.
 
 **Example**
 
-    ```
-    let kvManager;
-    let kvStore;
-    const options = {
-        createIfMissing : true,
-        encrypt : false,
-        backup : false,
-        autoSync : true,
-        kvStoreType : distributedData.KVStoreType.SINGLE_VERSION,
-        schema : '',
-        securityLevel : distributedData.SecurityLevel.S2,
-    }
-    try {
-        kvManager.getKVStore('storId', options).then(async (store) => {
-            console.log('getKVStore success');
-            kvStore = store;
-            await kvManager.deleteKVStore('appId', 'storeId').then(() => {
-                console.log('deleteKVStore success');
-            }).catch((err) => {
-                console.log('deleteKVStore err ' + JSON.stringify(err));
-            });
+```
+let kvManager;
+let kvStore;
+const options = {
+    createIfMissing : true,
+    encrypt : false,
+    backup : false,
+    autoSync : true,
+    kvStoreType : distributedData.KVStoreType.SINGLE_VERSION,
+    schema : '',
+    securityLevel : distributedData.SecurityLevel.S2,
+}
+try {
+    kvManager.getKVStore('storId', options).then(async (store) => {
+        console.log('getKVStore success');
+        kvStore = store;
+        await kvManager.deleteKVStore('appId', 'storeId').then(() => {
+            console.log('deleteKVStore success');
         }).catch((err) => {
-            console.log('getKVStore err ' + JSON.stringify(err));
+            console.log('deleteKVStore err ' + JSON.stringify(err));
         });
-    } catch (e) {
-        console.log('deleteKVStore e ' + e);
-    }
-    ```
+    }).catch((err) => {
+        console.log('getKVStore err ' + JSON.stringify(err));
+    });
+} catch (e) {
+    console.log('deleteKVStore e ' + e);
+}
+```
 
 
 ### getAllKVStoreId<sup>8+</sup> ###
@@ -441,17 +436,17 @@ Obtains the IDs of all the KV stores that are created using **getKvStore** and h
 
 **Example**
 
-    ```
-    let kvManager;
-    try {
-        kvManager.getAllKVStoreId('appId', function (err, data) {
-            console.log('GetAllKVStoreId success');
-            console.log('GetAllKVStoreId size = ' + data.length);
-        });
-    } catch (e) {
-        console.log('GetAllKVStoreId e ' + e);
-    }
-    ```
+```
+let kvManager;
+try {
+    kvManager.getAllKVStoreId('appId', function (err, data) {
+        console.log('GetAllKVStoreId success');
+        console.log('GetAllKVStoreId size = ' + data.length);
+    });
+} catch (e) {
+    console.log('GetAllKVStoreId e ' + e);
+}
+```
 
 
 ### getAllKVStoreId<sup>8+</sup> ###
@@ -477,20 +472,20 @@ Obtains the IDs of all the KV stores that are created using **getKvStore** and h
 
 **Example**
 
-    ```
-    let kvManager;
-    try {
-        console.log('GetAllKVStoreId');
-        kvManager.getAllKVStoreId('apppId').then((data) => {
-            console.log('getAllKVStoreId success');
-            console.log('size = ' + data.length);
-        }).catch((err) => {
-            console.log('getAllKVStoreId err ' + JSON.stringify(err));
-        });
-    } catch(e) {
-        console.log('getAllKVStoreId e ' + e);
-    }
-    ```
+```
+let kvManager;
+try {
+    console.log('GetAllKVStoreId');
+    kvManager.getAllKVStoreId('apppId').then((data) => {
+        console.log('getAllKVStoreId success');
+        console.log('size = ' + data.length);
+    }).catch((err) => {
+        console.log('getAllKVStoreId err ' + JSON.stringify(err));
+    });
+} catch(e) {
+    console.log('getAllKVStoreId e ' + e);
+}
+```
 
 
 ### on<sup>8+</sup> ###
@@ -508,23 +503,21 @@ Subscribes to the **distributedDataServiceDie** events. This method uses a synch
 | event  | 'distributedDataServiceDie'  | Yes   | Type of events to subscribe to.     |
 | deathCallback  | Callback&lt;void&gt;  | Yes   | Callback invoked when the distributed data service is dead.   |
 
-
-
 **Example**
 
-    ```
-    let kvManager;
-    try {
-        
-        console.log('KVManagerOn');
-        const deathCallback = function () {
-            console.log('death callback call');
-        }
-        kvManager.on('distributedDataServiceDie', deathCallback);
-    } catch (e) {
-        console.log("An unexpected error occurred. Error:" + e);
+```
+let kvManager;
+try {
+    
+    console.log('KVManagerOn');
+    const deathCallback = function () {
+        console.log('death callback call');
     }
-    ```
+    kvManager.on('distributedDataServiceDie', deathCallback);
+} catch (e) {
+    console.log("An unexpected error occurred. Error:" + e);
+}
+```
 
 
 ### off<sup>8+</sup> ###
@@ -545,19 +538,19 @@ Unsubscribes from the **distributedDataServiceDie** events. This method uses a s
 
 **Example**
 
-    ```
-    let kvManager;
-    try {
-        console.log('KVManagerOff');
-        const deathCallback = function () {
-            console.log('death callback call');
-        }
-        kvManager.off('distributedDataServiceDie', deathCallback);
-    } catch (e) {
-        console.log("An unexpected error occurred. Error:" + e);
+```
+let kvManager;
+try {
+    console.log('KVManagerOff');
+    const deathCallback = function () {
+        console.log('death callback call');
     }
+    kvManager.off('distributedDataServiceDie', deathCallback);
+} catch (e) {
+    console.log("An unexpected error occurred. Error:" + e);
+}
     
-    ```
+```
 
 ## Options
 
@@ -573,7 +566,7 @@ Provides KV store configuration.
 | autoSync  | boolean | No|Whether to automatically synchronize database files. By default, database files are not automatically synchronized.    |
 | kvStoreType | [KVStoreType](#kvstoretype) | No|Type of the KV store to create. By default, a device KV store is created. The device KV store stores data for multiple devices that collaborate with each other.|
 | securityLevel | [SecurityLevel](#securitylevel) | No|Security level of the KV store. By default, the security level is not set. |
-| schema | [schema](#Schema<sup>8+</sup>) | No| Schema used to define the values stored in a KV store.|
+| schema<sup>8+</sup> | [Schema](#schema8) | No| Schema used to define the values stored in a KV store.|
 
 
 ## KVStoreType
@@ -587,7 +580,6 @@ Defines the KV store types.
 | DEVICE_COLLABORATION  | 0 | Device KV store.  |
 | SINGLE_VERSION  | 1 | Single KV store. |
 | MULTI_VERSION   | 2 | Multi-version KV store. This type is not supported currently. |
-
 
 
 ## SecurityLevel
@@ -629,8 +621,8 @@ Defines a database schema. When creating or opening a KV store, you can create a
 
 | Name | Type| Description                   |
 | ---   | ----  | ----------------------- |
-| root<sup>8+</sup>  | [FieldNode](#FieldNode) | JSON root object. |
-| indexes<sup>8+</sup>  | Array<string> | String array in JSON format. |
+| root<sup>8+</sup>  | [FieldNode](#fieldnode8) | JSON root object. |
+| indexes<sup>8+</sup>  | Array\<string> | String array in JSON format. |
 | mode<sup>8+</sup>  | number | Schema mode. |
 | skip<sup>8+</sup>  | number |  Size of a skip of the schema. |
 
@@ -664,9 +656,9 @@ A constructor used to create a **FieldNode** instance with a string field.
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
-| -----  | ------  | ----  | ----------------------- |
-| name  | string  | Yes   | Value of **FieldNode**. 
+| Name| Type| Mandatory| Description           |
+| ------ | -------- | ---- | --------------- |
+| name   | string   | Yes  | Value of **FieldNode**.|
 
 ### appendChild<sup>8+</sup> ###
 
@@ -680,7 +672,7 @@ Appends a child node to this **FieldNode**.
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| child  | [FieldNode](#FieldNode)  | Yes   | Child node to append.  |
+| child  | [FieldNode](#fieldnode8) | Yes   | Child node to append.  |
 
 
 **Return value**
@@ -691,27 +683,25 @@ Appends a child node to this **FieldNode**.
 
 **Example**
 
-    ```
-    import ddm from '@ohos.data.distributedData';
-    try {
-        let node = new ddm.FieldNode("root");
-        let child1 = new ddm.FieldNode("child1");
-        let child2 = new ddm.FieldNode("child2");
-        let child3 = new ddm.FieldNode("child3");
-        node.appendChild(child1);
-        node.appendChild(child2);
-        node.appendChild(child3);
-        console.log("appendNode " + node.toJson());
-        child1 = null;
-        child2 = null;
-        child3 = null;
-        node = null;
-    } catch (e) {
-        console.log("AppendChild " + e);
-    }
-    ```
-
-
+```
+import ddm from '@ohos.data.distributedData';
+try {
+    let node = new ddm.FieldNode("root");
+    let child1 = new ddm.FieldNode("child1");
+    let child2 = new ddm.FieldNode("child2");
+    let child3 = new ddm.FieldNode("child3");
+    node.appendChild(child1);
+    node.appendChild(child2);
+    node.appendChild(child3);
+    console.log("appendNode " + node.toJson());
+    child1 = null;
+    child2 = null;
+    child3 = null;
+    node = null;
+} catch (e) {
+    console.log("AppendChild " + e);
+}
+```
 
 
 ## KvStoreResultSet<sup>8+</sup> ##
@@ -735,23 +725,22 @@ Obtains the number of rows in the result set.
 
 **Example**
 
-    ```
-    let kvStore;
-    try {
-        let resultSet;
-        kvStore.getResultSet('batch_test_string_key').then((result) => {
-            console.log('getResultSet success');
-            resultSet = result;
-        }).catch((err) => {
-            console.log('getResultSet fail ' + err);
-        });
-        const count = resultSet.getCount();
-        console.log("GetCount " + count);
-    } catch (e) {
-        console.log("GetCount fail " + e);
-    }
-    ```
-
+```
+let kvStore;
+try {
+    let resultSet;
+    kvStore.getResultSet('batch_test_string_key').then((result) => {
+        console.log('getResultSet success');
+        resultSet = result;
+    }).catch((err) => {
+        console.log('getResultSet fail ' + err);
+    });
+    const count = resultSet.getCount();
+    console.log("GetCount " + count);
+} catch (e) {
+    console.log("GetCount fail " + e);
+}
+```
 
 ### getPosition<sup>8+</sup> ###
 
@@ -769,22 +758,22 @@ Obtains the current data read position (position from which data is read) in the
 
 **Example**
 
-    ```
-    let kvStore;
-    try {
-        let resultSet;
-        kvStore.getResultSet('batch_test_string_key').then((result) => {
-            console.log('getResultSet success');
-            resultSet = result;
-        }).catch((err) => {
-            console.log('getResultSet fail ' + err);
-        });
-        const positon = resultSet.getPosition();
-        console.log("getPosition " + positon);
-    } catch (e) {
-        console.log("GetPosition fail " + e);
-    }
-    ```
+```
+let kvStore;
+try {
+    let resultSet;
+    kvStore.getResultSet('batch_test_string_key').then((result) => {
+        console.log('getResultSet success');
+        resultSet = result;
+    }).catch((err) => {
+        console.log('getResultSet fail ' + err);
+    });
+    const position = resultSet.getPosition();
+    console.log("getPosition " + position);
+} catch (e) {
+    console.log("GetPosition fail " + e);
+}
+```
 
 
 ### moveToFirst<sup>8+</sup> ###
@@ -803,22 +792,22 @@ Moves the data read position to the first row.
 
 **Example**
 
-    ```
-    let kvStore;
-    try {
-        let resultSet;
-        kvStore.getResultSet('batch_test_string_key').then((result) => {
-            console.log('getResultSet success');
-            resultSet = result;
-        }).catch((err) => {
-            console.log('getResultSet fail ' + err);
-        });
-        const moved = resultSet.moveToFirst();
-        console.log("moveToFirst " + moved);
-    } catch (e) {
-        console.log("MoveToFirst fail " + e);
-    }
-    ```
+```
+let kvStore;
+try {
+    let resultSet;
+    kvStore.getResultSet('batch_test_string_key').then((result) => {
+        console.log('getResultSet success');
+        resultSet = result;
+    }).catch((err) => {
+        console.log('getResultSet fail ' + err);
+    });
+    const moved = resultSet.moveToFirst();
+    console.log("moveToFirst " + moved);
+} catch (e) {
+    console.log("MoveToFirst fail " + e);
+}
+```
 
 
 ### moveToLast<sup>8+</sup> ###
@@ -837,22 +826,22 @@ Moves the data read position to the last row.
 
 **Example**
 
-    ```
-    let kvStore;
-    try {
-        let resultSet;
-        kvStore.getResultSet('batch_test_string_key').then((result) => {
-            console.log('getResultSet success');
-            resultSet = result;
-        }).catch((err) => {
-            console.log('getResultSet fail ' + err);
-        });
-        const moved = resultSet.moveToLast();
-        console.log("moveToLast " + moved);
-    } catch (e) {
-        console.log("moveToLast fail " + e);
-    }
-    ```
+```
+let kvStore;
+try {
+    let resultSet;
+    kvStore.getResultSet('batch_test_string_key').then((result) => {
+        console.log('getResultSet success');
+        resultSet = result;
+    }).catch((err) => {
+        console.log('getResultSet fail ' + err);
+    });
+    const moved = resultSet.moveToLast();
+    console.log("moveToLast " + moved);
+} catch (e) {
+    console.log("moveToLast fail " + e);
+}
+```
 
 
 ### moveToNext<sup>8+</sup> ###
@@ -871,22 +860,22 @@ Moves the data read position to the next row.
 
 **Example**
 
-    ```
-    let kvStore;
-    try {
-        let resultSet;
-        kvStore.getResultSet('batch_test_string_key').then((result) => {
-            console.log('getResultSet success');
-            resultSet = result;
-        }).catch((err) => {
-            console.log('getResultSet fail ' + err);
-        });
-        const moved = resultSet.moveToNext();
-        console.log("moveToNext " + moved);
-    } catch (e) {
-        console.log("moveToNext fail " + e);
-    }
-    ```
+```
+let kvStore;
+try {
+    let resultSet;
+    kvStore.getResultSet('batch_test_string_key').then((result) => {
+        console.log('getResultSet success');
+        resultSet = result;
+    }).catch((err) => {
+        console.log('getResultSet fail ' + err);
+    });
+    const moved = resultSet.moveToNext();
+    console.log("moveToNext " + moved);
+} catch (e) {
+    console.log("moveToNext fail " + e);
+}
+```
 
 
 ### moveToPrevious<sup>8+</sup> ###
@@ -905,22 +894,22 @@ Moves the data read position to the previous row.
 
 **Example**
 
-    ```
-    let kvStore;
-    try {
-        let resultSet;
-        kvStore.getResultSet('batch_test_string_key').then((result) => {
-            console.log('getResultSet success');
-            resultSet = result;
-        }).catch((err) => {
-            console.log('getResultSet fail ' + err);
-        });
-        const moved = resultSet.moveToPrevious();
-        console.log("moveToPrevious " + moved);
-    } catch (e) {
-        console.log("moveToPrevious fail " + e);
-    }
-    ```
+```
+let kvStore;
+try {
+    let resultSet;
+    kvStore.getResultSet('batch_test_string_key').then((result) => {
+        console.log('getResultSet success');
+        resultSet = result;
+    }).catch((err) => {
+        console.log('getResultSet fail ' + err);
+    });
+    const moved = resultSet.moveToPrevious();
+    console.log("moveToPrevious " + moved);
+} catch (e) {
+    console.log("moveToPrevious fail " + e);
+}
+```
 
 
 ### move<sup>8+</sup> ###
@@ -945,22 +934,22 @@ Moves the data read position with the specified offset from the current position
 
 **Example**
 
-    ```
-    let kvStore;
-    try {
-        let resultSet;
-        kvStore.getResultSet('batch_test_string_key').then((result) => {
-            console.log('getResultSet success');
-            resultSet = result;
-        }).catch((err) => {
-            console.log('getResultSet fail ' + err);
-        });
-        const moved = resultSet.move();
-        console.log("move " + moved);
-    } catch (e) {
-        console.log("move fail " + e);
-    }
-    ```
+```
+let kvStore;
+try {
+    let resultSet;
+    kvStore.getResultSet('batch_test_string_key').then((result) => {
+        console.log('getResultSet success');
+        resultSet = result;
+    }).catch((err) => {
+        console.log('getResultSet fail ' + err);
+    });
+    const moved = resultSet.move();
+    console.log("move " + moved);
+} catch (e) {
+    console.log("move fail " + e);
+}
+```
 
 
 ### moveToPosition<sup>8+</sup> ###
@@ -985,22 +974,22 @@ Moves the data read position from 0 to an absolute position.
 
 **Example**
 
-    ```
-    let kvStore;
-    try {
-        let resultSet;
-        kvStore.getResultSet('batch_test_string_key').then((result) => {
-            console.log('getResultSet success');
-            resultSet = result;
-        }).catch((err) => {
-            console.log('getResultSet fail ' + err);
-        });
-        const moved = resultSet.moveToPosition();
-        console.log("moveToPosition " + moved);
-    } catch (e) {
-        console.log("moveToPosition fail " + e);
-    }
-    ```
+```
+let kvStore;
+try {
+    let resultSet;
+    kvStore.getResultSet('batch_test_string_key').then((result) => {
+        console.log('getResultSet success');
+        resultSet = result;
+    }).catch((err) => {
+        console.log('getResultSet fail ' + err);
+    });
+    const moved = resultSet.moveToPosition();
+    console.log("moveToPosition " + moved);
+} catch (e) {
+    console.log("moveToPosition fail " + e);
+}
+```
 
 
 ### isFirst<sup>8+</sup> ###
@@ -1019,22 +1008,22 @@ Checks whether the data read position is the first row.
 
 **Example**
 
-    ```
-    let kvStore;
-    try {
-        let resultSet;
-        kvStore.getResultSet('batch_test_string_key').then((result) => {
-            console.log('getResultSet success');
-            resultSet = result;
-        }).catch((err) => {
-            console.log('getResultSet fail ' + err);
-        });
-        const moved = resultSet.isFirst();
-        console.log("isFirst " + moved);
-    } catch (e) {
-        console.log("isFirst fail " + e);
-    }
-    ```
+```
+let kvStore;
+try {
+    let resultSet;
+    kvStore.getResultSet('batch_test_string_key').then((result) => {
+        console.log('getResultSet success');
+        resultSet = result;
+    }).catch((err) => {
+        console.log('getResultSet fail ' + err);
+    });
+    const moved = resultSet.isFirst();
+    console.log("isFirst " + moved);
+} catch (e) {
+    console.log("isFirst fail " + e);
+}
+```
 
 
 ### isLast<sup>8+</sup> ###
@@ -1053,23 +1042,22 @@ Checks whether the data read position is the last row.
 
 **Example**
 
-    ```
-    let kvStore;
-    try {
-        let resultSet;
-        kvStore.getResultSet('batch_test_string_key').then((result) => {
-            console.log('getResultSet success');
-            resultSet = result;
-        }).catch((err) => {
-            console.log('getResultSet fail ' + err);
-        });
-        const moved = resultSet.isLast();
-        console.log("isLast " + moved);
-    } catch (e) {
-        console.log("isLast fail " + e);
-    }
-    ```
-
+```
+let kvStore;
+try {
+    let resultSet;
+    kvStore.getResultSet('batch_test_string_key').then((result) => {
+        console.log('getResultSet success');
+        resultSet = result;
+    }).catch((err) => {
+        console.log('getResultSet fail ' + err);
+    });
+    const moved = resultSet.isLast();
+    console.log("isLast " + moved);
+} catch (e) {
+    console.log("isLast fail " + e);
+}
+```
 
 ### isBeforeFirst<sup>8+</sup> ###
 
@@ -1087,22 +1075,22 @@ Checks whether the data read position is before the first row.
 
 **Example**
 
-    ```
-    let kvStore;
-    try {
-        let resultSet;
-        kvStore.getResultSet('batch_test_string_key').then((result) => {
-            console.log('getResultSet success');
-            resultSet = result;
-        }).catch((err) => {
-            console.log('getResultSet fail ' + err);
-        });
-        const moved = resultSet.isBeforeFirst();
-        console.log("isBeforeFirst " + moved);
-    } catch (e) {
-        console.log("isBeforeFirst fail " + e);
-    }
-    ```
+```
+let kvStore;
+try {
+    let resultSet;
+    kvStore.getResultSet('batch_test_string_key').then((result) => {
+        console.log('getResultSet success');
+        resultSet = result;
+    }).catch((err) => {
+        console.log('getResultSet fail ' + err);
+    });
+    const moved = resultSet.isBeforeFirst();
+    console.log("isBeforeFirst " + moved);
+} catch (e) {
+    console.log("isBeforeFirst fail " + e);
+}
+```
 
 
 ### isAfterLast<sup>8+</sup> ###
@@ -1121,22 +1109,22 @@ Checks whether the data read position is after the last row.
 
 **Example**
 
-    ```
-    let kvStore;
-    try {
-        let resultSet;
-        kvStore.getResultSet('batch_test_string_key').then((result) => {
-            console.log('getResultSet success');
-            resultSet = result;
-        }).catch((err) => {
-            console.log('getResultSet fail ' + err);
-        });
-        const moved = resultSet.isAfterLast();
-        console.log("isAfterLast " + moved);
-    } catch (e) {
-        console.log("isAfterLast fail " + e);
-    }
-    ```
+```
+let kvStore;
+try {
+    let resultSet;
+    kvStore.getResultSet('batch_test_string_key').then((result) => {
+        console.log('getResultSet success');
+        resultSet = result;
+    }).catch((err) => {
+        console.log('getResultSet fail ' + err);
+    });
+    const moved = resultSet.isAfterLast();
+    console.log("isAfterLast " + moved);
+} catch (e) {
+    console.log("isAfterLast fail " + e);
+}
+```
 
 
 ### getEntry<sup>8+</sup> ###
@@ -1155,23 +1143,23 @@ Obtains a KV pair.
 
 **Example**
 
-    ```
-    let kvStore;
-    try {
-        let resultSet;
-        kvStore.getResultSet('batch_test_string_key').then((result) => {
-            console.log('getResultSet success');
-            resultSet = result;
-        }).catch((err) => {
-            console.log('getResultSet fail ' + err);
-        });
-        const moved = resultSet.moveToNext();
-        const entry  = resultSet.getEntry();
-        console.log("getEntry " + JSON.stringify(entry));
-    } catch (e) {
-        console.log("getEntry fail " + e);
-    }
-    ```
+```
+let kvStore;
+try {
+    let resultSet;
+    kvStore.getResultSet('batch_test_string_key').then((result) => {
+        console.log('getResultSet success');
+        resultSet = result;
+    }).catch((err) => {
+        console.log('getResultSet fail ' + err);
+    });
+    const moved = resultSet.moveToNext();
+    const entry  = resultSet.getEntry();
+    console.log("getEntry " + JSON.stringify(entry));
+} catch (e) {
+    console.log("getEntry fail " + e);
+}
+```
 
 
 ## Query<sup>8+</sup> ##
@@ -1206,18 +1194,18 @@ Resets the **Query** object that contains common query options.
 
 **Example**
 
-    ```
-    try {
-        let query = new distributedData.Query();
-        query.equalTo("key", "value");
-        console.log("query is " + query.getSqlLike());
-        query.reset();
-        console.log("query is " + query.getSqlLike());
-        query = null;
-    } catch (e) {
-        console.log("simply calls should be ok :" + e);
-    }
-    ```
+```
+try {
+    let query = new distributedData.Query();
+    query.equalTo("key", "value");
+    console.log("query is " + query.getSqlLike());
+    query.reset();
+    console.log("query is " + query.getSqlLike());
+    query = null;
+} catch (e) {
+    console.log("simply calls should be ok :" + e);
+}
+```
 
 
 ### equalTo<sup>8+</sup> ###
@@ -1243,16 +1231,16 @@ Creates a **Query** object to match the specified field whose value is equal to 
 
 **Example**
 
-    ```
-    try {
-        let query = new distributedData.Query();
-        query.equalTo("field", "value");
-        console.log("query is " + query.getSqlLike());
-        query = null;
-    } catch (e) {
-        console.log("dumplicated calls should be ok :" + e);
-    }
-    ```
+```
+try {
+    let query = new distributedData.Query();
+    query.equalTo("field", "value");
+    console.log("query is " + query.getSqlLike());
+    query = null;
+} catch (e) {
+    console.log("dumplicated calls should be ok :" + e);
+}
+```
 
 
 ### notEqualTo<sup>8+</sup> ###
@@ -1278,16 +1266,16 @@ Creates a **Query** object to match the specified field whose value is not equal
 
 **Example**
 
-    ```
-    try {
-        let query = new distributedData.Query();
-        query.notEqualTo("field", "value");
-        console.log("query is " + query.getSqlLike());
-        query = null;
-    } catch (e) {
-        console.log("dumplicated calls should be ok :" + e);
-    }
-    ```
+```
+try {
+    let query = new distributedData.Query();
+    query.notEqualTo("field", "value");
+    console.log("query is " + query.getSqlLike());
+    query = null;
+} catch (e) {
+    console.log("dumplicated calls should be ok :" + e);
+}
+```
 
 
 ### greaterThan<sup>8+</sup> ###
@@ -1303,7 +1291,7 @@ Creates a **Query** object to match the specified field whose value is greater t
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | fieId  | string  | Yes   |Field to match. It must start with $ and cannot contain ^. |
-| value  | number/string/boolean  | Yes   | Value specified.|
+| value  | number\|string\|boolean  | Yes   | Value specified.|
 
 **Return value**
 
@@ -1313,16 +1301,16 @@ Creates a **Query** object to match the specified field whose value is greater t
 
 **Example**
 
-    ```
-    try {
-        let query = new distributedData.Query();
-        query.greaterThan("field", "value");
-        console.log("query is " + query.getSqlLike());
-        query = null;
-    } catch (e) {
-        console.log("dumplicated calls should be ok :" + e);
-    }
-    ```
+```
+try {
+    let query = new distributedData.Query();
+    query.greaterThan("field", "value");
+    console.log("query is " + query.getSqlLike());
+    query = null;
+} catch (e) {
+    console.log("dumplicated calls should be ok :" + e);
+}
+```
 
 
 ### lessThan<sup>8+</sup> ###
@@ -1338,7 +1326,7 @@ Creates a **Query** object to match the specified field whose value is less than
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | fieId  | string  | Yes   |Field to match. It must start with $ and cannot contain ^. |
-| value  | number/string/boolean  | Yes   | Value specified.|
+| value  | number\|string\|boolean  | Yes   | Value specified.|
 
 **Return value**
 
@@ -1348,16 +1336,16 @@ Creates a **Query** object to match the specified field whose value is less than
 
 **Example**
 
-    ```
-    try {
-        let query = new distributedData.Query();
-        query.lessThan("field", "value");
-        console.log("query is " + query.getSqlLike());
-        query = null;
-    } catch (e) {
-        console.log("dumplicated calls should be ok :" + e);
-    }
-    ```
+```
+try {
+    let query = new distributedData.Query();
+    query.lessThan("field", "value");
+    console.log("query is " + query.getSqlLike());
+    query = null;
+} catch (e) {
+    console.log("dumplicated calls should be ok :" + e);
+}
+```
 
 
 ### greaterThanOrEqualTo<sup>8+</sup> ###
@@ -1373,7 +1361,7 @@ Creates a **Query** object to match the specified field whose value is greater t
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | fieId  | string  | Yes   |Field to match. It must start with $ and cannot contain ^. |
-| value  | number/string/boolean  | Yes   | Value specified.|
+| value  | number\|string\|boolean  | Yes   | Value specified.|
 
 **Return value**
 
@@ -1383,16 +1371,16 @@ Creates a **Query** object to match the specified field whose value is greater t
 
 **Example**
 
-    ```
-    try {
-        let query = new distributedData.Query();
-        query.greaterThanOrEqualTo("field", "value");
-        console.log("query is " + query.getSqlLike());
-        query = null;
-    } catch (e) {
-        console.log("dumplicated calls should be ok :" + e);
-    }
-    ```
+```
+try {
+    let query = new distributedData.Query();
+    query.greaterThanOrEqualTo("field", "value");
+    console.log("query is " + query.getSqlLike());
+    query = null;
+} catch (e) {
+    console.log("dumplicated calls should be ok :" + e);
+}
+```
 
 
 ### lessThanOrEqualTo<sup>8+</sup> ###
@@ -1408,7 +1396,7 @@ Creates a **Query** object to match the specified field whose value is less than
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | fieId  | string  | Yes   |Field to match. It must start with $ and cannot contain ^. |
-| value  | number/string/boolean  | Yes   | Value specified.|
+| value  | number\|string\|boolean  | Yes   | Value specified.|
 
 **Return value**
 
@@ -1418,16 +1406,16 @@ Creates a **Query** object to match the specified field whose value is less than
 
 **Example**
 
-    ```
-    try {
-        let query = new distributedData.Query();
-        query.lessThanOrEqualTo("field", "value");
-        console.log("query is " + query.getSqlLike());
-        query = null;
-    } catch (e) {
-        console.log("dumplicated calls should be ok :" + e);
-    }
-    ```
+```
+try {
+    let query = new distributedData.Query();
+    query.lessThanOrEqualTo("field", "value");
+    console.log("query is " + query.getSqlLike());
+    query = null;
+} catch (e) {
+    console.log("dumplicated calls should be ok :" + e);
+}
+```
 
 
 ### isNull<sup>8+</sup> ###
@@ -1453,16 +1441,16 @@ Creates a **Query** object to match the specified field whose value is **null**.
 
 **Example**
 
-    ```
-    try {
-        let query = new distributedData.Query();
-        query.isNull("field");
-        console.log("query is " + query.getSqlLike());
-        query = null;
-    } catch (e) {
-        console.log("dumplicated calls should be ok :" + e);
-    }
-    ```
+```
+try {
+    let query = new distributedData.Query();
+    query.isNull("field");
+    console.log("query is " + query.getSqlLike());
+    query = null;
+} catch (e) {
+    console.log("dumplicated calls should be ok :" + e);
+}
+```
 
 
 ### inNumber<sup>8+</sup> ###
@@ -1487,19 +1475,18 @@ Creates a **Query** object to match the specified field whose value is within th
 | ------  | -------   |
 | [Query](#query8) |**Query** object Created.|
 
-
 **Example**
 
-    ```
-    try {
-        let query = new distributedData.Query();
-        query.inNumber("field", [0, 1]);
-        console.log("query is " + query.getSqlLike());
-        query = null;
-    } catch (e) {
-        console.log("dumplicated calls should be ok :" + e);
-    }
-    ```
+```
+try {
+    let query = new distributedData.Query();
+    query.inNumber("field", [0, 1]);
+    console.log("query is " + query.getSqlLike());
+    query = null;
+} catch (e) {
+    console.log("dumplicated calls should be ok :" + e);
+}
+```
 
 
 ### inString<sup>8+</sup> ###
@@ -1525,16 +1512,16 @@ Creates a **Query** object to match the specified field whose value is within th
 
 **Example**
 
-    ```
-    try {
-        let query = new distributedData.Query();
-        query.inString("field", ['test1', 'test2']);
-        console.log("query is " + query.getSqlLike());
-        query = null;
-    } catch (e) {
-        console.log("dumplicated calls should be ok :" + e);
-    }
-    ```
+```
+try {
+    let query = new distributedData.Query();
+    query.inString("field", ['test1', 'test2']);
+    console.log("query is " + query.getSqlLike());
+    query = null;
+} catch (e) {
+    console.log("dumplicated calls should be ok :" + e);
+}
+```
 
 
 ### notInNumber<sup>8+</sup> ###
@@ -1560,16 +1547,16 @@ Creates a **Query** object to match the specified field whose value is not withi
 
 **Example**
 
-    ```
-    try {
-        let query = new distributedData.Query();
-        query.notInNumber("field", [0, 1]);
-        console.log("query is " + query.getSqlLike());
-        query = null;
-    } catch (e) {
-        console.log("dumplicated calls should be ok :" + e);
-    }
-    ```
+```
+try {
+    let query = new distributedData.Query();
+    query.notInNumber("field", [0, 1]);
+    console.log("query is " + query.getSqlLike());
+    query = null;
+} catch (e) {
+    console.log("dumplicated calls should be ok :" + e);
+}
+```
 
 
 ### notInString<sup>8+</sup> ###
@@ -1595,16 +1582,16 @@ Creates a **Query** object to match the specified field whose value is not withi
 
 **Example**
 
-    ```
-    try {
-        let query = new distributedData.Query();
-        query.notInString("field", ['test1', 'test2']);
-        console.log("query is " + query.getSqlLike());
-        query = null;
-    } catch (e) {
-        console.log("dumplicated calls should be ok :" + e);
-    }
-    ```
+```
+try {
+    let query = new distributedData.Query();
+    query.notInString("field", ['test1', 'test2']);
+    console.log("query is " + query.getSqlLike());
+    query = null;
+} catch (e) {
+    console.log("dumplicated calls should be ok :" + e);
+}
+```
 
 
 ### like<sup>8+</sup> ###
@@ -1630,16 +1617,16 @@ Creates a **Query** object to match the specified field whose value is similar t
 
 **Example**
 
-    ```
-    try {
-        let query = new distributedData.Query();
-        query.like("field", "value");
-        console.log("query is " + query.getSqlLike());
-        query = null;
-    } catch (e) {
-        console.log("dumplicated calls should be ok :" + e);
-    }
-    ```
+```
+try {
+    let query = new distributedData.Query();
+    query.like("field", "value");
+    console.log("query is " + query.getSqlLike());
+    query = null;
+} catch (e) {
+    console.log("dumplicated calls should be ok :" + e);
+}
+```
 
 
 ### unlike<sup>8+</sup> ###
@@ -1665,16 +1652,16 @@ Creates a **Query** object to match the specified field whose value is not simil
 
 **Example**
 
-    ```
-    try {
-        let query = new distributedData.Query();
-        query.unlike("field", "value");
-        console.log("query is " + query.getSqlLike());
-        query = null;
-    } catch (e) {
-        console.log("dumplicated calls should be ok :" + e);
-    }
-    ```
+```
+try {
+    let query = new distributedData.Query();
+    query.unlike("field", "value");
+    console.log("query is " + query.getSqlLike());
+    query = null;
+} catch (e) {
+    console.log("dumplicated calls should be ok :" + e);
+}
+```
 
 
 ### and<sup>8+</sup> ###
@@ -1693,18 +1680,18 @@ Creates a **Query** object with the AND condition.
 
 **Example**
 
-    ```
-    try {
-        let query = new distributedData.Query();
-        query.notEqualTo("field", "value1");
-        query.and();
-        query.notEqualTo("field", "value2");
-        console.log("query is " + query.getSqlLike());
-        query = null;
-    } catch (e) {
-        console.log("dumplicated calls should be ok :" + e);
-    }
-    ```
+```
+try {
+    let query = new distributedData.Query();
+    query.notEqualTo("field", "value1");
+    query.and();
+    query.notEqualTo("field", "value2");
+    console.log("query is " + query.getSqlLike());
+    query = null;
+} catch (e) {
+    console.log("dumplicated calls should be ok :" + e);
+}
+```
 
 
 ### or<sup>8+</sup> ###
@@ -1723,18 +1710,18 @@ Creates a **Query** object with the OR condition.
 
 **Example**
 
-    ```
-    try {
-        let query = new distributedData.Query();
-        query.notEqualTo("field", "value1");
-        query.or();
-        query.notEqualTo("field", "value2");
-        console.log("query is " + query.getSqlLike());
-        query = null;
-    } catch (e) {
-        console.log("dumplicated calls should be ok :" + e);
-    }
-    ```
+```
+try {
+    let query = new distributedData.Query();
+    query.notEqualTo("field", "value1");
+    query.or();
+    query.notEqualTo("field", "value2");
+    console.log("query is " + query.getSqlLike());
+    query = null;
+} catch (e) {
+    console.log("dumplicated calls should be ok :" + e);
+}
+```
 
 
 ### orderByAsc<sup>8+</sup> ###
@@ -1759,17 +1746,17 @@ Creates a **Query** object to sort the query results in ascending order.
 
 **Example**
 
-    ```
-    try {
-        let query = new distributedData.Query();
-        query.notEqualTo("field", "value");
-        query.orderByAsc("field");
-        console.log("query is " + query.getSqlLike());
-        query = null;
-    } catch (e) {
-        console.log("dumplicated calls should be ok :" + e);
-    }
-    ```
+```
+try {
+    let query = new distributedData.Query();
+    query.notEqualTo("field", "value");
+    query.orderByAsc("field");
+    console.log("query is " + query.getSqlLike());
+    query = null;
+} catch (e) {
+    console.log("dumplicated calls should be ok :" + e);
+}
+```
 
 
 ### orderByDesc<sup>8+</sup> ###
@@ -1792,20 +1779,19 @@ Creates a **Query** object to sort the query results in descending order.
 | ------  | -------   |
 | [Query](#query8) |**Query** object Created.|
 
-
 **Example**
 
-    ```
-    try {
-        let query = new distributedData.Query();
-        query.notEqualTo("field", "value");
-        query.orderByDesc("field");
-        console.log("query is " + query.getSqlLike());
-        query = null;
-    } catch (e) {
-        console.log("dumplicated calls should be ok :" + e);
-    }
-    ```
+```
+try {
+    let query = new distributedData.Query();
+    query.notEqualTo("field", "value");
+    query.orderByDesc("field");
+    console.log("query is " + query.getSqlLike());
+    query = null;
+} catch (e) {
+    console.log("dumplicated calls should be ok :" + e);
+}
+```
 
 
 ### limit<sup>8+</sup> ###
@@ -1831,17 +1817,17 @@ Creates a **Query** object to specify the number of results and where to start.
 
 **Example**
 
-    ```
-    try {
-        let query = new distributedData.Query();
-        query.notEqualTo("field", "value");
-        query.limit("total", "offset");
-        console.log("query is " + query.getSqlLike());
-        query = null;
-    } catch (e) {
-        console.log("dumplicated calls should be ok :" + e);
-    }
-    ```
+```
+try {
+    let query = new distributedData.Query();
+    query.notEqualTo("field", "value");
+    query.limit("total", "offset");
+    console.log("query is " + query.getSqlLike());
+    query = null;
+} catch (e) {
+    console.log("dumplicated calls should be ok :" + e);
+}
+```
 
 
 ### isNotNull<sup>8+</sup> ###
@@ -1866,16 +1852,16 @@ Creates a **Query** object with a specified field that is not null.
 
 **Example**
 
-    ```
-    try {
-        let query = new distributedData.Query();
-        query.isNotNull("field");
-        console.log("query is " + query.getSqlLike());
-        query = null;
-    } catch (e) {
-        console.log("dumplicated calls should be ok :" + e);
-    }
-    ```
+```
+try {
+    let query = new distributedData.Query();
+    query.isNotNull("field");
+    console.log("query is " + query.getSqlLike());
+    query = null;
+} catch (e) {
+    console.log("dumplicated calls should be ok :" + e);
+}
+```
 
 
 ### beginGroup<sup>8+</sup> ###
@@ -1894,18 +1880,18 @@ Creates a **Query** object for a query condition group with a left parenthesis.
 
 **Example**
 
-    ```
-    try {
-        let query = new distributedData.Query();
-        query.beginGroup();
-        query.isNotNull("field");
-        query.endGroup();
-        console.log("query is " + query.getSqlLike());
-        query = null;
-    } catch (e) {
-        console.log("dumplicated calls should be ok :" + e);
-    }
-    ```
+```
+try {
+    let query = new distributedData.Query();
+    query.beginGroup();
+    query.isNotNull("field");
+    query.endGroup();
+    console.log("query is " + query.getSqlLike());
+    query = null;
+} catch (e) {
+    console.log("dumplicated calls should be ok :" + e);
+}
+```
 
 
 ### endGroup<sup>8+</sup> ###
@@ -1924,18 +1910,18 @@ Creates a **Query** object for a query condition group with a right parenthesis.
 
 **Example**
 
-    ```
-    try {
-        let query = new distributedData.Query();
-        query.beginGroup();
-        query.isNotNull("field");
-        query.endGroup();
-        console.log("query is " + query.getSqlLike());
-        query = null;
-    } catch (e) {
-        console.log("dumplicated calls should be ok :" + e);
-    }
-    ```
+```
+try {
+    let query = new distributedData.Query();
+    query.beginGroup();
+    query.isNotNull("field");
+    query.endGroup();
+    console.log("query is " + query.getSqlLike());
+    query = null;
+} catch (e) {
+    console.log("dumplicated calls should be ok :" + e);
+}
+```
 
 
 ### prefixKey<sup>8+</sup> ###
@@ -1960,17 +1946,17 @@ Creates a **Query** object with a specified key prefix.
 
 **Example**
 
-    ```
-    try {
-        let query = new distributedData.Query();
-        query.prefixKey("$.name");
-        query.prefixKey("0");
-        console.log("query is " + query.getSqlLike());
-        query = null;
-    } catch (e) {
-        console.log("dumplicated calls should be ok :" + e);
-    }
-    ```
+```
+try {
+    let query = new distributedData.Query();
+    query.prefixKey("$.name");
+    query.prefixKey("0");
+    console.log("query is " + query.getSqlLike());
+    query = null;
+} catch (e) {
+    console.log("dumplicated calls should be ok :" + e);
+}
+```
 
 
 ### setSuggestIndex<sup>8+</sup> ###
@@ -1995,17 +1981,17 @@ Creates a **Query** object with an index preferentially used for query.
 
 **Example**
 
-    ```
-    try {
-        let query = new distributedData.Query();
-        query.setSuggestIndex("$.name");
-        query.setSuggestIndex("0");
-        console.log("query is " + query.getSqlLike());
-        query = null;
-    } catch (e) {
-       console.log("dumplicated calls should be ok :" + e);
-    }
-    ```
+```
+try {
+    let query = new distributedData.Query();
+    query.setSuggestIndex("$.name");
+    query.setSuggestIndex("0");
+    console.log("query is " + query.getSqlLike());
+    query = null;
+} catch (e) {
+   console.log("dumplicated calls should be ok :" + e);
+}
+```
 
 
 ### deviceId<sup>8+</sup> ###
@@ -2031,15 +2017,15 @@ Creates a **Query** object with the device ID as the key prefix.
 
 **Example**
 
-    ```
-    try {
-        let query = new distributedData.Query();
-        query.deviceId("deviceId");
-        console.log("query is " + query.getSqlLike());
-    } catch (e) {
-        console.log("should be ok on Method Chaining : " + e);
-    }
-    ```
+```
+try {
+    let query = new distributedData.Query();
+    query.deviceId("deviceId");
+    console.log("query is " + query.getSqlLike());
+} catch (e) {
+    console.log("should be ok on Method Chaining : " + e);
+}
+```
 
 
 ### getSqlLike<sup>8+</sup> ###
@@ -2058,15 +2044,15 @@ Obtains the query statement of this **Query** object.
 
 **Example**
 
-    ```
-    try {
-        let query = new distributedData.Query();
-        let sql1 = query.getSqlLike();
-        console.log("GetSqlLike sql=" + sql1);
-    } catch (e) {
-        console.log("dumplicated calls should be ok : " + e);
-    }
-    ```
+```
+try {
+    let query = new distributedData.Query();
+    let sql1 = query.getSqlLike();
+    console.log("GetSqlLike sql=" + sql1);
+} catch (e) {
+    console.log("dumplicated calls should be ok : " + e);
+}
+```
 
 
 ## KVStore
@@ -2089,26 +2075,26 @@ Adds a KV pair of the specified type to this KV store. This method uses an async
 | -----  | ------  | ----  | ----------------------- |
 | key    | string  | Yes   |Key of the KV pair to add. It cannot be empty, and the length cannot exceed [MAX_KEY_LENGTH](#constants).  |
 | value  | Uint8Array \| string \| number \| boolean | Yes   |Value of the KV pair to add. The value type can be Uint8Array, number, string, or boolean. A value of the Uint8Array or string type cannot exceed [MAX_VALUE_LENGTH](#constants).  |
-| callback | AsyncCallback&lt;void> | Yes   |Callback invoked to return the result.  |
+| callback | AsyncCallback&lt;void&gt; | Yes   |Callback invoked to return the result.  |
 
 **Example**
 
-    ```
-    let kvStore;
-    const KEY_TEST_STRING_ELEMENT = 'key_test_string';
-    const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
-    try {
-        kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, function (err,data) {
-            if (err != undefined) {
-                console.log("put err: " + JSON.stringify(err));
-                return;
-            }
-            console.log("put success");
-        });
-    }catch (e) {
-        console.log("An unexpected error occurred. Error:" + e);
-    }
-    ```
+```
+let kvStore;
+const KEY_TEST_STRING_ELEMENT = 'key_test_string';
+const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
+try {
+    kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, function (err,data) {
+        if (err != undefined) {
+            console.log("put err: " + JSON.stringify(err));
+            return;
+        }
+        console.log("put success");
+    });
+}catch (e) {
+    console.log("An unexpected error occurred. Error:" + e);
+}
+```
 
 
 ### put
@@ -2132,23 +2118,22 @@ Adds a KV pair of the specified type to this KV store. This method uses a promis
 | ------  | -------   |
 | Promise&lt;void&gt; |Promise used to return the result.|
 
-
 **Example**
 
-    ```
-    let kvStore;
-    const KEY_TEST_STRING_ELEMENT = 'key_test_string';
-    const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
-    try {
-        kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT).then((data) => {
-            console.log("put success: " + JSON.stringify(data));
-        }).catch((err) => {
-            console.log("put err: " + JSON.stringify(err));
-        });
-    }catch (e) {
-        console.log("An unexpected error occurred. Error:" + e);
-    }
-    ```
+```
+let kvStore;
+const KEY_TEST_STRING_ELEMENT = 'key_test_string';
+const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
+try {
+    kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT).then((data) => {
+        console.log("put success: " + JSON.stringify(data));
+    }).catch((err) => {
+        console.log("put err: " + JSON.stringify(err));
+    });
+}catch (e) {
+    console.log("An unexpected error occurred. Error:" + e);
+}
+```
 
 
 ### delete
@@ -2168,29 +2153,29 @@ Deletes a KV pair from this KV store. This method uses an asynchronous callback 
 
 **Example**
 
-    ```
-    let kvStore;
-    const KEY_TEST_STRING_ELEMENT = 'key_test_string';
-    const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
-    try {
-        kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, function (err,data) {
+```
+let kvStore;
+const KEY_TEST_STRING_ELEMENT = 'key_test_string';
+const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
+try {
+    kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, function (err,data) {
+        if (err != undefined) {
+            console.log("put err: " + JSON.stringify(err));
+            return;
+        }
+        console.log("put success");
+        kvStore.delete(KEY_TEST_STRING_ELEMENT, function (err,data) {
             if (err != undefined) {
-                console.log("put err: " + JSON.stringify(err));
+                console.log("delete err: " + JSON.stringify(err));
                 return;
             }
-            console.log("put success");
-            kvStore.delete(KEY_TEST_STRING_ELEMENT, function (err,data) {
-                if (err != undefined) {
-                    console.log("delete err: " + JSON.stringify(err));
-                    return;
-                }
-                console.log("delete success");
-            });
+            console.log("delete success");
         });
-    }catch (e) {
-        console.log("An unexpected error occurred. Error:" + e);
-    }
-    ```
+    });
+}catch (e) {
+    console.log("An unexpected error occurred. Error:" + e);
+}
+```
 
 
 ### delete
@@ -2215,25 +2200,25 @@ Deletes a KV pair from this KV store. This method uses a promise to return the r
 
 **Example**
 
-    ```
-    let kvStore;
-    const KEY_TEST_STRING_ELEMENT = 'key_test_string';
-    const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
-    try {
-        kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT).then((data) => {
-            console.log("put success: " + JSON.stringify(data));
-            kvStore.delete(KEY_TEST_STRING_ELEMENT).then((data) => {
-                console.log("delete success");
-            }).catch((err) => {
-                console.log("delete err: " + JSON.stringify(err));
-            });
+```
+let kvStore;
+const KEY_TEST_STRING_ELEMENT = 'key_test_string';
+const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
+try {
+    kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT).then((data) => {
+        console.log("put success: " + JSON.stringify(data));
+        kvStore.delete(KEY_TEST_STRING_ELEMENT).then((data) => {
+            console.log("delete success");
         }).catch((err) => {
-            console.log("put err: " + JSON.stringify(err));
+            console.log("delete err: " + JSON.stringify(err));
         });
-    }catch (e) {
-        console.log("An unexpected error occurred. Error:" + e);
-    }
-    ```
+    }).catch((err) => {
+        console.log("put err: " + JSON.stringify(err));
+    });
+}catch (e) {
+    console.log("An unexpected error occurred. Error:" + e);
+}
+```
 
 
 ### on
@@ -2248,19 +2233,18 @@ Subscribes to data changes of the specified type. This method uses a synchronous
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| event  |'dataChange'  | Yes   |Type of the events.      |
+| event  |'dataChange'  | Yes   |Type of the events.       |
 | type  |[SubscribeType](#subscribetype) | Yes   |Type of data changes.    |
 | observer |Callback&lt;[ChangeNotification](#changenotification)&gt; | Yes   |Callback invoked to return the result.|
 
-
 **Example**
 
-    ```
-    let kvStore;
-    kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_LOCAL, function (data) {
-        console.log("dataChange callback call data: " + JSON.stringify(data));
-    });
-    ```
+```
+let kvStore;
+kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_LOCAL, function (data) {
+    console.log("dataChange callback call data: " + JSON.stringify(data));
+});
+```
 
 
 ### on
@@ -2275,18 +2259,17 @@ Subscribes to data synchronization completion events. This method uses a synchro
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| event  |'syncComplete' | Yes   |Type of the events.      |
+| event  |'syncComplete' | Yes   |Type of the events.       |
 | syncCallback  |Callback&lt;Array&lt;[string, number]&gt;&gt; | Yes   |Callback invoked to return the result.    |
-
 
 **Example**
 
-    ```
-    let kvStore;
-    kvStore.on('syncComplete', function (data) {
-        console.log("syncComplete callback call data: " + data);
-    });
-    ```
+```
+let kvStore;
+kvStore.on('syncComplete', function (data) {
+    console.log("syncComplete callback call data: " + data);
+});
+```
 
 ### off<sup>8+</sup>
 
@@ -2305,15 +2288,15 @@ Unsubscribes from data change events. This method uses a synchronous callback to
 
 **Example**
 
-    ```
-    let kvStore;
-    kvStore.on('dataChange', function (data) {
-        console.log("syncComplete callback call data: " + data);
-    });
-    kvStore.off('dataChange', function (data) {
-        console.log("syncComplete callback call data: " + data);
-    });
-    ```
+```
+let kvStore;
+kvStore.on('dataChange', function (data) {
+    console.log("syncComplete callback call data: " + data);
+});
+kvStore.off('dataChange', function (data) {
+    console.log("syncComplete callback call data: " + data);
+});
+```
 
 
 ### putBatch<sup>8+</sup>
@@ -2333,35 +2316,34 @@ Inserts KV pairs in batches to this KV store. This method uses an asynchronous c
 
 **Example**
 
-    ```
-    let kvStore;
-    try {
-        let entries = [];
-        for (var i = 0; i < 10; i++) {
-            var key = 'batch_test_string_key';
-            var entry = {
-                key : key + i,
-                value : {
-                    type : distributedData.ValueType.STRING,
-                    value : 'batch_test_string_value'
-                }
+```
+let kvStore;
+try {
+    let entries = [];
+    for (var i = 0; i < 10; i++) {
+        var key = 'batch_test_string_key';
+        var entry = {
+            key : key + i,
+            value : {
+                type : distributedData.ValueType.STRING,
+                value : 'batch_test_string_value'
             }
-            entries.push(entry);
         }
-        console.log('entries: ' + JSON.stringify(entries));
-        kvStore.putBatch(entries, async function (err,data) {
-            console.log('putBatch success');
-            await kvStore.getEntries('batch_test_string_key', function (err,entrys) {
-                console.log('getEntries success');
-                console.log('entrys.length: ' + entrys.length);
-                console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
-            });
-        });
-    }catch(e) {
-        console.log('PutBatch e ' + e);
+        entries.push(entry);
     }
-    
-    ```
+    console.log('entries: ' + JSON.stringify(entries));
+    kvStore.putBatch(entries, async function (err,data) {
+        console.log('putBatch success');
+        await kvStore.getEntries('batch_test_string_key', function (err,entrys) {
+            console.log('getEntries success');
+            console.log('entrys.length: ' + entrys.length);
+            console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
+        });
+    });
+}catch(e) {
+    console.log('PutBatch e ' + e);
+}
+```
 
 
 ### putBatch<sup>8+</sup>
@@ -2386,37 +2368,37 @@ Inserts KV pairs in batches to this KV store. This method uses a promise to retu
 
 **Example**
 
-    ```
-    let kvStore;
-    try {
-        let entries = [];
-        for (var i = 0; i < 10; i++) {
-            var key = 'batch_test_string_key';
-            var entry = {
-                key : key + i,
-                value : {
-                    type : distributedData.ValueType.STRING,
-                    value : 'batch_test_string_value'
-                }
+```
+let kvStore;
+try {
+    let entries = [];
+    for (var i = 0; i < 10; i++) {
+        var key = 'batch_test_string_key';
+        var entry = {
+            key : key + i,
+            value : {
+                type : distributedData.ValueType.STRING,
+                value : 'batch_test_string_value'
             }
-            entries.push(entry);
         }
-        console.log('entries: ' + JSON.stringify(entries));
-        kvStore.putBatch(entries).then(async (err) => {
-            console.log('putBatch success');
-            await kvStore.getEntries('batch_test_string_key').then((entrys) => {
-                console.log('getEntries success');
-                console.log('PutBatch ' + JSON.stringify(entries));
-            }).catch((err) => {
-                console.log('getEntries fail ' + JSON.stringify(err));
-            });
-        }).catch((err) => {
-            console.log('putBatch fail ' + JSON.stringify(err));
-        });
-    }catch(e) {
-        console.log('PutBatch e ' + e);
+        entries.push(entry);
     }
-    ```
+    console.log('entries: ' + JSON.stringify(entries));
+    kvStore.putBatch(entries).then(async (err) => {
+        console.log('putBatch success');
+        await kvStore.getEntries('batch_test_string_key').then((entrys) => {
+            console.log('getEntries success');
+            console.log('PutBatch ' + JSON.stringify(entries));
+        }).catch((err) => {
+            console.log('getEntries fail ' + JSON.stringify(err));
+        });
+    }).catch((err) => {
+        console.log('putBatch fail ' + JSON.stringify(err));
+    });
+}catch(e) {
+    console.log('PutBatch e ' + e);
+}
+```
 
 
 ### deleteBatch<sup>8+</sup>
@@ -2436,34 +2418,34 @@ Deletes KV pairs in batches from this KV store. This method uses an asynchronous
 
 **Example**
 
-    ```
-    let kvStore;
-    try {
-        let entries = [];
-        let keys = [];
-        for (var i = 0; i < 5; i++) {
-            var key = 'batch_test_string_key';
-            var entry = {
-                key : key + i,
-                value : {
-                    type : distributedData.ValueType.STRING,
-                    value : 'batch_test_string_value'
-                }
+```
+let kvStore;
+try {
+    let entries = [];
+    let keys = [];
+    for (var i = 0; i < 5; i++) {
+        var key = 'batch_test_string_key';
+        var entry = {
+            key : key + i,
+            value : {
+                type : distributedData.ValueType.STRING,
+                value : 'batch_test_string_value'
             }
-            entries.push(entry);
-            keys.push(key + i);
         }
-        console.log('entries: ' + JSON.stringify(entries));
-        kvStore.putBatch(entries, async function (err,data) {
-            console.log('putBatch success');
-            await kvStore.deleteBatch(keys, async function (err,data) {
-                console.log('deleteBatch success');
-            });
-        });
-    }catch(e) {
-        console.log('DeleteBatch e ' + e);
+        entries.push(entry);
+        keys.push(key + i);
     }
-    ```
+    console.log('entries: ' + JSON.stringify(entries));
+    kvStore.putBatch(entries, async function (err,data) {
+        console.log('putBatch success');
+        await kvStore.deleteBatch(keys, async function (err,data) {
+            console.log('deleteBatch success');
+        });
+    });
+}catch(e) {
+    console.log('DeleteBatch e ' + e);
+}
+```
 
 
 ### deleteBatch<sup>8+</sup> ###
@@ -2488,38 +2470,38 @@ Deletes KV pairs in batches from this KV store. This method uses a promise to re
 
 **Example**
 
-    ```
-    let kvStore;
-    try {
-        let entries = [];
-        let keys = [];
-        for (var i = 0; i < 5; i++) {
-            var key = 'batch_test_string_key';
-            var entry = {
-                key : key + i,
-                value : {
-                    type : distributedData.ValueType.STRING,
-                    value : 'batch_test_string_value'
-                }
+```
+let kvStore;
+try {
+    let entries = [];
+    let keys = [];
+    for (var i = 0; i < 5; i++) {
+        var key = 'batch_test_string_key';
+        var entry = {
+            key : key + i,
+            value : {
+                type : distributedData.ValueType.STRING,
+                value : 'batch_test_string_value'
             }
-            entries.push(entry);
-            keys.push(key + i);
         }
-        console.log('entries: ' + JSON.stringify(entries));
-        kvStore.putBatch(entries).then(async (err) => {
-            console.log('putBatch success');
-            await kvStore.deleteBatch(keys).then((err) => {
-                console.log('deleteBatch success');
-            }).catch((err) => {
-                console.log('deleteBatch fail ' + JSON.stringify(err));
-            });
-        }).catch((err) => {
-            console.log('putBatch fail ' + JSON.stringify(err));
-        });
-    }catch(e) {
-        console.log('DeleteBatch e ' + e);
+        entries.push(entry);
+        keys.push(key + i);
     }
-    ```
+    console.log('entries: ' + JSON.stringify(entries));
+    kvStore.putBatch(entries).then(async (err) => {
+        console.log('putBatch success');
+        await kvStore.deleteBatch(keys).then((err) => {
+            console.log('deleteBatch success');
+        }).catch((err) => {
+            console.log('deleteBatch fail ' + JSON.stringify(err));
+        });
+    }).catch((err) => {
+        console.log('putBatch fail ' + JSON.stringify(err));
+    });
+}catch(e) {
+    console.log('DeleteBatch e ' + e);
+}
+```
 
 
 ### startTransaction<sup>8+</sup> ###
@@ -2538,40 +2520,40 @@ Starts the transaction in this KV store. This method uses an asynchronous callba
 
 **Example**
 
-    ```
-    let kvStore;
-    function putBatchString(len, prefix) {
-        let entries = [];
-        for (var i = 0; i < len; i++) {
-            var entry = {
-                key : prefix + i,
-                value : {
-                    type : distributedData.ValueType.STRING,
-                    value : 'batch_test_string_value'
-                }
+```
+let kvStore;
+function putBatchString(len, prefix) {
+    let entries = [];
+    for (var i = 0; i < len; i++) {
+        var entry = {
+            key : prefix + i,
+            value : {
+                type : distributedData.ValueType.STRING,
+                value : 'batch_test_string_value'
             }
-            entries.push(entry);
         }
-        return entries;
+        entries.push(entry);
     }
-    try {
-        var count = 0;
-        kvStore.on('dataChange', 0, function (data) {
-            console.log('startTransaction 0' + data)
-            count++;
+    return entries;
+}
+try {
+    var count = 0;
+    kvStore.on('dataChange', 0, function (data) {
+        console.log('startTransaction 0' + data)
+        count++;
+    });
+    kvStore.startTransaction(async function (err,data) {
+        console.log('startTransaction success');
+        let entries = putBatchString(10, 'batch_test_string_key');
+        console.log('entries: ' + JSON.stringify(entries));
+        await kvStore.putBatch(entries, async function (err,data) {
+            console.log('putBatch success');
         });
-        kvStore.startTransaction(async function (err,data) {
-            console.log('startTransaction success');
-            let entries = putBatchString(10, 'batch_test_string_key');
-            console.log('entries: ' + JSON.stringify(entries));
-            await kvStore.putBatch(entries, async function (err,data) {
-                console.log('putBatch success');
-            });
-        });
-    }catch(e) {
-        console.log('startTransaction e ' + e);
-    }
-    ```
+    });
+}catch(e) {
+    console.log('startTransaction e ' + e);
+}
+```
 
 
 ### startTransaction<sup>8+</sup> ###
@@ -2590,23 +2572,23 @@ Starts the transaction in this KV store. This method uses a promise to return th
 
 **Example**
 
-    ```
-    let kvStore;
-    try {
-        var count = 0;
-        kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_ALL, function (data) {
-            console.log('startTransaction ' + JSON.stringify(data));
-            count++;
-        });
-        kvStore.startTransaction().then(async (err) => {
-            console.log('startTransaction success');
-        }).catch((err) => {
-            console.log('startTransaction fail ' + JSON.stringify(err));
-        });
-    }catch(e) {
-        console.log('startTransaction e ' + e);
-    }
-    ```
+```
+let kvStore;
+try {
+    var count = 0;
+    kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_ALL, function (data) {
+        console.log('startTransaction ' + JSON.stringify(data));
+        count++;
+    });
+    kvStore.startTransaction().then(async (err) => {
+        console.log('startTransaction success');
+    }).catch((err) => {
+        console.log('startTransaction fail ' + JSON.stringify(err));
+    });
+}catch(e) {
+    console.log('startTransaction e ' + e);
+}
+```
 
 
 ### commit<sup>8+</sup> ###
@@ -2625,20 +2607,20 @@ Commits the transaction in this KV store. This method uses an asynchronous callb
 
 **Example**
 
-    ```
-    let kvStore;
-    try {
-        kvStore.commit(function (err,data) {
-            if (err == undefined) {
-                console.log('commit success');
-            } else {
-                console.log('commit fail');
-            }
-        });
-    }catch(e) {
-        console.log('Commit e ' + e);
-    }
-    ```
+```
+let kvStore;
+try {
+    kvStore.commit(function (err,data) {
+        if (err == undefined) {
+            console.log('commit success');
+        } else {
+            console.log('commit fail');
+        }
+    });
+}catch(e) {
+    console.log('Commit e ' + e);
+}
+```
 
 
 ### commit<sup>8+</sup> ###
@@ -2657,18 +2639,18 @@ Commits the transaction in this KV store. This method uses a promise to return t
 
 **Example**
 
-    ```
-    let kvStore;
-    try {
-        kvStore.commit().then(async (err) => {
-            console.log('commit success');
-        }).catch((err) => {
-            console.log('commit fail ' + JSON.stringify(err));
-        });
-    }catch(e) {
-        console.log('Commit e ' + e);
-    }
-    ```
+```
+let kvStore;
+try {
+    kvStore.commit().then(async (err) => {
+        console.log('commit success');
+    }).catch((err) => {
+        console.log('commit fail ' + JSON.stringify(err));
+    });
+}catch(e) {
+    console.log('Commit e ' + e);
+}
+```
 
 
 ### rollback<sup>8+</sup> ###
@@ -2687,20 +2669,20 @@ Rolls back the transaction in this KV store. This method uses an asynchronous ca
 
 **Example**
 
-    ```
-    let kvStore;
-    try {
-        kvStore.rollback(function (err,data) {
-            if (err == undefined) {
-                console.log('commit success');
-            } else {
-                console.log('commit fail');
-            }
-        });
-    }catch(e) {
-        console.log('Rollback e ' + e);
-    }
-    ```
+```
+let kvStore;
+try {
+    kvStore.rollback(function (err,data) {
+        if (err == undefined) {
+            console.log('commit success');
+        } else {
+            console.log('commit fail');
+        }
+    });
+}catch(e) {
+    console.log('Rollback e ' + e);
+}
+```
 
 
 ### rollback<sup>8+</sup> ###
@@ -2719,18 +2701,18 @@ Rolls back the transaction in this KV store. This method uses a promise to retur
 
 **Example**
 
-    ```
-    let kvStore;
-    try {
-        kvStore.rollback().then(async (err) => {
-            console.log('rollback success');
-        }).catch((err) => {
-            console.log('rollback fail ' + JSON.stringify(err));
-        });
-    }catch(e) {
-        console.log('Rollback e ' + e);
-    }
-    ```
+```
+let kvStore;
+try {
+    kvStore.rollback().then(async (err) => {
+        console.log('rollback success');
+    }).catch((err) => {
+        console.log('rollback fail ' + JSON.stringify(err));
+    });
+}catch(e) {
+    console.log('Rollback e ' + e);
+}
+```
 
 
 ### enableSync<sup>8+</sup> ###
@@ -2750,20 +2732,20 @@ Sets data synchronization, which can be enabled or disable. This method uses an 
 
 **Example**
 
-    ```
-    let kvStore;
-    try {
-        kvStore.enableSync(true, function (err,data) {
-            if (err == undefined) {
-                console.log('enableSync success');
-            } else {
-                console.log('enableSync fail');
-            }
-        });
-    }catch(e) {
-        console.log('EnableSync e ' + e);
-    }
-    ```
+```
+let kvStore;
+try {
+    kvStore.enableSync(true, function (err,data) {
+        if (err == undefined) {
+            console.log('enableSync success');
+        } else {
+            console.log('enableSync fail');
+        }
+    });
+}catch(e) {
+    console.log('EnableSync e ' + e);
+}
+```
 
 
 ### enableSync<sup>8+</sup> ###
@@ -2788,18 +2770,18 @@ Enables or disables data synchronization. This method uses a promise to return t
 
 **Example**
 
-    ```
-    let kvStore;
-    try {
-        kvStore.enableSync(true).then((err) => {
-            console.log('enableSync success');
-        }).catch((err) => {
-            console.log('enableSync fail ' + JSON.stringify(err));
-        });
-    }catch(e) {
-        console.log('EnableSync e ' + e);
-    }
-    ```
+```
+let kvStore;
+try {
+    kvStore.enableSync(true).then((err) => {
+        console.log('enableSync success');
+    }).catch((err) => {
+        console.log('enableSync fail ' + JSON.stringify(err));
+    });
+}catch(e) {
+    console.log('EnableSync e ' + e);
+}
+```
 
 
 ### setSyncRange<sup>8+</sup> ###
@@ -2820,18 +2802,18 @@ Sets the data synchronization range. This method uses an asynchronous callback t
 
 **Example**
 
-    ```
-    let kvStore;
-    try {
-        const localLabels = ['A', 'B'];
-        const remoteSupportLabels = ['C', 'D'];
-        kvStore.setSyncRange(localLabels, remoteSupportLabels, function (err,data) {
-            console.log('SetSyncRange put success');
-        });
-    }catch(e) {
-        console.log('SetSyncRange e ' + e);
-    }
-    ```
+```
+let kvStore;
+try {
+    const localLabels = ['A', 'B'];
+    const remoteSupportLabels = ['C', 'D'];
+    kvStore.setSyncRange(localLabels, remoteSupportLabels, function (err,data) {
+        console.log('SetSyncRange put success');
+    });
+}catch(e) {
+    console.log('SetSyncRange e ' + e);
+}
+```
 
 
 ### setSyncRange<sup>8+</sup> ###
@@ -2858,20 +2840,20 @@ Sets the data synchronization range. This method uses a promise to return the re
 
 **Example**
 
-    ```
-    let kvStore;
-    try {
-        const localLabels = ['A', 'B'];
-        const remoteSupportLabels = ['C', 'D'];
-        kvStore.setSyncRange(localLabels, remoteSupportLabels).then((err) => {
-            console.log('setSyncRange success');
-        }).catch((err) => {
-            console.log('delete fail ' + err);
-        });
-    }catch(e) {
-        console.log('SetSyncRange e ' + e);
-    }
-    ```
+```
+let kvStore;
+try {
+    const localLabels = ['A', 'B'];
+    const remoteSupportLabels = ['C', 'D'];
+    kvStore.setSyncRange(localLabels, remoteSupportLabels).then((err) => {
+        console.log('setSyncRange success');
+    }).catch((err) => {
+        console.log('delete fail ' + err);
+    });
+}catch(e) {
+    console.log('SetSyncRange e ' + e);
+}
+```
 
 
 ## SubscribeType
@@ -2958,34 +2940,34 @@ Obtains the value of a specified key. This method uses an asynchronous callback 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | key    |string   | Yes   |Key of the value to obtain. It cannot be empty, and the length cannot exceed [MAX_KEY_LENGTH](#constants). |
-| callback  |AsyncCallback&lt;Uint8Array / string / boolean / number&gt;) | Yes   |Callback used to return the value obtained. |
+| callback  |AsyncCallback&lt;Uint8Array \| string \| boolean \| number&gt;) | Yes   |Callback used to return the value obtained. |
 
 **Example**
 
-    ```
-    let kvStore;
-    const KEY_TEST_STRING_ELEMENT = 'key_test_string';
-    const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
-    try {
-        kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, function (err,data) {
-            if (err != undefined) {
-                console.log("put err: " + JSON.stringify(err));
-                return;
-            }
-            console.log("put success");
-            kvStore.get(KEY_TEST_STRING_ELEMENT, function (err,data) {
-                console.log("get success data: " + data);
-            });
+```
+let kvStore;
+const KEY_TEST_STRING_ELEMENT = 'key_test_string';
+const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
+try {
+    kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, function (err,data) {
+        if (err != undefined) {
+            console.log("put err: " + JSON.stringify(err));
+            return;
+        }
+        console.log("put success");
+        kvStore.get(KEY_TEST_STRING_ELEMENT, function (err,data) {
+            console.log("get success data: " + data);
         });
-    }catch (e) {
-        console.log("An unexpected error occurred. Error:" + e);
-    }
-    ```
+    });
+}catch (e) {
+    console.log("An unexpected error occurred. Error:" + e);
+}
+```
 
 
 ### get
 
-get(key: string): Promise&lt;Uint8Array | string | boolean | number&gt
+get(key: string): Promise&lt;Uint8Array | string | boolean | number&gt;
 
 Obtains the value of a specified key. This method uses a promise to return the result.
 
@@ -3002,30 +2984,29 @@ Obtains the value of a specified key. This method uses a promise to return the r
 
 | Type   | Description      |
 | ------  | -------   |
-|Promise&lt;Uint8Array / string / boolean / number&gt; |Promise used to return the value obtained.|
-
+|Promise&lt;Uint8Array \| string \| boolean \| number&gt; |Promise used to return the value obtained.|
 
 **Example**
 
-    ```
-    let kvStore;
-    const KEY_TEST_STRING_ELEMENT = 'key_test_string';
-    const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
-    try {
-        kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT).then((data) => {
-            console.log("put success: " + JSON.stringify(data));
-            kvStore.get(KEY_TEST_STRING_ELEMENT).then((data) => {
-                console.log("get success data: " + data);
-            }).catch((err) => {
-                console.log("get err: " + JSON.stringify(err));
-            });
+```
+let kvStore;
+const KEY_TEST_STRING_ELEMENT = 'key_test_string';
+const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
+try {
+    kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT).then((data) => {
+        console.log("put success: " + JSON.stringify(data));
+        kvStore.get(KEY_TEST_STRING_ELEMENT).then((data) => {
+            console.log("get success data: " + data);
         }).catch((err) => {
-            console.log("put err: " + JSON.stringify(err));
+            console.log("get err: " + JSON.stringify(err));
         });
-    }catch (e) {
-        console.log("An unexpected error occurred. Error:" + e);
-    }
-    ```
+    }).catch((err) => {
+        console.log("put err: " + JSON.stringify(err));
+    });
+}catch (e) {
+    console.log("An unexpected error occurred. Error:" + e);
+}
+```
 
 ### getEntries<sup>8+</sup> ###
 
@@ -3040,37 +3021,37 @@ Obtains the KV pairs that match the specified key prefix. This method uses an as
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | keyPrefix    |string   | Yes   |Key prefix to match. |
-| callback    |AsyncCallback&lt;Entry[]&gt;   | Yes   |Callback used to return the KV pairs obtained. |
+| callback    |AsyncCallback&lt;[Entry](#entry)[]&gt;   | Yes   |Callback used to return the KV pairs obtained. |
 
 **Example**
 
-    ```
-    let kvStore;
-    try {
-        let entries = [];
-        for (var i = 0; i < 10; i++) {
-            var key = 'batch_test_number_key';
-            var entry = {
-                key : key + i,
-                value : {
-                    type : distributedData.ValueType.INTEGER,
-                    value : 222
-                }
+```
+let kvStore;
+try {
+    let entries = [];
+    for (var i = 0; i < 10; i++) {
+        var key = 'batch_test_number_key';
+        var entry = {
+            key : key + i,
+            value : {
+                type : distributedData.ValueType.INTEGER,
+                value : 222
             }
-            entries.push(entry);
         }
-        kvStore.putBatch(entries, async function (err,data) {
-            console.log('putBatch success');
-            await kvStore.getEntries('batch_test_number_key', function (err,entrys) {
-                console.log('getEntries success');
-                console.log('entrys.length: ' + entrys.length);
-                console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
-            });
-        });
-    }catch(e) {
-        console.log('PutBatch e ' + e);
+        entries.push(entry);
     }
-    ```
+    kvStore.putBatch(entries, async function (err,data) {
+        console.log('putBatch success');
+        await kvStore.getEntries('batch_test_number_key', function (err,entrys) {
+            console.log('getEntries success');
+            console.log('entrys.length: ' + entrys.length);
+            console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
+        });
+    });
+}catch(e) {
+    console.log('PutBatch e ' + e);
+}
+```
 
 
 ### getEntries<sup>8+</sup> ###
@@ -3095,40 +3076,40 @@ Obtains the KV pairs that match the specified key prefix. This method uses a pro
 
 **Example**
 
-    ```
-    let kvStore;
-    try {
-        let entries = [];
-        for (var i = 0; i < 10; i++) {
-            var key = 'batch_test_string_key';
-            var entry = {
-                key : key + i,
-                value : {
-                    type : distributedData.ValueType.STRING,
-                    value : 'batch_test_string_value'
-                }
+```
+let kvStore;
+try {
+    let entries = [];
+    for (var i = 0; i < 10; i++) {
+        var key = 'batch_test_string_key';
+        var entry = {
+            key : key + i,
+            value : {
+                type : distributedData.ValueType.STRING,
+                value : 'batch_test_string_value'
             }
-            entries.push(entry);
         }
-        console.log('entries: ' + entries);
-        kvStore.putBatch(entries).then(async (err) => {
-            console.log('putBatch success');
-            await kvStore.getEntries('batch_test_string_key').then((entrys) => {
-                console.log('getEntries success');
-                console.log('entrys.length: ' + entrys.length);
-                console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
-                console.log('entrys[0].value: ' + JSON.stringify(entrys[0].value));
-                console.log('entrys[0].value.value: ' + entrys[0].value.value);
-            }).catch((err) => {
-                console.log('getEntries fail ' + JSON.stringify(err));
-            });
-        }).catch((err) => {
-            console.log('putBatch fail ' + JSON.stringify(err));
-        });
-    }catch(e) {
-        console.log('PutBatch e ' + e);
+        entries.push(entry);
     }
-    ```
+    console.log('entries: ' + entries);
+    kvStore.putBatch(entries).then(async (err) => {
+        console.log('putBatch success');
+        await kvStore.getEntries('batch_test_string_key').then((entrys) => {
+            console.log('getEntries success');
+            console.log('entrys.length: ' + entrys.length);
+            console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
+            console.log('entrys[0].value: ' + JSON.stringify(entrys[0].value));
+            console.log('entrys[0].value.value: ' + entrys[0].value.value);
+        }).catch((err) => {
+            console.log('getEntries fail ' + JSON.stringify(err));
+        });
+    }).catch((err) => {
+        console.log('putBatch fail ' + JSON.stringify(err));
+    });
+}catch(e) {
+    console.log('PutBatch e ' + e);
+}
+```
 
 
 ### getEntries<sup>8+</sup> ###
@@ -3144,42 +3125,42 @@ Obtains the KV pairs that match the specified **Query** object. This method uses
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | query  |[Query](#query8)   | Yes   |**Query** object to match. |
-| callback  |AsyncCallback&lt;Entry[]&gt;   | Yes   |Callback used to return the KV pairs obtained. |
+| callback  |AsyncCallback&lt;[Entry](#entry)[]&gt;   | Yes   |Callback used to return the KV pairs obtained. |
 
 **Example**
 
-    ```
-    let kvStore;
-    try {
-        var arr = new Uint8Array([21,31]);
-        let entries = [];
-        for (var i = 0; i < 10; i++) {
-            var key = 'batch_test_bool_key';
-            var entry = {
-                key : key + i,
-                value : {
-                    type : distributedData.ValueType.BYTE_ARRAY,
-                    value : arr
-                }
+```
+let kvStore;
+try {
+    var arr = new Uint8Array([21,31]);
+    let entries = [];
+    for (var i = 0; i < 10; i++) {
+        var key = 'batch_test_bool_key';
+        var entry = {
+            key : key + i,
+            value : {
+                type : distributedData.ValueType.BYTE_ARRAY,
+                value : arr
             }
-            entries.push(entry);
         }
-        console.log('entries: ' + JSON.stringify(entries));
-        kvStore.putBatch(entries, async function (err,data) {
-            console.log('putBatch success');
-            const query = new distributedData.Query();
-            query.prefixKey("batch_test");
-            await kvStore.getEntries(query, function (err,entrys) {
-                console.log('getEntries success');
-                console.log('entrys.length: ' + entrys.length);
-                console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
-            });
-        });
-        console.log('GetEntries success');
-    }catch(e) {
-        console.log('GetEntries e ' + e);
+        entries.push(entry);
     }
-    ```
+    console.log('entries: ' + JSON.stringify(entries));
+    kvStore.putBatch(entries, async function (err,data) {
+        console.log('putBatch success');
+        const query = new distributedData.Query();
+        query.prefixKey("batch_test");
+        await kvStore.getEntries(query, function (err,entrys) {
+            console.log('getEntries success');
+            console.log('entrys.length: ' + entrys.length);
+            console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
+        });
+    });
+    console.log('GetEntries success');
+}catch(e) {
+    console.log('GetEntries e ' + e);
+}
+```
 
 
 ### getEntries<sup>8+</sup> ###
@@ -3204,39 +3185,39 @@ Obtains the KV pairs that match the specified **Query** object. This method uses
 
 **Example**
 
-    ```
-    try {
-        var arr = new Uint8Array([21,31]);
-        let entries = [];
-        for (var i = 0; i < 10; i++) {
-            var key = 'batch_test_bool_key';
-            var entry = {
-                key : key + i,
-                value : {
-                    type : distributedData.ValueType.BYTE_ARRAY,
-                    value : arr
-                }
+```
+try {
+    var arr = new Uint8Array([21,31]);
+    let entries = [];
+    for (var i = 0; i < 10; i++) {
+        var key = 'batch_test_bool_key';
+        var entry = {
+            key : key + i,
+            value : {
+                type : distributedData.ValueType.BYTE_ARRAY,
+                value : arr
             }
-            entries.push(entry);
         }
-        console.log('entries: ' + JSON.stringify(entries));
-        kvStore.putBatch(entries).then(async (err) => {
-            console.log('putBatch success');
-            const query = new distributedData.Query();
-            query.prefixKey("batch_test");
-            await kvStore.getEntries(query).then((entrys) => {
-                console.log('getEntries success');
-            }).catch((err) => {
-                console.log('getEntries fail ' + JSON.stringify(err));
-            });
-        }).catch((err) => {
-            console.log('GetEntries putBatch fail ' + JSON.stringify(err))
-        });
-        console.log('GetEntries success');
-    }catch(e) {
-        console.log('GetEntries e ' + e);
+        entries.push(entry);
     }
-    ```
+    console.log('entries: ' + JSON.stringify(entries));
+    kvStore.putBatch(entries).then(async (err) => {
+        console.log('putBatch success');
+        const query = new distributedData.Query();
+        query.prefixKey("batch_test");
+        await kvStore.getEntries(query).then((entrys) => {
+            console.log('getEntries success');
+        }).catch((err) => {
+            console.log('getEntries fail ' + JSON.stringify(err));
+        });
+    }).catch((err) => {
+        console.log('GetEntries putBatch fail ' + JSON.stringify(err))
+    });
+    console.log('GetEntries success');
+}catch(e) {
+    console.log('GetEntries e ' + e);
+}
+```
 
 
 ### getResultSet<sup>8+</sup> ###
@@ -3256,36 +3237,36 @@ Obtains the result set with the specified key prefix from this single KV store. 
 
 **Example**
 
-    ```
-    let kvStore;
-    try {
-        let resultSet;
-        let entries = [];
-        for (var i = 0; i < 10; i++) {
-            var key = 'batch_test_string_key';
-            var entry = {
-                key : key + i,
-                value : {
-                    type : distributedData.ValueType.STRING,
-                    value : 'batch_test_string_value'
-                }
+```
+let kvStore;
+try {
+    let resultSet;
+    let entries = [];
+    for (var i = 0; i < 10; i++) {
+        var key = 'batch_test_string_key';
+        var entry = {
+            key : key + i,
+            value : {
+                type : distributedData.ValueType.STRING,
+                value : 'batch_test_string_value'
             }
-            entries.push(entry);
         }
-        kvStore.putBatch(entries, async function (err, data) {
-            console.log('GetResultSet putBatch success');
-            await kvStore.getResultSet('batch_test_string_key', async function (err, result) {
-                console.log('GetResultSet getResultSet success');
-                resultSet = result;
-                kvStore.closeResultSet(resultSet, function (err, data) {
-                    console.log('GetResultSet closeResultSet success');
-                })
-            });
-        });
-    }catch(e) {
-        console.log('GetResultSet e ' + e);
+        entries.push(entry);
     }
-    ```
+    kvStore.putBatch(entries, async function (err, data) {
+        console.log('GetResultSet putBatch success');
+        await kvStore.getResultSet('batch_test_string_key', async function (err, result) {
+            console.log('GetResultSet getResultSet success');
+            resultSet = result;
+            kvStore.closeResultSet(resultSet, function (err, data) {
+                console.log('GetResultSet closeResultSet success');
+            })
+        });
+    });
+}catch(e) {
+    console.log('GetResultSet e ' + e);
+}
+```
 
 
 ### getResultSet<sup>8+</sup> ###
@@ -3310,42 +3291,42 @@ Obtains the result set with the specified key prefix from this single KV store. 
 
 **Example**
 
-    ```
-    let kvStore;
-    try {
-        let resultSet;
-        let entries = [];
-        for (var i = 0; i < 10; i++) {
-            var key = 'batch_test_string_key';
-            var entry = {
-                key : key + i,
-                value : {
-                    type : distributedData.ValueType.STRING,
-                    value : 'batch_test_string_value'
-                }
+```
+let kvStore;
+try {
+    let resultSet;
+    let entries = [];
+    for (var i = 0; i < 10; i++) {
+        var key = 'batch_test_string_key';
+        var entry = {
+            key : key + i,
+            value : {
+                type : distributedData.ValueType.STRING,
+                value : 'batch_test_string_value'
             }
-            entries.push(entry);
         }
-        kvStore.putBatch(entries).then(async (err) => {
-            console.log('putBatch success');
-        }).catch((err) => {
-            console.log('PutBatch putBatch fail ' + JSON.stringify(err));
-        });
-        kvStore.getResultSet('batch_test_string_key').then((result) => {
-            console.log('GetResult getResultSet success');
-            resultSet = result;
-        }).catch((err) => {
-            console.log('getResultSet fail ' + JSON.stringify(err));
-        });
-        kvStore.closeResultSet(resultSet).then((err) => {
-            console.log('GetResult closeResultSet success');
-        }).catch((err) => {
-            console.log('closeResultSet fail ' + JSON.stringify(err));
-        });
-    }catch(e) {
-        console.log('GetResult e ' + e);
+        entries.push(entry);
     }
-    ```
+    kvStore.putBatch(entries).then(async (err) => {
+        console.log('putBatch success');
+    }).catch((err) => {
+        console.log('PutBatch putBatch fail ' + JSON.stringify(err));
+    });
+    kvStore.getResultSet('batch_test_string_key').then((result) => {
+        console.log('GetResult getResultSet success');
+        resultSet = result;
+    }).catch((err) => {
+        console.log('getResultSet fail ' + JSON.stringify(err));
+    });
+    kvStore.closeResultSet(resultSet).then((err) => {
+        console.log('GetResult closeResultSet success');
+    }).catch((err) => {
+        console.log('closeResultSet fail ' + JSON.stringify(err));
+    });
+}catch(e) {
+    console.log('GetResult e ' + e);
+}
+```
 
 
 ### getResultSet<sup>8+</sup> ###
@@ -3365,35 +3346,35 @@ Obtains the **KvStoreResultSet** object that matches the specified **Query** obj
 
 **Example**
 
-    ```
-    let kvStore;
-    try {
-        let resultSet;
-        let entries = [];
-        for (var i = 0; i < 10; i++) {
-            var key = 'batch_test_string_key';
-            var entry = {
-                key : key + i,
-                value : {
-                    type : distributedData.ValueType.STRING,
-                    value : 'batch_test_string_value'
-                }
+```
+let kvStore;
+try {
+    let resultSet;
+    let entries = [];
+    for (var i = 0; i < 10; i++) {
+        var key = 'batch_test_string_key';
+        var entry = {
+            key : key + i,
+            value : {
+                type : distributedData.ValueType.STRING,
+                value : 'batch_test_string_value'
             }
-            entries.push(entry);
         }
-        kvStore.putBatch(entries, async function (err, data) {
-            console.log('putBatch success');
-            const query = new distributedData.Query();
-            query.prefixKey("batch_test");
-            await kvStore.getResultSet(query, async function (err, result) {
-                console.log('getResultSet success');
-                resultSet = result;
-            });
-        });
-    } catch(e) {
-        console.log('GetResultSet e ' + e);
+        entries.push(entry);
     }
-    ```
+    kvStore.putBatch(entries, async function (err, data) {
+        console.log('putBatch success');
+        const query = new distributedData.Query();
+        query.prefixKey("batch_test");
+        await kvStore.getResultSet(query, async function (err, result) {
+            console.log('getResultSet success');
+            resultSet = result;
+        });
+    });
+} catch(e) {
+    console.log('GetResultSet e ' + e);
+}
+```
 
 
 ### getResultSet<sup>8+</sup> ###
@@ -3418,40 +3399,39 @@ Obtains the **KvStoreResultSet** object that matches the specified **Query** obj
 
 **Example**
 
-    ```
-    let kvStore;
-    try {
-        let resultSet;
-        let entries = [];
-        for (var i = 0; i < 10; i++) {
-            var key = 'batch_test_string_key';
-            var entry = {
-                key : key + i,
-                value : {
-                    type : distributedData.ValueType.STRING,
-                    value : 'batch_test_string_value'
-                }
+```
+let kvStore;
+try {
+    let resultSet;
+    let entries = [];
+    for (var i = 0; i < 10; i++) {
+        var key = 'batch_test_string_key';
+        var entry = {
+            key : key + i,
+            value : {
+                type : distributedData.ValueType.STRING,
+                value : 'batch_test_string_value'
             }
-            entries.push(entry);
         }
-        kvStore.putBatch(entries).then(async (err) => {
-            console.log('putBatch success');
-        }).catch((err) => {
-            console.log('putBatch fail ' + JSON.stringify(err));
-        });
-        const query = new distributedData.Query();
-        query.prefixKey("batch_test");
-        kvStore.getResultSet(query).then((result) => {
-            console.log(' getResultSet success');
-            resultSet = result;
-        }).catch((err) => {
-            console.log('getResultSet fail ' + JSON.stringify(err));
-        });
-    }catch(e) {
-        console.log('GetResultSet e ' + e);
+        entries.push(entry);
     }
-    ```
-
+    kvStore.putBatch(entries).then(async (err) => {
+        console.log('putBatch success');
+    }).catch((err) => {
+        console.log('putBatch fail ' + JSON.stringify(err));
+    });
+    const query = new distributedData.Query();
+    query.prefixKey("batch_test");
+    kvStore.getResultSet(query).then((result) => {
+        console.log(' getResultSet success');
+        resultSet = result;
+    }).catch((err) => {
+        console.log('getResultSet fail ' + JSON.stringify(err));
+    });
+}catch(e) {
+    console.log('GetResultSet e ' + e);
+}
+```
 
 ### closeResultSet<sup>8+</sup> ###
 
@@ -3470,21 +3450,21 @@ Closes the **KvStoreResultSet** object obtained by **getResultSet**. This method
 
 **Example**
 
-    ```
-    let kvStore;
-    try {
-        let resultSet = null;
-        kvStore.closeResultSet(resultSet, function (err, data) {
-            if (err == undefined) {
-                console.log('closeResultSet success');
-            } else {
-                console.log('closeResultSet fail');
-            }
-        });
-    }catch(e) {
-        console.log('CloseResultSet e ' + e);
-    }
-    ```
+```
+let kvStore;
+try {
+    let resultSet = null;
+    kvStore.closeResultSet(resultSet, function (err, data) {
+        if (err == undefined) {
+            console.log('closeResultSet success');
+        } else {
+            console.log('closeResultSet fail');
+        }
+    });
+}catch(e) {
+    console.log('CloseResultSet e ' + e);
+}
+```
 
 
 ### closeResultSet<sup>8+</sup> ###
@@ -3509,19 +3489,19 @@ Closes the **KvStoreResultSet** object obtained by **getResultSet**. This method
 
 **Example**
 
-    ```
-    let kvStore;
-    try {
-        let resultSet = null;
-        kvStore.closeResultSet(resultSet).then(() => {
-            console.log('closeResultSet success');
-        }).catch((err) => {
-            console.log('closeResultSet fail ' + JSON.stringify(err));
-        });
-    }catch(e) {
-        console.log('CloseResultSet e ' + e);
-    }
-    ```
+```
+let kvStore;
+try {
+    let resultSet = null;
+    kvStore.closeResultSet(resultSet).then(() => {
+        console.log('closeResultSet success');
+    }).catch((err) => {
+        console.log('closeResultSet fail ' + JSON.stringify(err));
+    });
+}catch(e) {
+    console.log('CloseResultSet e ' + e);
+}
+```
 
 
 ### getResultSize<sup>8+</sup> ###
@@ -3541,33 +3521,33 @@ Obtains the number of results that matches the specified **Query** object. This 
 
 **Example**
 
-    ```
-    let kvStore;
-    try {
-        let entries = [];
-        for (var i = 0; i < 10; i++) {
-            var key = 'batch_test_string_key';
-            var entry = {
-                key : key + i,
-                value : {
-                    type : distributedData.ValueType.STRING,
-                    value : 'batch_test_string_value'
-                }
+```
+let kvStore;
+try {
+    let entries = [];
+    for (var i = 0; i < 10; i++) {
+        var key = 'batch_test_string_key';
+        var entry = {
+            key : key + i,
+            value : {
+                type : distributedData.ValueType.STRING,
+                value : 'batch_test_string_value'
             }
-            entries.push(entry);
         }
-        kvStore.putBatch(entries, async function (err, data) {
-            console.log('putBatch success');
-            const query = new distributedData.Query();
-            query.prefixKey("batch_test");
-            await kvStore.getResultSize(query, async function (err, resultSize) {
-                console.log('getResultSet success');
-            });
-        });
-    } catch(e) {
-        console.log('GetResultSize e ' + e);
+        entries.push(entry);
     }
-    ```
+    kvStore.putBatch(entries, async function (err, data) {
+        console.log('putBatch success');
+        const query = new distributedData.Query();
+        query.prefixKey("batch_test");
+        await kvStore.getResultSize(query, async function (err, resultSize) {
+            console.log('getResultSet success');
+        });
+    });
+} catch(e) {
+    console.log('GetResultSize e ' + e);
+}
+```
 
 
 ### getResultSize<sup>8+</sup> ###
@@ -3592,37 +3572,37 @@ Obtains the number of results that matches the specified **Query** object. This 
 
 **Example**
 
-    ```
-    let kvStore;
-    try {
-        let entries = [];
-        for (var i = 0; i < 10; i++) {
-            var key = 'batch_test_string_key';
-            var entry = {
-                key : key + i,
-                value : {
-                    type : distributedData.ValueType.STRING,
-                    value : 'batch_test_string_value'
-                }
+```
+let kvStore;
+try {
+    let entries = [];
+    for (var i = 0; i < 10; i++) {
+        var key = 'batch_test_string_key';
+        var entry = {
+            key : key + i,
+            value : {
+                type : distributedData.ValueType.STRING,
+                value : 'batch_test_string_value'
             }
-            entries.push(entry);
         }
-        kvStore.putBatch(entries).then(async (err) => {
-            console.log('putBatch success');
-        }).catch((err) => {
-            console.log('putBatch fail ' + JSON.stringify(err));
-        });
-        const query = new distributedData.Query();
-        query.prefixKey("batch_test");
-        kvStore.getResultSize(query).then((resultSize) => {
-            console.log('getResultSet success');
-        }).catch((err) => {
-            console.log('getResultSet fail ' + JSON.stringify(err));
-        });
-    }catch(e) {
-        console.log('GetResultSize e ' + e);
+        entries.push(entry);
     }
-    ```
+    kvStore.putBatch(entries).then(async (err) => {
+        console.log('putBatch success');
+    }).catch((err) => {
+        console.log('putBatch fail ' + JSON.stringify(err));
+    });
+    const query = new distributedData.Query();
+    query.prefixKey("batch_test");
+    kvStore.getResultSize(query).then((resultSize) => {
+        console.log('getResultSet success');
+    }).catch((err) => {
+        console.log('getResultSet fail ' + JSON.stringify(err));
+    });
+}catch(e) {
+    console.log('GetResultSize e ' + e);
+}
+```
 
 
 ### removeDeviceData<sup>8+</sup> ###
@@ -3642,29 +3622,29 @@ Deletes data of a device. This method uses an asynchronous callback to return th
 
 **Example**
 
-    ```
-    let kvStore;
-    const KEY_TEST_STRING_ELEMENT = 'key_test_string_2';
-    const VALUE_TEST_STRING_ELEMENT = 'value-string-002';
-    try {
-        kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, async function (err,data) {
-            console.log('put success');
-            const deviceid = 'no_exist_device_id';
-            await kvStore.removeDeviceData(deviceid, async function (err,data) {
-                if (err == undefined) {
-                    console.log('removeDeviceData success');
-                } else {
-                    console.log('removeDeviceData fail');
-                    await kvStore.get(KEY_TEST_STRING_ELEMENT, async function (err,data) {
-                        console.log('RemoveDeviceData get success');
-                    });
-                }
-            });
+```
+let kvStore;
+const KEY_TEST_STRING_ELEMENT = 'key_test_string_2';
+const VALUE_TEST_STRING_ELEMENT = 'value-string-002';
+try {
+    kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, async function (err,data) {
+        console.log('put success');
+        const deviceid = 'no_exist_device_id';
+        await kvStore.removeDeviceData(deviceid, async function (err,data) {
+            if (err == undefined) {
+                console.log('removeDeviceData success');
+            } else {
+                console.log('removeDeviceData fail');
+                await kvStore.get(KEY_TEST_STRING_ELEMENT, async function (err,data) {
+                    console.log('RemoveDeviceData get success');
+                });
+            }
         });
-    }catch(e) {
-        console.log('RemoveDeviceData e ' + e);
-    }
-    ```
+    });
+}catch(e) {
+    console.log('RemoveDeviceData e ' + e);
+}
+```
 
 
 ### removeDeviceData<sup>8+</sup> ###
@@ -3689,31 +3669,31 @@ Deletes data of a device. This method uses a promise to return the result.
 
 **Example**
 
-    ```
-    let kvStore;
-    const KEY_TEST_STRING_ELEMENT = 'key_test_string_2';
-    const VALUE_TEST_STRING_ELEMENT = 'value-string-001';
-    try {
-        kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT).then((err) => {
-            console.log('removeDeviceData put success');
-        }).catch((err) => {
-            console.log('put fail ' + JSON.stringify(err));
-        });
-        const deviceid = 'no_exist_device_id';
-        kvStore.removeDeviceData(deviceid).then((err) => {
-            console.log('removeDeviceData success');
-        }).catch((err) => {
-            console.log('removeDeviceData fail ' + JSON.stringify(err));
-        });
-        kvStore.get(KEY_TEST_STRING_ELEMENT).then((data) => {
-            console.log('get success data:' + data);
-        }).catch((err) => {
-            console.log('RemoveDeviceData get fail ' + JSON.stringify(err));
-        });
-    }catch(e) {
-        console.log('RemoveDeviceData e ' + e);
-    }
-    ```
+```
+let kvStore;
+const KEY_TEST_STRING_ELEMENT = 'key_test_string_2';
+const VALUE_TEST_STRING_ELEMENT = 'value-string-001';
+try {
+    kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT).then((err) => {
+        console.log('removeDeviceData put success');
+    }).catch((err) => {
+        console.log('put fail ' + JSON.stringify(err));
+    });
+    const deviceid = 'no_exist_device_id';
+    kvStore.removeDeviceData(deviceid).then((err) => {
+        console.log('removeDeviceData success');
+    }).catch((err) => {
+        console.log('removeDeviceData fail ' + JSON.stringify(err));
+    });
+    kvStore.get(KEY_TEST_STRING_ELEMENT).then((data) => {
+        console.log('get success data:' + data);
+    }).catch((err) => {
+        console.log('RemoveDeviceData get fail ' + JSON.stringify(err));
+    });
+}catch(e) {
+    console.log('RemoveDeviceData e ' + e);
+}
+```
 
 
 ### on<sup>8+</sup> ###
@@ -3733,30 +3713,30 @@ Subscribes to the synchronization completion events. This method uses a synchron
 
 **Example**
 
-    ```
-    let kvStore;
-    const KEY_TEST_FLOAT_ELEMENT = 'key_test_float';
-    const VALUE_TEST_FLOAT_ELEMENT = 321.12;
-    try {
-        kvStore.on('syncComplete', function (data) {
-            console.log('syncComplete ' + data)
-        });
-        kvStore.put(KEY_TEST_FLOAT_ELEMENT, VALUE_TEST_FLOAT_ELEMENT).then((data) => {
-            console.log('syncComplete put success');
-        }).catch((error) => {
-            console.log('syncComplete put fail ' + error);
-        });
-    }catch(e) {
-        console.log('syncComplete put e ' + e);
-    }
-    ```
+```
+let kvStore;
+const KEY_TEST_FLOAT_ELEMENT = 'key_test_float';
+const VALUE_TEST_FLOAT_ELEMENT = 321.12;
+try {
+    kvStore.on('syncComplete', function (data) {
+        console.log('syncComplete ' + data)
+    });
+    kvStore.put(KEY_TEST_FLOAT_ELEMENT, VALUE_TEST_FLOAT_ELEMENT).then((data) => {
+        console.log('syncComplete put success');
+    }).catch((error) => {
+        console.log('syncComplete put fail ' + error);
+    });
+}catch(e) {
+    console.log('syncComplete put e ' + e);
+}
+```
 
 
 ### off<sup>8+</sup> ###
 
 off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-Unsubscribes from the synchronization completion events. This method uses a synchronization callback to return the result.
+Unsubscribes from the synchronization completion events. This method uses a synchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -3767,21 +3747,20 @@ Unsubscribes from the synchronization completion events. This method uses a sync
 | event  |'syncComplete'   | Yes   |Event triggered when the synchronization is complete.   |
 | syncCallback  |Callback&lt;Array&lt;[string, number]&gt;&gt;   | No   |Callback used to return the synchronization result.   |
 
-
 **Example**
 
-    ```
-    let kvStore;
-    try {
-        const func = function (data) {
-            console.log('syncComplete ' + data)
-        };
-        kvStore.on('syncComplete', func);
-        kvStore.off('syncComplete', func);
-    }catch(e) {
-        console.log('syncComplete e ' + e);
-    }
-    ```
+```
+let kvStore;
+try {
+    const func = function (data) {
+        console.log('syncComplete ' + data)
+    };
+    kvStore.on('syncComplete', func);
+    kvStore.off('syncComplete', func);
+}catch(e) {
+    console.log('syncComplete e ' + e);
+}
+```
 
 
 ### sync
@@ -3789,6 +3768,7 @@ Unsubscribes from the synchronization completion events. This method uses a sync
 sync(deviceIdList: string[], mode: SyncMode, allowedDelayMs?: number): void
 
 Manually triggers KV store synchronization synchronously.
+**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -3802,10 +3782,10 @@ Manually triggers KV store synchronization synchronously.
 
 **Example**
 
-    ```
-    let kvStore;
-    kvStore.sync('deviceIds', distributedData.SyncMode.PULL_ONLY, 1000);
-    ```
+```
+let kvStore;
+kvStore.sync('deviceIds', distributedData.SyncMode.PULL_ONLY, 1000);
+```
 
 ### setSyncParam<sup>8+</sup> ###
 
@@ -3822,20 +3802,19 @@ Sets the default delay of database synchronization. This method uses an asynchro
 | defaultAllowedDelayMs  |number  | Yes   |Default delay allowed for database synchronization, in ms.   |
 | callback  |AsyncCallback&lt;void&gt;  | Yes  |Callback used to return the result.  |
 
-
 **Example**
 
-    ```
-    let kvStore;
-    try {
-        const defaultAllowedDelayMs = 500;
-        kvStore.setSyncParam(defaultAllowedDelayMs, function (err,data) {
-            console.log('SetSyncParam put success');
-        });
-    }catch(e) {
-        console.log('testSingleKvStoreSetSyncParam e ' + e);
-    }
-    ```
+```
+let kvStore;
+try {
+    const defaultAllowedDelayMs = 500;
+    kvStore.setSyncParam(defaultAllowedDelayMs, function (err,data) {
+        console.log('SetSyncParam put success');
+    });
+}catch(e) {
+    console.log('testSingleKvStoreSetSyncParam e ' + e);
+}
+```
 
 
 ### setSyncParam<sup>8+</sup> ###
@@ -3861,19 +3840,19 @@ Sets the default delay of database synchronization. This method uses a promise t
 
 **Example**
 
-    ```
-    let kvStore;
-    try {
-        const defaultAllowedDelayMs = 500;
-        kvStore.setSyncParam(defaultAllowedDelayMs).then((err) => {
-            console.log('SetSyncParam put success');
-        }).catch((err) => {
-            console.log('SetSyncParam put fail ' + JSON.stringify(err));
-        });
-    }catch(e) {
-        console.log('SetSyncParam e ' + e);
-    }
-    ```
+```
+let kvStore;
+try {
+    const defaultAllowedDelayMs = 500;
+    kvStore.setSyncParam(defaultAllowedDelayMs).then((err) => {
+        console.log('SetSyncParam put success');
+    }).catch((err) => {
+        console.log('SetSyncParam put fail ' + JSON.stringify(err));
+    });
+}catch(e) {
+    console.log('SetSyncParam e ' + e);
+}
+```
 
 
 ### getSecurityLevel<sup>8+</sup> ###
@@ -3892,16 +3871,16 @@ Obtains the security level of this KV store. This method uses an asynchronous ca
 
 **Example**
 
-    ```
-    let kvStore;
-    try {
-        kvStore.getSecurityLevel(function (err,data) {
-            console.log('getSecurityLevel success');
-        });
-    }catch(e) {
-        console.log('GetSecurityLeve e ' + e);
-    }
-    ```
+```
+let kvStore;
+try {
+    kvStore.getSecurityLevel(function (err,data) {
+        console.log('getSecurityLevel success');
+    });
+}catch(e) {
+    console.log('GetSecurityLeve e ' + e);
+}
+```
 
 
 ### getSecurityLevel<sup>8+</sup> ###
@@ -3918,21 +3897,20 @@ Obtains the security level of this KV store. This method uses a promise to retur
 | ------  | -------   |
 |Promise&lt;[SecurityLevel](#securitylevel)&gt; |Promise used to return the security level obtained.|
 
-
 **Example**
 
-    ```
-    let kvStore;
-    try {
-        kvStore.getSecurityLevel().then((data) => {
-            console.log(' getSecurityLevel success');
-        }).catch((err) => {
-            console.log('getSecurityLevel fail ' + JSON.stringify(err));
-        });
-    }catch(e) {
-        console.log('GetSecurityLeve e ' + e);
-    }
-    ```
+```
+let kvStore;
+try {
+    kvStore.getSecurityLevel().then((data) => {
+        console.log(' getSecurityLevel success');
+    }).catch((err) => {
+        console.log('getSecurityLevel fail ' + JSON.stringify(err));
+    });
+}catch(e) {
+    console.log('GetSecurityLeve e ' + e);
+}
+```
 
 
 ## DeviceKVStore<sup>8+</sup> ##
@@ -3947,7 +3925,7 @@ get(deviceId: string, key: string, callback: AsyncCallback&lt;boolean|string|num
 
 Obtains the string value that matches the specified key for a device. This method uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
+**System capability**:  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
 **Parameters**
 
@@ -3955,26 +3933,25 @@ Obtains the string value that matches the specified key for a device. This metho
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | Yes   |ID of the target device.   |
 | key       |string  | Yes   |Key to match.   |
-| callback  |AsyncCallback&lt;boolean/string/number/Uint8Array&gt;  | Yes   |Callback used to return the value obtained.   |
-
+| callback  |AsyncCallback&lt;boolean\|string\|number\|Uint8Array&gt;  | Yes   |Callback used to return the value obtained.   |
 
 **Example**
 
-    ```
-    let kvStore;
-    const KEY_TEST_STRING_ELEMENT = 'key_test_string_2';
-    const VALUE_TEST_STRING_ELEMENT = 'value-string-002';
-    try{
-        kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, async function (err,data) {
-            console.log('put success');
-            kvStore.get('localDeviceId', KEY_TEST_STRING_ELEMENT, function (err,data) {
-                console.log('get success');
-            });
-        })
-    }catch(e) {
-        console.log('get e' + e);
-    }
-    ```
+```
+let kvStore;
+const KEY_TEST_STRING_ELEMENT = 'key_test_string_2';
+const VALUE_TEST_STRING_ELEMENT = 'value-string-002';
+try{
+    kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, async function (err,data) {
+        console.log('put success');
+        kvStore.get('localDeviceId', KEY_TEST_STRING_ELEMENT, function (err,data) {
+            console.log('get success');
+        });
+    })
+}catch(e) {
+    console.log('get e' + e);
+}
+```
 
 
 ### get<sup>8+</sup> ###
@@ -4000,25 +3977,25 @@ Obtains the string value that matches the specified key for a device. This metho
 
 **Example**
 
-    ```
-    let kvStore;
-    const KEY_TEST_STRING_ELEMENT = 'key_test_string_2';
-    const VALUE_TEST_STRING_ELEMENT = 'value-string-002';
-    try {
-        kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT).then(async (data) => {
-            console.log(' put success');
-            kvStore.get('localDeviceId', KEY_TEST_STRING_ELEMENT).then((data) => {
-                console.log('get success');
-            }).catch((err) => {
-                console.log('get fail ' + JSON.stringify(err));
-            });
-        }).catch((error) => {
-            console.log('put error' + error);
+```
+let kvStore;
+const KEY_TEST_STRING_ELEMENT = 'key_test_string_2';
+const VALUE_TEST_STRING_ELEMENT = 'value-string-002';
+try {
+    kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT).then(async (data) => {
+        console.log(' put success');
+        kvStore.get('localDeviceId', KEY_TEST_STRING_ELEMENT).then((data) => {
+            console.log('get success');
+        }).catch((err) => {
+            console.log('get fail ' + JSON.stringify(err));
         });
-    } catch (e) {
-        console.log('Get e ' + e);
-    }
-    ```
+    }).catch((error) => {
+        console.log('put error' + error);
+    });
+} catch (e) {
+    console.log('Get e ' + e);
+}
+```
 
 
 ### getEntries<sup>8+</sup> ###
@@ -4039,34 +4016,34 @@ Obtains the KV pairs that match the specified key prefix for a device. This meth
 
 **Example**
 
-    ```
-    let kvStore;
-    try {
-        let entries = [];
-        for (var i = 0; i < 10; i++) {
-            var key = 'batch_test_string_key';
-            var entry = {
-                key : key + i,
-                value : {
-                    type : distributedData.ValueType.STRING,
-                    value : 'batch_test_string_value'
-                }
+```
+let kvStore;
+try {
+    let entries = [];
+    for (var i = 0; i < 10; i++) {
+        var key = 'batch_test_string_key';
+        var entry = {
+            key : key + i,
+            value : {
+                type : distributedData.ValueType.STRING,
+                value : 'batch_test_string_value'
             }
-            entries.push(entry);
         }
-        console.log('entries: ' + entries);
-        kvStore.putBatch(entries, async function (err,data) {
-            console.log('putBatch success');
-            await kvStore.getEntries('localDeviceId', 'batch_test_string_key', function (err,entrys) {
-                console.log('getEntries success');
-                console.log('entrys.length: ' + entrys.length);
-                console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
-            });
-        });
-    }catch(e) {
-        console.log('PutBatch e ' + e);
+        entries.push(entry);
     }
-    ```
+    console.log('entries: ' + entries);
+    kvStore.putBatch(entries, async function (err,data) {
+        console.log('putBatch success');
+        await kvStore.getEntries('localDeviceId', 'batch_test_string_key', function (err,entrys) {
+            console.log('getEntries success');
+            console.log('entrys.length: ' + entrys.length);
+            console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
+        });
+    });
+}catch(e) {
+    console.log('PutBatch e ' + e);
+}
+```
 
 
 ### getEntries<sup>8+</sup> ###
@@ -4092,40 +4069,40 @@ Obtains the KV pairs that match the specified key prefix for a device. This meth
 
 **Example**
 
-    ```
-    let kvStore;
-    try {
-        let entries = [];
-        for (var i = 0; i < 10; i++) {
-            var key = 'batch_test_string_key';
-            var entry = {
-                key : key + i,
-                value : {
-                    type : distributedData.ValueType.STRING,
-                    value : 'batch_test_string_value'
-                }
+```
+let kvStore;
+try {
+    let entries = [];
+    for (var i = 0; i < 10; i++) {
+        var key = 'batch_test_string_key';
+        var entry = {
+            key : key + i,
+            value : {
+                type : distributedData.ValueType.STRING,
+                value : 'batch_test_string_value'
             }
-            entries.push(entry);
         }
-        console.log('entries: ' + entries);
-        kvStore.putBatch(entries).then(async (err) => {
-            console.log('putBatch success');
-            await kvStore.getEntries('localDeviceId', 'batch_test_string_key').then((entrys) => {
-                console.log('getEntries success');
-                console.log('entrys.length: ' + entrys.length);
-                console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
-                console.log('entrys[0].value: ' + JSON.stringify(entrys[0].value));
-                console.log('entrys[0].value.value: ' + entrys[0].value.value);
-            }).catch((err) => {
-                console.log('getEntries fail ' + JSON.stringify(err));
-            });
-        }).catch((err) => {
-            console.log('putBatch fail ' + JSON.stringify(err));
-        });
-    }catch(e) {
-        console.log('PutBatch e ' + e);
+        entries.push(entry);
     }
-    ```
+    console.log('entries: ' + entries);
+    kvStore.putBatch(entries).then(async (err) => {
+        console.log('putBatch success');
+        await kvStore.getEntries('localDeviceId', 'batch_test_string_key').then((entrys) => {
+            console.log('getEntries success');
+            console.log('entrys.length: ' + entrys.length);
+            console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
+            console.log('entrys[0].value: ' + JSON.stringify(entrys[0].value));
+            console.log('entrys[0].value.value: ' + entrys[0].value.value);
+        }).catch((err) => {
+            console.log('getEntries fail ' + JSON.stringify(err));
+        });
+    }).catch((err) => {
+        console.log('putBatch fail ' + JSON.stringify(err));
+    });
+}catch(e) {
+    console.log('PutBatch e ' + e);
+}
+```
 
 
 ### getEntries<sup>8+</sup> ###
@@ -4145,40 +4122,40 @@ Obtains the KV pairs that match the specified **Query** object. This method uses
 
 **Example**
 
-    ```
-    let kvStore;
-    try {
-        var arr = new Uint8Array([21,31]);
-        let entries = [];
-        for (var i = 0; i < 10; i++) {
-            var key = 'batch_test_bool_key';
-            var entry = {
-                key : key + i,
-                value : {
-                    type : distributedData.ValueType.BYTE_ARRAY,
-                    value : arr
-                }
+```
+let kvStore;
+try {
+    var arr = new Uint8Array([21,31]);
+    let entries = [];
+    for (var i = 0; i < 10; i++) {
+        var key = 'batch_test_bool_key';
+        var entry = {
+            key : key + i,
+            value : {
+                type : distributedData.ValueType.BYTE_ARRAY,
+                value : arr
             }
-            entries.push(entry);
         }
-        console.log('entries: ' + JSON.stringify(entries));
-        kvStore.putBatch(entries, async function (err,data) {
-            console.log('putBatch success');
-            expect(err == undefined).assertTrue();
-            const query = new distributedData.Query();
-            query.prefixKey("batch_test");
-            query.deviceId('localDeviceId');
-            await kvStore.getEntries(query, function (err,entrys) {
-                console.log('getEntries success');
-                console.log('entrys.length: ' + entrys.length);
-                console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
-            });
-        });
-        console.log('GetEntries success');
-    }catch(e) {
-        console.log('GetEntries e ' + e);
+        entries.push(entry);
     }
-    ```
+    console.log('entries: ' + JSON.stringify(entries));
+    kvStore.putBatch(entries, async function (err,data) {
+        console.log('putBatch success');
+        expect(err == undefined).assertTrue();
+        const query = new distributedData.Query();
+        query.prefixKey("batch_test");
+        query.deviceId('localDeviceId');
+        await kvStore.getEntries(query, function (err,entrys) {
+            console.log('getEntries success');
+            console.log('entrys.length: ' + entrys.length);
+            console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
+        });
+    });
+    console.log('GetEntries success');
+}catch(e) {
+    console.log('GetEntries e ' + e);
+}
+```
 
 
 ### getEntries<sup>8+</sup> ###
@@ -4203,40 +4180,40 @@ Obtains the KV pairs that match the specified **Query** object. This method uses
 
 **Example**
 
-    ```
-    let kvStore;
-    try {
-        var arr = new Uint8Array([21,31]);
-        let entries = [];
-        for (var i = 0; i < 10; i++) {
-            var key = 'batch_test_bool_key';
-            var entry = {
-                key : key + i,
-                value : {
-                    type : distributedData.ValueType.BYTE_ARRAY,
-                    value : arr
-                }
+```
+let kvStore;
+try {
+    var arr = new Uint8Array([21,31]);
+    let entries = [];
+    for (var i = 0; i < 10; i++) {
+        var key = 'batch_test_bool_key';
+        var entry = {
+            key : key + i,
+            value : {
+                type : distributedData.ValueType.BYTE_ARRAY,
+                value : arr
             }
-            entries.push(entry);
         }
-        console.log('entries: ' + JSON.stringify(entries));
-        kvStore.putBatch(entries).then(async (err) => {
-            console.log('putBatch success');
-            const query = new distributedData.Query();
-            query.prefixKey("batch_test");
-            await kvStore.getEntries(query).then((entrys) => {
-                console.log('getEntries success');
-            }).catch((err) => {
-                console.log('getEntries fail ' + JSON.stringify(err));
-            });
-        }).catch((err) => {
-            console.log('GetEntries putBatch fail ' + JSON.stringify(err))
-        });
-        console.log('GetEntries success');
-    }catch(e) {
-        console.log('GetEntries e ' + e);
+        entries.push(entry);
     }
-    ```
+    console.log('entries: ' + JSON.stringify(entries));
+    kvStore.putBatch(entries).then(async (err) => {
+        console.log('putBatch success');
+        const query = new distributedData.Query();
+        query.prefixKey("batch_test");
+        await kvStore.getEntries(query).then((entrys) => {
+            console.log('getEntries success');
+        }).catch((err) => {
+            console.log('getEntries fail ' + JSON.stringify(err));
+        });
+    }).catch((err) => {
+        console.log('GetEntries putBatch fail ' + JSON.stringify(err))
+    });
+    console.log('GetEntries success');
+}catch(e) {
+    console.log('GetEntries e ' + e);
+}
+```
 
 
 ### getEntries<sup>8+</sup> ###
@@ -4257,40 +4234,40 @@ Obtains the KV pairs that match the specified **Query** object for a device. Thi
 
 **Example**
 
-    ```
-    let kvStore;
-    try {
-        var arr = new Uint8Array([21,31]);
-        let entries = [];
-        for (var i = 0; i < 10; i++) {
-            var key = 'batch_test_bool_key';
-            var entry = {
-                key : key + i,
-                value : {
-                    type : distributedData.ValueType.BYTE_ARRAY,
-                    value : arr
-                }
+```
+let kvStore;
+try {
+    var arr = new Uint8Array([21,31]);
+    let entries = [];
+    for (var i = 0; i < 10; i++) {
+        var key = 'batch_test_bool_key';
+        var entry = {
+            key : key + i,
+            value : {
+                type : distributedData.ValueType.BYTE_ARRAY,
+                value : arr
             }
-            entries.push(entry);
         }
-        console.log('entries: ' + JSON.stringify(entries));
-        kvStore.putBatch(entries, async function (err,data) {
-            console.log('putBatch success');
-            expect(err == undefined).assertTrue();
-            var query = new distributedData.Query();
-            query.deviceId('localDeviceId');
-            query.prefixKey("batch_test");
-            await kvStore.getEntries('localDeviceId', query, function (err,entrys) {
-                console.log('getEntries success');
-                console.log('entrys.length: ' + entrys.length);
-                console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
-            })
-        });
-        console.log('GetEntries success');
-    }catch(e) {
-        console.log('GetEntries e ' + e);
+        entries.push(entry);
     }
-    ```
+    console.log('entries: ' + JSON.stringify(entries));
+    kvStore.putBatch(entries, async function (err,data) {
+        console.log('putBatch success');
+        expect(err == undefined).assertTrue();
+        var query = new distributedData.Query();
+        query.deviceId('localDeviceId');
+        query.prefixKey("batch_test");
+        await kvStore.getEntries('localDeviceId', query, function (err,entrys) {
+            console.log('getEntries success');
+            console.log('entrys.length: ' + entrys.length);
+            console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
+        })
+    });
+    console.log('GetEntries success');
+}catch(e) {
+    console.log('GetEntries e ' + e);
+}
+```
 
 
 ### getEntries<sup>8+</sup> ###
@@ -4316,41 +4293,41 @@ Obtains the KV pairs that match the specified **Query** object for a device. Thi
 
 **Example**
 
-    ```
-    let kvStore;
-    try {
-        var arr = new Uint8Array([21,31]);
-        let entries = [];
-        for (var i = 0; i < 10; i++) {
-            var key = 'batch_test_bool_key';
-            var entry = {
-                key : key + i,
-                value : {
-                    type : distributedData.ValueType.BYTE_ARRAY,
-                    value : arr
-                }
+```
+let kvStore;
+try {
+    var arr = new Uint8Array([21,31]);
+    let entries = [];
+    for (var i = 0; i < 10; i++) {
+        var key = 'batch_test_bool_key';
+        var entry = {
+            key : key + i,
+            value : {
+                type : distributedData.ValueType.BYTE_ARRAY,
+                value : arr
             }
-            entries.push(entry);
         }
-        console.log('entries: ' + JSON.stringify(entries));
-        kvStore.putBatch(entries).then(async (err) => {
-            console.log('putBatch success');
-            var query = new distributedData.Query();
-            query.deviceId('localDeviceId');
-            query.prefixKey("batch_test");
-            await kvStore.getEntries('localDeviceId', query).then((entrys) => {
-                console.log('getEntries success');
-            }).catch((err) => {
-                console.log('getEntries fail ' + JSON.stringify(err));
-            });
-        }).catch((err) => {
-            console.log('putBatch fail ' + JSON.stringify(err));
-        });
-        console.log('GetEntries success');
-    }catch(e) {
-        console.log('GetEntries e ' + e);
+        entries.push(entry);
     }
-    ```
+    console.log('entries: ' + JSON.stringify(entries));
+    kvStore.putBatch(entries).then(async (err) => {
+        console.log('putBatch success');
+        var query = new distributedData.Query();
+        query.deviceId('localDeviceId');
+        query.prefixKey("batch_test");
+        await kvStore.getEntries('localDeviceId', query).then((entrys) => {
+            console.log('getEntries success');
+        }).catch((err) => {
+            console.log('getEntries fail ' + JSON.stringify(err));
+        });
+    }).catch((err) => {
+        console.log('putBatch fail ' + JSON.stringify(err));
+    });
+    console.log('GetEntries success');
+}catch(e) {
+    console.log('GetEntries e ' + e);
+}
+```
 
 
 ### getResultSet<sup>8+</sup> ###
@@ -4371,21 +4348,21 @@ Obtains the **KvStoreResultSet** object that matches the specified key prefix fo
 
 **Example**
 
-    ```
-    let kvStore;
-    try {
-        let resultSet;
-        kvStore.getResultSet('localDeviceId', 'batch_test_string_key', async function (err, result) {
-            console.log('getResultSet success');
-            resultSet = result;
-            await kvStore.closeResultSet(resultSet, function (err, data) {
-                console.log('closeResultSet success');
-            })
-        });
-    }catch(e) {
-        console.log('GetResultSet e ' + e);
-    }
-    ```
+```
+let kvStore;
+try {
+    let resultSet;
+    kvStore.getResultSet('localDeviceId', 'batch_test_string_key', async function (err, result) {
+        console.log('getResultSet success');
+        resultSet = result;
+        await kvStore.closeResultSet(resultSet, function (err, data) {
+            console.log('closeResultSet success');
+        })
+    });
+}catch(e) {
+    console.log('GetResultSet e ' + e);
+}
+```
 
 
 ### getResultSet<sup>8+</sup> ###
@@ -4411,25 +4388,25 @@ Obtains the **KvStoreResultSet** object that matches the specified key prefix fo
 
 **Example**
 
-    ```
-    let kvStore;
-    try {
-        let resultSet;
-        kvStore.getResultSet('localDeviceId', 'batch_test_string_key').then((result) => {
-            console.log('getResultSet success');
-            resultSet = result;
-        }).catch((err) => {
-            console.log('getResultSet fail ' + JSON.stringify(err));
-        });
-        kvStore.closeResultSet(resultSet).then((err) => {
-            console.log('closeResultSet success');
-        }).catch((err) => {
-            console.log('closeResultSet fail ' + JSON.stringify(err));
-        });
-    }catch(e) {
-        console.log('GetResultSet e ' + e);
-    }
-    ```
+```
+let kvStore;
+try {
+    let resultSet;
+    kvStore.getResultSet('localDeviceId', 'batch_test_string_key').then((result) => {
+        console.log('getResultSet success');
+        resultSet = result;
+    }).catch((err) => {
+        console.log('getResultSet fail ' + JSON.stringify(err));
+    });
+    kvStore.closeResultSet(resultSet).then((err) => {
+        console.log('closeResultSet success');
+    }).catch((err) => {
+        console.log('closeResultSet fail ' + JSON.stringify(err));
+    });
+}catch(e) {
+    console.log('GetResultSet e ' + e);
+}
+```
 
 
 ### getResultSet<sup>8+</sup> ###
@@ -4449,39 +4426,39 @@ Obtains the **KvStoreResultSet** object that matches the specified **Query** obj
 
 **Example**
 
-    ```
-    let kvStore;
-    try {
-        let resultSet;
-        let entries = [];
-        for (var i = 0; i < 10; i++) {
-            var key = 'batch_test_string_key';
-            var entry = {
-                key : key + i,
-                value : {
-                    type : distributedData.ValueType.STRING,
-                    value : 'batch_test_string_value'
-                }
+```
+let kvStore;
+try {
+    let resultSet;
+    let entries = [];
+    for (var i = 0; i < 10; i++) {
+        var key = 'batch_test_string_key';
+        var entry = {
+            key : key + i,
+            value : {
+                type : distributedData.ValueType.STRING,
+                value : 'batch_test_string_value'
             }
-            entries.push(entry);
         }
-        kvStore.putBatch(entries, async function (err, data) {
-            console.log('putBatch success');
-            const query = new distributedData.Query();
-            query.prefixKey("batch_test");
-            query.deviceId('localDeviceId');
-            await kvStore.getResultSet(query, async function (err, result) {
-                console.log('getResultSet success');
-                resultSet = result;
-                await kvStore.closeResultSet(resultSet, function (err, data) {
-                    console.log('closeResultSet success');
-                })
-            });
-        });
-    } catch(e) {
-        console.log('GetResultSet e ' + e);
+        entries.push(entry);
     }
-    ```
+    kvStore.putBatch(entries, async function (err, data) {
+        console.log('putBatch success');
+        const query = new distributedData.Query();
+        query.prefixKey("batch_test");
+        query.deviceId('localDeviceId');
+        await kvStore.getResultSet(query, async function (err, result) {
+            console.log('getResultSet success');
+            resultSet = result;
+            await kvStore.closeResultSet(resultSet, function (err, data) {
+                console.log('closeResultSet success');
+            })
+        });
+    });
+} catch(e) {
+    console.log('GetResultSet e ' + e);
+}
+```
 
 
 ### getResultSet<sup>8+</sup> ###
@@ -4506,46 +4483,46 @@ Obtains the **KvStoreResultSet** object that matches the specified **Query** obj
 
 **Example**
 
-    ```
-    let kvStore;
-    try {
-        let resultSet;
-        let entries = [];
-        for (var i = 0; i < 10; i++) {
-            var key = 'batch_test_string_key';
-            var entry = {
-                key : key + i,
-                value : {
-                    type : distributedData.ValueType.STRING,
-                    value : 'batch_test_string_value'
-                }
+```
+let kvStore;
+try {
+    let resultSet;
+    let entries = [];
+    for (var i = 0; i < 10; i++) {
+        var key = 'batch_test_string_key';
+        var entry = {
+            key : key + i,
+            value : {
+                type : distributedData.ValueType.STRING,
+                value : 'batch_test_string_value'
             }
-            entries.push(entry);
         }
-        kvStore.putBatch(entries).then(async (err) => {
-            console.log('putBatch success');
-        }).catch((err) => {
-            console.log('putBatch fail ' + err);
-        });
-        const query = new distributedData.Query();
-        query.deviceId('localDeviceId');
-        query.prefixKey("batch_test");
-        console.log("GetResultSet " + query.getSqlLike());
-        kvStore.getResultSet(query).then((result) => {
-            console.log('getResultSet success');
-            resultSet = result;
-        }).catch((err) => {
-            console.log('getResultSet fail ' + JSON.stringify(err));
-        });
-        kvStore.closeResultSet(resultSet).then((err) => {
-            console.log('closeResultSet success');
-        }).catch((err) => {
-            console.log('closeResultSet fail ' + JSON.stringify(err));
-        });
-    }catch(e) {
-        console.log('GetResultSet e ' + e);
+        entries.push(entry);
     }
-    ```
+    kvStore.putBatch(entries).then(async (err) => {
+        console.log('putBatch success');
+    }).catch((err) => {
+        console.log('putBatch fail ' + err);
+    });
+    const query = new distributedData.Query();
+    query.deviceId('localDeviceId');
+    query.prefixKey("batch_test");
+    console.log("GetResultSet " + query.getSqlLike());
+    kvStore.getResultSet(query).then((result) => {
+        console.log('getResultSet success');
+        resultSet = result;
+    }).catch((err) => {
+        console.log('getResultSet fail ' + JSON.stringify(err));
+    });
+    kvStore.closeResultSet(resultSet).then((err) => {
+        console.log('closeResultSet success');
+    }).catch((err) => {
+        console.log('closeResultSet fail ' + JSON.stringify(err));
+    });
+}catch(e) {
+    console.log('GetResultSet e ' + e);
+}
+```
 
 
 ### getResultSet<sup>8+</sup> ###
@@ -4566,38 +4543,38 @@ Obtains the **KvStoreResultSet** object that matches the specified **Query** obj
 
 **Example**
 
-    ```
-    let kvStore;
-    try {
-        let resultSet;
-        let entries = [];
-        for (var i = 0; i < 10; i++) {
-            var key = 'batch_test_string_key';
-            var entry = {
-                key : key + i,
-                value : {
-                    type : distributedData.ValueType.STRING,
-                    value : 'batch_test_string_value'
-                }
+```
+let kvStore;
+try {
+    let resultSet;
+    let entries = [];
+    for (var i = 0; i < 10; i++) {
+        var key = 'batch_test_string_key';
+        var entry = {
+            key : key + i,
+            value : {
+                type : distributedData.ValueType.STRING,
+                value : 'batch_test_string_value'
             }
-            entries.push(entry);
         }
-        kvStore.putBatch(entries, async function (err, data) {
-            console.log('putBatch success');
-            const query = new distributedData.Query();
-            query.prefixKey("batch_test");
-            await kvStore.getResultSet('localDeviceId', query, async function (err, result) {
-                console.log('getResultSet success');
-                resultSet = result;
-                await kvStore.closeResultSet(resultSet, function (err, data) {
-                    console.log('closeResultSet success');
-                })
-            });
-        });
-    } catch(e) {
-        console.log('GetResultSet e ' + e);
+        entries.push(entry);
     }
-    ```
+    kvStore.putBatch(entries, async function (err, data) {
+        console.log('putBatch success');
+        const query = new distributedData.Query();
+        query.prefixKey("batch_test");
+        await kvStore.getResultSet('localDeviceId', query, async function (err, result) {
+            console.log('getResultSet success');
+            resultSet = result;
+            await kvStore.closeResultSet(resultSet, function (err, data) {
+                console.log('closeResultSet success');
+            })
+        });
+    });
+} catch(e) {
+    console.log('GetResultSet e ' + e);
+}
+```
 
 
 ### getResultSet<sup>8+</sup> ###
@@ -4623,47 +4600,47 @@ Obtains the **KvStoreResultSet** object that matches the specified **Query** obj
 
 **Example**
 
-    ```
-    let kvStore;
-    try {
-        let resultSet;
-        let entries = [];
-        for (var i = 0; i < 10; i++) {
-            var key = 'batch_test_string_key';
-            var entry = {
-                key : key + i,
-                value : {
-                    type : distributedData.ValueType.STRING,
-                    value : 'batch_test_string_value'
-                }
+```
+let kvStore;
+try {
+    let resultSet;
+    let entries = [];
+    for (var i = 0; i < 10; i++) {
+        var key = 'batch_test_string_key';
+        var entry = {
+            key : key + i,
+            value : {
+                type : distributedData.ValueType.STRING,
+                value : 'batch_test_string_value'
             }
-            entries.push(entry);
         }
-        kvStore.putBatch(entries).then(async (err) => {
-            console.log('GetResultSet putBatch success');
-        }).catch((err) => {
-            console.log('PutBatch putBatch fail ' + JSON.stringify(err));
-        });
-        const query = new distributedData.Query();
-        query.prefixKey("batch_test");
-        kvStore.getResultSet('localDeviceId', query).then((result) => {
-            console.log('GetResultSet getResultSet success');
-            resultSet = result;
-        }).catch((err) => {
-            console.log('GetResultSet getResultSet fail ' + JSON.stringify(err));
-        });
-        query.deviceId('localDeviceId');
-        console.log("GetResultSet " + query.getSqlLike());
-        kvStore.closeResultSet(resultSet).then((err) => {
-            console.log('GetResultSet closeResultSet success');
-        }).catch((err) => {
-            console.log('GetResultSet closeResultSet fail ' + JSON.stringify(err));
-        });
-    
-    }catch(e) {
-        console.log('GetResultSet e ' + e);
+        entries.push(entry);
     }
-    ```
+    kvStore.putBatch(entries).then(async (err) => {
+        console.log('GetResultSet putBatch success');
+    }).catch((err) => {
+        console.log('PutBatch putBatch fail ' + JSON.stringify(err));
+    });
+    const query = new distributedData.Query();
+    query.prefixKey("batch_test");
+    kvStore.getResultSet('localDeviceId', query).then((result) => {
+        console.log('GetResultSet getResultSet success');
+        resultSet = result;
+    }).catch((err) => {
+        console.log('GetResultSet getResultSet fail ' + JSON.stringify(err));
+    });
+    query.deviceId('localDeviceId');
+    console.log("GetResultSet " + query.getSqlLike());
+    kvStore.closeResultSet(resultSet).then((err) => {
+        console.log('GetResultSet closeResultSet success');
+    }).catch((err) => {
+        console.log('GetResultSet closeResultSet fail ' + JSON.stringify(err));
+    });
+
+}catch(e) {
+    console.log('GetResultSet e ' + e);
+}
+```
 
 
 ### closeResultSet<sup>8+</sup> ###
@@ -4683,22 +4660,22 @@ Closes the **KvStoreResultSet** object obtained by **getResultSet**. This method
 
 **Example**
 
-    ```
-    let kvStore;
-    try {
-        console.log('CloseResultSet success');
-        let resultSet = null;
-        kvStore.closeResultSet(resultSet, function (err, data) {
-            if (err == undefined) {
-                console.log('closeResultSet success');
-            } else {
-                console.log('closeResultSet fail');
-            }
-        });
-    }catch(e) {
-        console.log('CloseResultSet e ' + e);
-    }
-    ```
+```
+let kvStore;
+try {
+    console.log('CloseResultSet success');
+    let resultSet = null;
+    kvStore.closeResultSet(resultSet, function (err, data) {
+        if (err == undefined) {
+            console.log('closeResultSet success');
+        } else {
+            console.log('closeResultSet fail');
+        }
+    });
+}catch(e) {
+    console.log('CloseResultSet e ' + e);
+}
+```
 
 
 ### closeResultSet<sup>8+</sup> ###
@@ -4723,20 +4700,20 @@ Closes the **KvStoreResultSet** object obtained by **getResultSet**. This method
 
 **Example**
 
-    ```
-    let kvStore;
-    try {
-        console.log('CloseResultSet success');
-        let resultSet = null;
-        kvStore.closeResultSet(resultSet).then(() => {
-            console.log('closeResultSet success');
-        }).catch((err) => {
-            console.log('closeResultSet fail ' + JSON.stringify(err));
-        });
-    }catch(e) {
-        console.log('CloseResultSet e ' + e);
-    }
-    ```
+```
+let kvStore;
+try {
+    console.log('CloseResultSet success');
+    let resultSet = null;
+    kvStore.closeResultSet(resultSet).then(() => {
+        console.log('closeResultSet success');
+    }).catch((err) => {
+        console.log('closeResultSet fail ' + JSON.stringify(err));
+    });
+}catch(e) {
+    console.log('CloseResultSet e ' + e);
+}
+```
 
 
 ### getResultSize<sup>8+</sup> ###
@@ -4756,34 +4733,34 @@ Obtains the number of results that matches the specified **Query** object. This 
 
 **Example**
 
-    ```
-    let kvStore;
-    try {
-        let entries = [];
-        for (var i = 0; i < 10; i++) {
-            var key = 'batch_test_string_key';
-            var entry = {
-                key : key + i,
-                value : {
-                    type : distributedData.ValueType.STRING,
-                    value : 'batch_test_string_value'
-                }
+```
+let kvStore;
+try {
+    let entries = [];
+    for (var i = 0; i < 10; i++) {
+        var key = 'batch_test_string_key';
+        var entry = {
+            key : key + i,
+            value : {
+                type : distributedData.ValueType.STRING,
+                value : 'batch_test_string_value'
             }
-            entries.push(entry);
         }
-        kvStore.putBatch(entries, async function (err, data) {
-            console.log('putBatch success');
-            const query = new distributedData.Query();
-            query.prefixKey("batch_test");
-            query.deviceId('localDeviceId');
-            await kvStore.getResultSize(query, async function (err, resultSize) {
-                console.log('getResultSet success');
-            });
-        });
-    } catch(e) {
-        console.log('GetResultSize e ' + e);
+        entries.push(entry);
     }
-    ```
+    kvStore.putBatch(entries, async function (err, data) {
+        console.log('putBatch success');
+        const query = new distributedData.Query();
+        query.prefixKey("batch_test");
+        query.deviceId('localDeviceId');
+        await kvStore.getResultSize(query, async function (err, resultSize) {
+            console.log('getResultSet success');
+        });
+    });
+} catch(e) {
+    console.log('GetResultSize e ' + e);
+}
+```
 
 
 ### getResultSize<sup>8+</sup> ###
@@ -4808,38 +4785,38 @@ Obtains the number of results that matches the specified **Query** object. This 
 
 **Example**
 
-    ```
-    let kvStore;
-    try {
-        let entries = [];
-        for (var i = 0; i < 10; i++) {
-            var key = 'batch_test_string_key';
-            var entry = {
-                key : key + i,
-                value : {
-                    type : distributedData.ValueType.STRING,
-                    value : 'batch_test_string_value'
-                }
+```
+let kvStore;
+try {
+    let entries = [];
+    for (var i = 0; i < 10; i++) {
+        var key = 'batch_test_string_key';
+        var entry = {
+            key : key + i,
+            value : {
+                type : distributedData.ValueType.STRING,
+                value : 'batch_test_string_value'
             }
-            entries.push(entry);
         }
-        kvStore.putBatch(entries).then(async (err) => {
-            console.log('putBatch success');
-        }).catch((err) => {
-            console.log('putBatch fail ' + JSON.stringify(err));
-        });
-        const query = new distributedData.Query();
-        query.prefixKey("batch_test");
-        query.deviceId('localDeviceId');
-        kvStore.getResultSize(query).then((resultSize) => {
-            console.log('getResultSet success');
-        }).catch((err) => {
-            console.log('getResultSet fail ' + JSON.stringify(err));
-        });
-    }catch(e) {
-        console.log('GetResultSize e ' + e);
+        entries.push(entry);
     }
-    ```
+    kvStore.putBatch(entries).then(async (err) => {
+        console.log('putBatch success');
+    }).catch((err) => {
+        console.log('putBatch fail ' + JSON.stringify(err));
+    });
+    const query = new distributedData.Query();
+    query.prefixKey("batch_test");
+    query.deviceId('localDeviceId');
+    kvStore.getResultSize(query).then((resultSize) => {
+        console.log('getResultSet success');
+    }).catch((err) => {
+        console.log('getResultSet fail ' + JSON.stringify(err));
+    });
+}catch(e) {
+    console.log('GetResultSize e ' + e);
+}
+```
 
 
 ### getResultSize<sup>8+</sup> ###
@@ -4860,33 +4837,33 @@ Obtains the number of results that matches the specified **Query** object for a 
 
 **Example**
 
-    ```
-    let kvStore;
-    try {
-        let entries = [];
-        for (var i = 0; i < 10; i++) {
-            var key = 'batch_test_string_key';
-            var entry = {
-                key : key + i,
-                value : {
-                    type : distributedData.ValueType.STRING,
-                    value : 'batch_test_string_value'
-                }
+```
+let kvStore;
+try {
+    let entries = [];
+    for (var i = 0; i < 10; i++) {
+        var key = 'batch_test_string_key';
+        var entry = {
+            key : key + i,
+            value : {
+                type : distributedData.ValueType.STRING,
+                value : 'batch_test_string_value'
             }
-            entries.push(entry);
         }
-        kvStore.putBatch(entries, async function (err, data) {
-            console.log('putBatch success');
-            const query = new distributedData.Query();
-            query.prefixKey("batch_test");
-            await kvStore.getResultSize('localDeviceId', query, async function (err, resultSize) {
-                console.log('getResultSet success');
-            });
-        });
-    } catch(e) {
-        console.log('GetResultSize e ' + e);
+        entries.push(entry);
     }
-    ```
+    kvStore.putBatch(entries, async function (err, data) {
+        console.log('putBatch success');
+        const query = new distributedData.Query();
+        query.prefixKey("batch_test");
+        await kvStore.getResultSize('localDeviceId', query, async function (err, resultSize) {
+            console.log('getResultSet success');
+        });
+    });
+} catch(e) {
+    console.log('GetResultSize e ' + e);
+}
+```
 
 
 ### getResultSize<sup>8+</sup> ###
@@ -4912,37 +4889,37 @@ Obtains the number of results that matches the specified **Query** object for a 
 
 **Example**
 
-    ```
-    let kvStore;
-    try {
-        let entries = [];
-        for (var i = 0; i < 10; i++) {
-            var key = 'batch_test_string_key';
-            var entry = {
-                key : key + i,
-                value : {
-                    type : distributedData.ValueType.STRING,
-                    value : 'batch_test_string_value'
-                }
+```
+let kvStore;
+try {
+    let entries = [];
+    for (var i = 0; i < 10; i++) {
+        var key = 'batch_test_string_key';
+        var entry = {
+            key : key + i,
+            value : {
+                type : distributedData.ValueType.STRING,
+                value : 'batch_test_string_value'
             }
-            entries.push(entry);
         }
-        kvStore.putBatch(entries).then(async (err) => {
-            console.log('putBatch success');
-        }).catch((err) => {
-            console.log('putBatch fail ' + JSON.stringify(err));
-        });
-        var query = new distributedData.Query();
-        query.prefixKey("batch_test");
-        kvStore.getResultSize('localDeviceId', query).then((resultSize) => {
-            console.log('getResultSet success');
-        }).catch((err) => {
-            console.log('getResultSet fail ' + JSON.stringify(err));
-        });
-    }catch(e) {
-        console.log('GetResultSize e ' + e);
+        entries.push(entry);
     }
-    ```
+    kvStore.putBatch(entries).then(async (err) => {
+        console.log('putBatch success');
+    }).catch((err) => {
+        console.log('putBatch fail ' + JSON.stringify(err));
+    });
+    var query = new distributedData.Query();
+    query.prefixKey("batch_test");
+    kvStore.getResultSize('localDeviceId', query).then((resultSize) => {
+        console.log('getResultSet success');
+    }).catch((err) => {
+        console.log('getResultSet fail ' + JSON.stringify(err));
+    });
+}catch(e) {
+    console.log('GetResultSize e ' + e);
+}
+```
 
 
 ### removeDeviceData<sup>8+</sup> ###
@@ -4962,29 +4939,29 @@ Removes data of a device from this KV store. This method uses an asynchronous ca
 
 **Example**
 
-    ```
-    let kvStore;
-    const KEY_TEST_STRING_ELEMENT = 'key_test_string';
-    const VALUE_TEST_STRING_ELEMENT = 'value-string-001';
-    try {
-        kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, async function (err,data) {
-            console.log('RemoveDeviceData  put success');
-            const deviceid = 'no_exist_device_id';
-            await kvStore.removeDeviceData(deviceid, async function (err,data) {
-                if (err == undefined) {
-                    console.log('removeDeviceData success');
-                } else {
-                    console.log('removeDeviceData fail');
-                    await kvStore.get('localDeviceId', KEY_TEST_STRING_ELEMENT, async function (err,data) {
-                        console.log('RemoveDeviceData get success');
-                    });
-                }
-            });
+```
+let kvStore;
+const KEY_TEST_STRING_ELEMENT = 'key_test_string';
+const VALUE_TEST_STRING_ELEMENT = 'value-string-001';
+try {
+    kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, async function (err,data) {
+        console.log('RemoveDeviceData  put success');
+        const deviceid = 'no_exist_device_id';
+        await kvStore.removeDeviceData(deviceid, async function (err,data) {
+            if (err == undefined) {
+                console.log('removeDeviceData success');
+            } else {
+                console.log('removeDeviceData fail');
+                await kvStore.get('localDeviceId', KEY_TEST_STRING_ELEMENT, async function (err,data) {
+                    console.log('RemoveDeviceData get success');
+                });
+            }
         });
-    }catch(e) {
-        console.log('RemoveDeviceData e ' + e);
-    }
-    ```
+    });
+}catch(e) {
+    console.log('RemoveDeviceData e ' + e);
+}
+```
 
 
 ### removeDeviceData<sup>8+</sup> ###
@@ -5009,31 +4986,31 @@ Removes data of a device from this KV store. This method uses a promise to retur
 
 **Example**
 
-    ```
-    let kvStore;
-    const KEY_TEST_STRING_ELEMENT = 'key_test_string';
-    const VALUE_TEST_STRING_ELEMENT = 'value-string-001';
-    try {
-        kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT).then((err) => {
-            console.log('RemoveDeviceData put success');
-        }).catch((err) => {
-            console.log('RemoveDeviceData put fail ' + JSON.stringify(err));
-        });
-        const deviceid = 'no_exist_device_id';
-        kvStore.removeDeviceData(deviceid).then((err) => {
-            console.log('removeDeviceData success');
-        }).catch((err) => {
-            console.log('removeDeviceData fail ' + JSON.stringify(err));
-        });
-        kvStore.get('localDeviceId', KEY_TEST_STRING_ELEMENT).then((data) => {
-            console.log('RemoveDeviceData get success data:' + data);
-        }).catch((err) => {
-            console.log('RemoveDeviceData get fail ' + JSON.stringify(err));
-        });
-    }catch(e) {
-        console.log('RemoveDeviceData e ' + e);
-    }
-    ```
+```
+let kvStore;
+const KEY_TEST_STRING_ELEMENT = 'key_test_string';
+const VALUE_TEST_STRING_ELEMENT = 'value-string-001';
+try {
+    kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT).then((err) => {
+        console.log('RemoveDeviceData put success');
+    }).catch((err) => {
+        console.log('RemoveDeviceData put fail ' + JSON.stringify(err));
+    });
+    const deviceid = 'no_exist_device_id';
+    kvStore.removeDeviceData(deviceid).then((err) => {
+        console.log('removeDeviceData success');
+    }).catch((err) => {
+        console.log('removeDeviceData fail ' + JSON.stringify(err));
+    });
+    kvStore.get('localDeviceId', KEY_TEST_STRING_ELEMENT).then((data) => {
+        console.log('RemoveDeviceData get success data:' + data);
+    }).catch((err) => {
+        console.log('RemoveDeviceData get fail ' + JSON.stringify(err));
+    });
+}catch(e) {
+    console.log('RemoveDeviceData e ' + e);
+}
+```
 
 
 ### sync<sup>8+</sup> ###
@@ -5041,6 +5018,7 @@ Removes data of a device from this KV store. This method uses a promise to retur
 sync(deviceIdList: string[], mode: SyncMode, allowedDelayMs?: number): void
 
 Manually triggers KV store synchronization synchronously.
+**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -5052,31 +5030,30 @@ Manually triggers KV store synchronization synchronously.
 | mode            |[SyncMode](#syncmode)  | Yes   |Data synchronization mode, which can be **PUSH**, **PULL**, or **PUSH_PULL**. |
 | allowedDelayMs  |number                 | No   |Allowed synchronization delay time, in ms. |
 
-
 **Example**
 
-    ```
-    let kvStore;
-    const KEY_TEST_SYNC_ELEMENT = 'key_test_sync';
-    const VALUE_TEST_SYNC_ELEMENT = 'value-string-001';
-    try {
-        kvStore.on('syncComplete', function (data) {
-            console.log('Sync dataChange');
-        });
-        kvStore.put(KEY_TEST_SYNC_ELEMENT + 'testSync101', VALUE_TEST_SYNC_ELEMENT, function (err,data) {
-            console.log('Sync put success');
-            const devices = ['deviceList'];
-            const mode = distributedData.SyncMode.PULL_ONLY;
-            kvStore.sync(devices, mode);
-        });
-    }catch(e) {
-        console.log('Sync e' + e);
-    }
-    ```
+```
+let kvStore;
+const KEY_TEST_SYNC_ELEMENT = 'key_test_sync';
+const VALUE_TEST_SYNC_ELEMENT = 'value-string-001';
+try {
+    kvStore.on('syncComplete', function (data) {
+        console.log('Sync dataChange');
+    });
+    kvStore.put(KEY_TEST_SYNC_ELEMENT + 'testSync101', VALUE_TEST_SYNC_ELEMENT, function (err,data) {
+        console.log('Sync put success');
+        const devices = ['deviceList'];
+        const mode = distributedData.SyncMode.PULL_ONLY;
+        kvStore.sync(devices, mode);
+    });
+}catch(e) {
+    console.log('Sync e' + e);
+}
+```
 
 ### on<sup>8+</sup> ###
 
-on(event: 'syncComplete', syncCallback: Callback&lt;Arrary&lt;[string, number]&gt;&gt;): void
+on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
 Subscribes to the synchronization completion events. This method uses a synchronous callback to return the result.
 
@@ -5087,25 +5064,26 @@ Subscribes to the synchronization completion events. This method uses a synchron
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | event    |'syncComplete'      | Yes   |Event triggered when the synchronization is complete.|
-| syncCallback            |Callback<Arrary&lt;<[string, number]&gt; | Yes   |Callback used to return the synchronization result. |
+| syncCallback            |Callback<Array&lt;<[string, number]&gt; | Yes   |Callback used to return the synchronization result. |
 
 **Example**
-    ```
-    const KEY_TEST_FLOAT_ELEMENT = 'key_test_float';
-    const VALUE_TEST_FLOAT_ELEMENT = 321.12;
-    try {
-        kvStore.on('syncComplete', function (data) {
-            console.log('syncComplete ' + data)
-        });
-        kvStore.put(KEY_TEST_FLOAT_ELEMENT, VALUE_TEST_FLOAT_ELEMENT).then((data) => {
-            console.log('syncComplete put success');
-        }).catch((error) => {
-            console.log('syncComplete put fail ' + error);
-        });
-    }catch(e) {
-        console.log('syncComplete put e ' + e);
-    }
-    ```
+
+```
+const KEY_TEST_FLOAT_ELEMENT = 'key_test_float';
+const VALUE_TEST_FLOAT_ELEMENT = 321.12;
+try {
+    kvStore.on('syncComplete', function (data) {
+        console.log('syncComplete ' + data)
+    });
+    kvStore.put(KEY_TEST_FLOAT_ELEMENT, VALUE_TEST_FLOAT_ELEMENT).then((data) => {
+        console.log('syncComplete put success');
+    }).catch((error) => {
+        console.log('syncComplete put fail ' + error);
+    });
+}catch(e) {
+    console.log('syncComplete put e ' + e);
+}
+```
 
 
 ### off<sup>8+</sup> ###
@@ -5121,23 +5099,22 @@ Unsubscribes from the synchronization completion events. This method uses a sync
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | event         |'syncComplete'                           | Yes   |Event triggered when the synchronization is complete.|
-| syncCallback  |Callback<Arrary&lt;[string, number]&gt;&gt; | No   |Callback used to return the synchronization result. |
-
+| syncCallback  |Callback<Array&lt;[string, number]&gt;&gt; | No   |Callback used to return the synchronization result. |
 
 **Example**
 
-    ```
-    let kvStore;
-    try {
-        const func = function (data) {
-            console.log('syncComplete ' + data)
-        };
-        kvStore.on('syncComplete', func);
-        kvStore.off('syncComplete', func);
-    }catch(e) {
-        console.log('syncComplete e ' + e);
-    }
-    ```
+```
+let kvStore;
+try {
+    const func = function (data) {
+        console.log('syncComplete ' + data)
+    };
+    kvStore.on('syncComplete', func);
+    kvStore.off('syncComplete', func);
+}catch(e) {
+    console.log('syncComplete e ' + e);
+}
+```
 
 
 ## SyncMode

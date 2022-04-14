@@ -3,7 +3,11 @@
 ## Constraints
 None
 ## Modules to Import
-import zlib from '@ohos.zlib'
+
+```javascript
+import zlib from '@ohos.zlib';
+```
+
 ## zlib.zipFile
 zipFile(inFile:string, outFile:string, options: Options): Promise<void>;
 Zips a file. This API uses a promise to return the result.
@@ -121,7 +125,7 @@ zlib.unzipFile(inFile, outFile, options).then((data) => {
 
 ## options
 
-| Name                       |                                                              |
+| Name                       | Description                                                        |
 | --------------------------- | ------------------------------------------------------------ |
 | level?: CompressLeve        | See [zip.CompressLevel](#zip.CompressLevel).|
 | memLevel?: MemLevel         | See [zip.MemLevel](#zip.MemLevel)       |
@@ -129,8 +133,9 @@ zlib.unzipFile(inFile, outFile, options).then((data) => {
 
 ## zip.MemLevel
 
-| MEM_LEVEL_MIN     | Minimum memory used by the **zip** API during compression.|
+| Name                       | Description                                                        |
 | ----------------- | -------------------------------- |
+| MEM_LEVEL_MIN     | Minimum memory used by the **zip** API during compression.|
 | MEM_LEVEL_MAX     | Maximum memory used by the **zip** API during compression.|
 | MEM_LEVEL_DEFAULT | Default memory used by the **zip** API during compression.|
 
@@ -150,7 +155,7 @@ zlib.unzipFile(inFile, outFile, options).then((data) => {
 | COMPRESS_STRATEGY_DEFAULT_STRATEGY : 0 | Default compression strategy.            |
 | COMPRESS_STRATEGY_FILTERED : 1         | Filtered compression strategy.|
 | COMPRESS_STRATEGY_HUFFMAN_ONLY : 2     | Huffman coding compression strategy.  |
-| OMPRESS_STRATEGY_RLE : 3               | RLE compression strategy.        |
+| COMPRESS_STRATEGY_RLE : 3              | RLE compression strategy.        |
 | COMPRESS_STRATEGY_FIXED : 4            | Fixed compression strategy.          |
 
 ## zip.ErrorCode

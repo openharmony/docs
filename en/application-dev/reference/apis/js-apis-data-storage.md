@@ -4,7 +4,8 @@ Lightweight storage provides applications with data processing capability and al
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
-> The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
+>
+> The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 ## Modules to Import
@@ -47,10 +48,16 @@ Reads a file and loads the data to the **Storage** instance in synchronous mode.
   import featureAbility from '@ohos.ability.featureAbility'
   
   var context = featureAbility.getContext()
-  var path = await context.getFilesDir()
-  let storage = dataStorage.getStorageSync(path + '/mystore')
-  storage.putSync('startup', 'auto')
-  storage.flushSync()
+  context.getFilesDir((err, path) => {
+      if (err) {
+          console.error('getFilesDir failed. err: ' + JSON.stringify(err));
+          return;
+      }
+      console.info('getFilesDir successful. path:' + JSON.stringify(path));
+      let storage = dataStorage.getStorageSync(path + '/mystore')
+      storage.putSync('startup', 'auto')
+      storage.flushSync()
+  });
   ```
 
 
@@ -74,15 +81,21 @@ Reads a file and loads the data to the **Storage** instance. This method uses an
   import featureAbility from '@ohos.ability.featureAbility'
   
   var context = featureAbility.getContext()
-  var path = await context.getFilesDir()
-  dataStorage.getStorage(path + '/mystore', function (err, storage) {
+  context.getFilesDir((err, path) => {
       if (err) {
-          console.info("Get the storage failed, path: " + path + '/mystore')
+          console.error('getFilesDir failed. err: ' + JSON.stringify(err));
           return;
       }
-      storage.putSync('startup', 'auto')
-      storage.flushSync()
-  })
+      console.info('getFilesDir successful. path:' + JSON.stringify(path));
+      dataStorage.getStorage(path + '/mystore', function (err, storage) {
+          if (err) {
+              console.info("Get the storage failed, path: " + path + '/mystore')
+              return;
+          }
+          storage.putSync('startup', 'auto')
+          storage.flushSync()
+      })
+  });
   ```
 
 
@@ -110,14 +123,20 @@ Reads a file and loads the data to the **Storage** instance. This method uses a 
   import featureAbility from '@ohos.ability.featureAbility'
   
   var context = featureAbility.getContext()
-  var path = await context.getFilesDir()
-  let promisegetSt = dataStorage.getStorage(path + '/mystore')
-  promisegetSt.then((storage) => {
-      storage.putSync('startup', 'auto')
-      storage.flushSync()
-  }).catch((err) => {
-      console.info("Get the storage failed, path: " + path + '/mystore')
-  })
+  context.getFilesDir((err, path) => {
+      if (err) {
+          console.info("Get the storage failed, path: " + path + '/mystore')
+          return;
+      }
+      console.info('getFilesDir successful. path:' + JSON.stringify(path));
+      let promisegetSt = dataStorage.getStorage(path + '/mystore')
+      promisegetSt.then((storage) => {
+          storage.putSync('startup', 'auto')
+          storage.flushSync()
+      }).catch((err) => {
+          console.info("Get the storage failed, path: " + path + '/mystore')
+      })
+  });
   ```
 
 
@@ -250,7 +269,7 @@ removeStorageFromCache(path: string): Promise&lt;void&gt;
 
 Removes the singleton **Storage** instance of a file from the cache. The removed instance cannot be used for data operations. Otherwise, data inconsistency will occur.
 
-This method uses a promise to return the result.
+This method uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -426,7 +445,7 @@ put(key: string, value: ValueType): Promise&lt;void&gt;
 
 Obtains the **Storage** instance corresponding to the specified file, writes data to the **Storage** instance using a **Storage** API, and saves the modification using **flush()** or **flushSync()**.
 
-This method uses a promise to return the result.
+This method uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -522,7 +541,7 @@ has(key: string): Promise&lt;boolean&gt;
 
 Checks whether the storage object contains data with a given key.
 
-This method uses a promise to return the result.
+This method uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -678,7 +697,7 @@ flush(): Promise&lt;void&gt;
 
 Saves the modification of this object to the **Storage** instance and synchronizes the modification to the file.
 
-This method uses a promise to return the result.
+This method uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -747,7 +766,7 @@ clear(): Promise&lt;void&gt;
 
 Clears this **Storage** object.
 
-This method uses a promise to return the result.
+This method uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
