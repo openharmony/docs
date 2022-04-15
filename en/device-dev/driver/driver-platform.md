@@ -2,6 +2,8 @@
 
 -   **[ADC](driver-platform-adc-des.md)**  
 
+-   **[DAC](driver-platform-dac-des.md)**  
+
 -   **[GPIO](driver-platform-gpio-des.md)**  
 
 -   **[HDMI](driver-platform-hdmi-des.md)**  
@@ -13,6 +15,8 @@
 -   **[MIPI CSI](driver-platform-mipicsi-des.md)**  
 
 -   **[MIPI DSI](driver-platform-mipidsi-des.md)**  
+
+-   **[Pin](driver-platform-pin-des.md)**
 
 -   **[PWM](driver-platform-pwm-des.md)**  
 

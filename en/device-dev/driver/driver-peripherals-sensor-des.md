@@ -1,5 +1,5 @@
 # Sensor
-  
+ 
 
 ## Overview
 
@@ -7,7 +7,8 @@
 
 The sensor driver model masks the sensor hardware differences and provides interfaces for the upper-layer sensor service to implement basic sensor capabilities, including querying the sensor list, enabling or disabling a sensor, subscribing to or unsubscribing from sensor data changes, and setting sensor options. The model is developed on the Hardware Driver Foundation (HDF), Operating System Abstraction Layer (OSAL), and platform driver interfaces (such as the I2C, SPI, and UART buses). It provides functionalities such as cross-OS migration and differentiated device configurations. The figure below shows the architecture of the sensor driver model.
 
-**Figure 1** Sensor driver model 
+**Figure 1** Sensor driver model
+ 
 ![Sensor driver model](figures/sensor_driver_model.png)
 
 ### Basic Concepts
@@ -44,12 +45,12 @@ The following uses the acceleration sensor driver on the Hi3516D V300 developmen
 ### When to Use
 
 - Data provided by the gravity and gyroscope sensors denotes the tilt and rotation of the device, which helps your application improve user experience in games.
-- Data provided by the proximity sensor denotes the distance between the device and a visible object, which enables the device to automatically turn on or off its screen accordingly to prevent accidental touch on the screen. For example, when the proximity sensor detects the user face approaches the earpiece during a call, it triggers backlight of the screen to be turned off. This can further reduce power consumption.
+- Data provided by the proximity sensor denotes the distance between the device and a visible object, which enables the device to automatically turn on or off its screen accordingly to prevent accidental touch on the screen. For example, when the proximity sensor detects the user face approaches the earpiece during a call, it triggers backlight of the screen to be turned off. This prevents the screen from being accidentally touched and further reduces power consumption.
 - Data provided by the barometric pressure sensor helps your application accurately determine the altitude of the device.
 - Data provided by the ambient light sensor helps your device automatically adjust its backlight.
 - Data provided by the Hall effect sensor implements the smart cover mode of your device. When the smart cover is closed, a small window is opened on the phone to reduce power consumption. 
 
-### Available APIs<a name="section188213414114"></a>
+### Available APIs
 
 The sensor driver model offers the following APIs:
 
@@ -61,7 +62,7 @@ The sensor driver model offers the following APIs:
 
 The sensor driver model provides APIs for the hardware service to make sensor service development easier. See the table below.
 
-**Table 1** APIs for the members in the PinCntlrMethod structure
+**Table 1** APIs of the sensor driver model
 
 | API| Description| 
 | ----- | -------- |
@@ -111,9 +112,9 @@ The sensor driver model also provides certain driver development APIs that need 
 | void ReadSensorData(void) | Reads sensor data.|
 
 
-For details about the interface implementation, see [How to Develop](#section7893102915819).
+For details about the interface implementation, see "How to Develop" below.
 
-### How to Develop<a name="section7893102915819"></a>
+### How to Develop
 1. Develop the acceleration sensor abstract driver. Specifically, implement the **Bind**, **Init**, **Release**, and **Dispatch** functions.
 
    - Implement the entry function for the acceleration sensor.
@@ -513,12 +514,11 @@ For details about the interface implementation, see [How to Develop](#section789
 
 >![](../public_sys-resources/icon-note.gif) **NOTE**
 >
->- The sensor driver model provides certain APIs to implement sensor driver capabilities, including the driver device management, abstract bus and platform operation, common configuration, and configuration parsing capabilities. For details about them, see [Table 2](#table1156812588320).
->
->- You need to implement the following functions: certain sensor operation interfaces (listed in [Table 3](#table1083014911336)) and sensor chipset HCS configuration.
-> - You also need to verify basic driver functions.
+>- The sensor driver model provides certain APIs to implement sensor driver capabilities, including the driver device management, abstract bus and platform operation, common configuration, and configuration parsing capabilities. For details about them, see Table 2.
+>- You need to implement the following functions: certain sensor operation interfaces (listed in Table 3) and sensor chipset HCS configuration.
+>- You also need to verify basic driver functions.
 
-### Commissioning and Verifying<a name="section106021256121219"></a>
+### How to Verify
 
 After the driver is developed, you can develop self-test cases in the sensor unit test to verify the basic functions of the driver. Use the developer self-test platform as the test environment.
 
@@ -545,7 +545,7 @@ void HdfSensorTest::SetUpTestCase()
 {
     g_sensorDev = NewSensorInterfaceInstance();
     if (g_sensorDev == nullptr) {
-        printf("test sensorHdi get Module instace failed\n\r");
+        printf("test sensorHdi get Module instance failed\n\r");
     }
 }
 /* Release case resources. */

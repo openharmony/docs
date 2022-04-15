@@ -148,7 +148,7 @@ The light driver model provides APIs to obtain information about all the lights 
          HdfWorkDestroy(&drvData->work);
          HdfWorkQueueDestroy(&drvData->workQueue);
          (void)OsalMutexDestroy(&drvData->mutex);
-         (void)OsalMemFree(drvData);
+         OsalMemFree(drvData);
          g_lightDrvData = NULL;
      }
      ```

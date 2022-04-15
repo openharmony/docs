@@ -1,37 +1,20 @@
-# Hi3516 Development Board<a name="EN-US_TOPIC_0000001174350603"></a>
+# Introduction to the Hi3516 Development Board
 
-## Introduction<a name="section26131214194212"></a>
 
-Hi3516D V300 is a next-generation system on chip \(SoC\) designed for the industry-dedicated smart HD IP camera. It introduces a next-generation image signal processor \(ISP\), the H.265 video compression encoder, and a high-performance NNIE engine, leading the industry in terms of low bit rate, high image quality, intelligent processing and analysis, and low power consumption.
+## Overview
 
-**Figure  1**  Hi3516D V300 front view<a name="fig6340825506"></a>  
-![](figures/hi3516d-v300-front-view.png "hi3516d-v300-front-view")
+Hi3516D V300 is a next-generation system on chip (SoC) designed for the industry-dedicated smart HD IP camera. It introduces a next-generation image signal processor (ISP), the H.265 video compression encoder, and a high-performance NNIE engine, leading the industry in terms of low bit rate, high image quality, intelligent processing and analysis, and low power consumption.
 
-## Development Board Specifications<a name="section15192203316533"></a>
+  **Figure 1** Hi3516 front view
 
-**Table  1**  Specifications of the Hi3516 development board
+![en-us_image_0000001227082182](figures/en-us_image_0000001227082182.png)
 
-<a name="table31714894311"></a>
-<table><thead align="left"><tr id="row10171198194310"><th class="cellrowborder" valign="top" width="14.77%" id="mcps1.2.3.1.1"><p id="a2b235e9ed55f4338886788f140e648a0"><a name="a2b235e9ed55f4338886788f140e648a0"></a><a name="a2b235e9ed55f4338886788f140e648a0"></a>Type</p>
-</th>
-<th class="cellrowborder" valign="top" width="85.22999999999999%" id="mcps1.2.3.1.2"><p id="p9702458104014"><a name="p9702458104014"></a><a name="p9702458104014"></a>Specification</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row0171168114311"><td class="cellrowborder" valign="top" width="14.77%" headers="mcps1.2.3.1.1 "><p id="p1698185431418"><a name="p1698185431418"></a><a name="p1698185431418"></a>Processor and internal memory</p>
-</td>
-<td class="cellrowborder" valign="top" width="85.22999999999999%" headers="mcps1.2.3.1.2 "><a name="ul1147113537186"></a><a name="ul1147113537186"></a><ul id="ul1147113537186"><li>Hi3516D V300</li><li>DDR3 1GB</li><li>8 GB eMMC4.5</li></ul>
-</td>
-</tr>
-<tr id="row21721687435"><td class="cellrowborder" valign="top" width="14.77%" headers="mcps1.2.3.1.1 "><p id="p817216810435"><a name="p817216810435"></a><a name="p817216810435"></a>External components</p>
-</td>
-<td class="cellrowborder" valign="top" width="85.22999999999999%" headers="mcps1.2.3.1.2 "><a name="ul179543016208"></a><a name="ul179543016208"></a><ul id="ul179543016208"><li>Ethernet port</li><li>Audio and video<a name="ul5941311869"></a><a name="ul5941311869"></a><ul id="ul5941311869"><li>One voice input</li><li>One mono (AC_L) output, connected to a 3 W power amplifier (LM4871)</li><li>MicroHDMI (one HDMI 1.4)</li></ul>
-</li><li>Camera<a name="ul924263620"></a><a name="ul924263620"></a><ul id="ul924263620"><li>Sensor IMX335</li><li>M12 lens with a focal length of 4 mm and an aperture of 1.8</li></ul>
-</li><li>Display<a name="ul101471711667"></a><a name="ul101471711667"></a><ul id="ul101471711667"><li>2.35-inch LCD connector</li><li>5.5-inch LCD connector</li></ul>
-</li><li>External components and interfaces<a name="ul089255556"></a><a name="ul089255556"></a><ul id="ul089255556"><li>microSD card interface</li><li>JTAG/I2S interface</li><li>ADC interface</li><li>Steer gear interface</li><li>Grove connector</li><li>USB2.0(Type C)</li><li>Three function keys: two custom keys and one update key</li><li>LED indicator (including green and red)</li></ul>
-</li></ul>
-</td>
-</tr>
-</tbody>
-</table>
 
+## Development Board Specifications
+
+  **Table 1** Hi3516 specifications
+
+| Item| Description|
+| -------- | -------- |
+| Processor and internal memory| -&nbsp;Hi3516D V300 chip<br>-&nbsp;DDR3&nbsp;1GB<br>-&nbsp;eMMC 4.5, 8 GB capacity|
+| External components| -&nbsp;Ethernet port<br>-&nbsp;Audio and video<br>&nbsp;&nbsp;-&nbsp;1 voice input<br>&nbsp;&nbsp;-&nbsp;1 mono channel (AC_L) output, connected to a 3 W power amplifier (LM4871)<br>&nbsp;&nbsp;-&nbsp;MicroHDMI (1-channel HDMI 1.4)<br>-&nbsp;Camera<br>&nbsp;&nbsp;-&nbsp;Sensor IMX335<br>&nbsp;&nbsp;-&nbsp;M12 lens, 4 mm focal length, and 1.8 aperture<br>-&nbsp;Display<br>&nbsp;&nbsp;-&nbsp;LCD connector (2.35-inch)<br>&nbsp;&nbsp;-&nbsp;LCD connector (5.5-inch)<br>-&nbsp;External components and ports<br>&nbsp;&nbsp;-&nbsp;Memory card port<br>&nbsp;&nbsp;-&nbsp;JTAG/I2S port<br>&nbsp;&nbsp;-&nbsp;ADC port<br>&nbsp;&nbsp;-&nbsp;Steering gear port<br>&nbsp;&nbsp;-&nbsp;Grove connector<br>&nbsp;&nbsp;-&nbsp;USB 2.0 (Type-C)<br>&nbsp;&nbsp;-&nbsp;Three function keys, two user-defined keys, and one upgrade key<br>&nbsp;&nbsp;-&nbsp;LED indicator, green or red|

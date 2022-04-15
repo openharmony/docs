@@ -225,7 +225,7 @@ if (ret != 2) {
 }
 ```
 
->![](./public_sys-resources/icon-caution.gif) **Caution**
+>![](../public_sys-resources/icon-caution.gif) **Caution**
 >
 >-   The device address in the **I3cMsg** structure does not contain the read/write flag bit. The read/write information is passed by the read/write control bit in the member variable **flags**.
 >-   The **I3cTransfer()** function does not limit the number of message structures or the length of data in each message structure. The I3C controller determines these two limits.

@@ -164,9 +164,9 @@ The I3C module adaptation involves the following steps:
     
         ```c
         struct VirtualI3cCntlr {
-            struct AdcDevice device;// (Mandatory) Control object at the core layer. For details, see the following description of I3cCntlr.
+            struct I3cCntlr cntlr;   // (Mandatory) Control object at the core layer. For details, see the following description of I3cCntlr.
             volatile unsigned char *regBase;// (Mandatory) Register base address.
-            uint32_t regBasePhy; // (Mandatory) Physical base address of the register.
+            uint32_t regBasePhy;     // (Mandatory) Physical base address of the register.
             uint32_t regSize;        // (Mandatory) Bit width of the register.
             uint16_t busId;          // (Mandatory) Device number.
             uint16_t busMode;

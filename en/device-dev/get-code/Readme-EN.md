@@ -1,7 +1,7 @@
 # Source Code Acquisition
 
-- [Source Code Acquisition](sourcecode-acquire.md)
-- [Tool Acquisition](gettools.md)
-  - [Docker Environment](gettools-acquire.md)
-  - [IDE](gettools-ide.md)
-
+- [Obtaining Source Code](sourcecode-acquire.md)
+- Obtaining Tools
+    - [Overview](gettools-overview.md)
+    - [Docker Environments](gettools-acquire.md)
+    - [IDE](gettools-ide.md)
