@@ -82,7 +82,7 @@ int32_t HdfSampleDriverDispatch(
 
 void HdfSampleDriverRelease(struct HdfDeviceObject *deviceObject)
 {
-    // release resources here
+    // Release resources.
     return;
 }
 
