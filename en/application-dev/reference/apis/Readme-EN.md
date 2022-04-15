@@ -24,12 +24,8 @@
   - application/[abilityDelegator](js-apis-application-abilityDelegator.md)
   - application/[abilityDelegatorArgs](js-apis-application-abilityDelegatorArgs.md)
   - application/[AbilityRunningInfo](js-apis-abilityrunninginfo.md)
-  - application/[ExtensionContext](js-apis-extension-context.md)
-  - application/[ExtensionRunningInfo](js-apis-extensionrunninginfo.md)
-  - application/[FormExtensionContext](js-apis-formextensioncontext.md)
   - application/[MissionSnapshot](js-apis-application-MissionSnapshot.md)
   - application/[ProcessRunningInfo](js-apis-processrunninginfo.md)
-  - application/[ServiceExtensionContext](js-apis-service-extension-context.md) 
   - application/[shellCmdResult](js-apis-application-shellCmdResult.md)
 
 - Common Event and Notification
@@ -85,7 +81,7 @@
   - [@ohos.security.huks ](js-apis-huks.md)
   - [@ohos.userIAM.userAuth ](js-apis-useriam-userauth.md)
   - [@system.cipher](js-apis-system-cipher.md)
-  
+
 - Data Management
 
   - [@ohos.data.dataAbility ](js-apis-data-ability.md)
@@ -93,6 +89,7 @@
   - [@ohos.data.distributedDataObject](js-apis-data-distributedobject.md)
   - [@ohos.data.rdb](js-apis-data-rdb.md)
   - [@ohos.settings](js-apis-settings.md)
+  - [@ohos.data.storage](js-apis-data-storage.md)
   - data/rdb/[resultSet](js-apis-data-resultset.md)
 
 - File Management
@@ -127,7 +124,7 @@
   - [@ohos.rpc](js-apis-rpc.md)
   - [@ohos.wifi](js-apis-wifi.md)
   - [@ohos.wifiext](js-apis-wifiext.md)
-  
+
 - Basic Features
 
   - [@ohos.accessibility](js-apis-accessibility.md)
@@ -201,7 +198,7 @@
   - [@ohos.uitest](js-apis-uitest.md)
 
 - APIs No Longer Maintained
-  
+
   - [@ohos.bytrace](js-apis-bytrace.md)
   - [@system.app](js-apis-system-app.md)
   - [@system.battery](js-apis-system-battery.md)
