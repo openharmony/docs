@@ -110,7 +110,7 @@ The Access Control List (ACL) makes low-level apps to have high-level permission
 
 The APL of app A is normal. App A needs to have permission B (system_basic level) and permission C (normal level). In this case, you can use the ACL to grant permission B to app A.
 
-For details, see [Using the ACL](#usingtheacl).
+For details, see [Using the ACL](#using-the-acl).
 
 ## Permission Authorization Modes
 
