@@ -269,15 +269,17 @@ addNotificationSlot(slot: NotificationSlot, callback: AsyncCallback&lt;void&gt;)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| slot | [NotificationSlot](js-apis-notification.md#notificationslot) | 是 | notification&nbsp;slot实例。 |
+| slot | [NotificationSlot](js-apis-notification.md#notificationslot) | 是 | notification&nbsp;slot实例，仅支持设置其type属性。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 异步回调。 |
+
+**说明**：
+使用NotificationSlot需要导入： import notification from '@ohos.notification'
 
 **示例**：
 
 ```js
 let mySlot = {
-    type: 3,
-    sound: "/sdcard/music2.mp3"
+    type: notification.SlotType.SOCIAL_COMMUNICATION
 }
 reminderAgent.addNotificationSlot(mySlot, (err, data) => {
     console.log("addNotificationSlot callback");
@@ -297,7 +299,10 @@ addNotificationSlot(slot: NotificationSlot): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| slot | [NotificationSlot](js-apis-notification.md#notificationslot) | 是 | notification&nbsp;slot实例。 |
+| slot | [NotificationSlot](js-apis-notification.md#notificationslot) | 是 | notification&nbsp;slot实例，仅支持设置其type属性。 |
+
+**说明**：
+使用NotificationSlot需要导入： import notification from '@ohos.notification'
 
 **返回值**：
 
@@ -309,8 +314,7 @@ addNotificationSlot(slot: NotificationSlot): Promise&lt;void&gt;
 
 ```js
 let mySlot = {
-    type: 3,
-    sound: "/sdcard/music2.mp3"
+    type: notification.SlotType.SOCIAL_COMMUNICATION
 }
 reminderAgent.addNotificationSlot(mySlot).then(() => {
    console.log("addNotificationSlot promise");
