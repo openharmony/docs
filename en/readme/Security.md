@@ -11,7 +11,7 @@ Its functions include application integrity verification, application permission
 
 **Figure 1** Security subsystem architecture<a name="fig4460722185514"></a> 
 
-![](figures/security-architecture.png)
+![](figures/security_subsustem_architecture.png)
 
 The security subsystem consists of the following functional modules:
 

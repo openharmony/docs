@@ -1,13 +1,14 @@
-# HDF Development Example<a name="EN-US_TOPIC_0000001052451677"></a>
+# HDF Development Example
 
-The following example shows how to add driver configuration, compile the driver code, and implement interaction between the user-state applications and the driver.
 
-## Adding Configuration<a name="section27261067111"></a>
+The following is a HDF-based driver development example.
 
-Add the driver configuration to the HDF configuration file \(for example, **vendor/hisilicon/xxx/hdf_config/device\_info**\). 
 
-Example:
+## Adding Driver Configuration
 
+Add the driver configuration to the HDF configuration file, for example, **vendor/hisilicon/xxx/hdf_config/device_info**.
+
+  
 ```
 root {
     device_info {
@@ -44,10 +45,12 @@ root {
 }
 ```
 
-## Compiling the Driver Code<a name="section177988005"></a>
 
-The following is the sample driver code compiled based on HDF (for details, see [Driver Development](driver-hdf-development.md)):
+## Writing the Driver Code
 
+Write the driver code based on the HDF. For more details, see [Driver Development](../driver/driver-hdf-development.md).
+
+  
 ```
 #include <fcntl.h>
 #include <sys/stat.h>
@@ -79,7 +82,7 @@ int32_t HdfSampleDriverDispatch(
 
 void HdfSampleDriverRelease(struct HdfDeviceObject *deviceObject)
 {
-    // Release resources here
+    // release resources here
     return;
 }
 
@@ -116,10 +119,12 @@ struct HdfDriverEntry g_sampleDriverEntry = {
 HDF_INIT(g_sampleDriverEntry);
 ```
 
-## Compiling the Code for Interaction<a name="section6205173816412"></a>
 
-The following is the sample code compiled based on HDF for interaction between the driver and user-state applications. You can place the code in **drivers/adapter/uhdf** for compilation. For details about the **build.gn** file, see **drivers/framework/sample/platform/uart/dev/build.gn**.
+## Implementing Interaction Between the Application and the Driver 
 
+Write the code for interaction between the user-mode application and the driver. Place the code in the **drivers/adapter/uhdf** directory for compilation. For details about **build.gn**, see **drivers/framework/sample/platform/uart/dev/build.gn**.
+
+  
 ```
 #include <fcntl.h>
 #include <sys/stat.h>
@@ -227,9 +232,13 @@ int main()
 }
 ```
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
->The code compilation of user-state applications depends on the dynamic libraries **hdf\_core** and **osal** provided by HDF because user-state applications use the message sending interface of HDF. In the GN file, add the following dependencies:
->deps = \[
->"//drivers/adapter/uhdf/manager:hdf\_core",
->"//drivers/adapter/uhdf/posix:hdf\_posix\_osal",
->\]
+> ![icon-note.gif](../public_sys-resources/icon-note.gif) **NOTE**<br/>
+> The user-mode application uses the message sending API of the HDF, and the compilation of the user-mode application depends on the dynamic libraries **hdf_core** and **osal** provided by the HDF. Therefore, you need to add the following dependencies to the .gn file:
+> 
+> deps = [
+> 
+> "//drivers/adapter/uhdf/manager:hdf_core",
+> 
+> "//drivers/adapter/uhdf/posix:hdf_posix_osal",
+> 
+> ]

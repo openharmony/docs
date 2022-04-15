@@ -148,19 +148,19 @@ The following example shows how to implement a distributed data object synchroni
 8. Subscribe to the status (online/offline) changes of the distributed data object. A callback will be invoked to report the status change when the target distributed data object goes online or offline.
    The sample code is as follows:
    ```js
-    function statusCallback(sessionId, networkid, status) {
+    function statusCallback(sessionId, networkId, status) {
       this.response += "status changed " + sessionId + " " + status + " " + networkId;
     }
    
-    local_object.on("status", this.changeCallback);
+    local_object.on("status", this.statusCallback);
    ```
 9. Unsubscribe from the status changes of the distributed data object. You can specify the callback to unsubscribe from. If you do not specify the callback, all status change callbacks will be unsubscribe from. 
    
-    The sample code is as follows:
-   ```js
-   // Unsubscribe from changeCallback.
-   local_object.off("status", changeCallback);
-   // unsubscribe from all status change callbacks.
+  The sample code is as follows:
+  ```js
+   // Unsubscribe from statusCallback.
+   local_object.off("status", statusCallback);
+   // Unsubscribe from all status change callbacks.
    local_object.off("status");
    ```
 10. Remove a distributed data object from the synchronization network. After the distributed data object is removed from the network, the data changes on the local end will not be synchronized to the remote end.
