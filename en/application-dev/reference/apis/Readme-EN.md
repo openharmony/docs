@@ -88,8 +88,8 @@
   - [@ohos.data.distributedData](js-apis-distributed-data.md)
   - [@ohos.data.distributedDataObject](js-apis-data-distributedobject.md)
   - [@ohos.data.rdb](js-apis-data-rdb.md)
-  - [@ohos.settings](js-apis-settings.md)
   - [@ohos.data.storage](js-apis-data-storage.md)
+  - [@ohos.settings](js-apis-settings.md)
   - data/rdb/[resultSet](js-apis-data-resultset.md)
 
 - File Management
