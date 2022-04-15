@@ -1,4 +1,0 @@
-# Glossary
-
-[Glossary](glossary.md)
-
