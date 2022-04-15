@@ -207,7 +207,7 @@ import stats from '@ohos.bundleState';
     });
     ```
 
-8. 查询FA使用记录。返回数量最大不超过maxNum设置的值，config.json中需要配置权限：ohos.permission.BUNDLE_ACTIVE_INFO。
+8. 查询FA使用记录。返回数量最大不超过maxNum设置的值，若不传入maxNum参数，则默认maxNum为1000。config.json中需要配置权限：ohos.permission.BUNDLE_ACTIVE_INFO。
 
     ```js
     import stats from '@ohos.bundleState'
@@ -223,8 +223,32 @@ import stats from '@ohos.bundleState';
         console.log('BUNDLE_ACTIVE getRecentlyUsedModules promise failed, because: ' + err.code);
     });
 
+    // 无参数异步方法promise方式
+    stats.getRecentlyUsedModules().then( res => {
+        console.log('BUNDLE_ACTIVE getRecentlyUsedModules promise succeeded');
+        for (let i = 0; i < res.length; i++) {
+            console.log('BUNDLE_ACTIVE getRecentlyUsedModules promise number : ' + (i + 1));
+            console.log('BUNDLE_ACTIVE getRecentlyUsedModules promise result ' + JSON.stringify(res[i]));
+        }
+    }).catch( err=> {
+        console.log('BUNDLE_ACTIVE getRecentlyUsedModules promise failed, because: ' + err.code);
+    });
+
     // 异步方法callback方式
     stats.getRecentlyUsedModules(this.maxNum,(err, res) => {
+        if(err) {
+            console.log('BUNDLE_ACTIVE getRecentlyUsedModules callback failed, because: ' + err.code);
+        } else {
+            console.log('BUNDLE_ACTIVE getRecentlyUsedModules callback succeeded.');
+                for (let i = 0; i < res.length; i++) {
+                    console.log('BUNDLE_ACTIVE getRecentlyUsedModules callback number : ' + (i + 1));
+                    console.log('BUNDLE_ACTIVE getRecentlyUsedModules callback result ' + JSON.stringify(res[i]));
+                }
+            }
+    });
+
+    // 无参数异步方法callback方式
+    stats.getRecentlyUsedModules((err, res) => {
         if(err) {
             console.log('BUNDLE_ACTIVE getRecentlyUsedModules callback failed, because: ' + err.code);
         } else {

@@ -417,7 +417,7 @@ getRecentlyUsedModules(maxNum: number): Promise&lt;Array&lt;BundleActiveModuleIn
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | maxNum | number | 是 | 返回条目的最大数量。|
+  | maxNum | number | 否 | 返回条目的最大数量，若不填写，则默认为1000。|
 
 **返回值**：
 
@@ -429,6 +429,17 @@ getRecentlyUsedModules(maxNum: number): Promise&lt;Array&lt;BundleActiveModuleIn
 
   ```js
     bundleState.getRecentlyUsedModules(this.maxNum).then( res => {
+        console.log('BUNDLE_ACTIVE getRecentlyUsedModules promise succeeded');
+        for (let i = 0; i < res.length; i++) {
+            console.log('BUNDLE_ACTIVE getRecentlyUsedModules promise number : ' + (i + 1));
+            console.log('BUNDLE_ACTIVE getRecentlyUsedModules promise result ' + JSON.stringify(res[i]));
+        }
+    }).catch( err=> {
+        console.log('BUNDLE_ACTIVE getRecentlyUsedModules promise failed, because: ' + err.code);
+    });
+
+    // 无参数调用方式
+    bundleState.getRecentlyUsedModules().then( res => {
         console.log('BUNDLE_ACTIVE getRecentlyUsedModules promise succeeded');
         for (let i = 0; i < res.length; i++) {
             console.log('BUNDLE_ACTIVE getRecentlyUsedModules promise number : ' + (i + 1));
@@ -453,7 +464,7 @@ getRecentlyUsedModules(maxNum: number, callback: AsyncCallback&lt;Array&lt;Bundl
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | maxNum | number | 是 | 返回条目的最大数量。|
+  | maxNum | number | 否 | 返回条目的最大数量，若不填写，则默认为1000。|
   | callback | AsyncCallback&lt;Array&lt;[BundleActiveModuleInfo](#bundleactivestate)&gt;&gt; | 是 | 指定的CallBack回调方法。返回不超过maxNum条FA使用记录。|
 
 **示例**：
@@ -470,12 +481,23 @@ getRecentlyUsedModules(maxNum: number, callback: AsyncCallback&lt;Array&lt;Bundl
                 }
         }
     });
+
+    // 无参数调用方式
+    stats.getRecentlyUsedModules((err, res) => {
+        if(err) {
+            console.log('BUNDLE_ACTIVE getRecentlyUsedModules callback failed, because: ' + err.code);
+        } else {
+            console.log('BUNDLE_ACTIVE getRecentlyUsedModules callback succeeded.');
+                for (let i = 0; i < res.length; i++) {
+                    console.log('BUNDLE_ACTIVE getRecentlyUsedModules callback number : ' + (i + 1));
+                    console.log('BUNDLE_ACTIVE getRecentlyUsedModules callback result ' + JSON.stringify(res[i]));
+                }
+            }
+    });
   ```
 
 ## BundleActiveModuleInfo<sup>9+</sup>
 FA的使用信息的属性集合。
-
-### 属性
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.UsageStatistics.App
 
@@ -487,7 +509,7 @@ FA的使用信息的属性集合。
 | abilityName | string | 是 | FA的MainAbility名。|
 | appLabelId | number | 是 | FA的应用labelId。|
 | labelId | number | 是 | FA所属module的labelId。|
-| descriptionId | number | 是 | FA的应用descriptionId。|
+| descriptionId | number | 是 | FA所属的应用descriptionId。|
 | abilityLableId | number | 是 | FA的MainAbility labelId。|
 | abilityDescriptionId | number | 是 | FA的MainAbility descriptionId。|
 | abilityIconId | number | 是 | FA的MainAbility iconId。|
@@ -497,8 +519,6 @@ FA的使用信息的属性集合。
 
 ## BundleActiveFormInfo<sup>9+</sup>
 FA卡片的使用信息的属性集合。
-
-### 属性
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.UsageStatistics.App
 
