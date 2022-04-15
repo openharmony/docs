@@ -279,7 +279,7 @@ mySlot: {
     type: 3,
     sound: "/sdcard/music2.mp3"
 }
-reminderAgent.addNotificationSlot(this.mySlot, (err, data) => {
+reminderAgent.addNotificationSlot(mySlot, (err, data) => {
     console.log("addNotificationSlot callback");
 });
 ```
@@ -313,7 +313,7 @@ export default {    data: {        mySlot: {
             sound: "/sdcard/music2.mp3"
         }    },
     addSlot() {
-        reminderAgent.addNotificationSlot(this.mySlot).then(() => {
+        reminderAgent.addNotificationSlot(mySlot).then(() => {
    console.log("do next");
         });
     }
