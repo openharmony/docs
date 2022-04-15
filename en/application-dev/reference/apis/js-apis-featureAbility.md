@@ -34,7 +34,7 @@ Starts an ability. This method uses a callback to return the result.
 import featureAbility from '@ohos.ability.featureAbility'
 import wantConstant from '@ohos.ability.wantConstant'
 featureAbility.startAbility(
-        {
+    {
         want:
         {
             action: "",
@@ -85,7 +85,7 @@ featureAbility.startAbility(
             uri: ""
         },
     }
-   ).then((data) => {
+).then((data) => {
 	console.info("==========================>startAbility=======================>");
 });
 ```
@@ -153,6 +153,9 @@ featureAbility.startAbilityForResult(
             uri:""
         },
     },
+    (err, data) => {
+        console.info("err: " + JSON.stringfy(err) + "data: " + JSON.stringfy(data))
+    }
 )
 ```
 
@@ -407,7 +410,7 @@ Obtains the **Want** object sent from this ability. This method uses a promise t
 ```javascript
 import featureAbility from '@ohos.ability.featureability';
 featureAbility.getWant().then((data) => {
-		console.info("==========================>getWantCallBack=======================>");
+	console.info("==========================>getWantCallBack=======================>");
 });
 ```
 
@@ -476,7 +479,8 @@ Destroys this Page ability, with the result code and data sent to the caller. Th
 
 ```javascript
 import featureAbility from '@ohos.ability.featureability';
-featureAbility.terminateSelf().then((data) => {		    console.info("==========================>terminateSelfCallBack=======================>");
+featureAbility.terminateSelf().then((data) => {
+    console.info("==========================>terminateSelfCallBack=======================>");
 });
 ```
 
@@ -591,7 +595,7 @@ var connId = featureAbility.connectAbility(
 );
 var result = featureAbility.disconnectAbility(connId,
     (error,data) => {
-    console.log('featureAbilityTest DisConnectJsSameBundleName result errCode : ' + error.code + " data: " + data)
+        console.log('featureAbilityTest DisConnectJsSameBundleName result errCode : ' + error.code + " data: " + data)
     },
 );
 ```
@@ -642,7 +646,7 @@ var connId = featureAbility.connectAbility(
     },
 );
 
-featureAbility.disconnectAbility(connId).then((error,data)=>{
+featureAbility.disconnectAbility(connId).then((error,data) => {
     console.log('featureAbilityTest result errCode : ' + error.code + " data: " + data);
 });
 ```
