@@ -109,13 +109,13 @@ Creates a **RunningLock** object.
 ```
 runningLock.createRunningLock("running_lock_test", runningLock.RunningLockType.BACKGROUND, (error, lockIns) => {
     if (typeof error === "undefined") {
-        console.log('create runningLock test error: ' + error);
-    } else {
         var used = lockIns.isUsed();
         console.info('runninglock is used: ' + used);
         lockIns.lock(500);
         used = lockIns.isUsed();
         console.info('after lock runninglock is used ' + used);
+    } else {
+        console.log('create runningLock test error: ' + error);
     }
 })
 ```
