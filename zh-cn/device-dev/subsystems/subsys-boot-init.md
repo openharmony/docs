@@ -124,26 +124,18 @@ init启动引导组件负责在系统启动阶段启动关键服务进程。 若
 
     执行步骤：
     1，启动系统
-    2，修改/etc/init.cfg 文件，在“pre-init”任务中， "load_persist_params "命令后，添加"setparam init.bootchart.enabled 1"和"bootchart start" 命令并重启，修改如下：
-        "jobs" : [{
-            "name" : "pre-init",
-            "cmds" : [
-                ...
-                "load_persist_params ",
-                "setparam init.bootchart.enabled 1",
-                "bootchart start",
-                ...
-            ]
-        },
-    3，启动后，执行命令行：begetctl bootchart stop
-    4，在/data/bootchart目录下导出如下文件：
+    2，执行命令行：begetctl bootchart enable
+    3，重启系统
+    4，执行命令行：begetctl bootchart stop
+    5，执行命令行：begetctl bootchart disable
+    6，在/data/bootchart目录下导出如下文件：
        header
        proc_diskstats.log
        proc_ps.log
        proc_stat.log
        并存放在bootchart文件夹
-    5，使用命令：tar -zcvf bootchart.tgz * 进行打包（只支持linux版本）并将该打包文件拷贝到linux：bootchart-master目录下
-    6，运行：
+    7，使用命令：tar -zcvf bootchart.tgz * 进行打包（只支持linux版本）并将该打包文件拷贝到linux：bootchart-master目录下
+    8，运行：
        在bootchart-master目录下运行
        python3 pybootchartgui.py -f pdf bootchart.tgz
 
