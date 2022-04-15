@@ -2,13 +2,13 @@
 
 ## 场景介绍
 
-升级服务示例服务器开发指导的主要工作是为了解决升级服务的实际应用场景测试中缺乏相应搜包服务器提供查询升级包、获取升级包下载url等功能，使得测试升级服务和二次开发功能验证比较困难的问题得到解决，为升级服务的应用场景提供尽可能完善的端到端环境搭建。开发者能够基于此指导快速开发一个简易的搜包服务器用于升级服务应用场景测试。
+示例服务器解决了升级服务的实际应用场景测试中缺乏相应搜包服务器提供查询升级包、获取升级包下载url等问题，支持测试升级服务和二次开发功能验证，为升级服务的应用场景提供尽可能完善的端到端环境搭建。开发者能够基于此指导快速开发一个简易的搜包服务器用于升级服务应用场景测试。
 
 ## 开发步骤
 
 1. 生成SSL证书
 
-会生成serverKey.pem和serverCert.cer两个文件。
+生成serverKey.pem和serverCert.cer两个文件，用于示例服务器的SSL协议通信。
 
 ```bash
 openssl req -newkey rsa:2048 -nodes -keyout serverKey.pem -x509 -days 365 -out serverCert.cer -subj "/C=CN/ST=GD/L=GZ/O=abc/OU=defg/CN=hijk/emailAddress=test.com"
@@ -29,15 +29,17 @@ openssl req -newkey rsa:2048 -nodes -keyout serverKey.pem -x509 -days 365 -out s
 
 3. 下载代码仓
 
-通过repo下载OpenHarmony全仓，或者通过git clone下载本代码仓。
+repo方式下载OpenHarmony全仓
 
 ```bash
-// repo下载OpenHarmony全仓
 repo init -u https://gitee.com/openharmony/manifest.git -b master --no-repo-verify
 repo sync -c
 repo forall -c 'git lfs pull'
+```
 
-// git clone下载本代码仓
+git clone方式下载本代码仓
+
+```bash
 git clone https://gitee.com/openharmony/update_updateservice.git -b master
 ```
 
@@ -45,7 +47,7 @@ git clone https://gitee.com/openharmony/update_updateservice.git -b master
 
 4. 建立代码目录
 
-进入到本仓update_updateservice目录下，执行以下命令，建立代码目录。
+进入到update_updateservice目录下，执行以下命令，建立代码目录。
 
 ```bash
 mkdir server_sample							// 建立示例服务器server_sample目录
@@ -59,52 +61,52 @@ touch server_sample/src/main.cpp			 // 创建main.cpp文件
 
 5. 编译文件BUILD.gn编写
 
-文件BUILD.gn一共编译两个ohos组件，一个是ohos_shared_library库文件libserver_process.z.so，一个是ohos_executable可执行文件testserver。
+文件BUILD.gn一共编译两个ohos组件，一个是ohos_shared_library库文件libserver_process.z.so，另一个是ohos_executable可执行文件testserver。
 
 ```cmake
 import("//build/ohos.gni")
 
 ohos_shared_library("server_process") {
-	sources = [
-		"//base/update/updateservice/./src/server_process.c",
-	]
-	
-	include_dirs = [
-		"//base/update/updateservice/server_sample/include",
-		"//third_party/openssl/include",
-	]
-	
-	deps = [
-		"//base/update/updater/services/log:libupdaterlog",
-		"//third_party/bounds_checking_function:libsec_static",
-		"//third_party/openssl:crypto_source",
-		"//third_party/openssl:ssl_source",
-		"//utils/native/base:utils",
-	]
-	
-	part_name = "update_service"
+    sources = [
+        "//base/update/updateservice/./src/server_process.c",
+    ]
+
+    include_dirs = [
+        "//base/update/updateservice/server_sample/include",
+        "//third_party/openssl/include",
+    ]
+
+    deps = [
+        "//base/update/updater/services/log:libupdaterlog",
+        "//third_party/bounds_checking_function:libsec_static",
+        "//third_party/openssl:crypto_source",
+        "//third_party/openssl:ssl_source",
+        "//utils/native/base:utils",
+    ]
+
+    part_name = "update_service"
 }
 
 ohos_executable("testserver") {
-	source = [
-		"//base/update/updateservice/server_sample/src/main.cpp",
-	]
-	
-	include_dirs = [
-		"//base/update/updateservice/server_sample/include",
-	]
-	
-	deps = [
-		"//base/update/updateservice/server_sample:server_process",
-	]
-	
-	part_name = "update_service"
+    source = [
+        "//base/update/updateservice/server_sample/src/main.cpp",
+    ]
+
+    include_dirs = [
+        "//base/update/updateservice/server_sample/include",
+    ]
+
+    deps = [
+        "//base/update/updateservice/server_sample:server_process",
+    ]
+
+    part_name = "update_service"
 }
 ```
 
 6. 头文件server_process.h编写
 
-文件server_process.h声明了示例服务器的一些接口。
+文件server_process.h声明了示例服务器的接口。
 
 ```c++
 #ifndef __SERVER_PROCESS_H__
@@ -150,7 +152,7 @@ int Close();
 
 7. server_process.c、main.cpp编写
 
-文件server_process.c主要声明了服务器的返回报文格式respondContent；main.cpp编写在此略去，可参考普通SSL协议的服务器编写，注意包含相关头文件，同时加载serverKey.pem和serverCert.cer两个证书。
+文件server_process.c主要声明了服务器的返回报文格式respondContent，main.cpp可参考普通SSL协议的服务器编写，注意包含相关头文件，同时加载serverKey.pem和serverCert.cer两个证书。
 
 ```c
 #include "server_process.h"
@@ -203,16 +205,12 @@ respondContent = "{"
 
 9. 升级包制作
 
-参考OpenHarmony的update_packaging_tools仓制作升级包。
-
-```http
-https://gitee.com/openharmony/update_packaging_tools
-```
+[参考OpenHarmony的update_packaging_tools仓制作升级包。](https://gitee.com/openharmony/update_packaging_tools)
 
 10. 启动搜包服务器
 
 
-建议在开发板上新建一个纯英文路径；然后将testserver、libserver_process.z.so、serverCert.cer和serverKey.pem放到同一个目录下，进入该目录，执行以下启动命令即可启动搜包服务器。
+建议在开发板上新建一个纯英文路径，然后将testserver、libserver_process.z.so、serverCert.cer和serverKey.pem放到同一个目录下，进入该目录，执行以下启动命令即可启动搜包服务器。
 
 ```bash
 ./testserver ./libserver_process.z.so &
