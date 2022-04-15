@@ -29,7 +29,7 @@ publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback&lt;number&
   | callback | AsyncCallback&lt;number&gt; | 是 | 异步回调，返回当前发布的提醒的reminderId。 |
 
 **示例**：
-```
+```js
   let timer = {
       reminderType: reminderAgent.ReminderType.REMINDER_TYPE_TIMER,
       triggerTimeInSeconds: 10
@@ -59,7 +59,7 @@ publishReminder(reminderReq: ReminderRequest): Promise&lt;number&gt;
   | Promise&lt;number&gt; | 返回提醒的reminderId。 |
 
 **示例**：
-```
+```js
   let timer = {
       reminderType: reminderAgent.ReminderType.REMINDER_TYPE_TIMER,
       triggerTimeInSeconds: 10
@@ -87,7 +87,7 @@ cancelReminder(reminderId: number, callback: AsyncCallback&lt;void&gt;): void
 
 **示例**：
 
-```
+```js
 reminderAgent.cancelReminder(1, (err, data) => {
     console.log("cancelReminder callback");
 });
@@ -116,7 +116,7 @@ cancelReminder(reminderId: number): Promise&lt;void&gt;
 
 **示例**：
 
-```
+```js
 reminderAgent.cancelReminder(1).then(() => {
     console.log("cancelReminder promise");
 });
@@ -139,7 +139,7 @@ getValidReminders(callback: AsyncCallback&lt;Array&lt;ReminderRequest&gt;&gt;): 
 
 **示例**：
 
-```
+```js
 reminderAgent.getValidReminders((err, reminders) => {
     console.log("getValidReminders length = " + reminders.length);
     for (let i = 0; i < reminders.length; i++) {
@@ -183,7 +183,7 @@ getValidReminders(): Promise&lt;Array&lt;ReminderRequest&gt;&gt;
 
 **示例**：
 
-```
+```js
 reminderAgent.getValidReminders().then((reminders) => {
     console.log("getValidReminders length = " + reminders.length);
     for (let i = 0; i < reminders.length; i++) {
@@ -227,7 +227,7 @@ cancelAllReminders(callback: AsyncCallback&lt;void&gt;): void
 
 **示例**：
 
-```
+```js
 reminderAgent.cancelAllReminders((err, data) =>{
     console.log("cancelAllReminders callback")
 })
@@ -250,7 +250,7 @@ cancelAllReminders(): Promise&lt;void&gt;
 
 **示例**：
 
-```
+```js
 reminderAgent.cancelAllReminders().then(() => {
     console.log("cancelAllReminders promise")
 })
@@ -274,7 +274,7 @@ addNotificationSlot(slot: NotificationSlot, callback: AsyncCallback&lt;void&gt;)
 
 **示例**：
 
-```
+```js
 let mySlot = {
     type: 3,
     sound: "/sdcard/music2.mp3"
@@ -307,7 +307,7 @@ addNotificationSlot(slot: NotificationSlot): Promise&lt;void&gt;
 
 **示例**：
 
-```
+```js
 let mySlot = {
     type: 3,
     sound: "/sdcard/music2.mp3"
@@ -335,7 +335,7 @@ removeNotificationSlot(slotType: notification.SlotType, callback: AsyncCallback&
 
 **示例**：
 
-```
+```js
 reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION, (err, data) => {
     console.log("removeNotificationSlot callback");
 });
@@ -364,7 +364,7 @@ removeNotificationSlot(slotType: notification.SlotType): Promise&lt;void&gt;
 
 **示例**：
 
-```
+```js
 reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION).then(() => {
     console.log("removeNotificationSlot promise");
 });

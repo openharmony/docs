@@ -29,7 +29,7 @@ Publishes an agent-powered reminder. This API uses an asynchronous callback to r
   | callback | AsyncCallback&lt;number&gt; | Yes| Asynchronous callback used to return the published reminder's ID.|
 
 **Example**
-  ```
+  ```js
   let timer = {
       reminderType: reminderAgent.ReminderType.REMINDER_TYPE_TIMER,
       triggerTimeInSeconds: 10
@@ -59,7 +59,7 @@ Publishes an agent-powered reminder. This API uses a promise callback to return 
   | Promise&lt;number&gt; | Promise used to return the published reminder's ID.|
 
 **Example**
-  ```
+  ```js
   let timer = {
       reminderType: reminderAgent.ReminderType.REMINDER_TYPE_TIMER,
       triggerTimeInSeconds: 10
@@ -87,7 +87,7 @@ Cancels the reminder with the specified ID. This API uses an asynchronous callba
 
 **Example**
 
-```
+```js
 reminderAgent.cancelReminder(1, (err, data) => {
     console.log("cancelReminder callback");
 });
@@ -116,7 +116,7 @@ Cancels the reminder with the specified ID. This API uses a promise to return th
 
 **Example**
 
-```
+```js
 reminderAgent.cancelReminder(1).then(() => {
     console.log("cancelReminder promise");
 });
@@ -139,7 +139,7 @@ Obtains all valid (not yet expired) reminders set by the current application. Th
 
 **Example**
 
-```
+```js
 reminderAgent.getValidReminders((err, reminders) => {
     console.log("getValidReminders length = " + reminders.length);
     for (let i = 0; i < reminders.length; i++) {
@@ -183,7 +183,7 @@ Obtains all valid (not yet expired) reminders set by the current application. Th
 
 **Example**
 
-```
+```js
 reminderAgent.getValidReminders().then((reminders) => {
     console.log("getValidReminders length = " + reminders.length);
     for (let i = 0; i < reminders.length; i++) {
@@ -227,7 +227,7 @@ Cancels all reminders set by the current application. This API uses an asynchron
 
 **Example**
 
-```
+```js
 reminderAgent.cancelAllReminders((err, data) =>{
     console.log("cancelAllReminders callback")
 })
@@ -250,7 +250,7 @@ Cancels all reminders set by the current application. This API uses a promise to
 
 **Example**
 
-```
+```js
 reminderAgent.cancelAllReminders().then(() => {
     console.log("cancelAllReminders promise")
 })
@@ -274,7 +274,7 @@ Adds a reminder notification slot. This API uses an asynchronous callback to ret
 
 **Example**
 
-```
+```js
 let mySlot = {
     type: 3,
     sound: "/sdcard/music2.mp3"
@@ -307,7 +307,7 @@ Adds a reminder notification slot. This API uses a promise to return the result.
 
 **Example**
 
-```
+```js
 let mySlot = {
     type: 3,
     sound: "/sdcard/music2.mp3"
@@ -335,7 +335,7 @@ Removes a notification slot of a specified type. This API uses an asynchronous c
 
 **Example**
 
-```
+```js
 reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION, (err, data) => {
     console.log("removeNotificationSlot callback");
 });
@@ -364,7 +364,7 @@ Removes a notification slot of a specified type. This API uses a promise to retu
 
 **Example**
 
-```
+```js
 reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION).then(() => {
     console.log("removeNotificationSlot promise");
 });
