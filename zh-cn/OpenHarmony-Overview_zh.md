@@ -10,6 +10,7 @@
 -   [代码仓地址](#section107651249181914)
 -   [开发者文档](#section21031470109)
 -   [源码下载](#section39011923144212)
+-   [示例教程](#sectionsamples)
 -   [如何参与](#section19611528174215)
 -   [许可协议](#section1245517472115)
 -   [联系方式](#section61728335424)
@@ -361,8 +362,8 @@ OpenHarmony支持如下几种系统类型：
 
 ## 快速入门<a name="section44681652104210"></a>
 
-- [设备开发快速入门](device-dev/quick-start/quickstart-lite-overview.md)
-- [应用开发快速入门](application-dev/quick-start/start-overview.md)
+- [设备开发快速入门](device-dev/quick-start/Readme-CN.md)
+- [应用开发快速入门](application-dev/quick-start/Readme-CN.md)
 
 
 
@@ -387,6 +388,12 @@ OpenHarmony归档组织地址：[https://gitee.com/openharmony-retired](https://
 ## 源码下载<a name="section39011923144212"></a>
 
 获取OpenHarmony源码：[下载说明](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/get-code/sourcecode-acquire.md)
+
+## 示例教程<a name="sectionsamples"></a>
+
+Samples：[示例代码](https://gitee.com/openharmony/app_samples)
+
+Codelabs：[教程指导](https://gitee.com/openharmony/codelabs)
 
 ## 如何参与<a name="section19611528174215"></a>
 
