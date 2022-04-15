@@ -924,7 +924,7 @@ update操作密钥接口，使用Callback回调异步返回结果 。
 | handle | number           | 是   | Update操作的handle。 |
 | token | Uint8Array | 否 | Update操作的token。 |
 | options  | [HuksOptions](#huksoptions) | 是   | Update的参数集合。 |
-| callback | AsyncCallback\<[HksResult](#hksresult)> | 是 | 将Update操作的结果添加到密钥管理系统的回调。 |
+| callback | AsyncCallback\<[HuksResult](#huksresult)> | 是 | 将Update操作的结果添加到密钥管理系统的回调。 |
 
 **示例：**
 
