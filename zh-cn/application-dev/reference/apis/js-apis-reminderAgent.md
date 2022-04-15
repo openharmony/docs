@@ -29,20 +29,15 @@ publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback&lt;number&
   | callback | AsyncCallback&lt;number&gt; | 是 | 异步回调，返回当前发布的提醒的reminderId。 |
 
 **示例**：
-  ```
-  export default {
-      data: {
-          timer: {
-              reminderType: reminderAgent.ReminderType.REMINDER_TYPE_TIMER,
-              triggerTimeInSeconds: 3
-          }
-      },
-      startTimer() {
-          reminderAgent.publishReminder(timer, (err, reminderId) => {    console.log("reminderId = " + reminderId);
-          });
-      }
+```
+  let timer : reminderAgent.ReminderRequestTimer = {
+      reminderType: reminderAgent.ReminderType.REMINDER_TYPE_TIMER,
+      triggerTimeInSeconds: 10
   }
-  ```
+  reminderAgent.publishReminder(timer, (err, reminderId) => {
+      console.log("reminderId = " + reminderId);
+  });
+```
 
 
 ## reminderAgent.publishReminder
@@ -64,21 +59,15 @@ publishReminder(reminderReq: ReminderRequest): Promise&lt;number&gt;
   | Promise&lt;number&gt; | 返回提醒的reminderId。 |
 
 **示例**：
-  ```
-  export default {
-      data:
-          {timer: {
-              reminderType: reminderAgent.ReminderType.REMINDER_TYPE_TIMER,
-              triggerTimeInSeconds: 3
-          }
-      },
-      startTimer() {
-          reminderAgent.publishReminder(this.timer).then((reminderId) => {
-              console.log("reminderId = " + reminderId);
-          });
-      }
+```
+  let timer : reminderAgent.ReminderRequestTimer = {
+      reminderType: reminderAgent.ReminderType.REMINDER_TYPE_TIMER,
+      triggerTimeInSeconds: 10
   }
-  ```
+  reminderAgent.publishReminder(timer).then((reminderId) => {
+      console.log("reminderId = " + reminderId);
+  });
+```
 
 
 ## reminderAgent.cancelReminder
@@ -99,13 +88,9 @@ cancelReminder(reminderId: number, callback: AsyncCallback&lt;void&gt;): void
 **示例**：
 
 ```
-export default {
-    cancel() {
-        reminderAgent.cancelReminder(1, (err, data) => {
-            console.log("do next");
-        });
-    }
-}
+reminderAgent.cancelReminder(1, (err, data) => {
+    console.log("cancelReminder callback");
+});
 ```
 
 
@@ -132,13 +117,9 @@ cancelReminder(reminderId: number): Promise&lt;void&gt;
 **示例**：
 
 ```
-export default {
-    cancel() {
-        reminderAgent.cancelReminder(1).then(() => {
-            console.log("do next");
-        });
-    }
-}
+reminderAgent.cancelReminder(1).then(() => {
+    console.log("cancelReminder promise");
+});
 ```
 
 
@@ -160,6 +141,7 @@ getValidReminders(callback: AsyncCallback&lt;Array&lt;ReminderRequest&gt;&gt;): 
 
 ```
 reminderAgent.getValidReminders((err, reminders) => {
+    console.log("getValidReminders length = " + reminders.length);
     for (let i = 0; i < reminders.length; i++) {
         console.log("getValidReminders = " + reminders[i]);
         console.log("getValidReminders, reminderType = " + reminders[i].reminderType);
@@ -203,6 +185,7 @@ getValidReminders(): Promise&lt;Array&lt;ReminderRequest&gt;&gt;
 
 ```
 reminderAgent.getValidReminders().then((reminders) => {
+    console.log("getValidReminders length = " + reminders.length);
     for (let i = 0; i < reminders.length; i++) {
         console.log("getValidReminders = " + reminders[i]);
         console.log("getValidReminders, reminderType = " + reminders[i].reminderType);
@@ -246,7 +229,8 @@ cancelAllReminders(callback: AsyncCallback&lt;void&gt;): void
 
 ```
 reminderAgent.cancelAllReminders((err, data) =>{
-    console.log("do next")})
+    console.log("cancelAllReminders callback")
+})
 ```
 
 
@@ -268,7 +252,8 @@ cancelAllReminders(): Promise&lt;void&gt;
 
 ```
 reminderAgent.cancelAllReminders().then(() => {
-    console.log("do next")})
+    console.log("cancelAllReminders promise")
+})
 ```
 
 
@@ -290,16 +275,13 @@ addNotificationSlot(slot: NotificationSlot, callback: AsyncCallback&lt;void&gt;)
 **示例**：
 
 ```
-export default {    data: {        mySlot: {
-            type: 3,
-            sound: "/sdcard/music2.mp3"
-        }    },
-    addSlot() {
-        reminderAgent.addNotificationSlot(this.mySlot, (err, data) => {
-            console.log("do next");
-        });
-    }
+mySlot: {
+    type: 3,
+    sound: "/sdcard/music2.mp3"
 }
+reminderAgent.addNotificationSlot(this.mySlot, (err, data) => {
+    console.log("addNotificationSlot callback");
+});
 ```
 
 
@@ -326,16 +308,13 @@ addNotificationSlot(slot: NotificationSlot): Promise&lt;void&gt;
 **示例**：
 
 ```
-export default {    data: {        mySlot: {
-            type: 3,
-            sound: "/sdcard/music2.mp3"
-        }    },
-    addSlot() {
-        reminderAgent.addNotificationSlot(this.mySlot).then(() => {
-   console.log("do next");
-        });
-    }
+mySlot: {
+    type: 3,
+    sound: "/sdcard/music2.mp3"
 }
+reminderAgent.addNotificationSlot(this.mySlot).then(() => {
+   console.log("addNotificationSlot promise");
+});
 ```
 
 
@@ -357,12 +336,9 @@ removeNotificationSlot(slotType: notification.SlotType, callback: AsyncCallback&
 **示例**：
 
 ```
-export default {
-    removeSlot() {reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION, (err, data) => {
-            console.log("do next");
+reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION, (err, data) => {
+    console.log("removeNotificationSlot callback");
 });
-    }
-}
 ```
 
 
@@ -389,12 +365,9 @@ removeNotificationSlot(slotType: notification.SlotType): Promise&lt;void&gt;
 **示例**：
 
 ```
-export default {
-    removeSlot() {        reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION).then(() => {
-            console.log("do next");
-        });
-    }
-}
+reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION).then(() => {
+    console.log("removeNotificationSlot promise");
+});
 ```
 
 
