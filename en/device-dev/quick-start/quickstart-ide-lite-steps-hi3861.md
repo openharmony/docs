@@ -12,4 +12,4 @@
 
 - **[Debugging and Verification](quickstart-ide-lite-steps-hi3861-debug.md)**
 
-- **[Running](quickstart-ide-lite-steps-hi3816-running.md)**
+- **[Running](quickstart-ide-lite-steps-hi3861-running.md)**

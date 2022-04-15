@@ -621,3 +621,61 @@ In addition to the methods in  [Universal Methods](js-components-common-methods.
 </tr>
 </tbody>
 </table>
+
+## Example
+
+```
+<!-- index.hml -->
+<div class="container">
+  <list class="todo-wrapper">
+    <list-item for="{{todolist}}" class="todo-item">
+      <div style="flex-direction: column;align-items: center;justify-content: center;">
+        <text class="todo-title">{{$item.title}}</text>
+        <text class="todo-title">{{$item.date}}</text>
+      </div>
+    </list-item>
+  </list>
+</div>
+```
+
+```
+// index.js
+export default {
+  data: {
+    todolist: [{
+      title: 'Prepare for the interview',
+      date: '2021-12-31 10:00:00',
+    }, {
+      title: 'Watch the movie',
+      date: '2021-12-31 20:00:00',
+    }],
+  },
+}
+```
+
+```
+/* index.css */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+.todo-wrapper {
+  width: 100%;
+  height: 300px;
+}
+.todo-item {
+  width: 100%;
+  height: 120px;
+  justify-content:center;
+}
+.todo-title {
+  width: 100%;
+  height: 80px;
+  text-align: center;
+}
+```
+
+![en-us_image_0000001185033226](figures/en-us_image_0000001185033226.png)
