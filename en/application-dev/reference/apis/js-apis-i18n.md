@@ -703,7 +703,7 @@ Converts one measurement unit into another and formats the unit based on the spe
 | toUnit   | [UnitInfo](#unitinfo8) | Yes   | Measurement unit to be converted to.                                |
 | value    | number                 | Yes   | Value of the measurement unit to be converted.                            |
 | locale   | string                 | Yes   | Locale used for formatting, for example, **zh-Hans-CN**.               |
-| style    | string                 | No   | Style used for formatting. The value can be **long**, **short**, or **medium**.|
+| style    | string                 | No   | Style used for formatting. The value can be **long**, **short**, or **narrow**.|
 
 **Return Value**
 | Type    | Description                     |
