@@ -5,7 +5,7 @@
 
 The security subsystem provides system, data, and application security capabilities to protect system and user data of OpenHarmony.
 
-Its functions include application integrity verification, application permission management, device authentication, OpenHarmony Universal KeyStore (HUKS) key management, and data transfer management.
+It implemens application integrity verification, application permission management, device authentication, OpenHarmony Universal KeyStore (HUKS) key management, and data transfer management.
 
 ## Architecture<a name="section342962219551"></a>
 
@@ -45,7 +45,7 @@ The security subsystem consists of the following functional modules:
 
 ## Usage<a name="section2057642312536"></a>
 
-**Application Permission Management**
+#### Application Permission Management
 
 In OpenHarmony, applications and system services run in independent sandboxes. Both processes and data are isolated from each other to protect the security of application data. However, services or applications running in the sandboxes provide some APIs to implement specific functionalities. To access these APIs across processes, applications in other sandboxes need the required permissions, which are granted and managed based on a permission management mechanism.
 
@@ -55,7 +55,7 @@ Application permission management also allows applications to request permission
 
 In addition, application permission management allows users to view and manage the permission granting status.
 
-**Application Integrity Verification**
+#### Application Integrity Verification
 
 OpenHarmony allows installation of applications. To ensure the integrity and trustworthiness of the applications to be installed in OpenHarmony, the applications must be signed and their signatures must be verified.
 
@@ -63,7 +63,7 @@ After developing an application and generating the installation package during t
 
 In the application installation process, the OpenHarmony application framework subsystem installs applications. Upon receiving an application installation package, the application framework subsystem parses the signature of the installation package, and verifies the signature using the application integrity verification APIs. The application can be installed only after the verification is successful. During the verification, the application integrity verification module uses the preset public key certificate to verify the signature.
 
-**Device Authentication and HUKS**
+#### Device Authentication and HUKS
 
 A unified device binding and authentication solution that covers 1+8+N devices is available. Generally, device authentication provides support for cross-device communication implemented by DSoftBus, rather than directly interacting with applications. Device authentication provides the following functionalities:
 
@@ -77,7 +77,7 @@ A unified device binding and authentication solution that covers 1+8+N devices i
 
 HUKS provides credentials for device authentication and algorithms for key agreement protocols.
 
-**Data Transfer Management**
+#### Data Transfer Management
 
 In OpenHarmony, the data transfer management module provides cross-device data transfer management and control policies for distributed services. The data transfer management module defines a sef of APIs to provide management and control policies for cross-device data transfer and obtain the highest risk level of data to be sent to the peer device.
 
