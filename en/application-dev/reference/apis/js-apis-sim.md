@@ -350,7 +350,7 @@ Obtains the status of the SIM card in the specified slot. This API uses an async
 | Name  | Type                                  | Mandatory| Description                                  |
 | -------- | -------------------------------------- | ---- | -------------------------------------- |
 | slotId   | number                                 | Yes  | Card slot ID. The options are as follows:<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| callback | AsyncCallback\<[SimState](#simState)\> | Yes  | Callback used to return the result. For details, see [SimState](#simState). |
+| callback | AsyncCallback\<[SimState](#simstate)\> | Yes  | Callback used to return the result. For details, see [SimState](#simState). |
 
 **Example**
 
@@ -379,7 +379,7 @@ Obtains the status of the SIM card in the specified slot. This API uses a promis
 
 | Type                            | Description                                      |
 | -------------------------------- | ------------------------------------------ |
-| Promise\<[SimState](#simState)\> | Promise used to return the result.|
+| Promise\<[SimState](#simstate)\> | Promise used to return the result.|
 
 **Example**
 

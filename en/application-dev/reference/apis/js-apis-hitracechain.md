@@ -82,7 +82,7 @@ Starts call chain tracing. This API works in synchronous manner.
 | name  | string | Yes| Traced service name.|
 | flags | number | Yes| Trace flag combination. For details, see [HiTraceFlag](#hitraceflag).|
 
-**Return value**
+**Return Value**
 
 | Type| Description|
 | -------- | -------- |
@@ -124,7 +124,7 @@ Obtains the trace ID. This API works in synchronous manner.
 
 **System capability**: SystemCapability.HiviewDFX.HiTrace
 
-**Return value**
+**Return Value**
 
 | Type| Description|
 | -------- | -------- |
@@ -184,7 +184,7 @@ Creates a trace span. This API works in synchronous manner.
 
 **System capability**: SystemCapability.HiviewDFX.HiTrace
 
-**Return value**
+**Return Value**
 
 | Type| Description|
 | -------- | -------- |
@@ -237,7 +237,7 @@ Checks whether a **HiTraceId** instance is valid. This API works in synchronous 
 | -------- | -------- | -------- | -------- |
 | id  | [HiTraceId](#hitraceid) | Yes| **HiTraceId** instance.|
 
-**Return value**
+**Return Value**
 
 | Type| Description|
 | -------- | -------- |
@@ -265,7 +265,7 @@ Checks whether the specified trace flag in the **HiTraceId** instance is enabled
 | id  | [HiTraceId](#hitraceid) | Yes| **HiTraceId** instance.|
 | flag | [HiTraceFlag](#hitraceflag) | Yes| Specified trace flag.|
 
-**Return value**
+**Return Value**
 
 | Type| Description|
 | -------- | -------- |

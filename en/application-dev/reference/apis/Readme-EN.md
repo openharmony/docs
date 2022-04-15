@@ -1,122 +1,223 @@
 # APIs
 
 - Ability Framework
-    -   [FeatureAbility Module](js-apis-featureAbility.md)
-    -   [ParticleAbility Module](js-apis-particleAbility.md)
-    -   [DataAbilityHelper Module](js-apis-dataAbilityHelper.md)
-    -   [DataUriUtils Module](js-apis-DataUriUtils.md)
-    -   [Bundle Module](js-apis-Bundle.md)
-    -   [Context Module](js-apis-Context.md)
-- Event Notification
-    -   [CommonEvent Module](js-apis-commonEvent.md)
-    -   [Notification Module](js-apis-notification.md)
-    -   [Reminder Agent](js-apis-reminderAgent.md)
-- Resource Management
-    -   [Resource Manager](js-apis-resource-manager.md)
-    -   [Internationalization \(intl\) ](js-apis-intl.md)
-    -   [Internationalization \(i18n\) ](js-apis-i18n.md)
-- Media
-    -   [Audio Management](js-apis-audio.md)
-    -   [Media](js-apis-media.md)
-    -   [Image Processing](js-apis-image.md)
-    -   [Camera](js-apis-camera.md)
-- Security
-    -   [User Authentication](js-apis-useriam-userauth.md)
-    -   [Access Control](js-apis-abilityAccessCtrl.md)
-- Data Management
-    -   [Lightweight Storage](js-apis-data-storage.md)
-    -   [Distributed Data Management](js-apis-distributed-data.md)
-    -   [Relational Database](js-apis-data-rdb.md)
-    -   [Result Set](js-apis-data-resultset.md)
-    -   [DataAbilityPredicates](js-apis-data-ability.md)
-    -   [Settings](js-apis-settings.md)		
-- File Management
-    -   [File Management](js-apis-fileio.md)
-    -   [Statfs](js-apis-statfs.md)
-    -   [Environment](js-apis-environment.md)
-    -   [Public File Access and Management](js-apis-filemanager.md)
-    -   [App Storage Statistics](js-apis-storage-statistics.md)
-- Account Management
-    -   [OS Account Management](js-apis-osAccount.md)
-    -   [Distributed Account Management](js-apis-distributed-account.md)
-    -   [App Account Management](js-apis-appAccount.md)
-- Telephony Service
-    -   [Call](js-apis-call.md)
-    -   [SMS](js-apis-sms.md)
-    -   [SIM Management](js-apis-sim.md)
-    -   [Radio](js-apis-radio.md)
-    -   [Observer](js-apis-observer.md)
-    -   [Cellular Data](js-apis-telephony-data.md)
-- Network Management
-    - [Network Connection Management](js-apis-net-connection.md)
-    - [Socket Connection](js-apis-socket.md)
-    - [WebSocket Connection](js-apis-webSocket.md)
-    - [Data Request](js-apis-http.md)
-- Network and Connectivity
-    -   [WLAN](js-apis-wifi.md)  
-    -   [Bluetooth](js-apis-bluetooth.md)
-    -   [RPC](js-apis-rpc.md)
-    -   [Upload and Download](js-apis-request.md)
-- Device Management
-    -   [Sensor](js-apis-sensor.md)
-    -   [Vibrator](js-apis-vibrator.md)
-    -   [Brightness](js-apis-brightness.md)
-    -   [Battery Info](js-apis-battery-info.md)
-    -   [Power Management](js-apis-power.md)
-    -   [Thermal Management](js-apis-thermal.md)
-    -   [Running Lock](js-apis-runninglock.md)
-    -   [Device Info](js-apis-device-info.md)
-    -   [systemParameter](js-apis-system-parameter.md)
-    -   [Device Management](js-apis-device-manager.md)
-    -   [Window](js-apis-window.md)
-    -   [Display](js-apis-display.md)
-    -   [Update](js-apis-update.md) 
-    -   [USB](js-apis-usb.md)
-    -   [Location](js-apis-geolocation.md)
-- Basic Features
-    -   [Application Context](js-apis-basic-features-app-context.md)
-    -   [Console Logs](js-apis-basic-features-logs.md)
-    -   [Page Routing](js-apis-basic-features-routes.md)
-    -   [Timer](js-apis-basic-features-timer.md)
-    -   [Screen Lock Management](js-apis-screen-lock.md)
-    -   [Setting the System Time](js-apis-system-time.md)
-    -   [Wallpaper](js-apis-wallpaper.md)
-    -   [Pasteboard](js-apis-pasteboard.md)
-    -   [Animation](js-apis-basic-features-animator.md)
-    -   [WebGL](js-apis-webgl.md)
-    -   [WebGL2](js-apis-webgl2.md)
-    -   [Screenshot](js-apis-screenshot.md)
-    -   [Accessibility](js-apis-accessibility.md)
-- DFX
-    -   [HiAppEvent](js-apis-hiappevent.md)
-    -   [Performance Tracing](js-apis-hitracemeter.md)
-    -   [Fault Logger](js-apis-faultLogger.md)
-    -   [Distributed Call Chain Tracing](js-apis-hitracechain.md)
-    -   [HiLog](js-apis-hilog.md)
-    -   [HiChecker](js-apis-hichecker.md)
-    -   [HiDebug](js-apis-hidebug.md)
-- Language Base Class Library
-    -   [Obtaining Process Information](js-apis-process.md)
-    -   [URL String Parsing](js-apis-url.md)
-    -   [URI String Parsing](js-apis-uri.md)
-    -   [Util](js-apis-util.md)
-    -   [XML Parsing and Generation](js-apis-xml.md)
-    -   [XML-to-JavaScript Conversion](js-apis-convertxml.md)
-    -   [Worker Startup](js-apis-worker.md)
-    -   [Linear Container ArrayList](js-apis-arraylist.md)
-    -   [Linear Container Deque](js-apis-deque.md)
-    -   [Linear Container List](js-apis-list.md)
-    -   [Linear Container LinkedList](js-apis-linkedlist.md)
-    -   [Linear Container Queue](js-apis-queue.md)
-    -   [Linear Container Stack](js-apis-stack.md)
-    -   [Linear Container Vector](js-apis-vector.md)
-    -   [Nonlinear Container HashSet](js-apis-hashset.md)
-    -   [Nonlinear Container HashMap](js-apis-hashmap.md)
-    -   [Nonlinear Container PlainArray](js-apis-plainarray.md)
-    -   [Nonlinear Container TreeMap](js-apis-treemap.md)
-    -   [Nonlinear Container TreeSet](js-apis-treeset.md)
-    -   [Nonlinear Container LightWeightMap](js-apis-lightweightmap.md)
-    -   [Nonlinear Container LightWeightSet](js-apis-lightweightset.md)
-- Custom Management
-    -   [Configuration Policy](js-apis-config-policy.md)
 
+  - [@ohos.ability.dataUriUtils](js-apis-DataUriUtils.md)
+  - [@ohos.ability.errorCode](js-apis-ability-errorCode.md)
+  - [@ohos.ability.wantConstant](js-apis-ability-wantConstant.md)
+  - [@ohos.application.abilityDelegatorRegistry](js-apis-abilityDelegatorRegistry.md)
+  - [@ohos.application.appManager](js-apis-appmanager.md)
+  - [@ohos.application.Configuration](js-apis-configuration.md)
+  - [@ohos.application.ConfigurationConstant](js-apis-configurationconstant.md)
+  - [@ohos.ability.featureAbility](js-apis-featureAbility.md)
+  - [@ohos.application.formBindingData](js-apis-formbindingdata.md)
+  - [@ohos.application.formError](js-apis-formerror.md)
+  - [@ohos.application.formHost](js-apis-formhost.md)
+  - [@ohos.application.formInfo](js-apis-formInfo.md)
+  - [@ohos.application.missionManager](js-apis-missionManager.md)
+  - [@ohos.application.formProvider](js-apis-formprovider.md)
+  - [@ohos.ability.particleAbility](js-apis-particleAbility.md)
+  - [@ohos.application.Want](js-apis-application-Want.md)
+  - [@ohos.wantAgent](js-apis-wantAgent.md)
+  - ability/[dataAbilityHelper](js-apis-dataAbilityHelper.md)
+  - app/[context](js-apis-Context.md)
+  - application/[abilityDelegator](js-apis-application-abilityDelegator.md)
+  - application/[abilityDelegatorArgs](js-apis-application-abilityDelegatorArgs.md)
+  - application/[AbilityRunningInfo](js-apis-abilityrunninginfo.md)
+  - application/[ExtensionContext](js-apis-extension-context.md)
+  - application/[ExtensionRunningInfo](js-apis-extensionrunninginfo.md)
+  - application/[FormExtensionContext](js-apis-formextensioncontext.md)
+  - application/[MissionSnapshot](js-apis-application-MissionSnapshot.md)
+  - application/[ProcessRunningInfo](js-apis-processrunninginfo.md)
+  - application/[ServiceExtensionContext](js-apis-service-extension-context.md) 
+  - application/[shellCmdResult](js-apis-application-shellCmdResult.md)
+
+- Common Event and Notification
+
+  - [@ohos.commonEvent](js-apis-commonEvent.md)
+  - [@ohos.events.emitter](js-apis-emitter.md)
+  - [@ohos.notification](js-apis-notification.md)
+  - [@ohos.reminderAgent](js-apis-reminderAgent.md)
+- Bundle Management
+
+  - [@ohos.bundle](js-apis-Bundle.md)
+  - [@ohos.bundleState ](js-apis-deviceUsageStatistics.md)
+  - [@ohos.zlib](js-apis-zlib.md)
+
+- UI Page
+
+  - [@ohos.animator](js-apis-animator.md)
+  - [@ohos.mediaquery](js-apis-mediaquery.md)
+  - [@ohos.prompt](js-apis-prompt.md)
+  - [@ohos.router](js-apis-router.md)
+
+- Graphics
+
+  - [@ohos.display ](js-apis-display.md)
+  - [@ohos.screenshot](js-apis-screenshot.md)
+  - [@ohos.window](js-apis-window.md)
+  - [webgl](js-apis-webgl.md)
+  - [webgl2](js-apis-webgl2.md)
+
+- Media
+
+  - [@ohos.multimedia.audio](js-apis-audio.md)
+  - [@ohos.multimedia.image](js-apis-image.md)
+  - [@ohos.multimedia.media](js-apis-media.md)
+  - [@ohos.multimedia.medialibrary](js-apis-medialibrary.md)
+
+- Resource Management
+  - [@ohos.i18n](js-apis-i18n.md)
+  - [@ohos.intl](js-apis-intl.md)
+  - [@ohos.resourceManager](js-apis-resource-manager.md)
+
+- Resource Scheduling 
+
+  - [@ohos.backgroundTaskManager](js-apis-backgroundTaskManager.md)
+
+- Custom Management
+
+  - [@ohos.configPolicy](js-apis-config-policy.md)
+
+- Security
+
+  - [@ohos.abilityAccessCtrl](js-apis-abilityAccessCtrl.md)
+  - [@ohos.security.huks ](js-apis-huks.md)
+  - [@ohos.userIAM.userAuth ](js-apis-useriam-userauth.md)
+  - [@system.cipher](js-apis-system-cipher.md)
+  
+- Data Management
+
+  - [@ohos.data.dataAbility ](js-apis-data-ability.md)
+  - [@ohos.data.distributedData](js-apis-distributed-data.md)
+  - [@ohos.data.distributedDataObject](js-apis-data-distributedobject.md)
+  - [@ohos.data.rdb](js-apis-data-rdb.md)
+  - [@ohos.settings](js-apis-settings.md)
+  - data/rdb/[resultSet](js-apis-data-resultset.md)
+
+- File Management
+
+  - [@ohos.environment](js-apis-environment.md)
+  - [@ohos.fileio](js-apis-fileio.md)
+  - [@ohos.fileManager](js-apis-filemanager.md)
+  - [@ohos.statfs](js-apis-statfs.md)
+  - [@ohos.storageStatistics](js-apis-storage-statistics.md)
+
+- Telephony Service
+
+  - [@ohos.contact](js-apis-contact.md)
+  - [@ohos.telephony.call](js-apis-call.md)
+  - [@ohos.telephony.observer](js-apis-observer.md)
+  - [@ohos.telephony.radio](js-apis-radio.md)
+  - [@ohos.telephony.sim](js-apis-sim.md)
+  - [@ohos.telephony.sms](js-apis-sms.md)
+  - [@ohos.telephony.data](js-apis-telephony-data.md)
+
+- Network Management
+  - [@ohos.net.connection](js-apis-net-connection.md)
+  - [@ohos.net.http](js-apis-http.md)
+  - [@ohos.request](js-apis-request.md)
+  - [@ohos.net.socket](js-apis-socket.md)
+  - [@ohos.net.webSocket](js-apis-webSocket.md) 
+
+- Connectivity
+
+  - [@ohos.bluetooth](js-apis-bluetooth.md)
+  - [@ohos.connectedTag](js-apis-connectedTag.md)
+  - [@ohos.rpc](js-apis-rpc.md)
+  - [@ohos.wifi](js-apis-wifi.md)
+  - [@ohos.wifiext](js-apis-wifiext.md)
+  
+- Basic Features
+
+  - [@ohos.accessibility](js-apis-accessibility.md)
+  - [@ohos.faultLogger](js-apis-faultLogger.md)
+  - [@ohos.hiAppEvent](js-apis-hiappevent.md)
+  - [@ohos.hichecker](js-apis-hichecker.md)
+  - [@ohos.hidebug](js-apis-hidebug.md)
+  - [@ohos.hilog](js-apis-hilog.md)
+  - [@ohos.hiTraceChain](js-apis-hitracechain.md)
+  - [@ohos.hiTraceMeter](js-apis-hitracemeter.md)
+  - [@ohos.inputMethod](js-apis-inputmethod.md)
+  - [@ohos.inputMethodEngine](js-apis-inputmethodengine.md)
+  - [@ohos.pasteboard](js-apis-pasteboard.md)
+  - [@ohos.screenLock](js-apis-screen-lock.md)
+  - [@ohos.systemTime](js-apis-system-time.md)
+  - [@ohos.wallpaper](js-apis-wallpaper.md)
+  - [Timer](js-apis-timer.md)
+
+- Device Management
+
+  - [@ohos.batteryInfo ](js-apis-battery-info.md)
+  - [@ohos.brightness](js-apis-brightness.md)
+  - [@ohos.deviceInfo](js-apis-device-info.md)
+  - [@ohos.distributedHardware.deviceManager](js-apis-device-manager.md)
+  - [@ohos.geolocation](js-apis-geolocation.md)
+  - [@ohos.multimodalInput.inputConsumer](js-apis-inputconsumer.md)
+  - [@ohos.multimodalInput.inputDevice](js-apis-inputdevice.md)
+  - [@ohos.multimodalInput.inputEventClient](js-apis-inputeventclient.md)
+  - [@ohos.multimodalInput.inputMonitor](js-apis-inputmonitor.md)
+  - [@ohos.power](js-apis-power.md)
+  - [@ohos.runningLock](js-apis-runninglock.md)
+  - [@ohos.sensor](js-apis-sensor.md)
+  - [@ohos.systemParameter](js-apis-system-parameter.md)
+  - [@ohos.thermal](js-apis-thermal.md)
+  - [@ohos.update](js-apis-update.md)
+  - [@ohos.usb](js-apis-usb.md)
+  - [@ohos.vibrator](js-apis-vibrator.md)
+
+- Account Management
+
+  - [@ohos.account.appAccount](js-apis-appAccount.md)
+  - [@ohos.account.distributedAccount](js-apis-distributed-account.md)
+  - [@ohos.account.osAccount](js-apis-osAccount.md)
+
+- Language Base Class Library
+
+  - [@ohos.convertxml](js-apis-convertxml.md)
+  - [@ohos.process](js-apis-process.md)
+  - [@ohos.uri](js-apis-uri.md)
+  - [@ohos.url](js-apis-url.md)
+  - [@ohos.util](js-apis-util.md)
+  - [@ohos.util.ArrayList](js-apis-arraylist.md)
+  - [@ohos.util.Deque](js-apis-deque.md)
+  - [@ohos.util.HashMap](js-apis-hashmap.md)
+  - [@ohos.util.HashSet](js-apis-hashset.md)
+  - [@ohos.util.LightWeightMap](js-apis-lightweightmap.md)
+  - [@ohos.util.LightWeightSet](js-apis-lightweightset.md)
+  - [@ohos.util.LinkedList](js-apis-linkedlist.md)
+  - [@ohos.util.List](js-apis-list.md)
+  - [@ohos.util.PlainArray](js-apis-plainarray.md)
+  - [@ohos.util.Queue](js-apis-queue.md)
+  - [@ohos.util.Stack](js-apis-stack.md)
+  - [@ohos.util.TreeMap](js-apis-treemap.md)
+  - [@ohos.util.TreeSet](js-apis-treeset.md)
+  - [@ohos.util.Vector](js-apis-vector.md)
+  - [@ohos.worker](js-apis-worker.md)
+  - [@ohos.xml](js-apis-xml.md)
+
+- Test
+  - [@ohos.application.testRunner](js-apis-testRunner.md)
+  - [@ohos.uitest](js-apis-uitest.md)
+
+- APIs No Longer Maintained
+  
+  - [@ohos.bytrace](js-apis-bytrace.md)
+  - [@system.app](js-apis-system-app.md)
+  - [@system.battery](js-apis-system-battery.md)
+  - [@system.brightness](js-apis-system-brightness.md)
+  - [@system.configuration](js-apis-system-configuration.md)
+  - [@system.device](js-apis-system-device.md)
+  - [@system.fetch](js-apis-system-fetch.md)
+  - [@system.file](js-apis-system-file.md)
+  - [@system.geolocation](js-apis-system-location.md)
+  - [@system.mediaquery](js-apis-system-mediaquery.md)
+  - [@system.network](js-apis-system-network.md)
+  - [@system.package](js-apis-system-package.md)
+  - [@system.prompt](js-apis-system-prompt.md)
+  - [@system.request](js-apis-system-request.md)
+  - [@system.router](js-apis-system-router.md)
+  - [@system.sensor](js-apis-system-sensor.md)
+  - [@system.storage](js-apis-system-storage.md)
+  - [@system.vibrator](js-apis-system-vibrate.md)
+  - [console](js-apis-logs.md)

@@ -279,7 +279,7 @@ Removes the entry at the specified position from this container.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| index | number | Yes| Position index of the entry to remove.|
+| index | number | Yes| Position index of the entry.|
 
 **Return value**
 
@@ -428,7 +428,7 @@ Uses a callback to traverse the entries in this container and obtain their posit
 callbackfn
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | T | Yes| Value of the entry that is currently traversed.|
+| value | T | No| Value of the entry that is currently traversed.|
 | key| T | No| Key of the entry that is currently traversed (same as **value**).|
 | set | LightWeightSet&lt;T&gt; | No| Instance that invokes the **forEach** method.|
 

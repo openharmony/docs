@@ -11,20 +11,17 @@ import hiTraceMeter from '@ohos.hiTraceMeter';
 ```
 
 
-## System Capabilities
-
-SystemCapability.HiviewDFX.HiTrace
-
-
 ## hiTraceMeter.startTrace
 
 startTrace(name: string, taskId: number): void
 
-Starts a trace task.
+Starts a trace task. **expectedTime** is an optional parameter, which specifies the expected duration of the trace.
 
 If multiple trace tasks with the same name need to be performed at the same time or a trace task needs to be performed multiple times concurrently, different task IDs must be specified in **startTrace**.
 
 If the trace tasks with the same name are not performed at the same time, the same taskId can be used. For a specific example, refer to an example in [hiTraceMeter.finishTrace](#hitracemeterfinishtrace).
+
+**System capability**: SystemCapability.HiviewDFX.HiTrace
 
 **Parameters**
 
@@ -37,6 +34,7 @@ If the trace tasks with the same name are not performed at the same time, the sa
 
 ```
 hiTraceMeter.startTrace("myTestFunc", 1);
+hiTraceMeter.startTrace("myTestFunc", 1, 5); // The expected duration of the trace task is 5 ms.
 ```
 
 
@@ -47,6 +45,8 @@ finishTrace(name: string, taskId: number): void
 Stops a trace task.
 
 To stop a trace task, the values of name and task ID in **finishTrace** must be the same as those in [startTrace](#hitracemeterstarttrace).
+
+**System capability**: SystemCapability.HiviewDFX.HiTrace
 
 **Parameters**
 
@@ -89,6 +89,8 @@ hiTraceMeter.finishTrace("myTestFunc", 1);
 traceByValue(name: string, count: number): void
 
 Traces the value changes of a variable.
+
+**System capability**: SystemCapability.HiviewDFX.HiTrace
 
 **Parameters**
 

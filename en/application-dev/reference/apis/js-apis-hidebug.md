@@ -12,24 +12,22 @@ import hidebug from '@ohos.hidebug';
 ```
 
 
-## System Capabilities
-SystemCapability.HiviewDFX.HiProfiler.HiDebug
-
-
 ## hidebug.getNativeHeapSize
 
 getNativeHeapSize(): bigint
 
 Obtains the total size of the native heap memory.
 
+**System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-- **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | bigint | Total size of the native heap memory.|
+**Return Value**
+
+| Type  | Description                       |
+| ------ | --------------------------- |
+| bigint | Total size of the native heap memory.|
 
 
-- **Example**
+**Example**
   ```
   let nativeHeapSize = hidebug.getNativeHeapSize();
   ```
@@ -41,14 +39,16 @@ getNativeHeapAllocatedSize(): bigint
 
 Obtains the size of the allocated native heap memory.
 
-
-- **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | bigint | Size of the allocated native heap memory.|
+**System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 
-- **Example**
+**Return Value**
+| Type  | Description                             |
+| ------ | --------------------------------- |
+| bigint | Size of the allocated native heap memory.|
+
+
+**Example**
   ```
   let nativeHeapAllocatedSize = hidebug.getNativeHeapAllocatedSize();
   ```
@@ -60,14 +60,16 @@ getNativeHeapFreeSize(): bigint
 
 Obtains the size of the free native heap memory.
 
-
-- **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | bigint | Size of the free native heap memory.|
+**System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 
-- **Example**
+**Return Value**
+| Type  | Description                           |
+| ------ | ------------------------------- |
+| bigint | Size of the free native heap memory.|
+
+
+**Example**
   ```
   let nativeHeapFreeSize = hidebug.getNativeHeapFreeSize();
   ```
@@ -79,14 +81,16 @@ getPss(): bigint
 
 Obtains the PSS of this process.
 
-
-- **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | bigint | PSS of the process.|
+**System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 
-- **Example**
+**Return Value**
+| Type  | Description                     |
+| ------ | ------------------------- |
+| bigint | PSS of the process.|
+
+
+**Example**
   ```
   let pss = hidebug.getPss();
   ```
@@ -98,14 +102,16 @@ getSharedDirty(): bigint
 
 Obtains the size of the shared dirty memory of this process.
 
-
-- **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | bigint | Size of the shared dirty memory of the process.|
+**System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 
-- **Example**
+**Return Value**
+| Type  | Description                      |
+| ------ | -------------------------- |
+| bigint | Size of the shared dirty memory of the process.|
+
+
+**Example**
   ```
   let sharedDirty = hidebug.getSharedDirty();
   ```
@@ -117,11 +123,13 @@ startProfiling(filename : string) : void
 
 Starts the profiling method. `startProfiling()` and `stopProfiling()` are called in pairs. `startProfiling()` always occurs before `stopProfiling()`; that is, calling the functions in the following sequences is prohibited: `start->start->stop`, `start->stop->stop`, and `start->start->stop->stop`.
 
+**System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| filename | string | Yes| User-defined profile name. The `filename.json` file is generated in the `files` directory of the application based on the specified `filename`.|
+| filename | string | Yes  | User-defined profile name. The `filename.json` file is generated in the `files` directory of the application based on the specified `filename`.|
 
 **Example**
 
@@ -141,6 +149,8 @@ stopProfiling() : void
 
 Stops the profiling method. `stopProfiling()` and `startProfiling()` are called in pairs. `stopProfiling()` always occurs after `startProfiling()`; that is, calling the functions in the following sequences is prohibited: `start->start->stop`, `start->stop->stop`, and `start->start->stop->stop`.
 
+**System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
 **Example**
 
 ```js
@@ -157,11 +167,13 @@ dumpHeapData(filename : string) : void
 
 Exports the heap data.
 
+**System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| filename | string | Yes| User-defined heap file name. The `filename.heapsnapshot` file is generated in the `files` directory of the app based on the specified `filename`.|
+| filename | string | Yes  | User-defined heap file name. The `filename.heapsnapshot` file is generated in the `files` directory of the app based on the specified `filename`.|
 
 **Example**
 

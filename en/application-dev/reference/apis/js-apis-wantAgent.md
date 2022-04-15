@@ -141,7 +141,7 @@ Obtains the bundle name of a **WantAgent** object. This API uses an asynchronous
 
 | Name    | Readable| Writable | Type                   | Mandatory| Description                             |
 | -------- | --- | ---- | ----------------------- | ---- | --------------------------------- |
-| agent    | Yes  | No  | WantAgent               | Yes  | **WantAgent** object whose bundle name is to be obtained.                    |
+| agent    | Yes  | No  | WantAgent               | Yes  | Target **WantAgent** object.                    |
 | callback | Yes  | No  | AsyncCallback\<string\> | Yes  | Callback used to return the bundle name.|
 
 **Example**
@@ -213,7 +213,7 @@ Obtains the bundle name of a **WantAgent** object. This API uses a promise to re
 
 | Name | Readable| Writable| Type     | Mandatory| Description         |
 | ----- | --- | ---- | --------- | ---- | ------------- |
-| agent | Yes  | No | WantAgent | Yes  | **WantAgent** object whose bundle name is to be obtained.|
+| agent | Yes  | No | WantAgent | Yes  | Target **WantAgent** object.|
 
 **Return value**
 
@@ -282,7 +282,7 @@ Obtains the user ID of a **WantAgent** object. This API uses an asynchronous cal
 
 | Name    | Readable| Writable| Type                   | Mandatory| Description                               |
 | -------- | --- | ---- | ----------------------- | ---- | ----------------------------------- |
-| agent    | Yes  | No | WantAgent               | Yes  | **WantAgent** object whose user ID is to be obtained.                      |
+| agent    | Yes  | No | WantAgent               | Yes  | Target **WantAgent** object.                      |
 | callback | Yes  | No | AsyncCallback\<number\> | Yes  | Callback used to return the user ID.|
 
 **Example**
@@ -354,7 +354,7 @@ Obtains the user ID of a **WantAgent** object. This API uses a promise to return
 
 | Name | Readable| Writable| Type     | Mandatory| Description         |
 | ----- | --- | ---- | --------- | ---- | ------------- |
-| agent | Yes  | No | WantAgent | Yes  | **WantAgent** object whose user ID is to be obtained.|
+| agent | Yes  | No | WantAgent | Yes  | Target **WantAgent** object.|
 
 **Return value**
 
@@ -423,7 +423,7 @@ Obtains the want in a **WantAgent** object. This API uses an asynchronous callba
 
 | Name    | Readable| Writable| Type                 | Mandatory| Description                           |
 | -------- | --- | ---- | --------------------- | ---- | ------------------------------- |
-| agent    | Yes  | No | WantAgent             | Yes  | **WantAgent** object whose want is to be obtained.                  |
+| agent    | Yes  | No | WantAgent             | Yes  | Target **WantAgent** object.                  |
 | callback | Yes  | No | AsyncCallback\<Want\> | Yes  | Callback used to return the want.|
 
 **Example**
@@ -495,7 +495,7 @@ Obtains the want in a **WantAgent** object. This API uses a promise to return th
 
 | Name | Readable| Writable| Type     | Mandatory| Description         |
 | ----- | --- | ---- | --------- | ---- | ------------- |
-| agent | Yes  | No | WantAgent | Yes  | **WantAgent** object whose want is to be obtained.|
+| agent | Yes  | No | WantAgent | Yes  | Target **WantAgent** object.|
 
 **Return value**
 
@@ -564,7 +564,7 @@ Cancels a **WantAgent** object. This API uses an asynchronous callback to return
 
 | Name    | Readable| Writable| Type                 | Mandatory| Description                       |
 | -------- | --- | ---- | --------------------- | ---- | --------------------------- |
-| agent    | Yes  | No | WantAgent             | Yes  | **WantAgent** object to cancel.              |
+| agent    | Yes  | No | WantAgent             | Yes  | Target **WantAgent** object.              |
 | callback | Yes  | No | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Example**
@@ -636,7 +636,13 @@ Cancels a **WantAgent** object. This API uses a promise to return the result.
 
 | Name | Readable| Writable| Type     | Mandatory| Description         |
 | ----- | --- | ---- | --------- | ---- | ------------- |
-| agent | Yes  | No | WantAgent | Yes  | **WantAgent** object to cancel.|
+| agent | Yes  | No | WantAgent | Yes  | Target **WantAgent** object.|
+
+**Return value**
+
+| Type           | Description                           |
+| --------------- | ------------------------------- |
+| Promise\<void\> | Promise used to return the result.|
 
 **Example**
 

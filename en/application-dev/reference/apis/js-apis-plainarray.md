@@ -115,7 +115,7 @@ let result = plainArray.get(1);
 
 ### getIndexOfKey
 
-getIndexOfKey(key: number): number;
+getIndexOfKey(key: number): number
 
 Obtains the index of the first occurrence of an entry with the specified key in this container.
 
@@ -143,7 +143,7 @@ let result = plainArray.getIndexOfKey("sdfs");
 
 ### getIndexOfValue
 
-getIndexOfValue(value: T): number;
+getIndexOfValue(value: T): number
 
 Obtains the index of the first occurrence of an entry with the specified value in this container.
 
@@ -171,7 +171,7 @@ let result = plainArray.getIndexOfValue("sddfhf");
 
 ### getKeyAt
 
-getKeyAt(index: number): number;
+getKeyAt(index: number): number
 
 Obtains the key of the entry at the specified position in this container.
 
@@ -238,7 +238,7 @@ Clones this container and returns a copy. The modification to the copy does not 
 **Example**
 
 ```
-let plainArray = new ArrayList();
+let plainArray = new PlainArray();
 plainArray.add(1, "sddfhf");
 plainArray.add(2, "sffdfhf");
 let newPlainArray = plainArray.clone();
@@ -416,7 +416,7 @@ plainArray.clear();
 
 ### forEach
 
-forEach(callbackfn: (value?: T, index?: number, PlainArray?: PlainArray<T>) => void, thisArg?: Object): void
+forEach(callbackfn: (value: T, index?: number, PlainArray?: PlainArray&lt;T&gt;) => void, thisArg?: Object): void
 
 Uses a callback to traverse the entries in this container and obtain their position indexes.
 
@@ -431,8 +431,8 @@ callbackfn
 | Name| Type | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | T | Yes| Value of the entry that is currently traversed.|
-| index | number | Yes| Key of the entry that is currently traversed.|
-| plainArray | PlainArray<T> | No| Instance that invokes the **forEach** API.|
+| index | number | No| Key of the entry that is currently traversed.|
+| PlainArray | PlainArray&lt;T&gt;| No| Instance that invokes the **forEach** API.|
 
 **Example**
 
@@ -456,7 +456,7 @@ Obtains an iterator, each item of which is a JavaScript object.
 
 | Type| Description|
 | -------- | -------- |
-| IterableIterator<[number, T]> | Iterator obtained.|
+| IterableIterator&lt;[number, T]&gt; | Iterator obtained.|
 
 **Example**
 

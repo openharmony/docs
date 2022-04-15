@@ -22,6 +22,7 @@ abilitymanager.getAbilityRunningInfos((err,data) => {
 ```
 
 ## Attributes
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 | Name| Type| Readable| Writable| Description|
@@ -31,10 +32,11 @@ abilitymanager.getAbilityRunningInfos((err,data) => {
 | uid | number | Yes| No| User ID. | 
 | processName | string | Yes| No| Process name. | 
 | startTime | number | Yes| No| Ability start time. | 
-| abilityState | [abilityManager.AbilityState](#abilitymanager-abilitystate) | Yes| No| Ability state. | 
+| abilityState | [abilityManager.AbilityState](#abilitymanagerabilitystate) | Yes| No| Ability state. | 
 
 
 ## abilityManager.AbilityState
+
 Enumerates the ability states.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
