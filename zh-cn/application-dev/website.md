@@ -4,7 +4,8 @@
 
   - 快速入门
     - [开发准备](quick-start/start-overview.md)
-    - [使用eTS语言开发](quick-start/start-with-ets.md)
+    - [使用eTS语言开发(传统代码方式)](quick-start/start-with-ets.md)
+    - [使用eTS语言开发(低代码方式)](quick-start/start-with-ets-low-code.md)
     - [使用JS语言开发（传统代码方式）](quick-start/start-with-js.md)
     - [使用JS语言开发（低代码方式）](quick-start/start-with-js-low-code.md)
   - 开发基础知识
@@ -226,9 +227,8 @@
       - [概述](background-agent-scheduled-reminder/background-agent-scheduled-reminder-overview.md)
       - [开发指导](background-agent-scheduled-reminder/background-agent-scheduled-reminder-guide.md)
     - 后台任务管理
-      - 后台任务
-        - [后台任务概述](background-task-management/background-task-overview.md)
-        - [后台任务开发指导](background-task-management/background-task-dev-guide.md)
+      - [后台任务概述](background-task-management/background-task-overview.md)
+      - [后台任务开发指导](background-task-management/background-task-dev-guide.md)
     - 设备管理
       - USB服务
         - [USB服务开发概述](device/usb-overview.md)
@@ -538,12 +538,8 @@
       - [abilityDelegator (AbilityDelegator)](reference/apis/js-apis-application-abilityDelegator.md)
       - [abilityDelegatorArgs (AbilityDelegatorArgs)](reference/apis/js-apis-application-abilityDelegatorArgs.md)
       - [AbilityRunningInfo (AbilityRunningInfo)](reference/apis/js-apis-abilityrunninginfo.md)
-      - [ExtensionContext (ExtensionContext)](reference/apis/js-apis-extension-context.md)
-      - [ExtensionRunningInfo (ExtensionRunningInfo)](reference/apis/js-apis-extensionrunninginfo.md)
-      - [FormExtensionContext (FormExtensionContext)](reference/apis/js-apis-formextensioncontext.md)
       - [MissionSnapshot (MissionSnapshot)](reference/apis/js-apis-application-MissionSnapshot.md)
       - [ProcessRunningInfo (ProcessRunningInfo)](reference/apis/js-apis-processrunninginfo.md)
-      - [ServiceExtensionContext (ServiceExtensionContext)](reference/apis/js-apis-service-extension-context.md) 
       - [shellCmdResult (ShellCmdResult)](reference/apis/js-apis-application-shellCmdResult.md)
     - 公共事件与通知
 
@@ -597,8 +593,8 @@
       - [@ohos.data.distributedData (分布式数据管理)](reference/apis/js-apis-distributed-data.md)
       - [@ohos.data.distributedDataObject (分布式数据对象)](reference/apis/js-apis-data-distributedobject.md)
       - [@ohos.data.rdb (关系型数据库)](reference/apis/js-apis-data-rdb.md)
-      - [@ohos.settings (设置数据项名称)](reference/apis/js-apis-settings.md)
       - [@ohos.data.storage (轻量级存储)](reference/apis/js-apis-data-storage.md)
+      - [@ohos.settings (设置数据项名称)](reference/apis/js-apis-settings.md)
       - [resultSet (结果集)](reference/apis/js-apis-data-resultset.md)
     - 文件管理
 
@@ -699,7 +695,6 @@
     - 已停止维护的接口
 
       - [@ohos.bytrace (性能打点)](reference/apis/js-apis-bytrace.md)
-      - [@ohos.data.storage (轻量级存储)](reference/apis/js-apis-data-storage.md)
       - [@system.app (应用上下文)](reference/apis/js-apis-system-app.md)
       - [@system.battery (电量信息)](reference/apis/js-apis-system-battery.md)
       - [@system.bluetooth (蓝牙)](reference/apis/js-apis-system-bluetooth.md)

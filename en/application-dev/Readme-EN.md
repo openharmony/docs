@@ -5,9 +5,17 @@
     - [OpenHarmony Project](../OpenHarmony-Overview.md)
     - [Glossary](../glossary.md)
     - [OpenHarmony Release Notes](../release-notes/Readme.md)
-- Getting Started
-    - [Getting Started with Application Development](quick-start/Readme-EN.md)
-    - [Directory Structure](quick-start/package-structure.md)
+- Quick Start
+    - Getting Started
+      - [Preparations](quick-start/start-overview.md)
+      - [Getting Started with eTS in the Traditional Coding Approach](quick-start/start-with-ets.md)
+      - [Getting Started with eTS in the Low-Code Approach](quick-start/start-with-ets-low-code.md)
+      - [Getting Started with JavaScript in the Traditional Coding Approach](quick-start/start-with-js.md)
+      - [Getting Started with JavaScript in the Low-Code Approach](quick-start/start-with-js-low-code.md)
+    - Development Fundamentals
+      - [Directory Structure](quick-start/package-structure.md)
+      - [Resource File Categories](quick-start/basic-resource-file-categories.md)
+      - [SysCap](quick-start/syscap.md)
 - Development
     - [Ability Development](ability/Readme-EN.md)
     - [UI Development](ui/Readme-EN.md)
@@ -23,6 +31,7 @@
        - [Device Management](device/Readme-EN.md)
        - [Device Usage Statistics](device-usage-statistics/Readme-EN.md)
        - [DFX](dfx/Readme-EN.md)
+       - [Internationalization](internationalization/international-overview.md)
 - Tools
     - [DevEco Studio (OpenHarmony) User Guide](quick-start/deveco-studio-user-guide-for-openharmony.md)
 - Hands-On Tutorials

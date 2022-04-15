@@ -4,7 +4,8 @@
 - Quick Start
   - Getting Started
     - [Preparations](quick-start/start-overview.md)
-    - [Getting Started with eTS](quick-start/start-with-ets.md)
+    - [Getting Started with eTS in the Traditional Coding Approach](quick-start/start-with-ets.md)
+    - [Getting Started with eTS in the Low-Code Approach](quick-start/start-with-ets-low-code.md)
     - [Getting Started with JavaScript in the Traditional Coding Approach](quick-start/start-with-js.md)
     - [Getting Started with JavaScript in the Low-Code Approach](quick-start/start-with-js-low-code.md)
   - Development Fundamentals
@@ -19,10 +20,10 @@
       - [Service Ability Development](ability/fa-serviceability.md)
       - [Data Ability Development](ability/fa-dataability.md)
       - [FA Widget Development](ability/fa-formability.md)
-    - Other
-      - [WantAgent Development](wantagent.md)
-      - [Ability Assistant Usage](ability-assistant-guidelines.md)
-      - [Test Framework Usage](ability-delegator.md)
+      - Other
+        - [WantAgent Development](wantagent.md)
+        - [Ability Assistant Usage](ability-assistant-guidelines.md)
+        - [Test Framework Usage](ability-delegator.md)
   - UI
     - [ArkUI Overview](ui/arkui-overview.md)
     - JavaScript-based Web-Like Development Paradigm
@@ -75,6 +76,7 @@
           - [Qrcode Development](ui/ui-js-components-qrcode.md)
           - [Search Development](ui/ui-js-components-search.md)
         - Canvas Development
+          - [Canvas](ui/ui-js-components-canvas.md)
           - [CanvasRenderingContext2D](ui/ui-js-components-canvasrenderingcontext2d.md)
           - [Path2D](ui/ui-js-components-path2d.md)
           - [OffscreenCanvas](ui/ui-js-components-offscreencanvas.md)
@@ -601,8 +603,8 @@
       - [@ohos.data.distributedData](reference/apis/js-apis-distributed-data.md)
       - [@ohos.data.distributedDataObject](reference/apis/js-apis-data-distributedobject.md)
       - [@ohos.data.rdb](reference/apis/js-apis-data-rdb.md)
-      - [@ohos.settings](reference/apis/js-apis-settings.md)
       - [@ohos.data.storage](reference/js-apis-data-storage.md)
+      - [@ohos.settings](reference/apis/js-apis-settings.md)
       - [resultSet](reference/apis/js-apis-data-resultset.md)
 
     - File Management
@@ -706,10 +708,14 @@
       - [@ohos.worker](reference/apis/js-apis-worker.md)
       - [@ohos.xml](reference/apis/js-apis-xml.md)
 
+    - Test
+
+      - [@ohos.application.testRunner](reference/js-apis-testRunner.md)
+      - [@ohos.uitest](reference/js-apis-uitest.md)
+
     - APIs No Longer Maintained
 
       - [@ohos.bytrace](reference/js-apis-bytrace.md)
-      - [@ohos.data.storage](reference/js-apis-data-storage.md)
       - [@system.app](reference/js-apis-system-app.md)
       - [@system.battery](reference/js-apis-system-battery.md)
       - [@system.brightness](reference/js-apis-system-brightness.md)
