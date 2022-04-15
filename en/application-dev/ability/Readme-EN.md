@@ -6,4 +6,7 @@
 - [FA Widget Development](fa-formability.md)
 
  - Other
+   - [WantAgent Development](wantagent.md)
    - [Ability Assistant Usage](ability-assistant-guidelines.md)
+   - [Test Framework Usage](ability-delegator.md)
+

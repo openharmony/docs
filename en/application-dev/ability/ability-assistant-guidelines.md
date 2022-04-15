@@ -28,13 +28,13 @@ The ability assistant is pre-installed in the device environment. You can direct
 
   Starts an ability.
 
-  | Name     | Description              |
-  | --------- | ---------------------- |
-  | -h/--help | Help information.            |
+  | Name     | Description                  |
+  | --------- | -------------------------- |
+  | -h/--help | Help information.                |
   | -d        | Device ID. This parameter is optional.   |
   | -a        | Ability name. This parameter is mandatory.|
   | -b        | Bundle name. This parameter is mandatory. |
-  | -D        | Debugging mode. This parameter is optional.    |
+  | -D        | Debugging mode. This parameter is optional.      |
 
   **Return value**
 
@@ -82,13 +82,20 @@ The ability assistant is pre-installed in the device environment. You can direct
   | -i/--ability      | AbilityRecord ID     | Prints detailed information about a specified ability.                                     |
   | -c/--client       |                      | Prints detailed ability information. This parameter must be used together with other parameters. Example commands: **aa dump -a -c** and **aa dump -i 21 -c**.|
   
-
   **Method**
-
+  
   ```
   aa dump -a
   ```
-
+  ![aa-dump-a](figures/aa-dump-a.PNG)
+  ```
+  aa dump -l
+  ```
+  ![aa-dump-l](figures/aa-dump-l.PNG)
+  ```
+  aa dump -i 12
+  ```
+  ![aa-dump-i](figures/aa-dump-i.PNG)
 - **force-stop**
 
   Forcibly stops a process based on the bundle name.

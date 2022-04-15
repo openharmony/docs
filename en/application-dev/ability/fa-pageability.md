@@ -2,11 +2,13 @@
 
 ## Overview
 ### Concepts
-The Page ability has the ArkUI and therefore provides the capability of interacting with users. When you create an ability in the integrated development environment (IDE), the IDE automatically creates template code. The capabilities related to the Page ability are exposed through the singleton **featureAbility**, and the lifecycle callbacks are exposed through the callback functions in **app.js/app.ets**.
+The Page ability implements the ArkUI and provides the capability of interacting with developers. When you create an ability in the integrated development environment (IDE), the IDE automatically creates template code. The capabilities related to the Page ability are implemented through the **featureAbility**, and the lifecycle callbacks are implemented through the callbacks in **app.js/app.ets**.
 
 ### Page Ability Lifecycle
 
-The ability lifecycle is a general term for all states of an ability (either a Page or a Service ability), such as **INACTIVE**, **ACTIVE**, and **BACKGROUND**.
+**Ability lifecycle**
+
+The Page ability lifecycle is a general term for all states of a Page ability, such as **INACTIVE**, **ACTIVE**, and **BACKGROUND**.
 
 The following figure shows the lifecycle state transition of the Page ability.
 
@@ -15,21 +17,34 @@ The following figure shows the lifecycle state transition of the Page ability.
 
 Description of ability lifecycle states:
 
-  - **UNINITIALIZED**: The ability is not initialized. This is a temporary state. An ability changes directly to the **INITIAL** state upon its creation.
+  - **UNINITIALIZED**: The Page ability is not initialized. This is a temporary state. A Page ability changes directly to the **INITIAL** state upon its creation.
 
-  - **INITIAL**: This state refers to the initial or stopped state. The ability in this state is not running. The ability enters the **INACTIVE** state after it is started.
+  - **INITIAL**: This state refers to the initial or stopped state. The Page ability in this state is not running. The Page ability enters the **INACTIVE** state after it is started.
 
   - **INACTIVE**: The ability is visible but does not gain focus.
 
   - **ACTIVE**: The ability runs in the foreground and gains focus.
 
-  - **BACKGROUND**: The ability returns to the background. After being re-activated, the ability enters the **ACTIVE** state. After being destroyed, the ability enters the **INITIAL** state.
+  - **BACKGROUND**: The Page ability returns to the background. After being re-activated, the Page ability enters the **ACTIVE** state. After being destroyed, the Page ability enters the **INITIAL** state.
 
-**The following figure shows the lifecycle of the Page ability.**
+**The following figure shows the relationship between lifecycle callbacks and lifecycle states of the Page ability.**
 
 ![fa-pageAbility-lifecycle](figures/fa-pageAbility-lifecycle.png)
 
-You can override the lifecycle callback functions provided by the Page ability in **app.js/app.ets**.
+You can override the lifecycle callbacks provided by the Page ability in the **app.js/app.ets** file. Currently, the **app.js** file provides only the **onCreate** and **onDestroy** callbacks, and the **app.ets** file provides the full lifecycle callbacks.
+
+### Launch Type
+The ability supports three launch types: singleton, multi-instance, and instance-specific.
+The **launchType** item in the **config.json** file is used to specify the launch type.
+
+| Launch Type    | Description    |Description            |
+| ----------- | -------  |---------------- |
+| standard    | Multi-instance  | A new instance is started each time an ability starts.|
+| singleton   | Singleton  | Only one instance exists in the system. If an instance already exists when an ability is started, that instance is reused.|
+| specified   | Instance-specific| The internal service of an ability determines whether to create multiple instances during running.|
+
+By default, **standard** is used.
+
 
 ## Development Guidelines
 ### Available APIs
@@ -46,48 +61,48 @@ You can override the lifecycle callback functions provided by the Page ability i
 
 ### Starting a Local Page Ability
 
-* Modules to Import
+**Modules to Import**
 
+```js
+  import featureAbility from '@ohos.ability.featureAbility'
 ```
-import featureAbility from '@ohos.ability.featureAbility'
-```
-* Example
+
+**Example**
 
 ```javascript
-import featureAbility from '@ohos.ability.featureAbility'
-featureAbility.startAbility({
+  import featureAbility from '@ohos.ability.featureAbility'
+  featureAbility.startAbility({
   want:
   {
     action: "",
     entities: [""],
     type: "",
     options: {
-      // Grant the permission to read the URI.
+      // Grant the permission to perform read operations on the URI.
       authReadUriPermission: true,
-      // Grant the permission to write the URI.
+      // Grant the permission to perform write operations on the URI.
       authWriteUriPermission: true,
-      // Forward the intent result to the origin ability.
+      // Support forwarding the Want result to the ability.
       abilityForwardResult: true,
-      // Mark the ability start-up triggered by continuation.
+      // Enable abiligy continuation.
       abilityContinuation: true,
       // Specify that a component does not belong to ohos.
       notOhosComponent: true,
-      // Specify whether an ability is started.
+      // Specify that an ability is started.
       abilityFormEnabled: true,
-      // Grant the permission to persist the URI.
+      // Grant the permission for possible persisting on the URI.
       authPersistableUriPermission: true,
-      // Grant the permission to persist the URI.
+      // Grant the permission for possible persisting on the prefix URI.
       authPrefixUriPermission: true,
-      // Support distributed scheduling and start-up across multiple devices.
+      // Support distributed scheduling system startup on multiple devices.
       abilitySliceMultiDevice: true,
-      // An ability using the Service template is started regardless of whether the
-      // host application has been started.
+      // A service ability is started regardless of whether the host application has been started.
       startForegroundAbility: true,
       // Install the specified ability if it is not installed.
       installOnDemand: true,
-      // Return the result to the origin ability slice.
+      // Return the result to the ability slice.
       abilitySliceForwardResult: true,
-      // Install the specified ability with the background mode if it is not installed.
+      // Install the specified ability with background mode if it is not installed.
       installWithBackgroundMode: true
     },
     deviceId: "",
@@ -95,14 +110,17 @@ featureAbility.startAbility({
     abilityName: "com.example.startability.MainAbility",
     uri: ""
   },
-},
-);
+  },
+  );
 ```
+
 You can also include **parameters** in the **want** parameter and set its value in the key-value format.
-* Example
+
+**Example**
+
 ```javascript
-import featureAbility from '@ohos.ability.featureAbility'
-featureAbility.startAbility({
+  import featureAbility from '@ohos.ability.featureAbility'
+  featureAbility.startAbility({
     want:
     {
         bundleName: "com.example.startability",
@@ -111,44 +129,115 @@ featureAbility.startAbility({
             abilityName: "com.example.startability.MainAbility"
         }
     },
-},
-);
+  },
+  );
 ```
-### Starting a Remote Page Ability
+### Starting a Remote Page Ability (Applying only to System Applications)
+>Note: The **getTrustedDeviceListSync** API of the **DeviceManager** class is open only to system applications. Therefore, remote Page ability startup applies only to system applications.
 
-* Modules to Import
+**Modules to Import**
 
 ```
-import featureAbility from '@ohos.ability.featureAbility'
+  import featureAbility from '@ohos.ability.featureAbility'
+  import deviceManager from '@ohos.distributedHardware.deviceManager';
 ```
 
-* Example
-
-```javascript
-var promise = await featureAbility.startAbility({
-    want:
-    {
-        deviceId: this.deviceId,
-        bundleName: "com.example.test",
-        abilityName: "com.example.test.MainAbility",
-    },
-}
-);
+**Example**
+```ts
+  function onStartRemoteAbility() {
+  console.info('onStartRemoteAbility begin');
+  let params;
+  let wantValue = {
+    bundleName: 'ohos.samples.etsDemo',
+    abilityName: 'ohos.samples.etsDemo.RemoteAbility',
+    deviceId: getRemoteDeviceId(),
+    parameters: params
+  };
+  console.info('onStartRemoteAbility want=' + JSON.stringify(wantValue));
+  featureAbility.startAbility({
+    want: wantValue
+  }).then((data) => {
+    console.info('onStartRemoteAbility finished, ' + JSON.stringify(data));
+  });
+  console.info('onStartRemoteAbility end');
+  }
 ```
+
+Obtain **deviceId** from **DeviceManager**. The sample code is as follows:
+
+```ts
+  import deviceManager from '@ohos.distributedHardware.deviceManager';
+  let dmClass;
+  function getRemoteDeviceId() {
+    if (typeof dmClass === 'object' && dmClass != null) {
+        let list = dmClass.getTrustedDeviceListSync();
+        if (typeof (list) == 'undefined' || typeof (list.length) == 'undefined') {
+            console.log("MainAbility onButtonClick getRemoteDeviceId err: list is null");
+            return;
+        }
+        console.log("MainAbility onButtonClick getRemoteDeviceId success:" + list[0].deviceId);
+        return list[0].deviceId;
+    } else {
+        console.log("MainAbility onButtonClick getRemoteDeviceId err: dmClass is null");
+    }
+  }
+```
+
+In the cross-device scenario, the application must also apply for the data synchronization permission from end users. The sample code is as follows:
+
+```ts
+  import abilityAccessCtrl from "@ohos.abilityAccessCtrl";
+  import bundle from '@ohos.bundle';
+  async function RequestPermission() {
+  console.info('RequestPermission begin');
+  let array: Array<string> = ["ohos.permission.DISTRIBUTED_DATASYNC"];
+  let bundleFlag = 0;
+  let tokenID = undefined;
+  let userID = 100;
+  let  appInfo = await bundle.getApplicationInfo('ohos.samples.etsDemo', bundleFlag, userID);
+  tokenID = appInfo.accessTokenId;
+  let atManager = abilityAccessCtrl.createAtManager();
+  let requestPermissions: Array<string> = [];
+  for (let i = 0;i < array.length; i++) {
+    let result = await atManager.verifyAccessToken(tokenID, array[i]);
+    console.info("verifyAccessToken result:" + JSON.stringify(result));
+    if (result == abilityAccessCtrl.GrantStatus.PERMISSION_GRANTED) {
+    } else {
+      requestPermissions.push(array[i]);
+    }
+  }
+  console.info("requestPermissions:" + JSON.stringify(requestPermissions));
+  if (requestPermissions.length == 0 || requestPermissions == []) {
+    return;
+  }
+  let context = featureAbility.getContext();
+  context.requestPermissionsFromUser(requestPermissions, 1, (data)=>{
+    console.info("data:" + JSON.stringify(data));
+    console.info("data requestCode:" + data.requestCode);
+    console.info("data permissions:" + data.permissions);
+    console.info("data authResults:" + data.authResults);
+  });
+  console.info('RequestPermission end');
+  }
+```
+
 ### Lifecycle APIs
-**Table 2** Lifecycle callback functions
+
+**Table 2** Lifecycle callbacks
 
 | API      | Description                                                        |
 | ------------ | ------------------------------------------------------------ |
-| onShow()     | Invoked when the ability is switched from the background to the foreground. In this case, the ability is visible to users.|
-| onHide()     | Invoked when the ability is switched from the foreground to the background. In this case, the ability is invisible.|
-| onDestroy()  | Invoked when the ability is destroyed. In this callback, you can make preparations for app exit, such as recycling resources and clearing the cache.|
-| onCreate()   | Invoked when the ability is created for the first time. You can initialize the application in this callback.|
-| onInactive() | Invoked when the ability loses focus. An ability loses focus before entering the background state.|
-| onActive()   | Invoked when the ability is switched to the foreground and gains focus.     |
+| onShow()     | Called when the ability is switched from the background to the foreground. In this case, the ability is visible to users.|
+| onHide()     | Called when the ability is switched from the foreground to the background. In this case, the ability is invisible.|
+| onDestroy()  | Called when the ability is destroyed. In this callback, you can make preparations for app exit, such as recycling resources and clearing the cache.|
+| onCreate()   | Called when the ability is created for the first time. You can initialize the application in this callback.|
+| onInactive() | Called when the ability loses focus. An ability loses focus before entering the background state.|
+| onActive()   | Called when the ability is switched to the foreground and gains focus.     |
 
-* Example
-You need to override the lifecycle callback functions in **app.js/app.ets**. The IDE template generates **onCreate()** and **onDestroy()** by default. You need to override the other functions.
+**Example**
+
+You need to override the lifecycle callbacks in **app.js/app.ets**. The IDE template generates **onCreate()** and **onDestroy()** by default. You need to override the other callbacks.
+
 ```javascript
 export default {
   onCreate() {
@@ -174,6 +263,6 @@ export default {
 ### Development Example
 The following sample is provided to help you better understand how to develop a Page ability:
 
-- [DMS](https://gitee.com/openharmony/app_samples/tree/master/ability/DMS)
+[DMS](https://gitee.com/openharmony/app_samples/tree/master/ability/DMS)
 
 This sample describes how to start a local ability and remote ability.
