@@ -358,10 +358,10 @@
     - [Setting Up a Development Environment](subsystems/subsys-application-framework-envbuild.md)
     - [Development Guidelines](subsystems/subsys-application-framework-guide.md)
     - [Development Example](subsystems/subsys-application-framework-demo.md)
-  - [OTA Upgrade](subsystems/subsys-ota-guide.md)
-  - Telephony Service
-    - [Telephony Service](subsystems/telephony-service.md)
-    - [Development Guidelines](subsystems/development-guidelines.md)
+  - [OTA Update](subsystems/subsys-ota-guide.md)
+  - Telephony
+    - [Telephony Overview](subsystems/subsys-tel-overview.md)
+    - [Telephony Development](subsystems/subsys-tel-guide.md)
   - Security
     - [Overview](subsystems/subsys-security-overview.md)
     - [Development Guidelines on Application Signature Verification](subsystems/subsys-security-sigverify.md)

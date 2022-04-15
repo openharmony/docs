@@ -21,11 +21,11 @@
     -   [OpenHarmony 1.1.0 LTS (2021-04-01)](release-notes/OpenHarmony-1-1-0-LTS.md)
     -   [OpenHarmony 1.0 (2020-09-10)](release-notes/OpenHarmony-1-0.md)
 - Contribution
-  - [Contribution](contribute/contribution.md)
+  - [How to Contribute](contribute/how-to-contribute.md)
   - [Code of Conduct](contribute/code-of-conduct.md)
   - [Code Contribution](contribute/code-contribution.md)
   - [Contribution Process](contribute/contribution-process.md)
-  - [Auto-Test](readme/test_subsystem.md)
+  - [Auto-Test](readme/test.md)
   - [Documentation Contribution](contribute/documentation-contribution.md)
   - [Writing Instructions](contribute/writing-instructions.md)
   - [Communication in Community](contribute/communication-in-community.md)

@@ -31,8 +31,8 @@
   - [Sensor](subsystems/subsys-sensor.md)
   - [USB](subsystems/subsys-usbservice.md)
   - [Application Framework](subsystems/subsys-application-framework.md)
-  - [OTA Upgrade](subsystems/subsys-ota-guide.md)
-  - [Telephony Service](subsystems/subsys-tel.md)
+  - [OTA Update](subsystems/subsys-ota-guide.md)
+  - [Telephony](subsystems/subsys-tel.md)
   - [Security](subsystems/subsys-security.md)
   - [Startup](subsystems/subsys-boot.md)
   - [DFX](subsystems/subsys-dfx.md)
@@ -55,4 +55,4 @@
 - References
   - [FAQs](faqs/Readme-EN.md)
 - Contribution
-  - [How to Contribute](../contribute/contribution.md)
+  - [How to Contribute](../contribute/how-to-contribute.md)
