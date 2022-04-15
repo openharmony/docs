@@ -30,7 +30,7 @@ Publishes an agent-powered reminder. This API uses an asynchronous callback to r
 
 **Example**
   ```
-  let timer : reminderAgent.ReminderRequestTimer = {
+  timer: {
       reminderType: reminderAgent.ReminderType.REMINDER_TYPE_TIMER,
       triggerTimeInSeconds: 10
   }
@@ -60,7 +60,7 @@ Publishes an agent-powered reminder. This API uses a promise callback to return 
 
 **Example**
   ```
-  let timer : reminderAgent.ReminderRequestTimer = {
+  timer: {
       reminderType: reminderAgent.ReminderType.REMINDER_TYPE_TIMER,
       triggerTimeInSeconds: 10
   }

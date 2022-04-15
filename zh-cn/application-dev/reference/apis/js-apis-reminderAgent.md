@@ -30,7 +30,7 @@ publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback&lt;number&
 
 **示例**：
 ```
-  let timer : reminderAgent.ReminderRequestTimer = {
+  timer: {
       reminderType: reminderAgent.ReminderType.REMINDER_TYPE_TIMER,
       triggerTimeInSeconds: 10
   }
@@ -60,7 +60,7 @@ publishReminder(reminderReq: ReminderRequest): Promise&lt;number&gt;
 
 **示例**：
 ```
-  let timer : reminderAgent.ReminderRequestTimer = {
+  timer: {
       reminderType: reminderAgent.ReminderType.REMINDER_TYPE_TIMER,
       triggerTimeInSeconds: 10
   }
