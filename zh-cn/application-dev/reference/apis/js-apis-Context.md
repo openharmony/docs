@@ -518,7 +518,7 @@ getCacheDir(callback: AsyncCallback\<string>): void
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
-var context = featureAbility.getCacheDir();
+var context = featureAbility.getContext();
 context.getCacheDir((err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -571,7 +571,7 @@ getFilesDir(callback: AsyncCallback\<string>): void
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
-var context = featureAbility.getFilesDir();
+var context = featureAbility.getContext();
 context.getFilesDir((err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
