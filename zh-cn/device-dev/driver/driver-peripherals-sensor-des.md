@@ -54,7 +54,7 @@ Sensor驱动模型以标准系统Hi3516DV300产品中的加速度传感器驱动
 
 Sensor驱动模型对外开放的API接口能力如下：
 
-- 提供Sensor HDI（Hardware  Driver  Interface）能力接口，简化服务开发。
+- 提供Sensor HDI（Hardware  Device  Interface）能力接口，简化服务开发。
 - 提供Sensor驱动模型能力接口：
   - 依赖HDF驱动框架实现Sensor器件驱动的注册，加载，去注册，器件探测等能力。
   - 提供同一类型Sensor器件驱动归一接口, 寄存器配置解析操作接口，总线访问抽象接口，平台抽象接口。

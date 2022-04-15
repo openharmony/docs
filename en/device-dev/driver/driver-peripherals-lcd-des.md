@@ -9,7 +9,7 @@ The Liquid Crystal Display \(LCD\) driver powers on the LCD and initializes inte
 
 **Display Driver Model**
 
-The display driver model consists of the display common driver layer, SoC adapter layer, and third-party chip driver layer. The display driver model is developed based on the HDF and hides the differences between kernel forms through platform and OSAL APIs so the LCD driver can be migrated between different OSs and chip platforms. The display driver connects to the display common HAL, supports the implementation of Hardware Driver Interfaces \(HDIs\), and provides various driver interfaces for the graphics service through the display HDI.
+The display driver model consists of the display common driver layer, SoC adapter layer, and third-party chip driver layer. The display driver model is developed based on the HDF and hides the differences between kernel forms through platform and OSAL APIs so the LCD driver can be migrated between different OSs and chip platforms. The display driver connects to the display common HAL, supports the implementation of Hardware Device Interfaces \(HDIs\), and provides various driver interfaces for the graphics service through the display HDI.
 
 -   HDF display driver layer: connects to the display common HAL through the IOService data channel provided by the HDF to receive and process various upper-layer calls in a centralized manner.
 -   SoC adapter layer: decouples the display driver from the SoC driver, configures parameters related to the chip platform, and passes the calls at the platform driver layer to the LCD driver layer.

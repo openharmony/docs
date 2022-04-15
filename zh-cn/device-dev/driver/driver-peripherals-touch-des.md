@@ -11,7 +11,7 @@
 
   本节主要介绍基于Input驱动模型开发Touchscreen器件驱动，Input模型整体的框架如下图所示。
 
-  Input驱动模型基于HDF驱动框架、Platform接口、OSAL接口进行开发，向上对接规范化的驱动接口HDI（Hardware Driver Interface）层，通过Input-HDI层对外提供硬件能力，即上层Input Service可以通过HDI接口层获取相应的驱动能力，进而操控Touchscreen等输入设备。
+  Input驱动模型基于HDF驱动框架、Platform接口、OSAL接口进行开发，向上对接规范化的驱动接口HDI（Hardware Device Interface）层，通过Input-HDI层对外提供硬件能力，即上层Input Service可以通过HDI接口层获取相应的驱动能力，进而操控Touchscreen等输入设备。
 
   **图1** 基于HDF驱动框架的Input驱动模型
 
