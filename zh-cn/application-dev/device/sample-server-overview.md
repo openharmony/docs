@@ -18,21 +18,21 @@
 
 ```json
 {
-	"searchStatus": 0,
-	"errMsg": "success",
-	"checkResults": [{
-		"versionName": "versionNameSample",
-		"versionCode": "versionCodeSample",
-		"verifyInfo": "verifyInfoSHA256Value1234567",
-		"size": 1234567,
-		"packageType": 1,
-		"url": "http://serverAddressSample/packageNameSample.fileTypeSample",
-		"descriptPackageId": "packageNameSample.fileTypeSample"
-	}],
-	"descriptInfo": [{
-		"descriptPackageId": "packageNameSample.fileTypeSample",
-		"content": "This package is used for update."
-	}]
+    "searchStatus": 0,
+    "errMsg": "success",
+    "checkResults": [{
+        "versionName": "versionNameSample",
+        "versionCode": "versionCodeSample",
+        "verifyInfo": "verifyInfoSHA256Value1234567",
+        "size": 1234567,
+        "packageType": 1,
+        "url": "http://serverAddressSample/packageNameSample.fileTypeSample",
+        "descriptPackageId": "packageNameSample.fileTypeSample"
+    }],
+    "descriptInfo": [{
+        "descriptPackageId": "packageNameSample.fileTypeSample",
+        "content": "This package is used for update."
+    }]
 }
 ```
 
