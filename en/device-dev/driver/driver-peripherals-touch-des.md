@@ -11,7 +11,7 @@
 
     This section describes how to develop the touchscreen driver based on the input driver model.  [Figure 1](#fig6251184817261)  shows an overall architecture of the touchscreen driver.
 
-    The input driver is developed based on the hardware driver foundation \(HDF\), platform APIs, and operating system abstraction layer \(OSAL\) APIs. It provides hardware driver capabilities through the input Hardware Driver Interfaces \(HDIs\) for upper-layer input services to control the touchscreen.
+    The input driver is developed based on the hardware driver foundation \(HDF\), platform APIs, and operating system abstraction layer \(OSAL\) APIs. It provides hardware driver capabilities through the input Hardware Device Interfaces \(HDIs\) for upper-layer input services to control the touchscreen.
 
 
 **Figure  1**  Architecture of the input driver model<a name="fig6251184817261"></a>  

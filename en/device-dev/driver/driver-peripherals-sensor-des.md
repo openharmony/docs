@@ -32,7 +32,7 @@ The following uses the acceleration sensor driver on the Hi3516D V300 developmen
 1. The sensor host reads the sensor management configuration from the Sensor Host node of the device_info HCS (sensor device information HCS).
 2. The sensor host parses the sensor management configuration from the HCB database and associates the corresponding sensor driver.
 3. The sensor host loads and initializes the sensor manager driver.
-4. The sensor manager driver publishes the sensor hardware driver interfaces (HDIs).
+4. The sensor manager driver publishes the sensor hardware device interfaces (HDIs).
 5. The sensor host reads the acceleration sensor driver configuration from the Sensor Host node of the device_info HCS.
 6. The sensor host loads the acceleration sensor abstract driver and calls the initialization interface to allocate the sensor driver resources and create the data processing queue.
 7. The sensor host reads the chipset driver configuration and private configuration of the acceleration sensor from the accel_xxx_config HCS (sensor private configuration HCS).

@@ -2,7 +2,7 @@
 
 ## Overview<a name="section729758162218"></a>
 
-The WLAN module is developed based on the Hardware Driver Foundation \(HDF\). It supports cross-OS migration, component adaptation, and modular assembly and compilation. Based on the unified APIs provided by the WLAN module, driver developers of WLAN vendors can adapt their driver code and are capable of creating, disabling, scanning, and connecting to WLAN hotspots. The WLAN driver provides the Hardware Driver Interface \(HDI\) layer with the capabilities of setting and obtaining the device MAC address and setting the transmit power. The following figure shows the framework of the WLAN module:
+The WLAN module is developed based on the Hardware Driver Foundation \(HDF\). It supports cross-OS migration, component adaptation, and modular assembly and compilation. Based on the unified APIs provided by the WLAN module, driver developers of WLAN vendors can adapt their driver code and are capable of creating, disabling, scanning, and connecting to WLAN hotspots. The WLAN driver provides the Hardware Device Interface \(HDI\) layer with the capabilities of setting and obtaining the device MAC address and setting the transmit power. The following figure shows the framework of the WLAN module:
 
 **Figure  1**  WLAN framework<a name="fig4415112614415"></a>  
 ![](figures/wlan-framework.png "wlan-framework")

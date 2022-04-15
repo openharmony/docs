@@ -100,7 +100,7 @@ OpenHarmony 轻量级内核是基于IoT领域轻量级物联网操作系统Huawe
 
 - 基于对象的驱动、设备管理
 
-- HDI（Hardware Driver Interface）统一硬件接口
+- HDI（Hardware Device Interface）统一硬件接口
 
 - 支持电源管理、PnP
 
