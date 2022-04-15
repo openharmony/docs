@@ -30,7 +30,7 @@ publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback&lt;number&
 
 **示例**：
 ```
-  timer: {
+  let timer = {
       reminderType: reminderAgent.ReminderType.REMINDER_TYPE_TIMER,
       triggerTimeInSeconds: 10
   }
@@ -60,7 +60,7 @@ publishReminder(reminderReq: ReminderRequest): Promise&lt;number&gt;
 
 **示例**：
 ```
-  timer: {
+  let timer = {
       reminderType: reminderAgent.ReminderType.REMINDER_TYPE_TIMER,
       triggerTimeInSeconds: 10
   }
@@ -275,7 +275,7 @@ addNotificationSlot(slot: NotificationSlot, callback: AsyncCallback&lt;void&gt;)
 **示例**：
 
 ```
-mySlot: {
+let mySlot = {
     type: 3,
     sound: "/sdcard/music2.mp3"
 }
@@ -308,7 +308,7 @@ addNotificationSlot(slot: NotificationSlot): Promise&lt;void&gt;
 **示例**：
 
 ```
-mySlot: {
+let mySlot = {
     type: 3,
     sound: "/sdcard/music2.mp3"
 }

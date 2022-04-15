@@ -30,7 +30,7 @@ Publishes an agent-powered reminder. This API uses an asynchronous callback to r
 
 **Example**
   ```
-  timer: {
+  let timer = {
       reminderType: reminderAgent.ReminderType.REMINDER_TYPE_TIMER,
       triggerTimeInSeconds: 10
   }
@@ -60,7 +60,7 @@ Publishes an agent-powered reminder. This API uses a promise callback to return 
 
 **Example**
   ```
-  timer: {
+  let timer = {
       reminderType: reminderAgent.ReminderType.REMINDER_TYPE_TIMER,
       triggerTimeInSeconds: 10
   }
@@ -275,7 +275,7 @@ Adds a reminder notification slot. This API uses an asynchronous callback to ret
 **Example**
 
 ```
-mySlot: {
+let mySlot = {
     type: 3,
     sound: "/sdcard/music2.mp3"
 }
@@ -308,16 +308,13 @@ Adds a reminder notification slot. This API uses a promise to return the result.
 **Example**
 
 ```
-export default {    data: {        mySlot: {
-            type: 3,
-            sound: "/sdcard/music2.mp3"
-        }    },
-    addSlot() {
-        reminderAgent.addNotificationSlot(mySlot).then(() => {
-   console.log("do next");
-        });
-    }
+let mySlot = {
+    type: 3,
+    sound: "/sdcard/music2.mp3"
 }
+reminderAgent.addNotificationSlot(mySlot).then(() => {
+   console.log("addNotificationSlot promise");
+});
 ```
 
 
