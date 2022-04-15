@@ -8,5 +8,6 @@ This repository stores a complete range of OpenHarmony documentation. The conten
   - [Release Notes](release-notes/Readme.md)
   - [Subsystems](./readme)
 - OpenHarmony Contribution
-  - [How to Contribute](contribute/contribution.md)
+  - [How to Contribute](contribute/how-to-contribute.md)
   - [OpenHarmony Part and API Design Reference](./design)
+

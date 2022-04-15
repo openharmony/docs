@@ -374,7 +374,7 @@ For details about how to obtain the source code of OpenHarmony, see  [Source Cod
 
 For details about how to join in the OpenHarmony community, see  [OpenHarmony Community](https://gitee.com/openharmony/community/blob/master/README.md).
 
-For details about how to contribute, see  [Contribution](https://gitee.com/openharmony/docs/blob/master/en/contribute/contribution.md).
+For details about how to contribute, see  [How to Contribute](https://gitee.com/openharmony/docs/blob/master/en/contribute/how-to-contribute.md).
 
 ## License Agreement<a name="section1245517472115"></a>
 

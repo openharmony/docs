@@ -1,4 +1,4 @@
-# Contribution<a name="EN-US_TOPIC_0000001055208082"></a>
+# How to Contribute<a name="EN-US_TOPIC_0000001055208082"></a>
 
 ## Contributing Code<a name="en-us_topic_0000001053868136_section10170447161315"></a>
 
