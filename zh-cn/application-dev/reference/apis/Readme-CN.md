@@ -24,12 +24,8 @@
   - application/[abilityDelegator (AbilityDelegator)](js-apis-application-abilityDelegator.md)
   - application/[abilityDelegatorArgs (AbilityDelegatorArgs)](js-apis-application-abilityDelegatorArgs.md)
   - application/[AbilityRunningInfo (AbilityRunningInfo)](js-apis-abilityrunninginfo.md)
-  - application/[ExtensionContext (ExtensionContext)](js-apis-extension-context.md)
-  - application/[ExtensionRunningInfo (ExtensionRunningInfo)](js-apis-extensionrunninginfo.md)
-  - application/[FormExtensionContext (FormExtensionContext)](js-apis-formextensioncontext.md)
   - application/[MissionSnapshot (MissionSnapshot)](js-apis-application-MissionSnapshot.md)
   - application/[ProcessRunningInfo (ProcessRunningInfo)](js-apis-processrunninginfo.md)
-  - application/[ServiceExtensionContext (ServiceExtensionContext)](js-apis-service-extension-context.md) 
   - application/[shellCmdResult (ShellCmdResult)](js-apis-application-shellCmdResult.md)
 - 公共事件与通知
 
