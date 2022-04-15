@@ -62,7 +62,7 @@ This project stores OpenHarmony documentation, including the quick start guide, 
     -   **usb**: [USB Service](application-dev//usb/Readme-EN.md)
     -   **dfx**:  [DFX](application-dev/dfx/Readme-EN.md)
     -   **reference**:  [Development References](application-dev/reference/Readme-EN.md)
--   **glossary**:  [Glossary](device-dev/glossary/glossary.md)
+-   **glossary**:  [Glossary](glossary.md)
 
 ## Version Change History
 

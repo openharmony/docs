@@ -1,7 +1,7 @@
 # Learn About OpenHarmony
 
 - [OpenHarmony Project](OpenHarmony-Overview.md)
-- [Glossary](device-dev/glossary/glossary.md)
+- [Glossary](glossary.md)
 - OpenHarmony Release Notes
   - OpenHarmony 3.x Releases
     -   [OpenHarmony v3.1 Beta (2021-12-31)](release-notes/OpenHarmony-v3.1-beta.md)
