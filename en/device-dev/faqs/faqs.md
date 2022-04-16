@@ -4,7 +4,7 @@
 
 - **[Overview of FAQs](faqs-overview.md)**
 
-- **[Environment Setup](faqs-environment-building.md)**
+- **[Environment Setup](faqs-environment-setup.md)**
 
 - **[Compilation and Building Subsystem](faqs-building.md)**
 
@@ -12,8 +12,8 @@
 
 - **[Kernel](faqs-kernel.md)**
 
-- **[Porting](faqs-transplant.md)**
+- **[Porting](faqs-porting.md)**
 
-- **[Startup and Recovery](faqs-init.md)**
+- **[Startup](faqs-startup.md)**
 
-- **[System Applications](faqs-system-using.md)**
+- **[System Applications](faqs-system-applications.md)**

@@ -7,15 +7,15 @@
     - [OpenHarmony Release Notes](../release-notes/Readme.md)
 - Quick Start
     - Getting Started
-        - [Preparations](start-overview.md)
-        - [Getting Started with eTS](start-with-ets.md)
-        - [Getting Started with JavaScript in the Traditional Coding Approach](start-with-js.md)
-        - [Getting Started with JavaScript in the Low-Code Approach](start-with-js-low-code.md)
+    - - [Preparations](quick-start/start-overview.md)
+        - [Getting Started with eTS](quick-start/start-with-ets.md)
+        - [Getting Started with JavaScript in the Traditional Coding Approach](quick-start/start-with-js.md)
+        - [Getting Started with JavaScript in the Low-Code Approach](quick-start/start-with-js-low-code.md)
     - Development Fundamentals
-        - [Application Development Package Structure (FA Model)](package-structure.md)
-        - [Application Development Package Structure (Stage Model)](module-structure.md)
-        - [Resource File Categories](basic-resource-file-categories.md)
-        - [SysCap](syscap.md)
+        - [Application Development Package Structure (FA Model)](quick-start/package-structure.md)
+        - [Application Development Package Structure (Stage Model)](quick-start/module-structure.md)
+        - [Resource File Categories](quick-start/basic-resource-file-categories.md)
+        - [SysCap](quick-start/syscap.md)
 - Development
     - [Ability Development](ability/Readme-EN.md)
     - [UI Development](ui/Readme-EN.md)

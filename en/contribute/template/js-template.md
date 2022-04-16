@@ -98,7 +98,7 @@ import call from '@ohos.telephony.call';
 >
 > 4.4 - For a writable attribute, if only fixed fields are supported, describe them.
 >
-> 4.5 - If the items in the table require different system capabilities, add the following description: The items in the table below require different system capabilities. For details, see the table. Then, describe the system capabilities for each item. See [Enumeration](#Enumeration).
+> 4.5 - If the items in the table require different system capabilities, add the following description: The items in the table below require different system capabilities. For details, see the table. Then, describe the system capabilities for each item. See [Enums](#enums).
 
 **System capability**: SystemCapability.xxx.xxx (Mandatory)
 
@@ -247,4 +247,5 @@ The following is an example of the custom type of a key-value pair.
 | Name        | Type               | Readable| Writable| Description                                                        |
 | ------------ | ------------------- | ---- | ---- | ------------------------------------------------------------ |
 | parameterUrl | string              | Yes  | Yes  | Media output URI. The following types of URIs are supported:<br>1. Relative path whose protocol type is internal. Examples:<br>Temporary directory: internal://cache/test.mp4<br><br>2. Absolute path. Examples:<br>file:///data/data/ohos.xxx.xxx/files/test.mp4<br> |
-| parameterOne | [CustomEnum](#Enumeration)| Yes  | Yes  | Describe the attributes. The requirements are similar to those for the parameter description.                              |
+| parameterOne | [CustomEnum](#enums) | Yes  | Yes  | Describe the attributes. The requirements are similar to those for the parameter description.                              |
+
