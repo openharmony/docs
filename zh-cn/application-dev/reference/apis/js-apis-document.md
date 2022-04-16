@@ -1,0 +1,135 @@
+# document
+
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 本模块接口后续将废弃。
+
+## 导入模块
+
+```js
+import document from '@ohos.document';
+```
+
+## 使用说明
+
+调用以下接口抛出异常，不建议在OpenHarmony使用以下接口。
+
+## document.choose
+
+choose(type:string[]): Promise&lt;string&gt;
+
+通过文件管理器选择文件，异步返回文件URI，使用promise形式返回结果。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+- 参数：
+
+  | 参数名 | 类型   | 必填 | 说明                         |
+  | ------ | ------ | ---- | ---------------------------- |
+  | type   | string[] | 否   | 限定文件选择的类型 |
+
+- 返回值：
+
+  | 类型                  | 说明           |
+  | --------------------- | -------------- |
+  | Promise&lt;string&gt; | 异步返回文件URI（注：当前返回错误码） |
+
+- 示例：
+
+  ```js
+  await document.choose(type);
+  ```
+## document.choose
+
+choose(callback:AsyncCallback&lt;string&gt;): void
+
+通过文件管理器选择文件，异步返回文件URI，使用callback形式返回结果。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+- 参数：
+
+  | 参数名   | 类型                        | 必填 | 说明                         |
+  | -------- | --------------------------- | ---- | ---------------------------- |
+  | callback | AsyncCallback&lt;string&gt; | 是   | 异步获取对应文件URI（注：当前返回错误码） |
+
+- 示例：
+
+  ```js
+  await document.choose(function(err, uri) {
+        //do something with uri
+  });
+  ```
+## document.choose
+
+choose(type:string[], callback:AsyncCallback&lt;string&gt;): void
+
+通过文件管理器选择文件，异步返回文件URI，使用callback形式返回结果。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+- 参数：
+
+  | 参数名   | 类型                        | 必填 | 说明                         |
+  | -------- | --------------------------- | ---- | ---------------------------- |
+  | type     | string[]                      | 否   | 限定选择文件的类型 |
+  | callback | AsyncCallback&lt;string&gt; | 是   | 异步获取对应文件URI（注：当前返回错误码） |
+
+- 示例：
+
+  ```js
+  await document.choose(type, function(err, uri) {
+        //do something with uri
+  });
+  ```
+
+## document.show
+
+show(url:string, type:string):Promise&lt;number&gt;
+
+异步打开URI对应的文件，使用promise形式返回结果。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+- 参数：
+
+  | 参数 | 类型   | 必填 | 说明                         |
+  | ---- | ------ | ---- | ---------------------------- |
+  | uri | string | 是   | 待打开的文件URI |
+  | type | string | 是   | 待打开文件的类型 |
+
+- 返回值：
+
+  | 类型                  | 说明         |
+  | --------------------- | ------------ |
+  | Promise&lt;void&gt; | Promise回调返回void表示成功打开文件（注：当前返回错误码） |
+
+- 示例：
+
+  ```js
+  await document.show(uri, type);
+  ```
+
+## document.show
+
+show(url:string, type:string, callback:AsyncCallback&lt;void&gt;): void
+
+异步打开URI对应的文件，使用callback形式返回结果。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+- 参数：
+
+  | 参数名   | 类型                        | 必填 | 说明                         |
+  | -------- | --------------------------- | ---- | ---------------------------- |
+  | uri | string | 是   | 待打开的文件URI |
+  | type | string | 是   | 待打开文件的类型 |
+  | callback | AsyncCallback&lt;void&gt; | 是   | 异步打开uri对应文件（注：当前返回错误码）   |
+
+- 示例：
+
+  ```js
+  await document.show(uri, type, function(err) {
+        //do something
+  });
+  ```
+
