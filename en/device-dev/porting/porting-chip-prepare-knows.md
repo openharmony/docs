@@ -64,4 +64,4 @@ The **device** directory of OpenHarmony is the adaptation directory for the basi
 
 - The porting must comply with the basic principles described in [How to Contribute](../../contribute/how-to-contribute.md).
 
-- The code required for third-party SoC adaptation is stored in the **device**, **vendor**, and **arch** directories. Naming and usage of these directories must comply with specified naming and usage specifications. For details, see [Overview](../porting/porting-chip-kernel-overview.md) and [Board-Level Directory Specifications](../porting/porting-chip-board-overview.md#board-level-directory-specifications).
+- The code required for third-party SoC adaptation is stored in the **device**, **vendor**, and **arch** directories. Naming and usage of these directories must comply with specified naming and usage specifications. For details, see [Overview](../porting/porting-chip-kernel-overview.md) and [Board-Level Directory Specifications](../porting/porting-chip-board-overview.md#section6204129143013).
