@@ -110,7 +110,7 @@ The Access Control List (ACL) makes low-level apps to have high-level permission
 
 The APL of app A is normal. App A needs to have permission B (system_basic level) and permission C (normal level). In this case, you can use the ACL to grant permission B to app A.
 
-For details, see [Using the ACL](#usingacl).
+For details, see [Using the ACL](#using-the-acl).
 
 ## Permission Authorization Modes
 
@@ -128,7 +128,7 @@ Permissions can be classified into the following types based on the authorizatio
 
     This type of permissions must be declared in the app installation package and authorized by users dynamically during the running of the app. The app has the permission only after user authorization.
 
-    For example, in the [Permission List](#permissionlist), the permissions for the microphone and camera are user_grant permissions. The list provides reasons for using the permissions.
+    For example, in the [Permission List](#permission-list), the permissions for the microphone and camera are user_grant permissions. The list provides reasons for using the permissions.
 
     The user_grant permission list must also be presented on the details page of the app store.
 
@@ -166,7 +166,7 @@ The procedure is as follows:
 
 If the permission required by an app has higher level than the app's APL, you can use the ACL to grant the permissions required.
 
-In addition to the preceding [authorization processes](#authorizationprocesses), you need to declare the ACL.
+In addition to the preceding [authorization processes](#authorization-processes), you need to declare the ACL.
 
 In addition to declaring the required permissions in the **config.json** file, you must declare the high-level permissions in the app's [profile](accesstoken-guidelines.md). The subsequent steps remain unchanged.
 
