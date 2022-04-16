@@ -30,12 +30,12 @@ Canvas(context: CanvasRenderingContext2D)
 
 ## Attributes
 
-[Universal attributes]( ts-universal-attributes-index.md) are supported.
+Universal attributes are supported.
 
 
 ## Events
 
-In addition to [universal events](ts-universal-events-index.md), the following events are supported.
+In addition to universal events, the following events are supported.
 
 | Name | Parameter | Description |
 | -------- | -------- | -------- |

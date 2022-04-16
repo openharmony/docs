@@ -150,5 +150,5 @@ Methods in  [Universal Methods](js-components-common-methods.md)  are supported.
 
 ## Example<a name="section634316188515"></a>
 
-For details, see the  [list example code](js-components-container-list.md#section24931424488).
+For details, see the  [list example code](js-components-container-list.md#example).
 
