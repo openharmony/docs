@@ -71,5 +71,3 @@ struct ImageEffectsExample {
   }
 }
 ```
-
-![zh-cn_image_0000001219864157](figures/zh-cn_image_0000001219864157.png)

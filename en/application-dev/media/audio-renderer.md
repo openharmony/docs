@@ -1,4 +1,4 @@
-# Audio Playback Development Using AudioRenderer
+# Audio Rendering Development
 
 ---
 ## ***Note***:
@@ -17,7 +17,7 @@ When a higher priority stream wants to play, the AudioRenderer framework interru
 For example, if a call is arrived when you listen to music, the music playback, which is the lower priority stream, is paused.\
 With the sample code below, we'll look at how AudioInterrupt works in detail.\
 <br/>
-Please see [**js-apis-audio.md**](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-audio.md) for a list of supported audio stream types and formats, such as AudioSampleFormat, AudioChannel, AudioSampleFormat, and AudioEncodingType.
+Please see [AudioRenderer in the Audio API](../reference/apis/js-apis-audio.md#audiorenderer8) for a list of supported audio stream types and formats, such as AudioSampleFormat, AudioChannel, AudioSampleFormat, and AudioEncodingType.
 
 
 ## **Usage**
@@ -267,8 +267,8 @@ The system may throw an error/exception or generate other undefined behaviour if
 ## **Asynchronous Operations:**
 Most of the AudioRenderer calls are asynchronous. As a result, the UI thread will not be blocked.\
 For each API, the framework provides both callback and promises functions.\
-In the example, promise functions are used for simplicity. [**js-apis-audio.md**](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-audio.md)
+In the example, promise functions are used for simplicity. [AudioRender in the Audio API](../reference/apis/js-apis-audio.md#audiorenderer8)
 provides reference for both callback and promise.
 
 ## **Other APIs:**
-See [**js-apis-audio.md**](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-audio.md) for more useful APIs like getAudioTime, drain, and getBufferSize.
+See [Audio](../reference/apis/js-apis-audio.md) for more useful APIs like getAudioTime, drain, and getBufferSize.

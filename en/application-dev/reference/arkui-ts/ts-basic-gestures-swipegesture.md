@@ -15,33 +15,34 @@ None
 SwipeGesture(value?: { fingers?: number; direction?: SwipeDirection; speed?: number })
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | fingers | number | No | 1 | Minimum number of fingers to trigger a swipe gesture. The value ranges from 1 to 10. | 
-  | direction | SwipeDirection | No | SwipeDirection.All | Swipe direction. | 
-  | speed | number | No | 100 | Minimum speed of the swipe gesture (100 vp/s). | 
+  | fingers | number | No | 1 | Minimum number of fingers to trigger a swipe gesture. The value ranges from 1 to 10. |
+  | direction | SwipeDirection | No | SwipeDirection.All | Swipe direction. |
+  | speed | number | No | 100 | Minimum speed of the swipe gesture (100 vp/s). |
 
 - SwipeDirection enums
-    | Name | Description | 
+    | Name | Description |
   | -------- | -------- |
-  | All | All directions. | 
-  | Horizontal | Horizontal direction. | 
-  | Vertical | Vertical direction. | 
+  | All | All directions. |
+  | Horizontal | Horizontal direction. |
+  | Vertical | Vertical direction. |
 
 
 ## Events
 
-  | Name | Description | 
+| Name | Description |
 | -------- | -------- |
-| onAction(callback:(event?: SwipeGestureEvent) =&gt; void) | Callback invoked when a swipe gesture is recognized. | 
+| onAction(callback:(event?: GestureEvent) =&gt; void) | Callback invoked when a swipe gesture is recognized. |
 
 
-- SwipeGestureEvent attributes
-    | Name | Type | Description | 
+- GestureEvent attributes related to the swipe gesture  
+    | Name | Type | Description |
   | -------- | -------- | -------- |
-  | angle | number | Angle of the swipe gesture. | 
-  | speed | number | Speed of the swipe gesture. | 
+  | angle | number | Angle of the swipe gesture.<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**NOTE**<br/>>&nbsp;Angle calculation method: After the swipe gesture is identified, a line connecting the two fingers is identified as the initial line. As the fingers swipe, the line between the fingers rotates. Based on the coordinates of the initial line's and current line's end points, an arc tangent function is used to calculate the respective included angle of the points relative to the horizontal direction. Rotation angle = arctan2(cy2-cy1,cx2-cx1) - arctan2(y2-y1,x2-x1). The initial line is used as the coordinate system. The clockwise rotation is 0 to 180 degrees, and the counter-clockwise rotation is –180 to 0 degrees. |
+  | speed | number | Speed of the swipe gesture. |
 
+![en-us_image_0000001231374559](figures/en-us_image_0000001231374661.png)
 
 ## Example
 
@@ -64,7 +65,7 @@ struct SwipeGestureExample {
     .rotate({x: 0, y: 0, z: 1, angle: this.rotateAngle})
     .gesture(
       SwipeGesture({fingers: 1, direction:SwipeDirection.Vertical})
-        .onAction((event: SwipeGestureEvent) => {
+        .onAction((event: GestureEvent) => {
           this.speed = event.speed
           this.rotateAngle = event.angle
       })
@@ -73,4 +74,4 @@ struct SwipeGestureExample {
 }
 ```
 
-![en-us_image_0000001257138365](figures/en-us_image_0000001257138365.gif)
+![en-us_image_0000001231374559](figures/en-us_image_0000001231374559.gif)

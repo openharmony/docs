@@ -23,36 +23,54 @@ None
 TextTimer(options: { isCountDown?: boolean, count?: number, controller?: TextTimerController })
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | isCountDown | boolean | No | false | Whether to count down. | 
-  | count | number | No | 60000 | Countdown time, in milliseconds. This parameter is valid only when **isCountDown** is set to **true**.<br/>- If the value of **count** is less than or equal to 0, the default value is used.<br/>- If the value of **count** is greater than 0, it is used. | 
-  | controller | [TextTimerController](#texttimercontroller) | No | null | **&lt;TextTimer&gt;** controller. | 
-
-
-### TextTimerController
-
-Defines the controller for controlling the **&lt;TextTimer&gt;** component.
-
-  | Name | Description | 
-| -------- | -------- |
-| start() | Starts the timer. | 
-| pause() | Pauses the timer. | 
-| reset() | Resets the timer. | 
-
+  | isCountDown | boolean | No | false | Whether to count down. |
+  | count | number | No | 60000 | Countdown time, in milliseconds. This parameter is valid only when **isCountDown** is set to **true**.<br/>- If the value of **count** is less than or equal to 0, the default value is used.<br/>- If the value of **count** is greater than 0, it is used. |
+  | controller | [TextTimerController](#texttimercontroller) | No | null | **&lt;TextTimer&gt;** controller. |
 
 ## Attributes
 
-  | Name | Type | Default Value | Description | 
+| Name | Type | Default Value | Description |
 | -------- | -------- | -------- | -------- |
-| format | string | 'hh:mm:ss.ms' | Custom format. The value must contain at least one of the following keywords: **hh**, **mm**, **ss**, and **ms**. | 
+| format | string | 'hh:mm:ss.ms' | Custom format. The value must contain at least one of the following keywords: **hh**, **mm**, **ss**, and **ms**. |
 
 
 ## Events
 
-  | Name | Description | 
+| Name | Description |
 | -------- | -------- |
-| onTimer(callback: (utc: number, elapsedTime: number) =&gt; void) | Triggered when the time text changes.<br/>**utc**: currently displayed time, in milliseconds.<br/>**elapsedTime**: elapsed time of the timer, in milliseconds. | 
+| onTimer(callback: (utc: number, elapsedTime: number) =&gt; void) | Triggered when the time text changes.<br/>**utc**: currently displayed time, in milliseconds.<br/>**elapsedTime**: elapsed time of the timer, in milliseconds. |
+
+
+## TextTimerController
+
+Defines the controller for controlling the **&lt;TextTimer&gt;** component.
+
+### Objects to Import
+
+```
+textTimerController: TextTimerController = new TextTimerController()
+
+```
+
+### start
+
+start()
+
+Starts the timer.
+
+### pause
+
+pause()
+
+Pauses the timer. 
+
+### reset
+
+reset()
+
+Resets the timer.
 
 
 ## Example
@@ -62,12 +80,12 @@ Defines the controller for controlling the **&lt;TextTimer&gt;** component.
 @Entry
 @Component
 struct TextTimerExample {
-  myTimerController: TextTimerController = new TextTimerController()
+  textTimerController: TextTimerController = new TextTimerController()
   @State format: string = 'hh:mm:ss.ms'
 
   build() {
     Column() {
-      TextTimer({controller: this.myTimerController})
+      TextTimer({controller: this.textTimerController})
         .format(this.format)
         .fontColor(Color.Black)
         .fontSize(this.textSize)
@@ -76,13 +94,13 @@ struct TextTimerExample {
         })
       Row() {
         Button("start").onClick(() => {
-          this.myTimerController.start();
+          this.textTimerController.start();
         });
         Button("pause").onClick(() => {
-          this.myTimerController.pause();
+          this.textTimerController.pause();
         });
         Button("reset").onClick(() => {
-          this.myTimerController.reset();
+          this.textTimerController.reset();
         });
       }
     }

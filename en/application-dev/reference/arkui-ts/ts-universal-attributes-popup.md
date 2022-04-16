@@ -13,21 +13,21 @@ None
 ## Attributes
 
 
-  | Name | Type | Default Value | Description | 
+| Name | Type | Default Value | Description |
 | -------- | -------- | -------- | -------- |
-| bindPopup | show: boolean,<br/>popup: PopupOption \| CustomPopupOption | - | Settings of the popup bound to a component.<br/>**show**: whether to display the popup on the creation page by default. The default value is **false**.<br/>**popup**: parameters of the current popup. | 
+| bindPopup | show: boolean,<br/>popup: PopupOptions \| CustomPopupOptions | - | Settings of the popup bound to a component.<br/>**show**: whether to display the popup on the creation page by default. The default value is **false**.<br/>**popup**: parameters of the current popup. |
 
 
-- PopupOption attributes
-    | Name | Type | Mandatory | Default Value | Description | 
+- PopupOptions attributes
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | message | string | Yes | - | Content of the popup message. | 
-  | placementOnTop | boolean | No | false | Whether to display the popup above the component. The default value is **false**. | 
-  | primaryButton | {<br/>value: string,<br/>action: () =&gt; void<br/>} | No | - | First button.<br/>**value**: text of the primary button in the popup.<br/>**action**: callback function for clicking the primary button. | 
-  | secondaryButton | {<br/>value: string,<br/>action: () =&gt; void<br/>} | No | - | Second button.<br/>**value**: text of the secondary button in the popup.<br/>**action**: callback function for clicking the secondary button. | 
-  | onStateChange | (isVisible: boolean) =&gt; void | No | - | Callback for the popup status change event. The parameter **isVisible** indicates the visibility of the popup. | 
+  | message | string | Yes | - | Content of the popup message. |
+  | placementOnTop | boolean | No | false | Whether to display the popup above the component. The default value is **false**. |
+  | primaryButton | {<br/>value: string,<br/>action: () =&gt; void<br/>} | No | - | First button.<br/>**value**: text of the primary button in the popup.<br/>**action**: callback function for clicking the primary button. |
+  | secondaryButton | {<br/>value: string,<br/>action: () =&gt; void<br/>} | No | - | Second button.<br/>**value**: text of the secondary button in the popup.<br/>**action**: callback function for clicking the secondary button. |
+  | onStateChange | (isVisible: boolean) =&gt; void | No | - | Callback for the popup status change event. The parameter **isVisible** indicates the visibility of the popup. |
 
-- CustomPopupOption<sup>8+</sup>
+- CustomPopupOptions<sup>8+</sup>
     | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
   | builder | () =&gt; any | Yes | - | Builder of the tooltip content. |
@@ -39,16 +39,16 @@ None
   | onStateChange | (isVisible: boolean) =&gt; void | No | - | Callback for the popup status change event. The parameter **isVisible** indicates the visibility of the popup. |
 
 - Placement<sup>8+</sup> enums
-    | Name | Description | 
+    | Name | Description |
   | -------- | -------- |
-  | Left | The tooltip is on the left of the component. | 
-  | Right | The tooltip is on the right of the component. | 
-  | Top | The tooltip is on the top of the component. | 
-  | Bottom | The tooltip is at the bottom of the component. | 
-  | TopLeft | The tooltip is in the upper left corner of the component. | 
-  | TopRight | The tooltip is in the upper right corner of the component. | 
-  | BottomLeft | The tooltip is in the lower left corner of the component. | 
-  | BottomRight | The tooltip is in the lower right corner of the component. | 
+  | Left | The tooltip is on the left of the component. |
+  | Right | The tooltip is on the right of the component. |
+  | Top | The tooltip is on the top of the component. |
+  | Bottom | The tooltip is at the bottom of the component. |
+  | TopLeft | The tooltip is in the upper left corner of the component. |
+  | TopRight | The tooltip is in the upper right corner of the component. |
+  | BottomLeft | The tooltip is in the lower left corner of the component. |
+  | BottomRight | The tooltip is in the lower right corner of the component. |
 
 
 ## Example

@@ -2900,7 +2900,6 @@ Notification.subscribe(subscriber, subscribeCallback);
 | title     | 是  | 是  | string                                          | 是   | 按钮标题。                  |
 | wantAgent | 是  | 是  | WantAgent                                       | 是   | 点击按钮时触发的WantAgent。 |
 | extras    | 是  | 是  | { [key: string]: any }                          | 否   | 按钮扩展信息。              |
-| userInput<sup>9+</sup> | 是  | 是  | [NotificationUserInput](#notificationuserinput8) | 否   | 用户输入对象实例。          |
 
 
 ## NotificationBasicContent

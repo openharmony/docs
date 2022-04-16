@@ -72,7 +72,7 @@ text{
   width:100%;
   height:100%;
   flex-direction: column;
-  background-color:#F1F3F5;
+  background-color: #F1F3F5;
 }
 text{
   width: 100%;
@@ -87,7 +87,7 @@ text{
 
 ```
 <!-- index.hml -->
-<div class="container" style="background-color:#F1F3F5;"> 
+<div class="container"> 
  <stepper index="1">    
    <stepper-item label="{{label_1}}">     
      <text>stepper-item1</text>
@@ -111,7 +111,7 @@ text{
   width:100%;
   height:100%;
   flex-direction: column;
-  background-color:#F1F3F5;
+  background-color: #F1F3F5;
 }
 text{
   width: 100%;
@@ -124,7 +124,10 @@ text{
 /* index.js */
 export default { 
   data: {
-    label_1:{      nextLabel: 'NEXT',      status: 'normal'    },
+    label_1:{
+      nextLabel: 'NEXT',      
+      status: 'normal'    
+    },
     label_2:{
       prevLabel: 'BACK',
       nextLabel: 'NEXT',
@@ -173,7 +176,8 @@ Stepper组件默认填充父容器，通过border和background-color设置边框
   height: 300px;
 }
 .stepperClass{
-  border:1px solid silver ;  background-color: white;
+  border:1px solid silver ;
+  background-color: white;
 }
 text{
   width: 100%;

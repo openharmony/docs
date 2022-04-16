@@ -1,7 +1,7 @@
-# Geolocation - New
+# Geolocation
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **Note：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -12,26 +12,23 @@
 import geolocation from '@ohos.geolocation';
 ```
 
-
-## Required Permissions
-
-ohos.permission.LOCATION
-
-ohos.permission.LOCATION_IN_BACKGROUND
-
-
 ## geolocation.on('locationChange')
 
 on(type: 'locationChange', request: LocationRequest, callback: Callback&lt;Location&gt;) : void
 
 Registers a listener for location changes with a location request initiated.
 
+**Permission required**: ohos.permission.LOCATION
+
+**System capability**: SystemCapability.Location.Location.Core
+
 - Parameters
-    | Name | Type | Mandatory | Description | 
+    | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | type | string | Yes | Event&nbsp;type.&nbsp;The&nbsp;value&nbsp;**locationChange**&nbsp;indicates&nbsp;a&nbsp;location&nbsp;change&nbsp;event. | 
-  | request | LocationRequest | Yes | Location&nbsp;request. | 
-  | callback | Callback&lt;[Location](#location)&gt; | Yes | Callback&nbsp;used&nbsp;to&nbsp;return&nbsp;the&nbsp;location&nbsp;change&nbsp;event. | 
+  | type | string | Yes| Event type. The value **locationChange** indicates a location change event.|
+  | request | LocationRequest | Yes| Location request.|
+  | callback | Callback&lt;[Location](#location)&gt; | Yes| Callback used to return the location change event.|
+
 
 - Example
   
@@ -50,11 +47,16 @@ off(type: 'locationChange', callback?: Callback&lt;Location&gt;) : void
 
 Unregisters the listener for location changes with the corresponding location request deleted.
 
+**Permission required**: ohos.permission.LOCATION
+
+**System capability**: SystemCapability.Location.Location.Core
+
 - Parameters
-    | Name | Type | Mandatory | Description | 
+    | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | type | string | Yes | Event&nbsp;type.&nbsp;The&nbsp;value&nbsp;**locationChange**&nbsp;indicates&nbsp;a&nbsp;location&nbsp;change&nbsp;event. | 
-  | callback | Callback&lt;[Location](#location)&gt; | No | Callback&nbsp;used&nbsp;to&nbsp;return&nbsp;the&nbsp;location&nbsp;change&nbsp;event. | 
+  | type | string | Yes| Event type. The value **locationChange** indicates a location change event.|
+  | callback | Callback&lt;[Location](#location)&gt; | No| Callback used to return the location change event.|
+
 
 - Example
   
@@ -74,11 +76,16 @@ on(type: 'locationServiceState', callback: Callback&lt;boolean&gt;) : void
 
 Registers a listener for location service status change events.
 
+**Permission required**: ohos.permission.LOCATION
+
+**System capability**: SystemCapability.Location.Location.Core
+
 - Parameters
-    | Name | Type | Mandatory | Description | 
+    | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | type | string | Yes | Event&nbsp;type.&nbsp;The&nbsp;value&nbsp;**locationServiceState**&nbsp;indicates&nbsp;a&nbsp;location&nbsp;service&nbsp;status&nbsp;change&nbsp;event. | 
-  | callback | Callback&lt;boolean&gt; | Yes | Callback&nbsp;used&nbsp;to&nbsp;return&nbsp;the&nbsp;location&nbsp;service&nbsp;status&nbsp;change&nbsp;event. | 
+  | type | string | Yes| Event type. The value **locationServiceState** indicates a location service status change event.|
+  | callback | Callback&lt;boolean&gt; | Yes| Callback used to return the location service status change event.|
+
 
 - Example
   
@@ -96,11 +103,16 @@ off(type: 'locationServiceState', callback?: Callback&lt;boolean&gt;) : void;
 
 Unregisters the listener for location service status change events.
 
+**Permission required**: ohos.permission.LOCATION
+
+**System capability**: SystemCapability.Location.Location.Core
+
 - Parameters
-    | Name | Type | Mandatory | Description | 
+    | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | type | string | Yes | Event&nbsp;type.&nbsp;The&nbsp;value&nbsp;**locationServiceState**&nbsp;indicates&nbsp;a&nbsp;location&nbsp;service&nbsp;status&nbsp;change&nbsp;event. | 
-  | callback | Callback&lt;boolean&gt; | No | Callback&nbsp;used&nbsp;to&nbsp;return&nbsp;the&nbsp;location&nbsp;service&nbsp;status&nbsp;change&nbsp;event. | 
+  | type | string | Yes| Event type. The value **locationServiceState** indicates a location service status change event.|
+  | callback | Callback&lt;boolean&gt; | No| Callback used to return the location service status change event.|
+
 
 - Example
   
@@ -113,18 +125,23 @@ Unregisters the listener for location service status change events.
   ```
 
 
-## geolocation.on('cachedGnssLocationsReporting')
+## geolocation.on('cachedGnssLocationsReporting')<sup>8+</sup>
 
 on(type: 'cachedGnssLocationsReporting', request: CachedGnssLocationsRequest, callback: Callback&lt;Array&lt;Location&gt;&gt;) : void;
 
 Registers a listener for cached GNSS location reports.
 
+**Permission required**: ohos.permission.LOCATION
+
+**System capability**: SystemCapability.Location.Location.Gnss
+
 - Parameters
-    | Name | Type | Mandatory | Description | 
+    | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | type | string | Yes | Event&nbsp;type.&nbsp;The&nbsp;value&nbsp;**cachedGnssLocationsReporting**&nbsp;indicates&nbsp;reporting&nbsp;of&nbsp;cached&nbsp;GNSS&nbsp;locations. | 
-  | request | CachedGnssLocationsRequest | Yes | Request&nbsp;for&nbsp;reporting&nbsp;cached&nbsp;GNSS&nbsp;location. | 
-  | callback | Callback&lt;boolean&gt; | Yes | Callback&nbsp;used&nbsp;to&nbsp;return&nbsp;cached&nbsp;GNSS&nbsp;locations. | 
+  | type | string | Yes| Event type. The value **cachedGnssLocationsReporting** indicates reporting of cached GNSS locations.|
+  | request | CachedGnssLocationsRequest | Yes| Request for reporting cached GNSS location.|
+  | callback | Callback&lt;boolean&gt; | Yes| Callback used to return cached GNSS locations.|
+
 
 - Example
   
@@ -137,17 +154,22 @@ Registers a listener for cached GNSS location reports.
   ```
 
 
-## geolocation.off('cachedGnssLocationsReporting')
+## geolocation.off('cachedGnssLocationsReporting')<sup>8+</sup>
 
 off(type: 'cachedGnssLocationsReporting', callback?: Callback&lt;Array&lt;Location&gt;&gt;) : void;
 
 Unregisters the listener for cached GNSS location reports.
 
+**Permission required**: ohos.permission.LOCATION
+
+**System capability**: SystemCapability.Location.Location.Gnss
+
 - Parameters
-    | Name | Type | Mandatory | Description | 
+    | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | type | string | Yes | Event&nbsp;type.&nbsp;The&nbsp;value&nbsp;**cachedGnssLocationsReporting**&nbsp;indicates&nbsp;reporting&nbsp;of&nbsp;cached&nbsp;GNSS&nbsp;locations. | 
-  | callback | Callback&lt;boolean&gt; | No | Callback&nbsp;used&nbsp;to&nbsp;return&nbsp;cached&nbsp;GNSS&nbsp;locations. | 
+  | type | string | Yes| Event type. The value **cachedGnssLocationsReporting** indicates reporting of cached GNSS locations.|
+  | callback | Callback&lt;boolean&gt; | No| Callback used to return cached GNSS locations.|
+
 
 - Example
   
@@ -161,17 +183,22 @@ Unregisters the listener for cached GNSS location reports.
   ```
 
 
-## geolocation.on('gnssStatusChange')
+## geolocation.on('gnssStatusChange')<sup>8+</sup>
 
 on(type: 'gnssStatusChange', callback: Callback&lt;SatelliteStatusInfo&gt;) : void;
 
 Registers a listener for GNSS satellite status change events.
 
+**Permission required**: ohos.permission.LOCATION
+
+**System capability**: SystemCapability.Location.Location.Gnss
+
 - Parameters
-    | Name | Type | Mandatory | Description | 
+    | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | type | string | Yes | Event&nbsp;type.&nbsp;The&nbsp;value&nbsp;**gnssStatusChange**&nbsp;indicates&nbsp;a&nbsp;GNSS&nbsp;satellite&nbsp;status&nbsp;change. | 
-  | callback | Callback&lt;SatelliteStatusInfo&gt; | Yes | Callback&nbsp;used&nbsp;to&nbsp;return&nbsp;GNSS&nbsp;satellite&nbsp;status&nbsp;changes. | 
+  | type | string | Yes| Event type. The value **gnssStatusChange** indicates a GNSS satellite status change.|
+  | callback | Callback&lt;SatelliteStatusInfo&gt; | Yes| Callback used to return GNSS satellite status changes.|
+
 
 - Example
   
@@ -183,17 +210,21 @@ Registers a listener for GNSS satellite status change events.
   ```
 
 
-## geolocation.off('gnssStatusChange')
+## geolocation.off('gnssStatusChange')<sup>8+</sup>
 
 off(type: 'gnssStatusChange', callback?: Callback&lt;SatelliteStatusInfo&gt;) : void;
 
 Unregisters the listener for GNSS satellite status change events.
 
+**Permission required**: ohos.permission.LOCATION
+
+**System capability**: SystemCapability.Location.Location.Gnss
+
 - Parameters
-    | Name | Type | Mandatory | Description | 
+    | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | type | string | Yes | Event&nbsp;type.&nbsp;The&nbsp;value&nbsp;**gnssStatusChange**&nbsp;indicates&nbsp;a&nbsp;GNSS&nbsp;satellite&nbsp;status&nbsp;change. | 
-  | callback | Callback&lt;SatelliteStatusInfo&gt; | No | Callback&nbsp;used&nbsp;to&nbsp;return&nbsp;GNSS&nbsp;satellite&nbsp;status&nbsp;changes. | 
+  | type | string | Yes| Event type. The value **gnssStatusChange** indicates a GNSS satellite status change.|
+  | callback | Callback&lt;SatelliteStatusInfo&gt; | No| Callback used to return GNSS satellite status changes.|
 
 - Example
   
@@ -206,17 +237,22 @@ Unregisters the listener for GNSS satellite status change events.
   ```
 
 
-## geolocation.on('nmeaMessageChange')
+## geolocation.on('nmeaMessageChange')<sup>8+</sup>
 
 on(type: 'nmeaMessageChange', callback: Callback&lt;string&gt;) : void;
 
 Registers a listener for GNSS NMEA message change events.
 
+**Permission required**: ohos.permission.LOCATION
+
+**System capability**: SystemCapability.Location.Location.Gnss
+
 - Parameters
-    | Name | Type | Mandatory | Description | 
+    | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | type | string | Yes | Event&nbsp;type.&nbsp;The&nbsp;value&nbsp;**nmeaMessageChange**&nbsp;indicates&nbsp;a&nbsp;GNSS&nbsp;NMEA&nbsp;message&nbsp;change. | 
-  | callback | Callback&lt;string&gt; | Yes | Callback&nbsp;used&nbsp;to&nbsp;return&nbsp;GNSS&nbsp;NMEA&nbsp;message&nbsp;changes. | 
+  | type | string | Yes| Event type. The value **nmeaMessageChange** indicates a GNSS NMEA message change.|
+  | callback | Callback&lt;string&gt; | Yes| Callback used to return GNSS NMEA message changes.|
+
 
 - Example
   
@@ -228,17 +264,22 @@ Registers a listener for GNSS NMEA message change events.
   ```
 
 
-## geolocation.off('nmeaMessageChange')
+## geolocation.off('nmeaMessageChange')<sup>8+</sup>
 
 off(type: 'nmeaMessageChange', callback?: Callback&lt;string&gt;) : void;
 
 Unregisters the listener for GNSS NMEA message change events.
 
+**Permission required**: ohos.permission.LOCATION
+
+**System capability**: SystemCapability.Location.Location.Gnss
+
 - Parameters
-    | Name | Type | Mandatory | Description | 
+    | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | type | string | Yes | Event&nbsp;type.&nbsp;The&nbsp;value&nbsp;**nmeaMessageChange**&nbsp;indicates&nbsp;a&nbsp;GNSS&nbsp;NMEA&nbsp;message&nbsp;change. | 
-  | callback | Callback&lt;string&gt; | No | Callback&nbsp;used&nbsp;to&nbsp;return&nbsp;GNSS&nbsp;NMEA&nbsp;message&nbsp;changes. | 
+  | type | string | Yes| Event type. The value **nmeaMessageChange** indicates a GNSS NMEA message change.|
+  | callback | Callback&lt;string&gt; | No| Callback used to return GNSS NMEA message changes.|
+
 
 - Example
   
@@ -251,18 +292,23 @@ Unregisters the listener for GNSS NMEA message change events.
   ```
 
 
-## geolocation.on('fenceStatusChange')
+## geolocation.on('fenceStatusChange')<sup>8+</sup>
 
 on(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent) : void;
 
 Registers a listener for status change events of the specified geofence.
 
+**Permission required**: ohos.permission.LOCATION
+
+**System capability**: SystemCapability.Location.Location.Geofence
+
 - Parameters
-    | Name | Type | Mandatory | Description | 
+    | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | type | string | Yes | Event&nbsp;type.&nbsp;The&nbsp;value&nbsp;**fenceStatusChange**&nbsp;indicates&nbsp;a&nbsp;geofence&nbsp;status&nbsp;change. | 
-  | request | GeofenceRequest | Yes | Geofencing&nbsp;request. | 
-  | want | WantAgent | Yes | **WantAgent**&nbsp;used&nbsp;to&nbsp;return&nbsp;geofence&nbsp;(entrance&nbsp;or&nbsp;exit)&nbsp;events. | 
+  | type | string | Yes| Event type. The value **fenceStatusChange** indicates a geofence status change.|
+  | request | GeofenceRequest | Yes| Geofencing request.|
+  | want | WantAgent | Yes| **WantAgent** used to return geofence (entrance or exit) events.|
+
 
 - Example
   
@@ -313,18 +359,22 @@ Registers a listener for status change events of the specified geofence.
   ```
 
 
-## geolocation.off('fenceStatusChange')
+## geolocation.off('fenceStatusChange')<sup>8+</sup>
 
 off(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent) : void;
 
 Unregisters the listener for status change events of the specified geofence.
 
+**Permission required**: ohos.permission.LOCATION
+
+**System capability**: SystemCapability.Location.Location.Geofence
+
 - Parameters
-    | Name | Type | Mandatory | Description | 
+    | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | type | string | Yes | Event&nbsp;type.&nbsp;The&nbsp;value&nbsp;**fenceStatusChange**&nbsp;indicates&nbsp;a&nbsp;geofence&nbsp;status&nbsp;change. | 
-  | request | GeofenceRequest | Yes | Geofencing&nbsp;request. | 
-  | want | WantAgent | Yes | **WantAgent**&nbsp;used&nbsp;to&nbsp;return&nbsp;geofence&nbsp;(entrance&nbsp;or&nbsp;exit)&nbsp;events. | 
+  | type | string | Yes| Event type. The value **fenceStatusChange** indicates a geofence status change.|
+  | request | GeofenceRequest | Yes| Geofencing request.|
+  | want | WantAgent | Yes| **WantAgent** used to return geofence (entrance or exit) events.|
 
 - Example
   
@@ -381,14 +431,17 @@ Unregisters the listener for status change events of the specified geofence.
 getCurrentLocation(request: CurrentLocationRequest, callback: AsyncCallback&lt;Location&gt;) : void
 
 
-Obtains the current location. This method uses an asynchronous callback to return the result.
+Obtains the current location. This API uses an asynchronous callback to return the result. 
 
+**Permission required**: ohos.permission.LOCATION
+
+**System capability**: SystemCapability.Location.Location.Core
 
 - Parameters
-    | Name | Type | Mandatory | Description | 
+    | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | request | [CurrentLocationRequest](#currentlocationrequest) | No | Location&nbsp;request. | 
-  | callback | AsyncCallback&lt;[Location](#location)&gt; | Yes | Callback&nbsp;used&nbsp;to&nbsp;return&nbsp;the&nbsp;current&nbsp;location. | 
+  | request | [CurrentLocationRequest](#currentlocationrequest) | No| Location request.|
+  | callback | AsyncCallback&lt;[Location](#location)&gt; | Yes| Callback used to return the current location.|
 
 - Example
   
@@ -407,18 +460,22 @@ Obtains the current location. This method uses an asynchronous callback to retur
 getCurrentLocation(request?: CurrentLocationRequest) : Promise&lt;Location&gt;
 
 
-Obtains the current location. This method uses a promise to return the result.
+Obtains the current location. This API uses a promise to return the result. 
 
+**Permission required**: ohos.permission.LOCATION
+
+**System capability**: SystemCapability.Location.Location.Core
 
 - Parameters
-    | Name | Type | Mandatory | Description | 
+    | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | request | [CurrentLocationRequest](#currentlocationrequest) | No | Location&nbsp;request. | 
+  | request | [CurrentLocationRequest](#currentlocationrequest) | No| Location request.|
 
-- Return values
-    | Name | Description | 
+- Return value
+    | Name| Description|
   | -------- | -------- |
-  | Promise&lt;[Location](#location)&gt; | Promise&nbsp;used&nbsp;to&nbsp;return&nbsp;the&nbsp;current&nbsp;location. | 
+  | Promise&lt;[Location](#location)&gt; | Promise used to return the current location.|
+
 
 - Example
   
@@ -434,12 +491,17 @@ Obtains the current location. This method uses a promise to return the result.
 
 getLastLocation(callback: AsyncCallback&lt;Location&gt;) : void
 
-Obtains the previous location. This method uses an asynchronous callback to return the result.
+Obtains the previous location. This API uses an asynchronous callback to return the result.
+
+**Permission required**: ohos.permission.LOCATION
+
+**System capability**: SystemCapability.Location.Location.Core
 
 - Parameters
-    | Name | Type | Mandatory | Description | 
+    | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[Location](#location)&gt; | Yes | Callback&nbsp;used&nbsp;to&nbsp;return&nbsp;the&nbsp;previous&nbsp;location. | 
+  | callback | AsyncCallback&lt;[Location](#location)&gt; | Yes| Callback used to return the previous location.|
+
 
 - Example
   
@@ -454,12 +516,17 @@ Obtains the previous location. This method uses an asynchronous callback to retu
 
 getLastLocation() : Promise&lt;Location&gt;
 
-Obtains the previous location. This method uses a promise to return the result.
+Obtains the previous location. This API uses a promise to return the result. 
 
-- Return values
-    | Name | Description | 
+**Permission required**: ohos.permission.LOCATION
+
+**System capability**: SystemCapability.Location.Location.Core
+
+- Return value
+    | Name| Description|
   | -------- | -------- |
-  | Promise&lt;[Location](#location)&gt; | Promise&nbsp;used&nbsp;to&nbsp;return&nbsp;the&nbsp;previous&nbsp;location. | 
+  | Promise&lt;[Location](#location)&gt; | Promise used to return the previous location.|
+
 
 - Example
   
@@ -475,13 +542,17 @@ Obtains the previous location. This method uses a promise to return the result.
 isLocationEnabled(callback: AsyncCallback&lt;boolean&gt;) : void
 
 
-Checks whether the location service is enabled. This method uses an asynchronous callback to return the result.
+Checks whether the location service is enabled. This API uses an asynchronous callback to return the result.
 
+**Permission required**: ohos.permission.LOCATION
+
+**System capability**: SystemCapability.Location.Location.Core
 
 - Parameters
-    | Name | Type | Mandatory | Description | 
+    | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | Yes | Callback&nbsp;used&nbsp;to&nbsp;return&nbsp;the&nbsp;location&nbsp;service&nbsp;status. | 
+  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the location service status.|
+
 
 - Example
   
@@ -496,12 +567,16 @@ Checks whether the location service is enabled. This method uses an asynchronous
 
 isLocationEnabled() : Promise&lt;boolean&gt;
 
-Checks whether the location service is enabled. This method uses a promise to return the result.
+Checks whether the location service is enabled. This API uses a promise to return the result.
 
-- Return values
-    | Name | Description | 
+**Permission required**: ohos.permission.LOCATION
+
+**System capability**: SystemCapability.Location.Location.Core
+
+- Return value
+    | Name| Description|
   | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise&nbsp;used&nbsp;to&nbsp;return&nbsp;the&nbsp;location&nbsp;service&nbsp;status. | 
+  | Promise&lt;boolean&gt; | Promise used to return the location service status.|
 
 - Example
   
@@ -517,13 +592,17 @@ Checks whether the location service is enabled. This method uses a promise to re
 requestEnableLocation(callback: AsyncCallback&lt;boolean&gt;) : void
 
 
-Requests to enable the location service. This method uses an asynchronous callback to return the result.
+Requests to enable the location service. This API uses an asynchronous callback to return the result.
 
+**Permission required**: ohos.permission.LOCATION
+
+**System capability**: SystemCapability.Location.Location.Core
 
 - Parameters
-    | Name | Type | Mandatory | Description | 
+    | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | Yes | Callback&nbsp;used&nbsp;to&nbsp;return&nbsp;the&nbsp;location&nbsp;service&nbsp;status. | 
+  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the location service status.|
+
 
 - Example
   
@@ -538,12 +617,17 @@ Requests to enable the location service. This method uses an asynchronous callba
 
 requestEnableLocation() : Promise&lt;boolean&gt;
 
-Requests to enable the location service. This method uses a promise to return the result.
+Requests to enable the location service. This API uses a promise to return the result.
 
-- Return values
-    | Name | Description | 
+**Permission required**: ohos.permission.LOCATION
+
+**System capability**: SystemCapability.Location.Location.Core
+
+- Return value
+    | Name| Description|
   | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise&nbsp;used&nbsp;to&nbsp;return&nbsp;the&nbsp;location&nbsp;service&nbsp;status. | 
+  | Promise&lt;boolean&gt; | Promise used to return the location service status.|
+
 
 - Example
   
@@ -554,16 +638,127 @@ Requests to enable the location service. This method uses a promise to return th
   ```
 
 
+## geolocation.enableLocation
+
+enableLocation(callback: AsyncCallback&lt;boolean&gt;) : void;
+
+Enables the location service. This API uses an asynchronous callback to return the result.
+
+This is a system API and cannot be called by third-party applications.
+
+**Permission required**: ohos.permission.LOCATION
+
+**System capability**: SystemCapability.Location.Location.Core
+
+- Parameters
+    | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the location service status.|
+
+
+- Example
+  
+  ```
+  geolocation.enableLocation((err, data) => {
+      console.log('enableLocation: ' + err + " data: " + data);
+  });
+  ```
+
+
+## geolocation.enableLocation
+
+enableLocation() : Promise&lt;boolean&gt;
+
+Enables the location service. This API uses a promise to return the result.
+
+This is a system API and cannot be called by third-party applications.
+
+**Permission required**: ohos.permission.LOCATION
+
+**System capability**: SystemCapability.Location.Location.Core
+
+- Return value
+    | Name| Description|
+  | -------- | -------- |
+  | Promise&lt;boolean&gt; | Promise used to return the location service status.|
+
+
+- Example
+  
+  ```
+  geolocation.enableLocation().then((result) => {
+      console.log('promise, enableLocation: ' + result);
+  });
+  ```
+
+## geolocation.disableLocation
+
+disableLocation(callback: AsyncCallback&lt;boolean&gt;) : void;
+
+Enables the location service. This API uses an asynchronous callback to return the result.
+
+This is a system API and cannot be called by third-party applications.
+
+**Permission required**: ohos.permission.LOCATION
+
+**System capability**: SystemCapability.Location.Location.Core
+
+- Parameters
+    | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the location service status.|
+
+
+- Example
+  
+  ```
+  geolocation.disableLocation((err, data) => {
+      console.log('disableLocation: ' + err + " data: " + data);
+  });
+  ```
+
+
+## geolocation.disableLocation
+
+disableLocation() : Promise&lt;boolean&gt;
+
+Enables the location service. This API uses a promise to return the result.
+
+This is a system API and cannot be called by third-party applications.
+
+**Permission required**: ohos.permission.LOCATION
+
+**System capability**: SystemCapability.Location.Location.Core
+
+- Return value
+    | Name| Description|
+  | -------- | -------- |
+  | Promise&lt;boolean&gt; | Promise used to return the location service status.|
+
+
+- Example
+  
+  ```
+  geolocation.disableLocation().then((result) => {
+      console.log('promise, disableLocation: ' + result);
+  });
+  ```
+
 ## geolocation.isGeoServiceAvailable
 
 isGeoServiceAvailable(callback: AsyncCallback&lt;boolean&gt;) : void
 
-Checks whether the (reverse) geocoding service is available. This method uses an asynchronous callback to return the result.
+Checks whether the (reverse) geocoding service is available. This API uses an asynchronous callback to return the result.
+
+**Permission required**: ohos.permission.LOCATION
+
+**System capability**: SystemCapability.Location.Location.Geocoder
 
 - Parameters
-    | Name | Type | Mandatory | Description | 
+    | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | Yes | Callback&nbsp;used&nbsp;to&nbsp;return&nbsp;the&nbsp;(reverse)&nbsp;geocoding&nbsp;service&nbsp;status. | 
+  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the (reverse) geocoding service status.|
+
 
 - Example
   
@@ -578,12 +773,17 @@ Checks whether the (reverse) geocoding service is available. This method uses an
 
 isGeoServiceAvailable() : Promise&lt;boolean&gt;
 
-Checks whether the (reverse) geocoding service is available. This method uses a promise to return the result.
+Checks whether the (reverse) geocoding service is available. This API uses a promise to return the result.
 
-- Return values
-    | Name | Description | 
+**Permission required**: ohos.permission.LOCATION
+
+**System capability**: SystemCapability.Location.Location.Geocoder
+
+- Return value
+    | Name| Description|
   | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise&nbsp;used&nbsp;to&nbsp;return&nbsp;the&nbsp;(reverse)&nbsp;geocoding&nbsp;service&nbsp;status. | 
+  | Promise&lt;boolean&gt; | Promise used to return the (reverse) geocoding service status.|
+
 
 - Example
   
@@ -599,13 +799,17 @@ Checks whether the (reverse) geocoding service is available. This method uses a 
 
 getAddressesFromLocation(request: ReverseGeoCodeRequest, callback: AsyncCallback&lt;Array&lt;GeoAddress&gt;&gt;) : void
 
-Converts coordinates into geographic description through reverse geocoding. This method uses an asynchronous callback to return the result.
+Converts coordinates into geographic description through reverse geocoding. This API uses an asynchronous callback to return the result. 
+
+**Permission required**: ohos.permission.LOCATION
+
+**System capability**: SystemCapability.Location.Location.Geocoder
 
 - Parameters
-    | Name | Type | Mandatory | Description | 
+    | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | request | [ReverseGeoCodeRequest](#reversegeocoderequest) | Yes | Reverse&nbsp;geocoding&nbsp;request. | 
-  | callback | AsyncCallback&lt;Array&lt;[GeoAddress](#geoaddress)&gt;&gt; | Yes | Callback&nbsp;used&nbsp;to&nbsp;return&nbsp;the&nbsp;reverse&nbsp;geocoding&nbsp;result. | 
+  | request | [ReverseGeoCodeRequest](#reversegeocoderequest) | Yes| Reverse geocoding request.|
+  | callback | AsyncCallback&lt;Array&lt;[GeoAddress](#geoaddress)&gt;&gt; | Yes| Callback used to return the reverse geocoding result.|
 
 - Example
   
@@ -621,17 +825,21 @@ Converts coordinates into geographic description through reverse geocoding. This
 
 getAddressesFromLocation(request: ReverseGeoCodeRequest) : Promise&lt;Array&lt;GeoAddress&gt;&gt;;
 
-Converts coordinates into geographic description through reverse geocoding. This method uses a promise to return the result.
+Converts coordinates into geographic description through reverse geocoding. This API uses a promise to return the result. 
+
+**Permission required**: ohos.permission.LOCATION
+
+**System capability**: SystemCapability.Location.Location.Geocoder
 
 - Parameters
-    | Name | Type | Mandatory | Description | 
+    | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | request | [ReverseGeoCodeRequest](#reversegeocoderequest) | Yes | Reverse&nbsp;geocoding&nbsp;request. | 
+  | request | [ReverseGeoCodeRequest](#reversegeocoderequest) | Yes| Reverse geocoding request.|
 
-- Return values
-    | Name | Description | 
+- Return value
+    | Name| Description|
   | -------- | -------- |
-  | Promise&lt;Array&lt;[GeoAddress](#geoaddress)&gt;&gt; | Promise&nbsp;used&nbsp;to&nbsp;return&nbsp;the&nbsp;reverse&nbsp;geocoding&nbsp;result. | 
+  | Promise&lt;Array&lt;[GeoAddress](#geoaddress)&gt;&gt; | Promise used to return the reverse geocoding result.|
 
 - Example
   
@@ -647,13 +855,18 @@ Converts coordinates into geographic description through reverse geocoding. This
 
 getAddressesFromLocationName(request: GeoCodeRequest, callback: AsyncCallback&lt;Array&lt;GeoAddress&gt;&gt;) : void
 
-Converts geographic description into coordinates through geocoding. This method uses an asynchronous callback to return the result.
+Converts geographic description into coordinates through geocoding. This API uses an asynchronous callback to return the result. 
+
+**Permission required**: ohos.permission.LOCATION
+
+**System capability**: SystemCapability.Location.Location.Geocoder
 
 - Parameters
-    | Name | Type | Mandatory | Description | 
+    | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | request | [GeoCodeRequest](#geocoderequest) | Yes | Geocoding&nbsp;request. | 
-  | callback | AsyncCallback&lt;Array&lt;[GeoAddress](#geoaddress)&gt;&gt; | Yes | Callback&nbsp;used&nbsp;to&nbsp;return&nbsp;the&nbsp;geocoding&nbsp;result. | 
+  | request | [GeoCodeRequest](#geocoderequest) | Yes| Geocoding request.|
+  | callback | AsyncCallback&lt;Array&lt;[GeoAddress](#geoaddress)&gt;&gt; | Yes| Callback used to return the geocoding result.|
+
 
 - Example
   
@@ -669,17 +882,21 @@ Converts geographic description into coordinates through geocoding. This method 
 
 getAddressesFromLocationName(request: GeoCodeRequest) : Promise&lt;Array&lt;GeoAddress&gt;&gt;
 
-Converts geographic description into coordinates through geocoding. This method uses a promise to return the result.
+Converts geographic description into coordinates through geocoding. This API uses a promise to return the result. 
+
+**Permission required**: ohos.permission.LOCATION
+
+**System capability**: SystemCapability.Location.Location.Geocoder
 
 - Parameters
-    | Name | Type | Mandatory | Description | 
+    | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | request | [GeoCodeRequest](#geocoderequest) | Yes | Geocoding&nbsp;request. | 
+  | request | [GeoCodeRequest](#geocoderequest) | Yes| Geocoding request.|
 
-- Return values
-    | Name | Description | 
+- Return value
+    | Name| Description|
   | -------- | -------- |
-  | Promise&lt;Array&lt;[GeoAddress](#geoaddress)&gt;&gt; | Promise&nbsp;used&nbsp;to&nbsp;return&nbsp;the&nbsp;geocoding&nbsp;result. | 
+  | Promise&lt;Array&lt;[GeoAddress](#geoaddress)&gt;&gt; | Callback used to return the geocoding result.|
 
 - Example
   
@@ -692,16 +909,20 @@ Converts geographic description into coordinates through geocoding. This method 
 
 
 
-## geolocation.getCachedGnssLocationsSize
+## geolocation.getCachedGnssLocationsSize<sup>8+</sup>
 
 getCachedGnssLocationsSize(callback: AsyncCallback&lt;number&gt;) : void;
 
-Obtains the number of cached GNSS locations.
+Obtains the number of cached GNSS locations. 
+
+**Permission required**: ohos.permission.LOCATION
+
+**System capability**: SystemCapability.Location.Location.Gnss
 
 - Parameters
-    | Name | Type | Mandatory | Description | 
+    | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;number&gt; | Yes | Callback&nbsp;used&nbsp;to&nbsp;return&nbsp;the&nbsp;number&nbsp;of&nbsp;cached&nbsp;GNSS&nbsp;locations. | 
+  | callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the number of cached GNSS locations. |
 
 - Example
   
@@ -712,16 +933,20 @@ Obtains the number of cached GNSS locations.
   ```
 
 
-## geolocation.getCachedGnssLocationsSize
+## geolocation.getCachedGnssLocationsSize<sup>8+</sup>
 
 getCachedGnssLocationsSize() : Promise&lt;number&gt;;
 
-Obtains the number of cached GNSS locations.
+Obtains the number of cached GNSS locations. 
 
-- Return values
-    | Name | Description | 
+**Permission required**: ohos.permission.LOCATION
+
+**System capability**: SystemCapability.Location.Location.Gnss
+
+- Return value
+    | Name| Description|
   | -------- | -------- |
-  | Promise&lt;number&gt; | Promise&nbsp;used&nbsp;to&nbsp;return&nbsp;the&nbsp;number&nbsp;of&nbsp;cached&nbsp;GNSS&nbsp;locations. | 
+  | Promise&lt;number&gt; | Promise used to return the number of cached GNSS locations.|
 
 - Example
   
@@ -732,16 +957,20 @@ Obtains the number of cached GNSS locations.
   ```
 
 
-## geolocation.flushCachedGnssLocations
+## geolocation.flushCachedGnssLocations<sup>8+</sup>
 
 flushCachedGnssLocations(callback: AsyncCallback&lt;boolean&gt;) : void;
 
-Obtains all cached GNSS locations and clears the GNSS cache queue.
+Obtains all cached GNSS locations and clears the GNSS cache queue. 
+
+**Permission required**: ohos.permission.LOCATION
+
+**System capability**: SystemCapability.Location.Location.Gnss
 
 - Parameters
-    | Name | Type | Mandatory | Description | 
+    | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | Yes | Callback&nbsp;used&nbsp;to&nbsp;return&nbsp;the&nbsp;operation&nbsp;result. | 
+  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the operation result.|
 
 - Example
   
@@ -752,16 +981,20 @@ Obtains all cached GNSS locations and clears the GNSS cache queue.
   ```
 
 
-## geolocation.flushCachedGnssLocations
+## geolocation.flushCachedGnssLocations<sup>8+</sup>
 
 flushCachedGnssLocations() : Promise&lt;boolean&gt;;
 
-Obtains all cached GNSS locations and clears the GNSS cache queue.
+Obtains all cached GNSS locations and clears the GNSS cache queue. 
 
-- Return values
-    | Name | Description | 
+**Permission required**: ohos.permission.LOCATION
+
+**System capability**: SystemCapability.Location.Location.Gnss
+
+- Return value
+    | Name| Description|
   | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise&nbsp;used&nbsp;to&nbsp;return&nbsp;the&nbsp;operation&nbsp;result. | 
+  | Promise&lt;boolean&gt; | Promise used to return the operation result.|
 
 - Example
   
@@ -772,17 +1005,21 @@ Obtains all cached GNSS locations and clears the GNSS cache queue.
   ```
 
 
-## geolocation.sendCommand
+## geolocation.sendCommand<sup>8+</sup>
 
 sendCommand(command: LocationCommand, callback: AsyncCallback&lt;boolean&gt;) : void;
 
-Sends an extended command to the location subsystem. This function can only be called by system applications.
+Sends an extended command to the location subsystem. This API can only be called by system applications.
+
+**Permission required**: ohos.permission.LOCATION
+
+**System capability**: SystemCapability.Location.Location.Core
 
 - Parameters
-    | Name | Type | Mandatory | Description | 
+    | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | command | LocationCommand | Yes | Extended&nbsp;command&nbsp;(string)&nbsp;to&nbsp;be&nbsp;sent. | 
-  | callback | AsyncCallback&lt;boolean&gt; | Yes | Callback&nbsp;used&nbsp;to&nbsp;return&nbsp;the&nbsp;operation&nbsp;result. | 
+  | command | LocationCommand | Yes| Extended command (string) to be sent.|
+  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the operation result.|
 
 - Example
   
@@ -794,21 +1031,25 @@ Sends an extended command to the location subsystem. This function can only be c
   ```
 
 
-## geolocation.sendCommand
+## geolocation.sendCommand<sup>8+</sup>
 
 sendCommand(command: LocationCommand) : Promise&lt;boolean&gt;;
 
-Sends extended commands to the location subsystem. This function can only be called by system applications.
+Sends an extended command to the location subsystem. This API can only be called by system applications.
+
+**Permission required**: ohos.permission.LOCATION
+
+**System capability**: SystemCapability.Location.Location.Core
 
 - Parameters
-    | Name | Type | Mandatory | Description | 
+    | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | command | LocationCommand | Yes | Extended&nbsp;command&nbsp;(string)&nbsp;to&nbsp;be&nbsp;sent. | 
+  | command | LocationCommand | Yes| Extended command (string) to be sent.|
 
-- Return values
-    | Name | Description | 
+- Return value
+    | Name| Description|
   | -------- | -------- |
-  | Promise&lt;boolean&gt; | Callback&nbsp;used&nbsp;to&nbsp;return&nbsp;the&nbsp;operation&nbsp;result. | 
+  | Promise&lt;boolean&gt; | Callback used to return the operation result.|
 
 - Example
   
@@ -820,17 +1061,23 @@ Sends extended commands to the location subsystem. This function can only be cal
   ```
 
 
-## geolocation.isLocationPrivacyConfirmed
+## geolocation.isLocationPrivacyConfirmed<sup>8+</sup>
 
 isLocationPrivacyConfirmed(type : LocationPrivacyType, callback: AsyncCallback&lt;boolean&gt;) : void;
 
-Checks whether a user agrees with the privacy statement of the location service. This function can only be called by system applications.
+Checks whether a user agrees with the privacy statement of the location service. This API can only be called by system applications.
+
+This is a system API and cannot be called by third-party applications.
+
+**Permission required**: ohos.permission.LOCATION
+
+**System capability**: SystemCapability.Location.Location.Core
 
 - Parameters
-    | Name | Type | Mandatory | Description | 
+    | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | type | LocationPrivacyType | Yes | Privacy&nbsp;statement&nbsp;type,&nbsp;for&nbsp;example,&nbsp;privacy&nbsp;statement&nbsp;displayed&nbsp;in&nbsp;the&nbsp;startup&nbsp;wizard&nbsp;or&nbsp;privacy&nbsp;statement&nbsp;displayed&nbsp;when&nbsp;enabling&nbsp;the&nbsp;location&nbsp;service. | 
-  | callback | AsyncCallback&lt;boolean&gt; | Yes | Callback&nbsp;used&nbsp;to&nbsp;return&nbsp;the&nbsp;result,&nbsp;which&nbsp;indicates&nbsp;whether&nbsp;the&nbsp;user&nbsp;agrees&nbsp;with&nbsp;the&nbsp;privacy&nbsp;statement. | 
+  | type | LocationPrivacyType | Yes| Privacy statement type, for example, privacy statement displayed in the startup wizard or privacy statement displayed when enabling the location service.|
+  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result, which indicates whether the user agrees with the privacy statement.|
 
 - Example
   
@@ -841,21 +1088,27 @@ Checks whether a user agrees with the privacy statement of the location service.
   ```
 
 
-## geolocation.isLocationPrivacyConfirmed
+## geolocation.isLocationPrivacyConfirmed<sup>8+</sup>
 
 isLocationPrivacyConfirmed(type : LocationPrivacyType,) : Promise&lt;boolean&gt;;
 
-Checks whether a user agrees with the privacy statement of the location service. This function can only be called by system applications.
+Checks whether a user agrees with the privacy statement of the location service. This API can only be called by system applications.
+
+This is a system API and cannot be called by third-party applications.
+
+**Permission required**: ohos.permission.LOCATION
+
+**System capability**: SystemCapability.Location.Location.Core
 
 - Parameters
-    | Name | Type | Mandatory | Description | 
+    | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | type | LocationPrivacyType | Yes | Privacy&nbsp;statement&nbsp;type,&nbsp;for&nbsp;example,&nbsp;privacy&nbsp;statement&nbsp;displayed&nbsp;in&nbsp;the&nbsp;startup&nbsp;wizard&nbsp;or&nbsp;privacy&nbsp;statement&nbsp;displayed&nbsp;when&nbsp;enabling&nbsp;the&nbsp;location&nbsp;service. | 
+  | type | LocationPrivacyType | Yes| Privacy statement type, for example, privacy statement displayed in the startup wizard or privacy statement displayed when enabling the location service.|
 
-- Return values
-    | Name | Description | 
+- Return value
+    | Name| Description|
   | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise&nbsp;used&nbsp;to&nbsp;return&nbsp;the&nbsp;result,&nbsp;which&nbsp;indicates&nbsp;whether&nbsp;the&nbsp;user&nbsp;agrees&nbsp;with&nbsp;the&nbsp;privacy&nbsp;statement. | 
+  | Promise&lt;boolean&gt; | Callback used to return the result, which indicates whether the user agrees with the privacy statement.|
 
 - Example
   
@@ -866,18 +1119,24 @@ Checks whether a user agrees with the privacy statement of the location service.
   ```
 
 
-## geolocation.setLocationPrivacyConfirmStatus
+## geolocation.setLocationPrivacyConfirmStatus<sup>8+</sup>
 
 setLocationPrivacyConfirmStatus(type : LocationPrivacyType, isConfirmed: boolean, callback: AsyncCallback&lt;boolean&gt;) : void;
 
-Sets the user confirmation status for the privacy statement of the location service. This function can only be called by system applications.
+Sets the user confirmation status for the privacy statement of the location service. This API can only be called by system applications.
+
+This is a system API and cannot be called by third-party applications.
+
+**Permission required**: ohos.permission.LOCATION
+
+**System capability**: SystemCapability.Location.Location.Core
 
 - Parameters
-    | Name | Type | Mandatory | Description | 
+    | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | type | LocationPrivacyType | Yes | Privacy&nbsp;statement&nbsp;type,&nbsp;for&nbsp;example,&nbsp;privacy&nbsp;statement&nbsp;displayed&nbsp;in&nbsp;the&nbsp;startup&nbsp;wizard&nbsp;or&nbsp;privacy&nbsp;statement&nbsp;displayed&nbsp;when&nbsp;enabling&nbsp;the&nbsp;location&nbsp;service. | 
-  | isConfirmed | boolean | Yes | Whether&nbsp;the&nbsp;user&nbsp;agrees&nbsp;with&nbsp;the&nbsp;privacy&nbsp;statement&nbsp;of&nbsp;the&nbsp;location&nbsp;service. | 
-  | callback | AsyncCallback&lt;boolean&gt; | Yes | Callback&nbsp;used&nbsp;to&nbsp;return&nbsp;the&nbsp;operation&nbsp;result. | 
+  | type | LocationPrivacyType | Yes| Privacy statement type, for example, privacy statement displayed in the startup wizard or privacy statement displayed when enabling the location service.|
+  | isConfirmed | boolean | Yes| Callback used to return the result, which indicates whether the user agrees with the privacy statement.|
+  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the operation result.|
 
 - Example
   
@@ -888,22 +1147,28 @@ Sets the user confirmation status for the privacy statement of the location serv
   ```
 
 
-## geolocation.setLocationPrivacyConfirmStatus
+## geolocation.setLocationPrivacyConfirmStatus<sup>8+</sup>
 
 setLocationPrivacyConfirmStatus(type : LocationPrivacyType, isConfirmed : boolean) : Promise&lt;boolean&gt;;
 
-Sets the user confirmation status for the privacy statement of the location service. This function can only be called by system applications.
+Sets the user confirmation status for the privacy statement of the location service. This API can only be called by system applications.
+
+This is a system API and cannot be called by third-party applications.
+
+**Permission required**: ohos.permission.LOCATION
+
+**System capability**: SystemCapability.Location.Location.Core
 
 - Parameters
-    | Name | Type | Mandatory | Description | 
+    | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | type | LocationPrivacyType | Yes | Privacy&nbsp;statement&nbsp;type,&nbsp;for&nbsp;example,&nbsp;privacy&nbsp;statement&nbsp;displayed&nbsp;in&nbsp;the&nbsp;startup&nbsp;wizard&nbsp;or&nbsp;privacy&nbsp;statement&nbsp;displayed&nbsp;when&nbsp;enabling&nbsp;the&nbsp;location&nbsp;service. | 
-  | isConfirmed | boolean | Yes | Whether&nbsp;the&nbsp;user&nbsp;agrees&nbsp;with&nbsp;the&nbsp;privacy&nbsp;statement&nbsp;of&nbsp;the&nbsp;location&nbsp;service. | 
+  | type | LocationPrivacyType | Yes| Privacy statement type, for example, privacy statement displayed in the startup wizard or privacy statement displayed when enabling the location service.|
+  | isConfirmed | boolean | Yes| Callback used to return the result, which indicates whether the user agrees with the privacy statement.|
 
-- Return values
-    | Name | Description | 
+- Return value
+    | Name| Description|
   | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise&nbsp;used&nbsp;to&nbsp;return&nbsp;the&nbsp;operation&nbsp;result. | 
+  | Promise&lt;boolean&gt; | Callback used to return the operation result.|
 
 - Example
   
@@ -919,201 +1184,262 @@ Sets the user confirmation status for the privacy statement of the location serv
 
 Sets the priority of the location request.
 
-  | Name | Default&nbsp;Value | Description | 
+**Permission required**: ohos.permission.LOCATION
+
+**System capability**: SystemCapability.Location.Location.Core
+
+| Name| Default Value| Description|
 | -------- | -------- | -------- |
-| UNSET | 0x200 | Priority&nbsp;unspecified. | 
-| ACCURACY | 0x201 | Location&nbsp;accuracy. | 
-| LOW_POWER | 0x202 | Power&nbsp;efficiency. | 
-| FIRST_FIX | 0x203 | Fast&nbsp;location.&nbsp;Use&nbsp;this&nbsp;option&nbsp;if&nbsp;you&nbsp;want&nbsp;to&nbsp;obtain&nbsp;a&nbsp;location&nbsp;as&nbsp;fast&nbsp;as&nbsp;possible. | 
+| UNSET | 0x200 | Priority unspecified.|
+| ACCURACY | 0x201 | Location accuracy.|
+| LOW_POWER | 0x202 | Power efficiency.|
+| FIRST_FIX | 0x203 | Fast location. Use this option if you want to obtain a location as fast as possible.|
 
 
 ## LocationRequestScenario
 
   Sets the scenario of the location request.
-  | Name | Default&nbsp;Value | Description | 
+
+**Permission required**: ohos.permission.LOCATION
+
+**System capability**: SystemCapability.Location.Location.Core
+
+| Name| Default Value| Description|
 | -------- | -------- | -------- |
-| UNSET | 0x300 | Scenario&nbsp;unspecified. | 
-| NAVIGATION | 0x301 | Navigation. | 
-| TRAJECTORY_TRACKING | 0x302 | Trajectory&nbsp;tracking. | 
-| CAR_HAILING | 0x303 | Ride&nbsp;hailing. | 
-| DAILY_LIFE_SERVICE | 0x304 | Daily&nbsp;life&nbsp;services. | 
-| NO_POWER | 0x305 | Power&nbsp;efficiency.&nbsp;Your&nbsp;application&nbsp;does&nbsp;not&nbsp;proactively&nbsp;start&nbsp;the&nbsp;location&nbsp;service.&nbsp;When&nbsp;responding&nbsp;to&nbsp;another&nbsp;application&nbsp;requesting&nbsp;the&nbsp;same&nbsp;location&nbsp;service,&nbsp;the&nbsp;system&nbsp;marks&nbsp;a&nbsp;copy&nbsp;of&nbsp;the&nbsp;location&nbsp;result&nbsp;to&nbsp;your&nbsp;application.&nbsp;In&nbsp;this&nbsp;way,&nbsp;your&nbsp;application&nbsp;will&nbsp;not&nbsp;consume&nbsp;extra&nbsp;power&nbsp;for&nbsp;obtaining&nbsp;the&nbsp;user&nbsp;location. | 
+| UNSET | 0x300 | Scenario unspecified.|
+| NAVIGATION | 0x301 | Navigation.|
+| TRAJECTORY_TRACKING | 0x302 | Trajectory tracking.|
+| CAR_HAILING | 0x303 | Ride hailing.|
+| DAILY_LIFE_SERVICE | 0x304 | Daily life services.|
+| NO_POWER | 0x305 | Power efficiency. Your application does not proactively start the location service. When responding to another application requesting the same location service, the system marks a copy of the location result to your application. In this way, your application will not consume extra power for obtaining the user location.|
 
 
 ## GeoLocationErrorCode
 
 Enumerates error codes of the location service.
 
-  | Name | Default&nbsp;Value | Description | 
+**Permission required**: ohos.permission.LOCATION
+
+**System capability**: SystemCapability.Location.Location.Core
+
+| Name| Default Value| Description|
 | -------- | -------- | -------- |
-| INPUT_PARAMS_ERROR | 101 | Incorrect&nbsp;input&nbsp;parameters. | 
-| REVERSE_GEOCODE_ERROR | 102 | Failed&nbsp;to&nbsp;call&nbsp;the&nbsp;reverse&nbsp;geocoding&nbsp;API. | 
-| GEOCODE_ERROR | 103 | Failed&nbsp;to&nbsp;call&nbsp;the&nbsp;geocoding&nbsp;API. | 
-| LOCATOR_ERROR | 104 | Failed&nbsp;to&nbsp;obtain&nbsp;the&nbsp;location. | 
-| LOCATION_SWITCH_ERROR | 105 | Failed&nbsp;to&nbsp;change&nbsp;the&nbsp;location&nbsp;service&nbsp;switch. | 
-| LAST_KNOWN_LOCATION_ERROR | 106 | Failed&nbsp;to&nbsp;obtain&nbsp;the&nbsp;previous&nbsp;location. | 
-| LOCATION_REQUEST_TIMEOUT_ERROR | 107 | Failed&nbsp;to&nbsp;obtain&nbsp;the&nbsp;location&nbsp;within&nbsp;the&nbsp;specified&nbsp;time. | 
+| INPUT_PARAMS_ERROR | 101 | Incorrect input parameters.|
+| REVERSE_GEOCODE_ERROR | 102 | Failed to call the reverse geocoding API.|
+| GEOCODE_ERROR | 103 | Failed to call the geocoding API.|
+| LOCATOR_ERROR | 104 | Failed to obtain the location.|
+| LOCATION_SWITCH_ERROR | 105 | Failed to change the location service switch.|
+| LAST_KNOWN_LOCATION_ERROR | 106 | Failed to obtain the previous location.|
+| LOCATION_REQUEST_TIMEOUT_ERROR | 107 | Failed to obtain the location within the specified time.|
 
 
 ## ReverseGeoCodeRequest
 
 Defines a reverse geocoding request.
 
-  | Name | Type | Mandatory | Description | 
+**Permission required**: ohos.permission.LOCATION
+
+**System capability**: SystemCapability.Location.Location.Geocoder
+
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| locale | string | No | Language&nbsp;used&nbsp;for&nbsp;the&nbsp;location&nbsp;description.&nbsp;**zh**&nbsp;indicates&nbsp;Chinese,&nbsp;and&nbsp;**en**&nbsp;indicates&nbsp;English. | 
-| latitude | number | Yes | Latitude&nbsp;information.&nbsp;A&nbsp;positive&nbsp;value&nbsp;indicates&nbsp;north&nbsp;latitude,&nbsp;and&nbsp;a&nbsp;negative&nbsp;value&nbsp;indicates&nbsp;south&nbsp;latitude. | 
-| longitude | number | Yes | Longitude&nbsp;information.&nbsp;A&nbsp;positive&nbsp;value&nbsp;indicates&nbsp;east&nbsp;longitude&nbsp;,&nbsp;and&nbsp;a&nbsp;negative&nbsp;value&nbsp;indicates&nbsp;west&nbsp;longitude&nbsp;. | 
-| maxItems | number | No | Maximum&nbsp;number&nbsp;of&nbsp;location&nbsp;records&nbsp;to&nbsp;be&nbsp;returned. | 
+| locale | string | No| Language used for the location description. **zh** indicates Chinese, and **en** indicates English.|
+| latitude | number | Yes| Latitude information. A positive value indicates north latitude, and a negative value indicates south latitude.|
+| longitude | number | Yes| Longitude information. A positive value indicates east longitude , and a negative value indicates west longitude .|
+| maxItems | number | No| Maximum number of location records to be returned.|
 
 
 ## GeoCodeRequest
 
 Defines a geocoding request.
 
-  | Name | Type | Mandatory | Description | 
+**Permission required**: ohos.permission.LOCATION
+
+**System capability**: SystemCapability.Location.Location.Geocoder
+
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| locale | string | No | Language&nbsp;used&nbsp;for&nbsp;the&nbsp;location&nbsp;description.&nbsp;**zh**&nbsp;indicates&nbsp;Chinese,&nbsp;and&nbsp;**en**&nbsp;indicates&nbsp;English. | 
-| description | number | Yes | Location&nbsp;description,&nbsp;for&nbsp;example,&nbsp;**No.&nbsp;xx,&nbsp;xx&nbsp;Road,&nbsp;Pudong&nbsp;New&nbsp;District,&nbsp;Shanghai**. | 
-| maxItems | number | No | Maximum&nbsp;number&nbsp;of&nbsp;location&nbsp;records&nbsp;to&nbsp;be&nbsp;returned. | 
-| minLatitude | number | No | Minimum&nbsp;latitude.&nbsp;This&nbsp;parameter&nbsp;is&nbsp;used&nbsp;with&nbsp;**minLongitude**,&nbsp;**maxLatitude**,&nbsp;and&nbsp;**maxLongitude**&nbsp;to&nbsp;specify&nbsp;the&nbsp;latitude&nbsp;and&nbsp;longitude&nbsp;ranges. | 
-| minLongitude | number | No | Minimum&nbsp;longitude. | 
-| maxLatitude | number | No | Maximum&nbsp;latitude. | 
-| maxLongitude | number | No | Maximum&nbsp;longitude. | 
+| locale | string | No| Language used for the location description. **zh** indicates Chinese, and **en** indicates English.|
+| description | number | Yes| Location description, for example, No. xx, xx Road, Pudong New District, Shanghai.|
+| maxItems | number | No| Maximum number of location records to be returned.|
+| minLatitude | number | No| Minimum latitude. This parameter is used with minLongitude, maxLatitude, and maxLongitude to specify the latitude and longitude ranges.|
+| minLongitude | number | No| Minimum longitude.|
+| maxLatitude | number | No| Maximum latitude.|
+| maxLongitude | number | No| Maximum longitude.|
 
 
 ## GeoAddress
 
 Defines a geographic location.
 
-  | Name | Type | Mandatory | Description | 
+**Permission required**: ohos.permission.LOCATION
+
+**System capability**: SystemCapability.Location.Location.Geocoder
+
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| latitude | number | No | Latitude&nbsp;information.&nbsp;A&nbsp;positive&nbsp;value&nbsp;indicates&nbsp;north&nbsp;latitude,&nbsp;and&nbsp;a&nbsp;negative&nbsp;value&nbsp;indicates&nbsp;south&nbsp;latitude. | 
-| longitude | number | No | Longitude&nbsp;information.&nbsp;A&nbsp;positive&nbsp;value&nbsp;indicates&nbsp;east&nbsp;longitude&nbsp;,&nbsp;and&nbsp;a&nbsp;negative&nbsp;value&nbsp;indicates&nbsp;west&nbsp;longitude&nbsp;. | 
-| locale | string | No | Language&nbsp;used&nbsp;for&nbsp;the&nbsp;location&nbsp;description.&nbsp;**zh**&nbsp;indicates&nbsp;Chinese,&nbsp;and&nbsp;**en**&nbsp;indicates&nbsp;English. | 
-| placeName | string | No | Landmark&nbsp;of&nbsp;the&nbsp;location. | 
-| countryCode | string | No | Country&nbsp;code. | 
-| countryName | string | No | Country&nbsp;name. | 
-| administrativeArea | string | No | Administrative&nbsp;region&nbsp;name. | 
-| subAdministrativeArea | string | No | Sub-administrative&nbsp;region&nbsp;name. | 
-| locality | string | No | Locality&nbsp;information. | 
-| subLocality | string | No | Sub-locality&nbsp;information. | 
-| roadName | string | No | Road&nbsp;name. | 
-| subRoadName | string | No | Auxiliary&nbsp;road&nbsp;information. | 
-| premises | string | No | House&nbsp;information. | 
-| postalCode | string | No | Postal&nbsp;code. | 
-| phoneNumber | string | No | Phone&nbsp;number. | 
-| addressUrl | string | No | Website&nbsp;URL. | 
-| descriptions | Array&lt;string&gt; | No | Additional&nbsp;description. | 
-| descriptionsSize | number | No | Total&nbsp;number&nbsp;of&nbsp;additional&nbsp;descriptions. | 
+| latitude | number | No| Latitude information. A positive value indicates north latitude, and a negative value indicates south latitude.|
+| longitude | number | No| Longitude information. A positive value indicates east longitude , and a negative value indicates west longitude .|
+| locale | string | No| Language used for the location description. **zh** indicates Chinese, and **en** indicates English.|
+| placeName | string | No| Landmark of the location.|
+| countryCode | string | No| Country code.|
+| countryName | string | No| Country name.|
+| administrativeArea | string | No| Administrative region name.|
+| subAdministrativeArea | string | No| Sub-administrative region name.|
+| locality | string | No| Locality information. |
+| subLocality | string | No| Sub-locality information. |
+| roadName | string | No| Road name.|
+| subRoadName | string | No| Auxiliary road information.|
+| premises | string | No| House information.|
+| postalCode | string | No| Postal code.|
+| phoneNumber | string | No| Phone number.|
+| addressUrl | string | No| Website URL.|
+| descriptions | Array&lt;string&gt; | No| Additional description.|
+| descriptionsSize | number | No| Total number of additional descriptions.|
 
 
 ## LocationRequest
 
 Defines a location request.
 
-  | Name | Type | Mandatory | Description | 
+**Permission required**: ohos.permission.LOCATION
+
+**System capability**: SystemCapability.Location.Location.Core
+
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| priority | [LocationRequestPriority](#locationrequestpriority) | No | Priority&nbsp;of&nbsp;the&nbsp;location&nbsp;request. | 
-| scenario | [LocationRequestScenario](#locationrequestscenario) | Yes | Scenario&nbsp;of&nbsp;the&nbsp;location&nbsp;request. | 
-| timeInterval | number | No | Time&nbsp;interval&nbsp;at&nbsp;which&nbsp;location&nbsp;information&nbsp;is&nbsp;reported. | 
-| distanceInterval | number | No | Distance&nbsp;interval&nbsp;at&nbsp;which&nbsp;location&nbsp;information&nbsp;is&nbsp;reported. | 
-| maxAccuracy | number | No | Location&nbsp;accuracy. | 
+| priority | [LocationRequestPriority](#locationrequestpriority) | No| Priority of the location request.|
+| scenario | [LocationRequestScenario](#locationrequestscenario) | Yes| Scenario of the location request.|
+| timeInterval | number | No| Time interval at which location information is reported.|
+| distanceInterval | number | No| Distance interval at which location information is reported.|
+| maxAccuracy | number | No| Location accuracy.|
 
 
 ## CurrentLocationRequest
 
 Defines the current location request.
 
-  | Name | Type | Mandatory | Description | 
+**Permission required**: ohos.permission.LOCATION
+
+**System capability**: SystemCapability.Location.Location.Core
+
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| priority | [LocationRequestPriority](#locationrequestpriority) | No | Priority&nbsp;of&nbsp;the&nbsp;location&nbsp;request. | 
-| scenario | [LocationRequestScenario](#locationrequestscenario) | No | Scenario&nbsp;of&nbsp;the&nbsp;location&nbsp;request. | 
-| maxAccuracy | number | No | Location&nbsp;accuracy,&nbsp;in&nbsp;meters. | 
-| timeoutMs | number | No | Timeout&nbsp;duration,&nbsp;in&nbsp;milliseconds.&nbsp;The&nbsp;minimum&nbsp;value&nbsp;is&nbsp;**1000**. | 
+| priority | [LocationRequestPriority](#locationrequestpriority) | No| Priority of the location request.|
+| scenario | [LocationRequestScenario](#locationrequestscenario) | No| Scenario of the location request.|
+| maxAccuracy | number | No| Location accuracy, in meters.|
+| timeoutMs | number | No| Timeout duration, in milliseconds. The minimum value is 1000.|
 
 
-## SatelliteStatusInfo
+## SatelliteStatusInfo<sup>8+</sup>
 
 Defines the satellite status information.
 
-  | Name | Type | Mandatory | Description | 
+**Permission required**: ohos.permission.LOCATION
+
+**System capability**: SystemCapability.Location.Location.Gnss
+
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| satellitesNumber | number | Yes | Number&nbsp;of&nbsp;satellites. | 
-| satelliteIds | Array&lt;number&gt; | Yes | Array&nbsp;of&nbsp;satellite&nbsp;IDs. | 
-| carrierToNoiseDensitys | Array&lt;number&gt; | Yes | Carrier-to-noise&nbsp;density&nbsp;ratio,&nbsp;that&nbsp;is,&nbsp;cn0. | 
-| altitudes | Array&lt;number&gt; | Yes | Altitude&nbsp;information. | 
-| azimuths | Array&lt;number&gt; | Yes | Azimuth&nbsp;information. | 
-| carrierFrequencies | Array&lt;number&gt; | Yes | Carrier&nbsp;frequency. | 
+| satellitesNumber | number | Yes| Number of satellites.|
+| satelliteIds | Array&lt;number&gt; | Yes| Array of satellite IDs.|
+| carrierToNoiseDensitys | Array&lt;number&gt; | Yes| Carrier-to-noise density ratio, that is, **cn0**.|
+| altitudes | Array&lt;number&gt; | Yes| Altitude information.|
+| azimuths | Array&lt;number&gt; | Yes| Azimuth information.|
+| carrierFrequencies | Array&lt;number&gt; | Yes| Carrier frequency.|
 
 
-## CachedGnssLocationsRequest
+## CachedGnssLocationsRequest<sup>8+</sup>
 
 Represents a request for reporting cached GNSS locations.
 
-  | Name | Type | Mandatory | Description | 
+**Permission required**: ohos.permission.LOCATION
+
+**System capability**: SystemCapability.Location.Location.Gnss
+
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| reportingPeriodSec | number | Yes | Interval&nbsp;for&nbsp;reporting&nbsp;the&nbsp;cached&nbsp;GNSS&nbsp;locations,&nbsp;in&nbsp;milliseconds. | 
-| wakeUpCacheQueueFull | boolean | Yes | **true**:&nbsp;reports&nbsp;the&nbsp;cached&nbsp;GNSS&nbsp;locations&nbsp;to&nbsp;the&nbsp;application&nbsp;when&nbsp;the&nbsp;cache&nbsp;queue&nbsp;is&nbsp;full.<br/>**false**:&nbsp;discards&nbsp;the&nbsp;cached&nbsp;GNSS&nbsp;locations&nbsp;when&nbsp;the&nbsp;cache&nbsp;queue&nbsp;is&nbsp;full. | 
+| reportingPeriodSec | number | Yes| Interval for reporting the cached GNSS locations, in milliseconds.|
+| wakeUpCacheQueueFull | boolean | Yes| **true**: reports the cached GNSS locations to the application when the cache queue is full.<br>**false**: discards the cached GNSS locations when the cache queue is full.|
 
 
-## Geofence
+## Geofence<sup>8+</sup>
 
 Defines a GNSS geofence. Currently, only circular geofences are supported.
 
-  | Name | Type | Mandatory | Description | 
+**Permission required**: ohos.permission.LOCATION
+
+**System capability**: SystemCapability.Location.Location.Geofence
+
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| latitude | number | Yes | Latitude&nbsp;information. | 
-| longitude | number | Yes | Longitude&nbsp;information. | 
-| radius | number | Yes | Radius&nbsp;of&nbsp;a&nbsp;circular&nbsp;geofence. | 
-| expiration | number | Yes | Expiration&nbsp;period&nbsp;of&nbsp;a&nbsp;geofence,&nbsp;in&nbsp;milliseconds. | 
+| latitude | number | Yes| Latitude information.|
+| longitude | number | Yes| Longitude information.|
+| radius | number | Yes| Radius of a circular geofence.|
+| expiration | number | Yes| Expiration period of a geofence, in milliseconds.|
 
 
-## GeofenceRequest
+## GeofenceRequest<sup>8+</sup>
 
 Represents a GNSS geofencing request.
 
-  | Name | Type | Mandatory | Description | 
+**Permission required**: ohos.permission.LOCATION
+
+**System capability**: SystemCapability.Location.Location.Geofence
+
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| priority | LocationRequestPriority | Yes | Priority&nbsp;of&nbsp;the&nbsp;location&nbsp;information. | 
-| scenario | LocationRequestScenario | Yes | Location&nbsp;scenario. | 
-| geofence | Geofence | Yes | Geofence&nbsp;information. | 
+| priority | LocationRequestPriority | Yes| Priority of the location information.|
+| scenario | LocationRequestScenario | Yes| Location scenario.|
+| geofence | Geofence | Yes| Geofence information.|
 
 
-## LocationPrivacyType
+## LocationPrivacyType<sup>8+</sup>
 
 Defines the privacy statement type.
 
-  | Name | Default&nbsp;Value | Description | 
+**Permission required**: ohos.permission.LOCATION
+
+**System capability**: SystemCapability.Location.Location.Core
+
+| Name| Default Value| Description|
 | -------- | -------- | -------- |
-| OTHERS | 0 | Other&nbsp;scenarios. | 
-| STARTUP | 1 | Privacy&nbsp;statement&nbsp;displayed&nbsp;in&nbsp;the&nbsp;startup&nbsp;wizard. | 
-| CORE_LOCATION | 2 | Privacy&nbsp;statement&nbsp;displayed&nbsp;when&nbsp;enabling&nbsp;the&nbsp;location&nbsp;service. | 
+| OTHERS | 0 | Other scenarios.|
+| STARTUP | 1 | Privacy statement displayed in the startup wizard.|
+| CORE_LOCATION | 2 | Privacy statement displayed when enabling the location service.|
 
 
-## LocationCommand
+## LocationCommand<sup>8+</sup>
 
 Defines an extended command.
 
-  | Name | Type | Mandatory | Description | 
+**Permission required**: ohos.permission.LOCATION
+
+**System capability**: SystemCapability.Location.Location.Core
+
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| scenario | LocationRequestScenario | Yes | Location&nbsp;scenario. | 
-| command | string | Yes | Extended&nbsp;command,&nbsp;in&nbsp;the&nbsp;string&nbsp;format. | 
+| scenario | LocationRequestScenario | Yes| Location scenario.|
+| command | string | Yes| Extended command, in the string format.|
 
 
 ## Location
 
 Defines a location.
 
-  | Name | Type | Mandatory | Description | 
+**Permission required**: ohos.permission.LOCATION
+
+**System capability**: SystemCapability.Location.Location.Core
+
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| latitude | number | Yes | Latitude&nbsp;information.&nbsp;A&nbsp;positive&nbsp;value&nbsp;indicates&nbsp;north&nbsp;latitude,&nbsp;and&nbsp;a&nbsp;negative&nbsp;value&nbsp;indicates&nbsp;south&nbsp;latitude. | 
-| longitude | number | Yes | Longitude&nbsp;information.&nbsp;A&nbsp;positive&nbsp;value&nbsp;indicates&nbsp;east&nbsp;longitude&nbsp;,&nbsp;and&nbsp;a&nbsp;negative&nbsp;value&nbsp;indicates&nbsp;west&nbsp;longitude&nbsp;. | 
-| altitude | number | Yes | Location&nbsp;altitude,&nbsp;in&nbsp;meters. | 
-| accuracy | number | Yes | Location&nbsp;accuracy,&nbsp;in&nbsp;meters. | 
-| speed | number | Yes | Speed,&nbsp;in&nbsp;m/s. | 
-| timeStamp | number | Yes | Location&nbsp;timestamp&nbsp;in&nbsp;the&nbsp;UTC&nbsp;format. | 
-| direction | number | Yes | Direction&nbsp;information. | 
-| timeSinceBoot | number | Yes | Location&nbsp;timestamp&nbsp;since&nbsp;boot. | 
-| additions | Array&lt;string&gt; | No | Additional&nbsp;description. | 
-| additionSize | number | No | Number&nbsp;of&nbsp;additional&nbsp;descriptions. | 
+| latitude | number | Yes| Latitude information. A positive value indicates north latitude, and a negative value indicates south latitude.|
+| longitude | number | Yes| Longitude information. A positive value indicates east longitude , and a negative value indicates west longitude .|
+| altitude | number | Yes| Location altitude, in meters.|
+| accuracy | number | Yes| Location accuracy, in meters.|
+| speed | number | Yes| Speed, in m/s.|
+| timeStamp | number | Yes| Location timestamp in the UTC format.|
+| direction | number | Yes| Direction information.|
+| timeSinceBoot | number | Yes| Location timestamp since boot.|
+| additions | Array&lt;string&gt; | No| Additional information.|
+| additionSize | number | No| Number of additional descriptions.|

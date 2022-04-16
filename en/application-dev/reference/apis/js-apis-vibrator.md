@@ -22,18 +22,18 @@ Triggers vibration with a specific duration. This API uses a promise to return t
 **System capability**: SystemCapability.Sensors.MiscDevice
 
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | duration | number | Yes| Vibration duration.|
+**Parameters**
+| Name     | Type    | Mandatory  | Description          |
+| -------- | ------ | ---- | ------------ |
+| duration | number | Yes   | Vibration duration.|
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to indicate whether the vibration is triggered successfully.|
+**Return value**
+| Type                 | Description         |
+| ------------------- | ----------- |
+| Promise&lt;void&gt; | Promise used to indicate whether the vibration is triggered successfully.|
 
 
-- Example
+**Example**
   ```
   vibrator.vibrate(1000).then(()=>{
       console.log("Promise returned to indicate a successful vibration.");
@@ -53,13 +53,13 @@ Triggers vibration with a specific duration. This API uses an asynchronous callb
 
 **System capability**: SystemCapability.Sensors.MiscDevice
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | duration | number | Yes| Vibration duration.|
-  | callback | AsyncCallback&lt;void&gt; | No| Callback used to indicate whether the vibration is triggered successfully.|
+**Parameters**
+| Name     | Type                       | Mandatory  | Description                     |
+| -------- | ------------------------- | ---- | ----------------------- |
+| duration | number                    | Yes   | Vibration duration.           |
+| callback | AsyncCallback&lt;void&gt; | No   | Callback used to indicate whether the vibration is triggered successfully.|
 
-- Example
+**Example**
   ```
   vibrator.vibrate(1000,function(error){
       if(error){
@@ -81,17 +81,17 @@ Triggers vibration with a specific effect. This API uses a promise to return the
 
 **System capability**: SystemCapability.Sensors.MiscDevice
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | effectId | [EffectId](#effectid) | Yes| String that indicates the vibration effect.|
+**Parameters**
+| Name     | Type                   | Mandatory  | Description           |
+| -------- | --------------------- | ---- | ------------- |
+| effectId | [EffectId](#effectid) | Yes   | String that indicates the vibration effect.|
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to indicate whether the vibration is triggered successfully.|
+**Return value**
+| Type                 | Description         |
+| ------------------- | ----------- |
+| Promise&lt;void&gt; | Promise used to indicate whether the vibration is triggered successfully.|
 
-- Example
+**Example**
   ```
   vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER).then(()=>{
       console.log("Promise returned to indicate a successful vibration.");
@@ -111,13 +111,13 @@ Triggers vibration with a specific effect. This API uses an asynchronous callbac
 
 **System capability**: SystemCapability.Sensors.MiscDevice
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | effectId | [EffectId](#effectid) | Yes| String that indicates the vibration effect.|
-  | callback | AsyncCallback&lt;void&gt; | No| Callback used to indicate whether the vibration is triggered successfully.|
+**Parameters**
+| Name     | Type                       | Mandatory  | Description                     |
+| -------- | ------------------------- | ---- | ----------------------- |
+| effectId | [EffectId](#effectid)     | Yes   | String that indicates the vibration effect.          |
+| callback | AsyncCallback&lt;void&gt; | No   | Callback used to indicate whether the vibration is triggered successfully.|
 
-- Example
+**Example**
   ```
   vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER, function(error){
       if(error){
@@ -139,17 +139,17 @@ Stops the vibration based on the specified **stopMode**. This API uses a promise
 
 **System capability**: SystemCapability.Sensors.MiscDevice
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | stopMode | [VibratorStopMode](#vibratorstopmode) | Yes| Vibration mode to stop.|
+**Parameters**
+| Name     | Type                                   | Mandatory  | Description             |
+| -------- | ------------------------------------- | ---- | --------------- |
+| stopMode | [VibratorStopMode](#vibratorstopmode) | Yes   | Vibration mode to stop.|
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to indicate whether the vibration is stopped successfully.|
+**Return value**
+| Type                 | Description         |
+| ------------------- | ----------- |
+| Promise&lt;void&gt; | Promise used to indicate whether the vibration is stopped successfully.|
 
-- Example
+**Example**
   ```
   vibrator.stop(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET).then(()=>{
       console.log("Promise returned to indicate a successful vibration.");
@@ -169,13 +169,13 @@ Stops the vibration based on the specified **stopMode**. This API uses an asynch
 
 **System capability**: SystemCapability.Sensors.MiscDevice
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | stopMode | [VibratorStopMode](#vibratorstopmode) | Yes| Vibration mode to stop.|
-  | callback | AsyncCallback&lt;void&gt; | No| Callback used to indicate whether the vibration is stopped successfully.|
+**Parameters**
+| Name     | Type                                   | Mandatory  | Description                     |
+| -------- | ------------------------------------- | ---- | ----------------------- |
+| stopMode | [VibratorStopMode](#vibratorstopmode) | Yes   | Vibration mode to stop.        |
+| callback | AsyncCallback&lt;void&gt;             | No   | Callback used to indicate whether the vibration is stopped successfully.|
 
-- Example
+**Example**
   ```
   vibrator.stop(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET, function(error){
       if(error){
@@ -193,8 +193,8 @@ Describes the vibration effect.
 
 **System capability**: SystemCapability.Sensors.MiscDevice
 
-| Name| Default Value| Description|
-| -------- | -------- | -------- |
+| Name                | Default Value                 | Description             |
+| ------------------ | -------------------- | --------------- |
 | EFFECT_CLOCK_TIMER | "haptic.clock.timer" | Vibration effect of the vibrator when a user adjusts the timer.|
 
 
@@ -204,7 +204,7 @@ Describes the vibration mode to stop.
 
 **System capability**: SystemCapability.Sensors.MiscDevice
 
-| Name| Default Value| Description|
-| -------- | -------- | -------- |
-| VIBRATOR_STOP_MODE_TIME | "time" | The vibration to stop is in **duration** mode. This vibration is triggered with the parameter **duration** of the **number** type.|
+| Name                       | Default Value     | Description                                      |
+| ------------------------- | -------- | ---------------------------------------- |
+| VIBRATOR_STOP_MODE_TIME   | "time"   | The vibration to stop is in **duration** mode. This vibration is triggered with the parameter **duration** of the **number** type.|
 | VIBRATOR_STOP_MODE_PRESET | "preset" | The vibration to stop is in **EffectId** mode. This vibration is triggered with the parameter **effectId** of the **EffectId** type.|

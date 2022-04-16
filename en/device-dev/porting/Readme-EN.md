@@ -57,3 +57,10 @@ The download steps for other resources are the same as those in the mainline ver
     - [Overview](porting-thirdparty-overview.md)
     - [Porting a Library Built Using CMake](porting-thirdparty-cmake.md)
     - [Porting a Library Built Using Makefile](porting-thirdparty-makefile.md)
+
+## SoC Porting Cases
+
+- [Mini System SoC Porting Cases](porting-minichip-cases.md)
+  - [Mini-System Devices with Screens — Bestechnic SoC Porting Case](porting-bes2600w-on-minisystem-display-demo.md)
+  - [Combo Solution – ASR Chip Porting Case](porting-asr582x-combo-demo.md)
+

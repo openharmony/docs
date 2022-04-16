@@ -44,6 +44,8 @@ Image是图片组件，用来渲染展示图片。具体用法请参考[Image AP
 ```
 /* xxx.css */
 .container {
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -82,6 +84,8 @@ image{
 ```
 /* xxx.css */
 .container{
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   justify-content: center;
   align-self: center;
@@ -116,7 +120,8 @@ export default {
 }
 ```
 
-![zh-cn_image_0000001188931396](figures/zh-cn_image_0000001188931396.gif)
+![zh-cn_image_images](figures/zh-cn_image_images.gif)
+
 
 
 ## 场景示例
@@ -139,6 +144,8 @@ export default {
 ```
 /* xxx.css */
 .page-container {
+  width: 100%;
+  height: 100%;
   flex-direction:column;
   align-self: center;
   justify-content: center;

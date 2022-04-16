@@ -36,12 +36,12 @@ import backgroundTaskManager from '@ohos.backgroundTaskManager';
 
     ```js
     import backgroundTaskManager from '@ohos.backgroundTaskManager';
-
+    
     let myReason = 'test requestSuspendDelay';
     let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
         console.info("Request suspension delay will time out.");
     });
-
+    
     var id = delayInfo.requestId;console.info("requestId is: " + id);
     ```
 
@@ -106,36 +106,53 @@ ohos.permission.KEEP_BACKGROUND_RUNNING
 | function stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): void;<br>function stopBackgroundRunning(context: Context): Promise&lt;void&gt;; | Cancels the continuous task.|
 
 
-For details about **WantAgent**, see [WantAgent](../reference/apis/js-apis-notification.md#WantAgent).
-
+For details about **wantAgent**, see [WantAgent](../reference/apis/js-apis-wantAgent.md).
 
 **Table 4** Background modes
-| Name| ID Value| Description|
-| -------- | -------- | -------- |
-| DATA_TRANSFER           | 1 | Data transfer.|
-| AUDIO_PLAYBACK          | 2 | Audio playback.|
-| AUDIO_RECORDING         | 3 | Audio recording.|
-| LOCATION                | 4 | Positioning and navigation.|
-| BLUETOOTH_INTERACTION   | 5 | Bluetooth-related task.|
-| MULTI_DEVICE_CONNECTION | 6 | Multi-device connection.|
-| WIFI_INTERACTION        | 7 | WLAN-related task (reserved).|
-| VOIP                    | 8 | Voice and video call (reserved).|
-| TASK_KEEPING            | 9 | Computing task (for PC only).|
+
+| Name| ID Value| Description| Item|
+| -------- | -------- | -------- | -------- |
+| DATA_TRANSFER           | 1 | Data transfer.| dataTransfer |
+| AUDIO_PLAYBACK          | 2 | Audio playback.| audioPlayback |
+| AUDIO_RECORDING         | 3 | Audio recording.| audioRecording |
+| LOCATION                | 4 | Positioning and navigation.| location |
+| BLUETOOTH_INTERACTION   | 5 | Bluetooth-related task.| bluetoothInteraction |
+| MULTI_DEVICE_CONNECTION | 6 | Multi-device connection.| multiDeviceConnection |
+| WIFI_INTERACTION        | 7 | WLAN-related task (reserved).| wifiInteraction |
+| VOIP                    | 8 | Voice and video call (reserved).| voip |
+| TASK_KEEPING            | 9 | Computing task (for specific devices only).| taskKeeping |
 
 
 ## How to Develop
 
-1. Declare the continuous task permission in the **config.json** file.
+1. Configure the continuous task permission and background mode type in the **config.json** file, with the ability type set to **service**.
 
     ```json
     "module": {
-        "package": "com.example.myapplication",
-        ...,
-        "reqPermissions": [
-            {
-            "name": "ohos.permission.KEEP_BACKGROUND_RUNNING"
-            }
-        ]
+      "package": "com.example.myapplication",
+      
+      "abilities": [
+      
+        {
+          "backgroundModes": [
+            "dataTransfer",
+            "location",
+            
+          ],
+          
+          "type": "service"
+        }
+      ],
+      "defPermissions": [
+        {
+          "name": "ohos.permission.KEEP_BACKGROUND_RUNNING"
+        }
+      ],
+      "reqPermissions": [
+        {
+          "name": "ohos.permission.KEEP_BACKGROUND_RUNNING"
+        }
+      ]
     }
     ```
 
@@ -174,13 +191,13 @@ For details about **WantAgent**, see [WantAgent](../reference/apis/js-apis-notif
     ```js
     import backgroundTaskManager from '@ohos.backgroundTaskManager';
     import featureAbility from '@ohos.ability.featureAbility';
-
+    
     backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext()).then(() => {
         console.info("Operation succeeded");
     }).catch((err) => {
         console.error("Operation failed Cause: " + err);
     });
-
+    
     ```
 
 ## Development Examples

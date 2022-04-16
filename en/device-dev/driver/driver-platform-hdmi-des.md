@@ -1,128 +1,81 @@
-# HDMI<a name="1"></a>
+# HDMI
 
-## Overview<a name="section1"></a>
 
-High-Definition Multimedia Interface (HDMI) is an audio/video transmission protocol released by Hitachi, Panasonic, Philips, Silicon Image, Sony, Thomson, and Toshiba.
+## Overview
 
-HDMI works in master/slave mode and usually has a source and a sink.
+### HDMI
 
-The HDMI APIs provide a set of common functions for HDMI transmission, including:
+- High-definition multimedia interface (HDMI) is an interface for transmitting audio and video data from a source device, such as a DVD player or set-top box (STB), to a sink device, such as a TV or display.
+- HDMI works in master/slave mode and usually has a source and a sink.
+- The HDMI APIs provide a set of common functions for HDMI transmission, including:
 
-- Opening and closing an HDMI controller
-- Starting and stopping HDMI transmission
-- Setting audio, video, and High Dynamic Range (HDR) attributes, color depth, and AV mute
-- Reading the raw Extended Display Identification Data (EDID) from a sink
-- Registering and unregistering a callback for HDMI hot plug detect (HPD) 
+    - Opening and closing an HDMI controller
+    - Starting and stopping HDMI transmission
+    - Setting audio, video, and High Dynamic Range (HDR) attributes, color depth, and AV mute
+    - Reading the raw Extended Display Identification Data (EDID) from a sink
+    - Registering and unregistering a callback for HDMI hot plug detect (HPD).
 
-[Figure 1](#fig1) shows the HDMI physical connection.
+### Basic Concepts
 
- **Figure 1** HDMI physical connection<a name="fig1"></a>
+HDMI is an audio and video transmission protocol released by Hitachi, Panasonic, Philips, Silicon Image, Sony, Thomson, and Toshiba. The transmission process complies with the Transition-minimized Differential Signaling (TMDS).
 
- ![](figures/HDMI_physical_connection.png "HDMI_physical_connection")
+- TMDS is used to transmit audio, video, and various auxiliary data.
+- Display data channel (DDC) allows the TX and RX ends to obtain the sending and receiving capabilities. However, the HDMI only needs to unidirectionally obtain the capabilities of the RX end (display).
+- Consumer Electronics Control (CEC) enables interaction between the HDMI TX and RX devices.
+- Fixed rate link (FRL) allows the maximum TMDS bandwidth to be increased from 18 Gbit/s to 48 Gbit/s.
+- High-bandwidth Digital Content Protection (HDCP) prevents copying of digital audio and video content being transmitted across devices.
+- Extended Display Identification Data (EDID), usually stored in the display firmware, provides the vendor information, EDID version, maximum image size, color settings, vendor pre-settings, frequency range limit, display name, and serial number.
 
-## Available APIs<a name="section2"></a>
+### Working Principles
+
+The HDMI source end provides +5 V and GND for DDC and CEC communication. Through the DDC, the source end obtains the sink end parameters, such as the RX capabilities. The CEC is optional. It is used to synchronize the control signals between the source and sink ends to improve user experience. There are four TMDS channels between the HDMI source and sink ends. The TMDS clock channel provides clock signals for TMDS, and the other three channels transmit audio, video, and auxiliary data. HPD is the hot plug detect port. When the sink end is connected, the source end responds by using an interrupt program.
+
+The figure below shows the HDMI physical connection.
+
+**Figure 1** HDMI physical connection
+
+![](figures/HDMI_physical_connection.png "HDMI_physical_connection")
+
+### Constraints
+
+Currently, the HDMI module supports only the kernels (LiteOS) of mini and small systems.
+
+## Development Guidelines
+
+### When to Use
+
+HDMI features high transmission rate, wide transmission bandwidth, high compatibility, and can transmit uncompressed audio and video signals. Compared with the traditional full analog interface, HDMI simplifies connection between devices and provides HDMI-specific intelligent features, which are ideal for high-quality audio and video transmission of small-sized devices.
+
+### Available APIs
 
 **Table 1** HDMI driver APIs
 
-<a name="table1"></a>
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="18.63%"><p>Category</p>
-</th>
-<th class="cellrowborder" valign="top" width="28.03%"><p>API</p>
-</th>
-<th class="cellrowborder" valign="top" width="53.339999999999996%"><p>Description</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" bgcolor="#ffffff" rowspan="2" valign="top" width="18.63%"><p>Managing HDMI controllers</p>
-</td>
-<td class="cellrowborder" valign="top" width="28.03%"><p>HdmiOpen</p>
-</td>
-<td class="cellrowborder" valign="top" width="53.339999999999996%">Opens an HDMI controller.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top"><p>HdmiClose</p>
-</td>
-<td class="cellrowborder" valign="top"><p>Closes an HDMI controller.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" bgcolor="#ffffff" rowspan="2" valign="top" width="18.63%"><p>Starting or stopping HDMI transmission</p>
-</td>
-<td class="cellrowborder" valign="top" width="28.03%"><p>HdmiStart</p>
-</td>
-<td class="cellrowborder" valign="top" width="53.339999999999996%">Starts HDMI transmission.</p>
-</td>
-</tr>
-<tr id="row5632152611414"><td class="cellrowborder" valign="top"><p>HdmiStop</p>
-</td>
-<td class="cellrowborder" valign="top"><p>Stops HDMI transmission.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" bgcolor="#ffffff" rowspan="6" valign="top" width="18.63%"><p>Setting an HDMI controller</p>
-</td>
-<td class="cellrowborder" valign="top" width="28.03%"><p>HdmiAvmuteSet</p>
-</td>
-<td class="cellrowborder" valign="top" width="53.339999999999996%">Sets the AV mute feature.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top"><p>HdmiDeepColorSet</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p>Sets the color depth.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top"><p>HdmiDeepColorGet</p>
-</td>
-<td class="cellrowborder" valign="top"><p>Obtains the color depth.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top"><p>HdmiSetVideoAttribute</p>
-</td>
-<td class="cellrowborder" valign="top"><p>Sets video attributes.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top"><p>HdmiSetAudioAttribute</p>
-</td>
-<td class="cellrowborder" valign="top"><p>Sets audio attributes.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top"><p>HdmiSetHdrAttribute</p>
-</td>
-<td class="cellrowborder" valign="top"><p>Sets HDR attributes.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" bgcolor="#ffffff" valign="top" width="18.63%"><p>Reading EDID</p>
-</td>
-<td class="cellrowborder" valign="top" width="28.03%"><p>HdmiReadSinkEdid</p>
-</td>
-<td class="cellrowborder" valign="top" width="53.339999999999996%">Reads the raw EDID from a sink.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" bgcolor="#ffffff" rowspan="2" valign="top" width="18.63%"><p>Registering or unregistering a callback for HDMI HPD</p>
-</td>
-<td class="cellrowborder" valign="top" width="28.03%"><p>HdmiRegisterHpdCallbackFunc</p>
-</td>
-<td class="cellrowborder" valign="top" width="53.339999999999996%">Registers a callback for HDMI HPD.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top"><p>HdmiUnregisterHpdCallbackFunc</p>
-</td>
-<td class="cellrowborder" valign="top"><p>Unregisters the callback for HDMI HPD.</p>
-</td>
-</tr>
-</tbody>
-</table>
+| API                       | Description                      |
+| ----------------------------- | -------------------------- |
+| HdmiOpen                      | Opens an HDMI controller.            |
+| HdmiClose                     | Closes an HDMI controller.            |
+| HdmiStart                     | Starts HDMI transmission.              |
+| HdmiStop                      | Stops HDMI transmission.              |
+| HdmiAvmuteSet                 | Sets the AV mute feature.          |
+| HdmiDeepColorSet              | Sets the color depth.              |
+| HdmiDeepColorGet              | Obtains the color depth.              |
+| HdmiSetVideoAttribute         | Sets video attributes.              |
+| HdmiSetAudioAttribute         | Sets audio attributes.              |
+| HdmiSetHdrAttribute           | Sets HDR attributes.               |
+| HdmiReadSinkEdid              | Reads the raw EDID from a sink.    |
+| HdmiRegisterHpdCallbackFunc   | Registers a callback for HDMI HPD.|
+| HdmiUnregisterHpdCallbackFunc | Unregisters a callback for HDMI HPD.|
 
-## Usage Guidelines<a name="section3"></a>
+### How to Develop
 
-### How to Use<a name="section4"></a>
+The figure below illustrates the process of using an HDMI device.
 
-[Figure 2](#fig2) shows how HDMI works.
-
-**Figure 2** How HDMI works<a name="fig2"></a>
+**Figure 2** Process of using an HDMI device
 
 ![](figures/HDMI_usage_flowchart.png "HDMI_usage_flowchart")
 
-### Opening an HDMI Controller<a name="section5"></a>
+#### Opening an HDMI Controller
 
 Before HDMI communication, call **HdmiOpen** to open an HDMI controller.
 
@@ -132,38 +85,14 @@ DevHandle HdmiOpen(int16_t number);
 
 **Table 2** Description of HdmiOpen
 
-<a name="table2"></a>
+| Parameter      | Description            |
+| ---------- | -------------------- |
+| number     | HDMI controller ID.        |
+| **Return Value**| **Description**      |
+| NULL       | Failed to open the HDMI controller.  |
+| Controller handle| Handle of the opened HDMI controller.|
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="20.66%"><p> Parameter</strong></p>
-</th>
-<th class="cellrowborder" valign="top" width="79.34%"><p><strong>Description</strong></p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="20.66%"><p>number</p>
-</td>
-<td class="cellrowborder" valign="top" width="79.34%"><p>HDMI controller ID.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="20.66%"><p><strong>Return Value</strong></p>
-</td>
-<td class="cellrowborder" valign="top" width="79.34%"><p><strong>Description</strong></p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="20.66%"><p>NULL</p>
-</td>
-<td class="cellrowborder" valign="top" width="79.34%"><p>Failed to open the HDMI controller.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="20.66%"><p>Controller handle</p>
-</td>
-<td class="cellrowborder" valign="top" width="79.34%"><p>Handle of the HDMI controller opened.</p>
-</td>
-</tr>
-</tbody>
-</table>
-
-For example, the system has two HDMI controllers, numbered 0 and 1. Open controller 0. 
+Example: Open controller 0 of the two HDMI controllers (numbered 0 and 1) in the system.
 
 ```c
 DevHandle hdmiHandle = NULL; /* HDMI controller handle /
@@ -176,7 +105,7 @@ if (hdmiHandle == NULL) {
 }
 ```
 
-### Registering a Callback for HPD<a name="section6"></a>
+#### Registering a Callback for HPD
 
 ```c
 int32_t HdmiRegisterHpdCallbackFunc(DevHandle handle, struct HdmiHpdCallbackInfo *callback);
@@ -184,41 +113,13 @@ int32_t HdmiRegisterHpdCallbackFunc(DevHandle handle, struct HdmiHpdCallbackInfo
 
 **Table 3** Description of HdmiRegisterHpdCallbackFunc
 
-<a name="table3"></a>
-
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="50%"><p><strong> Parameter</strong></p>
-</th>
-<th class="cellrowborder" valign="top" width="50%"><p><strong>Description</strong></p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="50%"><p>handle</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>HDMI controller handle.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>callback</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>Pointer to the callback to be invoked to return the HPD result.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p><strong>Return Value</strong></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p><strong>Description</strong></p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>0</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>The callback is registered successfully.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>Negative number</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>Failed to register the callback.</p>
-</td>
-</tr>
-</tbody>
-</table>
+| Parameter      | Description          |
+| ---------- | ------------------ |
+| handle     | HDMI controller handle.    |
+| callback   | Pointer to the callback to be invoked to return the HPD result.|
+| **Return Value**| **Description**    |
+| 0          | The operation is successful.          |
+| Negative value      | The operation failed.          |
 
 The following is an example of registering a callback for HPD:
 
@@ -227,30 +128,31 @@ The following is an example of registering a callback for HPD:
 static void HdmiHpdHandle(void *data, bool hpd)
 {
     if (data == NULL) {
-    HDF_LOGE("priv data is NULL");
-    return;
-}
-
+        HDF_LOGE("priv data is NULL");
+        return;
+    }
     if (hpd == true) {
         HDF_LOGD("HdmiHpdHandle: hot plug");
         /* Add related processing if required. */
     } else {
-        HDF_LOGD("HdmiHpdHandle: hot unplog");
+        HDF_LOGD("HdmiHpdHandle: hot unplug");
         /* Add related processing if required. */
     }
 }
 
-    /* Example of registering a callback for HPD */
-    struct HdmiHpdCallbackInfo info = {0};
-    info.data = handle;
-    info.callbackFunc = HdmiHpdHandle;
-    ret = HdmiRegisterHpdCallbackFunc(hdmiHandle, info);
-    if (ret != 0) {
-        HDF_LOGE("HdmiRegisterHpdCallbackFunc: Register failed.");
-    }
+/* Example of registering a callback for HPD */
+···
+struct HdmiHpdCallbackInfo info = {0};
+info.data = handle;
+info.callbackFunc = HdmiHpdHandle;
+ret = HdmiRegisterHpdCallbackFunc(hdmiHandle, info);
+if (ret != 0) {
+    HDF_LOGE("HdmiRegisterHpdCallbackFunc: Register failed.");
+}
+···
 ```
 
-### Reading the RAW EDID<a name="section7"></a>
+#### Reading the Raw EDID
 
 ```c
 int32_t HdmiReadSinkEdid(DevHandle handle, uint8_t *buffer, uint32_t len);
@@ -258,46 +160,14 @@ int32_t HdmiReadSinkEdid(DevHandle handle, uint8_t *buffer, uint32_t len);
 
 **Table 4** Description of HdmiReadSinkEdid
 
-<a name="table4"></a>
-
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="50%"><p><strong> Parameter</strong></p>
-</th>
-<th class="cellrowborder" valign="top" width="50%"><p><strong>Description</strong></p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="50%"><p>handle</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>HDMI controller handle.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>buffer</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>Pointer to the data buffer.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>len</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>Data length.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p><strong>Return Value</strong></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p><strong>Description</strong></p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>Positive integer</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>Raw EDID read.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>Negative number or **0**</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>Failed to read the EDID.</p>
-</td>
-</tr>
-</tbody>
-</table>
+| Parameter      | Description              |
+| ---------- | ---------------------- |
+| handle     | HDMI controller handle.        |
+| buffer     | Pointer to the data buffer.            |
+| len        | Data length.              |
+| **Return Value**| **Description**        |
+| Positive integer    | Raw EDID read.|
+| Negative number or 0   | Failed to read the EDID.              |
 
 The following is an example of reading the raw EDID from a sink:
 
@@ -311,8 +181,6 @@ if (len <= 0) {
 }
 ```
 
-### Setting Video, Audio, and HDR Attributes<a name="section8"></a>
-
 #### Setting Audio Attributes
 
 ```c
@@ -321,41 +189,14 @@ int32_t HdmiSetAudioAttribute(DevHandle handle, struct HdmiAudioAttr *attr);
 
 **Table 5** Description of HdmiSetAudioAttribute
 
-<a name="table5"></a>
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="50%"><p><strong> Parameter</strong></p>
-</th>
-<th class="cellrowborder" valign="top" width="50%"><p><strong>Description</strong></p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="50%"><p>handle</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>HDMI controller handle.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>attr</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>Pointer to the audio attributes.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p><strong>Return Value</strong></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p><strong>Description</strong></p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>0</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>The operation is successful.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>Negative number</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>The operation failed.</p>
-</td>
-</tr>
-</tbody>
-</table>
+| Parameter  | Description      |
+| ------ | -------------- |
+| handle | HDMI controller handle.|
+| attr   | Pointer to the audio attributes.      |
+| **Return Value**| **Description**    |
+| 0      | The operation is successful.      |
+| Negative value  | The operation failed.      |
 
 The following is an example of setting audio attributes:
 
@@ -382,41 +223,14 @@ int32_t HdmiSetVideoAttribute(DevHandle handle, struct HdmiVideoAttr *attr);
 
 **Table 6** Description of HdmiSetVideoAttribute
 
-<a name="table6"></a>
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="50%"><p><strong> Parameter</strong></p>
-</th>
-<th class="cellrowborder" valign="top" width="50%"><p><strong>Description</strong></p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="50%"><p>handle</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>HDMI controller handle.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>attr</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>Pointer to the video attributes.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p><strong>Return Value</strong></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p><strong>Description</strong></p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>0</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>The operation is successful.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>Negative number</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>The operation failed.</p>
-</td>
-</tr>
-</tbody>
-</table>
+| Parameter      | Description      |
+| ---------- | -------------- |
+| handle     | HDMI controller handle.|
+| attr       | Pointer to the video attributes.      |
+| **Return Value**| **Description**|
+| 0          | The operation is successful.      |
+| Negative value      | The operation failed.      |
 
 The following is an example of setting video attributes:
 
@@ -442,41 +256,14 @@ int32_t HdmiSetHdrAttribute(DevHandle handle, struct HdmiHdrAttr *attr);
 
 **Table 7** Description of HdmiSetHdrAttribute
 
-<a name="table7"></a>
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="50%"><p><strong> Parameter</strong></p>
-</th>
-<th class="cellrowborder" valign="top" width="50%"><p><strong>Description</strong></p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="50%"><p>handle</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>HDMI controller handle.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>attr</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>Pointer to the HDR attributes.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p><strong>Return Value</strong></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p><strong>Description</strong></p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>0</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>The operation is successful.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>Negative number</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>The operation failed.</p>
-</td>
-</tr>
-</tbody>
-</table>
+| Parameter      | Description      |
+| ---------- | -------------- |
+| handle     | HDMI controller handle.|
+| attr       | Pinter to the HDR attributes.     |
+| **Return Value**| **Description**|
+| 0          | The operation is successful.      |
+| Negative value      | The operation failed.      |
 
 The following is an example of setting HDR attributes:
 
@@ -495,8 +282,6 @@ if (ret != 0) {
 }
 ```
 
-### Setting Other Attributes<a name="section9"></a>
-
 #### Setting HDMI AV Mute
 
 ```c
@@ -505,41 +290,14 @@ int32_t HdmiAvmuteSet(DevHandle handle, bool enable);
 
 **Table 8** Description of HdmiAvmuteSet
 
-<a name="table8"></a>
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="50%"><p><strong> Parameter</strong></p>
-</th>
-<th class="cellrowborder" valign="top" width="50%"><p><strong>Description</strong></p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="50%"><p>handle</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>HDMI controller handle.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>enable</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>Whether the AV mute feature is enabled.
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p><strong>Return Value</strong></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p><strong>Description</strong></p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>0</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>The operation is successful.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>Negative number</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>The operation failed.</p>
-</td>
-</tr>
-</tbody>
-</table>
+| Parameter      | Description         |
+| ---------- | ----------------- |
+| handle     | HDMI controller handle.   |
+| enable     | Whether to enable the AV mute feature.|
+| **Return Value**| **Description**   |
+| 0          | The operation is successful.         |
+| Negative value      | The operation failed.         |
 
 The following is an example of setting AV mute:
 
@@ -560,41 +318,14 @@ int32_t HdmiDeepColorSet(DevHandle handle, enum HdmiDeepColor color);
 
 **Table 9** Description of HdmiDeepColorSet
 
-<a name="table9"></a>
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="50%"><p><strong> Parameter</strong></p>
-</th>
-<th class="cellrowborder" valign="top" width="50%"><p><strong>Description</strong></p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="50%"><p>handle</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>HDMI controller handle.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>color</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>Color depth to set.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p><strong>Return Value</strong></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p><strong>Description</strong></p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>0</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>The operation is successful.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>Negative number</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>The operation failed.</p>
-</td>
-</tr>
-</tbody>
-</table>
+| Parameter      | Description      |
+| ---------- | -------------- |
+| handle     | HDMI controller handle.|
+| color      | Color depth to set.      |
+| **Return Value**| **Description**|
+| 0          | The operation is successful.      |
+| Negative value      | The operation failed.      |
 
 The following is an example of setting the color depth:
 
@@ -615,41 +346,14 @@ int32_t HdmiDeepColorGet(DevHandle handle, enum HdmiDeepColor *color);
 
 **Table 10** Description of HdmiDeepColorGet
 
-<a name="table10"></a>
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="50%"><p><strong> Parameter</strong></p>
-</th>
-<th class="cellrowborder" valign="top" width="50%"><p><strong>Description</strong></p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="50%"><p>handle</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>HDMI controller handle.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>color</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>Pointer to the color depth.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p><strong>Return Value</strong></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p><strong>Description</strong></p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>0</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>The operation is successful.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>Negative number</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>The operation failed.</p>
-</td>
-</tr>
-</tbody>
-</table>
+| Parameter      | Description      |
+| ---------- | -------------- |
+| handle     | HDMI controller handle.|
+| color      | Pointer to the color depth.      |
+| **Return Value**| **Description**|
+| 0          | The operation is successful.      |
+| Negative value      | The operation failed.      |
 
 The following is an example of obtaining the color depth:
 
@@ -663,7 +367,7 @@ if (ret != 0) {
 }
 ```
 
-### Starting HDMI Transmission<a name="section10"></a>
+#### Starting HDMI Transmission
 
 ```c
 int32_t HdmiStart(DevHandle handle);
@@ -671,36 +375,13 @@ int32_t HdmiStart(DevHandle handle);
 
 **Table 11** Description of HdmiStart
 
-<a name="table11"></a>
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="50%"><p><strong> Parameter</strong></p>
-</th>
-<th class="cellrowborder" valign="top" width="50%"><p><strong>Description</strong></p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="50%"><p>handle</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>HDMI controller handle.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p><strong>Return Value</strong></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p><strong>Description</strong></p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>0</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>The operation is successful.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>Negative number</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>The operation failed.</p>
-</td>
-</tr>
-</tbody>
-</table>
+| Parameter      | Description      |
+| ---------- | -------------- |
+| handle     | HDMI controller handle.|
+| **Return Value**| **Description**|
+| 0          | The operation is successful.      |
+| Negative value      | The operation failed.      |
 
 The following is an example of starting HDMI transmission:
 
@@ -713,7 +394,7 @@ if (ret != 0) {
 }
 ```
 
-### Stopping HDMI Transmission<a name="section11"></a>
+#### Stopping HDMI Transmission<a name="section11"></a>
 
 ```c
 int32_t HdmiStop(DevHandle handle);
@@ -721,36 +402,13 @@ int32_t HdmiStop(DevHandle handle);
 
 **Table 12** Description of HdmiStop
 
-<a name="table12"></a>
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="50%"><p><strong> Parameter</strong></p>
-</th>
-<th class="cellrowborder" valign="top" width="50%"><p><strong>Description</strong></p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="50%"><p>handle</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>HDMI controller handle.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p><strong>Return Value</strong></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p><strong>Description</strong></p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>0</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>The operation is successful.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>Negative number</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>The operation failed.</p>
-</td>
-</tr>
-</tbody>
-</table>
+| Parameter      | Description      |
+| ---------- | -------------- |
+| handle     | HDMI controller handle.|
+| **Return Value**| **Description**|
+| 0          | The operation is successful.      |
+| Negative value      | The operation failed.      |
 
 The following is an example of stopping HDMI transmission:
 
@@ -763,7 +421,7 @@ if (ret != 0) {
 }
 ```
 
-### Unregistering the Callback for HPD<a name="section12"></a>
+#### Unregistering the Callback for HPD
 
 ```c
 int32_t HdmiUnregisterHpdCallbackFunc(DevHandle handle);
@@ -771,36 +429,13 @@ int32_t HdmiUnregisterHpdCallbackFunc(DevHandle handle);
 
 **Table 13** Description of HdmiUnregisterHpdCallbackFunc
 
-<a name="table13"></a>
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="50%"><p><strong> Parameter</strong></p>
-</th>
-<th class="cellrowborder" valign="top" width="50%"><p><strong>Description</strong></p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="50%"><p>handle</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>HDMI controller handle.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p><strong>Return Value</strong></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p><strong>Description</strong></p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>0</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>The operation is successful.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>Negative number</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>The operation failed.</p>
-</td>
-</tr>
-</tbody>
-</table>
+| Parameter      | Description      |
+| ---------- | -------------- |
+| handle     | HDMI controller handle.|
+| **Return Value**| **Description**|
+| 0          | The operation is successful.      |
+| Negative value      | The operation failed.      |
 
 The following is an example of unregistering the callback for HPD:
 
@@ -813,7 +448,7 @@ if (ret != 0) {
 }
 ```
 
-### Closing an HDMI Controller<a name="section13"></a>
+#### Closing an HDMI Controller
 
 ```c
 void HdmiClose(DevHandle handle);
@@ -821,21 +456,10 @@ void HdmiClose(DevHandle handle);
 
 **Table 14** Description of HdmiClose
 
-<a name="table14"></a>
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="50%"><p><strong> Parameter</strong></p>
-</th>
-<th class="cellrowborder" valign="top" width="50%"><p><strong>Description</strong></p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="50%"><p>handle</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>HDMI controller handle.</p>
-</td>
-</tr>
-</tbody>
-</table>
+| Parameter      | Description      |
+| ---------- | -------------- |
+| handle     | HDMI controller handle.|
 
 The following is an example of closing an HDMI controller:
 
@@ -843,7 +467,7 @@ The following is an example of closing an HDMI controller:
 HdmiClose(hdmiHandle);
 ```
 
-## Example<a name="section14"></a>
+### Development Example
 
 This following example shows how to use HDMI APIs to manage an HDMI device on a Hi3516D V300 development board.
 
@@ -873,7 +497,7 @@ static void HdmiHpdHandle(void *data, bool hpd)
         HDF_LOGD("HdmiHpdHandle: hot plug");
         /* Add related processing if required. */
     } else {
-        HDF_LOGD("HdmiHpdHandle: hot unplog");
+        HDF_LOGD("HdmiHpdHandle: hot unplug");
         /* Add related processing if required. */
     }
 }

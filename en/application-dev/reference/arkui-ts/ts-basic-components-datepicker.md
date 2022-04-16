@@ -48,7 +48,7 @@ Creates a date picker in the given date range.
 | Name| Type| Description|
 | -------- | -------- | -------- |
 | year | number | Year of the selected date.|
-| month | number | Month of the selected date.|
+| month | number | Month of the selected date. The value ranges from 0 to 11. The value **0** indicates January, and the value **11** indicates December. |
 | day | number | Day of the selected date.|
 
 

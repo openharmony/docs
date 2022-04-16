@@ -1,4 +1,4 @@
-# Guidelines for Compiling and Building the Linux Kernel<a name="EN-US_TOPIC_0000001076416924"></a>
+# Compiling and Building the Linux Kernel<a name="EN-US_TOPIC_0000001076416924"></a>
 
 -   [Example 1](#section19369206113115)
 

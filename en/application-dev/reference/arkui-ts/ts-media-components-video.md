@@ -15,9 +15,9 @@ The **&lt;Video&gt;** component does not support any child component.
 
 ## APIs
 
-Video(value: VideoOption)
+Video(value: VideoOptions)
 
-- VideoOption attributes
+- VideoOptions attributes
     | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
   | src | string | No | - | Path of the video source. |
@@ -27,13 +27,13 @@ Video(value: VideoOption)
 
 
 - PlaybackSpeed<sup>8+</sup>
-    | Name | Description | 
+    | Name | Description |
   | -------- | -------- |
-  | Speed_Forward_0_75_X | 0.75x playback speed. | 
-  | Speed_Forward_1_00_X | 1x playback speed. | 
-  | Speed_Forward_1_25_X | 1.25x playback speed. | 
-  | Speed_Forward_1_75_X | 1.75x playback speed. | 
-  | Speed_Forward_2_00_X | 2x playback speed. | 
+  | Speed_Forward_0_75_X | 0.75x playback speed. |
+  | Speed_Forward_1_00_X | 1x playback speed. |
+  | Speed_Forward_1_25_X | 1.25x playback speed. |
+  | Speed_Forward_1_75_X | 1.75x playback speed. |
+  | Speed_Forward_2_00_X | 2x playback speed. |
 
 
 ## Attributes
@@ -49,38 +49,94 @@ Video(value: VideoOption)
 
 ## Events
 
-  | Name | Description | 
+| Name | Description |
 | -------- | -------- |
-| onStart() =&gt; void | Triggered when the video is played. | 
-| onPause() =&gt; void | Triggered when the video playback is paused. | 
-| onFinish() =&gt; void | Triggered when the video playback is finished. | 
+| onStart() =&gt; void | Triggered when the video is played. |
+| onPause() =&gt; void | Triggered when the video playback is paused. |
+| onFinish() =&gt; void | Triggered when the video playback is finished. |
 | onError() =&gt; void | Triggered when the video playback fails. |
-| onPrepared(event?: { duration: number }) =&gt; void | Triggered when video preparation is complete. The video duration (in seconds) is obtained from **duration**. | 
-| onSeeking(event?: { time: number }) =&gt; void | Triggered to report the time (in seconds) when the progress bar is being dragged. | 
-| onSeeked(event?: { time: number }) =&gt; void | Triggered to report the playback time (in seconds) when the user finishes dragging the progress bar. | 
-| onUpdate(event?: { time: number }) =&gt; void | Triggered once per 250 ms when the playback progress changes. The unit of the current playback time is second. | 
+| onPrepared(event?: { duration: number }) =&gt; void | Triggered when video preparation is complete. The video duration (in seconds) is obtained from **duration**. |
+| onSeeking(event?: { time: number }) =&gt; void | Triggered to report the time (in seconds) when the progress bar is being dragged. |
+| onSeeked(event?: { time: number }) =&gt; void | Triggered to report the playback time (in seconds) when the user finishes dragging the progress bar. |
+| onUpdate(event?: { time: number }) =&gt; void | Triggered once per 250 ms when the playback progress changes. The unit of the current playback time is second. |
 
 
-### VideoController
+## VideoController
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> A **VideoController** object can control one or more videos.
+A **VideoController** object can control one or more videos.
 
-  | Name | Description | 
-| -------- | -------- |
-| start() : void | Starts playback. | 
-| pause() : void | Pauses playback. | 
-| stop() : void | Stops playback. | 
-| setCurrentTime(value: number) | Sets the video playback position. | 
-| setCurrentTime(value: number, seekMode: SeekMode)<sup>8+</sup> | Sets the video playback position with the specified seek mode. |
+
+### Objects to Import
+
+```
+controller: VideoController = new VideoController();
+```
+
+### start
+
+start(): void
+
+Starts playback.
+
+### pause
+
+pause(): void
+
+Pauses playback.
+
+### stop
+
+stop(): void
+
+Stops playback.
+
+### setCurrentTime
+
+setCurrentTime(value: number)
+
+Sets the video playback position.
+
+- Parameters
+  | Name | Type | Mandatory | Default Value | Description |
+  | -------- | -------- | -------- | -------- | -------- |
+  | value | number | Yes | - | Video playback position. |
+
+### requestFullscreen
+
+requestFullscreen(value: boolean)
+
+Requests full-screen mode.
+
+- Parameters
+  | Name | Type | Mandatory | Default Value | Description |
+  | -------- | -------- | -------- | -------- | -------- |
+  | value | number | Yes | false | Whether the playback is in full-screen mode. |
+
+### exitFullscreen
+
+exitFullscreen()
+
+Exits full-screen mode.
+
+### setCurrentTime<sup>8+</sup>
+
+setCurrentTime(value: number, seekMode: SeekMode)
+
+Sets the video playback position with the specified seek mode.
+
+- Parameters
+  | Name | Type | Mandatory | Default Value | Description |
+  | -------- | -------- | -------- | -------- | -------- |
+  | value | number | Yes | - | Video playback position. |
+  | seekMode | SeekMode | Yes | - | Seek mode. |
 
 - SeekMode<sup>8+</sup>
-    | Name | Description | 
+  | Name | Description |
   | -------- | -------- |
-  | PreviousKeyframe | Seeks to the nearest previous keyframe. | 
-  | NextKeyframe | Seeks to the nearest next keyframe. | 
-  | ClosestKeyframe | Seeks to the nearest keyframe. | 
-  | Accurate | Seeks to a specific frame, regardless of whether the frame is a keyframe. | 
+  | PreviousKeyframe | Seeks to the nearest previous keyframe. |
+  | NextKeyframe | Seeks to the nearest next keyframe. |
+  | ClosestKeyframe | Seeks to the nearest keyframe. |
+  | Accurate | Seeks to a specific frame, regardless of whether the frame is a keyframe. |
 
 
 ## Example

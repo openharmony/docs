@@ -1,7 +1,7 @@
 # WLAN
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
-> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.<br/>
+> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 The APIs described in this document are used only for non-universal products, such as routers.
 
 
@@ -21,7 +21,7 @@ Enables the WLAN hotspot.
   ohos.permission.MANAGE_WIFI_HOTSPOT_EXT
 
 - System capability:
-  SystemCapability.Communication.WiFi.HotspotExt
+  SystemCapability.Communication.WiFi.AP.Extension
 
 - Return value
   | **Type**| **Description**|
@@ -39,7 +39,7 @@ Disables the WLAN hotspot.
   ohos.permission.MANAGE_WIFI_HOTSPOT_EXT
 
 - System capability:
-  SystemCapability.Communication.WiFi.HotspotExt
+  SystemCapability.Communication.WiFi.AP.Extension
 
 - Return value
   | **Type**| **Description**|
@@ -57,7 +57,7 @@ Obtains the supported power models. The method uses a promise to return the resu
   ohos.permission.GET_WIFI_INFO
 
 - System capability:
-  SystemCapability.Communication.WiFi.HotspotExt
+  SystemCapability.Communication.WiFi.AP.Extension
 
 - Return value
   | Type| Description|
@@ -86,7 +86,7 @@ Obtains the supported power models. The method uses an asynchronous callback to 
   ohos.permission.GET_WIFI_INFO
 
 - System capability:
-  SystemCapability.Communication.WiFi.HotspotExt
+  SystemCapability.Communication.WiFi.AP.Extension
 
 - Parameters
   | Name| Type| Mandatory| Description|
@@ -104,7 +104,7 @@ Obtains the power model. The method uses a promise to return the result.
   ohos.permission.GET_WIFI_INFO
 
 - System capability:
-  SystemCapability.Communication.WiFi.HotspotExt
+  SystemCapability.Communication.WiFi.AP.Extension
 
 - Return value
   | Type| Description|
@@ -122,7 +122,7 @@ Obtains the power model. The method uses an asynchronous callback to return the 
   ohos.permission.GET_WIFI_INFO
 
 - System capability:
-  SystemCapability.Communication.WiFi.HotspotExt
+  SystemCapability.Communication.WiFi.AP.Extension
 
 - Parameters
   | Name| Type| Mandatory| Description|
@@ -140,7 +140,7 @@ setPowerModel(model: PowerModel) : boolean;
   ohos.permission.MANAGE_WIFI_HOTSPOT_EXT
 
 - System capability:
-  SystemCapability.Communication.WiFi.HotspotExt
+  SystemCapability.Communication.WiFi.AP.Extension
 
 - Parameters
   | Name| Type| Mandatory| Description|

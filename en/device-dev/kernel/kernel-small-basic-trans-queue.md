@@ -1,19 +1,5 @@
 # Queue<a name="EN-US_TOPIC_0000001078912736"></a>
 
--   [Basic Concepts](#section81171363232)
--   [Working Principles](#section1074515132316)
-    -   [Queue Control Block](#section194431851201315)
-    -   [Working Principles](#section89875741418)
-
--   [Development Guidelines](#section827981242419)
-    -   [Available APIs](#section19327151642413)
-    -   [How to Develop](#section1390154210243)
-
--   [Development Example](#section27132341285)
-    -   [Example Description](#section197311443141017)
-    -   [Sample Code](#section972214490107)
-    -   [Verification](#section19287165416106)
-
 
 ## Basic Concepts<a name="section81171363232"></a>
 
@@ -21,7 +7,7 @@ A queue, also called a message queue, is a data structure used for communication
 
 Tasks can read messages from a queue. When the queue has no messages, the tasks are suspended. When the queue has a new message, the suspended tasks are woken up and process the new message. Tasks can also write messages to the queue. When the queue is full, the write task is suspended. When there is an available message node in the queue, the suspended write task is woken up and writes a message.
 
-You can adjust the timeout period of the read queue and write queue to adjust the block mode of the read and write APIs. If the timeout period is set to  **0**  for the read queue and write queue, tasks will not be suspended and the API directly returns. This is the non-block mode. If the timeout period is greater than  **0**, block mode is used.
+You can adjust the timeout period of the read queue and write queue to adjust the block mode of the read and write APIs. If the timeout period is set to **0** for the read queue and write queue, tasks will not be suspended and the API directly returns. This is the non-block mode. If the timeout period is greater than **0**, block mode is used.
 
 An asynchronous processing mechanism is provided to allow messages in a queue not to be processed immediately. In addition, queues can be used to buffer messages and implement asynchronous task communication. Queues have the following features:
 
@@ -63,12 +49,12 @@ Each queue control block contains information about the queue status.
 ### Working Principles<a name="section89875741418"></a>
 
 -   The queue ID is returned if a queue is created successfully.
--   The queue control block contains  **Head**  and  **Tail**, which indicate the storage status of messages in a queue.  **Head**  indicates the start position of occupied message nodes in the queue.  **Tail**  indicates the end position of the occupied message nodes and the start position of idle message nodes. When a queue is created,  **Head**  and  **Tail**  point to the start position of the queue.
--   When data is to be written to a queue,  **readWriteableCnt\[1\]**  is used to determine whether data can be written to the queue. If  **readWriteableCnt\[1\]**  is  **0**, the queue is full and data cannot be written to it. Data can be written to the head node or tail node of a queue. To write data to the tail node, locate the start idle message node based on  **Tail**  and write data to it. If  **Tail**  is pointing to the tail of the queue, the rewind mode is used. To write data to the head node, locate previous node based on  **Head**  and write data to it. If  **Head**  is pointing to the start position of the queue, the rewind mode is used.
--   When a queue is to be read,  **readWriteableCnt\[0\]**  is used to determine whether the queue has messages to read. Reading an idle queue \(**readWriteableCnt\[0\]**  is** 0**\) will cause task suspension. If the queue has messages to read, the system locates the first node to which data is written based on  **Head**  and read the message from the node. If  **Head**  is pointing to the tail of the queue, the rewind mode is used.
--   When a queue is to be deleted, the system locates the queue based on the queue ID, sets the queue status to  **OS\_QUEUE\_UNUSED**, sets the queue control block to the initial state, and releases the memory occupied by the queue.
+-   The queue control block contains **Head** and **Tail**, which indicate the storage status of messages in a queue. **Head** indicates the start position of occupied message nodes in the queue. **Tail** indicates the end position of the occupied message nodes and the start position of idle message nodes. When a queue is created, **Head** and **Tail** point to the start position of the queue.
+-   When data is to be written to a queue, **readWriteableCnt\[1\]** is used to determine whether data can be written to the queue. If **readWriteableCnt\[1\]** is **0**, the queue is full and data cannot be written to it. Data can be written to the head node or tail node of a queue. To write data to the tail node, locate the start idle message node based on **Tail** and write data to it. If **Tail** is pointing to the tail of the queue, the rewind mode is used. To write data to the head node, locate previous node based on **Head** and write data to it. If **Head** is pointing to the start position of the queue, the rewind mode is used.
+-   When a queue is to be read, **readWriteableCnt\[0\]** is used to determine whether the queue has messages to read. Reading an idle queue \(**readWriteableCnt\[0\]** is** 0**\) will cause task suspension. If the queue has messages to read, the system locates the first node to which data is written based on **Head** and read the message from the node. If **Head** is pointing to the tail of the queue, the rewind mode is used.
+-   When a queue is to be deleted, the system locates the queue based on the queue ID, sets the queue status to **OS\_QUEUE\_UNUSED**, sets the queue control block to the initial state, and releases the memory occupied by the queue.
 
-**Figure  1**  Reading and writing data in a queue<a name="fig139854471119"></a>  
+**Figure 1** Reading and writing data in a queue<a name="fig139854471119"></a> 
 ![](figures/reading-and-writing-data-in-a-queue-3.png "reading-and-writing-data-in-a-queue-3")
 
 The preceding figure illustrates how to write data to the tail node only. Writing data to the head node is similar.
@@ -144,20 +130,20 @@ The preceding figure illustrates how to write data to the tail node only. Writin
 
 ### How to Develop<a name="section1390154210243"></a>
 
-1.  Call  **LOS\_QueueCreate**  to create a queue. The queue ID is returned when the queue is created.
-2.  Call  **LOS\_QueueWrite**  or  **LOS\_QueueWriteCopy**  to write messages to the queue.
-3.  Call  **LOS\_QueueRead**  or  **LOS\_QueueReadCopy**  to read messages from the queue.
-4.  Call  **LOS\_QueueInfoGet**  to obtain queue information.
-5.  Call  **LOS\_QueueDelete**  to delete a queue.
+1.  Call **LOS\_QueueCreate** to create a queue. The queue ID is returned when the queue is created.
+2.  Call **LOS\_QueueWrite** or **LOS\_QueueWriteCopy** to write messages to the queue.
+3.  Call **LOS\_QueueRead** or **LOS\_QueueReadCopy** to read messages from the queue.
+4.  Call **LOS\_QueueInfoGet** to obtain queue information.
+5.  Call **LOS\_QueueDelete** to delete a queue.
 
 >![](../public_sys-resources/icon-note.gif) **NOTE:** 
 >-   The maximum number of queues supported by the system is the total number of queue resources of the system, not the number of queue resources available to users. For example, if the system software timer occupies one more queue resource, the number of queue resources available to users decreases by one.
 >-   The input parameters queue name and flags passed when a queue is created are reserved for future use.
->-   The input parameter  **timeOut**  in the queue interface function is relative time.
->-   **LOS\_QueueReadCopy**,  **LOS\_QueueWriteCopy**, and  **LOS\_QueueWriteHeadCopy**  are a group of APIs that must be used together.  **LOS\_QueueRead**,  **LOS\_QueueWrite**, and  **LOS\_QueueWriteHead**  are a group of APIs that must be used together.
->-   As  **LOS\_QueueWrite**,  **LOS\_QueueWriteHead**, and  **LOS\_QueueRead**  are used to manage data addresses, you must ensure that the memory directed by the pointer obtained by calling  **LOS\_QueueRead**  is not modified or released abnormally when the queue is being read. Otherwise, unpredictable results may occur.
->-   If the input parameter bufferSize in **LOS\_QueueRead**and**LOS\_QueueReadCopy** is less than the actual length of the message, the message will be truncated.
->-   **LOS\_QueueWrite**,  **LOS\_QueueWriteHead**, and  **LOS\_QueueRead**  are called to manage data addresses, which means that the actual data read or written is pointer data. Therefore, before using these APIs, ensure that the message node size is the pointer length during queue creation, to avoid waste and read failures.
+>-   The input parameter **timeOut** in the queue interface function is relative time.
+>-   **LOS\_QueueReadCopy**, **LOS\_QueueWriteCopy**, and **LOS\_QueueWriteHeadCopy** are a group of APIs that must be used together. **LOS\_QueueRead**, **LOS\_QueueWrite**, and **LOS\_QueueWriteHead** are a group of APIs that must be used together.
+>-   As **LOS\_QueueWrite**, **LOS\_QueueWriteHead**, and **LOS\_QueueRead** are used to manage data addresses, you must ensure that the memory directed by the pointer obtained by calling **LOS\_QueueRead** is not modified or released abnormally when the queue is being read. Otherwise, unpredictable results may occur.
+>-   If the input parameter **bufferSize** in **LOS\_QueueRead** and **LOS\_QueueReadCopy** is less than the length of the message, the message will be truncated.
+>-   **LOS\_QueueWrite**, **LOS\_QueueWriteHead**, and **LOS\_QueueRead** are called to manage data addresses, which means that the actual data read or written is pointer data. Therefore, before using these APIs, ensure that the message node size is the pointer length during queue creation, to avoid waste and read failures.
 
 ## Development Example<a name="section27132341285"></a>
 
@@ -165,11 +151,11 @@ The preceding figure illustrates how to write data to the tail node only. Writin
 
 Create a queue and two tasks. Enable task 1 to call the queue write API to send messages, and enable task 2 to receive messages by calling the queue read API.
 
-1.  Create task 1 and task 2 by calling  **LOS\_TaskCreate**.
-2.  Create a message queue by calling  **LOS\_QueueCreate**.
-3.  Enable messages to be sent in task 1 by calling  **SendEntry**.
-4.  Enable messages to be received in task 2 by calling  **RecvEntry**.
-5.  Call  **LOS\_QueueDelete**  to delete a queue.
+1.  Create task 1 and task 2 by calling **LOS\_TaskCreate**.
+2.  Create a message queue by calling **LOS\_QueueCreate**.
+3.  Enable messages to be sent in task 1 by calling **SendEntry**.
+4.  Enable messages to be received in task 2 by calling **RecvEntry**.
+5.  Call **LOS\_QueueDelete** to delete a queue.
 
 ### Sample Code<a name="section972214490107"></a>
 

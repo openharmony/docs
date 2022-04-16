@@ -107,16 +107,16 @@ Creates a **RunningLock** object.
 **Example**
 
 ```
-runningLock.createRunningLock("running_lock_test", runningLock.RunningLockType.BACKGROUND)
-.then(runninglock => {
-    var used = runninglock.isUsed();
-    console.info('runninglock is used: ' + used);
-    runninglock.lock(500);
-    used = runninglock.isUsed();
-    console.info('after lock runninglock is used ' + used);
-})
-.catch(error => {
-    console.log('create runningLock test error: ' + error);
+runningLock.createRunningLock("running_lock_test", runningLock.RunningLockType.BACKGROUND, (error, lockIns) => {
+    if (typeof error === "undefined") {
+        console.log('create runningLock test error: ' + error);
+    } else {
+        var used = lockIns.isUsed();
+        console.info('runninglock is used: ' + used);
+        lockIns.lock(500);
+        used = lockIns.isUsed();
+        console.info('after lock runninglock is used ' + used);
+    }
 })
 ```
 
@@ -170,11 +170,13 @@ Locks and holds a **RunningLock** object.
 
 **System capability:** SystemCapability.PowerManager.PowerManager.Core
 
+**Required permission:** ohos.permission.RUNNING_LOCK
+
 **Parameters**
 
-| Name    | Type    | Mandatory  | Description                  |
-| ------- | ------ | ---- | -------------------- |
-| timeout | number | No   | Duration for locking and holding the **RunningLock** object.|
+| Name    | Type    | Mandatory  | Description                        |
+| ------- | ------ | ---- | -------------------------- |
+| timeout | number | No   | Duration for locking and holding the **RunningLock** object, in ms.|
 
 **Example**
 
@@ -185,7 +187,7 @@ runningLock.createRunningLock("running_lock_test", runningLock.RunningLockType.B
     console.info('create runningLock success')
 })
 .catch(error => {
-    console.log('Lock runningLock test error: ' + error)
+    console.log('create runningLock test error: ' + error)
 });
 ```
 
@@ -198,16 +200,18 @@ Releases a **Runninglock** object.
 
 **System capability:** SystemCapability.PowerManager.PowerManager.Core
 
+**Required permission:** ohos.permission.RUNNING_LOCK
+
 **Example**
 
 ```
 runningLock.createRunningLock("running_lock_test", runningLock.RunningLockType.BACKGROUND)
 .then(runningLock => {
     runningLock.unlock()
-    console.info('unLock runningLock success')
+    console.info('create and unLock runningLock success')
 })
 .catch(error => {
-    console.log('unLock runningLock test error: ' + error)
+    console.log('create runningLock test error: ' + error)
 });
 ```
 

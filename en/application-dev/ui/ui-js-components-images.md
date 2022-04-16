@@ -1,17 +1,17 @@
 # &lt;image&gt; Development
 
 
-The &lt;image&gt; component is used to render and display images. For details, see [image](../reference/arkui-js/js-components-basic-image.md).
+The **&lt;image&gt;** component is used to render and display images. For details, see [image](../reference/arkui-js/js-components-basic-image.md).
 
 
 ## Creating an &lt;image&gt; Component
 
-  Create an &lt;image&gt; component in the .hml file under pages/index.
+  Create an **&lt;image&gt;** component in the .hml file under **pages/index**.
 
 ```
 <!-- index.hml -->
 <div class="container">
-  <image src="common/images/bg-tv.jpg"> </image>
+  <image style="height: 30%;" src="common/images/bg-tv.jpg"> </image>
 </div>
 ```
 
@@ -19,6 +19,8 @@ The &lt;image&gt; component is used to render and display images. For details, s
 ```
 /* xxx.css */
 .container {
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -31,7 +33,9 @@ The &lt;image&gt; component is used to render and display images. For details, s
 
 ## Setting the Image Style
 
-Set the width, height, and object-fit attributes to define the width, height, and scale type of an image.
+Set the **width**, **height**, and **object-fit** attributes to define the width, height, and scale type of an image.
+
+
 
 ```
 <!-- index.hml -->
@@ -40,23 +44,29 @@ Set the width, height, and object-fit attributes to define the width, height, an
 </div>
 ```
 
+
+
 ```
 /* xxx.css */
 .container {
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 background-color:#F1F3F5;
 }
 image{
-  width: 80%;  height: 500px;
+ width: 80%;
+  height: 500px;
   border: 5px solid saddlebrown;
   border-radius: 20px;
-  object-fit: contain;
+ object-fit: contain;
   match-text-direction:true;
 
 }
 ```
+
 
 
 ![en-us_image_0000001222807796](figures/en-us_image_0000001222807796.png)
@@ -64,7 +74,7 @@ image{
 
 ## Loading Images
 
-When an image is successfully loaded, the complete event is triggered, and the loaded image is returned. If an exception occurs during image loading, the error event is triggered, and the image loading failure is printed.
+When an image is successfully loaded, the **complete** event is triggered, and the loaded image is returned. If an exception occurs during image loading, the **error** event is triggered, and the image loading failure is printed.
 
 
 ```
@@ -83,6 +93,8 @@ When an image is successfully loaded, the complete event is triggered, and the l
 ```
 /* xxx.css */
 .container{
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   justify-content: center;
   align-self: center;
@@ -123,7 +135,7 @@ export default {
 
 ## Example Scenario
 
-  In this example you touch and hold an image to gradually hide it. After the image is completely hidden, it will show in its original setting. Set a setInterval timer to change the image opacity at a specified interval so that it is hidden gradually. When the opacity changes to 0, the timer is cleared and the opacity is set to 1.
+  In this example you touch and hold an image to gradually hide it. After the image is completely hidden, it will show in its original setting. Set a **setInterval** timer to change the image opacity at a specified interval so that it is hidden gradually. When the opacity changes to **0**, the timer is cleared and the opacity is set to **1**.
 
 ```
 <!-- index.hml -->
@@ -143,6 +155,8 @@ export default {
 ```
 /* xxx.css */
 .page-container {
+  width: 100%;
+  height: 100%;
   flex-direction:column;
   align-self: center;
   justify-content: center;

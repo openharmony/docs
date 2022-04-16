@@ -1,29 +1,24 @@
-# Defining Events
+# Defining Gesture Events
 
+A gesture represents a semantic action (for example, tap, drag, or longpress) that can trigger one or more events. A gesture lifecycle may consist of multiple events from the start to the end of the gesture. Supported events are as follows:
 
-Events mainly include gesture events for touchscreen devices.
+**Touch**
 
+- **touchstart**: Triggered when the touch starts
 
-## Gesture Events
+- **touchmove**: Triggered when the touch moves
 
-A gesture represents a semantic action (for example, tap, drag, or longpress) that can trigger one or more events. A gesture lifecycle may consist of multiple events from the start to the end of the gesture. Supported events:
+- **touchcancel**: Triggered when the touch is interrupted, for example, by an incoming call notification or pop-up message
 
-  Touch
-- touchstart: Triggered when the touch starts
+- **touchend**: Triggered when the touch ends
 
-- touchmove: Triggered when the touch moves
+**Click**
 
-- touchcancel: Triggered when the touch is interrupted, for example, by an incoming call notification or pop-up message
+**click**: Triggered when a user taps the screen quickly.
 
-- touchend: Triggered when the touch ends
+**Longpress**
 
-Click
-
-click: Triggered when a user taps the screen quickly.
-
-Longpress
-
-longpress: Triggered when a user keeps tapping the screen at the same position for a while.
+**longpress**: Triggered when a user keeps tapping the screen at the same position for a while.
 
 The following is an example:
 

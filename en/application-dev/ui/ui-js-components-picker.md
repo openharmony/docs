@@ -1,18 +1,20 @@
 # &lt;picker&gt; Development
 
 
-The &lt;picker&gt; component supports common, date, time, data and time, and multi-column text selectors. For details, see [picker](../reference/arkui-js/js-components-basic-picker.md).
+The **&lt;picker&gt;** component supports common, date, time, data and time, and multi-column text selectors. For details, see [picker](../reference/arkui-js/js-components-basic-picker.md).
 
 
 ## Creating a &lt;picker&gt; Component
 
-Create a &lt;picker&gt; component in the .hml file under pages/index.
+Create a **&lt;picker&gt;** component in the .hml file under **pages/index**.
 
 
 ```
 <!-- index.hml -->
 <div class="container">
-  <picker>    picker  </picker>
+  <picker>
+    picker
+  </picker>
 <div>
 ```
 
@@ -20,6 +22,8 @@ Create a &lt;picker&gt; component in the .hml file under pages/index.
 ```
 /* index.css */
 .container {
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -32,7 +36,7 @@ Create a &lt;picker&gt; component in the .hml file under pages/index.
 
 ## Setting the Picker Type
 
-Set the type attribute of the &lt;picker&gt; component. For example, set it to date.
+Set the **type** attribute of the **&lt;picker&gt;** component. For example, set it to **date**.
 
 
 ```
@@ -47,6 +51,8 @@ Set the type attribute of the &lt;picker&gt; component. For example, set it to d
 ```
 /* index.css */
 .container {
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -71,14 +77,15 @@ export default {
 
 ![en-us_image_0000001267647893](figures/en-us_image_0000001267647893.gif)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
->
-> When setting the value range of a common selector, you must use the data binding mode.
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE:**
+> - When setting the value range of a common selector, you must use the data binding mode.
+> 
+> - The **lunarswitch** attribute of the date selector is only supported on phones and tablets.
 
 
 ## Setting the Time Format
 
-Set the hours attribute to specify the time format used by the time selector. Available values include 12 and 24, indicating the 12-hour format and 24-hour format, respectively.
+Set the **hours** attribute to specify the time format used by the time selector. Available values include **12** and **24**, indicating the 12-hour format and 24-hour format, respectively.
 
 
 ```
@@ -93,6 +100,8 @@ Set the hours attribute to specify the time format used by the time selector. Av
 ```
 /* index.css */
 .container {
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -107,15 +116,15 @@ Set the hours attribute to specify the time format used by the time selector. Av
 
 ![en-us_image_0000001222807808](figures/en-us_image_0000001222807808.gif)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
-> - When hours is set to 12, the time is displayed in 12-hour format and distinguished by a.m. and p.m.
->
-> - When hours is set to 24, the time is displayed in 24-hour format.
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE:**
+> - When **hours** is set to **12**, the time is displayed in 12-hour format and distinguished by a.m. and p.m.
+> 
+> - When **hours** is set to **24**, the time is displayed in 24-hour format.
 
 
 ## Adding Response Events
 
-To confirm and cancel selection, add change and cancel events.
+To confirm and cancel selection, add **change** and **cancel** events.
 
 
 ```
@@ -130,6 +139,8 @@ To confirm and cancel selection, add change and cancel events.
 ```
 /* index.css */
 .container {
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -170,7 +181,9 @@ export default {
 ## Example Scenario
 
 
-Implement a health check-in application by using the &lt;picker&gt; component.
+Implement a health check-in application by using the **&lt;picker&gt;** component.
+
+
 
 ```
 <!-- index.hml -->
@@ -201,6 +214,8 @@ Implement a health check-in application by using the &lt;picker&gt; component.
   </div>
 </div>
 ```
+
+
 
 ```
 /* index.css */
@@ -243,6 +258,8 @@ Implement a health check-in application by using the &lt;picker&gt; component.
   stroke-width: 6px;
 }
 ```
+
+
 
 ```
 // xxx.js

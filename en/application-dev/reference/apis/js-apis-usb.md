@@ -419,122 +419,139 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 
 Represents the USB endpoint from which data is sent or received. You can obtain the USB endpoint through [USBInterface](#usbinterface).
 
+**System capability**: SystemCapability.USB.USBManager
+
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| address | number | Endpoint address.<br>**System capability**: SystemCapability.USB.USBManager|
-| attributes | number | Endpoint attributes.<br>**System capability**: SystemCapability.USB.USBManager|
-| interval | number | Endpoint interval.<br>**System capability**: SystemCapability.USB.USBManager|
-| maxPacketSize | number | Maximum size of data packets on the endpoint.<br>**System capability**: SystemCapability.USB.USBManager|
-| direction | [USBRequestDirection](#usbrequestdirection) | Endpoint direction.<br>**System capability**: SystemCapability.USB.USBManager|
-| number | number | Endpoint number.<br>**System capability**: SystemCapability.USB.USBManager|
-| type | number | Endpoint type.<br>**System capability**: SystemCapability.USB.USBManager|
-| interfaceId | number | Unique ID of the interface to which the endpoint belongs.<br>**System capability**: SystemCapability.USB.USBManager|
+| address | number | Endpoint address.|
+| attributes | number | Endpoint attributes.|
+| interval | number | Endpoint interval.|
+| maxPacketSize | number | Maximum size of data packets on the endpoint.|
+| direction | [USBRequestDirection](#usbrequestdirection) | Endpoint direction.|
+| number | number | Endpoint number.|
+| type | number | Endpoint type.|
+| interfaceId | number | Unique ID of the interface to which the endpoint belongs.|
 
 
 ## USBInterface
 
 Represents a USB interface. One [USBConfig](#usbconfig) can contain multiple **USBInterface** instances, each providing a specific function.
 
+**System capability**: SystemCapability.USB.USBManager
+
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| id | number | Unique ID of the USB interface.<br>**System capability**: SystemCapability.USB.USBManager|
-| protocol | number | Interface protocol.<br>**System capability**: SystemCapability.USB.USBManager|
-| clazz | number | Device type.<br>**System capability**: SystemCapability.USB.USBManager|
-| subClass | number | Device subclass.<br>**System capability**: SystemCapability.USB.USBManager|
-| alternateSetting | number | Settings for alternating between descriptors of the same USB interface.<br>**System capability**: SystemCapability.USB.USBManager|
-| name | string | Interface name.<br>**System capability**: SystemCapability.USB.USBManager|
-| endpoints | Array&lt;[USBEndpoint](#usbendpoint)&gt; | Endpoints that belong to the USB interface.<br>**System capability**: SystemCapability.USB.USBManager|
+| id | number | Unique ID of the USB interface.|
+| protocol | number | Interface protocol.|
+| clazz | number | Device type.|
+| subClass | number | Device subclass.|
+| alternateSetting | number | Settings for alternating between descriptors of the same USB interface.|
+| name | string | Interface name.|
+| endpoints | Array&lt;[USBEndpoint](#usbendpoint)&gt; | Endpoints that belong to the USB interface.|
 
 
 ## USBConfig
 
 Represents the USB configuration. One [USBDevice](#usbdevice) can contain multiple **USBConfig** instances.
 
+**System capability**: SystemCapability.USB.USBManager
+
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| id | number | Unique ID of the USB configuration.<br>**System capability**: SystemCapability.USB.USBManager|
-| attributes | number | Configuration attributes.<br>**System capability**: SystemCapability.USB.USBManager|
-| maxPower | number | Maximum power consumption, in mA.<br>**System capability**: SystemCapability.USB.USBManager|
-| name | string | Configuration name, which can be left empty.<br>**System capability**: SystemCapability.USB.USBManager|
-| isRemoteWakeup | boolean | Support for remote wakeup.<br>**System capability**: SystemCapability.USB.USBManager|
-| isSelfPowered | boolean | Support for independent power supplies.<br>**System capability**: SystemCapability.USB.USBManager|
-| interfaces | Array&nbsp;&lt;[USBInterface](#usbinterface)&gt; | Supported interface attributes.<br>**System capability**: SystemCapability.USB.USBManager|
+| id | number | Unique ID of the USB configuration.|
+| attributes | number | Configuration attributes.|
+| maxPower | number | Maximum power consumption, in mA.|
+| name | string | Configuration name, which can be left empty.|
+| isRemoteWakeup | boolean | Support for remote wakeup.|
+| isSelfPowered | boolean | Support for independent power supplies.|
+| interfaces | Array&nbsp;&lt;[USBInterface](#usbinterface)&gt; | Supported interface attributes.|
 
 
 ## USBDevice
 
-Represents the USB device information.
+Represents USB device information.
+
+**System capability**: SystemCapability.USB.USBManager
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| busNum | number | Bus address.<br>**System capability**: SystemCapability.USB.USBManager|
-| devAddress | number | Device address.<br>**System capability**: SystemCapability.USB.USBManager|
-| serial | string | Device SN.<br>**System capability**: SystemCapability.USB.USBManager|
-| name | string | Device name.<br>**System capability**: SystemCapability.USB.USBManager|
-| manufacturerName | string | Device manufacturer.<br>**System capability**: SystemCapability.USB.USBManager|
-| productName | string | Product information.<br>**System capability**: SystemCapability.USB.USBManager|
-| version | string | Version.<br>**System capability**: SystemCapability.USB.USBManager|
-| vendorId | number | Vendor ID.<br>**System capability**: SystemCapability.USB.USBManager|
-| productId | number | Product ID.<br>**System capability**: SystemCapability.USB.USBManager|
-| clazz | number | Device class.<br>**System capability**: SystemCapability.USB.USBManager|
-| subClass | number | Device subclass.<br>**System capability**: SystemCapability.USB.USBManager|
-| protocol | number | Device protocol code.<br>**System capability**: SystemCapability.USB.USBManager|
-| configs | Array&lt;[USBConfig](#usbconfig)&gt; | Device configuration descriptor information.<br>**System capability**: SystemCapability.USB.USBManager|
+| busNum | number | Bus address.|
+| devAddress | number | Device address.|
+| serial | string | Device SN.|
+| name | string | Device name.|
+| manufacturerName | string | Device manufacturer.|
+| productName | string | Product information.|
+| version | string | Version.|
+| vendorId | number | Vendor ID.|
+| productId | number | Product ID.|
+| clazz | number | Device class.|
+| subClass | number | Device subclass.|
+| protocol | number | Device protocol code.|
+| configs | Array&lt;[USBConfig](#usbconfig)&gt; | Device configuration descriptor information.|
 
 
 ## USBDevicePipe
 
 Represents a USB device pipe, which is used to determine a USB device.
 
+**System capability**: SystemCapability.USB.USBManager
+
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| busNum | number | Bus address.<br>**System capability**: SystemCapability.USB.USBManager|
-| devAddress | number | Device address.<br>**System capability**: SystemCapability.USB.USBManager|
+| busNum | number | Bus address.|
+| devAddress | number | Device address.|
 
 
 ## USBControlParams
 
 Represents control transfer parameters.
 
+**System capability**: SystemCapability.USB.USBManager
+
 | Name| Type| Description|
 | -------- | -------- | -------- |
 | request | number | Request type.|
-| target | [USBRequestTargetType](#usbrequesttargettype) | Represents the request target type.<br>**System capability**: SystemCapability.USB.USBManager|
-| reqType | [USBControlRequestType](#usbcontrolrequesttype) | Request control type.<br>**System capability**: SystemCapability.USB.USBManager|
-| value | number | Request parameters<br>**System capability**: SystemCapability.USB.USBManager|
-| index | number | Index of the request parameter value.<br>**System capability**: SystemCapability.USB.USBManager|
-| data | Uint8Array | Buffer for writing or reading data.<br>**System capability**: SystemCapability.USB.USBManager|
+| target | [USBRequestTargetType](#usbrequesttargettype) | Represents the request target type.|
+| reqType | [USBControlRequestType](#usbcontrolrequesttype) | Request control type.|
+| value | number | Request parameters|
+| index | number | Index of the request parameter value.|
+| data | Uint8Array | Buffer for writing or reading data.|
 
 
 ## USBRequestTargetType
 
 Represents the request target type.
 
+**System capability**: SystemCapability.USB.USBManager
 
 | Name| Default Value | Description|
 | -------- | -------- | -------- |
-| USB_REQUEST_TARGET_DEVICE | 0 | Device.<br>**System capability**: SystemCapability.USB.USBManager|
-| USB_REQUEST_TARGET_INTERFACE | 1 | Interface.<br>**System capability**: SystemCapability.USB.USBManager|
-| USB_REQUEST_TARGET_ENDPOINT | 2 | Endpoint<br>**System capability**: SystemCapability.USB.USBManager|
-| USB_REQUEST_TARGET_OTHER | 3 | Others<br>**System capability**: SystemCapability.USB.USBManager|
+| USB_REQUEST_TARGET_DEVICE | 0 | Device.|
+| USB_REQUEST_TARGET_INTERFACE | 1 | Interface.|
+| USB_REQUEST_TARGET_ENDPOINT | 2 | Endpoint|
+| USB_REQUEST_TARGET_OTHER | 3 | Others|
 
 
 ## USBControlRequestType
 
 Enumerates control request types.
 
+**System capability**: SystemCapability.USB.USBManager
+
 | Name| Default Value | Description|
 | -------- | -------- | -------- |
-| USB_REQUEST_TYPE_STANDARD | 0 | Standard<br>**System capability**: SystemCapability.USB.USBManager|
-| USB_REQUEST_TYPE_CLASS | 1 | Class.<br>**System capability**: SystemCapability.USB.USBManager|
-| USB_REQUEST_TYPE_VENDOR | 2 | Vendor<br>**System capability**: SystemCapability.USB.USBManager|
+| USB_REQUEST_TYPE_STANDARD | 0 | Standard|
+| USB_REQUEST_TYPE_CLASS | 1 | Class.|
+| USB_REQUEST_TYPE_VENDOR | 2 | Vendor|
 
 
 ## USBRequestDirection
 
 Enumerates request directions.
 
+**System capability**: SystemCapability.USB.USBManager
+
 | Name| Default Value | Description|
 | -------- | -------- | -------- |
-| USB_REQUEST_DIR_TO_DEVICE | 0 | Request for writing data from the host to the device.<br>**System capability**: SystemCapability.USB.USBManager|
-| USB_REQUEST_DIR_FROM_DEVICE | 0x80 | Request for reading data from the device to the host.<br>**System capability**: SystemCapability.USB.USBManager|
+| USB_REQUEST_DIR_TO_DEVICE | 0 | Request for writing data from the host to the device.|
+| USB_REQUEST_DIR_FROM_DEVICE | 0x80 | Request for reading data from the device to the host.|

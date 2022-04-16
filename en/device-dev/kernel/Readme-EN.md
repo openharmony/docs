@@ -172,5 +172,10 @@
 
 - [Kernel for Standard Systems](kernel-standard.md)
   - [Linux Kernel Overview](kernel-standard-overview.md)
-  - [Applying Patches on OpenHarmony Development Boards](kernel-standard-patch.md)
-  - [Guidelines for Building the Linux Kernel](kernel-standard-build.md)
+  - [Applying Patches on Development Boards](kernel-standard-patch.md)
+  - [Compiling and Building the Linux Kernel](kernel-standard-build.md)
+  - [Enhanced Kernel Features](kernel-standard-enhanced-features.md)
+    - [Enhanced SWAP](kernel-standard-mm-eswap.md)
+    - [Task Scheduling](kernel-standard-sched.md)
+      - [Related Thread Group](kernel-standard-sched-rtg.md)
+      - [Lightweight CPU Isolation](kernel-standard-sched-cpuisolation.md)         

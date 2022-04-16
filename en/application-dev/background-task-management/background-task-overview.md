@@ -28,9 +28,9 @@ Adhere to the following constraints and rules when using transient tasks:
 
 - **When to request**: An application can request a transient task only when it is running in the foreground or before it is suspended in the background. Otherwise, the application may be suspended, resulting in request failure. By default, an application has 6–12 seconds of running time (subject to the application scenario) before it is suspended in the background.
 
-- **Timeout**: The system notifies the application of the suspension delay timeout by using a callback. The application must then cancel the delayed suspension or apply for delayed suspension again. Otherwise, the application will be forcibly suspended.
+- **Timeout**: If a suspension delay is about to time out, the system notifies the application of the timeout by using a callback. The application must then cancel the delayed suspension. Otherwise, the application will be forcibly terminated.
 
-- **When to cancel**: The requesting application shall cancel the request when the transient task is complete. If the request is forcibly canceled by the system, the time frame allowed for the application to run in the background will be affected.
+- **When to cancel**: The requesting application shall proactively cancel the request when the transient task is complete, rather than waiting for a system callback. Otherwise, the time frame allowed for the application to run in the background will be affected.
 
 - **Quota mechanism**: To prevent abuse of the keepalive, each application has a certain quota every day (dynamically adjusted based on user habits). After using up the quota, an application cannot request transient tasks. Therefore, applications should cancel their request immediately after the transient tasks are complete, to avoid quota consumption. (Note: The quota refers to the requested duration and does not include the time when the application runs in the background.)
 
@@ -52,7 +52,7 @@ OpenHarmony provides 9 background modes for services that require continuous tas
 | multiDeviceConnection | Distributed interconnection| A distributed task is running.|  |
 | wifiInteraction | WLAN transmission| A WLAN-related task is running.| System API, which is available only to system applications|
 | voip | Voice and video calls over VoIP| A call-related task is running.| System API, which is available only to system applications|
-| taskKeeping | Computing task| A computing task is running| PC-specific, valid only on PCs|
+| taskKeeping | Computing task| A computing task is running| Effective only for specific devices|
 
 ### Restrictions on Using Continuous Tasks
 - If a user triggers a perceivable task, such as broadcasting and navigation, the corresponding background mode is triggered. When the task is started, the system forcibly displays a notification to the user.

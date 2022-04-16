@@ -12,11 +12,11 @@
 ## 导入模块
 
 ```
-import lottie from 'lottie-ohos-ets'
+import lottie from '@ohos/lottieETS'
 ```
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 在Terminal窗口使用 npm install 'lottie-ohos-ets'命令下载Lottie。
+> 在Terminal窗口使用 `npm install @ohos/lottieETS` 命令下载Lottie。
 
 
 ## lottie.loadAnimation
