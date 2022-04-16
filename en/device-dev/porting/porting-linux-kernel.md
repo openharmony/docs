@@ -198,7 +198,7 @@ The HDF test cases are used to verify basic functions of the HDF framework and p
 
 **Test Case Build and Test Method**
 
-Use the  [hdc\_std](https://gitee.com/openharmony/docs/blob/master/en/device-dev/subsystems/oem_subsys_toolchain_hdc_guide.md)  tool to push the test case execution file to the device and execute the test cases. The procedure is as follows:
+Use the  [hdc\_std](https://gitee.com/openharmony/docs/blob/master/en/device-dev/subsystems/subsys-toolchain-hdc-guide.md)  tool to push the test case execution file to the device and execute the test cases. The procedure is as follows:
 
 1.  Build the HDF test cases.
 2.  Use the  **hdc\_std**  tool to push the test case execution file to the device.
@@ -218,7 +218,7 @@ The procedure is as follows:
 
 2.  Copy the test files to the target device \(Raspberry Pi in this example\).
 
-    Method 1: Use the  [hdc\_std](https://gitee.com/openharmony/docs/blob/master/en/device-dev/subsystems/oem_subsys_toolchain_hdc_guide.md)  tool.
+    Method 1: Use the  [hdc\_std](https://gitee.com/openharmony/docs/blob/master/en/device-dev/subsystems/subsys-toolchain-hdc-guide.md)  tool.
 
     1.  Create the  **data/test**  directory in Raspberry Pi.
 

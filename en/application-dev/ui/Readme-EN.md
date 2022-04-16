@@ -51,6 +51,7 @@
             - [Qrcode Development](ui-js-components-qrcode.md)
             - [Search Development](ui-js-components-search.md)
         - Canvas Development
+            - [Canvas](ui-js-components-canvas.md)
             - [CanvasRenderingContext2D](ui-js-components-canvasrenderingcontext2d.md)
             - [Path2D](ui-js-components-path2d.md)
             - [OffscreenCanvas](ui-js-components-offscreencanvas.md)

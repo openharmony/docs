@@ -5,7 +5,7 @@
 
 
 1. Go to the root directory of the source code and run the build command.
-     
+   
    ```
    ./build.sh --product-name name --ccache
    ```
@@ -14,7 +14,7 @@
    > _name_ indicates the product name, for example, **Hi3516D V300** and **rk3568**.
 
 2. Check the build result. After the build is complete, the following information is displayed in the log:
-     
+   
    ```
    post_process
    =====build name successful.
@@ -31,13 +31,13 @@
 ### Setting Up the Python Proxy
 
 1. Create a proxy configuration file.
-     
+   
    ```
    mkdir ~/.pipvim ~/.pip/pip.conf
    ```
 
 2. Add the following proxy information to the file, save the file, and exit:
-     
+   
    ```
    [global]
    index-url = http:// Proxy URL
@@ -46,23 +46,23 @@
    ```
 
 
-### Setting Up the npm Proxy
+### Setting Up the npm Proxy<a name="section6204129143012"></a>
 
 1. Create a proxy configuration file.
-     
+   
    ```
    vim ~/.npmrc
    ```
 
 2. Add the following proxy information to the file, save the file, and exit:
-     
+   
    ```
    Registry=http:// Proxy URL
    strict-ssl=false
    ```
 
 3. Add the following content to the **.bashrc** file, save the file, and exit:
-     
+   
    ```
    export NPM_REGISTRY=http:// Proxy URL
    source .bashrc
