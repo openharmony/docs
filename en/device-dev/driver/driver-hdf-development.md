@@ -253,7 +253,7 @@ The HDF-based driver development involves driver implementation and configuratio
 >
 >   If **preload** is set to **1 (DEVICE_PRELOAD_ENABLE_STEP2)**, the driver is loaded after a quick start is complete. If the system does not support quick start, the value **1** has the same meaning as **DEVICE_PRELOAD_ENABLE**. 
 >
->   If **preload** is set to **2 (DEVICE_PRELOAD_DISABLE)** , the driver is dynamically loaded instead of being loaded during the system boot process. When a user-mode process requests the driver service, the HDF attempts to dynamically load the driver if the driver service does not exist.  For more details, see [Driver Message Mechanism Management](driver-hdf-message-management.md).
+>   If **preload** is set to **2 (DEVICE_PRELOAD_DISABLE)** , the driver is dynamically loaded instead of being loaded during the system boot process. When a user-mode process requests the driver service, the HDF attempts to dynamically load the driver if the driver service does not exist.  For more details, see [Driver Messaging Mechanism](driver-hdf-message-management.md).
 >
 > - Sequential loading (**preload** set to **0 (DEVICE_PRELOAD_ENABLE)**)<br/>
 >   In the configuration file, the **priority** fields (value range: 0 to 200) determines the loading sequence of a host and a driver. For drivers in different hosts, a smaller host priority value indicates a higher driver loading priority; for drivers in the same host, a smaller driver priority value indicates a higher driver loading priority.
