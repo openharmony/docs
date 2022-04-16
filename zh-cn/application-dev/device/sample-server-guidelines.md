@@ -68,7 +68,7 @@
 
 	ohos_shared_library("server_process") {
 		sources = [
-			"//base/update/updateservice/./src/server_process.c",
+			"//base/update/updateservice/server_sample/src/server_process.c",
 		]
 
 		include_dirs = [
@@ -88,7 +88,7 @@
 	}
 
 	ohos_executable("testserver") {
-		source = [
+		sources = [
 			"//base/update/updateservice/server_sample/src/main.cpp",
 		]
 
