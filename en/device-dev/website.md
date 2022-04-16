@@ -41,7 +41,7 @@
 - Porting
   - Mini System SoC Porting Guide
     - Porting Preparations
-      - [Before You Start](porting/oem_transplant_chip_prepare_knows.md)
+      - [Before You Start](porting/porting-chip-prepare-knows.md)
       - [Building Adaptation Process](porting/porting-chip-prepare-process.md)
     - Kernel Porting
       - [Overview](porting/porting-chip-kernel-overview.md)
