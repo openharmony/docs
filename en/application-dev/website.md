@@ -2,8 +2,16 @@
 
 - [Application Development Overview](application-dev-guide.md)
 - Quick Start
-  - [Directory Structure](quick-start/package-structure.md)
-  - [Resource File Categories](quick-start/basic-resource-file-categories.md)
+  - Getting Started
+    - [Preparations](quick-start/start-overview.md)
+    - [Getting Started with eTS in the Traditional Coding Approach](quick-start/start-with-ets.md)
+    - [Getting Started with eTS in the Low-Code Approach](quick-start/start-with-ets-low-code.md)
+    - [Getting Started with JavaScript in the Traditional Coding Approach](quick-start/start-with-js.md)
+    - [Getting Started with JavaScript in the Low-Code Approach](quick-start/start-with-js-low-code.md)
+  - Development Fundamentals
+    - [Directory Structure](quick-start/package-structure.md)
+    - [Resource File Categories](quick-start/basic-resource-file-categories.md)
+    - [SysCap](quick-start/syscap.md)
 - Development
   - Ability Development
     - FA Model
@@ -12,9 +20,10 @@
       - [Service Ability Development](ability/fa-serviceability.md)
       - [Data Ability Development](ability/fa-dataability.md)
       - [FA Widget Development](ability/fa-formability.md)
-
-    - Other
-      - [Ability Assistant Usage](ability/ability-assistant-guidelines.md)
+      - Other
+        - [WantAgent Development](wantagent.md)
+        - [Ability Assistant Usage](ability-assistant-guidelines.md)
+        - [Test Framework Usage](ability-delegator.md)
   - UI
     - [ArkUI Overview](ui/arkui-overview.md)
     - JavaScript-based Web-Like Development Paradigm
@@ -44,18 +53,40 @@
         - [Defining Page Routes](ui/ui-js-building-ui-routes.md)
       - Common Component Development Guidelines
         - Container Components
-          - [List](ui/ui-js-components-list.md)
-          - [Dialog](ui/ui-js-components-dialog.md)
-          - [Form](ui/ui-js-components-form.md)
-          - [Stepper](ui/ui-js-components-stepper.md)
-          - [Tabs](ui/ui-js-component-tabs.md)
+          - [List Development](ui/ui-js-components-list.md)
+          - [Dialog Development](ui/ui-js-components-dialog.md)
+          - [Form Development](ui/ui-js-components-form.md)
+          - [Stepper Development](ui/ui-js-components-stepper.md)
+          - [Tabs Development](ui/ui-js-component-tabs.md)
+          - [Swiper Development](ui/ui-js-components-swiper.md)
         - Basic Components
-          - [Text](ui/ui-js-components-text.md)
-          - [Input](ui/ui-js-components-input.md)
-          - [Button](ui/ui-js-components-button.md)
-          - [Picker](ui/ui-js-components-picker.md)
-          - [Image](ui/ui-js-components-images.md)
-       - Animation Development Guidelines
+          - [Text Development](ui/ui-js-components-text.md)
+          - [Input Development](ui/ui-js-components-input.md)
+          - [Button Development](ui/ui-js-components-button.md)
+          - [Picker Development](ui/ui-js-components-picker.md)
+          - [Image Development](ui/ui-js-components-images.md)
+          - [Image-animator Development](ui/ui-js-components-image-animator.md)
+          - [Rating Development](ui/ui-js-components-rating.md)
+          - [Slider Development](ui/ui-js-components-slider.md)
+          - [Chart Development](ui/ui-js-components-chart.md)
+          - [Switch Development](ui/ui-js-components-switch.md)
+          - [Toolbar Development](ui/ui-js-components-toolbar.md)
+          - [Menu Development](ui/ui-js-components-menu.md)
+          - [Marquee Development](ui/ui-js-components-marquee.md)
+          - [Qrcode Development](ui/ui-js-components-qrcode.md)
+          - [Search Development](ui/ui-js-components-search.md)
+        - Canvas Development
+          - [Canvas](ui/ui-js-components-canvas.md)
+          - [CanvasRenderingContext2D](ui/ui-js-components-canvasrenderingcontext2d.md)
+          - [Path2D](ui/ui-js-components-path2d.md)
+          - [OffscreenCanvas](ui/ui-js-components-offscreencanvas.md)
+        - [Grid-container Development](ui/ui-js-components-calendar.md)
+        - Svg
+          - [Basics](ui/ui-js-components-svg-overview.md)
+          - [Graph Drawing](ui/ui-js-components-svg-graphics.md)
+          - [Path Drawing](ui/ui-js-components-svg-path.md)
+          - [Text Drawing](ui/ui-js-components-svg-text.md) 
+      - Animation Development Guidelines
         - CSS Animation
           - [Defining Attribute Style Animations](ui/ui-js-animate-attribute-style.md)
           - [Defining Animations with the transform Attribute](ui/ui-js-animate-transform.md)
@@ -121,6 +152,13 @@
           - [Custom Component Lifecycle Callbacks](ui/ts-custom-component-lifecycle-callbacks.md)
           - [Example: Component Creation and Re-Initialization](ui/ts-component-creation-re-initialization.md)
         - [Syntactic Sugar](ui/ts-syntactic-sugar.md)
+      - Common Component Development Guidelines
+        - [Button](ui/ui-ts-basic-components-button.md)
+        - [Web](ui/ui-ts-components-web.md)
+      - Common Layout Development Guidelines
+        - [Flex Layout](ui/ui-ts-layout-flex.md)
+        - [Grid Layout](ui/ui-ts-layout-grid-container.md)
+        - [Media Query](ui/ui-ts-layout-mediaquery.md)
       - Experiencing the Declarative UI
         - [Creating a Declarative UI Project](ui/ui-ts-creating-project.md)
         - [Getting to Know Components](ui/ui-ts-components.md)
@@ -159,8 +197,14 @@
       - User Authentication
         - [User Authentication Overview](security/userauth-overview.md)
         - [User Authentication Development](security/userauth-guidelines.md)
-      - hapsigner
-        - [hapsigner Guide](security/hapsigntool-guidelines.md)
+      - Key Management
+        - [HUKS Overview](security/huks-overview.md)
+        - [HUKS Development](security/huks-guidelines.md)
+      - hapsigntool  
+        - [hapsigntool Guide](security/hapsigntool-guidelines.md)
+      - Access Control  
+        - [Access Control Overview](security/accesstoken-overview.md)
+        - [Access Control Development](security/accesstoken-guidelines.md)
     - Connectivity
       - IPC & RPC
         - [IPC & RPC Overview](connectivity/ipc-rpc-overview.md)
@@ -176,6 +220,9 @@
       - Lightweight Data Store
         - [Lightweight Data Store Overview](database/database-preference-overview.md)
         - [Lightweight Data Store Development](database/database-preference-guidelines.md)
+      - Distributed Data Object
+        - [Distributed Data Object Overview](database/database-distributedobject-overview.md)
+        - [Distributed Data Object Development](database/database-distributedobject-guidelines.md)
     - Agent-Powered Scheduled Reminders
       - [Overview](background-agent-scheduled-reminder/background-agent-scheduled-reminder-overview.md)
       - [Development Guidelines](background-agent-scheduled-reminder/background-agent-scheduled-reminder-guide.md)
@@ -469,35 +516,31 @@
   - APIs
     - Ability Framework
 
-      - [@ohos.ability.dataUriUtils](reference/apis/js-apis-DataUriUtils.md)
-      - [@ohos.application.Ability](reference/apis/js-apis-application-ability.md)
-      - [@ohos.application.AbilityConstant](reference/apis/js-apis-application-abilityConstant.md)
-      - [@ohos.application.AbilityStage ](reference/apis/js-apis-application-abilitystage.md)
-      - [@ohos.application.appManager](reference/apis/js-apis-appmanager.md)
-      - [@ohos.application.Configuration](reference/apis/js-apis-configuration.md)
-      - [@ohos.application.ConfigurationConstant](reference/apis/js-apis-configurationconstant.md)
-      - [@ohos.ability.featureAbility](reference/apis/js-apis-featureAbility.md)
-      - [@ohos.application.formBindingData](reference/apis/js-apis-formbindingdata.md)
-      - [@ohos.application.FormExtension](reference/apis/js-apis-formextension.md)
-      - [@ohos.application.missionManager](reference/apis/js-apis-missionManager.md)
-      - [@ohos.application.formProvider](reference/apis/js-apis-formprovider.md)
-      - [@ohos.ability.particleAbility](reference/apis/js-apis-particleAbility.md)
-      - [@ohos.application.ServiceExtensionAbility](reference/apis/js-apis-service-extension-ability.md)
-      - [@ohos.application.uriPermissionManager](reference/apis/js-apis-uripermissionmanager.md)
-      - [@ohos.wantAgent](reference/apis/js-apis-wantAgent.md)
-      - [dataAbilityHelper](reference/apis/js-apis-dataAbilityHelper.md)
-      - [context](reference/apis/js-apis-Context.md)
-      - [AbilityContext](reference/apis/js-apis-ability-context.md)
-      - [AbilityRunningInfo](reference/apis/js-apis-abilityrunninginfo.md)
-      - [AbilityStageContext](reference/apis/js-apis-abilitystagecontext.md)
-      - [Context](reference/apis/js-apis-application-context.md)
-      - [ExtensionContext](reference/apis/js-apis-extension-context.md)
-      - [ExtensionRunningInfo](reference/apis/js-apis-extensionrunninginfo.md)
-      - [FormExtensionContext](reference/apis/js-apis-formextensioncontext.md)
-      - [MissionSnapshot](reference/apis/js-apis-application-MissionSnapshot.md)
-      - [PermissionRequestResult](reference/apis/js-apis-permissionrequestresult.md)
-      - [ProcessRunningInfo](reference/apis/js-apis-processrunninginfo.md)
-      - [ServiceExtensionContext](reference/apis/js-apis-service-extension-context.md) 
+      - [@ohos.ability.dataUriUtils](reference/js-apis-DataUriUtils.md)
+      - [@ohos.ability.errorCode](reference/js-apis-ability-errorCode.md)
+      - [@ohos.ability.wantConstant](reference/js-apis-ability-wantConstant.md)
+      - [@ohos.application.abilityDelegatorRegistry](reference/js-apis-abilityDelegatorRegistry.md)
+      - [@ohos.application.appManager](reference/js-apis-appmanager.md)
+      - [@ohos.application.Configuration](reference/js-apis-configuration.md)
+      - [@ohos.application.ConfigurationConstant](reference/js-apis-configurationconstant.md)
+      - [@ohos.ability.featureAbility](reference/js-apis-featureAbility.md)
+      - [@ohos.application.formBindingData](reference/js-apis-formbindingdata.md)
+      - [@ohos.application.formError](reference/js-apis-formerror.md)
+      - [@ohos.application.formHost](reference/js-apis-formhost.md)
+      - [@ohos.application.formInfo](reference/js-apis-formInfo.md)
+      - [@ohos.application.missionManager](reference/js-apis-missionManager.md)
+      - [@ohos.application.formProvider](reference/js-apis-formprovider.md)
+      - [@ohos.ability.particleAbility](reference/js-apis-particleAbility.md)
+      - [@ohos.application.Want](reference/js-apis-application-Want.md)
+      - [@ohos.wantAgent](reference/js-apis-wantAgent.md)
+      - [dataAbilityHelper](reference/js-apis-dataAbilityHelper.md)
+      - [context](reference/js-apis-Context.md)
+      - [abilityDelegator](reference/js-apis-application-abilityDelegator.md)
+      - [abilityDelegatorArgs](reference/js-apis-application-abilityDelegatorArgs.md)
+      - [AbilityRunningInfo](reference/js-apis-abilityrunninginfo.md)
+      - [MissionSnapshot](reference/js-apis-application-MissionSnapshot.md)
+      - [ProcessRunningInfo](reference/js-apis-processrunninginfo.md)
+      - [shellCmdResult](reference/js-apis-application-shellCmdResult.md)
 
     - Common Event and Notification
 
@@ -505,7 +548,6 @@
       - [@ohos.events.emitter](reference/apis/js-apis-emitter.md)
       - [@ohos.notification](reference/apis/js-apis-notification.md)
       - [@ohos.reminderAgent](reference/apis/js-apis-reminderAgent.md)
-      - [EventHub](reference/apis/js-apis-eventhub.md)
 
     - Bundle Management
 
@@ -516,6 +558,9 @@
     - UI Page
 
       - [@ohos.animator](reference/apis/js-apis-animator.md)
+      - [@ohos.mediaquery](reference/js-apis-mediaquery.md)
+      - [@ohos.prompt](reference/js-apis-prompt.md)
+      - [@ohos.router](reference/js-apis-router.md)
 
     - Graphics
 
@@ -547,8 +592,10 @@
 
     - Security
 
-      - [@ohos.abilityAccessCtrl](reference/apis/js-apis-abilityAccessCtrl.md)
-      - [@ohos.userIAM.userAuth ](reference/apis/js-apis-useriam-userauth.md)
+      - [@ohos.abilityAccessCtrl](reference/js-apis-abilityAccessCtrl.md)
+      - [@ohos.security.huks ](reference/js-apis-huks.md)
+      - [@ohos.userIAM.userAuth ](reference/js-apis-useriam-userauth.md)
+      - [@system.cipher](reference/js-apis-system-cipher.md)
 
     - Data Management
 
@@ -556,6 +603,7 @@
       - [@ohos.data.distributedData](reference/apis/js-apis-distributed-data.md)
       - [@ohos.data.distributedDataObject](reference/apis/js-apis-data-distributedobject.md)
       - [@ohos.data.rdb](reference/apis/js-apis-data-rdb.md)
+      - [@ohos.data.storage](reference/js-apis-data-storage.md)
       - [@ohos.settings](reference/apis/js-apis-settings.md)
       - [resultSet](reference/apis/js-apis-data-resultset.md)
 
@@ -588,6 +636,7 @@
 
       - [@ohos.bluetooth](reference/apis/js-apis-bluetooth.md)
       - [@ohos.rpc](reference/apis/js-apis-rpc.md)
+      - [@ohos.connectedTag](reference/js-apis-connectedTag.md)
       - [@ohos.wifi](reference/apis/js-apis-wifi.md)
       - [@ohos.wifiext](reference/apis/js-apis-wifiext.md)
 
@@ -601,6 +650,8 @@
       - [@ohos.hilog](reference/apis/js-apis-hilog.md)
       - [@ohos.hiTraceChain](reference/apis/js-apis-hitracechain.md)
       - [@ohos.hiTraceMeter](reference/apis/js-apis-hitracemeter.md)
+      - [@ohos.inputMethod](reference/js-apis-inputmethod.md)
+      - [@ohos.inputMethodEngine](reference/js-apis-inputmethodengine.md)
       - [@ohos.pasteboard](reference/apis/js-apis-pasteboard.md)
       - [@ohos.screenLock](reference/apis/js-apis-screen-lock.md)
       - [@ohos.systemTime](reference/apis/js-apis-system-time.md)
@@ -616,6 +667,7 @@
       - [@ohos.geolocation](reference/apis/js-apis-geolocation.md)
       - [@ohos.multimodalInput.inputConsumer](reference/apis/js-apis-inputconsumer.md)
       - [@ohos.multimodalInput.inputDevice](reference/apis/js-apis-inputdevice.md)
+      - [@ohos.multimodalInput.inputEventClient](reference/js-apis-inputeventclient.md)
       - [@ohos.multimodalInput.inputMonitor](reference/apis/js-apis-inputmonitor.md)
       - [@ohos.power](reference/apis/js-apis-power.md)
       - [@ohos.runningLock](reference/apis/js-apis-runninglock.md)
@@ -656,10 +708,29 @@
       - [@ohos.worker](reference/apis/js-apis-worker.md)
       - [@ohos.xml](reference/apis/js-apis-xml.md)
 
+    - Test
+
+      - [@ohos.application.testRunner](reference/js-apis-testRunner.md)
+      - [@ohos.uitest](reference/js-apis-uitest.md)
+
     - APIs No Longer Maintained
 
-      - [@ohos.bytrace](reference/apis/js-apis-bytrace.md)
-      - [@ohos.data.storage](reference/apis/js-apis-data-storage.md)
-      - [@system.sensor](reference/apis/js-apis-system-sensor.md)
-      - [@system.vibrator](reference/apis/js-apis-system-vibrate.md)
-      - [console](reference/apis/js-apis-logs.md)
+      - [@ohos.bytrace](reference/js-apis-bytrace.md)
+      - [@system.app](reference/js-apis-system-app.md)
+      - [@system.battery](reference/js-apis-system-battery.md)
+      - [@system.brightness](reference/js-apis-system-brightness.md)
+      - [@system.configuration](reference/js-apis-system-configuration.md)
+      - [@system.device](reference/js-apis-system-device.md)
+      - [@system.fetch](reference/js-apis-system-fetch.md)
+      - [@system.file](reference/js-apis-system-file.md)
+      - [@system.geolocation](reference/js-apis-system-location.md)
+      - [@system.mediaquery](reference/js-apis-system-mediaquery.md)
+      - [@system.network](reference/js-apis-system-network.md)
+      - [@system.package](reference/js-apis-system-package.md)
+      - [@system.prompt](reference/js-apis-system-prompt.md)
+      - [@system.request](reference/js-apis-system-request.md)
+      - [@system.router](reference/js-apis-system-router.md)
+      - [@system.sensor](reference/js-apis-system-sensor.md)
+      - [@system.storage](reference/js-apis-system-storage.md)
+      - [@system.vibrator](reference/js-apis-system-vibrate.md)
+      - [console](reference/js-apis-logs.md)
