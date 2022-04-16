@@ -269,15 +269,14 @@ Adds a reminder notification slot. This API uses an asynchronous callback to ret
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| slot | [NotificationSlot](js-apis-notification.md#notificationslot) | Yes| Reminder notification slot to add.|
+| slot | [NotificationSlot](js-apis-notification.md#notificationslot) | Yes| Notification slot to add, only support set its type attribute.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Asynchronous callback used to return the result.|
 
 **Example**
 
 ```js
 let mySlot = {
-    type: 3,
-    sound: "/sdcard/music2.mp3"
+    type: notification.SlotType.SOCIAL_COMMUNICATION
 }
 reminderAgent.addNotificationSlot(mySlot, (err, data) => {
     console.log("addNotificationSlot callback");
@@ -297,7 +296,7 @@ Adds a reminder notification slot. This API uses a promise to return the result.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| slot | [NotificationSlot](js-apis-notification.md#notificationslot) | Yes| Reminder notification slot to add.|
+| slot | [NotificationSlot](js-apis-notification.md#notificationslot) | Yes| notification slot to add, only support set its type attribute.|
 
 **Return value**
 
@@ -309,8 +308,7 @@ Adds a reminder notification slot. This API uses a promise to return the result.
 
 ```js
 let mySlot = {
-    type: 3,
-    sound: "/sdcard/music2.mp3"
+    type: notification.SlotType.SOCIAL_COMMUNICATION
 }
 reminderAgent.addNotificationSlot(mySlot).then(() => {
    console.log("addNotificationSlot promise");
