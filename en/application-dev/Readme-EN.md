@@ -3,7 +3,7 @@
 - [Application Development Overview](application-dev-guide.md)
 - About OpenHarmony
     - [OpenHarmony Project](../OpenHarmony-Overview.md)
-    - [Glossary](../device-dev/glossary/glossary.md)
+    - [Glossary](../glossary.md)
     - [OpenHarmony Release Notes](../release-notes/Readme.md)
 - Quick Start
     - Getting Started
