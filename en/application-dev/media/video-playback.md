@@ -43,7 +43,7 @@ The full video playback process includes creating an instance, setting the URL, 
 
 For details about the **url** media source input types supported by **VideoPlayer**, see the [url attribute](../reference/apis/js-apis-media.md#videoplayer_attributes).
 
-For details about how to create an XComponent, see [XComponent Creation](#XComponent).
+For details about how to create an XComponent, see [XComponent Creation](#xcomponent-creation).
 
 *Note: **SetSurface** must be called after the URL is set but before **Prepare** is called.
 
