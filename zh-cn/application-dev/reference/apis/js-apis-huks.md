@@ -367,11 +367,12 @@ generateKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<Huk
 **示例：**
 
 ```js
-var alias = 'alias';
+/* 以生成RSA512密钥为例 */
+var keyAlias = 'keyAlias';
 var properties = new Array();
 properties[0] = {
   tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-  value: huksHuksKeyAlg.HUKS_ALG_RSA
+  value: huks.HuksKeyAlg.HUKS_ALG_RSA
 };
 properties[1] = {
   tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
@@ -379,24 +380,22 @@ properties[1] = {
 };
 properties[2] = {
   tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-  value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT | huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
+  value:
+huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT |
+huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
 };
 properties[3] = {
   tag: huks.HuksTag.HUKS_TAG_PADDING,
-  value: huks.HuksKeyPadding.HUKS_PADDING_NONE
+  value: huks.HuksKeyPadding.HUKS_PADDING_OAEP
 };
 properties[4] = {
-  tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
-  value: huks.HuksCipherMode.HUKS_MODE_ECB
-};
-properties[5] = {
   tag: huks.HuksTag.HUKS_TAG_DIGEST,
-  value: huks.HuksKeyDigest.HUKS_DIGEST_NONE
+  value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256
 };
 var options = {
   properties: properties
 };
-huks.generateKey(alias, options, function (err, data){}); 
+huks.generateKey(keyAlias, options, function (err, data){}); 
 ```
 
 ## huks.generateKey
@@ -423,36 +422,31 @@ generateKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 **示例：**
 
 ```js
-var alias = 'alias';
+/* 以生成ECC256密钥为例 */
+var keyAlias = 'keyAlias';
 var properties = new Array();
 properties[0] = {
   tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-  value: huksHuksKeyAlg.HUKS_ALG_RSA
+  value: huks.HuksKeyAlg.HUKS_ALG_ECC
 };
 properties[1] = {
   tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-  value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_512
+  value: huks.HuksKeySize.HUKS_ECC_KEY_SIZE_256
 };
 properties[2] = {
   tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-  value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT | huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
+  value:
+huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_SIGN |
+huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_VERIFY
 };
 properties[3] = {
-  tag: huks.HuksTag.HUKS_TAG_PADDING,
-  value: huks.HuksKeyPadding.HUKS_PADDING_NONE
-};
-properties[4] = {
-  tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
-  value: huks.HuksCipherMode.HUKS_MODE_ECB
-};
-properties[5] = {
   tag: huks.HuksTag.HUKS_TAG_DIGEST,
-  value: huks.HuksKeyDigest.HUKS_DIGEST_NONE
+  value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256
 };
 var options = {
   properties: properties
 };
-var result = huks.generateKey(alias, options);
+var result = huks.generateKey(keyAlias, options);
 ```
 
 ## huks.deleteKey
@@ -474,11 +468,12 @@ deleteKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksR
 **示例：**
 
 ```js
-var alias = 'alias';
+/* 此处options选择emptyOptions传空 */
+var keyAlias = 'keyAlias';
 var emptyOptions = {
   properties: []
 };
-huks.deleteKey(alias, emptyOptions, function (err, data) {});
+huks.deleteKey(keyAlias, emptyOptions, function (err, data) {});
 ```
 
 ## huks.deleteKey
@@ -494,7 +489,7 @@ deleteKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 | 参数名   | 类型        | 必填 | 说明                                                  |
 | -------- | ----------- | ---- | ----------------------------------------------------- |
 | keyAlias | string      | 是   | 密钥别名，应为生成key时传入的别名。 |
-| options  | [HuksOptions](#huksoptions) | 是   | 空对象（此处传空即可）。 |
+| options | [HuksOptions](#huksoptions) | 是   | 空对象（此处传空即可）。 |
 
 **返回值：**
 
@@ -505,11 +500,12 @@ deleteKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 **示例：**
 
 ```js
-var alias = 'alias';
+/* 此处options选择emptyOptions传空 */
+var keyAlias = 'keyAlias';
 var emptyOptions = {
   properties: []
 };
-var result = huks.deleteKey(alias, emptyOptions);
+var result = huks.deleteKey(keyAlias, emptyOptions);
 ```
 
 ## huks.getSdkVersion
@@ -535,6 +531,7 @@ getSdkVersion(options: HuksOptions) : string
 **示例：**
 
 ```js
+/* 此处options选择emptyOptions传空 */
 var emptyOptions = {
   properties: []
 };
@@ -560,31 +557,41 @@ importKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksR
 **示例：**
 
 ```js
+/* 以导入AES256密钥为例 */
+var plainTextSize32 = makeRandomArr(32);
+function makeRandomArr(size) {
+    var arr = new Uint8Array(size);
+    for (var i = 0; i < size; i++) {
+        arr[i] = Math.floor(Math.random() * 10);
+    }
+    return arr;
+};
 var keyAlias = 'keyAlias';
 var properties = new Array();
 properties[0] = {
   tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-  value: huks.HuksKeyAlg.HUKS_ALG_DSA
+  value: huks.HuksKeyAlg.HUKS_ALG_AES
 };
 properties[1] = {
   tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-  value: 1024
+  value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_256
 };
 properties[2] = {
   tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-  value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_VERIFY
+  value:
+huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT | huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
 };
 properties[3] = {
   tag: huks.HuksTag.HUKS_TAG_PADDING,
-  value: huks.HuksKeyPadding.HUKS_PADDING_NONE
+  value:huks.HuksKeyPadding.HUKS_PADDING_PKCS7
 };
 properties[4] = {
-  tag: huks.HuksTag.HUKS_TAG_DIGEST,
-  value: HUKS_DIGEST_SHA1
+  tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
+  value: huks.HuksCipherMode.HUKS_MODE_ECB
 };
 var options = {
   properties: properties,
-  inData: importText
+  inData: plainTextSize32
 };
 huks.importKey(keyAlias, options, function (err, data){});
 ```
@@ -613,33 +620,45 @@ importKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 **示例：**
 
 ```js
+/* 以导入AES128为例 */
+var plainTextSize32 = makeRandomArr(32);
+
+function makeRandomArr(size) {
+    var arr = new Uint8Array(size);
+    for (var i = 0; i < size; i++) {
+        arr[i] = Math.floor(Math.random() * 10);
+    }
+    return arr;
+};
+
+/*第一步：生成密钥*/
 var keyAlias = 'keyAlias';
 var properties = new Array();
 properties[0] = {
   tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-  value: huks.HuksKeyAlg.HUKS_ALG_DSA
+  value: huks.HuksKeyAlg.HUKS_ALG_AES
 };
 properties[1] = {
   tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-  value: 1024
+  value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_128
 };
 properties[2] = {
   tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-  value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_VERIFY
+  value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT | huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
 };
 properties[3] = {
   tag: huks.HuksTag.HUKS_TAG_PADDING,
-  value: huks.HuksKeyPadding.HUKS_PADDING_NONE
+  value:huks.HuksKeyPadding.HUKS_PADDING_PKCS7
 };
 properties[4] = {
-  tag: huks.HuksTag.HUKS_TAG_DIGEST,
-  value: HUKS_DIGEST_SHA1
+  tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
+  value: huks.HuksCipherMode.HUKS_MODE_ECB
 };
-var options = {
+var huksoptions = {
   properties: properties,
-  inData: importText
+  inData: plainTextSize32
 };
-var result = huks.importKey(keyAlias, options);
+var result = huks.importKey(keyAlias, huksoptions);
 ```
 
 ## huks.exportKey
@@ -661,6 +680,7 @@ exportKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksR
 **示例：**
 
 ```js
+/* 此处options选择emptyOptions来传空 */
 var keyAlias = 'keyAlias';
 var emptyOptions = {
   properties: []
@@ -692,6 +712,7 @@ exportKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 **示例：**
 
 ```js
+/* 此处options选择emptyOptions来传空 */
 var keyAlias = 'keyAlias';
 var emptyOptions = {
   properties: []
@@ -718,6 +739,7 @@ getKeyProperties(keyAlias: string, options: HuksOptions, callback: AsyncCallback
 **示例：**
 
 ```js
+/* 此处options选择emptyOptions来传空 */
 var keyAlias = 'keyAlias';
 var emptyOptions = {
   properties: []
@@ -749,6 +771,7 @@ getKeyProperties(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 **示例：**
 
 ```js
+/* 此处options选择emptyOptions来传空 */
 var keyAlias = 'keyAlias';
 var emptyOptions = {
   properties: []
@@ -775,6 +798,7 @@ isKeyExist(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<bool
 **示例：**
 
 ```js
+/* 此处options选择emptyOptions来传空 */
 var keyAlias = 'keyAlias';
 var emptyOptions = {
   properties: []
@@ -806,12 +830,14 @@ isKeyExist(keyAlias: string, options: HuksOptions) : Promise\<boolean>
 **示例：**
 
 ```js
+/* 此处options选择emptyOptions来传空 */
 var keyAlias = 'keyAlias';
 var emptyOptions = {
   properties: []
 };
 var result = huks.isKeyExist(keyAlias, emptyOptions);
 ```
+
 
 
 ## huks.init
@@ -830,34 +856,6 @@ init操作密钥接口，使用Callback回调异步返回结果 。
 | options  | [HuksOptions](#huksoptions) | 是   | Init操作的参数集合。 |
 | callback | AsyncCallback\<[HuksHandle](#hukshandle)> | 是   | 将Init操作操作返回的handle添加到密钥管理系统的回调。 |
 
-**示例：**
-
-```js
-var alias = 'test001'
-var properties = new Array();
-properties[0] = {
-  tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-  value: huks.HksKeyAlg.HKS_ALG_DH
-};
-properties[1] = {
-  tag: huks.HksTag.HKS_TAG_PURPOSE,
-  value: huks.HksKeyPurpose.HKS_KEY_PURPOSE_AGREE
-};
-properties[2] = {
-  tag: huks.HksTag.HKS_TAG_KEY_SIZE,
-  value: huks.HksKeySize.HKS_DH_KEY_SIZE_4096
-};
-var options = {
-  properties: properties
-};
-huks.init(alias, options, function(err, data) {
-    if (err.code !== 0) {
-        console.log("test init err information: " + JSON.stringify(err));
-    } else {
-        console.log(`test init data: ${JSON.stringify(data)}`);
-    }
-})
-```
 
 ## huks.init
 
@@ -874,39 +872,6 @@ init操作密钥接口，使用Promise方式异步返回结果。
 | keyAlias | string                 | 是   | Init操作密钥的别名。 |
 | options  | [HuksOptions](#huksoptions) | 是   | Init参数集合。 |
 | promise | Promise\<[HuksHandle](#hukshandle)> | 是   | 将Init操作返回的handle添加到密钥管理系统的回调。 |
-
-**示例：**
-
-```js
-var alias = 'test001'
-var properties = new Array();
-properties[0] = {
-  tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-  value: huks.HksKeyAlg.HKS_ALG_DH
-};
-properties[1] = {
-  tag: huks.HksTag.HKS_TAG_PURPOSE,
-  value: huks.HksKeyPurpose.HKS_KEY_PURPOSE_AGREE
-};
-properties[2] = {
-  tag: huks.HksTag.HKS_TAG_KEY_SIZE,
-  value: huks.HksKeySize.HKS_DH_KEY_SIZE_4096
-};
-var options = {
-  properties: properties
-};
-huks.init(alias, options).then((data) => {
-    console.log(`test init data: ${JSON.stringify(data)}`);
-    handle1 = data.handle1;
-    handle2 = data.handle2;
-    handle = {
-        "handle1": handle1,
-        "handle2": handle2
-    };
-}).catch((err) => {
-    console.log("test init err information: " + JSON.stringify(err))
-}) 
-```
 
 
 ## huks.update
@@ -926,27 +891,6 @@ update操作密钥接口，使用Callback回调异步返回结果 。
 | options  | [HuksOptions](#huksoptions) | 是   | Update的参数集合。 |
 | callback | AsyncCallback\<[HuksResult](#huksresult)> | 是 | 将Update操作的结果添加到密钥管理系统的回调。 |
 
-**示例：**
-
-```js
-var properties = new Array();
-properties[0] = {
-  tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-  value: huks.HksKeyAlg.HKS_ALG_DH
-};
-properties[1] = {
-  tag: huks.HksTag.HKS_TAG_PURPOSE,
-  value: huks.HksKeyPurpose.HKS_KEY_PURPOSE_AGREE
-};
-properties[2] = {
-  tag: huks.HksTag.HKS_TAG_KEY_SIZE,
-  value: huks.HksKeySize.HKS_DH_KEY_SIZE_4096
-};
-var options = {
-  properties: properties
-};
-huks.update(handle, options, function (err, data){}); 
-```
 
 ## huks.update
 
@@ -965,27 +909,6 @@ update操作密钥接口，使用Promise方式异步返回结果。
 | options  | [HuksOptions](#huksoptions) | 是   | Update操作的参数集合。 |
 | promise | Promise\<[HuksResult](#huksresult)> | 是 | 将Update操作的结果添加到密钥管理系统的回调。 |
 
-**示例：**
-
-```js
-var properties = new Array();
-properties[0] = {
-  tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-  value: huks.HksKeyAlg.HKS_ALG_DH
-};
-properties[1] = {
-  tag: huks.HksTag.HKS_TAG_PURPOSE,
-  value: huks.HksKeyPurpose.HKS_KEY_PURPOSE_AGREE
-};
-properties[2] = {
-  tag: huks.HksTag.HKS_TAG_KEY_SIZE,
-  value: huks.HksKeySize.HKS_DH_KEY_SIZE_4096
-};
-var options = {
-  properties: properties
-};
-var result = huks.update(handle, options)
-```
 
 ## huks.finish
 
@@ -1003,27 +926,6 @@ finish操作密钥接口，使用Callback回调异步返回结果 。
 | options  | [HuksOptions](#huksoptions) | 是   | Finish的参数集合。 |
 | callback | AsyncCallback\<[HuksResult](#huksresult)> | 是 | 将Finish操作的结果添加到密钥管理系统的回调。 |
 
-**示例：**
-
-```js
-var properties = new Array();
-properties[0] = {
-  tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-  value: huks.HksKeyAlg.HKS_ALG_DH
-};
-properties[1] = {
-  tag: huks.HksTag.HKS_TAG_PURPOSE,
-  value: huks.HksKeyPurpose.HKS_KEY_PURPOSE_AGREE
-};
-properties[2] = {
-  tag: huks.HksTag.HKS_TAG_KEY_SIZE,
-  value: huks.HksKeySize.HKS_DH_KEY_SIZE_4096
-};
-var options = {
-  properties: properties
-};
-huks.finish(handle, options, function (err, data){}); 
-```
 
 ## huks.finish
 
@@ -1040,28 +942,6 @@ finish操作密钥接口，使用Promise方式异步返回结果。
 | handle | number           | 是   | Finish操作的handle。 |
 | options  | [HuksOptions](#huksoptions) | 是   | Finish操作的参数集合。 |
 | promise | Promise\<[HuksResult](#HuksResult)> | 是 | promise实例，用于获取异步返回结果。 |
-
-**示例：**
-
-```js
-var properties = new Array();
-properties[0] = {
-  tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-  value: huks.HksKeyAlg.HKS_ALG_DH
-};
-properties[1] = {
-  tag: huks.HksTag.HKS_TAG_PURPOSE,
-  value: huks.HksKeyPurpose.HKS_KEY_PURPOSE_AGREE
-};
-properties[2] = {
-  tag: huks.HksTag.HKS_TAG_KEY_SIZE,
-  value: huks.HksKeySize.HKS_DH_KEY_SIZE_4096
-};
-var options = {
-  properties: properties
-};
-var result = huks.finish(handle, options)
-```
 
 
 ## huks.abort
@@ -1083,23 +963,139 @@ abort操作密钥接口，使用Callback回调异步返回结果 。
 **示例：**
 
 ```js
-var properties = new Array();
-properties[0] = {
-  tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-  value: huks.HksKeyAlg.HKS_ALG_DH
-};
-properties[1] = {
-  tag: huks.HksTag.HKS_TAG_PURPOSE,
-  value: huks.HksKeyPurpose.HKS_KEY_PURPOSE_AGREE
-};
-properties[2] = {
-  tag: huks.HksTag.HKS_TAG_KEY_SIZE,
-  value: huks.HksKeySize.HKS_DH_KEY_SIZE_4096
-};
-var options = {
-  properties: properties
-};
-huks.abort(handle, options, function (err, data){}); 
+/* huks.init, huks.update, huks.finish为三段式接口，需要一起使用，当huks.init和huks.update
+ * 以及huks.finish操作中的任一阶段发生错误时，都需要调用huks.abort来终止密钥的使用。
+ *
+ * 以下以RSA1024密钥的callback操作使用为例
+ */
+import router from '@system.router';
+import huks from "@ohos.security.huks";
+import display from '@ohos.display';
+
+export default {
+    data: {
+        title: "hmac",
+        genHuksOptions: {},
+        HuksOptions: {
+            "properties": "",
+            "inData": new Uint8Array()
+        },
+        keyAlias: 'HuksDemoHMAC',
+        inData: 'huksHmacTest',
+        handle: {},
+    },
+
+    onInit() {
+        this.title = this.$t('strings.world');
+    },
+
+    onCreate() {
+        console.info("Application onCreate");
+    },
+
+    onDestroy() {
+        console.info("Application onDestroy");
+    },
+
+    stringToUint8Array: function (str) {
+        var arr = [];
+        for (var i = 0, j = str.length; i < j; ++i) {
+            arr.push(str.charCodeAt(i));
+        }
+        var tmpUint8Array = new Uint8Array(arr);
+        return tmpUint8Array;
+    },
+
+    huksGenerateKey: function () {
+        var alias = this.keyAlias;
+        var properties = new Array();
+        properties[0] = {
+            tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+            value: huks.HuksKeyAlg.HUKS_ALG_RSA
+        };
+        properties[1] = {
+            tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+            value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_1024
+        };
+        properties[2] = {
+            tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+            value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT
+        };
+        properties[3] = {
+            tag: huks.HuksTag.HUKS_TAG_PADDING,
+            value: huks.HuksKeyPadding.HUKS_PADDING_OAEP
+        };
+        properties[4] = {
+            tag: huks.HuksTag.HUKS_TAG_DIGEST,
+            value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256
+        };
+        var options = {
+            properties: properties
+        };
+        this.HuksOptions.properties = properties;
+        this.genHuksOptions = options;
+        huks.generateKey(alias, options, function (err, data) { });
+    },
+
+    async huksInit() {
+        var alias = this.keyAlias;
+        var that = this;
+        return new Promise((resolve, reject) => {
+            huks.init(alias, this.genHuksOptions, async function (err, data) {
+                console.log(`the init err is :${JSON.stringify(err)}`);
+                console.log(`the init data is :${JSON.stringify(data)}`);
+                if (data.errorCode === 0) {
+                    that.resultMessage = "init 执行成功！"
+                    that.handle = {
+                        "handle1": data.handle1,
+                        "handle2": data.handle2
+                    }
+                } else {
+                    that.resultMessage = "init 执行失败  errorCode: " + data.errorCode
+                }
+            });
+        });
+    },
+
+    async huksUpdate() {
+        let count = 2;
+        for (let i = 0; i < count; i++) {
+            this.HuksOptions.inData = this.stringToUint8Array(this.inData);
+            console.log(`Huks_Demo hmac before update HuksOptions  ${JSON.stringify(this.HuksOptions)}`);
+            new Promise((resolve, reject) => {
+                huks.update(this.handle, this.HuksOptions, function (err, data) {
+                    if (data.errorCode === 0) {
+                        this.resultMessage += "update 共执行 " + count + " 次 " + "第 " + (i + 1) + " 次执行成功！        "
+                    } else {
+                        this.resultMessage += "update 共执行 " + count + " 次 " + "第 " + (i + 1) + " 次执行失败   errorCode: " + data.errorCode + "          "
+                    }
+                });
+            });
+        }
+    },
+
+    huksFinish: function () {
+        this.HuksOptions.inData = this.stringToUint8Array("0");
+        new Promise((resolve, reject) => {
+            huks.finish(this.handle, this.HuksOptions, function (err, data) {
+                if (data.errorCode === 0) {
+                    that.resultMessage = "finish 执行成功！";
+                } else {
+                    that.resultMessage = "finish 执行失败  errorCode: " + data.errorCode;
+                }
+            });
+        });
+    },
+
+    huksAbort: function () {
+        new Promise((resolve, reject) => {
+            huks.abort(this.handle, this.genHuksOptions, function (err, data) {
+                console.log(`Huks_Demo hmac huksAbort1 data ${JSON.stringify(data)}`);
+                console.log(`Huks_Demo hmac huksAbort1 err ${JSON.stringify(err)}`);
+            });
+        });
+    }
+}
 ```
 
 ## huks.abort
@@ -1121,23 +1117,136 @@ abort操作密钥接口，使用Promise方式异步返回结果。
 **示例：**
 
 ```js
-var properties = new Array();
-properties[0] = {
-  tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-  value: huks.HksKeyAlg.HKS_ALG_DH
-};
-properties[1] = {
-  tag: huks.HksTag.HKS_TAG_PURPOSE,
-  value: huks.HksKeyPurpose.HKS_KEY_PURPOSE_AGREE
-};
-properties[2] = {
-  tag: huks.HksTag.HKS_TAG_KEY_SIZE,
-  value: huks.HksKeySize.HKS_DH_KEY_SIZE_4096
-};
-var options = {
-  properties: properties
-};
-var result = huks.abort(handle, options);
+/* huks.init, huks.update, huks.finish为三段式接口，需要一起使用，当huks.init和huks.update
+ * 以及huks.finish操作中的任一阶段发生错误时，都需要调用huks.abort来终止密钥的使用。
+ *
+ * 以下以RSA1024密钥的promise操作使用为例
+ */
+import router from '@system.router';
+import huks from "@ohos.security.huks";
+import display from '@ohos.display';
+
+export default {
+    data: {
+        title: "hmac",
+        genHuksOptions: {},
+        HuksOptions: {
+            "properties": "",
+            "inData": new Uint8Array()
+        },
+        keyAlias: 'HuksDemoHMAC',
+        inData: 'huksHmacTest',
+        handle: {},
+    },
+
+    onInit() {
+        this.title = this.$t('strings.world');
+    },
+
+    onCreate() {
+        console.info("Application onCreate");
+    },
+    onDestroy() {
+        console.info("Application onDestroy");
+    },
+
+    stringToUint8Array: function (str) {
+        var arr = [];
+        for (var i = 0, j = str.length; i < j; ++i) {
+            arr.push(str.charCodeAt(i));
+        }
+        var tmpUint8Array = new Uint8Array(arr);
+        return tmpUint8Array;
+    },
+
+    huksGenerateKey: function () {
+        console.log("huksGenerate2 is start!!!");
+        var alias = this.keyAlias;
+        var properties = new Array();
+        properties[0] = {
+            tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+            value: huks.HuksKeyAlg.HUKS_ALG_RSA
+        };
+        properties[1] = {
+            tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+            value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_1024
+        };
+        properties[2] = {
+            tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+            value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT
+        };
+        properties[3] = {
+            tag: huks.HuksTag.HUKS_TAG_PADDING,
+            value: huks.HuksKeyPadding.HUKS_PADDING_OAEP
+        };
+        properties[4] = {
+            tag: huks.HuksTag.HUKS_TAG_DIGEST,
+            value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256
+        };
+        var options = {
+            properties: properties
+        };
+        this.HuksOptions.properties = properties;
+        this.genHuksOptions = options;
+        var result = huks.generateKey(alias, this.genHuksOptions);
+        console.log("huksgenerate2 is ok!!!")
+    },
+
+    async huksInit() {
+        var alias = this.keyAlias;
+        var that = this;
+        await huks.init(alias, this.genHuksOptions).then((data) => {
+            console.log(`test init data: ${JSON.stringify(data)}`);
+            that.handle = {
+                "handle1": data.handle1,
+                "handle2": data.handle2
+            };
+        }).catch((err) => {
+            console.log("test init err information: " + JSON.stringify(err))
+        })
+    },
+
+    async huksUpdate() {
+        let count = 2;
+        for (let i = 0; i < count; i++) {
+            this.HuksOptions.inData = this.stringToUint8Array(this.inData);
+            await huks.update(this.handle, this.HuksOptions).then(async (data) => {
+                if (data.errorCode === 0) {
+                    this.resultMessage += "update 共执行 " + count + " 次 " + "第 " + (i + 1) + " 次执行成功！        "
+                } else {
+                    this.resultMessage += "update 共执行 " + count + " 次 " + "第 " + (i + 1) + " 次执行失败   errorCode: " + data.errorCode + "          "
+                }
+            }).catch((err) => {
+                this.resultMessage += "update 共执行 " + count + " 次 " + "第 " + (i + 1) + " 次执行失败 catch 错误信息:" + JSON.stringify(err) + "        "
+            });
+        }
+    },
+
+    huksFinish: function () {
+        this.HuksOptions.inData = this.stringToUint8Array("HuksDemoHMAC");
+        huks.finish(this.handle, this.HuksOptions).then((data) => {
+            if (data.errorCode === 0) {
+                this.resultMessage = "finish 执行成功！";
+            } else {
+                this.resultMessage = "finish 执行失败  errorCode: " + data.errorCode;
+            }
+        }).catch((err) => {
+            this.resultMessage = "finish 执行失败， catch 错误信息:" + JSON.stringify(err)
+        });
+    },
+
+    huksAbort: function () {
+        huks.abort(this.handle, this.HuksOptions).then((data) => {
+            if (data.errorCode === 0) {
+                this.resultMessage = "abort 执行成功！";
+            } else {
+                this.resultMessage = "abort 执行失败  errorCode: " + data.errorCode;
+            }
+        }).catch((err) => {
+            this.resultMessage = "abort 执行失败， catch 错误信息:" + JSON.stringify(err)
+        });
+    }
+}
 ```
 
 ## HuksParam
