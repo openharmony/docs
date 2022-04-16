@@ -214,7 +214,7 @@ The MIPI CSI module adaptation involves the following steps:
     -   Instantiate  **MipiCsiCntlrMethod**  in the  **MipiCsiCntlr**  object.
 
         >![](../public_sys-resources/icon-note.gif) **NOTE:** 
-        >For details, see  [Available APIs](#section735525713405).
+        >For details, see  [Available APIs](#available-apis).
 
 
 4.  Debug the driver.
