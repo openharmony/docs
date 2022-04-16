@@ -70,7 +70,7 @@ The I2C module adaptation involves the following steps:
 
         >![](../public_sys-resources/icon-note.gif) **NOTE** 
 
-        >For details, see [Available APIs](#availableapis).
+        >For details, see [Available APIs](#available-apis).
 
 
 4.  Debug the driver.

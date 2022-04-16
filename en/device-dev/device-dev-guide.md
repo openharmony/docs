@@ -27,19 +27,16 @@ In addition, OpenHarmony provides a wide array of system components that can be 
 
 ## Document Outline<a name="section19810171681218"></a>
 
--   [Mini and Small System Development Guidelines](#table3762949121211)
--   [Standard System Development Guidelines](#table17667535516)
-
 **Table 1** Mini and small system development guidelines (reference memory < 128 MB)
 
 | Topic| Development Scenario| Related Documentation|
 | -------- | -------- | -------- |
 | About OpenHarmony| Getting familiar with OpenHarmony| -&nbsp;[About OpenHarmony](https://gitee.com/openharmony)<br>-&nbsp;[Glossary](../glossary.md) |
 | Development resources| Preparing for your development| -&nbsp;[Obtaining Source Code](get-code/sourcecode-acquire.md)<br>-&nbsp;[Obtaining Tools](get-code/gettools-acquire.md) |
-| Getting started| Getting started with setup, build, burning, debugging, and running of OpenHarmony| [Mini and Small Systems](quickstart/quickstart-lite.md)|
+| Getting started| Getting started with setup, build, burning, debugging, and running of OpenHarmony| [Mini and Small Systems](quick-start/quickstart-ide-lite-overview.md)|
 | Basic capabilities| Using basic capabilities of OpenHarmony| -&nbsp;[Kernel for Mini System](kernel/kernel-mini-overview.md)<br>-&nbsp;[Kernel for Small System](kernel/kernel-small-overview.md)<br>-&nbsp;[HDF](driver/driver-hdf-overview.md)<br>-&nbsp;[Subsystems](subsystems/subsys-build-mini-lite.md)<br>-&nbsp;[Security Guidelines](security/security-guidelines-overall.md)<br>-&nbsp;[Privacy Protection](security/security-privacy-protection.md)|
 | Advanced development| Developing smart devices based on system capabilities| -&nbsp;[WLAN-connected Products](guide/device-wlan-led-control.md)<br>-&nbsp;[Cameras Without a Screen](guide/device-iotcamera-control-overview.md)<br>-&nbsp;[Cameras with a Screen](guide/device-camera-control-overview.md) |
-| Porting and adaptation| -&nbsp;Porting and adapting OpenHarmony to an SoC<br>-&nbsp;Porting and adapting OpenHarmony to a third-party library| -&nbsp;[Mini System SoC Porting](porting/oem_transplant_chip_prepare_knows.md)<br>-&nbsp;[Small System SoC Porting](porting/porting-smallchip-prepare-needs.md)<br>-&nbsp;[Third-Party Library Porting for Mini and Small Systems](porting/porting-thirdparty-overview.md) |
+| Porting and adaptation| -&nbsp;Porting and adapting OpenHarmony to an SoC<br>-&nbsp;Porting and adapting OpenHarmony to a third-party library| -&nbsp;[Mini System SoC Porting](porting/porting-minichip.md)<br>-&nbsp;[Small System SoC Porting](porting/porting-smallchip-prepare-needs.md)<br>-&nbsp;[Third-Party Library Porting for Mini and Small Systems](porting/porting-thirdparty-overview.md) |
 | Contributing components| Contributing components to OpenHarmony| -&nbsp;[HPM Part Overview](hpm-part/hpm-part-about.md)<br>-&nbsp;[HPM Part Development](hpm-part/hpm-part-development.md)<br>-&nbsp;[HPM Part Reference](hpm-part/hpm-part-reference.md) |
 | Reference| Referring to development specifications| [FAQs](faqs/faqs-overview.md) |
 
