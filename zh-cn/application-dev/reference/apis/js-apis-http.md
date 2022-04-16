@@ -20,35 +20,34 @@ import http from '@ohos.net.http';
 let httpRequest = http.createHttp();
 // 用于订阅http响应头，此接口会比request请求先返回。可以根据业务需要订阅此消息
 // 从API 8开始，使用on('headersReceive', Callback)替代on('headerReceive', AsyncCallback)。 8+
-httpRequest.on('headersReceive', (data) => {
-    console.info('header: ' + data.header);
+httpRequest.on('headersReceive', (header) => {
+    console.info('header: ' + JSON.stringify(header));
 });
 httpRequest.request(
-    // 填写http请求的url地址，可以带参数也可以不带参数。URL地址需要开发者自定义。GET请求的参数可以在extraData中指定
+    // 填写http请求的url地址，可以带参数也可以不带参数。URL地址需要开发者自定义。请求的参数可以在extraData中指定
     "EXAMPLE_URL",
     {
-        method: 'POST', // 可选，默认为“GET”
+        method: http.RequestMethod.POST, // 可选，默认为http.RequestMethod.GET
         // 开发者根据自身业务需要添加header字段
         header: {
             'Content-Type': 'application/json'
         },
         // 当使用POST请求时此字段用于传递内容
- 
         extraData: {
             "data": "data to send",
         },
         connectTimeout: 60000, // 可选，默认为60s
         readTimeout: 60000, // 可选，默认为60s
-    },(err, data) => {
+    }, (err, data) => {
         if (!err) {
             // data.result为http响应内容，可根据业务需要进行解析
             console.info('Result:' + data.result);
             console.info('code:' + data.responseCode);
             // data.header为http响应头，可根据业务需要进行解析
-            console.info('header:' + data.header);
+            console.info('header:' + JSON.stringify(data.header));
             console.info('cookies:' + data.cookies); // 8+
         } else {
-            console.info('error:' + err);
+            console.info('error:' + JSON.stringify(err));
             // 当该请求使用完毕时，调用destroy方法主动销毁。
             httpRequest.destroy();
         }
@@ -103,14 +102,14 @@ request\(url: string, callback: AsyncCallback\<HttpResponse\>\):void
 
 ```
 httpRequest.request("EXAMPLE_URL", (err, data) => {
-  if (!err) {
-    console.info('Result:' + data.result);
-    console.info('code:' + data.responseCode);
-    console.info('header:' + data.header);
-    console.info('cookies:' + data.cookies); // 8+
-  } else {
-    console.info('error:' + err.data);
-  }
+    if (!err) {
+        console.info('Result:' + data.result);
+        console.info('code:' + data.responseCode);
+        console.info('header:' + JSON.stringify(data.header));
+        console.info('cookies:' + data.cookies); // 8+
+    } else {
+        console.info('error:' + JSON.stringify(err));
+    }
 });
 ```
 
@@ -137,7 +136,7 @@ request\(url: string, options: HttpRequestOptions, callback: AsyncCallback<HttpR
 ```
 httpRequest.request("EXAMPLE_URL",
 {
-    method: 'GET',
+    method: http.RequestMethod.GET,
     header: {
         'Content-Type': 'application/json'
     },
@@ -147,14 +146,12 @@ httpRequest.request("EXAMPLE_URL",
     if (!err) {
         console.info('Result:' + data.result);
         console.info('code:' + data.responseCode);
-        console.info('header:' + data.header);
+        console.info('header:' + JSON.stringify(data.header));
         console.info('cookies:' + data.cookies); // 8+
         console.info('header.Content-Type:' + data.header['Content-Type']);
         console.info('header.Status-Line:' + data.header['Status-Line']);
-        console.info('header.Date:' + data.header.Date);
-        console.info('header.Server:' + data.header.Server);
     } else {
-        console.info('error:' + err.data);
+        console.info('error:' + JSON.stringify(err));
     }
 });
 ```
@@ -188,24 +185,22 @@ request\(url: string, options? : HttpRequestOptions\): Promise<HttpResponse\>
 
 ```
 let promise = httpRequest.request("EXAMPLE_URL", {
-    method: "GET",
+    method: http.RequestMethod.GET,
     connectTimeout: 60000,
     readTimeout: 60000,
     header: {
         'Content-Type': 'application/json'
     }
 });
-promise.then((value) => {
-    console.info('Result:' + value.result);
-    console.info('code:' + value.responseCode);
-    console.info('header:' + value.header);
-    console.info('cookies:' + value.cookies); // 8+
-    console.info('header.Content-Type:' + value.header['Content-Type']);
-    console.info('header.Status-Line:' + value.header['Status-Line']);
-    console.info('header.Date:' + value.header.Date);
-    console.info('header.Server:' + value.header.Server);
+promise.then((data) => {
+    console.info('Result:' + data.result);
+    console.info('code:' + data.responseCode);
+    console.info('header:' + JSON.stringify(data.header));
+    console.info('cookies:' + data.cookies); // 8+
+    console.info('header.Content-Type:' + data.header['Content-Type']);
+    console.info('header.Status-Line:' + data.header['Status-Line']);
 }).catch((err) => {
-    console.error(`errCode:${err.code}, errMessage:${err.data}`);
+    console.info('error:' + JSON.stringify(err));
 });
 ```
 
@@ -245,11 +240,11 @@ on\(type: 'headerReceive', callback: AsyncCallback<Object\>\): void
 
 ```
 httpRequest.on('headerReceive', (err, data) => {
-  if (!err) {
-    console.info('header: ' + data.header);
-  } else {
-    console.info('error:' + err.data);
-  }
+    if (!err) {
+        console.info('header: ' + JSON.stringify(data));
+    } else {
+        console.info('error:' + JSON.stringify(err));
+    }
 });
 ```
 
@@ -278,13 +273,6 @@ off\(type: 'headerReceive', callback?: AsyncCallback<Object\>\): void
 **示例：**
 
 ```
-httpRequest.on('headerReceive', (err, data) => {
-  if (!err) {
-    console.info('header: ' + data.header);
-  } else {
-    console.info('error:' + err.data);
-  }
-});
 httpRequest.off('headerReceive');
 ```
 
@@ -306,8 +294,8 @@ on\(type: 'headersReceive', callback: Callback<Object\>\): void
 **示例：**
 
 ```
-httpRequest.on('headersReceive', (data) => {
-  console.info('header: ' + data.header);
+httpRequest.on('headersReceive', (header) => {
+    console.info('header: ' + JSON.stringify(header));
 });
 ```
 
@@ -354,8 +342,8 @@ once\(type: 'headersReceive', callback: Callback<Object\>\): void
 **示例：**
 
 ```
-httpRequest.once('headersReceive', (data) => {
-  console.info('header: ' + data.header);
+httpRequest.once('headersReceive', (header) => {
+    console.info('header: ' + JSON.stringify(header));
 });
 ```
 
