@@ -1,4 +1,4 @@
-# Data storage
+# Data Storage
 
 > ![icon-note.gif](../public_sys-resources/icon-note.gif) **NOTE**<br/>
 >
