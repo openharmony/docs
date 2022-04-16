@@ -9,7 +9,7 @@
 
 | 接口名                                                       | 描述             |
 | ------------------------------------------------------------ | ---------------- |
-| function generateKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback<HksResult>) : void; | 生成密钥         |
+| function generateKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback<HuksResult>) : void; | 生成密钥         |
 | function generateKey(keyAlias: string, options: HuksOptions) : Promise<HuksResult>; | 生成密钥         |
 | function exportKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback<HuksResult>) : void; | 导出公钥         |
 | function exportKey(keyAlias: string, options: HuksOptions) : Promise<HuksResult>; | 导出公钥         |
@@ -68,15 +68,15 @@
    var properties = new Array();
    properties[0] = {
      tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-     value: huks.HksKeyAlg.HKS_ALG_DH
+     value: huks.HuksKeyAlg.HUKS_ALG_DH
    };
    properties[1] = {
-     tag: huks.HksTag.HKS_TAG_PURPOSE,
-     value: huks.HksKeyPurpose.HKS_KEY_PURPOSE_AGREE
+     tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+     value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_AGREE
    };
    properties[2] = {
-     tag: huks.HksTag.HKS_TAG_KEY_SIZE,
-     value: huks.HksKeySize.HKS_DH_KEY_SIZE_4096
+     tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+     value: huks.HuksKeySize.HUKS_DH_KEY_SIZE_4096
    };
    var options = {
      properties: properties
@@ -100,15 +100,15 @@
    var properties = new Array();
    properties[0] = {
      tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-     value: huks.HksKeyAlg.HKS_ALG_DH
+     value: huks.HuksKeyAlg.HUKS_ALG_DH
    };
    properties[1] = {
-     tag: huks.HksTag.HKS_TAG_PURPOSE,
-     value: huks.HksKeyPurpose.HKS_KEY_PURPOSE_AGREE
+     tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+     value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_AGREE
    };
    properties[2] = {
-     tag: huks.HksTag.HKS_TAG_KEY_SIZE,
-     value: huks.HksKeySize.HKS_DH_KEY_SIZE_4096
+     tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+     value: huks.HuksKeySize.HUKS_DH_KEY_SIZE_4096
    };
    var options = {
      properties: properties
@@ -126,15 +126,15 @@
    var properties = new Array();
    properties[0] = {
      tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-     value: huks.HksKeyAlg.HKS_ALG_DH
+     value: huks.HuksKeyAlg.HUKS_ALG_DH
    };
    properties[1] = {
-     tag: huks.HksTag.HKS_TAG_PURPOSE,
-     value: huks.HksKeyPurpose.HKS_KEY_PURPOSE_AGREE
+     tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+     value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_AGREE
    };
    properties[2] = {
-     tag: huks.HksTag.HKS_TAG_KEY_SIZE,
-     value: huks.HksKeySize.HKS_DH_KEY_SIZE_4096
+     tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+     value: huks.HuksKeySize.HUKS_DH_KEY_SIZE_4096
    };
    var options = {
      properties: properties
