@@ -26,7 +26,7 @@ Application resources are defined in the project's resources directory, which is
 
 To reference an application resource in a project, use the ```"$r('app.type.name')"``` format. **app** indicates the resource defined in the resources directory of the application. **type** indicates the resource type (or the location where the resource is stored). The value can be color, float, string, plural, or media. **name** indicates the resource name, which you set when defining the resource.
 
-When referencing resources in the rawfile sub-directory, use the ```"$rawfile('filename')"``` format. Currently, $rawfile allows only the **\<Image>** component to reference image resources. In the format, filename indicates the relative path of a file in the rawfile directory, and the file name must contain the file name extension. Note that the relative path cannot start with a slash (/).
+When referencing resources in the **rawfile** sub-directory, use the ```"$rawfile('filename')"``` format. Currently, **$rawfile** allows only the **\<Image>** component to reference image resources. In the format, **filename** indicates the relative path of a file in the **rawfile** directory, and the file name must contain the file name extension. Note that the relative path cannot start with a slash (/).
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > Resource descriptors cannot be combined.
 
