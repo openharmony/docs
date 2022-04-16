@@ -42,14 +42,14 @@ The source code of the Customization subsystem is stored in **/base/customizatio
 │   │   ├── config_policy   		# Module of the Config Policy Kit
 │   │   │   └── src         		# Implementation code
 │   ├── interfaces          		# Interfaces of the Config Policy Kit
-│   │   ├── innerkits       		# Interfaces between Config Policy Kit subsystems
+│   │   ├── inner_api       		# Interfaces between Config Policy Kit subsystems
 │   │   └── kits            		# JavaScript interfaces of the Config Policy Kit
 │   └── test                		# Test code
 ├── enterprise_device_management    # Code repository of the EnterpriseDeviceManagement Kit
 │   ├── common                   	# Common code
 │   ├── etc                      	# Configuration files of the processes contained in the EnterpriseDeviceManagement Kit
 │   ├── interfaces               	# EdmKits code
-│   │   └── innerkits            	# Subsystem interfaces
+│   │   └── inner_api            	# Subsystem interfaces
 │   │   └── kits                 	# Developer interfaces
 │   ├── profile                  	# Configuration files of the system services contained in the EnterpriseDeviceManagement Kit
 │   └── services                 	# Implement code of the EnterpriseDeviceManagement Kit
