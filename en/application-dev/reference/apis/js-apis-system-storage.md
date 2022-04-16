@@ -1,8 +1,9 @@
-# Data Storage
+# Data storage
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **Note：**
-> - The APIs of this module are no longer maintained since API version 6. It is recommended that you use [`@ohos.data.storage`](js-apis-data-storage.md) instead.
-> 
+> ![icon-note.gif](../public_sys-resources/icon-note.gif) **NOTE**<br/>
+>
+> - The APIs of this module are no longer maintained since API Version 6. You are advised to use [`@ohos.data.storage`](js-apis-data-storage.md). From API Version 9, you are advised to use [`@ohos.data.preferences`](js-apis-data-preferences.md).
+>
 > - The initial APIs of this module are supported since API version 3. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -18,19 +19,19 @@ import storage from '@system.storage';
 
 get(Object): void
 
-Reads the stored content.
+Obtains the stored data.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| key | string | Yes | Content&nbsp;index. |
-| default | string | No | Default&nbsp;value&nbsp;returned&nbsp;when&nbsp;the&nbsp;**key**&nbsp;does&nbsp;not&nbsp;exist. |
-| success | Function | No | Called&nbsp;when&nbsp;the&nbsp;stored&nbsp;content&nbsp;is&nbsp;successfully&nbsp;read. |
-| fail | Function | No | Called&nbsp;when&nbsp;the&nbsp;stored&nbsp;content&nbsp;fails&nbsp;to&nbsp;be&nbsp;read. |
-| complete | Function | No | Called&nbsp;when&nbsp;the&nbsp;execution&nbsp;is&nbsp;complete. |
+| key | string | Yes| Index of the data to obtain.|
+| default | string | No| Default value returned when the **key** does not exist.|
+| success | Function | No| Called when the stored data is successfully obtained.|
+| fail | Function | No| Called when the stored data failed to be obtained.|
+| complete | Function | No| Called when the execution is complete.|
 
 **Example**
 
@@ -58,19 +59,19 @@ export default {
 
 set(Object): void
 
-Modifies the stored content.
+Modifies the stored data.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| key | string | Yes | Index&nbsp;of&nbsp;the&nbsp;stored&nbsp;content&nbsp;to&nbsp;be&nbsp;modified. |
-| value | string | No | Target&nbsp;storage&nbsp;content.&nbsp;The&nbsp;maximum&nbsp;number&nbsp;of&nbsp;characters&nbsp;allowed&nbsp;is&nbsp;128. |
-| success | Function | No | Called&nbsp;when&nbsp;the&nbsp;stored&nbsp;content&nbsp;is&nbsp;modified&nbsp;successfully. |
-| fail | Function | No | Called&nbsp;when&nbsp;the&nbsp;stored&nbsp;content&nbsp;fails&nbsp;to&nbsp;be&nbsp;modified. |
-| complete | Function | No | Called&nbsp;when&nbsp;the&nbsp;execution&nbsp;is&nbsp;complete. |
+| key | string | Yes| Index of the data to modify.|
+| value | string | No| New value to set. The maximum length is 128 bytes.|
+| success | Function | No| Called when the data is successfully modified.|
+| fail | Function | No| Called when the data failed to be modified.|
+| complete | Function | No| Called when the execution is complete.|
 
 **Example**
 
@@ -96,17 +97,17 @@ export default {
 
 clear(Object): void
 
-Clears the stored content.
+Clears the stored data.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| success | Function | No | Called&nbsp;when&nbsp;the&nbsp;stored&nbsp;content&nbsp;is&nbsp;cleared&nbsp;successfully |
-| fail | Function | No | Called&nbsp;when&nbsp;the&nbsp;stored&nbsp;content&nbsp;fails&nbsp;to&nbsp;be&nbsp;cleared |
-| complete | Function | No | Called&nbsp;when&nbsp;the&nbsp;execution&nbsp;is&nbsp;complete |
+| success | Function | No| Called when the data is successfully cleared.|
+| fail | Function | No| Called when the data failed to be cleared.|
+| complete | Function | No| Called when the execution is complete.|
 
 **Example**
 
@@ -130,18 +131,18 @@ export default {
 
 delete(Object): void
 
-Deletes the stored content.
+Deletes the stored data.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| key | string | Yes | Content&nbsp;index. |
-| success | Function | No | Called&nbsp;when&nbsp;the&nbsp;stored&nbsp;content&nbsp;is&nbsp;deleted&nbsp;successfully. |
-| fail | Function | No | Called&nbsp;when&nbsp;the&nbsp;stored&nbsp;content&nbsp;fails&nbsp;to&nbsp;be&nbsp;deleted. |
-| complete | Function | No | Called&nbsp;when&nbsp;the&nbsp;execution&nbsp;is&nbsp;complete. |
+| key | string | Yes| Index of the data to delete.|
+| success | Function | No| Called when the data is deleted.|
+| fail | Function | No| Called when the data failed to be deleted.|
+| complete | Function | No| Called when the execution is complete.|
 
 **Example**
 

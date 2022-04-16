@@ -185,12 +185,12 @@ The HDF-based driver development involves driver implementation and configuratio
                   caps = ["DAC_OVERRIDE", "DAC_READ_SEARCH"];   // Linux capabilities of the user-mode process.
                   device_sample :: device {        // Sample device node.
                       device0 :: deviceNode {      // DeviceNode of the sample driver.
-                          policy = 1;             // Policy for publishing the driver service. For details, see Driver Service Management.
+                          policy = 1;             // Policy for providing the driver service. For details, see Driver Service Management.
                           priority = 100;          // Driver startup priority (0-200). A smaller value indicates a higher priority. The default value 100 is recommended. The drivers with the same priority start based on the time when the priority was configured. The driver configured first starts first.
                           preload = 0;            // The loading mode of the driver is on-demand loading. For details, see "NOTE" at the end of this document.
                           permission = 0664;       // Permission for the driver to create a device node.
                           moduleName = "sample_driver"; // Driver name. The value must be the same as that of moduleName in the HdfDriverEntry structure.
-                          serviceName = "sample_service";    // Name of the service published by the driver. The service name must be unique.
+                          serviceName = "sample_service";    // Name of the service provided by the driver. The service name must be unique.
                           deviceMatchAttr = "sample_config"; // Keyword for matching the private data of the driver. The value must be the same as that of match_attr in the private data configuration table of the driver.
                       }
                   }
@@ -253,7 +253,7 @@ The HDF-based driver development involves driver implementation and configuratio
 >
 >   If **preload** is set to **1 (DEVICE_PRELOAD_ENABLE_STEP2)**, the driver is loaded after a quick start is complete. If the system does not support quick start, the value **1** has the same meaning as **DEVICE_PRELOAD_ENABLE**. 
 >
->   If **preload** is set to **2 (DEVICE_PRELOAD_DISABLE)** , the driver is dynamically loaded instead of being loaded during the system boot process. When a user-mode process requests the driver service, the HDF attempts to dynamically load the driver if the driver service does not exist.  For more details, see [Driver Message Mechanism Management](driver-hdf-message-management.md).
+>   If **preload** is set to **2 (DEVICE_PRELOAD_DISABLE)** , the driver is dynamically loaded instead of being loaded during the system boot process. When a user-mode process requests the driver service, the HDF attempts to dynamically load the driver if the driver service does not exist.  For more details, see [Driver Messaging Mechanism](driver-hdf-message-management.md).
 >
 > - Sequential loading (**preload** set to **0 (DEVICE_PRELOAD_ENABLE)**)<br/>
 >   In the configuration file, the **priority** fields (value range: 0 to 200) determines the loading sequence of a host and a driver. For drivers in different hosts, a smaller host priority value indicates a higher driver loading priority; for drivers in the same host, a smaller driver priority value indicates a higher driver loading priority.
