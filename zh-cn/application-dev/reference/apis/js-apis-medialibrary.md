@@ -458,9 +458,9 @@ storeMediaAsset(option: MediaAssetOption, callback: AsyncCallback&lt;string&gt;)
 
   ```
 let option = {
-    src : "file:///data/data/ohos.xxx.yyy/files/image.png",
-    mimeType : "image/jpeg",
-    relativePath : "imageDir/image2/"
+    src : "/data/storage/el2/base/haps/entry/image.png",
+    mimeType : "image/*",
+    relativePath : "Pictures/"
 };
 mediaLibrary.getMediaLibrary().storeMediaAsset(option, (err, value) => {
     if (err) {
@@ -499,9 +499,9 @@ storeMediaAsset(option: MediaAssetOption): Promise&lt;string&gt;
 
   ```
 let option = {
-    src : "file:///data/data/ohos.xxx.yyy/files/image.jpg",
-    mimeType : "image/jpeg",
-    relativePath : "imageDir/image2/"
+    src : "/data/storage/el2/base/haps/entry/image.png",
+    mimeType : "image/*",
+    relativePath : "Pictures/"
 };
 mediaLibrary.getMediaLibrary().storeMediaAsset(option).then((value) => {
     console.log("Media resources stored.");
@@ -534,8 +534,8 @@ startImagePreview(images: Array&lt;string&gt;, index: number, callback: AsyncCal
 
   ```
 let images = [
-    "dataability:///media/external/images/media/50",
-    "dataability:///media/external/images/media/55"
+    "dataability:///media/xxxx/2",
+    "dataability:///media/xxxx/3"
 ];
 /* 网络图片使用方式
 let images = [
@@ -575,8 +575,8 @@ startImagePreview(images: Array&lt;string&gt;, callback: AsyncCallback&lt;void&g
 
   ```
 let images = [
-    "dataability:///media/external/images/media/50",
-    "dataability:///media/external/images/media/55"
+    "dataability:///media/xxxx/2",
+    "dataability:///media/xxxx/3"
 ];
 /* 网络图片使用方式
 let images = [
@@ -621,8 +621,8 @@ startImagePreview(images: Array&lt;string&gt;, index?: number): Promise&lt;void&
 
   ```
 let images = [
-    "dataability:///media/external/images/media/50",
-    "dataability:///media/external/images/media/55"
+    "dataability:///media/xxxx/2",
+    "dataability:///media/xxxx/3"
 ];
 /* 网络图片使用方式
 let images = [
@@ -2229,9 +2229,9 @@ async function example() {
 
 | 名称           | 类型     | 必填   | 描述                                       |
 | ------------ | ------ | ---- | ---------------------------------------- |
-| src          | string | 是    | 媒体库数据的URI。                               |
-| mimeType     | string | 是    | 媒体MIME（Multipurpose&nbsp;Internet&nbsp;Mail&nbsp;Extensions）类型。<br/>例：'image/\*'、'video/\*'等。 |
-| relativePath | string | 否    | 自定义媒体资源保存位置，不填则保存到默认路径。例：imageDir/image2/（媒体资源将保存位置为：default/imageDir/image2/）,default为默认保存路径。 |
+| src          | string | 是    | 应用本地文件绝对路径。                               |
+| mimeType     | string | 是    | 媒体MIME（Multipurpose&nbsp;Internet&nbsp;Mail&nbsp;Extensions）类型。<br/>包括：'image/\*'、'video/\*'、'audio/\*'、 'file\*'。 |
+| relativePath | string | 否    | 自定义媒体资源保存位置，例：Pictures/ 不填则保存到默认路径。 <br/> image类型默认路径Pictures/ <br/> video类型默认路径Videos/ <br/> audio类型默认路径Audios/ <br/> file类型默认路径Documents/ 。 |
 
 ## MediaSelectOption
 
@@ -2243,5 +2243,5 @@ async function example() {
 
 | 名称    | 类型     | 必填   | 描述                   |
 | ----- | ------ | ---- | -------------------- |
-| type  | string | 是    | 媒体类型，包括：image，video。 |
-| count | number | 是    | 媒体选择最大数量。            |
+| type  | string | 是    | 媒体类型，包括：image, video, media，当前仅支持media类型 |
+| count | number | 是    | 媒体选择，count = 1表示单选，count大于1表示多选。            |
