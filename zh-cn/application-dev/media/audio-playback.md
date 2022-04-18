@@ -263,3 +263,5 @@ audioPlayer.loop = true;                            //设置循环播放属性
 针对音频播放开发，有以下相关实例可供参考：
 
 - [`JsDistributedMusicPlayer`：分布式音乐播放（JS）（API7）](https://gitee.com/openharmony/app_samples/tree/master/ability/JsDistributedMusicPlayer)
+
+- [`JsAudioPlayer`：音频播放和管理（JS）（API7）](https://gitee.com/openharmony/app_samples/tree/master/media/JsAudioPlayer)
