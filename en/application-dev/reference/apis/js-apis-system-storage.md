@@ -1,6 +1,6 @@
 # Data Storage
 
-> ![icon-note.gif](../public_sys-resources/icon-note.gif) **NOTE**<br/>
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
 >
 > - The APIs of this module are no longer maintained since API Version 6. You are advised to use [`@ohos.data.storage`](js-apis-data-storage.md). From API Version 9, you are advised to use [`@ohos.data.preferences`](js-apis-data-preferences.md).
 >
