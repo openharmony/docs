@@ -82,3 +82,9 @@
       };
    })
    ```
+
+## 相关实例
+
+针对振动开发，有以下相关实例可供参考：
+
+- [`Vibrator`：振动（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/device/Vibrator)
