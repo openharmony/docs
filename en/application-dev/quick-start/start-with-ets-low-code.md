@@ -118,7 +118,7 @@ You can implement page redirection through the page router, which finds the targ
    - In the **index.ets** file:
      
      ```
-     import router from '@system.router';
+     import router from '@ohos.router';
      
      @Entry
      @Component
@@ -131,7 +131,7 @@ You can implement page redirection through the page router, which finds the targ
         */
        onclick() {
          router.push({
-           uri: 'pages/second', // Specify the page to be redirected to.
+           url: 'pages/second', // Specify the page to be redirected to.
          })
        }
      
@@ -149,7 +149,7 @@ You can implement page redirection through the page router, which finds the targ
    - In the **second.ets** file:
      
       ```
-      import router from '@system.router';
+      import router from '@ohos.router';
       
       @Entry
       @Component
