@@ -306,3 +306,6 @@
     let tableName = rdbStore.obtainDistributedTableName(deviceId, "test");
     let resultSet = rdbStore.querySql("SELECT * FROM " + tableName)
     ```
+## 相关实例
+针对关系型数据库开发，有以下相关实例可供参考：
+- [`Rdb`：关系型数据库（eTS）（API8）](https://gitee.com/openharmony/app_samples/blob/master/data/Rdb)
