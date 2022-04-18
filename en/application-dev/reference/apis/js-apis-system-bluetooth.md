@@ -18,7 +18,7 @@ import bluetooth from '@system.bluetooth';
 
 ## bluetooth.startBLEScan(OBJECT)
 
-Scans for Bluetooth Low Energy (BLE) devices nearby. This operation consumes system resources. Call [bluetooth.stopBLEScan](#bluetoothstopblescanobject) to stop the scan after BLE devices are detected and connected.
+Scans for Bluetooth Low Energy (BLE) devices nearby. This operation consumes system resources. Call [bluetooth.stopBLEScan](#bluetoothstopblescanobject) to stop the scan after a BLE device is detected and connected.
 
 **Required permissions**: ohos.permission.DISCOVER_BLUETOOTH and ohos.permission.LOCATION
 
@@ -29,10 +29,10 @@ Scans for Bluetooth Low Energy (BLE) devices nearby. This operation consumes sys
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| interval | number | No| Interval for reporting device information, in milliseconds. The default value is **0**, which means to report detected devices immediately and report other information at the given interval.|
+| interval | number | No| Interval for reporting device information, in milliseconds. The default value is **0**, which means to report the detected device immediately and report other information at the given interval.|
 | success | Function | No| Called when the operation is successful.|
 | fail | Function | No| Called when the operation fails.|
-| complete | Function | No| Called when the API call is complete.|
+| complete | Function | No| Called when the execution is complete.|
 
 **Example**
 
@@ -66,7 +66,7 @@ Stops scanning for BLE devices nearby. This API is used with [bluetooth.startBLE
 | -------- | -------- | -------- | -------- |
 | success | Function | No| Called when the operation is successful.|
 | fail | Function | No| Called when the operation fails.|
-| complete | Function | No| Called when the API call is complete.|
+| complete | Function | No| Called when the execution is complete.|
 
 **Example**
 
@@ -87,7 +87,7 @@ Stops scanning for BLE devices nearby. This API is used with [bluetooth.startBLE
 
 ## bluetooth.subscribeBLEFound(OBJECT)
 
-Subscribes to the newly detected BLE devices. If this API is called multiple times, the last call takes effect.
+Subscribes to the newly detected BLE device. If this API is called multiple times, the last call takes effect.
 
 **Required permissions**: ohos.permission.DISCOVER_BLUETOOTH and ohos.permission.LOCATION
 
@@ -96,9 +96,9 @@ Subscribes to the newly detected BLE devices. If this API is called multiple tim
 **Parameters**
 **Table 3** SubscribeBLEFoundOptions
 
-| Parameters| Type| Mandatory| Description|
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| success | Function | Yes| Called to report newly detected devices.|
+| success | Function | Yes| Called to report the newly detected device.|
 | fail | Function | No| Called when the operation fails.|
 
 **Table 4** Return value in success
@@ -162,7 +162,7 @@ Unsubscribes from the newly detected devices.
 | 1102 | The specified device is not found.|
 | 1103 | Connection failed.|
 | 1104 | The specified service is not found.|
-| 1105 | The specified characteristics value is not found.|
+| 1105 | The specified characteristic value is not found.|
 | 1106 | The Bluetooth device is disconnected.|
 | 1107 | The characteristic value does not support this operation.|
 | 1108 | Other exceptions reported by the system.|
