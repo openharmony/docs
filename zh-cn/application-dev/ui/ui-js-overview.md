@@ -26,3 +26,26 @@
 - **Porting Layer**
 
   适配层主要完成对平台层进行抽象，提供抽象接口，可以对接到系统平台。比如：事件对接、渲染管线对接和系统生命周期对接等。
+
+
+## 相关实例
+
+基于JS扩展的类Web开发范式的方舟开发框架，有以下相关实例可供参考：
+
+- [`AtomicLayout`：原子布局（JS）（API7）](https://gitee.com/openharmony/app_samples/blob/master/UI/AtomicLayout)
+
+- [`JsFA`：FA示例应用（JS）（API8）](https://gitee.com/openharmony/app_samples/blob/master/UI/JsFA)
+
+- [`JsShopping`：购物示例应用（JS）（API8）](https://gitee.com/openharmony/app_samples/blob/master/UI/JsShopping)
+
+- [`Stack`：堆叠容器（JS）（API7）](https://gitee.com/openharmony/app_samples/blob/master/UI/Stack)
+
+- [`JsAdaptivePortalList`：多设备自适应的效率型首页（JS）（API8）](https://gitee.com/openharmony/app_samples/blob/master/UI/JsAdaptivePortalList)
+
+- [`JsAdaptivePortalPage`：多设备自适应的FA页面（JS）（API8）](https://gitee.com/openharmony/app_samples/blob/master/UI/JsAdaptivePortalPage)
+
+- [`JsGallery`：图库示例应用（JS）（API8）](https://gitee.com/openharmony/app_samples/blob/master/UI/JsGallery)
+
+- [`AirQuality`：空气质量（JS）（API7）](https://gitee.com/openharmony/app_samples/blob/master/common/AirQuality)
+
+- [购物应用（JS）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/ShoppingOpenHarmony)
