@@ -14,9 +14,9 @@
 
 ## 接口
 
-Select(options: Array<SelectOption>)
+Select(options: Array\<SelectOption\>)
 
-- `SelectOption`参数
+- SelectOption参数
 
   | 参数名 | 参数类型                                        | 必填 | 默认值 | 参数描述       |
   | ------ | ----------------------------------------------- | ---- | ------ | -------------- |
@@ -49,7 +49,7 @@ Select(options: Array<SelectOption>)
 ```
 @Entry
 @Component
-struct SliderExample {
+struct SelectExample {
   build() {
     Column() {
       Select([{value:'aaa',icon: "/common/1.png"},
