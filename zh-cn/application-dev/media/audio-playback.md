@@ -84,7 +84,8 @@ let audioPlayer = media.createAudioPlayer();
 SetCallBack(audioPlayer);                          //设置事件回调
 //2. 用户选择音频，设置uri
 let fdPath = 'fd://'
-let path = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp3';
+// path路径的码流可通过"hdc file send D:\xxx\01.mp3 /data/accounts/account_0/appdata" 命令，将其推送到设备上
+let path = '/data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp3';
 await fileIO.open(path).then(fdNumber) => {
    fdPath = fdPath + '' + fdNumber;
    console.info('open fd sucess fd is' + fdPath);
@@ -147,7 +148,8 @@ let audioPlayer = media.createAudioPlayer();       //创建一个音频播放实
 SetCallBack(audioPlayer);                          //设置事件回调
 /* 用户选择音频设置fd(本地播放) */
 let fdPath = 'fd://'
-let path = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp3';
+// path路径的码流可通过"hdc file send D:\xxx\01.mp3 /data/accounts/account_0/appdata" 命令，将其推送到设备上
+let path = '/data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp3';
 await fileIO.open(path).then(fdNumber) => {
    fdPath = fdPath + '' + fdNumber;
    console.info('open fd sucess fd is' + fdPath);
@@ -185,7 +187,8 @@ let audioPlayer = media.createAudioPlayer();       //创建一个音频播放实
 SetCallBack(audioPlayer);                          //设置事件回调
 /* 用户选择音频设置fd(本地播放) */
 let fdPath = 'fd://'
-let path = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp3';
+// path路径的码流可通过"hdc file send D:\xxx\01.mp3 /data/accounts/account_0/appdata" 命令，将其推送到设备上
+let path = '/data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp3';
 await fileIO.open(path).then(fdNumber) => {
    fdPath = fdPath + '' + fdNumber;
    console.info('open fd sucess fd is' + fdPath);
@@ -201,7 +204,8 @@ audioPlayer.reset();
 
 /* 用户选择音频设置fd(本地播放) */
 let fdNextPath = 'fd://'
-let nextPath = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp3';
+// path路径的码流可通过"hdc file send D:\xxx\02.mp3 /data/accounts/account_0/appdata" 命令，将其推送到设备上
+let nextPath = '/data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/02.mp3';
 await fileIO.open(nextPath).then(fdNumber) => {
    fdNextPath = fdNextPath + '' + fdNumber;
    console.info('open fd sucess fd is' + fdNextPath);
@@ -239,6 +243,7 @@ SetCallBack(audioPlayer);                          //设置事件回调
 
 /* 用户选择音频设置fd(本地播放) */
 let fdPath = 'fd://'
+// path路径的码流可通过"hdc file send D:\xxx\01.mp3 /data/accounts/account_0/appdata" 命令，将其推送到设备上
 let path = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp3';
 await fileIO.open(path).then(fdNumber) => {
    fdPath = fdPath + '' + fdNumber;
