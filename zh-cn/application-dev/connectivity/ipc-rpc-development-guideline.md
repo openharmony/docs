@@ -1,9 +1,5 @@
 # IPC与RPC通信开发指导
 
-- [场景介绍](#场景介绍)
-- [接口说明](#接口说明)
-- [开发步骤](#开发步骤)
-
 ## 场景介绍
 
 IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，包括Proxy和Stub运行在不同设备的情况。
@@ -131,3 +127,6 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
    sptr<IRemoteObject> remoteObject = samgr->GetSystemAbility(sdid, deviceId); // deviceId是指定设备的标识符
    sptr<TestAbilityProxy> proxy(new TestAbilityProxy(remoteObject)); // 直接构造具体Proxy
    ```
+
+## 相关实例
+- `RPC:`[通信与连接-RPC连接（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/Communication/RPC)
