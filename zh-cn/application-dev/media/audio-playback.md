@@ -265,3 +265,5 @@ audioPlayer.loop = true;                            //设置循环播放属性
 - [`JsDistributedMusicPlayer`：分布式音乐播放（JS）（API7）](https://gitee.com/openharmony/app_samples/tree/master/ability/JsDistributedMusicPlayer)
 
 - [`JsAudioPlayer`：音频播放和管理（JS）（API7）](https://gitee.com/openharmony/app_samples/tree/master/media/JsAudioPlayer)
+
+- [音频播放器](https://gitee.com/openharmony/codelabs/tree/master/Media/Audio_OH_ETS)
