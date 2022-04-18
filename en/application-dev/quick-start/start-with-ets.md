@@ -153,7 +153,7 @@ You can implement page redirection through the page router, which finds the targ
 
    
    ```
-   import router from '@system.router';
+   import router from '@ohos.router';
    
    @Entry
    @Component
@@ -181,7 +181,7 @@ You can implement page redirection through the page router, which finds the targ
            .height('5%')
            // Bind the onClick event to the Next button so that clicking the button redirects the user to the second page.
            .onClick(() => {
-             router.push({ uri: 'pages/second' })
+             router.push({ url: 'pages/second' })
            })
          }
          .width('100%')
@@ -196,7 +196,7 @@ You can implement page redirection through the page router, which finds the targ
 
    
    ```
-   import router from '@system.router';
+   import router from '@ohos.router';
    
    @Entry
    @Component
