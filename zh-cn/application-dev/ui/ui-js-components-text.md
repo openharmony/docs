@@ -270,3 +270,10 @@ export default {
 ```
 
 ![zh-cn_image_0000001208636379](figures/zh-cn_image_0000001208636379.gif)
+
+
+## 相关实例
+
+针对Text开发，有以下相关实例可供参考：
+
+- [`JsTextComponents`：基础组件（JS）（API8）](https://gitee.com/openharmony/app_samples/blob/master/UI/JsBasicComponents)
