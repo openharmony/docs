@@ -229,7 +229,7 @@ The table below provides only the sites for downloading the latest OpenHarmony L
 </td>
 <td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.2 "><p id="p141101436193911"><a name="p141101436193911"></a><a name="p141101436193911"></a>3.0</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.3 "><p id="p88931840195416"><a name="p88931840195416"></a><a name="p88931840195416"></a><a href="https://gitee.com/openharmony/docs/blob/OpenHarmony-3.0-LTS/zh-cn/release-notes/OpenHarmony-v3.0-LTS.md" target="_blank" rel="noopener noreferrer">Download</a></p>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.3 "><p id="p88931840195416"><a name="p88931840195416"></a><a name="p88931840195416"></a><a href="https://gitee.com/openharmony/docs/blob/OpenHarmony-3.0-LTS/en/release-notes/OpenHarmony-v3.0-LTS.md" target="_blank" rel="noopener noreferrer">Download</a></p>
 </td>
 <td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.4 "><p id="p039662242117"><a name="p039662242117"></a><a name="p039662242117"></a>-</p>
 </td>
@@ -301,7 +301,7 @@ The table below provides only the sites for downloading the latest OpenHarmony L
 </td>
 <td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.2 "><p id="p146331255172318"><a name="p146331255172318"></a><a name="p146331255172318"></a>3.1 Release</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.3 "><p id="p18800131862419"><a name="p18800131862419"></a><a name="p18800131862419"></a><a href="https://gitee.com/openharmony/docs/tree/OpenHarmony-3.1-Release/zh-cn/release-notes/OpenHarmony-v3.1-Release.md" target="_blank" rel="noopener noreferrer">Download</a></p>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.3 "><p id="p18800131862419"><a name="p18800131862419"></a><a name="p18800131862419"></a><a href="https://gitee.com/openharmony/docs/blob/OpenHarmony-3.1-Release/en/release-notes/OpenHarmony-v3.1-release.md" target="_blank" rel="noopener noreferrer">Download</a></p>
 </td>
 <td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.4 "><p id="p8633855132314"><a name="p8633855132314"></a><a name="p8633855132314"></a>-</p>
 </td>
