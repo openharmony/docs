@@ -258,39 +258,8 @@ Notification.cancel(1, "label", cancelCallback)
 ```
 
 
+## 相关实例
 
-## 开发实例
+针对通知开发，有以下相关可供参考：
 
-针对通知开发，有以下示例工程可供参考：
-
-- [Notification](https://gitee.com/openharmony/app_samples/tree/master/Notification/Notification)
-
-本示例展示了在eTS中如何使用Notification的接口完成通知订阅、取消订阅、发布通知、取消通知功能。
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+- [`Notification`：通知-订阅、发送通知（eTS）（API9）](https://gitee.com/openharmony/app_samples/tree/master/Notification/Notification)
