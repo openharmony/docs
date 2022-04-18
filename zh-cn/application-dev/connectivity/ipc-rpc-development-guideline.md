@@ -128,5 +128,3 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
    sptr<TestAbilityProxy> proxy(new TestAbilityProxy(remoteObject)); // 直接构造具体Proxy
    ```
 
-## 相关实例
-- `RPC:`[通信与连接-RPC连接（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/Communication/RPC)
