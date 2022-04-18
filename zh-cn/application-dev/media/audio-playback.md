@@ -257,3 +257,9 @@ await fileIO.open(path).then(fdNumber) => {
 audioPlayer.src = fdPath;                           //设置src属性，并触发'dataLoad'事件回调
 audioPlayer.loop = true;                            //设置循环播放属性
 ```
+
+## 相关实例
+
+针对音频播放开发，有以下相关实例可供参考：
+
+- [`JsDistributedMusicPlayer`：分布式音乐播放（JS）（API7）](https://gitee.com/openharmony/app_samples/tree/master/ability/JsDistributedMusicPlayer)
