@@ -165,3 +165,5 @@
 ## 相关实例
 针对轻量级数据存储开发，有以下相关实例可供参考：
 - [`LiteStorage`：轻量级存储（eTS）（API7）](https://gitee.com/openharmony/app_samples/blob/master/data/LiteStorage)
+- [轻量级偏好数据库](https://gitee.com/openharmony/codelabs/tree/master/Data/Database)
+- [备忘录（eTS）](https://gitee.com/openharmony/codelabs/tree/master/Data/NotePad_OH_ETS)
