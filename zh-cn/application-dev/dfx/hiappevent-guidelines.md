@@ -77,4 +77,4 @@
 
 针对应用事件开发，有以下相关实例可供参考：
 
-- [`JsDotTest:`测试打点（JS）（API7）](https://gitee.com/openharmony/app_samples/tree/master/DFX/JsDotTest)
+- [`JsDotTest`：测试打点（JS）（API7）](https://gitee.com/openharmony/app_samples/tree/master/DFX/JsDotTest)
