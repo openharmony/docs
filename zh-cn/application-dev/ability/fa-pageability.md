@@ -260,9 +260,6 @@ export default {
   },
 }
 ```
-### 开发实例
-针对pageAbility开发，有以下示例工程可供参考：
-
-[DMS](https://gitee.com/openharmony/app_samples/tree/master/ability/DMS)
-
-在本示例中完整展示了启动本地Ability、启动远程Ability的使用方法。
+## 相关实例
+针对PageAbility开发，有以下相关实例可供参考：
+- [`DMS`：分布式Demo（eTS）（API7）](https://gitee.com/openharmony/app_samples/blob/master/ability/DMS)
