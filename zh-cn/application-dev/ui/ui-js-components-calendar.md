@@ -242,3 +242,10 @@ export default {
 
 
 ![zh-cn_image_0000001263160403](figures/zh-cn_image_0000001263160403.gif)
+
+
+## 相关实例
+
+针对Grid开发，有以下相关实例可供参考：
+
+- [`JsGrid`：栅格组件（JS）（API7）](https://gitee.com/openharmony/app_samples/blob/master/UI/JsGrid)
