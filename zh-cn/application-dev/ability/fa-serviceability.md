@@ -397,7 +397,6 @@ export default {
 
 ## 相关实例
 
-### 针对ServiceAbility开发，有以下相关实例可供参考：
-
+针对ServiceAbility开发，有以下相关实例可供参考：
 - [`ServiceAbility`：ServiceAbility的创建与使用（eTS）（API8）](https://gitee.com/openharmony/app_samples/blob/master/ability/ServiceAbility)
 - [`DMS`：分布式Demo（eTS）（API7）](https://gitee.com/openharmony/app_samples/blob/master/ability/DMS)
