@@ -11,7 +11,7 @@ import document from '@ohos.document';
 
 ## Guidelines
 
-Using this function module will throw an error code.
+Calling the following interface throws an exception. It is not recommended to use the following interface in OpenHarmony.
 
 ## document.choose
 
@@ -23,13 +23,13 @@ Selects a file using the file manager and returns the file URI asynchronously us
 
 - **Parameters**
 
-| Name  | Type                       | Mandatory| Description                        |
+  | Name  | Type                       | Mandatory| Description                        |
   | ------ | ------ | ---- | ---------------------------- |
   | type   | string[] | No   | Type of the file selected.  |
 
 - Return value
 
- | Type                 | Description        |
+  | Type                 | Description        |
   | --------------------- | -------------- |
   | Promise&lt;string&gt; | URI of the file（Note: the current returned error code） |
 
@@ -92,7 +92,7 @@ Asynchronously opens the file corresponding to the URI and returns the result us
 
 - **Parameters**
 
-    | Name  | Type                       | Mandatory| Description                        |
+  | Name  | Type                       | Mandatory| Description                        |
   | ---- | ------ | ---- | ---------------------------- |
   | uri | string | Yes   | URI of the file to open |
   | type | string | Yes   | Type of the file. Currently |
@@ -119,7 +119,7 @@ Asynchronously opens the file corresponding to the URI and returns the result us
 
 - **Parameters**
 
- | Name  | Type                       | Mandatory| Description                        |
+  | Name  | Type                       | Mandatory| Description                        |
   | -------- | --------------------------- | ---- | ---------------------------- |
   | uri | string | Yes   | URI of the file to open|
   | type | string | Yes   | Type of the file. Currently |
