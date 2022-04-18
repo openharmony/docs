@@ -271,9 +271,6 @@ export default class MainAbility extends Ability { {
 }
 ```
 
-## 开发实例
-针对Stage模型Ability开发，有以下示例工程可供参考：
-
-[StageCallAbility](https://gitee.com/openharmony/app_samples/tree/master/ability/StageCallAbility)
-
-本示例StageCallAbility中，在Application目录的AbilityStage.ts中实现AbilityStage的接口，在MainAbility目录实现Ability的接口并设置"pages/index"为Ability的页面，在CalleeAbility目录实现另一个Ability并设置"pages/second"为Ability的页面。支持MainAbility启动CalleeAbility。
+## 相关实例
+针对Stage模型Ability开发，有以下相关示例可供参考：
+- [`StageCallAbility`：StageAbility的创建与使用（eTS）（API9）](https://gitee.com/openharmony/app_samples/blob/master/ability/StageCallAbility)
