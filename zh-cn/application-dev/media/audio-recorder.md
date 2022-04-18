@@ -198,3 +198,5 @@ audioRecorder = undefined;
 针对音频录制开发，有以下相关实例可供参考：
 
 - [`Recorder`：录音机（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/media/Recorder)
+
+- [音频播放器](https://gitee.com/openharmony/codelabs/tree/master/Media/Audio_OH_ETS)
