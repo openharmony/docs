@@ -48,4 +48,6 @@
 
 - [`AirQuality`：空气质量（JS）（API7）](https://gitee.com/openharmony/app_samples/blob/master/common/AirQuality)
 
+- [`Badge`：事件标记控件（JS）（API7）](https://gitee.com/openharmony/app_samples/blob/master/UI/Badge)
+
 - [购物应用（JS）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/ShoppingOpenHarmony)
