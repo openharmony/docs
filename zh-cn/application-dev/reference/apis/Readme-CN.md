@@ -84,6 +84,7 @@
   - data/rdb/[resultSet (结果集)](js-apis-data-resultset.md)
 - 文件管理
 
+  - [@ohos.document (文件交互)](js-apis-document.md)
   - [@ohos.environment (目录环境能力)](js-apis-environment.md)
   - [@ohos.fileio (文件管理)](js-apis-fileio.md)
   - [@ohos.fileManager (公共文件访问与管理)](js-apis-filemanager.md)
