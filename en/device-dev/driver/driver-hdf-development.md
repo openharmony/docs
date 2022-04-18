@@ -185,12 +185,12 @@ The HDF-based driver development involves driver implementation and configuratio
                   caps = ["DAC_OVERRIDE", "DAC_READ_SEARCH"];   // Linux capabilities of the user-mode process.
                   device_sample :: device {        // Sample device node.
                       device0 :: deviceNode {      // DeviceNode of the sample driver.
-                          policy = 1;             // Policy for publishing the driver service. For details, see Driver Service Management.
+                          policy = 1;             // Policy for providing the driver service. For details, see Driver Service Management.
                           priority = 100;          // Driver startup priority (0-200). A smaller value indicates a higher priority. The default value 100 is recommended. The drivers with the same priority start based on the time when the priority was configured. The driver configured first starts first.
                           preload = 0;            // The loading mode of the driver is on-demand loading. For details, see "NOTE" at the end of this document.
                           permission = 0664;       // Permission for the driver to create a device node.
                           moduleName = "sample_driver"; // Driver name. The value must be the same as that of moduleName in the HdfDriverEntry structure.
-                          serviceName = "sample_service";    // Name of the service published by the driver. The service name must be unique.
+                          serviceName = "sample_service";    // Name of the service provided by the driver. The service name must be unique.
                           deviceMatchAttr = "sample_config"; // Keyword for matching the private data of the driver. The value must be the same as that of match_attr in the private data configuration table of the driver.
                       }
                   }
