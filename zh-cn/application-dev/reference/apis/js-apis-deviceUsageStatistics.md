@@ -417,7 +417,7 @@ getRecentlyUsedModules(maxNum: number): Promise&lt;Array&lt;BundleActiveModuleIn
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | maxNum | number | 否 | 返回条目的最大数量，若不填写，则默认为1000。|
+  | maxNum | number | 否 | 返回条目的最大数量，最多支持1000条。若不填写，则默认为1000。|
 
 **返回值**：
 
@@ -438,7 +438,7 @@ getRecentlyUsedModules(maxNum: number): Promise&lt;Array&lt;BundleActiveModuleIn
         console.log('BUNDLE_ACTIVE getRecentlyUsedModules promise failed, because: ' + err.code);
     });
 
-    // 无参数调用方式
+    // 无maxNum参数调用方式
     bundleState.getRecentlyUsedModules().then( res => {
         console.log('BUNDLE_ACTIVE getRecentlyUsedModules promise succeeded');
         for (let i = 0; i < res.length; i++) {
@@ -464,7 +464,7 @@ getRecentlyUsedModules(maxNum: number, callback: AsyncCallback&lt;Array&lt;Bundl
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | maxNum | number | 否 | 返回条目的最大数量，若不填写，则默认为1000。|
+  | maxNum | number | 否 | 返回条目的最大数量，最多支持1000条。若不填写，则默认为1000。|
   | callback | AsyncCallback&lt;Array&lt;[BundleActiveModuleInfo](#bundleactivestate)&gt;&gt; | 是 | 指定的CallBack回调方法。返回不超过maxNum条FA使用记录。|
 
 **示例**：
@@ -482,7 +482,7 @@ getRecentlyUsedModules(maxNum: number, callback: AsyncCallback&lt;Array&lt;Bundl
         }
     });
 
-    // 无参数调用方式
+    // 无maNum参数调用方式
     stats.getRecentlyUsedModules((err, res) => {
         if(err) {
             console.log('BUNDLE_ACTIVE getRecentlyUsedModules callback failed, because: ' + err.code);

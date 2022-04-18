@@ -223,7 +223,7 @@ import stats from '@ohos.bundleState';
         console.log('BUNDLE_ACTIVE getRecentlyUsedModules promise failed, because: ' + err.code);
     });
 
-    // 无参数异步方法promise方式
+    // 无maNum参数异步方法promise方式
     stats.getRecentlyUsedModules().then( res => {
         console.log('BUNDLE_ACTIVE getRecentlyUsedModules promise succeeded');
         for (let i = 0; i < res.length; i++) {
@@ -247,7 +247,7 @@ import stats from '@ohos.bundleState';
             }
     });
 
-    // 无参数异步方法callback方式
+    // 无maNum参数异步方法callback方式
     stats.getRecentlyUsedModules((err, res) => {
         if(err) {
             console.log('BUNDLE_ACTIVE getRecentlyUsedModules callback failed, because: ' + err.code);
