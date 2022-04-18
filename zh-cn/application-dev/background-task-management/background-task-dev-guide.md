@@ -42,7 +42,8 @@ import backgroundTaskManager from '@ohos.backgroundTaskManager';
         console.info("Request suspension delay will time out.");
     });
     
-    var id = delayInfo.requestId;console.info("requestId is: " + id);
+    var id = delayInfo.requestId;
+    console.info("requestId is: " + id);
     ```
 
 
@@ -50,9 +51,9 @@ import backgroundTaskManager from '@ohos.backgroundTaskManager';
 
     ```js
     backgroundTaskManager.getRemainingDelayTime(id).then( res => {
-        console.log('promise => Operation succeeded. Data: ' + JSON.stringify(res));
+        console.log('promise => Operation getRemainingDelayTime succeeded. Data: ' + JSON.stringify(res));
     }).catch( err => {
-        console.log('promise => Operation failed. Cause: ' + err.data);
+        console.log('promise => Operation getRemainingDelayTime failed. Cause: ' + err.data);
     });
     ```
 
@@ -83,9 +84,9 @@ console.info("The actualDelayTime is: " + time);
 
 // 获取应用程序进入挂起状态前的剩余时间
 backgroundTaskManager.getRemainingDelayTime(id).then( res => {
-    console.log('promise => Operation succeeded. Data: ' + JSON.stringify(res));
+    console.log('promise => Operation getRemainingDelayTime succeeded. Data: ' + JSON.stringify(res));
 }).catch( err => {
-    console.log('promise => Operation failed. Cause: ' + err.data);
+    console.log('promise => Operation getRemainingDelayTime failed. Cause: ' + err.data);
 });
 
 // 取消延迟挂起
@@ -172,16 +173,16 @@ ohos.permission.KEEP_BACKGROUND_RUNNING
         ],
         operationType: wantAgent.OperationType.START_ABILITY,
         requestCode: 0,
-        wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESET_FLAG]
+        wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
     };
 
     // 通过wantAgent模块的getWantAgent方法获取WantAgent对象
     wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
         backgroundTaskManager.startBackgroundRunning(featureAbility.getContext(),
             backgroundTaskManager.BackgroundMode.DATA_TRANSFER, wantAgentObj).then(() => {
-            console.info("Operation succeeded");
+            console.info("Operation startBackgroundRunning succeeded");
         }).catch((err) => {
-            console.error("Operation failed Cause: " + err);
+            console.error("Operation startBackgroundRunning failed Cause: " + err);
         });
     });
     ```
@@ -193,9 +194,9 @@ ohos.permission.KEEP_BACKGROUND_RUNNING
     import featureAbility from '@ohos.ability.featureAbility';
     
     backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext()).then(() => {
-        console.info("Operation succeeded");
+        console.info("Operation stopBackgroundRunning succeeded");
     }).catch((err) => {
-        console.error("Operation failed Cause: " + err);
+        console.error("Operation stopBackgroundRunning failed Cause: " + err);
     });
     
     ```
@@ -220,25 +221,25 @@ function startBackgroundRunning() {
         ],
         operationType: wantAgent.OperationType.START_ABILITY,
         requestCode: 0,
-        wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESET_FLAG]
+        wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
     };
 
     // 通过wantAgent模块的getWantAgent方法获取WantAgent对象
     wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
         backgroundTaskManager.startBackgroundRunning(featureAbility.getContext(),
             backgroundTaskManager.BackgroundMode.DATA_TRANSFER, wantAgentObj).then(() => {
-            console.info("Operation succeeded");
+            console.info("Operation startBackgroundRunning succeeded");
         }).catch((err) => {
-            console.error("Operation failed Cause: " + err);
+            console.error("Operation startBackgroundRunning failed Cause: " + err);
         });
     });
 }
 
 function stopBackgroundRunning() {
     backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext()).then(() => {
-        console.info("Operation succeeded");
+        console.info("Operation stopBackgroundRunning succeeded");
     }).catch((err) => {
-        console.error("Operation failed Cause: " + err);
+        console.error("Operation stopBackgroundRunning failed Cause: " + err);
     });
 }
 
