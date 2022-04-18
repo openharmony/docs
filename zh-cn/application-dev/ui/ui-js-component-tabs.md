@@ -312,6 +312,6 @@ export default {
 
 ## 相关实例
 
-针对Canvas开发，有以下相关实例可供参考：
+针对Tabs开发，有以下相关实例可供参考：
 
 - [`Tabs`：页签容器（JS）（API7）](https://gitee.com/openharmony/app_samples/blob/master/UI/Tabs)
