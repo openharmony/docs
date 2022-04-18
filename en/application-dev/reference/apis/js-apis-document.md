@@ -1,17 +1,14 @@
 # document
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE:**<br/>
-> The interface of this module will be discarded later.
+- The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+- The interface of this module will be discarded later.Calling the following interface throws an exception. It is not recommended to use the following interface in OpenHarmony.
 
 ## Modules to Import
 
 ```js
 import document from '@ohos.document';
 ```
-
-## Guidelines
-
-Calling the following interface throws an exception. It is not recommended to use the following interface in OpenHarmony.
 
 ## document.choose
 
