@@ -1,6 +1,6 @@
 # Data Request
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **Note:**<br/>
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
 > - The APIs of this module are no longer maintained since API version 6. You are advised to use [`@ohos.net.http`](js-apis-http.md) instead.
 > 
 > - The initial APIs of this module are supported since API version 3. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -86,7 +86,7 @@ export default {
 ```
 
 
-> ![icon-note.gif](../public_sys-resources/icon-note.gif) **NOTE**<br/>
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
 >   HTTPS is supported by default. To support HTTP, you need to add **"network"** to the **config.json** file, and set the attribute **"cleartextTraffic"** to **true**. That is:
 >   
 > ```
