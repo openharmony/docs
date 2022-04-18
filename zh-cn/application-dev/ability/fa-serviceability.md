@@ -395,26 +395,9 @@ export default {
 };
 ```
 
-## 开发实例
+## 相关实例
 
-### 针对serviceAbility开发，有以下示例工程可供参考：
+### 针对ServiceAbility开发，有以下相关实例可供参考：
 
-- [ServiceAbility](https://gitee.com/openharmony/app_samples/tree/master/ability/ServiceAbility)
-
-
-本示例ServiceAbility中：
-
-在ServiceAbility目录中的service.ts文件创建一个本地Service。
-
-在MainAbility目录中封装了启动、连接本地Services的流程。
-
-
-### 针对跨设备serviceAbility开发，有以下示例工程可供参考：
-
-- [DMS](https://gitee.com/openharmony/app_samples/tree/master/ability/DMS)
-
-本示例DMS中：
-
-在ServiceAbility目录中的service.ts文件创建一个远程Service。
-
-在RemoteAbility目录中封装了连接远程Services的流程。
+- [`ServiceAbility`：ServiceAbility的创建与使用（eTS）（API8）](https://gitee.com/openharmony/app_samples/blob/master/ability/ServiceAbility)
+- [`DMS`：分布式Demo（eTS）（API7）](https://gitee.com/openharmony/app_samples/blob/master/ability/DMS)
