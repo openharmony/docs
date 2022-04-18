@@ -162,3 +162,6 @@
    }).catch((err) => {
        console.info("Deleted failed with err: " + err)})
    ```
+## 相关实例
+针对轻量级数据存储开发，有以下相关实例可供参考：
+- [`LiteStorage`：轻量级存储（eTS）（API7）](https://gitee.com/openharmony/app_samples/blob/master/data/LiteStorage)
