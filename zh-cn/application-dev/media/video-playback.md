@@ -95,7 +95,8 @@ await media.createVideoPlayer().then((video) => {
 
 // 用户选择视频设置fd(本地播放)
 let fdPath = 'fd://'
-let path = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp4';
+// path路径的码流可通过"hdc file send D:\xxx\01.mp3 /data/accounts/account_0/appdata" 命令，将其推送到设备上
+let path = '/data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp4';
 await fileIO.open(path).then(fdNumber) => {
    fdPath = fdPath + '' + fdNumber;
    console.info('open fd sucess fd is' + fdPath);
@@ -237,7 +238,8 @@ SetCallBack(videoPlayer);
 
 // 用户选择视频设置fd(本地播放)
 let fdPath = 'fd://'
-let path = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp4';
+// path路径的码流可通过"hdc file send D:\xxx\01.mp3 /data/accounts/account_0/appdata" 命令，将其推送到设备上
+let path = '/data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp4';
 await fileIO.open(path).then(fdNumber) => {
    fdPath = fdPath + '' + fdNumber;
    console.info('open fd sucess fd is' + fdPath);
@@ -323,7 +325,8 @@ SetCallBack(videoPlayer);
 
 // 用户选择视频设置fd(本地播放)
 let fdPath = 'fd://'
-let path = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp4';
+// path路径的码流可通过"hdc file send D:\xxx\01.mp3 /data/accounts/account_0/appdata" 命令，将其推送到设备上
+let path = '/data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp4';
 await fileIO.open(path).then(fdNumber) => {
    fdPath = fdPath + '' + fdNumber;
    console.info('open fd sucess fd is' + fdPath);
@@ -358,7 +361,8 @@ await videoPlayer.reset().then(() => {
 
 // 用户选择视频设置fd(本地播放)
 let fdNextPath = 'fd://'
-let nextPath = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/02.mp4';
+// path路径的码流可通过"hdc file send D:\xxx\02.mp3 /data/accounts/account_0/appdata" 命令，将其推送到设备上
+let nextPath = '/data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/02.mp4';
 await fileIO.open(nextPath).then(fdNumber) => {
    fdNextPath = fdNextPath + '' + fdNumber;
    console.info('open fd sucess fd is' + fdNextPath);
@@ -444,7 +448,8 @@ SetCallBack(videoPlayer);
 
 // 用户选择视频设置fd(本地播放)
 let fdPath = 'fd://'
-let path = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp4';
+// path路径的码流可通过"hdc file send D:\xxx\01.mp3 /data/accounts/account_0/appdata" 命令，将其推送到设备上
+let path = '/data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp4';
 await fileIO.open(path).then(fdNumber) => {
    fdPath = fdPath + '' + fdNumber;
    console.info('open fd sucess fd is' + fdPath);
