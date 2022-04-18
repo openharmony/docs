@@ -141,7 +141,7 @@ Obtains information about the files in the second-level directory in asynchronou
   |Not a directory            | 20     | The object specified by the URI is not a directory.|
 
 ```js
-// Call listFile() and getRoot() to obtain the file UIRs.
+// Call listFile() and getRoot() to obtain the file URIs.
 let media_path = file.uri
 filemanager.listFile(media_path, "file", (err, fileInfo) => {
     if(Array.isArray(fileInfo)) {
