@@ -168,12 +168,12 @@
 
    
    ```
-   import router from '@system.router';
+   import router from '@ohos.router';
    
    export default {
        onclick: function () {
            router.push({
-               uri: "pages/second/second"
+               url: "pages/second/second"
            })
        }
    }
@@ -184,7 +184,7 @@
 
    
    ```
-   import router from '@system.router';
+   import router from '@ohos.router';
    
    export default {
        back: function () {
