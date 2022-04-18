@@ -83,3 +83,10 @@ export default {
 运行效果如下图所示：
 
 ![zh-cn_image_0000001070707559](figures/zh-cn_image_0000001070707559.png)
+
+
+## 相关实例
+
+针对页面路由开发，有以下相关实例可供参考：
+
+- [`JsRouter`：页面路由（JS）（API7）](https://gitee.com/openharmony/app_samples/blob/master/UI/JsRouter)
