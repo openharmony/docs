@@ -1,7 +1,7 @@
 # Bluetooth
 
 
-> ![icon-note.gif](../public_sys-resources/icon-note.gif) **NOTE**<br/>
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
 >
 > - The APIs of this module are no longer maintained since API version 7. You are advised to use [`@ohos.bluetooth`](js-apis-bluetooth.md).
 >
