@@ -77,7 +77,7 @@ Ability为开发者提供了startAbility()方法来启动另外一个Ability。�
 启动本地设备Service的代码示例如下：
 
 ```javascript
-import featureAbility from '@ohos.ability.featureability';
+import featureAbility from '@ohos.ability.featureAbility';
 let promise = await featureAbility.startAbility(
     {
         want:
@@ -97,7 +97,7 @@ let promise = await featureAbility.startAbility(
 
 ### 停止Service
 
-  Service一旦创建就会一直保持在后台运行，除非必须回收内存资源，否则系统不会停止或销毁Service。开发者可以在Service中通过terminateSelf()停止本Service或在其他Ability调用stopAbility()来停止Service。
+  Service一旦创建就会一直保持在后台运行，除非必须回收内存资源，否则系统不会停止或销毁Service。开发者可以在Service中通过terminateSelf()停止本Service。
 
   
 
@@ -126,12 +126,17 @@ function onConnectCallback(element, remote){
     let reply = new rpc.MessageParcel();
     data.writeInt(1);
     data.writeInt(99);
-    await mRemote.sendRequest(1, data, reply, option);
-    let msg = reply.readInt();
-    prompt.showToast({
-      message: "onConnectLocalService connect result: " + msg,
-      duration: 3000
+    mRemote.sendRequest(1, data, reply, option).then((result) => {
+        console.log('sendRequest success');
+        let msg = reply.readInt();
+        prompt.showToast({
+            message: "onConnectLocalService connect result: " + msg,
+            duration: 3000
+        });
+    }).catch((e) => {
+        console.log('sendRequest error:' + e);
     });
+
 }
 
 function onDisconnectCallback(element){
@@ -146,7 +151,7 @@ function onFailedCallback(code){
 连接本地Service的代码示例如下：
 
 ```javascript
-import featureAbility from '@ohos.ability.featureability';
+import featureAbility from '@ohos.ability.featureAbility';
 let connId = featureAbility.connectAbility(
     {
         bundleName: "com.jstest.serviceability",
@@ -234,11 +239,15 @@ function onConnectCallback(element, remote){
     let reply = new rpc.MessageParcel();
     data.writeInt(1);
     data.writeInt(99);
-    await mRemote.sendRequest(1, data, reply, option);
-    let msg = reply.readInt();
-    prompt.showToast({
-      message: "onConnectLocalService connect result: " + msg,
-      duration: 3000
+    mRemote.sendRequest(1, data, reply, option).then((result) => {
+        console.log('sendRequest success');
+        let msg = reply.readInt();
+        prompt.showToast({
+            message: "onConnectLocalService connect result: " + msg,
+            duration: 3000
+        });
+    }).catch((e) => {
+        console.log('sendRequest error:' + e);
     });
 }
 
@@ -274,7 +283,7 @@ function getRemoteDeviceId() {
 连接远程Service的代码示例如下：
 
 ```ts
-import featureAbility from '@ohos.ability.featureability';
+import featureAbility from '@ohos.ability.featureAbility';
 let connId = featureAbility.connectAbility(
     {
         deviceId: getRemoteDeviceId(),
