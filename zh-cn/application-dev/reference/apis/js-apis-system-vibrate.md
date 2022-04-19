@@ -36,13 +36,13 @@ vibrate(Object): void
 ```
 vibrator.vibrate({
   mode: 'short',
-  success: function(ret) {
+  success: function() {
     console.log('vibrate is successful');
   },
-  fail: function(ret) {
-    console.log('vibrate is failed');
+  fail: function(data, code) {
+    console.log("vibrate is failed, data: " + data + ", code: " + code);
   },
-  complete: function(ret) {
+  complete: function() {
     console.log('vibrate is completed');
   }
 });
