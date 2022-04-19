@@ -174,5 +174,5 @@ OpenHarmony系统中的分布式数据服务模块为开发者提供下面几种
    ```
 ## 相关实例
 针对分布式数据开发，有以下相关实例可供参考：
-- [`KvStore`：分布式数据库（eTS）（API8）](https://gitee.com/openharmony/app_samples/blob/master/data/Kvstore)
+- [`KvStore`：分布式数据库（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/data/Kvstore)
 - [分布式数据库](https://gitee.com/openharmony/codelabs/tree/master/Data/JsDistributedData)
