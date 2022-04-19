@@ -33,7 +33,7 @@ Asynchronously obtains information about all available volumes. This method uses
   });
   ```
 
-## volumemanager.getAllVolumes<sup>9+</sup>
+## volumemanager.getAllVolumes
 
 getAllVolumes(callback: AsyncCallback&lt;Array&lt;Volume&gt;&gt;): void
 
@@ -171,9 +171,9 @@ Asynchronously unmounts a volume. This method uses a callback to return the resu
 
 | Name       | Type   | Description                |
 | ----------- | ------- | -------------------- |
-| id<sup>9+</sup>          | number  | Volume ID.                |
-| uuid<sup>9+</sup>        | string  | Universally unique identifier (UUID) of the volume.              |
-| description<sup>9+</sup> | string  | Description of the volume.          |
-| removable<sup>9+</sup> | boolean | Whether the volume is a removable storage device.|
-| state<sup>9+</sup>       | int     | Current volume status.          |
-| path<sup>9+</sup>        | string  | Mount address of the volume.        |
+| id          | number  | Volume ID.                |
+| uuid        | string  | Universally unique identifier (UUID) of the volume.              |
+| description | string  | Description of the volume.          |
+| removable | boolean | Whether the volume is a removable storage device.|
+| state       | int     | Current volume status.          |
+| path        | string  | Mount address of the volume.        |
