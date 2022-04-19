@@ -229,3 +229,10 @@ export default {
 ```
 
 ![zh-cn_image_0000001263279105](figures/zh-cn_image_0000001263279105.gif)
+
+
+## 相关实例
+
+针对Toolbar开发，有以下相关实例可供参考：
+
+- [`Toolbar`：工具栏（JS）（API7）](https://gitee.com/openharmony/app_samples/tree/master/UI/Toolbar)

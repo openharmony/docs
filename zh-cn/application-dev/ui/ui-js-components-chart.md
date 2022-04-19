@@ -612,3 +612,13 @@ export default {
 ```
 
 ![zh-cn_image_0000001179018876](figures/zh-cn_image_0000001179018876.gif)
+
+
+
+## 相关实例
+
+针对Chart开发，有以下相关实例可供参考：
+
+- [`Chart`：图表组件（JS）（API7）](https://gitee.com/openharmony/app_samples/tree/master/UI/chart)
+
+- [chart（JS）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/SwitchApplication)

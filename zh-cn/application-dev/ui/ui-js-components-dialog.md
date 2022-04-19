@@ -319,3 +319,12 @@ export default {
 
 
 ![zh-cn_image_0000001234329527](figures/zh-cn_image_0000001234329527.gif)
+
+
+## 相关实例
+
+针对Dialog开发，有以下相关实例可供参考：
+
+- [`JsDialog`：页面弹窗（JS）（API7）](https://gitee.com/openharmony/app_samples/tree/master/UI/JsDialog)
+
+- [dialog（JS）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/DialogDemo)

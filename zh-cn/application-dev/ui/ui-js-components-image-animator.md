@@ -333,3 +333,10 @@ export default {
 ```
 
 ![zh-cn_image_0000001218758816](figures/zh-cn_image_0000001218758816.gif)
+
+
+## 相关实例
+
+针对Image-animator开发，有以下相关实例可供参考：
+
+- [image、image-animator（JS）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/ClickableJsDemo)

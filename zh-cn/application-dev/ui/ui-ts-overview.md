@@ -53,3 +53,32 @@
 - **平台适配层**
 
   提供了对系统平台的抽象接口，具备接入不同系统的能力，如系统渲染管线、生命周期调度等。
+
+
+## 相关实例
+
+基于TS扩展的声明式开发范式的方舟开发框架，有以下相关实例可供参考：
+
+- [`Canvas`：画布组件（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/Canvas)
+
+- [`Drag`：ArkUI-拖拽事件（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/Drag)
+
+- [`ArkUIAnimation`：Ets动画（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/ArkUIAnimation)
+
+- [`Xcomponent`：ArkUI-XComponent（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/XComponent)
+
+- [`MouseEvent`：ArkUI-鼠标事件（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/MouseEvent)
+
+- [极简声明式UI范式（eTS）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/SimpleGalleryEts)
+
+- [购物应用（eTS）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/ShoppingEts)
+
+- [转场动画的使用（eTS）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/TransitionAnimtaionEts)
+
+- [基础组件Slider的使用（eTS）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/SliderApplicationEts)
+
+- [弹窗（eTS）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/CustomDialogEts)
+
+- [一次开发多端部署（eTS）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/MultiDeploymentEts)
+
+- [CustomComponent:组件化（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/CustomComponent)
