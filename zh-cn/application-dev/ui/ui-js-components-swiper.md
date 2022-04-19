@@ -363,3 +363,10 @@ export default {
 ```
 
 ![zh-cn_image_0000001263359599](figures/zh-cn_image_0000001263359599.gif)
+
+
+## 相关实例
+
+针对Swiper开发，有以下相关实例可供参考：
+
+- [`Swiper`：内容滑动容器（JS）（API7）](https://gitee.com/openharmony/app_samples/tree/master/UI/Swiper)

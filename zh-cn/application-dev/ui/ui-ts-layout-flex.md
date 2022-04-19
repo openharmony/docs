@@ -368,3 +368,10 @@ struct FlexExample {
 
 
 ![zh-cn_image_0000001261605867](figures/zh-cn_image_0000001261605867.png)
+
+
+## 相关实例
+
+针对弹性布局开发，有以下相关实例可供参考：
+
+- [弹性布局（eTS）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/FlowLayoutEts)
