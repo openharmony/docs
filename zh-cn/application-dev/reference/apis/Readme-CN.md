@@ -43,7 +43,7 @@
   - application/[MissionSnapshot (MissionSnapshot)](js-apis-application-MissionSnapshot.md)
   - application/[PermissionRequestResult (PermissionRequestResult)](js-apis-permissionrequestresult.md)
   - application/[ProcessRunningInfo (ProcessRunningInfo)](js-apis-processrunninginfo.md)
-  - application/[ServiceExtensionContext (ServiceExtensionContext)](js-apis-service-extension-context.md) 
+  - application/[ServiceExtensionContext (ServiceExtensionContext)](js-apis-service-extension-context.md)
   - application/[shellCmdResult (ShellCmdResult)](js-apis-application-shellCmdResult.md)
 
 - 公共事件与通知
@@ -57,7 +57,6 @@
 - 应用程序包管理
 
   - [@ohos.bundle (Bundle模块)](js-apis-Bundle.md)
-  - [@ohos.bundleState (设备使用信息统计)](js-apis-deviceUsageStatistics.md)
   - [@ohos.zlib (Zip模块)](js-apis-zlib.md)
 
 - UI界面
@@ -93,6 +92,7 @@
   - [@ohos.backgroundTaskManager (后台任务管理)](js-apis-backgroundTaskManager.md)
   - [@ohos.workScheduler (延迟任务调度)](js-apis-workScheduler.md)
   - [@ohos.WorkSchedulerExtensionAbility (延迟任务调度回调)](js-apis-WorkSchedulerExtensionAbility.md)
+  - [@ohos.bundleState (设备使用信息统计)](js-apis-deviceUsageStatistics.md)
 
 - 定制管理
 
@@ -223,7 +223,7 @@
   - [@ohos.uitest (UiTest)](js-apis-uitest.md)
 
 - 已停止维护的接口
-  
+
   - [@ohos.bytrace (性能打点)](js-apis-bytrace.md)
   - [@ohos.data.storage (轻量级存储)](js-apis-data-storage.md)
   - [@system.app (应用上下文)](js-apis-system-app.md)
