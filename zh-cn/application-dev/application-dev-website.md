@@ -87,7 +87,7 @@
           - [CanvasRenderingContext2D对象](ui/ui-js-components-canvasrenderingcontext2d.md)
           - [Path2D对象](ui/ui-js-components-path2d.md)
           - [OffscreenCanvas对象](ui/ui-js-components-offscreencanvas.md)
-        - [栅格布局](ui/ui-js-components-calendar.md)
+        - [栅格布局](ui/ui-js-components-grid.md)
         - Svg开发指导
           - [基础知识](ui/ui-js-components-svg-overview.md)
           - [绘制图形](ui/ui-js-components-svg-graphics.md)
