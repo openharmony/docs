@@ -300,3 +300,9 @@
    ```
    var options = numberFormat.resolvedOptions();
    ```
+
+## 相关实例
+
+针对Intl开发，有以下相关实例可供参考：
+
+-[`International`：国际化（JS）（API7）](https://gitee.com/openharmony/app_samples/blob/master/UI/International)
