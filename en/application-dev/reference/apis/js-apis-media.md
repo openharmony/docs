@@ -572,7 +572,8 @@ audioPlayer.on('error', (error) => {           // Set the 'error' event callback
 
 // Set the FD (local playback) of the video file selected by the user.
 let fdPath = 'fd://'
-let path = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp3';
+// The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\01.mp3 /data/accounts/account_0/appdata" command.
+let path = '/data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp3';
 fileIO.open(path).then(fdNumber) => {
    fdPath = fdPath + '' + fdNumber;
    console.info('open fd sucess fd is' + fdPath);

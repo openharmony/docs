@@ -16,7 +16,7 @@ You can use audio playback APIs to convert audio data into audible analog signal
 
 ## How to Develop
 
-For details about the APIs used for audio playback, see [AudioPlayer in the Media API](../reference/apis/js-apis-media.md).
+For details about the APIs, see [AudioPlayer in the Media API](../reference/apis/js-apis-media.md).
 
 ### Full-Process Scenario
 
@@ -84,7 +84,8 @@ let audioPlayer = media.createAudioPlayer();
 SetCallBack(audioPlayer);                          // Set the event callbacks.
 // 2. Set the URI of the audio file selected by the user.
 let fdPath = 'fd://'
-let path = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp3';
+// The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\01.mp3 /data/accounts/account_0/appdata" command.
+let path = '/data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp3';
 await fileIO.open(path).then(fdNumber) => {
    fdPath = fdPath + '' + fdNumber;
    console.info('open fd sucess fd is' + fdPath);
@@ -147,7 +148,8 @@ let audioPlayer = media.createAudioPlayer();       // Create an AudioPlayer inst
 SetCallBack(audioPlayer);                          // Set the event callbacks.
 /* Set the FD (local playback) of the audio file selected by the user. */
 let fdPath = 'fd://'
-let path = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp3';
+// The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\01.mp3 /data/accounts/account_0/appdata" command.
+let path = '/data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp3';
 await fileIO.open(path).then(fdNumber) => {
    fdPath = fdPath + '' + fdNumber;
    console.info('open fd sucess fd is' + fdPath);
@@ -185,7 +187,8 @@ let audioPlayer = media.createAudioPlayer();       // Create an AudioPlayer inst
 SetCallBack(audioPlayer);                          // Set the event callbacks.
 /* Set the FD (local playback) of the audio file selected by the user. */
 let fdPath = 'fd://'
-let path = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp3';
+// The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\01.mp3 /data/accounts/account_0/appdata" command.
+let path = '/data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp3';
 await fileIO.open(path).then(fdNumber) => {
    fdPath = fdPath + '' + fdNumber;
    console.info('open fd sucess fd is' + fdPath);
@@ -201,7 +204,8 @@ audioPlayer.reset();
 
 /* Set the FD (local playback) of the audio file selected by the user. */
 let fdNextPath = 'fd://'
-let nextPath = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp3';
+// The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\02.mp3 /data/accounts/account_0/appdata" command.
+let nextPath = '/data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/02.mp3';
 await fileIO.open(nextPath).then(fdNumber) => {
    fdNextPath = fdNextPath + '' + fdNumber;
    console.info('open fd sucess fd is' + fdNextPath);
@@ -239,6 +243,7 @@ SetCallBack(audioPlayer);                          // Set the event callbacks.
 
 /* Set the FD (local playback) of the audio file selected by the user. */
 let fdPath = 'fd://'
+// The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\01.mp3 /data/accounts/account_0/appdata" command.
 let path = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp3';
 await fileIO.open(path).then(fdNumber) => {
    fdPath = fdPath + '' + fdNumber;
@@ -252,3 +257,13 @@ await fileIO.open(path).then(fdNumber) => {
 audioPlayer.src = fdPath;                           // Set the src attribute and trigger the 'dataLoad' event callback.
 audioPlayer.loop = true;                            // Set the loop playback attribute.
 ```
+
+## Samples
+
+The following samples are provided to help you better understand how to develop audio playback:
+
+- [`JsDistributedMusicPlayer`: Distributed Music Player (JS) (API7)](https://gitee.com/openharmony/app_samples/tree/master/ability/JsDistributedMusicPlayer)
+
+- [`JsAudioPlayer`: Audio Playback and Management (JS) (API7)](https://gitee.com/openharmony/app_samples/tree/master/media/JsAudioPlayer)
+
+- [Audio Player](https://gitee.com/openharmony/codelabs/tree/master/Media/Audio_OH_ETS)
