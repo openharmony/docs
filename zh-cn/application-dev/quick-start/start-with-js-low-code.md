@@ -107,12 +107,12 @@ OpenHarmony低代码开发方式具有丰富的UI界面编辑功能，通过可�
    - “**index.js**”示例如下：
      
      ```
-     import router from '@system.router';  
+     import router from '@ohos.router';  
      
      export default {     
          onclick() {         
              router.push({             
-                 uri:'pages/second/second', // 指定要跳转的页面         
+                 url:'pages/second/second', // 指定要跳转的页面         
              })     
          } 
      }
@@ -130,7 +130,7 @@ OpenHarmony低代码开发方式具有丰富的UI界面编辑功能，通过可�
    - “**second.js**”示例如下：
      
       ```
-      import router from '@system.router';  
+      import router from '@ohos.router';  
       
       export default {     
           back() {         

@@ -168,12 +168,12 @@
 
    
    ```
-   import router from '@system.router';
+   import router from '@ohos.router';
    
    export default {
        onclick: function () {
            router.push({
-               uri: "pages/second/second"
+               url: "pages/second/second"
            })
        }
    }
@@ -184,7 +184,7 @@
 
    
    ```
-   import router from '@system.router';
+   import router from '@ohos.router';
    
    export default {
        back: function () {
@@ -210,3 +210,6 @@
    ![zh-cn_image_0000001217527892](figures/zh-cn_image_0000001217527892.png)
 
 恭喜您已经使用JS语言开发（传统代码方式）完成了第一个OpenHarmony应用，快来[探索更多的OpenHarmony功能](../application-dev-guide.md)吧。
+## 相关实例
+针对使用JS语言（传统代码方式）开发快速入门，有以下相关实例可供参考：
+- [`JsHelloWorld`：你好世界（JS）（API7）](https://gitee.com/openharmony/app_samples/tree/master/common/JsHelloWorld)
