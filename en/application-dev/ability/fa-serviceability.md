@@ -77,7 +77,7 @@ To set information about the target Service ability, you can first construct a *
 The following code snippet shows how to start a Service ability running on the local device:
 
 ```javascript
-import featureAbility from '@ohos.ability.featureability';
+import featureAbility from '@ohos.ability.featureAbility';
 let promise = await featureAbility.startAbility(
     {
         want:
@@ -97,7 +97,7 @@ After the preceding code is executed, the **startAbility()** API is called to st
 
 ### Stopping a Service ability
 
-  Once created, the Service ability keeps running in the background. The system does not stop or destroy it unless memory resources must be reclaimed. You can call **terminateSelf()** on a Service ability to stop it or call **stopAbility()** on another ability to stop the specified Service ability.
+  Once created, the Service ability keeps running in the background. The system does not stop or destroy it unless memory resources must be reclaimed. You can call **terminateSelf()** on a Service ability to stop it.
 
   
 
@@ -126,12 +126,17 @@ function onConnectCallback(element, remote){
     let reply = new rpc.MessageParcel();
     data.writeInt(1);
     data.writeInt(99);
-    await mRemote.sendRequest(1, data, reply, option);
-    let msg = reply.readInt();
-    prompt.showToast({
-      message: "onConnectLocalService connect result: " + msg,
-      duration: 3000
+    mRemote.sendRequest(1, data, reply, option).then((result) => {
+        console.log('sendRequest success');
+        let msg = reply.readInt();
+        prompt.showToast({
+            message: "onConnectLocalService connect result: " + msg,
+            duration: 3000
+        });
+    }).catch((e) => {
+        console.log('sendRequest error:' + e);
     });
+
 }
 
 function onDisconnectCallback(element){
@@ -146,7 +151,7 @@ function onFailedCallback(code){
 The following code snippet shows how to connect to a local Service ability:
 
 ```javascript
-import featureAbility from '@ohos.ability.featureability';
+import featureAbility from '@ohos.ability.featureAbility';
 let connId = featureAbility.connectAbility(
     {
         bundleName: "com.jstest.serviceability",
@@ -234,11 +239,15 @@ function onConnectCallback(element, remote){
     let reply = new rpc.MessageParcel();
     data.writeInt(1);
     data.writeInt(99);
-    await mRemote.sendRequest(1, data, reply, option);
-    let msg = reply.readInt();
-    prompt.showToast({
-      message: "onConnectLocalService connect result: " + msg,
-      duration: 3000
+    mRemote.sendRequest(1, data, reply, option).then((result) => {
+        console.log('sendRequest success');
+        let msg = reply.readInt();
+        prompt.showToast({
+            message: "onConnectLocalService connect result: " + msg,
+            duration: 3000
+        });
+    }).catch((e) => {
+        console.log('sendRequest error:' + e);
     });
 }
 
@@ -274,7 +283,7 @@ function getRemoteDeviceId() {
 The following code snippet shows how to connect to a remote Service ability:
 
 ```ts
-import featureAbility from '@ohos.ability.featureability';
+import featureAbility from '@ohos.ability.featureAbility';
 let connId = featureAbility.connectAbility(
     {
         deviceId: getRemoteDeviceId(),
@@ -386,26 +395,8 @@ export default {
 };
 ```
 
-## Development Example
+## Samples
 
-### The following sample is provided to help you better understand how to develop a Service ability:
-
-- [ServiceAbility](https://gitee.com/openharmony/app_samples/tree/master/ability/ServiceAbility)
-
-
-This sample shows how to:
-
-Create a local Service ability in the **service.ts** file in the **ServiceAbility** directory.
-
-Encapsulate the process of starting and connecting to the local Service ability in the **MainAbility** directory.
-
-
-### The following sample is provided to help you better understand how to develop a remote Service ability:
-
-- [DMS](https://gitee.com/openharmony/app_samples/tree/master/ability/DMS)
-
-This **DMS** sample shows how to:
-
-Create a remote Service ability in the **service.ts** file in the **ServiceAbility** directory.
-
-Encapsulate the process of connecting to the remote Service ability in the **RemoteAbility** directory.
+The following samples are provided to help you better understand how to develop a Service ability:
+- [`ServiceAbility`: Service Ability Creation and Use (eTS) (API8)](https://gitee.com/openharmony/app_samples/tree/master/ability/ServiceAbility)
+- [`DMS`: Distributed Demo (eTS) (API7)](https://gitee.com/openharmony/app_samples/tree/master/ability/DMS)
