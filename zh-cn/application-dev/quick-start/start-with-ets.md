@@ -155,7 +155,7 @@
 
    
    ```
-   import router from '@system.router';
+   import router from '@ohos.router';
    
    @Entry
    @Component
@@ -183,7 +183,7 @@
            .height('5%')
            // 跳转按钮绑定onClick事件，点击时跳转到第二页
            .onClick(() => {
-             router.push({ uri: 'pages/second' })
+             router.push({ url: 'pages/second' })
            })
          }
          .width('100%')
@@ -198,7 +198,7 @@
 
    
    ```
-   import router from '@system.router';
+   import router from '@ohos.router';
    
    @Entry
    @Component

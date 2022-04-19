@@ -104,12 +104,12 @@ You can implement page redirection through the [page router](../ui/ui-js-buildin
    - In the **index.js** file:
      
      ```
-     import router from '@system.router';  
+     import router from '@ohos.router';  
      
      export default {     
          onclick() {         
              router.push({             
-                 uri:'pages/second/second', // Specify the page to be redirected to.
+                 url:'pages/second/second', // Specify the page to be redirected to.
              })     
          } 
      }
@@ -127,7 +127,7 @@ You can implement page redirection through the [page router](../ui/ui-js-buildin
    - In the **second.js** file:
      
       ```
-      import router from '@system.router';  
+      import router from '@ohos.router';  
       
       export default {     
           back() {         

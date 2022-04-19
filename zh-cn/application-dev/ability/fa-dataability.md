@@ -272,14 +272,8 @@ Data提供方可以自定义数据的增、删、改、查，以及文件打开�
    );
    ```
 
-## 开发实例
+## 相关实例
 
-针对dataAbility开发，有以下示例工程可供参考：
+针对DataAbility开发，有以下相关实例可供参考：
 
-- [DataAbility](https://gitee.com/openharmony/app_samples/tree/master/ability/DataAbility)
-
-本示例DataAbility中：
-
-在DataAbility目录中的data.ts文件创建一个Data实例。
-
-在MainAbility目录中封装了访问Data的流程。
+- [`DataAbility`：DataAbility的创建与访问（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ability/DataAbility)
