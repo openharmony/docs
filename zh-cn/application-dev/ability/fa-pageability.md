@@ -262,4 +262,4 @@ export default {
 ```
 ## 相关实例
 针对PageAbility开发，有以下相关实例可供参考：
-- [`DMS`：分布式Demo（eTS）（API7）](https://gitee.com/openharmony/app_samples/blob/master/ability/DMS)
+- [`DMS`：分布式Demo（eTS）（API7）](https://gitee.com/openharmony/app_samples/tree/master/ability/DMS)
