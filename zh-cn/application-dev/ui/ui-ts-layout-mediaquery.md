@@ -152,5 +152,5 @@ screen and (device-type: tv) or (resolution &lt; 2) // 包含多个媒体特征�
 
 针对媒体查询开发，有以下相关实例可供参考：
 
-- [`MediaQuery`：Ets媒体查询（eTS）（API8）](https://gitee.com/openharmony/app_samples/blob/master/ETSUI/MediaQuery)
+- [`MediaQuery`：Ets媒体查询（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/MediaQuery)
 
