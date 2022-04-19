@@ -59,7 +59,7 @@
 
 基于TS扩展的声明式开发范式的方舟开发框架，有以下相关实例可供参考：
 
-- [`Canvas`：画布组件（eTS）（API8）](https://gitee.com/openharmony/app_samples/blob/master/ETSUI/Canvas)
+- [`Canvas`：画布组件（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/Canvas)
 
 - [`Drag`：ArkUI-拖拽事件（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/Drag)
 
