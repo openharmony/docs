@@ -19,7 +19,7 @@ To install the necessary libraries and tools, perform the following steps.
 In Ubuntu:
 
 1. Run the following **apt-get** command:
-     
+   
    ```
    sudo apt-get update && sudo apt-get install binutils binutils-dev git git-lfs gnupg flex bison gperf build-essential zip curl zlib1g-dev gcc-multilib g++-multilib gcc-arm-linux-gnueabi libc6-dev-i386 libc6-dev-amd64 lib32ncurses5-dev x11proto-core-dev libx11-dev lib32z1-dev ccache libgl1-mesa-dev libxml2-utils xsltproc unzip m4 bc gnutls-bin python3.8 python3-pip ruby genext2fs device-tree-compiler make libffi-dev e2fsprogs pkg-config perl openssl libssl-dev libelf-dev libdwarf-dev u-boot-tools mtd-utils cpio doxygen liblz4-tool openjdk-8-jre gcc g++ texinfo dosfstools mtools default-jre default-jdk libncurses5 apt-utils wget scons python3.8-distutils tar rsync git-core libxml2-dev lib32z-dev grsync xxd libglib2.0-dev libpixman-1-dev kmod jfsutils reiserfsprogs xfsprogs squashfs-tools pcmciautils quota ppp libtinfo-dev libtinfo5 libncurses5-dev libncursesw5 libstdc++6 gcc-arm-none-eabi vim ssh locales
    ```
@@ -34,13 +34,13 @@ In Ubuntu:
 2. Set Python 3.8 as the default Python version.
    Check the location of Python 3.8:
 
-     
+   
    ```
    which python3.8
    ```
 
      Change python and python3 to python3.8.
-     
+   
    ```
    sudo update-alternatives --install /usr/bin/python python {python3.8 path} 1    #{Python3.8 path} is the location of Python 3.8 obtained in the previous step.
    sudo update-alternatives --install /usr/bin/python3 python3 {python3.8 path} 1   #{Python3.8 path} is the location of Python 3.8 obtained in the previous step.
@@ -98,14 +98,14 @@ To remotely access the Ubuntu environment through Windows to perform operations 
 
 1. Make sure the Ubuntu shell environment is **bash**.
    1. Run the following command and check whether the command output is **bash**. If the command output is not **bash**, go to step 2.
-         
+      
        ```
        ls -l /bin/sh
        ```
 
        ![en-us_image_0000001226764302](figures/en-us_image_0000001226764302.png)
    2. Start the command-line tool, run the following command, enter your password, and select **No** to set **Ubuntu shell** to **bash**.
-         
+      
        ```
        sudo dpkg-reconfigure dash
        ```
@@ -116,12 +116,12 @@ To remotely access the Ubuntu environment through Windows to perform operations 
 
 3. Decompress the DevEco Device Tool software package and assign permission on the folder obtained from the decompression.
    1. Go to the directory where the DevEco Device Tool software package is stored and run the following command to decompress the software package. In the command, change **devicetool-linux-tool-3.0.0.400.zip** to the actual software package name.
-         
+      
        ```
        unzip devicetool-linux-tool-3.0.0.400.zip
        ```
    2. Open the folder of the decompressed software package and run the following command to grant the execute permission on the installation file. In the command, change **devicetool-linux-tool-3.0.0.400.sh** to the actual installation file name.
-         
+      
        ```
        chmod u+x devicetool-linux-tool-3.0.0.400.sh
        ```
@@ -130,7 +130,7 @@ To remotely access the Ubuntu environment through Windows to perform operations 
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
    > During the installation, the setup wizard automatically checks whether Python 3.8 or 3.9 is installed. If Python 3.8 or 3.9 is not installed, the setup wizard displays the "Do you want to continue?" message; enter **Y** to allow the setup wizard to automatically install Python.
 
-     
+   
    ```
    sudo ./devicetool-linux-tool-3.0.0.400.sh
    ```
@@ -149,19 +149,19 @@ To remotely access the Ubuntu environment through Windows to perform operations 
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
    > If the command fails to be executed and the system displays a message indicating that the openssh-server and openssh-client depend on different versions, install the openssh-client of the required version (for example, **sudo apt-get install openssh-client=1:8.2p1-4**) as prompted on the command-line interface (CLI) and run the command again to install the openssh-server.
 
-     
+   
    ```
    sudo apt-get install openssh-server
    ```
 
 2. Run the following command to start the SSH service:
-     
+   
    ```
    sudo systemctl start ssh
    ```
 
 3. Run the following command to obtain the IP address of the current user for remote access to the Ubuntu environment from Windows:
-     
+   
    ```
    ifconfig
    ```
@@ -171,7 +171,7 @@ To remotely access the Ubuntu environment through Windows to perform operations 
 
 ### Installing Remote SSH
 
-1. Open Visual Studio Code in Windows, click ![en-us_image_0000001239080359](figures/en-us-cn_image_0000001239080359.png), and search for **remote-ssh** in the Extension Marketplace.
+1. Open Visual Studio Code in Windows, click ![en-us_image_0000001239080359](figures/en-us_image_0000001239080359.png), and search for **remote-ssh** in the Extension Marketplace.
 
    ![en-us_image_0000001193920448](figures/en-us_image_0000001193920448.png)
 
@@ -210,7 +210,7 @@ To remotely access the Ubuntu environment through Windows to perform operations 
 After the preceding operations are complete, you can remotely connect to the Ubuntu environment through Windows for development. However, you need to frequently enter the remote connection password. To eliminate this need, you can use the SSH public key.
 
 1. Open the Git bash CLI and run the following command to generate an SSH public key. During command execution, perform operations as prompted. Set **username** and **ip** to the user name and IP address you use for connecting to the Ubuntu system.
-     
+   
    ```
    ssh-keygen -t rsa
    ssh-copy-id -i ~/.ssh/id_rsa.pub username@ip
@@ -245,13 +245,13 @@ In the Ubuntu environment, perform the following steps to obtain the OpenHarmony
    ```
 
      Run the following command to install the tools:
-     
+   
    ```
    sudo apt-get install git git-lfs
    ```
 
 4. Configure user information.
-     
+   
    ```
    git config --global user.name "yourname"
    git config --global user.email "your-email-address"
@@ -259,7 +259,7 @@ In the Ubuntu environment, perform the following steps to obtain the OpenHarmony
    ```
 
 5. Run the following commands to install the **repo** tool:
-     
+   
    ```
    curl https://gitee.com/oschina/repo/raw/fork_flow/repo-py3 -o /usr/local/bin/repo  # If you do not have the access permission to this directory, download the tool to any other accessible directory and configure the directory to the environment variable.
    chmod a+x /usr/local/bin/repo
@@ -284,7 +284,7 @@ In the Ubuntu environment, perform the following steps to obtain the OpenHarmony
 
   Method 2: Use the **repo** tool to download the source code over HTTPS.
 
-    
+  
   ```
   repo init -u https://gitee.com/openharmony/manifest.git -b master --no-repo-verify
   repo sync -c
@@ -299,7 +299,7 @@ In the Ubuntu environment, perform the following steps to obtain the OpenHarmony
 ### Running prebuilts
 
   Go to the root directory of the source code and run the following script to install the compiler and binary tool:
-  
+
 ```
 bash build/prebuilts_download.sh
 ```
@@ -311,35 +311,35 @@ hb is a compilation tool of OpenHarmony. To install hb in Ubuntu, perform the fo
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> To install a proxy, see [Configuring a Proxy](../quick-start/quickstart-standard-reference.md#configuring-a-proxy).
+> To install a proxy, see [Configuring the Proxy](../quick-start/quickstart-standard-reference.md#section6204129143012).
 
 
 1. Run the following command to install hb and update it to the latest version:
-     
+   
    ```
    pip3 install --user build/lite
    ```
 
 2. Set the environment variable.
-     
+   
    ```
    vim ~/.bashrc
    ```
 
      Copy the following command to the last line of the .bashrc file, save the file, and exit.
-     
+   
    ```
    export PATH=~/.local/bin:$PATH
    ```
 
      Update the environment variable.
-     
+   
    ```
    source ~/.bashrc
    ```
 
 3. Run the **hb -h** command in the source code directory. If the following information is displayed, the installation is successful:
-     
+   
    ```
    usage: hb
    
@@ -359,7 +359,7 @@ hb is a compilation tool of OpenHarmony. To install hb in Ubuntu, perform the fo
 
 > ![icon-notice.gif](public_sys-resources/icon-notice.gif) **NOTICE**
 > - Run the following command to uninstall hb:
->     
+>    
 >   ```
 >   pip3 uninstall ohos-build
 >   ```

@@ -74,7 +74,7 @@ Use the **type** parameter to set the button type to **Capsule**, **Circle**, or
     .borderRadius(20)
   ```
 
-  ![zh-cn_image_0000001190463780](figures/zh-cn_image_0000001190463780.png)
+  ![en-us_image_0000001190463780](figures/en-us_image_0000001190463780.png)
 
 - Setting Text Styles
   Add a font style for text displayed on the button.
@@ -87,7 +87,7 @@ Use the **type** parameter to set the button type to **Capsule**, **Circle**, or
     .fontWeight(800)
   ```
 
-  ![zh-cn_image_0000001189744672](figures/zh-cn_image_0000001189744672.png)
+  ![en-us_image_0000001189744672](figures/en-us_image_0000001189744672.png)
 
 - Set the background color:
   You can do so by adding the **backgroundColor** attribute.
