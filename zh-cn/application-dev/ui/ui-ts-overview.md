@@ -81,4 +81,4 @@
 
 - [一次开发多端部署（eTS）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/MultiDeploymentEts)
 
-- [CustomComponent:组件化（eTS）（API8）](https://gitee.com/openharmony/app_samples/blob/master/ETSUI/CustomComponent)
+- [CustomComponent:组件化（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/CustomComponent)
