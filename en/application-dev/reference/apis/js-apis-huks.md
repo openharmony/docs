@@ -924,7 +924,7 @@ Updates a key. This method uses an asynchronous callback to return the result.
 | handle | number           | Yes  | Handle of the **Update** operation.|
 | token | Uint8Array | No| Token of the **Update** operation.|
 | options  | [HuksOptions](#huksoptions) | Yes  | Parameter set of the **Update** operation.|
-| callback | AsyncCallback\<[HksResult](#hksresult)> | Yes| Callback used to return the operation result.|
+| callback | AsyncCallback\<[HuksResult](#huksresult)> | Yes| Callback used to return the operation result.|
 
 **Example**
 
