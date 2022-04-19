@@ -244,4 +244,4 @@ try {
 
 ## 相关实例
 针对Stage模型本地Call功能开发，有以下相关实例可供参考：
-- [`StageCallAbility`：StageAbility的创建与使用（eTS）（API9）](https://gitee.com/openharmony/app_samples/blob/master/ability/StageCallAbility)
+- [`StageCallAbility`：StageAbility的创建与使用（eTS）（API9）](https://gitee.com/openharmony/app_samples/tree/master/ability/StageCallAbility)
