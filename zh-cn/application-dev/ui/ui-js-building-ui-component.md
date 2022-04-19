@@ -25,16 +25,20 @@
 
 针对组件开发，有以下相关实例可供参考：
 
-- [`JsPanel`：内容展示面板（JS）（API7）](https://gitee.com/openharmony/app_samples/blob/master/UI/JsPanel)
+- [`JsPanel`：内容展示面板（JS）（API7）](https://gitee.com/openharmony/app_samples/tree/master/UI/JsPanel)
 
-- [`Popup`：气泡（JS）（API7）](https://gitee.com/openharmony/app_samples/blob/master/UI/Popup)
+- [`Popup`：气泡（JS）（API7）](https://gitee.com/openharmony/app_samples/tree/master/UI/Popup)
 
-- [`RefreshContainer`：下拉刷新容器（JS）（API7）](https://gitee.com/openharmony/app_samples/blob/master/UI/RefreshContainer)
+- [`RefreshContainer`：下拉刷新容器（JS）（API7）](https://gitee.com/openharmony/app_samples/tree/master/UI/RefreshContainer)
 
-- [`JSComponments`：Js组件（JS）（API8）](https://gitee.com/openharmony/app_samples/blob/master/UI/JSComponments)
+- [`JSComponments`：Js组件（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/UI/JSComponments)
 
-- [`JsUserRegistration`：用户注册（JS）（API8）](https://gitee.com/openharmony/app_samples/blob/master/UI/JsUserRegistration)
+- [`JsUserRegistration`：用户注册（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/UI/JsUserRegistration)
 
-- [`ECG`：心率检测（JS）（API7）](https://gitee.com/openharmony/app_samples/blob/master/common/ECG)
+- [`ECG`：心率检测（JS）（API7）](https://gitee.com/openharmony/app_samples/tree/master/common/ECG)
 
-- [`Badge`：事件标记控件（JS）（API7）](https://gitee.com/openharmony/app_samples/blob/master/UI/Badge)
+- [`Badge`：事件标记控件（JS）（API7）](https://gitee.com/openharmony/app_samples/tree/master/UI/Badge)
+
+- [rating（JS）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/RatingApplication)
+
+- [简易视频播放器](https://gitee.com/openharmony/codelabs/tree/master/Media/VideoOpenHarmony)
