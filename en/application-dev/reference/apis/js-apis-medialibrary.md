@@ -2002,7 +2002,7 @@ async function example() {
 
 commitModify(): Promise&lt;void&gt;
 
-Commits the modification of the album attributes to the database. This API uses an asynchronous callback to return the result.
+Commits the modification of the album attributes to the database. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.READ_MEDIA and ohos.permission.WRITE_MEDIA
 
