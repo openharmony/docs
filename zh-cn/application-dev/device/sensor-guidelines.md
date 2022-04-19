@@ -123,3 +123,9 @@
       console.error(error);
     }
     ```
+
+## 相关实例
+
+针对传感器开发，有以下相关实例可供参考：
+
+- [`Sensor`：传感器（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/device/Sensor)
