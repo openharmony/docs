@@ -43,7 +43,7 @@
   - application/[MissionSnapshot](js-apis-application-MissionSnapshot.md)
   - application/[PermissionRequestResult](js-apis-permissionrequestresult.md)
   - application/[ProcessRunningInfo](js-apis-processrunninginfo.md)
-  - application/[ServiceExtensionContext](js-apis-service-extension-context.md) 
+  - application/[ServiceExtensionContext](js-apis-service-extension-context.md)
   - application/[shellCmdResult](js-apis-application-shellCmdResult.md)
 
 - Common Event and Notification
@@ -57,7 +57,6 @@
 - Bundle Management
 
   - [@ohos.bundle](js-apis-Bundle.md)
-  - [@ohos.bundleState ](js-apis-deviceUsageStatistics.md)
   - [@ohos.zlib](js-apis-zlib.md)
 
 - UI Page
@@ -88,11 +87,13 @@
   - [@ohos.intl](js-apis-intl.md)
   - [@ohos.resourceManager](js-apis-resource-manager.md)
 
-- Resource Scheduling 
+- Resource Scheduling
 
   - [@ohos.backgroundTaskManager](js-apis-backgroundTaskManager.md)
   - [@ohos.workScheduler ](js-apis-workScheduler.md)
   - [@ohos.WorkSchedulerExtensionAbility](js-apis-WorkSchedulerExtensionAbility.md)
+
+  - [@ohos.bundleState ](js-apis-deviceUsageStatistics.md)
 
 - Custom Management
 
@@ -105,7 +106,7 @@
   - [@ohos.security.huks ](js-apis-huks.md)
   - [@ohos.userIAM.userAuth ](js-apis-useriam-userauth.md)
   - [@system.cipher](js-apis-system-cipher.md)
-  
+
 - Data Management
 
   - [@ohos.data.dataAbility ](js-apis-data-ability.md)
@@ -140,7 +141,7 @@
   - [@ohos.net.http](js-apis-http.md)
   - [@ohos.request](js-apis-request.md)
   - [@ohos.net.socket](js-apis-socket.md)
-  - [@ohos.net.webSocket](js-apis-webSocket.md) 
+  - [@ohos.net.webSocket](js-apis-webSocket.md)
 
 - Connectivity
 
@@ -149,7 +150,7 @@
   - [@ohos.rpc](js-apis-rpc.md)
   - [@ohos.wifi](js-apis-wifi.md)
   - [@ohos.wifiext](js-apis-wifiext.md)
-  
+
 - Basic Features
 
   - [@ohos.accessibility](js-apis-accessibility.md)
@@ -223,7 +224,7 @@
   - [@ohos.uitest](js-apis-uitest.md)
 
 - APIs No Longer Maintained
-  
+
   - [@ohos.bytrace](js-apis-bytrace.md)
   - [@ohos.data.storage](js-apis-data-storage.md)
   - [@system.app](js-apis-system-app.md)
