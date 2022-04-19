@@ -61,13 +61,13 @@
 
 - [`Canvas`：画布组件（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/Basic/Container)
 
-- [`Drag`：ArkUI-拖拽事件（eTS）（API8）](https://gitee.com/openharmony/app_samples/blob/master/ETSUI/Drag)
+- [`Drag`：ArkUI-拖拽事件（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/Drag)
 
-- [`ArkUIAnimation`：Ets动画（eTS）（API8）](https://gitee.com/openharmony/app_samples/blob/master/ETSUI/ArkUIAnimation)
+- [`ArkUIAnimation`：Ets动画（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/ArkUIAnimation)
 
-- [`Xcomponent`：ArkUI-XComponent（eTS）（API8）](https://gitee.com/openharmony/app_samples/blob/master/ETSUI/Xcomponent)
+- [`Xcomponent`：ArkUI-XComponent（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/Xcomponent)
 
-- [`MouseEvent`：ArkUI-鼠标事件（eTS）（API8）](https://gitee.com/openharmony/app_samples/blob/master/ETSUI/MouseEvent)
+- [`MouseEvent`：ArkUI-鼠标事件（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/MouseEvent)
 
 - [极简声明式UI范式（eTS）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/SimpleGalleryEts)
 
@@ -80,3 +80,5 @@
 - [弹窗（eTS）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/CustomDialogEts)
 
 - [一次开发多端部署（eTS）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/MultiDeploymentEts)
+
+- [CustomComponent:组件化（eTS）（API8）](https://gitee.com/openharmony/app_samples/blob/master/ETSUI/CustomComponent)
