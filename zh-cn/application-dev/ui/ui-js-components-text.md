@@ -276,4 +276,4 @@ export default {
 
 针对Text开发，有以下相关实例可供参考：
 
-- [`JsTextComponents`：基础组件（JS）（API8）](https://gitee.com/openharmony/app_samples/blob/master/UI/JsBasicComponents)
+- [`JsTextComponents`：基础组件（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/UI/JsBasicComponents)
