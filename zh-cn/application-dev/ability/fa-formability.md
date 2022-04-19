@@ -329,5 +329,5 @@ Form需要在应用配置文件config.json中进行配置。
 ## 相关实例
 
 针对FA模型卡片提供方的开发，有以下相关实例可供参考：
-- [`FormAbility`：FA模型卡片（JS）（API8）](https://gitee.com/openharmony/app_samples/blob/master/ability/FormAbility)
-- [`FormLauncher`：卡片使用方（eTS）（API8）](https://gitee.com/openharmony/app_samples/blob/master/ability/FormLauncher)
+- [`FormAbility`：FA模型卡片（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ability/FormAbility)
+- [`FormLauncher`：卡片使用方（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ability/FormLauncher)
