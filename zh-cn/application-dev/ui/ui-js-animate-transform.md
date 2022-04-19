@@ -574,3 +574,18 @@ transform可以设置多个值并且多个值可同时设置，下面案例中�
 > - transform进行复合写法时，变化样式内多个样式值顺序的不同会呈现不一样的动画效果。
 > 
 > - transform属性设置的样式值要一一对应，若前后不对应，则该动画不生效。若设置多个样式值则只会呈现出已对应值的动画效果。
+
+
+## 相关实例
+
+针对transform样式动画开发，有以下相关实例可供参考：
+
+- [`JsAnimation`：动效示例应用（JS）](https://gitee.com/openharmony/app_samples/tree/master/UI/JsAnimation)
+
+- [`JsAnimationStyle`：动画与自定义字体（JS）（API7）](https://gitee.com/openharmony/app_samples/tree/master/UI/JsAnimationStyle)
+
+- [`Clock`：时钟（JS）（API7）](https://gitee.com/openharmony/app_samples/tree/master/common/Clock)
+
+- [动画样式（JS）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/AnimationDemo)
+
+- [图片常见操作](https://gitee.com/openharmony/codelabs/tree/master/Media/ImageJsDemo)

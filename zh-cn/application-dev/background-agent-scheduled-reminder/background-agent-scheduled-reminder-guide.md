@@ -275,3 +275,11 @@ let alarm : reminderAgent.ReminderRequestAlarm = {
     slotType: notification.SlotType.SOCIAL_COMMUNICATION
 }
 ```
+
+
+## 相关实例
+
+基于后台代理提醒开发，有以下相关实例可供参考：
+
+- [`AlarmClock`：后台代理提醒（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/Notification/AlarmClock)
+
