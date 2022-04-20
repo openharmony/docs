@@ -20,7 +20,7 @@
 
 ### 全流程场景
 
-端到端的开发示例请参考：https://gitee.com/openharmony/app_samples/tree/master/media
+端到端的开发示例请参考：https://gitee.com/openharmony/app_samples/blob/master/media/Recorder/entry/src/main/ets/MainAbility/pages/Play.ets
 
 包含流程：创建实例，设置uri，播放音频，跳转播放位置，设置音量，暂停播放，获取轨道信息，停止播放，重置，释放资源等流程。
 

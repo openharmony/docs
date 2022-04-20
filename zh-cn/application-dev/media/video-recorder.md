@@ -20,7 +20,7 @@
 
 ### 全流程场景
 
-端到端的开发示例请参考：https://gitee.com/openharmony/app_samples/tree/master/media
+端到端的开发示例请参考：https://gitee.com/openharmony/app_samples/blob/master/media/Recorder/entry/src/main/ets/MainAbility/pages/RecordPage.ets
 
 包含流程：创建实例，设置录制参数，录制视频，暂停录制，恢复录制，停止录制，释放资源等流程。
 
