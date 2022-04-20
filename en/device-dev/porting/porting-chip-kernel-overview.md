@@ -16,8 +16,7 @@ The kernel used by module chips is LiteOS Cortex-M, which consists of four modul
 
 **Figure  1**  Architecture of the LiteOS Cortex-M kernel<a name="fig10838105524917"></a>  
 
-
-![](figure/architecture-of-the-liteos-cortex-m-kernel.png)
+<img src="figures/architecture-of-the-liteos-cortex-m-kernel.png" style="zoom:75%;" />
 
 The directory structure of the kernel is described as follows:
 

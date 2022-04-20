@@ -12,7 +12,7 @@ Basic adaptation consists of the following steps:
 **Figure  1**  Startup process<a name="fig10838105524917"></a>  
 
 
-![](figure/startup-process.png)
+![](figures/startup-process.png)
 
 In the  **startup.S**  file, you must ensure that the entry function \(for example,  **reset\_vector**\) of the interrupt vector table is stored in the RAM start address specified by the link configuration files. The link configuration files of IAR, Keil, and GCC projects are  **xxx.icf**,  **xxx.sct**, and  **xxx.ld**, respectively. The startup file provided by the vendor does not need to be modified if the  **startup.S**  file has initialized the system clock and returned to the  **main**  function. Otherwise, the preceding functions need to be implemented.
 
@@ -34,6 +34,7 @@ The following table shows some typical configuration items:
 **Table  1**  Typical configuration items
 
 <a name="table1343954214199"></a>
+
 <table><thead align="left"><tr id="row1244014425196"><th class="cellrowborder" valign="top" width="34.81%" id="mcps1.2.3.1.1"><p id="p1544044212197"><a name="p1544044212197"></a><a name="p1544044212197"></a>Item</p>
 </th>
 <th class="cellrowborder" valign="top" width="65.19%" id="mcps1.2.3.1.2"><p id="p7440194281913"><a name="p7440194281913"></a><a name="p7440194281913"></a>Description</p>
