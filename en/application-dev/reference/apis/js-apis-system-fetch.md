@@ -1,7 +1,7 @@
 # Data Request
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **Note：**
-> - The APIs of this module are no longer maintained since API version 6. It is recommended that you use [`@ohos.net.http`](js-apis-http.md) instead.
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+> - The APIs of this module are no longer maintained since API version 6. You are advised to use [`@ohos.net.http`](js-apis-http.md) instead.
 > 
 > - The initial APIs of this module are supported since API version 3. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
@@ -20,47 +20,46 @@ fetch(Object): void
 
 Obtains data through a network.
 
-**Required permissions:** ohos.permission.INTERNET
+**Required permission**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.Communication.NetStack
 
 **Parameters**
-
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| url | string | Yes | Resource&nbsp;URL. |
-| data | string \| Object | No | Request&nbsp;parameter,&nbsp;which&nbsp;can&nbsp;be&nbsp;a&nbsp;string&nbsp;or&nbsp;a&nbsp;JSON&nbsp;object. For details, see Relationship between data and Content-Type. |
-| header | Object | No | Request&nbsp;header. |
-| method | string | No | Request&nbsp;method.&nbsp;The&nbsp;default&nbsp;value&nbsp;is&nbsp;**GET**.&nbsp;The&nbsp;value&nbsp;can&nbsp;be&nbsp;**OPTIONS**,&nbsp;**GET**,&nbsp;**HEAD**,&nbsp;**POST**,&nbsp;**PUT**,&nbsp;**DELETE&nbsp;**or&nbsp;**TRACE**. |
-| responseType | string | No | Response&nbsp;type.&nbsp;The&nbsp;return&nbsp;type&nbsp;can&nbsp;be&nbsp;text&nbsp;or&nbsp;JSON.&nbsp;By&nbsp;default,&nbsp;the&nbsp;return&nbsp;type&nbsp;is&nbsp;determined&nbsp;based&nbsp;on&nbsp;**Content-Type**&nbsp;in&nbsp;the&nbsp;header&nbsp;returned&nbsp;by&nbsp;the&nbsp;server.&nbsp;For&nbsp;details,&nbsp;see return values of the success callback. |
-| success | Function | No | Called&nbsp;when&nbsp;the&nbsp;network&nbsp;data&nbsp;is&nbsp;obtained&nbsp;successfully. |
-| fail | Function | No | Called&nbsp;when&nbsp;the&nbsp;network&nbsp;data&nbsp;fails&nbsp;to&nbsp;be&nbsp;obtained. |
-| complete | Function | No | Called&nbsp;when&nbsp;the&nbsp;execution&nbsp;is&nbsp;complete. |
+| url | string | Yes| Resource URL.|
+| data | string \| Object | No| Request parameter, which can be a string or a JSON object. For details, see the mapping between **data** and **Content-Type**.|
+| header | Object | No| Request header.|
+| method | string | No| Request method. The default value is **GET**. The value can be **OPTIONS**, **GET**, **HEAD**, **POST**, **PUT**, **DELETE **or **TRACE**.|
+| responseType | string | No| Response type. The return type can be text or JSON. By default, the return type is determined based on **Content-Type** in the header returned by the server. For details, see return values in the **success** callback.|
+| success | Function | No| Called when the data is obtained successfully.|
+| fail | Function | No| Called when the data failed to be obtained.|
+| complete | Function | No| Called when the execution is complete.|
 
-  **Table1** Relationship between data and Content-Type
+**Table 1** Mapping between data and Content-Type
 
-| data | Content-Type | Description |
+| data | Content-Type | Description|
 | -------- | -------- | -------- |
-| string | Not&nbsp;set | The&nbsp;default&nbsp;value&nbsp;of&nbsp;Content-Type&nbsp;is&nbsp;text/plain,&nbsp;and&nbsp;the&nbsp;value&nbsp;of&nbsp;data&nbsp;is&nbsp;used&nbsp;as&nbsp;the&nbsp;request&nbsp;body. |
-| string | Any&nbsp;type | The&nbsp;value&nbsp;of&nbsp;data&nbsp;is&nbsp;used&nbsp;as&nbsp;the&nbsp;request&nbsp;body. |
-| Object | Not&nbsp;set | The&nbsp;default&nbsp;value&nbsp;of&nbsp;**Content-Type**&nbsp;is&nbsp;**application/x-www-form-urlencoded**.&nbsp;The&nbsp;**data**&nbsp;value&nbsp;is&nbsp;encoded&nbsp;based&nbsp;on&nbsp;the&nbsp;URL&nbsp;rule&nbsp;and&nbsp;appended&nbsp;in&nbsp;the&nbsp;request&nbsp;body. |
-| Object | application/x-www-form-urlencoded | The&nbsp;value&nbsp;of&nbsp;data&nbsp;is&nbsp;encoded&nbsp;based&nbsp;on&nbsp;the&nbsp;URL&nbsp;rule&nbsp;and&nbsp;is&nbsp;used&nbsp;as&nbsp;the&nbsp;request&nbsp;body. |
+| string | Not set| The default value of Content-Type is **text/plain**, and the value of data is used as the request body.|
+| string | Any type| The value of data is used as the request body.|
+| Object | Not set| The default value of **Content-Type** is **application/x-www-form-urlencoded**. The **data** value is encoded based on the URL rule and appended in the request body.|
+| Object | application/x-www-form-urlencoded | The value of data is encoded based on the URL rule and is used as the request body.|
 
-The following values will be returned when data is successfully obtained.
+Return values in the **success** callback
 
-| Parameter | Type | Description |
+| Name| Type| Description|
 | -------- | -------- | -------- |
-| code | number | Server&nbsp;status&nbsp;code. |
-| data | string \| Object | The&nbsp;type&nbsp;of&nbsp;the&nbsp;returned&nbsp;data&nbsp;is&nbsp;determined&nbsp;by&nbsp;**responseType**.&nbsp;For&nbsp;details,&nbsp;see&nbsp;Relationship between responseType and data returned by the success function. |
-| headers | Object | All&nbsp;headers&nbsp;in&nbsp;the&nbsp;response&nbsp;from&nbsp;the&nbsp;server. |
+| code | number | Server status code.|
+| data | string \| Object | The type of the returned data is determined by **responseType**. For details, see the mapping between **responseType** and **data** in **success** callback.|
+| headers | Object | All headers in the response from the server.|
 
-  **Table2** Relationship between responseType and data returned by the success function
+**Table 2** Mapping between responseType and data in success callback
 
-| responseType | data | Description |
+| responseType | data | Description|
 | -------- | -------- | -------- |
-| N/A | string | When&nbsp;the&nbsp;type&nbsp;in&nbsp;the&nbsp;header&nbsp;returned&nbsp;by&nbsp;the&nbsp;server&nbsp;is&nbsp;**text/\***,&nbsp;**application/json**,&nbsp;**application/javascript**,&nbsp;or&nbsp;**application/xml**,&nbsp;the&nbsp;value&nbsp;is&nbsp;the&nbsp;text&nbsp;content. |
-| text | string | Text&nbsp;content. |
-| json | Object | A&nbsp;JSON&nbsp;object. |
+| N/A| string | When the type in the header returned by the server is **text/\***, **application/json**, **application/javascript**, or **application/xml**, the value is the text content.|
+| text | string | Text content.|
+| json | Object | A JSON object.|
 
 **Example**
 
@@ -87,8 +86,8 @@ export default {
 ```
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **Note：**
->   HTTPS is supported by default. To support HTTP, you need to add **"network"** to the **config.json** file, and set the attribute **"cleartextTraffic"** to **true**. 
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+>   HTTPS is supported by default. To support HTTP, you need to add **"network"** to the **config.json** file, and set the attribute **"cleartextTraffic"** to **true**. That is:
 >   
 > ```
 > {
