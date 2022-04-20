@@ -121,11 +121,11 @@ FAQs are used to help developers solve problems frequently encountered during de
 
 ## Startup and Recovery
 
-- [System Startup Interrupted Due to "parse failed!" Error](../faqs/faqs-init.md)
+- [System Startup Interrupted Due to "parse failed!" Error](../faqs/faqs-startup.md)
 
-- [System Restarted Repeatedly](../faqs/faqs-init.md)
+- [System Restarted Repeatedly](../faqs/faqs-startup.md)
 
-- [Failed to Call the SetParameter or GetParameter API with Correct Parameter Values](../faqs/faqs-init.md)
+- [Failed to Call the SetParameter or GetParameter API with Correct Parameter Values](../faqs/faqs-startup.md)
 
 
 ## System Applications
