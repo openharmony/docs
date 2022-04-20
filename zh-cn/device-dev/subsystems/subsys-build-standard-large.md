@@ -465,13 +465,13 @@ ohos_shared_library("module2") {
      "parts": {
        "napi": {
          "module_list": [
-           "//foundation/ace/napi:napi_packages"
+           "//foundation/arkui/napi:napi_packages"
          ],
          "inner_kits": [
          ],
          "test_list": [
-           "//foundation/ace/napi:napi_packages_test",
-           "//foundation/ace/napi/test/unittest:unittest"
+           "//foundation/arkui/napi:napi_packages_test",
+           "//foundation/arkui/napi/test/unittest:unittest"
          ]
        }
      }
