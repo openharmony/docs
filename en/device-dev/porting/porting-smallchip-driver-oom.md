@@ -157,7 +157,7 @@ The WLAN driver is divided into two parts. One of the parts manages WLAN devices
 **Figure  1**  OpenHarmony WLAN driver architecture<a name="fig155920160203"></a>  
 
 
-![](figure/hdf_wifi.png)
+![](figures/hdf_wifi.png)
 
 As shown in  [Figure 1](#fig155920160203), the part on the left manages WLAN devices, and the part on the right manages WLAN traffic. The HDF WLAN framework abstracts these two parts. The porting process of the driver can be considered as the implementation of the APIs required by the two parts. These APIs are described as follows:
 

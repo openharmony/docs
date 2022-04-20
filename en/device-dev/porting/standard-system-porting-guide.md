@@ -277,7 +277,7 @@ For details about driver development, see  [TOUCHSCREEN](../driver/driver-periph
 The WLAN driver is divided into two parts. One of the parts manages WLAN devices, and the other part manages WLAN traffic. HDF WLAN provides abstraction for the two parts. Currently, only the WLAN with the SDIO interface is supported.
 
 **Figure  1**  WLAN chip<a name="fig16997123013494"></a>  
-![](figure/wlan-chip.png "wlan-chip")
+![](figures/wlan-chip.png "wlan-chip")
 
 To support a chip, implement a  **ChipDriver**  for it. The major task is to implement the following interfaces provided by  **HDF\_WLAN\_CORE**  and  **NetDevice**.
 

@@ -1,4 +1,4 @@
-# Kernel for Standard Systems
+# Kernel for the Standard System
 
 
 - **[Linux Kernel Overview](kernel-standard-overview.md)**
@@ -7,4 +7,4 @@
 
 - **[Compiling and Building the Linux Kernel](kernel-standard-build.md)**
 
-- **[Enhanced Kernel Features] (kernel-standard-enhanced-features.md)**
+- **[Enhanced Kernel Features](kernel-standard-enhanced-features.md)**

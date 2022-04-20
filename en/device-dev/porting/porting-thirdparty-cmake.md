@@ -218,12 +218,12 @@ The following steps show how to configure and modify the toolchains for cross-co
 
 1.  Set up the OpenHarmony environment.
 
-    Using Hi3518EV300 as an example, compile the OpenHarmony image and burn it to the development board. For details, see  [Developing the First Example Program Running on Hi3518](../quick-start/quickstart-lite-steps-hi3518-running.md).
+    Using  Hi3516D V300 as an example, compile the OpenHarmony image and burn it to the development board. For details, see  [Developing the First Example Program Running on Hi3518](../quick-start/quickstart-lite-steps-hi3516-running.md).
 
     The following screen is displayed after a successful login to the OS.
 
     **Figure  1**  Successful startup of OpenHarmony<a name="fig13279524162418"></a>  
-    ![](figure/successful-startup-of-openharmony.png "successful-startup-of-openharmony")
+    ![](figures/successful-startup-of-openharmony.png "successful-startup-of-openharmony")
 
 2.  Mount the  **nfs**  directory and put the executable file  **cctest**  into the  **test**  directory \(listed in  [Table 2](#table1452412391911)\) to the  **nfs**  directory.
 3.  Perform the test cases.
