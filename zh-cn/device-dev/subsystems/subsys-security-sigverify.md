@@ -92,5 +92,5 @@
 
 ### 生成OpenHarmony签名应用<a name="section167151429133312"></a>
 
-参考文档：https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/configuring-openharmony-app-signature.md
+具体操作请参考：[配置OpenHarmony应用签名信息](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-auto-configuring-signature-information-0000001271659465)
 
