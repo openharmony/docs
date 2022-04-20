@@ -2,7 +2,7 @@
 
 
 
-- **[Overview of FAQs](faqs-overview.md)**
+- **[FAQs Overview](faqs-overview.md)**
 
 - **[Environment Setup](faqs-environment-setup.md)**
 
