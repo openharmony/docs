@@ -20,6 +20,8 @@
 
 ### 全流程场景
 
+端到端的开发示例请参考：https://gitee.com/openharmony/app_samples/tree/master/media
+
 包含流程：创建实例，设置uri，播放音频，跳转播放位置，设置音量，暂停播放，获取轨道信息，停止播放，重置，释放资源等流程。
 
 AudioPlayer支持的src媒体源输入类型可参考：[src属性说明](../reference/apis/js-apis-media.md#audioplayer_属性)

@@ -39,6 +39,8 @@
 
 ### 全流程场景
 
+端到端的开发示例请参考：https://gitee.com/openharmony/app_samples/tree/master/media
+
 包含流程：创建实例，设置url，设置SurfaceId，准备播放视频，播放视频，暂停播放，获取轨道信息，跳转播放位置，设置音量，设置倍速，结束播放，重置，释放资源等流程。
 
 VideoPlayer支持的url媒体源输入类型可参考：[url属性说明](../reference/apis/js-apis-media.md#videoplayer_属性)
