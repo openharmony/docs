@@ -88,7 +88,7 @@ Perform the following steps:
 
 1.  Add the touchscreen driver-related descriptions.
 
-    Currently, the input driver is developed based on the HDF and is loaded and started by the HDF. Register the driver information, such as whether to load the driver and the loading priority in the configuration file. Then, the HDF starts the registered driver modules one by one. For details about the driver configuration, see  [Driver Development](driver-hdf-development.md#how-to-development).
+    Currently, the input driver is developed based on the HDF and is loaded and started by the HDF. Register the driver information, such as whether to load the driver and the loading priority in the configuration file. Then, the HDF starts the registered driver modules one by one. For details about the driver configuration, see  [Driver Development](driver-hdf-development.md#how-to-develop).
 
 2.  Complete the board-level configuration and private data configuration of the touchscreen.
 
