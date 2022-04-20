@@ -9,25 +9,25 @@ FAQs are used to help developers solve problems frequently encountered during de
 
 ### Mini and Small Systems
 
-- [What should I do if garbled characters and segmentation faults occur during hb installation?](../faqs/faqs-environment-building.md)
+- [What should I do if garbled characters and segmentation faults occur during hb installation?](../faqs/faqs-environment-setup.md)
 
-- [What should I do if the message "cannot import 'sysconfig' from 'distutils'" is displayed during hb installation?](../faqs/faqs-environment-building.md)
+- [What should I do if the message "cannot import 'sysconfig' from 'distutils'" is displayed during hb installation?](../faqs/faqs-environment-setup.md)
 
-- [What should I do if the message "module 'platform' has no attribute 'linux_distribution'" is displayed during hb installation?](../faqs/faqs-environment-building.md)
+- [What should I do if the message "module 'platform' has no attribute 'linux_distribution'" is displayed during hb installation?](../faqs/faqs-environment-setup.md)
 
-- [What should I do if the message "Could not find a version that satisfies the requirement ohos-build" is displayed during hb installation?](../faqs/faqs-environment-building.md)
+- [What should I do if the message "Could not find a version that satisfies the requirement ohos-build" is displayed during hb installation?](../faqs/faqs-environment-setup.md)
 
-- [What should I do if the message "configure: error: no acceptable C compiler found in $PATH" is displayed during Python 3 installation?](../faqs/faqs-environment-building.md)
+- [What should I do if the message "configure: error: no acceptable C compiler found in $PATH" is displayed during Python 3 installation?](../faqs/faqs-environment-setup.md)
 
-- [What should I do if the message "-bash: make: command not found" is displayed during Python 3 installation?](../faqs/faqs-environment-building.md)
+- [What should I do if the message "-bash: make: command not found" is displayed during Python 3 installation?](../faqs/faqs-environment-setup.md)
 
-- [What should I do if the message "zlib not available" is displayed during Python 3 installation?](../faqs/faqs-environment-building.md)
+- [What should I do if the message "zlib not available" is displayed during Python 3 installation?](../faqs/faqs-environment-setup.md)
 
-- [What should I do if the message "No module named 'Crypto'" is displayed during the build process?](../faqs/faqs-environment-building.md)
+- [What should I do if the message "No module named 'Crypto'" is displayed during the build process?](../faqs/faqs-environment-setup.md)
 
-- [What should I do when an error with lsb_release occurs during kconfiglib installation?](../faqs/faqs-environment-building.md)
+- [What should I do when an error with lsb_release occurs during kconfiglib installation?](../faqs/faqs-environment-setup.md)
 
-- [What should I do if the message "ImportError: No module named apt_pkg" is displayed during the execution of an unidentifiable command?](../faqs/faqs-environment-building.md)
+- [What should I do if the message "ImportError: No module named apt_pkg" is displayed during the execution of an unidentifiable command?](../faqs/faqs-environment-setup.md)
 
 
 ## Compilation and Building
@@ -133,46 +133,46 @@ FAQs are used to help developers solve problems frequently encountered during de
 
 ### Utils
 
-- [Failure in running the KV store on the LiteOS-A kernel (Hi3516 or Hi3518) due to incorrect path setting for the KV store](../faqs/faqs-system-using.md)
+- [Failure in running the KV store on the LiteOS-A kernel (Hi3516 or Hi3518) due to incorrect path setting for the KV store](../faqs/faqs-system-applications.md)
 
 
 ### Visual Applications
 
-- [Is there a global variable that can be accessed by all pages?](../faqs/faqs-system-using.md)
+- [Is there a global variable that can be accessed by all pages?](../faqs/faqs-system-applications.md)
 
-- [How do I obtain DOM elements?](../faqs/faqs-system-using.md)
+- [How do I obtain DOM elements?](../faqs/faqs-system-applications.md)
 
-- [How do I pass values between pages?](../faqs/faqs-system-using.md)
+- [How do I pass values between pages?](../faqs/faqs-system-applications.md)
 
-- [How do I scroll a list to an item?](../faqs/faqs-system-using.md)
+- [How do I scroll a list to an item?](../faqs/faqs-system-applications.md)
 
-- [Does the <text> component support multiple lines?](../faqs/faqs-system-using.md)
+- [Does the <text> component support multiple lines?](../faqs/faqs-system-applications.md)
 
-- [Why is a component not displayed?](../faqs/faqs-system-using.md)
+- [Why is a component not displayed?](../faqs/faqs-system-applications.md)
 
-- [How do I implement scrolling on a page?](../faqs/faqs-system-using.md)
+- [How do I implement scrolling on a page?](../faqs/faqs-system-applications.md)
 
-- [Why do not the left and top attributes take effect?](../faqs/faqs-system-using.md)
+- [Why do not the left and top attributes take effect?](../faqs/faqs-system-applications.md)
 
-- [Why does not dynamic binding take effect?](../faqs/faqs-system-using.md)
+- [Why does not dynamic binding take effect?](../faqs/faqs-system-applications.md)
 
-- [How do I implement relative and absolute positioning?](../faqs/faqs-system-using.md)
+- [How do I implement relative and absolute positioning?](../faqs/faqs-system-applications.md)
 
-- [How do I display or hide a component?](../faqs/faqs-system-using.md)
+- [How do I display or hide a component?](../faqs/faqs-system-applications.md)
 
-- [What are the precautions for using the Margin attribute?](../faqs/faqs-system-using.md)
+- [What are the precautions for using the Margin attribute?](../faqs/faqs-system-applications.md)
 
-- [What are the precautions for event subscription?](../faqs/faqs-system-using.md)
+- [What are the precautions for event subscription?](../faqs/faqs-system-applications.md)
 
-- [What are the precautions for using dynamic binding?](../faqs/faqs-system-using.md)
+- [What are the precautions for using dynamic binding?](../faqs/faqs-system-applications.md)
 
-- [How does the loop attribute take effect for <swiper>?](../faqs/faqs-system-using.md)
+- [How does the loop attribute take effect for <swiper>?](../faqs/faqs-system-applications.md)
 
-- [What are the precautions for using an array?](../faqs/faqs-system-using.md)
+- [What are the precautions for using an array?](../faqs/faqs-system-applications.md)
 
 
 ### hdc
 
-- [Why does hdc_std fail to connect to a device?](../faqs/faqs-system-using.md)
+- [Why does hdc_std fail to connect to a device?](../faqs/faqs-system-applications.md)
 
-- [hdc_std fail to run](../faqs/faqs-system-using.md)
+- [hdc_std fail to run](../faqs/faqs-system-applications.md)
