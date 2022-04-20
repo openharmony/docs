@@ -275,6 +275,8 @@ Adds a reminder notification slot. This API uses an asynchronous callback to ret
 **Example**
 
 ```js
+import notification from '@ohos.notification'
+
 let mySlot = {
     type: notification.SlotType.SOCIAL_COMMUNICATION
 }
@@ -307,6 +309,8 @@ Adds a reminder notification slot. This API uses a promise to return the result.
 **Example**
 
 ```js
+import notification from '@ohos.notification'
+
 let mySlot = {
     type: notification.SlotType.SOCIAL_COMMUNICATION
 }
@@ -334,6 +338,8 @@ Removes a notification slot of a specified type. This API uses an asynchronous c
 **Example**
 
 ```js
+import notification from '@ohos.notification'
+
 reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION, (err, data) => {
     console.log("removeNotificationSlot callback");
 });
@@ -363,6 +369,8 @@ Removes a notification slot of a specified type. This API uses a promise to retu
 **Example**
 
 ```js
+import notification from '@ohos.notification'
+
 reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION).then(() => {
     console.log("removeNotificationSlot promise");
 });

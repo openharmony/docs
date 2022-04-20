@@ -272,12 +272,11 @@ addNotificationSlot(slot: NotificationSlot, callback: AsyncCallback&lt;void&gt;)
 | slot | [NotificationSlot](js-apis-notification.md#notificationslot) | 是 | notification&nbsp;slot实例，仅支持设置其type属性。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 异步回调。 |
 
-**说明**：
-使用NotificationSlot需要导入： import notification from '@ohos.notification'
-
 **示例**：
 
 ```js
+import notification from '@ohos.notification'
+
 let mySlot = {
     type: notification.SlotType.SOCIAL_COMMUNICATION
 }
@@ -301,9 +300,6 @@ addNotificationSlot(slot: NotificationSlot): Promise&lt;void&gt;
 | -------- | -------- | -------- | -------- |
 | slot | [NotificationSlot](js-apis-notification.md#notificationslot) | 是 | notification&nbsp;slot实例，仅支持设置其type属性。 |
 
-**说明**：
-使用NotificationSlot需要导入： import notification from '@ohos.notification'
-
 **返回值**：
 
 | 类型 | 说明 |
@@ -313,6 +309,8 @@ addNotificationSlot(slot: NotificationSlot): Promise&lt;void&gt;
 **示例**：
 
 ```js
+import notification from '@ohos.notification'
+
 let mySlot = {
     type: notification.SlotType.SOCIAL_COMMUNICATION
 }
@@ -340,6 +338,8 @@ removeNotificationSlot(slotType: notification.SlotType, callback: AsyncCallback&
 **示例**：
 
 ```js
+import notification from '@ohos.notification'
+
 reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION, (err, data) => {
     console.log("removeNotificationSlot callback");
 });
@@ -369,6 +369,8 @@ removeNotificationSlot(slotType: notification.SlotType): Promise&lt;void&gt;
 **示例**：
 
 ```js
+import notification from '@ohos.notification'
+
 reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION).then(() => {
     console.log("removeNotificationSlot promise");
 });
