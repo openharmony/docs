@@ -12,7 +12,7 @@ The figure below shows the HDF driver model.
   ![](figures/hdf-driver-model.png)
 
 
-## How to Development
+## How to Develop
 
 The HDF-based driver development involves driver implementation and configuration. The procedure is as follows:
 
