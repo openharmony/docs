@@ -116,7 +116,7 @@ FAQs are used to help developers solve problems frequently encountered during de
 
 ## Porting
 
-- [How Do I Mount the Heap Memory to the Kernel?](../faqs/faqs-transplant.md)
+- [How Do I Mount the Heap Memory to the Kernel?](../faqs/faqs-porting.md)
 
 
 ## Startup and Recovery
