@@ -94,7 +94,7 @@ ohos.permission.KEEP_BACKGROUND_RUNNING
 | 接口名 | 描述 |
 | -------- | -------- |
 | startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent): Promise&lt;void&gt; | 服务启动后，向系统申请长时任务，使服务一直保持后台运行 |
-| function stopBackgroundRunning(context: Context): Promise&lt;void&gt; | 停止后台长时任务的运行 |
+| stopBackgroundRunning(context: Context): Promise&lt;void&gt; | 停止后台长时任务的运行 |
 
 
 其中，wantAgent的信息详见（[WantAgent](../reference/apis/js-apis-wantAgent.md)）
