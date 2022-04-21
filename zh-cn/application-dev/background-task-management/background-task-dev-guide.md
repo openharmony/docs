@@ -158,7 +158,7 @@ ohos.permission.KEEP_BACKGROUND_RUNNING
     let wantAgentInfo = {
         wants: [
             {
-                bundleName: "com.example.myapplication",//aaa
+                bundleName: "com.example.myapplication",
                 abilityName: "com.example.myapplication.MainAbility"
             }
         ],
