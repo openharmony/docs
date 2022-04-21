@@ -89,7 +89,7 @@
 | globalX      | number       | 距离屏幕左上角坐标原点横向距离。 |
 | globalY      | number       | 距离屏幕左上角坐标原点纵向距离。 |
 | timestamp    | number       | 时间戳。                         |
-| dataTransfer | DataTransfer | DataTransfer对象。               |
+| dataTransfer | DataTransfer | DataTransfer对象<sup>9+</sup>。               |
 
 ## **target对象**
 
@@ -121,25 +121,28 @@ export default {
 }
 ```
 
-## **DataTransfer对象**
+## DataTransfer对象<sup>9+</sup>
 
-在拖曳操作的过程中，我们可以用过dataTransfer对象来传输数据，以便在拖曳操作结束的时候对数据进行其他的操作。
+在拖曳操作的过程中，可以通过dataTransfer对象来传输数据，以便在拖曳操作结束的时候对数据进行其他操作。
 
-### ***clearData***
+### clearData
 
-###### clearData(key?: string): boolean
+clearData(key?: string): boolean
 
-删除与给定类型关联的数据。如果类型为空或未指定，则删除与所有类型关联的数据。如果指定类型的数据不存在，或者 data transfer 中不包含任何数据，则该方法不会产生任何效果。
+删除与给定类型关联的数据。如果类型为空或未指定，则删除所有数据。如果指定类型的数据不存在，或者data transfer中不包含任何数据，则该方法不会产生任何效果。
 
-- ###### 参数：
+**参数：**
 
 | 参数名 | 参数类型 | 必填 | 描述                                       |
 | ------ | -------- | ---- | ------------------------------------------ |
-| key    | string   | 否   | 有key值时清除指定key，为空时清除剪切板的值 |
+| key    | string   | 否   | 数据类型。key值存在时删除该类型关联的数据，key为空时删除所有数据。 |
 
-- ###### 返回值：boolean
+**返回值：**
+| 类型 | 说明 |
+| ------ | -------- | 
+| bool  | 执行结果  |
 
-- ###### 示例：
+**示例：**
 
   ```js
   dragEnd(e){
@@ -147,21 +150,24 @@ export default {
   }
   ```
 
-### ***getData***
+### getData
 
-###### getData(key: string): object
+ getData(key: string): object
 
-检索给定类型的数据，如果该类型的数据不存在或 datatransfer不包含数据，则返回空字符串。
+获取给定类型关联的数据，如果该类型的数据不存在或data transfer不包含数据，则返回空字符串。
 
-- ###### 参数：
+**参数：**
 
 | 参数名 | 参数类型 | 必填 | 描述                       |
 | ------ | -------- | ---- | -------------------------- |
-| key    | string   | 是   | 获取指定key所对应的value值 |
+| key    | string   | 是   | 数据类型 |
 
-- ###### 返回值：object
+**返回值：**
+| 类型 | 说明 |
+| ------ | -------- | 
+| object | 获取的数据  |
 
-- ###### 示例：
+**示例：**
 
   ```js
   dragStart(e){
@@ -175,22 +181,25 @@ export default {
   },
   ```
 
-### ***setData***
+### setData
 
-###### setData(key: string, value: object): boolean
+setData(key: string, value: object): boolean
 
-设置给定类型的数据。如果该类型的数据不存在，则将其添加到末尾，以便类型列表中的最后一项将是新的格式。如果该类型的数据已经存在，则在相同位置替换现有数据。
+设置给定类型关联的数据。如果该类型的数据不存在，则将其添加到末尾。如果该类型的数据已经存在，则在相同位置替换现有数据。
 
-- ###### 参数：
+**参数：**
 
 | 参数名 | 参数类型 | 必填 | 描述                    |
 | ------ | -------- | ---- | ----------------------- |
-| key    | string   | 是   | 存储时作为剪切板的key   |
-| value  | object   | 是   | 存储时作为剪切板的value |
+| key    | string   | 是   | 数据类型   |
+| value  | object   | 是   | 要存储的数据 |
 
-- ###### 返回值：boolean
+**返回值：**
+| 类型 | 说明 |
+| ------ | -------- | 
+| bool  | 执行结果  |
 
-- ###### 示例：
+**示例：**
 
   ```
   //setData 可以是基本数据类型，也可以是对象类型
@@ -208,11 +217,11 @@ export default {
 
 ### setDragImage
 
-###### setDragImage(pixelmap: Pixelmap, offsetX: number,offsetY: number): boolean
+setDragImage(pixelmap: Pixelmap, offsetX: number,offsetY: number): boolean
 
 用于设置自定义的拖动图像。
 
-- ###### 参数：
+**参数：**
 
 | pixelmap | 参数类型 | 必填 | 描述                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
@@ -220,9 +229,12 @@ export default {
 | offsetX  | number   | 是   | 相对于图片的横向偏移量                                       |
 | offsetY  | number   | 是   | 相对于图片的纵向偏移量                                       |
 
-- ###### 返回值：boolean
+**返回值：**
+| 类型 | 说明 |
+| ------ | -------- | 
+| bool  | 执行结果  |
 
-- ###### 示例：
+**示例：**
 
   ```js
   CreatePixelMap(){
