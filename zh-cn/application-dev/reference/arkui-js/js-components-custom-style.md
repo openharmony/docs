@@ -15,7 +15,7 @@
 
 自定义组件的hml文件，其中fatherclass1和fatherclass2是从父组件继承的样式。
 
-```js
+```html
 <!--comp.hml-->
 <div class="item">
     <text class="fatherclass1">继承父组件的样式1</text>
