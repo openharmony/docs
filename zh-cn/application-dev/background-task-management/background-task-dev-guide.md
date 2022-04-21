@@ -136,13 +136,13 @@ ohos.permission.KEEP_BACKGROUND_RUNNING
           "backgroundModes": [
             "dataTransfer",
             "location"
-          ],
-          "type": "service"
+          ], // 后台模式类型
+          "type": "service"  // ability类型为service
         }
       ],
       "reqPermissions": [
         {
-          "name": "ohos.permission.KEEP_BACKGROUND_RUNNING"
+          "name": "ohos.permission.KEEP_BACKGROUND_RUNNING"  // 长时任务权限
         }
       ]
     }
