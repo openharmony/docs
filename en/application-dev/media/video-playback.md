@@ -95,7 +95,8 @@ await media.createVideoPlayer().then((video) => {
 
 // Set the FD (local playback) of the video file selected by the user.
 let fdPath = 'fd://'
-let path = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp4';
+// The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\01.mp3 /data/accounts/account_0/appdata" command.
+let path = '/data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp4';
 await fileIO.open(path).then(fdNumber) => {
    fdPath = fdPath + '' + fdNumber;
    console.info('open fd sucess fd is' + fdPath);
@@ -237,7 +238,8 @@ SetCallBack(videoPlayer);
 
 // Set the FD (local playback) of the video file selected by the user.
 let fdPath = 'fd://'
-let path = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp4';
+// The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\01.mp3 /data/accounts/account_0/appdata" command.
+let path = '/data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp4';
 await fileIO.open(path).then(fdNumber) => {
    fdPath = fdPath + '' + fdNumber;
    console.info('open fd sucess fd is' + fdPath);
@@ -323,7 +325,8 @@ SetCallBack(videoPlayer);
 
 // Set the FD (local playback) of the video file selected by the user.
 let fdPath = 'fd://'
-let path = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp4';
+// The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\01.mp3 /data/accounts/account_0/appdata" command.
+let path = '/data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp4';
 await fileIO.open(path).then(fdNumber) => {
    fdPath = fdPath + '' + fdNumber;
    console.info('open fd sucess fd is' + fdPath);
@@ -358,7 +361,8 @@ await videoPlayer.reset().then(() => {
 
 // Set the FD (local playback) of the video file selected by the user.
 let fdNextPath = 'fd://'
-let nextPath = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/02.mp4';
+// The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\02.mp3 /data/accounts/account_0/appdata" command.
+let nextPath = '/data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/02.mp4';
 await fileIO.open(nextPath).then(fdNumber) => {
    fdNextPath = fdNextPath + '' + fdNumber;
    console.info('open fd sucess fd is' + fdNextPath);
@@ -444,7 +448,8 @@ SetCallBack(videoPlayer);
 
 // Set the FD (local playback) of the video file selected by the user.
 let fdPath = 'fd://'
-let path = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp4';
+// The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\01.mp3 /data/accounts/account_0/appdata" command.
+let path = '/data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp4';
 await fileIO.open(path).then(fdNumber) => {
    fdPath = fdPath + '' + fdNumber;
    console.info('open fd sucess fd is' + fdPath);
